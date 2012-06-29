@@ -32,11 +32,11 @@
 //
 
 using System;
-using Hyena;
-using FSpot.Utils;
-using FSpot.Platform;
 
-using Mono.Unix.Native;
+using Hyena;
+
+using FSpot.Utils;
+
 using GFileInfo = GLib.FileInfo;
 
 namespace FSpot {

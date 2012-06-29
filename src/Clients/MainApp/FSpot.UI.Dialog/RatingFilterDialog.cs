@@ -32,7 +32,7 @@
 //
 
 using Gtk;
-using FSpot;
+
 using FSpot.Query;
 using FSpot.Widgets;
 using FSpot.UI.Dialog;

@@ -27,7 +27,8 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-namespace Cms {
+namespace Cms
+{
 	public enum Intent {
 		Perceptual           = 0,
 		RelativeColorimetric = 1,

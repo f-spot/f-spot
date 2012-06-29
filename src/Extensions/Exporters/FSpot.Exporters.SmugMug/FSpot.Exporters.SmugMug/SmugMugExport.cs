@@ -41,23 +41,24 @@
 
 using System;
 using System.IO;
-using System.Text;
-using System.Threading;
 using System.Collections.Generic;
+
 using Mono.Unix;
-using Gtk;
 
 using FSpot;
 using FSpot.Core;
 using FSpot.Filters;
 using FSpot.Widgets;
-using Hyena;
 using FSpot.UI.Dialog;
+
+using Hyena;
 
 using SmugMugNet;
 
-namespace FSpot.Exporters.SmugMug {
-	public class SmugMugExport : FSpot.Extensions.IExporter {
+namespace FSpot.Exporters.SmugMug
+{
+	public class SmugMugExport : FSpot.Extensions.IExporter
+	{
 		public SmugMugExport () {}
 		public void Run (IBrowsableCollection selection)
 		{

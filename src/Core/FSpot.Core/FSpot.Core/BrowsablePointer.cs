@@ -34,7 +34,8 @@ using System;
 namespace FSpot.Core
 {
 
-	public class BrowsablePointer {
+	public class BrowsablePointer
+	{
 		IBrowsableCollection collection;
 		IPhoto item;
 		int index;

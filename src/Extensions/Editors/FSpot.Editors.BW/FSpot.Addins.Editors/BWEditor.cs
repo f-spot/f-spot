@@ -28,16 +28,21 @@
 //
 
 using System;
-using FSpot;
+
 using FSpot.Editors;
+
 using Gtk;
 using Gdk;
+
 using Mono.Unix;
 using Mono.Simd;
+
 using Hyena;
 
-namespace FSpot.Addins.Editors {
-	class BWEditor : Editor {
+namespace FSpot.Addins.Editors
+{
+	class BWEditor : Editor
+	{
 		public BWEditor () : base (Catalog.GetString ("Convert to B/W"), null) {
 			CanHandleMultiple = false;
 			HasSettings = true;

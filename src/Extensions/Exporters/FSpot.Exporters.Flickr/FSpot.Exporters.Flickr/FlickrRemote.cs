@@ -42,20 +42,21 @@
  *
  */
 using System;
-using System.IO;
 using System.Text;
-using System.Collections;
 using System.Collections.Generic;
 
 using FlickrNet;
+
 using FSpot;
 using FSpot.Core;
-using FSpot.Utils;
 using FSpot.Filters;
+
 using Hyena;
 
-namespace FSpot.Exporters.Flickr {
-public class FlickrRemote {
+namespace FSpot.Exporters.Flickr
+{
+public class FlickrRemote
+	{
 	public static Licenses    licenses;
 	private string            frob;
 	private string            token;

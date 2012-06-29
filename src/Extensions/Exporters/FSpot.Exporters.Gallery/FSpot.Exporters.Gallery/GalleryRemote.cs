@@ -31,17 +31,12 @@
 //
 
 using System;
-using System.Net;
 using System.IO;
-using System.Text;
-using System.Collections;
 using System.Collections.Generic;
 
-using Mono.Unix;
-using FSpot;
 using FSpot.Core;
+
 using Hyena;
-using Hyena.Widgets;
 
 /* These classes are based off the documentation at
  *

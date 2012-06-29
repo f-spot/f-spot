@@ -29,13 +29,10 @@
 
 using Hyena;
 
-
 namespace FSpot.Core
 {
-
     public interface IPhotoVersion : ILoadable
     {
-
         #region Metadata
 
         /// <summary>

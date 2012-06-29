@@ -30,13 +30,17 @@
 //
 
 using System;
+
 using Mono.Unix;
+
 using Gtk;
+
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Widgets;
 using FSpot.Utils;
 using FSpot.Imaging;
+
 using Hyena;
 using Hyena.Widgets;
 

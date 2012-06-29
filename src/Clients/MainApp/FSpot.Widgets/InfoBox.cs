@@ -31,18 +31,19 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Gtk;
 using System;
 using System.Collections.Generic;
-using System.IO;
+
+using Mono.Unix;
+
 using FSpot.Core;
 using FSpot.Imaging;
-using Mono.Unix;
 using FSpot.Utils;
+
+using Gtk;
 using GLib;
 using GFile = GLib.File;
 using GFileInfo = GLib.FileInfo;
-using Hyena;
 
 // FIXME TODO: We want to use something like EClippedLabel here throughout so it handles small sizes
 // gracefully using ellipsis.

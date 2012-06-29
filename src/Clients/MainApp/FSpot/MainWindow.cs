@@ -30,10 +30,7 @@
 //
 
 using System;
-using System.Text;
 using System.Linq;
-using System.IO;
-using System.Collections;
 using System.Collections.Generic;
 
 using Gdk;
@@ -44,7 +41,6 @@ using Mono.Unix;
 
 using Hyena;
 using Hyena.Widgets;
-using Banshee.Kernel;
 
 using FSpot;
 using FSpot.Core;

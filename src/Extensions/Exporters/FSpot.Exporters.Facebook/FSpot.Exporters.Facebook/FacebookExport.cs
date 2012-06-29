@@ -32,19 +32,21 @@
 
 using System;
 using System.IO;
-using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
+
 using Mono.Unix;
+
 using Gtk;
 using Gnome.Keyring;
 
 using FSpot.Core;
-using Hyena;
-using Hyena.Widgets;
 using FSpot.UI.Dialog;
 using FSpot.Extensions;
 using FSpot.Filters;
+
+using Hyena;
+using Hyena.Widgets;
 
 using Mono.Facebook;
 

@@ -35,7 +35,6 @@ using Gtk;
 
 using FSpot.Core;
 
-
 namespace FSpot.Widgets
 {
 

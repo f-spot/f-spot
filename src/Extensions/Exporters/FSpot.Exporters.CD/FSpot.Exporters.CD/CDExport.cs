@@ -29,26 +29,21 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using System.IO;
-using System.Reflection;
-using System.Runtime.InteropServices;
-
 using Mono.Unix;
 
-using FSpot;
 using FSpot.Core;
 using FSpot.Filters;
-using FSpot.Widgets;
-using Hyena;
 using FSpot.UI.Dialog;
+
+using Hyena;
 
 using GLib;
 using Gtk;
-using GtkBeans;
 
-namespace FSpot.Exporters.CD {
-	public class CDExport : FSpot.Extensions.IExporter {
+namespace FSpot.Exporters.CD
+{
+	public class CDExport : FSpot.Extensions.IExporter
+	{
 		IBrowsableCollection selection;
 		IDiscBurner burner;
 

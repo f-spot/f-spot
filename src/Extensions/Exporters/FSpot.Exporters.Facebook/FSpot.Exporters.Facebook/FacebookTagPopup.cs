@@ -29,7 +29,9 @@
 
 using System.Reflection;
 using System.Collections.Generic;
+
 using FSpot.Widgets;
+
 using Mono.Facebook;
 
 namespace FSpot.Exporters.Facebook

@@ -30,18 +30,15 @@
 //
 
 using System;
-using System.Collections.Generic;
 
 using Gtk;
-using GLib;
 
 using FSpot;
 using FSpot.Database;
 using FSpot.Core;
+
 using Hyena;
 using Hyena.Data.Sqlite;
-
-using Mono.Unix;
 
 namespace FSpot.Widgets
 {

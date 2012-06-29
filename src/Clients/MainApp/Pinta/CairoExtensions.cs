@@ -35,7 +35,6 @@
 
 using System;
 using Cairo;
-using System.Collections.Generic;
 
 namespace Pinta.Core
 {

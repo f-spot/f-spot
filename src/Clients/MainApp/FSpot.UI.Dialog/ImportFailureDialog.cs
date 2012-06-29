@@ -29,8 +29,11 @@
 
 using System;
 using System.Collections.Generic;
+
 using Gtk;
+
 using Mono.Unix;
+
 using Hyena;
 
 namespace FSpot.UI.Dialog

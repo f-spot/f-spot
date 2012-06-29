@@ -30,11 +30,13 @@
 //
 
 using System;
+
 using Mono.Unix;
+
 using Gtk;
 using Gdk;
 using GLib;
-using FSpot.Core;
+
 using FSpot.Utils;
 using FSpot.Widgets;
 

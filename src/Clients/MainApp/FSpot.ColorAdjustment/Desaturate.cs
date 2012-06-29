@@ -27,9 +27,11 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Cms;
-using Gdk;
 using System.Collections.Generic;
+
+using Cms;
+
+using Gdk;
 
 namespace FSpot.ColorAdjustment {
 	public class Desaturate : Adjustment {

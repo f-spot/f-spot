@@ -27,7 +27,8 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-namespace Cms {
+namespace Cms
+{
 	public enum IccProfileClass : uint {
 		Input      = 0x73636e72,  /* 'scnr' */
 		Display    = 0x6D6e7472,  /* 'mntr' */

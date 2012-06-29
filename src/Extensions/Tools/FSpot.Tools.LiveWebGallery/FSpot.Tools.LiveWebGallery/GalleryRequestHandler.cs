@@ -34,6 +34,7 @@ using System.Reflection;
 
 using FSpot;
 using FSpot.Core;
+
 using Mono.Unix;
 
 namespace FSpot.Tools.LiveWebGallery	

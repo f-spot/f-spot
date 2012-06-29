@@ -28,14 +28,13 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-using FSpot;
-using FSpot.Utils;
+
 using System;
 using System.IO;
-using System.Collections.Generic;
+
 using Hyena;
+
 using TagLib;
-using TagLib.Image;
 using TagLib.IFD;
 using TagLib.IFD.Entries;
 using TagLib.IFD.Tags;

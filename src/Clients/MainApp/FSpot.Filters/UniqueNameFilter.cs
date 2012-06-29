@@ -30,7 +30,7 @@
 //
 
 using System;
-using FSpot.Utils;
+
 using Hyena;
 
 namespace FSpot.Filters {

@@ -31,13 +31,17 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Gtk;
 using System;
+
+using Gtk;
+
 using Mono.Unix;
+
 using FSpot;
+using FSpot.UI.Dialog;
+
 using Hyena;
 using Hyena.Widgets;
-using FSpot.UI.Dialog;
 
 public class PhotoVersionCommands
 {

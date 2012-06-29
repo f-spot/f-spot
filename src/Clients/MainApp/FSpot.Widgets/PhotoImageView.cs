@@ -32,18 +32,20 @@
 //
 
 using System;
+
 using FSpot.Core;
-using FSpot.Editors;
-using FSpot.Utils;
 using FSpot.Loaders;
 
 using Hyena;
+
 using Gdk;
 
 using TagLib.Image;
 
-namespace FSpot.Widgets {
-	public class PhotoImageView : ImageView {
+namespace FSpot.Widgets
+{
+	public class PhotoImageView : ImageView
+	{
 #region public API
 
 		protected PhotoImageView (IntPtr raw) : base (raw) { }

@@ -33,6 +33,7 @@
 
 using Gtk;
 using Gdk;
+
 using System;
 using System.Collections.Generic;
 
@@ -40,6 +41,7 @@ using Mono.Addins;
 using Mono.Unix;
 
 using Hyena;
+
 using FSpot.Extensions;
 using FSpot.Utils;
 using FSpot.UI.Dialog;

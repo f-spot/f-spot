@@ -27,8 +27,10 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-namespace Cms {
-	public static class CctTable {
+namespace Cms
+{
+	public static class CctTable
+	{
 		public static void GetXY (int temp, out double x, out double y)
 		{
 			x = XY[temp - 1000, 0];

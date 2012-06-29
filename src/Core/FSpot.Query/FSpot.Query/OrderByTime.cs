@@ -29,7 +29,8 @@
 
 using System;
 
-namespace FSpot.Query {
+namespace FSpot.Query
+{
 	public class OrderByTime : IQueryCondition, IOrderCondition
 	{
 		public static OrderByTime OrderByTimeAsc = new OrderByTime (true);

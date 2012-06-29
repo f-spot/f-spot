@@ -27,21 +27,19 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Hyena;
-
-using Mono.Tabblo;
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 
+using Hyena;
+
 using FSpot.Core;
 
-namespace FSpot.Exporters.Tabblo {
-
-	class TabbloExportModel : Mono.Tabblo.IPreferences {
-
+namespace FSpot.Exporters.Tabblo
+{
+	class TabbloExportModel : Mono.Tabblo.IPreferences
+	{
 		private IBrowsableCollection photo_collection;
 
 		private string username;

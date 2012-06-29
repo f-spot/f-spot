@@ -28,11 +28,15 @@
 //
 
 using System;
+
 using Gtk;
+
 using FSpot.Utils;
 
-namespace FSpot.Widgets {
-	public class ScrolledView : Fixed {
+namespace FSpot.Widgets
+{
+	public class ScrolledView : Fixed
+	{
 		private DelayedOperation hide;
 		public EventBox ControlBox { get; private set; }
 		public ScrolledWindow ScrolledWindow { get; private set; }

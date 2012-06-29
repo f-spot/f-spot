@@ -32,10 +32,13 @@
 //
 
 using System;
+
 using Hyena;
 
-namespace FSpot.Core {
-	public static class Global {
+namespace FSpot.Core
+{
+	public static class Global
+	{
 		public static string HomeDirectory {
 			get { return System.IO.Path.Combine (System.Environment.GetEnvironmentVariable ("HOME"), System.String.Empty); }
 		}

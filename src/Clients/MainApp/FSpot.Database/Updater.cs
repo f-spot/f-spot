@@ -34,11 +34,12 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Mono.Unix;
-using Gtk;
 using System;
-using System.Collections;
 using System.Collections.Generic;
+
+using Mono.Unix;
+
+using Gtk;
 
 using FSpot.Utils;
 using FSpot.UI.Dialog;

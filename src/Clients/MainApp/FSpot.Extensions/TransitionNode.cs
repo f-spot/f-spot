@@ -27,9 +27,8 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
 using Mono.Addins;
-using Gdk;
+
 using FSpot.Transitions;
 
 namespace FSpot.Extensions

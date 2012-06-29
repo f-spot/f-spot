@@ -36,15 +36,14 @@
 // Copyright (C) 2007
 //
 
+using System;
+using System.IO;
+using System.Collections.Generic;
+using System.Collections.Specialized;
 
 using FSpot;
 using FSpot.Core;
-using FSpot.Query;
-using System;
-using System.IO;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.Specialized;
+
 using Hyena;
 
 /*
@@ -64,7 +63,6 @@ A bit of mixture between URI and path. Old and New base path are in String path.
 
 namespace FSpot.Tools.ChangePhotoPath
 {
-
 	public enum ProcessResult {
 		Ok, Cancelled, Error, SamePath, NoPhotosFound, Processing
 	}

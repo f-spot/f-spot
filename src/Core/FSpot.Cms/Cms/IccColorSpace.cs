@@ -27,7 +27,8 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-namespace Cms {
+namespace Cms
+{
 	public enum IccColorSpace : uint {
 		XYZ                        = 0x58595A20,  /* 'XYZ ' */
 		Lab                        = 0x4C616220,  /* 'Lab ' */

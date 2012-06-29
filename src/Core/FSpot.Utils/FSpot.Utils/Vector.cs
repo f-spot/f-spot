@@ -29,8 +29,10 @@
 
 using System;
 
-namespace FSpot.Utils {
-	public class Vector {
+namespace FSpot.Utils
+{
+	public class Vector
+	{
 		double X;
 		double Y;
 

@@ -27,9 +27,10 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using FSpot;
 using FSpot.ColorAdjustment;
+
 using Gdk;
+
 using Mono.Unix;
 
 namespace FSpot.Editors {

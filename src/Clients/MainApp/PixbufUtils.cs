@@ -30,19 +30,23 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-using Gdk;
-using System.Collections;
-using System.Runtime.InteropServices;
+
 using System;
 using System.IO;
+using System.Runtime.InteropServices;
+
+using Cairo;
+using Gdk;
+
 using FSpot;
 using FSpot.Core;
 using FSpot.Utils;
 using FSpot.Imaging;
-using Hyena;
-using TagLib.Image;
-using Cairo;
 using FSpot.UI.Dialog;
+
+using Hyena;
+
+using TagLib.Image;
 
 using Pinta.Core;
 using Pinta.Effects;

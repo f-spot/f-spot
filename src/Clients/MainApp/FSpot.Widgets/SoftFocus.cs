@@ -29,16 +29,16 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Cairo;
 using System;
-using System.Runtime.InteropServices;
+
+using Cairo;
 
 using Pinta.Core;
 
-namespace FSpot.Widgets {
-
-	public class SoftFocus : IDisposable {
-
+namespace FSpot.Widgets
+{
+	public class SoftFocus : IDisposable
+	{
 		ImageInfo info;
 		double radius;
 		double amount;

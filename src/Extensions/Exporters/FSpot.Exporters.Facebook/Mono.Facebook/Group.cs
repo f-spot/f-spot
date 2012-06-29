@@ -28,13 +28,14 @@
 //
 using System;
 using System.Xml.Serialization;
+
 using Mono.Facebook.Schemas;
 
 namespace Mono.Facebook
 {
 	public class Group : group, SessionWrapper
 	{
-        [XmlIgnore]
+		[XmlIgnore]
 		public FacebookSession Session { get; set; }
 
 		[XmlIgnore ()]

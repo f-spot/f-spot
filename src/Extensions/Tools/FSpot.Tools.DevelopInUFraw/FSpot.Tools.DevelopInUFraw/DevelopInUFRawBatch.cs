@@ -28,20 +28,19 @@
 //
 
 using System;
-using System.IO;
+
 using Mono.Unix;
+
 using Hyena;
+
 using FSpot;
-using FSpot.Core;
-using FSpot.Utils;
-using FSpot.Extensions;
-using FSpot.Imaging;
 using FSpot.UI.Dialog;
 
 namespace FSpot.Tools.DevelopInUFraw
 {
     // Batch Version
-	public class DevelopInUFRawBatch : AbstractDevelopInUFRaw {
+	public class DevelopInUFRawBatch : AbstractDevelopInUFRaw
+	{
 		public DevelopInUFRawBatch() : base("ufraw-batch")
 		{
 		}

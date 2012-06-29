@@ -27,15 +27,18 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using FSpot.Core;
+using System;
+using System.Collections.Generic;
+
 using FSpot.UI.Dialog;
 using FSpot.Widgets;
 using FSpot.Utils;
 using FSpot.Import;
+
 using Gtk;
+
 using Hyena;
-using System;
-using System.Collections.Generic;
+
 using Mono.Unix;
 
 namespace FSpot.UI.Dialog

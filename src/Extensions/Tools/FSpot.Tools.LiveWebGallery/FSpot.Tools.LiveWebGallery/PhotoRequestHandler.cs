@@ -27,13 +27,12 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
 using System.IO;
-using System.Text;
 
 using FSpot;
 using FSpot.Filters;
 using FSpot.Utils;
+
 using Hyena;
 
 namespace FSpot.Tools.LiveWebGallery

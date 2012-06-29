@@ -42,9 +42,8 @@ using Gtk;
 
 using FSpot.Core;
 using FSpot.Database;
-using FSpot.Utils;
-using FSpot.Query;
 using FSpot.Widgets;
+
 using Hyena;
 
 

@@ -29,17 +29,15 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-
-using Gtk;
-
 using System;
 using System.Collections.Generic;
 
-using FSpot;
+using Gtk;
+
 using FSpot.Core;
 
-
-public class PhotoVersionMenu : Menu {
+public class PhotoVersionMenu : Menu
+{
 
 	public IPhotoVersion Version {
 		get; private set;

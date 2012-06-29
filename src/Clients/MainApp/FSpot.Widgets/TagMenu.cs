@@ -31,15 +31,16 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Gtk;
-#if GTK_2_16
-using GtkBeans;
-#endif
 using System;
+
+using Gtk;
+using GtkBeans;
+
 using FSpot;
-using FSpot.Utils;
-using Hyena;
 using FSpot.Core;
+using FSpot.Utils;
+
+using Hyena;
 
 public class TagMenu : Menu {
 	private TagStore tag_store;
@@ -63,10 +64,7 @@ public class TagMenu : Menu {
 			Value = t;
 			if (t.Icon != null) {
 				this.Image = new Gtk.Image (t.SizedIcon);
-#if GTK_2_16
-				// override Gnome 2.28+ default setting not to show menuitem icons
 				this.SetAlwaysShowImage (true);
-#endif
 			}
 		}
 

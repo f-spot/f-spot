@@ -27,14 +27,17 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using FSpot;
 using FSpot.Editors;
+
 using Gdk;
 using Gtk;
+
 using Mono.Unix;
 
-namespace FSpot.Addins.Editors {
-	class BlackoutEditor : Editor {
+namespace FSpot.Addins.Editors
+{
+	class BlackoutEditor : Editor
+	{
 		public BlackoutEditor () : base (Catalog.GetString ("Blackout"), null) {
 			CanHandleMultiple = false;
 			NeedsSelection = true;

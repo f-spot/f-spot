@@ -29,7 +29,6 @@
 
 using System;
 using System.Text;
-using System.IO;
 
 namespace FSpot.Utils
 {

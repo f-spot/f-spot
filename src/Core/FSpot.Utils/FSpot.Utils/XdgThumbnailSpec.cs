@@ -27,9 +27,10 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Gdk;
 using System;
-using System.Runtime.InteropServices;
+
+using Gdk;
+
 using Hyena;
 
 namespace FSpot.Utils

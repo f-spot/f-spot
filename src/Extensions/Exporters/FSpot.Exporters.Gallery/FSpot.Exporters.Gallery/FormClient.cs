@@ -39,8 +39,8 @@ using System.Text;
 using System.Web;
 
 using FSpot.Core;
-using Mono.Unix;
 
+using Mono.Unix;
 
 namespace FSpot.Exporters.Gallery
 {

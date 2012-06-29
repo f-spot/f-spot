@@ -55,16 +55,14 @@
  *  DEALINGS IN THE SOFTWARE.
  */
  
-using System;
 
 namespace Banshee.Kernel
 {
-    public enum JobPriority
-    {
-        Lowest,
-        BelowNormal,
-        Normal,
-        AboveNormal,
-        Highest
-    }
+	public enum JobPriority {
+		Lowest,
+		BelowNormal,
+		Normal,
+		AboveNormal,
+		Highest
+	}
 }

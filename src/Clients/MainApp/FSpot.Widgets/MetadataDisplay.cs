@@ -28,9 +28,8 @@
 //
 
 using System;
-using System.IO;
-using System.Text;
 using System.Collections.Generic;
+
 using Gtk;
 
 using Mono.Unix;
@@ -38,7 +37,6 @@ using Mono.Unix;
 using FSpot.Core;
 using FSpot.Utils;
 using FSpot.Extensions;
-using FSpot.Imaging;
 
 namespace FSpot.Widgets {
 	public class MetadataDisplayPage : SidebarPage {

@@ -30,26 +30,28 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using FlickrNet;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
+
 using Mono.Unix;
+
+using FlickrNet;
 
 using FSpot;
 using FSpot.Core;
 using FSpot.Filters;
 using FSpot.Widgets;
-using FSpot.Utils;
 using FSpot.UI.Dialog;
+
 using Hyena;
 using Hyena.Widgets;
 
-using GtkBeans;
 
-namespace FSpot.Exporters.Flickr {
+namespace FSpot.Exporters.Flickr
+{
 	public class TwentyThreeHQExport : FlickrExport
 	{
 		public override void Run (IBrowsableCollection selection)

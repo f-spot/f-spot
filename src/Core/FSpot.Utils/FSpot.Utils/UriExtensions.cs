@@ -31,7 +31,6 @@ using System;
 
 namespace FSpot.Utils
 {
-	
 	public static class UriExtensions
 	{
 		public static Uri GetDirectoryUri (this Uri uri)

@@ -31,7 +31,6 @@ using System.Collections.Generic;
 
 namespace FSpot.Core
 {
-
     public class PhotoList : IBrowsableCollection
     {
         protected List<IPhoto> list;

@@ -30,7 +30,8 @@
 using System;
 
 namespace FSpot.Bling
-{	public class DoubleAnimation : EasedAnimation<double>
+{	
+	public class DoubleAnimation : EasedAnimation<double>
 	{
 		public DoubleAnimation (double from, double to, TimeSpan duration, Action<double> action) : base (from, to, duration, action)
 		{

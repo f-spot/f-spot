@@ -31,20 +31,16 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Gdk;
-using GLib;
-using Gtk;
 using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Xml.Serialization;
+
+using Gdk;
+using Gtk;
+
 using Mono.Unix;
 
 using FSpot.Core;
 using FSpot.Widgets;
 using FSpot.Utils;
-using Hyena;
-using FSpot.UI.Dialog;
 
 namespace FSpot {
 	public class PhotoView : EventBox {

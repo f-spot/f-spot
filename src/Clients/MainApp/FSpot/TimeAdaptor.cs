@@ -36,8 +36,10 @@
 using System;
 using System.Threading;
 using System.Collections.Generic;
+
 using FSpot.Core;
 using FSpot.Query;
+
 using Hyena;
 
 namespace FSpot {

@@ -30,11 +30,11 @@
 //
 
 using FSpot;
-using FSpot.Utils;
+
 using Gdk;
 using Gtk;
+
 using Mono.Unix;
-using System;
 
 namespace FSpot.Editors {
 	class RedEyeEditor : Editor {

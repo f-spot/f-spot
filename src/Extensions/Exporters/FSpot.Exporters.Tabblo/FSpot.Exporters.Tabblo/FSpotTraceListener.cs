@@ -29,10 +29,10 @@
 
 using Hyena;
 
-namespace FSpot.Exporters.Tabblo {
-
-	class FSpotTraceListener : System.Diagnostics.TraceListener {
-
+namespace FSpot.Exporters.Tabblo
+{
+	class FSpotTraceListener : System.Diagnostics.TraceListener
+	{
 		public override void Write (string message)
 		{
 			Log.Debug ("Mono.Tabblo", message);

@@ -40,8 +40,9 @@ using FSpot.Core;
 using FSpot.Database;
 using FSpot.Extensions;
 using FSpot.Query;
-using FSpot.UI.Dialog;
+
 using Mono.Unix;
+
 using Hyena;
 using Hyena.Widgets;
 
@@ -49,7 +50,6 @@ namespace FSpot.Tools.MergeDb
 {
 	public class MergeDb : ICommand
 	{
-
 		Db from_db;
 		Db to_db;
 		Roll [] new_rolls;

@@ -29,6 +29,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System;
+using System.Collections.Generic;
+
 using FSpot;
 using FSpot.Extensions;
 using FSpot.Editors;
@@ -41,8 +44,6 @@ using Gtk;
 using Mono.Addins;
 using Mono.Unix;
 
-using System;
-using System.Collections.Generic;
 using Hyena;
 using Hyena.Widgets;
 

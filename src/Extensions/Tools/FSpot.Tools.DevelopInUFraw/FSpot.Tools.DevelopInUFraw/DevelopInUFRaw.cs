@@ -28,22 +28,16 @@
 //
 
 using System;
-using System.IO;
-
-using Mono.Unix;
 
 using Hyena;
+
 using FSpot;
-using FSpot.Core;
-using FSpot.Utils;
-using FSpot.Extensions;
-using FSpot.Imaging;
-using FSpot.UI.Dialog;
 
 namespace FSpot.Tools.DevelopInUFraw
 {
 	// GUI Version
-	public class DevelopInUFRaw : AbstractDevelopInUFRaw {
+	public class DevelopInUFRaw : AbstractDevelopInUFRaw
+	{
 		public DevelopInUFRaw() : base("ufraw")
 		{
 		}

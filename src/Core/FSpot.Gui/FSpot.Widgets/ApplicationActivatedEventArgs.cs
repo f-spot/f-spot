@@ -28,6 +28,7 @@
 //
 
 using System;
+
 using GLib;
 
 namespace FSpot.Widgets

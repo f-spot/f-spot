@@ -28,7 +28,7 @@
 //
 
 using System;
-using Gtk;
+
 using FSpot.Bling;
 
 namespace FSpot.Gui

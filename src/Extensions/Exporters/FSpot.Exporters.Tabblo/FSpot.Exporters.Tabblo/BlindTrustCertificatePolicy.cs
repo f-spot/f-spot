@@ -32,8 +32,10 @@ using System.Security.Cryptography.X509Certificates;
 
 using Hyena;
 
-namespace FSpot.Exporters.Tabblo {
-	class BlindTrustCertificatePolicy : ICertificatePolicy {
+namespace FSpot.Exporters.Tabblo
+{
+	class BlindTrustCertificatePolicy : ICertificatePolicy
+	{
 		public bool CheckValidationResult (ServicePoint service_point,
 		                                   X509Certificate certificate,
 		                                   WebRequest request,

@@ -29,11 +29,10 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-
 namespace FSpot.Core
 {
-	public class BrowsableEventArgs : System.EventArgs {
+	public class BrowsableEventArgs : System.EventArgs
+	{
 		private readonly int [] items;
 		public int [] Items {
 			get { return items; }

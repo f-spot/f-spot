@@ -27,15 +27,12 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-
 using Gdk;
 using Cairo;
 
 using Hyena.Gui;
 
 using FSpot.Utils;
-
 
 namespace FSpot.Widgets
 {

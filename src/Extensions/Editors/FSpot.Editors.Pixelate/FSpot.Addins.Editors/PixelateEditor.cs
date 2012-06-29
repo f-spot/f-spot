@@ -29,14 +29,17 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using FSpot;
 using FSpot.Editors;
+
 using Gdk;
 using Gtk;
+
 using Mono.Unix;
 
-namespace FSpot.Addins.Editors {
-	class PixelateEditor : Editor {
+namespace FSpot.Addins.Editors
+{
+	class PixelateEditor : Editor
+	{
 		public PixelateEditor () : base (Catalog.GetString ("Pixelate"), null) {
 			CanHandleMultiple = false;
 			NeedsSelection = true;

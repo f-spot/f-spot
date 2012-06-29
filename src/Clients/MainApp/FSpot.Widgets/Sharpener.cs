@@ -28,15 +28,16 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-using Cairo;
+
+using System;
 
 using Gtk;
-using Gdk;
-using System;
-using System.Runtime.InteropServices;
+
 using Mono.Unix;
+
 using FSpot.Widgets;
 using FSpot.UI.Dialog;
+
 using Hyena.Widgets;
 
 namespace FSpot.Widgets

@@ -35,15 +35,14 @@ using System;
 using System.IO;
 
 using Gtk;
-using Gdk;
 
 using FSpot;
+using FSpot.Core;
 using FSpot.UI.Dialog;
+using FSpot.Utils;
 
 using Hyena;
 using Hyena.Widgets;
-using FSpot.Utils;
-using FSpot.Core;
 
 using Mono.Unix;
 

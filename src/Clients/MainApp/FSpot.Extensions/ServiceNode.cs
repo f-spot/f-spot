@@ -28,6 +28,7 @@
 //
 
 using System;
+
 using Mono.Addins;
 
 namespace FSpot.Extensions

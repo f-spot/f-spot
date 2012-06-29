@@ -30,34 +30,33 @@
 //
 
 using Gdk;
-using System;
-using System.Runtime.InteropServices;
+
 using TagLib.Image;
 
 namespace FSpot.Utils
 {
 	public static class PixbufUtils
 	{
-        static public ImageOrientation Rotate270 (ImageOrientation orientation)
-        {
-            if (orientation == ImageOrientation.None) {
-                orientation = ImageOrientation.TopLeft;
-            }
+	        static public ImageOrientation Rotate270 (ImageOrientation orientation)
+	        {
+	            if (orientation == ImageOrientation.None) {
+	                orientation = ImageOrientation.TopLeft;
+	            }
 
-            ImageOrientation [] rot = new ImageOrientation [] {
-                ImageOrientation.LeftBottom,
-                    ImageOrientation.LeftTop,
-                    ImageOrientation.RightTop,
-                    ImageOrientation.RightBottom,
-                    ImageOrientation.BottomLeft,
-                    ImageOrientation.TopLeft,
-                    ImageOrientation.TopRight,
-                    ImageOrientation.BottomRight
-            };
+	            ImageOrientation [] rot = new ImageOrientation [] {
+	                ImageOrientation.LeftBottom,
+	                    ImageOrientation.LeftTop,
+	                    ImageOrientation.RightTop,
+	                    ImageOrientation.RightBottom,
+	                    ImageOrientation.BottomLeft,
+	                    ImageOrientation.TopLeft,
+	                    ImageOrientation.TopRight,
+	                    ImageOrientation.BottomRight
+	            };
 
-            orientation = rot [((int)orientation) -1];
-            return orientation;
-        }
+	            orientation = rot [((int)orientation) -1];
+	            return orientation;
+	        }
 	
 		static public ImageOrientation Rotate90 (ImageOrientation orientation)
 		{

@@ -28,15 +28,19 @@
 //
 
 using System;
-using FSpot;
+
 using FSpot.Editors;
 using FSpot.Imaging;
+
 using Gtk;
 using Gdk;
+
 using Mono.Unix;
 
-namespace FSpot.Addins.Editors {
-	class ResizeEditor : Editor {
+namespace FSpot.Addins.Editors
+{
+	class ResizeEditor : Editor
+	{
 		SpinButton size;
 
 		public ResizeEditor () : base (Catalog.GetString ("Resize"), null) {

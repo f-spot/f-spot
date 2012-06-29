@@ -30,11 +30,7 @@
 using System;
 using System.Xml;
 using System.Collections.Generic;
-using System.Text;
-using System.IO;
-using System.Net;
 using System.Linq;
-using Mono.Facebook.Schemas;
 
 namespace Mono.Facebook
 {

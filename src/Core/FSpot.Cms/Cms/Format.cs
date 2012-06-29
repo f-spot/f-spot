@@ -27,7 +27,8 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-namespace Cms {
+namespace Cms
+{
 	public enum Format : uint {
 		Rgb8  = 262169,
 		Rgba8 = 262297,

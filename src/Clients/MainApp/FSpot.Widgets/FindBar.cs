@@ -32,15 +32,16 @@
 //
 
 using System;
-using System.Collections;
 using System.Text;
 using System.Text.RegularExpressions;
+
 using Gtk;
-using Gdk;
+
 using Mono.Unix;
 
 using FSpot.Core;
 using FSpot.Query;
+
 using Hyena;
 
 namespace FSpot.Widgets {

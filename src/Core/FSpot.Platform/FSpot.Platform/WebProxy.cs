@@ -28,11 +28,13 @@
 //
 
 using System;
+
 using Hyena;
 
 namespace FSpot.Platform
 {
-	public class WebProxy {
+	public class WebProxy
+	{
 
 		const string PROXY = "/system/http_proxy/";
 		const string PROXY_USE_PROXY = PROXY + "use_http_proxy";

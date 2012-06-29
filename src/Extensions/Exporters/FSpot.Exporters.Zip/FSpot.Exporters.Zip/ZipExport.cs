@@ -29,25 +29,28 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System;
+using System.IO;
+
 using FSpot;
 using FSpot.UI.Dialog;
 using FSpot.Core;
 using FSpot.Extensions;
 using FSpot.Filters;
+
 using Hyena;
 using Hyena.Widgets;
-using System;
-using System.IO;
-using System.Collections;
+
 using Mono.Unix;
+
 using Gtk;
 using ICSharpCode.SharpZipLib.Checksums;
 using ICSharpCode.SharpZipLib.Zip;
-using ICSharpCode.SharpZipLib.GZip;
 
-namespace FSpot.Exporters.Zip {
-	public class Zip : IExporter {
-
+namespace FSpot.Exporters.Zip
+{
+	public class Zip : IExporter
+	{
 		[GtkBeans.Builder.Object] Gtk.Dialog zipdiag;
 		[GtkBeans.Builder.Object] Gtk.HBox dirchooser_hbox;
 		[GtkBeans.Builder.Object] Gtk.CheckButton scale_check;

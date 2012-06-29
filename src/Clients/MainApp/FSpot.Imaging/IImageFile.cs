@@ -29,18 +29,14 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-using Hyena;
 
 using System;
 using System.IO;
-using System.Collections.Generic;
+
+using Hyena;
 
 using FSpot.Utils;
-using Mono.Unix;
-using Mono.Unix.Native;
-using Gdk;
 
-using GLib;
 using TagLib.Image;
 
 using GFileInfo = GLib.FileInfo;

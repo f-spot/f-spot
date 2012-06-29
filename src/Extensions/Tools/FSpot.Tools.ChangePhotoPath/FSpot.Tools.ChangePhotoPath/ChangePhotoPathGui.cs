@@ -36,17 +36,17 @@
 // Copyright (C) 2007
 //
 
+using System;
+
 using FSpot.Extensions;
 using FSpot.UI.Dialog;
-using System;
 //using Gnome.Vfs;
-using Gtk;
+
 using Hyena;
 using Hyena.Widgets;
 
 namespace FSpot.Tools.ChangePhotoPath
 {
-
 	public class Dump : Gtk.Dialog, ICommand, IChangePhotoPathGui
 	{
 		private string dialog_name = "ChangePhotoPath";

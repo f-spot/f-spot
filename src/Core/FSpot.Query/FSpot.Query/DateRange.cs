@@ -30,7 +30,8 @@
 using System;
 using Hyena;
 
-namespace FSpot.Query {
+namespace FSpot.Query
+{
 	public class DateRange : IQueryCondition
 	{
 		public DateTime Start { get; private set; }

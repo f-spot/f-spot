@@ -30,11 +30,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
 using System.Collections.Generic;
-using FSpot.Utils;
+
 using Hyena;
-using TagLib.Image;
 
 namespace FSpot.Imaging.Ciff {
 	internal enum Tag {

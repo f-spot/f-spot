@@ -27,7 +27,6 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-
 using System;
 
 using Mono.Unix;
@@ -35,10 +34,10 @@ using Mono.Unix;
 using Hyena;
 using Hyena.Widgets;
 
-
 namespace FSpot.Exporters.Gallery
 {
-	public class AccountDialog {
+	public class AccountDialog
+	{
 		public AccountDialog (Gtk.Window parent) : this (parent, null, false) {
 			add_dialog.Response += HandleAddResponse;
 			add_button.Sensitive = false;

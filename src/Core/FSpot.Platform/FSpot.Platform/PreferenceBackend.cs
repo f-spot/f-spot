@@ -30,7 +30,6 @@
 using System;
 using System.Runtime.Serialization;
 
-
 namespace FSpot
 {
 	public class NotifyEventArgs : System.EventArgs

@@ -33,8 +33,8 @@
 //
 
 using System.Text;
-using System.Collections;
 using System.Collections.Generic;
+
 using FSpot.Core;
 
 namespace FSpot.Widgets

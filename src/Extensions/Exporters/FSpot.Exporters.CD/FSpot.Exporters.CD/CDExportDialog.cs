@@ -30,23 +30,19 @@
 //
 
 using System;
-using System.IO;
 using System.Reflection;
-using System.Runtime.InteropServices;
-using Mono.Unix;
-using FSpot;
+
 using FSpot.Core;
-using FSpot.Filters;
 using FSpot.Widgets;
-using Hyena;
 using FSpot.UI.Dialog;
+
 using GLib;
 using Gtk;
-using GtkBeans;
 
 namespace FSpot.Exporters.CD
 {
-	class CDExportDialog : BuilderDialog {
+	class CDExportDialog : BuilderDialog
+	{
 		Gtk.Window listwindow;
 		System.Uri dest;
 

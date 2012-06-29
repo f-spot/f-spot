@@ -32,7 +32,9 @@ using System.Collections.Generic;
 
 using Gtk;
 using Gdk;
+
 using Mono.Addins;
+
 using FSpot.Core;
 using FSpot.Bling;
 using FSpot.Extensions;

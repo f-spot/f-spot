@@ -33,14 +33,15 @@ using System;
 using System.Collections.Generic;
 
 using Gtk;
-using Gdk;
 using GLib;
 using GtkBeans;
 
 using Mono.Unix;
 
-namespace FSpot.Widgets {
-	public class OpenWithMenu: Gtk.Menu {
+namespace FSpot.Widgets
+{
+	public class OpenWithMenu: Gtk.Menu
+	{
 		public event EventHandler<ApplicationActivatedEventArgs> ApplicationActivated;
 
 		public delegate IEnumerable<string> TypeFetcher ();
@@ -131,9 +132,7 @@ namespace FSpot.Widgets {
 					return;
 
 				Image = GtkBeans.Image.NewFromIcon (app.Icon, IconSize.Menu);
-#if GTK_2_16
 				this.SetAlwaysShowImage (true);
-#endif
 			}
 		}
 	}

@@ -33,22 +33,19 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Gtk;
 using System;
 using System.Reflection;
 using System.IO;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Collections;
 using System.Collections.Generic;
+
 using Mono.Unix;
 using Mono.Addins;
 using Mono.Addins.Setup;
+
 using FSpot.Core;
 using FSpot.Utils;
-using FSpot.UI.Dialog;
-using FSpot.Extensions;
 using FSpot.Imaging;
+
 using Hyena;
 using Hyena.CommandLine;
 using Hyena.Gui;

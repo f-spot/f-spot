@@ -28,11 +28,13 @@
 //
 
 using System;
-using Cairo;
-using System.Runtime.InteropServices;
 
-namespace FSpot.Utils {
-	public class CairoUtils {
+using Cairo;
+
+namespace FSpot.Utils
+{
+	public class CairoUtils
+	{
 		public static Surface CreateSurface (Gdk.Drawable d)
 		{
 			int width, height;

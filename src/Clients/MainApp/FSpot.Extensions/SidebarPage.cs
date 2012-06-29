@@ -27,13 +27,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using FSpot.Extensions;
-using FSpot.Utils;
-using Gtk;
-using Mono.Addins;
-using Mono.Unix;
 using System;
-using System.Collections.Generic;
+
+using Gtk;
 
 namespace FSpot.Extensions
 {

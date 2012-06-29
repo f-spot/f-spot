@@ -27,6 +27,8 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System;
+
 using Hyena;
 
 using FSpot.Core;
@@ -37,9 +39,8 @@ using Gdk;
 using Gtk;
 
 using Mono.Addins;
-using Mono.Unix;
 
-using System;
+
 
 namespace FSpot.Editors {
 

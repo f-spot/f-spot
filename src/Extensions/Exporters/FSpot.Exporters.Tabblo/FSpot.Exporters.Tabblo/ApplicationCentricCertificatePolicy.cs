@@ -27,7 +27,6 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -39,10 +38,10 @@ using System.Security.Cryptography.X509Certificates;
 
 using Hyena;
 
-namespace FSpot.Exporters.Tabblo {
-
-	class ApplicationCentricCertificatePolicy : ICertificatePolicy {
-
+namespace FSpot.Exporters.Tabblo
+{
+	class ApplicationCentricCertificatePolicy : ICertificatePolicy
+	{
 		protected enum Decision {
 			DontTrust,
 			TrustOnce,

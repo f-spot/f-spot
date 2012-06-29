@@ -34,9 +34,7 @@
 using System;
 
 using FSpot.Core;
-using FSpot.Platform;
 using FSpot.Imaging;
-using Hyena;
 
 namespace FSpot {
 	[Obsolete ("nuke or rename this")]

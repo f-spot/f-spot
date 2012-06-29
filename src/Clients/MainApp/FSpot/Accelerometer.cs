@@ -36,7 +36,6 @@
 using System;
 using System.IO;
 
-using FSpot.Utils;
 using Hyena;
 using TagLib.Image;
 

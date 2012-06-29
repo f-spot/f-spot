@@ -28,12 +28,12 @@
 //
 
 using System;
+
 using Mono.Unix;
 
 using Cairo;
 using Gdk;
 
-using FSpot.Utils;
 using FSpot.Transitions;
 
 using Color = Cairo.Color;

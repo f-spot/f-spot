@@ -31,12 +31,8 @@
 
 using Gtk;
 using Gdk;
+
 using System;
-using GLib;
-using System.Runtime.InteropServices;
-using FSpot;
-using FSpot.Utils;
-using Hyena;
 
 namespace FSpot {
 	public class XScreenSaverSlide : Gtk.Window {

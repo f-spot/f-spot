@@ -30,9 +30,9 @@
 //
 
 using System;
-using FSpot;
-using FSpot.Query;
+
 using Mono.Unix;
+
 using Hyena;
 
 namespace FSpot.Tools.MergeDb

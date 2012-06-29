@@ -33,7 +33,8 @@ using Hyena;
 
 namespace FSpot.Exporters.Gallery
 {
-	public class GalleryAccount {
+	public class GalleryAccount
+	{
 		public GalleryAccount (string name, string url, string username, string password) : this (name, url, username, password, GalleryVersion.VersionUnknown) {}
 		public GalleryAccount (string name, string url, string username, string password, GalleryVersion version)
 		{

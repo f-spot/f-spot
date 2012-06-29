@@ -34,7 +34,8 @@ namespace FSpot.Core
 	public delegate void IBrowsableCollectionChangedHandler (IBrowsableCollection collection);
 	public delegate void IBrowsableCollectionItemsChangedHandler (IBrowsableCollection collection, BrowsableEventArgs args);
 
-	public interface IBrowsableCollection {
+	public interface IBrowsableCollection
+	{
 		// FIXME this should really be ToArray ()
 		IPhoto [] Items {
 			get;

@@ -31,11 +31,13 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Gtk;
-using Mono.Unix;
-using FSpot.Core;
-using FSpot.Filters;
 using System;
+
+using Gtk;
+
+using Mono.Unix;
+
+using FSpot.Core;
 using FSpot.UI.Dialog;
 
 namespace FSpot {

@@ -58,6 +58,7 @@
 using System;
 using System.Threading;
 using System.Collections.Generic;
+
 using Hyena;
 
 namespace Banshee.Kernel

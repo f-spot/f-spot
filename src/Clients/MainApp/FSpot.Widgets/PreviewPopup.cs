@@ -30,15 +30,19 @@
 //
 
 using System;
+
 using Cairo;
 using Gdk;
+
 using FSpot.Core;
 using FSpot.Widgets;
 using FSpot.Utils;
 using FSpot.Gui;
 
-namespace FSpot {
-	public class PreviewPopup : Gtk.Window {
+namespace FSpot
+{
+	public class PreviewPopup : Gtk.Window
+	{
 		private CollectionGridView view;
 		private Gtk.Image image;
 		private Gtk.Label label;

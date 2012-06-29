@@ -29,9 +29,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
 using System.Collections;
 using System.Collections.Generic;
+
 using GLib;
 
 namespace FSpot.Utils

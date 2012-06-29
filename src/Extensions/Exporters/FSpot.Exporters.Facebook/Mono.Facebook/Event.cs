@@ -23,10 +23,8 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Xml.Serialization;
-using System.Text;
+
 using Mono.Facebook.Schemas;
 
 namespace Mono.Facebook
@@ -41,7 +39,7 @@ namespace Mono.Facebook
 
 	public class Event : @event, SessionWrapper
 	{
-        [XmlIgnore]
+		[XmlIgnore]
 		public FacebookSession Session { get; set; }
 
 		[XmlIgnore ()]

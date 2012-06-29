@@ -30,10 +30,8 @@
 using System;
 
 using Gdk;
-using Gtk;
 
 using FSpot.Core;
-
 
 namespace FSpot.Widgets
 {

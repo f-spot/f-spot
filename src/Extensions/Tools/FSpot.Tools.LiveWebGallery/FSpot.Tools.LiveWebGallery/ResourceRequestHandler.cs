@@ -27,12 +27,8 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
 using System.IO;
-using System.Text;
 using System.Reflection;
-
-using FSpot;
 
 namespace FSpot.Tools.LiveWebGallery
 {	

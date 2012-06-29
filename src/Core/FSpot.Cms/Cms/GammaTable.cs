@@ -34,8 +34,10 @@ using System.Runtime.InteropServices;
 using System.Reflection;
 using System.Runtime.Serialization;
 
-namespace Cms {
-	public class GammaTable : IDisposable {
+namespace Cms
+{
+	public class GammaTable : IDisposable
+	{
 		public HandleRef Handle { get; private set; }
 		
 //		internal struct GammaTableStruct {

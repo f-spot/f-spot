@@ -51,19 +51,13 @@
 
 //This should be used to export the selected pics to an original gallery
 //located on a GIO location.
+
 using System;
 using System.IO;
-using System.Runtime.InteropServices;
-using System.Collections;
-using System.Collections.Generic;
 
 using Hyena;
 
 using Mono.Unix;
-
-using ICSharpCode.SharpZipLib.Checksums;
-using ICSharpCode.SharpZipLib.Zip;
-using ICSharpCode.SharpZipLib.GZip;
 
 using FSpot;
 using FSpot.Core;

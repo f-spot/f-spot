@@ -29,8 +29,7 @@
 
 namespace FSpot.Jobs
 {
-	public enum JobStatus
-	{
+	public enum JobStatus {
 		Created,
 		Scheduled,
 		Running,

@@ -36,11 +36,10 @@ using System.Threading;
 
 using Hyena;
 
-namespace FSpot.Exporters.Tabblo {
-
-	class UserDecisionCertificatePolicy
-			: ApplicationCentricCertificatePolicy {
-
+namespace FSpot.Exporters.Tabblo
+{
+	class UserDecisionCertificatePolicy : ApplicationCentricCertificatePolicy
+	{
 		private const string DialogName = "trust_error_dialog";
 		[GtkBeans.Builder.Object] Gtk.Dialog dialog;
 		[GtkBeans.Builder.Object] Gtk.Label url_label;

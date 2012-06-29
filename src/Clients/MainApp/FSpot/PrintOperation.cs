@@ -28,13 +28,16 @@
 //
 
 using Cairo;
+
 using System;
 using System.Runtime.InteropServices;
+
 using Mono.Unix;
 
 using FSpot.Core;
 using FSpot.Widgets;
 using FSpot.Imaging;
+
 using Hyena;
 
 namespace FSpot

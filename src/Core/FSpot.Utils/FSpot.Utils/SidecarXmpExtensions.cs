@@ -31,8 +31,9 @@
 
 using System;
 using System.IO;
+
 using Hyena;
-using TagLib.Image;
+
 using TagLib.Xmp;
 
 namespace FSpot.Utils

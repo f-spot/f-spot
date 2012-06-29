@@ -29,15 +29,16 @@
 //
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
+
 using Gtk;
 
-using FSpot;
 using FSpot.Core;
+
 using Hyena;
 
-public class PhotoTagMenu : Menu {
+public class PhotoTagMenu : Menu
+{
 	public delegate void TagSelectedHandler (Tag t);
 	public event TagSelectedHandler TagSelected;
 

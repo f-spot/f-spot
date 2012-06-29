@@ -28,14 +28,12 @@
 //
 
 using System;
-using System.IO;
-using System.Collections;
 using System.Runtime.InteropServices;
-using System.Reflection;
-using System.Runtime.Serialization;
 
-namespace Cms {
-	public struct ColorCIEXYZ {
+namespace Cms
+{
+	public struct ColorCIEXYZ
+	{
 		public double x;
 		public double y;
 		public double z;

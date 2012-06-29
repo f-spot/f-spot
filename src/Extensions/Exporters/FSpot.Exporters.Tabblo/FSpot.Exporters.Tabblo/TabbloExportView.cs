@@ -27,18 +27,15 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using System.Diagnostics;
 using System.Reflection;
 
 using FSpot.Core;
 using FSpot.Widgets;
 
-namespace FSpot.Exporters.Tabblo {
-
-
-	class TabbloExportView : FSpot.UI.Dialog.BuilderDialog {
-
+namespace FSpot.Exporters.Tabblo
+{
+	class TabbloExportView : FSpot.UI.Dialog.BuilderDialog
+	{
 		private const string DialogName = "tabblo_export_dialog";
 
 		[GtkBeans.Builder.Object]

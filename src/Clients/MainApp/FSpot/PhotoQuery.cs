@@ -34,10 +34,11 @@
 //
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
+
 using FSpot.Core;
 using FSpot.Query;
+
 using Hyena;
 
 namespace FSpot {

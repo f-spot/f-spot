@@ -28,13 +28,11 @@
 //
 
 using Gdk;
-using Gtk;
 
 namespace FSpot.Widgets
 {
     public partial class ImageView
     {
-
         #region Panning
 
         /// <summary>

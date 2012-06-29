@@ -34,13 +34,15 @@
 // http://mail.gnome.org/archives/f-spot-list/2005-November/msg00053.html
 // http://bugzilla-attachments.gnome.org/attachment.cgi?id=54566
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+
 using Mono.Unix;
+
 using Gtk;
-using Gdk;
+
 using Hyena;
+
 using FSpot.Core;
 
 namespace FSpot

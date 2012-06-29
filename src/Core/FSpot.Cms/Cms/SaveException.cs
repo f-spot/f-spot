@@ -30,9 +30,11 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace Cms {
+namespace Cms
+{
 	[Serializable]
-	public class SaveException : CmsException {
+	public class SaveException : CmsException
+	{
 		public SaveException (string message) : base (message)
 		{
 		}

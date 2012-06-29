@@ -30,13 +30,17 @@
 //
 
 using System;
+
 using Gdk;
+
 using FSpot.Utils;
+
 using Hyena;
 
 namespace FSpot.Core
 {
-	public class Tag : DbItem, IComparable<Tag>, IDisposable {
+	public class Tag : DbItem, IComparable<Tag>, IDisposable
+	{
 		public string Name { get; set; }
 		public int Popularity { get; set; }
 		public int SortPriority { get; set; }

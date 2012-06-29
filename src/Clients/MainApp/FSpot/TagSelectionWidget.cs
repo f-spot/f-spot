@@ -29,12 +29,8 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System;
-
-using GLib;
 
 using Gdk;
 
@@ -47,7 +43,7 @@ using FSpot.Core;
 using FSpot.Database;
 using FSpot.Utils;
 using FSpot.Widgets;
-using FSpot.UI.Dialog;
+
 using Hyena.Widgets;
 
 

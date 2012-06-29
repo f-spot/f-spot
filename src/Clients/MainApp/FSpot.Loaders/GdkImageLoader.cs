@@ -30,11 +30,14 @@
 //
 using System;
 using System.Threading;
+
 using Gdk;
+
 using FSpot.Utils;
-using FSpot.Platform;
 using FSpot.Imaging;
+
 using Hyena;
+
 using TagLib.Image;
 
 namespace FSpot.Loaders

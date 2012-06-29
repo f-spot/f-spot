@@ -27,7 +27,7 @@
 
 // Borrowed parts from banshee.
 // src/Backends/Banshee.Gnome/Banshee.GnomeBackend/Brasero.cs
-using System;
+
 using System.IO;
 using System.Diagnostics;
 

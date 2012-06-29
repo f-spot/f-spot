@@ -28,8 +28,10 @@
 //
 
 using System;
-using Mono.Unix;
 using System.Collections.Generic;
+
+using Mono.Unix;
+
 using FSpot.Core;
 using FSpot.Utils;
 
