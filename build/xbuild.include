@@ -21,7 +21,11 @@ DEPTH=$(shell echo "$(top_builddir)" | tr '/' '\n' | grep -c '..')
 
 all: csproj_build
 
+all-local: csproj_build
+
 clean: csproj_clean
+
+clean-local: csproj_clean
 
 csproj_build:
 	@if test x$(SKIP) != xy -a $(DEPTH) -gt $(MAKELEVEL); then \

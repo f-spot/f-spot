@@ -3,11 +3,11 @@ SUBDIRS = 		\
 	data 		\
 	lib 		\
 	docs		\
-    help        \
+    	help		\
 	icons		\
 	tools		\
-	po			\
-	src			\
+	po		\
+	src		\
 	tests
 
 schemadir = $(sysconfdir)/gconf/schemas
