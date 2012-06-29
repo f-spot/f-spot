@@ -169,10 +169,6 @@ if pkg-config --atleast-version=2.20.2 gconf-sharp-2.0; then
 	CSC_DEFINES="$CSC_DEFINES -d:GCONF_SHARP_2_20_2"
 fi
 
-if pkg-config --atleast-version=2.16 gtk+-2.0; then
-	CSC_DEFINES="$CSC_DEFINES -d:GTK_2_16"
-fi
-
 AC_SUBST(CSC_DEFINES)
 
 dnl --- libjpeg
