@@ -83,10 +83,6 @@
     <Reference Include="System" />
     <Reference Include="Mono.Cairo" />
     <Reference Include="taglib-sharp, Version=2.0.4.0, Culture=neutral, PublicKeyToken=db62eba44689b5b0" />
-    <Reference Include="gio-sharp">
-      <HintPath>..\..\..\lib\gio-sharp\gio\gio-sharp.dll</HintPath>
-      <Package>gio-sharp-2.0</Package>
-    </Reference>
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
@@ -117,6 +113,10 @@
     <ProjectReference Include="..\..\..\lib\gtk-sharp-beans\gtk-sharp-beans.csproj">
       <Project>{069D1797-427D-4CED-A754-233DE64FC5DD}</Project>
       <Name>gtk-sharp-beans</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\lib\gio-sharp\gio-sharp.csproj">
+      <Project>{942B6AEF-0A90-4A7F-B8E4-F1A4327E408C}</Project>
+      <Name>gio-sharp</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

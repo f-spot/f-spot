@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{942B6AEF-0A90-4A7F-B8E4-F1A4327E408C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>giosharp</RootNamespace>
+    <AssemblyName>gio-sharp</AssemblyName>
+    <ReleaseVersion>0.9.0</ReleaseVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>..\..\bin</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>..\..\bin</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="gio\AssemblyInfo.cs" />
+    <Compile Include="gio\FileFactory.cs" />
+    <Compile Include="gio\GioStream.cs" />
+    <Compile Include="gio\generated\AppInfo.cs" />
+    <Compile Include="gio\generated\AppInfoAdapter.cs" />
+    <Compile Include="gio\generated\AppInfoCreateFlags.cs" />
+    <Compile Include="gio\generated\AppLaunchContext.cs" />
+    <Compile Include="gio\generated\AskPasswordFlags.cs" />
+    <Compile Include="gio\generated\AskPasswordHandler.cs" />
+    <Compile Include="gio\generated\AskQuestionHandler.cs" />
+    <Compile Include="gio\generated\AsyncInitable.cs" />
+    <Compile Include="gio\generated\AsyncInitableAdapter.cs" />
+    <Compile Include="gio\generated\AsyncReadyCallback.cs" />
+    <Compile Include="gio\generated\AsyncResult.cs" />
+    <Compile Include="gio\generated\AsyncResultAdapter.cs" />
+    <Compile Include="gio\generated\BufferedInputStream.cs" />
+    <Compile Include="gio\generated\BufferedOutputStream.cs" />
+    <Compile Include="gio\generated\Cancellable.cs" />
+    <Compile Include="gio\generated\ChangedHandler.cs" />
+    <Compile Include="gio\generated\Content.cs" />
+    <Compile Include="gio\generated\DataInputStream.cs" />
+    <Compile Include="gio\generated\DataOutputStream.cs" />
+    <Compile Include="gio\generated\DataStreamByteOrder.cs" />
+    <Compile Include="gio\generated\DataStreamNewlineType.cs" />
+    <Compile Include="gio\generated\DesktopAppInfo.cs" />
+    <Compile Include="gio\generated\DesktopAppInfoLookup.cs" />
+    <Compile Include="gio\generated\DesktopAppInfoLookupAdapter.cs" />
+    <Compile Include="gio\generated\Drive.cs" />
+    <Compile Include="gio\generated\DriveAdapter.cs" />
+    <Compile Include="gio\generated\DriveChangedHandler.cs" />
+    <Compile Include="gio\generated\DriveConnectedHandler.cs" />
+    <Compile Include="gio\generated\DriveDisconnectedHandler.cs" />
+    <Compile Include="gio\generated\DriveEjectButtonHandler.cs" />
+    <Compile Include="gio\generated\DriveStartFlags.cs" />
+    <Compile Include="gio\generated\DriveStartStopType.cs" />
+    <Compile Include="gio\generated\DriveStopButtonHandler.cs" />
+    <Compile Include="gio\generated\Emblem.cs" />
+    <Compile Include="gio\generated\EmblemOrigin.cs" />
+    <Compile Include="gio\generated\EmblemedIcon.cs" />
+    <Compile Include="gio\generated\File.cs" />
+    <Compile Include="gio\generated\FileAdapter.cs" />
+    <Compile Include="gio\generated\FileAttributeInfo.cs" />
+    <Compile Include="gio\generated\FileAttributeInfoFlags.cs" />
+    <Compile Include="gio\generated\FileAttributeInfoList.cs" />
+    <Compile Include="gio\generated\FileAttributeMatcher.cs" />
+    <Compile Include="gio\generated\FileAttributeStatus.cs" />
+    <Compile Include="gio\generated\FileAttributeType.cs" />
+    <Compile Include="gio\generated\FileCopyFlags.cs" />
+    <Compile Include="gio\generated\FileCreateFlags.cs" />
+    <Compile Include="gio\generated\FileEnumerator.cs" />
+    <Compile Include="gio\generated\FileIOStream.cs" />
+    <Compile Include="gio\generated\FileIcon.cs" />
+    <Compile Include="gio\generated\FileInfo.cs" />
+    <Compile Include="gio\generated\FileInputStream.cs" />
+    <Compile Include="gio\generated\FileMonitor.cs" />
+    <Compile Include="gio\generated\FileMonitorEvent.cs" />
+    <Compile Include="gio\generated\FileMonitorFlags.cs" />
+    <Compile Include="gio\generated\FileOutputStream.cs" />
+    <Compile Include="gio\generated\FileProgressCallback.cs" />
+    <Compile Include="gio\generated\FileQueryInfoFlags.cs" />
+    <Compile Include="gio\generated\FileReadMoreCallback.cs" />
+    <Compile Include="gio\generated\FileType.cs" />
+    <Compile Include="gio\generated\FilenameCompleter.cs" />
+    <Compile Include="gio\generated\FilesystemPreviewType.cs" />
+    <Compile Include="gio\generated\FilterInputStream.cs" />
+    <Compile Include="gio\generated\FilterOutputStream.cs" />
+    <Compile Include="gio\generated\GLibSharp.AsyncReadyCallbackNative.cs" />
+    <Compile Include="gio\generated\GLibSharp.FileProgressCallbackNative.cs" />
+    <Compile Include="gio\generated\GLibSharp.FileReadMoreCallbackNative.cs" />
+    <Compile Include="gio\generated\GLibSharp.GSourceFuncNative.cs" />
+    <Compile Include="gio\generated\GLibSharp.IOSchedulerJobFuncNative.cs" />
+    <Compile Include="gio\generated\GLibSharp.ReallocFuncNative.cs" />
+    <Compile Include="gio\generated\GLibSharp.SimpleAsyncThreadFuncNative.cs" />
+    <Compile Include="gio\generated\IOErrorEnum.cs" />
+    <Compile Include="gio\generated\IOExtension.cs" />
+    <Compile Include="gio\generated\IOExtensionPoint.cs" />
+    <Compile Include="gio\generated\IOModule.cs" />
+    <Compile Include="gio\generated\IOSchedulerJob.cs" />
+    <Compile Include="gio\generated\IOSchedulerJobFunc.cs" />
+    <Compile Include="gio\generated\IOStream.cs" />
+    <Compile Include="gio\generated\Icon.cs" />
+    <Compile Include="gio\generated\IconAdapter.cs" />
+    <Compile Include="gio\generated\InetAddress.cs" />
+    <Compile Include="gio\generated\InetSocketAddress.cs" />
+    <Compile Include="gio\generated\Initable.cs" />
+    <Compile Include="gio\generated\InitableAdapter.cs" />
+    <Compile Include="gio\generated\InputStream.cs" />
+    <Compile Include="gio\generated\InputVector.cs" />
+    <Compile Include="gio\generated\Io.cs" />
+    <Compile Include="gio\generated\LoadableIcon.cs" />
+    <Compile Include="gio\generated\LoadableIconAdapter.cs" />
+    <Compile Include="gio\generated\LocalDirectoryMonitor.cs" />
+    <Compile Include="gio\generated\LocalFileEnumerator.cs" />
+    <Compile Include="gio\generated\LocalFileIOStream.cs" />
+    <Compile Include="gio\generated\MemoryInputStream.cs" />
+    <Compile Include="gio\generated\MemoryOutputStream.cs" />
+    <Compile Include="gio\generated\Mount.cs" />
+    <Compile Include="gio\generated\MountAdapter.cs" />
+    <Compile Include="gio\generated\MountAddedHandler.cs" />
+    <Compile Include="gio\generated\MountChangedHandler.cs" />
+    <Compile Include="gio\generated\MountMountFlags.cs" />
+    <Compile Include="gio\generated\MountOperation.cs" />
+    <Compile Include="gio\generated\MountOperationResult.cs" />
+    <Compile Include="gio\generated\MountPreUnmountHandler.cs" />
+    <Compile Include="gio\generated\MountRemovedHandler.cs" />
+    <Compile Include="gio\generated\MountUnmountFlags.cs" />
+    <Compile Include="gio\generated\NativeVolumeMonitor.cs" />
+    <Compile Include="gio\generated\OutputStream.cs" />
+    <Compile Include="gio\generated\OutputStreamSpliceFlags.cs" />
+    <Compile Include="gio\generated\OutputVector.cs" />
+    <Compile Include="gio\generated\PasswordSave.cs" />
+    <Compile Include="gio\generated\ReallocFunc.cs" />
+    <Compile Include="gio\generated\ReplyHandler.cs" />
+    <Compile Include="gio\generated\Seekable.cs" />
+    <Compile Include="gio\generated\SeekableAdapter.cs" />
+    <Compile Include="gio\generated\ShowProcessesHandler.cs" />
+    <Compile Include="gio\generated\Simple.cs" />
+    <Compile Include="gio\generated\SimpleAsyncResult.cs" />
+    <Compile Include="gio\generated\SimpleAsyncThreadFunc.cs" />
+    <Compile Include="gio\generated\SrvTarget.cs" />
+    <Compile Include="gio\generated\ThemedIcon.cs" />
+    <Compile Include="gio\generated\Vfs.cs" />
+    <Compile Include="gio\generated\Volume.cs" />
+    <Compile Include="gio\generated\VolumeAdapter.cs" />
+    <Compile Include="gio\generated\VolumeAddedHandler.cs" />
+    <Compile Include="gio\generated\VolumeChangedHandler.cs" />
+    <Compile Include="gio\generated\VolumeMonitor.cs" />
+    <Compile Include="gio\generated\VolumeRemovedHandler.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="gio\" />
+  </ItemGroup>
+</Project>
