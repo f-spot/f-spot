@@ -83,11 +83,9 @@
     <Reference Include="System" />
     <Reference Include="Mono.Cairo" />
     <Reference Include="taglib-sharp, Version=2.0.4.0, Culture=neutral, PublicKeyToken=db62eba44689b5b0" />
-    <Reference Include="gtk-sharp-beans">
-      <HintPath>..\..\..\lib\gtk-sharp-beans\gtk-sharp-beans.dll</HintPath>
-    </Reference>
     <Reference Include="gio-sharp">
       <HintPath>..\..\..\lib\gio-sharp\gio\gio-sharp.dll</HintPath>
+      <Package>gio-sharp-2.0</Package>
     </Reference>
     <Reference Include="System.Core" />
   </ItemGroup>
@@ -115,6 +113,10 @@
     <ProjectReference Include="..\..\..\lib\Hyena\Hyena.Gui\Hyena.Gui.csproj">
       <Project>{C856EFD8-E812-4E61-8B76-E3583D94C233}</Project>
       <Name>Hyena.Gui</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\lib\gtk-sharp-beans\gtk-sharp-beans.csproj">
+      <Project>{069D1797-427D-4CED-A754-233DE64FC5DD}</Project>
+      <Name>gtk-sharp-beans</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -77,6 +77,10 @@
       <Project>{CE160879-1BF0-4711-A18F-FDA2772900FA}</Project>
       <Name>FSpot.Utils</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\lib\gtk-sharp-beans\gtk-sharp-beans.csproj">
+      <Project>{069D1797-427D-4CED-A754-233DE64FC5DD}</Project>
+      <Name>gtk-sharp-beans</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Posix" />
@@ -84,9 +88,6 @@
     <Reference Include="gio-sharp">
       <HintPath>..\..\..\..\lib\gio-sharp\gio\gio-sharp.dll</HintPath>
       <Package>gio-sharp-2.0</Package>
-    </Reference>
-    <Reference Include="gtk-sharp-beans">
-      <HintPath>..\..\..\..\lib\gtk-sharp-beans\gtk-sharp-beans.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>

@@ -308,7 +308,6 @@ lib/gio-sharp/generator/Makefile
 lib/gio-sharp/gio/Makefile
 lib/gio-sharp/Makefile
 lib/GKeyFile/Makefile
-lib/gtk-sharp-beans/Makefile
 lib/Hyena/build/m4/Makefile
 lib/Hyena/build/Makefile
 lib/Hyena/build/pkg-config/Makefile

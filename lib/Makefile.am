@@ -2,7 +2,6 @@
 SUBDIRS = \
 	GKeyFile 			\
 	gio-sharp			\
-	gtk-sharp-beans		\
 	Hyena 				\
 	libfspot			\
 	Mono.Google 		\
