@@ -304,9 +304,6 @@ data/desktop-files/f-spot-import.desktop.in
 
 help/Makefile
 
-lib/gio-sharp/generator/Makefile
-lib/gio-sharp/gio/Makefile
-lib/gio-sharp/Makefile
 lib/Hyena/build/m4/Makefile
 lib/Hyena/build/Makefile
 lib/Hyena/build/pkg-config/Makefile
