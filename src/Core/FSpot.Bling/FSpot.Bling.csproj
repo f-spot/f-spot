@@ -61,6 +61,7 @@
     <Reference Include="System" />
     <Reference Include="gtk-sharp-beans">
       <HintPath>..\..\..\external\gtk-sharp-beans.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
 </Project>
