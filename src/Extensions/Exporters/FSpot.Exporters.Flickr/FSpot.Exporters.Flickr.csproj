@@ -66,6 +66,9 @@
       <Private>False</Private>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="gtk-sharp-beans">
+      <HintPath>..\..\..\..\external\gtk-sharp-beans.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Clients\MainApp\MainApp.csproj">
@@ -87,10 +90,6 @@
     <ProjectReference Include="..\..\..\Core\FSpot.Core\FSpot.Core.csproj">
       <Project>{57EDC3BC-E777-4400-B4E7-32A5D8F15A76}</Project>
       <Name>FSpot.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\lib\gtk-sharp-beans\gtk-sharp-beans.csproj">
-      <Project>{069D1797-427D-4CED-A754-233DE64FC5DD}</Project>
-      <Name>gtk-sharp-beans</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

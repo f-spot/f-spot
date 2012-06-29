@@ -64,7 +64,8 @@ public class TagMenu : Menu {
 			Value = t;
 			if (t.Icon != null) {
 				this.Image = new Gtk.Image (t.SizedIcon);
-				this.SetAlwaysShowImage (true);
+				// FIXME:  Where did this method go?
+				//this.SetAlwaysShowImage (true);
 			}
 		}
 

@@ -77,6 +77,9 @@
     <Reference Include="Gnome.Keyring, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1a73e1bde00c9b66">
     </Reference>
     <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="gtk-sharp-beans">
+      <HintPath>..\..\..\..\external\gtk-sharp-beans.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\lib\Hyena\Hyena\Hyena.csproj">
@@ -98,10 +101,6 @@
     <ProjectReference Include="..\..\..\..\lib\Mono.Google\Mono.Google.csproj">
       <Project>{40C7D4EA-FB93-49FE-B18F-700A28C3E670}</Project>
       <Name>Mono.Google</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\lib\gtk-sharp-beans\gtk-sharp-beans.csproj">
-      <Project>{069D1797-427D-4CED-A754-233DE64FC5DD}</Project>
-      <Name>gtk-sharp-beans</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

@@ -92,3 +92,5 @@ fi
 
 run ./configure --enable-maintainer-mode $@
 
+mkdir -p external
+cp -f `pkg-config --variable Libraries gtk-sharp-beans-2.0` external

@@ -144,7 +144,7 @@ namespace FSpot.Import
             var monitor = GLib.VolumeMonitor.Default;
             var sources = new List<IImportSource> ();
             foreach (var mount in monitor.Mounts) {
-                var root = new SafeUri (mount.Root.Uri, true);
+                var root = new SafeUri (mount.Root.Uri.ToString(), true);
 
                 var themed_icon = (mount.Icon as GLib.ThemedIcon);
                 if (themed_icon != null && themed_icon.Names.Length > 0) {

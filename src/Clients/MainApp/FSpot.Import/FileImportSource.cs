@@ -94,8 +94,8 @@ namespace FSpot.Import
 			};
 			var infos = new List<FileImportInfo> ();
 			foreach (var file in enumerator) {
-				if (ImageFile.HasLoader (new SafeUri (file.Uri, true))) {
-					infos.Add (new FileImportInfo (new SafeUri (file.Uri, true)));
+				if (ImageFile.HasLoader (new SafeUri (file.Uri.ToString(), true))) {
+					infos.Add (new FileImportInfo (new SafeUri (file.Uri.ToString(), true)));
 				}
 
 				if (infos.Count % 10 == 0 || infos.Count < 10) {
