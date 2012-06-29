@@ -1,7 +1,7 @@
 XBUILD=xbuild
 XBUILD_ARGS=/verbosity:quiet /nologo /property:CodePage=65001
 ALL_CSPROJ=$(wildcard *.csproj)
-MAIN_SLN=$(top_builddir)/Main.sln
+MAIN_SLN=$(top_builddir)/F-Spot.sln
 
 #if ENABLE_MACPLATFORM
 #PROFILE_NAME=DebugMac

@@ -47,6 +47,8 @@ else
 install-data-local:
 endif
 
+all: sln_build
+
 csharp:
 	@pushd .; \
 	echo ""; \
@@ -64,3 +66,5 @@ test:
 	@pushd tests; \
 	make test \
 	popd;
+
+include $(top_srcdir)/build/xbuild.include
