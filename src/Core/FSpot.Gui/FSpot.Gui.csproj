@@ -124,4 +124,9 @@
     <Folder Include="FSpot.Widgets\" />
     <Folder Include="FSpot.Gui\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="FSpot.Gui.dll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

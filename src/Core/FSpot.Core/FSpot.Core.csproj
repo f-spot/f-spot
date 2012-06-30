@@ -94,4 +94,9 @@
   <ItemGroup>
     <Folder Include="FSpot.Core\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="FSpot.Core.dll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

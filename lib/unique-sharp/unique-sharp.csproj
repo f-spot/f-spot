@@ -48,4 +48,9 @@
     <Compile Include="unique\AssemblyInfo.cs" />
     <Compile Include="unique\MessageReceivedHandler.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="unique-sharp.dll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>
