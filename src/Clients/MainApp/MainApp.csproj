@@ -395,14 +395,15 @@
     <None Include="f-spot.exe.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\..\..\external\gtk-sharp-beans.dll.config">
-      <Link>gtk-sharp-beans.dll.config</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\..\..\external\gio-sharp.dll.config">
-      <Link>gio-sharp.dll.config</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
+  <PropertyGroup>
+	  <!-- .config is a workaround for xamarin bug #4811 -->
+    <AllowedReferenceRelatedFileExtensions>
+		  $(AllowedReferenceRelatedFileExtensions);
+		  .dll.config;
+		  .exe.config;
+		  .config
+	  </AllowedReferenceRelatedFileExtensions>
+  </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
