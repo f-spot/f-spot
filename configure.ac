@@ -313,9 +313,6 @@ lib/Hyena/Hyena/Makefile
 lib/Hyena/Makefile
 lib/libfspot/Makefile
 lib/Makefile
-lib/Mono.Google/Makefile
-lib/Mono.Tabblo/Makefile
-lib/SmugMugNet/Makefile
 
 src/AssemblyInfo.cs
 

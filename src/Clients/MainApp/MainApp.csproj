@@ -37,7 +37,6 @@
     <ConsolePause>False</ConsolePause>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Compile Include="DependentListStore.cs" />
     <Compile Include="FSpot\Accelerometer.cs" />
@@ -217,11 +216,11 @@
     <Compile Include="FSpot.Import\IImportSource.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="..\..\..\COPYING">
-      <LogicalName>COPYING</LogicalName>
-    </EmbeddedResource>
     <EmbeddedResource Include="..\..\..\icons\f-spot-not.png">
       <LogicalName>f-spot-not.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\COPYING.txt">
+      <LogicalName>COPYING</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="..\..\..\icons\f-spot-128.png">
       <LogicalName>f-spot-128.png</LogicalName>
@@ -330,11 +329,11 @@
     <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Private>False</Private>
     </Reference>
-    <Reference Include="gtk-sharp-beans">
-      <HintPath>..\..\..\external\gtk-sharp-beans.dll</HintPath>
+    <Reference Include="gtk-sharp-beans, Version=2.14.0.0, Culture=neutral, PublicKeyToken=97a95fb57b03c03a">
+      <Package>gtk-sharp-beans-2.0</Package>
     </Reference>
-    <Reference Include="gio-sharp">
-      <HintPath>..\..\..\external\gio-sharp.dll</HintPath>
+    <Reference Include="gio-sharp, Version=2.14.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Package>gio-sharp-2.0</Package>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -405,4 +404,5 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -61,6 +61,11 @@ run:
 	../src/Clients/MainApp/f-spot --uninstalled --debug; \
 	popd;
 
+install-data-local: copy_bin
+
+copy_bin:
+	mkdir -p $(libdir)/f-spot
+	cp -r bin/* $(libdir)/f-spot/
 
 test:
 	@pushd tests; \

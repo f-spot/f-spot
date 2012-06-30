@@ -26,7 +26,6 @@
 //  
 //
 
-using System;
 using NUnit.Framework;
 
 using FSpot.Exporters.CD;
@@ -36,7 +35,7 @@ namespace FSpotExporters.UnitTests
 	[TestFixture]
 	public class TestOf_CDExport
 	{
-		CDExport _cdExport = new CDExport();
+		//CDExport _cdExport = new CDExport();
 
 		[Test]
 		public void CDExportDefaultSystemUri ()

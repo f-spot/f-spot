@@ -97,26 +97,32 @@
     <ProjectReference Include="..\FSpot.Utils\FSpot.Utils.csproj">
       <Project>{CE160879-1BF0-4711-A18F-FDA2772900FA}</Project>
       <Name>FSpot.Utils</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\FSpot.Core\FSpot.Core.csproj">
       <Project>{57EDC3BC-E777-4400-B4E7-32A5D8F15A76}</Project>
       <Name>FSpot.Core</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\..\..\lib\Hyena\Hyena\Hyena.csproj">
       <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
       <Name>Hyena</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\FSpot.Bling\FSpot.Bling.csproj">
       <Project>{7281334F-0B1D-4383-9EA2-6740D56ADCDE}</Project>
       <Name>FSpot.Bling</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\FSpot.Cms\FSpot.Cms.csproj">
       <Project>{9D66BC1B-4390-4B8D-8468-19D5A862EC23}</Project>
       <Name>FSpot.Cms</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\..\..\lib\Hyena\Hyena.Gui\Hyena.Gui.csproj">
       <Project>{C856EFD8-E812-4E61-8B76-E3583D94C233}</Project>
       <Name>Hyena.Gui</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
