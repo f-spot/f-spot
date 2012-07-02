@@ -30,6 +30,7 @@ EXTRA_DIST =			\
 	Makefile.include	\
 	gnome-doc-utils.make	\
 	icon-theme-installer	\
+	F-Spot.sln		\
 	$(schema_in_files)
 
 DISTCLEANFILES = \
