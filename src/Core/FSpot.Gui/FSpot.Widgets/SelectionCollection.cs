@@ -246,7 +246,7 @@ namespace FSpot.Widgets
 			if (item == null)
 				return;
 
-			int parent_index = (int)selected_cells [item];
+			int parent_index = selected_cells [item];
 			selected_cells.Remove (item);
 			bit_array.Set (parent_index, false);
 
