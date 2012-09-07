@@ -1,0 +1,46 @@
+diff --git a/Hyena.Data.Sqlite/Hyena.Data.Sqlite.csproj b/Hyena.Data.Sqlite/Hyena.Data.Sqlite.csproj
+index cabce10..21ed285 100644
+--- a/Hyena.Data.Sqlite/Hyena.Data.Sqlite.csproj
++++ b/Hyena.Data.Sqlite/Hyena.Data.Sqlite.csproj
+@@ -1,5 +1,5 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
++<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+   <PropertyGroup>
+     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+diff --git a/Hyena.Gui/Hyena.Gui.csproj b/Hyena.Gui/Hyena.Gui.csproj
+index 0cf3088..539cfcc 100644
+--- a/Hyena.Gui/Hyena.Gui.csproj
++++ b/Hyena.Gui/Hyena.Gui.csproj
+@@ -1,5 +1,5 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
++<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+   <PropertyGroup>
+     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+diff --git a/Hyena.sln b/Hyena.sln
+index 647d80f..971eb22 100644
+--- a/Hyena.sln
++++ b/Hyena.sln
+@@ -1,6 +1,6 @@
+ 
+-Microsoft Visual Studio Solution File, Format Version 10.00
+-# Visual Studio 2008
++Microsoft Visual Studio Solution File, Format Version 11.00
++# Visual Studio 2010
+ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyena", "Hyena\Hyena.csproj", "{95374549-9553-4C1E-9D89-667755F90E12}"
+ EndProject
+ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyena.Gui", "Hyena.Gui\Hyena.Gui.csproj", "{C856EFD8-E812-4E61-8B76-E3583D94C233}"
+diff --git a/Hyena/Hyena.csproj b/Hyena/Hyena.csproj
+index cc18abc..b7014c2 100644
+--- a/Hyena/Hyena.csproj
++++ b/Hyena/Hyena.csproj
+@@ -1,5 +1,5 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
++<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+   <PropertyGroup>
+     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
