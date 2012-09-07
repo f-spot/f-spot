@@ -545,19 +545,19 @@ namespace FSpot.Widgets
 			}
 
 			if (current == null) {
-                var pixbuf = XdgThumbnailSpec.LoadThumbnail (uri, ThumbnailSize.Large, null);
-                if (pixbuf == null) {
+				var pixbuf = XdgThumbnailSpec.LoadThumbnail (uri, ThumbnailSize.Large, null);
+				if (pixbuf == null) {
 					ThumbnailLoader.Default.Request (uri, ThumbnailSize.Large, 0);
-                    current = FSpot.Core.Global.IconTheme.LoadIcon ("gtk-missing-image", ThumbSize, (Gtk.IconLookupFlags)0);
-                } else {
+					current = FSpot.Core.Global.IconTheme.LoadIcon ("gtk-missing-image", ThumbSize, (Gtk.IconLookupFlags)0);
+				} else {
 					if (SquaredThumbs) {
-                        current = PixbufUtils.IconFromPixbuf (pixbuf, ThumbSize);
-                    } else {
-                        current = pixbuf.ScaleSimple (ThumbSize, ThumbSize, InterpType.Nearest);
-                    }
-                    pixbuf.Dispose ();
+						current = PixbufUtils.IconFromPixbuf (pixbuf, ThumbSize);
+					} else {
+						current = pixbuf.ScaleSimple (ThumbSize, ThumbSize, InterpType.Nearest);
+					}
+					pixbuf.Dispose ();
 					thumb_cache.Add (uri, current);
-                }
+				}
 			}
 
 			//FIXME: we might end up leaking a pixbuf here
@@ -569,10 +569,11 @@ namespace FSpot.Widgets
 			}
 
 			// Add a four pixel white border around the thumbnail
-			Pixbuf whiteBorder = new Pixbuf (Gdk.Colorspace.Rgb, true, 8, current.Width, current.Height);
-			whiteBorder.Fill (0);
-			current.CopyArea (1, 1, current.Width - 8, current.Height - 8, whiteBorder, 4, 4);
-			current = whiteBorder;
+			using (Pixbuf whiteBorder = new Pixbuf (Gdk.Colorspace.Rgb, true, 8, current.Width, current.Height)) {
+				whiteBorder.Fill (0);
+				current.CopyArea (1, 1, current.Width - 8, current.Height - 8, whiteBorder, 4, 4);
+				current = whiteBorder;
+			}
 
 			if (!highlighted)
 				return current;

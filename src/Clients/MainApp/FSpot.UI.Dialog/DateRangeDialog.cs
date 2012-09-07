@@ -242,9 +242,9 @@ namespace FSpot.UI.Dialog
 		void HandlePeriodComboboxChanged (object o, EventArgs args)
 		{
 			start_dateedit.DateChanged -= HandleDateEditChanged;
-			((Gtk.Entry) start_dateedit.Children [0] as Gtk.Entry).Changed -= HandleDateEditChanged;
+			(start_dateedit.Children [0] as Gtk.Entry).Changed -= HandleDateEditChanged;
 			end_dateedit.DateChanged -= HandleDateEditChanged;
-			((Gtk.Entry) end_dateedit.Children [0] as Gtk.Entry).Changed -= HandleDateEditChanged;
+			(end_dateedit.Children [0] as Gtk.Entry).Changed -= HandleDateEditChanged;
 
 			ComboBox combo = o as ComboBox;
 			if (o == null)
@@ -260,9 +260,9 @@ namespace FSpot.UI.Dialog
 			}
 
 			start_dateedit.DateChanged += HandleDateEditChanged;
-			((Gtk.Entry) start_dateedit.Children [0] as Gtk.Entry).Changed += HandleDateEditChanged;
+			(start_dateedit.Children [0] as Gtk.Entry).Changed += HandleDateEditChanged;
 			end_dateedit.DateChanged += HandleDateEditChanged;
-			((Gtk.Entry) end_dateedit.Children [0] as Gtk.Entry).Changed += HandleDateEditChanged;
+			(end_dateedit.Children [0] as Gtk.Entry).Changed += HandleDateEditChanged;
 		}
 	}
 }

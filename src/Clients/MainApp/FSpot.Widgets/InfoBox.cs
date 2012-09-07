@@ -402,8 +402,8 @@ namespace FSpot.Widgets
 
                                 if (width != 0 && height != 0)
                                     return String.Format ("{0}x{1}", width, height);
-                                else
-                                    return Catalog.GetString ("(Unknown)");
+                                
+				return Catalog.GetString ("(Unknown)");
                            }, null);
 
             AddLabelEntry ("exposure", Catalog.GetString ("Exposure"), Catalog.GetString ("Show Exposure"),
@@ -454,8 +454,8 @@ namespace FSpot.Widgets
                 
                                 if (focal_length == null)
                                     return Catalog.GetString ("(Unknown)");
-                                else
-                                    return String.Format ("{0} mm", focal_length.Value);
+
+				return String.Format ("{0} mm", focal_length.Value);
                             }, null);
 
             AddLabelEntry ("camera", Catalog.GetString ("Camera"), Catalog.GetString ("Show Camera"), false,

@@ -62,7 +62,7 @@ namespace FSpot.Jobs {
 			Log.DebugFormat ("Calculating Hash {0}...", photo_id);
 
 			try {
-				Photo photo = FSpot.App.Instance.Database.Photos.Get (Convert.ToUInt32 (photo_id)) as Photo;
+				Photo photo = FSpot.App.Instance.Database.Photos.Get (Convert.ToUInt32 (photo_id));
 				FSpot.App.Instance.Database.Photos.CalculateMD5Sum (photo);
 				return true;
 			} catch (System.Exception e) {

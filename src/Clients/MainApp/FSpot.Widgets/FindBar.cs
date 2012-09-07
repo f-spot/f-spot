@@ -234,7 +234,7 @@ namespace FSpot.Widgets {
 
 		private bool ConstructQuery (Term parent, int depth, string txt, bool negated)
 		{
-			if (txt == null || txt.Length == 0)
+			if (string.IsNullOrEmpty(txt))
 				return true;
 
 			string indent = String.Format ("{0," + depth*2 + "}", " ");
@@ -475,8 +475,7 @@ namespace FSpot.Widgets {
 				else if (txt [pos] == two) {
 					if (sames == 0)
 						return pos;
-					else
-						sames--;
+					sames--;
 				}
 			}
 

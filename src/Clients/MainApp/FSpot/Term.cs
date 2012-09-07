@@ -287,7 +287,7 @@ else
 			StringBuilder condition = new StringBuilder ("(");
 
 			for (int i = 0; i < SubTerms.Count; i++) {
-				Term term = SubTerms [i] as Term;
+				Term term = SubTerms [i];
 				condition.Append (term.SqlCondition ());
 
 				if (i != SubTerms.Count - 1)
@@ -318,7 +318,8 @@ else
 			if (AndTerm.Operators.Contains (op))
 				//Console.WriteLine ("AND!");
 				return new AndTerm (parent, after);
-			else if (OrTerm.Operators.Contains (op))
+
+			if (OrTerm.Operators.Contains (op))
 				//Console.WriteLine ("OR!");
 				return new OrTerm (parent, after);
 

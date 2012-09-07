@@ -48,10 +48,10 @@ public class PhotoVersionCommands
 	private class VersionNameRequest : BuilderDialog {
 		private Photo photo;
 
-		[GtkBeans.Builder.Object] private Button ok_button;
-		[GtkBeans.Builder.Object] private Entry version_name_entry;
-		[GtkBeans.Builder.Object] private Label prompt_label;
-		[GtkBeans.Builder.Object] private Label already_in_use_label;
+		[GtkBeans.Builder.Object] Button ok_button;
+		[GtkBeans.Builder.Object] Entry version_name_entry;
+		[GtkBeans.Builder.Object] Label prompt_label;
+		[GtkBeans.Builder.Object] Label already_in_use_label;
 
 		public enum RequestType {
 			Create,

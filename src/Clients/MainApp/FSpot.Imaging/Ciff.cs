@@ -117,7 +117,7 @@ namespace FSpot.Imaging.Ciff {
 
 		public byte [] ReadEntry (int pos)
 		{
-			Entry e = (Entry) entry_list [pos];
+			Entry e = entry_list [pos];
 
 			stream.Position = this.start + e.Offset;
 

@@ -122,8 +122,8 @@ namespace FSpot
 	
 		public void Dispose ()
 		{
-			foreach (object item in pixbuf_mru) {
-				Thumbnail thumb = item as Thumbnail;
+			foreach (var item in pixbuf_mru) {
+				Thumbnail thumb = item;
 				pixbuf_hash.Remove (thumb.uri);
 				thumb.pixbuf.Dispose ();
 			}
@@ -134,8 +134,8 @@ namespace FSpot
 		~ThumbnailCache ()
 		{
 			Log.DebugFormat ("Finalizer called on {0}. Should be Disposed", GetType ());
-			foreach (object item in pixbuf_mru) {
-				Thumbnail thumb = item as Thumbnail;
+			foreach (var item in pixbuf_mru) {
+				Thumbnail thumb = item;
 				pixbuf_hash.Remove (thumb.uri);
 				thumb.pixbuf.Dispose ();
 			}
@@ -146,7 +146,7 @@ namespace FSpot
 		private void MaybeExpunge ()
 		{
 			while (pixbuf_mru.Count > max_count) {
-				Thumbnail thumbnail = pixbuf_mru [pixbuf_mru.Count - 1] as Thumbnail;
+				Thumbnail thumbnail = pixbuf_mru [pixbuf_mru.Count - 1];
 	
 				pixbuf_hash.Remove (thumbnail.uri);
 				pixbuf_mru.RemoveAt (pixbuf_mru.Count - 1);

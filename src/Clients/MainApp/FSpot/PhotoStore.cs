@@ -245,7 +245,7 @@ namespace FSpot {
         
                  while (reader.Read ()) {
                          uint tag_id = Convert.ToUInt32 (reader ["tag_id"]);
-                         Tag tag = App.Instance.Database.Tags.Get (tag_id) as Tag;
+                         Tag tag = App.Instance.Database.Tags.Get (tag_id);
                          photo.AddTagUnsafely (tag);
                  }
                  reader.Dispose();
@@ -308,7 +308,7 @@ namespace FSpot {
         
                          if (reader [1] != null) {
                                  uint tag_id = Convert.ToUInt32 (reader ["tag_id"]);
-                                 Tag tag = App.Instance.Database.Tags.Get (tag_id) as Tag;
+                                 Tag tag = App.Instance.Database.Tags.Get (tag_id);
                                  photo.AddTagUnsafely (tag);
                          }
                  }
@@ -512,12 +512,12 @@ namespace FSpot {
         
                  if (changes.VersionsAdded != null)
                          foreach (uint version_id in changes.VersionsAdded) {
-                                 PhotoVersion version = photo.GetVersion (version_id) as PhotoVersion;
+                                 PhotoVersion version = photo.GetVersion (version_id);
                                  InsertVersion (photo, version);
                          }
                  if (changes.VersionsModified != null)
                          foreach (uint version_id in changes.VersionsModified) {
-                                 PhotoVersion version = photo.GetVersion (version_id) as PhotoVersion;
+                                 PhotoVersion version = photo.GetVersion (version_id);
                                  Database.Execute (new HyenaSqliteCommand (
                                          "UPDATE photo_versions SET name = ?, " +
                                          "base_uri = ?, filename = ?, protected = ?, import_md5 = ? " +
@@ -536,7 +536,7 @@ namespace FSpot {
         
          public void CalculateMD5Sum (Photo photo) {
                  foreach (uint version_id in photo.VersionIds) {
-                         PhotoVersion version = photo.GetVersion (version_id) as PhotoVersion;
+                         PhotoVersion version = photo.GetVersion (version_id);
         
                          // Don't overwrite MD5 sums that are already calculated.
                          if (version.ImportMD5 != String.Empty && version.ImportMD5 != null)

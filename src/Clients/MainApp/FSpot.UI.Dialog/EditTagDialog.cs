@@ -43,16 +43,11 @@ namespace FSpot.UI.Dialog
 	{
 		Db db;
 		Tag tag;
-		[GtkBeans.Builder.Object]
-		Button ok_button;
-		[GtkBeans.Builder.Object]
-		Entry tag_name_entry;
-		[GtkBeans.Builder.Object]
-		Label already_in_use_label;
-		[GtkBeans.Builder.Object]
-		Gtk.Image icon_image;
-		[GtkBeans.Builder.Object]
-		Gtk.ComboBox category_option_menu;
+		[GtkBeans.Builder.Object] Button ok_button;
+		[GtkBeans.Builder.Object] Entry tag_name_entry;
+		[GtkBeans.Builder.Object] Label already_in_use_label;
+		[GtkBeans.Builder.Object] Gtk.Image icon_image;
+		[GtkBeans.Builder.Object] Gtk.ComboBox category_option_menu;
 
 		public EditTagDialog (Db db, Tag t, Gtk.Window parent_window) : base ("EditTagDialog.ui", "edit_tag_dialog")
 		{

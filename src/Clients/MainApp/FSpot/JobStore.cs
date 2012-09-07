@@ -194,7 +194,7 @@ namespace FSpot {
     	{
     		RemoveFromCache (item);
     
-    		if ((item as Job).Persistent)
+    		if (item.Persistent)
     			Database.Execute (new HyenaSqliteCommand ("DELETE FROM jobs WHERE id = ?", item.Id));
     
     		EmitRemoved (item);

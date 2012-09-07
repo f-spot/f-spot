@@ -200,7 +200,7 @@ namespace FSpot.Widgets
 					last_count += (int)GetValue (iter, 1);
 					SetValue (iter, 1, last_count);
 				}
-				count_all += (int)last_count;
+				count_all += last_count;
 			}
 		}
 	}

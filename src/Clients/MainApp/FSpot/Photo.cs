@@ -213,7 +213,7 @@ namespace FSpot
 
 		public bool VersionNameExists (string version_name)
 		{
-			return Versions.Where ((v) => v.Name == version_name).Any ();
+			return Versions.Any (v => v.Name == version_name);
 		}
 
 		public SafeUri VersionUri (uint version_id)
@@ -599,12 +599,13 @@ namespace FSpot
 		#region IComparable implementation
 		public int CompareTo (object obj)
 		{
-			if (this.GetType () == obj.GetType ())
+			if (GetType () == obj.GetType ())
 				return this.Compare((Photo)obj);
-			else if (obj is DateTime)
-				return this.time.CompareTo ((DateTime)obj);
-			else
-				throw new Exception ("Object must be of type Photo");
+
+			if (obj is DateTime)
+				return time.CompareTo ((DateTime)obj);
+
+			throw new Exception ("Object must be of type Photo");
 		}
 
 		public int CompareTo (Photo photo)
@@ -613,8 +614,8 @@ namespace FSpot
 
 			if (result == 0)
 				return 0;
-			else
-				return (this as IPhoto).Compare (photo);
+
+			return (this as IPhoto).Compare (photo);
 		}
 		#endregion
 	}

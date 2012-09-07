@@ -98,8 +98,8 @@ namespace FSpot {
 		{
 			if (order_ascending)
 				return years [startyear + item/12][item % 12];
-			else
-				return years [endyear - item/12][11 - item % 12];
+
+			return years [endyear - item/12][11 - item % 12];
 		}
 
 		public DateTime DateFromIndex (int item)

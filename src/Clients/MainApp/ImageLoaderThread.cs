@@ -311,7 +311,7 @@ public class ImageLoaderThread
 
 					int pos = queue.Count - 1;
 
-					current_request = queue [pos] as RequestItem;
+					current_request = queue [pos];
 					queue.RemoveAt (pos);
 					requests_by_uri.Remove (current_request.Uri);
 				}

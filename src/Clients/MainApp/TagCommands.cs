@@ -56,12 +56,12 @@ public class TagCommands {
 		TagStore tag_store;
 
 
-		[GtkBeans.Builder.Object] private Button create_button;
-		[GtkBeans.Builder.Object] private Entry tag_name_entry;
-		[GtkBeans.Builder.Object] private Label prompt_label;
-		[GtkBeans.Builder.Object] private Label already_in_use_label;
-		[GtkBeans.Builder.Object] private ComboBox category_option_menu;
-		[GtkBeans.Builder.Object] private CheckButton auto_icon_checkbutton;
+		[GtkBeans.Builder.Object] Button create_button;
+		[GtkBeans.Builder.Object] Entry tag_name_entry;
+		[GtkBeans.Builder.Object] Label prompt_label;
+		[GtkBeans.Builder.Object] Label already_in_use_label;
+		[GtkBeans.Builder.Object] ComboBox category_option_menu;
+		[GtkBeans.Builder.Object] CheckButton auto_icon_checkbutton;
 
 		private List<Tag> categories;
 
@@ -204,7 +204,7 @@ public class TagCommands {
 					Category parent_category = Category;
 
 					if (type == TagType.Category)
-						new_tag = tag_store.CreateCategory (parent_category, tag_name_entry.Text, autoicon) as Tag;
+						new_tag = tag_store.CreateCategory (parent_category, tag_name_entry.Text, autoicon);
 					else
 						new_tag = tag_store.CreateTag (parent_category, tag_name_entry.Text, autoicon);
 				} catch (Exception ex) {

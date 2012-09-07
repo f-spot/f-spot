@@ -130,12 +130,12 @@ namespace FSpot.Import
 
 #region Source Scanning
 
-        private List<IImportSource> sources;
+        private List<IImportSource> _sources;
         public List<IImportSource> Sources {
             get {
-                if (sources == null)
-                    sources = ScanSources ();
-                return sources;
+                if (_sources == null)
+                    _sources = ScanSources ();
+                return _sources;
             }
         }
 

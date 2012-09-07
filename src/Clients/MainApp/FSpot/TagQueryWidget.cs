@@ -345,16 +345,16 @@ namespace FSpot
 		private void HandleTagChanged (object sender, DbItemEventArgs<Tag> args)
 		{
 			foreach (Tag t in args.Items)
-                foreach (Literal term in rootTerm.FindByTag (t))
-                    term.Update ();
+		                foreach (Literal term in rootTerm.FindByTag (t))
+		                    term.Update ();
 		}
 
 		// If the user deletes a tag that is in use in the query, remove it from the query too.
 		private void HandleTagDeleted (object sender, DbItemEventArgs<Tag> args)
 		{
 			foreach (Tag t in args.Items)
-                foreach (Literal term in rootTerm.FindByTag (t))
-                    term.RemoveSelf ();
+		                foreach (Literal term in rootTerm.FindByTag (t))
+		                    term.RemoveSelf ();
 		}
 
 		private void HandleDragMotion (object o, DragMotionArgs args)
@@ -391,7 +391,7 @@ namespace FSpot
 
 				if (term.IsNegated)
 					foreach (Literal group in groups)
-					group.IsNegated = true;
+						group.IsNegated = true;
 			}
 			preventUpdate = false;
 			UpdateQuery ();

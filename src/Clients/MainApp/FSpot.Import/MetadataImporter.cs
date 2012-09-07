@@ -96,7 +96,7 @@ namespace FSpot.Import {
 
         private void AddTagToPhoto (Photo photo, string new_tag_name)
         {
-            if (new_tag_name == null || new_tag_name.Length == 0)
+            if (string.IsNullOrEmpty(new_tag_name))
                 return;
 
             Tag parent = EnsureTag (li_root_tag, tag_store.RootCategory);

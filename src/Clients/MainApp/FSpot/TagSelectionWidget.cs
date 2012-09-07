@@ -97,7 +97,7 @@ namespace FSpot {
 			Model.GetValue (iter, IdColumn, ref val);
 			uint tag_id = (uint) val;
 
-			return tag_store.Get (tag_id) as Tag;
+			return tag_store.Get (tag_id);
 		}
 
 		// Loading up the store.
@@ -138,7 +138,7 @@ namespace FSpot {
 					Model.GetIter (out iter, path);
 					Model.GetValue (iter, IdColumn, ref value);
 					uint tag_id = (uint) value;
-					tags[i] = tag_store.Get (tag_id) as Tag;
+					tags[i] = tag_store.Get (tag_id);
 					i++;
 				}
 				return tags;
@@ -194,7 +194,7 @@ namespace FSpot {
 			GLib.Value value = new GLib.Value ();
 			Model.GetValue (iter, IdColumn, ref value);
 			uint tag_id = (uint) value;
-			Tag tag = tag_store.Get (tag_id) as Tag;
+			Tag tag = tag_store.Get (tag_id);
 
 			if (tag == null)
 				return;
@@ -227,7 +227,7 @@ namespace FSpot {
 			Model.GetValue (iter, IdColumn, ref value);
 			uint tag_id = (uint) value;
 
-			Tag tag = tag_store.Get (tag_id) as Tag;
+			Tag tag = tag_store.Get (tag_id);
 			if (tag == null)
 				return;
 
@@ -283,7 +283,7 @@ namespace FSpot {
 			bool valid;
 
 			store.GetValue (src, IdColumn, ref value);
-			Tag tag = (Tag) tag_store.Get ((uint)value);
+			Tag tag = tag_store.Get ((uint)value);
 			if (is_parent) {
 				// we need to figure out where to insert it in the correct order
 				copy = InsertInOrder(dest, is_root, tag);
@@ -502,7 +502,7 @@ namespace FSpot {
 			GLib.Value value = new GLib.Value ();
 			Model.GetValue (iter, IdColumn, ref value);
 			uint tag_id = (uint) value;
-			Tag tag = tag_store.Get (tag_id) as Tag;
+			Tag tag = tag_store.Get (tag_id);
 
 			// Ignore if it hasn't changed
 			if (tag.Name == args.NewText)

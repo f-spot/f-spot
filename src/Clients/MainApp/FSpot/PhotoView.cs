@@ -103,12 +103,12 @@ namespace FSpot {
 		{
 			description_entry.Changed -= HandleDescriptionChanged;
 			if (Item.IsValid) {
-				if (description_entry.Sensitive == false)
+				if (!description_entry.Sensitive)
 					description_entry.Sensitive = true;
 
 				string desc = Item.Current.Description;
 				if (description_entry.Text != desc) {
-					description_entry.Text = desc == null ? String.Empty : desc;
+					description_entry.Text = desc ?? String.Empty;
 				}
 			} else {
 				description_entry.Sensitive = false;

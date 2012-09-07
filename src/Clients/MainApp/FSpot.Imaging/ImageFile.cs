@@ -32,6 +32,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using Hyena;
 
@@ -112,6 +113,11 @@ namespace FSpot.Imaging
 			}
 		}
 
+		public static List<string> UnitTestImageFileTypes ()
+		{
+			return NameTable.Keys.ToList();
+		}
+
 		public static bool HasLoader (SafeUri uri)
 		{
 			return GetLoaderType (uri) != null;
@@ -144,7 +150,8 @@ namespace FSpot.Imaging
 
 			if (NameTable.TryGetValue (mime, out t))
 				return t;
-			else if (NameTable.TryGetValue (extension, out t))
+
+			if (NameTable.TryGetValue (extension, out t))
 				return t;
 
 			return null;
@@ -180,22 +187,14 @@ namespace FSpot.Imaging
 				".rw2",
 			};
 			var extension = uri.GetExtension ().ToLower ();
-			foreach (string ext in raw_extensions) {
-				if (ext == extension)
-					return true;
-			}
-			return false;
+			return raw_extensions.Any (x => x == extension);
 		}
 
 		public static bool IsJpeg (SafeUri uri)
 		{
 			string [] jpg_extensions = {".jpg", ".jpeg", ".jpe", ".jfi", ".jfif", ".jif"};
 			var extension = uri.GetExtension ().ToLower ();
-			foreach (string ext in jpg_extensions) {
-				if (ext == extension)
-					return true;
-			}
-			return false;
+			return jpg_extensions.Any (x => x == extension);
 		}
 		#endregion
 	}

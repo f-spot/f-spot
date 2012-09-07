@@ -2,7 +2,6 @@
 //  Author:
 //       Stephen Shaw <sshaw@decriptor.com>
 //  Copyright (c) 2011 sshaw
-using System;
 using NUnit.Framework;
 using FSpot;
 
@@ -12,7 +11,7 @@ namespace FSpot
 	public class TestOf_AndTerm
 	{
 		//private AndTerm andTerm = null;
-		private AndTerm andTerm = null;
+		AndTerm andTerm = null;
 
 		[TestFixtureSetUp]
 		public void TestFixtureSetUp ()

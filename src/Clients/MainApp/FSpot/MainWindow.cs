@@ -2608,7 +2608,7 @@ namespace FSpot
 			// account for All and separator menu items
 			item_pos -= 2;
 
-			FSpot.Term parent_term = (FSpot.Term) FSpot.LogicWidget.Root.SubTerms [item_pos];
+			FSpot.Term parent_term = LogicWidget.Root.SubTerms [item_pos];
 
 			if (FSpot.LogicWidget.Box != null) {
 				FSpot.Literal after = parent_term.Last as FSpot.Literal;

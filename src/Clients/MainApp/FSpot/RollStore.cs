@@ -131,7 +131,7 @@ namespace FSpot
 				while (reader.Read ()) {
 					uint id = Convert.ToUInt32 (reader ["roll_id"]);
 
-					Roll roll = LookupInCache (id) as Roll;
+					Roll roll = LookupInCache (id);
 					if (roll == null) {
 						roll = new Roll (id, Convert.ToUInt32 (reader ["roll_time"]));
 						AddToCache (roll);

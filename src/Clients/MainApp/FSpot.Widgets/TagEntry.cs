@@ -77,7 +77,7 @@ namespace FSpot.Widgets
 					int count = 1;
 
 					if (taghash.ContainsKey (tag))
-						count = ((int) taghash [tag]) + 1;
+						count = (taghash [tag]) + 1;
 
 					if (count <= i)
 						taghash.Remove (tag);
@@ -91,7 +91,7 @@ namespace FSpot.Widgets
 
 			selected_photos_tagnames = new List<string> ();
 			foreach (Tag tag in taghash.Keys)
-				if ((int) (taghash [tag]) == sel.Length)
+				if (taghash [tag] == sel.Length)
 					selected_photos_tagnames.Add (tag.Name);
 
 			Update ();
