@@ -205,9 +205,10 @@ namespace FSpot {
 				Cms.Profile screen_profile;
 				if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile)) {
 					//FIXME, we're leaking a pixbuf here
-					Gdk.Pixbuf temp = tag.SizedIcon.Copy();
-					FSpot.ColorManagement.ApplyProfile (temp, screen_profile);
-					(renderer as CellRendererPixbuf).Pixbuf = temp;
+					using (Gdk.Pixbuf temp = tag.SizedIcon.Copy ()) {
+						FSpot.ColorManagement.ApplyProfile (temp, screen_profile);
+						(renderer as CellRendererPixbuf).Pixbuf = temp;
+					}
 				} else
 					(renderer as CellRendererPixbuf).Pixbuf = tag.SizedIcon;
 			} else
