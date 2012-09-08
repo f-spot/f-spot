@@ -77,15 +77,28 @@ namespace FSpot {
 			if (Directory.Exists (path)) {
 				string[] IccColorProfilList = System.IO.Directory.GetFiles (path, "*.icc");
 				foreach (string ColorProfilePath in IccColorProfilList) {
-					Cms.Profile profile = new Cms.Profile (ColorProfilePath);
-					if ((Cms.IccColorSpace)profile.ColorSpace == Cms.IccColorSpace.Rgb && profile.ProductDescription != null && !profs.ContainsKey (profile.ProductDescription))
-						profs.Add(profile.ProductDescription, profile);
+					try {
+						Cms.Profile profile = new Cms.Profile (ColorProfilePath);
+					
+						if ((Cms.IccColorSpace)profile.ColorSpace == Cms.IccColorSpace.Rgb && profile.ProductDescription != null && !profs.ContainsKey (profile.ProductDescription))
+							profs.Add(profile.ProductDescription, profile);
+					}
+					catch (Cms.CmsException CmsEx)
+					{
+						Console.WriteLine(CmsEx);
+					}
 				}
 				string[] IcmColorProfilList = System.IO.Directory.GetFiles (path, "*.icm");
 				foreach (string ColorProfilePath in IcmColorProfilList) {
-					Cms.Profile profile = new Cms.Profile (ColorProfilePath);
-					if ((Cms.IccColorSpace)profile.ColorSpace == Cms.IccColorSpace.Rgb && profile.ProductDescription != null && !profs.ContainsKey (profile.ProductDescription))
-						profs.Add(profile.ProductDescription, profile);
+					try {
+						Cms.Profile profile = new Cms.Profile (ColorProfilePath);
+						if ((Cms.IccColorSpace)profile.ColorSpace == Cms.IccColorSpace.Rgb && profile.ProductDescription != null && !profs.ContainsKey (profile.ProductDescription))
+							profs.Add(profile.ProductDescription, profile);
+					}
+					catch (Cms.CmsException CmsEx)
+					{
+						Console.WriteLine(CmsEx);
+					}
 				}
 				string[] DirList = System.IO.Directory.GetDirectories (path);
 					foreach (string dir in DirList)
