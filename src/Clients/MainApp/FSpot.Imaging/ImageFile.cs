@@ -100,6 +100,7 @@ namespace FSpot.Imaging
 			NameTable [".kdc"] = nef_type;
 			NameTable [".rw2"] = raw_type;
 			NameTable [".srf"] = nef_type;
+			NameTable [".srw"] = raw_type; // Samsung NX Raw files, supported by latest dcraw
 
 
 			// as xcf pixbufloader is not part of gdk-pixbuf, check if it's there,
@@ -185,6 +186,7 @@ namespace FSpot.Imaging
 				".raw",
 				".raf",
 				".rw2",
+				".srw",
 			};
 			var extension = uri.GetExtension ().ToLower ();
 			return raw_extensions.Any (x => x == extension);
