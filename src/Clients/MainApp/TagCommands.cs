@@ -141,19 +141,20 @@ public class TagCommands {
 			}
 		}
 
-		private void HandleTagNameEntryChanged (object sender, EventArgs args)
+        // XXX: never called
+        private void HandleTagNameEntryChanged(object sender, EventArgs args)
 		{
 			Update ();
 		}
 
 		private Category Category {
-			get {
-				if (categories.Count == 0)
+			get
+			{
+			    if (categories.Count == 0)
 					return tag_store.RootCategory;
-				else
-					return categories [category_option_menu.Active] as Category;
+			    return categories [category_option_menu.Active] as Category;
 			}
-			set {
+		    set {
 				if ((value != null) && (categories.Count > 0)) {
 					//System.Console.WriteLine("TagCreateCommand.set_Category(" + value.Name + ")");
 					for (int i = 0; i < categories.Count; i++) {

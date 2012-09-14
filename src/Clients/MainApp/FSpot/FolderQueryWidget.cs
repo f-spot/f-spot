@@ -47,7 +47,7 @@ namespace FSpot
 		PhotoQuery query;
 		FolderSet folder_set;
 
-		public FolderQueryWidget (PhotoQuery query) : base ()
+		public FolderQueryWidget (PhotoQuery query)
 		{
 			folder_set = new FolderSet ();
 			this.query = query;
@@ -117,11 +117,11 @@ namespace FSpot
 		}
 
 		public bool Empty {
-			get { return folder_set.Folders == null || folder_set.Folders.Count () == 0; }
+			get { return folder_set.Folders == null || !folder_set.Folders.Any(); }
 		}
 
 		private static TargetEntry [] folder_query_widget_source_table =
-			new TargetEntry [] {
+			new[] {
 				DragDropTargets.UriQueryEntry
 		};
 

@@ -74,7 +74,7 @@ namespace FSpot {
     
     	private MetaItem GetByName (string name)
     	{
-    		foreach (MetaItem i in this.item_cache.Values)
+    		foreach (MetaItem i in item_cache.Values)
     			if (i.Name == name)
     				return i;
     
@@ -133,8 +133,7 @@ namespace FSpot {
     	private MetaItem Create (string name, string data)
     	{
     
-    		uint id = (uint)Database.Execute(new HyenaSqliteCommand("INSERT INTO meta (name, data) VALUES (?, ?)",
-    				name, (data == null) ? "NULL" : data ));
+    		uint id = (uint)Database.Execute(new HyenaSqliteCommand("INSERT INTO meta (name, data) VALUES (?, ?)", name, data ?? "NULL" ));
     
     		//FIXME This smells bad. This line used to be *before* the
     		//Command.executeNonQuery. It smells of a bug, but there might

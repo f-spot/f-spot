@@ -48,7 +48,8 @@ public class PhotoVersionMenu : Menu
 
 	private Dictionary <MenuItem, IPhotoVersion> version_mapping;
 
-	private void HandleMenuItemActivated (object sender, EventArgs args)
+    // XXX: never called
+    private void HandleMenuItemActivated(object sender, EventArgs args)
 	{
 		MenuItem item = sender as MenuItem;
 

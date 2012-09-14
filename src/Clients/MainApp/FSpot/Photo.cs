@@ -118,7 +118,7 @@ namespace FSpot
 		public uint Rating {
 			get { return rating; }
 			set {
-				if (rating == value || value < 0 || value > 5)
+				if (rating == value || value > 5)
 					return;
 				rating = value;
 				changes.RatingChanged = true;
@@ -222,10 +222,7 @@ namespace FSpot
 				return null;
 
 			PhotoVersion v = versions [version_id];
-			if (v != null)
-				return v.Uri;
-
-			return null;
+			return v != null ? v.Uri : null;
 		}
 
 		public IPhotoVersion DefaultVersion {
@@ -264,7 +261,7 @@ namespace FSpot
 					var versionUri = VersionUri (version);
 
 					PixbufUtils.CreateDerivedVersion (DefaultVersion.Uri, versionUri, 95, buffer);
-					(GetVersion (version) as PhotoVersion).ImportMD5 = HashUtils.GenerateMD5 (VersionUri (version));
+					GetVersion (version).ImportMD5 = HashUtils.GenerateMD5 (VersionUri (version));
 					DefaultVersionId = version;
 				} catch (System.Exception e) {
 					Log.Exception (e);
@@ -489,7 +486,7 @@ namespace FSpot
 				throw new Exception ("This name already exists");
 
 
-			(GetVersion (version_id) as PhotoVersion).Name = new_name;
+			GetVersion (version_id).Name = new_name;
 			changes.ChangeVersion (version_id);
 
 			//TODO: rename file too ???
@@ -615,7 +612,7 @@ namespace FSpot
 			if (result == 0)
 				return 0;
 
-			return (this as IPhoto).Compare (photo);
+			return this.Compare (photo);
 		}
 		#endregion
 	}

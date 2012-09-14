@@ -30,7 +30,7 @@
 //
 
 using System;
-
+using System.Linq;
 using Mono.Unix;
 
 using Gtk;
@@ -39,6 +39,7 @@ using GLib;
 
 using FSpot.Utils;
 using FSpot.Widgets;
+using Layout = Pango.Layout;
 
 namespace FSpot {
 	public class GroupSelector : Fixed {
@@ -124,9 +125,9 @@ namespace FSpot {
 			int [] box_values = new int [adaptor.Count ()];
 
 			if (tick_layouts != null) {
-				foreach (Pango.Layout l in tick_layouts) {
-					if (l != null)
-						l.Dispose ();
+				foreach (Layout l in tick_layouts.Where(l => l != null))
+				{
+				    l.Dispose ();
 				}
 			}
 			tick_layouts = new Pango.Layout [adaptor.Count ()];
@@ -215,7 +216,7 @@ namespace FSpot {
 
 			Gdk.Rectangle box = new Box (this, position).Bounds;
 
-			// Only scroll to position if we are not dragging
+			// Only scroll to pos if we are not dragging
 			if (!glass.Dragging)
 			{
 				if (box.Right > background.Right)
@@ -299,11 +300,13 @@ namespace FSpot {
 			if (position < 0) {
 				position = 0;
 				return false;
-			} else if (position >= box_counts.Length) {
-				position = box_counts.Length -1;
-				return false;
 			}
-			return true;
+
+		    if (position >= box_counts.Length) {
+		        position = box_counts.Length -1;
+		        return false;
+		    }
+		    return true;
 		}
 
 		private bool BoxHit (double x, double y, out int position)
@@ -591,10 +594,7 @@ namespace FSpot {
 					}
 				}
 				get {
-					if (Dragging)
-						return drag_offset;
-					else
-						return 0;
+				    return Dragging ? drag_offset : 0;
 				}
 			}
 
@@ -618,15 +618,12 @@ namespace FSpot {
 				return true;
 			}
 
-			protected bool PositionValid (int position)
+			protected bool PositionValid (int pos)
 			{
-				if (position < 0 || position > selector.box_counts.Length - 1)
-					return false;
-
-				return true;
+			    return pos >= 0 && pos <= selector.box_counts.Length - 1;
 			}
 
-			public virtual void UpdateDrag (double x, double y)
+		    public virtual void UpdateDrag (double x, double y)
 			{
 				Rectangle bounds = Bounds ();
 				double drag_lower_limit = (selector.background.Left) - (bounds.Width/2);
@@ -698,7 +695,7 @@ namespace FSpot {
 					return;
 
 				Rectangle then = Bounds ();
-				this.position = position;
+				this.Position = position;
 				Rectangle now = Bounds ();
 
 				if (selector.Visible) {
@@ -711,14 +708,9 @@ namespace FSpot {
 					PositionChanged ();
 			}
 
-			private int position;
-			public int Position {
-				get {
-					return position;
-				}
-			}
+		    public int Position { get; private set; }
 
-			public abstract void Draw (Rectangle area);
+		    public abstract void Draw (Rectangle area);
 
 			public abstract void PositionChanged ();
 
@@ -744,7 +736,7 @@ namespace FSpot {
 			}
 
 			public int handle_height = 15;
-			private int border {
+			private int Border {
 				get {
 					return selector.box_spacing * 2;
 				}
@@ -831,7 +823,7 @@ namespace FSpot {
 			{
 				Rectangle box = InnerBounds ();
 
-				box.Inflate  (border, border);
+				box.Inflate  (Border, Border);
 				box.Height += handle_height;
 
 				return box;
@@ -853,7 +845,7 @@ namespace FSpot {
 				Rectangle box = inner;
 				box.Width -= 1;
 				box.Height -= 1;
-				while (i < border) {
+				while (i < Border) {
 					box.Inflate (1, 1);
 
 					selector.Style.BackgroundGC (State).ClipRectangle = area;
@@ -864,11 +856,11 @@ namespace FSpot {
 
 
 				Style.PaintFlatBox (selector.Style, selector.GdkWindow, State, ShadowType.In,
-						    area, selector, "glass", bounds.X, inner.Y + inner.Height + border,
+						    area, selector, "glass", bounds.X, inner.Y + inner.Height + Border,
 						    bounds.Width, handle_height);
 
 				Style.PaintHandle (selector.Style, selector.GdkWindow, State, ShadowType.In,
-						   area, selector, "glass", bounds.X, inner.Y + inner.Height + border,
+						   area, selector, "glass", bounds.X, inner.Y + inner.Height + Border,
 						   bounds.Width, handle_height, Orientation.Horizontal);
 
 				Style.PaintShadow (selector.Style, selector.GdkWindow, State, ShadowType.Out,

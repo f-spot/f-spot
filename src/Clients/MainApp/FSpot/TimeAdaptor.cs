@@ -61,10 +61,7 @@ namespace FSpot {
 
 			DateTime end = DateFromIndex(max);
 
-			if (order_ascending)
-				end = end.AddMonths (1);
-			else
-				end = end.AddMonths(-1);
+			end = order_ascending ? end.AddMonths (1) : end.AddMonths(-1);
 
 			SetLimits (start, end);
 		}
@@ -90,8 +87,7 @@ namespace FSpot {
 
 			if ((start.Month == 12 && !order_ascending) || (start.Month == 1 && order_ascending))
 				return start.Year.ToString ();
-			else
-				return null;
+		    return null;
 		}
 
 		public override int Value (int item)

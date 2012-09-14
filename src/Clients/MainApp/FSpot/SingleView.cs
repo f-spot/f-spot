@@ -216,7 +216,7 @@ namespace FSpot {
 
 		void HandleExportActivated (object o, EventArgs e)
 		{
-			FSpot.Extensions.ExportMenuItemNode.SelectedImages = delegate () {return new PhotoList (directory_view.Selection.Items); };
+			FSpot.Extensions.ExportMenuItemNode.SelectedImages = () => new PhotoList(directory_view.Selection.Items);
 		}
 
 		public void HandleCollectionChanged (IBrowsableCollection collection)
@@ -317,7 +317,8 @@ namespace FSpot {
 			Desktop.SetBackgroundImage (current.DefaultVersion.Uri.LocalPath);
 		}
 
-		private void HandleViewToolbar (object sender, System.EventArgs args)
+        // XXX: never called
+        private void HandleViewToolbar(object sender, System.EventArgs args)
 		{
 			ShowToolbar = toolbar_item.Active;
 		}
@@ -327,7 +328,8 @@ namespace FSpot {
 			ShowSidebar = false;
 		}
 
-		private void HandleViewSidePane (object sender, System.EventArgs args)
+        // XXX: never called
+        private void HandleViewSidePane(object sender, System.EventArgs args)
 		{
 			ShowSidebar = side_pane_item.Active;
 		}
@@ -338,34 +340,40 @@ namespace FSpot {
 			fsview.PlayPause ();
 		}
 
-		private void HandleViewFilenames (object sender, System.EventArgs args)
+        // XXX: never called
+        private void HandleViewFilenames(object sender, System.EventArgs args)
 		{
 			directory_view.DisplayFilenames = filenames_item.Active;
 			UpdateStatusLabel ();
 		}
 
-		private void HandleAbout (object sender, System.EventArgs args)
+        // XXX: never called
+        private void HandleAbout(object sender, System.EventArgs args)
 		{
 			FSpot.UI.Dialog.AboutDialog.ShowUp ();
 		}
 
-		private void HandleNewWindow (object sender, System.EventArgs args)
+        // XXX: never called
+        private void HandleNewWindow(object sender, System.EventArgs args)
 		{
 			/* FIXME this needs to register witth the core */
 			new SingleView (new SafeUri[] {uri});
 		}
 
-		private void HandlePreferences (object sender, System.EventArgs args)
+        // XXX: never called
+        private void HandlePreferences(object sender, System.EventArgs args)
 		{
 			SingleView.PreferenceDialog.Show ();
 		}
 
-		private void HandleOpenFolder (object sender, System.EventArgs args)
+        // XXX: never called
+        private void HandleOpenFolder(object sender, System.EventArgs args)
 		{
 			Open (FileChooserAction.SelectFolder);
 		}
 
-		private void HandleOpen (object sender, System.EventArgs args)
+        // XXX: never called
+        private void HandleOpen(object sender, System.EventArgs args)
 		{
 			Open (FileChooserAction.Open);
 		}
@@ -486,9 +494,7 @@ namespace FSpot {
 				collection.LoadItems (list.ToArray());
 
 				Gtk.Drag.Finish (args.Context, true, false, args.Time);
-
-				return;
-			}
+			    }
 		}
 
 		private void UpdateStatusLabel ()
@@ -525,7 +531,8 @@ namespace FSpot {
 			Preferences.Set (Preferences.VIEWER_SHOW_FILENAMES, filenames_item.Active);
 		}
 
-		private void HandleFileOpen (object sender, System.EventArgs args)
+        // XXX: never called
+        private void HandleFileOpen(object sender, System.EventArgs args)
 		{
 			FileChooserDialog file_selector =
 				new FileChooserDialog ("Open", this.Window,
@@ -624,12 +631,14 @@ namespace FSpot {
 				this.Destroyed += HandleDestroyed;
 			}
 
-			void InterpolationToggled (object sender, System.EventArgs args)
+            // XXX: never called
+            void InterpolationToggled(object sender, System.EventArgs args)
 			{
 				Preferences.Set (Preferences.VIEWER_INTERPOLATION, interpolation_check.Active);
 			}
 
-			void HandleTransparentColorSet (object sender, System.EventArgs args)
+            // XXX: never called
+            void HandleTransparentColorSet(object sender, System.EventArgs args)
 			{
 				Preferences.Set (Preferences.VIEWER_TRANS_COLOR,
 						"#" +
@@ -638,7 +647,8 @@ namespace FSpot {
 						(color_button.Color.Blue / 256 ).ToString("x").PadLeft (2, '0'));
 			}
 
-			void HandleTransparencyToggled (object sender, System.EventArgs args)
+            // XXX: never called
+            void HandleTransparencyToggled(object sender, System.EventArgs args)
 			{
 				if (as_background_radio.Active)
 					Preferences.Set (Preferences.VIEWER_TRANSPARENCY, "NONE");
@@ -662,7 +672,8 @@ namespace FSpot {
 				LoadPreference (args.Key);
 			}
 
-			void HandleClose (object sender, EventArgs args)
+            // XXX: never called
+            void HandleClose(object sender, EventArgs args)
 			{
 				this.Destroy ();
 			}

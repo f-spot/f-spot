@@ -315,13 +315,10 @@ namespace FSpot {
 	
 		public override Tag Get (uint id)
 		{
-			if (id == 0)
-				return RootCategory;
-			else
-				return LookupInCache (id);
+		    return id == 0 ? RootCategory : LookupInCache (id);
 		}
-	
-		public override void Remove (Tag tag)
+
+	    public override void Remove (Tag tag)
 		{
 			Category category = tag as Category;
 			if (category != null &&

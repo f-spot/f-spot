@@ -30,7 +30,7 @@
 //
 
 using System;
-
+using System.Linq;
 using Gtk;
 
 using FSpot.Core;
@@ -80,14 +80,14 @@ namespace FSpot {
 				//scroll = new Gtk.ScrolledWindow (null, null);
 				actions = new ActionGroup ("joe");
 
-				actions.Add (new ActionEntry [] {
+				actions.Add (new[] {
 					new ActionEntry (HideToolbar, Stock.Close,
 							 Catalog.GetString ("Hide"),
 							 null,
 							 Catalog.GetString ("Hide toolbar"),
 							 HideToolbarAction)});
 
-				actions.Add (new ToggleActionEntry [] {
+				actions.Add (new[] {
 					new ToggleActionEntry (Info,
 							       Stock.Info,
 							       Catalog.GetString ("Info"),
@@ -242,14 +242,12 @@ namespace FSpot {
 			if (combo == null)
 				return;
 			TreeIter iter;
-			if (combo.GetActiveIter (out iter)) {
-				string name = combo.Model.GetValue (iter, 0) as string;
-				foreach (var transition in display.Transitions)
-					if (transition.Name == name)
-						display.Transition = transition;
+			if (combo.GetActiveIter (out iter))
+			{
+			    string name = combo.Model.GetValue (iter, 0) as string;
+			    foreach (var transition in display.Transitions.Where(transition => transition.Name == name))
+			        display.Transition = transition;
 			}
-
-
 		}
 
 		protected override bool OnExposeEvent (Gdk.EventExpose args)

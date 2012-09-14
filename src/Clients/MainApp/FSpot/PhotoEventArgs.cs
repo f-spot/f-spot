@@ -36,7 +36,7 @@ namespace FSpot
 	public class PhotoEventArgs : DbItemEventArgs<Photo> {
 		public PhotosChanges Changes { get; private set; }
 
-		public PhotoEventArgs (Photo photo, PhotosChanges changes) : this (new Photo[] {photo}, changes)
+		public PhotoEventArgs (Photo photo, PhotosChanges changes) : this (new[] {photo}, changes)
 		{
 		}
 

@@ -42,7 +42,8 @@ public class PhotoTagMenu : Menu
 	public delegate void TagSelectedHandler (Tag t);
 	public event TagSelectedHandler TagSelected;
 
-	public PhotoTagMenu () : base () {
+	public PhotoTagMenu ()
+	{
 	}
 
 	protected PhotoTagMenu (IntPtr raw) : base (raw) {}

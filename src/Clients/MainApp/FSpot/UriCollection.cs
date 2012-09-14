@@ -151,9 +151,7 @@ namespace FSpot {
 					if (ImageFile.HasLoader (i))
 						items.Add (new FilePhoto (i));
 				}
-				ThreadAssist.ProxyToMain (() => {
-					collection.Add (items.ToArray ());
-				});
+				ThreadAssist.ProxyToMain (() => collection.Add (items.ToArray ()));
 			}
 		}
 

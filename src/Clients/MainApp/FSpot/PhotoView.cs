@@ -365,7 +365,7 @@ namespace FSpot {
 
 			vbox.ShowAll ();
 
-			Realized += delegate (object o, EventArgs e) {SetColors ();};
+			Realized += (o, e) => SetColors();
 			Preferences.SettingChanged += OnPreferencesChanged;
 		}
 

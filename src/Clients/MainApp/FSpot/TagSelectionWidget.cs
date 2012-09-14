@@ -317,7 +317,7 @@ namespace FSpot {
 				//I have no desire to figure out a more performant sort over this...
 				GLib.Value value = new GLib.Value ();
 				store.GetValue(iter, IdColumn, ref value);
-				compare = (Tag) tag_store.Get ((uint) value);
+				compare = tag_store.Get ((uint) value);
 
 				if (compare.CompareTo (tag) > 0) {
 					iter = store.InsertNodeBefore (iter);
@@ -530,7 +530,6 @@ namespace FSpot {
 			text_render.Edited -= HandleTagNameEdited;
 
 			args.RetVal = true;
-			return;
 		}
 
         private static TargetList tagSourceTargetList = new TargetList();
@@ -650,7 +649,6 @@ namespace FSpot {
 		{
 			if (args.Info == DragDropTargets.TagListEntry.Info) {
 				args.SelectionData.SetTagsData (TagHighlight, args.Context.Targets[0]);
-				return;
 			}
 		}
 
@@ -765,7 +763,7 @@ namespace FSpot {
 				foreach (Tag child in TagHighlight) {
 	                // FIXME with this reparenting via dnd, you cannot move a tag to root.
 	                if (child != parent && child.Category != parent && !child.IsAncestorOf(parent)) {
-	                    child.Category = parent as Category;
+	                    child.Category = parent;
 
 	                    // Saving changes will automatically cause the TreeView to be updated
 	                    database.Tags.Commit (child);
@@ -777,7 +775,6 @@ namespace FSpot {
 	            TagHighlight = highlighted_tags;
 
 	            args.RetVal = moved_count > 0;
-				return;
 			}
 		}
 

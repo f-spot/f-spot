@@ -64,11 +64,7 @@ namespace FSpot {
 
 		static Cms.Profile x_profile;
 		public static Cms.Profile XProfile {
-			get {
-				if (x_profile == null)
-					x_profile = Cms.Profile.GetScreenProfile (Gdk.Screen.Default);
-				return x_profile;
-			}
+			get { return x_profile ?? (x_profile = Cms.Profile.GetScreenProfile(Gdk.Screen.Default)); }
 		}
 
 		private static void AddProfiles (string path, IDictionary<string, Cms.Profile> profs)

@@ -578,13 +578,10 @@ namespace FSpot
 		// Index into the PhotoQuery.  If -1, no photo is selected or multiple photos are selected.
 		private int ActiveIndex ()
 		{
-			if (Selection.Count == 1)
-				return SelectedIds() [0];
-			else
-				return PHOTO_IDX_NONE;
+		    return Selection.Count == 1 ? SelectedIds() [0] : PHOTO_IDX_NONE;
 		}
 
-		// Switching mode.
+	    // Switching mode.
 		public enum ModeType {
 			IconView,
 			PhotoView
@@ -675,23 +672,21 @@ namespace FSpot
 
 		private void HandleExportActivated (object o, EventArgs e)
 		{
-			FSpot.Extensions.ExportMenuItemNode.SelectedImages = delegate () {return new PhotoList (SelectedPhotos ()); };
+			FSpot.Extensions.ExportMenuItemNode.SelectedImages = () => new PhotoList(SelectedPhotos());
 		}
 
 		private void HandleDbItemsChanged (object sender, DbItemEventArgs<Photo> args)
 		{
-			foreach (Photo p in args.Items) {
-				if (p == null)
-					continue;
-				if (write_metadata)
-					FSpot.Jobs.SyncMetadataJob.Create (Database.Jobs, p);
-			}
+		    foreach (Photo p in args.Items.Where(p => p != null).Where(p => write_metadata))
+		    {
+		        FSpot.Jobs.SyncMetadataJob.Create (Database.Jobs, p);
+		    }
 
-			if (args is PhotoEventArgs && (args as PhotoEventArgs).Changes.TimeChanged)
+		    if (args is PhotoEventArgs && (args as PhotoEventArgs).Changes.TimeChanged)
 				query.RequestReload ();
 		}
 
-		private void HandleTagsChanged (object sender, DbItemEventArgs<Tag> args)
+	    private void HandleTagsChanged (object sender, DbItemEventArgs<Tag> args)
 		{
 			icon_view.QueueDraw ();
 			UpdateTagEntryFromSelection ();
@@ -769,7 +764,7 @@ namespace FSpot
 			{
 				switch (win.ViewMode) {
 				case ModeType.PhotoView:
-					return item == win.photo_view.Item.Current ? true : false;
+					return item == win.photo_view.Item.Current;
 				case ModeType.IconView:
 					return win.icon_view.Selection.Contains (item);
 				}
@@ -818,21 +813,20 @@ namespace FSpot
 
 			private void HandleQueryItemsChanged (IBrowsableCollection collection, BrowsableEventArgs args)
 			{
-				// FIXME for now we only listen to changes directly from the query
+			    // FIXME for now we only listen to changes directly from the query
 				// when we are in PhotoView mode because we presume that we'll get
 				// proper notification from the icon view selection in icon view mode
 				if (win.ViewMode != ModeType.PhotoView || ItemsChanged == null)
 					return;
 
-				foreach (int item in args.Items) {
-					if (win.photo_view.Item.Index == item ) {
-						ItemsChanged (this, new BrowsableEventArgs (item, args.Changes));
-						break;
-					}
-				}
+			    foreach (int item in args.Items.Where(item => win.photo_view.Item.Index == item))
+			    {
+			        ItemsChanged (this, new BrowsableEventArgs (item, args.Changes));
+			        break;
+			    }
 			}
 
-			private void HandlePhotoChanged (PhotoView sender)
+		    private void HandlePhotoChanged (PhotoView sender)
 			{
 				if (win.ViewMode == ModeType.PhotoView && Changed != null)
 					Changed (this);
@@ -1133,15 +1127,13 @@ namespace FSpot
 		{
 			// Drag'n drop import.
 			var controller = new ImportController (false);
-			controller.StatusEvent += (evnt) => {
-				ThreadAssist.ProxyToMain (() => {
-					if (evnt == ImportEvent.ImportFinished) {
-						if (controller.PhotosImported > 0) {
-							query.RollSet = new RollSet (Database.Rolls.GetRolls (1));
-						}
-					}
-				});
-			};
+			controller.StatusEvent += (evnt) => ThreadAssist.ProxyToMain (() => {
+			                                                                        if (evnt == ImportEvent.ImportFinished) {
+			                                                                            if (controller.PhotosImported > 0) {
+			                                                                                query.RollSet = new RollSet (Database.Rolls.GetRolls (1));
+			                                                                            }
+			                                                                        }
+			});
 
 			var source = new MultiFileImportSource (list.ToArray ());
 			controller.ActiveSource = source;
@@ -1156,6 +1148,7 @@ namespace FSpot
 			controller.StartImport ();
 		}
 
+        // XXX: never called
 		void HandleImportCommand (object obj, EventArgs args)
 		{
 			StartImport (null);
@@ -1169,7 +1162,7 @@ namespace FSpot
 		void StartImport (SafeUri uri)
 		{
 			var controller = new ImportController (true);
-			controller.StatusEvent += (evnt) => {
+			controller.StatusEvent += evnt => {
 				if (evnt == ImportEvent.ImportFinished) {
 					if (controller.PhotosImported > 0) {
 						query.RollSet = new RollSet (Database.Rolls.GetRolls (1));
@@ -1432,10 +1425,8 @@ namespace FSpot
 		public void HandleTagMenuActivate (object sender, EventArgs args)
 		{
 
-			MenuItem parent = sender as MenuItem;
-			if (parent == null) // We have a Gtk.Action for UI menus, so the "Edit > Remove tag" item needs special treatment
-				parent = uimanager.GetWidget("/ui/menubar1/edit2/remove_tag") as MenuItem;
-			if (parent != null && parent.Submenu is PhotoTagMenu) {
+			MenuItem parent = sender as MenuItem ?? uimanager.GetWidget("/ui/menubar1/edit2/remove_tag") as MenuItem;
+		    if (parent != null && parent.Submenu is PhotoTagMenu) {
 				PhotoTagMenu menu = (PhotoTagMenu) parent.Submenu;
 				menu.Populate (SelectedPhotos ());
 			}
@@ -1463,9 +1454,9 @@ namespace FSpot
 		public void HandleRemoveTagMenuSelected (Tag t)
 		{
 			Database.BeginTransaction ();
-			RemoveTags (SelectedIds (), new Tag [] {t});
+			RemoveTags (SelectedIds (), new[] {t});
 			Database.CommitTransaction ();
-			query_widget.PhotoTagsChanged (new Tag [] {t});
+			query_widget.PhotoTagsChanged (new[] {t});
 		}
 
 		//
@@ -1477,6 +1468,7 @@ namespace FSpot
 			FSpot.Core.Global.PageSetup = Print.RunPageSetupDialog (this.Window, FSpot.Core.Global.PageSetup, null);
 		}
 
+        // XXX: never called
 		void HandlePrintCommand (object sender, EventArgs e)
 		{
 			FSpot.PrintOperation print = new FSpot.PrintOperation (SelectedPhotos ());
@@ -1495,7 +1487,8 @@ namespace FSpot
 			Mono.Addins.Gui.AddinManagerWindow.Run (main_window);
 		}
 
-		void HandleSendMailCommand (object sender, EventArgs args)
+        // XXX: never called
+        void HandleSendMailCommand (object sender, EventArgs args)
 		{
 			//TestDisplay ();
 			new FSpot.SendEmail (new PhotoList (SelectedPhotos ()), Window);
@@ -1511,7 +1504,8 @@ namespace FSpot
 			FSpot.UI.Dialog.AboutDialog.ShowUp ();
 		}
 
-		void HandleTagSizeChange (object sender, EventArgs args)
+        // XXX: never called
+        void HandleTagSizeChange(object sender, EventArgs args)
 		{
 			RadioAction choice = sender as RadioAction;
 
@@ -1587,7 +1581,8 @@ namespace FSpot
 			args.RetVal = true;
 		}
 
-		void HandleCloseCommand (object sender, EventArgs args)
+        // XXX: never called
+        void HandleCloseCommand(object sender, EventArgs args)
 		{
 			Close();
 		}
@@ -1627,26 +1622,30 @@ namespace FSpot
 			this.Window.Destroy ();
 		}
 
-		void HandleCreateVersionCommand (object obj, EventArgs args)
+        // XXX: never called
+        void HandleCreateVersionCommand(object obj, EventArgs args)
 		{
 			PhotoVersionCommands.Create cmd = new PhotoVersionCommands.Create ();
 			cmd.Execute (Database.Photos, CurrentPhoto, GetToplevel (null));
 		}
 
-		void HandleDeleteVersionCommand (object obj, EventArgs args)
+        // XXX: never called
+        void HandleDeleteVersionCommand(object obj, EventArgs args)
 		{
 			PhotoVersionCommands.Delete cmd = new PhotoVersionCommands.Delete ();
 			cmd.Execute (Database.Photos, CurrentPhoto, GetToplevel (null));
 		}
 
-		void HandleDetachVersionCommand (object obj, EventArgs args)
+        // XXX: never called
+        void HandleDetachVersionCommand(object obj, EventArgs args)
 		{
 			PhotoVersionCommands.Detach cmd = new PhotoVersionCommands.Detach ();
 			cmd.Execute (Database.Photos, CurrentPhoto, GetToplevel (null));
 			UpdateQuery ();
 		}
 
-		void HandleRenameVersionCommand (object obj, EventArgs args)
+        // XXX: never called
+        void HandleRenameVersionCommand(object obj, EventArgs args)
 		{
 			PhotoVersionCommands.Rename cmd = new PhotoVersionCommands.Rename ();
 			cmd.Execute (Database.Photos, CurrentPhoto, main_window);
@@ -1733,7 +1732,7 @@ namespace FSpot
 
 		public void HandleMergeTagsCommand (object obj, EventArgs args)
 		{
-			Tag [] tags = this.tag_selection_widget.TagHighlight;
+			Tag [] tags = tag_selection_widget.TagHighlight;
 			if (tags.Length < 2)
 				return;
 
@@ -1799,7 +1798,8 @@ namespace FSpot
 			HandleEditSelectedTagWithTag (survivor);
 		}
 
-		void HandleAdjustTime (object sender, EventArgs args)
+        // XXX: never called
+        void HandleAdjustTime(object sender, EventArgs args)
 		{
 			PhotoList list = new PhotoList (Selection.Items);
 			list.Sort (new IPhotoComparer.CompareDateName ());
@@ -1811,7 +1811,8 @@ namespace FSpot
 			loupe_menu_item.Active = false;
 		}
 
-		void HandleLoupe (object sender, EventArgs args)
+        // XXX: never called
+        void HandleLoupe(object sender, EventArgs args)
 		{
 			// Don't steal characters from any text entries
 			if (Window.Focus is Gtk.Entry && Gtk.Global.CurrentEvent is Gdk.EventKey) {
@@ -1822,7 +1823,8 @@ namespace FSpot
 			photo_view.View.ShowHideLoupe ();
 		}
 
-		void HandleSharpen (object sender, EventArgs args)
+        // XXX: never called
+        void HandleSharpen(object sender, EventArgs args)
 		{
 			// Don't steal characters from any text entries
 			if (Window.Focus is Gtk.Entry && Gtk.Global.CurrentEvent is Gdk.EventKey) {
@@ -1833,7 +1835,8 @@ namespace FSpot
 			photo_view.View.ShowSharpener ();
 		}
 
-		void HandleDisplayToolbar (object sender, EventArgs args)
+        // XXX: never called
+        void HandleDisplayToolbar(object sender, EventArgs args)
 		{
 			if (display_toolbar.Active)
 				toolbar.Show ();
@@ -1841,12 +1844,14 @@ namespace FSpot
 				toolbar.Hide ();
 		}
 
-		void HandleDisplayTags (object sender, EventArgs args)
+        // XXX: never called
+        void HandleDisplayTags(object sender, EventArgs args)
 		{
 			icon_view.DisplayTags = !icon_view.DisplayTags;
 		}
 
-		void HandleDisplayDates (object sender, EventArgs args)
+        // XXX: never called
+        void HandleDisplayDates(object sender, EventArgs args)
 		{
 			// Peg the icon_view's value to the MenuItem's active state,
 			// as icon_view.DisplayDates's get won't always be equal to it's true value
@@ -1854,12 +1859,14 @@ namespace FSpot
 			icon_view.DisplayDates = display_dates_menu_item.Active;
 		}
 
-		void HandleDisplayRatings (object sender, EventArgs args)
+        // XXX: never called
+        void HandleDisplayRatings(object sender, EventArgs args)
 		{
 			icon_view.DisplayRatings = display_ratings_menu_item.Active;
 		}
 
-		void HandleDisplayGroupSelector (object sender, EventArgs args)
+        // XXX: never called
+        void HandleDisplayGroupSelector(object sender, EventArgs args)
 		{
 			if (group_selector.Visible)
 				group_selector.Hide ();
@@ -1867,14 +1874,16 @@ namespace FSpot
 				group_selector.Show ();
 		}
 
-		void HandleDisplayFilmstrip (object sender, EventArgs args)
+        // XXX: never called
+        void HandleDisplayFilmstrip(object sender, EventArgs args)
 		{
 			photo_view.FilmStripVisibility = display_filmstrip.Active;
 			if (ViewMode == ModeType.PhotoView)
 				photo_view.QueueDraw ();
 		}
 
-		void HandleDisplayInfoSidebar (object sender, EventArgs args)
+        // XXX: never called
+        void HandleDisplayInfoSidebar(object sender, EventArgs args)
 		{
 			if (info_vbox.Visible)
 				info_vbox.Hide ();
@@ -1904,12 +1913,14 @@ namespace FSpot
 				SetViewMode (ModeType.PhotoView);
 		}
 
-		void HandleViewBrowse (object sender, EventArgs args)
+        // XXX: never called
+        void HandleViewBrowse(object sender, EventArgs args)
 		{
 			SetViewMode (ModeType.IconView);
 		}
 
-		void HandleViewPhoto (object sender, EventArgs args)
+        // XXX: never called
+        void HandleViewPhoto(object sender, EventArgs args)
 		{
 			SetViewMode (ModeType.PhotoView);
 		}
@@ -2006,22 +2017,26 @@ namespace FSpot
 			zoom_scale.ValueChanged += HandleZoomScaleValueChanged;
 		}
 
-		void HandleZoomOut (object sender, ButtonPressEventArgs args)
+        // XXX: never called
+        void HandleZoomOut(object sender, ButtonPressEventArgs args)
 		{
 			ZoomOut ();
 		}
 
-		void HandleZoomOut (object sender, EventArgs args)
+        // XXX: never called
+        void HandleZoomOut(object sender, EventArgs args)
 		{
 			ZoomOut ();
 		}
 
-		void HandleZoomIn (object sender, ButtonPressEventArgs args)
+        // XXX: never called
+        void HandleZoomIn(object sender, ButtonPressEventArgs args)
 		{
 			ZoomIn ();
 		}
 
-		void HandleZoomIn (object sender, EventArgs args)
+        // XXX: never called
+        void HandleZoomIn(object sender, EventArgs args)
 		{
 			ZoomIn ();
 		}
@@ -2157,7 +2172,8 @@ namespace FSpot
 			}
 		}
 
-		void HandleSelectAllCommand (object sender, EventArgs args)
+        // XXX: never called
+        void HandleSelectAllCommand(object sender, EventArgs args)
 		{
 			if (Window.Focus is Editable) {
 				(Window.Focus as Editable).SelectRegion (0, -1); // select all in text box
@@ -2168,13 +2184,15 @@ namespace FSpot
 			UpdateStatusLabel ();
 		}
 
-		void HandleSelectNoneCommand (object sender, EventArgs args)
+        // XXX: never called
+        void HandleSelectNoneCommand(object sender, EventArgs args)
 		{
 			icon_view.Selection.Clear ();
 			UpdateStatusLabel ();
 		}
 
-		void HandleSelectInvertCommand (object sender, EventArgs args)
+        // XXX: never called
+        void HandleSelectInvertCommand(object sender, EventArgs args)
 		{
 			icon_view.Selection.SelectionInvert ();
 			UpdateStatusLabel ();
@@ -2355,7 +2373,9 @@ namespace FSpot
 			Desktop.SetBackgroundImage (current.DefaultVersion.Uri.LocalPath);
 		}
 
-		void HandleSetDateRange (object sender, EventArgs args) {
+        // XXX: never called
+        void HandleSetDateRange(object sender, EventArgs args)
+        {
 			var date_range_dialog = new DateRangeDialog (query.Range, main_window);
 			if ((ResponseType)date_range_dialog.Run () == ResponseType.Ok)
 				query.Range = date_range_dialog.Range;
@@ -2373,19 +2393,27 @@ namespace FSpot
 			query.Range = null;
 		}
 
-		void HandleSelectLastRoll (object sender, EventArgs args) {
+        // XXX: never called
+        void HandleSelectLastRoll(object sender, EventArgs args)
+        {
 			query.RollSet = new RollSet (Database.Rolls.GetRolls (1));
 		}
 
-		void HandleSelectRolls (object sender, EventArgs args) {
+        // XXX: never called
+        void HandleSelectRolls(object sender, EventArgs args)
+        {
 			new LastRolls (query, Database.Rolls, main_window);
 		}
 
-		void HandleClearRollFilter (object sender, EventArgs args) {
+        // XXX: never called
+        void HandleClearRollFilter(object sender, EventArgs args)
+        {
 			query.RollSet = null;
 		}
 
-		void HandleSetRatingFilter (object sender, EventArgs args) {
+        // XXX: never called
+        void HandleSetRatingFilter(object sender, EventArgs args)
+        {
 			new RatingFilterDialog (query, main_window);
 		}
 
@@ -2393,7 +2421,9 @@ namespace FSpot
 			query.RatingRange = null;
 		}
 
-		void HandleFindUntagged (object sender, EventArgs args) {
+        // XXX: never called
+        void HandleFindUntagged(object sender, EventArgs args)
+        {
 			if (query.Untagged == find_untagged.Active)
 				return;
 
@@ -2518,7 +2548,7 @@ namespace FSpot
 
 		void UpdateForVersionChange (IPhotoVersion version)
 		{
-			IPhotoVersionable versionable = CurrentPhoto as IPhotoVersionable;
+			IPhotoVersionable versionable = CurrentPhoto;
 
 			if (versionable != null) {
 				versionable.SetDefaultVersion (version);
@@ -2567,7 +2597,8 @@ namespace FSpot
 			query_widget.UnInclude (tag_selection_widget.TagHighlight);
 		}
 
-		void HandleFindByTag (object sender, EventArgs args)
+        // XXX: never called
+        void HandleFindByTag(object sender, EventArgs args)
 		{
 			UpdateFindByTagMenu ();
 		}
@@ -2597,23 +2628,18 @@ namespace FSpot
 		{
 			MenuItem item = sender as MenuItem;
 
-			int item_pos = 0;
-			foreach (MenuItem i in (item.Parent as Menu).Children) {
-				if (item == i) {
-					break;
-				}
+		    if (item == null) return;
 
-				item_pos++;
-			}
-			// account for All and separator menu items
-			item_pos -= 2;
+		    int item_pos = (item.Parent as Menu).Children.Cast<MenuItem>().TakeWhile(i => item != i).Count();
+		    // account for All and separator menu items
+		    item_pos -= 2;
 
-			FSpot.Term parent_term = LogicWidget.Root.SubTerms [item_pos];
+		    FSpot.Term parent_term = LogicWidget.Root.SubTerms [item_pos];
 
-			if (FSpot.LogicWidget.Box != null) {
-				FSpot.Literal after = parent_term.Last as FSpot.Literal;
-				FSpot.LogicWidget.Box.InsertTerm (tag_selection_widget.TagHighlight, parent_term, after);
-			}
+		    if (FSpot.LogicWidget.Box != null) {
+		        FSpot.Literal after = parent_term.Last as FSpot.Literal;
+		        FSpot.LogicWidget.Box.InsertTerm (tag_selection_widget.TagHighlight, parent_term, after);
+		    }
 		}
 
 		//
@@ -2653,11 +2679,11 @@ namespace FSpot
 				}
 
 				versions_submenu = new PhotoVersionMenu (CurrentPhoto);
-				versions_submenu.VersionChanged += delegate (PhotoVersionMenu menu) { UpdateForVersionChange (menu.Version);};
+				versions_submenu.VersionChanged += menu => UpdateForVersionChange(menu.Version);
 				version_menu_item.Submenu = versions_submenu;
 
-				sharpen.Sensitive = (ViewMode == ModeType.IconView ? false : true);
-				loupe_menu_item.Sensitive = (ViewMode == ModeType.IconView ? false : true);
+				sharpen.Sensitive = (ViewMode != ModeType.IconView);
+				loupe_menu_item.Sensitive = (ViewMode != ModeType.IconView);
 			}
 
 			set_as_background.Sensitive = single_active;
@@ -2790,9 +2816,8 @@ namespace FSpot
 
 			bool support_xcf = false;;
 			if (application.Id == "gimp.desktop")
-				foreach (Gdk.PixbufFormat format in Gdk.Pixbuf.Formats)
-					if (format.Name == "xcf")
-						support_xcf = true;
+				foreach (PixbufFormat format in Gdk.Pixbuf.Formats.Where(format => format.Name == "xcf"))
+				    support_xcf = true;
 
 			//This allows creating a version with a .xcf extension.
 			//There's no need to convert the file to xcf file format, gimp will take care of this
@@ -2919,7 +2944,7 @@ namespace FSpot
 			foreach (string tagname in new_tags) {
 				Tag t = Database.Tags.GetTagByName (tagname);
 				if (t == null) {
-					t = Database.Tags.CreateCategory (default_category, tagname, true) as Tag;
+					t = Database.Tags.CreateCategory (default_category, tagname, true);
 					Database.Tags.Commit (t);
 				}
 				tags [i++] = t;
@@ -3001,7 +3026,6 @@ namespace FSpot
 			}
 
 			query_widget.ShowBar ();
-			return;
 		}
 
 		public void HideSidebar (object o, EventArgs args) {

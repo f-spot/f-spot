@@ -305,34 +305,35 @@ namespace FSpot
 			if (progress_dialog != null)
 				progress_dialog.Destroy (); // No need to keep this window
 
-			if (!UserCancelled) {
-				// Send the mail :)
-				string mail_subject = Catalog.GetString("My Photos");
-				switch (Preferences.Get<string> (Preferences.GNOME_MAILTO_COMMAND)) {
-				// openSuSE
-				case "thunderbird %s":
-					System.Diagnostics.Process.Start("thunderbird", " -compose \"subject=" + mail_subject + ",attachment='" + mail_attach + "'\"");
-					break;
-				case "icedove %s":
-					System.Diagnostics.Process.Start("icedove", " -compose \"subject=" + mail_subject + ",attachment='" + mail_attach + "'\"");
-					break;
-				case "mozilla-thunderbird %s":
-					System.Diagnostics.Process.Start("mozilla-thunderbird", " -compose \"subject=" + mail_subject + ",attachment='" + mail_attach + "'\"");
-					break;
-				case "seamonkey -mail -compose %s":
-					System.Diagnostics.Process.Start("seamonkey", " -mail -compose \"subject=" + mail_subject + ",attachment='" + mail_attach + "'\"");
-					break;
-				case "kmail %s":
-					System.Diagnostics.Process.Start("kmail", "  --composer --subject \"" + mail_subject + "\"" + mail_attach);
-					break;
-				case "evolution %s": //evo doesn't urldecode the subject
-					GtkBeans.Global.ShowUri (Screen, "mailto:?subject=" + mail_subject + mail_attach);
-					break;
-				default:
-					GtkBeans.Global.ShowUri (Screen, "mailto:?subject=" + System.Web.HttpUtility.UrlEncode(mail_subject) + mail_attach);
-					break;
-				}
-			}
+		    if (UserCancelled)
+                return;
+
+		    // Send the mail :)
+		    string mail_subject = Catalog.GetString("My Photos");
+		    switch (Preferences.Get<string> (Preferences.GNOME_MAILTO_COMMAND)) {
+		            // openSuSE
+		        case "thunderbird %s":
+		            System.Diagnostics.Process.Start("thunderbird", " -compose \"subject=" + mail_subject + ",attachment='" + mail_attach + "'\"");
+		            break;
+		        case "icedove %s":
+		            System.Diagnostics.Process.Start("icedove", " -compose \"subject=" + mail_subject + ",attachment='" + mail_attach + "'\"");
+		            break;
+		        case "mozilla-thunderbird %s":
+		            System.Diagnostics.Process.Start("mozilla-thunderbird", " -compose \"subject=" + mail_subject + ",attachment='" + mail_attach + "'\"");
+		            break;
+		        case "seamonkey -mail -compose %s":
+		            System.Diagnostics.Process.Start("seamonkey", " -mail -compose \"subject=" + mail_subject + ",attachment='" + mail_attach + "'\"");
+		            break;
+		        case "kmail %s":
+		            System.Diagnostics.Process.Start("kmail", "  --composer --subject \"" + mail_subject + "\"" + mail_attach);
+		            break;
+		        case "evolution %s": //evo doesn't urldecode the subject
+		            GtkBeans.Global.ShowUri (Screen, "mailto:?subject=" + mail_subject + mail_attach);
+		            break;
+		        default:
+		            GtkBeans.Global.ShowUri (Screen, "mailto:?subject=" + System.Web.HttpUtility.UrlEncode(mail_subject) + mail_attach);
+		            break;
+		    }
 		}
 	}
 }

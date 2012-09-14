@@ -48,7 +48,7 @@ namespace FSpot
 {
 	public abstract class AbstractLiteral : Term
 	{
-		public AbstractLiteral (Term parent, Literal after) : base (parent, after)
+	    protected AbstractLiteral (Term parent, Literal after) : base (parent, after)
 		{
 		}
 
@@ -268,14 +268,15 @@ else
 
 		public override string SqlCondition ()
 		{
-			StringBuilder ids = new StringBuilder (Tag.Id.ToString ());
+			var ids = new StringBuilder (Tag.Id.ToString ());
 
 			if (Tag is Category) {
-				List<Tag> tags = new List<Tag> ();
+				var tags = new List<Tag> ();
 				(Tag as Category).AddDescendentsTo (tags);
 
-				for (int i = 0; i < tags.Count; i++) {
-					ids.Append (", " + (tags [i] as Tag).Id.ToString ());
+                foreach (var t in tags)
+				{
+				    ids.Append (", " + t.Id.ToString ());
 				}
 			}
 
@@ -466,14 +467,15 @@ else
 
 		private void HandleDragMotion (object o, DragMotionArgs args)
 		{
-			if (!preview) {
-				if (preview_widget == null) {
-					preview_widget = new Gtk.Label (" | ");
-					box.Add (preview_widget);
-				}
+		    if (preview)
+                return;
 
-				preview_widget.Show ();
-			}
+		    if (preview_widget == null) {
+		        preview_widget = new Gtk.Label (" | ");
+		        box.Add (preview_widget);
+		    }
+
+		    preview_widget.Show ();
 		}
 
 		private void HandleDragLeave (object o, EventArgs args)
@@ -501,21 +503,21 @@ else
 		public void HandleRequireTag (object sender, EventArgs args)
 		{
 			if (RequireTag != null)
-				RequireTag (new Tag [] {this.Tag});
+				RequireTag (new[] {this.Tag});
 		}
 
 		public void HandleUnRequireTag (object sender, EventArgs args)
 		{
 			if (UnRequireTag != null)
-				UnRequireTag (new Tag [] {this.Tag});
+				UnRequireTag (new[] {this.Tag});
 		}
 
 		private const int ICON_SIZE = 24;
 		private const int overlay_size = (int)(.40 * ICON_SIZE);
 		private static TargetEntry[] tag_target_table =
-			new TargetEntry [] { DragDropTargets.TagQueryEntry };
+			new[] { DragDropTargets.TagQueryEntry };
 		private static TargetEntry[] tag_dest_target_table =
-			new TargetEntry [] {
+			new[] {
 				DragDropTargets.TagListEntry,
 				DragDropTargets.TagQueryEntry
 			};

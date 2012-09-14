@@ -35,6 +35,7 @@
 // http://bugzilla-attachments.gnome.org/attachment.cgi?id=54566
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 using Mono.Unix;
@@ -82,11 +83,9 @@ namespace FSpot
 		/// last Literal in term, else null
 		/// </value>
 		public Term Last {
-			get {
-				if (SubTerms.Count > 0)
-					return SubTerms [SubTerms.Count - 1];
-else
-					return null;
+			get
+			{
+			    return SubTerms.Count > 0 ? SubTerms [SubTerms.Count - 1] : null;
 			}
 		}
 
@@ -408,9 +407,9 @@ else
 				return null;
 
 			OrTerm or = new OrTerm (null, null);
-			foreach (Tag t in from_tags) {
-				Literal l = new Literal (t);
-				l.Parent = or;
+			foreach (Literal l in from_tags.Select(t => new Literal (t)))
+			{
+			    l.Parent = or;
 			}
 			return or;
 		}

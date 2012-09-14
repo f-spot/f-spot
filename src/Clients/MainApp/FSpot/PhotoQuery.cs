@@ -151,11 +151,7 @@ namespace FSpot {
 		//Query Conditions
 		private Dictionary<Type, IQueryCondition> conditions;
 		private Dictionary<Type, IQueryCondition> Conditions {
-			get {
-				if (conditions == null)
-					conditions = new Dictionary<Type, IQueryCondition> ();
-				return conditions;
-			}
+			get { return conditions ?? (conditions = new Dictionary<Type, IQueryCondition>()); }
 		}
 
 		internal bool SetCondition (IQueryCondition condition)
@@ -204,16 +200,17 @@ namespace FSpot {
 		public bool Untagged {
 			get { return untagged; }
 			set {
-				if (untagged != value) {
-					untagged = value;
+			    if (untagged == value)
+                    return;
 
-					if (untagged) {
-						UnSetCondition<ConditionWrapper> ();
-						UnSetCondition<HiddenTag> ();
-					}
+			    untagged = value;
 
-					RequestReload ();
-				}
+			    if (untagged) {
+			        UnSetCondition<ConditionWrapper> ();
+			        UnSetCondition<HiddenTag> ();
+			    }
+
+			    RequestReload ();
 			}
 		}
 

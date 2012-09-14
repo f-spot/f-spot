@@ -196,7 +196,7 @@ namespace FSpot
 	public class LiteralBox : VBox {
 		private GrabHandle handle;
 
-		public LiteralBox () : base ()
+		public LiteralBox ()
 		{
 			handle = new GrabHandle (24, 8);
 
@@ -207,7 +207,7 @@ namespace FSpot
 	}
 
 	public class GrabHandle : DrawingArea {
-		public GrabHandle (int w, int h) : base ()
+		public GrabHandle (int w, int h)
 		{
 			Size (w, h);
 			Orientation = Gtk.Orientation.Horizontal;
@@ -273,7 +273,7 @@ namespace FSpot
 				DragDropTargets.TagQueryEntry
 			};
 
-		public LogicWidget (PhotoQuery query, TagStore tag_store) : base ()
+		public LogicWidget (PhotoQuery query, TagStore tag_store)
 		{
 			//SetFlag (WidgetFlags.NoWindow);
 			this.query = query;
@@ -471,8 +471,6 @@ namespace FSpot
 
 				// Prevent them from being removed again
 				Literal.FocusedLiterals = null;
-
-				return;
 			}
 		}
 

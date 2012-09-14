@@ -52,7 +52,7 @@ namespace FSpot
 		{
 		}
 
-		public PhotoPopup (Widget parent) : base ()
+		public PhotoPopup (Widget parent)
 		{
 			foreach (MenuNode node in AddinManager.GetExtensionNodes ("/FSpot/Menus/PhotoPopup"))
 				Append (node.GetMenuItem (parent));

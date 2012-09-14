@@ -214,7 +214,6 @@ namespace FSpot
 			} catch (GLib.GException){
 				if (loaded != null)
 					loaded.Dispose ();
-				return;
 			}
 		}
 
@@ -324,15 +323,15 @@ namespace FSpot
 			public void SetPixbufExtended (Gdk.Pixbuf value, bool ignore_undead)
 			{
 				lock (this) {
-					if (IsDisposed) {
-						if (ignore_undead) {
+					if (IsDisposed)
+					{
+					    if (ignore_undead) {
 							return;
-						} else {
-							throw new System.Exception ("I don't want to be undead");
 						}
+					    throw new System.Exception ("I don't want to be undead");
 					}
 
-					Gdk.Pixbuf old = this.Pixbuf;
+				    Gdk.Pixbuf old = this.Pixbuf;
 					cache.total_size -= this.Size;
 					this.pixbuf = value;
 					if (pixbuf != null) {

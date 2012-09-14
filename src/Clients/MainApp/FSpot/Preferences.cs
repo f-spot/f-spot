@@ -241,7 +241,7 @@ namespace FSpot
 		public static T Get<T> (string key)
 		{
 			T val;
-			if (TryGet<T> (key, out val))
+			if (TryGet (key, out val))
 				return val;
 			try {
 				return (T) GetDefault (key);

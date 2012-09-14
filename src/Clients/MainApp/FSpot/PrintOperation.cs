@@ -51,7 +51,7 @@ namespace FSpot
 		string print_label_format;
 		string comment;
 
-		public PrintOperation (IPhoto [] selected_photos) : base ()
+		public PrintOperation (IPhoto [] selected_photos)
 		{
 			this.selected_photos = selected_photos;
 			CustomTabLabel = Catalog.GetString ("Image Settings");
@@ -209,7 +209,7 @@ namespace FSpot
 
 		private static void DrawComment (Gtk.PrintContext context, double x, double y, double h, string comment, bool rotated)
 		{
-			if (comment == null || comment == String.Empty)
+			if (string.IsNullOrEmpty(comment))
 				return;
 
 			Context cr = context.CairoContext;
