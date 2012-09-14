@@ -145,7 +145,7 @@ namespace FSpot
 
 		public void View (SafeUri uri)
 		{
-			View (new SafeUri[] {uri});
+			View (new[] {uri});
 		}
 
 		public void View (IEnumerable<SafeUri> uris)
@@ -156,7 +156,7 @@ namespace FSpot
 
 		public void View (string uri)
 		{
-			View (new string[] {uri});
+			View (new[] {uri});
 		}
 
 		public void View (IEnumerable<string> uris)
