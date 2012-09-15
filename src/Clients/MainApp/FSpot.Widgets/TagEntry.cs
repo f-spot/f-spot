@@ -119,8 +119,11 @@ namespace FSpot.Widgets
 
 		private void AppendComma ()
 		{
-			if (Text.Length != 0 && !Text.Trim ().EndsWith (","))
-				InsertText (", ");
+			if (Text.Length != 0 && !Text.Trim ().EndsWith (",")) {
+				int pos = Text.Length;
+				InsertText (", ", ref pos);
+				Position = Text.Length;
+			}
 		}
 
 		public string [] GetTypedTagNames ()
