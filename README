@@ -36,9 +36,8 @@ With MonoDevelop:
 		2.  cd build; make
 		3.  cd ..; cp hyena.patch lib/Hyena
 		4.  cd lib/Hyena; patch -p1 < hyena.patch
-		5.  cd ../lib/libfspot; make
-		6.  cd libfspot
-		7.  sudo make install (this will install the libfspot.so files)
+		5.  cd ../libfspot; make
+		6.  sudo make install (this will install the libfspot.so files)
 
 	The hyena patch is just a temporary fix for now.
 
