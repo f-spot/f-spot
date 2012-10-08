@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-spot&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2011-11-25 17:02+0000\n"
+"POT-Creation-Date: 2012-10-08 06:00+0000\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Andrej Žnidaršič <andrej.znidarsic@gmail.com>\n"
+"Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -19,33 +19,35 @@ msgstr ""
 
 #. ../src/Clients/MainApp/FSpot.addin.xml
 #: ../data/addin-xml-strings.cs:8
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:1
+#: ../src/Clients/MainApp/FSpot.addin.xml.h:3
 msgid "Copy Photo"
 msgstr "Kopiranj fotografijo"
 
 #: ../data/addin-xml-strings.cs:9
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:5
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:457
-#: ../src/Clients/MainApp/ui/main_window.ui.h:16
+#: ../src/Clients/MainApp/FSpot.addin.xml.h:4
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:467
+#: ../src/Clients/MainApp/ui/main_window.ui.h:18
+#: ../src/Clients/MainApp/ui/single_view.ui.h:7
 msgid "Rotate _Left"
 msgstr "Zavrti _levo"
 
 #: ../data/addin-xml-strings.cs:10
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:6
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:458
-#: ../src/Clients/MainApp/ui/main_window.ui.h:17
+#: ../src/Clients/MainApp/FSpot.addin.xml.h:5
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:468
+#: ../src/Clients/MainApp/ui/main_window.ui.h:19
+#: ../src/Clients/MainApp/ui/single_view.ui.h:8
 msgid "Rotate _Right"
 msgstr "Zavrti _desno"
 
 #: ../data/addin-xml-strings.cs:11
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:9
-#: ../src/Clients/MainApp/ui/main_window.ui.h:60
+#: ../src/Clients/MainApp/FSpot.addin.xml.h:7
+#: ../src/Clients/MainApp/ui/main_window.ui.h:24
 msgid "_Remove From Catalog"
 msgstr "_Odstrani iz kataloga"
 
 #: ../data/addin-xml-strings.cs:12
 #: ../src/Clients/MainApp/FSpot.addin.xml.h:8
-#: ../src/Clients/MainApp/ui/main_window.ui.h:41
+#: ../src/Clients/MainApp/ui/main_window.ui.h:23
 msgid "_Delete From Drive"
 msgstr "Iz_briši z diska"
 
@@ -72,7 +74,7 @@ msgid "BWEditor"
 msgstr "BWUrejevalnik"
 
 #: ../data/addin-xml-strings.cs:21
-msgid "Convert to B/W with control. Require Mono 2.2."
+msgid "Convert to B/W with control. Requires Mono 2.2."
 msgstr "Pretvori v ČB z nadzorom. Zahteva Mono 2.2."
 
 #. ../src/Extensions/Editors/FSpot.Editors.Flip/Resources/FlipEditor.addin.xml
@@ -120,11 +122,11 @@ msgstr "Ta razširitev vam omogoča zapisovanje vaših fotografij na CD."
 #: ../data/addin-xml-strings.cs:80
 #: ../data/addin-xml-strings.cs:86
 #: ../data/addin-xml-strings.cs:92
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:6
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:5
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:5
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:5
-#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:5
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:1
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:1
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:1
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:1
+#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:1
 msgid "Export"
 msgstr "Izvoz"
 
@@ -138,7 +140,7 @@ msgid "FacebookExport"
 msgstr "Izvoz na Facebook"
 
 #: ../data/addin-xml-strings.cs:47
-msgid "Export pictures to facebook"
+msgid "Export pictures to Facebook"
 msgstr "Izvoz fotografij na Facebook"
 
 #: ../data/addin-xml-strings.cs:49
@@ -168,7 +170,7 @@ msgstr "_Zooomr ..."
 
 #. ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/FolderExport.addin.xml
 #: ../data/addin-xml-strings.cs:60
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:10
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:1
 msgid "Folder Export"
 msgstr "Izvoz mape"
 
@@ -264,7 +266,7 @@ msgstr "NESTABILNO - pred preizkusom te razširitve se prepričajte, da imate va
 #: ../data/addin-xml-strings.cs:140
 #: ../data/addin-xml-strings.cs:146
 #: ../data/addin-xml-strings.cs:152
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:7
+#: ../src/Clients/MainApp/FSpot.addin.xml.h:2
 msgid "Tools"
 msgstr "Orodja"
 
@@ -371,7 +373,7 @@ msgstr "Ponovno dodeli novemu uvoznemu zvitku"
 
 #. ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfig.addin.xml
 #: ../data/addin-xml-strings.cs:144
-#: ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui.h:6
+#: ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui.h:1
 msgid "Screensaver Configuration"
 msgstr "Nastavitve ohranjevalnika zaslona"
 
@@ -437,209 +439,209 @@ msgstr "F-Spot"
 
 #: ../data/desktop-files/f-spot.desktop.in.in.h:2
 #: ../data/desktop-files/f-spot-import.desktop.in.in.h:2
-msgid "F-Spot Photo Manager"
-msgstr "F-spot upravljalnik fotografij"
-
-#: ../data/desktop-files/f-spot.desktop.in.in.h:3
-msgid "Organize, enjoy, and share your photos"
-msgstr "Urejajte, uživajte in dajte svoje fotografije v souporabo."
-
-#: ../data/desktop-files/f-spot.desktop.in.in.h:4
-#: ../data/desktop-files/f-spot-import.desktop.in.in.h:4
 msgid "Photo Manager"
 msgstr "Upravljalnik fotografij"
 
+#: ../data/desktop-files/f-spot.desktop.in.in.h:3
 #: ../data/desktop-files/f-spot-import.desktop.in.in.h:3
+msgid "F-Spot Photo Manager"
+msgstr "F-spot upravljalnik fotografij"
+
+#: ../data/desktop-files/f-spot.desktop.in.in.h:4
+msgid "Organize, enjoy, and share your photos"
+msgstr "Urejajte, uživajte in dajte svoje fotografije v souporabo."
+
+#: ../data/desktop-files/f-spot-import.desktop.in.in.h:4
 msgid "Import into F-Spot"
 msgstr "Uvozi v F-Spot"
 
 #: ../data/desktop-files/f-spot-view.desktop.in.in.h:2
-msgid "F-Spot Photo Viewer"
-msgstr "F-_Spot pregledovalnik fotografij"
-
-#: ../data/desktop-files/f-spot-view.desktop.in.in.h:3
 msgid "Photo Viewer"
 msgstr "Pregledovalnik fotografij"
 
+#: ../data/desktop-files/f-spot-view.desktop.in.in.h:3
+msgid "F-Spot Photo Viewer"
+msgstr "F-_Spot pregledovalnik fotografij"
+
 #: ../f-spot.schemas.in.h:1
-msgid "Display of transparent parts."
-msgstr "Prikaži prozorne dele."
+msgid "Path to custom gtkrc for theming F-Spot."
+msgstr "Pot do gtkrc po meri za temo F-Spot."
 
 #: ../f-spot.schemas.in.h:2
-msgid "Enable this to allow interpolation on zoomed images."
-msgstr "Omogočite to za interpolacijo približanih slik."
-
-#: ../f-spot.schemas.in.h:3
-msgid "Height of the import dialog."
-msgstr "Višina pogovornega okna uvoza."
-
-#: ../f-spot.schemas.in.h:4
-msgid "Height of the main window."
-msgstr "Višina glavnega okna."
-
-#: ../f-spot.schemas.in.h:5
-msgid "Height of the photo viewer window."
-msgstr "Višina okna pregledovalnika fotografij."
-
-#: ../f-spot.schemas.in.h:6
-msgid "If the 'transparency' option is set, the color specified in this option will be used as the transparent color when viewing images."
-msgstr "V primeru da je možnost 'prozornost' nastavljena, bo barva navedena v tej možnosti pri ogledu slik uporabljena kot prozorna barva."
-
-#: ../f-spot.schemas.in.h:7
-msgid "Interpolate image on zoom."
-msgstr "Interpolacija slike pri povečavi."
-
-#: ../f-spot.schemas.in.h:8
 msgid "Maximize the main window."
 msgstr "Razpne glavno okno."
 
+#: ../f-spot.schemas.in.h:3
+msgid "Width of the main window."
+msgstr "Širina glavnega okna."
+
+#: ../f-spot.schemas.in.h:4
+msgid "The width dimension to use for the main window."
+msgstr "Širina glavnega okna."
+
+#: ../f-spot.schemas.in.h:5
+msgid "Height of the main window."
+msgstr "Višina glavnega okna."
+
+#: ../f-spot.schemas.in.h:6
+msgid "The height dimension to use for the main window."
+msgstr "Višina glavnega okna."
+
+#: ../f-spot.schemas.in.h:7
+msgid "X position of the main window."
+msgstr "X položaj glavnega okna"
+
+#: ../f-spot.schemas.in.h:8
+msgid "The X position to use for the main window."
+msgstr "X položaj glavnega okna."
+
 #: ../f-spot.schemas.in.h:9
-msgid "Maximize the photo viewer window."
-msgstr "Razpne okno pregledovalnika fotografij."
+msgid "Y position of the main window."
+msgstr "Y položaj glavnega okna."
 
 #: ../f-spot.schemas.in.h:10
-msgid "Path to custom gtkrc for theming F-Spot."
-msgstr "Pot do gtkrc po meri za temo F-Spot."
+msgid "The Y position to use for the main window."
+msgstr "Y položaj glavnega okna."
 
 #: ../f-spot.schemas.in.h:11
 msgid "Show dates in the thumbnail view."
 msgstr "Pokaži datume v pogledu sličic."
 
 #: ../f-spot.schemas.in.h:12
-msgid "Show ratings in the thumbnail view."
-msgstr "Pokaži ocene v pogledu sličic."
-
-#: ../f-spot.schemas.in.h:13
 msgid "Show tags in the thumbnail view."
 msgstr "Pokaži oznake v pogledu sličic."
 
+#: ../f-spot.schemas.in.h:13
+msgid "Size of the tag icons shown in the sidebar."
+msgstr "Velikost ikon oznak prikazanih v stranski vrstici."
+
 #: ../f-spot.schemas.in.h:14
-msgid "Show the filename in the viewer window."
-msgstr "Pokaži ime datoteke v oknu pregledovalnika."
+msgid "Show ratings in the thumbnail view."
+msgstr "Pokaži ocene v pogledu sličic."
 
 #: ../f-spot.schemas.in.h:15
 msgid "Show the filmstrip in the main window."
 msgstr "Pokaži filmski trak v glavnem oknu."
 
 #: ../f-spot.schemas.in.h:16
-msgid "Show the sidebar in the main window."
-msgstr "Pokaži drsnik v glavnem oknu."
+msgid "The orientation of the filmstrip."
+msgstr "Usmeritev filmskega traku."
 
 #: ../f-spot.schemas.in.h:17
+msgid "The orientation of the filmstrip, if shown."
+msgstr "Usmeritev filmskega traku, če je prikazan."
+
+#: ../f-spot.schemas.in.h:18
 msgid "Show the timeline in the main window."
 msgstr "Pokaži časovnico v glavnem oknu."
 
-#: ../f-spot.schemas.in.h:18
+#: ../f-spot.schemas.in.h:19
 msgid "Show the toolbar in the main window."
 msgstr "Pokaži orodno vrstico v glavnem oknu."
 
-#: ../f-spot.schemas.in.h:19
-msgid "Show the toolbar in the photo viewer window."
-msgstr "Pokaži ali skrij orodno vrstico v oknu pregledovalnika fotografij."
-
 #: ../f-spot.schemas.in.h:20
-msgid "Size of the tag icons shown in the sidebar."
-msgstr "Velikost ikon oznak prikazanih v stranski vrstici."
+msgid "Show the sidebar in the main window."
+msgstr "Pokaži drsnik v glavnem oknu."
 
 #: ../f-spot.schemas.in.h:21
-msgid "The X position to use for the main window."
-msgstr "X položaj glavnega okna."
+msgid "The size of the sidebar in the main window."
+msgstr "Velikost drsnika v glavnemu oknu."
 
 #: ../f-spot.schemas.in.h:22
-msgid "The X position to use for the photo viewer window."
-msgstr "X položaj okna pregledovalnika fotografij."
+msgid "The size (width) of the sidebar in the main window."
+msgstr "Velikost (širina) drsnika v glavnemu oknu."
 
 #: ../f-spot.schemas.in.h:23
-msgid "The Y position to use for the main window."
-msgstr "Y položaj glavnega okna."
+msgid "Width of the import dialog."
+msgstr "Širina pogovornega okna uvoza."
 
 #: ../f-spot.schemas.in.h:24
-msgid "The Y position to use for the photo viewer window."
-msgstr "Y položaj okna pregledovalnika fotografij."
+msgid "The width dimension to use for the import dialog."
+msgstr "Širina pogovornega okna uvoza."
 
 #: ../f-spot.schemas.in.h:25
-msgid "The color to use for transparent parts."
-msgstr "Barva za prozorne dele."
+msgid "Height of the import dialog."
+msgstr "Višina pogovornega okna uvoza."
 
 #: ../f-spot.schemas.in.h:26
 msgid "The height dimension to use for the import dialog."
 msgstr "Višina pogovornega okna."
 
 #: ../f-spot.schemas.in.h:27
-msgid "The height dimension to use for the main window."
-msgstr "Višina glavnega okna."
-
-#: ../f-spot.schemas.in.h:28
-msgid "The height dimension to use for the photo viewer window."
-msgstr "Višina okna pregledovalnika fotografij."
-
-#: ../f-spot.schemas.in.h:29
-msgid "The orientation of the filmstrip, if shown."
-msgstr "Usmeritev filmskega traku, če je prikazan."
-
-#: ../f-spot.schemas.in.h:30
-msgid "The orientation of the filmstrip."
-msgstr "Usmeritev filmskega traku."
-
-#: ../f-spot.schemas.in.h:31
-msgid "The size (width) of the sidebar in the main window."
-msgstr "Velikost (širina) drsnika v glavnemu oknu."
-
-#: ../f-spot.schemas.in.h:32
-msgid "The size of the sidebar in the main window."
-msgstr "Velikost drsnika v glavnemu oknu."
-
-#: ../f-spot.schemas.in.h:33
-msgid "The width dimension to use for the import dialog."
-msgstr "Širina pogovornega okna uvoza."
-
-#: ../f-spot.schemas.in.h:34
-msgid "The width dimension to use for the main window."
-msgstr "Širina glavnega okna."
-
-#: ../f-spot.schemas.in.h:35
-msgid "The width dimension to use for the photo viewer window."
-msgstr "Širina okna pregledovalnika fotografij."
-
-#: ../f-spot.schemas.in.h:36
-msgid "Use the current photo's filename as the viewer window's title."
-msgstr "Uporabi ime datoteke trenutne fotografije kot naslov okna pregledovalnika."
-
-#: ../f-spot.schemas.in.h:37
-msgid "Width of the import dialog."
-msgstr "Širina pogovornega okna uvoza."
-
-#: ../f-spot.schemas.in.h:38
-msgid "Width of the main window."
-msgstr "Širina glavnega okna."
-
-#: ../f-spot.schemas.in.h:39
-msgid "Width of the photo viewer window."
-msgstr "Širina okna pregledovalnika fotografij."
-
-#: ../f-spot.schemas.in.h:40
 msgid "Width of the preview image pane in the import dialog."
 msgstr "Širina pladnja predogleda slike v pogovornemu oknu uvoza."
 
-#: ../f-spot.schemas.in.h:41
-msgid "X position of the main window."
-msgstr "X položaj glavnega okna"
+#: ../f-spot.schemas.in.h:28
+msgid "Maximize the photo viewer window."
+msgstr "Razpne okno pregledovalnika fotografij."
 
-#: ../f-spot.schemas.in.h:42
+#: ../f-spot.schemas.in.h:29
+msgid "Width of the photo viewer window."
+msgstr "Širina okna pregledovalnika fotografij."
+
+#: ../f-spot.schemas.in.h:30
+msgid "The width dimension to use for the photo viewer window."
+msgstr "Širina okna pregledovalnika fotografij."
+
+#: ../f-spot.schemas.in.h:31
+msgid "Height of the photo viewer window."
+msgstr "Višina okna pregledovalnika fotografij."
+
+#: ../f-spot.schemas.in.h:32
+msgid "The height dimension to use for the photo viewer window."
+msgstr "Višina okna pregledovalnika fotografij."
+
+#: ../f-spot.schemas.in.h:33
 msgid "X position of the photo viewer window."
 msgstr "X položaj okna pregledovalnika fotografij."
 
-#: ../f-spot.schemas.in.h:43
-msgid "Y position of the main window."
-msgstr "Y položaj glavnega okna."
+#: ../f-spot.schemas.in.h:34
+msgid "The X position to use for the photo viewer window."
+msgstr "X položaj okna pregledovalnika fotografij."
 
-#: ../f-spot.schemas.in.h:44
+#: ../f-spot.schemas.in.h:35
 msgid "Y position of the photo viewer window."
 msgstr "Y položaj okna pregledovalnika fotografij."
 
-#: ../f-spot.schemas.in.h:45
+#: ../f-spot.schemas.in.h:36
+msgid "The Y position to use for the photo viewer window."
+msgstr "Y položaj okna pregledovalnika fotografij."
+
+#: ../f-spot.schemas.in.h:37
+msgid "Show the toolbar in the photo viewer window."
+msgstr "Pokaži ali skrij orodno vrstico v oknu pregledovalnika fotografij."
+
+#: ../f-spot.schemas.in.h:38
+msgid "Show the filename in the viewer window."
+msgstr "Pokaži ime datoteke v oknu pregledovalnika."
+
+#: ../f-spot.schemas.in.h:39
+msgid "Use the current photo's filename as the viewer window's title."
+msgstr "Uporabi ime datoteke trenutne fotografije kot naslov okna pregledovalnika."
+
+#: ../f-spot.schemas.in.h:40
+msgid "Interpolate image on zoom."
+msgstr "Interpolacija slike pri povečavi."
+
+#: ../f-spot.schemas.in.h:41
+msgid "Enable this to allow interpolation on zoomed images."
+msgstr "Omogočite to za interpolacijo približanih slik."
+
+#: ../f-spot.schemas.in.h:42
+msgid "Display of transparent parts."
+msgstr "Prikaži prozorne dele."
+
+#: ../f-spot.schemas.in.h:43
 msgid "You can choose how to display transparent parts in images. This option has no effect on photos but setting this value to CHECK_PATTERN or CUSTOM_COLOR could be useful when viewing icons or other artwork with transparent parts."
 msgstr "Mogoče je izbrati način prikaza prozornih delov slik. Ta možnost ne vpliva na fotografije, vendar je lahko nastavitev te vrednosti na vzorec šahovnice ali barva po izbiri koristna pri ogledu ikon in ostalih grafičnih podobah s prozornimi deli."
+
+#: ../f-spot.schemas.in.h:44
+msgid "The color to use for transparent parts."
+msgstr "Barva za prozorne dele."
+
+#: ../f-spot.schemas.in.h:45
+msgid "If the 'transparency' option is set, the color specified in this option will be used as the transparent color when viewing images."
+msgstr "V primeru da je možnost 'prozornost' nastavljena, bo barva navedena v tej možnosti pri ogledu slik uporabljena kot prozorna barva."
 
 #: ../lib/Mono.Google/Mono.Google/CaptchaException.cs:58
 msgid "url"
@@ -666,16 +668,16 @@ msgstr "Prijavljanje v Tabblo"
 msgid "Obtaining URL for upload"
 msgstr "Pridobivanje URL-ja za nalaganje"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:2
+#: ../src/Clients/MainApp/FSpot.addin.xml.h:1
 msgid "Export to"
 msgstr "Izvozi v"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:3
+#: ../src/Clients/MainApp/FSpot.addin.xml.h:6
 msgid "Open _With"
 msgstr "Odpri _z"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:4
-#: ../src/Clients/MainApp/ui/main_window.ui.h:15
+#: ../src/Clients/MainApp/FSpot.addin.xml.h:9
+#: ../src/Clients/MainApp/ui/main_window.ui.h:27
 msgid "Rem_ove Tag"
 msgstr "Ods_trani oznako"
 
@@ -709,67 +711,67 @@ msgstr ""
 "z izborom druge oznake v pogovornem oknu \n"
 "možnosti F-Spot."
 
-#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:768
+#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:769
 msgid "Updating F-Spot Database"
 msgstr "Posodabljanje podatkovne zbirke F-Spot"
 
-#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:769
+#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:770
 msgid "Please wait while your F-Spot gallery's database is updated. This may take some time."
 msgstr "Počakati je treba, da se podatkovna zbirka galerije F-Spot do konca posodobi. Postopek lahko traja nekaj časa."
 
-#: ../src/Clients/MainApp/FSpot.Editors/AutoStretchEditor.cs:37
+#: ../src/Clients/MainApp/FSpot.Editors/AutoStretchEditor.cs:38
 msgid "Auto Color"
 msgstr "Samodejna barva"
 
-#: ../src/Clients/MainApp/FSpot.Editors/ColorEditor.cs:61
+#: ../src/Clients/MainApp/FSpot.Editors/ColorEditor.cs:63
 msgid "Adjust Colors"
 msgstr "Prilagajanje barv"
 
-#: ../src/Clients/MainApp/FSpot.Editors/ColorEditor.cs:64
+#: ../src/Clients/MainApp/FSpot.Editors/ColorEditor.cs:66
 msgid "Adjust"
 msgstr "Prilagodi"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:56
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:60
 msgid "4 x 3 (Book)"
 msgstr "4 x 3 (knjiga)"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:57
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:61
 msgid "4 x 6 (Postcard)"
 msgstr "4 x 6 (razglednica)"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:58
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:62
 msgid "5 x 7 (L, 2L)"
 msgstr "5 x 7 (L, 2L)"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:59
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:63
 msgid "8 x 10"
 msgstr "8 x 10"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:60
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:64
 msgid "Square"
 msgstr "Kvadrat"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:63
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:67
 msgid "Crop"
 msgstr "Obreži"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:94
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:98
 msgid "Select the area that needs cropping."
 msgstr "Izbor območja za obrez."
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:119
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:123
 msgid "No Constraint"
 msgstr "Brez omejitev"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:120
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:124
 msgid "Same as photo"
 msgstr "Enako kot fotografija"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:125
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:129
 msgid "Custom Ratios..."
 msgstr "Razmerja velikosti po meri"
 
-#: ../src/Clients/MainApp/FSpot.Editors/DesaturateEditor.cs:37
+#: ../src/Clients/MainApp/FSpot.Editors/DesaturateEditor.cs:38
 msgid "Desaturate"
 msgstr "Zmanjšaj nasičenje"
 
@@ -785,197 +787,197 @@ msgstr "Popravi"
 msgid "Select the eyes you wish to fix."
 msgstr "Izberite oči za popravilo."
 
-#: ../src/Clients/MainApp/FSpot.Editors/SepiaEditor.cs:37
+#: ../src/Clients/MainApp/FSpot.Editors/SepiaEditor.cs:38
 msgid "Sepia Tone"
 msgstr "Sepia učinek staranja"
 
-#: ../src/Clients/MainApp/FSpot.Editors/SoftFocusEditor.cs:50
+#: ../src/Clients/MainApp/FSpot.Editors/SoftFocusEditor.cs:51
 msgid "Soft Focus"
 msgstr "Mehka izostritev"
 
-#: ../src/Clients/MainApp/FSpot.Editors/TiltEditor.cs:51
+#: ../src/Clients/MainApp/FSpot.Editors/TiltEditor.cs:52
 msgid "Straighten"
 msgstr "Poravnava"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:82
+#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:85
 msgid "Hide"
 msgstr "Skrij"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:84
+#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:87
 msgid "Hide toolbar"
 msgstr "Skrij orodno vrstico"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:90
+#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:93
 msgid "Info"
 msgstr "Podatki"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:92
+#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:95
 msgid "Image information"
 msgstr "Podatki o sliki"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:97
+#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:100
 msgid "Exit fullscreen"
 msgstr "Izhod iz celozaslonskega načina"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:105
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:341
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:122
+#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:108
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:337
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:124
 msgid "Slideshow"
 msgstr "Diapredstavitev"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:106
+#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:109
 msgid "Start slideshow"
 msgstr "Zagon diapredstavitve"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:152
+#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:155
 msgid "Slide transition:"
 msgstr "Prehodi med diapozitivi:"
 
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:90
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:91
+#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:93
+#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:94
 msgid "More dates"
 msgstr "Več datumov"
 
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:93
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:94
+#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:96
+#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:97
 msgid "More"
 msgstr "Več"
 
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:554
-#: ../src/Clients/MainApp/ui/main_window.ui.h:34
+#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:559
+#: ../src/Clients/MainApp/ui/main_window.ui.h:57
 msgid "_Clear Date Range"
 msgstr "_Čiščenje datumskega območja"
 
-#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:510
-#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:512
-#: ../src/Clients/MainApp/FSpot.Import/MetadataImporter.cs:72
+#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:513
+#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:515
+#: ../src/Clients/MainApp/FSpot.Import/MetadataImporter.cs:74
 msgid "Imported Tags"
 msgstr "Uvožene oznake"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:102
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:308
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:105
+#: ../src/Clients/MainApp/FSpot/ItemAction.cs:104
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:304
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:107
 msgid "Rotate Left"
 msgstr "Zavrti levo"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:103
+#: ../src/Clients/MainApp/FSpot/ItemAction.cs:105
 msgid "Rotate picture left"
 msgstr "Vrtenje slike levo"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:114
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:312
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:110
+#: ../src/Clients/MainApp/FSpot/ItemAction.cs:116
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:308
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:112
 msgid "Rotate Right"
 msgstr "Zavrti desno"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:115
+#: ../src/Clients/MainApp/FSpot/ItemAction.cs:117
 msgid "Rotate picture right"
 msgstr "Vrtenje slike desno"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:125
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:938
+#: ../src/Clients/MainApp/FSpot/ItemAction.cs:127
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:262
 msgid "Next"
 msgstr "Naslednja"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:126
+#: ../src/Clients/MainApp/FSpot/ItemAction.cs:128
 msgid "Next picture"
 msgstr "Naslednja slika"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:146
+#: ../src/Clients/MainApp/FSpot/ItemAction.cs:148
 msgid "Previous"
 msgstr "Predhodni"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:147
+#: ../src/Clients/MainApp/FSpot/ItemAction.cs:149
 msgid "Previous picture"
 msgstr "Predhodna slika"
 
-#: ../src/Clients/MainApp/FSpot/Literal.cs:225
+#: ../src/Clients/MainApp/FSpot/Literal.cs:226
 #: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:182
 #, csharp-format
 msgid "Not {0}"
 msgstr "Ne {0}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:301
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:229
-#: ../src/Clients/MainApp/ui/import.ui.h:3
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:297
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:232
+#: ../src/Clients/MainApp/ui/import.ui.h:1
 msgid "Import"
 msgstr "Uvozi"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:303
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:299
 msgid "Import new images"
 msgstr "Uvoz novih slik"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:319
-#: ../src/Clients/MainApp/ui/main_window.ui.h:3
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:315
+#: ../src/Clients/MainApp/ui/main_window.ui.h:72
 msgid "Browse"
 msgstr "Prebrskaj"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:323
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:319
 msgid "Browse many photos simultaneously"
 msgstr "Brskanje po več fotografijah hkrati"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:327
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:323
 msgid "Edit Image"
 msgstr "Uredi sliko"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:331
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:327
 msgid "View and edit a photo"
 msgstr "Prikaz in urejanje fotografije"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:336
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:117
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:332
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:119
 msgid "Fullscreen"
 msgstr "Celozaslonski način"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:338
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:119
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:334
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:121
 msgid "View photos fullscreen"
 msgstr "Celozaslonski ogled fotografij"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:343
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:124
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:339
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:126
 msgid "View photos in a slideshow"
 msgstr "Ogled fotografij v diapredstavitvi"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:358
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:354
 msgid "Previous photo"
 msgstr "Predhodna fotografija"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:363
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:359
 msgid "Next photo"
 msgstr "Naslednja fotografija"
 
 #. Don't care otherwise, Tags sounds reasonable
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:376
-#: ../src/Clients/MainApp/FSpot.Widgets/Sidebar.cs:75
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:935
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1107
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1147
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:372
+#: ../src/Clients/MainApp/FSpot.Widgets/Sidebar.cs:76
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:259
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:431
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:471
 msgid "Tags"
 msgstr "Oznake"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:440
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:436
 msgid "Show _Find Bar"
 msgstr "Pokaži is_kalno vrstico"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:443
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:439
 msgid "Hide _Find Bar"
 msgstr "Skrij _iskalno vrstico"
 
 #. Note for translators: This indicates the current photo is photo {0} of {1} out of photos
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:671
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs:154
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:664
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs:157
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ProgressDialog.cs:111
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:134
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:391
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:242
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:214
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:130
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:393
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:238
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:207
 #, csharp-format
 msgid "{0} of {1}"
 msgstr "{0} od {1}"
 
 #. Translators, The singular case will never happen here.
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1745
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1740
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
@@ -984,15 +986,15 @@ msgstr[1] "Ali naj bo združena {0} izbrana oznaka?"
 msgstr[2] "Ali naj bosta združeni {0} izbrani oznaki?"
 msgstr[3] "Ali naj bodo združene {0} izbrane oznake?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1772
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1767
 msgid "This operation will merge the selected tags and any sub-tags into a single tag."
 msgstr "To dejanje bo združilo izbrane oznake in morebitne pod-oznake v eno samo oznako."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1774
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1769
 msgid "_Merge Tags"
 msgstr "Z_druži oznake"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1979
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1986
 #, csharp-format
 msgid "{0} Photo out of {1}"
 msgid_plural "{0} Photos out of {1}"
@@ -1001,8 +1003,8 @@ msgstr[1] "{0} fotografija od {1}"
 msgstr[2] "{0} fotografiji od {1}"
 msgstr[3] "{0} fotografije od {1}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1981
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:499
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1988
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:507
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
@@ -1011,7 +1013,7 @@ msgstr[1] "{0} Fotografija"
 msgstr[2] "{0} Fotografiji"
 msgstr[3] "{0} Fotografije"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1984
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1991
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
@@ -1020,25 +1022,25 @@ msgstr[1] " ({0} izbrana)"
 msgstr[2] " ({0} izbrani)"
 msgstr[3] " ({0} izbrane)"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2065
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2076
 msgid "_Ok"
 msgstr "_V redu"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2066
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2077
 msgid "Error Deleting Picture"
 msgstr "Napaka med brisanjem slike"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2071
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2082
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
 msgstr "Ni dovoljenj za izbris datoteke:{1}{0}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2075
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2086
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
 msgstr "Med brisanjem datoteke {2} {1} je prišlo do napake vrste {0}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2107
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2118
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
@@ -1047,7 +1049,7 @@ msgstr[1] "Ali naj bo trajno izbrisana {0} izbrana fotografija?"
 msgstr[2] "Ali naj bosta trajno izbrisani {0} izbrani fotografiji?"
 msgstr[3] "Ali naj bodo trajno izbrisane {0} izbrane fotografije?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2111
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2122
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural "This deletes all versions of the selected photos from your drive."
 msgstr[0] "To bo izbrisalo vse različice izbranih fotografij z diska."
@@ -1055,7 +1057,7 @@ msgstr[1] "To bo izbrisalo vse različice izbrane fotografije z diska."
 msgstr[2] "To bo izbrisalo vse različice izbranih fotografij z diska."
 msgstr[3] "To bo izbrisalo vse različice izbranih fotografij z diska."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2114
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2125
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "Izbri_ši fotografije"
@@ -1063,7 +1065,7 @@ msgstr[1] "Izbri_ši fotografijo"
 msgstr[2] "Izbri_ši fotografiji"
 msgstr[3] "Izbri_ši fotografije"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2150
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2161
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
@@ -1072,25 +1074,25 @@ msgstr[1] "Ali naj se odstrani {0} izbrano fotografijo iz F-Spot ?"
 msgstr[2] "Ali naj se odstranita {0} izbrani fotografij iz F-Spot ?"
 msgstr[3] "Ali naj se odstranijo {0} izbrane fotografije iz F-Spot ?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2155
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2166
 msgid "If you remove photos from the F-Spot catalog all tag information will be lost. The photos remain on your computer and can be imported into F-Spot again."
 msgstr "Ob odstranjevanju fotografij iz kataloga F-Spot bodo vsi podatki o oznakah izgubljeni. Fotografije bodo ostale na vašem računalniku in jih lahko ponovno uvozite v F-Spot."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2156
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2167
 msgid "_Remove from Catalog"
 msgstr "_Odstrani iz kataloga"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2230
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2244
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Izbris oznake \"{0}\"?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2232
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2246
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Izbris {0} izbrane oznake ?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2237
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2251
 msgid "photo"
 msgid_plural "photos"
 msgstr[0] "fotografije"
@@ -1098,7 +1100,7 @@ msgstr[1] "fotografija"
 msgstr[2] "fotografiji"
 msgstr[3] "fotografije"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2239
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2253
 #, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
 msgid_plural "If you delete these tags, the association with {0} {1} will be lost."
@@ -1107,7 +1109,7 @@ msgstr[1] "Ob izbrisu oznake, bo povezljivost z {0} {1} izgubljena."
 msgstr[2] "Ob izbrisu oznak, bo povezljivost z {0} {1} izgubljena."
 msgstr[3] "Ob izbrisu oznak, bo povezljivost z {0} {1} izgubljena."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2244
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2258
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "Iz_briši oznake"
@@ -1116,16 +1118,16 @@ msgstr[2] "Iz_briši oznaki"
 msgstr[3] "Iz_briši oznake"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2258
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2272
 msgid "Tag is not empty"
 msgstr "Oznaka ni prazna"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2259
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2273
 #, csharp-format
 msgid "Can not delete tags that have tags within them.  Please delete tags under \"{0}\" first"
 msgstr "Ni mogoče izbrisati oznak, ki imajo oznake znotraj njih. Najprej izbrišite oznake pod \"{0}\""
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2711
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2733
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Vrtenje izbranih fotografij levo"
@@ -1133,7 +1135,7 @@ msgstr[1] "Vrtenje izbrane fotografije levo"
 msgstr[2] "Vrtenje izbranih fotografij levo"
 msgstr[3] "Vrtenje izbranih fotografij levo"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2724
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2746
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Vrtenje izbranih fotografij desno"
@@ -1141,7 +1143,7 @@ msgstr[1] "Vrtenje izbrane fotografije desno"
 msgstr[2] "Vrtenje izbranih fotografij desno"
 msgstr[3] "Vrtenje izbranih fotografij desno"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2735
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2757
 #, csharp-format
 msgid "Find _Selected Tag"
 msgid_plural "Find _Selected Tags"
@@ -1150,7 +1152,7 @@ msgstr[1] "Išči _izbrano oznako "
 msgstr[2] "Išči _izbrani oznaki"
 msgstr[3] "Išči _izbrane oznake"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2739
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2761
 #, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
@@ -1159,7 +1161,7 @@ msgstr[1] "Išči izbrano oznako _z"
 msgstr[2] "Išči izbrani oznaki _z"
 msgstr[3] "Išči izbrane oznake _z"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2780
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2802
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Ustvari nove različice?"
@@ -1167,7 +1169,7 @@ msgstr[1] "Ustvari novo različico?"
 msgstr[2] "Ustvari novi različici?"
 msgstr[3] "Ustvari nove različice?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2782
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2804
 #, csharp-format
 msgid "Before launching {1}, should F-Spot create a new version of the selected photo to preserve the original?"
 msgid_plural "Before launching {1}, should F-Spot create new versions of the selected photos to preserve the originals?"
@@ -1176,16 +1178,16 @@ msgstr[1] "Ali naj pred zagonom {1} F-spot ustvari nove različice izbrane fotog
 msgstr[2] "Ali naj pred zagonom {1} F-spot ustvari nove različice izbranih fotografij, da ohrani izvirnika?"
 msgstr[3] "Ali naj pred zagonom {1} F-spot ustvari nove različice izbranih fotografij, da ohrani izvirnike?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2804
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2825
 msgid "XCF version"
 msgstr "Različica XCF"
 
 #. Note for translators: Reparented is a picture becoming a version of another one
-#: ../src/Clients/MainApp/FSpot/Photo.cs:430
+#: ../src/Clients/MainApp/FSpot/Photo.cs:425
 msgid "Reparented"
 msgstr "Lastnik je bil spremenjen"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:448
+#: ../src/Clients/MainApp/FSpot/Photo.cs:443
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
@@ -1194,88 +1196,88 @@ msgstr[1] "Spremenjena ({0})"
 msgstr[2] "Spremenjeni ({0})"
 msgstr[3] "Spremenjene ({0})"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:471
+#: ../src/Clients/MainApp/FSpot/Photo.cs:466
 #, csharp-format
 msgid "Modified in {1}"
 msgstr "Spremenjena v {1}"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:471
+#: ../src/Clients/MainApp/FSpot/Photo.cs:466
 #, csharp-format
 msgid "Modified in {1} ({0})"
 msgstr "Spremenjena v {1} ({0})"
 
-#: ../src/Clients/MainApp/FSpot/PhotoStore.cs:202
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:17
+#: ../src/Clients/MainApp/FSpot/PhotoStore.cs:196
+#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:13
 msgid "Original"
 msgstr "Izvorno"
 
-#: ../src/Clients/MainApp/FSpot/PhotoView.cs:353
+#: ../src/Clients/MainApp/FSpot/PhotoView.cs:349
 msgid "Description:"
 msgstr "Opis:"
 
-#: ../src/Clients/MainApp/FSpot/Preferences.cs:191
+#: ../src/Clients/MainApp/FSpot/Preferences.cs:193
 msgid "Photos"
 msgstr "Fotografije"
 
-#: ../src/Clients/MainApp/FSpot/PrintOperation.cs:54
+#: ../src/Clients/MainApp/FSpot/PrintOperation.cs:57
 msgid "Image Settings"
 msgstr "Nastavitve slik"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:84
+#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:83
 msgid "Find: "
 msgstr "Najdi: "
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:89
+#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:88
 msgid "Untagged photos"
 msgstr "Neoznačene fotografije"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:97
+#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:96
 msgid "Rated photos"
 msgstr "Ocenjene fotografije"
 
 #. Note for translators: 'Import roll' is no command, it means 'Roll that has been imported'
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:106
+#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:105
 msgid "Import roll"
 msgstr "Uvozni zvitek"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:129
+#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:128
 msgid "Clear search"
 msgstr "Čiščenje iskanja"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:136
+#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:135
 msgid "Refresh search"
 msgstr "Osvežitev iskanja"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:139
+#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:138
 msgid "No matching photos found"
 msgstr "Ni mogoče najti skladnih fotografij"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:99
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:98
 msgid "Unable to rotate this type of photo"
 msgstr "Ni mogoče vrteti te vrste fotografij"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:115
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:114
 msgid "Unable to rotate readonly file"
 msgstr "Ni mogoče vrteti datoteke le za branje"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:173
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:172
 msgid "Rotating photos"
 msgstr "Vrtenje fotografij"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:184
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:183
 #, csharp-format
 msgid "Rotating photo \"{0}\""
 msgstr "Vrtenje fotografije \"{0}\""
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:197
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:196
 msgid "Directory not found"
 msgstr "Mape ni mogoče najti"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:199
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:198
 msgid "File not found"
 msgstr "Datoteke ni mogoče najti"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:217
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:216
 #, csharp-format
 msgid "Unable to rotate photo"
 msgid_plural "Unable to rotate {0} photos"
@@ -1284,21 +1286,21 @@ msgstr[1] "Ni mogoče zavrteti {0} fotografije"
 msgstr[2] "Ni mogoče zavrteti {0} fotografij"
 msgstr[3] "Ni mogoče zavrteti {0} fotografij"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:219
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:218
 #, csharp-format
-msgid "The photo could not be rotated because it is on a read only file system or media such as a CDROM.  Please check the permissions and try again."
-msgid_plural "{0} photos could not be rotated because they are on a read only file system or media such as a CDROM.  Please check the permissions and try again."
-msgstr[0] "{0} fotografij ni bilo mogoče zavrteti, ker se nahajajo na datotečnem sistemu le za branje ali na mediju kot je CDROM. Preverite dovoljenja in poskusite znova."
-msgstr[1] "{0} fotografije ni bilo mogoče zavrteti, ker se nahaja na datotečnem sistemu le za branje ali na mediju kot je CDROM. Preverite dovoljenja in poskusite znova."
-msgstr[2] "{0} fotografij ni bilo mogoče zavrteti, ker se nahajati na datotečnem sistemu le za branje ali na mediju kot je CDROM. Preverite dovoljenja in poskusite znova."
-msgstr[3] "{0} fotografij ni bilo mogoče zavrteti, ker se nahajajo na datotečnem sistemu le za branje ali na mediju kot je CDROM. Preverite dovoljenja in poskusite znova."
+msgid "The photo could not be rotated because it is on a read only file system or media such as a CD-ROM.  Please check the permissions and try again."
+msgid_plural "{0} photos could not be rotated because they are on a read only file system or media such as a CD-ROM.  Please check the permissions and try again."
+msgstr[0] "{0} fotografij ni mogoče zavrteti, ker se nahajajo na datotečnem sistemu le za branje ali na nosilcu kot je CDROM. Preverite dovoljenja in poskusite znova."
+msgstr[1] "{0} fotografije ni mogoče zavrteti, ker se nahaja na datotečnem sistemu le za branje ali na nosilcu kot je CDROM. Preverite dovoljenja in poskusite znova."
+msgstr[2] "{0} fotografij ni mogoče zavrteti, ker se nahajati na datotečnem sistemu le za branje ali na nosilcu kot je CDROM. Preverite dovoljenja in poskusite znova."
+msgstr[3] "{0} fotografij ni mogoče zavrteti, ker se nahajajo na datotečnem sistemu le za branje ali na nosilcu kot je CDROM. Preverite dovoljenja in poskusite znova."
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:246
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:245
 #, csharp-format
 msgid "Received error \"{0}\" while attempting to rotate {1}"
 msgstr "Med poskusom vrtenja {1} je prišlo do napake \"{0}\""
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:251
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:250
 msgid "Error while rotating photo."
 msgstr "Napaka med vrtenjem fotografije."
 
@@ -1321,31 +1323,31 @@ msgid "An error occured while processing \"{0}\": {1}"
 msgstr "Med obdelavo \"{0}\" je prišlo do napake: {1}"
 
 #. Send the mail :)
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:310
+#: ../src/Clients/MainApp/FSpot/SendEmail.cs:312
 msgid "My Photos"
 msgstr "Moje fotografije"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:107
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:109
 msgid "Rotate photo left"
 msgstr "Vrtenje fotografije v levo"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:112
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:114
 msgid "Rotate photo right"
 msgstr "Vrtenje fotografije v desno"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:148
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:150
 msgid "Folder"
 msgstr "Mapa"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:373
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:383
 msgid "Open"
 msgstr "Odpri"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:376
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:386
 msgid "Select Folder"
 msgstr "Izbor mape"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:460
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:470
 msgid "Set as Background"
 msgstr "Nastavi kot ozadje"
 
@@ -1380,13 +1382,13 @@ msgstr "Vse"
 msgid "Drag tags here to search for them"
 msgstr "Za iskanje po oznakah jih povlecite sem"
 
-#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:521
+#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:518
 msgid "Error renaming tag"
 msgstr "Napaka med preimenovanjem oznake"
 
-#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:522
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagDialog.cs:99
-#: ../src/Clients/MainApp/TagCommands.cs:139
+#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:519
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagDialog.cs:97
+#: ../src/Clients/MainApp/TagCommands.cs:137
 msgid "This name is already in use"
 msgstr "Ime je že v uporabi"
 
@@ -1412,115 +1414,115 @@ msgstr "Dogodki"
 
 #. The label for the root category is used in new and edit tag dialogs
 #: ../src/Clients/MainApp/FSpot/TagStore.cs:257
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:441
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:446
 msgid "(None)"
 msgstr "(Brez)"
 
-#: ../src/Clients/MainApp/FSpot/Term.cs:336
+#: ../src/Clients/MainApp/FSpot/Term.cs:338
 msgid " and "
 msgstr " in "
 
 #. Operators.Add (Catalog.GetString (" && "));
-#: ../src/Clients/MainApp/FSpot/Term.cs:338
+#: ../src/Clients/MainApp/FSpot/Term.cs:340
 msgid ", "
 msgstr ","
 
-#: ../src/Clients/MainApp/FSpot/Term.cs:394
+#: ../src/Clients/MainApp/FSpot/Term.cs:396
 msgid " or "
 msgstr " ali "
 
 #. OPS The operators we support, case insensitive
 #. private static string op_str = "(?'Ops' or | and |, | \\s+ )";
-#: ../src/Clients/MainApp/FSpot/Term.cs:415
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:7
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:202
+#: ../src/Clients/MainApp/FSpot/Term.cs:417
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:3
+#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:203
 #: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:557
 msgid "or"
 msgstr "ali"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:123
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:125
 msgid "Photo management for GNOME"
 msgstr "Upravljanje fotografij za GNOME"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:124
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:126
 msgid "Copyright © 2003-2010 Novell Inc."
 msgstr "Avtorske pravice © 2003-2010 Novell Inc."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:148
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:150
 msgid "translator-credits"
 msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:153
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:155
 msgid "F-Spot Website"
 msgstr "Spletišče F-Spot"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs:137
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:10
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs:140
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:8
 #, csharp-format
 msgid "Shift all photos by {0}"
 msgstr "Premik vseh fotografij za {0}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:109
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:112
 msgid "Today"
 msgstr "Danes"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:111
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:114
 msgid "Yesterday"
 msgstr "Včeraj"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:113
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:116
 msgid "Last 7 days"
 msgstr "Zadnjih 7 dni"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:115
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:118
 msgid "Last 30 days"
 msgstr "Zadnjih 30 dni"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:117
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:120
 msgid "Last 90 days"
 msgstr "Zadnjih 90 dni"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:119
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:122
 msgid "Last 360 days"
 msgstr "Zadnjih 360 dni"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:121
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:124
 msgid "Current Week (Mon-Sun)"
 msgstr "Trenutni Teden (Pon-Ned)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:123
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:126
 msgid "Previous Week (Mon-Sun)"
 msgstr "Predhodni Teden (Pon-Ned)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:139
-#: ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui.h:1
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:142
+#: ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui.h:3
 msgid "All Images"
 msgstr "Vse slike"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:141
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:144
 msgid "Customized Range"
 msgstr "Obseg po meri"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditExceptionDialog.cs:50
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:107
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditExceptionDialog.cs:54
+#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:108
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr "Prejeta je bila izjema \"{0}\". Ni mogoče shraniti fotografije {1}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditExceptionDialog.cs:63
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditExceptionDialog.cs:67
 msgid "Error editing photo"
 msgstr "Napaka med urejanjem fotografije"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:64
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:69
 #, csharp-format
 msgid "Edit Icon for Tag {0}"
 msgstr "Urejanje ikone za oznako {0}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:86
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:91
 msgid "Select Photo from file"
 msgstr "Izberi fotografijo iz datoteke"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:108
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:113
 #, csharp-format
 msgid ""
 "\n"
@@ -1537,33 +1539,33 @@ msgstr ""
 " s to oznako. Označite fotografijo kot '{0}' in se vrnite sem,\n"
 "da jo lahko uporabite kot ikono."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:186
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:191
 msgid "Unable to load image"
 msgstr "Ni mogoče naložiti slike."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:187
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:192
 #, csharp-format
 msgid "Unable to load \"{0}\" as icon for the tag"
 msgstr "Ni mogoče naložiti \"{0}\" kot ikono za oznako"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:225
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:230
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "Fotografija {0} od {1}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:45
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:48
 msgid "Choose Folder..."
 msgstr "Izbor mape ...."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:164
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:167
 msgid "Choose Import source..."
 msgstr "Izbor vira uvoza ..."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:176
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:179
 msgid "(No Cameras Detected)"
 msgstr "(Ni zaznanih fotoaparatov)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:211
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:214
 msgid ""
 "Checking this box will remove the imported photos from the camera after the import finished successfully.\n"
 "\n"
@@ -1573,61 +1575,65 @@ msgstr ""
 "\n"
 "Priporočamo da pred odstranitvijo svojih fotografij z digitalnega fotoaparata napravite varnostno kopijo. <b>To možnost uporabljate na lastno odgovornost!</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:212
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:215
 msgid "Warning"
 msgstr "Opozorilo"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:331
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:334
 #, csharp-format
 msgid "Importing Photos: {0} of {1}..."
 msgstr "Uvažanje fotografij: {0} od {1} ..."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:355
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:358
 msgid "Importing photos..."
 msgstr "Uvažanje fotografij ..."
 
 #. TODO: Using a GtkSpinner would be nicer here.
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:362
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:365
 msgid "Searching for photos... (You can already click Import to continue)"
 msgstr "Iskanje fotografij ... (za nadaljevanje lahko že kliknite Uvozi)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:65
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:68
 msgid "Import failures"
 msgstr "Napake uvoza"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:66
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:69
 msgid "Some files failed to import"
 msgstr "Uvoz nekaterih datotek je spodletel"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:67
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:70
 msgid "Some files could not be imported, they might be corrupt or there might be something wrong with the storage on which they reside."
 msgstr "Nekaterih datotek ni bilo mogoče uvoziti. Morda so pokvarjene ali pa je morda nekaj narobe z njihovo shrambo."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:130
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:133
 msgid "Details"
 msgstr "Podrobnosti"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:77
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:100
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:79
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:102
 msgid "None"
 msgstr "Brez"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:79
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:81
 msgid "System profile"
 msgstr "Sistemski profil"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:117
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:119
 msgid "Standard theme"
 msgstr "Običajna tema"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/RepairDbDialog.cs:44
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/RepairDbDialog.cs:47
 msgid "Error loading database."
 msgstr "Napaka med nalaganjem podatkovne zbirke."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/RepairDbDialog.cs:45
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/RepairDbDialog.cs:48
 #, csharp-format
 msgid "F-Spot encountered an error while loading the photo database. The old database has be moved to {0} and a new database has been created."
 msgstr "Prišlo je do napake med nalaganjem podatkovne zbirke fotografij. Stara podatkovna zbirka je bila premaknjena v {0}, zato je bila ustvarjena nova."
+
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/SelectionRatioDialog.cs:74
+msgid "New Selection"
+msgstr "Nov izbor"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/SelectionRatioDialog.cs:81
 msgid "Label"
@@ -1637,163 +1643,165 @@ msgstr "Oznaka"
 msgid "Ratio"
 msgstr "Razmerje"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ThreadProgressDialog.cs:78
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ThreadProgressDialog.cs:79
 msgid "Retry"
 msgstr "Poskusi znova"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ThreadProgressDialog.cs:80
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ThreadProgressDialog.cs:81
 #: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/pickfolder_dialog.ui.h:1
 msgid "Skip"
 msgstr "Preskoči"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:1
+msgid "Adjust Time"
+msgstr "Prilagodi čas"
+
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:2
+msgid "Adjusted date: "
+msgstr "Prilagojen datum:"
+
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:3
+msgid "Current date:"
+msgstr "Trenutni datum:"
+
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:4
 msgid "0000:00:00 00:00:00"
 msgstr "0000:00:00 00:00:00"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:2
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:5
+msgid "difference:"
+msgstr "razlika:"
+
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:6
 msgid "00:00:00"
 msgstr "00:00:00"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:3
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:7
+msgid "<b>Reference Photo</b>"
+msgstr "<b>Referenčna fotografija</b>"
+
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:9
+msgid "Space all photos by"
+msgstr "Razmakni vse fotografije za"
+
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:10
 msgid "5"
 msgstr "5"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:4
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:11
+msgid "min. Starting at {0}"
+msgstr "najmanjši začetek pri {0}"
+
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:12
 msgid "<b>Action</b>"
 msgstr "<b>Dejanje</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:5
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:6
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:13
+#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:2
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:2
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:3
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:3
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:2
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:2
 #: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:2
 #: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:2
 #: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:2
 msgid "<b>Photos</b>"
 msgstr "<b>Fotografije</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:6
-msgid "<b>Reference Photo</b>"
-msgstr "<b>Referenčna fotografija</b>"
-
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:7
-msgid "Adjust Time"
-msgstr "Prilagodi čas"
-
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:8
-msgid "Adjusted date: "
-msgstr "Prilagojen datum:"
-
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:9
-msgid "Current date:"
-msgstr "Trenutni datum:"
-
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:11
-msgid "Space all photos by"
-msgstr "Razmakni vse fotografije za"
-
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:12
-msgid "difference:"
-msgstr "razlika:"
-
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:13
-msgid "min. Starting at {0}"
-msgstr "najmanjši začetek pri {0}"
-
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:1
-msgid "C_reate"
-msgstr "Ustva_ri"
-
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:2
-msgid "Create _icon for this tag when first used"
-msgstr "Ustvari _ikono za to oznako ob prvi uporabi"
-
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:3
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:3
 msgid "P_arent Tag:"
 msgstr "N_adrejena oznaka:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:4
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:5
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:2
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:2
 msgid "_Tag Name:"
 msgstr "Ime _oznake:"
 
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:3
+msgid "Create _icon for this tag when first used"
+msgstr "Ustvari _ikono za to oznako ob prvi uporabi"
+
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:4
+msgid "C_reate"
+msgstr "Ustva_ri"
+
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:1
-msgid "<b>End Date</b>"
-msgstr "<b>Končni datum</b>"
+msgid "Set date range"
+msgstr "Nastavi obseg datumov"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:2
 msgid "<b>Select period</b>"
 msgstr "<b>Izberi obdobje</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:3
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:4
 msgid "<b>Start Date</b>"
 msgstr "<b>Začetni datum</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:4
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:5
+msgid "<b>End Date</b>"
+msgstr "<b>Končni datum</b>"
+
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:6
 msgid "Cancel, do not change the current timeline. "
 msgstr "Prekliči, ne spremeni trenutne časovnice."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:5
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:7
 msgid "Only photos taken within these dates will be displayed."
 msgstr "Prikazane bodo le fotografije znotraj teh datumov."
-
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:6
-msgid "Set date range"
-msgstr "Nastavi obseg datumov"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:1
 msgid "Edit Tag"
 msgstr "Urejanje oznake"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:2
-msgid "Edit icon"
-msgstr "Urejanje ikone"
-
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:4
 msgid "_Icon:"
 msgstr "_Ikona:"
 
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:5
+msgid "Edit icon"
+msgstr "Urejanje ikone"
+
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:1
-msgid "<b>From External Photo</b>"
-msgstr "<b>Iz zunanje fotografije</b>"
+msgid "Edit Tag Icon"
+msgstr "Urejanje ikone oznake"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:2
-msgid "<b>From Photo</b>"
-msgstr "<b>Iz fotografije</b>"
-
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:3
-msgid "<b>Predefined icons</b>"
-msgstr "<b>Pred določene ikone</b>"
-
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:4
 msgid "<b>Preview</b>"
 msgstr "<b>Predogled</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:5
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:3
 msgid "Design icon from"
 msgstr "Oblika ikone od "
 
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:4
+msgid "<b>From External Photo</b>"
+msgstr "<b>Iz zunanje fotografije</b>"
+
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:5
+msgid "<b>Predefined icons</b>"
+msgstr "<b>Pred določene ikone</b>"
+
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:6
-msgid "Edit Tag Icon"
-msgstr "Urejanje ikone oznake"
+msgid "<b>From Photo</b>"
+msgstr "<b>Iz fotografije</b>"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:7
 msgid "No _image"
 msgstr "_Brez slike"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:1
+msgid "Filter on selected rolls"
+msgstr "Filter na izbranih zvitkih"
+
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:2
 msgid "<b>View all pictures imported</b>"
 msgstr "<b>Ogled vseh uvoženih slik</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:2
-msgid "Display only those photos that were imported in specified Rolls."
-msgstr "Prikaz le tistih fotografij, ki so bile uvožene v navedenih zvitkih."
-
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:3
-msgid "Filter on selected rolls"
-msgstr "Filter na izbranih zvitkih"
+#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:203
+#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:558
+msgid "and"
+msgstr "in"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:4
 msgid "Number of photos in selected rolls:"
@@ -1804,40 +1812,46 @@ msgid "Show all photos."
 msgstr "Pokaži vse fotografije."
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:6
-msgid "after"
-msgstr "za"
+msgid "Display only those photos that were imported in specified Rolls."
+msgstr "Prikaz le tistih fotografij, ki so bile uvožene v navedenih zvitkih."
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:7
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:202
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:558
-msgid "and"
-msgstr "in"
-
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:8
 msgid "at"
 msgstr "ob"
+
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:8
+msgid "after"
+msgstr "za"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:9
 msgid "between"
 msgstr "med"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:1
-msgid "Color profile for display:"
-msgstr "Barvni profil za zaslon:"
-
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:2
-msgid "Color profile for printing:"
-msgstr "Barvni profil za tiskanje:"
-
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:3
 msgid "F-Spot Preferences"
 msgstr "Možnosti F-Spot"
 
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:2
+msgid "When importing photos, copy them to:"
+msgstr "Pri uvažanju fotografij jih kopiraj v:"
+
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:3
+msgid "Color profile for display:"
+msgstr "Barvni profil za zaslon:"
+
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:4
+msgid "Color profile for printing:"
+msgstr "Barvni profil za tiskanje:"
+
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:5
 msgid "F-Spot appearance:"
 msgstr "Videz F-spot:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:5
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:6
+msgid "Select A Folder"
+msgstr "Izbira mape"
+
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:7
 msgid ""
 "Inside the image files when possible\n"
 "<small>Makes them accessible to other image-editing programs.</small>"
@@ -1845,7 +1859,11 @@ msgstr ""
 "Znotraj slikovnih datotek, če je mogoče\n"
 "<small>To naredi slike dostopne ostalim programom za urejanje slik.</small>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:7
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:9
+msgid "Store tags and descriptions for photos:"
+msgstr "Shranjevanje oznak in opisov fotografij:"
+
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:10
 msgid ""
 "Never modify image files.\n"
 "<small>Write XMP files next to the images instead.</small>"
@@ -1853,61 +1871,49 @@ msgstr ""
 "Nikoli ne spreminjaj slikovnih datotek.\n"
 "<small>Namesto tega zapiši datoteke XMP poleg slik.</small>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:9
-msgid "Select A Folder"
-msgstr "Izbira mape"
-
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:10
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:12
 msgid "Separately from the image files"
 msgstr "Ločeno od slikovnih datotek"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:11
-msgid "Store tags and descriptions for photos:"
-msgstr "Shranjevanje oznak in opisov fotografij:"
-
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:12
-msgid "When importing photos, copy them to:"
-msgstr "Pri uvažanju fotografij jih kopiraj v:"
-
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:1
-msgid "<b>Max Rating</b>"
-msgstr "<b>Najvišja Ocena</b>"
+msgid "Set Rating Filter"
+msgstr "Nastavitev filtrov ocen"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:2
 msgid "<b>Min Rating</b>"
 msgstr "<b>Najnižja Ocena</b>"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:3
-msgid "Set Rating Filter"
-msgstr "Nastavitev filtrov ocen"
+msgid "<b>Max Rating</b>"
+msgstr "<b>Najvišja Ocena</b>"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RepairDialog.ui.h:1
 msgid "Repair"
 msgstr "Popravi"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui.h:1
-msgid "Manage your custom selection ratios"
-msgstr "Upravljanje razmerij za izbiranje po meri"
-
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui.h:2
 msgid "Selection Constraints"
 msgstr "Izbira omejitev"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:55
-#: ../src/Clients/MainApp/FSpot.Widgets/Sidebar.cs:73
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui.h:2
+msgid "Manage your custom selection ratios"
+msgstr "Upravljanje razmerij za izbiranje po meri"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:56
+#: ../src/Clients/MainApp/FSpot.Widgets/Sidebar.cs:74
 msgid "Edit"
 msgstr "Urejanje"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:223
-#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:66
+#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:224
+#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:69
 msgid "No selection available"
 msgstr "Na voljo ni nobene izbire"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:224
+#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:225
 msgid "This tool requires an active selection. Please select a region of the photo and try the operation again"
 msgstr "Orodje zahteva dejavno izbiro. Izberite območje na fotografiji in poskusite znova"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:242
+#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:243
 msgid "Error saving adjusted photo"
 msgid_plural "Error saving adjusted photos"
 msgstr[0] "Napaka med shranjevanjem prilagojenih fotografij"
@@ -1915,67 +1921,67 @@ msgstr[1] "Napaka med shranjevanjem prilagojene fotografije"
 msgstr[2] "Napaka med shranjevanjem prilagojenih fotografij"
 msgstr[3] "Napaka med shranjevanjem prilagojenih fotografij"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:244
+#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:245
 #, csharp-format
 msgid "Received exception \"{0}\". Note that you have to develop RAW files into JPEG before you can edit them."
 msgstr "Prejeta je bila izjema \"{0}\". Datoteke RAW je treba pred urejanjem razviti v JPEG."
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:497
+#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:495
 msgid "_Horizontal"
 msgstr "_Vodoravno"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:501
+#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:499
 msgid "_Vertical"
 msgstr "_Navpično"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:83
+#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:84
 msgid "Find:"
 msgstr "Najdi:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/FolderTreePage.cs:44
+#: ../src/Clients/MainApp/FSpot.Widgets/FolderTreePage.cs:45
 msgid "Folders"
 msgstr "Mape"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/FolderTreeView.cs:159
+#: ../src/Clients/MainApp/FSpot.Widgets/FolderTreeView.cs:158
 msgid "Filesystem"
 msgstr "Datotečni sistem"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:125
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:401
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:451
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:457
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:461
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:126
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:406
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:456
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:462
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:466
 msgid "(Unknown)"
 msgstr "(neznano)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:305
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:306
 msgid "Histogram"
 msgstr "Histogram"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:324
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:325
 msgid "Image Information"
 msgstr "Podrobnosti o sliki"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:332
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:333
 #, csharp-format
 msgid "{0} Photos"
 msgstr "{0} fotografij"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:334
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:10
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:335
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:9
 msgid "Name"
 msgstr "Ime"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:346
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:347
 msgid "Version"
 msgstr "Različica"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:361
-#: ../src/Clients/MainApp/PhotoVersionMenu.cs:86
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:362
+#: ../src/Clients/MainApp/PhotoVersionMenu.cs:85
 msgid "(No Edits)"
 msgstr "(Ni urejanj)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:365
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:366
 #, csharp-format
 msgid "(One Edit)"
 msgid_plural "({0} Edits)"
@@ -1984,16 +1990,16 @@ msgstr[1] "({0} urejanje)"
 msgstr[2] "({0} urejanji)"
 msgstr[3] "({0} urejanja)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:371
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:372
 msgid "Date"
 msgstr "Datum"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:371
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:372
 msgid "Show Date"
 msgstr "Pokaži datum"
 
 #. Note for translators: {0} is a date, {1} and {2} are times.
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:382
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:383
 #, csharp-format
 msgid ""
 "On {0} between \n"
@@ -2002,7 +2008,7 @@ msgstr ""
 "Na {0} med \n"
 "{1} in {2}"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:387
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:388
 #, csharp-format
 msgid ""
 "Between {0} \n"
@@ -2011,178 +2017,178 @@ msgstr ""
 "Med {0} \n"
 "in {1}"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:393
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:4
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:394
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:6
 msgid "Size"
 msgstr "Velikost"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:393
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:394
 msgid "Show Size"
 msgstr "Pokaži velikost"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:404
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:409
 msgid "Exposure"
 msgstr "Osvetljenost"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:404
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:409
 msgid "Show Exposure"
 msgstr "Pokaži osvetlitev"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:434
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:439
 msgid "flash fired"
 msgstr "bliskavica se je sprožila"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:436
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:441
 msgid "flash didn't fire"
 msgstr "bliskavica se ni sprožila"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:446
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:451
 msgid "Focal Length"
 msgstr "Goriščna razdalja"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:446
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:451
 msgid "Show Focal Length"
 msgstr "Pokaži goriščno razdaljo"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:456
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:461
 msgid "Camera"
 msgstr "Fotoaparat"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:456
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:461
 msgid "Show Camera"
 msgstr "Pokaži fotoaparat"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:460
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:465
 msgid "Creator"
 msgstr "Ustvarjalec"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:460
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:465
 msgid "Show Creator"
 msgstr "Pokaži ustvarjalca"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:464
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:469
 msgid "File Size"
 msgstr "Velikost datoteke"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:464
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:469
 msgid "Show File Size"
 msgstr "Pokaži velikost datotek"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:472
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:477
 msgid "(File read error)"
 msgstr "(Napaka med branjem datoteke)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:480
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:485
 msgid "Rating"
 msgstr "Ocena"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:480
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:485
 msgid "Show Rating"
 msgstr "Pokaži oceno"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:484
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:489
 msgid "Show Tags"
 msgstr "Prikaži oznake"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:46
+#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:44
 msgid "Metadata"
 msgstr "Metapodatki"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:127
+#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:125
 msgid "Extended Metadata"
 msgstr "Razširjeni metapodatki"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:380
+#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:378
 msgid "No active photo"
 msgstr "Ni dejavnih fotografij"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:382
+#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:380
 #, csharp-format
 msgid "The photo \"{0}\" does not exist"
 msgstr "Fotografija \"{0}\" ne obstaja"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:384
+#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:382
 msgid "No metadata available"
 msgstr "Metapodatki niso na voljo"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:106
+#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:107
 msgid "Error saving sharpened photo"
 msgstr "Napaka med shranjevanjem izostrene datoteke"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:152
+#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:154
 msgid "Sharpen"
 msgstr "Izostritev"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:162
+#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:164
 msgid "Amount:"
 msgstr "Količina:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:163
+#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:165
 msgid "Radius:"
 msgstr "Polmer:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:164
+#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:166
 msgid "Threshold:"
 msgstr "Prag:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/TagMenu.cs:132
-#: ../src/Clients/MainApp/TagPopup.cs:61
+#: ../src/Clients/MainApp/FSpot.Widgets/TagMenu.cs:126
+#: ../src/Clients/MainApp/TagPopup.cs:64
 msgid "Create New Tag..."
 msgstr "Ustvari novo oznako ..."
 
 #. Fixme this should really set parent menu
 #. items insensitve
-#: ../src/Clients/MainApp/PhotoTagMenu.cs:68
+#: ../src/Clients/MainApp/PhotoTagMenu.cs:70
 msgid "(No Tags)"
 msgstr "(Ni oznak)"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:91
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:95
 msgid "Create New Version"
 msgstr "Ustvari novo različico"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:92
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:96
 msgid "Name:"
 msgstr "Ime:"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:96
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:100
 msgid "Rename Version"
 msgstr "Preimenuj različico"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:97
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:101
 msgid "New name:"
 msgstr "Novo ime:"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:157
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:161
 msgid "Delete"
 msgstr "Izbriši"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:158
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:162
 #, csharp-format
 msgid "Really delete version \"{0}\"?"
 msgstr "Ali zares želite izbrisati različico \"{0}\"?"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:159
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:163
 msgid "This removes the version and deletes the corresponding file from disk."
 msgstr "To odstrani različico in izbriše ustrezno datoteko z diska."
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:204
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:208
 msgid "De_tach"
 msgstr "O_dpni"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:205
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:209
 #, csharp-format
 msgid "Really detach version \"{0}\" from \"{1}\"?"
 msgstr "Resnično odpni različico \"{0}\" od \"{1}\"?"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:206
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:210
 msgid "This makes the version appear as a separate photo in the library. To undo, drag the new photo back to its parent."
 msgstr "Različice fotografije se v knjižnici pojavijo kot različne fotografije. Za razveljavitve povlecite novo fotografijo nazaj k starševski fotografiji. "
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:228
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:232
 msgid "Re_parent"
 msgstr "Pri_pni"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:229
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:233
 #, csharp-format
 msgid "Really reparent \"{0}\" as version of \"{1}\"?"
 msgid_plural "Really reparent {2} photos as versions of \"{1}\"?"
@@ -2191,24 +2197,24 @@ msgstr[1] "Ali zares želite znova pripeti {2} fotografijo kot različico \"{1}\
 msgstr[2] "Ali zares želite znova pripeti {2} fotografiji kot različici \"{1}\"?"
 msgstr[3] "Ali zares želite znova pripeti {2} fotografije kot različice \"{1}\"?"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:232
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:236
 msgid "This makes the photos appear as a single one in the library. The versions can be detached using the Photo menu."
 msgstr "Fotografije se v knjižnici pojavijo kot ena fotografija. Različice je mogoče odpeti v meniju Fotografija."
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:272
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:276
 #, csharp-format
 msgid "Received exception \"{0}\"."
 msgstr "Prejeta je bila izjema \"{0}\"."
 
-#: ../src/Clients/MainApp/TagCommands.cs:189
+#: ../src/Clients/MainApp/TagCommands.cs:188
 msgid "Create New Tag"
 msgstr "Ustvari novo oznako"
 
-#: ../src/Clients/MainApp/TagCommands.cs:190
+#: ../src/Clients/MainApp/TagCommands.cs:189
 msgid "Name of New Tag:"
 msgstr "Ime nove oznake:"
 
-#: ../src/Clients/MainApp/TagPopup.cs:51
+#: ../src/Clients/MainApp/TagPopup.cs:54
 #, csharp-format
 msgid "Find"
 msgid_plural "Find"
@@ -2217,11 +2223,11 @@ msgstr[1] "Iskanje"
 msgstr[2] "Iskanje"
 msgstr[3] "Iskanje"
 
-#: ../src/Clients/MainApp/TagPopup.cs:67
+#: ../src/Clients/MainApp/TagPopup.cs:70
 msgid "Edit Tag..."
 msgstr "Urejanje oznake ..."
 
-#: ../src/Clients/MainApp/TagPopup.cs:72
+#: ../src/Clients/MainApp/TagPopup.cs:75
 msgid "Delete Tag"
 msgid_plural "Delete Tags"
 msgstr[0] "Izbriši oznake"
@@ -2229,7 +2235,7 @@ msgstr[1] "Izbriši oznako"
 msgstr[2] "Izbriši oznaki"
 msgstr[3] "Izbriši oznake"
 
-#: ../src/Clients/MainApp/TagPopup.cs:78
+#: ../src/Clients/MainApp/TagPopup.cs:81
 msgid "Attach Tag to Selection"
 msgid_plural "Attach Tags to Selection"
 msgstr[0] "Dodajanje oznak izboru"
@@ -2237,7 +2243,7 @@ msgstr[1] "Dodajanje oznake izboru"
 msgstr[2] "Dodajanje oznak izboru"
 msgstr[3] "Dodajanje oznak izboru"
 
-#: ../src/Clients/MainApp/TagPopup.cs:82
+#: ../src/Clients/MainApp/TagPopup.cs:85
 msgid "Remove Tag From Selection"
 msgid_plural "Remove Tags From Selection"
 msgstr[0] "Odstranitev oznak iz izbora"
@@ -2245,7 +2251,7 @@ msgstr[1] "Odstranitev oznake iz izbora"
 msgstr[2] "Odstranitev oznak iz izbora"
 msgstr[3] "Odstranitev oznak iz izbora"
 
-#: ../src/Clients/MainApp/TagPopup.cs:88
+#: ../src/Clients/MainApp/TagPopup.cs:91
 msgid "Merge Tags"
 msgstr "Združi oznake"
 
@@ -2259,695 +2265,703 @@ msgid "Updating picture \"{0}\""
 msgstr "Posodabljanje slike \"{0}\""
 
 #: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:1
-msgid "<b>Co_rrections</b>"
-msgstr "<b>Pop_ravki</b>"
-
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:2
-msgid "<b>_White Balance</b>"
-msgstr "<b>_Ravnotežje bele barve</b>"
-
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:3
 msgid "C_ontrast:"
 msgstr "K_ontrast:"
 
-#. Note for translators: meant as Temperature
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:5
-msgid "Te_mp:"
-msgstr "Zač_asno:"
-
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:6
-msgid "_Brightness:"
-msgstr "Svet_lost:"
-
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:7
-msgid "_Exposure:"
-msgstr "Izpos_tavljenost:"
-
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:8
+#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:2
 msgid "_Hue:"
 msgstr "_Odtenek:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:9
+#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:3
+msgid "_Brightness:"
+msgstr "Svet_lost:"
+
+#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:4
 msgid "_Saturation:"
 msgstr "N_asičenost:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:10
+#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:5
+msgid "_Exposure:"
+msgstr "Izpos_tavljenost:"
+
+#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:6
+msgid "<b>Co_rrections</b>"
+msgstr "<b>Pop_ravki</b>"
+
+#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:7
 msgid "_Tint:"
 msgstr "_Črnilo:"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:1
-msgid "C_opy files to the Photos folder"
-msgstr "_Kopiranj datoteke v mapo fotografij"
+#. Note for translators: meant as Temperature
+#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:9
+msgid "Te_mp:"
+msgstr "Zač_asno:"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:2
-msgid "I_nclude subfolders"
-msgstr "_Vključi podmape"
+#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:10
+msgid "<b>_White Balance</b>"
+msgstr "<b>_Ravnotežje bele barve</b>"
 
 #. Translators: this string means 'source of import'
-#: ../src/Clients/MainApp/ui/import.ui.h:5
+#: ../src/Clients/MainApp/ui/import.ui.h:3
 msgid "Import _from:"
 msgstr "Uvozi _iz:"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:6
+#: ../src/Clients/MainApp/ui/import.ui.h:4
 msgid "_Attach tags:"
 msgstr "_Pripni oznake:"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:7
+#: ../src/Clients/MainApp/ui/import.ui.h:5
 msgid "_Detect duplicates"
 msgstr "_Zaznaj dvojnike"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:8
-msgid "_Import"
-msgstr "_Uvozi"
+#: ../src/Clients/MainApp/ui/import.ui.h:6
+msgid "C_opy files to the Photos folder"
+msgstr "_Kopiranj datoteke v mapo fotografij"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:9
+#: ../src/Clients/MainApp/ui/import.ui.h:7
+msgid "I_nclude subfolders"
+msgstr "_Vključi podmape"
+
+#: ../src/Clients/MainApp/ui/import.ui.h:8
 msgid "_Remove original files after import"
 msgstr "_Odstrani izvorne datoteke po uvozu"
 
+#: ../src/Clients/MainApp/ui/import.ui.h:9
+msgid "_Import"
+msgstr "_Uvozi"
+
 #: ../src/Clients/MainApp/ui/mail_dialog.ui.h:1
-msgid "1024 px"
-msgstr "1024 px"
-
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:2
-msgid "320 px"
-msgstr "320 px"
-
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:3
-msgid "480 px"
-msgstr "480 px"
-
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:4
-msgid "640 px"
-msgstr "640 px"
-
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:5
-msgid "800 px"
-msgstr "800 px"
-
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:7
-msgid "<b>Size</b>"
-msgstr "<b>Velikost</b>"
-
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:8
-msgid "<b>Summary</b>"
-msgstr "<b>Povzetek</b>"
-
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:9
 msgid "Create Mail"
 msgstr "Ustvari pošto"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:10
-msgid "Create a mail with the selected photos (possibly resized) attached"
-msgstr "Ustvari pošto s pripetimi fotografijami (po možnosti spremenjenih velikosti)"
+#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:3
+msgid "Tiny"
+msgstr "Drobcena"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:11
-msgid "Do not send a mail"
-msgstr "Ne pošlji pošte"
+#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:4
+msgid "320 px"
+msgstr "320 px"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:12
-msgid "Estimated new size"
-msgstr "Ocenjena nova velikost"
+#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:5
+msgid "Small"
+msgstr "Majhna"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:13
-msgid "Extra large"
-msgstr "Zelo velika"
+#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:6
+msgid "480 px"
+msgstr "480 px"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:14
+#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:7
+msgid "Medium"
+msgstr "Srednja"
+
+#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:8
+msgid "640 px"
+msgstr "640 px"
+
+#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:9
 msgid "Large"
 msgstr "Velika"
 
+#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:10
+msgid "800 px"
+msgstr "800 px"
+
+#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:11
+msgid "Extra large"
+msgstr "Zelo velika"
+
+#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:12
+msgid "1024 px"
+msgstr "1024 px"
+
+#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:14
+msgid "Original size (possible very large file size)"
+msgstr "Izvorna velikost (morda zelo velika velikost datotek)"
+
 #: ../src/Clients/MainApp/ui/mail_dialog.ui.h:15
-msgid "Medium"
-msgstr "Srednja"
+msgid "<b>Size</b>"
+msgstr "<b>Velikost</b>"
 
 #: ../src/Clients/MainApp/ui/mail_dialog.ui.h:16
 msgid "Number of pictures"
 msgstr "Število slik"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:18
-msgid "Original size (possible very large file size)"
-msgstr "Izvorna velikost (morda zelo velika velikost datotek)"
-
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:19
-msgid "Small"
-msgstr "Majhna"
-
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:20
-msgid "Tiny"
-msgstr "Drobcena"
-
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:21
+#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:17
 msgid "Total original size"
 msgstr "Skupna izvorna velikost"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:22
+#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:18
+msgid "Estimated new size"
+msgstr "Ocenjena nova velikost"
+
+#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:19
+msgid "<b>Summary</b>"
+msgstr "<b>Povzetek</b>"
+
+#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:20
+msgid "Do not send a mail"
+msgstr "Ne pošlji pošte"
+
+#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:21
 msgid "_Create Mail"
 msgstr "_Ustvari pošto"
 
+#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:22
+msgid "Create a mail with the selected photos (possibly resized) attached"
+msgstr "Ustvari pošto s pripetimi fotografijami (po možnosti spremenjenih velikosti)"
+
 #: ../src/Clients/MainApp/ui/main_window.ui.h:1
-msgid "Adjust _Time..."
-msgstr "Prilagodi _čas ..."
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:2
-msgid "Arrange _by"
-msgstr "Uredi _po"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:4
-msgid "By _Date"
-msgstr "Po _datumu"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:5
-msgid "By _Import Roll"
-msgstr "Po _uvoznem zvitku"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:6
-msgid "By _Rating"
-msgstr "Po _oceni"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:7
-msgid "Copy"
-msgstr "Kopiraj"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:8
-msgid "Create New _Tag..."
-msgstr "Ustvari novo _oznako ..."
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:9
-msgid "Create _New Version..."
-msgstr "Ustvari _novo različico ..."
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:10
-msgid "De_tach Version"
-msgstr "O_dpni različico"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:11
-msgid "Fin_d"
-msgstr "Naj_di"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:12
-msgid "Manage _Extensions"
-msgstr "Upravljanje _razširitev"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:13
-msgid "Page Set_up..."
-msgstr "Nas_tavitve strani ..."
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:14
-msgid "Re_fresh Thumbnail"
-msgstr "O_sveži sličico"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:18
-msgid "Select _All"
-msgstr "Izberi _vse"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:19
-msgid "Select _None"
-msgstr "Ne izberi _ničesar"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:20
-msgid "Send by _Mail..."
-msgstr "Pošlji po _pošti ..."
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:21
-#: ../src/Clients/MainApp/ui/single_view.ui.h:3
-msgid "Set as _Background"
-msgstr "Nastavi kot _ozadje"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:22
-msgid "Side_bar"
-msgstr "Stranska v_rstica"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:23
-msgid "T_ags"
-msgstr "Ozn_ake"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:24
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1118
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1119
-msgid "Tags: "
-msgstr "Oznake:"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:25
-msgid "Thumbnail _elements"
-msgstr "_Elementi sličic"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:26
-msgid "Too_lbar"
-msgstr "O_rodna vrstica"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:27
-msgid "View"
-msgstr "Pogled"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:28
-#: ../src/Clients/MainApp/ui/single_view.ui.h:7
-msgid "Zoom _in"
-msgstr "_Približaj"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:29
-#: ../src/Clients/MainApp/ui/single_view.ui.h:8
-msgid "Zoom _out"
-msgstr "_Oddalji"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:30
-#: ../src/Clients/MainApp/ui/single_view.ui.h:9
-msgid "Zoom in"
-msgstr "Približaj"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:31
-#: ../src/Clients/MainApp/ui/single_view.ui.h:10
-msgid "Zoom out"
-msgstr "Oddalji"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:32
-msgid "_Attach Tag"
-msgstr "_Pripni oznake"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:33
-msgid "_Attach Tag to Selection"
-msgstr "_Pripni oznako izboru"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:35
-msgid "_Clear Rating Filter"
-msgstr "_Počisti filter ocen"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:36
-msgid "_Clear Roll Filter"
-msgstr "_Počisti filter zvitkov"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:37
-msgid "_Close"
-msgstr "_Zapri"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:38
-msgid "_Components"
-msgstr "_Sestavni deli"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:39
-msgid "_Contents"
-msgstr "_Vsebina"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:40
-msgid "_Dates"
-msgstr "_Datumi"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:42
-msgid "_Delete Selected Tag"
-msgstr "_Izbriši izbrano oznako"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:43
-msgid "_Delete Version"
-msgstr "_Izbriši različico"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:44
-#: ../src/Clients/MainApp/ui/single_view.ui.h:11
-msgid "_Edit"
-msgstr "_Uredi"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:45
-msgid "_Edit Tag..."
-msgstr "_Uredi oznako ..."
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:46
-msgid "_Export to"
-msgstr "_Izvozi v"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:47
-msgid "_Filmstrip"
-msgstr "_Filmski trak"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:48
-#: ../src/Clients/MainApp/ui/single_view.ui.h:13
-msgid "_Fullscreen"
-msgstr "_Celozaslonski način"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:49
-#: ../src/Clients/MainApp/ui/single_view.ui.h:14
-msgid "_Help"
-msgstr "Pomo_č"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:50
-msgid "_Hidden"
-msgstr "_Skrito"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:51
-msgid "_Import..."
-msgstr "_Uvozi ..."
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:52
-msgid "_Invert Selection"
-msgstr "Obrni _izbor"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:53
-msgid "_Large"
-msgstr "_Velike"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:54
-msgid "_Last Import Roll"
-msgstr "_Zadnji uvozni zvitek"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:55
-msgid "_Loupe"
-msgstr "_Leča"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:56
-msgid "_Medium"
-msgstr "_Srednje"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:57
-#: ../src/Clients/MainApp/ui/single_view.ui.h:15
+#: ../src/Clients/MainApp/ui/single_view.ui.h:2
 msgid "_Photo"
 msgstr "_Fotografija"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:58
-msgid "_Quit"
-msgstr "_Končaj"
+#: ../src/Clients/MainApp/ui/main_window.ui.h:2
+msgid "_Import..."
+msgstr "_Uvozi ..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:59
-msgid "_Ratings"
-msgstr "_Ocene"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:61
-msgid "_Remove Tag From Selection"
-msgstr "_Odstrani oznako iz izbora"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:62
-msgid "_Rename Version"
-msgstr "_Preimenuj različico"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:63
-msgid "_Reverse Order"
-msgstr "_Obrnjen vrstni red"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:64
-msgid "_Select Import Rolls..."
-msgstr "Izberi _uvozne zvitke ..."
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:65
-msgid "_Set Date Range..."
-msgstr "Nastavi _obsega datumov ..."
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:66
-msgid "_Set Rating filter..."
-msgstr "_Nastavi filter ocen ..."
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:67
-msgid "_Sharpen..."
-msgstr "_Izostri ..."
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:68
-#: ../src/Clients/MainApp/ui/single_view.ui.h:16
-msgid "_Slideshow"
-msgstr "_Diapredstavitev"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:69
-msgid "_Small"
-msgstr "_Majhne"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:70
-msgid "_Tag Icons"
-msgstr "_Ikone oznak"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:71
-msgid "_Tags"
-msgstr "O_znake"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:72
-msgid "_Timeline"
-msgstr "_Časovnica"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:73
-msgid "_Tools"
-msgstr "_Orodja"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:74
-msgid "_Untagged Photos"
-msgstr "_Neoznačene fotografije"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:75
+#: ../src/Clients/MainApp/ui/main_window.ui.h:3
 msgid "_Version"
 msgstr "_Različica"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:76
-#: ../src/Clients/MainApp/ui/single_view.ui.h:18
+#: ../src/Clients/MainApp/ui/main_window.ui.h:4
+msgid "Create _New Version..."
+msgstr "Ustvari _novo različico ..."
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:5
+msgid "_Delete Version"
+msgstr "_Izbriši različico"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:6
+msgid "_Rename Version"
+msgstr "_Preimenuj različico"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:7
+msgid "De_tach Version"
+msgstr "O_dpni različico"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:8
+msgid "_Export to"
+msgstr "_Izvozi v"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:9
+msgid "Page Set_up..."
+msgstr "Nas_tavitve strani ..."
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:10
+msgid "Send by _Mail..."
+msgstr "Pošlji po _pošti ..."
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:11
+msgid "_Close"
+msgstr "_Zapri"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:12
+msgid "_Quit"
+msgstr "_Končaj"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:13
+#: ../src/Clients/MainApp/ui/single_view.ui.h:6
+msgid "_Edit"
+msgstr "_Uredi"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:14
+msgid "Copy"
+msgstr "Kopiraj"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:15
+msgid "Select _All"
+msgstr "Izberi _vse"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:16
+msgid "Select _None"
+msgstr "Ne izberi _ničesar"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:17
+msgid "_Invert Selection"
+msgstr "Obrni _izbor"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:20
+msgid "_Sharpen..."
+msgstr "_Izostri ..."
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:21
+msgid "Adjust _Time..."
+msgstr "Prilagodi _čas ..."
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:22
+msgid "Re_fresh Thumbnail"
+msgstr "O_sveži sličico"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:25
+#: ../src/Clients/MainApp/ui/single_view.ui.h:9
+msgid "Set as _Background"
+msgstr "Nastavi kot _ozadje"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:26
+msgid "_Attach Tag"
+msgstr "_Pripni oznake"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:28
+msgid "Manage _Extensions"
+msgstr "Upravljanje _razširitev"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:29
+#: ../src/Clients/MainApp/ui/single_view.ui.h:10
 msgid "_View"
 msgstr "_Pogled"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:1
-msgid "Display File _Names"
-msgstr "Prikaz imen _datotek"
+#: ../src/Clients/MainApp/ui/main_window.ui.h:30
+#: ../src/Clients/MainApp/ui/single_view.ui.h:11
+msgid "_Slideshow"
+msgstr "_Diapredstavitev"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:2
+#: ../src/Clients/MainApp/ui/main_window.ui.h:31
+#: ../src/Clients/MainApp/ui/single_view.ui.h:12
+msgid "_Fullscreen"
+msgstr "_Celozaslonski način"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:32
+msgid "Thumbnail _elements"
+msgstr "_Elementi sličic"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:33
+msgid "_Dates"
+msgstr "_Datumi"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:34
+msgid "T_ags"
+msgstr "Ozn_ake"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:35
+msgid "_Ratings"
+msgstr "_Ocene"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:36
+msgid "_Components"
+msgstr "_Sestavni deli"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:37
+msgid "Side_bar"
+msgstr "Stranska v_rstica"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:38
+msgid "_Timeline"
+msgstr "_Časovnica"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:39
+msgid "_Filmstrip"
+msgstr "_Filmski trak"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:40
+msgid "Too_lbar"
+msgstr "O_rodna vrstica"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:41
+#: ../src/Clients/MainApp/ui/single_view.ui.h:18
+msgid "Zoom _in"
+msgstr "_Približaj"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:42
+#: ../src/Clients/MainApp/ui/single_view.ui.h:19
+msgid "Zoom _out"
+msgstr "_Oddalji"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:43
+msgid "_Loupe"
+msgstr "_Leča"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:44
+msgid "_Tag Icons"
+msgstr "_Ikone oznak"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:45
+msgid "_Hidden"
+msgstr "_Skrito"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:46
+msgid "_Small"
+msgstr "_Majhne"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:47
+msgid "_Medium"
+msgstr "_Srednje"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:48
+msgid "_Large"
+msgstr "_Velike"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:49
+msgid "Arrange _by"
+msgstr "Uredi _po"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:50
+msgid "_Reverse Order"
+msgstr "_Obrnjen vrstni red"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:51
+msgid "Fin_d"
+msgstr "Naj_di"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:52
+msgid "By _Rating"
+msgstr "Po _oceni"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:53
+msgid "_Set Rating filter..."
+msgstr "_Nastavi filter ocen ..."
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:54
+msgid "_Clear Rating Filter"
+msgstr "_Počisti filter ocen"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:55
+msgid "By _Date"
+msgstr "Po _datumu"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:56
+msgid "_Set Date Range..."
+msgstr "Nastavi _obsega datumov ..."
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:58
+msgid "By _Import Roll"
+msgstr "Po _uvoznem zvitku"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:59
+msgid "_Last Import Roll"
+msgstr "_Zadnji uvozni zvitek"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:60
+msgid "_Select Import Rolls..."
+msgstr "Izberi _uvozne zvitke ..."
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:61
+msgid "_Clear Roll Filter"
+msgstr "_Počisti filter zvitkov"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:62
+msgid "_Untagged Photos"
+msgstr "_Neoznačene fotografije"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:63
+msgid "_Tags"
+msgstr "O_znake"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:64
+msgid "Create New _Tag..."
+msgstr "Ustvari novo _oznako ..."
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:65
+msgid "_Edit Tag..."
+msgstr "_Uredi oznako ..."
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:66
+msgid "_Delete Selected Tag"
+msgstr "_Izbriši izbrano oznako"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:67
+msgid "_Attach Tag to Selection"
+msgstr "_Pripni oznako izboru"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:68
+msgid "_Remove Tag From Selection"
+msgstr "_Odstrani oznako iz izbora"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:69
+msgid "_Tools"
+msgstr "_Orodja"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:70
+#: ../src/Clients/MainApp/ui/single_view.ui.h:20
+msgid "_Help"
+msgstr "Pomo_č"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:71
+msgid "_Contents"
+msgstr "_Vsebina"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:73
+msgid "View"
+msgstr "Pogled"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:74
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:442
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:443
+msgid "Tags: "
+msgstr "Oznake:"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:75
+#: ../src/Clients/MainApp/ui/single_view.ui.h:21
+msgid "Zoom out"
+msgstr "Oddalji"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:76
+#: ../src/Clients/MainApp/ui/single_view.ui.h:22
+msgid "Zoom in"
+msgstr "Približaj"
+
+#: ../src/Clients/MainApp/ui/single_view.ui.h:1
 msgid "F-Spot View"
 msgstr "F-Spot pogled"
 
+#: ../src/Clients/MainApp/ui/single_view.ui.h:3
+msgid "_New Window"
+msgstr "_Novo Okno"
+
 #: ../src/Clients/MainApp/ui/single_view.ui.h:4
-msgid "Show or hide the side pane"
-msgstr "Pokaže ali skrije stranski pladenj"
+msgid "Open _Folder..."
+msgstr "Odpri _Mapo ..."
 
 #: ../src/Clients/MainApp/ui/single_view.ui.h:5
-msgid "Show or hide the toolbar"
-msgstr "Pokaže ali skrije orodno vrstico"
-
-#: ../src/Clients/MainApp/ui/single_view.ui.h:6
-msgid "Side _pane"
-msgstr "_Stranski pladenj"
-
-#: ../src/Clients/MainApp/ui/single_view.ui.h:12
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:7
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:14
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:13
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:8
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:7
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:8
-#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:9
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:8
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:18
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:17
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:12
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:12
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:11
+#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:11
 msgid "_Export"
 msgstr "_Izvozi"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:17
+#: ../src/Clients/MainApp/ui/single_view.ui.h:13
+msgid "Show or hide the toolbar"
+msgstr "Pokaže ali skrije orodno vrstico"
+
+#: ../src/Clients/MainApp/ui/single_view.ui.h:14
 msgid "_Toolbar"
 msgstr "_Orodna vrstica"
+
+#: ../src/Clients/MainApp/ui/single_view.ui.h:15
+msgid "Show or hide the side pane"
+msgstr "Pokaže ali skrije stranski pladenj"
+
+#: ../src/Clients/MainApp/ui/single_view.ui.h:16
+msgid "Side _pane"
+msgstr "_Stranski pladenj"
+
+#: ../src/Clients/MainApp/ui/single_view.ui.h:17
+msgid "Display File _Names"
+msgstr "Prikaz imen _datotek"
 
 #: ../src/Clients/MainApp/ui/tag_selection_dialog.ui.h:1
 msgid "Select a Tag..."
 msgstr "Izbor oznake ..."
 
 #: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:1
-msgid "<b>Image Interpolation</b>"
-msgstr "<b>Interpolacija slike</b>"
+msgid "Preferences"
+msgstr "Možnosti"
 
 #: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:2
-msgid "<b>Transparent Parts</b>"
-msgstr "<b>Prozorni deli</b>"
+msgid "_Interpolate image on zoom"
+msgstr "_Interpolacija slike pri približanju"
 
 #: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:3
 msgid "<small><i>Enable this to allow interpolation on zoomed images. You shouldn't disable this for viewing photos, but disabling the interpolation could be usefull in icon design.</i></small>"
 msgstr "<small><i>Možnost omogoča interpolacijo približanih slik. Ta možnost za ogled fotografij ni priporočena, toda njeno onemogočanje bi lahko bilo uporabno pri oblikovanju ikon.</i></small>"
 
 #: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:4
-msgid "<small><i>You can choose how to display transparent parts in images. This option has no effect on photos, but setting this as check pattern or custom color could be usefull when viewing icons or other artworks with transparent parts.</i></small>"
-msgstr "<small><i>Mogoče je izbrati način prikaza prozornih delov slik. Ta možnost ne vpliva na fotografije, vendar je lahko koristna pri ogledu ikon in ostalih grafičnih podob s prozornimi deli.</i></small>"
+msgid "<b>Image Interpolation</b>"
+msgstr "<b>Interpolacija slike</b>"
 
 #: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:5
 msgid "As _background"
 msgstr "Kot _ozadje"
 
 #: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:6
-msgid "As _custom color: "
-msgstr "Kot barvo _po meri"
-
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:7
 msgid "As check _pattern"
 msgstr "Kot _vzorec šahovnice"
 
+#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:7
+msgid "As _custom color: "
+msgstr "Kot barvo _po meri"
+
 #: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:8
-msgid "Preferences"
-msgstr "Možnosti"
+msgid "<small><i>You can choose how to display transparent parts in images. This option has no effect on photos, but setting this as check pattern or custom color could be usefull when viewing icons or other artworks with transparent parts.</i></small>"
+msgstr "<small><i>Mogoče je izbrati način prikaza prozornih delov slik. Ta možnost ne vpliva na fotografije, vendar je lahko koristna pri ogledu ikon in ostalih grafičnih podob s prozornimi deli.</i></small>"
 
 #: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:9
-msgid "_Interpolate image on zoom"
-msgstr "_Interpolacija slike pri približanju"
+msgid "<b>Transparent Parts</b>"
+msgstr "<b>Prozorni deli</b>"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:141
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:142
 msgid "Page Setup"
 msgstr "Nastavitve strani"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:145
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:149
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:155
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:146
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:150
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:156
 #, csharp-format
 msgid "Paper Size: {0} x {1} mm"
 msgstr "Velikost papirja: {0} x {1} mm"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:152
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:153
 msgid "Set Page Size and Orientation"
 msgstr "Nastavi velikost in usmerjenost strani"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:163
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:164
 msgid "Photos per page"
 msgstr "Fotografije na stran"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:173
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:174
 msgid "Repeat"
 msgstr "Ponavljanje"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:174
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:175
 msgid "Print cut marks"
 msgstr "Natisni oznake za izrez"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:180
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:181
 msgid "Photos layout"
 msgstr "Razporeditev fotografij"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:182
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:183
 msgid "Full Page (no margin)"
 msgstr "Polna stran (brez robov)"
 
 #. Note for translators: "Zoom" is a Fit Mode
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:185
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:186
 msgid "Zoom"
 msgstr "Približevanje"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:186
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:187
 msgid "Fill"
 msgstr "Zapolni"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:187
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:188
 msgid "Scaled"
 msgstr "Prilagojena velikost"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:192
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:193
 msgid "White borders"
 msgstr "Bele obrobe"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:198
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:199
 msgid "Custom Text"
 msgstr "Besedilo po meri"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:202
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:203
 msgid "Photos infos"
 msgstr "Podrobnosti o fotografijah"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:204
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:205
 msgid "Print file name"
 msgstr "Natisni ime datoteke"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:205
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:206
 msgid "Print photo date"
 msgstr "Natisni datum posnetka fotografije"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:206
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:207
 msgid "Print photo time"
 msgstr "Natisni čas posnetka fotografije"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:207
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:208
 msgid "Print photo tags"
 msgstr "Natisni oznake fotografij"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:208
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:209
 msgid "Print photo comment"
 msgstr "Natisni opombe fotografij"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/OpenWithMenu.cs:88
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/OpenWithMenu.cs:89
 msgid "No applications available"
 msgstr "Ni razpoložljivih programov"
 
-#: ../src/Extensions/Editors/FSpot.Editors.Blackout/FSpot.Addins.Editors/BlackoutEditor.cs:38
+#: ../src/Extensions/Editors/FSpot.Editors.Blackout/FSpot.Addins.Editors/BlackoutEditor.cs:41
 msgid "Blackout"
 msgstr "Počrni"
 
-#: ../src/Extensions/Editors/FSpot.Editors.Blackout/FSpot.Addins.Editors/BlackoutEditor.cs:46
+#: ../src/Extensions/Editors/FSpot.Editors.Blackout/FSpot.Addins.Editors/BlackoutEditor.cs:49
 msgid "Select the area that you want blacked out."
 msgstr "Izberite področje, ki ga želite počrniti."
 
-#: ../src/Extensions/Editors/FSpot.Editors.BW/FSpot.Addins.Editors/BWEditor.cs:41
+#: ../src/Extensions/Editors/FSpot.Editors.BW/FSpot.Addins.Editors/BWEditor.cs:46
 msgid "Convert to B/W"
 msgstr "Pretvori v črno-blo"
 
-#: ../src/Extensions/Editors/FSpot.Editors.BW/FSpot.Addins.Editors/BWEditor.cs:44
+#: ../src/Extensions/Editors/FSpot.Editors.BW/FSpot.Addins.Editors/BWEditor.cs:49
 msgid "Apply"
 msgstr "Uveljavi"
 
-#: ../src/Extensions/Editors/FSpot.Editors.Flip/FSpot.Addins.Editors/FlipEditor.cs:37
+#: ../src/Extensions/Editors/FSpot.Editors.Flip/FSpot.Addins.Editors/FlipEditor.cs:40
 msgid "Flip"
 msgstr "Zrcaljenje"
 
-#: ../src/Extensions/Editors/FSpot.Editors.Pixelate/FSpot.Addins.Editors/PixelateEditor.cs:40
+#: ../src/Extensions/Editors/FSpot.Editors.Pixelate/FSpot.Addins.Editors/PixelateEditor.cs:43
 msgid "Pixelate"
 msgstr "Pretvori v točke"
 
-#: ../src/Extensions/Editors/FSpot.Editors.Pixelate/FSpot.Addins.Editors/PixelateEditor.cs:48
+#: ../src/Extensions/Editors/FSpot.Editors.Pixelate/FSpot.Addins.Editors/PixelateEditor.cs:51
 msgid "Select the area that you want pixelated."
 msgstr "Izberite področje, ki ga želite pretvoriti v točke."
 
-#: ../src/Extensions/Editors/FSpot.Editors.Resize/FSpot.Addins.Editors/ResizeEditor.cs:42
+#: ../src/Extensions/Editors/FSpot.Editors.Resize/FSpot.Addins.Editors/ResizeEditor.cs:46
 msgid "Resize"
 msgstr "Spremeni velikost"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:79
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:77
 msgid "Transferring Pictures"
 msgstr "Prenašanje slik"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:132
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:128
 #, csharp-format
 msgid "Transferring picture \"{0}\" To CD"
 msgstr "Prenašanje slike \"{0}\" na CD"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:147
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:392
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:421
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:237
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:288
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:255
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:143
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:394
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:423
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:230
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:290
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:256
 msgid "Done Sending Photos"
 msgstr "Pošiljanje fotografij je končano"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:149
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:145
 msgid "Transfer Complete"
 msgstr "Prenos je končan"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:156
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:152
 msgid "Error While Transferring"
 msgstr "Napaka med prenosom"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:164
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:299
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:159
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:295
 msgid "Error Transferring"
 msgstr "Napaka prenosa"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:174
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:169
 msgid "copying..."
 msgstr "kopiranje ..."
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:1
-msgid "<b><i>There are some previously scheduled items to write</i></b>"
-msgstr "<b><i>Obstaja nekaj predhodno razporejenih predmetov za zapis</i></b>"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:2
-msgid "<b>Photos to Burn</b>"
-msgstr "<b>Fotografije za zapis</b>"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:3
 msgid "Create CD"
 msgstr "Ustvari CD"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:2
+msgid "_Write only these photos to CD"
+msgstr "_Zapiši le te fotografije na CD"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:3
+msgid "_Browse Previously Scheduled Files"
+msgstr "_Brskaj po predhodno razporejenih datotekah"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:4
+msgid "<b><i>There are some previously scheduled items to write</i></b>"
+msgstr "<b><i>Obstaja nekaj predhodno razporejenih predmetov za zapis</i></b>"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:5
 msgid "Size of the exported selection:"
 msgstr "Velikost izvoženega izbora:"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:6
-msgid "_Browse Previously Scheduled Files"
-msgstr "_Brskaj po predhodno razporejenih datotekah"
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:7
+msgid "<b>Photos to Burn</b>"
+msgstr "<b>Fotografije za zapis</b>"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:8
-msgid "_Write only these photos to CD"
-msgstr "_Zapiši le te fotografije na CD"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:111
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:113
 msgid "Waiting for authorization"
 msgstr "Čakanje na overitev"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:112
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:114
 msgid ""
 "F-Spot will now launch your browser so that you can enable the permission you just selected.\n"
 "\n"
@@ -2957,28 +2971,28 @@ msgstr ""
 "\n"
 "Ko bo Facebook zahteval vrnitev k programu, spodaj kliknite \"V redu\"."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:296
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:298
 msgid "Too many images to export"
 msgstr "Določenih je preveč slik za izvoz"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:297
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:299
 #, csharp-format
 msgid "Facebook only permits {0} photographs per album.  Please refine your selection and try again."
 msgstr "Facebook omogoča le {0} fotografij na album. Treba je izpopolniti izbiro in poskusiti ponovno. "
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:312
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:314
 msgid "Album must have a name"
 msgstr "Album mora imeti ime"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:313
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:315
 msgid "Please name your album or choose an existing album."
 msgstr "Poimenujte album ali izberite obstoječi album."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:327
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:329
 msgid "Creating a new album failed"
 msgstr "Ustvarjanje novega albuma je spodletelo"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:328
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:330
 #, csharp-format
 msgid ""
 "An error occurred creating a new album.\n"
@@ -2989,45 +3003,45 @@ msgstr ""
 "\n"
 "{0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:341
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:516
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:168
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:184
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:174
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:343
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:518
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:161
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:186
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:175
 msgid "Uploading Pictures"
 msgstr "Pošiljanje slik"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:369
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:243
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:213
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:371
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:245
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:214
 #, csharp-format
 msgid "Uploading picture \"{0}\" ({1} of {2})"
 msgstr "Pošiljanje slike \"{0}\" ({1} od {2})"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:383
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:385
 #, csharp-format
 msgid "Error Uploading To Facebook: {0}"
 msgstr "Napaka med pošiljanjem na Facebook: {0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:384
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:412
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:248
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:229
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:277
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:244
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:386
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:414
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:244
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:222
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:279
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:245
 #: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/FSpot.Exporters.Tabblo/TabbloExport.cs:321
 msgid "Error"
 msgstr "Napaka"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:394
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:423
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:239
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:290
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:257
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:396
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:425
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:232
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:292
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:258
 msgid "Upload Complete"
 msgstr "Pošiljanje je končano"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:397
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:399
 msgid "Visit F-Spot group on Facebook"
 msgstr "Obišči skupino F-Spot na Facebook"
 
@@ -3103,353 +3117,357 @@ msgid "You are not logged in."
 msgstr "Niste prijavljeni."
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:1
-msgid "Auto-confirm Photos"
-msgstr "Samodejno potrjevanje fotografij"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:2
-msgid "Caption"
-msgstr "Naslov"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:3
-msgid "Create a new album"
-msgstr "Ustvari nov album"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:4
-msgid "Description"
-msgstr "Opis"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:5
 msgid "Export to Facebook"
 msgstr "Izvozi v Facebook"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:6
-msgid "In this photo"
-msgstr "Na tej fotografiji"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:7
-msgid "Location"
-msgstr "Mesto"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:8
-msgid "Login"
-msgstr "Prijava"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:9
-msgid "Logout"
-msgstr "Odjava"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:11
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:2
 msgid "Not logged in"
 msgstr "Ni prijavljen"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:12
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:3
+msgid "Login"
+msgstr "Prijava"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:4
+msgid "Logout"
+msgstr "Odjava"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:5
 msgid "Permissions:"
 msgstr "Dovoljenja:"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:13
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:6
 msgid "Stay Connected"
 msgstr "Ostani povezan"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:14
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:7
+msgid "Auto-confirm Photos"
+msgstr "Samodejno potrjevanje fotografij"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:8
 msgid "Use an existing album"
 msgstr "Uporabi obstoječi album"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:10
+msgid "Location"
+msgstr "Mesto"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:11
+msgid "Description"
+msgstr "Opis"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:12
+msgid "Create a new album"
+msgstr "Ustvari nov album"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:13
+msgid "Caption"
+msgstr "Naslov"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:14
+msgid "In this photo"
+msgstr "Na tej fotografiji"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:15
 msgid "Who is this?"
 msgstr "Kdo je to?"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:139
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:5
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:141
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:4
 msgid "Authorize"
 msgstr "Pooblasti"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:145
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:147
 #, csharp-format
 msgid "Return to this window after you have finished the authorization process on {0} and click the \"Complete Authorization\" button below"
 msgstr "Po končanem postopku pooblastitve na {0} se vrnite v to okno in kliknite gumb \"Končanj pooblastitev\" spodaj"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:146
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:148
 msgid "Complete Authorization"
 msgstr "Končaj pooblastitev"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:151
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:153
 #, csharp-format
 msgid "Logging into {0}"
 msgstr "Prijavljanje v {0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:152
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:154
 msgid "Checking credentials..."
 msgstr "Preverjanje gesla ..."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:159
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:161
 #, csharp-format
 msgid "Welcome {0} you are connected to {1}"
 msgstr "Dobrodošli {0}, povezani ste na {1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:162
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:164
 #, csharp-format
 msgid "Sign in as a different user"
 msgstr "Prijava kot drug uporabnik"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:167
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:169
 #, csharp-format
 msgid "Used {0} of your allowed {1} monthly quota"
 msgstr "Uporabljene je {0} od dovoljene mesečne kvote {1}."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:270
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:339
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:272
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:341
 msgid "Unable to log on"
 msgstr "Ni se mogoče prijaviti"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:359
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:361
 #, csharp-format
 msgid "Waiting for response {0} of {1}"
 msgstr "Čakanje na odziv {0} od {1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:386
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:210
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:388
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:203
 #, csharp-format
 msgid "Uploading picture \"{0}\""
 msgstr "Pošiljanje slike \"{0}\""
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:409
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:411
 #, csharp-format
 msgid "Error Uploading To {0}: {1}"
 msgstr "Napaka med pošiljanjem na {0}: {1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:496
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:498
 msgid "Unable to log on."
 msgstr "Ni se mogoče prijaviti."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:497
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:499
 #, csharp-format
 msgid "F-Spot was unable to log on to {0}.  Make sure you have given the authentication using {0} web browser interface."
 msgstr "Ni se mogoče prijaviti na {0}. Prepričajte se, da ste dali pooblastitev z uporabo vmesnika spletnega brskalnika {0}."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:1
-msgid "<b>Account</b>"
-msgstr "<b>Račun</b>"
-
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:3
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:4
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:4
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:4
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:4
-msgid "<b>Style</b>"
-msgstr "<b>Slog</b>"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:4
-msgid "<b>Viewing permissions</b>"
-msgstr "<b>Dovoljenja za ogled</b>"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:7
-msgid "Export tag _hierarchy"
-msgstr "Izvozi _hierarhijo oznak"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:8
 msgid "F-Spot needs your authorization in order to upload photos to your {0} account. Press the \"Authorize\" button to open a web browser and give F-Spot the authorization. "
 msgstr "F-Spot potrebuje pooblastitev za nalaganje fotografij na vaš račun {0}. Pritisnite gumb \"Pooblastitev\" za odprtje spletnega brskalnika in pooblastitev F-Spota."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:9
-msgid "Ignore _top level tags"
-msgstr "Prezri oznake _zgornjih ravni"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:10
-msgid "Private"
-msgstr "Zasebno"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:11
-msgid "Public"
-msgstr "Javno"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:12
-msgid "Visible to Family"
-msgstr "Vidno družini"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:13
-msgid "Visible to Friends"
-msgstr "Vidno prijateljem"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:15
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:8
-msgid "_Export tags"
-msgstr "Izvozi ozna_ke"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:16
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:15
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:11
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:11
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:10
-msgid "_Resize to: "
-msgstr "Sp_remeni velikost na:"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:17
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:5
 msgid "_View photos in browser when done uploading"
 msgstr "Ogled fotografij _v brskalniku po končanem pošiljanju"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:18
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:17
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:12
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:12
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:11
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:6
+msgid "<b>Account</b>"
+msgstr "<b>Račun</b>"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:7
+msgid "Private"
+msgstr "Zasebno"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:8
+msgid "Visible to Friends"
+msgstr "Vidno prijateljem"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:9
+msgid "Visible to Family"
+msgstr "Vidno družini"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:10
+msgid "Public"
+msgstr "Javno"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:11
+msgid "<b>Viewing permissions</b>"
+msgstr "<b>Dovoljenja za ogled</b>"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:12
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:12
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:8
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:8
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:8
+msgid "_Resize to: "
+msgstr "Sp_remeni velikost na:"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:13
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:13
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:9
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:9
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:9
 msgid "pixels"
 msgstr "točke"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:150
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:14
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:10
+msgid "_Export tags"
+msgstr "Izvozi ozna_ke"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:15
+msgid "Export tag _hierarchy"
+msgstr "Izvozi _hierarhijo oznak"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:16
+msgid "Ignore _top level tags"
+msgstr "Prezri oznake _zgornjih ravni"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:17
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:16
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:11
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:11
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:10
+msgid "<b>Style</b>"
+msgstr "<b>Slog</b>"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:116
+msgid "Gallery"
+msgstr "Galerija"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:146
 msgid "Select Export Folder"
 msgstr "Izbor mape za izvoz"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:202
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:198
 msgid "Building Gallery"
 msgstr "Gradnja galerije"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:239
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:235
 #, csharp-format
 msgid "Exporting \"{0}\"..."
 msgstr "Izvažanje \"{0}\" ..."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:246
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:242
 #, csharp-format
 msgid "Error Copying \"{0}\" to Gallery:{2}{1}"
 msgstr "Napaka med kopiranjem \"{0}\" v galerijo: {2}{1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:272
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:268
 #, csharp-format
 msgid "Transferring to \"{0}\""
 msgstr "Prenašanje na \"{0}\""
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:273
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:269
 msgid "Transferring..."
 msgstr "Prenašanje ..."
 
 #. No need to check result here as if result is not true, an Exception will be thrown before
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:278
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:274
 msgid "Export Complete."
 msgstr "Izvoz je končan."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:280
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:276
 msgid "Exporting Photos Completed."
 msgstr "Izvažanje fotografij je končano."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:345
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:340
 msgid "Exporting Photos"
 msgstr "Izvažanje fotografij"
 
 #. Note for translators: light as clear, opposite as dark
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:749
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:73
 msgid "Light"
 msgstr "Svetlo"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:750
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:74
 msgid "Dark"
 msgstr "Temno"
 
 #. Abbreviation of previous
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:930
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:254
 msgid "Prev"
 msgstr "Predhodna"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:932
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1173
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:256
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:497
 msgid "Index"
 msgstr "Kazalo"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1042
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:366
 msgid "Gallery generated by"
 msgstr "Galerijo je ustvaril"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1082
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:406
 msgid "Show Styles"
 msgstr "Pokaži sloge"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1083
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:407
 msgid "Hide Styles"
 msgstr "Skrij sloge"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1250
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1383
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:574
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:707
 msgid "Page:"
 msgstr "Stran:"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:1
-msgid "<b>Destination</b>"
-msgstr "<b>Cilj</b>"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:2
-msgid "<b>Export Method</b>"
-msgstr "<b>Način izvoza</b>"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:5
-msgid "Create _gallery using \"Original\""
-msgstr "Ustvari galerijo z uporabo \"Izvirnika\""
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:6
-msgid "Create standalone _web gallery"
-msgstr "Ustvari samostojno spletno _galerijo"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:7
-msgid "D_escription:"
-msgstr "Op_is:"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:8
-msgid "Export _tags"
-msgstr "Izvozi oz_nake"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:9
-msgid "Export tag _icons"
-msgstr "Izvozi _ikone oznak"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:11
-msgid "G_allery Name:"
-msgstr "Ime g_alerije:"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:12
-msgid "Open _destination when done exporting"
-msgstr "_Odpiri cilj po končanem izvozu"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:14
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:3
 msgid "_Folder:"
 msgstr "_Mapa:"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:16
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:4
+msgid "G_allery Name:"
+msgstr "Ime g_alerije:"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:5
+msgid "D_escription:"
+msgstr "Op_is:"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:6
+msgid "Open _destination when done exporting"
+msgstr "_Odpiri cilj po končanem izvozu"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:7
+msgid "<b>Destination</b>"
+msgstr "<b>Cilj</b>"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:8
+msgid "Create standalone _web gallery"
+msgstr "Ustvari samostojno spletno _galerijo"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:9
 msgid "_Save the files only"
 msgstr "_Shrani le datoteke"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:132
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:10
+msgid "Create _gallery using \"Original\""
+msgstr "Ustvari galerijo z uporabo \"Izvirnika\""
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:11
+msgid "<b>Export Method</b>"
+msgstr "<b>Način izvoza</b>"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:14
+msgid "Export _tags"
+msgstr "Izvozi oz_nake"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:15
+msgid "Export tag _icons"
+msgstr "Izvozi _ikone oznak"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:122
 msgid "Invalid URL"
 msgstr "Neveljaven URL"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:133
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:123
 msgid "The gallery URL entry does not appear to be a valid URL"
 msgstr "URL galerije ni videti kot veljaven URL"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:143
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:170
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:181
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:133
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:160
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:171
 msgid "Error while connecting to Gallery"
 msgstr "Med povezovanjem z galerijo je prišlo do napake"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:144
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:171
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:182
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:134
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:161
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:172
 #, csharp-format
 msgid "The following error was encountered while attempting to log in: {0}"
 msgstr "Med poskusom prijave je prišlo do naslednje napake: {0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:158
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:148
 msgid "A Gallery with this name already exists"
 msgstr "Galerija s tem imenom že obstaja"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:159
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:149
 #, csharp-format
 msgid "There is already a Gallery with the same name in your registered Galleries. Please choose a unique name."
 msgstr "Galerija s tem imenom že obstaja v vpisanih galerijah. Izberite edinstveno ime."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/FormClient.cs:327
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/FormClient.cs:321
 msgid "Unhandled exception"
 msgstr "Nesprejeta izjema"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAccount.cs:82
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAccount.cs:68
 msgid ""
 "Cannot connect to a Gallery for which the version is unknown.\n"
 "Please check that you have Remote plugin 1.0.8 or later"
@@ -3457,15 +3475,15 @@ msgstr ""
 "Ni se mogoče povezati z galerijo neznane različice.\n"
 "Naložiti je treba vstavek Remote različice 1.0.8. ali kasnejše"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAddAlbum.cs:95
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAddAlbum.cs:83
 msgid "(TopLevel)"
 msgstr "(Vrhnja raven)"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAddAlbum.cs:149
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAddAlbum.cs:135
 msgid "Invalid Gallery name"
 msgstr "Neveljavno ime galerije"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAddAlbum.cs:150
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAddAlbum.cs:136
 msgid ""
 "The gallery name contains invalid characters.\n"
 "Only letters, numbers, - and _ are allowed"
@@ -3473,49 +3491,20 @@ msgstr ""
 "Ime galerije vsebuje neveljavne znake.\n"
 "Dovoljene so le črke, številke ter - in _"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:228
-#, csharp-format
-msgid "Error uploading picture \"{0}\" to Gallery: {1}"
-msgstr "Napaka med pošiljanjem slike \"{0}\" v galerijo: {1}"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:253
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:312
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:272
-msgid "(No Gallery)"
-msgstr "(Ni galerije)"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:339
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:431
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:363
-msgid "(Not Connected)"
-msgstr "(Ni Povezave)"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:340
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:432
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:364
-msgid "(No Albums)"
-msgstr "(Ni Albumov)"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:381
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:490
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:401
-msgid "No account selected"
-msgstr "Noben račun ni bil izbran"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:382
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/Gallery.cs:139
 msgid "Error reading server response"
 msgstr "Napaka med branjem odziva strežnika"
 
 #. failed to find the response
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:394
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/Gallery.cs:151
 msgid "Server returned response without Gallery content"
 msgstr "Strežnik je vrnil odgovor brez vsebine Galerije"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:717
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/Gallery.cs:464
 msgid "Error while creating new album"
 msgstr "Napaka med ustvarjanjem novega albuma"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:718
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/Gallery.cs:465
 #, csharp-format
 msgid ""
 "The following error was encountered while attempting to perform the requested operation:\n"
@@ -3524,23 +3513,52 @@ msgstr ""
 "Med poskusom izvajanja zahtevanega opravila je prišlo do napake:\n"
 "{0} ({1})"
 
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:221
+#, csharp-format
+msgid "Error uploading picture \"{0}\" to Gallery: {1}"
+msgstr "Napaka med pošiljanjem slike \"{0}\" v galerijo: {1}"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:246
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:314
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:273
+msgid "(No Gallery)"
+msgstr "(Ni galerije)"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:330
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:433
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:364
+msgid "(Not Connected)"
+msgstr "(Ni Povezave)"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:331
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:434
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:365
+msgid "(No Albums)"
+msgstr "(Ni Albumov)"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:372
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:492
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:402
+msgid "No account selected"
+msgstr "Noben račun ni bil izbran"
+
 #: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_add_album_dialog.ui.h:1
-msgid "_Album Name:"
-msgstr "Ime _albuma:"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_add_album_dialog.ui.h:2
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_album_dialog.ui.h:3
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_add_album_dialog.ui.h:3
-msgid "_Description:"
-msgstr "O_pis:"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_add_album_dialog.ui.h:3
 msgid "_Parent Album:"
 msgstr "_Nadrejeni album:"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_add_album_dialog.ui.h:4
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_add_album_dialog.ui.h:2
 msgid "_Title:"
 msgstr "_Naslov:"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_add_album_dialog.ui.h:3
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_album_dialog.ui.h:1
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_add_album_dialog.ui.h:1
+msgid "_Description:"
+msgstr "O_pis:"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_add_album_dialog.ui.h:4
+msgid "_Album Name:"
+msgstr "Ime _albuma:"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_add_dialog.ui.h:1
 #: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_dialog.ui.h:1
@@ -3548,94 +3566,94 @@ msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
 msgstr "<span weight='bold' size='larger'>Napaka med povezovanjem z galerijo</span>\n"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_add_dialog.ui.h:3
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_dialog.ui.h:5
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_dialog.ui.h:3
 msgid "Please verify that the settings for this gallery are correct."
 msgstr "Potrdite, da so nastavitve za to galerijo pravilne."
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_add_dialog.ui.h:4
-msgid "U_RL:"
-msgstr "U_RL:"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_add_dialog.ui.h:5
 msgid "_Gallery Name:"
 msgstr "Ime _galerije:"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_add_dialog.ui.h:6
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_dialog.ui.h:10
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_add_dialog.ui.h:5
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_dialog.ui.h:9
 #: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_add_dialog.ui.h:1
-#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:10
+#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:3
 msgid "_Password:"
 msgstr "_Geslo:"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_add_dialog.ui.h:7
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_dialog.ui.h:11
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_add_dialog.ui.h:6
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_dialog.ui.h:10
 #: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_add_dialog.ui.h:2
-#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:11
+#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:4
 msgid "_Username:"
 msgstr "_Uporabniško ime:"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:1
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:1
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:1
-msgid "<b>Album</b>"
-msgstr "<b>Album</b>"
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_add_dialog.ui.h:7
+msgid "U_RL:"
+msgstr "U_RL:"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:2
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:3
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:3
+msgid "_Gallery:"
+msgstr "_Galerija:"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:4
 msgid "<b>Gallery</b>"
 msgstr "<b>Galerija</b>"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:6
-msgid "Export _titles and comments"
-msgstr "Izvozi _naslove in opombe"
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:5
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:5
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:5
+msgid "_Export to Album:"
+msgstr "Iz_voz v album:"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:7
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:6
 #: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:6
 #: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:6
 msgid "Open _album in browser when done uploading"
 msgstr "_Odpri album v brskalniku po končanem pošiljanju"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:9
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:9
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:9
-msgid "_Export to Album:"
-msgstr "Iz_voz v album:"
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:7
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:7
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:7
+msgid "<b>Album</b>"
+msgstr "<b>Album</b>"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:10
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:10
-msgid "_Gallery:"
-msgstr "_Galerija:"
+msgid "Export _titles and comments"
+msgstr "Izvozi _naslove in opombe"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/GoogleAddAlbum.cs:111
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/GoogleAddAlbum.cs:100
 msgid "Error while creating Album"
 msgstr "Napaka med ustvarjanjem albuma"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/GoogleAddAlbum.cs:112
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/GoogleAddAlbum.cs:101
 #, csharp-format
 msgid "The following error was encountered while attempting to create an album: {0}"
 msgstr "Med poskusom ustvarjanja albuma je prišlo do naslednje napake: {0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:206
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:208
 #, csharp-format
 msgid "{0} Sent"
 msgstr "{0} poslanih"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:208
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:210
 #, csharp-format
 msgid "{0} of approx. {1}"
 msgstr "{0} od približno {1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:275
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:242
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:277
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:243
 #, csharp-format
 msgid "Error Uploading To Gallery: {0}"
 msgstr "Napaka med pošiljanjem v Galerijo: {0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:363
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:365
 #, csharp-format
 msgid "Available space: {0}, {1}% used out of {2}"
 msgstr "Prostor na voljo: {0}, uporabljenih {1}% od {2}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:467
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:469
 #, csharp-format
 msgid ""
 "The selected album has a limit of {0} pictures,\n"
@@ -3644,17 +3662,17 @@ msgstr ""
 "Izbrani album ima mejo {0} slik,\n"
 "čemur bi zadostovala trenutna izbira {1} slik"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_album_dialog.ui.h:1
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_add_album_dialog.ui.h:1
-msgid "Public Album"
-msgstr "Javni album"
-
 #: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_album_dialog.ui.h:2
 #: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_add_album_dialog.ui.h:2
 msgid "_Album Title:"
 msgstr "Naslov _albuma:"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_dialog.ui.h:3
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_album_dialog.ui.h:3
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_add_album_dialog.ui.h:3
+msgid "Public Album"
+msgstr "Javni album"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_dialog.ui.h:4
 msgid "<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
 msgstr "<span weight='bold' size='larger'>Vaš račun Google je zaklenjen</span>\n"
 
@@ -3668,21 +3686,21 @@ msgstr ""
 "Vnesite črke, kot so prikazane na sliki v polju 'Captcha'.\n"
 "<i>Velikost črk ni pomembna</i>"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_dialog.ui.h:9
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_dialog.ui.h:11
 msgid "_Captcha:"
 msgstr "_Captcha:"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:3
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:4
 msgid "<b>PicasaWeb Export</b>"
 msgstr "<b>Izvoz PicasaWeb</b>"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:3
-msgid "<b>SmugMug Export</b>"
-msgstr "<b>Izvoz SmugMug</b>"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:7
 msgid "_Account:"
 msgstr "_Račun:"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:4
+msgid "<b>SmugMug Export</b>"
+msgstr "<b>Izvoz SmugMug</b>"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/FSpot.Exporters.Tabblo/TabbloExport.cs:310
 msgid "Done sending photos"
@@ -3696,125 +3714,129 @@ msgstr "Pošiljanje je končano"
 msgid "Error uploading to Tabblo: "
 msgstr "Napaka med pošiljanjem v Tabblo:"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:1
-msgid "<b>F-Spot tags</b>"
-msgstr "<b>Oznake F-Spot</b>"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:3
+#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:5
 msgid "<b>Tabblo account</b>"
 msgstr "<b>Račun Tabblo</b>"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:4
+#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:6
 msgid "<small><i>F-Spot tags can help you track the export status of photos. Example: Use one tag for the photos that you plan to export, and another one for those already exported. Here, you can tell F-Spot to automatically replace these tags as appropriate.</i></small>"
 msgstr "<small><i>F-Spot oznake lahko olajšajo sledenje izvoznemu stanju fotografij. Primer: uporaba ene oznake za fotografije, pripravljene na izvoz in druge za fotografije, ki so bile že izvožene. Tukaj lahko nastavite samodejno zamenjavo oznak.</i></small>"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:6
-msgid "Rem_ove from exported photos:"
-msgstr "_Odstrani iz izvoženih fotografij:"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:7
 msgid "Select..."
 msgstr "Izberi ..."
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:8
+msgid "Rem_ove from exported photos:"
+msgstr "_Odstrani iz izvoženih fotografij:"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:9
 msgid "_Attach to exported photos:"
 msgstr "_Pripni izvoženim fotografijam:"
 
+#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:10
+msgid "<b>F-Spot tags</b>"
+msgstr "<b>Oznake F-Spot</b>"
+
 #: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TrustError.ui.h:1
-msgid "A trust error occured while attempting to access"
-msgstr "Med poskusom dostopa je prišlo do napake zaupanja"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TrustError.ui.h:2
-msgid "Abort this session"
-msgstr "Prekini to sejo"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TrustError.ui.h:3
-msgid "Always trust this site's certificate"
-msgstr "Vedno zaupaj potrdilu te strani"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TrustError.ui.h:4
-msgid "Do you wish to:"
-msgstr "Ali želite: "
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TrustError.ui.h:5
 msgid "Trust Error"
 msgstr "Napaka zaupanja"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TrustError.ui.h:6
+#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TrustError.ui.h:2
+msgid "A trust error occured while attempting to access"
+msgstr "Med poskusom dostopa je prišlo do napake zaupanja"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TrustError.ui.h:3
+msgid "Do you wish to:"
+msgstr "Ali želite: "
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TrustError.ui.h:4
+msgid "Abort this session"
+msgstr "Prekini to sejo"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TrustError.ui.h:5
 msgid "Trust the site's certificate this once"
 msgstr "Zaupaj potrdilu te strani tokrat"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:67
+#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TrustError.ui.h:6
+msgid "Always trust this site's certificate"
+msgstr "Vedno zaupaj potrdilu te strani"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:70
 msgid "This tool requires an active selection. Please select one or more pictures and try again"
 msgstr "To orodje zahteva dejavno izbiro. Izberite eno ali več slik in poskusite znova."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:83
+#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:86
 msgid "Select export folder"
 msgstr "Izbor mape za izvoz"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:121
+#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:124
 msgid "Exporting files"
 msgstr "Izvoz datotek"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:127
+#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:130
 #, csharp-format
 msgid "Preparing photo \"{0}\""
 msgstr "Pripravljanje fotografije \"{0}\""
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Zip/Resources/zip_export.ui.h:1
-msgid "_Create"
-msgstr "_Ustvari"
+msgid "_Location:"
+msgstr "_Mesto:"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Zip/Resources/zip_export.ui.h:2
 msgid "_File name:"
 msgstr "_Ime datoteke:"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Zip/Resources/zip_export.ui.h:3
-msgid "_Location:"
-msgstr "_Mesto:"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/Resources/zip_export.ui.h:4
 msgid "_Scale:"
 msgstr "M_erilo:"
 
-#: ../src/Extensions/Tools/FSpot.Tools.ChangePhotoPath/Resources/ChangePhotoPath.ui.h:1
-msgid "<b>Specify the toplevel Photos directories</b>"
-msgstr "<b>Navedite vrhnje mape fotografij</b>"
+#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/Resources/zip_export.ui.h:4
+msgid "_Create"
+msgstr "_Ustvari"
 
-#: ../src/Extensions/Tools/FSpot.Tools.ChangePhotoPath/Resources/ChangePhotoPath.ui.h:2
+#: ../src/Extensions/Tools/FSpot.Tools.ChangePhotoPath/Resources/ChangePhotoPath.ui.h:1
 msgid "Change Photos directory"
 msgstr "Spremeni mapo fotograij"
+
+#: ../src/Extensions/Tools/FSpot.Tools.ChangePhotoPath/Resources/ChangePhotoPath.ui.h:2
+msgid "Old base path (URI) was"
+msgstr "Stara osnovna pot (URI) je bila"
 
 #: ../src/Extensions/Tools/FSpot.Tools.ChangePhotoPath/Resources/ChangePhotoPath.ui.h:3
 msgid "Change base path (URI) to"
 msgstr "Spremeni osnovno pot (URI) v"
 
 #: ../src/Extensions/Tools/FSpot.Tools.ChangePhotoPath/Resources/ChangePhotoPath.ui.h:4
-msgid "Old base path (URI) was"
-msgstr "Stara osnovna pot (URI) je bila"
+msgid "<b>Specify the toplevel Photos directories</b>"
+msgstr "<b>Navedite vrhnje mape fotografij</b>"
 
-#: ../src/Extensions/Tools/FSpot.Tools.DevelopInUFraw/FSpot.Tools.DevelopInUFraw/DevelopInUFRawBatch.cs:51
+#: ../src/Extensions/Tools/FSpot.Tools.ChangePhotoPath/Resources/ChangePhotoPath.ui.h:5
+msgid "_Apply changes"
+msgstr "_Uveljavi spremembe"
+
+#: ../src/Extensions/Tools/FSpot.Tools.DevelopInUFraw/FSpot.Tools.DevelopInUFraw/DevelopInUFRawBatch.cs:50
 msgid "Developing photos"
 msgstr "Razvijanje fotografij"
 
-#: ../src/Extensions/Tools/FSpot.Tools.DevelopInUFraw/FSpot.Tools.DevelopInUFraw/DevelopInUFRawBatch.cs:58
+#: ../src/Extensions/Tools/FSpot.Tools.DevelopInUFraw/FSpot.Tools.DevelopInUFraw/DevelopInUFRawBatch.cs:57
 #, csharp-format
 msgid "Developing {0}"
 msgstr "Razvijanje {0}"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:128
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:129
 msgid "F-Spot Gallery"
 msgstr "Galerija F-Spot"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:129
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:130
 msgid "The web gallery seems to be offline now"
 msgstr "Videti je, da je spletna galerija trenutno nepovezana"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:130
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:131
 msgid "Show All"
 msgstr "Pokaži vse"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:140
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:141
 #, csharp-format
 msgid "{0} photo"
 msgid_plural "{0} photos"
@@ -3823,37 +3845,45 @@ msgstr[1] "{0} fotografija"
 msgstr[2] "{0} fotografiji"
 msgstr[3] "{0} fotografije"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:182
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:8
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:183
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:4
 msgid "Current View"
 msgstr "Trenutni pogled"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:185
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:186
 msgid "Selected"
 msgstr "Izbrano"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/LiveWebGalleryDialog.cs:111
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/LiveWebGalleryDialog.cs:113
 msgid "none"
 msgstr "brez"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/LiveWebGalleryDialog.cs:114
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/LiveWebGalleryDialog.cs:116
 #, csharp-format
 msgid " Gallery: {0},  Photos: {1},  Last client: {3}"
 msgstr " Galerija: {0}, fotografij: {1}, zadnji odjemalec: {3}"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/LiveWebGalleryDialog.cs:178
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/LiveWebGalleryDialog.cs:180
 msgid "Gallery is inactive"
 msgstr "Galerija je nedejavna"
 
 #: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:1
-msgid ""
-"<small><i>The gallery stays active until you either deactivate it or close\n"
-"F-Spot. Make sure local viewers access it bypassing HTTP proxy.</i></small>"
-msgstr ""
-"<small><i>Galerija ostane dejavna dokler je ne izključite ali zaprete F-spota.\n"
-"Prepričajte se, da lahko do dostopajo krajevni obiskovalci tako da obidejo posredniški strežnik HTTP.</i></small>"
+msgid "F-Spot Live Web Gallery"
+msgstr "Živa spletna galerija F-Spot"
+
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:2
+msgid "Selected Photos"
+msgstr "Izbrane fotografije"
 
 #: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:3
+msgid "Photos with a Tag"
+msgstr "Fotografije z oznako"
+
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:5
+msgid "Share:"
+msgstr "Souporaba:"
+
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:6
 msgid ""
 "<small><i>When the gallery is active, above is the URL you need to open \n"
 "on another computer to access the shared photos.</i></small>"
@@ -3861,49 +3891,41 @@ msgstr ""
 "<small><i>Ko je galerija dejavna, je mogoče do fotografij v souporabi\n"
 "dostopati preko zgornjega URL-ja.</i></small>"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:5
-msgid "Activates and deactivates the web gallery"
-msgstr "Omogoči in onemogoči spletno galerijo"
-
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:6
-msgid "Allow viewers to add tags"
-msgstr "Obiskovalcem dovoli dodajanje oznak"
-
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:7
-msgid "Copy URL to clipboard"
-msgstr "Kopiraj URL na odložišče"
-
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:9
-msgid "F-Spot Live Web Gallery"
-msgstr "Živa spletna galerija F-Spot"
-
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:10
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:8
 msgid "Gallery URL:"
 msgstr "URL galerije:"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:11
-msgid "Limit number of shared photos to"
-msgstr "Omeji število fotografij v souporabi na"
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:9
+msgid "Activates and deactivates the web gallery"
+msgstr "Omogoči in onemogoči spletno galerijo"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:12
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:10
+msgid "Allow viewers to add tags"
+msgstr "Obiskovalcem dovoli dodajanje oznak"
+
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:11
 msgid "Options:"
 msgstr "Možnosti:"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:13
-msgid "Photos with a Tag"
-msgstr "Fotografije z oznako"
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:12
+msgid "Limit number of shared photos to"
+msgstr "Omeji število fotografij v souporabi na"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:14
-msgid "Selected Photos"
-msgstr "Izbrane fotografije"
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:13
+msgid ""
+"<small><i>The gallery stays active until you either deactivate it or close\n"
+"F-Spot. Make sure local viewers access it bypassing HTTP proxy.</i></small>"
+msgstr ""
+"<small><i>Galerija ostane dejavna dokler je ne izključite ali zaprete F-spota.\n"
+"Prepričajte se, da lahko do dostopajo krajevni obiskovalci tako da obidejo posredniški strežnik HTTP.</i></small>"
 
 #: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:15
-msgid "Share:"
-msgstr "Souporaba:"
-
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:16
 msgid "Views:"
 msgstr "Ogledov:"
+
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:16
+msgid "Copy URL to clipboard"
+msgstr "Kopiraj URL na odložišče"
 
 #: ../src/Extensions/Tools/FSpot.Tools.MergeDb/FSpot.Tools.MergeDb/MergeDb.cs:91
 msgid "Error opening the selected file"
@@ -3930,10 +3952,22 @@ msgstr ""
 "Izbrati je treba mapo za preslikavo.</big>"
 
 #: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:1
-msgid "<small><i>Choose the location of the database you want to import from</i></small>"
-msgstr "<small><i>Izbira mesta podatkovne zbirke za uvažanje</i></small>"
+msgid "Merge another F-Spot collection"
+msgstr "Združitev druge zbirke F-Spot"
 
 #: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:2
+msgid "<small><i>Copy the images locally or keep them where they are. If you chose the later, be sure that this location will stay accessible from f-spot.</i></small>"
+msgstr "<small><i>Krajevno kopiranje slik ali izbira njihovega trenutnega mesta. V slednjem primeru se je treba prepričati, da bo to mesto ostalo dostopno iz f-spot-a.</i></small>"
+
+#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:3
+msgid "Keep the images at their original location"
+msgstr "Obdrži slike na njihovem izvirnem mestu"
+
+#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:4
+msgid "Copy images to photos folder"
+msgstr "Kopiranje slik v mapo fotografij"
+
+#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:5
 msgid ""
 "<small><i>Choose what to import from the selected db.\n"
 "\"New Rolls Only\" is the smart option that will avoid re-importing photos you could have imported during a previous operation.\n"
@@ -3945,47 +3979,31 @@ msgstr ""
 "\"Posamezni uvozni zvitek\" omogoča izbiro zvitka za združevanje.\n"
 "\"Vse\" uvozi vse in ustvari dvojnike, če so bile fotografije iz te podatkovne zbirke že uvožene.</i></small>"
 
-#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:6
-msgid "<small><i>Copy the images locally or keep them where they are. If you chose the later, be sure that this location will stay accessible from f-spot.</i></small>"
-msgstr "<small><i>Krajevno kopiranje slik ali izbira njihovega trenutnega mesta. V slednjem primeru se je treba prepričati, da bo to mesto ostalo dostopno iz f-spot-a.</i></small>"
-
-#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:7
-msgid "A Single Import Roll"
-msgstr "Posamezen uvozni zvitek"
-
-#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:8
-msgid "Copy images to photos folder"
-msgstr "Kopiranje slik v mapo fotografij"
-
 #: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:9
-msgid "Database Location:"
-msgstr "Mesto podatkovne zbirke:"
-
-#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:10
 msgid "Everything"
 msgstr "Vse"
 
+#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:10
+msgid "A Single Import Roll"
+msgstr "Posamezen uvozni zvitek"
+
 #: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:11
-msgid "Import:"
-msgstr "Uvozi:"
-
-#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:12
-msgid "Keep the images at their original location"
-msgstr "Obdrži slike na njihovem izvirnem mestu"
-
-#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:13
-msgid "Merge another F-Spot collection"
-msgstr "Združitev druge zbirke F-Spot"
-
-#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:14
 msgid "New Rolls Only"
 msgstr "Samo novi zvitki"
 
-#: ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui.h:2
-msgid "Delay:"
-msgstr "Zamik:"
+#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:12
+msgid "Import:"
+msgstr "Uvozi:"
 
-#: ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui.h:3
+#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:13
+msgid "<small><i>Choose the location of the database you want to import from</i></small>"
+msgstr "<small><i>Izbira mesta podatkovne zbirke za uvažanje</i></small>"
+
+#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:14
+msgid "Database Location:"
+msgstr "Mesto podatkovne zbirke:"
+
+#: ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui.h:2
 msgid "Display:"
 msgstr "Zaslon:"
 
@@ -3994,6 +4012,10 @@ msgid "Images tagged with:"
 msgstr "Slike označene z:"
 
 #: ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui.h:5
+msgid "Delay:"
+msgstr "Zamik:"
+
+#: ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui.h:6
 msgid "Make F-Spot my screensaver"
 msgstr "Naredi F-spot moj ohranjevalnik zaslona"
 
@@ -4010,12 +4032,12 @@ msgid "Push"
 msgstr "Potisk"
 
 #: ../tools/f-spot-screensaver.desktop.in.h:1
-msgid "Display a slideshow from F-Spot"
-msgstr "Prikaže F-Spotovo diapredstavitev"
-
-#: ../tools/f-spot-screensaver.desktop.in.h:2
 msgid "F-Spot photos"
 msgstr "F-Spot fotografije"
+
+#: ../tools/f-spot-screensaver.desktop.in.h:2
+msgid "Display a slideshow from F-Spot"
+msgstr "Prikaže F-Spotovo diapredstavitev"
 
 #~ msgid "(wrong format)"
 #~ msgstr "(napačen zapis)"
@@ -4315,12 +4337,6 @@ msgstr "F-Spot fotografije"
 #~ msgid "Comment:"
 #~ msgstr "Opomba:"
 
-#~ msgid "Open _Folder..."
-#~ msgstr "Odpri _Mapo ..."
-
-#~ msgid "_New Window"
-#~ msgstr "_Novo Okno"
-
 #~ msgid "\n"
 #~ msgstr "\n"
 
@@ -4384,9 +4400,6 @@ msgstr "F-Spot fotografije"
 #~ msgid "CD"
 #~ msgstr "CD"
 
-#~ msgid "Camera Selection"
-#~ msgstr "Izbira fotoaparata"
-
 #~ msgid "E-_Mail:"
 #~ msgstr "_E-pošta:"
 
@@ -4395,9 +4408,6 @@ msgstr "F-Spot fotografije"
 
 #~ msgid "G_allery:"
 #~ msgstr "G_alerija:"
-
-#~ msgid "Gallery"
-#~ msgstr "Galerija"
 
 #~ msgid "Pause"
 #~ msgstr "Premor"
