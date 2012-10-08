@@ -71,7 +71,7 @@ namespace FSpot.UI.Dialog {
 		public SelectionRatioDialog () : base ("SelectionRatioDialog.ui", "customratio_dialog")
 		{
 			close_button.Clicked += delegate (object o, EventArgs e) {SavePrefs (); this.Destroy (); };
-			add_button.Clicked += delegate (object o, EventArgs e) {constraints_store.AppendValues ("New Selection", 1.0);};
+                        add_button.Clicked += delegate (object o, EventArgs e) {constraints_store.AppendValues (Catalog.GetString("New Selection"), 1.0);};
 			delete_button.Clicked += DeleteSelectedRows;
 			up_button.Clicked += MoveUp;
 			down_button.Clicked += MoveDown;

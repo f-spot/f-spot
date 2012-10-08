@@ -113,7 +113,7 @@ namespace FSpot.Exporters.Folder
 		int size;
 
 		string description;
-		string gallery_name = "Gallery";
+		string gallery_name = Catalog.GetString("Gallery");
 		// FIXME: this needs to be a real temp directory
 		string gallery_path = Path.Combine (Path.GetTempPath (), "f-spot-original-" + System.DateTime.Now.Ticks.ToString ());
 

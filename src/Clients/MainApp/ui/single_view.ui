@@ -25,7 +25,7 @@
                   <object class="GtkMenu" id="file2_menu">
                     <child>
                       <object class="GtkImageMenuItem" id="new_window1">
-                        <property name="label">_New Window</property>
+                        <property name="label" translatable="yes">_New Window</property>
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
@@ -46,7 +46,7 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="open_folder1">
-                        <property name="label">Open _Folder...</property>
+                        <property name="label" translatable="yes">Open _Folder...</property>
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
@@ -95,7 +95,7 @@
                   <object class="GtkMenu" id="edit_menu_menu">
                     <child>
                       <object class="GtkImageMenuItem" id="rotate_left">
-                        <property name="label">Rotate _Left</property>
+                        <property name="label" translatable="yes">Rotate _Left</property>
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
@@ -106,7 +106,7 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="rotate_right">
-                        <property name="label">Rotate _Right</property>
+                        <property name="label"  translatable="yes">Rotate _Right</property>
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
