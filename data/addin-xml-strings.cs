@@ -18,7 +18,7 @@ internal static class AddinXmlStringCatalog
 
         // ../src/Extensions/Editors/FSpot.Editors.BW/Resources/BWEditor.addin.xml
         Catalog.GetString (@"BWEditor");
-        Catalog.GetString (@"Convert to B/W with control. Require Mono 2.2.");
+        Catalog.GetString (@"Convert to B/W with control. Requires Mono 2.2.");
         Catalog.GetString (@"Editors");
 
         // ../src/Extensions/Editors/FSpot.Editors.Flip/Resources/FlipEditor.addin.xml
@@ -44,7 +44,7 @@ internal static class AddinXmlStringCatalog
 
         // ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.addin.xml
         Catalog.GetString (@"FacebookExport");
-        Catalog.GetString (@"Export pictures to facebook");
+        Catalog.GetString (@"Export pictures to Facebook");
         Catalog.GetString (@"Export");
         Catalog.GetString (@"F_acebook...");
 

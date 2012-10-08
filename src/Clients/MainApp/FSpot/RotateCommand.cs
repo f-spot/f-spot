@@ -215,8 +215,8 @@ public class RotateCommand {
 	{
 		string notice = Catalog.GetPluralString ("Unable to rotate photo", "Unable to rotate {0} photos", readonly_count);
 		string desc = Catalog.GetPluralString (
-			"The photo could not be rotated because it is on a read only file system or media such as a CDROM.  Please check the permissions and try again.",
-			"{0} photos could not be rotated because they are on a read only file system or media such as a CDROM.  Please check the permissions and try again.",
+			"The photo could not be rotated because it is on a read only file system or media such as a CD-ROM.  Please check the permissions and try again.",
+			"{0} photos could not be rotated because they are on a read only file system or media such as a CD-ROM.  Please check the permissions and try again.",
 			readonly_count
 		);
 
