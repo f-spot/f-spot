@@ -74,7 +74,7 @@ fi
 
 run intltoolize --force --copy
 run $LIBTOOLIZE --force --copy --automake
-run aclocal -I build/m4/f-spot -I build/m4/shamrock -I build/m4/shave $ACLOCAL_FLAGS
+run aclocal -I build/m4/f-spot -I build/m4/shamrock $ACLOCAL_FLAGS
 run autoconf
 run autoheader
 test -f config.h.in && touch config.h.in

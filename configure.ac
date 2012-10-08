@@ -39,7 +39,7 @@ AM_INIT_AUTOMAKE([1.9 dist-bzip2 tar-ustar dist-zip foreign])
 AM_MAINTAINER_MODE
 AM_CONFIG_HEADER([config.h])
 AC_CONFIG_MACRO_DIR([build/m4])
-AC_SUBST([ACLOCAL_AMFLAGS], ["-I build/m4/shamrock -I build/m4/f-spot -I build/m4/shave \${ACLOCAL_FLAGS}"])
+AC_SUBST([ACLOCAL_AMFLAGS], ["-I build/m4/shamrock -I build/m4/f-spot \${ACLOCAL_FLAGS}"])
 
 IT_PROG_INTLTOOL([0.35.0])
 AC_PROG_LIBTOOL
@@ -284,7 +284,7 @@ AC_SUBST(BUILD_HOST_OS)
 AC_SUBST(BUILD_HOST_CPU)
 AC_SUBST(BUILD_TIME)
 
-SHAVE_INIT([build/m4/shave], [enable])
+m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 
 dnl generated files
 AC_OUTPUT([
@@ -292,8 +292,6 @@ Makefile
 
 build/Makefile
 build/m4/Makefile
-build/m4/shave/shave
-build/m4/shave/shave-libtool
 build/pkg-config/Makefile
 
 data/Makefile
