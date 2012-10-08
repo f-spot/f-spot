@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-02 23:17+0200\n"
-"PO-Revision-Date: 2012-09-02 23:18+0200\n"
+"POT-Creation-Date: 2012-10-08 23:05+0200\n"
+"PO-Revision-Date: 2012-10-08 23:07+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -36,14 +36,16 @@ msgid "Copy Photo"
 msgstr "Skopiuj zdjęcie"
 
 #: ../data/addin-xml-strings.cs:9 ../src/Clients/MainApp/FSpot.addin.xml.h:4
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:459
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:467
 #: ../src/Clients/MainApp/ui/main_window.ui.h:18
+#: ../src/Clients/MainApp/ui/single_view.ui.h:7
 msgid "Rotate _Left"
 msgstr "Obróć w _lewo"
 
 #: ../data/addin-xml-strings.cs:10 ../src/Clients/MainApp/FSpot.addin.xml.h:5
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:460
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:468
 #: ../src/Clients/MainApp/ui/main_window.ui.h:19
+#: ../src/Clients/MainApp/ui/single_view.ui.h:8
 msgid "Rotate _Right"
 msgstr "Obróć w _prawo"
 
@@ -78,7 +80,7 @@ msgid "BWEditor"
 msgstr "Edytor - czarno-białe"
 
 #: ../data/addin-xml-strings.cs:21
-msgid "Convert to B/W with control. Require Mono 2.2."
+msgid "Convert to B/W with control. Requires Mono 2.2."
 msgstr "Konwertuje do obrazu czarno-białego. Wymaga Mono 2.2."
 
 #. ../src/Extensions/Editors/FSpot.Editors.Flip/Resources/FlipEditor.addin.xml
@@ -140,7 +142,7 @@ msgid "FacebookExport"
 msgstr "Eksport - Facebook"
 
 #: ../data/addin-xml-strings.cs:47
-msgid "Export pictures to facebook"
+msgid "Export pictures to Facebook"
 msgstr "Eksportuje obrazy do serwisu Facebook"
 
 #: ../data/addin-xml-strings.cs:49
@@ -872,17 +874,17 @@ msgstr "Rozpocznij prezentację"
 msgid "Slide transition:"
 msgstr "Przejście slajdu:"
 
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:92
 #: ../src/Clients/MainApp/FSpot/GroupSelector.cs:93
+#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:94
 msgid "More dates"
 msgstr "Więcej dat"
 
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:95
 #: ../src/Clients/MainApp/FSpot/GroupSelector.cs:96
+#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:97
 msgid "More"
 msgstr "Więcej"
 
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:556
+#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:559
 #: ../src/Clients/MainApp/ui/main_window.ui.h:57
 msgid "_Clear Date Range"
 msgstr "_Wyczyść zakres dat"
@@ -1004,7 +1006,7 @@ msgid "Hide _Find Bar"
 msgstr "Ukryj pasek _wyszukiwania"
 
 #. Note for translators: This indicates the current photo is photo {0} of {1} out of photos
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:667
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:664
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs:157
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ProgressDialog.cs:111
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:130
@@ -1016,7 +1018,7 @@ msgid "{0} of {1}"
 msgstr "{0} z {1}"
 
 #. Translators, The singular case will never happen here.
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1741
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1740
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
@@ -1024,7 +1026,7 @@ msgstr[0] "Połączyć {0} zaznaczoną etykietę?"
 msgstr[1] "Połączyć {0} zaznaczone etykiety?"
 msgstr[2] "Połączyć {0} zaznaczonych etykiet?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1768
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1767
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
@@ -1032,11 +1034,11 @@ msgstr ""
 "Te działanie spowoduje połączenie zaznaczonych etykiet i wszelkich "
 "podetykiet w jedną etykietę."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1770
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1769
 msgid "_Merge Tags"
 msgstr "_Połącz etykiety"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1975
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1986
 #, csharp-format
 msgid "{0} Photo out of {1}"
 msgid_plural "{0} Photos out of {1}"
@@ -1044,8 +1046,8 @@ msgstr[0] "{0} zdjęcie z {1}"
 msgstr[1] "{0} zdjęcia z {1}"
 msgstr[2] "{0} zdjęć z {1}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1977
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:501
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1988
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:507
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
@@ -1053,7 +1055,7 @@ msgstr[0] "{0} zdjęcie"
 msgstr[1] "{0} zdjęcia"
 msgstr[2] "{0} zdjęć"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1980
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1991
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
@@ -1061,25 +1063,25 @@ msgstr[0] "({0} zaznaczone)"
 msgstr[1] "({0} zaznaczone)"
 msgstr[2] "({0} zaznaczonych)"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2061
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2076
 msgid "_Ok"
 msgstr "_Ok"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2062
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2077
 msgid "Error Deleting Picture"
 msgstr "Błąd podczas usuwania zdjęcia"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2067
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2082
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
 msgstr "Brak uprawnień do usunięcia pliku:{1}{0}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2071
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2086
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
 msgstr "Wystąpił błąd {0} podczas usuwania pliku:{2}{1}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2103
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2118
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
@@ -1087,7 +1089,7 @@ msgstr[0] "Całkowicie usunąć zaznaczone zdjęcie?"
 msgstr[1] "Całkowicie usunąć {0} zaznaczone zdjęcia?"
 msgstr[2] "Całkowicie usunąć {0} zaznaczonych zdjęć?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2107
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2122
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
@@ -1095,14 +1097,14 @@ msgstr[0] "Usuwa wszelkie wersje zaznaczonego zdjęcia z dysku."
 msgstr[1] "Usuwa wszelkie wersje zaznaczonych zdjęć z dysku."
 msgstr[2] "Usuwa wszelkie wersje zaznaczonych zdjęć z dysku."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2110
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2125
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Usuń zdjęcie"
 msgstr[1] "_Usuń zdjęcia"
 msgstr[2] "_Usuń zdjęcia"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2146
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2161
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
@@ -1110,7 +1112,7 @@ msgstr[0] "Usunąć zaznaczone zdjęcie z programu F-Spot?"
 msgstr[1] "Usunąć {0} zaznaczone zdjęcie z programu F-Spot?"
 msgstr[2] "Usunąć {0} zaznaczonych zdjęć z programu F-Spot?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2151
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2166
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1120,28 +1122,28 @@ msgstr ""
 "etykietach. Zdjęcia pozostaną na komputerze i będzie można je ponownie "
 "zaimportować do programu F-Spot."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2152
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2167
 msgid "_Remove from Catalog"
 msgstr "_Usuń z katalogu"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2226
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2244
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Usunąć etykietę \"{0}\"?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2228
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2246
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Usunąć {0} zaznaczonych etykiet?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2233
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2251
 msgid "photo"
 msgid_plural "photos"
 msgstr[0] "zdjęcie"
 msgstr[1] "zdjęcia"
 msgstr[2] "zdjęć"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2235
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2253
 #, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
 msgid_plural ""
@@ -1150,7 +1152,7 @@ msgstr[0] "Po usunięciu tej etykiety powiązanie z {0} {1} zostanie utracone."
 msgstr[1] "Po usunięciu tych etykiet powiązanie z {0} {1} zostanie utracone."
 msgstr[2] "Po usunięciu tych etykiet powiązanie z {0} {1} zostanie utracone."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2240
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2258
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Usuń etykietę"
@@ -1158,11 +1160,11 @@ msgstr[1] "_Usuń etykiety"
 msgstr[2] "_Usuń etykiety"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2254
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2272
 msgid "Tag is not empty"
 msgstr "Etykieta nie jest pusta"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2255
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2273
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -1171,21 +1173,21 @@ msgstr ""
 "Nie można usunąć etykiet mających podetykiety. Należy najpierw usunąć "
 "etykiety pod \"{0}\""
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2707
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2733
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Obróć wybrane zdjęcie w lewo"
 msgstr[1] "Obróć wybrane zdjęcia w lewo"
 msgstr[2] "Obróć wybrane zdjęcia w lewo"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2720
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2746
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Obróć wybrane zdjęcie w prawo"
 msgstr[1] "Obróć wybrane zdjęcia w prawo"
 msgstr[2] "Obróć wybrane zdjęcia w prawo"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2731
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2757
 #, csharp-format
 msgid "Find _Selected Tag"
 msgid_plural "Find _Selected Tags"
@@ -1193,7 +1195,7 @@ msgstr[0] "Znajdź _zaznaczoną etykietę"
 msgstr[1] "Znajdź _zaznaczone etykiety"
 msgstr[2] "Znajdź _zaznaczone etykiety"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2735
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2761
 #, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
@@ -1201,14 +1203,14 @@ msgstr[0] "Znajdź zaznaczoną etykietę z_a pomocą"
 msgstr[1] "Znajdź zaznaczone etykiety z_a pomocą"
 msgstr[2] "Znajdź zaznaczone etykiety z_a pomocą"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2776
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2802
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Utworzyć nową wersję?"
 msgstr[1] "Utworzyć nowe wersje?"
 msgstr[2] "Utworzyć nowe wersje?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2778
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2804
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -1226,16 +1228,16 @@ msgstr[2] ""
 "Czy przed uruchomieniem programu {1} F-Spot ma utworzyć nowe wersje "
 "zaznaczonych zdjęć, by zachować wersje pierwotne?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2800
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2825
 msgid "XCF version"
 msgstr "Wersja XCF"
 
 #. Note for translators: Reparented is a picture becoming a version of another one
-#: ../src/Clients/MainApp/FSpot/Photo.cs:428
+#: ../src/Clients/MainApp/FSpot/Photo.cs:425
 msgid "Reparented"
 msgstr "Wersja innego zdjęcia"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:446
+#: ../src/Clients/MainApp/FSpot/Photo.cs:443
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
@@ -1243,12 +1245,12 @@ msgstr[0] "Zmodyfikowane"
 msgstr[1] "Zmodyfikowane ({0})"
 msgstr[2] "Zmodyfikowane ({0})"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:469
+#: ../src/Clients/MainApp/FSpot/Photo.cs:466
 #, csharp-format
 msgid "Modified in {1}"
 msgstr "Zmodyfikowane w {1}"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:469
+#: ../src/Clients/MainApp/FSpot/Photo.cs:466
 #, csharp-format
 msgid "Modified in {1} ({0})"
 msgstr "Zmodyfikowane w {1} ({0})"
@@ -1336,10 +1338,10 @@ msgstr[2] "Nie można obrócić {0} zdjęć"
 #, csharp-format
 msgid ""
 "The photo could not be rotated because it is on a read only file system or "
-"media such as a CDROM.  Please check the permissions and try again."
+"media such as a CD-ROM.  Please check the permissions and try again."
 msgid_plural ""
 "{0} photos could not be rotated because they are on a read only file system "
-"or media such as a CDROM.  Please check the permissions and try again."
+"or media such as a CD-ROM.  Please check the permissions and try again."
 msgstr[0] ""
 "{0} zdjęcie nie mogło zostać obrócone, ponieważ znajduje się na nośniku "
 "tylko do odczytu, takim jak CD-ROM. Proszę sprawdzić uprawnienia i spróbować "
@@ -1381,7 +1383,7 @@ msgid "An error occured while processing \"{0}\": {1}"
 msgstr "Wystąpił błąd podczas przetwarzania \"{0}\": {1}"
 
 #. Send the mail :)
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:310
+#: ../src/Clients/MainApp/FSpot/SendEmail.cs:312
 msgid "My Photos"
 msgstr "Moje zdjęcia"
 
@@ -1397,15 +1399,15 @@ msgstr "Obróć zdjęcie w prawo"
 msgid "Folder"
 msgstr "Katalog"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:375
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:383
 msgid "Open"
 msgstr "Otwórz"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:378
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:386
 msgid "Select Folder"
 msgstr "Wybór katalogu"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:462
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:470
 msgid "Set as Background"
 msgstr "Ustaw jako tapetę"
 
@@ -1439,38 +1441,38 @@ msgstr "Wszystko"
 msgid "Drag tags here to search for them"
 msgstr "Należy przeciągnąć etykiety tutaj, aby rozpocząć wyszukiwanie"
 
-#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:517
+#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:518
 msgid "Error renaming tag"
 msgstr "Błąd podczas zmieniania nazwy etykiety"
 
-#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:518
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagDialog.cs:102
+#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:519
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagDialog.cs:97
 #: ../src/Clients/MainApp/TagCommands.cs:137
 msgid "This name is already in use"
 msgstr "Ta nazwa jest już używana"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:221
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:222
 msgid "Favorites"
 msgstr "Ulubione"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:226
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:227
 msgid "Hidden"
 msgstr "Ukryte"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:234
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:235
 msgid "People"
 msgstr "Osoby"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:239
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:240
 msgid "Places"
 msgstr "Miejsca"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:244
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:245
 msgid "Events"
 msgstr "Zdarzenia"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:256
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:257
 #: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:446
 msgid "(None)"
 msgstr "(brak)"
@@ -1493,7 +1495,7 @@ msgstr " lub "
 #: ../src/Clients/MainApp/FSpot/Term.cs:417
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:3
 #: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:203
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:558
+#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:557
 msgid "or"
 msgstr "lub"
 
@@ -1710,6 +1712,10 @@ msgstr ""
 "Program F-Spot napotkał błąd podczas wczytywania bazy danych o zdjęciach.  "
 "Została utworzona nowa baza, a poprzednia została przeniesiona do {0}."
 
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/SelectionRatioDialog.cs:74
+msgid "New Selection"
+msgstr "Nowe zaznaczenie"
+
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/SelectionRatioDialog.cs:81
 msgid "Label"
 msgstr "Etykieta"
@@ -1874,7 +1880,7 @@ msgstr "<b>Wyświetlenie wszystkich zaimportowanych zdjęć</b>"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:3
 #: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:203
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:559
+#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:558
 msgid "and"
 msgstr "i"
 
@@ -2059,7 +2065,7 @@ msgid "Version"
 msgstr "Wersja"
 
 #: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:362
-#: ../src/Clients/MainApp/PhotoVersionMenu.cs:84
+#: ../src/Clients/MainApp/PhotoVersionMenu.cs:85
 msgid "(No Edits)"
 msgstr "(brak modyfikacji)"
 
@@ -2219,7 +2225,7 @@ msgstr "Utwórz nową etykietę..."
 
 #. Fixme this should really set parent menu
 #. items insensitve
-#: ../src/Clients/MainApp/PhotoTagMenu.cs:69
+#: ../src/Clients/MainApp/PhotoTagMenu.cs:70
 msgid "(No Tags)"
 msgstr "(Brak etykiet)"
 
@@ -2294,11 +2300,11 @@ msgstr ""
 msgid "Received exception \"{0}\"."
 msgstr "Otrzymano wyjątek \"{0}\"."
 
-#: ../src/Clients/MainApp/TagCommands.cs:187
+#: ../src/Clients/MainApp/TagCommands.cs:188
 msgid "Create New Tag"
 msgstr "Utwórz nową etykietę"
 
-#: ../src/Clients/MainApp/TagCommands.cs:188
+#: ../src/Clients/MainApp/TagCommands.cs:189
 msgid "Name of New Tag:"
 msgstr "Nazwa nowej etykiety:"
 
@@ -2544,7 +2550,7 @@ msgid "_Quit"
 msgstr "Za_kończ"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:13
-#: ../src/Clients/MainApp/ui/single_view.ui.h:4
+#: ../src/Clients/MainApp/ui/single_view.ui.h:6
 msgid "_Edit"
 msgstr "_Edycja"
 
@@ -2577,7 +2583,7 @@ msgid "Re_fresh Thumbnail"
 msgstr "O_dśwież miniaturkę"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:25
-#: ../src/Clients/MainApp/ui/single_view.ui.h:5
+#: ../src/Clients/MainApp/ui/single_view.ui.h:9
 msgid "Set as _Background"
 msgstr "Ustaw jako _tapetę"
 
@@ -2590,17 +2596,17 @@ msgid "Manage _Extensions"
 msgstr "Zarządzaj _rozszerzeniami"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:29
-#: ../src/Clients/MainApp/ui/single_view.ui.h:6
+#: ../src/Clients/MainApp/ui/single_view.ui.h:10
 msgid "_View"
 msgstr "_Widok"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:30
-#: ../src/Clients/MainApp/ui/single_view.ui.h:7
+#: ../src/Clients/MainApp/ui/single_view.ui.h:11
 msgid "_Slideshow"
 msgstr "_Prezentacja"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:31
-#: ../src/Clients/MainApp/ui/single_view.ui.h:8
+#: ../src/Clients/MainApp/ui/single_view.ui.h:12
 msgid "_Fullscreen"
 msgstr "_Tryb pełnoekranowy"
 
@@ -2641,12 +2647,12 @@ msgid "Too_lbar"
 msgstr "Pasek _narzędziowy"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:41
-#: ../src/Clients/MainApp/ui/single_view.ui.h:14
+#: ../src/Clients/MainApp/ui/single_view.ui.h:18
 msgid "Zoom _in"
 msgstr "_Powiększ"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:42
-#: ../src/Clients/MainApp/ui/single_view.ui.h:15
+#: ../src/Clients/MainApp/ui/single_view.ui.h:19
 msgid "Zoom _out"
 msgstr "P_omniejsz"
 
@@ -2755,7 +2761,7 @@ msgid "_Tools"
 msgstr "_Narzędzia"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:70
-#: ../src/Clients/MainApp/ui/single_view.ui.h:16
+#: ../src/Clients/MainApp/ui/single_view.ui.h:20
 msgid "_Help"
 msgstr "Pomo_c"
 
@@ -2774,12 +2780,12 @@ msgid "Tags: "
 msgstr "Etykiety: "
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:75
-#: ../src/Clients/MainApp/ui/single_view.ui.h:17
+#: ../src/Clients/MainApp/ui/single_view.ui.h:21
 msgid "Zoom out"
 msgstr "Pomniejsz"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:76
-#: ../src/Clients/MainApp/ui/single_view.ui.h:18
+#: ../src/Clients/MainApp/ui/single_view.ui.h:22
 msgid "Zoom in"
 msgstr "Powiększ"
 
@@ -2788,6 +2794,14 @@ msgid "F-Spot View"
 msgstr "Podgląd F-Spot"
 
 #: ../src/Clients/MainApp/ui/single_view.ui.h:3
+msgid "_New Window"
+msgstr "_Nowe okno"
+
+#: ../src/Clients/MainApp/ui/single_view.ui.h:4
+msgid "Open _Folder..."
+msgstr "Otwórz _katalog..."
+
+#: ../src/Clients/MainApp/ui/single_view.ui.h:5
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:8
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:18
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:17
@@ -2798,23 +2812,23 @@ msgstr "Podgląd F-Spot"
 msgid "_Export"
 msgstr "Wy_eksportuj"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:9
+#: ../src/Clients/MainApp/ui/single_view.ui.h:13
 msgid "Show or hide the toolbar"
 msgstr "Wyświetla lub ukrywa pasek narzędziowy"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:10
+#: ../src/Clients/MainApp/ui/single_view.ui.h:14
 msgid "_Toolbar"
 msgstr "Pasek _narzędziowy"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:11
+#: ../src/Clients/MainApp/ui/single_view.ui.h:15
 msgid "Show or hide the side pane"
 msgstr "Wyświetla lub ukrywa panel boczny"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:12
+#: ../src/Clients/MainApp/ui/single_view.ui.h:16
 msgid "Side _pane"
 msgstr "_Panel boczny"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:13
+#: ../src/Clients/MainApp/ui/single_view.ui.h:17
 msgid "Display File _Names"
 msgstr "Wyświetl _nazwy plików"
 
@@ -3433,6 +3447,10 @@ msgstr "Ignorowanie etykiet _najwyższego poziomu"
 msgid "<b>Style</b>"
 msgstr "<b>Styl</b>"
 
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:116
+msgid "Gallery"
+msgstr "Galeria"
+
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:146
 msgid "Select Export Folder"
 msgstr "Wybór katalogu eksportu"
@@ -3953,6 +3971,10 @@ msgstr "Zmiana podstawowej ścieżki (URI) na"
 #: ../src/Extensions/Tools/FSpot.Tools.ChangePhotoPath/Resources/ChangePhotoPath.ui.h:4
 msgid "<b>Specify the toplevel Photos directories</b>"
 msgstr "<b>Proszę podać nadrzędne katalogi Zdjęcia</b>"
+
+#: ../src/Extensions/Tools/FSpot.Tools.ChangePhotoPath/Resources/ChangePhotoPath.ui.h:5
+msgid "_Apply changes"
+msgstr "_Zastosuj zmiany"
 
 #: ../src/Extensions/Tools/FSpot.Tools.DevelopInUFraw/FSpot.Tools.DevelopInUFraw/DevelopInUFRawBatch.cs:50
 msgid "Developing photos"
