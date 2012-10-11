@@ -158,7 +158,7 @@ namespace FSpot.Exporters.Flickr
 				case State.Authorized:
 					do_export_flickr.Sensitive = true;
 					auth_flickr.Sensitive = true;
-					auth_label.Text = System.String.Format (Catalog.GetString ("Welcome {0} you are connected to {1}"),
+					auth_label.Text = System.String.Format (Catalog.GetString ("Welcome, {0}. You are connected to {1}."),
 										auth.User.Username,
 										current_service.Name);
 					auth_flickr.Label = String.Format (Catalog.GetString ("Sign in as a different user"), auth.User.Username);
