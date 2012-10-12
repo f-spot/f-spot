@@ -11,19 +11,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.master.lv\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-"
-"spot&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2012-03-06 18:44+0000\n"
-"PO-Revision-Date: 2012-03-15 20:38+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-10-13 00:46+0300\n"
+"PO-Revision-Date: 2012-10-13 00:51+0300\n"
 "Last-Translator: Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>\n"
 "Language-Team: Latvian <lata-l10n@googlegroups.com>\n"
+"Language: lv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
-"X-Generator: Lokalize 1.2\n"
-"Language: lv\n"
+"X-Generator: Lokalize 1.4\n"
 
 #. ../src/Clients/MainApp/FSpot.addin.xml
 #: ../data/addin-xml-strings.cs:8 ../src/Clients/MainApp/FSpot.addin.xml.h:3
@@ -31,14 +30,16 @@ msgid "Copy Photo"
 msgstr "Kopēt fotogrāfiju"
 
 #: ../data/addin-xml-strings.cs:9 ../src/Clients/MainApp/FSpot.addin.xml.h:4
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:457
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:467
 #: ../src/Clients/MainApp/ui/main_window.ui.h:18
+#: ../src/Clients/MainApp/ui/single_view.ui.h:7
 msgid "Rotate _Left"
 msgstr "Pagriezt pa _kreisi"
 
 #: ../data/addin-xml-strings.cs:10 ../src/Clients/MainApp/FSpot.addin.xml.h:5
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:458
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:468
 #: ../src/Clients/MainApp/ui/main_window.ui.h:19
+#: ../src/Clients/MainApp/ui/single_view.ui.h:8
 msgid "Rotate _Right"
 msgstr "Pagriezt pa _labi"
 
@@ -73,7 +74,7 @@ msgid "BWEditor"
 msgstr "BWEditor"
 
 #: ../data/addin-xml-strings.cs:21
-msgid "Convert to B/W with control. Require Mono 2.2."
+msgid "Convert to B/W with control. Requires Mono 2.2."
 msgstr "Pārveidot par M/B ar vadīklu. Nepieciešams Mono 2.2."
 
 #. ../src/Extensions/Editors/FSpot.Editors.Flip/Resources/FlipEditor.addin.xml
@@ -135,11 +136,10 @@ msgid "FacebookExport"
 msgstr "FacebookExport"
 
 #: ../data/addin-xml-strings.cs:47
-msgid "Export pictures to facebook"
-msgstr "Eksportēt bildes uz facebook"
+msgid "Export pictures to Facebook"
+msgstr "Eksportēt bildes uz Facebook"
 
 #: ../data/addin-xml-strings.cs:49
-#| msgid "FacebookExport"
 msgid "F_acebook..."
 msgstr "F_acebook..."
 
@@ -153,7 +153,6 @@ msgid "This extension allows you to export your photos to Flickr and 23hq."
 msgstr "Šis paplašinājums ļauj eksportēt fotogrāfijas uz Flickr un 23hq."
 
 #: ../data/addin-xml-strings.cs:55
-#| msgid "_Flickr"
 msgid "_Flickr..."
 msgstr "_Flickr..."
 
@@ -162,7 +161,6 @@ msgid "_23hq..."
 msgstr "_23hq..."
 
 #: ../data/addin-xml-strings.cs:57
-#| msgid "_Import..."
 msgid "_Zooomr..."
 msgstr "_Zooomr..."
 
@@ -181,7 +179,6 @@ msgstr ""
 "galerijām vai vienkārši mapi."
 
 #: ../data/addin-xml-strings.cs:63
-#| msgid "Folder"
 msgid "F_older..."
 msgstr "Ma_pe..."
 
@@ -199,7 +196,6 @@ msgstr ""
 "gallery.menalto.com)."
 
 #: ../data/addin-xml-strings.cs:69
-#| msgid "_Gallery"
 msgid "Web _Gallery..."
 msgstr "Tīmekļa _galerija..."
 
@@ -213,7 +209,6 @@ msgid "This extension allows you to export your photos to PicasaWeb."
 msgstr "Šis paplašinājums ļauj eksportēt fotogrāfijas uz PicasaWeb."
 
 #: ../data/addin-xml-strings.cs:75
-#| msgid "Picasaweb"
 msgid "_PicasaWeb..."
 msgstr "_PicasaWeb..."
 
@@ -227,7 +222,6 @@ msgid "This extension allows you to export your photos to SmugMug."
 msgstr "Šis paplašinājums ļauj eksportēt fotogrāfijas uz SmugMug."
 
 #: ../data/addin-xml-strings.cs:81
-#| msgid "SmugMug"
 msgid "_SmugMug..."
 msgstr "_SmugMug..."
 
@@ -251,12 +245,11 @@ msgstr "Zip eksports"
 
 #: ../data/addin-xml-strings.cs:91
 msgid "Simple export to Zip file"
-msgstr "Vienkāršs eksports uz Zip failu"
+msgstr "Vienkāršs eksports uz Zip datni"
 
 #: ../data/addin-xml-strings.cs:93
-#| msgid "Create mail..."
 msgid "Compressed fil_e..."
-msgstr "Saspi_ests fails..."
+msgstr "Saspi_esta datne..."
 
 #. ../src/Extensions/Tools/FSpot.Tools.ChangePhotoPath/Resources/ChangePhotoPath.addin.xml
 #: ../data/addin-xml-strings.cs:96
@@ -289,7 +282,6 @@ msgid "Tools"
 msgstr "Rīki"
 
 #: ../data/addin-xml-strings.cs:99
-#| msgid "Change base path (URI) to"
 msgid "Change path to photos"
 msgstr "Mainīt ceļu uz fotogrāfijām"
 
@@ -307,7 +299,6 @@ msgstr ""
 "\\nPiezīme: nepieciešams ufraw 0.13 vai CVS versija jaunāka kā 2007-09-06 !!!"
 
 #: ../data/addin-xml-strings.cs:105
-#| msgid "DevelopInUFRaw"
 msgid "Develop in UFRaw"
 msgstr "Attīstīt ar UFRaw"
 
@@ -322,7 +313,6 @@ msgstr ""
 "Koplietot fotogrāfijas ar citiem cilvēkiem šajā pašā tīklā ar tīmekļa pārlūku"
 
 #: ../data/addin-xml-strings.cs:111
-#| msgid "LiveWebGallery"
 msgid "Live Web Gallery"
 msgstr "Dzīvā tīmekļa galerija"
 
@@ -336,7 +326,6 @@ msgid "Merge another db back to the main one"
 msgstr "Apvienot citu datubāzi ar galveno"
 
 #: ../data/addin-xml-strings.cs:117
-#| msgid "MergeDb"
 msgid "Merge Db"
 msgstr "Merge Db"
 
@@ -354,7 +343,6 @@ msgstr ""
 "metapixel/)"
 
 #: ../data/addin-xml-strings.cs:123
-#| msgid "Rated photos"
 msgid "Create p_hotomosaic"
 msgstr "Izveidot _fotomozaīku"
 
@@ -372,7 +360,6 @@ msgstr ""
 "org/picturetile/)"
 
 #: ../data/addin-xml-strings.cs:129
-#| msgid "Create Mail"
 msgid "Create photo_wall"
 msgstr "Izveidot fo_togrāfiju sienu"
 
@@ -386,7 +373,6 @@ msgid "Merge RAW+Jpeg as multiple versions of the same photo"
 msgstr "Apvienot RAW+Jpeg kā vienas fotogrāfijas vairākas versijas"
 
 #: ../data/addin-xml-strings.cs:135
-#| msgid "Merge Tags"
 msgid "Merge Raw"
 msgstr "Apvienot Raw"
 
@@ -400,7 +386,6 @@ msgid "Retroactively assign old photos to import rolls"
 msgstr "Piešķirt fotogrāfijas importēšanas ruļļiem ar atpakaļejošu datumu"
 
 #: ../data/addin-xml-strings.cs:141
-#| msgid "Retroactively assign old photos to import rolls"
 msgid "Reassign to new import roll"
 msgstr "Piešķirt no jauna jauniem importēšanas ruļļiem"
 
@@ -428,7 +413,6 @@ msgid "Sync MetaData information of all catalog with Photos"
 msgstr "Sinhronizēt visa fotogrāfiju kataloga metadatu informāciju"
 
 #: ../data/addin-xml-strings.cs:153
-#| msgid "Sync MetaData information of all catalog with Photos"
 msgid "Sync Catalog with Photos"
 msgstr "Sinhronizēt katalogu ar fotogrāfijām"
 
@@ -448,23 +432,19 @@ msgstr "Slaidu pārejas"
 
 #. ../src/Extensions/Transitions/FSpot.Transitions.Dissolve/Resources/DissolveTransition.addin.xml
 #: ../data/addin-xml-strings.cs:161
-#| msgid "Cover Transition"
 msgid "Dissolve Transition"
 msgstr "Izgaišanas pāreja"
 
 #: ../data/addin-xml-strings.cs:162
-#| msgid "A Slideshow transition that covers images"
 msgid "A Slideshow transition that dissolves images"
 msgstr "Slīdrādes pārejas, kas izgaisina attēlus"
 
 #. ../src/Extensions/Transitions/FSpot.Transitions.Push/Resources/PushTransition.addin.xml
 #: ../data/addin-xml-strings.cs:166
-#| msgid "Transitions"
 msgid "Push Transition"
 msgstr "Stumšanas pāreja"
 
 #: ../data/addin-xml-strings.cs:167
-#| msgid "A Slideshow transition that covers images"
 msgid "A Slideshow transition that pushes images"
 msgstr "Slīdrādes pārejas, kas stumj attēlus"
 
@@ -650,12 +630,12 @@ msgstr "Fotogrāfiju skatītāja logā rādīt rīkjoslu."
 
 #: ../f-spot.schemas.in.h:38
 msgid "Show the filename in the viewer window."
-msgstr "Skatītāja logā rādīt failu nosaukumus."
+msgstr "Skatītāja logā rādīt datņu nosaukumus."
 
 #: ../f-spot.schemas.in.h:39
 msgid "Use the current photo's filename as the viewer window's title."
 msgstr ""
-"Lietot pašreizējo fotogrāfiju failu nosaukumus kā skatītāja loga virsrakstu."
+"Lietot pašreizējo fotogrāfiju datņu nosaukumus kā skatītāja loga virsrakstu."
 
 #: ../f-spot.schemas.in.h:40
 msgid "Interpolate image on zoom."
@@ -760,11 +740,11 @@ msgstr ""
 "izvēlēties citu birku F-Spot iestatījumu\n"
 "dialogā."
 
-#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:768
+#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:769
 msgid "Updating F-Spot Database"
 msgstr "Atjaunina F-Spot datubāzi"
 
-#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:769
+#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:770
 msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
@@ -772,59 +752,59 @@ msgstr ""
 "Lūdzu, uzgaidiet, kamēr F-Spot galerijas datubāze tiek atjaunināta. Tas var "
 "aizņemt kādu laiciņu."
 
-#: ../src/Clients/MainApp/FSpot.Editors/AutoStretchEditor.cs:37
+#: ../src/Clients/MainApp/FSpot.Editors/AutoStretchEditor.cs:38
 msgid "Auto Color"
 msgstr "Autom. krāsa"
 
-#: ../src/Clients/MainApp/FSpot.Editors/ColorEditor.cs:61
+#: ../src/Clients/MainApp/FSpot.Editors/ColorEditor.cs:63
 msgid "Adjust Colors"
 msgstr "Pielāgot krāsas"
 
-#: ../src/Clients/MainApp/FSpot.Editors/ColorEditor.cs:64
+#: ../src/Clients/MainApp/FSpot.Editors/ColorEditor.cs:66
 msgid "Adjust"
 msgstr "Pielāgot"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:56
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:60
 msgid "4 x 3 (Book)"
 msgstr "4 x 3 (grāmata)"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:57
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:61
 msgid "4 x 6 (Postcard)"
 msgstr "4 x 6 (atklātne)"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:58
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:62
 msgid "5 x 7 (L, 2L)"
 msgstr "5 x 7 (L, 2L)"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:59
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:63
 msgid "8 x 10"
 msgstr "8 x 10"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:60
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:64
 msgid "Square"
 msgstr "Kvadrāts"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:63
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:67
 msgid "Crop"
 msgstr "Apcirst"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:94
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:98
 msgid "Select the area that needs cropping."
 msgstr "Izvēlēties laukumu, kas jāapcērt."
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:119
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:123
 msgid "No Constraint"
 msgstr "Nav ierobežojumu"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:120
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:124
 msgid "Same as photo"
 msgstr "Tāds pats kā fotogrāfija"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:125
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:129
 msgid "Custom Ratios..."
 msgstr "Pielāgots samērs..."
 
-#: ../src/Clients/MainApp/FSpot.Editors/DesaturateEditor.cs:37
+#: ../src/Clients/MainApp/FSpot.Editors/DesaturateEditor.cs:38
 msgid "Desaturate"
 msgstr "Noņemt piesātinājumu"
 
@@ -840,197 +820,197 @@ msgstr "Izlabot!"
 msgid "Select the eyes you wish to fix."
 msgstr "Izvēlieties acis, kuras vēlaties izlabot."
 
-#: ../src/Clients/MainApp/FSpot.Editors/SepiaEditor.cs:37
+#: ../src/Clients/MainApp/FSpot.Editors/SepiaEditor.cs:38
 msgid "Sepia Tone"
 msgstr "Sēpijas tonis"
 
-#: ../src/Clients/MainApp/FSpot.Editors/SoftFocusEditor.cs:50
+#: ../src/Clients/MainApp/FSpot.Editors/SoftFocusEditor.cs:51
 msgid "Soft Focus"
 msgstr "Mīksts fokuss"
 
-#: ../src/Clients/MainApp/FSpot.Editors/TiltEditor.cs:51
+#: ../src/Clients/MainApp/FSpot.Editors/TiltEditor.cs:52
 msgid "Straighten"
 msgstr "Iztaisnot"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:82
+#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:85
 msgid "Hide"
 msgstr "Slēpt"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:84
+#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:87
 msgid "Hide toolbar"
 msgstr "Slēpt rīkjoslu"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:90
+#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:93
 msgid "Info"
 msgstr "Informācija"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:92
+#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:95
 msgid "Image information"
 msgstr "Informācija par attēlu"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:97
+#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:100
 msgid "Exit fullscreen"
 msgstr "Pamest pilnekrānu"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:105
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:341
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:122
+#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:108
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:337
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:124
 msgid "Slideshow"
 msgstr "Slīdrāde"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:106
+#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:109
 msgid "Start slideshow"
 msgstr "Startēt slīdrādi"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:152
+#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:155
 msgid "Slide transition:"
 msgstr "Slaidu pāreja:"
 
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:90
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:91
+#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:93
+#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:94
 msgid "More dates"
 msgstr "Vairāk datumu"
 
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:93
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:94
+#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:96
+#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:97
 msgid "More"
 msgstr "Vairāk"
 
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:554
+#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:559
 #: ../src/Clients/MainApp/ui/main_window.ui.h:57
 msgid "_Clear Date Range"
 msgstr "_Iztīrīt datumu apgabalu"
 
-#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:510
-#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:512
-#: ../src/Clients/MainApp/FSpot.Import/MetadataImporter.cs:72
+#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:513
+#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:515
+#: ../src/Clients/MainApp/FSpot.Import/MetadataImporter.cs:74
 msgid "Imported Tags"
 msgstr "Importētās birkas"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:102
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:308
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:105
+#: ../src/Clients/MainApp/FSpot/ItemAction.cs:104
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:304
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:107
 msgid "Rotate Left"
 msgstr "Pagriezt pa kreisi"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:103
+#: ../src/Clients/MainApp/FSpot/ItemAction.cs:105
 msgid "Rotate picture left"
 msgstr "Pagriezt bildi pa kreisi"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:114
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:312
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:110
+#: ../src/Clients/MainApp/FSpot/ItemAction.cs:116
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:308
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:112
 msgid "Rotate Right"
 msgstr "Pagriezt pa labi"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:115
+#: ../src/Clients/MainApp/FSpot/ItemAction.cs:117
 msgid "Rotate picture right"
 msgstr "Pagriezt bildi pa labi"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:125
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:263
+#: ../src/Clients/MainApp/FSpot/ItemAction.cs:127
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:262
 msgid "Next"
 msgstr "Nākamais"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:126
+#: ../src/Clients/MainApp/FSpot/ItemAction.cs:128
 msgid "Next picture"
 msgstr "Nākamā bilde"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:146
+#: ../src/Clients/MainApp/FSpot/ItemAction.cs:148
 msgid "Previous"
 msgstr "Iepriekšējais"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:147
+#: ../src/Clients/MainApp/FSpot/ItemAction.cs:149
 msgid "Previous picture"
 msgstr "Iepriekšējā bilde"
 
-#: ../src/Clients/MainApp/FSpot/Literal.cs:225
+#: ../src/Clients/MainApp/FSpot/Literal.cs:226
 #: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:182
 #, csharp-format
 msgid "Not {0}"
 msgstr "Ne {0}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:301
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:229
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:297
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:232
 #: ../src/Clients/MainApp/ui/import.ui.h:1
 msgid "Import"
 msgstr "Importēt"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:303
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:299
 msgid "Import new images"
 msgstr "Importēt jaunos attēlus"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:319
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:315
 #: ../src/Clients/MainApp/ui/main_window.ui.h:72
 msgid "Browse"
 msgstr "Pārlūkot"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:323
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:319
 msgid "Browse many photos simultaneously"
 msgstr "Pārlūkot vairākas bildes vienlaikus"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:327
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:323
 msgid "Edit Image"
 msgstr "Rediģēt attēlu"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:331
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:327
 msgid "View and edit a photo"
 msgstr "Apskatīt un rediģēt fotogrāfiju"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:336
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:117
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:332
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:119
 msgid "Fullscreen"
 msgstr "Pilnekrāns"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:338
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:119
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:334
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:121
 msgid "View photos fullscreen"
 msgstr "Apskatīt bildi pilnekrānā"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:343
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:124
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:339
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:126
 msgid "View photos in a slideshow"
 msgstr "Apskatīt bildes slīdrādē"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:358
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:354
 msgid "Previous photo"
 msgstr "Iepriekšējā fotogrāfija"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:363
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:359
 msgid "Next photo"
 msgstr "Nākamā fotogrāfija"
 
 #. Don't care otherwise, Tags sounds reasonable
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:376
-#: ../src/Clients/MainApp/FSpot.Widgets/Sidebar.cs:75
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:260
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:432
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:472
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:372
+#: ../src/Clients/MainApp/FSpot.Widgets/Sidebar.cs:76
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:259
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:431
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:471
 msgid "Tags"
 msgstr "Birkas"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:440
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:436
 msgid "Show _Find Bar"
 msgstr "Radīt _meklēšanas joslu"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:443
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:439
 msgid "Hide _Find Bar"
 msgstr "Slēpt _meklēšanas joslu"
 
 #. Note for translators: This indicates the current photo is photo {0} of {1} out of photos
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:671
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs:154
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:664
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs:157
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ProgressDialog.cs:111
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:135
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:391
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:244
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:208
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:130
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:393
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:238
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:207
 #, csharp-format
 msgid "{0} of {1}"
 msgstr "{0} no {1}"
 
 #. Translators, The singular case will never happen here.
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1745
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1740
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
@@ -1038,17 +1018,17 @@ msgstr[0] "Apvienot izvēlēto {0} birku"
 msgstr[1] "Apvienot izvēlētās {0} birkas?"
 msgstr[2] "Apvienot izvēlētās {0} birku?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1772
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1767
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
 msgstr "Šī darbība apvienos izvēlētās birkas un apakšbirkas vienā birkā."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1774
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1769
 msgid "_Merge Tags"
 msgstr "_Apvienot birkas"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1979
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1986
 #, csharp-format
 msgid "{0} Photo out of {1}"
 msgid_plural "{0} Photos out of {1}"
@@ -1056,8 +1036,8 @@ msgstr[0] "Fotogrāfija {0} no {1}"
 msgstr[1] "Fotogrāfijas {0} no {1}"
 msgstr[2] "Fotogrāfijas {0} no {1}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1981
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:499
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1988
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:507
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
@@ -1065,7 +1045,7 @@ msgstr[0] "{0} fotogrāfija"
 msgstr[1] "{0} fotogrāfijas"
 msgstr[2] "{0} fotogrāfiju"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1984
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1991
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
@@ -1073,25 +1053,25 @@ msgstr[0] "({0} izvēlēta)"
 msgstr[1] "({0} izvēlētas)"
 msgstr[2] "({0} izvēlētu)"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2065
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2076
 msgid "_Ok"
 msgstr "_Labi"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2066
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2077
 msgid "Error Deleting Picture"
 msgstr "Kļūda, dzēšot bildi"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2071
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2082
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
-msgstr "Nav atļaujas dzēst failu:{1}{0}"
+msgstr "Nav atļaujas dzēst datni:{1}{0}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2075
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2086
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
-msgstr "Gadījās {0} tipa kļūda, dzēšot failu:{2}{1}"
+msgstr "Gadījās {0} tipa kļūda, dzēšot datni:{2}{1}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2107
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2118
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
@@ -1099,7 +1079,7 @@ msgstr[0] "Dzēst izvēlēto {0} fotogrāfiju uz visiem laikiem?"
 msgstr[1] "Dzēst izvēlētās {0} fotogrāfijas uz visiem laikiem?"
 msgstr[2] "Dzēst izvēlētās {0} fotogrāfijas uz visiem laikiem?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2111
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2122
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
@@ -1107,14 +1087,14 @@ msgstr[0] "Tas izdzēsis visas izvēlētas fotogrāfijas versijas no jūsu diska
 msgstr[1] "Tas izdzēsis visas izvēlēto fotogrāfiju versijas no jūsu diska."
 msgstr[2] "Tas izdzēsis visas izvēlēto fotogrāfiju versijas no jūsu diska."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2114
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2125
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Dzēst fotogrāfiju"
 msgstr[1] "_Dzēst fotogrāfijas"
 msgstr[2] "_Dzēst fotogrāfijas"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2150
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2161
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
@@ -1122,7 +1102,7 @@ msgstr[0] "Izņemt izvēlēto {0} fotogrāfiju no F-Spot?"
 msgstr[1] "Izņemt izvēlētās {0} fotogrāfijas no F-Spot?"
 msgstr[2] "Izņemt izvēlētās {0} fotogrāfijas no F-Spot?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2155
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2166
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1132,28 +1112,28 @@ msgstr ""
 "zaudēta. Bildes paliks uz jūsu datora un tas varēs atkārtoti importēt uz F-"
 "Spot."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2156
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2167
 msgid "_Remove from Catalog"
 msgstr "_Izņemt no kataloga"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2230
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2244
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Dzēst birku \"{0}\"?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2232
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2246
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Dzēst {0} izvēlētās birkas?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2237
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2251
 msgid "photo"
 msgid_plural "photos"
 msgstr[0] "fotogrāfija"
 msgstr[1] "fotogrāfijas"
 msgstr[2] "fotogrāfiju"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2239
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2253
 #, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
 msgid_plural ""
@@ -1162,7 +1142,7 @@ msgstr[0] "Ja dzēsīsiet šo birku, asociācija ar {0} {1} tiks zaudēta."
 msgstr[1] "Ja dzēsīsiet šīs birkas, asociācija ar {0} {1} tiks zaudēta."
 msgstr[2] "Ja dzēsīsiet šīs birkas, asociācija ar {0} {1} tiks zaudēta."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2244
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2258
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Dzēst birku"
@@ -1170,11 +1150,11 @@ msgstr[1] "_Dzēst birkas"
 msgstr[2] "_Dzēst birku"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2258
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2272
 msgid "Tag is not empty"
 msgstr "Birka nav tukša"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2259
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2273
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -1183,21 +1163,21 @@ msgstr ""
 "Nevar izdzēst birkas, kurās ir birkas. Lūdzu, izdzēsiet vispirms birkas zem "
 "\"{0}\" "
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2711
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2733
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Pagriezt izvēlēto bildi pa kreisi"
 msgstr[1] "Pagriezt izvēlētās bildes pa kreisi"
 msgstr[2] "Pagriezt izvēlētās bildes pa kreisi"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2724
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2746
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Pagriezt izvēlēto bildi pa labi"
 msgstr[1] "Pagriezt izvēlētās bildes pa labi"
 msgstr[2] "Pagriezt izvēlētās bildes pa labi"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2735
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2757
 #, csharp-format
 msgid "Find _Selected Tag"
 msgid_plural "Find _Selected Tags"
@@ -1205,7 +1185,7 @@ msgstr[0] "Atra_st izvēlēto birku"
 msgstr[1] "Atra_st izvēlētās birkas"
 msgstr[2] "Atra_st izvēlētās birkas"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2739
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2761
 #, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
@@ -1213,14 +1193,14 @@ msgstr[0] "Atrast izvēlēto _birku ar"
 msgstr[1] "Atrast izvēlētās _birkas ar"
 msgstr[2] "Atrast izvēlētās _birkas"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2780
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2802
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Izveidot jaunu versiju?"
 msgstr[1] "Izveidot jaunas versijas?"
 msgstr[2] "Izveidot jaunas versijas?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2782
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2804
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -1238,16 +1218,16 @@ msgstr[2] ""
 "Pirms palaist {1}, vai F-Spot ir jāizveido jaunas izvēlēto fotogrāfiju "
 "versijas, lai pasargāt oriģinālus?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2804
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2825
 msgid "XCF version"
 msgstr "XCF versija"
 
 #. Note for translators: Reparented is a picture becoming a version of another one
-#: ../src/Clients/MainApp/FSpot/Photo.cs:430
+#: ../src/Clients/MainApp/FSpot/Photo.cs:425
 msgid "Reparented"
 msgstr "Mainīts vecāks"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:448
+#: ../src/Clients/MainApp/FSpot/Photo.cs:443
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
@@ -1255,88 +1235,88 @@ msgstr[0] "Modificēts ({0})"
 msgstr[1] "Modificētas ({0})"
 msgstr[2] "Modificētas ({0})"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:471
+#: ../src/Clients/MainApp/FSpot/Photo.cs:466
 #, csharp-format
 msgid "Modified in {1}"
 msgstr "Modificēts {1}"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:471
+#: ../src/Clients/MainApp/FSpot/Photo.cs:466
 #, csharp-format
 msgid "Modified in {1} ({0})"
 msgstr "Modificēts {1} ({0})"
 
-#: ../src/Clients/MainApp/FSpot/PhotoStore.cs:202
+#: ../src/Clients/MainApp/FSpot/PhotoStore.cs:196
 #: ../src/Clients/MainApp/ui/mail_dialog.ui.h:13
 msgid "Original"
 msgstr "Oriģināls"
 
-#: ../src/Clients/MainApp/FSpot/PhotoView.cs:353
+#: ../src/Clients/MainApp/FSpot/PhotoView.cs:349
 msgid "Description:"
 msgstr "Apraksts:"
 
-#: ../src/Clients/MainApp/FSpot/Preferences.cs:191
+#: ../src/Clients/MainApp/FSpot/Preferences.cs:193
 msgid "Photos"
 msgstr "Fotogrāfijas"
 
-#: ../src/Clients/MainApp/FSpot/PrintOperation.cs:54
+#: ../src/Clients/MainApp/FSpot/PrintOperation.cs:57
 msgid "Image Settings"
 msgstr "Attēla iestatījumi"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:84
+#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:83
 msgid "Find: "
 msgstr "Meklēt: "
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:89
+#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:88
 msgid "Untagged photos"
 msgstr "Fotogrāfijas bez birkām"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:97
+#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:96
 msgid "Rated photos"
 msgstr "Vērtētās fotogrāfijas"
 
 #. Note for translators: 'Import roll' is no command, it means 'Roll that has been imported'
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:106
+#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:105
 msgid "Import roll"
 msgstr "Importēts rullis"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:129
+#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:128
 msgid "Clear search"
 msgstr "Attīrīt meklēšanu"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:136
+#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:135
 msgid "Refresh search"
 msgstr "Atsvaidzināt meklēšanu"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:139
+#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:138
 msgid "No matching photos found"
 msgstr "Nav atrastu atbilstošu fotogrāfiju"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:99
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:98
 msgid "Unable to rotate this type of photo"
 msgstr "Nevar pagriezt šāda veida fotogrāfiju"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:115
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:114
 msgid "Unable to rotate readonly file"
-msgstr "Nevar pagriezt tikai lasāmu failu"
+msgstr "Nevar pagriezt tikai lasāmu datni"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:173
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:172
 msgid "Rotating photos"
 msgstr "Pagriež fotogrāfijas"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:184
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:183
 #, csharp-format
 msgid "Rotating photo \"{0}\""
 msgstr "Pagriež fotogrāfiju \"{0}\""
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:197
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:196
 msgid "Directory not found"
 msgstr "Mape nav atrasta"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:199
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:198
 msgid "File not found"
-msgstr "Fails nav atrasts"
+msgstr "Datne nav atrasta"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:217
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:216
 #, csharp-format
 msgid "Unable to rotate photo"
 msgid_plural "Unable to rotate {0} photos"
@@ -1344,30 +1324,30 @@ msgstr[0] "Nevar pagriezt {0} fotogrāfiju"
 msgstr[1] "Nevar pagriezt {0} fotogrāfijas"
 msgstr[2] "Nevar pagriezt {0} fotogrāfiju"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:219
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:218
 #, csharp-format
 msgid ""
 "The photo could not be rotated because it is on a read only file system or "
-"media such as a CDROM.  Please check the permissions and try again."
+"media such as a CD-ROM.  Please check the permissions and try again."
 msgid_plural ""
 "{0} photos could not be rotated because they are on a read only file system "
-"or media such as a CDROM.  Please check the permissions and try again."
+"or media such as a CD-ROM.  Please check the permissions and try again."
 msgstr[0] ""
-"{0} fotogrāfiju nevarēja pagriezt, jo tā ir uz tikai lasāmas failu sistēmas "
-"vai uz CD-Rom. Lūdzu, pārbaudiet atļaujas un mēģiniet vēlreiz."
+"{0} fotogrāfiju nevarēja pagriezt, jo tā ir uz tikai lasāmas datņu sistēmas "
+"vai uz CD-ROM. Lūdzu, pārbaudiet atļaujas un mēģiniet vēlreiz."
 msgstr[1] ""
-"{0} fotogrāfijas nevarēja pagriezt, jo tā ir uz tikai lasāmas failu sistēmas "
-"vai uz CD-Rom. Lūdzu, pārbaudiet atļaujas un mēģiniet vēlreiz."
+"{0} fotogrāfijas nevarēja pagriezt, jo tā ir uz tikai lasāmas datņu sistēmas "
+"vai uz CD-ROM. Lūdzu, pārbaudiet atļaujas un mēģiniet vēlreiz."
 msgstr[2] ""
-"{0} fotogrāfiju nevarēja pagriezt, jo tā ir uz tikai lasāmas failu sistēmas "
-"vai uz CD-Rom. Lūdzu, pārbaudiet atļaujas un mēģiniet vēlreiz."
+"{0} fotogrāfiju nevarēja pagriezt, jo tā ir uz tikai lasāmas datņu sistēmas "
+"vai uz CD-ROM. Lūdzu, pārbaudiet atļaujas un mēģiniet vēlreiz."
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:246
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:245
 #, csharp-format
 msgid "Received error \"{0}\" while attempting to rotate {1}"
 msgstr "Saņemta kļūda \"{0}\", kamēr mēģināja pagriezt {1}"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:251
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:250
 msgid "Error while rotating photo."
 msgstr "Kļūda, pagriežot fotogrāfiju."
 
@@ -1390,31 +1370,31 @@ msgid "An error occured while processing \"{0}\": {1}"
 msgstr "Gadījās kļūda,  apstrādājot \"{0}\": {1}"
 
 #. Send the mail :)
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:310
+#: ../src/Clients/MainApp/FSpot/SendEmail.cs:312
 msgid "My Photos"
 msgstr "Manas fotogrāfijas"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:107
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:109
 msgid "Rotate photo left"
 msgstr "Pagriezt fotogrāfiju pa kreisi"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:112
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:114
 msgid "Rotate photo right"
 msgstr "Pagriezt fotogrāfiju pa labi"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:148
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:150
 msgid "Folder"
 msgstr "Mape"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:373
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:383
 msgid "Open"
 msgstr "Atvērt"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:376
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:386
 msgid "Select Folder"
 msgstr "Izvēlēties mapi"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:460
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:470
 msgid "Set as Background"
 msgstr "Iestatīt kā fonu"
 
@@ -1448,13 +1428,13 @@ msgstr "Visas"
 msgid "Drag tags here to search for them"
 msgstr "Birkas šeit šeit, lai tās meklētu"
 
-#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:521
+#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:518
 msgid "Error renaming tag"
 msgstr "Kļūda, pārsaucot birku"
 
-#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:522
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagDialog.cs:99
-#: ../src/Clients/MainApp/TagCommands.cs:139
+#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:519
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagDialog.cs:97
+#: ../src/Clients/MainApp/TagCommands.cs:137
 msgid "This name is already in use"
 msgstr "Šis nosaukums jau ir aizņemts"
 
@@ -1480,116 +1460,116 @@ msgstr "Notikumi"
 
 #. The label for the root category is used in new and edit tag dialogs
 #: ../src/Clients/MainApp/FSpot/TagStore.cs:257
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:445
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:446
 msgid "(None)"
 msgstr "(Nekas)"
 
-#: ../src/Clients/MainApp/FSpot/Term.cs:336
+#: ../src/Clients/MainApp/FSpot/Term.cs:338
 msgid " and "
 msgstr " un "
 
 #. Operators.Add (Catalog.GetString (" && "));
-#: ../src/Clients/MainApp/FSpot/Term.cs:338
+#: ../src/Clients/MainApp/FSpot/Term.cs:340
 msgid ", "
 msgstr ", "
 
-#: ../src/Clients/MainApp/FSpot/Term.cs:394
+#: ../src/Clients/MainApp/FSpot/Term.cs:396
 msgid " or "
 msgstr " vai "
 
 #. OPS The operators we support, case insensitive
 #. private static string op_str = "(?'Ops' or | and |, | \\s+ )";
-#: ../src/Clients/MainApp/FSpot/Term.cs:415
+#: ../src/Clients/MainApp/FSpot/Term.cs:417
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:3
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:202
+#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:203
 #: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:557
 msgid "or"
 msgstr "vai"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:123
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:125
 msgid "Photo management for GNOME"
 msgstr "GNOME fotogrāfiju pārvaldnieks"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:124
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:126
 msgid "Copyright © 2003-2010 Novell Inc."
 msgstr "Autortiesības © 2003-2010 Novell Inc."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:148
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:150
 msgid "translator-credits"
 msgstr ""
 "Raivis Dejus <orvils@gmail.com> Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:153
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:155
 msgid "F-Spot Website"
 msgstr "F-Spot tīmekļa vietne"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs:137
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs:140
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:8
 #, csharp-format
 msgid "Shift all photos by {0}"
 msgstr "Pabīdīt visas bildes par {0}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:109
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:112
 msgid "Today"
 msgstr "Šodien"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:111
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:114
 msgid "Yesterday"
 msgstr "Vakar"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:113
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:116
 msgid "Last 7 days"
 msgstr "Pēdējo 7 dienu laikā"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:115
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:118
 msgid "Last 30 days"
 msgstr "Pēdējo 30 dienu laikā"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:117
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:120
 msgid "Last 90 days"
 msgstr "Pēdējo 90 dienu laikā"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:119
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:122
 msgid "Last 360 days"
 msgstr "Pēdējo 360 dienu laikā"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:121
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:124
 msgid "Current Week (Mon-Sun)"
 msgstr "Šī nedēļa (pr–sv)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:123
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:126
 msgid "Previous Week (Mon-Sun)"
 msgstr "Iepriekšējā nedēļa (pr–sv)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:139
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:142
 #: ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui.h:3
 msgid "All Images"
 msgstr "Visi attēli"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:141
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:144
 msgid "Customized Range"
 msgstr "Pielāgots apgabals"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditExceptionDialog.cs:50
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:107
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditExceptionDialog.cs:54
+#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:108
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr "Saņemts izņēmums \"{0}\". Nevar saglabāt fotogrāfiju {1}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditExceptionDialog.cs:63
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditExceptionDialog.cs:67
 msgid "Error editing photo"
 msgstr "Kļūda, rediģējot fotogrāfiju"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:65
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:69
 #, csharp-format
 msgid "Edit Icon for Tag {0}"
 msgstr "Rediģēt ikonu birkai {0}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:87
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:91
 msgid "Select Photo from file"
-msgstr "Izvēlēties fotogrāfiju no faila"
+msgstr "Izvēlieties fotogrāfiju no datnes"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:109
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:113
 #, csharp-format
 msgid ""
 "\n"
@@ -1606,33 +1586,33 @@ msgstr ""
 " Lūdzu, tagojiet fotogrāfiju kā '{0}' un atgriezieties šeit,\n"
 " lai to lietotu kā ikonu."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:187
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:191
 msgid "Unable to load image"
 msgstr "Nevarēja ielādēt attēlu"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:188
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:192
 #, csharp-format
 msgid "Unable to load \"{0}\" as icon for the tag"
 msgstr "Neizdevās ielādēt \"{0}\" kā birkas ikonu"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:226
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:230
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "Fotogrāfija {0} no {1}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:45
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:48
 msgid "Choose Folder..."
 msgstr "Izvēlēties mapi..."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:164
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:167
 msgid "Choose Import source..."
 msgstr "Izvēlieties importēšanas avotu..."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:176
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:179
 msgid "(No Cameras Detected)"
 msgstr "(Fotoaparāts nav atrasts)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:211
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:214
 msgid ""
 "Checking this box will remove the imported photos from the camera after the "
 "import finished successfully.\n"
@@ -1646,62 +1626,62 @@ msgstr ""
 "Vēlams izveidot fotogrāfiju rezerves kopijas, pirms tās dzēst no "
 "fotoaparāta. <b>Šīs opcijas izmantošana ir jūsu atbildība!</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:212
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:215
 msgid "Warning"
 msgstr "Brīdinājums"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:331
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:334
 #, csharp-format
 msgid "Importing Photos: {0} of {1}..."
 msgstr "Importē fotogrāfijas {0} no {1}..."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:355
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:358
 msgid "Importing photos..."
 msgstr "Importē fotogrāfijas..."
 
 #. TODO: Using a GtkSpinner would be nicer here.
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:362
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:365
 msgid "Searching for photos... (You can already click Import to continue)"
 msgstr "Meklē fotogrāfijas... (Jūs jau varat spiet 'Importēt', lai turpinātu)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:65
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:68
 msgid "Import failures"
 msgstr "Importēšanas neveiksmes"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:66
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:69
 msgid "Some files failed to import"
-msgstr "Dažus failus neizdevās importēt"
+msgstr "Dažas datnes neizdevās importēt"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:67
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:70
 msgid ""
 "Some files could not be imported, they might be corrupt or there might be "
 "something wrong with the storage on which they reside."
 msgstr ""
-"Dažus failus neizdevās importēt, tie varētu būt bojāti vai kaut kas varētu "
-"nebūt kārtībā ar datu nesēju, kurā tie atrodas."
+"Dažas datnes neizdevās importēt, tās varētu būt bojātas vai kaut kas varētu "
+"nebūt kārtībā ar datu nesēju, kurā tās atrodas."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:130
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:133
 msgid "Details"
 msgstr "Sīkāk"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:77
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:100
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:79
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:102
 msgid "None"
 msgstr "Nekas"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:79
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:81
 msgid "System profile"
 msgstr "Sistēmas profils"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:117
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:119
 msgid "Standard theme"
-msgstr "Standarta tēma"
+msgstr "Standarta motīvs"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/RepairDbDialog.cs:44
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/RepairDbDialog.cs:47
 msgid "Error loading database."
 msgstr "Kļūda, ielādējot datubāzi."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/RepairDbDialog.cs:45
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/RepairDbDialog.cs:48
 #, csharp-format
 msgid ""
 "F-Spot encountered an error while loading the photo database. The old "
@@ -1709,6 +1689,10 @@ msgid ""
 msgstr ""
 "F-Spot saskārās ar kļūdu, ielādējot fotogrāfiju datubāzi. Vecā datubāze tika "
 "pārvietota uz {0} un tika izveidota jauna datubāze."
+
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/SelectionRatioDialog.cs:74
+msgid "New Selection"
+msgstr "Jauna izvēle"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/SelectionRatioDialog.cs:81
 msgid "Label"
@@ -1873,7 +1857,7 @@ msgid "<b>View all pictures imported</b>"
 msgstr "<b>Skatīt visas importētās bildes</b>"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:3
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:202
+#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:203
 #: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:558
 msgid "and"
 msgstr "un"
@@ -1931,7 +1915,7 @@ msgid ""
 "Inside the image files when possible\n"
 "<small>Makes them accessible to other image-editing programs.</small>"
 msgstr ""
-"Ja iespējams, attēla failos\n"
+"Ja iespējams, attēla datnēs\n"
 "<small>Padara to pieejamu citām attēlu apstrādes programmām.</small>"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:9
@@ -1943,12 +1927,12 @@ msgid ""
 "Never modify image files.\n"
 "<small>Write XMP files next to the images instead.</small>"
 msgstr ""
-"Nekad nemainīt attēla failus.\n"
-"<small>Tā vietā attēliem blakus rakstīt XMP failus.</small>"
+"Nekad nemainīt attēla datnes.\n"
+"<small>Tā vietā attēliem blakus rakstīt XMP datnes.</small>"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:12
 msgid "Separately from the image files"
-msgstr "Atsevišķi no attēla failiem"
+msgstr "Atsevišķi no attēla datnēm"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:1
 msgid "Set Rating Filter"
@@ -1974,17 +1958,17 @@ msgstr "Iezīmējuma ierobežojumi"
 msgid "Manage your custom selection ratios"
 msgstr "Pārvaldiet savu pielāgoto iezīmējuma samēru"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:55
-#: ../src/Clients/MainApp/FSpot.Widgets/Sidebar.cs:73
+#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:56
+#: ../src/Clients/MainApp/FSpot.Widgets/Sidebar.cs:74
 msgid "Edit"
 msgstr "Rediģēt"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:223
-#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:66
+#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:224
+#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:69
 msgid "No selection available"
 msgstr "Izvēle nav pieejama"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:224
+#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:225
 msgid ""
 "This tool requires an active selection. Please select a region of the photo "
 "and try the operation again"
@@ -1992,78 +1976,78 @@ msgstr ""
 "Šai ierīcei vajag aktīvo iezīmējumu. Lūdzu, izvēlēties fotogrāfijas reģionu "
 "un mēģiniet darbību atkal"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:242
+#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:243
 msgid "Error saving adjusted photo"
 msgid_plural "Error saving adjusted photos"
 msgstr[0] "Kļūda, saglabājot pielāgoto fotogrāfiju"
 msgstr[1] "Kļūda, saglabājot pielāgotās fotogrāfijas"
 msgstr[2] "Kļūda, saglabājot pielāgoto fotogrāfiju"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:244
+#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:245
 #, csharp-format
 msgid ""
 "Received exception \"{0}\". Note that you have to develop RAW files into "
 "JPEG before you can edit them."
 msgstr ""
-"Saņemts izņēmums \"{0}\". Ņemiet vērā, ka jums jāattīsta RAW faili par JPEG "
-"failiem, pirms tos var rediģēt."
+"Saņemts izņēmums \"{0}\". Ņemiet vērā, ka jums jāattīsta RAW datnes par JPEG "
+"datnēm, pirms tās var rediģēt."
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:497
+#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:495
 msgid "_Horizontal"
 msgstr "_Horizontāla"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:501
+#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:499
 msgid "_Vertical"
 msgstr "_Vertikāla"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:83
+#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:84
 msgid "Find:"
 msgstr "Meklēt:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/FolderTreePage.cs:44
+#: ../src/Clients/MainApp/FSpot.Widgets/FolderTreePage.cs:45
 msgid "Folders"
 msgstr "Mapes"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/FolderTreeView.cs:159
+#: ../src/Clients/MainApp/FSpot.Widgets/FolderTreeView.cs:158
 msgid "Filesystem"
-msgstr "Failu sistēma"
+msgstr "Datņu sistēma"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:125
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:405
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:455
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:461
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:465
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:126
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:406
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:456
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:462
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:466
 msgid "(Unknown)"
 msgstr "(Nezināms)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:305
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:306
 msgid "Histogram"
 msgstr "Histogramma"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:324
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:325
 msgid "Image Information"
 msgstr "Informācija par attēlu"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:332
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:333
 #, csharp-format
 msgid "{0} Photos"
 msgstr "{0} fotogrāfijas"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:334
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:335
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:9
 msgid "Name"
 msgstr "Nosaukums"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:346
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:347
 msgid "Version"
 msgstr "Versija"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:361
-#: ../src/Clients/MainApp/PhotoVersionMenu.cs:86
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:362
+#: ../src/Clients/MainApp/PhotoVersionMenu.cs:85
 msgid "(No Edits)"
 msgstr "(Nav izmaiņu)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:365
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:366
 #, csharp-format
 msgid "(One Edit)"
 msgid_plural "({0} Edits)"
@@ -2071,16 +2055,16 @@ msgstr[0] "({0} izmaiņa)"
 msgstr[1] "({0} izmaiņas)"
 msgstr[2] "({0} izmaiņu)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:371
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:372
 msgid "Date"
 msgstr "Datums"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:371
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:372
 msgid "Show Date"
 msgstr "Rādīt datumu"
 
 #. Note for translators: {0} is a date, {1} and {2} are times.
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:382
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:383
 #, csharp-format
 msgid ""
 "On {0} between \n"
@@ -2089,7 +2073,7 @@ msgstr ""
 "{0} starp \n"
 "{1} un {2}"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:387
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:388
 #, csharp-format
 msgid ""
 "Between {0} \n"
@@ -2098,170 +2082,170 @@ msgstr ""
 "Starp {0} \n"
 "un {1}"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:393
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:394
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:6
 msgid "Size"
 msgstr "Izmērs"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:393
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:394
 msgid "Show Size"
 msgstr "Rādīt izmēru"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:408
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:409
 msgid "Exposure"
 msgstr "Ekspozīcija"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:408
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:409
 msgid "Show Exposure"
 msgstr "Rādīt ekspozīciju"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:438
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:439
 msgid "flash fired"
 msgstr "bija zibspuldze"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:440
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:441
 msgid "flash didn't fire"
 msgstr "zibspuldzes nebija"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:450
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:451
 msgid "Focal Length"
 msgstr "Fokusa garums"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:450
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:451
 msgid "Show Focal Length"
 msgstr "Rādīt fokusa garumu"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:460
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:461
 msgid "Camera"
 msgstr "Fotoaparāts"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:460
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:461
 msgid "Show Camera"
 msgstr "Rādīt fotoaparātu"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:464
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:465
 msgid "Creator"
 msgstr "Veidotājs"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:464
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:465
 msgid "Show Creator"
 msgstr "Rādīt veidotāju"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:468
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:469
 msgid "File Size"
-msgstr "Faila izmērs"
+msgstr "Datnes izmērs"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:468
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:469
 msgid "Show File Size"
-msgstr "Rādīt faila izmēru"
+msgstr "Rādīt datnes izmēru"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:476
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:477
 msgid "(File read error)"
-msgstr "(Faila lasīšanas kļūda)"
+msgstr "(Datnes lasīšanas kļūda)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:484
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:485
 msgid "Rating"
 msgstr "Vērtējums"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:484
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:485
 msgid "Show Rating"
 msgstr "Rādīt vērtējumu"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:488
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:489
 msgid "Show Tags"
 msgstr "Rādīt birkas"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:46
+#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:44
 msgid "Metadata"
 msgstr "Metadati"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:127
+#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:125
 msgid "Extended Metadata"
 msgstr "Paplašinātie metadati"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:380
+#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:378
 msgid "No active photo"
 msgstr "Nav aktīvas fotogrāfijas"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:382
+#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:380
 #, csharp-format
 msgid "The photo \"{0}\" does not exist"
 msgstr "Fotogrāfija \"{0}\" neeksistē"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:384
+#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:382
 msgid "No metadata available"
 msgstr "Metadati nav pieejami"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:106
+#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:107
 msgid "Error saving sharpened photo"
 msgstr "Kļūda, saglabājot asināto fotogrāfiju"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:153
+#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:154
 msgid "Sharpen"
 msgstr "Asināt"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:163
+#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:164
 msgid "Amount:"
 msgstr "Apjoms:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:164
+#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:165
 msgid "Radius:"
 msgstr "Rādiuss:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:165
+#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:166
 msgid "Threshold:"
 msgstr "Slieksnis:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/TagMenu.cs:127
-#: ../src/Clients/MainApp/TagPopup.cs:61
+#: ../src/Clients/MainApp/FSpot.Widgets/TagMenu.cs:126
+#: ../src/Clients/MainApp/TagPopup.cs:64
 msgid "Create New Tag..."
 msgstr "Izveidot jaunu birku..."
 
 #. Fixme this should really set parent menu
 #. items insensitve
-#: ../src/Clients/MainApp/PhotoTagMenu.cs:68
+#: ../src/Clients/MainApp/PhotoTagMenu.cs:70
 msgid "(No Tags)"
 msgstr "(Nav birku)"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:91
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:95
 msgid "Create New Version"
 msgstr "Izveidot jaunu versiju"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:92
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:96
 msgid "Name:"
 msgstr "Nosaukums:"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:96
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:100
 msgid "Rename Version"
 msgstr "Pārsaukt versiju"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:97
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:101
 msgid "New name:"
 msgstr "Jauns nosaukums:"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:157
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:161
 msgid "Delete"
 msgstr "Dzēst"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:158
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:162
 #, csharp-format
 msgid "Really delete version \"{0}\"?"
 msgstr "Tiešam dzēst versiju \"{0}\"?"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:159
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:163
 msgid "This removes the version and deletes the corresponding file from disk."
-msgstr "Tas izņems versiju un dzēsīs atbilstošo failu no diska."
+msgstr "Tas izņems versiju un dzēsīs atbilstošo datni no diska."
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:204
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:208
 msgid "De_tach"
 msgstr "A_tvienot"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:205
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:209
 #, csharp-format
 msgid "Really detach version \"{0}\" from \"{1}\"?"
 msgstr "Tiešām atvienot versiju \"{0}\" no \"{1}\"?"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:206
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:210
 msgid ""
 "This makes the version appear as a separate photo in the library. To undo, "
 "drag the new photo back to its parent."
@@ -2269,11 +2253,11 @@ msgstr ""
 "Rezultātā versija bibliotēkā parādīsies kā atsevišķa fotogrāfija. Lai "
 "atsauktu, velciet jauno fotogrāfiju atpakaļ uz vecāku."
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:228
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:232
 msgid "Re_parent"
 msgstr "At_pakaļ pie vecāka"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:229
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:233
 #, csharp-format
 msgid "Really reparent \"{0}\" as version of \"{1}\"?"
 msgid_plural "Really reparent {2} photos as versions of \"{1}\"?"
@@ -2281,7 +2265,7 @@ msgstr[0] "Vai tiešām \"{2}\" atpakaļ pie vecāka kā \"{1}\" versiju?"
 msgstr[1] "Vai tiešām {2} bildes atpakaļ pie vecāka kā \"{1}\" versiju?"
 msgstr[2] "Vai tiešām {2} bilžu atpakaļ pie vecāka kā \"{1}\" versiju?"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:232
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:236
 msgid ""
 "This makes the photos appear as a single one in the library. The versions "
 "can be detached using the Photo menu."
@@ -2289,20 +2273,20 @@ msgstr ""
 "Tas liks bibliotēkā bildēm izskatīties kā vienai. Versijas var tikt "
 "atvienotas izvēlnē 'Fotogrāfija'."
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:272
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:276
 #, csharp-format
 msgid "Received exception \"{0}\"."
 msgstr "Saņemts izņēmums \"{0}\"."
 
-#: ../src/Clients/MainApp/TagCommands.cs:189
+#: ../src/Clients/MainApp/TagCommands.cs:188
 msgid "Create New Tag"
 msgstr "Izveidot jaunu birku"
 
-#: ../src/Clients/MainApp/TagCommands.cs:190
+#: ../src/Clients/MainApp/TagCommands.cs:189
 msgid "Name of New Tag:"
 msgstr "Jaunās birkas nosaukums:"
 
-#: ../src/Clients/MainApp/TagPopup.cs:51
+#: ../src/Clients/MainApp/TagPopup.cs:54
 #, csharp-format
 msgid "Find"
 msgid_plural "Find"
@@ -2310,32 +2294,32 @@ msgstr[0] "Meklēt"
 msgstr[1] "Meklēt"
 msgstr[2] "Meklēt"
 
-#: ../src/Clients/MainApp/TagPopup.cs:67
+#: ../src/Clients/MainApp/TagPopup.cs:70
 msgid "Edit Tag..."
 msgstr "Rediģēt birku..."
 
-#: ../src/Clients/MainApp/TagPopup.cs:72
+#: ../src/Clients/MainApp/TagPopup.cs:75
 msgid "Delete Tag"
 msgid_plural "Delete Tags"
 msgstr[0] "Dzēst birku"
 msgstr[1] "Dzēst birkas"
 msgstr[2] "Dzēst birkas"
 
-#: ../src/Clients/MainApp/TagPopup.cs:78
+#: ../src/Clients/MainApp/TagPopup.cs:81
 msgid "Attach Tag to Selection"
 msgid_plural "Attach Tags to Selection"
 msgstr[0] "Pievienot birku izvēlei"
 msgstr[1] "Pievienot birkas izvēlei"
 msgstr[2] "Pievienot birku izvēlei"
 
-#: ../src/Clients/MainApp/TagPopup.cs:82
+#: ../src/Clients/MainApp/TagPopup.cs:85
 msgid "Remove Tag From Selection"
 msgid_plural "Remove Tags From Selection"
 msgstr[0] "Izņemt birku no izvēles"
 msgstr[1] "Izņemt birkas no izvēles"
 msgstr[2] "Izņemt birku no izvēles"
 
-#: ../src/Clients/MainApp/TagPopup.cs:88
+#: ../src/Clients/MainApp/TagPopup.cs:91
 msgid "Merge Tags"
 msgstr "Apvienot birkas"
 
@@ -2400,7 +2384,7 @@ msgstr "Atrast _dublikātus"
 
 #: ../src/Clients/MainApp/ui/import.ui.h:6
 msgid "C_opy files to the Photos folder"
-msgstr "K_opēt failus uz fotogrāfiju mapi"
+msgstr "K_opēt datnes uz fotogrāfiju mapi"
 
 #: ../src/Clients/MainApp/ui/import.ui.h:7
 msgid "I_nclude subfolders"
@@ -2408,7 +2392,7 @@ msgstr "Iekļaut _apakšmapes"
 
 #: ../src/Clients/MainApp/ui/import.ui.h:8
 msgid "_Remove original files after import"
-msgstr "Pēc impo_rtēšanas izņemt oriģinālos failus"
+msgstr "Pēc impo_rtēšanas izņemt oriģinālās datnes"
 
 #: ../src/Clients/MainApp/ui/import.ui.h:9
 msgid "_Import"
@@ -2460,7 +2444,7 @@ msgstr "1024 px"
 
 #: ../src/Clients/MainApp/ui/mail_dialog.ui.h:14
 msgid "Original size (possible very large file size)"
-msgstr "Sākotnējais izmērs (iespējams ļoti liels faila izmērs)"
+msgstr "Sākotnējais izmērs (iespējams ļoti liels datnes izmērs)"
 
 #: ../src/Clients/MainApp/ui/mail_dialog.ui.h:15
 msgid "<b>Size</b>"
@@ -2546,7 +2530,7 @@ msgid "_Quit"
 msgstr "I_ziet"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:13
-#: ../src/Clients/MainApp/ui/single_view.ui.h:4
+#: ../src/Clients/MainApp/ui/single_view.ui.h:6
 msgid "_Edit"
 msgstr "R_ediģēt"
 
@@ -2579,7 +2563,7 @@ msgid "Re_fresh Thumbnail"
 msgstr "_Atsvaidzināt sīktēlu"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:25
-#: ../src/Clients/MainApp/ui/single_view.ui.h:5
+#: ../src/Clients/MainApp/ui/single_view.ui.h:9
 msgid "Set as _Background"
 msgstr "Ielikt kā _fona attēlu"
 
@@ -2592,17 +2576,17 @@ msgid "Manage _Extensions"
 msgstr "Pār_valdīt paplašinājumus"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:29
-#: ../src/Clients/MainApp/ui/single_view.ui.h:6
+#: ../src/Clients/MainApp/ui/single_view.ui.h:10
 msgid "_View"
 msgstr "_Skats"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:30
-#: ../src/Clients/MainApp/ui/single_view.ui.h:7
+#: ../src/Clients/MainApp/ui/single_view.ui.h:11
 msgid "_Slideshow"
 msgstr "_Slīdrāde"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:31
-#: ../src/Clients/MainApp/ui/single_view.ui.h:8
+#: ../src/Clients/MainApp/ui/single_view.ui.h:12
 msgid "_Fullscreen"
 msgstr "_Pilnekrāns"
 
@@ -2643,12 +2627,12 @@ msgid "Too_lbar"
 msgstr "Rīkjos_la"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:41
-#: ../src/Clients/MainApp/ui/single_view.ui.h:14
+#: ../src/Clients/MainApp/ui/single_view.ui.h:18
 msgid "Zoom _in"
 msgstr "Tuv_ināt"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:42
-#: ../src/Clients/MainApp/ui/single_view.ui.h:15
+#: ../src/Clients/MainApp/ui/single_view.ui.h:19
 msgid "Zoom _out"
 msgstr "Tā_lināt"
 
@@ -2757,7 +2741,7 @@ msgid "_Tools"
 msgstr "_Rīki"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:70
-#: ../src/Clients/MainApp/ui/single_view.ui.h:16
+#: ../src/Clients/MainApp/ui/single_view.ui.h:20
 msgid "_Help"
 msgstr "_Palīdzība"
 
@@ -2770,18 +2754,18 @@ msgid "View"
 msgstr "Skats"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:74
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:442
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:443
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:444
 msgid "Tags: "
 msgstr "Birkas: "
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:75
-#: ../src/Clients/MainApp/ui/single_view.ui.h:17
+#: ../src/Clients/MainApp/ui/single_view.ui.h:21
 msgid "Zoom out"
 msgstr "Tālināt"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:76
-#: ../src/Clients/MainApp/ui/single_view.ui.h:18
+#: ../src/Clients/MainApp/ui/single_view.ui.h:22
 msgid "Zoom in"
 msgstr "Tuvināt"
 
@@ -2790,6 +2774,14 @@ msgid "F-Spot View"
 msgstr "F-Spot skats"
 
 #: ../src/Clients/MainApp/ui/single_view.ui.h:3
+msgid "_New Window"
+msgstr "_Jauns logs"
+
+#: ../src/Clients/MainApp/ui/single_view.ui.h:4
+msgid "Open _Folder..."
+msgstr "Atvērt _mapi..."
+
+#: ../src/Clients/MainApp/ui/single_view.ui.h:5
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:8
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:18
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:17
@@ -2800,25 +2792,25 @@ msgstr "F-Spot skats"
 msgid "_Export"
 msgstr "_Eksportēt"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:9
+#: ../src/Clients/MainApp/ui/single_view.ui.h:13
 msgid "Show or hide the toolbar"
 msgstr "Rādīt vai slēpt rīkjoslu"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:10
+#: ../src/Clients/MainApp/ui/single_view.ui.h:14
 msgid "_Toolbar"
 msgstr "_Rīkjosla"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:11
+#: ../src/Clients/MainApp/ui/single_view.ui.h:15
 msgid "Show or hide the side pane"
 msgstr "Rādīt vai slēpt sānu rūti"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:12
+#: ../src/Clients/MainApp/ui/single_view.ui.h:16
 msgid "Side _pane"
 msgstr "Sānu _rūts"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:13
+#: ../src/Clients/MainApp/ui/single_view.ui.h:17
 msgid "Display File _Names"
-msgstr "Rādīt failu _nosaukumus"
+msgstr "Rādīt datņu _nosaukumus"
 
 #: ../src/Clients/MainApp/ui/tag_selection_dialog.ui.h:1
 msgid "Select a Tag..."
@@ -2874,154 +2866,154 @@ msgstr ""
 msgid "<b>Transparent Parts</b>"
 msgstr "<b>Caurspīdīgās daļas</b>"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:141
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:142
 msgid "Page Setup"
 msgstr "Lapas iestatījumi"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:145
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:149
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:155
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:146
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:150
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:156
 #, csharp-format
 msgid "Paper Size: {0} x {1} mm"
 msgstr "Papīra izmērs: {0} x {1} mm"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:152
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:153
 msgid "Set Page Size and Orientation"
 msgstr "Iestatīt papīra izmēru un orientāciju"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:163
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:164
 msgid "Photos per page"
 msgstr "Fotogrāfijas lapā"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:173
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:174
 msgid "Repeat"
 msgstr "Atkārtot"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:174
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:175
 msgid "Print cut marks"
 msgstr "Drukāt griezuma zīmes"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:180
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:181
 msgid "Photos layout"
 msgstr "Fotogrāfiju izkārtojums"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:182
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:183
 msgid "Full Page (no margin)"
 msgstr "Pilna lapa (bez apmalēm)"
 
 #. Note for translators: "Zoom" is a Fit Mode
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:185
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:186
 msgid "Zoom"
 msgstr "Mērogs"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:186
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:187
 msgid "Fill"
 msgstr "Aizpildījums"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:187
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:188
 msgid "Scaled"
 msgstr "Mērogots"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:192
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:193
 msgid "White borders"
 msgstr "Baltas malas"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:198
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:199
 msgid "Custom Text"
 msgstr "Pielāgots teksts"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:202
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:203
 msgid "Photos infos"
 msgstr "Informācija par fotogrāfijām"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:204
-msgid "Print file name"
-msgstr "Drukāt faila nosaukumu"
-
 #: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:205
+msgid "Print file name"
+msgstr "Drukāt datnes nosaukumu"
+
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:206
 msgid "Print photo date"
 msgstr "Drukāt fotogrāfijas datumu"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:206
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:207
 msgid "Print photo time"
 msgstr "Drukāt fotogrāfijas laiku"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:207
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:208
 msgid "Print photo tags"
 msgstr "Drukāt fotogrāfijas birkas"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:208
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:209
 msgid "Print photo comment"
 msgstr "Drukāt fotogrāfijas komentāru"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/OpenWithMenu.cs:88
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/OpenWithMenu.cs:89
 msgid "No applications available"
 msgstr "Nav pieejamu lietotņu"
 
-#: ../src/Extensions/Editors/FSpot.Editors.Blackout/FSpot.Addins.Editors/BlackoutEditor.cs:38
+#: ../src/Extensions/Editors/FSpot.Editors.Blackout/FSpot.Addins.Editors/BlackoutEditor.cs:41
 msgid "Blackout"
 msgstr "Aptumšojums"
 
-#: ../src/Extensions/Editors/FSpot.Editors.Blackout/FSpot.Addins.Editors/BlackoutEditor.cs:46
+#: ../src/Extensions/Editors/FSpot.Editors.Blackout/FSpot.Addins.Editors/BlackoutEditor.cs:49
 msgid "Select the area that you want blacked out."
 msgstr "Iezīmējiet laukumus, kurus vēlaties aptumšot."
 
-#: ../src/Extensions/Editors/FSpot.Editors.BW/FSpot.Addins.Editors/BWEditor.cs:41
+#: ../src/Extensions/Editors/FSpot.Editors.BW/FSpot.Addins.Editors/BWEditor.cs:46
 msgid "Convert to B/W"
 msgstr "Pārveidot uz melnbaltu"
 
-#: ../src/Extensions/Editors/FSpot.Editors.BW/FSpot.Addins.Editors/BWEditor.cs:44
+#: ../src/Extensions/Editors/FSpot.Editors.BW/FSpot.Addins.Editors/BWEditor.cs:49
 msgid "Apply"
 msgstr "Pielietot"
 
-#: ../src/Extensions/Editors/FSpot.Editors.Flip/FSpot.Addins.Editors/FlipEditor.cs:37
+#: ../src/Extensions/Editors/FSpot.Editors.Flip/FSpot.Addins.Editors/FlipEditor.cs:40
 msgid "Flip"
 msgstr "Apmest"
 
-#: ../src/Extensions/Editors/FSpot.Editors.Pixelate/FSpot.Addins.Editors/PixelateEditor.cs:40
+#: ../src/Extensions/Editors/FSpot.Editors.Pixelate/FSpot.Addins.Editors/PixelateEditor.cs:43
 msgid "Pixelate"
 msgstr "Pikselizēt"
 
-#: ../src/Extensions/Editors/FSpot.Editors.Pixelate/FSpot.Addins.Editors/PixelateEditor.cs:48
+#: ../src/Extensions/Editors/FSpot.Editors.Pixelate/FSpot.Addins.Editors/PixelateEditor.cs:51
 msgid "Select the area that you want pixelated."
 msgstr "Iezīmējiet laukumus, kurus vēlaties pikselizēt."
 
-#: ../src/Extensions/Editors/FSpot.Editors.Resize/FSpot.Addins.Editors/ResizeEditor.cs:42
+#: ../src/Extensions/Editors/FSpot.Editors.Resize/FSpot.Addins.Editors/ResizeEditor.cs:46
 msgid "Resize"
 msgstr "Mainīt izmēru"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:82
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:77
 msgid "Transferring Pictures"
 msgstr "Pārsūta bildes"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:133
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:128
 #, csharp-format
 msgid "Transferring picture \"{0}\" To CD"
 msgstr "Pārsūta bildi \"{0}\" uz CD"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:148
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:392
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:421
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:231
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:288
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:255
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:143
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:394
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:423
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:230
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:290
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:256
 msgid "Done Sending Photos"
 msgstr "Fotogrāfiju sūtīšana ir pabeigta"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:150
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:145
 msgid "Transfer Complete"
 msgstr "Pārsūtīšana pabeigta"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:157
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:152
 msgid "Error While Transferring"
 msgstr "Kļūda pārsūtot"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:164
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:301
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:159
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:295
 msgid "Error Transferring"
 msgstr "Kļūda pārsūtot"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:174
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:169
 msgid "copying..."
 msgstr "kopē..."
 
@@ -3035,7 +3027,7 @@ msgstr "_Rakstīt tikai šīs fotogrāfijas uz CD"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:3
 msgid "_Browse Previously Scheduled Files"
-msgstr "_Pārlūkot iepriekš plānotos failus"
+msgstr "_Pārlūkot iepriekš plānotās datnes"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:4
 msgid "<b><i>There are some previously scheduled items to write</i></b>"
@@ -3049,11 +3041,11 @@ msgstr "Eksportējamas izvēles izmērs:"
 msgid "<b>Photos to Burn</b>"
 msgstr "<b>Fotogrāfijas ierakstīšanai</b>"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:111
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:113
 msgid "Waiting for authorization"
 msgstr "Gaida autorizāciju"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:112
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:114
 msgid ""
 "F-Spot will now launch your browser so that you can enable the permission "
 "you just selected.\n"
@@ -3066,11 +3058,11 @@ msgstr ""
 "\n"
 "Kad Facebook jūs atsūtīs jūs atpakaļ uz šo lietotni, spiediet \"Labi\" zemāk."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:296
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:298
 msgid "Too many images to export"
 msgstr "Pārāk daudz eksportējamo attēlu"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:297
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:299
 #, csharp-format
 msgid ""
 "Facebook only permits {0} photographs per album.  Please refine your "
@@ -3079,19 +3071,19 @@ msgstr ""
 "Facebook ļauj tikai {0} fotogrāfijas albumā.  Lūdzu, attīriet savu izvēli un "
 "mēģiniet vēlreiz."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:312
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:314
 msgid "Album must have a name"
 msgstr "Albumam ir jābūt ar nosaukumu"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:313
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:315
 msgid "Please name your album or choose an existing album."
 msgstr "Lūdzu, nosauciet savu albumu vai izvēlieties esošu albumu."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:327
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:329
 msgid "Creating a new album failed"
 msgstr "Neizdevās jauna albuma izveidošana"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:328
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:330
 #, csharp-format
 msgid ""
 "An error occurred creating a new album.\n"
@@ -3102,45 +3094,45 @@ msgstr ""
 "\n"
 "{0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:341
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:516
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:162
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:184
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:174
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:343
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:518
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:161
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:186
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:175
 msgid "Uploading Pictures"
 msgstr "Augšupielādē bildes"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:369
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:243
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:213
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:371
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:245
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:214
 #, csharp-format
 msgid "Uploading picture \"{0}\" ({1} of {2})"
 msgstr "Augšupielādē bildi \"{0}\" ({1} no {2})"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:383
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:385
 #, csharp-format
 msgid "Error Uploading To Facebook: {0}"
 msgstr "Kļūda, augšupielādējot uz Facebook: {0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:384
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:412
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:250
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:223
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:277
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:244
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:386
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:414
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:244
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:222
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:279
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:245
 #: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/FSpot.Exporters.Tabblo/TabbloExport.cs:321
 msgid "Error"
 msgstr "Kļūda"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:394
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:423
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:233
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:290
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:257
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:396
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:425
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:232
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:292
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:258
 msgid "Upload Complete"
 msgstr "Augšupielāde pabeigta"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:397
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:399
 msgid "Visit F-Spot group on Facebook"
 msgstr "Apmeklējiet Facebook grupu F-Spot"
 
@@ -3279,12 +3271,12 @@ msgstr "Šajā fotogrāfijā"
 msgid "Who is this?"
 msgstr "Kas tas ir?"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:139
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:141
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:4
 msgid "Authorize"
 msgstr "Autorizēt"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:145
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:147
 #, csharp-format
 msgid ""
 "Return to this window after you have finished the authorization process on "
@@ -3293,60 +3285,60 @@ msgstr ""
 "Atgriezieties pie šī loga, kad jūs pabeigsiet autorizācijas procesu uz {0} "
 "un spiediet pogu \"Beigt autorizāciju\""
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:146
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:148
 msgid "Complete Authorization"
 msgstr "Beigt autorizāciju"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:151
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:153
 #, csharp-format
 msgid "Logging into {0}"
 msgstr "Pieteikties {0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:152
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:154
 msgid "Checking credentials..."
 msgstr "Pārbauda akreditācijas datus..."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:159
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:161
 #, csharp-format
 msgid "Welcome {0} you are connected to {1}"
 msgstr "Laipni lūdzam, {0}, jūs esat savienojies ar {1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:162
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:164
 #, csharp-format
 msgid "Sign in as a different user"
 msgstr "Ierakstīties kā cits lietotājs"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:167
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:169
 #, csharp-format
 msgid "Used {0} of your allowed {1} monthly quota"
 msgstr "Izmantoti {0} no atļautās {1} mēneša kvotas"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:270
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:339
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:272
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:341
 msgid "Unable to log on"
 msgstr "Nevar pieteikties"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:359
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:361
 #, csharp-format
 msgid "Waiting for response {0} of {1}"
 msgstr "Gaida atbildi {0} no {1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:386
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:204
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:388
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:203
 #, csharp-format
 msgid "Uploading picture \"{0}\""
 msgstr "Augšupielādē bildi \"{0}\""
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:409
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:411
 #, csharp-format
 msgid "Error Uploading To {0}: {1}"
 msgstr "Kļūda, augšupielādējot uz {0}: {1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:496
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:498
 msgid "Unable to log on."
 msgstr "Nevar pieteikties."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:497
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:499
 #, csharp-format
 msgid ""
 "F-Spot was unable to log on to {0}.  Make sure you have given the "
@@ -3430,79 +3422,83 @@ msgstr "Izveido_t augšējā līmeņa birkas"
 msgid "<b>Style</b>"
 msgstr "<b>Stils</b>"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:152
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:116
+msgid "Gallery"
+msgstr "Galerija"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:146
 msgid "Select Export Folder"
 msgstr "Izvēlieties eksportēšanas mapi"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:204
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:198
 msgid "Building Gallery"
 msgstr "Izveido galeriju"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:241
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:235
 #, csharp-format
 msgid "Exporting \"{0}\"..."
 msgstr "Eksportē \"{0}\"..."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:248
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:242
 #, csharp-format
 msgid "Error Copying \"{0}\" to Gallery:{2}{1}"
 msgstr "Kļūda, kopējot \"{0}\" uz galeriju: {2}{1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:274
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:268
 #, csharp-format
 msgid "Transferring to \"{0}\""
 msgstr "Pārsūta uz \"{0}\""
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:275
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:269
 msgid "Transferring..."
 msgstr "Pārsūta..."
 
 #. No need to check result here as if result is not true, an Exception will be thrown before
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:280
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:274
 msgid "Export Complete."
 msgstr "Eksportēšana pabeigta."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:282
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:276
 msgid "Exporting Photos Completed."
 msgstr "Fotogrāfiju eksportēšana pabeigta."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:346
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:340
 msgid "Exporting Photos"
 msgstr "Eksportē fotogrāfijas"
 
 #. Note for translators: light as clear, opposite as dark
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:74
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:73
 msgid "Light"
 msgstr "Gaišie"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:75
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:74
 msgid "Dark"
 msgstr "Tumšie"
 
 #. Abbreviation of previous
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:255
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:254
 msgid "Prev"
 msgstr "Iepr."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:257
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:498
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:256
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:497
 msgid "Index"
 msgstr "Indekss"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:367
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:366
 msgid "Gallery generated by"
 msgstr "Galerija veidota ar"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:407
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:406
 msgid "Show Styles"
 msgstr "Rādīt stilus"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:408
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:407
 msgid "Hide Styles"
 msgstr "Slēpt stilus"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:575
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:708
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:574
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:707
 msgid "Page:"
 msgstr "Lapa:"
 
@@ -3532,7 +3528,7 @@ msgstr "Izveidot patstāvīgu _tīmekļa galeriju"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:9
 msgid "_Save the files only"
-msgstr "_Saglabāt tikai failus"
+msgstr "_Saglabāt tikai datnes"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:10
 msgid "Create _gallery using \"Original\""
@@ -3550,32 +3546,32 @@ msgstr "Ekspor_tēt birkas"
 msgid "Export tag _icons"
 msgstr "Eksportēt birku _ikonas"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:123
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:122
 msgid "Invalid URL"
 msgstr "Nederīgs URL"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:124
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:123
 msgid "The gallery URL entry does not appear to be a valid URL"
 msgstr "Galerijas URL ieraksts neizskatās pēc derīga URL"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:133
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:160
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:171
+msgid "Error while connecting to Gallery"
+msgstr "Kļūda, savienojoties ar galeriju"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:134
 #: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:161
 #: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:172
-msgid "Error while connecting to Gallery"
-msgstr "Kļūda, savienojoties ar galeriju"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:135
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:162
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:173
 #, csharp-format
 msgid "The following error was encountered while attempting to log in: {0}"
 msgstr "Ar sekojošo kļūdu saskārās, mēģinot pieteikties {0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:149
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:148
 msgid "A Gallery with this name already exists"
 msgstr "Galerija ar šādu nosaukumu jau eksistē"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:150
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:149
 #, csharp-format
 msgid ""
 "There is already a Gallery with the same name in your registered Galleries. "
@@ -3588,7 +3584,7 @@ msgstr ""
 msgid "Unhandled exception"
 msgstr "Neapstrādāts izņēmums"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAccount.cs:67
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAccount.cs:68
 msgid ""
 "Cannot connect to a Gallery for which the version is unknown.\n"
 "Please check that you have Remote plugin 1.0.8 or later"
@@ -3635,32 +3631,32 @@ msgstr ""
 "Ar sekojošo kļūdu saskārās, mēģinot veikt pieprasīto darbību.\n"
 "{0} ({1})"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:222
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:221
 #, csharp-format
 msgid "Error uploading picture \"{0}\" to Gallery: {1}"
 msgstr "Kļūda, augšupielādējot bildi \"{0}\" uz galeriju: {1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:247
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:312
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:272
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:246
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:314
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:273
 msgid "(No Gallery)"
 msgstr "(Nav galerijas)"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:331
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:431
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:363
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:330
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:433
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:364
 msgid "(Not Connected)"
 msgstr "(Nav savienots)"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:332
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:432
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:364
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:331
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:434
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:365
 msgid "(No Albums)"
 msgstr "(Nav albumu)"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:373
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:490
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:401
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:372
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:492
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:402
 msgid "No account selected"
 msgstr "Nav izvēlēts konts"
 
@@ -3746,38 +3742,38 @@ msgstr "<b>Albums</b>"
 msgid "Export _titles and comments"
 msgstr "Ekspor_tēt virsrakstus un komentārus"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/GoogleAddAlbum.cs:111
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/GoogleAddAlbum.cs:100
 msgid "Error while creating Album"
 msgstr "Kļūda, veidojot albumu"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/GoogleAddAlbum.cs:112
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/GoogleAddAlbum.cs:101
 #, csharp-format
 msgid ""
 "The following error was encountered while attempting to create an album: {0}"
 msgstr "Ar sekojošo kļūdu saskārās, mēģinot izveidot albumu: {0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:206
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:208
 #, csharp-format
 msgid "{0} Sent"
 msgstr "{0} nosūtīts"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:208
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:210
 #, csharp-format
 msgid "{0} of approx. {1}"
 msgstr "{0} no apm. {1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:275
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:242
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:277
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:243
 #, csharp-format
 msgid "Error Uploading To Gallery: {0}"
 msgstr "Kļūda, augšupielādējot uz galeriju: {0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:363
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:365
 #, csharp-format
 msgid "Available space: {0}, {1}% used out of {2}"
 msgstr "Pieejamā vieta: {0}, {1}% izmantoti no {2}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:467
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:469
 #, csharp-format
 msgid ""
 "The selected album has a limit of {0} pictures,\n"
@@ -3896,7 +3892,7 @@ msgstr "Tikai šoreiz uzticēties šim vietnes sertifikātam"
 msgid "Always trust this site's certificate"
 msgstr "Vienmēr uzticēties šim vietnes sertifikātam"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:67
+#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:70
 msgid ""
 "This tool requires an active selection. Please select one or more pictures "
 "and try again"
@@ -3904,15 +3900,15 @@ msgstr ""
 "Šim rīkam vajag aktīvu izvēli. Lūdzu, izvēlieties vienu vai vairākas bildes "
 "un mēģiniet vēlreiz"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:83
+#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:86
 msgid "Select export folder"
 msgstr "Izvēlieties eksportēšanas mapi"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:121
+#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:124
 msgid "Exporting files"
-msgstr "Eksportē failus"
+msgstr "Eksportē datnes"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:127
+#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:130
 #, csharp-format
 msgid "Preparing photo \"{0}\""
 msgstr "Sagatavo fotogrāfiju \"{0}\""
@@ -3923,7 +3919,7 @@ msgstr "_Vieta:"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Zip/Resources/zip_export.ui.h:2
 msgid "_File name:"
-msgstr "_Faila nosaukums:"
+msgstr "_Datnes nosaukums:"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Zip/Resources/zip_export.ui.h:3
 msgid "_Scale:"
@@ -3949,28 +3945,32 @@ msgstr "Mainīt bāzes ceļu (URI) uz"
 msgid "<b>Specify the toplevel Photos directories</b>"
 msgstr "<b>Norādiet augšējā līmeņa fotogrāfiju mapes</b>"
 
-#: ../src/Extensions/Tools/FSpot.Tools.DevelopInUFraw/FSpot.Tools.DevelopInUFraw/DevelopInUFRawBatch.cs:51
+#: ../src/Extensions/Tools/FSpot.Tools.ChangePhotoPath/Resources/ChangePhotoPath.ui.h:5
+msgid "_Apply changes"
+msgstr "Pielietot izm_aiņas"
+
+#: ../src/Extensions/Tools/FSpot.Tools.DevelopInUFraw/FSpot.Tools.DevelopInUFraw/DevelopInUFRawBatch.cs:50
 msgid "Developing photos"
 msgstr "Attīsta fotogrāfijas"
 
-#: ../src/Extensions/Tools/FSpot.Tools.DevelopInUFraw/FSpot.Tools.DevelopInUFraw/DevelopInUFRawBatch.cs:58
+#: ../src/Extensions/Tools/FSpot.Tools.DevelopInUFraw/FSpot.Tools.DevelopInUFraw/DevelopInUFRawBatch.cs:57
 #, csharp-format
 msgid "Developing {0}"
 msgstr "Attīsta {0}"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:128
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:129
 msgid "F-Spot Gallery"
 msgstr "F-Spot galerija"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:129
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:130
 msgid "The web gallery seems to be offline now"
 msgstr "Izskatās, ka tīmekļa galerija ir nesaistē"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:130
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:131
 msgid "Show All"
 msgstr "Rādīt visu"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:140
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:141
 #, csharp-format
 msgid "{0} photo"
 msgid_plural "{0} photos"
@@ -3978,25 +3978,25 @@ msgstr[0] "{0} fotogrāfija"
 msgstr[1] "{0} fotogrāfijas"
 msgstr[2] "{0} fotogrāfiju"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:182
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:183
 #: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:4
 msgid "Current View"
 msgstr "Pašreizējais skats"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:185
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:186
 msgid "Selected"
 msgstr "Izvēlēts"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/LiveWebGalleryDialog.cs:111
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/LiveWebGalleryDialog.cs:113
 msgid "none"
 msgstr "nekas"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/LiveWebGalleryDialog.cs:114
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/LiveWebGalleryDialog.cs:116
 #, csharp-format
 msgid " Gallery: {0},  Photos: {1},  Last client: {3}"
 msgstr " Galerija: {0},  fotogrāfijas: {1},  pēdējais klients: {3}"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/LiveWebGalleryDialog.cs:178
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/LiveWebGalleryDialog.cs:180
 msgid "Gallery is inactive"
 msgstr "Galerija ir neaktīva"
 
@@ -4064,7 +4064,7 @@ msgstr "Kopēt URL uz starpliktuvi"
 
 #: ../src/Extensions/Tools/FSpot.Tools.MergeDb/FSpot.Tools.MergeDb/MergeDb.cs:91
 msgid "Error opening the selected file"
-msgstr "Kļūda, atverot izvēlēto failu"
+msgstr "Kļūda, atverot izvēlēto datni"
 
 #: ../src/Extensions/Tools/FSpot.Tools.MergeDb/FSpot.Tools.MergeDb/MergeDb.cs:92
 #, csharp-format
@@ -4073,7 +4073,7 @@ msgid ""
 "\n"
 "Received exception \"{0}\"."
 msgstr ""
-"Izvēlētais fails nav derīgs vai atbalstīta datubāze.\n"
+"Izvēlētā datne nav derīga vai atbalstīta datubāze.\n"
 "\n"
 "Saņēma izņēmumu \"{0}\"."
 
@@ -4083,7 +4083,7 @@ msgid ""
 "<big>The database refers to files contained in the <b>{0}</b> folder.\n"
 " Please select that folder so I can do the mapping.</big>"
 msgstr ""
-"<big>Datubāze norāda uz failiem, kas atrodas mapē <b>{0}</b>.\n"
+"<big>Datubāze norāda uz datnēm, kas atrodas mapē <b>{0}</b>.\n"
 " Lūdzu, izvēlieties to mapi, lai es varu veikt kartēšanu.</big>"
 
 #: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:1
@@ -4774,9 +4774,6 @@ msgstr "Rādīt slīdrādi no F-Spot"
 #~ msgid "E_xport titles and comments"
 #~ msgstr "E_ksportēt titulus un komentārus"
 
-#~ msgid "Gallery"
-#~ msgstr "Galerija"
-
 #~ msgid "Pause"
 #~ msgstr "Pauze"
 
@@ -4813,9 +4810,6 @@ msgstr "Rādīt slīdrādi no F-Spot"
 
 #~ msgid "_Month"
 #~ msgstr "_Mēnesis"
-
-#~ msgid "_New Window"
-#~ msgstr "_Jauns logs"
 
 #~ msgid "_Open album in browser when done uploading"
 #~ msgstr "_Atvert albumu pārlūkprogrammā, kad augšupielāde tiks pabeigta"
