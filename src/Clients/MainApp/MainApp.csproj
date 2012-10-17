@@ -300,33 +300,24 @@
     </MonoDevelop>
   </ProjectExtensions>
   <ItemGroup>
-    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>gtk-sharp-2.0</Package>
-    </Reference>
-    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>gtk-sharp-2.0</Package>
-    </Reference>
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="System.Data" />
     <Reference Include="Mono.Posix" />
     <Reference Include="Mono.Addins, Version=0.4.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
       <Private>False</Private>
       <SpecificVersion>False</SpecificVersion>
-      <Package>mono-addins</Package>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System" />
     <Reference Include="Mono.Addins.Setup, Version=0.4.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
       <Private>False</Private>
       <SpecificVersion>False</SpecificVersion>
-      <Package>mono-addins-setup</Package>
     </Reference>
-    <Reference Include="gnome-sharp, Version=2.24.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>gnome-sharp-2.0</Package>
-    </Reference>
+    <Reference Include="gnome-sharp, Version=2.24.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="Mono.Addins.Gui, Version=0.4.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
       <Private>False</Private>
       <SpecificVersion>False</SpecificVersion>
-      <Package>mono-addins-gui</Package>
     </Reference>
     <Reference Include="nunit.framework, Version=2.4.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77">
       <SpecificVersion>False</SpecificVersion>
@@ -334,24 +325,21 @@
     <Reference Include="Mono.Simd" />
     <Reference Include="Mono.Cairo" />
     <Reference Include="taglib-sharp, Version=2.0.4.0, Culture=neutral, PublicKeyToken=db62eba44689b5b0">
-      <Package>taglib-sharp</Package>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="System.Core" />
     <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Private>False</Private>
-      <Package>glib-sharp-2.0</Package>
     </Reference>
     <Reference Include="gtk-sharp-beans, Version=2.14.0.0, Culture=neutral, PublicKeyToken=97a95fb57b03c03a">
       <Package>gtk-sharp-beans-2.0</Package>
     </Reference>
-    <Reference Include="gio-sharp, Version=2.14.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>gtk-sharp-beans-2.0</Package>
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
     <Reference Include="pango-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Private>False</Private>
-      <Package>gtk-sharp-2.0</Package>
+    </Reference>
+    <Reference Include="gio-sharp, Version=2.14.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Private>False</Private>
+      <Package>gio-sharp-2.0</Package>
     </Reference>
   </ItemGroup>
   <ItemGroup>
