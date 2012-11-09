@@ -15,8 +15,8 @@ msgstr ""
 "Project-Id-Version: f-spot.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-"
 "spot&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2012-10-08 06:00+0000\n"
-"PO-Revision-Date: 2012-10-13 13:00+0200\n"
+"POT-Creation-Date: 2012-11-03 07:45+0000\n"
+"PO-Revision-Date: 2012-11-08 12:49+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "Language: \n"
@@ -76,7 +76,6 @@ msgid "BWEditor"
 msgstr "Editor de blanco y negro"
 
 #: ../data/addin-xml-strings.cs:21
-#| msgid "Convert to B/W with control. Require Mono 2.2."
 msgid "Convert to B/W with control. Requires Mono 2.2."
 msgstr "Convertir a B/N con control Requiere Mono 2.2."
 
@@ -139,7 +138,6 @@ msgid "FacebookExport"
 msgstr "Exportar a Facebook"
 
 #: ../data/addin-xml-strings.cs:47
-#| msgid "Export pictures to facebook"
 msgid "Export pictures to Facebook"
 msgstr "Exportar imágenes a Facebook"
 
@@ -1318,13 +1316,6 @@ msgstr[1] "No se pudieron rotar las {0} fotos"
 
 #: ../src/Clients/MainApp/FSpot/RotateCommand.cs:218
 #, csharp-format
-#| msgid ""
-#| "The photo could not be rotated because it is on a read only file system "
-#| "or media such as a CDROM.  Please check the permissions and try again."
-#| msgid_plural ""
-#| "{0} photos could not be rotated because they are on a read only file "
-#| "system or media such as a CDROM.  Please check the permissions and try "
-#| "again."
 msgid ""
 "The photo could not be rotated because it is on a read only file system or "
 "media such as a CD-ROM.  Please check the permissions and try again."
@@ -1686,7 +1677,6 @@ msgstr ""
 "datos antigua se ha movido a {0} y se ha creado una base de datos nueva."
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/SelectionRatioDialog.cs:74
-#| msgid "Camera Selection"
 msgid "New Selection"
 msgstr "Selección nueva"
 
@@ -3293,8 +3283,9 @@ msgstr "Comprobando las credenciales…"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:161
 #, csharp-format
-msgid "Welcome {0} you are connected to {1}"
-msgstr "Bienvenido {0}, está conectado en {1}"
+#| msgid "Welcome {0} you are connected to {1}"
+msgid "Welcome, {0}. You are connected to {1}."
+msgstr "Bienvenido {0}, está conectado a {1}."
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:164
 #, csharp-format
