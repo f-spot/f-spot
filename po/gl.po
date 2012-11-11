@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-12 01:18+0200\n"
-"PO-Revision-Date: 2012-10-12 01:18+0200\n"
+"POT-Creation-Date: 2012-11-11 18:46+0100\n"
+"PO-Revision-Date: 2012-11-11 18:47+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: gnome-l10n-gl@gnome.org\n"
 "Language: gl\n"
@@ -1322,8 +1322,8 @@ msgstr[0] ""
 "de novo."
 msgstr[1] ""
 "Non foi posíbel rotar {0} fotos porque están nun sistema de ficheiros ou nun "
-"soporte físico (como un CD-ROM) só de lectura. Comprobe os permisos e "
-"ténteo de novo."
+"soporte físico (como un CD-ROM) só de lectura. Comprobe os permisos e ténteo "
+"de novo."
 
 #: ../src/Clients/MainApp/FSpot/RotateCommand.cs:245
 #, csharp-format
@@ -3281,8 +3281,8 @@ msgstr "Comprobando os credenciais..."
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:161
 #, csharp-format
-msgid "Welcome {0} you are connected to {1}"
-msgstr "Benvido a {0} vostede está conectado a {1}"
+msgid "Welcome, {0}. You are connected to {1}."
+msgstr "Benvido a {0}. Vostede está conectado a {1}."
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:164
 #, csharp-format
