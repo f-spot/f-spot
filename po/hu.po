@@ -4,20 +4,22 @@
 #
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2005, 2006, 2007, 2008, 2009, 2010, 2012.
 # Kalman Kemenczy <kkemenczy at novell dot com>, 2006.
+# Balázs Úr <urbalazs at gmail dot com>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: f-spot master\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-20 16:13+0200\n"
-"PO-Revision-Date: 2012-09-20 16:13+0200\n"
-"Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-"
+"spot&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2012-11-03 07:45+0000\n"
+"PO-Revision-Date: 2013-03-15 13:29+0100\n"
+"Last-Translator: Balázs Úr <urbalazs at gmail dot com>\n"
 "Language-Team: Hungarian <gnome at fsf dot hu>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 1.4\n"
+"X-Generator: Lokalize 1.2\n"
 
 #. ../src/Clients/MainApp/FSpot.addin.xml
 #: ../data/addin-xml-strings.cs:8 ../src/Clients/MainApp/FSpot.addin.xml.h:3
@@ -27,12 +29,14 @@ msgstr "Fénykép másolása"
 #: ../data/addin-xml-strings.cs:9 ../src/Clients/MainApp/FSpot.addin.xml.h:4
 #: ../src/Clients/MainApp/FSpot/SingleView.cs:467
 #: ../src/Clients/MainApp/ui/main_window.ui.h:18
+#: ../src/Clients/MainApp/ui/single_view.ui.h:7
 msgid "Rotate _Left"
 msgstr "Forgatás b_alra"
 
 #: ../data/addin-xml-strings.cs:10 ../src/Clients/MainApp/FSpot.addin.xml.h:5
 #: ../src/Clients/MainApp/FSpot/SingleView.cs:468
 #: ../src/Clients/MainApp/ui/main_window.ui.h:19
+#: ../src/Clients/MainApp/ui/single_view.ui.h:8
 msgid "Rotate _Right"
 msgstr "Forgatás j_obbra"
 
@@ -67,7 +71,8 @@ msgid "BWEditor"
 msgstr "Fekete-fehér"
 
 #: ../data/addin-xml-strings.cs:21
-msgid "Convert to B/W with control. Require Mono 2.2."
+#| msgid "Convert to B/W with control. Require Mono 2.2."
+msgid "Convert to B/W with control. Requires Mono 2.2."
 msgstr "Fekete-fehérré konvertálás vezérléssel. A Mono 2.2-t igényli."
 
 #. ../src/Extensions/Editors/FSpot.Editors.Flip/Resources/FlipEditor.addin.xml
@@ -129,7 +134,8 @@ msgid "FacebookExport"
 msgstr "Facebook exportálás"
 
 #: ../data/addin-xml-strings.cs:47
-msgid "Export pictures to facebook"
+#| msgid "Export pictures to facebook"
+msgid "Export pictures to Facebook"
 msgstr "Képek exportálása a Facebookra"
 
 #: ../data/addin-xml-strings.cs:49
@@ -1303,12 +1309,19 @@ msgstr[1] "Nem lehet forgatni {0} fényképet"
 
 #: ../src/Clients/MainApp/FSpot/RotateCommand.cs:218
 #, csharp-format
+#| msgid ""
+#| "The photo could not be rotated because it is on a read only file system "
+#| "or media such as a CDROM.  Please check the permissions and try again."
+#| msgid_plural ""
+#| "{0} photos could not be rotated because they are on a read only file "
+#| "system or media such as a CDROM.  Please check the permissions and try "
+#| "again."
 msgid ""
 "The photo could not be rotated because it is on a read only file system or "
-"media such as a CDROM.  Please check the permissions and try again."
+"media such as a CD-ROM.  Please check the permissions and try again."
 msgid_plural ""
 "{0} photos could not be rotated because they are on a read only file system "
-"or media such as a CDROM.  Please check the permissions and try again."
+"or media such as a CD-ROM.  Please check the permissions and try again."
 msgstr[0] ""
 "A fénykép nem forgatható, mivel az csak olvasható fájlrendszeren vagy "
 "adathordozón, például CD-ROM-on van. Ellenőrizze a jogosultságokat és "
@@ -1668,6 +1681,10 @@ msgstr ""
 "Az F-Spot hibát észlelt a fényképadatbázis betöltése közben. A régi "
 "adatbázis áthelyezésre került ide: {0} és egy új adatbázis került "
 "létrehozásra."
+
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/SelectionRatioDialog.cs:74
+msgid "New Selection"
+msgstr "Új kijelölés"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/SelectionRatioDialog.cs:81
 msgid "Label"
@@ -2499,7 +2516,7 @@ msgid "_Quit"
 msgstr "_Kilépés"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:13
-#: ../src/Clients/MainApp/ui/single_view.ui.h:4
+#: ../src/Clients/MainApp/ui/single_view.ui.h:6
 msgid "_Edit"
 msgstr "S_zerkesztés"
 
@@ -2532,7 +2549,7 @@ msgid "Re_fresh Thumbnail"
 msgstr "Bél_yegkép frissítése"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:25
-#: ../src/Clients/MainApp/ui/single_view.ui.h:5
+#: ../src/Clients/MainApp/ui/single_view.ui.h:9
 msgid "Set as _Background"
 msgstr "Beállítás _háttérként"
 
@@ -2545,17 +2562,17 @@ msgid "Manage _Extensions"
 msgstr "_Kiterjesztések kezelése"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:29
-#: ../src/Clients/MainApp/ui/single_view.ui.h:6
+#: ../src/Clients/MainApp/ui/single_view.ui.h:10
 msgid "_View"
 msgstr "_Nézet"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:30
-#: ../src/Clients/MainApp/ui/single_view.ui.h:7
+#: ../src/Clients/MainApp/ui/single_view.ui.h:11
 msgid "_Slideshow"
 msgstr "_Diavetítés"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:31
-#: ../src/Clients/MainApp/ui/single_view.ui.h:8
+#: ../src/Clients/MainApp/ui/single_view.ui.h:12
 msgid "_Fullscreen"
 msgstr "_Teljes képernyő"
 
@@ -2596,12 +2613,12 @@ msgid "Too_lbar"
 msgstr "_Eszköztár"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:41
-#: ../src/Clients/MainApp/ui/single_view.ui.h:14
+#: ../src/Clients/MainApp/ui/single_view.ui.h:18
 msgid "Zoom _in"
 msgstr "_Nagyítás"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:42
-#: ../src/Clients/MainApp/ui/single_view.ui.h:15
+#: ../src/Clients/MainApp/ui/single_view.ui.h:19
 msgid "Zoom _out"
 msgstr "_Kicsinyítés"
 
@@ -2710,7 +2727,7 @@ msgid "_Tools"
 msgstr "_Eszközök"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:70
-#: ../src/Clients/MainApp/ui/single_view.ui.h:16
+#: ../src/Clients/MainApp/ui/single_view.ui.h:20
 msgid "_Help"
 msgstr "_Súgó"
 
@@ -2729,12 +2746,12 @@ msgid "Tags: "
 msgstr "Címkék: "
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:75
-#: ../src/Clients/MainApp/ui/single_view.ui.h:17
+#: ../src/Clients/MainApp/ui/single_view.ui.h:21
 msgid "Zoom out"
 msgstr "Kicsinyítés"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:76
-#: ../src/Clients/MainApp/ui/single_view.ui.h:18
+#: ../src/Clients/MainApp/ui/single_view.ui.h:22
 msgid "Zoom in"
 msgstr "Nagyítás"
 
@@ -2743,6 +2760,15 @@ msgid "F-Spot View"
 msgstr "F-Spot nézet"
 
 #: ../src/Clients/MainApp/ui/single_view.ui.h:3
+msgid "_New Window"
+msgstr "Új _ablak"
+
+#: ../src/Clients/MainApp/ui/single_view.ui.h:4
+#| msgid "F_older..."
+msgid "Open _Folder..."
+msgstr "_Mappa megnyitása…"
+
+#: ../src/Clients/MainApp/ui/single_view.ui.h:5
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:8
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:18
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:17
@@ -2753,23 +2779,23 @@ msgstr "F-Spot nézet"
 msgid "_Export"
 msgstr "_Exportálás"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:9
+#: ../src/Clients/MainApp/ui/single_view.ui.h:13
 msgid "Show or hide the toolbar"
 msgstr "Az eszköztár mutatása vagy rejtése"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:10
+#: ../src/Clients/MainApp/ui/single_view.ui.h:14
 msgid "_Toolbar"
 msgstr "_Eszköztár"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:11
+#: ../src/Clients/MainApp/ui/single_view.ui.h:15
 msgid "Show or hide the side pane"
 msgstr "Az oldalsáv mutatása vagy rejtése"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:12
+#: ../src/Clients/MainApp/ui/single_view.ui.h:16
 msgid "Side _pane"
 msgstr "_Oldalsáv"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:13
+#: ../src/Clients/MainApp/ui/single_view.ui.h:17
 msgid "Display File _Names"
 msgstr "_Fájlnevek megjelenítése"
 
@@ -3263,8 +3289,9 @@ msgstr "Hitelesítési adatok ellenőrzése…"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:161
 #, csharp-format
-msgid "Welcome {0} you are connected to {1}"
-msgstr "Üdvözlöm {0}, sikeresen csatlakozott a következőre: {1}"
+#| msgid "Welcome {0} you are connected to {1}"
+msgid "Welcome, {0}. You are connected to {1}."
+msgstr "Üdvözlöm, {0}! Sikeresen csatlakozott a következőre: {1}."
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:164
 #, csharp-format
@@ -3384,6 +3411,11 @@ msgstr "_Felső szintű címkék figyelmen kívül hagyása"
 #: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:10
 msgid "<b>Style</b>"
 msgstr "<b>Stílus</b>"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:116
+#| msgid "_Gallery:"
+msgid "Gallery"
+msgstr "Galéria"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:146
 msgid "Select Export Folder"
@@ -3906,6 +3938,10 @@ msgstr "Az alap útvonal (URI) módosítása erre:"
 msgid "<b>Specify the toplevel Photos directories</b>"
 msgstr "<b>Adja meg a felső szintű Fényképek könyvtárakat</b>"
 
+#: ../src/Extensions/Tools/FSpot.Tools.ChangePhotoPath/Resources/ChangePhotoPath.ui.h:5
+msgid "_Apply changes"
+msgstr "Változtatások _alkalmazása"
+
 #: ../src/Extensions/Tools/FSpot.Tools.DevelopInUFraw/FSpot.Tools.DevelopInUFraw/DevelopInUFRawBatch.cs:50
 msgid "Developing photos"
 msgstr "Fényképek előhívása"
@@ -4146,5 +4182,3 @@ msgstr "F-Spot fényképek"
 msgid "Display a slideshow from F-Spot"
 msgstr "Diavetítés megjelenítése az F-Spotból"
 
-#~ msgid "New Selection"
-#~ msgstr "Új kijelölés"
