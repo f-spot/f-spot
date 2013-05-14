@@ -309,6 +309,7 @@ external/Hyena/Hyena.Data.Sqlite/Makefile
 external/Hyena/Hyena.Gui/Makefile
 external/Hyena/Hyena/Makefile
 external/Hyena/Makefile
+external/Makefile
 lib/libfspot/Makefile
 lib/Makefile
 
