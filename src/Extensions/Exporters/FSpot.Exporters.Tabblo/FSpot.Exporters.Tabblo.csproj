@@ -74,19 +74,12 @@
     <Reference Include="gtk-sharp-beans">
       <HintPath>..\..\..\..\external\gtk-sharp-beans.dll</HintPath>
       <Private>False</Private>
-      <Package>gtk-sharp-beans-2.0</Package>
     </Reference>
     <Reference Include="gio-sharp, Version=2.14.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Private>False</Private>
-      <Package>gio-sharp-2.0</Package>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\lib\Hyena\Hyena\Hyena.csproj">
-      <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
-      <Name>Hyena</Name>
-      <Private>False</Private>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\..\lib\Mono.Tabblo\Mono.Tabblo.csproj">
       <Project>{B5CDF05C-278A-40AA-A587-B27A00BD9135}</Project>
       <Name>Mono.Tabblo</Name>
@@ -105,6 +98,11 @@
     <ProjectReference Include="..\..\..\Core\FSpot.Core\FSpot.Core.csproj">
       <Project>{57EDC3BC-E777-4400-B4E7-32A5D8F15A76}</Project>
       <Name>FSpot.Core</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\external\Hyena\Hyena\Hyena.csproj">
+      <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
+      <Name>Hyena</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>

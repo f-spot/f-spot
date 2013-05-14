@@ -69,11 +69,6 @@
     </MonoDevelop>
   </ProjectExtensions>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\lib\Hyena\Hyena\Hyena.csproj">
-      <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
-      <Name>Hyena</Name>
-      <Private>False</Private>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Core\FSpot.Core\FSpot.Core.csproj">
       <Project>{57EDC3BC-E777-4400-B4E7-32A5D8F15A76}</Project>
       <Name>FSpot.Core</Name>
@@ -94,6 +89,11 @@
       <Name>FSpot.Gui</Name>
       <Private>False</Private>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\external\Hyena\Hyena\Hyena.csproj">
+      <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
+      <Name>Hyena</Name>
+      <Private>False</Private>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="ICSharpCode.SharpZipLib" />
@@ -105,11 +105,9 @@
     <Reference Include="gtk-sharp-beans">
       <HintPath>..\..\..\..\external\gtk-sharp-beans.dll</HintPath>
       <Private>False</Private>
-      <Package>gtk-sharp-beans-2.0</Package>
     </Reference>
     <Reference Include="gio-sharp, Version=2.14.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Private>False</Private>
-      <Package>gio-sharp-2.0</Package>
     </Reference>
   </ItemGroup>
   <ItemGroup>
