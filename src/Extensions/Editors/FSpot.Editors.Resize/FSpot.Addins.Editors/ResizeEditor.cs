@@ -36,6 +36,7 @@ using Gtk;
 using Gdk;
 
 using Mono.Unix;
+using FSpot.Core;
 
 namespace FSpot.Addins.Editors
 {

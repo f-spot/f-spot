@@ -258,7 +258,7 @@ AM_CONDITIONAL(ENABLE_RELEASE, test "x$enable_release" = "xyes")
 ENABLE_RELEASE=$enable_release
 AC_SUBST(ENABLE_RELEASE)
 if test "x$enable_release" = "xyes"; then
-	GMCS_FLAGS="-define:RELEASE"
+	GMCS_FLAGS="-define:RELEASE -sdk:4"
 # FIXME: Enable as soon as we rock sufficiently
 #else
 #	GMCS_FLAGS="-warnaserror"
@@ -302,13 +302,14 @@ data/desktop-files/f-spot-import.desktop.in
 
 help/Makefile
 
-lib/Hyena/build/m4/Makefile
-lib/Hyena/build/Makefile
-lib/Hyena/build/pkg-config/Makefile
-lib/Hyena/Hyena.Data.Sqlite/Makefile
-lib/Hyena/Hyena.Gui/Makefile
-lib/Hyena/Hyena/Makefile
-lib/Hyena/Makefile
+external/Hyena/build/m4/Makefile
+external/Hyena/build/Makefile
+external/Hyena/build/pkg-config/Makefile
+external/Hyena/Hyena.Data.Sqlite/Makefile
+external/Hyena/Hyena.Gui/Makefile
+external/Hyena/Hyena/Makefile
+external/Hyena/Makefile
+external/Makefile
 lib/libfspot/Makefile
 lib/Makefile
 

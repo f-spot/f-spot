@@ -35,6 +35,7 @@ using FSpot.Core;
 
 namespace FSpot {
 	public static class ColorManagement {
+		// FIXME: This should probably be configurable or a little more platform agnostic
 		static string [] search_dir = { "/usr/share/color/icc", Path.Combine (Global.HomeDirectory, ".color/icc"), "/usr/local/share/color/icc " };
 
 		static Dictionary<string, Cms.Profile> profiles;
@@ -71,12 +72,12 @@ namespace FSpot {
 		{
 			//recursive search, only RGB color profiles would be added
 			if (Directory.Exists (path)) {
-				string[] IccColorProfilList = System.IO.Directory.GetFiles (path, "*.icc");
-				foreach (string ColorProfilePath in IccColorProfilList) {
+				string[] IccColorProfileList = System.IO.Directory.GetFiles (path, "*.icc");
+				foreach (string ColorProfilePath in IccColorProfileList) {
 					try {
 						Cms.Profile profile = new Cms.Profile (ColorProfilePath);
 					
-						if ((Cms.IccColorSpace)profile.ColorSpace == Cms.IccColorSpace.Rgb && profile.ProductDescription != null && !profs.ContainsKey (profile.ProductDescription))
+						if (profile.ColorSpace == Cms.IccColorSpace.Rgb && profile.ProductDescription != null && !profs.ContainsKey (profile.ProductDescription))
 							profs.Add(profile.ProductDescription, profile);
 					}
 					catch (Cms.CmsException CmsEx)
@@ -88,7 +89,7 @@ namespace FSpot {
 				foreach (string ColorProfilePath in IcmColorProfilList) {
 					try {
 						Cms.Profile profile = new Cms.Profile (ColorProfilePath);
-						if ((Cms.IccColorSpace)profile.ColorSpace == Cms.IccColorSpace.Rgb && profile.ProductDescription != null && !profs.ContainsKey (profile.ProductDescription))
+						if (profile.ColorSpace == Cms.IccColorSpace.Rgb && profile.ProductDescription != null && !profs.ContainsKey (profile.ProductDescription))
 							profs.Add(profile.ProductDescription, profile);
 					}
 					catch (Cms.CmsException CmsEx)
