@@ -179,6 +179,7 @@
     <Compile Include="FSpot.Widgets\TrayView.cs" />
     <Compile Include="FSpot.Widgets\ViewContext.cs" />
     <Compile Include="FSpot\XScreenSaverSlide.cs" />
+    <Compile Include="FacePopup.cs" />
     <Compile Include="ImageLoaderThread.cs" />
     <Compile Include="PhotoTagMenu.cs" />
     <Compile Include="PhotoVersionCommands.cs" />
@@ -189,6 +190,7 @@
     <Compile Include="ThumbnailCommand.cs" />
     <Compile Include="FSpot\ExportStore.cs" />
     <Compile Include="FSpot\FaceStore.cs" />
+    <Compile Include="FSpot\FaceLocationStore.cs" />
     <Compile Include="FSpot\JobStore.cs" />
     <Compile Include="FSpot\MetaStore.cs" />
     <Compile Include="FSpot\PhotoStore.cs" />
