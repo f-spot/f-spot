@@ -66,7 +66,7 @@ namespace FSpot {
 		public Face GetFaceByName (string name)
 		{
 			foreach (Face face in this.item_cache.Values)
-				if (face.Name.ToLower () == name.ToLower ())
+				if (face.Name.Equals (name, StringComparison.OrdinalIgnoreCase))
 					return face;
 	
 			return null;
@@ -109,18 +109,25 @@ namespace FSpot {
 		// cache_is_immortal to our base class.
 		private void LoadAllFaces ()
 		{
-			//FIXME Fake method for testing purposes.
-			AddToCache (new Face (1, "Valentín Barros"));
-			AddToCache (new Face (2, "Stephen Shaw"));
-			AddToCache (new Face (3, "Sergio Casado"));
-			AddToCache (new Face (4, "Iago Barrera"));
-			AddToCache (new Face (5, "Santi Munín"));
-			AddToCache (new Face (6, "Nhoa Iglesias"));
+			IDataReader reader = Database.Query ("SELECT id, name FROM faces");
+			
+			while (reader.Read ()) {
+				uint id = Convert.ToUInt32 (reader ["id"]);
+				string name = reader ["name"].ToString ();
+
+				AddToCache (new Face(id, name));
+			}
+			
+			reader.Dispose ();
 		}
 	
 		private void CreateTable ()
 		{
-			// TODO Implement it.
+			Database.Execute (
+				"CREATE TABLE faces (\n" +
+				"	id		INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \n" +
+				"	name		TEXT NOT NULL \n" +
+				")");
 		}
 		
 		// Constructor
@@ -135,16 +142,23 @@ namespace FSpot {
 	
 		private uint InsertFaceIntoTable (string name)
 		{
-			// TODO Implement it.
 
-			return (uint) 0;
+			int id = Database.Execute (new HyenaSqliteCommand ("INSERT INTO faces (name) " +
+			                                                   "VALUES (?)",
+			                                                   name));
+			
+			return (uint) id;
 		}
 	
 		public Face CreateFace (string name)
 		{
+			Face face = GetFaceByName (name);
+			if (face != null)
+				return face;
+
 			uint id = InsertFaceIntoTable (name);
 	
-			Face face = new Face (id, name);
+			face = new Face (id, name);
 			face.IconWasCleared = true;
 	
 			AddToCache (face);
@@ -159,8 +173,24 @@ namespace FSpot {
 		}
 
 		public override void Remove (Face face)
+		{	
+			Remove (new Face [] {face});
+		}
+
+		public void Remove (Face [] faces)
 		{
-			// TODO Implement it.
+			ICollection<uint> face_ids = new List<uint> (faces.Length);
+			foreach (Face face in faces) {
+				face_ids.Add (face.Id);
+				
+				RemoveFromCache (face);
+			}
+			
+			string command = String.Format ("DELETE FROM faces WHERE id IN ({0})",
+			                                String.Join (", ", face_ids));
+			Database.Execute (command);
+			
+			EmitRemoved (faces);
 		}
 
 		private string GetIconString (Face face)
@@ -173,21 +203,43 @@ namespace FSpot {
 			
 			return Convert.ToBase64String (GdkUtils.Serialize (face.Icon));
 		}
-	
+		
 		public override void Commit (Face face)
 		{
-			Commit (face, false);
+			Commit (new Face[] {face});
 		}
 	
-		public void Commit (Face face, bool update_xmp)
-		{
-			Commit (new Face[] {face}, update_xmp);
-		}
-	
-		public void Commit (Face [] faces, bool update_xmp)
+		public void Commit (Face [] faces)
 		{
 	
-			// TODO Implement it.
+			// TODO.
+			bool use_transactions = faces.Length > 1; //!Database.InTransaction && faces.Length > 1;
+			
+			//if (use_transactions)
+			//	Database.BeginTransaction ();
+			
+			// FIXME: this hack is used, because HyenaSqliteConnection does not support
+			// the InTransaction propery
+			
+			if (use_transactions) {
+				try {
+					Database.BeginTransaction ();
+				} catch {
+					use_transactions = false;
+				}
+			}
+			
+			foreach (Face face in faces) {
+				Database.Execute (new HyenaSqliteCommand ("UPDATE faces SET name = ? " +
+				                                          "WHERE id = ?",
+				                                          face.Name,
+				                                          face.Id));
+			}
+			
+			if (use_transactions)
+				Database.CommitTransaction ();
+			
+			EmitChanged (faces);
 		}
 	}
 }
