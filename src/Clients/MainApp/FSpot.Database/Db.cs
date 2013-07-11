@@ -44,6 +44,7 @@ namespace FSpot.Database
 
 		public bool Empty { get; private set; }
 		public FaceStore Faces { get; private set; }
+		public FaceLocationStore FaceLocations { get; private set; }
 		public TagStore Tags { get; private set; }
 		public RollStore Rolls { get; private set; }
 		public ExportStore Exports { get; private set; }
@@ -102,6 +103,7 @@ namespace FSpot.Database
 			Jobs = new JobStore (Database, new_db);
 			Photos = new PhotoStore (Database, new_db);
             		Faces = new FaceStore (Database, new_db);
+			FaceLocations = new FaceLocationStore (Database, new_db);
 
 			Database.CommitTransaction ();
             

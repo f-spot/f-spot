@@ -36,6 +36,8 @@
 using System;
 using System.Collections.Generic;
 
+using Hyena.Widgets;
+
 using FSpot.Database;
 using FSpot.Extensions;
 using FSpot.Core;
@@ -52,7 +54,9 @@ namespace FSpot.Widgets {
 		internal bool InPhotoView;
 		private readonly FacesPageWidget FacesPageWidget;
 
-		public FacesPage () : base (new FacesPageWidget (), Catalog.GetString ("Faces"), "gtk-missing-image") {
+		public FacesPage ()
+			: base (FacesPageWidget.Instance, Catalog.GetString ("Faces"), "gtk-missing-image")
+		{
 			// TODO: Somebody might need to change the icon to something more suitable.
 			// FIXME: The icon isn't shown in the menu, are we missing a size?
 			// TODO Obviously, the icon is something temporal, we would need an icon for Faces.
@@ -60,32 +64,74 @@ namespace FSpot.Widgets {
 			FacesPageWidget.Page = this;
 		}
 
-		protected override void AddedToSidebar () {
-			// TODO Need to do something here?
+		protected override void AddedToSidebar ()
+		{
+			(Sidebar as Sidebar).ContextChanged += HandleContextChanged;
+		}
+
+		private void HandleContextChanged (object sender, EventArgs args)
+		{
+			InPhotoView = ((Sidebar as Sidebar).Context == ViewContext.Edit);
+
+			FacesPageWidget.HandleContextChanged ();
 		}
 	}
 
-	public class FacesPageWidget : Gtk.ScrolledWindow {
-		private Box widgets;
+	public class FacesPageWidget : VBox {
+		private static FacesPageWidget instance = null;
+		public static FacesPageWidget Instance {
+			get {
+				if (instance == null)
+					instance = new FacesPageWidget();
+				
+				return instance;
+			}
+		}
 
-		private FacesPage page;
+		private Button test_button;
+		public FaceSelectionWidget FacesWidget;
 		internal FacesPage Page { get; set; }
 		
-		public FacesPageWidget ()
+		private FacesPageWidget ()
+			: base (false, 0)
 		{
-			widgets = new VBox (false, 0);
-			widgets.Add (new FaceSelectionWidget (App.Instance.Database.Faces));
-			Viewport widgets_port = new Viewport ();
-			widgets_port.Add (widgets);
-			Add (widgets_port);
-			widgets_port.ShowAll ();
+			Label message_label = new Label ("Test message.");
+
+			FacesWidget = new FaceSelectionWidget (App.Instance.Database.Faces);
+			Viewport viewport = new Viewport ();
+			viewport.Add (FacesWidget);
+			Gtk.ScrolledWindow window = new Gtk.ScrolledWindow ();
+			window.Add (viewport);
+
+			test_button = new Button ("Create test face");
+			test_button.NoShowAll = true;
+			test_button.Clicked += HandleTestButtonClicked;
+
+			PackStart (message_label, false, false, 0);
+			PackStart (window, true, true, 0);
+			PackStart (test_button, false, false, 0);
+
+			ShowAll ();
+		}
+
+		public void HandleContextChanged ()
+		{
+			if (Page.InPhotoView)
+				test_button.Show ();
+			else
+				test_button.Hide ();
+		}
+
+		private void HandleTestButtonClicked (object sender, EventArgs args)
+		{
+			FacesWidget.FaceStore.CreateFace("Test Face #" + (new Random ()).Next (0, 10));
 		}
 	}
 
-	public class FaceSelectionWidget : TreeView {
+	public class FaceSelectionWidget : SaneTreeView {
 		
 		Db database;
-		FaceStore face_store;
+		internal FaceStore FaceStore;
 		
 		// FIXME this is a hack.
 		private static Pixbuf empty_pixbuf = new Pixbuf (Colorspace.Rgb, true, 8, 1, 1);
@@ -94,17 +140,42 @@ namespace FSpot.Widgets {
 		private const int IdColumn = 0;
 		private const int NameColumn = 1;
 
-		public void ScrollTo (Face face)
+		public Face FaceAtPosition (double x, double y)
 		{
-			TreeIter iter;
-			if (! TreeIterForFace (face, out iter))
-				return;
-			
-			TreePath path = Model.GetPath (iter);
-			
-			ScrollToCell (path, null, false, 0, 0);
+			return FaceAtPosition((int) x, (int) y);
 		}
 		
+		public Face FaceAtPosition (int x, int y)
+		{
+			TreePath path;
+			
+			// Work out which face we're dropping onto
+			if (!this.GetPathAtPos (x, y, out path))
+				return null;
+			
+			return FaceByPath (path);
+		}
+		
+		public Face FaceByPath (TreePath path)
+		{
+			TreeIter iter;
+			
+			if (!Model.GetIter (out iter, path))
+				return null;
+			
+			return FaceByIter (iter);
+		}
+		
+		public Face FaceByIter (TreeIter iter)
+		{
+			GLib.Value val = new GLib.Value ();
+			
+			Model.GetValue (iter, IdColumn, ref val);
+			uint face_id = (uint) val;
+			
+			return FaceStore.Get (face_id);
+		}
+
 		public Face [] FaceHighlight {
 			get {
 				TreeModel model;
@@ -120,7 +191,7 @@ namespace FSpot.Widgets {
 					Model.GetIter (out iter, path);
 					Model.GetValue (iter, IdColumn, ref value);
 					uint face_id = (uint) value;
-					faces[i] = face_store.Get (face_id);
+					faces[i] = FaceStore.Get (face_id);
 					i++;
 				}
 				return faces;
@@ -138,45 +209,26 @@ namespace FSpot.Widgets {
 						Selection.SelectIter (iter);
 			}
 		}
-		
+
 		public void Update ()
 		{
 			TreeStore store = Model as TreeStore;
 			store.Clear ();
 
-			IEnumerable<Face> faces = face_store.GetAll ();
-			foreach (Face face in faces) {Console.Out.WriteLine (face.Name);
+			Face [] faces = FaceStore.GetAll ();
+			Array.Sort (faces);
+			foreach (Face face in faces) {
 				store.AppendValues (face.Id, face.Name);
 			}
 		}
 		
-		// Data functions.
-
+		// TODO Each face should have an icon.
 		private void IconDataFunc (TreeViewColumn column,
 		                           CellRenderer renderer,
 		                           TreeModel model,
 		                           TreeIter iter)
 		{
-			GLib.Value value = new GLib.Value ();
-			Model.GetValue (iter, IdColumn, ref value);
-			uint face_id = (uint) value;
-			Face face = face_store.Get (face_id);
-			
-			if (face == null)
-				return;
-
-			if (face.SizedIcon != null) {
-				Cms.Profile screen_profile;
-				if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile)) {
-					//FIXME, we're leaking a pixbuf here
-					using (Gdk.Pixbuf temp = face.SizedIcon.Copy ()) {
-						FSpot.ColorManagement.ApplyProfile (temp, screen_profile);
-						(renderer as CellRendererPixbuf).Pixbuf = temp;
-					}
-				} else
-					(renderer as CellRendererPixbuf).Pixbuf = face.SizedIcon;
-			} else
-				(renderer as CellRendererPixbuf).Pixbuf = empty_pixbuf;
+			(renderer as CellRendererPixbuf).Pixbuf = empty_pixbuf;
 		}
 		
 		private void NameDataFunc (TreeViewColumn column,
@@ -192,14 +244,14 @@ namespace FSpot.Widgets {
 			Model.GetValue (iter, IdColumn, ref value);
 			uint face_id = (uint) value;
 			
-			Face face = face_store.Get (face_id);
+			Face face = FaceStore.Get (face_id);
 			if (face == null)
 				return;
 			
 			(renderer as CellRendererText).Text = face.Name;
 		}
 		
-		private bool TreeIterForFace(Face face, out TreeIter iter)
+		private bool TreeIterForFace (Face face, out TreeIter iter)
 		{
 			TreeIter root = TreeIter.Zero;
 			iter = TreeIter.Zero;
@@ -236,7 +288,7 @@ namespace FSpot.Widgets {
 			return false;
 		}
 		
-		// insert tag into the correct place in the tree, with parent. return the new TagIter in iter.
+		// Insert face into the correct place in the tree.
 		private TreeIter InsertInOrder (Face face)
 		{
 			TreeStore store = Model as TreeStore;
@@ -249,7 +301,7 @@ namespace FSpot.Widgets {
 			while (valid) {
 				GLib.Value value = new GLib.Value ();
 				store.GetValue(iter, IdColumn, ref value);
-				compare = face_store.Get ((uint) value);
+				compare = FaceStore.Get ((uint) value);
 				
 				if (compare.CompareTo (face) > 0) {
 					iter = store.InsertNodeBefore (iter);
@@ -315,18 +367,95 @@ namespace FSpot.Widgets {
 			GLib.Value value = new GLib.Value ();
 			Model.GetValue (iter, IdColumn, ref value);
 			uint face_id = (uint) value;
-			Face face = face_store.Get (face_id);
+			Face face = FaceStore.Get (face_id);
 			
 			// Ignore if it hasn't changed
 			if (face.Name == args.NewText)
 				return;
 			
 			face.Name = args.NewText;
-			face_store.Commit (face, true);
+			FaceStore.Commit (face);
 			
 			text_render.Edited -= HandleFaceNameEdited;
 			
 			args.RetVal = true;
+		}
+
+		public void HandleFaceSelectionButtonPressEvent (object sender, ButtonPressEventArgs args)
+		{
+			if (args.Event.Button != 3)
+				return;
+
+			FacePopup popup = new FacePopup ();
+			popup.Activate (args.Event, FaceAtPosition (args.Event.X, args.Event.Y), FaceHighlight);
+			args.RetVal = true;
+		}
+
+		// This ConnectBefore is needed because otherwise the editability of the name
+		// column will steal returns, spaces, and clicks if the face name is focused
+		[GLib.ConnectBefore]
+		public void HandleFaceSelectionKeyPress (object sender, Gtk.KeyPressEventArgs args)
+		{
+			args.RetVal = true;
+			
+			switch (args.Event.Key) {
+			case Gdk.Key.Delete:
+				HandleDeleteSelectedFaceCommand (sender, (EventArgs) args);
+				break;
+				
+			case Gdk.Key.F2:
+				EditSelectedFaceName ();
+				break;
+				
+			default:
+				args.RetVal = false;
+				break;
+			}
+		}
+
+		public void HandleDeleteSelectedFaceCommand (object sender, EventArgs args)
+		{
+			Face [] faces = FaceHighlight;
+
+			FaceLocationStore face_location_store = App.Instance.Database.FaceLocations;
+			ISet<uint> photo_ids = new HashSet<uint> ();
+			foreach (Face face in faces) {
+				Dictionary<uint, FaceLocation> face_locations =
+					face_location_store.GetFaceLocationsByFace (face);
+
+				foreach (uint photo_id in face_locations.Keys)
+					photo_ids.Add (photo_id);
+			}
+
+			int associated_photos = photo_ids.Count;
+
+			string header;
+			if (faces.Length == 1)
+				header = String.Format (Catalog.GetString ("Delete face \"{0}\"?"), faces [0].Name.Replace ("_", "__"));
+			else
+				header = String.Format (Catalog.GetString ("Delete the {0} selected faces?"), faces.Length);
+			
+			header = String.Format (header, faces.Length);
+			string msg = String.Empty;
+			if (associated_photos > 0) {
+				string photodesc = Catalog.GetPluralString ("photo", "photos", associated_photos);
+				msg = String.Format(
+					Catalog.GetPluralString("If you delete this face, the association with {0} {1} will be lost.",
+				                        "If you delete these faces, the association with {0} {1} will be lost.",
+				                        faces.Length),
+					associated_photos, photodesc);
+			}
+			string ok_caption = Catalog.GetPluralString ("_Delete face", "_Delete faces", faces.Length);
+			
+			if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation(App.Instance.Organizer.Window,
+			                                                           DialogFlags.DestroyWithParent,
+			                                                           MessageType.Warning,
+			                                                           header,
+			                                                           msg,
+			                                                           ok_caption)) {
+
+				App.Instance.Database.Faces.Remove (faces);
+			}
 		}
 		
 		CellRendererPixbuf pix_render;
@@ -355,13 +484,16 @@ namespace FSpot.Widgets {
 			
 			AppendColumn (complete_column);
 			
-			this.face_store = face_store;
+			FaceStore = face_store;
 			
 			Update ();
 			
-			face_store.ItemsAdded += HandleFacesAdded;
-			face_store.ItemsRemoved += HandleFacesRemoved;
-			face_store.ItemsChanged += HandleFacesChanged;
+			FaceStore.ItemsAdded += HandleFacesAdded;
+			FaceStore.ItemsRemoved += HandleFacesRemoved;
+			FaceStore.ItemsChanged += HandleFacesChanged;
+
+			ButtonPressEvent += HandleFaceSelectionButtonPressEvent;
+			KeyPressEvent += HandleFaceSelectionKeyPress;
 
 			EnableSearch = true;
 			SearchColumn = NameColumn;
