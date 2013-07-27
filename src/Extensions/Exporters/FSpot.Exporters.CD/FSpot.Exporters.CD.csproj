@@ -90,6 +90,10 @@
       <Name>Hyena</Name>
       <Private>False</Private>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\FSpot.Gui\FSpot.Gui.csproj">
+      <Project>{05A7FEC4-974A-40EB-AFB8-14E523EEEFFB}</Project>
+      <Name>FSpot.Gui</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />

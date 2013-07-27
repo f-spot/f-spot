@@ -78,14 +78,10 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>gtk-sharp-2.0</Package>
-    </Reference>
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="Mono.Posix" />
     <Reference Include="System" />
-    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>gtk-sharp-2.0</Package>
-    </Reference>
+    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="gtk-sharp-beans">
       <HintPath>..\..\..\..\external\gtk-sharp-beans.dll</HintPath>
       <Private>False</Private>
@@ -112,6 +108,14 @@
       <Project>{CE160879-1BF0-4711-A18F-FDA2772900FA}</Project>
       <Name>FSpot.Utils</Name>
       <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\lib\unique-sharp\unique-sharp.csproj">
+      <Project>{5DBBB8C5-7BAF-46DA-B7D2-2486430141E2}</Project>
+      <Name>unique-sharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\FSpot.Query\FSpot.Query.csproj">
+      <Project>{D4E4D07E-D323-4CAE-BE04-8EE8EDF7F07E}</Project>
+      <Name>FSpot.Query</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

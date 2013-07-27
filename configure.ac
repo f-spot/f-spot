@@ -258,7 +258,7 @@ AM_CONDITIONAL(ENABLE_RELEASE, test "x$enable_release" = "xyes")
 ENABLE_RELEASE=$enable_release
 AC_SUBST(ENABLE_RELEASE)
 if test "x$enable_release" = "xyes"; then
-	GMCS_FLAGS="-define:RELEASE"
+	GMCS_FLAGS="-define:RELEASE -sdk:4"
 # FIXME: Enable as soon as we rock sufficiently
 #else
 #	GMCS_FLAGS="-warnaserror"

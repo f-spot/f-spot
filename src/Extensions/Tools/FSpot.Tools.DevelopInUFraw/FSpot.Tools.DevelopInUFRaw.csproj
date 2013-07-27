@@ -80,6 +80,10 @@
       <Name>FSpot.Utils</Name>
       <Private>False</Private>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\lib\unique-sharp\unique-sharp.csproj">
+      <Project>{5DBBB8C5-7BAF-46DA-B7D2-2486430141E2}</Project>
+      <Name>unique-sharp</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Posix" />

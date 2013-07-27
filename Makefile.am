@@ -2,6 +2,7 @@ SUBDIRS = 		\
 	build 		\
 	data 		\
 	lib 		\
+	external	\
 	docs		\
     	help		\
 	icons		\

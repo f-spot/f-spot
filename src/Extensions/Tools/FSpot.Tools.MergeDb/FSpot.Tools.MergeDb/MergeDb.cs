@@ -249,7 +249,7 @@ namespace FSpot.Tools.MergeDb
 			Photo newp;
 
 			if (copy)
-				destination = FindImportDestination (new SafeUri (photo_path), photo.Time).AbsolutePath;
+				destination = FindImportDestination (new Hyena.SafeUri (photo_path), photo.Time).AbsolutePath;
 			else
 				destination = photo_path;
 			var dest_uri = new SafeUri (photo_path);
