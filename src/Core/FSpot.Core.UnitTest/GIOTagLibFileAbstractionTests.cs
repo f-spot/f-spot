@@ -27,10 +27,8 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#if ENABLE_TESTS
-using NUnit.Framework;
-using System;
 using Hyena;
+using NUnit.Framework;
 using TagLib;
 using TagLib.IFD;
 using TagLib.IFD.Entries;
@@ -136,4 +134,3 @@ namespace FSpot.Utils.Tests
         }
     }
 }
-#endif

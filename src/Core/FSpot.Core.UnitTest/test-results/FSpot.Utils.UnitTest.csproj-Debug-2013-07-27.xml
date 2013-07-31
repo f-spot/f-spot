@@ -1,0 +1,1008 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TestRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results />
+  <Tests>
+    <TestRecord Name="FSpot">
+      <Results>
+        <UnitTestResult>
+          <TestDate>2013-07-27T12:15:56</TestDate>
+          <Status />
+          <Passed>13</Passed>
+          <Errors>0</Errors>
+          <Failures>0</Failures>
+          <Inconclusive>0</Inconclusive>
+          <NotRunnable>0</NotRunnable>
+          <Skipped>0</Skipped>
+          <Ignored>0</Ignored>
+          <Time />
+          <Message>Test successful
+
+Execution time: 0.33ms</Message>
+        </UnitTestResult>
+      </Results>
+      <Tests>
+        <TestRecord Name="Utils">
+          <Results>
+            <UnitTestResult>
+              <TestDate>2013-07-27T12:15:56</TestDate>
+              <Status />
+              <Passed>13</Passed>
+              <Errors>0</Errors>
+              <Failures>0</Failures>
+              <Inconclusive>0</Inconclusive>
+              <NotRunnable>0</NotRunnable>
+              <Skipped>0</Skipped>
+              <Ignored>0</Ignored>
+              <Time />
+              <Message>Test successful
+
+Execution time: 0.33ms</Message>
+            </UnitTestResult>
+          </Results>
+          <Tests>
+            <TestRecord Name="Tests">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2013-07-27T12:15:56</TestDate>
+                  <Status />
+                  <Passed>13</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0.33ms</Message>
+                </UnitTestResult>
+              </Results>
+              <Tests>
+                <TestRecord Name="MetadataTest">
+                  <Results>
+                    <UnitTestResult>
+                      <TestDate>2013-07-27T12:04:30</TestDate>
+                      <Status />
+                      <Passed>0</Passed>
+                      <Errors>4</Errors>
+                      <Failures>0</Failures>
+                      <Inconclusive>0</Inconclusive>
+                      <NotRunnable>0</NotRunnable>
+                      <Skipped>0</Skipped>
+                      <Ignored>0</Ignored>
+                      <Time />
+                      <Message>One or more child tests had errors</Message>
+                    </UnitTestResult>
+                    <UnitTestResult>
+                      <TestDate>2013-07-27T12:05:00</TestDate>
+                      <Status />
+                      <Passed>0</Passed>
+                      <Errors>4</Errors>
+                      <Failures>0</Failures>
+                      <Inconclusive>0</Inconclusive>
+                      <NotRunnable>0</NotRunnable>
+                      <Skipped>0</Skipped>
+                      <Ignored>0</Ignored>
+                      <Time />
+                      <Message>One or more child tests had errors</Message>
+                    </UnitTestResult>
+                    <UnitTestResult>
+                      <TestDate>2013-07-27T12:07:42</TestDate>
+                      <Status />
+                      <Passed>0</Passed>
+                      <Errors>4</Errors>
+                      <Failures>0</Failures>
+                      <Inconclusive>0</Inconclusive>
+                      <NotRunnable>0</NotRunnable>
+                      <Skipped>0</Skipped>
+                      <Ignored>0</Ignored>
+                      <Time />
+                      <Message>One or more child tests had errors</Message>
+                    </UnitTestResult>
+                    <UnitTestResult>
+                      <TestDate>2013-07-27T12:08:28</TestDate>
+                      <Status>Failure</Status>
+                      <Passed>0</Passed>
+                      <Errors>0</Errors>
+                      <Failures>0</Failures>
+                      <Inconclusive>0</Inconclusive>
+                      <NotRunnable>0</NotRunnable>
+                      <Skipped>0</Skipped>
+                      <Ignored>0</Ignored>
+                      <Time />
+                      <Message>Object reference not set to an instance of an object</Message>
+                      <StackTrace>  at MonoDevelop.NUnit.UnitTestResult.CreateFailure (System.String message, System.Exception ex) [0x00015] in /home/sshaw/code/monodevelop/main/src/addins/NUnit/Services/UnitTestResult.cs:67 
+  at MonoDevelop.NUnit.NUnitAssemblyTestSuite.RunUnitTest (MonoDevelop.NUnit.UnitTest test, System.String suiteName, System.String pathName, System.String testName, MonoDevelop.NUnit.TestContext testContext) [0x00235] in /home/sshaw/code/monodevelop/main/src/addins/NUnit/Services/NUnitAssemblyTestSuite.cs:440 
+  at MonoDevelop.NUnit.NUnitTestSuite.OnRun (MonoDevelop.NUnit.TestContext testContext) [0x00001] in /home/sshaw/code/monodevelop/main/src/addins/NUnit/Services/NUnitTestSuite.cs:65 
+  at MonoDevelop.NUnit.UnitTest.Run (MonoDevelop.NUnit.TestContext testContext) [0x0001e] in /home/sshaw/code/monodevelop/main/src/addins/NUnit/Services/UnitTest.cs:373 </StackTrace>
+                    </UnitTestResult>
+                    <UnitTestResult>
+                      <TestDate>2013-07-27T12:11:50</TestDate>
+                      <Status />
+                      <Passed>0</Passed>
+                      <Errors>4</Errors>
+                      <Failures>0</Failures>
+                      <Inconclusive>0</Inconclusive>
+                      <NotRunnable>0</NotRunnable>
+                      <Skipped>0</Skipped>
+                      <Ignored>0</Ignored>
+                      <Time />
+                      <Message>One or more child tests had errors</Message>
+                    </UnitTestResult>
+                    <UnitTestResult>
+                      <TestDate>2013-07-27T12:12:37</TestDate>
+                      <Status />
+                      <Passed>0</Passed>
+                      <Errors>4</Errors>
+                      <Failures>0</Failures>
+                      <Inconclusive>0</Inconclusive>
+                      <NotRunnable>0</NotRunnable>
+                      <Skipped>0</Skipped>
+                      <Ignored>0</Ignored>
+                      <Time />
+                      <Message>One or more child tests had errors</Message>
+                    </UnitTestResult>
+                    <UnitTestResult>
+                      <TestDate>2013-07-27T12:13:03</TestDate>
+                      <Status />
+                      <Passed>4</Passed>
+                      <Errors>0</Errors>
+                      <Failures>0</Failures>
+                      <Inconclusive>0</Inconclusive>
+                      <NotRunnable>0</NotRunnable>
+                      <Skipped>0</Skipped>
+                      <Ignored>0</Ignored>
+                      <Time />
+                      <Message>Test successful
+
+Execution time: 0.21ms</Message>
+                    </UnitTestResult>
+                    <UnitTestResult>
+                      <TestDate>2013-07-27T12:15:56</TestDate>
+                      <Status />
+                      <Passed>4</Passed>
+                      <Errors>0</Errors>
+                      <Failures>0</Failures>
+                      <Inconclusive>0</Inconclusive>
+                      <NotRunnable>0</NotRunnable>
+                      <Skipped>0</Skipped>
+                      <Ignored>0</Ignored>
+                      <Time />
+                      <Message>Test successful
+
+Execution time: 0.03ms</Message>
+                    </UnitTestResult>
+                  </Results>
+                  <Tests>
+                    <TestRecord Name="ValidateWithBrokenMetadata">
+                      <Results>
+                        <UnitTestResult>
+                          <TestDate>2013-07-27T12:04:30</TestDate>
+                          <Status />
+                          <Passed>0</Passed>
+                          <Errors>1</Errors>
+                          <Failures>0</Failures>
+                          <Inconclusive>0</Inconclusive>
+                          <NotRunnable>0</NotRunnable>
+                          <Skipped>0</Skipped>
+                          <Ignored>0</Ignored>
+                          <Time />
+                          <Message>System.IO.FileNotFoundException : Could not load file or assembly 'gio-sharp, Version=2.14.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f' or one of its dependencies.</Message>
+                          <StackTrace>  at FSpot.Utils.Tests.MetadataTest.ValidateWithBrokenMetadata () [0x00001] in /home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/MetadataTest.cs:128 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00054] in /home/abuild/rpmbuild/BUILD/mono-3.0.12/mcs/class/corlib/System.Reflection/MonoMethod.cs:230 </StackTrace>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                        <UnitTestResult>
+                          <TestDate>2013-07-27T12:05:00</TestDate>
+                          <Status />
+                          <Passed>0</Passed>
+                          <Errors>1</Errors>
+                          <Failures>0</Failures>
+                          <Inconclusive>0</Inconclusive>
+                          <NotRunnable>0</NotRunnable>
+                          <Skipped>0</Skipped>
+                          <Ignored>0</Ignored>
+                          <Time />
+                          <Message>GLib.GException : Error when getting information for file '/home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/bin/tests/data/taglib-sample-broken.jpg': No such file or directory</Message>
+                          <StackTrace>  at GLib.FileAdapter.Copy (File destination, FileCopyFlags flags, GLib.Cancellable cancellable, GLib.FileProgressCallback progress_callback) [0x00000] in &lt;filename unknown&gt;:0 
+  at FSpot.Utils.Tests.ImageTestHelper.CreateTempFile (System.String name) [0x00047] in /home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/ImageTestHelper.cs:47 
+  at FSpot.Utils.Tests.MetadataTest.ValidateWithBrokenMetadata () [0x00001] in /home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/MetadataTest.cs:128 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00054] in /home/abuild/rpmbuild/BUILD/mono-3.0.12/mcs/class/corlib/System.Reflection/MonoMethod.cs:230 </StackTrace>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                        <UnitTestResult>
+                          <TestDate>2013-07-27T12:07:42</TestDate>
+                          <Status />
+                          <Passed>0</Passed>
+                          <Errors>1</Errors>
+                          <Failures>0</Failures>
+                          <Inconclusive>0</Inconclusive>
+                          <NotRunnable>0</NotRunnable>
+                          <Skipped>0</Skipped>
+                          <Ignored>0</Ignored>
+                          <Time />
+                          <Message>GLib.GException : Error when getting information for file '/home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/tests/datataglib-sample-broken.jpg': No such file or directory</Message>
+                          <StackTrace>  at GLib.FileAdapter.Copy (File destination, FileCopyFlags flags, GLib.Cancellable cancellable, GLib.FileProgressCallback progress_callback) [0x00000] in &lt;filename unknown&gt;:0 
+  at FSpot.Utils.Tests.ImageTestHelper.CreateTempFile (System.String name) [0x00047] in /home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/ImageTestHelper.cs:48 
+  at FSpot.Utils.Tests.MetadataTest.ValidateWithBrokenMetadata () [0x00001] in /home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/MetadataTest.cs:128 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00054] in /home/abuild/rpmbuild/BUILD/mono-3.0.12/mcs/class/corlib/System.Reflection/MonoMethod.cs:230 </StackTrace>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                        <UnitTestResult>
+                          <TestDate>2013-07-27T12:11:50</TestDate>
+                          <Status />
+                          <Passed>0</Passed>
+                          <Errors>1</Errors>
+                          <Failures>0</Failures>
+                          <Inconclusive>0</Inconclusive>
+                          <NotRunnable>0</NotRunnable>
+                          <Skipped>0</Skipped>
+                          <Ignored>0</Ignored>
+                          <Time />
+                          <Message>GLib.GException : Error when getting information for file '/home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/bin/Debug/tests/datataglib-sample-broken.jpg': No such file or directory</Message>
+                          <StackTrace>  at GLib.FileAdapter.Copy (File destination, FileCopyFlags flags, GLib.Cancellable cancellable, GLib.FileProgressCallback progress_callback) [0x00000] in &lt;filename unknown&gt;:0 
+  at FSpot.Utils.Tests.ImageTestHelper.CreateTempFile (System.String name) [0x00047] in /home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/ImageTestHelper.cs:48 
+  at FSpot.Utils.Tests.MetadataTest.ValidateWithBrokenMetadata () [0x00001] in /home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/MetadataTest.cs:128 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00054] in /home/abuild/rpmbuild/BUILD/mono-3.0.12/mcs/class/corlib/System.Reflection/MonoMethod.cs:230 </StackTrace>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                        <UnitTestResult>
+                          <TestDate>2013-07-27T12:12:37</TestDate>
+                          <Status />
+                          <Passed>0</Passed>
+                          <Errors>1</Errors>
+                          <Failures>0</Failures>
+                          <Inconclusive>0</Inconclusive>
+                          <NotRunnable>0</NotRunnable>
+                          <Skipped>0</Skipped>
+                          <Ignored>0</Ignored>
+                          <Time />
+                          <Message>GLib.GException : Error when getting information for file '/home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/bin/Debug/tests/data/taglib-sample-broken.jpg': No such file or directory</Message>
+                          <StackTrace>  at GLib.FileAdapter.Copy (File destination, FileCopyFlags flags, GLib.Cancellable cancellable, GLib.FileProgressCallback progress_callback) [0x00000] in &lt;filename unknown&gt;:0 
+  at FSpot.Utils.Tests.ImageTestHelper.CreateTempFile (System.String name) [0x00047] in /home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/ImageTestHelper.cs:48 
+  at FSpot.Utils.Tests.MetadataTest.ValidateWithBrokenMetadata () [0x00001] in /home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/MetadataTest.cs:128 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00054] in /home/abuild/rpmbuild/BUILD/mono-3.0.12/mcs/class/corlib/System.Reflection/MonoMethod.cs:230 </StackTrace>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                        <UnitTestResult>
+                          <TestDate>2013-07-27T12:13:03</TestDate>
+                          <Status />
+                          <Passed>1</Passed>
+                          <Errors>0</Errors>
+                          <Failures>0</Failures>
+                          <Inconclusive>0</Inconclusive>
+                          <NotRunnable>0</NotRunnable>
+                          <Skipped>0</Skipped>
+                          <Ignored>0</Ignored>
+                          <Time />
+                          <Message>Test successful
+
+Execution time: 0.07ms</Message>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                        <UnitTestResult>
+                          <TestDate>2013-07-27T12:15:56</TestDate>
+                          <Status />
+                          <Passed>1</Passed>
+                          <Errors>0</Errors>
+                          <Failures>0</Failures>
+                          <Inconclusive>0</Inconclusive>
+                          <NotRunnable>0</NotRunnable>
+                          <Skipped>0</Skipped>
+                          <Ignored>0</Ignored>
+                          <Time />
+                          <Message>Test successful
+
+Execution time: 0.01ms</Message>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                      </Results>
+                      <Tests />
+                    </TestRecord>
+                    <TestRecord Name="ValidateWithBrokenSidecar">
+                      <Results>
+                        <UnitTestResult>
+                          <TestDate>2013-07-27T12:04:30</TestDate>
+                          <Status />
+                          <Passed>0</Passed>
+                          <Errors>1</Errors>
+                          <Failures>0</Failures>
+                          <Inconclusive>0</Inconclusive>
+                          <NotRunnable>0</NotRunnable>
+                          <Skipped>0</Skipped>
+                          <Ignored>0</Ignored>
+                          <Time />
+                          <Message>System.IO.FileNotFoundException : Could not load file or assembly 'gio-sharp, Version=2.14.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f' or one of its dependencies.</Message>
+                          <StackTrace>  at FSpot.Utils.Tests.MetadataTest.ValidateWithBrokenSidecar () [0x00001] in /home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/MetadataTest.cs:102 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00054] in /home/abuild/rpmbuild/BUILD/mono-3.0.12/mcs/class/corlib/System.Reflection/MonoMethod.cs:230 </StackTrace>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                        <UnitTestResult>
+                          <TestDate>2013-07-27T12:05:00</TestDate>
+                          <Status />
+                          <Passed>0</Passed>
+                          <Errors>1</Errors>
+                          <Failures>0</Failures>
+                          <Inconclusive>0</Inconclusive>
+                          <NotRunnable>0</NotRunnable>
+                          <Skipped>0</Skipped>
+                          <Ignored>0</Ignored>
+                          <Time />
+                          <Message>GLib.GException : Error when getting information for file '/home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/bin/tests/data/taglib-sample.jpg': No such file or directory</Message>
+                          <StackTrace>  at GLib.FileAdapter.Copy (File destination, FileCopyFlags flags, GLib.Cancellable cancellable, GLib.FileProgressCallback progress_callback) [0x00000] in &lt;filename unknown&gt;:0 
+  at FSpot.Utils.Tests.ImageTestHelper.CreateTempFile (System.String name) [0x00047] in /home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/ImageTestHelper.cs:47 
+  at FSpot.Utils.Tests.MetadataTest.ValidateWithBrokenSidecar () [0x00001] in /home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/MetadataTest.cs:102 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00054] in /home/abuild/rpmbuild/BUILD/mono-3.0.12/mcs/class/corlib/System.Reflection/MonoMethod.cs:230 </StackTrace>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                        <UnitTestResult>
+                          <TestDate>2013-07-27T12:07:42</TestDate>
+                          <Status />
+                          <Passed>0</Passed>
+                          <Errors>1</Errors>
+                          <Failures>0</Failures>
+                          <Inconclusive>0</Inconclusive>
+                          <NotRunnable>0</NotRunnable>
+                          <Skipped>0</Skipped>
+                          <Ignored>0</Ignored>
+                          <Time />
+                          <Message>GLib.GException : Error when getting information for file '/home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/tests/datataglib-sample.jpg': No such file or directory</Message>
+                          <StackTrace>  at GLib.FileAdapter.Copy (File destination, FileCopyFlags flags, GLib.Cancellable cancellable, GLib.FileProgressCallback progress_callback) [0x00000] in &lt;filename unknown&gt;:0 
+  at FSpot.Utils.Tests.ImageTestHelper.CreateTempFile (System.String name) [0x00047] in /home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/ImageTestHelper.cs:48 
+  at FSpot.Utils.Tests.MetadataTest.ValidateWithBrokenSidecar () [0x00001] in /home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/MetadataTest.cs:102 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00054] in /home/abuild/rpmbuild/BUILD/mono-3.0.12/mcs/class/corlib/System.Reflection/MonoMethod.cs:230 </StackTrace>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                        <UnitTestResult>
+                          <TestDate>2013-07-27T12:11:50</TestDate>
+                          <Status />
+                          <Passed>0</Passed>
+                          <Errors>1</Errors>
+                          <Failures>0</Failures>
+                          <Inconclusive>0</Inconclusive>
+                          <NotRunnable>0</NotRunnable>
+                          <Skipped>0</Skipped>
+                          <Ignored>0</Ignored>
+                          <Time />
+                          <Message>GLib.GException : Error when getting information for file '/home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/bin/Debug/tests/datataglib-sample.jpg': No such file or directory</Message>
+                          <StackTrace>  at GLib.FileAdapter.Copy (File destination, FileCopyFlags flags, GLib.Cancellable cancellable, GLib.FileProgressCallback progress_callback) [0x00000] in &lt;filename unknown&gt;:0 
+  at FSpot.Utils.Tests.ImageTestHelper.CreateTempFile (System.String name) [0x00047] in /home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/ImageTestHelper.cs:48 
+  at FSpot.Utils.Tests.MetadataTest.ValidateWithBrokenSidecar () [0x00001] in /home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/MetadataTest.cs:102 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00054] in /home/abuild/rpmbuild/BUILD/mono-3.0.12/mcs/class/corlib/System.Reflection/MonoMethod.cs:230 </StackTrace>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                        <UnitTestResult>
+                          <TestDate>2013-07-27T12:12:37</TestDate>
+                          <Status />
+                          <Passed>0</Passed>
+                          <Errors>1</Errors>
+                          <Failures>0</Failures>
+                          <Inconclusive>0</Inconclusive>
+                          <NotRunnable>0</NotRunnable>
+                          <Skipped>0</Skipped>
+                          <Ignored>0</Ignored>
+                          <Time />
+                          <Message>GLib.GException : Error when getting information for file '/home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/bin/Debug/tests/data/taglib-sample.jpg': No such file or directory</Message>
+                          <StackTrace>  at GLib.FileAdapter.Copy (File destination, FileCopyFlags flags, GLib.Cancellable cancellable, GLib.FileProgressCallback progress_callback) [0x00000] in &lt;filename unknown&gt;:0 
+  at FSpot.Utils.Tests.ImageTestHelper.CreateTempFile (System.String name) [0x00047] in /home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/ImageTestHelper.cs:48 
+  at FSpot.Utils.Tests.MetadataTest.ValidateWithBrokenSidecar () [0x00001] in /home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/MetadataTest.cs:102 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00054] in /home/abuild/rpmbuild/BUILD/mono-3.0.12/mcs/class/corlib/System.Reflection/MonoMethod.cs:230 </StackTrace>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                        <UnitTestResult>
+                          <TestDate>2013-07-27T12:13:03</TestDate>
+                          <Status />
+                          <Passed>1</Passed>
+                          <Errors>0</Errors>
+                          <Failures>0</Failures>
+                          <Inconclusive>0</Inconclusive>
+                          <NotRunnable>0</NotRunnable>
+                          <Skipped>0</Skipped>
+                          <Ignored>0</Ignored>
+                          <Time />
+                          <Message>Test successful
+
+Execution time: 0.07ms</Message>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                        <UnitTestResult>
+                          <TestDate>2013-07-27T12:15:56</TestDate>
+                          <Status />
+                          <Passed>1</Passed>
+                          <Errors>0</Errors>
+                          <Failures>0</Failures>
+                          <Inconclusive>0</Inconclusive>
+                          <NotRunnable>0</NotRunnable>
+                          <Skipped>0</Skipped>
+                          <Ignored>0</Ignored>
+                          <Time />
+                          <Message>Test successful
+
+Execution time: 0.01ms</Message>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                      </Results>
+                      <Tests />
+                    </TestRecord>
+                    <TestRecord Name="ValidateWithoutSidecar">
+                      <Results>
+                        <UnitTestResult>
+                          <TestDate>2013-07-27T12:04:30</TestDate>
+                          <Status />
+                          <Passed>0</Passed>
+                          <Errors>1</Errors>
+                          <Failures>0</Failures>
+                          <Inconclusive>0</Inconclusive>
+                          <NotRunnable>0</NotRunnable>
+                          <Skipped>0</Skipped>
+                          <Ignored>0</Ignored>
+                          <Time />
+                          <Message>System.IO.FileNotFoundException : Could not load file or assembly 'gio-sharp, Version=2.14.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f' or one of its dependencies.</Message>
+                          <StackTrace>  at FSpot.Utils.Tests.MetadataTest.ValidateWithoutSidecar () [0x00001] in /home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/MetadataTest.cs:53 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00054] in /home/abuild/rpmbuild/BUILD/mono-3.0.12/mcs/class/corlib/System.Reflection/MonoMethod.cs:230 </StackTrace>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                        <UnitTestResult>
+                          <TestDate>2013-07-27T12:05:00</TestDate>
+                          <Status />
+                          <Passed>0</Passed>
+                          <Errors>1</Errors>
+                          <Failures>0</Failures>
+                          <Inconclusive>0</Inconclusive>
+                          <NotRunnable>0</NotRunnable>
+                          <Skipped>0</Skipped>
+                          <Ignored>0</Ignored>
+                          <Time />
+                          <Message>GLib.GException : Error when getting information for file '/home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/bin/tests/data/taglib-sample.jpg': No such file or directory</Message>
+                          <StackTrace>  at GLib.FileAdapter.Copy (File destination, FileCopyFlags flags, GLib.Cancellable cancellable, GLib.FileProgressCallback progress_callback) [0x00000] in &lt;filename unknown&gt;:0 
+  at FSpot.Utils.Tests.ImageTestHelper.CreateTempFile (System.String name) [0x00047] in /home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/ImageTestHelper.cs:47 
+  at FSpot.Utils.Tests.MetadataTest.ValidateWithoutSidecar () [0x00001] in /home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/MetadataTest.cs:53 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00054] in /home/abuild/rpmbuild/BUILD/mono-3.0.12/mcs/class/corlib/System.Reflection/MonoMethod.cs:230 </StackTrace>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                        <UnitTestResult>
+                          <TestDate>2013-07-27T12:07:42</TestDate>
+                          <Status />
+                          <Passed>0</Passed>
+                          <Errors>1</Errors>
+                          <Failures>0</Failures>
+                          <Inconclusive>0</Inconclusive>
+                          <NotRunnable>0</NotRunnable>
+                          <Skipped>0</Skipped>
+                          <Ignored>0</Ignored>
+                          <Time />
+                          <Message>GLib.GException : Error when getting information for file '/home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/tests/datataglib-sample.jpg': No such file or directory</Message>
+                          <StackTrace>  at GLib.FileAdapter.Copy (File destination, FileCopyFlags flags, GLib.Cancellable cancellable, GLib.FileProgressCallback progress_callback) [0x00000] in &lt;filename unknown&gt;:0 
+  at FSpot.Utils.Tests.ImageTestHelper.CreateTempFile (System.String name) [0x00047] in /home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/ImageTestHelper.cs:48 
+  at FSpot.Utils.Tests.MetadataTest.ValidateWithoutSidecar () [0x00001] in /home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/MetadataTest.cs:53 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00054] in /home/abuild/rpmbuild/BUILD/mono-3.0.12/mcs/class/corlib/System.Reflection/MonoMethod.cs:230 </StackTrace>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                        <UnitTestResult>
+                          <TestDate>2013-07-27T12:11:50</TestDate>
+                          <Status />
+                          <Passed>0</Passed>
+                          <Errors>1</Errors>
+                          <Failures>0</Failures>
+                          <Inconclusive>0</Inconclusive>
+                          <NotRunnable>0</NotRunnable>
+                          <Skipped>0</Skipped>
+                          <Ignored>0</Ignored>
+                          <Time />
+                          <Message>GLib.GException : Error when getting information for file '/home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/bin/Debug/tests/datataglib-sample.jpg': No such file or directory</Message>
+                          <StackTrace>  at GLib.FileAdapter.Copy (File destination, FileCopyFlags flags, GLib.Cancellable cancellable, GLib.FileProgressCallback progress_callback) [0x00000] in &lt;filename unknown&gt;:0 
+  at FSpot.Utils.Tests.ImageTestHelper.CreateTempFile (System.String name) [0x00047] in /home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/ImageTestHelper.cs:48 
+  at FSpot.Utils.Tests.MetadataTest.ValidateWithoutSidecar () [0x00001] in /home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/MetadataTest.cs:53 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00054] in /home/abuild/rpmbuild/BUILD/mono-3.0.12/mcs/class/corlib/System.Reflection/MonoMethod.cs:230 </StackTrace>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                        <UnitTestResult>
+                          <TestDate>2013-07-27T12:12:37</TestDate>
+                          <Status />
+                          <Passed>0</Passed>
+                          <Errors>1</Errors>
+                          <Failures>0</Failures>
+                          <Inconclusive>0</Inconclusive>
+                          <NotRunnable>0</NotRunnable>
+                          <Skipped>0</Skipped>
+                          <Ignored>0</Ignored>
+                          <Time />
+                          <Message>GLib.GException : Error when getting information for file '/home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/bin/Debug/tests/data/taglib-sample.jpg': No such file or directory</Message>
+                          <StackTrace>  at GLib.FileAdapter.Copy (File destination, FileCopyFlags flags, GLib.Cancellable cancellable, GLib.FileProgressCallback progress_callback) [0x00000] in &lt;filename unknown&gt;:0 
+  at FSpot.Utils.Tests.ImageTestHelper.CreateTempFile (System.String name) [0x00047] in /home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/ImageTestHelper.cs:48 
+  at FSpot.Utils.Tests.MetadataTest.ValidateWithoutSidecar () [0x00001] in /home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/MetadataTest.cs:53 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00054] in /home/abuild/rpmbuild/BUILD/mono-3.0.12/mcs/class/corlib/System.Reflection/MonoMethod.cs:230 </StackTrace>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                        <UnitTestResult>
+                          <TestDate>2013-07-27T12:13:03</TestDate>
+                          <Status />
+                          <Passed>1</Passed>
+                          <Errors>0</Errors>
+                          <Failures>0</Failures>
+                          <Inconclusive>0</Inconclusive>
+                          <NotRunnable>0</NotRunnable>
+                          <Skipped>0</Skipped>
+                          <Ignored>0</Ignored>
+                          <Time />
+                          <Message>Test successful
+
+Execution time: 0.00ms</Message>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                        <UnitTestResult>
+                          <TestDate>2013-07-27T12:15:56</TestDate>
+                          <Status />
+                          <Passed>1</Passed>
+                          <Errors>0</Errors>
+                          <Failures>0</Failures>
+                          <Inconclusive>0</Inconclusive>
+                          <NotRunnable>0</NotRunnable>
+                          <Skipped>0</Skipped>
+                          <Ignored>0</Ignored>
+                          <Time />
+                          <Message>Test successful
+
+Execution time: 0.00ms</Message>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                      </Results>
+                      <Tests />
+                    </TestRecord>
+                    <TestRecord Name="ValidateWithSidecar">
+                      <Results>
+                        <UnitTestResult>
+                          <TestDate>2013-07-27T12:04:30</TestDate>
+                          <Status />
+                          <Passed>0</Passed>
+                          <Errors>1</Errors>
+                          <Failures>0</Failures>
+                          <Inconclusive>0</Inconclusive>
+                          <NotRunnable>0</NotRunnable>
+                          <Skipped>0</Skipped>
+                          <Ignored>0</Ignored>
+                          <Time />
+                          <Message>System.IO.FileNotFoundException : Could not load file or assembly 'gio-sharp, Version=2.14.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f' or one of its dependencies.</Message>
+                          <StackTrace>  at FSpot.Utils.Tests.MetadataTest.ValidateWithSidecar () [0x00001] in /home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/MetadataTest.cs:78 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00054] in /home/abuild/rpmbuild/BUILD/mono-3.0.12/mcs/class/corlib/System.Reflection/MonoMethod.cs:230 </StackTrace>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                        <UnitTestResult>
+                          <TestDate>2013-07-27T12:05:00</TestDate>
+                          <Status />
+                          <Passed>0</Passed>
+                          <Errors>1</Errors>
+                          <Failures>0</Failures>
+                          <Inconclusive>0</Inconclusive>
+                          <NotRunnable>0</NotRunnable>
+                          <Skipped>0</Skipped>
+                          <Ignored>0</Ignored>
+                          <Time />
+                          <Message>GLib.GException : Error when getting information for file '/home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/bin/tests/data/taglib-sample.jpg': No such file or directory</Message>
+                          <StackTrace>  at GLib.FileAdapter.Copy (File destination, FileCopyFlags flags, GLib.Cancellable cancellable, GLib.FileProgressCallback progress_callback) [0x00000] in &lt;filename unknown&gt;:0 
+  at FSpot.Utils.Tests.ImageTestHelper.CreateTempFile (System.String name) [0x00047] in /home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/ImageTestHelper.cs:47 
+  at FSpot.Utils.Tests.MetadataTest.ValidateWithSidecar () [0x00001] in /home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/MetadataTest.cs:78 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00054] in /home/abuild/rpmbuild/BUILD/mono-3.0.12/mcs/class/corlib/System.Reflection/MonoMethod.cs:230 </StackTrace>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                        <UnitTestResult>
+                          <TestDate>2013-07-27T12:07:42</TestDate>
+                          <Status />
+                          <Passed>0</Passed>
+                          <Errors>1</Errors>
+                          <Failures>0</Failures>
+                          <Inconclusive>0</Inconclusive>
+                          <NotRunnable>0</NotRunnable>
+                          <Skipped>0</Skipped>
+                          <Ignored>0</Ignored>
+                          <Time />
+                          <Message>GLib.GException : Error when getting information for file '/home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/tests/datataglib-sample.jpg': No such file or directory</Message>
+                          <StackTrace>  at GLib.FileAdapter.Copy (File destination, FileCopyFlags flags, GLib.Cancellable cancellable, GLib.FileProgressCallback progress_callback) [0x00000] in &lt;filename unknown&gt;:0 
+  at FSpot.Utils.Tests.ImageTestHelper.CreateTempFile (System.String name) [0x00047] in /home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/ImageTestHelper.cs:48 
+  at FSpot.Utils.Tests.MetadataTest.ValidateWithSidecar () [0x00001] in /home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/MetadataTest.cs:78 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00054] in /home/abuild/rpmbuild/BUILD/mono-3.0.12/mcs/class/corlib/System.Reflection/MonoMethod.cs:230 </StackTrace>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                        <UnitTestResult>
+                          <TestDate>2013-07-27T12:11:50</TestDate>
+                          <Status />
+                          <Passed>0</Passed>
+                          <Errors>1</Errors>
+                          <Failures>0</Failures>
+                          <Inconclusive>0</Inconclusive>
+                          <NotRunnable>0</NotRunnable>
+                          <Skipped>0</Skipped>
+                          <Ignored>0</Ignored>
+                          <Time />
+                          <Message>GLib.GException : Error when getting information for file '/home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/bin/Debug/tests/datataglib-sample.jpg': No such file or directory</Message>
+                          <StackTrace>  at GLib.FileAdapter.Copy (File destination, FileCopyFlags flags, GLib.Cancellable cancellable, GLib.FileProgressCallback progress_callback) [0x00000] in &lt;filename unknown&gt;:0 
+  at FSpot.Utils.Tests.ImageTestHelper.CreateTempFile (System.String name) [0x00047] in /home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/ImageTestHelper.cs:48 
+  at FSpot.Utils.Tests.MetadataTest.ValidateWithSidecar () [0x00001] in /home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/MetadataTest.cs:78 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00054] in /home/abuild/rpmbuild/BUILD/mono-3.0.12/mcs/class/corlib/System.Reflection/MonoMethod.cs:230 </StackTrace>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                        <UnitTestResult>
+                          <TestDate>2013-07-27T12:12:37</TestDate>
+                          <Status />
+                          <Passed>0</Passed>
+                          <Errors>1</Errors>
+                          <Failures>0</Failures>
+                          <Inconclusive>0</Inconclusive>
+                          <NotRunnable>0</NotRunnable>
+                          <Skipped>0</Skipped>
+                          <Ignored>0</Ignored>
+                          <Time />
+                          <Message>GLib.GException : Error when getting information for file '/home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/bin/Debug/tests/data/taglib-sample.jpg': No such file or directory</Message>
+                          <StackTrace>  at GLib.FileAdapter.Copy (File destination, FileCopyFlags flags, GLib.Cancellable cancellable, GLib.FileProgressCallback progress_callback) [0x00000] in &lt;filename unknown&gt;:0 
+  at FSpot.Utils.Tests.ImageTestHelper.CreateTempFile (System.String name) [0x00047] in /home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/ImageTestHelper.cs:48 
+  at FSpot.Utils.Tests.MetadataTest.ValidateWithSidecar () [0x00001] in /home/sshaw/code/github/f-spot/src/Core/FSpot.Core.UnitTest/MetadataTest.cs:78 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00054] in /home/abuild/rpmbuild/BUILD/mono-3.0.12/mcs/class/corlib/System.Reflection/MonoMethod.cs:230 </StackTrace>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                        <UnitTestResult>
+                          <TestDate>2013-07-27T12:13:03</TestDate>
+                          <Status />
+                          <Passed>1</Passed>
+                          <Errors>0</Errors>
+                          <Failures>0</Failures>
+                          <Inconclusive>0</Inconclusive>
+                          <NotRunnable>0</NotRunnable>
+                          <Skipped>0</Skipped>
+                          <Ignored>0</Ignored>
+                          <Time />
+                          <Message>Test successful
+
+Execution time: 0.01ms</Message>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                        <UnitTestResult>
+                          <TestDate>2013-07-27T12:15:56</TestDate>
+                          <Status />
+                          <Passed>1</Passed>
+                          <Errors>0</Errors>
+                          <Failures>0</Failures>
+                          <Inconclusive>0</Inconclusive>
+                          <NotRunnable>0</NotRunnable>
+                          <Skipped>0</Skipped>
+                          <Ignored>0</Ignored>
+                          <Time />
+                          <Message>Test successful
+
+Execution time: 0.00ms</Message>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                      </Results>
+                      <Tests />
+                    </TestRecord>
+                  </Tests>
+                </TestRecord>
+                <TestRecord Name="GIOTagLibFileAbstractionTests">
+                  <Results>
+                    <UnitTestResult>
+                      <TestDate>2013-07-27T12:15:56</TestDate>
+                      <Status />
+                      <Passed>2</Passed>
+                      <Errors>0</Errors>
+                      <Failures>0</Failures>
+                      <Inconclusive>0</Inconclusive>
+                      <NotRunnable>0</NotRunnable>
+                      <Skipped>0</Skipped>
+                      <Ignored>0</Ignored>
+                      <Time />
+                      <Message>Test successful
+
+Execution time: 0.19ms</Message>
+                    </UnitTestResult>
+                  </Results>
+                  <Tests>
+                    <TestRecord Name="GIOTest">
+                      <Results>
+                        <UnitTestResult>
+                          <TestDate>2013-07-27T12:15:56</TestDate>
+                          <Status />
+                          <Passed>1</Passed>
+                          <Errors>0</Errors>
+                          <Failures>0</Failures>
+                          <Inconclusive>0</Inconclusive>
+                          <NotRunnable>0</NotRunnable>
+                          <Skipped>0</Skipped>
+                          <Ignored>0</Ignored>
+                          <Time />
+                          <Message>Test successful
+
+Execution time: 0.14ms</Message>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                      </Results>
+                    </TestRecord>
+                    <TestRecord Name="StraightIOTest">
+                      <Results>
+                        <UnitTestResult>
+                          <TestDate>2013-07-27T12:15:56</TestDate>
+                          <Status />
+                          <Passed>1</Passed>
+                          <Errors>0</Errors>
+                          <Failures>0</Failures>
+                          <Inconclusive>0</Inconclusive>
+                          <NotRunnable>0</NotRunnable>
+                          <Skipped>0</Skipped>
+                          <Ignored>0</Ignored>
+                          <Time />
+                          <Message>Test successful
+
+Execution time: 0.01ms</Message>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                      </Results>
+                    </TestRecord>
+                  </Tests>
+                </TestRecord>
+                <TestRecord Name="SafeUriTests">
+                  <Results>
+                    <UnitTestResult>
+                      <TestDate>2013-07-27T12:15:56</TestDate>
+                      <Status />
+                      <Passed>2</Passed>
+                      <Errors>0</Errors>
+                      <Failures>0</Failures>
+                      <Inconclusive>0</Inconclusive>
+                      <NotRunnable>0</NotRunnable>
+                      <Skipped>0</Skipped>
+                      <Ignored>0</Ignored>
+                      <Time />
+                      <Message>Test successful
+
+Execution time: 0.01ms</Message>
+                    </UnitTestResult>
+                  </Results>
+                  <Tests>
+                    <TestRecord Name="TestFileUris">
+                      <Results>
+                        <UnitTestResult>
+                          <TestDate>2013-07-27T12:15:56</TestDate>
+                          <Status />
+                          <Passed>1</Passed>
+                          <Errors>0</Errors>
+                          <Failures>0</Failures>
+                          <Inconclusive>0</Inconclusive>
+                          <NotRunnable>0</NotRunnable>
+                          <Skipped>0</Skipped>
+                          <Ignored>0</Ignored>
+                          <Time />
+                          <Message>Test successful
+
+Execution time: 0.00ms</Message>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                      </Results>
+                    </TestRecord>
+                    <TestRecord Name="TestReplaceExtension">
+                      <Results>
+                        <UnitTestResult>
+                          <TestDate>2013-07-27T12:15:56</TestDate>
+                          <Status />
+                          <Passed>1</Passed>
+                          <Errors>0</Errors>
+                          <Failures>0</Failures>
+                          <Inconclusive>0</Inconclusive>
+                          <NotRunnable>0</NotRunnable>
+                          <Skipped>0</Skipped>
+                          <Ignored>0</Ignored>
+                          <Time />
+                          <Message>Test successful
+
+Execution time: 0.00ms</Message>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                      </Results>
+                    </TestRecord>
+                  </Tests>
+                </TestRecord>
+                <TestRecord Name="SidecarXmpExtensionsTests">
+                  <Results>
+                    <UnitTestResult>
+                      <TestDate>2013-07-27T12:15:56</TestDate>
+                      <Status />
+                      <Passed>4</Passed>
+                      <Errors>0</Errors>
+                      <Failures>0</Failures>
+                      <Inconclusive>0</Inconclusive>
+                      <NotRunnable>0</NotRunnable>
+                      <Skipped>0</Skipped>
+                      <Ignored>0</Ignored>
+                      <Time />
+                      <Message>Test successful
+
+Execution time: 0.04ms</Message>
+                    </UnitTestResult>
+                  </Results>
+                  <Tests>
+                    <TestRecord Name="TestSidecarWrite">
+                      <Results>
+                        <UnitTestResult>
+                          <TestDate>2013-07-27T12:15:56</TestDate>
+                          <Status />
+                          <Passed>1</Passed>
+                          <Errors>0</Errors>
+                          <Failures>0</Failures>
+                          <Inconclusive>0</Inconclusive>
+                          <NotRunnable>0</NotRunnable>
+                          <Skipped>0</Skipped>
+                          <Ignored>0</Ignored>
+                          <Time />
+                          <Message>Test successful
+
+Execution time: 0.01ms</Message>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                      </Results>
+                    </TestRecord>
+                    <TestRecord Name="ValidateWithBrokenSidecar">
+                      <Results>
+                        <UnitTestResult>
+                          <TestDate>2013-07-27T12:15:56</TestDate>
+                          <Status />
+                          <Passed>1</Passed>
+                          <Errors>0</Errors>
+                          <Failures>0</Failures>
+                          <Inconclusive>0</Inconclusive>
+                          <NotRunnable>0</NotRunnable>
+                          <Skipped>0</Skipped>
+                          <Ignored>0</Ignored>
+                          <Time />
+                          <Message>Test successful
+
+Execution time: 0.00ms</Message>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                      </Results>
+                    </TestRecord>
+                    <TestRecord Name="ValidateWithoutSidecar">
+                      <Results>
+                        <UnitTestResult>
+                          <TestDate>2013-07-27T12:15:56</TestDate>
+                          <Status />
+                          <Passed>1</Passed>
+                          <Errors>0</Errors>
+                          <Failures>0</Failures>
+                          <Inconclusive>0</Inconclusive>
+                          <NotRunnable>0</NotRunnable>
+                          <Skipped>0</Skipped>
+                          <Ignored>0</Ignored>
+                          <Time />
+                          <Message>Test successful
+
+Execution time: 0.01ms</Message>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                      </Results>
+                    </TestRecord>
+                    <TestRecord Name="ValidateWithSidecar">
+                      <Results>
+                        <UnitTestResult>
+                          <TestDate>2013-07-27T12:15:56</TestDate>
+                          <Status />
+                          <Passed>1</Passed>
+                          <Errors>0</Errors>
+                          <Failures>0</Failures>
+                          <Inconclusive>0</Inconclusive>
+                          <NotRunnable>0</NotRunnable>
+                          <Skipped>0</Skipped>
+                          <Ignored>0</Ignored>
+                          <Time />
+                          <Message>Test successful
+
+Execution time: 0.00ms</Message>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                      </Results>
+                    </TestRecord>
+                  </Tests>
+                </TestRecord>
+                <TestRecord Name="XdgThumbnailSpecTests">
+                  <Results>
+                    <UnitTestResult>
+                      <TestDate>2013-07-27T12:15:56</TestDate>
+                      <Status />
+                      <Passed>1</Passed>
+                      <Errors>0</Errors>
+                      <Failures>0</Failures>
+                      <Inconclusive>0</Inconclusive>
+                      <NotRunnable>0</NotRunnable>
+                      <Skipped>0</Skipped>
+                      <Ignored>0</Ignored>
+                      <Time />
+                      <Message>Test successful
+
+Execution time: 0.03ms</Message>
+                    </UnitTestResult>
+                  </Results>
+                  <Tests>
+                    <TestRecord Name="TestMissingFile">
+                      <Results>
+                        <UnitTestResult>
+                          <TestDate>2013-07-27T12:15:56</TestDate>
+                          <Status />
+                          <Passed>1</Passed>
+                          <Errors>0</Errors>
+                          <Failures>0</Failures>
+                          <Inconclusive>0</Inconclusive>
+                          <NotRunnable>0</NotRunnable>
+                          <Skipped>0</Skipped>
+                          <Ignored>0</Ignored>
+                          <Time />
+                          <Message>Test successful
+
+Execution time: 0.03ms</Message>
+                          <ConsoleOutput />
+                          <ConsoleError />
+                        </UnitTestResult>
+                      </Results>
+                    </TestRecord>
+                  </Tests>
+                </TestRecord>
+              </Tests>
+            </TestRecord>
+          </Tests>
+        </TestRecord>
+      </Tests>
+    </TestRecord>
+  </Tests>
+</TestRecord>

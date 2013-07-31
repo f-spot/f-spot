@@ -27,11 +27,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#if ENABLE_TESTS
-using NUnit.Framework;
 using System;
 using Hyena;
-using FSpot;
+using NUnit.Framework;
 
 namespace FSpot.Utils.Tests
 {
@@ -56,4 +54,3 @@ namespace FSpot.Utils.Tests
 		}
 	}
 }
-#endif

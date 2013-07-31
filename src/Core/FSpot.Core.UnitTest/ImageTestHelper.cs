@@ -29,19 +29,17 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#if ENABLE_TESTS
-using NUnit.Framework;
 using System;
 using Hyena;
-using TagLib;
 
 namespace FSpot.Utils.Tests
 {
 	public static class ImageTestHelper
 	{
+		public static string TestDataLocation = "/TestData/";
         public static SafeUri CreateTempFile (string name)
         {
-            var uri = new SafeUri (Environment.CurrentDirectory + "/../tests/data/" + name);
+            var uri = new SafeUri (Environment.CurrentDirectory + TestDataLocation + name);
             var file = GLib.FileFactory.NewForUri (uri);
 
             var tmp = System.IO.Path.GetTempFileName ()+".jpg"; // hack!
@@ -55,7 +53,7 @@ namespace FSpot.Utils.Tests
         {
             var target = uri.ReplaceExtension (".xmp");
 
-            var orig_uri = new SafeUri (Environment.CurrentDirectory + "/../tests/data/" + filename);
+            var orig_uri = new SafeUri (Environment.CurrentDirectory + TestDataLocation + filename);
             var file = GLib.FileFactory.NewForUri (orig_uri);
             var file2 = GLib.FileFactory.NewForUri (target);
             file.Copy (file2, GLib.FileCopyFlags.Overwrite, null, null);
@@ -69,4 +67,3 @@ namespace FSpot.Utils.Tests
         }
 	}
 }
-#endif

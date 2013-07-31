@@ -59,16 +59,11 @@
   </ProjectExtensions>
   <ItemGroup>
     <Reference Include="Mono.Posix" />
-    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>glib-sharp-2.0</Package>
-    </Reference>
-    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>gtk-sharp-2.0</Package>
-    </Reference>
+    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="FlickrNet, Version=2.2.0.0, Culture=neutral, PublicKeyToken=2491df59efa5d132">
       <Private>False</Private>
       <SpecificVersion>False</SpecificVersion>
-      <Package>flickrnet</Package>
     </Reference>
     <Reference Include="gtk-sharp-beans">
       <HintPath>..\..\..\..\external\gtk-sharp-beans.dll</HintPath>

@@ -27,7 +27,6 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#if ENABLE_TESTS
 using NUnit.Framework;
 using FSpot.Core;
 
@@ -66,4 +65,3 @@ namespace FSpot.Query.Tests
 		}
 	}
 }
-#endif
