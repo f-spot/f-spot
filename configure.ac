@@ -139,7 +139,7 @@ GTKSHARPBEANS_REQUIRED=2.13.92
 GTK_REQUIRED=2.14
 MONO_CAIRO_REQUIRED=1.2.5
 CAIRO_REQUIRED=1.4.0
-LCMS_REQUIRED=1.12
+LCMS2_REQUIRED=2.4
 
 PKG_CHECK_MODULES(F, gnome-desktop-2.0 >= $LIBGNOMEDESKTOP_REQUIRED gtk+-2.0 >= $GTK_REQUIRED mono-cairo >= $MONO_CAIRO_REQUIRED cairo >= $CAIRO_REQUIRED)
 AC_SUBST(F_CFLAGS)
@@ -180,12 +180,12 @@ LIBJPEG='-ljpeg'
 
 dnl --- lcms
 
-PKG_CHECK_MODULES(LCMS, lcms >= $LCMS_REQUIRED, [], 
-	[AC_CHECK_LIB(lcms, cmsCreateBCHSWabstractProfile, [],
-		     [AC_MSG_ERROR([liblcms not found])], -lm)
-	AC_CHECK_HEADER(lcms.h, , [AC_MSG_ERROR([liblcms not found])])
-	LCMS_LIBS='-llcms'
-	LCMS_CFLAGS=''])
+PKG_CHECK_MODULES(LCMS2, lcms2 >= $LCMS2_REQUIRED, [], 
+	[AC_CHECK_LIB(lcms2, cmsCreateBCHSWabstractProfile, [],
+		     [AC_MSG_ERROR([liblcms2 not found])], -lm)
+	AC_CHECK_HEADER(lcms2.h, , [AC_MSG_ERROR([liblcms2 not found])])
+	LCMS2_LIBS='-llcms2'
+	LCMS2_CFLAGS=''])
 
 dnl --- libunique check
 PKG_CHECK_MODULES(UNIQUE, unique-1.0 >= 1.0)
@@ -237,8 +237,8 @@ AM_GLIB_GNU_GETTEXT
 dnl --- Prologue
 
 AC_SUBST(LIBJPEG)
-AC_SUBST(LCMS_LIBS)
-AC_SUBST(LCMS_CFLAGS)
+AC_SUBST(LCMS2_LIBS)
+AC_SUBST(LCMS2_CFLAGS)
 AC_SUBST(CFLAGS)
 AC_SUBST(CPPFLAGS)
 AC_SUBST(LDFLAGS)

@@ -38,15 +38,15 @@ using Hyena;
 
 namespace FSpot.ColorAdjustment {
 	public class AutoStretch : Adjustment {
-		public AutoStretch (Pixbuf input, Cms.Profile input_profile) : base (input, input_profile)
+		public AutoStretch (Pixbuf input, Profile input_profile) : base (input, input_profile)
 		{
 		}
 
-		protected override List <Cms.Profile> GenerateAdjustments ()
+		protected override List <Profile> GenerateAdjustments ()
 		{
-			List <Cms.Profile> profiles = new List <Cms.Profile> ();
+			List <Profile> profiles = new List <Profile> ();
 			Histogram hist = new Histogram (Input);
-			tables = new GammaTable [3];
+			tables = new GammaCurve [3];
 
 			for (int channel = 0; channel < tables.Length; channel++) {
 				int high, low;
@@ -54,11 +54,11 @@ namespace FSpot.ColorAdjustment {
 				Log.DebugFormat ("high = {0}, low = {1}", high, low);
 				tables [channel] = StretchChannel (255, low / 255.0, high / 255.0);
 			}
-			profiles.Add (new Cms.Profile (IccColorSpace.Rgb, tables));
+			profiles.Add (new Profile (IccColorSpace.Rgb, tables));
 			return profiles;
 		}
 
-		GammaTable StretchChannel (int count, double low, double high)
+		GammaCurve StretchChannel (int count, double low, double high)
 		{
 			ushort [] entries = new ushort [count];
 			for (int i = 0; i < entries.Length; i++) {
@@ -73,9 +73,9 @@ namespace FSpot.ColorAdjustment {
 				entries [i] = (ushort) Math.Min (Math.Round (ushort.MaxValue * val), ushort.MaxValue);
 				//System.Console.WriteLine ("val {0}, result {1}", Math.Round (val * ushort.MaxValue), entries [i]);
 			}
-			return new GammaTable (entries);
+			return new GammaCurve (entries);
 		}
 
-		GammaTable [] tables;
+		GammaCurve [] tables;
 	}
 }

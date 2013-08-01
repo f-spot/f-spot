@@ -8,7 +8,8 @@
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
 #include <gdk/gdkx.h>
-#include <lcms.h>
+#include <lcms2.h>
+#include <lcms2_plugin.h>
 
 cmsHPROFILE *
 f_screen_get_profile (GdkScreen *screen)
@@ -51,7 +52,7 @@ typedef struct {
 
 
 static
-int bchswSampler(register WORD In[], register WORD Out[], register LPVOID Cargo)
+int bchswSampler(register const cmsUInt16Number In[], register cmsUInt16Number Out[], register void* Cargo)
 {
     cmsCIELab LabIn, LabOut;
     cmsCIELCh LChIn, LChOut;
@@ -111,20 +112,21 @@ int bchswSampler(register WORD In[], register WORD Out[], register LPVOID Cargo)
 // Creates an abstract profile operating in Lab space for Brightness,
 // contrast, Saturation and white point displacement
 
-cmsHPROFILE LCMSEXPORT f_cmsCreateBCHSWabstractProfile(int nLUTPoints,
+cmsHPROFILE CMSEXPORT f_cmsCreateBCHSWabstractProfile(int nLUTPoints,
 						       double Exposure,
 						       double Bright, 
 						       double Contrast,
 						       double Hue,
 						       double Saturation,
-						       LPcmsCIExyY current_wp,
-						       LPcmsCIExyY destination_wp,
-						       LPGAMMATABLE Tables [])
+						       cmsCIExyY current_wp,
+						       cmsCIExyY destination_wp)
 {
 	cmsHPROFILE hICC;
-	LPLUT Lut;
+	cmsPipeline* Pipeline;
+	cmsStage* CLUT;
 	BCHSWADJUSTS bchsw;
-	cmsCIExyY WhitePnt;
+	cmsUInt32Number Dimensions[MAX_INPUT_DIMENSIONS];
+	int i;
 	
 	bchsw.Exposure   = Exposure;
 	bchsw.Brightness = Bright;
@@ -132,78 +134,86 @@ cmsHPROFILE LCMSEXPORT f_cmsCreateBCHSWabstractProfile(int nLUTPoints,
 	bchsw.Hue        = Hue;
 	bchsw.Saturation = Saturation;
 	
-	cmsxyY2XYZ(&bchsw.WPsrc, current_wp);
-	cmsxyY2XYZ(&bchsw.WPdest, destination_wp);
+	cmsxyY2XYZ(&bchsw.WPsrc, &current_wp);
+	cmsxyY2XYZ(&bchsw.WPdest, &destination_wp);
 	
-	hICC = _cmsCreateProfilePlaceholder();
+	hICC = cmsCreateProfilePlaceholder(NULL);
 	if (!hICC)                          // can't allocate
 		return NULL;
 	
-	cmsSetDeviceClass(hICC,      icSigAbstractClass);
-	cmsSetColorSpace(hICC,       icSigLabData);
-	cmsSetPCS(hICC,              icSigLabData);
+	cmsSetDeviceClass(hICC,      cmsSigAbstractClass);
+	cmsSetColorSpace(hICC,       cmsSigLabData);
+	cmsSetPCS(hICC,              cmsSigLabData);
 	
 	cmsSetRenderingIntent(hICC,  INTENT_PERCEPTUAL); 
 	
-	// Creates a LUT with 3D grid only
-	Lut = cmsAllocLUT();
+	// Creates a Pipeline with 3D grid only
+	Pipeline = cmsPipelineAlloc(NULL, 3, 3);
+	if (Pipeline == NULL) {
+		cmsCloseProfile(hICC);
+		return NULL;
+	}
+
+
+	for (i=0; i < MAX_INPUT_DIMENSIONS; i++) Dimensions[i] = nLUTPoints;
+	CLUT = cmsStageAllocCLut16bitGranular(NULL, Dimensions, 3, 3, NULL);
+	if (CLUT == NULL) return NULL;
 	
-	cmsAlloc3DGrid(Lut, nLUTPoints, 3, 3);
-	
-	if (Tables != NULL)
-	       cmsAllocLinearTable (Lut, Tables, 1);
-	
-       if (!cmsSample3DGrid(Lut, bchswSampler, (LPVOID) &bchsw, 0)) {
-	       
+	if (!cmsStageSampleCLut16bit(CLUT, bchswSampler, (void*) &bchsw, 0)) {
+		
 	       // Shouldn't reach here
-	       cmsFreeLUT(Lut);
+	       cmsPipelineFree(Pipeline);
 	       cmsCloseProfile(hICC);
 	       return NULL;
-       }    
+       }
+
+	cmsPipeInsertStage(Pipeline, cmsAT_END, CLUT);
        
        // Create tags
        
-       cmsAddTag(hICC, icSigDeviceMfgDescTag,      (LPVOID) "(f-spot internal)"); 
-       cmsAddTag(hICC, icSigProfileDescriptionTag, (LPVOID) "f-spot BCHSW abstract profile");  
-       cmsAddTag(hICC, icSigDeviceModelDescTag,    (LPVOID) "BCHSW built-in");      
+       cmsAddTag(hICC, cmsSigDeviceMfgDescTag,      (void*) "(f-spot internal)"); 
+       cmsAddTag(hICC, cmsSigProfileDescriptionTag, (void*) "f-spot BCHSW abstract profile");  
+       cmsAddTag(hICC, cmsSigDeviceModelDescTag,    (void*) "BCHSW built-in");      
        
-       cmsAddTag(hICC, icSigMediaWhitePointTag, (LPVOID) cmsD50_XYZ());
+       cmsAddTag(hICC, cmsSigMediaWhitePointTag, (void*) cmsD50_XYZ());
        
-       cmsAddTag(hICC, icSigAToB0Tag, (LPVOID) Lut);
+       cmsAddTag(hICC, cmsSigAToB0Tag, (void*) Pipeline);
        
-       // LUT is already on virtual profile
-       cmsFreeLUT(Lut);
+       // Pipeline is already on virtual profile
+       cmsPipelineFree(Pipeline);
 
        // Ok, done
        return hICC;
 }
 
-LPGAMMATABLE
+cmsToneCurve*
 f_cms_gamma_table_new (unsigned short data[], int start, int length)
 {
-	LPGAMMATABLE table = cmsAllocGamma (length);
+	cmsToneCurve* table = (cmsToneCurve*) _cmsMallocZero(NULL, sizeof(cmsToneCurve));
 	int i;
 	if (!table)
 		return NULL;
 
 	data += start;
 
-	for (i = 0; i < length; i++)
-		table->GammaTable [i] = data [i];
+	table->Table16 = (cmsUInt16Number*) _cmsCalloc(NULL, length, sizeof(cmsUInt16Number));
 
-	g_warning ("table %p, count = %d v[0] = %d", table, table->nEntries, table->GammaTable [0]);
+	for (i = 0; i < length; i++)
+		table->Table16 [i] = data [i];
+
+	g_warning ("table %p, count = %d v[0] = %d", table, table->nEntries, table->Table16 [0]);
 	
 	return table;
 }
 
 ushort *
-f_cms_gamma_table_get_values (LPGAMMATABLE table)
+f_cms_gamma_table_get_values (cmsToneCurve* table)
 {
-	return &(table->GammaTable [0]);
+	return &(table->Table16 [0]);
 }
 
-int
-f_cms_gamma_table_get_count (LPGAMMATABLE table)
+uint
+f_cms_gamma_table_get_count (cmsToneCurve* const table)
 {
 	return table->nEntries;
 }

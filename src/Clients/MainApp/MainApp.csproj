@@ -42,7 +42,6 @@
     <Compile Include="FSpot\App.cs" />
     <Compile Include="FSpot\BitConverter.cs" />
     <Compile Include="FSpot.ColorAdjustment\Adjustment.cs" />
-    <Compile Include="FSpot.ColorAdjustment\AutoStretch.cs" />
     <Compile Include="FSpot.ColorAdjustment\Desaturate.cs" />
     <Compile Include="FSpot.ColorAdjustment\FullColorAdjustment.cs" />
     <Compile Include="FSpot.ColorAdjustment\SepiaTone.cs" />
@@ -53,7 +52,6 @@
     <Compile Include="FSpot.Database\Tests\UpdaterTests.cs" />
     <Compile Include="FSpot.Database\Updater.cs" />
     <Compile Include="FSpot\DragDropTargets.cs" />
-    <Compile Include="FSpot.Editors\AutoStretchEditor.cs" />
     <Compile Include="FSpot.Editors\ColorEditor.cs" />
     <Compile Include="FSpot.Editors\CropEditor.cs" />
     <Compile Include="FSpot.Editors\DesaturateEditor.cs" />
@@ -212,6 +210,8 @@
     <Compile Include="FSpot\Literal.cs" />
     <Compile Include="FSpot.Imaging\IImageFile.cs" />
     <Compile Include="FSpot.Import\IImportSource.cs" />
+    <Compile Include="FSpot.ColorAdjustment\AutoStretch.cs" />
+    <Compile Include="FSpot.Editors\AutoStretchEditor.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\icons\f-spot-not.png">

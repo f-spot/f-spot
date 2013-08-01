@@ -43,7 +43,7 @@ namespace Cms
 
 		public HandleRef Handle { get; private set; }
 
-		private Profile () : this (NativeMethods.CmsCreateProfilePlaceholder ())
+		Profile () : this (NativeMethods.CmsCreateProfilePlaceholder ())
 		{
 		}
 
@@ -69,8 +69,8 @@ namespace Cms
 				new ColorCIExyY (.21, .71, 1.0),
 				new ColorCIExyY (.15, .06, 1.0));
 			
-			GammaTable g = new GammaTable (4096, 2.2);
-			GammaTable [] gamma = new GammaTable [] { g, g, g, g};
+			GammaCurve g = new GammaCurve (4096, 2.2);
+			GammaCurve [] gamma = new GammaCurve [] { g, g, g, g};
 
 			return new Profile (wp, primaries, gamma);
 		}
@@ -85,10 +85,10 @@ namespace Cms
 			return new Profile (NativeMethods.CmsCreateLabProfile (IntPtr.Zero));
 		}			
 
-		public static Profile CreateGray (ColorCIExyY whitePoint, GammaTable transfer)
+		public static Profile CreateGray (ColorCIExyY whitePoint, GammaCurve transfer)
 		{
 			if (transfer == null)
-				return new Profile (NativeMethods.CmsCreateGrayProfile (ref whitePoint, new GammaTable (4096, 2.2).Handle));
+				return new Profile (NativeMethods.CmsCreateGrayProfile (ref whitePoint, new GammaCurve (4096, 2.2).Handle));
 			else
 				return new Profile (NativeMethods.CmsCreateGrayProfile (ref whitePoint, transfer.Handle));
 		}
@@ -118,9 +118,9 @@ namespace Cms
 						      int TempDest)
 		{
 #if true			
-			GammaTable gamma = new GammaTable (1024, Math.Pow (10, -Bright/100));
-			GammaTable line = new GammaTable (1024, 1.0);
-			GammaTable [] tables = new GammaTable [] { gamma, line, line };
+			GammaCurve gamma = new GammaCurve (1024, Math.Pow (10, -Bright/100));
+			GammaCurve line = new GammaCurve (1024, 1.0);
+			GammaCurve [] tables = new GammaCurve [] { gamma, line, line };
 			return CreateAbstract (nLUTPoints, Exposure, 0.0, Contrast, Hue, Saturation, tables, 
 					       ColorCIExyY.WhitePointFromTemperature (TempSrc), 
 					       ColorCIExyY.WhitePointFromTemperature (TempDest));
@@ -138,14 +138,14 @@ namespace Cms
 						      double Contrast,
 						      double Hue,
 						      double Saturation,
-						      GammaTable [] tables,
+						      GammaCurve [] tables,
 						      ColorCIExyY srcWp,
 						      ColorCIExyY destWp)
 		{
 			if (tables == null) {
-				GammaTable gamma = new GammaTable (1024, Math.Pow (10, -Bright/100));
-				GammaTable line = new GammaTable (1024, 1.0);
-				tables = new GammaTable [] { gamma, line, line };
+				GammaCurve gamma = new GammaCurve (1024, Math.Pow (10, -Bright/100));
+				GammaCurve line = new GammaCurve (1024, 1.0);
+				tables = new GammaCurve [] { gamma, line, line };
 			}
 
 			/*
@@ -166,12 +166,12 @@ namespace Cms
 									     CopyHandles (tables)));
 		}
 
-		public Profile (IccColorSpace color_space, GammaTable [] gamma)
+		public Profile (IccColorSpace color_space, GammaCurve [] gamma)
 		{
 			Handle = new HandleRef (this, NativeMethods.CmsCreateLinearizationDeviceLink (color_space, CopyHandles (gamma)));
 		}
 
-		private static HandleRef [] CopyHandles (GammaTable [] gamma)
+		private static HandleRef [] CopyHandles (GammaCurve [] gamma)
 		{
 			if (gamma == null)
 				return null;
@@ -183,7 +183,7 @@ namespace Cms
 			return gamma_handles;
 		}
 
-		public Profile (ColorCIExyY whitepoint, ColorCIExyYTriple primaries, GammaTable [] gamma)
+		public Profile (ColorCIExyY whitepoint, ColorCIExyYTriple primaries, GammaCurve [] gamma)
 		{
 			Handle = new HandleRef (this, NativeMethods.CmsCreateRGBProfile (out whitepoint, out primaries, CopyHandles (gamma)));
 		}
