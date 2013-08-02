@@ -163,6 +163,18 @@ namespace Cms
 
 		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsCreateLinearizationDeviceLink")]
 		public static extern IntPtr CmsCreateLinearizationDeviceLink (IccColorSpace color_space, HandleRef [] tables);
+
+		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsBuildTabulatedToneCurve16")]
+		public static extern IntPtr CmsBuildTabulatedToneCurve16(int ContextID,
+		                                                         int nEntries,
+		                                                         ushort[] values);
+
+
+		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsGetToneCurveEstimatedTableEntries")]
+		public static extern int CmsGetToneCurveEstimatedTableEntries (HandleRef curve);
+
+		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsGetToneCurveEstimatedTable")]
+		public static extern IntPtr CmsGetToneCurveEstimatedTable(HandleRef curve);
 		
 		[DllImport("libfspot", EntryPoint = "f_cmsCreateBCHSWabstractProfile")]
 		public static extern IntPtr FCmsCreateBCHSWabstractProfile(int nLUTPoints,
@@ -177,14 +189,5 @@ namespace Cms
 		
 		[DllImport ("libfspot", EntryPoint = "f_screen_get_profile")]
 		public static extern IntPtr FScreenGetProfile (IntPtr screen);
-
-		[DllImport ("libfspot", EntryPoint = "f_cms_gamma_table_new")]
-		public static extern IntPtr FCmsGammaTableNew (ushort [] values, int start, int length);
-
-		[DllImport ("libfspot", EntryPoint = "f_cms_gamma_table_get_values")]
-		public static extern IntPtr FCmsGammaTableGetValues (HandleRef table);
-
-		[DllImport ("libfspot", EntryPoint = "f_cms_gamma_table_get_count")]
-		public static extern int FCmsGammaTableGetCount (HandleRef table);	
 	}
 }

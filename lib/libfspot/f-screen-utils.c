@@ -185,35 +185,3 @@ cmsHPROFILE CMSEXPORT f_cmsCreateBCHSWabstractProfile(int nLUTPoints,
        // Ok, done
        return hICC;
 }
-
-cmsToneCurve*
-f_cms_gamma_table_new (unsigned short data[], int start, int length)
-{
-	cmsToneCurve* table = (cmsToneCurve*) _cmsMallocZero(NULL, sizeof(cmsToneCurve));
-	int i;
-	if (!table)
-		return NULL;
-
-	data += start;
-
-	table->Table16 = (cmsUInt16Number*) _cmsCalloc(NULL, length, sizeof(cmsUInt16Number));
-
-	for (i = 0; i < length; i++)
-		table->Table16 [i] = data [i];
-
-	g_warning ("table %p, count = %d v[0] = %d", table, table->nEntries, table->Table16 [0]);
-	
-	return table;
-}
-
-ushort *
-f_cms_gamma_table_get_values (cmsToneCurve* table)
-{
-	return &(table->Table16 [0]);
-}
-
-uint
-f_cms_gamma_table_get_count (cmsToneCurve* const table)
-{
-	return table->nEntries;
-}

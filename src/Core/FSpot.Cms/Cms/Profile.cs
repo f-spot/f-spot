@@ -69,8 +69,8 @@ namespace Cms
 				new ColorCIExyY (.21, .71, 1.0),
 				new ColorCIExyY (.15, .06, 1.0));
 			
-			GammaCurve g = new GammaCurve (4096, 2.2);
-			GammaCurve [] gamma = new GammaCurve [] { g, g, g, g};
+			ToneCurve g = new ToneCurve (4096, 2.2);
+			ToneCurve [] gamma = new ToneCurve [] { g, g, g, g};
 
 			return new Profile (wp, primaries, gamma);
 		}
@@ -85,10 +85,10 @@ namespace Cms
 			return new Profile (NativeMethods.CmsCreateLabProfile (IntPtr.Zero));
 		}			
 
-		public static Profile CreateGray (ColorCIExyY whitePoint, GammaCurve transfer)
+		public static Profile CreateGray (ColorCIExyY whitePoint, ToneCurve transfer)
 		{
 			if (transfer == null)
-				return new Profile (NativeMethods.CmsCreateGrayProfile (ref whitePoint, new GammaCurve (4096, 2.2).Handle));
+				return new Profile (NativeMethods.CmsCreateGrayProfile (ref whitePoint, new ToneCurve (4096, 2.2).Handle));
 			else
 				return new Profile (NativeMethods.CmsCreateGrayProfile (ref whitePoint, transfer.Handle));
 		}
@@ -118,9 +118,9 @@ namespace Cms
 						      int TempDest)
 		{
 #if true			
-			GammaCurve gamma = new GammaCurve (1024, Math.Pow (10, -Bright/100));
-			GammaCurve line = new GammaCurve (1024, 1.0);
-			GammaCurve [] tables = new GammaCurve [] { gamma, line, line };
+			ToneCurve gamma = new ToneCurve (1024, Math.Pow (10, -Bright/100));
+			ToneCurve line = new ToneCurve (1024, 1.0);
+			ToneCurve [] tables = new ToneCurve [] { gamma, line, line };
 			return CreateAbstract (nLUTPoints, Exposure, 0.0, Contrast, Hue, Saturation, tables, 
 					       ColorCIExyY.WhitePointFromTemperature (TempSrc), 
 					       ColorCIExyY.WhitePointFromTemperature (TempDest));
@@ -138,14 +138,14 @@ namespace Cms
 						      double Contrast,
 						      double Hue,
 						      double Saturation,
-						      GammaCurve [] tables,
+						      ToneCurve [] tables,
 						      ColorCIExyY srcWp,
 						      ColorCIExyY destWp)
 		{
 			if (tables == null) {
-				GammaCurve gamma = new GammaCurve (1024, Math.Pow (10, -Bright/100));
-				GammaCurve line = new GammaCurve (1024, 1.0);
-				tables = new GammaCurve [] { gamma, line, line };
+				ToneCurve gamma = new ToneCurve (1024, Math.Pow (10, -Bright/100));
+				ToneCurve line = new ToneCurve (1024, 1.0);
+				tables = new ToneCurve [] { gamma, line, line };
 			}
 
 			/*
@@ -166,12 +166,12 @@ namespace Cms
 									     CopyHandles (tables)));
 		}
 
-		public Profile (IccColorSpace color_space, GammaCurve [] gamma)
+		public Profile (IccColorSpace color_space, ToneCurve [] gamma)
 		{
 			Handle = new HandleRef (this, NativeMethods.CmsCreateLinearizationDeviceLink (color_space, CopyHandles (gamma)));
 		}
 
-		private static HandleRef [] CopyHandles (GammaCurve [] gamma)
+		private static HandleRef [] CopyHandles (ToneCurve [] gamma)
 		{
 			if (gamma == null)
 				return null;
@@ -183,7 +183,7 @@ namespace Cms
 			return gamma_handles;
 		}
 
-		public Profile (ColorCIExyY whitepoint, ColorCIExyYTriple primaries, GammaCurve [] gamma)
+		public Profile (ColorCIExyY whitepoint, ColorCIExyYTriple primaries, ToneCurve [] gamma)
 		{
 			Handle = new HandleRef (this, NativeMethods.CmsCreateRGBProfile (out whitepoint, out primaries, CopyHandles (gamma)));
 		}
