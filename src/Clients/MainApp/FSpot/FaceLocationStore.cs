@@ -104,18 +104,17 @@ namespace FSpot {
 		public FaceLocationStore (FSpotDatabaseConnection database, bool is_new)
 			: base (database, true)
 		{
+			face_index = new Dictionary<uint, Dictionary<uint, FaceLocation>> ();
+			photo_index = new Dictionary<uint, Dictionary<uint, FaceLocation>> ();
+
 			if (is_new)
 				CreateTable ();
 			else
 				LoadAllFaceLocations ();
-
-			face_index = new Dictionary<uint, Dictionary<uint, FaceLocation>>();
-			photo_index = new Dictionary<uint, Dictionary<uint, FaceLocation>>();
 		}
 	
 		private uint InsertFaceLocationIntoTable (uint face_id, uint photo_id, string geometry)
 		{
-
 			int id = Database.Execute (new HyenaSqliteCommand ("INSERT INTO face_locations (face_id, photo_id, geometry) " +
 			                                                   "VALUES (?, ?, ?)",
 			                                                   face_id,
