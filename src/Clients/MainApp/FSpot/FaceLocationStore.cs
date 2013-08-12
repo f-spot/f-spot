@@ -154,6 +154,14 @@ namespace FSpot {
 		    return LookupInCache (id);
 		}
 
+		public FaceLocation Get (Face face, Photo photo)
+		{
+			if (!photo_index.ContainsKey (photo.Id) || !photo_index [photo.Id].ContainsKey (face.Id))
+				return null;
+
+			return photo_index [photo.Id] [face.Id];
+		}
+
 		public override void Remove (FaceLocation face_location)
 		{	
 			Remove (new FaceLocation [] {face_location});
