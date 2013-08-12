@@ -96,12 +96,35 @@ namespace FSpot {
 			return faces.ToArray ();
 		}
 
+		public Face [] GetFacesByPhoto (Photo photo)
+		{
+			List <Face> faces = new List<Face> ();
+			FaceLocationStore face_location_store = App.Instance.Database.FaceLocations;
+			Dictionary<uint, FaceLocation> face_locations = face_location_store.GetFaceLocationsByPhoto (photo);
+			foreach (FaceLocation face_location in face_locations.Values) {
+				if (!item_cache.ContainsKey (face_location.FaceId))
+					throw new Exception ("FaceLocation refers to nonexistent Face.");
+
+				faces.Add ((Face) item_cache [face_location.FaceId]);
+			}
+
+			return faces.ToArray ();
+		}
+
 		public Face [] GetAll ()
 		{
 			List <Face> faces = new List<Face> ();
 			foreach (Face face in item_cache.Values)
 				faces.Add (face);
 			return faces.ToArray ();
+		}
+
+		public ICollection<string> GetAllNames ()
+		{
+			ICollection<string> names = new List<string> ();
+			foreach (Face face in item_cache.Values)
+				names.Add (face.Name);
+			return names;
 		}
 
 		// In this store we keep all the items (i.e. the faces) in memory at all times.  This is
