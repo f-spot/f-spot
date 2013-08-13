@@ -123,9 +123,11 @@ namespace FSpot.Widgets
 			set { 
 				if (can_select == value)
 					return;
+
+				if (!value)
+					Selection = Rectangle.Zero;
+
 				can_select = value;
-				if (!can_select)
-					selection = Rectangle.Zero;
 			}
 		}
 
