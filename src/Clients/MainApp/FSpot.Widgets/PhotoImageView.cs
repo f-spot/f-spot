@@ -425,7 +425,7 @@ namespace FSpot.Widgets
 				return false;
 
 			if (!CanSelect || !CropHelpers || Selection == Rectangle.Zero)
-				return true;
+				return false;
 
 			using (Cairo.Context ctx = CairoHelper.Create (GdkWindow)) {
 				ctx.SetSourceRGBA (.7, .7, .7, .8);
