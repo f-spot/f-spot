@@ -89,6 +89,7 @@ namespace FSpot.Widgets {
 		}
 
 		private Button test_button;
+		private FacesTool faces_tool;
 		public FaceSelectionWidget FacesWidget;
 		internal FacesPage Page { get; set; }
 		
@@ -103,7 +104,7 @@ namespace FSpot.Widgets {
 			Gtk.ScrolledWindow window = new Gtk.ScrolledWindow ();
 			window.Add (viewport);
 
-			test_button = new Button ("Create test face");
+			test_button = new Button ("Test FacesTool");
 			test_button.NoShowAll = true;
 			test_button.Clicked += HandleTestButtonClicked;
 
@@ -124,7 +125,15 @@ namespace FSpot.Widgets {
 
 		private void HandleTestButtonClicked (object sender, EventArgs args)
 		{
-			FacesWidget.FaceStore.CreateFace("Test Face #" + (new Random ()).Next (0, 10));
+			faces_tool = new FacesTool ();
+			faces_tool.Done += OnFacesToolDone;
+		}
+
+		private void OnFacesToolDone (object sender, EventArgs e)
+		{
+			faces_tool.Done -= OnFacesToolDone;
+			faces_tool.Dispose ();
+			faces_tool = null;
 		}
 	}
 
