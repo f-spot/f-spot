@@ -153,8 +153,11 @@
     <Compile Include="FSpot.UI.Dialog\ThreadProgressDialog.cs" />
     <Compile Include="FSpot\UriCollection.cs" />
     <Compile Include="FSpot.Widgets\CellRendererTextProgress.cs" />
+    <Compile Include="FSpot.Widgets\EditingFaceToolWindow.cs" />
     <Compile Include="FSpot.Widgets\EditorPage.cs" />
+    <Compile Include="FSpot.Widgets\FaceWidget.cs" />
     <Compile Include="FSpot.Widgets\FacesPage.cs" />
+    <Compile Include="FSpot.Widgets\FacesToolWindow.cs" />
     <Compile Include="FSpot.Widgets\Filmstrip.cs" />
     <Compile Include="FSpot.Widgets\FindBar.cs" />
     <Compile Include="FSpot.Widgets\FolderTreeModel.cs" />
@@ -191,6 +194,7 @@
     <Compile Include="FSpot\ExportStore.cs" />
     <Compile Include="FSpot\FaceStore.cs" />
     <Compile Include="FSpot\FaceLocationStore.cs" />
+    <Compile Include="FSpot\FacesTool.cs" />
     <Compile Include="FSpot\JobStore.cs" />
     <Compile Include="FSpot\MetaStore.cs" />
     <Compile Include="FSpot\PhotoStore.cs" />
