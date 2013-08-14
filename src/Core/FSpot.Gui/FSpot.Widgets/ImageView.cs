@@ -327,7 +327,8 @@ namespace FSpot.Widgets
                             | EventMask.PointerMotionMask
                             | EventMask.PointerMotionHintMask
                             | EventMask.ScrollMask
-                            | EventMask.KeyPressMask 
+                            | EventMask.KeyPressMask
+                            | EventMask.LeaveNotifyMask
                     },
                     Gdk.WindowAttributesType.X | Gdk.WindowAttributesType.Y |
                     Gdk.WindowAttributesType.Visual | Gdk.WindowAttributesType.Colormap);
