@@ -99,6 +99,7 @@ namespace FSpot.Widgets
 		}
 
 		public event EventHandler PhotoChanged;
+		public event EventHandler PhotoLoaded;
 #endregion
 
 #region Gtk widgetry
@@ -278,6 +279,10 @@ namespace FSpot.Widgets
 
 			if (prev != this.Pixbuf && prev != null)
 				prev.Dispose ();
+
+			EventHandler handler = PhotoLoaded;
+			if (handler != null)
+				handler (this, EventArgs.Empty);
 		}
 #endregion
 
