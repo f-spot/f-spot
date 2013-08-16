@@ -27,10 +27,38 @@ namespace FSpot
 		private IDictionary<string, FaceShape> face_shapes;
 		private IDictionary<string, string> original_face_locations;
 		private FaceShape editing_face_shape = null;
-		private FacesToolWindow faces_tool_window;
 		private PhotoImageView view;
 		private bool view_was_selectable;
 		private Photo photo;
+
+		private WeakReference view_pixbuf_ref;
+		private Pixbuf scaled_pixbuf = null;
+		public Pixbuf ScaledPixbuf {
+			get {
+				return scaled_pixbuf;
+			}
+		}
+
+		private int scaled_pixbuf_x_offset;
+		public int ScaledPixbufXOffset {
+			get {
+				return scaled_pixbuf_x_offset;
+			}
+		}
+
+		private int scaled_pixbuf_y_offset;
+		public int ScaledPixbufYOffset {
+			get {
+				return scaled_pixbuf_y_offset;
+			}
+		}
+
+		private FacesToolWindow faces_tool_window;
+		public FacesToolWindow Window {
+			get {
+				return faces_tool_window;
+			}
+		}
 
 		public FacesTool ()
 		{
@@ -38,6 +66,9 @@ namespace FSpot
 
 			view_was_selectable = view.CanSelect;
 			view.CanSelect = false;
+
+			view_pixbuf_ref = new WeakReference (null);
+			PrepareScaledPixbuf ();
 
 			BindViewHandlers ();
 			
@@ -48,7 +79,7 @@ namespace FSpot
 			face_shapes = new Dictionary<string, FaceShape> ();
 			original_face_locations = new Dictionary<string, string> ();
 			
-			faces_tool_window = new FacesToolWindow (App.Instance.Organizer.Window);
+			faces_tool_window = new FacesToolWindow ();
 
 			FaceStore face_store = App.Instance.Database.Faces;
 			Dictionary<uint, FaceLocation> face_locations =
@@ -90,6 +121,9 @@ namespace FSpot
 				faces_tool_window = null;
 			}
 
+			if (scaled_pixbuf != null)
+				scaled_pixbuf.Dispose ();
+
 			System.GC.SuppressFinalize (this);
 		}
 
@@ -109,12 +143,13 @@ namespace FSpot
 				faces_tool_window.Destroy ();
 				faces_tool_window = null;
 			}
+
+			if (scaled_pixbuf != null)
+				scaled_pixbuf.Dispose ();
 		}
 
 		private void BindViewHandlers ()
 		{
-			// TODO: Manage PhotoImageView.PhotoChanged
-
 			view.ButtonPressEvent += OnLeftClick;
 			view.ButtonReleaseEvent += OnLeftReleased;
 			view.MotionNotifyEvent += OnMotion;
@@ -151,8 +186,29 @@ namespace FSpot
 			faces_tool_window.FaceDeleteRequested -= OnFaceDeleteRequested;
 		}
 
+		private void PrepareScaledPixbuf ()
+		{
+			int width = (int) (view.Pixbuf.Width * view.Zoom);
+			scaled_pixbuf_x_offset = (int) (view.Allocation.Width - width) / 2;
+			
+			int height = (int) (view.Pixbuf.Height * view.Zoom);
+			scaled_pixbuf_y_offset = (int) (view.Allocation.Height - height) / 2;
+
+			if (scaled_pixbuf != null)
+				scaled_pixbuf.Dispose ();
+
+			scaled_pixbuf = view.Pixbuf.ScaleSimple (width, height, InterpType.Nearest);
+		}
+
 		public void OnExpose (object sender, ExposeEventArgs args)
 		{
+			Pixbuf old_view_pixbuf = view_pixbuf_ref.Target as Pixbuf;
+			if (!view.Pixbuf.Equals (old_view_pixbuf)) {
+				PrepareScaledPixbuf ();
+
+				view_pixbuf_ref.Target = view.Pixbuf;
+			}
+
 			if (editing_face_shape != null)
 				editing_face_shape.Show ();
 		}
@@ -343,7 +399,6 @@ namespace FSpot
 			editing_face_shape = null;
 			
 			faces_tool_window.UpdateCurrentEditingPhase (EditingPhase.NotEditing);
-			faces_tool_window.Present ();
 		}
 		
 		private void HideVisibleFace ()
@@ -543,6 +598,7 @@ namespace FSpot
 		protected EditingFaceToolWindow face_window;
 		protected CursorType current_cursor_type = CursorType.BottomRightCorner;
 		protected PhotoImageView view;
+		protected WeakReference faces_tool_ref;
 		protected string serialized = null;
 
 		private WeakReference face_widget_ref;
@@ -612,6 +668,7 @@ namespace FSpot
 				
 		public FaceShape (FacesTool faces_tool)
 		{
+			faces_tool_ref = new WeakReference (faces_tool);
 			face_widget_ref = new WeakReference (null);
 
 			view = App.Instance.Organizer.PhotoView.View;
@@ -840,30 +897,14 @@ namespace FSpot
 		private int last_grab_x = -1;
 		private int last_grab_y = -1;
 
-		private Pixbuf scaled_image;
-		private int scaled_image_width;
-		private int scaled_image_height;
-		private int scaled_image_x_offset;
-		private int scaled_image_y_offset;
-
 		public FaceRectangle (FacesTool faces_tool, int x, int y, int half_width = NULL_SIZE, int half_height = NULL_SIZE)
 			: base (faces_tool)
 		{
-			scaled_image_width = (int) (view.Pixbuf.Width * view.Zoom);
-			scaled_image_x_offset = (int) (view.Allocation.Width - scaled_image_width) / 2;
-
-			scaled_image_height = (int) (view.Pixbuf.Height * view.Zoom);
-			scaled_image_y_offset = (int) (view.Allocation.Height - scaled_image_height) / 2;
-
-			scaled_image = view.Pixbuf.ScaleSimple (scaled_image_width,
-			                                        scaled_image_height,
-			                                        InterpType.Nearest);
-
 			// If half_width is NULL_SIZE we are creating a new FaceShape,
 			// otherwise we are only showing a previously created one.
 			if (half_width == NULL_SIZE) {
-				x -= scaled_image_x_offset;
-				y -= scaled_image_y_offset;
+				x -= faces_tool.ScaledPixbufXOffset;
+				y -= faces_tool.ScaledPixbufYOffset;
 
 				box = Gdk.Rectangle.FromLTRB (x, y, x, y);
 				
@@ -877,7 +918,8 @@ namespace FSpot
 				box = Gdk.Rectangle.FromLTRB (x - half_width, y - half_height, right, bottom);
 			}
 
-			Gdk.Point offset_point = new Gdk.Point (scaled_image_x_offset, scaled_image_y_offset);
+			Gdk.Point offset_point = new Gdk.Point (faces_tool.ScaledPixbufXOffset,
+			                                        faces_tool.ScaledPixbufYOffset);
 			offset_box = Gdk.Rectangle.Offset (box, offset_point);
 		}
 
@@ -939,13 +981,15 @@ namespace FSpot
 			if (!Editable)
 				PaintLabel ();
 		}
-		
+
 		protected override void Erase ()
 		{
+			FacesTool faces_tool = faces_tool_ref.Target as FacesTool;
 			using (Cairo.Context ctx = CairoHelper.Create (view.GdkWindow)) {
 				ctx.Operator = Cairo.Operator.Source;
-				Gdk.CairoHelper.SetSourcePixbuf (ctx, scaled_image, scaled_image_x_offset,
-				                                 scaled_image_y_offset);
+				Gdk.CairoHelper.SetSourcePixbuf (ctx, faces_tool.ScaledPixbuf,
+				                                 faces_tool.ScaledPixbufXOffset,
+				                                 faces_tool.ScaledPixbufYOffset);
 
 				ctx.Rectangle (offset_box.X, offset_box.Y, offset_box.Width, offset_box.Height);
 				ctx.Stroke ();
@@ -987,7 +1031,8 @@ namespace FSpot
 		{
 			if (label_box == Gdk.Rectangle.Zero)
 				return;
-			
+
+			FacesTool faces_tool = faces_tool_ref.Target as FacesTool;
 			using (Cairo.Context ctx = CairoHelper.Create (view.GdkWindow)) {
 				ctx.Operator = Cairo.Operator.Over;
 				ctx.Rectangle (label_box.Left, label_box.Top, label_box.Width, label_box.Height);
@@ -995,8 +1040,9 @@ namespace FSpot
 				ctx.SetSourceRGB (0.0, 0.0, 0.0);
 				ctx.FillPreserve ();
 				
-				Gdk.CairoHelper.SetSourcePixbuf (ctx, scaled_image, scaled_image_x_offset,
-				                                 scaled_image_y_offset);
+				Gdk.CairoHelper.SetSourcePixbuf (ctx, faces_tool.ScaledPixbuf,
+				                                 faces_tool.ScaledPixbufXOffset,
+				                                 faces_tool.ScaledPixbufYOffset);
 				ctx.Fill ();
 			}
 
@@ -1024,13 +1070,15 @@ namespace FSpot
 		
 		public void GetGeometry (out double x, out double y, out double half_width, out double half_height)
 		{
-			x = (box.Left + (box.Width / 2)) / (double) scaled_image_width;
-			y = (box.Top + (box.Height / 2)) / (double) scaled_image_height;
+			FacesTool faces_tool = faces_tool_ref.Target as FacesTool;
+
+			x = (box.Left + (box.Width / 2)) / (double) faces_tool.ScaledPixbuf.Width;
+			y = (box.Top + (box.Height / 2)) / (double) faces_tool.ScaledPixbuf.Height;
 			
-			double width_left_end = box.Left / (double) scaled_image_width;
-			double width_right_end = box.Right / (double) scaled_image_width;
-			double height_top_end = box.Top / (double) scaled_image_height;
-			double height_bottom_end = box.Bottom / (double) scaled_image_height;
+			double width_left_end = box.Left / (double) faces_tool.ScaledPixbuf.Width;
+			double width_right_end = box.Right / (double) faces_tool.ScaledPixbuf.Width;
+			double height_top_end = box.Top / (double) faces_tool.ScaledPixbuf.Height;
+			double height_bottom_end = box.Bottom / (double) faces_tool.ScaledPixbuf.Height;
 			
 			half_width = (width_right_end - width_left_end) / 2;
 			half_height = (height_bottom_end - height_top_end) / 2;
@@ -1038,6 +1086,8 @@ namespace FSpot
 		
 		private bool OnViewManipulation (object sender, MotionNotifyEventArgs e)
 		{
+			FacesTool faces_tool = faces_tool_ref.Target as FacesTool;
+
 			int x = (int) e.Event.X;
 			int y = (int) e.Event.Y;
 
@@ -1102,17 +1152,17 @@ namespace FSpot
 				bottom += delta_y;
 				
 				// bound offset_box inside of photo
-				if (left < scaled_image_x_offset + 1)
-					left = scaled_image_x_offset + 1;
+				if (left < faces_tool.ScaledPixbufXOffset + 1)
+					left = faces_tool.ScaledPixbufXOffset + 1;
 				
-				if (top < scaled_image_y_offset + 1)
-					top = scaled_image_y_offset + 1;
+				if (top < faces_tool.ScaledPixbufYOffset + 1)
+					top = faces_tool.ScaledPixbufYOffset + 1;
 
-				int max_right = scaled_image_width + scaled_image_x_offset - 1;
+				int max_right = faces_tool.ScaledPixbuf.Width + faces_tool.ScaledPixbufXOffset - 1;
 				if (right >= max_right)
 					right = max_right;
 
-				int max_height = scaled_image_height + scaled_image_y_offset - 1;
+				int max_height = faces_tool.ScaledPixbuf.Height + faces_tool.ScaledPixbufYOffset - 1;
 				if (bottom >= max_height)
 					bottom = max_height;
 				
@@ -1143,16 +1193,16 @@ namespace FSpot
 			width = right - left + 1;
 			height = bottom - top + 1;
 			
-			if (left < scaled_image_x_offset)
-				left = scaled_image_x_offset;
-			if (top < scaled_image_y_offset)
-				top = scaled_image_y_offset;
+			if (left < faces_tool.ScaledPixbufXOffset)
+				left = faces_tool.ScaledPixbufXOffset;
+			if (top < faces_tool.ScaledPixbufYOffset)
+				top = faces_tool.ScaledPixbufYOffset;
 
-			int photo_right_edge = scaled_image_width + scaled_image_x_offset - 1;
+			int photo_right_edge = faces_tool.ScaledPixbuf.Width + faces_tool.ScaledPixbufXOffset - 1;
 			if (right > photo_right_edge)
 				right = photo_right_edge;
 
-			int photo_bottom_edge = scaled_image_height + scaled_image_y_offset - 1;
+			int photo_bottom_edge = faces_tool.ScaledPixbuf.Height + faces_tool.ScaledPixbufYOffset - 1;
 			if (bottom > photo_bottom_edge)
 				bottom = photo_bottom_edge;
 			
@@ -1198,14 +1248,13 @@ namespace FSpot
 			}
 
 			Gdk.Rectangle new_offset_box = Gdk.Rectangle.FromLTRB (left, top, right, bottom);
-			
 			if (!offset_box.Equals (new_offset_box)) {
 				Erase ();
 				
 				offset_box = new_offset_box;
 
-				Gdk.Point offset_point = new Gdk.Point (-scaled_image_x_offset,
-				                                        -scaled_image_y_offset);
+				Gdk.Point offset_point = new Gdk.Point (-faces_tool.ScaledPixbufXOffset,
+				                                        -faces_tool.ScaledPixbufYOffset);
 				box = Gdk.Rectangle.Offset (offset_box, offset_point);
 
 				Paint ();

@@ -88,52 +88,96 @@ namespace FSpot.Widgets {
 			}
 		}
 
-		private Button test_button;
-		private FacesTool faces_tool;
 		public FaceSelectionWidget FacesWidget;
+
+		private FacesTool faces_tool;
+		private Gtk.ScrolledWindow face_selection_window;
+		private WeakReference loaded_photo_ref;
+
 		internal FacesPage Page { get; set; }
 		
 		private FacesPageWidget ()
 			: base (false, 0)
 		{
-			Label message_label = new Label ("Test message.");
+			loaded_photo_ref = new WeakReference (null);
 
 			FacesWidget = new FaceSelectionWidget (App.Instance.Database.Faces);
 			Viewport viewport = new Viewport ();
 			viewport.Add (FacesWidget);
-			Gtk.ScrolledWindow window = new Gtk.ScrolledWindow ();
-			window.Add (viewport);
+			face_selection_window = new Gtk.ScrolledWindow ();
+			face_selection_window.Add (viewport);
 
-			test_button = new Button ("Test FacesTool");
-			test_button.NoShowAll = true;
-			test_button.Clicked += HandleTestButtonClicked;
-
-			PackStart (message_label, false, false, 0);
-			PackStart (window, true, true, 0);
-			PackStart (test_button, false, false, 0);
+			PackStart (face_selection_window, true, true, 0);
 
 			ShowAll ();
 		}
 
 		public void HandleContextChanged ()
 		{
-			if (Page.InPhotoView)
-				test_button.Show ();
-			else
-				test_button.Hide ();
+			PhotoView photo_view = App.Instance.Organizer.PhotoView;
+			if (Page.InPhotoView) {
+				face_selection_window.Hide ();
+
+				IPhoto loaded_photo = loaded_photo_ref.Target as IPhoto;
+				if (loaded_photo != photo_view.Item.Current) {
+					loaded_photo_ref.Target = photo_view.Item.Current;
+
+					photo_view.View.PhotoLoaded += OnPhotoLoaded;
+				} else
+					photo_view.View.SizeAllocated += OnPhotoSizeAllocated;
+
+				photo_view.PhotoChanged += OnPhotoChanged;
+			} else {
+				photo_view.PhotoChanged -= OnPhotoChanged;
+
+				faces_tool.Done -= OnFacesToolDone;
+				faces_tool.Dispose ();
+				faces_tool = null;
+
+				face_selection_window.Show ();
+			}
 		}
 
-		private void HandleTestButtonClicked (object sender, EventArgs args)
+		void OnPhotoSizeAllocated (object sender, SizeAllocatedArgs e)
 		{
+			((PhotoImageView) sender).SizeAllocated -= OnPhotoSizeAllocated;
+			
 			faces_tool = new FacesTool ();
 			faces_tool.Done += OnFacesToolDone;
+			
+			PackStart (faces_tool.Window, true, true, 0);
 		}
 
 		private void OnFacesToolDone (object sender, EventArgs e)
 		{
+
+		}
+
+		private void OnPhotoChanged (PhotoView sender)
+		{
+			if (!Page.InPhotoView)
+				return;
+
+			loaded_photo_ref.Target = sender.Item.Current;
+
+			if (faces_tool == null)
+				return;
+
 			faces_tool.Done -= OnFacesToolDone;
 			faces_tool.Dispose ();
 			faces_tool = null;
+
+			sender.View.PhotoLoaded += OnPhotoLoaded;
+		}
+
+		private void OnPhotoLoaded (object sender, EventArgs e)
+		{
+			((PhotoImageView) sender).PhotoLoaded -= OnPhotoLoaded;
+
+			faces_tool = new FacesTool ();
+			faces_tool.Done += OnFacesToolDone;
+			
+			PackStart (faces_tool.Window, true, true, 0);
 		}
 	}
 

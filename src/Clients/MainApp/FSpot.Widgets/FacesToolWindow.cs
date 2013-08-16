@@ -31,10 +31,8 @@ namespace FSpot.Widgets
 		DetectingFacesFinished
 	}
 
-	public class FacesToolWindow : Gtk.Window
+	public class FacesToolWindow : Gtk.VBox
 	{
-		private const int FRAME_BORDER = 6;
-
 		public event EventHandler FaceHidden;
 		public event EventHandler<FaceEditionEventArgs> FaceEditRequested;
 		public event EventHandler<FaceEditionEventArgs> FaceDeleteRequested;
@@ -45,13 +43,11 @@ namespace FSpot.Widgets
 		public Gtk.Button CancelButton;
 		public Gtk.Button CancelDetectionButton;
 
-		private Frame layout_frame;
 		private Gtk.HBox help_layout = null;
 		private Gtk.HBox response_layout = null;
 		private Gtk.HSeparator buttons_text_separator = null;
 		private Gtk.Label help_text = null;
 		private Gtk.VBox face_widgets_layout = null;
-		private Gtk.VBox layout = null;
 
 		private EditingPhase editing_phase = EditingPhase.NotEditing;
 		public EditingPhase CurrentEditingPhase {
@@ -60,30 +56,10 @@ namespace FSpot.Widgets
 			}
 		}
 
-		public FacesToolWindow (Gtk.Window container)
-			: base (Gtk.WindowType.Toplevel)
+		public FacesToolWindow ()
+			: base (false, FacesTool.CONTROL_SPACING)
 		{
-			TypeHint = WindowTypeHint.Utility;
-			
-			Decorated = false;
-			TransientFor = container;
-			
-			Frame outer_frame = new Frame (null);
-			outer_frame.BorderWidth = 0;
-			outer_frame.ShadowType = ShadowType.Out;
-			
-			layout_frame = new Frame (null);
-			layout_frame.BorderWidth = FRAME_BORDER;
-			layout_frame.ShadowType = ShadowType.None;
-			
-			outer_frame.Add (layout_frame);
-			base.Add (outer_frame);
-			
-			AddEvents ((int) (EventMask.ButtonPressMask | EventMask.KeyPressMask));
-			FocusOnMap = true;
-			AcceptFocus = true;
-			CanFocus = true;
-			Resizable = false;
+			BorderWidth = FacesTool.CONTROL_SPACING;
 
 			DetectionButton = Gtk.Button.NewWithLabel (Catalog.GetString ("Detect faces"));
 			DetectionButton.TooltipText = Catalog.GetString ("Detect faces on this photo");
@@ -110,24 +86,16 @@ namespace FSpot.Widgets
 			response_layout.Add (DetectionButton);
 			response_layout.Add (CancelButton);
 			response_layout.Add (OkButton);
-			
-			layout = new Gtk.VBox (false, FacesTool.CONTROL_SPACING);
-			layout.PackStart (face_widgets_layout, false, false, 0);
-			layout.PackStart (help_layout, false, false, 0);
-			layout.PackStart (new Gtk.HSeparator (), false, false, 0);
-			layout.PackStart (response_layout, false, false, 0);
-			
-			Add (layout);
+
+			PackStart (face_widgets_layout, false, false, 0);
+			PackStart (help_layout, false, false, 0);
+			PackStart (new Gtk.HSeparator (), false, false, 0);
+			PackStart (response_layout, false, false, 0);
 
 			ShowAll ();
 
 			// TODO: Implement face detection.
 			DetectionButton.Hide ();
-		}
-
-		public new void Add (Widget widget)
-		{
-			layout_frame.Add (widget);
 		}
 
 		public void UpdateCurrentEditingPhase (EditingPhase new_phase, FaceShape face_shape = null)
