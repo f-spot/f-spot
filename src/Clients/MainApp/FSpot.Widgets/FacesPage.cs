@@ -141,7 +141,12 @@ namespace FSpot.Widgets {
 		void OnPhotoSizeAllocated (object sender, SizeAllocatedArgs e)
 		{
 			((PhotoImageView) sender).SizeAllocated -= OnPhotoSizeAllocated;
-			
+
+			if (faces_tool != null) {
+				faces_tool.Done -= OnFacesToolDone;
+				faces_tool.Dispose ();
+			}
+
 			faces_tool = new FacesTool ();
 			faces_tool.Done += OnFacesToolDone;
 			
