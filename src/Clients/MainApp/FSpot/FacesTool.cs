@@ -121,6 +121,12 @@ namespace FSpot
 				faces_tool_window = null;
 			}
 
+			if (editing_face_shape != null && !face_shapes.Values.Contains (editing_face_shape))
+				editing_face_shape.Dispose ();
+
+			foreach (FaceShape face_shape in face_shapes.Values)
+				face_shape.Dispose ();
+
 			if (scaled_pixbuf != null)
 				scaled_pixbuf.Dispose ();
 
@@ -143,6 +149,12 @@ namespace FSpot
 				faces_tool_window.Destroy ();
 				faces_tool_window = null;
 			}
+
+			if (editing_face_shape != null && !face_shapes.Values.Contains (editing_face_shape))
+				editing_face_shape.Dispose ();
+
+			foreach (FaceShape face_shape in face_shapes.Values)
+				face_shape.Dispose ();
 
 			if (scaled_pixbuf != null)
 				scaled_pixbuf.Dispose ();
@@ -524,6 +536,11 @@ namespace FSpot
 		
 		private void OnFaceDeleteRequested (object sender, FaceEditionEventArgs e)
 		{
+			if (editing_face_shape != null &&
+			    e.FaceName.Equals (editing_face_shape.Name, StringComparison.CurrentCultureIgnoreCase))
+				editing_face_shape = null;
+
+			face_shapes [e.FaceName].Dispose ();
 			face_shapes.Remove (e.FaceName);
 
 			// It is posible to have two visible faces at the same time, this happens
