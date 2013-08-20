@@ -101,7 +101,8 @@ namespace FSpot.Widgets
 		}
 
 		public event EventHandler ContextChanged;
-
+		public event EventHandler PageSwitched;
+		
 		private ViewContext view_context = ViewContext.Unknown;
 		public ViewContext Context {
 			get { return view_context; }
@@ -235,6 +236,10 @@ namespace FSpot.Widgets
 			Notebook.CurrentPage = n;
 			choose_button.Label = menu_list [n];
 			choose_button.Image.IconName = image_list [n];
+
+			EventHandler handler = PageSwitched;
+			if (handler != null)
+				handler (this, EventArgs.Empty);
 		}
 
 		public int CurrentPage
