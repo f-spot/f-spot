@@ -66,7 +66,9 @@ namespace FSpot.Widgets {
 
 		protected override void AddedToSidebar ()
 		{
-			(Sidebar as Sidebar).ContextChanged += HandleContextChanged;
+			Sidebar sidebar = Sidebar as Sidebar;
+			sidebar.ContextChanged += HandleContextChanged;
+			sidebar.PageSwitched += FacesPageWidget.HandleSidebarPageSwitched;
 		}
 
 		private void HandleContextChanged (object sender, EventArgs args)
@@ -112,6 +114,20 @@ namespace FSpot.Widgets {
 			ShowAll ();
 		}
 
+		public void HandleSidebarPageSwitched (object sender, EventArgs args)
+		{
+			if (faces_tool == null)
+				return;
+
+			Sidebar sidebar = Page.Sidebar as Sidebar;
+			if (sidebar.IsActive (Page)) {
+				faces_tool.Activate ();
+
+				PackStart (faces_tool.Window, true, true, 0);
+			} else
+				faces_tool.Deactivate ();
+		}
+
 		public void HandleContextChanged ()
 		{
 			PhotoView photo_view = App.Instance.Organizer.PhotoView;
@@ -130,7 +146,6 @@ namespace FSpot.Widgets {
 			} else {
 				photo_view.PhotoChanged -= OnPhotoChanged;
 
-				faces_tool.Done -= OnFacesToolDone;
 				faces_tool.Dispose ();
 				faces_tool = null;
 
@@ -142,20 +157,18 @@ namespace FSpot.Widgets {
 		{
 			((PhotoImageView) sender).SizeAllocated -= OnPhotoSizeAllocated;
 
-			if (faces_tool != null) {
-				faces_tool.Done -= OnFacesToolDone;
+			if (faces_tool != null)
 				faces_tool.Dispose ();
-			}
 
 			faces_tool = new FacesTool ();
-			faces_tool.Done += OnFacesToolDone;
-			
-			PackStart (faces_tool.Window, true, true, 0);
-		}
 
-		private void OnFacesToolDone (object sender, EventArgs e)
-		{
-
+			Sidebar sidebar = Page.Sidebar as Sidebar;
+			if (sidebar.IsActive (Page)) {
+				faces_tool.Activate ();
+				
+				PackStart (faces_tool.Window, true, true, 0);
+			} else
+				faces_tool.Deactivate ();
 		}
 
 		private void OnPhotoChanged (PhotoView sender)
@@ -168,7 +181,6 @@ namespace FSpot.Widgets {
 			if (faces_tool == null)
 				return;
 
-			faces_tool.Done -= OnFacesToolDone;
 			faces_tool.Dispose ();
 			faces_tool = null;
 
@@ -180,9 +192,14 @@ namespace FSpot.Widgets {
 			((PhotoImageView) sender).PhotoLoaded -= OnPhotoLoaded;
 
 			faces_tool = new FacesTool ();
-			faces_tool.Done += OnFacesToolDone;
-			
-			PackStart (faces_tool.Window, true, true, 0);
+
+			Sidebar sidebar = Page.Sidebar as Sidebar;
+			if (sidebar.IsActive (Page)) {
+				faces_tool.Activate ();
+				
+				PackStart (faces_tool.Window, true, true, 0);
+			} else
+				faces_tool.Deactivate ();
 		}
 	}
 

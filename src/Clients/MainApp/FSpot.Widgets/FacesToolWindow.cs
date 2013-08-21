@@ -40,7 +40,6 @@ namespace FSpot.Widgets
 		
 		public Gtk.Button DetectionButton;
 		public Gtk.Button OkButton;
-		public Gtk.Button CancelButton;
 		public Gtk.Button CancelDetectionButton;
 
 		private Gtk.HBox help_layout = null;
@@ -69,11 +68,7 @@ namespace FSpot.Widgets
 			CancelDetectionButton.ImagePosition = Gtk.PositionType.Left;
 			CancelDetectionButton.Clicked += OnCancelDetection;
 
-			CancelButton = new Gtk.Button (Gtk.Stock.Cancel);
-			CancelButton.TooltipText = Catalog.GetString ("Close the Faces tool without saving changes");
-			CancelButton.ImagePosition = Gtk.PositionType.Left;
-
-			OkButton = new Gtk.Button (Gtk.Stock.Ok);
+			OkButton = new Gtk.Button (Gtk.Stock.Save);
 			OkButton.ImagePosition = Gtk.PositionType.Left;
 
 			face_widgets_layout = new Gtk.VBox (false, FacesTool.CONTROL_SPACING);
@@ -84,7 +79,6 @@ namespace FSpot.Widgets
 			
 			response_layout = new Gtk.HBox (false, FacesTool.CONTROL_SPACING);
 			response_layout.Add (DetectionButton);
-			response_layout.Add (CancelButton);
 			response_layout.Add (OkButton);
 
 			PackStart (face_widgets_layout, false, false, 0);
