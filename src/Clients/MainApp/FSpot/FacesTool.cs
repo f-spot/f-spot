@@ -22,12 +22,12 @@ namespace FSpot
 	{
 		public const int CONTROL_SPACING = 8;
 
-		public event EventHandler Done;
-
 		private IDictionary<string, FaceShape> face_shapes;
 		private IDictionary<string, string> original_face_locations;
 		private FaceShape editing_face_shape = null;
 		private PhotoImageView view;
+		private bool active = false;
+		private bool loaded = false;
 		private bool view_was_selectable;
 		private Photo photo;
 
@@ -60,69 +60,17 @@ namespace FSpot
 			}
 		}
 
-		public FacesTool ()
-		{
-			view = App.Instance.Organizer.PhotoView.View;
-
-			view_was_selectable = view.CanSelect;
-			view.CanSelect = false;
-
-			view_pixbuf_ref = new WeakReference (null);
-			PrepareScaledPixbuf ();
-
-			BindViewHandlers ();
-			
-			photo = view.Item.Current as Photo;
-			if (photo == null)
-				return;
-
-			face_shapes = new Dictionary<string, FaceShape> ();
-			original_face_locations = new Dictionary<string, string> ();
-			
-			faces_tool_window = new FacesToolWindow ();
-
-			FaceStore face_store = App.Instance.Database.Faces;
-			Dictionary<uint, FaceLocation> face_locations =
-				App.Instance.Database.FaceLocations.GetFaceLocationsByPhoto (photo);
-			foreach (FaceLocation face_location in face_locations.Values) {
-				FaceShape new_face_shape;
-				try {
-					new_face_shape = FaceShape.FromSerialized (this, face_location.Geometry);
-				} catch (Exception e) {
-					Log.DebugException (e);
-
-					continue;
-				}
-
-				Face face = face_store.Get (face_location.FaceId);
-				new_face_shape.Name = face.Name;
-
-				AddFace (new_face_shape);
-				original_face_locations [face.Name] = face_location.Geometry;
-			}
-
-			SetOkButtonSensitivity ();
-
-			BindWindowHandlers ();
-		}
+		public FacesTool () {}
 
 		public void Dispose ()
 		{
-			if (view != null) {
-				view.CanSelect = view_was_selectable;
-				
-				UnbindViewHandlers ();
-			}
-			
-			if (faces_tool_window != null) {
-				UnbindWindowHandlers ();
-				faces_tool_window.Hide ();
-				faces_tool_window.Destroy ();
-				faces_tool_window = null;
-			}
+			Deactivate ();
 
-			if (editing_face_shape != null && !face_shapes.Values.Contains (editing_face_shape))
-				editing_face_shape.Dispose ();
+			if (!loaded)
+				return;
+
+			if (faces_tool_window != null)
+				faces_tool_window.Destroy ();
 
 			foreach (FaceShape face_shape in face_shapes.Values)
 				face_shape.Dispose ();
@@ -137,27 +85,99 @@ namespace FSpot
 		{
 			Log.DebugFormat ("Finalizer called on {0}. Should be Disposed", GetType ());
 
-			if (view != null) {
-				view.CanSelect = view_was_selectable;
+			Deactivate ();
 
-				UnbindViewHandlers ();
-			}
-			
-			if (faces_tool_window != null) {
-				UnbindWindowHandlers ();
-				faces_tool_window.Hide ();
+			if (!loaded)
+				return;
+
+			if (faces_tool_window != null)
 				faces_tool_window.Destroy ();
-				faces_tool_window = null;
-			}
-
-			if (editing_face_shape != null && !face_shapes.Values.Contains (editing_face_shape))
-				editing_face_shape.Dispose ();
 
 			foreach (FaceShape face_shape in face_shapes.Values)
 				face_shape.Dispose ();
 
 			if (scaled_pixbuf != null)
 				scaled_pixbuf.Dispose ();
+		}
+
+		public void Load ()
+		{
+			view = App.Instance.Organizer.PhotoView.View;
+			
+			view_pixbuf_ref = new WeakReference (null);
+			PrepareScaledPixbuf ();
+			
+			photo = view.Item.Current as Photo;
+			if (photo == null)
+				return;
+			
+			face_shapes = new Dictionary<string, FaceShape> ();
+			original_face_locations = new Dictionary<string, string> ();
+			
+			faces_tool_window = new FacesToolWindow ();
+			
+			FaceStore face_store = App.Instance.Database.Faces;
+			Dictionary<uint, FaceLocation> face_locations =
+				App.Instance.Database.FaceLocations.GetFaceLocationsByPhoto (photo);
+			foreach (FaceLocation face_location in face_locations.Values) {
+				FaceShape new_face_shape;
+				try {
+					new_face_shape = FaceShape.FromSerialized (this, face_location.Geometry);
+				} catch (Exception e) {
+					Log.DebugException (e);
+					
+					continue;
+				}
+				
+				Face face = face_store.Get (face_location.FaceId);
+				new_face_shape.Name = face.Name;
+				
+				AddFace (new_face_shape);
+				original_face_locations [face.Name] = face_location.Geometry;
+			}
+			
+			SetOkButtonSensitivity ();
+
+			loaded = true;
+		}
+
+		public void Activate ()
+		{
+			if (active)
+				return;
+
+			active = true;
+
+			if (!loaded)
+				Load ();
+
+			view_was_selectable = view.CanSelect;
+			view.CanSelect = false;
+
+			BindViewHandlers ();
+			BindWindowHandlers ();
+		}
+
+		public void Deactivate ()
+		{
+			if (!active)
+				return;
+
+			active = false;
+
+			if (view != null) {
+				view.CanSelect = view_was_selectable;
+				
+				UnbindViewHandlers ();
+			}
+			
+			if (faces_tool_window != null)
+				UnbindWindowHandlers ();
+			
+			if (editing_face_shape != null && !face_shapes.Values.Contains (editing_face_shape)) {
+				editing_face_shape.Dispose ();
+				editing_face_shape = null;
+			}
 		}
 
 		private void BindViewHandlers ()
@@ -182,7 +202,6 @@ namespace FSpot
 		{
 			faces_tool_window.KeyPressEvent += OnKeyPressed;
 			faces_tool_window.OkButton.Clicked += OnFacesOk;
-			faces_tool_window.CancelButton.Clicked += OnFacesCanceled;
 			faces_tool_window.FaceHidden += OnFaceHidden;
 			faces_tool_window.FaceEditRequested += OnFaceEditRequested;
 			faces_tool_window.FaceDeleteRequested += OnFaceDeleteRequested;
@@ -192,7 +211,6 @@ namespace FSpot
 		{
 			faces_tool_window.KeyPressEvent -= OnKeyPressed;
 			faces_tool_window.OkButton.Clicked -= OnFacesOk;
-			faces_tool_window.CancelButton.Clicked -= OnFacesCanceled;
 			faces_tool_window.FaceHidden -= OnFaceHidden;
 			faces_tool_window.FaceEditRequested -= OnFaceEditRequested;
 			faces_tool_window.FaceDeleteRequested -= OnFaceDeleteRequested;
@@ -426,6 +444,7 @@ namespace FSpot
 
 		private void OnFacesOk (object sender, EventArgs e)
 		{
+			original_face_locations = new Dictionary<string, string> ();
 			Dictionary<Face, string> new_faces = new Dictionary<Face, string> ();
 			foreach (FaceShape face_shape in face_shapes.Values) {
 				if (!face_shape.Known)
@@ -433,7 +452,9 @@ namespace FSpot
 
 				Face new_face = App.Instance.Database.Faces.CreateFace (face_shape.Name);
 
-				new_faces [new_face] = face_shape.Serialize ();
+				string serialized = face_shape.Serialize ();
+				new_faces [new_face] = serialized;
+				original_face_locations [new_face.Name] = serialized;
 			}
 
 			FaceLocation face_location;
@@ -476,16 +497,7 @@ namespace FSpot
 			if (to_update.Count > 0)
 				face_location_store.Commit (to_update.ToArray ());
 
-			EventHandler handler = Done;
-			if (handler != null)
-				handler (this, EventArgs.Empty);
-		}
-
-		private void OnFacesCanceled (object sender, EventArgs e)
-		{
-			EventHandler handler = Done;
-			if (handler != null)
-				handler (this, EventArgs.Empty);
+			faces_tool_window.UpdateOkButtonSensitiveness (false);
 		}
 
 		private void OnFaceHidden (object sender, EventArgs e)
