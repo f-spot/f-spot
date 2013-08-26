@@ -244,6 +244,37 @@ namespace FSpot.Widgets
 					   (int) Math.Floor (win.Y * (double)(((int)PixbufOrientation <= 4 ? Pixbuf.Height : Pixbuf.Width) - 1) / (double)(scaled_height - 1) + .5));
 		}
 
+		public Point ImageCoordsToWindow (Point image)
+		{
+			if (this.Pixbuf == null)
+				return Point.Zero;
+			
+			image = PixbufUtils.TransformOrientation (Pixbuf.Width, Pixbuf.Height, image, pixbuf_orientation);
+			int x_offset = scaled_width < Allocation.Width ? (int)(Allocation.Width - scaled_width) / 2 : -XOffset;
+			int y_offset = scaled_height < Allocation.Height ? (int)(Allocation.Height - scaled_height) / 2 : -YOffset;
+			
+			return new Point ((int) Math.Floor (image.X * (double) (scaled_width - 1) / (((int)pixbuf_orientation <= 4 ? Pixbuf.Width : Pixbuf.Height) - 1) + 0.5) + x_offset,
+			                  (int) Math.Floor (image.Y * (double) (scaled_height - 1) / (((int)pixbuf_orientation <= 4 ? Pixbuf.Height : Pixbuf.Width) - 1) + 0.5) + y_offset);
+		}
+		
+		public Rectangle ImageCoordsToWindow (Rectangle image)
+		{
+			if (this.Pixbuf == null)
+				return Gdk.Rectangle.Zero;
+			
+			image = PixbufUtils.TransformOrientation (Pixbuf.Width, Pixbuf.Height, image, pixbuf_orientation);
+			int x_offset = scaled_width < Allocation.Width ? (int)(Allocation.Width - scaled_width) / 2 : -XOffset;
+			int y_offset = scaled_height < Allocation.Height ? (int)(Allocation.Height - scaled_height) / 2 : -YOffset;
+			
+			Gdk.Rectangle win = Gdk.Rectangle.Zero;
+			win.X = (int) Math.Floor (image.X * (double) (scaled_width - 1) / (((int)pixbuf_orientation <= 4 ? Pixbuf.Width : Pixbuf.Height) - 1) + 0.5) + x_offset;
+			win.Y = (int) Math.Floor (image.Y * (double) (scaled_height - 1) / (((int)pixbuf_orientation <= 4 ? Pixbuf.Height : Pixbuf.Width) - 1) + 0.5) + y_offset;
+			win.Width = (int) Math.Floor ((image.X + image.Width) * (double) (scaled_width - 1) / (((int)pixbuf_orientation <= 4 ? Pixbuf.Width : Pixbuf.Height) - 1) + 0.5) - win.X + x_offset;
+			win.Height = (int) Math.Floor ((image.Y + image.Height) * (double) (scaled_height - 1) / (((int)pixbuf_orientation <= 4 ? Pixbuf.Height : Pixbuf.Width) - 1) + 0.5) - win.Y + y_offset;
+			
+			return win;
+		}
+
 		public event EventHandler ZoomChanged;
 		public event EventHandler SelectionChanged;
 #endregion
@@ -272,36 +303,6 @@ namespace FSpot.Widgets
 		{
 		}
 
-		protected Point ImageCoordsToWindow (Point image)
-		{
-			if (this.Pixbuf == null)
-				return Point.Zero;
-
-			image = PixbufUtils.TransformOrientation (Pixbuf.Width, Pixbuf.Height, image, pixbuf_orientation);
-			int x_offset = scaled_width < Allocation.Width ? (int)(Allocation.Width - scaled_width) / 2 : -XOffset;
-			int y_offset = scaled_height < Allocation.Height ? (int)(Allocation.Height - scaled_height) / 2 : -YOffset;
-
-			return new Point ((int) Math.Floor (image.X * (double) (scaled_width - 1) / (((int)pixbuf_orientation <= 4 ? Pixbuf.Width : Pixbuf.Height) - 1) + 0.5) + x_offset,
-					  (int) Math.Floor (image.Y * (double) (scaled_height - 1) / (((int)pixbuf_orientation <= 4 ? Pixbuf.Height : Pixbuf.Width) - 1) + 0.5) + y_offset);
-		}
-
-		protected Rectangle ImageCoordsToWindow (Rectangle image)
-		{
-			if (this.Pixbuf == null)
-				return Gdk.Rectangle.Zero;
-
-			image = PixbufUtils.TransformOrientation (Pixbuf.Width, Pixbuf.Height, image, pixbuf_orientation);
-			int x_offset = scaled_width < Allocation.Width ? (int)(Allocation.Width - scaled_width) / 2 : -XOffset;
-			int y_offset = scaled_height < Allocation.Height ? (int)(Allocation.Height - scaled_height) / 2 : -YOffset;
-
-			Gdk.Rectangle win = Gdk.Rectangle.Zero;
-			win.X = (int) Math.Floor (image.X * (double) (scaled_width - 1) / (((int)pixbuf_orientation <= 4 ? Pixbuf.Width : Pixbuf.Height) - 1) + 0.5) + x_offset;
-			win.Y = (int) Math.Floor (image.Y * (double) (scaled_height - 1) / (((int)pixbuf_orientation <= 4 ? Pixbuf.Height : Pixbuf.Width) - 1) + 0.5) + y_offset;
-			win.Width = (int) Math.Floor ((image.X + image.Width) * (double) (scaled_width - 1) / (((int)pixbuf_orientation <= 4 ? Pixbuf.Width : Pixbuf.Height) - 1) + 0.5) - win.X + x_offset;
-			win.Height = (int) Math.Floor ((image.Y + image.Height) * (double) (scaled_height - 1) / (((int)pixbuf_orientation <= 4 ? Pixbuf.Height : Pixbuf.Width) - 1) + 0.5) - win.Y + y_offset;
-
-			return win;
-		}
 #endregion
 
 #region GtkWidgetry
