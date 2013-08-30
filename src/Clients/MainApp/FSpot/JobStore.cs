@@ -40,6 +40,7 @@ using FSpot.Jobs;
 
 using Hyena;
 using Hyena.Data.Sqlite;
+using System.Data;
 
 namespace FSpot {
     public abstract class Job : DbItem, IJob

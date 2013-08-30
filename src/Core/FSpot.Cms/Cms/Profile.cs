@@ -68,11 +68,11 @@ namespace Cms
 				new ColorCIExyY (.64, .33, 1.0),
 				new ColorCIExyY (.21, .71, 1.0),
 				new ColorCIExyY (.15, .06, 1.0));
-			
-			ToneCurve g = new ToneCurve (4096, 2.2);
-			ToneCurve [] gamma = new ToneCurve [] { g, g, g, g};
+			//ToneCurve g = new ToneCurve (4096, 2.2);
+			ToneCurve tc = new ToneCurve (2.2);
+			ToneCurve [] tcs = new ToneCurve [] { tc, tc, tc, tc};
 
-			return new Profile (wp, primaries, gamma);
+			return new Profile (wp, primaries, tcs);
 		}
 
 		public static Profile CreateLab (ColorCIExyY wp)
@@ -88,7 +88,7 @@ namespace Cms
 		public static Profile CreateGray (ColorCIExyY whitePoint, ToneCurve transfer)
 		{
 			if (transfer == null)
-				return new Profile (NativeMethods.CmsCreateGrayProfile (ref whitePoint, new ToneCurve (4096, 2.2).Handle));
+				return new Profile (NativeMethods.CmsCreateGrayProfile (ref whitePoint, new ToneCurve (2.2).Handle));
 			else
 				return new Profile (NativeMethods.CmsCreateGrayProfile (ref whitePoint, transfer.Handle));
 		}
@@ -118,8 +118,8 @@ namespace Cms
 						      int TempDest)
 		{
 #if true			
-			ToneCurve gamma = new ToneCurve (1024, Math.Pow (10, -Bright/100));
-			ToneCurve line = new ToneCurve (1024, 1.0);
+			ToneCurve gamma = new ToneCurve (Math.Pow (10, -Bright/100));
+			ToneCurve line = new ToneCurve (1.0);
 			ToneCurve [] tables = new ToneCurve [] { gamma, line, line };
 			return CreateAbstract (nLUTPoints, Exposure, 0.0, Contrast, Hue, Saturation, tables, 
 					       ColorCIExyY.WhitePointFromTemperature (TempSrc), 
@@ -143,8 +143,8 @@ namespace Cms
 						      ColorCIExyY destWp)
 		{
 			if (tables == null) {
-				ToneCurve gamma = new ToneCurve (1024, Math.Pow (10, -Bright/100));
-				ToneCurve line = new ToneCurve (1024, 1.0);
+				ToneCurve gamma = new ToneCurve (Math.Pow (10, -Bright/100));
+				ToneCurve line = new ToneCurve (1.0);
 				tables = new ToneCurve [] { gamma, line, line };
 			}
 

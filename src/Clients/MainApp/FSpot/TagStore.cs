@@ -45,6 +45,7 @@ using FSpot.Utils;
 
 using Hyena;
 using Hyena.Data.Sqlite;
+using System.Data;
 
 namespace FSpot {
 	public class InvalidTagOperationException : InvalidOperationException {

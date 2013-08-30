@@ -46,7 +46,7 @@ namespace FSpot.ColorAdjustment {
 		{
 			List <Profile> profiles = new List <Profile> ();
 			Histogram hist = new Histogram (Input);
-			tables = new GammaCurve [3];
+			tables = new ToneCurve [3];
 
 			for (int channel = 0; channel < tables.Length; channel++) {
 				int high, low;
@@ -58,7 +58,7 @@ namespace FSpot.ColorAdjustment {
 			return profiles;
 		}
 
-		GammaCurve StretchChannel (int count, double low, double high)
+		ToneCurve StretchChannel (int count, double low, double high)
 		{
 			ushort [] entries = new ushort [count];
 			for (int i = 0; i < entries.Length; i++) {
@@ -73,9 +73,9 @@ namespace FSpot.ColorAdjustment {
 				entries [i] = (ushort) Math.Min (Math.Round (ushort.MaxValue * val), ushort.MaxValue);
 				//System.Console.WriteLine ("val {0}, result {1}", Math.Round (val * ushort.MaxValue), entries [i]);
 			}
-			return new GammaCurve (entries);
+			return new ToneCurve (entries);
 		}
 
-		GammaCurve [] tables;
+		ToneCurve [] tables;
 	}
 }

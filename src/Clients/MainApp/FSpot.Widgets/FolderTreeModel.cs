@@ -39,6 +39,7 @@ using FSpot.Core;
 
 using Hyena;
 using Hyena.Data.Sqlite;
+using System.Data;
 
 namespace FSpot.Widgets
 {
