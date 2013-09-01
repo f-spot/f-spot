@@ -139,8 +139,8 @@ namespace Cms
 		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsGetProfileInfo")]
 		public extern static IntPtr CmsGetProfileInfo(HandleRef hprofile,
 		                                              CmsProfileInfo info,
-		                                              [MarshalAs(UnmanagedType.AnsiBStr)]string languageCode,
-		                                              [MarshalAs(UnmanagedType.AnsiBStr)]string countryCode,
+		                                              [MarshalAs(UnmanagedType.BStr)]string languageCode,
+		                                              [MarshalAs(UnmanagedType.BStr)]string countryCode,
 		                                              [Out, MarshalAsAttribute(UnmanagedType.LPWStr)] StringBuilder buffer,
 		                                              int bufferSize);
 
