@@ -70,7 +70,6 @@ namespace Cms
 				new ColorCIExyY (.64, .33, 1.0),
 				new ColorCIExyY (.21, .71, 1.0),
 				new ColorCIExyY (.15, .06, 1.0));
-			//ToneCurve g = new ToneCurve (4096, 2.2);
 			ToneCurve tc = new ToneCurve (2.2);
 			ToneCurve [] tcs = new ToneCurve [] { tc, tc, tc, tc};
 

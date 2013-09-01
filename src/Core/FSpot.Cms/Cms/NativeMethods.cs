@@ -109,15 +109,6 @@ namespace Cms
 		[DllImport("liblcms-2.0.0.dll", EntryPoint = "_cmsCreateProfilePlaceholder")]
 		public static extern IntPtr CmsCreateProfilePlaceholder ();
 
-//		[DllImport("liblcms-2.0.0.dll")]
-//		public static extern IntPtr cmsCreateBCHSWabstractProfile(int nLUTPoints,
-//								   double Bright, 
-//								   double Contrast,
-//								   double Hue,
-//								   double Saturation,
-//								   int TempSrc, 
-//								   int TempDest);
-	
 		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsErrorAction")]
 		public static extern void CmsErrorAction (int action);
 		
@@ -157,25 +148,6 @@ namespace Cms
 		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsReadTag")]
 		public extern static IntPtr CmsReadTag(HandleRef hProfile, CmsTagSignature sig);
 
-
-//		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsTakeProductDesc")]
-//		public extern static IntPtr CmsTakeProductDesc (HandleRef handle);
-//
-//		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsTakeProductName")]
-//		public extern static IntPtr CmsTakeProductName (HandleRef handle);
-//
-//		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsTakeModel")]
-//		public extern static IntPtr CmsTakeModel (HandleRef handle);
-//		
-//		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsTakeColorants")]
-//		public extern static bool CmsTakeColorants (out ColorCIEXYZTriple colors, HandleRef handle);
-//
-//		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsTakeMediaBlackPoint")]
-//		public extern static bool CmsTakeMediaBlackPoint (out ColorCIEXYZ black, HandleRef handle);
-//		
-//		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsTakeMediaWhitePoint")]
-//		public extern static bool CmsTakeMediaWhitePoint (out ColorCIEXYZ wp, HandleRef handle);
-		
 		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsOpenProfileFromMem")]
 		public static extern unsafe IntPtr CmsOpenProfileFromMem (byte *data, uint length);
 
