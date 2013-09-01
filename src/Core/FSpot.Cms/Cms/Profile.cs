@@ -29,6 +29,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace Cms
 {
@@ -38,7 +39,8 @@ namespace Cms
 
 		static Profile ()
 		{
-			SetErrorAction (ErrorAction.Show);
+			//TODO
+			//SetErrorAction (ErrorAction.Show);
 		}
 
 		public HandleRef Handle { get; private set; }
@@ -246,30 +248,38 @@ namespace Cms
 
 		public ColorCIEXYZ MediaWhitePoint {
 			get {
-				ColorCIEXYZ wp;
-				if (!NativeMethods.CmsTakeMediaWhitePoint (out wp, Handle))
+				IntPtr ptr = NativeMethods.CmsReadTag(Handle, NativeMethods.CmsTagSignature.MediaWhitePoint);
+				if (ptr == IntPtr.Zero)
 					throw new CmsException ("unable to retrieve white point from profile");
-				return wp;
+				return ColorCIEXYZ.FromPtr(ptr);
 			}
 		}
 
 		public ColorCIEXYZ MediaBlackPoint {
 			get {
-				ColorCIEXYZ black;
-				if (!NativeMethods.CmsTakeMediaBlackPoint (out black, Handle))
+				IntPtr ptr = NativeMethods.CmsReadTag(Handle, NativeMethods.CmsTagSignature.MediaBlackPoint);
+				if (ptr == IntPtr.Zero)
 					throw new CmsException ("unable to retrieve white point from profile");
-				
-				return black;
+				return ColorCIEXYZ.FromPtr(ptr);
 			}
 		}
 		
 		public ColorCIEXYZTriple Colorants {
 			get {
-				ColorCIEXYZTriple colors;
-				if (!NativeMethods.CmsTakeColorants (out colors, Handle))
-					throw new CmsException ("Unable to retrieve profile colorants");
-				
-				return colors;
+				IntPtr rPtr = NativeMethods.CmsReadTag(Handle, NativeMethods.CmsTagSignature.RedColorant);
+				if (rPtr == IntPtr.Zero)
+					throw new CmsException ("Unable to retrieve red profile colorant");
+				IntPtr gPtr = NativeMethods.CmsReadTag(Handle, NativeMethods.CmsTagSignature.GreenColorant);
+				if (gPtr == IntPtr.Zero)
+					throw new CmsException ("Unable to retrieve green profile colorant");
+				IntPtr bPtr = NativeMethods.CmsReadTag(Handle, NativeMethods.CmsTagSignature.BlueColorant);
+				if (bPtr == IntPtr.Zero)
+					throw new CmsException ("Unable to retrieve blue profile colorant");
+				return new ColorCIEXYZTriple(
+					ColorCIEXYZ.FromPtr(rPtr),
+					ColorCIEXYZ.FromPtr(gPtr),
+					ColorCIEXYZ.FromPtr(bPtr)
+					);
 			}				
 		}
 		
@@ -284,7 +294,15 @@ namespace Cms
 		public string Model {
 			get {
 				lock (srgb) {
-					return Marshal.PtrToStringAnsi (NativeMethods.CmsTakeModel (Handle));
+					var ret = new StringBuilder(128);
+					NativeMethods.CmsGetProfileInfo (
+						Handle,
+						NativeMethods.CmsProfileInfo.Model,
+						"eng", "US",
+						ret,
+						ret.Capacity
+						);
+					return ret.ToString();
 				}
 			}
 		}
@@ -292,7 +310,15 @@ namespace Cms
 		public string ProductName {
 			get {
 				lock (srgb) {
-					return Marshal.PtrToStringAnsi (NativeMethods.CmsTakeProductName (Handle));
+					var ret = new StringBuilder(128);
+					NativeMethods.CmsGetProfileInfo (
+						Handle,
+						NativeMethods.CmsProfileInfo.Manufacturer,
+						"eng", "US",
+						ret,
+						ret.Capacity
+						);
+					return ret.ToString();
 				}
 			}
 		}
@@ -300,7 +326,15 @@ namespace Cms
 		public string ProductDescription {
 			get {
 				lock (srgb) {
-					return Marshal.PtrToStringAnsi (NativeMethods.CmsTakeProductDesc (Handle));
+					var ret = new StringBuilder(128);
+					NativeMethods.CmsGetProfileInfo (
+						Handle,
+						NativeMethods.CmsProfileInfo.Description,
+						"eng", "US",
+						ret,
+						ret.Capacity
+						);
+					return ret.ToString();
 				}
 			}
 		}

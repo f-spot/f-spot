@@ -29,6 +29,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace Cms
 {
@@ -126,23 +127,54 @@ namespace Cms
 		[DllImport ("liblcms-2.0.0.dll", EntryPoint = "cmsGetDeviceClass")]
 		public static extern uint CmsGetDeviceClass (HandleRef hprofile);
 
-		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsTakeProductDesc")]
-		public extern static IntPtr CmsTakeProductDesc (HandleRef handle);
 
-		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsTakeProductName")]
-		public extern static IntPtr CmsTakeProductName (HandleRef handle);
+		public enum CmsProfileInfo
+		{
+			Description	= 0,
+			Manufacturer	= 1,
+			Model		= 2,
+			Copyright	= 3
+		}
 
-		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsTakeModel")]
-		public extern static IntPtr CmsTakeModel (HandleRef handle);
-		
-		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsTakeColorants")]
-		public extern static bool CmsTakeColorants (out ColorCIEXYZTriple colors, HandleRef handle);
+		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsGetProfileInfo")]
+		public extern static IntPtr CmsGetProfileInfo(HandleRef hprofile,
+		                                              CmsProfileInfo info,
+		                                              [MarshalAs(UnmanagedType.AnsiBStr)]string languageCode,
+		                                              [MarshalAs(UnmanagedType.AnsiBStr)]string countryCode,
+		                                              [Out, MarshalAsAttribute(UnmanagedType.LPWStr)] StringBuilder buffer,
+		                                              int bufferSize);
 
-		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsTakeMediaBlackPoint")]
-		public extern static bool CmsTakeMediaBlackPoint (out ColorCIEXYZ black, HandleRef handle);
-		
-		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsTakeMediaWhitePoint")]
-		public extern static bool CmsTakeMediaWhitePoint (out ColorCIEXYZ wp, HandleRef handle);
+
+		public enum CmsTagSignature
+		{
+			MediaBlackPoint		= 0x626B7074,
+			MediaWhitePoint		= 0x77747074,
+			RedColorant		= 0x7258595A,
+			GreenColorant		= 0x6758595A,
+			BlueColorant		= 0x6258595A
+		}
+
+		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsReadTag")]
+		public extern static IntPtr CmsReadTag(HandleRef hProfile, CmsTagSignature sig);
+
+
+//		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsTakeProductDesc")]
+//		public extern static IntPtr CmsTakeProductDesc (HandleRef handle);
+//
+//		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsTakeProductName")]
+//		public extern static IntPtr CmsTakeProductName (HandleRef handle);
+//
+//		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsTakeModel")]
+//		public extern static IntPtr CmsTakeModel (HandleRef handle);
+//		
+//		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsTakeColorants")]
+//		public extern static bool CmsTakeColorants (out ColorCIEXYZTriple colors, HandleRef handle);
+//
+//		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsTakeMediaBlackPoint")]
+//		public extern static bool CmsTakeMediaBlackPoint (out ColorCIEXYZ black, HandleRef handle);
+//		
+//		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsTakeMediaWhitePoint")]
+//		public extern static bool CmsTakeMediaWhitePoint (out ColorCIEXYZ wp, HandleRef handle);
 		
 		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsOpenProfileFromMem")]
 		public static extern unsafe IntPtr CmsOpenProfileFromMem (byte *data, uint length);
@@ -159,7 +191,7 @@ namespace Cms
 		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsCreateRGBProfile")]
 		public static extern IntPtr CmsCreateRGBProfile (out ColorCIExyY whitepoint, 
 						          out ColorCIExyYTriple primaries,
-							  HandleRef [] gamma_table);
+							  HandleRef [] transfer_function);
 
 		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsCreateLinearizationDeviceLink")]
 		public static extern IntPtr CmsCreateLinearizationDeviceLink (IccColorSpace color_space, HandleRef [] tables);

@@ -61,10 +61,15 @@ namespace Cms
 			return lab;
 		}
 
+		public static ColorCIEXYZ FromPtr(IntPtr ptr)
+		{
+			return (ColorCIEXYZ) Marshal.PtrToStructure (ptr, typeof (ColorCIEXYZ));
+		}
+
 		public static ColorCIEXYZ D50 {
 			get {
 				IntPtr ptr = NativeMethods.CmsD50XYZ ();
-				return (ColorCIEXYZ) Marshal.PtrToStructure (ptr, typeof (ColorCIEXYZ));
+				return FromPtr(ptr);
 			}
 		}
 
@@ -84,7 +89,7 @@ namespace Cms
 		public ColorCIEXYZ Blue;
 		public ColorCIEXYZ Green;
 
-		ColorCIEXYZTriple (ColorCIEXYZ red, ColorCIEXYZ green, ColorCIEXYZ blue)
+		public ColorCIEXYZTriple (ColorCIEXYZ red, ColorCIEXYZ green, ColorCIEXYZ blue)
 		{
 			Red = red;
 			Blue = blue;
