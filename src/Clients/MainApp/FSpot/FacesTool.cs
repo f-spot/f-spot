@@ -6,6 +6,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 using Gdk;
 
@@ -943,10 +944,10 @@ namespace FSpot
 		public static new FaceRectangle FromSerialized (FacesTool faces_tool, string [] args)
 		{
 			PhotoImageView view = App.Instance.Organizer.PhotoView.View;
-			int x = (int) (view.Pixbuf.Width * Double.Parse (args[1]));
-			int y = (int) (view.Pixbuf.Height * Double.Parse (args[2]));
-			int half_width = (int) (view.Pixbuf.Width * Double.Parse (args[3]));
-			int half_height = (int) (view.Pixbuf.Height * Double.Parse (args[4]));
+			int x = (int) (view.Pixbuf.Width * Double.Parse (args[1], CultureInfo.InvariantCulture));
+			int y = (int) (view.Pixbuf.Height * Double.Parse (args[2], CultureInfo.InvariantCulture));
+			int half_width = (int) (view.Pixbuf.Width * Double.Parse (args[3], CultureInfo.InvariantCulture));
+			int half_height = (int) (view.Pixbuf.Height * Double.Parse (args[4], CultureInfo.InvariantCulture));
 
 			return new FaceRectangle (faces_tool, x, y, half_width, half_height);
 		}
@@ -1038,8 +1039,10 @@ namespace FSpot
 			GetGeometry (out x, out y, out half_width, out half_height);
 			
 			serialized = String.Format ("{0};{1};{2};{3};{4}", SHAPE_TYPE,
-			                            x.ToString ("R"), y.ToString ("R"),
-			                            half_width.ToString ("R"), half_height.ToString ("R"));
+			                            x.ToString ("R", CultureInfo.InvariantCulture),
+			                            y.ToString ("R", CultureInfo.InvariantCulture),
+			                            half_width.ToString ("R", CultureInfo.InvariantCulture),
+			                            half_height.ToString ("R", CultureInfo.InvariantCulture));
 			
 			return serialized;
 		}
