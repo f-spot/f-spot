@@ -17,8 +17,6 @@ using FSpot.Core;
 namespace FSpot.Widgets
 {
 	public class FaceWidget : HBox {
-		protected const int FACE_LABEL_MAX_CHARS = 15;
-
 		private static AttrList attrs_bold;
 		private static AttrList attrs_normal;
 		
@@ -47,7 +45,6 @@ namespace FSpot.Widgets
 			Label = new Label (face_shape.Name);
 			Label.SetAlignment (0f, 0.5f);
 			Label.Ellipsize = EllipsizeMode.End;
-			Label.WidthChars = FACE_LABEL_MAX_CHARS;
 
 			PackStart (Label, true, true, 0);
 			PackStart (EditButton, false, false, 0);

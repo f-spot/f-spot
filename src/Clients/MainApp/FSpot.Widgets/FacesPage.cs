@@ -93,7 +93,9 @@ namespace FSpot.Widgets {
 		public FaceSelectionWidget FacesWidget;
 
 		private FacesTool faces_tool;
-		private Gtk.ScrolledWindow face_selection_window;
+		private Gtk.ScrolledWindow face_selection_scrolled_window;
+		private Gtk.ScrolledWindow faces_tool_scrolled_window;
+		private Gtk.Viewport faces_tool_viewport = null;
 		private WeakReference loaded_photo_ref;
 
 		internal FacesPage Page { get; set; }
@@ -104,14 +106,38 @@ namespace FSpot.Widgets {
 			loaded_photo_ref = new WeakReference (null);
 
 			FacesWidget = new FaceSelectionWidget (App.Instance.Database.Faces);
-			Viewport viewport = new Viewport ();
-			viewport.Add (FacesWidget);
-			face_selection_window = new Gtk.ScrolledWindow ();
-			face_selection_window.Add (viewport);
+			Viewport face_selection_viewport = new Viewport ();
+			face_selection_viewport.Add (FacesWidget);
+			face_selection_scrolled_window = new Gtk.ScrolledWindow ();
+			face_selection_scrolled_window.Add (face_selection_viewport);
 
-			PackStart (face_selection_window, true, true, 0);
+			PackStart (face_selection_scrolled_window, true, true, 0);
 
 			ShowAll ();
+		}
+
+		private void ShowFacesTool ()
+		{
+			if (faces_tool_viewport == null) {
+				faces_tool_viewport = new Viewport ();
+
+				faces_tool_scrolled_window = new Gtk.ScrolledWindow ();
+				faces_tool_scrolled_window.Add (faces_tool_viewport);
+
+				PackStart (faces_tool_scrolled_window, true, true, 0);
+			}
+
+			Console.WriteLine (faces_tool.Window);
+			faces_tool_viewport.Add (faces_tool.Window);
+
+			face_selection_scrolled_window.Hide ();
+			faces_tool_scrolled_window.ShowAll ();
+		}
+
+		private void HideFacesTool ()
+		{
+			faces_tool_scrolled_window.Hide ();
+			face_selection_scrolled_window.ShowAll ();
 		}
 
 		public void HandleSidebarPageSwitched (object sender, EventArgs args)
@@ -123,7 +149,7 @@ namespace FSpot.Widgets {
 			if (sidebar.IsActive (Page)) {
 				faces_tool.Activate ();
 
-				PackStart (faces_tool.Window, true, true, 0);
+				ShowFacesTool ();
 			} else
 				faces_tool.Deactivate ();
 		}
@@ -132,8 +158,6 @@ namespace FSpot.Widgets {
 		{
 			PhotoView photo_view = App.Instance.Organizer.PhotoView;
 			if (Page.InPhotoView) {
-				face_selection_window.Hide ();
-
 				IPhoto loaded_photo = loaded_photo_ref.Target as IPhoto;
 				if (loaded_photo != photo_view.Item.Current) {
 					loaded_photo_ref.Target = photo_view.Item.Current;
@@ -149,7 +173,7 @@ namespace FSpot.Widgets {
 				faces_tool.Dispose ();
 				faces_tool = null;
 
-				face_selection_window.Show ();
+				HideFacesTool ();
 			}
 		}
 
@@ -166,7 +190,7 @@ namespace FSpot.Widgets {
 			if (sidebar.IsActive (Page)) {
 				faces_tool.Activate ();
 				
-				PackStart (faces_tool.Window, true, true, 0);
+				ShowFacesTool ();
 			} else
 				faces_tool.Deactivate ();
 		}
@@ -197,7 +221,7 @@ namespace FSpot.Widgets {
 			if (sidebar.IsActive (Page)) {
 				faces_tool.Activate ();
 				
-				PackStart (faces_tool.Window, true, true, 0);
+				ShowFacesTool ();
 			} else
 				faces_tool.Deactivate ();
 		}
