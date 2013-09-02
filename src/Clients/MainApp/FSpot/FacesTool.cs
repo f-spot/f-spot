@@ -491,15 +491,23 @@ namespace FSpot
 		{
 			string face_name = face_shape.Name;
 			if (face_shapes.Values.Contains (face_shape)) {
+				string key_to_update = null;
 				foreach (string name in face_shapes.Keys) {
-					if (face_shapes [name] == face_shape) {
-						if (name == face_name)
-							break;
-						
-						face_shapes [name] = face_shape;
-						
-						face_shape.Known = true;
-					}
+					if (face_shapes [name] != face_shape)
+						continue;
+					
+					if (name != face_name)
+						key_to_update = name;
+					
+					break;
+				}
+				
+				if (key_to_update != null) {
+					face_shapes [face_name] = face_shapes [key_to_update];
+					face_shapes [face_name].Known = true;
+					face_shapes [face_name].Widget.Label.Text = face_name;
+
+					face_shapes.Remove (key_to_update);
 				}
 			} else if (!face_shapes.ContainsKey (face_name)) {
 				faces_tool_window.AddFace (face_shape);
