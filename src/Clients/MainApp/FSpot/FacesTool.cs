@@ -8,11 +8,14 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 
+using Banshee.Kernel;
+
 using Gdk;
 
 using Gtk;
 
 using FSpot.Core;
+using FSpot.Jobs;
 using FSpot.Widgets;
 
 using Hyena;
@@ -25,6 +28,7 @@ namespace FSpot
 
 		private IDictionary<string, FaceShape> face_shapes;
 		private IDictionary<string, string> original_face_locations;
+		private FaceDetectionJob face_detection = null;
 		private FaceShape editing_face_shape = null;
 		private PhotoImageView view;
 		private bool active = false;
@@ -185,6 +189,7 @@ namespace FSpot
 		{
 			faces_tool_window.KeyPressEvent += OnKeyPressed;
 			faces_tool_window.OkButton.Clicked += OnFacesOk;
+			faces_tool_window.DetectionButton.Clicked += OnDetectFaces;
 			faces_tool_window.FaceHidden += OnFaceHidden;
 			faces_tool_window.FaceEditRequested += OnFaceEditRequested;
 			faces_tool_window.FaceDeleteRequested += OnFaceDeleteRequested;
@@ -194,6 +199,7 @@ namespace FSpot
 		{
 			faces_tool_window.KeyPressEvent -= OnKeyPressed;
 			faces_tool_window.OkButton.Clicked -= OnFacesOk;
+			faces_tool_window.DetectionButton.Clicked -= OnDetectFaces;
 			faces_tool_window.FaceHidden -= OnFaceHidden;
 			faces_tool_window.FaceEditRequested -= OnFaceEditRequested;
 			faces_tool_window.FaceDeleteRequested -= OnFaceDeleteRequested;
@@ -594,6 +600,69 @@ namespace FSpot
 			}
 			
 			faces_tool_window.UpdateOkButtonSensitiveness (false);
+		}
+
+		private void OnDetectFaces (object sender, EventArgs e)
+		{
+			faces_tool_window.DetectionButton.Sensitive = false;
+			faces_tool_window.UpdateCurrentEditingPhase (EditingPhase.DetectingFaces);
+
+			IPhotoVersion photo = view.Item.Current.DefaultVersion;
+			face_detection = new FaceDetectionJob (view.Item.Current.DefaultVersion.Uri.LocalPath);
+
+			Scheduler.JobFinished += InvokeFacesDetected;
+			Scheduler.Schedule (face_detection);
+		}
+		
+		private void PickFacesFromAutodetected ()
+		{
+			int c = 0;
+			while (true) {
+				string serialized_geometry = face_detection.GetNext ();
+				if (serialized_geometry == null) {
+					faces_tool_window.UpdateCurrentEditingPhase (EditingPhase.DetectingFacesFinished);
+					
+					return;
+				}
+
+				FaceShape face_shape = FaceShape.FromSerialized (this, serialized_geometry);
+
+				bool found = false;
+				foreach (FaceShape existing_face_shape in face_shapes.Values) {
+					if (existing_face_shape.Equals (face_shape)) {
+						found = true;
+						break;
+					}
+				}
+				
+				if (found)
+					continue;
+
+				c++;
+				
+				face_shape.Name = "Unknown face #" + c;
+				face_shape.Known = false;
+				AddFace (face_shape);
+			}
+		}
+
+		private void InvokeFacesDetected (IJob job)
+		{
+			ThreadAssist.ProxyToMain (() => {
+				OnFacesDetected (job);
+			});
+		}
+
+		private void OnFacesDetected (IJob job)
+		{
+			if (job != face_detection)
+				return;
+
+			Scheduler.JobFinished -= InvokeFacesDetected;
+
+			PickFacesFromAutodetected ();
+
+			face_detection = null;
 		}
 	}
 	
