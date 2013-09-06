@@ -102,6 +102,7 @@
     <Compile Include="FSpot\InfoOverlay.cs" />
     <Compile Include="FSpot\ItemAction.cs" />
     <Compile Include="FSpot.Jobs\CalculateHashJob.cs" />
+    <Compile Include="FSpot.Jobs\FaceDetectionJob.cs" />
     <Compile Include="FSpot.Jobs\SyncMetadataJob.cs" />
     <Compile Include="FSpot.Loaders\AreaPreparedEventArgs.cs" />
     <Compile Include="FSpot.Loaders\AreaUpdatedEventArgs.cs" />

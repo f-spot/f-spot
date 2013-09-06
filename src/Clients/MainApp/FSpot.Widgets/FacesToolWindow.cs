@@ -40,7 +40,6 @@ namespace FSpot.Widgets
 		
 		public Gtk.Button DetectionButton;
 		public Gtk.Button OkButton;
-		public Gtk.Button CancelDetectionButton;
 
 		private Gtk.HBox help_layout = null;
 		private Gtk.HBox response_layout = null;
@@ -63,11 +62,6 @@ namespace FSpot.Widgets
 			DetectionButton = Gtk.Button.NewWithLabel (Catalog.GetString ("Detect faces"));
 			DetectionButton.TooltipText = Catalog.GetString ("Detect faces on this photo");
 
-			CancelDetectionButton = new Gtk.Button (Gtk.Stock.Cancel);
-			CancelDetectionButton.TooltipText = Catalog.GetString ("Cancel face detection");
-			CancelDetectionButton.ImagePosition = Gtk.PositionType.Left;
-			CancelDetectionButton.Clicked += OnCancelDetection;
-
 			OkButton = new Gtk.Button (Gtk.Stock.Save);
 			OkButton.ImagePosition = Gtk.PositionType.Left;
 
@@ -87,9 +81,6 @@ namespace FSpot.Widgets
 			PackStart (response_layout, false, false, 0);
 
 			ShowAll ();
-
-			// TODO: Implement face detection.
-			DetectionButton.Hide ();
 		}
 
 		public void UpdateCurrentEditingPhase (EditingPhase new_phase, FaceShape face_shape = null)
@@ -119,23 +110,14 @@ namespace FSpot.Widgets
 			case EditingPhase.DetectingFaces:
 				help_text.Text = Catalog.GetString ("Detecting faces...");
 
-				if (CancelDetectionButton.Parent == null)
-					help_layout.PackStart (CancelDetectionButton, false, false, 0);
-
-				DetectionButton.Sensitive = false;
-				CancelDetectionButton.Sensitive = true;
-				CancelDetectionButton.Show ();
-
 				break;
 			case EditingPhase.DetectingFacesFinished:
 				help_text.Text = Catalog.GetString ("If you don't set the name of unknown faces they won't be saved.");
 				break;
 			}
 			
-			if (editing_phase == EditingPhase.DetectingFaces && editing_phase != new_phase) {
-				CancelDetectionButton.Hide ();
+			if (editing_phase == EditingPhase.DetectingFaces && editing_phase != new_phase)
 				DetectionButton.Sensitive = true;
-			}
 			
 			editing_phase = new_phase;
 		}
