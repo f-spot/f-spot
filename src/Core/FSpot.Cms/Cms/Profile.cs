@@ -297,7 +297,7 @@ namespace Cms
 					NativeMethods.CmsGetProfileInfo (
 						Handle,
 						NativeMethods.CmsProfileInfo.Model,
-						"eng", "US",
+						"en", "US",
 						ret,
 						ret.Capacity
 						);
@@ -313,7 +313,7 @@ namespace Cms
 					NativeMethods.CmsGetProfileInfo (
 						Handle,
 						NativeMethods.CmsProfileInfo.Manufacturer,
-						"eng", "US",
+						"en", "US",
 						ret,
 						ret.Capacity
 						);
@@ -329,7 +329,7 @@ namespace Cms
 					NativeMethods.CmsGetProfileInfo (
 						Handle,
 						NativeMethods.CmsProfileInfo.Description,
-						"eng", "US",
+						"en", "US",
 						ret,
 						ret.Capacity
 						);

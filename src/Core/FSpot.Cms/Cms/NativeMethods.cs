@@ -35,43 +35,45 @@ namespace Cms
 {
 	internal static class NativeMethods
 	{
-		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsWhitePointFromTemp")]
+		public const string lcmsLib = "liblcms-2.0.0.dll";
+
+		[DllImport(lcmsLib, EntryPoint = "cmsWhitePointFromTemp")]
 		public static extern bool CmsWhitePointFromTemp(int TempSrc,  out ColorCIExyY white_point);
 
-		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsxyY2XYZ")]
+		[DllImport(lcmsLib, EntryPoint = "cmsxyY2XYZ")]
 		public static extern void CmsxyY2XYZ (out ColorCIEXYZ dest, ref ColorCIExyY src);
 
-		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsD50_xyY")]
+		[DllImport(lcmsLib, EntryPoint = "cmsD50_xyY")]
 		public static extern IntPtr CmsD50xyY();
 
-		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsXYZ2xyY")]
+		[DllImport(lcmsLib, EntryPoint = "cmsXYZ2xyY")]
 		public static extern void CmsXYZ2xyY (out ColorCIExyY dest, ref ColorCIEXYZ source);
 		
-		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsXYZ2Lab")]
+		[DllImport(lcmsLib, EntryPoint = "cmsXYZ2Lab")]
 		public static extern void CmsXYZ2Lab (ref ColorCIEXYZ wp, out ColorCIELab lab, ref ColorCIEXYZ xyz);
 
-		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsD50_XYZ")]
+		[DllImport(lcmsLib, EntryPoint = "cmsD50_XYZ")]
 		public static extern IntPtr CmsD50XYZ();
 
-		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsLab2LCh")]
+		[DllImport(lcmsLib, EntryPoint = "cmsLab2LCh")]
 		public static extern void CmsLab2LCh (out ColorCIELCh lch, ref ColorCIELab lab);
 
-		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsLab2XYZ")]
+		[DllImport(lcmsLib, EntryPoint = "cmsLab2XYZ")]
 		public static extern void CmsLab2XYZ (ref ColorCIEXYZ wp, out ColorCIEXYZ xyz, ref ColorCIELab lab);
 		
-		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsLCh2Lab")]
+		[DllImport(lcmsLib, EntryPoint = "cmsLCh2Lab")]
 		public static extern void CmsLCh2Lab (out ColorCIELab lab, ref ColorCIELCh lch);
 		
-		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsBuildGamma")]
+		[DllImport(lcmsLib, EntryPoint = "cmsBuildGamma")]
 		public static extern IntPtr CmsBuildGamma (int contextID, double gamma);
 
-		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsBuildParametricToneCurve")]
+		[DllImport(lcmsLib, EntryPoint = "cmsBuildParametricToneCurve")]
 		public static extern IntPtr CmsBuildParametricToneCurve (int contextID, int type, double [] values);
 
-		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsFreeToneCurve")]
+		[DllImport(lcmsLib, EntryPoint = "cmsFreeToneCurve")]
 		public static extern void CmsFreeToneCurve (HandleRef handle);
 
-		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsCreateMultiprofileTransform")]
+		[DllImport(lcmsLib, EntryPoint = "cmsCreateMultiprofileTransform")]
 		public static extern IntPtr CmsCreateMultiprofileTransform (HandleRef [] hProfiles,
 								     int nProfiles,
 								     Format InputFormat,
@@ -79,7 +81,7 @@ namespace Cms
 								     int Intent,
 								     uint dwFlags);
 
-		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsCreateTransform")]
+		[DllImport(lcmsLib, EntryPoint = "cmsCreateTransform")]
 		public static extern IntPtr CmsCreateTransform(HandleRef Input,
 							Format InputFormat,
 							HandleRef Output,
@@ -87,35 +89,35 @@ namespace Cms
 							int Intent,
 							uint dwFlags);
 
-		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsDoTransform")]
+		[DllImport(lcmsLib, EntryPoint = "cmsDoTransform")]
 		public static extern void CmsDoTransform (HandleRef hTransform, IntPtr InputBuffer, IntPtr OutputBuffer, uint size);
 		
-		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsDeleteTransform")]
+		[DllImport(lcmsLib, EntryPoint = "cmsDeleteTransform")]
 		public static extern void CmsDeleteTransform(HandleRef hTransform);
 		
-		[DllImport ("liblcms-2.0.0.dll", EntryPoint = "cmsCreateGrayProfile")]
+		[DllImport (lcmsLib, EntryPoint = "cmsCreateGrayProfile")]
 		public static extern IntPtr CmsCreateGrayProfile (ref ColorCIExyY white_point,
 							   HandleRef transfer_function);
 		
-		[DllImport ("liblcms-2.0.0.dll", EntryPoint = "cmsCreateLabProfile")]
+		[DllImport (lcmsLib, EntryPoint = "cmsCreateLabProfile")]
 		public static extern IntPtr CmsCreateLabProfile (IntPtr foo);
 
-		[DllImport ("liblcms-2.0.0.dll", EntryPoint = "cmsCreateLabProfile")]
+		[DllImport (lcmsLib, EntryPoint = "cmsCreateLabProfile")]
 		public static extern IntPtr CmsCreateLabProfile (out ColorCIExyY WhitePoint);
 
-		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsCreate_sRGBProfile")]
+		[DllImport(lcmsLib, EntryPoint = "cmsCreate_sRGBProfile")]
 		public static extern IntPtr CmsCreateSRGBProfile ();
 
-		[DllImport("liblcms-2.0.0.dll", EntryPoint = "_cmsCreateProfilePlaceholder")]
+		[DllImport(lcmsLib, EntryPoint = "_cmsCreateProfilePlaceholder")]
 		public static extern IntPtr CmsCreateProfilePlaceholder ();
 
-		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsErrorAction")]
+		[DllImport(lcmsLib, EntryPoint = "cmsErrorAction")]
 		public static extern void CmsErrorAction (int action);
 		
-		[DllImport ("liblcms-2.0.0.dll", EntryPoint = "cmsGetColorSpace")]
+		[DllImport (lcmsLib, EntryPoint = "cmsGetColorSpace")]
 		public static extern uint CmsGetColorSpace (HandleRef hprofile);
 
-		[DllImport ("liblcms-2.0.0.dll", EntryPoint = "cmsGetDeviceClass")]
+		[DllImport (lcmsLib, EntryPoint = "cmsGetDeviceClass")]
 		public static extern uint CmsGetDeviceClass (HandleRef hprofile);
 
 
@@ -127,11 +129,11 @@ namespace Cms
 			Copyright	= 3
 		}
 
-		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsGetProfileInfo")]
-		public extern static IntPtr CmsGetProfileInfo(HandleRef hprofile,
+		[DllImport(lcmsLib, EntryPoint = "cmsGetProfileInfo")]
+		public extern static int CmsGetProfileInfo(HandleRef hprofile,
 		                                              CmsProfileInfo info,
-		                                              [MarshalAs(UnmanagedType.BStr)]string languageCode,
-		                                              [MarshalAs(UnmanagedType.BStr)]string countryCode,
+		                                              string languageCode,
+		                                              string countryCode,
 		                                              [Out, MarshalAsAttribute(UnmanagedType.LPWStr)] StringBuilder buffer,
 		                                              int bufferSize);
 
@@ -145,39 +147,40 @@ namespace Cms
 			BlueColorant		= 0x6258595A
 		}
 
-		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsReadTag")]
+		[DllImport(lcmsLib, EntryPoint = "cmsReadTag")]
 		public extern static IntPtr CmsReadTag(HandleRef hProfile, CmsTagSignature sig);
 
-		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsOpenProfileFromMem")]
+		[DllImport(lcmsLib, EntryPoint = "cmsOpenProfileFromMem")]
 		public static extern unsafe IntPtr CmsOpenProfileFromMem (byte *data, uint length);
 
-		[DllImport("liblcms-2.0.0.dll", EntryPoint = "_cmsSaveProfileToMem")]
+		[DllImport(lcmsLib, EntryPoint = "_cmsSaveProfileToMem")]
 		public static extern unsafe bool CmsSaveProfileToMem (HandleRef profile, byte *mem, ref uint length);
 
-		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsOpenProfileFromFile")]
+		[DllImport(lcmsLib, EntryPoint = "cmsOpenProfileFromFile")]
 		public static extern IntPtr CmsOpenProfileFromFile (string ICCProfile, string sAccess);
 
-		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsCloseProfile")]
+		[DllImport(lcmsLib, EntryPoint = "cmsCloseProfile")]
 		public static extern int CmsCloseProfile (HandleRef hprofile);
 
-		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsCreateRGBProfile")]
+		[DllImport(lcmsLib, EntryPoint = "cmsCreateRGBProfile")]
 		public static extern IntPtr CmsCreateRGBProfile (out ColorCIExyY whitepoint, 
 						          out ColorCIExyYTriple primaries,
 							  HandleRef [] transfer_function);
 
-		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsCreateLinearizationDeviceLink")]
+		[DllImport(lcmsLib, EntryPoint = "cmsCreateLinearizationDeviceLink")]
 		public static extern IntPtr CmsCreateLinearizationDeviceLink (IccColorSpace color_space, HandleRef [] tables);
 
-		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsBuildTabulatedToneCurve16")]
-		public static extern IntPtr CmsBuildTabulatedToneCurve16(int ContextID,
+		[DllImport(lcmsLib, EntryPoint = "cmsBuildTabulatedToneCurve16")]
+		public static extern IntPtr CmsBuildTabulatedToneCurve16(IntPtr ContextID,
 		                                                         int nEntries,
+		                                                         [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)]
 		                                                         ushort[] values);
 
 
-		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsGetToneCurveEstimatedTableEntries")]
-		public static extern int CmsGetToneCurveEstimatedTableEntries (HandleRef curve);
+		[DllImport(lcmsLib, EntryPoint = "cmsGetToneCurveEstimatedTableEntries")]
+		public static extern uint CmsGetToneCurveEstimatedTableEntries (HandleRef curve);
 
-		[DllImport("liblcms-2.0.0.dll", EntryPoint = "cmsGetToneCurveEstimatedTable")]
+		[DllImport(lcmsLib, EntryPoint = "cmsGetToneCurveEstimatedTable")]
 		public static extern IntPtr CmsGetToneCurveEstimatedTable(HandleRef curve);
 		
 		[DllImport("libfspot", EntryPoint = "f_cmsCreateBCHSWabstractProfile")]

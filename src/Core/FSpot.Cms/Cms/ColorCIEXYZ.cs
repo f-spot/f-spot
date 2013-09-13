@@ -63,6 +63,8 @@ namespace Cms
 
 		public static ColorCIEXYZ FromPtr(IntPtr ptr)
 		{
+			if (ptr == IntPtr.Zero)
+				throw new ArgumentNullException ("ptr", "lcms Color argument was null");
 			return (ColorCIEXYZ) Marshal.PtrToStructure (ptr, typeof (ColorCIEXYZ));
 		}
 

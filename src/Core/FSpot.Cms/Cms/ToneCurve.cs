@@ -164,7 +164,7 @@ namespace Cms
 
 			Handle = new HandleRef (
 				this, NativeMethods.CmsBuildTabulatedToneCurve16 (
-					0,
+					IntPtr.Zero,
 					length,
 					values
 				));
