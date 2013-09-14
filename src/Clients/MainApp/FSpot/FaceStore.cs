@@ -202,13 +202,26 @@ namespace FSpot {
 
 		public void Remove (Face [] faces)
 		{
+			FaceLocationStore face_location_store = App.Instance.Database.FaceLocations;
+			List<FaceLocation> all_face_locations = new List<FaceLocation> ();
 			ICollection<uint> face_ids = new List<uint> (faces.Length);
 			foreach (Face face in faces) {
 				face_ids.Add (face.Id);
-				
+
+				Dictionary<uint, FaceLocation> face_locations =
+					face_location_store.GetFaceLocationsByFace (face);
+				foreach (FaceLocation face_location in face_locations.Values)
+					all_face_locations.Add (face_location);
+
+				// This must be done before removing face locations to avoid
+				// problems, since FaceLocationStore also checks if it needs
+				// to remove faces.
 				RemoveFromCache (face);
 			}
-			
+
+			if (all_face_locations.Count > 0)
+				face_location_store.Remove (all_face_locations.ToArray ());
+
 			string command = String.Format ("DELETE FROM faces WHERE id IN ({0})",
 			                                String.Join (", ", face_ids));
 			Database.Execute (command);
