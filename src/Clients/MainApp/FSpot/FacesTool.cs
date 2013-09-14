@@ -167,6 +167,7 @@ namespace FSpot
 			view.LeaveNotifyEvent += OnLeaveNotifyEvent;
 			view.ExposeEvent += OnExpose;
 			view.ZoomChanged += OnZoomChanged;
+			view.SizeAllocated += OnAllocationChanged;
 
 			view.Hadjustment.ValueChanged += OnScrollChanged;
 			view.Vadjustment.ValueChanged += OnScrollChanged;
@@ -180,6 +181,7 @@ namespace FSpot
 			view.LeaveNotifyEvent -= OnLeaveNotifyEvent;
 			view.ExposeEvent -= OnExpose;
 			view.ZoomChanged -= OnZoomChanged;
+			view.SizeAllocated -= OnAllocationChanged;
 
 			view.Hadjustment.ValueChanged -= OnScrollChanged;
 			view.Vadjustment.ValueChanged -= OnScrollChanged;
@@ -221,6 +223,11 @@ namespace FSpot
 		}
 
 		public void OnScrollChanged (object sender, EventArgs e)
+		{
+			OnZoomChanged (sender, e);
+		}
+
+		public void OnAllocationChanged (object sender, EventArgs e)
 		{
 			OnZoomChanged (sender, e);
 		}
