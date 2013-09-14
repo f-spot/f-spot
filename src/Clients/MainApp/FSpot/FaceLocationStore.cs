@@ -38,6 +38,7 @@ using Mono.Unix;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 using FSpot;
 using FSpot.Core;
@@ -169,10 +170,19 @@ namespace FSpot {
 
 		public void Remove (FaceLocation [] face_locations)
 		{
+			FaceStore face_store = App.Instance.Database.Faces;
+			ISet<Face> faces = new HashSet<Face> ();
 			ICollection<uint> face_location_ids = new List<uint> (face_locations.Length);
 			foreach (FaceLocation face_location in face_locations) {
 				face_location_ids.Add (face_location.Id);
 
+				Face face = face_store.GetFaceById (face_location.FaceId);
+				if (face != null)
+					faces.Add (face);
+
+				// This must be done before removing faces to avoid
+				// problems, since FaceStore also checks if it needs
+				// to remove face locations.
 				RemoveFromCache (face_location);
 			}
 
@@ -181,6 +191,9 @@ namespace FSpot {
 			Database.Execute (command);
 
 			EmitRemoved (face_locations);
+
+			if (faces.Count > 0)
+				face_store.Remove (faces.ToArray ());
 		}
 		
 		public override void Commit (FaceLocation face_location)
