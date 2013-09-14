@@ -72,7 +72,7 @@ namespace FSpot {
 			return null;
 		}
 	
-		public Face GetFaceById (int id)
+		public Face GetFaceById (uint id)
 		{
 			foreach (Face face in this.item_cache.Values)
 				if (face.Id == id)
