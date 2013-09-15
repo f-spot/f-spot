@@ -127,7 +127,6 @@ namespace FSpot.Widgets {
 				PackStart (faces_tool_scrolled_window, true, true, 0);
 			}
 
-			Console.WriteLine (faces_tool.Window);
 			faces_tool_viewport.Add (faces_tool.Window);
 
 			face_selection_scrolled_window.Hide ();
