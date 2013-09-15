@@ -136,7 +136,9 @@ namespace FSpot.Widgets {
 
 		private void HideFacesTool ()
 		{
-			faces_tool_scrolled_window.Hide ();
+			if (faces_tool_scrolled_window != null)
+				faces_tool_scrolled_window.Hide ();
+
 			face_selection_scrolled_window.ShowAll ();
 		}
 
@@ -170,6 +172,9 @@ namespace FSpot.Widgets {
 			} else {
 				photo_view.PhotoChanged -= OnPhotoChanged;
 
+				if (faces_tool == null)
+					return;
+
 				faces_tool.Dispose ();
 				faces_tool = null;
 
@@ -202,11 +207,10 @@ namespace FSpot.Widgets {
 
 			loaded_photo_ref.Target = sender.Item.Current;
 
-			if (faces_tool == null)
-				return;
-
-			faces_tool.Dispose ();
-			faces_tool = null;
+			if (faces_tool != null) {
+				faces_tool.Dispose ();
+				faces_tool = null;
+			}
 
 			sender.View.PhotoLoaded += OnPhotoLoaded;
 		}
