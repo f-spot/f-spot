@@ -1,5 +1,5 @@
 //
-// TagStore.cs
+// FaceStore.cs
 //
 // Author:
 //   Ettore Perazzoli <ettore@src.gnome.org>
