@@ -2,8 +2,6 @@
 // Face.cs
 //
 // Author:
-//   Ruben Vermeersch <ruben@savanne.be>
-//   Stephane Delcroix <sdelcroix@novell.com>
 //   Valentín Barros <valentin@sanva.net>
 //
 // Copyright (C) 2008-2010 Novell, Inc.

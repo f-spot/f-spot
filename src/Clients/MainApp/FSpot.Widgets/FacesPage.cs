@@ -2,9 +2,6 @@
 // EditorPage.cs
 //
 // Author:
-//   Ruben Vermeersch <ruben@savanne.be>
-//   Stephane Delcroix <stephane@delcroix.org>
-//   Mike Gemuende <mike@gemuende.de>
 //   Valentín Barros <valentin@sanva.net>
 //
 // Copyright (C) 2008-2010 Novell, Inc.
