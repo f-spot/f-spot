@@ -2,10 +2,6 @@
 // FacePopup.cs
 //
 // Author:
-//   Paul Werner Bou <paul@purecodes.org>
-//   Larry Ewing <lewing@novell.com>
-//   Gabriel Burt <gabriel.burt@gmail.com>
-//   Nat Friedman <nat@novell.com>
 //   Valentín Barros <valentin@sanva.net>
 //
 // Copyright (C) 2004-2010 Novell, Inc.

@@ -2,9 +2,6 @@
 // FaceLocationStore.cs
 //
 // Author:
-//   Ettore Perazzoli <ettore@src.gnome.org>
-//   Stephane Delcroix <stephane@delcroix.org>
-//   Larry Ewing <lewing@novell.com>
 //   Valentín Barros <valentin@sanva.net>
 //
 // Copyright (C) 2003-2009 Novell, Inc.
