@@ -104,13 +104,13 @@ namespace Cms
 		{
 			Handle = new HandleRef (this, NativeMethods.CmsBuildParametricToneCurve (0, (int)type, values));
 		}
-		
+
 
 		public ToneCurve (ushort [] values) : this (values, 0, values.Length)
 		{
 		}
 
-		public int Count {
+		public uint Count {
 			get {
 				return NativeMethods.CmsGetToneCurveEstimatedTableEntries (Handle);
 			}
