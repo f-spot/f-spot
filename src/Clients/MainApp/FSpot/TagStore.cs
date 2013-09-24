@@ -144,7 +144,7 @@ namespace FSpot {
 	
 			// Pass 1, get all the tags.
 	
-			IDataReader reader = Database.Query ("SELECT id, name, is_category, sort_priority, icon FROM tags");
+			Hyena.Data.Sqlite.IDataReader reader = Database.Query ("SELECT id, name, is_category, sort_priority, icon FROM tags");
 	
 			while (reader.Read ()) {
 				uint id = Convert.ToUInt32 (reader ["id"]);

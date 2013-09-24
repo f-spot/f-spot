@@ -54,7 +54,7 @@ namespace FSpot {
         public class PhotoStore : DbStore<Photo> {
          public int TotalPhotos {
                  get {
-                         IDataReader reader = Database.Query("SELECT COUNT(*) AS photo_count FROM photos");
+                         Hyena.Data.Sqlite.IDataReader reader = Database.Query("SELECT COUNT(*) AS photo_count FROM photos");
                          reader.Read ();
                          int total = Convert.ToInt32 (reader ["photo_count"]);
                          reader.Dispose ();
@@ -219,7 +219,7 @@ namespace FSpot {
         
          private void GetVersions (Photo photo)
          {
-                 IDataReader reader = Database.Query(
+                 Hyena.Data.Sqlite.IDataReader reader = Database.Query(
                          new HyenaSqliteCommand("SELECT version_id, name, base_uri, filename, import_md5, protected " +
                                        "FROM photo_versions " +
                                        "WHERE photo_id = ?",
@@ -242,7 +242,7 @@ namespace FSpot {
         
          private void GetTags (Photo photo)
          {
-                 IDataReader reader = Database.Query(new HyenaSqliteCommand("SELECT tag_id FROM photo_tags WHERE photo_id = ?", photo.Id));
+                 Hyena.Data.Sqlite.IDataReader reader = Database.Query(new HyenaSqliteCommand("SELECT tag_id FROM photo_tags WHERE photo_id = ?", photo.Id));
         
                  while (reader.Read ()) {
                          uint tag_id = Convert.ToUInt32 (reader ["tag_id"]);
@@ -253,7 +253,7 @@ namespace FSpot {
          }
         
          private void GetAllVersions  (string ids) {
-                 IDataReader reader = Database.Query ("SELECT photo_id, version_id, name, base_uri, filename, import_md5, protected FROM photo_versions WHERE photo_id IN " + ids);
+                 Hyena.Data.Sqlite.IDataReader reader = Database.Query ("SELECT photo_id, version_id, name, base_uri, filename, import_md5, protected FROM photo_versions WHERE photo_id IN " + ids);
         
                  while (reader.Read ()) {
                          uint id = Convert.ToUInt32 (reader ["photo_id"]);
@@ -291,7 +291,7 @@ namespace FSpot {
          }
         
          private void GetAllTags (string ids) {
-                 IDataReader reader = Database.Query ("SELECT photo_id, tag_id FROM photo_tags WHERE photo_id IN " + ids);
+                 Hyena.Data.Sqlite.IDataReader reader = Database.Query ("SELECT photo_id, tag_id FROM photo_tags WHERE photo_id IN " + ids);
         
                  while (reader.Read ()) {
                          uint id = Convert.ToUInt32 (reader ["photo_id"]);
@@ -322,7 +322,7 @@ namespace FSpot {
                  if (photo != null)
                          return photo;
         
-                 IDataReader reader = Database.Query(
+                 Hyena.Data.Sqlite.IDataReader reader = Database.Query(
                          new HyenaSqliteCommand("SELECT time, description, roll_id, default_version_id, rating " +
                                        "FROM photos " +
                                        "WHERE id = ?", id
@@ -355,7 +355,7 @@ namespace FSpot {
                  var base_uri = uri.GetBaseUri ();
                  var filename = uri.GetFilename ();
         
-                 IDataReader reader =
+                 Hyena.Data.Sqlite.IDataReader reader =
                          Database.Query (new HyenaSqliteCommand ("SELECT id, time, description, roll_id, default_version_id, rating " +
                                                         " FROM photos " +
                                                         " LEFT JOIN photo_versions AS pv ON photos.id = pv.photo_id" +
@@ -565,7 +565,7 @@ namespace FSpot {
                          where_added = true;
                  }
         
-                 IDataReader reader = Database.Query (query_builder.ToString());
+                 Hyena.Data.Sqlite.IDataReader reader = Database.Query (query_builder.ToString());
                  reader.Read ();
                  int count = Convert.ToInt32 (reader ["count"]);
                  reader.Dispose();
@@ -603,7 +603,7 @@ namespace FSpot {
          private int IndexOf (string query)
          {
                  uint timer = Log.DebugTimerStart ();
-                 IDataReader reader = Database.Query (query);
+                 Hyena.Data.Sqlite.IDataReader reader = Database.Query (query);
                  int index = - 1;
                  if (reader.Read ())
                          index = Convert.ToInt32 (reader ["row_id"]);
@@ -616,7 +616,7 @@ namespace FSpot {
          {
                  uint timer = Log.DebugTimerStart ();
                  List<int> list = new List<int> ();
-                 IDataReader reader = Database.Query (query);
+                 Hyena.Data.Sqlite.IDataReader reader = Database.Query (query);
                  while (reader.Read ())
                          list.Add (Convert.ToInt32 (reader ["row_id"]) - 1);
                  reader.Dispose ();
@@ -649,7 +649,7 @@ namespace FSpot {
 
 		// FIXME: There appears to be a race condition here where it tries to query the population
 		// table before Database.Execute (query_builder.ToString ()); creates it.
-                 IDataReader reader = Database.Query ("SELECT COUNT (*) as count, month from population GROUP BY month");
+                 Hyena.Data.Sqlite.IDataReader reader = Database.Query ("SELECT COUNT (*) as count, month from population GROUP BY month");
                  while (reader.Read ()) {
                          string yyyymm = reader ["month"].ToString ();
                          int count = Convert.ToInt32 (reader ["count"]);
@@ -775,7 +775,7 @@ namespace FSpot {
          private Photo [] Query (HyenaSqliteCommand query)
          {
                  uint timer = Log.DebugTimerStart ();
-                 IDataReader reader = Database.Query(query);
+                 Hyena.Data.Sqlite.IDataReader reader = Database.Query(query);
         
                  List<Photo> new_photos = new List<Photo> ();
                  List<Photo> query_result = new List<Photo> ();

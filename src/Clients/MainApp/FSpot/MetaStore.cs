@@ -107,7 +107,7 @@ namespace FSpot {
     
     	private void LoadAllItems ()
     	{
-    		IDataReader reader = Database.Query("SELECT id, name, data FROM meta");
+    		Hyena.Data.Sqlite.IDataReader reader = Database.Query("SELECT id, name, data FROM meta");
     
     		while (reader.Read ()) {
     			uint id = Convert.ToUInt32 (reader ["id"]);
