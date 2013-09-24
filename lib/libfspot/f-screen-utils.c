@@ -167,7 +167,7 @@ cmsHPROFILE CMSEXPORT f_cmsCreateBCHSWabstractProfile(int nLUTPoints,
 	       return NULL;
        }
 
-	cmsPipeInsertStage(Pipeline, cmsAT_END, CLUT);
+	cmsPipelineInsertStage(Pipeline, cmsAT_END, CLUT);
 
        // Create tags
 
