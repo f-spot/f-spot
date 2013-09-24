@@ -145,7 +145,7 @@ cmsHPROFILE CMSEXPORT f_cmsCreateBCHSWabstractProfile(int nLUTPoints,
 	cmsSetColorSpace(hICC,       cmsSigLabData);
 	cmsSetPCS(hICC,              cmsSigLabData);
 	
-	cmsSetRenderingIntent(hICC,  INTENT_PERCEPTUAL); 
+	cmsSetHeaderRenderingIntent(hICC,  INTENT_PERCEPTUAL); 
 	
 	// Creates a Pipeline with 3D grid only
 	Pipeline = cmsPipelineAlloc(NULL, 3, 3);
