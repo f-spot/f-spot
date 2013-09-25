@@ -11,14 +11,14 @@
 # Stanisław Małolepszy <smalolepszy@aviary.pl>, 2005-2006.
 # Marek Stępień <marcoos@aviary.pl>, 2005-2006.
 # Tomasz Dominikowski <dominikowski@gmail.com>, 2007-2009.
-# Piotr Drąg <piotrdrag@gmail.com>, 2010-2012.
-# Aviary.pl <gnomepl@aviary.pl>, 2005-2012.
+# Piotr Drąg <piotrdrag@gmail.com>, 2010-2013.
+# Aviary.pl <gnomepl@aviary.pl>, 2005-2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-04 01:04+0100\n"
-"PO-Revision-Date: 2012-11-04 01:05+0100\n"
+"POT-Creation-Date: 2013-02-17 15:54+0100\n"
+"PO-Revision-Date: 2013-02-17 15:55+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -1517,8 +1517,8 @@ msgstr ""
 "Stanisław Małolepszy <smalolepszy@aviary.pl>, 2005-2006\n"
 "Marek Stępień <marcoos@aviary.pl>, 2005-2006\n"
 "Tomasz Dominikowski <dominikowski@gmail.com>, 2007-2009\n"
-"Piotr Drąg <piotrdrag@gmail.com>, 2010-2012\n"
-"Aviary.pl <gnomepl@aviary.pl>, 2005-2012"
+"Piotr Drąg <piotrdrag@gmail.com>, 2010-2013\n"
+"Aviary.pl <gnomepl@aviary.pl>, 2005-2013"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:155
 msgid "F-Spot Website"
@@ -3380,7 +3380,7 @@ msgid ""
 msgstr ""
 "Program F-Spot wymaga upoważnienia do wysyłania zdjęć na konto w serwisie "
 "{0}. Aby uruchomić przeglądarkę internetową i uwierzytelnić program F-Spot, "
-"należy nacisnąć przycisk \"Upoważnij\"."
+"należy nacisnąć przycisk \"Upoważnij\". "
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:5
 msgid "_View photos in browser when done uploading"
@@ -3615,7 +3615,7 @@ msgid ""
 "Please check that you have Remote plugin 1.0.8 or later"
 msgstr ""
 "Nie można połączyć się z galerią w nieznanej wersji.\n"
-"Proszę sprawdzić, czy wersja wtyczki Remote to 1.0.8 lub późniejsza."
+"Proszę sprawdzić, czy wersja wtyczki Remote to 1.0.8 lub późniejsza"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAddAlbum.cs:83
 msgid "(TopLevel)"
@@ -3631,7 +3631,7 @@ msgid ""
 "Only letters, numbers, - and _ are allowed"
 msgstr ""
 "Nazwa galerii zawiera nieprawidłowe znaki.\n"
-"Dopuszczalne są tylko litery, cyfry, - oraz _."
+"Dopuszczalne są tylko litery, cyfry, - oraz _"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/Gallery.cs:139
 msgid "Error reading server response"
@@ -4091,7 +4091,7 @@ msgstr "Skopiuj adres URL do schowka"
 
 #: ../src/Extensions/Tools/FSpot.Tools.MergeDb/FSpot.Tools.MergeDb/MergeDb.cs:91
 msgid "Error opening the selected file"
-msgstr "Błąd podczas otwierania wybranego pliku."
+msgstr "Błąd podczas otwierania wybranego pliku"
 
 #: ../src/Extensions/Tools/FSpot.Tools.MergeDb/FSpot.Tools.MergeDb/MergeDb.cs:92
 #, csharp-format

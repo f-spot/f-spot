@@ -38,24 +38,24 @@ using Gdk;
 namespace FSpot.ColorAdjustment {
 	public abstract class Adjustment {
 		protected int nsteps = 20;
-		private Cms.Intent intent = Cms.Intent.Perceptual;
+		private Intent intent = Intent.Perceptual;
 
 		// This is the input pixbuf, on which the adjustment will be performed.
 		protected readonly Gdk.Pixbuf Input;
 
-		private Cms.Profile input_profile;
-		public Cms.Profile InputProfile {
+		private Profile input_profile;
+		public Profile InputProfile {
 			get {
 				if (input_profile == null)
-					input_profile = Cms.Profile.CreateStandardRgb ();
+					input_profile = Profile.CreateStandardRgb ();
 
 				return input_profile;
 			}
 			set { input_profile = value; }
 		}
 
-		private Cms.Profile destination_profile;
-		public Cms.Profile DestinationProfile {
+		private Profile destination_profile;
+		public Profile DestinationProfile {
 			get {
 				if (destination_profile == null)
 					destination_profile = InputProfile;
@@ -65,13 +65,13 @@ namespace FSpot.ColorAdjustment {
 			set { destination_profile = value; }
 		}
 
-		public Adjustment (Pixbuf input, Cms.Profile input_profile)
+		public Adjustment (Pixbuf input, Profile inputProfile)
 		{
 			Input = input;
-			InputProfile = input_profile;
+			InputProfile = inputProfile;
 		}
 
-		protected abstract List <Cms.Profile> GenerateAdjustments ();
+		protected abstract List <Profile> GenerateAdjustments ();
 
 		public Pixbuf Adjust ()
 		{
@@ -79,7 +79,7 @@ namespace FSpot.ColorAdjustment {
 							   false, 8,
 							   Input.Width,
 							   Input.Height);
-			Cms.Profile [] list = GenerateAdjustments ().ToArray ();
+			Profile [] list = GenerateAdjustments ().ToArray ();
 
 			if (Input.HasAlpha) {
 				Gdk.Pixbuf input_copy = (Gdk.Pixbuf)Input.Clone ();
@@ -94,7 +94,7 @@ namespace FSpot.ColorAdjustment {
 				final.Dispose ();
 				final = input_copy;
 			} else {
-				Cms.Transform transform = new Cms.Transform (list,
+				Transform transform = new Transform (list,
 									     PixbufUtils.PixbufCmsFormat (Input),
 									     PixbufUtils.PixbufCmsFormat (final),
 									     intent, 0x0000);

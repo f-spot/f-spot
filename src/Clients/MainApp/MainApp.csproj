@@ -104,6 +104,7 @@
     <Compile Include="FSpot\InfoOverlay.cs" />
     <Compile Include="FSpot\ItemAction.cs" />
     <Compile Include="FSpot.Jobs\CalculateHashJob.cs" />
+    <Compile Include="FSpot.Jobs\FaceDetectionJob.cs" />
     <Compile Include="FSpot.Jobs\SyncMetadataJob.cs" />
     <Compile Include="FSpot.Loaders\AreaPreparedEventArgs.cs" />
     <Compile Include="FSpot.Loaders\AreaUpdatedEventArgs.cs" />
@@ -155,7 +156,11 @@
     <Compile Include="FSpot.UI.Dialog\ThreadProgressDialog.cs" />
     <Compile Include="FSpot\UriCollection.cs" />
     <Compile Include="FSpot.Widgets\CellRendererTextProgress.cs" />
+    <Compile Include="FSpot.Widgets\EditingFaceToolWindow.cs" />
     <Compile Include="FSpot.Widgets\EditorPage.cs" />
+    <Compile Include="FSpot.Widgets\FaceWidget.cs" />
+    <Compile Include="FSpot.Widgets\FacesPage.cs" />
+    <Compile Include="FSpot.Widgets\FacesToolWindow.cs" />
     <Compile Include="FSpot.Widgets\Filmstrip.cs" />
     <Compile Include="FSpot.Widgets\FindBar.cs" />
     <Compile Include="FSpot.Widgets\FolderTreeModel.cs" />
@@ -180,6 +185,7 @@
     <Compile Include="FSpot.Widgets\TrayView.cs" />
     <Compile Include="FSpot.Widgets\ViewContext.cs" />
     <Compile Include="FSpot\XScreenSaverSlide.cs" />
+    <Compile Include="FacePopup.cs" />
     <Compile Include="ImageLoaderThread.cs" />
     <Compile Include="PhotoTagMenu.cs" />
     <Compile Include="PhotoVersionCommands.cs" />
@@ -189,6 +195,9 @@
     <Compile Include="TagPopup.cs" />
     <Compile Include="ThumbnailCommand.cs" />
     <Compile Include="FSpot\ExportStore.cs" />
+    <Compile Include="FSpot\FaceStore.cs" />
+    <Compile Include="FSpot\FaceLocationStore.cs" />
+    <Compile Include="FSpot\FacesTool.cs" />
     <Compile Include="FSpot\JobStore.cs" />
     <Compile Include="FSpot\MetaStore.cs" />
     <Compile Include="FSpot\PhotoStore.cs" />
@@ -341,19 +350,14 @@
       <Private>False</Private>
       <Package>gio-sharp-2.0</Package>
     </Reference>
+    <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core\FSpot.Core\FSpot.Core.csproj">
       <Project>{57EDC3BC-E777-4400-B4E7-32A5D8F15A76}</Project>
       <Name>FSpot.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\lib\Hyena\Hyena\Hyena.csproj">
-      <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
-      <Name>Hyena</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\lib\Hyena\Hyena.Data.Sqlite\Hyena.Data.Sqlite.csproj">
-      <Project>{95374549-9553-4C1E-9D89-667755F90E13}</Project>
-      <Name>Hyena.Data.Sqlite</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Core\FSpot.JobScheduler\FSpot.JobScheduler.csproj">
       <Project>{46049AF4-97E0-4EE5-A5CB-A9D0C9026B25}</Project>
@@ -362,10 +366,6 @@
     <ProjectReference Include="..\..\Core\FSpot.Platform\FSpot.Platform.csproj">
       <Project>{2D3B12F7-ABF3-4784-92FE-78A1C775E157}</Project>
       <Name>FSpot.Platform</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\lib\Hyena\Hyena.Gui\Hyena.Gui.csproj">
-      <Project>{C856EFD8-E812-4E61-8B76-E3583D94C233}</Project>
-      <Name>Hyena.Gui</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Core\FSpot.Query\FSpot.Query.csproj">
       <Project>{D4E4D07E-D323-4CAE-BE04-8EE8EDF7F07E}</Project>
@@ -390,6 +390,18 @@
     <ProjectReference Include="..\..\..\lib\unique-sharp\unique-sharp.csproj">
       <Project>{5DBBB8C5-7BAF-46DA-B7D2-2486430141E2}</Project>
       <Name>unique-sharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\external\Hyena\Hyena\Hyena.csproj">
+      <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
+      <Name>Hyena</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\external\Hyena\Hyena.Data.Sqlite\Hyena.Data.Sqlite.csproj">
+      <Project>{95374549-9553-4C1E-9D89-667755F90E13}</Project>
+      <Name>Hyena.Data.Sqlite</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\external\Hyena\Hyena.Gui\Hyena.Gui.csproj">
+      <Project>{C856EFD8-E812-4E61-8B76-E3583D94C233}</Project>
+      <Name>Hyena.Gui</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

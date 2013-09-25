@@ -27,6 +27,8 @@
     <Compile Include="FSpot.Core\BrowsablePointerChangedEventArgs.cs" />
     <Compile Include="FSpot.Core\Category.cs" />
     <Compile Include="FSpot.Core\DbItem.cs" />
+    <Compile Include="FSpot.Core\Face.cs" />
+    <Compile Include="FSpot.Core\FaceLocation.cs" />
     <Compile Include="FSpot.Core\Tag.cs" />
     <Compile Include="FSpot.Core\Global.cs" />
     <Compile Include="FSpot.Core\IBrowsableItemChanges.cs" />
@@ -61,11 +63,6 @@
     </MonoDevelop>
   </ProjectExtensions>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\lib\Hyena\Hyena\Hyena.csproj">
-      <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
-      <Name>Hyena</Name>
-      <Private>False</Private>
-    </ProjectReference>
     <ProjectReference Include="..\FSpot.Utils\FSpot.Utils.csproj">
       <Project>{CE160879-1BF0-4711-A18F-FDA2772900FA}</Project>
       <Name>FSpot.Utils</Name>
@@ -74,6 +71,11 @@
     <ProjectReference Include="..\FSpot.Cms\FSpot.Cms.csproj">
       <Project>{9D66BC1B-4390-4B8D-8468-19D5A862EC23}</Project>
       <Name>FSpot.Cms</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\external\Hyena\Hyena\Hyena.csproj">
+      <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
+      <Name>Hyena</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
@@ -90,6 +92,9 @@
     <Reference Include="taglib-sharp, Version=2.0.4.0, Culture=neutral, PublicKeyToken=db62eba44689b5b0">
       <Private>False</Private>
       <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>

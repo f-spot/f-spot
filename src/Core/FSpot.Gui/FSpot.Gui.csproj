@@ -94,6 +94,9 @@
       <Private>False</Private>
       <Package>gio-sharp-2.0</Package>
     </Reference>
+    <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FSpot.Utils\FSpot.Utils.csproj">
@@ -106,11 +109,6 @@
       <Name>FSpot.Core</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\lib\Hyena\Hyena\Hyena.csproj">
-      <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
-      <Name>Hyena</Name>
-      <Private>False</Private>
-    </ProjectReference>
     <ProjectReference Include="..\FSpot.Bling\FSpot.Bling.csproj">
       <Project>{7281334F-0B1D-4383-9EA2-6740D56ADCDE}</Project>
       <Name>FSpot.Bling</Name>
@@ -121,7 +119,12 @@
       <Name>FSpot.Cms</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\lib\Hyena\Hyena.Gui\Hyena.Gui.csproj">
+    <ProjectReference Include="..\..\..\external\Hyena\Hyena\Hyena.csproj">
+      <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
+      <Name>Hyena</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\external\Hyena\Hyena.Gui\Hyena.Gui.csproj">
       <Project>{C856EFD8-E812-4E61-8B76-E3583D94C233}</Project>
       <Name>Hyena.Gui</Name>
       <Private>False</Private>

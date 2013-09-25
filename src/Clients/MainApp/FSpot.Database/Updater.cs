@@ -722,6 +722,22 @@ namespace FSpot.Database
 				Execute ("CREATE INDEX idx_photo_versions_import_md5 ON photo_versions(import_md5)");
 
 			}, true);
+
+			// Update to version 19.0, Create 'faces' and 'face_locations' tables.
+			AddUpdate (new Version (19, 0), delegate () {
+				Execute (
+					"CREATE TABLE faces (\n" +
+					"	id		INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \n" +
+					"	name		TEXT NOT NULL \n" +
+					")");
+				Execute (
+					"CREATE TABLE face_locations (\n" +
+					"	id		INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \n" +
+					"	face_id		INTEGER NOT NULL, \n" +
+					"	photo_id	INTEGER NOT NULL, \n" +
+					"	geometry	TEXT NOT NULL \n" +
+					")");
+			}, false);
 		}
 
 		private const string meta_db_version_string = "F-Spot Database Version";
