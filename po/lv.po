@@ -7,13 +7,14 @@
 #
 # Raivis Dejus <orvils@gmail.com>, 2007, 2009.
 # user <user@user.com>, 2007.
-# Rūdofls Mazurs <rudolfs.mazurs@gmail.com>, 2011, 2012.
+# Rūdofls Mazurs <rudolfs.mazurs@gmail.com>, 2011, 2012, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.master.lv\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-13 00:46+0300\n"
-"PO-Revision-Date: 2012-10-13 00:51+0300\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-"
+"spot&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2013-09-12 11:16+0000\n"
+"PO-Revision-Date: 2013-10-05 10:10+0300\n"
 "Last-Translator: Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>\n"
 "Language-Team: Latvian <lata-l10n@googlegroups.com>\n"
 "Language: lv\n"
@@ -22,7 +23,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
-"X-Generator: Lokalize 1.4\n"
+"X-Generator: Lokalize 1.5\n"
 
 #. ../src/Clients/MainApp/FSpot.addin.xml
 #: ../data/addin-xml-strings.cs:8 ../src/Clients/MainApp/FSpot.addin.xml.h:3
@@ -2978,7 +2979,7 @@ msgstr "Pikselizēt"
 msgid "Select the area that you want pixelated."
 msgstr "Iezīmējiet laukumus, kurus vēlaties pikselizēt."
 
-#: ../src/Extensions/Editors/FSpot.Editors.Resize/FSpot.Addins.Editors/ResizeEditor.cs:46
+#: ../src/Extensions/Editors/FSpot.Editors.Resize/FSpot.Addins.Editors/ResizeEditor.cs:47
 msgid "Resize"
 msgstr "Mainīt izmēru"
 
@@ -3300,8 +3301,9 @@ msgstr "Pārbauda akreditācijas datus..."
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:161
 #, csharp-format
-msgid "Welcome {0} you are connected to {1}"
-msgstr "Laipni lūdzam, {0}, jūs esat savienojies ar {1}"
+#| msgid "Welcome {0} you are connected to {1}"
+msgid "Welcome, {0}. You are connected to {1}."
+msgstr "Laipni lūdzam, {0}. Jūs esat savienojies ar {1}"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:164
 #, csharp-format
