@@ -212,6 +212,9 @@
     <Compile Include="FSpot.Import\IImportSource.cs" />
     <Compile Include="FSpot.ColorAdjustment\AutoStretch.cs" />
     <Compile Include="FSpot.Editors\AutoStretchEditor.cs" />
+    <Compile Include="FSpot.Widgets\EditorPageWidget.cs" />
+    <Compile Include="FSpot.Widgets\LogicEntryCompletion.cs" />
+    <Compile Include="FSpot.Widgets\CompletionLogic.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\icons\f-spot-not.png">
