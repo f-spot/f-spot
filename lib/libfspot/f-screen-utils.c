@@ -123,16 +123,17 @@ cmsHPROFILE CMSEXPORT f_cmsCreateBCHSWabstractProfile(int nLUTPoints,
 {
 	cmsHPROFILE hICC;
 	cmsPipeline* Pipeline;
-	cmsStage* CLUT;
 	BCHSWADJUSTS bchsw;
+	cmsCIExyY WhitePnt;
+	cmsStage* CLUT;
 	cmsUInt32Number Dimensions[MAX_INPUT_DIMENSIONS];
 	int i;
 
-	bchsw.Exposure   = Exposure;
 	bchsw.Brightness = Bright;
 	bchsw.Contrast   = Contrast;
 	bchsw.Hue        = Hue;
 	bchsw.Saturation = Saturation;
+	bchsw.Exposure   = Exposure;
 
 	cmsxyY2XYZ(&bchsw.WPsrc, &current_wp);
 	cmsxyY2XYZ(&bchsw.WPdest, &destination_wp);
@@ -154,7 +155,6 @@ cmsHPROFILE CMSEXPORT f_cmsCreateBCHSWabstractProfile(int nLUTPoints,
 		return NULL;
 	}
 
-
 	for (i=0; i < MAX_INPUT_DIMENSIONS; i++) Dimensions[i] = nLUTPoints;
 	CLUT = cmsStageAllocCLut16bitGranular(NULL, Dimensions, 3, 3, NULL);
 	if (CLUT == NULL) return NULL;
@@ -170,14 +170,11 @@ cmsHPROFILE CMSEXPORT f_cmsCreateBCHSWabstractProfile(int nLUTPoints,
 	cmsPipelineInsertStage(Pipeline, cmsAT_END, CLUT);
 
        // Create tags
-
-       cmsAddTag(hICC, cmsSigDeviceMfgDescTag,      (void*) "(f-spot internal)");
-       cmsAddTag(hICC, cmsSigProfileDescriptionTag, (void*) "f-spot BCHSW abstract profile");
-       cmsAddTag(hICC, cmsSigDeviceModelDescTag,    (void*) "BCHSW built-in");
-
-       cmsAddTag(hICC, cmsSigMediaWhitePointTag, (void*) cmsD50_XYZ());
-
-       cmsAddTag(hICC, cmsSigAToB0Tag, (void*) Pipeline);
+       cmsWriteTag(hICC, cmsSigDeviceMfgDescTag, (void*) "(f-spot internal)");
+       cmsWriteTag(hICC, cmsSigProfileDescriptionTag, (void*) "f-spot BCHSW abstract profile");
+       cmsWriteTag(hICC, cmsSigDeviceModelDescTag,    (void*) "BCHSW built-in");
+       cmsWriteTag(hICC, cmsSigMediaWhitePointTag, (void*) cmsD50_XYZ());
+       cmsWriteTag(hICC, cmsSigAToB0Tag, (void*) Pipeline);
 
        // Pipeline is already on virtual profile
        cmsPipelineFree(Pipeline);
