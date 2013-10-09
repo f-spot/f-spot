@@ -88,11 +88,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\lib\Hyena\Hyena\Hyena.csproj">
-      <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
-      <Name>Hyena</Name>
-      <Private>False</Private>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\..\lib\Mono.Tabblo\Mono.Tabblo.csproj">
       <Project>{B5CDF05C-278A-40AA-A587-B27A00BD9135}</Project>
       <Name>Mono.Tabblo</Name>
@@ -120,6 +115,11 @@
     <ProjectReference Include="..\..\..\..\lib\unique-sharp\unique-sharp.csproj">
       <Project>{5DBBB8C5-7BAF-46DA-B7D2-2486430141E2}</Project>
       <Name>unique-sharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\external\Hyena\Hyena\Hyena.csproj">
+      <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
+      <Name>Hyena</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

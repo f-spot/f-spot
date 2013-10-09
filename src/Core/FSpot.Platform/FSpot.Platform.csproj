@@ -58,10 +58,9 @@
     <Reference Include="dbus-sharp-glib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5675b0c3093115b5" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\lib\Hyena\Hyena\Hyena.csproj">
+    <ProjectReference Include="..\..\..\external\Hyena\Hyena\Hyena.csproj">
       <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
       <Name>Hyena</Name>
-      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
 </Project>

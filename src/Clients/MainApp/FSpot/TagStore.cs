@@ -270,14 +270,14 @@ namespace FSpot {
 			uint parent_category_id = parent_category.Id;
 			String default_tag_icon_value = autoicon ? null : String.Empty;
 	
-			int id = Database.Execute (new HyenaSqliteCommand ("INSERT INTO tags (name, category_id, is_category, sort_priority, icon)"
+			long id = Database.Execute (new HyenaSqliteCommand ("INSERT INTO tags (name, category_id, is_category, sort_priority, icon)"
 	                          + "VALUES (?, ?, ?, 0, ?)",
 							  name,
 							  parent_category_id,
 							  is_category ? 1 : 0,
 							  default_tag_icon_value));
 	
-
+			// The table in the database is setup to be an INTEGER.
 			return (uint) id;
 		}
 	

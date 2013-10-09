@@ -108,9 +108,10 @@ namespace FSpot
 
 		public ExportItem Create (uint image_id, uint image_version_id, string export_type, string export_token)
 		{
-			int id = Database.Execute (new HyenaSqliteCommand ("INSERT INTO exports (image_id, image_version_id, export_type, export_token) VALUES (?, ?, ?, ?)",
+			long id = Database.Execute (new HyenaSqliteCommand ("INSERT INTO exports (image_id, image_version_id, export_type, export_token) VALUES (?, ?, ?, ?)",
 		image_id, image_version_id, export_type, export_token));
 
+			// The table in the database is setup to be an INTEGER.
 			ExportItem item = new ExportItem ((uint)id, image_id, image_version_id, export_type, export_token);
 
 			AddToCache (item);

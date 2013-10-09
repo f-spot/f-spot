@@ -105,11 +105,6 @@
       <Name>FSpot.Core</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\lib\Hyena\Hyena\Hyena.csproj">
-      <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
-      <Name>Hyena</Name>
-      <Private>False</Private>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Core\FSpot.Utils\FSpot.Utils.csproj">
       <Project>{CE160879-1BF0-4711-A18F-FDA2772900FA}</Project>
       <Name>FSpot.Utils</Name>
@@ -122,6 +117,11 @@
     <ProjectReference Include="..\..\..\Core\FSpot.Query\FSpot.Query.csproj">
       <Project>{D4E4D07E-D323-4CAE-BE04-8EE8EDF7F07E}</Project>
       <Name>FSpot.Query</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\external\Hyena\Hyena\Hyena.csproj">
+      <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
+      <Name>Hyena</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
 </Project>

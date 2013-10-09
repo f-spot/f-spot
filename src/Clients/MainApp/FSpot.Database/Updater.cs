@@ -46,6 +46,7 @@ using FSpot.UI.Dialog;
 
 using Hyena;
 using Hyena.Data.Sqlite;
+using System.CodeDom;
 
 namespace FSpot.Database
 {
@@ -831,17 +832,35 @@ namespace FSpot.Database
 
 		private static int Execute (string statement)
 		{
-			return db.Execute (statement);
+			int result = -1;
+			try {
+				result = Convert.ToInt32 (db.Execute (statement));
+			}
+			catch (OverflowException e)
+			{
+				Log.Exception (String.Format ("Updater.Execute failed. ({0})", statement), e);
+				throw;
+			}
+			return result;
 		}
 
 		private static int Execute (HyenaSqliteCommand command)
 		{
-			return db.Execute (command);
+			int result = -1;
+			try {
+				result = Convert.ToInt32 (db.Execute (command));
+			}
+			catch (OverflowException e)
+			{
+				Log.Exception (String.Format ("Updater.Execute failed. ({0})", command), e);
+				throw;
+			}
+			return result;
 		}
 
 		private static int ExecuteScalar (string statement)
 		{
-			return db.Execute (statement);
+			return Execute (statement);
 		}
 
 		private static IDataReader ExecuteReader (string statement)

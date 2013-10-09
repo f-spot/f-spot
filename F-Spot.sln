@@ -21,11 +21,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Gui", "src\Core\FSpot
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{6369E0D4-0A68-4D4E-A6A0-EF2EA793002F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyena", "lib\Hyena\Hyena\Hyena.csproj", "{95374549-9553-4C1E-9D89-667755F90E12}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyena", "external\Hyena\Hyena\Hyena.csproj", "{95374549-9553-4C1E-9D89-667755F90E12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyena.Data.Sqlite", "lib\Hyena\Hyena.Data.Sqlite\Hyena.Data.Sqlite.csproj", "{95374549-9553-4C1E-9D89-667755F90E13}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyena.Data.Sqlite", "external\Hyena\Hyena.Data.Sqlite\Hyena.Data.Sqlite.csproj", "{95374549-9553-4C1E-9D89-667755F90E13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyena.Gui", "lib\Hyena\Hyena.Gui\Hyena.Gui.csproj", "{C856EFD8-E812-4E61-8B76-E3583D94C233}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyena.Gui", "external\Hyena\Hyena.Gui\Hyena.Gui.csproj", "{C856EFD8-E812-4E61-8B76-E3583D94C233}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mono.Google", "lib\Mono.Google\Mono.Google.csproj", "{40C7D4EA-FB93-49FE-B18F-700A28C3E670}"
 EndProject

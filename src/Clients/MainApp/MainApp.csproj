@@ -350,14 +350,6 @@
       <Project>{57EDC3BC-E777-4400-B4E7-32A5D8F15A76}</Project>
       <Name>FSpot.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\lib\Hyena\Hyena\Hyena.csproj">
-      <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
-      <Name>Hyena</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\lib\Hyena\Hyena.Data.Sqlite\Hyena.Data.Sqlite.csproj">
-      <Project>{95374549-9553-4C1E-9D89-667755F90E13}</Project>
-      <Name>Hyena.Data.Sqlite</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Core\FSpot.JobScheduler\FSpot.JobScheduler.csproj">
       <Project>{46049AF4-97E0-4EE5-A5CB-A9D0C9026B25}</Project>
       <Name>FSpot.JobScheduler</Name>
@@ -365,10 +357,6 @@
     <ProjectReference Include="..\..\Core\FSpot.Platform\FSpot.Platform.csproj">
       <Project>{2D3B12F7-ABF3-4784-92FE-78A1C775E157}</Project>
       <Name>FSpot.Platform</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\lib\Hyena\Hyena.Gui\Hyena.Gui.csproj">
-      <Project>{C856EFD8-E812-4E61-8B76-E3583D94C233}</Project>
-      <Name>Hyena.Gui</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Core\FSpot.Query\FSpot.Query.csproj">
       <Project>{D4E4D07E-D323-4CAE-BE04-8EE8EDF7F07E}</Project>
@@ -394,13 +382,25 @@
       <Project>{5DBBB8C5-7BAF-46DA-B7D2-2486430141E2}</Project>
       <Name>unique-sharp</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\external\xwt\Xwt.Gtk\Xwt.Gtk.csproj">
-      <Project>{C3887A93-B2BD-4097-8E2F-3A063EFF32FD}</Project>
-      <Name>Xwt.Gtk</Name>
+    <ProjectReference Include="..\..\..\external\Hyena\Hyena\Hyena.csproj">
+      <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
+      <Name>Hyena</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\external\Hyena\Hyena.Data.Sqlite\Hyena.Data.Sqlite.csproj">
+      <Project>{95374549-9553-4C1E-9D89-667755F90E13}</Project>
+      <Name>Hyena.Data.Sqlite</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\external\Hyena\Hyena.Gui\Hyena.Gui.csproj">
+      <Project>{C856EFD8-E812-4E61-8B76-E3583D94C233}</Project>
+      <Name>Hyena.Gui</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\external\xwt\Xwt\Xwt.csproj">
       <Project>{92494904-35FA-4DC9-BDE9-3A3E87AC49D3}</Project>
       <Name>Xwt</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\external\xwt\Xwt.Gtk\Xwt.Gtk.csproj">
+      <Project>{C3887A93-B2BD-4097-8E2F-3A063EFF32FD}</Project>
+      <Name>Xwt.Gtk</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -147,7 +147,7 @@ namespace FSpot {
     
     	internal Job Create (Type job_type, string job_options, DateTime run_at, JobPriority job_priority, bool persistent)
     	{
-    		int id = 0;
+			long id = 0;
     		if (persistent)
     			id = Database.Execute (new HyenaSqliteCommand ("INSERT INTO jobs (job_type, job_options, run_at, job_priority) VALUES (?, ?, ?, ?)",
     						job_type.ToString (),
@@ -155,7 +155,7 @@ namespace FSpot {
     						DateTimeUtil.FromDateTime (run_at),
     						Convert.ToInt32 (job_priority)));
     
-                    Job job = (Job) Activator.CreateInstance (job_type, (uint)id, job_options, run_at, job_priority, true);
+                    Job job = (Job)Activator.CreateInstance (job_type, id, job_options, run_at, job_priority, true);
     
     		AddToCache (job);
     		job.Finished += HandleRemoveJob;

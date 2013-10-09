@@ -34,9 +34,9 @@ With MonoDevelop:
 	There are a few steps you have to run before you can open MonoDevelop:
 		1.  sh autogen.sh (on ubuntu you have to do ./autogen.sh)
 		2.  cd build; make
-		3.  cd ..; cp hyena.patch lib/Hyena
-		4.  cd lib/Hyena; patch -p1 < hyena.patch
-		5.  cd ../libfspot; make
+		3.  cd ..; cp hyena.patch external/Hyena
+		4.  cd external/Hyena; patch -p1 < hyena.patch
+		5.  cd ../../lib/libfspot; make
 		6.  sudo make install (this will install the libfspot.so files)
 
 	The hyena patch is just a temporary fix for now.
