@@ -51,6 +51,12 @@ namespace FSpot.Core
 			set { base_dir = value; }
 		}
 
+		private static string facedetect_dir = System.IO.Path.Combine (Defines.APP_DATA_DIR, "facedetect");
+		public static string FacedetectDirectory {
+			get { return facedetect_dir; }
+			set { facedetect_dir = value; }
+		}
+
 		public static SafeUri PhotoUri { get; set; }
 
 		public static string HelpDirectory {

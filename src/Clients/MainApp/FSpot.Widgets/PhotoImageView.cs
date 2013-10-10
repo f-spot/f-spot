@@ -99,6 +99,7 @@ namespace FSpot.Widgets
 		}
 
 		public event EventHandler PhotoChanged;
+		public event EventHandler PhotoLoaded;
 #endregion
 
 #region Gtk widgetry
@@ -278,6 +279,10 @@ namespace FSpot.Widgets
 
 			if (prev != this.Pixbuf && prev != null)
 				prev.Dispose ();
+
+			EventHandler handler = PhotoLoaded;
+			if (handler != null)
+				handler (this, EventArgs.Empty);
 		}
 #endregion
 
@@ -425,7 +430,7 @@ namespace FSpot.Widgets
 				return false;
 
 			if (!CanSelect || !CropHelpers || Selection == Rectangle.Zero)
-				return true;
+				return false;
 
 			using (Cairo.Context ctx = CairoHelper.Create (GdkWindow)) {
 				ctx.SetSourceRGBA (.7, .7, .7, .8);

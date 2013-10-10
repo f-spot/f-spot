@@ -44,6 +44,7 @@ AC_SUBST([ACLOCAL_AMFLAGS], ["-I build/m4/shamrock -I build/m4/f-spot \${ACLOCAL
 IT_PROG_INTLTOOL([0.35.0])
 AC_PROG_LIBTOOL
 AC_PROG_INSTALL
+AC_PROG_CXX
 
 dnl How to configure for distcheck
 DISTCHECK_CONFIGURE_FLAGS="--disable-docs --enable-release"
@@ -134,6 +135,7 @@ fi
 dnl --- Required libraries
 
 LIBGNOMEDESKTOP_REQUIRED=2.17
+OPENCV_REQUIRED=2.4.0
 GIO_REQUIRED=2.22.0
 GTKSHARPBEANS_REQUIRED=2.13.92
 GTK_REQUIRED=2.14
@@ -144,6 +146,10 @@ LCMS2_REQUIRED=2.4
 PKG_CHECK_MODULES(F, gnome-desktop-2.0 >= $LIBGNOMEDESKTOP_REQUIRED gtk+-2.0 >= $GTK_REQUIRED mono-cairo >= $MONO_CAIRO_REQUIRED cairo >= $CAIRO_REQUIRED)
 AC_SUBST(F_CFLAGS)
 AC_SUBST(F_LIBS)
+
+PKG_CHECK_MODULES(OPENCV, opencv >= $OPENCV_REQUIRED)
+AC_SUBST(OPENCV_CFLAGS)
+AC_SUBST(OPENCV_LIBS)
 
 PKG_CHECK_MODULES(GIO, gio-2.0 >= $GIO_REQUIRED)
 AC_SUBST(GIO_CFLAGS)
@@ -311,6 +317,7 @@ external/Hyena/Hyena/Makefile
 external/Hyena/Makefile
 external/Makefile
 lib/libfspot/Makefile
+lib/facedetect/Makefile
 lib/Makefile
 
 src/AssemblyInfo.cs
