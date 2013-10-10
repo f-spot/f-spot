@@ -43,10 +43,10 @@ DISTCLEANFILES = \
 DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper
 
 if GCONF_SCHEMAS_INSTALL
-install-data-local:
+install-data-local: copy_bin
 	-GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(srcdir)/$(schema_DATA)
 else
-install-data-local:
+install-data-local: copy_bin
 endif
 
 all: sln_build
@@ -62,8 +62,6 @@ run:
 	@pushd bin/; \
 	../src/Clients/MainApp/f-spot --uninstalled --debug; \
 	popd;
-
-install-data-local: copy_bin
 
 copy_bin:
 	mkdir -p $(DESTDIR)/$(libdir)/f-spot

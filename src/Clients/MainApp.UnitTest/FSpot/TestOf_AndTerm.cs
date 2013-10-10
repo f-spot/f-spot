@@ -24,11 +24,5 @@ namespace FSpot
 		{
 			andTerm = null;
 		}
-
-		[Test]
-		public void TestCase ()
-		{
-			Assert.AreEqual(0, 0);
-		}
 	}
 }

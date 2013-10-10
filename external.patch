@@ -1,7 +1,7 @@
-diff --git a/Hyena.Data.Sqlite/Hyena.Data.Sqlite.csproj b/Hyena.Data.Sqlite/Hyena.Data.Sqlite.csproj
+diff --git a/external/Hyena/Hyena.Data.Sqlite/Hyena.Data.Sqlite.csproj b/external/Hyena/Hyena.Data.Sqlite/Hyena.Data.Sqlite.csproj
 index cabce10..21ed285 100644
---- a/Hyena.Data.Sqlite/Hyena.Data.Sqlite.csproj
-+++ b/Hyena.Data.Sqlite/Hyena.Data.Sqlite.csproj
+--- a/external/Hyena/Hyena.Data.Sqlite/Hyena.Data.Sqlite.csproj
++++ b/external/Hyena/Hyena.Data.Sqlite/Hyena.Data.Sqlite.csproj
 @@ -1,5 +1,5 @@
  <?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
@@ -9,10 +9,10 @@ index cabce10..21ed285 100644
    <PropertyGroup>
      <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
      <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-diff --git a/Hyena.Gui/Hyena.Gui.csproj b/Hyena.Gui/Hyena.Gui.csproj
+diff --git a/external/Hyena/Hyena.Gui/Hyena.Gui.csproj b/external/Hyena/Hyena.Gui/Hyena.Gui.csproj
 index 0cf3088..539cfcc 100644
---- a/Hyena.Gui/Hyena.Gui.csproj
-+++ b/Hyena.Gui/Hyena.Gui.csproj
+--- a/external/Hyena/Hyena.Gui/Hyena.Gui.csproj
++++ b/external/Hyena/Hyena.Gui/Hyena.Gui.csproj
 @@ -1,5 +1,5 @@
  <?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
@@ -20,10 +20,10 @@ index 0cf3088..539cfcc 100644
    <PropertyGroup>
      <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
      <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-diff --git a/Hyena/Hyena.csproj b/Hyena/Hyena.csproj
+diff --git a/external/Hyena/Hyena/Hyena.csproj b/external/Hyena/Hyena/Hyena.csproj
 index cc18abc..b7014c2 100644
---- a/Hyena/Hyena.csproj
-+++ b/Hyena/Hyena.csproj
+--- a/external/Hyena/Hyena/Hyena.csproj
++++ b/external/Hyena/Hyena/Hyena.csproj
 @@ -1,5 +1,5 @@
  <?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
@@ -31,3 +31,17 @@ index cc18abc..b7014c2 100644
    <PropertyGroup>
      <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
      <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+diff --git a/external/taglib-sharp/src/taglib-sharp.csproj b/external/taglib-sharp/src/taglib-sharp.csproj
+index 99ee40e..22f511b 100644
+--- a/external/taglib-sharp/src/taglib-sharp.csproj
++++ b/external/taglib-sharp/src/taglib-sharp.csproj
+@@ -10,8 +10,6 @@
+     <RootNamespace>TagLib</RootNamespace>
+     <ApplicationIcon>.</ApplicationIcon>
+     <AssemblyName>taglib-sharp</AssemblyName>
+-    <ReleaseVersion>2.0.4.0</ReleaseVersion>
+-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+   </PropertyGroup>
+   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+     <DebugSymbols>True</DebugSymbols>
+
