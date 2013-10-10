@@ -1983,9 +1983,9 @@ namespace FSpot
 			update_status_label = false;
 			int total_photos = Database.Photos.TotalPhotos;
 			if (total_photos != query.Count)
-				status_label.Text = String.Format (Catalog.GetPluralString ("{0} Photo out of {1}", "{0} Photos out of {1}", query.Count), query.Count, total_photos);
+				status_label.Text = String.Format (Catalog.GetPluralString ("{0} photo out of {1}", "{0} photos out of {1}", query.Count), query.Count, total_photos);
 			else
-				status_label.Text = String.Format (Catalog.GetPluralString ("{0} Photo", "{0} Photos", query.Count), query.Count);
+				status_label.Text = String.Format (Catalog.GetPluralString ("{0} photo", "{0} photos", query.Count), query.Count);
 
 			if ((Selection != null) && (Selection.Count > 0))
 				status_label.Text += String.Format (Catalog.GetPluralString (" ({0} selected)", " ({0} selected)", Selection.Count), Selection.Count);
