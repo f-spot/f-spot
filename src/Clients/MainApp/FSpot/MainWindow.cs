@@ -312,19 +312,19 @@ namespace FSpot
 			toolbar.Insert (new SeparatorToolItem (), -1);
 
 			browse_button = new ToggleToolButton ();
-			browse_button.Label = Catalog.GetString ("Browse");
+			browse_button.Label = Catalog.GetString ("Browsing");
 			browse_button.IconName = "mode-browse";
 			browse_button.IsImportant = true;
 			browse_button.Toggled += HandleToggleViewBrowse;
-			browse_button.TooltipText = Catalog.GetString ("Browse many photos simultaneously");
+			browse_button.TooltipText = Catalog.GetString ("Browse your photo library");
 			toolbar.Insert (browse_button, -1);
 
 			edit_button = new ToggleToolButton ();
-			edit_button.Label = Catalog.GetString ("Edit Image");
+			edit_button.Label = Catalog.GetString ("Editing");
 			edit_button.IconName = "mode-image-edit";
 			edit_button.IsImportant = true;
 			edit_button.Toggled += HandleToggleViewPhoto;
-			edit_button.TooltipText = Catalog.GetString ("View and edit a photo");
+			edit_button.TooltipText = Catalog.GetString ("Edit your photos");
 			toolbar.Insert (edit_button, -1);
 
 			toolbar.Insert (new SeparatorToolItem (), -1);
