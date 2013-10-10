@@ -326,9 +326,6 @@
     </Reference>
     <Reference Include="Mono.Simd" />
     <Reference Include="Mono.Cairo" />
-    <Reference Include="taglib-sharp, Version=2.0.4.0, Culture=neutral, PublicKeyToken=db62eba44689b5b0">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Private>False</Private>
@@ -403,6 +400,10 @@
     <ProjectReference Include="..\..\..\external\xwt\Xwt.Gtk\Xwt.Gtk.csproj">
       <Project>{C3887A93-B2BD-4097-8E2F-3A063EFF32FD}</Project>
       <Name>Xwt.Gtk</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\external\taglib-sharp\src\taglib-sharp.csproj">
+      <Project>{6B143A39-C7B2-4743-9917-92262C60E9A6}</Project>
+      <Name>taglib-sharp</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

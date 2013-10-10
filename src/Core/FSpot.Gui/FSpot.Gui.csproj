@@ -81,9 +81,6 @@
     <Reference Include="Mono.Posix" />
     <Reference Include="System" />
     <Reference Include="Mono.Cairo" />
-    <Reference Include="taglib-sharp, Version=2.0.4.0, Culture=neutral, PublicKeyToken=db62eba44689b5b0">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="gtk-sharp-beans">
       <HintPath>..\..\..\external\gtk-sharp-beans.dll</HintPath>
@@ -128,6 +125,10 @@
       <Project>{C856EFD8-E812-4E61-8B76-E3583D94C233}</Project>
       <Name>Hyena.Gui</Name>
       <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\external\taglib-sharp\src\taglib-sharp.csproj">
+      <Project>{6B143A39-C7B2-4743-9917-92262C60E9A6}</Project>
+      <Name>taglib-sharp</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

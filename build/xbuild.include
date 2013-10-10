@@ -1,5 +1,5 @@
 XBUILD=xbuild
-XBUILD_ARGS=/verbosity:diagnostic /nologo /property:CodePage=65001
+XBUILD_ARGS=/verbosity:quiet /nologo /property:CodePage=65001
 ALL_CSPROJ=$(wildcard *.csproj)
 MAIN_SLN=$(top_builddir)/F-Spot.sln
 
