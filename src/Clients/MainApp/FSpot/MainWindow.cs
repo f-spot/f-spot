@@ -294,9 +294,9 @@ namespace FSpot
 			toolbar = new Gtk.Toolbar ();
 			toolbar_vbox.PackStart (toolbar);
 
-			ToolButton import_button = GtkUtil.ToolButtonFromTheme ("gtk-add", Catalog.GetString ("Import"), true);
+			ToolButton import_button = GtkUtil.ToolButtonFromTheme ("gtk-add", Catalog.GetString ("Import Photos…"), true);
 			import_button.Clicked += (o, args) => StartImport (null);
-			import_button.TooltipText = Catalog.GetString ("Import new images");
+			import_button.TooltipText = Catalog.GetString ("Import new photos");
 			toolbar.Insert (import_button, -1);
 
 			toolbar.Insert (new SeparatorToolItem (), -1);
