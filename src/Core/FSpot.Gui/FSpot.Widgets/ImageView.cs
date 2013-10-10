@@ -123,9 +123,11 @@ namespace FSpot.Widgets
 			set { 
 				if (can_select == value)
 					return;
+
+				if (!value)
+					Selection = Rectangle.Zero;
+
 				can_select = value;
-				if (!can_select)
-					selection = Rectangle.Zero;
 			}
 		}
 
@@ -327,7 +329,8 @@ namespace FSpot.Widgets
                             | EventMask.PointerMotionMask
                             | EventMask.PointerMotionHintMask
                             | EventMask.ScrollMask
-                            | EventMask.KeyPressMask 
+                            | EventMask.KeyPressMask
+                            | EventMask.LeaveNotifyMask
                     },
                     Gdk.WindowAttributesType.X | Gdk.WindowAttributesType.Y |
                     Gdk.WindowAttributesType.Visual | Gdk.WindowAttributesType.Colormap);
