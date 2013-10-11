@@ -240,17 +240,17 @@ namespace FSpot
 	}
 
 	public class LogicWidget : HBox {
-		private PhotoQuery query;
+		PhotoQuery query;
 
 
-		private static Term rootTerm;
-		private EventBox rootAdd;
-		private HBox rootBox;
-		private Label help;
-		private HBox sepBox;
+		static Term rootTerm;
+		EventBox rootAdd;
+		HBox rootBox;
+		Label help;
+		HBox sepBox;
 
-		private bool preventUpdate = false;
-		private bool preview = false;
+		bool preventUpdate = false;
+		bool preview = false;
 
 		public event EventHandler Changed;
 

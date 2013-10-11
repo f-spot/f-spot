@@ -11,6 +11,7 @@
 // Copyright (C) 2003 Ettore Perazzoli
 // Copyright (C) 2004-2005 Larry Ewing
 // Copyright (C) 2008 Stephane Delcroix
+// Copyright (C) 2013 Stephen Shaw
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -45,7 +46,7 @@ namespace FSpot
 	public class ThumbnailCache : IDisposable {
 	
 		#region Types
-		private class Thumbnail {
+		class Thumbnail {
 			// Uri of the image source
 			public SafeUri uri;
 	
@@ -55,11 +56,11 @@ namespace FSpot
 		#endregion
 	
 		#region Private members and constants
-		private const int DEFAULT_CACHE_SIZE = 2;
-		private int max_count;
-		private List<Thumbnail> pixbuf_mru;
-		private Dictionary<SafeUri,Thumbnail> pixbuf_hash;
-		static private ThumbnailCache defaultcache = new ThumbnailCache (DEFAULT_CACHE_SIZE);
+		const int DEFAULT_CACHE_SIZE = 2;
+		int max_count;
+		List<Thumbnail> pixbuf_mru;
+		Dictionary<SafeUri,Thumbnail> pixbuf_hash;
+		static ThumbnailCache defaultcache = new ThumbnailCache (DEFAULT_CACHE_SIZE);
 		#endregion
 	
 		#region Public API
@@ -101,9 +102,7 @@ namespace FSpot
 			pixbuf_mru.Remove (item);
 			pixbuf_mru.Insert (0, item);
 	
-		        if (item.pixbuf == null)
-		            return null;
-		        return item.pixbuf.ShallowCopy ();
+	        return item.pixbuf == null ? null : item.pixbuf.ShallowCopy ();
 		}
 	
 		public void RemoveThumbnailForUri (SafeUri uri)
@@ -122,28 +121,41 @@ namespace FSpot
 	
 		public void Dispose ()
 		{
-			foreach (var item in pixbuf_mru) {
-				Thumbnail thumb = item;
-				pixbuf_hash.Remove (thumb.uri);
-				thumb.pixbuf.Dispose ();
-			}
-			pixbuf_mru.Clear ();
+			Dispose (true);
 			System.GC.SuppressFinalize (this);
 		}
-	
+
+		protected virtual void Dispose(bool disposing)
+		{
+			if (disposing)
+			{
+				foreach (var item in pixbuf_mru) {
+					Thumbnail thumb = item;
+					pixbuf_hash.Remove (thumb.uri);
+					thumb.pixbuf.Dispose ();
+				}
+				pixbuf_mru.Clear ();
+			}
+			else
+			{
+				foreach (var item in pixbuf_mru) {
+					Thumbnail thumb = item;
+					pixbuf_hash.Remove (thumb.uri);
+					thumb.pixbuf.Dispose ();
+				}
+				pixbuf_mru.Clear ();
+			} 
+
+		}
+
 		~ThumbnailCache ()
 		{
-			Log.DebugFormat ("Finalizer called on {0}. Should be Disposed", GetType ());
-			foreach (var item in pixbuf_mru) {
-				Thumbnail thumb = item;
-				pixbuf_hash.Remove (thumb.uri);
-				thumb.pixbuf.Dispose ();
-			}
-			pixbuf_mru.Clear ();
+			Console.WriteLine ("Finalizer called on {0}. Should be Disposed", GetType ());
+			Dispose (false);
 		}
 	
 		#region Private utility methods.
-		private void MaybeExpunge ()
+		void MaybeExpunge ()
 		{
 			while (pixbuf_mru.Count > max_count) {
 				Thumbnail thumbnail = pixbuf_mru [pixbuf_mru.Count - 1];

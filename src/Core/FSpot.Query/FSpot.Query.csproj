@@ -41,6 +41,12 @@
     <Compile Include="FSpot.Query\RatingRange.cs" />
     <Compile Include="FSpot.Query\RollSet.cs" />
     <Compile Include="FSpot.Query\UntaggedCondition.cs" />
+    <Compile Include="FSpot.Query\TextTerm.cs" />
+    <Compile Include="FSpot.Query\NotTerm.cs" />
+    <Compile Include="FSpot.Query\NAryOperator.cs" />
+    <Compile Include="FSpot.Query\OrTerm.cs" />
+    <Compile Include="FSpot.Query\AndTerm.cs" />
+    <Compile Include="FSpot.Query\TagTerm.cs" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>

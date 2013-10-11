@@ -7,6 +7,7 @@
 //   Stephane Delcroix <stephane@delcroix.org>
 //   Stephen Shaw <sshaw@decriptor.com>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2008-2010 Novell, Inc.
 // Copyright (C) 2008, 2010 Ruben Vermeersch
 // Copyright (C) 2008-2009 Lorenzo Milesi
@@ -51,7 +52,6 @@ namespace FSpot.Widgets
 {
 	public class Filmstrip : EventBox, IDisposable
 	{
-
 //		public event OrientationChangedHandler OrientationChanged;
 		public event EventHandler PositionChanged;
 
@@ -220,7 +220,7 @@ namespace FSpot.Widgets
 		{
 		}
 
-		public Filmstrip (BrowsablePointer selection, bool squared_thumbs) : base ()
+		public Filmstrip (BrowsablePointer selection, bool squared_thumbs)
 		{
 			CanFocus = true;
 			this.selection = selection;
@@ -478,8 +478,6 @@ namespace FSpot.Widgets
 			//FIXME use QueueDrawArea
 			//FIXME only invalidate if displayed
 			QueueDraw ();
-
-
 		}
 
 		protected override bool OnPopupMenu ()
@@ -488,7 +486,7 @@ namespace FSpot.Widgets
 			return true;
 		}
 
-		private bool DrawOrientationMenu (Gdk.EventButton args)
+		bool DrawOrientationMenu (Gdk.EventButton args)
 		{
 			Gtk.Menu placement_menu = new Gtk.Menu ();
 			GtkUtil.MakeCheckMenuItem (placement_menu,
@@ -588,13 +586,13 @@ namespace FSpot.Widgets
 			return highlight;
 		}
 
-		private static uint ColorToInt(Gdk.Color color) {
-			return (uint)((uint)color.Red / 256 << 24 ) + ((uint)color.Green / 256 << 16) + ((uint)color.Blue / 256 << 8) + 255;
+		static uint ColorToInt(Gdk.Color color) {
+			return ((uint)color.Red / 256 << 24) + ((uint)color.Green / 256 << 16) + ((uint)color.Blue / 256 << 8) + 255;
 		}
 
 		~Filmstrip ()
 		{
-			Log.DebugFormat ("Finalizer called on {0}. Should be Disposed", GetType ());
+			Console.WriteLine ("Finalizer called on {0}. Should be Disposed", GetType ());
 			Dispose (false);
 		}
 
@@ -611,9 +609,9 @@ namespace FSpot.Widgets
 			if (is_disposed)
 				return;
 			if (disposing) {
-				this.selection.Changed -= HandlePointerChanged;
-				this.selection.Collection.Changed -= HandleCollectionChanged;
-				this.selection.Collection.ItemsChanged -= HandleCollectionItemsChanged;
+				selection.Changed -= HandlePointerChanged;
+				selection.Collection.Changed -= HandleCollectionChanged;
+				selection.Collection.ItemsChanged -= HandleCollectionItemsChanged;
 				ThumbnailLoader.Default.OnPixbufLoaded -= HandlePixbufLoaded;
 				if (background_pixbuf != null)
 					background_pixbuf.Dispose ();

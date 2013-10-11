@@ -50,6 +50,7 @@
     <Compile Include="FSpot.Utils\Vector.cs" />
     <Compile Include="FSpot.Utils\DelayedOperation.cs" />
     <Compile Include="FSpot.Utils\TargetListExtensionMethods.cs" />
+    <Compile Include="FSpot.Utils\DisposableCache.cs" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>

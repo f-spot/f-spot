@@ -2,9 +2,11 @@
 // Tag.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Ruben Vermeersch <ruben@savanne.be>
 //   Stephane Delcroix <sdelcroix@novell.com>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2008-2010 Novell, Inc.
 // Copyright (C) 2010 Ruben Vermeersch
 // Copyright (C) 2008 Stephane Delcroix
@@ -34,8 +36,6 @@ using System;
 using Gdk;
 
 using FSpot.Utils;
-
-using Hyena;
 
 namespace FSpot.Core
 {
@@ -95,7 +95,7 @@ namespace FSpot.Core
 		}
 
 		Pixbuf cached_icon;
-		private IconSize cached_icon_size = IconSize.Hidden;
+		IconSize cached_icon_size = IconSize.Hidden;
 
 		// We can use a SizedIcon everywhere we were using an Icon
 		public Pixbuf SizedIcon {
@@ -107,37 +107,34 @@ namespace FSpot.Core
 				if (ThemeIconName != null) { //Theme icon
 					if (cached_icon != null)
 						cached_icon.Dispose ();
-					cached_icon = GtkUtil.TryLoadIcon (Global.IconTheme, ThemeIconName, (int) tag_icon_size, (Gtk.IconLookupFlags)0);
+					cached_icon = GtkUtil.TryLoadIcon (Global.IconTheme, ThemeIconName, (int)tag_icon_size, (Gtk.IconLookupFlags)0);
 
-					if (Math.Max (cached_icon.Width, cached_icon.Height) <= (int) tag_icon_size)
+					if (Math.Max (cached_icon.Width, cached_icon.Height) <= (int)tag_icon_size)
 						return cached_icon;
 				}
 				if (Icon == null)
 					return null;
 
-				if (Math.Max (Icon.Width, Icon.Height) >= (int) tag_icon_size) { //Don't upscale
+				if (Math.Max (Icon.Width, Icon.Height) >= (int)tag_icon_size) { //Don't upscale
 					if (cached_icon != null)
 						cached_icon.Dispose ();
-					cached_icon = Icon.ScaleSimple ((int) tag_icon_size, (int) tag_icon_size, InterpType.Bilinear);
+					cached_icon = Icon.ScaleSimple ((int)tag_icon_size, (int)tag_icon_size, InterpType.Bilinear);
 					cached_icon_size = tag_icon_size;
 					return cached_icon;
-				} else
-					return Icon;
+				}
+				return Icon;
 			}
 		}
 
-
 		// FIXME: Why does this ctor take one of its derived classes as a parameter?
 		// You are not supposed to invoke these constructors outside of the TagStore class.
-		public Tag (Category category, uint id, string name)
-			: base (id)
+		public Tag (Category category, uint id, string name) : base (id)
 		{
 			Category = category;
 			Name = name;
 			Popularity = 0;
 			IconWasCleared = false;
 		}
-
 
 		// IComparer
 		public int CompareTo (Tag tag)
@@ -148,11 +145,9 @@ namespace FSpot.Core
 			if (Category == tag.Category) {
 				if (SortPriority == tag.SortPriority)
 					return Name.CompareTo (tag.Name);
-				else
-					return SortPriority - tag.SortPriority;
-			} else {
-				return Category.CompareTo (tag.Category);
+				return SortPriority - tag.SortPriority;
 			}
+			return Category.CompareTo (tag.Category);
 		}
 
 		public bool IsAncestorOf (Tag tag)
@@ -168,26 +163,38 @@ namespace FSpot.Core
 			return false;
 		}
 
-		public void Dispose ()
+		public void Dispose()
 		{
-			if (icon != null)
-				icon.Dispose ();
-			if (cached_icon != null)
-				cached_icon.Dispose ();
-			if (category != null)
-				category.Dispose ();
-			System.GC.SuppressFinalize (this);
+			Dispose(true);
+			System.GC.SuppressFinalize(this);
+		}
+
+		protected virtual void Dispose(bool disposing)
+		{
+			if (disposing)
+			{
+				if (icon != null)
+					icon.Dispose ();
+				if (cached_icon != null)
+					cached_icon.Dispose ();
+				if (category != null)
+					category.Dispose ();
+			}
+			else
+			{
+				Console.WriteLine ("Finalizer called on {0}. Should be Disposed", GetType ());
+				if (icon != null)
+					icon.Dispose ();
+				if (cached_icon != null)
+					cached_icon.Dispose ();
+				if (category != null)
+					category.Dispose ();
+			}
 		}
 
 		~Tag ()
 		{
-			Log.DebugFormat ("Finalizer called on {0}. Should be Disposed", GetType ());
-			if (icon != null)
-				icon.Dispose ();
-			if (cached_icon != null)
-				cached_icon.Dispose ();
-			if (category != null)
-				category.Dispose ();
+			Dispose (false);
 		}
 	}
 }

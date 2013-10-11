@@ -2,10 +2,12 @@
 // PhotoView.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Ruben Vermeersch <ruben@savanne.be>
 //   Lorenzo Milesi <maxxer@yetopen.it>
 //   Stephane Delcroix <stephane@delcroix.org>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2008-2010 Novell, Inc.
 // Copyright (C) 2010 Ruben Vermeersch
 // Copyright (C) 2009 Lorenzo Milesi
@@ -42,21 +44,23 @@ using FSpot.Core;
 using FSpot.Widgets;
 using FSpot.Utils;
 
-namespace FSpot {
-	public class PhotoView : EventBox {
+namespace FSpot
+{
+	public class PhotoView : EventBox
+	{
 		DelayedOperation commit_delay;
 
-                private ScrolledWindow photo_view_scrolled;
-		private EventBox background;
+		ScrolledWindow photo_view_scrolled;
+		EventBox background;
 
-		private Filmstrip filmstrip;
+		Filmstrip filmstrip;
 		VBox inner_vbox;
 		HBox inner_hbox;
 
-		private Widgets.TagView tag_view;
+		Widgets.TagView tag_view;
 
-		private Entry description_entry;
-		private RatingEntry rating;
+		Entry description_entry;
+		RatingEntry rating;
 
 		// Public events.
 
@@ -75,7 +79,7 @@ namespace FSpot {
 			get { return filmstrip.Orientation; }
 		}
 
-                // was photo_view
+		// was photo_view
 		public PhotoImageView View { get; private set; }
 
 		public BrowsablePointer Item {
@@ -99,7 +103,7 @@ namespace FSpot {
 			View.Reload ();
 		}
 
-		private void UpdateDescriptionEntry ()
+		void UpdateDescriptionEntry ()
 		{
 			description_entry.Changed -= HandleDescriptionChanged;
 			if (Item.IsValid) {
@@ -131,7 +135,7 @@ namespace FSpot {
 			rating.Changed += HandleRatingChanged;
 		}
 
-		private void Update ()
+		void Update ()
 		{
 			if (UpdateStarted != null)
 				UpdateStarted (this);
@@ -154,26 +158,26 @@ namespace FSpot {
 		}
 
 		// Event handlers.
-		private void HandleButtonPressEvent (object sender, ButtonPressEventArgs args)
+		void HandleButtonPressEvent (object sender, ButtonPressEventArgs args)
 		{
 			if (args.Event.Type == EventType.TwoButtonPress && args.Event.Button == 1 && DoubleClicked != null)
 				    DoubleClicked (this, null);
 			if (args.Event.Type == EventType.ButtonPress
 			    && args.Event.Button == 3) {
 				PhotoPopup popup = new PhotoPopup ();
-				popup.Activate (this.Toplevel, args.Event);
+				popup.Activate (Toplevel, args.Event);
 			}
 		}
 
 		protected override bool OnPopupMenu ()
 		{
 			PhotoPopup popup = new PhotoPopup ();
-			popup.Activate (this.Toplevel);
+			popup.Activate (Toplevel);
 			return true;
 		}
 
 		int changed_photo;
-		private bool CommitPendingChanges ()
+		bool CommitPendingChanges ()
 		{
 			if (commit_delay.IsPending) {
 				commit_delay.Stop ();
@@ -182,7 +186,7 @@ namespace FSpot {
 			return true;
 		}
 
-		private void HandleDescriptionChanged (object sender, EventArgs args)
+		void HandleDescriptionChanged (object sender, EventArgs args)
 		{
 			if (!Item.IsValid)
 				return;
@@ -199,7 +203,7 @@ namespace FSpot {
 			commit_delay.Start ();
 		}
 
-		private void HandleRatingChanged (object o, EventArgs e)
+		void HandleRatingChanged (object o, EventArgs e)
 		{
 			if (!Item.IsValid)
 				return;
@@ -230,22 +234,22 @@ namespace FSpot {
 			tag_view.Current = Item.Current;
 			Update ();
 
-			if (this.PhotoChanged != null)
+			if (PhotoChanged != null)
 				PhotoChanged (this);
 		}
 
-		private void HandleDestroy (object sender, System.EventArgs args)
+		void HandleDestroy (object sender, EventArgs args)
 		{
 			CommitPendingChanges ();
 			Dispose ();
 		}
 
-		private void OnPreferencesChanged (object sender, NotifyEventArgs args)
+		void OnPreferencesChanged (object sender, NotifyEventArgs args)
 		{
 			LoadPreference (args.Key);
 		}
 
-		private void LoadPreference (String key)
+		void LoadPreference (String key)
 		{
 			switch (key) {
 			case Preferences.FILMSTRIP_ORIENTATION:
@@ -296,12 +300,11 @@ namespace FSpot {
 		}
 
 		public PhotoView (IBrowsableCollection query)
-			: base ()
 		{
 			Query = query;
 
 			commit_delay = new DelayedOperation (1000, new GLib.IdleHandler (CommitPendingChanges));
-			this.Destroyed += HandleDestroy;
+			Destroyed += HandleDestroy;
 
 			Name = "ImageContainer";
 			Box vbox = new VBox (false, 6);
@@ -352,7 +355,7 @@ namespace FSpot {
 			lower_hbox.PackStart (description_entry, true, true, 0);
 			description_entry.Changed += HandleDescriptionChanged;
 
-            rating = new RatingEntry () {
+            rating = new RatingEntry {
                 HasFrame = false,
                 AlwaysShowEmptyStars = true
             };
@@ -371,7 +374,7 @@ namespace FSpot {
 
 		~PhotoView ()
 		{
-			Hyena.Log.DebugFormat ("Finalizer called on {0}. Should be Disposed", GetType ());
+			Console.WriteLine ("Finalizer called on {0}. Should be Disposed", GetType ());
 			Dispose (false);
 		}
 
@@ -382,19 +385,16 @@ namespace FSpot {
 			System.GC.SuppressFinalize (this);
 		}
 
-		bool is_disposed = false;
 		protected virtual void Dispose (bool disposing)
 		{
-			if (is_disposed)
+			if (disposing)
 				return;
 			if (disposing) { //Free managed resources
 				filmstrip.Dispose ();
 			}
-
-			is_disposed = true;
 		}
 
-		private void SetColors ()
+		void SetColors ()
 		{
 			GtkUtil.ModifyColors (filmstrip);
 			GtkUtil.ModifyColors (tag_view);

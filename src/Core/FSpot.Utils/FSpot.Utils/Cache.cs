@@ -2,8 +2,10 @@
 // Cache.cs
 //
 // Author:
+//	 Stephen Shaw <sshaw@decriptor.com>
 //   Stephane Delcroix <stephane@delcroix.org>
 //
+// Copyright (c) 2013 Stephen Shaw
 // Copyright (C) 2008 Novell, Inc.
 // Copyright (C) 2008 Stephane Delcroix
 //
@@ -27,30 +29,23 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
 using System.Collections.Generic;
-
-using Hyena;
 
 namespace FSpot.Utils
 {
 	public class Cache<TKey, TValue>
 	{
-		private const int DEFAULT_CACHE_SIZE = 10;
-		protected int max_count;
-		protected Dictionary<TKey, TValue> hash;
+		const int DEFAULT_CACHE_SIZE = 10;
+		protected int MaxCount;
+		protected Dictionary<TKey, TValue> Hash;
 		protected List<TKey> mru;
 		protected object o = new object ();
 
-		public Cache () : this (DEFAULT_CACHE_SIZE)
+		public Cache (int maxCount = DEFAULT_CACHE_SIZE)
 		{
-		}
-
-		public Cache (int max_count)
-		{
-			this.max_count = max_count;
-			hash = new Dictionary<TKey, TValue> (max_count + 1);
-			mru = new List<TKey> (max_count + 1);
+			MaxCount = maxCount;
+			Hash = new Dictionary<TKey, TValue> (maxCount + 1);
+			mru = new List<TKey> (maxCount + 1);
 		}
 
 		public virtual void Add (TKey key, TValue value)
@@ -60,11 +55,11 @@ namespace FSpot.Utils
 					mru.Remove (key);
 
 				mru.Insert (0, key);
-				hash [key] = value;
+				Hash [key] = value;
 				
-				while (mru.Count >= max_count) {
-					hash.Remove (mru [max_count - 1]);
-					mru.RemoveAt (max_count - 1);
+				while (mru.Count >= MaxCount) {
+					Hash.Remove (mru [MaxCount - 1]);
+					mru.RemoveAt (MaxCount - 1);
 				}	
 			}
 		}
@@ -78,7 +73,7 @@ namespace FSpot.Utils
 				mru.Remove (key);
 				mru.Insert (0, key);
 
-				return hash [key];
+				return Hash [key];
 			}
 		}
 
@@ -86,7 +81,7 @@ namespace FSpot.Utils
 		{
 			lock (o) {
 				mru.Clear ();
-				hash.Clear ();
+				Hash.Clear ();
 			}
 		}
 
@@ -94,7 +89,7 @@ namespace FSpot.Utils
 		{
 			lock (o) {
 				mru.Remove (key);
-				hash.Remove (key);
+				Hash.Remove (key);
 			}
 		}
 
@@ -113,68 +108,4 @@ namespace FSpot.Utils
 			return mru.Contains (key);
 		}
 	}
-
-	public class DisposableCache<TKey, TValue> : Cache<TKey, TValue>, IDisposable
-	{
-		public DisposableCache () : base ()
-		{
-		}
-
-		public DisposableCache (int max_count) : base (max_count)
-		{
-		}
-
-		public override void Clear ()
-		{
-			lock (o) {
-				foreach (TValue value in hash.Values)
-					if (value is IDisposable)
-						(value as IDisposable).Dispose ();
-				mru.Clear ();
-				hash.Clear ();
-			}
-		}
-
-		public override void Add (TKey key, TValue value)
-		{
-			lock (o) {
-				if (mru.Contains (key))
-					mru.Remove (key);
-
-				mru.Insert (0, key);
-				hash [key] = value;
-				
-				while (mru.Count >= max_count) {
-					if (hash [mru [max_count - 1]] is IDisposable)
-						(hash [mru [max_count - 1]] as IDisposable).Dispose ();
-					hash.Remove (mru [max_count - 1]);
-					mru.RemoveAt (max_count - 1);
-				}	
-			}
-		}
-
-		public override void Remove (TKey key)
-		{
-			lock (o) {
-				if (hash [key] is IDisposable)
-					(hash [key] as IDisposable).Dispose ();
-				mru.Remove (key);
-				hash.Remove (key);
-			}
-		}
-
-
-		public void Dispose ()
-		{
-			Clear ();
-			GC.SuppressFinalize (this);
-		}
-
-		~DisposableCache ()
-		{
-			Log.DebugFormat ("Finalizer called on {0}. Should be Disposed", GetType ());
-			Clear ();	
-		}
-	}
 }
-
