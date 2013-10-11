@@ -192,7 +192,7 @@ namespace Cms
 								     double Saturation,
 								     ref ColorCIExyY src_wp, 
 								     ref ColorCIExyY dest_wp,
-								     HandleRef [] tables);
+								     HandleRef [] curves);
 		
 		[DllImport ("libfspot", EntryPoint = "f_screen_get_profile")]
 		public static extern IntPtr FScreenGetProfile (IntPtr screen);

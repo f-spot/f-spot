@@ -120,13 +120,14 @@ cmsHPROFILE CMSEXPORT f_cmsCreateBCHSWabstractProfile(int nLUTPoints,
 						       double Hue,
 						       double Saturation,
 						       cmsCIExyY * current_wp,
-						       cmsCIExyY * destination_wp)
+						      cmsCIExyY * destination_wp,
+						      cmsToneCurve * Curves [])
 {
 	cmsHPROFILE hICC;
 	cmsPipeline* Pipeline;
 	BCHSWADJUSTS bchsw;
 	cmsCIExyY WhitePnt;
-	cmsStage* CLUT;
+	cmsStage* CLUT, * gammaCorrection;
 	cmsUInt32Number Dimensions[MAX_INPUT_DIMENSIONS];
 	int i;
 
@@ -159,6 +160,11 @@ cmsHPROFILE CMSEXPORT f_cmsCreateBCHSWabstractProfile(int nLUTPoints,
 	for (i=0; i < MAX_INPUT_DIMENSIONS; i++) Dimensions[i] = nLUTPoints;
 	CLUT = cmsStageAllocCLut16bitGranular(NULL, Dimensions, 3, 3, NULL);
 	if (CLUT == NULL) return NULL;
+
+	if (Curves != NULL) {
+	  gammaCorrection = cmsStageAllocToneCurves(NULL, 3, Curves);
+	  cmsPipelineInsertStage(Pipeline, cmsAT_END, gammaCorrection);
+	}
 
 	if (!cmsStageSampleCLut16bit(CLUT, bchswSampler, (void*) &bchsw, 0)) {
 
