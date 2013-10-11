@@ -162,13 +162,6 @@ namespace FSpot.Query
 
 		void HandleDragMotion (object o, DragMotionArgs args)
 		{
-			Console.WriteLine (preview);
-			Console.WriteLine (rootTerm);
-			Console.WriteLine (rootTerm.Count);
-			Console.WriteLine (Literal.FocusedLiterals);
-			Console.WriteLine (Literal.FocusedLiterals.Count);
-			Console.WriteLine (Children);
-			Console.WriteLine (Children.Length);
 			if (!preview && rootTerm.Count > 0 && (Literal.FocusedLiterals.Count == 0 || Children.Length > 2)) {
 				Preview ();
 				preview = true;
