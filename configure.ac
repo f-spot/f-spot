@@ -1,6 +1,6 @@
 dnl Granularly define the version components
 dnl Remember to also update the Display Version
-m4_define([fspot_version_major], [0])
+m4_define([fspot_version_major], [2])
 m4_define([fspot_version_minor], [9])
 m4_define([fspot_version_micro], [0])
 
@@ -23,7 +23,7 @@ m4_define([fspot_version],
 
 dnl this can sometimes differ manually
 m4_define([fspot_display_version],
-	["0.9.0"])
+	["2.9.0"])
 
 m4_define([fspot_api_version],
 	[fspot_version_major.fspot_version_minor])
@@ -63,7 +63,7 @@ dnl User help
 SHAMROCK_CHECK_GNOME_DOC_UTILS(0.17.3)
 
 dnl Mono and gmcs
-SHAMROCK_CHECK_MONO_MODULE(2.2)
+SHAMROCK_CHECK_MONO_MODULE(3.2.0)
 SHAMROCK_FIND_MONO_2_0_COMPILER
 SHAMROCK_FIND_MONO_RUNTIME
 SHAMROCK_CHECK_MONO_2_0_GAC_ASSEMBLIES([
@@ -85,7 +85,6 @@ FSPOT_CHECK_GNOME_KEYRING_SHARP
 FSPOT_CHECK_FLICKRNET
 SHAMROCK_CHECK_NUNIT
 FSPOT_CHECK_DBUS_SHARP
-FSPOT_CHECK_GNOME_SHARP
 
 
 
@@ -100,26 +99,6 @@ if test ! -x "$MCS"; then
 	AC_MSG_ERROR([No $CS compiler found])
 fi
 
-dnl --- Check for gapi programs
-
-AC_PATH_PROG(GAPI2FIXUP, gapi2-fixup, no)
-
-if test ! -x "$GAPI2FIXUP"; then
-	AC_MSG_ERROR([No gapi post-processor found])
-fi
-
-AC_PATH_PROG(GAPI2PARSER, gapi2-parser, no)
-
-if test ! -x "$GAPI2PARSER"; then
-	AC_MSG_ERROR([No gapi parser found])
-fi
-
-AC_PATH_PROG(GAPI2CODEGEN, gapi2-codegen, no)
-
-if test ! -x "$GAPI2CODEGEN"; then
-	AC_MSG_ERROR([No gapi code generator found])
-fi
-
 dnl -- Check for mono pc file
 
 AC_MSG_CHECKING([for mono.pc])
@@ -131,53 +110,27 @@ fi
 
 dnl --- Required libraries
 
-LIBGNOMEDESKTOP_REQUIRED=2.17
-GIO_REQUIRED=2.22.0
-GTKSHARPBEANS_REQUIRED=2.13.92
-GTK_REQUIRED=2.14
-MONO_CAIRO_REQUIRED=1.2.5
-CAIRO_REQUIRED=1.4.0
+#LIBGNOMEDESKTOP_REQUIRED=2.17
+GIO_REQUIRED=3.0
+GTK_REQUIRED=3.0
+#MONO_CAIRO_REQUIRED=1.2.5
+#CAIRO_REQUIRED=1.4.0
 LCMS2_REQUIRED=2.4
 
-PKG_CHECK_MODULES(F, gnome-desktop-2.0 >= $LIBGNOMEDESKTOP_REQUIRED gtk+-2.0 >= $GTK_REQUIRED mono-cairo >= $MONO_CAIRO_REQUIRED cairo >= $CAIRO_REQUIRED)
+PKG_CHECK_MODULES(F, gtk+-3.0 >= $GTK_REQUIRED)
 AC_SUBST(F_CFLAGS)
 AC_SUBST(F_LIBS)
 
-PKG_CHECK_MODULES(GIO, gio-2.0 >= $GIO_REQUIRED)
-AC_SUBST(GIO_CFLAGS)
-AC_SUBST(GIO_LIBS)
+#PKG_CHECK_MODULES(GIO, gio-2.0 >= $GIO_REQUIRED)
+#AC_SUBST(GIO_CFLAGS)
+#AC_SUBST(GIO_LIBS)
 
 CSC_DEFINES=""
-PKG_CHECK_MODULES(GNOME_SHARP, gnome-sharp-2.0 >= 2.8)
-
-PKG_CHECK_MODULES(GLIBSHARP, glib-sharp-2.0 >= 2.12)
-
-if pkg-config --atleast-version=2.13.0 gtk-sharp-2.0 && pkg-config --max-version=2.14 gtk-sharp-2.0; then
-	AC_MSG_ERROR([There is a svn version of gtk-sharp 2.13.x installed. Uninstall it.])
-fi
-
-dnl --- GConf
-AC_PATH_PROG(GCONFTOOL, gconftool-2)
-AM_GCONF_SOURCE_2
-PKG_CHECK_MODULES(GCONF_SHARP, gconf-sharp-2.0 >= $GTKSHARP_REQUIRED)
-if pkg-config --atleast-version=2.18 gconf-sharp-2.0; then
-	CSC_DEFINES="$CSC_DEFINES -d:GCONF_SHARP_2_18"
-fi
-if pkg-config --atleast-version=2.20.2 gconf-sharp-2.0; then
-	CSC_DEFINES="$CSC_DEFINES -d:GCONF_SHARP_2_20_2"
-fi
+PKG_CHECK_MODULES(GLIBSHARP, glib-sharp-3.0 >= 2.99.1)
 
 AC_SUBST(CSC_DEFINES)
 
-dnl --- libjpeg
-
-AC_CHECK_LIB(jpeg, jpeg_start_decompress, [],
-	     [AC_MSG_ERROR([libjpeg not found])], -lm)
-AC_CHECK_HEADER(jpeglib.h, , [AC_MSG_ERROR([libjpeg not found])])
-LIBJPEG='-ljpeg'
-
 dnl --- lcms
-
 PKG_CHECK_MODULES(LCMS2, lcms2 >= $LCMS2_REQUIRED, [], 
 	[AC_CHECK_LIB(lcms2, cmsCreateBCHSWabstractProfile, [],
 		     [AC_MSG_ERROR([liblcms2 not found])], -lm)
@@ -189,7 +142,6 @@ dnl --- libunique check
 PKG_CHECK_MODULES(UNIQUE, unique-1.0 >= 1.0)
 
 dnl --- Set up paths
-
 AC_ARG_WITH(turtle, [ --with-turtle=DIR                set path to source directory for turtle])
 AM_CONDITIONAL(WITH_TURTLE, test "x$with_turtle" != "xno")
 if test "x$with_turtle" != "xno"; then
@@ -234,7 +186,6 @@ AM_GLIB_GNU_GETTEXT
 
 dnl --- Prologue
 
-AC_SUBST(LIBJPEG)
 AC_SUBST(LCMS2_LIBS)
 AC_SUBST(LCMS2_CFLAGS)
 AC_SUBST(CFLAGS)

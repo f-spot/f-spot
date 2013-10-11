@@ -31,8 +31,7 @@
 
 using System;
 using System.ComponentModel;
-
-using GLibBeans;
+using GLib;
 
 namespace FSpot.Bling
 {
@@ -93,7 +92,8 @@ namespace FSpot.Bling
 				throw new InvalidOperationException ("Can't Resume () a non running animation.");
 			starttime = DateTimeOffset.Now - pausedafter;
 			state = AnimationState.Running;
-			Sources.SetPriority (GLib.Timeout.Add (40, Handler), priority);
+			// GTK3: g_source_set_priorty?
+//			Sources.SetPriority (GLib.Timeout.Add (40, Handler), priority);
 		}
 
 		public void Start ()
@@ -102,7 +102,8 @@ namespace FSpot.Bling
 				throw new InvalidOperationException ("Can't Start () a running or paused animation.");
 			starttime = DateTimeOffset.Now;
 			state = AnimationState.Running;
-			Sources.SetPriority (GLib.Timeout.Add (40, Handler), priority);
+			// GTK3: g_source_set_priorty?
+//			Sources.SetPriority (GLib.Timeout.Add (40, Handler), priority);
 		}
 
 		public void Stop ()

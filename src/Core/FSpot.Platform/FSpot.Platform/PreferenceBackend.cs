@@ -2,8 +2,10 @@
 // PreferenceBackend.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Stephane Delcroix <sdelcroix@novell.com>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2008 Novell, Inc.
 // Copyright (C) 2008 Stephane Delcroix
 //
@@ -30,6 +32,8 @@
 using System;
 using System.Runtime.Serialization;
 
+using GLib;
+
 namespace FSpot
 {
 	public class NotifyEventArgs : System.EventArgs
@@ -44,13 +48,13 @@ namespace FSpot
 		}
 	}
 }
-
+// GTK3: GSettings backend
 namespace FSpot.Platform
 {
 	[Serializable]
 	public class NoSuchKeyException : Exception
 	{
-		public NoSuchKeyException () : base ()
+		public NoSuchKeyException ()
 		{
 		}
 
@@ -71,26 +75,23 @@ namespace FSpot.Platform
 	{
 		static object sync_handler = new object ();
 
-		private static GConf.Client client;
-		private GConf.Client Client {
-			get {
-				lock (sync_handler) {
-					if (client == null)
-						client = new GConf.Client ();
-					return client;
-				}
-			}
-		}
-
-		public PreferenceBackend ()
-		{
-		}
+		// GTK3: GSettings
+//		static GConf.Client client;
+//		GConf.Client Client {
+//			get {
+//				lock (sync_handler) {
+//					if (client == null)
+//						client = new GConf.Client ();
+//					return client;
+//				}
+//			}
+//		}
 
 		public object Get (string key)
 		{
 			try {
-				return Client.Get (key);
-			} catch (GConf.NoSuchKeyException) {
+				return new object();//return Client.Get (key);
+			} catch (Exception /*GConf.NoSuchKeyException*/) {
 				throw new NoSuchKeyException (key);
 			}
 		}
@@ -108,14 +109,14 @@ namespace FSpot.Platform
 
 		public void Set (string key, object o)
 		{
-			Client.Set (key, o);
+			//Client.Set (key, o);
 		}
 
 		public void AddNotify (string key, EventHandler<NotifyEventArgs> handler)
 		{
 			// GConf doesn't like trailing slashes
 			key = key.TrimEnd('/');	
-			Client.AddNotify (key, delegate (object sender, GConf.NotifyEventArgs args) {handler (sender, new NotifyEventArgs (args.Key, args.Value));});
+			//Client.AddNotify (key, delegate (object sender, GConf.NotifyEventArgs args) {handler (sender, new NotifyEventArgs (args.Key, args.Value));});
 		}
 	}
 }
