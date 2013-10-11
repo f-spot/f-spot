@@ -43,27 +43,3 @@ index 98e277a..ebca24a 100644
    </PropertyGroup>
    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
      <DebugSymbols>True</DebugSymbols>
-@@ -22,11 +21,12 @@
-     <WarningLevel>4</WarningLevel>
-     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-     <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
--    <AssemblyOriginatorKeyFile>.</AssemblyOriginatorKeyFile>
-+    <AssemblyOriginatorKeyFile>..\taglib-sharp.snk</AssemblyOriginatorKeyFile>
-     <Execution>
-       <Execution clr-version="Net_2_0" />
-     </Execution>
-     <DefineConstants>HAVE_SHARPZIPLIB</DefineConstants>
-+    <SignAssembly>true</SignAssembly>
-   </PropertyGroup>
-   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-     <DebugType>none</DebugType>
-@@ -287,9 +287,6 @@
-   </ItemGroup>
-   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-   <ItemGroup>
--    <None Include="AssemblyInfo.cs.in" />
--    <None Include="policy.2.0.taglib-sharp.config.in" />
--    <None Include="taglib-sharp.snk" />
-     <None Include="TagLib\TagLib.sources" />
-   </ItemGroup>
- </Project>
