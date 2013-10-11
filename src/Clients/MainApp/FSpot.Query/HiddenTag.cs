@@ -2,9 +2,11 @@
 // HiddenTag.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Mike Gemünde <mike@gemuende.de>
 //   Ruben Vermeersch <ruben@savanne.be>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2009-2010 Novell, Inc.
 // Copyright (C) 2009 Mike Gemünde
 // Copyright (C) 2010 Ruben Vermeersch
@@ -34,14 +36,13 @@ using System;
 using FSpot;
 using FSpot.Core;
 
-
 namespace FSpot.Query
 {
-
 	public class HiddenTag : IQueryCondition
 	{
-		private static HiddenTag show_hidden_tag;
-		private static HiddenTag hide_hidden_tag;
+		static HiddenTag show_hidden_tag;
+		static HiddenTag hide_hidden_tag;
+		readonly bool show_hidden;
 
 		public static HiddenTag ShowHiddenTag {
 			get {
@@ -61,23 +62,19 @@ namespace FSpot.Query
 			}
 		}
 
-
-		bool show_hidden;
-
-		private HiddenTag (bool show_hidden)
+		HiddenTag (bool showHidden)
 		{
-			this.show_hidden = show_hidden;
+			show_hidden = showHidden;
 		}
 
 		public string SqlClause ()
 		{
 			Tag hidden = App.Instance.Database.Tags.Hidden;
 
-			if ( ! show_hidden && hidden != null)
+			if (!show_hidden && hidden != null)
 				return String.Format (" photos.id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {0}) ",
-				                      hidden.Id);
-			else
-				return null;
+					hidden.Id);
+			return null;
 		}
 	}
 }

@@ -6,6 +6,7 @@
 //   Stephane Delcroix <stephane@delcroix.org>
 //   Stephen Shaw <sshaw@decriptor.com>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2007-2009 Novell, Inc.
 // Copyright (C) 2007 Gabriel Burt
 // Copyright (C) 2007-2009 Stephane Delcroix
@@ -44,21 +45,8 @@ using Gdk;
 
 using FSpot.Core;
 
-namespace FSpot
+namespace FSpot.Query
 {
-	public abstract class AbstractLiteral : Term
-	{
-	    protected AbstractLiteral (Term parent, Literal after) : base (parent, after)
-		{
-		}
-
-		public override Term Invert (bool recurse)
-		{
-			is_negated = !is_negated;
-			return this;
-		}
-	}
-
 	// TODO rename to TagLiteral?
 	public class Literal : AbstractLiteral
 	{
@@ -101,7 +89,7 @@ namespace FSpot
 			}
 		}
 
-		private Pixbuf NegatedIcon {
+		Pixbuf NegatedIcon {
 			get {
 				if (negated_icon != null)
 					return negated_icon;
@@ -171,7 +159,7 @@ namespace FSpot
 
 				if (Tag.Icon == null)
 					handle_box.Add (label);
-else
+				else
 					handle_box.Add (image);
 
 				handle_box.Show ();
@@ -187,7 +175,7 @@ else
 			}
 		}
 
-		private Pixbuf NormalIcon {
+		Pixbuf NormalIcon {
 			get {
 				if (normal_icon != null)
 					return normal_icon;
@@ -270,19 +258,20 @@ else
 		{
 			var ids = new StringBuilder (Tag.Id.ToString ());
 
-			if (Tag is Category) {
+			var category = Tag as Category;
+			if (category != null) {
 				var tags = new List<Tag> ();
-				(Tag as Category).AddDescendentsTo (tags);
+				category.AddDescendentsTo (tags);
 
                 foreach (var t in tags)
 				{
-				    ids.Append (", " + t.Id.ToString ());
+				    ids.Append (", " + t.Id);
 				}
 			}
 
 			return String.Format (
-					"id {0}IN (SELECT photo_id FROM photo_tags WHERE tag_id IN ({1}))",
-					(IsNegated ? "NOT " : String.Empty), ids.ToString ());
+				"id {0}IN (SELECT photo_id FROM photo_tags WHERE tag_id IN ({1}))",
+				(IsNegated ? "NOT " : String.Empty), ids);
 		}
 
 		public override Gtk.Widget SeparatorWidget ()
@@ -290,7 +279,7 @@ else
 			return new Label ("ERR");
 		}
 
-		private static Pixbuf NegatedOverlay {
+		static Pixbuf NegatedOverlay {
 			get {
 				if (negated_overlay == null) {
 					System.Reflection.Assembly assembly = System.Reflection.Assembly.GetCallingAssembly ();
@@ -312,7 +301,7 @@ else
 		#endregion
 
 		#region Handlers
-		private void KeyHandler (object o, KeyPressEventArgs args)
+		void KeyHandler (object o, KeyPressEventArgs args)
 		{
 			args.RetVal = false;
 
@@ -324,7 +313,7 @@ else
 			}
 		}
 
-		private void HandleButtonPress (object o, ButtonPressEventArgs args)
+		void HandleButtonPress (object o, ButtonPressEventArgs args)
 		{
 			args.RetVal = true;
 
@@ -345,7 +334,7 @@ else
 					//}
 
 				} else if (args.Event.Button == 3) {
-					LiteralPopup popup = new LiteralPopup ();
+					var popup = new LiteralPopup ();
 					popup.Activate (args.Event, this);
 				}
 
@@ -357,7 +346,7 @@ else
 			}
 		}
 
-		private void HandleButtonRelease (object o, ButtonReleaseEventArgs args)
+		void HandleButtonRelease (object o, ButtonReleaseEventArgs args)
 		{
 			args.RetVal = true;
 
@@ -377,13 +366,13 @@ else
 			}
 		}
 
-		private void HandleMouseIn (object o, EnterNotifyEventArgs args)
+		void HandleMouseIn (object o, EnterNotifyEventArgs args)
 		{
 			isHoveredOver = true;
 			Update ();
 		}
 
-		private void HandleMouseOut (object o, LeaveNotifyEventArgs args)
+		void HandleMouseOut (object o, LeaveNotifyEventArgs args)
 		{
 			isHoveredOver = false;
 			Update ();
@@ -439,7 +428,7 @@ else
 			args.RetVal = true;
 		}
 
-		private void HandleDragDataReceived (object o, DragDataReceivedArgs args)
+		void HandleDragDataReceived (object o, DragDataReceivedArgs args)
 		{
 			args.RetVal = true;
 
@@ -462,10 +451,10 @@ else
 			}
 		}
 
-		private bool preview = false;
-		private Gtk.Widget preview_widget;
+		bool preview = false;
+		Gtk.Widget preview_widget;
 
-		private void HandleDragMotion (object o, DragMotionArgs args)
+		void HandleDragMotion (object o, DragMotionArgs args)
 		{
 		    if (preview)
                 return;
@@ -478,7 +467,7 @@ else
 		    preview_widget.Show ();
 		}
 
-		private void HandleDragLeave (object o, EventArgs args)
+		void HandleDragLeave (object o, EventArgs args)
 		{
 			preview = false;
 			preview_widget.Hide ();
@@ -512,28 +501,28 @@ else
 				UnRequireTag (new[] {this.Tag});
 		}
 
-		private const int ICON_SIZE = 24;
-		private const int overlay_size = (int)(.40 * ICON_SIZE);
-		private static TargetEntry[] tag_target_table =
-			new[] { DragDropTargets.TagQueryEntry };
-		private static TargetEntry[] tag_dest_target_table =
-			new[] {
+		const int ICON_SIZE = 24;
+		const int overlay_size = (int)(.40 * ICON_SIZE);
+		static readonly TargetEntry[] tag_target_table =
+			{ DragDropTargets.TagQueryEntry };
+		static readonly TargetEntry[] tag_dest_target_table =
+			{
 				DragDropTargets.TagListEntry,
 				DragDropTargets.TagQueryEntry
 			};
-		private static List<Literal> focusedLiterals = new List<Literal> ();
-		private static List<Widget> hiddenWidgets = new List<Widget> ();
-		private Gtk.Container container;
-		private LiteralBox handle_box;
-		private Gtk.Box box;
-		private Gtk.Image image;
-		private Gtk.Label label;
-		private Pixbuf normal_icon;
-		//private EventBox widget;
-		private Widget widget;
-		private Pixbuf negated_icon;
-		private static Pixbuf negated_overlay;
-		private bool isHoveredOver = false;
+		static List<Literal> focusedLiterals = new List<Literal> ();
+		static readonly List<Widget> hiddenWidgets = new List<Widget> ();
+		Gtk.Container container;
+		LiteralBox handle_box;
+		Gtk.Box box;
+		Gtk.Image image;
+		Gtk.Label label;
+		Pixbuf normal_icon;
+		//EventBox widget;
+		Widget widget;
+		Pixbuf negated_icon;
+		static Pixbuf negated_overlay;
+		bool isHoveredOver = false;
 
 		public delegate void NegatedToggleHandler (Literal group);
 
@@ -567,28 +556,5 @@ else
 
 		public event LiteralsMovedHandler LiteralsMoved;
 		#endregion
-	}
-
-	public class TextLiteral : AbstractLiteral
-	{
-		private string text;
-
-		public TextLiteral (Term parent, string text) : base (parent, null)
-		{
-			this.text = text;
-		}
-
-		public override string SqlCondition ()
-		{
-			return String.Format (
-					"id {0}IN (SELECT id FROM photos WHERE base_uri LIKE '%{1}%' OR filename LIKE '%{1}%' OR description LIKE '%{1}%')",
-					(IsNegated ? "NOT " : ""), EscapeQuotes (text)
-					);
-		}
-
-		protected static string EscapeQuotes (string v)
-		{
-			return v == null ? String.Empty : v.Replace ("'", "''");
-		}
 	}
 }

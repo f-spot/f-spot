@@ -37,9 +37,10 @@ using Gtk;
 
 using FSpot.Core;
 using FSpot.Database;
-using FSpot.Widgets;
-using FSpot.Utils;
 using FSpot.Imaging;
+using FSpot.Query;
+using FSpot.Utils;
+using FSpot.Widgets;
 
 using Hyena;
 using Hyena.Widgets;
@@ -48,7 +49,7 @@ namespace FSpot.UI.Dialog
 {
 	public class EditTagIconDialog : BuilderDialog
 	{
-		FSpot.PhotoQuery query;
+		PhotoQuery query;
 		PhotoImageView image_view;
 		Gtk.IconView icon_view;
 		ListStore icon_store;
@@ -70,18 +71,18 @@ namespace FSpot.UI.Dialog
 
 			preview_pixbuf = t.Icon;
 			Cms.Profile screen_profile;
-			if (preview_pixbuf != null && FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile)) {
+			if (preview_pixbuf != null && ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile)) {
 				preview_image.Pixbuf = preview_pixbuf.Copy ();
 				ColorManagement.ApplyProfile (preview_image.Pixbuf, screen_profile);
 			} else
 				preview_image.Pixbuf = preview_pixbuf;
 
-			query = new FSpot.PhotoQuery (db.Photos);
+			query = new PhotoQuery (db.Photos);
 
 			if (db.Tags.Hidden != null)
-				query.Terms = FSpot.OrTerm.FromTags (new Tag [] {t});
+				query.Terms = OrTerm.FromTags (new [] {t});
 			else
-				query.Terms = new FSpot.Literal (t);
+				query.Terms = new Literal (t);
 
 			image_view = new PhotoImageView (query) {CropHelpers = false};
 			image_view.SelectionXyRatio = 1.0;
@@ -148,7 +149,7 @@ namespace FSpot.UI.Dialog
 				icon_name = null;
 				preview_pixbuf = value;
 				Cms.Profile screen_profile;
-				if (value!= null && FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile)) {
+				if (value!= null && ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile)) {
 					preview_image.Pixbuf = value.Copy ();
 					ColorManagement.ApplyProfile (preview_image.Pixbuf, screen_profile);
 				} else
@@ -190,7 +191,7 @@ namespace FSpot.UI.Dialog
 			} catch (Exception) {
 				string caption = Catalog.GetString ("Unable to load image");
 				string message = String.Format (Catalog.GetString ("Unable to load \"{0}\" as icon for the tag"),
-									external_photo_chooser.Uri.ToString ());
+					                 external_photo_chooser.Uri);
 				HigMessageDialog md = new HigMessageDialog (this,
 									    DialogFlags.DestroyWithParent,
 									    MessageType.Error,

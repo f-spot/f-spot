@@ -121,14 +121,11 @@
     <Compile Include="FSpot\PrintOperation.cs" />
     <Compile Include="FSpot\ProgressItem.cs" />
     <Compile Include="FSpot.Query\HiddenTag.cs" />
-    <Compile Include="FSpot\QueryWidget.cs" />
     <Compile Include="FSpot\RotateCommand.cs" />
     <Compile Include="FSpot\SelectionDataExtensions.cs" />
     <Compile Include="FSpot\SendEmail.cs" />
     <Compile Include="FSpot\SingleView.cs" />
-    <Compile Include="FSpot\TagQueryWidget.cs" />
     <Compile Include="FSpot\TagSelectionWidget.cs" />
-    <Compile Include="FSpot\Term.cs" />
     <Compile Include="FSpot\ThumbnailCache.cs" />
     <Compile Include="FSpot\ThumbnailGenerator.cs" />
     <Compile Include="FSpot\TimeAdaptor.cs" />
@@ -206,7 +203,6 @@
     <Compile Include="Pinta\ColorBgra.cs" />
     <Compile Include="Pinta\CairoExtensions.cs" />
     <Compile Include="Pinta\GaussianBlurEffect.cs" />
-    <Compile Include="FSpot\Literal.cs" />
     <Compile Include="FSpot.Imaging\IImageFile.cs" />
     <Compile Include="FSpot.Import\IImportSource.cs" />
     <Compile Include="FSpot.ColorAdjustment\AutoStretch.cs" />
@@ -214,6 +210,19 @@
     <Compile Include="FSpot.Widgets\EditorPageWidget.cs" />
     <Compile Include="FSpot.Widgets\LogicEntryCompletion.cs" />
     <Compile Include="FSpot.Widgets\CompletionLogic.cs" />
+    <Compile Include="FSpot.Query\LiteralMenu.cs" />
+    <Compile Include="FSpot.Query\TermMenuItem.cs" />
+    <Compile Include="FSpot.Query\LiteralBox.cs" />
+    <Compile Include="FSpot.Query\GrabHandle.cs" />
+    <Compile Include="FSpot.Query\LogicWidget.cs" />
+    <Compile Include="FSpot.Query\LiteralPopup.cs" />
+    <Compile Include="FSpot.Query\Term.cs" />
+    <Compile Include="FSpot.Query\Literal.cs" />
+    <Compile Include="FSpot.Query\AndTerm.cs" />
+    <Compile Include="FSpot.Query\OrTerm.cs" />
+    <Compile Include="FSpot.Query\AbstractLiteral.cs" />
+    <Compile Include="FSpot.Query\TextLiteral.cs" />
+    <Compile Include="FSpot.Query\QueryWidget.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\icons\f-spot-not.png">
@@ -399,6 +408,7 @@
     <Folder Include="FSpot\" />
     <Folder Include="FSpot.Widgets\" />
     <Folder Include="Pinta\" />
+    <Folder Include="FSpot.TagQuery\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="f-spot.exe.config">

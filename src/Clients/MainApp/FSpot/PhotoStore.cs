@@ -2,11 +2,13 @@
 // PhotoStore.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Mike Gemünde <mike@gemuende.de>
 //   Larry Ewing <lewing@src.gnome.org>
 //   Ruben Vermeersch <ruben@savanne.be>
 //   Stephane Delcroix <stephane@delcroix.org>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2004-2010 Novell, Inc.
 // Copyright (C) 2009-2010 Mike Gemünde
 // Copyright (C) 2004-2007 Larry Ewing
@@ -864,13 +866,13 @@ namespace FSpot {
          [Obsolete ("drop this, use IQueryCondition correctly instead")]
          public Photo [] Query (Tag [] tags, string extra_condition, DateRange range, RollSet importidrange)
          {
-                 return Query (FSpot.OrTerm.FromTags(tags), extra_condition, range, importidrange, null);
+                 return Query (OrTerm.FromTags(tags), extra_condition, range, importidrange, null);
          }
         
          [Obsolete ("drop this, use IQueryCondition correctly instead")]
          public Photo [] Query (Tag [] tags, string extra_condition, DateRange range, RollSet importidrange, RatingRange ratingrange)
          {
-                 return Query (FSpot.OrTerm.FromTags(tags), extra_condition, range, importidrange, ratingrange);
+                 return Query (OrTerm.FromTags(tags), extra_condition, range, importidrange, ratingrange);
          }
         
          [Obsolete ("drop this, use IQueryCondition correctly instead")]

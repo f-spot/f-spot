@@ -6,6 +6,7 @@
 //   Stephane Delcroix <stephane@delcroix.org>
 //   Stephen Shaw <sshaw@decriptor.com>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2007-2009 Novell, Inc.
 // Copyright (C) 2007 Gabriel Burt
 // Copyright (C) 2007-2009 Stephane Delcroix
@@ -35,26 +36,21 @@
 // http://bugzilla-attachments.gnome.org/attachment.cgi?id=54566
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-
-using Mono.Unix;
-
-using Gtk;
-
-using Hyena;
 
 using FSpot.Core;
 
-namespace FSpot
+using Hyena;
+
+namespace FSpot.Query
 {
 	public abstract class Term
 	{
-		private Term parent = null;
+		Term parent = null;
 		protected bool is_negated = false;
 		protected Tag tag = null;
 
-		public Term (Term parent, Literal after)
+		protected Term (Term parent, Literal after)
 		{
 			this.parent = parent;
 			SubTerms = new List<Term> ();
@@ -140,12 +136,12 @@ namespace FSpot
 		public void CopyAndInvertSubTermsFrom (Term term, bool recurse)
 		{
 			is_negated = true;
-			List<Term> termsToMove = new List<Term> (term.SubTerms);
+			var termsToMove = new List<Term> (term.SubTerms);
 
 			foreach (Term subterm in termsToMove) {
 				if (recurse)
 					subterm.Invert (true).Parent = this;
-else
+				else
 					subterm.Parent = this;
 			}
 		}
@@ -157,7 +153,7 @@ else
 
 		public List<Term> FindByTag (Tag t, bool recursive)
 		{
-			List<Term> results = new List<Term> ();
+			var results = new List<Term> ();
 
 			if (tag != null && tag == t)
 				results.Add (this);
@@ -166,7 +162,7 @@ else
 				foreach (Term term in SubTerms) {
 					results.AddRange (term.FindByTag (t, true));
 				}
-else
+			else
 				foreach (Term term in SubTerms) {
 					foreach (Term literal in SubTerms) {
 						if (literal.tag != null && literal.tag == t) {
@@ -184,7 +180,7 @@ else
 
 		public List<Term> LiteralParents ()
 		{
-			List<Term> results = new List<Term> ();
+			var results = new List<Term> ();
 
 			bool meme = false;
 			foreach (Term term in SubTerms) {
@@ -233,12 +229,12 @@ else
 			return TagRequired (t, out count, out grouped_with);
 		}
 
-		public bool TagRequired (Tag t, out int num_terms, out int grouped_with)
+		public bool TagRequired (Tag t, out int numTerms, out int groupedWith)
 		{
 			List<Term> parents = LiteralParents ();
 
-			num_terms = 0;
-			grouped_with = 100;
+			numTerms = 0;
+			groupedWith = 100;
 			int min_grouped_with = 100;
 
 			if (parents.Count == 0)
@@ -253,22 +249,22 @@ else
 					foreach (Term literal in term.SubTerms) {
 						if (literal.tag != null) {
 							if (literal.tag == t) {
-								num_terms++;
+								numTerms++;
 								termHasTag = true;
-								grouped_with = term.SubTerms.Count;
+								groupedWith = term.SubTerms.Count;
 								break;
 							}
 						}
 					}
 
-				if (grouped_with < min_grouped_with)
-					min_grouped_with = grouped_with;
+				if (groupedWith < min_grouped_with)
+					min_grouped_with = groupedWith;
 
 				if (!termHasTag)
 					return false;
 			}
 
-			grouped_with = min_grouped_with;
+			groupedWith = min_grouped_with;
 
 			return true;
 		}
@@ -283,7 +279,7 @@ else
 		/// </returns>
 		public virtual string SqlCondition ()
 		{
-			StringBuilder condition = new StringBuilder ("(");
+			var condition = new StringBuilder ("(");
 
 			for (int i = 0; i < SubTerms.Count; i++) {
 				Term term = SubTerms [i];
@@ -315,126 +311,14 @@ else
 			op = op.ToLower ();
 
 			if (AndTerm.Operators.Contains (op))
-				//Console.WriteLine ("AND!");
 				return new AndTerm (parent, after);
 
 			if (OrTerm.Operators.Contains (op))
-				//Console.WriteLine ("OR!");
 				return new OrTerm (parent, after);
 
 			Log.DebugFormat ("Do not have Term for operator {0}", op);
 			return null;
 		}
 		#endregion
-	}
-
-	public class AndTerm : Term
-	{
-		public static List<string> Operators { get; private set; }
-
-		static AndTerm ()
-		{
-			Operators = new List<string> ();
-			Operators.Add (Catalog.GetString (" and "));
-			//Operators.Add (Catalog.GetString (" && "));
-			Operators.Add (Catalog.GetString (", "));
-		}
-
-		public AndTerm (Term parent, Literal after) : base (parent, after)
-		{
-		}
-
-		public override Term Invert (bool recurse)
-		{
-			OrTerm newme = new OrTerm (Parent, null);
-			newme.CopyAndInvertSubTermsFrom (this, recurse);
-			if (Parent != null)
-				Parent.Remove (this);
-			return newme;
-		}
-
-		public override Widget SeparatorWidget ()
-		{
-			Widget separator = new Label (String.Empty);
-			separator.SetSizeRequest (3, 1);
-			separator.Show ();
-			return separator;
-		}
-
-		public override string SqlCondition ()
-		{
-			StringBuilder condition = new StringBuilder ("(");
-
-			condition.Append (base.SqlCondition ());
-
-			Tag hidden = App.Instance.Database.Tags.Hidden;
-			if (hidden != null)
-				if (FindByTag (hidden, true).Count == 0) {
-					condition.Append (String.Format (
-								" AND id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {0})", hidden.Id
-								));
-				}
-
-			condition.Append (")");
-
-			return condition.ToString ();
-		}
-
-		public override string SQLOperator ()
-		{
-			return " AND ";
-		}
-	}
-
-	public class OrTerm : Term
-	{
-		public static List<string> Operators { get; private set; }
-
-		static OrTerm ()
-		{
-			Operators = new List<string> ();
-			Operators.Add (Catalog.GetString (" or "));
-			//Operators.Add (Catalog.GetString (" || "));
-		}
-
-		public OrTerm (Term parent, Literal after) : base (parent, after)
-		{
-		}
-
-		public static OrTerm FromTags (Tag [] from_tags)
-		{
-			if (from_tags == null || from_tags.Length == 0)
-				return null;
-
-			OrTerm or = new OrTerm (null, null);
-			foreach (Literal l in from_tags.Select(t => new Literal (t)))
-			{
-			    l.Parent = or;
-			}
-			return or;
-		}
-
-		private static string OR = Catalog.GetString ("or");
-
-		public override Term Invert (bool recurse)
-		{
-			AndTerm newme = new AndTerm (Parent, null);
-			newme.CopyAndInvertSubTermsFrom (this, recurse);
-			if (Parent != null)
-				Parent.Remove (this);
-			return newme;
-		}
-
-		public override Gtk.Widget SeparatorWidget ()
-		{
-			Widget label = new Label (" " + OR + " ");
-			label.Show ();
-			return label;
-		}
-
-		public override string SQLOperator ()
-		{
-			return " OR ";
-		}
 	}
 }

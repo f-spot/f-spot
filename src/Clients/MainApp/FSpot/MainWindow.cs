@@ -2,9 +2,11 @@
 // MainWindow.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Ruben Vermeersch <ruben@savanne.be>
 //   Stephane Delcroix <stephane@delcroix.org>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2006-2010 Novell, Inc.
 // Copyright (C) 2008, 2010 Ruben Vermeersch
 // Copyright (C) 2006-2010 Stephane Delcroix
@@ -172,10 +174,10 @@ namespace FSpot
 			get { return photo_view; }
 		}
 
-		FSpot.FullScreenView fsview;
-		FSpot.PhotoQuery query;
-		FSpot.GroupSelector group_selector;
-		FSpot.QueryWidget query_widget;
+		FullScreenView fsview;
+		PhotoQuery query;
+		GroupSelector group_selector;
+		QueryWidget query_widget;
 
 		ToolButton rl_button;
 		ToolButton rr_button;
@@ -237,36 +239,6 @@ namespace FSpot
 				}
 			}
 
-#if GSD_2_24
-			Log.Information ("Hack for gnome-settings-daemon engaged");
-			int max_age, max_size;
-			if (Preferences.TryGet<int> (Preferences.GSD_THUMBS_MAX_AGE, out max_age)) {
-				if (max_age < 0)
-					Log.Debug ("maximum_age check already disabled, good");
-				else if (max_age == 0)
-					Log.Warning ("maximum_age is 0 (tin-hat mode), not overriding");
-				else if (max_age < 180) {
-					Log.Debug ("Setting maximum_age to a saner value");
-					Preferences.Set (Preferences.GSD_THUMBS_MAX_AGE, 180);
-				}
-			}
-
-			if (Preferences.TryGet<int> (Preferences.GSD_THUMBS_MAX_SIZE, out max_size)) {
-				int count = App.Instance.Database.Photos.Count ("photos");
-				// average thumbs are taking 70K, so this will push the threshold
-				//if f-spot takes more than 70% of the thumbs space
-				int size = count / 10;
-				if (max_size < 0)
-					Log.Debug ("maximum_size check already disabled, good");
-				else if (max_size == 0)
-					Log.Warning ("maximum_size is 0 (tin-hat mode), not overriding");
-				else if (max_size < size) {
-					Log.DebugFormat ("Setting maximum_size to a saner value ({0}MB), according to your db size", size);
-					Preferences.Set (Preferences.GSD_THUMBS_MAX_SIZE, size);
-				}
-			}
-
-#endif
 			Database = db;
 
 			GtkBeans.Builder builder = new GtkBeans.Builder ("main_window.ui");
@@ -426,7 +398,7 @@ namespace FSpot
 			view_vbox.ReorderChild (find_bar, 1);
 			main_window.KeyPressEvent += HandleKeyPressEvent;
 
-			query_widget = new FSpot.QueryWidget (query, Database);
+			query_widget = new QueryWidget (query, Database);
 			query_widget.Logic.Changed += HandleQueryLogicChanged;
 			view_vbox.PackStart (query_widget, false, false, 0);
 			view_vbox.ReorderChild (query_widget, 2);
@@ -2236,7 +2208,7 @@ namespace FSpot
 			//How many pictures are associated to these tags?
 			Db db = App.Instance.Database;
 			FSpot.PhotoQuery count_query = new FSpot.PhotoQuery(db.Photos);
-			count_query.Terms = FSpot.OrTerm.FromTags(tags);
+			count_query.Terms = OrTerm.FromTags(tags);
 			int associated_photos = count_query.Count;
 
 			string header;
@@ -2618,7 +2590,7 @@ namespace FSpot
 			if (find_add_tag_with.Submenu != null)
 				find_add_tag_with.Submenu.Dispose ();
 
-			Gtk.Menu submenu = FSpot.TermMenuItem.GetSubmenu (tag_selection_widget.TagHighlight);
+			Gtk.Menu submenu = TermMenuItem.GetSubmenu (tag_selection_widget.TagHighlight);
 			find_add_tag_with.Sensitive = (submenu != null);
 			if (submenu != null)
 				find_add_tag_with.Submenu = submenu;
@@ -2634,11 +2606,11 @@ namespace FSpot
 		    // account for All and separator menu items
 		    item_pos -= 2;
 
-		    FSpot.Term parent_term = LogicWidget.Root.SubTerms [item_pos];
+		    Term parent_term = LogicWidget.Root.SubTerms [item_pos];
 
-		    if (FSpot.LogicWidget.Box != null) {
-		        FSpot.Literal after = parent_term.Last as FSpot.Literal;
-		        FSpot.LogicWidget.Box.InsertTerm (tag_selection_widget.TagHighlight, parent_term, after);
+		    if (LogicWidget.Box != null) {
+		        Literal after = parent_term.Last as Literal;
+		       	LogicWidget.Box.InsertTerm (tag_selection_widget.TagHighlight, parent_term, after);
 		    }
 		}
 

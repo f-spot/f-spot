@@ -1,32 +1,34 @@
-//
-// TagQueryWidget.cs
+//  LogicWidget.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Larry Ewing <lewing@novell.com>
 //   Gabriel Burt <gabriel.burt@gmail.com>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2006-2007 Novell, Inc.
 // Copyright (C) 2006 Larry Ewing
 // Copyright (C) 2006-2007 Gabriel Burt
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
+//  Permission is hereby granted, free of charge, to any person obtaining
+//  a copy of this software and associated documentation files (the
+//  "Software"), to deal in the Software without restriction, including
+//  without limitation the rights to use, copy, modify, merge, publish,
+//  distribute, sublicense, and/or sell copies of the Software, and to
+//  permit persons to whom the Software is furnished to do so, subject to
+//  the following conditions:
 //
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
+//  The above copyright notice and this permission notice shall be
+//  included in all copies or substantial portions of the Software.
 //
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//  THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
+//  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+//  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+//  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+//  LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+//  OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+//  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
 //
 
 using System;
@@ -38,210 +40,11 @@ using Gtk;
 using Gdk;
 
 using FSpot.Core;
-using FSpot.Utils;
-using FSpot.Query;
 
-namespace FSpot
+namespace FSpot.Query
 {
-	public class LiteralPopup
-	{
-		//private Literal literal;
-
-		public void Activate (Gdk.EventButton eb, Literal literal)
-		{
-			Activate (eb, literal, new Gtk.Menu (), true);
-		}
-
-		public void Activate (Gdk.EventButton eb, Literal literal, Gtk.Menu popup_menu, bool is_popup)
-		{
-			//this.literal = literal;
-
-			/*MenuItem attach_item = new MenuItem (Catalog.GetString ("Find With"));
-			TagMenu attach_menu = new TagMenu (attach_item, App.Instance.Database.Tags);
-			attach_menu.TagSelected += literal.HandleAttachTagCommand;
-			attach_item.ShowAll ();
-			popup_menu.Append (attach_item);*/
-
-			if (literal.IsNegated) {
-				GtkUtil.MakeMenuItem (popup_menu,
-						      String.Format (Catalog.GetString ("Include Photos Tagged \"{0}\""), literal.Tag.Name),
-						      new EventHandler (literal.HandleToggleNegatedCommand),
-						      true);
-			} else {
-				GtkUtil.MakeMenuItem (popup_menu,
-						      String.Format (Catalog.GetString ("Exclude Photos Tagged \"{0}\""), literal.Tag.Name),
-						      new EventHandler (literal.HandleToggleNegatedCommand),
-						      true);
-			}
-
-			GtkUtil.MakeMenuItem (popup_menu, Catalog.GetString ("Remove From Search"),
-					      "gtk-remove",
-					      new EventHandler (literal.HandleRemoveCommand),
-					      true);
-
-			if (is_popup) {
-				if (eb != null)
-					popup_menu.Popup (null, null, null, eb.Button, eb.Time);
-				else
-					popup_menu.Popup (null, null, null, 0, Gtk.Global.CurrentEventTime);
-			}
-		}
-	}
-
-	public class LiteralMenu : Menu
-	{
-		private LiteralPopup popup;
-		private Literal literal;
-
-		public LiteralMenu (MenuItem item, Literal literal)
-		{
-			popup = new LiteralPopup ();
-
-			this.literal = literal;
-
-			item.Submenu = this;
-			item.Activated += HandlePopulate;
-		}
-
-		private void HandlePopulate (object obj, EventArgs args)
-		{
-			foreach (Widget child in Children) {
-				Remove (child);
-				child.Destroy ();
-			}
-
-			popup.Activate (null, literal, this, false);
-		}
-	}
-
-	public static class TermMenuItem
-	{
-		public static void Create (Tag [] tags, Gtk.Menu menu)
-		{
-			Gtk.MenuItem item = new Gtk.MenuItem (String.Format (Catalog.GetPluralString ("Find _With", "Find _With", tags.Length), tags.Length));
-
-			Gtk.Menu submenu = GetSubmenu (tags);
-			if (submenu == null)
-				item.Sensitive = false;
-			else
-				item.Submenu = submenu;
-
-			menu.Append (item);
-			item.Show ();
-		}
-
-		public static Gtk.Menu GetSubmenu (Tag [] tags)
-		{
-			Tag single_tag = null;
-			if (tags != null && tags.Length == 1)
-				single_tag = tags[0];
-
-			//Console.WriteLine ("creating find with menu item");
-			if (LogicWidget.Root == null || LogicWidget.Root.SubTerms.Count == 0) {
-				//Console.WriteLine ("root is null or has no terms");
-				return null;
-			} else {
-				//Console.WriteLine ("root is not null and has terms");
-				Gtk.Menu m = new Gtk.Menu ();
-
-				Gtk.MenuItem all_item = GtkUtil.MakeMenuItem (m, Catalog.GetString ("All"), new EventHandler (App.Instance.Organizer.HandleRequireTag));
-				GtkUtil.MakeMenuSeparator (m);
-
-				int sensitive_items = 0;
-				foreach (Term term in LogicWidget.Root.SubTerms) {
-					List<string> term_parts = new List<string> ();
-
-					bool contains_tag = AppendTerm (term_parts, term, single_tag);
-
-					string name = "_" + String.Join (", ", term_parts.ToArray ());
-
-					Gtk.MenuItem item = GtkUtil.MakeMenuItem (m, name, new EventHandler (App.Instance.Organizer.HandleAddTagToTerm));
-					item.Sensitive = !contains_tag;
-
-					if (!contains_tag)
-						sensitive_items++;
-				}
-
-				if (sensitive_items == 0)
-					all_item.Sensitive = false;
-
-				return m;
-			}
-		}
-
-		private static bool AppendTerm (List<string> parts, Term term, Tag single_tag)
-		{
-			bool tag_matches = false;
-			if (term != null) {
-				Literal literal = term as Literal;
-				if (literal != null) {
-					if (literal.Tag == single_tag)
-						tag_matches = true;
-
-					if (literal.IsNegated)
-						parts.Add (String.Format (Catalog.GetString ("Not {0}"), literal.Tag.Name));
-					else
-						parts.Add (literal.Tag.Name);
-				} else {
-					foreach (Term subterm in term.SubTerms) {
-						tag_matches |= AppendTerm (parts, subterm, single_tag);
-					}
-				}
-			}
-
-			return tag_matches;
-		}
-	}
-
-	public class LiteralBox : VBox {
-		private GrabHandle handle;
-
-		public LiteralBox ()
-		{
-			handle = new GrabHandle (24, 8);
-
-			PackEnd (handle, false, false, 0);
-
-			Show ();
-		}
-	}
-
-	public class GrabHandle : DrawingArea {
-		public GrabHandle (int w, int h)
-		{
-			Size (w, h);
-			Orientation = Gtk.Orientation.Horizontal;
-			Show ();
-		}
-
-		private Gtk.Orientation orientation;
-		public Gtk.Orientation Orientation {
-			get { return orientation; }
-			set { orientation = value; }
-		}
-
-		protected override bool OnExposeEvent (Gdk.EventExpose evnt)
-		{
-			bool ret = base.OnExposeEvent(evnt);
-
-			if (evnt.Window != GdkWindow) {
-				return ret;
-			}
-
-			Gtk.Style.PaintHandle(Style, GdkWindow, State, ShadowType.In,
-					      evnt.Area, this, "entry", 0, 0, Allocation.Width, Allocation.Height, Orientation);
-
-			//(Style, GdkWindow, StateType.Normal, ShadowType.In,
-			//evnt.Area, this, "entry", 0, y_mid - y_offset, Allocation.Width,
-			//Height + (y_offset * 2));
-
-			return ret;
-		}
-	}
-
 	public class LogicWidget : HBox {
-		PhotoQuery query;
-
+		readonly PhotoQuery query;
 
 		static Term rootTerm;
 		EventBox rootAdd;
@@ -261,19 +64,19 @@ namespace FSpot
 			}
 		}
 
-		private static LogicWidget logic_widget = null;
+		static LogicWidget logic_widget = null;
 		public static LogicWidget Box {
 			get { return logic_widget; }
 		}
 
 		// Drag and Drop
-		private static TargetEntry [] tag_dest_target_table =
-			new TargetEntry [] {
+		static readonly TargetEntry [] tag_dest_target_table =
+			{
 				DragDropTargets.TagListEntry,
 				DragDropTargets.TagQueryEntry
 			};
 
-		public LogicWidget (PhotoQuery query, TagStore tag_store)
+		public LogicWidget (PhotoQuery query, TagStore tagStore)
 		{
 			//SetFlag (WidgetFlags.NoWindow);
 			this.query = query;
@@ -283,15 +86,15 @@ namespace FSpot
 
 			Init ();
 
-			tag_store.ItemsChanged += HandleTagChanged;
-			tag_store.ItemsRemoved += HandleTagDeleted;
+			tagStore.ItemsChanged += HandleTagChanged;
+			tagStore.ItemsRemoved += HandleTagDeleted;
 
 			Show ();
 
 			logic_widget = this;
 		}
 
-		private void Init ()
+		void Init ()
 		{
 			sepBox = null;
 			preview = false;
@@ -322,7 +125,7 @@ namespace FSpot
 			rootTerm = new OrTerm (null, null);
 		}
 
-		private void Preview ()
+		void Preview ()
 		{
 			if (sepBox == null) {
 				sepBox = new HBox ();
@@ -342,7 +145,7 @@ namespace FSpot
 
 		// When the user edits a tag (it's icon, name, etc) we get called
 		// and update the images/text in the query as needed to reflect the changes.
-		private void HandleTagChanged (object sender, DbItemEventArgs<Tag> args)
+		void HandleTagChanged (object sender, DbItemEventArgs<Tag> args)
 		{
 			foreach (Tag t in args.Items)
 		                foreach (Literal term in rootTerm.FindByTag (t))
@@ -350,22 +153,29 @@ namespace FSpot
 		}
 
 		// If the user deletes a tag that is in use in the query, remove it from the query too.
-		private void HandleTagDeleted (object sender, DbItemEventArgs<Tag> args)
+		void HandleTagDeleted (object sender, DbItemEventArgs<Tag> args)
 		{
 			foreach (Tag t in args.Items)
 		                foreach (Literal term in rootTerm.FindByTag (t))
 		                    term.RemoveSelf ();
 		}
 
-		private void HandleDragMotion (object o, DragMotionArgs args)
+		void HandleDragMotion (object o, DragMotionArgs args)
 		{
+			Console.WriteLine (preview);
+			Console.WriteLine (rootTerm);
+			Console.WriteLine (rootTerm.Count);
+			Console.WriteLine (Literal.FocusedLiterals);
+			Console.WriteLine (Literal.FocusedLiterals.Count);
+			Console.WriteLine (Children);
+			Console.WriteLine (Children.Length);
 			if (!preview && rootTerm.Count > 0 && (Literal.FocusedLiterals.Count == 0 || Children.Length > 2)) {
 				Preview ();
 				preview = true;
 			}
 		}
 
-		private void HandleDragLeave (object o, EventArgs args)
+		void HandleDragLeave (object o, EventArgs args)
 		{
 			if (preview && Children.Length > 1) {
 				sepBox.Hide ();
@@ -375,7 +185,7 @@ namespace FSpot
 			}
 		}
 
-		private void HandleLiteralsMoved (List<Literal> literals, Term parent, Literal after)
+		void HandleLiteralsMoved (List<Literal> literals, Term parent, Literal after)
 		{
 			preventUpdate = true;
 			foreach (Literal term in literals) {
@@ -387,7 +197,7 @@ namespace FSpot
 				term.RemoveSelf ();
 
 				// Add it to where it was dropped
-				List<Literal> groups = InsertTerm (new Tag[] {tag}, parent, after);
+				List<Literal> groups = InsertTerm (new [] {tag}, parent, after);
 
 				if (term.IsNegated)
 					foreach (Literal group in groups)
@@ -397,22 +207,22 @@ namespace FSpot
 			UpdateQuery ();
 		}
 
-		private void HandleTagsAdded (Tag[] tags, Term parent, Literal after)
+		void HandleTagsAdded (Tag[] tags, Term parent, Literal after)
 		{
 			InsertTerm (tags, parent, after);
 		}
 
-		private void HandleAttachTag (Tag tag, Term parent, Literal after)
+		void HandleAttachTag (Tag tag, Term parent, Literal after)
 		{
 			InsertTerm (new Tag [] {tag}, parent, after);
 		}
 
-		private void HandleNegated (Literal group)
+		void HandleNegated (Literal group)
 		{
 			UpdateQuery ();
 		}
 
-		private void HandleRemoving (Literal term)
+		void HandleRemoving (Literal term)
 		{
 			foreach (Widget w in HangersOn (term))
 			Remove (w);
@@ -423,7 +233,7 @@ namespace FSpot
 
 		public List<Gtk.Widget> HangersOn (Literal term)
 		{
-			List<Gtk.Widget> w = new List<Gtk.Widget> ();
+			var w = new List<Gtk.Widget> ();
 
 			// Find separators that only exist because of this term
 			if (term.Parent != null) {
@@ -449,12 +259,12 @@ namespace FSpot
 			return w;
 		}
 
-		private void HandleRemoved (Literal group)
+		void HandleRemoved (Literal group)
 		{
 			UpdateQuery ();
 		}
 
-		private void HandleDragDataReceived (object o, DragDataReceivedArgs args)
+		void HandleDragDataReceived (object o, DragDataReceivedArgs args)
 		{
 			args.RetVal = true;
 
@@ -470,7 +280,7 @@ namespace FSpot
 				HandleLiteralsMoved (Literal.FocusedLiterals, rootTerm, null);
 
 				// Prevent them from being removed again
-				Literal.FocusedLiterals = null;
+				Literal.FocusedLiterals = new List<Literal> ();
 			}
 		}
 
@@ -492,14 +302,14 @@ namespace FSpot
 		}
 
 		// Inserts a widget into a Box at a certain index
-		private void InsertWidget (int index, Gtk.Widget widget) {
+		void InsertWidget (int index, Gtk.Widget widget) {
 			widget.Visible = true;
 			PackStart (widget, false, false, 0);
 			ReorderChild (widget, index);
 		}
 
 		// Return the index position of a widget in this Box
-		private int WidgetPosition (Gtk.Widget widget)
+		int WidgetPosition (Gtk.Widget widget)
 		{
 			for (int i = 0; i < Children.Length; i++)
 				if (Children[i] == widget)
@@ -540,7 +350,7 @@ namespace FSpot
 
 		public void UnInclude (Tag [] tags)
 		{
-			List<Tag> new_tags = new List<Tag> (tags.Length);
+			var new_tags = new List<Tag> (tags.Length);
 			foreach (Tag tag in tags) {
 				if (rootTerm.TagIncluded (tag))
 					new_tags.Add (tag);
@@ -577,7 +387,7 @@ namespace FSpot
 			// OR terms and ANDing the result with this term (eg factored out)
 
 			// Trim out tags that are already required
-			List<Tag> new_tags = new List<Tag> (tags.Length);
+			var new_tags = new List<Tag> (tags.Length);
 			foreach (Tag tag in tags) {
 				if (! rootTerm.TagRequired (tag))
 					new_tags.Add (tag);
@@ -611,7 +421,7 @@ namespace FSpot
 		public void UnRequire (Tag [] tags)
 		{
 			// Trim out tags that are not required
-			List<Tag> new_tags = new List<Tag> (tags.Length);
+			var new_tags = new List<Tag> (tags.Length);
 			foreach (Tag tag in tags) {
 				if (rootTerm.TagRequired (tag))
 					new_tags.Add (tag);
@@ -645,7 +455,7 @@ namespace FSpot
 			else
 				position = Children.Length - 1;
 
-			List<Literal> added = new List<Literal>();
+			var added = new List<Literal>();
 
 			foreach (Tag tag in tags) {
 				//Console.WriteLine ("Adding tag {0}", tag.Name);
@@ -715,20 +525,20 @@ namespace FSpot
 				handler (this, new EventArgs ());
 		}
 
-		public bool Clear
-		{
+		public bool IsClear {
 			get {
 				return rootTerm.Count == 0;
 			}
+		}
 
-			set {
-				// Clear out the query, starting afresh
-				foreach (Widget widget in Children) {
-					Remove (widget);
-					widget.Destroy ();
-				}
-				Init ();
+		public void Clear ()
+		{
+			// Clear out the query, starting afresh
+			foreach (Widget widget in Children) {
+				Remove (widget);
+				widget.Destroy ();
 			}
+			Init ();
 		}
 	}
 }

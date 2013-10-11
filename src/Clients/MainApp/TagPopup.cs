@@ -39,6 +39,7 @@ using Mono.Unix;
 
 using FSpot;
 using FSpot.Core;
+using FSpot.Query;
 using FSpot.Utils;
 
 public class TagPopup
@@ -57,7 +58,7 @@ public class TagPopup
                 true
         );
 
-		FSpot.TermMenuItem.Create (tags, popup_menu);
+		TermMenuItem.Create (tags, popup_menu);
 
 		GtkUtil.MakeMenuSeparator (popup_menu);
 

@@ -36,19 +36,18 @@
 using System;
 using System.Collections.Generic;
 
-using Mono.Unix;
-
-using Gtk;
-
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Widgets;
 
+using Gtk;
+
 using Hyena;
 
+using Mono.Unix;
 
-namespace FSpot {
-
+namespace FSpot.Query
+{
 	public class QueryWidget : HighlightedBox {
 		PhotoQuery query;
 		LogicWidget logic_widget;
@@ -146,12 +145,12 @@ namespace FSpot {
 			warning_box.Visible = false;
 		}
 
-		public void HandleClearButtonClicked (object sender, System.EventArgs args)
+		public void HandleClearButtonClicked (object sender, EventArgs args)
 		{
 			Close ();
 		}
 
-		public void HandleRefreshButtonClicked (object sender, System.EventArgs args)
+		public void HandleRefreshButtonClicked (object sender, EventArgs args)
 		{
 			query.RequestReload ();
 		}
@@ -165,7 +164,7 @@ namespace FSpot {
 				return;
 
 			query.RatingRange = null;
-			logic_widget.Clear = true;
+			logic_widget.Clear ();
 			logic_widget.UpdateQuery ();
 
 			folder_query_widget.Clear ();
@@ -187,9 +186,9 @@ namespace FSpot {
 		public void HandleChanged (IBrowsableCollection collection)
 		{
 			if (query.TagTerm == null)
-				logic_widget.Clear = true;
+				logic_widget.Clear();
 
-			if ( ! logic_widget.Clear
+			if ( ! logic_widget.IsClear
 			    || query.Untagged
 			    || (query.RollSet != null)
 			    || (query.RatingRange != null)
@@ -243,9 +242,9 @@ namespace FSpot {
 			return logic_widget.TagRequired (tag);
 		}
 
-		public void SetFolders (IEnumerable<SafeUri> uri_list)
+		public void SetFolders (IEnumerable<SafeUri> uriList)
 		{
-			folder_query_widget.SetFolders (uri_list);
+			folder_query_widget.SetFolders (uriList);
 			query.RequestReload ();
 		}
 	}
