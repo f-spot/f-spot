@@ -64,10 +64,6 @@ int bchswSampler(register const cmsUInt16Number In[], register cmsUInt16Number O
     LPBCHSWADJUSTS bchsw = (LPBCHSWADJUSTS) Cargo;
 
     cmsLabEncoded2Float(&LabIn, In);
-         // Move white point in Lab
-
-    cmsLab2XYZ(&bchsw ->WPsrc,  &XYZ, &LabIn);
-    cmsXYZ2Lab(&bchsw ->WPdest, &LabIn, &XYZ);
 
     shift = (LabIn.L > 0.5);
     l = LabIn.L / 100;
@@ -100,6 +96,11 @@ int bchswSampler(register const cmsUInt16Number In[], register cmsUInt16Number O
 
     cmsLCh2Lab(&LabOut, &LChOut);
 
+    // Move white point in Lab
+
+    cmsLab2XYZ(&bchsw ->WPsrc,  &XYZ, &LabOut);
+    cmsXYZ2Lab(&bchsw ->WPdest, &LabOut, &XYZ);
+
     // Back to encoded
 
     cmsFloat2LabEncoded(Out, &LabOut);
@@ -118,8 +119,8 @@ cmsHPROFILE CMSEXPORT f_cmsCreateBCHSWabstractProfile(int nLUTPoints,
 						       double Contrast,
 						       double Hue,
 						       double Saturation,
-						       cmsCIExyY current_wp,
-						       cmsCIExyY destination_wp)
+						       cmsCIExyY * current_wp,
+						       cmsCIExyY * destination_wp)
 {
 	cmsHPROFILE hICC;
 	cmsPipeline* Pipeline;
@@ -135,8 +136,8 @@ cmsHPROFILE CMSEXPORT f_cmsCreateBCHSWabstractProfile(int nLUTPoints,
 	bchsw.Saturation = Saturation;
 	bchsw.Exposure   = Exposure;
 
-	cmsxyY2XYZ(&bchsw.WPsrc, &current_wp);
-	cmsxyY2XYZ(&bchsw.WPdest, &destination_wp);
+	cmsxyY2XYZ(&bchsw.WPsrc, current_wp);
+	cmsxyY2XYZ(&bchsw.WPdest, destination_wp);
 
 	hICC = cmsCreateProfilePlaceholder(NULL);
 	if (!hICC)                          // can't allocate
