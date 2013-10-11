@@ -64,10 +64,6 @@ int bchswSampler(register const cmsUInt16Number In[], register cmsUInt16Number O
     LPBCHSWADJUSTS bchsw = (LPBCHSWADJUSTS) Cargo;
 
     cmsLabEncoded2Float(&LabIn, In);
-         // Move white point in Lab
-
-    cmsLab2XYZ(&bchsw ->WPsrc,  &XYZ, &LabIn);
-    cmsXYZ2Lab(&bchsw ->WPdest, &LabIn, &XYZ);
 
     shift = (LabIn.L > 0.5);
     l = LabIn.L / 100;
@@ -100,6 +96,11 @@ int bchswSampler(register const cmsUInt16Number In[], register cmsUInt16Number O
 
     cmsLCh2Lab(&LabOut, &LChOut);
 
+    // Move white point in Lab
+
+    cmsLab2XYZ(&bchsw ->WPsrc,  &XYZ, &LabOut);
+    cmsXYZ2Lab(&bchsw ->WPdest, &LabOut, &XYZ);
+
     // Back to encoded
 
     cmsFloat2LabEncoded(Out, &LabOut);
@@ -118,14 +119,15 @@ cmsHPROFILE CMSEXPORT f_cmsCreateBCHSWabstractProfile(int nLUTPoints,
 						       double Contrast,
 						       double Hue,
 						       double Saturation,
-						       cmsCIExyY current_wp,
-						       cmsCIExyY destination_wp)
+						       cmsCIExyY * current_wp,
+						      cmsCIExyY * destination_wp,
+						      cmsToneCurve * Curves [])
 {
 	cmsHPROFILE hICC;
 	cmsPipeline* Pipeline;
 	BCHSWADJUSTS bchsw;
 	cmsCIExyY WhitePnt;
-	cmsStage* CLUT;
+	cmsStage* CLUT, * gammaCorrection;
 	cmsUInt32Number Dimensions[MAX_INPUT_DIMENSIONS];
 	int i;
 
@@ -135,8 +137,8 @@ cmsHPROFILE CMSEXPORT f_cmsCreateBCHSWabstractProfile(int nLUTPoints,
 	bchsw.Saturation = Saturation;
 	bchsw.Exposure   = Exposure;
 
-	cmsxyY2XYZ(&bchsw.WPsrc, &current_wp);
-	cmsxyY2XYZ(&bchsw.WPdest, &destination_wp);
+	cmsxyY2XYZ(&bchsw.WPsrc, current_wp);
+	cmsxyY2XYZ(&bchsw.WPdest, destination_wp);
 
 	hICC = cmsCreateProfilePlaceholder(NULL);
 	if (!hICC)                          // can't allocate
@@ -158,6 +160,11 @@ cmsHPROFILE CMSEXPORT f_cmsCreateBCHSWabstractProfile(int nLUTPoints,
 	for (i=0; i < MAX_INPUT_DIMENSIONS; i++) Dimensions[i] = nLUTPoints;
 	CLUT = cmsStageAllocCLut16bitGranular(NULL, Dimensions, 3, 3, NULL);
 	if (CLUT == NULL) return NULL;
+
+	if (Curves != NULL) {
+	  gammaCorrection = cmsStageAllocToneCurves(NULL, 3, Curves);
+	  cmsPipelineInsertStage(Pipeline, cmsAT_END, gammaCorrection);
+	}
 
 	if (!cmsStageSampleCLut16bit(CLUT, bchswSampler, (void*) &bchsw, 0)) {
 
