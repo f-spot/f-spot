@@ -280,7 +280,8 @@ namespace FSpot
 
 			// Gtk initialization
 			Gtk.Application.Init (Defines.PACKAGE, ref args);
-			Xwt.Application.InitializeAsGuest (Xwt.ToolkitType.Gtk);
+			// Maybe we'll add this at a future date
+			//Xwt.Application.InitializeAsGuest (Xwt.ToolkitType.Gtk);
 
 			// init web proxy globally
 			Platform.WebProxy.Init ();
