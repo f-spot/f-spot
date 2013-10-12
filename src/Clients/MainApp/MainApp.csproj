@@ -38,7 +38,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="DependentListStore.cs" />
-    <Compile Include="FSpot\App.cs" />
     <Compile Include="FSpot\BitConverter.cs" />
     <Compile Include="FSpot.ColorAdjustment\Adjustment.cs" />
     <Compile Include="FSpot.ColorAdjustment\Desaturate.cs" />
@@ -228,6 +227,7 @@
     <Compile Include="FSpot\InvalidTagOperationException.cs" />
     <Compile Include="FSpot\MetaItem.cs" />
     <Compile Include="FSpot\Job.cs" />
+    <Compile Include="FSpot\App.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\icons\f-spot-not.png">

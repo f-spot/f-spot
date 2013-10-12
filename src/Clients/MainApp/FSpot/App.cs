@@ -35,8 +35,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 
-using Unique;
-
 using Mono.Unix;
 
 using Hyena;
@@ -46,7 +44,7 @@ using FSpot.Database;
 
 namespace FSpot
 {
-	public class App : Unique.App
+	public class App : Gtk.Application
 	{
 		static object sync_handle = new object ();
 
@@ -84,62 +82,68 @@ namespace FSpot
 		public Db Database {
 			get {
 				lock (sync_handle) {
-					if (db == null) {
-						if (!File.Exists (Global.BaseDirectory))
-							Directory.CreateDirectory (Global.BaseDirectory);
-
-						db = new Db ();
-
-						try {
-							db.Init (Path.Combine (Global.BaseDirectory, "photos.db"), true);
-						} catch (Exception e) {
-							new FSpot.UI.Dialog.RepairDbDialog (e, db.Repair (), null);
-							db.Init (Path.Combine (Global.BaseDirectory, "photos.db"), true);
-						}
-					}
+					if (db == null)
+						InitializeDatabase ();
 				}
 				return db;
 			}
 		}
 
+		void InitializeDatabase ()
+		{
+			if (!File.Exists (Global.BaseDirectory))
+				Directory.CreateDirectory (Global.BaseDirectory);
+
+			db = new Db ();
+
+			try {
+				db.Init (Path.Combine (Global.BaseDirectory, "photos.db"), true);
+			}
+			catch (Exception e)
+			{
+				new FSpot.UI.Dialog.RepairDbDialog (e, db.Repair (), null);
+				db.Init (Path.Combine (Global.BaseDirectory, "photos.db"), true);
+			}
+		}
+
 		public void Import (string path)
 		{
-			if (IsRunning) {
-				var md = new MessageData ();
-				md.Text = path;
-				SendMessage (Command.Import, md);
-				return;
-			}
+//			if (IsRunning) {
+//				var md = new MessageData ();
+//				md.Text = path;
+//				SendMessage (Command.Import, md);
+//				return;
+//			}
 			HandleImport (path);
 		}
 
 		public void Organize ()
 		{
-			if (IsRunning) {
-				SendMessage (Command.Organize, null);
-				return;
-			}
+//			if (IsRunning) {
+//				SendMessage (Command.Organize, null);
+//				return;
+//			}
 			HandleOrganize ();
 		}
 
 		public void Shutdown ()
 		{
-			if (IsRunning) {
-				SendMessage (Command.Shutdown, null);
-				return;
-			}
+//			if (IsRunning) {
+//				SendMessage (Command.Shutdown, null);
+//				return;
+//			}
 			HandleShutdown ();
 		}
 
 		public void Slideshow (string tagname)
 		{
-			if (IsRunning) {
-				var md = new MessageData ();
-				md.Text = tagname ?? String.Empty;
-				SendMessage (Command.Slideshow, md);
-
-				return;
-			}
+//			if (IsRunning) {
+//				var md = new MessageData ();
+//				md.Text = tagname ?? String.Empty;
+//				SendMessage (Command.Slideshow, md);
+//
+//				return;
+//			}
 			HandleSlideshow (tagname);
 		}
 
@@ -161,12 +165,12 @@ namespace FSpot
 
 		public void View (IEnumerable<string> uris)
 		{
-			if (IsRunning) {
-				var md = new MessageData ();
-				md.Uris = uris.ToArray ();
-				SendMessage (Command.View, md);
-				return;
-			}
+//			if (IsRunning) {
+//				var md = new MessageData ();
+//				md.Uris = uris.ToArray ();
+//				SendMessage (Command.View, md);
+//				return;
+//			}
 			HandleView (uris.ToArray());
 		}
 #endregion
@@ -186,58 +190,53 @@ namespace FSpot
 		MainWindow organizer;
 		Db db;
 
-		App (): base ("org.gnome.FSpot.Core", null,
-				  "Import", Command.Import,
-				  "View", Command.View,
-				  "Organize", Command.Organize,
-				  "Shutdown", Command.Shutdown,
-				  "Slideshow", Command.Slideshow)
+		App (): base (Global.ApplicationID, GLib.ApplicationFlags.FlagsNone)
 		{
 			toplevels = new List<Gtk.Window> ();
-			if (IsRunning) {
-				Log.Information ("Found active FSpot process");
-			} else {
-				MessageReceived += HandleMessageReceived;
-			}
+//			if (IsRunning) {
+//				Log.Information ("Found active FSpot process");
+//			} else {
+//				MessageReceived += HandleMessageReceived;
+//			}
 		}
 
-		void SendMessage (Command command, MessageData md)
-		{
-			SendMessage ((Unique.Command)command, md);
-		}
+//		void SendMessage (Command command, MessageData md)
+//		{
+//			SendMessage ((Unique.Command)command, md);
+//		}
 #endregion
 
 #region Command Handlers
 
-		void HandleMessageReceived (object sender, MessageReceivedArgs e)
-		{
-			switch ((Command)e.Command) {
-			case Command.Import:
-				HandleImport (e.MessageData.Text);
-				e.RetVal = Response.Ok;
-				break;
-			case Command.Organize:
-				HandleOrganize ();
-				e.RetVal = Response.Ok;
-				break;
-			case Command.Shutdown:
-				HandleShutdown ();
-				e.RetVal = Response.Ok;
-				break;
-			case Command.Slideshow:
-				HandleSlideshow (e.MessageData.Text);
-				e.RetVal = Response.Ok;
-				break;
-			case Command.View:
-				HandleView (e.MessageData.Uris);
-				e.RetVal = Response.Ok;
-				break;
-			case Command.Invalid:
-			default:
-				Log.Debug ("Wrong command received");
-				break;
-			}
-		}
+//		void HandleMessageReceived (object sender, MessageReceivedArgs e)
+//		{
+//			switch ((Command)e.Command) {
+//			case Command.Import:
+//				HandleImport (e.MessageData.Text);
+//				e.RetVal = Response.Ok;
+//				break;
+//			case Command.Organize:
+//				HandleOrganize ();
+//				e.RetVal = Response.Ok;
+//				break;
+//			case Command.Shutdown:
+//				HandleShutdown ();
+//				e.RetVal = Response.Ok;
+//				break;
+//			case Command.Slideshow:
+//				HandleSlideshow (e.MessageData.Text);
+//				e.RetVal = Response.Ok;
+//				break;
+//			case Command.View:
+//				HandleView (e.MessageData.Uris);
+//				e.RetVal = Response.Ok;
+//				break;
+//			case Command.Invalid:
+//			default:
+//				Log.Debug ("Wrong command received");
+//				break;
+//			}
+//		}
 
         void HandleImport (string path)
         {

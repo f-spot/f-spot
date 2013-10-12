@@ -88,9 +88,9 @@ namespace FSpot.Utils
         const string ThumbMTimeOpt = "tEXt::Thumb::MTime";
         const string ThumbUriOpt = "tEXt::Thumb::URI";
 
-        static SafeUri home_dir = new SafeUri (Environment.GetFolderPath (Environment.SpecialFolder.Personal));
+        static readonly SafeUri home_dir = new SafeUri (Environment.GetFolderPath (Environment.SpecialFolder.Personal));
 
-        private static Pixbuf CreateFrom (SafeUri uri, SafeUri thumb_uri, ThumbnailSize size, PixbufLoader loader)
+        static Pixbuf CreateFrom (SafeUri uri, SafeUri thumbUri, ThumbnailSize size, PixbufLoader loader)
         {
             var pixels = size == ThumbnailSize.Normal ? 128 : 256;
             Pixbuf pixbuf;
@@ -113,14 +113,14 @@ namespace FSpot.Utils
             var info = file.QueryInfo ("time::modified", GLib.FileQueryInfoFlags.None, null);
             var mtime = info.GetAttributeULong ("time::modified").ToString ();
 
-            thumb_pixbuf.Savev (thumb_uri.LocalPath, "png",
+            thumb_pixbuf.Savev (thumbUri.LocalPath, "png",
                                 new string [] {ThumbUriOpt, ThumbMTimeOpt, null},
                                 new string [] {uri, mtime});
 
             return thumb_pixbuf;
         }
 
-        private static SafeUri ThumbUri (SafeUri uri, ThumbnailSize size)
+        static SafeUri ThumbUri (SafeUri uri, ThumbnailSize size)
         {
             var hash = CryptoUtil.Md5Encode (uri);
             return home_dir.Append (".thumbnails")
@@ -128,7 +128,7 @@ namespace FSpot.Utils
                            .Append (hash + ".png");
         }
 
-        private static Pixbuf LoadFromUri (SafeUri uri)
+        static Pixbuf LoadFromUri (SafeUri uri)
         {
             var file = GLib.FileFactory.NewForUri (uri);
             if (!file.Exists)
@@ -147,7 +147,7 @@ namespace FSpot.Utils
             return pixbuf;
         }
 
-        private static bool IsValid (SafeUri uri, Pixbuf pixbuf)
+        static bool IsValid (SafeUri uri, Pixbuf pixbuf)
         {
             if (pixbuf == null) {
                 return false;

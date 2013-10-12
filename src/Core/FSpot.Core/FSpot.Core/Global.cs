@@ -39,13 +39,16 @@ namespace FSpot.Core
 {
 	public static class Global
 	{
+		public static string ApplicationID {
+			get { return "org.gnome.FSpot.Core"; }
+		}
 		public static string HomeDirectory {
-			get { return System.IO.Path.Combine (System.Environment.GetEnvironmentVariable ("HOME"), System.String.Empty); }
+			get { return System.IO.Path.Combine (Environment.GetEnvironmentVariable ("HOME"), String.Empty); }
 		}
 
 		//$XDG_CONFIG_HOME/f-spot or $HOME/.config/f-spot
-		private static string xdg_config_home = Environment.GetFolderPath (Environment.SpecialFolder.ApplicationData);
-		private static string base_dir = System.IO.Path.Combine (xdg_config_home, "f-spot");
+		static string xdg_config_home = Environment.GetFolderPath (Environment.SpecialFolder.ApplicationData);
+		static string base_dir = System.IO.Path.Combine (xdg_config_home, "f-spot");
 		public static string BaseDirectory {
 			get { return base_dir; }
 			set { base_dir = value; }
@@ -64,7 +67,7 @@ namespace FSpot.Core
 
 		public static Cms.Profile DestinationProfile { get; set; }
 
-		private static Gtk.IconTheme icon_theme;
+		static Gtk.IconTheme icon_theme;
 		public static Gtk.IconTheme IconTheme {
 			get {
 				if (icon_theme == null) {
@@ -75,7 +78,7 @@ namespace FSpot.Core
 			}
 		}
 
-		private static string [] default_rc_files;
+		static string [] default_rc_files;
 		public static string [] DefaultRcFiles {
 			get {
 				if (default_rc_files == null)

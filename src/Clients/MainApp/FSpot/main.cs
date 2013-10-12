@@ -2,11 +2,13 @@
 // main.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Ruben Vermeersch <ruben@savanne.be>
 //   Paul Lange <palango@gmx.de>
 //   Evan Briones <erbriones@gmail.com>
 //   Stephane Delcroix <stephane@delcroix.org>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2006-2010 Novell, Inc.
 // Copyright (C) 2010 Ruben Vermeersch
 // Copyright (C) 2010 Paul Lange
@@ -188,7 +190,7 @@ namespace FSpot
 			GLib.GType.Init ();
 			Catalog.Init ("f-spot", Defines.LOCALE_DIR);
 
-			FSpot.Core.Global.PhotoUri = new SafeUri (Preferences.Get<string> (Preferences.STORAGE_PATH));
+			Global.PhotoUri = new SafeUri (Preferences.Get<string> (Preferences.STORAGE_PATH));
 
 			ApplicationContext.CommandLine = new CommandLineParser (args, 0);
 
@@ -222,7 +224,7 @@ namespace FSpot
 
 				if (!string.IsNullOrEmpty (dir))
 				{
-					FSpot.Core.Global.BaseDirectory = dir;
+					Global.BaseDirectory = dir;
 					Log.InformationFormat ("BaseDirectory is now {0}", dir);
 				} else {
 					Log.Error ("f-spot: -basedir option takes one argument");
@@ -235,7 +237,7 @@ namespace FSpot
 
 				if (!string.IsNullOrEmpty (dir))
 				{
-					FSpot.Core.Global.PhotoUri = new SafeUri (dir);
+					Global.PhotoUri = new SafeUri (dir);
 					Log.InformationFormat ("PhotoDirectory is now {0}", dir);
 				} else {
 					Log.Error ("f-spot: -photodir option takes one argument");
@@ -252,7 +254,7 @@ namespace FSpot
 			if (ApplicationContext.CommandLine.Contains ("debug")) {
 				Log.Debugging = true;
 				// Debug GdkPixbuf critical warnings
-				GLib.LogFunc logFunc = new GLib.LogFunc (GLib.Log.PrintTraceLogFunction);
+				var logFunc = new GLib.LogFunc (GLib.Log.PrintTraceLogFunction);
 				GLib.Log.SetLogHandler ("GdkPixbuf", GLib.LogLevelFlags.Critical, logFunc);
 
 				// Debug Gtk critical warnings
@@ -287,20 +289,20 @@ namespace FSpot
 			Platform.WebProxy.Init ();
 
 			if (File.Exists (Preferences.Get<string> (Preferences.GTK_RC))) {
-				if (File.Exists (Path.Combine (FSpot.Core.Global.BaseDirectory, "gtkrc")))
-					Gtk.Rc.AddDefaultFile (Path.Combine (FSpot.Core.Global.BaseDirectory, "gtkrc"));
+				if (File.Exists (Path.Combine (Global.BaseDirectory, "gtkrc")))
+					Gtk.Rc.AddDefaultFile (Path.Combine (Global.BaseDirectory, "gtkrc"));
 
-				FSpot.Core.Global.DefaultRcFiles = Gtk.Rc.DefaultFiles;
+				Global.DefaultRcFiles = Gtk.Rc.DefaultFiles;
 				Gtk.Rc.AddDefaultFile (Preferences.Get<string> (Preferences.GTK_RC));
 				Gtk.Rc.ReparseAllForSettings (Gtk.Settings.Default, true);
 			}
 
 			try {
-				Gtk.Window.DefaultIconList = new Gdk.Pixbuf [] {
-					GtkUtil.TryLoadIcon (FSpot.Core.Global.IconTheme, "f-spot", 16, (Gtk.IconLookupFlags)0),
-					GtkUtil.TryLoadIcon (FSpot.Core.Global.IconTheme, "f-spot", 22, (Gtk.IconLookupFlags)0),
-					GtkUtil.TryLoadIcon (FSpot.Core.Global.IconTheme, "f-spot", 32, (Gtk.IconLookupFlags)0),
-					GtkUtil.TryLoadIcon (FSpot.Core.Global.IconTheme, "f-spot", 48, (Gtk.IconLookupFlags)0)
+				Gtk.Window.DefaultIconList = new [] {
+					GtkUtil.TryLoadIcon (Global.IconTheme, "f-spot", 16, (Gtk.IconLookupFlags)0),
+					GtkUtil.TryLoadIcon (Global.IconTheme, "f-spot", 22, (Gtk.IconLookupFlags)0),
+					GtkUtil.TryLoadIcon (Global.IconTheme, "f-spot", 32, (Gtk.IconLookupFlags)0),
+					GtkUtil.TryLoadIcon (Global.IconTheme, "f-spot", 48, (Gtk.IconLookupFlags)0)
 				};
 			} catch {}
 
@@ -330,7 +332,7 @@ namespace FSpot
 
 		static void UpdatePlugins ()
 		{
-			AddinManager.Initialize (FSpot.Core.Global.BaseDirectory);
+			AddinManager.Initialize (Global.BaseDirectory);
 			AddinManager.Registry.Update (null);
 		}
 
@@ -359,7 +361,7 @@ namespace FSpot
 			else if (ApplicationContext.CommandLine.Contains ("view")) {
 				if (ApplicationContext.CommandLine.Files.Count == 0) {
 					Log.Error ("f-spot: -view option takes at least one argument");
-					System.Environment.Exit (1);
+					Environment.Exit (1);
 				}
 
 				var list = new UriList ();
@@ -369,7 +371,7 @@ namespace FSpot
 
 				if (list.Count == 0) {
 					ShowHelp ();
-					System.Environment.Exit (1);
+					Environment.Exit (1);
 				}
 
 				App.Instance.View (list);
@@ -378,14 +380,15 @@ namespace FSpot
 
 				if (string.IsNullOrEmpty (dir)) {
 					Log.Error ("f-spot: -import option takes one argument");
-					System.Environment.Exit (1);
+					Environment.Exit (1);
 				}
 
 				App.Instance.Import (dir);
 			} else
 				App.Instance.Organize ();
 
-			if (!App.Instance.IsRunning)
+			// GTK3: Initial port, NOT verify the app is unique
+			//if (!GnomeApp.Instance.IsRunning)
 				Gtk.Application.Run ();
 		}
 
