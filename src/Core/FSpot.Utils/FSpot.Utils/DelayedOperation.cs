@@ -79,12 +79,13 @@ namespace FSpot.Utils
             get { return source != 0; }
         }
 
-        public void Connect (Gtk.Object obj)
-        {
-            if (obj == null)
-                throw new ArgumentNullException ("obj");
-            obj.Destroyed += HandleDestroy;
-        }
+		// GTK3: Is this even called?
+//		public void Connect (Gtk.Object obj)
+//        {
+//            if (obj == null)
+//                throw new ArgumentNullException ("obj");
+//            obj.Destroyed += HandleDestroy;
+//        }
 
         private void HandleDestroy (object sender, System.EventArgs args)
         {

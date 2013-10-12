@@ -2,10 +2,12 @@
 // AdjustTimeDialog.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Ruben Vermeersch <ruben@savanne.be>
 //   Larry Ewing <lewing@novell.com>
 //   Stephane Delcroix <stephane@delcroix.org>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2006-2010 Novell, Inc.
 // Copyright (C) 2010 Ruben Vermeersch
 // Copyright (C) 2006 Larry Ewing
@@ -43,24 +45,25 @@ using FSpot.Widgets;
 
 using Hyena;
 
-namespace FSpot.UI.Dialog {
+namespace FSpot.UI.Dialog
+{
 	public class AdjustTimeDialog : BuilderDialog
 	{
-		[GtkBeans.Builder.Object] ScrolledWindow view_scrolled;
-		[GtkBeans.Builder.Object] ScrolledWindow tray_scrolled;
-		[GtkBeans.Builder.Object] Button ok_button;
-		[GtkBeans.Builder.Object] Button cancel_button;
-		[GtkBeans.Builder.Object] SpinButton photo_spin;
-		[GtkBeans.Builder.Object] Label name_label;
-		[GtkBeans.Builder.Object] Label old_label;
-		[GtkBeans.Builder.Object] Label count_label;
-		[GtkBeans.Builder.Object] Gnome.DateEdit date_edit;
-		[GtkBeans.Builder.Object] Frame tray_frame;
-		[GtkBeans.Builder.Object] Gtk.Entry offset_entry;
-		[GtkBeans.Builder.Object] Gtk.CheckButton difference_check;
-		[GtkBeans.Builder.Object] Gtk.Frame action_frame;
-		[GtkBeans.Builder.Object] Gtk.Entry spacing_entry;
-		[GtkBeans.Builder.Object] Gtk.Label starting_label;
+		[Builder.Object] ScrolledWindow view_scrolled;
+		[Builder.Object] ScrolledWindow tray_scrolled;
+		[Builder.Object] Button ok_button;
+		[Builder.Object] Button cancel_button;
+		[Builder.Object] SpinButton photo_spin;
+		[Builder.Object] Label name_label;
+		[Builder.Object] Label old_label;
+		[Builder.Object] Label count_label;
+		[Builder.Object] Gnome.DateEdit date_edit;
+		[Builder.Object] Frame tray_frame;
+		[Builder.Object] Entry offset_entry;
+		[Builder.Object] CheckButton difference_check;
+		[Builder.Object] Frame action_frame;
+		[Builder.Object] Entry spacing_entry;
+		[Builder.Object] Label starting_label;
 
 		IBrowsableCollection collection;
 		BrowsablePointer item;

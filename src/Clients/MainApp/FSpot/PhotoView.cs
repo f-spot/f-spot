@@ -382,7 +382,7 @@ namespace FSpot
 		{
 			Dispose (true);
 			base.Dispose ();
-			System.GC.SuppressFinalize (this);
+			GC.SuppressFinalize (this);
 		}
 
 		protected virtual void Dispose (bool disposing)
@@ -403,7 +403,7 @@ namespace FSpot
 			GtkUtil.ModifyColors (photo_view_scrolled);
 			GtkUtil.ModifyColors (rating);
 
-			Gdk.Color dark = Style.Dark (Gtk.StateType.Normal);
+			Color dark = Style.Dark (Gtk.StateType.Normal);
 			filmstrip.ModifyBg (Gtk.StateType.Normal, dark);
 			tag_view.ModifyBg (Gtk.StateType.Normal, dark);
 			View.ModifyBg (Gtk.StateType.Normal, dark);

@@ -50,13 +50,15 @@ using FSpot.Query;
 
 using Hyena;
 using Hyena.Data.Sqlite;
-using System.Data;
+using FSpot.Utils;
 
-namespace FSpot {
-        public class PhotoStore : DbStore<Photo> {
+namespace FSpot
+{
+	public class PhotoStore : DbStore<Photo>
+	{
          public int TotalPhotos {
                  get {
-                         Hyena.Data.Sqlite.IDataReader reader = Database.Query("SELECT COUNT(*) AS photo_count FROM photos");
+                         IDataReader reader = Database.Query("SELECT COUNT(*) AS photo_count FROM photos");
                          reader.Read ();
                          int total = Convert.ToInt32 (reader ["photo_count"]);
                          reader.Dispose ();
@@ -67,22 +69,22 @@ namespace FSpot {
          // FIXME this is a hack.  Since we don't have Gnome.ThumbnailFactory.SaveThumbnail() in
          // GTK#, and generate them by ourselves directly with Gdk.Pixbuf, we have to make sure here
          // that the "large" thumbnail directory exists.
-         private static void EnsureThumbnailDirectory ()
+         static void EnsureThumbnailDirectory ()
          {
-                 string large_thumbnail_file_name_template = Gnome.Thumbnail.PathForUri ("file:///boo", Gnome.ThumbnailSize.Large);
-                 string large_thumbnail_directory_path = System.IO.Path.GetDirectoryName (large_thumbnail_file_name_template);
-        
-                 if (! System.IO.File.Exists (large_thumbnail_directory_path))
-                         System.IO.Directory.CreateDirectory (large_thumbnail_directory_path);
+			// GTK3: Figure out this thumbnail directory
+//                 string large_thumbnail_file_name_template = Gnome.Thumbnail.PathForUri ("file:///boo", Gnome.ThumbnailSize.Large);
+//                 string large_thumbnail_directory_path = System.IO.Path.GetDirectoryName (large_thumbnail_file_name_template);
+//        
+//                 if (! System.IO.File.Exists (large_thumbnail_directory_path))
+//                         System.IO.Directory.CreateDirectory (large_thumbnail_directory_path);
          }
 
          // Constructor
-         public PhotoStore (FSpotDatabaseConnection database, bool is_new)
-                 : base (database, false)
+		public PhotoStore (FSpotDatabaseConnection database, bool isNew) : base (database, false)
          {
                  EnsureThumbnailDirectory ();
         
-                 if (! is_new)
+                 if (! isNew)
                          return;
         
                  Database.Execute (

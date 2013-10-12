@@ -41,8 +41,10 @@ using FSpot.Query;
 
 using Hyena;
 
-namespace FSpot {
-	public class PhotoQuery : IBrowsableCollection {
+namespace FSpot
+{
+	public class PhotoQuery : IBrowsableCollection
+	{
 		class PhotoCache
 		{
 			static int SIZE = 100;
@@ -149,8 +151,8 @@ namespace FSpot {
 		}
 
 		//Query Conditions
-		private Dictionary<Type, IQueryCondition> conditions;
-		private Dictionary<Type, IQueryCondition> Conditions {
+		Dictionary<Type, IQueryCondition> conditions;
+		Dictionary<Type, IQueryCondition> Conditions {
 			get { return conditions ?? (conditions = new Dictionary<Type, IQueryCondition>()); }
 		}
 

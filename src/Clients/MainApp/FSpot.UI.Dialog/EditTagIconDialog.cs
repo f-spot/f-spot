@@ -2,9 +2,11 @@
 // EditTagIconDialog.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Stephane Delcroix <stephane@delcroix.org>
 //   Ruben Vermeersch <ruben@savanne.be>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2009-2010 Novell, Inc.
 // Copyright (C) 2009 Stephane Delcroix
 // Copyright (C) 2009-2010 Ruben Vermeersch
@@ -51,22 +53,22 @@ namespace FSpot.UI.Dialog
 	{
 		PhotoQuery query;
 		PhotoImageView image_view;
-		Gtk.IconView icon_view;
+		IconView icon_view;
 		ListStore icon_store;
 		string icon_name = String.Empty;
-		Gtk.FileChooserButton external_photo_chooser;
+		FileChooserButton external_photo_chooser;
 
-		[GtkBeans.Builder.Object] Gtk.Image preview_image;
-		[GtkBeans.Builder.Object] Gtk.ScrolledWindow photo_scrolled_window;
-		[GtkBeans.Builder.Object] Gtk.ScrolledWindow icon_scrolled_window;
-		[GtkBeans.Builder.Object] Label photo_label;
-		[GtkBeans.Builder.Object] Label from_photo_label;
-		[GtkBeans.Builder.Object] SpinButton photo_spin_button;
-		[GtkBeans.Builder.Object] HBox external_photo_chooser_hbox;
+		[Builder.Object] Image preview_image;
+		[Builder.Object] Gtk.ScrolledWindow photo_scrolled_window;
+		[Builder.Object] Gtk.ScrolledWindow icon_scrolled_window;
+		[Builder.Object] Label photo_label;
+		[Builder.Object] Label from_photo_label;
+		[Builder.Object] SpinButton photo_spin_button;
+		[Builder.Object] HBox external_photo_chooser_hbox;
 
-		public EditTagIconDialog (Db db, Tag t, Gtk.Window parent_window) : base ("EditTagIconDialog.ui", "edit_tag_icon_dialog")
+		public EditTagIconDialog (Db db, Tag t, Window parentWindow) : base ("EditTagIconDialog.ui", "edit_tag_icon_dialog")
 		{
-			TransientFor = parent_window;
+			TransientFor = parentWindow;
 			Title = String.Format (Catalog.GetString ("Edit Icon for Tag {0}"), t.Name);
 
 			preview_pixbuf = t.Icon;
@@ -89,8 +91,8 @@ namespace FSpot.UI.Dialog
 			image_view.SelectionChanged += HandleSelectionChanged;
 			image_view.PhotoChanged += HandlePhotoChanged;
 
-			external_photo_chooser = new Gtk.FileChooserButton (Catalog.GetString ("Select Photo from file"),
-					Gtk.FileChooserAction.Open);
+			external_photo_chooser = new FileChooserButton (Catalog.GetString ("Select Photo from file"),
+					FileChooserAction.Open);
 
 			external_photo_chooser.Filter = new FileFilter();
 			external_photo_chooser.Filter.AddPixbufFormats();
@@ -123,7 +125,7 @@ namespace FSpot.UI.Dialog
 
 			icon_store = new ListStore (typeof (string), typeof (Gdk.Pixbuf));
 
-			icon_view = new Gtk.IconView (icon_store);
+			icon_view = new IconView (icon_store);
 			icon_view.PixbufColumn = 1;
 			icon_view.SelectionMode = SelectionMode.Single;
 			icon_view.SelectionChanged += HandleIconSelectionChanged;
@@ -134,7 +136,7 @@ namespace FSpot.UI.Dialog
 
 			image_view.Show ();
 
-			DelayedOperation fill_delay = new DelayedOperation (FillIconView);
+			var fill_delay = new DelayedOperation (FillIconView);
 			fill_delay.Start ();
 		}
 
@@ -192,7 +194,7 @@ namespace FSpot.UI.Dialog
 				string caption = Catalog.GetString ("Unable to load image");
 				string message = String.Format (Catalog.GetString ("Unable to load \"{0}\" as icon for the tag"),
 					                 external_photo_chooser.Uri);
-				HigMessageDialog md = new HigMessageDialog (this,
+				var md = new HigMessageDialog (this,
 									    DialogFlags.DestroyWithParent,
 									    MessageType.Error,
 									    ButtonsType.Close,

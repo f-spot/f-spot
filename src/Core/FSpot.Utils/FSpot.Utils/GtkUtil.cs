@@ -2,9 +2,11 @@
 // GtkUtil.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Stephane Delcroix <sdelcroix@novell.com>
 //   Ruben Vermeersch <ruben@savanne.be>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2008-2010 Novell, Inc.
 // Copyright (C) 2008 Stephane Delcroix
 // Copyright (C) 2010 Ruben Vermeersch
@@ -31,83 +33,81 @@
 
 using System;
 
+using Gtk;
+using Gdk;
+
 namespace FSpot.Utils
 {
 	public static class GtkUtil
 	{
-		public static Gtk.MenuItem MakeMenuItem (Gtk.Menu menu, string l, EventHandler e)
+		public static MenuItem MakeMenuItem (Menu menu, string l, EventHandler e, bool enabled = true)
 		{
-			return MakeMenuItem (menu, l, e, true);
-		}
-		
-		public static Gtk.MenuItem MakeMenuItem (Gtk.Menu menu, string l, EventHandler e, bool enabled)
-		{
-			Gtk.MenuItem i;
-			Gtk.StockItem item = Gtk.StockItem.Zero;
+			MenuItem i;
+			StockItem item = StockItem.Zero;
 	
-			if (Gtk.StockManager.Lookup (l, ref item)) {
-				i = new Gtk.ImageMenuItem (l, new Gtk.AccelGroup ());
+			if (StockManager.Lookup (l, ref item)) {
+				i = new ImageMenuItem (l, new AccelGroup ());
 			} else {
-				i = new Gtk.MenuItem (l);
+				i = new MenuItem (l);
 			}
 	
 			if (e != null)
 				i.Activated += e;
 	
-	                i.Sensitive = enabled;
-			
-			menu.Append (i);
-			i.Show ();
-	
-	        return i;
-		}
-		
-		public static Gtk.MenuItem MakeMenuItem (Gtk.Menu menu, string label, string image_name, EventHandler e, bool enabled)
-		{
-			Gtk.ImageMenuItem i = new Gtk.ImageMenuItem (label);
-			i.Activated += e;
-	                i.Sensitive = enabled;
-			i.Image = Gtk.Image.NewFromIconName (image_name, Gtk.IconSize.Menu);
-			
-			menu.Append (i);
-			i.Show ();
-	
-		        return i;
-		}
-	
-		public static Gtk.MenuItem MakeCheckMenuItem (Gtk.Menu menu, string label, EventHandler e, bool enabled, bool active, bool as_radio)
-		{
-			Gtk.CheckMenuItem i = new Gtk.CheckMenuItem (label);
 			i.Sensitive = enabled;
-			i.DrawAsRadio = as_radio;
+			
+			menu.Append (i);
+			i.Show ();
+	
+			return i;
+		}
+
+		public static MenuItem MakeMenuItem (Menu menu, string label, string imageName, EventHandler e, bool enabled)
+		{
+			var i = new ImageMenuItem (label);
+			i.Activated += e;
+			i.Sensitive = enabled;
+			i.Image = Image.NewFromIconName (imageName, IconSize.Menu);
+			
+			menu.Append (i);
+			i.Show ();
+	
+			return i;
+		}
+
+		public static MenuItem MakeCheckMenuItem (Menu menu, string label, EventHandler e, bool enabled, bool active, bool asRadio)
+		{
+			var i = new CheckMenuItem (label);
+			i.Sensitive = enabled;
+			i.DrawAsRadio = asRadio;
 			i.Active = active;
 
-            i.Activated += e;
+			i.Activated += e;
 	
-			menu.Append(i);
+			menu.Append (i);
 			i.Show ();
 	
-	        return i;
+			return i;
 		}
-	
-		public static void MakeMenuSeparator (Gtk.Menu menu)
+
+		public static void MakeMenuSeparator (Menu menu)
 		{
-			Gtk.SeparatorMenuItem i = new Gtk.SeparatorMenuItem ();
+			var i = new SeparatorMenuItem ();
 			menu.Append (i);
 			i.Show ();
 		}
-		
-		public static Gtk.ToolButton ToolButtonFromTheme (string theme_id, string label, bool important)
+
+		public static ToolButton ToolButtonFromTheme (string themeId, string label, bool important)
 		{
-			Gtk.ToolButton button = new Gtk.ToolButton (null, null);
+			var button = new ToolButton (null, null);
 			button.Label = label;
-			button.IconName = theme_id;
+			button.IconName = themeId;
 			button.IsImportant = important;
 			button.UseUnderline = true;
 			return button;
 		}
 
-		public static Gdk.Pixbuf TryLoadIcon (Gtk.IconTheme theme, string[] names, int size, Gtk.IconLookupFlags flags)
+		public static Pixbuf TryLoadIcon (IconTheme theme, string[] names, int size, IconLookupFlags flags)
 		{
 			try {
 				var info = theme.ChooseIcon (names, size, flags);
@@ -120,11 +120,11 @@ namespace FSpot.Utils
 				}
 			}	
 		}
-	
-		public static Gdk.Pixbuf TryLoadIcon (Gtk.IconTheme theme, string icon_name, int size, Gtk.IconLookupFlags flags)
+
+		public static Pixbuf TryLoadIcon (IconTheme theme, string iconName, int size, IconLookupFlags flags)
 		{
 			try {
-				return theme.LoadIcon (icon_name, size, flags);
+				return theme.LoadIcon (iconName, size, flags);
 			} catch {
 				try {
 					return theme.LoadIcon ("gtk-missing-image", size, flags);
@@ -134,21 +134,21 @@ namespace FSpot.Utils
 			}	
 		}
 
-		public static void ModifyColors (Gtk.Widget widget)
+		public static void ModifyColors (Widget widget)
 		{
 			try {
-				widget.ModifyFg (Gtk.StateType.Normal, widget.Style.TextColors [(int)Gtk.StateType.Normal]);
-				widget.ModifyFg (Gtk.StateType.Active, widget.Style.TextColors [(int)Gtk.StateType.Active]);
-				widget.ModifyFg (Gtk.StateType.Selected, widget.Style.TextColors [(int)Gtk.StateType.Selected]);
-				widget.ModifyBg (Gtk.StateType.Normal, widget.Style.BaseColors [(int)Gtk.StateType.Normal]);
-				widget.ModifyBg (Gtk.StateType.Active, widget.Style.BaseColors [(int)Gtk.StateType.Active]);
-				widget.ModifyBg (Gtk.StateType.Selected, widget.Style.BaseColors [(int)Gtk.StateType.Selected]);
+				widget.ModifyFg (StateType.Normal, widget.Style.TextColors [(int)StateType.Normal]);
+				widget.ModifyFg (StateType.Active, widget.Style.TextColors [(int)StateType.Active]);
+				widget.ModifyFg (StateType.Selected, widget.Style.TextColors [(int)StateType.Selected]);
+
+				widget.ModifyBg (StateType.Normal, widget.Style.BaseColors [(int)StateType.Normal]);
+				widget.ModifyBg (StateType.Active, widget.Style.BaseColors [(int)StateType.Active]);
+				widget.ModifyBg (StateType.Selected, widget.Style.BaseColors [(int)StateType.Selected]);
 				
 			} catch {
-				widget.ModifyFg (Gtk.StateType.Normal, widget.Style.Black);
-				widget.ModifyBg (Gtk.StateType.Normal, widget.Style.Black);
+				widget.ModifyFg (StateType.Normal, widget.Style.Black);
+				widget.ModifyBg (StateType.Normal, widget.Style.Black);
 			}
 		}
-
 	}
-}	
+}

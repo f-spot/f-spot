@@ -40,8 +40,10 @@ using Mono.Unix;
 using FSpot.Core;
 using FSpot.UI.Dialog;
 
-namespace FSpot {
-	public abstract class ItemAction : Gtk.Action {
+namespace FSpot
+{
+	public abstract class ItemAction : Gtk.Action
+	{
 		protected BrowsablePointer item;
 
 		public ItemAction (BrowsablePointer pointer,

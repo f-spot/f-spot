@@ -37,17 +37,18 @@ using Gtk;
 using Mono.Unix;
 using Hyena;
 
-namespace FSpot.UI.Dialog {
+namespace FSpot.UI.Dialog
+{
 	public class SelectionRatioDialog : BuilderDialog
 	{
 		[Serializable]
 		public struct SelectionConstraint {
-			private string label;
+			string label;
 			public string Label {
 				get { return label; }
 				set { label = value; }
 			}
-			private double ratio;
+			double ratio;
 			public double XyRatio {
 				get { return ratio; }
 				set { ratio = value; }
@@ -60,18 +61,18 @@ namespace FSpot.UI.Dialog {
 			}
 		}
 
-		[GtkBeans.Builder.Object] Button close_button;
-		[GtkBeans.Builder.Object] Button add_button;
-		[GtkBeans.Builder.Object] Button delete_button;
-		[GtkBeans.Builder.Object] Button up_button;
-		[GtkBeans.Builder.Object] Button down_button;
-		[GtkBeans.Builder.Object] TreeView content_treeview;
-		private ListStore constraints_store;
+		[Builder.Object] Button close_button;
+		[Builder.Object] Button add_button;
+		[Builder.Object] Button delete_button;
+		[Builder.Object] Button up_button;
+		[Builder.Object] Button down_button;
+		[Builder.Object] TreeView content_treeview;
+		ListStore constraints_store;
 
 		public SelectionRatioDialog () : base ("SelectionRatioDialog.ui", "customratio_dialog")
 		{
-			close_button.Clicked += delegate (object o, EventArgs e) {SavePrefs (); this.Destroy (); };
-                        add_button.Clicked += delegate (object o, EventArgs e) {constraints_store.AppendValues (Catalog.GetString("New Selection"), 1.0);};
+			close_button.Clicked += delegate {SavePrefs (); Destroy (); };
+                        add_button.Clicked += delegate {constraints_store.AppendValues (Catalog.GetString("New Selection"), 1.0);};
 			delete_button.Clicked += DeleteSelectedRows;
 			up_button.Clicked += MoveUp;
 			down_button.Clicked += MoveDown;
@@ -172,7 +173,7 @@ namespace FSpot.UI.Dialog {
 			args.RetVal = true;
 		}
 
-		private double ParseRatio (string text)
+		double ParseRatio (string text)
 		{
 			try {
 				return Convert.ToDouble (text);
@@ -189,18 +190,18 @@ namespace FSpot.UI.Dialog {
 			}
 		}
 
-		private void DeleteSelectedRows (object o, EventArgs e)
+		void DeleteSelectedRows (object o, EventArgs e)
 		{
 			TreeIter iter;
-			TreeModel model;
+			ITreeModel model;
 			if (content_treeview.Selection.GetSelected (out model, out iter))
 				(model as ListStore).Remove (ref iter);
 		}
 
-		private void MoveUp (object o, EventArgs e)
+		void MoveUp (object o, EventArgs e)
 		{
 			TreeIter selected;
-			TreeModel model;
+			ITreeModel model;
 			if (content_treeview.Selection.GetSelected (out model, out selected)) {
 				//no IterPrev :(
 				TreeIter prev;
@@ -211,10 +212,10 @@ namespace FSpot.UI.Dialog {
 			}
 		}
 
-		private void MoveDown (object o, EventArgs e)
+		void MoveDown (object o, EventArgs e)
 		{
 			TreeIter current;
-			TreeModel model;
+			ITreeModel model;
 			if (content_treeview.Selection.GetSelected (out model, out current)) {
 				TreeIter next = current;
 				if ((model as ListStore).IterNext (ref next))

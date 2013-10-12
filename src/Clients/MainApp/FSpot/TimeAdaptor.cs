@@ -2,11 +2,13 @@
 // TimeAdaptor.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Ruben Vermeersch <ruben@savanne.be>
 //   Gabriel Burt <gabriel.burt@gmail.com>
 //   Larry Ewing <lewing@novell.com>
 //   Stephane Delcroix <sdelcroix@src.gnome.org>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2004-2010 Novell, Inc.
 // Copyright (C) 2010 Ruben Vermeersch
 // Copyright (C) 2005-2006 Gabriel Burt
@@ -42,8 +44,10 @@ using FSpot.Query;
 
 using Hyena;
 
-namespace FSpot {
-	public class TimeAdaptor : GroupAdaptor, FSpot.ILimitable {
+namespace FSpot
+{
+	public class TimeAdaptor : GroupAdaptor, ILimitable
+	{
 		Dictionary <int, int[]> years = new Dictionary<int, int[]> ();
 
 		public override event GlassSetHandler GlassSet;
@@ -109,7 +113,7 @@ namespace FSpot {
 			return DateFromIndexDescending (item);
 		}
 
-		private DateTime DateFromIndexAscending (int item)
+		DateTime DateFromIndexAscending (int item)
 		{
 			int year = startyear + item/12;
 			int month = 1 + (item % 12);
@@ -117,7 +121,7 @@ namespace FSpot {
 			return new DateTime(year, month, 1);
 		}
 
-		private DateTime DateFromIndexDescending (int item)
+		DateTime DateFromIndexDescending (int item)
 		{
 			int year = endyear - item/12;
 			int month = 12 - (item % 12);
@@ -148,7 +152,7 @@ namespace FSpot {
 			return IndexFromDateDescending(date);
 		}
 
-		private int IndexFromDateAscending(DateTime date)
+		int IndexFromDateAscending(DateTime date)
 		{
 			int year = date.Year;
 			int min_year = startyear;
@@ -162,7 +166,7 @@ namespace FSpot {
 			return (year - startyear) * 12 + date.Month - 1 ;
 		}
 
-		private int IndexFromDateDescending(DateTime date)
+		int IndexFromDateDescending(DateTime date)
 		{
 			int year = date.Year;
 			int min_year = startyear;
@@ -189,7 +193,7 @@ namespace FSpot {
 		protected override void Reload ()
 		{
 			timer = Log.DebugTimerStart ();
-			Thread reload = new Thread (new ThreadStart (DoReload));
+			var reload = new Thread (new ThreadStart (DoReload));
 			reload.IsBackground = true;
 			reload.Priority = ThreadPriority.Lowest;
 			reload.Start ();
@@ -220,8 +224,7 @@ namespace FSpot {
 			Log.DebugTimerPrint (timer, "TimeAdaptor REAL Reload took {0}");
 		}
 
-		public TimeAdaptor (PhotoQuery query, bool order_ascending)
-			: base (query, order_ascending)
+		public TimeAdaptor (PhotoQuery query, bool orderAscending) : base (query, orderAscending)
 		{ }
 	}
 }

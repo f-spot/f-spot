@@ -38,29 +38,30 @@
 
 using System;
 
+using Gtk;
+
 using FSpot.Extensions;
 using FSpot.UI.Dialog;
-//using Gnome.Vfs;
 
 using Hyena;
 using Hyena.Widgets;
 
 namespace FSpot.Tools.ChangePhotoPath
 {
-	public class Dump : Gtk.Dialog, ICommand, IChangePhotoPathGui
+	public class Dump : Dialog, ICommand, IChangePhotoPathGui
 	{
-		private string dialog_name = "ChangePhotoPath";
-		private GtkBeans.Builder builder;
-		private Gtk.Dialog dialog;
-		private ChangePathController contr;
+		string dialog_name = "ChangePhotoPath";
+		Builder builder;
+		Dialog dialog;
+		ChangePathController contr;
 
-		private ProgressDialog progress_dialog;
-		private int progress_dialog_total = 0;
+		ProgressDialog progress_dialog;
+		int progress_dialog_total = 0;
 
-		[GtkBeans.Builder.Object] Gtk.Entry old_common_uri;
-		[GtkBeans.Builder.Object] Gtk.Label new_common_uri;
+		[Builder.Object] Entry old_common_uri;
+		[Builder.Object] Label new_common_uri;
 
-		private bool LaunchController()
+		bool LaunchController()
 		{
 			try {
 				contr = new ChangePathController ( this );
@@ -96,13 +97,13 @@ namespace FSpot.Tools.ChangePhotoPath
 			}
 		}
 
-		private void CreateDialog()
+		void CreateDialog()
 		{
-			builder = new GtkBeans.Builder (null, "ChangePhotoPath.ui", null);
+			builder = new Builder (null, "ChangePhotoPath.ui", null);
 			builder.Autoconnect (this);
 		}
 
-		private Gtk.Dialog Dialog {
+		Dialog Dialog {
 			get {
 				if (dialog == null)
 					dialog = new Gtk.Dialog (builder.GetRawObject (dialog_name));
@@ -110,7 +111,7 @@ namespace FSpot.Tools.ChangePhotoPath
 			}
 		}
 
-		private void DisplayMsg(Gtk.MessageType MessageType, string msg)
+		void DisplayMsg(Gtk.MessageType MessageType, string msg)
 		{
 
 			HigMessageDialog.RunHigMessageDialog (	null,

@@ -26,12 +26,11 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-
-using GtkBeans;
+using Gtk;
 
 namespace FSpot.Widgets
 {
-	public abstract class BuilderWindow : Gtk.Window
+	public abstract class BuilderWindow : Window
 	{
 		protected BuilderWindow (string resourceName, string widgetName) : this (null, resourceName, widgetName)
 		{

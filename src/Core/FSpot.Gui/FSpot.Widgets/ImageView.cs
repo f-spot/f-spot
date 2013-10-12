@@ -2,9 +2,11 @@
 // ImageView.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Stephane Delcroix <stephane@delcroix.org>
 //   Ruben Vermeersch <ruben@savanne.be>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2009-2010 Novell, Inc.
 // Copyright (C) 2009 Stephane Delcroix
 // Copyright (C) 2010 Ruben Vermeersch
@@ -41,26 +43,22 @@ using Hyena;
 
 namespace FSpot.Widgets
 {
-	public partial class ImageView : Container
+	public sealed partial class ImageView : Container
 	{
 #region public API
 		protected ImageView (IntPtr raw) : base (raw) { }
 
-		public ImageView (Adjustment hadjustment, Adjustment vadjustment, bool can_select) : base ()
+		public ImageView (Adjustment hadjustment, Adjustment vadjustment, bool canSelect)
 		{
 			OnSetScrollAdjustments (hadjustment, vadjustment);
 			AdjustmentsChanged += ScrollToAdjustments;
 			WidgetFlags &= ~WidgetFlags.NoWindow;
 			SetFlag (WidgetFlags.CanFocus);
 
-			this.can_select = can_select;
+			this.can_select = canSelect;
 		}
 
-		public ImageView (bool can_select) : this (null, null, can_select)
-		{
-		}
-
-		public ImageView () : this (true)
+		public ImageView (bool canSelect = true) : this (null, null, canSelect)
 		{
 		}
 
@@ -131,12 +129,10 @@ namespace FSpot.Widgets
 			}
 		}
 
-		Gdk.Rectangle selection = Rectangle.Zero;
-		public Gdk.Rectangle Selection {
+		Rectangle selection = Rectangle.Zero;
+		public Rectangle Selection {
 			get {
-				if (!can_select)
-					return Rectangle.Zero;
-				return selection;
+				return can_select ? selection : Rectangle.Zero;
 			}
 			set { 
 				if (!can_select)
@@ -173,7 +169,7 @@ namespace FSpot.Widgets
 		}
 
 		InterpType interpolation = InterpType.Bilinear;
-		public Gdk.InterpType Interpolation {
+		public InterpType Interpolation {
 			get { return interpolation; } 
 			set { 
 				if (interpolation == value)
@@ -202,18 +198,18 @@ namespace FSpot.Widgets
 			Zoom *= 1.0 / ZOOM_FACTOR;
 		}
 
-		public void ZoomAboutPoint (double zoom_increment, int x, int y)
+		public void ZoomAboutPoint (double zoomIncrement, int x, int y)
 		{
-			DoZoom (zoom * zoom_increment, x, y);
+			DoZoom (zoom * zoomIncrement, x, y);
 		}
 
         public bool Fit { get; private set; }
 
         public void ZoomFit (bool upscale)
         {
-            Gtk.ScrolledWindow scrolled = Parent as Gtk.ScrolledWindow;
+            ScrolledWindow scrolled = Parent as ScrolledWindow;
             if (scrolled != null)
-                scrolled.SetPolicy (Gtk.PolicyType.Never, Gtk.PolicyType.Never);
+                scrolled.SetPolicy (PolicyType.Never, PolicyType.Never);
 
             min_zoom = ComputeMinZoom (upscale);
 
@@ -224,7 +220,7 @@ namespace FSpot.Widgets
 
             if (scrolled != null) {
                 ThreadAssist.ProxyToMain (() => {
-                        scrolled.SetPolicy (Gtk.PolicyType.Automatic, Gtk.PolicyType.Automatic);
+                        scrolled.SetPolicy (PolicyType.Automatic, PolicyType.Automatic);
                 });
             }
         }
@@ -248,7 +244,7 @@ namespace FSpot.Widgets
 
 		public Point ImageCoordsToWindow (Point image)
 		{
-			if (this.Pixbuf == null)
+			if (Pixbuf == null)
 				return Point.Zero;
 			
 			image = PixbufUtils.TransformOrientation (Pixbuf.Width, Pixbuf.Height, image, pixbuf_orientation);
@@ -261,14 +257,14 @@ namespace FSpot.Widgets
 		
 		public Rectangle ImageCoordsToWindow (Rectangle image)
 		{
-			if (this.Pixbuf == null)
-				return Gdk.Rectangle.Zero;
+			if (Pixbuf == null)
+				return Rectangle.Zero;
 			
 			image = PixbufUtils.TransformOrientation (Pixbuf.Width, Pixbuf.Height, image, pixbuf_orientation);
 			int x_offset = scaled_width < Allocation.Width ? (int)(Allocation.Width - scaled_width) / 2 : -XOffset;
 			int y_offset = scaled_height < Allocation.Height ? (int)(Allocation.Height - scaled_height) / 2 : -YOffset;
 			
-			Gdk.Rectangle win = Gdk.Rectangle.Zero;
+			Rectangle win = Rectangle.Zero;
 			win.X = (int) Math.Floor (image.X * (double) (scaled_width - 1) / (((int)pixbuf_orientation <= 4 ? Pixbuf.Width : Pixbuf.Height) - 1) + 0.5) + x_offset;
 			win.Y = (int) Math.Floor (image.Y * (double) (scaled_height - 1) / (((int)pixbuf_orientation <= 4 ? Pixbuf.Height : Pixbuf.Width) - 1) + 0.5) + y_offset;
 			win.Width = (int) Math.Floor ((image.X + image.Width) * (double) (scaled_width - 1) / (((int)pixbuf_orientation <= 4 ? Pixbuf.Width : Pixbuf.Height) - 1) + 0.5) - win.X + x_offset;
@@ -332,14 +328,14 @@ namespace FSpot.Widgets
                             | EventMask.KeyPressMask
                             | EventMask.LeaveNotifyMask
                     },
-                    Gdk.WindowAttributesType.X | Gdk.WindowAttributesType.Y |
-                    Gdk.WindowAttributesType.Visual | Gdk.WindowAttributesType.Colormap);
+                    WindowAttributesType.X | WindowAttributesType.Y |
+		    WindowAttributesType.Visual | WindowAttributesType.Colormap);
 
             GdkWindow.SetBackPixmap (null, false);
             GdkWindow.UserData = Handle;
 
             Style.Attach (GdkWindow);
-            Style.SetBackground (GdkWindow, Gtk.StateType.Normal);
+            Style.SetBackground (GdkWindow, StateType.Normal);
 
             OnRealizedChildren ();
         }
@@ -351,13 +347,13 @@ namespace FSpot.Widgets
             GdkWindow.Show ();
         }
 
-        protected override void OnSizeRequested (ref Gtk.Requisition requisition)
+        protected override void OnSizeRequested (ref Requisition requisition)
         {
             requisition.Width = requisition.Height = 0;
             OnSizeRequestedChildren ();
         }
 
-        protected override void OnSizeAllocated (Gdk.Rectangle allocation)
+        protected override void OnSizeAllocated (Rectangle allocation)
         {
             min_zoom = ComputeMinZoom (upscale);
 
@@ -366,7 +362,7 @@ namespace FSpot.Widgets
             // Since this affects the zoom_scale we should alert it
             EventHandler eh = ZoomChanged;
             if (eh != null)
-                eh (this, System.EventArgs.Empty);
+                eh (this, EventArgs.Empty);
 
             ComputeScaledSize ();
 
@@ -387,7 +383,7 @@ namespace FSpot.Widgets
                 ZoomFit (upscale);
         }
 
-		protected override bool OnExposeEvent (Gdk.EventExpose evnt)
+		protected override bool OnExposeEvent (EventExpose evnt)
 		{
 			if (evnt.Window != GdkWindow)
 				return false;
@@ -415,12 +411,12 @@ namespace FSpot.Widgets
 			return true;
 		}
 
-		protected override void OnSetScrollAdjustments (Gtk.Adjustment hadjustment, Gtk.Adjustment vadjustment)
+		protected override void OnSetScrollAdjustments (Adjustment hadjustment, Adjustment vadjustment)
 		{
 			if (hadjustment == null)
-				hadjustment = new Gtk.Adjustment (0, 0, 0, 0, 0, 0);
+				hadjustment = new Adjustment (0, 0, 0, 0, 0, 0);
 			if (vadjustment == null)
-				vadjustment = new Gtk.Adjustment (0, 0, 0, 0, 0, 0);
+				vadjustment = new Adjustment (0, 0, 0, 0, 0, 0);
 
 			bool need_change = false;
 
@@ -488,7 +484,7 @@ namespace FSpot.Widgets
 		{
 			if ((evnt.State & ModifierType.ShiftMask) == 0) {//no shift, let's zoom
 				ZoomAboutPoint ((evnt.Direction == ScrollDirection.Up || evnt.Direction == ScrollDirection.Right) ? ZOOM_FACTOR : 1.0 / ZOOM_FACTOR,
-						 (int)evnt.X, (int)evnt.Y);
+					(int)evnt.X, (int)evnt.Y);
 				return true;
 			}
 
@@ -496,13 +492,13 @@ namespace FSpot.Widgets
 			int y_incr = (int)Vadjustment.PageIncrement / 4;
 			if ((evnt.State & ModifierType.ControlMask) == 0) {//no control scroll
 				ScrollBy ((evnt.Direction == ScrollDirection.Left) ? -x_incr : (evnt.Direction == ScrollDirection.Right) ? x_incr : 0,
-					  (evnt.Direction == ScrollDirection.Up) ? -y_incr : (evnt.Direction == ScrollDirection.Down) ? y_incr : 0);
-				return true;
-			} else { //invert x and y for scrolling
-				ScrollBy ((evnt.Direction == ScrollDirection.Up) ? -y_incr : (evnt.Direction == ScrollDirection.Down) ? y_incr : 0,
-					  (evnt.Direction == ScrollDirection.Left) ? -x_incr : (evnt.Direction == ScrollDirection.Right) ? x_incr : 0);	
+					(evnt.Direction == ScrollDirection.Up) ? -y_incr : (evnt.Direction == ScrollDirection.Down) ? y_incr : 0);
 				return true;
 			}
+			//invert x and y for scrolling
+			ScrollBy ((evnt.Direction == ScrollDirection.Up) ? -y_incr : (evnt.Direction == ScrollDirection.Down) ? y_incr : 0,
+				(evnt.Direction == ScrollDirection.Left) ? -x_incr : (evnt.Direction == ScrollDirection.Right) ? x_incr : 0);	
+			return true;
 		}
 
 		protected override bool OnKeyPressEvent (EventKey evnt)
@@ -512,7 +508,7 @@ namespace FSpot.Widgets
 
 			bool handled = true;
 			int x, y;
-			Gdk.ModifierType type;
+			ModifierType type;
 
 			switch(evnt.Key) {
 			case Gdk.Key.Up:
@@ -749,7 +745,7 @@ namespace FSpot.Widgets
 			ScrollTo ((int)Hadjustment.Value, (int)Vadjustment.Value, false);
 		}
 
-		void ScrollTo (int x, int y, bool change_adjustments)
+		void ScrollTo (int x, int y, bool changeAdjustments)
 		{
 			x = Clamp (x, 0, (int)(Hadjustment.Upper - Hadjustment.PageSize));
 			y = Clamp (y, 0, (int)(Vadjustment.Upper - Vadjustment.PageSize));
@@ -764,7 +760,7 @@ namespace FSpot.Widgets
 				GdkWindow.ProcessUpdates (true);
 			}
 
-			if (change_adjustments) {
+			if (changeAdjustments) {
 				AdjustmentsChanged -= ScrollToAdjustments;
 				Hadjustment.Value = XOffset;
 				Vadjustment.Value = YOffset;

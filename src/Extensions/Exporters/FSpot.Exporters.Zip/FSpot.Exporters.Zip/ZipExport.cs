@@ -51,12 +51,12 @@ namespace FSpot.Exporters.Zip
 {
 	public class Zip : IExporter
 	{
-		[GtkBeans.Builder.Object] Gtk.Dialog zipdiag;
-		[GtkBeans.Builder.Object] Gtk.HBox dirchooser_hbox;
-		[GtkBeans.Builder.Object] Gtk.CheckButton scale_check;
-		[GtkBeans.Builder.Object] Gtk.Entry filename;
-		[GtkBeans.Builder.Object] Gtk.SpinButton scale_size;
-		[GtkBeans.Builder.Object] Gtk.Button create_button;
+		[Builder.Object] Dialog zipdiag;
+		[Builder.Object] HBox dirchooser_hbox;
+		[Builder.Object] CheckButton scale_check;
+		[Builder.Object] Entry filename;
+		[Builder.Object] SpinButton scale_size;
+		[Builder.Object] Button create_button;
 
 		IPhoto [] photos;
 		Gtk.FileChooserButton uri_chooser;
@@ -78,7 +78,7 @@ namespace FSpot.Exporters.Zip
 		}
 
 		public void ShowDialog () {
-			var builder = new GtkBeans.Builder (null, "zip_export.ui", null);
+			var builder = new Builder (null, "zip_export.ui", null);
 			builder.Autoconnect (this);
 			zipdiag.Modal = false;
 			zipdiag.TransientFor = null;

@@ -55,6 +55,8 @@
 using System;
 using System.IO;
 
+using Gtk;
+
 using Hyena;
 
 using Mono.Unix;
@@ -72,23 +74,23 @@ namespace FSpot.Exporters.Folder
 	{
 		IBrowsableCollection selection;
 
-		[GtkBeans.Builder.Object] Gtk.Dialog dialog;
-		[GtkBeans.Builder.Object] Gtk.ScrolledWindow thumb_scrolledwindow;
-		[GtkBeans.Builder.Object] Gtk.Entry name_entry;
-		[GtkBeans.Builder.Object] Gtk.Entry description_entry;
+		[Builder.Object] Dialog dialog;
+		[Builder.Object] ScrolledWindow thumb_scrolledwindow;
+		[Builder.Object] Entry name_entry;
+		[Builder.Object] Entry description_entry;
 
-		[GtkBeans.Builder.Object] Gtk.CheckButton scale_check;
-		[GtkBeans.Builder.Object] Gtk.CheckButton export_tags_check;
-		[GtkBeans.Builder.Object] Gtk.CheckButton export_tag_icons_check;
-		[GtkBeans.Builder.Object] Gtk.CheckButton open_check;
+		[Builder.Object] CheckButton scale_check;
+		[Builder.Object] CheckButton export_tags_check;
+		[Builder.Object] CheckButton export_tag_icons_check;
+		[Builder.Object] CheckButton open_check;
 
-		[GtkBeans.Builder.Object] Gtk.RadioButton static_radio;
-		[GtkBeans.Builder.Object] Gtk.RadioButton original_radio;
-		[GtkBeans.Builder.Object] Gtk.RadioButton plain_radio;
+		[Builder.Object] RadioButton static_radio;
+		[Builder.Object] RadioButton original_radio;
+		[Builder.Object] RadioButton plain_radio;
 
-		[GtkBeans.Builder.Object] Gtk.SpinButton size_spin;
+		[Builder.Object] SpinButton size_spin;
 
-		[GtkBeans.Builder.Object] Gtk.HBox chooser_hbox;
+		[Builder.Object] HBox chooser_hbox;
 
 		public const string EXPORT_SERVICE = "folder/";
 		public const string SCALE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "scale";
@@ -101,10 +103,10 @@ namespace FSpot.Exporters.Folder
 		public const string SHARPEN_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "sharpen";
 		public const string INCLUDE_TARBALLS_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "include_tarballs";
 
-		private GtkBeans.Builder builder;
-		private string dialog_name = "folder_export_dialog";
-		GLib.File dest;
-		Gtk.FileChooserButton uri_chooser;
+		Builder builder;
+		string dialog_name = "folder_export_dialog";
+		GLib.IFile dest;
+		FileChooserButton uri_chooser;
 
 		bool open;
 		bool scale;
@@ -130,7 +132,7 @@ namespace FSpot.Exporters.Folder
 			view.DisplayDates = false;
 			view.DisplayTags = false;
 
-			builder = new GtkBeans.Builder (null, "folder_export.ui", null);
+			builder = new Builder (null, "folder_export.ui", null);
 			builder.Autoconnect (this);
 			Dialog.Modal = false;
 			Dialog.TransientFor = null;
@@ -189,8 +191,8 @@ namespace FSpot.Exporters.Folder
 			try {
 				ThreadAssist.ProxyToMain (Dialog.Hide);
 
-				GLib.File source = GLib.FileFactory.NewForPath (Path.Combine (gallery_path, gallery_name));
-				GLib.File target = GLib.FileFactory.NewForPath (Path.Combine (dest.Path, source.Basename));
+				GLib.IFile source = GLib.FileFactory.NewForPath (Path.Combine (gallery_path, gallery_name));
+				GLib.IFile target = GLib.FileFactory.NewForPath (Path.Combine (dest.Path, source.Basename));
 
 				if (dest.IsNative)
 					gallery_path = dest.Path;
@@ -278,7 +280,7 @@ namespace FSpot.Exporters.Folder
 
 				if (open) {
 					Log.DebugFormat (String.Format ("Open URI \"{0}\"", target.Uri.ToString ()));
-					ThreadAssist.ProxyToMain (() => { GtkBeans.Global.ShowUri (Dialog.Screen, target.Uri.ToString () ); });
+					ThreadAssist.ProxyToMain (() => { Gtk.Global.ShowUri (Dialog.Screen, target.Uri.ToString () ); });
 				}
 
 				// Save these settings for next time

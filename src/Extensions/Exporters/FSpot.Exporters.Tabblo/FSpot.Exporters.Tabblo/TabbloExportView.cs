@@ -29,6 +29,8 @@
 
 using System.Reflection;
 
+using Gtk;
+
 using FSpot.Core;
 using FSpot.Widgets;
 
@@ -36,41 +38,20 @@ namespace FSpot.Exporters.Tabblo
 {
 	class TabbloExportView : FSpot.UI.Dialog.BuilderDialog
 	{
-		private const string DialogName = "tabblo_export_dialog";
+		const string DialogName = "tabblo_export_dialog";
 
-		[GtkBeans.Builder.Object]
-		private Gtk.ScrolledWindow thumb_scrolled_window;
-
-		[GtkBeans.Builder.Object]
-		internal Gtk.Entry username_entry;
-
-		[GtkBeans.Builder.Object]
-		internal Gtk.Entry password_entry;
-
-		[GtkBeans.Builder.Object]
-		internal Gtk.CheckButton attach_tags_button;
-
-		[GtkBeans.Builder.Object]
-		private Gtk.Alignment attached_tags_alignment;
-
-		internal FSpot.Widgets.TagView attached_tags_view; 
-
-		[GtkBeans.Builder.Object]
-		internal Gtk.Button attached_tags_select_button;
-
-		[GtkBeans.Builder.Object]
-		internal Gtk.CheckButton remove_tags_button;
-
-		[GtkBeans.Builder.Object]
-		private Gtk.Alignment removed_tags_alignment;
-
-		internal FSpot.Widgets.TagView removed_tags_view; 
-
-		[GtkBeans.Builder.Object]
-		internal Gtk.Button removed_tags_select_button;
-
-		[GtkBeans.Builder.Object]
-		private Gtk.Button export_button;
+		[Builder.Object] ScrolledWindow thumb_scrolled_window;
+		[Builder.Object] internal Entry username_entry;
+		[Builder.Object] internal Entry password_entry;
+		[Builder.Object] internal CheckButton attach_tags_button;
+		[Builder.Object] Alignment attached_tags_alignment;
+		internal TagView attached_tags_view; 
+		[Builder.Object] internal Button attached_tags_select_button;
+		[Builder.Object] internal CheckButton remove_tags_button;
+		[Builder.Object] Alignment removed_tags_alignment;
+		internal TagView removed_tags_view; 
+		[Builder.Object] internal Button removed_tags_select_button;
+		[Builder.Object] Button export_button;
 
 
 		internal TabbloExportView (IBrowsableCollection photos)
@@ -86,11 +67,11 @@ namespace FSpot.Exporters.Tabblo
 			icon_view.Show ();
 
 			// Tags
-			attached_tags_view = new FSpot.Widgets.TagView ();
+			attached_tags_view = new TagView ();
 			attached_tags_alignment.Add (attached_tags_view);
 			attached_tags_view.Show ();
 
-			removed_tags_view = new FSpot.Widgets.TagView ();
+			removed_tags_view = new TagView ();
 			removed_tags_alignment.Add (removed_tags_view);
 			removed_tags_view.Show ();
 		}

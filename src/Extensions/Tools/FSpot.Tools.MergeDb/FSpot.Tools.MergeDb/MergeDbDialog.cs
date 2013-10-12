@@ -2,9 +2,11 @@
 // MergeDbDialog.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Stephane Delcroix <sdelcroix*novell.com>
 //   Paul Lange <palango@gmx.de>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2008-2010 Novell, Inc.
 // Copyright (C) 2008 Stephane Delcroix
 // Copyright (C) 2010 Paul Lange
@@ -31,21 +33,23 @@
 
 using System;
 
+using Gtk;
+
 using FSpot.Core;
 
 namespace FSpot.Tools.MergeDb
 {
-	internal class MergeDbDialog
+	class MergeDbDialog
 	{
-		[GtkBeans.Builder.Object] Gtk.Dialog mergedb_dialog;
-		[GtkBeans.Builder.Object] Gtk.Button apply_button;
-		[GtkBeans.Builder.Object] Gtk.FileChooserButton db_filechooser;
-		[GtkBeans.Builder.Object] Gtk.RadioButton newrolls_radio;
-		[GtkBeans.Builder.Object] Gtk.RadioButton allrolls_radio;
-		[GtkBeans.Builder.Object] Gtk.RadioButton singleroll_radio;
-		[GtkBeans.Builder.Object] Gtk.ComboBox rolls_combo;
-		[GtkBeans.Builder.Object] Gtk.RadioButton copy_radio;
-		[GtkBeans.Builder.Object] Gtk.RadioButton keep_radio;
+		[Builder.Object] Dialog mergedb_dialog;
+		[Builder.Object] Button apply_button;
+		[Builder.Object] FileChooserButton db_filechooser;
+		[Builder.Object] RadioButton newrolls_radio;
+		[Builder.Object] RadioButton allrolls_radio;
+		[Builder.Object] RadioButton singleroll_radio;
+		[Builder.Object] ComboBoxText rolls_combo;
+		[Builder.Object] RadioButton copy_radio;
+		[Builder.Object] RadioButton keep_radio;
 
 		MergeDb parent;
 
@@ -54,7 +58,7 @@ namespace FSpot.Tools.MergeDb
 		public MergeDbDialog (MergeDb parent) {
 			this.parent = parent;
 
-			var builder = new GtkBeans.Builder (null, "mergedb_dialog.ui", null);
+			var builder = new Builder (null, "mergedb_dialog.ui", null);
 			builder.Autoconnect (this);
 			mergedb_dialog.Modal = false;
 			mergedb_dialog.TransientFor = null;

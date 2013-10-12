@@ -2,8 +2,10 @@
 // Curve.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Stephane Delcroix <stephane@delcroix.org>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2009 Novell, Inc.
 // Copyright (C) 2009 Stephane Delcroix
 //
@@ -38,7 +40,7 @@ namespace FSpot.Widgets
 	public class Curve : DrawingArea
 	{
 #region public API
-		public Curve () : base ()
+		public Curve ()
 		{
 			Events |= EventMask.ExposureMask
 				| EventMask.PointerMotionMask
@@ -134,7 +136,7 @@ namespace FSpot.Widgets
 						ry = MaxY;
 					vector[x] = ry;
 				}
-				break;;
+				break;
 			case CurveType.Linear:
 				for (int x = 0; x < len; x++, rx += dx) {
 					float ry = LinearEval (xv, yv, rx);
@@ -276,10 +278,10 @@ namespace FSpot.Widgets
 			return base.OnExposeEvent (evnt);
 		}
 
-		Gdk.Point [] Interpolate (int width, int height)
+		Point [] Interpolate (int width, int height)
 		{
 			var vector = GetVector (width);
-			var retval = new Gdk.Point [width];
+			var retval = new Point [width];
 			for (int i = 0; i < width; i++) {
 				retval[i].X = x_offset + i;
 				retval[i].Y = y_offset + height - Project (vector[i], MinY, MaxY, height);
@@ -299,7 +301,7 @@ namespace FSpot.Widgets
 				return;
 
 			//clear the pixmap
-			GtkBeans.Style.PaintFlatBox (style, pixmap, StateType.Normal, ShadowType.None, null, this, "curve_bg", 0, 0, Allocation.Width, Allocation.Height);
+			Style.PaintFlatBox (style, pixmap, StateType.Normal, ShadowType.None, null, this, "curve_bg", 0, 0, Allocation.Width, Allocation.Height);
 
 			//draw the grid lines
 			for (int i = 0; i < 5; i++) {

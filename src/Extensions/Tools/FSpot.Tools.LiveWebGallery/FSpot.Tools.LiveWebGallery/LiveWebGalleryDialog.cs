@@ -44,24 +44,24 @@ namespace FSpot.Tools.LiveWebGallery
 {
 	internal class LiveWebGalleryDialog : FSpot.UI.Dialog.BuilderDialog
 	{
-		[GtkBeans.Builder.Object] Gtk.LinkButton url_button;
-		[GtkBeans.Builder.Object] Gtk.ToggleButton activate_button;
-		[GtkBeans.Builder.Object] Gtk.Button copy_button;
-		[GtkBeans.Builder.Object] Gtk.Label stats_label;
-		[GtkBeans.Builder.Object] Gtk.RadioButton current_view_radio;
-		[GtkBeans.Builder.Object] Gtk.RadioButton tagged_radio;
-		[GtkBeans.Builder.Object] Gtk.RadioButton selected_radio;
-		[GtkBeans.Builder.Object] Gtk.Button tag_button;
-		[GtkBeans.Builder.Object] Gtk.CheckButton limit_checkbox;
-		[GtkBeans.Builder.Object] Gtk.SpinButton limit_spin;
-		[GtkBeans.Builder.Object] Gtk.CheckButton allow_tagging_checkbox;
-		[GtkBeans.Builder.Object] Gtk.Button tag_edit_button;
+		[Builder.Object] LinkButton url_button;
+		[Builder.Object] ToggleButton activate_button;
+		[Builder.Object] Button copy_button;
+		[Builder.Object] Label stats_label;
+		[Builder.Object] RadioButton current_view_radio;
+		[Builder.Object] RadioButton tagged_radio;
+		[Builder.Object] RadioButton selected_radio;
+		[Builder.Object] Button tag_button;
+		[Builder.Object] CheckButton limit_checkbox;
+		[Builder.Object] SpinButton limit_spin;
+		[Builder.Object] CheckButton allow_tagging_checkbox;
+		[Builder.Object] Button tag_edit_button;
 
-		private SimpleWebServer server;
-		private ILiveWebGalleryOptions options;
-		private LiveWebGalleryStats stats;
-		private IPAddress last_ip;
-		private string last_client;
+		SimpleWebServer server;
+		ILiveWebGalleryOptions options;
+		LiveWebGalleryStats stats;
+		IPAddress last_ip;
+		string last_client;
 		
 		public LiveWebGalleryDialog (SimpleWebServer server, ILiveWebGalleryOptions options, LiveWebGalleryStats stats)
 			: base (Assembly.GetExecutingAssembly (), "LiveWebGallery.ui", "live_web_gallery_dialog")

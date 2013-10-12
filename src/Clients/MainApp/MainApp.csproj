@@ -223,6 +223,11 @@
     <Compile Include="FSpot.Query\AbstractLiteral.cs" />
     <Compile Include="FSpot.Query\TextLiteral.cs" />
     <Compile Include="FSpot.Query\QueryWidget.cs" />
+    <Compile Include="FSpot\ILimitable.cs" />
+    <Compile Include="FSpot\TagRemoveComparer.cs" />
+    <Compile Include="FSpot\InvalidTagOperationException.cs" />
+    <Compile Include="FSpot\MetaItem.cs" />
+    <Compile Include="FSpot\Job.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\icons\f-spot-not.png">

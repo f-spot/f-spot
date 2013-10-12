@@ -2,9 +2,11 @@
 // Histogram.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Ruben Vermeersch <ruben@savanne.be>
 //   Larry Ewing <lewing@novell.com>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2004-2010 Novell, Inc.
 // Copyright (C) 2008, 2010 Ruben Vermeersch
 // Copyright (C) 2004-2006 Larry Ewing
@@ -34,7 +36,7 @@ using System;
 namespace FSpot {
 	public class Histogram {
 #region Color hints
-		private byte [] colors = new byte [] {0x00, 0x00, 0x00, 0xff};
+		readonly byte [] colors = {0x00, 0x00, 0x00, 0xff};
 
 		public byte RedColorHint {
 			set { colors [0] = value; }
@@ -52,7 +54,7 @@ namespace FSpot {
 			set { colors [3] = value; }
 		}
 
-		private int [,] values = new int [256, 3];
+		int [,] values = new int [256, 3];
 #endregion
 
 		public Histogram (Gdk.Pixbuf src)
@@ -62,12 +64,12 @@ namespace FSpot {
 
 		public Histogram () {}
 
-		private void FillValues (Gdk.Pixbuf src)
+		void FillValues (Gdk.Pixbuf src)
 		{
 			values = new int [256, 3];
 
 			if (src.BitsPerSample != 8)
-				throw new System.Exception ("Invalid bits per sample");
+				throw new Exception ("Invalid bits per sample");
 
 			unsafe {
 				byte * srcb = (byte *)src.Pixels;
@@ -96,7 +98,7 @@ namespace FSpot {
 			}
 		}
 
-		private int ChannelSum (int channel)
+		int ChannelSum (int channel)
 		{
 			int sum = 0;
 			for (int i = 0; i < values.GetLength (0); i++) {
@@ -137,7 +139,7 @@ namespace FSpot {
 			}
 		}
 
-		private void Draw (Gdk.Pixbuf image)
+		void Draw (Gdk.Pixbuf image)
 		{
 			int max = 0;
 			for (int i = 0; i < values.GetLength (0); i++) {
@@ -196,7 +198,7 @@ namespace FSpot {
 		{
 			FillValues (input);
 			int height = 128;
-			Gdk.Pixbuf pixbuf = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, true, 8, values.GetLength (0), height);
+			var pixbuf = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, true, 8, values.GetLength (0), height);
 			Draw (pixbuf);
 			return pixbuf;
 		}

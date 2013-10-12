@@ -73,7 +73,7 @@ namespace FSpot.Widgets {
 		/*
 		 * Constructor
 		 */
-		public FindBar (PhotoQuery query, TreeModel model) : base(new HBox())
+		public FindBar (PhotoQuery query, ITreeModel model) : base(new HBox())
 		{
 			this.query = query;
 			box = Child as HBox;

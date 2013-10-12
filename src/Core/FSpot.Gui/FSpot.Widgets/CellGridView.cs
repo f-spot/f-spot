@@ -2,8 +2,10 @@
 // CellGridView.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Mike Gemünde <mike@gemuende.de>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2010 Novell, Inc.
 // Copyright (C) 2010 Mike Gemünde
 //
@@ -79,12 +81,12 @@ namespace FSpot.Widgets
         /// <summary>
         ///   The function is called to draw a Cell.
         /// </summary>
-        protected abstract void DrawCell (int cell_num, Rectangle cell_area, Rectangle expose_area);
+        protected abstract void DrawCell (int cellNum, Rectangle cellArea, Rectangle exposeArea);
 
         /// <summary>
         ///    The function is called to preload a cell.
         /// </summary>
-        protected abstract void PreloadCell (int cell_num);
+        protected abstract void PreloadCell (int cellNum);
 
 #endregion
 
@@ -112,35 +114,35 @@ namespace FSpot.Widgets
         ///    layout is updated. The property <see cref="CellCount"/> is only used when
         ///    the layout is updated.
         /// </summary>
-        private int cell_count;
+        int cell_count;
 
         /// <summary>
         ///    Holds the number of rows which are displayed at once regarded to the current
         ///    size of the widget.
         /// </summary>
-        private int displayed_rows;
+        int displayed_rows;
 
         /// <summary>
         ///    The number of rows which are needed to display all cells.
         /// </summary>
-        private int total_rows;
+        int total_rows;
 
         /// <summary>
         ///    The border size the current layout is computed with.
         /// </summary>
-        private int border_size = 6;
+        int border_size = 6;
 
         /// <summary>
         ///    The maximal number of columns.
         /// </summary>
-        private int max_columns = -1;
+        int max_columns = -1;
 
         // preserve the scroll postion when possible
-        private bool scroll;
-        private double scroll_value;
+        bool scroll;
+        double scroll_value;
 
         // suppress scroll is currently not used. where do we need it?
-        private bool suppress_scroll = false;
+        bool suppress_scroll = false;
 
 #endregion
 
@@ -187,9 +189,9 @@ namespace FSpot.Widgets
             return CellAtPosition (x, y, true);
         }
 
-        public int CellAtPosition (int x, int y, bool crop_visible)
+        public int CellAtPosition (int x, int y, bool cropVisible)
         {
-            if (crop_visible
+            if (cropVisible
                 && ((y < (int)Vadjustment.Value || y > (int)Vadjustment.Value + Allocation.Height)
                 || (x < (int)Hadjustment.Value || x > (int)Hadjustment.Value + Allocation.Width)))
                 return -1;
@@ -204,10 +206,8 @@ namespace FSpot.Widgets
             int row = (int) ((y - border_size) / cell_height);
 
             int cell_num = column + row * cells_per_row;
-            if (cell_num >= cell_count)
-                return -1;
 
-            return cell_num;
+			return (cell_num >= cell_count) ? -1 : cell_num;
         }
 
         public int TopLeftVisibleCell ()
@@ -216,7 +216,7 @@ namespace FSpot.Widgets
             return CellAtPosition (border_size, (int) (Vadjustment.Value + Allocation.Height * (Vadjustment.Value / Vadjustment.Upper)) + border_size + 8);
         }
 
-        public void CellPosition (int cell_num, out int x, out int y)
+        public void CellPosition (int cellNum, out int x, out int y)
         {
             // TODO: compare the values with the ones in GetCellCenter.
             if (cells_per_row == 0) {
@@ -225,32 +225,32 @@ namespace FSpot.Widgets
                 return;
             }
 
-            int col = cell_num % cells_per_row;
-            int row = cell_num / cells_per_row;
+            int col = cellNum % cells_per_row;
+            int row = cellNum / cells_per_row;
 
             x = col * cell_width + border_size;
             y = row * cell_height + border_size;
         }
 
-        public void CellCenter (int cell_num, out int x, out int y)
+        public void CellCenter (int cellNum, out int x, out int y)
         {
             // TODO: compare the values with the ones in GetCellPosition.
-            if (cell_num == -1) {
+            if (cellNum == -1) {
                 x = -1;
                 y = -1;
             }
 
-            CellPosition (cell_num, out x, out y);
+            CellPosition (cellNum, out x, out y);
 
             x += cell_width / 2;
             y += cell_height / 2;
         }
 
-        public Gdk.Rectangle CellBounds (int cell_num)
+        public Rectangle CellBounds (int cellNum)
         {
             Rectangle bounds;
 
-            CellPosition (cell_num, out bounds.X, out bounds.Y);
+            CellPosition (cellNum, out bounds.X, out bounds.Y);
 
             bounds.Width = cell_width;
             bounds.Height = cell_height;
@@ -282,12 +282,12 @@ namespace FSpot.Widgets
             }
         }
 
-        public void ScrollTo (int cell_num)
+        public void ScrollTo (int cellNum)
         {
-            ScrollTo (cell_num, true);
+            ScrollTo (cellNum, true);
         }
 
-        public void ScrollTo (int cell_num, bool center)
+        public void ScrollTo (int cellNum, bool center)
         {
             if (!IsRealized)
                 return;
@@ -296,7 +296,7 @@ namespace FSpot.Widgets
             int x;
             int y;
 
-            CellPosition (cell_num, out x, out y);
+            CellPosition (cellNum, out x, out y);
 
             if (center)
                 y += cell_height / 2 - Allocation.Height / 2;
@@ -309,16 +309,16 @@ namespace FSpot.Widgets
             adjustment.ChangeValue ();
         }
 
-        public void InvalidateCell (int cell_num)
+        public void InvalidateCell (int cellNum)
         {
-            Rectangle cell_area = CellBounds (cell_num);
+            Rectangle cell_area = CellBounds (cellNum);
 
             // FIXME where are we computing the bounds incorrectly
             cell_area.Width -= 1;
             cell_area.Height -= 1;
 
-            Gdk.Rectangle visible =
-                new Gdk.Rectangle ((int) Hadjustment.Value,
+            Rectangle visible =
+                new Rectangle ((int) Hadjustment.Value,
                                    (int) Vadjustment.Value,
                                    Allocation.Width,
                                    Allocation.Height);
@@ -332,7 +332,7 @@ namespace FSpot.Widgets
 #region Event Handlers
 
         [GLib.ConnectBefore]
-        private void HandleAdjustmentValueChanged (object sender, EventArgs args)
+        void HandleAdjustmentValueChanged (object sender, EventArgs args)
         {
             Scroll ();
         }
@@ -341,7 +341,7 @@ namespace FSpot.Widgets
 
 #region Determine Layout
 
-        protected override void OnSizeAllocated (Gdk.Rectangle allocation)
+        protected override void OnSizeAllocated (Rectangle allocation)
         {
             scroll_value = (Vadjustment.Value)/ (Vadjustment.Upper);
             scroll = ! suppress_scroll;
@@ -356,10 +356,10 @@ namespace FSpot.Widgets
             base.OnScrollAdjustmentsSet (hadjustment, vadjustment);
 
             if (vadjustment != null)
-                vadjustment.ValueChanged += new EventHandler (HandleAdjustmentValueChanged);
+		vadjustment.ValueChanged += HandleAdjustmentValueChanged;
         }
 
-        protected override bool OnExposeEvent (Gdk.EventExpose args)
+        protected override bool OnExposeEvent (EventExpose args)
         {
             foreach (Rectangle area in args.Region.GetRectangles ()) {
                 DrawAllCells (area);
@@ -367,12 +367,12 @@ namespace FSpot.Widgets
             return base.OnExposeEvent (args);
         }
 
-        private void UpdateLayout ()
+        void UpdateLayout ()
         {
             UpdateLayout (Allocation);
         }
 
-        private void UpdateLayout (Gdk.Rectangle allocation)
+        void UpdateLayout (Rectangle allocation)
         {
             // get the basic values for the layout ...
             cell_width = MinCellWidth;
@@ -403,7 +403,7 @@ namespace FSpot.Widgets
             SetSize (x, y, (int) allocation.Width, (int) height);
         }
 
-        private void SetSize (int x, int y, int width, int height)
+        void SetSize (int x, int y, int width, int height)
         {
             Hadjustment.Upper = System.Math.Max (Allocation.Width, width);
             Vadjustment.Upper = System.Math.Max (Allocation.Height, height);
@@ -438,7 +438,7 @@ namespace FSpot.Widgets
             }
         }
 
-        private void DrawAllCells (Gdk.Rectangle area)
+        void DrawAllCells (Gdk.Rectangle area)
         {
             foreach (var cell_num in CellsInRect (area)) {
                 DrawCell (cell_num, CellBounds (cell_num), area);
@@ -448,9 +448,9 @@ namespace FSpot.Widgets
         // The first pixel line that is currently on the screen (i.e. in the current
         // scroll region).  Used to compute the area that went offscreen in the "changed"
         // signal handler for the vertical GtkAdjustment.
-        private int y_offset;
-        private int x_offset;
-        private void Scroll ()
+        int y_offset;
+        int x_offset;
+        void Scroll ()
         {
             int ystep = (int)(Vadjustment.Value - y_offset);
             int xstep = (int)(Hadjustment.Value - x_offset);
@@ -465,7 +465,7 @@ namespace FSpot.Widgets
             else
                 ystep = Math.Min (ystep, -Allocation.Height);
 
-            Gdk.Rectangle area;
+            Rectangle area;
 
             Gdk.Region offscreen = new Gdk.Region ();
             /*
@@ -485,17 +485,17 @@ namespace FSpot.Widgets
                     Allocation.Height);
             offscreen.UnionWithRect (area);
             */
-            area = new Gdk.Rectangle (Math.Max ((int) (Hadjustment.Value + 2 * xstep), 0),
+            area = new Rectangle (Math.Max ((int) (Hadjustment.Value + 2 * xstep), 0),
                     Math.Max ((int) (Vadjustment.Value + 2 * ystep), 0),
                     Allocation.Width,
                     Allocation.Height);
             offscreen.UnionWithRect (area);
-            area = new Gdk.Rectangle (Math.Max ((int) (Hadjustment.Value + xstep), 0),
+            area = new Rectangle (Math.Max ((int) (Hadjustment.Value + xstep), 0),
                     Math.Max ((int) (Vadjustment.Value + ystep), 0),
                     Allocation.Width,
                     Allocation.Height);
             offscreen.UnionWithRect (area);
-            area = new Gdk.Rectangle ((int) Hadjustment.Value,
+            area = new Rectangle ((int) Hadjustment.Value,
                     (int) Vadjustment.Value,
                     Allocation.Width,
                     Allocation.Height);
@@ -514,17 +514,17 @@ namespace FSpot.Widgets
 
         private void PreloadRegion (Gdk.Region region, int step)
         {
-            Gdk.Rectangle [] rects = region.GetRectangles ();
+            Rectangle [] rects = region.GetRectangles ();
 
             if (step < 0)
-                System.Array.Reverse (rects);
+                Array.Reverse (rects);
 
-            foreach (Gdk.Rectangle preload in rects) {
+            foreach (Rectangle preload in rects) {
                 Preload (preload, false);
             }
         }
 
-        private void Preload (Gdk.Rectangle area, bool back)
+        void Preload (Rectangle area, bool back)
         {
             if (cells_per_row ==0)
                 return;
@@ -545,7 +545,7 @@ namespace FSpot.Widgets
             int ecell = scell + len;
             if (scell > cell_count - len) {
                 ecell = cell_count;
-                scell = System.Math.Max (0, scell - len);
+                scell = Math.Max (0, scell - len);
             } else
                 ecell = scell + len;
 
@@ -564,9 +564,7 @@ namespace FSpot.Widgets
                 PreloadCell (cell);
             }
         }
-
-#endregion
-
+	#endregion
     }
 }
 

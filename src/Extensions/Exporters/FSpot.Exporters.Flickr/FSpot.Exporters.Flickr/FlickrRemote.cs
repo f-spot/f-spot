@@ -238,7 +238,7 @@ public class FlickrRemote
 		frob = flickr.AuthGetFrob ();
 		string login_url = flickr.AuthCalcUrl (frob, FlickrNet.AuthLevel.Write);
 
-		GtkBeans.Global.ShowUri (null, login_url);
+		Gtk.Global.ShowUri (null, login_url);
 	}
 
 	public class Service {

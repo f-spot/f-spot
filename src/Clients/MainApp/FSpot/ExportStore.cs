@@ -2,11 +2,13 @@
 // ExportStore.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Stephane Delcroix <sdelcroix@src.gnome.org>
 //   Ruben Vermeersch <ruben@savanne.be>
 //   Larry Ewing <lewing@src.gnome.org>
 //   Stephen Shaw <sshaw@decriptor.com>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2007-2010 Novell, Inc.
 // Copyright (C) 2007-2008 Stephane Delcroix
 // Copyright (C) 2009-2010 Ruben Vermeersch
@@ -40,7 +42,6 @@ using FSpot.Core;
 using FSpot.Database;
 
 using Hyena.Data.Sqlite;
-using System.Data;
 
 namespace FSpot
 {
@@ -55,12 +56,12 @@ namespace FSpot
 
 		public string ExportToken { get; set; }
 
-		public ExportItem (uint id, uint image_id, uint image_version_id, string export_type, string export_token) : base (id)
+		public ExportItem (uint id, uint imageId, uint imageVersionId, string exportType, string exportToken) : base (id)
 		{
-			ImageId = image_id;
-			ImageVersionId = image_version_id;
-			ExportType = export_type;
-			ExportToken = export_token;
+			ImageId = imageId;
+			ImageVersionId = imageVersionId;
+			ExportType = exportType;
+			ExportToken = exportToken;
 		}
 	}
 
@@ -75,7 +76,7 @@ namespace FSpot
 		public const string SmugMugExportType = "fspot:SmugMug";
 		public const string Gallery2ExportType = "fspot:Gallery2";
 
-		private void CreateTable ()
+		void CreateTable ()
 		{
 			Database.Execute (
 			"CREATE TABLE exports (\n" +
@@ -87,7 +88,7 @@ namespace FSpot
 			")");
 		}
 
-		private ExportItem LoadItem (Hyena.Data.Sqlite.IDataReader reader)
+		ExportItem LoadItem (IDataReader reader)
 		{
 			return new ExportItem (Convert.ToUInt32 (reader ["id"]),
 				       Convert.ToUInt32 (reader ["image_id"]),
@@ -96,9 +97,9 @@ namespace FSpot
 				       reader ["export_token"].ToString ());
 		}
 
-		private void LoadAllItems ()
+		void LoadAllItems ()
 		{
-			Hyena.Data.Sqlite.IDataReader reader = Database.Query ("SELECT id, image_id, image_version_id, export_type, export_token FROM exports");
+			IDataReader reader = Database.Query ("SELECT id, image_id, image_version_id, export_type, export_token FROM exports");
 
 			while (reader.Read ()) {
 				AddToCache (LoadItem (reader));
@@ -107,13 +108,13 @@ namespace FSpot
 			reader.Dispose ();
 		}
 
-		public ExportItem Create (uint image_id, uint image_version_id, string export_type, string export_token)
+		public ExportItem Create (uint imageId, uint imageVersionId, string exportType, string exportToken)
 		{
 			long id = Database.Execute (new HyenaSqliteCommand ("INSERT INTO exports (image_id, image_version_id, export_type, export_token) VALUES (?, ?, ?, ?)",
-		image_id, image_version_id, export_type, export_token));
+		imageId, imageVersionId, exportType, exportToken));
 
 			// The table in the database is setup to be an INTEGER.
-			ExportItem item = new ExportItem ((uint)id, image_id, image_version_id, export_type, export_token);
+			ExportItem item = new ExportItem ((uint)id, imageId, imageVersionId, exportType, exportToken);
 
 			AddToCache (item);
 			EmitAdded (item);
@@ -135,13 +136,13 @@ namespace FSpot
 			return null;
 		}
 
-		public List<ExportItem> GetByImageId (uint image_id, uint image_version_id)
+		public List<ExportItem> GetByImageId (uint imageId, uint imageVersionId)
 		{
 
-			Hyena.Data.Sqlite.IDataReader reader = Database.Query (new HyenaSqliteCommand ("SELECT id, image_id, image_version_id, export_type, export_token FROM exports WHERE image_id = ? AND image_version_id = ?",
-                    image_id, image_version_id));
+			IDataReader reader = Database.Query (new HyenaSqliteCommand ("SELECT id, image_id, image_version_id, export_type, export_token FROM exports WHERE image_id = ? AND image_version_id = ?",
+                    imageId, imageVersionId));
 
-			List<ExportItem> export_items = new List<ExportItem> ();
+			var export_items = new List<ExportItem> ();
 			while (reader.Read ()) {
 				export_items.Add (LoadItem (reader));
 			}
@@ -160,9 +161,9 @@ namespace FSpot
 		}
 
 		#region Constructor
-		public ExportStore (FSpotDatabaseConnection database, bool is_new) : base (database, true)
+		public ExportStore (FSpotDatabaseConnection database, bool isNew) : base (database, true)
 		{
-			if (is_new || !Database.TableExists ("exports"))
+			if (isNew || !Database.TableExists ("exports"))
 				CreateTable ();
 			else
 				LoadAllItems ();

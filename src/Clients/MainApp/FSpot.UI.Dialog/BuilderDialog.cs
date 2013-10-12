@@ -27,7 +27,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using GtkBeans;
+using Gtk;
 
 namespace FSpot.UI.Dialog
 {

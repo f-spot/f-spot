@@ -2,9 +2,11 @@
 // ControlOverlay.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Stephane Delcroix <stephane@delcroix.org>
 //   Larry Ewing <lewing@src.gnome.org>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2007-2009 Novell, Inc.
 // Copyright (C) 2008-2009 Stephane Delcroix
 // Copyright (C) 2007 Larry Ewing
@@ -38,8 +40,10 @@ using FSpot.Utils;
 
 using Gtk;
 
-namespace FSpot {
-	public class ControlOverlay : Window {
+namespace FSpot
+{
+	public class ControlOverlay : Window
+	{
 		Widget host;
 		Window host_toplevel;
 		bool composited;
@@ -103,7 +107,7 @@ namespace FSpot {
 
 		}
 
-		public ControlOverlay (Gtk.Widget host) : base (WindowType.Popup)
+		public ControlOverlay (Widget host) : base (WindowType.Popup)
 		{
 			this.host = host;
 			Decorated = false;
@@ -251,7 +255,7 @@ namespace FSpot {
 
 		protected override bool OnMotionNotifyEvent (Gdk.EventMotion args)
 		{
-			this.Visibility = VisibilityType.Full;
+			Visibility = VisibilityType.Full;
 			base.OnMotionNotifyEvent (args);
 			return false;
 		}
@@ -264,17 +268,17 @@ namespace FSpot {
 			QueueDraw ();
 		}
 
-		private void HandleHostSizeAllocated (object o, SizeAllocatedArgs args)
+		void HandleHostSizeAllocated (object o, SizeAllocatedArgs args)
 		{
 			Relocate ();
 		}
 
-		private void HandleHostConfigure (object o, ConfigureEventArgs args)
+		void HandleHostConfigure (object o, ConfigureEventArgs args)
 		{
 			Relocate ();
 		}
 
-		private void Relocate ()
+		void Relocate ()
 		{
 			int x, y;
 			if (!IsRealized || !host_toplevel.IsRealized)

@@ -58,16 +58,16 @@ namespace FSpot
 		#region Private members and constants
 		const int DEFAULT_CACHE_SIZE = 2;
 		int max_count;
-		List<Thumbnail> pixbuf_mru;
-		Dictionary<SafeUri,Thumbnail> pixbuf_hash;
-		static ThumbnailCache defaultcache = new ThumbnailCache (DEFAULT_CACHE_SIZE);
+		readonly List<Thumbnail> pixbuf_mru;
+		readonly Dictionary<SafeUri,Thumbnail> pixbuf_hash;
+		static readonly ThumbnailCache defaultcache = new ThumbnailCache (DEFAULT_CACHE_SIZE);
 		#endregion
 	
 		#region Public API
-		public ThumbnailCache (int max_count)
+		public ThumbnailCache (int maxCount)
 		{
-			this.max_count = max_count;
-			pixbuf_mru = new List<Thumbnail> (max_count);
+			max_count = maxCount;
+			pixbuf_mru = new List<Thumbnail> (maxCount);
 			pixbuf_hash = new Dictionary<SafeUri, Thumbnail> ();
 		}
 	
@@ -79,7 +79,7 @@ namespace FSpot
 	
 		public void AddThumbnail (SafeUri uri, Pixbuf pixbuf)
 		{
-			Thumbnail thumbnail = new Thumbnail ();
+			var thumbnail = new Thumbnail ();
 	
 			thumbnail.uri = uri;
 			thumbnail.pixbuf = pixbuf;
@@ -122,7 +122,7 @@ namespace FSpot
 		public void Dispose ()
 		{
 			Dispose (true);
-			System.GC.SuppressFinalize (this);
+			GC.SuppressFinalize (this);
 		}
 
 		protected virtual void Dispose(bool disposing)

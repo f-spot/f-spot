@@ -2,9 +2,11 @@
 // GroupAdaptor.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Larry Ewing <lewing@novell.com>
 //   Thomas Van Machelen <thomas.vanmachelen@gmail.com>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2004-2007 Novell, Inc.
 // Copyright (C) 2004 Larry Ewing
 // Copyright (C) 2007 Thomas Van Machelen
@@ -31,12 +33,10 @@
 
 using FSpot.Core;
 
-namespace FSpot {
-	public interface ILimitable {
-		void SetLimits (int min, int max);
-	}
-
-	public abstract class GroupAdaptor {
+namespace FSpot
+{
+	public abstract sealed class GroupAdaptor
+	{
 		protected PhotoQuery query;
 		public PhotoQuery Query {
 			get {
@@ -80,12 +80,12 @@ namespace FSpot {
 
 		public void Dispose ()
 		{
-			this.query.Changed -= HandleQueryChanged;
+			query.Changed -= HandleQueryChanged;
 		}
 
-		protected GroupAdaptor (PhotoQuery query, bool order_ascending)
+		protected GroupAdaptor (PhotoQuery query, bool orderAscending)
 		{
-			this.order_ascending = order_ascending;
+			order_ascending = orderAscending;
 			this.query = query;
 			this.query.Changed += HandleQueryChanged;
 

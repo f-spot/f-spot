@@ -43,6 +43,8 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
+using Gtk;
+
 using Mono.Unix;
 
 using FSpot;
@@ -59,24 +61,23 @@ namespace FSpot.Exporters.SmugMug
 {
 	public class SmugMugExport : FSpot.Extensions.IExporter
 	{
-		public SmugMugExport () {}
 		public void Run (IBrowsableCollection selection)
 		{
-			builder = new GtkBeans.Builder (null, "smugmug_export_dialog.ui", null);
+			builder = new Builder (null, "smugmug_export_dialog.ui", null);
 			builder.Autoconnect (this);
 
-            gallery_optionmenu = Gtk.ComboBox.NewText();
-            album_optionmenu = Gtk.ComboBox.NewText();
+			gallery_optionmenu = ComboBoxText.NewWithEntry ();
+			album_optionmenu = ComboBoxText.NewWithEntry ();
 
-            (edit_button.Parent as Gtk.HBox).PackStart (gallery_optionmenu);
-            (album_button.Parent as Gtk.HBox).PackStart (album_optionmenu);
-            (edit_button.Parent as Gtk.HBox).ReorderChild (gallery_optionmenu, 1);
-            (album_button.Parent as Gtk.HBox).ReorderChild (album_optionmenu, 1);
+            (edit_button.Parent as HBox).PackStart (gallery_optionmenu);
+            (album_button.Parent as HBox).PackStart (album_optionmenu);
+            (edit_button.Parent as HBox).ReorderChild (gallery_optionmenu, 1);
+            (album_button.Parent as HBox).ReorderChild (album_optionmenu, 1);
 
             gallery_optionmenu.Show ();
             album_optionmenu.Show ();
 
-			this.items = selection.Items;
+			items = selection.Items;
 			album_button.Sensitive = false;
 			var view = new TrayView (selection);
 			view.DisplayDates = false;
@@ -107,41 +108,41 @@ namespace FSpot.Exporters.SmugMug
 			LoadPreference (BROWSER_KEY);
 		}
 
-		private bool scale;
-		private int size;
-		private bool browser;
-		private bool connect = false;
+		bool scale;
+		int size;
+		bool browser;
+		bool connect = false;
 
-		private long approx_size = 0;
-		private long sent_bytes = 0;
+		long approx_size = 0;
+		long sent_bytes = 0;
 
 		IPhoto [] items;
 		int photo_index;
 		ThreadProgressDialog progress_dialog;
 
 		List<SmugMugAccount> accounts;
-		private SmugMugAccount account;
-		private Album album;
+		SmugMugAccount account;
+		Album album;
 
-		private string dialog_name = "smugmug_export_dialog";
-		private GtkBeans.Builder builder;
+		string dialog_name = "smugmug_export_dialog";
+		Builder builder;
 
 		// Widgets
-		[GtkBeans.Builder.Object] Gtk.Dialog dialog;
-		Gtk.ComboBox gallery_optionmenu;
-		Gtk.ComboBox album_optionmenu;
+		[Builder.Object] Dialog dialog;
+		ComboBoxText gallery_optionmenu;
+		ComboBoxText album_optionmenu;
 
-		[GtkBeans.Builder.Object] Gtk.CheckButton browser_check;
-		[GtkBeans.Builder.Object] Gtk.CheckButton scale_check;
+		[Builder.Object] CheckButton browser_check;
+		[Builder.Object] CheckButton scale_check;
 
-		[GtkBeans.Builder.Object] Gtk.SpinButton size_spin;
+		[Builder.Object] SpinButton size_spin;
 
-		[GtkBeans.Builder.Object] Gtk.Button album_button;
-		[GtkBeans.Builder.Object] Gtk.Button edit_button;
+		[Builder.Object] Button album_button;
+		[Builder.Object] Button edit_button;
 
-		[GtkBeans.Builder.Object] Gtk.Button export_button;
+		[Builder.Object] Button export_button;
 
-		[GtkBeans.Builder.Object] Gtk.ScrolledWindow thumb_scrolledwindow;
+		[Builder.Object] ScrolledWindow thumb_scrolledwindow;
 
 		System.Threading.Thread command_thread;
 
@@ -259,7 +260,7 @@ namespace FSpot.Exporters.SmugMug
 			progress_dialog.ButtonLabel = Gtk.Stock.Ok;
 
 			if (browser && album_uri != null) {
-				GtkBeans.Global.ShowUri (Dialog.Screen, album_uri.ToString ());
+				Gtk.Global.ShowUri (Dialog.Screen, album_uri.ToString ());
 			}
 		}
 
@@ -361,8 +362,8 @@ namespace FSpot.Exporters.SmugMug
 			bool disconnected = smugmug == null || !account.Connected || albums == null;
 
 			if (disconnected || albums.Length == 0) {
-				string msg = disconnected ? Mono.Unix.Catalog.GetString ("(Not Connected)")
-					: Mono.Unix.Catalog.GetString ("(No Albums)");
+				string msg = disconnected ? Catalog.GetString ("(Not Connected)")
+					: Catalog.GetString ("(No Albums)");
 
                 album_optionmenu.AppendText(msg);
 

@@ -54,7 +54,7 @@ namespace FSpot
 {
 	public static class Driver
 	{
-		private static void ShowVersion ()
+		static void ShowVersion ()
 		{
 			Console.WriteLine ("F-Spot {0}", Defines.VERSION);
 			Console.WriteLine ("http://f-spot.org");
@@ -63,26 +63,26 @@ namespace FSpot
 			Console.WriteLine("Personal photo management for the GNOME Desktop");
 		}
 
-		private static void ShowAssemblyVersions ()
+		static void ShowAssemblyVersions ()
 		{
 			ShowVersion ();
 			Console.WriteLine ();
-			Console.WriteLine ("Mono/.NET Version: " + Environment.Version.ToString ());
+			Console.WriteLine ("Mono/.NET Version: " + Environment.Version);
 			Console.WriteLine (String.Format ("{0}Assembly Version Information:", Environment.NewLine));
 
 			foreach (Assembly asm in AppDomain.CurrentDomain.GetAssemblies ())
 			{
 				AssemblyName name = asm.GetName ();
-				Console.WriteLine ("\t" + name.Name + " (" + name.Version.ToString () + ")");
+				Console.WriteLine ("\t" + name.Name + " (" + name.Version + ")");
 			}
 		}
 
-		private static void ShowHelp ()
+		static void ShowHelp ()
 		{
 			Console.WriteLine ("Usage: f-spot [options...] [files|URIs...]");
 			Console.WriteLine ();
 
-			Hyena.CommandLine.Layout commands = new Hyena.CommandLine.Layout (
+			Layout commands = new Hyena.CommandLine.Layout (
 				new LayoutGroup ("help", "Help Options",
 					new LayoutOption ("help", "Show this help"),
 					new LayoutOption ("help-options", "Show command line options"),

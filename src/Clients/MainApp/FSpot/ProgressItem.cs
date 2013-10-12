@@ -27,20 +27,23 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-namespace FSpot {
-	public class ProgressItem {
+namespace FSpot
+{
+	public class ProgressItem
+	{
 	    public delegate void ChangedHandler (ProgressItem item);
 		public event ChangedHandler Changed;
 
 		double value;
+		readonly object locker = new object ();
 		public double Value {
 			get {
-				lock (this) {
+				lock (locker) {
 					return value;
 				}
 			}
 			set {
-				lock (this) {
+				lock (locker) {
 					this.value = value;
 					if (Changed != null)
 						Changed (this);

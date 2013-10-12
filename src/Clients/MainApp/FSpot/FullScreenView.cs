@@ -2,9 +2,11 @@
 // FullScreenView.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Larry Ewing <lewing@src.gnome.org>
 //   Stephane Delcroix <stephane@delcroix.org>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2004-2009 Novell, Inc.
 // Copyright (C) 2004-2008 Larry Ewing
 // Copyright (C) 2007-2009 Stephane Delcroix
@@ -42,25 +44,27 @@ using Hyena;
 
 using Mono.Unix;
 
-namespace FSpot {
+namespace FSpot
+{
 	[Binding(Gdk.Key.Escape, "Quit")]
-	public class FullScreenView : Gtk.Window {
-		private ScrolledView scroll;
-		private PhotoImageView view;
-		private Notebook notebook;
-		private ControlOverlay controls;
-		private SlideShow display;
-		private ToolButton play_pause_button;
-		private ToggleToolButton info_button;
-		private DelayedOperation hide_cursor_delay;
+	public class FullScreenView : Window
+	{
+		readonly ScrolledView scroll;
+		readonly PhotoImageView view;
+		readonly Notebook notebook;
+		readonly ControlOverlay controls;
+		readonly SlideShow display;
+		readonly ToolButton play_pause_button;
+		readonly ToggleToolButton info_button;
+		readonly DelayedOperation hide_cursor_delay;
 
-		ActionGroup actions;
+		readonly ActionGroup actions;
 		const string ExitFullScreen = "ExitFullScreen";
 		const string HideToolbar = "HideToolbar";
 		const string SlideShow = "SlideShow";
 		const string Info = "Info";
 
-		public FullScreenView (IBrowsableCollection collection, Gtk.Window parent) : base ("Full Screen Mode")
+		public FullScreenView (IBrowsableCollection collection, Window parent) : base ("Full Screen Mode")
 		{
 			//going fullscreen on the same screen the parent window
 			Gdk.Screen screen = Screen;
@@ -73,7 +77,7 @@ namespace FSpot {
 				"}\n" +
 				"class \"GtkToolbar\" style \"test\"";
 
-			Gtk.Rc.ParseString (style);
+			Rc.ParseString (style);
 
 			Name = "FullscreenContainer";
 			try {
@@ -96,7 +100,7 @@ namespace FSpot {
 							       InfoAction,
 							       false)});
 
-				Gtk.Action exit_full_screen = new Gtk.Action (ExitFullScreen,
+				var exit_full_screen = new Gtk.Action (ExitFullScreen,
 					Catalog.GetString ("Exit fullscreen"),
 					null,
 					null);
@@ -104,7 +108,7 @@ namespace FSpot {
 				exit_full_screen.Activated += ExitAction;
 				actions.Add (exit_full_screen);
 
-				Gtk.Action slide_show = new Gtk.Action (SlideShow,
+				var slide_show = new Gtk.Action (SlideShow,
 					Catalog.GetString ("Slideshow"),
 					Catalog.GetString ("Start slideshow"),
 					null);
@@ -122,8 +126,8 @@ namespace FSpot {
 				scroll.ScrolledWindow.SetPolicy (PolicyType.Never, PolicyType.Never);
 				view = new PhotoImageView (collection);
 				// FIXME this should be handled by the new style setting code
-				view.ModifyBg (Gtk.StateType.Normal, this.Style.Black);
-				this.Add (notebook);
+				view.ModifyBg (StateType.Normal, Style.Black);
+				Add (notebook);
 				view.Show ();
 				view.MotionNotifyEvent += HandleViewMotion;
 				view.PointerMode = PointerMode.Scroll;
@@ -131,12 +135,12 @@ namespace FSpot {
 				scroll.ScrolledWindow.Add (view);
 
 				Toolbar tbar = new Toolbar ();
-				tbar.ToolbarStyle = Gtk.ToolbarStyle.BothHoriz;
+				tbar.ToolbarStyle = ToolbarStyle.BothHoriz;
 
 				tbar.ShowArrow = false;
 				tbar.BorderWidth = 15;
 
-				ToolItem t_item = (actions [ExitFullScreen]).CreateToolItem () as ToolItem;
+				var t_item = (actions [ExitFullScreen]).CreateToolItem () as ToolItem;
 				t_item.IsImportant = true;
 				tbar.Insert (t_item, -1);
 
@@ -157,12 +161,12 @@ namespace FSpot {
 
 				display = new SlideShow (view.Item);
 				display.AddEvents ((int) (Gdk.EventMask.PointerMotionMask));
-				display.ModifyBg (Gtk.StateType.Normal, this.Style.Black);
+				display.ModifyBg (StateType.Normal, Style.Black);
 				display.MotionNotifyEvent += HandleViewMotion;
 				display.Show ();
 
 				t_item = new ToolItem ();
-				ComboBox combo = ComboBox.NewText ();
+				var combo = new ComboBoxText();
 				foreach (var transition in display.Transitions)
 					combo.AppendText (transition.Name);
 				combo.Active = 0;
@@ -189,9 +193,9 @@ namespace FSpot {
 				tbar.ShowAll ();
 
 				scroll.Show ();
-				this.Decorated = false;
-				this.Fullscreen ();
-				this.ButtonPressEvent += HandleButtonPressEvent;
+				Decorated = false;
+				Fullscreen ();
+				ButtonPressEvent += HandleButtonPressEvent;
 
 				view.Item.Changed += HandleItemChanged;
 				view.GrabFocus ();
@@ -204,13 +208,13 @@ namespace FSpot {
 				controls.Dismiss ();
 
 				notebook.CurrentPage = 0;
-			} catch (System.Exception e) {
+			} catch (Exception e) {
 				Log.Exception (e);
 			}
 		}
 
-		private Gdk.Cursor empty_cursor;
-		private bool HideCursor ()
+		Gdk.Cursor empty_cursor;
+		bool HideCursor ()
 		{
 			if (view.InPanMotion) {
 				return false;
@@ -219,18 +223,18 @@ namespace FSpot {
 			if (empty_cursor == null)
 				empty_cursor = GdkUtils.CreateEmptyCursor (GdkWindow.Display);
 
-			this.GdkWindow.Cursor = empty_cursor;
+			GdkWindow.Cursor = empty_cursor;
 			view.GdkWindow.Cursor = empty_cursor;
 			return false;
 		}
 
-		private void ShowCursor ()
+		void ShowCursor ()
 		{
 			view.PointerMode = PointerMode.Scroll;
-			this.GdkWindow.Cursor = null;
+			GdkWindow.Cursor = null;
 		}
 
-		private void HandleItemChanged (object sender, BrowsablePointerChangedEventArgs args)
+		void HandleItemChanged (object sender, BrowsablePointerChangedEventArgs args)
 		{
 			if (scroll.ControlBox.Visible)
 				scroll.ShowControls ();
@@ -238,7 +242,7 @@ namespace FSpot {
 
 		void HandleTransitionChanged (object sender, EventArgs e)
 		{
-			ComboBox combo = sender as ComboBox;
+			var combo = sender as ComboBox;
 			if (combo == null)
 				return;
 			TreeIter iter;
@@ -258,29 +262,30 @@ namespace FSpot {
 			return ret;
 		}
 
-		private void ExitAction (object sender, System.EventArgs args)
+		void ExitAction (object sender, EventArgs args)
 		{
 			Quit ();
 		}
 
-		private void HideToolbarAction (object sender, System.EventArgs args)
+		void HideToolbarAction (object sender, EventArgs args)
 		{
 			scroll.HideControls (true);
 			controls.Dismiss ();
 		}
 
-		private void SlideShowAction (object sender, System.EventArgs args)
+		void SlideShowAction (object sender, EventArgs args)
 		{
 			PlayPause ();
 		}
 
 		InfoOverlay info;
-		private void InfoAction (object sender, System.EventArgs args)
+		void InfoAction (object sender, EventArgs args)
 		{
 			bool active = false;
-			if (sender is ToggleToolButton) {
-				(sender as ToggleToolButton).Active = ! (sender as ToggleToolButton).Active;
-				active = (sender as ToggleToolButton).Active;
+			var toggleToolButton = sender as ToggleToolButton;
+			if (toggleToolButton != null) {
+				toggleToolButton.Active = ! toggleToolButton.Active;
+				active = toggleToolButton.Active;
 			} else
 				active = (sender as ToggleAction).Active;
 
@@ -294,14 +299,14 @@ namespace FSpot {
 		}
 
 		[GLib.ConnectBefore]
-		private void HandleViewMotion (object sender, Gtk.MotionNotifyEventArgs args)
+		void HandleViewMotion (object sender, MotionNotifyEventArgs args)
 		{
 			ShowCursor ();
 			hide_cursor_delay.Restart ();
 
 			int x, y;
 			Gdk.ModifierType type;
-			((Gtk.Widget)sender).GdkWindow.GetPointer (out x, out y, out type);
+			((Widget)sender).GdkWindow.GetPointer (out x, out y, out type);
 
 			if (y > (Allocation.Height * 0.75)) {
 				controls.Visibility = ControlOverlay.VisibilityType.Partial;
@@ -315,12 +320,12 @@ namespace FSpot {
 			}
 		}
 
-		private void HandleButtonPressEvent (object sender, Gtk.ButtonPressEventArgs args)
+		void HandleButtonPressEvent (object sender, ButtonPressEventArgs args)
 		{
 			if (args.Event.Type == Gdk.EventType.ButtonPress
 			    && args.Event.Button == 3) {
-				PhotoPopup popup = new PhotoPopup (this);
-				popup.Activate (this.Toplevel, args.Event);
+				var popup = new PhotoPopup (this);
+				popup.Activate (Toplevel, args.Event);
 			}
 		}
 
@@ -345,7 +350,7 @@ namespace FSpot {
 			hide_cursor_delay.Stop ();
 			FSpot.Platform.ScreenSaver.UnInhibit ();
 
-			this.Destroy ();
+			Destroy ();
 		}
 
 		protected override bool OnKeyPressEvent (Gdk.EventKey key)

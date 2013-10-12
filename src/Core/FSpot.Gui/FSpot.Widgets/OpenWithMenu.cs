@@ -2,9 +2,11 @@
 // OpenWithMenu.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Stephane Delcroix <stephane@delcroix.org>
 //   Gabriel Burt <gabriel.burt@gmail.com>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2006-2009 Novell, Inc.
 // Copyright (C) 2007-2009 Stephane Delcroix
 // Copyright (C) 2006 Gabriel Burt
@@ -34,42 +36,34 @@ using System.Collections.Generic;
 
 using Gtk;
 using GLib;
-using GtkBeans;
 
 using Mono.Unix;
 
 namespace FSpot.Widgets
 {
-	public class OpenWithMenu: Gtk.Menu
+	public class OpenWithMenu: Menu
 	{
 		public event EventHandler<ApplicationActivatedEventArgs> ApplicationActivated;
-
 		public delegate IEnumerable<string> TypeFetcher ();
-		TypeFetcher type_fetcher;
+		readonly TypeFetcher type_fetcher;
+		public bool ShowIcons { get; set; }
 
-		List<string> ignore_apps;
+		readonly List<string> ignore_apps;
 		public string [] IgnoreApp {
 			get {
-				if (ignore_apps == null)
-					return null;
-				return ignore_apps.ToArray ();
+				return (ignore_apps == null) ? null : ignore_apps.ToArray ();
 			}
 		}
 
-		bool show_icons = true;
-		public bool ShowIcons {
-			get { return show_icons; }
-			set { show_icons = value; }
-		}
-
-		public OpenWithMenu (TypeFetcher type_fetcher) : this (type_fetcher, null)
+		public OpenWithMenu (TypeFetcher typeFetcher) : this (typeFetcher, null)
 		{
 		}
 
-		public OpenWithMenu (TypeFetcher type_fetcher, params string [] ignore_apps)
+		public OpenWithMenu (TypeFetcher typeFetcher, params string [] ignoreApps)
 		{
-			this.type_fetcher = type_fetcher;
-			this.ignore_apps = new List<string> (ignore_apps);
+			type_fetcher = typeFetcher;
+			ignore_apps = new List<string> (ignoreApps);
+			ShowIcons = true;
 		}
 
 		//FIXME: this should be private and done on Draw()
@@ -79,14 +73,14 @@ namespace FSpot.Widgets
 			for (int i = 0; i < dead_pool.Length; i++)
 				dead_pool [i].Destroy ();
 
-			foreach (AppInfo app in ApplicationsFor (type_fetcher ())) {
-				AppMenuItem i = new AppMenuItem (app, show_icons);
+			foreach (IAppInfo app in ApplicationsFor (type_fetcher ())) {
+				var i = new AppMenuItem (app, ShowIcons);
 				i.Activated += HandleItemActivated;
 				Append (i);
 			}
 
 			if (Children.Length == 0) {
-				MenuItem none = new Gtk.MenuItem (Catalog.GetString ("No applications available"));
+				var none = new MenuItem (Catalog.GetString ("No applications available"));
 				none.Sensitive = false;
 				Append (none);
 			}
@@ -94,12 +88,12 @@ namespace FSpot.Widgets
 			ShowAll ();
 		}
 
-		AppInfo[] ApplicationsFor (IEnumerable<string> types)
+		IAppInfo[] ApplicationsFor (IEnumerable<string> types)
 		{
-			List<AppInfo> app_infos = new List<AppInfo> ();
-			List<string> existing_ids = new List<string> ();
+			var app_infos = new List<IAppInfo> ();
+			var existing_ids = new List<string> ();
 			foreach (string type in types)
-				foreach (AppInfo appinfo in AppInfoAdapter.GetAllForType (type)) {
+				foreach (IAppInfo appinfo in AppInfoAdapter.GetAllForType (type)) {
 					if (existing_ids.Contains (appinfo.Id))
 						continue;
 					if (!appinfo.SupportsUris)
@@ -112,7 +106,7 @@ namespace FSpot.Widgets
 			return app_infos.ToArray ();
 		}
 
-		private void HandleItemActivated (object sender, EventArgs args)
+		void HandleItemActivated (object sender, EventArgs args)
 		{
 			AppMenuItem app = (sender as AppMenuItem);
 
@@ -120,18 +114,18 @@ namespace FSpot.Widgets
 				ApplicationActivated (this, new ApplicationActivatedEventArgs (app.App));
 		}
 
-		private class AppMenuItem : ImageMenuItem
+		class AppMenuItem : ImageMenuItem
 		{
-			public AppInfo App { get; private set; }
+			public IAppInfo App { get; private set; }
 
-			public AppMenuItem (AppInfo app, bool show_icon) : base (app.Name)
+			public AppMenuItem (IAppInfo app, bool showIcon) : base (app.Name)
 			{
 				App = app;
 
-				if (!show_icon)
+				if (!showIcon)
 					return;
 
-				Image = GtkBeans.Image.NewFromIcon (app.Icon, IconSize.Menu);
+				Image = Gtk.Image.NewFromIconName (app.Icon, IconSize.Menu);
 				//this.SetAlwaysShowImage (true);
 			}
 		}

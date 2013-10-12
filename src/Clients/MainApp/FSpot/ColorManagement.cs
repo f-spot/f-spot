@@ -33,9 +33,11 @@ using System.Collections.Generic;
 
 using FSpot.Core;
 
-namespace FSpot {
-	public static class ColorManagement {
-		static string [] search_dir = { "/usr/share/color/icc", Path.Combine (Global.HomeDirectory, ".color/icc"), "/usr/local/share/color/icc " };
+namespace FSpot
+{
+	public static class ColorManagement
+	{
+		static readonly string [] search_dir = { "/usr/share/color/icc", Path.Combine (Global.HomeDirectory, ".color/icc"), "/usr/local/share/color/icc " };
 
 		static Dictionary<string, Cms.Profile> profiles;
 		public static IDictionary<string, Cms.Profile> Profiles {
@@ -67,7 +69,7 @@ namespace FSpot {
 			get { return x_profile ?? (x_profile = Cms.Profile.GetScreenProfile(Gdk.Screen.Default)); }
 		}
 
-		private static void AddProfiles (string path, IDictionary<string, Cms.Profile> profs)
+		static void AddProfiles (string path, IDictionary<string, Cms.Profile> profs)
 		{
 			//recursive search, only RGB color profiles would be added
 			if (Directory.Exists (path)) {
@@ -102,24 +104,24 @@ namespace FSpot {
 			}
 		}
 
-		public static void ApplyProfile (Gdk.Pixbuf pixbuf, Cms.Profile destination_profile)
+		public static void ApplyProfile (Gdk.Pixbuf pixbuf, Cms.Profile destinationProfile)
 		{
-			ApplyProfile (pixbuf, Cms.Profile.CreateStandardRgb (), destination_profile);
+			ApplyProfile (pixbuf, Cms.Profile.CreateStandardRgb (), destinationProfile);
 		}
 
-		public static void ApplyProfile (Gdk.Pixbuf pixbuf, Cms.Profile image_profile, Cms.Profile destination_profile)
+		public static void ApplyProfile (Gdk.Pixbuf pixbuf, Cms.Profile imageProfile, Cms.Profile destinationProfile)
 		{
 			if (pixbuf == null || pixbuf.HasAlpha)
 				return;
 
-			image_profile = image_profile ?? Cms.Profile.CreateStandardRgb ();
+			imageProfile = imageProfile ?? Cms.Profile.CreateStandardRgb ();
 
-			Cms.Profile [] list = new Cms.Profile [] { image_profile, destination_profile };
-			Cms.Transform transform = new Cms.Transform (list,
-								     PixbufUtils.PixbufCmsFormat (pixbuf),
-								     PixbufUtils.PixbufCmsFormat (pixbuf),
-								     Cms.Intent.Perceptual,
-								     0x0000);
+			Cms.Profile [] list = { imageProfile, destinationProfile };
+			var transform = new Cms.Transform (list,
+										     PixbufUtils.PixbufCmsFormat (pixbuf),
+										     PixbufUtils.PixbufCmsFormat (pixbuf),
+										     Cms.Intent.Perceptual,
+										     0x0000);
 			PixbufUtils.ColorAdjust (pixbuf, pixbuf, transform);
 		}
 	}

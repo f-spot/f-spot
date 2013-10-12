@@ -2,9 +2,11 @@
 // DateRangeDialog.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Stephane Delcroix <stephane@delcroix.org>
 //   Bengt Thuree <bengt@thuree.com>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2007-2009 Novell, Inc.
 // Copyright (C) 2007-2009 Stephane Delcroix
 // Copyright (C) 2007 Bengt Thuree
@@ -40,10 +42,11 @@ using FSpot.Widgets;
 
 namespace FSpot.UI.Dialog
 {
-	public class DateRangeDialog : BuilderDialog {
-		[GtkBeans.Builder.Object] Frame startframe;
-		[GtkBeans.Builder.Object] Frame endframe;
-		[GtkBeans.Builder.Object] ComboBox period_combobox;
+	public class DateRangeDialog : BuilderDialog
+	{
+		[Builder.Object] Frame startframe;
+		[Builder.Object] Frame endframe;
+		[Builder.Object] ComboBox period_combobox;
 
 		DateEdit start_dateedit;
 		DateEdit end_dateedit;
@@ -98,13 +101,13 @@ namespace FSpot.UI.Dialog
 
 		}
 
-		void RangeCellFunc (CellLayout cell_layout, CellRenderer cell, TreeModel tree_model, TreeIter iter)
+		void RangeCellFunc (ICellLayout cell_layout, CellRenderer cell, ITreeModel tree_model, TreeIter iter)
 		{
 			string name = (string)tree_model.GetValue (iter, 0);
 			(cell as CellRendererText).Text = name;
 		}
 
-		private string GetString(string rangename)
+		string GetString(string rangename)
 		{
 			System.DateTime today = System.DateTime.Today;
 			switch (rangename) {
@@ -151,12 +154,12 @@ namespace FSpot.UI.Dialog
 			get { return QueryRange (period_combobox.Active); }
 		}
 
-		private DateRange QueryRange (int index)
+		DateRange QueryRange (int index)
 		{
 			return QueryRange ( ranges [index]);
 		}
 
-		private DateRange QueryRange (string rangename)
+		DateRange QueryRange (string rangename)
 		{
 			System.DateTime today = System.DateTime.Today;
 			System.DateTime startdate = today;

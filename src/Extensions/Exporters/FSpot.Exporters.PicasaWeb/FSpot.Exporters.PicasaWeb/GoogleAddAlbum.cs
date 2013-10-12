@@ -29,6 +29,8 @@
 
 using System;
 
+using Gtk;
+
 using Mono.Unix;
 
 using Hyena.Widgets;
@@ -39,26 +41,26 @@ namespace FSpot.Exporters.PicasaWeb
 {
 	public class GoogleAddAlbum
 	{
-		[GtkBeans.Builder.Object] Gtk.Dialog dialog;
+		[Builder.Object] Dialog dialog;
 
-		[GtkBeans.Builder.Object] Gtk.Entry title_entry;
-		[GtkBeans.Builder.Object] Gtk.Entry description_entry;
-		[GtkBeans.Builder.Object] Gtk.CheckButton public_check;
+		[Builder.Object] Entry title_entry;
+		[Builder.Object] Entry description_entry;
+		[Builder.Object] CheckButton public_check;
 
-		[GtkBeans.Builder.Object] Gtk.Button add_button;
+		[Builder.Object] Button add_button;
 
-		private GtkBeans.Builder builder;
-		private string dialog_name = "google_add_album_dialog";
+		Builder builder;
+		string dialog_name = "google_add_album_dialog";
 
-		private GoogleExport export;
-		private Mono.Google.Picasa.PicasaWeb picasa;
-		private string description;
-		private string title;
-		private bool public_album;
+		GoogleExport export;
+		Mono.Google.Picasa.PicasaWeb picasa;
+		string description;
+		string title;
+		bool public_album;
 
 		public GoogleAddAlbum (GoogleExport export, Mono.Google.Picasa.PicasaWeb picasa)
 		{
-			builder = new GtkBeans.Builder (null, "google_add_album_dialog.ui", null);
+			builder = new Builder (null, "google_add_album_dialog.ui", null);
 			builder.Autoconnect (this);
 
 			this.export = export;
@@ -71,7 +73,7 @@ namespace FSpot.Exporters.PicasaWeb
 			HandleChanged (null, null);
 		}
 
-		private void HandleChanged (object sender, EventArgs args)
+		void HandleChanged (object sender, EventArgs args)
 		{
 			description = description_entry.Text;
 			title = title_entry.Text;

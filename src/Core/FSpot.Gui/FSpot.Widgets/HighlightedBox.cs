@@ -2,8 +2,10 @@
 // HighlightedBox.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Stephane Delcroix <sdelcroix@src.gnome.org>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2008 Novell, Inc.
 // Copyright (C) 2008 Stephane Delcroix
 //
@@ -45,7 +47,7 @@ namespace FSpot.Widgets
 			AppPaintable = true;
 		}
 
-		protected override void OnStyleSet(Style style)
+		protected override void OnStyleSet(StyleContext style)
 		{
 			if (!changing_style) {
 				changing_style = true;

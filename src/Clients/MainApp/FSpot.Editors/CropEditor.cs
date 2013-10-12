@@ -179,13 +179,13 @@ namespace FSpot.Editors {
 			}
 		}
 
-		void ConstraintNameCellFunc (CellLayout cell_layout, CellRenderer cell, TreeModel tree_model, TreeIter iter)
+		void ConstraintNameCellFunc (ICellLayout cell_layout, CellRenderer cell, ITreeModel tree_model, TreeIter iter)
 		{
 			string name = (string)tree_model.GetValue (iter, 1);
 			(cell as CellRendererText).Text = name;
 		}
 
-		void ConstraintPixCellFunc (CellLayout cell_layout, CellRenderer cell, TreeModel tree_model, TreeIter iter)
+		void ConstraintPixCellFunc (ICellLayout cell_layout, CellRenderer cell, ITreeModel tree_model, TreeIter iter)
 		{
 			string stockname = (string)tree_model.GetValue (iter, 0);
 			if (stockname != null)

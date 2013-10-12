@@ -122,9 +122,9 @@ namespace FSpot
 		public const string GSD_THUMBS_MAX_SIZE = "/desktop/gnome/thumbnail_cache/maximum_size";
 
 
-		private static PreferenceBackend backend;
-		private static EventHandler<NotifyEventArgs> changed_handler;
-		private static PreferenceBackend Backend {
+		static PreferenceBackend backend;
+		static EventHandler<NotifyEventArgs> changed_handler;
+		static PreferenceBackend Backend {
 			get {
 				if (backend == null) {
 					backend = new PreferenceBackend ();
@@ -136,7 +136,7 @@ namespace FSpot
 			}
 		}
 
-		private static Dictionary<string, object> cache = new Dictionary<string, object>();
+		static readonly Dictionary<string, object> cache = new Dictionary<string, object>();
 
 		static object GetDefault (string key)
 		{

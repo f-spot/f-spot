@@ -2,8 +2,10 @@
 // AccountDialog.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Paul Lange <palango@gmx.de>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2010 Novell, Inc.
 // Copyright (C) 2010 Paul Lange
 //
@@ -29,6 +31,8 @@
 
 using System;
 
+using Gtk;
+
 using Mono.Unix;
 
 using Hyena;
@@ -45,7 +49,7 @@ namespace FSpot.Exporters.Gallery
 
 		public AccountDialog (Gtk.Window parent, GalleryAccount account, bool show_error)
 		{
-			var builder = new GtkBeans.Builder (null, "gallery_add_dialog.ui", null);
+			var builder = new Builder (null, "gallery_add_dialog.ui", null);
 			builder.Autoconnect (this);
 			add_dialog = new Gtk.Dialog (builder.GetRawObject ("gallery_add_dialog"));
 			add_dialog.Modal = false;
@@ -194,23 +198,23 @@ namespace FSpot.Exporters.Gallery
 			add_dialog.Destroy ();
 		}
 
-		private GalleryAccount account;
-		private string name;
-		private string url;
-		private string password;
-		private string username;
+		GalleryAccount account;
+		string name;
+		string url;
+		string password;
+		string username;
 
 		// widgets
-		[GtkBeans.Builder.Object] Gtk.Dialog add_dialog;
+		[Builder.Object] Dialog add_dialog;
 
-		[GtkBeans.Builder.Object] Gtk.Entry url_entry;
-		[GtkBeans.Builder.Object] Gtk.Entry password_entry;
-		[GtkBeans.Builder.Object] Gtk.Entry gallery_entry;
-		[GtkBeans.Builder.Object] Gtk.Entry username_entry;
+		[Builder.Object] Entry url_entry;
+		[Builder.Object] Entry password_entry;
+		[Builder.Object] Entry gallery_entry;
+		[Builder.Object] Entry username_entry;
 
-		[GtkBeans.Builder.Object] Gtk.Button add_button;
-		[GtkBeans.Builder.Object] Gtk.Button remove_button;
+		[Builder.Object] Button add_button;
+		[Builder.Object] Button remove_button;
 
-		[GtkBeans.Builder.Object] Gtk.HBox status_area;
+		[Builder.Object] HBox status_area;
 	}
 }

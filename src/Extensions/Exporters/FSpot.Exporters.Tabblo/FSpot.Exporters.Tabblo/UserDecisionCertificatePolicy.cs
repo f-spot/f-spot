@@ -34,24 +34,26 @@ using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 
+using Gtk;
+
 using Hyena;
 
 namespace FSpot.Exporters.Tabblo
 {
 	class UserDecisionCertificatePolicy : ApplicationCentricCertificatePolicy
 	{
-		private const string DialogName = "trust_error_dialog";
-		[GtkBeans.Builder.Object] Gtk.Dialog dialog;
-		[GtkBeans.Builder.Object] Gtk.Label url_label;
-		[GtkBeans.Builder.Object] Gtk.RadioButton abort_radiobutton;
-		[GtkBeans.Builder.Object] Gtk.RadioButton once_radiobutton;
-		[GtkBeans.Builder.Object] Gtk.RadioButton always_radiobutton;
+		const string DialogName = "trust_error_dialog";
+		[Builder.Object] Dialog dialog;
+		[Builder.Object] Label url_label;
+		[Builder.Object] RadioButton abort_radiobutton;
+		[Builder.Object] RadioButton once_radiobutton;
+		[Builder.Object] RadioButton always_radiobutton;
 
-		private WebRequest request;
-		private Decision decision;
+		WebRequest request;
+		Decision decision;
 
-		private Object decision_lock = new Object ();
-		private ManualResetEvent decision_event;
+		Object decision_lock = new Object ();
+		ManualResetEvent decision_event;
 
 
 		protected override Decision GetDecision (
@@ -71,7 +73,7 @@ namespace FSpot.Exporters.Tabblo
 
 		private bool DoGetDecision ()
 		{
-			GtkBeans.Builder builder = new GtkBeans.Builder (
+			Builder builder = new Builder (
 					Assembly.GetExecutingAssembly (),
 					"TrustError.ui", null);
 			builder.Autoconnect (this);

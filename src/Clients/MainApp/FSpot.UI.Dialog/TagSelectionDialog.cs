@@ -2,10 +2,12 @@
 // TagSelectionDialog.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Mike Gemünde <mike@gemuende.de>
 //   Eric Faehnrich <misterfright@gmail.com>
 //   Ruben Vermeersch <ruben@savanne.be>
 //
+// Copyright (C) 2013 Stephen shaw
 // Copyright (C) 2009-2010 Novell, Inc.
 // Copyright (C) 2009 Mike Gemünde
 // Copyright (C) 2010 Eric Faehnrich
@@ -35,10 +37,11 @@ using Gtk;
 
 using FSpot.Core;
 
-namespace FSpot.UI.Dialog {
+namespace FSpot.UI.Dialog
+{
 	public class TagSelectionDialog : BuilderDialog
 	{
-		[GtkBeans.Builder.Object] Gtk.ScrolledWindow tag_selection_scrolled;
+		[Builder.Object] ScrolledWindow tag_selection_scrolled;
 
 		TagSelectionWidget tag_selection_widget;
 

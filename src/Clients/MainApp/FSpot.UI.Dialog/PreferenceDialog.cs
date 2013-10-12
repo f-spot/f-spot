@@ -2,9 +2,11 @@
 // PreferenceDialog.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Stephane Delcroix <stephane@delcroix.org>
 //   Ruben Vermeersch <ruben@savanne.be>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2006-2010 Novell, Inc.
 // Copyright (C) 2006-2010 Stephane Delcroix
 // Copyright (C) 2010 Ruben Vermeersch
@@ -40,19 +42,19 @@ using Mono.Unix;
 
 using Hyena;
 
-
-namespace FSpot.UI.Dialog {
+namespace FSpot.UI.Dialog
+{
 	public class PreferenceDialog : BuilderDialog
 	{
-		[GtkBeans.Builder.Object] FileChooserButton photosdir_chooser;
+		[Builder.Object] FileChooserButton photosdir_chooser;
 
-		[GtkBeans.Builder.Object] RadioButton writemetadata_radio;
-		[GtkBeans.Builder.Object] RadioButton dontwrite_radio;
-		[GtkBeans.Builder.Object] CheckButton always_sidecar_check;
+		[Builder.Object] RadioButton writemetadata_radio;
+		[Builder.Object] RadioButton dontwrite_radio;
+		[Builder.Object] CheckButton always_sidecar_check;
 
-		[GtkBeans.Builder.Object] ComboBox theme_combo;
-		[GtkBeans.Builder.Object] ComboBox screenprofile_combo;
-		[GtkBeans.Builder.Object] ComboBox printprofile_combo;
+		[Builder.Object] ComboBox theme_combo;
+		[Builder.Object] ComboBox screenprofile_combo;
+		[Builder.Object] ComboBox printprofile_combo;
 
 #region public API (ctor)
 		public PreferenceDialog (Window parent) : base ("PreferenceDialog.ui", "preference_dialog")
@@ -75,14 +77,14 @@ namespace FSpot.UI.Dialog {
 			LoadPreference (Preferences.METADATA_ALWAYS_USE_SIDECAR);
 
 			//Screen profile
-			ListStore sprofiles = new ListStore (typeof (string), typeof (int));
+			var sprofiles = new ListStore (typeof (string), typeof (int));
 			sprofiles.AppendValues (Catalog.GetString ("None"), 0);
-			if (FSpot.ColorManagement.XProfile != null)
+			if (ColorManagement.XProfile != null)
 				sprofiles.AppendValues (Catalog.GetString ("System profile"), -1);
 			sprofiles.AppendValues (null, 0);
 
 			//Pick the display profiles from the full list, avoid _x_profile_
-			var dprofs = from profile in FSpot.ColorManagement.Profiles
+			var dprofs = from profile in ColorManagement.Profiles
 				where (profile.Value.DeviceClass == Cms.IccProfileClass.Display && profile.Key != "_x_profile_")
 				select profile;
 			foreach (var p in dprofs)
@@ -260,9 +262,9 @@ namespace FSpot.UI.Dialog {
 				else
 					Preferences.Set (Preferences.GTK_RC, String.Empty);
 			}
-			Gtk.Rc.DefaultFiles = FSpot.Core.Global.DefaultRcFiles;
-			Gtk.Rc.AddDefaultFile (Preferences.Get<string> (Preferences.GTK_RC));
-			Gtk.Rc.ReparseAllForSettings (Gtk.Settings.Default, true);
+			Rc.DefaultFiles = FSpot.Core.Global.DefaultRcFiles;
+			Rc.AddDefaultFile (Preferences.Get<string> (Preferences.GTK_RC));
+			Rc.ReparseAllForSettings (Gtk.Settings.Default, true);
 		}
 
 		void HandleScreenProfileComboChanged (object sender, EventArgs e)
@@ -306,24 +308,24 @@ namespace FSpot.UI.Dialog {
 #endregion
 
 #region Gtk widgetry
-		void ThemeCellFunc (CellLayout cell_layout, CellRenderer cell, TreeModel tree_model, TreeIter iter)
+		void ThemeCellFunc (ICellLayout cell_layout, CellRenderer cell, ITreeModel tree_model, TreeIter iter)
 		{
 			string name = (string)tree_model.GetValue (iter, 0);
 			(cell as CellRendererText).Text = name;
 		}
 
-		bool ThemeSeparatorFunc (TreeModel tree_model, TreeIter iter)
+		bool ThemeSeparatorFunc (ITreeModel tree_model, TreeIter iter)
 		{
 			return tree_model.GetValue (iter, 0) == null;
 		}
 
-		void ProfileCellFunc (CellLayout cell_layout, CellRenderer cell, TreeModel tree_model, TreeIter iter)
+		void ProfileCellFunc (ICellLayout cell_layout, CellRenderer cell, ITreeModel tree_model, TreeIter iter)
 		{
 			string name = (string)tree_model.GetValue (iter, 0);
 			(cell as CellRendererText).Text = name;
 		}
 
-		bool ProfileSeparatorFunc (TreeModel tree_model, TreeIter iter)
+		bool ProfileSeparatorFunc (ITreeModel tree_model, TreeIter iter)
 		{
 			return tree_model.GetValue (iter, 0) == null;
 		}

@@ -2,9 +2,11 @@
 // JobStore.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Mike Gemünde <mike@gemuende.de>
 //   Stephane Delcroix <sdelcroix@src.gnome.org>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2007-2010 Novell, Inc.
 // Copyright (C) 2010 Mike Gemünde
 // Copyright (C) 2007-2008 Stephane Delcroix
@@ -34,65 +36,16 @@ using System;
 using Banshee.Kernel;
 
 using FSpot;
-using FSpot.Core;
 using FSpot.Database;
 using FSpot.Jobs;
 
 using Hyena;
 using Hyena.Data.Sqlite;
-using System.Data;
 
-namespace FSpot {
-    public abstract class Job : DbItem, IJob
-    {
-    	public Job (uint id, string job_options, JobPriority job_priority, DateTime run_at, bool persistent) : base (id)
-    	{
-    		JobOptions = job_options;
-    		JobPriority = job_priority;
-    		RunAt = run_at;
-    		Persistent = persistent;
-    	}
-    
-    	public string JobOptions { get; set; }
-    	internal JobPriority JobPriority { get; set; }
-    	//Not in use yet !
-    	public DateTime RunAt { get; private set; }
-    	public bool Persistent { get; private set; }
-    
-    	public event EventHandler Finished;
-    
-    	private JobStatus status;
-    	public JobStatus Status
-    	{
-    		get { return status; }
-    		set {
-    			status = value;
-    			switch (value) {
-    			case JobStatus.Finished:
-    			case JobStatus.Failed:
-    				if (Finished != null)
-    					Finished (this, new EventArgs ());
-    				break;
-    			default:
-    				break;
-    			}
-    		}
-    	}
-    
-    	public void Run ()
-    	{
-    		Status = JobStatus.Running;
-    		if (Execute ())
-    			Status = JobStatus.Finished;
-    		else
-    			Status = JobStatus.Failed;
-    	}
-    
-    	protected abstract bool Execute ();
-    }
-
-    public class JobStore : DbStore<Job> {
-    
+namespace FSpot
+{
+    public class JobStore : DbStore<Job>
+	{
     	internal static void CreateTable (FSpotDatabaseConnection database)
     	{
     		if (database.TableExists ("jobs")) {
@@ -109,7 +62,7 @@ namespace FSpot {
     			")");
     	}
     
-    	private Job LoadItem (Hyena.Data.Sqlite.IDataReader reader)
+    	Job LoadItem (IDataReader reader)
     	{
     		return (Job) Activator.CreateInstance (
     				Type.GetType (reader ["job_type"].ToString ()),
@@ -120,9 +73,9 @@ namespace FSpot {
     				true);
     	}
     
-    	private void LoadAllItems ()
+    	void LoadAllItems ()
     	{
-    		Hyena.Data.Sqlite.IDataReader reader = Database.Query ("SELECT id, job_type, job_options, run_at, job_priority FROM jobs");
+    		IDataReader reader = Database.Query ("SELECT id, job_type, job_options, run_at, job_priority FROM jobs");
     
     		Scheduler.Suspend ();
     		while (reader.Read ()) {

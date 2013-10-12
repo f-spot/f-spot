@@ -92,7 +92,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkComboBox" id="rolls_combo">
+              <object class="GtkComboBoxText" id="rolls_combo">
                 <property name="visible">True</property>
                 <property name="sensitive">False</property>
                 <property name="model">liststore1</property>

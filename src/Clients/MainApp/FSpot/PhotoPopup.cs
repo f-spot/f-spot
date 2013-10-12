@@ -41,7 +41,7 @@ using FSpot.Extensions;
 
 namespace FSpot
 {
-	public class PhotoPopup : Gtk.Menu
+	public class PhotoPopup : Menu
 	{
 
 		protected PhotoPopup (IntPtr handle) : base (handle)
@@ -69,7 +69,7 @@ namespace FSpot
 			if (eb != null)
 				Popup (null, null, null, eb.Button, eb.Time);
 			else
-				Popup (null, null, null, 0, Gtk.Global.CurrentEventTime);
+				Popup (null, null, null, 0, Global.CurrentEventTime);
 		}
 
 	}

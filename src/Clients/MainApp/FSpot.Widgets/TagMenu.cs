@@ -34,7 +34,6 @@
 using System;
 
 using Gtk;
-using GtkBeans;
 
 using FSpot;
 using FSpot.Core;
@@ -42,19 +41,20 @@ using FSpot.Utils;
 
 using Hyena;
 
-public class TagMenu : Menu {
-	private TagStore tag_store;
+public class TagMenu : Menu
+{
+	TagStore tag_store;
 
 	public delegate void TagSelectedHandler (Tag t);
 	public event TagSelectedHandler TagSelected;
 
-	private EventHandler new_tag_handler = null;
+	EventHandler new_tag_handler = null;
 	public EventHandler NewTagHandler {
 		get { return new_tag_handler; }
 		set { new_tag_handler = value; }
 	}
 
-	public class TagMenuItem : Gtk.ImageMenuItem {
+	public class TagMenuItem : ImageMenuItem {
 		public Tag Value;
 
 		public TagMenuItem (Tag t) : this (t, t.Name) { }
@@ -63,7 +63,7 @@ public class TagMenu : Menu {
 		{
 			Value = t;
 			if (t.Icon != null) {
-				this.Image = new Gtk.Image (t.SizedIcon);
+				Image = new Image (t.SizedIcon);
 				// FIXME:  Where did this method go?
 				//this.SetAlwaysShowImage (true);
 			}

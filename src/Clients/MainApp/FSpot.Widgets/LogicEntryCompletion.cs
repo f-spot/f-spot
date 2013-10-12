@@ -55,7 +55,7 @@ namespace FSpot.Widgets {
 			get { return completing; }
 		}
 
-		public LogicEntryCompletion (Entry entry, TreeModel tree_model)
+		public LogicEntryCompletion (Entry entry, ITreeModel tree_model)
 		{
 			this.entry = entry;
 

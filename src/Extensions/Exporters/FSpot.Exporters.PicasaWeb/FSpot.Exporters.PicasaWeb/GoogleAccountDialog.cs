@@ -29,6 +29,8 @@
 
 using System;
 
+using Gtk;
+
 using Hyena;
 
 using FSpot.Imaging;
@@ -45,7 +47,7 @@ namespace FSpot.Exporters.PicasaWeb
 
 		public GoogleAccountDialog (Gtk.Window parent, GoogleAccount account, bool show_error, CaptchaException captcha_exception)
 		{
-			builder = new GtkBeans.Builder (null, "google_add_dialog.ui", null);
+			builder = new Builder (null, "google_add_dialog.ui", null);
 			builder.Autoconnect (this);
 			Dialog.Modal = false;
 			Dialog.TransientFor = parent;
@@ -131,27 +133,27 @@ namespace FSpot.Exporters.PicasaWeb
 			}
 		}
 
-		private GoogleAccount account;
-		private string password;
-		private string username;
-		private string token;
+		GoogleAccount account;
+		string password;
+		string username;
+		string token;
 
-        GtkBeans.Builder builder;
+        Builder builder;
 
 		// widgets
-		[GtkBeans.Builder.Object] Gtk.Dialog dialog;
-		[GtkBeans.Builder.Object] Gtk.Entry password_entry;
-		[GtkBeans.Builder.Object] Gtk.Entry username_entry;
-		[GtkBeans.Builder.Object] Gtk.Entry captcha_entry;
+		[Builder.Object] Dialog dialog;
+		[Builder.Object] Entry password_entry;
+		[Builder.Object] Entry username_entry;
+		[Builder.Object] Entry captcha_entry;
 
-		[GtkBeans.Builder.Object] Gtk.Button add_button;
-		[GtkBeans.Builder.Object] Gtk.Button remove_button;
+		[Builder.Object] Button add_button;
+		[Builder.Object] Button remove_button;
 
-		[GtkBeans.Builder.Object] Gtk.HBox status_area;
-		[GtkBeans.Builder.Object] Gtk.HBox locked_area;
+		[Builder.Object] HBox status_area;
+		[Builder.Object] HBox locked_area;
 
-		[GtkBeans.Builder.Object] Gtk.Image captcha_image;
-		[GtkBeans.Builder.Object] Gtk.Label captcha_label;
+		[Builder.Object] Image captcha_image;
+		[Builder.Object] Label captcha_label;
 
 	}
 }

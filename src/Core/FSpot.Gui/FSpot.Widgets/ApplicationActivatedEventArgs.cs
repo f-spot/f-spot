@@ -2,8 +2,10 @@
 // ApplicationActivatedEventArgs.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Stephane Delcroix <stephane@delcroix.org>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2009 Novell, Inc.
 // Copyright (C) 2009 Stephane Delcroix
 //
@@ -35,12 +37,11 @@ namespace FSpot.Widgets
 {
 	public class ApplicationActivatedEventArgs : EventArgs
 	{
-		public AppInfo AppInfo { get; private set; }
+		public IAppInfo AppInfo { get; private set; }
 
-		public ApplicationActivatedEventArgs (AppInfo app) : base ()
+		public ApplicationActivatedEventArgs (IAppInfo app)
 		{
 			AppInfo = app;
 		}
 	}
 }
-

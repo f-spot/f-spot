@@ -2,9 +2,11 @@
 // PickFolderDialog.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Paul Lange <palango@gmx.de>
 //   Stephane Delcroix <sdelcroix*novell.com>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2008-2010 Novell, Inc.
 // Copyright (C) 2010 Paul Lange
 // Copyright (C) 2008 Stephane Delcroix
@@ -33,19 +35,21 @@ using System;
 
 using Mono.Unix;
 
+using Gtk;
+
 using Hyena;
 
 namespace FSpot.Tools.MergeDb
 {
-	internal class PickFolderDialog
+	class PickFolderDialog
 	{
-		[GtkBeans.Builder.Object] Gtk.Dialog pickfolder_dialog;
-		[GtkBeans.Builder.Object] Gtk.FileChooserWidget pickfolder_chooser;
-		[GtkBeans.Builder.Object] Gtk.Label pickfolder_label;
+		[Builder.Object] Dialog pickfolder_dialog;
+		[Builder.Object] FileChooserWidget pickfolder_chooser;
+		[Builder.Object] Label pickfolder_label;
 
-		public PickFolderDialog (Gtk.Dialog parent, string folder)
+		public PickFolderDialog (Dialog parent, string folder)
 		{
-			var builder = new GtkBeans.Builder (null, "pickfolder_dialog.ui", null);
+			var builder = new Builder (null, "pickfolder_dialog.ui", null);
 			builder.Autoconnect (this);
 
 			Log.Debug ("new pickfolder");
@@ -63,11 +67,10 @@ namespace FSpot.Tools.MergeDb
 			pickfolder_dialog.ShowAll ();
 			if (pickfolder_dialog.Run () == -6)
 				return pickfolder_chooser.Filename;
-			else
-				return null;
+			return null;
 		}
 
-		public Gtk.Dialog Dialog {
+		public Dialog Dialog {
 			get { return pickfolder_dialog; }
 		}
 

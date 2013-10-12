@@ -43,20 +43,20 @@ namespace FSpot.UI.Dialog
 {
 	public class LastRolls : BuilderDialog
 	{
-		FSpot.PhotoQuery query;
+		PhotoQuery query;
 		RollStore rollstore;
 		Roll[] rolls;
-		[GtkBeans.Builder.Object] ComboBox combo_filter; // at, after, or between
-		[GtkBeans.Builder.Object] ComboBox combo_roll_1;
-		[GtkBeans.Builder.Object] ComboBox combo_roll_2;
-		[GtkBeans.Builder.Object] Label and_label; // and label between two comboboxes.
-		[GtkBeans.Builder.Object] Label photos_in_selected_rolls;
+		[Builder.Object] ComboBox combo_filter; // at, after, or between
+		[Builder.Object] ComboBoxText combo_roll_1;
+		[Builder.Object] ComboBoxText combo_roll_2;
+		[Builder.Object] Label and_label; // and label between two comboboxes.
+		[Builder.Object] Label photos_in_selected_rolls;
 
-		public LastRolls (FSpot.PhotoQuery query, RollStore rollstore, Window parent) : base ("LastImportRollFilterDialog.ui", "last_import_rolls_filter")
+		public LastRolls (PhotoQuery query, RollStore rollstore, Window parent) : base ("LastImportRollFilterDialog.ui", "last_import_rolls_filter")
 		{
 			this.query = query;
 			this.rollstore = rollstore;
-			rolls = rollstore.GetRolls (FSpot.Preferences.Get<int> (FSpot.Preferences.IMPORT_GUI_ROLL_HISTORY));
+			rolls = rollstore.GetRolls (Preferences.Get<int> (Preferences.IMPORT_GUI_ROLL_HISTORY));
 
 			TransientFor = parent;
 
@@ -72,7 +72,7 @@ namespace FSpot.UI.Dialog
 		}
 
 		[GLib.ConnectBefore]
-		protected void HandleResponse (object o, Gtk.ResponseArgs args)
+		protected void HandleResponse (object o, ResponseArgs args)
 		{
 			if (args.ResponseId == ResponseType.Ok) {
 				Roll [] selected_rolls = SelectedRolls ();
@@ -96,7 +96,7 @@ namespace FSpot.UI.Dialog
 			UpdateNumberOfPhotos ();
 		}
 
-		private void UpdateNumberOfPhotos ()
+		void UpdateNumberOfPhotos ()
 		{
 			Roll [] selected_rolls = SelectedRolls ();
 			uint sum = 0;
@@ -107,7 +107,7 @@ namespace FSpot.UI.Dialog
 			photos_in_selected_rolls.Text = sum.ToString ();
 		}
 
-		private void PopulateCombos ()
+		void PopulateCombos ()
 		{
 			for (uint k = 0; k < rolls.Length; k++) {
 				uint numphotos = rollstore.PhotosInRoll (rolls [k]);
@@ -123,12 +123,12 @@ namespace FSpot.UI.Dialog
 			}
 		}
 
-		private Roll [] SelectedRolls ()
+		Roll [] SelectedRolls ()
 		{
 			if ((combo_roll_1.Active < 0) || ((combo_filter.Active == 2) && (combo_roll_2.Active < 0)))
 				return null;
 
-			List<Roll> result = new List<Roll> ();
+			var result = new List<Roll> ();
 
 			switch (combo_filter.Active) {
 			case 0 : // at - Return the roll the user selected

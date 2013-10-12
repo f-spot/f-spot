@@ -34,14 +34,12 @@ using System.Collections.Generic;
 using System.Threading;
 
 using Gtk;
-using GtkBeans;
 
 using Hyena;
 using Hyena.Widgets;
 using FSpot.Core;
 using FSpot.Utils;
 using FSpot.Widgets;
-using FSpot.Platform;
 using FSpot.UI.Dialog;
 
 using Mono.Facebook;
@@ -51,36 +49,36 @@ namespace FSpot.Exporters.Facebook
 {
 	internal class FacebookExportDialog : BuilderDialog
 	{
-		[GtkBeans.Builder.Object] VBox album_info_vbox;
-		[GtkBeans.Builder.Object] VBox picture_info_vbox;
-		[GtkBeans.Builder.Object] HBox log_buttons_hbox;
-		[GtkBeans.Builder.Object] HButtonBox dialog_action_area;
-		[GtkBeans.Builder.Object] Button login_button;
-		[GtkBeans.Builder.Object] Button logout_button;
-		[GtkBeans.Builder.Object] ProgressBar login_progress;
-		[GtkBeans.Builder.Object] RadioButton existing_album_radiobutton;
-		[GtkBeans.Builder.Object] RadioButton create_album_radiobutton;
-		[GtkBeans.Builder.Object] ComboBox existing_album_combobox;
-		[GtkBeans.Builder.Object] Table new_album_info_table;
-		[GtkBeans.Builder.Object] Entry album_name_entry;
-		[GtkBeans.Builder.Object] Entry album_location_entry;
-		[GtkBeans.Builder.Object] Entry album_description_entry;
-		[GtkBeans.Builder.Object] Gtk.ScrolledWindow thumbnails_scrolled_window;
-		[GtkBeans.Builder.Object] TextView caption_textview;
-		[GtkBeans.Builder.Object] TreeView tag_treeview;
-		[GtkBeans.Builder.Object] EventBox tag_image_eventbox;
-		[GtkBeans.Builder.Object] HBox permissions_hbox;
-		[GtkBeans.Builder.Object] CheckButton offline_perm_check;
-		[GtkBeans.Builder.Object] CheckButton photo_perm_check;
+		[Builder.Object] VBox album_info_vbox;
+		[Builder.Object] VBox picture_info_vbox;
+		[Builder.Object] HBox log_buttons_hbox;
+		[Builder.Object] HButtonBox dialog_action_area;
+		[Builder.Object] Button login_button;
+		[Builder.Object] Button logout_button;
+		[Builder.Object] ProgressBar login_progress;
+		[Builder.Object] RadioButton existing_album_radiobutton;
+		[Builder.Object] RadioButton create_album_radiobutton;
+		[Builder.Object] ComboBox existing_album_combobox;
+		[Builder.Object] Table new_album_info_table;
+		[Builder.Object] Entry album_name_entry;
+		[Builder.Object] Entry album_location_entry;
+		[Builder.Object] Entry album_description_entry;
+		[Builder.Object] Gtk.ScrolledWindow thumbnails_scrolled_window;
+		[Builder.Object] TextView caption_textview;
+		[Builder.Object] TreeView tag_treeview;
+		[Builder.Object] EventBox tag_image_eventbox;
+		[Builder.Object] HBox permissions_hbox;
+		[Builder.Object] CheckButton offline_perm_check;
+		[Builder.Object] CheckButton photo_perm_check;
 
-		Gtk.Image tag_image;
+		Image tag_image;
 		int tag_image_height;
 		int tag_image_width;
 
 		SelectionCollectionGridView tray_view;
 		Dictionary<long, User> friends;
 
-		private class DateComparer : IComparer
+		class DateComparer : IComparer
 		{
 			public int Compare (object left,
 			                    object right)
@@ -225,7 +223,7 @@ namespace FSpot.Exporters.Facebook
 		{
 			if (!account.Authenticated) {
 				Uri uri = account.GetLoginUri ();
-				GtkBeans.Global.ShowUri (Screen, uri.ToString ());
+				Gtk.Global.ShowUri (Screen, uri.ToString ());
 
 				HigMessageDialog mbox = new HigMessageDialog (this, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal,
 						Gtk.MessageType.Info, Gtk.ButtonsType.Ok, Catalog.GetString ("Waiting for authentication"),

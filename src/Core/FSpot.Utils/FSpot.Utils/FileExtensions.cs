@@ -37,13 +37,13 @@ namespace FSpot.Utils
 {
 	public static class FileExtensions
 	{
-		public static bool CopyRecursive (this GLib.File source, GLib.File target, GLib.FileCopyFlags flags, GLib.Cancellable cancellable, GLib.FileProgressCallback callback)
+		public static bool CopyRecursive (this IFile source, IFile target, FileCopyFlags flags, Cancellable cancellable, FileProgressCallback callback)
 		{
 			bool result = true;
 			
-			GLib.FileType ft = source.QueryFileType (GLib.FileQueryInfoFlags.None, cancellable);
+			FileType ft = source.QueryFileType (FileQueryInfoFlags.None, cancellable);
 			
-			if (ft != GLib.FileType.Directory) {
+			if (ft != FileType.Directory) {
 				Hyena.Log.DebugFormat ("Copying \"{0}\" to \"{1}\"", source.Path, target.Path);
 				return source.Copy (target, flags, cancellable, callback);
 			}
@@ -53,11 +53,11 @@ namespace FSpot.Utils
 				result = result && target.MakeDirectoryWithParents (cancellable);
 			}
 			
-			GLib.FileEnumerator fe = source.EnumerateChildren ("standard::name", GLib.FileQueryInfoFlags.None, cancellable);
+			FileEnumerator fe = source.EnumerateChildren ("standard::name", FileQueryInfoFlags.None, cancellable);
 			GLib.FileInfo fi = fe.NextFile ();
 			while (fi != null) {
-				GLib.File source_file = GLib.FileFactory.NewForPath (Path.Combine (source.Path, fi.Name));
-				GLib.File target_file = GLib.FileFactory.NewForPath (Path.Combine (target.Path, fi.Name));
+				IFile source_file = FileFactory.NewForPath (Path.Combine (source.Path, fi.Name));
+				IFile target_file = FileFactory.NewForPath (Path.Combine (target.Path, fi.Name));
 				result = result && source_file.CopyRecursive(target_file, flags, cancellable, callback);
 				fi = fe.NextFile ();
 			}
@@ -65,17 +65,16 @@ namespace FSpot.Utils
 			return result;
 		}
 
-		public static void DeleteRecursive (this GLib.File file)
+		public static void DeleteRecursive (this IFile file)
 		{
 			// FIXME: no cancellation support
-
 			var type = file.QueryFileType (FileQueryInfoFlags.None, null);
 			if (type != FileType.Directory) {
 				file.Delete (null);
 				return;
 			}
 
-			var children = file.EnumerateChildren ("standard::name", GLib.FileQueryInfoFlags.None, null);
+			var children = file.EnumerateChildren ("standard::name", FileQueryInfoFlags.None, null);
 			foreach (GLib.FileInfo child in children) {
 				var child_file = FileFactory.NewForPath (Path.Combine (file.Path, child.Name));
 				child_file.DeleteRecursive ();

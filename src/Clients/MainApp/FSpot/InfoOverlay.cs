@@ -35,8 +35,10 @@ using Gtk;
 using FSpot.Core;
 using FSpot.Widgets;
 
-namespace FSpot {
-	public class InfoItem : InfoBox {
+namespace FSpot
+{
+	public class InfoItem : InfoBox
+	{
 		BrowsablePointer item;
 
 		public InfoItem (BrowsablePointer item)
@@ -50,12 +52,12 @@ namespace FSpot {
 			Context = ViewContext.FullScreen;
 		}
 
-		private void HandleItemChanged (object sender, BrowsablePointerChangedEventArgs args)
+		void HandleItemChanged (object sender, BrowsablePointerChangedEventArgs args)
 		{
 			Photo = item.Current;
 		}
 
-		private void HandleVersionChanged (InfoBox box, IPhotoVersion version)
+		void HandleVersionChanged (InfoBox box, IPhotoVersion version)
 		{
 			IPhotoVersionable versionable = item.Current as IPhotoVersionable;
 			PhotoQuery q = item.Collection as PhotoQuery;
@@ -67,7 +69,8 @@ namespace FSpot {
 		}
 	}
 
-	public class InfoOverlay : ControlOverlay {
+	public class InfoOverlay : ControlOverlay
+	{
 		InfoItem box;
 
 		public InfoOverlay (Widget w, BrowsablePointer item) : base (w)

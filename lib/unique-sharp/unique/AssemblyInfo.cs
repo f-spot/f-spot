@@ -3,4 +3,5 @@ using System.Runtime.CompilerServices;
 
 [assembly:AssemblyVersion("1.0.0.0")]
 [assembly:AssemblyDelaySign(false)]
-[assembly:GLib.IgnoreClassInitializers]
+// GTK3:
+//[assembly:GLib.IgnoreClassInitializers]

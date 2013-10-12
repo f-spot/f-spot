@@ -5,7 +5,9 @@
 //   Ettore Perazzoli <ettore@src.gnome.org>
 //   Peter Goetz <peter.gtz@gmail.com>
 //   Larry Ewing <lewing@novell.com>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2003-2010 Novell, Inc.
 // Copyright (C) 2003 Ettore Perazzoli
 // Copyright (C) 2010 Peter Goetz
@@ -56,16 +58,16 @@ public class TagCommands {
 		TagStore tag_store;
 
 
-		[GtkBeans.Builder.Object] Button create_button;
-		[GtkBeans.Builder.Object] Entry tag_name_entry;
-		[GtkBeans.Builder.Object] Label prompt_label;
-		[GtkBeans.Builder.Object] Label already_in_use_label;
-		[GtkBeans.Builder.Object] ComboBox category_option_menu;
-		[GtkBeans.Builder.Object] CheckButton auto_icon_checkbutton;
+		[Builder.Object] Button create_button;
+		[Builder.Object] Entry tag_name_entry;
+		[Builder.Object] Label prompt_label;
+		[Builder.Object] Label already_in_use_label;
+		[Builder.Object] ComboBox category_option_menu;
+		[Builder.Object] CheckButton auto_icon_checkbutton;
 
-		private List<Tag> categories;
+		List<Tag> categories;
 
-		private void PopulateCategories (List<Tag> categories, Category parent)
+		void PopulateCategories (List<Tag> categories, Category parent)
 		{
 			foreach (Tag tag in parent.Children) {
 				if (tag is Category) {
@@ -75,7 +77,7 @@ public class TagCommands {
 			}
 		}
 
-		private string Indentation (Category category)
+		string Indentation (Category category)
 		{
 			int indentations = 0;
 			for (Category parent = category.Category;

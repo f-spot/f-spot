@@ -2,9 +2,11 @@
 // UriCollection.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Ruben Vermeersch <ruben@savanne.be>
 //   Stephane Delcroix <stephane@delcroix.org>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2007-2010 Novell, Inc.
 // Copyright (C) 2010 Ruben Vermeersch
 // Copyright (C) 2007-2009 Stephane Delcroix
@@ -40,8 +42,10 @@ using GLib;
 using FSpot.Core;
 using FSpot.Imaging;
 
-namespace FSpot {
-	public class UriCollection : PhotoList {
+namespace FSpot
+{
+	public class UriCollection : PhotoList
+	{
 		public UriCollection () : base (new IPhoto [0])
 		{
 		}
@@ -85,29 +89,29 @@ namespace FSpot {
 			}
 		}
 
-		private class RssLoader
+		class RssLoader
 		{
 			public RssLoader (UriCollection collection, SafeUri uri)
 			{
-				XmlDocument doc = new XmlDocument ();
+				var doc = new XmlDocument ();
 				doc.Load (uri.ToString ());
-				XmlNamespaceManager ns = new XmlNamespaceManager (doc.NameTable);
+				var ns = new XmlNamespaceManager (doc.NameTable);
 				ns.AddNamespace ("media", "http://search.yahoo.com/mrss/");
 				ns.AddNamespace ("pheed", "http://www.pheed.com/pheed/");
 				ns.AddNamespace ("apple", "http://www.apple.com/ilife/wallpapers");
 
-				List<FilePhoto> items = new List<FilePhoto> ();
+				var items = new List<FilePhoto> ();
 				XmlNodeList list = doc.SelectNodes ("/rss/channel/item/media:content", ns);
 				foreach (XmlNode item in list) {
-					SafeUri image_uri = new SafeUri (item.Attributes ["url"].Value);
-					Hyena.Log.DebugFormat ("flickr uri = {0}", image_uri.ToString ());
+					var image_uri = new SafeUri (item.Attributes ["url"].Value);
+					Hyena.Log.DebugFormat ("flickr uri = {0}", image_uri);
 					items.Add (new FilePhoto (image_uri));
 				}
 
 				if (list.Count < 1) {
 					list = doc.SelectNodes ("/rss/channel/item/pheed:imgsrc", ns);
 					foreach (XmlNode item in list) {
-						SafeUri image_uri = new SafeUri (item.InnerText.Trim ());
+						var image_uri = new SafeUri (item.InnerText.Trim ());
 						Hyena.Log.DebugFormat ("pheed uri = {0}", uri);
 						items.Add (new FilePhoto (image_uri));
 					}
@@ -116,7 +120,7 @@ namespace FSpot {
 				if (list.Count < 1) {
 					list = doc.SelectNodes ("/rss/channel/item/apple:image", ns);
 					foreach (XmlNode item in list) {
-						SafeUri image_uri = new SafeUri (item.InnerText.Trim ());
+						var image_uri = new SafeUri (item.InnerText.Trim ());
 						Hyena.Log.DebugFormat ("apple uri = {0}", uri);
 						items.Add (new FilePhoto (image_uri));
 					}
@@ -125,10 +129,10 @@ namespace FSpot {
 			}
 		}
 
-		private class DirectoryLoader
+		class DirectoryLoader
 		{
-			UriCollection collection;
-			GLib.File file;
+			readonly UriCollection collection;
+			readonly IFile file;
 
 			public DirectoryLoader (UriCollection collection, SafeUri uri)
 			{
@@ -142,11 +146,11 @@ namespace FSpot {
 
 			}
 
-			void InfoLoaded (GLib.Object o, GLib.AsyncResult res)
+			void InfoLoaded (Object o, IAsyncResult res)
 			{
-				List<FilePhoto> items = new List<FilePhoto> ();
+				var items = new List<FilePhoto> ();
 				foreach (GLib.FileInfo info in file.EnumerateChildrenFinish (res)) {
-					SafeUri i = new SafeUri (file.GetChild (info.Name).Uri);
+					var i = new SafeUri (file.GetChild (info.Name).Uri);
 					Hyena.Log.DebugFormat ("testing uri = {0}", i);
 					if (ImageFile.HasLoader (i))
 						items.Add (new FilePhoto (i));
@@ -157,7 +161,7 @@ namespace FSpot {
 
 		protected void LoadItems (System.IO.FileInfo [] files)
 		{
-			List<IPhoto> items = new List<IPhoto> ();
+			var items = new List<IPhoto> ();
 			foreach (var f in files) {
 				if (ImageFile.HasLoader (new SafeUri (f.FullName))) {
 					Hyena.Log.Debug (f.FullName);
@@ -166,9 +170,7 @@ namespace FSpot {
 			}
 
 			list = items;
-			this.Reload ();
+			Reload ();
 		}
 	}
-
-
 }

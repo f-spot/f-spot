@@ -2,9 +2,11 @@
 // MetaStore.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Gabriel Burt <gabriel.burt@gmail.com>
 //   Ruben Vermeersch <ruben@savanne.be>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2006-2010 Novell, Inc.
 // Copyright (C) 2006 Gabriel Burt
 // Copyright (C) 2009-2010 Ruben Vermeersch
@@ -36,30 +38,14 @@ using FSpot.Core;
 using FSpot.Database;
 
 using Hyena.Data.Sqlite;
-using System.Data;
 
-namespace FSpot {
-    public class MetaItem : DbItem {
-    
-    	public string Name { get; set; }
-    	public string Value { get; set; }
-
-    	public int ValueAsInt {
-    		get { return System.Int32.Parse (Value); }
-    		set { Value = value.ToString (); }
-    	}
-    
-    	public MetaItem (uint id, string name, string data) : base (id)
-    	{
-    		Name = name;
-    		Value = data;
-    	}
-    }
-
-    public class MetaStore : DbStore<MetaItem> {
-    	private const string version = "F-Spot Version";
-    	private const string db_version = "F-Spot Database Version";
-    	private const string hidden = "Hidden Tag Id";
+namespace FSpot
+{
+    public class MetaStore : DbStore<MetaItem>
+	{
+    	const string version = "F-Spot Version";
+    	const string db_version = "F-Spot Database Version";
+    	const string hidden = "Hidden Tag Id";
     
     	public MetaItem FSpotVersion {
     		get { return GetByName (version); }
@@ -73,7 +59,7 @@ namespace FSpot {
     		get { return GetByName (hidden); }
     	}
     
-    	private MetaItem GetByName (string name)
+    	MetaItem GetByName (string name)
     	{
     		foreach (MetaItem i in item_cache.Values)
     			if (i.Name == name)
@@ -83,7 +69,7 @@ namespace FSpot {
     		return Create (name, null);
     	}
     
-    	private void CreateTable ()
+    	void CreateTable ()
     	{
     		Database.Execute (
     			"CREATE TABLE meta (\n" +
@@ -93,10 +79,10 @@ namespace FSpot {
     			")");
     	}
     
-    	private void CreateDefaultItems (bool is_new)
+    	void CreateDefaultItems (bool isNew)
     	{
     		Create (version, Defines.VERSION);
-    		Create (db_version, (is_new) ? FSpot.Database.Updater.LatestVersion.ToString () : "0");
+    		Create (db_version, (isNew) ? FSpot.Database.Updater.LatestVersion.ToString () : "0");
     
     		// Get the hidden tag id, if it exists
     		try {
@@ -105,9 +91,9 @@ namespace FSpot {
     		} catch (Exception) {}
     	}
     
-    	private void LoadAllItems ()
+    	void LoadAllItems ()
     	{
-    		Hyena.Data.Sqlite.IDataReader reader = Database.Query("SELECT id, name, data FROM meta");
+    		IDataReader reader = Database.Query("SELECT id, name, data FROM meta");
     
     		while (reader.Read ()) {
     			uint id = Convert.ToUInt32 (reader ["id"]);
@@ -131,7 +117,7 @@ namespace FSpot {
     		}
     	}
     
-    	private MetaItem Create (string name, string data)
+    	MetaItem Create (string name, string data)
     	{
     
     		uint id = (uint)Database.Execute(new HyenaSqliteCommand("INSERT INTO meta (name, data) VALUES (?, ?)", name, data ?? "NULL" ));
@@ -172,12 +158,11 @@ namespace FSpot {
     
     	// Constructor
     
-    	public MetaStore (FSpotDatabaseConnection database, bool is_new)
-    		: base (database, true)
+		public MetaStore (FSpotDatabaseConnection database, bool isNew) : base (database, true)
     	{
-    		if (is_new || !Database.TableExists ("meta")) {
+    		if (isNew || !Database.TableExists ("meta")) {
     			CreateTable ();
-    			CreateDefaultItems (is_new);
+    			CreateDefaultItems (isNew);
     		} else
     			LoadAllItems ();
     	}

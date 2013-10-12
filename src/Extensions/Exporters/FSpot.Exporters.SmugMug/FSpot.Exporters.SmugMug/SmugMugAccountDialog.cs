@@ -29,6 +29,8 @@
 
 using System;
 
+using Gtk;
+
 namespace FSpot.Exporters.SmugMug
 {
 	public class SmugMugAccountDialog
@@ -40,7 +42,7 @@ namespace FSpot.Exporters.SmugMug
 
 		public SmugMugAccountDialog (Gtk.Window parent, SmugMugAccount account)
 		{
-			builder = new GtkBeans.Builder (null, "smugmug_add_dialog.ui", null);
+			builder = new Builder (null, "smugmug_add_dialog.ui", null);
 			builder.Autoconnect (this);
 
 			Dialog.Modal = false;
@@ -100,7 +102,7 @@ namespace FSpot.Exporters.SmugMug
 			Dialog.Destroy ();
 		}
 
-		private Gtk.Dialog Dialog {
+		Dialog Dialog {
 			get {
 				if (dialog == null)
 					dialog = new Gtk.Dialog (builder.GetRawObject (dialog_name));
@@ -109,18 +111,18 @@ namespace FSpot.Exporters.SmugMug
 			}
 		}
 
-		private SmugMugAccount account;
-		private string password;
-		private string username;
-		private string dialog_name = "smugmug_add_dialog";
-		private GtkBeans.Builder builder;
+		SmugMugAccount account;
+		string password;
+		string username;
+		string dialog_name = "smugmug_add_dialog";
+		Builder builder;
 
 		// widgets
-		[GtkBeans.Builder.Object] Gtk.Dialog dialog;
-		[GtkBeans.Builder.Object] Gtk.Entry password_entry;
-		[GtkBeans.Builder.Object] Gtk.Entry username_entry;
+		[Builder.Object] Dialog dialog;
+		[Builder.Object] Entry password_entry;
+		[Builder.Object] Entry username_entry;
 
-		[GtkBeans.Builder.Object] Gtk.Button add_button;
-		[GtkBeans.Builder.Object] Gtk.Button remove_button;
+		[Builder.Object] Button add_button;
+		[Builder.Object] Button remove_button;
 	}
 }

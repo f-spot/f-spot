@@ -5,10 +5,12 @@
 //   Ettore Perazzoli <ettore@src.gnome.org>
 //   Stephane Delcroix <stephane@delcroix.org>
 //   Larry Ewing <lewing@novell.com>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
 // Copyright (C) 2003-2009 Novell, Inc.
 // Copyright (C) 2003 Ettore Perazzoli
 // Copyright (C) 2007-2009 Stephane Delcroix
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2004-2006 Larry Ewing
 //
 // Permission is hereby granted, free of charge, to any person obtaining
@@ -34,7 +36,6 @@
 using Mono.Unix;
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 using FSpot;
@@ -45,66 +46,33 @@ using FSpot.Utils;
 
 using Hyena;
 using Hyena.Data.Sqlite;
-using System.Data;
 
-namespace FSpot {
-	public class InvalidTagOperationException : InvalidOperationException {
-
-		public InvalidTagOperationException (Tag t, string message) : base (message)
-		{
-			Tag = t;
-		}
-
-		public Tag Tag { get; set; }
-	}
-	
-	// Sorts tags into an order that it will be safe to delete
-	// them in (eg children first).
-	public class TagRemoveComparer : IComparer {
-		public int Compare (object obj1, object obj2)
-		{
-			Tag t1 = obj1 as Tag;
-			Tag t2 = obj2 as Tag;
-	
-			return Compare (t1, t2);
-		}
-	
-		public int Compare (Tag t1, Tag t2)
-		{
-			if (t1.IsAncestorOf (t2))
-				return 1;
-
-			if (t2.IsAncestorOf (t1))
-				return -1;
-
-			return 0;
-		}
-	}
-	
-	public class TagStore : DbStore<Tag> {
-
+namespace FSpot
+{	
+	public class TagStore : DbStore<Tag>
+	{
 		public Category RootCategory { get; private set; }
 		public Tag Hidden { get; private set; }
-		private const string STOCK_ICON_DB_PREFIX = "stock_icon:";
+		const string STOCK_ICON_DB_PREFIX = "stock_icon:";
 
-		static void SetIconFromString (Tag tag, string icon_string)
+		static void SetIconFromString (Tag tag, string iconString)
 		{
-			if (icon_string == null) {
+			if (iconString == null) {
 				tag.Icon = null;
 				// IconWasCleared automatically set already, override
 				// it in this case since it was NULL in the db.
 				tag.IconWasCleared = false;
-			} else if (icon_string == String.Empty)
+			} else if (iconString == String.Empty)
 				tag.Icon = null;
-			else if (icon_string.StartsWith (STOCK_ICON_DB_PREFIX))
-				tag.ThemeIconName = icon_string.Substring (STOCK_ICON_DB_PREFIX.Length);
+			else if (iconString.StartsWith (STOCK_ICON_DB_PREFIX))
+				tag.ThemeIconName = iconString.Substring (STOCK_ICON_DB_PREFIX.Length);
 			else
-				tag.Icon = GdkUtils.Deserialize (Convert.FromBase64String (icon_string));
+				tag.Icon = GdkUtils.Deserialize (Convert.FromBase64String (iconString));
 		}
 
 		public Tag GetTagByName (string name)
 		{
-			foreach (Tag t in this.item_cache.Values)
+			foreach (Tag t in item_cache.Values)
 				if (t.Name.ToLower () == name.ToLower ())
 					return t;
 	
@@ -113,7 +81,7 @@ namespace FSpot {
 	
 		public Tag GetTagById (int id)
 		{
-			foreach (Tag t in this.item_cache.Values)
+			foreach (Tag t in item_cache.Values)
 				if (t.Id == id)
 					return t;
 			return null;
@@ -122,7 +90,7 @@ namespace FSpot {
 		public Tag [] GetTagsByNameStart (string s)
 		{
 			List <Tag> l = new List<Tag> ();
-			foreach (Tag t in this.item_cache.Values) {
+			foreach (Tag t in item_cache.Values) {
 				if (t.Name.ToLower ().StartsWith (s.ToLower ()))
 					l.Add (t);
 			}
@@ -130,7 +98,7 @@ namespace FSpot {
 			if (l.Count == 0)
 				return null;
 	
-			l.Sort (delegate (Tag t1, Tag t2) {return t2.Popularity.CompareTo (t1.Popularity); });
+			l.Sort ((Tag t1, Tag t2) => t2.Popularity.CompareTo (t1.Popularity));
 	
 			return l.ToArray ();
 		}
@@ -139,12 +107,10 @@ namespace FSpot {
 		// mostly to simplify handling of the parent relationship between tags, but it also makes it
 		// a little bit faster.  We achieve this by passing "true" as the cache_is_immortal to our
 		// base class.
-		private void LoadAllTags ()
+		void LoadAllTags ()
 		{
-	
 			// Pass 1, get all the tags.
-	
-			Hyena.Data.Sqlite.IDataReader reader = Database.Query ("SELECT id, name, is_category, sort_priority, icon FROM tags");
+			IDataReader reader = Database.Query ("SELECT id, name, is_category, sort_priority, icon FROM tags");
 	
 			while (reader.Read ()) {
 				uint id = Convert.ToUInt32 (reader ["id"]);
@@ -152,10 +118,7 @@ namespace FSpot {
 				bool is_category = (Convert.ToUInt32 (reader ["is_category"]) != 0);
 	
 				Tag tag;
-				if (is_category)
-					tag = new Category (null, id, name);
-				else
-					tag = new Tag (null, id, name);
+				tag = (is_category) ? new Category (null, id, name) : new Tag (null, id, name);
 	
 				if (reader ["icon"] != null)
 					try {
@@ -200,12 +163,12 @@ namespace FSpot {
 			}
 			reader.Dispose ();
 	
-			if (FSpot.App.Instance.Database.Meta.HiddenTagId.Value != null)
-				Hidden = LookupInCache ((uint)FSpot.App.Instance.Database.Meta.HiddenTagId.ValueAsInt);
+			if (App.Instance.Database.Meta.HiddenTagId.Value != null)
+				Hidden = LookupInCache ((uint)App.Instance.Database.Meta.HiddenTagId.ValueAsInt);
 		}
 	
 	
-		private void CreateTable ()
+		void CreateTable ()
 		{
 			Database.Execute (
 				"CREATE TABLE tags (\n" +
@@ -218,7 +181,7 @@ namespace FSpot {
 				")");
 		}
 	
-		private void CreateDefaultTags ()
+		void CreateDefaultTags ()
 		{
 			Category favorites_category = CreateCategory (RootCategory, Catalog.GetString ("Favorites"), false);
 			favorites_category.ThemeIconName = "emblem-favorite";
@@ -230,8 +193,8 @@ namespace FSpot {
 			hidden_tag.SortPriority = -9;
 			Hidden = hidden_tag;
 			Commit (hidden_tag);
-			FSpot.App.Instance.Database.Meta.HiddenTagId.ValueAsInt = (int) hidden_tag.Id;
-			FSpot.App.Instance.Database.Meta.Commit (FSpot.App.Instance.Database.Meta.HiddenTagId);
+			App.Instance.Database.Meta.HiddenTagId.ValueAsInt = (int) hidden_tag.Id;
+			App.Instance.Database.Meta.Commit (App.Instance.Database.Meta.HiddenTagId);
 	
 			Tag people_category = CreateCategory (RootCategory, Catalog.GetString ("People"), false);
 			people_category.ThemeIconName = "emblem-people";
@@ -251,13 +214,12 @@ namespace FSpot {
 	
 	
 		// Constructor
-		public TagStore (FSpotDatabaseConnection database, bool is_new)
-			: base (database, true)
+		public TagStore (FSpotDatabaseConnection database, bool isNew) : base (database, true)
 		{
 			// The label for the root category is used in new and edit tag dialogs
 			RootCategory = new Category (null, 0, Catalog.GetString ("(None)"));
 	
-			if (! is_new) {
+			if (! isNew) {
 				LoadAllTags ();
 			} else {
 				CreateTable ();
@@ -265,17 +227,16 @@ namespace FSpot {
 			}
 		}
 	
-		private uint InsertTagIntoTable (Category parent_category, string name, bool is_category, bool autoicon)
+		uint InsertTagIntoTable (Category parentCategory, string name, bool isCategory, bool autoicon)
 		{
-	
-			uint parent_category_id = parent_category.Id;
+			uint parent_category_id = parentCategory.Id;
 			String default_tag_icon_value = autoicon ? null : String.Empty;
 	
 			long id = Database.Execute (new HyenaSqliteCommand ("INSERT INTO tags (name, category_id, is_category, sort_priority, icon)"
 	                          + "VALUES (?, ?, ?, 0, ?)",
 							  name,
 							  parent_category_id,
-							  is_category ? 1 : 0,
+							  isCategory ? 1 : 0,
 							  default_tag_icon_value));
 	
 			// The table in the database is setup to be an INTEGER.
@@ -298,14 +259,14 @@ namespace FSpot {
 			return tag;
 		}
 	
-		public Category CreateCategory (Category parent_category, string name, bool autoicon)
+		public Category CreateCategory (Category parentCategory, string name, bool autoicon)
 		{
-			if (parent_category == null)
-				parent_category = RootCategory;
+			if (parentCategory == null)
+				parentCategory = RootCategory;
 	
-			uint id = InsertTagIntoTable (parent_category, name, true, autoicon);
+			uint id = InsertTagIntoTable (parentCategory, name, true, autoicon);
 	
-			Category new_category = new Category (parent_category, id, name);
+			Category new_category = new Category (parentCategory, id, name);
 			new_category.IconWasCleared = !autoicon;
 	
 			AddToCache (new_category);
@@ -336,7 +297,7 @@ namespace FSpot {
 			EmitRemoved (tag);
 		}
 
-		private string GetIconString (Tag tag)
+		string GetIconString (Tag tag)
 		{
 			if (tag.ThemeIconName != null)
 				return STOCK_ICON_DB_PREFIX + tag.ThemeIconName;
@@ -355,16 +316,16 @@ namespace FSpot {
 			Commit (tag, false);
 		}
 	
-		public void Commit (Tag tag, bool update_xmp)
+		public void Commit (Tag tag, bool updateXmp)
 		{
-			Commit (new Tag[] {tag}, update_xmp);
+			Commit (new Tag[] {tag}, updateXmp);
 		}
 	
-		public void Commit (Tag [] tags, bool update_xmp)
+		public void Commit (Tag [] tags, bool updateXmp)
 		{
 	
 			// TODO.
-			bool use_transactions = update_xmp;//!Database.InTransaction && update_xmp;
+			bool use_transactions = updateXmp;//!Database.InTransaction && update_xmp;
 	
 			//if (use_transactions)
 			//	Database.BeginTransaction ();
@@ -390,7 +351,7 @@ namespace FSpot {
 								  GetIconString (tag),
 								  tag.Id));
 	
-				if (update_xmp && Preferences.Get<bool> (Preferences.METADATA_EMBED_IN_IMAGE)) {
+				if (updateXmp && Preferences.Get<bool> (Preferences.METADATA_EMBED_IN_IMAGE)) {
 					Photo [] photos = App.Instance.Database.Photos.Query (new Tag [] { tag });
 					foreach (Photo p in photos)
 						if (p.HasTag (tag)) // the query returns all the pics of the tag and all its child. this avoids updating child tags

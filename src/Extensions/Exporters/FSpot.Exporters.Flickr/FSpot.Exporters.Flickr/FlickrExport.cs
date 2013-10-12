@@ -38,6 +38,8 @@ using System.Threading;
 
 using Mono.Unix;
 
+using Gtk;
+
 using FlickrNet;
 
 using FSpot;
@@ -71,24 +73,24 @@ namespace FSpot.Exporters.Flickr
 	public class FlickrExport : FSpot.Extensions.IExporter {
 		IBrowsableCollection selection;
 
-		[GtkBeans.Builder.Object] Gtk.Dialog         dialog;
-		[GtkBeans.Builder.Object] Gtk.CheckButton    scale_check;
-		[GtkBeans.Builder.Object] Gtk.CheckButton    tag_check;
-		[GtkBeans.Builder.Object] Gtk.CheckButton    hierarchy_check;
-		[GtkBeans.Builder.Object] Gtk.CheckButton    ignore_top_level_check;
-		[GtkBeans.Builder.Object] Gtk.CheckButton    open_check;
-		[GtkBeans.Builder.Object] Gtk.SpinButton     size_spin;
-		[GtkBeans.Builder.Object] Gtk.ScrolledWindow thumb_scrolledwindow;
-		[GtkBeans.Builder.Object] Gtk.Button         auth_flickr;
-		[GtkBeans.Builder.Object] Gtk.ProgressBar    used_bandwidth;
-		[GtkBeans.Builder.Object] Gtk.Button         do_export_flickr;
-		[GtkBeans.Builder.Object] Gtk.Label          auth_label;
-		[GtkBeans.Builder.Object] Gtk.RadioButton    public_radio;
-		[GtkBeans.Builder.Object] Gtk.CheckButton    family_check;
-		[GtkBeans.Builder.Object] Gtk.CheckButton    friend_check;
+		[Builder.Object] Dialog         dialog;
+		[Builder.Object] CheckButton    scale_check;
+		[Builder.Object] CheckButton    tag_check;
+		[Builder.Object] CheckButton    hierarchy_check;
+		[Builder.Object] CheckButton    ignore_top_level_check;
+		[Builder.Object] CheckButton    open_check;
+		[Builder.Object] SpinButton     size_spin;
+		[Builder.Object] Gtk.ScrolledWindow thumb_scrolledwindow;
+		[Builder.Object] Button         auth_flickr;
+		[Builder.Object] ProgressBar    used_bandwidth;
+		[Builder.Object] Button         do_export_flickr;
+		[Builder.Object] Label          auth_label;
+		[Builder.Object] RadioButton    public_radio;
+		[Builder.Object] CheckButton    family_check;
+		[Builder.Object] CheckButton    friend_check;
 
-		private GtkBeans.Builder builder;
-		private string dialog_name = "flickr_export_dialog";
+		Builder builder;
+		string dialog_name = "flickr_export_dialog";
 		System.Threading.Thread command_thread;
 		ThreadProgressDialog progress_dialog;
 		ProgressItem progress_item;
@@ -205,7 +207,7 @@ namespace FSpot.Exporters.Flickr
 			view.DisplayTags = display_tags;
 			view.DisplayDates = false;
 
-			builder = new GtkBeans.Builder (null, "flickr_export.ui", null);
+			builder = new Builder (null, "flickr_export.ui", null);
 			builder.Autoconnect (this);
 
 			Dialog.Modal = false;
@@ -439,7 +441,7 @@ namespace FSpot.Exporters.Flickr
 					}
 				}
 
-				GtkBeans.Global.ShowUri (Dialog.Screen, view_url);
+				Gtk.Global.ShowUri (Dialog.Screen, view_url);
 			}
 		}
 

@@ -87,10 +87,11 @@ namespace FSpot.Utils
 									   uint   xvisualid);
 		}
 
-		public static uint GetXid (Drawable d)
-		{
-			return NativeMethods.gdk_x11_drawable_get_xid (d.Handle);
-		}
+		// GTK3: No more Drawable
+//		public static uint GetXid (Drawable d)
+//		{
+//			return NativeMethods.gdk_x11_drawable_get_xid (d.Handle);
+//		}
 
 		public static uint GetXVisualId (Visual visual)
 		{

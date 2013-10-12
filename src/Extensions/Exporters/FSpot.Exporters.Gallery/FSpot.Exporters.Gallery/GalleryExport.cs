@@ -2,10 +2,12 @@
 // GalleryExport.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Lorenzo Milesi <maxxer@yetopen.it>
 //   Larry Ewing <lewing@novell.com>
 //   Stephane Delcroix <stephane@delcroix.org>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2004-2009 Novell, Inc.
 // Copyright (C) 2008 Lorenzo Milesi
 // Copyright (C) 2004-2006 Larry Ewing
@@ -34,6 +36,8 @@
 using System;
 using System.Collections.Generic;
 
+using Gtk;
+
 using Mono.Unix;
 
 using FSpot.Core;
@@ -48,28 +52,24 @@ namespace FSpot.Exporters.Gallery
 {
 	public class GalleryExport : IExporter
 	{
-		public GalleryExport ()
-		{
-		}
-
 		public void Run (IBrowsableCollection selection)
 		{
-			var builder = new GtkBeans.Builder (null, "gallery_export_dialog.ui", null);
+			var builder = new Builder (null, "gallery_export_dialog.ui", null);
 			builder.Autoconnect (this);
 			export_dialog = new Gtk.Dialog (builder.GetRawObject ("gallery_export_dialog"));
 
-			album_optionmenu = new Gtk.ComboBox ();
-			(album_button.Parent as Gtk.HBox).PackStart (album_optionmenu);
-			(album_button.Parent as Gtk.HBox).ReorderChild (album_optionmenu, 1);
+			album_optionmenu = new ComboBoxText ();
+			(album_button.Parent as HBox).PackStart (album_optionmenu);
+			(album_button.Parent as HBox).ReorderChild (album_optionmenu, 1);
 			album_optionmenu.Show ();
 
-			gallery_optionmenu = new Gtk.ComboBox ();
-			(edit_button.Parent as Gtk.HBox).PackStart (gallery_optionmenu);
-			(edit_button.Parent as Gtk.HBox).ReorderChild (gallery_optionmenu, 1);
+			gallery_optionmenu = new ComboBoxText ();
+			(edit_button.Parent as HBox).PackStart (gallery_optionmenu);
+			(edit_button.Parent as HBox).ReorderChild (gallery_optionmenu, 1);
 			gallery_optionmenu.Show ();
 
-			this.items = selection.Items;
-			Array.Sort<IPhoto> (this.items, new IPhotoComparer.CompareDateName ());
+			items = selection.Items;
+			Array.Sort<IPhoto> (items, new IPhotoComparer.CompareDateName ());
 			album_button.Sensitive = false;
 			var view = new TrayView (selection);
 			view.DisplayDates = false;
@@ -106,37 +106,37 @@ namespace FSpot.Exporters.Gallery
 		public const string BROWSER_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "browser";
 		public const string META_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "meta";
 		public const string LIGHTTPD_WORKAROUND_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "lighttpd_workaround";
-		private bool scale;
-		private int size;
-		private bool browser;
-		private bool meta;
-		private bool connect = false;
+		bool scale;
+		int size;
+		bool browser;
+		bool meta;
+		bool connect = false;
 		IPhoto[] items;
 		int photo_index;
 		ThreadProgressDialog progress_dialog;
 		List<GalleryAccount> accounts;
-		private GalleryAccount account;
-		private Album album;
+		GalleryAccount account;
+		Album album;
 
 		// Widgets
-		[GtkBeans.Builder.Object] Gtk.Dialog export_dialog;
-		Gtk.ComboBox gallery_optionmenu;
-		Gtk.ComboBox album_optionmenu;
+		[Builder.Object] Gtk.Dialog export_dialog;
+		ComboBoxText gallery_optionmenu;
+		ComboBoxText album_optionmenu;
 
-		[GtkBeans.Builder.Object] Gtk.CheckButton browser_check;
-		[GtkBeans.Builder.Object] Gtk.CheckButton scale_check;
-		[GtkBeans.Builder.Object] Gtk.CheckButton meta_check;
-		[GtkBeans.Builder.Object] Gtk.SpinButton size_spin;
-		[GtkBeans.Builder.Object] Gtk.Button album_button;
-		[GtkBeans.Builder.Object] Gtk.Button edit_button;
-		[GtkBeans.Builder.Object] Gtk.Button export_button;
-		[GtkBeans.Builder.Object] Gtk.ScrolledWindow thumb_scrolledwindow;
+		[Builder.Object] CheckButton browser_check;
+		[Builder.Object] CheckButton scale_check;
+		[Builder.Object] CheckButton meta_check;
+		[Builder.Object] SpinButton size_spin;
+		[Builder.Object] Button album_button;
+		[Builder.Object] Button edit_button;
+		[Builder.Object] Button export_button;
+		[Builder.Object] ScrolledWindow thumb_scrolledwindow;
 
 		System.Threading.Thread command_thread;
 
-		private void HandleResponse (object sender, Gtk.ResponseArgs args)
+		void HandleResponse (object sender, ResponseArgs args)
 		{
-			if (args.ResponseId != Gtk.ResponseType.Ok) {
+			if (args.ResponseId != ResponseType.Ok) {
 				export_dialog.Destroy ();
 				return;
 			}
@@ -171,7 +171,7 @@ namespace FSpot.Exporters.Gallery
 			}
 		}
 
-		private void HandleProgressChanged (ProgressItem item)
+		void HandleProgressChanged (ProgressItem item)
 		{
 			//System.Console.WriteLine ("Changed value = {0}", item.Value);
 			progress_dialog.Fraction = (photo_index - 1.0 + item.Value) / (double)items.Length;
@@ -182,7 +182,7 @@ namespace FSpot.Exporters.Gallery
 			size_spin.Sensitive = scale_check.Active;
 		}
 
-		private void Upload ()
+		void Upload ()
 		{
 			account.Gallery.Progress = new ProgressItem ();
 			account.Gallery.Progress.Changed += HandleProgressChanged;
@@ -200,11 +200,11 @@ namespace FSpot.Exporters.Gallery
 
 				Log.DebugFormat ("uploading {0}", photo_index);
 
-				progress_dialog.Message = System.String.Format (Catalog.GetString ("Uploading picture \"{0}\""), item.Name);
+				progress_dialog.Message = String.Format (Catalog.GetString ("Uploading picture \"{0}\""), item.Name);
 				progress_dialog.Fraction = photo_index / (double)items.Length;
 				photo_index++;
 
-				progress_dialog.ProgressText = System.String.Format (Catalog.GetString ("{0} of {1}"), photo_index, items.Length);
+				progress_dialog.ProgressText = String.Format (Catalog.GetString ("{0} of {1}"), photo_index, items.Length);
 
 
 				FilterRequest req = new FilterRequest (item.DefaultVersion.Uri);
@@ -233,7 +233,7 @@ namespace FSpot.Exporters.Gallery
 			progress_dialog.ButtonLabel = Gtk.Stock.Ok;
 
 			if (browser)
-				GtkBeans.Global.ShowUri (export_dialog.Screen, album.GetUrl());
+				Gtk.Global.ShowUri (export_dialog.Screen, album.GetUrl());
 		}
 
 		private void PopulateGalleryOptionMenu (GalleryAccountManager manager, GalleryAccount changed_account)

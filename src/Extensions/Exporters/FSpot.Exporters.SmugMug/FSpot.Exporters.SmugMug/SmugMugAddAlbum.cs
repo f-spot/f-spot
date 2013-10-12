@@ -37,23 +37,23 @@ namespace FSpot.Exporters.SmugMug
 {
 	public class SmugMugAddAlbum
 	{
-		[GtkBeans.Builder.Object] Gtk.Dialog dialog;
-		[GtkBeans.Builder.Object] Gtk.Entry title_entry;
-		[GtkBeans.Builder.Object] Gtk.CheckButton public_check;
-		[GtkBeans.Builder.Object] Gtk.ComboBox category_combo;
+		[Builder.Object] Dialog dialog;
+		[Builder.Object] Entry title_entry;
+		[Builder.Object] CheckButton public_check;
+		[Builder.Object] ComboBox category_combo;
 
-		[GtkBeans.Builder.Object] Gtk.Button add_button;
+		[Builder.Object] Button add_button;
 
-		private string dialog_name = "smugmug_add_album_dialog";
-		private GtkBeans.Builder builder;
-		private SmugMugExport export;
-		private SmugMugApi smugmug;
-		private string title;
-		private ListStore category_store;
+		string dialog_name = "smugmug_add_album_dialog";
+		Builder builder;
+		SmugMugExport export;
+		SmugMugApi smugmug;
+		string title;
+		ListStore category_store;
 
 		public SmugMugAddAlbum (SmugMugExport export, SmugMugApi smugmug)
 		{
-			builder = new GtkBeans.Builder (null, "smugmug_add_album_dialog.ui", null);
+			builder = new Builder (null, "smugmug_add_album_dialog.ui", null);
 			builder.Autoconnect (this);
 
 			this.export = export;
@@ -92,7 +92,7 @@ namespace FSpot.Exporters.SmugMug
 			Dialog.Destroy ();
 		}
 
-		void CategoryDataFunc (CellLayout layout, CellRenderer renderer, TreeModel model, TreeIter iter)
+		void CategoryDataFunc (ICellLayout layout, CellRenderer renderer, ITreeModel model, TreeIter iter)
 		{
 			string name = (string)model.GetValue (iter, 1);
 			(renderer as CellRendererText).Text = name;
@@ -120,10 +120,10 @@ namespace FSpot.Exporters.SmugMug
 			}
 		}
 
-		private Gtk.Dialog Dialog {
+		Dialog Dialog {
 			get {
 				if (dialog == null)
-					dialog = new Gtk.Dialog (builder.GetRawObject (dialog_name));
+					dialog = new Dialog (builder.GetRawObject (dialog_name));
 
 				return dialog;
 			}

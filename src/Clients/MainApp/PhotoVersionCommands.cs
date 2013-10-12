@@ -5,7 +5,9 @@
 //   Anton Keks <anton@azib.net>
 //   Ettore Perazzoli <ettore@src.gnome.org>
 //   Ruben Vermeersch <ruben@savanne.be>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2003-2010 Novell, Inc.
 // Copyright (C) 2009-2010 Anton Keks
 // Copyright (C) 2003 Ettore Perazzoli
@@ -45,22 +47,23 @@ using Hyena.Widgets;
 
 public class PhotoVersionCommands
 {
-	private class VersionNameRequest : BuilderDialog {
-		private Photo photo;
+	class VersionNameRequest : BuilderDialog
+	{
+		Photo photo;
 
-		[GtkBeans.Builder.Object] Button ok_button;
-		[GtkBeans.Builder.Object] Entry version_name_entry;
-		[GtkBeans.Builder.Object] Label prompt_label;
-		[GtkBeans.Builder.Object] Label already_in_use_label;
+		[Builder.Object] Button ok_button;
+		[Builder.Object] Entry version_name_entry;
+		[Builder.Object] Label prompt_label;
+		[Builder.Object] Label already_in_use_label;
 
 		public enum RequestType {
 			Create,
 			Rename
 		}
 
-		private RequestType request_type;
-
-		private void Update ()
+		RequestType request_type;
+		
+		void Update ()
 		{
 			string new_name = version_name_entry.Text;
 
@@ -85,19 +88,19 @@ public class PhotoVersionCommands
 			Update ();
 		}
 
-		public VersionNameRequest (RequestType request_type, Photo photo, Gtk.Window parent_window) : base ("version_name_dialog.ui", "version_name_dialog")
+		public VersionNameRequest (RequestType request_type, Photo photo, Window parent_window) : base ("version_name_dialog.ui", "version_name_dialog")
 		{
 			this.request_type = request_type;
 			this.photo = photo;
 
 			switch (request_type) {
 			case RequestType.Create:
-				this.Title = Catalog.GetString ("Create New Version");
+				Title = Catalog.GetString ("Create New Version");
 				prompt_label.Text = Catalog.GetString ("Name:");
 				break;
 
 			case RequestType.Rename:
-				this.Title = Catalog.GetString ("Rename Version");
+				Title = Catalog.GetString ("Rename Version");
 				prompt_label.Text = Catalog.GetString ("New name:");
 				version_name_entry.Text = photo.GetVersion (photo.DefaultVersionId).Name;
 				version_name_entry.SelectRegion (0, -1);
@@ -107,30 +110,30 @@ public class PhotoVersionCommands
 			version_name_entry.Changed += HandleVersionNameEntryChanged;
 			version_name_entry.ActivatesDefault = true;
 
-			this.TransientFor = parent_window;
-			this.DefaultResponse = ResponseType.Ok;
+			TransientFor = parent_window;
+			DefaultResponse = ResponseType.Ok;
 
 			Update ();
 		}
 
 		public ResponseType Run (out string name)
 		{
-			ResponseType response = (ResponseType) this.Run ();
+			ResponseType response = (ResponseType) Run ();
 
 			name = version_name_entry.Text;
 			if (request_type == RequestType.Rename && name == photo.GetVersion (photo.DefaultVersionId).Name)
 				response = ResponseType.Cancel;
 
-			this.Destroy ();
+			Destroy ();
 
 			return response;
 		}
 	}
 
 	// Creating a new version.
-
-	public class Create {
-		public bool Execute (PhotoStore store, Photo photo, Gtk.Window parent_window)
+	public class Create
+	{
+		public bool Execute (PhotoStore store, Photo photo, Window parent_window)
 		{
 			VersionNameRequest request = new VersionNameRequest (VersionNameRequest.RequestType.Create,
 									     photo, parent_window);
@@ -156,7 +159,7 @@ public class PhotoVersionCommands
 	// Deleting a version.
 
 	public class Delete {
-		public bool Execute (PhotoStore store, Photo photo, Gtk.Window parent_window)
+		public bool Execute (PhotoStore store, Photo photo, Window parent_window)
 		{
 			string ok_caption = Catalog.GetString ("Delete");
 			string msg = String.Format (Catalog.GetString ("Really delete version \"{0}\"?"), photo.DefaultVersion.Name);
@@ -178,7 +181,7 @@ public class PhotoVersionCommands
 	// Renaming a version.
 
 	public class Rename {
-		public bool Execute (PhotoStore store, Photo photo, Gtk.Window parent_window)
+		public bool Execute (PhotoStore store, Photo photo, Window parent_window)
 		{
 			VersionNameRequest request = new VersionNameRequest (VersionNameRequest.RequestType.Rename,
 									     photo, parent_window);
@@ -203,7 +206,7 @@ public class PhotoVersionCommands
 	// Detaching a version (making it a separate photo).
 
 	public class Detach {
-		public bool Execute (PhotoStore store, Photo photo, Gtk.Window parent_window)
+		public bool Execute (PhotoStore store, Photo photo, Window parent_window)
 		{
 			string ok_caption = Catalog.GetString ("De_tach");
 			string msg = String.Format (Catalog.GetString ("Really detach version \"{0}\" from \"{1}\"?"), photo.DefaultVersion.Name, photo.Name.Replace("_", "__"));

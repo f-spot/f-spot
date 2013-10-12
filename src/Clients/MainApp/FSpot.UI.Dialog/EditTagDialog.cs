@@ -2,8 +2,10 @@
 // EditTagDialog.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Stephane Delcroix <stephane@delcroix.org>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2009 Novell, Inc.
 // Copyright (C) 2009 Stephane Delcroix
 //
@@ -43,11 +45,11 @@ namespace FSpot.UI.Dialog
 	{
 		Db db;
 		Tag tag;
-		[GtkBeans.Builder.Object] Button ok_button;
-		[GtkBeans.Builder.Object] Entry tag_name_entry;
-		[GtkBeans.Builder.Object] Label already_in_use_label;
-		[GtkBeans.Builder.Object] Gtk.Image icon_image;
-		[GtkBeans.Builder.Object] Gtk.ComboBox category_option_menu;
+		[Builder.Object] Button ok_button;
+		[Builder.Object] Entry tag_name_entry;
+		[Builder.Object] Label already_in_use_label;
+		[Builder.Object] Image icon_image;
+		[Builder.Object] ComboBox category_option_menu;
 
 		public EditTagDialog (Db db, Tag t, Gtk.Window parent_window) : base ("EditTagDialog.ui", "edit_tag_dialog")
 		{
@@ -62,7 +64,7 @@ namespace FSpot.UI.Dialog
 			Cms.Profile screen_profile;
 			if (icon_image.Pixbuf != null && FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile)) {
 				icon_image.Pixbuf = icon_image.Pixbuf.Copy ();
-				FSpot.ColorManagement.ApplyProfile (icon_image.Pixbuf, screen_profile);
+				ColorManagement.ApplyProfile (icon_image.Pixbuf, screen_profile);
 			}
 			PopulateCategoryOptionMenu (t);
 

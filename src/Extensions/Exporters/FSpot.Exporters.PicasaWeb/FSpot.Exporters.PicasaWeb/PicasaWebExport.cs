@@ -42,6 +42,8 @@ using System.Text;
 using System.Collections;
 using System.Collections.Generic;
 
+using Gtk;
+
 using Mono.Unix;
 
 using Hyena;
@@ -59,17 +61,13 @@ namespace FSpot.Exporters.PicasaWeb
 {
 	public class GoogleExport : FSpot.Extensions.IExporter
 	{
-		public GoogleExport ()
-		{
-		}
-
 		public void Run (IBrowsableCollection selection)
 		{
-			builder = new GtkBeans.Builder (null, "google_export_dialog.ui", null);
+			builder = new Builder (null, "google_export_dialog.ui", null);
 			builder.Autoconnect (this);
 
-			gallery_optionmenu = Gtk.ComboBox.NewText ();
-			album_optionmenu = Gtk.ComboBox.NewText ();
+			gallery_optionmenu = ComboBoxText.NewWithEntry ();
+			album_optionmenu = ComboBoxText.NewWithEntry ();
 
 			(edit_button.Parent as Gtk.HBox).PackStart (gallery_optionmenu);
 			(album_button.Parent as Gtk.HBox).PackStart (album_optionmenu);
@@ -111,22 +109,22 @@ namespace FSpot.Exporters.PicasaWeb
 			LoadPreference (TAG_KEY);
 		}
 
-		private bool scale;
-		private int size;
-		private bool browser;
-		private bool export_tag;
-		private bool connect = false;
-		private long approx_size = 0;
-		private long sent_bytes = 0;
+		bool scale;
+		int size;
+		bool browser;
+		bool export_tag;
+		bool connect = false;
+		long approx_size = 0;
+		long sent_bytes = 0;
 		IPhoto[] items;
 		int photo_index;
 		ThreadProgressDialog progress_dialog;
 		List<GoogleAccount> accounts;
-		private GoogleAccount account;
-		private PicasaAlbum album;
-		private PicasaAlbumCollection albums = null;
-		private GtkBeans.Builder builder;
-		private string dialog_name = "google_export_dialog";
+		GoogleAccount account;
+		PicasaAlbum album;
+		PicasaAlbumCollection albums = null;
+		Builder builder;
+		string dialog_name = "google_export_dialog";
 		public const string EXPORT_SERVICE = "picasaweb/";
 		public const string SCALE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "scale";
 		public const string SIZE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "size";
@@ -134,35 +132,24 @@ namespace FSpot.Exporters.PicasaWeb
 		public const string TAG_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "tag";
 
 		// widgets
-		[GtkBeans.Builder.Object]
-		Gtk.Dialog dialog;
-		Gtk.ComboBox gallery_optionmenu;
-		Gtk.ComboBox album_optionmenu;
-		[GtkBeans.Builder.Object]
-		Gtk.Label status_label;
-		[GtkBeans.Builder.Object]
-		Gtk.Label album_status_label;
-		[GtkBeans.Builder.Object]
-		Gtk.CheckButton browser_check;
-		[GtkBeans.Builder.Object]
-		Gtk.CheckButton scale_check;
-		[GtkBeans.Builder.Object]
-		Gtk.CheckButton tag_check;
-		[GtkBeans.Builder.Object]
-		Gtk.SpinButton size_spin;
-		[GtkBeans.Builder.Object]
-		Gtk.Button album_button;
-		[GtkBeans.Builder.Object]
-		Gtk.Button edit_button;
-		[GtkBeans.Builder.Object]
-		Gtk.Button export_button;
-		[GtkBeans.Builder.Object]
-		Gtk.ScrolledWindow thumb_scrolledwindow;
+		[Builder.Object] Dialog dialog;
+		ComboBoxText gallery_optionmenu;
+		ComboBoxText album_optionmenu;
+		[Builder.Object] Label status_label;
+		[Builder.Object] Label album_status_label;
+		[Builder.Object] CheckButton browser_check;
+		[Builder.Object] CheckButton scale_check;
+		[Builder.Object] CheckButton tag_check;
+		[Builder.Object] SpinButton size_spin;
+		[Builder.Object] Button album_button;
+		[Builder.Object] Button edit_button;
+		[Builder.Object] Button export_button;
+		[Builder.Object] ScrolledWindow thumb_scrolledwindow;
 		System.Threading.Thread command_thread;
 
-		private void HandleResponse (object sender, Gtk.ResponseArgs args)
+		void HandleResponse (object sender, ResponseArgs args)
 		{
-			if (args.ResponseId != Gtk.ResponseType.Ok) {
+			if (args.ResponseId != ResponseType.Ok) {
 				Dialog.Destroy ();
 				return;
 			}
@@ -293,7 +280,7 @@ namespace FSpot.Exporters.PicasaWeb
 			progress_dialog.ButtonLabel = Gtk.Stock.Ok;
 
 			if (browser)
-				GtkBeans.Global.ShowUri (Dialog.Screen, album.Link);
+				Gtk.Global.ShowUri (Dialog.Screen, album.Link);
 		}
 
 		private void PopulateGoogleOptionMenu (GoogleAccountManager manager, GoogleAccount changed_account)

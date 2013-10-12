@@ -36,9 +36,9 @@ using GLib;
 
 namespace FSpot.Utils
 {
-    public class RecursiveFileEnumerator : IEnumerable<File>
+	public class RecursiveFileEnumerator : IEnumerable<IFile>
     {
-        string root;
+        readonly string root;
 
         public bool Recurse { get; set; }
         public bool CatchErrors { get; set; }
@@ -52,75 +52,78 @@ namespace FSpot.Utils
             IgnoreSymlinks = false;
         }
 
-        IEnumerable<File> ScanForFiles (File root)
+		IEnumerable<IFile> ScanForFiles (IFile root)
         {
             FileInfo root_info = null;
             try {
                 root_info = root.QueryInfo ("standard::name,standard::type,standard::is-symlink", FileQueryInfoFlags.None, null);
             } catch (GException e) {
                 if (!CatchErrors)
-                    throw e;
+                    throw;
                 yield break;
             }
 
             using (root_info) {
-                if (root_info.IsSymlink && IgnoreSymlinks) {
-                    yield break;
-                } else if (root_info.FileType == FileType.Regular) {
-                    yield return root;
-                } else if (root_info.FileType == FileType.Directory) {
-                    foreach (var child in ScanDirectoryForFiles (root)) {
-                        yield return child;
-                    }
-                }
-            }
+				if (root_info.IsSymlink && IgnoreSymlinks) {
+					yield break;
+				}
+				if (root_info.FileType == FileType.Regular) {
+					yield return root;
+				} else if (root_info.FileType == FileType.Directory) {
+					foreach (var child in ScanDirectoryForFiles (root)) {
+						yield return child;
+					}
+				}
+			}
         }
 
-        IEnumerable<File> ScanDirectoryForFiles (File root_dir)
+		IEnumerable<IFile> ScanDirectoryForFiles (IFile root_dir)
         {
             FileEnumerator enumerator = null;
             try {
                 enumerator = root_dir.EnumerateChildren ("standard::name,standard::type,standard::is-symlink", FileQueryInfoFlags.None, null);
             } catch (GException e) {
                 if (!CatchErrors)
-                    throw e;
+                    throw;
                 yield break;
             }
 
             while (true) {
-                FileInfo info = null;
-                try {
-                    info = enumerator.NextFile ();
-                } catch (GException e) {
-                    if (!CatchErrors)
-                        throw e;
-                    continue;
-                }
+				FileInfo info = null;
+				try {
+					info = enumerator.NextFile ();
+				} catch (GException e) {
+					if (!CatchErrors)
+						throw;
+					continue;
+				}
 
-                if (info == null)
-                    break;
+				if (info == null)
+					break;
 
-                File file = root_dir.GetChild (info.Name);
+				IFile file = root_dir.GetChild (info.Name);
                 
-                // The code below looks like a duplication of ScanForFiles
-                // (which could be invoked here instead), but doing so would
-                // lead to a double type query on files (using QueryInfo).
-                if (info.IsSymlink && IgnoreSymlinks) {
-                    continue;
-                } else if (info.FileType == FileType.Regular) {
-                    yield return file;
-                } else if (info.FileType == FileType.Directory && Recurse) {
-                    foreach (var child in ScanDirectoryForFiles (file)) {
-                        yield return child;
-                    }
-                }
-                info.Dispose ();
-            }
+				// The code below looks like a duplication of ScanForFiles
+				// (which could be invoked here instead), but doing so would
+				// lead to a double type query on files (using QueryInfo).
+				if (info.IsSymlink && IgnoreSymlinks) {
+					continue;
+				}
+
+				if (info.FileType == FileType.Regular) {
+					yield return file;
+				} else if (info.FileType == FileType.Directory && Recurse) {
+					foreach (var child in ScanDirectoryForFiles (file)) {
+						yield return child;
+					}
+				}
+				info.Dispose ();
+			}
 
             enumerator.Close (null);
         }
 
-        public IEnumerator<File> GetEnumerator ()
+		public IEnumerator<IFile> GetEnumerator ()
         {
             var file = FileFactory.NewForUri (root);
             return ScanForFiles (file).GetEnumerator ();

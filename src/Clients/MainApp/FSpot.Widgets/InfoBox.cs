@@ -535,7 +535,7 @@ namespace FSpot.Widgets
             return false;
         }
 
-        void VersionNameCellFunc (CellLayout cell_layout, CellRenderer cell, TreeModel tree_model, TreeIter iter)
+		void VersionNameCellFunc (ICellLayout cell_layout, CellRenderer cell, ITreeModel tree_model, TreeIter iter)
         {
             string name = (string)tree_model.GetValue (iter, 1);
             (cell as CellRendererText).Text = name;

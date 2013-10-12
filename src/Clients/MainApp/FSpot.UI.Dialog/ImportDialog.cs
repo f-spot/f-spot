@@ -2,8 +2,10 @@
 // ImportDialog.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Ruben Vermeersch <ruben@savanne.be>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2010 Novell, Inc.
 // Copyright (C) 2010 Ruben Vermeersch
 //
@@ -46,28 +48,28 @@ namespace FSpot.UI.Dialog
     public class ImportDialog : BuilderDialog
     {
         static readonly string select_folder_label = Catalog.GetString ("Choose Folder...");
-        private ImportController Controller { get; set; }
-        private TreeStore Sources { get; set; }
+        ImportController Controller { get; set; }
+        TreeStore Sources { get; set; }
 
-        private static Dictionary<string, IImportSource> history_sources = new Dictionary<string, IImportSource> ();
+        static readonly Dictionary<string, IImportSource> history_sources = new Dictionary<string, IImportSource> ();
 
-        [GtkBeans.Builder.Object] Button cancel_button;
-        [GtkBeans.Builder.Object] Button import_button;
-        [GtkBeans.Builder.Object] CheckButton copy_check;
-        [GtkBeans.Builder.Object] CheckButton duplicate_check;
-        [GtkBeans.Builder.Object] CheckButton recurse_check;
-        [GtkBeans.Builder.Object] CheckButton remove_check;
-        [GtkBeans.Builder.Object] Button remove_warning_button;
-        [GtkBeans.Builder.Object] ComboBox sources_combo;
-        [GtkBeans.Builder.Object] HBox tagentry_box;
-        [GtkBeans.Builder.Object] HPaned import_hpaned;
-        [GtkBeans.Builder.Object] ProgressBar progress_bar;
-        [GtkBeans.Builder.Object] ScrolledWindow icon_scrolled;
-        [GtkBeans.Builder.Object] ScrolledWindow photo_scrolled;
-        [GtkBeans.Builder.Object] Label attachtags_label;
+        [Builder.Object] Button cancel_button;
+        [Builder.Object] Button import_button;
+        [Builder.Object] CheckButton copy_check;
+        [Builder.Object] CheckButton duplicate_check;
+        [Builder.Object] CheckButton recurse_check;
+        [Builder.Object] CheckButton remove_check;
+        [Builder.Object] Button remove_warning_button;
+        [Builder.Object] ComboBox sources_combo;
+        [Builder.Object] HBox tagentry_box;
+        [Builder.Object] HPaned import_hpaned;
+        [Builder.Object] ProgressBar progress_bar;
+        [Builder.Object] ScrolledWindow icon_scrolled;
+        [Builder.Object] ScrolledWindow photo_scrolled;
+        [Builder.Object] Label attachtags_label;
 
-        private PhotoImageView photo_view;
-        private TagEntry tag_entry;
+        PhotoImageView photo_view;
+        TagEntry tag_entry;
 
         public ImportDialog (ImportController controller, Window parent) : base ("import.ui", "import_dialog")
         {
@@ -111,7 +113,7 @@ namespace FSpot.UI.Dialog
 
         void ResetPreview ()
         {
-            photo_view.Pixbuf = GtkUtil.TryLoadIcon (FSpot.Core.Global.IconTheme, "f-spot", 128, (Gtk.IconLookupFlags)0);
+            photo_view.Pixbuf = GtkUtil.TryLoadIcon (FSpot.Core.Global.IconTheme, "f-spot", 128, (IconLookupFlags)0);
             photo_view.ZoomFit (false);
         }
 
@@ -121,7 +123,7 @@ namespace FSpot.UI.Dialog
                 Resize (Preferences.Get<int> (Preferences.IMPORT_WINDOW_WIDTH), Preferences.Get<int> (Preferences.IMPORT_WINDOW_HEIGHT));
             }
 
-            if (FSpot.Preferences.Get<int> (Preferences.IMPORT_WINDOW_PANE_POSITION) > 0) {
+            if (Preferences.Get<int> (Preferences.IMPORT_WINDOW_PANE_POSITION) > 0) {
                 import_hpaned.Position = Preferences.Get<int> (Preferences.IMPORT_WINDOW_PANE_POSITION);
             }
 
@@ -153,13 +155,13 @@ namespace FSpot.UI.Dialog
                 } catch (Exception e) {
                     // Swallow the exception if the import was cancelled / dialog was closed.
                     if (Controller != null)
-                        throw e;
+                        throw;
                 }
                 return false;
             });
         }
 
-        void PopulateSourceCombo (IImportSource source_to_activate)
+        void PopulateSourceCombo (IImportSource sourceToActivate)
         {
             int activate_index = 0;
             sources_combo.Changed -= OnSourceComboChanged;
@@ -169,7 +171,7 @@ namespace FSpot.UI.Dialog
             Sources.AppendValues (null, String.Empty, String.Empty);
             bool mount_added = false;
             foreach (var source in Controller.Sources) {
-                if (source == source_to_activate) {
+                if (source == sourceToActivate) {
                     activate_index = Sources.IterNChildren ();
                 }
                 Sources.AppendValues (source, source.Name, source.IconName, true);
@@ -182,7 +184,7 @@ namespace FSpot.UI.Dialog
             if (history_sources.Count > 0) {
                 Sources.AppendValues (null, String.Empty, String.Empty);
                 foreach (var source in history_sources.Values) {
-                    if (source == source_to_activate) {
+                    if (source == sourceToActivate) {
                         activate_index = Sources.IterNChildren ();
                     }
                     Sources.AppendValues (source, source.Name, source.IconName, true);
@@ -261,30 +263,28 @@ namespace FSpot.UI.Dialog
 
         int current_index = -1;
         void OnSourceComboChanged (object sender, EventArgs args)
-        {
-            // Prevent double firing.
-            if (sources_combo.Active == current_index) {
-                Log.Debug ("Skipping double fire!");
-                return;
-            } else {
-                current_index = sources_combo.Active;
-            }
+		{
+			// Prevent double firing.
+			if (sources_combo.Active == current_index) {
+				Log.Debug ("Skipping double fire!");
+				return;
+			}
+			current_index = sources_combo.Active;
 
-            TreeIter iter;
-            sources_combo.GetActiveIter (out iter);
-            var source = Sources.GetValue (iter, 0) as IImportSource;
-            if (source == null) {
-                var label = (string) Sources.GetValue (iter, 1);
-                if (label == select_folder_label) {
-                    ShowFolderSelector ();
-                    return;
-                } else {
-                    sources_combo.Active = 0;
-                    return;
-                }
-            }
-            Controller.ActiveSource = source;
-        }
+			TreeIter iter;
+			sources_combo.GetActiveIter (out iter);
+			var source = Sources.GetValue (iter, 0) as IImportSource;
+			if (source == null) {
+				var label = (string)Sources.GetValue (iter, 1);
+				if (label == select_folder_label) {
+					ShowFolderSelector ();
+					return;
+				}
+				sources_combo.Active = 0;
+				return;
+			}
+			Controller.ActiveSource = source;
+		}
 
         void OnControllerStatusEvent (ImportEvent evnt)
         {

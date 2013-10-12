@@ -107,7 +107,7 @@ namespace FSpot.Exporters.Facebook
 				return true;
 
 			Uri uri = facebookSession.GetGrantUri (permission);
-			GtkBeans.Global.ShowUri (parent.Screen, uri.ToString ());
+			Gtk.Global.ShowUri (parent.Screen, uri.ToString ());
 
 			HigMessageDialog mbox = new HigMessageDialog (parent, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal,
 					Gtk.MessageType.Info, Gtk.ButtonsType.Ok, Catalog.GetString ("Waiting for authorization"),

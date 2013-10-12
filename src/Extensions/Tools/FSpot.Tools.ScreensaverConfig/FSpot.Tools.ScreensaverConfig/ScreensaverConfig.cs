@@ -2,8 +2,10 @@
 // ScreensaverConfig.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Stephane Delcroix <stephane@delcroix.org>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2009 Novell, Inc.
 // Copyright (C) 2009 Stephane Delcroix
 //
@@ -59,11 +61,11 @@ namespace FSpot.Tools.ScreensaverConfig
 
 		class ScreensaverConfigDialog : BuilderDialog
 		{
-			[GtkBeans.Builder.Object] Range delay_scale;
-			[GtkBeans.Builder.Object] Table table;
-			[GtkBeans.Builder.Object] RadioButton all_radio;
-			[GtkBeans.Builder.Object] RadioButton tagged_radio;
-			[GtkBeans.Builder.Object] Button do_button;
+			[Builder.Object] Range delay_scale;
+			[Builder.Object] Table table;
+			[Builder.Object] RadioButton all_radio;
+			[Builder.Object] RadioButton tagged_radio;
+			[Builder.Object] Button do_button;
 			Adjustment delay_adjustment;
 			MenuButton tag_button;
 
@@ -142,7 +144,7 @@ namespace FSpot.Tools.ScreensaverConfig
 			void HandleUseFSpot (object sender, EventArgs e)
 			{
 				Preferences.Set (GNOME_SCREENSAVER_MODE, SaverMode);
-				Preferences.Set (GNOME_SCREENSAVER_THEME, new string [] { SaverCommand });
+				Preferences.Set (GNOME_SCREENSAVER_THEME, new  [] { SaverCommand });
 			}
 		}
 	}

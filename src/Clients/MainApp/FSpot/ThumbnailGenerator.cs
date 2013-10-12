@@ -39,9 +39,10 @@ using FSpot.Utils;
 
 using GFileInfo = GLib.FileInfo;
 
-namespace FSpot {
-    public class ThumbnailLoader : ImageLoaderThread {
-
+namespace FSpot
+{
+    public class ThumbnailLoader : ImageLoaderThread
+	{
         static public ThumbnailLoader Default = new ThumbnailLoader ();
 
         public void Request (SafeUri uri, ThumbnailSize size, int order)

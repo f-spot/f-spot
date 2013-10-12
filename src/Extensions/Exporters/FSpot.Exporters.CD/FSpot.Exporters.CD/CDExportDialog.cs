@@ -43,23 +43,23 @@ namespace FSpot.Exporters.CD
 {
 	class CDExportDialog : BuilderDialog
 	{
-		Gtk.Window listwindow;
-		System.Uri dest;
+		Window listwindow;
+		Uri dest;
 
-      		[GtkBeans.Builder.Object] Button browse_button;
-		[GtkBeans.Builder.Object] ScrolledWindow thumb_scrolledwindow;
-		[GtkBeans.Builder.Object] CheckButton remove_check;
-		[GtkBeans.Builder.Object] Label size_label;
+		[Builder.Object] Button browse_button;
+		[Builder.Object] ScrolledWindow thumb_scrolledwindow;
+		[Builder.Object] CheckButton remove_check;
+		[Builder.Object] Label size_label;
 
 		// This is a frame for any photos that are still in the queue
 		// to be burned to disc.  As of now(March 3, 2012), that's burn:///
-		[GtkBeans.Builder.Object] Frame previous_frame;
+		[Builder.Object] Frame previous_frame;
 
 		public bool RemovePreviousPhotos {
 			get { return remove_check.Active; }
 		}
 
-		public CDExportDialog (IBrowsableCollection collection, System.Uri dest) :
+		public CDExportDialog (IBrowsableCollection collection, Uri dest) :
 			base (Assembly.GetExecutingAssembly (), "CDExport.ui", "cd_export_dialog")
 		{
 			this.dest = dest;
@@ -82,52 +82,52 @@ namespace FSpot.Exporters.CD
 			view.DisplayTags = false;
 			view.DisplayRatings = false;
 
-			this.Modal = false;
-			this.TransientFor = null;
+			Modal = false;
+			TransientFor = null;
 
 			size_label.Text = Format.SizeForDisplay (total_size);
 
 			thumb_scrolledwindow.Add (view);
-			this.ShowAll ();
+			ShowAll ();
 
 			previous_frame.Visible = !IsDestEmpty (dest);
 
 			browse_button.Clicked += HandleBrowseExisting;
 		}
 
-		bool IsDestEmpty (System.Uri path)
+		bool IsDestEmpty (Uri path)
 		{
-			GLib.File f = FileFactory.NewForUri (path);
-			foreach (GLib.FileInfo info in f.EnumerateChildren ("*", FileQueryInfoFlags.None, null)) {
+			IFile f = FileFactory.NewForUri (path);
+			foreach (FileInfo info in f.EnumerateChildren ("*", FileQueryInfoFlags.None, null)) {
 				return false;
 			}
 			return true;
 		}
 
-		void HandleBrowseExisting (object sender, System.EventArgs args)
+		void HandleBrowseExisting (object sender, EventArgs args)
 		{
 			if (listwindow == null) {
-				listwindow = new Gtk.Window ("Pending files to write");
+				listwindow = new Window ("Pending files to write");
 				listwindow.SetDefaultSize (400, 200);
-				listwindow.DeleteEvent += delegate (object o, Gtk.DeleteEventArgs e) {(o as Gtk.Window).Destroy (); listwindow = null;};
-				Gtk.TextView view = new Gtk.TextView ();
-				Gtk.ScrolledWindow sw = new Gtk.ScrolledWindow ();
+				listwindow.DeleteEvent += delegate (object o, DeleteEventArgs e) {(o as Window).Destroy (); listwindow = null;};
+				TextView view = new TextView ();
+				ScrolledWindow sw = new ScrolledWindow ();
 				sw.Add (view);
 				listwindow.Add (sw);
 			} else {
-				((listwindow.Child as Gtk.ScrolledWindow).Child as Gtk.TextView).Buffer.Text = "";
+				((listwindow.Child as ScrolledWindow).Child as TextView).Buffer.Text = "";
 			}
-			ListAll (((listwindow.Child as Gtk.ScrolledWindow).Child as Gtk.TextView).Buffer, dest);
+			ListAll (((listwindow.Child as ScrolledWindow).Child as TextView).Buffer, dest);
 			listwindow.ShowAll ();
 		}
 
-		void ListAll (Gtk.TextBuffer t, System.Uri path)
+		void ListAll (TextBuffer t, Uri path)
 		{
-			GLib.File f = FileFactory.NewForUri (path);
-			foreach (GLib.FileInfo info in f.EnumerateChildren ("*", FileQueryInfoFlags.None, null)) {
-				t.Text += new System.Uri (path, info.Name).ToString () + Environment.NewLine;
+			IFile f = FileFactory.NewForUri (path);
+			foreach (FileInfo info in f.EnumerateChildren ("*", FileQueryInfoFlags.None, null)) {
+				t.Text += new Uri (path, info.Name) + Environment.NewLine;
 				if (info.FileType == FileType.Directory)
-					ListAll (t, new System.Uri (path, info.Name + "/"));
+					ListAll (t, new Uri (path, info.Name + "/"));
 			}
 		}
 		

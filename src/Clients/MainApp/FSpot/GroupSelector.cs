@@ -2,9 +2,11 @@
 // GroupSelector.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Larry Ewing <lewing@novell.com>
 //   Ruben Vermeersch <ruben@savanne.be>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2004-2010 Novell, Inc.
 // Copyright (C) 2004-2007 Larry Ewing
 // Copyright (C) 2010 Ruben Vermeersch
@@ -41,8 +43,10 @@ using FSpot.Utils;
 using FSpot.Widgets;
 using Layout = Pango.Layout;
 
-namespace FSpot {
-	public class GroupSelector : Fixed {
+namespace FSpot
+{
+	public class GroupSelector : Fixed
+	{
 		internal static GType groupSelectorGType;
 
 		int border = 6;
@@ -50,30 +54,30 @@ namespace FSpot {
 		int box_top_padding = 6;
 		public static int MIN_BOX_WIDTH = 20;
 
-		private Glass glass;
-		private Limit min_limit;
-		private Limit max_limit;
+		Glass glass;
+		Limit min_limit;
+		Limit max_limit;
 
-		private Gtk.Button left;
-		private Gtk.Button right;
-		private DelayedOperation left_delay;
-		private DelayedOperation right_delay;
+		Button left;
+		Button right;
+		DelayedOperation left_delay;
+		DelayedOperation right_delay;
 
-		private Gdk.Window event_window;
+		Gdk.Window event_window;
 
-		public Gdk.Rectangle background;
-		public Gdk.Rectangle legend;
-		public Gdk.Rectangle action;
+		public Rectangle background;
+		public Rectangle legend;
+		public Rectangle action;
 
-		Pango.Layout [] tick_layouts;
+		Layout [] tick_layouts;
 		int [] box_counts = new int [0];
 		int box_count_max;
 		int min_filled;
 		int max_filled;
 		bool has_limits;
 
-		protected FSpot.GroupAdaptor adaptor;
-		public FSpot.GroupAdaptor Adaptor {
+		protected GroupAdaptor adaptor;
+		public GroupAdaptor Adaptor {
 			set {
 				if (adaptor != null) {
 					adaptor.Changed -= HandleAdaptorChanged;
@@ -82,7 +86,7 @@ namespace FSpot {
 
 				adaptor = value;
 				HandleAdaptorChanged (adaptor);
-				has_limits = adaptor is FSpot.ILimitable;
+				has_limits = adaptor is ILimitable;
 
 				if (has_limits) {
 				    min_limit.SetPosition (0, false);
@@ -119,7 +123,7 @@ namespace FSpot {
 			}
 		}
 
-		private void HandleAdaptorChanged (GroupAdaptor adaptor)
+		void HandleAdaptorChanged (GroupAdaptor adaptor)
 		{
 			bool size_changed = box_counts.Length != adaptor.Count ();
 			int [] box_values = new int [adaptor.Count ()];
@@ -130,7 +134,7 @@ namespace FSpot {
 				    l.Dispose ();
 				}
 			}
-			tick_layouts = new Pango.Layout [adaptor.Count ()];
+			tick_layouts = new Layout [adaptor.Count ()];
 
 			int i = 0;
 			while (i < adaptor.Count ()) {
@@ -159,10 +163,10 @@ namespace FSpot {
 			SetPosition (i < box_counts.Length ? i : min_limit.Position);
 			ScrollTo (min_limit.Position);
 
-			this.QueueDraw ();
+			QueueDraw ();
 		}
 
-		private int [] Counts {
+		int [] Counts {
 			set {
 				bool min_found = false;
 				box_count_max = 0;
@@ -195,7 +199,7 @@ namespace FSpot {
 			Min
 		}
 
-		private RangeType mode = RangeType.Min;
+		RangeType mode = RangeType.Min;
 		public RangeType Mode {
 			get {
 				return mode;
@@ -207,14 +211,14 @@ namespace FSpot {
 			}
 		}
 
-		private void ScrollTo (int position)
+		void ScrollTo (int position)
 		{
 			if (position ==  min_filled)
 				position = 0;
 			else if (position == max_filled)
 				position = box_counts.Length - 1;
 
-			Gdk.Rectangle box = new Box (this, position).Bounds;
+			Rectangle box = new Box (this, position).Bounds;
 
 			// Only scroll to pos if we are not dragging
 			if (!glass.Dragging)
@@ -226,7 +230,7 @@ namespace FSpot {
 			}
 		}
 
-		private int scroll_offset;
+		int scroll_offset;
 		public int Offset {
 			get {
 				return scroll_offset;
@@ -249,7 +253,7 @@ namespace FSpot {
 			}
 		}
 
-		private void UpdateButtons ()
+		void UpdateButtons ()
 		{
 			left.Sensitive = (scroll_offset < 0);
 			right.Sensitive = (box_counts.Length * BoxWidth > background.Width - scroll_offset);
@@ -261,15 +265,15 @@ namespace FSpot {
 				right_delay.Stop ();
 		}
 
-		private void BoxXHitFilled (double x, out int out_position)
+		void BoxXHitFilled (double x, out int outPosition)
 		{
 			x -= BoxX (0);
 			double position = (x / BoxWidth);
-			position = System.Math.Max (0, position);
-			position = System.Math.Min (position, box_counts.Length - 1);
+			position = Math.Max (0, position);
+			position = Math.Min (position, box_counts.Length - 1);
 
 			if (box_counts [(int)position] > 0) {
-				out_position = (int)position;
+				outPosition = (int)position;
 			} else {
 				int upper = (int)position;
 				while (upper < box_counts.Length && box_counts [upper] == 0)
@@ -280,20 +284,20 @@ namespace FSpot {
 					lower--;
 
 				if (lower == -1 && upper == box_counts.Length) {
-					out_position = (int)position;
+					outPosition = (int)position;
 				} else if (lower == -1 && upper < box_counts.Length) {
-					out_position = upper;
+					outPosition = upper;
 				} else if (upper == box_counts.Length && lower > -1){
-					out_position = lower;
+					outPosition = lower;
 				} else if (upper + 1 - position > position - lower) {
-					out_position = lower;
+					outPosition = lower;
 				} else {
-					out_position = upper;
+					outPosition = upper;
 				}
 			}
 		}
 
-		private bool BoxXHit (double x, out int position)
+		bool BoxXHit (double x, out int position)
 		{
 			x -= BoxX (0);
 			position = (int) (x / BoxWidth);
@@ -309,7 +313,7 @@ namespace FSpot {
 		    return true;
 		}
 
-		private bool BoxHit (double x, double y, out int position)
+		bool BoxHit (double x, double y, out int position)
 		{
 			if (BoxXHit (x, out position)) {
 				Box box = new Box (this, position);
@@ -328,7 +332,7 @@ namespace FSpot {
 				glass.SetPosition(group);
 		}
 
-		protected override bool OnButtonPressEvent (Gdk.EventButton args)
+		protected override bool OnButtonPressEvent (EventButton args)
 		{
 			if (args.Button == 3)
 				return DrawOrderMenu (args);
@@ -356,7 +360,7 @@ namespace FSpot {
 			return base.OnButtonPressEvent (args);
 		}
 
-		protected override bool OnButtonReleaseEvent (Gdk.EventButton args)
+		protected override bool OnButtonReleaseEvent (EventButton args)
 		{
 			double x = args.X + action.X;
 			double y = args.Y + action.Y;
@@ -438,7 +442,7 @@ namespace FSpot {
 			base.OnUnrealized ();
 		}
 
-		private Double BoxWidth {
+		Double BoxWidth {
 			get {
 				switch (mode) {
 				case RangeType.All:
@@ -453,18 +457,18 @@ namespace FSpot {
 			}
 		}
 
-		private int BoxX (int item)
+		int BoxX (int item)
 		{
 			 return scroll_offset + background.X + (int) Math.Round (BoxWidth * item);
 		}
 
-		private struct Box {
-			Gdk.Rectangle bounds;
-			Gdk.Rectangle bar;
+		struct Box {
+			Rectangle bounds;
+			Rectangle bar;
 
 			public Box (GroupSelector selector, int item)
 			{
-				bounds = new Gdk.Rectangle();
+				bounds = new Rectangle();
 				bounds.Height = selector.background.Height;
 				bounds.Y = selector.background.Y;
 				bounds.X = selector.BoxX (item);
@@ -481,13 +485,13 @@ namespace FSpot {
 				bar.Inflate (- selector.box_spacing, 0);
 			}
 
-			public Gdk.Rectangle Bounds {
+			public Rectangle Bounds {
 				get {
 					return bounds;
 				}
 			}
 
-			public Gdk.Rectangle Bar {
+			public Rectangle Bar {
 				get {
 					return bar;
 				}
@@ -495,7 +499,7 @@ namespace FSpot {
 
 		}
 
-		private void DrawBox (Rectangle area, int item)
+		void DrawBox (Rectangle area, int item)
 		{
 			Box box = new Box (this, item);
 			Rectangle bar = box.Bar;
@@ -551,9 +555,9 @@ namespace FSpot {
 			return true;
 		}
 
-		private bool DrawOrderMenu (Gdk.EventButton args)
+		bool DrawOrderMenu (EventButton args)
 		{
-			Gtk.Menu order_menu = new Gtk.Menu();
+			Menu order_menu = new Menu();
 
 			order_menu.Append (App.Instance.Organizer.ReverseOrderAction.CreateMenuItem ());
 
@@ -568,7 +572,8 @@ namespace FSpot {
 			return true;
 		}
 
-		public abstract class Manipulator {
+		public abstract class Manipulator
+		{
 			protected GroupSelector selector;
 			protected DelayedOperation timer;
 			public bool Dragging;
@@ -579,7 +584,7 @@ namespace FSpot {
 			public Manipulator (GroupSelector selector)
 			{
 				this.selector = selector;
-				timer = new DelayedOperation (50, new GLib.IdleHandler (DragTimeout));
+				timer = new DelayedOperation (50, new IdleHandler (DragTimeout));
 			}
 
 			protected int drag_offset;
@@ -608,7 +613,7 @@ namespace FSpot {
 				DragStart.Y = (int)y;
 			}
 
-			private bool DragTimeout ()
+			bool DragTimeout ()
 			{
 				int x, y;
 				selector.GetPointer (out x, out y);
@@ -672,7 +677,7 @@ namespace FSpot {
 				}
 			}
 
-			private StateType state;
+			StateType state;
 			public StateType State {
 				get {
 					return state;
@@ -696,7 +701,7 @@ namespace FSpot {
 					return;
 
 				Rectangle then = Bounds ();
-				this.Position = position;
+				Position = position;
 				Rectangle now = Bounds ();
 
 				if (selector.Visible) {
@@ -723,27 +728,27 @@ namespace FSpot {
 			}
 		}
 
-		private class Glass : Manipulator {
+		class Glass : Manipulator {
 			Gtk.Window popup_window;
-			Gtk.Label popup_label;
+			Label popup_label;
 			int drag_position;
 
 			public Glass (GroupSelector selector) : base (selector)
 			{
 				popup_window = new ToolTipWindow ();
-				popup_label = new Gtk.Label (String.Empty);
+				popup_label = new Label (String.Empty);
 				popup_label.Show ();
 				popup_window.Add (popup_label);
 			}
 
 			public int handle_height = 15;
-			private int Border {
+			int Border {
 				get {
 					return selector.box_spacing * 2;
 				}
 			}
 
-			private void UpdatePopupPosition ()
+			void UpdatePopupPosition ()
 			{
 				int x = 0, y = 0;
 				Rectangle bounds = Bounds ();
@@ -778,10 +783,10 @@ namespace FSpot {
 					return;
 
 				base.StartDrag (x, y, time);
-				popup_label.Text = selector.Adaptor.GlassLabel (this.Position);
+				popup_label.Text = selector.Adaptor.GlassLabel (Position);
 				popup_window.Show ();
 				UpdatePopupPosition ();
-				drag_position = this.Position;
+				drag_position = Position;
 			}
 
 			public override void UpdateDrag (double x, double y)
@@ -803,13 +808,13 @@ namespace FSpot {
 
 				selector.BoxXHitFilled (middle, out position);
 				UpdateGlass = true;
-				this.SetPosition (position);
+				SetPosition (position);
 				UpdateGlass = false;
 				State = StateType.Prelight;
 				popup_window.Hide ();
 			}
 
-			private Rectangle InnerBounds ()
+			Rectangle InnerBounds ()
 			{
 				Rectangle box = new Box (selector, Position).Bounds;
 				if (Dragging) {
@@ -849,7 +854,7 @@ namespace FSpot {
 				while (i < Border) {
 					box.Inflate (1, 1);
 
-					selector.Style.BackgroundGC (State).ClipRectangle = area;
+					selector.StyleContext.BackgroundGC (State).ClipRectangle = area;
 					selector.GdkWindow.DrawRectangle (selector.Style.BackgroundGC (State),
 									  false, box);
 					i++;
@@ -893,13 +898,13 @@ namespace FSpot {
 				Max
 			}
 
-			private LimitType limit_type;
+			LimitType limit_type;
 
 			public override Rectangle Bounds ()
 			{
 				int limit_offset = limit_type == LimitType.Max ? 1 : 0;
 
-				Rectangle bounds = new Rectangle (0, 0, width, selector.background.Height + handle_height);
+				var bounds = new Rectangle (0, 0, width, selector.background.Height + handle_height);
 
 				if (Dragging) {
 					bounds.X = DragStart.X + DragOffset;
@@ -978,9 +983,9 @@ namespace FSpot {
 						DrawBox (area, i++);
 				}
 
-				Style.PaintShadow (this.Style, GdkWindow, State, ShadowType.In, area,
-						   this, null, background.X, background.Y,
-						   background.Width, background.Height);
+				Style.PaintShadow (Style, GdkWindow, State, ShadowType.In, area,
+					this, null, background.X, background.Y,
+					background.Width, background.Height);
 
 				if (sub.Intersect (legend, out area)) {
 					int i = 0;
@@ -1022,15 +1027,15 @@ namespace FSpot {
 				(val - 1024 / 2) / 1024;
 		}
 
-		private int LegendHeight ()
+		int LegendHeight ()
 		{
 			int max_height = 0;
 
-			Pango.FontMetrics metrics = this.PangoContext.GetMetrics (this.Style.FontDescription,
+			Pango.FontMetrics metrics = PangoContext.GetMetrics (Style.FontDescription,
 										  Pango.Language.FromString ("en_US"));
 			max_height += PangoPixels (metrics.Ascent + metrics.Descent);
 
-			foreach (Pango.Layout l in tick_layouts) {
+			foreach (Layout l in tick_layouts) {
 				if (l != null) {
 					int width, height;
 
@@ -1042,7 +1047,7 @@ namespace FSpot {
 			return (int) (max_height * 1.5);
 		}
 
-		private bool HandleScrollRight ()
+		bool HandleScrollRight ()
 		{
 			if (glass.Dragging)
 				glass.MaintainPosition ();
@@ -1051,7 +1056,7 @@ namespace FSpot {
 			return true;
 		}
 
-		private bool HandleScrollLeft ()
+		bool HandleScrollLeft ()
 		{
 			if (glass.Dragging)
 				glass.MaintainPosition ();
@@ -1060,44 +1065,44 @@ namespace FSpot {
 			return true;
 		}
 
-		private void HandleLeftPressed (object sender, System.EventArgs ars)
+		void HandleLeftPressed (object sender, EventArgs ars)
 		{
 			HandleScrollLeft ();
 			left_delay.Start ();
 		}
 
-		private void HandleRightPressed (object sender, System.EventArgs ars)
+		void HandleRightPressed (object sender, EventArgs ars)
 		{
 			HandleScrollRight ();
 			right_delay.Start ();
 		}
 
 		[GLib.ConnectBefore]
-		private void HandleScrollReleaseEvent (object sender, ButtonReleaseEventArgs args)
+		void HandleScrollReleaseEvent (object sender, ButtonReleaseEventArgs args)
 		{
 			right_delay.Stop ();
 			left_delay.Stop ();
 		}
 
-		protected override void OnSizeAllocated (Gdk.Rectangle alloc)
+		protected override void OnSizeAllocated (Rectangle alloc)
 		{
 			base.OnSizeAllocated (alloc);
 			int legend_height = LegendHeight ();
 
-			Gdk.Rectangle bar = new Rectangle (alloc.X + border, alloc.Y + border,
+			Rectangle bar = new Rectangle (alloc.X + border, alloc.Y + border,
 							   alloc.Width - 2 *  border,
 							   alloc.Height - 2 * border - glass.handle_height);
 
 
 			if (left.Allocation.Y != bar.Y || left.Allocation.X != bar.X) {
 				left.SetSizeRequest (-1, bar.Height);
-				this.Move (left, bar.X - Allocation.X, bar.Y - Allocation.Y);
+				Move (left, bar.X - Allocation.X, bar.Y - Allocation.Y);
 			}
 
 			if (right.Allocation.Y != bar.Y || right.Allocation.X != bar.X + bar.Width - right.Allocation.Width) {
 				right.SetSizeRequest (-1, bar.Height);
-				this.Move (right,  bar.X - Allocation.X + bar.Width - right.Allocation.Width,
-					   bar.Y - Allocation.Y);
+				Move (right, bar.X - Allocation.X + bar.Width - right.Allocation.Width,
+					bar.Y - Allocation.Y);
 			}
 
 			background = new Rectangle (bar.X + left.Allocation.Width, bar.Y,
@@ -1112,7 +1117,7 @@ namespace FSpot {
 			if (event_window != null)
 				event_window.MoveResize (action.X, action.Y, action.Width, action.Height);
 
-			this.Offset = this.Offset;
+			Offset = Offset;
 
 			UpdateButtons ();
 		}
@@ -1134,7 +1139,7 @@ namespace FSpot {
 			}
 		}
 
-		public GroupSelector () : base ()
+		public GroupSelector ()
 		{
 			SetFlag (WidgetFlags.NoWindow);
 
@@ -1143,26 +1148,26 @@ namespace FSpot {
 			min_limit = new Limit (this, Limit.LimitType.Min);
 			max_limit = new Limit (this, Limit.LimitType.Max);
 
-			left = new Gtk.Button ();
+			left = new Button ();
 			//left.Add (new Gtk.Image (Gtk.Stock.GoBack, Gtk.IconSize.Button));
-			left.Add (new Gtk.Arrow (Gtk.ArrowType.Left, Gtk.ShadowType.None));
-			left.Relief = Gtk.ReliefStyle.None;
+			left.Add (new Arrow (ArrowType.Left, ShadowType.None));
+			left.Relief = ReliefStyle.None;
 			//left.Clicked += HandleScrollLeft;
 			left.Pressed += HandleLeftPressed;
 			left.ButtonReleaseEvent += HandleScrollReleaseEvent;
-			left_delay = new DelayedOperation (50, new GLib.IdleHandler (HandleScrollLeft));
+			left_delay = new DelayedOperation (50, new IdleHandler (HandleScrollLeft));
 
-			right = new Gtk.Button ();
+			right = new Button ();
 			//right.Add (new Gtk.Image (Gtk.Stock.GoForward, Gtk.IconSize.Button));
-			right.Add (new Gtk.Arrow (Gtk.ArrowType.Right, Gtk.ShadowType.None));
-			right.Relief = Gtk.ReliefStyle.None;
+			right.Add (new Arrow (ArrowType.Right, ShadowType.None));
+			right.Relief = ReliefStyle.None;
 			right.Pressed += HandleRightPressed;
 			right.ButtonReleaseEvent += HandleScrollReleaseEvent;
-			right_delay = new DelayedOperation (50, new GLib.IdleHandler (HandleScrollRight));
+			right_delay = new DelayedOperation (50, new IdleHandler (HandleScrollRight));
 			//right.Clicked += HandleScrollRight;
 
-			this.Put (left, 0, 0);
-			this.Put (right, 100, 0);
+			Put (left, 0, 0);
+			Put (right, 100, 0);
 			left.Show ();
 			right.Show ();
 

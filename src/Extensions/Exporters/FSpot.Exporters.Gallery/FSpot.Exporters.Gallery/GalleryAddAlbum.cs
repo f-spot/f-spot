@@ -29,6 +29,8 @@
 
 using System;
 
+using Gtk;
+
 using Mono.Unix;
 
 using Hyena.Widgets;
@@ -37,30 +39,30 @@ namespace FSpot.Exporters.Gallery
 {
 	public class GalleryAddAlbum
 	{
-		[GtkBeans.Builder.Object] Gtk.Dialog add_album_dialog;
-		Gtk.ComboBox album_optionmenu;
+		[Builder.Object] Dialog add_album_dialog;
+		ComboBoxText album_optionmenu;
 
-		[GtkBeans.Builder.Object] Gtk.Entry name_entry;
-		[GtkBeans.Builder.Object] Gtk.Entry description_entry;
-		[GtkBeans.Builder.Object] Gtk.Entry title_entry;
+		[Builder.Object] Entry name_entry;
+		[Builder.Object] Entry description_entry;
+		[Builder.Object] Entry title_entry;
 
-		[GtkBeans.Builder.Object] Gtk.Button add_button;
+		[Builder.Object] Button add_button;
 
-		private GalleryExport export;
-		private Gallery gallery;
-		private string parent;
-		private string name;
-		private string description;
-		private string title;
+		GalleryExport export;
+		Gallery gallery;
+		string parent;
+		string name;
+		string description;
+		string title;
 
 		public GalleryAddAlbum (GalleryExport export, Gallery gallery)
 		{
-			var builder = new GtkBeans.Builder (null, "gallery_add_album_dialog.ui", null);
+			var builder = new Builder (null, "gallery_add_album_dialog.ui", null);
 			builder.Autoconnect (this);
 			add_album_dialog = new Gtk.Dialog (builder.GetRawObject ("gallery_add_album_dialog"));
 			add_album_dialog.Modal = true;
 
-			album_optionmenu = new Gtk.ComboBox ();
+			album_optionmenu = new Gtk.ComboBoxText ();
 			(name_entry.Parent as Gtk.Table).Attach (album_optionmenu, 1, 2, 1, 2);
 			album_optionmenu.Show ();
 

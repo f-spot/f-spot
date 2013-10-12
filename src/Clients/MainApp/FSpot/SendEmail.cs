@@ -45,6 +45,7 @@ using FSpot.UI.Dialog;
 using Hyena;
 using Hyena.Widgets;
 using Mono.Unix;
+using Cairo;
 
 namespace FSpot
 {
@@ -52,11 +53,9 @@ namespace FSpot
 	{
 		Window parent_window;
 
-#pragma warning disable 0649
-		[GtkBeans.Builder.Object] private Gtk.ScrolledWindow   tray_scrolled;
-		[GtkBeans.Builder.Object] private Label 		NumberOfPictures, TotalOriginalSize, ApproxNewSize;
-		[GtkBeans.Builder.Object] private RadioButton 	tiny_size, small_size, medium_size, large_size, x_large_size, original_size;
-#pragma warning restore 0649
+		[Builder.Object] Gtk.ScrolledWindow   tray_scrolled;
+		[Builder.Object] Label 		NumberOfPictures, TotalOriginalSize, ApproxNewSize;
+		[Builder.Object] RadioButton 	tiny_size, small_size, medium_size, large_size, x_large_size, original_size;
 
 		long Orig_Photo_Size 	= 0;
 		double scale_percentage = 0.3;
@@ -74,10 +73,10 @@ namespace FSpot
 
 		IBrowsableCollection selection;
 
-		public SendEmail (IBrowsableCollection selection, Window parent_window) : base ("mail_dialog.ui", "mail_dialog")
+		public SendEmail (IBrowsableCollection selection, Window parentWindow) : base ("mail_dialog.ui", "mail_dialog")
 		{
 			this.selection = selection;
-			this.parent_window = parent_window;
+			this.parent_window = parentWindow;
 
 			foreach (var p in selection.Items) {
 				if (FileFactory.NewForUri (p.DefaultVersion.Uri).QueryInfo ("standard::content-type", FileQueryInfoFlags.None, null).ContentType != "image/jpeg")
@@ -167,7 +166,7 @@ namespace FSpot
 			Response += HandleResponse;
 		}
 
-		private int GetScaleSize()
+		int GetScaleSize()
 		{
 			// not only convert dialog size to pixel size, but also set preferences se we use same size next time
 			int size_number = 0; // default to original size
@@ -187,7 +186,7 @@ namespace FSpot
 			return sizes [ size_number ];
 		}
 
-		private int GetScaleIndex ()
+		int GetScaleIndex ()
 		{
 			int scale = GetScaleSize();
 			for (int k = 0; k < sizes.Length; k++)
@@ -196,7 +195,7 @@ namespace FSpot
 			return 0;
 		}
 
-		private void UpdateEstimatedSize()
+		void UpdateEstimatedSize()
 		{
 			int new_size_index;
 			long new_approx_total_size;
@@ -206,7 +205,7 @@ namespace FSpot
 			if (new_size_index == 0)
 				new_approx_total_size = Orig_Photo_Size;
 			else
-				new_approx_total_size = System.Convert.ToInt64(Orig_Photo_Size * avg_scale [new_size_index]);
+				new_approx_total_size = Convert.ToInt64(Orig_Photo_Size * avg_scale [new_size_index]);
 
 			approxresult = GLib.Format.SizeForDisplay (new_approx_total_size);
 			ApproxNewSize.Text 	= approxresult;
@@ -217,7 +216,7 @@ namespace FSpot
 			UpdateEstimatedSize();
 		}
 
-		private void HandleResponse (object sender, Gtk.ResponseArgs args)
+		private void HandleResponse (object sender, ResponseArgs args)
 		{
 			int size = 0;
 			bool UserCancelled = false;
@@ -328,10 +327,10 @@ namespace FSpot
 		            System.Diagnostics.Process.Start("kmail", "  --composer --subject \"" + mail_subject + "\"" + mail_attach);
 		            break;
 		        case "evolution %s": //evo doesn't urldecode the subject
-		            GtkBeans.Global.ShowUri (Screen, "mailto:?subject=" + mail_subject + mail_attach);
+		            Gtk.Global.ShowUri (Screen, "mailto:?subject=" + mail_subject + mail_attach);
 		            break;
 		        default:
-		            GtkBeans.Global.ShowUri (Screen, "mailto:?subject=" + System.Web.HttpUtility.UrlEncode(mail_subject) + mail_attach);
+		            Gtk.Global.ShowUri (Screen, "mailto:?subject=" + System.Web.HttpUtility.UrlEncode(mail_subject) + mail_attach);
 		            break;
 		    }
 		}

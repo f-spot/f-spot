@@ -120,12 +120,12 @@ namespace FSpot
 			get { return folder_set.Folders == null || !folder_set.Folders.Any(); }
 		}
 
-		private static TargetEntry [] folder_query_widget_source_table =
-			new[] {
-				DragDropTargets.UriQueryEntry
+		static readonly TargetEntry [] folder_query_widget_source_table =
+		{
+			DragDropTargets.UriQueryEntry
 		};
 
-		protected override void OnDragDataReceived (Gdk.DragContext context, int x, int y, Gtk.SelectionData selection_data, uint info, uint time_)
+		protected override void OnDragDataReceived (Gdk.DragContext context, int x, int y, SelectionData selection_data, uint info, uint time_)
 		{
 			base.OnDragDataReceived (context, x, y, selection_data, info, time_);
 

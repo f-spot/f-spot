@@ -52,7 +52,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkComboBox" id="combo_roll_1">
+                  <object class="GtkComboBoxText" id="combo_roll_1">
                     <property name="visible">True</property>
                     <property name="model">liststore2</property>
                     <signal name="changed" handler="HandleComboRollChanged"/>
@@ -79,7 +79,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkComboBox" id="combo_roll_2">
+                  <object class="GtkComboBoxText" id="combo_roll_2">
                     <property name="visible">True</property>
                     <property name="model">liststore1</property>
                     <signal name="changed" handler="HandleComboRollChanged"/>

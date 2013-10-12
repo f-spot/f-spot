@@ -96,7 +96,7 @@ namespace FSpot.Widgets
 			}
 		}
 
-		void PixbufDataFunc (TreeViewColumn tree_column, CellRenderer cell, TreeModel tree_model, TreeIter iter)
+		void PixbufDataFunc (TreeViewColumn tree_column, CellRenderer cell, ITreeModel tree_model, TreeIter iter)
 		{
 			CellRendererPixbuf renderer = cell as CellRendererPixbuf;
 
@@ -104,7 +104,7 @@ namespace FSpot.Widgets
 			var uri = folder_tree_model.GetUriByIter (iter);
 			if (uri == null)
 				return;
-			File file = FileFactory.NewForUri (uri);
+			IFile file = FileFactory.NewForUri (uri);
 			try {
 				FileInfo info =
 					file.QueryInfo ("standard::icon", FileQueryInfoFlags.None, null);
@@ -129,7 +129,7 @@ namespace FSpot.Widgets
 			}
 		}
 
-		void FolderDataFunc (TreeViewColumn tree_column, CellRenderer cell, TreeModel tree_model, TreeIter iter)
+		void FolderDataFunc (TreeViewColumn tree_column, CellRenderer cell, ITreeModel tree_model, TreeIter iter)
 		{
 			CellRendererTextProgress renderer = cell as CellRendererTextProgress;
 
