@@ -34,6 +34,7 @@ using System.Collections.Generic;
 
 using Gtk;
 using Gdk;
+using Cairo;
 
 namespace FSpot.Widgets
 {
@@ -154,10 +155,6 @@ namespace FSpot.Widgets
 			return vector;
 		}
 
-		public void SetVector (float[] vector)
-		{
-		}
-
 		public void AddPoint (float x, float y)
 		{
 			points.Add (x, y);
@@ -263,25 +260,29 @@ namespace FSpot.Widgets
 		int y_offset = radius;
 		int width, height;		//the real graph
 
-		Pixmap pixmap = null;
+		// GTK3
+//		Pixmap surface = null;
+		ImageSurface surface;
 
 		protected override bool OnConfigureEvent (EventConfigure evnt)
 		{
-			pixmap = null;
+			surface = null;
 			return base.OnConfigureEvent (evnt);
 		}
 
-		protected override bool OnExposeEvent (EventExpose evnt)
+		protected override bool OnDrawn (Context cr)
 		{
-			pixmap = new Pixmap (GdkWindow, Allocation.Width, Allocation.Height);
+//			surface = new Pixmap (GdkWindow, Allocation.Width, Allocation.Height);
+			surface = new ImageSurface (Format.A1, Allocation.Width, Allocation.Height);
 			Draw ();
-			return base.OnExposeEvent (evnt);
+
+			return base.OnDrawn (cr);
 		}
 
-		Point [] Interpolate (int width, int height)
+		Cairo.Point [] Interpolate (int width, int height)
 		{
 			var vector = GetVector (width);
-			var retval = new Point [width];
+			var retval = new Cairo.Point [width];
 			for (int i = 0; i < width; i++) {
 				retval[i].X = x_offset + i;
 				retval[i].Y = y_offset + height - Project (vector[i], MinY, MaxY, height);
@@ -291,7 +292,7 @@ namespace FSpot.Widgets
 
 		void Draw ()
 		{
-			if (pixmap == null)
+			if (surface == null)
 				return;
 
 			Style style = Style;
@@ -301,16 +302,16 @@ namespace FSpot.Widgets
 				return;
 
 			//clear the pixmap
-			Style.PaintFlatBox (style, pixmap, StateType.Normal, ShadowType.None, null, this, "curve_bg", 0, 0, Allocation.Width, Allocation.Height);
+			Style.PaintFlatBox (style, surface, StateType.Normal, ShadowType.None, null, this, "curve_bg", 0, 0, Allocation.Width, Allocation.Height);
 
 			//draw the grid lines
 			for (int i = 0; i < 5; i++) {
-				pixmap.DrawLine (style.DarkGC (state),
+				surface.DrawLine (style.DarkGC (state),
 						 x_offset,
 						 i * (int)(height / 4.0) + y_offset,
 						 width + x_offset,
 						 i * (int)(height / 4.0) + y_offset);
-				pixmap.DrawLine (style.DarkGC (state),
+				surface.DrawLine (style.DarkGC (state),
 						 i * (int)(width / 4.0) + x_offset,
 						 y_offset,
 						 i * (int)(width / 4.0) + x_offset,
@@ -318,7 +319,7 @@ namespace FSpot.Widgets
 			}
 
 			//draw the curve
-			pixmap.DrawPoints (style.ForegroundGC (state), Interpolate (width, height));
+			surface.DrawPoints (style.ForegroundGC (state), Interpolate (width, height));
 
 			//draw the bullets
 			if (CurveType != CurveType.Free)
@@ -327,9 +328,9 @@ namespace FSpot.Widgets
 						continue;
 					int x = Project (keyval.Key, MinX, MaxX, width);
 					int y = height - Project (keyval.Value, MinY, MaxY, height);
-					pixmap.DrawArc (style.ForegroundGC (state), true, x, y, radius * 2, radius * 2, 0, 360*64);
+					surface.DrawArc (style.ForegroundGC (state), true, x, y, radius * 2, radius * 2, 0, 360*64);
 				}
-			GdkWindow.DrawDrawable (style.ForegroundGC (state), pixmap, 0, 0, 0, 0, Allocation.Width, Allocation.Height);
+			GdkWindow.DrawDrawable (style.ForegroundGC (state), surface, 0, 0, 0, 0, Allocation.Width, Allocation.Height);
 		}
 
 		protected override void OnSizeAllocated (Rectangle allocation)

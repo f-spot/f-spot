@@ -6,6 +6,7 @@
 //   Ruben Vermeersch <ruben@savanne.be>
 //   Stephen Shaw <sshaw@decriptor.com>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2007-2010 Novell, Inc.
 // Copyright (C) 2007-2009 Stephane Delcroix
 // Copyright (C) 2010 Ruben Vermeersch
@@ -105,10 +106,11 @@ namespace FSpot.Imaging
 
 			// as xcf pixbufloader is not part of gdk-pixbuf, check if it's there,
 			// and enable it if needed.
-			foreach (Gdk.PixbufFormat format in Gdk.Pixbuf.Formats) {
+			foreach (PixbufFormat format in Pixbuf.Formats)
+			{
 				if (format.Name == "xcf") {
-					if (format.IsDisabled)
-						format.SetDisabled (false);
+					if (format.Disabled)
+						format.Disabled = false;
 					NameTable [".xcf"] = base_type;
 				}
 			}
@@ -128,7 +130,7 @@ namespace FSpot.Imaging
 		{
 			// check if GIO can find the file, which is not the case
 			// with filenames with invalid encoding
-			var file = GLib.FileFactory.NewForUri (uri);
+			var file = FileFactory.NewForUri (uri);
 			if (!file.Exists)
              		   return null;
 
@@ -165,10 +167,10 @@ namespace FSpot.Imaging
 				throw new Exception (String.Format ("Unsupported image: {0}", uri));
 
 			try {
-				return (IImageFile)System.Activator.CreateInstance (t, new object[] { uri });
+				return (IImageFile)Activator.CreateInstance (t, new object[] { uri });
 			} catch (Exception e) {
 				Hyena.Log.DebugException (e);
-				throw e;
+				throw;
 			}
 		}
 

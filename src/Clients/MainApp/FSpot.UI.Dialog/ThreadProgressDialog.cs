@@ -2,10 +2,12 @@
 // ThreadProgressDialog.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Stephane Delcroix <stephane@delcroix.org>
 //   Larry Ewing <lewing@src.gnome.org>
 //   Thomas Van Machelen <thomas.vanmachelen@gmail.com>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2004-2009 Novell, Inc.
 // Copyright (C) 2007-2009 Stephane Delcroix
 // Copyright (C) 2004-2006 Larry Ewing
@@ -39,17 +41,19 @@ using Gtk;
 
 using FSpot.Utils;
 
-namespace FSpot.UI.Dialog {
-	public class ThreadProgressDialog : Gtk.Dialog {
+namespace FSpot.UI.Dialog
+{
+	public class ThreadProgressDialog : Gtk.Dialog
+	{
 		DelayedOperation delay;
 
-		Gtk.ProgressBar progress_bar;
-		Gtk.Label message_label;
-		Gtk.Button button;
+		ProgressBar progress_bar;
+		Label message_label;
+		Button button;
 
-		Gtk.Button retry_button;
-		Gtk.Button skip_button;
-		Gtk.ResponseType error_response;
+		Button retry_button;
+		Button skip_button;
+		ResponseType error_response;
 		AutoResetEvent error_response_event;
 
 		object syncHandle = new object ();
@@ -57,35 +61,35 @@ namespace FSpot.UI.Dialog {
 		Thread thread;
 
 		// FIXME: The total parameter makes sense, but doesn't seem to ever be used?
-		public ThreadProgressDialog (Thread thread, int total) {
+		public ThreadProgressDialog (Thread thread, int total)
+		{
 			/*
 			if (parent_window)
 				this.TransientFor = parent_window;
 
 			*/
-			this.Title = thread.Name;
+			Title = thread.Name;
 			this.thread = thread;
 
-			HasSeparator = false;
 			BorderWidth = 6;
 			SetDefaultSize (300, -1);
 
-			message_label = new Gtk.Label (String.Empty);
+			message_label = new Label (String.Empty);
 			VBox.PackStart (message_label, true, true, 12);
 
-			progress_bar = new Gtk.ProgressBar ();
+			progress_bar = new ProgressBar ();
 			VBox.PackStart (progress_bar, true, true, 6);
 
-			retry_button = new Gtk.Button (Mono.Unix.Catalog.GetString ("Retry"));
-			retry_button.Clicked += new EventHandler (HandleRetryClicked);
-			skip_button = new Gtk.Button (Mono.Unix.Catalog.GetString ("Skip"));
-			skip_button.Clicked += new EventHandler (HandleSkipClicked);
+			retry_button = new Button (Mono.Unix.Catalog.GetString ("Retry"));
+			retry_button.Clicked += HandleRetryClicked;
+			skip_button = new Button (Mono.Unix.Catalog.GetString ("Skip"));
+			skip_button.Clicked += HandleSkipClicked;
 
 			ActionArea.Add (retry_button);
 			ActionArea.Add (skip_button);
 
-			button_label = Gtk.Stock.Cancel;
-			button = (Gtk.Button) AddButton (button_label, (int)Gtk.ResponseType.Cancel);
+			button_label = Stock.Cancel;
+			button = (Button) AddButton (button_label, (int)ResponseType.Cancel);
 
 			delay = new DelayedOperation (new GLib.IdleHandler (HandleUpdate));
 
@@ -128,7 +132,7 @@ namespace FSpot.UI.Dialog {
 
 		double fraction;
 		public double Fraction {
-			get { return Fraction; }
+			get { return fraction; }
 			set {
 				lock (syncHandle) {
 					fraction = value;
@@ -148,11 +152,11 @@ namespace FSpot.UI.Dialog {
 			}
 		}
 
-		internal void SetProperties (string progress_text, string button_label, string message, double fraction)
+		internal void SetProperties (string progressText, string buttonLabel, string message, double fraction)
 		{
 			lock (syncHandle) {
-				this.progress_text = progress_text;
-				this.button_label = button_label;
+				progress_text = progressText;
+				button_label = buttonLabel;
 				this.message = message;
 				this.fraction = fraction;
 				delay.Start ();
@@ -169,7 +173,7 @@ namespace FSpot.UI.Dialog {
 
 		public bool PerformRetrySkip ()
 		{
-			error_response = Gtk.ResponseType.None;
+			error_response = ResponseType.None;
 			RetrySkipVisible = true;
 
 			error_response_event = new AutoResetEvent (false);
@@ -177,18 +181,19 @@ namespace FSpot.UI.Dialog {
 
 			RetrySkipVisible = false;
 
-			return (error_response == Gtk.ResponseType.Yes);
+			return (error_response == ResponseType.Yes);
 		}
 
-		void HandleResponse (object obj, Gtk.ResponseArgs args) {
-			this.Destroy ();
+		void HandleResponse (object obj, ResponseArgs args)
+		{
+			Destroy ();
 		}
 
 		bool HandleUpdate ()
 		{
 			message_label.Text = message;
 			progress_bar.Text = progress_text;
-			progress_bar.Fraction = System.Math.Min (1.0, System.Math.Max (0.0, fraction));
+			progress_bar.Fraction = Math.Min (1.0, Math.Max (0.0, fraction));
 			button.Label = button_label;
 			retry_button.Visible = skip_button.Visible = retry_skip;
 
@@ -211,13 +216,13 @@ namespace FSpot.UI.Dialog {
 
 		void HandleRetryClicked (object obj, EventArgs args)
 		{
-			error_response = Gtk.ResponseType.Yes;
+			error_response = ResponseType.Yes;
 			error_response_event.Set ();
 		}
 
 		void HandleSkipClicked (object obj, EventArgs args)
 		{
-			error_response = Gtk.ResponseType.No;
+			error_response = ResponseType.No;
 			error_response_event.Set ();
 		}
 

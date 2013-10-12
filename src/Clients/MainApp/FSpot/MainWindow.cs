@@ -244,14 +244,15 @@ namespace FSpot
 			Builder builder = new Builder ("main_window.ui");
 			builder.Autoconnect (this);
 
+			// GTK3: Missing DefaultColormap?
 			//Set the global DefaultColormap. Allows transparency according
 			//to the theme (work on murrine engine)
-			Gdk.Colormap colormap = ((Widget)main_window).Screen.RgbaColormap;
-			if (colormap == null) {
+			Visual visual = ((Widget)main_window).Screen.RgbaVisual;
+			if (visual == null) {
 				Log.Debug ("Your screen doesn't support alpha channels!");
-				colormap = ((Widget)main_window).Screen.RgbColormap;
+				visual = ((Widget)main_window).Screen.SystemVisual;
 			}
-			Widget.DefaultColormap = colormap;
+			//Widget.DefaultColormap = visual;
 
 			LoadPreference (Preferences.MAIN_WINDOW_WIDTH);
 			LoadPreference (Preferences.MAIN_WINDOW_X);
@@ -743,13 +744,14 @@ namespace FSpot
 
 			public void MarkChanged ()
 			{
-				if (Changed != null)
-					Changed (this);
+				var handler = Changed;
+				if (handler != null)
+					handler (this);
 			}
 
 			public void MarkChanged (int index, IBrowsableItemChanges changes)
 			{
-				throw new System.NotImplementedException ("I didn't think you'd find me");
+				throw new NotImplementedException ("I didn't think you'd find me");
 			}
 
 			public IPhoto this [int index] {
@@ -1327,15 +1329,13 @@ namespace FSpot
 		void HandlePhotoViewUpdateStarted (PhotoView sender)
 		{
 			main_window.GdkWindow.Cursor = watch;
-			// FIXME: use gdk_display_flush() when available
-			main_window.GdkWindow.Display.Sync ();
+			main_window.GdkWindow.Flush ();
 		}
 
 		void HandlePhotoViewUpdateFinished (PhotoView sender)
 		{
 			main_window.GdkWindow.Cursor = null;
-			// FIXME: use gdk_display_flush() when available
-			main_window.GdkWindow.Display.Sync ();
+			main_window.GdkWindow.Flush ();
 		}
 
 		//
@@ -2746,16 +2746,16 @@ namespace FSpot
 		{
 			MenuItem exportmenu = uimanager.GetWidget ("/ui/menubar1/file1/export") as MenuItem;
 			MenuItem toolsmenu = uimanager.GetWidget ("/ui/menubar1/tools") as MenuItem;
+
 			try {
 				if (exportmenu.Submenu != null)
 					exportmenu.Submenu.Dispose ();
-				if (toolsmenu.Submenu != null)
-					toolsmenu.RemoveSubmenu ();
+				toolsmenu.Submenu = null;
 
-				exportmenu.Submenu = (Mono.Addins.AddinManager.GetExtensionNode ("/FSpot/Menus/Exports") as FSpot.Extensions.SubmenuNode).GetSubmenu ();
+				exportmenu.Submenu = (AddinManager.GetExtensionNode ("/FSpot/Menus/Exports") as SubmenuNode).GetSubmenu ();
 				exportmenu.Submenu.ShowAll ();
 
-				toolsmenu.Submenu = (Mono.Addins.AddinManager.GetExtensionNode ("/FSpot/Menus/Tools") as FSpot.Extensions.SubmenuNode).GetSubmenu ();
+				toolsmenu.Submenu = (AddinManager.GetExtensionNode ("/FSpot/Menus/Tools") as SubmenuNode).GetSubmenu ();
 				toolsmenu.Submenu.ShowAll ();
 
 				tools.Visible = (toolsmenu.Submenu as Menu).Children.Length > 0;
@@ -2784,9 +2784,9 @@ namespace FSpot
 								    MessageType.Question, Gtk.ButtonsType.None,
 								    header, msg);
 
-			hmd.AddButton (Gtk.Stock.No, Gtk.ResponseType.No, false);
+			hmd.AddButton (Stock.No, ResponseType.No, false);
 			//hmd.AddButton (Gtk.Stock.Cancel, Gtk.ResponseType.Cancel, false);
-			hmd.AddButton (Gtk.Stock.Yes, Gtk.ResponseType.Yes, true);
+			hmd.AddButton (Stock.Yes, ResponseType.Yes, true);
 
 			bool support_xcf = false;;
 			if (application.Id == "gimp.desktop")

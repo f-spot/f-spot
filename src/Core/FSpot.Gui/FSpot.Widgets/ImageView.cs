@@ -43,7 +43,7 @@ using Hyena;
 
 namespace FSpot.Widgets
 {
-	public sealed partial class ImageView : Container
+	public partial class ImageView : Container
 	{
 #region public API
 		protected ImageView (IntPtr raw) : base (raw) { }
@@ -52,10 +52,10 @@ namespace FSpot.Widgets
 		{
 			OnSetScrollAdjustments (hadjustment, vadjustment);
 			AdjustmentsChanged += ScrollToAdjustments;
-			WidgetFlags &= ~WidgetFlags.NoWindow;
-			SetFlag (WidgetFlags.CanFocus);
+			HasWindow &= !HasWindow;
+			CanFocus = true;
 
-			this.can_select = canSelect;
+			can_select = canSelect;
 		}
 
 		public ImageView (bool canSelect = true) : this (null, null, canSelect)
@@ -307,19 +307,18 @@ namespace FSpot.Widgets
 
         protected override void OnRealized ()
         {
-            SetFlag (Gtk.WidgetFlags.Realized);
+			IsRealized = true;
             GdkWindow = new Gdk.Window (ParentWindow,
-                    new Gdk.WindowAttr { 
+					new WindowAttr { 
                         WindowType = Gdk.WindowType.Child,
                         X = Allocation.X,
                         Y = Allocation.Y,
                         Width = Allocation.Width,
                         Height = Allocation.Height,
-                        Wclass = Gdk.WindowClass.InputOutput,
+						Wclass = WindowWindowClass.InputOutput,
                         Visual = ParentWindow.Visual,
-                        Colormap = ParentWindow.Colormap,
-                        Mask = this.Events
-                            | EventMask.ExposureMask
+                        Mask = Events
+							| EventMask.ExposureMask
                             | EventMask.ButtonPressMask
                             | EventMask.ButtonReleaseMask
                             | EventMask.PointerMotionMask
@@ -328,10 +327,10 @@ namespace FSpot.Widgets
                             | EventMask.KeyPressMask
                             | EventMask.LeaveNotifyMask
                     },
-                    WindowAttributesType.X | WindowAttributesType.Y |
-		    WindowAttributesType.Visual | WindowAttributesType.Colormap);
+					WindowAttributesType.X | WindowAttributesType.Y | WindowAttributesType.Visual);
 
-            GdkWindow.SetBackPixmap (null, false);
+			// GTK3
+//			GdkWindow.SetBackPixmap (null, false);
             GdkWindow.UserData = Handle;
 
             Style.Attach (GdkWindow);
@@ -342,7 +341,7 @@ namespace FSpot.Widgets
 
         protected override void OnMapped ()
         {
-            SetFlag (Gtk.WidgetFlags.Mapped);
+			IsMapped = true;
             OnMappedChildren ();
             GdkWindow.Show ();
         }
@@ -383,32 +382,34 @@ namespace FSpot.Widgets
                 ZoomFit (upscale);
         }
 
-		protected override bool OnExposeEvent (EventExpose evnt)
+		protected override bool OnDrawn (Cairo.Context cr)
 		{
-			if (evnt.Window != GdkWindow)
-				return false;
+			// GTK3
+//			if (evnt.Window != GdkWindow)
+//				return false;
 
-			foreach (Rectangle area in evnt.Region.GetRectangles ())
-			{
-				var p_area = new Rectangle (Math.Max (0, area.X), Math.Max (0, area.Y),
-						      Math.Min (Allocation.Width, area.Width), Math.Min (Allocation.Height, area.Height));
-				if (p_area == Rectangle.Zero)
-					continue;
-
-				//draw synchronously if InterpType.Nearest or zoom 1:1
-				if (Interpolation == InterpType.Nearest || zoom == 1.0) {
-					PaintRectangle (p_area, InterpType.Nearest);
-					continue;
-				}
-				
-				//Do this on idle ???
-				PaintRectangle (p_area, Interpolation);
-			}
-			
-			if (can_select)
-				OnSelectionExposeEvent (evnt);
-
-			return true;
+//			foreach (Rectangle area in evnt.Region.GetRectangles ())
+//			{
+//				var p_area = new Rectangle (Math.Max (0, area.X), Math.Max (0, area.Y),
+//					Math.Min (Allocation.Width, area.Width), Math.Min (Allocation.Height, area.Height));
+//				if (p_area == Rectangle.Zero)
+//					continue;
+//
+//				//draw synchronously if InterpType.Nearest or zoom 1:1
+//				if (Interpolation == InterpType.Nearest || zoom == 1.0) {
+//					PaintRectangle (p_area, InterpType.Nearest);
+//					continue;
+//				}
+//
+//				//Do this on idle ???
+//				PaintRectangle (p_area, Interpolation);
+//			}
+//
+//			if (can_select)
+//				OnSelectionExposeEvent (evnt);
+//
+//			return true;
+			return base.OnDrawn (cr);
 		}
 
 		protected override void OnSetScrollAdjustments (Adjustment hadjustment, Adjustment vadjustment)
@@ -588,7 +589,7 @@ namespace FSpot.Widgets
         {
             Fit = zoom == MIN_ZOOM;
 
-            if (zoom == this.zoom || System.Math.Abs (this.zoom - zoom) < System.Double.Epsilon) {
+            if (zoom == this.zoom || Math.Abs (this.zoom - zoom) < Double.Epsilon) {
                 // Don't recalculate if the zoom factor stays the same.
                 return;
             }
@@ -624,7 +625,9 @@ namespace FSpot.Widgets
 
 		void PaintBackground (Rectangle backgound, Rectangle area)
 		{
-			GdkWindow.DrawRectangle (Style.BackgroundGCs [(int)StateType.Normal], true, area);
+			// GTK3
+
+//			GdkWindow.DrawRectangle (Style.BackgroundGCs [(int)StateType.Normal], true, area);
 		}
 
 		void PaintRectangle (Rectangle area, InterpType interpolation)
@@ -810,14 +813,14 @@ namespace FSpot.Widgets
 
 			Rectangle win_selection = ImageCoordsToWindow (selection);
 			using (var evnt_region = evnt.Region.Copy ()) {
-				using (Region r = new Region ()) {
-					r.UnionWithRect (win_selection);
+				using (var r = new Cairo.Region ()) {
+					r.UnionRectangle (win_selection);
 					evnt_region.Subtract (r);
 				}
 
-				using (Cairo.Context ctx = CairoHelper.Create (GdkWindow)) {
+				using (Cairo.Context ctx = new Cairo.Context(Window)) {
 					ctx.SetSourceRGBA (.5, .5, .5, .7);
-					CairoHelper.Region (ctx, evnt_region);
+					Gdk.CairoHelper.Region (ctx, evnt_region);
 					ctx.Fill ();
 				}
 			}

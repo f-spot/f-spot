@@ -78,7 +78,6 @@ namespace FSpot.Query
 
 		public LogicWidget (PhotoQuery query, TagStore tagStore)
 		{
-			//SetFlag (WidgetFlags.NoWindow);
 			this.query = query;
 
 			CanFocus = true;

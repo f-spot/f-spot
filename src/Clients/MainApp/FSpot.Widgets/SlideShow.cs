@@ -174,13 +174,14 @@ namespace FSpot.Widgets
 #endregion
 
 #region Gtk Widgetry
-		protected override bool OnExposeEvent (Gdk.EventExpose args)
+		protected override bool OnDrawn (Cairo.Context cr)
 		{
 			lock (sync_handle) {
-				transition.Draw (args.Window, prev, next, Allocation.Width, Allocation.Height, progress);
+				transition.Draw (cr, prev, next, Allocation.Width, Allocation.Height, progress);
 			}
-			return true;
+			return base.OnDrawn (cr);
 		}
+
 		protected override void OnDestroyed ()
 		{
 			if (prev != null && prev != PixbufUtils.ErrorPixbuf)

@@ -2,8 +2,10 @@
 // Loupe.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Larry Ewing <lewing@novell.com>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2005-2007 Novell, Inc.
 // Copyright (C) 2005-2007 Larry Ewing
 //
@@ -30,6 +32,7 @@
 using System;
 
 using Cairo;
+
 using Gtk;
 using Gdk;
 
@@ -39,17 +42,19 @@ using FSpot.Gui;
 
 using Hyena;
 
-namespace FSpot.Widgets {
-	public class Loupe : Gtk.Window {
+namespace FSpot.Widgets
+{
+	public class Loupe : Gtk.Window
+	{
 		protected PhotoImageView view;
 		protected Gdk.Rectangle region;
 		bool use_shape_ext = false;
-		protected Gdk.Pixbuf source;
-		protected Gdk.Pixbuf overlay;
-		private int radius = 128;
-		private int inner = 128;
-		private int border = 6;
-		private double angle = Math.PI / 4;
+		protected Pixbuf source;
+		protected Pixbuf overlay;
+		int radius = 128;
+		int inner = 128;
+		int border = 6;
+		double angle = Math.PI / 4;
 		Gdk.Point start;
 		Gdk.Point start_hot;
 		Gdk.Point hotspot;
@@ -59,7 +64,7 @@ namespace FSpot.Widgets {
 			this.view = view;
 			Decorated = false;
 
-			Gtk.Window win = (Gtk.Window) view.Toplevel;
+			var win = (Gtk.Window) view.Toplevel;
 
 			win.GetPosition (out old_win_pos.X, out old_win_pos.Y);
 			win.ConfigureEvent += HandleToplevelConfigure;
@@ -143,7 +148,7 @@ namespace FSpot.Widgets {
 
 		protected override void OnRealized ()
 		{
-			use_shape_ext = ! (CompositeUtils.IsComposited (Screen) && CompositeUtils.SetRgbaColormap (this));
+			use_shape_ext = ! (Screen.IsComposited && CompositeUtils.SetRgbaVisual (this));
 
 			base.OnRealized ();
 			ShapeWindow ();
@@ -181,7 +186,7 @@ namespace FSpot.Widgets {
 				QueueResize ();
 			}
 
-			Pixbuf tmp = new Gdk.Pixbuf (view.Pixbuf,
+			Pixbuf tmp = new Pixbuf (view.Pixbuf,
 						 region.X, region.Y,
 						 region.Width, region.Height);
 			using (tmp)
@@ -192,11 +197,11 @@ namespace FSpot.Widgets {
 			if (source.Handle == IntPtr.Zero)
 				source = null;
 
-			this.QueueDraw ();
+			QueueDraw ();
 		}
 
 		[GLib.ConnectBefore]
-		private void HandleImageViewMotion (object sender, MotionNotifyEventArgs args)
+		void HandleImageViewMotion (object sender, MotionNotifyEventArgs args)
 		{
 			Gdk.Point coords;
 			coords = new Gdk.Point ((int) args.Event.X, (int) args.Event.Y);
@@ -204,35 +209,40 @@ namespace FSpot.Widgets {
 			SetSamplePoint (view.WindowCoordsToImage (coords));
 		}
 
-		private void ShapeWindow ()
+		void ShapeWindow ()
 		{
 			Layout ();
-			Gdk.Pixmap bitmap = new Gdk.Pixmap (GdkWindow,
-							    Allocation.Width,
-							    Allocation.Height, 1);
 
-			Context g = CairoHelper.Create (bitmap);
-			DrawShape (g, Allocation.Width, Allocation.Height);
+			// GTK3: Is this right?
+			var surface = new ImageSurface (Format.A1, Allocation.Width, Allocation.Height);
+//			Gdk.Pixmap bitmap = new Gdk.Pixmap (GdkWindow,
+//							    Allocation.Width,
+//							    Allocation.Height, 1);
 
-			((IDisposable)g).Dispose ();
+//			Context g = CairoHelper.Create (bitmap);
+			var cr = new Cairo.Context (surface);
+			DrawShape (cr, Allocation.Width, Allocation.Height);
 
-			if (use_shape_ext)
-				ShapeCombineMask (bitmap, 0, 0);
+			cr.Dispose ();
+
+			if (use_shape_ext) {
+				//ShapeCombineMask (bitmap, 0, 0);
+			}
 			else {
-				Cairo.Context rgba = CairoHelper.Create (GdkWindow);
+				Context rgba = new Context (GdkWindow);
 				DrawShape (rgba, Allocation.Width, Allocation.Height);
-				((IDisposable)rgba).Dispose ();
+				rgba.Dispose ();
 				try {
-					CompositeUtils.InputShapeCombineMask (this, bitmap, 0,0);
+//					ShapeCombineMask (this, bitmap, 0,0);
 				} catch (EntryPointNotFoundException) {
 					Log.Warning ("gtk+ version doesn't support input shapping");
 				}
 			}
-			bitmap.Dispose ();
+//			bitmap.Dispose ();
 		}
 
-		Gdk.Point Center;
-	        Requisition Bounds;
+		readonly Gdk.Point Center;
+		readonly Requisition Bounds;
 
 		public void Layout ()
 		{
@@ -251,7 +261,7 @@ namespace FSpot.Widgets {
 			hotspot.Y = (int) Math.Ceiling (Center.Y + y_proj);
 		}
 
-		private void DrawShape (Context g, int width, int height)
+		void DrawShape (Context g, int width, int height)
 		{
 			int inner_x = radius + border + inner;
 			int cx = Center.X;
@@ -294,13 +304,13 @@ namespace FSpot.Widgets {
 			g.Matrix = new Matrix ();
 			g.Translate (cx, cy);
 			if (source != null)
-			CairoHelper.SetSourcePixbuf (g, source, -source.Width / 2, -source.Height / 2);
+				Gdk.CairoHelper.SetSourcePixbuf (g, source, -source.Width / 2, -source.Height / 2);
 
 			g.Arc (0, 0, radius, 0, 2 * Math.PI);
 			g.Fill ();
 
 			if (overlay != null) {
-				CairoHelper.SetSourcePixbuf (g, overlay, -overlay.Width / 2, -overlay.Height / 2);
+				Gdk.CairoHelper.SetSourcePixbuf (g, overlay, -overlay.Width / 2, -overlay.Height / 2);
 				g.Arc (0, 0, radius, angle, angle + Math.PI);
 				g.ClosePath ();
 				g.FillPreserve ();
@@ -309,13 +319,13 @@ namespace FSpot.Widgets {
 			}
 		}
 
-		protected override bool OnExposeEvent (Gdk.EventExpose args)
+		protected override bool OnExposeEvent (EventExpose args)
 		{
-			Context g = CairoHelper.Create (GdkWindow);
+			Context g = new Context(GdkWindow);
 
 			DrawShape (g, Allocation.Width, Allocation.Height);
 			//base.OnExposeEvent (args);
-			((IDisposable)g).Dispose ();
+			g.Dispose ();
 			return false;
 
 		}
@@ -327,10 +337,10 @@ namespace FSpot.Widgets {
 		double start_angle = 0;
 		Gdk.Point root_pos;
 		Gdk.Point start_root;
-		Gdk.Cursor opened_hand_cursor = new Gdk.Cursor (Gdk.CursorType.Hand1);
-		Gdk.Cursor closed_hand_cursor = new Gdk.Cursor (Gdk.CursorType.Fleur);
+		Cursor opened_hand_cursor = new Cursor (CursorType.Hand1);
+		Cursor closed_hand_cursor = new Cursor (CursorType.Fleur);
 
-		private void HandleMotionNotifyEvent (object sender, MotionNotifyEventArgs args)
+		void HandleMotionNotifyEvent (object sender, MotionNotifyEventArgs args)
 		{
 		        pos.X = (int) args.Event.XRoot - start.X;
 		        pos.Y = (int) args.Event.YRoot - start.Y;
@@ -342,7 +352,7 @@ namespace FSpot.Widgets {
 				drag.Start ();
 		}
 
-		private bool DragUpdate ()
+		bool DragUpdate ()
 		{
 			if (!dragging)
 				return false;
@@ -363,17 +373,15 @@ namespace FSpot.Widgets {
 				now.X -= hot.X;
 				now.Y -= hot.Y;
 
-				Vector v1 = new Vector (initial);
-				Vector v2 = new Vector (now);
+				var v1 = new Vector (initial);
+				var v2 = new Vector (now);
 
-				double angle = Vector.AngleBetween (v1, v2);
-
-				Angle = start_angle + angle;
+				Angle = start_angle + Vector.AngleBetween (v1, v2);
 				return false;
 			}
 		}
 
-		private bool MoveWindow ()
+		bool MoveWindow ()
 		{
 			Gdk.Point view_coords;
 			Gdk.Point top;
@@ -387,7 +395,7 @@ namespace FSpot.Widgets {
 			Move (pos.X, pos.Y);
 
 			pos.Offset (hotspot.X, hotspot.Y);
-			Gtk.Window toplevel = (Gtk.Window) view.Toplevel;
+			var toplevel = (Gtk.Window) view.Toplevel;
 			toplevel.GdkWindow.GetOrigin (out top.X, out top.Y);
 			toplevel.TranslateCoordinates (view,
 						       pos.X - top.X,  pos.Y - top.Y,
@@ -398,15 +406,15 @@ namespace FSpot.Widgets {
 			return false;
 		}
 
-		private void HandleItemChanged (object sender, BrowsablePointerChangedEventArgs args)
+		void HandleItemChanged (object sender, BrowsablePointerChangedEventArgs args)
 		{
 			UpdateSample ();
 		}
 
-		private void HandleButtonPressEvent (object sender, ButtonPressEventArgs args)
+		void HandleButtonPressEvent (object sender, ButtonPressEventArgs args)
 		{
 			switch (args.Event.Type) {
-			case Gdk.EventType.ButtonPress:
+			case EventType.ButtonPress:
 				if (args.Event.Button == 1) {
 					start = new Gdk.Point ((int)args.Event.X, (int)args.Event.Y);
 					start_root = new Gdk.Point ((int)args.Event.XRoot, (int)args.Event.YRoot);
@@ -418,37 +426,35 @@ namespace FSpot.Widgets {
 					start_hot.Y += win.Y;
 
 					dragging = true;
-					rotate = (args.Event.State & Gdk.ModifierType.ShiftMask) > 0;
+					rotate = (args.Event.State & ModifierType.ShiftMask) > 0;
 					start_angle = Angle;
 				} else {
 					Angle += Math.PI /8;
 				}
 				break;
-			case Gdk.EventType.TwoButtonPress:
+			case EventType.TwoButtonPress:
 				dragging = false;
 				App.Instance.Organizer.HideLoupe ();
 				break;
 			}
 		}
 
-		private void HandleViewZoomChanged (object sender, System.EventArgs args)
+		void HandleViewZoomChanged (object sender, EventArgs args)
 		{
 			UpdateSample ();
 		}
 
-		private void HandleButtonReleaseEvent (object sender, ButtonReleaseEventArgs args)
+		void HandleButtonReleaseEvent (object sender, ButtonReleaseEventArgs args)
 		{
 			dragging = false;
 		}
 
-		private void HandleKeyPressEvent (object sender, Gtk.KeyPressEventArgs args)
+		void HandleKeyPressEvent (object sender, KeyPressEventArgs args)
 		{
 			switch (args.Event.Key) {
 			case Gdk.Key.v:
 				App.Instance.Organizer.HideLoupe ();
 				args.RetVal = true;
-				break;
-			default:
 				break;
 			}
 			return;
@@ -495,9 +501,9 @@ namespace FSpot.Widgets {
 
 			SetSamplePoint (Gdk.Point.Zero);
 
-			AddEvents ((int) (Gdk.EventMask.PointerMotionMask
-					  | Gdk.EventMask.ButtonPressMask
-					  | Gdk.EventMask.ButtonReleaseMask));
+			AddEvents ((int) (EventMask.PointerMotionMask
+					  | EventMask.ButtonPressMask
+					  | EventMask.ButtonReleaseMask));
 
 			ButtonPressEvent += HandleButtonPressEvent;
 			ButtonReleaseEvent += HandleButtonReleaseEvent;

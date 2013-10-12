@@ -31,9 +31,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Cairo;
-
 using System;
+
+using Cairo;
 
 using FSpot.Gui;
 using FSpot.Utils;
@@ -52,7 +52,6 @@ namespace FSpot
 		DelayedOperation hide;
 		DelayedOperation fade;
 		DelayedOperation dismiss;
-		bool auto_hide = true;
 		double x_align = 0.5;
 		double y_align = 1.0;
 
@@ -80,10 +79,7 @@ namespace FSpot
 		}
 
 
-		public bool AutoHide {
-			get { return auto_hide; }
-			set { auto_hide = value; }
-		}
+		public bool AutoHide { get; set; }
 
 		public VisibilityType Visibility {
 			get { return visibility; }
@@ -113,11 +109,12 @@ namespace FSpot
 			Decorated = false;
 			DestroyWithParent = true;
 			Name = "FullscreenContainer";
-			AllowGrow = true;
+			// GTK3: host_toplevel.Resizable = true?
+//			AllowGrow = true;
 			//AllowShrink = true;
 			KeepAbove = true;
 
-			host_toplevel = (Gtk.Window) host.Toplevel;
+			host_toplevel = (Window) host.Toplevel;
 
 			TransientFor = host_toplevel;
 
@@ -142,7 +139,7 @@ namespace FSpot
 			int x, y;
 			Gdk.ModifierType type;
 
-			if (!auto_hide)
+			if (!AutoHide)
 				return false;
 
 			if (IsRealized) {
@@ -158,16 +155,16 @@ namespace FSpot
 			return false;
 		}
 
-		protected virtual void ShapeSurface (Context cr, Cairo.Color color)
+		protected virtual void ShapeSurface (Context cr, Color color)
 		{
 			cr.Operator = Operator.Source;
-			Cairo.Pattern p = new Cairo.SolidPattern (new Cairo.Color (0, 0, 0, 0));
+			Pattern p = new SolidPattern (new Color (0, 0, 0, 0));
 			cr.Source = p;
 			p.Destroy ();
 			cr.Paint ();
 			cr.Operator = Operator.Over;
 
-			Cairo.Pattern r = new SolidPattern (color);
+			Pattern r = new SolidPattern (color);
 			cr.Source = r;
 			r.Destroy ();
 			cr.MoveTo (round, 0);
@@ -210,7 +207,6 @@ namespace FSpot
 
 		bool FadeToTarget (double target)
 		{
-			//Log.Debug ("FadeToTarget {0}", target);
 			Realize ();
 			this.target = target;
 			fade.Start ();
@@ -221,36 +217,38 @@ namespace FSpot
 			return false;
 		}
 
-		private void ShapeWindow ()
+		void ShapeWindow ()
 		{
 			if (composited)
 				return;
 
-			Gdk.Pixmap bitmap = new Gdk.Pixmap (GdkWindow,
-							    Allocation.Width,
-							    Allocation.Height, 1);
+			// GTK3: Is this right?
+			var surface = new ImageSurface (Cairo.Format.A1, Allocation.Width, Allocation.Height);
+//			Gdk.Pixmap bitmap = new Gdk.Pixmap (GdkWindow,
+//							    Allocation.Width,
+//							    Allocation.Height, 1);
+//			Gdk.CairoHelper.Create (bitmap);
+			Context cr = new Context (surface);
 
-			Context cr = Gdk.CairoHelper.Create (bitmap);
-			ShapeCombineMask (bitmap, 0, 0);
+//			ShapeCombineMask (bitmap, 0, 0);
 			ShapeSurface (cr, new Color (1, 1, 1));
-			ShapeCombineMask (bitmap, 0, 0);
-			((IDisposable)cr).Dispose ();
-			bitmap.Dispose ();
-
+//			ShapeCombineMask (bitmap, 0, 0);
+			cr.Dispose ();
+//			bitmap.Dispose ();
 		}
 
-		protected override bool OnExposeEvent (Gdk.EventExpose args)
+		protected override bool OnDrawn (Context cr)
 		{
 			Gdk.Color c = Style.Background (State);
-			Context cr = Gdk.CairoHelper.Create (GdkWindow);
 
-			ShapeSurface (cr, new Cairo.Color (c.Red / (double) ushort.MaxValue,
-							   c.Blue / (double) ushort.MaxValue,
-							   c.Green / (double) ushort.MaxValue,
-							   0.8));
+			ShapeSurface (cr, new Color (c.Red / (double) ushort.MaxValue,
+				c.Blue / (double) ushort.MaxValue,
+				c.Green / (double) ushort.MaxValue,
+				0.8));
 
-			((IDisposable)cr).Dispose ();
-			return base.OnExposeEvent (args);
+			cr.Dispose ();
+
+			return base.OnDrawn (cr);
 		}
 
 		protected override bool OnMotionNotifyEvent (Gdk.EventMotion args)
@@ -303,7 +301,7 @@ namespace FSpot
 
 		protected override void OnRealized ()
 		{
-			composited = CompositeUtils.IsComposited (Screen) && CompositeUtils.SetRgbaColormap (this);
+			composited = Screen.IsComposited && CompositeUtils.SetRgbaVisual (this);
 			AppPaintable = composited;
 
 			base.OnRealized ();

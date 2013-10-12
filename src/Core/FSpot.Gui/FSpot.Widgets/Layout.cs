@@ -30,17 +30,19 @@
 using System;
 using System.Collections.Generic;
 
+using Gtk;
+
 using Hyena;
 
 namespace FSpot.Widgets
 {
-	public class Layout : Gtk.Container
+	public class Layout : Container
 	{
 		public Layout () : this (null, null)
 		{
 		}
 
-		public Layout (Gtk.Adjustment hadjustment, Gtk.Adjustment vadjustment) : base ()
+		public Layout (Adjustment hadjustment, Adjustment vadjustment)
 		{
 			OnSetScrollAdjustments (hadjustment, vadjustment);
 			children = new List<LayoutChild> ();
@@ -51,14 +53,14 @@ namespace FSpot.Widgets
 			get { return bin_window; }
 		}
 
-		Gtk.Adjustment hadjustment;
-		public Gtk.Adjustment Hadjustment {
+		Adjustment hadjustment;
+		public Adjustment Hadjustment {
 			get { return hadjustment; }
 			set { OnSetScrollAdjustments (hadjustment, Vadjustment); }
 		}
 
-		Gtk.Adjustment vadjustment;
-		public Gtk.Adjustment Vadjustment {
+		Adjustment vadjustment;
+		public Adjustment Vadjustment {
 			get { return vadjustment; }
 			set { OnSetScrollAdjustments (Hadjustment, vadjustment); }
 		}
@@ -74,12 +76,12 @@ namespace FSpot.Widgets
 		}
 
 		class LayoutChild {
-			public Gtk.Widget Widget { get; private set; }
+			public Widget Widget { get; private set; }
 
 			public int X { get; set; }
 			public int Y { get; set; }
 
-			public LayoutChild (Gtk.Widget widget, int x, int y)
+			public LayoutChild (Widget widget, int x, int y)
 			{
 				Widget = widget;
 				X = x;
@@ -88,7 +90,7 @@ namespace FSpot.Widgets
 		}
 
 		List<LayoutChild> children;
-		public void Put (Gtk.Widget widget, int x, int y)
+		public void Put (Widget widget, int x, int y)
 		{
 			children.Add (new LayoutChild (widget, x, y));
 			if (IsRealized)
@@ -96,7 +98,7 @@ namespace FSpot.Widgets
 			widget.Parent = this;
 		}
 
-		public void Move (Gtk.Widget widget, int x, int y)
+		public void Move (Widget widget, int x, int y)
 		{
 			LayoutChild child = GetChild (widget);
 			if (child == null)
@@ -118,7 +120,7 @@ namespace FSpot.Widgets
 			}
 		}
 
-		LayoutChild GetChild (Gtk.Widget widget)
+		LayoutChild GetChild (Widget widget)
 		{
 			foreach (var child in children)
 				if (child.Widget == widget)
@@ -129,22 +131,22 @@ namespace FSpot.Widgets
 #region widgetry
 		protected override void OnRealized ()
 		{
-			SetFlag (Gtk.WidgetFlags.Realized);
+			IsRealized = true;
 
-			Gdk.WindowAttr attributes = new Gdk.WindowAttr {
+			var attributes = new Gdk.WindowAttr {
 							     WindowType = Gdk.WindowType.Child,
 							     X = Allocation.X,
 							     Y = Allocation.Y,
 							     Width = Allocation.Width,
 							     Height = Allocation.Height,
-							     Wclass = Gdk.WindowClass.InputOutput,
+								 Wclass = Gdk.WindowWindowClass.InputOnly,
 							     Visual = this.Visual,
-							     Colormap = this.Colormap,
 							     Mask = Gdk.EventMask.VisibilityNotifyMask };
 			GdkWindow = new Gdk.Window (ParentWindow, attributes, 
-						    Gdk.WindowAttributesType.X | Gdk.WindowAttributesType.Y | Gdk.WindowAttributesType.Visual | Gdk.WindowAttributesType.Colormap);
+						    Gdk.WindowAttributesType.X | Gdk.WindowAttributesType.Y | Gdk.WindowAttributesType.Visual);
 
-			GdkWindow.SetBackPixmap (null, false);
+			// GTK3
+//			GdkWindow.SetBackPixmap (null, false);
 			GdkWindow.UserData = Handle;
 
 			attributes = new Gdk.WindowAttr {
@@ -153,16 +155,15 @@ namespace FSpot.Widgets
 							     Y = (int)-Vadjustment.Value,
 							     Width = (int)Math.Max (width, Allocation.Width),
 							     Height = (int)Math.Max (height, Allocation.Height),
-							     Wclass = Gdk.WindowClass.InputOutput,
+								 Wclass = Gdk.WindowWindowClass.InputOnly,
 							     Visual = this.Visual,
-							     Colormap = this.Colormap,
 							     Mask = Gdk.EventMask.ExposureMask | Gdk.EventMask.ScrollMask | this.Events };
 			bin_window = new Gdk.Window (GdkWindow, attributes, 
-						     Gdk.WindowAttributesType.X | Gdk.WindowAttributesType.Y | Gdk.WindowAttributesType.Visual | Gdk.WindowAttributesType.Colormap);
+						     Gdk.WindowAttributesType.X | Gdk.WindowAttributesType.Y | Gdk.WindowAttributesType.Visual);
 			bin_window.UserData = Handle;
 
 			Style.Attach (GdkWindow);
-			Style.SetBackground (bin_window, Gtk.StateType.Normal);
+			Style.SetBackground (bin_window, StateType.Normal);
 
 			foreach (var child in children) {
 				child.Widget.ParentWindow = bin_window;
@@ -178,16 +179,16 @@ namespace FSpot.Widgets
 			base.OnUnrealized ();
 		}
 
-		protected override void OnStyleSet (Gtk.Style old_style)
+		protected override void OnStyleSet (Style old_style)
 		{
 			base.OnStyleSet (old_style);
 			if (IsRealized)
-				Style.SetBackground (bin_window, Gtk.StateType.Normal);
+				Style.SetBackground (bin_window, StateType.Normal);
 		}
 
 		protected override void OnMapped ()
 		{
-			SetFlag (Gtk.WidgetFlags.Mapped);
+			IsMapped = true;
 
 			foreach (var child in children) {
 				if (child.Widget.Visible && !child.Widget.IsMapped)
@@ -197,7 +198,7 @@ namespace FSpot.Widgets
 			GdkWindow.Show ();
 		}
 
-		protected override void OnSizeRequested (ref Gtk.Requisition requisition)
+		protected override void OnSizeRequested (ref Requisition requisition)
 		{
 			requisition.Width = requisition.Height = 0;
 
@@ -209,7 +210,7 @@ namespace FSpot.Widgets
 		protected override void OnSizeAllocated (Gdk.Rectangle allocation)
 		{
 			foreach (var child in children) {
-				Gtk.Requisition req = child.Widget.ChildRequisition;
+				Requisition req = child.Widget.ChildRequisition;
 				child.Widget.SizeAllocate (new Gdk.Rectangle (child.X, child.Y, req.Width, req.Height));
 			}
 
@@ -230,21 +231,21 @@ namespace FSpot.Widgets
 			base.OnSizeAllocated (allocation);
 		}
 
-		protected override bool OnExposeEvent (Gdk.EventExpose evnt)
+		protected override bool OnDrawn (Cairo.Context cr)
 		{
-			if (evnt.Window != bin_window)
-				return false;
-
-			return base.OnExposeEvent (evnt);
+			// GTK3
+//			if (evnt.Window != bin_window)
+//				return false;
+			return base.OnDrawn (cr);
 		}
 
 		protected override void OnSetScrollAdjustments (Gtk.Adjustment hadjustment, Gtk.Adjustment vadjustment)
 		{
 			Log.Debug ("\n\nLayout.OnSetScrollAdjustments");
 			if (hadjustment == null)
-				hadjustment = new Gtk.Adjustment (0, 0, 0, 0, 0, 0);
+				hadjustment = new Adjustment (0, 0, 0, 0, 0, 0);
 			if (vadjustment == null)
-				vadjustment = new Gtk.Adjustment (0, 0, 0, 0, 0, 0);
+				vadjustment = new Adjustment (0, 0, 0, 0, 0, 0);
 			bool need_change = false;
 			if (Hadjustment != hadjustment) {
 				this.hadjustment = hadjustment;
@@ -271,12 +272,12 @@ namespace FSpot.Widgets
 #endregion widgetry
 
 #region container stuffs
-		protected override void OnAdded (Gtk.Widget widget)
+		protected override void OnAdded (Widget widget)
 		{
 			Put (widget, 0, 0);
 		}
 
-		protected override void OnRemoved (Gtk.Widget widget)
+		protected override void OnRemoved (Widget widget)
 		{
 			LayoutChild child = null;
 			foreach (var c in children) {
@@ -292,7 +293,7 @@ namespace FSpot.Widgets
 			}
 		}
 
-		protected override void ForAll (bool include_internals, Gtk.Callback callback)
+		protected override void ForAll (bool include_internals, Callback callback)
 		{
 			foreach (var child in children) {
 				callback (child.Widget);

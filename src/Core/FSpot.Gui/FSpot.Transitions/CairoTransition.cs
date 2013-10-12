@@ -36,15 +36,13 @@ namespace FSpot.Transitions
 {
 	public abstract class CairoTransition : SlideShowTransition
 	{
-		public CairoTransition (string name) : base (name)
+		protected CairoTransition (string name) : base (name)
 		{
 		}
 
-		public override void Draw (Drawable d, Pixbuf prev, Pixbuf next, int width, int height, double progress)
+		public override void Draw (Context cr, Pixbuf prev, Pixbuf next, int width, int height, double progress)
 		{
-			using (Cairo.Context cr = Gdk.CairoHelper.Create (d)) {
-				Draw (cr, prev, next, width, height, progress);
-			}
+			Draw (cr, prev, next, width, height, progress);
 		}
 
 		protected abstract void Draw (Context cr, Pixbuf prev, Pixbuf next, int width, int height, double progress);

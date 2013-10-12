@@ -37,17 +37,17 @@ namespace FSpot.Widgets
 {
 	public class HighlightedBox : EventBox
 	{
-		private bool changing_style = false;
+		bool changing_style = false;
 
 		protected HighlightedBox (IntPtr raw) : base (raw) {}
 
-		public HighlightedBox (Widget child) : base ()
+		public HighlightedBox (Widget child)
 		{
 			Child = child;
 			AppPaintable = true;
 		}
 
-		protected override void OnStyleSet(StyleContext style)
+		protected override void OnStyleSet(Style style)
 		{
 			if (!changing_style) {
 				changing_style = true;
@@ -56,10 +56,12 @@ namespace FSpot.Widgets
 			}
 		}
 
-		protected override bool OnExposeEvent(Gdk.EventExpose evnt)
+		protected override bool OnDrawn (Cairo.Context cr)
 		{
-			GdkWindow.DrawRectangle(Style.ForegroundGC(StateType.Normal), false, 0, 0, Allocation.Width - 1, Allocation.Height - 1);
-			return base.OnExposeEvent(evnt);
+			// GTK3: Draw rectangle on screen
+			cr.Rectangle (0, 0, Allocation.Width - 1, Allocation.Height - 1);
+//			GdkWindow.DrawRectangle(StyleContext.ForegroundGC(StateType.Normal), false, 0, 0, Allocation.Width - 1, Allocation.Height - 1);
+			return base.OnDrawn (cr);
 		}
 	}
 }

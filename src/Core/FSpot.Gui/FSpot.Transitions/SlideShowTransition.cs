@@ -45,6 +45,6 @@ namespace FSpot.Transitions
 			get { return name; }
 		}
 
-		public abstract void Draw (Drawable d, Pixbuf prev, Pixbuf next, int width, int height, double progress);
+		public abstract void Draw (Cairo.Context cr, Pixbuf prev, Pixbuf next, int width, int height, double progress);
 	}
 }

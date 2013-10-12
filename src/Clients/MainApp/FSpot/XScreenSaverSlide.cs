@@ -63,18 +63,18 @@ namespace FSpot {
 						| EventMask.LeaveNotifyMask
 						| EventMask.FocusChangeMask;
 
-					Style.SetBackground (GdkWindow, Gtk.StateType.Normal);
-					GdkWindow.SetDecorations ((Gdk.WMDecoration) 0);
+					Style.SetBackground (GdkWindow, StateType.Normal);
+					GdkWindow.SetDecorations ((WMDecoration) 0);
 					GdkWindow.UserData = this.Handle;
-					SetFlag (WidgetFlags.Realized);
+					IsRealized = true;
 					SizeRequest ();
-					Gdk.Rectangle geom;
+					Rectangle geom;
 					int depth;
 					GdkWindow.GetGeometry (out geom.X, out geom.Y, out geom.Width, out geom.Height, out depth);
-					SizeAllocate (new Gdk.Rectangle (geom.X, geom.Y, geom.Width, geom.Height));
+					SizeAllocate (new Rectangle (geom.X, geom.Y, geom.Width, geom.Height));
 					Resize (geom.Width, geom.Height);
 					return;
-				} catch (System.Exception e) {
+				} catch (Exception e) {
 					Hyena.Log.Exception (e);
 				}
 			} else {
