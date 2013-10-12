@@ -57,8 +57,8 @@ namespace FSpot.Exporters.Tabblo
 			progress_dialog.ProgressText = String.Format (
 					Catalog.GetString (
 							"{0} of approx. {1}"),
-					GLib.Format.SizeForDisplay (bytes_sent),
-					GLib.Format.SizeForDisplay (
+					GLib.Global.FormatSizeForDisplay (bytes_sent),
+					GLib.Global.FormatSizeForDisplay (
 							(long) TotalFileSize));
 			progress_dialog.Fraction =
 					(double) bytes_sent / TotalFileSize;

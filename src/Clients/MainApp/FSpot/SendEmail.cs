@@ -45,15 +45,14 @@ using FSpot.UI.Dialog;
 using Hyena;
 using Hyena.Widgets;
 using Mono.Unix;
-using Cairo;
 
 namespace FSpot
 {
 	public class SendEmail : BuilderDialog
 	{
-		Window parent_window;
+		readonly Window parent_window;
 
-		[Builder.Object] Gtk.ScrolledWindow   tray_scrolled;
+		[Builder.Object] readonly Gtk.ScrolledWindow   tray_scrolled;
 		[Builder.Object] Label 		NumberOfPictures, TotalOriginalSize, ApproxNewSize;
 		[Builder.Object] RadioButton 	tiny_size, small_size, medium_size, large_size, x_large_size, original_size;
 
@@ -61,22 +60,22 @@ namespace FSpot
 		double scale_percentage = 0.3;
 
 		// The different sizes we can shrink to foto to. See RadioButton above for labels.
-		static int[] sizes 	= { 0, 320, 	480, 	640, 	800, 	1024 };
+		static readonly int[] sizes 	= { 0, 320, 	480, 	640, 	800, 	1024 };
 
 		// Estimated size relative to original after shrinking down the photo.
-		double[] avg_scale_ref 	= { 0, 0.0186,	0.0348,	0.0532,	0.0826,	0.1234 };
+		readonly double[] avg_scale_ref 	= { 0, 0.0186,	0.0348,	0.0532,	0.0826,	0.1234 };
 
-		static int NoOfSizes	= sizes.Length;
-		double[] avg_scale	= new double [NoOfSizes];
+		static readonly int NoOfSizes	= sizes.Length;
+		readonly double[] avg_scale	= new double [NoOfSizes];
 		string tmp_mail_dir;	// To temporary keep the resized images
 		bool force_original = false;
 
-		IBrowsableCollection selection;
+		readonly IBrowsableCollection selection;
 
 		public SendEmail (IBrowsableCollection selection, Window parentWindow) : base ("mail_dialog.ui", "mail_dialog")
 		{
 			this.selection = selection;
-			this.parent_window = parentWindow;
+			parent_window = parentWindow;
 
 			foreach (var p in selection.Items) {
 				if (FileFactory.NewForUri (p.DefaultVersion.Uri).QueryInfo ("standard::content-type", FileQueryInfoFlags.None, null).ContentType != "image/jpeg")
@@ -98,7 +97,6 @@ namespace FSpot
 					case 3 :  medium_size.Active = true; break;
 					case 4 :  large_size.Active = true; break;
 					case 5 :  x_large_size.Active = true; break;
-					default: break;
 				}
 
 
@@ -125,10 +123,10 @@ namespace FSpot
 				// Get first photos file size
 				long orig_size = FileFactory.NewForUri (scalephoto.DefaultVersion.Uri).QueryInfo ("standard::size", FileQueryInfoFlags.None, null).Size;
 
-				FilterSet filters = new FilterSet ();
+				var filters = new FilterSet ();
 				filters.Add (new ResizeFilter ((uint)(sizes [3])));
 				long new_size;
-				using (FilterRequest request = new FilterRequest (scalephoto.DefaultVersion.Uri)) {
+				using (var request = new FilterRequest (scalephoto.DefaultVersion.Uri)) {
 					filters.Convert (request);
 					new_size = FileFactory.NewForUri (request.Current).QueryInfo ("standard::size", FileQueryInfoFlags.None, null).Size;
 				}
@@ -155,7 +153,7 @@ namespace FSpot
 			}
 
 			NumberOfPictures.Text 	= selection.Count.ToString();
-			TotalOriginalSize.Text 	= GLib.Format.SizeForDisplay (Orig_Photo_Size);
+			TotalOriginalSize.Text 	= GLib.Global.FormatSizeForDisplay (Orig_Photo_Size);
 
 			UpdateEstimatedSize();
 
@@ -207,16 +205,16 @@ namespace FSpot
 			else
 				new_approx_total_size = Convert.ToInt64(Orig_Photo_Size * avg_scale [new_size_index]);
 
-			approxresult = GLib.Format.SizeForDisplay (new_approx_total_size);
+			approxresult = GLib.Global.FormatSizeForDisplay (new_approx_total_size);
 			ApproxNewSize.Text 	= approxresult;
 		}
 
-		public void on_size_toggled (object o, EventArgs args)
+		public void OnSizeToggled (object o, EventArgs args)
 		{
 			UpdateEstimatedSize();
 		}
 
-		private void HandleResponse (object sender, ResponseArgs args)
+		void HandleResponse (object sender, ResponseArgs args)
 		{
 			int size = 0;
 			bool UserCancelled = false;
@@ -224,7 +222,7 @@ namespace FSpot
 			// Lets remove the mail "create mail" dialog
 			Destroy();
 
-			if (args.ResponseId != Gtk.ResponseType.Ok) {
+			if (args.ResponseId != ResponseType.Ok) {
 				return;
 			}
 			ProgressDialog progress_dialog = null;
@@ -237,7 +235,7 @@ namespace FSpot
 			size = GetScaleSize(); // Which size should we scale to. 0 --> Original
 
 			// evaluate mailto command and define attachment args for cli
-			System.Text.StringBuilder attach_arg = new System.Text.StringBuilder ();
+			var attach_arg = new System.Text.StringBuilder ();
 			switch (Preferences.Get<string> (Preferences.GNOME_MAILTO_COMMAND)) {
 			case "thunderbird %s":
 			case "mozilla-thunderbird %s":
@@ -258,9 +256,9 @@ namespace FSpot
 			System.IO.File.Delete (tmp_mail_dir);			// Delete above tmp file
 			System.IO.Directory.CreateDirectory (tmp_mail_dir);	// Create a directory with above tmp name
 
-			System.Text.StringBuilder mail_attach = new System.Text.StringBuilder ();
+			var mail_attach = new System.Text.StringBuilder ();
 
-			FilterSet filters = new FilterSet ();
+			var filters = new FilterSet ();
 
 			if (size != 0)
 				filters.Add (new ResizeFilter ((uint) size));
@@ -280,15 +278,15 @@ namespace FSpot
 
 					try {
 						// Prepare a tmp_mail file name
-						FilterRequest request = new FilterRequest (photo.DefaultVersion.Uri);
+						var request = new FilterRequest (photo.DefaultVersion.Uri);
 
 						filters.Convert (request);
 						request.Preserve(request.Current);
 
-						mail_attach.Append(((i == 0 && attach_arg.ToString () == ",") ? "" : attach_arg.ToString()) + request.Current.ToString ());
+						mail_attach.Append(((i == 0 && attach_arg.ToString () == ",") ? "" : attach_arg.ToString ()) + request.Current);
 					} catch (Exception e) {
 						Hyena.Log.ErrorFormat ("Error preparing {0}: {1}", selection[i].Name, e.Message);
-						HigMessageDialog md = new HigMessageDialog (parent_window,
+						var md = new HigMessageDialog (parent_window,
 											    DialogFlags.DestroyWithParent,
 											    MessageType.Error,
 											    ButtonsType.Close,

@@ -80,7 +80,7 @@ namespace FSpot
 
 		[Builder.Object] Label status_label;
 
-		[Builder.Object] Gtk.UIManager uimanager;
+		[Builder.Object] UIManager uimanager;
 		// Photo
 		[Builder.Object] Gtk.Action create_version_menu_item;
 		[Builder.Object] Gtk.Action delete_version_menu_item;
@@ -137,7 +137,7 @@ namespace FSpot
 		[Builder.Object] Gtk.Action clear_date_range;
 		[Builder.Object] Gtk.Action clear_rating_filter;
 
-		[Builder.Object] Gtk.ToggleAction find_untagged;
+		[Builder.Object] ToggleAction find_untagged;
 
 		[Builder.Object] Gtk.Action clear_roll_filter;
 
@@ -406,10 +406,10 @@ namespace FSpot
 
 			MenuItem findByTag = uimanager.GetWidget ("/ui/menubar1/find/find_by_tag") as MenuItem;
 			query_widget.Hidden += delegate (object sender, EventArgs args) {
-				((Gtk.Label)findByTag.Child).TextWithMnemonic = Catalog.GetString ("Show _Find Bar");
+				((Label)findByTag.Child).TextWithMnemonic = Catalog.GetString ("Show _Find Bar");
 			};
 			query_widget.Shown += delegate (object sender, EventArgs args) {
-				((Gtk.Label)findByTag.Child).TextWithMnemonic = Catalog.GetString ("Hide _Find Bar");
+				((Label)findByTag.Child).TextWithMnemonic = Catalog.GetString ("Hide _Find Bar");
 			};
 
 			icon_view = new QueryView (query);
@@ -433,13 +433,13 @@ namespace FSpot
 			// StartDrag is fired by IconView
 			icon_view.StartDrag += HandleIconViewStartDrag;
 
-			TagMenu tag_menu = new TagMenu (null, Database.Tags);
+			var tag_menu = new TagMenu (null, Database.Tags);
 			tag_menu.NewTagHandler += delegate { HandleCreateTagAndAttach (this, null); };
 			tag_menu.TagSelected += HandleAttachTagMenuSelected;
 			tag_menu.Populate();
 			(uimanager.GetWidget("/ui/menubar1/edit2/attach_tag") as MenuItem).Submenu = tag_menu;
 
-			PhotoTagMenu pmenu = new PhotoTagMenu ();
+			var pmenu = new PhotoTagMenu ();
 			pmenu.TagSelected += HandleRemoveTagMenuSelected;
 			(uimanager.GetWidget("/ui/menubar1/edit2/remove_tag") as MenuItem).Submenu = pmenu;
 
@@ -1463,7 +1463,7 @@ namespace FSpot
         void HandleSendMailCommand (object sender, EventArgs args)
 		{
 			//TestDisplay ();
-			new FSpot.SendEmail (new PhotoList (SelectedPhotos ()), Window);
+			new SendEmail (new PhotoList (SelectedPhotos ()), Window);
 		}
 
 		public static void HandleHelp (object sender, EventArgs args)
@@ -2592,7 +2592,7 @@ namespace FSpot
 			if (find_add_tag_with.Submenu != null)
 				find_add_tag_with.Submenu.Dispose ();
 
-			Gtk.Menu submenu = TermMenuItem.GetSubmenu (tag_selection_widget.TagHighlight);
+			Menu submenu = TermMenuItem.GetSubmenu (tag_selection_widget.TagHighlight);
 			find_add_tag_with.Sensitive = (submenu != null);
 			if (submenu != null)
 				find_add_tag_with.Submenu = submenu;
@@ -2611,7 +2611,7 @@ namespace FSpot
 		    Term parent_term = LogicWidget.Root.SubTerms [item_pos];
 
 		    if (LogicWidget.Box != null) {
-		        Literal after = parent_term.Last as Literal;
+		        var after = parent_term.Last as Literal;
 		       	LogicWidget.Box.InsertTerm (tag_selection_widget.TagHighlight, parent_term, after);
 		    }
 		}
@@ -2690,7 +2690,7 @@ namespace FSpot
 
 			export.Sensitive = active_selection;
 
-			MenuItem toolsmenu = uimanager.GetWidget ("/ui/menubar1/tools") as MenuItem;
+			var toolsmenu = uimanager.GetWidget ("/ui/menubar1/tools") as MenuItem;
 			try {
 				tools.Visible = (toolsmenu.Submenu as Menu).Children.Length > 0;
 			} catch {
@@ -2724,14 +2724,14 @@ namespace FSpot
 			}
 
 			//if (last_tags_selected_count != tags_selected) {
-			MenuItem find_add_tag = uimanager.GetWidget ("/ui/menubar1/find/find_add_tag") as MenuItem;
-			MenuItem find_add_tag_with = uimanager.GetWidget ("/ui/menubar1/find/find_add_tag_with") as MenuItem;
+			var find_add_tag = uimanager.GetWidget ("/ui/menubar1/find/find_add_tag") as MenuItem;
+			var find_add_tag_with = uimanager.GetWidget ("/ui/menubar1/find/find_add_tag_with") as MenuItem;
 
-			((Gtk.Label)find_add_tag.Child).TextWithMnemonic = String.Format (
+			((Label)find_add_tag.Child).TextWithMnemonic = String.Format (
 				Catalog.GetPluralString ("Find _Selected Tag", "Find _Selected Tags", tags_selected), tags_selected
 			);
 
-			((Gtk.Label)find_add_tag_with.Child).TextWithMnemonic = String.Format (
+			((Label)find_add_tag_with.Child).TextWithMnemonic = String.Format (
 				Catalog.GetPluralString ("Find Selected Tag _With", "Find Selected Tags _With", tags_selected), tags_selected
 			);
 
@@ -2780,8 +2780,8 @@ namespace FSpot
 					selected.Length, application.Name);
 
 			// FIXME add cancel button? add help button?
-			HigMessageDialog hmd = new HigMessageDialog(GetToplevel (sender), DialogFlags.DestroyWithParent,
-								    MessageType.Question, Gtk.ButtonsType.None,
+			var hmd = new HigMessageDialog(GetToplevel (sender), DialogFlags.DestroyWithParent,
+								    MessageType.Question, ButtonsType.None,
 								    header, msg);
 
 			hmd.AddButton (Stock.No, ResponseType.No, false);
@@ -2790,25 +2790,23 @@ namespace FSpot
 
 			bool support_xcf = false;;
 			if (application.Id == "gimp.desktop")
-				foreach (PixbufFormat format in Gdk.Pixbuf.Formats.Where(format => format.Name == "xcf"))
+				foreach (PixbufFormat format in Pixbuf.Formats.Where(format => format.Name == "xcf"))
 				    support_xcf = true;
 
 			//This allows creating a version with a .xcf extension.
 			//There's no need to convert the file to xcf file format, gimp will take care of this
 			if (support_xcf) {
-				CheckButton cb = new CheckButton (Catalog.GetString ("XCF version"));
+				var cb = new CheckButton (Catalog.GetString ("XCF version"));
 				cb.Active = Preferences.Get<bool> (Preferences.EDIT_CREATE_XCF_VERSION);
-				hmd.VBox.Add (cb);
-				cb.Toggled += delegate (object s, EventArgs ea) {
-					Preferences.Set (Preferences.EDIT_CREATE_XCF_VERSION, (s as CheckButton).Active);
-				};
+				hmd.LabelVBox.Add (cb);
+				cb.Toggled += (s, ea) => Preferences.Set (Preferences.EDIT_CREATE_XCF_VERSION, (s as CheckButton).Active);
 				cb.Show ();
 			}
 
-			Gtk.ResponseType response = Gtk.ResponseType.Cancel;
+			ResponseType response = ResponseType.Cancel;
 
 			try {
-				response = (Gtk.ResponseType) hmd.Run();
+				response = (ResponseType) hmd.Run();
 			} finally {
 				hmd.Destroy ();
 			}
@@ -2819,13 +2817,13 @@ namespace FSpot
 
 			Log.DebugFormat ("XCF ? {0}", create_xcf);
 
-			if (response == Gtk.ResponseType.Cancel)
+			if (response == ResponseType.Cancel)
 				return;
 
-			bool create_new_versions = (response == Gtk.ResponseType.Yes);
+			bool create_new_versions = (response == ResponseType.Yes);
 
-			List<EditException> errors = new List<EditException> ();
-			GLib.List uri_list = new GLib.List (typeof (string));
+			var errors = new List<EditException> ();
+			var uri_list = new GLib.List (typeof (string));
 			foreach (Photo photo in selected) {
 				try {
 					if (create_new_versions) {
@@ -2851,7 +2849,7 @@ namespace FSpot
 
 			try {
 				application.LaunchUris (uri_list, null);
-			} catch (System.Exception) {
+			} catch (Exception) {
 				Log.ErrorFormat ("Failed to lauch {0}", application.Name);
 			}
 		}
@@ -2898,24 +2896,25 @@ namespace FSpot
 		       }
 		}
 
-		void HandleTagEntryTagsAttached (object o, string [] new_tags)
+		void HandleTagEntryTagsAttached (object o, string [] newTags)
 		{
 			int [] selected_photos = SelectedIds ();
-			if (selected_photos == null || new_tags == null || new_tags.Length == 0)
+			if (selected_photos == null || newTags == null || newTags.Length == 0)
 				return;
 
 			Category default_category = null;
 			Tag [] selection = tag_selection_widget.TagHighlight;
 			if (selection.Length > 0) {
-				if (selection [0] is Category)
-					default_category = (Category) selection [0];
+				var category = selection [0] as Category;
+				if (category != null)
+					default_category = category;
 				else
 					default_category = selection [0].Category;
 			}
-			Tag [] tags = new Tag [new_tags.Length];
+			Tag [] tags = new Tag [newTags.Length];
 			int i = 0;
 			Database.BeginTransaction ();
-			foreach (string tagname in new_tags) {
+			foreach (string tagname in newTags) {
 				Tag t = Database.Tags.GetTagByName (tagname);
 				if (t == null) {
 					t = Database.Tags.CreateCategory (default_category, tagname, true);
@@ -2927,14 +2926,14 @@ namespace FSpot
 			Database.CommitTransaction ();
 		}
 
-		void HandleTagEntryRemoveTags (object o, Tag [] remove_tags)
+		void HandleTagEntryRemoveTags (object o, Tag [] removeTags)
 		{
 			int [] selected_photos = SelectedIds ();
-			if (selected_photos == null || remove_tags == null || remove_tags.Length == 0)
+			if (selected_photos == null || removeTags == null || removeTags.Length == 0)
 				return;
 
 			Database.BeginTransaction ();
-			RemoveTags (selected_photos, remove_tags);
+			RemoveTags (selected_photos, removeTags);
 			Database.CommitTransaction ();
 		}
 
@@ -2963,7 +2962,7 @@ namespace FSpot
 			HideTagbar ();
 		}
 
-		public void HandleTagEntryKeyPressEvent (object sender, Gtk.KeyPressEventArgs args)
+		public void HandleTagEntryKeyPressEvent (object sender, KeyPressEventArgs args)
 		{
 			args.RetVal = false;
 

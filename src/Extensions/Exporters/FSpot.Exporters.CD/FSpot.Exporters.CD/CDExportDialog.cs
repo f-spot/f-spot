@@ -85,7 +85,7 @@ namespace FSpot.Exporters.CD
 			Modal = false;
 			TransientFor = null;
 
-			size_label.Text = Format.SizeForDisplay (total_size);
+			size_label.Text = GLib.Global.FormatSizeForDisplay (total_size);
 
 			thumb_scrolledwindow.Add (view);
 			ShowAll ();

@@ -192,9 +192,9 @@ namespace FSpot.Exporters.PicasaWeb
 		private void HandleUploadProgress (object o, UploadProgressEventArgs args)
 		{
 			if (approx_size == 0)
-				progress_dialog.ProgressText = System.String.Format (Catalog.GetString ("{0} Sent"), GLib.Format.SizeForDisplay (args.BytesSent));
+				progress_dialog.ProgressText = System.String.Format (Catalog.GetString ("{0} Sent"), GLib.Global.FormatSizeForDisplay (args.BytesSent));
 			else
-				progress_dialog.ProgressText = System.String.Format (Catalog.GetString ("{0} of approx. {1}"), GLib.Format.SizeForDisplay (sent_bytes + args.BytesSent), GLib.Format.SizeForDisplay (approx_size));
+				progress_dialog.ProgressText = System.String.Format (Catalog.GetString ("{0} of approx. {1}"), GLib.Global.FormatSizeForDisplay (sent_bytes + args.BytesSent), GLib.Global.FormatSizeForDisplay (approx_size));
 			progress_dialog.Fraction = ((photo_index - 1) / (double)items.Length) + (args.BytesSent / (args.BytesTotal * (double)items.Length));
 		}
 
@@ -350,9 +350,9 @@ namespace FSpot.Exporters.PicasaWeb
 
 					StringBuilder sb = new StringBuilder ("<small>");
 					sb.Append (String.Format (Catalog.GetString ("Available space: {0}, {1}% used out of {2}"),
-								GLib.Format.SizeForDisplay (ql - qu),
+						GLib.Global.FormatSizeForDisplay (ql - qu),
 								(100 * qu / ql),
-								GLib.Format.SizeForDisplay (ql)));
+						GLib.Global.FormatSizeForDisplay (ql)));
 					sb.Append ("</small>");
 					status_label.Text = sb.ToString ();
 					status_label.UseMarkup = true;
