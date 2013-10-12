@@ -55,7 +55,7 @@ csharp:
 	@pushd .; \
 	echo ""; \
 	echo "Starting csharp with Gtk#, Hyena, FSpot, etc referenced"; \
-	csharp -lib:bin/ -pkg:glib-sharp-3.0 -pkg:gtk-sharp-3.0 -r:lib/unique-sharp/unique/unique-sharp.dll -reference:bin/f-spot.exe $(addprefix "-reference:", $(wildcard bin/*.dll)); \
+	csharp -lib:bin/ -pkg:glib-sharp-3.0 -pkg:gtk-sharp-3.0 -reference:bin/f-spot.exe $(addprefix "-reference:", $(wildcard bin/*.dll)); \
 	popd;
 
 run:

@@ -138,9 +138,6 @@ PKG_CHECK_MODULES(LCMS2, lcms2 >= $LCMS2_REQUIRED, [],
 	LCMS2_LIBS='-llcms2'
 	LCMS2_CFLAGS=''])
 
-dnl --- libunique check
-PKG_CHECK_MODULES(UNIQUE, unique-1.0 >= 1.0)
-
 dnl --- Set up paths
 AC_ARG_WITH(turtle, [ --with-turtle=DIR                set path to source directory for turtle])
 AM_CONDITIONAL(WITH_TURTLE, test "x$with_turtle" != "xno")
