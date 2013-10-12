@@ -69,20 +69,20 @@ namespace FSpot.Utils
 
 		class NativeMethods
 		{
-			[DllImport("libgdk-2.0-0.dll")]
+			[DllImport("libgdk-3.0-0.dll")]
 			public static extern uint gdk_x11_drawable_get_xid (IntPtr d);
 	
-			[DllImport("libgdk-2.0-0.dll")]
+			[DllImport("libgdk-3.0-0.dll")]
 			public static extern IntPtr gdk_x11_display_get_xdisplay (IntPtr d);
 	
-			[DllImport("libgdk-2.0-0.dll")]
+			[DllImport("libgdk-3.0-0.dll")]
 			public static extern IntPtr gdk_x11_visual_get_xvisual (IntPtr d);
 
 			// FIXME: get rid of this? (Make this cross platform)
 			[DllImport("X11")]
 			public static extern uint XVisualIDFromVisual(IntPtr visual);
 	
-			[DllImport("libgdk-2.0-0.dll")]
+			[DllImport("libgdk-3.0-0.dll")]
 			public static extern IntPtr gdk_x11_screen_lookup_visual (IntPtr screen,
 									   uint   xvisualid);
 		}
@@ -110,16 +110,16 @@ namespace FSpot.Utils
 
 		public static Visual LookupVisual (Screen screen, uint visualid)
 		{
-			return (Gdk.Visual) GLib.Object.GetObject (NativeMethods.gdk_x11_screen_lookup_visual (screen.Handle, visualid));
+			return (Visual) GLib.Object.GetObject (NativeMethods.gdk_x11_screen_lookup_visual (screen.Handle, visualid));
 		}
 		
 		public static Cursor CreateEmptyCursor (Display display) 
 		{
 			try {
-				Gdk.Pixbuf empty = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, true, 8, 1, 1);
+				var empty = new Pixbuf (Colorspace.Rgb, true, 8, 1, 1);
 				empty.Fill (0x00000000);
-				return new Gdk.Cursor (display, empty, 0, 0);
-			} catch (System.Exception e){
+				return new Cursor (display, empty, 0, 0);
+			} catch (Exception e){
 				Log.Exception (e);
 				return null;
 			}

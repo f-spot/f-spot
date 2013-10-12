@@ -56,12 +56,13 @@ namespace FSpot.Widgets
 			}
 		}
 
-		protected override bool OnDrawn (Cairo.Context cr)
-		{
-			// GTK3: Draw rectangle on screen
-			cr.Rectangle (0, 0, Allocation.Width - 1, Allocation.Height - 1);
-//			GdkWindow.DrawRectangle(StyleContext.ForegroundGC(StateType.Normal), false, 0, 0, Allocation.Width - 1, Allocation.Height - 1);
-			return base.OnDrawn (cr);
-		}
+		// GTK3: Base class doesn't have this?
+//		protected override bool OnDrawn (Cairo.Context cr)
+//		{
+//			// GTK3: Draw rectangle on screen
+//			cr.Rectangle (0, 0, Allocation.Width - 1, Allocation.Height - 1);
+////			GdkWindow.DrawRectangle(StyleContext.ForegroundGC(StateType.Normal), false, 0, 0, Allocation.Width - 1, Allocation.Height - 1);
+//			return base.OnDrawn (cr);
+//		}
 	}
 }

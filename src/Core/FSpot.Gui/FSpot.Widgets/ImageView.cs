@@ -50,7 +50,8 @@ namespace FSpot.Widgets
 
 		public ImageView (Adjustment hadjustment, Adjustment vadjustment, bool canSelect)
 		{
-			OnSetScrollAdjustments (hadjustment, vadjustment);
+			// GTK3: https://developer.gnome.org/gtk3/stable/ch24s02.html#id-1.6.3.4.3
+//			OnSetScrollAdjustments (hadjustment, vadjustment);
 			AdjustmentsChanged += ScrollToAdjustments;
 			HasWindow &= !HasWindow;
 			CanFocus = true;
@@ -255,16 +256,17 @@ namespace FSpot.Widgets
 			                  (int) Math.Floor (image.Y * (double) (scaled_height - 1) / (((int)pixbuf_orientation <= 4 ? Pixbuf.Height : Pixbuf.Width) - 1) + 0.5) + y_offset);
 		}
 		
-		public Rectangle ImageCoordsToWindow (Rectangle image)
+		public Cairo.RectangleInt ImageCoordsToWindow (Rectangle image)
 		{
+
 			if (Pixbuf == null)
-				return Rectangle.Zero;
+				return Rectangle.Zero as Cairo.RectangleInt;
 			
 			image = PixbufUtils.TransformOrientation (Pixbuf.Width, Pixbuf.Height, image, pixbuf_orientation);
 			int x_offset = scaled_width < Allocation.Width ? (int)(Allocation.Width - scaled_width) / 2 : -XOffset;
 			int y_offset = scaled_height < Allocation.Height ? (int)(Allocation.Height - scaled_height) / 2 : -YOffset;
 			
-			Rectangle win = Rectangle.Zero;
+			Cairo.RectangleInt win = Rectangle.Zero as Cairo.RectangleInt;
 			win.X = (int) Math.Floor (image.X * (double) (scaled_width - 1) / (((int)pixbuf_orientation <= 4 ? Pixbuf.Width : Pixbuf.Height) - 1) + 0.5) + x_offset;
 			win.Y = (int) Math.Floor (image.Y * (double) (scaled_height - 1) / (((int)pixbuf_orientation <= 4 ? Pixbuf.Height : Pixbuf.Width) - 1) + 0.5) + y_offset;
 			win.Width = (int) Math.Floor ((image.X + image.Width) * (double) (scaled_width - 1) / (((int)pixbuf_orientation <= 4 ? Pixbuf.Width : Pixbuf.Height) - 1) + 0.5) - win.X + x_offset;
@@ -346,11 +348,12 @@ namespace FSpot.Widgets
             GdkWindow.Show ();
         }
 
-        protected override void OnSizeRequested (ref Requisition requisition)
-        {
-            requisition.Width = requisition.Height = 0;
-            OnSizeRequestedChildren ();
-        }
+		// GTK3: https://developer.gnome.org/gtk3/stable/ch24s02.html#id-1.6.3.4.3
+//        protected override void OnSizeRequested (ref Requisition requisition)
+//        {
+//            requisition.Width = requisition.Height = 0;
+//            OnSizeRequestedChildren ();
+//        }
 
         protected override void OnSizeAllocated (Rectangle allocation)
         {
@@ -382,61 +385,63 @@ namespace FSpot.Widgets
                 ZoomFit (upscale);
         }
 
-		protected override bool OnDrawn (Cairo.Context cr)
-		{
-			// GTK3
-//			if (evnt.Window != GdkWindow)
-//				return false;
+		// GTK3: Base class doesn't have this?
+//		protected override bool OnDrawn (Cairo.Context cr)
+//		{
+//			// GTK3
+////			if (evnt.Window != GdkWindow)
+////				return false;
+//
+////			foreach (Rectangle area in evnt.Region.GetRectangles ())
+////			{
+////				var p_area = new Rectangle (Math.Max (0, area.X), Math.Max (0, area.Y),
+////					Math.Min (Allocation.Width, area.Width), Math.Min (Allocation.Height, area.Height));
+////				if (p_area == Rectangle.Zero)
+////					continue;
+////
+////				//draw synchronously if InterpType.Nearest or zoom 1:1
+////				if (Interpolation == InterpType.Nearest || zoom == 1.0) {
+////					PaintRectangle (p_area, InterpType.Nearest);
+////					continue;
+////				}
+////
+////				//Do this on idle ???
+////				PaintRectangle (p_area, Interpolation);
+////			}
+////
+////			if (can_select)
+////				OnSelectionExposeEvent (evnt);
+////
+////			return true;
+//			return base.OnDrawn (cr);
+//		}
 
-//			foreach (Rectangle area in evnt.Region.GetRectangles ())
-//			{
-//				var p_area = new Rectangle (Math.Max (0, area.X), Math.Max (0, area.Y),
-//					Math.Min (Allocation.Width, area.Width), Math.Min (Allocation.Height, area.Height));
-//				if (p_area == Rectangle.Zero)
-//					continue;
+		// GTK3: https://developer.gnome.org/gtk3/stable/ch24s02.html#id-1.6.3.4.3
+//		protected override void OnSetScrollAdjustments (Adjustment hadjustment, Adjustment vadjustment)
+//		{
+//			if (hadjustment == null)
+//				hadjustment = new Adjustment (0, 0, 0, 0, 0, 0);
+//			if (vadjustment == null)
+//				vadjustment = new Adjustment (0, 0, 0, 0, 0, 0);
 //
-//				//draw synchronously if InterpType.Nearest or zoom 1:1
-//				if (Interpolation == InterpType.Nearest || zoom == 1.0) {
-//					PaintRectangle (p_area, InterpType.Nearest);
-//					continue;
-//				}
+//			bool need_change = false;
 //
-//				//Do this on idle ???
-//				PaintRectangle (p_area, Interpolation);
+//			if (Hadjustment != hadjustment) {
+//				Hadjustment = hadjustment;
+//				Hadjustment.Upper = scaled_width;
+//				Hadjustment.ValueChanged += HandleAdjustmentsValueChanged;
+//				need_change = true;
+//			}
+//			if (Vadjustment != vadjustment) {
+//				Vadjustment = vadjustment;
+//				Vadjustment.Upper = scaled_height;
+//				Vadjustment.ValueChanged += HandleAdjustmentsValueChanged;
+//				need_change = true;
 //			}
 //
-//			if (can_select)
-//				OnSelectionExposeEvent (evnt);
-//
-//			return true;
-			return base.OnDrawn (cr);
-		}
-
-		protected override void OnSetScrollAdjustments (Adjustment hadjustment, Adjustment vadjustment)
-		{
-			if (hadjustment == null)
-				hadjustment = new Adjustment (0, 0, 0, 0, 0, 0);
-			if (vadjustment == null)
-				vadjustment = new Adjustment (0, 0, 0, 0, 0, 0);
-
-			bool need_change = false;
-
-			if (Hadjustment != hadjustment) {
-				Hadjustment = hadjustment;
-				Hadjustment.Upper = scaled_width;
-				Hadjustment.ValueChanged += HandleAdjustmentsValueChanged;
-				need_change = true;
-			}
-			if (Vadjustment != vadjustment) {
-				Vadjustment = vadjustment;
-				Vadjustment.Upper = scaled_height;
-				Vadjustment.ValueChanged += HandleAdjustmentsValueChanged;
-				need_change = true;
-			}
-
-			if (need_change)
-				HandleAdjustmentsValueChanged (this, EventArgs.Empty);
-		}	
+//			if (need_change)
+//				HandleAdjustmentsValueChanged (this, EventArgs.Empty);
+//		}	
 
 		protected override bool OnButtonPressEvent (EventButton evnt)
 		{
@@ -657,13 +662,14 @@ namespace FSpot.Widgets
 			    !Pixbuf.HasAlpha &&
 			    Pixbuf.BitsPerSample == 8 &&
 			    pixbuf_orientation == ImageOrientation.TopLeft) {
-				GdkWindow.DrawPixbuf (Style.BlackGC,
-						      Pixbuf,
-						      area.X - x_offset, area.Y - y_offset,
-						      area.X, area.Y,
-						      area.Width, area.Height,
-						      RgbDither.Max,
-						      area.X - x_offset, area.Y - y_offset);
+				// GTK3: GdkWindow.DrawPixbuf
+//				GdkWindow.DrawPixbuf (Style.BlackGC,
+//						      Pixbuf,
+//						      area.X - x_offset, area.Y - y_offset,
+//						      area.X, area.Y,
+//						      area.Width, area.Height,
+//						      RgbDither.Max,
+//						      area.X - x_offset, area.Y - y_offset);
 				return;
 			}
 
@@ -691,13 +697,14 @@ namespace FSpot.Widgets
 				ApplyColorTransform (temp_pixbuf);
 
 				using (var dest_pixbuf = PixbufUtils.TransformOrientation (temp_pixbuf, pixbuf_orientation)) {
-					GdkWindow.DrawPixbuf (Style.BlackGC,
-							      dest_pixbuf,
-							      0, 0,
-							      area.X, area.Y,
-							      area.Width, area.Height,
-							      RgbDither.Max,
-							      area.X - x_offset, area.Y - y_offset);
+					// GTK3: GdkWindow.DrawPixbuf
+//					GdkWindow.DrawPixbuf (Style.BlackGC,
+//							      dest_pixbuf,
+//							      0, 0,
+//							      area.X, area.Y,
+//							      area.Width, area.Height,
+//							      RgbDither.Max,
+//							      area.X - x_offset, area.Y - y_offset);
 				}
 			}
 		}
@@ -806,13 +813,13 @@ namespace FSpot.Widgets
 
 
 #region selection
-		bool OnSelectionExposeEvent (EventExpose evnt)
+		bool OnSelectionExposeEvent (Cairo.Region evnt)
 		{
 			if (selection == Rectangle.Zero)
 				return false;
 
-			Rectangle win_selection = ImageCoordsToWindow (selection);
-			using (var evnt_region = evnt.Region.Copy ()) {
+			Cairo.RectangleInt win_selection = ImageCoordsToWindow (selection);
+			using (var evnt_region = evnt.Copy ()) {
 				using (var r = new Cairo.Region ()) {
 					r.UnionRectangle (win_selection);
 					evnt_region.Subtract (r);
@@ -836,7 +843,7 @@ namespace FSpot.Widgets
 		const int SELECTION_SNAP_DISTANCE = 8;
 		DragMode GetDragMode (int x, int y)
 		{
-			Rectangle win_selection = ImageCoordsToWindow (selection);
+			Rectangle win_selection = ImageCoordsToWindow (selection) as Rectangle;
 			if (Rectangle.Inflate (win_selection, -SELECTION_SNAP_DISTANCE, -SELECTION_SNAP_DISTANCE).Contains (x, y))
 				return DragMode.Move;
 			if (Rectangle.Inflate (win_selection, SELECTION_SNAP_DISTANCE, SELECTION_SNAP_DISTANCE).Contains (x, y))
@@ -871,7 +878,7 @@ namespace FSpot.Widgets
 					break;
 
 				case DragMode.Extend:
-					Rectangle win_sel = ImageCoordsToWindow (Selection);
+				Rectangle win_sel = ImageCoordsToWindow (Selection) as Rectangle;
 					is_dragging_selection = true;
 					if (Math.Abs (win_sel.X - evnt.X) < SELECTION_SNAP_DISTANCE &&
 					    Math.Abs (win_sel.Y - evnt.Y) < SELECTION_SNAP_DISTANCE) {	 			//TopLeft
@@ -939,7 +946,7 @@ namespace FSpot.Widgets
 					GdkWindow.Cursor = null;
 					break;
 				case DragMode.Extend:
-					Rectangle win_sel = ImageCoordsToWindow (Selection);
+					Rectangle win_sel = ImageCoordsToWindow (Selection) as Rectangle;
 					if (Math.Abs (win_sel.X - x) < SELECTION_SNAP_DISTANCE &&
 					    Math.Abs (win_sel.Y - y) < SELECTION_SNAP_DISTANCE) {	 			//TopLeft
 						GdkWindow.Cursor = new Cursor (CursorType.TopLeftCorner);

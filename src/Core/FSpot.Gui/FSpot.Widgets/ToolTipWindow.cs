@@ -31,7 +31,7 @@ using Gtk;
 
 namespace FSpot.Widgets
 {
-    public class ToolTipWindow : Gtk.Window
+    public class ToolTipWindow : Window
     {
         public ToolTipWindow () : base(Gtk.WindowType.Popup)
         {
@@ -40,13 +40,14 @@ namespace FSpot.Widgets
             BorderWidth = 4;
         }
 
-        protected override bool OnExposeEvent (Gdk.EventExpose args)
-        {
-            Gtk.Style.PaintFlatBox (Style, GdkWindow, State, ShadowType.Out, args.Area,
-                            this, "tooltip", Allocation.X, Allocation.Y, Allocation.Width,
-                            Allocation.Height);
-            
-            return base.OnExposeEvent (args);
-        }
+		// GTK3: No OnExposeEvent
+//        protected override bool OnExposeEvent (Gdk.EventExpose args)
+//        {
+//            Gtk.Style.PaintFlatBox (Style, GdkWindow, State, ShadowType.Out, args.Area,
+//                            this, "tooltip", Allocation.X, Allocation.Y, Allocation.Width,
+//                            Allocation.Height);
+//            
+//            return base.OnExposeEvent (args);
+//        }
     }
 }

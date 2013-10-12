@@ -74,10 +74,11 @@ namespace FSpot.Gui
 			}
 		}
 
-		public static void InputShapeCombineMask (Widget w, Pixmap shape_mask, int offset_x, int offset_y)
-		{
-			gtk_widget_input_shape_combine_mask (w.Handle, shape_mask == null ? IntPtr.Zero : shape_mask.Handle, offset_x, offset_y);
-		}
+		// GTK3: ShapeCombineMask is deprecated as of gtk2
+//		public static void InputShapeCombineMask (Widget w, Pixmap shape_mask, int offset_x, int offset_y)
+//		{
+//			gtk_widget_input_shape_combine_mask (w.Handle, shape_mask == null ? IntPtr.Zero : shape_mask.Handle, offset_x, offset_y);
+//		}
 
 		[DllImport("libXcomposite.dll")]
 		static extern void XCompositeRedirectWindow (IntPtr display, uint window, CompositeRedirect update);
@@ -87,12 +88,13 @@ namespace FSpot.Gui
 			Manual = 1
 		};
 
-		public static void RedirectDrawable (Drawable d)
-		{
-			uint xid = GdkUtils.GetXid (d);
-			Log.DebugFormat ("xid = {0} d.handle = {1}, d.Display.Handle = {2}", xid, d.Handle, d.Display.Handle);
-			XCompositeRedirectWindow (GdkUtils.GetXDisplay (d.Display), GdkUtils.GetXid (d), CompositeRedirect.Manual);
-		}
+		// GTK3: No more Drawable
+//		public static void RedirectDrawable (Drawable d)
+//		{
+//			uint xid = GdkUtils.GetXid (d);
+//			Log.DebugFormat ("xid = {0} d.handle = {1}, d.Display.Handle = {2}", xid, d.Handle, d.Display.Handle);
+//			XCompositeRedirectWindow (GdkUtils.GetXDisplay (d.Display), GdkUtils.GetXid (d), CompositeRedirect.Manual);
+//		}
 
 		public static void SetWinOpacity (Gtk.Window win, double opacity)
 		{

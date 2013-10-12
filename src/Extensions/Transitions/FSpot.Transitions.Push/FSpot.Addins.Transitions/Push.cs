@@ -40,7 +40,7 @@ using Color = Cairo.Color;
 
 namespace FSpot.Addins.Transitions
 {
-	public class Push : CairoTransition
+	public class Push : SlideShowTransition
 	{
 		public Push () : base (Catalog.GetString ("Push"))
 		{

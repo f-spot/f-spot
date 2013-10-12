@@ -2,8 +2,10 @@
 // RatingRenderer.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Mike Gemünde <mike@gemuende.de>
 //
+// Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2010 Novell, Inc.
 // Copyright (C) 2010 Mike Gemünde
 //
@@ -38,14 +40,14 @@ namespace FSpot.Widgets
 {
     public class RatingRenderer : Hyena.Gui.RatingRenderer
     {
-        private static int REQUESTED_ICON_SIZE = 16;
+        const int REQUESTED_ICON_SIZE = 16;
 
 #region Shared Pixbufs
 
         // cache the unscaled pixbufs for all instances
-        private static Pixbuf icon_rated;
-        private static Pixbuf icon_blank;
-        private static Pixbuf icon_hover;
+        static Pixbuf icon_rated;
+        static Pixbuf icon_blank;
+        static Pixbuf icon_hover;
 
 #endregion
 
@@ -92,10 +94,10 @@ namespace FSpot.Widgets
 #region Cache and Access Scaled Rating Pixbufs
 
         // cache the scaled pixbufs for every instance
-        private int scaled_icon_size;
-        private Pixbuf scaled_icon_rated;
-        private Pixbuf scaled_icon_blank;
-        private Pixbuf scaled_icon_hover;
+        int scaled_icon_size;
+        Pixbuf scaled_icon_rated;
+        Pixbuf scaled_icon_blank;
+        Pixbuf scaled_icon_hover;
 
         protected Pixbuf ScaledIconRated {
             get {
@@ -142,7 +144,7 @@ namespace FSpot.Widgets
             }
         }
 
-        private void ResetCachedPixbufs ()
+        void ResetCachedPixbufs ()
         {
             if (scaled_icon_rated != null) {
                 scaled_icon_rated.Dispose ();
@@ -160,7 +162,7 @@ namespace FSpot.Widgets
             }
         }
 
-        private Pixbuf ScaleIcon (Pixbuf icon)
+        Pixbuf ScaleIcon (Pixbuf icon)
         {
             if (icon.Width > Size) {
                 return icon.ScaleSimple (Size, Size, InterpType.Bilinear);
@@ -179,10 +181,6 @@ namespace FSpot.Widgets
 #endregion
 
 #region Constructors / Destructor
-
-        public RatingRenderer ()
-        {
-        }
 
         ~RatingRenderer ()
         {
@@ -241,10 +239,8 @@ namespace FSpot.Widgets
 #endregion
 
 #region Override Render Code
-
-        public override void Render (Cairo.Context cr, Gdk.Rectangle area, Cairo.Color color, bool showEmptyStars,
-                                     bool isHovering, int hoverValue, double fillOpacity, double hoverFillOpacity,
-                                     double strokeOpacity)
+		public virtual void Render (Context cr, Gdk.Rectangle area, Cairo.Color color, bool showEmptyStars, bool isHovering,
+			int hoverValue, double fillOpacity, double hoverFillOpacity, double strokeOpacity)
         {
             if (Value == MinRating && !isHovering && !showEmptyStars) {
                 return;
@@ -264,7 +260,6 @@ namespace FSpot.Widgets
                 }
             }
         }
-
 #endregion
 
     }

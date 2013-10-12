@@ -198,14 +198,15 @@ namespace FSpot.Widgets
 			GdkWindow.Show ();
 		}
 
-		protected override void OnSizeRequested (ref Requisition requisition)
-		{
-			requisition.Width = requisition.Height = 0;
-
-			foreach (var child in children) {
-				child.Widget.SizeRequest ();
-			}
-		}
+		// GTK3: https://developer.gnome.org/gtk3/stable/ch24s02.html#id-1.6.3.4.3
+//		protected override void OnSizeRequested (ref Requisition requisition)
+//		{
+//			requisition.Width = requisition.Height = 0;
+//
+//			foreach (var child in children) {
+//				child.Widget.SizeRequest ();
+//			}
+//		}
 
 		protected override void OnSizeAllocated (Gdk.Rectangle allocation)
 		{
@@ -231,38 +232,40 @@ namespace FSpot.Widgets
 			base.OnSizeAllocated (allocation);
 		}
 
-		protected override bool OnDrawn (Cairo.Context cr)
-		{
-			// GTK3
-//			if (evnt.Window != bin_window)
-//				return false;
-			return base.OnDrawn (cr);
-		}
+		// GTK3: Not in the base class?
+//		protected override bool OnDrawn (Cairo.Context cr)
+//		{
+//			// GTK3
+////			if (evnt.Window != bin_window)
+////				return false;
+//			return base.OnDrawn (cr);
+//		}
 
-		protected override void OnSetScrollAdjustments (Gtk.Adjustment hadjustment, Gtk.Adjustment vadjustment)
-		{
-			Log.Debug ("\n\nLayout.OnSetScrollAdjustments");
-			if (hadjustment == null)
-				hadjustment = new Adjustment (0, 0, 0, 0, 0, 0);
-			if (vadjustment == null)
-				vadjustment = new Adjustment (0, 0, 0, 0, 0, 0);
-			bool need_change = false;
-			if (Hadjustment != hadjustment) {
-				this.hadjustment = hadjustment;
-				this.hadjustment.Upper = Width;
-				this.hadjustment.ValueChanged += HandleAdjustmentsValueChanged;
-				need_change = true;
-			}
-			if (Vadjustment != vadjustment) {
-				this.vadjustment = vadjustment;
-				this.vadjustment.Upper = Width;
-				this.vadjustment.ValueChanged += HandleAdjustmentsValueChanged;
-				need_change = true;
-			}
-
-			if (need_change)
-				HandleAdjustmentsValueChanged (this, EventArgs.Empty);
-		}
+		// GTK3: https://developer.gnome.org/gtk3/stable/ch24s02.html#id-1.6.3.4.3
+//		protected override void OnSetScrollAdjustments (Gtk.Adjustment hadjustment, Gtk.Adjustment vadjustment)
+//		{
+//			Log.Debug ("\n\nLayout.OnSetScrollAdjustments");
+//			if (hadjustment == null)
+//				hadjustment = new Adjustment (0, 0, 0, 0, 0, 0);
+//			if (vadjustment == null)
+//				vadjustment = new Adjustment (0, 0, 0, 0, 0, 0);
+//			bool need_change = false;
+//			if (Hadjustment != hadjustment) {
+//				this.hadjustment = hadjustment;
+//				this.hadjustment.Upper = Width;
+//				this.hadjustment.ValueChanged += HandleAdjustmentsValueChanged;
+//				need_change = true;
+//			}
+//			if (Vadjustment != vadjustment) {
+//				this.vadjustment = vadjustment;
+//				this.vadjustment.Upper = Width;
+//				this.vadjustment.ValueChanged += HandleAdjustmentsValueChanged;
+//				need_change = true;
+//			}
+//
+//			if (need_change)
+//				HandleAdjustmentsValueChanged (this, EventArgs.Empty);
+//		}
 
 		void HandleAdjustmentsValueChanged (object sender, EventArgs e)
 		{

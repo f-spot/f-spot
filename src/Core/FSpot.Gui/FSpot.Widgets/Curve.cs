@@ -270,6 +270,7 @@ namespace FSpot.Widgets
 			return base.OnConfigureEvent (evnt);
 		}
 
+		// GTK3: This base class doesn't have this method
 		protected override bool OnDrawn (Context cr)
 		{
 //			surface = new Pixmap (GdkWindow, Allocation.Width, Allocation.Height);
@@ -301,25 +302,30 @@ namespace FSpot.Widgets
 			if (width <= 0 || height <= 0)
 				return;
 
+			// GTK3: StyleContext, curve drawing
 			//clear the pixmap
-			Style.PaintFlatBox (style, surface, StateType.Normal, ShadowType.None, null, this, "curve_bg", 0, 0, Allocation.Width, Allocation.Height);
+//			StyleContext.RenderBackground (surface, 0, 0, Allocation.Width, Allocation.Height);
+//			Style.PaintFlatBox (style, surface, StateType.Normal, ShadowType.None, null, this, "curve_bg", 0, 0, Allocation.Width, Allocation.Height);
 
 			//draw the grid lines
+			Cairo.Context cr = new Context (surface);
 			for (int i = 0; i < 5; i++) {
-				surface.DrawLine (style.DarkGC (state),
-						 x_offset,
-						 i * (int)(height / 4.0) + y_offset,
-						 width + x_offset,
-						 i * (int)(height / 4.0) + y_offset);
-				surface.DrawLine (style.DarkGC (state),
-						 i * (int)(width / 4.0) + x_offset,
-						 y_offset,
-						 i * (int)(width / 4.0) + x_offset,
-						 height + y_offset);
+//				cr.RelCurveTo ()
+//				// public void DrawLine (GC gc, int x1_, int y1_, int x2_, int y2_)
+//				surface.DrawLine (style.DarkGC (state),
+//						 x_offset,
+//						 i * (int)(height / 4.0) + y_offset,
+//						 width + x_offset,
+//						 i * (int)(height / 4.0) + y_offset);
+//				surface.DrawLine (style.DarkGC (state),
+//						 i * (int)(width / 4.0) + x_offset,
+//						 y_offset,
+//						 i * (int)(width / 4.0) + x_offset,
+//						 height + y_offset);
 			}
 
 			//draw the curve
-			surface.DrawPoints (style.ForegroundGC (state), Interpolate (width, height));
+//			surface.DrawPoints (style.ForegroundGC (state), Interpolate (width, height));
 
 			//draw the bullets
 			if (CurveType != CurveType.Free)
@@ -328,23 +334,24 @@ namespace FSpot.Widgets
 						continue;
 					int x = Project (keyval.Key, MinX, MaxX, width);
 					int y = height - Project (keyval.Value, MinY, MaxY, height);
-					surface.DrawArc (style.ForegroundGC (state), true, x, y, radius * 2, radius * 2, 0, 360*64);
+//					surface.DrawArc (style.ForegroundGC (state), true, x, y, radius * 2, radius * 2, 0, 360*64);
 				}
-			GdkWindow.DrawDrawable (style.ForegroundGC (state), surface, 0, 0, 0, 0, Allocation.Width, Allocation.Height);
+//			GdkWindow.DrawDrawable (style.ForegroundGC (state), surface, 0, 0, 0, 0, Allocation.Width, Allocation.Height);
 		}
 
-		protected override void OnSizeAllocated (Rectangle allocation)
+		protected override void OnSizeAllocated (Gdk.Rectangle allocation)
 		{
 			width = allocation.Width - 2 * radius;
 			height = allocation.Height - 2 * radius;	
 			base.OnSizeAllocated (allocation);
 		}
 
-		protected override void OnSizeRequested (ref Requisition requisition)
-		{
-			requisition.Width = 128 + 2 * x_offset;
-			requisition.Height = 128 + 2 * y_offset;
-		}
+		// GTK3: https://developer.gnome.org/gtk3/stable/ch24s02.html#id-1.6.3.4.3
+//		protected override void OnSizeRequested (ref Requisition requisition)
+//		{
+//			requisition.Width = 128 + 2 * x_offset;
+//			requisition.Height = 128 + 2 * y_offset;
+//		}
 
 		float? grab_point = null;
 		protected override bool OnButtonPressEvent (EventButton evnt)

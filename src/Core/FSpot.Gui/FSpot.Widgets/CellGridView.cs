@@ -47,11 +47,11 @@ namespace FSpot.Widgets
 
 #region Constructors
 
-        public CellGridView (IntPtr raw) : base (raw)
+        protected CellGridView (IntPtr raw) : base (raw)
         {
         }
 
-        public CellGridView () : base (null, null)
+        protected CellGridView () : base (null, null)
         {
         }
 
@@ -95,19 +95,19 @@ namespace FSpot.Widgets
         /// <summary>
         ///    The number of cells per row (columns).
         /// </summary>
-        protected int cells_per_row;
+        protected int CellsPerRow;
 
         /// <summary>
         ///    The width of each cell. It is set, when the layout is updated. The
         ///    property <see cref="MinCellWidth"/> is only used when the layout is updated.
         /// </summary>
-        protected int cell_width;
+        protected int CellWidth;
 
         /// <summary>
         ///    The height of each cell. It is set, when the layout is updated. The
         ///    property <see cref="MinCellHeight"/> is only used when the layout is updated.
         /// </summary>
-        protected int cell_height;
+        protected int CellHeight;
 
         /// <summary>
         ///    The total number of cells the layout is computed with. It is set, when the
@@ -172,7 +172,7 @@ namespace FSpot.Widgets
         }
 
         public int VisibleColums {
-            get { return cells_per_row; }
+            get { return CellsPerRow; }
         }
 
 #endregion
@@ -196,16 +196,16 @@ namespace FSpot.Widgets
                 || (x < (int)Hadjustment.Value || x > (int)Hadjustment.Value + Allocation.Width)))
                 return -1;
 
-            if (x < border_size || x >= border_size + cells_per_row * cell_width)
+            if (x < border_size || x >= border_size + CellsPerRow * CellWidth)
                 return -1;
 
-            if (y < border_size || y >= border_size + (cell_count / cells_per_row + 1) * cell_height)
+            if (y < border_size || y >= border_size + (cell_count / CellsPerRow + 1) * CellHeight)
                 return -1;
 
-            int column = (int) ((x - border_size) / cell_width);
-            int row = (int) ((y - border_size) / cell_height);
+            int column = (int) ((x - border_size) / CellWidth);
+            int row = (int) ((y - border_size) / CellHeight);
 
-            int cell_num = column + row * cells_per_row;
+            int cell_num = column + row * CellsPerRow;
 
 			return (cell_num >= cell_count) ? -1 : cell_num;
         }
@@ -216,23 +216,23 @@ namespace FSpot.Widgets
             return CellAtPosition (border_size, (int) (Vadjustment.Value + Allocation.Height * (Vadjustment.Value / Vadjustment.Upper)) + border_size + 8);
         }
 
-        public void CellPosition (int cellNum, out int x, out int y)
+		public void CellPosition (int cellNum, out int x, out int y)
         {
             // TODO: compare the values with the ones in GetCellCenter.
-            if (cells_per_row == 0) {
+            if (CellsPerRow == 0) {
                 x = 0;
                 y = 0;
                 return;
             }
 
-            int col = cellNum % cells_per_row;
-            int row = cellNum / cells_per_row;
+            int col = cellNum % CellsPerRow;
+            int row = cellNum / CellsPerRow;
 
-            x = col * cell_width + border_size;
-            y = row * cell_height + border_size;
+            x = col * CellWidth + border_size;
+            y = row * CellHeight + border_size;
         }
 
-        public void CellCenter (int cellNum, out int x, out int y)
+		public void CellCenter (int cellNum, out int x, out int y)
         {
             // TODO: compare the values with the ones in GetCellPosition.
             if (cellNum == -1) {
@@ -242,8 +242,8 @@ namespace FSpot.Widgets
 
             CellPosition (cellNum, out x, out y);
 
-            x += cell_width / 2;
-            y += cell_height / 2;
+            x += CellWidth / 2;
+            y += CellHeight / 2;
         }
 
         public Rectangle CellBounds (int cellNum)
@@ -252,29 +252,29 @@ namespace FSpot.Widgets
 
             CellPosition (cellNum, out bounds.X, out bounds.Y);
 
-            bounds.Width = cell_width;
-            bounds.Height = cell_height;
+            bounds.Width = CellWidth;
+            bounds.Height = CellHeight;
 
             return bounds;
         }
 
         public IEnumerable<int> CellsInRect (Rectangle area)
         {
-            if (cell_width <= 0 || cell_height <= 0) {
+            if (CellWidth <= 0 || CellHeight <= 0) {
                 yield break;
             }
 
-            int start_cell_column = Math.Max (0, (area.X - border_size) / cell_width);
-            int start_cell_row = Math.Max (0, (area.Y - border_size) / cell_height);
+            int start_cell_column = Math.Max (0, (area.X - border_size) / CellWidth);
+            int start_cell_row = Math.Max (0, (area.Y - border_size) / CellHeight);
 
-            int end_cell_column = Math.Max (0, (area.X + area.Width - border_size) / cell_width);
-            int end_cell_row = Math.Max (0, (area.Y + area.Height - border_size) / cell_height);
+            int end_cell_column = Math.Max (0, (area.X + area.Width - border_size) / CellWidth);
+            int end_cell_row = Math.Max (0, (area.Y + area.Height - border_size) / CellHeight);
 
             for (int cell_row = start_cell_row; cell_row <= end_cell_row; cell_row ++) {
 
                 for (int cell_column = start_cell_column; cell_column <= end_cell_column; cell_column ++) {
 
-                    int cell_num = cell_column + cell_row * cells_per_row;
+                    int cell_num = cell_column + cell_row * CellsPerRow;
 
                     if (cell_num < cell_count)
                         yield return cell_num;
@@ -293,13 +293,13 @@ namespace FSpot.Widgets
                 return;
 
             Adjustment adjustment = Vadjustment;
-            int x;
-            int y;
+			int x;
+			int y;
 
             CellPosition (cellNum, out x, out y);
 
             if (center)
-                y += cell_height / 2 - Allocation.Height / 2;
+                y += CellHeight / 2 - Allocation.Height / 2;
 
             // the maximal possible adjustment value
             // (otherwise, we are scrolling to far ...)
@@ -311,19 +311,16 @@ namespace FSpot.Widgets
 
         public void InvalidateCell (int cellNum)
         {
-            Rectangle cell_area = CellBounds (cellNum);
+			Rectangle cell_area = CellBounds (cellNum);
 
             // FIXME where are we computing the bounds incorrectly
             cell_area.Width -= 1;
             cell_area.Height -= 1;
 
-            Rectangle visible =
-                new Rectangle ((int) Hadjustment.Value,
-                                   (int) Vadjustment.Value,
-                                   Allocation.Width,
-                                   Allocation.Height);
+			var visible = new Rectangle ((int)Hadjustment.Value, (int)Vadjustment.Value,
+										 Allocation.Width, Allocation.Height);
 
-            if (BinWindow != null && cell_area.Intersect (visible, out cell_area))
+			if (BinWindow != null && cell_area.Intersect (visible, out cell_area))
                 BinWindow.InvalidateRect (cell_area, false);
         }
 
@@ -351,21 +348,24 @@ namespace FSpot.Widgets
             base.OnSizeAllocated (allocation);
         }
 
-        protected override void OnScrollAdjustmentsSet (Adjustment hadjustment, Adjustment vadjustment)
-        {
-            base.OnScrollAdjustmentsSet (hadjustment, vadjustment);
+		// GTK3
+//        protected override void OnScrollAdjustmentsSet (Adjustment hadjustment, Adjustment vadjustment)
+//        {
+//            base.OnScrollAdjustmentsSet (hadjustment, vadjustment);
+//
+//            if (vadjustment != null)
+//		vadjustment.ValueChanged += HandleAdjustmentValueChanged;
+//        }
 
-            if (vadjustment != null)
-		vadjustment.ValueChanged += HandleAdjustmentValueChanged;
-        }
-
-        protected override bool OnExposeEvent (EventExpose args)
-        {
-            foreach (Rectangle area in args.Region.GetRectangles ()) {
-                DrawAllCells (area);
-            }
-            return base.OnExposeEvent (args);
-        }
+		// GTK3
+//		protected override bool OnDrawn (Cairo.Context cr)
+//		{
+////			foreach (Rectangle area in args.Region.GetRectangles ()) {
+////				DrawAllCells (area);
+////			}
+//
+//			return base.OnDrawn (cr);
+//		}
 
         void UpdateLayout ()
         {
@@ -375,29 +375,29 @@ namespace FSpot.Widgets
         void UpdateLayout (Rectangle allocation)
         {
             // get the basic values for the layout ...
-            cell_width = MinCellWidth;
-            cell_height = MinCellHeight;
+            CellWidth = MinCellWidth;
+            CellHeight = MinCellHeight;
             cell_count = CellCount;
 
             // ... and compute the remaining ones.
             int available_width = allocation.Width - 2 * border_size;
             int available_height = allocation.Height - 2 * border_size;
 
-            cells_per_row = Math.Max ((int) (available_width / cell_width), 1);
+            CellsPerRow = Math.Max ((int) (available_width / CellWidth), 1);
             if (MaxColumns > 0)
-                cells_per_row = Math.Min (MaxColumns, cells_per_row);
+                CellsPerRow = Math.Min (MaxColumns, CellsPerRow);
 
-            cell_width += (available_width - cells_per_row * cell_width) / cells_per_row;
+            CellWidth += (available_width - CellsPerRow * CellWidth) / CellsPerRow;
 
-            displayed_rows = (int) Math.Max (available_height / cell_height, 1);
+            displayed_rows = (int) Math.Max (available_height / CellHeight, 1);
 
-            total_rows = cell_count / cells_per_row;
-            if (cell_count % cells_per_row != 0)
+            total_rows = cell_count / CellsPerRow;
+            if (cell_count % CellsPerRow != 0)
                 total_rows ++;
 
-            int height = total_rows * cell_height + 2 * border_size;
+            int height = total_rows * CellHeight + 2 * border_size;
 
-            Vadjustment.StepIncrement = cell_height;
+            Vadjustment.StepIncrement = CellHeight;
             int x = (int)(Hadjustment.Value);
             int y = (int)(height * scroll_value);
             SetSize (x, y, (int) allocation.Width, (int) height);
@@ -465,9 +465,10 @@ namespace FSpot.Widgets
             else
                 ystep = Math.Min (ystep, -Allocation.Height);
 
-            Rectangle area;
+			Cairo.RectangleInt area;
 
-            Gdk.Region offscreen = new Gdk.Region ();
+			// GTK3: This needs some more lovin'
+			Cairo.Region offscreen = new Cairo.Region ();
             /*
             Log.Debug ("step ({0}, {1}) allocation ({2},{3},{4},{5})",
                     xstep, ystep, Hadjustment.Value, Vadjustment.Value,
@@ -485,24 +486,25 @@ namespace FSpot.Widgets
                     Allocation.Height);
             offscreen.UnionWithRect (area);
             */
-            area = new Rectangle (Math.Max ((int) (Hadjustment.Value + 2 * xstep), 0),
+			area = new Rectangle (Math.Max ((int) (Hadjustment.Value + 2 * xstep), 0),
                     Math.Max ((int) (Vadjustment.Value + 2 * ystep), 0),
                     Allocation.Width,
-                    Allocation.Height);
-            offscreen.UnionWithRect (area);
+					Allocation.Height) as Cairo.RectangleInt;
+			offscreen.UnionRectangle (area);
             area = new Rectangle (Math.Max ((int) (Hadjustment.Value + xstep), 0),
                     Math.Max ((int) (Vadjustment.Value + ystep), 0),
                     Allocation.Width,
-                    Allocation.Height);
-            offscreen.UnionWithRect (area);
+					Allocation.Height) as Cairo.RectangleInt;
+            offscreen.UnionRectangle (area);
             area = new Rectangle ((int) Hadjustment.Value,
                     (int) Vadjustment.Value,
                     Allocation.Width,
-                    Allocation.Height);
+					Allocation.Height) as Cairo.RectangleInt;
 
             // always load the onscreen area last to make sure it
             // is first in the loading
-            Gdk.Region onscreen = Gdk.Region.Rectangle (area);
+			Cairo.Region onscreen = new Cairo.Region ();
+			onscreen.UnionRectangle (area);
             offscreen.Subtract (onscreen);
 
             PreloadRegion (offscreen, ystep);
@@ -512,29 +514,33 @@ namespace FSpot.Widgets
             x_offset = (int) Hadjustment.Value;
         }
 
-        private void PreloadRegion (Gdk.Region region, int step)
+		void PreloadRegion (Cairo.Region region, int step)
         {
-            Rectangle [] rects = region.GetRectangles ();
+			Cairo.RectangleInt[] rects;
+			for (int i = 0; i < region.NumRectangles; i++)
+			{
+				rects [i] = region.GetRectangle (i);
+			}
 
             if (step < 0)
                 Array.Reverse (rects);
 
-            foreach (Rectangle preload in rects) {
+			foreach (var preload in rects) {
                 Preload (preload, false);
             }
         }
 
-        void Preload (Rectangle area, bool back)
+		void Preload (Cairo.RectangleInt area, bool back)
         {
-            if (cells_per_row ==0)
+            if (CellsPerRow ==0)
                 return;
 
-            int start_cell_column = Math.Max ((area.X - border_size) / cell_width, 0);
-            int start_cell_row = Math.Max ((area.Y - border_size) / cell_height, 0);
-            int start_cell_num = start_cell_column + start_cell_row * cells_per_row;
+            int start_cell_column = Math.Max ((area.X - border_size) / CellWidth, 0);
+            int start_cell_row = Math.Max ((area.Y - border_size) / CellHeight, 0);
+            int start_cell_num = start_cell_column + start_cell_row * CellsPerRow;
 
-            int end_cell_column = Math.Max ((area.X + area.Width - border_size) / cell_width, 0);
-            int end_cell_row = Math.Max ((area.Y + area.Height - border_size) / cell_height, 0);
+            int end_cell_column = Math.Max ((area.X + area.Width - border_size) / CellWidth, 0);
+            int end_cell_row = Math.Max ((area.Y + area.Height - border_size) / CellHeight, 0);
 
             int i;
 
