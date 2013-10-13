@@ -35,7 +35,7 @@ using FSpot.Core;
 
 namespace FSpot
 {
-	public abstract sealed class GroupAdaptor
+	public abstract class GroupAdaptor
 	{
 		protected PhotoQuery query;
 		public PhotoQuery Query {

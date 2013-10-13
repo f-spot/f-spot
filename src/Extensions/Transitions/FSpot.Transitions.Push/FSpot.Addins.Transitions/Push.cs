@@ -46,7 +46,8 @@ namespace FSpot.Addins.Transitions
 		{
 		}
 
-		protected override void Draw (Context cr, Pixbuf prev, Pixbuf next, int width, int height, double progress)
+		// GTK3: Minus override
+		protected void Draw (Context cr, Pixbuf prev, Pixbuf next, int width, int height, double progress)
 		{
 			cr.Color = new Color (0, 0, 0);
 			if (prev != null) {

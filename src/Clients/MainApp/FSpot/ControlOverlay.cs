@@ -237,19 +237,20 @@ namespace FSpot
 //			bitmap.Dispose ();
 		}
 
-		protected override bool OnDrawn (Context cr)
-		{
-			Gdk.Color c = Style.Background (State);
-
-			ShapeSurface (cr, new Color (c.Red / (double) ushort.MaxValue,
-				c.Blue / (double) ushort.MaxValue,
-				c.Green / (double) ushort.MaxValue,
-				0.8));
-
-			cr.Dispose ();
-
-			return base.OnDrawn (cr);
-		}
+		// GTK3: OnDrawn?
+//		protected override bool OnDrawn (Context cr)
+//		{
+//			Gdk.Color c = Style.Background (State);
+//
+//			ShapeSurface (cr, new Color (c.Red / (double) ushort.MaxValue,
+//				c.Blue / (double) ushort.MaxValue,
+//				c.Green / (double) ushort.MaxValue,
+//				0.8));
+//
+//			cr.Dispose ();
+//
+//			return base.OnDrawn (cr);
+//		}
 
 		protected override bool OnMotionNotifyEvent (Gdk.EventMotion args)
 		{
@@ -301,7 +302,8 @@ namespace FSpot
 
 		protected override void OnRealized ()
 		{
-			composited = Screen.IsComposited && CompositeUtils.SetRgbaVisual (this);
+			// GTK3 screen/visual
+			composited = Screen.IsComposited && Visual != null;
 			AppPaintable = composited;
 
 			base.OnRealized ();

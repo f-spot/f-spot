@@ -126,16 +126,17 @@ namespace FSpot.Widgets
             base.DrawPhoto (cell_num, cell_area, expose_area, Selection.Contains (cell_num), (FocusCell == cell_num));
         }
 
-        protected override bool OnExposeEvent (Gdk.EventExpose args)
-        {
-            bool ret = base.OnExposeEvent (args);
-
-            foreach (Rectangle area in args.Region.GetRectangles ()) {
-                DrawSelection (area);
-            }
-
-            return ret;
-        }
+		// GTK3: OnExposeEvent
+//        protected override bool OnExposeEvent (Gdk.EventExpose args)
+//        {
+//            bool ret = base.OnExposeEvent (args);
+//
+//            foreach (Rectangle area in args.Region.GetRectangles ()) {
+//                DrawSelection (area);
+//            }
+//
+//            return ret;
+//        }
 
         private void DrawSelection (Rectangle expose_area)
         {
@@ -146,15 +147,16 @@ namespace FSpot.Widgets
             if ( ! expose_area.Intersect (rect_select, out region))
                 return;
 
+			// GTK3: Cairo Context Create
             // draw selection
-            using (Cairo.Context cairo_g = CairoHelper.Create (BinWindow)) {
-
-                Gdk.Color color = Style.Background(StateType.Selected);
-                cairo_g.Color = new Cairo.Color (color.Red/65535.0, color.Green/65535.0, color.Blue/65535.0, 0.5);
-                cairo_g.Rectangle (region.X, region.Y, region.Width, region.Height);
-                cairo_g.Fill ();
-
-            }
+//            using (Cairo.Context cairo_g = CairoHelper.Create (BinWindow)) {
+//
+//                Gdk.Color color = Style.Background(StateType.Selected);
+//                cairo_g.Color = new Cairo.Color (color.Red/65535.0, color.Green/65535.0, color.Blue/65535.0, 0.5);
+//                cairo_g.Rectangle (region.X, region.Y, region.Width, region.Height);
+//                cairo_g.Fill ();
+//
+//            }
 
             //((IDisposable) cairo_g.Target).Dispose ();
             //((IDisposable) cairo_g).Dispose ();
@@ -293,12 +295,13 @@ namespace FSpot.Widgets
             selection_end = GetPointer ();
             var new_selection = BoundedRectangle (selection_start, selection_end);
 
+			// GTK3: Cairo Region Rectangle
             // determine region to invalidate
-            var region = Region.Rectangle (old_selection);
-            region.Xor (Region.Rectangle (new_selection));
-            region.Shrink (-1, -1);
+//			var region = Cairo.Region.Rectangle (old_selection);
+//            region.Xor (Region.Rectangle (new_selection));
+//            region.Shrink (-1, -1);
 
-            BinWindow.InvalidateRegion (region, true);
+//            BinWindow.InvalidateRegion (region, true);
 
             rect_select = new_selection;
             UpdateRubberbandSelection ();

@@ -155,7 +155,8 @@ namespace FSpot.Exporters.Folder
 			else
 				uri_chooser.SetFilename (uri_path);
 
-			chooser_hbox.PackStart (uri_chooser);
+			// GTK3: PackStart
+//			chooser_hbox.PackStart (uri_chooser);
 
 			Dialog.ShowAll ();
 			Dialog.Response += HandleResponse;

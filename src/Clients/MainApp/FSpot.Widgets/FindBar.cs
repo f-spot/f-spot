@@ -114,13 +114,14 @@ namespace FSpot.Widgets {
 
 			//int start = args.Position - args.Length;
 
-			for (int i = 0; i < args.Text.Length; i++) {
-				char c = args.Text [i];
-				if (c == '(')
-					open_parens++;
-				else if (c == ')')
-					close_parens++;
-			}
+			// GTK3: TextInsertedArgs
+//			for (int i = 0; i < args.Text.Length; i++) {
+//				char c = args.Text [i];
+//				if (c == '(')
+//					open_parens++;
+//				else if (c == ')')
+//					close_parens++;
+//			}
 
 			int pos = entry.Position + 1;
 			int close_parens_needed = open_parens - close_parens;

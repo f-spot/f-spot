@@ -148,7 +148,7 @@ namespace FSpot.Widgets
 
 		protected override void OnRealized ()
 		{
-			use_shape_ext = ! (Screen.IsComposited && CompositeUtils.SetRgbaVisual (this));
+			use_shape_ext = ! (Screen.IsComposited && Visual != null);
 
 			base.OnRealized ();
 			ShapeWindow ();
@@ -229,9 +229,10 @@ namespace FSpot.Widgets
 				//ShapeCombineMask (bitmap, 0, 0);
 			}
 			else {
-				Context rgba = new Context (GdkWindow);
-				DrawShape (rgba, Allocation.Width, Allocation.Height);
-				rgba.Dispose ();
+				// GTK3: Cairo Draw
+//				Context rgba = new Context (GdkWindow);
+//				DrawShape (rgba, Allocation.Width, Allocation.Height);
+//				rgba.Dispose ();
 				try {
 //					ShapeCombineMask (this, bitmap, 0,0);
 				} catch (EntryPointNotFoundException) {
@@ -241,8 +242,8 @@ namespace FSpot.Widgets
 //			bitmap.Dispose ();
 		}
 
-		readonly Gdk.Point Center;
-		readonly Requisition Bounds;
+		Gdk.Point Center;
+		Requisition Bounds;
 
 		public void Layout ()
 		{
@@ -319,16 +320,18 @@ namespace FSpot.Widgets
 			}
 		}
 
-		protected override bool OnExposeEvent (EventExpose args)
-		{
-			Context g = new Context(GdkWindow);
 
-			DrawShape (g, Allocation.Width, Allocation.Height);
-			//base.OnExposeEvent (args);
-			g.Dispose ();
-			return false;
-
-		}
+		// GTK3: OnExposeEvent
+//		protected override bool OnExposeEvent (EventExpose args)
+//		{
+//			Context g = new Context(GdkWindow);
+//
+//			DrawShape (g, Allocation.Width, Allocation.Height);
+//			//base.OnExposeEvent (args);
+//			g.Dispose ();
+//			return false;
+//
+//		}
 
 		bool dragging = false;
 		bool rotate = false;
@@ -481,11 +484,12 @@ namespace FSpot.Widgets
 			return widget;
 		}
 
-		protected override void OnSizeRequested (ref Requisition requisition)
-		{
-			Layout ();
-			requisition = Bounds;
-		}
+		// GTK3: OnSizeRequested
+//		protected override void OnSizeRequested (ref Requisition requisition)
+//		{
+//			Layout ();
+//			requisition = Bounds;
+//		}
 
 		protected virtual void BuildUI ()
 		{

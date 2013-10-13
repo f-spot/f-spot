@@ -234,24 +234,25 @@ namespace FSpot.Widgets
 			animation = new DoubleAnimation (0, 0, TimeSpan.FromSeconds (1.5), SetPositionCore, new CubicEase (EasingMode.EaseOut));
 		}
 
+		// GTK3: OnSizeRequested
 		int min_length = 400;
 		int min_height = 200;
-		protected override void OnSizeRequested (ref Gtk.Requisition requisition)
-		{
-			base.OnSizeRequested (ref requisition);
-			requisition.Width = (Orientation == Orientation.Horizontal ? min_length : BackgroundTile.Width) + 2 * x_offset;
-			requisition.Height = (Orientation == Orientation.Vertical ? min_height : BackgroundTile.Height) + 2 * y_offset;
-			switch (Orientation) {
-			case Orientation.Horizontal:
-				if (min_length % BackgroundTile.Width != 0)
-					requisition.Width += BackgroundTile.Width - min_length % BackgroundTile.Width;
-				break;
-			case Orientation.Vertical:
-				if (min_height % BackgroundTile.Height != 0)
-					requisition.Height += BackgroundTile.Height - min_height % BackgroundTile.Height;
-				break;
-			}
-		}
+//		protected override void OnSizeRequested (ref Gtk.Requisition requisition)
+//		{
+//			base.OnSizeRequested (ref requisition);
+//			requisition.Width = (Orientation == Orientation.Horizontal ? min_length : BackgroundTile.Width) + 2 * x_offset;
+//			requisition.Height = (Orientation == Orientation.Vertical ? min_height : BackgroundTile.Height) + 2 * y_offset;
+//			switch (Orientation) {
+//			case Orientation.Horizontal:
+//				if (min_length % BackgroundTile.Width != 0)
+//					requisition.Width += BackgroundTile.Width - min_length % BackgroundTile.Width;
+//				break;
+//			case Orientation.Vertical:
+//				if (min_height % BackgroundTile.Height != 0)
+//					requisition.Height += BackgroundTile.Height - min_height % BackgroundTile.Height;
+//				break;
+//			}
+//		}
 
 		Pixbuf background_pixbuf;
 		protected Pixbuf BackgroundPixbuf {
@@ -304,98 +305,99 @@ namespace FSpot.Widgets
 			}
 		}
 
+		// GTK3 OnExposeEvent
 		Dictionary<int,int> start_indexes;
 		int filmstrip_start_pos;
 		int filmstrip_end_pos;
-		protected override bool OnExposeEvent (EventExpose evnt)
-		{
-			if (evnt.Window != GdkWindow)
-				return true;
-
-			if (selection.Collection.Count == 0)
-				return true;
-
-			if (Orientation == Orientation.Horizontal && (extendable && Allocation.Width >= BackgroundPixbuf.Width + (2 * x_offset) + BackgroundTile.Width) ||
-				Orientation == Orientation.Vertical && (extendable && Allocation.Height >= BackgroundPixbuf.Height + (2 * y_offset) + BackgroundTile.Height) )
-				BackgroundPixbuf = null;
-
-			if ( Orientation == Orientation.Horizontal && (extendable && Allocation.Width < BackgroundPixbuf.Width + (2 * x_offset) ) ||
-				Orientation == Orientation.Vertical && ( extendable && Allocation.Height < BackgroundPixbuf.Height + (2 * y_offset) ))
-				BackgroundPixbuf = null;
-
-			int xpad = 0, ypad = 0;
-			if (Allocation.Width > BackgroundPixbuf.Width + (2 * x_offset))
-				xpad = (int) (x_align * (Allocation.Width - (BackgroundPixbuf.Width + (2 * x_offset))));
-
-			if (Allocation.Height > BackgroundPixbuf.Height + (2 * y_offset))
-				ypad = (int) (y_align * (Allocation.Height - (BackgroundPixbuf.Height + (2 * y_offset))));
-
-			GdkWindow.DrawPixbuf (Style.BackgroundGC (StateType.Normal), BackgroundPixbuf,
-					0, 0, x_offset + xpad, y_offset + ypad,
-					BackgroundPixbuf.Width, BackgroundPixbuf.Height, Gdk.RgbDither.None, 0, 0);
-
-			//drawing the icons...
-			start_indexes = new Dictionary<int, int> ();
-
-			Pixbuf icon_pixbuf = null;
-			if (Orientation == Orientation.Horizontal)
-				icon_pixbuf = new Pixbuf (Gdk.Colorspace.Rgb, true, 8, BackgroundPixbuf.Width, thumb_size);
-			else if (Orientation == Orientation.Vertical)
-				icon_pixbuf = new Pixbuf (Gdk.Colorspace.Rgb, true, 8, thumb_size, BackgroundPixbuf.Height);
-			icon_pixbuf.Fill (0x00000000);
-
-			Pixbuf current = GetPixbuf ((int) Math.Round (Position));
-			int ref_x = (int)(icon_pixbuf.Width / 2.0 - current.Width * (Position + 0.5f - Math.Round (Position))); //xpos of the reference icon
-			int ref_y = (int)(icon_pixbuf.Height / 2.0 - current.Height * (Position + 0.5f - Math.Round (Position)));
-
-			int start_x = Orientation == Orientation.Horizontal ? ref_x : 0;
-			int start_y = Orientation == Orientation.Vertical ? ref_y : 0;
-			for (int i = (int) Math.Round (Position); i < selection.Collection.Count; i++) {
-				current = GetPixbuf (i, ActiveItem == i);
-				if (Orientation == Orientation.Horizontal) {
-					current.CopyArea (0, 0, Math.Min (current.Width, icon_pixbuf.Width - start_x) , current.Height, icon_pixbuf, start_x, start_y);
-					start_indexes [start_x] = i;
-					start_x += current.Width + spacing;
-					if (start_x > icon_pixbuf.Width)
-						break;
-				} else if (Orientation == Orientation.Vertical) {
-					current.CopyArea (0, 0, current.Width, Math.Min (current.Height, icon_pixbuf.Height - start_y), icon_pixbuf, start_x, start_y);
-					start_indexes [start_y] = i;
-					start_y += current.Height + spacing;
-					if (start_y > icon_pixbuf.Height)
-						break;
-				}
-			}
-			filmstrip_end_pos = (Orientation == Orientation.Horizontal ? start_x : start_y);
-
-			start_x = Orientation == Orientation.Horizontal ? ref_x : 0;
-			start_y = Orientation == Orientation.Vertical ? ref_y : 0;
-			for (int i = (int) Math.Round (Position) - 1; i >= 0; i--) {
-				current = GetPixbuf (i, ActiveItem == i);
-				if (Orientation == Orientation.Horizontal) {
-					start_x -= (current.Width + spacing);
-					current.CopyArea (Math.Max (0, -start_x), 0, Math.Min (current.Width, current.Width + start_x), current.Height, icon_pixbuf, Math.Max (start_x, 0), 0);
-					start_indexes [Math.Max (0, start_x)] = i;
-					if (start_x < 0)
-						break;
-				} else if (Orientation == Orientation.Vertical) {
-					start_y -= (current.Height + spacing);
-					current.CopyArea (0, Math.Max (0, -start_y), current.Width, Math.Min (current.Height, current.Height + start_y), icon_pixbuf, 0, Math.Max (start_y, 0));
-					start_indexes [Math.Max (0, start_y)] = i;
-					if (start_y < 0)
-						break;
-				}
-			}
-			filmstrip_start_pos = Orientation == Orientation.Horizontal ? start_x : start_y;
-
-			GdkWindow.DrawPixbuf (Style.BackgroundGC (StateType.Normal), icon_pixbuf,
-					0, 0, x_offset + xpad, y_offset + ypad + thumb_offset,
-					icon_pixbuf.Width, icon_pixbuf.Height, Gdk.RgbDither.None, 0, 0);
-
-			icon_pixbuf.Dispose ();
-
-			return true;
-		}
+//		protected override bool OnExposeEvent (EventExpose evnt)
+//		{
+//			if (evnt.Window != GdkWindow)
+//				return true;
+//
+//			if (selection.Collection.Count == 0)
+//				return true;
+//
+//			if (Orientation == Orientation.Horizontal && (extendable && Allocation.Width >= BackgroundPixbuf.Width + (2 * x_offset) + BackgroundTile.Width) ||
+//				Orientation == Orientation.Vertical && (extendable && Allocation.Height >= BackgroundPixbuf.Height + (2 * y_offset) + BackgroundTile.Height) )
+//				BackgroundPixbuf = null;
+//
+//			if ( Orientation == Orientation.Horizontal && (extendable && Allocation.Width < BackgroundPixbuf.Width + (2 * x_offset) ) ||
+//				Orientation == Orientation.Vertical && ( extendable && Allocation.Height < BackgroundPixbuf.Height + (2 * y_offset) ))
+//				BackgroundPixbuf = null;
+//
+//			int xpad = 0, ypad = 0;
+//			if (Allocation.Width > BackgroundPixbuf.Width + (2 * x_offset))
+//				xpad = (int) (x_align * (Allocation.Width - (BackgroundPixbuf.Width + (2 * x_offset))));
+//
+//			if (Allocation.Height > BackgroundPixbuf.Height + (2 * y_offset))
+//				ypad = (int) (y_align * (Allocation.Height - (BackgroundPixbuf.Height + (2 * y_offset))));
+//
+//			GdkWindow.DrawPixbuf (Style.BackgroundGC (StateType.Normal), BackgroundPixbuf,
+//					0, 0, x_offset + xpad, y_offset + ypad,
+//					BackgroundPixbuf.Width, BackgroundPixbuf.Height, Gdk.RgbDither.None, 0, 0);
+//
+//			//drawing the icons...
+//			start_indexes = new Dictionary<int, int> ();
+//
+//			Pixbuf icon_pixbuf = null;
+//			if (Orientation == Orientation.Horizontal)
+//				icon_pixbuf = new Pixbuf (Gdk.Colorspace.Rgb, true, 8, BackgroundPixbuf.Width, thumb_size);
+//			else if (Orientation == Orientation.Vertical)
+//				icon_pixbuf = new Pixbuf (Gdk.Colorspace.Rgb, true, 8, thumb_size, BackgroundPixbuf.Height);
+//			icon_pixbuf.Fill (0x00000000);
+//
+//			Pixbuf current = GetPixbuf ((int) Math.Round (Position));
+//			int ref_x = (int)(icon_pixbuf.Width / 2.0 - current.Width * (Position + 0.5f - Math.Round (Position))); //xpos of the reference icon
+//			int ref_y = (int)(icon_pixbuf.Height / 2.0 - current.Height * (Position + 0.5f - Math.Round (Position)));
+//
+//			int start_x = Orientation == Orientation.Horizontal ? ref_x : 0;
+//			int start_y = Orientation == Orientation.Vertical ? ref_y : 0;
+//			for (int i = (int) Math.Round (Position); i < selection.Collection.Count; i++) {
+//				current = GetPixbuf (i, ActiveItem == i);
+//				if (Orientation == Orientation.Horizontal) {
+//					current.CopyArea (0, 0, Math.Min (current.Width, icon_pixbuf.Width - start_x) , current.Height, icon_pixbuf, start_x, start_y);
+//					start_indexes [start_x] = i;
+//					start_x += current.Width + spacing;
+//					if (start_x > icon_pixbuf.Width)
+//						break;
+//				} else if (Orientation == Orientation.Vertical) {
+//					current.CopyArea (0, 0, current.Width, Math.Min (current.Height, icon_pixbuf.Height - start_y), icon_pixbuf, start_x, start_y);
+//					start_indexes [start_y] = i;
+//					start_y += current.Height + spacing;
+//					if (start_y > icon_pixbuf.Height)
+//						break;
+//				}
+//			}
+//			filmstrip_end_pos = (Orientation == Orientation.Horizontal ? start_x : start_y);
+//
+//			start_x = Orientation == Orientation.Horizontal ? ref_x : 0;
+//			start_y = Orientation == Orientation.Vertical ? ref_y : 0;
+//			for (int i = (int) Math.Round (Position) - 1; i >= 0; i--) {
+//				current = GetPixbuf (i, ActiveItem == i);
+//				if (Orientation == Orientation.Horizontal) {
+//					start_x -= (current.Width + spacing);
+//					current.CopyArea (Math.Max (0, -start_x), 0, Math.Min (current.Width, current.Width + start_x), current.Height, icon_pixbuf, Math.Max (start_x, 0), 0);
+//					start_indexes [Math.Max (0, start_x)] = i;
+//					if (start_x < 0)
+//						break;
+//				} else if (Orientation == Orientation.Vertical) {
+//					start_y -= (current.Height + spacing);
+//					current.CopyArea (0, Math.Max (0, -start_y), current.Width, Math.Min (current.Height, current.Height + start_y), icon_pixbuf, 0, Math.Max (start_y, 0));
+//					start_indexes [Math.Max (0, start_y)] = i;
+//					if (start_y < 0)
+//						break;
+//				}
+//			}
+//			filmstrip_start_pos = Orientation == Orientation.Horizontal ? start_x : start_y;
+//
+//			GdkWindow.DrawPixbuf (Style.BackgroundGC (StateType.Normal), icon_pixbuf,
+//					0, 0, x_offset + xpad, y_offset + ypad + thumb_offset,
+//					icon_pixbuf.Width, icon_pixbuf.Height, Gdk.RgbDither.None, 0, 0);
+//
+//			icon_pixbuf.Dispose ();
+//
+//			return true;
+//		}
 
 		protected override bool OnScrollEvent (EventScroll args)
 		{
@@ -596,7 +598,7 @@ namespace FSpot.Widgets
 			Dispose (false);
 		}
 
-		public override void Dispose ()
+		public void Dispose ()
 		{
 			Dispose (true);
 			base.Dispose ();

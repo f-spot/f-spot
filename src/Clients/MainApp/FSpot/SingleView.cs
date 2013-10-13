@@ -102,7 +102,8 @@ namespace FSpot {
 			LoadPreference (Preferences.VIEWER_MAXIMIZED);
 
 			Toolbar toolbar = new Toolbar ();
-			toolbar_hbox.PackStart (toolbar);
+			// GTK3: PackStart
+//			toolbar_hbox.PackStart (toolbar);
 
 			rl_button = GtkUtil.ToolButtonFromTheme ("object-rotate-left", Catalog.GetString ("Rotate Left"), true);
 			rl_button.Clicked += HandleRotate270Command;

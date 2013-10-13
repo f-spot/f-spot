@@ -54,8 +54,8 @@ namespace FSpot.Loaders {
 			//and enable it if needed.
 			foreach (Gdk.PixbufFormat format in Gdk.Pixbuf.Formats)
 				if (format.Name == "xcf") {
-					if (format.IsDisabled)
-						format.SetDisabled (false);
+					if (format.Disabled)
+						format.Disabled = false;
 					name_table [".xcf"] = typeof (GdkImageLoader);
 				}
 		}

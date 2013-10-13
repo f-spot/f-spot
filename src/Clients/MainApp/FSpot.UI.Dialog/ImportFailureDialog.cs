@@ -87,17 +87,18 @@ namespace FSpot.UI.Dialog
             //     inner_vbox   5 => total = 12
             //     ActionArea   5 => total = 12
             BorderWidth = 5;
-            base.VBox.BorderWidth = 0;
 
-            // This spacing is 2 b/c the inner_vbox and ActionArea should be
-            // 12 apart, and they already have BorderWidth 5 each
-            base.VBox.Spacing = 2;
-
-            inner_vbox = new VBox () { Spacing = 12, BorderWidth = 5, Visible = true };
-            base.VBox.PackStart (inner_vbox, true, true, 0);
+			// GTK3: base.VBox
+//            base.VBox.BorderWidth = 0;
+//
+//            // This spacing is 2 b/c the inner_vbox and ActionArea should be
+//            // 12 apart, and they already have BorderWidth 5 each
+//            base.VBox.Spacing = 2;
+//
+//            inner_vbox = new VBox () { Spacing = 12, BorderWidth = 5, Visible = true };
+//            base.VBox.PackStart (inner_vbox, true, true, 0);
 
             Visible = false;
-            HasSeparator = false;
 
             var table = new Table (3, 2, false) {
                 RowSpacing = 12,
@@ -137,9 +138,10 @@ namespace FSpot.UI.Dialog
                 0, 0);
             details_expander.Add (scrolled_window);
 
-            VBox.PackStart (table, true, true, 0);
-            VBox.Spacing = 12;
-            VBox.ShowAll ();
+			// GTK3: PackStart
+//            VBox.PackStart (table, true, true, 0);
+//            VBox.Spacing = 12;
+//            VBox.ShowAll ();
 
             accel_group = new AccelGroup ();
             AddAccelGroup (accel_group);

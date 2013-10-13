@@ -169,7 +169,8 @@ namespace FSpot.Widgets
 			    || info == (uint)DragDropTargets.TargetType.UriList
 			    || info == (uint)DragDropTargets.TargetType.PlainText) {
 
-				selection_data.SetUriListData (SelectedUris, context.Targets[0]);
+				// GTK3: context.Targets
+//				selection_data.SetUriListData (SelectedUris, context.Targets[0]);
 				return;
 			}
 		}

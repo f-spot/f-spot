@@ -378,7 +378,7 @@ namespace FSpot
 			Dispose (false);
 		}
 
-		public override void Dispose ()
+		public void Dispose ()
 		{
 			Dispose (true);
 			base.Dispose ();

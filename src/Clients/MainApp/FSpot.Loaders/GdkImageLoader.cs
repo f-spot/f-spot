@@ -45,10 +45,6 @@ namespace FSpot.Loaders
 	public class GdkImageLoader : Gdk.PixbufLoader, IImageLoader
 	{
 #region public api
-		public GdkImageLoader () : base ()
-		{
-		}
-
 		~GdkImageLoader ()
 		{
 			if (!is_disposed) {
@@ -124,7 +120,7 @@ namespace FSpot.Loaders
 
 		bool is_disposed = false;
 
-		public override void Dispose ()
+		public void Dispose ()
 		{
 			is_disposed = true;
 			if (image_stream != null) {

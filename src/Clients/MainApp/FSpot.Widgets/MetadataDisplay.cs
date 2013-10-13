@@ -100,7 +100,8 @@ namespace FSpot.Widgets {
 			BorderWidth = 3;
 
 			display = State.message;
-			ExposeEvent += HandleExposeEvent;
+//			 GTK3: Expose Evnt
+//			ExposeEvent += HandleExposeEvent;
 
 			open_list = new List<string> ();
 
@@ -148,12 +149,13 @@ namespace FSpot.Widgets {
 			}
 		}
 
-		private void HandleExposeEvent (object sender, ExposeEventArgs args)
-		{
-			if (!up_to_date) {
-				update_delay.Start ();
-			}
-		}
+		// GTK3 ExposeEvent
+//		private void HandleExposeEvent (object sender, ExposeEventArgs args)
+//		{
+//			if (!up_to_date) {
+//				update_delay.Start ();
+//			}
+//		}
 
 		internal void HandleSelectionChanged (IBrowsableCollection collection) {
             // Don't show metadata when multiple photos are selected.

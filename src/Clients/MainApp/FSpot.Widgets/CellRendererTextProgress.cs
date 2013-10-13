@@ -127,7 +127,7 @@ namespace FSpot.Widgets
 			return red;
 		}
 
-		public override void GetSize (Gtk.Widget widget, ref Gdk.Rectangle cell_area, out int x_offset, out int y_offset, out int width, out int height)
+		public void GetSize (Gtk.Widget widget, ref Gdk.Rectangle cell_area, out int x_offset, out int y_offset, out int width, out int height)
 		{
 			if (text_layout == null)
 				UpdateLayout (widget);
@@ -143,63 +143,64 @@ namespace FSpot.Widgets
 			y_offset = Math.Max ((int) (Yalign * (cell_area.Height - height)), 0);
 		}
 
-		protected override void Render (Gdk.Drawable window, Gtk.Widget widget, Gdk.Rectangle background_area, Gdk.Rectangle cell_area, Gdk.Rectangle expose_area, Gtk.CellRendererState flags)
-		{
-			base.Render (window, widget, background_area, cell_area, expose_area, flags);
-
-			if (text_layout == null)
-				UpdateLayout (widget);
-
-			int x, y, width, height, text_width, text_height;
-
-			/* first render the text */
-			text_layout.GetPixelSize (out text_width, out text_height);
-
-			x  = (int) (cell_area.X + Xpad + Math.Max ((int) (Xalign * (cell_area.Width - 2 * Xpad - text_width)), 0));
-			y  = (int) (cell_area.Y + Ypad);
-
-			Style.PaintLayout (widget.Style,
-			                   window,
-			                   StateType.Normal,
-			                   true,
-			                   cell_area,
-			                   widget,
-			                   "cellrenderertextprogress",
-			                   x, y,
-			                   text_layout);
-
-			y += (int) (text_height + Ypad);
-			x  = (int) (cell_area.X + Xpad + Math.Max ((int) (Xalign * (cell_area.Width - 2 * Xpad - progress_width)), 0));
-
-
-			/* second render the progress bar */
-			using (Cairo.Context cairo_context = Gdk.CairoHelper.Create (window)) {
-
-				width = progress_width;
-				height = progress_height;
-
-				cairo_context.Rectangle (x, y, width, height);
-				Gdk.CairoHelper.SetSourceColor (cairo_context, widget.Style.Dark (StateType.Normal));
-				cairo_context.Fill ();
-
-				x += widget.Style.XThickness;
-				y += widget.Style.XThickness;
-				width -= 2* widget.Style.XThickness;
-				height -= 2 * widget.Style.Ythickness;
-
-				cairo_context.Rectangle (x, y, width, height);
-				Gdk.CairoHelper.SetSourceColor (cairo_context, widget.Style.Light (StateType.Normal));
-				cairo_context.Fill ();
-
-				/* scale the value and ensure, that at least one pixel is drawn, if the value is greater than zero */
-				int scaled_width =
-					(int) Math.Max (((progress_value * width) / 100.0),
-					                (progress_value == 0)? 0 : 1);
-
-				cairo_context.Rectangle (x, y, scaled_width, height);
-				Gdk.CairoHelper.SetSourceColor (cairo_context, GetValueColor ());
-				cairo_context.Fill ();
-			}
-		}
+		// GTK3: Gdk.Drawable
+//		protected override void Render (Gdk.Drawable window, Gtk.Widget widget, Gdk.Rectangle background_area, Gdk.Rectangle cell_area, Gdk.Rectangle expose_area, Gtk.CellRendererState flags)
+//		{
+//			base.Render (window, widget, background_area, cell_area, expose_area, flags);
+//
+//			if (text_layout == null)
+//				UpdateLayout (widget);
+//
+//			int x, y, width, height, text_width, text_height;
+//
+//			/* first render the text */
+//			text_layout.GetPixelSize (out text_width, out text_height);
+//
+//			x  = (int) (cell_area.X + Xpad + Math.Max ((int) (Xalign * (cell_area.Width - 2 * Xpad - text_width)), 0));
+//			y  = (int) (cell_area.Y + Ypad);
+//
+//			Style.PaintLayout (widget.Style,
+//			                   window,
+//			                   StateType.Normal,
+//			                   true,
+//			                   cell_area,
+//			                   widget,
+//			                   "cellrenderertextprogress",
+//			                   x, y,
+//			                   text_layout);
+//
+//			y += (int) (text_height + Ypad);
+//			x  = (int) (cell_area.X + Xpad + Math.Max ((int) (Xalign * (cell_area.Width - 2 * Xpad - progress_width)), 0));
+//
+//
+//			/* second render the progress bar */
+//			using (Cairo.Context cairo_context = Gdk.CairoHelper.Create (window)) {
+//
+//				width = progress_width;
+//				height = progress_height;
+//
+//				cairo_context.Rectangle (x, y, width, height);
+//				Gdk.CairoHelper.SetSourceColor (cairo_context, widget.Style.Dark (StateType.Normal));
+//				cairo_context.Fill ();
+//
+//				x += widget.Style.XThickness;
+//				y += widget.Style.XThickness;
+//				width -= 2* widget.Style.XThickness;
+//				height -= 2 * widget.Style.Ythickness;
+//
+//				cairo_context.Rectangle (x, y, width, height);
+//				Gdk.CairoHelper.SetSourceColor (cairo_context, widget.Style.Light (StateType.Normal));
+//				cairo_context.Fill ();
+//
+//				/* scale the value and ensure, that at least one pixel is drawn, if the value is greater than zero */
+//				int scaled_width =
+//					(int) Math.Max (((progress_value * width) / 100.0),
+//					                (progress_value == 0)? 0 : 1);
+//
+//				cairo_context.Rectangle (x, y, scaled_width, height);
+//				Gdk.CairoHelper.SetSourceColor (cairo_context, GetValueColor ());
+//				cairo_context.Fill ();
+//			}
+//		}
 	}
 }

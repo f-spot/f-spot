@@ -65,7 +65,8 @@ namespace FSpot.Widgets {
 
 		public ImageInfo (ImageInfo info, Widget w, Gdk.Rectangle bounds)
 		{
-			Cairo.Surface similar = CairoUtils.CreateSurface (w.GdkWindow);
+			// GTK3: Cairo Surfaces
+			Cairo.Surface similar = new ImageSurface (Format.A1, bounds.Width, bounds.Height);// CairoUtils.CreateSurface (w.GdkWindow);
 			Bounds = bounds;
 			Surface = similar.CreateSimilar (Content.ColorAlpha, Bounds.Width, Bounds.Height);
 			Context ctx = new Context (Surface);
@@ -74,7 +75,7 @@ namespace FSpot.Widgets {
 			Pattern p = new SurfacePattern (info.Surface);
 			ctx.Source = p;
 			ctx.Paint ();
-			((IDisposable)ctx).Dispose ();
+			ctx.Dispose ();
 			p.Destroy ();
 		}
 

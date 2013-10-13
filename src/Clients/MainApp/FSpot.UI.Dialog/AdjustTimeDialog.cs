@@ -57,7 +57,7 @@ namespace FSpot.UI.Dialog
 		[Builder.Object] Label name_label;
 		[Builder.Object] Label old_label;
 		[Builder.Object] Label count_label;
-		[Builder.Object] Gnome.DateEdit date_edit;
+		// GTK3: GNOME lib //	[Builder.Object] Gnome.DateEdit date_edit;
 		[Builder.Object] Frame tray_frame;
 		[Builder.Object] Entry offset_entry;
 		[Builder.Object] CheckButton difference_check;
@@ -101,12 +101,13 @@ namespace FSpot.UI.Dialog
 			photo_spin.Adjustment.StepIncrement = 1.0;
 			photo_spin.Wrap = true;
 
-			date_edit.TimeChanged += HandleTimeChanged;
-			date_edit.DateChanged += HandleTimeChanged;
-			Gtk.Entry entry = (Gtk.Entry) date_edit.Children [0];
-			entry.Changed += HandleTimeChanged;
-			entry = (Gtk.Entry) date_edit.Children [2];
-			entry.Changed += HandleTimeChanged;
+			// GTK3: Old gnome lib
+//			date_edit.TimeChanged += HandleTimeChanged;
+//			date_edit.DateChanged += HandleTimeChanged;
+//			Gtk.Entry entry = (Gtk.Entry) date_edit.Children [0];
+//			entry.Changed += HandleTimeChanged;
+//			entry = (Gtk.Entry) date_edit.Children [2];
+//			entry.Changed += HandleTimeChanged;
 			offset_entry.Changed += HandleOffsetChanged;
 			ShowAll ();
 			HandleCollectionChanged (collection);
@@ -118,17 +119,17 @@ namespace FSpot.UI.Dialog
 		}
 
 		DateTime EditTime {
-			get { return date_edit.Time - gnome_dateedit_sucks; }
+			get { return new DateTime(); }//date_edit.Time - gnome_dateedit_sucks; }
 		}
 
 		TimeSpan Offset
 		{
 			get {
-				Log.DebugFormat ("{0} - {1} = {2}", date_edit.Time, item.Current.Time, date_edit.Time - item.Current.Time);
+//				Log.DebugFormat ("{0} - {1} = {2}", date_edit.Time, item.Current.Time, date_edit.Time - item.Current.Time);
 				return EditTime - item.Current.Time;
 			}
 			set {
-				date_edit.Time = item.Current.Time - gnome_dateedit_sucks + value;
+//				date_edit.Time = item.Current.Time - gnome_dateedit_sucks + value;
 			}
 		}
 
@@ -160,8 +161,8 @@ namespace FSpot.UI.Dialog
 				count_label.Text = System.String.Format (Catalog.GetString ("{0} of {1}"), i, collection.Count);
 
 				DateTime actual = curr_item.Time;
-				date_edit.Time = actual;
-				gnome_dateedit_sucks = date_edit.Time - actual;
+//				date_edit.Time = actual;
+//				gnome_dateedit_sucks = date_edit.Time - actual;
 			}
 			HandleTimeChanged (this, System.EventArgs.Empty);
 

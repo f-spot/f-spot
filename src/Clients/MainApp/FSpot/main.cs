@@ -176,6 +176,7 @@ namespace FSpot
 			Paths.ApplicationName = "f-spot";
 			ThreadAssist.InitializeMainThread ();
 			ThreadAssist.ProxyToMainHandler = RunIdle;
+			// GTK: CRITICAL
 			XdgThumbnailSpec.DefaultLoader = (uri) => {
 				using (var file = ImageFile.Create (uri))
 					return file.Load ();

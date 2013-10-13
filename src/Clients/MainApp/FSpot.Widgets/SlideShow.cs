@@ -174,13 +174,14 @@ namespace FSpot.Widgets
 #endregion
 
 #region Gtk Widgetry
-		protected override bool OnDrawn (Cairo.Context cr)
-		{
-			lock (sync_handle) {
-				transition.Draw (cr, prev, next, Allocation.Width, Allocation.Height, progress);
-			}
-			return base.OnDrawn (cr);
-		}
+		// GTK3: OnDrawn
+//		protected override bool OnDrawn (Cairo.Context cr)
+//		{
+//			lock (sync_handle) {
+//				transition.Draw (cr, prev, next, Allocation.Width, Allocation.Height, progress);
+//			}
+//			return base.OnDrawn (cr);
+//		}
 
 		protected override void OnDestroyed ()
 		{

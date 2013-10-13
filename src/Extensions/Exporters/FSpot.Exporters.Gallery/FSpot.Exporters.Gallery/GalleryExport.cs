@@ -58,14 +58,15 @@ namespace FSpot.Exporters.Gallery
 			builder.Autoconnect (this);
 			export_dialog = new Gtk.Dialog (builder.GetRawObject ("gallery_export_dialog"));
 
+			// GTK3: PackStart
 			album_optionmenu = new ComboBoxText ();
-			(album_button.Parent as HBox).PackStart (album_optionmenu);
-			(album_button.Parent as HBox).ReorderChild (album_optionmenu, 1);
+//			(album_button.Parent as HBox).PackStart (album_optionmenu);
+//			(album_button.Parent as HBox).ReorderChild (album_optionmenu, 1);
 			album_optionmenu.Show ();
 
 			gallery_optionmenu = new ComboBoxText ();
-			(edit_button.Parent as HBox).PackStart (gallery_optionmenu);
-			(edit_button.Parent as HBox).ReorderChild (gallery_optionmenu, 1);
+//			(edit_button.Parent as HBox).PackStart (gallery_optionmenu);
+//			(edit_button.Parent as HBox).ReorderChild (gallery_optionmenu, 1);
 			gallery_optionmenu.Show ();
 
 			items = selection.Items;

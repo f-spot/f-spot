@@ -265,7 +265,8 @@ namespace FSpot
 			pagesetup_menu_item.Activated += HandlePageSetupActivated;
 
 			toolbar = new Toolbar ();
-			toolbar_vbox.PackStart (toolbar);
+			// GTK3: PackStart
+//			toolbar_vbox.PackStart (toolbar);
 
 			ToolButton import_button = GtkUtil.ToolButtonFromTheme ("gtk-add", Catalog.GetString ("Import Photos…"), true);
 			import_button.Clicked += (o, args) => StartImport (null);
@@ -1075,7 +1076,7 @@ namespace FSpot
 			}
 
 			if (args.Info == DragDropTargets.PhotoListEntry.Info) {
-				args.SelectionData.SetPhotosData (SelectedPhotos (), args.Context.ListTargets[0]);
+				args.SelectionData.SetPhotosData (SelectedPhotos (), args.Context.ListTargets()[0]);
 				return;
 			}
 

@@ -35,16 +35,14 @@ namespace FSpot.Transitions
 {
 	public abstract class SlideShowTransition
 	{
-		public SlideShowTransition (string name)
+		protected SlideShowTransition (string name)
 		{
-			this.name = name;
+			Name = name;
 		}
 
-		string name;
-		public string Name {
-			get { return name; }
-		}
+		public string Name { get; private set; }
 
-		public abstract void Draw (Cairo.Context cr, Pixbuf prev, Pixbuf next, int width, int height, double progress);
+		// GTK3: 
+		//public abstract void Draw (Cairo.Context cr, Pixbuf prev, Pixbuf next, int width, int height, double progress);
 	}
 }

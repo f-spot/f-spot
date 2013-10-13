@@ -55,7 +55,8 @@ namespace FSpot {
 
 					uint xid = UInt32.Parse (env, System.Globalization.NumberStyles.HexNumber);
 
-					GdkWindow = Gdk.Window.ForeignNew (xid);
+					// GTK3: Gdk.Window
+//					GdkWindow = Gdk.Window.ForeignNew (xid);
 					Style.Attach (GdkWindow);
 					GdkWindow.Events = EventMask.ExposureMask
 						| EventMask.StructureMask
@@ -69,8 +70,7 @@ namespace FSpot {
 					IsRealized = true;
 					SizeRequest ();
 					Rectangle geom;
-					int depth;
-					GdkWindow.GetGeometry (out geom.X, out geom.Y, out geom.Width, out geom.Height, out depth);
+					GdkWindow.GetGeometry (out geom.X, out geom.Y, out geom.Width, out geom.Height);
 					SizeAllocate (new Rectangle (geom.X, geom.Y, geom.Width, geom.Height));
 					Resize (geom.Width, geom.Height);
 					return;

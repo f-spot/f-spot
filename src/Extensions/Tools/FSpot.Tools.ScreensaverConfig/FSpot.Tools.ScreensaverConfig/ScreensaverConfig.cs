@@ -77,11 +77,12 @@ namespace FSpot.Tools.ScreensaverConfig
 				delay_adjustment.ValueChanged += HandleDelayChanged;
 				
 				tag_button = new MenuButton ();
-				tag_button.SizeRequested += delegate (object sender, SizeRequestedArgs args) {
-					var req = args.Requisition;
-					req.Width += 100;
-					args.Requisition = req;
-				};
+				// GTK3: SizeRequested
+//				tag_button.SizeRequested += delegate (object sender, SizeRequestedArgs args) {
+//					var req = args.Requisition;
+//					req.Width += 100;
+//					args.Requisition = req;
+//				};
 				TagMenu menu = new TagMenu (null, App.Instance.Database.Tags);
 				menu.Populate (false);
 				menu.TagSelected += HandleTagSelected;

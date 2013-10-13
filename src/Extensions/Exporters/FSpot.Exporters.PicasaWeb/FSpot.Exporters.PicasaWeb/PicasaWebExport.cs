@@ -69,10 +69,11 @@ namespace FSpot.Exporters.PicasaWeb
 			gallery_optionmenu = ComboBoxText.NewWithEntry ();
 			album_optionmenu = ComboBoxText.NewWithEntry ();
 
-			(edit_button.Parent as Gtk.HBox).PackStart (gallery_optionmenu);
-			(album_button.Parent as Gtk.HBox).PackStart (album_optionmenu);
-			(edit_button.Parent as Gtk.HBox).ReorderChild (gallery_optionmenu, 1);
-			(album_button.Parent as Gtk.HBox).ReorderChild (album_optionmenu, 1);
+			// GTK3: PackStart
+//			(edit_button.Parent as Gtk.HBox).PackStart (gallery_optionmenu);
+//			(album_button.Parent as Gtk.HBox).PackStart (album_optionmenu);
+//			(edit_button.Parent as Gtk.HBox).ReorderChild (gallery_optionmenu, 1);
+//			(album_button.Parent as Gtk.HBox).ReorderChild (album_optionmenu, 1);
 		
 			gallery_optionmenu.Show ();
 			album_optionmenu.Show ();

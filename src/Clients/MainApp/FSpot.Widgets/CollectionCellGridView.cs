@@ -339,20 +339,22 @@ namespace FSpot.Widgets
 
             StateType cell_state = selected ? (HasFocus ? StateType.Selected : StateType.Active) : State;
 
-            if (cell_state != State)
-                Style.PaintBox (Style, BinWindow, cell_state,
-                    ShadowType.Out, expose_area, this, "IconView",
-                    cell_area.X, cell_area.Y,
-                    cell_area.Width - 1, cell_area.Height - 1);
-
+			// GTK3: Style
+//            if (cell_state != State)
+//                Style.PaintBox (Style, BinWindow, cell_state,
+//                    ShadowType.Out, expose_area, this, "IconView",
+//                    cell_area.X, cell_area.Y,
+//                    cell_area.Width - 1, cell_area.Height - 1);
+//
             Gdk.Rectangle focus = Gdk.Rectangle.Inflate (cell_area, -3, -3);
 
             if (HasFocus && focussed) {
-                Style.PaintFocus(Style, BinWindow,
-                        cell_state, expose_area,
-                        this, null,
-                        focus.X, focus.Y,
-                        focus.Width, focus.Height);
+				// GTK3: Style
+//                Style.PaintFocus(Style, BinWindow,
+//                        cell_state, expose_area,
+//                        this, null,
+//                        focus.X, focus.Y,
+//                        focus.Width, focus.Height);
             }
 
             Gdk.Rectangle region = Gdk.Rectangle.Zero;
@@ -413,13 +415,14 @@ namespace FSpot.Widgets
 
                 draw = Gdk.Rectangle.Inflate (region, 1, 1);
 
-                if (!temp_thumbnail.HasAlpha)
-                    Style.PaintShadow (Style, BinWindow, cell_state,
-                        ShadowType.Out, expose_area, this,
-                        "IconView",
-                        draw.X, draw.Y,
-                        draw.Width, draw.Height);
-
+				if (!temp_thumbnail.HasAlpha)
+					;// GTK3: Style
+//                    Style.PaintShadow (Style, BinWindow, cell_state,
+//                        ShadowType.Out, expose_area, this,
+//                        "IconView",
+//                        draw.X, draw.Y,
+//                        draw.Width, draw.Height);
+//
                 if (region.Intersect (expose_area, out draw)) {
                     Cms.Profile screen_profile;
                     if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile)) {
@@ -428,13 +431,14 @@ namespace FSpot.Widgets
                         temp_thumbnail = t;
                         FSpot.ColorManagement.ApplyProfile (temp_thumbnail, screen_profile);
                     }
-                    temp_thumbnail.RenderToDrawable (BinWindow, Style.WhiteGC,
-                            draw.X - region.X,
-                            draw.Y - region.Y,
-                            draw.X, draw.Y,
-                            draw.Width, draw.Height,
-                            RgbDither.None,
-                            draw.X, draw.Y);
+					// GTK3: RenderToDrawable
+//                    temp_thumbnail.RenderToDrawable (BinWindow, Style.WhiteGC,
+//                            draw.X - region.X,
+//                            draw.Y - region.Y,
+//                            draw.X, draw.Y,
+//                            draw.Width, draw.Height,
+//                            RgbDither.None,
+//                            draw.X, draw.Y);
                 }
 
                 if (temp_thumbnail != thumbnail) {
@@ -447,9 +451,10 @@ namespace FSpot.Widgets
                 thumbnail.Dispose ();
             }
 
+			// GTK3: Render
             // Render Decorations
             if (DisplayRatings && region.X == draw.X && region.X != 0) {
-                rating_renderer.Render (BinWindow, this, region, expose_area, cell_state, photo);
+//                rating_renderer.Render (BinWindow, this, region, expose_area, cell_state, photo);
             }
 
             // Render Captions
@@ -458,23 +463,24 @@ namespace FSpot.Widgets
             caption_area.X = cell_area.X + CELL_BORDER_WIDTH;
             caption_area.Width = cell_area.Width - 2 * CELL_BORDER_WIDTH;
 
+			// GTK3: Render
             if (DisplayDates) {
                 caption_area.Height = date_renderer.GetHeight (this, ThumbnailWidth);
-                date_renderer.Render (BinWindow, this, caption_area, expose_area, cell_state, photo);
+//                date_renderer.Render (BinWindow, this, caption_area, expose_area, cell_state, photo);
 
                 caption_area.Y += caption_area.Height;
             }
 
             if (DisplayFilenames) {
                 caption_area.Height = filename_renderer.GetHeight (this, ThumbnailWidth);
-                filename_renderer.Render (BinWindow, this, caption_area, expose_area, cell_state, photo);
+//                filename_renderer.Render (BinWindow, this, caption_area, expose_area, cell_state, photo);
 
                 caption_area.Y += caption_area.Height;
             }
 
             if (DisplayTags) {
                 caption_area.Height = tag_renderer.GetHeight (this, ThumbnailWidth);
-                tag_renderer.Render (BinWindow, this, caption_area, expose_area, cell_state, photo);
+//                tag_renderer.Render (BinWindow, this, caption_area, expose_area, cell_state, photo);
 
                 caption_area.Y += caption_area.Height;
             }

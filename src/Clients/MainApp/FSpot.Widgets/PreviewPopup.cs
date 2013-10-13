@@ -97,34 +97,34 @@ namespace FSpot
 
 		protected override void OnRealized ()
 		{
-			bool composited = CompositeUtils.IsComposited (Screen) && CompositeUtils.SetRgbaVisual (this);
+			bool composited = Screen.IsComposited && Visual != null;
 			AppPaintable = composited;
 			base.OnRealized ();
 		}
 
-
-		protected override bool OnExposeEvent (Gdk.EventExpose args)
-		{
-			int round = 12;
-			Context g = Gdk.CairoHelper.Create (GdkWindow);
-			g.Operator = Operator.Source;
-			g.Source = new SolidPattern (new Cairo.Color (0, 0, 0, 0));
-			g.Paint ();
-			g.Operator = Operator.Over;
-			g.Source = new SolidPattern (new Cairo.Color (0, 0, 0, .7));
-			g.MoveTo (round, 0);
-			//g.LineTo (Allocation.Width - round, 0);
-			g.Arc (Allocation.Width - round, round, round, - Math.PI * 0.5, 0);
-			//g.LineTo (Allocation.Width, Allocation.Height - round);
-			g.Arc (Allocation.Width - round, Allocation.Height - round, round, 0, Math.PI * 0.5);
-			//g.LineTo (round, Allocation.Height);
-			g.Arc (round, Allocation.Height - round, round, Math.PI * 0.5, Math.PI);
-			g.Arc (round, round, round, Math.PI, Math.PI * 1.5);
-			g.ClosePath ();
-			g.Fill ();
-			((IDisposable)g).Dispose ();
-			return base.OnExposeEvent (args);
-		}
+		// GTK3: OnExposeEvent
+//		protected override bool OnExposeEvent (Gdk.EventExpose args)
+//		{
+//			int round = 12;
+//			Context g = Gdk.CairoHelper.Create (GdkWindow);
+//			g.Operator = Operator.Source;
+//			g.Source = new SolidPattern (new Cairo.Color (0, 0, 0, 0));
+//			g.Paint ();
+//			g.Operator = Operator.Over;
+//			g.Source = new SolidPattern (new Cairo.Color (0, 0, 0, .7));
+//			g.MoveTo (round, 0);
+//			//g.LineTo (Allocation.Width - round, 0);
+//			g.Arc (Allocation.Width - round, round, round, - Math.PI * 0.5, 0);
+//			//g.LineTo (Allocation.Width, Allocation.Height - round);
+//			g.Arc (Allocation.Width - round, Allocation.Height - round, round, 0, Math.PI * 0.5);
+//			//g.LineTo (round, Allocation.Height);
+//			g.Arc (round, Allocation.Height - round, round, Math.PI * 0.5, Math.PI);
+//			g.Arc (round, round, round, Math.PI, Math.PI * 1.5);
+//			g.ClosePath ();
+//			g.Fill ();
+//			((IDisposable)g).Dispose ();
+//			return base.OnExposeEvent (args);
+//		}
 
 		private void UpdateImage ()
 		{

@@ -41,22 +41,15 @@ namespace FSpot.Widgets
     public abstract class ThumbnailDecorationRenderer
     {
 
-#region Constructor
-
-        public ThumbnailDecorationRenderer ()
-        {
-        }
-
-#endregion
-
 #region Drawing Methods
 
-        public abstract void Render (Drawable window,
-                                     Widget widget,
-                                     Rectangle cell_area,
-                                     Rectangle expose_area,
-                                     StateType cell_state,
-                                     IPhoto photo);
+		// GTK3: Drawable
+//        public abstract void Render (Drawable window,
+//                                     Widget widget,
+//                                     Rectangle cell_area,
+//                                     Rectangle expose_area,
+//                                     StateType cell_state,
+//                                     IPhoto photo);
 
 #endregion
 

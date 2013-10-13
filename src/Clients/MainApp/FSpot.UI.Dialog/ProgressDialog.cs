@@ -60,11 +60,12 @@ namespace FSpot.UI.Dialog
 			BorderWidth = 6;
 			SetDefaultSize (300, -1);
 
+			// GTK3: PackStart
 			Message = new Label (String.Empty);
-			VBox.PackStart (Message, true, true, 12);
+//			VBox.PackStart (Message, true, true, 12);
 
 			Bar = new ProgressBar ();
-			VBox.PackStart (Bar, true, true, 6);
+//			VBox.PackStart (Bar, true, true, 6);
 
 			switch (cancelButtonType) {
 			case CancelButtonType.Cancel:

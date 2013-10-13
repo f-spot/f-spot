@@ -83,10 +83,10 @@ namespace FSpot.Exporters.CD
 		}
 
 		//FIXME: rewrite this as a Filter
-	        public static GLib.File UniqueName (System.Uri path, string shortname)
+		public static GLib.IFile UniqueName (System.Uri path, string shortname)
 	        {
 	                int i = 1;
-			GLib.File dest = FileFactory.NewForUri (new System.Uri (path, shortname));
+			GLib.IFile dest = FileFactory.NewForUri (new System.Uri (path, shortname));
 	                while (dest.Exists) {
 	                        string numbered_name = System.String.Format ("{0}-{1}{2}",
 	                                                              System.IO.Path.GetFileNameWithoutExtension (shortname),
@@ -101,7 +101,7 @@ namespace FSpot.Exporters.CD
 
 		void Clean (System.Uri path)
 		{
-			GLib.File source = FileFactory.NewForUri (path);
+			GLib.IFile source = FileFactory.NewForUri (path);
 			foreach (GLib.FileInfo info in source.EnumerateChildren ("*", FileQueryInfoFlags.None, null)) {
 				if (info.FileType == FileType.Directory)
 					Clean (new System.Uri(path, info.Name + "/"));
@@ -121,8 +121,8 @@ namespace FSpot.Exporters.CD
 
 					//FIXME need to implement the uniquename as a filter
 					using (FilterRequest request = new FilterRequest (photo.DefaultVersion.Uri)) {
-						GLib.File source = FileFactory.NewForUri (request.Current.ToString ());
-						GLib.File target = UniqueName (dest, photo.Name);
+						GLib.IFile source = FileFactory.NewForUri (request.Current.ToString ());
+						GLib.IFile target = UniqueName (dest, photo.Name);
 						FileProgressCallback cb = Progress;
 
 						progress_dialog.Message = System.String.Format (Catalog.GetString ("Transferring picture \"{0}\" To CD"), photo.Name);

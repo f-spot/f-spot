@@ -44,7 +44,7 @@ namespace FSpot.Widgets
 
 		public Layout (Adjustment hadjustment, Adjustment vadjustment)
 		{
-			OnSetScrollAdjustments (hadjustment, vadjustment);
+//			OnSetScrollAdjustments (hadjustment, vadjustment);
 			children = new List<LayoutChild> ();
 		}
 
@@ -53,16 +53,19 @@ namespace FSpot.Widgets
 			get { return bin_window; }
 		}
 
+		// GTK3: OnSetScrollAdjustment
 		Adjustment hadjustment;
 		public Adjustment Hadjustment {
 			get { return hadjustment; }
-			set { OnSetScrollAdjustments (hadjustment, Vadjustment); }
+			set { }
+//			set { OnSetScrollAdjustments (hadjustment, Vadjustment); }
 		}
 
+		// GTK3: OnSetScrollAdjustment
 		Adjustment vadjustment;
 		public Adjustment Vadjustment {
 			get { return vadjustment; }
-			set { OnSetScrollAdjustments (Hadjustment, vadjustment); }
+//			set { OnSetScrollAdjustments (Hadjustment, vadjustment); }
 		}
 
 		uint width = 100;

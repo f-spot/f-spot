@@ -40,6 +40,7 @@ using FSpot.Database;
 using FSpot.Utils;
 using FSpot.Widgets;
 using Hyena.Widgets;
+using System.Linq;
 
 namespace FSpot
 {
@@ -629,7 +630,7 @@ namespace FSpot
 		void HandleDragDataGet (object sender, DragDataGetArgs args)
 		{
 			if (args.Info == DragDropTargets.TagListEntry.Info) {
-				args.SelectionData.SetTagsData (TagHighlight, args.Context.Targets [0]);
+				args.SelectionData.SetTagsData (TagHighlight, args.Context.ListTargets ()[0]);
 			}
 		}
 
@@ -648,7 +649,7 @@ namespace FSpot
 				return;
 
 			// Tags can be dropped before, after, or into another tag
-			if (args.Context.Targets [0].Name == "application/x-fspot-tags") {
+			if (args.Context.ListTargets()[0].Name == "application/x-fspot-tags") {
 				Gdk.Rectangle rect = GetCellArea (path, Columns [0]);
 				double vpos = Math.Abs (rect.Y - args.Y) / (double)rect.Height;
 				if (vpos < 0.2) {

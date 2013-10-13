@@ -465,7 +465,7 @@ namespace FSpot.Widgets
             else
                 ystep = Math.Min (ystep, -Allocation.Height);
 
-			Cairo.RectangleInt area;
+			Cairo.RectangleInt area = new Cairo.RectangleInt();
 
 			// GTK3: This needs some more lovin'
 			Cairo.Region offscreen = new Cairo.Region ();
@@ -486,20 +486,20 @@ namespace FSpot.Widgets
                     Allocation.Height);
             offscreen.UnionWithRect (area);
             */
-			area = new Rectangle (Math.Max ((int) (Hadjustment.Value + 2 * xstep), 0),
-                    Math.Max ((int) (Vadjustment.Value + 2 * ystep), 0),
-                    Allocation.Width,
-					Allocation.Height) as Cairo.RectangleInt;
-			offscreen.UnionRectangle (area);
-            area = new Rectangle (Math.Max ((int) (Hadjustment.Value + xstep), 0),
-                    Math.Max ((int) (Vadjustment.Value + ystep), 0),
-                    Allocation.Width,
-					Allocation.Height) as Cairo.RectangleInt;
-            offscreen.UnionRectangle (area);
-            area = new Rectangle ((int) Hadjustment.Value,
-                    (int) Vadjustment.Value,
-                    Allocation.Width,
-					Allocation.Height) as Cairo.RectangleInt;
+//			area = new Cairo.RectangleInt (Math.Max ((int) (Hadjustment.Value + 2 * xstep), 0),
+//                    Math.Max ((int) (Vadjustment.Value + 2 * ystep), 0),
+//                    Allocation.Width,
+//				Allocation.Height) as Cairo.RectangleInt;
+//			offscreen.UnionRectangle (area);
+//            area = new Rectangle (Math.Max ((int) (Hadjustment.Value + xstep), 0),
+//                    Math.Max ((int) (Vadjustment.Value + ystep), 0),
+//                    Allocation.Width,
+//					Allocation.Height) as Cairo.RectangleInt;
+//            offscreen.UnionRectangle (area);
+//            area = new Rectangle ((int) Hadjustment.Value,
+//                    (int) Vadjustment.Value,
+//                    Allocation.Width,
+//					Allocation.Height) as Cairo.RectangleInt;
 
             // always load the onscreen area last to make sure it
             // is first in the loading
@@ -516,7 +516,7 @@ namespace FSpot.Widgets
 
 		void PreloadRegion (Cairo.Region region, int step)
         {
-			Cairo.RectangleInt[] rects;
+			Cairo.RectangleInt[] rects = {};
 			for (int i = 0; i < region.NumRectangles; i++)
 			{
 				rects [i] = region.GetRectangle (i);

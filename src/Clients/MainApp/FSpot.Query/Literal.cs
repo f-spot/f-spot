@@ -386,7 +386,7 @@ namespace FSpot.Query
 
 				// FIXME: do really write data
 				Byte [] data = Encoding.UTF8.GetBytes (String.Empty);
-				Atom [] targets = args.Context.Targets;
+				Atom [] targets = args.Context.ListTargets();
 
 				args.SelectionData.Set (targets [0], 8, data, data.Length);
 

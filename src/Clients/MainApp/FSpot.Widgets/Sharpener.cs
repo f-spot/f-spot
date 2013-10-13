@@ -155,7 +155,8 @@ namespace FSpot.Widgets
 			dialog = new Gtk.Dialog (title, (Gtk.Window)this,
 						 DialogFlags.DestroyWithParent, new object [0]);
 			dialog.BorderWidth = 12;
-			dialog.VBox.Spacing = 6;
+			// GTK3: VBox
+//			dialog.VBox.Spacing = 6;
 
 			Gtk.Table table = new Gtk.Table (3, 2, false);
 			table.ColumnSpacing = 6;
@@ -193,7 +194,8 @@ namespace FSpot.Widgets
 			Destroyed += HandleLoupeDestroyed;
 
 			table.ShowAll ();
-			dialog.VBox.PackStart (table);
+			// GTK3: VBox
+//			dialog.VBox.PackStart (table);
 			dialog.ShowAll ();
 		}
 

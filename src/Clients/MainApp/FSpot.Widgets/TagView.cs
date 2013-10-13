@@ -85,20 +85,21 @@ public class TagView : EventBox {
 		}
 	}
 
-	protected override bool OnExposeEvent (Gdk.EventExpose args)
-	{
-		if (photo != null)
-			tags = photo.Tags;
-
-		if (tags == null || HideTags) {
-			SetSizeRequest(0,thumbnail_size);
-			return base.OnExposeEvent (args);
-		}
-
-		DrawTags();
-
-		return base.OnExposeEvent (args);
-	}
+		// GTK3: OnExposeEvent
+//	protected override bool OnExposeEvent (Gdk.EventExpose args)
+//	{
+//		if (photo != null)
+//			tags = photo.Tags;
+//
+//		if (tags == null || HideTags) {
+//			SetSizeRequest(0,thumbnail_size);
+//			return base.OnExposeEvent (args);
+//		}
+//
+//		DrawTags();
+//
+//		return base.OnExposeEvent (args);
+//	}
 
 	public void DrawTags()
 	{
@@ -137,9 +138,10 @@ public class TagView : EventBox {
 				if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile))
 					FSpot.ColorManagement.ApplyProfile (scaled_icon, screen_profile);
 
-			scaled_icon.RenderToDrawable (GdkWindow, Style.WhiteGC,
-						      0, 0, tag_x, tag_y, thumbnail_size, thumbnail_size,
-						      RgbDither.None, tag_x, tag_y);
+				// GTK3: RenderToDrawable
+//			scaled_icon.RenderToDrawable (GdkWindow, Style.WhiteGC,
+//						      0, 0, tag_x, tag_y, thumbnail_size, thumbnail_size,
+//						      RgbDither.None, tag_x, tag_y);
 			tag_x += thumbnail_size + TAG_ICON_VSPACING;
 		}
 

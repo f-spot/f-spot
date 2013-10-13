@@ -423,7 +423,7 @@ namespace FSpot
 			attr.Y = action.Y;
 			attr.Width = action.Width;
 			attr.Height = action.Height;
-			attr.Wclass = WindowClass.InputOnly;
+			attr.Wclass = WindowWindowClass.InputOnly;
 			attr.EventMask = (int) Events;
 			attr.EventMask |= (int) (EventMask.ButtonPressMask |
 						 EventMask.KeyPressMask |
@@ -504,11 +504,12 @@ namespace FSpot
 			Box box = new Box (this, item);
 			Rectangle bar = box.Bar;
 
+			// GTK3: DrawRectangle
 			if (bar.Intersect (area, out area)) {
 				if (item < min_limit.Position || item > max_limit.Position) {
-					GdkWindow.DrawRectangle (Style.BackgroundGC (StateType.Active), true, area);
-				} else {
-					GdkWindow.DrawRectangle (Style.BaseGC (StateType.Selected), true, area);
+//					GdkWindow.DrawRectangle (Style.BackgroundGC (StateType.Active), true, area);
+//				} else {
+//					GdkWindow.DrawRectangle (Style.BaseGC (StateType.Selected), true, area);
 				}
 			}
 		}
@@ -536,16 +537,18 @@ namespace FSpot
 					int width, height;
 					layout.GetPixelSize (out width, out height);
 
-					Style.PaintLayout (Style, GdkWindow, State, true, area, this,
-						   "GroupSelector:Tick", tick.X + 3, tick.Y + tick.Height, layout);
+					// GTK3: SytleContext
+//					Style.PaintLayout (Style, GdkWindow, State, true, area, this,
+//						   "GroupSelector:Tick", tick.X + 3, tick.Y + tick.Height, layout);
 				}
 			}
 
 			if (layout == null)
 				tick.Height /= 2;
 
+			// GTK3: DrawRectangle
 			if (tick.Intersect (area, out area)) {
-				GdkWindow.DrawRectangle (Style.ForegroundGC (State), true, area);
+//				GdkWindow.DrawRectangle (Style.ForegroundGC (State), true, area);
 			}
 		}
 
@@ -854,26 +857,27 @@ namespace FSpot
 				while (i < Border) {
 					box.Inflate (1, 1);
 
-					selector.StyleContext.BackgroundGC (State).ClipRectangle = area;
-					selector.GdkWindow.DrawRectangle (selector.Style.BackgroundGC (State),
-									  false, box);
+					// GTK3: Style and DrawRectangle
+//					selector.StyleContext.BackgroundGC (State).ClipRectangle = area;
+//					selector.GdkWindow.DrawRectangle (selector.Style.BackgroundGC (State),
+//									  false, box);
 					i++;
 				}
 
-
-				Style.PaintFlatBox (selector.Style, selector.GdkWindow, State, ShadowType.In,
-						    area, selector, "glass", bounds.X, inner.Y + inner.Height + Border,
-						    bounds.Width, handle_height);
-
-				Style.PaintHandle (selector.Style, selector.GdkWindow, State, ShadowType.In,
-						   area, selector, "glass", bounds.X, inner.Y + inner.Height + Border,
-						   bounds.Width, handle_height, Orientation.Horizontal);
-
-				Style.PaintShadow (selector.Style, selector.GdkWindow, State, ShadowType.Out,
-						   area, selector, null, bounds.X, bounds.Y, bounds.Width, bounds.Height);
-
-				Style.PaintShadow (selector.Style, selector.GdkWindow, State, ShadowType.In,
-						   area, selector, null, inner.X, inner.Y, inner.Width, inner.Height);
+				// GTK3: Style
+//				Style.PaintFlatBox (selector.Style, selector.GdkWindow, State, ShadowType.In,
+//						    area, selector, "glass", bounds.X, inner.Y + inner.Height + Border,
+//						    bounds.Width, handle_height);
+//
+//				Style.PaintHandle (selector.Style, selector.GdkWindow, State, ShadowType.In,
+//						   area, selector, "glass", bounds.X, inner.Y + inner.Height + Border,
+//						   bounds.Width, handle_height, Orientation.Horizontal);
+//
+//				Style.PaintShadow (selector.Style, selector.GdkWindow, State, ShadowType.Out,
+//						   area, selector, null, bounds.X, bounds.Y, bounds.Width, bounds.Height);
+//
+//				Style.PaintShadow (selector.Style, selector.GdkWindow, State, ShadowType.In,
+//						   area, selector, null, inner.X, inner.Y, inner.Width, inner.Height);
 
 			}
 
@@ -927,11 +931,12 @@ namespace FSpot
 								  bounds.Y + bounds.Height - handle_height,
 								  bounds.Width,
 								  handle_height);
-				Style.PaintBox (selector.Style, selector.GdkWindow, State, ShadowType.Out, area,
-						selector, null, top.X, top.Y, top.Width, top.Height);
-
-				Style.PaintBox (selector.Style, selector.GdkWindow, State, ShadowType.Out, area,
-						selector, null, bottom.X, bottom.Y, bottom.Width, bottom.Height);
+				// GTK3: Style
+//				Style.PaintBox (selector.Style, selector.GdkWindow, State, ShadowType.Out, area,
+//						selector, null, top.X, top.Y, top.Width, top.Height);
+//
+//				Style.PaintBox (selector.Style, selector.GdkWindow, State, ShadowType.Out, area,
+//						selector, null, bottom.X, bottom.Y, bottom.Width, bottom.Height);
 			}
 
 			public Limit (GroupSelector selector, LimitType type) : base (selector)
@@ -960,64 +965,66 @@ namespace FSpot
 
 		}
 
-		protected override bool OnExposeEvent (Gdk.EventExpose args)
-		{
-			Rectangle area;
-			//Console.WriteLine ("expose {0}", args.Area);
-			foreach (Rectangle sub in args.Region.GetRectangles ()) {
-				if (sub.Intersect (background, out area)) {
-					Rectangle active = background;
-					int min_x = BoxX (min_limit.Position);
-					int max_x = BoxX (max_limit.Position + 1);
-					active.X = min_x;
-					active.Width = max_x - min_x;
+		// GTK3: OnExposeEvent
+//		protected override bool OnExposeEvent (Gdk.EventExpose args)
+//		{
+//			Rectangle area;
+//			//Console.WriteLine ("expose {0}", args.Area);
+//			foreach (Rectangle sub in args.Region.GetRectangles ()) {
+//				if (sub.Intersect (background, out area)) {
+//					Rectangle active = background;
+//					int min_x = BoxX (min_limit.Position);
+//					int max_x = BoxX (max_limit.Position + 1);
+//					active.X = min_x;
+//					active.Width = max_x - min_x;
+//
+//					if (active.Intersect (area, out active))
+//						GdkWindow.DrawRectangle (Style.BaseGC (State), true, active);
+//
+//					int i;
+//					BoxXHit (area.X, out i);
+//					int end;
+//					BoxXHit (area.X + area.Width, out end);
+//					while (i <= end)
+//						DrawBox (area, i++);
+//				}
+//
+//				Style.PaintShadow (Style, GdkWindow, State, ShadowType.In, area,
+//					this, null, background.X, background.Y,
+//					background.Width, background.Height);
+//
+//				if (sub.Intersect (legend, out area)) {
+//					int i = 0;
+//
+//					while (i < box_counts.Length)
+//						DrawTick (area, i++);
+//				}
+//
+//				if (has_limits) {
+//					if (min_limit != null) {
+//						min_limit.Draw (sub);
+//					}
+//
+//					if (max_limit != null) {
+//						max_limit.Draw (sub);
+//					}
+//				}
+//
+//				if (glass != null) {
+//					glass.Draw (sub);
+//				}
+//			}
+//			return base.OnExposeEvent (args);
+//		}
 
-					if (active.Intersect (area, out active))
-						GdkWindow.DrawRectangle (Style.BaseGC (State), true, active);
-
-					int i;
-					BoxXHit (area.X, out i);
-					int end;
-					BoxXHit (area.X + area.Width, out end);
-					while (i <= end)
-						DrawBox (area, i++);
-				}
-
-				Style.PaintShadow (Style, GdkWindow, State, ShadowType.In, area,
-					this, null, background.X, background.Y,
-					background.Width, background.Height);
-
-				if (sub.Intersect (legend, out area)) {
-					int i = 0;
-
-					while (i < box_counts.Length)
-						DrawTick (area, i++);
-				}
-
-				if (has_limits) {
-					if (min_limit != null) {
-						min_limit.Draw (sub);
-					}
-
-					if (max_limit != null) {
-						max_limit.Draw (sub);
-					}
-				}
-
-				if (glass != null) {
-					glass.Draw (sub);
-				}
-			}
-			return base.OnExposeEvent (args);
-		}
-
-		protected override void OnSizeRequested (ref Requisition requisition)
-		{
-			left.SizeRequest ();
-			right.SizeRequest ();
-			requisition.Width = 500;
-			requisition.Height = (int) (LegendHeight () + glass.handle_height + 3 * border);
-		}
+		// GTK3: OnSizeRequested
+//		protected override void OnSizeRequested (ref Requisition requisition)
+//		{
+//			left.SizeRequest ();
+//			right.SizeRequest ();
+//			requisition.Width = 500;
+//			requisition.Height = (int) (LegendHeight () + glass.handle_height + 3 * border);
+//		}
 
 		// FIXME I can't find a c# wrapper for the C PANGO_PIXELS () macro
 		// So this Function is for that.

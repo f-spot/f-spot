@@ -69,10 +69,11 @@ namespace FSpot.Exporters.SmugMug
 			gallery_optionmenu = ComboBoxText.NewWithEntry ();
 			album_optionmenu = ComboBoxText.NewWithEntry ();
 
-            (edit_button.Parent as HBox).PackStart (gallery_optionmenu);
-            (album_button.Parent as HBox).PackStart (album_optionmenu);
-            (edit_button.Parent as HBox).ReorderChild (gallery_optionmenu, 1);
-            (album_button.Parent as HBox).ReorderChild (album_optionmenu, 1);
+			// GTK3: PackStart
+//            (edit_button.Parent as HBox).PackStart (gallery_optionmenu);
+//            (album_button.Parent as HBox).PackStart (album_optionmenu);
+//            (edit_button.Parent as HBox).ReorderChild (gallery_optionmenu, 1);
+//            (album_button.Parent as HBox).ReorderChild (album_optionmenu, 1);
 
             gallery_optionmenu.Show ();
             album_optionmenu.Show ();

@@ -125,7 +125,8 @@ namespace FSpot.Widgets
 				if (!showIcon)
 					return;
 
-				Image = Gtk.Image.NewFromIconName (app.Icon, IconSize.Menu);
+				// GTK3: App.Icon
+				Image = Gtk.Image.NewFromIconName(app.Icon.ToString (), IconSize.Menu);
 				//this.SetAlwaysShowImage (true);
 			}
 		}

@@ -40,25 +40,17 @@ namespace FSpot.Widgets
     /// </summary>
     public abstract class ThumbnailCaptionRenderer
     {
-
-#region Constructor
-
-        public ThumbnailCaptionRenderer ()
-        {
-        }
-
-#endregion
-
 #region Drawing Methods
 
         public abstract int GetHeight (Widget widget, int width);
 
-        public abstract void Render (Drawable window,
-                                     Widget widget,
-                                     Rectangle cell_area,
-                                     Rectangle expose_area,
-                                     StateType cell_state,
-                                     IPhoto photo);
+		// GTK3: Drawable
+//        public abstract void Render (Drawable window,
+//                                     Widget widget,
+//                                     Rectangle cell_area,
+//                                     Rectangle expose_area,
+//                                     StateType cell_state,
+//                                     IPhoto photo);
 
 #endregion
 

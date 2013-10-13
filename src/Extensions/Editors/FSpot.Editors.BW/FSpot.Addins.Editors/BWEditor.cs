@@ -38,6 +38,7 @@ using Mono.Unix;
 using Mono.Simd;
 
 using Hyena;
+using FSpot.Widgets;
 
 namespace FSpot.Addins.Editors
 {
@@ -73,7 +74,8 @@ namespace FSpot.Addins.Editors
 			Vector4f v_in;
 			Vector4f v_out = new Vector4f (0);
 			float[] fcurve = new float [256];
-			c.GetVector (fcurve.Length, fcurve);
+			// GTK3: GetVector
+//c.GetVector (fcurve.Length, fcurve);
 			byte[] curve = new byte [fcurve.Length];
 			for (int i = 0; i < fcurve.Length; i++)
 				curve[i] = (byte)fcurve[i];

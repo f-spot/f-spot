@@ -74,11 +74,12 @@ namespace FSpot.UI.Dialog
 			BorderWidth = 6;
 			SetDefaultSize (300, -1);
 
+			// GTK3: PackStart
 			message_label = new Label (String.Empty);
-			VBox.PackStart (message_label, true, true, 12);
+//			VBox.PackStart (message_label, true, true, 12);
 
 			progress_bar = new ProgressBar ();
-			VBox.PackStart (progress_bar, true, true, 6);
+//			VBox.PackStart (progress_bar, true, true, 6);
 
 			retry_button = new Button (Mono.Unix.Catalog.GetString ("Retry"));
 			retry_button.Clicked += HandleRetryClicked;
@@ -198,8 +199,9 @@ namespace FSpot.UI.Dialog
 			retry_button.Visible = skip_button.Visible = retry_skip;
 
 			if (widgets != null && widgets.Count > 0) {
-				foreach (var w in widgets)
-					VBox.PackEnd (w);
+				// GTK3: VBox.PackEnd
+//				foreach (var w in widgets)
+//					VBox.PackEnd (w);
 				widgets.Clear ();
 			}
 

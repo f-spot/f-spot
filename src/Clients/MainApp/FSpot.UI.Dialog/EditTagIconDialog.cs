@@ -97,7 +97,8 @@ namespace FSpot.UI.Dialog
 			external_photo_chooser.Filter = new FileFilter();
 			external_photo_chooser.Filter.AddPixbufFormats();
                         external_photo_chooser.LocalOnly = false;
-			external_photo_chooser_hbox.PackStart (external_photo_chooser);
+			// GTK3: PackStart
+//			external_photo_chooser_hbox.PackStart (external_photo_chooser);
 			external_photo_chooser.Show ();
 			external_photo_chooser.SelectionChanged += HandleExternalFileSelectionChanged;
 
