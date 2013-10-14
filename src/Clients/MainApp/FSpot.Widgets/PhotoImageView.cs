@@ -265,6 +265,10 @@ namespace FSpot.Widgets
 
 			if (loader.Pixbuf == null) //FIXME: this test in case the photo was loaded with the direct loader
 				PixbufOrientation = ImageOrientation.TopLeft;
+			else
+			  // Accelerometer was lost, but keep this for future reference:
+			  // PixbufOrientation = Accelerometer.GetViewOrientation (loader.PixbufOrientation);
+			  PixbufOrientation = loader.PixbufOrientation;
 
 			if (Pixbuf == null)
 				LoadErrorImage (null);
