@@ -567,11 +567,11 @@ namespace FSpot.Widgets
 			}
 
 			// Add a four pixel white border around the thumbnail
-			using (Pixbuf whiteBorder = new Pixbuf (Gdk.Colorspace.Rgb, true, 8, current.Width, current.Height)) {
+			// for some reason we cannot use "using" here, it looks like the pixbuf copy is not done properly
+			Pixbuf whiteBorder = new Pixbuf (Gdk.Colorspace.Rgb, true, 8, current.Width, current.Height);
 				whiteBorder.Fill (0);
 				current.CopyArea (1, 1, current.Width - 8, current.Height - 8, whiteBorder, 4, 4);
 				current = whiteBorder;
-			}
 
 			if (!highlighted)
 				return current;
