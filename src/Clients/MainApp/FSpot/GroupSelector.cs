@@ -1135,7 +1135,7 @@ namespace FSpot
 			max_limit.SetPosition(adaptor.Count () - 1, false);
 		}
 
-		public void SetLimitsToDates(DateTime start, DateTime stop)
+		public void SetLimitsToDates(System.DateTime start, System.DateTime stop)
 		{
 			if (((TimeAdaptor)adaptor).OrderAscending) {
 				min_limit.SetPosition(((TimeAdaptor)adaptor).IndexFromDate(start),false);
