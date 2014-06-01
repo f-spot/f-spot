@@ -270,15 +270,15 @@ namespace FSpot.Widgets
 			return base.OnConfigureEvent (evnt);
 		}
 
-		// GTK3: This base class doesn't have this method
-		protected override bool OnDrawn (Context cr)
-		{
-//			surface = new Pixmap (GdkWindow, Allocation.Width, Allocation.Height);
-			surface = new ImageSurface (Format.A1, Allocation.Width, Allocation.Height);
-			Draw ();
-
-			return base.OnDrawn (cr);
-		}
+		// GTK3: OnDrawn --This base class doesn't have this method
+//		protected override bool OnDrawn (Context cr)
+//		{
+////			surface = new Pixmap (GdkWindow, Allocation.Width, Allocation.Height);
+//			surface = new ImageSurface (Format.A1, Allocation.Width, Allocation.Height);
+//			Draw ();
+//
+//			return base.OnDrawn (cr);
+//		}
 
 		Cairo.Point [] Interpolate (int width, int height)
 		{
