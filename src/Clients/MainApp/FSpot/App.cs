@@ -190,7 +190,7 @@ namespace FSpot
 		MainWindow organizer;
 		Db db;
 
-		App (): base (Global.ApplicationID, GLib.ApplicationFlags.FlagsNone)
+		App (): base (Global.ApplicationID, GLib.ApplicationFlags.None)
 		{
 			toplevels = new List<Gtk.Window> ();
 //			if (IsRunning) {
