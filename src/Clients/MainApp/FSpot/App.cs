@@ -303,14 +303,13 @@ namespace FSpot
 				Gtk.HBox hbox = new Gtk.HBox ();
 				Gtk.VBox vbox = new Gtk.VBox ();
 
-				// GTK3: PackStart
-//				outer.PackStart (new Gtk.Label (String.Empty));
-//				outer.PackStart (vbox, false, false, 0);
-//				vbox.PackStart (new Gtk.Label (String.Empty));
-//				vbox.PackStart (hbox, false, false, 0);
-//				hbox.PackStart (new Gtk.Image (Gtk.Stock.DialogWarning, Gtk.IconSize.Dialog),
-//						false, false, 0);
-//				outer.PackStart (new Gtk.Label (String.Empty));
+				outer.PackStart (new Gtk.Label (String.Empty), true, true, 0);
+				outer.PackStart (vbox, false, false, 0);
+				vbox.PackStart (new Gtk.Label (String.Empty), true, true, 0);
+				vbox.PackStart (hbox, false, false, 0);
+				hbox.PackStart (new Gtk.Image (Gtk.Stock.DialogWarning, Gtk.IconSize.Dialog),
+						false, false, 0);
+				outer.PackStart (new Gtk.Label (String.Empty), true, true, 0);
 
 				string msg;
 				string long_msg;
@@ -334,8 +333,7 @@ namespace FSpot
 				long_label.Markup  = String.Format ("<small>{0}</small>", long_msg);
 
 				vbox.PackStart (long_label, false, false, 0);
-				// GTK3: PackStart
-//				vbox.PackStart (new Gtk.Label (String.Empty));
+				vbox.PackStart (new Gtk.Label (String.Empty), true, true, 0);
 
 				window.Add (outer);
 				label.ModifyFg (Gtk.StateType.Normal, new Gdk.Color (127, 127, 127));

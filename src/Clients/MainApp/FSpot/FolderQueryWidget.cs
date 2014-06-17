@@ -72,11 +72,11 @@ namespace FSpot
 			}
 
 			if (length < 4) {
-				// GTK3: PackStart
+
 				foreach (var uri in folder_set.Folders) {
 					Image image = new Image ("gtk-directory", IconSize.Button);
 					image.TooltipText = uri.ToString ();
-//					PackStart (image);
+					PackStart (image, true, true, 0);
 				}
 
 				TooltipText = String.Empty;
