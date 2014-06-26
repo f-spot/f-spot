@@ -50,8 +50,8 @@ namespace FSpot.Widgets
 
 		public ImageView (Adjustment hadjustment, Adjustment vadjustment, bool canSelect)
 		{
-			// GTK3: https://developer.gnome.org/gtk3/stable/ch24s02.html#id-1.6.3.4.3
-//			OnSetScrollAdjustments (hadjustment, vadjustment);
+			// GTK3: https://developer.gnome.org/gtk3/stable/ch24s02.html#id-1.6.3.4.14
+			OnSetScrollAdjustments (hadjustment, vadjustment);
 			AdjustmentsChanged += ScrollToAdjustments;
 			HasWindow &= !HasWindow;
 			CanFocus = true;
@@ -428,32 +428,32 @@ namespace FSpot.Widgets
 //			return base.OnDrawn (cr);
 //		}
 
-		// GTK3: https://developer.gnome.org/gtk3/stable/ch24s02.html#id-1.6.3.4.3
-//		protected override void OnSetScrollAdjustments (Adjustment hadjustment, Adjustment vadjustment)
-//		{
-//			if (hadjustment == null)
-//				hadjustment = new Adjustment (0, 0, 0, 0, 0, 0);
-//			if (vadjustment == null)
-//				vadjustment = new Adjustment (0, 0, 0, 0, 0, 0);
-//
-//			bool need_change = false;
-//
-//			if (Hadjustment != hadjustment) {
-//				Hadjustment = hadjustment;
-//				Hadjustment.Upper = scaled_width;
-//				Hadjustment.ValueChanged += HandleAdjustmentsValueChanged;
-//				need_change = true;
-//			}
-//			if (Vadjustment != vadjustment) {
-//				Vadjustment = vadjustment;
-//				Vadjustment.Upper = scaled_height;
-//				Vadjustment.ValueChanged += HandleAdjustmentsValueChanged;
-//				need_change = true;
-//			}
-//
-//			if (need_change)
-//				HandleAdjustmentsValueChanged (this, EventArgs.Empty);
-//		}	
+		// GTK3: https://developer.gnome.org/gtk3/stable/ch24s02.html#id-1.6.3.4.14
+		protected void OnSetScrollAdjustments (Adjustment hadjustment, Adjustment vadjustment)
+		{
+			if (hadjustment == null)
+				hadjustment = new Adjustment (0, 0, 0, 0, 0, 0);
+			if (vadjustment == null)
+				vadjustment = new Adjustment (0, 0, 0, 0, 0, 0);
+
+			bool need_change = false;
+
+			if (Hadjustment != hadjustment) {
+				Hadjustment = hadjustment;
+				Hadjustment.Upper = scaled_width;
+				Hadjustment.ValueChanged += HandleAdjustmentsValueChanged;
+				need_change = true;
+			}
+			if (Vadjustment != vadjustment) {
+				Vadjustment = vadjustment;
+				Vadjustment.Upper = scaled_height;
+				Vadjustment.ValueChanged += HandleAdjustmentsValueChanged;
+				need_change = true;
+			}
+
+			if (need_change)
+				HandleAdjustmentsValueChanged (this, EventArgs.Empty);
+		}
 
 		protected override bool OnButtonPressEvent (EventButton evnt)
 		{

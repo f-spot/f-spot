@@ -265,8 +265,7 @@ namespace FSpot
 			pagesetup_menu_item.Activated += HandlePageSetupActivated;
 
 			toolbar = new Toolbar ();
-			// GTK3: PackStart
-//			toolbar_vbox.PackStart (toolbar);
+			toolbar_vbox.PackStart (toolbar, true, true, 0);
 
 			ToolButton import_button = GtkUtil.ToolButtonFromTheme ("gtk-add", Catalog.GetString ("Import Photos…"), true);
 			import_button.Clicked += (o, args) => StartImport (null);

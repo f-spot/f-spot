@@ -474,11 +474,12 @@ namespace FSpot
 				bounds.X = selector.BoxX (item);
 				bounds.Width = Math.Max (selector.BoxX (item + 1) - bounds.X, 1);
 
+				bar = bounds;
+
 				if (item < 0 || item > selector.box_counts.Length - 1)
 					return;
 
 				double percent = selector.box_counts [item] / (double) Math.Max (selector.box_count_max, 1);
-				bar = bounds;
 				bar.Height = (int) Math.Ceiling ((bounds.Height - selector.box_top_padding) * percent);
 				bar.Y += bounds.Height - bar.Height - 1;
 
@@ -1135,7 +1136,7 @@ namespace FSpot
 			max_limit.SetPosition(adaptor.Count () - 1, false);
 		}
 
-		public void SetLimitsToDates(DateTime start, DateTime stop)
+		public void SetLimitsToDates(System.DateTime start, System.DateTime stop)
 		{
 			if (((TimeAdaptor)adaptor).OrderAscending) {
 				min_limit.SetPosition(((TimeAdaptor)adaptor).IndexFromDate(start),false);
