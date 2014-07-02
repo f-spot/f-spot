@@ -68,7 +68,7 @@ namespace FSpot.Widgets
 			Gdk.ModifierType type;
 
 			if (!force && IsRealized) {
-				ControlBox.GdkWindow.GetPointer (out x, out y, out type);
+				ControlBox.Window.GetPointer (out x, out y, out type);
 				if (x < ControlBox.Allocation.Width && y < ControlBox.Allocation.Height) {
 					hide.Start ();
 					return true;

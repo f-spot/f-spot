@@ -322,7 +322,7 @@ namespace FSpot.Widgets
         protected override void OnRealized ()
         {
 			IsRealized = true;
-            GdkWindow = new Gdk.Window (ParentWindow,
+            Window = new Gdk.Window (ParentWindow,
 					new WindowAttr { 
                         WindowType = Gdk.WindowType.Child,
                         X = Allocation.X,
@@ -345,10 +345,10 @@ namespace FSpot.Widgets
 
 			// GTK3
 //			GdkWindow.SetBackPixmap (null, false);
-            GdkWindow.UserData = Handle;
+            Window.UserData = Handle;
 
-            Style.Attach (GdkWindow);
-            Style.SetBackground (GdkWindow, StateType.Normal);
+            Style.Attach (Window);
+            Style.SetBackground (Window, StateType.Normal);
 
             OnRealizedChildren ();
         }
@@ -357,7 +357,7 @@ namespace FSpot.Widgets
         {
 			IsMapped = true;
             OnMappedChildren ();
-            GdkWindow.Show ();
+            Window.Show ();
         }
 
 		// GTK3: https://developer.gnome.org/gtk3/stable/ch24s02.html#id-1.6.3.4.3
@@ -383,7 +383,7 @@ namespace FSpot.Widgets
             OnSizeAllocatedChildren ();
 
             if (IsRealized) {
-                GdkWindow.MoveResize (allocation.X, allocation.Y, allocation.Width, allocation.Height);
+                Window.MoveResize (allocation.X, allocation.Y, allocation.Width, allocation.Height);
             }
 
             if (XOffset > Hadjustment.Upper - Hadjustment.PageSize)
@@ -568,12 +568,12 @@ namespace FSpot.Widgets
 				break;
 			case Gdk.Key.KP_1:
 			case Gdk.Key.Key_1:
-				GdkWindow.GetPointer (out x, out y, out type);
+				Window.GetPointer (out x, out y, out type);
 				DoZoom (1.0, x, y);
 				break;
 			case Gdk.Key.Key_2:
 			case Gdk.Key.KP_2:
-				GdkWindow.GetPointer (out x, out y, out type);
+				Window.GetPointer (out x, out y, out type);
 				DoZoom (2.0, x, y);
 				break;
 			default:
@@ -778,8 +778,8 @@ namespace FSpot.Widgets
 			YOffset = y;
 
 			if (IsRealized) {
-				GdkWindow.Scroll (-xof, -yof);
-				GdkWindow.ProcessUpdates (true);
+				Window.Scroll (-xof, -yof);
+				Window.ProcessUpdates (true);
 			}
 
 			if (changeAdjustments) {
@@ -951,14 +951,14 @@ namespace FSpot.Widgets
 		void SelectionSetPointer (int x, int y)
 		{
 			if (is_moving_selection)
-				GdkWindow.Cursor = new Cursor (CursorType.Crosshair);
+				Window.Cursor = new Cursor (CursorType.Crosshair);
 			else {
 				switch (GetDragMode (x, y)) {
 				case DragMode.Move:
-					GdkWindow.Cursor = new Cursor (CursorType.Hand1);
+					Window.Cursor = new Cursor (CursorType.Hand1);
 					break;
 				default:
-					GdkWindow.Cursor = null;
+					Window.Cursor = null;
 					break;
 				case DragMode.Extend:
 					// GTK3: More rectangles
@@ -996,7 +996,7 @@ namespace FSpot.Widgets
 			ModifierType mod;
 
 			if (evnt.IsHint)
-				GdkWindow.GetPointer (out x, out y, out mod);
+				Window.GetPointer (out x, out y, out mod);
 			else {
 				x = (int)evnt.X;
 				y = (int)evnt.Y;

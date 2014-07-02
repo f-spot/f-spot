@@ -107,7 +107,7 @@ namespace FSpot.Widgets
         {
             children.Add (new LayoutChild (widget, x, y));
             if (IsRealized)
-                widget.ParentWindow = GdkWindow;
+                widget.ParentWindow = Window;
             widget.Parent = this;
         }
 
@@ -126,7 +126,7 @@ namespace FSpot.Widgets
         private void OnRealizedChildren ()
         {
             foreach (var child in children) {
-                child.Widget.ParentWindow = GdkWindow;
+                child.Widget.ParentWindow = Window;
             }
         }
 

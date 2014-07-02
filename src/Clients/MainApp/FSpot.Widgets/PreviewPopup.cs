@@ -171,7 +171,7 @@ namespace FSpot
 			Gtk.Requisition requisition = this.SizeRequest ();
 			this.Resize (requisition.Width, requisition.Height);
 
-			view.GdkWindow.GetOrigin (out x, out y);
+			view.Window.GetOrigin (out x, out y);
 
 			// Acount for scrolling
 			bounds.X -= (int)view.Hadjustment.Value;

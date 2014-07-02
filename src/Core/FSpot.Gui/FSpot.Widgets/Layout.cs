@@ -145,12 +145,12 @@ namespace FSpot.Widgets
 								 Wclass = Gdk.WindowWindowClass.InputOnly,
 							     Visual = this.Visual,
 							     Mask = Gdk.EventMask.VisibilityNotifyMask };
-			GdkWindow = new Gdk.Window (ParentWindow, attributes, 
+			Window = new Gdk.Window (ParentWindow, attributes, 
 						    Gdk.WindowAttributesType.X | Gdk.WindowAttributesType.Y | Gdk.WindowAttributesType.Visual);
 
 			// GTK3
 //			GdkWindow.SetBackPixmap (null, false);
-			GdkWindow.UserData = Handle;
+			Window.UserData = Handle;
 
 			attributes = new Gdk.WindowAttr {
 							     WindowType = Gdk.WindowType.Child, 
@@ -161,11 +161,11 @@ namespace FSpot.Widgets
 								 Wclass = Gdk.WindowWindowClass.InputOnly,
 							     Visual = this.Visual,
 							     Mask = Gdk.EventMask.ExposureMask | Gdk.EventMask.ScrollMask | this.Events };
-			bin_window = new Gdk.Window (GdkWindow, attributes, 
+			bin_window = new Gdk.Window (Window, attributes, 
 						     Gdk.WindowAttributesType.X | Gdk.WindowAttributesType.Y | Gdk.WindowAttributesType.Visual);
 			bin_window.UserData = Handle;
 
-			Style.Attach (GdkWindow);
+			Style.Attach (Window);
 			Style.SetBackground (bin_window, StateType.Normal);
 
 			foreach (var child in children) {
@@ -198,7 +198,7 @@ namespace FSpot.Widgets
 					child.Widget.Map ();
 			}
 			bin_window.Show ();
-			GdkWindow.Show ();
+			Window.Show ();
 		}
 
 		// GTK3: https://developer.gnome.org/gtk3/stable/ch24s02.html#id-1.6.3.4.3
@@ -219,7 +219,7 @@ namespace FSpot.Widgets
 			}
 
 			if (IsRealized) {
-				GdkWindow.MoveResize (allocation.X, allocation.Y, allocation.Width, allocation.Height);
+				Window.MoveResize (allocation.X, allocation.Y, allocation.Width, allocation.Height);
 				bin_window.Resize ((int)Math.Max (width, allocation.Width), (int)Math.Max (height, allocation.Height));
 			}
 

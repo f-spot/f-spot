@@ -143,7 +143,7 @@ namespace FSpot
 				return false;
 
 			if (IsRealized) {
-				GdkWindow.GetPointer (out x, out y, out type);
+				Window.GetPointer (out x, out y, out type);
 				if (Allocation.Contains (x, y)) {
 					hide.Start ();
 					return true;
@@ -283,7 +283,7 @@ namespace FSpot
 			if (!IsRealized || !host_toplevel.IsRealized)
 				return;
 
-			host.GdkWindow.GetOrigin (out x, out y);
+			host.Window.GetOrigin (out x, out y);
 
 			int xOrigin = x;
 			int yOrigin = y;

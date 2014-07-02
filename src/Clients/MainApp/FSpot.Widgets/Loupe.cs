@@ -130,7 +130,7 @@ namespace FSpot.Widgets
 				Gdk.Point now = hotspot;
 				//System.Console.WriteLine ("{0} now {1}", then, now);
 				int x, y;
-				GdkWindow.GetOrigin (out x, out y);
+				Window.GetOrigin (out x, out y);
 				//GdkWindow.MoveResize (x + then.X - now.X, y + then.Y - now.Y, Bounds.Width, Bounds.Height);
 				ShapeWindow ();
 				Move (x + then.X - now.X, y + then.Y - now.Y);
@@ -390,7 +390,7 @@ namespace FSpot.Widgets
 			Gdk.Point top;
 			Gdk.Point current;
 
-			GdkWindow.GetOrigin (out current.X, out current.Y);
+			Window.GetOrigin (out current.X, out current.Y);
 
 			if (current == pos)
 				return false;
@@ -399,7 +399,7 @@ namespace FSpot.Widgets
 
 			pos.Offset (hotspot.X, hotspot.Y);
 			var toplevel = (Gtk.Window) view.Toplevel;
-			toplevel.GdkWindow.GetOrigin (out top.X, out top.Y);
+			toplevel.Window.GetOrigin (out top.X, out top.Y);
 			toplevel.TranslateCoordinates (view,
 						       pos.X - top.X,  pos.Y - top.Y,
 						       out view_coords.X, out view_coords.Y);
@@ -424,7 +424,7 @@ namespace FSpot.Widgets
 					start_hot = hotspot;
 
 					Gdk.Point win;
-					GdkWindow.GetOrigin (out win.X, out win.Y);
+					Window.GetOrigin (out win.X, out win.Y);
 					start_hot.X += win.X;
 					start_hot.Y += win.Y;
 
@@ -521,21 +521,21 @@ namespace FSpot.Widgets
 			EnterNotifyEvent += delegate {
 				inside = true;
 				if (!pressed)
-					GdkWindow.Cursor = opened_hand_cursor;
+					Window.Cursor = opened_hand_cursor;
 			};
 			LeaveNotifyEvent += delegate {
 				inside = false;
 				if (!pressed)
-					GdkWindow.Cursor = null;
+					Window.Cursor = null;
 			};
 			ButtonPressEvent += delegate {
 				pressed = true;
-				if (null != GdkWindow)
-					GdkWindow.Cursor = closed_hand_cursor;
+				if (null != Window)
+					Window.Cursor = closed_hand_cursor;
 			};
 			ButtonReleaseEvent += delegate {
 				pressed = false;
-				GdkWindow.Cursor = inside ? opened_hand_cursor : null;
+				Window.Cursor = inside ? opened_hand_cursor : null;
 			};
 		}
 	}

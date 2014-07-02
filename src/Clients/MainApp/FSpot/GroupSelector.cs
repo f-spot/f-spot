@@ -207,7 +207,7 @@ namespace FSpot
 			set {
 				mode = value;
 				if (Visible)
-					GdkWindow.InvalidateRect (Allocation, false);
+					Window.InvalidateRect (Allocation, false);
 			}
 		}
 
@@ -249,7 +249,7 @@ namespace FSpot
 				UpdateButtons ();
 
 				if (Visible)
-					GdkWindow.InvalidateRect (Allocation, false);
+					Window.InvalidateRect (Allocation, false);
 			}
 		}
 
@@ -410,7 +410,7 @@ namespace FSpot
 		protected override void OnRealized ()
 		{
 			IsRealized = true;
-			GdkWindow = ParentWindow;
+			Window = ParentWindow;
 
 			base.OnRealized ();
 
@@ -431,7 +431,7 @@ namespace FSpot
 						 EventMask.ButtonReleaseMask |
 						 EventMask.PointerMotionMask);
 
-			event_window = new Gdk.Window (GdkWindow, attr, (int) (WindowAttributesType.X | WindowAttributesType.Y));
+			event_window = new Gdk.Window (Window, attr, (int) (WindowAttributesType.X | WindowAttributesType.Y));
 			event_window.UserData = this.Handle;
 		}
 
@@ -599,8 +599,8 @@ namespace FSpot
 					Rectangle now = Bounds ();
 
 					if (selector.Visible) {
-						selector.GdkWindow.InvalidateRect (then, false);
-						selector.GdkWindow.InvalidateRect (now, false);
+						selector.Window.InvalidateRect (then, false);
+						selector.Window.InvalidateRect (now, false);
 					}
 				}
 				get {
@@ -688,7 +688,7 @@ namespace FSpot
 				}
 				set {
 					if (state != value) {
-						selector.GdkWindow.InvalidateRect (Bounds (), false);
+						selector.Window.InvalidateRect (Bounds (), false);
 					}
 					state = value;
 				}
@@ -710,7 +710,7 @@ namespace FSpot
 
 				if (selector.Visible) {
 					then = now.Union (then);
-					selector.GdkWindow.InvalidateRect (then, false);
+					selector.Window.InvalidateRect (then, false);
 					//selector.GdkWindow.InvalidateRect (now, false);
 				}
 
@@ -758,7 +758,7 @@ namespace FSpot
 				Rectangle bounds = Bounds ();
 				Requisition requisition = popup_window.SizeRequest ();
 				popup_window.Resize  (requisition.Width, requisition.Height);
-				selector.GdkWindow.GetOrigin (out x, out y);
+				selector.Window.GetOrigin (out x, out y);
 				x += bounds.X + (bounds.Width - requisition.Width) / 2;
 				y += bounds.Y - requisition.Height;
 				x = Math.Max (x, 0);

@@ -57,7 +57,7 @@ namespace FSpot.Widgets
             pan_anchor.Y = (int)evnt.Y;
             
             // Set to crosshair pointer
-            GdkWindow.Cursor = new Cursor (CursorType.Fleur);
+            Window.Cursor = new Cursor (CursorType.Fleur);
             return true;
         }
 
@@ -89,7 +89,7 @@ namespace FSpot.Widgets
             InPanMotion = false;
             
             // Reset cursor
-            GdkWindow.Cursor = null;
+            Window.Cursor = null;
             return true;
         }
         

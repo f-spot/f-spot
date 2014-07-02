@@ -57,20 +57,20 @@ namespace FSpot {
 
 					// GTK3: Gdk.Window
 //					GdkWindow = Gdk.Window.ForeignNew (xid);
-					Style.Attach (GdkWindow);
-					GdkWindow.Events = EventMask.ExposureMask
+					Style.Attach (Window);
+					Window.Events = EventMask.ExposureMask
 						| EventMask.StructureMask
 						| EventMask.EnterNotifyMask
 						| EventMask.LeaveNotifyMask
 						| EventMask.FocusChangeMask;
 
-					Style.SetBackground (GdkWindow, StateType.Normal);
-					GdkWindow.SetDecorations ((WMDecoration) 0);
-					GdkWindow.UserData = this.Handle;
+					Style.SetBackground (Window, StateType.Normal);
+					Window.SetDecorations ((WMDecoration) 0);
+					Window.UserData = this.Handle;
 					IsRealized = true;
 					SizeRequest ();
 					Rectangle geom;
-					GdkWindow.GetGeometry (out geom.X, out geom.Y, out geom.Width, out geom.Height);
+					Window.GetGeometry (out geom.X, out geom.Y, out geom.Width, out geom.Height);
 					SizeAllocate (new Rectangle (geom.X, geom.Y, geom.Width, geom.Height));
 					Resize (geom.Width, geom.Height);
 					return;

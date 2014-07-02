@@ -98,7 +98,7 @@ namespace FSpot.Gui
 
 		public static void SetWinOpacity (Gtk.Window win, double opacity)
 		{
-			CompositeUtils.ChangeProperty (win.GdkWindow,
+			CompositeUtils.ChangeProperty (win.Window,
 						       Atom.Intern ("_NET_WM_WINDOW_OPACITY", false),
 						       Atom.Intern ("CARDINAL", false),
 						       PropMode.Replace,

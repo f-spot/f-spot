@@ -519,7 +519,7 @@ namespace FSpot {
 			int width, height;
 			Window.GetSize (out width, out height);
 
-			bool maximized = ((Window.GdkWindow.State & WindowState.Maximized) > 0);
+			bool maximized = ((Window.Window.State & WindowState.Maximized) > 0);
 			Preferences.Set (Preferences.VIEWER_MAXIMIZED, maximized);
 
 			if (!maximized) {

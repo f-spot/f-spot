@@ -1328,14 +1328,14 @@ namespace FSpot
 
 		void HandlePhotoViewUpdateStarted (PhotoView sender)
 		{
-			main_window.GdkWindow.Cursor = watch;
-			main_window.GdkWindow.Flush ();
+			main_window.Window.Cursor = watch;
+			main_window.Window.Flush ();
 		}
 
 		void HandlePhotoViewUpdateFinished (PhotoView sender)
 		{
-			main_window.GdkWindow.Cursor = null;
-			main_window.GdkWindow.Flush ();
+			main_window.Window.Cursor = null;
+			main_window.Window.Flush ();
 		}
 
 		//
@@ -1565,7 +1565,7 @@ namespace FSpot
 			main_window.GetPosition (out x, out y);
 			main_window.GetSize (out width, out height);
 
-			bool maximized = ((main_window.GdkWindow.State & Gdk.WindowState.Maximized) > 0);
+			bool maximized = ((main_window.Window.State & Gdk.WindowState.Maximized) > 0);
 			Preferences.Set (Preferences.MAIN_WINDOW_MAXIMIZED, maximized);
 
 			if (!maximized) {
@@ -2534,10 +2534,10 @@ namespace FSpot
 
 		public void UpdateQuery ()
 		{
-			main_window.GdkWindow.Cursor = watch;
-			main_window.GdkWindow.Display.Sync ();
+			main_window.Window.Cursor = watch;
+			main_window.Window.Display.Sync ();
 			query.RequestReload ();
-			main_window.GdkWindow.Cursor = null;
+			main_window.Window.Cursor = null;
 		}
 
 		void HandleTagSelectionChanged (object obj, EventArgs args)
@@ -2856,7 +2856,7 @@ namespace FSpot
 
 		public void GetWidgetPosition(Widget widget, out int x, out int y)
 		{
-			main_window.GdkWindow.GetOrigin(out x, out y);
+			main_window.Window.GetOrigin(out x, out y);
 
 			x += widget.Allocation.X;
 			y += widget.Allocation.Y;
