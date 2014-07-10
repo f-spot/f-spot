@@ -454,7 +454,7 @@ namespace FSpot.Widgets
 				if (value == cursor_type)
 					return;
 				cursor_type = value;
-				GdkWindow.Cursor = new Cursor (CursorType);	
+				Window.Cursor = new Cursor (CursorType);
 			}
 		}
 #endregion

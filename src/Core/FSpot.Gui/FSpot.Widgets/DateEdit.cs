@@ -195,7 +195,7 @@ namespace FSpot.Widgets
 		{
 			var requisition = calendar_popup.SizeRequest ();
 			int x, y;
-			date_button.GdkWindow.GetOrigin (out x, out y);
+			date_button.Window.GetOrigin (out x, out y);
 			x += date_button.Allocation.X;
 			y += date_button.Allocation.Y;
 			x += date_button.Allocation.Width - requisition.Width;
@@ -211,7 +211,7 @@ namespace FSpot.Widgets
 		void HandleCalendarButtonClicked (object sender, EventArgs e)
 		{
 			//Temporarily grab pointer and keyboard
-			if (!GrabPointerAndKeyboard (GdkWindow, Gtk.Global.CurrentEventTime))
+			if (!GrabPointerAndKeyboard (Window, Gtk.Global.CurrentEventTime))
 				return;
 
 			//select the day on the calendar
@@ -223,7 +223,7 @@ namespace FSpot.Widgets
 			calendar.GrabFocus ();
 
 			//transfer the grabs to the popup
-			GrabPointerAndKeyboard (calendar_popup.GdkWindow, Gtk.Global.CurrentEventTime);
+			GrabPointerAndKeyboard (calendar_popup.Window, Gtk.Global.CurrentEventTime);
 		}
 
 		void HandleDateEntryChanged (object sender, EventArgs e)

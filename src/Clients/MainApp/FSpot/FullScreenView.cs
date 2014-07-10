@@ -68,7 +68,7 @@ namespace FSpot
 		{
 			//going fullscreen on the same screen the parent window
 			Gdk.Screen screen = Screen;
-			int monitor = screen.GetMonitorAtWindow (parent.GdkWindow);
+			int monitor = screen.GetMonitorAtWindow (parent.Window);
 			Gdk.Rectangle bounds = screen.GetMonitorGeometry (monitor);
 			Move (bounds.X, bounds.Y);
 
@@ -221,17 +221,17 @@ namespace FSpot
 			}
 
 			if (empty_cursor == null)
-				empty_cursor = GdkUtils.CreateEmptyCursor (GdkWindow.Display);
+				empty_cursor = GdkUtils.CreateEmptyCursor (Window.Display);
 
-			GdkWindow.Cursor = empty_cursor;
-			view.GdkWindow.Cursor = empty_cursor;
+			Window.Cursor = empty_cursor;
+			view.Window.Cursor = empty_cursor;
 			return false;
 		}
 
 		void ShowCursor ()
 		{
 			view.PointerMode = PointerMode.Scroll;
-			GdkWindow.Cursor = null;
+			Window.Cursor = null;
 		}
 
 		void HandleItemChanged (object sender, BrowsablePointerChangedEventArgs args)
@@ -307,7 +307,7 @@ namespace FSpot
 
 			int x, y;
 			Gdk.ModifierType type;
-			((Widget)sender).GdkWindow.GetPointer (out x, out y, out type);
+			((Widget)sender).Window.GetPointer (out x, out y, out type);
 
 			if (y > (Allocation.Height * 0.75)) {
 				controls.Visibility = ControlOverlay.VisibilityType.Partial;

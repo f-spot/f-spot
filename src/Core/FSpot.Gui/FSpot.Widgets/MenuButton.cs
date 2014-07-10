@@ -99,7 +99,7 @@ namespace FSpot.Widgets
 
 		void Position (Menu menu, out int x, out int y, out bool push_in)
 		{
-			this.GdkWindow.GetOrigin (out x, out y);
+			this.Window.GetOrigin (out x, out y);
 			x += Allocation.X;
 			y += Allocation.Y + Allocation.Height;
 			push_in = false;
