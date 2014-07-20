@@ -71,6 +71,8 @@ else
     ACLOCAL_FLAGS="-I build/m4 $ACLOCAL_FLAGS"
     touch gnome-doc-utils.make
 fi
+# obtain trusted roots certificates for mono so that SSL certificates can be validated
+run mozroots --import --sync
 
 run intltoolize --force --copy
 run $LIBTOOLIZE --force --copy --automake

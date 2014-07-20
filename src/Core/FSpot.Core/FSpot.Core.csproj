@@ -101,6 +101,7 @@
   <ItemGroup>
     <EmbeddedResource Include="FSpot.Core.addins">
       <LogicalName>FSpot.Core.addins</LogicalName>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
