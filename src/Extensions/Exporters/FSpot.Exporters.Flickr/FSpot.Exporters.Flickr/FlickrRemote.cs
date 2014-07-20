@@ -57,7 +57,7 @@ namespace FSpot.Exporters.Flickr
 {
 public class FlickrRemote
 	{
-	public static Licenses    licenses;
+	public static LicenseCollection    licenses;
 	private string            frob;
 	private string            token;
 	private Auth              auth;
@@ -97,28 +97,29 @@ public class FlickrRemote
 		get { return flickr; }
 	}
 
-	public License[] GetLicenses ()
+	public LicenseCollection GetLicenses ()
 	{
 		// Licenses won't change normally in a user session
 		if (licenses == null) {
 			try {
 				licenses = flickr.PhotosLicensesGetInfo();
 			} catch (FlickrNet.FlickrApiException e ) {
-				Log.Error (e.Code + ": " + e.Verbose );
+				Log.Error (e.Code + ": " + e.OriginalMessage );
 				return null;
 			}
 		}
-		return licenses.LicenseCollection;
+		return licenses;
 	}
 
 	public List<string> Search (string[] tags, int licenseId)
 	{
 		List<string> photos_url = new List<string> ();
-		// Photos photos = flickr.PhotosSearchText (tags, licenseId);
-		Photos photos = flickr.PhotosSearch (tags);
+		PhotoSearchOptions options = new PhotoSearchOptions ();
+		options.Tags = string.Join(",", tags);
+		PhotoCollection photos = flickr.PhotosSearch (options);
 
 		if (photos != null) {
-			foreach (FlickrNet.Photo photo in photos.PhotoCollection) {
+			foreach (FlickrNet.Photo photo in photos) {
 				photos_url.Add (photo.ThumbnailUrl);
 			}
 		}
@@ -129,10 +130,11 @@ public class FlickrRemote
 	public List<string> Search (string tags, int licenseId)
 	{
 		List<string> photos_url = new List<string> ();
-		Photos photos = flickr.PhotosSearchText (tags, licenseId);
-
+		PhotoSearchOptions options = new PhotoSearchOptions ();
+		options.Tags = tags;
+		PhotoCollection photos = flickr.PhotosSearch (options);
 		if (photos != null) {
-			foreach (FlickrNet.Photo photo in photos.PhotoCollection) {
+			foreach (FlickrNet.Photo photo in photos) {
 				photos_url.Add (photo.ThumbnailUrl);
 			}
 		}
@@ -151,6 +153,7 @@ public class FlickrRemote
 			}
 		} catch (Exception e) {
 			Log.Error ("Error logging in: {0}", e.Message);
+			return null;
 		}
 
 		if (token == null) {
@@ -161,7 +164,7 @@ public class FlickrRemote
 
 				return auth;
 			} catch (FlickrNet.FlickrApiException ex) {
-				Log.Error ("Problems logging in to Flickr - " + ex.Verbose);
+				Log.Error ("Problems logging in to Flickr - " + ex.OriginalMessage);
 				return null;
 			}
 		}

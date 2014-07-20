@@ -22,8 +22,12 @@ Requirements:
 
 	- dbus-sharp-glib 0.5 or later, https://github.com/mono/dbus-sharp-glib
 
-To compile, just go through the normal autogen/configure stuff and
-then make install.
+To compile:
+     1. sh ./autogen.sh (on ubuntu you have to do ./autogen.sh
+     2. patch -p1 < external.patch
+
+     The hyena patch (external.patch) is just a temporary fix for now. This will no longer
+     be needed when we switch to hyena master which is based on gtk-sharp3
 
 To launch F-Spot, run $(prefix)/bin/f-spot.
 
