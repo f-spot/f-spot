@@ -71,6 +71,8 @@ else
     ACLOCAL_FLAGS="-I build/m4 $ACLOCAL_FLAGS"
     touch gnome-doc-utils.make
 fi
+# obtain trusted roots certificates for mono so that SSL certificates can be validated
+run mozroots --import --sync
 
 run intltoolize --force --copy
 run $LIBTOOLIZE --force --copy --automake
@@ -94,6 +96,5 @@ run ./configure --enable-maintainer-mode $@
 
 # This is a hack to get around xamarin bug#4030
 mkdir -p bin
-cp -f `pkg-config --variable assemblies_dir gtk-sharp-beans-2.0`/* bin
 cp -f `pkg-config --variable assemblies_dir gio-sharp-2.0`/* bin
 rm -f bin/*.mdb
