@@ -100,7 +100,14 @@ namespace FSpot.Utils
             tmp_write_uri = CreateTmpFile ();
             var tmp_file = FileFactory.NewForUri (tmp_write_uri);
 
-            file.Copy (tmp_file, GLib.FileCopyFlags.AllMetadata | GLib.FileCopyFlags.Overwrite, null, null);
+			try {
+                file.Copy (tmp_file, GLib.FileCopyFlags.AllMetadata | GLib.FileCopyFlags.Overwrite, null, null);
+            } catch (GLib.GException e){
+				// TODO Gdk#2.12 doesn't allow using anything other than e.Message. Gdk#3 allows using the exception Code.
+				if (!e.Message.Equals ("Error setting permissions: Operation not permitted") && !e.Message.Equals("Error setting owner: Operation not permitted")) {
+                    throw e;
+                }
+            }
         }
 
         private void CommitTmp ()

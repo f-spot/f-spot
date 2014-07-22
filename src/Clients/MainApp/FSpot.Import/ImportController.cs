@@ -421,7 +421,15 @@ namespace FSpot.Import
             // Copy image
             var file = GLib.FileFactory.NewForUri (item.DefaultVersion.Uri);
             var new_file = GLib.FileFactory.NewForUri (destination);
-            file.Copy (new_file, GLib.FileCopyFlags.AllMetadata, null, null);
+			try {
+				file.Copy (new_file, GLib.FileCopyFlags.AllMetadata, null, null);
+			} catch (GLib.GException e){
+				// TODO Gdk#2.12 doesn't allow using anything other than e.Message. Gdk#3 allows using the exception Code.
+				if (!e.Message.Equals ("Error setting permissions: Operation not permitted") && !e.Message.Equals("Error setting owner: Operation not permitted")) {
+					throw e;
+				}
+			}
+
             copied_files.Add (destination);
             original_files.Add (item.DefaultVersion.Uri);
             item.DefaultVersion.Uri = destination;
@@ -432,7 +440,14 @@ namespace FSpot.Import
             if (xmp_file.Exists) {
                 var xmp_destination = destination.ReplaceExtension (".xmp");
                 var new_xmp_file = GLib.FileFactory.NewForUri (xmp_destination);
-                xmp_file.Copy (new_xmp_file, GLib.FileCopyFlags.AllMetadata | GLib.FileCopyFlags.Overwrite, null, null);
+                try {
+					xmp_file.Copy (new_xmp_file, GLib.FileCopyFlags.AllMetadata | GLib.FileCopyFlags.Overwrite, null, null);
+                } catch (GLib.GException e){
+					// TODO Gdk#2.12 doesn't allow using anything other than e.Message. Gdk#3 allows using the exception Code.
+					if (!e.Message.Equals ("Error setting permissions: Operation not permitted") && !e.Message.Equals("Error setting owner: Operation not permitted")) {
+                        throw e;
+                    }
+                }
                 copied_files.Add (xmp_destination);
                 original_files.Add (xmp_original);
             }

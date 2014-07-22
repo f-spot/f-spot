@@ -45,7 +45,16 @@ namespace FSpot.Utils
 			
 			if (ft != GLib.FileType.Directory) {
 				Hyena.Log.DebugFormat ("Copying \"{0}\" to \"{1}\"", source.Path, target.Path);
-				return source.Copy (target, flags, cancellable, callback);
+                try {
+					return source.Copy (target, flags, cancellable, callback);
+                } catch (GLib.GException e){
+					// TODO Gdk#2.12 doesn't allow using anything other than e.Message. Gdk#3 allows using the exception Code.
+					if (!e.Message.Equals ("Error setting permissions: Operation not permitted") && !e.Message.Equals("Error setting owner: Operation not permitted")) {
+                        throw e;
+                    } else {
+                        return true;
+                    }
+				}
 			}
 			
 			if (!target.Exists) {

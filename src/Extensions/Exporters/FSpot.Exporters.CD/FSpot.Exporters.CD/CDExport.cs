@@ -129,11 +129,18 @@ namespace FSpot.Exporters.CD
 						progress_dialog.Fraction = photo_index / (double)selection.Count;
 						progress_dialog.ProgressText = System.String.Format (Catalog.GetString ("{0} of {1}"),
 											     photo_index, selection.Count);
-
-						result &= source.Copy (target,
-									FileCopyFlags.None,
-									null,
-									cb);
+						bool individualResult;
+						try {
+							individualResult = source.Copy (target,FileCopyFlags.None,null,cb);
+						} catch (GLib.GException e){
+							// TODO Gdk#2.12 doesn't allow using anything other than e.Message. Gdk#3 allows using the exception Code.
+							if (!e.Message.Equals ("Error setting permissions: Operation not permitted") && !e.Message.Equals("Error setting owner: Operation not permitted")) {
+								throw e;
+							} else {
+								individualResult = true;
+							}
+						}
+						result &= individualResult;
 					}
 					photo_index++;
 				}

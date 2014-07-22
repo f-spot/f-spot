@@ -395,7 +395,14 @@ namespace FSpot
 
 				//FIXME. or better, fix the copy api !
 				GLib.File source = GLib.FileFactory.NewForUri (original_uri);
-				source.Copy (destination, GLib.FileCopyFlags.None, null, null);
+				try {
+					source.Copy (destination, GLib.FileCopyFlags.None, null, null); 
+				} catch (GLib.GException e){
+					// TODO Gdk#2.12 doesn't allow using anything other than e.Message. Gdk#3 allows using the exception Code.
+					if (!e.Message.Equals ("Error setting permissions: Operation not permitted") && !e.Message.Equals("Error setting owner: Operation not permitted")) {
+						throw e;
+                    }
+                }
 			}
 			highest_version_id ++;
 

@@ -540,7 +540,14 @@ public static class PixbufUtils
 			// Simple copy will do!
 			var file_from = GLib.FileFactory.NewForUri (source);
 			var file_to = GLib.FileFactory.NewForUri (destination);
-			file_from.Copy (file_to, GLib.FileCopyFlags.AllMetadata | GLib.FileCopyFlags.Overwrite, null, null);
+            try {
+                file_from.Copy (file_to, GLib.FileCopyFlags.AllMetadata | GLib.FileCopyFlags.Overwrite, null, null);
+            } catch (GLib.GException e){
+				// TODO Gdk#2.12 doesn't allow using anything other than e.Message. Gdk#3 allows using the exception Code.
+				if (!e.Message.Equals ("Error setting permissions: Operation not permitted") && !e.Message.Equals("Error setting owner: Operation not permitted")) {
+                    throw e;
+                }
+            }
 			return;
 		}
 
