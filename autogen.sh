@@ -63,6 +63,19 @@ check_autotool_version pkg-config 0.14.0
 
 run git submodule sync
 run git submodule update --init
+patch --dry-run -p1 --silent -f -R < external.patch
+
+if [ $? -eq 0 ];
+then
+    # patch already applied
+    echo "Hyena patch already applied, skipping"
+else
+    # Hyena patch missing, apply
+    echo "Applying Hyena patch"
+    run patch -p1 < external.patch
+fi
+
+
 if [ $(pkg-config --modversion gnome-doc-utils 2> /dev/null) ]; then
     run gnome-doc-prepare --automake --force
 else

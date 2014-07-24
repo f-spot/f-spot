@@ -24,10 +24,8 @@ Requirements:
 
 To compile:
      1. sh ./autogen.sh (on ubuntu you have to do ./autogen.sh
-     2. patch -p1 < external.patch
-
-     The hyena patch (external.patch) is just a temporary fix for now. This will no longer
-     be needed when we switch to hyena master which is based on gtk-sharp3
+     2. make
+     3. sudo make install
 
 To launch F-Spot, run $(prefix)/bin/f-spot.
 
