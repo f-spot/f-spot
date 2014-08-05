@@ -113,9 +113,10 @@ namespace FSpot.Utils
             var info = file.QueryInfo ("time::modified", GLib.FileQueryInfoFlags.None, null);
             var mtime = info.GetAttributeULong ("time::modified").ToString ();
 
-            thumb_pixbuf.Savev (thumbUri.LocalPath, "png",
-                                new string [] {ThumbUriOpt, ThumbMTimeOpt, null},
-                                new string [] {uri, mtime});
+			// GTK3: This fails, preventing F-Spot from showing thumbnails.
+//            thumb_pixbuf.Savev (thumbUri.LocalPath, "png",
+//                                new string [] {ThumbUriOpt, ThumbMTimeOpt, null},
+//                                new string [] {uri, mtime});
 
             return thumb_pixbuf;
         }

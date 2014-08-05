@@ -318,17 +318,22 @@ namespace FSpot.Widgets
             InvalidateCell (thumbnail_num);
         }
 
-        protected override void DrawCell (int cell_num, Rectangle cell_area, Rectangle expose_area)
+        protected override void DrawCell (int cell_num, Rectangle cell_area, Cairo.Context cr)
         {
-            DrawPhoto (cell_num, cell_area, expose_area, false, false);
+            DrawPhoto (cell_num, cell_area, cr, false, false);
         }
 
         // FIXME Cache the GCs?
-        protected virtual void DrawPhoto (int cell_num, Rectangle cell_area, Rectangle expose_area, bool selected, bool focussed)
+        protected virtual void DrawPhoto (int cell_num, Rectangle cell_area, Cairo.Context cr,
+                                          bool selected, bool focussed)
         {
-            if (!cell_area.Intersect (expose_area, out expose_area))
+            cell_area.X -= (int) Hadjustment.Value;
+            cell_area.Y -= (int) Vadjustment.Value;
+            
+            Rectangle cell_expose_area;
+            if (!cell_area.Intersect (Allocation, out cell_expose_area))
                 return;
-
+            
             IPhoto photo = Collection [cell_num];
 
             FSpot.PixbufCache.CacheEntry entry = Cache.Lookup (photo.DefaultVersion.Uri);
@@ -339,23 +344,20 @@ namespace FSpot.Widgets
 
             StateType cell_state = selected ? (HasFocus ? StateType.Selected : StateType.Active) : State;
 
-			// GTK3: Style
-//            if (cell_state != State)
-//                Style.PaintBox (Style, BinWindow, cell_state,
-//                    ShadowType.Out, expose_area, this, "IconView",
-//                    cell_area.X, cell_area.Y,
-//                    cell_area.Width - 1, cell_area.Height - 1);
-//
+            if (cell_state != State)
+                Style.PaintBox (Style, cr, cell_state,
+                    ShadowType.Out, this, "IconView",
+                    cell_area.X, cell_area.Y,
+                    cell_area.Width - 1, cell_area.Height - 1);
+
             Gdk.Rectangle focus = Gdk.Rectangle.Inflate (cell_area, -3, -3);
 
-            if (HasFocus && focussed) {
-				// GTK3: Style
-//                Style.PaintFocus(Style, BinWindow,
-//                        cell_state, expose_area,
-//                        this, null,
-//                        focus.X, focus.Y,
-//                        focus.Width, focus.Height);
-            }
+            if (HasFocus && focussed)
+                Style.PaintFocus(Style, cr,
+                        cell_state,
+                        this, null,
+                        focus.X, focus.Y,
+                        focus.Width, focus.Height);
 
             Gdk.Rectangle region = Gdk.Rectangle.Zero;
             Gdk.Rectangle image_bounds = Gdk.Rectangle.Inflate (cell_area, -CELL_BORDER_WIDTH, -CELL_BORDER_WIDTH);
@@ -366,7 +368,7 @@ namespace FSpot.Widgets
                 thumbnail = entry.ShallowCopyPixbuf ();
 
             Gdk.Rectangle draw = Gdk.Rectangle.Zero;
-            if (Gdk.Rectangle.Inflate (image_bounds, expansion + 1, expansion + 1).Intersect (expose_area, out image_bounds) && thumbnail != null) {
+            if (Gdk.Rectangle.Inflate (image_bounds, expansion + 1, expansion + 1).Intersect (cell_expose_area, out image_bounds) && thumbnail != null) {
 
                 PixbufUtils.Fit (thumbnail, ThumbnailWidth, ThumbnailHeight,
                         true, out region.Width, out region.Height);
@@ -416,14 +418,13 @@ namespace FSpot.Widgets
                 draw = Gdk.Rectangle.Inflate (region, 1, 1);
 
 				if (!temp_thumbnail.HasAlpha)
-					;// GTK3: Style
-//                    Style.PaintShadow (Style, BinWindow, cell_state,
-//                        ShadowType.Out, expose_area, this,
-//                        "IconView",
-//                        draw.X, draw.Y,
-//                        draw.Width, draw.Height);
-//
-                if (region.Intersect (expose_area, out draw)) {
+                    Style.PaintShadow (Style, cr, cell_state,
+                        ShadowType.Out, this,
+                        "IconView",
+                        draw.X, draw.Y,
+                        draw.Width, draw.Height);
+
+                if (region.Intersect (cell_expose_area, out draw)) {
                     Cms.Profile screen_profile;
                     if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile)) {
                         Pixbuf t = temp_thumbnail.Copy ();
@@ -431,14 +432,12 @@ namespace FSpot.Widgets
                         temp_thumbnail = t;
                         FSpot.ColorManagement.ApplyProfile (temp_thumbnail, screen_profile);
                     }
-					// GTK3: RenderToDrawable
-//                    temp_thumbnail.RenderToDrawable (BinWindow, Style.WhiteGC,
-//                            draw.X - region.X,
-//                            draw.Y - region.Y,
-//                            draw.X, draw.Y,
-//                            draw.Width, draw.Height,
-//                            RgbDither.None,
-//                            draw.X, draw.Y);
+
+					cr.Save ();
+					Gdk.CairoHelper.SetSourcePixbuf (cr, temp_thumbnail, region.X, region.Y);
+					cr.Rectangle (draw.X, draw.Y, draw.Width, draw.Height);
+					cr.Fill ();
+					cr.Restore ();
                 }
 
                 if (temp_thumbnail != thumbnail) {
@@ -454,7 +453,7 @@ namespace FSpot.Widgets
 			// GTK3: Render
             // Render Decorations
             if (DisplayRatings && region.X == draw.X && region.X != 0) {
-//                rating_renderer.Render (BinWindow, this, region, expose_area, cell_state, photo);
+//                rating_renderer.Render (BinWindow, this, region, cell_expose_area, cell_state, photo);
             }
 
             // Render Captions
@@ -466,21 +465,21 @@ namespace FSpot.Widgets
 			// GTK3: Render
             if (DisplayDates) {
                 caption_area.Height = date_renderer.GetHeight (this, ThumbnailWidth);
-//                date_renderer.Render (BinWindow, this, caption_area, expose_area, cell_state, photo);
+//                date_renderer.Render (BinWindow, this, caption_area, cell_expose_area, cell_state, photo);
 
                 caption_area.Y += caption_area.Height;
             }
 
             if (DisplayFilenames) {
                 caption_area.Height = filename_renderer.GetHeight (this, ThumbnailWidth);
-//                filename_renderer.Render (BinWindow, this, caption_area, expose_area, cell_state, photo);
+//                filename_renderer.Render (BinWindow, this, caption_area, cell_expose_area, cell_state, photo);
 
                 caption_area.Y += caption_area.Height;
             }
 
             if (DisplayTags) {
                 caption_area.Height = tag_renderer.GetHeight (this, ThumbnailWidth);
-//                tag_renderer.Render (BinWindow, this, caption_area, expose_area, cell_state, photo);
+//                tag_renderer.Render (BinWindow, this, caption_area, cell_expose_area, cell_state, photo);
 
                 caption_area.Y += caption_area.Height;
             }

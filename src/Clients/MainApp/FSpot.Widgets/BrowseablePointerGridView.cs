@@ -76,9 +76,10 @@ namespace FSpot.Widgets
 
 #region Drawing Methods
 
-        protected override void DrawPhoto (int cell_num, Rectangle cell_area, Rectangle expose_area, bool selected, bool focussed)
+        protected override void DrawPhoto (int cell_num, Rectangle cell_area, Cairo.Context cr,
+                                           bool selected, bool focussed)
         {
-            base.DrawPhoto (cell_num, cell_area, expose_area, (Pointer.Index == cell_num), false);
+            base.DrawPhoto (cell_num, cell_area, cr, (Pointer.Index == cell_num), false);
         }
 
 #endregion

@@ -121,9 +121,11 @@ namespace FSpot.Widgets
 
 #region Drawing Methods
 
-        protected override void DrawPhoto (int cell_num, Rectangle cell_area, Rectangle expose_area, bool selected, bool focussed)
+        protected override void DrawPhoto (int cell_num, Rectangle cell_area, Cairo.Context cr,
+                                           bool selected, bool focussed)
         {
-            base.DrawPhoto (cell_num, cell_area, expose_area, Selection.Contains (cell_num), (FocusCell == cell_num));
+            base.DrawPhoto (cell_num, cell_area, cr,
+                            Selection.Contains (cell_num), (FocusCell == cell_num));
         }
 
 		// GTK3: OnExposeEvent
