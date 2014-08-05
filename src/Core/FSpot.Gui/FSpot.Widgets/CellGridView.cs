@@ -50,9 +50,15 @@ namespace FSpot.Widgets
         protected CellGridView (IntPtr raw) : base (raw)
         {
         }
-
+        
         protected CellGridView () : base (null, null)
         {
+            AddNotification ("vadjustment", OnVadjustmentChanged);
+        }
+        
+        private void OnVadjustmentChanged (object o, GLib.NotifyArgs args)
+        {
+            Vadjustment.ValueChanged += HandleAdjustmentValueChanged;
         }
 
 #endregion
@@ -81,7 +87,7 @@ namespace FSpot.Widgets
         /// <summary>
         ///   The function is called to draw a Cell.
         /// </summary>
-        protected abstract void DrawCell (int cellNum, Rectangle cellArea, Rectangle exposeArea);
+        protected abstract void DrawCell (int cellNum, Rectangle cellArea, Cairo.Context cr);
 
         /// <summary>
         ///    The function is called to preload a cell.
@@ -348,24 +354,12 @@ namespace FSpot.Widgets
             base.OnSizeAllocated (allocation);
         }
 
-		// GTK3
-//        protected override void OnScrollAdjustmentsSet (Adjustment hadjustment, Adjustment vadjustment)
-//        {
-//            base.OnScrollAdjustmentsSet (hadjustment, vadjustment);
-//
-//            if (vadjustment != null)
-//		vadjustment.ValueChanged += HandleAdjustmentValueChanged;
-//        }
+		protected override bool OnDrawn (Cairo.Context cr)
+		{
+			DrawAllCells (cr);
 
-		// GTK3
-//		protected override bool OnDrawn (Cairo.Context cr)
-//		{
-////			foreach (Rectangle area in args.Region.GetRectangles ()) {
-////				DrawAllCells (area);
-////			}
-//
-//			return base.OnDrawn (cr);
-//		}
+			return base.OnDrawn (cr);
+		}
 
         void UpdateLayout ()
         {
@@ -438,11 +432,13 @@ namespace FSpot.Widgets
             }
         }
 
-        void DrawAllCells (Gdk.Rectangle area)
+        void DrawAllCells (Cairo.Context cr)
         {
-            foreach (var cell_num in CellsInRect (area)) {
-                DrawCell (cell_num, CellBounds (cell_num), area);
-            }
+            Rectangle visible_area = new Rectangle ((int) Hadjustment.Value, (int) Vadjustment.Value,
+                                            Allocation.Width, Allocation.Height);
+            
+            foreach (var cell_num in CellsInRect (visible_area))
+                DrawCell (cell_num, CellBounds (cell_num), cr);
         }
 
         // The first pixel line that is currently on the screen (i.e. in the current
@@ -466,45 +462,17 @@ namespace FSpot.Widgets
                 ystep = Math.Min (ystep, -Allocation.Height);
 
 			Cairo.RectangleInt area = new Cairo.RectangleInt();
-
-			// GTK3: This needs some more lovin'
-			Cairo.Region offscreen = new Cairo.Region ();
-            /*
-            Log.Debug ("step ({0}, {1}) allocation ({2},{3},{4},{5})",
-                    xstep, ystep, Hadjustment.Value, Vadjustment.Value,
-                    Allocation.Width, Allocation.Height);
-            */
-            /*
-            area = new Gdk.Rectangle (Math.Max ((int) (Hadjustment.Value + 4 * xstep), 0),
-                    Math.Max ((int) (Vadjustment.Value + 4 * ystep), 0),
-                    Allocation.Width,
-                    Allocation.Height);
-            offscreen.UnionWithRect (area);
-            area = new Gdk.Rectangle (Math.Max ((int) (Hadjustment.Value + 3 * xstep), 0),
-                    Math.Max ((int) (Vadjustment.Value + 3 * ystep), 0),
-                    Allocation.Width,
-                    Allocation.Height);
-            offscreen.UnionWithRect (area);
-            */
-//			area = new Cairo.RectangleInt (Math.Max ((int) (Hadjustment.Value + 2 * xstep), 0),
-//                    Math.Max ((int) (Vadjustment.Value + 2 * ystep), 0),
-//                    Allocation.Width,
-//				Allocation.Height) as Cairo.RectangleInt;
-//			offscreen.UnionRectangle (area);
-//            area = new Rectangle (Math.Max ((int) (Hadjustment.Value + xstep), 0),
-//                    Math.Max ((int) (Vadjustment.Value + ystep), 0),
-//                    Allocation.Width,
-//					Allocation.Height) as Cairo.RectangleInt;
-//            offscreen.UnionRectangle (area);
-//            area = new Rectangle ((int) Hadjustment.Value,
-//                    (int) Vadjustment.Value,
-//                    Allocation.Width,
-//					Allocation.Height) as Cairo.RectangleInt;
+			area.X = Math.Max ((int)(Hadjustment.Value + 2 * xstep), 0);
+			area.Y = Math.Max ((int)(Vadjustment.Value + 2 * ystep), 0);
+			area.Width = Allocation.Width;
+			area.Height = Allocation.Height;
 
             // always load the onscreen area last to make sure it
             // is first in the loading
 			Cairo.Region onscreen = new Cairo.Region ();
 			onscreen.UnionRectangle (area);
+
+			Cairo.Region offscreen = new Cairo.Region ();
             offscreen.Subtract (onscreen);
 
             PreloadRegion (offscreen, ystep);
