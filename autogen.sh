@@ -63,6 +63,19 @@ check_autotool_version pkg-config 0.14.0
 
 run git submodule sync
 run git submodule update --init
+patch --dry-run -p1 --silent -f -R < external.patch
+
+if [ $? -eq 0 ];
+then
+    # patch already applied
+    echo "Hyena patch already applied, skipping"
+else
+    # Hyena patch missing, apply
+    echo "Applying Hyena patch"
+    run patch -p1 < external.patch
+fi
+
+
 if [ $(pkg-config --modversion gnome-doc-utils 2> /dev/null) ]; then
     run gnome-doc-prepare --automake --force
 else
@@ -94,6 +107,5 @@ run ./configure --enable-maintainer-mode $@
 
 # This is a hack to get around xamarin bug#4030
 mkdir -p bin
-cp -f `pkg-config --variable assemblies_dir gtk-sharp-beans-2.0`/* bin
 cp -f `pkg-config --variable assemblies_dir gio-sharp-2.0`/* bin
 rm -f bin/*.mdb
