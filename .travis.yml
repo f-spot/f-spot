@@ -17,5 +17,5 @@ script:
   - patch -p1 < external.patch
   - cd lib/libfspot
   - make
-  - cd ..
+  - cd ../..
   - xbuild F-Spot.sln
