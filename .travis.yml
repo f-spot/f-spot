@@ -6,7 +6,7 @@ before_install:
 install:
   - sudo apt-get update > /dev/null
   - sudo apt-get build-dep f-spot > /dev/null
-  - sudo apt-get install mono-devel > /dev/null
+  - sudo apt-get install mono-devel mono-gmcs > /dev/null
 
 script:
   - ./autogen.sh
