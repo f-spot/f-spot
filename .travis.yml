@@ -7,6 +7,7 @@ install:
   - sudo apt-get update > /dev/null
   - sudo apt-get build-dep f-spot > /dev/null
   - sudo apt-get install mono-devel mono-gmcs > /dev/null
+  - sudo apt-get install libdbus-glib1.0-cil-dev libgnomedesktop2.0-cil-dev libgnome-desktop-dev liblcms2-dev > /dev/null
 
 script:
   - ./autogen.sh
