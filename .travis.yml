@@ -4,11 +4,17 @@ before_install:
   - git submodule update --init --recursive
 
 install:
-  - sudo apt-get install mono-devel
+  - sudo apt-get update > /dev/null
+  - sudo apt-get build-dep f-spot > /dev/null
+  - sudo apt-get install mono-devel > /dev/null
 
 script:
   - ./autogen.sh
-  - cd build; make; cd ..
+  - cd build
+  - make
+  - cd ..
   - patch -p1 < external.patch
-  - cd lib/libfspot; make; cd ..
+  - cd lib/libfspot
+  - make
+  - cd ..
   - xbuild F-Spot.sln
