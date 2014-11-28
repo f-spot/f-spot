@@ -65,7 +65,7 @@ run git submodule sync
 run git submodule update --init
 patch --dry-run -p1 --silent -f -R < external.patch
 
-if [ $? -eq 0];
+if [ $? -eq 0 ];
 then
     # patch already applied
     echo "Hyena and taglish-sharp patch already applied, skipping"
