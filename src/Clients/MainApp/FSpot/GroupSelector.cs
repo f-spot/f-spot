@@ -465,6 +465,7 @@ namespace FSpot {
 			public Box (GroupSelector selector, int item)
 			{
 				bounds = new Gdk.Rectangle();
+				bar = new Rectangle();
 				bounds.Height = selector.background.Height;
 				bounds.Y = selector.background.Y;
 				bounds.X = selector.BoxX (item);
