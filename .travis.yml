@@ -1,8 +1,5 @@
 language: c
 
-before_install:
-  - git submodule update --init --recursive
-
 install:
   - sudo apt-get update > /dev/null
   - sudo apt-get build-dep f-spot > /dev/null
@@ -14,9 +11,7 @@ script:
   - ./autogen.sh
   - cd build
   - make
-  - cd ..
-  - patch -p1 < external.patch
-  - cd lib/libfspot
+  - cd ../lib/libfspot
   - make
   - cd ../..
   - xbuild F-Spot.sln

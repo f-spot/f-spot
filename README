@@ -34,9 +34,8 @@ With MonoDevelop:
 	There are a few steps you have to run before you can open MonoDevelop:
 		1.  sh autogen.sh (on ubuntu you have to do ./autogen.sh)
 		2.  cd build; make
-		3.  patch -p1 < external.patch
-		4.  cd lib/libfspot; make
-		5.  sudo make install (this will install the libfspot.so files)
+		3.  cd lib/libfspot; make
+		4.  sudo make install (this will install the libfspot.so files)
 
 	The hyena patch is just a temporary fix for now. This will no longer be needed
 	when we switch to hyena master which is based on gtk-sharp3.
