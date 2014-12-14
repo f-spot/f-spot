@@ -2,11 +2,13 @@
 // Filmstrip.cs
 //
 // Author:
+//   Daniel Köb <daniel.koeb@peony.at>
 //   Ruben Vermeersch <ruben@savanne.be>
 //   Lorenzo Milesi <maxxer@yetopen.it>
 //   Stephane Delcroix <stephane@delcroix.org>
 //   Stephen Shaw <sshaw@decriptor.com>
 //
+// Copyright (C) 2014 Daniel Köb
 // Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2008-2010 Novell, Inc.
 // Copyright (C) 2008, 2010 Ruben Vermeersch
@@ -567,11 +569,10 @@ namespace FSpot.Widgets
 			}
 
 			// Add a four pixel white border around the thumbnail
-			using (Pixbuf whiteBorder = new Pixbuf (Gdk.Colorspace.Rgb, true, 8, current.Width, current.Height)) {
-				whiteBorder.Fill (0);
-				current.CopyArea (1, 1, current.Width - 8, current.Height - 8, whiteBorder, 4, 4);
-				current = whiteBorder;
-			}
+			Pixbuf whiteBorder = new Pixbuf (Gdk.Colorspace.Rgb, true, 8, current.Width, current.Height);
+			whiteBorder.Fill (0);
+			current.CopyArea (1, 1, current.Width - 8, current.Height - 8, whiteBorder, 4, 4);
+			current = whiteBorder;
 
 			if (!highlighted)
 				return current;
