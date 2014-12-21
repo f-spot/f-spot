@@ -38,29 +38,29 @@ namespace FSpot.Widgets
 		uint color1, color2;
 		int check_size;
 
-		public CheckPattern (uint color1, uint color2, int check_size)
+		public CheckPattern (uint color1, uint color2, int checkSize)
 		{
 			this.color1 = color1;
 			this.color2 = color2;
-			this.check_size = check_size;
+			check_size = checkSize;
 		}
 
-		public CheckPattern (string color1, string color2, int check_size) : this (s_to_h (color1), s_to_h (color2), check_size)
+		public CheckPattern (string color1, string color2, int checkSize) : this (s_to_h (color1), s_to_h (color2), checkSize)
 		{
 		}
 
-		public CheckPattern (uint transparent_color)
+		public CheckPattern (uint transparentColor)
 		{
-			color1 = color2 = transparent_color;
+			color1 = color2 = transparentColor;
 			check_size = 32;
 		}
 
 		//format "#000000"
-		public CheckPattern (string transparent_color) : this (s_to_h (transparent_color))
+		public CheckPattern (string transparentColor) : this (s_to_h (transparentColor))
 		{
 		}
 
-		public CheckPattern (Color transparent_color) : this (c_to_h (transparent_color))
+		public CheckPattern (Color transparentColor) : this (c_to_h (transparentColor))
 		{
 		}
 

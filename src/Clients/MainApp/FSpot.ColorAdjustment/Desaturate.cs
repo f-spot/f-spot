@@ -29,21 +29,21 @@
 
 using System.Collections.Generic;
 
-using Cms;
+using FSpot.Cms;
 
 using Gdk;
 
 namespace FSpot.ColorAdjustment {
 	public class Desaturate : Adjustment {
-		public Desaturate (Pixbuf input, Cms.Profile input_profile) : base (input, input_profile)
+		public Desaturate (Pixbuf input, Profile inputProfile) : base (input, inputProfile)
 		{
 		}
 
-		protected override List <Cms.Profile> GenerateAdjustments ()
+		protected override List <Profile> GenerateAdjustments ()
 		{
-			List <Cms.Profile> profiles = new List <Cms.Profile> ();
+			var profiles = new List <Profile> ();
 			profiles.Add (InputProfile);
-			profiles.Add (Cms.Profile.CreateAbstract (nsteps,
+			profiles.Add (Profile.CreateAbstract (nsteps,
 								  1.0,
 								  0.0,
 								  0.0,

@@ -30,22 +30,24 @@
 using System;
 using System.Collections.Generic;
 
-using Cms;
+using FSpot.Cms;
 
 using Gdk;
 
 using Hyena;
 
-namespace FSpot.ColorAdjustment {
-	public class AutoStretch : Adjustment {
-		public AutoStretch (Pixbuf input, Profile input_profile) : base (input, input_profile)
+namespace FSpot.ColorAdjustment
+{
+	public class AutoStretch : Adjustment
+	{
+		public AutoStretch (Pixbuf input, Profile inputProfile) : base (input, inputProfile)
 		{
 		}
 
 		protected override List <Profile> GenerateAdjustments ()
 		{
-			List <Profile> profiles = new List <Profile> ();
-			Histogram hist = new Histogram (Input);
+			var profiles = new List <Profile> ();
+			var hist = new Histogram (Input);
 			tables = new ToneCurve [3];
 
 			for (int channel = 0; channel < tables.Length; channel++) {
@@ -60,7 +62,7 @@ namespace FSpot.ColorAdjustment {
 
 		ToneCurve StretchChannel (int count, double low, double high)
 		{
-			ushort [] entries = new ushort [count];
+			var entries = new ushort [count];
 			for (int i = 0; i < entries.Length; i++) {
 				double val = i / (double)entries.Length;
 

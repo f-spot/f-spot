@@ -3,7 +3,7 @@
 //       Stephen Shaw <sshaw@decriptor.com>
 //  Copyright (c) 2011 sshaw
 using NUnit.Framework;
-using FSpot;
+using FSpot.Query;
 
 namespace FSpot
 {

@@ -42,6 +42,7 @@ using Gdk;
 using GLib;
 
 using GFileInfo = GLib.FileInfo;
+using FSpot.Utils;
 
 namespace FSpot.Imaging
 {

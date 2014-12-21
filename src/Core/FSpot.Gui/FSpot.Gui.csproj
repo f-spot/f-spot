@@ -3,13 +3,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{05A7FEC4-974A-40EB-AFB8-14E523EEEFFB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>FSpot.Widgets</RootNamespace>
     <AssemblyName>FSpot.Gui</AssemblyName>
     <ReleaseVersion>0.9.0</ReleaseVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -50,29 +51,14 @@
     <Compile Include="FSpot.Transitions\SlideShowTransition.cs" />
     <Compile Include="FSpot.Widgets\ImageView_Panning.cs" />
     <Compile Include="FSpot.Widgets\ImageView_Container.cs" />
-    <Compile Include="FSpot.Gui\WindowOpacityFader.cs" />
-    <Compile Include="FSpot.Gui\CompositeUtils.cs" />
     <Compile Include="FSpot.Widgets\ToolTipWindow.cs" />
     <Compile Include="FSpot.Widgets\RatingEntry.cs" />
     <Compile Include="FSpot.Widgets\RatingRenderer.cs" />
     <Compile Include="FSpot.Widgets\CellGridView.cs" />
     <Compile Include="FSpot.Widgets\SelectionCollection.cs" />
+    <Compile Include="CompositeUtils.cs" />
+    <Compile Include="WindowOpacityFader.cs" />
   </ItemGroup>
-  <ProjectExtensions>
-    <MonoDevelop>
-      <Properties>
-        <MonoDevelop.Autotools.MakefileInfo RelativeMakefileName="Makefile.am" IsAutotoolsProject="True" RelativeConfigureInPath="../../..">
-          <BuildFilesVar Sync="True" Name="SOURCES" />
-          <DeployFilesVar />
-          <ResourcesVar Sync="True" Name="RESOURCES" />
-          <OthersVar />
-          <GacRefVar />
-          <AsmRefVar />
-          <ProjectRefVar />
-        </MonoDevelop.Autotools.MakefileInfo>
-      </Properties>
-    </MonoDevelop>
-  </ProjectExtensions>
   <ItemGroup>
     <Reference Include="Mono.Posix" />
     <Reference Include="System" />
@@ -135,8 +121,16 @@
   <ItemGroup>
     <Folder Include="FSpot.Transitions\" />
     <Folder Include="FSpot.Widgets\" />
-    <Folder Include="FSpot.Gui\" />
   </ItemGroup>
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <Policies>
+          <DotNetNamingPolicy DirectoryNamespaceAssociation="Flat" ResourceNamePolicy="FileName" />
+        </Policies>
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
   <ItemGroup>
     <None Include="FSpot.Gui.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

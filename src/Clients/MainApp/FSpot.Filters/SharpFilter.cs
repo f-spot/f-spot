@@ -32,6 +32,7 @@
 using Gdk;
 
 using FSpot.Imaging;
+using FSpot.Utils;
 
 namespace FSpot.Filters {
     public class SharpFilter : IFilter

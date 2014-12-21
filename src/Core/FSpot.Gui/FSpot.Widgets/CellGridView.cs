@@ -399,8 +399,8 @@ namespace FSpot.Widgets
 
         void SetSize (int x, int y, int width, int height)
         {
-            Hadjustment.Upper = System.Math.Max (Allocation.Width, width);
-            Vadjustment.Upper = System.Math.Max (Allocation.Height, height);
+            Hadjustment.Upper = Math.Max (Allocation.Width, width);
+            Vadjustment.Upper = Math.Max (Allocation.Height, height);
 
             bool xchange = scroll && (int)(Hadjustment.Value) != x;
             bool ychange = scroll && (int)(Vadjustment.Value) != y;

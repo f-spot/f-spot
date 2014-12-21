@@ -3,13 +3,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{7281334F-0B1D-4383-9EA2-6740D56ADCDE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>FSpot.Bling</RootNamespace>
     <AssemblyName>FSpot.Bling</AssemblyName>
     <ReleaseVersion>0.9.0</ReleaseVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -31,30 +32,15 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="FSpot.Bling\Animation.cs" />
-    <Compile Include="FSpot.Bling\BackEase.cs" />
-    <Compile Include="FSpot.Bling\CubicEase.cs" />
-    <Compile Include="FSpot.Bling\DoubleAnimation.cs" />
-    <Compile Include="FSpot.Bling\EasedAnimation.cs" />
-    <Compile Include="FSpot.Bling\EasingFunction.cs" />
-    <Compile Include="FSpot.Bling\EasingMode.cs" />
-    <Compile Include="FSpot.Bling\QuinticEase.cs" />
+    <Compile Include="Animation.cs" />
+    <Compile Include="BackEase.cs" />
+    <Compile Include="CubicEase.cs" />
+    <Compile Include="DoubleAnimation.cs" />
+    <Compile Include="EasedAnimation.cs" />
+    <Compile Include="EasingFunction.cs" />
+    <Compile Include="EasingMode.cs" />
+    <Compile Include="QuinticEase.cs" />
   </ItemGroup>
-  <ProjectExtensions>
-    <MonoDevelop>
-      <Properties>
-        <MonoDevelop.Autotools.MakefileInfo RelativeMakefileName="Makefile.am" BuildTargetName="" CleanTargetName="" IsAutotoolsProject="True" RelativeConfigureInPath="../../..">
-          <BuildFilesVar Sync="True" Name="SOURCES" />
-          <DeployFilesVar />
-          <ResourcesVar Sync="True" Name="RESOURCES" />
-          <OthersVar />
-          <GacRefVar />
-          <AsmRefVar />
-          <ProjectRefVar />
-        </MonoDevelop.Autotools.MakefileInfo>
-      </Properties>
-    </MonoDevelop>
-  </ProjectExtensions>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="glib-sharp, Version=3.0.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">

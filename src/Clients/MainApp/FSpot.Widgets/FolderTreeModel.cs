@@ -34,8 +34,9 @@ using System;
 using Gtk;
 
 using FSpot;
-using FSpot.Database;
 using FSpot.Core;
+using FSpot.Database;
+using FSpot.Utils;
 
 using Hyena;
 

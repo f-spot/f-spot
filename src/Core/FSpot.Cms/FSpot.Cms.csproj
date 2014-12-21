@@ -3,13 +3,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{9D66BC1B-4390-4B8D-8468-19D5A862EC23}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>FSpot.Cms</RootNamespace>
     <AssemblyName>FSpot.Cms</AssemblyName>
     <ReleaseVersion>0.9.0</ReleaseVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -33,37 +34,22 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="Cms\CctTable.cs" />
-    <Compile Include="Cms\CmsException.cs" />
-    <Compile Include="Cms\ColorCIELab.cs" />
-    <Compile Include="Cms\ColorCIELCh.cs" />
-    <Compile Include="Cms\ColorCIExyY.cs" />
-    <Compile Include="Cms\ColorCIEXYZ.cs" />
-    <Compile Include="Cms\Format.cs" />
-    <Compile Include="Cms\IccColorSpace.cs" />
-    <Compile Include="Cms\IccProfileClass.cs" />
-    <Compile Include="Cms\Intent.cs" />
-    <Compile Include="Cms\NativeMethods.cs" />
-    <Compile Include="Cms\Profile.cs" />
-    <Compile Include="Cms\SaveException.cs" />
-    <Compile Include="Cms\Transform.cs" />
-    <Compile Include="Cms\ToneCurve.cs" />
+    <Compile Include="CctTable.cs" />
+    <Compile Include="CmsException.cs" />
+    <Compile Include="ColorCIELab.cs" />
+    <Compile Include="ColorCIELCh.cs" />
+    <Compile Include="ColorCIExyY.cs" />
+    <Compile Include="ColorCIEXYZ.cs" />
+    <Compile Include="Format.cs" />
+    <Compile Include="IccColorSpace.cs" />
+    <Compile Include="IccProfileClass.cs" />
+    <Compile Include="Intent.cs" />
+    <Compile Include="NativeMethods.cs" />
+    <Compile Include="Profile.cs" />
+    <Compile Include="SaveException.cs" />
+    <Compile Include="ToneCurve.cs" />
+    <Compile Include="Transform.cs" />
   </ItemGroup>
-  <ProjectExtensions>
-    <MonoDevelop>
-      <Properties>
-        <MonoDevelop.Autotools.MakefileInfo RelativeMakefileName="Makefile.am" IsAutotoolsProject="True" RelativeConfigureInPath="../../..">
-          <BuildFilesVar Sync="True" Name="SOURCES" />
-          <DeployFilesVar />
-          <ResourcesVar Sync="True" Name="RESOURCES" />
-          <OthersVar />
-          <GacRefVar />
-          <AsmRefVar />
-          <ProjectRefVar />
-        </MonoDevelop.Autotools.MakefileInfo>
-      </Properties>
-    </MonoDevelop>
-  </ProjectExtensions>
   <ItemGroup>
     <Reference Include="gdk-sharp, Version=3.0.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Private>False</Private>

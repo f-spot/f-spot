@@ -35,6 +35,7 @@ using Gtk;
 using Mono.Unix;
 
 using Hyena;
+using FSpot.Utils;
 
 namespace FSpot.UI.Dialog
 {
