@@ -2,8 +2,10 @@
 // ImportController.cs
 //
 // Author:
+//   Daniel Köb <daniel.koeb@peony.at>
 //   Ruben Vermeersch <ruben@savanne.be>
 //
+// Copyright (C) 2014 Daniel Köb
 // Copyright (C) 2010 Novell, Inc.
 // Copyright (C) 2010 Ruben Vermeersch
 //
@@ -253,6 +255,10 @@ namespace FSpot.Import
 
         public void CancelImport ()
         {
+            if (ActiveSource != null) {
+                ActiveSource.Deactivate ();
+            }
+
             import_cancelled = true;
             if (ImportThread != null)
                 ImportThread.Join ();
