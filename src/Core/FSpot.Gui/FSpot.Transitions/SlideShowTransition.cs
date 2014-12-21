@@ -35,12 +35,12 @@ namespace FSpot.Transitions
 {
 	public abstract class SlideShowTransition
 	{
-		public SlideShowTransition (string name)
+		protected SlideShowTransition (string name)
 		{
 			this.name = name;
 		}
 
-		string name;
+		readonly string name;
 		public string Name {
 			get { return name; }
 		}

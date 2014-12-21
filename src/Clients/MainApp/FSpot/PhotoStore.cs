@@ -51,6 +51,7 @@ using FSpot.Query;
 using Hyena;
 using Hyena.Data.Sqlite;
 using System.Data;
+using FSpot.Utils;
 
 namespace FSpot {
         public class PhotoStore : DbStore<Photo> {

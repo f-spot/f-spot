@@ -31,19 +31,21 @@
 
 using System.Collections.Generic;
 
-using Cms;
+using FSpot.Cms;
 
 using Gdk;
 
-namespace FSpot.ColorAdjustment {
-	public abstract class Adjustment {
+namespace FSpot.ColorAdjustment
+{
+	public abstract class Adjustment
+	{
 		protected int nsteps = 20;
-		private Cms.Intent intent = Cms.Intent.Perceptual;
+		Cms.Intent intent = Cms.Intent.Perceptual;
 
 		// This is the input pixbuf, on which the adjustment will be performed.
 		protected readonly Gdk.Pixbuf Input;
 
-		private Cms.Profile input_profile;
+		Cms.Profile input_profile;
 		public Cms.Profile InputProfile {
 			get {
 				if (input_profile == null)
@@ -54,7 +56,7 @@ namespace FSpot.ColorAdjustment {
 			set { input_profile = value; }
 		}
 
-		private Cms.Profile destination_profile;
+		Cms.Profile destination_profile;
 		public Cms.Profile DestinationProfile {
 			get {
 				if (destination_profile == null)

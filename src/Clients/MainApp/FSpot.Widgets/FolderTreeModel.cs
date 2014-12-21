@@ -34,12 +34,11 @@ using System;
 using Gtk;
 
 using FSpot;
-using FSpot.Database;
 using FSpot.Core;
+using FSpot.Database;
+using FSpot.Utils;
 
 using Hyena;
-using Hyena.Data.Sqlite;
-using System.Data;
 
 namespace FSpot.Widgets
 {

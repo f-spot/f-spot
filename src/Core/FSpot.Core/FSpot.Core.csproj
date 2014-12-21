@@ -3,13 +3,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{57EDC3BC-E777-4400-B4E7-32A5D8F15A76}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>FSpot.Core</RootNamespace>
     <AssemblyName>FSpot.Core</AssemblyName>
     <ReleaseVersion>0.9.0</ReleaseVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -26,45 +27,30 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="FSpot.Core\BrowsableCollectionProxy.cs" />
-    <Compile Include="FSpot.Core\BrowsableEventArgs.cs" />
-    <Compile Include="FSpot.Core\BrowsablePointer.cs" />
-    <Compile Include="FSpot.Core\BrowsablePointerChangedEventArgs.cs" />
-    <Compile Include="FSpot.Core\Category.cs" />
-    <Compile Include="FSpot.Core\DbItem.cs" />
-    <Compile Include="FSpot.Core\Tag.cs" />
-    <Compile Include="FSpot.Core\Global.cs" />
-    <Compile Include="FSpot.Core\IBrowsableItemChanges.cs" />
-    <Compile Include="FSpot.Core\IBrowsableCollection.cs" />
-    <Compile Include="FSpot.Core\ILoadable.cs" />
-    <Compile Include="FSpot.Core\PhotoChanges.cs" />
-    <Compile Include="FSpot.Core\PhotosChanges.cs" />
-    <Compile Include="FSpot.Core\Roll.cs" />
-    <Compile Include="FSpot.Core\Defines.cs" />
-    <Compile Include="FSpot.Core\IPhoto.cs" />
-    <Compile Include="FSpot.Core\IPhotoExtensions.cs" />
-    <Compile Include="FSpot.Core\IPhotoComparer.cs" />
-    <Compile Include="FSpot.Core\IPhotoVersion.cs" />
-    <Compile Include="FSpot.Core\IPhotoVersionable.cs" />
-    <Compile Include="FSpot.Core\FilePhoto.cs" />
-    <Compile Include="FSpot.Core\PhotoList.cs" />
-    <Compile Include="FSpot.Core\IInvalidPhotoCheck.cs" />
+    <Compile Include="BrowsableCollectionProxy.cs" />
+    <Compile Include="BrowsableEventArgs.cs" />
+    <Compile Include="BrowsablePointer.cs" />
+    <Compile Include="BrowsablePointerChangedEventArgs.cs" />
+    <Compile Include="Category.cs" />
+    <Compile Include="DbItem.cs" />
+    <Compile Include="Defines.cs" />
+    <Compile Include="FilePhoto.cs" />
+    <Compile Include="Global.cs" />
+    <Compile Include="IBrowsableCollection.cs" />
+    <Compile Include="IBrowsableItemChanges.cs" />
+    <Compile Include="IInvalidPhotoCheck.cs" />
+    <Compile Include="ILoadable.cs" />
+    <Compile Include="IPhoto.cs" />
+    <Compile Include="IPhotoComparer.cs" />
+    <Compile Include="IPhotoExtensions.cs" />
+    <Compile Include="IPhotoVersion.cs" />
+    <Compile Include="IPhotoVersionable.cs" />
+    <Compile Include="PhotoChanges.cs" />
+    <Compile Include="PhotoList.cs" />
+    <Compile Include="PhotosChanges.cs" />
+    <Compile Include="Roll.cs" />
+    <Compile Include="Tag.cs" />
   </ItemGroup>
-  <ProjectExtensions>
-    <MonoDevelop>
-      <Properties>
-        <MonoDevelop.Autotools.MakefileInfo RelativeMakefileName="Makefile.am" IsAutotoolsProject="True" RelativeConfigureInPath="../../..">
-          <BuildFilesVar Sync="True" Name="SOURCES" />
-          <DeployFilesVar />
-          <ResourcesVar Sync="True" Name="RESOURCES" />
-          <OthersVar />
-          <GacRefVar />
-          <AsmRefVar />
-          <ProjectRefVar />
-        </MonoDevelop.Autotools.MakefileInfo>
-      </Properties>
-    </MonoDevelop>
-  </ProjectExtensions>
   <ItemGroup>
     <ProjectReference Include="..\FSpot.Utils\FSpot.Utils.csproj">
       <Project>{CE160879-1BF0-4711-A18F-FDA2772900FA}</Project>
@@ -87,24 +73,21 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Package>gtk-sharp-2.0</Package>
+    </Reference>
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Package>gtk-sharp-2.0</Package>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Mono.Posix" />
     <Reference Include="System" />
     <Reference Include="gio-sharp, Version=2.14.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Private>False</Private>
       <Package>gio-sharp-2.0</Package>
     </Reference>
-    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="FSpot.Core.addins">
-      <LogicalName>FSpot.Core.addins</LogicalName>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="FSpot.Core\" />
+    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Package>glib-sharp-2.0</Package>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="FSpot.Core.dll.config">
