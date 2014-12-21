@@ -2,8 +2,10 @@
 // FileImportSource.cs
 //
 // Author:
+//   Daniel Köb <daniel.koeb@peony.at>
 //   Ruben Vermeersch <ruben@savanne.be>
 //
+// Copyright (C) 2014 Daniel Köb
 // Copyright (C) 2010 Novell, Inc.
 // Copyright (C) 2010 Ruben Vermeersch
 //
@@ -92,25 +94,14 @@ namespace FSpot.Import
 						CatchErrors = true,
 						IgnoreSymlinks = true
 			};
-			var infos = new List<FileImportInfo> ();
 			foreach (var file in enumerator) {
 				if (ImageFile.HasLoader (new SafeUri (file.Uri.ToString(), true))) {
-					infos.Add (new FileImportInfo (new SafeUri (file.Uri.ToString(), true)));
+					var info = new FileImportInfo (new SafeUri (file.Uri.ToString (), true));
+					ThreadAssist.ProxyToMain (() =>
+					    photo_list.Add (info));
 				}
-
-				if (infos.Count % 10 == 0 || infos.Count < 10) {
-					var to_add = infos; // prevents race condition
-					ThreadAssist.ProxyToMain (() => photo_list.Add (to_add.ToArray ()));
-					infos = new List<FileImportInfo> ();
-				}
-
 				if (!run_photoscanner)
 					return;
-			}
-
-			if (infos.Count > 0) {
-				var to_add = infos; // prevents race condition
-				ThreadAssist.ProxyToMain (() => photo_list.Add (to_add.ToArray ()));
 			}
 		}
 
