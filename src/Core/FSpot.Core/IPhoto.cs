@@ -33,7 +33,6 @@ namespace FSpot.Core
 {
     public interface IPhoto
     {
-
         #region Metadata
 
         /// <summary>
@@ -78,7 +77,6 @@ namespace FSpot.Core
         /// </summary>
         IEnumerable<IPhotoVersion> Versions { get; }
         
-        #endregion
-        
+        #endregion   
     }
 }
