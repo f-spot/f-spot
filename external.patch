@@ -279,11 +279,11 @@ index cc18abc..39a6fbe 100644
      </MonoDevelop>
    </ProjectExtensions>
 
-diff --git a/external/taglib-sharp/src/taglib-sharp.csproj b/external/taglib-sharp/src/taglib-sharp.csproj
+diff --git a/external/taglib-sharp/src/taglib-sharp.csproj b/external/taglib-sharp/src/taglib-sharp.c
 index 99ee40e..e6c88b2 100644
 --- a/external/taglib-sharp/src/taglib-sharp.csproj
 +++ b/external/taglib-sharp/src/taglib-sharp.csproj
-@@ -3,15 +3,14 @@
+@@ -3,15 +3,15 @@
    <PropertyGroup>
      <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
      <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -297,8 +297,8 @@ index 99ee40e..e6c88b2 100644
      <AssemblyName>taglib-sharp</AssemblyName>
 -    <ReleaseVersion>2.0.4.0</ReleaseVersion>
 -    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
 +    <ReleaseVersion>0.9.0</ReleaseVersion>
++    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
    </PropertyGroup>
    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
      <DebugSymbols>True</DebugSymbols>
