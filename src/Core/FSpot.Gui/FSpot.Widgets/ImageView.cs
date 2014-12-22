@@ -374,9 +374,9 @@ namespace FSpot.Widgets
             if (Fit || zoom < MIN_ZOOM)
                 zoom = MIN_ZOOM;
             // Since this affects the zoom_scale we should alert it
-            EventHandler eh = ZoomChanged;
-            if (eh != null)
-                eh (this, EventArgs.Empty);
+            var handler = ZoomChanged;
+            if (handler != null)
+                handler (this, EventArgs.Empty);
 
             ComputeScaledSize ();
 
@@ -751,7 +751,6 @@ namespace FSpot.Widgets
 			Vadjustment.StepIncrement = 32;
 			Vadjustment.Upper = scaled_height;
 			Vadjustment.Lower = 0;
-
 		}
 
 		event EventHandler AdjustmentsChanged;
