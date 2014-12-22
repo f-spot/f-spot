@@ -59,7 +59,7 @@ namespace FSpot
 	{
          public int TotalPhotos {
                  get {
-                         IDataReader reader = Database.Query("SELECT COUNT(*) AS photo_count FROM photos");
+                         Hyena.Data.Sqlite.IDataReader reader = Database.Query("SELECT COUNT(*) AS photo_count FROM photos");
                          reader.Read ();
                          int total = Convert.ToInt32 (reader ["photo_count"]);
                          reader.Dispose ();
