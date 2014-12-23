@@ -62,11 +62,11 @@ SHAMROCK_EXPAND_DATADIR
 dnl User help
 SHAMROCK_CHECK_GNOME_DOC_UTILS(0.17.3)
 
-dnl Mono and gmcs
-SHAMROCK_CHECK_MONO_MODULE(2.2)
-SHAMROCK_FIND_MONO_2_0_COMPILER
+dnl Mono and mcs
+SHAMROCK_CHECK_MONO_MODULE(3.6)
+SHAMROCK_FIND_MONO_4_0_COMPILER
 SHAMROCK_FIND_MONO_RUNTIME
-SHAMROCK_CHECK_MONO_2_0_GAC_ASSEMBLIES([
+SHAMROCK_CHECK_MONO_4_0_GAC_ASSEMBLIES([
     Mono.Posix
     Mono.Simd
     System
@@ -90,10 +90,10 @@ FSPOT_CHECK_GNOME_SHARP
 
 
 # ---------------------------------- <Old build stuff>
-dnl --- Check for mono and gmcs
+dnl --- Check for mono and mcs
 
 AC_PATH_PROG(MONO, mono)
-AC_PATH_PROG(MCS, gmcs)
+AC_PATH_PROG(MCS, mcs)
 
 CS="C#"
 if test ! -x "$MCS"; then
@@ -251,17 +251,17 @@ AC_SUBST(GNOME_ICON_THEME_PREFIX)
 AC_ARG_ENABLE(release,
 	AC_HELP_STRING([--enable-release],
 		[Use release configuration]),
-	enable_release=yes, enable_release=`(test ! -d .svn && test ! -d .git) && echo "yes" || echo "no"`)
+	enable_release=yes, enable_release=`(test ! -d .git && test ! -d .git) && echo "yes" || echo "no"`)
 AM_CONDITIONAL(ENABLE_RELEASE, test "x$enable_release" = "xyes")
 ENABLE_RELEASE=$enable_release
 AC_SUBST(ENABLE_RELEASE)
 if test "x$enable_release" = "xyes"; then
-	GMCS_FLAGS="-define:RELEASE -sdk:4"
+	MCS_FLAGS="-define:RELEASE -sdk:4"
 # FIXME: Enable as soon as we rock sufficiently
 #else
-#	GMCS_FLAGS="-warnaserror"
+#	MCS_FLAGS="-warnaserror"
 fi
-AC_SUBST(GMCS_FLAGS)
+AC_SUBST(MCS_FLAGS)
 
 AM_CONDITIONAL(HYENA_PKG_CONFIG, false)
 
@@ -380,7 +380,7 @@ ${PACKAGE}-${VERSION}
     Libdir:            ${expanded_libdir}
 
     C Compiler:        ${CC}
-    Mono C# Compiler:  ${MCS} ${GMCS_FLAGS}
+    Mono C# Compiler:  ${MCS} ${MCS_FLAGS}
     Mono Runtime:      ${MONO}
 
   Build/Development:

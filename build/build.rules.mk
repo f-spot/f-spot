@@ -74,10 +74,10 @@ $(ASSEMBLY_FILE): $(SOURCES_BUILD) $(RESOURCES_EXPANDED) $(DEP_LINK)
 		$(MONO) $(top_builddir)/build/dll-map-verifier.exe $(srcdir)/$(notdir $@.config) -iwinmm -ilibbanshee -ilibbnpx11 -ilibc -ilibc.so.6 -iintl -ilibmtp.dll -ilibigemacintegration.dylib -iCFRelease $(SOURCES_BUILD); \
 	fi;
 	$(MCS) \
-		$(GMCS_FLAGS) \
+		$(MCS_FLAGS) \
 		$(ASSEMBLY_BUILD_FLAGS) \
 		-nowarn:0278 -nowarn:0078 $$warn \
-		-define:HAVE_GTK_2_10 -define:NET_2_0 \
+		-define:HAVE_GTK_2_10 -define:NET_4_0 \
 		-debug -target:$(TARGET) -out:$@ \
 		$(BUILD_DEFINES) $(CSC_DEFINES) $(ENABLE_TESTS_FLAG) $(ENABLE_ATK_FLAG) \
 		$(FILTERED_LINK) $(RESOURCES_BUILD) $(SOURCES_BUILD)
