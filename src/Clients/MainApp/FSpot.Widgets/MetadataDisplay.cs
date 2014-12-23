@@ -3,7 +3,9 @@
 //
 // Author:
 //   Ruben Vermeersch <ruben@savanne.be>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
+// Copyright (c) 2014 Stephen Shaw
 // Copyright (C) 2008-2010 Novell, Inc.
 // Copyright (C) 2008, 2010 Ruben Vermeersch
 //
@@ -38,23 +40,25 @@ using FSpot.Core;
 using FSpot.Utils;
 using FSpot.Extensions;
 
-namespace FSpot.Widgets {
-	public class MetadataDisplayPage : SidebarPage {
-		public MetadataDisplayPage() : base(new MetadataDisplayWidget(),
-											Catalog.GetString ("Metadata"),
-											"gtk-info") {
+namespace FSpot.Widgets
+{
+	public class MetadataDisplayPage : SidebarPage
+	{
+		public MetadataDisplayPage () : base (new MetadataDisplayWidget (), Catalog.GetString ("Metadata"), "gtk-info")
+		{
 			(SidebarWidget as MetadataDisplayWidget).Page = this;
 		}
 
 		protected override void AddedToSidebar ()
 		{
-			MetadataDisplayWidget widget = SidebarWidget as MetadataDisplayWidget;
+			var widget = SidebarWidget as MetadataDisplayWidget;
 			(Sidebar as Sidebar).SelectionChanged += widget.HandleSelectionChanged;
 			(Sidebar as Sidebar).SelectionItemsChanged += widget.HandleSelectionItemsChanged;
 		}
 	}
 
-	public class MetadataDisplayWidget : ScrolledWindow {
+	public class MetadataDisplayWidget : ScrolledWindow
+	{
 		DelayedOperation update_delay;
 
 		/* 	This VBox only contains exif-data,
@@ -65,11 +69,7 @@ namespace FSpot.Widgets {
 		Label metadata_message;
 		State display;
 
-		private MetadataDisplayPage page;
-		public MetadataDisplayPage Page {
-			set { page = value; }
-			get { return page; }
-		}
+		public MetadataDisplayPage Page { get; set; }
 
 		// stores list of the expanded expanders
 		List<string> open_list;
@@ -78,7 +78,8 @@ namespace FSpot.Widgets {
 
 		bool up_to_date = false;
 
-		enum State {
+		enum State
+		{
 			metadata,
 			message
 		};
@@ -96,7 +97,7 @@ namespace FSpot.Widgets {
 
 			main_vbox.PackStart (metadata_vbox, false, false, 0);
 			AddWithViewport (metadata_message);
-			((Viewport) Child).ShadowType = ShadowType.None;
+			((Viewport)Child).ShadowType = ShadowType.None;
 			BorderWidth = 3;
 
 			display = State.message;
@@ -106,11 +107,11 @@ namespace FSpot.Widgets {
 
 			// Create Expander and TreeView for
 			// extended metadata
-			TreeView tree_view = new TreeView ();
+			var tree_view = new TreeView ();
 			tree_view.HeadersVisible = false;
 			tree_view.RulesHint = true;
 
-			TreeViewColumn col = new TreeViewColumn ();
+			var col = new TreeViewColumn ();
 			col.Sizing = TreeViewColumnSizing.Autosize;
 			CellRenderer colr = new CellRendererText ();
 			col.PackStart (colr, false);
@@ -122,7 +123,7 @@ namespace FSpot.Widgets {
 			extended_metadata = new ListStore (typeof(string));
 			tree_view.Model = extended_metadata;
 
-			Expander expander = new Expander (String.Format("<span weight=\"bold\"><small>{0}</small></span>", Catalog.GetString ("Extended Metadata")));
+			var expander = new Expander (String.Format ("<span weight=\"bold\"><small>{0}</small></span>", Catalog.GetString ("Extended Metadata")));
 			expander.UseMarkup = true;
 			expander.Add (tree_view);
 			expander.Expanded = true;
@@ -134,7 +135,7 @@ namespace FSpot.Widgets {
 			update_delay.Start ();
 		}
 
-		private IPhoto photo;
+		IPhoto photo;
 		public IPhoto Photo {
 			get { return photo; }
 			set {
@@ -148,36 +149,38 @@ namespace FSpot.Widgets {
 			}
 		}
 
-		private void HandleExposeEvent (object sender, ExposeEventArgs args)
+		void HandleExposeEvent (object sender, ExposeEventArgs args)
 		{
 			if (!up_to_date) {
 				update_delay.Start ();
 			}
 		}
 
-		internal void HandleSelectionChanged (IBrowsableCollection collection) {
-            // Don't show metadata when multiple photos are selected.
+		internal void HandleSelectionChanged (IBrowsableCollection collection)
+		{
+			// Don't show metadata when multiple photos are selected.
 			Photo = (collection != null && collection.Count == 1) ? collection [0] : null;
 		}
 
-		internal void HandleSelectionItemsChanged (IBrowsableCollection collection, BrowsableEventArgs args) {
+		internal void HandleSelectionItemsChanged (IBrowsableCollection collection, BrowsableEventArgs args)
+		{
 			if (!args.Changes.MetadataChanged)
 				return;
 
 			if (!Visible) {
 				up_to_date = false;
-            } else {
+			} else {
 				update_delay.Start ();
-            }
+			}
 		}
 
-        private new bool Visible {
-            get {
-                return (Page.Sidebar as Sidebar).IsActive (Page);
-            }
-        }
+		new bool Visible {
+			get {
+				return (Page.Sidebar as Sidebar).IsActive (Page);
+			}
+		}
 
-		private ListStore AddExpander (string name, int pos)
+		ListStore AddExpander (string name, int pos)
 		{
 			TreeView tree_view = new TreeView ();
 			tree_view.HeadersVisible = false;
@@ -215,19 +218,19 @@ namespace FSpot.Widgets {
 
 		public void HandleExpanderActivated (object sender, EventArgs e)
 		{
-			Expander expander = (Expander) sender;
+			Expander expander = (Expander)sender;
 			if (expander.Expanded)
 				open_list.Add (expander.Label);
 			else
 				open_list.Remove (expander.Label);
 		}
 
-		private bool Update ()
+		bool Update ()
 		{
 			bool empty = true;
 			int index_of_expander = 0;
 			bool missing = false;
-			System.Exception error = null;
+			Exception error = null;
 
 			/*
             // FIXME: The stuff below needs to be ported to Taglib#.
@@ -375,11 +378,11 @@ namespace FSpot.Widgets {
 			if (empty) {
 				string msg;
 				if (photo == null) {
-				     msg = Catalog.GetString ("No active photo");
+					msg = Catalog.GetString ("No active photo");
 				} else if (missing) {
 					msg = String.Format (Catalog.GetString ("The photo \"{0}\" does not exist"), photo.DefaultVersion.Uri);
 				} else {
-				     msg = Catalog.GetString ("No metadata available");
+					msg = Catalog.GetString ("No metadata available");
 
 					if (error != null) {
 						msg = String.Format ("<i>{0}</i>", error);
@@ -398,7 +401,7 @@ namespace FSpot.Widgets {
 			} else {
 				// remove Expanders, that are not used
 				while (index_of_expander < metadata_vbox.Children.Length)
-					metadata_vbox.Remove (metadata_vbox.Children[index_of_expander]);
+					metadata_vbox.Remove (metadata_vbox.Children [index_of_expander]);
 
 				if (display == State.message) {
 					// Child is a Viewport, (AddWithViewport in ctor)
@@ -412,7 +415,7 @@ namespace FSpot.Widgets {
 			return false;
 		}
 
-        /*
+		/*
 		private void WriteCollection (MemoryStore substore, StringBuilder collection)
 		{
 			string type = null;

@@ -81,55 +81,58 @@ namespace FSpot.Widgets
 					return;
 
 				if (mask != null)
-					mask.Destroy ();
+					mask.Dispose ();
 
 				mask = CreateMask ();
 			}
 		}
 
-		private ImageInfo CreateBlur (ImageInfo source)
+		ImageInfo CreateBlur (ImageInfo source)
 		{
-			double scale = Math.Max (256 / (double) source.Bounds.Width,
-						 256 / (double) source.Bounds.Height);
+			double scale = Math.Max (256 / (double)source.Bounds.Width,
+				               256 / (double)source.Bounds.Height);
 
-			Gdk.Rectangle small = new Gdk.Rectangle (0, 0,
-								(int) Math.Ceiling (source.Bounds.Width * scale),
-								(int) Math.Ceiling (source.Bounds.Height * scale));
+			var small = new Gdk.Rectangle (0, 0,
+				                      (int)Math.Ceiling (source.Bounds.Width * scale),
+				                      (int)Math.Ceiling (source.Bounds.Height * scale));
 
-			ImageSurface image = new ImageSurface (Format.Argb32,
-								 small.Width,
-								 small.Height);
+			var image = new ImageSurface (Format.Argb32,
+				                     small.Width,
+				                     small.Height);
 
-			Context ctx = new Context (image);
+			var ctx = new Context (image);
 
 			ctx.Matrix = source.Fit (small);
 			ctx.Operator = Operator.Source;
 			Pattern p = new SurfacePattern (source.Surface);
-			ctx.Source = p;
+			ctx.SetSource (p);
 
 			ctx.Paint ();
-			p.Destroy ();
-			((IDisposable)ctx).Dispose ();
-			Gdk.Pixbuf normal = image.ToPixbuf();
+			p.Dispose ();
+			ctx.Dispose ();
 
-            Gdk.Pixbuf blur = PixbufUtils.Blur (normal, 3, null);
+			ImageInfo overlay = null;
+			using (var normal = image.ToPixbuf ())
+			{
+				using (var pixbufBlur = PixbufUtils.Blur (normal, 3, null))
+				{
+					overlay = new ImageInfo (pixbufBlur);
+				}
+			}
 
-            ImageInfo overlay = new ImageInfo (blur);
-			blur.Dispose ();
-			normal.Dispose ();
-			image.Destroy ();
+			image.Dispose ();
 			return overlay;
 		}
 
-		private Pattern CreateMask ()
+		Pattern CreateMask ()
 		{
 			double max = Math.Max (blur.Bounds.Width, blur.Bounds.Height) * .25;
-			double scale = blur.Bounds.Width / (double) info.Bounds.Width;
+			double scale = blur.Bounds.Width / (double)info.Bounds.Width;
 
 			RadialGradient circle;
 
-			circle = new RadialGradient (center.X * scale, center.Y * scale, radius * max * .7,
-						     center.X * scale, center.Y * scale, radius * max + max * .2);
+			circle = new RadialGradient (Center.X * scale, Center.Y * scale, radius * max * .7,
+				Center.X * scale, Center.Y * scale, radius * max + max * .2);
 
 			circle.AddColorStop (0, new Cairo.Color (0.0, 0.0, 0.0, 0.0));
 			circle.AddColorStop (1.0, new Cairo.Color (1.0, 1.0, 1.0, 1.0));
@@ -138,19 +141,19 @@ namespace FSpot.Widgets
 
 		public void Apply (Context ctx, Gdk.Rectangle allocation)
 		{
-			SurfacePattern p = new SurfacePattern (info.Surface);
+			var p = new SurfacePattern (info.Surface);
 			ctx.Matrix = new Matrix ();
 			Matrix m = info.Fit (allocation);
 			ctx.Operator = Operator.Over;
 			ctx.Matrix = m;
-			ctx.Source = p;
+			ctx.SetSource (p);
 			ctx.Paint ();
 
-			SurfacePattern overlay = new SurfacePattern (blur.Surface);
+			var overlay = new SurfacePattern (blur.Surface);
 			ctx.Matrix = new Matrix ();
 			ctx.Matrix = blur.Fit (allocation);
 			ctx.Operator = Operator.Over;
-			ctx.Source = overlay;
+			ctx.SetSource (overlay);
 
 			// FIXME ouch this is ugly.
 			if (mask == null)
@@ -158,14 +161,14 @@ namespace FSpot.Widgets
 
 			//ctx.Paint ();
 			ctx.Mask (mask);
-			overlay.Destroy ();
-			p.Destroy ();
+			overlay.Dispose ();
+			p.Dispose ();
 		}
 
 		public void Dispose ()
 		{
 			if (mask != null)
-				mask.Destroy ();
+				mask.Dispose ();
 
 			if (blur != null)
 				blur.Dispose ();

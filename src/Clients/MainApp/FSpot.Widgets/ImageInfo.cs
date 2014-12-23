@@ -40,8 +40,10 @@ using FSpot.Imaging;
 
 using Hyena;
 
-namespace FSpot.Widgets {
-	public class ImageInfo : IDisposable {
+namespace FSpot.Widgets
+{
+	public class ImageInfo : IDisposable
+	{
 		public Surface Surface;
 		public Gdk.Rectangle Bounds;
 
@@ -65,17 +67,17 @@ namespace FSpot.Widgets {
 
 		public ImageInfo (ImageInfo info, Widget w, Gdk.Rectangle bounds)
 		{
-			Cairo.Surface similar = CairoUtils.CreateSurface (w.GdkWindow);
+			var similar = CairoUtils.CreateSurface (w.GdkWindow);
 			Bounds = bounds;
 			Surface = similar.CreateSimilar (Content.ColorAlpha, Bounds.Width, Bounds.Height);
-			Context ctx = new Context (Surface);
+			var ctx = new Context (Surface);
 
 			ctx.Matrix = info.Fill (Bounds);
 			Pattern p = new SurfacePattern (info.Surface);
-			ctx.Source = p;
+			ctx.SetSource (p);
 			ctx.Paint ();
-			((IDisposable)ctx).Dispose ();
-			p.Destroy ();
+			ctx.Dispose ();
+			p.Dispose ();
 		}
 
 		public ImageInfo (ImageInfo info, Gdk.Rectangle allocation)
@@ -84,18 +86,18 @@ namespace FSpot.Widgets {
 							      allocation.Width,
 							      allocation.Height);
 
-			Context ctx = new Context (Surface);
+			var ctx = new Context (Surface);
 			Bounds = allocation;
 
 			ctx.Matrix = info.Fill (allocation);
 			Pattern p = new SurfacePattern (info.Surface);
-			ctx.Source = p;
+			ctx.SetSource (p);
 			ctx.Paint ();
-			((IDisposable)ctx).Dispose ();
-			p.Destroy ();
+			ctx.Dispose ();
+			p.Dispose ();
 		}
 
-		private void SetPixbuf (Pixbuf pixbuf)
+		void SetPixbuf (Pixbuf pixbuf)
 		{
 			Surface = Hyena.Gui.PixbufImageSurface.Create(pixbuf);
 			Bounds.Width = pixbuf.Width;
@@ -104,7 +106,7 @@ namespace FSpot.Widgets {
 
 		public Matrix Fill (Gdk.Rectangle viewport)
 		{
-			Matrix m = new Matrix ();
+			var m = new Matrix ();
 			m.InitIdentity ();
 
 			double scale = Math.Max (viewport.Width / (double) Bounds.Width,
@@ -118,16 +120,18 @@ namespace FSpot.Widgets {
 			return m;
 		}
 
-		//
-		// this functions calculates the transformation needed to center and completely fill the
-		// viewport with the Surface at the given tilt
-		//
+		/// <summary>
+		/// Calculates the transformation needed to center
+		/// and completely fill the viewport with the Surface at the given tilt
+		/// </summary>
+		/// <param name="viewport">Viewport.</param>
+		/// <param name="tilt">Tilt.</param>
 		public Matrix Fill (Gdk.Rectangle viewport, double tilt)
 		{
 			if (tilt == 0.0)
 				return Fill (viewport);
 
-			Matrix m = new Matrix ();
+			var m = new Matrix ();
 			m.InitIdentity ();
 
 			double len;
@@ -163,7 +167,7 @@ namespace FSpot.Widgets {
 
 		public Matrix Fit (Gdk.Rectangle viewport)
 		{
-			Matrix m = new Matrix ();
+			var m = new Matrix ();
 			m.InitIdentity ();
 
 			double scale = Math.Min (viewport.Width / (double) Bounds.Width,
@@ -179,7 +183,7 @@ namespace FSpot.Widgets {
 
 		public void Dispose ()
 		{
-			((IDisposable)Surface).Dispose ();
+			Surface.Dispose ();
 		}
 	}
 }

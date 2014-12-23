@@ -158,14 +158,14 @@ namespace FSpot {
 		{
 			cr.Operator = Operator.Source;
 			Cairo.Pattern p = new Cairo.SolidPattern (new Cairo.Color (0, 0, 0, 0));
-			cr.Source = p;
-			p.Destroy ();
+			cr.SetSource (p);
+			p.Dispose ();
 			cr.Paint ();
 			cr.Operator = Operator.Over;
 
 			Cairo.Pattern r = new SolidPattern (color);
-			cr.Source = r;
-			r.Destroy ();
+			cr.SetSource (r);
+			r.Dispose ();
 			cr.MoveTo (round, 0);
 			if (x_align == 1.0)
 				cr.LineTo (Allocation.Width, 0);

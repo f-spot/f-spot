@@ -26,34 +26,20 @@
 //
 //
 
-using System;
-using System.Collections.Generic;
-
-using Mono.Unix;
-
 using Gtk;
-using Gdk;
-
-using FSpot.Core;
-using FSpot.Utils;
-using FSpot.Query;
 
 namespace FSpot.Query
 {
-
-	public class GrabHandle : DrawingArea {
+	public class GrabHandle : DrawingArea
+	{
 		public GrabHandle (int w, int h)
 		{
-			Size (w, h);
+			SetSizeRequest (w, h);
 			Orientation = Gtk.Orientation.Horizontal;
 			Show ();
 		}
 
-		private Gtk.Orientation orientation;
-		public Gtk.Orientation Orientation {
-			get { return orientation; }
-			set { orientation = value; }
-		}
+		public Orientation Orientation { get; set; }
 
 		protected override bool OnExposeEvent (Gdk.EventExpose evnt)
 		{
