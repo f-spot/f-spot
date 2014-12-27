@@ -223,7 +223,9 @@ namespace FSpot.Import
             photo_scan_running = true;
             PhotoList pl = new PhotoList ();
             Photos.Collection = pl;
-            ActiveSource.StartPhotoScan (this, pl);
+            ActiveSource.PhotoFoundEvent += OnPhotoFound;
+            ActiveSource.PhotoScanFinishedEvent += OnPhotoScanFinished;
+            ActiveSource.StartPhotoScan (RecurseSubdirectories);
             FireEvent (ImportEvent.PhotoScanStarted);
         }
 
@@ -233,9 +235,16 @@ namespace FSpot.Import
 
         // These are callbacks that should be called by the sources.
 
-        public void PhotoScanFinished ()
+        public void OnPhotoFound (object sender, PhotoFoundEventArgs args)
+        {
+            ((PhotoList)Photos.Collection).Add (args.FileImportInfo);
+        }
+
+        public void OnPhotoScanFinished (object sender, PhotoScanFinishedEventArgs args)
         {
             photo_scan_running = false;
+            ActiveSource.PhotoScanFinishedEvent -= OnPhotoScanFinished;
+            ActiveSource.PhotoFoundEvent -= OnPhotoFound;
             FireEvent (ImportEvent.PhotoScanFinished);
         }
 

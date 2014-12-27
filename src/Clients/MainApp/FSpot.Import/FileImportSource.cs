@@ -51,6 +51,9 @@ namespace FSpot.Import
 
 		public SafeUri Root { get; set; }
 
+		public event EventHandler<PhotoFoundEventArgs> PhotoFoundEvent;
+		public event EventHandler<PhotoScanFinishedEventArgs> PhotoScanFinishedEvent;
+
 		public Thread PhotoScanner;
 		bool run_photoscanner = false;
 
@@ -70,7 +73,7 @@ namespace FSpot.Import
 			}
 		}
 
-		public void StartPhotoScan (ImportController controller, PhotoList photo_list)
+		public void StartPhotoScan (bool recurseSubdirectories)
 		{
 			if (PhotoScanner != null) {
 				run_photoscanner = false;
@@ -78,27 +81,30 @@ namespace FSpot.Import
 			}
 
 			run_photoscanner = true;
-			PhotoScanner = ThreadAssist.Spawn (() => ScanPhotos (controller, photo_list));
+			PhotoScanner = ThreadAssist.Spawn (() => ScanPhotos (recurseSubdirectories));
 		}
 
-		protected virtual void ScanPhotos (ImportController controller, PhotoList photo_list)
+		protected virtual void ScanPhotos (bool recurseSubdirectories)
 		{
-			ScanPhotoDirectory (controller, Root, photo_list);
-			ThreadAssist.ProxyToMain (() => controller.PhotoScanFinished ());
+			ScanPhotoDirectory (recurseSubdirectories, Root);
+			FirePhotoScanFinished ();
 		}
 
-		protected void ScanPhotoDirectory (ImportController controller, SafeUri uri, PhotoList photo_list)
+		protected void ScanPhotoDirectory (bool recurseSubdirectories, SafeUri uri)
 		{
 			var enumerator = new RecursiveFileEnumerator (uri) {
-						Recurse = controller.RecurseSubdirectories,
+						Recurse = recurseSubdirectories,
 						CatchErrors = true,
 						IgnoreSymlinks = true
 			};
 			foreach (var file in enumerator) {
 				if (ImageFile.HasLoader (new SafeUri (file.Uri.ToString(), true))) {
 					var info = new FileImportInfo (new SafeUri (file.Uri.ToString (), true));
-					ThreadAssist.ProxyToMain (() =>
-					    photo_list.Add (info));
+					ThreadAssist.ProxyToMain (() => {
+						if (PhotoFoundEvent != null) {
+							PhotoFoundEvent.Invoke (this, new PhotoFoundEventArgs { FileImportInfo = info });
+						}
+					});
 				}
 				if (!run_photoscanner)
 					return;
@@ -123,6 +129,15 @@ namespace FSpot.Import
 			}
 		}
 
+		protected void FirePhotoScanFinished()
+		{
+			ThreadAssist.ProxyToMain (() => {
+				if (PhotoScanFinishedEvent != null) {
+					PhotoScanFinishedEvent.Invoke (this, new PhotoScanFinishedEventArgs ());
+				}
+			});
+		}
+
 		private bool IsCamera {
 			get {
 				try {
@@ -145,37 +160,5 @@ namespace FSpot.Import
 				}
 			}
 		}
-	}
-
-	// Multi root version for drag and drop import.
-	internal class MultiFileImportSource : FileImportSource
-	{
-		private IEnumerable<SafeUri> uris;
-
-		public MultiFileImportSource (IEnumerable<SafeUri> uris)
-			: base (null, String.Empty, String.Empty)
-		{
-			this.uris = uris;
-		}
-
-		protected override void ScanPhotos (ImportController controller, PhotoList photo_list)
-		{
-			foreach (var uri in uris) {
-				Log.Debug ("Scanning " + uri);
-				ScanPhotoDirectory (controller, uri, photo_list);
-			}
-			ThreadAssist.ProxyToMain (() => controller.PhotoScanFinished ());
-		}
-	}
-
-	internal class FileImportInfo : FilePhoto
-	{
-		public FileImportInfo (SafeUri original) : base (original)
-		{
-		}
-
-		public SafeUri DestinationUri { get; set; }
-
-		internal uint PhotoId { get; set; }
 	}
 }
