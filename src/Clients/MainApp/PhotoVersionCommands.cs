@@ -2,10 +2,12 @@
 // PhotoVersionCommands.cs
 //
 // Author:
+//   Daniel Köb <daniel.koeb@peony.at>
 //   Anton Keks <anton@azib.net>
 //   Ettore Perazzoli <ettore@src.gnome.org>
 //   Ruben Vermeersch <ruben@savanne.be>
 //
+// Copyright (C) 2014 Daniel Köb
 // Copyright (C) 2003-2010 Novell, Inc.
 // Copyright (C) 2009-2010 Anton Keks
 // Copyright (C) 2003 Ettore Perazzoli
@@ -211,7 +213,7 @@ public class PhotoVersionCommands
 			try {
 				if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation(parent_window, DialogFlags.DestroyWithParent,
 									   MessageType.Warning, msg, desc, ok_caption)) {
-					Photo new_photo = store.CreateFrom (photo, photo.RollId);
+					Photo new_photo = store.CreateFrom (photo, true, photo.RollId);
 					new_photo.CopyAttributesFrom (photo);
 					photo.DeleteVersion (photo.DefaultVersionId, false, true);
 					store.Commit (new Photo[] {new_photo, photo});

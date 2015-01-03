@@ -41,7 +41,7 @@ namespace FSpot.Import
         string Name { get; }
         string IconName { get; }
 
-        void StartPhotoScan (bool recurseSubdirectories);
+        void StartPhotoScan (bool recurseSubdirectories, bool mergeRawAndJpeg);
         void Deactivate ();
 
         event EventHandler<PhotoFoundEventArgs> PhotoFoundEvent;

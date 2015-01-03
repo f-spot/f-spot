@@ -79,6 +79,7 @@ namespace FSpot.Import
         private bool remove_originals = false;
         private bool recurse_subdirectories = true;
         private bool duplicate_detect = true;
+        private bool merge_raw_and_jpeg = true;
 
         public bool CopyFiles {
             get { return copy_files; }
@@ -106,6 +107,17 @@ namespace FSpot.Import
             set { duplicate_detect = value; SavePreferences (); }
         }
 
+        public bool MergeRawAndJpeg {
+            get {return merge_raw_and_jpeg; }
+            set {
+                if (merge_raw_and_jpeg == value)
+                    return;
+                merge_raw_and_jpeg = value;
+                SavePreferences ();
+                RescanPhotos ();
+            }
+        }
+
         void LoadPreferences ()
         {
             if (!persist_preferences)
@@ -115,6 +127,7 @@ namespace FSpot.Import
             recurse_subdirectories = Preferences.Get<bool> (Preferences.IMPORT_INCLUDE_SUBFOLDERS);
             duplicate_detect = Preferences.Get<bool> (Preferences.IMPORT_CHECK_DUPLICATES);
             remove_originals = Preferences.Get<bool> (Preferences.IMPORT_REMOVE_ORIGINALS);
+            merge_raw_and_jpeg = Preferences.Get<bool> (Preferences.IMPORT_MERGE_RAW_AND_JPEG);
         }
 
         void SavePreferences ()
@@ -126,6 +139,7 @@ namespace FSpot.Import
             Preferences.Set(Preferences.IMPORT_INCLUDE_SUBFOLDERS, recurse_subdirectories);
             Preferences.Set(Preferences.IMPORT_CHECK_DUPLICATES, duplicate_detect);
             Preferences.Set(Preferences.IMPORT_REMOVE_ORIGINALS, remove_originals);
+            Preferences.Set (Preferences.IMPORT_MERGE_RAW_AND_JPEG, merge_raw_and_jpeg);
         }
 
 #endregion
@@ -225,7 +239,7 @@ namespace FSpot.Import
             Photos.Collection = pl;
             ActiveSource.PhotoFoundEvent += OnPhotoFound;
             ActiveSource.PhotoScanFinishedEvent += OnPhotoScanFinished;
-            ActiveSource.StartPhotoScan (RecurseSubdirectories);
+            ActiveSource.StartPhotoScan (RecurseSubdirectories, MergeRawAndJpeg);
             FireEvent (ImportEvent.PhotoScanStarted);
         }
 
@@ -394,18 +408,25 @@ namespace FSpot.Import
                 throw new Exception ("Failed to parse metadata, probably not a photo");
             }
 
-            var destination = FindImportDestination (item);
-
             // Do duplicate detection
             if (DuplicateDetect && store.HasDuplicate (item)) {
                 return;
             }
 
-            // Copy into photo folder.
-            CopyIfNeeded (item, destination);
+            // remember source uri for copying xmp file
+            SafeUri defaultVersionUri = item.DefaultVersion.Uri;
+
+            foreach (IPhotoVersion version in item.Versions) {
+                var destination = FindImportDestination (version, item.Time);
+
+                // Copy into photo folder and update IPhotoVersion uri
+                CopyIfNeeded (version, destination);
+            }
+
+            CopyXmpSidecar (defaultVersionUri, item.DefaultVersion.Uri);
 
             // Import photo
-            var photo = store.CreateFrom (item, roll.Id);
+            var photo = store.CreateFrom (item, false, roll.Id);
 
             bool needs_commit = false;
 
@@ -423,14 +444,14 @@ namespace FSpot.Import
             }
 
             // Prepare thumbnail (Import is I/O bound anyway)
-            ThumbnailLoader.Default.Request (destination, ThumbnailSize.Large, 10);
+            ThumbnailLoader.Default.Request (item.DefaultVersion.Uri, ThumbnailSize.Large, 10);
 
             imported_photos.Add (photo.Id);
         }
 
-        void CopyIfNeeded (IPhoto item, SafeUri destination)
+        void CopyIfNeeded (IPhotoVersion item, SafeUri destination)
         {
-            var source = item.DefaultVersion.Uri;
+            var source = item.Uri;
 
             if (source.Equals (destination))
                 return;
@@ -441,13 +462,14 @@ namespace FSpot.Import
             file.Copy (new_file, GLib.FileCopyFlags.AllMetadata, null, null);
             copied_files.Add (destination);
             original_files.Add (source);
-            item.DefaultVersion.Uri = destination;
+            item.Uri = destination;
+        }
 
-            // Copy XMP sidecar
-            var xmp_original = source.ReplaceExtension(".xmp");
+        void CopyXmpSidecar(SafeUri photoUri, SafeUri photoDestination) {
+            var xmp_original = photoUri.ReplaceExtension(".xmp");
             var xmp_file = GLib.FileFactory.NewForUri (xmp_original);
             if (xmp_file.Exists) {
-                var xmp_destination = destination.ReplaceExtension (".xmp");
+                var xmp_destination = photoDestination.ReplaceExtension (".xmp");
                 var new_xmp_file = GLib.FileFactory.NewForUri (xmp_destination);
                 xmp_file.Copy (new_xmp_file, GLib.FileCopyFlags.AllMetadata | GLib.FileCopyFlags.Overwrite, null, null);
                 copied_files.Add (xmp_destination);
@@ -455,16 +477,15 @@ namespace FSpot.Import
             }
         }
 
-        SafeUri FindImportDestination (IPhoto item)
+        SafeUri FindImportDestination (IPhotoVersion item, DateTime time)
         {
-            var uri = item.DefaultVersion.Uri;
+            var uri = item.Uri;
 
             if (!CopyFiles)
                 return uri; // Keep it at the same place
 
             // Find a new unique location inside the photo folder
             string name = uri.GetFilename ();
-            DateTime time = item.Time;
 
             var dest_uri = Global.PhotoUri.Append (time.Year.ToString ())
                                           .Append (String.Format ("{0:D2}", time.Month))

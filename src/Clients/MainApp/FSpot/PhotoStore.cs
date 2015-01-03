@@ -2,12 +2,14 @@
 // PhotoStore.cs
 //
 // Author:
+//   Daniel Köb <daniel.koeb@peony.at>
 //   Stephen Shaw <sshaw@decriptor.com>
 //   Mike Gemünde <mike@gemuende.de>
 //   Larry Ewing <lewing@src.gnome.org>
 //   Ruben Vermeersch <ruben@savanne.be>
 //   Stephane Delcroix <stephane@delcroix.org>
 //
+// Copyright (C) 2014 Daniel Köb
 // Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2004-2010 Novell, Inc.
 // Copyright (C) 2009-2010 Mike Gemünde
@@ -40,6 +42,7 @@ using Mono.Unix;
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 using FSpot;
@@ -175,7 +178,7 @@ namespace FSpot {
                  return false;
          }
         
-         public Photo CreateFrom (IPhoto item, uint roll_id)
+         public Photo CreateFrom (IPhoto item, bool defaultVersionOnly, uint roll_id)
          {
                  Photo photo;
         
@@ -197,10 +200,16 @@ namespace FSpot {
                  );
         
                  photo = new Photo (id, unix_time);
-                 photo.AddVersionUnsafely (Photo.OriginalVersionId, item.DefaultVersion.BaseUri, item.DefaultVersion.Filename, item.DefaultVersion.ImportMD5, Catalog.GetString ("Original"), true);
+
+                 uint versionId = Photo.OriginalVersionId;
+                 IEnumerable<IPhotoVersion> versions = defaultVersionOnly ? new[] { item.DefaultVersion } : item.Versions;
+                 foreach (IPhotoVersion version in versions) {
+                         photo.AddVersionUnsafely (versionId++, version.BaseUri, version.Filename, version.ImportMD5, version.Name, true);
+                         InsertVersion (photo, photo.Versions.Last () as PhotoVersion);
+                 }
+                 photo.DefaultVersionId = versionId - 1;
                  photo.AllVersionsLoaded = true;
         
-                 InsertVersion (photo, photo.DefaultVersion as PhotoVersion);
                  EmitAdded (photo);
                  return photo;
          }

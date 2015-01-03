@@ -2,8 +2,10 @@
 // FilePhoto.cs
 //
 // Author:
+//   Daniel Köb <daniel.koeb@peony.at>
 //   Ruben Vermeersch <ruben@savanne.be>
 //
+// Copyright (C) 2014 Daniel Köb
 // Copyright (C) 2010 Novell, Inc.
 // Copyright (C) 2010 Ruben Vermeersch
 //
@@ -34,6 +36,7 @@ using Hyena;
 using FSpot.Utils;
 
 using Mono.Unix.Native;
+using System.Linq;
 
 namespace FSpot.Core
 {
@@ -41,9 +44,16 @@ namespace FSpot.Core
     {
         bool metadata_parsed = false;
 
-        public FilePhoto (SafeUri uri)
+        private readonly List<IPhotoVersion> versions;
+
+        public FilePhoto (SafeUri uri) : this (uri, null)
         {
-            DefaultVersion = new FilePhotoVersion { Uri = uri };
+        }
+
+        public FilePhoto (SafeUri uri, string name)
+        {
+            versions = new List<IPhotoVersion> ();
+            versions.Add (new FilePhotoVersion { Uri = uri, Name = name });
         }
 
         public bool IsInvalid {
@@ -97,11 +107,15 @@ namespace FSpot.Core
             }
         }
 
-        public IPhotoVersion DefaultVersion { get; private set; }
+        public IPhotoVersion DefaultVersion {
+            get {
+                return versions.First ();
+            }
+        }
 
         public IEnumerable<IPhotoVersion> Versions {
             get {
-                yield return DefaultVersion;
+                return versions;
             }
         }
 
@@ -122,11 +136,15 @@ namespace FSpot.Core
             get { return 0; }
         }
 
+        public void AddVersion(SafeUri uri, string name)
+        {
+            versions.Add (new FilePhotoVersion { Uri = uri, Name = name });
+        }
+
         class FilePhotoVersion : IPhotoVersion
         {
-            public string Name {
-                get { return String.Empty; }
-            }
+            public string Name { get; set; }
+
             public bool IsProtected {
                 get { return true; }
             }
