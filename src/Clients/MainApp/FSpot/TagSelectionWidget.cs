@@ -627,7 +627,7 @@ namespace FSpot {
 				Pixbuf thumbnail = tags[len].Icon;
 
 				if (thumbnail != null) {
-					Pixbuf small = PixbufUtils.ScaleToMaxSize (thumbnail, size, size);
+					Pixbuf small = thumbnail.ScaleToMaxSize (size, size);
 
 					int x = len * (size/2) + (size - small.Width)/2;
 					int y = len * (size/2) + (size - small.Height)/2;

@@ -113,5 +113,9 @@
       <Project>{069D1797-427D-4CED-A754-233DE64FC5DD}</Project>
       <Name>gtk-sharp-beans</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\FSpot.Imaging\FSpot.Imaging.csproj">
+      <Project>{69C1F628-6CB4-4446-96AC-57810DD57594}</Project>
+      <Name>FSpot.Imaging</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

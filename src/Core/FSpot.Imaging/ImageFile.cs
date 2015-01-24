@@ -55,7 +55,7 @@ namespace FSpot.Imaging
 	public static class ImageFile
 	{
 		#region Factory functionality
-		internal static Dictionary<string, Type> NameTable { get; private set; }
+		public static Dictionary<string, Type> NameTable { get; private set; }
 
 		static ImageFile ()
 		{
