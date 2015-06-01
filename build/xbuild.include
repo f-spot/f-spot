@@ -58,6 +58,7 @@ ALL_FILES:=	$(EXTS) \
 		$(addprefix */*/*/,$(EXTS))	\
 		$(addprefix */*/*/*/,$(EXTS))	\
 		$(addprefix */*/*/*/*/,$(EXTS))	\
+                $(addprefix */*/*/*/*/*/,$(EXTS)) \
 		$(wildcard icons/*)		\
 		$(wildcard templates/*)
 
