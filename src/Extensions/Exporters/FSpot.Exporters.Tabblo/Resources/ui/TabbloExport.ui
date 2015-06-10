@@ -5,7 +5,6 @@
   <object class="GtkDialog" id="tabblo_export_dialog">
     <property name="title" translatable="yes">Export</property>
     <property name="type_hint">dialog</property>
-    <property name="has_separator">False</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox11">
         <property name="visible">True</property>
