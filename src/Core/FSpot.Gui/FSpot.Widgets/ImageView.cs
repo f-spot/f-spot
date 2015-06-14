@@ -681,17 +681,12 @@ namespace FSpot.Widgets
 				!Pixbuf.HasAlpha &&
 				Pixbuf.BitsPerSample == 8 &&
 				pixbuf_orientation == ImageOrientation.TopLeft) {
-				// GTK3: GdkWindow.DrawPixbuf
-				//				GdkWindow.DrawPixbuf (Style.BlackGC,
-				//						      Pixbuf,
-				//						      area.X - x_offset, area.Y - y_offset,
-				//						      area.X, area.Y,
-				//						      area.Width, area.Height,
-				//						      RgbDither.Max,
-				//						      area.X - x_offset, area.Y - y_offset);
 
-				// GTK3: This never happens, `pixbuf_orientation` is not being setted.
-				Console.WriteLine ("......................");
+				cr.Save ();
+				Gdk.CairoHelper.SetSourcePixbuf (cr, Pixbuf, area.X, area.Y);
+				cr.Rectangle (x_offset, y_offset, scaled_width, scaled_height);
+				cr.Fill ();
+				cr.Restore ();
 
 				return;
 			}
