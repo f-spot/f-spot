@@ -222,6 +222,7 @@ namespace FSpot.Widgets
 			if (prev != null)
 				prev.Dispose ();
 
+			this.PixbufOrientation = loader.PixbufOrientation;
 			this.ZoomFit (args.ReducedResolution);
 		}
 
