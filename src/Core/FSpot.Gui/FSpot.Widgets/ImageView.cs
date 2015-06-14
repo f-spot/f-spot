@@ -843,26 +843,13 @@ namespace FSpot.Widgets
 			if (selection == Rectangle.Zero)
 				return false;
 
+			Cairo.RectangleInt win_selection = ImageCoordsToWindow (selection);
 			cr.Save ();
 			cr.SetSourceRGBA (.5, .5, .5, .7);
-			cr.Rectangle (selection.X, selection.Y, selection.Width, selection.Height);
+			cr.Rectangle (win_selection.X, win_selection.Y, win_selection.Width, win_selection.Height);
 			cr.Fill ();
 			cr.Restore ();
 
-			//			Cairo.RectangleInt win_selection = ImageCoordsToWindow (selection);
-			//			using (var evnt_region = evnt.Copy ()) {
-			//				using (var r = new Cairo.Region ()) {
-			//					r.UnionRectangle (win_selection);
-			//					evnt_region.Subtract (r);
-			//				}
-			//
-			//				// GTK3: Figure out Window to Cairo.Context
-			////				using (Cairo.Context ctx = new Cairo.Context (Window)) {
-			////					ctx.SetSourceRGBA (.5, .5, .5, .7);
-			////					Gdk.CairoHelper.Region (ctx, evnt_region);                                                                                                                      
-			////					ctx.Fill ();
-			////				}
-			//			}
 			return true;
 		}
 
