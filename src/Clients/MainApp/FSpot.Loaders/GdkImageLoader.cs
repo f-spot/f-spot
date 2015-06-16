@@ -2,9 +2,11 @@
 // GdkImageLoader.cs
 //
 // Author:
+//   Daniel Köb <daniel.koeb@peony.at>
 //   Stephane Delcroix <stephane@delcroix.org>
 //   Ruben Vermeersch <ruben@savanne.be>
 //
+// Copyright (C) 2014 Daniel Köb
 // Copyright (C) 2009-2010 Novell, Inc.
 // Copyright (C) 2009 Stephane Delcroix
 // Copyright (C) 2009-2010 Ruben Vermeersch
@@ -144,7 +146,12 @@ namespace FSpot.Loaders
 		public new bool Close ()
 		{
 			lock (sync_handle) {
-				return base.Close ();
+				try {
+					return base.Close ();
+				}
+				catch (GLib.GException) {
+					return false;
+				}
 			}
 		}
 #endregion
