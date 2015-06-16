@@ -2,9 +2,11 @@
 // ImageInfo.cs
 //
 // Author:
+//   Daniel Köb <daniel.koeb@peony.at>
 //   Ruben Vermeersch <ruben@savanne.be>
 //   Larry Ewing <lewing@src.gnome.org>
 //
+// Copyright (C) 2014 Daniel Köb
 // Copyright (C) 2007-2010 Novell, Inc.
 // Copyright (C) 2010 Ruben Vermeersch
 // Copyright (C) 2007 Larry Ewing
@@ -67,17 +69,18 @@ namespace FSpot.Widgets
 
 		public ImageInfo (ImageInfo info, Widget w, Gdk.Rectangle bounds)
 		{
-			var similar = CairoUtils.CreateSurface (w.GdkWindow);
-			Bounds = bounds;
-			Surface = similar.CreateSimilar (Content.ColorAlpha, Bounds.Width, Bounds.Height);
-			var ctx = new Context (Surface);
+			using (var similar = CairoUtils.CreateSurface (w.GdkWindow)) {
+				Bounds = bounds;
+				Surface = similar.CreateSimilar (Content.ColorAlpha, Bounds.Width, Bounds.Height);
+				var ctx = new Context (Surface);
 
-			ctx.Matrix = info.Fill (Bounds);
-			Pattern p = new SurfacePattern (info.Surface);
-			ctx.SetSource (p);
-			ctx.Paint ();
-			ctx.Dispose ();
-			p.Dispose ();
+				ctx.Matrix = info.Fill (Bounds);
+				Pattern p = new SurfacePattern (info.Surface);
+				ctx.SetSource (p);
+				ctx.Paint ();
+				ctx.Dispose ();
+				p.Dispose ();
+			}
 		}
 
 		public ImageInfo (ImageInfo info, Gdk.Rectangle allocation)
