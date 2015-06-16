@@ -222,6 +222,7 @@ namespace FSpot.Widgets
 			if (prev != null)
 				prev.Dispose ();
 
+			this.PixbufOrientation = loader.PixbufOrientation;
 			this.ZoomFit (args.ReducedResolution);
 		}
 
@@ -415,36 +416,35 @@ namespace FSpot.Widgets
 			}
 		}
 
-		// GTK3: OnExposeEvent
-//		protected override bool OnExposeEvent (EventExpose evnt)
-//		{
-//			if (!base.OnExposeEvent (evnt))
-//				return false;
-//
-//			if (!CanSelect || !CropHelpers || Selection == Rectangle.Zero)
-//				return false;
-//
-//			using (Cairo.Context ctx = CairoHelper.Create (GdkWindow)) {
-//				ctx.SetSourceRGBA (.7, .7, .7, .8);
-//				ctx.SetDash (new double [] {10, 15}, 0);
-//				ctx.LineWidth = .8;
-//				for (int i=1; i<3; i++) {
-//					Point s = ImageCoordsToWindow (new Point (Selection.X + Selection.Width / 3 * i, Selection.Y));
-//					Point e = ImageCoordsToWindow (new Point (Selection.X + Selection.Width / 3 * i, Selection.Y + Selection.Height));
-//					ctx.MoveTo (s.X, s.Y);
-//					ctx.LineTo (e.X, e.Y);
-//					ctx.Stroke ();
-//				}
-//				for (int i=1; i<3; i++) {
-//					Point s = ImageCoordsToWindow (new Point (Selection.X, Selection.Y + Selection.Height / 3 * i));
-//					Point e = ImageCoordsToWindow (new Point (Selection.X + Selection.Width, Selection.Y + Selection.Height / 3 * i));
-//					ctx.MoveTo (s.X, s.Y);
-//					ctx.LineTo (e.X, e.Y);
-//					ctx.Stroke ();
-//				}
-//			}
-//			return true;
-//		}
+		protected override bool OnDrawn (Cairo.Context cr)
+		{
+			if (!base.OnDrawn (cr))
+				return false;
+
+			if (!CanSelect || !CropHelpers || Selection == Rectangle.Zero)
+				return false;
+
+			using (Cairo.Context ctx = CairoHelper.Create (Window)) {
+				ctx.SetSourceRGBA (.7, .7, .7, .8);
+				ctx.SetDash (new double [] {10, 15}, 0);
+				ctx.LineWidth = .8;
+				for (int i=1; i<3; i++) {
+					Point s = ImageCoordsToWindow (new Point (Selection.X + Selection.Width / 3 * i, Selection.Y));
+					Point e = ImageCoordsToWindow (new Point (Selection.X + Selection.Width / 3 * i, Selection.Y + Selection.Height));
+					ctx.MoveTo (s.X, s.Y);
+					ctx.LineTo (e.X, e.Y);
+					ctx.Stroke ();
+				}
+				for (int i=1; i<3; i++) {
+					Point s = ImageCoordsToWindow (new Point (Selection.X, Selection.Y + Selection.Height / 3 * i));
+					Point e = ImageCoordsToWindow (new Point (Selection.X + Selection.Width, Selection.Y + Selection.Height / 3 * i));
+					ctx.MoveTo (s.X, s.Y);
+					ctx.LineTo (e.X, e.Y);
+					ctx.Stroke ();
+				}
+			}
+			return true;
+		}
 
 	}
 }

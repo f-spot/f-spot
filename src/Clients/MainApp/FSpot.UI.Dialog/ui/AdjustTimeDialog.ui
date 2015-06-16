@@ -13,7 +13,6 @@
     <property name="visible">True</property>
     <property name="title" translatable="yes">Adjust Time</property>
     <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
-    <property name="has_separator">False</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox15">
         <property name="visible">True</property>

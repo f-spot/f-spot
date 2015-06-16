@@ -5,7 +5,6 @@
   <object class="GtkDialog" id="folder_export_dialog">
     <property name="title" translatable="yes">Folder Export</property>
     <property name="type_hint">dialog</property>
-    <property name="has_separator">False</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="vbox55">
         <property name="visible">True</property>

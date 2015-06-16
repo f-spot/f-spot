@@ -43,24 +43,17 @@ using Hyena;
 
 namespace FSpot.Widgets
 {
-	public partial class ImageView : Container
+	public partial class ImageView : Container, IScrollableImplementor
 	{
 #region public API
 		protected ImageView (IntPtr raw) : base (raw) { }
 
-		public ImageView (Adjustment hadjustment, Adjustment vadjustment, bool canSelect)
+		public ImageView (bool canSelect = true) : base ()
 		{
-			// GTK3: https://developer.gnome.org/gtk3/stable/ch24s02.html#id-1.6.3.4.14
-			OnSetScrollAdjustments (hadjustment, vadjustment);
 			AdjustmentsChanged += ScrollToAdjustments;
-			HasWindow &= !HasWindow;
+
 			CanFocus = true;
-
 			can_select = canSelect;
-		}
-
-		public ImageView (bool canSelect = true) : this (null, null, canSelect)
-		{
 		}
 
 		Pixbuf pixbuf;
@@ -75,7 +68,10 @@ namespace FSpot.Widgets
 
 				ComputeScaledSize ();
 				AdjustmentsChanged -= ScrollToAdjustments;
-				Hadjustment.Value = Vadjustment.Value = 0;
+
+				if (Hadjustment != null)
+					Hadjustment.Value = Vadjustment.Value = 0;
+
 				XOffset = YOffset = 0;
 				AdjustmentsChanged += ScrollToAdjustments;
 				QueueDraw ();
@@ -113,8 +109,38 @@ namespace FSpot.Widgets
 			set { pointer_mode = value; } 
 		}
 
-		public Adjustment Hadjustment { get; private set; }
-		public Adjustment Vadjustment { get; private set; }
+		public ScrollablePolicy HscrollPolicy { get; set; }
+		public ScrollablePolicy VscrollPolicy { get; set; }
+
+		Adjustment hadjustment = null;
+		public Adjustment Hadjustment {
+			get { return hadjustment; }
+			set {
+				hadjustment = value;
+				if (hadjustment == null)
+					return;
+
+				hadjustment.Upper = scaled_width;
+				hadjustment.ValueChanged += HandleAdjustmentsValueChanged;
+
+				HandleAdjustmentsValueChanged (this, EventArgs.Empty);
+			}
+		}
+
+		Adjustment vadjustment = null;
+		public Adjustment Vadjustment {
+			get { return vadjustment; }
+			set {
+				vadjustment = value;
+				if (vadjustment == null)
+					return;
+
+				vadjustment.Upper = scaled_height;
+				vadjustment.ValueChanged += HandleAdjustmentsValueChanged;
+
+				HandleAdjustmentsValueChanged (this, EventArgs.Empty);
+			}
+		}
 
 		bool can_select = false;
 		public bool CanSelect {
@@ -360,12 +386,25 @@ namespace FSpot.Widgets
             Window.Show ();
         }
 
-		// GTK3: https://developer.gnome.org/gtk3/stable/ch24s02.html#id-1.6.3.4.3
-//        protected override void OnSizeRequested (ref Requisition requisition)
-//        {
-//            requisition.Width = requisition.Height = 0;
-//            OnSizeRequestedChildren ();
-//        }
+		protected override void OnGetPreferredHeight (out int minimum_height, out int natural_height)
+		{
+			if (Pixbuf == null)
+				minimum_height = 0;
+			else
+				minimum_height = (int) scaled_height;
+
+			natural_height = minimum_height;
+		}
+
+		protected override void OnGetPreferredWidth (out int minimum_width, out int natural_width)
+		{
+			if (Pixbuf == null)
+				minimum_width = 0;
+			else
+				minimum_width = (int) scaled_width;
+
+			natural_width = minimum_width;
+		}
 
         protected override void OnSizeAllocated (Rectangle allocation)
         {
@@ -386,9 +425,10 @@ namespace FSpot.Widgets
                 Window.MoveResize (allocation.X, allocation.Y, allocation.Width, allocation.Height);
             }
 
-            if (XOffset > Hadjustment.Upper - Hadjustment.PageSize)
+            if (Hadjustment != null && XOffset > Hadjustment.Upper - Hadjustment.PageSize)
                 ScrollTo ((int)(Hadjustment.Upper - Hadjustment.PageSize), YOffset, false);
-            if (YOffset > Vadjustment.Upper - Vadjustment.PageSize)
+
+            if (Vadjustment != null && YOffset > Vadjustment.Upper - Vadjustment.PageSize)
                 ScrollTo (XOffset, (int)(Vadjustment.Upper - Vadjustment.PageSize), false);
 
             base.OnSizeAllocated (allocation);
@@ -397,62 +437,23 @@ namespace FSpot.Widgets
                 ZoomFit (upscale);
         }
 
-		// GTK3: Base class doesn't have this?
-//		protected override bool OnDrawn (Cairo.Context cr)
-//		{
-//			// GTK3
-////			if (evnt.Window != GdkWindow)
-////				return false;
-//
-////			foreach (Rectangle area in evnt.Region.GetRectangles ())
-////			{
-////				var p_area = new Rectangle (Math.Max (0, area.X), Math.Max (0, area.Y),
-////					Math.Min (Allocation.Width, area.Width), Math.Min (Allocation.Height, area.Height));
-////				if (p_area == Rectangle.Zero)
-////					continue;
-////
-////				//draw synchronously if InterpType.Nearest or zoom 1:1
-////				if (Interpolation == InterpType.Nearest || zoom == 1.0) {
-////					PaintRectangle (p_area, InterpType.Nearest);
-////					continue;
-////				}
-////
-////				//Do this on idle ???
-////				PaintRectangle (p_area, Interpolation);
-////			}
-////
-////			if (can_select)
-////				OnSelectionExposeEvent (evnt);
-////
-////			return true;
-//			return base.OnDrawn (cr);
-//		}
-
-		// GTK3: https://developer.gnome.org/gtk3/stable/ch24s02.html#id-1.6.3.4.14
-		protected void OnSetScrollAdjustments (Adjustment hadjustment, Adjustment vadjustment)
+		protected override bool OnDrawn (Cairo.Context cr)
 		{
-			if (hadjustment == null)
-				hadjustment = new Adjustment (0, 0, 0, 0, 0, 0);
-			if (vadjustment == null)
-				vadjustment = new Adjustment (0, 0, 0, 0, 0, 0);
+			Rectangle area = new Rectangle((int) hadjustment.Value, (int) vadjustment.Value,
+						       Parent.Allocation.Width, Parent.Allocation.Height);
 
-			bool need_change = false;
-
-			if (Hadjustment != hadjustment) {
-				Hadjustment = hadjustment;
-				Hadjustment.Upper = scaled_width;
-				Hadjustment.ValueChanged += HandleAdjustmentsValueChanged;
-				need_change = true;
-			}
-			if (Vadjustment != vadjustment) {
-				Vadjustment = vadjustment;
-				Vadjustment.Upper = scaled_height;
-				Vadjustment.ValueChanged += HandleAdjustmentsValueChanged;
-				need_change = true;
+			//draw synchronously if InterpType.Nearest or zoom 1:1
+			if (Interpolation == InterpType.Nearest || zoom == 1.0) {
+				PaintRectangle (Allocation, InterpType.Nearest, cr);
+			} else {
+				//Do this on idle ???
+				PaintRectangle (Allocation, Interpolation, cr);
 			}
 
-			if (need_change)
-				HandleAdjustmentsValueChanged (this, EventArgs.Empty);
+			if (can_select)
+				OnSelectionExposeEvent (cr);
+
+			return base.OnDrawn (cr);
 		}
 
 		protected override bool OnButtonPressEvent (EventButton evnt)
@@ -622,22 +623,27 @@ namespace FSpot.Widgets
             double y_anchor = (double)(y - y_offset) / (double)scaled_height;
             ComputeScaledSize ();
 
-            AdjustmentsChanged -= ScrollToAdjustments;
-            if (scaled_width < Allocation.Width)
-                Hadjustment.Value = XOffset = 0;
-            else
-                Hadjustment.Value = XOffset = Clamp ((int)(x_anchor * scaled_width - x), 0, (int)(Hadjustment.Upper - Hadjustment.PageSize));
-            if (scaled_height < Allocation.Height)
-                Vadjustment.Value = YOffset = 0;
-            else
-                Vadjustment.Value = YOffset = Clamp ((int)(y_anchor * scaled_height - y), 0, (int)(Vadjustment.Upper - Vadjustment.PageSize));
-            AdjustmentsChanged += ScrollToAdjustments;
+			if (Hadjustment != null && Vadjustment != null) {
+				AdjustmentsChanged -= ScrollToAdjustments;
+
+				if (scaled_width < Allocation.Width)
+					Hadjustment.Value = XOffset = 0;
+				else
+					Hadjustment.Value = XOffset = Clamp ((int)(x_anchor * scaled_width - x), 0, (int)(Hadjustment.Upper - Hadjustment.PageSize));
+
+				if (scaled_height < Allocation.Height)
+					Vadjustment.Value = YOffset = 0;
+				else
+					Vadjustment.Value = YOffset = Clamp ((int)(y_anchor * scaled_height - y), 0, (int)(Vadjustment.Upper - Vadjustment.PageSize));
+
+				AdjustmentsChanged += ScrollToAdjustments;
+			}
 
             EventHandler eh = ZoomChanged;
             if (eh != null)
                 eh (this, EventArgs.Empty);
 
-            QueueDraw ();
+            QueueResize ();
         }
 
 		void PaintBackground (Rectangle backgound, Rectangle area)
@@ -647,10 +653,11 @@ namespace FSpot.Widgets
 //			GdkWindow.DrawRectangle (Style.BackgroundGCs [(int)StateType.Normal], true, area);
 		}
 
-		void PaintRectangle (Rectangle area, InterpType interpolation)
+		void PaintRectangle (Rectangle area, InterpType interpolation, Cairo.Context cr)
 		{
 			int x_offset = scaled_width < Allocation.Width ? (int)(Allocation.Width - scaled_width) / 2 : -XOffset;
 			int y_offset = scaled_height < Allocation.Height ? (int)(Allocation.Height - scaled_height) / 2 : -YOffset;
+
 			//Draw background
 			if (y_offset > 0) 	//Top
 				PaintBackground (new Rectangle (0, 0, Allocation.Width, y_offset), area);
@@ -671,52 +678,53 @@ namespace FSpot.Widgets
 
 			//Short circuit for 1:1 zoom
 			if (zoom == 1.0 &&
-			    !Pixbuf.HasAlpha &&
-			    Pixbuf.BitsPerSample == 8 &&
-			    pixbuf_orientation == ImageOrientation.TopLeft) {
+				!Pixbuf.HasAlpha &&
+				Pixbuf.BitsPerSample == 8 &&
+				pixbuf_orientation == ImageOrientation.TopLeft) {
 				// GTK3: GdkWindow.DrawPixbuf
-//				GdkWindow.DrawPixbuf (Style.BlackGC,
-//						      Pixbuf,
-//						      area.X - x_offset, area.Y - y_offset,
-//						      area.X, area.Y,
-//						      area.Width, area.Height,
-//						      RgbDither.Max,
-//						      area.X - x_offset, area.Y - y_offset);
+				//				GdkWindow.DrawPixbuf (Style.BlackGC,
+				//						      Pixbuf,
+				//						      area.X - x_offset, area.Y - y_offset,
+				//						      area.X, area.Y,
+				//						      area.Width, area.Height,
+				//						      RgbDither.Max,
+				//						      area.X - x_offset, area.Y - y_offset);
+
+				// GTK3: This never happens, `pixbuf_orientation` is not being setted.
+				Console.WriteLine ("......................");
+
 				return;
 			}
 
 			Rectangle pixbuf_area = PixbufUtils.TransformOrientation ((int)scaled_width,
-										  (int)scaled_height,
-										  new Rectangle ((area.X - x_offset),
-												 (area.Y - y_offset),
-												 area.Width,
-												 area.Height),
-										  PixbufUtils.ReverseTransformation (pixbuf_orientation));
+				(int)scaled_height,
+				new Rectangle ((area.X - x_offset),
+					(area.Y - y_offset),
+					area.Width,
+					area.Height),
+				PixbufUtils.ReverseTransformation (pixbuf_orientation));
 			using (Pixbuf temp_pixbuf = new Pixbuf (Colorspace.Rgb, false, 8, pixbuf_area.Width, pixbuf_area.Height)) {
 				if (Pixbuf.HasAlpha)
 					temp_pixbuf.Fill (0x00000000);
 
 				Pixbuf.CompositeColor (temp_pixbuf,
-						       0, 0,
-						       pixbuf_area.Width, pixbuf_area.Height,
-						       -pixbuf_area.X, -pixbuf_area.Y,
-						       zoom, zoom,
-						       zoom == 1.0 ? InterpType.Nearest : interpolation, 255,
-						       pixbuf_area.X, pixbuf_area.Y,
-						       CheckPattern.CheckSize, CheckPattern.Color1, CheckPattern.Color2);
+					0, 0,
+					pixbuf_area.Width, pixbuf_area.Height,
+					-pixbuf_area.X, -pixbuf_area.Y,
+					zoom, zoom,
+					zoom == 1.0 ? InterpType.Nearest : interpolation, 255,
+					pixbuf_area.X, pixbuf_area.Y,
+					CheckPattern.CheckSize, CheckPattern.Color1, CheckPattern.Color2);
 
 
 				ApplyColorTransform (temp_pixbuf);
 
 				using (var dest_pixbuf = PixbufUtils.TransformOrientation (temp_pixbuf, pixbuf_orientation)) {
-					// GTK3: GdkWindow.DrawPixbuf
-//					GdkWindow.DrawPixbuf (Style.BlackGC,
-//							      dest_pixbuf,
-//							      0, 0,
-//							      area.X, area.Y,
-//							      area.Width, area.Height,
-//							      RgbDither.Max,
-//							      area.X - x_offset, area.Y - y_offset);
+					cr.Save ();
+					Gdk.CairoHelper.SetSourcePixbuf (cr, dest_pixbuf, area.X, area.Y);
+					cr.Rectangle (x_offset, y_offset, scaled_width, scaled_height);
+					cr.Fill ();
+					cr.Restore ();
 				}
 			}
 		}
@@ -740,17 +748,21 @@ namespace FSpot.Widgets
 				scaled_height = (uint)Math.Floor (height * Zoom + .5);
 			}
 
-			Hadjustment.PageSize = Math.Min (scaled_width, Allocation.Width);
-			Hadjustment.PageIncrement = scaled_width * .9;
-			Hadjustment.StepIncrement = 32;
-			Hadjustment.Upper = scaled_width;
-			Hadjustment.Lower = 0;
+			if (Hadjustment != null) {
+				Hadjustment.PageSize = Math.Min (scaled_width, Allocation.Width);
+				Hadjustment.PageIncrement = scaled_width * .9;
+				Hadjustment.StepIncrement = 32;
+				Hadjustment.Upper = scaled_width;
+				Hadjustment.Lower = 0;
+			}
 
-			Vadjustment.PageSize = Math.Min (scaled_height, Allocation.Height);
-			Vadjustment.PageIncrement = scaled_height * .9;
-			Vadjustment.StepIncrement = 32;
-			Vadjustment.Upper = scaled_height;
-			Vadjustment.Lower = 0;
+			if (Vadjustment != null) {
+				Vadjustment.PageSize = Math.Min (scaled_height, Allocation.Height);
+				Vadjustment.PageIncrement = scaled_height * .9;
+				Vadjustment.StepIncrement = 32;
+				Vadjustment.Upper = scaled_height;
+				Vadjustment.Lower = 0;
+			}
 		}
 
 		event EventHandler AdjustmentsChanged;
@@ -763,13 +775,15 @@ namespace FSpot.Widgets
 
 		void ScrollToAdjustments (object sender, EventArgs e)
 		{
-			ScrollTo ((int)Hadjustment.Value, (int)Vadjustment.Value, false);
+			int x = hadjustment == null ? 0 : (int)hadjustment.Value;
+			int y = vadjustment == null ? 0 : (int)vadjustment.Value;
+			ScrollTo (x, y, false);
 		}
 
 		void ScrollTo (int x, int y, bool changeAdjustments)
 		{
-			x = Clamp (x, 0, (int)(Hadjustment.Upper - Hadjustment.PageSize));
-			y = Clamp (y, 0, (int)(Vadjustment.Upper - Vadjustment.PageSize));
+			x = hadjustment == null ? 0 : Clamp (x, 0, (int)(hadjustment.Upper - hadjustment.PageSize));
+			y = vadjustment == null ? 0 : Clamp (y, 0, (int)(vadjustment.Upper - vadjustment.PageSize));
 
 			int xof = x - XOffset;
 			int yof = y - YOffset;
@@ -783,8 +797,13 @@ namespace FSpot.Widgets
 
 			if (changeAdjustments) {
 				AdjustmentsChanged -= ScrollToAdjustments;
-				Hadjustment.Value = XOffset;
-				Vadjustment.Value = YOffset;
+
+				if (hadjustment != null)
+					hadjustment.Value = XOffset;
+
+				if (vadjustment != null)
+					vadjustment.Value = YOffset;
+
 				AdjustmentsChanged += ScrollToAdjustments;
 			}
 		}
@@ -814,35 +833,41 @@ namespace FSpot.Widgets
 				height = Pixbuf.Width;
 			}
 			if (upscale)
-				return Math.Min ((double)Allocation.Width / width,
-						 (double)Allocation.Height / height);
+				return Math.Min ((double)Parent.Allocation.Width / width,
+						 (double)Parent.Allocation.Height / height);
 			return Math.Min (1.0,
-					 Math.Min ((double)Allocation.Width / width,
-						   (double)Allocation.Height / height));
+					 Math.Min ((double)Parent.Allocation.Width / width,
+						   (double)Parent.Allocation.Height / height));
 		}
 #endregion
 
 
 #region selection
-		bool OnSelectionExposeEvent (Cairo.Region evnt)
+		bool OnSelectionExposeEvent (Cairo.Context cr)
 		{
 			if (selection == Rectangle.Zero)
 				return false;
 
-			Cairo.RectangleInt win_selection = ImageCoordsToWindow (selection);
-			using (var evnt_region = evnt.Copy ()) {
-				using (var r = new Cairo.Region ()) {
-					r.UnionRectangle (win_selection);
-					evnt_region.Subtract (r);
-				}
+			cr.Save ();
+			cr.SetSourceRGBA (.5, .5, .5, .7);
+			cr.Rectangle (selection.X, selection.Y, selection.Width, selection.Height);
+			cr.Fill ();
+			cr.Restore ();
 
-				// GTK3: Figure out Window to Cairo.Context
-//				using (Cairo.Context ctx = new Cairo.Context (Window)) {
-//					ctx.SetSourceRGBA (.5, .5, .5, .7);
-//					Gdk.CairoHelper.Region (ctx, evnt_region);                                                                                                                      
-//					ctx.Fill ();
-//				}
-			}
+			//			Cairo.RectangleInt win_selection = ImageCoordsToWindow (selection);
+			//			using (var evnt_region = evnt.Copy ()) {
+			//				using (var r = new Cairo.Region ()) {
+			//					r.UnionRectangle (win_selection);
+			//					evnt_region.Subtract (r);
+			//				}
+			//
+			//				// GTK3: Figure out Window to Cairo.Context
+			////				using (Cairo.Context ctx = new Cairo.Context (Window)) {
+			////					ctx.SetSourceRGBA (.5, .5, .5, .7);
+			////					Gdk.CairoHelper.Region (ctx, evnt_region);                                                                                                                      
+			////					ctx.Fill ();
+			////				}
+			//			}
 			return true;
 		}
 

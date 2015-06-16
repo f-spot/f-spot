@@ -5,7 +5,6 @@
   <object class="GtkDialog" id="google_add_album_dialog">
     <property name="visible">True</property>
     <property name="type_hint">dialog</property>
-    <property name="has_separator">False</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox12">
         <property name="visible">True</property>
