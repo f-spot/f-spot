@@ -368,9 +368,8 @@ namespace FSpot.Widgets
                             | EventMask.LeaveNotifyMask
                     },
 					WindowAttributesType.X | WindowAttributesType.Y | WindowAttributesType.Visual);
-
-			// GTK3
-//			GdkWindow.SetBackPixmap (null, false);
+                    
+			Window.BackgroundPattern = null;
             Window.UserData = Handle;
 
             Style.Attach (Window);
