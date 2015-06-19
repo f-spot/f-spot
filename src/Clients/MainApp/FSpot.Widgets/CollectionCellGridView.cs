@@ -450,10 +450,9 @@ namespace FSpot.Widgets
                 thumbnail.Dispose ();
             }
 
-			// GTK3: Render
             // Render Decorations
             if (DisplayRatings && region.X == draw.X && region.X != 0) {
-//                rating_renderer.Render (BinWindow, this, region, cell_expose_area, cell_state, photo);
+                rating_renderer.Render (cr, this, region, cell_expose_area, cell_state, photo);
             }
 
             // Render Captions
@@ -462,24 +461,23 @@ namespace FSpot.Widgets
             caption_area.X = cell_area.X + CELL_BORDER_WIDTH;
             caption_area.Width = cell_area.Width - 2 * CELL_BORDER_WIDTH;
 
-			// GTK3: Render
             if (DisplayDates) {
                 caption_area.Height = date_renderer.GetHeight (this, ThumbnailWidth);
-//                date_renderer.Render (BinWindow, this, caption_area, cell_expose_area, cell_state, photo);
+                date_renderer.Render (cr, this, caption_area, cell_expose_area, cell_state, photo);
 
                 caption_area.Y += caption_area.Height;
             }
 
             if (DisplayFilenames) {
                 caption_area.Height = filename_renderer.GetHeight (this, ThumbnailWidth);
-//                filename_renderer.Render (BinWindow, this, caption_area, cell_expose_area, cell_state, photo);
+                filename_renderer.Render (cr, this, caption_area, cell_expose_area, cell_state, photo);
 
                 caption_area.Y += caption_area.Height;
             }
 
             if (DisplayTags) {
                 caption_area.Height = tag_renderer.GetHeight (this, ThumbnailWidth);
-//                tag_renderer.Render (BinWindow, this, caption_area, cell_expose_area, cell_state, photo);
+                tag_renderer.Render (cr, this, caption_area, cell_expose_area, cell_state, photo);
 
                 caption_area.Y += caption_area.Height;
             }
