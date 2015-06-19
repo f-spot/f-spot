@@ -645,11 +645,17 @@ namespace FSpot.Widgets
             QueueResize ();
         }
 
-		void PaintBackground (Rectangle backgound, Rectangle area)
+		void PaintBackground (Rectangle backgound, Rectangle area, Cairo.Context cr)
 		{
-			// GTK3
-
-//			GdkWindow.DrawRectangle (Style.BackgroundGCs [(int)StateType.Normal], true, area);
+			cr.Save ();
+			RGBA background_color = StyleContext.GetBackgroundColor (StateFlags.Normal);
+			cr.SetSourceColor (new Cairo.Color (background_color.Red,
+							    background_color.Green,
+							    background_color.Blue,
+							    background_color.Alpha));
+			cr.Rectangle (area.X, area.Y, area.Width, area.Height);
+			cr.Fill ();
+			cr.Restore ();
 		}
 
 		void PaintRectangle (Rectangle area, InterpType interpolation, Cairo.Context cr)
@@ -659,13 +665,13 @@ namespace FSpot.Widgets
 
 			//Draw background
 			if (y_offset > 0) 	//Top
-				PaintBackground (new Rectangle (0, 0, Allocation.Width, y_offset), area);
+				PaintBackground (new Rectangle (0, 0, Allocation.Width, y_offset), area, cr);
 			if (x_offset > 0) 	//Left
-				PaintBackground (new Rectangle (0, y_offset, x_offset, (int)scaled_height), area);
+				PaintBackground (new Rectangle (0, y_offset, x_offset, (int)scaled_height), area, cr);
 			if (x_offset >= 0)	//Right
-				PaintBackground (new Rectangle (x_offset + (int)scaled_width, y_offset, Allocation.Width - x_offset - (int)scaled_width, (int)scaled_height), area);
+				PaintBackground (new Rectangle (x_offset + (int)scaled_width, y_offset, Allocation.Width - x_offset - (int)scaled_width, (int)scaled_height), area, cr);
 			if (y_offset >= 0)	//Bottom
-				PaintBackground (new Rectangle (0, y_offset + (int)scaled_height, Allocation.Width, Allocation.Height - y_offset - (int)scaled_height), area);
+				PaintBackground (new Rectangle (0, y_offset + (int)scaled_height, Allocation.Width, Allocation.Height - y_offset - (int)scaled_height), area, cr);
 
 			if (Pixbuf == null)
 				return;
