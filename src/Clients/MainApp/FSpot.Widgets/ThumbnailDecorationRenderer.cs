@@ -43,13 +43,12 @@ namespace FSpot.Widgets
 
 #region Drawing Methods
 
-		// GTK3: Drawable
-//        public abstract void Render (Drawable window,
-//                                     Widget widget,
-//                                     Rectangle cell_area,
-//                                     Rectangle expose_area,
-//                                     StateType cell_state,
-//                                     IPhoto photo);
+        public abstract void Render (Cairo.Context cr,
+                                     Widget widget,
+                                     Rectangle cell_area,
+                                     Rectangle expose_area,
+                                     StateType cell_state,
+                                     IPhoto photo);
 
 #endregion
 

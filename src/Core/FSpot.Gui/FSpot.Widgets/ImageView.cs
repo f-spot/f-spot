@@ -368,9 +368,8 @@ namespace FSpot.Widgets
                             | EventMask.LeaveNotifyMask
                     },
 					WindowAttributesType.X | WindowAttributesType.Y | WindowAttributesType.Visual);
-
-			// GTK3
-//			GdkWindow.SetBackPixmap (null, false);
+                    
+			Window.BackgroundPattern = null;
             Window.UserData = Handle;
 
             Style.Attach (Window);
@@ -646,11 +645,17 @@ namespace FSpot.Widgets
             QueueResize ();
         }
 
-		void PaintBackground (Rectangle backgound, Rectangle area)
+		void PaintBackground (Rectangle backgound, Rectangle area, Cairo.Context cr)
 		{
-			// GTK3
-
-//			GdkWindow.DrawRectangle (Style.BackgroundGCs [(int)StateType.Normal], true, area);
+			cr.Save ();
+			RGBA background_color = StyleContext.GetBackgroundColor (StateFlags.Normal);
+			cr.SetSourceColor (new Cairo.Color (background_color.Red,
+							    background_color.Green,
+							    background_color.Blue,
+							    background_color.Alpha));
+			cr.Rectangle (area.X, area.Y, area.Width, area.Height);
+			cr.Fill ();
+			cr.Restore ();
 		}
 
 		void PaintRectangle (Rectangle area, InterpType interpolation, Cairo.Context cr)
@@ -660,13 +665,13 @@ namespace FSpot.Widgets
 
 			//Draw background
 			if (y_offset > 0) 	//Top
-				PaintBackground (new Rectangle (0, 0, Allocation.Width, y_offset), area);
+				PaintBackground (new Rectangle (0, 0, Allocation.Width, y_offset), area, cr);
 			if (x_offset > 0) 	//Left
-				PaintBackground (new Rectangle (0, y_offset, x_offset, (int)scaled_height), area);
+				PaintBackground (new Rectangle (0, y_offset, x_offset, (int)scaled_height), area, cr);
 			if (x_offset >= 0)	//Right
-				PaintBackground (new Rectangle (x_offset + (int)scaled_width, y_offset, Allocation.Width - x_offset - (int)scaled_width, (int)scaled_height), area);
+				PaintBackground (new Rectangle (x_offset + (int)scaled_width, y_offset, Allocation.Width - x_offset - (int)scaled_width, (int)scaled_height), area, cr);
 			if (y_offset >= 0)	//Bottom
-				PaintBackground (new Rectangle (0, y_offset + (int)scaled_height, Allocation.Width, Allocation.Height - y_offset - (int)scaled_height), area);
+				PaintBackground (new Rectangle (0, y_offset + (int)scaled_height, Allocation.Width, Allocation.Height - y_offset - (int)scaled_height), area, cr);
 
 			if (Pixbuf == null)
 				return;
@@ -681,17 +686,12 @@ namespace FSpot.Widgets
 				!Pixbuf.HasAlpha &&
 				Pixbuf.BitsPerSample == 8 &&
 				pixbuf_orientation == ImageOrientation.TopLeft) {
-				// GTK3: GdkWindow.DrawPixbuf
-				//				GdkWindow.DrawPixbuf (Style.BlackGC,
-				//						      Pixbuf,
-				//						      area.X - x_offset, area.Y - y_offset,
-				//						      area.X, area.Y,
-				//						      area.Width, area.Height,
-				//						      RgbDither.Max,
-				//						      area.X - x_offset, area.Y - y_offset);
 
-				// GTK3: This never happens, `pixbuf_orientation` is not being setted.
-				Console.WriteLine ("......................");
+				cr.Save ();
+				Gdk.CairoHelper.SetSourcePixbuf (cr, Pixbuf, area.X, area.Y);
+				cr.Rectangle (x_offset, y_offset, scaled_width, scaled_height);
+				cr.Fill ();
+				cr.Restore ();
 
 				return;
 			}
@@ -848,26 +848,13 @@ namespace FSpot.Widgets
 			if (selection == Rectangle.Zero)
 				return false;
 
+			Cairo.RectangleInt win_selection = ImageCoordsToWindow (selection);
 			cr.Save ();
 			cr.SetSourceRGBA (.5, .5, .5, .7);
-			cr.Rectangle (selection.X, selection.Y, selection.Width, selection.Height);
+			cr.Rectangle (win_selection.X, win_selection.Y, win_selection.Width, win_selection.Height);
 			cr.Fill ();
 			cr.Restore ();
 
-			//			Cairo.RectangleInt win_selection = ImageCoordsToWindow (selection);
-			//			using (var evnt_region = evnt.Copy ()) {
-			//				using (var r = new Cairo.Region ()) {
-			//					r.UnionRectangle (win_selection);
-			//					evnt_region.Subtract (r);
-			//				}
-			//
-			//				// GTK3: Figure out Window to Cairo.Context
-			////				using (Cairo.Context ctx = new Cairo.Context (Window)) {
-			////					ctx.SetSourceRGBA (.5, .5, .5, .7);
-			////					Gdk.CairoHelper.Region (ctx, evnt_region);                                                                                                                      
-			////					ctx.Fill ();
-			////				}
-			//			}
 			return true;
 		}
 

@@ -148,8 +148,7 @@ namespace FSpot.Widgets
 			Window = new Gdk.Window (ParentWindow, attributes, 
 						    Gdk.WindowAttributesType.X | Gdk.WindowAttributesType.Y | Gdk.WindowAttributesType.Visual);
 
-			// GTK3
-//			GdkWindow.SetBackPixmap (null, false);
+			Window.BackgroundPattern = null;
 			Window.UserData = Handle;
 
 			attributes = new Gdk.WindowAttr {

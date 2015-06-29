@@ -57,24 +57,25 @@ namespace FSpot.Widgets
 
 #region Drawing Methods
 
-		// GTK3: Drawable
-//        public override void Render (Drawable window,
-//                                     Widget widget,
-//                                     Rectangle cell_area,
-//                                     Rectangle expose_area,
-//                                     StateType cell_state,
-//                                     IPhoto photo)
-//        {
-//            if (photo.Rating > 0) {
-//                rating_renderer.Value = (int) photo.Rating;
-//
-//                using (var rating_pixbuf = rating_renderer.RenderPixbuf ()) {
-//                    rating_pixbuf.RenderToDrawable (window, widget.Style.WhiteGC,
-//                                                    0, 0, cell_area.X, cell_area.Y,
-//                                                    -1, -1, RgbDither.None, 0, 0);
-//                }
-//            }
-//        }
+        public override void Render (Cairo.Context cr,
+                                     Widget widget,
+                                     Rectangle cell_area,
+                                     Rectangle expose_area,
+                                     StateType cell_state,
+                                     IPhoto photo)
+        {
+            if (photo.Rating > 0) {
+                rating_renderer.Value = (int) photo.Rating;
+
+                using (var rating_pixbuf = rating_renderer.RenderPixbuf ()) {
+                    cr.Save ();
+                    Gdk.CairoHelper.SetSourcePixbuf (cr, rating_pixbuf, cell_area.X, cell_area.Y);
+                    cr.Rectangle (cell_area.X, cell_area.Y, rating_pixbuf.Width, rating_pixbuf.Height);
+                    cr.Fill ();
+                    cr.Restore ();
+                }
+            }
+        }
 
 #endregion
 
