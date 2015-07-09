@@ -10,7 +10,7 @@ index cabce10..21ed285 100644
      <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
      <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 diff --git a/external/Hyena/Hyena.Gui/Hyena.Gui.csproj b/external/Hyena/Hyena.Gui/Hyena.Gui.csproj
-index 0cf3088..1749a5e 100644
+index 0cf3088..539cfcc 100644
 --- a/external/Hyena/Hyena.Gui/Hyena.Gui.csproj
 +++ b/external/Hyena/Hyena.Gui/Hyena.Gui.csproj
 @@ -1,5 +1,5 @@
@@ -20,28 +20,6 @@ index 0cf3088..1749a5e 100644
    <PropertyGroup>
      <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
      <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-@@ -66,9 +66,7 @@
-     <Reference Include="gdk-sharp">
-       <SpecificVersion>False</SpecificVersion>
-     </Reference>
--    <Reference Include="Mono.Cairo">
--      <SpecificVersion>False</SpecificVersion>
--      <HintPath>..\..\..bin\Mono.Cairo.dll</HintPath>
-+    <Reference Include="Mono.Cairo, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
-     </Reference>
-     <Reference Include="pango-sharp">
-       <SpecificVersion>False</SpecificVersion>
-diff --git a/external/Hyena/Hyena.Gui/Makefile.am b/external/Hyena/Hyena.Gui/Makefile.am
-index 74fd6df..4a5696e 100644
---- a/external/Hyena/Hyena.Gui/Makefile.am
-+++ b/external/Hyena/Hyena.Gui/Makefile.am
-@@ -1,5 +1,5 @@
- ASSEMBLY = Hyena.Gui
--ASSEMBLY_BUILD_FLAGS = -unsafe
-+ASSEMBLY_BUILD_FLAGS = -unsafe -sdk:4
- TARGET = library
- LINK = -r:ICSharpCode.SharpZipLib -r:Mono.Posix -r:System -r:System.Core -r:Mono.Cairo \
- 	   $(GTKSHARP_LIBS) $(GLIBSHARP_LIBS) \
 diff --git a/external/Hyena/Hyena/Hyena.csproj b/external/Hyena/Hyena/Hyena.csproj
 index cc18abc..b7014c2 100644
 --- a/external/Hyena/Hyena/Hyena.csproj
