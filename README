@@ -22,6 +22,8 @@ Requirements:
 
 	- dbus-sharp-glib 0.5 or later, https://github.com/mono/dbus-sharp-glib
 
+        - Nunit 2.6.4 if you want to run the unit tests, https://github.com/nunit/nunitv2/releases
+
 To compile, just go through the normal autogen/configure stuff and
 then make install.
 
