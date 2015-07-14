@@ -94,6 +94,7 @@ namespace FSpot.Bling
 			state = AnimationState.Running;
 			// GTK3: g_source_set_priorty?
 //			Sources.SetPriority (GLib.Timeout.Add (40, Handler), priority);
+			GLib.Timeout.Add (40, Handler);
 		}
 
 		public void Start ()
@@ -104,6 +105,7 @@ namespace FSpot.Bling
 			state = AnimationState.Running;
 			// GTK3: g_source_set_priorty?
 //			Sources.SetPriority (GLib.Timeout.Add (40, Handler), priority);
+			GLib.Timeout.Add (40, Handler);
 		}
 
 		public void Stop ()
