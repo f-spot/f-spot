@@ -24,6 +24,9 @@ Requirements:
 
         - Nunit 2.6.4 if you want to run the unit tests, https://github.com/nunit/nunitv2/releases
 
+	- gio-sharp 2.22 or later, https://github.com/mono/gio-sharp
+
+	- gtk-sharp-beans 2.14 or later, https://github.com/mono/gtk-sharp-beans
 To compile, just go through the normal autogen/configure stuff and
 then make install.
 
