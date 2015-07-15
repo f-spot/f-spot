@@ -1,13 +1,11 @@
-language: c
-
-before_install:
-  - sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
-  - echo "deb http://download.mono-project.com/repo/debian wheezy main" | sudo tee /etc/apt/sources.list.d/mono-xamarin.list
+language: csharp
+mono:
+  - latest
+solution: F-Spot.sln
 
 install:
   - sudo apt-get update > /dev/null
   - sudo apt-get install automake libtool intltool > /dev/null
-  - sudo apt-get install mono-devel mono-gmcs > /dev/null
   - sudo apt-get install libdbus-glib1.0-cil-dev liblcms2-dev libflickrnet-cil-dev libjpeg-dev > /dev/null
   - sudo apt-get install libunique-dev libcairo1.10-cil > /dev/null
   - sudo apt-get install libglib2.0-cil-dev libglib2.0-dev libgconf2-dev libgconf2.0-cil-dev > /dev/null
@@ -23,4 +21,3 @@ script:
   - cd ../lib/libfspot
   - make
   - cd ../..
-  - xbuild F-Spot.sln
