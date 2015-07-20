@@ -254,14 +254,13 @@ namespace FSpot
 			}
 		}
 
-		// GTK3: OnExposeEvent
-//		protected override bool OnExposeEvent (Gdk.EventExpose args)
-//		{
-//			bool ret = base.OnExposeEvent (args);
-//
-//			HideCursor ();
-//			return ret;
-//		}
+		protected override bool OnDrawn (Cairo.Context cr)
+		{
+			bool ret = base.OnDrawn (cr);
+
+			HideCursor ();
+			return ret;
+		}
 
 		void ExitAction (object sender, EventArgs args)
 		{
