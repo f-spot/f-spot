@@ -97,12 +97,6 @@ namespace FSpot {
     	{
     		Create (version, Defines.VERSION);
     		Create (db_version, (is_new) ? FSpot.Database.Updater.LatestVersion.ToString () : "0");
-    
-    		// Get the hidden tag id, if it exists
-    		try {
-    			string id = Database.Query<string> ("SELECT id FROM tags WHERE name = 'Hidden'");
-    			Create (hidden, id);
-    		} catch (Exception) {}
     	}
     
     	private void LoadAllItems ()
