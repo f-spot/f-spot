@@ -99,10 +99,11 @@ namespace FSpot {
     		Create (db_version, (is_new) ? FSpot.Database.Updater.LatestVersion.ToString () : "0");
     
     		// Get the hidden tag id, if it exists
-    		try {
+		string table = Database.Query<string> ("SELECT name FROM sqlite_master WHERE type='table' AND name='tags'");
+		if (!string.IsNullOrEmpty(table)) {
     			string id = Database.Query<string> ("SELECT id FROM tags WHERE name = 'Hidden'");
     			Create (hidden, id);
-    		} catch (Exception) {}
+		}
     	}
     
     	private void LoadAllItems ()
