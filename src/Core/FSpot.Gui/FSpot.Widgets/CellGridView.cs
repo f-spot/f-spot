@@ -426,10 +426,8 @@ namespace FSpot.Widgets
                 Hadjustment.ChangeValue ();
             }
 
-            if (IsRealized) {
+            if (IsRealized)
                 BinWindow.ThawUpdates ();
-                BinWindow.ProcessUpdates (true);
-            }
         }
 
         void DrawAllCells (Cairo.Context cr)

@@ -67,7 +67,7 @@ namespace FSpot
 			get { return main_window; }
 		}
 
-		[Builder.Object] HPaned main_hpaned;
+		[Builder.Object] Paned main_paned;
 		[Builder.Object] VBox view_vbox;
 
 		[Builder.Object] VBox toolbar_vbox;
@@ -1586,7 +1586,7 @@ namespace FSpot
 			Preferences.Set (Preferences.GROUP_ADAPTOR_ORDER_ASC,   group_selector.Adaptor.OrderAscending);
 			Preferences.Set (Preferences.GLASS_POSITION,		group_selector.GlassPosition);
 
-			Preferences.Set (Preferences.SIDEBAR_POSITION,		main_hpaned.Position);
+			Preferences.Set (Preferences.SIDEBAR_POSITION,		main_paned.Position);
 			Preferences.Set (Preferences.ZOOM,			icon_view.Zoom);
 
 			tag_selection_widget.SaveExpandDefaults ();
@@ -2492,8 +2492,8 @@ namespace FSpot
 				icon_view.GrabFocus ();
 				break;
 			case Preferences.SIDEBAR_POSITION:
-				if (main_hpaned.Position !=Preferences.Get<int> (key) )
-					main_hpaned.Position = Preferences.Get<int> (key);
+				if (main_paned.Position != Preferences.Get<int> (key))
+					main_paned.Position = Preferences.Get<int> (key);
 				break;
 
 			case Preferences.TAG_ICON_SIZE:
