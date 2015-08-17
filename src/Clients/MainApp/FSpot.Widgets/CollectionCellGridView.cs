@@ -330,8 +330,13 @@ namespace FSpot.Widgets
             cell_area.X -= (int) Hadjustment.Value;
             cell_area.Y -= (int) Vadjustment.Value;
             
+            Rectangle widget_area = new Rectangle (0,
+                                                   0,
+                                                   Allocation.Width,
+                                                   Allocation.Height);
+
             Rectangle cell_expose_area;
-            if (!cell_area.Intersect (Allocation, out cell_expose_area))
+            if (!cell_area.Intersect (widget_area, out cell_expose_area))
                 return;
             
             IPhoto photo = Collection [cell_num];
