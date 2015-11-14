@@ -16,16 +16,16 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-"
 "spot&keywords=I18N+L10N&component=General\n"
 "POT-Creation-Date: 2013-12-18 17:57+0000\n"
-"PO-Revision-Date: 2015-09-20 22:24+0300\n"
-"Last-Translator: Stas Solovey <whats_up@tut.by>\n"
+"PO-Revision-Date: 2015-11-14 20:45+0300\n"
+"Last-Translator: Yuri Myasoedov <ymyasoedov@yandex.ru>\n"
 "Language-Team: Русский <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
-"X-Generator: Gtranslator 2.91.7\n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 1.6.9\n"
 
 #. ../src/Clients/MainApp/FSpot.addin.xml
 #: ../data/addin-xml-strings.cs:8 ../src/Clients/MainApp/FSpot.addin.xml.h:3
@@ -2285,8 +2285,8 @@ msgid ""
 "This makes the photos appear as a single one in the library. The versions "
 "can be detached using the Photo menu."
 msgstr ""
-"Даттые фотографии появятся в библиотеке как одна фотография. Версии могут "
-"быть откреплены, с помощью меню Фото."
+"Данные фотографии появятся в библиотеке в виде одной фотографии. Версии "
+"можно открепить через меню «Фото»."
 
 #: ../src/Clients/MainApp/PhotoVersionCommands.cs:276
 #, csharp-format
@@ -3117,19 +3117,19 @@ msgstr ""
 #: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:186
 #: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:175
 msgid "Uploading Pictures"
-msgstr "Закачиваю изображения"
+msgstr "Загрузка изображений"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:371
 #: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:245
 #: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:214
 #, csharp-format
 msgid "Uploading picture \"{0}\" ({1} of {2})"
-msgstr "Закачиваю картинку «{0}» ({1} из {2})"
+msgstr "Загрузка изображения «{0}» ({1} из {2})"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:385
 #, csharp-format
 msgid "Error Uploading To Facebook: {0}"
-msgstr "Ошибка при закачке на Facebook: {0}"
+msgstr "Ошибка загрузки в Facebook: {0}"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:386
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:414
@@ -3147,15 +3147,15 @@ msgstr "Ошибка"
 #: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:292
 #: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:258
 msgid "Upload Complete"
-msgstr "Заказчка завершена"
+msgstr "Загрузка завершена"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:399
 msgid "Visit F-Spot group on Facebook"
-msgstr "Посетите группу F-Spot на Facebook"
+msgstr "Посетите группу F-Spot в Facebook"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:231
 msgid "Waiting for authentication"
-msgstr "Ожидается завершение аутентификации"
+msgstr "Ожидание проверки подлинности"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:232
 msgid ""
@@ -3177,19 +3177,19 @@ msgstr "Проверка подлинности…"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:247
 msgid "Error logging into Facebook"
-msgstr "Ошибка входа на Facebook"
+msgstr "Ошибка входа в Facebook"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:248
 msgid ""
 "There was a problem logging into Facebook.  Check your credentials and try "
 "again."
 msgstr ""
-"Произошла ошибка при входе на Facebook. Проверьте ваши регистрационные "
-"данные и попробуйте ещё раз."
+"Произошла ошибка при входе в Facebook. Проверьте ваши регистрационные данные "
+"и попробуйте ещё раз."
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:257
 msgid "Authorizing Session"
-msgstr "Сессия авторизации"
+msgstr "Сеанс авторизации"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:266
 msgid "Session established, fetching user info..."
@@ -3211,7 +3211,7 @@ msgstr "Сеанс установлен, получение фотоальбом
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:304
 #, csharp-format
 msgid "{0} {1} is logged into Facebook"
-msgstr "{0} {1} вошёл на Facebook"
+msgstr "{0} {1} вошёл в Facebook"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:313
 msgid "Facebook Connection Error"
@@ -3230,15 +3230,15 @@ msgstr ""
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:343
 msgid "You are not logged in."
-msgstr "Вы не выполнили вход."
+msgstr "Вход не выполнен."
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:1
 msgid "Export to Facebook"
-msgstr "Экспорт на Facebook"
+msgstr "Экспорт в Facebook"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:2
 msgid "Not logged in"
-msgstr "Вы не выполнили вход"
+msgstr "Вход не выполнен"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:3
 msgid "Login"
@@ -3254,7 +3254,7 @@ msgstr "Права доступа:"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:6
 msgid "Stay Connected"
-msgstr "Оставаться подключенным"
+msgstr "Сохранять подключение"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:7
 msgid "Auto-confirm Photos"
@@ -3798,8 +3798,8 @@ msgid ""
 "The selected album has a limit of {0} pictures,\n"
 "which would be passed with the current selection of {1} images"
 msgstr ""
-"Для выбранного альбома установлено ограничение в {0} картинок, \n"
-"количество выделеных в настоящий момент {1} фото должно ему соответствовать."
+"Выбранный альбом имеет ограничение до {0} фотографий,\n"
+"в данный момент выделено {1} изображений, что превышает указанное ограничение"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_album_dialog.ui.h:2
 #: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_add_album_dialog.ui.h:2
