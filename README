@@ -42,9 +42,6 @@ With MonoDevelop:
 		3.  cd lib/libfspot; make
 		4.  sudo make install (this will install the libfspot.so files)
 
-	The hyena patch is just a temporary fix for now. This will no longer be needed
-	when we switch to hyena master which is based on gtk-sharp3.
-
 	This will build a couple tools in ./build that are needed to build the projects
 	in ./lib.  Unfortunately, the f-spot.exe.config file points to whatever prefix
 	you gave during 'sh autogen.sh'.  You could copy the files from 

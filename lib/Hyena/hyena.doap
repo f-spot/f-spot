@@ -1,0 +1,47 @@
+<Project xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:foaf="http://xmlns.com/foaf/0.1/"
+         xmlns:gnome="http://api.gnome.org/doap-extensions#"
+         xmlns="http://usefulinc.com/ns/doap#">
+
+  <!-- Project Info -->
+  <shortname>hyena</shortname>
+  <created>2009-07-21</created>
+
+  <name xml:lang="en">Hyena</name>
+  <shortdesc xml:lang="en">A C# library for creating awesome applications</shortdesc>
+
+  <homepage rdf:resource="http://live.gnome.org/PdfMod" />
+  <mailing-list rdf:resource="http://mail.gnome.org/mailman/listinfo/banshee-list" />
+  <bug-database rdf:resource="http://bugzilla.gnome.org/" />
+  <license rdf:resource="http://usefulinc.com/doap/licenses/MIT" />
+
+  <!-- Current Releases -->
+  <release>
+    <Version>
+      <name>0.5</name>
+      <branch>master</branch>
+      <created>2010-10-06</created>
+      <revision>0.5</revision>
+      <file-release rdf:resource="http://ftp.gnome.org/pub/GNOME/sources/hyena/" />
+    </Version>
+  </release>
+
+  <!-- Version Control -->
+  <repository>
+    <GitRepository>
+      <browse rdf:resource="http://git.gnome.org/cgit/hyena" />
+      <location rdf:resource="git://git.gnome.org/hyena" />
+    </GitRepository>
+  </repository>
+
+  <!-- Maintainers -->
+  <maintainer>
+    <foaf:Person>
+      <foaf:name>Gabriel Burt</foaf:name>
+      <foaf:mbox rdf:resource="mailto:gabriel.burt@gmail.com" />
+      <gnome:userid>gburt</gnome:userid>
+    </foaf:Person>
+  </maintainer>
+
+</Project>

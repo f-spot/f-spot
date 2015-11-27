@@ -302,14 +302,13 @@ data/desktop-files/f-spot-import.desktop.in
 
 help/Makefile
 
-external/Hyena/build/m4/Makefile
-external/Hyena/build/Makefile
-external/Hyena/build/pkg-config/Makefile
-external/Hyena/Hyena.Data.Sqlite/Makefile
-external/Hyena/Hyena.Gui/Makefile
-external/Hyena/Hyena/Makefile
-external/Hyena/Makefile
-external/Makefile
+lib/Hyena/build/m4/Makefile
+lib/Hyena/build/Makefile
+lib/Hyena/build/pkg-config/Makefile
+lib/Hyena/Hyena.Data.Sqlite/Makefile
+lib/Hyena/Hyena.Gui/Makefile
+lib/Hyena/Hyena/Makefile
+lib/Hyena/Makefile
 lib/libfspot/Makefile
 lib/Makefile
 

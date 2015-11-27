@@ -1,0 +1,32 @@
+
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyena", "Hyena\Hyena.csproj", "{95374549-9553-4C1E-9D89-667755F90E12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyena.Gui", "Hyena.Gui\Hyena.Gui.csproj", "{C856EFD8-E812-4E61-8B76-E3583D94C233}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyena.Data.Sqlite", "Hyena.Data.Sqlite\Hyena.Data.Sqlite.csproj", "{95374549-9553-4C1E-9D89-667755F90E13}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Submodule|Any CPU = Submodule|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{95374549-9553-4C1E-9D89-667755F90E12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95374549-9553-4C1E-9D89-667755F90E12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95374549-9553-4C1E-9D89-667755F90E12}.Submodule|Any CPU.ActiveCfg = Submodule|Any CPU
+		{95374549-9553-4C1E-9D89-667755F90E12}.Submodule|Any CPU.Build.0 = Submodule|Any CPU
+		{95374549-9553-4C1E-9D89-667755F90E13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95374549-9553-4C1E-9D89-667755F90E13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95374549-9553-4C1E-9D89-667755F90E13}.Submodule|Any CPU.ActiveCfg = Submodule|Any CPU
+		{95374549-9553-4C1E-9D89-667755F90E13}.Submodule|Any CPU.Build.0 = Submodule|Any CPU
+		{C856EFD8-E812-4E61-8B76-E3583D94C233}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C856EFD8-E812-4E61-8B76-E3583D94C233}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C856EFD8-E812-4E61-8B76-E3583D94C233}.Submodule|Any CPU.ActiveCfg = Submodule|Any CPU
+		{C856EFD8-E812-4E61-8B76-E3583D94C233}.Submodule|Any CPU.Build.0 = Submodule|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Hyena\Hyena.csproj
+	EndGlobalSection
+EndGlobal

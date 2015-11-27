@@ -54,13 +54,13 @@
       <Project>{27EC05FB-0223-4B26-8157-E49AF81D0007}</Project>
       <Name>MainApp</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\external\Hyena\Hyena\Hyena.csproj">
-      <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
-      <Name>Hyena</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\external\taglib-sharp\src\taglib-sharp.csproj">
       <Project>{6B143A39-C7B2-4743-9917-92262C60E9A6}</Project>
       <Name>taglib-sharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\lib\Hyena\Hyena\Hyena.csproj">
+      <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
+      <Name>Hyena</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
