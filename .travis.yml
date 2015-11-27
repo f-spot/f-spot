@@ -13,6 +13,7 @@ install:
   - sudo apt-get install libdbus-glib1.0-cil-dev libgnomedesktop2.0-cil-dev libgnome-desktop-dev > /dev/null
   - sudo apt-get install gtk-sharp2-gapi libgtk-sharp-beans2.0-cil-dev libgio2.0-cil-dev > /dev/null
   - sudo apt-get install gnome-icon-theme gnome-doc-utils > /dev/null
+  - sudo apt-get install libdbus2.0-cil-dev > /dev/null
 
 script:
   - ./autogen.sh

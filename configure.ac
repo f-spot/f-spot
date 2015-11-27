@@ -302,6 +302,8 @@ data/desktop-files/f-spot-import.desktop.in
 
 help/Makefile
 
+external/Makefile
+
 lib/Hyena/build/m4/Makefile
 lib/Hyena/build/Makefile
 lib/Hyena/build/pkg-config/Makefile
