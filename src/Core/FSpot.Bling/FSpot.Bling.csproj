@@ -46,9 +46,11 @@
       <Package>glib-sharp-2.0</Package>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="gtk-sharp-beans">
-      <HintPath>..\..\..\external\gtk-sharp-beans.dll</HintPath>
-      <Package>gtk-sharp-beans-2.0</Package>
-    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\lib\gtk-sharp-beans\gtk-sharp-beans.csproj">
+      <Project>{069D1797-427D-4CED-A754-233DE64FC5DD}</Project>
+      <Name>gtk-sharp-beans</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

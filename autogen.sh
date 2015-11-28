@@ -96,8 +96,4 @@ run ./configure --enable-maintainer-mode $@
 # Stupid taglib-sharp snk garbage
 cp external/taglib-sharp/taglib-sharp.snk external/taglib-sharp/src
 
-# This is a hack to get around xamarin bug#4030
-mkdir -p bin
-cp -f `pkg-config --variable assemblies_dir gtk-sharp-beans-2.0`/* bin
-cp -f `pkg-config --variable assemblies_dir gio-sharp-2.0`/* bin
 rm -f bin/*.mdb

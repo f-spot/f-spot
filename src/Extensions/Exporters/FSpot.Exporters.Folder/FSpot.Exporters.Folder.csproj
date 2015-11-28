@@ -84,6 +84,14 @@
       <Name>Hyena</Name>
       <Private>False</Private>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\lib\gtk-sharp-beans\gtk-sharp-beans.csproj">
+      <Project>{069D1797-427D-4CED-A754-233DE64FC5DD}</Project>
+      <Name>gtk-sharp-beans</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\lib\gio-sharp\gio-sharp.csproj">
+      <Project>{942B6AEF-0A90-4A7F-B8E4-F1A4327E408C}</Project>
+      <Name>gio-sharp</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="ICSharpCode.SharpZipLib" />
@@ -95,13 +103,6 @@
     </Reference>
     <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Package>gtk-sharp-2.0</Package>
-    </Reference>
-    <Reference Include="gtk-sharp-beans">
-      <HintPath>..\..\..\..\external\gtk-sharp-beans.dll</HintPath>
-      <Package>gtk-sharp-beans-2.0</Package>
-    </Reference>
-    <Reference Include="gio-sharp, Version=2.14.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>gio-sharp-2.0</Package>
     </Reference>
     <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Package>glib-sharp-2.0</Package>

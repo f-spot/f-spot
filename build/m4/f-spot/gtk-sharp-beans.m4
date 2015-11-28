@@ -1,5 +1,0 @@
-AC_DEFUN([FSPOT_CHECK_GTK_SHARP_BEANS],
-[
-        PKG_CHECK_MODULES(GTK_SHARP_BEANS, gtk-sharp-beans-2.0 >= 2.14)
-])
-
