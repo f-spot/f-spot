@@ -64,7 +64,7 @@ namespace Hyena.Gui.Canvas
 
         public virtual void Apply (Cairo.Context cr)
         {
-            cr.Color = color;
+		cr.SetSourceColor (color);
         }
 
         public static readonly Brush Black = new Brush (0.0, 0.0, 0.0);

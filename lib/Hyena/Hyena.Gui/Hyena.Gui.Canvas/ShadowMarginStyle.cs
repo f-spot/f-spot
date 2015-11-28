@@ -66,7 +66,7 @@ namespace Hyena.Gui.Canvas
                     steps - i);
 
                 color.A = opacity_step * (i + 1);
-                cr.Color = color;
+		cr.SetSourceColor (color);
                 cr.Stroke ();
             }
         }

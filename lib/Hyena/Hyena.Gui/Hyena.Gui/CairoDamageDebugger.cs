@@ -49,7 +49,7 @@ namespace Hyena.Gui
         {
             cr.Save ();
             cr.LineWidth = 1.0;
-            cr.Color = CairoExtensions.RgbToColor ((uint)rand.Next (0, 0xffffff));
+	    cr.SetSourceColor (CairoExtensions.RgbToColor ((uint)rand.Next (0, 0xffffff)));
             cr.Rectangle (x + 0.5, y + 0.5, w - 1, h - 1);
             cr.Stroke ();
             cr.Restore ();

@@ -58,7 +58,7 @@ namespace Hyena.Gui
                     double y = Allocation.Y + yi * step_height;
 
                     cr.Rectangle (x, y, step_width, step_height);
-                    cr.Color = CairoExtensions.ColorFromHsb (h, s, bg_b);
+		    cr.SetSourceColor (CairoExtensions.ColorFromHsb (h, s, bg_b));
                     cr.Fill ();
 
                     int tw, th;
@@ -68,7 +68,7 @@ namespace Hyena.Gui
 
                     cr.Translate (0.5, 0.5);
                     cr.MoveTo (x + (step_width - tw) / 2.0, y + (step_height - th) / 2.0);
-                    cr.Color = CairoExtensions.ColorFromHsb (h, s, fg_b);
+		    cr.SetSourceColor (CairoExtensions.ColorFromHsb (h, s, fg_b));
                     PangoCairoHelper.ShowLayout (cr, layout);
                     cr.Translate (-0.5, -0.5);
                 }

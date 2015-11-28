@@ -240,7 +240,7 @@ namespace Hyena.Data.Gui.Tests
             red = !red;
             Cairo.Context cr = context.Context;
             cr.Rectangle (0, 0, cellWidth, cellHeight);
-            cr.Color = CairoExtensions.RgbaToColor (red ? 0xff000099 : 0x00000099);
+	    cr.SetSourceColor (CairoExtensions.RgbaToColor (red ? 0xff000099 : 0x00000099));
             cr.Fill ();
 
             List<Gdk.Point> points = Points;
@@ -252,7 +252,7 @@ namespace Hyena.Data.Gui.Tests
                 }
             }
 
-            cr.Color = CairoExtensions.RgbToColor ((uint)random.Next (0xffffff));
+	    cr.SetSourceColor (CairoExtensions.RgbToColor ((uint)random.Next (0xffffff)));
             cr.LineWidth = 1;
             cr.Stroke ();
         }

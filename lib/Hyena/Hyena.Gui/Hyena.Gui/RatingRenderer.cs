@@ -93,13 +93,13 @@ namespace Hyena.Gui
 
                 if (fill || hover_fill) {
                     if (!isHovering || hoverValue >= Value) {
-                        cr.Color = fill ? fill_color : hover_fill_color;
+			cr.SetSourceColor (fill ? fill_color : hover_fill_color);
                     } else {
-                        cr.Color = hover_fill ? fill_color : hover_fill_color;
+			cr.SetSourceColor (hover_fill ? fill_color : hover_fill_color);
                     }
                     cr.Fill ();
                 } else {
-                    cr.Color = stroke_color;
+			cr.SetSourceColor (stroke_color);
                     cr.Stroke ();
                 }
             }

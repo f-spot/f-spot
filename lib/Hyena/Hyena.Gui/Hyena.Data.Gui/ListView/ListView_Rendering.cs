@@ -235,7 +235,7 @@ namespace Hyena.Data.Gui
                     GtkColorClass.Base, StateType.Normal), 0.0);
                 stroke_color.A = 0.3;
 
-                cairo_context.Color = stroke_color;
+		cairo_context.SetSourceColor (stroke_color);
                 cairo_context.MoveTo (area.X + 0.5, area.Y + 1.0);
                 cairo_context.LineTo (area.X + 0.5, area.Bottom);
                 cairo_context.MoveTo (area.Right - 0.5, area.Y + 1.0);
@@ -398,7 +398,7 @@ namespace Hyena.Data.Gui
                 cairo_context.Antialias = Cairo.Antialias.None;
                 cairo_context.MoveTo (single_list_alloc.Left, single_list_alloc.Top);
                 cairo_context.LineTo (single_list_alloc.Right, single_list_alloc.Top);
-                cairo_context.Color = Theme.Colors.GetWidgetColor (GtkColorClass.Text, StateType.Normal);
+		cairo_context.SetSourceColor (Theme.Colors.GetWidgetColor (GtkColorClass.Text, StateType.Normal));
                 cairo_context.Stroke ();
                 cairo_context.Restore ();
             }
@@ -456,7 +456,7 @@ namespace Hyena.Data.Gui
             if (dragging) {
                 Cairo.Color fill_color = Theme.Colors.GetWidgetColor (GtkColorClass.Base, StateType.Normal);
                 fill_color.A = 0.5;
-                cairo_context.Color = fill_color;
+		cairo_context.SetSourceColor (fill_color);
                 cairo_context.Rectangle (area.X, area.Y, area.Width, area.Height);
                 cairo_context.Fill ();
             }
@@ -491,7 +491,7 @@ namespace Hyena.Data.Gui
 
             cairo_context.Rectangle (x, header_rendering_alloc.Bottom + 1, column.Width - 2,
                 list_rendering_alloc.Bottom - header_rendering_alloc.Bottom - 1);
-            cairo_context.Color = fill_color;
+	    cairo_context.SetSourceColor (fill_color);
             cairo_context.Fill ();
 
             cairo_context.MoveTo (x - 0.5, header_rendering_alloc.Bottom + 0.5);
@@ -499,7 +499,7 @@ namespace Hyena.Data.Gui
             cairo_context.LineTo (x + column.Width - 1.5, list_rendering_alloc.Bottom + 0.5);
             cairo_context.LineTo (x + column.Width - 1.5, header_rendering_alloc.Bottom + 0.5);
 
-            cairo_context.Color = stroke_color;
+	    cairo_context.SetSourceColor (stroke_color);
             cairo_context.LineWidth = 1.0;
             cairo_context.Stroke ();
         }

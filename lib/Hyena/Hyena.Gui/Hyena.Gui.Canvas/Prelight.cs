@@ -44,10 +44,10 @@ namespace Hyena.Gui.Canvas
             var grad = new Cairo.RadialGradient (x, y, 0, x, y, rect.Width / 2.0);
             grad.AddColorStop (0, new Cairo.Color (0, 0, 0, 0.1 * opacity));
             grad.AddColorStop (1, new Cairo.Color (0, 0, 0, 0.35 * opacity));
-            cr.Pattern = grad;
+	    cr.SetSource (grad);
             CairoExtensions.RoundedRectangle (cr, rect.X, rect.Y, rect.Width, rect.Height, theme.Context.Radius);
             cr.Fill ();
-            grad.Destroy ();
+	    grad.Dispose ();
 
             cr.Restore ();
         }

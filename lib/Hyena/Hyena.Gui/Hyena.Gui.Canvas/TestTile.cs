@@ -55,7 +55,7 @@ namespace Hyena.Gui.Canvas
             }
 
             CairoExtensions.RoundedRectangle (cr, 0, 0, RenderSize.Width, RenderSize.Height, 5);
-            cr.Color = color;
+	    cr.SetSourceColor (color);
             cr.Fill ();
         }
     }

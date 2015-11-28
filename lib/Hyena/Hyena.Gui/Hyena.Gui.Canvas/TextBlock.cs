@@ -217,7 +217,7 @@ namespace Hyena.Gui.Canvas
 
                 cr.PopGroupToSource ();
                 cr.Mask (mask);
-                mask.Destroy ();
+		mask.Dispose ();
             }
 
             cr.ResetClip ();

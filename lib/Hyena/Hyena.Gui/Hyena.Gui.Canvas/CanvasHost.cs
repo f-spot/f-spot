@@ -150,8 +150,8 @@ namespace Hyena.Gui.Canvas
 
                 if (Debug) {
                     cr.LineWidth = 1.0;
-                    cr.Color = CairoExtensions.RgbToColor (
-                        (uint)(rand = rand ?? new Random ()).Next (0, 0xffffff));
+                    cr.SetSourceColor (CairoExtensions.RgbToColor (
+			(uint)(rand = rand ?? new Random ()).Next (0, 0xffffff)));
                     cr.Rectangle (damage.X + 0.5, damage.Y + 0.5, damage.Width - 1, damage.Height - 1);
                     cr.Stroke ();
                 }

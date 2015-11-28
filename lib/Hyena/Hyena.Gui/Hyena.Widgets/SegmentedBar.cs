@@ -333,7 +333,7 @@ namespace Hyena.Widgets
             Pattern bar = RenderBar (Allocation.Width - 2 * h_padding, bar_height);
 
             cr.Save ();
-            cr.Source = bar;
+	    cr.SetSource (bar);
             cr.Paint ();
             cr.Restore ();
 
@@ -348,7 +348,7 @@ namespace Hyena.Widgets
                 matrix.Translate (0, -(2 * bar_height) + 1);
                 cr.Transform (matrix);
 
-                cr.Pattern = bar;
+		cr.SetSource (bar);
 
                 LinearGradient mask = new LinearGradient (0, 0, 0, bar_height);
 
@@ -358,7 +358,7 @@ namespace Hyena.Widgets
                 mask.AddColorStop (1.0, new Color (0, 0, 0, 0.7));
 
                 cr.Mask (mask);
-                mask.Destroy ();
+		mask.Dispose ();
 
                 cr.Restore ();
 
@@ -373,7 +373,7 @@ namespace Hyena.Widgets
                 RenderLabels (cr);
             }
 
-            bar.Destroy ();
+	    bar.Dispose ();
             CairoExtensions.DisposeContext (cr);
 
             return true;
@@ -388,7 +388,7 @@ namespace Hyena.Widgets
 #pragma warning disable 0618
             Pattern pattern = new Pattern (s);
 #pragma warning restore 0618
-            s.Destroy ();
+	    s.Dispose ();
             ((IDisposable)cr).Dispose ();
             return pattern;
         }
@@ -412,18 +412,18 @@ namespace Hyena.Widgets
             }
 
             CairoExtensions.RoundedRectangle (cr, 0, 0, w, h, r);
-            cr.Pattern = grad;
+	    cr.SetSource (grad);
             cr.FillPreserve ();
-            cr.Pattern.Destroy ();
+	    cr.GetSource ().Dispose ();
 
             grad = new LinearGradient (0, 0, 0, h);
             grad.AddColorStop (0.0, new Color (1, 1, 1, 0.125));
             grad.AddColorStop (0.35, new Color (1, 1, 1, 0.255));
             grad.AddColorStop (1, new Color (0, 0, 0, 0.4));
 
-            cr.Pattern = grad;
+	    cr.SetSource (grad);
             cr.Fill ();
-            cr.Pattern.Destroy ();
+	    cr.GetSource ().Dispose ();
         }
 
         private void RenderBarStrokes (Context cr, int w, int h, int r)
@@ -440,24 +440,24 @@ namespace Hyena.Widgets
             while (x <= w - r) {
                 cr.MoveTo (x - 0.5, 1);
                 cr.LineTo (x - 0.5, h - 1);
-                cr.Pattern = seg_sep_light;
+		cr.SetSource (seg_sep_light);
                 cr.Stroke ();
 
                 cr.MoveTo (x + 0.5, 1);
                 cr.LineTo (x + 0.5, h - 1);
-                cr.Pattern = seg_sep_dark;
+		cr.SetSource (seg_sep_dark);
                 cr.Stroke ();
 
                 x += seg_w;
             }
 
             CairoExtensions.RoundedRectangle (cr, 0.5, 0.5, w - 1, h - 1, r);
-            cr.Pattern = stroke;
+	    cr.SetSource (stroke);
             cr.Stroke ();
 
-            stroke.Destroy ();
-            seg_sep_light.Destroy ();
-            seg_sep_dark.Destroy ();
+	    stroke.Dispose ();
+	    seg_sep_light.Dispose ();
+	    seg_sep_dark.Dispose ();
         }
 
         private LinearGradient MakeSegmentGradient (int h, Color color)
@@ -490,11 +490,11 @@ namespace Hyena.Widgets
                 cr.LineWidth = 1;
                 cr.Rectangle (x + 0.5, 2 + 0.5, segment_box_size - 1, segment_box_size - 1);
                 LinearGradient grad = MakeSegmentGradient (segment_box_size, segment.Color, true);
-                cr.Pattern = grad;
+		cr.SetSource (grad);
                 cr.FillPreserve ();
-                cr.Color = box_stroke_color;
+		cr.SetSourceColor (box_stroke_color);
                 cr.Stroke ();
-                grad.Destroy ();
+		grad.Dispose ();
 
                 x += segment_box_size + segment_box_spacing;
 
@@ -505,7 +505,7 @@ namespace Hyena.Widgets
 
                 cr.MoveTo (x, 0);
                 text_color.A = 0.9;
-                cr.Color = text_color;
+		cr.SetSourceColor (text_color);
                 PangoCairoHelper.ShowLayout (cr, layout);
                 cr.Fill ();
 
@@ -514,7 +514,7 @@ namespace Hyena.Widgets
 
                 cr.MoveTo (x, lh);
                 text_color.A = 0.75;
-                cr.Color = text_color;
+                cr.SetSourceColor (text_color);
                 PangoCairoHelper.ShowLayout (cr, layout);
                 cr.Fill ();
 

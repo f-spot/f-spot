@@ -104,9 +104,9 @@ namespace Hyena.Widgets
             fill.AddColorStop (1, color);
 
             cr.Arc (x, y, r, 0, 2 * Math.PI);
-            cr.Pattern = fill;
+	    cr.SetSource (fill);
             cr.Fill ();
-            fill.Destroy ();
+	    fill.Dispose ();
 
             CairoExtensions.DisposeContext (cr);
             return base.OnExposeEvent (evnt);

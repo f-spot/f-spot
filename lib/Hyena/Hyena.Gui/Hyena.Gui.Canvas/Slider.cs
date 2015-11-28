@@ -153,7 +153,7 @@ namespace Hyena.Gui.Canvas
             double throbber_y = (Allocation.Height - ThrobberSize) / 2.0 - Margin.Top + throbber_r;
             double bar_w = RenderSize.Width * Value;
 
-            cr.Color = Theme.Colors.GetWidgetColor (GtkColorClass.Base, Gtk.StateType.Normal);
+	    cr.SetSourceColor (Theme.Colors.GetWidgetColor (GtkColorClass.Base, Gtk.StateType.Normal));
             cr.Rectangle (0, 0, RenderSize.Width, RenderSize.Height);
             cr.Fill ();
 
@@ -169,10 +169,10 @@ namespace Hyena.Gui.Canvas
             fill.AddColorStop (1, light_fill_color);
 
             cr.Rectangle (0, 0, bar_w, RenderSize.Height);
-            cr.Pattern = fill;
+	    cr.SetSource (fill);
             cr.Fill ();
 
-            cr.Color = fill_color;
+	    cr.SetSourceColor (fill_color);
             cr.Arc (throbber_x, throbber_y, throbber_r, 0, Math.PI * 2);
             cr.Fill ();
         }

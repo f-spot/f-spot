@@ -112,7 +112,7 @@ namespace Hyena.Data.Gui
             Cairo.Color color = context.Theme.Colors.GetWidgetColor (
                 context.TextAsForeground ? GtkColorClass.Foreground : GtkColorClass.Text, context.State);
             color.A = Alpha ?? (context.Opaque ? 1.0 : 0.5);
-            context.Context.Color = color;
+	    context.Context.SetSourceColor (color);
 
             PangoCairoHelper.ShowLayout (context.Context, context.Layout);
             //context.Context.ResetClip ();
