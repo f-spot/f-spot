@@ -45,7 +45,7 @@ namespace FSpot
 	}
 }
 
-namespace FSpot.Platform
+namespace FSpot.Services
 {
 	[Serializable]
 	public class NoSuchKeyException : Exception

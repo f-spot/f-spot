@@ -41,18 +41,20 @@ using FSpot.Utils;
 using Hyena;
 
 using Mono.Unix;
+using FSpot.PlatformServices;
 
 namespace FSpot {
 	[Binding(Gdk.Key.Escape, "Quit")]
 	public class FullScreenView : Gtk.Window {
-		private ScrolledView scroll;
-		private PhotoImageView view;
-		private Notebook notebook;
-		private ControlOverlay controls;
-		private SlideShow display;
-		private ToolButton play_pause_button;
-		private ToggleToolButton info_button;
-		private DelayedOperation hide_cursor_delay;
+        ScrolledView scroll;
+        PhotoImageView view;
+        Notebook notebook;
+		ControlOverlay controls;
+		SlideShow display;
+		ToolButton play_pause_button;
+		ToggleToolButton info_button;
+        DelayedOperation hide_cursor_delay;
+        ScreensaverManager screensaver;
 
 		ActionGroup actions;
 		const string ExitFullScreen = "ExitFullScreen";
@@ -204,6 +206,8 @@ namespace FSpot {
 				controls.Dismiss ();
 
 				notebook.CurrentPage = 0;
+
+                screensaver = new ScreensaverManager ();
 			} catch (System.Exception e) {
 				Log.Exception (e);
 			}
@@ -327,12 +331,12 @@ namespace FSpot {
 		public bool PlayPause ()
 		{
 			if (notebook.CurrentPage == 0) {
-				FSpot.Platform.ScreenSaver.Inhibit ("Running slideshow mode");
+                screensaver.Inhibit ("Running slideshow mode");
 				notebook.CurrentPage = 1;
 				play_pause_button.IconName = "media-playback-pause";
 				display.Start ();
 			} else {
-				FSpot.Platform.ScreenSaver.UnInhibit ();
+                screensaver.UnInhibit ();
 				notebook.CurrentPage = 0;
 				play_pause_button.IconName = "media-playback-start";
 				display.Stop ();
@@ -343,9 +347,9 @@ namespace FSpot {
 		public void Quit ()
 		{
 			hide_cursor_delay.Stop ();
-			FSpot.Platform.ScreenSaver.UnInhibit ();
+			screensaver.UnInhibit ();
 
-			this.Destroy ();
+			Destroy ();
 		}
 
 		protected override bool OnKeyPressEvent (Gdk.EventKey key)

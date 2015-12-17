@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Cms", "src\Core\FSpot
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.JobScheduler", "src\Core\FSpot.JobScheduler\FSpot.JobScheduler.csproj", "{46049AF4-97E0-4EE5-A5CB-A9D0C9026B25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Platform", "src\Core\FSpot.Platform\FSpot.Platform.csproj", "{2D3B12F7-ABF3-4784-92FE-78A1C775E157}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Services", "src\Core\FSpot.Services\FSpot.Services.csproj", "{2D3B12F7-ABF3-4784-92FE-78A1C775E157}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Query", "src\Core\FSpot.Query\FSpot.Query.csproj", "{D4E4D07E-D323-4CAE-BE04-8EE8EDF7F07E}"
 EndProject
@@ -120,6 +120,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mono.Addins.Setup", "external\mono-addins\Mono.Addins.Setup\Mono.Addins.Setup.csproj", "{A85C9721-C054-4BD8-A1F3-0227615F0A36}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mono.Addins.Gui", "external\mono-addins\Mono.Addins.Gui\Mono.Addins.Gui.csproj", "{FEC19BDA-4904-4005-8C09-68E82E8BEF6A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backends", "Backends", "{408AB0C0-54FA-4DF0-BA1C-F035B12F954F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Gnome", "src\Backends\FSpot.Gnome\FSpot.Gnome.csproj", "{942EA15B-C6B5-4E4B-BB27-DD05899E2E75}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -422,6 +426,12 @@ Global
 		{FFC3D9B1-B19A-44D8-8AA2-96DDE911320E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FFC3D9B1-B19A-44D8-8AA2-96DDE911320E}.Submodule|Any CPU.ActiveCfg = Debug|Any CPU
 		{FFC3D9B1-B19A-44D8-8AA2-96DDE911320E}.Submodule|Any CPU.Build.0 = Debug|Any CPU
+		{942EA15B-C6B5-4E4B-BB27-DD05899E2E75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{942EA15B-C6B5-4E4B-BB27-DD05899E2E75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{942EA15B-C6B5-4E4B-BB27-DD05899E2E75}.Submodule|Any CPU.ActiveCfg = Debug|Any CPU
+		{942EA15B-C6B5-4E4B-BB27-DD05899E2E75}.Submodule|Any CPU.Build.0 = Debug|Any CPU
+		{942EA15B-C6B5-4E4B-BB27-DD05899E2E75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{942EA15B-C6B5-4E4B-BB27-DD05899E2E75}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{7281334F-0B1D-4383-9EA2-6740D56ADCDE} = {6DC9A109-EC89-4221-B8CD-9E88B589DBC1}
@@ -478,6 +488,7 @@ Global
 		{91DD5A2D-9FE3-4C3C-9253-876141874DAD} = {A6C38ABC-9B2B-4693-A16C-0741E5561B32}
 		{A85C9721-C054-4BD8-A1F3-0227615F0A36} = {A6C38ABC-9B2B-4693-A16C-0741E5561B32}
 		{FEC19BDA-4904-4005-8C09-68E82E8BEF6A} = {A6C38ABC-9B2B-4693-A16C-0741E5561B32}
+		{942EA15B-C6B5-4E4B-BB27-DD05899E2E75} = {408AB0C0-54FA-4DF0-BA1C-F035B12F954F}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		Policies = $0
@@ -486,9 +497,9 @@ Global
 		$1.ResourceNamePolicy = FileName
 		$0.TextStylePolicy = $2
 		$2.FileWidth = 120
-		$2.inheritsSet = Mono
+		$2.inheritsSet = VisualStudio
 		$2.inheritsScope = text/plain
-		$2.scope = text/x-csharp
+		$2.scope = text/plain
 		$0.CSharpFormattingPolicy = $3
 		$3.inheritsSet = Mono
 		$3.inheritsScope = text/x-csharp

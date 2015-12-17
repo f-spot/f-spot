@@ -46,7 +46,7 @@ using FSpot.Extensions;
 using FSpot.Utils;
 using FSpot.UI.Dialog;
 using FSpot.Widgets;
-using FSpot.Platform;
+using FSpot.Services;
 using FSpot.Core;
 
 namespace FSpot {

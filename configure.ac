@@ -313,6 +313,9 @@ lib/Makefile
 
 src/AssemblyInfo.cs
 
+src/Backends/Makefile
+src/Backends/FSpot.Gnome/Makefile
+
 src/Makefile
 src/Core/Makefile
 src/Core/FSpot.Bling/Makefile
@@ -327,7 +330,7 @@ src/Core/FSpot.Utils/FSpot.Utils.dll.config
 src/Core/FSpot.Query/Makefile
 src/Core/FSpot.Gui/Makefile
 src/Core/FSpot.Gui/FSpot.Gui.dll.config
-src/Core/FSpot.Platform/Makefile
+src/Core/FSpot.Services/Makefile
 
 src/Clients/Makefile
 src/Clients/MainApp/Makefile

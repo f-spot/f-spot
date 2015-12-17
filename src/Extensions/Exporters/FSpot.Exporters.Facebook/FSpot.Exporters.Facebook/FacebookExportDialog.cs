@@ -41,7 +41,6 @@ using Hyena.Widgets;
 using FSpot.Core;
 using FSpot.Utils;
 using FSpot.Widgets;
-using FSpot.Platform;
 using FSpot.UI.Dialog;
 
 using Mono.Facebook;

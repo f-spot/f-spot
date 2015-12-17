@@ -4,12 +4,18 @@ internal static class AddinXmlStringCatalog
 {
     private static void Strings ()
     {
+        // ../src/Backends/FSpot.Gnome/FSpot.Gnome.addin.xml
+        Catalog.GetString (@"Backend providers for the GNOME platform. Includes GConf support and general GNOME integration.");
+
         // ../src/Clients/MainApp/FSpot.addin.xml
         Catalog.GetString (@"Copy Photo");
         Catalog.GetString (@"Rotate _Left");
         Catalog.GetString (@"Rotate _Right");
         Catalog.GetString (@"_Remove From Catalog");
         Catalog.GetString (@"_Delete From Drive");
+
+        // ../src/Core/FSpot.Services/FSpot.Services.addin.xml
+        Catalog.GetString (@"Provides non-GUI utilities and services.");
 
         // ../src/Extensions/Editors/FSpot.Editors.Blackout/Resources/BlackoutEditor.addin.xml
         Catalog.GetString (@"BlackoutEditor");

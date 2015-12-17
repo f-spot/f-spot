@@ -141,7 +141,7 @@ namespace Hyena
                 }
 
                 Console.Write ("[{5}{0} {1:00}:{2:00}:{3:00}.{4:000}]", TypeString (type), DateTime.Now.Hour,
-                    DateTime.Now.Minute, DateTime.Now.Second, DateTime.Now.Millisecond, thread_name);
+                               DateTime.Now.Minute, DateTime.Now.Second, DateTime.Now.Millisecond, thread_name);
 
                 ConsoleCrayon.ResetColor ();
 
@@ -339,7 +339,7 @@ namespace Hyena
 
         public static void Warning (string message)
         {
-            Warning (message, null);
+            Warning (message, (string)null);
         }
 
         public static void Warning (string message, string details)
@@ -350,6 +350,16 @@ namespace Hyena
         public static void Warning (string message, string details, bool showUser)
         {
             Commit (LogEntryType.Warning, message, details, showUser);
+        }
+
+        public static void Warning (Exception e)
+        {
+            Warning (null, e);
+        }
+
+        public static void Warning (string message, Exception e)
+        {
+            Exception (message, e, false);
         }
 
         public static void Warning (string message, bool showUser)
@@ -368,7 +378,7 @@ namespace Hyena
 
         public static void Error (string message)
         {
-            Error (message, null);
+            Error (message, (string)null);
         }
 
         public static void Error (string message, string details)
@@ -386,6 +396,16 @@ namespace Hyena
             Error (message, null, showUser);
         }
 
+        public static void Error (Exception e)
+        {
+            Error (null, e);
+        }
+
+        public static void Error (string message, Exception e)
+        {
+            Exception (message, e, true);
+        }
+
         public static void ErrorFormat (string format, params object [] args)
         {
             Error (String.Format (format, args));
@@ -398,16 +418,24 @@ namespace Hyena
         public static void DebugException (Exception e)
         {
             if (Debugging) {
-                Exception (e);
+                Exception (null, e, false);
             }
         }
 
+        [Obsolete ("Use Error(ex) or Warning(ex)")]
         public static void Exception (Exception e)
         {
             Exception (null, e);
         }
 
+        [Obsolete ("Use Error(msg,ex) or Warning(msg,ex)")]
         public static void Exception (string message, Exception e)
+        {
+            bool severe = String.IsNullOrEmpty (message);
+            Exception (message, e, severe);
+        }
+
+        private static void Exception (string message, Exception e, bool severe)
         {
             Stack<Exception> exception_chain = new Stack<Exception> ();
             StringBuilder builder = new StringBuilder ();
@@ -426,7 +454,12 @@ namespace Hyena
                 }
             }
 
-            Log.Warning (message ?? "Caught an exception", builder.ToString (), false);
+            var msg = message ?? "Caught an exception";
+            if (!severe) {
+                Log.Warning (msg, builder.ToString (), false);
+            } else {
+                Log.Error (msg, builder.ToString (), false);
+            }
         }
 
         #endregion

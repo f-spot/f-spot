@@ -332,10 +332,6 @@
       <Project>{46049AF4-97E0-4EE5-A5CB-A9D0C9026B25}</Project>
       <Name>FSpot.JobScheduler</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Core\FSpot.Platform\FSpot.Platform.csproj">
-      <Project>{2D3B12F7-ABF3-4784-92FE-78A1C775E157}</Project>
-      <Name>FSpot.Platform</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Core\FSpot.Query\FSpot.Query.csproj">
       <Project>{D4E4D07E-D323-4CAE-BE04-8EE8EDF7F07E}</Project>
       <Name>FSpot.Query</Name>
@@ -395,6 +391,10 @@
     <ProjectReference Include="..\..\..\lib\gtk-sharp-beans\gtk-sharp-beans.csproj">
       <Project>{069D1797-427D-4CED-A754-233DE64FC5DD}</Project>
       <Name>gtk-sharp-beans</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\FSpot.Services\FSpot.Services.csproj">
+      <Project>{2D3B12F7-ABF3-4784-92FE-78A1C775E157}</Project>
+      <Name>FSpot.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

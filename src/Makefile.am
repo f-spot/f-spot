@@ -1,7 +1,8 @@
 SUBDIRS = \
 	Core \
 	Clients \
-	Extensions
+	Extensions \
+	Backends
 
 EXTRA_DIST = AssemblyInfo.cs.in
 

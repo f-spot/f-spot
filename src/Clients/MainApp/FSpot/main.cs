@@ -284,7 +284,7 @@ namespace FSpot
 			//Xwt.Application.InitializeAsGuest (Xwt.ToolkitType.Gtk);
 
 			// init web proxy globally
-			Platform.WebProxy.Init ();
+			Services.WebProxy.Init ();
 
 			if (File.Exists (Preferences.Get<string> (Preferences.GTK_RC))) {
 				if (File.Exists (Path.Combine (FSpot.Core.Global.BaseDirectory, "gtkrc")))

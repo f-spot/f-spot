@@ -31,7 +31,7 @@ using System;
 
 using Hyena;
 
-namespace FSpot.Platform
+namespace FSpot.Services
 {
 	public class WebProxy
 	{

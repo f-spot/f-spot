@@ -12,7 +12,7 @@ SUBDIRS = \
 		FSpot.JobScheduler \
 		FSpot.Query \
 		FSpot.Gui \
-		FSpot.Platform
+		FSpot.Services
 
 RESOURCES = \
 		FSpot.Core.UnitTest/TestData/taglib-sample.xmp \

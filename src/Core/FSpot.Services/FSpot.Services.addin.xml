@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Addin 
+    id="FSpot.Services"
+    isroot="true"
+    version="1.0"
+    compatVersion="1.0"
+    copyright="© 2015 Stephen Shaw. Licensed under the MIT X11 license."
+    category="required:Core"
+    description="Provides non-GUI utilities and services."
+    defaultEnabled="true">
+    
+  <ExtensionPoint path="/FSpot/ServiceManager/Service">
+    <ExtensionNode name="Service"/>
+  </ExtensionPoint>
+
+  <!--ExtensionPoint path="/Banshee/SourceManager/Source">
+    <ExtensionNode name="Source"/>
+  </ExtensionPoint>
+
+  <ExtensionPoint path="/Banshee/Library/ImportSource">
+    <ExtensionNode name="ImportSource"/>
+  </ExtensionPoint>
+
+  <ExtensionPoint path="/Banshee/PlaybackController/ShuffleModes">
+    <ExtensionNode name="ShuffleMode"/>
+  </ExtensionPoint>
+
+  <ExtensionPoint path="/Banshee/MediaEngine/PlayerEngine">
+    <ExtensionNode name="PlayerEngine"/>
+  </ExtensionPoint>
+  
+  <ExtensionPoint path="/Banshee/MediaEngine/AudioCdRipper">
+    <ExtensionNode name="AudioCdRipper"/>
+  </ExtensionPoint>
+
+  <ExtensionPoint path="/Banshee/MediaEngine/Transcoder">
+    <ExtensionNode name="Transcoder"/>
+  </ExtensionPoint>
+
+  <ExtensionPoint path="/Banshee/MediaEngine/BpmDetector">
+    <ExtensionNode name="BpmDetector"/>
+  </ExtensionPoint>
+
+  <ExtensionPoint path="/Banshee/Platform/HardwareManager">
+    <ExtensionNode name="HardwareManager"/>
+  </ExtensionPoint>
+  
+  <ExtensionPoint path="/Banshee/Platform/HardwareDeviceProvider">
+    <ExtensionNode name="HardwareDeviceProvider"/>
+  </ExtensionPoint>
+
+  <ExtensionPoint path="/Banshee/Platform/DefaultApplicationHelper">
+    <ExtensionNode name="Helper"/>
+  </ExtensionPoint>
+  
+  <ExtensionPoint path="/Banshee/Platform/DiscDuplicator">
+    <ExtensionNode name="DiscDuplicator"/>
+  </ExtensionPoint>
+  
+  <ExtensionPoint path="/Banshee/PlatformServices/ScreensaverManager">
+    <ExtensionNode name="ScreensaverManager"/>
+  </ExtensionPoint>
+
+  <Extension path="/Banshee/PlaybackController/ShuffleModes">
+    <ShuffleMode class="Banshee.Collection.Database.RandomByOff"/>
+    <ShuffleMode class="Banshee.Collection.Database.RandomByTrack"/>
+    <ShuffleMode class="Banshee.Collection.Database.RandomByArtist"/>
+    <ShuffleMode class="Banshee.Collection.Database.RandomByAlbum"/>
+    <ShuffleMode class="Banshee.Collection.Database.RandomByRating"/>
+    <ShuffleMode class="Banshee.Collection.Database.RandomByScore"/>
+  </Extension-->
+
+</Addin>
