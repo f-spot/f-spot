@@ -182,7 +182,7 @@ msgid "ChangePath"
 msgstr ""
 
 #: ../data/addin-xml-strings.cs:81
-msgid "UNSTABLE - Please ensure you have a backup of your photos.db before you test this extension. This extension will allow you to change the base path to the your photos. It is very handy if you move your photos from ~/Photos to /OurPhotos for instance. Just ensure you let SqLite continue to process the changes for up to a few hours after f-spot reports finished. It will only change the path to photos which are located under the Photo directory."
+msgid "UNSTABLE - Please ensure you have a backup of your photos.db before you test this extension. This extension will allow you to change the base path to your photos. It is very handy if you move your photos from ~/Photos to /OurPhotos for instance. Just ensure you let SqLite continue to process the changes for up to a few hours after f-spot reports finished. It will only change the path to photos which are located under the Photo directory."
 msgstr ""
 
 #: ../data/addin-xml-strings.cs:82
@@ -1171,7 +1171,7 @@ msgstr "Fel vid behandling av bild"
 
 #: ../src/Clients/MainApp/FSpot/SendEmail.cs:300
 #, csharp-format
-msgid "An error occured while processing \"{0}\": {1}"
+msgid "An error occurred while processing \"{0}\": {1}"
 msgstr "Ett fel inträffade vid behandling av \"{0}\": {1}"
 
 #. Send the mail :)
@@ -2592,11 +2592,11 @@ msgid "<b>Transparent Parts</b>"
 msgstr "<b>Genomskinliga delar</b>"
 
 #: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:3
-msgid "<small><i>Enable this to allow interpolation on zoomed images. You shouldn't disable this for viewing photos, but disabling the interpolation could be usefull in icon design.</i></small>"
+msgid "<small><i>Enable this to allow interpolation on zoomed images. You shouldn't disable this for viewing photos, but disabling the interpolation could be useful in icon design.</i></small>"
 msgstr "<small><i>Aktivera detta för att tillåta interpolering på zoomade bilder. Du bör inte inaktivera detta för att visa foton, men att inaktivera interpoleringen kan vara användbart vid ikondesign.</i></small>"
 
 #: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:4
-msgid "<small><i>You can choose how to display transparent parts in images. This option has no effect on photos, but setting this as check pattern or custom color could be usefull when viewing icons or other artworks with transparent parts.</i></small>"
+msgid "<small><i>You can choose how to display transparent parts in images. This option has no effect on photos, but setting this as check pattern or custom color could be useful when viewing icons or other artworks with transparent parts.</i></small>"
 msgstr "<small><i>Du kan välja hur genomskinliga delar i bilder ska visas. Det här alternativet har ingen effekt på foton, men att ställa in det här som rutmönster eller anpassad färg kan vara användbar vid visning av ikoner eller andra bilder med genomskinliga delar.</i></small>"
 
 #: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:5
@@ -3573,7 +3573,7 @@ msgid "_Attach to exported photos:"
 msgstr "F_äst till exporterade foton:"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TrustError.ui.h:1
-msgid "A trust error occured while attempting to access"
+msgid "A trust error occurred while attempting to access"
 msgstr "Ett fel inträffade vid försök att komma åt"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TrustError.ui.h:2

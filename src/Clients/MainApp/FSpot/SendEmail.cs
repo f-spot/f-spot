@@ -294,7 +294,7 @@ namespace FSpot
 											    MessageType.Error,
 											    ButtonsType.Close,
 											    Catalog.GetString("Error processing image"),
-											    String.Format(Catalog.GetString("An error occured while processing \"{0}\": {1}"), selection[i].Name, e.Message));
+											    String.Format(Catalog.GetString("An error occurred while processing \"{0}\": {1}"), selection[i].Name, e.Message));
 						md.Run();
 						md.Destroy();
 						UserCancelled = true;

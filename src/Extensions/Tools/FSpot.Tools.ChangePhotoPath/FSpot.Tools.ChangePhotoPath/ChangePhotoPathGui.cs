@@ -155,7 +155,7 @@ namespace FSpot.Tools.ChangePhotoPath
 
 		private void DisplayExecutionNotOkMsg()
 		{
-			DisplayMsg (Gtk.MessageType.Error, "An error occured. Reverted all changes to the database.");
+			DisplayMsg (Gtk.MessageType.Error, "An error occurred. Reverted all changes to the database.");
 		}
 
 

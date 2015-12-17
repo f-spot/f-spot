@@ -94,7 +94,7 @@ internal static class AddinXmlStringCatalog
 
         // ../src/Extensions/Tools/FSpot.Tools.ChangePhotoPath/Resources/ChangePhotoPath.addin.xml
         Catalog.GetString (@"ChangePath");
-        Catalog.GetString (@"UNSTABLE - Please ensure you have a backup of your photos.db before you test this extension. This extension will allow you to change the base path to the your photos. It is very handy if you move your photos from ~/Photos to /OurPhotos for instance. Just ensure you let SqLite continue to process the changes for up to a few hours after f-spot reports finished. It will only change the path to photos which are located under the Photo directory.");
+        Catalog.GetString (@"UNSTABLE - Please ensure you have a backup of your photos.db before you test this extension. This extension will allow you to change the base path to your photos. It is very handy if you move your photos from ~/Photos to /OurPhotos for instance. Just ensure you let SqLite continue to process the changes for up to a few hours after f-spot reports finished. It will only change the path to photos which are located under the Photo directory.");
         Catalog.GetString (@"Tools");
         Catalog.GetString (@"Change path to photos");
 

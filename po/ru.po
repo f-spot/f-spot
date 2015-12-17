@@ -262,7 +262,7 @@ msgid "ChangePath"
 msgstr "ChangePath"
 
 #: ../data/addin-xml-strings.cs:97
-msgid "UNSTABLE - Please ensure you have a backup of your photos.db before you test this extension. This extension will allow you to change the base path to the your photos. It is very handy if you move your photos from ~/Photos to /OurPhotos for instance. Just ensure you let SqLite continue to process the changes for up to a few hours after f-spot reports finished. It will only change the path to photos which are located under the Photo directory."
+msgid "UNSTABLE - Please ensure you have a backup of your photos.db before you test this extension. This extension will allow you to change the base path to your photos. It is very handy if you move your photos from ~/Photos to /OurPhotos for instance. Just ensure you let SqLite continue to process the changes for up to a few hours after f-spot reports finished. It will only change the path to photos which are located under the Photo directory."
 msgstr "НЕСТАБИЛЬНО. Перед тестированием этого расширения проверьте, что вы сделали резервную копию БД ваших снимков. Это расширение позволит вам изменить путь к базе ваших фотоснимков. Это очень полезно, если вы переносите фотоснимки из одного каталога в другой. Удостоверьтесь, что вы позволили SqLite продолжить обработку изменений в течение нескольких часов после того, как f-spot сообщил о завершении. В результате, будет изменён путь только к тем фотоснимкам, которые хранились в каталоге для фотографий."
 
 #: ../data/addin-xml-strings.cs:98
@@ -1323,7 +1323,7 @@ msgstr "Ошибка при обработке изображения"
 
 #: ../src/Clients/MainApp/FSpot/SendEmail.cs:297
 #, csharp-format
-msgid "An error occured while processing \"{0}\": {1}"
+msgid "An error occurred while processing \"{0}\": {1}"
 msgstr "Произошла ошибка при обработке «{0}»: {1}"
 
 #. Send the mail :)
@@ -2744,11 +2744,11 @@ msgid "<b>Transparent Parts</b>"
 msgstr "<b>Прозрачные части</b>"
 
 #: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:3
-msgid "<small><i>Enable this to allow interpolation on zoomed images. You shouldn't disable this for viewing photos, but disabling the interpolation could be usefull in icon design.</i></small>"
+msgid "<small><i>Enable this to allow interpolation on zoomed images. You shouldn't disable this for viewing photos, but disabling the interpolation could be useful in icon design.</i></small>"
 msgstr "<small><i>Включите эту функцию для использования интерполяции при масштабировании фотографий. Отключать эту функцию при просмотре фотографий не стоит, хотя при просмотре значков она будет лишней.</i></small>"
 
 #: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:4
-msgid "<small><i>You can choose how to display transparent parts in images. This option has no effect on photos, but setting this as check pattern or custom color could be usefull when viewing icons or other artworks with transparent parts.</i></small>"
+msgid "<small><i>You can choose how to display transparent parts in images. This option has no effect on photos, but setting this as check pattern or custom color could be useful when viewing icons or other artworks with transparent parts.</i></small>"
 msgstr "<small><i>Вы можете выбрать способ отображения прозрачных областей в изображениях. Эта настройка не даёт эффекта для фотографий, но будет полезна при просмотре значков и других картинок с прозрачными областями, если вы установите шаблон или собственный цвет заливки.</i></small>"
 
 #: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:5
@@ -3724,7 +3724,7 @@ msgid "_Attach to exported photos:"
 msgstr "_Прикрепить к экспортируемым фотографиям:"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TrustError.ui.h:1
-msgid "A trust error occured while attempting to access"
+msgid "A trust error occurred while attempting to access"
 msgstr "При попытке доступа возникла ошибка доверия."
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TrustError.ui.h:2
