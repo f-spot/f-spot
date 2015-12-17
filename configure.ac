@@ -33,10 +33,10 @@ m4_define([fspot_asm_version],
 
 AC_PREREQ(2.52)
 AC_INIT([f-spot], fspot_version,
-	[http://bugzilla.gnome.org/enter_bug.cgi?product=f-spot])
+	[https://github.com/mono/f-spot/issues])
 
-AM_INIT_AUTOMAKE([1.9 dist-bzip2 tar-ustar dist-zip foreign])
-AM_MAINTAINER_MODE
+AM_INIT_AUTOMAKE([1.10 no-dist-gzip dist-bzip2 tar-ustar foreign])
+AM_MAINTAINER_MODE([enable])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIR([build/m4])
 AC_SUBST([ACLOCAL_AMFLAGS], ["-I build/m4/shamrock -I build/m4/f-spot \${ACLOCAL_FLAGS}"])
