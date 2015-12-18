@@ -106,6 +106,13 @@ namespace FSpot.Utils
             double scale = Math.Max (1.0, Math.Max (scale_x, scale_y));
             int target_x = (int) (pixbuf.Width / scale);
             int target_y = (int) (pixbuf.Height / scale);
+	    // FIXME, This isn't correct, but for now it ensures that the minimum
+	    //        value is 1 so that pixbuf.ScaleSimple doesn't return null
+	    //        Seems to only happen in rare(?) cases
+	    if (target_x == 0)
+		target_x = 1;
+	    if (target_y == 0)
+		target_y = 1;
             var thumb_pixbuf = pixbuf.ScaleSimple (target_x, target_y, InterpType.Bilinear);
             pixbuf.Dispose ();
 
