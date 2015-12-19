@@ -7,8 +7,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{942EA15B-C6B5-4E4B-BB27-DD05899E2E75}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>FSpot.Gnome</RootNamespace>
-    <AssemblyName>FSpot.Gnome</AssemblyName>
+    <RootNamespace>FSpot.GnomeBackend</RootNamespace>
+    <AssemblyName>FSpot.GnomeBackend</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <ReleaseVersion>0.9.0</ReleaseVersion>
   </PropertyGroup>
@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
+    <OutputPath>..\..\..\bin\Extensions</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -24,7 +24,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
+    <OutputPath>..\..\..\bin\Extensions</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -41,11 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ScreenSaver.cs" />
-    <Compile Include="GnomeService.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="FSpot.Gnome.addin.xml" />
+    <Compile Include="FSpot.GnomeBackend\GnomeScreensaverManager.cs" />
+    <Compile Include="FSpot.GnomeBackend\GnomeService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\lib\Hyena\Hyena\Hyena.csproj">
@@ -56,6 +53,14 @@
       <Project>{2D3B12F7-ABF3-4784-92FE-78A1C775E157}</Project>
       <Name>FSpot.Services</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="FSpot.GnomeBackend\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FSpot.Gnome.addin.xml">
+      <LogicalName>FSpot.Gnome.addin.xml</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

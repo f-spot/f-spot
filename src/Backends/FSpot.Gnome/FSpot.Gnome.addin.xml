@@ -1,19 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Addin 
-    id="FSpot.Gnome"
-    version="1.0"
-    compatVersion="1.0"
-    copyright="© 2015 Stephen Shaw. Licensed under the MIT X11 license."
-    category="required:Backends"
+<Addin
+	namespace="FSpot"
+    id="GnomeBackend"
+    version="0.9"
+    compatVersion="0.9"
+	name="GnomeBackend"
     description="Backend providers for the GNOME platform. Includes GConf support and general GNOME integration."
+    author="Stephen Shaw"
+    category="Backends"
     defaultEnabled="true">
 
   <Dependencies>
-    <Addin id="FSpot.Core" version="1.0"/>
-    <Addin id="FSpot.Services" version="1.0"/>
+    <Addin id="Core" version="0.9"/>
+    <Addin id="Services" version="0.9"/>
   </Dependencies>
   
-  <Extension path="/FSpot/ServiceManager/Service">
+  <!--Extension path="/FSpot/ServiceManager/Service">
     <Service class="FSpot.GnomeBackend.GnomeService"/>
   </Extension>
 
@@ -23,7 +25,7 @@
 
   <Extension path="/FSpot/Platform/DiscDuplicator">
     <DiscDuplicator class="FSpot.GnomeBackend.DiscDuplicator"/>
-  </Extension>
+  </Extension-->
 
   <!--<Extension path="/FSpot/Platform/DefaultApplicationHelper">
     <Helper class="FSpot.GnomeBackend.DefaultApplicationHelper"/>

@@ -331,7 +331,7 @@ namespace FSpot
 		static void UpdatePlugins ()
 		{
 			AddinManager.Initialize (FSpot.Core.Global.BaseDirectory);
-			AddinManager.Registry.Update (null);
+            AddinManager.Registry.Update (null);
 		}
 
 		static void ResetPluginDb ()

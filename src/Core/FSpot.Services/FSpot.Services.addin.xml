@@ -1,19 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Addin 
-    id="FSpot.Services"
-    isroot="true"
-    version="1.0"
-    compatVersion="1.0"
-    copyright="© 2015 Stephen Shaw. Licensed under the MIT X11 license."
-    category="required:Core"
-    description="Provides non-GUI utilities and services."
-    defaultEnabled="true">
-    
-  <ExtensionPoint path="/FSpot/ServiceManager/Service">
+<Addin
+		namespace="FSpot"
+		id="Services"
+		isroot="true"
+		version="0.9"
+		compatVersion="0.9"
+		name="Services"
+		author="Stephen Shaw"
+		category="Core"
+		description="Provides non-GUI utilities and services."
+		defaultEnabled="true">
+
+	<ExtensionPoint path="/FSpot/PlatformServices/ScreensaverManager">
+		<ExtensionNode name="ScreensaverManager" />
+	</ExtensionPoint>
+
+<!--ExtensionPoint path="/Banshee/ServiceManager/Service">
     <ExtensionNode name="Service"/>
   </ExtensionPoint>
 
-  <!--ExtensionPoint path="/Banshee/SourceManager/Source">
+  <ExtensionPoint path="/Banshee/SourceManager/Source">
     <ExtensionNode name="Source"/>
   </ExtensionPoint>
 
@@ -56,10 +61,6 @@
   <ExtensionPoint path="/Banshee/Platform/DiscDuplicator">
     <ExtensionNode name="DiscDuplicator"/>
   </ExtensionPoint>
-  
-  <ExtensionPoint path="/Banshee/PlatformServices/ScreensaverManager">
-    <ExtensionNode name="ScreensaverManager"/>
-  </ExtensionPoint>
 
   <Extension path="/Banshee/PlaybackController/ShuffleModes">
     <ShuffleMode class="Banshee.Collection.Database.RandomByOff"/>
@@ -69,5 +70,4 @@
     <ShuffleMode class="Banshee.Collection.Database.RandomByRating"/>
     <ShuffleMode class="Banshee.Collection.Database.RandomByScore"/>
   </Extension-->
-
 </Addin>
