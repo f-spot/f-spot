@@ -331,6 +331,7 @@ src/Core/FSpot.Platform/Makefile
 
 src/Clients/Makefile
 src/Clients/MainApp/Makefile
+src/Clients/MainApp/f-spot.exe.config
 
 src/Extensions/Makefile
 src/Extensions/Editors/Makefile
