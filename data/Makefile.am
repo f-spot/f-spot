@@ -1,8 +1,8 @@
 SUBDIRS = desktop-files
 
 $(top_srcdir)/build/addin-xml-string-extractor.exe:
-	@pushd $(top_srcdir)/build;
-	make addin-xml-string-extractor.exe
+	@pushd $(top_srcdir)/build; \
+	make addin-xml-string-extractor.exe; \
 	popd;
 
 
