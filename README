@@ -6,13 +6,13 @@ Requirements:
 	- GNOME development libraries 2.4 or later,
 	  http://www.gnome.org
 
-	- Mono 2.2 or later, http://www.go-mono.net
+	- Mono 3.8.2 or later, http://www.go-mono.net
 
 	- gtk-sharp 2.12.2 or later, http://www.go-mono.net
 
 	- Sqlite 2.8.6 or later
 
-	- liblcms 1.12 or later, http://www.littlecms.com/
+	- liblcms 2 or later, http://www.littlecms.com/
 
 	- hicolor-icon-theme 0.10 or later, http://icon-theme.freedesktop.org/wiki/HicolorTheme
 
@@ -40,10 +40,7 @@ With MonoDevelop:
 		4.  sudo make install (this will install the libfspot.so files)
 
 	This will build a couple tools in ./build that are needed to build the projects
-	in ./lib.  Unfortunately, the f-spot.exe.config file points to whatever prefix
-	you gave during 'sh autogen.sh'.  You could copy the files from 
-	./lib/libfspot/.libs to ./bin and edit f-spot.exe.config, but it'll get
-	overwritten with each build.
+	in ./lib.
 
 	Once these two directories are built you can now open monodevelop and build
 	and run f-spot from there.
