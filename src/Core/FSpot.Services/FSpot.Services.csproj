@@ -7,8 +7,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{2D3B12F7-ABF3-4784-92FE-78A1C775E157}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>FSpot.Platform</RootNamespace>
-    <AssemblyName>FSpot.Platform</AssemblyName>
+    <RootNamespace>FSpot.Services</RootNamespace>
+    <AssemblyName>FSpot.Services</AssemblyName>
     <ReleaseVersion>0.9.0</ReleaseVersion>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
@@ -65,8 +65,8 @@
     <Folder Include="FSpot.ServiceStack\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="FSpot.Services.addin.xml">
-      <LogicalName>FSpot.Services.addin.xml</LogicalName>
+    <EmbeddedResource Include="FSpot.PlatformServices.addin.xml">
+      <LogicalName>FSpot.PlatformServices.addin.xml</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
 </Project>
