@@ -48,7 +48,7 @@ namespace FSpot.GnomeBackend
 		const string DBUS_INTERFACE = "org.gnome.SessionManager";
 		const string DBUS_PATH = "/org/gnome/SessionManager";
 
-        static IGnomeScreensaver manager;
+        IGnomeScreensaver manager;
         uint? cookie;
         bool logged_error;
         readonly uint toplevel_xid = 0;
@@ -100,7 +100,7 @@ namespace FSpot.GnomeBackend
                     cookie = null;
                 }
             } catch (Exception e) {
-                Log.Exception ("Error UnInhibiting the screensaver", e);
+                Log.Error ("Error UnInhibiting the screensaver", e);
             }
 		}
 	}

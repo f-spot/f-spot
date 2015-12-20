@@ -7,12 +7,10 @@
 	name="GnomeBackend"
     description="Backend providers for the GNOME platform. Includes GConf support and general GNOME integration."
     author="Stephen Shaw"
-    category="Backends"
-    defaultEnabled="true">
+    category="Backends">
 
   <Dependencies>
     <Addin id="Core" version="0.9"/>
-    <Addin id="Services" version="0.9"/>
   </Dependencies>
   
   <!--Extension path="/FSpot/ServiceManager/Service">

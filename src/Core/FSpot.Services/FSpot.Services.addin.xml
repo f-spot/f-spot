@@ -10,9 +10,9 @@
 		description="Provides non-GUI utilities and services."
 		defaultEnabled="true">
 
-	<ExtensionPoint path="/FSpot/PlatformServices/ScreensaverManager">
-		<ExtensionNode name="ScreensaverManager" />
-	</ExtensionPoint>
+    <ExtensionPoint path="/FSpot/PlatformServices/ScreensaverManager">
+        <ExtensionNode name="ScreensaverManager"/>
+    </ExtensionPoint>
 
 <!--ExtensionPoint path="/Banshee/ServiceManager/Service">
     <ExtensionNode name="Service"/>
