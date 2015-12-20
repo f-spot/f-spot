@@ -347,7 +347,6 @@ src/Extensions/Exporters/FSpot.Exporters.Gallery/Makefile
 src/Extensions/Exporters/FSpot.Exporters.Facebook/Makefile
 src/Extensions/Exporters/FSpot.Exporters.Folder/Makefile
 src/Extensions/Exporters/FSpot.Exporters.SmugMug/Makefile
-src/Extensions/Exporters/FSpot.Exporters.Tabblo/Makefile
 src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Makefile
 src/Extensions/Exporters/FSpot.Exporters.Zip/Makefile
 src/Extensions/Tools/Makefile

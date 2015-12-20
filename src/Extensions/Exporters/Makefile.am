@@ -6,5 +6,4 @@ SUBDIRS = 			\
 	FSpot.Exporters.Gallery   \
 	FSpot.Exporters.PicasaWeb \
 	FSpot.Exporters.SmugMug   \
-	FSpot.Exporters.Tabblo    \
 	FSpot.Exporters.Zip

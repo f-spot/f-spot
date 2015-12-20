@@ -15,8 +15,8 @@ SUBDIRS = \
 		FSpot.Platform
 
 RESOURCES = \
-		FSpot.Core.UnitTest/TestData/taglib-sample.xmp \
-		FSpot.Core.UnitTest/TestData/taglib-sample-broken.xmp \
-		FSpot.Core.UnitTest/TestData/taglib-sample.jpg \
-		FSpot.Core.UnitTest/TestData/taglib-sample-broken.jpg
+		FSpot.Utils.UnitTest/TestData/taglib-sample.xmp \
+		FSpot.Utils.UnitTest/TestData/taglib-sample-broken.xmp \
+		FSpot.Utils.UnitTest/TestData/taglib-sample.jpg \
+		FSpot.Utils.UnitTest/TestData/taglib-sample-broken.jpg
 		
