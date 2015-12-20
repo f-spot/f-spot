@@ -1,15 +1,15 @@
 <Addin namespace="FSpot"
 	id="ScreensaverConfig"
 	name="Screensaver Configuration"
-	version="0.8"
-	compatVersion="0.8"
+	version="0.9"
+	compatVersion="0.9"
 	description="Screensaver options"
 	author="Stephane Delcroix"
 	url="http://f-spot.org/Extensions"
 	category="Tools"
 	defaultEnabled="true">
 	<Dependencies>
-		<Addin id="Core" version="0.8"/>
+		<Addin id="Core" version="0.9"/>
 	</Dependencies>
 	<Extension path = "/FSpot/Menus/Tools">
 		<Command id = "ScreensaverConfig" _label = "Configure Screensaver" command_type = "FSpot.Tools.ScreensaverConfig.ScreensaverConfig" />

@@ -1,14 +1,14 @@
 <Addin namespace="FSpot"
 	id="RetroactiveRoll"
 	name="RetroactiveRoll"
-	version="0.8"
-	compatVersion="0.8"
+	version="0.9"
+	compatVersion="0.9"
 	description="Retroactively assign old photos to import rolls"
 	author="Andy Wingo"
 	url="http://f-spot.org/Extensions"
 	category="Tools">
 	<Dependencies>
-		<Addin id="Core" version="0.8"/>
+		<Addin id="Core" version="0.9"/>
 	</Dependencies>
 	<Extension path = "/FSpot/Menus/PhotoPopup">
 		<Command id = "RetroactiveRoll" _label = "Reassign to new import roll" command_type = "FSpot.Tools.RetroactiveRoll.RetroactiveRoll"/>
