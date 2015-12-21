@@ -34,6 +34,8 @@
   <ItemGroup>
     <Compile Include="FSpot.Exporters.Flickr\FlickrRemote.cs" />
     <Compile Include="FSpot.Exporters.Flickr\FlickrExport.cs" />
+    <Compile Include="FSpot.Exporters.Flickr\TwentyThreeHQExport.cs" />
+    <Compile Include="FSpot.Exporters.Flickr\ZooomrExport.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\FlickrExport.addin.xml">
