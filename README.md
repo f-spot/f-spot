@@ -3,7 +3,9 @@ http://f-spot.org/
 
 Build Status:
 
-[![Build Status](https://travis-ci.org/mono/f-spot.svg?branch=master)](https://travis-ci.org/mono/f-spot)
+| Branch | Status |
+|--------|--------|
+| Master |[![Build Status](https://travis-ci.org/mono/f-spot.svg?branch=master)](https://travis-ci.org/mono/f-spot)|
 
 Requirements:
 
