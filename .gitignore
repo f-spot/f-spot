@@ -28,8 +28,7 @@ libtool
 ltmain.sh
 
 # F-Spot stuff
-src/AssemblyInfo.cs
-src/Clients/MainApp/f-spot
+f-spot.schemas
 build/pkg-config/f-spot.pc
 data/desktop-files/f-spot-import.desktop
 data/desktop-files/f-spot-import.desktop.in
@@ -37,12 +36,19 @@ data/desktop-files/f-spot-view.desktop
 data/desktop-files/f-spot-view.desktop.in
 data/desktop-files/f-spot.desktop
 data/desktop-files/f-spot.desktop.in
+src/AssemblyInfo.cs
+src/Clients/MainApp/f-spot
+src/Core/FSpot.Core/Defines.cs
+tools/f-spot-screensaver.desktop
 
 # Translation stuff
 po/.intltool-merge-cache
 po/Makefile.in.in
 po/POTFILES
 po/stamp-it
+*.gmo
+*.page
+*.mo
 
 # GNOME
 gnome-doc-utils.make
