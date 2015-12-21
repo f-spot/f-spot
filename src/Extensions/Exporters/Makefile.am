@@ -1,5 +1,5 @@
 SUBDIRS = 			\
-	FSpot.Exporters.CD		  \
+	FSpot.Exporters.CD	  \
 	FSpot.Exporters.Facebook  \
 	FSpot.Exporters.Flickr    \
 	FSpot.Exporters.Folder    \
