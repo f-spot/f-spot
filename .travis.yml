@@ -21,4 +21,4 @@ install:
 script:
   - ./autogen.sh --enable-tests
   - make
-  - nunit-console tests/*.UnitTest.dll
+  - nunit-console -labels tests/*.UnitTest.dll
