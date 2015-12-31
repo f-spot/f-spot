@@ -241,7 +241,6 @@ namespace FSpot
 		void HandleDestroy (object sender, EventArgs args)
 		{
 			CommitPendingChanges ();
-			Dispose ();
 		}
 
 		void OnPreferencesChanged (object sender, NotifyEventArgs args)
@@ -387,11 +386,38 @@ namespace FSpot
 
 		protected virtual void Dispose (bool disposing)
 		{
-			if (disposing)
-				return;
-			if (disposing) { //Free managed resources
-				filmstrip.Dispose ();
+			if (disposing) {
+				// free managed resources
+				if (rating != null){
+					rating.Dispose ();
+					rating = null;
+				}
+				if (description_entry != null){
+					description_entry.Dispose ();
+					description_entry = null;
+				}
+				if (tag_view != null) {
+					tag_view.Dispose ();
+					tag_view = null;
+				}
+				if (photo_view_scrolled != null) {
+					photo_view_scrolled.Dispose ();
+					photo_view_scrolled = null;
+				}
+				if (filmstrip != null) {
+					filmstrip.Dispose ();
+					filmstrip = null;
+				}
+				if (inner_vbox != null) {
+					inner_vbox.Dispose ();
+					inner_vbox = null;
+				}
+				if (inner_hbox != null) {
+					inner_hbox.Dispose ();
+					inner_hbox = null;
+				}
 			}
+			// free unmanaged resources
 		}
 
 		void SetColors ()

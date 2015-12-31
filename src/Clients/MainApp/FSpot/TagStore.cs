@@ -81,7 +81,7 @@ namespace FSpot {
 		}
 	}
 	
-	public class TagStore : DbStore<Tag> {
+	public class TagStore : DbStore<Tag>, IDisposable {
 
 		public Category RootCategory { get; private set; }
 		public Tag Hidden { get; private set; }
@@ -402,6 +402,27 @@ namespace FSpot {
 				Database.CommitTransaction ();
 	
 			EmitChanged (tags);
+		}
+
+		public void Dispose()
+		{
+			Dispose(true);
+			System.GC.SuppressFinalize(this);
+		}
+
+		protected virtual void Dispose(bool disposing)
+		{
+			if (disposing) {
+				// free managed resources
+				foreach (Tag tag in item_cache.Values) {
+					tag.Dispose ();
+				}
+				if (RootCategory != null) {
+					RootCategory.Dispose ();
+					RootCategory = null;
+				}
+			}
+			// free unmanaged resources
 		}
 	}
 }

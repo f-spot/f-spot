@@ -85,5 +85,18 @@ namespace FSpot.Core
 		{
 			children = new List<Tag> ();
 		}
+
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing) {
+				// free managed resources
+				foreach (Tag tag in children) {
+					tag.Dispose ();
+				}
+			}
+			// free unmanaged resources
+
+			base.Dispose (disposing);
+		}
 	}
 }

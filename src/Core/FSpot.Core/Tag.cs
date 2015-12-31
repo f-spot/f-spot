@@ -171,25 +171,18 @@ namespace FSpot.Core
 
 		protected virtual void Dispose(bool disposing)
 		{
-			if (disposing)
-			{
-				if (icon != null)
+			if (disposing) {
+				// free managed resources
+				if (icon != null) {
 					icon.Dispose ();
-				if (cached_icon != null)
+					icon = null;
+				}
+				if (cached_icon != null) {
 					cached_icon.Dispose ();
-				if (category != null)
-					category.Dispose ();
+					cached_icon = null;
+				}
 			}
-			else
-			{
-				Console.WriteLine ("[FSpot.Core.Tag] Finalizer called on {0}. Should be Disposed", GetType ());
-				if (icon != null)
-					icon.Dispose ();
-				if (cached_icon != null)
-					cached_icon.Dispose ();
-				if (category != null)
-					category.Dispose ();
-			}
+			// free unmanaged resources
 		}
 
 		~Tag ()

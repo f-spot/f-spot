@@ -122,11 +122,12 @@ namespace FSpot.Database
 			if (already_disposed)
 				return;
 
-	    		//Free managed resources
-			if (disposing)
+			//Free managed resources
+			if (disposing) {
+				Tags.Dispose ();
 				Database.Dispose ();
-
-	    		//Free unmanaged resources
+			}
+			//Free unmanaged resources
 			already_disposed = true;
 		}
 

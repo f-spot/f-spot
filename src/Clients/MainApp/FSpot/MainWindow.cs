@@ -182,6 +182,8 @@ namespace FSpot
 		GroupSelector group_selector;
 		QueryWidget query_widget;
 
+		PreviewPopup preview_popup;
+
 		ToolButton rl_button;
 		ToolButton rr_button;
 
@@ -430,7 +432,7 @@ namespace FSpot
 			icon_view.Vadjustment.ValueChanged += HandleIconViewScroll;
 			icon_view.GrabFocus ();
 
-			new PreviewPopup (icon_view);
+			preview_popup = new PreviewPopup (icon_view);
 
 			icon_view.DragBegin += HandleIconViewDragBegin;
 			icon_view.DragEnd += HandleIconViewDragEnd;
@@ -1607,6 +1609,9 @@ namespace FSpot
 			tag_selection_widget.SaveExpandDefaults ();
 
 			this.Window.Destroy ();
+
+			photo_view.Dispose ();
+			preview_popup.Dispose ();
 		}
 
 		// XXX: never called

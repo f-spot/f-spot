@@ -605,25 +605,28 @@ namespace FSpot.Widgets
 			System.GC.SuppressFinalize (this);
 		}
 
-		bool is_disposed = false;
 		protected virtual void Dispose (bool disposing)
 		{
-			if (is_disposed)
-				return;
 			if (disposing) {
+				// free managed resources
 				selection.Changed -= HandlePointerChanged;
 				selection.Collection.Changed -= HandleCollectionChanged;
 				selection.Collection.ItemsChanged -= HandleCollectionItemsChanged;
 				ThumbnailLoader.Default.OnPixbufLoaded -= HandlePixbufLoaded;
-				if (background_pixbuf != null)
+				if (background_pixbuf != null) {
 					background_pixbuf.Dispose ();
-				if (background_tile != null)
+					background_pixbuf = null;
+				}
+				if (background_tile != null) {
 					background_tile.Dispose ();
-				thumb_cache.Dispose ();
+					background_tile = null;
+				}
+				if (thumb_cache != null) {
+					thumb_cache.Dispose ();
+					thumb_cache = null;
+				}
 			}
-			//Free unmanaged resources
-
-			is_disposed = true;
+			// free unmanaged resources
 		}
 	}
 }

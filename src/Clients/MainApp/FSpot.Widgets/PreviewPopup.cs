@@ -263,7 +263,6 @@ namespace FSpot.Widgets
 
 		void HandleDestroyed (object sender, EventArgs args)
 		{
-			preview_cache.Dispose ();
 		}
 
 		protected override bool OnMotionNotifyEvent (EventMotion args)
@@ -323,6 +322,24 @@ namespace FSpot.Widgets
 			vbox.PackStart (image, true, true, 0);
 			vbox.PackStart (label, true, false, 0);
 			vbox.ShowAll ();
+		}
+
+		public override void Dispose()
+		{
+			Dispose(true);
+			base.Dispose (); // SuppressFinalize is called by base class
+		}
+
+		protected virtual void Dispose(bool disposing)
+		{
+			if (disposing) {
+				// free managed resources
+				if (preview_cache != null) {
+					preview_cache.Dispose ();
+					preview_cache = null;
+				}
+			}
+			// free unmanaged resources
 		}
 	}
 }
