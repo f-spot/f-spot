@@ -22,12 +22,10 @@ theme_icons = 					\
 	actions,filter-soft-focus-16.png	\
 	actions,filter-soft-focus-22.png	\
 	actions,filter-soft-focus-24.png	\
-	actions,object-rotate-left.svg		\
 	actions,object-rotate-left-16.png	\
 	actions,object-rotate-left-22.png	\
 	actions,object-rotate-left-24.png	\
 	actions,object-rotate-left-32.png	\
-	actions,object-rotate-right.svg		\
 	actions,object-rotate-right-16.png	\
 	actions,object-rotate-right-22.png	\
 	actions,object-rotate-right-24.png	\
@@ -46,7 +44,6 @@ theme_icons = 					\
 	actions,view-far-16.png			\
 	actions,view-far-22.png			\
 	actions,view-far-24.png			\
-	actions,view-fullscreen.svg		\
 	actions,view-fullscreen-16.png		\
 	actions,view-fullscreen-22.png		\
 	actions,view-fullscreen-24.png		\
@@ -54,7 +51,6 @@ theme_icons = 					\
 	actions,view-near-16.png		\
 	actions,view-near-22.png		\
 	actions,view-near-24.png		\
-	actions,view-restore.svg		\
 	actions,view-restore-16.png		\
 	actions,view-restore-22.png		\
 	actions,view-restore-24.png		\
@@ -67,7 +63,6 @@ theme_icons = 					\
 	emblems,emblem-event-22.png		\
 	emblems,emblem-event-24.png		\
 	emblems,emblem-event-32.png		\
-	emblems,emblem-event.svg		\
 	emblems,emblem-people-16.png		\
 	emblems,emblem-people-22.png		\
 	emblems,emblem-people-24.png		\
@@ -76,7 +71,6 @@ theme_icons = 					\
 	emblems,emblem-places-22.png		\
 	emblems,emblem-places-24.png		\
 	emblems,emblem-places-32.png		\
-	emblems,emblem-places.svg		\
 	emblems,emblem-readonly-16.png		\
 	emblems,emblem-readonly-22.png		\
 	emblems,emblem-readonly-24.png		\
@@ -84,7 +78,6 @@ theme_icons = 					\
 	places,film-roll-16.png			\
 	places,film-roll-22.png			\
 	places,film-roll-24.png			\
-	status,mode-browse.svg			\
 	status,mode-browse-16.png		\
 	status,mode-browse-22.png		\
 	status,mode-browse-24.png		\
@@ -128,7 +121,6 @@ uninstall-hook:
 	rm -f $(hicolordir)/128x128/apps/f-spot.png
 	rm -f $(hicolordir)/256x256/apps/f-spot.png
 
-	
 MAINTAINERCLEANFILES = Makefile.in
 EXTRA_DIST = $(wildcard *.png *.svg)	\
 	flower.png
