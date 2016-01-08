@@ -106,7 +106,6 @@ namespace FSpot.Utils
 
 		~DisposableCache ()
 		{
-			Console.WriteLine ("Finalizer called on {0}. Should be Disposed", GetType ());
 			Dispose (false);
 		}
 	}

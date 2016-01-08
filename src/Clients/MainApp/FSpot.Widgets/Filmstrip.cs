@@ -594,7 +594,6 @@ namespace FSpot.Widgets
 
 		~Filmstrip ()
 		{
-			Console.WriteLine ("Finalizer called on {0}. Should be Disposed", GetType ());
 			Dispose (false);
 		}
 

@@ -89,7 +89,6 @@ namespace FSpot.Query
 
 		~TagTerm ()
 		{
-			Console.WriteLine ("Finalizer called on {0}. Should be Disposed", GetType ());
 			Dispose (false);
 		}
 	}
