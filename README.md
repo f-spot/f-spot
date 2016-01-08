@@ -1,6 +1,10 @@
 F-Spot Photo Manager
 http://f-spot.org/
 
+Chat:
+* [![Join the chat at https://gitter.im/mono/f-spot](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mono/f-spot?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+* Also on #f-spot on gimpnet
+
 Build Status:
 
 | Branch | Status |
@@ -53,5 +57,3 @@ With MonoDevelop:
 
 	Once these two directories are built you can now open monodevelop and build
 	and run f-spot from there.
-
-Join the chat at https://gitter.im/mono/f-spot
