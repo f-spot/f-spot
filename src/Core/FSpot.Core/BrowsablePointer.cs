@@ -169,6 +169,8 @@ namespace FSpot.Core
 				SetIndex (next_location);
 			else if (Valid (old_location))
 				SetIndex (old_location);
+			else if (Valid (old_location - 1))
+				SetIndex (old_location - 1);
 			else
 				SetIndex (0);
 		}
