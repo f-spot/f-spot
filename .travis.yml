@@ -20,10 +20,5 @@ install:
 
 script:
   - ./autogen.sh
-  - cd build
   - make
-  - cd ../lib/libfspot
-  - make
-  - cd ../..
-  - xbuild F-Spot.sln
   - nunit-console tests/*.UnitTest.dll
