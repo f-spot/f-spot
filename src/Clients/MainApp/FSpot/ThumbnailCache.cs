@@ -35,11 +35,9 @@
 
 using System;
 using System.Collections.Generic;
-using Gdk;
-
-using Hyena;
-
 using FSpot.Utils;
+using Gdk;
+using Hyena;
 
 namespace FSpot
 {
@@ -48,13 +46,13 @@ namespace FSpot
 		#region Types
 		class Thumbnail {
 			// Uri of the image source
-			public SafeUri uri;
-	
+			public SafeUri Uri;
+
 			// The uncompressed thumbnail.
-			public Pixbuf pixbuf;
+			public Pixbuf Pixbuf;
 		}
 		#endregion
-	
+
 		#region Private members and constants
 		const int DEFAULT_CACHE_SIZE = 2;
 		int max_count;
@@ -62,63 +60,63 @@ namespace FSpot
 		Dictionary<SafeUri,Thumbnail> pixbuf_hash;
 		static ThumbnailCache defaultcache = new ThumbnailCache (DEFAULT_CACHE_SIZE);
 		#endregion
-	
+
 		#region Public API
-		public ThumbnailCache (int max_count)
+		public ThumbnailCache (int maxCount)
 		{
-			this.max_count = max_count;
-			pixbuf_mru = new List<Thumbnail> (max_count);
+			max_count = maxCount;
+			pixbuf_mru = new List<Thumbnail> (maxCount);
 			pixbuf_hash = new Dictionary<SafeUri, Thumbnail> ();
 		}
-	
+
 		static public ThumbnailCache Default {
 			get {
 				return defaultcache;
 			}
 		}
-	
+
 		public void AddThumbnail (SafeUri uri, Pixbuf pixbuf)
 		{
 			Thumbnail thumbnail = new Thumbnail ();
-	
-			thumbnail.uri = uri;
-			thumbnail.pixbuf = pixbuf;
-	
+
+			thumbnail.Uri = uri;
+			thumbnail.Pixbuf = pixbuf;
+
 			RemoveThumbnailForUri (uri);
-	
+
 			pixbuf_mru.Insert (0, thumbnail);
 			pixbuf_hash.Add (uri, thumbnail);
-	
+
 			MaybeExpunge ();
 		}
-	
+
 		public Pixbuf GetThumbnailForUri (SafeUri uri)
 		{
 			if (! pixbuf_hash.ContainsKey (uri))
 				return null;
-	
+
 			Thumbnail item = pixbuf_hash [uri];
-	
+
 			pixbuf_mru.Remove (item);
 			pixbuf_mru.Insert (0, item);
-	
-	        return item.pixbuf == null ? null : item.pixbuf.ShallowCopy ();
+
+			return item.Pixbuf == null ? null : item.Pixbuf.ShallowCopy ();
 		}
 	
 		public void RemoveThumbnailForUri (SafeUri uri)
 		{
 			if (! pixbuf_hash.ContainsKey (uri))
 				return;
-	
+
 			Thumbnail item = pixbuf_hash [uri];
-	
+
 			pixbuf_hash.Remove (uri);
 			pixbuf_mru.Remove (item);
-	
-			item.pixbuf.Dispose ();
+
+			item.Pixbuf.Dispose ();
 		}
 		#endregion
-	
+
 		public void Dispose ()
 		{
 			Dispose (true);
@@ -127,42 +125,28 @@ namespace FSpot
 
 		protected virtual void Dispose(bool disposing)
 		{
-			if (disposing)
-			{
-				foreach (var item in pixbuf_mru) {
-					Thumbnail thumb = item;
-					pixbuf_hash.Remove (thumb.uri);
-					thumb.pixbuf.Dispose ();
-				}
-				pixbuf_mru.Clear ();
+			foreach (var thumb in pixbuf_mru) {
+				pixbuf_hash.Remove (thumb.Uri);
+				thumb.Pixbuf.Dispose ();
 			}
-			else
-			{
-				foreach (var item in pixbuf_mru) {
-					Thumbnail thumb = item;
-					pixbuf_hash.Remove (thumb.uri);
-					thumb.pixbuf.Dispose ();
-				}
-				pixbuf_mru.Clear ();
-			} 
-
+			pixbuf_mru.Clear ();
 		}
 
 		~ThumbnailCache ()
 		{
 			Dispose (false);
 		}
-	
+
 		#region Private utility methods.
 		void MaybeExpunge ()
 		{
 			while (pixbuf_mru.Count > max_count) {
 				Thumbnail thumbnail = pixbuf_mru [pixbuf_mru.Count - 1];
-	
-				pixbuf_hash.Remove (thumbnail.uri);
+
+				pixbuf_hash.Remove (thumbnail.Uri);
 				pixbuf_mru.RemoveAt (pixbuf_mru.Count - 1);
-	
-				thumbnail.pixbuf.Dispose ();
+
+				thumbnail.Pixbuf.Dispose ();
 			}
 		}
 		#endregion
