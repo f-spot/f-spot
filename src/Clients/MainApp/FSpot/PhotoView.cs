@@ -34,20 +34,19 @@
 //
 
 using System;
-
+using FSpot.Core;
+using FSpot.Utils;
+using FSpot.Widgets;
 using Gdk;
 using Gtk;
-
 using Mono.Unix;
-
-using FSpot.Core;
-using FSpot.Widgets;
-using FSpot.Utils;
 
 namespace FSpot
 {
 	public class PhotoView : EventBox
 	{
+		bool disposed;
+
 		DelayedOperation commit_delay;
 
 		ScrolledWindow photo_view_scrolled;
@@ -57,7 +56,7 @@ namespace FSpot
 		VBox inner_vbox;
 		HBox inner_hbox;
 
-		Widgets.TagView tag_view;
+		TagView tag_view;
 
 		Entry description_entry;
 		RatingEntry rating;
@@ -208,7 +207,7 @@ namespace FSpot
 			if (!Item.IsValid)
 				return;
 
-			((Photo)Item.Current).Rating = (uint)(o as Widgets.RatingEntry).Value;
+			((Photo)Item.Current).Rating = (uint)(o as RatingEntry).Value;
 
 			if (commit_delay.IsPending)
 				if (changed_photo == Item.Index)
@@ -309,7 +308,7 @@ namespace FSpot
 			Box vbox = new VBox (false, 6);
 			Add (vbox);
 
-		        background = new EventBox ();
+			background = new EventBox ();
 			Frame frame = new Frame ();
 			background.Add (frame);
 
@@ -345,7 +344,7 @@ namespace FSpot
 			HBox lower_hbox = new HBox (false, 2);
 			//inner_hbox.BorderWidth = 6;
 
-			tag_view = new Widgets.TagView ();
+			tag_view = new TagView ();
 			lower_hbox.PackStart (tag_view, false, true, 0);
 
 			Label comment = new Label (Catalog.GetString ("Description:"));
@@ -354,10 +353,10 @@ namespace FSpot
 			lower_hbox.PackStart (description_entry, true, true, 0);
 			description_entry.Changed += HandleDescriptionChanged;
 
-            rating = new RatingEntry {
-                HasFrame = false,
-                AlwaysShowEmptyStars = true
-            };
+			rating = new RatingEntry {
+				HasFrame = false,
+				AlwaysShowEmptyStars = true
+			};
 			lower_hbox.PackStart (rating, false, false, 0);
 			rating.Changed += HandleRatingChanged;
 
@@ -371,21 +370,20 @@ namespace FSpot
 			Preferences.SettingChanged += OnPreferencesChanged;
 		}
 
-		~PhotoView ()
-		{
-			Dispose (false);
-		}
-
 		public override void Dispose ()
 		{
 			Dispose (true);
-			base.Dispose ();
-			System.GC.SuppressFinalize (this);
+			base.Dispose (); // base calls GC.SuppressFinalize (this);
 		}
 
 		protected virtual void Dispose (bool disposing)
 		{
+			if (disposed)
+				return;
+			disposed = true;
+
 			if (disposing) {
+				Preferences.SettingChanged -= OnPreferencesChanged;
 				// free managed resources
 				if (rating != null){
 					rating.Dispose ();
@@ -428,16 +426,16 @@ namespace FSpot
 			GtkUtil.ModifyColors (photo_view_scrolled);
 			GtkUtil.ModifyColors (rating);
 
-			Gdk.Color dark = Style.Dark (Gtk.StateType.Normal);
-			filmstrip.ModifyBg (Gtk.StateType.Normal, dark);
-			tag_view.ModifyBg (Gtk.StateType.Normal, dark);
-			View.ModifyBg (Gtk.StateType.Normal, dark);
-			background.ModifyBg (Gtk.StateType.Normal, dark);
-			photo_view_scrolled.ModifyBg (Gtk.StateType.Normal, dark);
-			rating.ModifyBg (Gtk.StateType.Normal, dark);
+			Color dark = Style.Dark (StateType.Normal);
+			filmstrip.ModifyBg (StateType.Normal, dark);
+			tag_view.ModifyBg (StateType.Normal, dark);
+			View.ModifyBg (StateType.Normal, dark);
+			background.ModifyBg (StateType.Normal, dark);
+			photo_view_scrolled.ModifyBg (StateType.Normal, dark);
+			rating.ModifyBg (StateType.Normal, dark);
 		}
 
-		protected override void OnStyleSet (Style previous)
+		protected override void OnStyleSet (Style previous_style)
 		{
 			SetColors ();
 		}

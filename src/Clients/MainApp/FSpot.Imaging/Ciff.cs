@@ -31,11 +31,11 @@
 //
 
 using System.Collections.Generic;
-
 using Hyena;
+using System.IO;
 
 namespace FSpot.Imaging.Ciff {
-	internal enum Tag {
+	enum Tag {
 		JpgFromRaw = 0x2007,
 	}
 
@@ -54,7 +54,7 @@ namespace FSpot.Imaging.Ciff {
 	}
 
 	/* See http://www.sno.phy.queensu.ca/~phil/exiftool/canon_raw.html */
-	internal struct Entry {
+	struct Entry {
 		internal Tag Tag;
 		internal uint Size;
 		internal uint Offset;
@@ -68,14 +68,14 @@ namespace FSpot.Imaging.Ciff {
 	}
 
 	class ImageDirectory {
-		List<Entry> entry_list;
+		readonly List<Entry> entry_list;
 		uint Count;
 		bool little;
 		uint start;
 		long DirPosition;
-		System.IO.Stream stream;
+		Stream stream;
 
-		public ImageDirectory (System.IO.Stream stream, uint start, long end, bool little)
+		public ImageDirectory (Stream stream, uint start, long end, bool little)
 		{
 			this.start = start;
 			this.little = little;
@@ -107,7 +107,7 @@ namespace FSpot.Imaging.Ciff {
 		{
 			foreach (Entry e in entry_list) {
 				if (e.Tag == tag) {
-					uint subdir_start = this.start + e.Offset;
+					uint subdir_start = start + e.Offset;
 					ImageDirectory subdir = new ImageDirectory (stream, subdir_start, subdir_start + e.Size, little);
 					return subdir;
 				}
@@ -119,7 +119,7 @@ namespace FSpot.Imaging.Ciff {
 		{
 			Entry e = entry_list [pos];
 
-			stream.Position = this.start + e.Offset;
+			stream.Position = start + e.Offset;
 
 			byte [] data = new byte [e.Size];
 			stream.Read (data, 0, data.Length);
@@ -142,16 +142,15 @@ namespace FSpot.Imaging.Ciff {
 	public class CiffFile : BaseImageFile {
 		ImageDirectory root;
 		bool little;
-		System.IO.Stream stream;
+		Stream stream;
 
 		ImageDirectory Root {
 			get {
 				if (root == null) {
 					stream = base.PixbufStream ();
-					root = Load (stream);
+					root = LoadImageDirectory ();
 				}
-
-			        return root;
+				return root;
 			}
 		}
 
@@ -159,7 +158,7 @@ namespace FSpot.Imaging.Ciff {
 		{
 		}
 
-		private ImageDirectory Load (System.IO.Stream stream)
+		ImageDirectory LoadImageDirectory ()
 		{
 			byte [] header = new byte [26];  // the spec reserves the first 26 bytes as the header block
 			stream.Read (header, 0, header.Length);
@@ -178,17 +177,16 @@ namespace FSpot.Imaging.Ciff {
 			return new ImageDirectory (stream, start, end, little);
 		}
 
-		public override System.IO.Stream PixbufStream ()
+		public override Stream PixbufStream ()
 		{
 			byte [] data = GetEmbeddedJpeg ();
 
 			if (data != null)
-				return new System.IO.MemoryStream (data);
-			else
-				return DCRawFile.RawPixbufStream (Uri);
+				return new MemoryStream (data);
+			return DCRawFile.RawPixbufStream (Uri);
 		}
 
-		private byte [] GetEmbeddedJpeg ()
+		byte [] GetEmbeddedJpeg ()
 		{
 			return Root.ReadEntry (Tag.JpgFromRaw);
 		}

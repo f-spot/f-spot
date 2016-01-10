@@ -30,9 +30,7 @@
 //
 
 using System;
-
 using Cairo;
-
 using Pinta.Core;
 
 namespace FSpot.Widgets
@@ -45,6 +43,7 @@ namespace FSpot.Widgets
 		Gdk.Point center;
 		ImageInfo blur;
 		Pattern mask;
+		bool disposed;
 
 		public SoftFocus (ImageInfo info)
 		{
@@ -111,7 +110,7 @@ namespace FSpot.Widgets
 			p.Dispose ();
 			ctx.Dispose ();
 
-			ImageInfo overlay = null;
+			ImageInfo overlay;
 			using (var normal = image.ToPixbuf ())
 			{
 				using (var pixbufBlur = PixbufUtils.Blur (normal, 3, null))
@@ -134,8 +133,8 @@ namespace FSpot.Widgets
 			circle = new RadialGradient (Center.X * scale, Center.Y * scale, radius * max * .7,
 				Center.X * scale, Center.Y * scale, radius * max + max * .2);
 
-			circle.AddColorStop (0, new Cairo.Color (0.0, 0.0, 0.0, 0.0));
-			circle.AddColorStop (1.0, new Cairo.Color (1.0, 1.0, 1.0, 1.0));
+			circle.AddColorStop (0, new Color (0.0, 0.0, 0.0, 0.0));
+			circle.AddColorStop (1.0, new Color (1.0, 1.0, 1.0, 1.0));
 			return circle;
 		}
 
@@ -167,11 +166,29 @@ namespace FSpot.Widgets
 
 		public void Dispose ()
 		{
-			if (mask != null)
-				mask.Dispose ();
+			Dispose (true);
+			GC.SuppressFinalize (this);
+		}
 
-			if (blur != null)
-				blur.Dispose ();
+		protected virtual void Dispose (bool disposing)
+		{
+			if (disposed)
+				return;
+			disposed = true;
+
+			if (disposing) {
+				// free managed resources
+				if (mask != null) {
+					mask.Dispose ();
+					mask = null;
+				}
+
+				if (blur != null) {
+					blur.Dispose ();
+					blur = null;
+				}
+			}
+			// free unmanaged resources
 		}
 	}
 }

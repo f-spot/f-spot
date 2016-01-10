@@ -35,6 +35,8 @@ namespace FSpot.Utils
 {
 	public class DisposableCache<TKey, TValue> : Cache<TKey, TValue>, IDisposable
 	{
+		bool disposed;
+
 		public DisposableCache ()
 		{
 		}
@@ -64,7 +66,7 @@ namespace FSpot.Utils
 
 				mru.Insert (0, key);
 				Hash [key] = value;
-				
+
 				while (mru.Count >= MaxCount) {
 					var iDisposable = Hash [mru [MaxCount - 1]] as IDisposable;
 					if (iDisposable != null)
@@ -85,28 +87,23 @@ namespace FSpot.Utils
 				Hash.Remove (key);
 			}
 		}
-		public void Dispose()
+
+		public void Dispose ()
 		{
-			Dispose(true);
-			GC.SuppressFinalize(this);
+			Dispose (true);
+			GC.SuppressFinalize (this);
 		}
 
-		// TODO: Initial implementation of dispose pattern. This needs to be fixed.
-		protected virtual void Dispose(bool disposing)
+		protected virtual void Dispose (bool disposing)
 		{
+			if (disposed)
+				return;
+			disposed = true;
+
 			if (disposing)
 			{
 				Clear ();
 			}
-			else
-			{
-				Clear ();
-			}
-		}
-
-		~DisposableCache ()
-		{
-			Dispose (false);
 		}
 	}
 }

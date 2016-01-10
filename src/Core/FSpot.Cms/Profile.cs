@@ -43,6 +43,8 @@ namespace FSpot.Cms
 			//SetErrorAction (ErrorAction.Show);
 		}
 
+		bool disposed;
+
 		public HandleRef Handle { get; private set; }
 
 		Profile () : this (NativeMethods.CmsCreateProfilePlaceholder ())
@@ -107,8 +109,6 @@ namespace FSpot.Cms
 			return new Profile (profile);
 		}
 
-
-	
 		public static Profile CreateAbstract (int nLUTPoints,
 						      double Exposure,
 						      double Bright,
@@ -118,7 +118,7 @@ namespace FSpot.Cms
 						      int TempSrc,
 						      int TempDest)
 		{
-#if true			
+#if true
 			ToneCurve gamma = new ToneCurve (Math.Pow (10, -Bright/100));
 			ToneCurve line = new ToneCurve (1.0);
 			ToneCurve [] tables = new ToneCurve [] { gamma, line, line };
@@ -167,12 +167,12 @@ namespace FSpot.Cms
 									     CopyHandles (tables)));
 		}
 
-		public Profile (IccColorSpace color_space, ToneCurve [] gamma)
+		public Profile (IccColorSpace colorSpace, ToneCurve [] gamma)
 		{
-			Handle = new HandleRef (this, NativeMethods.CmsCreateLinearizationDeviceLink (color_space, CopyHandles (gamma)));
+			Handle = new HandleRef (this, NativeMethods.CmsCreateLinearizationDeviceLink (colorSpace, CopyHandles (gamma)));
 		}
 
-		private static HandleRef [] CopyHandles (ToneCurve [] gamma)
+		static HandleRef [] CopyHandles (ToneCurve [] gamma)
 		{
 			if (gamma == null)
 				return null;
@@ -221,24 +221,24 @@ namespace FSpot.Cms
 		public Profile (byte [] data, int startOffset, int length)
 		{
 			if (startOffset < 0)
-				throw new ArgumentOutOfRangeException ("start_offset < 0");
+				throw new ArgumentOutOfRangeException ("startOffset", "startOffset < 0");
 
 			if (data == null)
 				throw new ArgumentNullException ("data");
 
 			if (data.Length - startOffset < 0)
-				throw new ArgumentOutOfRangeException ("start_offset > data.Length");
+				throw new ArgumentOutOfRangeException ("startOffset", "startOffset > data.Length");
 
 			if (data.Length - length - startOffset < 0)
-				throw new ArgumentOutOfRangeException ("start_offset + length > data.Length");
-			 
+				throw new ArgumentOutOfRangeException ("length", "startOffset + length > data.Length");
+
 			IntPtr profileh;
 			unsafe {
 				fixed (byte * start = & data [startOffset]) {
 					profileh = NativeMethods.CmsOpenProfileFromMem (start, (uint)length);
 				}
 			}
-			
+
 			if (profileh == IntPtr.Zero)
 				throw new CmsException ("Invalid Profile Data");
 
@@ -361,21 +361,26 @@ namespace FSpot.Cms
 
 		public void Dispose () 
 		{
-			Cleanup ();
-
+			Dispose (true);
 			GC.SuppressFinalize (this);
 		}
 
-		protected virtual void Cleanup ()
+		protected virtual void Dispose (bool disposing)
 		{
-			if (NativeMethods.CmsCloseProfile (Handle) == 0)
-				throw new CmsException ("Error closing Handle");
+			if (disposed)
+				return;
+			disposed = true;
 
+			if (disposing) {
+				// free managed resources
+			}
+			// free unmanaged resources
+			NativeMethods.CmsCloseProfile (Handle);
 		}
 
 		~Profile ()
 		{
-			Cleanup ();
+			Dispose (false);
 		}
 	}
 }
