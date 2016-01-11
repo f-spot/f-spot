@@ -281,6 +281,10 @@ AC_SUBST(BUILD_TIME)
 
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 
+dnl Optionally disable unit tests requiring nuget packages
+dnl substitution variable is sent in build/m4/shamrock/nunit.m4
+AC_CONFIG_FILES([after.F-Spot.sln.targets])
+
 dnl generated files
 AC_OUTPUT([
 Makefile
