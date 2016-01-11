@@ -16,13 +16,13 @@ AC_DEFUN([SHAMROCK_CHECK_NUNIT],
 		AM_CONDITIONAL(ENABLE_TESTS, test "x$do_tests" = "xyes")
 
 		if test "x$do_tests" = "xno"; then
-		   	AC_MSG_WARN([Could not find nunit: tests will not be available])
+			AC_MSG_WARN([Could not find nunit: tests will not be available])
 		fi
 	fi
-        if test "x$do_tests" = "xyes"; then
-	   	PROFILE_NAME=Debug
+	if test "x$do_tests" = "xyes"; then
+		PROFILE_NAME=Debug
 	else
 		PROFILE_NAME=Release
 	fi
-        AC_SUBST(PROFILE_NAME)
+	AC_SUBST(PROFILE_NAME)
 ])
