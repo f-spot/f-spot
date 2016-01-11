@@ -19,6 +19,6 @@ install:
   - sudo apt-get install -qq nunit nunit-console > /dev/null
 
 script:
-  - ./autogen.sh
+  - ./autogen.sh --enable-tests
   - make
   - nunit-console tests/*.UnitTest.dll
