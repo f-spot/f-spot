@@ -32,13 +32,9 @@
 
 using System;
 using System.IO;
-
-using Hyena;
-
 using FSpot.Utils;
-
+using Hyena;
 using TagLib.Image;
-
 using GFileInfo = GLib.FileInfo;
 
 
@@ -51,12 +47,14 @@ namespace FSpot.Imaging
 
 		Gdk.Pixbuf Load ();
 		Cms.Profile GetProfile ();
-		Gdk.Pixbuf Load (int max_width, int max_height);
+		Gdk.Pixbuf Load (int maxWidth, int maxHeight);
 		Stream PixbufStream ();
 	}
 
 	public class BaseImageFile : IImageFile
 	{
+		bool disposed;
+
 		public SafeUri Uri { get; private set; }
 
 		public ImageOrientation Orientation { get; private set; }
@@ -77,14 +75,9 @@ namespace FSpot.Imaging
 				Orientation = metadata.ImageTag.Orientation;
 		}
 
-		~BaseImageFile ()
-		{
-			Dispose ();
-		}
-
 		public virtual Stream PixbufStream ()
 		{
-			Hyena.Log.DebugFormat ("open uri = {0}", Uri.ToString ());
+			Log.DebugFormat ("open uri = {0}", Uri);
 			return new GLib.GioStream (GLib.FileFactory.NewForUri (Uri).Read (null));
 		}
 
@@ -93,7 +86,7 @@ namespace FSpot.Imaging
 			if (orig == null)
 				return null;
 
-			Gdk.Pixbuf rotated = FSpot.Utils.PixbufUtils.TransformOrientation (orig, this.Orientation);
+			Gdk.Pixbuf rotated = FSpot.Utils.PixbufUtils.TransformOrientation (orig, Orientation);
 
 			orig.Dispose ();
 
@@ -108,12 +101,11 @@ namespace FSpot.Imaging
 			}
 		}
 
-		public Gdk.Pixbuf Load (int max_width, int max_height)
+		public Gdk.Pixbuf Load (int maxWidth, int maxHeight)
 		{
-			Gdk.Pixbuf full = this.Load ();
-			Gdk.Pixbuf scaled = PixbufUtils.ScaleToMaxSize (full, max_width, max_height);
-			full.Dispose ();
-			return scaled;
+			using (Gdk.Pixbuf full = Load ()) {
+				return PixbufUtils.ScaleToMaxSize (full, maxWidth, maxHeight);
+			}
 		}
 
 		// FIXME this need to have an intent just like the loading stuff.
@@ -124,8 +116,18 @@ namespace FSpot.Imaging
 
 		public void Dispose ()
 		{
-			Close ();
-			System.GC.SuppressFinalize (this);
+			Dispose (true);
+			GC.SuppressFinalize (this);
+		}
+
+		protected virtual void Dispose (bool disposing)
+		{
+			if (disposed)
+				return;
+			disposed = true;
+
+			if (disposing)
+				Close ();
 		}
 
 		protected virtual void Close ()

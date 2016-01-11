@@ -38,11 +38,11 @@ using Hyena;
 
 namespace FSpot.Database
 {
-
-// The Database puts the stores together.
+	// The Database puts the stores together.
 	public class Db : IDisposable
 	{
 		string path;
+		bool disposed;
 
 		public bool Empty { get; private set; }
 		public TagStore Tags { get; private set; }
@@ -67,44 +67,44 @@ namespace FSpot.Database
 		{
 			string backup_path = path;
 			int i = 0;
-            
+
 			while (File.Exists (backup_path)) {
-				backup_path = String.Format ("{0}-{1}-{2}{3}", Path.GetFileNameWithoutExtension (path), System.DateTime.Now.ToString ("yyyyMMdd"), i++, Path.GetExtension (path));
+				backup_path = String.Format ("{0}-{1}-{2}{3}", Path.GetFileNameWithoutExtension (path), DateTime.Now.ToString ("yyyyMMdd"), i++, Path.GetExtension (path));
 			}
-            
+
 			File.Move (path, backup_path);
 			Init (path, true);
-            
+
 			return backup_path;
 		}
 
-		public void Init (string path, bool create_if_missing)
+		public void Init (string path, bool createIfMissing)
 		{
 			uint timer = Log.DebugTimerStart ();
 			bool new_db = !File.Exists (path);
 			this.path = path;
-            
-			if (new_db && !create_if_missing)
+
+			if (new_db && !createIfMissing)
 				throw new Exception (path + ": File not found");
 
 			Database = new FSpotDatabaseConnection (path);
-            
+
 			// Load or create the meta table
 			Meta = new MetaStore (Database, new_db);
-            
+
 			// Update the database schema if necessary
-			FSpot.Database.Updater.Run (Database);
-            
+			Updater.Run (Database);
+
 			Database.BeginTransaction ();
-            
+
 			Tags = new TagStore (Database, new_db);
 			Rolls = new RollStore (Database, new_db);
 			Exports = new ExportStore (Database, new_db);
 			Jobs = new JobStore (Database, new_db);
 			Photos = new PhotoStore (Database, new_db);
-            
+
 			Database.CommitTransaction ();
-            
+
 			Empty = new_db;
 			Log.DebugTimerPrint (timer, "Db Initialization took {0}");
 		}
@@ -115,25 +115,24 @@ namespace FSpot.Database
 			GC.SuppressFinalize (this);
 		}
 
-		bool already_disposed = false;
-
 		protected virtual void Dispose (bool disposing)
 		{
-			if (already_disposed)
+			if (disposed)
 				return;
+			disposed = true;
 
-	    		//Free managed resources
-			if (disposing)
-				Database.Dispose ();
-
-	    		//Free unmanaged resources
-			already_disposed = true;
-		}
-
-		~Db ()
-		{
-			Console.WriteLine ("Finalizer called on {0}. Should be Disposed", GetType ());
-			Dispose (false);
+			// free managed resources
+			if (disposing) {
+				if (Tags != null) {
+					Tags.Dispose ();
+					Tags = null;
+				}
+				if (Database != null) {
+					Database.Dispose ();
+					Database = null;
+				}
+			}
+			// free unmanaged resources
 		}
 
 		public void BeginTransaction ()

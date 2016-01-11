@@ -35,6 +35,8 @@ namespace FSpot.Cms
 {
 	public class ToneCurve : IDisposable
 	{
+		bool disposed;
+
 		public enum Type
 		{
 			GAMMA = 			1,
@@ -104,7 +106,6 @@ namespace FSpot.Cms
 			Handle = new HandleRef (this, NativeMethods.CmsBuildParametricToneCurve (0, (int)type, values));
 		}
 
-
 		public ToneCurve (ushort [] values) : this (values, 0, values.Length)
 		{
 		}
@@ -142,7 +143,6 @@ namespace FSpot.Cms
 					if (index < 0 || index >= Count)
 						throw new ArgumentOutOfRangeException (String.Format ("index {0} outside of count {1} for handle {2}", index, Count, Handle.Handle));
 
-
 					ushort *data = (ushort *)Values;
 					data [index] = value;
 				}
@@ -176,20 +176,28 @@ namespace FSpot.Cms
 #endif
 		}
 
-		protected virtual void Cleanup ()
-		{
-			NativeMethods.CmsFreeToneCurve (Handle);
-		}
-		
 		public void Dispose ()
 		{
-			Cleanup ();
+			Dispose (true);
 			GC.SuppressFinalize (this);
 		}
-		
+
+		protected virtual void Dispose (bool disposing)
+		{
+			if (disposed)
+				return;
+			disposed = true;
+
+			if (disposing) {
+				// free managed resources
+			}
+			// free unmanaged resources
+			NativeMethods.CmsFreeToneCurve (Handle);
+		}
+
 		~ToneCurve ()
 		{
-			Cleanup ();
+			Dispose (false);
 		}
 	}
 }

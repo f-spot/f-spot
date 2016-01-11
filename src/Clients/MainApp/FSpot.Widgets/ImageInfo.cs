@@ -32,30 +32,29 @@
 //
 
 using System;
-
 using Cairo;
+using FSpot.Imaging;
+using FSpot.Utils;
 using Gdk;
 using Gtk;
-
-using FSpot.Utils;
-using FSpot.Imaging;
-
 using Hyena;
 
 namespace FSpot.Widgets
 {
 	public class ImageInfo : IDisposable
 	{
-		public Surface Surface;
+		bool disposed;
+
+		public Surface Surface { get; private set; }
 		public Gdk.Rectangle Bounds;
 
 		public ImageInfo (SafeUri uri)
 		{
-				using (var img = ImageFile.Create (uri)) {
-					Pixbuf pixbuf = img.Load ();
-					SetPixbuf (pixbuf);
-					pixbuf.Dispose ();
-				}
+			using (var img = ImageFile.Create (uri)) {
+				Pixbuf pixbuf = img.Load ();
+				SetPixbuf (pixbuf);
+				pixbuf.Dispose ();
+			}
 		}
 
 		public ImageInfo (Pixbuf pixbuf)
@@ -186,7 +185,24 @@ namespace FSpot.Widgets
 
 		public void Dispose ()
 		{
-			Surface.Dispose ();
+			Dispose (true);
+			System.GC.SuppressFinalize (this);
+		}
+
+		protected virtual void Dispose (bool disposing)
+		{
+			if (disposed)
+				return;
+			disposed = true;
+
+			if (disposing) {
+				// free managed resources
+				if (Surface != null) {
+					Surface.Dispose ();
+					Surface = null;
+				}
+			}
+			// free unmanaged resources
 		}
 	}
 }

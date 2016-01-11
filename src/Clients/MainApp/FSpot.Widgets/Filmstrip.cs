@@ -41,19 +41,19 @@
 
 using System;
 using System.Collections.Generic;
-
-using Gtk;
-using Gdk;
-
+using FSpot.Bling;
 using FSpot.Core;
 using FSpot.Utils;
-using FSpot.Bling;
+using Gdk;
+using Gtk;
 using Hyena;
 
 namespace FSpot.Widgets
 {
 	public class Filmstrip : EventBox, IDisposable
 	{
+		bool disposed;
+
 //		public event OrientationChangedHandler OrientationChanged;
 		public event EventHandler PositionChanged;
 
@@ -112,24 +112,25 @@ namespace FSpot.Widgets
 			}
 		}
 
-		bool squared_thumbs = false;
-		public bool SquaredThumbs {
-			get { return squared_thumbs; }
-			set { squared_thumbs = value; }
-		}
+		public bool SquaredThumbs { get; set; }
 
 		Pixbuf background_tile;
 		public Pixbuf BackgroundTile {
 			get {
 				if (background_tile == null) {
-					background_tile = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, true, 8, 1, 77);
+					background_tile = new Pixbuf (Colorspace.Rgb, true, 8, 1, 77);
 					background_tile.Fill (0x00000000);
 				}
 
-				if (Orientation == Orientation.Horizontal && background_tile.Height < background_tile.Width)
-					background_tile = background_tile.RotateSimple (PixbufRotation.Counterclockwise);
-				else if (Orientation == Orientation.Vertical && background_tile.Width < background_tile.Height)
-					background_tile = background_tile.RotateSimple (PixbufRotation.Clockwise);
+				if (Orientation == Orientation.Horizontal && background_tile.Height < background_tile.Width) {
+					var temp_tile = background_tile.RotateSimple (PixbufRotation.Counterclockwise);
+					background_tile.Dispose ();
+					background_tile = temp_tile;
+				} else if (Orientation == Orientation.Vertical && background_tile.Width < background_tile.Height) {
+					var temp_tile = background_tile.RotateSimple (PixbufRotation.Clockwise);
+					background_tile.Dispose ();
+					background_tile = temp_tile;
+				}
 				return background_tile;
 			}
 			set {
@@ -215,30 +216,30 @@ namespace FSpot.Widgets
 			}
 		}
 
-		BrowsablePointer selection;
+		readonly BrowsablePointer selection;
 		DisposableCache<SafeUri, Pixbuf> thumb_cache;
 
 		public Filmstrip (BrowsablePointer selection) : this (selection, true)
 		{
 		}
 
-		public Filmstrip (BrowsablePointer selection, bool squared_thumbs)
+		public Filmstrip (BrowsablePointer selection, bool squaredThumbs)
 		{
 			CanFocus = true;
 			this.selection = selection;
 			this.selection.Changed += HandlePointerChanged;
 			this.selection.Collection.Changed += HandleCollectionChanged;
 			this.selection.Collection.ItemsChanged += HandleCollectionItemsChanged;
-			this.squared_thumbs = squared_thumbs;
+			SquaredThumbs = squaredThumbs;
 			thumb_cache = new DisposableCache<SafeUri, Pixbuf> (30);
 			ThumbnailLoader.Default.OnPixbufLoaded += HandlePixbufLoaded;
 
 			animation = new DoubleAnimation (0, 0, TimeSpan.FromSeconds (1.5), SetPositionCore, new CubicEase (EasingMode.EaseOut));
 		}
 
-		int min_length = 400;
-		int min_height = 200;
-		protected override void OnSizeRequested (ref Gtk.Requisition requisition)
+		const int min_length = 400;
+		const int min_height = 200;
+		protected override void OnSizeRequested (ref Requisition requisition)
 		{
 			base.OnSizeRequested (ref requisition);
 			requisition.Width = (Orientation == Orientation.Horizontal ? min_length : BackgroundTile.Width) + 2 * x_offset;
@@ -280,7 +281,7 @@ namespace FSpot.Widgets
 						break;
 					}
 
-					background_pixbuf = new Pixbuf (Gdk.Colorspace.Rgb, true, 8, length, height);
+					background_pixbuf = new Pixbuf (Colorspace.Rgb, true, 8, length, height);
 					switch (Orientation) {
 					case Orientation.Horizontal:
 						for (int i = 0; i < length; i += BackgroundTile.Width) {
@@ -301,8 +302,8 @@ namespace FSpot.Widgets
 			set {
 				if (background_pixbuf != value && background_pixbuf != null) {
 					background_pixbuf.Dispose ();
-					background_pixbuf = value;
 				}
+				background_pixbuf = value;
 			}
 		}
 
@@ -334,16 +335,16 @@ namespace FSpot.Widgets
 
 			GdkWindow.DrawPixbuf (Style.BackgroundGC (StateType.Normal), BackgroundPixbuf,
 					0, 0, x_offset + xpad, y_offset + ypad,
-					BackgroundPixbuf.Width, BackgroundPixbuf.Height, Gdk.RgbDither.None, 0, 0);
+					BackgroundPixbuf.Width, BackgroundPixbuf.Height, RgbDither.None, 0, 0);
 
 			//drawing the icons...
 			start_indexes = new Dictionary<int, int> ();
 
 			Pixbuf icon_pixbuf = null;
 			if (Orientation == Orientation.Horizontal)
-				icon_pixbuf = new Pixbuf (Gdk.Colorspace.Rgb, true, 8, BackgroundPixbuf.Width, thumb_size);
+				icon_pixbuf = new Pixbuf (Colorspace.Rgb, true, 8, BackgroundPixbuf.Width, thumb_size);
 			else if (Orientation == Orientation.Vertical)
-				icon_pixbuf = new Pixbuf (Gdk.Colorspace.Rgb, true, 8, thumb_size, BackgroundPixbuf.Height);
+				icon_pixbuf = new Pixbuf (Colorspace.Rgb, true, 8, thumb_size, BackgroundPixbuf.Height);
 			icon_pixbuf.Fill (0x00000000);
 
 			Pixbuf current = GetPixbuf ((int) Math.Round (Position));
@@ -392,35 +393,35 @@ namespace FSpot.Widgets
 
 			GdkWindow.DrawPixbuf (Style.BackgroundGC (StateType.Normal), icon_pixbuf,
 					0, 0, x_offset + xpad, y_offset + ypad + thumb_offset,
-					icon_pixbuf.Width, icon_pixbuf.Height, Gdk.RgbDither.None, 0, 0);
+					icon_pixbuf.Width, icon_pixbuf.Height, RgbDither.None, 0, 0);
 
 			icon_pixbuf.Dispose ();
 
 			return true;
 		}
 
-		protected override bool OnScrollEvent (EventScroll args)
+		protected override bool OnScrollEvent (EventScroll evnt)
 		{
 			float shift = 1f;
-			if ((args.State & Gdk.ModifierType.ShiftMask) > 0)
+			if ((evnt.State & ModifierType.ShiftMask) > 0)
 				shift = 6f;
 
-			switch (args.Direction) {
+			switch (evnt.Direction) {
 			case ScrollDirection.Up:
 			case ScrollDirection.Right:
 				Position = animation.To - shift;
 				return true;
-			case Gdk.ScrollDirection.Down:
-			case Gdk.ScrollDirection.Left:
+			case ScrollDirection.Down:
+			case ScrollDirection.Left:
 				Position = animation.To + shift;
 				return true;
 			}
 			return false;
 		}
 
-		protected override bool OnKeyPressEvent (Gdk.EventKey ek)
+		protected override bool OnKeyPressEvent (EventKey evnt)
 		{
-			switch (ek.Key) {
+			switch (evnt.Key) {
 			case Gdk.Key.Page_Down:
 			case Gdk.Key.Down:
 			case Gdk.Key.Right:
@@ -457,7 +458,7 @@ namespace FSpot.Widgets
 
 		void HandleCollectionChanged (IBrowsableCollection coll)
 		{
-			this.position = ActiveItem;
+			position = ActiveItem;
 			QueueDraw ();
 		}
 
@@ -488,9 +489,9 @@ namespace FSpot.Widgets
 			return true;
 		}
 
-		bool DrawOrientationMenu (Gdk.EventButton args)
+		bool DrawOrientationMenu (EventButton args)
 		{
-			Gtk.Menu placement_menu = new Gtk.Menu ();
+			Menu placement_menu = new Menu ();
 			GtkUtil.MakeCheckMenuItem (placement_menu,
 							Mono.Unix.Catalog.GetString ("_Horizontal"),
 							App.Instance.Organizer.HandleFilmstripHorizontal,
@@ -548,7 +549,7 @@ namespace FSpot.Widgets
 				var pixbuf = XdgThumbnailSpec.LoadThumbnail (uri, ThumbnailSize.Large, null);
 				if (pixbuf == null) {
 					ThumbnailLoader.Default.Request (uri, ThumbnailSize.Large, 0);
-					current = FSpot.Core.Global.IconTheme.LoadIcon ("gtk-missing-image", ThumbSize, (Gtk.IconLookupFlags)0);
+					current = FSpot.Core.Global.IconTheme.LoadIcon ("gtk-missing-image", ThumbSize, (IconLookupFlags)0);
 				} else {
 					if (SquaredThumbs) {
 						current = PixbufUtils.IconFromPixbuf (pixbuf, ThumbSize);
@@ -562,15 +563,15 @@ namespace FSpot.Widgets
 
 			//FIXME: we might end up leaking a pixbuf here
 			Cms.Profile screen_profile;
-			if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile)) {
+			if (ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile)) {
 				Pixbuf t = current.Copy ();
 				current = t;
-				FSpot.ColorManagement.ApplyProfile (current, screen_profile);
+				ColorManagement.ApplyProfile (current, screen_profile);
 			}
 
 			// Add a four pixel white border around the thumbnail
 			// for some reason we cannot use "using" here, it looks like the pixbuf copy is not done properly
-			Pixbuf whiteBorder = new Pixbuf (Gdk.Colorspace.Rgb, true, 8, current.Width, current.Height);
+			Pixbuf whiteBorder = new Pixbuf (Colorspace.Rgb, true, 8, current.Width, current.Height);
 			whiteBorder.Fill (0);
 			current.CopyArea (1, 1, current.Width - 8, current.Height - 8, whiteBorder, 4, 4);
 			current = whiteBorder;
@@ -578,7 +579,7 @@ namespace FSpot.Widgets
 			if (!highlighted)
 				return current;
 
-			Pixbuf highlight = new Pixbuf (Gdk.Colorspace.Rgb, true, 8, current.Width, current.Height);
+			Pixbuf highlight = new Pixbuf (Colorspace.Rgb, true, 8, current.Width, current.Height);
 
 			highlight.Fill (ColorToInt (Style.Light (StateType.Selected)));
 
@@ -588,42 +589,42 @@ namespace FSpot.Widgets
 			return highlight;
 		}
 
-		static uint ColorToInt(Gdk.Color color) {
+		static uint ColorToInt(Color color) {
 			return ((uint)color.Red / 256 << 24) + ((uint)color.Green / 256 << 16) + ((uint)color.Blue / 256 << 8) + 255;
-		}
-
-		~Filmstrip ()
-		{
-			Console.WriteLine ("Finalizer called on {0}. Should be Disposed", GetType ());
-			Dispose (false);
 		}
 
 		public override void Dispose ()
 		{
 			Dispose (true);
-			base.Dispose ();
-			System.GC.SuppressFinalize (this);
+			base.Dispose (); // base calls GC.SuppressFinalize (this);
 		}
 
-		bool is_disposed = false;
 		protected virtual void Dispose (bool disposing)
 		{
-			if (is_disposed)
+			if (disposed)
 				return;
+			disposed = true;
+
 			if (disposing) {
+				// free managed resources
 				selection.Changed -= HandlePointerChanged;
 				selection.Collection.Changed -= HandleCollectionChanged;
 				selection.Collection.ItemsChanged -= HandleCollectionItemsChanged;
 				ThumbnailLoader.Default.OnPixbufLoaded -= HandlePixbufLoaded;
-				if (background_pixbuf != null)
+				if (background_pixbuf != null) {
 					background_pixbuf.Dispose ();
-				if (background_tile != null)
+					background_pixbuf = null;
+				}
+				if (background_tile != null) {
 					background_tile.Dispose ();
-				thumb_cache.Dispose ();
+					background_tile = null;
+				}
+				if (thumb_cache != null) {
+					thumb_cache.Dispose ();
+					thumb_cache = null;
+				}
 			}
-			//Free unmanaged resources
-
-			is_disposed = true;
+			// free unmanaged resources
 		}
 	}
 }

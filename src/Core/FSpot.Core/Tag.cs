@@ -48,6 +48,7 @@ namespace FSpot.Core
 		// of the actual icon data.
 		public string ThemeIconName { get; set; }
 		public bool IconWasCleared { get; set; }
+		bool disposed;
 
 		Category category;
 		public Category Category {
@@ -171,30 +172,22 @@ namespace FSpot.Core
 
 		protected virtual void Dispose(bool disposing)
 		{
-			if (disposing)
-			{
-				if (icon != null)
-					icon.Dispose ();
-				if (cached_icon != null)
-					cached_icon.Dispose ();
-				if (category != null)
-					category.Dispose ();
-			}
-			else
-			{
-				Console.WriteLine ("[FSpot.Core.Tag] Finalizer called on {0}. Should be Disposed", GetType ());
-				if (icon != null)
-					icon.Dispose ();
-				if (cached_icon != null)
-					cached_icon.Dispose ();
-				if (category != null)
-					category.Dispose ();
-			}
-		}
+			if (disposed)
+				return;
+			disposed = true;
 
-		~Tag ()
-		{
-			Dispose (false);
+			if (disposing) {
+				// free managed resources
+				if (icon != null) {
+					icon.Dispose ();
+					icon = null;
+				}
+				if (cached_icon != null) {
+					cached_icon.Dispose ();
+					cached_icon = null;
+				}
+			}
+			// free unmanaged resources
 		}
 	}
 }

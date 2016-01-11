@@ -306,6 +306,9 @@ namespace FSpot
 
 			CleanRoomStartup.Startup (Startup);
 
+			// Running threads are preventing the application from quitting
+			// we force it for now until this is fixed
+			System.Environment.Exit (0);
 			return 0;
 		}
 

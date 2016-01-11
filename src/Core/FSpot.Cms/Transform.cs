@@ -34,11 +34,13 @@ namespace FSpot.Cms
 {
 	public class Transform : IDisposable
 	{
+		bool disposed;
+
 		public HandleRef Handle { get; private set; }
 
 		public Transform (Profile [] profiles,
-				  Format input_format,
-				  Format output_format,
+				  Format inputFormat,
+				  Format outputFormat,
 				  Intent intent, uint flags)
 		{
 			if (profiles == null)
@@ -48,15 +50,15 @@ namespace FSpot.Cms
 			for (int i = 0; i < profiles.Length; i++) {
 				Handles [i] = profiles [i].Handle;
 			}
-			
+
 			Handle = new HandleRef (this, NativeMethods.CmsCreateMultiprofileTransform (Handles, Handles.Length,
-											   input_format,
-											   output_format,
+											   inputFormat,
+											   outputFormat,
 											   (int)intent, flags));
 		}
-		
-		public Transform (Profile input, Format input_format,
-				  Profile output, Format output_format,
+
+		public Transform (Profile input, Format inputFormat,
+				  Profile output, Format outputFormat,
 				  Intent intent, uint flags)
 		{
 			if (input == null)
@@ -64,31 +66,39 @@ namespace FSpot.Cms
 			if (output == null)
 				throw new ArgumentNullException ("output");
 
-			Handle = new HandleRef (this, NativeMethods.CmsCreateTransform (input.Handle, input_format,
-									       output.Handle, output_format,
+			Handle = new HandleRef (this, NativeMethods.CmsCreateTransform (input.Handle, inputFormat,
+									       output.Handle, outputFormat,
 									       (int)intent, flags));
 		}
-		
+
 		// Fixme this should probably be more type stafe 
 		public void Apply (IntPtr input, IntPtr output, uint size)
 		{
 			NativeMethods.CmsDoTransform (Handle, input, output, size);
 		}
-		
+
 		public void Dispose ()
 		{
-			Cleanup ();
+			Dispose (true);
 			GC.SuppressFinalize (this);
 		}
-		
-		protected virtual void Cleanup ()
+
+		protected virtual void Dispose (bool disposing)
 		{
+			if (disposed)
+				return;
+			disposed = true;
+
+			if (disposing) {
+				// free managed resources
+			}
+			// free unmanaged resources
 			NativeMethods.CmsDeleteTransform (Handle);
 		}
-		
+
 		~Transform ()
 		{
-			Cleanup ();
-		}	       
+			Dispose (false);
+		}
 	}
 }

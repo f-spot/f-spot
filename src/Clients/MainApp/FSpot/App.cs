@@ -383,7 +383,6 @@ namespace FSpot
 				Database.Dispose ();
 				ImageLoaderThread.CleanAll ();
 				Gtk.Application.Quit ();
-				System.Environment.Exit (0);
 			}
 			if (organizer != null && organizer.Window == sender)
 				organizer = null;

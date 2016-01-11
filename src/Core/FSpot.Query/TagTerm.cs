@@ -31,12 +31,11 @@
 
 using System;
 using System.Collections.Generic;
-
 using FSpot.Core;
 
 namespace FSpot.Query
 {
-	public class TagTerm : LogicalTerm, IDisposable
+	public class TagTerm : LogicalTerm
 	{
 		public Tag Tag { get; private set; }
 
@@ -65,32 +64,6 @@ namespace FSpot.Query
 			if (tagids.Length == 1)
 				return String.Format (" (photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id = {0})) ", tagids [0]);
 			return String.Format (" (photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id IN ({0}))) ", String.Join (", ", tagids));
-		}
-
-		public void Dispose()
-		{
-			Dispose(true);
-			GC.SuppressFinalize(this);
-		}
-
-		protected virtual void Dispose(bool disposing)
-		{
-			if (disposing)
-			{
-				if (Tag != null)
-					Tag.Dispose ();
-			}
-			else
-			{
-				if (Tag != null)
-					Tag.Dispose ();
-			}
-		}
-
-		~TagTerm ()
-		{
-			Console.WriteLine ("Finalizer called on {0}. Should be Disposed", GetType ());
-			Dispose (false);
 		}
 	}
 }
