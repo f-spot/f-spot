@@ -1,6 +1,6 @@
 AC_DEFUN([SHAMROCK_CHECK_NUNIT],
 [
-	NUNIT_REQUIRED=2.6.4
+	NUNIT_REQUIRED=2.6.3
 
 	AC_ARG_ENABLE(tests, AC_HELP_STRING([--enable-tests], [Enable NUnit tests]),
 		enable_tests=$enableval, enable_tests="no")
