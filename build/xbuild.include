@@ -3,17 +3,6 @@ XBUILD_ARGS=/verbosity:normal /nologo /property:CodePage=65001
 ALL_CSPROJ=$(wildcard *.csproj)
 MAIN_SLN=$(top_builddir)/F-Spot.sln
 
-#if ENABLE_MACPLATFORM
-#PROFILE_NAME=DebugMac
-#endif
-#if ENABLE_GNOMEPLATFORM
-#PROFILE_NAME=Debug
-#endif
-
-#if ENABLE_WINDOWSPLATFORM
-#PROFILE_NAME=DebugWin32
-#endif
-
 PROFILE=/property:Configuration=$(PROFILE_NAME)
 
 # Figure out how far we are from top_builddir
@@ -52,15 +41,16 @@ print_extradist:
 
 EXTS:=*.bmp *.cs *.csproj *.html *.png *.snk *.config *.stetic *.glade *.xml *.xsd *.exe.addins *.template *.tt *.txt *.targets *.sh
 
-ALL_FILES:=	$(EXTS) \
-		$(addprefix */,$(EXTS))		\
-		$(addprefix */*/,$(EXTS))	\
-		$(addprefix */*/*/,$(EXTS))	\
-		$(addprefix */*/*/*/,$(EXTS))	\
-		$(addprefix */*/*/*/*/,$(EXTS))	\
-                $(addprefix */*/*/*/*/*/,$(EXTS)) \
-		$(wildcard icons/*)		\
-		$(wildcard templates/*)
+ALL_FILES:= \
+	$(EXTS)                           \
+	$(addprefix */,$(EXTS))           \
+	$(addprefix */*/,$(EXTS))         \
+	$(addprefix */*/*/,$(EXTS))       \
+	$(addprefix */*/*/*/,$(EXTS))     \
+	$(addprefix */*/*/*/*/,$(EXTS))   \
+	$(addprefix */*/*/*/*/*/,$(EXTS)) \
+	$(wildcard icons/*)               \
+	$(wildcard templates/*)
 
 WILDCARDED_FILES:=$(wildcard $(ALL_FILES))
 
