@@ -20,12 +20,9 @@ AC_DEFUN([SHAMROCK_CHECK_NUNIT],
 		fi
 	fi
 	if test "x$do_tests" = "xyes"; then
-		PROFILE_NAME=Debug
 		SKIP_UNIT_TEST_PROJECTS="False"
 	else
-		PROFILE_NAME=Release
 		SKIP_UNIT_TEST_PROJECTS="True"
 	fi
-	AC_SUBST(PROFILE_NAME)
 	AC_SUBST(SKIP_UNIT_TEST_PROJECTS)
 ])

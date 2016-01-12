@@ -252,11 +252,14 @@ ENABLE_RELEASE=$enable_release
 AC_SUBST(ENABLE_RELEASE)
 if test "x$enable_release" = "xyes"; then
 	MCS_FLAGS="-define:RELEASE -sdk:4"
+	PROFILE_NAME="Release"
+else
+	PROFILE_NAME="Debug"
 # FIXME: Enable as soon as we rock sufficiently
-#else
 #	MCS_FLAGS="-warnaserror"
 fi
 AC_SUBST(MCS_FLAGS)
+AC_SUBST(PROFILE_NAME)
 
 AM_CONDITIONAL(HYENA_PKG_CONFIG, false)
 
@@ -384,6 +387,7 @@ ${PACKAGE}-${VERSION}
     Mono Runtime:      ${MONO}
 
   Build/Development:
+    Configuration:     ${PROFILE_NAME}
     Unit Tests:        ${do_tests}
     User Help:         ${enable_user_help} (requires gnome-doc-utils >= 0.17.3)
 
