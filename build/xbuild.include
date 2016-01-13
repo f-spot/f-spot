@@ -30,6 +30,7 @@ csproj_clean:
 
 sln_build:
 	@echo Building $(MAIN_SLN)
+	@ENABLE_TESTS_TRUE@@$(NUGET) restore $(MAIN_SLN)
 	@$(XBUILD) $(XBUILD_ARGS) $(MAIN_SLN) $(PROFILE)
 
 sln_clean:

@@ -59,7 +59,8 @@ gnome-doc-utils.make
 [Oo]bj/
 tests/
 test-results/
-packages/
+packages/*
+!packages/repositories.config
 *.mdb
 *.dll*
 *.exe*
