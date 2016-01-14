@@ -16,9 +16,10 @@ install:
   - sudo apt-get install -qq gtk-sharp2-gapi libgtk-sharp-beans2.0-cil-dev libgio2.0-cil-dev > /dev/null
   - sudo apt-get install -qq gnome-icon-theme gnome-doc-utils > /dev/null
   - sudo apt-get install -qq libdbus2.0-cil-dev libdbus-glib2.0-cil-dev > /dev/null
-  - sudo apt-get install -qq nunit nunit-console > /dev/null
 
 script:
   - ./autogen.sh --enable-tests
   - make
-  - nunit-console -labels tests/*.UnitTest.dll
+  - chmod +x packages/NUnit.Runners.2.6.4/tools/nunit-console.exe
+  - cd tests
+  - ../packages/NUnit.Runners.2.6.4/tools/nunit-console.exe --labels *.UnitTest.dll
