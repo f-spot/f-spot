@@ -57,7 +57,9 @@ gnome-doc-utils.make
 # CSharp
 [Bb]in/
 [Oo]bj/
-tests/
+TestResult.xml
+tests/*.addins
+tests/TestData
 test-results/
 packages/*
 !packages/repositories.config
