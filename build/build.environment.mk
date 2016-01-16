@@ -1,5 +1,5 @@
 # Initializers
-MONO_BASE_PATH = 
+MONO_BASE_PATH =
 
 # Install Paths
 DEFAULT_INSTALL_DIR = $(pkglibdir)
@@ -118,10 +118,10 @@ LINK_FSPOT_GUI_DEPS = $(REF_FSPOT_GUI) $(LINK_FSPOT_GUI) $(LINK_HENA_GUI_DEPS)
 
 # FSpot (executable)
 REF_FSPOT = $(LINK_FSPOT_GUI_DEPS) $(LINK_FSPOT_PLATFORM_DEPS) $(LINK_FSPOT_QUERY_DEPS) \
-            $(LINK_GLIB) $(LINK_UNIQUE_DEPS) \
-            $(LINK_MONODATA) \
-            $(LINK_FSPOT_JOB_SCHEDULER_DEPS) $(LINK_ICSHARP_ZIP_LIB) \
-            $(LINK_GNOME) $(LINK_HYENA_GUI_DEPS) $(LINK_TAGLIB) $(LINK_FSPOT_DATABASE_DEPS)
+	$(LINK_GLIB) $(LINK_UNIQUE_DEPS) \
+	$(LINK_MONODATA) \
+	$(LINK_FSPOT_JOB_SCHEDULER_DEPS) $(LINK_ICSHARP_ZIP_LIB) \
+	$(LINK_GNOME) $(LINK_HYENA_GUI_DEPS) $(LINK_TAGLIB) $(LINK_FSPOT_DATABASE_DEPS)
 
 # FIXME: do not link executables
 LINK_FSPOT = -r:$(DIR_BIN)/f-spot.exe
@@ -169,4 +169,3 @@ space:= $(empty) $(empty)
 
 # Build path to allow running uninstalled
 RUN_PATH = $(subst $(space),$(colon), $(MONO_BASE_PATH))
-

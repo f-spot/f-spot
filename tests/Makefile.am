@@ -1,15 +1,15 @@
 include $(top_srcdir)/build/build.environment.mk
 
 EXTRA_DIST = \
-	data/f-spot-0.6.1.5.db \
-	data/f-spot-0.6.2.db \
+	data/f-spot-0.6.1.5.db    \
+	data/f-spot-0.6.2.db      \
 	data/f-spot-0.7.0-17.2.db \
 	data/f-spot-0.7.0-18.0.db
 
 if ENABLE_TESTS
 
 TEST_ASSEMBLIES = \
-	f-spot.exe \
+	f-spot.exe      \
 	FSpot.Query.dll \
 	FSpot.Utils.dll
 
@@ -34,4 +34,3 @@ test:
 endif
 
 MAINTAINERCLEANFILES = Makefile.in
-
