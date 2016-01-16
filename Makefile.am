@@ -69,7 +69,7 @@ copy_bin:
 
 test:
 	@pushd tests; \
-	make test \
+	make test; \
 	popd;
 
 include $(top_srcdir)/build/xbuild.include

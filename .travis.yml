@@ -20,6 +20,4 @@ install:
 script:
   - ./autogen.sh --enable-tests
   - make
-  - chmod +x packages/NUnit.Runners.2.6.4/tools/nunit-console.exe
-  - cd tests
-  - ../packages/NUnit.Runners.2.6.4/tools/nunit-console.exe --labels *.UnitTest.dll
+  - make test
