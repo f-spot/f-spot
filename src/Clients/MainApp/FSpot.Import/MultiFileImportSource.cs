@@ -4,10 +4,12 @@
 // Author:
 //   Mike Gemünde <mike@gemuende.de>
 //   Ruben Vermeersch <ruben@savanne.be>
+//   Daniel Köb <daniel.koeb@peony.at>
 //
 // Copyright (C) 2010 Novell, Inc.
 // Copyright (C) 2010 Mike Gemünde
 // Copyright (C) 2010 Ruben Vermeersch
+// Copyright (C) 2014 Daniel Köb
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -32,7 +34,6 @@
 using System;
 using System.Collections.Generic;
 using Hyena;
-using FSpot.Core;
 
 namespace FSpot.Import
 {
@@ -47,13 +48,13 @@ namespace FSpot.Import
 			this.uris = uris;
 		}
 
-		protected override void ScanPhotos (ImportController controller, PhotoList photoList)
+		protected override void ScanPhotos (bool recurseSubdirectories)
 		{
 			foreach (var uri in uris) {
 				Log.Debug ("Scanning " + uri);
-				ScanPhotoDirectory (controller, uri, photoList);
+				ScanPhotoDirectory (recurseSubdirectories, uri);
 			}
-			ThreadAssist.ProxyToMain (controller.PhotoScanFinished);
+			FirePhotoScanFinished ();
 		}
 	}
 }

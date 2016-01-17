@@ -29,8 +29,8 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System;
 using System.Threading;
-using FSpot.Core;
 using FSpot.Imaging;
 using FSpot.Utils;
 using Gtk;
@@ -45,6 +45,9 @@ namespace FSpot.Import
 		public string IconName { get; set; }
 
 		public SafeUri Root { get; set; }
+
+		public event EventHandler<PhotoFoundEventArgs> PhotoFoundEvent;
+		public event EventHandler<PhotoScanFinishedEventArgs> PhotoScanFinishedEvent;
 
 		public Thread PhotoScanner;
 		bool run_photoscanner;
@@ -65,7 +68,7 @@ namespace FSpot.Import
 			}
 		}
 
-		public void StartPhotoScan (ImportController controller, PhotoList photoList)
+		public void StartPhotoScan (bool recurseSubdirectories)
 		{
 			if (PhotoScanner != null) {
 				run_photoscanner = false;
@@ -73,27 +76,30 @@ namespace FSpot.Import
 			}
 
 			run_photoscanner = true;
-			PhotoScanner = ThreadAssist.Spawn (() => ScanPhotos (controller, photoList));
+			PhotoScanner = ThreadAssist.Spawn (() => ScanPhotos (recurseSubdirectories));
 		}
 
-		protected virtual void ScanPhotos (ImportController controller, PhotoList photoList)
+		protected virtual void ScanPhotos (bool recurseSubdirectories)
 		{
-			ScanPhotoDirectory (controller, Root, photoList);
-			ThreadAssist.ProxyToMain (controller.PhotoScanFinished);
+			ScanPhotoDirectory (recurseSubdirectories, Root);
+			FirePhotoScanFinished ();
 		}
 
-		protected void ScanPhotoDirectory (ImportController controller, SafeUri uri, PhotoList photoList)
+		protected void ScanPhotoDirectory (bool recurseSubdirectories, SafeUri uri)
 		{
 			var enumerator = new RecursiveFileEnumerator (uri) {
-						Recurse = controller.RecurseSubdirectories,
+						Recurse = recurseSubdirectories,
 						CatchErrors = true,
 						IgnoreSymlinks = true
 			};
 			foreach (var file in enumerator) {
 				if (ImageFile.HasLoader (new SafeUri (file.Uri, true))) {
 					var info = new FileImportInfo (new SafeUri (file.Uri, true));
-					ThreadAssist.ProxyToMain (() =>
-					    photoList.Add (info));
+					ThreadAssist.ProxyToMain (() => {
+						if (PhotoFoundEvent != null) {
+							PhotoFoundEvent.Invoke (this, new PhotoFoundEventArgs { FileImportInfo = info });
+						}
+					});
 				}
 				if (!run_photoscanner)
 					return;
@@ -116,6 +122,15 @@ namespace FSpot.Import
 
 				PhotoScanner = null;
 			}
+		}
+
+		protected void FirePhotoScanFinished()
+		{
+			ThreadAssist.ProxyToMain (() => {
+				if (PhotoScanFinishedEvent != null) {
+					PhotoScanFinishedEvent.Invoke (this, new PhotoScanFinishedEventArgs ());
+				}
+			});
 		}
 
 		bool IsCamera {
