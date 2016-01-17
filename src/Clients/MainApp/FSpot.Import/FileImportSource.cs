@@ -29,21 +29,16 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
 using System.Threading;
-using System.Collections.Generic;
-
-using Hyena;
-
 using FSpot.Core;
-using FSpot.Utils;
 using FSpot.Imaging;
-
+using FSpot.Utils;
 using Gtk;
+using Hyena;
 
 namespace FSpot.Import
 {
-	internal class FileImportSource : IImportSource
+	class FileImportSource : IImportSource
 	{
 		public string Name { get; set; }
 
@@ -52,9 +47,9 @@ namespace FSpot.Import
 		public SafeUri Root { get; set; }
 
 		public Thread PhotoScanner;
-		bool run_photoscanner = false;
+		bool run_photoscanner;
 
-		public FileImportSource (SafeUri root, string name, string icon_name)
+		public FileImportSource (SafeUri root, string name, string iconName)
 		{
 			Root = root;
 			Name = name;
@@ -65,12 +60,12 @@ namespace FSpot.Import
 				} else if (IsCamera) {
 					IconName = "media-flash";
 				} else {
-					IconName = icon_name;
+					IconName = iconName;
 				}
 			}
 		}
 
-		public void StartPhotoScan (ImportController controller, PhotoList photo_list)
+		public void StartPhotoScan (ImportController controller, PhotoList photoList)
 		{
 			if (PhotoScanner != null) {
 				run_photoscanner = false;
@@ -78,16 +73,16 @@ namespace FSpot.Import
 			}
 
 			run_photoscanner = true;
-			PhotoScanner = ThreadAssist.Spawn (() => ScanPhotos (controller, photo_list));
+			PhotoScanner = ThreadAssist.Spawn (() => ScanPhotos (controller, photoList));
 		}
 
-		protected virtual void ScanPhotos (ImportController controller, PhotoList photo_list)
+		protected virtual void ScanPhotos (ImportController controller, PhotoList photoList)
 		{
-			ScanPhotoDirectory (controller, Root, photo_list);
-			ThreadAssist.ProxyToMain (() => controller.PhotoScanFinished ());
+			ScanPhotoDirectory (controller, Root, photoList);
+			ThreadAssist.ProxyToMain (controller.PhotoScanFinished);
 		}
 
-		protected void ScanPhotoDirectory (ImportController controller, SafeUri uri, PhotoList photo_list)
+		protected void ScanPhotoDirectory (ImportController controller, SafeUri uri, PhotoList photoList)
 		{
 			var enumerator = new RecursiveFileEnumerator (uri) {
 						Recurse = controller.RecurseSubdirectories,
@@ -95,10 +90,10 @@ namespace FSpot.Import
 						IgnoreSymlinks = true
 			};
 			foreach (var file in enumerator) {
-				if (ImageFile.HasLoader (new SafeUri (file.Uri.ToString(), true))) {
-					var info = new FileImportInfo (new SafeUri (file.Uri.ToString (), true));
+				if (ImageFile.HasLoader (new SafeUri (file.Uri, true))) {
+					var info = new FileImportInfo (new SafeUri (file.Uri, true));
 					ThreadAssist.ProxyToMain (() =>
-					    photo_list.Add (info));
+					    photoList.Add (info));
 				}
 				if (!run_photoscanner)
 					return;
@@ -123,7 +118,7 @@ namespace FSpot.Import
 			}
 		}
 
-		private bool IsCamera {
+		bool IsCamera {
 			get {
 				try {
 					var file = GLib.FileFactory.NewForUri (Root.Append ("DCIM"));
@@ -134,7 +129,7 @@ namespace FSpot.Import
 			}
 		}
 
-		private bool IsIPodPhoto {
+		bool IsIPodPhoto {
 			get {
 				try {
 					var file = GLib.FileFactory.NewForUri (Root.Append ("Photos"));
@@ -145,37 +140,5 @@ namespace FSpot.Import
 				}
 			}
 		}
-	}
-
-	// Multi root version for drag and drop import.
-	internal class MultiFileImportSource : FileImportSource
-	{
-		private IEnumerable<SafeUri> uris;
-
-		public MultiFileImportSource (IEnumerable<SafeUri> uris)
-			: base (null, String.Empty, String.Empty)
-		{
-			this.uris = uris;
-		}
-
-		protected override void ScanPhotos (ImportController controller, PhotoList photo_list)
-		{
-			foreach (var uri in uris) {
-				Log.Debug ("Scanning " + uri);
-				ScanPhotoDirectory (controller, uri, photo_list);
-			}
-			ThreadAssist.ProxyToMain (() => controller.PhotoScanFinished ());
-		}
-	}
-
-	internal class FileImportInfo : FilePhoto
-	{
-		public FileImportInfo (SafeUri original) : base (original)
-		{
-		}
-
-		public SafeUri DestinationUri { get; set; }
-
-		internal uint PhotoId { get; set; }
 	}
 }

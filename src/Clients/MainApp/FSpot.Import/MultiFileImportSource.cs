@@ -1,5 +1,5 @@
 //
-// ImportSource.cs
+//  MultiFileImportSource.cs
 //
 // Author:
 //   Mike Gemünde <mike@gemuende.de>
@@ -29,16 +29,31 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System;
+using System.Collections.Generic;
+using Hyena;
 using FSpot.Core;
 
 namespace FSpot.Import
 {
-	public interface IImportSource
+	// Multi root version for drag and drop import.
+	class MultiFileImportSource : FileImportSource
 	{
-		string Name { get; }
-		string IconName { get; }
+		readonly IEnumerable<SafeUri> uris;
 
-		void StartPhotoScan (ImportController controller, PhotoList photoList);
-		void Deactivate ();
+		public MultiFileImportSource (IEnumerable<SafeUri> uris)
+			: base (null, String.Empty, String.Empty)
+		{
+			this.uris = uris;
+		}
+
+		protected override void ScanPhotos (ImportController controller, PhotoList photoList)
+		{
+			foreach (var uri in uris) {
+				Log.Debug ("Scanning " + uri);
+				ScanPhotoDirectory (controller, uri, photoList);
+			}
+			ThreadAssist.ProxyToMain (controller.PhotoScanFinished);
+		}
 	}
 }

@@ -1,12 +1,10 @@
 //
-// ImportSource.cs
+// ImportEvent.cs
 //
 // Author:
-//   Mike Gemünde <mike@gemuende.de>
 //   Ruben Vermeersch <ruben@savanne.be>
 //
 // Copyright (C) 2010 Novell, Inc.
-// Copyright (C) 2010 Mike Gemünde
 // Copyright (C) 2010 Ruben Vermeersch
 //
 // Permission is hereby granted, free of charge, to any person obtaining
@@ -29,16 +27,15 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using FSpot.Core;
-
 namespace FSpot.Import
 {
-	public interface IImportSource
+	public enum ImportEvent
 	{
-		string Name { get; }
-		string IconName { get; }
-
-		void StartPhotoScan (ImportController controller, PhotoList photoList);
-		void Deactivate ();
+		SourceChanged,
+		PhotoScanStarted,
+		PhotoScanFinished,
+		ImportStarted,
+		ImportFinished,
+		ImportError
 	}
 }

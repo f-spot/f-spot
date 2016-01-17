@@ -1,12 +1,10 @@
 //
-// ImportSource.cs
+//  FileImportInfo.cs
 //
 // Author:
-//   Mike Gemünde <mike@gemuende.de>
 //   Ruben Vermeersch <ruben@savanne.be>
 //
 // Copyright (C) 2010 Novell, Inc.
-// Copyright (C) 2010 Mike Gemünde
 // Copyright (C) 2010 Ruben Vermeersch
 //
 // Permission is hereby granted, free of charge, to any person obtaining
@@ -30,15 +28,18 @@
 //
 
 using FSpot.Core;
+using Hyena;
 
 namespace FSpot.Import
 {
-	public interface IImportSource
+	public class FileImportInfo : FilePhoto
 	{
-		string Name { get; }
-		string IconName { get; }
+		public FileImportInfo (SafeUri original) : base (original)
+		{
+		}
 
-		void StartPhotoScan (ImportController controller, PhotoList photoList);
-		void Deactivate ();
+		public SafeUri DestinationUri { get; set; }
+
+		internal uint PhotoId { get; set; }
 	}
 }
