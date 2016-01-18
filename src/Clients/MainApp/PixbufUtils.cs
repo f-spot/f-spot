@@ -515,7 +515,7 @@ public static class PixbufUtils
 		}
 	}
 
-	[DllImport("libgnome-desktop-2-17.dll")]
+	[DllImport("libgnomethumbnailpixbufutils.dll")]
 	static extern IntPtr gnome_desktop_thumbnail_scale_down_pixbuf (IntPtr pixbuf, int dest_width, int dest_height);
 
 	public static Gdk.Pixbuf ScaleDown (Gdk.Pixbuf src, int width, int height)

@@ -129,7 +129,6 @@ fi
 
 dnl --- Required libraries
 
-LIBGNOMEDESKTOP_REQUIRED=2.17
 GIO_REQUIRED=2.22.0
 GTKSHARPBEANS_REQUIRED=2.13.92
 GTK_REQUIRED=2.14
@@ -137,7 +136,7 @@ MONO_CAIRO_REQUIRED=1.2.5
 CAIRO_REQUIRED=1.4.0
 LCMS2_REQUIRED=2.4
 
-PKG_CHECK_MODULES(F, gnome-desktop-2.0 >= $LIBGNOMEDESKTOP_REQUIRED gtk+-2.0 >= $GTK_REQUIRED mono-cairo >= $MONO_CAIRO_REQUIRED cairo >= $CAIRO_REQUIRED)
+PKG_CHECK_MODULES(F, gtk+-2.0 >= $GTK_REQUIRED mono-cairo >= $MONO_CAIRO_REQUIRED cairo >= $CAIRO_REQUIRED)
 AC_SUBST(F_CFLAGS)
 AC_SUBST(F_LIBS)
 
@@ -308,6 +307,7 @@ lib/Hyena/Hyena.Gui/Makefile
 lib/Hyena/Hyena/Makefile
 lib/Hyena/Makefile
 lib/libfspot/Makefile
+lib/libgnome-thumbnail-pixbuf-utils/Makefile
 lib/Makefile
 
 src/AssemblyInfo.cs

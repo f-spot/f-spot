@@ -84,7 +84,8 @@ theme_icons = 					\
 	status,mode-browse-32.png		\
 	status,mode-image-edit-16.png		\
 	status,mode-image-edit-22.png		\
-	status,mode-image-edit-24.png		
+	status,mode-image-edit-24.png		\
+	status,f-spot-question-mark.png	
 
 install_icon_exec = $(top_srcdir)/icon-theme-installer \
 	-t "$(theme)" \

@@ -1,4 +1,4 @@
-INCLUDES =							\
+AM_CPPFLAGS =							\
 	-I $(top_srcdir) -I $(top_srcdir)/lib/		\
 	-DLIBEOG_ETTORE_CHANGES=1				\
         -DG_LOG_DOMAIN=\"libf\"					\
