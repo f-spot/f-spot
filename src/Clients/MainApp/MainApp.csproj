@@ -223,6 +223,10 @@
     <Compile Include="FSpot.Query\AbstractLiteral.cs" />
     <Compile Include="FSpot.Query\TextLiteral.cs" />
     <Compile Include="FSpot.Query\QueryWidget.cs" />
+    <Compile Include="FSpot.Import\MultiFileImportSource.cs" />
+    <Compile Include="FSpot.Import\FileImportInfo.cs" />
+    <Compile Include="FSpot.Import\PhotoFoundEventArgs.cs" />
+    <Compile Include="FSpot.Import\PhotoScanFinishedEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\icons\f-spot-not.png">

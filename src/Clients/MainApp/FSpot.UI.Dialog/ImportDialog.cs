@@ -57,6 +57,7 @@ namespace FSpot.UI.Dialog
         [GtkBeans.Builder.Object] CheckButton duplicate_check;
         [GtkBeans.Builder.Object] CheckButton recurse_check;
         [GtkBeans.Builder.Object] CheckButton remove_check;
+        [GtkBeans.Builder.Object] CheckButton merge_raw_and_jpeg_check;
         [GtkBeans.Builder.Object] Button remove_warning_button;
         [GtkBeans.Builder.Object] ComboBox sources_combo;
         [GtkBeans.Builder.Object] HBox tagentry_box;
@@ -131,6 +132,7 @@ namespace FSpot.UI.Dialog
             remove_check.Active = Controller.RemoveOriginals;
             remove_check.Sensitive = copy_check.Active;
             remove_warning_button.Sensitive = copy_check.Active && remove_check.Active;
+            merge_raw_and_jpeg_check.Active = Controller.MergeRawAndJpeg;
         }
 
         void ScanSources ()
@@ -218,6 +220,9 @@ namespace FSpot.UI.Dialog
                     Controller = null;
                 };
                 dialog.Run ();
+            };
+            merge_raw_and_jpeg_check.Toggled += (o, args) => {
+                Controller.MergeRawAndJpeg = merge_raw_and_jpeg_check.Active;
             };
             Response += (o, args) => {
                 if (args.ResponseId == ResponseType.DeleteEvent) {
@@ -389,6 +394,7 @@ namespace FSpot.UI.Dialog
                 recurse_check.Sensitive = value;
                 duplicate_check.Sensitive = value;
                 tagentry_box.Sensitive = value;
+                merge_raw_and_jpeg_check.Sensitive = value;
             }
         }
     }
