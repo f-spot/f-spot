@@ -6,6 +6,7 @@
 
 Makefile
 Makefile.in
+after.F-Spot.sln.targets
 autom4te.cache
 autoscan.log
 autoscan-*.log
@@ -18,7 +19,7 @@ depcomp
 /install-sh
 missing
 stamp-h1
-m4/
+build/m4/*.m4
 .libs/
 .deps/
 intltool-extract.in
@@ -56,9 +57,12 @@ gnome-doc-utils.make
 # CSharp
 [Bb]in/
 [Oo]bj/
-tests/
+TestResult.xml
+tests/*.addins
+tests/TestData
 test-results/
-packages/
+packages/*
+!packages/repositories.config
 *.mdb
 *.dll*
 *.exe*

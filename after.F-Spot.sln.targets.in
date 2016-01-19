@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Target Name="DisableUnitTestProjects" BeforeTargets="Build;Rebuild;Clean">
+		<!-- serach for all UnitTest projects in solution -->
+		<ItemGroup>
+			<UnitTestProjects Include="$(SolutionDir)**\*.UnitTest.csproj" />
+		</ItemGroup>
+
+		<!-- conditionally exclude UnitTest projects from build -->
+		<ItemGroup Condition="@SKIP_UNIT_TEST_PROJECTS@">
+			<!-- MSBuild creates a single ItemGroup named ProjectReference
+			     from which all unwanted projects can easily be removed.
+			     Unfortunately, xbuild creates several such ItemGroups based
+			     on the projects level. Thus, we need to remove the unwanted
+			     projects from each such level (at some time there could be
+			     more than these 10) -->
+			<BuildLevel0 Remove="@(UnitTestProjects)" />
+			<BuildLevel1 Remove="@(UnitTestProjects)" />
+			<BuildLevel2 Remove="@(UnitTestProjects)" />
+			<BuildLevel3 Remove="@(UnitTestProjects)" />
+			<BuildLevel4 Remove="@(UnitTestProjects)" />
+			<BuildLevel5 Remove="@(UnitTestProjects)" />
+			<BuildLevel6 Remove="@(UnitTestProjects)" />
+			<BuildLevel7 Remove="@(UnitTestProjects)" />
+			<BuildLevel8 Remove="@(UnitTestProjects)" />
+			<BuildLevel9 Remove="@(UnitTestProjects)" />
+		</ItemGroup>
+	</Target>
+</Project>

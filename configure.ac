@@ -67,23 +67,23 @@ SHAMROCK_CHECK_MONO_MODULE(3.2.8)
 SHAMROCK_FIND_MONO_4_0_COMPILER
 SHAMROCK_FIND_MONO_RUNTIME
 SHAMROCK_CHECK_MONO_4_5_GAC_ASSEMBLIES([
-    Mono.Posix
-    Mono.Simd
-    System
-    System.Runtime.Remoting
-    System.Web
-    System.Web.Services
-    System.Data
-    Mono.Cairo
-    ICSharpCode.SharpZipLib
+	Mono.Posix
+	Mono.Simd
+	System
+	System.Runtime.Remoting
+	System.Web
+	System.Web.Services
+	System.Data
+	Mono.Cairo
+	ICSharpCode.SharpZipLib
 ])
 
 FSPOT_CHECK_LIBFSPOT
 dnl --- Checks for gtk-sharp and glib-sharp
 FSPOT_CHECK_GTK_SHARP
-SHAMROCK_CHECK_NUNIT
 FSPOT_CHECK_DBUS_SHARP
 FSPOT_CHECK_GNOME_SHARP
+FSPOT_ENABLE_TESTS
 
 
 
@@ -122,9 +122,9 @@ dnl -- Check for mono pc file
 
 AC_MSG_CHECKING([for mono.pc])
 if test -z `$PKG_CONFIG --variable=prefix mono`; then
-  AC_MSG_ERROR([missing the mono.pc file, usually found in the mono-devel package])
+	AC_MSG_ERROR([missing the mono.pc file, usually found in the mono-devel package])
 else
-  AC_MSG_RESULT([found])
+	AC_MSG_RESULT([found])
 fi
 
 dnl --- Required libraries
@@ -169,15 +169,15 @@ AC_SUBST(CSC_DEFINES)
 dnl --- libjpeg
 
 AC_CHECK_LIB(jpeg, jpeg_start_decompress, [],
-	     [AC_MSG_ERROR([libjpeg not found])], -lm)
+	[AC_MSG_ERROR([libjpeg not found])], -lm)
 AC_CHECK_HEADER(jpeglib.h, , [AC_MSG_ERROR([libjpeg not found])])
 LIBJPEG='-ljpeg'
 
 dnl --- lcms
 
-PKG_CHECK_MODULES(LCMS2, lcms2 >= $LCMS2_REQUIRED, [], 
+PKG_CHECK_MODULES(LCMS2, lcms2 >= $LCMS2_REQUIRED, [],
 	[AC_CHECK_LIB(lcms2, cmsCreateBCHSWabstractProfile, [],
-		     [AC_MSG_ERROR([liblcms2 not found])], -lm)
+		[AC_MSG_ERROR([liblcms2 not found])], -lm)
 	AC_CHECK_HEADER(lcms2.h, , [AC_MSG_ERROR([liblcms2 not found])])
 	LCMS2_LIBS='-llcms2'
 	LCMS2_CFLAGS=''])
@@ -190,30 +190,28 @@ dnl --- Set up paths
 AC_ARG_WITH(turtle, [ --with-turtle=DIR                set path to source directory for turtle])
 AM_CONDITIONAL(WITH_TURTLE, test "x$with_turtle" != "xno")
 if test "x$with_turtle" != "xno"; then
-   TURTLEDIR=$with_turtle
-
-   AC_SUBST(TURTLEDIR)
+	TURTLEDIR=$with_turtle
+	AC_SUBST(TURTLEDIR)
 fi
 
 AC_ARG_WITH(gnome-screensaver,
-    [ --with-gnome-screensaver=PREFIX  set gnome gnome-screensaver prefix],
-    gnome_screensaver_prefix=$with_gnome_screensaver,
-    gnome_screensaver_prefix=$prefix)
+	[ --with-gnome-screensaver=PREFIX  set gnome gnome-screensaver prefix],
+	gnome_screensaver_prefix=$with_gnome_screensaver,
+	gnome_screensaver_prefix=$prefix)
 
 AC_ARG_WITH(gnome-screensaver-privlibexecdir,
-    [ --with-gnome-screensaver-privlibexecdir=DIR  set gnome-screensaver privlibexecdir],
-    GNOME_SCREENSAVER_SAVERDIR=$with_gnome_screensaver_privlibexecdir,
-    if test -d $gnome_screensaver_prefix/lib/gnome-screensaver; then
-        GNOME_SCREENSAVER_SAVERDIR=$gnome_screensaver_prefix/lib/gnome-screensaver
-    else
-        GNOME_SCREENSAVER_SAVERDIR=$gnome_screensaver_prefix/libexec/gnome-screensaver
-    fi)
+	[ --with-gnome-screensaver-privlibexecdir=DIR  set gnome-screensaver privlibexecdir],
+	GNOME_SCREENSAVER_SAVERDIR=$with_gnome_screensaver_privlibexecdir,
+	if test -d $gnome_screensaver_prefix/lib/gnome-screensaver; then
+		GNOME_SCREENSAVER_SAVERDIR=$gnome_screensaver_prefix/lib/gnome-screensaver
+	else
+		GNOME_SCREENSAVER_SAVERDIR=$gnome_screensaver_prefix/libexec/gnome-screensaver
+	fi)
 
 AC_ARG_WITH(gnome-screensaver-themesdir,
-    [ --with-gnome-screensaver-themesdir=DIR  set gnome-screensaver themesdir],
-    GNOME_SCREENSAVER_THEMESDIR=$with_gnome_screensaver_themesdir,
-    GNOME_SCREENSAVER_THEMESDIR=$gnome_screensaver_prefix/share/applications/screensavers
-    )
+	[ --with-gnome-screensaver-themesdir=DIR  set gnome-screensaver themesdir],
+	GNOME_SCREENSAVER_THEMESDIR=$with_gnome_screensaver_themesdir,
+	GNOME_SCREENSAVER_THEMESDIR=$gnome_screensaver_prefix/share/applications/screensavers)
 
 AC_SUBST(GNOME_SCREENSAVER_SAVERDIR)
 AC_SUBST(GNOME_SCREENSAVER_THEMESDIR)
@@ -254,11 +252,14 @@ ENABLE_RELEASE=$enable_release
 AC_SUBST(ENABLE_RELEASE)
 if test "x$enable_release" = "xyes"; then
 	MCS_FLAGS="-define:RELEASE -sdk:4"
+	PROFILE_NAME="Release"
+else
+	PROFILE_NAME="Debug"
 # FIXME: Enable as soon as we rock sufficiently
-#else
 #	MCS_FLAGS="-warnaserror"
 fi
 AC_SUBST(MCS_FLAGS)
+AC_SUBST(PROFILE_NAME)
 
 AM_CONDITIONAL(HYENA_PKG_CONFIG, false)
 
@@ -280,6 +281,10 @@ AC_SUBST(BUILD_HOST_CPU)
 AC_SUBST(BUILD_TIME)
 
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
+
+dnl Optionally disable unit tests requiring nuget packages
+dnl substitution variable is sent in build/m4/shamrock/nunit.m4
+AC_CONFIG_FILES([after.F-Spot.sln.targets])
 
 dnl generated files
 AC_OUTPUT([
@@ -382,6 +387,7 @@ ${PACKAGE}-${VERSION}
     Mono Runtime:      ${MONO}
 
   Build/Development:
+    Configuration:     ${PROFILE_NAME}
     Unit Tests:        ${do_tests}
     User Help:         ${enable_user_help} (requires gnome-doc-utils >= 0.17.3)
 
@@ -394,6 +400,5 @@ if test -d ${expanded_libdir}/${PACKAGE}; then
 	echo "  WARNING: An existing F-Spot install is in ${expanded_libdir}/${PACKAGE}"
 	echo "           Remove the existing install before installing this build."
 	echo "           Installing over an existing install will cause conflicts!"
-	echo 
+	echo
 fi
-
