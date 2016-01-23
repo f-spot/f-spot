@@ -116,6 +116,11 @@ namespace FSpot.Widgets
 			return ret;
 		}
 
+		protected override void DrawCell (int cell_num, Rectangle cell_area, Rectangle expose_area)
+		{
+			DrawPhoto (cell_num, cell_area, expose_area, Selection.Contains (cell_num), Selection.Contains (cell_num) && FocusCell == cell_num);
+		}
+
 		void DrawSelection (Rectangle exposeArea)
 		{
 			if (!isRectSelection)
