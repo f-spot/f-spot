@@ -29,36 +29,19 @@
 
 using System;
 using System.Collections.Generic;
-
+using FSpot.Core;
 using Gdk;
 using Gtk;
 
-using FSpot.Core;
-
 namespace FSpot.Widgets
 {
-	// TODO: This event ahndler is a hack. The default event from a widget
+	// TODO: This event handler is a hack. The default event from a widget
 	//       (DragBegin) should be used, but therfore, the event must be fired
 	//       correctly.
-	public delegate void StartDragHandler (object o,StartDragArgs args);
-
-	public class StartDragArgs
-	{
-		public Event Event { get; set; }
-
-		public uint Button { get; set; }
-
-		public StartDragArgs (uint but, Event evt)
-		{
-			Button = but;
-			Event = evt;
-		}
-	}
-
+	public delegate void StartDragHandler (object o, StartDragArgs args);
 
 	public class SelectionCollectionGridView : CollectionGridView
 	{
-
 		#region Public Properties
 
 		public SelectionCollection Selection { get; private set; }
@@ -122,7 +105,7 @@ namespace FSpot.Widgets
 
 		#region Drawing Methods
 
-		protected override bool OnExposeEvent (Gdk.EventExpose args)
+		protected override bool OnExposeEvent (EventExpose args)
 		{
 			bool ret = base.OnExposeEvent (args);
 
@@ -131,6 +114,11 @@ namespace FSpot.Widgets
 			}
 
 			return ret;
+		}
+
+		protected override void DrawCell (int cell_num, Rectangle cell_area, Rectangle expose_area)
+		{
+			DrawPhoto (cell_num, cell_area, expose_area, Selection.Contains (cell_num), Selection.Contains (cell_num) && FocusCell == cell_num);
 		}
 
 		void DrawSelection (Rectangle exposeArea)
@@ -145,7 +133,7 @@ namespace FSpot.Widgets
 			// draw selection
 			using (Cairo.Context cairo_g = CairoHelper.Create (BinWindow)) {
 
-				Gdk.Color color = Style.Background (StateType.Selected);
+				Color color = Style.Background (StateType.Selected);
 				cairo_g.SetSourceColor (new Cairo.Color (color.Red / 65535.0, color.Green / 65535.0, color.Blue / 65535.0, 0.5));
 				cairo_g.Rectangle (region.X, region.Y, region.Width, region.Height);
 				cairo_g.Fill ();
@@ -163,7 +151,7 @@ namespace FSpot.Widgets
 			Selection.Add (0, Collection.Count - 1);
 		}
 
-		protected virtual void ContextMenu (EventButton evnt, int cell_num)
+		protected virtual void ContextMenu (EventButton evnt, int cellNum)
 		{
 		}
 
@@ -190,7 +178,7 @@ namespace FSpot.Widgets
 			switch (evnt.Type) {
 			case EventType.TwoButtonPress:
 				if (evnt.Button != 1 ||
-				                (evnt.State & (ModifierType.ControlMask | ModifierType.ShiftMask)) != 0)
+				    (evnt.State & (ModifierType.ControlMask | ModifierType.ShiftMask)) != 0)
 					return false;
 				if (DoubleClicked != null)
 					DoubleClicked (this, new BrowsableEventArgs (cell_num, null));
@@ -198,14 +186,13 @@ namespace FSpot.Widgets
 
 			case EventType.ButtonPress:
 				GrabFocus ();
-		                // on a cell : context menu if button 3
-		                // cell selection is done on button release
+				// on a cell : context menu if button 3
+				// cell selection is done on button release
 				if (evnt.Button == 3) {
 					ContextMenu (evnt, cell_num);
 					return true;
-				} else {
-					return false;
 				}
+				return false;
 			}
 
 			return false;
@@ -251,17 +238,17 @@ namespace FSpot.Widgets
 		Point selection_end;
 		ModifierType selection_modifier;
 
-		bool isRectSelection = false;
-		bool isDragDrop = false;
+		bool isRectSelection;
+		bool isDragDrop;
 
 		// initial selection
 		int[] start_select_selection;
 		// initial event used to detect drag&drop
 		EventButton start_select_event;
 		// timer using when scrolling selection
-		uint scroll_timeout = 0;
+		uint scroll_timeout;
 
-		Rectangle BoundedRectangle (Point p1, Point p2)
+		static Rectangle BoundedRectangle (Point p1, Point p2)
 		{
 			return new Rectangle (Math.Min (p1.X, p2.X),
 				Math.Min (p1.Y, p2.Y),
@@ -346,7 +333,7 @@ namespace FSpot.Widgets
 			if (deltaVscroll < 130)
 				deltaVscroll += 15;
 
-			Gdk.ModifierType new_mod;
+			ModifierType new_mod;
 			Display.GetPointer (out new_x, out new_y, out new_mod);
 			GetPointer (out new_x, out new_y);
 
@@ -355,7 +342,7 @@ namespace FSpot.Widgets
 				if (newVadj < 0)
 					newVadj = 0;
 			} else if ((new_y > Allocation.Height) &&
-			                    (newVadj < Vadjustment.Upper - Allocation.Height - deltaVscroll))
+			           (newVadj < Vadjustment.Upper - Allocation.Height - deltaVscroll))
 				newVadj += deltaVscroll;
 			Vadjustment.Value = newVadj;
 
@@ -373,7 +360,7 @@ namespace FSpot.Widgets
 				return false;
 
 			if (!Gtk.Drag.CheckThreshold (this, selection_start.X, selection_start.Y,
-				             (int)evnt.X, (int)evnt.Y))
+			    (int)evnt.X, (int)evnt.Y))
 				return false;
 
 			if (isRectSelection) {
@@ -405,11 +392,7 @@ namespace FSpot.Widgets
 					// on a selected cell : do drag&drop
 					isDragDrop = true;
 					if (StartDrag != null) {
-						uint but;
-						if ((evnt.State & ModifierType.Button1Mask) != 0)
-							but = 1;
-						else
-							but = 3;
+						uint but = (evnt.State & ModifierType.Button1Mask) != 0 ? 1U : 3U;
 						StartDrag (this, new StartDragArgs (but, start_select_event));
 					}
 				} else {
