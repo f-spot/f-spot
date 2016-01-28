@@ -45,11 +45,11 @@ namespace FSpot.Widgets
 
 #region Constructors
 
-        public CellGridView (IntPtr raw) : base (raw)
+	protected CellGridView (IntPtr raw) : base (raw)
         {
         }
 
-        public CellGridView () : base (null, null)
+	protected CellGridView () : base (null, null)
         {
         }
 
@@ -356,7 +356,7 @@ namespace FSpot.Widgets
             base.OnScrollAdjustmentsSet (hadjustment, vadjustment);
 
             if (vadjustment != null)
-                vadjustment.ValueChanged += new EventHandler (HandleAdjustmentValueChanged);
+		vadjustment.ValueChanged += HandleAdjustmentValueChanged;
         }
 
         protected override bool OnExposeEvent (Gdk.EventExpose args)
@@ -405,8 +405,8 @@ namespace FSpot.Widgets
 
         private void SetSize (int x, int y, int width, int height)
         {
-            Hadjustment.Upper = System.Math.Max (Allocation.Width, width);
-            Vadjustment.Upper = System.Math.Max (Allocation.Height, height);
+            Hadjustment.Upper = Math.Max (Allocation.Width, width);
+            Vadjustment.Upper = Math.Max (Allocation.Height, height);
 
             bool xchange = scroll && (int)(Hadjustment.Value) != x;
             bool ychange = scroll && (int)(Vadjustment.Value) != y;
@@ -517,7 +517,7 @@ namespace FSpot.Widgets
             Gdk.Rectangle [] rects = region.GetRectangles ();
 
             if (step < 0)
-                System.Array.Reverse (rects);
+                Array.Reverse (rects);
 
             foreach (Gdk.Rectangle preload in rects) {
                 Preload (preload, false);
@@ -545,7 +545,7 @@ namespace FSpot.Widgets
             int ecell = scell + len;
             if (scell > cell_count - len) {
                 ecell = cell_count;
-                scell = System.Math.Max (0, scell - len);
+                scell = Math.Max (0, scell - len);
             } else
                 ecell = scell + len;
 

@@ -46,17 +46,17 @@ namespace FSpot.Widgets
 #region public API
 		protected ImageView (IntPtr raw) : base (raw) { }
 
-		public ImageView (Adjustment hadjustment, Adjustment vadjustment, bool can_select) : base ()
+		public ImageView (Adjustment hadjustment, Adjustment vadjustment, bool canSelect)
 		{
 			OnSetScrollAdjustments (hadjustment, vadjustment);
 			AdjustmentsChanged += ScrollToAdjustments;
 			WidgetFlags &= ~WidgetFlags.NoWindow;
 			SetFlag (WidgetFlags.CanFocus);
 
-			this.can_select = can_select;
+			can_select = canSelect;
 		}
 
-		public ImageView (bool can_select) : this (null, null, can_select)
+		public ImageView (bool canSelect) : this (null, null, canSelect)
 		{
 		}
 
@@ -202,9 +202,9 @@ namespace FSpot.Widgets
 			Zoom *= 1.0 / ZOOM_FACTOR;
 		}
 
-		public void ZoomAboutPoint (double zoom_increment, int x, int y)
+		public void ZoomAboutPoint (double zoomIncrement, int x, int y)
 		{
-			DoZoom (zoom * zoom_increment, x, y);
+			DoZoom (zoom * zoomIncrement, x, y);
 		}
 
         public bool Fit { get; private set; }
@@ -248,7 +248,7 @@ namespace FSpot.Widgets
 
 		public Point ImageCoordsToWindow (Point image)
 		{
-			if (this.Pixbuf == null)
+			if (Pixbuf == null)
 				return Point.Zero;
 			
 			image = PixbufUtils.TransformOrientation (Pixbuf.Width, Pixbuf.Height, image, pixbuf_orientation);
@@ -261,7 +261,7 @@ namespace FSpot.Widgets
 		
 		public Rectangle ImageCoordsToWindow (Rectangle image)
 		{
-			if (this.Pixbuf == null)
+			if (Pixbuf == null)
 				return Gdk.Rectangle.Zero;
 			
 			image = PixbufUtils.TransformOrientation (Pixbuf.Width, Pixbuf.Height, image, pixbuf_orientation);
@@ -366,7 +366,7 @@ namespace FSpot.Widgets
             // Since this affects the zoom_scale we should alert it
             EventHandler eh = ZoomChanged;
             if (eh != null)
-                eh (this, System.EventArgs.Empty);
+                eh (this, EventArgs.Empty);
 
             ComputeScaledSize ();
 
@@ -488,7 +488,7 @@ namespace FSpot.Widgets
 		{
 			if ((evnt.State & ModifierType.ShiftMask) == 0) {//no shift, let's zoom
 				ZoomAboutPoint ((evnt.Direction == ScrollDirection.Up || evnt.Direction == ScrollDirection.Right) ? ZOOM_FACTOR : 1.0 / ZOOM_FACTOR,
-						 (int)evnt.X, (int)evnt.Y);
+					(int)evnt.X, (int)evnt.Y);
 				return true;
 			}
 
@@ -496,13 +496,14 @@ namespace FSpot.Widgets
 			int y_incr = (int)Vadjustment.PageIncrement / 4;
 			if ((evnt.State & ModifierType.ControlMask) == 0) {//no control scroll
 				ScrollBy ((evnt.Direction == ScrollDirection.Left) ? -x_incr : (evnt.Direction == ScrollDirection.Right) ? x_incr : 0,
-					  (evnt.Direction == ScrollDirection.Up) ? -y_incr : (evnt.Direction == ScrollDirection.Down) ? y_incr : 0);
-				return true;
-			} else { //invert x and y for scrolling
-				ScrollBy ((evnt.Direction == ScrollDirection.Up) ? -y_incr : (evnt.Direction == ScrollDirection.Down) ? y_incr : 0,
-					  (evnt.Direction == ScrollDirection.Left) ? -x_incr : (evnt.Direction == ScrollDirection.Right) ? x_incr : 0);	
+					(evnt.Direction == ScrollDirection.Up) ? -y_incr : (evnt.Direction == ScrollDirection.Down) ? y_incr : 0);
 				return true;
 			}
+
+			//invert x and y for scrolling
+			ScrollBy ((evnt.Direction == ScrollDirection.Up) ? -y_incr : (evnt.Direction == ScrollDirection.Down) ? y_incr : 0,
+				(evnt.Direction == ScrollDirection.Left) ? -x_incr : (evnt.Direction == ScrollDirection.Right) ? x_incr : 0);	
+			return true;
 		}
 
 		protected override bool OnKeyPressEvent (EventKey evnt)
@@ -592,7 +593,7 @@ namespace FSpot.Widgets
         {
             Fit = zoom == MIN_ZOOM;
 
-            if (zoom == this.zoom || System.Math.Abs (this.zoom - zoom) < System.Double.Epsilon) {
+            if (zoom == this.zoom || Math.Abs (this.zoom - zoom) < Double.Epsilon) {
                 // Don't recalculate if the zoom factor stays the same.
                 return;
             }

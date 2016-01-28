@@ -71,11 +71,11 @@ namespace FSpot.Widgets
 
 			CellRendererPixbuf pixbuf_renderer = new CellRendererPixbuf ();
 			column.PackStart (pixbuf_renderer, false);
-			column.SetCellDataFunc (pixbuf_renderer, PixbufDataFunc as TreeCellDataFunc);
+			column.SetCellDataFunc (pixbuf_renderer, PixbufDataFunc);
 
 			CellRendererTextProgress folder_renderer = new CellRendererTextProgress ();
 			column.PackStart (folder_renderer, true);
-			column.SetCellDataFunc (folder_renderer, FolderDataFunc as TreeCellDataFunc);
+			column.SetCellDataFunc (folder_renderer, FolderDataFunc);
 
 			AppendColumn (column);
 

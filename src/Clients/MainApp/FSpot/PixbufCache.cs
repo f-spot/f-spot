@@ -29,23 +29,22 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System;
 using System.Collections.Generic;
 using System.Threading;
-
-using Hyena;
-
 using FSpot.Utils;
+using Hyena;
 
 namespace FSpot
 {
 	public class PixbufCache
 	{
-		Dictionary<SafeUri,CacheEntry> items;
+		readonly Dictionary<SafeUri,CacheEntry> items;
 		List<CacheEntry> items_mru;
 		int total_size;
-		int max_size = 256 * 256 * 4 * 30;
+		const int max_size = 256 * 256 * 4 * 30;
 
-		private Thread worker;
+		Thread worker;
 
 		public delegate void PixbufLoadedHandler (PixbufCache cache, CacheEntry entry);
 		public event PixbufLoadedHandler OnPixbufLoaded;
@@ -63,7 +62,7 @@ namespace FSpot
 
 		public void HandleThumbnailLoaded (ImageLoaderThread loader, ImageLoaderThread.RequestItem result)
 		{
-                        Reload (result.Uri);
+			Reload (result.Uri);
 		}
 
 		public void Request (SafeUri uri, object closure, int width, int height)
@@ -84,16 +83,6 @@ namespace FSpot
 				Monitor.Pulse (items);
 			}
 		}
-
-//		public void Update (SafeUri uri, Gdk.Pixbuf pixbuf)
-//		{
-//			lock (items) {
-//				CacheEntry entry = items [uri];
-//				if (entry != null) {
-//					entry.SetPixbufExtended (pixbuf, true);
-//				}
-//			}
-//		}
 
 		public void Update (CacheEntry entry, Gdk.Pixbuf pixbuf)
 		{
@@ -117,7 +106,7 @@ namespace FSpot
 
 		public void Reload (SafeUri uri)
 		{
-			CacheEntry entry = null;
+			CacheEntry entry;
 
 			lock (items) {
 				if (items.ContainsKey(uri)){
@@ -130,7 +119,7 @@ namespace FSpot
 			}
 		}
 
-		private CacheEntry FindNext ()
+		CacheEntry FindNext ()
 		{
 			CacheEntry entry;
 			int i = items_mru.Count;
@@ -163,7 +152,7 @@ namespace FSpot
 			return null;
 		}
 
-		private bool ShrinkIfNeeded ()
+		bool ShrinkIfNeeded ()
 		{
 			int num = 0;
 			while ((items_mru.Count - num) > 10 && total_size > max_size) {
@@ -180,9 +169,9 @@ namespace FSpot
 			return false;
 		}
 
-		private void WorkerTask ()
+		void WorkerTask ()
 		{
-			CacheEntry current = null;
+			CacheEntry current;
 			//ThumbnailGenerator.Default.PushBlock ();
 			while (true) {
 				try {
@@ -198,7 +187,7 @@ namespace FSpot
 					}
 					ProcessRequest (current);
 					QueueLast (current);
-				} catch (System.Exception e) {
+				} catch (Exception e) {
 					Log.Exception (e);
 					current = null;
 				}
@@ -210,14 +199,14 @@ namespace FSpot
 			Gdk.Pixbuf loaded = null;
 			try {
 				loaded = XdgThumbnailSpec.LoadThumbnail (entry.Uri, ThumbnailSize.Large);
-				this.Update (entry, loaded);
+				Update (entry, loaded);
 			} catch (GLib.GException){
 				if (loaded != null)
 					loaded.Dispose ();
 			}
 		}
 
-		private void QueueLast (CacheEntry entry)
+		void QueueLast (CacheEntry entry)
 		{
 			ThreadAssist.ProxyToMain (() => {
 				if (entry.Uri != null && OnPixbufLoaded != null)
@@ -225,7 +214,7 @@ namespace FSpot
 			});
 		}
 
-		private void MoveForward (CacheEntry entry)
+		void MoveForward (CacheEntry entry)
 		{
 #if true
 			int i = items_mru.Count;
@@ -238,7 +227,7 @@ namespace FSpot
 				if (tmp2 == entry)
 					return;
 			}
-			throw new System.Exception ("move forward failed");
+			throw new Exception ("move forward failed");
 #else
 			items_mru.Remove (entry);
 			items_mru.Add (entry);
@@ -246,7 +235,7 @@ namespace FSpot
 		}
 
 
-		private CacheEntry ULookup (SafeUri uri)
+		CacheEntry ULookup (SafeUri uri)
 		{
 			CacheEntry entry = null;
 			if(items.ContainsKey(uri)) {
@@ -263,9 +252,9 @@ namespace FSpot
 			}
 		}
 
-		private void URemove (SafeUri uri)
+		void URemove (SafeUri uri)
 		{
-			CacheEntry entry = null;
+			CacheEntry entry;
 			if (items.ContainsKey (uri)) {
 				entry = items[uri];
 				items.Remove (uri);
@@ -281,21 +270,23 @@ namespace FSpot
 			}
 		}
 
-		public class CacheEntry : System.IDisposable {
-			private Gdk.Pixbuf pixbuf;
-			private object data;
-			private PixbufCache cache;
+		public class CacheEntry : IDisposable {
+			Gdk.Pixbuf pixbuf;
+			object data;
+			PixbufCache cache;
+			bool disposed;
+			object locker = new object ();
 
 			public CacheEntry (PixbufCache cache, SafeUri uri, object closure, int width, int height)
 			{
 				Uri = uri;
 				Width = width;
 				Height = height;
-                                // Should this be this.data or Data?
-				this.data = closure;
+				// Should this be this.data or Data?
+				data = closure;
 				Reload = true;
 				this.cache = cache;
-				cache.total_size += this.Size;
+				cache.total_size += Size;
 			}
 
 			public bool Reload { get; set; }
@@ -305,40 +296,40 @@ namespace FSpot
 
 			public object Data {
 				get {
-					lock (this) {
+					lock (locker) {
 						return data;
 					}
 				}
 				set {
-					lock (this) {
+					lock (locker) {
 						data = value;
 					}
 				}
 			}
 
 			public bool IsDisposed {
-				get { return Uri == null; }
+				get { return disposed; }
 			}
 
-			public void SetPixbufExtended (Gdk.Pixbuf value, bool ignore_undead)
+			public void SetPixbufExtended (Gdk.Pixbuf value, bool ignoreUndead)
 			{
-				lock (this) {
+				lock (locker) {
 					if (IsDisposed)
 					{
-					    if (ignore_undead) {
+						if (ignoreUndead) {
 							return;
 						}
-					    throw new System.Exception ("I don't want to be undead");
+						throw new Exception ("I don't want to be undead");
 					}
 
-				    Gdk.Pixbuf old = this.Pixbuf;
-					cache.total_size -= this.Size;
-					this.pixbuf = value;
+					Gdk.Pixbuf old = Pixbuf;
+					cache.total_size -= Size;
+					pixbuf = value;
 					if (pixbuf != null) {
 						Width = pixbuf.Width;
 						Height = pixbuf.Height;
 					}
-					cache.total_size += this.Size;
+					cache.total_size += Size;
 					Reload = false;
 
 					if (old != null)
@@ -348,7 +339,7 @@ namespace FSpot
 
 			public Gdk.Pixbuf Pixbuf {
 				get {
-					lock (this) {
+					lock (locker) {
 						return pixbuf;
 					}
 				}
@@ -356,38 +347,37 @@ namespace FSpot
 
 			public Gdk.Pixbuf ShallowCopyPixbuf ()
 			{
-				lock (this) {
+				lock (locker) {
 					if (IsDisposed)
 						return null;
-
-					if (pixbuf == null)
-						return null;
-
-					return pixbuf.ShallowCopy ();
+					return pixbuf == null ? null : pixbuf.ShallowCopy ();
 				}
-			}
-
-			~CacheEntry ()
-			{
-				if (!IsDisposed)
-					this.Dispose ();
 			}
 
 			public void Dispose ()
 			{
-				lock (this) {
-					if (! IsDisposed)
-						cache.total_size -= this.Size;
+				Dispose (true);
+				GC.SuppressFinalize (this);
+			}
 
-					if (this.pixbuf != null) {
-						this.pixbuf.Dispose ();
+			protected virtual void Dispose(bool disposing)
+			{
+				lock (locker) {
+					if (disposed)
+						return;
+					disposed = true;
 
+					if (disposing) {
+						cache.total_size -= Size;
+
+						if (pixbuf != null) {
+							pixbuf.Dispose ();
+							pixbuf = null;
+						}
+						cache = null;
+						Uri = null;
 					}
-					this.pixbuf = null;
-					this.cache = null;
-					Uri = null;
 				}
-				System.GC.SuppressFinalize (this);
 			}
 
 			public int Size {

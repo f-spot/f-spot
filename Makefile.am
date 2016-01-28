@@ -1,14 +1,14 @@
-SUBDIRS = 		\
-	build 		\
-	data 		\
-	lib 		\
-	external 	\
-	docs		\
-    	help		\
-	icons		\
-	tools		\
-	po		\
-	src		\
+SUBDIRS = \
+	build    \
+	data     \
+	lib      \
+	external \
+	docs     \
+	help     \
+	icons    \
+	tools    \
+	po       \
+	src      \
 	tests
 
 schemadir = $(sysconfdir)/gconf/schemas
@@ -16,22 +16,22 @@ schema_in_files = f-spot.schemas.in
 schema_DATA = $(schema_in_files:.schemas.in=.schemas)
 @INTLTOOL_SCHEMAS_RULE@
 
-CLEANFILES =			\
-	$(schema_DATA)		\
-	intltool-extract	\
-	intltool-update		\
+CLEANFILES = \
+	$(schema_DATA)   \
+	intltool-extract \
+	intltool-update  \
 	intltool-merge
 
-EXTRA_DIST =			\
-	COPYING				\
-	MAINTAINERS			\
-	intltool-extract.in	\
-	intltool-merge.in	\
-	intltool-update.in	\
-	Makefile.include	\
-	gnome-doc-utils.make	\
-	icon-theme-installer	\
-	F-Spot.sln		\
+EXTRA_DIST = \
+	COPYING              \
+	MAINTAINERS          \
+	intltool-extract.in  \
+	intltool-merge.in    \
+	intltool-update.in   \
+	Makefile.include     \
+	gnome-doc-utils.make \
+	icon-theme-installer \
+	F-Spot.sln           \
 	$(schema_in_files)
 
 DISTCLEANFILES = \
@@ -69,7 +69,7 @@ copy_bin:
 
 test:
 	@pushd tests; \
-	make test \
+	make test; \
 	popd;
 
 include $(top_srcdir)/build/xbuild.include

@@ -1970,14 +1970,14 @@ msgstr "<b>সাদা রংয়ের ভারসাম্য (_W)</b>"
 msgid ""
 "<small><i>Enable this to allow interpolation on zoomed images. You shouldn't "
 "disable this for viewing photos, but disabling the interpolation could be "
-"usefull in icon design.</i></small>"
+"useful in icon design.</i></small>"
 msgstr "<small><i>বড় করে প্রদর্শিত ছবিগুলির ক্ষেত্রে প্রক্ষেপণ সক্রিয় করা হবে। ছবি প্রদর্শনের জন্য এটি নিষ্ক্রিয় না করা উচিত, কিন্তু আইকনের বিন্যাসের ক্ষেত্রে প্রক্ষেপণ নিষ্ক্রিয় করা সুবিধাজনক হতে পারে।</i></small>"
 
 #: ../src/f-spot.glade.h:22
 msgid ""
 "<small><i>You can choose how to display transparent parts in images. This "
 "option has no effect on photos, but setting this as check pattern or custom "
-"color could be usefull when viewing icons or other artworks with transparent "
+"color could be useful when viewing icons or other artworks with transparent "
 "parts.</i></small>"
 msgstr "<small><i>ছবির স্বচ্ছ অংশগুলি প্রদর্শনের পদ্ধতি নির্বাচন করা যাবে। এই বিকল্পের প্রয়োগের ফলে, মূল ফটোর মধ্যে কোনো প্রভাব পড়বে না। কিন্তু এই বৈশিষ্ট্যে ক্ষেত্রে চৌখুপ্পি বিন্যাস অথবা স্বনির্ধারিত রং নির্বাচন করা হলে আইকন অথবা স্বচ্ছ অংশ বিশিষ্ট ছবি প্রদর্শনে সুবিধা হবে।</i></small>"
 
@@ -3140,7 +3140,7 @@ msgstr "ছবি প্রক্রিয়াকরণে ত্রুটি"
 
 #: ../src/SendEmail.cs:315
 #, csharp-format
-msgid "An error occured while processing \"{0}\": {1}"
+msgid "An error occurred while processing \"{0}\": {1}"
 msgstr "\"{0}\" প্রক্রিয়াকরণে ত্রুটি দেখা দিয়েছে: {1}"
 
 #. Send the mail :)

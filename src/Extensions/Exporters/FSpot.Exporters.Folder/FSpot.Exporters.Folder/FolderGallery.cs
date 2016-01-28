@@ -60,6 +60,7 @@ using Hyena;
 using FSpot;
 using FSpot.Core;
 using FSpot.Filters;
+using FSpot.Utils;
 
 namespace FSpot.Exporters.Folder
 {

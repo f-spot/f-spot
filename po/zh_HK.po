@@ -1288,7 +1288,7 @@ msgstr "處理圖片時錯誤"
 
 #: ../src/Clients/MainApp/FSpot/SendEmail.cs:297
 #, csharp-format
-msgid "An error occured while processing \"{0}\": {1}"
+msgid "An error occurred while processing \"{0}\": {1}"
 msgstr "當處理「{0}」時發生錯誤：{1}"
 
 #. Send the mail :)
@@ -2733,7 +2733,7 @@ msgstr "拉近或拉遠圖片時對圖片進行插補(_I)"
 msgid ""
 "<small><i>Enable this to allow interpolation on zoomed images. You shouldn't "
 "disable this for viewing photos, but disabling the interpolation could be "
-"usefull in icon design.</i></small>"
+"useful in icon design.</i></small>"
 msgstr "<small><i>啟用此選項來允許針對拉近拉遠的圖片進行插補處理。你不應該停用此選項以檢視相片，但是停用插補處理可能對於圖示設定很有用處。</i></small>"
 
 #: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:4
@@ -2756,7 +2756,7 @@ msgstr "設為自選色彩(_C)： "
 msgid ""
 "<small><i>You can choose how to display transparent parts in images. This "
 "option has no effect on photos, but setting this as check pattern or custom "
-"color could be usefull when viewing icons or other artworks with transparent "
+"color could be useful when viewing icons or other artworks with transparent "
 "parts.</i></small>"
 msgstr "<small><i>你可以選擇要如何顯示圖片內的透明部份。此選項對相片不會造成任何影響，但是當檢視含有透明部份的圖示或是其他美工時，將此設為格子花紋或是自選色彩應該很有用。</i></small>"
 
@@ -3747,7 +3747,7 @@ msgid "Trust Error"
 msgstr "信任上的錯誤"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TrustError.ui.h:2
-msgid "A trust error occured while attempting to access"
+msgid "A trust error occurred while attempting to access"
 msgstr "試圖存取時發生信任上的錯誤"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TrustError.ui.h:3

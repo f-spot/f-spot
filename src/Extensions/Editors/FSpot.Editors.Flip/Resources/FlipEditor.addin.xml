@@ -1,7 +1,7 @@
 <Addin namespace="FSpot"
 	id="FlipEditor"
-	version="0.8"
-	compatVersion="0.8"
+	version="0.9"
+	compatVersion="0.9"
 	name="FlipEditor"
 	description="Flips the image horizontally."
 	author="Ruben Vermeersch"
@@ -9,7 +9,7 @@
 	category="Editors"
 	defaultEnabled="false">
 	<Dependencies>
-		<Addin id="Core" version="0.8"/>
+		<Addin id="Core" version="0.9"/>
 	</Dependencies>
 	<Extension path = "/FSpot/Editors">
 		<Editor editor_type = "FSpot.Addins.Editors.FlipEditor"/>

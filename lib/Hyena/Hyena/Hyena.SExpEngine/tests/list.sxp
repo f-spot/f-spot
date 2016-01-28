@@ -1,0 +1,40 @@
+(set list (
+    "Apples"
+    "Oranges"
+    "Pears"
+    "Peaches"
+    "Grapes"
+    "Bananas"
+))
+
+
+(dump list)
+(print "---")
+
+(define item-dump (item) (
+    (set item-string (cast-string item))
+    (print (+ item-string " (" (length item-string) ")"))
+))
+
+(foreach item list item-dump)
+
+(set list (remove-at list 1))
+(set list (remove list "Pears"))
+(set list (append list "Maulberries"))
+(set list (insert list 0 "Cranberries"))
+
+(print "---")
+
+(set i 0)
+(while (< i (length list)) (
+    (item-dump (item-at list i))
+    (++ i)
+))
+
+(print "---")
+
+(foreach item (split "Kiwi, Oysters, Blueberries" ",") 
+    (set list (append list (trim item)))
+)
+
+(dump list)

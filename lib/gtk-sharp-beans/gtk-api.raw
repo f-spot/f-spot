@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<api>
+  <!--
+
+        This file was automatically generated.
+        Please DO NOT MODIFY THIS FILE, modify .metadata files instead.
+
+-->
+  <namespace name="Gtk" library="libgtk-win32-2.0-0.dll">
+    <object name="MountOperation" cname="GtkMountOperation" parent="GMountOperation">
+      <field name="Priv" cname="priv" type="GtkMountOperationPrivate*" />
+      <property name="Parent" cname="parent" type="GtkWindow" readable="true" writeable="true" />
+      <property name="IsShowing" cname="is-showing" type="gboolean" readable="true" />
+      <property name="Screen" cname="screen" type="GtkWindow" readable="true" writeable="true" />
+      <method name="GetParent" cname="gtk_mount_operation_get_parent">
+        <return-type type="GtkWindow*" />
+      </method>
+      <method name="GetScreen" cname="gtk_mount_operation_get_screen">
+        <return-type type="GdkScreen*" />
+      </method>
+      <method name="GetType" cname="gtk_mount_operation_get_type" shared="true">
+        <return-type type="GType" />
+      </method>
+      <method name="IsShowing" cname="gtk_mount_operation_is_showing">
+        <return-type type="gboolean" />
+      </method>
+      <constructor cname="gtk_mount_operation_new">
+        <parameters>
+          <parameter type="GtkWindow*" name="parent" />
+        </parameters>
+      </constructor>
+      <method name="SetParent" cname="gtk_mount_operation_set_parent">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="GtkWindow*" name="parent" />
+        </parameters>
+      </method>
+      <method name="SetScreen" cname="gtk_mount_operation_set_screen">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="GdkScreen*" name="screen" />
+        </parameters>
+      </method>
+    </object>
+  </namespace>
+</api>

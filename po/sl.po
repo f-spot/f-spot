@@ -253,7 +253,7 @@ msgid "ChangePath"
 msgstr "Spremeni pot"
 
 #: ../data/addin-xml-strings.cs:97
-msgid "UNSTABLE - Please ensure you have a backup of your photos.db before you test this extension. This extension will allow you to change the base path to the your photos. It is very handy if you move your photos from ~/Photos to /OurPhotos for instance. Just ensure you let SqLite continue to process the changes for up to a few hours after f-spot reports finished. It will only change the path to photos which are located under the Photo directory."
+msgid "UNSTABLE - Please ensure you have a backup of your photos.db before you test this extension. This extension will allow you to change the base path to your photos. It is very handy if you move your photos from ~/Photos to /OurPhotos for instance. Just ensure you let SqLite continue to process the changes for up to a few hours after f-spot reports finished. It will only change the path to photos which are located under the Photo directory."
 msgstr "NESTABILNO - pred preizkusom te razširitve se prepričajte, da imate varnostno kopijo photos.db. Ta razširitev vam bo dovolila spremembo osnovne poti do vaših fotografij.  To je zelo priročno, če svoje fotografije premikate na primer iz ~/Fotografije v /NašeFotografije. Prepričajte se, da pustite Sqlite obdelovati spremembe še do pol ure potem, ko f-spot sporoči, da je končal. Spremenjena bo samo pot do fotografij, ki so v mapi Fotografije. "
 
 #: ../data/addin-xml-strings.cs:98
@@ -1319,7 +1319,7 @@ msgstr "Napaka med obdelavo slike"
 
 #: ../src/Clients/MainApp/FSpot/SendEmail.cs:297
 #, csharp-format
-msgid "An error occured while processing \"{0}\": {1}"
+msgid "An error occurred while processing \"{0}\": {1}"
 msgstr "Med obdelavo \"{0}\" je prišlo do napake: {1}"
 
 #. Send the mail :)
@@ -2755,7 +2755,7 @@ msgid "_Interpolate image on zoom"
 msgstr "_Interpolacija slike pri približanju"
 
 #: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:3
-msgid "<small><i>Enable this to allow interpolation on zoomed images. You shouldn't disable this for viewing photos, but disabling the interpolation could be usefull in icon design.</i></small>"
+msgid "<small><i>Enable this to allow interpolation on zoomed images. You shouldn't disable this for viewing photos, but disabling the interpolation could be useful in icon design.</i></small>"
 msgstr "<small><i>Možnost omogoča interpolacijo približanih slik. Ta možnost za ogled fotografij ni priporočena, toda njeno onemogočanje bi lahko bilo uporabno pri oblikovanju ikon.</i></small>"
 
 #: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:4
@@ -2775,7 +2775,7 @@ msgid "As _custom color: "
 msgstr "Kot barvo _po meri"
 
 #: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:8
-msgid "<small><i>You can choose how to display transparent parts in images. This option has no effect on photos, but setting this as check pattern or custom color could be usefull when viewing icons or other artworks with transparent parts.</i></small>"
+msgid "<small><i>You can choose how to display transparent parts in images. This option has no effect on photos, but setting this as check pattern or custom color could be useful when viewing icons or other artworks with transparent parts.</i></small>"
 msgstr "<small><i>Mogoče je izbrati način prikaza prozornih delov slik. Ta možnost ne vpliva na fotografije, vendar je lahko koristna pri ogledu ikon in ostalih grafičnih podob s prozornimi deli.</i></small>"
 
 #: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:9
@@ -3743,7 +3743,7 @@ msgid "Trust Error"
 msgstr "Napaka zaupanja"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TrustError.ui.h:2
-msgid "A trust error occured while attempting to access"
+msgid "A trust error occurred while attempting to access"
 msgstr "Med poskusom dostopa je prišlo do napake zaupanja"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TrustError.ui.h:3

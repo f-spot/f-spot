@@ -1,5 +1,5 @@
-SUBDIRS = 			\
+SUBDIRS = 		\
 	Editors		\
-	Exporters		\
-	Tools			\
+	Exporters	\
+	Tools		\
 	Transitions

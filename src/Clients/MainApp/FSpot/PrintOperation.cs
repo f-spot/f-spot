@@ -51,17 +51,12 @@ namespace FSpot
 		string print_label_format;
 		string comment;
 
-		public PrintOperation (IPhoto [] selected_photos)
+		public PrintOperation (IPhoto [] selectedPhotos)
 		{
-			this.selected_photos = selected_photos;
+			selected_photos = selectedPhotos;
 			CustomTabLabel = Catalog.GetString ("Image Settings");
-			NPages = selected_photos.Length;
+			NPages = selectedPhotos.Length;
 			DefaultPageSetup = Global.PageSetup;
-		}
-
-		protected override void OnBeginPrint (Gtk.PrintContext context)
-		{
-			base.OnBeginPrint (context);
 		}
 
 		protected override Gtk.Widget OnCreateCustomWidget ()
@@ -90,12 +85,15 @@ namespace FSpot
 		protected void OnCustomWidgetChanged (Gtk.Widget widget)
 		{
 			OnCustomWidgetApply (widget);
-			using (ImageSurface surface = new ImageSurface (Format.ARGB32, 360, 254)) {
-				using (Context gr = new Context (surface)) {
-					gr.Color = new Color (1, 1, 1);
+			using (var surface = new ImageSurface (Format.ARGB32, 360, 254))
+			{
+				using (var gr = new Context (surface))
+				{
+					gr.SetSourceColor (new Color (1, 1, 1));
 					gr.Rectangle (0, 0, 360, 254);
 					gr.Fill ();
-					using (Gdk.Pixbuf pixbuf = Gdk.Pixbuf.LoadFromResource ("flower.png")) {
+					using (Gdk.Pixbuf pixbuf = Gdk.Pixbuf.LoadFromResource ("flower.png"))
+					{
 						DrawImage (gr, pixbuf,0, 0, 360, 254);
 					}
 				}
@@ -141,8 +139,8 @@ namespace FSpot
 						try {
 							pixbuf = img.Load ((int) mx, (int) my);
 							Cms.Profile printer_profile;
-							if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_OUTPUT_PROFILE), out printer_profile))
-								FSpot.ColorManagement.ApplyProfile (pixbuf, img.GetProfile (), printer_profile);
+							if (ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_OUTPUT_PROFILE), out printer_profile))
+								ColorManagement.ApplyProfile (pixbuf, img.GetProfile (), printer_profile);
 						} catch (Exception e) {
 							Log.Exception ("Unable to load image " + selected_photos[p_index].DefaultVersion.Uri + "\n", e);
 							// If the image is not found load error pixbuf
@@ -188,26 +186,21 @@ namespace FSpot
 			context.Dispose ();
 		}
 
-		protected override void OnRequestPageSetup (Gtk.PrintContext context, int page_nr, Gtk.PageSetup setup)
-		{
-			base.OnRequestPageSetup (context, page_nr, setup);
-		}
-
-		private void DrawCropMarks (Context cr, double x, double y, double length)
+		void DrawCropMarks (Context cr, double x, double y, double length)
 		{
 			cr.Save ();
-			cr.Color = new Color (0, 0, 0);
+			cr.SetSourceColor (new Color (0, 0, 0));
 			cr.MoveTo (x - length/2, y);
 			cr.LineTo (x + length/2, y);
 			cr.MoveTo (x, y - length/2);
 			cr.LineTo (x, y + length/2);
 			cr.LineWidth = .2;
-			cr.SetDash (new double[] {length*.4, length*.2}, 0);
+			cr.SetDash (new [] {length*.4, length*.2}, 0);
 			cr.Stroke ();
 			cr.Restore ();
 		}
 
-		private static void DrawComment (Gtk.PrintContext context, double x, double y, double h, string comment, bool rotated)
+		static void DrawComment (Gtk.PrintContext context, double x, double y, double h, string comment, bool rotated)
 		{
 			if (string.IsNullOrEmpty(comment))
 				return;
@@ -267,7 +260,7 @@ namespace FSpot
 
 			if (white_borders) {
 				cr.Rectangle (0, 0 ,rectw, recth);
-				cr.Color = new Color (0, 0, 0);
+				cr.SetSourceColor (new Color (0, 0, 0));
 				cr.LineWidth = 1 / scalex;
 				cr.Stroke ();
 			}
@@ -278,7 +271,7 @@ namespace FSpot
 		[DllImport("libfspot")]
 		static extern IntPtr f_pixbuf_from_cairo_surface (IntPtr handle);
 
-		private static Gdk.Pixbuf CreatePixbuf (Surface s)
+		static Gdk.Pixbuf CreatePixbuf (Surface s)
 		{
 			IntPtr result = f_pixbuf_from_cairo_surface (s.Handle);
 			return (Gdk.Pixbuf) GLib.Object.GetObject (result, true);

@@ -6,18 +6,20 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: f-spot master\n"
-"POT-Creation-Date: 2010-12-02 17:45+0000\n"
-"PO-Revision-Date: 2011-01-08 09:22+0200\n"
-"Last-Translator: Giannis Konstantinidis <gloooabvoe9a@gmail.com>\n"
+"POT-Creation-Date: 2013-12-18 17:57+0000\n"
+"PO-Revision-Date: 2014-06-17 15:34+0200\n"
+"Last-Translator: Maria Mavridou <mavridou@gmail.com>\n"
 "Language-Team: Greek <team@lists.gnome.gr>\n"
+"Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.6.4\n"
 
 #: C/zooomr.page:8(desc)
 msgid "Upload photos to Zooomr"
-msgstr "Ανεβάστε φωτογραφίες στο Zooomr"
+msgstr "Αποστολή φωτογραφιών στο Zooomr"
 
 #: C/zooomr.page:11(title)
 msgid "Zooomr"
@@ -29,8 +31,8 @@ msgid ""
 "internet access. Also, the Zooomr <link xref=\"extensions\">extension</link> "
 "must be installed and enabled."
 msgstr ""
-"Για να ανεβάσετε φωτογραφίες στο Zooomr θα χρειαστείτε ένα λογαριασμό σε "
-"αυτό, καθώς και πρόσβαση στο διαδίκτυο. Επίσης,θα πρέπει να έχετε "
+"Για να αποστείλετε φωτογραφίες στο Zooomr θα χρειαστείτε ένα λογαριασμό σε "
+"αυτό, καθώς και πρόσβαση στο διαδίκτυο. Επίσης, θα πρέπει να έχετε "
 "εγκαταστήσει και ενεργοποιήσει την <link xref=\"extensions\">επέκταση</link> "
 "Zooomr."
 
@@ -72,20 +74,20 @@ msgstr ""
 
 #: C/upload-to-web.page:8(desc)
 msgid "Upload photos to various web services"
-msgstr "Ανεβάστε τις φωτογραφίες σας σε διάφορες διαδικτυακές υπηρεσίες"
+msgstr "Αποστολή φωτογραφιών σε διάφορες διαδικτυακές υπηρεσίες"
 
 #: C/upload-to-web.page:11(title)
 msgid "Upload to Web"
-msgstr "Ανεβάστε στον Ιστό"
+msgstr "Αποστολή στον Ιστό"
 
 #: C/upload-to-web.page:14(p)
 msgid ""
 "<app>F-Spot</app> allows you to upload photos to popular web services, "
 "including Google's PicasaWeb and Flickr."
 msgstr ""
-"To <app>F-Spot</app> σας επιτρέπει να ανεβάσετε φωτογραφίες σε δημοφιλείς "
-"διαδικτυακές υπηρεσίες, συμπεριλαμβανομένων των PicasaWeb του Google και "
-"Flickr."
+"To <app>F-Spot</app> σας επιτρέπει να κάνετε αποστολή φωτογραφιών σε "
+"δημοφιλείς διαδικτυακές υπηρεσίες, συμπεριλαμβανομένων των PicasaWeb της "
+"Google και Flickr."
 
 #: C/tags.page:6(desc)
 msgid "A brief introduction to the tagging capabilities of F-Spot"
@@ -288,8 +290,8 @@ msgstr ""
 #: C/tag-creation.page:61(p)
 msgid ""
 "Select a parent tag for the new tag to appear under, such as people or "
-"events. If you wish to create a new tag without a parent, select <gui>(None)"
-"</gui>."
+"events. If you wish to create a new tag without a parent, select "
+"<gui>(None)</gui>."
 msgstr ""
 "Επιλέξτε μια κύρια ετικέτα ώστε η νέα ετικέτα να εμφανίζεται από κάτω, όπως "
 "για παράδειγμα τα άτομα ή οι εκδηλώσεις. Αν επιθυμείτε να δημιουργήσετε μια "
@@ -381,7 +383,7 @@ msgstr ""
 
 #: C/smugmug.page:8(desc)
 msgid "Upload photos to SmugMug"
-msgstr "Ανεβάστε φωτογραφίες στο SmugMug"
+msgstr "Αποστολή φωτογραφιών στο SmugMug"
 
 #: C/smugmug.page:11(title)
 msgid "SmugMug"
@@ -393,8 +395,8 @@ msgid ""
 "internet access. Also, the SmugMug <link xref=\"extensions\">extension</"
 "link> must be installed and enabled."
 msgstr ""
-"Για να ανεβάσετε φωτογραφίες στο SmugMug θα χρειαστείτε ένα λογαριασμό σε "
-"αυτό, καθώς και πρόσβαση στο διαδίκτυο. Επίσης,θα πρέπει να έχετε "
+"Για να αποστείλετε φωτογραφίες στο SmugMug θα χρειαστείτε ένα λογαριασμό σε "
+"αυτό, καθώς και πρόσβαση στο διαδίκτυο. Επίσης, θα πρέπει να έχετε "
 "εγκαταστήσει και ενεργοποιήσει την <link xref=\"extensions\">επέκταση</link> "
 "SmugMug."
 
@@ -459,7 +461,7 @@ msgid ""
 "Select <guiseq><gui>Find</gui><gui>By Rating</gui><gui>Set Rating Filter...</"
 "gui></guiseq>."
 msgstr ""
-"Πηγαίνετε <guiseq><gui>Έυρεση</gui><gui>Από τη βαθμολόγηση</gui><gui>Ορισμός "
+"Πηγαίνετε <guiseq><gui>Έυρεση</gui><gui>Κατά βαθμολογία</gui><gui>Ορισμός "
 "φίλτρου βαθμολόγησης...</gui></guiseq>."
 
 #: C/rate-search.page:22(p)
@@ -476,16 +478,19 @@ msgid "To stop searching by rating:"
 msgstr "Για να σταματήσετε την αναζήτηση κατά βαθμολογία:"
 
 #: C/rate-search.page:31(p)
+#| msgid ""
+#| "Select <guiseq><gui>Find</gui><gui>By Rating</gui><gui>Set Rating Filter</"
+#| "gui></guiseq>."
 msgid ""
-"Select <guiseq><gui>Find</gui><gui>By Rating</gui><gui>Set Rating Filter</"
+"Select <guiseq><gui>Find</gui><gui>By Rating</gui><gui>Clear Rating Filter</"
 "gui></guiseq>."
 msgstr ""
-"Πηγαίνετε <guiseq><gui>Εύρεση</gui><gui>Από τη βαθμολόγηση</gui><gui>Ορισμός "
+"Πηγαίνετε <guiseq><gui>Εύρεση</gui><gui>Κατά βαθμολογία</gui><gui>Εκκαθάριση "
 "φίλτρου βαθμολόγησης</gui></guiseq>."
 
 #: C/picasa.page:8(desc)
 msgid "Upload photos to Google's PicasaWeb"
-msgstr "Ανεβάστε φωτογραφίες στο PicasaWeb του Google"
+msgstr "Αποστολή φωτογραφιών στο PicasaWeb της Google"
 
 #: C/picasa.page:11(title)
 msgid "Picasa"
@@ -497,14 +502,14 @@ msgid ""
 "internet access. Also, the PicasaWeb <link xref=\"extensions\">extension</"
 "link> must be installed and enabled."
 msgstr ""
-"Για να ανεβάσετε φωτογραφίες στο Picasa θα χρειαστείτε ένα λογαριασμό σε "
-"αυτό, καθώς και πρόσβαση στο διαδίκτυο. Επίσης,θα πρέπει να έχετε "
+"Για να αποστείλετε φωτογραφίες στο Picasa θα χρειαστείτε ένα λογαριασμό σε "
+"αυτό, καθώς και πρόσβαση στο διαδίκτυο. Επίσης, θα πρέπει να έχετε "
 "εγκαταστήσει και ενεργοποιήσει την <link xref=\"extensions\">επέκταση</link> "
 "Picasa."
 
 #: C/picasa.page:21(p)
 msgid "Select the photos you wish to upload."
-msgstr "Επιλέξτε τις φωτογραφίες που επιθυμείτε να ανεβάσετε."
+msgstr "Επιλέξτε τις φωτογραφίες που επιθυμείτε να αποστείλετε."
 
 #: C/picasa.page:24(p)
 msgid ""
@@ -601,7 +606,7 @@ msgstr "Αναζήτηση κατά ημερομηνία εισαγωγής"
 
 #: C/import-roll-search.page:11(title)
 msgid "Search by Import Roll"
-msgstr "Αναζήτηση κατα σειρά εισαγωγής"
+msgstr "Αναζήτηση κατά σειρά εισαγωγής"
 
 #: C/import-roll-search.page:15(p)
 msgid ""
@@ -696,8 +701,8 @@ msgid ""
 msgstr ""
 "Το F-Spot μπορεί να χρειαστεί κάποιο χρόνο για την αρχειοθέτηση. Όταν γίνει "
 "η αρχειοθέτηση, οι φωτογραφίες σας θα εμφανιστούν. Τότε θα μπορείτε να "
-"επισυνάψετε <link xref=\"tags\"> ετικέτες</link> σε όλες τις φωτογραφίες, "
-"αν και μπορείτε να αφήσετε την εργασία αυτή για αργότερα."
+"επισυνάψετε <link xref=\"tags\"> ετικέτες</link> σε όλες τις φωτογραφίες, αν "
+"και μπορείτε να αφήσετε την εργασία αυτή για αργότερα."
 
 #: C/import-photos.page:33(p)
 msgid "When you are ready to finish importing photos, click <gui>Import</gui>."
@@ -765,14 +770,18 @@ msgid "Click the <gui>Crop</gui> button in the Edit pane."
 msgstr "Κάντε κλικ στο κουμπί <gui>Κοπή</gui> από το παράθυρο επεξεργασίας."
 
 #: C/general-editing.page:47(p)
+#| msgid ""
+#| "Select a contraining aspect ratio, that is, a proportion of height to "
+#| "width to which the new photo must fit. Examples of contraining aspect "
+#| "ratios include 4x3, 4x6, and 5x7."
 msgid ""
-"Select a contraining aspect ratio, that is, a proportion of height to width "
-"to which the new photo must fit. Examples of contraining aspect ratios "
+"Select a constraining aspect ratio, that is, a proportion of height to width "
+"to which the new photo must fit. Examples of constraining aspect ratios "
 "include 4x3, 4x6, and 5x7."
 msgstr ""
-"Επιλέξτε μια αναλογία διαστάσεων, δηλαδή, μία αναλογία ύψους προς πλάτος στο "
-"οποίο θα πρέπει να χωράει η νέα φωτογραφία. Παραδείγματα αναλογιών "
-"διαστάσεων είναι τα 4x3, 4x6 και 5x7."
+"Επιλέξτε μια περιοριστική αναλογία διαστάσεων, δηλαδή, μία αναλογία ύψους "
+"προς πλάτος στην οποία θα πρέπει να χωράει η νέα φωτογραφία. Παραδείγματα "
+"αναλογιών διαστάσεων είναι τα 4x3, 4x6 και 5x7."
 
 #: C/general-editing.page:52(p)
 msgid ""
@@ -835,15 +844,15 @@ msgid ""
 msgstr ""
 "Επιλέξτε μια μέθοδο εξαγωγής. Η <gui>Δημιουργία αυτόνομου διαδικτυακού "
 "άλμπουμ</gui> θα δημιουργήσει ένα φάκελο με περιεχόμενο που θα μπορεί να "
-"ανέβει σε έναν εξυπηρετητή στον Ιστό, και ο οποίος θα παρουσιάζει εικόνες σε "
-"ένα άλμπουμ. Η <gui>Αποθηκεύση των αρχείων μόνο</gui> θα μετακινήσει μόνο "
+"αποσταλεί σε έναν διακομιστή ιστού για την παρουσίαση εικόνων σε ένα "
+"άλμπουμ. Η <gui>Αποθηκεύση των αρχείων μόνο</gui> θα μετακινήσει μόνο "
 "φωτογραφίες στον επιλεγμένο φάκελο. Η <gui>Δημιουργία άλμπουμ με το "
 "\"Πρωτότυπο\"</gui> θα δημιουργήσει ένα φάκελο με περιεχόμενο κατάλληλο για "
 "χρήση με Άλμπουμ πρωτότυπων φωτογραφιών."
 
 #: C/flickr.page:8(desc)
 msgid "Upload photos to Flickr"
-msgstr "Ανεβάστε φωτογραφίες στο Flickr"
+msgstr "Αποστολή φωτογραφιών στο Flickr"
 
 #: C/flickr.page:11(title)
 msgid "Flickr"
@@ -855,8 +864,8 @@ msgid ""
 "internet access. Also, the Flickr <link xref=\"extensions\">extension</link> "
 "must be installed and enabled."
 msgstr ""
-"Για να ανεβάσετε φωτογραφίες στο Flickr θα χρειαστείτε ένα λογαριασμό σε "
-"αυτό, καθώς και πρόσβαση στο διαδίκτυο. Επίσης,θα πρέπει να έχετε "
+"Για να αποστείλετε φωτογραφίες στο Flickr θα χρειαστείτε ένα λογαριασμό σε "
+"αυτό, καθώς και πρόσβαση στο διαδίκτυο. Επίσης, θα πρέπει να έχετε "
 "εγκαταστήσει και ενεργοποιήσει την <link xref=\"extensions\">επέκταση</link> "
 "Flickr."
 
@@ -917,7 +926,7 @@ msgstr ""
 
 #: C/facebook.page:8(desc)
 msgid "Upload photos to Facebook"
-msgstr "Ανεβάστε φωτογραφίες στο Facebook"
+msgstr "Αποστολή φωτογραφιών στο Facebook"
 
 #: C/facebook.page:11(title)
 msgid "Facebook"
@@ -929,8 +938,8 @@ msgid ""
 "internet access. Also, the Facebook <link xref=\"extensions\">extension</"
 "link> must be installed and enabled."
 msgstr ""
-"Για να ανεβάσετε φωτογραφίες στο Facebook θα χρειαστείτε ένα λογαριασμό σε "
-"αυτό, καθώς και πρόσβαση στο διαδίκτυο. Επίσης,θα πρέπει να έχετε "
+"Για να αποστείλετε φωτογραφίες στο Facebook θα χρειαστείτε ένα λογαριασμό σε "
+"αυτό, καθώς και πρόσβαση στο διαδίκτυο. Επίσης, θα πρέπει να έχετε "
 "εγκαταστήσει και ενεργοποιήσει την <link xref=\"extensions\">επέκταση</link> "
 "Facebook."
 
@@ -1092,9 +1101,12 @@ msgstr ""
 "Κάντε κλικ στο <gui>Μείωση κόκκινων ματιών</gui> στο παράθυρο επεξεργασίας."
 
 #: C/enhancements.page:25(p)
+#| msgid ""
+#| "Select the area from which you wish to remove red-eye. Note: If the "
+#| "contains many red areas, you may wish to select each eye individually."
 msgid ""
-"Select the area from which you wish to remove red-eye. Note: If the contains "
-"many red areas, you may wish to select each eye individually."
+"Select the area from which you wish to remove red-eye. Note: If the area "
+"contains many red areas, you may wish to select each eye individually."
 msgstr ""
 "Επιλέξτε την περιοχή από την οποία θέλετε να αφαιρέσετε τα κόκκινα μάτια. "
 "Σημείωση: Αν περιέχονται πολλές κόκκινες περιοχές, μπορεί να θελήσετε να "
@@ -1158,8 +1170,8 @@ msgid ""
 "is checked."
 msgstr ""
 "Βεβαιωθείτε ότι το χρονοδιάγραμμα είναι ενεργοποιημένο επιλέγοντας "
-"<guiseq><gui>Προβολή</gui><gui>Στοιχεία</gui></guiseq> και διασφαλίστε "
-"ότι το <gui>Χρονοδιάγραμμα</gui> έχει ελεγχθεί."
+"<guiseq><gui>Προβολή</gui><gui>Στοιχεία</gui></guiseq> και διασφαλίστε ότι "
+"το <gui>Χρονοδιάγραμμα</gui> έχει ελεγχθεί."
 
 #: C/date-search.page:38(p)
 msgid ""
@@ -1333,7 +1345,7 @@ msgstr ""
 
 #: C/23hq.page:8(desc)
 msgid "Upload photos to 23hq"
-msgstr "Ανεβάστε φωτογραφίες στο 23hq"
+msgstr "Αποστολή φωτογραφιών στο 23hq"
 
 #: C/23hq.page:11(title)
 msgid "23hq"
@@ -1345,11 +1357,14 @@ msgid ""
 "access. Also, the 23hq <link xref=\"extensions\">extension</link> must be "
 "installed and enabled."
 msgstr ""
-"Για να ανεβάσετε φωτογραφίες στο 23hq θα χρειαστείτε ένα λογαριασμό σε αυτό, "
-"καθώς και πρόσβαση στο διαδίκτυο. Επίσης,θα πρέπει να έχετε εγκαταστήσει και "
-"ενεργοποιήσει την <link xref=\"extensions\">επέκταση</link> 23hq."
+"Για να αποστείλετε φωτογραφίες στο 23hq θα χρειαστείτε ένα λογαριασμό σε "
+"αυτό, καθώς και πρόσβαση στο διαδίκτυο. Επίσης, θα πρέπει να έχετε "
+"εγκαταστήσει και ενεργοποιήσει την <link xref=\"extensions\">επέκταση</link> "
+"23hq."
 
 #. Put one translator per line, in the form of NAME <EMAIL>, YEAR1, YEAR2
 #: C/index.page:0(None)
 msgid "translator-credits"
-msgstr "Γιάννης Κωνσταντινίδης <gloooabvoe9a@gmail.com> 2010"
+msgstr ""
+"Γιάννης Κωνσταντινίδης <gloooabvoe9a@gmail.com>, 2010\n"
+"Μαρία Μαυρίδου <mavridou@gmail.com>, 2014"

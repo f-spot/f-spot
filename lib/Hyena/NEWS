@@ -1,0 +1,78 @@
+==========================
+Version 0.5 - Oct 6, 2010
+==========================
+
+Add .config file to hyena.pc's Files variable
+
+==========================
+Version 0.4 - Oct 5, 2010
+==========================
+
+General:
+* Update to build on Windows with MonoDevelop 2.2.1
+* Disable CheckForOverflowUnderflow in many .csproj
+* Can now include hyena as a git submodule within other projects
+
+Hyena:
+* Bind gtk_show_uri (bgo#587320)
+* Add StringUtil.EscapeLike
+* Add stream based hashing
+* Add an ApplicationName property to ApplicationContext
+* New SafeUri class
+* New Hyena.Downloader namespace/API
+* New Paths class (bgo#605891)
+* Handle bad indices in MemoryListModel
+* Fix LruCache item expiration
+* Add thread id to Hyena.Log when debugging.
+* Fix file location queries (bgo#612152)
+* Make CryptoUtil.Md5Encode thread-safe
+* [Json] Add serializer
+* New Hyena.Metrics classes for instrumenting apps
+* More extensive platform detection probing
+* Bundle HttpUtility; dependency on System.Web (bgo#607713)
+
+Hyena.Gui
+* New ListView grid mode
+* Fix ListView a11y crasher (bgo#615892).
+* [Hyena.Gui] Fix ActionManager toolitem icon sizing bgo#609265
+
+Hyena.Data.Sqlite:
+* Add HYENA_MD5 method
+* Extend SqliteConnection to handle double and nullable values.
+* Case-insensitive column checks
+* Add BinaryFunction class; Lets extensions etc call custom methods
+  from SQL even if they're not loaded initially
+* Fix exception handling (bgo#609799)
+
+Contributors:
+Aaron Bockover, Alan McGovern, Alexander Kojevnikov, Anders Petersson,
+Andrés G. Aragoneses, Bertrand Lorentz, David Nielsen, Gabriel Burt,
+Ján Sokoly, Jeroen Budts, Mike Gemünde, Paul Lange, Pete Johanson,
+Ruben Vermeersch, Sandy Armstrong
+
+==========================
+Version 0.3 - May 6, 2010
+==========================
+
+Synced with Banshee
+
+==========================
+Version 0.2 - Sept 9, 2009
+==========================
+
+Contributors:
+Romain Tartière
+
+Bugs Fixed:
+* Build fix for *bsd
+* Fix dll mappings for *bsd
+
+==========================
+Version 0.1 - Aug 18, 2009
+==========================
+
+* Initial release
+* Hyena, Hyena.Gui, and Hyena.Data.Sqlite built as
+  separate assemblies and each with their own .pc
+  file for convenient copying into your project.
+  See README for details on using Hyena in your app.

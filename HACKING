@@ -12,35 +12,18 @@ http://live.gnome.org/Git/Developers
 Patches
 -------
 
-If you have a patch you'd like to submit, please open a bug describing your fix
-or feature on bugzilla.gnome.org (product 'f-spot'), and submit a merge request
-on Gitorious (http://gitorious.org/f-spot). The selection below describes how
-to do so:
+If you have a patch you'd like to submit, please open an issue describing your
+fix or feature on https://github.com/mono/f-spot, and submit a pull request.
+The selection below describes how to do so:
 
-First, clone our git repository ("git clone git://git.gnome.org/f-spot"), apply
-your change and "git commit" it, preferably to a branch with a suitable name.
-
-Then create a clone of f-spot mainline on Gitorious, by selecting "Clone this
-repository on Gitorious" on the page for the "mainline" repository:
-    http://gitorious.org/f-spot/mainline 
-
-Once that's done, you'll end up on a special page for your clone on Gitorious.
-It contains a "push URL", which you'll need in the next step. It should look
-like this:
-    git@gitorious.org:~yourusername/f-spot/yourusernames-clone.git
-
-Add this push URL as a remote to your local repository (replace the words
-yourname and pushURL with applicable values. You can choose the value of
-yourname, pushURL should be the push url for your repository):
-	git remote add yourname pushURL
-
-You can push the change you created in the first step to Gitorious using the
-following command (again replace yourname and branchname):
-    git push yourname branchname
-
-The change should now show up on the Gitorious web page, and you can request a
-merge using the "Request merge" link on the page for your clone.  Please
-provide a link to the bug you filed in Bugzilla in the merge request.
+1. Fork the f-spot git repository by clicking on the "Fork" button on
+https://github.com/mono/f-spot.
+2. Clone your fork of f-spot locally. (git clone git@github.com:yourusername/f-spot)
+3. Create a new branch for your bug fix or feature (git checkout -b new_branch_name)
+4. Commit your changes to that branch (git commit)
+5. Push your changes (git push)
+6. Create a Pull Request (PR) with a reference to the issue and a description of
+   the changes
 
 We will review the patch, but if people are busy it might not happen right
 away.
@@ -238,14 +221,10 @@ in your .emacs file:
 Unit Tests
 ----------
 
-Unit tests using Nunit should follow a very simple structure.  The
-class being tested should include an inner class (typically called
-Tests) that is marked with the [TestFixture] attribute and should
-include one or more methods marked with [Test] attributes.  The entire
-test class and any using statements should be surrounded by an #if
-ENABLE_NUNIT directive so that f-spot can still build on systems without
-nunit installed.
-
+Unit tests using Nunit should follow a very simple structure.
+// Arrange
+// Act
+// Assert
 
 References and standards
 ------------------------

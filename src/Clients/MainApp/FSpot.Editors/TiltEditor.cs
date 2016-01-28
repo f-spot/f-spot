@@ -73,7 +73,8 @@ namespace FSpot.Editors
 		}
 
 
-		private Pixbuf ProcessImpl (Pixbuf input, Cms.Profile input_profile, bool fast) {
+		Pixbuf ProcessImpl (Pixbuf input, Cms.Profile inputProfile, bool fast)
+		{
 			Pixbuf result;
 			using (ImageInfo info = new ImageInfo (input)) {
 				using (ImageSurface surface = new ImageSurface (Format.Argb32,
@@ -84,7 +85,7 @@ namespace FSpot.Editors
 						using (SurfacePattern p = new SurfacePattern (info.Surface)) {
 							if (fast)
 								p.Filter =  Filter.Fast;
-							ctx.Source = p;
+							ctx.SetSource(p);
 							ctx.Paint ();
 						}
 						result = surface.ToPixbuf();
@@ -95,7 +96,7 @@ namespace FSpot.Editors
 			return result;
 		}
 
-		private void HandleValueChanged (object sender, System.EventArgs args)
+		void HandleValueChanged (object sender, EventArgs args)
 		{
 			angle = scale.Value * Math.PI / -180;
 			UpdatePreview ();

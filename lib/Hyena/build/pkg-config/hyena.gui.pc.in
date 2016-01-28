@@ -1,0 +1,12 @@
+prefix=@prefix@
+libdir=@libdir@
+
+Assemblies=${libdir}/@PACKAGE@/Hyena.Gui.dll
+Files=${libdir}/@PACKAGE@/Hyena.Gui.dll.config ${libdir}/@PACKAGE@/Hyena.Gui.dll.mdb
+
+Name: Hyena.Gui
+Description: Hyena.Gui
+Version: @VERSION@
+
+Requires: 
+Libs: -r:${libdir}/@PACKAGE@/Hyena.Gui.dll

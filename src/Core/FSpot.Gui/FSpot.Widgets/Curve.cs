@@ -38,7 +38,7 @@ namespace FSpot.Widgets
 	public class Curve : DrawingArea
 	{
 #region public API
-		public Curve () : base ()
+		public Curve ()
 		{
 			Events |= EventMask.ExposureMask
 				| EventMask.PointerMotionMask
@@ -154,6 +154,7 @@ namespace FSpot.Widgets
 
 		public void SetVector (float[] vector)
 		{
+			throw new NotImplementedException ("FSpot.Gui.Widgets.Curve SetVector does nothing!!!");
 		}
 
 		public void AddPoint (float x, float y)

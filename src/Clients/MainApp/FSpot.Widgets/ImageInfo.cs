@@ -2,9 +2,11 @@
 // ImageInfo.cs
 //
 // Author:
+//   Daniel Köb <daniel.koeb@peony.at>
 //   Ruben Vermeersch <ruben@savanne.be>
 //   Larry Ewing <lewing@src.gnome.org>
 //
+// Copyright (C) 2014 Daniel Köb
 // Copyright (C) 2007-2010 Novell, Inc.
 // Copyright (C) 2010 Ruben Vermeersch
 // Copyright (C) 2007 Larry Ewing
@@ -30,28 +32,29 @@
 //
 
 using System;
-
 using Cairo;
+using FSpot.Imaging;
+using FSpot.Utils;
 using Gdk;
 using Gtk;
-
-using FSpot.Utils;
-using FSpot.Imaging;
-
 using Hyena;
 
-namespace FSpot.Widgets {
-	public class ImageInfo : IDisposable {
-		public Surface Surface;
+namespace FSpot.Widgets
+{
+	public class ImageInfo : IDisposable
+	{
+		bool disposed;
+
+		public Surface Surface { get; private set; }
 		public Gdk.Rectangle Bounds;
 
 		public ImageInfo (SafeUri uri)
 		{
-				using (var img = ImageFile.Create (uri)) {
-					Pixbuf pixbuf = img.Load ();
-					SetPixbuf (pixbuf);
-					pixbuf.Dispose ();
-				}
+			using (var img = ImageFile.Create (uri)) {
+				Pixbuf pixbuf = img.Load ();
+				SetPixbuf (pixbuf);
+				pixbuf.Dispose ();
+			}
 		}
 
 		public ImageInfo (Pixbuf pixbuf)
@@ -65,17 +68,18 @@ namespace FSpot.Widgets {
 
 		public ImageInfo (ImageInfo info, Widget w, Gdk.Rectangle bounds)
 		{
-			Cairo.Surface similar = CairoUtils.CreateSurface (w.GdkWindow);
-			Bounds = bounds;
-			Surface = similar.CreateSimilar (Content.ColorAlpha, Bounds.Width, Bounds.Height);
-			Context ctx = new Context (Surface);
+			using (var similar = CairoUtils.CreateSurface (w.GdkWindow)) {
+				Bounds = bounds;
+				Surface = similar.CreateSimilar (Content.ColorAlpha, Bounds.Width, Bounds.Height);
+				var ctx = new Context (Surface);
 
-			ctx.Matrix = info.Fill (Bounds);
-			Pattern p = new SurfacePattern (info.Surface);
-			ctx.Source = p;
-			ctx.Paint ();
-			((IDisposable)ctx).Dispose ();
-			p.Destroy ();
+				ctx.Matrix = info.Fill (Bounds);
+				Pattern p = new SurfacePattern (info.Surface);
+				ctx.SetSource (p);
+				ctx.Paint ();
+				ctx.Dispose ();
+				p.Dispose ();
+			}
 		}
 
 		public ImageInfo (ImageInfo info, Gdk.Rectangle allocation)
@@ -84,18 +88,18 @@ namespace FSpot.Widgets {
 							      allocation.Width,
 							      allocation.Height);
 
-			Context ctx = new Context (Surface);
+			var ctx = new Context (Surface);
 			Bounds = allocation;
 
 			ctx.Matrix = info.Fill (allocation);
 			Pattern p = new SurfacePattern (info.Surface);
-			ctx.Source = p;
+			ctx.SetSource (p);
 			ctx.Paint ();
-			((IDisposable)ctx).Dispose ();
-			p.Destroy ();
+			ctx.Dispose ();
+			p.Dispose ();
 		}
 
-		private void SetPixbuf (Pixbuf pixbuf)
+		void SetPixbuf (Pixbuf pixbuf)
 		{
 			Surface = Hyena.Gui.PixbufImageSurface.Create(pixbuf);
 			Bounds.Width = pixbuf.Width;
@@ -104,7 +108,7 @@ namespace FSpot.Widgets {
 
 		public Matrix Fill (Gdk.Rectangle viewport)
 		{
-			Matrix m = new Matrix ();
+			var m = new Matrix ();
 			m.InitIdentity ();
 
 			double scale = Math.Max (viewport.Width / (double) Bounds.Width,
@@ -118,16 +122,18 @@ namespace FSpot.Widgets {
 			return m;
 		}
 
-		//
-		// this functions calculates the transformation needed to center and completely fill the
-		// viewport with the Surface at the given tilt
-		//
+		/// <summary>
+		/// Calculates the transformation needed to center
+		/// and completely fill the viewport with the Surface at the given tilt
+		/// </summary>
+		/// <param name="viewport">Viewport.</param>
+		/// <param name="tilt">Tilt.</param>
 		public Matrix Fill (Gdk.Rectangle viewport, double tilt)
 		{
 			if (tilt == 0.0)
 				return Fill (viewport);
 
-			Matrix m = new Matrix ();
+			var m = new Matrix ();
 			m.InitIdentity ();
 
 			double len;
@@ -163,7 +169,7 @@ namespace FSpot.Widgets {
 
 		public Matrix Fit (Gdk.Rectangle viewport)
 		{
-			Matrix m = new Matrix ();
+			var m = new Matrix ();
 			m.InitIdentity ();
 
 			double scale = Math.Min (viewport.Width / (double) Bounds.Width,
@@ -179,7 +185,24 @@ namespace FSpot.Widgets {
 
 		public void Dispose ()
 		{
-			((IDisposable)Surface).Dispose ();
+			Dispose (true);
+			System.GC.SuppressFinalize (this);
+		}
+
+		protected virtual void Dispose (bool disposing)
+		{
+			if (disposed)
+				return;
+			disposed = true;
+
+			if (disposing) {
+				// free managed resources
+				if (Surface != null) {
+					Surface.Dispose ();
+					Surface = null;
+				}
+			}
+			// free unmanaged resources
 		}
 	}
 }

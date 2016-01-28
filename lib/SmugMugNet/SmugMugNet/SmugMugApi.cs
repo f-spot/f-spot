@@ -84,7 +84,7 @@ namespace SmugMugNet
 				}
 			}
 			catch (Exception ex) {
-				throw new SmugMugException ("A login error occured, SessionID may be invalid.", ex.InnerException);
+				throw new SmugMugException ("A login error occurred, SessionID may be invalid.", ex.InnerException);
 			}
 		}
 

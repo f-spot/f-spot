@@ -36,7 +36,7 @@ namespace FSpot.Transitions
 {
 	public abstract class CairoTransition : SlideShowTransition
 	{
-		public CairoTransition (string name) : base (name)
+		protected CairoTransition (string name) : base (name)
 		{
 		}
 

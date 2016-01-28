@@ -2,8 +2,10 @@
 // ImportController.cs
 //
 // Author:
+//   Daniel Köb <daniel.koeb@peony.at>
 //   Ruben Vermeersch <ruben@savanne.be>
 //
+// Copyright (C) 2014 Daniel Köb
 // Copyright (C) 2010 Novell, Inc.
 // Copyright (C) 2010 Ruben Vermeersch
 //
@@ -253,6 +255,10 @@ namespace FSpot.Import
 
         public void CancelImport ()
         {
+            if (ActiveSource != null) {
+                ActiveSource.Deactivate ();
+            }
+
             import_cancelled = true;
             if (ImportThread != null)
                 ImportThread.Join ();
@@ -415,11 +421,13 @@ namespace FSpot.Import
 
         void CopyIfNeeded (IPhoto item, SafeUri destination)
         {
-            if (item.DefaultVersion.Uri.Equals (destination))
+            var source = item.DefaultVersion.Uri;
+
+            if (source.Equals (destination))
                 return;
 
             // Copy image
-            var file = GLib.FileFactory.NewForUri (item.DefaultVersion.Uri);
+            var file = GLib.FileFactory.NewForUri (source);
             var new_file = GLib.FileFactory.NewForUri (destination);
 			try {
 				file.Copy (new_file, GLib.FileCopyFlags.AllMetadata, null, null);
@@ -431,11 +439,11 @@ namespace FSpot.Import
 			}
 
             copied_files.Add (destination);
-            original_files.Add (item.DefaultVersion.Uri);
+            original_files.Add (source);
             item.DefaultVersion.Uri = destination;
 
             // Copy XMP sidecar
-            var xmp_original = item.DefaultVersion.Uri.ReplaceExtension(".xmp");
+            var xmp_original = source.ReplaceExtension(".xmp");
             var xmp_file = GLib.FileFactory.NewForUri (xmp_original);
             if (xmp_file.Exists) {
                 var xmp_destination = destination.ReplaceExtension (".xmp");

@@ -40,6 +40,7 @@ using FSpot.Core;
 using FSpot.Database;
 using FSpot.Extensions;
 using FSpot.Query;
+using FSpot.Utils;
 
 using Mono.Unix;
 

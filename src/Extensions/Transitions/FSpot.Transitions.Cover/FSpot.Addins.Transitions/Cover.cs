@@ -48,7 +48,7 @@ namespace FSpot.Addins.Transitions
 
 		protected override void Draw (Context cr, Pixbuf prev, Pixbuf next, int width, int height, double progress)
 		{
-			cr.Color = new Color (0, 0, 0);
+			cr.SetSourceColor (new Color (0, 0, 0));
 			if (next != null) {
 				double scale = Math.Min ((double)width/(double)next.Width, (double)height/(double)next.Height);
 				cr.Save ();

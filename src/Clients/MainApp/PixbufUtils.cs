@@ -38,7 +38,7 @@ using System.Runtime.InteropServices;
 using Cairo;
 using Gdk;
 
-using FSpot;
+using FSpot.Cms;
 using FSpot.Core;
 using FSpot.Utils;
 using FSpot.Imaging;
@@ -340,7 +340,7 @@ public static class PixbufUtils
 	public static Pixbuf Blur (Pixbuf src, int radius, ThreadProgressDialog dialog)
 	{
 		ImageSurface sourceSurface = Hyena.Gui.PixbufImageSurface.Create (src);
-		ImageSurface destinationSurface = new ImageSurface (Format.Rgb24, src.Width, src.Height);
+		ImageSurface destinationSurface = new ImageSurface (Cairo.Format.Rgb24, src.Width, src.Height);
 
 		// If we do it as a bunch of single lines (rectangles of one pixel) then we can give the progress
 		// here instead of going deeper to provide the feedback
@@ -414,9 +414,9 @@ public static class PixbufUtils
 		return adjusted;
 	}
 
-	public static Cms.Format PixbufCmsFormat (Pixbuf buf)
+	public static FSpot.Cms.Format PixbufCmsFormat (Pixbuf buf)
 	{
-		return buf.HasAlpha ? Cms.Format.Rgba8Planar : Cms.Format.Rgb8;
+		return buf.HasAlpha ? FSpot.Cms.Format.Rgba8Planar : FSpot.Cms.Format.Rgb8;
 	}
 
 	public static unsafe void ColorAdjust (Pixbuf src, Pixbuf dest,
@@ -427,19 +427,19 @@ public static class PixbufUtils
 		if (src.Width != dest.Width || src.Height != dest.Height)
 			throw new Exception ("Invalid Dimensions");
 
-		Cms.Profile srgb = Cms.Profile.CreateStandardRgb ();
+		var srgb = Profile.CreateStandardRgb ();
 
-		Cms.Profile bchsw = Cms.Profile.CreateAbstract (256,
-								0.0,
-								brightness, contrast,
-								hue, saturation, src_color,
-								dest_color);
+		var bchsw = Profile.CreateAbstract (256,
+							0.0,
+							brightness, contrast,
+							hue, saturation, src_color,
+							dest_color);
 
-		Cms.Profile [] list = new Cms.Profile [] { srgb, bchsw, srgb };
-		Cms.Transform trans = new Cms.Transform (list,
-							 PixbufCmsFormat (src),
-							 PixbufCmsFormat (dest),
-							 Cms.Intent.Perceptual, 0x0100);
+		Profile [] list = { srgb, bchsw, srgb };
+		var trans = new Transform (list,
+						 PixbufCmsFormat (src),
+						 PixbufCmsFormat (dest),
+						 Intent.Perceptual, 0x0100);
 
 		ColorAdjust (src, dest, trans);
 
@@ -448,7 +448,7 @@ public static class PixbufUtils
 		bchsw.Dispose ();
 	}
 
-	public static unsafe void ColorAdjust (Gdk.Pixbuf src, Gdk.Pixbuf dest, Cms.Transform trans)
+	public static unsafe void ColorAdjust (Gdk.Pixbuf src, Gdk.Pixbuf dest, Transform trans)
 	{
 		int width = src.Width;
 		byte * srcpix = (byte *)src.Pixels;
@@ -515,7 +515,7 @@ public static class PixbufUtils
 		}
 	}
 
-	[DllImport("libgnome-desktop-2-17.dll")]
+	[DllImport("libgnomethumbnailpixbufutils.dll")]
 	static extern IntPtr gnome_desktop_thumbnail_scale_down_pixbuf (IntPtr pixbuf, int dest_width, int dest_height);
 
 	public static Gdk.Pixbuf ScaleDown (Gdk.Pixbuf src, int width, int height)

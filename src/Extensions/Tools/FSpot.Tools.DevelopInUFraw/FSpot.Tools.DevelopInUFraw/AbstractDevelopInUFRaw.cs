@@ -40,6 +40,7 @@ using FSpot;
 using FSpot.Core;
 using FSpot.Extensions;
 using FSpot.Imaging;
+using FSpot.Utils;
 
 namespace FSpot.Tools.DevelopInUFraw
 {

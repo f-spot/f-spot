@@ -9,7 +9,6 @@ data/desktop-files/f-spot-import.desktop.in.in
 data/desktop-files/f-spot-view.desktop.in.in
 f-spot.schemas.in
 lib/Mono.Google/Mono.Google/CaptchaException.cs
-lib/Mono.Tabblo/Mono.Tabblo/Connection.cs
 src/Clients/MainApp/FSpot.addin.xml
 src/Clients/MainApp/FSpot/App.cs
 src/Clients/MainApp/FSpot.Database/Updater.cs
@@ -27,21 +26,17 @@ src/Clients/MainApp/FSpot.Import/ImportController.cs
 src/Clients/MainApp/FSpot.Import/MetadataImporter.cs
 src/Clients/MainApp/FSpot/ItemAction.cs
 src/Clients/MainApp/FSpot.Jobs/SyncMetadataJob.cs
-src/Clients/MainApp/FSpot/Literal.cs
 src/Clients/MainApp/FSpot/MainWindow.cs
 src/Clients/MainApp/FSpot/Photo.cs
 src/Clients/MainApp/FSpot/PhotoStore.cs
 src/Clients/MainApp/FSpot/PhotoView.cs
 src/Clients/MainApp/FSpot/Preferences.cs
 src/Clients/MainApp/FSpot/PrintOperation.cs
-src/Clients/MainApp/FSpot/QueryWidget.cs
 src/Clients/MainApp/FSpot/RotateCommand.cs
 src/Clients/MainApp/FSpot/SendEmail.cs
 src/Clients/MainApp/FSpot/SingleView.cs
-src/Clients/MainApp/FSpot/TagQueryWidget.cs
 src/Clients/MainApp/FSpot/TagSelectionWidget.cs
 src/Clients/MainApp/FSpot/TagStore.cs
-src/Clients/MainApp/FSpot/Term.cs
 src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs
 src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs
 src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs
@@ -132,9 +127,6 @@ src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMug
 [type: gettext/glade]src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_add_album_dialog.ui
 [type: gettext/glade]src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_add_dialog.ui
 [type: gettext/glade]src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui
-src/Extensions/Exporters/FSpot.Exporters.Tabblo/FSpot.Exporters.Tabblo/TabbloExport.cs
-[type: gettext/glade]src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui
-[type: gettext/glade]src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TrustError.ui
 src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs
 [type: gettext/glade]src/Extensions/Exporters/FSpot.Exporters.Zip/Resources/zip_export.ui
 [type: gettext/glade]src/Extensions/Tools/FSpot.Tools.ChangePhotoPath/Resources/ChangePhotoPath.ui

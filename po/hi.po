@@ -1526,7 +1526,7 @@ msgstr "छवि के प्रक्रिया में त्रुट�
 
 #: ../src/SendEmail.cs:314
 #, csharp-format
-msgid "An error occured while processing \"{0}\": {1}"
+msgid "An error occurred while processing \"{0}\": {1}"
 msgstr "\"{0}\" की प्रक्रिया में एक त्रुटि आई: {1}"
 
 #. Send the mail :)
@@ -2383,14 +2383,14 @@ msgstr "<small></small>"
 msgid ""
 "<small><i>Enable this to allow interpolation on zoomed images. You shouldn't "
 "disable this for viewing photos, but disabling the interpolation could be "
-"usefull in icon design.</i></small>"
+"useful in icon design.</i></small>"
 msgstr "<small><i>जूम किए छवि पर इसके अंतर्वेषण की अनुमति दें. आपको इसे निष्क्रिय नहीं करना चाहिए फोटो को देखने के लिए, लेकिन अंतर्वेषण का निष्क्रिय किया जाना प्रतीक डिजायन में उपयोगी होगा.</i></small>"
 
 #: ../src/f-spot.glade.h:35
 msgid ""
 "<small><i>You can choose how to display transparent parts in images. This "
 "option has no effect on photos, but setting this as check pattern or custom "
-"color could be usefull when viewing icons or other artworks with transparent "
+"color could be useful when viewing icons or other artworks with transparent "
 "parts.</i></small>"
 msgstr "<small><i>आप चुन सकते हैं कि कैसे आप छवि में पारदर्शी हिस्से को दिखाएंगे. इस विकल्प का फोटो पर कोई प्रभाव नहीं है, लेकिन इसे सेटिंग करना चेक प्रारूप या पसंदीदा रंग के रूप में उपयोगी हो सकता जब पारदर्शी हिस्से के साथ प्रतीक या दूसरे आर्टवर्क को देखा जाए.</i></small>"
 
@@ -4097,7 +4097,7 @@ msgid "<b>{0}</b>."
 msgstr "<b>{0}</b>."
 
 #: ../extensions/Exporters/TabbloExport/TrustError.glade.h:2
-msgid "A trust error occured while attempting to access"
+msgid "A trust error occurred while attempting to access"
 msgstr "पहुंच के लिए प्रयास के दौरान एक विश्वसनीयता त्रुटि आई"
 
 #: ../extensions/Exporters/TabbloExport/TrustError.glade.h:3

@@ -39,15 +39,15 @@ using FSpot.Widgets;
 using FSpot.Utils;
 using FSpot.Gui;
 
-namespace FSpot
+namespace FSpot.Widgets
 {
 	public class PreviewPopup : Gtk.Window
 	{
-		private CollectionGridView view;
-		private Gtk.Image image;
-		private Gtk.Label label;
+		readonly CollectionGridView view;
+		readonly Gtk.Image image;
+		readonly Gtk.Label label;
 
-		private bool show_histogram;
+		bool show_histogram;
 		public bool ShowHistogram {
 			get {
 				return show_histogram;
@@ -59,10 +59,10 @@ namespace FSpot
 			}
 		}
 
-		private FSpot.Histogram hist;
-		private DisposableCache<string, Pixbuf> preview_cache = new DisposableCache<string, Pixbuf> (50);
+		readonly Histogram hist;
+		DisposableCache<string, Pixbuf> preview_cache = new DisposableCache<string, Pixbuf> (50);
 
-		private int item = -1;
+		int item = -1;
 		public int Item {
 			get {
 				return item;
@@ -76,10 +76,10 @@ namespace FSpot
 			}
 		}
 
-		private void AddHistogram (Gdk.Pixbuf pixbuf)
+		void AddHistogram (Pixbuf pixbuf)
 		{
 			if (show_histogram) {
-				Gdk.Pixbuf image = hist.Generate (pixbuf);
+				Pixbuf image = hist.Generate (pixbuf);
 				double scalex = 0.5;
 				double scaley = 0.5;
 
@@ -91,7 +91,7 @@ namespace FSpot
 						 width, height,
 						 pixbuf.Width - width - 10, pixbuf.Height - height - 10,
 						 scalex, scaley,
-						 Gdk.InterpType.Bilinear, 200);
+						 InterpType.Bilinear, 200);
 			}
 		}
 
@@ -103,15 +103,15 @@ namespace FSpot
 		}
 
 
-		protected override bool OnExposeEvent (Gdk.EventExpose args)
+		protected override bool OnExposeEvent (EventExpose args)
 		{
 			int round = 12;
-			Context g = Gdk.CairoHelper.Create (GdkWindow);
+			Context g = CairoHelper.Create (GdkWindow);
 			g.Operator = Operator.Source;
-			g.Source = new SolidPattern (new Cairo.Color (0, 0, 0, 0));
+			g.SetSource (new SolidPattern (new Cairo.Color (0, 0, 0, 0)));
 			g.Paint ();
 			g.Operator = Operator.Over;
-			g.Source = new SolidPattern (new Cairo.Color (0, 0, 0, .7));
+			g.SetSource (new SolidPattern (new Cairo.Color (0, 0, 0, .7)));
 			g.MoveTo (round, 0);
 			//g.LineTo (Allocation.Width - round, 0);
 			g.Arc (Allocation.Width - round, round, round, - Math.PI * 0.5, 0);
@@ -122,28 +122,28 @@ namespace FSpot
 			g.Arc (round, round, round, Math.PI, Math.PI * 1.5);
 			g.ClosePath ();
 			g.Fill ();
-			((IDisposable)g).Dispose ();
+			g.Dispose ();
 			return base.OnExposeEvent (args);
 		}
 
-		private void UpdateImage ()
+		void UpdateImage ()
 		{
 			IPhoto item = view.Collection [Item];
 
 			string orig_path = item.DefaultVersion.Uri.LocalPath;
 
-			Gdk.Pixbuf pixbuf = FSpot.Utils.PixbufUtils.ShallowCopy (preview_cache.Get (orig_path + show_histogram.ToString ()));
+			Pixbuf pixbuf = FSpot.Utils.PixbufUtils.ShallowCopy (preview_cache.Get (orig_path + show_histogram));
 			if (pixbuf == null) {
 				// A bizarre pixbuf = hack to try to deal with cinematic displays, etc.
-				int preview_size = ((this.Screen.Width + this.Screen.Height)/2)/3;
+				int preview_size = ((Screen.Width + Screen.Height)/2)/3;
 				try {
-					pixbuf = FSpot.PhotoLoader.LoadAtMaxSize (item, preview_size, preview_size);
+					pixbuf = PhotoLoader.LoadAtMaxSize (item, preview_size, preview_size);
 				} catch (Exception) {
 					pixbuf = null;
 				}
 
 				if (pixbuf != null) {
-					preview_cache.Add (orig_path + show_histogram.ToString (), pixbuf);
+					preview_cache.Add (orig_path + show_histogram, pixbuf);
 					AddHistogram (pixbuf);
 					image.Pixbuf = pixbuf;
 				} else {
@@ -155,21 +155,21 @@ namespace FSpot
 			}
 
 			string desc = String.Empty;
-			if (item.Description != null && item.Description.Length > 0)
+			if (!string.IsNullOrEmpty (item.Description))
 				desc = item.Description + Environment.NewLine;
 
-			desc += item.Time.ToString () + "   " + item.Name;
+			desc += item.Time + "   " + item.Name;
 			label.Text = desc;
 		}
 
 
-		private void UpdatePosition ()
+		void UpdatePosition ()
 		{
 			int x, y;
-			Gdk.Rectangle bounds = view.CellBounds (this.Item);
+			Gdk.Rectangle bounds = view.CellBounds (Item);
 
-			Gtk.Requisition requisition = this.SizeRequest ();
-			this.Resize (requisition.Width, requisition.Height);
+			Gtk.Requisition requisition = SizeRequest ();
+			Resize (requisition.Width, requisition.Height);
 
 			view.GdkWindow.GetOrigin (out x, out y);
 
@@ -183,27 +183,27 @@ namespace FSpot
 
 			// find the window's x location limiting it to the screen
 			x = Math.Max (0, x - requisition.Width / 2);
-			x = Math.Min (x, this.Screen.Width - requisition.Width);
+			x = Math.Min (x, Screen.Width - requisition.Width);
 
 			// find the window's y location offset above or below depending on space
 			y = Math.Max (0, y - requisition.Height / 2);
-			y = Math.Min (y, this.Screen.Height - requisition.Height);
+			y = Math.Min (y, Screen.Height - requisition.Height);
 
-			this.Move (x, y);
+			Move (x, y);
 		}
 
-		private void UpdateItem (int x, int y)
+		void UpdateItem (int x, int y)
 		{
-			int item = view.CellAtPosition (x, y);
-			if (item >= 0) {
-				this.Item = item;
+			int itemAtPosition = view.CellAtPosition (x, y);
+			if (itemAtPosition >= 0) {
+				Item = itemAtPosition;
 				Show ();
 			} else {
-				this.Hide ();
+				Hide ();
 			}
 		}
 
-	        private void UpdateItem ()
+	        void UpdateItem ()
 		{
 			int x, y;
 			view.GetPointer (out x, out y);
@@ -213,9 +213,9 @@ namespace FSpot
 
 		}
 
-		private void HandleIconViewMotion (object sender, Gtk.MotionNotifyEventArgs args)
+		void HandleIconViewMotion (object sender, Gtk.MotionNotifyEventArgs args)
 		{
-			if (!this.Visible)
+			if (!Visible)
 				return;
 
 			int x = (int) args.Event.X;
@@ -224,15 +224,15 @@ namespace FSpot
 			UpdateItem (x, y);
 		}
 
-		private void HandleIconViewKeyPress (object sender, Gtk.KeyPressEventArgs args)
+		void HandleIconViewKeyPress (object sender, Gtk.KeyPressEventArgs args)
 		{
 			switch (args.Event.Key) {
-			case Gdk.Key.v:
+			case Key.v:
 				ShowHistogram = false;
 				UpdateItem ();
 				args.RetVal = true;
 				break;
-			case Gdk.Key.V:
+			case Key.V:
 				ShowHistogram = true;
 				UpdateItem ();
 				args.RetVal = true;
@@ -240,33 +240,32 @@ namespace FSpot
 			}
 		}
 
-		private void HandleKeyRelease (object sender, Gtk.KeyReleaseEventArgs args)
+		void HandleKeyRelease (object sender, Gtk.KeyReleaseEventArgs args)
 		{
 			switch (args.Event.Key) {
-			case Gdk.Key.v:
-			case Gdk.Key.V:
-			case Gdk.Key.h:
-				this.Hide ();
+			case Key.v:
+			case Key.V:
+			case Key.h:
+				Hide ();
 				break;
 			}
 		}
 
-		private void HandleButtonPress (object sender, Gtk.ButtonPressEventArgs args)
+		void HandleButtonPress (object sender, Gtk.ButtonPressEventArgs args)
 		{
-			this.Hide ();
+			Hide ();
 		}
 
-		private void HandleIconViewDestroy (object sender, Gtk.DestroyEventArgs args)
+		void HandleIconViewDestroy (object sender, Gtk.DestroyEventArgs args)
 		{
-			this.Destroy ();
+			Destroy ();
 		}
 
-		private void HandleDestroyed (object sender, System.EventArgs args)
+		void HandleDestroyed (object sender, EventArgs args)
 		{
-			this.preview_cache.Dispose ();
 		}
 
-		protected override bool OnMotionNotifyEvent (Gdk.EventMotion args)
+		protected override bool OnMotionNotifyEvent (EventMotion args)
 		{
 			//
 			// We look for motion events on the popup window so that
@@ -279,20 +278,20 @@ namespace FSpot
 
 		public PreviewPopup (SelectionCollectionGridView view) : base (Gtk.WindowType.Toplevel)
 		{
-			Gtk.VBox vbox = new Gtk.VBox ();
-			this.Add (vbox);
-			this.AddEvents ((int) (Gdk.EventMask.PointerMotionMask |
-					       Gdk.EventMask.KeyReleaseMask |
-					       Gdk.EventMask.ButtonPressMask));
+			var vbox = new Gtk.VBox ();
+			Add (vbox);
+			AddEvents ((int) (EventMask.PointerMotionMask |
+					       EventMask.KeyReleaseMask |
+					       EventMask.ButtonPressMask));
 
-			this.Decorated = false;
-			this.SkipTaskbarHint = true;
-			this.SkipPagerHint = true;
-			this.SetPosition (Gtk.WindowPosition.None);
+			Decorated = false;
+			SkipTaskbarHint = true;
+			SkipPagerHint = true;
+			SetPosition (Gtk.WindowPosition.None);
 
-			this.KeyReleaseEvent += HandleKeyRelease;
-			this.ButtonPressEvent += HandleButtonPress;
-			this.Destroyed += HandleDestroyed;
+			KeyReleaseEvent += HandleKeyRelease;
+			ButtonPressEvent += HandleButtonPress;
+			Destroyed += HandleDestroyed;
 
 			this.view = view;
 			view.MotionNotifyEvent += HandleIconViewMotion;
@@ -300,9 +299,9 @@ namespace FSpot
 			view.KeyReleaseEvent += HandleKeyRelease;
 			view.DestroyEvent += HandleIconViewDestroy;
 
-			this.BorderWidth = 6;
+			BorderWidth = 6;
 
-			hist = new FSpot.Histogram ();
+			hist = new Histogram ();
 			hist.RedColorHint = 127;
 			hist.GreenColorHint = 127;
 			hist.BlueColorHint = 127;
@@ -317,12 +316,30 @@ namespace FSpot
 			label.ModifyFg (Gtk.StateType.Normal, new Gdk.Color (127, 127, 127));
 			label.ModifyBg (Gtk.StateType.Normal, new Gdk.Color (0, 0, 0));
 
-			this.ModifyFg (Gtk.StateType.Normal, new Gdk.Color (127, 127, 127));
-			this.ModifyBg (Gtk.StateType.Normal, new Gdk.Color (0, 0, 0));
+			ModifyFg (Gtk.StateType.Normal, new Gdk.Color (127, 127, 127));
+			ModifyBg (Gtk.StateType.Normal, new Gdk.Color (0, 0, 0));
 
 			vbox.PackStart (image, true, true, 0);
 			vbox.PackStart (label, true, false, 0);
 			vbox.ShowAll ();
+		}
+
+		public override void Dispose()
+		{
+			Dispose(true);
+			base.Dispose (); // SuppressFinalize is called by base class
+		}
+
+		protected virtual void Dispose(bool disposing)
+		{
+			if (disposing) {
+				// free managed resources
+				if (preview_cache != null) {
+					preview_cache.Dispose ();
+					preview_cache = null;
+				}
+			}
+			// free unmanaged resources
 		}
 	}
 }

@@ -1,14 +1,14 @@
 <Addin namespace="FSpot"
 	id="DissolveTransition"
-	version="0.8"
-	compatVersion="0.8"
+	version="0.9"
+	compatVersion="0.9"
 	name="Dissolve Transition"
 	description="A Slideshow transition that dissolves images"
 	author="Stephane Delcroix"
 	url="http://f-spot.org/Extensions"
 	category="Transitions">
 	<Dependencies>
-		<Addin id="Core" version="0.8"/>
+		<Addin id="Core" version="0.9"/>
 	</Dependencies>
 	<Extension path = "/FSpot/SlideShow">
 		<Transition transition_type="FSpot.Addins.Transitions.Dissolve"/>

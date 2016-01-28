@@ -3,13 +3,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{CE160879-1BF0-4711-A18F-FDA2772900FA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>FSpot.Utils</RootNamespace>
     <AssemblyName>FSpot.Utils</AssemblyName>
     <ReleaseVersion>0.9.0</ReleaseVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -31,75 +32,65 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="FSpot.Utils\Cache.cs" />
-    <Compile Include="FSpot.Utils\CairoUtils.cs" />
-    <Compile Include="FSpot.Utils\FileExtensions.cs" />
-    <Compile Include="FSpot.Utils\GdkUtils.cs" />
-    <Compile Include="FSpot.Utils\GIOTagLibFileAbstraction.cs" />
-    <Compile Include="FSpot.Utils\GtkUtil.cs" />
-    <Compile Include="FSpot.Utils\HashUtils.cs" />
-    <Compile Include="FSpot.Utils\Metadata.cs" />
-    <Compile Include="FSpot.Utils\PixbufUtils.cs" />
-    <Compile Include="FSpot.Utils\RecursiveFileEnumerator.cs" />
-    <Compile Include="FSpot.Utils\SafeUriExtensions.cs" />
-    <Compile Include="FSpot.Utils\SidecarXmpExtensions.cs" />
-    <Compile Include="FSpot.Utils\UriExtensions.cs" />
-    <Compile Include="FSpot.Utils\UriUtils.cs" />
-    <Compile Include="FSpot.Utils\XdgThumbnailSpec.cs" />
-    <Compile Include="FSpot.Utils\UriList.cs" />
-    <Compile Include="FSpot.Utils\Vector.cs" />
-    <Compile Include="FSpot.Utils\DelayedOperation.cs" />
-    <Compile Include="FSpot.Utils\TargetListExtensionMethods.cs" />
-    <Compile Include="FSpot.Utils\DisposableCache.cs" />
+    <Compile Include="Cache.cs" />
+    <Compile Include="CairoUtils.cs" />
+    <Compile Include="DelayedOperation.cs" />
+    <Compile Include="DisposableCache.cs" />
+    <Compile Include="FileExtensions.cs" />
+    <Compile Include="GdkUtils.cs" />
+    <Compile Include="GIOTagLibFileAbstraction.cs" />
+    <Compile Include="GtkUtil.cs" />
+    <Compile Include="HashUtils.cs" />
+    <Compile Include="Metadata.cs" />
+    <Compile Include="PixbufUtils.cs" />
+    <Compile Include="RecursiveFileEnumerator.cs" />
+    <Compile Include="SafeUriExtensions.cs" />
+    <Compile Include="SidecarXmpExtensions.cs" />
+    <Compile Include="TargetListExtensionMethods.cs" />
+    <Compile Include="UriExtensions.cs" />
+    <Compile Include="UriList.cs" />
+    <Compile Include="UriUtils.cs" />
+    <Compile Include="Vector.cs" />
+    <Compile Include="XdgThumbnailSpec.cs" />
   </ItemGroup>
-  <ProjectExtensions>
-    <MonoDevelop>
-      <Properties>
-        <MonoDevelop.Autotools.MakefileInfo RelativeMakefileName="Makefile.am" IsAutotoolsProject="True" RelativeConfigureInPath="../../..">
-          <BuildFilesVar Sync="True" Name="SOURCES" />
-          <DeployFilesVar />
-          <ResourcesVar Sync="True" Name="RESOURCES" />
-          <OthersVar />
-          <GacRefVar />
-          <AsmRefVar />
-          <ProjectRefVar />
-        </MonoDevelop.Autotools.MakefileInfo>
-      </Properties>
-    </MonoDevelop>
-  </ProjectExtensions>
   <ItemGroup>
-    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Package>glib-sharp-2.0</Package>
+    </Reference>
     <Reference Include="Mono.Cairo" />
-    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Package>gtk-sharp-2.0</Package>
+    </Reference>
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Package>gtk-sharp-2.0</Package>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="Mono.Posix" />
-    <Reference Include="gtk-sharp-beans">
-      <HintPath>..\..\..\external\gtk-sharp-beans.dll</HintPath>
-      <Private>False</Private>
-      <Package>gtk-sharp-beans-2.0</Package>
-    </Reference>
-    <Reference Include="gio-sharp, Version=2.14.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Private>False</Private>
-      <Package>gio-sharp-2.0</Package>
-    </Reference>
     <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Private>False</Private>
+      <Package>gtk-sharp-2.0</Package>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\external\taglib-sharp\src\taglib-sharp.csproj">
+      <Project>{6B143A39-C7B2-4743-9917-92262C60E9A6}</Project>
+      <Name>taglib-sharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\lib\Hyena\Hyena\Hyena.csproj">
+      <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
+      <Name>Hyena</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\lib\gtk-sharp-beans\gtk-sharp-beans.csproj">
+      <Project>{069D1797-427D-4CED-A754-233DE64FC5DD}</Project>
+      <Name>gtk-sharp-beans</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\lib\gio-sharp\gio-sharp.csproj">
+      <Project>{942B6AEF-0A90-4A7F-B8E4-F1A4327E408C}</Project>
+      <Name>gio-sharp</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="FSpot.Utils.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\external\Hyena\Hyena\Hyena.csproj">
-      <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
-      <Name>Hyena</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\external\taglib-sharp\src\taglib-sharp.csproj">
-      <Project>{6B143A39-C7B2-4743-9917-92262C60E9A6}</Project>
-      <Name>taglib-sharp</Name>
-    </ProjectReference>
   </ItemGroup>
 </Project>

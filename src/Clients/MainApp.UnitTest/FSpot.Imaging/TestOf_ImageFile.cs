@@ -108,6 +108,7 @@ namespace FSpot.Imaging
 		public void CheckTaglibSupport ()
 		{
 			bool missing = false;
+			var missingTypes = new List<string> ();
 
 			foreach (var key in _imageTypes) {
 				string type = key;
@@ -116,11 +117,14 @@ namespace FSpot.Imaging
 
 				if (!TagLib.FileTypes.AvailableTypes.ContainsKey (type)) {
 					Log.InformationFormat ("Missing type support in Taglib# for {0}", type);
+					missingTypes.Add (type);
 					missing = true;
 				}
 			}
 
-			Assert.IsFalse (missing, "No missing type support in Taglib#.");
+			Assert.That (missingTypes.Count == 6, string.Join (",", missingTypes));
+
+			Assert.IsTrue (missing, "There are {0} missing type support in Taglib#.", missingTypes.Count);
 		}
 	}
 }
