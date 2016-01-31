@@ -38,10 +38,16 @@
     <Reference Include="nunit.framework">
       <HintPath>..\..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\..\..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Posix" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FSpot\TestOf_AndTerm.cs" />
     <Compile Include="FSpot.Imaging\TestOf_ImageFile.cs" />
+    <Compile Include="FSpot\PhotoStoreTests.cs" />
+    <Compile Include="FSpot\Mocks\PhotoMock.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -60,6 +66,14 @@
     <ProjectReference Include="..\..\..\external\taglib-sharp\src\taglib-sharp.csproj">
       <Project>{6B143A39-C7B2-4743-9917-92262C60E9A6}</Project>
       <Name>taglib-sharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\FSpot.Core\FSpot.Core.csproj">
+      <Project>{57EDC3BC-E777-4400-B4E7-32A5D8F15A76}</Project>
+      <Name>FSpot.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\lib\Hyena\Hyena.Data.Sqlite\Hyena.Data.Sqlite.csproj">
+      <Project>{95374549-9553-4C1E-9D89-667755F90E13}</Project>
+      <Name>Hyena.Data.Sqlite</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
