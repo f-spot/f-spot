@@ -393,7 +393,7 @@ namespace FSpot.Import
 			CopyIfNeeded (item, destination);
 
 			// Import photo
-			var photo = store.CreateFrom (item, roll.Id);
+			var photo = store.CreateFrom (item, true, roll.Id);
 
 			bool needs_commit = false;
 

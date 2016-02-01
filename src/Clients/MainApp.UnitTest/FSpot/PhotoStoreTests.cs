@@ -62,7 +62,7 @@ namespace FSpot
 			var store = new PhotoStore (new FSpotDatabaseConnection (database), true);
 			var photoMock = PhotoMock.Create (uri, originalName);
 
-			var photo = store.CreateFrom (photoMock, 1);
+			var photo = store.CreateFrom (photoMock, true, 1);
 
 			// default version name is ignored on import
 			Assert.AreEqual (Catalog.GetString ("Original"), photo.DefaultVersion.Name);
@@ -73,17 +73,35 @@ namespace FSpot
 		}
 
 		[Test]
-		public void CreateFromWithVersion()
+		public void CreateFromWithVersionIgnored()
 		{
 			var store = new PhotoStore (new FSpotDatabaseConnection (database), true);
 			var photoMock = PhotoMock.CreateWithVersion (uri, originalName, modifiedUri, modifiedName);
 
-			var photo = store.CreateFrom (photoMock, 1);
+			var photo = store.CreateFrom (photoMock, true, 1);
 
 			Assert.AreEqual (Catalog.GetString ("Original"), photo.DefaultVersion.Name);
 			Assert.AreEqual (uri, photo.DefaultVersion.BaseUri);
 			// CreateFrom ignores any versions except the default version
 			Assert.AreEqual (1, photo.Versions.Count ());
+
+			Assert.AreEqual (1, store.TotalPhotos);
+		}
+
+		[Test]
+		public void CreateFromWithVersionAdded()
+		{
+			var store = new PhotoStore (new FSpotDatabaseConnection (database), true);
+			var photoMock = PhotoMock.CreateWithVersion (uri, originalName, modifiedUri, modifiedName);
+
+			var photo = store.CreateFrom (photoMock, false, 1);
+
+			Assert.AreEqual (modifiedName, photo.DefaultVersion.Name);
+			Assert.AreEqual (modifiedUri, photo.DefaultVersion.BaseUri);
+			Assert.AreEqual (2, photo.Versions.Count ());
+			// version id 1 is the first photo added - the original photo
+			Assert.AreEqual (originalName, photo.GetVersion(1).Name);
+			Assert.AreEqual (uri, photo.GetVersion(1).BaseUri);
 
 			Assert.AreEqual (1, store.TotalPhotos);
 		}
