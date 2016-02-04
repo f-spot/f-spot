@@ -2,9 +2,11 @@
 // RecursiveFileEnumerator.cs
 //
 // Author:
+//   Daniel Köb <daniel.koeb@peony.at>
 //   Mike Gemünde <mike@gemuende.de>
 //   Ruben Vermeersch <ruben@savanne.be>
 //
+// Copyright (C) 2016 Daniel Köb
 // Copyright (C) 2010 Novell, Inc.
 // Copyright (C) 2010 Mike Gemünde
 // Copyright (C) 2010 Ruben Vermeersch
@@ -79,28 +81,18 @@ namespace FSpot.Utils
 
 		IEnumerable<File> ScanDirectoryForFiles (File rootDir)
 		{
-			FileEnumerator enumerator;
+			SortedFileEnumerator enumerator;
 			try {
-				enumerator = rootDir.EnumerateChildren ("standard::name,standard::type,standard::is-symlink", FileQueryInfoFlags.None, null);
+				using (var fileEnumerator = rootDir.EnumerateChildren ("standard::name,standard::type,standard::is-symlink", FileQueryInfoFlags.None, null)) {
+					enumerator = new SortedFileEnumerator (fileEnumerator.GetEnumerator (), CatchErrors);
+				}
 			} catch (GException e) {
 				if (!CatchErrors)
 					throw e;
 				yield break;
 			}
 
-			while (true) {
-				FileInfo info;
-				try {
-					info = enumerator.NextFile ();
-				} catch (GException e) {
-					if (!CatchErrors)
-						throw e;
-					continue;
-				}
-
-				if (info == null)
-					break;
-
+			foreach (var info in enumerator) {
 				File file = rootDir.GetChild (info.Name);
 
 				// The code below looks like a duplication of ScanForFiles
@@ -119,8 +111,6 @@ namespace FSpot.Utils
 				}
 				info.Dispose ();
 			}
-
-			enumerator.Close (null);
 		}
 
 		public IEnumerator<File> GetEnumerator ()
