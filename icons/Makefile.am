@@ -63,6 +63,10 @@ theme_icons = 					\
 	emblems,emblem-event-22.png		\
 	emblems,emblem-event-24.png		\
 	emblems,emblem-event-32.png		\
+	emblems,emblem-favorite-16.png		\
+	emblems,emblem-favorite-22.png		\
+	emblems,emblem-favorite-24.png		\
+	emblems,emblem-favorite-32.png		\
 	emblems,emblem-people-16.png		\
 	emblems,emblem-people-22.png		\
 	emblems,emblem-people-24.png		\
