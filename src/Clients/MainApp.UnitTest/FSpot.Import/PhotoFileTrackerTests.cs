@@ -38,10 +38,21 @@ namespace FSpot.Import
 	public class PhotoFileTrackerTests
 	{
 		static readonly SafeUri sourceUri = new SafeUri ("/path/to/photo.jpg");
+		static readonly SafeUri rawUri = new SafeUri ("/path/to/photo.nef");
 		static readonly SafeUri xmpSourceUri = new SafeUri ("/path/to/photo.xmp");
 
+		static readonly SafeUri targetBase = new SafeUri ("/photo/store/2016/02/06");
 		static readonly SafeUri targetUri = new SafeUri ("/photo/store/2016/02/06/photo.jpg");
+		static readonly SafeUri targetUri1 = new SafeUri ("/photo/store/2016/02/06/photo-1.jpg");
+		static readonly SafeUri targetUri2 = new SafeUri ("/photo/store/2016/02/06/photo-2.jpg");
+		static readonly SafeUri targetRawUri = new SafeUri ("/photo/store/2016/02/06/photo.nef");
+		static readonly SafeUri targetRawUri1 = new SafeUri ("/photo/store/2016/02/06/photo-1.nef");
+		static readonly SafeUri targetRawUri2 = new SafeUri ("/photo/store/2016/02/06/photo-2.nef");
+		static readonly SafeUri targetRawUri3 = new SafeUri ("/photo/store/2016/02/06/photo-3.nef");
+		static readonly SafeUri targetRawUri4 = new SafeUri ("/photo/store/2016/02/06/photo-4.nef");
 		static readonly SafeUri xmpTargetUri = new SafeUri ("/photo/store/2016/02/06/photo.xmp");
+		static readonly SafeUri xmpTargetUri1 = new SafeUri ("/photo/store/2016/02/06/photo-1.xmp");
+		static readonly SafeUri xmpTargetUri2 = new SafeUri ("/photo/store/2016/02/06/photo-2.xmp");
 
 		[Test]
 		public void InitialListsAreEmpty ()
@@ -53,13 +64,13 @@ namespace FSpot.Import
 		}
 
 		[Test]
-		public void DontCopyExistingFile ()
+		public void DontCopyIfSourceIsTargetFile ()
 		{
 			var photo = PhotoMock.Create (targetUri);
 			var fileSystem = new FileSystemMock ();
 			var tracker = new PhotoFileTracker (fileSystem);
 
-			tracker.CopyIfNeeded (photo, targetUri);
+			tracker.CopyIfNeeded (photo, targetBase);
 
 			Assert.AreEqual (0, tracker.OriginalFiles.Count ());
 			Assert.AreEqual (0, tracker.CopiedFiles.Count ());
@@ -74,7 +85,7 @@ namespace FSpot.Import
 			var fileSystem = new FileSystemMock ();
 			var tracker = new PhotoFileTracker (fileSystem);
 
-			tracker.CopyIfNeeded (photo, targetUri);
+			tracker.CopyIfNeeded (photo, targetBase);
 
 			CollectionAssert.AreEquivalent (new[]{ sourceUri }, tracker.OriginalFiles);
 			CollectionAssert.AreEquivalent (new[]{ targetUri }, tracker.CopiedFiles);
@@ -89,13 +100,83 @@ namespace FSpot.Import
 			var fileSystem = new FileSystemMock (xmpSourceUri);
 			var tracker = new PhotoFileTracker (fileSystem);
 
-			tracker.CopyIfNeeded (photo, targetUri);
+			tracker.CopyIfNeeded (photo, targetBase);
 
 			CollectionAssert.AreEquivalent (new[]{ sourceUri, xmpSourceUri }, tracker.OriginalFiles);
 			CollectionAssert.AreEquivalent (new[]{ targetUri, xmpTargetUri }, tracker.CopiedFiles);
 			Assert.AreEqual (targetUri, photo.DefaultVersion.Uri);
 			fileSystem.FileMock.Verify (f => f.Copy (sourceUri, targetUri, false), Times.Once);
 			fileSystem.FileMock.Verify (f => f.Copy (xmpSourceUri, xmpTargetUri, true), Times.Once);
+		}
+
+		[Test]
+		public void CopyWithNewNameIfTargetAlreadyExists ()
+		{
+			var photo = PhotoMock.Create (sourceUri);
+			var fileSystem = new FileSystemMock (targetUri);
+			var tracker = new PhotoFileTracker (fileSystem);
+
+			tracker.CopyIfNeeded (photo, targetBase);
+
+			CollectionAssert.AreEquivalent (new[]{ sourceUri }, tracker.OriginalFiles);
+			CollectionAssert.AreEquivalent (new[]{ targetUri1 }, tracker.CopiedFiles);
+			Assert.AreEqual (targetUri1, photo.DefaultVersion.Uri);
+			fileSystem.FileMock.Verify (f => f.Copy (sourceUri, targetUri1, false), Times.Once);
+		}
+
+		[Test]
+		public void XmpIsCopiedWithSameNameAsDefaultVersion ()
+		{
+			var photo = PhotoMock.Create (sourceUri);
+			var fileSystem = new FileSystemMock (targetUri, xmpSourceUri);
+			var tracker = new PhotoFileTracker (fileSystem);
+
+			tracker.CopyIfNeeded (photo, targetBase);
+
+			CollectionAssert.AreEquivalent (new[]{ sourceUri, xmpSourceUri }, tracker.OriginalFiles);
+			CollectionAssert.AreEquivalent (new[]{ targetUri1, xmpTargetUri1 }, tracker.CopiedFiles);
+			Assert.AreEqual (targetUri1, photo.DefaultVersion.Uri);
+			fileSystem.FileMock.Verify (f => f.Copy (sourceUri, targetUri1, false), Times.Once);
+			fileSystem.FileMock.Verify (f => f.Copy (xmpSourceUri, xmpTargetUri1, true), Times.Once);
+		}
+
+		[Test]
+		public void PhotoWithVersionsAndXmpIsCopied ()
+		{
+			var photo = PhotoMock.Create (sourceUri, rawUri);
+			var fileSystem = new FileSystemMock (xmpSourceUri);
+			var tracker = new PhotoFileTracker (fileSystem);
+
+			tracker.CopyIfNeeded (photo, targetBase);
+
+			CollectionAssert.AreEquivalent (new[]{ sourceUri, rawUri, xmpSourceUri }, tracker.OriginalFiles);
+			CollectionAssert.AreEquivalent (new[]{ targetUri, targetRawUri, xmpTargetUri }, tracker.CopiedFiles);
+			Assert.AreEqual (targetUri, photo.DefaultVersion.Uri);
+			Assert.AreEqual (targetRawUri, photo.Versions.ElementAt(1).Uri);
+			fileSystem.FileMock.Verify (f => f.Copy (sourceUri, targetUri, false), Times.Once);
+			fileSystem.FileMock.Verify (f => f.Copy (rawUri, targetRawUri, false), Times.Once);
+			fileSystem.FileMock.Verify (f => f.Copy (xmpSourceUri, xmpTargetUri, true), Times.Once);
+		}
+
+		[Test]
+		public void FilesAreRenamedToNextFreeIndex ()
+		{
+			var photo = PhotoMock.Create (sourceUri, rawUri);
+			var fileSystem = new FileSystemMock (
+				xmpSourceUri,
+				targetUri, targetUri1,
+				targetRawUri, targetRawUri1, targetRawUri2, targetRawUri4);
+			var tracker = new PhotoFileTracker (fileSystem);
+
+			tracker.CopyIfNeeded (photo, targetBase);
+
+			CollectionAssert.AreEquivalent (new[]{ sourceUri, rawUri, xmpSourceUri }, tracker.OriginalFiles);
+			CollectionAssert.AreEquivalent (new[]{ targetUri2, targetRawUri3, xmpTargetUri2 }, tracker.CopiedFiles);
+			Assert.AreEqual (targetUri2, photo.DefaultVersion.Uri);
+			Assert.AreEqual (targetRawUri3, photo.Versions.ElementAt(1).Uri);
+			fileSystem.FileMock.Verify (f => f.Copy (sourceUri, targetUri2, false), Times.Once);
+			fileSystem.FileMock.Verify (f => f.Copy (rawUri, targetRawUri3, false), Times.Once);
+			fileSystem.FileMock.Verify (f => f.Copy (xmpSourceUri, xmpTargetUri2, true), Times.Once);
 		}
 	}
 }

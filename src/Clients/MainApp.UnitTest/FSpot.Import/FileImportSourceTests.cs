@@ -1,5 +1,5 @@
 ﻿//
-// PhotoMock.cs
+// FileImportSourceTests.cs
 //
 // Author:
 //   Daniel Köb <daniel.koeb@peony.at>
@@ -26,41 +26,38 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using System.Linq;
-using FSpot.Core;
 using Hyena;
-using Moq;
+using NUnit.Framework;
 
-namespace Mocks
+namespace FSpot.Import
 {
-	public static class PhotoMock
+	[TestFixture]
+	public class FileImportSourceTests
 	{
-		public static IPhoto Create (SafeUri uri, params SafeUri[] versionUris)
+		[Test]
+		public void TestIsJpegRawPair ()
 		{
-			// don't care about time
-			return Create (uri, DateTime.MinValue, versionUris);
-		}
+			var jpeg = new SafeUri ("file:///a/photo.jpeg");
+			var jpg = new SafeUri ("file:///a/photo.jpg");
 
-		public static IPhoto Create (SafeUri uri, DateTime time, params SafeUri[] versionUris)
-		{
-			var defaultVersionMock = new Mock<IPhotoVersion> ();
-			defaultVersionMock.SetupProperty (v => v.Uri, uri);
-			var defaultVersion = defaultVersionMock.Object;
+			var nef = new SafeUri ("file:///a/photo.nef");
+			var nef2 = new SafeUri ("file:///b/photo.nef");
+			var crw = new SafeUri ("file:///a/photo.crw");
+			var crw2 = new SafeUri ("file:///a/photo2.jpeg");
 
-			var versions = versionUris.Select (u => {
-				var mock = new Mock<IPhotoVersion> ();
-				mock.SetupProperty (m => m.Uri, u);
-				return mock.Object;
-			}).ToList ();
+			// both jpegs
+			Assert.IsFalse (FileImportSource.IsJpegRawPair (jpeg, jpg));
+			// both raw
+			Assert.IsFalse (FileImportSource.IsJpegRawPair (nef, crw));
+			// different filename
+			Assert.IsFalse (FileImportSource.IsJpegRawPair (jpeg, crw2));
+			// different basedir
+			Assert.IsFalse (FileImportSource.IsJpegRawPair (jpeg, nef2));
 
-			var allVersions = new[]{ defaultVersion }.Concat (versions);
-
-			var photo = new Mock<IPhoto> ();
-			photo.Setup (p => p.DefaultVersion).Returns (defaultVersion);
-			photo.Setup (p => p.Time).Returns (time);
-			photo.Setup (p => p.Versions).Returns (allVersions);
-			return photo.Object;
+			Assert.IsTrue (FileImportSource.IsJpegRawPair (jpeg, nef));
+			Assert.IsTrue (FileImportSource.IsJpegRawPair (jpeg, crw));
+			Assert.IsTrue (FileImportSource.IsJpegRawPair (jpg, nef));
 		}
 	}
 }
+

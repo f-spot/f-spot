@@ -29,6 +29,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using FSpot.Utils;
 using Hyena;
 using Mono.Unix.Native;
@@ -39,9 +40,16 @@ namespace FSpot.Core
 	{
 		bool metadata_parsed;
 
-		public FilePhoto (SafeUri uri)
+		readonly List<IPhotoVersion> versions;
+
+		public FilePhoto (SafeUri uri) : this (uri, null)
 		{
-			DefaultVersion = new FilePhotoVersion { Uri = uri };
+		}
+
+		public FilePhoto (SafeUri uri, string name)
+		{
+			versions = new List<IPhotoVersion> ();
+			versions.Add (new FilePhotoVersion { Uri = uri, Name = name });
 		}
 
 		public bool IsInvalid {
@@ -95,11 +103,15 @@ namespace FSpot.Core
 			}
 		}
 
-		public IPhotoVersion DefaultVersion { get; private set; }
+		public IPhotoVersion DefaultVersion {
+			get {
+				return versions.First ();
+			}
+		}
 
 		public IEnumerable<IPhotoVersion> Versions {
 			get {
-				yield return DefaultVersion;
+				return versions;
 			}
 		}
 
@@ -120,11 +132,15 @@ namespace FSpot.Core
 			get { return 0; }
 		}
 
+		public void AddVersion(SafeUri uri, string name)
+		{
+			versions.Add (new FilePhotoVersion { Uri = uri, Name = name });
+		}
+
 		class FilePhotoVersion : IPhotoVersion
 		{
-			public string Name {
-				get { return String.Empty; }
-			}
+			public string Name { get; set; }
+
 			public bool IsProtected {
 				get { return true; }
 			}

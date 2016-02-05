@@ -30,11 +30,13 @@
 //
 
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using FSpot.Imaging;
 using FSpot.Utils;
 using Gtk;
 using Hyena;
+using Mono.Unix;
 
 namespace FSpot.Import
 {
@@ -68,7 +70,7 @@ namespace FSpot.Import
 			}
 		}
 
-		public void StartPhotoScan (bool recurseSubdirectories)
+		public void StartPhotoScan (bool recurseSubdirectories, bool mergeRawAndJpeg)
 		{
 			if (PhotoScanner != null) {
 				run_photoscanner = false;
@@ -76,34 +78,89 @@ namespace FSpot.Import
 			}
 
 			run_photoscanner = true;
-			PhotoScanner = ThreadAssist.Spawn (() => ScanPhotos (recurseSubdirectories));
+			PhotoScanner = ThreadAssist.Spawn (() => ScanPhotos (recurseSubdirectories, mergeRawAndJpeg));
 		}
 
-		protected virtual void ScanPhotos (bool recurseSubdirectories)
+		protected virtual void ScanPhotos (bool recurseSubdirectories, bool mergeRawAndJpeg)
 		{
-			ScanPhotoDirectory (recurseSubdirectories, Root);
+			ScanPhotoDirectory (recurseSubdirectories, mergeRawAndJpeg, Root);
 			FirePhotoScanFinished ();
 		}
 
-		protected void ScanPhotoDirectory (bool recurseSubdirectories, SafeUri uri)
+		protected void ScanPhotoDirectory (bool recurseSubdirectories, bool mergeRawAndJpeg, SafeUri uri)
 		{
-			var enumerator = new RecursiveFileEnumerator (uri) {
-						Recurse = recurseSubdirectories,
-						CatchErrors = true,
-						IgnoreSymlinks = true
-			};
-			foreach (var file in enumerator) {
-				if (ImageFile.HasLoader (new SafeUri (file.Uri, true))) {
-					var info = new FileImportInfo (new SafeUri (file.Uri, true));
-					ThreadAssist.ProxyToMain (() => {
+			var enumerator = (new RecursiveFileEnumerator (uri) {
+				Recurse = recurseSubdirectories,
+				CatchErrors = true,
+				IgnoreSymlinks = true
+			}).GetEnumerator ();
+
+			SafeUri file = null;
+
+			while (true) {
+				if (file == null) {
+					file = NextImageFileOrNull(enumerator);
+					if (file == null)
+						break;
+				}
+
+				// peek the next file to see if we have a RAW+JPEG combination
+				// skip any non-image files
+				SafeUri nextFile = NextImageFileOrNull(enumerator);
+
+				SafeUri original;
+				SafeUri version = null;
+				if (mergeRawAndJpeg && nextFile != null && IsJpegRawPair (file, nextFile)) {
+					// RAW+JPEG: import as one photo with versions
+					original = ImageFile.IsRaw (file) ? file : nextFile;
+					version = ImageFile.IsRaw (file) ? nextFile : file;
+					// current and next files consumed in this iteration,
+					// prepare to get next file on next iteration
+					file = null;
+				} else {
+					// import current file as single photo
+					original = file;
+					// forward peeked file to next iteration of loop
+					file = nextFile;
+				}
+
+				FileImportInfo info;
+				if (version == null) {
+					info  = new FileImportInfo (original, Catalog.GetString ("Original"));
+				} else {
+					info  = new FileImportInfo (original, Catalog.GetString ("Original RAW"));
+					info.AddVersion (version, Catalog.GetString ("Original JPEG"));
+				}
+
+				ThreadAssist.ProxyToMain (() => {
 						if (PhotoFoundEvent != null) {
 							PhotoFoundEvent.Invoke (this, new PhotoFoundEventArgs { FileImportInfo = info });
 						}
 					});
-				}
+
 				if (!run_photoscanner)
 					return;
 			}
+		}
+
+		static SafeUri NextImageFileOrNull(IEnumerator<GLib.File> enumerator)
+		{
+			SafeUri nextImageFile;
+			do {
+				if (enumerator.MoveNext ())
+					nextImageFile = new SafeUri (enumerator.Current.Uri, true);
+				else
+					return null;
+			} while (!ImageFile.HasLoader (nextImageFile));
+			return nextImageFile;
+		}
+
+		internal static bool IsJpegRawPair(SafeUri file1, SafeUri file2)
+		{
+			return file1.GetBaseUri ().ToString () == file2.GetBaseUri ().ToString () &&
+				file1.GetFilenameWithoutExtension () == file2.GetFilenameWithoutExtension () &&
+				((ImageFile.IsJpeg (file1) && ImageFile.IsRaw (file2)) ||
+				 (ImageFile.IsRaw (file1) && ImageFile.IsJpeg (file2)));
 		}
 
 		public void Deactivate ()

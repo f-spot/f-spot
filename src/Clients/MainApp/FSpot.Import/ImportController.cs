@@ -68,6 +68,7 @@ namespace FSpot.Import
 		bool remove_originals;
 		bool recurse_subdirectories = true;
 		bool duplicate_detect = true;
+		bool merge_raw_and_jpeg = true;
 
 		public bool CopyFiles {
 			get { return copy_files; }
@@ -95,6 +96,17 @@ namespace FSpot.Import
 			set { duplicate_detect = value; SavePreferences (); }
 		}
 
+		public bool MergeRawAndJpeg {
+			get { return merge_raw_and_jpeg; }
+			set {
+				if (merge_raw_and_jpeg == value)
+					return;
+				merge_raw_and_jpeg = value;
+				SavePreferences ();
+				RescanPhotos ();
+			}
+		}
+
 		void LoadPreferences ()
 		{
 			if (!persist_preferences)
@@ -104,6 +116,7 @@ namespace FSpot.Import
 			recurse_subdirectories = Preferences.Get<bool> (Preferences.IMPORT_INCLUDE_SUBFOLDERS);
 			duplicate_detect = Preferences.Get<bool> (Preferences.IMPORT_CHECK_DUPLICATES);
 			remove_originals = Preferences.Get<bool> (Preferences.IMPORT_REMOVE_ORIGINALS);
+			merge_raw_and_jpeg = Preferences.Get<bool> (Preferences.IMPORT_MERGE_RAW_AND_JPEG);
 		}
 
 		void SavePreferences ()
@@ -115,6 +128,7 @@ namespace FSpot.Import
 			Preferences.Set(Preferences.IMPORT_INCLUDE_SUBFOLDERS, recurse_subdirectories);
 			Preferences.Set(Preferences.IMPORT_CHECK_DUPLICATES, duplicate_detect);
 			Preferences.Set(Preferences.IMPORT_REMOVE_ORIGINALS, remove_originals);
+			Preferences.Set (Preferences.IMPORT_MERGE_RAW_AND_JPEG, merge_raw_and_jpeg);
 		}
 
 #endregion
@@ -214,7 +228,7 @@ namespace FSpot.Import
 			Photos.Collection = pl;
 			ActiveSource.PhotoFoundEvent += OnPhotoFound;
 			ActiveSource.PhotoScanFinishedEvent += OnPhotoScanFinished;
-			ActiveSource.StartPhotoScan (RecurseSubdirectories);
+			ActiveSource.StartPhotoScan (RecurseSubdirectories, MergeRawAndJpeg);
 			FireEvent (ImportEvent.PhotoScanStarted);
 		}
 
@@ -388,14 +402,14 @@ namespace FSpot.Import
 			}
 
 			if (CopyFiles) {
-				var destination = FindImportDestination (item, Global.PhotoUri, file_system);
-				EnsureDirectory (destination.GetBaseUri ());
+				var destinationBase = FindImportDestination (item, Global.PhotoUri);
+				EnsureDirectory (destinationBase);
 				// Copy into photo folder.
-				photo_file_tracker.CopyIfNeeded (item, destination);
+				photo_file_tracker.CopyIfNeeded (item, destinationBase);
 			}
 
 			// Import photo
-			var photo = store.CreateFrom (item, true, roll.Id);
+			var photo = store.CreateFrom (item, false, roll.Id);
 
 			bool needs_commit = false;
 
@@ -418,33 +432,13 @@ namespace FSpot.Import
 			imported_photos.Add (photo.Id);
 		}
 
-		internal static SafeUri FindImportDestination (IPhoto item, SafeUri baseUri, IFileSystem fileSystem)
+		internal static SafeUri FindImportDestination (IPhoto item, SafeUri baseUri)
 		{
-			var uri = item.DefaultVersion.Uri;
-
-			// Find a new unique location inside the photo folder
-			string name = uri.GetFilename ();
 			DateTime time = item.Time;
-
-			var dest_uri = baseUri
+			return baseUri
 				.Append (time.Year.ToString ())
 				.Append (String.Format ("{0:D2}", time.Month))
 				.Append (String.Format ("{0:D2}", time.Day));
-
-			// If the destination we'd like to use is the file itself return that
-			if (dest_uri.Append (name).Equals (uri))
-				return uri;
-
-			// Find an unused name
-			int i = 1;
-			var dest = dest_uri.Append (name);
-			while (fileSystem.File.Exists (dest)) {
-				var filename = uri.GetFilenameWithoutExtension ();
-				var extension = uri.GetExtension ();
-				dest = dest_uri.Append (String.Format ("{0}-{1}{2}", filename, i++, extension));
-			}
-
-			return dest;
 		}
 
 		static void EnsureDirectory (SafeUri uri)

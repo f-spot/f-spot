@@ -34,7 +34,7 @@ namespace FSpot.Import
 {
 	public class FileImportInfo : FilePhoto
 	{
-		public FileImportInfo (SafeUri original) : base (original)
+		public FileImportInfo (SafeUri original, string name) : base (original, name)
 		{
 		}
 

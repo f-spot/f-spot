@@ -37,62 +37,18 @@ namespace FSpot.Import
 	[TestFixture]
 	public class ImportControllerTests
 	{
-		static readonly SafeUri targetBaseUri = new  SafeUri ("/photo/store");
-		static readonly SafeUri sourceUri = new SafeUri ("/path/to/photo.jpg");
-		static readonly SafeUri targetUri = new SafeUri ("/photo/store/2016/02/06/photo.jpg");
-
-		static readonly DateTime date = new DateTime (2016, 2, 6);
-
 		[Test]
-		// Analysis disable once InconsistentNaming
-		public void FindImportDestination_ReturnsTargetUri_IfSourceIsTarget ()
+		public void FindImportDestinationTest ()
 		{
-			var source = PhotoMock.Create (targetUri, date);
+			var fileUri = new SafeUri ("/path/to/photo.jpg");
+			var targetBaseUri = new  SafeUri ("/photo/store");
+			var targetUri = new SafeUri ("/photo/store/2016/02/06");
+			var date = new DateTime (2016, 2, 6);
+			var source = PhotoMock.Create (fileUri, date);
 
-			var result = ImportController.FindImportDestination (source, targetBaseUri, null);
+			var result = ImportController.FindImportDestination (source, targetBaseUri);
 
 			Assert.AreEqual (targetUri, result);
-		}
-
-		[Test]
-		// Analysis disable once InconsistentNaming
-		public void FindImportDestination_ReturnsTargetUri_IfTargetDoesNotExist ()
-		{
-			var source = PhotoMock.Create (sourceUri, date);
-			var fileSystem = new FileSystemMock ();
-
-			var result = ImportController.FindImportDestination (source, targetBaseUri, fileSystem);
-
-			Assert.AreEqual (targetUri, result);
-		}
-
-		[Test]
-		// Analysis disable once InconsistentNaming
-		public void FindImportDestination_ReturnsTargetUriWithIndex_IfTargetDoesExist ()
-		{
-			var source = PhotoMock.Create (sourceUri, date);
-			var fileSystem = new FileSystemMock (new[]{ targetUri });
-
-			var result = ImportController.FindImportDestination (source, targetBaseUri, fileSystem);
-
-			Assert.AreEqual (new SafeUri ("/photo/store/2016/02/06/photo-1.jpg"), result);
-		}
-
-		[Test]
-		// Analysis disable once InconsistentNaming
-		public void FindImportDestination_ReturnsTargetUriWithNextFreeIndex_IfTargetDoesExist ()
-		{
-			var source = PhotoMock.Create (sourceUri, date);
-			var fileSystem = new FileSystemMock (new[] {
-				targetUri,
-				new SafeUri ("/photo/store/2016/02/06/photo-1.jpg"),
-				new SafeUri ("/photo/store/2016/02/06/photo-2.jpg"),
-				new SafeUri ("/photo/store/2016/02/06/photo-4.jpg")
-			});
-
-			var result = ImportController.FindImportDestination (source, targetBaseUri, fileSystem);
-
-			Assert.AreEqual (new SafeUri ("/photo/store/2016/02/06/photo-3.jpg"), result);
 		}
 	}
 }

@@ -48,11 +48,11 @@ namespace FSpot.Import
 			this.uris = uris;
 		}
 
-		protected override void ScanPhotos (bool recurseSubdirectories)
+		protected override void ScanPhotos (bool recurseSubdirectories, bool mergeRawAndJpeg)
 		{
 			foreach (var uri in uris) {
 				Log.Debug ("Scanning " + uri);
-				ScanPhotoDirectory (recurseSubdirectories, uri);
+				ScanPhotoDirectory (recurseSubdirectories, mergeRawAndJpeg, uri);
 			}
 			FirePhotoScanFinished ();
 		}

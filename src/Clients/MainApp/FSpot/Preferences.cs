@@ -2,10 +2,12 @@
 // Preferences.cs
 //
 // Author:
+//   Daniel Köb <daniel.koeb@peony.at>
 //   Ruben Vermeersch <ruben@savanne.be>
 //   Stephane Delcroix <stephane@delcroix.org>
 //   Larry Ewing <lewing@novell.com>
 //
+// Copyright (C) 2016 Daniel Köb
 // Copyright (C) 2005-2010 Novell, Inc.
 // Copyright (C) 2007, 2010 Ruben Vermeersch
 // Copyright (C) 2006-2009 Stephane Delcroix
@@ -63,6 +65,7 @@ namespace FSpot
 		public const string IMPORT_INCLUDE_SUBFOLDERS = "/apps/f-spot/import/include_subfolders";
 		public const string IMPORT_CHECK_DUPLICATES = "/apps/f-spot/import/check_duplicates";
 		public const string IMPORT_REMOVE_ORIGINALS = "/apps/f-spot/import/remove_originals";
+		public const string IMPORT_MERGE_RAW_AND_JPEG = "/apps/f-spot/import/merge_raw_and_jpeg";
 
 		public const string VIEWER_WIDTH = APP_FSPOT + "ui/viewer_width";
 		public const string VIEWER_HEIGHT = APP_FSPOT + "ui/viewer_height";
@@ -208,6 +211,7 @@ namespace FSpot
 			case IMPORT_CHECK_DUPLICATES:
 			case IMPORT_COPY_FILES:
 			case IMPORT_INCLUDE_SUBFOLDERS:
+			case IMPORT_MERGE_RAW_AND_JPEG:
 				return true;
 			default:
 				return null;
