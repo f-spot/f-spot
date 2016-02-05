@@ -29,124 +29,122 @@
 
 using System;
 using System.Collections.Generic;
-
-using Hyena;
 using FSpot.Utils;
-
+using Hyena;
 using Mono.Unix.Native;
 
 namespace FSpot.Core
 {
-    public class FilePhoto : IPhoto, IInvalidPhotoCheck
-    {
-        bool metadata_parsed = false;
+	public class FilePhoto : IPhoto, IInvalidPhotoCheck
+	{
+		bool metadata_parsed;
 
-        public FilePhoto (SafeUri uri)
-        {
-            DefaultVersion = new FilePhotoVersion { Uri = uri };
-        }
+		public FilePhoto (SafeUri uri)
+		{
+			DefaultVersion = new FilePhotoVersion { Uri = uri };
+		}
 
-        public bool IsInvalid {
-            get {
-                if (metadata_parsed)
-                    return false;
+		public bool IsInvalid {
+			get {
+				if (metadata_parsed)
+					return false;
 
-                try {
-                    EnsureMetadataParsed ();
-                    return false;
-                } catch (Exception) {
-                    return true;
-                }
-            }
-        }
+				try {
+					EnsureMetadataParsed ();
+					return false;
+				} catch (Exception) {
+					return true;
+				}
+			}
+		}
 
-        void EnsureMetadataParsed ()
-        {
-            if (metadata_parsed)
-                return;
-            
-            using (var metadata = Metadata.Parse (DefaultVersion.Uri)) {
-                if (metadata != null) {
-                    var date = metadata.ImageTag.DateTime;
-                    time = date.HasValue ? date.Value : CreateDate;
-                    description = metadata.ImageTag.Comment;
-                } else {
-                    throw new Exception ("Corrupt File!");
-                }
-            }
-            
-            metadata_parsed = true;
-        }
+		void EnsureMetadataParsed ()
+		{
+			if (metadata_parsed)
+				return;
 
-        DateTime CreateDate {
-            get {
-                var info = GLib.FileFactory.NewForUri (DefaultVersion.Uri).QueryInfo ("time::changed", GLib.FileQueryInfoFlags.None, null);
-                return NativeConvert.ToDateTime ((long)info.GetAttributeULong ("time::changed"));
-            }
-        }
+			using (var metadata = Metadata.Parse (DefaultVersion.Uri)) {
+				if (metadata != null) {
+					var date = metadata.ImageTag.DateTime;
+					time = date.HasValue ? date.Value : CreateDate;
+					description = metadata.ImageTag.Comment;
+				} else {
+					throw new Exception ("Corrupt File!");
+				}
+			}
 
-        public Tag[] Tags {
-            get { return null; }
-        }
+			metadata_parsed = true;
+		}
 
-        DateTime time;
-        public DateTime Time {
-            get {
-                EnsureMetadataParsed ();
-                return time;
-            }
-        }
+		DateTime CreateDate {
+			get {
+				var info = GLib.FileFactory.NewForUri (DefaultVersion.Uri).QueryInfo ("time::changed", GLib.FileQueryInfoFlags.None, null);
+				return NativeConvert.ToDateTime ((long)info.GetAttributeULong ("time::changed"));
+			}
+		}
 
-        public IPhotoVersion DefaultVersion { get; private set; }
+		public Tag[] Tags {
+			get { return null; }
+		}
 
-        public IEnumerable<IPhotoVersion> Versions {
-            get {
-                yield return DefaultVersion;
-            }
-        }
+		DateTime time;
+		public DateTime Time {
+			get {
+				EnsureMetadataParsed ();
+				return time;
+			}
+		}
 
-        string description;
-        public string Description {
-            get {
-                EnsureMetadataParsed ();
-                return description;
-            }
-        }
+		public IPhotoVersion DefaultVersion { get; private set; }
 
-        public string Name {
-            get { return DefaultVersion.Uri.GetFilename (); }
-        }
+		public IEnumerable<IPhotoVersion> Versions {
+			get {
+				yield return DefaultVersion;
+			}
+		}
 
-        public uint Rating {
-                //FIXME ndMaxxer: correct?
-            get { return 0; }
-        }
+		string description;
+		public string Description {
+			get {
+				EnsureMetadataParsed ();
+				return description;
+			}
+		}
 
-        class FilePhotoVersion : IPhotoVersion
-        {
-            public string Name {
-                get { return String.Empty; }
-            }
-            public bool IsProtected {
-                get { return true; }
-            }
+		public string Name {
+			get { return DefaultVersion.Uri.GetFilename (); }
+		}
 
-            public SafeUri BaseUri {
-                get { return Uri.GetBaseUri (); }
-            }
-            public string Filename {
-                get { return Uri.GetFilename (); }
-            }
-            public SafeUri Uri { get; set; }
+		public uint Rating {
+			//FIXME ndMaxxer: correct?
+			get { return 0; }
+		}
 
-            string import_md5 = String.Empty;
-            public string ImportMD5 {
-                get {
-                    if (import_md5 == String.Empty)
-                        import_md5 = HashUtils.GenerateMD5 (Uri);
-                    return import_md5;
-                }
-            }
-        }
-    }
+		class FilePhotoVersion : IPhotoVersion
+		{
+			public string Name {
+				get { return String.Empty; }
+			}
+			public bool IsProtected {
+				get { return true; }
+			}
+
+			public SafeUri BaseUri {
+				get { return Uri.GetBaseUri (); }
+			}
+			public string Filename {
+				get { return Uri.GetFilename (); }
+			}
+			public SafeUri Uri { get; set; }
+
+			string import_md5 = String.Empty;
+			public string ImportMD5 {
+				get {
+					if (import_md5 == String.Empty)
+						import_md5 = HashUtils.GenerateMD5 (Uri);
+					return import_md5;
+				}
+			}
+		}
+	}
 }

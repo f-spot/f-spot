@@ -33,18 +33,16 @@
 
 using System;
 using System.Collections.Generic;
-
-using Mono.Unix;
-
 using FSpot.Core;
 using FSpot.Platform;
-
 using Hyena;
+using Mono.Unix;
 
 namespace FSpot
 {
-	public class Preferences
+	public static class Preferences
 	{
+		// Analysis disable InconsistentNaming
 		public const string APP_FSPOT = "/apps/f-spot/";
 		public const string APP_FSPOT_EXPORT = APP_FSPOT + "export/";
 		public const string APP_FSPOT_EXPORT_TOKENS = APP_FSPOT_EXPORT + "tokens/";
@@ -120,11 +118,11 @@ namespace FSpot
 
 		public const string GSD_THUMBS_MAX_AGE = "/desktop/gnome/thumbnail_cache/maximum_age";
 		public const string GSD_THUMBS_MAX_SIZE = "/desktop/gnome/thumbnail_cache/maximum_size";
+		// Analysis restore InconsistentNaming
 
-
-		private static PreferenceBackend backend;
-		private static EventHandler<NotifyEventArgs> changed_handler;
-		private static PreferenceBackend Backend {
+		static PreferenceBackend backend;
+		static EventHandler<NotifyEventArgs> changed_handler;
+		static PreferenceBackend Backend {
 			get {
 				if (backend == null) {
 					backend = new PreferenceBackend ();
@@ -136,7 +134,7 @@ namespace FSpot
 			}
 		}
 
-		private static Dictionary<string, object> cache = new Dictionary<string, object>();
+		static readonly Dictionary<string, object> cache = new Dictionary<string, object> ();
 
 		static object GetDefault (string key)
 		{
