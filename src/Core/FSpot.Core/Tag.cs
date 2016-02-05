@@ -113,7 +113,7 @@ namespace FSpot.Core
 
 					    if (Math.Max (cached_icon.Width, cached_icon.Height) <= (int)tag_icon_size)
 						    return cached_icon;
-                    } catch (Exception e) {
+                    } catch (Exception) {
                         Console.WriteLine ("missing theme icon: {0}", ThemeIconName);
                         return null;
                     }
