@@ -41,6 +41,16 @@ namespace FSpot.FileSystem
 			return file.Exists;
 		}
 
+		public void Copy (SafeUri source, SafeUri destination, bool overwrite)
+		{
+			var source_file = FileFactory.NewForUri (source);
+			var destination_file = FileFactory.NewForUri (destination);
+			var flags = FileCopyFlags.AllMetadata;
+			if (overwrite)
+				flags |= FileCopyFlags.Overwrite;
+			source_file.Copy (destination_file, flags, null, null);
+		}
+
 		#endregion
 	}
 }

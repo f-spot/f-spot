@@ -230,6 +230,7 @@
     <Compile Include="FSpot.Import\PhotoFoundEventArgs.cs" />
     <Compile Include="FSpot.Import\PhotoScanFinishedEventArgs.cs" />
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="FSpot.Import\PhotoFileTracker.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\icons\f-spot-not.png">

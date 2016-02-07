@@ -33,6 +33,7 @@ namespace FSpot.FileSystem
 	public interface IFile
 	{
 		bool Exists (SafeUri uri);
+		void Copy (SafeUri source, SafeUri destination, bool overwrite);
 	}
 }
 

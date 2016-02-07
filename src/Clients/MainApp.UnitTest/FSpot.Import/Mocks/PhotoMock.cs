@@ -35,10 +35,16 @@ namespace Mocks
 {
 	public static class PhotoMock
 	{
+		public static IPhoto Create (SafeUri uri)
+		{
+			// don't care about time
+			return Create (uri, DateTime.MinValue);
+		}
+
 		public static IPhoto Create (SafeUri uri, DateTime time)
 		{
 			var version = new Mock<IPhotoVersion> ();
-			version.Setup (v => v.Uri).Returns (uri);
+			version.SetupProperty (v => v.Uri, uri);
 			var photo = new Mock<IPhoto> ();
 			photo.Setup (p => p.DefaultVersion).Returns (version.Object);
 			photo.Setup (p => p.Time).Returns (time);

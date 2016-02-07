@@ -265,8 +265,7 @@ namespace FSpot.Import
 
 		Stack<SafeUri> created_directories;
 		List<uint> imported_photos;
-		List<SafeUri> copied_files;
-		List<SafeUri> original_files;
+		PhotoFileTracker photo_file_tracker;
 		PhotoStore store = App.Instance.Database.Photos;
 		RollStore rolls = App.Instance.Database.Rolls;
 		volatile bool photo_scan_running;
@@ -284,8 +283,7 @@ namespace FSpot.Import
 			App.Instance.Database.Sync = false;
 			created_directories = new Stack<SafeUri> ();
 			imported_photos = new List<uint> ();
-			copied_files = new List<SafeUri> ();
-			original_files = new List<SafeUri> ();
+			photo_file_tracker = new PhotoFileTracker (file_system);
 			metadata_importer = new MetadataImporter ();
 			CreatedRoll = rolls.Create ();
 
@@ -335,7 +333,7 @@ namespace FSpot.Import
 		void FinishImport ()
 		{
 			if (RemoveOriginals) {
-				foreach (var uri in original_files) {
+				foreach (var uri in photo_file_tracker.OriginalFiles) {
 					try {
 						var file = GLib.FileFactory.NewForUri (uri);
 						file.Delete (null);
@@ -356,7 +354,7 @@ namespace FSpot.Import
 				store.Remove (store.Get (id));
 			}
 
-			foreach (var uri in copied_files) {
+			foreach (var uri in photo_file_tracker.CopiedFiles) {
 				var file = GLib.FileFactory.NewForUri (uri);
 				file.Delete (null);
 			}
@@ -393,7 +391,7 @@ namespace FSpot.Import
 				var destination = FindImportDestination (item, Global.PhotoUri, file_system);
 				EnsureDirectory (destination.GetBaseUri ());
 				// Copy into photo folder.
-				CopyIfNeeded (item, destination);
+				photo_file_tracker.CopyIfNeeded (item, destination);
 			}
 
 			// Import photo
@@ -418,33 +416,6 @@ namespace FSpot.Import
 			ThumbnailLoader.Default.Request (item.DefaultVersion.Uri, ThumbnailSize.Large, 10);
 
 			imported_photos.Add (photo.Id);
-		}
-
-		void CopyIfNeeded (IPhoto item, SafeUri destination)
-		{
-			var source = item.DefaultVersion.Uri;
-
-			if (source.Equals (destination))
-				return;
-
-			// Copy image
-			var file = GLib.FileFactory.NewForUri (source);
-			var new_file = GLib.FileFactory.NewForUri (destination);
-			file.Copy (new_file, GLib.FileCopyFlags.AllMetadata, null, null);
-			copied_files.Add (destination);
-			original_files.Add (source);
-			item.DefaultVersion.Uri = destination;
-
-			// Copy XMP sidecar
-			var xmp_original = source.ReplaceExtension(".xmp");
-			var xmp_file = GLib.FileFactory.NewForUri (xmp_original);
-			if (xmp_file.Exists) {
-				var xmp_destination = destination.ReplaceExtension (".xmp");
-				var new_xmp_file = GLib.FileFactory.NewForUri (xmp_destination);
-				xmp_file.Copy (new_xmp_file, GLib.FileCopyFlags.AllMetadata | GLib.FileCopyFlags.Overwrite, null, null);
-				copied_files.Add (xmp_destination);
-				original_files.Add (xmp_original);
-			}
 		}
 
 		internal static SafeUri FindImportDestination (IPhoto item, SafeUri baseUri, IFileSystem fileSystem)

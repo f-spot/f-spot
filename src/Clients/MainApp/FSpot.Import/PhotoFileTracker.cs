@@ -1,5 +1,5 @@
 ﻿//
-// FileSystemMock.cs
+// PhotoFileTracker.cs
 //
 // Author:
 //   Daniel Köb <daniel.koeb@peony.at>
@@ -26,37 +26,58 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System.Collections.Generic;
+using FSpot.Core;
 using FSpot.FileSystem;
+using FSpot.Utils;
 using Hyena;
-using Moq;
 
-namespace Mocks
+namespace FSpot.Import
 {
-	public class FileSystemMock : IFileSystem
+	public class PhotoFileTracker
 	{
-		readonly Mock<IFile> file_mock;
+		readonly IFileSystem file_system;
 
-		public Mock<IFile> FileMock {
+		readonly List<SafeUri> original_files = new List<SafeUri> ();
+		readonly List<SafeUri> copied_files = new List<SafeUri> ();
+
+		public PhotoFileTracker(IFileSystem fileSystem){
+			file_system = fileSystem;
+		}
+
+		public IEnumerable<SafeUri> OriginalFiles {
 			get {
-				return file_mock;
+				return original_files;
 			}
 		}
 
-		public FileSystemMock (params SafeUri[] existingFiles)
+		public IEnumerable<SafeUri> CopiedFiles {
+			get {
+				return copied_files;
+			}
+		}
+
+		public void CopyIfNeeded (IPhoto item, SafeUri destination)
 		{
-			file_mock = new Mock<IFile> ();
-			file_mock.Setup (m => m.Exists (It.IsIn (existingFiles))).Returns (true);
-		}
+			var source = item.DefaultVersion.Uri;
 
-		#region IFileSystem implementation
+			if (source.Equals (destination))
+				return;
 
-		public IFile File {
-			get {
-				return file_mock.Object;
+			// Copy image
+			file_system.File.Copy (source, destination, false);
+			copied_files.Add (destination);
+			original_files.Add (source);
+			item.DefaultVersion.Uri = destination;
+
+			// Copy XMP sidecar
+			var xmp_original = source.ReplaceExtension(".xmp");
+			if (file_system.File.Exists (xmp_original)) {
+				var xmp_destination = destination.ReplaceExtension (".xmp");
+				file_system.File.Copy (xmp_original, xmp_destination, true);
+				copied_files.Add (xmp_destination);
+				original_files.Add (xmp_original);
 			}
 		}
-
-		#endregion
 	}
 }
-
