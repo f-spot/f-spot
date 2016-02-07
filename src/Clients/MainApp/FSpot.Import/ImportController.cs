@@ -33,6 +33,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using FSpot.Core;
+using FSpot.FileSystem;
 using FSpot.Utils;
 using Hyena;
 using Mono.Unix;
@@ -271,6 +272,7 @@ namespace FSpot.Import
 		volatile bool photo_scan_running;
 		MetadataImporter metadata_importer;
 		volatile bool import_cancelled;
+		IFileSystem file_system = new GLibFileSystem ();
 
 		void DoImport ()
 		{
@@ -388,7 +390,7 @@ namespace FSpot.Import
 			}
 
 			if (CopyFiles) {
-				var destination = FindImportDestination (item);
+				var destination = FindImportDestination (item, Global.PhotoUri, file_system);
 				EnsureDirectory (destination.GetBaseUri ());
 				// Copy into photo folder.
 				CopyIfNeeded (item, destination);
@@ -445,7 +447,7 @@ namespace FSpot.Import
 			}
 		}
 
-		SafeUri FindImportDestination (IPhoto item)
+		internal static SafeUri FindImportDestination (IPhoto item, SafeUri baseUri, IFileSystem fileSystem)
 		{
 			var uri = item.DefaultVersion.Uri;
 
@@ -453,7 +455,7 @@ namespace FSpot.Import
 			string name = uri.GetFilename ();
 			DateTime time = item.Time;
 
-			var dest_uri = Global.PhotoUri
+			var dest_uri = baseUri
 				.Append (time.Year.ToString ())
 				.Append (String.Format ("{0:D2}", time.Month))
 				.Append (String.Format ("{0:D2}", time.Day));
@@ -465,12 +467,10 @@ namespace FSpot.Import
 			// Find an unused name
 			int i = 1;
 			var dest = dest_uri.Append (name);
-			var file = GLib.FileFactory.NewForUri (dest);
-			while (file.Exists) {
+			while (fileSystem.File.Exists (dest)) {
 				var filename = uri.GetFilenameWithoutExtension ();
 				var extension = uri.GetExtension ();
 				dest = dest_uri.Append (String.Format ("{0}-{1}{2}", filename, i++, extension));
-				file = GLib.FileFactory.NewForUri (dest);
 			}
 
 			return dest;

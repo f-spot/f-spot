@@ -229,6 +229,7 @@
     <Compile Include="FSpot.Import\ImportEvent.cs" />
     <Compile Include="FSpot.Import\PhotoFoundEventArgs.cs" />
     <Compile Include="FSpot.Import\PhotoScanFinishedEventArgs.cs" />
+    <Compile Include="AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\icons\f-spot-not.png">
@@ -400,6 +401,10 @@
     <ProjectReference Include="..\..\..\lib\gtk-sharp-beans\gtk-sharp-beans.csproj">
       <Project>{069D1797-427D-4CED-A754-233DE64FC5DD}</Project>
       <Name>gtk-sharp-beans</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\FSpot.FileSystem\FSpot.FileSystem.csproj">
+      <Project>{F7821E0B-6861-47D7-9FCE-F853CDF2F838}</Project>
+      <Name>FSpot.FileSystem</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
