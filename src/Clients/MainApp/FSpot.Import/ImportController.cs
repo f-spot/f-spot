@@ -382,15 +382,17 @@ namespace FSpot.Import
 				throw new Exception ("Failed to parse metadata, probably not a photo");
 			}
 
-			var destination = FindImportDestination (item);
-
 			// Do duplicate detection
 			if (DuplicateDetect && store.HasDuplicate (item)) {
 				return;
 			}
 
-			// Copy into photo folder.
-			CopyIfNeeded (item, destination);
+			if (CopyFiles) {
+				var destination = FindImportDestination (item);
+				EnsureDirectory (destination.GetBaseUri ());
+				// Copy into photo folder.
+				CopyIfNeeded (item, destination);
+			}
 
 			// Import photo
 			var photo = store.CreateFrom (item, true, roll.Id);
@@ -411,7 +413,7 @@ namespace FSpot.Import
 			}
 
 			// Prepare thumbnail (Import is I/O bound anyway)
-			ThumbnailLoader.Default.Request (destination, ThumbnailSize.Large, 10);
+			ThumbnailLoader.Default.Request (item.DefaultVersion.Uri, ThumbnailSize.Large, 10);
 
 			imported_photos.Add (photo.Id);
 		}
@@ -447,9 +449,6 @@ namespace FSpot.Import
 		{
 			var uri = item.DefaultVersion.Uri;
 
-			if (!CopyFiles)
-				return uri; // Keep it at the same place
-
 			// Find a new unique location inside the photo folder
 			string name = uri.GetFilename ();
 			DateTime time = item.Time;
@@ -458,7 +457,6 @@ namespace FSpot.Import
 				.Append (time.Year.ToString ())
 				.Append (String.Format ("{0:D2}", time.Month))
 				.Append (String.Format ("{0:D2}", time.Day));
-			EnsureDirectory (dest_uri);
 
 			// If the destination we'd like to use is the file itself return that
 			if (dest_uri.Append (name).Equals (uri))
