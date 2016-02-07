@@ -461,7 +461,7 @@ namespace FSpot.Import
 			EnsureDirectory (dest_uri);
 
 			// If the destination we'd like to use is the file itself return that
-			if (dest_uri.Append (name) == uri)
+			if (dest_uri.Append (name).Equals (uri))
 				return uri;
 
 			// Find an unused name
