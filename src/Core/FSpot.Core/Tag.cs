@@ -108,10 +108,15 @@ namespace FSpot.Core
 				if (ThemeIconName != null) { //Theme icon
 					if (cached_icon != null)
 						cached_icon.Dispose ();
-					cached_icon = GtkUtil.TryLoadIcon (Global.IconTheme, ThemeIconName, (int)tag_icon_size, (Gtk.IconLookupFlags)0);
+					try {
+						cached_icon = GtkUtil.TryLoadIcon (Global.IconTheme, ThemeIconName, (int)tag_icon_size, (Gtk.IconLookupFlags)0);
 
-					if (Math.Max (cached_icon.Width, cached_icon.Height) <= (int)tag_icon_size)
-						return cached_icon;
+						if (Math.Max (cached_icon.Width, cached_icon.Height) <= (int)tag_icon_size)
+							return cached_icon;
+					} catch (Exception) {
+						Console.WriteLine ("missing theme icon: {0}", ThemeIconName);
+						return null;
+					}
 				}
 				if (Icon == null)
 					return null;
