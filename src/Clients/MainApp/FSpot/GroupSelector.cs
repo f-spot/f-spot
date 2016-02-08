@@ -496,6 +496,11 @@ namespace FSpot {
 
 		}
 
+		/// <summary>
+		/// Draws one bar indicating number of photos on specified tick.
+		/// </summary>
+		/// <param name='area'>screen area where legend is to be drawn</param>
+		/// <param name='item'>index of a tick</param>
 		private void DrawBox (Rectangle area, int item)
 		{
 			Box box = new Box (this, item);
@@ -521,6 +526,11 @@ namespace FSpot {
 			return bounds;
 		}
 
+		/// <summary>
+		/// Draws one tick mark on GroupSelector widget.
+		/// </summary>
+		/// <param name='area'>screen area where legend is to be drawn</param>
+		/// <param name='item'>index of a tick</param>
 		public void DrawTick (Rectangle area, int item)
 		{
 			Rectangle tick = TickBounds (item);
@@ -968,9 +978,11 @@ namespace FSpot {
 					active.X = min_x;
 					active.Width = max_x - min_x;
 
+					// white background for entire widget
 					if (active.Intersect (area, out active))
 						GdkWindow.DrawRectangle (Style.BaseGC (State), true, active);
 
+					// draw bars indicating photo counts
 					int i;
 					BoxXHit (area.X, out i);
 					int end;
@@ -983,25 +995,31 @@ namespace FSpot {
 						   this, null, background.X, background.Y,
 						   background.Width, background.Height);
 
+				//	draw ticks and legend
 				if (sub.Intersect (legend, out area)) {
 					int i = 0;
-
 					while (i < box_counts.Length)
 						DrawTick (area, i++);
 				}
 
-				if (has_limits) {
-					if (min_limit != null) {
-						min_limit.Draw (sub);
+				//  draw limit markers and glass if needed (drawing done inside confines of action_area)
+				if(sub.Intersect(action_area, out area))
+				{
+					//	draw limits markers
+					if (has_limits) {
+						if (min_limit != null) {
+							min_limit.Draw (area);
+						}
+
+						if (max_limit != null) {
+							max_limit.Draw (area);
+						}
 					}
 
-					if (max_limit != null) {
-						max_limit.Draw (sub);
+					//	draw glass
+					if (glass != null) {
+						glass.Draw (area);
 					}
-				}
-
-				if (glass != null) {
-					glass.Draw (sub);
 				}
 			}
 			return base.OnExposeEvent (args);
