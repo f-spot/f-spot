@@ -63,7 +63,7 @@ namespace FSpot {
 
 		public Gdk.Rectangle background;
 		public Gdk.Rectangle legend;
-		public Gdk.Rectangle action;
+		public Gdk.Rectangle action_area;
 
 		Pango.Layout [] tick_layouts;
 		int [] box_counts = new int [0];
@@ -333,8 +333,8 @@ namespace FSpot {
 			if (args.Button == 3)
 				return DrawOrderMenu (args);
 
-			double x = args.X + action.X;
-			double y = args.Y + action.Y;
+			double x = args.X + action_area.X;
+			double y = args.Y + action_area.Y;
 
 			if (glass.Contains (x, y)) {
 				glass.StartDrag (x, y, args.Time);
@@ -358,8 +358,8 @@ namespace FSpot {
 
 		protected override bool OnButtonReleaseEvent (Gdk.EventButton args)
 		{
-			double x = args.X + action.X;
-			double y = args.Y + action.Y;
+			double x = args.X + action_area.X;
+			double y = args.Y + action_area.Y;
 
 			if (glass.Dragging) {
 				glass.EndDrag (x, y);
@@ -379,8 +379,8 @@ namespace FSpot {
 
 		protected override bool OnMotionNotifyEvent (Gdk.EventMotion args)
 		{
-			double x = args.X + action.X;
-			double y = args.Y + action.Y;
+			double x = args.X + action_area.X;
+			double y = args.Y + action_area.Y;
 
 			//Rectangle box = glass.Bounds ();
 			//Console.WriteLine ("please {0} and {1} in box {2}", x, y, box);
@@ -415,10 +415,10 @@ namespace FSpot {
 
 
 
-			attr.X = action.X;
-			attr.Y = action.Y;
-			attr.Width = action.Width;
-			attr.Height = action.Height;
+			attr.X = action_area.X;
+			attr.Y = action_area.Y;
+			attr.Width = action_area.Width;
+			attr.Height = action_area.Height;
 			attr.Wclass = WindowClass.InputOnly;
 			attr.EventMask = (int) Events;
 			attr.EventMask |= (int) (EventMask.ButtonPressMask |
@@ -1080,6 +1080,19 @@ namespace FSpot {
 			left_delay.Stop ();
 		}
 
+		private void SetMouseActionArea ()
+		{
+			Rectangle glass_bounds = glass.Bounds ();
+			action_area = background;
+			// expand action area to include bounds area
+			action_area.Y = glass_bounds.Y;
+			action_area.Height = glass_bounds.Height;
+
+			//	resize event window to match new action area
+			if (event_window != null)
+				event_window.MoveResize (action_area.X, action_area.Y, action_area.Width, action_area.Height);
+		}
+
 		protected override void OnSizeAllocated (Gdk.Rectangle alloc)
 		{
 			base.OnSizeAllocated (alloc);
@@ -1108,10 +1121,7 @@ namespace FSpot {
 			legend = new Rectangle (background.X, background.Y,
 						background.Width, legend_height);
 
-			action = background.Union (glass.Bounds ());
-
-			if (event_window != null)
-				event_window.MoveResize (action.X, action.Y, action.Width, action.Height);
+			SetMouseActionArea ();
 
 			this.Offset = this.Offset;
 
