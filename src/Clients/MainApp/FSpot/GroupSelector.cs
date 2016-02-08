@@ -442,11 +442,11 @@ namespace FSpot {
 			get {
 				switch (mode) {
 				case RangeType.All:
-					return Math.Max (1.0, background.Width / (double) box_counts.Length);
+					return Math.Max (1.0, box_counts.Length == 0 ? 0 : background.Width / (double) box_counts.Length);
 				case RangeType.Fixed:
 					return background.Width / (double) 12;
 				case RangeType.Min:
-					return Math.Max (MIN_BOX_WIDTH, background.Width / (double) box_counts.Length);
+					return Math.Max (MIN_BOX_WIDTH, box_counts.Length == 0 ? 0 : background.Width / (double) box_counts.Length);
 				default:
 					return (double) MIN_BOX_WIDTH;
 				}
