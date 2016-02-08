@@ -213,10 +213,7 @@ namespace FSpot.UI.Dialog
                 var dialog = new MessageDialog (this, DialogFlags.Modal, MessageType.Warning, ButtonsType.Ok, true,
                         Catalog.GetString ("Checking this box will remove the imported photos from the camera after the import finished successfully.\n\nIt is generally recommended to backup your photos before removing them from the camera. <b>Use this option at your own risk!</b>"));
                 dialog.Title = Catalog.GetString ("Warning");
-                dialog.Response += (s, arg) => {
-                    dialog.Destroy ();
-                    Controller = null;
-                };
+                dialog.Response += (s, arg) => dialog.Destroy ();
                 dialog.Run ();
             };
             Response += (o, args) => {
