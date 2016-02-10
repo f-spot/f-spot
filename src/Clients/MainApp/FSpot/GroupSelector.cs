@@ -612,11 +612,14 @@ namespace FSpot {
 
 			public virtual void StartDrag (double x, double y, uint time)
 			{
+				Rectangle bounds = Bounds ();
+
 				State = StateType.Active;
 				//timer.Start ();
 				Dragging = true;
-				DragStart.X = (int)x;
+				DragStart.X = (int)x - (bounds.Width / 2);
 				DragStart.Y = (int)y;
+				DragOffset = 0;  // InvalidateRect
 			}
 
 			private bool DragTimeout ()
@@ -640,7 +643,7 @@ namespace FSpot {
 				Rectangle bounds = Bounds ();
 				double drag_lower_limit = (selector.background.Left) - (bounds.Width/2);
 				double drag_upper_limit = (selector.background.Right) - (bounds.Width/2);
-				double calX = DragStart.X + (x - DragStart.X);
+				double calX = x - (bounds.Width / 2);
 
 				if (calX >= drag_lower_limit && calX <= drag_upper_limit) {
 					if (selector.right_delay.IsPending)
@@ -649,7 +652,7 @@ namespace FSpot {
 					if (selector.left_delay.IsPending)
 						selector.left_delay.Stop();
 
-					DragOffset = (int)x - DragStart.X;
+					DragOffset = (int)calX - DragStart.X;
 				} else if (calX >= drag_upper_limit && selector.right.Sensitive && !selector.right_delay.IsPending) {
 					// Ensure selector is at the limit
 					if (bounds.Left != drag_upper_limit)
@@ -824,7 +827,9 @@ namespace FSpot {
 			{
 				Rectangle box = new Box (selector, Position).Bounds;
 				if (Dragging) {
-					box.X = DragStart.X + DragOffset;
+					box.X = DragStart.X + DragOffset + 3;
+					// TODO: find out why we need to add 3 to X to set it
+					// to middle of mouse cursor while dragging
 				} else {
 					box.X += DragOffset;
 				}
@@ -852,6 +857,8 @@ namespace FSpot {
 				if (! bounds.Intersect (area, out area))
 				    return;
 
+				selector.Style.BackgroundGC (State).ClipRectangle = area;
+
 				int i = 0;
 
 				Rectangle box = inner;
@@ -859,13 +866,10 @@ namespace FSpot {
 				box.Height -= 1;
 				while (i < Border) {
 					box.Inflate (1, 1);
-
-					selector.Style.BackgroundGC (State).ClipRectangle = area;
 					selector.GdkWindow.DrawRectangle (selector.Style.BackgroundGC (State),
-									  false, box);
+							                          false, box);
 					i++;
 				}
-
 
 				Style.PaintFlatBox (selector.Style, selector.GdkWindow, State, ShadowType.In,
 						    area, selector, "glass", bounds.X, inner.Y + inner.Height + Border,
