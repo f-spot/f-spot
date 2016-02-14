@@ -43,6 +43,7 @@ using System;
 using System.Collections.Generic;
 using FSpot.Bling;
 using FSpot.Core;
+using FSpot.Thumbnail;
 using FSpot.Utils;
 using Gdk;
 using Gtk;
@@ -546,7 +547,7 @@ namespace FSpot.Widgets
 			}
 
 			if (current == null) {
-				var pixbuf = XdgThumbnailSpec.LoadThumbnail (uri, ThumbnailSize.Large, null);
+				var pixbuf = App.Instance.Container.Resolve<IThumbnailService> ().GetThumbnail (uri, ThumbnailSize.Large);
 				if (pixbuf == null) {
 					ThumbnailLoader.Default.Request (uri, ThumbnailSize.Large, 0);
 					current = FSpot.Core.Global.IconTheme.LoadIcon ("gtk-missing-image", ThumbSize, (IconLookupFlags)0);

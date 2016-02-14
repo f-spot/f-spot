@@ -44,7 +44,6 @@ using Mono.Addins.Setup;
 
 using FSpot.Core;
 using FSpot.Utils;
-using FSpot.Imaging;
 
 using Hyena;
 using Hyena.CommandLine;
@@ -174,10 +173,6 @@ namespace FSpot
 			Paths.ApplicationName = "f-spot";
 			ThreadAssist.InitializeMainThread ();
 			ThreadAssist.ProxyToMainHandler = RunIdle;
-			XdgThumbnailSpec.DefaultLoader = (uri) => {
-				using (var file = ImageFile.Create (uri))
-					return file.Load ();
-			};
 
 			// Options and Option parsing
 			bool shutdown = false;

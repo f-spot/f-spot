@@ -39,8 +39,9 @@ using System.Collections.Generic;
 using Mono.Unix;
 
 using FSpot.Core;
-using FSpot.Utils;
 using FSpot.Imaging;
+using FSpot.Thumbnail;
+using FSpot.Utils;
 
 namespace FSpot
 {
@@ -304,7 +305,7 @@ namespace FSpot
 				}
 
 				try {
-					XdgThumbnailSpec.RemoveThumbnail (uri);
+					App.Instance.Container.Resolve<IThumbnailService> ().DeleteThumbnails (uri);
 				} catch {
 					// ignore an error here we don't really care.
 				}

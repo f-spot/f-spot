@@ -31,6 +31,7 @@ using System.IO;
 
 using FSpot;
 using FSpot.Filters;
+using FSpot.Thumbnail;
 using FSpot.Utils;
 
 using Hyena;
@@ -101,7 +102,7 @@ namespace FSpot.Tools.LiveWebGallery
 		
 		protected override void SendImage (Photo photo, Stream dest) 
 		{
-			Gdk.Pixbuf thumb = XdgThumbnailSpec.LoadThumbnail (photo.DefaultVersion.Uri, ThumbnailSize.Large);
+			Gdk.Pixbuf thumb = App.Instance.Container.Resolve<IThumbnailService> ().GetThumbnail (photo.DefaultVersion.Uri, ThumbnailSize.Large);
 			byte[] buf = thumb.SaveToBuffer ("png");
 			SendHeadersAndStartContent(dest, "Content-Type: " + MimeTypeForExt (".png"),
 											 "Content-Length: " + buf.Length,

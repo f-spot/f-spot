@@ -39,7 +39,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using FSpot;
@@ -63,24 +62,10 @@ namespace FSpot {
 			}
 		}
 
-		// FIXME this is a hack.  Since we don't have Gnome.ThumbnailFactory.SaveThumbnail() in
-		// GTK#, and generate them by ourselves directly with Gdk.Pixbuf, we have to make sure here
-		// that the "large" thumbnail directory exists.
-		static void EnsureThumbnailDirectory ()
-		{
-			string large_thumbnail_file_name_template = Gnome.Thumbnail.PathForUri ("file:///boo", Gnome.ThumbnailSize.Large);
-			string large_thumbnail_directory_path = Path.GetDirectoryName (large_thumbnail_file_name_template);
-
-			if (!File.Exists (large_thumbnail_directory_path))
-				Directory.CreateDirectory (large_thumbnail_directory_path);
-		}
-
 		// Constructor
 		public PhotoStore (FSpotDatabaseConnection database, bool isNew)
 			: base (database, false)
 		{
-			EnsureThumbnailDirectory ();
-
 			if (!isNew)
 				return;
 
