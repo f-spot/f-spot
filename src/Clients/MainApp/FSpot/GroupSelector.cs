@@ -63,7 +63,7 @@ namespace FSpot {
 
 		public Gdk.Rectangle background;
 		public Gdk.Rectangle legend;
-		public Gdk.Rectangle action;
+		public Gdk.Rectangle action_area;
 
 		Pango.Layout [] tick_layouts;
 		int [] box_counts = new int [0];
@@ -333,8 +333,8 @@ namespace FSpot {
 			if (args.Button == 3)
 				return DrawOrderMenu (args);
 
-			double x = args.X + action.X;
-			double y = args.Y + action.Y;
+			double x = args.X + action_area.X;
+			double y = args.Y + action_area.Y;
 
 			if (glass.Contains (x, y)) {
 				glass.StartDrag (x, y, args.Time);
@@ -358,8 +358,8 @@ namespace FSpot {
 
 		protected override bool OnButtonReleaseEvent (Gdk.EventButton args)
 		{
-			double x = args.X + action.X;
-			double y = args.Y + action.Y;
+			double x = args.X + action_area.X;
+			double y = args.Y + action_area.Y;
 
 			if (glass.Dragging) {
 				glass.EndDrag (x, y);
@@ -379,8 +379,8 @@ namespace FSpot {
 
 		protected override bool OnMotionNotifyEvent (Gdk.EventMotion args)
 		{
-			double x = args.X + action.X;
-			double y = args.Y + action.Y;
+			double x = args.X + action_area.X;
+			double y = args.Y + action_area.Y;
 
 			//Rectangle box = glass.Bounds ();
 			//Console.WriteLine ("please {0} and {1} in box {2}", x, y, box);
@@ -415,10 +415,10 @@ namespace FSpot {
 
 
 
-			attr.X = action.X;
-			attr.Y = action.Y;
-			attr.Width = action.Width;
-			attr.Height = action.Height;
+			attr.X = action_area.X;
+			attr.Y = action_area.Y;
+			attr.Width = action_area.Width;
+			attr.Height = action_area.Height;
 			attr.Wclass = WindowClass.InputOnly;
 			attr.EventMask = (int) Events;
 			attr.EventMask |= (int) (EventMask.ButtonPressMask |
@@ -442,11 +442,11 @@ namespace FSpot {
 			get {
 				switch (mode) {
 				case RangeType.All:
-					return Math.Max (1.0, background.Width / (double) box_counts.Length);
+					return Math.Max (1.0, box_counts.Length == 0 ? 0 : background.Width / (double) box_counts.Length);
 				case RangeType.Fixed:
 					return background.Width / (double) 12;
 				case RangeType.Min:
-					return Math.Max (MIN_BOX_WIDTH, background.Width / (double) box_counts.Length);
+					return Math.Max (MIN_BOX_WIDTH, box_counts.Length == 0 ? 0 : background.Width / (double) box_counts.Length);
 				default:
 					return (double) MIN_BOX_WIDTH;
 				}
@@ -496,6 +496,11 @@ namespace FSpot {
 
 		}
 
+		/// <summary>
+		/// Draws one bar indicating number of photos on specified tick.
+		/// </summary>
+		/// <param name='area'>screen area where legend is to be drawn</param>
+		/// <param name='item'>index of a tick</param>
 		private void DrawBox (Rectangle area, int item)
 		{
 			Box box = new Box (this, item);
@@ -521,6 +526,11 @@ namespace FSpot {
 			return bounds;
 		}
 
+		/// <summary>
+		/// Draws one tick mark on GroupSelector widget.
+		/// </summary>
+		/// <param name='area'>screen area where legend is to be drawn</param>
+		/// <param name='item'>index of a tick</param>
 		public void DrawTick (Rectangle area, int item)
 		{
 			Rectangle tick = TickBounds (item);
@@ -602,11 +612,14 @@ namespace FSpot {
 
 			public virtual void StartDrag (double x, double y, uint time)
 			{
+				Rectangle bounds = Bounds ();
+
 				State = StateType.Active;
 				//timer.Start ();
 				Dragging = true;
-				DragStart.X = (int)x;
+				DragStart.X = (int)x - (bounds.Width / 2);
 				DragStart.Y = (int)y;
+				DragOffset = 0;  // InvalidateRect
 			}
 
 			private bool DragTimeout ()
@@ -630,7 +643,7 @@ namespace FSpot {
 				Rectangle bounds = Bounds ();
 				double drag_lower_limit = (selector.background.Left) - (bounds.Width/2);
 				double drag_upper_limit = (selector.background.Right) - (bounds.Width/2);
-				double calX = DragStart.X + (x - DragStart.X);
+				double calX = x - (bounds.Width / 2);
 
 				if (calX >= drag_lower_limit && calX <= drag_upper_limit) {
 					if (selector.right_delay.IsPending)
@@ -639,7 +652,7 @@ namespace FSpot {
 					if (selector.left_delay.IsPending)
 						selector.left_delay.Stop();
 
-					DragOffset = (int)x - DragStart.X;
+					DragOffset = (int)calX - DragStart.X;
 				} else if (calX >= drag_upper_limit && selector.right.Sensitive && !selector.right_delay.IsPending) {
 					// Ensure selector is at the limit
 					if (bounds.Left != drag_upper_limit)
@@ -814,7 +827,9 @@ namespace FSpot {
 			{
 				Rectangle box = new Box (selector, Position).Bounds;
 				if (Dragging) {
-					box.X = DragStart.X + DragOffset;
+					box.X = DragStart.X + DragOffset + 3;
+					// TODO: find out why we need to add 3 to X to set it
+					// to middle of mouse cursor while dragging
 				} else {
 					box.X += DragOffset;
 				}
@@ -842,6 +857,8 @@ namespace FSpot {
 				if (! bounds.Intersect (area, out area))
 				    return;
 
+				selector.Style.BackgroundGC (State).ClipRectangle = area;
+
 				int i = 0;
 
 				Rectangle box = inner;
@@ -849,13 +866,10 @@ namespace FSpot {
 				box.Height -= 1;
 				while (i < Border) {
 					box.Inflate (1, 1);
-
-					selector.Style.BackgroundGC (State).ClipRectangle = area;
 					selector.GdkWindow.DrawRectangle (selector.Style.BackgroundGC (State),
-									  false, box);
+							                          false, box);
 					i++;
 				}
-
 
 				Style.PaintFlatBox (selector.Style, selector.GdkWindow, State, ShadowType.In,
 						    area, selector, "glass", bounds.X, inner.Y + inner.Height + Border,
@@ -968,9 +982,11 @@ namespace FSpot {
 					active.X = min_x;
 					active.Width = max_x - min_x;
 
+					// white background for entire widget
 					if (active.Intersect (area, out active))
 						GdkWindow.DrawRectangle (Style.BaseGC (State), true, active);
 
+					// draw bars indicating photo counts
 					int i;
 					BoxXHit (area.X, out i);
 					int end;
@@ -983,25 +999,31 @@ namespace FSpot {
 						   this, null, background.X, background.Y,
 						   background.Width, background.Height);
 
+				//	draw ticks and legend
 				if (sub.Intersect (legend, out area)) {
 					int i = 0;
-
 					while (i < box_counts.Length)
 						DrawTick (area, i++);
 				}
 
-				if (has_limits) {
-					if (min_limit != null) {
-						min_limit.Draw (sub);
+				//  draw limit markers and glass if needed (drawing done inside confines of action_area)
+				if(sub.Intersect(action_area, out area))
+				{
+					//	draw limits markers
+					if (has_limits) {
+						if (min_limit != null) {
+							min_limit.Draw (area);
+						}
+
+						if (max_limit != null) {
+							max_limit.Draw (area);
+						}
 					}
 
-					if (max_limit != null) {
-						max_limit.Draw (sub);
+					//	draw glass
+					if (glass != null) {
+						glass.Draw (area);
 					}
-				}
-
-				if (glass != null) {
-					glass.Draw (sub);
 				}
 			}
 			return base.OnExposeEvent (args);
@@ -1080,6 +1102,19 @@ namespace FSpot {
 			left_delay.Stop ();
 		}
 
+		private void SetMouseActionArea ()
+		{
+			Rectangle glass_bounds = glass.Bounds ();
+			action_area = background;
+			// expand action area to include bounds area
+			action_area.Y = glass_bounds.Y;
+			action_area.Height = glass_bounds.Height;
+
+			//	resize event window to match new action area
+			if (event_window != null)
+				event_window.MoveResize (action_area.X, action_area.Y, action_area.Width, action_area.Height);
+		}
+
 		protected override void OnSizeAllocated (Gdk.Rectangle alloc)
 		{
 			base.OnSizeAllocated (alloc);
@@ -1108,10 +1143,7 @@ namespace FSpot {
 			legend = new Rectangle (background.X, background.Y,
 						background.Width, legend_height);
 
-			action = background.Union (glass.Bounds ());
-
-			if (event_window != null)
-				event_window.MoveResize (action.X, action.Y, action.Width, action.Height);
+			SetMouseActionArea ();
 
 			this.Offset = this.Offset;
 
