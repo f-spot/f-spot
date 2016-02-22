@@ -1,15 +1,10 @@
-//
-// ImportSource.cs
+﻿//
+// MockExtensions.cs
 //
 // Author:
-//   Mike Gemünde <mike@gemuende.de>
-//   Ruben Vermeersch <ruben@savanne.be>
 //   Daniel Köb <daniel.koeb@peony.at>
 //
-// Copyright (C) 2010 Novell, Inc.
-// Copyright (C) 2010 Mike Gemünde
-// Copyright (C) 2010 Ruben Vermeersch
-// Copyright (C) 2014 Daniel Köb
+// Copyright (C) 2016 Daniel Köb
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -32,18 +27,27 @@
 //
 
 using System;
+using Moq.Language.Flow;
+using System.Collections;
 
-namespace FSpot.Import
+namespace FSpot.Utils.UnitTest.Mocks
 {
-	public interface IImportSource
+	public static class MockExtensions
 	{
-		string Name { get; }
-		string IconName { get; }
-
-		void StartPhotoScan (bool recurseSubdirectories, bool mergeRawAndJpeg);
-		void Deactivate ();
-
-		event EventHandler<PhotoFoundEventArgs> PhotoFoundEvent;
-		event EventHandler<PhotoScanFinishedEventArgs> PhotoScanFinishedEvent;
+		// Inspired by http://haacked.com/archive/2010/11/24/moq-sequences-revisited.aspx/
+		// licensed under MIT license.
+		public static void ReturnsInOrder<T, TResult>(this ISetup<T, TResult> setup, params object[] results)
+			where T : class
+		{
+			var queue = new Queue (results);
+			setup.Returns (() => {
+				var result = queue.Dequeue ();
+				var exception = result as Exception;
+				if (exception != null) {
+					throw exception;
+				}
+				return (TResult)result;
+			});
+		}
 	}
 }

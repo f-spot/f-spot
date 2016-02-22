@@ -1,15 +1,11 @@
 //
-// ImportSource.cs
+// ImportEvent.cs
 //
 // Author:
-//   Mike Gemünde <mike@gemuende.de>
 //   Ruben Vermeersch <ruben@savanne.be>
-//   Daniel Köb <daniel.koeb@peony.at>
 //
 // Copyright (C) 2010 Novell, Inc.
-// Copyright (C) 2010 Mike Gemünde
 // Copyright (C) 2010 Ruben Vermeersch
-// Copyright (C) 2014 Daniel Köb
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -31,19 +27,15 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-
 namespace FSpot.Import
 {
-	public interface IImportSource
+	public enum ImportEvent
 	{
-		string Name { get; }
-		string IconName { get; }
-
-		void StartPhotoScan (bool recurseSubdirectories, bool mergeRawAndJpeg);
-		void Deactivate ();
-
-		event EventHandler<PhotoFoundEventArgs> PhotoFoundEvent;
-		event EventHandler<PhotoScanFinishedEventArgs> PhotoScanFinishedEvent;
+		SourceChanged,
+		PhotoScanStarted,
+		PhotoScanFinished,
+		ImportStarted,
+		ImportFinished,
+		ImportError
 	}
 }

@@ -1,15 +1,10 @@
-//
-// ImportSource.cs
+﻿//
+// ImportControllerTests.cs
 //
 // Author:
-//   Mike Gemünde <mike@gemuende.de>
-//   Ruben Vermeersch <ruben@savanne.be>
 //   Daniel Köb <daniel.koeb@peony.at>
 //
-// Copyright (C) 2010 Novell, Inc.
-// Copyright (C) 2010 Mike Gemünde
-// Copyright (C) 2010 Ruben Vermeersch
-// Copyright (C) 2014 Daniel Köb
+// Copyright (C) 2016 Daniel Köb
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -32,18 +27,28 @@
 //
 
 using System;
+using FSpot.Core;
+using Hyena;
+using Mocks;
+using NUnit.Framework;
 
 namespace FSpot.Import
 {
-	public interface IImportSource
+	[TestFixture]
+	public class ImportControllerTests
 	{
-		string Name { get; }
-		string IconName { get; }
+		[Test]
+		public void FindImportDestinationTest ()
+		{
+			var fileUri = new SafeUri ("/path/to/photo.jpg");
+			var targetBaseUri = new  SafeUri ("/photo/store");
+			var targetUri = new SafeUri ("/photo/store/2016/02/06");
+			var date = new DateTime (2016, 2, 6);
+			var source = PhotoMock.Create (fileUri, date);
 
-		void StartPhotoScan (bool recurseSubdirectories, bool mergeRawAndJpeg);
-		void Deactivate ();
+			var result = ImportController.FindImportDestination (source, targetBaseUri);
 
-		event EventHandler<PhotoFoundEventArgs> PhotoFoundEvent;
-		event EventHandler<PhotoScanFinishedEventArgs> PhotoScanFinishedEvent;
+			Assert.AreEqual (targetUri, result);
+		}
 	}
 }

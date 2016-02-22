@@ -2,10 +2,12 @@
 // Preferences.cs
 //
 // Author:
+//   Daniel Köb <daniel.koeb@peony.at>
 //   Ruben Vermeersch <ruben@savanne.be>
 //   Stephane Delcroix <stephane@delcroix.org>
 //   Larry Ewing <lewing@novell.com>
 //
+// Copyright (C) 2016 Daniel Köb
 // Copyright (C) 2005-2010 Novell, Inc.
 // Copyright (C) 2007, 2010 Ruben Vermeersch
 // Copyright (C) 2006-2009 Stephane Delcroix
@@ -33,18 +35,16 @@
 
 using System;
 using System.Collections.Generic;
-
-using Mono.Unix;
-
 using FSpot.Core;
 using FSpot.Platform;
-
 using Hyena;
+using Mono.Unix;
 
 namespace FSpot
 {
-	public class Preferences
+	public static class Preferences
 	{
+		// Analysis disable InconsistentNaming
 		public const string APP_FSPOT = "/apps/f-spot/";
 		public const string APP_FSPOT_EXPORT = APP_FSPOT + "export/";
 		public const string APP_FSPOT_EXPORT_TOKENS = APP_FSPOT_EXPORT + "tokens/";
@@ -65,6 +65,7 @@ namespace FSpot
 		public const string IMPORT_INCLUDE_SUBFOLDERS = "/apps/f-spot/import/include_subfolders";
 		public const string IMPORT_CHECK_DUPLICATES = "/apps/f-spot/import/check_duplicates";
 		public const string IMPORT_REMOVE_ORIGINALS = "/apps/f-spot/import/remove_originals";
+		public const string IMPORT_MERGE_RAW_AND_JPEG = "/apps/f-spot/import/merge_raw_and_jpeg";
 
 		public const string VIEWER_WIDTH = APP_FSPOT + "ui/viewer_width";
 		public const string VIEWER_HEIGHT = APP_FSPOT + "ui/viewer_height";
@@ -120,11 +121,11 @@ namespace FSpot
 
 		public const string GSD_THUMBS_MAX_AGE = "/desktop/gnome/thumbnail_cache/maximum_age";
 		public const string GSD_THUMBS_MAX_SIZE = "/desktop/gnome/thumbnail_cache/maximum_size";
+		// Analysis restore InconsistentNaming
 
-
-		private static PreferenceBackend backend;
-		private static EventHandler<NotifyEventArgs> changed_handler;
-		private static PreferenceBackend Backend {
+		static PreferenceBackend backend;
+		static EventHandler<NotifyEventArgs> changed_handler;
+		static PreferenceBackend Backend {
 			get {
 				if (backend == null) {
 					backend = new PreferenceBackend ();
@@ -136,7 +137,7 @@ namespace FSpot
 			}
 		}
 
-		private static Dictionary<string, object> cache = new Dictionary<string, object>();
+		static readonly Dictionary<string, object> cache = new Dictionary<string, object> ();
 
 		static object GetDefault (string key)
 		{
@@ -210,6 +211,7 @@ namespace FSpot
 			case IMPORT_CHECK_DUPLICATES:
 			case IMPORT_COPY_FILES:
 			case IMPORT_INCLUDE_SUBFOLDERS:
+			case IMPORT_MERGE_RAW_AND_JPEG:
 				return true;
 			default:
 				return null;

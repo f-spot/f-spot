@@ -45,6 +45,9 @@
     <Reference Include="nunit.framework">
       <HintPath>..\..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\..\..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -54,6 +57,8 @@
     <Compile Include="SafeUriTests.cs" />
     <Compile Include="SidecarXmpExtensionsTests.cs" />
     <Compile Include="XdgThumbnailSpecTests.cs" />
+    <Compile Include="SortedFileEnumeratorTests.cs" />
+    <Compile Include="Mocks\MockExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FSpot.Utils\FSpot.Utils.csproj">

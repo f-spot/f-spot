@@ -1,15 +1,10 @@
-//
-// ImportSource.cs
+﻿//
+// PhotoMock.cs
 //
 // Author:
-//   Mike Gemünde <mike@gemuende.de>
-//   Ruben Vermeersch <ruben@savanne.be>
 //   Daniel Köb <daniel.koeb@peony.at>
 //
-// Copyright (C) 2010 Novell, Inc.
-// Copyright (C) 2010 Mike Gemünde
-// Copyright (C) 2010 Ruben Vermeersch
-// Copyright (C) 2014 Daniel Köb
+// Copyright (C) 2016 Daniel Köb
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -32,18 +27,40 @@
 //
 
 using System;
+using System.Linq;
+using FSpot.Core;
+using Hyena;
+using Moq;
 
-namespace FSpot.Import
+namespace Mocks
 {
-	public interface IImportSource
+	public static class PhotoMock
 	{
-		string Name { get; }
-		string IconName { get; }
+		public static IPhoto Create (SafeUri uri, params SafeUri[] versionUris)
+		{
+			// don't care about time
+			return Create (uri, DateTime.MinValue, versionUris);
+		}
 
-		void StartPhotoScan (bool recurseSubdirectories, bool mergeRawAndJpeg);
-		void Deactivate ();
+		public static IPhoto Create (SafeUri uri, DateTime time, params SafeUri[] versionUris)
+		{
+			var defaultVersionMock = new Mock<IPhotoVersion> ();
+			defaultVersionMock.SetupProperty (v => v.Uri, uri);
+			var defaultVersion = defaultVersionMock.Object;
 
-		event EventHandler<PhotoFoundEventArgs> PhotoFoundEvent;
-		event EventHandler<PhotoScanFinishedEventArgs> PhotoScanFinishedEvent;
+			var versions = versionUris.Select (u => {
+				var mock = new Mock<IPhotoVersion> ();
+				mock.SetupProperty (m => m.Uri, u);
+				return mock.Object;
+			}).ToList ();
+
+			var allVersions = new[]{ defaultVersion }.Concat (versions);
+
+			var photo = new Mock<IPhoto> ();
+			photo.Setup (p => p.DefaultVersion).Returns (defaultVersion);
+			photo.Setup (p => p.Time).Returns (time);
+			photo.Setup (p => p.Versions).Returns (allVersions);
+			return photo.Object;
+		}
 	}
 }

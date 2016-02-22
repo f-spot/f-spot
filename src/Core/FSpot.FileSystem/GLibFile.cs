@@ -1,15 +1,10 @@
-//
-// ImportSource.cs
+﻿//
+// GLibFile.cs
 //
 // Author:
-//   Mike Gemünde <mike@gemuende.de>
-//   Ruben Vermeersch <ruben@savanne.be>
 //   Daniel Köb <daniel.koeb@peony.at>
 //
-// Copyright (C) 2010 Novell, Inc.
-// Copyright (C) 2010 Mike Gemünde
-// Copyright (C) 2010 Ruben Vermeersch
-// Copyright (C) 2014 Daniel Köb
+// Copyright (C) 2016 Daniel Köb
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -31,19 +26,32 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
+using GLib;
+using Hyena;
 
-namespace FSpot.Import
+namespace FSpot.FileSystem
 {
-	public interface IImportSource
+	public class GLibFile : IFile
 	{
-		string Name { get; }
-		string IconName { get; }
+		#region IFile implementation
 
-		void StartPhotoScan (bool recurseSubdirectories, bool mergeRawAndJpeg);
-		void Deactivate ();
+		public bool Exists (SafeUri uri)
+		{
+			var file = FileFactory.NewForUri (uri);
+			return file.Exists;
+		}
 
-		event EventHandler<PhotoFoundEventArgs> PhotoFoundEvent;
-		event EventHandler<PhotoScanFinishedEventArgs> PhotoScanFinishedEvent;
+		public void Copy (SafeUri source, SafeUri destination, bool overwrite)
+		{
+			var source_file = FileFactory.NewForUri (source);
+			var destination_file = FileFactory.NewForUri (destination);
+			var flags = FileCopyFlags.AllMetadata;
+			if (overwrite)
+				flags |= FileCopyFlags.Overwrite;
+			source_file.Copy (destination_file, flags, null, null);
+		}
+
+		#endregion
 	}
 }
+

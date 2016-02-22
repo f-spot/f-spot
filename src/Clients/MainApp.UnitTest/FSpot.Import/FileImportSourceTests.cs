@@ -1,15 +1,10 @@
-//
-// ImportSource.cs
+﻿//
+// FileImportSourceTests.cs
 //
 // Author:
-//   Mike Gemünde <mike@gemuende.de>
-//   Ruben Vermeersch <ruben@savanne.be>
 //   Daniel Köb <daniel.koeb@peony.at>
 //
-// Copyright (C) 2010 Novell, Inc.
-// Copyright (C) 2010 Mike Gemünde
-// Copyright (C) 2010 Ruben Vermeersch
-// Copyright (C) 2014 Daniel Köb
+// Copyright (C) 2016 Daniel Köb
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -31,19 +26,38 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
+using Hyena;
+using NUnit.Framework;
 
 namespace FSpot.Import
 {
-	public interface IImportSource
+	[TestFixture]
+	public class FileImportSourceTests
 	{
-		string Name { get; }
-		string IconName { get; }
+		[Test]
+		public void TestIsJpegRawPair ()
+		{
+			var jpeg = new SafeUri ("file:///a/photo.jpeg");
+			var jpg = new SafeUri ("file:///a/photo.jpg");
 
-		void StartPhotoScan (bool recurseSubdirectories, bool mergeRawAndJpeg);
-		void Deactivate ();
+			var nef = new SafeUri ("file:///a/photo.nef");
+			var nef2 = new SafeUri ("file:///b/photo.nef");
+			var crw = new SafeUri ("file:///a/photo.crw");
+			var crw2 = new SafeUri ("file:///a/photo2.jpeg");
 
-		event EventHandler<PhotoFoundEventArgs> PhotoFoundEvent;
-		event EventHandler<PhotoScanFinishedEventArgs> PhotoScanFinishedEvent;
+			// both jpegs
+			Assert.IsFalse (FileImportSource.IsJpegRawPair (jpeg, jpg));
+			// both raw
+			Assert.IsFalse (FileImportSource.IsJpegRawPair (nef, crw));
+			// different filename
+			Assert.IsFalse (FileImportSource.IsJpegRawPair (jpeg, crw2));
+			// different basedir
+			Assert.IsFalse (FileImportSource.IsJpegRawPair (jpeg, nef2));
+
+			Assert.IsTrue (FileImportSource.IsJpegRawPair (jpeg, nef));
+			Assert.IsTrue (FileImportSource.IsJpegRawPair (jpeg, crw));
+			Assert.IsTrue (FileImportSource.IsJpegRawPair (jpg, nef));
+		}
 	}
 }
+

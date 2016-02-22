@@ -30,20 +30,17 @@
 //
 
 using System;
-using System.Threading;
 using System.Collections.Generic;
-
-using Hyena;
-
-using FSpot.Core;
-using FSpot.Utils;
+using System.Threading;
 using FSpot.Imaging;
-
+using FSpot.Utils;
 using Gtk;
+using Hyena;
+using Mono.Unix;
 
 namespace FSpot.Import
 {
-	internal class FileImportSource : IImportSource
+	class FileImportSource : IImportSource
 	{
 		public string Name { get; set; }
 
@@ -51,10 +48,13 @@ namespace FSpot.Import
 
 		public SafeUri Root { get; set; }
 
-		public Thread PhotoScanner;
-		bool run_photoscanner = false;
+		public event EventHandler<PhotoFoundEventArgs> PhotoFoundEvent;
+		public event EventHandler<PhotoScanFinishedEventArgs> PhotoScanFinishedEvent;
 
-		public FileImportSource (SafeUri root, string name, string icon_name)
+		public Thread PhotoScanner;
+		bool run_photoscanner;
+
+		public FileImportSource (SafeUri root, string name, string iconName)
 		{
 			Root = root;
 			Name = name;
@@ -65,12 +65,12 @@ namespace FSpot.Import
 				} else if (IsCamera) {
 					IconName = "media-flash";
 				} else {
-					IconName = icon_name;
+					IconName = iconName;
 				}
 			}
 		}
 
-		public void StartPhotoScan (ImportController controller, PhotoList photo_list)
+		public void StartPhotoScan (bool recurseSubdirectories, bool mergeRawAndJpeg)
 		{
 			if (PhotoScanner != null) {
 				run_photoscanner = false;
@@ -78,31 +78,89 @@ namespace FSpot.Import
 			}
 
 			run_photoscanner = true;
-			PhotoScanner = ThreadAssist.Spawn (() => ScanPhotos (controller, photo_list));
+			PhotoScanner = ThreadAssist.Spawn (() => ScanPhotos (recurseSubdirectories, mergeRawAndJpeg));
 		}
 
-		protected virtual void ScanPhotos (ImportController controller, PhotoList photo_list)
+		protected virtual void ScanPhotos (bool recurseSubdirectories, bool mergeRawAndJpeg)
 		{
-			ScanPhotoDirectory (controller, Root, photo_list);
-			ThreadAssist.ProxyToMain (() => controller.PhotoScanFinished ());
+			ScanPhotoDirectory (recurseSubdirectories, mergeRawAndJpeg, Root);
+			FirePhotoScanFinished ();
 		}
 
-		protected void ScanPhotoDirectory (ImportController controller, SafeUri uri, PhotoList photo_list)
+		protected void ScanPhotoDirectory (bool recurseSubdirectories, bool mergeRawAndJpeg, SafeUri uri)
 		{
-			var enumerator = new RecursiveFileEnumerator (uri) {
-						Recurse = controller.RecurseSubdirectories,
-						CatchErrors = true,
-						IgnoreSymlinks = true
-			};
-			foreach (var file in enumerator) {
-				if (ImageFile.HasLoader (new SafeUri (file.Uri.ToString(), true))) {
-					var info = new FileImportInfo (new SafeUri (file.Uri.ToString (), true));
-					ThreadAssist.ProxyToMain (() =>
-					    photo_list.Add (info));
+			var enumerator = (new RecursiveFileEnumerator (uri) {
+				Recurse = recurseSubdirectories,
+				CatchErrors = true,
+				IgnoreSymlinks = true
+			}).GetEnumerator ();
+
+			SafeUri file = null;
+
+			while (true) {
+				if (file == null) {
+					file = NextImageFileOrNull(enumerator);
+					if (file == null)
+						break;
 				}
+
+				// peek the next file to see if we have a RAW+JPEG combination
+				// skip any non-image files
+				SafeUri nextFile = NextImageFileOrNull(enumerator);
+
+				SafeUri original;
+				SafeUri version = null;
+				if (mergeRawAndJpeg && nextFile != null && IsJpegRawPair (file, nextFile)) {
+					// RAW+JPEG: import as one photo with versions
+					original = ImageFile.IsRaw (file) ? file : nextFile;
+					version = ImageFile.IsRaw (file) ? nextFile : file;
+					// current and next files consumed in this iteration,
+					// prepare to get next file on next iteration
+					file = null;
+				} else {
+					// import current file as single photo
+					original = file;
+					// forward peeked file to next iteration of loop
+					file = nextFile;
+				}
+
+				FileImportInfo info;
+				if (version == null) {
+					info  = new FileImportInfo (original, Catalog.GetString ("Original"));
+				} else {
+					info  = new FileImportInfo (original, Catalog.GetString ("Original RAW"));
+					info.AddVersion (version, Catalog.GetString ("Original JPEG"));
+				}
+
+				ThreadAssist.ProxyToMain (() => {
+						if (PhotoFoundEvent != null) {
+							PhotoFoundEvent.Invoke (this, new PhotoFoundEventArgs { FileImportInfo = info });
+						}
+					});
+
 				if (!run_photoscanner)
 					return;
 			}
+		}
+
+		static SafeUri NextImageFileOrNull(IEnumerator<GLib.File> enumerator)
+		{
+			SafeUri nextImageFile;
+			do {
+				if (enumerator.MoveNext ())
+					nextImageFile = new SafeUri (enumerator.Current.Uri, true);
+				else
+					return null;
+			} while (!ImageFile.HasLoader (nextImageFile));
+			return nextImageFile;
+		}
+
+		internal static bool IsJpegRawPair(SafeUri file1, SafeUri file2)
+		{
+			return file1.GetBaseUri ().ToString () == file2.GetBaseUri ().ToString () &&
+				file1.GetFilenameWithoutExtension () == file2.GetFilenameWithoutExtension () &&
+				((ImageFile.IsJpeg (file1) && ImageFile.IsRaw (file2)) ||
+				 (ImageFile.IsRaw (file1) && ImageFile.IsJpeg (file2)));
 		}
 
 		public void Deactivate ()
@@ -123,7 +181,16 @@ namespace FSpot.Import
 			}
 		}
 
-		private bool IsCamera {
+		protected void FirePhotoScanFinished()
+		{
+			ThreadAssist.ProxyToMain (() => {
+				if (PhotoScanFinishedEvent != null) {
+					PhotoScanFinishedEvent.Invoke (this, new PhotoScanFinishedEventArgs ());
+				}
+			});
+		}
+
+		bool IsCamera {
 			get {
 				try {
 					var file = GLib.FileFactory.NewForUri (Root.Append ("DCIM"));
@@ -134,7 +201,7 @@ namespace FSpot.Import
 			}
 		}
 
-		private bool IsIPodPhoto {
+		bool IsIPodPhoto {
 			get {
 				try {
 					var file = GLib.FileFactory.NewForUri (Root.Append ("Photos"));
@@ -145,37 +212,5 @@ namespace FSpot.Import
 				}
 			}
 		}
-	}
-
-	// Multi root version for drag and drop import.
-	internal class MultiFileImportSource : FileImportSource
-	{
-		private IEnumerable<SafeUri> uris;
-
-		public MultiFileImportSource (IEnumerable<SafeUri> uris)
-			: base (null, String.Empty, String.Empty)
-		{
-			this.uris = uris;
-		}
-
-		protected override void ScanPhotos (ImportController controller, PhotoList photo_list)
-		{
-			foreach (var uri in uris) {
-				Log.Debug ("Scanning " + uri);
-				ScanPhotoDirectory (controller, uri, photo_list);
-			}
-			ThreadAssist.ProxyToMain (() => controller.PhotoScanFinished ());
-		}
-	}
-
-	internal class FileImportInfo : FilePhoto
-	{
-		public FileImportInfo (SafeUri original) : base (original)
-		{
-		}
-
-		public SafeUri DestinationUri { get; set; }
-
-		internal uint PhotoId { get; set; }
 	}
 }

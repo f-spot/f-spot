@@ -1,5 +1,5 @@
 //
-// ImportSource.cs
+//  MultiFileImportSource.cs
 //
 // Author:
 //   Mike Gemünde <mike@gemuende.de>
@@ -32,18 +32,29 @@
 //
 
 using System;
+using System.Collections.Generic;
+using Hyena;
 
 namespace FSpot.Import
 {
-	public interface IImportSource
+	// Multi root version for drag and drop import.
+	class MultiFileImportSource : FileImportSource
 	{
-		string Name { get; }
-		string IconName { get; }
+		readonly IEnumerable<SafeUri> uris;
 
-		void StartPhotoScan (bool recurseSubdirectories, bool mergeRawAndJpeg);
-		void Deactivate ();
+		public MultiFileImportSource (IEnumerable<SafeUri> uris)
+			: base (null, String.Empty, String.Empty)
+		{
+			this.uris = uris;
+		}
 
-		event EventHandler<PhotoFoundEventArgs> PhotoFoundEvent;
-		event EventHandler<PhotoScanFinishedEventArgs> PhotoScanFinishedEvent;
+		protected override void ScanPhotos (bool recurseSubdirectories, bool mergeRawAndJpeg)
+		{
+			foreach (var uri in uris) {
+				Log.Debug ("Scanning " + uri);
+				ScanPhotoDirectory (recurseSubdirectories, mergeRawAndJpeg, uri);
+			}
+			FirePhotoScanFinished ();
+		}
 	}
 }

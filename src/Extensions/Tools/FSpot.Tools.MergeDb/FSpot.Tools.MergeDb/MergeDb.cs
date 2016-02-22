@@ -2,9 +2,11 @@
 // MergeDb.cs
 //
 // Author:
+//   Daniel Köb <daniel.koeb@peony.at>
 //   Ruben Vermeersch <ruben@savanne.be>
 //   Stephane Delcroix <stephane@delcroix.org>
 //
+// Copyright (C) 2016 Daniel Köb
 // Copyright (C) 2008-2010 Novell, Inc.
 // Copyright (C) 2010 Ruben Vermeersch
 // Copyright (C) 2008-2009 Stephane Delcroix
@@ -276,7 +278,9 @@ namespace FSpot.Tools.MergeDb
 				}
 			}
 
-			newp = to_store.CreateFrom (photo, roll_map [photo.RollId]);
+			//FIXME simplify the following code by letting CreateFrom import all versions
+			//      instead of looping over all versions here
+			newp = to_store.CreateFrom (photo, true, roll_map [photo.RollId]);
 
 			if (newp == null)
 				return;

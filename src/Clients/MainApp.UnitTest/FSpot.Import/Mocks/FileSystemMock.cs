@@ -1,15 +1,10 @@
-//
-// ImportSource.cs
+﻿//
+// FileSystemMock.cs
 //
 // Author:
-//   Mike Gemünde <mike@gemuende.de>
-//   Ruben Vermeersch <ruben@savanne.be>
 //   Daniel Köb <daniel.koeb@peony.at>
 //
-// Copyright (C) 2010 Novell, Inc.
-// Copyright (C) 2010 Mike Gemünde
-// Copyright (C) 2010 Ruben Vermeersch
-// Copyright (C) 2014 Daniel Köb
+// Copyright (C) 2016 Daniel Köb
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -31,19 +26,37 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
+using FSpot.FileSystem;
+using Hyena;
+using Moq;
 
-namespace FSpot.Import
+namespace Mocks
 {
-	public interface IImportSource
+	public class FileSystemMock : IFileSystem
 	{
-		string Name { get; }
-		string IconName { get; }
+		readonly Mock<IFile> file_mock;
 
-		void StartPhotoScan (bool recurseSubdirectories, bool mergeRawAndJpeg);
-		void Deactivate ();
+		public Mock<IFile> FileMock {
+			get {
+				return file_mock;
+			}
+		}
 
-		event EventHandler<PhotoFoundEventArgs> PhotoFoundEvent;
-		event EventHandler<PhotoScanFinishedEventArgs> PhotoScanFinishedEvent;
+		public FileSystemMock (params SafeUri[] existingFiles)
+		{
+			file_mock = new Mock<IFile> ();
+			file_mock.Setup (m => m.Exists (It.IsIn (existingFiles))).Returns (true);
+		}
+
+		#region IFileSystem implementation
+
+		public IFile File {
+			get {
+				return file_mock.Object;
+			}
+		}
+
+		#endregion
 	}
 }
+

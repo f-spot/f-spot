@@ -1,14 +1,8 @@
-//
-// ImportSource.cs
+//  PhotoScanFinishedEventArgs.cs
 //
 // Author:
-//   Mike Gemünde <mike@gemuende.de>
-//   Ruben Vermeersch <ruben@savanne.be>
 //   Daniel Köb <daniel.koeb@peony.at>
 //
-// Copyright (C) 2010 Novell, Inc.
-// Copyright (C) 2010 Mike Gemünde
-// Copyright (C) 2010 Ruben Vermeersch
 // Copyright (C) 2014 Daniel Köb
 //
 // Permission is hereby granted, free of charge, to any person obtaining
@@ -35,15 +29,7 @@ using System;
 
 namespace FSpot.Import
 {
-	public interface IImportSource
+	public class PhotoScanFinishedEventArgs : EventArgs
 	{
-		string Name { get; }
-		string IconName { get; }
-
-		void StartPhotoScan (bool recurseSubdirectories, bool mergeRawAndJpeg);
-		void Deactivate ();
-
-		event EventHandler<PhotoFoundEventArgs> PhotoFoundEvent;
-		event EventHandler<PhotoScanFinishedEventArgs> PhotoScanFinishedEvent;
 	}
 }
