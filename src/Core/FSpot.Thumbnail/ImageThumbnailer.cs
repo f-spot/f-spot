@@ -32,7 +32,6 @@
 using System;
 using FSpot.FileSystem;
 using FSpot.Imaging;
-using FSpot.Utils;
 using Gdk;
 using Hyena;
 

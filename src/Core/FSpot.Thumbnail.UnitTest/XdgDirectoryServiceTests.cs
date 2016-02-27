@@ -27,7 +27,6 @@
 //
 
 using FSpot.FileSystem;
-using FSpot.Utils;
 using Mocks;
 using Moq;
 using NUnit.Framework;

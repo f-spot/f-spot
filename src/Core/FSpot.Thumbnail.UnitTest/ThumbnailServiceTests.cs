@@ -28,7 +28,6 @@
 
 using System;
 using FSpot.Thumbnail;
-using FSpot.Utils;
 using Gdk;
 using Hyena;
 using Mocks;

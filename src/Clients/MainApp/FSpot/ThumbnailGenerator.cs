@@ -36,7 +36,6 @@ using System;
 using Hyena;
 
 using FSpot.Thumbnail;
-using FSpot.Utils;
 
 using GFileInfo = GLib.FileInfo;
 

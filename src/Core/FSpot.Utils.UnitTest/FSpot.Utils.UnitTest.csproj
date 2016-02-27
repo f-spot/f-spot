@@ -73,6 +73,10 @@
       <Project>{942B6AEF-0A90-4A7F-B8E4-F1A4327E408C}</Project>
       <Name>gio-sharp</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FSpot.Thumbnail\FSpot.Thumbnail.csproj">
+      <Project>{A1DEDA9C-E664-485E-AD65-6ABA83C58BC2}</Project>
+      <Name>FSpot.Thumbnail</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="TestData\" />

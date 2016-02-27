@@ -33,7 +33,7 @@ using System;
 
 using FSpot;
 using FSpot.Core;
-using FSpot.Utils;
+using FSpot.Thumbnail;
 using FSpot.UI.Dialog;
 
 public class ThumbnailCommand {

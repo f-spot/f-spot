@@ -1,5 +1,5 @@
-//
-// XdgThumbnailSpec.cs
+﻿//
+// ThumbnailSize.cs
 //
 // Author:
 //   Ruben Vermeersch <ruben@savanne.be>
@@ -27,7 +27,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-namespace FSpot.Utils
+namespace FSpot.Thumbnail
 {
 	public enum ThumbnailSize
 	{

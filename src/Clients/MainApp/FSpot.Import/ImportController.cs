@@ -34,6 +34,7 @@ using System.Collections.Generic;
 using System.Threading;
 using FSpot.Core;
 using FSpot.FileSystem;
+using FSpot.Thumbnail;
 using FSpot.Utils;
 using Hyena;
 using Mono.Unix;

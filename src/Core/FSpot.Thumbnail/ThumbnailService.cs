@@ -33,7 +33,6 @@ using System;
 using System.IO;
 using System.Linq;
 using FSpot.FileSystem;
-using FSpot.Utils;
 using Gdk;
 using Hyena;
 

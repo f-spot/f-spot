@@ -37,7 +37,6 @@ using Gdk;
 
 using FSpot.Imaging;
 using FSpot.Thumbnail;
-using FSpot.Utils;
 
 using Hyena;
 

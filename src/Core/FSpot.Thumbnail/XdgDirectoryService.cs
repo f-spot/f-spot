@@ -28,7 +28,6 @@
 
 using System.IO;
 using FSpot.FileSystem;
-using FSpot.Utils;
 
 namespace FSpot.Thumbnail
 {
