@@ -41,6 +41,8 @@
     <Compile Include="IFile.cs" />
     <Compile Include="IPath.cs" />
     <Compile Include="GLibPath.cs" />
+    <Compile Include="IEnvironment.cs" />
+    <Compile Include="EnvironmentAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\lib\gio-sharp\gio-sharp.csproj">
