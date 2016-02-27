@@ -1,5 +1,5 @@
 ﻿//
-// GLibFileSystem.cs
+// GLibDirectory.cs
 //
 // Author:
 //   Daniel Köb <daniel.koeb@peony.at>
@@ -26,34 +26,32 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System;
+using FSpot.Utils;
+using Hyena;
+using GLib;
+
 namespace FSpot.FileSystem
 {
-	public class GLibFileSystem : IFileSystem
+	public class GLibDirectory : IDirectory
 	{
-		GLibFile file;
-		GLibDirectory directory;
-		GLibPath path;
-
-		#region IFileSystem implementation
-
-		public IFile File {
-			get {
-				return file ?? (file = new GLibFile ());
-			}
+		public bool Exists (SafeUri uri)
+		{
+			var directory = FileFactory.NewForUri (uri);
+			return directory.Exists && directory.QueryFileType (FileQueryInfoFlags.None, null) == FileType.Directory;
 		}
 
-		public IDirectory Directory {
-			get {
-				return directory ?? (directory = new GLibDirectory ());
+		public void CreateDirectory (SafeUri uri)
+		{
+			var parts = uri.AbsolutePath.Split('/');
+			var current = new SafeUri (uri.Scheme + ":///", true);
+			for (int i = 0; i < parts.Length; i++) {
+				current = current.Append (parts [i]);
+				var file = FileFactory.NewForUri (current);
+				if (!file.Exists) {
+					file.MakeDirectory (null);
+				}
 			}
 		}
-
-		public IPath Path {
-			get {
-				return path ?? (path = new GLibPath ());
-			}
-		}
-
-		#endregion
 	}
 }

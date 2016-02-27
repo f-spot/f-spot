@@ -1,5 +1,5 @@
 ﻿//
-// GLibFileSystem.cs
+// IDirectory.cs
 //
 // Author:
 //   Daniel Köb <daniel.koeb@peony.at>
@@ -26,34 +26,13 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using Hyena;
+
 namespace FSpot.FileSystem
 {
-	public class GLibFileSystem : IFileSystem
+	public interface IDirectory
 	{
-		GLibFile file;
-		GLibDirectory directory;
-		GLibPath path;
-
-		#region IFileSystem implementation
-
-		public IFile File {
-			get {
-				return file ?? (file = new GLibFile ());
-			}
-		}
-
-		public IDirectory Directory {
-			get {
-				return directory ?? (directory = new GLibDirectory ());
-			}
-		}
-
-		public IPath Path {
-			get {
-				return path ?? (path = new GLibPath ());
-			}
-		}
-
-		#endregion
+		bool Exists (SafeUri uri);
+		void CreateDirectory (SafeUri uri);
 	}
 }
