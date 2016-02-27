@@ -1,5 +1,5 @@
-﻿//
-// AssemblyInfo.cs
+//
+// IThumbnailFactory.cs
 //
 // Author:
 //   Daniel Köb <daniel.koeb@peony.at>
@@ -26,7 +26,16 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System.Runtime.CompilerServices;
+using FSpot.Utils;
+using Gdk;
+using Hyena;
 
-[assembly: InternalsVisibleTo("FSpot.Thumbnail.UnitTest")]
-[assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]
+namespace FSpot.Thumbnail
+{
+	public interface IThumbnailService
+	{
+		Pixbuf GetThumbnail (SafeUri fileUri, ThumbnailSize size);
+		Pixbuf TryLoadThumbnail (SafeUri fileUri, ThumbnailSize size);
+		void DeleteThumbnails (SafeUri fileUri);
+	}
+}

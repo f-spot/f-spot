@@ -1,5 +1,5 @@
 ﻿//
-// AssemblyInfo.cs
+// PixbufMock.cs
 //
 // Author:
 //   Daniel Köb <daniel.koeb@peony.at>
@@ -26,7 +26,33 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System.Runtime.CompilerServices;
+using System.IO;
+using FSpot.Thumbnail;
+using Gdk;
+using Hyena;
 
-[assembly: InternalsVisibleTo("FSpot.Thumbnail.UnitTest")]
-[assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]
+namespace Mocks
+{
+	public static class PixbufMock
+	{
+		public static byte[] CreateThumbnail (SafeUri uri, ulong mTime)
+		{
+			var pixbuf = new Pixbuf (Colorspace.Rgb, false, 8, 1, 1);
+			return pixbuf.SaveToBuffer ("png", new [] {
+				ThumbnailService.ThumbUriOpt,
+				ThumbnailService.ThumbMTimeOpt,
+				null
+			}, new [] {
+				uri,
+				mTime.ToString ()
+			});
+		}
+
+		public static Pixbuf CreatePixbuf (SafeUri uri, ulong mTime)
+		{
+			using (var stream = new MemoryStream (CreateThumbnail (uri, mTime))) {
+				return new Pixbuf (stream);
+			}
+		}
+	}
+}

@@ -1,5 +1,5 @@
 ﻿//
-// AssemblyInfo.cs
+// IThumbnailerFactory.cs
 //
 // Author:
 //   Daniel Köb <daniel.koeb@peony.at>
@@ -26,7 +26,12 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System.Runtime.CompilerServices;
+using Hyena;
 
-[assembly: InternalsVisibleTo("FSpot.Thumbnail.UnitTest")]
-[assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]
+namespace FSpot.Thumbnail
+{
+	interface IThumbnailerFactory
+	{
+		IThumbnailer GetThumbnailerForUri (SafeUri uri);
+	}
+}

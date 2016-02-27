@@ -1,5 +1,5 @@
 ﻿//
-// AssemblyInfo.cs
+// ThumbnailerFactory.cs
 //
 // Author:
 //   Daniel Köb <daniel.koeb@peony.at>
@@ -26,7 +26,31 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System.Runtime.CompilerServices;
+using FSpot.FileSystem;
+using FSpot.Imaging;
+using Hyena;
 
-[assembly: InternalsVisibleTo("FSpot.Thumbnail.UnitTest")]
-[assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]
+namespace FSpot.Thumbnail
+{
+	class ThumbnailerFactory : IThumbnailerFactory
+	{
+		readonly IFileSystem fileSystem;
+
+		public ThumbnailerFactory(IFileSystem fileSystem)
+		{
+			this.fileSystem = fileSystem;
+		}
+
+		#region IThumbnailerFactory implementation
+
+		public IThumbnailer GetThumbnailerForUri (SafeUri uri)
+		{
+			if (ImageFile.HasLoader (uri)) {
+				return new ImageThumbnailer (uri, fileSystem);
+			}
+			return null;
+		}
+
+		#endregion
+	}
+}
