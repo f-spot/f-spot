@@ -32,7 +32,7 @@ using Hyena;
 
 namespace FSpot.FileSystem
 {
-	public class GLibFile : IFile
+	class GLibFile : IFile
 	{
 		#region IFile implementation
 

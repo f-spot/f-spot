@@ -43,6 +43,7 @@ using Hyena;
 
 using FSpot.Core;
 using FSpot.Database;
+using FSpot.Utils;
 
 namespace FSpot
 {
@@ -100,6 +101,10 @@ namespace FSpot
 				}
 				return db;
 			}
+		}
+
+		public TinyIoCContainer Container {
+			get { return TinyIoCContainer.Current; }
 		}
 
 		public void Import (string path)
@@ -199,6 +204,9 @@ namespace FSpot
 			} else {
 				MessageReceived += HandleMessageReceived;
 			}
+
+			FSpot.FileSystem.ModuleController.RegisterTypes (Container);
+			FSpot.Thumbnail.ModuleController.RegisterTypes (Container);
 		}
 
 		void SendMessage (Command command, MessageData md)

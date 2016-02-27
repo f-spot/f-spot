@@ -49,6 +49,7 @@
     <Compile Include="IThumbnailService.cs" />
     <Compile Include="ThumbnailerFactory.cs" />
     <Compile Include="ImageThumbnailer.cs" />
+    <Compile Include="ModuleController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

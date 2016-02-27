@@ -28,7 +28,7 @@
 
 namespace FSpot.FileSystem
 {
-	public class GLibFileSystem : IFileSystem
+	class GLibFileSystem : IFileSystem
 	{
 		GLibFile file;
 		GLibDirectory directory;

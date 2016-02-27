@@ -1,5 +1,5 @@
 ﻿//
-// EnvironmentAdapter.cs
+// ModuleController.cs
 //
 // Author:
 //   Daniel Köb <daniel.koeb@peony.at>
@@ -26,25 +26,17 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
+using FSpot.Utils;
 
-namespace FSpot.FileSystem
+namespace FSpot.Thumbnail
 {
-	class EnvironmentAdapter : IEnvironment
+	public static class ModuleController
 	{
-		#region IEnvironment implementation
-
-		public string GetEnvironmentVariable (string variable)
+		public static void RegisterTypes (TinyIoCContainer container)
 		{
-			return Environment.GetEnvironmentVariable (variable);
+			container.Register<IXdgDirectoryService, XdgDirectoryService> ().AsSingleton ();
+			container.Register<IThumbnailService, ThumbnailService> ().AsSingleton ();
+			container.Register<IThumbnailerFactory, ThumbnailerFactory> ().AsSingleton ();
 		}
-
-		public string UserName {
-			get {
-				return Environment.UserName;
-			}
-		}
-
-		#endregion
 	}
 }

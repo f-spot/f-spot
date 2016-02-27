@@ -28,7 +28,7 @@
 
 namespace FSpot.FileSystem
 {
-	public class GLibPath : IPath
+	class GLibPath : IPath
 	{
 		public string GetTempPath ()
 		{

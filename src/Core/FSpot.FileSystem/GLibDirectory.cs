@@ -33,7 +33,7 @@ using GLib;
 
 namespace FSpot.FileSystem
 {
-	public class GLibDirectory : IDirectory
+	class GLibDirectory : IDirectory
 	{
 		public bool Exists (SafeUri uri)
 		{
