@@ -1,5 +1,5 @@
 ﻿//
-// GLibFileSystem.cs
+// IPath.cs
 //
 // Author:
 //   Daniel Köb <daniel.koeb@peony.at>
@@ -28,25 +28,8 @@
 
 namespace FSpot.FileSystem
 {
-	public class GLibFileSystem : IFileSystem
+	public interface IPath
 	{
-		GLibFile file;
-		GLibPath path;
-
-		#region IFileSystem implementation
-
-		public IFile File {
-			get {
-				return file ?? (file = new GLibFile ());
-			}
-		}
-
-		public IPath Path {
-			get {
-				return path ?? (path = new GLibPath ());
-			}
-		}
-
-		#endregion
+		string GetTempPath ();
 	}
 }

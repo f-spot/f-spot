@@ -1,5 +1,5 @@
 ﻿//
-// GLibFileSystem.cs
+// GLibPath.cs
 //
 // Author:
 //   Daniel Köb <daniel.koeb@peony.at>
@@ -28,25 +28,13 @@
 
 namespace FSpot.FileSystem
 {
-	public class GLibFileSystem : IFileSystem
+	public class GLibPath : IPath
 	{
-		GLibFile file;
-		GLibPath path;
-
-		#region IFileSystem implementation
-
-		public IFile File {
-			get {
-				return file ?? (file = new GLibFile ());
-			}
+		public string GetTempPath ()
+		{
+			// g_get_tmp_dir is not available in Glib, use implementation from System.IO.Path instead
+			// https://developer.gnome.org/glib/stable/glib-Miscellaneous-Utility-Functions.html#g-get-tmp-dir
+			return System.IO.Path.GetTempPath ();
 		}
-
-		public IPath Path {
-			get {
-				return path ?? (path = new GLibPath ());
-			}
-		}
-
-		#endregion
 	}
 }

@@ -31,5 +31,6 @@ namespace FSpot.FileSystem
 	public interface IFileSystem
 	{
 		IFile File { get; }
+		IPath Path { get; }
 	}
 }

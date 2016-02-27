@@ -39,6 +39,8 @@
     <Compile Include="GLibFileSystem.cs" />
     <Compile Include="GLibFile.cs" />
     <Compile Include="IFile.cs" />
+    <Compile Include="IPath.cs" />
+    <Compile Include="GLibPath.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\lib\gio-sharp\gio-sharp.csproj">

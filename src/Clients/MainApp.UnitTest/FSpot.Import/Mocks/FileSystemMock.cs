@@ -56,7 +56,12 @@ namespace Mocks
 			}
 		}
 
+		public IPath Path {
+			get {
+				return new Mock<IPath> ().Object;
+			}
+		}
+
 		#endregion
 	}
 }
-
