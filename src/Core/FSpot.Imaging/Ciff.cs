@@ -35,97 +35,102 @@ using Hyena;
 using System.IO;
 
 namespace FSpot.Imaging.Ciff {
-	enum Tag {
-		JpgFromRaw = 0x2007,
-	}
+	class CiffImageFile : BaseImageFile {
 
-	/* See http://www.sno.phy.queensu.ca/~phil/exiftool/canon_raw.html */
-	struct Entry {
-		internal Tag Tag;
-		internal uint Size;
-		internal uint Offset;
+		#region private types
 
-		public Entry (byte [] data, int pos, bool little)
-		{
-			Tag = (Tag) BitConverter.ToUInt16 (data, pos, little);
-			Size = BitConverter.ToUInt32 (data, pos + 2, little);
-			Offset = BitConverter.ToUInt32 (data, pos + 6, little);
+		enum Tag {
+			JpgFromRaw = 0x2007,
 		}
-	}
 
-	class ImageDirectory {
-		readonly List<Entry> entry_list;
-		uint Count;
-		bool little;
-		uint start;
-		long DirPosition;
-		Stream stream;
+		/* See http://www.sno.phy.queensu.ca/~phil/exiftool/canon_raw.html */
+		struct Entry {
+			internal Tag Tag;
+			internal uint Size;
+			internal uint Offset;
 
-		public ImageDirectory (Stream stream, uint start, long end, bool little)
-		{
-			this.start = start;
-			this.little = little;
-			this.stream = stream;
-
-			entry_list = new List<Entry> ();
-
-			stream.Position = end - 4;
-			byte [] buf = new byte [10];
-			stream.Read (buf, 0, 4);
-			uint directory_pos  = BitConverter.ToUInt32 (buf, 0, little);
-			DirPosition = start + directory_pos;
-
-			stream.Position = DirPosition;
-			stream.Read (buf, 0, 2);
-
-			Count = BitConverter.ToUInt16 (buf, 0, little);
-
-			for (int i = 0; i < Count; i++)
+			public Entry (byte [] data, int pos, bool little)
 			{
-				stream.Read (buf, 0, 10);
-				Log.DebugFormat ("reading {0} {1}", i, stream.Position);
-				Entry entry = new Entry (buf, 0, little);
-				entry_list.Add (entry);
+				Tag = (Tag) BitConverter.ToUInt16 (data, pos, little);
+				Size = BitConverter.ToUInt32 (data, pos + 2, little);
+				Offset = BitConverter.ToUInt32 (data, pos + 6, little);
 			}
 		}
 
-		public ImageDirectory ReadDirectory (Tag tag)
-		{
-			foreach (Entry e in entry_list) {
-				if (e.Tag == tag) {
-					uint subdir_start = start + e.Offset;
-					ImageDirectory subdir = new ImageDirectory (stream, subdir_start, subdir_start + e.Size, little);
-					return subdir;
+		class ImageDirectory {
+			readonly List<Entry> entry_list;
+			uint Count;
+			bool little;
+			uint start;
+			long DirPosition;
+			Stream stream;
+
+			public ImageDirectory (Stream stream, uint start, long end, bool little)
+			{
+				this.start = start;
+				this.little = little;
+				this.stream = stream;
+
+				entry_list = new List<Entry> ();
+
+				stream.Position = end - 4;
+				byte [] buf = new byte [10];
+				stream.Read (buf, 0, 4);
+				uint directory_pos  = BitConverter.ToUInt32 (buf, 0, little);
+				DirPosition = start + directory_pos;
+
+				stream.Position = DirPosition;
+				stream.Read (buf, 0, 2);
+
+				Count = BitConverter.ToUInt16 (buf, 0, little);
+
+				for (int i = 0; i < Count; i++)
+				{
+					stream.Read (buf, 0, 10);
+					Log.DebugFormat ("reading {0} {1}", i, stream.Position);
+					Entry entry = new Entry (buf, 0, little);
+					entry_list.Add (entry);
 				}
 			}
-			return null;
-		}
 
-		public byte [] ReadEntry (int pos)
-		{
-			Entry e = entry_list [pos];
-
-			stream.Position = start + e.Offset;
-
-			byte [] data = new byte [e.Size];
-			stream.Read (data, 0, data.Length);
-
-			return data;
-		}
-
-		public byte [] ReadEntry (Tag tag)
-		{
-			int pos = 0;
-			foreach (Entry e in entry_list) {
-				if (e.Tag == tag)
-					return ReadEntry (pos);
-				pos++;
+			public ImageDirectory ReadDirectory (Tag tag)
+			{
+				foreach (Entry e in entry_list) {
+					if (e.Tag == tag) {
+						uint subdir_start = start + e.Offset;
+						ImageDirectory subdir = new ImageDirectory (stream, subdir_start, subdir_start + e.Size, little);
+						return subdir;
+					}
+				}
+				return null;
 			}
-			return null;
-		}
-	}
 
-	public class CiffFile : BaseImageFile {
+			public byte [] ReadEntry (int pos)
+			{
+				Entry e = entry_list [pos];
+
+				stream.Position = start + e.Offset;
+
+				byte [] data = new byte [e.Size];
+				stream.Read (data, 0, data.Length);
+
+				return data;
+			}
+
+			public byte [] ReadEntry (Tag tag)
+			{
+				int pos = 0;
+				foreach (Entry e in entry_list) {
+					if (e.Tag == tag)
+						return ReadEntry (pos);
+					pos++;
+				}
+				return null;
+			}
+		}
+
+		#endregion
+
 		ImageDirectory root;
 		bool little;
 		Stream stream;
