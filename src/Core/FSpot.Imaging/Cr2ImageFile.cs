@@ -1,13 +1,13 @@
-//
-// DCRawFile.cs
+﻿//
+// Cr2ImageFile.cs
 //
 // Author:
-//   Larry Ewing <lewing@novell.com>
 //   Ruben Vermeersch <ruben@savanne.be>
+//   Larry Ewing <lewing@src.gnome.org>
 //
 // Copyright (C) 2005-2010 Novell, Inc.
-// Copyright (C) 2005-2006 Larry Ewing
 // Copyright (C) 2010 Ruben Vermeersch
+// Copyright (C) 2005-2007 Larry Ewing
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -29,29 +29,45 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System;
 using Hyena;
+using TagLib;
+using TagLib.IFD;
+using TagLib.IFD.Entries;
+using TagLib.IFD.Tags;
 
-namespace FSpot.Imaging {
-	public class DCRawFile : BaseImageFile {
-		const string dcraw_command = "dcraw";
+namespace FSpot.Imaging
+{
+	public class Cr2ImageFile : BaseImageFile
+	{
+		uint offset;
 
-		public DCRawFile (SafeUri uri) : base (uri)
+		public Cr2ImageFile (SafeUri uri) : base (uri)
 		{
+		}
+
+		protected override void ExtractMetadata (TagLib.Image.File metadata)
+		{
+			base.ExtractMetadata (metadata);
+
+			if (metadata == null)
+				return;
+
+			try {
+				var tag = metadata.GetTag (TagTypes.TiffIFD) as IFDTag;
+				var structure = tag.Structure;
+				var entry = structure.GetEntry (0, (ushort)IFDEntryTag.StripOffsets);
+				offset = (entry as StripOffsetsIFDEntry).Values [0];
+			} catch (Exception e) {
+				Log.DebugException (e);
+			}
 		}
 
 		public override System.IO.Stream PixbufStream ()
 		{
-			return RawPixbufStream (Uri);
-		}
-
-		internal static System.IO.Stream RawPixbufStream (SafeUri location)
-		{
-			string path = location.LocalPath;
-			string [] args = new string [] { dcraw_command, "-h", "-w", "-c", "-t", "0", path };
-
-			InternalProcess proc = new InternalProcess (System.IO.Path.GetDirectoryName (path), args);
-			proc.StandardInput.Close ();
-			return proc.StandardOutput;
+			System.IO.Stream file = base.PixbufStream ();
+			file.Position = offset;
+			return file;
 		}
 	}
 }

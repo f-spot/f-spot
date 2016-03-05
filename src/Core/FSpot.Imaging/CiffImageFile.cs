@@ -1,5 +1,5 @@
 //
-// Ciff.cs
+// CiffImageFile.cs
 //
 // Author:
 //   Ruben Vermeersch <ruben@savanne.be>
@@ -35,7 +35,7 @@ using Hyena;
 using System.IO;
 
 namespace FSpot.Imaging.Ciff {
-	class CiffFile : BaseImageFile {
+	class CiffImageFile : BaseImageFile {
 
 		#region private types
 
@@ -145,7 +145,7 @@ namespace FSpot.Imaging.Ciff {
 			}
 		}
 
-		public CiffFile (SafeUri uri) : base (uri)
+		public CiffImageFile (SafeUri uri) : base (uri)
 		{
 		}
 
@@ -174,7 +174,7 @@ namespace FSpot.Imaging.Ciff {
 
 			if (data != null)
 				return new MemoryStream (data);
-			return DCRawFile.RawPixbufStream (Uri);
+			return DCRawImageFile.RawPixbufStream (Uri);
 		}
 
 		byte [] GetEmbeddedJpeg ()

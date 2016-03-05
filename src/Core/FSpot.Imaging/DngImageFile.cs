@@ -1,5 +1,5 @@
 //
-// DngFile.cs
+// DngImageFile.cs
 //
 // Author:
 //   Ruben Vermeersch <ruben@savanne.be>
@@ -126,11 +126,11 @@ namespace FSpot.Imaging
 			return new Cms.Profile (whitepoint, primaries, transfer);
 		}
 	}*/
-	public class DngFile : BaseImageFile
+	public class DngImageFile : BaseImageFile
 	{
 		uint offset;
 
-		public DngFile (SafeUri uri) : base (uri)
+		public DngImageFile (SafeUri uri) : base (uri)
 		{
 		}
 
@@ -160,7 +160,7 @@ namespace FSpot.Imaging
 				file.Position = offset;
 				return file;
 			} catch {
-				return DCRawFile.RawPixbufStream (Uri);
+				return DCRawImageFile.RawPixbufStream (Uri);
 			}
 		}
 	}

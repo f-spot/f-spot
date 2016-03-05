@@ -46,18 +46,18 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="Ciff.cs" />
-    <Compile Include="DCRawFile.cs" />
     <Compile Include="IImageFile.cs" />
     <Compile Include="IOChannel.cs" />
     <Compile Include="ImageFile.cs" />
     <Compile Include="InternalProcess.cs" />
-    <Compile Include="RafFile.cs" />
     <Compile Include="BaseImageFile.cs" />
+    <Compile Include="DCRawImageFile.cs" />
     <Compile Include="ImageFormatException.cs" />
-    <Compile Include="NefFile.cs" />
-    <Compile Include="Cr2File.cs" />
-    <Compile Include="DngFile.cs" />
+    <Compile Include="CiffImageFile.cs" />
+    <Compile Include="Cr2ImageFile.cs" />
+    <Compile Include="DngImageFile.cs" />
+    <Compile Include="NefImageFile.cs" />
+    <Compile Include="RafImageFile.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\external\taglib-sharp\src\taglib-sharp.csproj">

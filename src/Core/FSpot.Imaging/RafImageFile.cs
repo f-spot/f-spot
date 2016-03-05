@@ -1,5 +1,5 @@
 //
-// RafFile.cs
+// RafImageFile.cs
 //
 // Author:
 //   Ruben Vermeersch <ruben@savanne.be>
@@ -43,9 +43,9 @@ namespace FSpot.Imaging {
 
 	// ALL the sample files I have begin with "FUJIFILMCCD-RAW "
 
-	public class RafFile : BaseImageFile {
+	public class RafImageFile : BaseImageFile {
 
-		public RafFile (SafeUri uri) : base (uri)
+		public RafImageFile (SafeUri uri) : base (uri)
 		{
 		}
 
@@ -56,7 +56,7 @@ namespace FSpot.Imaging {
 			if (data != null)
 				return new System.IO.MemoryStream (data);
 			else
-				return DCRawFile.RawPixbufStream (Uri);
+				return DCRawImageFile.RawPixbufStream (Uri);
 		}
 
 		private byte [] GetEmbeddedJpeg ()

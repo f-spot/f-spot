@@ -53,12 +53,12 @@ namespace FSpot.Imaging
 		static ImageFile ()
 		{
 			var base_type = typeof(BaseImageFile);
-			var raw_type = typeof(DCRawFile);
-			var nef_type = typeof(NefFile);
-			var cr2_type = typeof(Cr2File);
-			var dng_type = typeof(DngFile);
-			var ciff_type = typeof(Ciff.CiffFile);
-			var raf_type = typeof(RafFile);
+			var raw_type = typeof(DCRawImageFile);
+			var nef_type = typeof(NefImageFile);
+			var cr2_type = typeof(Cr2ImageFile);
+			var dng_type = typeof(DngImageFile);
+			var ciff_type = typeof(Ciff.CiffImageFile);
+			var raf_type = typeof(RafImageFile);
 
 			NameTable = new Dictionary<string, Type> ();
 
