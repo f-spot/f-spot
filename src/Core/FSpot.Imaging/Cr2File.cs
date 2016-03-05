@@ -1,14 +1,13 @@
-//
-// IImageFile.cs
+﻿//
+// Cr2File.cs
 //
 // Author:
-//   Stephane Delcroix <stephane@delcroix.org>
 //   Ruben Vermeersch <ruben@savanne.be>
-//   Stephen Shaw <sshaw@decriptor.com>
+//   Larry Ewing <lewing@src.gnome.org>
 //
-// Copyright (C) 2007-2010 Novell, Inc.
-// Copyright (C) 2007-2009 Stephane Delcroix
+// Copyright (C) 2005-2010 Novell, Inc.
 // Copyright (C) 2010 Ruben Vermeersch
+// Copyright (C) 2005-2007 Larry Ewing
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -31,20 +30,44 @@
 //
 
 using System;
-using System.IO;
 using Hyena;
-using TagLib.Image;
+using TagLib;
+using TagLib.IFD;
+using TagLib.IFD.Entries;
+using TagLib.IFD.Tags;
 
 namespace FSpot.Imaging
 {
-	public interface IImageFile : IDisposable
+	public class Cr2File : BaseImageFile
 	{
-		SafeUri Uri { get; }
-		ImageOrientation Orientation { get; }
+		uint offset;
 
-		Gdk.Pixbuf Load ();
-		Cms.Profile GetProfile ();
-		Gdk.Pixbuf Load (int maxWidth, int maxHeight);
-		Stream PixbufStream ();
+		public Cr2File (SafeUri uri) : base (uri)
+		{
+		}
+
+		protected override void ExtractMetadata (TagLib.Image.File metadata)
+		{
+			base.ExtractMetadata (metadata);
+
+			if (metadata == null)
+				return;
+
+			try {
+				var tag = metadata.GetTag (TagTypes.TiffIFD) as IFDTag;
+				var structure = tag.Structure;
+				var entry = structure.GetEntry (0, (ushort)IFDEntryTag.StripOffsets);
+				offset = (entry as StripOffsetsIFDEntry).Values [0];
+			} catch (Exception e) {
+				Log.DebugException (e);
+			}
+		}
+
+		public override System.IO.Stream PixbufStream ()
+		{
+			System.IO.Stream file = base.PixbufStream ();
+			file.Position = offset;
+			return file;
+		}
 	}
 }

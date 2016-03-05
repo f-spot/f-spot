@@ -1,5 +1,5 @@
 //
-// IImageFile.cs
+// ImageFormatException.cs
 //
 // Author:
 //   Stephane Delcroix <stephane@delcroix.org>
@@ -31,20 +31,13 @@
 //
 
 using System;
-using System.IO;
-using Hyena;
-using TagLib.Image;
 
 namespace FSpot.Imaging
 {
-	public interface IImageFile : IDisposable
+	public class ImageFormatException : ApplicationException
 	{
-		SafeUri Uri { get; }
-		ImageOrientation Orientation { get; }
-
-		Gdk.Pixbuf Load ();
-		Cms.Profile GetProfile ();
-		Gdk.Pixbuf Load (int maxWidth, int maxHeight);
-		Stream PixbufStream ();
+		public ImageFormatException (string msg) : base (msg)
+		{
+		}
 	}
 }

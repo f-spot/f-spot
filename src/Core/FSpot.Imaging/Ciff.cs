@@ -35,7 +35,7 @@ using Hyena;
 using System.IO;
 
 namespace FSpot.Imaging.Ciff {
-	class CiffImageFile : BaseImageFile {
+	class CiffFile : BaseImageFile {
 
 		#region private types
 

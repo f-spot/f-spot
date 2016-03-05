@@ -1,14 +1,13 @@
-//
-// IImageFile.cs
+﻿//
+// NefFile.cs
 //
 // Author:
-//   Stephane Delcroix <stephane@delcroix.org>
 //   Ruben Vermeersch <ruben@savanne.be>
-//   Stephen Shaw <sshaw@decriptor.com>
+//   Larry Ewing <lewing@src.gnome.org>
 //
-// Copyright (C) 2007-2010 Novell, Inc.
-// Copyright (C) 2007-2009 Stephane Delcroix
+// Copyright (C) 2005-2010 Novell, Inc.
 // Copyright (C) 2010 Ruben Vermeersch
+// Copyright (C) 2005-2007 Larry Ewing
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -33,18 +32,46 @@
 using System;
 using System.IO;
 using Hyena;
-using TagLib.Image;
+using TagLib;
+using TagLib.IFD;
+using TagLib.IFD.Entries;
+using TagLib.IFD.Tags;
 
 namespace FSpot.Imaging
 {
-	public interface IImageFile : IDisposable
+	public class NefFile : BaseImageFile
 	{
-		SafeUri Uri { get; }
-		ImageOrientation Orientation { get; }
+		byte[] jpeg_data;
 
-		Gdk.Pixbuf Load ();
-		Cms.Profile GetProfile ();
-		Gdk.Pixbuf Load (int maxWidth, int maxHeight);
-		Stream PixbufStream ();
+		public NefFile (SafeUri uri) : base (uri)
+		{
+		}
+
+		protected override void ExtractMetadata (TagLib.Image.File metadata)
+		{
+			base.ExtractMetadata (metadata);
+
+			if (metadata == null)
+				return;
+
+			try {
+				var tag = metadata.GetTag (TagTypes.TiffIFD) as IFDTag;
+				var structure = tag.Structure;
+				var SubImage1_structure = (structure.GetEntry (0, (ushort)IFDEntryTag.SubIFDs) as SubIFDArrayEntry).Entries [0];
+				var entry = SubImage1_structure.GetEntry (0, (ushort)IFDEntryTag.JPEGInterchangeFormat);
+				jpeg_data = (entry as ThumbnailDataIFDEntry).Data.Data;
+			} catch (Exception e) {
+				Log.DebugException (e);
+				jpeg_data = null;
+			}
+		}
+
+		public override System.IO.Stream PixbufStream ()
+		{
+			if (jpeg_data != null)
+				return new MemoryStream (jpeg_data);
+			else
+				return DCRawFile.RawPixbufStream (Uri);
+		}
 	}
 }

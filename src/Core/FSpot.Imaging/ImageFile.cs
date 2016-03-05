@@ -45,13 +45,6 @@ using FSpot.Utils;
 
 namespace FSpot.Imaging
 {
-	public class ImageFormatException : ApplicationException
-	{
-		public ImageFormatException (string msg) : base (msg)
-		{
-		}
-	}
-
 	public static class ImageFile
 	{
 		#region Factory functionality

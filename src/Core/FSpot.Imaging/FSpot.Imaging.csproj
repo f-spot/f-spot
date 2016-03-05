@@ -53,7 +53,11 @@
     <Compile Include="ImageFile.cs" />
     <Compile Include="InternalProcess.cs" />
     <Compile Include="RafFile.cs" />
-    <Compile Include="Tiff.cs" />
+    <Compile Include="BaseImageFile.cs" />
+    <Compile Include="ImageFormatException.cs" />
+    <Compile Include="NefFile.cs" />
+    <Compile Include="Cr2File.cs" />
+    <Compile Include="DngFile.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\external\taglib-sharp\src\taglib-sharp.csproj">

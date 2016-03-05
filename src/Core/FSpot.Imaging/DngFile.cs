@@ -1,5 +1,5 @@
 //
-// Tiff.cs
+// DngFile.cs
 //
 // Author:
 //   Ruben Vermeersch <ruben@savanne.be>
@@ -30,10 +30,7 @@
 //
 
 using System;
-using System.IO;
-
 using Hyena;
-
 using TagLib;
 using TagLib.IFD;
 using TagLib.IFD.Entries;
@@ -167,74 +164,4 @@ namespace FSpot.Imaging
 			}
 		}
 	}
-
-	public class NefFile : BaseImageFile
-	{
-		byte[] jpeg_data;
-
-		public NefFile (SafeUri uri) : base (uri)
-		{
-		}
-
-		protected override void ExtractMetadata (TagLib.Image.File metadata)
-		{
-			base.ExtractMetadata (metadata);
-
-			if (metadata == null)
-				return;
-
-			try {
-				var tag = metadata.GetTag (TagTypes.TiffIFD) as IFDTag;
-				var structure = tag.Structure;
-				var SubImage1_structure = (structure.GetEntry (0, (ushort)IFDEntryTag.SubIFDs) as SubIFDArrayEntry).Entries [0];
-				var entry = SubImage1_structure.GetEntry (0, (ushort)IFDEntryTag.JPEGInterchangeFormat);
-				jpeg_data = (entry as ThumbnailDataIFDEntry).Data.Data;
-			} catch (Exception e) {
-				Log.DebugException (e);
-				jpeg_data = null;
-			}
-		}
-
-		public override System.IO.Stream PixbufStream ()
-		{
-			if (jpeg_data != null)
-				return new MemoryStream (jpeg_data);
-			else
-				return DCRawFile.RawPixbufStream (Uri);
-		}
-	}
-
-	public class Cr2File : BaseImageFile
-	{
-		uint offset;
-
-		public Cr2File (SafeUri uri) : base (uri)
-		{
-		}
-
-		protected override void ExtractMetadata (TagLib.Image.File metadata)
-		{
-			base.ExtractMetadata (metadata);
-
-			if (metadata == null)
-				return;
-
-			try {
-				var tag = metadata.GetTag (TagTypes.TiffIFD) as IFDTag;
-				var structure = tag.Structure;
-				var entry = structure.GetEntry (0, (ushort)IFDEntryTag.StripOffsets);
-				offset = (entry as StripOffsetsIFDEntry).Values [0];
-			} catch (Exception e) {
-				Log.DebugException (e);
-			}
-		}
-
-		public override System.IO.Stream PixbufStream ()
-		{
-			System.IO.Stream file = base.PixbufStream ();
-			file.Position = offset;
-			return file;
-		}
-	}
-
 }
