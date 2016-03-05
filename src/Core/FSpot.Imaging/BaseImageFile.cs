@@ -35,11 +35,10 @@ using System.IO;
 using FSpot.Utils;
 using Hyena;
 using TagLib.Image;
-using GFileInfo = GLib.FileInfo;
 
 namespace FSpot.Imaging
 {
-	public class BaseImageFile : IImageFile
+	class BaseImageFile : IImageFile
 	{
 		bool disposed;
 
@@ -74,7 +73,7 @@ namespace FSpot.Imaging
 			if (orig == null)
 				return null;
 
-			Gdk.Pixbuf rotated = FSpot.Utils.PixbufUtils.TransformOrientation (orig, Orientation);
+			Gdk.Pixbuf rotated = orig.TransformOrientation (Orientation);
 
 			orig.Dispose ();
 
@@ -84,15 +83,15 @@ namespace FSpot.Imaging
 		public Gdk.Pixbuf Load ()
 		{
 			using (Stream stream = PixbufStream ()) {
-				Gdk.Pixbuf orig = new Gdk.Pixbuf (stream);
+				var orig = new Gdk.Pixbuf (stream);
 				return TransformAndDispose (orig);
 			}
 		}
 
 		public Gdk.Pixbuf Load (int maxWidth, int maxHeight)
 		{
-			using (Gdk.Pixbuf full = Load ()) {
-				return PixbufUtils.ScaleToMaxSize (full, maxWidth, maxHeight);
+			using (var full = Load ()) {
+				return full.ScaleToMaxSize (maxWidth, maxHeight);
 			}
 		}
 

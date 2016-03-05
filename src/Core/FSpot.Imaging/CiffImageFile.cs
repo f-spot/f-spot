@@ -34,9 +34,10 @@ using System.Collections.Generic;
 using Hyena;
 using System.IO;
 
-namespace FSpot.Imaging.Ciff {
-	class CiffImageFile : BaseImageFile {
-
+namespace FSpot.Imaging
+{
+	class CiffImageFile : BaseImageFile
+	{
 		#region private types
 
 		enum Tag {
@@ -57,7 +58,8 @@ namespace FSpot.Imaging.Ciff {
 			}
 		}
 
-		class ImageDirectory {
+		class ImageDirectory
+		{
 			readonly List<Entry> entry_list;
 			uint Count;
 			bool little;
@@ -74,7 +76,7 @@ namespace FSpot.Imaging.Ciff {
 				entry_list = new List<Entry> ();
 
 				stream.Position = end - 4;
-				byte [] buf = new byte [10];
+				var buf = new byte [10];
 				stream.Read (buf, 0, 4);
 				uint directory_pos  = BitConverter.ToUInt32 (buf, 0, little);
 				DirPosition = start + directory_pos;
@@ -88,7 +90,7 @@ namespace FSpot.Imaging.Ciff {
 				{
 					stream.Read (buf, 0, 10);
 					Log.DebugFormat ("reading {0} {1}", i, stream.Position);
-					Entry entry = new Entry (buf, 0, little);
+					var entry = new Entry (buf, 0, little);
 					entry_list.Add (entry);
 				}
 			}
@@ -98,7 +100,7 @@ namespace FSpot.Imaging.Ciff {
 				foreach (Entry e in entry_list) {
 					if (e.Tag == tag) {
 						uint subdir_start = start + e.Offset;
-						ImageDirectory subdir = new ImageDirectory (stream, subdir_start, subdir_start + e.Size, little);
+						var subdir = new ImageDirectory (stream, subdir_start, subdir_start + e.Size, little);
 						return subdir;
 					}
 				}
@@ -111,7 +113,7 @@ namespace FSpot.Imaging.Ciff {
 
 				stream.Position = start + e.Offset;
 
-				byte [] data = new byte [e.Size];
+				var data = new byte [e.Size];
 				stream.Read (data, 0, data.Length);
 
 				return data;
@@ -151,7 +153,7 @@ namespace FSpot.Imaging.Ciff {
 
 		ImageDirectory LoadImageDirectory ()
 		{
-			byte [] header = new byte [26];  // the spec reserves the first 26 bytes as the header block
+			var header = new byte [26];  // the spec reserves the first 26 bytes as the header block
 			stream.Read (header, 0, header.Length);
 
 			uint start;
@@ -171,10 +173,7 @@ namespace FSpot.Imaging.Ciff {
 		public override Stream PixbufStream ()
 		{
 			byte [] data = GetEmbeddedJpeg ();
-
-			if (data != null)
-				return new MemoryStream (data);
-			return DCRawImageFile.RawPixbufStream (Uri);
+			return data != null ? new MemoryStream (data) : DCRawImageFile.RawPixbufStream (Uri);
 		}
 
 		byte [] GetEmbeddedJpeg ()

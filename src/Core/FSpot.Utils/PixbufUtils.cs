@@ -176,7 +176,7 @@ namespace FSpot.Utils
 			}
 		}
 
-		public static Pixbuf TransformOrientation (Pixbuf src, ImageOrientation orientation)
+		public static Pixbuf TransformOrientation (this Pixbuf src, ImageOrientation orientation)
 		{
 			Pixbuf dest;
 

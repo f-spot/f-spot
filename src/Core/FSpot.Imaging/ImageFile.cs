@@ -38,9 +38,6 @@ using Hyena;
 
 using Gdk;
 
-using GLib;
-
-using GFileInfo = GLib.FileInfo;
 using FSpot.Utils;
 
 namespace FSpot.Imaging
@@ -57,7 +54,7 @@ namespace FSpot.Imaging
 			var nef_type = typeof(NefImageFile);
 			var cr2_type = typeof(Cr2ImageFile);
 			var dng_type = typeof(DngImageFile);
-			var ciff_type = typeof(Ciff.CiffImageFile);
+			var ciff_type = typeof(CiffImageFile);
 			var raf_type = typeof(RafImageFile);
 
 			NameTable = new Dictionary<string, Type> ();
@@ -99,7 +96,7 @@ namespace FSpot.Imaging
 
 			// as xcf pixbufloader is not part of gdk-pixbuf, check if it's there,
 			// and enable it if needed.
-			foreach (Gdk.PixbufFormat format in Gdk.Pixbuf.Formats) {
+			foreach (PixbufFormat format in Pixbuf.Formats) {
 				if (format.Name == "xcf") {
 					if (format.IsDisabled)
 						format.SetDisabled (false);
@@ -124,32 +121,29 @@ namespace FSpot.Imaging
 			// with filenames with invalid encoding
 			var file = GLib.FileFactory.NewForUri (uri);
 			if (!file.Exists)
-             		   return null;
+				return null;
 
 			string extension = uri.GetExtension ().ToLower ();
 
 			// Ignore video thumbnails
 			if (extension == ".thm")
-		                return null;
+				return null;
 
 			// Detect mime-type
-			var info = file.QueryInfo ("standard::content-type,standard::size", FileQueryInfoFlags.None, null);
+			var info = file.QueryInfo ("standard::content-type,standard::size", GLib.FileQueryInfoFlags.None, null);
 			string mime = info.ContentType;
 			long size = info.Size;
 
 			// Empty file
 			if (size == 0)
-		                return null;
+				return null;
 
-			Type t = null;
+			Type t;
 
 			if (NameTable.TryGetValue (mime, out t))
 				return t;
 
-			if (NameTable.TryGetValue (extension, out t))
-				return t;
-
-			return null;
+			return NameTable.TryGetValue (extension, out t) ? t : null;
 		}
 
 		public static IImageFile Create (SafeUri uri)
@@ -159,9 +153,9 @@ namespace FSpot.Imaging
 				throw new Exception (String.Format ("Unsupported image: {0}", uri));
 
 			try {
-				return (IImageFile)System.Activator.CreateInstance (t, new object[] { uri });
+				return (IImageFile)Activator.CreateInstance (t, new object[] { uri });
 			} catch (Exception e) {
-				Hyena.Log.DebugException (e);
+				Log.DebugException (e);
 				throw e;
 			}
 		}

@@ -39,7 +39,7 @@ using TagLib.IFD.Tags;
 
 namespace FSpot.Imaging
 {
-	public class NefImageFile : BaseImageFile
+	class NefImageFile : BaseImageFile
 	{
 		byte[] jpeg_data;
 
@@ -66,12 +66,9 @@ namespace FSpot.Imaging
 			}
 		}
 
-		public override System.IO.Stream PixbufStream ()
+		public override Stream PixbufStream ()
 		{
-			if (jpeg_data != null)
-				return new MemoryStream (jpeg_data);
-			else
-				return DCRawImageFile.RawPixbufStream (Uri);
+			return jpeg_data != null ? new MemoryStream (jpeg_data) : DCRawImageFile.RawPixbufStream (Uri);
 		}
 	}
 }

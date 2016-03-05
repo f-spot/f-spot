@@ -29,6 +29,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System.IO;
 using Hyena;
 
 namespace FSpot.Imaging {
@@ -43,27 +44,24 @@ namespace FSpot.Imaging {
 
 	// ALL the sample files I have begin with "FUJIFILMCCD-RAW "
 
-	public class RafImageFile : BaseImageFile {
+	class RafImageFile : BaseImageFile {
 
 		public RafImageFile (SafeUri uri) : base (uri)
 		{
 		}
 
-		public override System.IO.Stream PixbufStream ()
+		public override Stream PixbufStream ()
 		{
 			byte [] data = GetEmbeddedJpeg ();
 
-			if (data != null)
-				return new System.IO.MemoryStream (data);
-			else
-				return DCRawImageFile.RawPixbufStream (Uri);
+			return data != null ? new MemoryStream (data) : DCRawImageFile.RawPixbufStream (Uri);
 		}
 
-		private byte [] GetEmbeddedJpeg ()
+		byte [] GetEmbeddedJpeg ()
 		{
-			using (System.IO.Stream stream = base.PixbufStream ()) {
+			using (Stream stream = base.PixbufStream ()) {
 				stream.Position = 0x54;
-				byte [] data = new byte [24];
+				var data = new byte [24];
 				stream.Read (data, 0, data.Length);
 				uint jpeg_offset = BitConverter.ToUInt32 (data, 0, false);
 				uint jpeg_length = BitConverter.ToUInt32 (data, 4, false);
@@ -76,7 +74,7 @@ namespace FSpot.Imaging {
 				//uint raw_offset = BitConverter.ToUInt32 (data, 16, false);
 				//uint raw_length = BitConverter.ToUInt32 (data, 20, false);
 
-				byte [] image = new byte [jpeg_length];
+				var image = new byte [jpeg_length];
 				stream.Position = jpeg_offset;
 				stream.Read (image, 0, image.Length);
 				return image;
