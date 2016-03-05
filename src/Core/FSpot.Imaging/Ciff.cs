@@ -39,20 +39,6 @@ namespace FSpot.Imaging.Ciff {
 		JpgFromRaw = 0x2007,
 	}
 
-	public enum EntryType : ushort {
-		Byte = 0x0000,
-		Ascii = 0x0800,
-		Short = 0x1000,
-		Int = 0x1800,
-		Struct = 0x2000,
-		Directory1 = 0x2800,
-		Directory2 = 0x2800,
-	}
-
-	public enum Mask {
-		Type = 0x3800,
-	}
-
 	/* See http://www.sno.phy.queensu.ca/~phil/exiftool/canon_raw.html */
 	struct Entry {
 		internal Tag Tag;
