@@ -2,10 +2,12 @@
 // ImageFile.cs
 //
 // Author:
+//   Daniel Köb <daniel.koeb@peony.at>
 //   Stephane Delcroix <stephane@delcroix.org>
 //   Ruben Vermeersch <ruben@savanne.be>
 //   Stephen Shaw <sshaw@decriptor.com>
 //
+// Copyright (C) 2016 Daniel Köb
 // Copyright (C) 2007-2010 Novell, Inc.
 // Copyright (C) 2007-2009 Stephane Delcroix
 // Copyright (C) 2010 Ruben Vermeersch
@@ -44,55 +46,102 @@ namespace FSpot.Imaging
 {
 	public static class ImageFile
 	{
+		static readonly TinyIoCContainer container;
+		static readonly List<string> imageTypes;
+		static readonly List<string> jpegExtensions;
+		static readonly List<string> rawExtensions;
+
+		enum ImageType {
+			Other,
+			Jpeg,
+			Raw
+		}
+
 		#region Factory functionality
-		public static Dictionary<string, Type> NameTable { get; private set; }
 
 		static ImageFile ()
 		{
-			var base_type = typeof(BaseImageFile);
-			var raw_type = typeof(DCRawImageFile);
-			var nef_type = typeof(NefImageFile);
-			var cr2_type = typeof(Cr2ImageFile);
-			var dng_type = typeof(DngImageFile);
-			var ciff_type = typeof(CiffImageFile);
-			var raf_type = typeof(RafImageFile);
+			container = new TinyIoCContainer ();
+			imageTypes = new List<string> ();
+			jpegExtensions = new List<string> ();
+			rawExtensions = new List<string> ();
 
-			NameTable = new Dictionary<string, Type> ();
+			// Plain image file extenions
+			RegisterExtensions<BaseImageFile> (ImageType.Other,
+				".gif",
+				".pcx",
+				".pnm",
+				".pbm",
+				".pgm",
+				".ppm",
+				".bmp",
+				".png",
+				".tif", ".tiff",
+				".svg", ".svgz");
 
-			// Plain image files
-			NameTable ["image/gif"] = NameTable [".gif"] = base_type;
-			NameTable ["image/x-pcx"] = NameTable [".pcx"] = base_type;
-			NameTable ["image/x-portable-anymap"] = NameTable [".pnm"] = base_type;
-			NameTable ["image/x-portable-bitmap"] = NameTable [".pbm"] = base_type;
-			NameTable ["image/x-portable-graymap"] = NameTable [".pgm"] = base_type;
-			NameTable ["image/x-portable-pixmap"] = NameTable [".ppm"] = base_type;
-			NameTable ["image/x-bmp"] = NameTable ["image/x-MS-bmp"] = NameTable [".bmp"] = base_type;
-			NameTable ["image/jpeg"] = NameTable [".jfi"] = NameTable [".jfif"] = NameTable [".jif"] = NameTable [".jpe"] = NameTable [".jpeg"] = NameTable [".jpg"] = base_type;
-			NameTable ["image/png"] = NameTable [".png"] = base_type;
-			NameTable ["image/tiff"] = NameTable [".tif"] = NameTable [".tiff"] = base_type;
-			NameTable ["image/svg+xml"] = NameTable [".svg"] = NameTable [".svgz"] = base_type;
+			// Jpegs
+			RegisterExtensions<BaseImageFile> (ImageType.Jpeg,
+				".jfi", ".jfif", ".jif", ".jpe", ".jpeg", ".jpg");
+
+			// Plain image mime types
+			RegisterMimeTypes<BaseImageFile> (
+				"image/gif",
+				"image/x-pcx",
+				"image/x-portable-anymap",
+				"image/x-portable-bitmap",
+				"image/x-portable-graymap",
+				"image/x-portable-pixmap",
+				"image/x-bmp", "image/x-MS-bmp",
+				"image/jpeg",
+				"image/png",
+				"image/tiff",
+				"image/svg+xml");
 
 			// RAW files
-			NameTable ["image/arw"] = NameTable ["image/x-sony-arw"] = NameTable [".arw"] = nef_type;
-			NameTable ["image/cr2"] = NameTable ["image/x-canon-cr2"] = NameTable [".cr2"] = cr2_type;
-			NameTable ["image/dng"] = NameTable ["image/x-adobe-dng"] = NameTable [".dng"] = dng_type;
-			NameTable ["image/nef"] = NameTable ["image/x-nikon-nef"] = NameTable [".nef"] = nef_type;
-			NameTable ["image/rw2"] = NameTable ["image/x-raw"] = NameTable [".rw2"] = raw_type;
-			NameTable ["image/pef"] = NameTable ["image/x-pentax-pef"] = NameTable [".pef"] = nef_type;
-			NameTable ["image/raw"] = NameTable ["image/x-panasonic-raw"] = NameTable [".raw"] = nef_type;
+			RegisterExtensions<NefImageFile> (ImageType.Raw,
+				".arw",
+				".nef",
+				".pef",
+				".raw",
+				".orf",
+				".kdc",
+				".srf");
+			RegisterMimeTypes<NefImageFile> (
+				"image/arw", "image/x-sony-arw",
+				"image/nef", "image/x-nikon-nef",
+				"image/pef", "image/x-pentax-pef",
+				"image/raw", "image/x-panasonic-raw",
+				"image/x-orf");
 
-			// Other types (FIXME: Currently unsupported by Taglib#, this list should shrink).
+			RegisterExtensions<Cr2ImageFile> (ImageType.Raw,
+				".cr2");
+			RegisterMimeTypes<Cr2ImageFile> (
+				"image/cr2", "image/x-canon-cr2");
 
-			NameTable ["image/x-ciff"] = NameTable [".crw"] = ciff_type;
-			NameTable ["image/x-mrw"] = NameTable [".mrw"] = raw_type;
-			NameTable ["image/x-x3f"] = NameTable [".x3f"] = raw_type;
-			NameTable ["image/x-orf"] = NameTable [".orf"] = nef_type;
-			NameTable ["image/x-raf"] = NameTable [".raf"] = raf_type;
-			NameTable [".kdc"] = nef_type;
-			NameTable [".rw2"] = raw_type;
-			NameTable [".srf"] = nef_type;
-			NameTable [".srw"] = raw_type; // Samsung NX Raw files, supported by latest dcraw
+			RegisterExtensions<DngImageFile> (ImageType.Raw,
+				".dng");
+			RegisterMimeTypes<DngImageFile> (
+				"image/dng", "image/x-adobe-dng");
 
+			RegisterExtensions<DCRawImageFile> (ImageType.Raw,
+				".rw2",
+				".mrw",
+				".x3f",
+				".srw");
+			RegisterMimeTypes<DCRawImageFile> (
+				"image/rw2", "image/x-raw",
+				"image/x-mrw",
+				"image/x-x3f");
+
+			RegisterExtensions<CiffImageFile> (ImageType.Raw,
+				".crw");
+			RegisterMimeTypes<CiffImageFile> (
+				"image/x-ciff");
+
+			RegisterExtensions<RafImageFile> (ImageType.Raw,
+				".raf");
+			RegisterMimeTypes<RafImageFile> (
+				"image/x-raf");
 
 			// as xcf pixbufloader is not part of gdk-pixbuf, check if it's there,
 			// and enable it if needed.
@@ -100,14 +149,40 @@ namespace FSpot.Imaging
 				if (format.Name == "xcf") {
 					if (format.IsDisabled)
 						format.SetDisabled (false);
-					NameTable [".xcf"] = base_type;
+					RegisterExtensions<BaseImageFile> (ImageType.Other, ".xcf");
 				}
 			}
 		}
 
+		static void RegisterMimeTypes<T> (params string[] mimeTypes)
+			where T : class, IImageFile
+		{
+			foreach (var mimeType in mimeTypes) {
+				container.Register<IImageFile, T> (mimeType).AsMultiInstance ();
+		}
+			imageTypes.AddRange (mimeTypes);
+		}
+
+		static void RegisterExtensions<T> (ImageType type, params string[] extensions)
+			where T : class, IImageFile
+		{
+			foreach (var extension in extensions) {
+				container.Register<IImageFile, T> (extension).AsMultiInstance ();
+				switch (type) {
+				case ImageType.Jpeg:
+					jpegExtensions.Add (extension);
+					break;
+				case ImageType.Raw:
+					rawExtensions.Add (extension);
+					break;
+				}
+			}
+			imageTypes.AddRange (extensions);
+		}
+
 		public static List<string> UnitTestImageFileTypes ()
 		{
-			return NameTable.Keys.ToList();
+			return imageTypes;
 		}
 
 		public static bool HasLoader (SafeUri uri)
@@ -115,7 +190,7 @@ namespace FSpot.Imaging
 			return GetLoaderType (uri) != null;
 		}
 
-		static Type GetLoaderType (SafeUri uri)
+		static string GetLoaderType (SafeUri uri)
 		{
 			// check if GIO can find the file, which is not the case
 			// with filenames with invalid encoding
@@ -138,22 +213,32 @@ namespace FSpot.Imaging
 			if (size == 0)
 				return null;
 
-			Type t;
+			var param = UriAsParameter (uri);
 
-			if (NameTable.TryGetValue (mime, out t))
-				return t;
+			// Get loader by mime-type
+			if (container.CanResolve<IImageFile> (mime, param))
+				return mime;
 
-			return NameTable.TryGetValue (extension, out t) ? t : null;
+			// Get loader by extension
+			return container.CanResolve<IImageFile> (extension, param) ? extension : null;
+		}
+
+		static NamedParameterOverloads UriAsParameter (SafeUri uri) {
+			return new NamedParameterOverloads (new Dictionary<string, object> { {
+					"uri",
+					uri
+				}
+			});
 		}
 
 		public static IImageFile Create (SafeUri uri)
 		{
-			var t = GetLoaderType (uri);
-			if (t == null)
+			var name = GetLoaderType (uri);
+			if (name == null)
 				throw new Exception (String.Format ("Unsupported image: {0}", uri));
 
 			try {
-				return (IImageFile)Activator.CreateInstance (t, new object[] { uri });
+				return container.Resolve<IImageFile> (name, UriAsParameter (uri));
 			} catch (Exception e) {
 				Log.DebugException (e);
 				throw e;
@@ -162,30 +247,16 @@ namespace FSpot.Imaging
 
 		public static bool IsRaw (SafeUri uri)
 		{
-			string [] raw_extensions = {
-				".arw",
-				".crw",
-				".cr2",
-				".dng",
-				".mrw",
-				".nef",
-				".orf",
-				".pef",
-				".raw",
-				".raf",
-				".rw2",
-				".srw",
-			};
 			var extension = uri.GetExtension ().ToLower ();
-			return raw_extensions.Any (x => x == extension);
+			return rawExtensions.Any (x => x == extension);
 		}
 
 		public static bool IsJpeg (SafeUri uri)
 		{
-			string [] jpg_extensions = {".jpg", ".jpeg", ".jpe", ".jfi", ".jfif", ".jif"};
 			var extension = uri.GetExtension ().ToLower ();
-			return jpg_extensions.Any (x => x == extension);
+			return jpegExtensions.Any (x => x == extension);
 		}
+
 		#endregion
 	}
 }
