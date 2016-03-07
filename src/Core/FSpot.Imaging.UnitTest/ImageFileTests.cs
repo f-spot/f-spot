@@ -1,5 +1,5 @@
 ﻿//
-// FileImportSourceTests.cs
+// ImageFileTests.cs
 //
 // Author:
 //   Daniel Köb <daniel.koeb@peony.at>
@@ -29,10 +29,10 @@
 using Hyena;
 using NUnit.Framework;
 
-namespace FSpot.Import
+namespace FSpot.Imaging.UnitTest
 {
 	[TestFixture]
-	public class FileImportSourceTests
+	public class ImageFileTests
 	{
 		[Test]
 		public void TestIsJpegRawPair ()
@@ -46,18 +46,17 @@ namespace FSpot.Import
 			var crw2 = new SafeUri ("file:///a/photo2.jpeg");
 
 			// both jpegs
-			Assert.IsFalse (FileImportSource.IsJpegRawPair (jpeg, jpg));
+			Assert.IsFalse (ImageFile.IsJpegRawPair (jpeg, jpg));
 			// both raw
-			Assert.IsFalse (FileImportSource.IsJpegRawPair (nef, crw));
+			Assert.IsFalse (ImageFile.IsJpegRawPair (nef, crw));
 			// different filename
-			Assert.IsFalse (FileImportSource.IsJpegRawPair (jpeg, crw2));
+			Assert.IsFalse (ImageFile.IsJpegRawPair (jpeg, crw2));
 			// different basedir
-			Assert.IsFalse (FileImportSource.IsJpegRawPair (jpeg, nef2));
+			Assert.IsFalse (ImageFile.IsJpegRawPair (jpeg, nef2));
 
-			Assert.IsTrue (FileImportSource.IsJpegRawPair (jpeg, nef));
-			Assert.IsTrue (FileImportSource.IsJpegRawPair (jpeg, crw));
-			Assert.IsTrue (FileImportSource.IsJpegRawPair (jpg, nef));
+			Assert.IsTrue (ImageFile.IsJpegRawPair (jpeg, nef));
+			Assert.IsTrue (ImageFile.IsJpegRawPair (jpeg, crw));
+			Assert.IsTrue (ImageFile.IsJpegRawPair (jpg, nef));
 		}
 	}
 }
-

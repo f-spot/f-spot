@@ -257,6 +257,14 @@ namespace FSpot.Imaging
 			return jpegExtensions.Any (x => x == extension);
 		}
 
+		public static bool IsJpegRawPair(SafeUri file1, SafeUri file2)
+		{
+			return file1.GetBaseUri ().ToString () == file2.GetBaseUri ().ToString () &&
+				file1.GetFilenameWithoutExtension () == file2.GetFilenameWithoutExtension () &&
+				((IsJpeg (file1) && IsRaw (file2)) ||
+					(IsRaw (file1) && IsJpeg (file2)));
+		}
+
 		#endregion
 	}
 }

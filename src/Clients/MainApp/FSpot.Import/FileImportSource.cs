@@ -110,7 +110,7 @@ namespace FSpot.Import
 
 				SafeUri original;
 				SafeUri version = null;
-				if (mergeRawAndJpeg && nextFile != null && IsJpegRawPair (file, nextFile)) {
+				if (mergeRawAndJpeg && nextFile != null && ImageFile.IsJpegRawPair (file, nextFile)) {
 					// RAW+JPEG: import as one photo with versions
 					original = ImageFile.IsRaw (file) ? file : nextFile;
 					version = ImageFile.IsRaw (file) ? nextFile : file;
@@ -153,14 +153,6 @@ namespace FSpot.Import
 					return null;
 			} while (!ImageFile.HasLoader (nextImageFile));
 			return nextImageFile;
-		}
-
-		internal static bool IsJpegRawPair(SafeUri file1, SafeUri file2)
-		{
-			return file1.GetBaseUri ().ToString () == file2.GetBaseUri ().ToString () &&
-				file1.GetFilenameWithoutExtension () == file2.GetFilenameWithoutExtension () &&
-				((ImageFile.IsJpeg (file1) && ImageFile.IsRaw (file2)) ||
-				 (ImageFile.IsRaw (file1) && ImageFile.IsJpeg (file2)));
 		}
 
 		public void Deactivate ()
