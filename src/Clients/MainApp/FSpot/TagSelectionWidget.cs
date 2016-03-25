@@ -666,17 +666,7 @@ namespace FSpot {
 	        if (path == null)
 	            return;
 
-	        // Tags can be dropped before, after, or into another tag
-	        if (args.Context.Targets[0].Name == "application/x-fspot-tags") {
-	            Gdk.Rectangle rect = GetCellArea(path, Columns[0]);
-	            double vpos = Math.Abs(rect.Y - args.Y) / (double)rect.Height;
-	            if (vpos < 0.2) {
-	                position = TreeViewDropPosition.Before;
-	            } else if (vpos > 0.8) {
-	                position = TreeViewDropPosition.After;
-	            }
-	        }
-
+	        // Tags can be dropped into another tag
 			SetDragDestRow (path, position);
 
 			// Scroll if within 20 pixels of the top or bottom of the tag list
