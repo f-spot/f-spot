@@ -38,6 +38,7 @@ using Gtk;
 
 using FSpot;
 using FSpot.Core;
+using FSpot.Thumbnail;
 using FSpot.UI.Dialog;
 using FSpot.Utils;
 
@@ -91,7 +92,7 @@ namespace FSpot {
                             tag.Orientation = orientation;
                             var always_sidecar = Preferences.Get<bool> (Preferences.METADATA_ALWAYS_USE_SIDECAR);
                             metadata.SaveSafely (uri, always_sidecar);
-                            XdgThumbnailSpec.RemoveThumbnail (uri);
+                            App.Instance.Container.Resolve<IThumbnailService> ().DeleteThumbnails (uri);
                         }
                     } catch (Exception e) {
                         Log.DebugException (e);

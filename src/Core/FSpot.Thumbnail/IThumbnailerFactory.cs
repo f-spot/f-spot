@@ -1,11 +1,10 @@
-//
-// XdgThumbnailSpecTests.cs
+﻿//
+// IThumbnailerFactory.cs
 //
 // Author:
-//   Ruben Vermeersch <ruben@savanne.be>
+//   Daniel Köb <daniel.koeb@peony.at>
 //
-// Copyright (C) 2010 Novell, Inc.
-// Copyright (C) 2010 Ruben Vermeersch
+// Copyright (C) 2016 Daniel Köb
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -27,30 +26,12 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
 using Hyena;
-using NUnit.Framework;
 
-namespace FSpot.Utils.Tests
+namespace FSpot.Thumbnail
 {
-    [TestFixture]
-    public class XdgThumbnailSpecTests
+	interface IThumbnailerFactory
 	{
-		[SetUp]
-        public void Initialize () {
-            GLib.GType.Init ();
-        }
-
-		[Test]
-		public void TestMissingFile ()
-		{
-			XdgThumbnailSpec.DefaultLoader = (u) => {
-				throw new Exception ("not found!");
-			};
-
-			var uri = new SafeUri ("file:///invalid");
-			var pixbuf = XdgThumbnailSpec.LoadThumbnail (uri, ThumbnailSize.Large);
-			Assert.IsNull (pixbuf);
-		}
+		IThumbnailer GetThumbnailerForUri (SafeUri uri);
 	}
 }

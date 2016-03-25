@@ -35,8 +35,8 @@ using System.Threading;
 
 using Gdk;
 
-using FSpot.Utils;
 using FSpot.Imaging;
+using FSpot.Thumbnail;
 
 using Hyena;
 
@@ -64,7 +64,7 @@ namespace FSpot.Loaders
 				return;
 
 			//First, send a thumbnail if we have one
-			if ((thumb = XdgThumbnailSpec.LoadThumbnail (uri, ThumbnailSize.Large, null)) != null) {
+			if ((thumb = App.Instance.Container.Resolve<IThumbnailService> ().TryLoadThumbnail (uri, ThumbnailSize.Large)) != null) {
 				pixbuf_orientation = ImageOrientation.TopLeft;
 				EventHandler<AreaPreparedEventArgs> prep = AreaPrepared;
 				if (prep != null) {

@@ -32,6 +32,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using FSpot.Thumbnail;
 using FSpot.Utils;
 using Hyena;
 
@@ -198,7 +199,7 @@ namespace FSpot
 		{
 			Gdk.Pixbuf loaded = null;
 			try {
-				loaded = XdgThumbnailSpec.LoadThumbnail (entry.Uri, ThumbnailSize.Large);
+				loaded = App.Instance.Container.Resolve<IThumbnailService> ().GetThumbnail (entry.Uri, ThumbnailSize.Large);
 				Update (entry, loaded);
 			} catch (GLib.GException){
 				if (loaded != null)

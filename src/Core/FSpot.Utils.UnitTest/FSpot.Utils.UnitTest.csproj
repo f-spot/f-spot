@@ -36,9 +36,6 @@
       <Package>glib-sharp-2.0</Package>
     </Reference>
     <Reference Include="System.Core" />
-    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>gtk-sharp-2.0</Package>
-    </Reference>
     <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Package>gtk-sharp-2.0</Package>
     </Reference>
@@ -56,7 +53,6 @@
     <Compile Include="MetadataTest.cs" />
     <Compile Include="SafeUriTests.cs" />
     <Compile Include="SidecarXmpExtensionsTests.cs" />
-    <Compile Include="XdgThumbnailSpecTests.cs" />
     <Compile Include="SortedFileEnumeratorTests.cs" />
     <Compile Include="Mocks\MockExtensions.cs" />
   </ItemGroup>
@@ -76,6 +72,10 @@
     <ProjectReference Include="..\..\..\lib\gio-sharp\gio-sharp.csproj">
       <Project>{942B6AEF-0A90-4A7F-B8E4-F1A4327E408C}</Project>
       <Name>gio-sharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSpot.Thumbnail\FSpot.Thumbnail.csproj">
+      <Project>{A1DEDA9C-E664-485E-AD65-6ABA83C58BC2}</Project>
+      <Name>FSpot.Thumbnail</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

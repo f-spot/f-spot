@@ -29,6 +29,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System;
 using Gdk;
 
 using TagLib.Image;
@@ -220,6 +221,55 @@ namespace FSpot.Utils
 				return null;
 			var result = new Pixbuf (pixbuf, 0, 0, pixbuf.Width, pixbuf.Height);
 			return result;
+		}
+
+		public static Pixbuf ScaleToMaxSize (this Pixbuf pixbuf, int width, int height, bool upscale = true)
+		{
+			int scale_width = 0;
+			int scale_height = 0;
+			double scale = Fit (pixbuf, width, height, upscale, out scale_width, out scale_height);
+
+			Gdk.Pixbuf result;
+			if (upscale || (scale < 1.0))
+				result = pixbuf.ScaleSimple (scale_width, scale_height, (scale_width > 20) ? Gdk.InterpType.Bilinear : Gdk.InterpType.Nearest);
+			else
+				result = pixbuf.Copy ();
+
+			return result;
+		}
+
+		public static double Fit (Pixbuf pixbuf,
+			int dest_width, int dest_height,
+			bool upscale_smaller,
+			out int fit_width, out int fit_height)
+		{
+			return Fit (pixbuf.Width, pixbuf.Height,
+				dest_width, dest_height,
+				upscale_smaller,
+				out fit_width, out fit_height);
+		}
+
+		public static double Fit (int orig_width, int orig_height,
+			int dest_width, int dest_height,
+			bool upscale_smaller,
+			out int fit_width, out int fit_height)
+		{
+			if (orig_width == 0 || orig_height == 0) {
+				fit_width = 0;
+				fit_height = 0;
+				return 0.0;
+			}
+
+			double scale = Math.Min (dest_width / (double)orig_width,
+				dest_height / (double)orig_height);
+
+			if (scale > 1.0 && !upscale_smaller)
+				scale = 1.0;
+
+			fit_width = (int)Math.Round (scale * orig_width);
+			fit_height = (int)Math.Round (scale * orig_height);
+
+			return scale;
 		}
 	}
 }

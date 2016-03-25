@@ -26,12 +26,13 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System.IO;
 using GLib;
 using Hyena;
 
 namespace FSpot.FileSystem
 {
-	public class GLibFile : IFile
+	class GLibFile : IFile
 	{
 		#region IFile implementation
 
@@ -49,6 +50,25 @@ namespace FSpot.FileSystem
 			if (overwrite)
 				flags |= FileCopyFlags.Overwrite;
 			source_file.Copy (destination_file, flags, null, null);
+		}
+
+		public void Delete (SafeUri uri)
+		{
+			var file = FileFactory.NewForUri (uri);
+			file.Delete ();
+		}
+
+		public ulong GetMTime (SafeUri uri)
+		{
+			var file = FileFactory.NewForUri (uri);
+			var info = file.QueryInfo ("time::modified", FileQueryInfoFlags.None, null);
+			return info.GetAttributeULong ("time::modified");
+		}
+
+		public Stream Read (SafeUri uri)
+		{
+			var file = FileFactory.NewForUri (uri);
+			return new GioStream (file.Read (null));
 		}
 
 		#endregion

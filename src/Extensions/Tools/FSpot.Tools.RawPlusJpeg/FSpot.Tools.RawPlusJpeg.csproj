@@ -84,6 +84,10 @@
       <Name>Hyena.Gui</Name>
       <Private>False</Private>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\FSpot.Imaging\FSpot.Imaging.csproj">
+      <Project>{69C1F628-6CB4-4446-96AC-57810DD57594}</Project>
+      <Name>FSpot.Imaging</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />

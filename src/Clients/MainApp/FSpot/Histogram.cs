@@ -30,6 +30,7 @@
 //
 
 using System;
+using FSpot.Utils;
 
 namespace FSpot {
 	public class Histogram {
@@ -188,7 +189,7 @@ namespace FSpot {
 		{
 			Gdk.Pixbuf scaled;
 			using (Gdk.Pixbuf pixbuf = Generate (input))
-				scaled = PixbufUtils.ScaleToMaxSize (pixbuf, max_width, 128);
+				scaled = pixbuf.ScaleToMaxSize (max_width, 128);
 			return scaled;
 		}
 

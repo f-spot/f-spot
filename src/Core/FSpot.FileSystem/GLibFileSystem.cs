@@ -28,15 +28,29 @@
 
 namespace FSpot.FileSystem
 {
-	public class GLibFileSystem : IFileSystem
+	class GLibFileSystem : IFileSystem
 	{
 		GLibFile file;
+		GLibDirectory directory;
+		GLibPath path;
 
 		#region IFileSystem implementation
 
 		public IFile File {
 			get {
 				return file ?? (file = new GLibFile ());
+			}
+		}
+
+		public IDirectory Directory {
+			get {
+				return directory ?? (directory = new GLibDirectory ());
+			}
+		}
+
+		public IPath Path {
+			get {
+				return path ?? (path = new GLibPath ());
 			}
 		}
 

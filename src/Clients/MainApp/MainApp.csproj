@@ -40,7 +40,6 @@
   <ItemGroup>
     <Compile Include="DependentListStore.cs" />
     <Compile Include="FSpot\App.cs" />
-    <Compile Include="FSpot\BitConverter.cs" />
     <Compile Include="FSpot.ColorAdjustment\Adjustment.cs" />
     <Compile Include="FSpot.ColorAdjustment\Desaturate.cs" />
     <Compile Include="FSpot.ColorAdjustment\FullColorAdjustment.cs" />
@@ -89,13 +88,6 @@
     <Compile Include="FSpot\GroupAdaptor.cs" />
     <Compile Include="FSpot\GroupSelector.cs" />
     <Compile Include="FSpot\Histogram.cs" />
-    <Compile Include="FSpot.Imaging\Ciff.cs" />
-    <Compile Include="FSpot.Imaging\DCRawFile.cs" />
-    <Compile Include="FSpot.Imaging\ImageFile.cs" />
-    <Compile Include="FSpot.Imaging\InternalProcess.cs" />
-    <Compile Include="FSpot.Imaging\IOChannel.cs" />
-    <Compile Include="FSpot.Imaging\RafFile.cs" />
-    <Compile Include="FSpot.Imaging\Tiff.cs" />
     <Compile Include="FSpot.Import\FileImportSource.cs" />
     <Compile Include="FSpot.Import\ImportController.cs" />
     <Compile Include="FSpot.Import\MetadataImporter.cs" />
@@ -203,7 +195,6 @@
     <Compile Include="Pinta\ColorBgra.cs" />
     <Compile Include="Pinta\CairoExtensions.cs" />
     <Compile Include="Pinta\GaussianBlurEffect.cs" />
-    <Compile Include="FSpot.Imaging\IImageFile.cs" />
     <Compile Include="FSpot.Import\IImportSource.cs" />
     <Compile Include="FSpot.ColorAdjustment\AutoStretch.cs" />
     <Compile Include="FSpot.Editors\AutoStretchEditor.cs" />
@@ -406,6 +397,14 @@
     <ProjectReference Include="..\..\Core\FSpot.FileSystem\FSpot.FileSystem.csproj">
       <Project>{F7821E0B-6861-47D7-9FCE-F853CDF2F838}</Project>
       <Name>FSpot.FileSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\FSpot.Imaging\FSpot.Imaging.csproj">
+      <Project>{69C1F628-6CB4-4446-96AC-57810DD57594}</Project>
+      <Name>FSpot.Imaging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\FSpot.Thumbnail\FSpot.Thumbnail.csproj">
+      <Project>{A1DEDA9C-E664-485E-AD65-6ABA83C58BC2}</Project>
+      <Name>FSpot.Thumbnail</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

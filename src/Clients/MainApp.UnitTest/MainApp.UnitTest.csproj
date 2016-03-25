@@ -45,7 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FSpot\TestOf_AndTerm.cs" />
-    <Compile Include="FSpot.Imaging\TestOf_ImageFile.cs" />
     <Compile Include="FSpot\PhotoStoreTests.cs" />
     <Compile Include="FSpot\Mocks\PhotoMock.cs" />
     <Compile Include="FSpot.Import\ImportControllerTests.cs" />
@@ -57,7 +56,6 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="FSpot\" />
-    <Folder Include="FSpot.Imaging\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MainApp\MainApp.csproj">

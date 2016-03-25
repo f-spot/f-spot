@@ -26,6 +26,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System.IO;
 using Hyena;
 
 namespace FSpot.FileSystem
@@ -34,6 +35,8 @@ namespace FSpot.FileSystem
 	{
 		bool Exists (SafeUri uri);
 		void Copy (SafeUri source, SafeUri destination, bool overwrite);
+		void Delete (SafeUri uri);
+		ulong GetMTime (SafeUri uri);
+		Stream Read (SafeUri uri);
 	}
 }
-

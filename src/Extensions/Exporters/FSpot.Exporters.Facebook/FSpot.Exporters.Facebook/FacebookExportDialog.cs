@@ -34,15 +34,13 @@ using System.Collections.Generic;
 using System.Threading;
 
 using Gtk;
-using GtkBeans;
 
 using Hyena;
 using Hyena.Widgets;
 using FSpot.Core;
-using FSpot.Utils;
-using FSpot.Widgets;
-using FSpot.Platform;
+using FSpot.Thumbnail;
 using FSpot.UI.Dialog;
+using FSpot.Widgets;
 
 using Mono.Facebook;
 using Mono.Unix;
@@ -212,7 +210,7 @@ namespace FSpot.Exporters.Facebook
 				tag_image.Destroy ();
 			}
 
-			using (Gdk.Pixbuf data = XdgThumbnailSpec.LoadThumbnail (item.DefaultVersion.Uri, ThumbnailSize.Large)) {
+			using (Gdk.Pixbuf data = App.Instance.Container.Resolve<IThumbnailService> ().GetThumbnail (item.DefaultVersion.Uri, ThumbnailSize.Large)) {
 				tag_image_height = data.Height;
 				tag_image_width = data.Width;
 				tag_image = new Gtk.Image (data);

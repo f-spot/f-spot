@@ -56,7 +56,18 @@ namespace Mocks
 			}
 		}
 
+		public IDirectory Directory {
+			get {
+				return new Mock<IDirectory> ().Object;
+			}
+		}
+
+		public IPath Path {
+			get {
+				return new Mock<IPath> ().Object;
+			}
+		}
+
 		#endregion
 	}
 }
-

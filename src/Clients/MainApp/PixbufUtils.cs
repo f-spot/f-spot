@@ -173,21 +173,6 @@ public static class PixbufUtils
 		}
 	}
 
-	public static Pixbuf ScaleToMaxSize (Pixbuf pixbuf, int width, int height, bool upscale = true)
-	{
-		int scale_width = 0;
-		int scale_height = 0;
-		double scale = Fit (pixbuf, width, height, upscale, out scale_width, out scale_height);
-
-		Gdk.Pixbuf result;
-		if (upscale || (scale < 1.0))
-			result = pixbuf.ScaleSimple (scale_width, scale_height, (scale_width > 20) ? Gdk.InterpType.Bilinear : Gdk.InterpType.Nearest);
-		else
-			result = pixbuf.Copy ();
-
-		return result;
-	}
-
 	static public Pixbuf LoadAtMaxSize (string path, int max_width, int max_height)
 	{
 		PixbufUtils.AspectLoader loader = new AspectLoader (max_width, max_height);

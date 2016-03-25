@@ -134,5 +134,13 @@
       <Project>{942B6AEF-0A90-4A7F-B8E4-F1A4327E408C}</Project>
       <Name>gio-sharp</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\FSpot.Thumbnail\FSpot.Thumbnail.csproj">
+      <Project>{A1DEDA9C-E664-485E-AD65-6ABA83C58BC2}</Project>
+      <Name>FSpot.Thumbnail</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\lib\unique-sharp\unique-sharp.csproj">
+      <Project>{5DBBB8C5-7BAF-46DA-B7D2-2486430141E2}</Project>
+      <Name>unique-sharp</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

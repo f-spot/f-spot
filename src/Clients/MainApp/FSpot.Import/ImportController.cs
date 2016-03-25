@@ -34,6 +34,7 @@ using System.Collections.Generic;
 using System.Threading;
 using FSpot.Core;
 using FSpot.FileSystem;
+using FSpot.Thumbnail;
 using FSpot.Utils;
 using Hyena;
 using Mono.Unix;
@@ -285,7 +286,7 @@ namespace FSpot.Import
 		volatile bool photo_scan_running;
 		MetadataImporter metadata_importer;
 		volatile bool import_cancelled;
-		IFileSystem file_system = new GLibFileSystem ();
+		IFileSystem file_system = App.Instance.Container.Resolve<IFileSystem> ();
 
 		void DoImport ()
 		{

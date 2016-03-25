@@ -35,7 +35,7 @@ using System;
 
 using Hyena;
 
-using FSpot.Utils;
+using FSpot.Thumbnail;
 
 using GFileInfo = GLib.FileInfo;
 
@@ -53,7 +53,7 @@ namespace FSpot {
         protected override void ProcessRequest (RequestItem request)
         {
             var size = request.Width == 128 ? ThumbnailSize.Normal : ThumbnailSize.Large;
-            request.Result = XdgThumbnailSpec.LoadThumbnail (request.Uri, size);
+            request.Result = App.Instance.Container.Resolve<IThumbnailService> ().GetThumbnail (request.Uri, size);
         }
     }
 }

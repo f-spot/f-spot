@@ -1057,7 +1057,7 @@ namespace FSpot
 					}
 
 					if (thumbnail != null) {
-						Pixbuf small = PixbufUtils.ScaleToMaxSize (thumbnail, size, size);
+						Pixbuf small = thumbnail.ScaleToMaxSize (size, size);
 
 						int x = border + len * (size / 2) + (size - small.Width) / 2;
 						int y = border + len * (size / 2) + (size - small.Height) / 2;
