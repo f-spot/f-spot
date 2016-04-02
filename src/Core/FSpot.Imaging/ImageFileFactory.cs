@@ -1,5 +1,5 @@
 //
-// ImageFile.cs
+// ImageFileFactory.cs
 //
 // Author:
 //   Daniel Köb <daniel.koeb@peony.at>
@@ -44,7 +44,7 @@ using FSpot.Utils;
 
 namespace FSpot.Imaging
 {
-	public static class ImageFile
+	public static class ImageFileFactory
 	{
 		static readonly TinyIoCContainer container;
 		static readonly List<string> imageTypes;
@@ -59,7 +59,7 @@ namespace FSpot.Imaging
 
 		#region Factory functionality
 
-		static ImageFile ()
+		static ImageFileFactory ()
 		{
 			container = new TinyIoCContainer ();
 			imageTypes = new List<string> ();

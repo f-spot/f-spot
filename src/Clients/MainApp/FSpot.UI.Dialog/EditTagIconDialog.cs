@@ -183,7 +183,7 @@ namespace FSpot.UI.Dialog
 		void CreateTagIconFromExternalPhoto ()
 		{
 			try {
-				using (var img = ImageFile.Create (new SafeUri(external_photo_chooser.Uri, true))) {
+				using (var img = ImageFileFactory.Create (new SafeUri(external_photo_chooser.Uri, true))) {
 					using (Gdk.Pixbuf external_image = img.Load ()) {
 						PreviewPixbuf = PixbufUtils.TagIconFromPixbuf (external_image);
 					}

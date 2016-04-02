@@ -495,7 +495,7 @@ public static class PixbufUtils
 
 	public static ImageOrientation GetOrientation (SafeUri uri)
 	{
-		using (var img = ImageFile.Create (uri)) {
+		using (var img = ImageFileFactory.Create (uri)) {
 			return img.Orientation;
 		}
 	}
@@ -516,7 +516,7 @@ public static class PixbufUtils
 		}
 
 		// Else make a derived copy with metadata copied
-		using (var img = ImageFile.Create (source)) {
+		using (var img = ImageFileFactory.Create (source)) {
 			using (var pixbuf = img.Load ()) {
 				CreateDerivedVersion (source, destination, jpeg_quality, pixbuf);
 			}

@@ -110,10 +110,10 @@ namespace FSpot.Import
 
 				SafeUri original;
 				SafeUri version = null;
-				if (mergeRawAndJpeg && nextFile != null && ImageFile.IsJpegRawPair (file, nextFile)) {
+				if (mergeRawAndJpeg && nextFile != null && ImageFileFactory.IsJpegRawPair (file, nextFile)) {
 					// RAW+JPEG: import as one photo with versions
-					original = ImageFile.IsRaw (file) ? file : nextFile;
-					version = ImageFile.IsRaw (file) ? nextFile : file;
+					original = ImageFileFactory.IsRaw (file) ? file : nextFile;
+					version = ImageFileFactory.IsRaw (file) ? nextFile : file;
 					// current and next files consumed in this iteration,
 					// prepare to get next file on next iteration
 					file = null;
@@ -151,7 +151,7 @@ namespace FSpot.Import
 					nextImageFile = new SafeUri (enumerator.Current.Uri, true);
 				else
 					return null;
-			} while (!ImageFile.HasLoader (nextImageFile));
+			} while (!ImageFileFactory.HasLoader (nextImageFile));
 			return nextImageFile;
 		}
 

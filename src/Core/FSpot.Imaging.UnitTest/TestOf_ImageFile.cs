@@ -45,7 +45,7 @@ namespace FSpot.Imaging
 		[SetUp]
 		public void Initialize () {
 			GLib.GType.Init ();
-			_imageTypes = ImageFile.UnitTestImageFileTypes();
+			_imageTypes = ImageFileFactory.UnitTestImageFileTypes();
 		}
 
 		[TestCase("file.arw")]
@@ -61,7 +61,7 @@ namespace FSpot.Imaging
 		[TestCase("file.rw2")]
 		public void TestIfUriIsRaw (string uri)
 		{
-			var result = ImageFile.IsRaw(new SafeUri(uri, true));
+			var result = ImageFileFactory.IsRaw(new SafeUri(uri, true));
 			Assert.That(result);
 		}
 
@@ -73,7 +73,7 @@ namespace FSpot.Imaging
 		[TestCase("file.jif")]
 		public void TestIfUriJpeg (string uri)
 		{
-			var result = ImageFile.IsJpeg(new SafeUri(uri, true));
+			var result = ImageFileFactory.IsJpeg(new SafeUri(uri, true));
 			Assert.That(result);
 		}
 

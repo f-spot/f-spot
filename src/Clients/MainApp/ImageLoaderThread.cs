@@ -224,7 +224,7 @@ public class ImageLoaderThread
 	{
 		Pixbuf orig_image;
 		try {
-			using (var img = ImageFile.Create (request.Uri)) {
+			using (var img = ImageFileFactory.Create (request.Uri)) {
 				if (request.Width > 0) {
 					orig_image = img.Load (request.Width, request.Height);
 				} else {

@@ -61,7 +61,7 @@ namespace FSpot.Thumbnail
 		public bool TryCreateThumbnail (SafeUri thumbnailUri, ThumbnailSize size)
 		{
 			try {
-				var imageFile = ImageFile.Create (fileUri);
+				var imageFile = ImageFileFactory.Create (fileUri);
 				return CreateThumbnail (thumbnailUri, size, imageFile);
 			}
 			catch {

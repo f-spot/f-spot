@@ -46,17 +46,17 @@ namespace FSpot.Imaging.UnitTest
 			var crw2 = new SafeUri ("file:///a/photo2.jpeg");
 
 			// both jpegs
-			Assert.IsFalse (ImageFile.IsJpegRawPair (jpeg, jpg));
+			Assert.IsFalse (ImageFileFactory.IsJpegRawPair (jpeg, jpg));
 			// both raw
-			Assert.IsFalse (ImageFile.IsJpegRawPair (nef, crw));
+			Assert.IsFalse (ImageFileFactory.IsJpegRawPair (nef, crw));
 			// different filename
-			Assert.IsFalse (ImageFile.IsJpegRawPair (jpeg, crw2));
+			Assert.IsFalse (ImageFileFactory.IsJpegRawPair (jpeg, crw2));
 			// different basedir
-			Assert.IsFalse (ImageFile.IsJpegRawPair (jpeg, nef2));
+			Assert.IsFalse (ImageFileFactory.IsJpegRawPair (jpeg, nef2));
 
-			Assert.IsTrue (ImageFile.IsJpegRawPair (jpeg, nef));
-			Assert.IsTrue (ImageFile.IsJpegRawPair (jpeg, crw));
-			Assert.IsTrue (ImageFile.IsJpegRawPair (jpg, nef));
+			Assert.IsTrue (ImageFileFactory.IsJpegRawPair (jpeg, nef));
+			Assert.IsTrue (ImageFileFactory.IsJpegRawPair (jpeg, crw));
+			Assert.IsTrue (ImageFileFactory.IsJpegRawPair (jpg, nef));
 		}
 	}
 }

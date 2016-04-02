@@ -53,7 +53,7 @@ namespace FSpot {
 
 		static public Gdk.Pixbuf Load (IPhoto item)
 		{
-			using (var img = ImageFile.Create (item.DefaultVersion.Uri)) {
+			using (var img = ImageFileFactory.Create (item.DefaultVersion.Uri)) {
 				Gdk.Pixbuf pixbuf = img.Load ();
 				return pixbuf;
 			}
@@ -61,7 +61,7 @@ namespace FSpot {
 
 		static public Gdk.Pixbuf LoadAtMaxSize (IPhoto item, int width, int height)
 		{
-			using (var img = ImageFile.Create (item.DefaultVersion.Uri)) {
+			using (var img = ImageFileFactory.Create (item.DefaultVersion.Uri)) {
 				Gdk.Pixbuf pixbuf = img.Load (width, height);
 				return pixbuf;
 			}

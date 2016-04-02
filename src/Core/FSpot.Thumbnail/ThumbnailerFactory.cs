@@ -45,7 +45,7 @@ namespace FSpot.Thumbnail
 
 		public IThumbnailer GetThumbnailerForUri (SafeUri uri)
 		{
-			if (ImageFile.HasLoader (uri)) {
+			if (ImageFileFactory.HasLoader (uri)) {
 				return new ImageThumbnailer (uri, fileSystem);
 			}
 			return null;

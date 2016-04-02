@@ -65,7 +65,7 @@ namespace FSpot.Exporters.PicasaWeb
 
 			if (show_captcha) {
 				try {
-					using  (var img = ImageFile.Create(new SafeUri(captcha_exception.CaptchaUrl, true))) {
+					using  (var img = ImageFileFactory.Create(new SafeUri(captcha_exception.CaptchaUrl, true))) {
 						captcha_image.Pixbuf = img.Load();
 						token = captcha_exception.Token;
 					}

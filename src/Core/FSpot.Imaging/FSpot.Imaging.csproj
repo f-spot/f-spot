@@ -48,7 +48,6 @@
   <ItemGroup>
     <Compile Include="IImageFile.cs" />
     <Compile Include="IOChannel.cs" />
-    <Compile Include="ImageFile.cs" />
     <Compile Include="InternalProcess.cs" />
     <Compile Include="BaseImageFile.cs" />
     <Compile Include="DCRawImageFile.cs" />
@@ -58,6 +57,7 @@
     <Compile Include="DngImageFile.cs" />
     <Compile Include="NefImageFile.cs" />
     <Compile Include="RafImageFile.cs" />
+    <Compile Include="ImageFileFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\external\taglib-sharp\src\taglib-sharp.csproj">

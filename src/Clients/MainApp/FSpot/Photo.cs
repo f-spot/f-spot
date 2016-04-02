@@ -248,9 +248,9 @@ namespace FSpot
 		public uint SaveVersion (Gdk.Pixbuf buffer, bool create_version)
 		{
 			uint version = DefaultVersionId;
-			using (var img = ImageFile.Create (DefaultVersion.Uri)) {
+			using (var img = ImageFileFactory.Create (DefaultVersion.Uri)) {
 				// Always create a version if the source is not a jpeg for now.
-				create_version = create_version || ImageFile.IsJpeg (DefaultVersion.Uri);
+				create_version = create_version || ImageFileFactory.IsJpeg (DefaultVersion.Uri);
 
 				if (buffer == null)
 					throw new ApplicationException ("invalid (null) image");

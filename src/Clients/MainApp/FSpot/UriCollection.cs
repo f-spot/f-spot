@@ -58,7 +58,7 @@ namespace FSpot {
 
 		public void Add (SafeUri uri)
 		{
-			if (ImageFile.HasLoader (uri)) {
+			if (ImageFileFactory.HasLoader (uri)) {
 				//Console.WriteLine ("using image loader {0}", uri.ToString ());
 				Add (new FilePhoto (uri));
 			} else {
@@ -148,7 +148,7 @@ namespace FSpot {
 				foreach (GLib.FileInfo info in file.EnumerateChildrenFinish (res)) {
 					SafeUri i = new SafeUri (file.GetChild (info.Name).Uri);
 					Hyena.Log.DebugFormat ("testing uri = {0}", i);
-					if (ImageFile.HasLoader (i))
+					if (ImageFileFactory.HasLoader (i))
 						items.Add (new FilePhoto (i));
 				}
 				ThreadAssist.ProxyToMain (() => collection.Add (items.ToArray ()));
@@ -159,7 +159,7 @@ namespace FSpot {
 		{
 			List<IPhoto> items = new List<IPhoto> ();
 			foreach (var f in files) {
-				if (ImageFile.HasLoader (new SafeUri (f.FullName))) {
+				if (ImageFileFactory.HasLoader (new SafeUri (f.FullName))) {
 					Hyena.Log.Debug (f.FullName);
 					items.Add (new FilePhoto (new SafeUri (f.FullName)));
 				}
