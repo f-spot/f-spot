@@ -1,5 +1,5 @@
 ﻿//
-// ImageFileTests.cs
+// IImageFileFactory.cs
 //
 // Author:
 //   Daniel Köb <daniel.koeb@peony.at>
@@ -27,38 +27,16 @@
 //
 
 using Hyena;
-using NUnit.Framework;
 
-namespace FSpot.Imaging.UnitTest
+namespace FSpot.Imaging
 {
-	[TestFixture]
-	public class ImageFileTests
+	public interface IImageFileFactory
 	{
-		[Test]
-		public void TestIsJpegRawPair ()
-		{
-			var jpeg = new SafeUri ("file:///a/photo.jpeg");
-			var jpg = new SafeUri ("file:///a/photo.jpg");
+		IImageFile Create (SafeUri uri);
+		bool HasLoader (SafeUri uri);
 
-			var nef = new SafeUri ("file:///a/photo.nef");
-			var nef2 = new SafeUri ("file:///b/photo.nef");
-			var crw = new SafeUri ("file:///a/photo.crw");
-			var crw2 = new SafeUri ("file:///a/photo2.jpeg");
-
-			var factory = new ImageFileFactory ();
-
-			// both jpegs
-			Assert.IsFalse (factory.IsJpegRawPair (jpeg, jpg));
-			// both raw
-			Assert.IsFalse (factory.IsJpegRawPair (nef, crw));
-			// different filename
-			Assert.IsFalse (factory.IsJpegRawPair (jpeg, crw2));
-			// different basedir
-			Assert.IsFalse (factory.IsJpegRawPair (jpeg, nef2));
-
-			Assert.IsTrue (factory.IsJpegRawPair (jpeg, nef));
-			Assert.IsTrue (factory.IsJpegRawPair (jpeg, crw));
-			Assert.IsTrue (factory.IsJpegRawPair (jpg, nef));
-		}
+		bool IsJpeg (SafeUri uri);
+		bool IsRaw (SafeUri uri);
+		bool IsJpegRawPair (SafeUri file1, SafeUri file2);
 	}
 }

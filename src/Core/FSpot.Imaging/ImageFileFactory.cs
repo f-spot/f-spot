@@ -35,21 +35,38 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
-using Hyena;
-
-using Gdk;
-
 using FSpot.Utils;
+using Gdk;
+using Hyena;
 
 namespace FSpot.Imaging
 {
-	public static class ImageFileFactory
+	class ImageFileFactory : IImageFileFactory
 	{
-		static readonly TinyIoCContainer container;
-		static readonly List<string> imageTypes;
-		static readonly List<string> jpegExtensions;
-		static readonly List<string> rawExtensions;
+		#region fields
+
+		readonly TinyIoCContainer container;
+		readonly List<string> imageTypes;
+		readonly List<string> jpegExtensions;
+		readonly List<string> rawExtensions;
+
+		#endregion
+
+		#region ctors
+
+		public ImageFileFactory ()
+		{
+			container = new TinyIoCContainer ();
+			imageTypes = new List<string> ();
+			jpegExtensions = new List<string> ();
+			rawExtensions = new List<string> ();
+
+			RegisterTypes ();
+		}
+
+		#endregion
+
+		#region private implementation
 
 		enum ImageType {
 			Other,
@@ -57,15 +74,8 @@ namespace FSpot.Imaging
 			Raw
 		}
 
-		#region Factory functionality
-
-		static ImageFileFactory ()
+		void RegisterTypes ()
 		{
-			container = new TinyIoCContainer ();
-			imageTypes = new List<string> ();
-			jpegExtensions = new List<string> ();
-			rawExtensions = new List<string> ();
-
 			// Plain image file extenions
 			RegisterExtensions<BaseImageFile> (ImageType.Other,
 				".gif",
@@ -154,7 +164,7 @@ namespace FSpot.Imaging
 			}
 		}
 
-		static void RegisterMimeTypes<T> (params string[] mimeTypes)
+		void RegisterMimeTypes<T> (params string[] mimeTypes)
 			where T : class, IImageFile
 		{
 			foreach (var mimeType in mimeTypes) {
@@ -163,7 +173,7 @@ namespace FSpot.Imaging
 			imageTypes.AddRange (mimeTypes);
 		}
 
-		static void RegisterExtensions<T> (ImageType type, params string[] extensions)
+		void RegisterExtensions<T> (ImageType type, params string[] extensions)
 			where T : class, IImageFile
 		{
 			foreach (var extension in extensions) {
@@ -180,17 +190,17 @@ namespace FSpot.Imaging
 			imageTypes.AddRange (extensions);
 		}
 
-		public static List<string> UnitTestImageFileTypes ()
+		public List<string> UnitTestImageFileTypes ()
 		{
 			return imageTypes;
 		}
 
-		public static bool HasLoader (SafeUri uri)
+		public bool HasLoader (SafeUri uri)
 		{
 			return GetLoaderType (uri) != null;
 		}
 
-		static string GetLoaderType (SafeUri uri)
+		string GetLoaderType (SafeUri uri)
 		{
 			// check if GIO can find the file, which is not the case
 			// with filenames with invalid encoding
@@ -231,7 +241,11 @@ namespace FSpot.Imaging
 			});
 		}
 
-		public static IImageFile Create (SafeUri uri)
+		#endregion
+
+		#region IImageFileFactory implementation
+
+		public IImageFile Create (SafeUri uri)
 		{
 			var name = GetLoaderType (uri);
 			if (name == null)
@@ -245,19 +259,19 @@ namespace FSpot.Imaging
 			}
 		}
 
-		public static bool IsRaw (SafeUri uri)
+		public bool IsRaw (SafeUri uri)
 		{
 			var extension = uri.GetExtension ().ToLower ();
 			return rawExtensions.Any (x => x == extension);
 		}
 
-		public static bool IsJpeg (SafeUri uri)
+		public bool IsJpeg (SafeUri uri)
 		{
 			var extension = uri.GetExtension ().ToLower ();
 			return jpegExtensions.Any (x => x == extension);
 		}
 
-		public static bool IsJpegRawPair(SafeUri file1, SafeUri file2)
+		public bool IsJpegRawPair(SafeUri file1, SafeUri file2)
 		{
 			return file1.GetBaseUri ().ToString () == file2.GetBaseUri ().ToString () &&
 				file1.GetFilenameWithoutExtension () == file2.GetFilenameWithoutExtension () &&

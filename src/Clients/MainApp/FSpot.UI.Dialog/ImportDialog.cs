@@ -29,6 +29,7 @@
 
 using System;
 using System.Collections.Generic;
+using FSpot.Imaging;
 using FSpot.Import;
 using FSpot.UI.Dialog;
 using FSpot.Utils;
@@ -251,7 +252,7 @@ namespace FSpot.UI.Dialog
 			IImportSource source;
 			if (!history_sources.TryGetValue (uri, out source)) {
 				var name = uri.GetFilename ();
-				source = new FileImportSource (uri, name, "folder");
+				source = new FileImportSource (uri, name, "folder", App.Instance.Container.Resolve<IImageFileFactory> ());
 				history_sources[uri] = source;
 			}
 

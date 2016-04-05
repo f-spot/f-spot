@@ -38,6 +38,7 @@ using System.Runtime.InteropServices;
 using Cairo;
 using Gdk;
 
+using FSpot;
 using FSpot.Cms;
 using FSpot.Core;
 using FSpot.Utils;
@@ -495,7 +496,7 @@ public static class PixbufUtils
 
 	public static ImageOrientation GetOrientation (SafeUri uri)
 	{
-		using (var img = ImageFileFactory.Create (uri)) {
+		using (var img = FSpot.App.Instance.Container.Resolve<IImageFileFactory> ().Create (uri)) {
 			return img.Orientation;
 		}
 	}
@@ -516,7 +517,7 @@ public static class PixbufUtils
 		}
 
 		// Else make a derived copy with metadata copied
-		using (var img = ImageFileFactory.Create (source)) {
+		using (var img = App.Instance.Container.Resolve<IImageFileFactory> ().Create (source)) {
 			using (var pixbuf = img.Load ()) {
 				CreateDerivedVersion (source, destination, jpeg_quality, pixbuf);
 			}

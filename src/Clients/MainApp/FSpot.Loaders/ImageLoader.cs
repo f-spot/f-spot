@@ -40,7 +40,7 @@ namespace FSpot.Loaders {
 	public static class ImageLoader {
 		public static IImageLoader Create (SafeUri uri)
 		{
-			if (!ImageFileFactory.HasLoader (uri))
+			if (!App.Instance.Container.Resolve<IImageFileFactory> ().HasLoader (uri))
 				throw new Exception ("Loader requested for unknown file type: " + uri.GetExtension());
 
 			return new GdkImageLoader ();

@@ -74,7 +74,7 @@ namespace FSpot.Tools.DevelopInUFraw
 			LoadPreference (UFRAW_BATCH_ARGUMENTS_KEY);
 
 			PhotoVersion raw = p.GetVersion (Photo.OriginalVersionId) as PhotoVersion;
-			if (!ImageFileFactory.IsRaw (raw.Uri)) {
+			if (!App.Instance.Container.Resolve<IImageFileFactory> ().IsRaw (raw.Uri)) {
 				Log.Warning ("The original version of this image is not a (supported) RAW file");
 				return;
 			}

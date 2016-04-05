@@ -54,6 +54,7 @@ using FSpot.Utils;
 using FSpot.UI.Dialog;
 using FSpot.Platform;
 using FSpot.Import;
+using FSpot.Imaging;
 
 namespace FSpot
 {
@@ -1125,7 +1126,7 @@ namespace FSpot
 				}
 			});
 
-			var source = new MultiFileImportSource (list.ToArray ());
+			var source = new MultiFileImportSource (list.ToArray (), App.Instance.Container.Resolve<IImageFileFactory> ());
 			controller.ActiveSource = source;
 			controller.CopyFiles = copy;
 			controller.DuplicateDetect = true;

@@ -50,7 +50,7 @@ namespace FSpot.Filters {
         {
             var dest_uri = req.TempUri (req.Current.GetExtension ());
 
-            using (var img = ImageFileFactory.Create (req.Current)) {
+            using (var img = App.Instance.Container.Resolve<IImageFileFactory> ().Create (req.Current)) {
                 using (Pixbuf in_pixbuf = img.Load ()) {
                     using (Pixbuf out_pixbuf = PixbufUtils.UnsharpMask (in_pixbuf, radius, amount, threshold, null)) {
                         PixbufUtils.CreateDerivedVersion (req.Current, dest_uri, 95, out_pixbuf);

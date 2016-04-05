@@ -65,16 +65,17 @@ namespace FSpot.Tools.RawPlusJpeg
 			Photo jpeg = null;
 
 			IList<MergeRequest> merge_requests = new List<MergeRequest> ();
+			var factory = App.Instance.Container.Resolve<IImageFileFactory> ();
 
 			for (int i = 0; i < photos.Length; i++) {
 				Photo p = photos [i];
 
-				if (!ImageFileFactory.IsRaw (p.DefaultVersion.Uri) && !ImageFileFactory.IsJpeg (p.DefaultVersion.Uri))
+				if (!factory.IsRaw (p.DefaultVersion.Uri) && !factory.IsJpeg (p.DefaultVersion.Uri))
 					continue;
 
-				if (ImageFileFactory.IsJpeg (p.DefaultVersion.Uri))
+				if (factory.IsJpeg (p.DefaultVersion.Uri))
 					jpeg = p;
-				if (ImageFileFactory.IsRaw (p.DefaultVersion.Uri))
+				if (factory.IsRaw (p.DefaultVersion.Uri))
 					raw = p;
 
 				if (raw != null && jpeg != null && SamePlaceAndName (raw, jpeg))

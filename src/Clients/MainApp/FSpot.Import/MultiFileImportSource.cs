@@ -33,6 +33,7 @@
 
 using System;
 using System.Collections.Generic;
+using FSpot.Imaging;
 using Hyena;
 
 namespace FSpot.Import
@@ -42,8 +43,8 @@ namespace FSpot.Import
 	{
 		readonly IEnumerable<SafeUri> uris;
 
-		public MultiFileImportSource (IEnumerable<SafeUri> uris)
-			: base (null, String.Empty, String.Empty)
+		public MultiFileImportSource (IEnumerable<SafeUri> uris, IImageFileFactory factory)
+			: base (null, String.Empty, String.Empty, factory)
 		{
 			this.uris = uris;
 		}

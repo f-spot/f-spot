@@ -54,8 +54,12 @@ namespace FSpot.Import
 		public Thread PhotoScanner;
 		bool run_photoscanner;
 
-		public FileImportSource (SafeUri root, string name, string iconName)
+		IImageFileFactory factory;
+
+		public FileImportSource (SafeUri root, string name, string iconName, IImageFileFactory factory)
 		{
+			this.factory = factory;
+
 			Root = root;
 			Name = name;
 
@@ -110,10 +114,10 @@ namespace FSpot.Import
 
 				SafeUri original;
 				SafeUri version = null;
-				if (mergeRawAndJpeg && nextFile != null && ImageFileFactory.IsJpegRawPair (file, nextFile)) {
+				if (mergeRawAndJpeg && nextFile != null && factory.IsJpegRawPair (file, nextFile)) {
 					// RAW+JPEG: import as one photo with versions
-					original = ImageFileFactory.IsRaw (file) ? file : nextFile;
-					version = ImageFileFactory.IsRaw (file) ? nextFile : file;
+					original = factory.IsRaw (file) ? file : nextFile;
+					version = factory.IsRaw (file) ? nextFile : file;
 					// current and next files consumed in this iteration,
 					// prepare to get next file on next iteration
 					file = null;
@@ -143,7 +147,7 @@ namespace FSpot.Import
 			}
 		}
 
-		static SafeUri NextImageFileOrNull(IEnumerator<GLib.File> enumerator)
+		SafeUri NextImageFileOrNull(IEnumerator<GLib.File> enumerator)
 		{
 			SafeUri nextImageFile;
 			do {
@@ -151,7 +155,7 @@ namespace FSpot.Import
 					nextImageFile = new SafeUri (enumerator.Current.Uri, true);
 				else
 					return null;
-			} while (!ImageFileFactory.HasLoader (nextImageFile));
+			} while (!factory.HasLoader (nextImageFile));
 			return nextImageFile;
 		}
 
