@@ -45,7 +45,7 @@ namespace FSpot.Imaging
 		[SetUp]
 		public void Initialize () {
 			GLib.GType.Init ();
-			var factory = new ImageFileFactory ();
+			var factory = new ImageFileFactory (null);
 			_imageTypes = factory.UnitTestImageFileTypes();
 		}
 
@@ -62,7 +62,7 @@ namespace FSpot.Imaging
 		[TestCase("file.rw2")]
 		public void TestIfUriIsRaw (string uri)
 		{
-			var factory = new ImageFileFactory ();
+			var factory = new ImageFileFactory (null);
 			var result = factory.IsRaw(new SafeUri(uri, true));
 			Assert.That(result);
 		}
@@ -75,7 +75,7 @@ namespace FSpot.Imaging
 		[TestCase("file.jif")]
 		public void TestIfUriJpeg (string uri)
 		{
-			var factory = new ImageFileFactory ();
+			var factory = new ImageFileFactory (null);
 			var result = factory.IsJpeg(new SafeUri(uri, true));
 			Assert.That(result);
 		}

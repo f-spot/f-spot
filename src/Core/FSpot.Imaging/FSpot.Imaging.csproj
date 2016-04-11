@@ -87,5 +87,9 @@
       <Project>{CE160879-1BF0-4711-A18F-FDA2772900FA}</Project>
       <Name>FSpot.Utils</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FSpot.FileSystem\FSpot.FileSystem.csproj">
+      <Project>{F7821E0B-6861-47D7-9FCE-F853CDF2F838}</Project>
+      <Name>FSpot.FileSystem</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

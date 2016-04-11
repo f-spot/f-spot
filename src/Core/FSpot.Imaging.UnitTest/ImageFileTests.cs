@@ -45,7 +45,7 @@ namespace FSpot.Imaging.UnitTest
 			var crw = new SafeUri ("file:///a/photo.crw");
 			var crw2 = new SafeUri ("file:///a/photo2.jpeg");
 
-			var factory = new ImageFileFactory ();
+			var factory = new ImageFileFactory (null);
 
 			// both jpegs
 			Assert.IsFalse (factory.IsJpegRawPair (jpeg, jpg));

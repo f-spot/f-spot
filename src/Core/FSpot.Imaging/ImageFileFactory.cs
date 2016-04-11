@@ -35,6 +35,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using FSpot.FileSystem;
 using FSpot.Utils;
 using Gdk;
 using Hyena;
@@ -50,16 +51,20 @@ namespace FSpot.Imaging
 		readonly List<string> jpegExtensions;
 		readonly List<string> rawExtensions;
 
+		readonly IFileSystem fileSystem;
+
 		#endregion
 
 		#region ctors
 
-		public ImageFileFactory ()
+		public ImageFileFactory (IFileSystem fileSystem)
 		{
 			container = new TinyIoCContainer ();
 			imageTypes = new List<string> ();
 			jpegExtensions = new List<string> ();
 			rawExtensions = new List<string> ();
+
+			this.fileSystem = fileSystem;
 
 			RegisterTypes ();
 		}
@@ -204,8 +209,7 @@ namespace FSpot.Imaging
 		{
 			// check if GIO can find the file, which is not the case
 			// with filenames with invalid encoding
-			var file = GLib.FileFactory.NewForUri (uri);
-			if (!file.Exists)
+			if (!fileSystem.File.Exists (uri))
 				return null;
 
 			string extension = uri.GetExtension ().ToLower ();
@@ -214,18 +218,14 @@ namespace FSpot.Imaging
 			if (extension == ".thm")
 				return null;
 
-			// Detect mime-type
-			var info = file.QueryInfo ("standard::content-type,standard::size", GLib.FileQueryInfoFlags.None, null);
-			string mime = info.ContentType;
-			long size = info.Size;
-
-			// Empty file
-			if (size == 0)
+			// Ignore empty files
+			if (fileSystem.File.GetSize (uri) == 0)
 				return null;
 
 			var param = UriAsParameter (uri);
 
 			// Get loader by mime-type
+			string mime = fileSystem.File.GetMimeType (uri);
 			if (container.CanResolve<IImageFile> (mime, param))
 				return mime;
 
