@@ -312,7 +312,6 @@ lib/Hyena/Hyena.Gui/Makefile
 lib/Hyena/Hyena/Makefile
 lib/Hyena/Makefile
 lib/libfspot/Makefile
-lib/libgnome-thumbnail-pixbuf-utils/Makefile
 lib/Makefile
 
 src/AssemblyInfo.cs

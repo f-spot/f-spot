@@ -500,20 +500,6 @@ public static class PixbufUtils
 		}
 	}
 
-	[DllImport("libgnomethumbnailpixbufutils.dll")]
-	static extern IntPtr gnome_desktop_thumbnail_scale_down_pixbuf (IntPtr pixbuf, int dest_width, int dest_height);
-
-	public static Gdk.Pixbuf ScaleDown (Gdk.Pixbuf src, int width, int height)
-	{
-		IntPtr raw_ret = gnome_desktop_thumbnail_scale_down_pixbuf (src.Handle, width, height);
-		Gdk.Pixbuf ret;
-		if (raw_ret == IntPtr.Zero)
-			ret = null;
-		else
-			ret = (Gdk.Pixbuf)GLib.Object.GetObject (raw_ret, true);
-		return ret;
-	}
-
 	public static void CreateDerivedVersion (SafeUri source, SafeUri destination)
 	{
 		CreateDerivedVersion (source, destination, 95);

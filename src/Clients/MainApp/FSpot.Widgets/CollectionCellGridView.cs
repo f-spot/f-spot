@@ -285,7 +285,7 @@ namespace FSpot.Widgets
             PixbufUtils.Fit (result, ThumbnailWidth, ThumbnailHeight, false, out width, out height);
             if (result.Width > width && result.Height > height) {
                 //  Log.Debug ("scaling");
-                Gdk.Pixbuf temp = PixbufUtils.ScaleDown (result, width, height);
+                Gdk.Pixbuf temp = result.ScaleSimple(width, height, InterpType.Nearest);
                 result.Dispose ();
                 result = temp;
             } else if (result.Width < ThumbnailWidth && result.Height < ThumbnailHeight) {
