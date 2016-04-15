@@ -48,6 +48,7 @@
     <Compile Include="TagTerm.cs" />
     <Compile Include="TextTerm.cs" />
     <Compile Include="UntaggedCondition.cs" />
+    <Compile Include="HiddenTag.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FSpot.Core\FSpot.Core.csproj">
