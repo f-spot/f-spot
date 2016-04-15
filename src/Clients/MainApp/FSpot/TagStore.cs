@@ -2,10 +2,12 @@
 // TagStore.cs
 //
 // Author:
+//   Daniel Köb <daniel.koeb@peony.at>
 //   Ettore Perazzoli <ettore@src.gnome.org>
 //   Stephane Delcroix <stephane@delcroix.org>
 //   Larry Ewing <lewing@novell.com>
 //
+// Copyright (C) 2016 Daniel Köb
 // Copyright (C) 2003-2009 Novell, Inc.
 // Copyright (C) 2003 Ettore Perazzoli
 // Copyright (C) 2007-2009 Stephane Delcroix
@@ -42,6 +44,7 @@ using FSpot.Utils;
 using Hyena;
 using Hyena.Data.Sqlite;
 using Mono.Unix;
+using FSpot.Query;
 
 namespace FSpot {
 	public class InvalidTagOperationException : InvalidOperationException {
@@ -79,9 +82,16 @@ namespace FSpot {
 
 	public class TagStore : DbStore<Tag>, IDisposable {
 		bool disposed;
+		Tag hidden;
 
 		public Category RootCategory { get; private set; }
-		public Tag Hidden { get; private set; }
+		public Tag Hidden {
+			get { return hidden; }
+			private set {
+				hidden = value;
+				HiddenTag.Tag = value;
+			}
+		}
 		const string STOCK_ICON_DB_PREFIX = "stock_icon:";
 
 		static void SetIconFromString (Tag tag, string iconString)

@@ -2,10 +2,12 @@
 // HiddenTag.cs
 //
 // Author:
+//   Daniel Köb <daniel.koeb@peony.at>
 //   Stephen Shaw <sshaw@decriptor.com>
 //   Mike Gemünde <mike@gemuende.de>
 //   Ruben Vermeersch <ruben@savanne.be>
 //
+// Copyright (C) 2016 Daniel Köb
 // Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2009-2010 Novell, Inc.
 // Copyright (C) 2009 Mike Gemünde
@@ -32,8 +34,6 @@
 //
 
 using System;
-
-using FSpot;
 using FSpot.Core;
 
 namespace FSpot.Query
@@ -43,6 +43,8 @@ namespace FSpot.Query
 		static HiddenTag show_hidden_tag;
 		static HiddenTag hide_hidden_tag;
 		readonly bool show_hidden;
+
+		public static Tag Tag { get; set;}
 
 		public static HiddenTag ShowHiddenTag {
 			get {
@@ -69,11 +71,9 @@ namespace FSpot.Query
 
 		public string SqlClause ()
 		{
-			Tag hidden = App.Instance.Database.Tags.Hidden;
-
-			if (!show_hidden && hidden != null)
+			if (!show_hidden && Tag != null)
 				return String.Format (" photos.id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {0}) ",
-					hidden.Id);
+					Tag.Id);
 			return null;
 		}
 	}
