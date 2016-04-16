@@ -42,13 +42,13 @@
     <Compile Include="NAryOperator.cs" />
     <Compile Include="NotTerm.cs" />
     <Compile Include="OrderByTime.cs" />
-    <Compile Include="OrTerm.cs" />
     <Compile Include="RatingRange.cs" />
     <Compile Include="RollSet.cs" />
     <Compile Include="TagTerm.cs" />
     <Compile Include="TextTerm.cs" />
     <Compile Include="UntaggedCondition.cs" />
     <Compile Include="HiddenTag.cs" />
+    <Compile Include="OrTerm2.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FSpot.Core\FSpot.Core.csproj">

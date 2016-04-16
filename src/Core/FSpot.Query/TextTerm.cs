@@ -47,12 +47,12 @@ namespace FSpot.Query
 			Field = field;
 		}
 
-		public static OrTerm SearchMultiple (string text, params string[] fields)
+		public static OrTerm2 SearchMultiple (string text, params string[] fields)
 		{
 			var terms = new List<TextTerm> (fields.Length);
 			foreach (string field in fields)
 				terms.Add (new TextTerm (text, field));
-			return new OrTerm (terms.ToArray ());
+			return new OrTerm2 (terms.ToArray ());
 		}
 
 		public override string SqlClause ()
