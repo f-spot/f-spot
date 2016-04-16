@@ -58,7 +58,7 @@ namespace FSpot.Tools.RawPlusJpeg
 				"Do it now"))
 				return;
 
-			Photo [] photos = App.Instance.Database.Photos.Query ((Tag [])null, null, null, null);
+			Photo [] photos = ObsoletePhotoQueries.Query ((Tag [])null, null, null, null);
 			Array.Sort (photos, new IPhotoComparer.CompareDirectory ());
 
 			Photo raw = null;

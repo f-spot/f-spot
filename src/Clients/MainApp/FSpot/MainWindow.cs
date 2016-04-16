@@ -1777,7 +1777,7 @@ namespace FSpot
 			Array.Copy (tags, 0, removetags, 0, tags.Length - 1);
 
 			// Add the surviving tag to all the photos with the other tags
-			var photos = Database.Photos.Query (removetags);
+			var photos = ObsoletePhotoQueries.Query (removetags);
 			foreach (Photo p in photos) {
 				p.AddTag (survivor);
 			}

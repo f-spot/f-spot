@@ -165,7 +165,7 @@ namespace FSpot.Tools.LiveWebGallery
 		{
 			switch (query_type) {
 			case QueryType.ByTag:
-				return App.Instance.Database.Photos.Query (new Tag[] {query_tag});
+				return ObsoletePhotoQueries.Query (new Tag[] {query_tag});
 			case QueryType.CurrentView:
 				return App.Instance.Organizer.Query.Photos;
 			case QueryType.Selected:

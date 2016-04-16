@@ -221,6 +221,7 @@
     <Compile Include="FSpot.Import\PhotoScanFinishedEventArgs.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="FSpot.Import\PhotoFileTracker.cs" />
+    <Compile Include="FSpot\ObsoletePhotoQueries.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\icons\f-spot-not.png">
