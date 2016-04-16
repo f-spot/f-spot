@@ -38,11 +38,19 @@ namespace FSpot.Query.Tests
 		[Test]
 		public void SomeTests ()
 		{
+			Category c10 = new Category (null, 10, "tag10");
+			Category c11 = new Category (null, 11, "tag11");
+			Category c12 = new Category (c11, 12, "tag12");
+
 			Tag t1 = new Tag (null, 1, "tag1");
 			Tag t2 = new Tag (null, 2, "tag2");
-			Tag t3 = new Tag (null, 3, "tag3");
-			Tag t4 = new Tag (null, 4, "tag4");
-			Tag t5 = new Tag (null, 5, "tag5");
+			Tag t3 = new Tag (c10, 3, "tag3");
+			Tag t4 = new Tag (c11, 4, "tag4");
+			Tag t5 = new Tag (c12, 5, "tag5");
+
+			TagTerm tt10 = new TagTerm (c10);
+			TagTerm tt11 = new TagTerm (c11);
+			TagTerm tt12 = new TagTerm (c12);
 
 			TagTerm tt1 = new TagTerm (t1);
 			TagTerm tt2 = new TagTerm (t2);
@@ -54,7 +62,9 @@ namespace FSpot.Query.Tests
 				" (photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id = 1)) ", tt1,
 				" (photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id IN (2, 3))) ", new OrTerm (tt2, tt3),
 				" (photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id IN (3, 4, 5))) ", new OrTerm (tt3, tt4, tt5),
-				
+				" (photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id IN (10, 3))) ", new OrTerm (tt10),
+				" (photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id IN (10, 3, 3))) ", new OrTerm (tt10, tt3),
+				" (photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id IN (11, 12, 5, 4))) ", new OrTerm (tt11),
 			};
 	
 			for (int i=0; i < tests.Length; i+=2) {
