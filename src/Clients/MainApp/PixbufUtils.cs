@@ -519,65 +519,8 @@ public static class PixbufUtils
 		// Else make a derived copy with metadata copied
 		using (var img = App.Instance.Container.Resolve<IImageFileFactory> ().Create (source)) {
 			using (var pixbuf = img.Load ()) {
-				CreateDerivedVersion (source, destination, jpeg_quality, pixbuf);
+				FSpot.Utils.PixbufUtils.CreateDerivedVersion (source, destination, jpeg_quality, pixbuf);
 			}
 		}
 	}
-
-	public static void CreateDerivedVersion (SafeUri source, SafeUri destination, uint jpeg_quality, Pixbuf pixbuf)
-	{
-		SaveToSuitableFormat (destination, pixbuf, jpeg_quality);
-
-		using (var metadata_from = Metadata.Parse (source)) {
-			using (var metadata_to = Metadata.Parse (destination)) {
-				metadata_to.CopyFrom (metadata_from);
-
-				// Reset orientation to make sure images appear upright.
-				metadata_to.ImageTag.Orientation = ImageOrientation.TopLeft;
-				metadata_to.Save ();
-			}
-		}
-	}
-
-	private static void SaveToSuitableFormat (SafeUri destination, Pixbuf pixbuf, uint jpeg_quality)
-	{
-		// FIXME: this needs to work on streams rather than filenames. Do that when we switch to
-		// newer GDK.
-		var extension = destination.GetExtension ().ToLower ();
-		if (extension == ".png")
-			pixbuf.Save (destination.LocalPath, "png");
-		else if (extension == ".jpg" || extension == ".jpeg")
-			pixbuf.Save (destination.LocalPath, "jpeg", jpeg_quality);
-		else
-			throw new NotImplementedException ("Saving this file format is not supported");
-	}
-
-#region Gdk hackery
-
-	// This hack below is needed because there is no wrapped version of
-	// Save which allows specifying the variable arguments (it's not
-	// possible with p/invoke).
-
-	[DllImport("libgdk_pixbuf-2.0-0.dll")]
-	static extern bool gdk_pixbuf_save (IntPtr raw, IntPtr filename, IntPtr type, out IntPtr error,
-            IntPtr optlabel1, IntPtr optvalue1, IntPtr dummy);
-
-	private static bool Save (this Pixbuf pixbuf, string filename, string type, uint jpeg_quality)
-	{
-		IntPtr error = IntPtr.Zero;
-		IntPtr nfilename = GLib.Marshaller.StringToPtrGStrdup (filename);
-		IntPtr ntype = GLib.Marshaller.StringToPtrGStrdup (type);
-		IntPtr optlabel1 = GLib.Marshaller.StringToPtrGStrdup ("quality");
-		IntPtr optvalue1 = GLib.Marshaller.StringToPtrGStrdup (jpeg_quality.ToString ());
-		bool ret = gdk_pixbuf_save (pixbuf.Handle, nfilename, ntype, out error, optlabel1, optvalue1, IntPtr.Zero);
-		GLib.Marshaller.Free (nfilename);
-		GLib.Marshaller.Free (ntype);
-		GLib.Marshaller.Free (optlabel1);
-		GLib.Marshaller.Free (optvalue1);
-		if (error != IntPtr.Zero)
-			throw new GLib.GException (error);
-		return ret;
-	}
-
-#endregion
 }
