@@ -367,7 +367,7 @@ namespace FSpot {
 
 		public void Remove (Tag []tags)
 		{
-			Photo[] photos = Query (tags, String.Empty, null, null);
+			Photo[] photos = Query (new OrTerm2 (tags.Select (t => new TagTerm (t)).ToArray ()));
 
 			foreach (Photo photo in photos)
 				photo.RemoveCategory (tags);
