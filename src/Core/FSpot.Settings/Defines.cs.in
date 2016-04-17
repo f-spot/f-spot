@@ -8,8 +8,10 @@
 // (C) 2004 Martin Willemoes Hansen
 //
 
-namespace FSpot.Core {
-	public struct Defines {
+namespace FSpot.Settings
+{
+	public struct Defines
+	{
 		public const string LOCALE_DIR = "@prefix@/share/locale";
 		public const string VERSION = "@VERSION@";
 		public const string PACKAGE = "@PACKAGE@";

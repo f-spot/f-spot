@@ -92,6 +92,10 @@
       <Project>{942B6AEF-0A90-4A7F-B8E4-F1A4327E408C}</Project>
       <Name>gio-sharp</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\FSpot.Settings\FSpot.Settings.csproj">
+      <Project>{423B5DED-65C8-4C4A-9DBB-7D7BD440F78F}</Project>
+      <Name>FSpot.Settings</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="ICSharpCode.SharpZipLib" />

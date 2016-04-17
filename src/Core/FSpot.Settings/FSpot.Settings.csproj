@@ -36,5 +36,6 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Compile Include="IconSize.cs" />
+    <Compile Include="Defines.cs" />
   </ItemGroup>
 </Project>

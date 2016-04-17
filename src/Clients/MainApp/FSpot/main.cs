@@ -43,6 +43,7 @@ using Mono.Addins;
 using Mono.Addins.Setup;
 
 using FSpot.Core;
+using FSpot.Settings;
 using FSpot.Utils;
 
 using Hyena;

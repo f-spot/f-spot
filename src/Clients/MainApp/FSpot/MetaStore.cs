@@ -34,6 +34,7 @@ using System;
 using FSpot;
 using FSpot.Core;
 using FSpot.Database;
+using FSpot.Settings;
 
 using Hyena.Data.Sqlite;
 using System.Data;

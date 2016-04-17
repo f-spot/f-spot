@@ -32,7 +32,7 @@
 //
 
 using System;
-
+using FSpot.Settings;
 using Hyena;
 
 namespace FSpot.Core

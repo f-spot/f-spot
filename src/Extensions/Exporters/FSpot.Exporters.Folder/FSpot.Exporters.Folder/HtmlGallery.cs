@@ -59,6 +59,7 @@ using System.Collections.Generic;
 using Mono.Unix;
 
 using FSpot.Core;
+using FSpot.Settings;
 
 namespace FSpot.Exporters.Folder
 {
@@ -367,7 +368,7 @@ namespace FSpot.Exporters.Folder
 
 			writer.AddAttribute ("href", "http://f-spot.org");
 			writer.RenderBeginTag ("a");
-			writer.Write (String.Format ("{0} {1}", FSpot.Core.Defines.PACKAGE, FSpot.Core.Defines.VERSION));
+			writer.Write (String.Format ("{0} {1}", Defines.PACKAGE, Defines.VERSION));
 			writer.RenderEndTag ();
 
 			writer.RenderEndTag ();

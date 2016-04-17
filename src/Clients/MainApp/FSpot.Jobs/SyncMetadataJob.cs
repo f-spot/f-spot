@@ -36,6 +36,7 @@ using Banshee.Kernel;
 using Hyena;
 
 using FSpot.Core;
+using FSpot.Settings;
 using FSpot.Utils;
 
 namespace FSpot.Jobs {
