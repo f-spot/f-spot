@@ -49,6 +49,7 @@ namespace FSpot.Database
 
 		readonly IImageFileFactory imageFileFactory;
 		readonly IThumbnailService thumbnailService;
+		readonly IUpdaterUI updaterDialog;
 
 		public bool Empty { get; private set; }
 		public TagStore Tags { get; private set; }
@@ -71,10 +72,11 @@ namespace FSpot.Database
 
 		#region ctors
 
-		public Db (IImageFileFactory imageFileFactory, IThumbnailService thumbnailService)
+		public Db (IImageFileFactory imageFileFactory, IThumbnailService thumbnailService, IUpdaterUI updaterDialog)
 		{
 			this.imageFileFactory = imageFileFactory;
 			this.thumbnailService = thumbnailService;
+			this.updaterDialog = updaterDialog;
 		}
 
 		#endregion
@@ -109,7 +111,7 @@ namespace FSpot.Database
 			Meta = new MetaStore (Database, new_db);
 
 			// Update the database schema if necessary
-			Updater.Run (Database);
+			Updater.Run (Database, updaterDialog);
 
 			Database.BeginTransaction ();
 

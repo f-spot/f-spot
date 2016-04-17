@@ -37,22 +37,16 @@
 using System;
 using System.Collections.Generic;
 
-using Mono.Unix;
-
-using Gtk;
-
 using FSpot.Utils;
-using FSpot.UI.Dialog;
 
 using Hyena;
 using Hyena.Data.Sqlite;
-using System.CodeDom;
 
 namespace FSpot.Database
 {
 	public static class Updater
 	{
-		private static ProgressDialog dialog;
+		private static IUpdaterUI dialog;
 		private static Dictionary<Version, Update> updates = new Dictionary<Version, Update> ();
 		private static Version db_version;
 		private static FSpotDatabaseConnection db;
@@ -737,9 +731,11 @@ namespace FSpot.Database
 			return new Version (version_id);
 		}
 
-		public static void Run (FSpotDatabaseConnection database)
+		public static void Run (FSpotDatabaseConnection database, IUpdaterUI updaterDialog)
 		{
 			db = database;
+			dialog = updaterDialog;
+
 			db_version = GetDatabaseVersion ();
 
 			if (updates.Count == 0)
@@ -767,15 +763,7 @@ namespace FSpot.Database
 			}
 
 			if (slow && !silent) {
-				dialog = new ProgressDialog (Catalog.GetString ("Updating F-Spot Database"), ProgressDialog.CancelButtonType.None, 0, null);
-				dialog.Message.Text = Catalog.GetString ("Please wait while your F-Spot gallery's database is updated. This may take some time.");
-				dialog.Bar.Fraction = 0.0;
-				dialog.Modal = false;
-				dialog.SkipTaskbarHint = true;
-				dialog.WindowPosition = WindowPosition.Center;
-				dialog.ShowAll ();
-				dialog.Present ();
-				dialog.QueueDraw ();
+				dialog.Show ();
 			}
 
 			db.BeginTransaction ();
@@ -788,7 +776,7 @@ namespace FSpot.Database
 				foreach (Version version in keys) {
 					if (version <= db_version)
 						continue;
-					Pulse ();
+					dialog.Pulse ();
 					(updates [version] as Update).Execute (db, db_version);
 				}
 
@@ -805,8 +793,7 @@ namespace FSpot.Database
 				throw e;
 			}
 
-			if (dialog != null)
-				dialog.Destroy ();
+			dialog.Destroy ();
 
 			if (db_version == LatestVersion && !silent)
 				Log.InformationTimerPrint (timer, "Database updates completed successfully (in {0}).");
@@ -820,14 +807,6 @@ namespace FSpot.Database
 		private static void AddUpdate (Version version, UpdateCode code, bool is_slow)
 		{
 			updates [version] = new Update (version, code, is_slow);
-		}
-
-		public static void Pulse ()
-		{
-			if (dialog != null) {
-				dialog.Bar.Pulse ();
-				dialog.ShowAll ();
-			}
 		}
 
 		private static int Execute (string statement)
