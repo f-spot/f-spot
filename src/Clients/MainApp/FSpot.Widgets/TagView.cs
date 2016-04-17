@@ -47,7 +47,7 @@ public class TagView : EventBox {
 
 	private bool HideTags {
 		get {
-			return (FSpot.Preferences.Get<int> (FSpot.Preferences.TAG_ICON_SIZE) == (int) Tag.IconSize.Hidden);
+			return (FSpot.Preferences.Get<int> (FSpot.Preferences.TAG_ICON_SIZE) == (int) FSpot.Settings.IconSize.Hidden);
 		}
 	}
 

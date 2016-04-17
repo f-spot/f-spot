@@ -35,6 +35,7 @@ using System;
 
 using Gdk;
 
+using FSpot.Settings;
 using FSpot.Utils;
 
 namespace FSpot.Core
@@ -81,13 +82,6 @@ namespace FSpot.Core
 				IconWasCleared = value == null;
 			}
 		}
-
-		public enum IconSize {
-			Hidden = 0,
-			Small = 16,
-			Medium = 24,
-			Large = 48
-		};
 
 		static IconSize tag_icon_size = IconSize.Large;
 		public static IconSize TagIconSize {

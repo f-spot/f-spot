@@ -40,10 +40,10 @@ using Gdk;
 
 using FSpot;
 using FSpot.Cms;
-using FSpot.Core;
-using FSpot.Utils;
 using FSpot.Imaging;
+using FSpot.Settings;
 using FSpot.UI.Dialog;
+using FSpot.Utils;
 
 using Hyena;
 
@@ -182,7 +182,7 @@ public static class PixbufUtils
 
 	public static Pixbuf TagIconFromPixbuf (Pixbuf source)
 	{
-		return IconFromPixbuf (source, (int)Tag.IconSize.Large);
+		return IconFromPixbuf (source, (int)IconSize.Large);
 	}
 
 	public static Pixbuf IconFromPixbuf (Pixbuf source, int size)

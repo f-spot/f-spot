@@ -200,7 +200,7 @@ namespace FSpot
 		// Tag Icon Sizes
 		public int TagsIconSize {
 			get { return (int)Tag.TagIconSize; }
-			set { Tag.TagIconSize = (Tag.IconSize)value; }
+			set { Tag.TagIconSize = (Settings.IconSize)value; }
 		}
 
 		static TargetEntry[] tag_target_table =
@@ -1507,13 +1507,13 @@ namespace FSpot
 			int old_size = TagsIconSize;
 
 			if (choice == tag_icon_hidden) {
-				TagsIconSize = (int)Tag.IconSize.Hidden;
+				TagsIconSize = (int)Settings.IconSize.Hidden;
 			} else if (choice == tag_icon_small) {
-				TagsIconSize = (int)Tag.IconSize.Small;
+				TagsIconSize = (int)Settings.IconSize.Small;
 			} else if (choice == tag_icon_medium) {
-				TagsIconSize = (int)Tag.IconSize.Medium;
+				TagsIconSize = (int)Settings.IconSize.Medium;
 			} else if (choice == tag_icon_large) {
-				TagsIconSize = (int)Tag.IconSize.Large;
+				TagsIconSize = (int)Settings.IconSize.Large;
 			} else {
 				return;
 			}
@@ -2523,10 +2523,10 @@ namespace FSpot
 
 			case Preferences.TAG_ICON_SIZE:
 				int s = Preferences.Get<int> (key);
-				tag_icon_hidden.Active = (s == (int)Tag.IconSize.Hidden);
-				tag_icon_small.Active = (s == (int)Tag.IconSize.Small);
-				tag_icon_medium.Active = (s == (int)Tag.IconSize.Medium);
-				tag_icon_large.Active = (s == (int)Tag.IconSize.Large);
+				tag_icon_hidden.Active = (s == (int)Settings.IconSize.Hidden);
+				tag_icon_small.Active = (s == (int)Settings.IconSize.Small);
+				tag_icon_medium.Active = (s == (int)Settings.IconSize.Medium);
+				tag_icon_large.Active = (s == (int)Settings.IconSize.Large);
 
 				break;
 
