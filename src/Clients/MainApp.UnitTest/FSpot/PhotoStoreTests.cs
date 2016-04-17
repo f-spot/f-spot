@@ -59,7 +59,7 @@ namespace FSpot
 		[Test]
 		public void CreateFrom()
 		{
-			var store = new PhotoStore (new FSpotDatabaseConnection (database), true);
+			var store = new PhotoStore (null, null, new FSpotDatabaseConnection (database), true);
 			var photoMock = PhotoMock.Create (uri, originalName);
 
 			var photo = store.CreateFrom (photoMock, true, 1);
@@ -75,7 +75,7 @@ namespace FSpot
 		[Test]
 		public void CreateFromWithVersionIgnored()
 		{
-			var store = new PhotoStore (new FSpotDatabaseConnection (database), true);
+			var store = new PhotoStore (null, null, new FSpotDatabaseConnection (database), true);
 			var photoMock = PhotoMock.CreateWithVersion (uri, originalName, modifiedUri, modifiedName);
 
 			var photo = store.CreateFrom (photoMock, true, 1);
@@ -91,7 +91,7 @@ namespace FSpot
 		[Test]
 		public void CreateFromWithVersionAdded()
 		{
-			var store = new PhotoStore (new FSpotDatabaseConnection (database), true);
+			var store = new PhotoStore (null, null, new FSpotDatabaseConnection (database), true);
 			var photoMock = PhotoMock.CreateWithVersion (uri, originalName, modifiedUri, modifiedName);
 
 			var photo = store.CreateFrom (photoMock, false, 1);

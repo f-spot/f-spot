@@ -43,6 +43,8 @@ using Hyena;
 
 using FSpot.Core;
 using FSpot.Database;
+using FSpot.Imaging;
+using FSpot.Thumbnail;
 using FSpot.Utils;
 
 namespace FSpot
@@ -89,7 +91,7 @@ namespace FSpot
 						if (!File.Exists (Global.BaseDirectory))
 							Directory.CreateDirectory (Global.BaseDirectory);
 
-						db = new Db ();
+						db = new Db (Container.Resolve<IImageFileFactory> (), Container.Resolve<IThumbnailService> ());
 
 						try {
 							db.Init (Path.Combine (Global.BaseDirectory, "photos.db"), true);

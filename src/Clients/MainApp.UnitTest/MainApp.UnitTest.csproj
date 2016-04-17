@@ -85,6 +85,14 @@
       <Project>{F7821E0B-6861-47D7-9FCE-F853CDF2F838}</Project>
       <Name>FSpot.FileSystem</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Core\FSpot.Imaging\FSpot.Imaging.csproj">
+      <Project>{69C1F628-6CB4-4446-96AC-57810DD57594}</Project>
+      <Name>FSpot.Imaging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\FSpot.Thumbnail\FSpot.Thumbnail.csproj">
+      <Project>{A1DEDA9C-E664-485E-AD65-6ABA83C58BC2}</Project>
+      <Name>FSpot.Thumbnail</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

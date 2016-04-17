@@ -47,6 +47,12 @@ namespace FSpot
 {
 	public class Photo : DbItem, IComparable, IPhoto, IPhotoVersionable
 	{
+		#region fields
+
+		readonly IImageFileFactory imageFileFactory;
+		readonly IThumbnailService thumbnailService;
+
+		#endregion
 
 		#region Properties
 		PhotoChanges changes = new PhotoChanges ();
@@ -248,10 +254,9 @@ namespace FSpot
 		public uint SaveVersion (Gdk.Pixbuf buffer, bool create_version)
 		{
 			uint version = DefaultVersionId;
-			var factory = App.Instance.Container.Resolve<IImageFileFactory> ();
-			using (var img = factory.Create (DefaultVersion.Uri)) {
+			using (var img = imageFileFactory.Create (DefaultVersion.Uri)) {
 				// Always create a version if the source is not a jpeg for now.
-				create_version = create_version || factory.IsJpeg (DefaultVersion.Uri);
+				create_version = create_version || imageFileFactory.IsJpeg (DefaultVersion.Uri);
 
 				if (buffer == null)
 					throw new ApplicationException ("invalid (null) image");
@@ -306,7 +311,7 @@ namespace FSpot
 				}
 
 				try {
-					App.Instance.Container.Resolve<IThumbnailService> ().DeleteThumbnails (uri);
+					thumbnailService.DeleteThumbnails (uri);
 				} catch {
 					// ignore an error here we don't really care.
 				}
@@ -584,9 +589,12 @@ namespace FSpot
 		#endregion
 
 		#region Constructor
-		public Photo (uint id, long unix_time)
+		public Photo (IImageFileFactory imageFactory, IThumbnailService thumbnailService, uint id, long unix_time)
 			: base (id)
 		{
+			this.imageFileFactory = imageFactory;
+			this.thumbnailService = thumbnailService;
+
 			time = DateTimeUtil.ToDateTime (unix_time);
 			tags = new List<Tag> ();
 

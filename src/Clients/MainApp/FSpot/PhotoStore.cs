@@ -44,8 +44,10 @@ using System.Text;
 using FSpot;
 using FSpot.Core;
 using FSpot.Database;
+using FSpot.Imaging;
 using FSpot.Jobs;
 using FSpot.Query;
+using FSpot.Thumbnail;
 using FSpot.Utils;
 using Hyena;
 using Hyena.Data.Sqlite;
@@ -62,10 +64,20 @@ namespace FSpot {
 			}
 		}
 
+		#region fields
+
+		readonly IImageFileFactory imageFileFactory;
+		readonly IThumbnailService thumbnailService;
+
+		#endregion
+
 		// Constructor
-		public PhotoStore (FSpotDatabaseConnection database, bool isNew)
+		public PhotoStore (IImageFileFactory imageFileFactory, IThumbnailService thumbnailService, FSpotDatabaseConnection database, bool isNew)
 			: base (database, false)
 		{
+			this.imageFileFactory = imageFileFactory;
+			this.thumbnailService = thumbnailService;
+
 			if (!isNew)
 				return;
 
@@ -179,7 +191,7 @@ namespace FSpot {
 					"0"
 				));
 
-			photo = new Photo (id, unix_time);
+			photo = new Photo (imageFileFactory, thumbnailService, id, unix_time);
 
 			uint versionId = Photo.OriginalVersionId;
 			IEnumerable<IPhotoVersion> versions = defaultVersionOnly ? new[] { item.DefaultVersion } : item.Versions;
@@ -304,7 +316,7 @@ namespace FSpot {
 				"WHERE id = ?", id))) {
 
 				if (reader.Read ()) {
-					photo = new Photo (id, Convert.ToInt64 (reader ["time"]));
+					photo = new Photo (imageFileFactory, thumbnailService, id, Convert.ToInt64 (reader ["time"]));
 					photo.Description = reader ["description"].ToString ();
 					photo.RollId = Convert.ToUInt32 (reader ["roll_id"]);
 					photo.DefaultVersionId = Convert.ToUInt32 (reader ["default_version_id"]);
@@ -339,7 +351,7 @@ namespace FSpot {
 				base_uri.ToString (), filename))) {
 
 				if (reader.Read ()) {
-					photo = new Photo (Convert.ToUInt32 (reader ["id"]),
+					photo = new Photo (imageFileFactory, thumbnailService, Convert.ToUInt32 (reader ["id"]),
 						Convert.ToInt64 (reader ["time"]));
 
 					photo.Description = reader ["description"].ToString ();
@@ -752,7 +764,7 @@ namespace FSpot {
 					Photo photo = LookupInCache (id);
 
 					if (photo == null) {
-						photo = new Photo (id, Convert.ToInt64 (reader ["time"]));
+						photo = new Photo (imageFileFactory, thumbnailService, id, Convert.ToInt64 (reader ["time"]));
 						photo.Description = reader ["description"].ToString ();
 						photo.RollId = Convert.ToUInt32 (reader ["roll_id"]);
 						photo.DefaultVersionId = Convert.ToUInt32 (reader ["default_version_id"]);
