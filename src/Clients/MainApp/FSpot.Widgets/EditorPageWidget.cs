@@ -116,7 +116,7 @@ namespace FSpot.Widgets {
 		{
 			Button button = new Button (editor.Label);
 			if (editor.IconName != null)
-				button.Image = new Image (GtkUtil.TryLoadIcon (FSpot.Core.Global.IconTheme, editor.IconName, 22, (Gtk.IconLookupFlags)0));
+				button.Image = new Image (GtkUtil.TryLoadIcon (FSpot.Settings.Global.IconTheme, editor.IconName, 22, (Gtk.IconLookupFlags)0));
 			button.Clicked += delegate (object o, EventArgs e) { ChooseEditor (editor); };
 			button.Show ();
 			buttons.Add (button);
@@ -267,7 +267,7 @@ namespace FSpot.Widgets {
 			tool_buttons.Add (cancel);
 
 			Button apply = new Button (editor.ApplyLabel);
-			apply.Image = new Image (GtkUtil.TryLoadIcon (FSpot.Core.Global.IconTheme, editor.IconName, 22, (Gtk.IconLookupFlags)0));
+			apply.Image = new Image (GtkUtil.TryLoadIcon (FSpot.Settings.Global.IconTheme, editor.IconName, 22, (Gtk.IconLookupFlags)0));
 			apply.Clicked += delegate { Apply (editor); };
 			tool_buttons.Add (apply);
 

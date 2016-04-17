@@ -34,7 +34,7 @@ using System.IO;
 using System.Collections.Generic;
 
 using FSpot.Cms;
-using FSpot.Core;
+using FSpot.Settings;
 
 namespace FSpot
 {

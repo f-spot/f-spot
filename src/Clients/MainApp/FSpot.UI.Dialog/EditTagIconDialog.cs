@@ -163,7 +163,7 @@ namespace FSpot.UI.Dialog
 			get { return icon_name; }
 			set {
 				icon_name = value;
-				PreviewPixbuf = GtkUtil.TryLoadIcon (FSpot.Core.Global.IconTheme, value, 48, (IconLookupFlags) 0);
+				PreviewPixbuf = GtkUtil.TryLoadIcon (FSpot.Settings.Global.IconTheme, value, 48, (IconLookupFlags) 0);
 			}
 
 		}
@@ -248,9 +248,9 @@ namespace FSpot.UI.Dialog
 		public bool FillIconView ()
 		{
 			icon_store.Clear ();
-			string [] icon_list = FSpot.Core.Global.IconTheme.ListIcons ("Emblems");
+			string [] icon_list = FSpot.Settings.Global.IconTheme.ListIcons ("Emblems");
 			foreach (string item_name in icon_list)
-				icon_store.AppendValues (item_name, GtkUtil.TryLoadIcon (FSpot.Core.Global.IconTheme, item_name, 32, (IconLookupFlags) 0));
+				icon_store.AppendValues (item_name, GtkUtil.TryLoadIcon (FSpot.Settings.Global.IconTheme, item_name, 32, (IconLookupFlags) 0));
 			return false;
 		}
 	}

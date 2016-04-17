@@ -42,7 +42,6 @@ using Mono.Unix;
 using Mono.Addins;
 using Mono.Addins.Setup;
 
-using FSpot.Core;
 using FSpot.Settings;
 using FSpot.Utils;
 
@@ -184,7 +183,7 @@ namespace FSpot
 			GLib.GType.Init ();
 			Catalog.Init ("f-spot", Defines.LOCALE_DIR);
 
-			FSpot.Core.Global.PhotoUri = new SafeUri (Preferences.Get<string> (Preferences.STORAGE_PATH));
+			Global.PhotoUri = new SafeUri (Preferences.Get<string> (Preferences.STORAGE_PATH));
 
 			ApplicationContext.CommandLine = new CommandLineParser (args, 0);
 
@@ -218,7 +217,7 @@ namespace FSpot
 
 				if (!string.IsNullOrEmpty (dir))
 				{
-					FSpot.Core.Global.BaseDirectory = dir;
+					Global.BaseDirectory = dir;
 					Log.InformationFormat ("BaseDirectory is now {0}", dir);
 				} else {
 					Log.Error ("f-spot: -basedir option takes one argument");
@@ -231,7 +230,7 @@ namespace FSpot
 
 				if (!string.IsNullOrEmpty (dir))
 				{
-					FSpot.Core.Global.PhotoUri = new SafeUri (dir);
+					Global.PhotoUri = new SafeUri (dir);
 					Log.InformationFormat ("PhotoDirectory is now {0}", dir);
 				} else {
 					Log.Error ("f-spot: -photodir option takes one argument");
@@ -283,20 +282,20 @@ namespace FSpot
 			Platform.WebProxy.Init ();
 
 			if (File.Exists (Preferences.Get<string> (Preferences.GTK_RC))) {
-				if (File.Exists (Path.Combine (FSpot.Core.Global.BaseDirectory, "gtkrc")))
-					Gtk.Rc.AddDefaultFile (Path.Combine (FSpot.Core.Global.BaseDirectory, "gtkrc"));
+				if (File.Exists (Path.Combine (Global.BaseDirectory, "gtkrc")))
+					Gtk.Rc.AddDefaultFile (Path.Combine (Global.BaseDirectory, "gtkrc"));
 
-				FSpot.Core.Global.DefaultRcFiles = Gtk.Rc.DefaultFiles;
+				Global.DefaultRcFiles = Gtk.Rc.DefaultFiles;
 				Gtk.Rc.AddDefaultFile (Preferences.Get<string> (Preferences.GTK_RC));
 				Gtk.Rc.ReparseAllForSettings (Gtk.Settings.Default, true);
 			}
 
 			try {
 				Gtk.Window.DefaultIconList = new Gdk.Pixbuf [] {
-					GtkUtil.TryLoadIcon (FSpot.Core.Global.IconTheme, "f-spot", 16, (Gtk.IconLookupFlags)0),
-					GtkUtil.TryLoadIcon (FSpot.Core.Global.IconTheme, "f-spot", 22, (Gtk.IconLookupFlags)0),
-					GtkUtil.TryLoadIcon (FSpot.Core.Global.IconTheme, "f-spot", 32, (Gtk.IconLookupFlags)0),
-					GtkUtil.TryLoadIcon (FSpot.Core.Global.IconTheme, "f-spot", 48, (Gtk.IconLookupFlags)0)
+					GtkUtil.TryLoadIcon (Global.IconTheme, "f-spot", 16, (Gtk.IconLookupFlags)0),
+					GtkUtil.TryLoadIcon (Global.IconTheme, "f-spot", 22, (Gtk.IconLookupFlags)0),
+					GtkUtil.TryLoadIcon (Global.IconTheme, "f-spot", 32, (Gtk.IconLookupFlags)0),
+					GtkUtil.TryLoadIcon (Global.IconTheme, "f-spot", 48, (Gtk.IconLookupFlags)0)
 				};
 			} catch {}
 
@@ -329,14 +328,14 @@ namespace FSpot
 
 		static void UpdatePlugins ()
 		{
-			AddinManager.Initialize (FSpot.Core.Global.BaseDirectory);
+			AddinManager.Initialize (Global.BaseDirectory);
 			AddinManager.Registry.Update (null);
 		}
 
 		static void ResetPluginDb ()
 		{
 			// Nuke addin-db
-			var directory = GLib.FileFactory.NewForUri (new SafeUri (FSpot.Core.Global.BaseDirectory));
+			var directory = GLib.FileFactory.NewForUri (new SafeUri (Global.BaseDirectory));
 			var list = directory.EnumerateChildren ("standard::name", GLib.FileQueryInfoFlags.None, null);
 			foreach (GLib.FileInfo info in list) {
 				if (info.Name.StartsWith ("addin-db-")) {

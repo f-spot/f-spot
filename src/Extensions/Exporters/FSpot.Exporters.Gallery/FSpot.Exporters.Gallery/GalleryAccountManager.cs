@@ -55,7 +55,7 @@ namespace FSpot.Exporters.Gallery
 		private GalleryAccountManager ()
 		{
 			// FIXME this xml file path should be be retrieved from a central location not hard coded there
-			this.xml_path = System.IO.Path.Combine (FSpot.Core.Global.BaseDirectory, "Accounts.xml");
+			this.xml_path = System.IO.Path.Combine (FSpot.Settings.Global.BaseDirectory, "Accounts.xml");
 
 			accounts = new List<GalleryAccount> ();
 			ReadAccounts ();

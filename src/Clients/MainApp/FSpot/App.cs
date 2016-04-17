@@ -44,6 +44,7 @@ using Hyena;
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Imaging;
+using FSpot.Settings;
 using FSpot.Thumbnail;
 using FSpot.Utils;
 

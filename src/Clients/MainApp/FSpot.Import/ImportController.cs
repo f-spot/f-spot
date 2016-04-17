@@ -35,6 +35,7 @@ using System.Threading;
 using FSpot.Core;
 using FSpot.FileSystem;
 using FSpot.Imaging;
+using FSpot.Settings;
 using FSpot.Thumbnail;
 using FSpot.Utils;
 using Hyena;

@@ -35,7 +35,7 @@ using System;
 using FSpot.Settings;
 using Hyena;
 
-namespace FSpot.Core
+namespace FSpot.Settings
 {
 	public static class Global
 	{

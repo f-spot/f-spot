@@ -32,10 +32,27 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Package>gtk-sharp-2.0</Package>
+    </Reference>
+    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Package>glib-sharp-2.0</Package>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Compile Include="IconSize.cs" />
     <Compile Include="Defines.cs" />
+    <Compile Include="Global.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\lib\Hyena\Hyena\Hyena.csproj">
+      <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
+      <Name>Hyena</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSpot.Cms\FSpot.Cms.csproj">
+      <Project>{9D66BC1B-4390-4B8D-8468-19D5A862EC23}</Project>
+      <Name>FSpot.Cms</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

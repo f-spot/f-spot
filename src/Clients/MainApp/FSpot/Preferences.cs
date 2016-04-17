@@ -35,7 +35,6 @@
 
 using System;
 using System.Collections.Generic;
-using FSpot.Core;
 using FSpot.Platform;
 using FSpot.Settings;
 using Hyena;

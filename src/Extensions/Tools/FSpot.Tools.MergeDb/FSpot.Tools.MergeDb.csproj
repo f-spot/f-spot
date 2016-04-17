@@ -98,6 +98,10 @@
       <Project>{A1DEDA9C-E664-485E-AD65-6ABA83C58BC2}</Project>
       <Name>FSpot.Thumbnail</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\FSpot.Settings\FSpot.Settings.csproj">
+      <Project>{423B5DED-65C8-4C4A-9DBB-7D7BD440F78F}</Project>
+      <Name>FSpot.Settings</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Posix" />

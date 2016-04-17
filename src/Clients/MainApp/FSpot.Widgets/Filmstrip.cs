@@ -550,7 +550,7 @@ namespace FSpot.Widgets
 				var pixbuf = App.Instance.Container.Resolve<IThumbnailService> ().GetThumbnail (uri, ThumbnailSize.Large);
 				if (pixbuf == null) {
 					ThumbnailLoader.Default.Request (uri, ThumbnailSize.Large, 0);
-					current = FSpot.Core.Global.IconTheme.LoadIcon ("gtk-missing-image", ThumbSize, (IconLookupFlags)0);
+					current = FSpot.Settings.Global.IconTheme.LoadIcon ("gtk-missing-image", ThumbSize, (IconLookupFlags)0);
 				} else {
 					if (SquaredThumbs) {
 						current = PixbufUtils.IconFromPixbuf (pixbuf, ThumbSize);

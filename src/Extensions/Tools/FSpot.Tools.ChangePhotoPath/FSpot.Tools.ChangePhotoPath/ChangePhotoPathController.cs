@@ -95,7 +95,7 @@ namespace FSpot.Tools.ChangePhotoPath
 			gui_controller = gui;
 			total_photos = photo_store.TotalPhotos;
 			orig_base_path = EnsureEndsWithOneDirectorySeparator (FindOrigBasePath());			// NOT URI
-			string new_base_path = EnsureEndsWithOneDirectorySeparator (FSpot.Core.Global.PhotoUri.LocalPath);	// NOT URI
+			string new_base_path = EnsureEndsWithOneDirectorySeparator (FSpot.Settings.Global.PhotoUri.LocalPath);	// NOT URI
 			gui_controller.DisplayDefaultPaths (orig_base_path, new_base_path);
 			user_cancelled = false;
 		}
