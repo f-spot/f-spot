@@ -102,12 +102,10 @@
     <Compile Include="FSpot.Loaders\ImageLoader.cs" />
     <Compile Include="FSpot\main.cs" />
     <Compile Include="FSpot\MainWindow.cs" />
-    <Compile Include="FSpot\Photo.cs" />
     <Compile Include="FSpot\PhotoEventArgs.cs" />
     <Compile Include="FSpot\PhotoLoader.cs" />
     <Compile Include="FSpot\PhotoPopup.cs" />
     <Compile Include="FSpot\PhotoQuery.cs" />
-    <Compile Include="FSpot\PhotoVersion.cs" />
     <Compile Include="FSpot\PhotoView.cs" />
     <Compile Include="FSpot\PixbufCache.cs" />
     <Compile Include="FSpot\Preferences.cs" />

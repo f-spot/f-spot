@@ -89,7 +89,7 @@ namespace FSpot
 		}
 
 		private bool all_versions_loaded = false;
-		internal bool AllVersionsLoaded {
+		public bool AllVersionsLoaded {
 			get { return all_versions_loaded; }
 			set {
 				if (value)
@@ -182,7 +182,7 @@ namespace FSpot
 
 		// This doesn't check if a version of that name already exists,
 		// it's supposed to be used only within the Photo and PhotoStore classes.
-		internal void AddVersionUnsafely (uint version_id, SafeUri base_uri, string filename, string import_md5, string name, bool is_protected)
+		public void AddVersionUnsafely (uint version_id, SafeUri base_uri, string filename, string import_md5, string name, bool is_protected)
 		{
 			versions [version_id] = new PhotoVersion (this, version_id, base_uri, filename, import_md5, name, is_protected);
 
