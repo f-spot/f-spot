@@ -397,7 +397,7 @@ namespace FSpot {
 								  tag.Id));
 	
 				if (updateXmp && Preferences.Get<bool> (Preferences.METADATA_EMBED_IN_IMAGE)) {
-					Photo [] photos = ObsoletePhotoQueries.Query (new Tag [] { tag });
+					Photo [] photos = Db.Photos.Query (new TagTerm (tag));
 					foreach (Photo p in photos)
 						if (p.HasTag (tag)) // the query returns all the pics of the tag and all its child. this avoids updating child tags
 							SyncMetadataJob.Create (Db.Jobs, p);
