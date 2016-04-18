@@ -42,7 +42,7 @@ using FSpot.Thumbnail;
 namespace FSpot.Database
 {
 	// The Database puts the stores together.
-	public class Db : IDisposable
+	public class Db : IDb, IDisposable
 	{
 		string path;
 		bool disposed;
@@ -108,18 +108,18 @@ namespace FSpot.Database
 			Database = new FSpotDatabaseConnection (path);
 
 			// Load or create the meta table
-			Meta = new MetaStore (Database, new_db);
+			Meta = new MetaStore (this, new_db);
 
 			// Update the database schema if necessary
 			Updater.Run (Database, updaterDialog);
 
 			Database.BeginTransaction ();
 
-			Tags = new TagStore (Database, new_db);
-			Rolls = new RollStore (Database, new_db);
-			Exports = new ExportStore (Database, new_db);
-			Jobs = new JobStore (Database, new_db);
-			Photos = new PhotoStore (imageFileFactory, thumbnailService, Database, new_db);
+			Tags = new TagStore (this, new_db);
+			Rolls = new RollStore (this, new_db);
+			Exports = new ExportStore (this, new_db);
+			Jobs = new JobStore (this, new_db);
+			Photos = new PhotoStore (imageFileFactory, thumbnailService, this, new_db);
 
 			Database.CommitTransaction ();
 

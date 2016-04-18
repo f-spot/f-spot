@@ -46,7 +46,7 @@ namespace FSpot
 {
 	public class RollStore : DbStore<Roll>
 	{
-		public RollStore (FSpotDatabaseConnection database, bool is_new) : base (database, false)
+		public RollStore (IDb db, bool is_new) : base (db, false)
 		{
 			if (!is_new && Database.TableExists ("rolls"))
 				return;

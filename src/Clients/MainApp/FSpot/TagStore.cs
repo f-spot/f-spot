@@ -80,7 +80,8 @@ namespace FSpot {
 		}
 	}
 
-	public class TagStore : DbStore<Tag>, IDisposable {
+	public class TagStore : DbStore<Tag>, IDisposable
+	{
 		bool disposed;
 		Tag hidden;
 
@@ -207,8 +208,8 @@ namespace FSpot {
 			}
 			reader.Dispose ();
 
-			if (App.Instance.Database.Meta.HiddenTagId.Value != null)
-				Hidden = LookupInCache ((uint)App.Instance.Database.Meta.HiddenTagId.ValueAsInt);
+			if (Db.Meta.HiddenTagId.Value != null)
+				Hidden = LookupInCache ((uint)Db.Meta.HiddenTagId.ValueAsInt);
 		}
 
 		void CreateTable ()
@@ -236,8 +237,8 @@ namespace FSpot {
 			hidden_tag.SortPriority = -9;
 			Hidden = hidden_tag;
 			Commit (hidden_tag);
-			App.Instance.Database.Meta.HiddenTagId.ValueAsInt = (int) hidden_tag.Id;
-			App.Instance.Database.Meta.Commit (App.Instance.Database.Meta.HiddenTagId);
+			Db.Meta.HiddenTagId.ValueAsInt = (int) hidden_tag.Id;
+			Db.Meta.Commit (Db.Meta.HiddenTagId);
 
 			Tag people_category = CreateCategory (RootCategory, Catalog.GetString ("People"), false);
 			people_category.ThemeIconName = "emblem-people";
@@ -256,8 +257,8 @@ namespace FSpot {
 		}
 
 		// Constructor
-		public TagStore (FSpotDatabaseConnection database, bool isNew)
-			: base (database, true)
+		public TagStore (IDb db, bool isNew)
+			: base (db, true)
 		{
 			// The label for the root category is used in new and edit tag dialogs
 			RootCategory = new Category (null, 0, Catalog.GetString ("(None)"));
@@ -398,7 +399,7 @@ namespace FSpot {
 					Photo [] photos = ObsoletePhotoQueries.Query (new Tag [] { tag });
 					foreach (Photo p in photos)
 						if (p.HasTag (tag)) // the query returns all the pics of the tag and all its child. this avoids updating child tags
-							SyncMetadataJob.Create (App.Instance.Database.Jobs, p);
+							SyncMetadataJob.Create (Db.Jobs, p);
 				}
 			}
 

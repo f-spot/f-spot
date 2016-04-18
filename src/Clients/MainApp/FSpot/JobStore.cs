@@ -206,10 +206,10 @@ namespace FSpot {
     		Remove (o as Job);
     	}
     
-    	public JobStore (FSpotDatabaseConnection database, bool is_new) : base (database, true)
+		public JobStore (IDb db, bool is_new) : base (db, true)
     	{
     		if (is_new || !Database.TableExists ("jobs")) {
-    			CreateTable (database);
+    			CreateTable (Database);
     		} else {
     			LoadAllItems ();
             }

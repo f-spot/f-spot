@@ -173,8 +173,8 @@ namespace FSpot {
     
     	// Constructor
     
-    	public MetaStore (FSpotDatabaseConnection database, bool is_new)
-    		: base (database, true)
+    	public MetaStore (IDb db, bool is_new)
+    		: base (db, true)
     	{
     		if (is_new || !Database.TableExists ("meta")) {
     			CreateTable ();

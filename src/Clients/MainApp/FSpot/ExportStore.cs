@@ -160,7 +160,7 @@ namespace FSpot
 		}
 
 		#region Constructor
-		public ExportStore (FSpotDatabaseConnection database, bool is_new) : base (database, true)
+		public ExportStore (IDb db, bool is_new) : base (db, true)
 		{
 			if (is_new || !Database.TableExists ("exports"))
 				CreateTable ();

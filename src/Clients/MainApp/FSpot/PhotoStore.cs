@@ -72,8 +72,8 @@ namespace FSpot {
 		#endregion
 
 		// Constructor
-		public PhotoStore (IImageFileFactory imageFileFactory, IThumbnailService thumbnailService, FSpotDatabaseConnection database, bool isNew)
-			: base (database, false)
+		public PhotoStore (IImageFileFactory imageFileFactory, IThumbnailService thumbnailService, IDb db, bool isNew)
+			: base (db, false)
 		{
 			this.imageFileFactory = imageFileFactory;
 			this.thumbnailService = thumbnailService;
@@ -162,7 +162,7 @@ namespace FSpot {
 						Log.Debug ("Skipping duplicate", uri);
 
 						// Schedule a hash calculation job on the existing file.
-						CalculateHashJob.Create (App.Instance.Database.Jobs, Convert.ToUInt32 (reader ["id"]));
+						CalculateHashJob.Create (Db.Jobs, Convert.ToUInt32 (reader ["id"]));
 
 						return true;
 					}
@@ -249,7 +249,7 @@ namespace FSpot {
 			using (var reader = Database.Query (new HyenaSqliteCommand ("SELECT tag_id FROM photo_tags WHERE photo_id = ?", photo.Id))) {
 				while (reader.Read ()) {
 					uint tag_id = Convert.ToUInt32 (reader ["tag_id"]);
-					Tag tag = App.Instance.Database.Tags.Get (tag_id);
+					Tag tag = Db.Tags.Get (tag_id);
 					photo.AddTagUnsafely (tag);
 				}
 			}
@@ -297,7 +297,7 @@ namespace FSpot {
 
 					if (reader [1] != null) {
 						uint tag_id = Convert.ToUInt32 (reader ["tag_id"]);
-						Tag tag = App.Instance.Database.Tags.Get (tag_id);
+						Tag tag = Db.Tags.Get (tag_id);
 						photo.AddTagUnsafely (tag);
 					}
 				}
@@ -386,7 +386,7 @@ namespace FSpot {
 			Commit (photos);
 
 			foreach (Tag tag in tags)
-				App.Instance.Database.Tags.Remove (tag);
+				Db.Tags.Remove (tag);
 		}
 
 		public void Remove (Photo []items)

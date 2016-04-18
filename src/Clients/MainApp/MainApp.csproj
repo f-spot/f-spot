@@ -222,6 +222,7 @@
     <Compile Include="FSpot\ObsoletePhotoQueries.cs" />
     <Compile Include="FSpot.Database\UpdaterUI.cs" />
     <Compile Include="FSpot.Database\IUpdaterUI.cs" />
+    <Compile Include="FSpot.Database\IDb.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\icons\f-spot-not.png">
