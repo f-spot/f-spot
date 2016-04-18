@@ -39,13 +39,13 @@ using System.Collections.Generic;
 using FSpot;
 using FSpot.Core;
 using FSpot.Database;
-using FSpot.Jobs;
+using FSpot.Database.Jobs;
+using FSpot.Query;
 using FSpot.Settings;
 using FSpot.Utils;
 using Hyena;
 using Hyena.Data.Sqlite;
 using Mono.Unix;
-using FSpot.Query;
 
 namespace FSpot {
 	public class InvalidTagOperationException : InvalidOperationException {

@@ -37,7 +37,7 @@ using FSpot.Database;
 
 using Hyena;
 
-namespace FSpot.Jobs {
+namespace FSpot.Database.Jobs {
 	public class CalculateHashJob : Job
 	{
 		public CalculateHashJob (IDb db, uint id, string job_options, int run_at, JobPriority job_priority, bool persistent)
@@ -52,7 +52,7 @@ namespace FSpot.Jobs {
 
 		public static CalculateHashJob Create (JobStore job_store, uint photo_id)
 		{
-			return (CalculateHashJob) job_store.CreatePersistent (typeof(FSpot.Jobs.CalculateHashJob), photo_id.ToString ());
+			return (CalculateHashJob) job_store.CreatePersistent (typeof(CalculateHashJob), photo_id.ToString ());
 		}
 
 		protected override bool Execute ()

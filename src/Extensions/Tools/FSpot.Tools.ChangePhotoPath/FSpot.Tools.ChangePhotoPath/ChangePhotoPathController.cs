@@ -43,6 +43,7 @@ using System.Collections.Specialized;
 
 using FSpot;
 using FSpot.Core;
+using FSpot.Database;
 using FSpot.Utils;
 
 using Hyena;

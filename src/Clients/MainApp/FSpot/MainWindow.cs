@@ -47,6 +47,7 @@ using Hyena.Widgets;
 using FSpot;
 using FSpot.Core;
 using FSpot.Database;
+using FSpot.Database.Jobs;
 using FSpot.Extensions;
 using FSpot.Query;
 using FSpot.Widgets;
@@ -667,7 +668,7 @@ namespace FSpot
 		void HandleDbItemsChanged (object sender, DbItemEventArgs<Photo> args)
 		{
 			foreach (Photo p in args.Items.Where(p => p != null).Where(p => write_metadata)) {
-				FSpot.Jobs.SyncMetadataJob.Create (Database.Jobs, p);
+				SyncMetadataJob.Create (Database.Jobs, p);
 			}
 
 			if (args is PhotoEventArgs && (args as PhotoEventArgs).Changes.TimeChanged)

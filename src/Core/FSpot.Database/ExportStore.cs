@@ -40,7 +40,6 @@ using FSpot.Core;
 using FSpot.Database;
 
 using Hyena.Data.Sqlite;
-using System.Data;
 
 namespace FSpot
 {

@@ -40,7 +40,7 @@ using FSpot.Database;
 using FSpot.Settings;
 using FSpot.Utils;
 
-namespace FSpot.Jobs {
+namespace FSpot.Database.Jobs {
     public class SyncMetadataJob : Job
     {
         public SyncMetadataJob (IDb db, uint id, string job_options, int run_at, JobPriority job_priority, bool persistent) : this (db, id, job_options, DateTimeUtil.ToDateTime (run_at), job_priority, persistent)
@@ -54,7 +54,7 @@ namespace FSpot.Jobs {
         //Use THIS static method to create a job...
         public static SyncMetadataJob Create (JobStore job_store, Photo photo)
         {
-            return (SyncMetadataJob) job_store.CreatePersistent (typeof (FSpot.Jobs.SyncMetadataJob), photo.Id.ToString ());
+            return (SyncMetadataJob) job_store.CreatePersistent (typeof (SyncMetadataJob), photo.Id.ToString ());
         }
 
         protected override bool Execute ()
