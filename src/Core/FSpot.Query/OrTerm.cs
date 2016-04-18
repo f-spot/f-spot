@@ -34,9 +34,9 @@ using System.Collections.Generic;
 namespace FSpot.Query
 {
 
-	public class OrTerm2 : NAryOperator
+	public class OrTerm : NAryOperator
 	{
-		public OrTerm2 (params LogicalTerm[] terms)
+		public OrTerm (params LogicalTerm[] terms)
 		{
 			this.terms = new List<LogicalTerm> (terms.Length);
 			foreach (LogicalTerm term in terms)
@@ -45,7 +45,7 @@ namespace FSpot.Query
 
 		void Add (LogicalTerm term)
 		{
-			var orTerm = term as OrTerm2;
+			var orTerm = term as OrTerm;
 			if (orTerm != null) {
 				foreach (LogicalTerm t in orTerm.terms)
 					Add (t);
