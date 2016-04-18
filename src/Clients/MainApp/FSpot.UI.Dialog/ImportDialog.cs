@@ -31,6 +31,7 @@ using System;
 using System.Collections.Generic;
 using FSpot.Imaging;
 using FSpot.Import;
+using FSpot.Settings;
 using FSpot.UI.Dialog;
 using FSpot.Utils;
 using FSpot.Widgets;

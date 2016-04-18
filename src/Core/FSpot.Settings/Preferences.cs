@@ -36,11 +36,10 @@
 using System;
 using System.Collections.Generic;
 using FSpot.Platform;
-using FSpot.Settings;
 using Hyena;
 using Mono.Unix;
 
-namespace FSpot
+namespace FSpot.Settings
 {
 	public static class Preferences
 	{

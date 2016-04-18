@@ -36,6 +36,7 @@ using FSpot;
 using FSpot.Core;
 using FSpot.UI.Dialog;
 using FSpot.Extensions;
+using FSpot.Settings;
 using FSpot.Widgets;
 
 namespace FSpot.Tools.ScreensaverConfig

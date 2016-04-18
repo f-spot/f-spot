@@ -37,6 +37,7 @@ using Gtk;
 using Gdk;
 
 using FSpot.Core;
+using FSpot.Settings;
 
 namespace FSpot.Widgets {
 public class TagView : EventBox {
@@ -47,7 +48,7 @@ public class TagView : EventBox {
 
 	private bool HideTags {
 		get {
-			return (FSpot.Preferences.Get<int> (FSpot.Preferences.TAG_ICON_SIZE) == (int) FSpot.Settings.IconSize.Hidden);
+			return (Preferences.Get<int> (Preferences.TAG_ICON_SIZE) == (int) FSpot.Settings.IconSize.Hidden);
 		}
 	}
 

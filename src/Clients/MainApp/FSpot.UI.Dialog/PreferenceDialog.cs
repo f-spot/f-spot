@@ -34,6 +34,8 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 
+using FSpot.Settings;
+
 using Gtk;
 
 using Mono.Unix;

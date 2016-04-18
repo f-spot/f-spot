@@ -55,6 +55,7 @@ using FSpot.UI.Dialog;
 using FSpot.Platform;
 using FSpot.Import;
 using FSpot.Imaging;
+using FSpot.Settings;
 
 namespace FSpot
 {

@@ -41,6 +41,7 @@ using Mono.Unix;
 using FSpot;
 using FSpot.Core;
 using FSpot.Database;
+using FSpot.Settings;
 using FSpot.Utils;
 using FSpot.Widgets;
 
@@ -392,7 +393,7 @@ namespace FSpot {
 
 		void ExpandDefaults ()
 		{
-			int [] tags = FSpot.Preferences.Get<int []> (FSpot.Preferences.EXPANDED_TAGS);
+			int [] tags = Preferences.Get<int []> (Preferences.EXPANDED_TAGS);
 			if (tags == null) {
 				ExpandAll ();
 				return;
@@ -474,7 +475,7 @@ namespace FSpot {
 			if (expanded_tags.Count == 0)
 				expanded_tags.Add (-1);
 
-			FSpot.Preferences.Set (	FSpot.Preferences.EXPANDED_TAGS, expanded_tags.ToArray ());
+			Preferences.Set (Preferences.EXPANDED_TAGS, expanded_tags.ToArray ());
 	#endif
 		}
 

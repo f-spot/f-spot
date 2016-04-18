@@ -38,6 +38,7 @@ using Mono.Unix;
 
 using FSpot.Core;
 using FSpot.Imaging;
+using FSpot.Settings;
 using FSpot.Utils;
 
 using Gtk;

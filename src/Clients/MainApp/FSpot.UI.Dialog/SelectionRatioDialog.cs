@@ -32,6 +32,8 @@ using System.IO;
 using System.Xml.Serialization;
 using System.Collections.Generic;
 
+using FSpot.Settings;
+
 using Gtk;
 
 using Mono.Unix;

@@ -33,6 +33,7 @@ using Gtk;
 using Gdk;
 
 using FSpot.Core;
+using FSpot.Settings;
 using FSpot.Utils;
 
 

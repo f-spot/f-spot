@@ -102,6 +102,10 @@
       <Project>{5DBBB8C5-7BAF-46DA-B7D2-2486430141E2}</Project>
       <Name>unique-sharp</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\FSpot.Settings\FSpot.Settings.csproj">
+      <Project>{423B5DED-65C8-4C4A-9DBB-7D7BD440F78F}</Project>
+      <Name>FSpot.Settings</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />

@@ -40,6 +40,7 @@ using FSpot;
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Jobs;
+using FSpot.Settings;
 using FSpot.Utils;
 using Hyena;
 using Hyena.Data.Sqlite;

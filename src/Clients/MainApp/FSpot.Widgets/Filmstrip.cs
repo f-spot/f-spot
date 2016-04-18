@@ -43,6 +43,7 @@ using System;
 using System.Collections.Generic;
 using FSpot.Bling;
 using FSpot.Core;
+using FSpot.Settings;
 using FSpot.Thumbnail;
 using FSpot.Utils;
 using Gdk;

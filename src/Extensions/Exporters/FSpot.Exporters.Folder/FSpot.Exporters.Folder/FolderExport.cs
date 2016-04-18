@@ -59,9 +59,9 @@ using Hyena;
 
 using Mono.Unix;
 
-using FSpot;
 using FSpot.Core;
 using FSpot.Filters;
+using FSpot.Settings;
 using FSpot.Widgets;
 using FSpot.Utils;
 using FSpot.UI.Dialog;

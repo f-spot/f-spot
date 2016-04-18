@@ -35,6 +35,7 @@
 
 using System;
 using FSpot.Core;
+using FSpot.Settings;
 using FSpot.Utils;
 using FSpot.Widgets;
 using Gdk;
