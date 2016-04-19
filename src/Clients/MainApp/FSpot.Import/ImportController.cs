@@ -33,6 +33,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using FSpot.Core;
+using FSpot.Database;
 using FSpot.FileSystem;
 using FSpot.Imaging;
 using FSpot.Settings;

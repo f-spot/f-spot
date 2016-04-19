@@ -36,6 +36,7 @@ using System.Collections.Generic;
 using Gtk;
 
 using FSpot.Core;
+using FSpot.Database;
 using FSpot.Query;
 using FSpot.Settings;
 using FSpot.UI.Dialog;

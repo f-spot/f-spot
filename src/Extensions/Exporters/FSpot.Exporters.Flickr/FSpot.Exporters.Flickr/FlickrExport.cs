@@ -41,6 +41,7 @@ using Mono.Unix;
 using FlickrNet;
 
 using FSpot.Core;
+using FSpot.Database;
 using FSpot.Filters;
 using FSpot.Settings;
 using FSpot.Widgets;

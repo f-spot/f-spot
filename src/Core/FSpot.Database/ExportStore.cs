@@ -35,13 +35,11 @@
 using System;
 using System.Collections.Generic;
 
-using FSpot;
 using FSpot.Core;
-using FSpot.Database;
 
 using Hyena.Data.Sqlite;
 
-namespace FSpot
+namespace FSpot.Database
 {
 	public class ExportItem : DbItem
 	{

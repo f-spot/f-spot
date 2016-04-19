@@ -40,6 +40,7 @@ using Gtk;
 using Gdk;
 
 using FSpot.Core;
+using FSpot.Database;
 
 namespace FSpot.Query
 {

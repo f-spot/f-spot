@@ -36,12 +36,11 @@ using System;
 using System.Collections.Generic;
 
 using FSpot.Core;
-using FSpot.Database;
 
 using Hyena;
 using Hyena.Data.Sqlite;
 
-namespace FSpot
+namespace FSpot.Database
 {
 	public class RollStore : DbStore<Roll>
 	{

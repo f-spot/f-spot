@@ -33,15 +33,14 @@ using System;
 
 using Banshee.Kernel;
 
-using FSpot;
 using FSpot.Core;
-using FSpot.Database;
 using FSpot.Jobs;
 
 using Hyena;
 using Hyena.Data.Sqlite;
 
-namespace FSpot {
+namespace FSpot.Database
+{
     public abstract class Job : DbItem, IJob
     {
     	public Job (IDb db, uint id, string job_options, JobPriority job_priority, DateTime run_at, bool persistent) : base (id)

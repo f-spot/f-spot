@@ -37,6 +37,7 @@ using System;
 using System.Collections.Generic;
 
 using FSpot.Core;
+using FSpot.Database;
 using FSpot.Query;
 
 using Hyena;

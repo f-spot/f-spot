@@ -38,7 +38,6 @@ using System.Collections;
 using System.Collections.Generic;
 using FSpot;
 using FSpot.Core;
-using FSpot.Database;
 using FSpot.Database.Jobs;
 using FSpot.Query;
 using FSpot.Settings;
@@ -47,7 +46,8 @@ using Hyena;
 using Hyena.Data.Sqlite;
 using Mono.Unix;
 
-namespace FSpot {
+namespace FSpot.Database
+{
 	public class InvalidTagOperationException : InvalidOperationException {
 
 		public InvalidTagOperationException (Tag t, string message) : base (message)

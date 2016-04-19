@@ -31,14 +31,13 @@
 
 using System;
 
-using FSpot;
 using FSpot.Core;
-using FSpot.Database;
 using FSpot.Settings;
 
 using Hyena.Data.Sqlite;
 
-namespace FSpot {
+namespace FSpot.Database
+{
     public class MetaItem : DbItem {
     
     	public string Name { get; set; }

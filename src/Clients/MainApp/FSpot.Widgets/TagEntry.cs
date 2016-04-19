@@ -36,6 +36,7 @@ using System.Text;
 using System.Collections.Generic;
 
 using FSpot.Core;
+using FSpot.Database;
 
 namespace FSpot.Widgets
 {

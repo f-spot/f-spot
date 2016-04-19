@@ -43,7 +43,6 @@ using System.Linq;
 using System.Text;
 using FSpot;
 using FSpot.Core;
-using FSpot.Database;
 using FSpot.Database.Jobs;
 using FSpot.Imaging;
 using FSpot.Query;
@@ -53,7 +52,8 @@ using Hyena;
 using Hyena.Data.Sqlite;
 using Mono.Unix;
 
-namespace FSpot {
+namespace FSpot.Database
+{
 	public class PhotoStore : DbStore<Photo> {
 		public int TotalPhotos {
 			get {

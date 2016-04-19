@@ -37,6 +37,7 @@ using System.Collections.Generic;
 using Mono.Unix;
 
 using FSpot.Core;
+using FSpot.Database;
 using FSpot.Filters;
 using FSpot.Settings;
 using FSpot.Widgets;
