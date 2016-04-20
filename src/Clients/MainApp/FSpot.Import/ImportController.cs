@@ -303,7 +303,7 @@ namespace FSpot.Import
 			created_directories = new Stack<SafeUri> ();
 			imported_photos = new List<uint> ();
 			photo_file_tracker = new PhotoFileTracker (file_system);
-			metadata_importer = new MetadataImporter ();
+			metadata_importer = new MetadataImporter (App.Instance.Database.Tags);
 			CreatedRoll = rolls.Create ();
 
 			EnsureDirectory (Global.PhotoUri);

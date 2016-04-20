@@ -67,9 +67,9 @@ namespace FSpot.Import
 
 		TagInfo li_root_tag; // This is the Last Import root tag
 
-		public MetadataImporter ()
+		public MetadataImporter (TagStore tagStore)
 		{
-			tag_store = App.Instance.Database.Tags;
+			tag_store = tagStore;
 			tags_created = new Stack<Tag> ();
 
 			li_root_tag = new TagInfo (Catalog.GetString ("Imported Tags"), LastImportIcon);
