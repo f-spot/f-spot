@@ -85,7 +85,6 @@
     <Compile Include="FSpot\GroupSelector.cs" />
     <Compile Include="FSpot\Histogram.cs" />
     <Compile Include="FSpot.Import\FileImportSource.cs" />
-    <Compile Include="FSpot.Import\ImportController.cs" />
     <Compile Include="FSpot.Import\MetadataImporter.cs" />
     <Compile Include="FSpot\InfoOverlay.cs" />
     <Compile Include="FSpot\ItemAction.cs" />
@@ -205,6 +204,7 @@
     <Compile Include="FSpot.Import\PhotoFileTracker.cs" />
     <Compile Include="FSpot\ObsoletePhotoQueries.cs" />
     <Compile Include="FSpot.Database\UpdaterUI.cs" />
+    <Compile Include="FSpot.Import\ImportDialogController.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\icons\f-spot-not.png">

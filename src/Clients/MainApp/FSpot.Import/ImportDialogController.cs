@@ -1,5 +1,5 @@
 //
-// ImportController.cs
+// ImportDialogController.cs
 //
 // Author:
 //   Daniel Köb <daniel.koeb@peony.at>
@@ -44,11 +44,11 @@ using Mono.Unix;
 
 namespace FSpot.Import
 {
-	public class ImportController
+	public class ImportDialogController
 	{
 		public BrowsableCollectionProxy Photos { get; private set; }
 
-		public ImportController (bool persistPreferences)
+		public ImportDialogController (bool persistPreferences)
 		{
 			// This flag determines whether or not the chosen options will be
 			// saved. You don't want to overwrite user preferences when running
@@ -60,7 +60,7 @@ namespace FSpot.Import
 			LoadPreferences ();
 		}
 
-		~ImportController ()
+		~ImportDialogController ()
 		{
 			DeactivateSource (ActiveSource);
 		}

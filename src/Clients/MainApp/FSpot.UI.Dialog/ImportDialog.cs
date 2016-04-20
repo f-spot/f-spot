@@ -44,7 +44,7 @@ namespace FSpot.UI.Dialog
 	public class ImportDialog : BuilderDialog
 	{
 		static readonly string select_folder_label = Catalog.GetString ("Choose Folder...");
-		ImportController Controller { get; set; }
+		ImportDialogController Controller { get; set; }
 		TreeStore Sources { get; set; }
 
 		static Dictionary<string, IImportSource> history_sources = new Dictionary<string, IImportSource> ();
@@ -70,7 +70,7 @@ namespace FSpot.UI.Dialog
 		PhotoImageView photo_view;
 		TagEntry tag_entry;
 
-		public ImportDialog (ImportController controller, Window parent) : base ("import.ui", "import_dialog")
+		public ImportDialog (ImportDialogController controller, Window parent) : base ("import.ui", "import_dialog")
 		{
 			Controller = controller;
 			BuildUI (parent);
