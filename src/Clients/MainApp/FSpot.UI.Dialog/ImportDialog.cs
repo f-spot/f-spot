@@ -347,7 +347,6 @@ namespace FSpot.UI.Dialog
 		void CancelImport ()
 		{
 			Controller.CancelImport ();
-			Controller = null;
 			Destroy ();
 		}
 
