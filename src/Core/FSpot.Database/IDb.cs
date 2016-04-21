@@ -31,6 +31,7 @@ namespace FSpot.Database
 	public interface IDb
 	{
 		FSpotDatabaseConnection Database { get; }
+		bool Sync { set; }
 
 		TagStore Tags { get; }
 		RollStore Rolls { get; }

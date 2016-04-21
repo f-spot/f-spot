@@ -205,6 +205,7 @@
     <Compile Include="FSpot\ObsoletePhotoQueries.cs" />
     <Compile Include="FSpot.Database\UpdaterUI.cs" />
     <Compile Include="FSpot.Import\ImportDialogController.cs" />
+    <Compile Include="FSpot.Import\ImportController.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\icons\f-spot-not.png">

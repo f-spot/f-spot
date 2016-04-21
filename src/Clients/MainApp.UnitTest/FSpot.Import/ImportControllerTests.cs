@@ -46,7 +46,7 @@ namespace FSpot.Import
 			var date = new DateTime (2016, 2, 6);
 			var source = PhotoMock.Create (fileUri, date);
 
-			var result = ImportDialogController.FindImportDestination (source, targetBaseUri);
+			var result = ImportController.FindImportDestination (source, targetBaseUri);
 
 			Assert.AreEqual (targetUri, result);
 		}

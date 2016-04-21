@@ -37,8 +37,6 @@ using FSpot.Database;
 using FSpot.FileSystem;
 using FSpot.Imaging;
 using FSpot.Settings;
-using FSpot.Thumbnail;
-using FSpot.Utils;
 using Hyena;
 using Mono.Unix;
 
@@ -261,13 +259,15 @@ namespace FSpot.Import
 #region Importing
 
 		Thread ImportThread;
+		CancellationTokenSource tokenSource;
 
 		public void StartImport ()
 		{
 			if (ImportThread != null)
 				throw new Exception ("Import already running!");
 
-			ImportThread = ThreadAssist.Spawn (DoImport);
+			tokenSource = new CancellationTokenSource ();
+			ImportThread = ThreadAssist.Spawn (() => DoImport (tokenSource.Token));
 		}
 
 		public void CancelImport ()
@@ -276,187 +276,38 @@ namespace FSpot.Import
 				ActiveSource.Deactivate ();
 			}
 
-			import_cancelled = true;
+			tokenSource.Cancel ();
 			if (ImportThread != null)
+				//FIXME: there is a race condition between the null check and calling join
 				ImportThread.Join ();
-			Cleanup ();
 		}
 
-		Stack<SafeUri> created_directories;
-		List<uint> imported_photos;
-		PhotoFileTracker photo_file_tracker;
-		PhotoStore store = App.Instance.Database.Photos;
-		RollStore rolls = App.Instance.Database.Rolls;
 		volatile bool photo_scan_running;
-		MetadataImporter metadata_importer;
-		volatile bool import_cancelled;
 		IFileSystem file_system = App.Instance.Container.Resolve<IFileSystem> ();
 
-		void DoImport ()
+		void DoImport (CancellationToken token)
 		{
 			while (photo_scan_running) {
 				Thread.Sleep (1000); // FIXME: we can do this with a better primitive!
 			}
 
 			FireEvent (ImportEvent.ImportStarted);
-			App.Instance.Database.Sync = false;
-			created_directories = new Stack<SafeUri> ();
-			imported_photos = new List<uint> ();
-			photo_file_tracker = new PhotoFileTracker (file_system);
-			metadata_importer = new MetadataImporter (App.Instance.Database.Tags);
-			CreatedRoll = rolls.Create ();
 
-			EnsureDirectory (Global.PhotoUri);
+			var importer = new ImportController (file_system, App.Instance.Database, attach_tags, DuplicateDetect,
+				CopyFiles, RemoveOriginals);
+			importer.DoImport (Photos.Collection,
+				(current, total) => ThreadAssist.ProxyToMain (() => ReportProgress (current, total)),
+				token);
 
-			try {
-				int i = 0;
-				int total = Photos.Count;
-				foreach (var info in Photos.Items) {
-					if (import_cancelled) {
-						RollbackImport ();
-						return;
-					}
+			PhotosImported = importer.PhotosImported;
+			FailedImports.Clear ();
+			FailedImports.AddRange (importer.FailedImports);
 
-					ThreadAssist.ProxyToMain (() => ReportProgress (i++, total));
-					try {
-						ImportPhoto (info, CreatedRoll);
-					} catch (Exception e) {
-						Log.DebugFormat ("Failed to import {0}", info.DefaultVersion.Uri);
-						Log.DebugException (e);
-						FailedImports.Add (info.DefaultVersion.Uri);
-					}
-				}
-
-				PhotosImported = imported_photos.Count;
-				FinishImport ();
-			} catch (Exception e) {
-				RollbackImport ();
-				throw e;
-			} finally {
-				Cleanup ();
+			if (!token.IsCancellationRequested) {
+				ImportThread = null;
 			}
-		}
-
-		void Cleanup ()
-		{
-			if (imported_photos != null && imported_photos.Count == 0)
-				rolls.Remove (CreatedRoll);
-			imported_photos = null;
-			created_directories = null;
-			Photo.ResetMD5Cache ();
 			DeactivateSource (ActiveSource);
-			GC.Collect ();
-			App.Instance.Database.Sync = true;
-		}
-
-		void FinishImport ()
-		{
-			if (RemoveOriginals) {
-				foreach (var uri in photo_file_tracker.OriginalFiles) {
-					try {
-						var file = GLib.FileFactory.NewForUri (uri);
-						file.Delete (null);
-					} catch (Exception) {
-						Log.WarningFormat ("Failed to remove original file: {0}", uri);
-					}
-				}
-			}
-
-			ImportThread = null;
 			FireEvent (ImportEvent.ImportFinished);
-		}
-
-		void RollbackImport ()
-		{
-			// Remove photos
-			foreach (var id in imported_photos) {
-				store.Remove (store.Get (id));
-			}
-
-			foreach (var uri in photo_file_tracker.CopiedFiles) {
-				var file = GLib.FileFactory.NewForUri (uri);
-				file.Delete (null);
-			}
-
-			// Clean up directories
-			while (created_directories.Count > 0) {
-				var uri = created_directories.Pop ();
-				var dir = GLib.FileFactory.NewForUri (uri);
-				var enumerator = dir.EnumerateChildren ("standard::name", GLib.FileQueryInfoFlags.None, null);
-				if (!enumerator.HasPending) {
-					dir.Delete (null);
-				}
-			}
-
-			// Clean created tags
-			metadata_importer.Cancel ();
-
-			// Remove created roll
-			rolls.Remove (CreatedRoll);
-		}
-
-		void ImportPhoto (IPhoto item, DbItem roll)
-		{
-			if (item is IInvalidPhotoCheck && (item as IInvalidPhotoCheck).IsInvalid) {
-				throw new Exception ("Failed to parse metadata, probably not a photo");
-			}
-
-			// Do duplicate detection
-			if (DuplicateDetect && store.HasDuplicate (item)) {
-				return;
-			}
-
-			if (CopyFiles) {
-				var destinationBase = FindImportDestination (item, Global.PhotoUri);
-				EnsureDirectory (destinationBase);
-				// Copy into photo folder.
-				photo_file_tracker.CopyIfNeeded (item, destinationBase);
-			}
-
-			// Import photo
-			var photo = store.CreateFrom (item, false, roll.Id);
-
-			bool needs_commit = false;
-
-			// Add tags
-			if (attach_tags.Count > 0) {
-				photo.AddTag (attach_tags);
-				needs_commit = true;
-			}
-
-			// Import XMP metadata
-			needs_commit |= metadata_importer.Import (photo, item);
-
-			if (needs_commit) {
-				store.Commit (photo);
-			}
-
-			// Prepare thumbnail (Import is I/O bound anyway)
-			ThumbnailLoader.Default.Request (item.DefaultVersion.Uri, ThumbnailSize.Large, 10);
-
-			imported_photos.Add (photo.Id);
-		}
-
-		internal static SafeUri FindImportDestination (IPhoto item, SafeUri baseUri)
-		{
-			DateTime time = item.Time;
-			return baseUri
-				.Append (time.Year.ToString ())
-				.Append (String.Format ("{0:D2}", time.Month))
-				.Append (String.Format ("{0:D2}", time.Day));
-		}
-
-		static void EnsureDirectory (SafeUri uri)
-		{
-			var parts = uri.AbsolutePath.Split('/');
-			var current = new SafeUri (uri.Scheme + ":///", true);
-			for (int i = 0; i < parts.Length; i++) {
-				current = current.Append (parts [i]);
-				var file = GLib.FileFactory.NewForUri (current);
-				if (!file.Exists) {
-					file.MakeDirectory (null);
-				}
-			}
 		}
 
 #endregion
