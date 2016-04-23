@@ -1,10 +1,15 @@
-﻿//
-// IThumbnailLoader.cs
+//
+// ThumbnailLoader.cs
 //
 // Author:
-//   Daniel Köb <daniel.koeb@peony.at>
+//   Stephane Delcroix <stephane@delcroix.org>
+//   Ruben Vermeersch <ruben@savanne.be>
+//   Larry Ewing <lewing@novell.com>
 //
-// Copyright (C) 2016 Daniel Köb
+// Copyright (C) 2005-2010 Novell, Inc.
+// Copyright (C) 2008-2009 Stephane Delcroix
+// Copyright (C) 2010 Ruben Vermeersch
+// Copyright (C) 2005-2006 Larry Ewing
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -26,14 +31,33 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System;
 using FSpot.Imaging;
 using FSpot.Thumbnail;
 using Hyena;
 
-namespace FSpot
+namespace FSpot.Thumbnail
 {
-	public interface IThumbnailLoader : IImageLoaderThread
+	class ThumbnailLoader : ImageLoaderThread, IThumbnailLoader
 	{
-		void Request (SafeUri uri, ThumbnailSize size, int order);
+		readonly IThumbnailService thumbnailService;
+
+		public ThumbnailLoader (IImageFileFactory imageFileFactory, IThumbnailService thumbnailService)
+			: base (imageFileFactory)
+		{
+			this.thumbnailService = thumbnailService;
+		}
+
+		public void Request (SafeUri uri, ThumbnailSize size, int order)
+		{
+			var pixels = size == ThumbnailSize.Normal ? 128 : 256;
+			Request (uri, order, pixels, pixels);
+		}
+
+		protected override void ProcessRequest (RequestItem request)
+		{
+			var size = request.Width == 128 ? ThumbnailSize.Normal : ThumbnailSize.Large;
+			request.Result = thumbnailService.GetThumbnail (request.Uri, size);
+		}
 	}
 }

@@ -49,6 +49,7 @@ using FSpot.Widgets;
 using FSpot.Platform;
 using FSpot.Core;
 using FSpot.Settings;
+using FSpot.Thumbnail;
 
 namespace FSpot {
 	public class SingleView {

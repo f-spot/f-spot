@@ -208,8 +208,6 @@ namespace FSpot
 				MessageReceived += HandleMessageReceived;
 			}
 
-			Container.Register<IThumbnailLoader, ThumbnailLoader> ().AsSingleton ();
-
 			FSpot.FileSystem.ModuleController.RegisterTypes (Container);
 			FSpot.Imaging.ModuleController.RegisterTypes (Container);
 			FSpot.Thumbnail.ModuleController.RegisterTypes (Container);
