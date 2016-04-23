@@ -1,5 +1,5 @@
 //
-// ThumbnailGenerator.cs
+// ThumbnailLoader.cs
 //
 // Author:
 //   Stephane Delcroix <stephane@delcroix.org>
@@ -32,28 +32,25 @@
 //
 
 using System;
-
+using FSpot.Thumbnail;
 using Hyena;
 
-using FSpot.Thumbnail;
+namespace FSpot
+{
+	public class ThumbnailLoader : ImageLoaderThread
+	{
+		static public ThumbnailLoader Default = new ThumbnailLoader ();
 
-using GFileInfo = GLib.FileInfo;
+		public void Request (SafeUri uri, ThumbnailSize size, int order)
+		{
+			var pixels = size == ThumbnailSize.Normal ? 128 : 256;
+			Request (uri, order, pixels, pixels);
+		}
 
-namespace FSpot {
-    public class ThumbnailLoader : ImageLoaderThread {
-
-        static public ThumbnailLoader Default = new ThumbnailLoader ();
-
-        public void Request (SafeUri uri, ThumbnailSize size, int order)
-        {
-            var pixels = size == ThumbnailSize.Normal ? 128 : 256;
-            Request (uri, order, pixels, pixels);
-        }
-
-        protected override void ProcessRequest (RequestItem request)
-        {
-            var size = request.Width == 128 ? ThumbnailSize.Normal : ThumbnailSize.Large;
-            request.Result = App.Instance.Container.Resolve<IThumbnailService> ().GetThumbnail (request.Uri, size);
-        }
-    }
+		protected override void ProcessRequest (RequestItem request)
+		{
+			var size = request.Width == 128 ? ThumbnailSize.Normal : ThumbnailSize.Large;
+			request.Result = App.Instance.Container.Resolve<IThumbnailService> ().GetThumbnail (request.Uri, size);
+		}
+	}
 }
