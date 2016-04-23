@@ -41,7 +41,7 @@ using Hyena;
 
 namespace FSpot
 {
-	public class ImageLoaderThread
+	public class ImageLoaderThread : IImageLoaderThread
 	{
 		#region Private members.
 		static List<ImageLoaderThread> instances = new List<ImageLoaderThread> ();
@@ -77,8 +77,6 @@ namespace FSpot
 		#endregion
 
 		#region Public API
-		public delegate void PixbufLoadedHandler (ImageLoaderThread loader,RequestItem result);
-
 		public event PixbufLoadedHandler OnPixbufLoaded;
 
 		public ImageLoaderThread ()
