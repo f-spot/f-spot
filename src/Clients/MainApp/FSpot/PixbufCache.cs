@@ -32,6 +32,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using FSpot.Imaging;
 using FSpot.Thumbnail;
 using FSpot.Utils;
 using Hyena;

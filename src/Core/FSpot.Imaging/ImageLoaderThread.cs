@@ -39,7 +39,7 @@ using Gdk;
 using Gtk;
 using Hyena;
 
-namespace FSpot
+namespace FSpot.Imaging
 {
 	public class ImageLoaderThread : IImageLoaderThread
 	{

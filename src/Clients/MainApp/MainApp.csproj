@@ -153,7 +153,6 @@
     <Compile Include="FSpot.Widgets\TrayView.cs" />
     <Compile Include="FSpot.Widgets\ViewContext.cs" />
     <Compile Include="FSpot\XScreenSaverSlide.cs" />
-    <Compile Include="ImageLoaderThread.cs" />
     <Compile Include="PhotoTagMenu.cs" />
     <Compile Include="PhotoVersionCommands.cs" />
     <Compile Include="PhotoVersionMenu.cs" />
@@ -206,9 +205,7 @@
     <Compile Include="FSpot.Import\ImportSource.cs" />
     <Compile Include="FSpot.Import\MultiImportSource.cs" />
     <Compile Include="FSpot\ThumbnailLoader.cs" />
-    <Compile Include="RequestItem.cs" />
     <Compile Include="FSpot\IThumbnailLoader.cs" />
-    <Compile Include="IImageLoaderThread.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\icons\f-spot-not.png">

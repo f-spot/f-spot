@@ -26,7 +26,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-namespace FSpot
+namespace FSpot.Imaging
 {
 	public delegate void PixbufLoadedHandler (IImageLoaderThread loader, RequestItem result);
 
