@@ -48,6 +48,7 @@ namespace FSpot.Import
 		#region fields
 
 		readonly IFileSystem fileSystem;
+		readonly IThumbnailLoader thumbnailLoader;
 		readonly IDb db;
 		readonly IList<Tag> tagsToAttach;
 		readonly bool duplicateDetect;
@@ -72,9 +73,10 @@ namespace FSpot.Import
 
 		#region ctors
 
-		public ImportController (IFileSystem fileSystem, IDb db, IList<Tag> tagsToAttach, bool duplicateDetect, bool copyFiles, bool removeOriginals)
+		public ImportController (IFileSystem fileSystem, IThumbnailLoader thumbnailLoader, IDb db, IList<Tag> tagsToAttach, bool duplicateDetect, bool copyFiles, bool removeOriginals)
 		{
 			this.fileSystem = fileSystem;
+			this.thumbnailLoader = thumbnailLoader;
 			this.db = db;
 			this.tagsToAttach = tagsToAttach;
 			this.duplicateDetect = duplicateDetect;
@@ -161,7 +163,7 @@ namespace FSpot.Import
 			}
 
 			// Prepare thumbnail (Import is I/O bound anyway)
-			App.Instance.Container.Resolve<IThumbnailLoader> ().Request (item.DefaultVersion.Uri, ThumbnailSize.Large, 10);
+			thumbnailLoader.Request (item.DefaultVersion.Uri, ThumbnailSize.Large, 10);
 
 			imported_photos.Add (photo.Id);
 		}

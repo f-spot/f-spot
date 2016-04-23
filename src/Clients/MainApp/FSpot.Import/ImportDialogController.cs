@@ -37,6 +37,7 @@ using FSpot.Database;
 using FSpot.FileSystem;
 using FSpot.Imaging;
 using FSpot.Settings;
+using FSpot.Thumbnail;
 using Gtk;
 using Hyena;
 using Mono.Unix;
@@ -297,8 +298,8 @@ namespace FSpot.Import
 
 			FireEvent (ImportEvent.ImportStarted);
 
-			var importer = new ImportController (file_system, App.Instance.Database, attach_tags, DuplicateDetect,
-				CopyFiles, RemoveOriginals);
+			var importer = new ImportController (file_system, App.Instance.Container.Resolve<IThumbnailLoader> (),
+				App.Instance.Database, attach_tags, DuplicateDetect, CopyFiles, RemoveOriginals);
 			importer.DoImport (Photos.Collection,
 				(current, total) => ThreadAssist.ProxyToMain (() => ReportProgress (current, total)),
 				token);
