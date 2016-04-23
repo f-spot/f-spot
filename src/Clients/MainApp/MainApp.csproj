@@ -206,6 +206,8 @@
     <Compile Include="FSpot.Database\UpdaterUI.cs" />
     <Compile Include="FSpot.Import\ImportDialogController.cs" />
     <Compile Include="FSpot.Import\ImportController.cs" />
+    <Compile Include="FSpot.Import\ImportSource.cs" />
+    <Compile Include="FSpot.Import\MultiImportSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\icons\f-spot-not.png">

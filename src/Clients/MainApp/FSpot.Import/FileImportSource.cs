@@ -42,10 +42,6 @@ namespace FSpot.Import
 {
 	class FileImportSource : IImportSource
 	{
-		public string Name { get; set; }
-
-		public string IconName { get; set; }
-
 		public SafeUri Root { get; set; }
 
 		public event EventHandler<PhotoFoundEventArgs> PhotoFoundEvent;
@@ -56,22 +52,11 @@ namespace FSpot.Import
 
 		IImageFileFactory factory;
 
-		public FileImportSource (SafeUri root, string name, string iconName, IImageFileFactory factory)
+		public FileImportSource (SafeUri root, IImageFileFactory factory)
 		{
 			this.factory = factory;
 
 			Root = root;
-			Name = name;
-
-			if (root != null) {
-				if (IsIPodPhoto) {
-					IconName = "multimedia-player";
-				} else if (IsCamera) {
-					IconName = "media-flash";
-				} else {
-					IconName = iconName;
-				}
-			}
 		}
 
 		public void StartPhotoScan (bool recurseSubdirectories, bool mergeRawAndJpeg)
@@ -184,29 +169,6 @@ namespace FSpot.Import
 					PhotoScanFinishedEvent.Invoke (this, new PhotoScanFinishedEventArgs ());
 				}
 			});
-		}
-
-		bool IsCamera {
-			get {
-				try {
-					var file = GLib.FileFactory.NewForUri (Root.Append ("DCIM"));
-					return file.Exists;
-				} catch {
-					return false;
-				}
-			}
-		}
-
-		bool IsIPodPhoto {
-			get {
-				try {
-					var file = GLib.FileFactory.NewForUri (Root.Append ("Photos"));
-					var file2 = GLib.FileFactory.NewForUri (Root.Append ("iPod_Control"));
-					return file.Exists && file2.Exists;
-				} catch {
-					return false;
-				}
-			}
 		}
 	}
 }

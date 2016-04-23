@@ -60,7 +60,7 @@ namespace FSpot.Import
 
 		~ImportDialogController ()
 		{
-			DeactivateSource (ActiveSource);
+			DeactivateSource (current_file_source);
 		}
 
 #region Import Preferences
@@ -137,8 +137,8 @@ namespace FSpot.Import
 
 #region Source Scanning
 
-		List<IImportSource> _sources;
-		public List<IImportSource> Sources {
+		List<ImportSource> _sources;
+		public List<ImportSource> Sources {
 			get {
 				if (_sources == null)
 					_sources = ScanSources ();
@@ -146,19 +146,18 @@ namespace FSpot.Import
 			}
 		}
 
-		static List<IImportSource> ScanSources ()
+		static List<ImportSource> ScanSources ()
 		{
 			var monitor = GLib.VolumeMonitor.Default;
-			var sources = new List<IImportSource> ();
+			var sources = new List<ImportSource> ();
 			foreach (var mount in monitor.Mounts) {
 				var root = new SafeUri (mount.Root.Uri, true);
 
 				var themed_icon = (mount.Icon as GLib.ThemedIcon);
-				var factory = App.Instance.Container.Resolve<IImageFileFactory> ();
 				if (themed_icon != null && themed_icon.Names.Length > 0) {
-					sources.Add (new FileImportSource (root, mount.Name, themed_icon.Names [0], factory));
+					sources.Add (new ImportSource (root, mount.Name, themed_icon.Names [0]));
 				} else {
-					sources.Add (new FileImportSource (root, mount.Name, null, factory));
+					sources.Add (new ImportSource (root, mount.Name, null));
 				}
 			}
 			return sources;
@@ -198,16 +197,19 @@ namespace FSpot.Import
 
 #region Source Switching
 
-		IImportSource active_source;
-		public IImportSource ActiveSource {
+		IImportSource current_file_source;
+		ImportSource active_source;
+		public ImportSource ActiveSource {
 			set {
 				if (value == active_source)
 					return;
-				var old_source = active_source;
 				active_source = value;
+
+				var old_file_source = current_file_source;
+				current_file_source = active_source.GetFileImportSource (App.Instance.Container.Resolve<IImageFileFactory> ());
 				FireEvent (ImportEvent.SourceChanged);
 				RescanPhotos ();
-				DeactivateSource (old_source);
+				DeactivateSource (old_file_source);
 			}
 			get {
 				return active_source;
@@ -223,15 +225,15 @@ namespace FSpot.Import
 
 		void RescanPhotos ()
 		{
-			if (ActiveSource == null)
+			if (current_file_source == null)
 				return;
 
 			photo_scan_running = true;
 			var pl = new PhotoList ();
 			Photos.Collection = pl;
-			ActiveSource.PhotoFoundEvent += OnPhotoFound;
-			ActiveSource.PhotoScanFinishedEvent += OnPhotoScanFinished;
-			ActiveSource.StartPhotoScan (RecurseSubdirectories, MergeRawAndJpeg);
+			current_file_source.PhotoFoundEvent += OnPhotoFound;
+			current_file_source.PhotoScanFinishedEvent += OnPhotoScanFinished;
+			current_file_source.StartPhotoScan (RecurseSubdirectories, MergeRawAndJpeg);
 			FireEvent (ImportEvent.PhotoScanStarted);
 		}
 
@@ -249,8 +251,8 @@ namespace FSpot.Import
 		public void OnPhotoScanFinished (object sender, PhotoScanFinishedEventArgs args)
 		{
 			photo_scan_running = false;
-			ActiveSource.PhotoScanFinishedEvent -= OnPhotoScanFinished;
-			ActiveSource.PhotoFoundEvent -= OnPhotoFound;
+			current_file_source.PhotoScanFinishedEvent -= OnPhotoScanFinished;
+			current_file_source.PhotoFoundEvent -= OnPhotoFound;
 			FireEvent (ImportEvent.PhotoScanFinished);
 		}
 
@@ -272,8 +274,8 @@ namespace FSpot.Import
 
 		public void CancelImport ()
 		{
-			if (ActiveSource != null) {
-				ActiveSource.Deactivate ();
+			if (current_file_source != null) {
+				current_file_source.Deactivate ();
 			}
 
 			tokenSource.Cancel ();
@@ -306,7 +308,7 @@ namespace FSpot.Import
 			if (!token.IsCancellationRequested) {
 				ImportThread = null;
 			}
-			DeactivateSource (ActiveSource);
+			DeactivateSource (current_file_source);
 			FireEvent (ImportEvent.ImportFinished);
 		}
 

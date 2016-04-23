@@ -1128,7 +1128,7 @@ namespace FSpot
 				}
 			});
 
-			var source = new MultiFileImportSource (list.ToArray (), App.Instance.Container.Resolve<IImageFileFactory> ());
+			var source = new MultiImportSource (list.ToArray ());
 			controller.ActiveSource = source;
 			controller.CopyFiles = copy;
 			controller.DuplicateDetect = true;
