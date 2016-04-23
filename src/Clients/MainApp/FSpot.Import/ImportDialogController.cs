@@ -37,6 +37,7 @@ using FSpot.Database;
 using FSpot.FileSystem;
 using FSpot.Imaging;
 using FSpot.Settings;
+using Gtk;
 using Hyena;
 using Mono.Unix;
 
@@ -56,11 +57,6 @@ namespace FSpot.Import
 			Photos = new BrowsableCollectionProxy ();
 			FailedImports = new List<SafeUri> ();
 			LoadPreferences ();
-		}
-
-		~ImportDialogController ()
-		{
-			DeactivateSource (current_file_source);
 		}
 
 #region Import Preferences
@@ -89,7 +85,7 @@ namespace FSpot.Import
 					return;
 				recurse_subdirectories = value;
 				SavePreferences ();
-				RescanPhotos ();
+				StartScan ();
 			}
 		}
 
@@ -105,7 +101,7 @@ namespace FSpot.Import
 					return;
 				merge_raw_and_jpeg = value;
 				SavePreferences ();
-				RescanPhotos ();
+				StartScan ();
 			}
 		}
 
@@ -197,7 +193,6 @@ namespace FSpot.Import
 
 #region Source Switching
 
-		IImportSource current_file_source;
 		ImportSource active_source;
 		public ImportSource ActiveSource {
 			set {
@@ -205,54 +200,64 @@ namespace FSpot.Import
 					return;
 				active_source = value;
 
-				var old_file_source = current_file_source;
-				current_file_source = active_source.GetFileImportSource (App.Instance.Container.Resolve<IImageFileFactory> ());
+				CancelScan ();
+				StartScan ();
+
 				FireEvent (ImportEvent.SourceChanged);
-				RescanPhotos ();
-				DeactivateSource (old_file_source);
 			}
 			get {
 				return active_source;
 			}
 		}
 
-		static void DeactivateSource (IImportSource source)
-		{
-			if (source == null)
-				return;
-			source.Deactivate ();
-		}
-
-		void RescanPhotos ()
-		{
-			if (current_file_source == null)
-				return;
-
-			photo_scan_running = true;
-			var pl = new PhotoList ();
-			Photos.Collection = pl;
-			current_file_source.PhotoFoundEvent += OnPhotoFound;
-			current_file_source.PhotoScanFinishedEvent += OnPhotoScanFinished;
-			current_file_source.StartPhotoScan (RecurseSubdirectories, MergeRawAndJpeg);
-			FireEvent (ImportEvent.PhotoScanStarted);
-		}
-
 #endregion
 
-#region Source Progress Signalling
+#region Photo Scanning
 
-		// These are callbacks that should be called by the sources.
+		Thread scanThread;
+		CancellationTokenSource scanTokenSource;
 
-		public void OnPhotoFound (object sender, PhotoFoundEventArgs args)
+		void StartScan ()
 		{
-			((PhotoList)Photos.Collection).Add (args.FileImportInfo);
+			if (scanThread != null) {
+				CancelScan ();
+			}
+
+			var source = active_source.GetFileImportSource (App.Instance.Container.Resolve<IImageFileFactory> ());
+			Photos.Collection = new PhotoList ();
+
+			scanTokenSource = new CancellationTokenSource ();
+			scanThread = ThreadAssist.Spawn (() => DoScan (source, recurse_subdirectories, merge_raw_and_jpeg, scanTokenSource.Token));
 		}
 
-		public void OnPhotoScanFinished (object sender, PhotoScanFinishedEventArgs args)
+		void CancelScan ()
 		{
-			photo_scan_running = false;
-			current_file_source.PhotoScanFinishedEvent -= OnPhotoScanFinished;
-			current_file_source.PhotoFoundEvent -= OnPhotoFound;
+			if (scanThread == null)
+				return;
+			scanTokenSource.Cancel ();
+			scanThread.Join ();
+			scanThread = null;
+			scanTokenSource = null;
+
+			// Make sure all photos are added. This is needed to prevent
+			// a race condition where a source is deactivated, yet photos
+			// are still added to the collection because they are
+			// queued on the mainloop.
+			while (Application.EventsPending ()) {
+				Application.RunIteration (false);
+			}
+		}
+
+		void DoScan (IImportSource source, bool recurse, bool merge, CancellationToken token)
+		{
+			FireEvent (ImportEvent.PhotoScanStarted);
+
+			foreach (var info in source.ScanPhotos (recurse, merge)) {
+				ThreadAssist.ProxyToMain (() => ((PhotoList)Photos.Collection).Add (info));
+				if (token.IsCancellationRequested)
+					break;
+			}
+
 			FireEvent (ImportEvent.PhotoScanFinished);
 		}
 
@@ -261,37 +266,34 @@ namespace FSpot.Import
 #region Importing
 
 		Thread ImportThread;
-		CancellationTokenSource tokenSource;
+		CancellationTokenSource importTokenSource;
 
 		public void StartImport ()
 		{
 			if (ImportThread != null)
 				throw new Exception ("Import already running!");
 
-			tokenSource = new CancellationTokenSource ();
-			ImportThread = ThreadAssist.Spawn (() => DoImport (tokenSource.Token));
+			importTokenSource = new CancellationTokenSource ();
+			ImportThread = ThreadAssist.Spawn (() => DoImport (importTokenSource.Token));
 		}
 
 		public void CancelImport ()
 		{
-			if (current_file_source != null) {
-				current_file_source.Deactivate ();
-			}
+			CancelScan ();
 
-			tokenSource.Cancel ();
+			if (importTokenSource != null)
+				importTokenSource.Cancel ();
 			if (ImportThread != null)
 				//FIXME: there is a race condition between the null check and calling join
 				ImportThread.Join ();
 		}
 
-		volatile bool photo_scan_running;
 		IFileSystem file_system = App.Instance.Container.Resolve<IFileSystem> ();
 
 		void DoImport (CancellationToken token)
 		{
-			while (photo_scan_running) {
-				Thread.Sleep (1000); // FIXME: we can do this with a better primitive!
-			}
+			if (scanThread != null)
+				scanThread.Join ();
 
 			FireEvent (ImportEvent.ImportStarted);
 
@@ -308,7 +310,7 @@ namespace FSpot.Import
 			if (!token.IsCancellationRequested) {
 				ImportThread = null;
 			}
-			DeactivateSource (current_file_source);
+
 			FireEvent (ImportEvent.ImportFinished);
 		}
 
