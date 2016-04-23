@@ -32,6 +32,7 @@
 //
 
 using System;
+using FSpot.Imaging;
 using FSpot.Thumbnail;
 using Hyena;
 
@@ -39,7 +40,13 @@ namespace FSpot
 {
 	public class ThumbnailLoader : ImageLoaderThread, IThumbnailLoader
 	{
-		static public IThumbnailLoader Default = new ThumbnailLoader ();
+		readonly IThumbnailService thumbnailService;
+
+		public ThumbnailLoader (IImageFileFactory imageFileFactory, IThumbnailService thumbnailService)
+			: base (imageFileFactory)
+		{
+			this.thumbnailService = thumbnailService;
+		}
 
 		public void Request (SafeUri uri, ThumbnailSize size, int order)
 		{
@@ -50,7 +57,7 @@ namespace FSpot
 		protected override void ProcessRequest (RequestItem request)
 		{
 			var size = request.Width == 128 ? ThumbnailSize.Normal : ThumbnailSize.Large;
-			request.Result = App.Instance.Container.Resolve<IThumbnailService> ().GetThumbnail (request.Uri, size);
+			request.Result = thumbnailService.GetThumbnail (request.Uri, size);
 		}
 	}
 }

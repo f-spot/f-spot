@@ -58,7 +58,7 @@ namespace FSpot
 			worker = new Thread (new ThreadStart (WorkerTask));
 			worker.Start ();
 
-			ThumbnailLoader.Default.OnPixbufLoaded += HandleThumbnailLoaded;
+			App.Instance.Container.Resolve<IThumbnailLoader> ().OnPixbufLoaded += HandleThumbnailLoaded;
 		}
 
 		public void HandleThumbnailLoaded (IImageLoaderThread loader, RequestItem result)

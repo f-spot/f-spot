@@ -157,7 +157,7 @@ namespace FSpot {
 			sidebar.CloseRequested += HandleHideSidePane;
 			sidebar.Show ();
 
-			ThumbnailLoader.Default.OnPixbufLoaded += delegate { directory_view.QueueDraw (); };
+			App.Instance.Container.Resolve<IThumbnailLoader> ().OnPixbufLoaded += delegate { directory_view.QueueDraw (); };
 
 			image_view = new PhotoImageView (collection);
 			GtkUtil.ModifyColors (image_view);

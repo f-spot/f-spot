@@ -74,13 +74,17 @@ namespace FSpot
 		   already or not.  */
 		bool pending_notify_notified;
 		volatile bool should_cancel;
+
+		readonly IImageFileFactory imageFileFactory;
 		#endregion
 
 		#region Public API
 		public event PixbufLoadedHandler OnPixbufLoaded;
 
-		public ImageLoaderThread ()
+		public ImageLoaderThread (IImageFileFactory imageFileFactory)
 		{
+			this.imageFileFactory = imageFileFactory;
+
 			queue = new List<RequestItem> ();
 			requests_by_uri = new Dictionary<SafeUri, RequestItem> ();
 			// requests_by_path = Hashtable.Synchronized (new Hashtable ());
@@ -168,7 +172,7 @@ namespace FSpot
 		{
 			Pixbuf orig_image;
 			try {
-				using (var img = FSpot.App.Instance.Container.Resolve<IImageFileFactory> ().Create (request.Uri)) {
+				using (var img = imageFileFactory.Create (request.Uri)) {
 					if (request.Width > 0) {
 						orig_image = img.Load (request.Width, request.Height);
 					} else {

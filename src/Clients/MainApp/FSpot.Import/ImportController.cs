@@ -161,7 +161,7 @@ namespace FSpot.Import
 			}
 
 			// Prepare thumbnail (Import is I/O bound anyway)
-			ThumbnailLoader.Default.Request (item.DefaultVersion.Uri, ThumbnailSize.Large, 10);
+			App.Instance.Container.Resolve<IThumbnailLoader> ().Request (item.DefaultVersion.Uri, ThumbnailSize.Large, 10);
 
 			imported_photos.Add (photo.Id);
 		}

@@ -48,7 +48,7 @@ public class ThumbnailCommand {
 	public bool Execute (IPhoto [] photos)
 	{
 		ProgressDialog progress_dialog = null;
-		var loader = ThumbnailLoader.Default;
+		var loader = App.Instance.Container.Resolve<IThumbnailLoader> ();
 		
 		if (photos.Length > 1) {
 			progress_dialog = new ProgressDialog (Mono.Unix.Catalog.GetString ("Updating Thumbnails"),
