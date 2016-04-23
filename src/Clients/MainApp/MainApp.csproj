@@ -206,6 +206,7 @@
     <Compile Include="FSpot.Import\ImportSource.cs" />
     <Compile Include="FSpot.Import\MultiImportSource.cs" />
     <Compile Include="FSpot\ThumbnailLoader.cs" />
+    <Compile Include="RequestItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\icons\f-spot-not.png">

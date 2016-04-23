@@ -61,7 +61,7 @@ namespace FSpot
 			ThumbnailLoader.Default.OnPixbufLoaded += HandleThumbnailLoaded;
 		}
 
-		public void HandleThumbnailLoaded (ImageLoaderThread loader, ImageLoaderThread.RequestItem result)
+		public void HandleThumbnailLoaded (ImageLoaderThread loader, RequestItem result)
 		{
 			Reload (result.Uri);
 		}

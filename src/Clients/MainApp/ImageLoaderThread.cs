@@ -35,7 +35,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using FSpot.Imaging;
-using FSpot.Utils;
 using Gdk;
 using Gtk;
 using Hyena;
@@ -44,56 +43,6 @@ namespace FSpot
 {
 	public class ImageLoaderThread
 	{
-		// Types.
-		public class RequestItem
-		{
-			/// <summary>
-			/// Gets or Sets image uri
-			/// </summary>
-			/// <value>
-			/// Image Uri
-			/// </value>
-			public SafeUri Uri { get; set; }
-
-			/* Order value; requests with a lower value get performed first.  */
-			public int Order { get; set; }
-
-			/* The pixbuf obtained from the operation.  */
-			Pixbuf result;
-
-			public Pixbuf Result {
-				get {
-					return result == null ? null : result.ShallowCopy ();
-				}
-				set { result = value; }
-			}
-
-			/* the maximium size both must be greater than zero if either is */
-			public int Width { get; set; }
-
-			public int Height { get; set; }
-
-			public RequestItem (SafeUri uri, int order, int width, int height)
-			{
-				Uri = uri;
-				Order = order;
-				Width = width;
-				Height = height;
-				if ((width <= 0 && height > 0) || (height <= 0 && width > 0)) {
-					throw new System.Exception ("Invalid arguments");
-				}
-			}
-
-			~RequestItem ()
-			{
-				if (result != null) {
-					result.Dispose ();
-				}
-				result = null;
-			}
-		}
-
-
 		#region Private members.
 		static List<ImageLoaderThread> instances = new List<ImageLoaderThread> ();
 
