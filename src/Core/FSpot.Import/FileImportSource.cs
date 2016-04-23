@@ -37,7 +37,7 @@ using Mono.Unix;
 
 namespace FSpot.Import
 {
-	class FileImportSource : IImportSource
+	public class FileImportSource : IImportSource
 	{
 		#region fields
 

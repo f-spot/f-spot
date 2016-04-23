@@ -1,10 +1,15 @@
-﻿//
-// AssemblyInfo.cs
+//
+//  MultiFileImportSource.cs
 //
 // Author:
+//   Mike Gemünde <mike@gemuende.de>
+//   Ruben Vermeersch <ruben@savanne.be>
 //   Daniel Köb <daniel.koeb@peony.at>
 //
-// Copyright (C) 2016 Daniel Köb
+// Copyright (C) 2010 Novell, Inc.
+// Copyright (C) 2010 Mike Gemünde
+// Copyright (C) 2010 Ruben Vermeersch
+// Copyright (C) 2014 Daniel Köb
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -26,6 +31,31 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System.Runtime.CompilerServices;
+using System.Collections.Generic;
+using FSpot.Imaging;
+using Hyena;
 
-[assembly: InternalsVisibleTo("MainApp.UnitTest")]
+namespace FSpot.Import
+{
+	// Multi root version for drag and drop import.
+	public class MultiFileImportSource : FileImportSource
+	{
+		readonly IEnumerable<SafeUri> uris;
+
+		public MultiFileImportSource (IEnumerable<SafeUri> uris, IImageFileFactory factory)
+			: base (null, factory)
+		{
+			this.uris = uris;
+		}
+
+		public override IEnumerable<FileImportInfo> ScanPhotos (bool recurseSubdirectories, bool mergeRawAndJpeg)
+		{
+			foreach (var uri in uris) {
+				Log.Debug ("Scanning " + uri);
+				foreach (var info in ScanPhotoDirectory (recurseSubdirectories, mergeRawAndJpeg, uri)) {
+					yield return info;
+				}
+			}
+		}
+	}
+}
