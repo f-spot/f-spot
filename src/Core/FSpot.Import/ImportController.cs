@@ -96,7 +96,7 @@ namespace FSpot.Import
 
 			CreatedRoll = db.Rolls.Create ();
 
-			EnsureDirectory (Global.PhotoUri);
+			fileSystem.Directory.CreateDirectory (Global.PhotoUri);
 
 			try {
 				int i = 0;
@@ -139,7 +139,7 @@ namespace FSpot.Import
 
 			if (copyFiles) {
 				var destinationBase = FindImportDestination (item, Global.PhotoUri);
-				EnsureDirectory (destinationBase);
+				fileSystem.Directory.CreateDirectory (destinationBase);
 				// Copy into photo folder.
 				photo_file_tracker.CopyIfNeeded (item, destinationBase);
 			}
@@ -176,17 +176,16 @@ namespace FSpot.Import
 			}
 
 			foreach (var uri in photo_file_tracker.CopiedFiles) {
-				var file = GLib.FileFactory.NewForUri (uri);
-				file.Delete (null);
+				fileSystem.File.Delete (uri);
 			}
 
 			// Clean up directories
 			while (created_directories.Count > 0) {
 				var uri = created_directories.Pop ();
-				var dir = GLib.FileFactory.NewForUri (uri);
-				var enumerator = dir.EnumerateChildren ("standard::name", GLib.FileQueryInfoFlags.None, null);
-				if (!enumerator.HasPending) {
-					dir.Delete (null);
+				try {
+					fileSystem.Directory.Delete (uri);
+				} catch (Exception e) {
+					Log.WarningFormat ("Failed to clean up directory '{0}': {1}", uri, e.Message);
 				}
 			}
 
@@ -212,10 +211,9 @@ namespace FSpot.Import
 			if (removeOriginals) {
 				foreach (var uri in photo_file_tracker.OriginalFiles) {
 					try {
-						var file = GLib.FileFactory.NewForUri (uri);
-						file.Delete (null);
-					} catch (Exception) {
-						Log.WarningFormat ("Failed to remove original file: {0}", uri);
+						fileSystem.File.Delete (uri);
+					} catch (Exception e) {
+						Log.WarningFormat ("Failed to remove original file '{0}': {1}", uri, e.Message);
 					}
 				}
 			}
@@ -228,19 +226,6 @@ namespace FSpot.Import
 				.Append (time.Year.ToString ())
 				.Append (String.Format ("{0:D2}", time.Month))
 				.Append (String.Format ("{0:D2}", time.Day));
-		}
-
-		static void EnsureDirectory (SafeUri uri)
-		{
-			var parts = uri.AbsolutePath.Split('/');
-			var current = new SafeUri (uri.Scheme + ":///", true);
-			for (int i = 0; i < parts.Length; i++) {
-				current = current.Append (parts [i]);
-				var file = GLib.FileFactory.NewForUri (current);
-				if (!file.Exists) {
-					file.MakeDirectory (null);
-				}
-			}
 		}
 	}
 }
