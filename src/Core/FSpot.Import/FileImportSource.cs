@@ -116,12 +116,12 @@ namespace FSpot.Import
 			}
 		}
 
-		SafeUri NextImageFileOrNull(IEnumerator<GLib.File> enumerator)
+		SafeUri NextImageFileOrNull(IEnumerator<SafeUri> enumerator)
 		{
 			SafeUri nextImageFile;
 			do {
 				if (enumerator.MoveNext ())
-					nextImageFile = new SafeUri (enumerator.Current.Uri, true);
+					nextImageFile = enumerator.Current;
 				else
 					return null;
 			} while (!factory.HasLoader (nextImageFile));
