@@ -53,5 +53,15 @@ namespace FSpot.FileSystem
 				}
 			}
 		}
+
+		public void Delete (SafeUri uri)
+		{
+			var directory = FileFactory.NewForUri (uri);
+			if (!directory.Exists || directory.QueryFileType (FileQueryInfoFlags.None, null) != FileType.Directory) {
+				//FIXME to be consistent with System.IO.Directory.Delete we should throw an exception in this case
+				return;
+			}
+			directory.Delete (null);
+		}
 	}
 }
