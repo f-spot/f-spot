@@ -43,29 +43,24 @@ using Hyena;
 
 namespace FSpot.Import
 {
-	public class ImportController
+	class ImportController : IImportController
 	{
 		#region fields
 
 		readonly IFileSystem fileSystem;
 		readonly IThumbnailLoader thumbnailLoader;
-		readonly IDb db;
-		readonly IList<Tag> tagsToAttach;
-		readonly bool duplicateDetect;
-		readonly bool copyFiles;
-		readonly bool removeOriginals;
 
 		PhotoFileTracker photo_file_tracker;
 		MetadataImporter metadata_importer;
 		Stack<SafeUri> created_directories;
 		List<uint> imported_photos;
 		List<SafeUri> failedImports = new List<SafeUri> ();
+		Roll createdRoll;
 
 		#endregion
 
 		#region props
 
-		public Roll CreatedRoll { get; private set; }
 		public IEnumerable<SafeUri> FailedImports { get { return failedImports.AsEnumerable(); } }
 		public int PhotosImported { get { return imported_photos.Count; } }
 
@@ -73,20 +68,18 @@ namespace FSpot.Import
 
 		#region ctors
 
-		public ImportController (IFileSystem fileSystem, IThumbnailLoader thumbnailLoader, IDb db, IList<Tag> tagsToAttach, bool duplicateDetect, bool copyFiles, bool removeOriginals)
+		public ImportController (IFileSystem fileSystem, IThumbnailLoader thumbnailLoader)
 		{
 			this.fileSystem = fileSystem;
 			this.thumbnailLoader = thumbnailLoader;
-			this.db = db;
-			this.tagsToAttach = tagsToAttach;
-			this.duplicateDetect = duplicateDetect;
-			this.copyFiles = copyFiles;
-			this.removeOriginals = removeOriginals;
 		}
 
 		#endregion
 
-		public void DoImport (IBrowsableCollection photos, Action<int, int> reportProgress, CancellationToken token)
+		#region IImportConroller
+
+		public void DoImport (IDb db, IBrowsableCollection photos, IList<Tag> tagsToAttach, bool duplicateDetect,
+			bool copyFiles, bool removeOriginals, Action<int, int> reportProgress, CancellationToken token)
 		{
 			db.Sync = false;
 			created_directories = new Stack<SafeUri> ();
@@ -94,7 +87,7 @@ namespace FSpot.Import
 			photo_file_tracker = new PhotoFileTracker (fileSystem);
 			metadata_importer = new MetadataImporter (db.Tags);
 
-			CreatedRoll = db.Rolls.Create ();
+			createdRoll = db.Rolls.Create ();
 
 			fileSystem.Directory.CreateDirectory (Global.PhotoUri);
 
@@ -103,13 +96,13 @@ namespace FSpot.Import
 				int total = photos.Count;
 				foreach (var info in photos.Items) {
 					if (token.IsCancellationRequested) {
-						RollbackImport ();
+						RollbackImport (db);
 						return;
 					}
 
 					reportProgress (i++, total);
 					try {
-						ImportPhoto (info, CreatedRoll);
+						ImportPhoto (db, info, createdRoll, tagsToAttach, duplicateDetect, copyFiles);
 					} catch (Exception e) {
 						Log.DebugFormat ("Failed to import {0}", info.DefaultVersion.Uri);
 						Log.DebugException (e);
@@ -117,16 +110,20 @@ namespace FSpot.Import
 					}
 				}
 
-				FinishImport ();
+				FinishImport (removeOriginals);
 			} catch (Exception e) {
-				RollbackImport ();
+				RollbackImport (db);
 				throw e;
 			} finally {
-				Cleanup ();
+				Cleanup (db);
 			}
 		}
 
-		void ImportPhoto (IPhoto item, DbItem roll)
+		#endregion
+
+		#region private
+
+		void ImportPhoto (IDb db, IPhoto item, DbItem roll, IList<Tag> tagsToAttach, bool duplicateDetect, bool copyFiles)
 		{
 			if (item is IInvalidPhotoCheck && (item as IInvalidPhotoCheck).IsInvalid) {
 				throw new Exception ("Failed to parse metadata, probably not a photo");
@@ -168,7 +165,7 @@ namespace FSpot.Import
 			imported_photos.Add (photo.Id);
 		}
 
-		void RollbackImport ()
+		void RollbackImport (IDb db)
 		{
 			// Remove photos
 			foreach (var id in imported_photos) {
@@ -193,20 +190,20 @@ namespace FSpot.Import
 			metadata_importer.Cancel ();
 
 			// Remove created roll
-			db.Rolls.Remove (CreatedRoll);
+			db.Rolls.Remove (createdRoll);
 		}
 
-		void Cleanup ()
+		void Cleanup (IDb db)
 		{
 			if (imported_photos != null && imported_photos.Count == 0)
-				db.Rolls.Remove (CreatedRoll);
+				db.Rolls.Remove (createdRoll);
 			//FIXME: we are cleaning a cache that is never used, that smells...
 			Photo.ResetMD5Cache ();
 			GC.Collect ();
 			db.Sync = true;
 		}
 
-		void FinishImport ()
+		void FinishImport (bool removeOriginals)
 		{
 			if (removeOriginals) {
 				foreach (var uri in photo_file_tracker.OriginalFiles) {
@@ -227,5 +224,7 @@ namespace FSpot.Import
 				.Append (String.Format ("{0:D2}", time.Month))
 				.Append (String.Format ("{0:D2}", time.Day));
 		}
+
+		#endregion
 	}
 }

@@ -289,8 +289,6 @@ namespace FSpot.Import
 				ImportThread.Join ();
 		}
 
-		IFileSystem file_system = App.Instance.Container.Resolve<IFileSystem> ();
-
 		void DoImport (CancellationToken token)
 		{
 			if (scanThread != null)
@@ -298,10 +296,9 @@ namespace FSpot.Import
 
 			FireEvent (ImportEvent.ImportStarted);
 
-			var importer = new ImportController (file_system, App.Instance.Container.Resolve<IThumbnailLoader> (),
-				App.Instance.Database, attach_tags, DuplicateDetect, CopyFiles, RemoveOriginals);
-			importer.DoImport (Photos.Collection,
-				(current, total) => ThreadAssist.ProxyToMain (() => ReportProgress (current, total)),
+			var importer = App.Instance.Container.Resolve<IImportController> ();
+			importer.DoImport (App.Instance.Database, Photos.Collection, attach_tags, DuplicateDetect, CopyFiles,
+				RemoveOriginals, (current, total) => ThreadAssist.ProxyToMain (() => ReportProgress (current, total)),
 				token);
 
 			PhotosImported = importer.PhotosImported;

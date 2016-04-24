@@ -48,6 +48,8 @@
     <Compile Include="MultiFileImportSource.cs" />
     <Compile Include="PhotoFileTracker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="IImportController.cs" />
+    <Compile Include="ModuleController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
