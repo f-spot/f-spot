@@ -45,5 +45,67 @@ namespace FSpot.Utils
 							       width, height);
 			return surface;
 		}
+
+		public static IntPtr PixbufFromSurface(Surface source)
+		{
+			int width = cairo_image_surface_get_width (source.Handle);
+			int height = cairo_image_surface_get_height (source.Handle);
+			return IntPtr.Zero;
+			/*
+			GdkPixbuf *pixbuf = gdk_pixbuf_new(GDK_COLORSPACE_RGB,
+							   TRUE,
+						           8,
+						           width,
+						           height);
+
+			guchar *gdk_pixels = gdk_pixbuf_get_pixels (pixbuf);
+			int gdk_rowstride = gdk_pixbuf_get_rowstride (pixbuf);
+			int n_channels = gdk_pixbuf_get_n_channels (pixbuf);
+			cairo_format_t format;
+			cairo_surface_t *surface;
+			cairo_t *ctx;
+			static const cairo_user_data_key_t key;
+			int j;
+		
+			format = f_image_surface_get_format (source);
+			surface = cairo_image_surface_create_for_data (gdk_pixels,
+								 format,
+								 width, height, gdk_rowstride);
+			ctx = cairo_create (surface);
+			cairo_set_source_surface (ctx, source, 0, 0);
+			if (format == CAIRO_FORMAT_ARGB32)
+				cairo_mask_surface (ctx, source, 0, 0);
+			else
+				cairo_paint (ctx);
+
+			for (j = height; j; j--)
+			{
+				guchar *p = gdk_pixels;
+				guchar *end = p + 4 * width;
+				guchar tmp;
+
+				while (p < end)
+				{
+					tmp = p[0];
+			#if G_BYTE_ORDER == G_LITTLE_ENDIAN
+					p[0] = p[2];
+					p[2] = tmp;
+			#else
+					p[0] = p[1];
+					p[1] = p[2];
+					p[2] = p[3];
+					p[3] = tmp;
+			#endif
+					p += 4;
+				}
+		
+			gdk_pixels += gdk_rowstride;
+			}
+
+			cairo_destroy (ctx);
+			cairo_surface_destroy (surface);
+			return pixbuf;
+*/
+		}
 	}
 }

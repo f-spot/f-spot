@@ -37,6 +37,7 @@ using Mono.Unix;
 using FSpot.Core;
 using FSpot.Widgets;
 using FSpot.Imaging;
+using FSpot.Utils;
 
 using Hyena;
 
@@ -267,13 +268,9 @@ namespace FSpot
 			cr.Restore ();
 		}
 
-		//FIXME: f_pixbuf_from_cairo_surface is missing from libfspot
-		[DllImport("libfspot")]
-		static extern IntPtr f_pixbuf_from_cairo_surface (IntPtr handle);
-
 		static Gdk.Pixbuf CreatePixbuf (Surface s)
 		{
-			IntPtr result = f_pixbuf_from_cairo_surface (s.Handle);
+			IntPtr result = CairoUtils.PixbufFromSurface(s);
 			return (Gdk.Pixbuf) GLib.Object.GetObject (result, true);
 		}
 	}
