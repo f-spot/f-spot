@@ -28,8 +28,10 @@
 //
 
 using System;
+using System.Runtime.InteropServices;
 
 using Cairo;
+using Gdk;
 
 namespace FSpot.Utils
 {
@@ -46,38 +48,55 @@ namespace FSpot.Utils
 			return surface;
 		}
 
-		public static IntPtr PixbufFromSurface(Surface source)
+		unsafe public static Pixbuf PixbufFromSurface(ImageSurface source)
 		{
-			int width = cairo_image_surface_get_width (source.Handle);
-			int height = cairo_image_surface_get_height (source.Handle);
-			return IntPtr.Zero;
-			/*
-			GdkPixbuf *pixbuf = gdk_pixbuf_new(GDK_COLORSPACE_RGB,
-							   TRUE,
-						           8,
-						           width,
-						           height);
-
-			guchar *gdk_pixels = gdk_pixbuf_get_pixels (pixbuf);
-			int gdk_rowstride = gdk_pixbuf_get_rowstride (pixbuf);
-			int n_channels = gdk_pixbuf_get_n_channels (pixbuf);
-			cairo_format_t format;
-			cairo_surface_t *surface;
-			cairo_t *ctx;
-			static const cairo_user_data_key_t key;
+			int width = source.Width;
+			int height = source.Height;
+			Pixbuf pixbuf = new Pixbuf(Colorspace.Rgb, true, 8, width, height);
+                        byte []gdkPixels = new byte[width*height];
+			Marshal.Copy(pixbuf.Pixels, gdkPixels, 0, width*height);
+			int gdkRowstride = pixbuf.Rowstride;
+			int nChannels = pixbuf.NChannels;
 			int j;
-		
-			format = f_image_surface_get_format (source);
-			surface = cairo_image_surface_create_for_data (gdk_pixels,
-								 format,
-								 width, height, gdk_rowstride);
-			ctx = cairo_create (surface);
-			cairo_set_source_surface (ctx, source, 0, 0);
-			if (format == CAIRO_FORMAT_ARGB32)
-				cairo_mask_surface (ctx, source, 0, 0);
-			else
-				cairo_paint (ctx);
 
+			Format format = source.Format;
+		
+			Surface surface = new ImageSurface(gdkPixels, format, width, height, gdkRowstride);
+			Context ctx = new Context(surface);
+			ctx.SetSourceSurface(source, 0, 0);
+			if (format == Format.ARGB32)
+				ctx.MaskSurface(source, 0, 0);
+			else
+				ctx.Paint();
+
+			for (j=height; j > 0 ;j--)
+			{
+				int p = (height-j)*gdkRowstride;
+				int end = p + 4*width;
+				byte tmp;
+
+				while (p < end)
+				{
+					tmp = gdkPixels[p+0];
+					if(System.BitConverter.IsLittleEndian)
+					{
+						gdkPixels[p+0] = gdkPixels[p+2];
+						gdkPixels[p+2] = tmp;
+					}
+					else
+					{
+						gdkPixels[p+0] = gdkPixels[p+1];
+						gdkPixels[p+1] = gdkPixels[p+2];
+						gdkPixels[p+2] = gdkPixels[p+3];
+						gdkPixels[p+3] = tmp;
+					}
+					p += 4;
+				}
+			}
+
+			surface.Destroy();
+			return pixbuf;
+			/*
 			for (j = height; j; j--)
 			{
 				guchar *p = gdk_pixels;

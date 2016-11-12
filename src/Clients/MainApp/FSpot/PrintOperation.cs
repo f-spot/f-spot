@@ -268,10 +268,9 @@ namespace FSpot
 			cr.Restore ();
 		}
 
-		static Gdk.Pixbuf CreatePixbuf (Surface s)
+		static Gdk.Pixbuf CreatePixbuf (ImageSurface s)
 		{
-			IntPtr result = CairoUtils.PixbufFromSurface(s);
-			return (Gdk.Pixbuf) GLib.Object.GetObject (result, true);
+			return CairoUtils.PixbufFromSurface(s);
 		}
 	}
 }
