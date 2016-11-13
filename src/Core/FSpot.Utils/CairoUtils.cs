@@ -52,26 +52,23 @@ namespace FSpot.Utils
 		{
 			int width = source.Width;
 			int height = source.Height;
-			Pixbuf pixbuf = new Pixbuf(Colorspace.Rgb, true, 8, width, height);
-                        byte []gdkPixels = new byte[width*height];
-			Marshal.Copy(pixbuf.Pixels, gdkPixels, 0, width*height);
-			int gdkRowstride = pixbuf.Rowstride;
-			int nChannels = pixbuf.NChannels;
-			int j;
+                        byte []gdkPixels = new byte[width*height*4];
 
 			Format format = source.Format;
 		
-			Surface surface = new ImageSurface(gdkPixels, format, width, height, gdkRowstride);
+			Surface surface = new ImageSurface(gdkPixels, format, width, height, 4*width);
 			Context ctx = new Context(surface);
 			ctx.SetSourceSurface(source, 0, 0);
+
 			if (format == Format.ARGB32)
 				ctx.MaskSurface(source, 0, 0);
 			else
 				ctx.Paint();
 
+			int j;
 			for (j=height; j > 0 ;j--)
 			{
-				int p = (height-j)*gdkRowstride;
+				int p = (height-j)*4*width;
 				int end = p + 4*width;
 				byte tmp;
 
@@ -95,6 +92,7 @@ namespace FSpot.Utils
 			}
 
 			surface.Destroy();
+			Pixbuf pixbuf = new Pixbuf(gdkPixels, Colorspace.Rgb, true, 8, width, height);
 			return pixbuf;
 			/*
 			for (j = height; j; j--)
