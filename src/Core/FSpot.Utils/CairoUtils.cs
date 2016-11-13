@@ -94,35 +94,6 @@ namespace FSpot.Utils
 			surface.Destroy();
 			Pixbuf pixbuf = new Pixbuf(gdkPixels, Colorspace.Rgb, true, 8, width, height);
 			return pixbuf;
-			/*
-			for (j = height; j; j--)
-			{
-				guchar *p = gdk_pixels;
-				guchar *end = p + 4 * width;
-				guchar tmp;
-
-				while (p < end)
-				{
-					tmp = p[0];
-			#if G_BYTE_ORDER == G_LITTLE_ENDIAN
-					p[0] = p[2];
-					p[2] = tmp;
-			#else
-					p[0] = p[1];
-					p[1] = p[2];
-					p[2] = p[3];
-					p[3] = tmp;
-			#endif
-					p += 4;
-				}
-		
-			gdk_pixels += gdk_rowstride;
-			}
-
-			cairo_destroy (ctx);
-			cairo_surface_destroy (surface);
-			return pixbuf;
-*/
 		}
 	}
 }
