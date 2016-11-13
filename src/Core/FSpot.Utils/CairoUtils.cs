@@ -92,7 +92,7 @@ namespace FSpot.Utils
 			}
 
 			surface.Destroy();
-			Pixbuf pixbuf = new Pixbuf(gdkPixels, Colorspace.Rgb, true, 8, width, height);
+			Pixbuf pixbuf = new Pixbuf(gdkPixels, Colorspace.Rgb, true, 8, width, height, 4*width);
 			return pixbuf;
 		}
 	}
