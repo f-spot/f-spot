@@ -124,8 +124,8 @@ namespace FSpot
 			double w = context.Width / ppx;
 			double h = context.Height / ppy;
 
-			// compute picture size using 4800DPI
-			double mx=(w / 25.4) * 4800, my=(h / 25.4) * 4800;
+			// compute picture size
+			double mx=(w / 25.4) * context.DpiX, my=(h / 25.4) * context.DpiY;
 
 			for (int x = 0; x <= ppx; x++) {
 				for (int y = 0; y <= ppy; y++) {
