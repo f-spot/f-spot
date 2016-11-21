@@ -139,6 +139,10 @@ namespace FSpot
 						Gdk.Pixbuf pixbuf;
 						try {
 							pixbuf = img.Load ((int) mx, (int) my);
+							if (pixbuf == null) {
+								Log.Error ("Not enough memory for printing " + selected_photos [p_index].DefaultVersion.Uri);
+								continue;
+							}
 							Cms.Profile printer_profile;
 							if (ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_OUTPUT_PROFILE), out printer_profile))
 								ColorManagement.ApplyProfile (pixbuf, img.GetProfile (), printer_profile);
@@ -149,7 +153,7 @@ namespace FSpot
 										      PixbufUtils.ErrorPixbuf.Width,
 										      PixbufUtils.ErrorPixbuf.Height);
 						}
-						//Gdk.Pixbuf pixbuf = img.Load (100, 100);
+
 						bool rotated = false;
 						if (Math.Sign ((double)pixbuf.Width/pixbuf.Height - 1.0) != Math.Sign (w/h - 1.0)) {
 							Gdk.Pixbuf d_pixbuf = pixbuf.RotateSimple (Gdk.PixbufRotation.Counterclockwise);
