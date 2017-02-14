@@ -118,12 +118,12 @@ namespace FSpot
 		public static string GetStringData (this SelectionData selection_data)
 		{
 			if (selection_data.Length <= 0)
-				return String.Empty;
+				return string.Empty;
 
 			try {
 				return Encoding.UTF8.GetString (selection_data.Data);
 			} catch (Exception) {
-				return String.Empty;
+				return string.Empty;
 			}
 		}
 
@@ -147,7 +147,7 @@ namespace FSpot
                 public static void SetCopyFiles (this SelectionData selection_data, UriList uri_list)
                 {
                     var uris = (from p in uri_list select p.ToString ()).ToArray ();
-                    var data = Encoding.UTF8.GetBytes ("copy\n" + String.Join ("\n", uris));
+                    var data = Encoding.UTF8.GetBytes ("copy\n" + string.Join ("\n", uris));
         
                     selection_data.Set (Atom.Intern ("x-special/gnome-copied-files", true), 8, data, data.Length);
                 }

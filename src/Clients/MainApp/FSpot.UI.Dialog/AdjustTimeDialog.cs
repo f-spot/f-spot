@@ -137,7 +137,7 @@ namespace FSpot.UI.Dialog {
 				offset_entry.Text = span.ToString ();
 
 			starting_label.Text = "min.";
-			difference_check.Label = String.Format (Catalog.GetString ("Shift all photos by {0}"),
+			difference_check.Label = string.Format (Catalog.GetString ("Shift all photos by {0}"),
 							      Offset);
 		}
 
@@ -154,7 +154,7 @@ namespace FSpot.UI.Dialog {
 
 				int i = collection.Count > 0 ? item.Index + 1: 0;
 				// Note for translators: This indicates the current photo is photo {0} of {1} out of photos
-				count_label.Text = System.String.Format (Catalog.GetString ("{0} of {1}"), i, collection.Count);
+				count_label.Text = System.string.Format (Catalog.GetString ("{0} of {1}"), i, collection.Count);
 
 				DateTime actual = curr_item.Time;
 				date_edit.Time = actual;

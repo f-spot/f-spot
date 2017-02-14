@@ -51,7 +51,7 @@ namespace FSpot.Filters {
 			string filename = System.IO.Path.GetFileName (request.Source.LocalPath);
 			string dest = System.IO.Path.Combine (path, filename);
 			while (System.IO.File.Exists (dest)) {
-				string numbered_name = String.Format ("{0}-{1}{2}",
+				string numbered_name = string.Format ("{0}-{1}{2}",
 						System.IO.Path.GetFileNameWithoutExtension (filename),
 						i++,
 						System.IO.Path.GetExtension (filename));

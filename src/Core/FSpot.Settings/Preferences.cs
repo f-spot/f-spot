@@ -206,7 +206,7 @@ namespace FSpot.Settings
 			case GTK_RC:
 			case COLOR_MANAGEMENT_DISPLAY_PROFILE:
 			case COLOR_MANAGEMENT_OUTPUT_PROFILE:
-				return String.Empty;
+				return string.Empty;
 			case IMPORT_CHECK_DUPLICATES:
 			case IMPORT_COPY_FILES:
 			case IMPORT_INCLUDE_SUBFOLDERS:

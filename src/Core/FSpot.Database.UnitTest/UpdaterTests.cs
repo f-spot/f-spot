@@ -76,7 +76,7 @@ namespace FSpot.Database.Tests
 
             var uri = new SafeUri (Environment.CurrentDirectory + "/../tests/data/f-spot-"+version+".db");
             var file = GLib.FileFactory.NewForUri (uri);
-            Assert.IsTrue (file.Exists, String.Format ("Test database for version {0} not found", version));
+            Assert.IsTrue (file.Exists, string.Format ("Test database for version {0} not found", version));
 
             var tmp = System.IO.Path.GetTempFileName ();
             var uri2 = new SafeUri (tmp);
@@ -120,7 +120,7 @@ namespace FSpot.Database.Tests
 
         private void CheckTableExistance (FSpotDatabaseConnection db, string name)
         {
-            Assert.IsTrue (db.TableExists (name), String.Format ("Expected table {0} does not exist.", name));
+            Assert.IsTrue (db.TableExists (name), string.Format ("Expected table {0} does not exist.", name));
         }
 
         private void CheckPhotosTable (FSpotDatabaseConnection db)

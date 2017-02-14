@@ -147,7 +147,7 @@ namespace FSpot.UI.Dialog
             Logo = new Gdk.Pixbuf (System.Reflection.Assembly.GetEntryAssembly (), "f-spot-128.png");
             ProgramName = "F-Spot";
             TranslatorCredits = Catalog.GetString ("translator-credits");
-            if (System.String.Compare (TranslatorCredits, "translator-credits") == 0)
+            if (System.string.Compare (TranslatorCredits, "translator-credits") == 0)
                 TranslatorCredits = null;
             Version = Defines.VERSION;
             Website = "http://f-spot.org";

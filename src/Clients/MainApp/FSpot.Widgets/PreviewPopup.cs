@@ -154,7 +154,7 @@ namespace FSpot.Widgets
 				pixbuf.Dispose ();
 			}
 
-			string desc = String.Empty;
+			string desc = string.Empty;
 			if (!string.IsNullOrEmpty (item.Description))
 				desc = item.Description + Environment.NewLine;
 
@@ -311,7 +311,7 @@ namespace FSpot.Widgets
 			image.CanFocus = false;
 
 
-			label = new Gtk.Label (String.Empty);
+			label = new Gtk.Label (string.Empty);
 			label.CanFocus = false;
 			label.ModifyFg (Gtk.StateType.Normal, new Gdk.Color (127, 127, 127));
 			label.ModifyBg (Gtk.StateType.Normal, new Gdk.Color (0, 0, 0));

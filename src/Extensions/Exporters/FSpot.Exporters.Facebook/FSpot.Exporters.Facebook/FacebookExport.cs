@@ -264,7 +264,7 @@ namespace FSpot.Exporters.Facebook
 						continue;
 					}
 				}
-				AppendValues (String.Format ("{0} {1}", info.first_name ?? "", info.last_name ?? ""));
+				AppendValues (string.Format ("{0} {1}", info.first_name ?? "", info.last_name ?? ""));
 			}
 		}
 
@@ -296,7 +296,7 @@ namespace FSpot.Exporters.Facebook
 				HigMessageDialog mbox = new HigMessageDialog (dialog,
 						Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal, Gtk.MessageType.Error,
 						Gtk.ButtonsType.Ok, Catalog.GetString ("Too many images to export"),
-						String.Format (Catalog.GetString ("Facebook only permits {0} photographs per album.  Please refine your selection and try again."), max_photos_per_album));
+						string.Format (Catalog.GetString ("Facebook only permits {0} photographs per album.  Please refine your selection and try again."), max_photos_per_album));
 				mbox.Run ();
 				mbox.Destroy ();
 				return;
@@ -309,7 +309,7 @@ namespace FSpot.Exporters.Facebook
 
 			if (dialog.CreateAlbum) {
 				string name = dialog.AlbumName;
-				if (String.IsNullOrEmpty (name)) {
+				if (string.IsNullOrEmpty (name)) {
 					HigMessageDialog mbox = new HigMessageDialog (dialog, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal,
 							Gtk.MessageType.Error, Gtk.ButtonsType.Ok, Catalog.GetString ("Album must have a name"),
 							Catalog.GetString ("Please name your album or choose an existing album."));
@@ -327,7 +327,7 @@ namespace FSpot.Exporters.Facebook
 				catch (FacebookException fe) {
 					HigMessageDialog mbox = new HigMessageDialog (dialog, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal,
 							Gtk.MessageType.Error, Gtk.ButtonsType.Ok, Catalog.GetString ("Creating a new album failed"),
-							String.Format (Catalog.GetString ("An error occurred creating a new album.\n\n{0}"), fe.Message));
+							string.Format (Catalog.GetString ("An error occurred creating a new album.\n\n{0}"), fe.Message));
 					mbox.Run ();
 					mbox.Destroy ();
 					return;
@@ -368,7 +368,7 @@ namespace FSpot.Exporters.Facebook
 					FileInfo file_info;
 					Log.DebugFormat ("uploading {0}", i);
 
-					progress_dialog.Message = String.Format (Catalog.GetString ("Uploading picture \"{0}\" ({1} of {2})"), item.Name, i + 1, items.Length);
+					progress_dialog.Message = string.Format (Catalog.GetString ("Uploading picture \"{0}\" ({1} of {2})"), item.Name, i + 1, items.Length);
 					progress_dialog.ProgressText = string.Empty;
 					progress_dialog.Fraction = i / (double) items.Length;
 
@@ -382,7 +382,7 @@ namespace FSpot.Exporters.Facebook
 					sent_bytes += file_info.Length;
 				}
 				catch (Exception e) {
-					progress_dialog.Message = String.Format (Catalog.GetString ("Error Uploading To Facebook: {0}"), e.Message);
+					progress_dialog.Message = string.Format (Catalog.GetString ("Error Uploading To Facebook: {0}"), e.Message);
 					progress_dialog.ProgressText = Catalog.GetString ("Error");
 					Log.DebugException (e);
 

@@ -70,7 +70,7 @@ namespace FSpot.UI.Dialog {
 			BorderWidth = 6;
 			SetDefaultSize (300, -1);
 
-			message_label = new Gtk.Label (String.Empty);
+			message_label = new Gtk.Label (string.Empty);
 			VBox.PackStart (message_label, true, true, 12);
 
 			progress_bar = new Gtk.ProgressBar ();

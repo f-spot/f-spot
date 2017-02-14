@@ -201,7 +201,7 @@ namespace FSpot
 			if (VersionNameExists (name))
 				throw new ApplicationException ("A version with that name already exists");
 			highest_version_id ++;
-			string import_md5 = String.Empty; // Modified version
+			string import_md5 = string.Empty; // Modified version
 
 			versions [highest_version_id] = new PhotoVersion (this, highest_version_id, base_uri, filename, import_md5, name, is_protected);
 
@@ -399,7 +399,7 @@ namespace FSpot
 			if (create) {
 				GLib.File destination = GLib.FileFactory.NewForUri (new_uri);
 				if (destination.Exists)
-					throw new Exception (String.Format ("An object at this uri {0} already exists", new_uri));
+					throw new Exception (string.Format ("An object at this uri {0} already exists", new_uri));
 
 				//FIXME. or better, fix the copy api !
 				GLib.File source = GLib.FileFactory.NewForUri (original_uri);
@@ -428,11 +428,11 @@ namespace FSpot
 			if (filename.StartsWith (parent_filename))
 				name = filename.Substring (parent_filename.Length).Replace ("(", "").Replace (")", "").Replace ("_", " "). Trim ();
 
-			if (String.IsNullOrEmpty (name)) {
+			if (string.IsNullOrEmpty (name)) {
 				// Note for translators: Reparented is a picture becoming a version of another one
 				string rep = name = Catalog.GetString ("Reparented");
 				for (int num = 1; VersionNameExists (name); num++) {
-					name = String.Format (rep + " ({0})", num);
+					name = string.Format (rep + " ({0})", num);
 				}
 			}
 			highest_version_id ++;
@@ -451,7 +451,7 @@ namespace FSpot
 				string name = Catalog.GetPluralString ("Modified",
 									 "Modified ({0})",
 									 num);
-				name = String.Format (name, num);
+				name = string.Format (name, num);
 				//SafeUri uri = GetUriForVersionName (name, System.IO.Path.GetExtension (VersionUri(base_version_id).GetFilename()));
 				string filename = GetFilenameForVersionName (name, System.IO.Path.GetExtension (versions [base_version_id].Filename));
 				SafeUri uri = DefaultVersion.BaseUri.Append (filename);
@@ -470,7 +470,7 @@ namespace FSpot
 
 			string final_name;
 			while (true) {
-				final_name = String.Format (
+				final_name = string.Format (
 						(num == 1) ? Catalog.GetString ("Modified in {1}") : Catalog.GetString ("Modified in {1} ({0})"),
 						num, name);
 
@@ -599,7 +599,7 @@ namespace FSpot
 			time = DateTimeUtil.ToDateTime (unix_time);
 			tags = new List<Tag> ();
 
-			description = String.Empty;
+			description = string.Empty;
 			rating = 0;
 		}
 		#endregion

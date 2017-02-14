@@ -47,7 +47,7 @@ namespace FSpot.Query
 		public static void Create (Tag [] tags, Gtk.Menu menu)
 		{
 			var findWithString = Catalog.GetPluralString ("Find _With", "Find _With", tags.Length);
-			var item = new Gtk.MenuItem (String.Format (findWithString, tags.Length));
+			var item = new Gtk.MenuItem (string.Format (findWithString, tags.Length));
 
 			Gtk.Menu submenu = GetSubmenu (tags);
 			if (submenu == null)
@@ -79,7 +79,7 @@ namespace FSpot.Query
 
 					bool contains_tag = AppendTerm (term_parts, term, single_tag);
 
-					string name = "_" + String.Join (", ", term_parts.ToArray ());
+					string name = "_" + string.Join (", ", term_parts.ToArray ());
 
 					Gtk.MenuItem item = GtkUtil.MakeMenuItem (m, name, new EventHandler (App.Instance.Organizer.HandleAddTagToTerm));
 					item.Sensitive = !contains_tag;
@@ -105,7 +105,7 @@ namespace FSpot.Query
 						tag_matches = true;
 
 					if (literal.IsNegated)
-						parts.Add (String.Format (Catalog.GetString ("Not {0}"), literal.Tag.Name));
+						parts.Add (string.Format (Catalog.GetString ("Not {0}"), literal.Tag.Name));
 					else
 						parts.Add (literal.Tag.Name);
 				} else {

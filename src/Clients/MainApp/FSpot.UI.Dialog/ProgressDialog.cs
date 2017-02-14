@@ -82,7 +82,7 @@ namespace FSpot.UI.Dialog {
 			BorderWidth = 6;
 			SetDefaultSize (300, -1);
 
-			message_label = new Label (String.Empty);
+			message_label = new Label (string.Empty);
 			VBox.PackStart (message_label, true, true, 12);
 
 			progress_bar = new ProgressBar ();
@@ -108,7 +108,7 @@ namespace FSpot.UI.Dialog {
 			current_count ++;
 
 			message_label.Text = message;
-			progress_bar.Text = String.Format (Catalog.GetString ("{0} of {1}"), current_count, total_count);
+			progress_bar.Text = string.Format (Catalog.GetString ("{0} of {1}"), current_count, total_count);
 			progress_bar.Fraction = (double) current_count / total_count;
 
 			ShowAll ();

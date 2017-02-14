@@ -40,7 +40,7 @@ namespace FSpot.Settings
 	public static class Global
 	{
 		public static string HomeDirectory {
-			get { return System.IO.Path.Combine (Environment.GetEnvironmentVariable ("HOME"), String.Empty); }
+			get { return System.IO.Path.Combine (Environment.GetEnvironmentVariable ("HOME"), string.Empty); }
 		}
 
 		//$XDG_CONFIG_HOME/f-spot or $HOME/.config/f-spot

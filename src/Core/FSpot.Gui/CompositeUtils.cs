@@ -135,7 +135,7 @@ namespace FSpot.Gui
 				composited = gdk_screen_is_composited (screen.Handle);
 			} catch (EntryPointNotFoundException) {
 				Log.Debug ("query composite manager locally");
-				Atom atom = Atom.Intern (String.Format ("_NET_WM_CM_S{0}", screen.Number), false);
+				Atom atom = Atom.Intern (string.Format ("_NET_WM_CM_S{0}", screen.Number), false);
 				composited = Gdk.Selection.OwnerGetForDisplay (screen.Display, atom) != null;
 			}
 

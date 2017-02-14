@@ -116,7 +116,7 @@ namespace FSpot.UI.Dialog
 				// Roll time is in UTC always
 				DateTime date = rolls [k].Time.ToLocalTime ();
 
-				string header = String.Format ("{0} ({1})",
+				string header = string.Format ("{0} ({1})",
 					date.ToString ("%dd %MMM, %HH:%mm"),
 					numphotos);
 

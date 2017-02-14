@@ -167,9 +167,9 @@ namespace FSpot
 
 						string tag_string = "";
 						foreach (Tag t in selected_photos[p_index].Tags)
-							tag_string = String.Concat (tag_string, t.Name);
+							tag_string = string.concat (tag_string, t.Name);
 
-						string label = String.Format (print_label_format,
+						string label = string.Format (print_label_format,
 									      comment,
 									      selected_photos[p_index].Name,
 									      selected_photos[p_index].Time.ToLocalTime ().ToShortDateString (),

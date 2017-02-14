@@ -53,7 +53,7 @@ namespace FSpot.Query
 		{
 			if (items.Length == 1)
 				return items [0];
-			return " (" + String.Join (String.Format (" {0} ", op), items) + ") ";
+			return " (" + string.Join (string.Format (" {0} ", op), items) + ") ";
 		}
 	}
 }

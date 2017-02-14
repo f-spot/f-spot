@@ -98,7 +98,7 @@ namespace FSpot {
 
 		int count = -1;
 
-		string temp_table = String.Format ("photoquery_temp_{0}", QueryCount);
+		string temp_table = string.Format ("photoquery_temp_{0}", QueryCount);
 
 		// Constructor
 		public PhotoQuery (PhotoStore store, params IQueryCondition [] conditions)

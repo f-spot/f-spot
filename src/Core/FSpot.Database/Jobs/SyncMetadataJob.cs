@@ -90,7 +90,7 @@ namespace FSpot.Database.Jobs {
 
                 var tag = metadata.ImageTag;
                 tag.DateTime = photo.Time;
-                tag.Comment = photo.Description ?? String.Empty;
+                tag.Comment = photo.Description ?? string.Empty;
                 tag.Keywords = names;
                 tag.Rating = photo.Rating;
                 tag.Software = Defines.PACKAGE + " version " + Defines.VERSION;

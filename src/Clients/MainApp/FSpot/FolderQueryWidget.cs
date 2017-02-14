@@ -79,11 +79,11 @@ namespace FSpot
 					PackStart (image);
 				}
 
-				TooltipText = String.Empty;
+				TooltipText = string.Empty;
 
 			} else {
 
-				Label label = new Label (String.Format ("<i>{0}x</i>", length));
+				Label label = new Label (string.Format ("<i>{0}x</i>", length));
 				label.UseMarkup = true;
 				PackStart (label);
 

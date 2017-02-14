@@ -511,7 +511,7 @@ namespace FSpot {
 				return;
 
 			// Check that the tag doesn't already exist
-			if (String.Compare (args.NewText, tag.Name, true) != 0 &&
+			if (string.Compare (args.NewText, tag.Name, true) != 0 &&
 			    tag_store.GetTagByName (args.NewText) != null) {
 				HigMessageDialog md = new HigMessageDialog (App.Instance.Organizer.Window,
 					DialogFlags.DestroyWithParent,

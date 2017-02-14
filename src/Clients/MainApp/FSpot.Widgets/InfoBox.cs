@@ -81,7 +81,7 @@ namespace FSpot.Widgets
                 DefaultVisibility = default_visibility,
                 Id = id,
                 Description = description,
-                LabelWidget = CreateRightAlignedLabel (String.Format ("<b>{0}</b>", name), label_y_align),
+                LabelWidget = CreateRightAlignedLabel (string.Format ("<b>{0}</b>", name), label_y_align),
                 InfoWidget = info_widget,
                 SetSingle = set_single,
                 SetMultiple = set_multiple
@@ -131,7 +131,7 @@ namespace FSpot.Widgets
                 (widget as Label).Text = multiple_string (photos);
             };
             
-            AddEntry (id, name, description, CreateLeftAlignedLabel (String.Empty), default_visibility,
+            AddEntry (id, name, description, CreateLeftAlignedLabel (string.Empty), default_visibility,
                       single_string == null ? null : set_single,
                       multiple_string == null ? null : set_multiple);
         }
@@ -286,7 +286,7 @@ namespace FSpot.Widgets
         const int TABLE_YPADDING = 3;
         private Label AttachLabel (Table table, int row_num, Widget entry)
         {
-            Label label = new Label (String.Empty);
+            Label label = new Label (string.Empty);
             label.Xalign = 0;
             label.Selectable = true;
             label.Ellipsize = Pango.EllipsizeMode.End;
@@ -331,10 +331,10 @@ namespace FSpot.Widgets
             info_table = new Table (head_rows, 2, false) { BorderWidth = 0 };
             
             AddLabelEntry (null, null, null, null,
-                           photos => { return String.Format (Catalog.GetString ("{0} Photos"), photos.Length); });
+                           photos => { return string.Format (Catalog.GetString ("{0} Photos"), photos.Length); });
             
             AddLabelEntry (null, Catalog.GetString ("Name"), null,
-                           (photo, file) => { return photo.Name ?? String.Empty; }, null);
+                           (photo, file) => { return photo.Name ?? string.Empty; }, null);
             
             version_list = new ListStore (typeof(IPhotoVersion), typeof(string), typeof(bool));
             version_combo = new ComboBox ();
@@ -364,7 +364,7 @@ namespace FSpot.Widgets
                             } else {
                                 version_combo.Sensitive = true;
                                 version_combo.TooltipText =
-                                    String.Format (Catalog.GetPluralString ("(One Edit)", "({0} Edits)", count - 1),
+                                    string.Format (Catalog.GetPluralString ("(One Edit)", "({0} Edits)", count - 1),
                                                    count - 1);
                             }
                             version_combo.Changed += OnVersionComboChanged;
@@ -372,7 +372,7 @@ namespace FSpot.Widgets
             
             AddLabelEntry ("date", Catalog.GetString ("Date"), Catalog.GetString ("Show Date"),
                            (photo, file) => {
-                               return String.Format ("{0}{2}{1}",
+                               return string.Format ("{0}{2}{1}",
                                                      photo.Time.ToShortDateString (),
                                                      photo.Time.ToShortTimeString (),
                                                      Environment.NewLine); },
@@ -381,12 +381,12 @@ namespace FSpot.Widgets
                                 IPhoto last = photos[0];
                                 if (first.Time.Date == last.Time.Date) {
                                     //Note for translators: {0} is a date, {1} and {2} are times.
-                                    return String.Format (Catalog.GetString ("On {0} between \n{1} and {2}"),
+                                    return string.Format (Catalog.GetString ("On {0} between \n{1} and {2}"),
                                                           first.Time.ToShortDateString (),
                                                           first.Time.ToShortTimeString (),
                                                           last.Time.ToShortTimeString ());
                                 } else {
-                                    return String.Format (Catalog.GetString ("Between {0} \nand {1}"),
+                                    return string.Format (Catalog.GetString ("Between {0} \nand {1}"),
                                                           first.Time.ToShortDateString (),
                                                           last.Time.ToShortDateString ());
                                 }
@@ -402,7 +402,7 @@ namespace FSpot.Widgets
 				}
 
                                 if (width != 0 && height != 0)
-                                    return String.Format ("{0}x{1}", width, height);
+                                    return string.Format ("{0}x{1}", width, height);
                                 
 				return Catalog.GetString ("(Unknown)");
                            }, null);
@@ -413,22 +413,22 @@ namespace FSpot.Widgets
                                 var exposure_time = metadata.ImageTag.ExposureTime;
                                 var iso_speed = metadata.ImageTag.ISOSpeedRatings;
 
-                                string info = String.Empty;
+                                string info = string.Empty;
 
                                 if (fnumber.HasValue && fnumber.Value != 0.0) {
-                                    info += String.Format ("f/{0:.0} ", fnumber.Value);
+                                    info += string.Format ("f/{0:.0} ", fnumber.Value);
                                 }
 
                                 if (exposure_time.HasValue) {
                                     if (Math.Abs (exposure_time.Value) >= 1.0) {
-                                        info += String.Format ("{0} sec ", exposure_time.Value);
+                                        info += string.Format ("{0} sec ", exposure_time.Value);
                                     } else {
-                                        info += String.Format ("1/{0} sec ", (int)(1 / exposure_time.Value));
+                                        info += string.Format ("1/{0} sec ", (int)(1 / exposure_time.Value));
                                     }
                                 }
 
                                 if (iso_speed.HasValue) {
-                                    info += String.Format ("{0}ISO {1}", Environment.NewLine, iso_speed.Value);
+                                    info += string.Format ("{0}ISO {1}", Environment.NewLine, iso_speed.Value);
                                 }
 
                                 var exif = metadata.ImageTag.Exif;
@@ -437,13 +437,13 @@ namespace FSpot.Widgets
 
                                     if (flash.HasValue) {
                                         if ((flash.Value & 0x01) == 0x01)
-                                            info += String.Format (", {0}", Catalog.GetString ("flash fired"));
+                                            info += string.Format (", {0}", Catalog.GetString ("flash fired"));
                                         else
-                                            info += String.Format (", {0}", Catalog.GetString ("flash didn't fire"));
+                                            info += string.Format (", {0}", Catalog.GetString ("flash didn't fire"));
                                     }
                                 }
 
-                                if (info == String.Empty)
+                                if (info == string.Empty)
                                     return Catalog.GetString ("(None)");
 
                                 return info;
@@ -456,7 +456,7 @@ namespace FSpot.Widgets
                                 if (focal_length == null)
                                     return Catalog.GetString ("(Unknown)");
 
-				return String.Format ("{0} mm", focal_length.Value);
+				return string.Format ("{0} mm", focal_length.Value);
                             }, null);
 
             AddLabelEntry ("camera", Catalog.GetString ("Camera"), Catalog.GetString ("Show Camera"), false,
@@ -717,12 +717,12 @@ namespace FSpot.Widgets
 
         private string PrefKeyForContext (ViewContext context, string item)
         {
-            return String.Format ("{0}/{1}_visible/{2}", PREF_PREFIX, item, context);
+            return string.Format ("{0}/{1}_visible/{2}", PREF_PREFIX, item, context);
         }
 
         private string PrefKeyForContext (ViewContext context, string parent, string item)
         {
-            return String.Format ("{0}/{1}_visible/{2}/{3}", PREF_PREFIX, parent, item, context);
+            return string.Format ("{0}/{1}_visible/{2}/{3}", PREF_PREFIX, parent, item, context);
         }
 
         private bool VisibilityForContext (ViewContext context, string item, bool default_value)

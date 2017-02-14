@@ -182,7 +182,7 @@ public class RotateCommand {
 
 		while (!done) {
 			if (progress_dialog != null && op.Index != -1 && index < items.Length)
-				if (progress_dialog.Update (String.Format (Catalog.GetString ("Rotating photo \"{0}\""), op.Items [op.Index].Name)))
+				if (progress_dialog.Update (string.Format (Catalog.GetString ("Rotating photo \"{0}\""), op.Items [op.Index].Name)))
 					break;
 
 			try {
@@ -222,8 +222,8 @@ public class RotateCommand {
 			readonly_count
 		);
 
-		notice = String.Format (notice, readonly_count);
-		desc = String.Format (desc, readonly_count);
+		notice = string.Format (notice, readonly_count);
+		desc = string.Format (desc, readonly_count);
 
 		HigMessageDialog md = new HigMessageDialog (parent_window,
 							    DialogFlags.DestroyWithParent,
@@ -244,7 +244,7 @@ public class RotateCommand {
 
 	private void RunGenericError (System.Exception e, string path, string msg)
 	{
-		string longmsg = String.Format (Catalog.GetString ("Received error \"{0}\" while attempting to rotate {1}"),
+		string longmsg = string.Format (Catalog.GetString ("Received error \"{0}\" while attempting to rotate {1}"),
 						msg, System.IO.Path.GetFileName (path));
 
 		HigMessageDialog md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent,

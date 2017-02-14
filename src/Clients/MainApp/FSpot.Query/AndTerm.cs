@@ -72,7 +72,7 @@ namespace FSpot.Query
 
 		public override Widget SeparatorWidget ()
 		{
-			Widget separator = new Label (String.Empty);
+			Widget separator = new Label (string.Empty);
 			separator.SetSizeRequest (3, 1);
 			separator.Show ();
 			return separator;
@@ -87,7 +87,7 @@ namespace FSpot.Query
 			Tag hidden = App.Instance.Database.Tags.Hidden;
 			if (hidden != null)
 				if (FindByTag (hidden, true).Count == 0) {
-					condition.Append (String.Format (
+					condition.Append (string.Format (
 								" AND id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {0})", hidden.Id
 								));
 				}

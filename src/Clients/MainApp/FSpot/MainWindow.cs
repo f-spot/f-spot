@@ -328,7 +328,7 @@ namespace FSpot
 			toolbar.Insert (white_space, -1);
 
 			ToolItem label_item = new ToolItem ();
-			count_label = new Label (String.Empty);
+			count_label = new Label (string.Empty);
 			label_item.Child = count_label;
 			toolbar.Insert (label_item, -1);
 
@@ -648,10 +648,10 @@ namespace FSpot
 				display_next_button.Sensitive = next;
 
 				if (Query == null)
-					count_label.Text = String.Empty;
+					count_label.Text = string.Empty;
 				else
 					// Note for translators: This indicates the current photo is photo {0} of {1} out of photos
-					count_label.Text = String.Format (Catalog.GetString ("{0} of {1}"), Query.Count == 0 ? 0 : photo_view.View.Item.Index + 1, Query.Count == 0 ? 0 : Query.Count);
+					count_label.Text = string.Format (Catalog.GetString ("{0} of {1}"), Query.Count == 0 ? 0 : photo_view.View.Item.Index + 1, Query.Count == 0 ? 0 : Query.Count);
 			} else {
 				display_previous_button.Visible = false;
 				display_next_button.Visible = false;
@@ -1734,7 +1734,7 @@ namespace FSpot
 			// Translators, The singular case will never happen here.
 			string header = Catalog.GetPluralString ("Merge the selected tag",
 				                "Merge the {0} selected tags?", tags.Length);
-			header = String.Format (header, tags.Length);
+			header = string.Format (header, tags.Length);
 
 			// If a tag with children tags is selected for merging, we
 			// should also merge its children..
@@ -1979,12 +1979,12 @@ namespace FSpot
 			update_status_label = false;
 			int total_photos = Database.Photos.TotalPhotos;
 			if (total_photos != query.Count)
-				status_label.Text = String.Format (Catalog.GetPluralString ("{0} photo out of {1}", "{0} photos out of {1}", query.Count), query.Count, total_photos);
+				status_label.Text = string.Format (Catalog.GetPluralString ("{0} photo out of {1}", "{0} photos out of {1}", query.Count), query.Count, total_photos);
 			else
-				status_label.Text = String.Format (Catalog.GetPluralString ("{0} photo", "{0} photos", query.Count), query.Count);
+				status_label.Text = string.Format (Catalog.GetPluralString ("{0} photo", "{0} photos", query.Count), query.Count);
 
 			if ((Selection != null) && (Selection.Count > 0))
-				status_label.Text += String.Format (Catalog.GetPluralString (" ({0} selected)", " ({0} selected)", Selection.Count), Selection.Count);
+				status_label.Text += string.Format (Catalog.GetPluralString (" ({0} selected)", " ({0} selected)", Selection.Count), Selection.Count);
 			status_label.UseMarkup = true;
 			return update_status_label;
 		}
@@ -2074,11 +2074,11 @@ namespace FSpot
 			string msg;
 
 			if (e is UnauthorizedAccessException)
-				msg = String.Format (
+				msg = string.Format (
 					Catalog.GetString ("No permission to delete the file:{1}{0}"),
 					fname, Environment.NewLine).Replace ("_", "__");
 			else
-				msg = String.Format (
+				msg = string.Format (
 					Catalog.GetString ("An error of type {0} occurred while deleting the file:{2}{1}"),
 					e.GetType (), fname.Replace ("_", "__"), Environment.NewLine);
 
@@ -2114,7 +2114,7 @@ namespace FSpot
 			string header = Catalog.GetPluralString ("Delete the selected photo permanently?",
 				                "Delete the {0} selected photos permanently?",
 				                photos.Length);
-			header = String.Format (header, photos.Length);
+			header = string.Format (header, photos.Length);
 			string msg = Catalog.GetPluralString ("This deletes all versions of the selected photo from your drive.",
 				             "This deletes all versions of the selected photos from your drive.",
 				             photos.Length);
@@ -2158,7 +2158,7 @@ namespace FSpot
 				                "Remove the {0} selected photos from F-Spot?",
 				                photos.Length);
 
-			header = String.Format (header, photos.Length);
+			header = string.Format (header, photos.Length);
 			string msg = Catalog.GetString ("If you remove photos from the F-Spot catalog all tag information will be lost. The photos remain on your computer and can be imported into F-Spot again.");
 			string ok_caption = Catalog.GetString ("_Remove from Catalog");
 			if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation (GetToplevel (sender), DialogFlags.DestroyWithParent,
@@ -2237,15 +2237,15 @@ namespace FSpot
 
 			string header;
 			if (tags.Length == 1)
-				header = String.Format (Catalog.GetString ("Delete tag \"{0}\"?"), tags [0].Name.Replace ("_", "__"));
+				header = string.Format (Catalog.GetString ("Delete tag \"{0}\"?"), tags [0].Name.Replace ("_", "__"));
 			else
-				header = String.Format (Catalog.GetString ("Delete the {0} selected tags?"), tags.Length);
+				header = string.Format (Catalog.GetString ("Delete the {0} selected tags?"), tags.Length);
 
-			header = String.Format (header, tags.Length);
-			string msg = String.Empty;
+			header = string.Format (header, tags.Length);
+			string msg = string.Empty;
 			if (associated_photos > 0) {
 				string photodesc = Catalog.GetPluralString ("photo", "photos", associated_photos);
-				msg = String.Format (
+				msg = string.Format (
 					Catalog.GetPluralString ("If you delete this tag, the association with {0} {1} will be lost.",
 						"If you delete these tags, the association with {0} {1} will be lost.",
 						tags.Length),
@@ -2266,7 +2266,7 @@ namespace FSpot
 
 					// A Category is not empty. Can not delete it.
 					string error_msg = Catalog.GetString ("Tag is not empty");
-					string error_desc = String.Format (Catalog.GetString ("Can not delete tags that have tags within them.  " +
+					string error_desc = string.Format (Catalog.GetString ("Can not delete tags that have tags within them.  " +
 					                    "Please delete tags under \"{0}\" first"),
 						                    e.Tag.Name.Replace ("_", "__"));
 
@@ -2332,7 +2332,7 @@ namespace FSpot
 			// use eager evaluation, because we want to copy the photos which are currently selected ...
 			var uris = new UriList (from p in SelectedPhotos ()
 			                                 select p.DefaultVersion.Uri);
-			var paths = String.Join (" ",
+			var paths = string.Join (" ",
 				                     (from p in SelectedPhotos ()
 				                                  select p.DefaultVersion.Uri.LocalPath).ToArray ()
 			                     );
@@ -2728,26 +2728,26 @@ namespace FSpot
 			if (rl_button != null) {
 				if (Selection.Count == 0) {
 					rl_button.Sensitive = false;
-					rl_button.TooltipText = String.Empty;
+					rl_button.TooltipText = string.Empty;
 				} else {
 					rl_button.Sensitive = true;
 
 					string msg = Catalog.GetPluralString ("Rotate selected photo left",
 						             "Rotate selected photos left", Selection.Count);
-					rl_button.TooltipText = String.Format (msg, Selection.Count);
+					rl_button.TooltipText = string.Format (msg, Selection.Count);
 				}
 			}
 
 			if (rr_button != null) {
 				if (Selection.Count == 0) {
 					rr_button.Sensitive = false;
-					rr_button.TooltipText = String.Empty;
+					rr_button.TooltipText = string.Empty;
 				} else {
 					rr_button.Sensitive = true;
 
 					string msg = Catalog.GetPluralString ("Rotate selected photo right",
 						             "Rotate selected photos right", Selection.Count);
-					rr_button.TooltipText = String.Format (msg, Selection.Count);
+					rr_button.TooltipText = string.Format (msg, Selection.Count);
 				}
 			}
 
@@ -2755,11 +2755,11 @@ namespace FSpot
 			MenuItem find_add_tag = uimanager.GetWidget ("/ui/menubar1/find/find_add_tag") as MenuItem;
 			MenuItem find_add_tag_with = uimanager.GetWidget ("/ui/menubar1/find/find_add_tag_with") as MenuItem;
 
-			((Gtk.Label)find_add_tag.Child).TextWithMnemonic = String.Format (
+			((Gtk.Label)find_add_tag.Child).TextWithMnemonic = string.Format (
 				Catalog.GetPluralString ("Find _Selected Tag", "Find _Selected Tags", tags_selected), tags_selected
 			);
 
-			((Gtk.Label)find_add_tag_with.Child).TextWithMnemonic = String.Format (
+			((Gtk.Label)find_add_tag_with.Child).TextWithMnemonic = string.Format (
 				Catalog.GetPluralString ("Find Selected Tag _With", "Find Selected Tags _With", tags_selected), tags_selected
 			);
 
@@ -2801,7 +2801,7 @@ namespace FSpot
 				return;
 
 			string header = Catalog.GetPluralString ("Create New Version?", "Create New Versions?", selected.Length);
-			string msg = String.Format (Catalog.GetPluralString (
+			string msg = string.Format (Catalog.GetPluralString (
 				             "Before launching {1}, should F-Spot create a new version of the selected photo to preserve the original?",
 				             "Before launching {1}, should F-Spot create new versions of the selected photos to preserve the originals?", selected.Length),
 				             selected.Length, application.Name);
@@ -3021,7 +3021,7 @@ namespace FSpot
 		void ShowQueryWidget ()
 		{
 			if (find_bar.Visible) {
-				find_bar.Entry.Text = String.Empty;
+				find_bar.Entry.Text = string.Empty;
 				find_bar.Hide ();
 			}
 

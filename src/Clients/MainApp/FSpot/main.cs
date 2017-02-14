@@ -67,7 +67,7 @@ namespace FSpot
 			ShowVersion ();
 			Console.WriteLine ();
 			Console.WriteLine ("Mono/.NET Version: " + Environment.Version.ToString ());
-			Console.WriteLine (String.Format ("{0}Assembly Version Information:", Environment.NewLine));
+			Console.WriteLine (string.Format ("{0}Assembly Version Information:", Environment.NewLine));
 
 			foreach (Assembly asm in AppDomain.CurrentDomain.GetAssemblies ())
 			{
@@ -116,7 +116,7 @@ namespace FSpot
 			}
 
 			if (errors != null) {
-				Console.WriteLine (commands.LayoutLine (String.Format (
+				Console.WriteLine (commands.LayoutLine (string.Format (
 					"The following help arguments are invalid: {0}",
 					Hyena.Collections.CollectionExtensions.Join (errors, "--", null, ", "))));
 			}
@@ -141,13 +141,13 @@ namespace FSpot
 						outargs.Add ("--shutdown");
 						break;
 					case "-b": case "-basedir": case "--basedir":
-						outargs.Add ("--basedir=" + (i + 1 == args.Length ? String.Empty : args [++i]));
+						outargs.Add ("--basedir=" + (i + 1 == args.Length ? string.Empty : args [++i]));
 						break;
 					case "-p": case "-photodir": case "--photodir":
-						outargs.Add ("--photodir=" + (i + 1 == args.Length ? String.Empty : args [++i]));
+						outargs.Add ("--photodir=" + (i + 1 == args.Length ? string.Empty : args [++i]));
 						break;
 					case "-i": case "-import": case "--import":
-						outargs.Add ("--import=" + (i + 1 == args.Length ? String.Empty : args [++i]));
+						outargs.Add ("--import=" + (i + 1 == args.Length ? string.Empty : args [++i]));
 						break;
 					case "-v": case "-view":
 						outargs.Add ("--view");

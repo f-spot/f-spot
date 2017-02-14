@@ -87,7 +87,7 @@ namespace FSpot.Database
 			int i = 0;
 
 			while (File.Exists (backup_path)) {
-				backup_path = String.Format ("{0}-{1}-{2}{3}", Path.GetFileNameWithoutExtension (path), DateTime.Now.ToString ("yyyyMMdd"), i++, Path.GetExtension (path));
+				backup_path = string.Format ("{0}-{1}-{2}{3}", Path.GetFileNameWithoutExtension (path), DateTime.Now.ToString ("yyyyMMdd"), i++, Path.GetExtension (path));
 			}
 
 			File.Move (path, backup_path);

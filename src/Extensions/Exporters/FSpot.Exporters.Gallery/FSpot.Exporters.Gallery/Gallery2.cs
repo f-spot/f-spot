@@ -168,7 +168,7 @@ namespace FSpot.Exporters.Gallery
 
 		private void AddG2Specific (FormClient client)
 		{
-			if (AuthToken != null && AuthToken != String.Empty)
+			if (AuthToken != null && AuthToken != string.Empty)
 				client.Add ("g2_authToken", AuthToken);
 			client.Add ("g2_controller", "remote.GalleryRemote");
 		}

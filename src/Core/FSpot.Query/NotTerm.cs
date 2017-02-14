@@ -44,7 +44,7 @@ namespace FSpot.Query
 
 		public override string SqlClause ()
 		{
-			return String.Format (" NOT ({0}) ", Term.SqlClause ());
+			return string.Format (" NOT ({0}) ", Term.SqlClause ());
 		}
 	}
 }

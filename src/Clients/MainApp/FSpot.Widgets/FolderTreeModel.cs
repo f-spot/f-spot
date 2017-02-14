@@ -175,13 +175,13 @@ namespace FSpot.Widgets
 							AppendValues (parent_iter,
 							              Uri.UnescapeDataString (segments[i]),
 							              (segments.Length - 1 == i)? count : 0,
-							              (GetValue (parent_iter, 2) as SafeUri).Append (String.Format ("{0}/", segments[i]))
+							              (GetValue (parent_iter, 2) as SafeUri).Append (string.Format ("{0}/", segments[i]))
 							              );
 					} else {
 						iter =
 							AppendValues (Uri.UnescapeDataString (segments[i]),
 							              (segments.Length - 1 == i)? count : 0,
-							              new SafeUri (String.Format ("{0}:///", base_uri.Scheme), true));
+							              new SafeUri (string.Format ("{0}:///", base_uri.Scheme), true));
 					}
 
 					parent_iter = iter;

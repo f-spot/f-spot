@@ -118,7 +118,7 @@ public class TagCommands {
 		private bool TagNameExistsInCategory (string name, Category category)
 		{
 			foreach (Tag tag in category.Children) {
-				if (String.Compare(tag.Name, name, true) == 0)
+				if (string.Compare(tag.Name, name, true) == 0)
 					return true;
 
 				if (tag is Category && TagNameExistsInCategory (name, tag as Category))
@@ -130,15 +130,15 @@ public class TagCommands {
 
 		private void Update ()
 		{
-			if (tag_name_entry.Text == String.Empty) {
+			if (tag_name_entry.Text == string.Empty) {
 				create_button.Sensitive = false;
-				already_in_use_label.Markup = String.Empty;
+				already_in_use_label.Markup = string.Empty;
 			} else if (TagNameExistsInCategory (tag_name_entry.Text, tag_store.RootCategory)) {
 				create_button.Sensitive = false;
 				already_in_use_label.Markup = "<small>" + Catalog.GetString ("This name is already in use") + "</small>";
 			} else {
 				create_button.Sensitive = true;
-				already_in_use_label.Markup = String.Empty;
+				already_in_use_label.Markup = string.Empty;
 			}
 		}
 

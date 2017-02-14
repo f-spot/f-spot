@@ -104,10 +104,10 @@ namespace FSpot.Tools.ChangePhotoPath
 		private string EnsureEndsWithOneDirectorySeparator (string tmp_str)
 		{
 			if ( (tmp_str == null) || (tmp_str.Length == 0) )
-				return String.Format ("{0}", Path.DirectorySeparatorChar);
-			while (tmp_str.EndsWith(String.Format ("{0}", Path.DirectorySeparatorChar)))
+				return string.Format ("{0}", Path.DirectorySeparatorChar);
+			while (tmp_str.EndsWith(string.Format ("{0}", Path.DirectorySeparatorChar)))
 				tmp_str = tmp_str.Remove (tmp_str.Length-1, 1);
-			return String.Format ("{0}{1}", tmp_str, Path.DirectorySeparatorChar);
+			return string.Format ("{0}{1}", tmp_str, Path.DirectorySeparatorChar);
 		}
 
 

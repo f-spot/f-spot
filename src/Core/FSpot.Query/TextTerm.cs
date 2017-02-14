@@ -57,7 +57,7 @@ namespace FSpot.Query
 
 		public override string SqlClause ()
 		{
-			return String.Format (" {0} LIKE %{1}% ", Field, Text);
+			return string.Format (" {0} LIKE %{1}% ", Field, Text);
 		}
 	}
 }

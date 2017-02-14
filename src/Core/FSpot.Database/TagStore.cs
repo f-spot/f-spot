@@ -103,7 +103,7 @@ namespace FSpot.Database
 				// IconWasCleared automatically set already, override
 				// it in this case since it was NULL in the db.
 				tag.IconWasCleared = false;
-			} else if (iconString == String.Empty)
+			} else if (iconString == string.Empty)
 				tag.Icon = null;
 			else if (iconString.StartsWith (STOCK_ICON_DB_PREFIX, StringComparison.Ordinal))
 				tag.ThemeIconName = iconString.Substring (STOCK_ICON_DB_PREFIX.Length);
@@ -188,7 +188,7 @@ namespace FSpot.Database
 
 				Tag tag = Get (id);
 				if (tag == null)
-					throw new Exception (String.Format ("Cannot find tag {0}", id));
+					throw new Exception (string.Format ("Cannot find tag {0}", id));
 				if (category_id == 0)
 					tag.Category = RootCategory;
 				else {
@@ -276,7 +276,7 @@ namespace FSpot.Database
 		{
 	
 			uint parent_category_id = parentCategory.Id;
-			String default_tag_icon_value = autoicon ? null : String.Empty;
+			String default_tag_icon_value = autoicon ? null : string.Empty;
 	
 			long id = Database.Execute (new HyenaSqliteCommand ("INSERT INTO tags (name, category_id, is_category, sort_priority, icon)"
 				+ "VALUES (?, ?, ?, 0, ?)",
@@ -349,7 +349,7 @@ namespace FSpot.Database
 				return STOCK_ICON_DB_PREFIX + tag.ThemeIconName;
 			if (tag.Icon == null) {
 				if (tag.IconWasCleared)
-					return String.Empty;
+					return string.Empty;
 				return null;
 			}
 

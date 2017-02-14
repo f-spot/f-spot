@@ -144,7 +144,7 @@ public class TagView : EventBox {
 			tag_x += thumbnail_size + TAG_ICON_VSPACING;
 		}
 
-        this.TooltipText =  String.Join (", ", names);
+        this.TooltipText =  string.Join (", ", names);
 	}
 }
 }

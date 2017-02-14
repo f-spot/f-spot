@@ -745,7 +745,7 @@ namespace FSpot {
 			public Glass (GroupSelector selector) : base (selector)
 			{
 				popup_window = new ToolTipWindow ();
-				popup_label = new Gtk.Label (String.Empty);
+				popup_label = new Gtk.Label (string.Empty);
 				popup_label.Show ();
 				popup_window.Add (popup_label);
 			}

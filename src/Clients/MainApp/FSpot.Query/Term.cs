@@ -301,7 +301,7 @@ namespace FSpot.Query
 
 		public virtual string SQLOperator ()
 		{
-			return String.Empty;
+			return string.Empty;
 		}
 
 		public static Term TermFromOperator (string op, Term parent, Literal after)

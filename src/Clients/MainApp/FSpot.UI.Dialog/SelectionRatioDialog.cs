@@ -187,7 +187,7 @@ namespace FSpot.UI.Dialog {
 						return ratio;
 					}
 				}
-				throw new FormatException (String.Format ("unable to parse {0}", text));
+				throw new FormatException (string.Format ("unable to parse {0}", text));
 			}
 		}
 

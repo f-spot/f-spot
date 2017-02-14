@@ -221,8 +221,8 @@ namespace FSpot.Import
 			DateTime time = item.Time;
 			return baseUri
 				.Append (time.Year.ToString ())
-				.Append (String.Format ("{0:D2}", time.Month))
-				.Append (String.Format ("{0:D2}", time.Day));
+				.Append (string.Format ("{0:D2}", time.Month))
+				.Append (string.Format ("{0:D2}", time.Day));
 		}
 
 		#endregion

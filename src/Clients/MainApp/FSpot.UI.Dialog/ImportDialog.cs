@@ -139,7 +139,7 @@ namespace FSpot.UI.Dialog
 			// Populates the source combo box
 			Sources = new TreeStore (typeof(ImportSource), typeof(string), typeof(string), typeof(bool));
 			sources_combo.Model = Sources;
-			sources_combo.RowSeparatorFunc = (m, i) => (m.GetValue (i, 1) as string) == String.Empty;
+			sources_combo.RowSeparatorFunc = (m, i) => (m.GetValue (i, 1) as string) == string.Empty;
 			var render = new CellRendererPixbuf ();
 			sources_combo.PackStart (render, false);
 			sources_combo.SetAttributes (render, "icon-name", 2, "sensitive", 3);
@@ -165,9 +165,9 @@ namespace FSpot.UI.Dialog
 			int activate_index = 0;
 			sources_combo.Changed -= OnSourceComboChanged;
 			Sources.Clear ();
-			Sources.AppendValues (null, Catalog.GetString ("Choose Import source..."), String.Empty, true);
+			Sources.AppendValues (null, Catalog.GetString ("Choose Import source..."), string.Empty, true);
 			Sources.AppendValues (null, select_folder_label, "folder", true);
-			Sources.AppendValues (null, String.Empty, String.Empty);
+			Sources.AppendValues (null, string.Empty, string.Empty);
 			bool mount_added = false;
 			foreach (var source in Controller.Sources) {
 				if (source == sourceToActivate) {
@@ -177,11 +177,11 @@ namespace FSpot.UI.Dialog
 				mount_added = true;
 			}
 			if (!mount_added) {
-				Sources.AppendValues (null, Catalog.GetString ("(No Cameras Detected)"), String.Empty, false);
+				Sources.AppendValues (null, Catalog.GetString ("(No Cameras Detected)"), string.Empty, false);
 			}
 
 			if (history_sources.Count > 0) {
-				Sources.AppendValues (null, String.Empty, String.Empty);
+				Sources.AppendValues (null, string.Empty, string.Empty);
 				foreach (var source in history_sources.Values) {
 					if (source == sourceToActivate) {
 						activate_index = Sources.IterNChildren ();
@@ -331,7 +331,7 @@ namespace FSpot.UI.Dialog
 		void OnControllerProgressUpdated (int current, int total)
 		{
 			var importing_label = Catalog.GetString ("Importing Photos: {0} of {1}...");
-			progress_bar.Text = String.Format (importing_label, current, total);
+			progress_bar.Text = string.Format (importing_label, current, total);
 			progress_bar.Fraction = (double) current / Math.Max (total, 1);
 		}
 

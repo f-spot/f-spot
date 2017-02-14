@@ -161,7 +161,7 @@ namespace FSpot.UI.Dialog
 
         public string Header {
             set {
-                header_label.Markup = String.Format("<b><big>{0}</big></b>",
+                header_label.Markup = string.Format("<b><big>{0}</big></b>",
                     GLib.Markup.EscapeText(value));
             }
         }

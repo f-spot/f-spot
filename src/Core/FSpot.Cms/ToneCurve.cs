@@ -129,7 +129,7 @@ namespace FSpot.Cms
 						throw new CmsException ();
 					
 					if (index < 0 || index >= Count)
-						throw new ArgumentOutOfRangeException (String.Format ("index {0} outside of count {1} for {2}", index, Count, Handle.Handle));
+						throw new ArgumentOutOfRangeException (string.Format ("index {0} outside of count {1} for {2}", index, Count, Handle.Handle));
 
 					ushort *data = (ushort *)Values;
 					return data [index];
@@ -141,7 +141,7 @@ namespace FSpot.Cms
 						throw new CmsException ();
 					
 					if (index < 0 || index >= Count)
-						throw new ArgumentOutOfRangeException (String.Format ("index {0} outside of count {1} for handle {2}", index, Count, Handle.Handle));
+						throw new ArgumentOutOfRangeException (string.Format ("index {0} outside of count {1} for handle {2}", index, Count, Handle.Handle));
 
 					ushort *data = (ushort *)Values;
 					data [index] = value;

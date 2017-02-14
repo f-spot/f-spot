@@ -132,7 +132,7 @@ namespace FSpot.Database
 
 			// Check by MD5. Won't import if there are photos with the same ImportMD5.
 			string hash = item.DefaultVersion.ImportMD5;
-			var condition = new ConditionWrapper (String.Format ("import_md5 = \"{0}\"", hash));
+			var condition = new ConditionWrapper (string.Format ("import_md5 = \"{0}\"", hash));
 			var dupes_by_hash = Count ("photo_versions", condition);
 			if (dupes_by_hash > 0)
 				return true;
@@ -176,7 +176,7 @@ namespace FSpot.Database
 			Photo photo;
 
 			long unix_time = DateTimeUtil.FromDateTime (item.Time);
-			string description = item.Description ?? String.Empty;
+			string description = item.Description ?? string.Empty;
 
 			uint id = (uint)Database.Execute (
 				new HyenaSqliteCommand (
@@ -220,7 +220,7 @@ namespace FSpot.Database
 				version.BaseUri.ToString (),
 				version.Filename,
 				version.IsProtected,
-				(version.ImportMD5 != String.Empty ? version.ImportMD5 : null)));
+				(version.ImportMD5 != string.Empty ? version.ImportMD5 : null)));
 		}
 
 		void GetVersions (Photo photo)
@@ -395,14 +395,14 @@ namespace FSpot.Database
 
 			var query_builder = new List<string> (items.Length);
 			for (int i = 0; i < items.Length; i++) {
-				query_builder.Add (String.Format ("{0}", items [i].Id));
+				query_builder.Add (string.Format ("{0}", items [i].Id));
 				RemoveFromCache (items [i]);
 			}
 
-			String id_list = String.Join ("','", query_builder.ToArray ());
-			Database.Execute (String.Format ("DELETE FROM photos WHERE id IN ('{0}')", id_list));
-			Database.Execute (String.Format ("DELETE FROM photo_tags WHERE photo_id IN ('{0}')", id_list));
-			Database.Execute (String.Format ("DELETE FROM photo_versions WHERE photo_id IN ('{0}')", id_list));
+			String id_list = string.Join ("','", query_builder.ToArray ());
+			Database.Execute (string.Format ("DELETE FROM photos WHERE id IN ('{0}')", id_list));
+			Database.Execute (string.Format ("DELETE FROM photo_tags WHERE photo_id IN ('{0}')", id_list));
+			Database.Execute (string.Format ("DELETE FROM photo_versions WHERE photo_id IN ('{0}')", id_list));
 		}
 
 		public override void Remove (Photo item)
@@ -465,7 +465,7 @@ namespace FSpot.Database
 						DateTimeUtil.FromDateTime (photo.Time),
 						photo.VersionUri (Photo.OriginalVersionId).GetBaseUri ().ToString (),
 						photo.VersionUri (Photo.OriginalVersionId).GetFilename (),
-						String.Format ("{0}", photo.Rating),
+						string.Format ("{0}", photo.Rating),
 						photo.Id
 					)
 				);
@@ -511,7 +511,7 @@ namespace FSpot.Database
 						version.BaseUri.ToString (),
 						version.Filename,
 						version.IsProtected,
-						(version.ImportMD5 != String.Empty ? version.ImportMD5 : null),
+						(version.ImportMD5 != string.Empty ? version.ImportMD5 : null),
 						photo.Id,
 						version_id));
 				}
@@ -526,7 +526,7 @@ namespace FSpot.Database
 				PhotoVersion version = photo.GetVersion (version_id);
 
 				// Don't overwrite MD5 sums that are already calculated.
-				if (version.ImportMD5 != String.Empty && version.ImportMD5 != null)
+				if (version.ImportMD5 != string.Empty && version.ImportMD5 != null)
 					continue;
 
 				string version_md5_sum = HashUtils.GenerateMD5 (version.Uri);
@@ -571,13 +571,13 @@ namespace FSpot.Database
 
 		public int IndexOf (string tableName, Photo photo)
 		{
-			string query = String.Format ("SELECT ROWID AS row_id FROM {0} WHERE id = {1}", tableName, photo.Id);
+			string query = string.Format ("SELECT ROWID AS row_id FROM {0} WHERE id = {1}", tableName, photo.Id);
 			return IndexOf (query);
 		}
 
 		public int IndexOf (string tableName, DateTime time, bool asc)
 		{
-			string query = String.Format (
+			string query = string.Format (
 				"SELECT ROWID AS row_id FROM {0} WHERE time {2} {1} ORDER BY time {3} LIMIT 1",
 				tableName,
 				DateTimeUtil.FromDateTime (time),
@@ -677,7 +677,7 @@ namespace FSpot.Database
 
 				string sql_clause = condition.SqlClause ();
 
-				if (sql_clause == null || sql_clause.Trim () == String.Empty)
+				if (sql_clause == null || sql_clause.Trim () == string.Empty)
 					continue;
 				query_builder.Append (where_added ? " AND " : " WHERE ");
 				query_builder.Append (sql_clause);
@@ -688,7 +688,7 @@ namespace FSpot.Database
 			if (!hidden_contained) {
 				string sql_clause = HiddenTag.HideHiddenTag.SqlClause ();
 
-				if (sql_clause != null && sql_clause.Trim () != String.Empty) {
+				if (sql_clause != null && sql_clause.Trim () != string.Empty) {
 					query_builder.Append (where_added ? " AND " : " WHERE ");
 					query_builder.Append (sql_clause);
 				}
@@ -704,7 +704,7 @@ namespace FSpot.Database
 
 				string sql_clause = condition.SqlClause ();
 
-				if (sql_clause == null || sql_clause.Trim () == String.Empty)
+				if (sql_clause == null || sql_clause.Trim () == string.Empty)
 					continue;
 				query_builder.Append (order_added ? " , " : "ORDER BY ");
 				query_builder.Append (sql_clause);
@@ -729,10 +729,10 @@ namespace FSpot.Database
 			uint timer = Log.DebugTimerStart ();
 			Log.DebugFormat ("Query Started : {0}", query);
 			Database.BeginTransaction ();
-			Database.Execute (String.Format ("DROP TABLE IF EXISTS {0}", tempTable));
-			Database.Execute (String.Format ("CREATE TEMPORARY TABLE {0} AS {1}", tempTable, query));
+			Database.Execute (string.Format ("DROP TABLE IF EXISTS {0}", tempTable));
+			Database.Execute (string.Format ("CREATE TEMPORARY TABLE {0} AS {1}", tempTable, query));
 			// For Hyena.Data.Sqlite, we need to call Execute. Calling Query here does fail.
-			//Database.Query (String.Format ("CREATE TEMPORARY TABLE {0} AS {1}", temp_table, query)).Close ();
+			//Database.Query (string.Format ("CREATE TEMPORARY TABLE {0} AS {1}", temp_table, query)).Close ();
 			Database.CommitTransaction ();
 			Log.DebugTimerPrint (timer, "QueryToTemp took {0} : " + query);
 		}
@@ -744,7 +744,7 @@ namespace FSpot.Database
 
 		public Photo [] QueryFromTemp (string tempTable, int offset, int limit)
 		{
-			return Query (String.Format ("SELECT * FROM {0} LIMIT {1} OFFSET {2}", tempTable, limit, offset));
+			return Query (string.Format ("SELECT * FROM {0} LIMIT {1} OFFSET {2}", tempTable, limit, offset));
 		}
 
 		public Photo [] Query (string query)
@@ -805,7 +805,7 @@ namespace FSpot.Database
 			string filename = uri.GetFilename ();
 
 			/* query by file */
-			if (!String.IsNullOrEmpty (filename)) {
+			if (!string.IsNullOrEmpty (filename)) {
 				return Query (new HyenaSqliteCommand (
 					"SELECT id, " +
 						"time, " +

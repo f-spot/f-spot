@@ -51,7 +51,7 @@ namespace FSpot.UI.Dialog
 		}
 
 		public EditException (IPhoto item, Exception e) : base (
-                        String.Format (Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"),
+                        string.Format (Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"),
 				       e.Message, item.Name), e)
 		{
 			this.item = item;
@@ -81,7 +81,7 @@ namespace FSpot.UI.Dialog
 
 		private static string GenerateMessage (Exception [] errors)
 		{
-			string desc = String.Empty;
+			string desc = string.Empty;
 			for (int i = 0; i < errors.Length && i < MaxErrors; i++) {
 				Exception e = errors [i];
 				desc += e.Message + Environment.NewLine;

@@ -274,7 +274,7 @@ namespace FSpot
 				if ( (photo != null) && (!UserCancelled) ) {
 
 					if (progress_dialog != null)
-						UserCancelled = progress_dialog.Update (String.Format
+						UserCancelled = progress_dialog.Update (string.Format
 							(Catalog.GetString ("Exporting picture \"{0}\""), photo.Name));
 
 					if (UserCancelled)
@@ -295,7 +295,7 @@ namespace FSpot
 											    MessageType.Error,
 											    ButtonsType.Close,
 											    Catalog.GetString("Error processing image"),
-											    String.Format(Catalog.GetString("An error occurred while processing \"{0}\": {1}"), selection[i].Name, e.Message));
+											    string.Format(Catalog.GetString("An error occurred while processing \"{0}\": {1}"), selection[i].Name, e.Message));
 						md.Run();
 						md.Destroy();
 						UserCancelled = true;

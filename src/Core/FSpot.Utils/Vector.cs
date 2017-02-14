@@ -87,7 +87,7 @@ namespace FSpot.Utils
 
 		public override string ToString ()
 		{
-			return String.Format ("v({0},{1}).{2}", X, Y, Length);
+			return string.Format ("v({0},{1}).{2}", X, Y, Length);
 		}
 	}
 }

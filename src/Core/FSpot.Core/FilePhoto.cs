@@ -153,10 +153,10 @@ namespace FSpot.Core
 			}
 			public SafeUri Uri { get; set; }
 
-			string import_md5 = String.Empty;
+			string import_md5 = string.Empty;
 			public string ImportMD5 {
 				get {
-					if (import_md5 == String.Empty)
+					if (import_md5 == string.Empty)
 						import_md5 = HashUtils.GenerateMD5 (Uri);
 					return import_md5;
 				}

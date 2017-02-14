@@ -38,7 +38,7 @@ namespace FSpot.Utils
 		public static string EscapeString (string str, bool escapeReserved, bool escapeHex, bool escapeBrackets) 
 		{
 			if (str == null)
-				return String.Empty;
+				return string.Empty;
 			
 			StringBuilder s = new StringBuilder ();
 			int len = str.Length;	

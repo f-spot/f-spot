@@ -213,7 +213,7 @@ namespace FSpot.Exporters.SmugMug
 					FileInfo file_info;
 					Log.Debug ("uploading " + photo_index);
 
-					progress_dialog.Message = String.Format (Catalog.GetString ("Uploading picture \"{0}\" ({1} of {2})"),
+					progress_dialog.Message = string.Format (Catalog.GetString ("Uploading picture \"{0}\" ({1} of {2})"),
 										 item.Name, photo_index+1, items.Length);
 					progress_dialog.ProgressText = string.Empty;
 					progress_dialog.Fraction = ((photo_index) / (double) items.Length);
@@ -242,7 +242,7 @@ namespace FSpot.Exporters.SmugMug
 					if (album_uri == null)
 						album_uri = account.SmugMug.GetAlbumUrl (image_id);
 				} catch (System.Exception e) {
-					progress_dialog.Message = String.Format (Mono.Unix.Catalog.GetString ("Error Uploading To Gallery: {0}"),
+					progress_dialog.Message = string.Format (Mono.Unix.Catalog.GetString ("Error Uploading To Gallery: {0}"),
 										 e.Message);
 					progress_dialog.ProgressText = Mono.Unix.Catalog.GetString ("Error");
 					Log.DebugException (e);

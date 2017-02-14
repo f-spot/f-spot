@@ -72,7 +72,7 @@ namespace FSpot.Query
 		public string SqlClause ()
 		{
 			if (!show_hidden && Tag != null)
-				return String.Format (" photos.id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {0}) ",
+				return string.Format (" photos.id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {0}) ",
 					Tag.Id);
 			return null;
 		}

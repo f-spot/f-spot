@@ -127,7 +127,7 @@ namespace FSpot.Exporters.Zip
 
 			//Pack up
 			for (int i = 0; i < photos.Length; i ++) {
-				if (progress_dialog.Update (String.Format (Catalog.GetString ("Preparing photo \"{0}\""), photos[i].Name))) {
+				if (progress_dialog.Update (string.Format (Catalog.GetString ("Preparing photo \"{0}\""), photos[i].Name))) {
 					progress_dialog.Destroy ();
 					return;
 				}

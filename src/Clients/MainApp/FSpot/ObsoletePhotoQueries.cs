@@ -101,7 +101,7 @@ namespace FSpot {
 				"FROM photos ");
 
 			if (range != null) {
-				where_clauses.Add (String.Format ("time >= {0} AND time <= {1}",
+				where_clauses.Add (string.Format ("time >= {0} AND time <= {1}",
 					DateTimeUtil.FromDateTime (range.Start),
 					DateTimeUtil.FromDateTime (range.End)));
 
@@ -116,7 +116,7 @@ namespace FSpot {
 			}
 
 			if (hide && App.Instance.Database.Tags.Hidden != null) {
-				where_clauses.Add (String.Format ("id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {0})",
+				where_clauses.Add (string.Format ("id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {0})",
 					App.Instance.Database.Tags.Hidden.Id));
 			}
 
@@ -124,13 +124,13 @@ namespace FSpot {
 				where_clauses.Add (searchexpression.SqlCondition ());
 			}
 
-			if (extraCondition != null && extraCondition.Trim () != String.Empty) {
+			if (extraCondition != null && extraCondition.Trim () != string.Empty) {
 				where_clauses.Add (extraCondition);
 			}
 
 			if (where_clauses.Count > 0) {
 				query_builder.Append (" WHERE ");
-				query_builder.Append (String.Join (" AND ", where_clauses.ToArray ()));
+				query_builder.Append (string.Join (" AND ", where_clauses.ToArray ()));
 			}
 
 			query_builder.Append (" ORDER BY time");

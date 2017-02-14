@@ -112,11 +112,11 @@ namespace FSpot
 
 				string desc = Item.Current.Description;
 				if (description_entry.Text != desc) {
-					description_entry.Text = desc ?? String.Empty;
+					description_entry.Text = desc ?? string.Empty;
 				}
 			} else {
 				description_entry.Sensitive = false;
-				description_entry.Text = String.Empty;
+				description_entry.Text = string.Empty;
 			}
 
 			description_entry.Changed += HandleDescriptionChanged;

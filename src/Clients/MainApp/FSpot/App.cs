@@ -143,7 +143,7 @@ namespace FSpot
 		{
 			if (IsRunning) {
 				var md = new MessageData ();
-				md.Text = tagname ?? String.Empty;
+				md.Text = tagname ?? string.Empty;
 				SendMessage (Command.Slideshow, md);
 
 				return;
@@ -257,7 +257,7 @@ namespace FSpot
             // Some users get wonky URIs here, trying to work around below.
             // https://bugzilla.gnome.org/show_bug.cgi?id=629248
             if (path != null && path.StartsWith ("gphoto2:usb:")) {
-                path = String.Format ("gphoto2://[{0}]", path.Substring (8));
+                path = string.Format ("gphoto2://[{0}]", path.Substring (8));
             }
 
             Hyena.Log.DebugFormat ("Importing from {0}", path);
@@ -276,9 +276,9 @@ namespace FSpot
 		void HandleShutdown ()
 		{
 			try {
-				App.Instance.Organizer.Close ();
+				Instance.Organizer.Close ();
 			} catch {
-				System.Environment.Exit (0);
+				Environment.Exit (0);
 			}
 		}
 
@@ -288,7 +288,7 @@ namespace FSpot
 			Tag tag;
 			FSpot.Widgets.SlideShow slideshow = null;
 
-			if (!String.IsNullOrEmpty (tagname))
+			if (!string.IsNullOrEmpty (tagname))
 				tag = Database.Tags.GetTagByName (tagname);
 			else
 				tag = Database.Tags.GetTagById (Preferences.Get<int> (Preferences.SCREENSAVER_TAG));
@@ -317,20 +317,20 @@ namespace FSpot
 				Gtk.HBox hbox = new Gtk.HBox ();
 				Gtk.VBox vbox = new Gtk.VBox ();
 
-				outer.PackStart (new Gtk.Label (String.Empty));
+				outer.PackStart (new Gtk.Label (string.Empty));
 				outer.PackStart (vbox, false, false, 0);
-				vbox.PackStart (new Gtk.Label (String.Empty));
+				vbox.PackStart (new Gtk.Label (string.Empty));
 				vbox.PackStart (hbox, false, false, 0);
 				hbox.PackStart (new Gtk.Image (Gtk.Stock.DialogWarning, Gtk.IconSize.Dialog),
 						false, false, 0);
-				outer.PackStart (new Gtk.Label (String.Empty));
+				outer.PackStart (new Gtk.Label (string.Empty));
 
 				string msg;
 				string long_msg;
 
 				if (tag != null) {
-					msg = String.Format (Catalog.GetString ("No photos matching {0} found"), tag.Name);
-					long_msg = String.Format (Catalog.GetString ("The tag \"{0}\" is not applied to any photos. Try adding\n" +
+					msg = string.Format (Catalog.GetString ("No photos matching {0} found"), tag.Name);
+					long_msg = string.Format (Catalog.GetString ("The tag \"{0}\" is not applied to any photos. Try adding\n" +
 										     "the tag to some photos or selecting a different tag in the\n" +
 										     "F-Spot preference dialog."), tag.Name);
 				} else {
@@ -344,10 +344,10 @@ namespace FSpot
 				hbox.PackStart (label, false, false, 0);
 
 				Gtk.Label long_label = new Gtk.Label (long_msg);
-				long_label.Markup  = String.Format ("<small>{0}</small>", long_msg);
+				long_label.Markup  = string.Format ("<small>{0}</small>", long_msg);
 
 				vbox.PackStart (long_label, false, false, 0);
-				vbox.PackStart (new Gtk.Label (String.Empty));
+				vbox.PackStart (new Gtk.Label (string.Empty));
 
 				window.Add (outer);
 				label.ModifyFg (Gtk.StateType.Normal, new Gdk.Color (127, 127, 127));
@@ -367,12 +367,12 @@ namespace FSpot
 
 		void HandleView (string[] uris)
 		{
-			List<SafeUri> ul = new List<SafeUri> ();
+			var ul = new List<SafeUri> ();
 			foreach (var u in uris)
 				ul.Add (new SafeUri (u, true));
 			try {
 				Register (new FSpot.SingleView (ul.ToArray ()).Window);
-			} catch (System.Exception e) {
+			} catch (Exception e) {
 				Log.Exception (e);
 				Log.Debug ("no real valid path to view from");
 			}

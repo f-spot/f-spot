@@ -56,7 +56,7 @@ namespace FSpot.Widgets
 		public const string PREF_PREFIX = Preferences.APP_FSPOT + "ui/sidebar";
 
 		private string PrefKeyForContext (ViewContext context) {
-			return String.Format ("{0}/{1}", PREF_PREFIX, context);
+			return string.Format ("{0}/{1}", PREF_PREFIX, context);
 		}
 
 		public string PageForContext (ViewContext context) {

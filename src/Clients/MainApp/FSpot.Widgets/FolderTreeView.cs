@@ -155,9 +155,9 @@ namespace FSpot.Widgets
 				 * possible.
 				 */
 				if (text == Uri.UriSchemeFile)
-					renderer.Text = String.Format ("<b>{0}</b>", Catalog.GetString ("Filesystem"));
+					renderer.Text = string.Format ("<b>{0}</b>", Catalog.GetString ("Filesystem"));
 				else
-					renderer.Text = String.Format ("<b>{0}</b>", text);
+					renderer.Text = string.Format ("<b>{0}</b>", text);
 
 				renderer.CellBackgroundGdk = Style.Background (StateType.Selected);
 			}

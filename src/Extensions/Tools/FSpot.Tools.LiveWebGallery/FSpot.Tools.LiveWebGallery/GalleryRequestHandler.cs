@@ -138,7 +138,7 @@ namespace FSpot.Tools.LiveWebGallery
 			StringBuilder s = new StringBuilder (4096);
 			s.Append (template);
 			int num_photos = limit_max_photos ? Math.Min (photos.Length, max_photos) : photos.Length;
-			s.Replace ("NUM_PHOTOS", String.Format(Catalog.GetPluralString("{0} photo", "{0} photos", num_photos), num_photos));
+			s.Replace ("NUM_PHOTOS", string.Format(Catalog.GetPluralString("{0} photo", "{0} photos", num_photos), num_photos));
 			s.Replace ("QUERY_TYPE", QueryTypeToString ());
 			s.Replace ("EDITABLE_TAG_NAME", tagging_allowed ? Escape (editable_tag.Name) : "");
 			

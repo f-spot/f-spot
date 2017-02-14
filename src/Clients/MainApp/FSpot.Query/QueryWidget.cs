@@ -114,7 +114,7 @@ namespace FSpot.Query
 			box.PackStart (logic_widget, true, true, 0);
 
 			warning_box = new Gtk.HBox ();
-			warning_box.PackStart (new Gtk.Label (System.String.Empty));
+			warning_box.PackStart (new Gtk.Label (System.string.Empty));
 
 			Gtk.Image warning_image = new Gtk.Image ("gtk-info", Gtk.IconSize.Button);
 			warning_image.Show ();

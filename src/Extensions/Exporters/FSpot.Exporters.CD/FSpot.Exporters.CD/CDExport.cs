@@ -88,7 +88,7 @@ namespace FSpot.Exporters.CD
 	                int i = 1;
 			GLib.File dest = FileFactory.NewForUri (new System.Uri (path, shortname));
 	                while (dest.Exists) {
-	                        string numbered_name = System.String.Format ("{0}-{1}{2}",
+	                        string numbered_name = System.string.Format ("{0}-{1}{2}",
 	                                                              System.IO.Path.GetFileNameWithoutExtension (shortname),
 	                                                              i++,
 	                                                              System.IO.Path.GetExtension (shortname));
@@ -125,9 +125,9 @@ namespace FSpot.Exporters.CD
 						GLib.File target = UniqueName (dest, photo.Name);
 						FileProgressCallback cb = Progress;
 
-						progress_dialog.Message = System.String.Format (Catalog.GetString ("Transferring picture \"{0}\" To CD"), photo.Name);
+						progress_dialog.Message = System.string.Format (Catalog.GetString ("Transferring picture \"{0}\" To CD"), photo.Name);
 						progress_dialog.Fraction = photo_index / (double)selection.Count;
-						progress_dialog.ProgressText = System.String.Format (Catalog.GetString ("{0} of {1}"),
+						progress_dialog.ProgressText = System.string.Format (Catalog.GetString ("{0} of {1}"),
 											     photo_index, selection.Count);
 
 						result &= source.Copy (target,
@@ -147,7 +147,7 @@ namespace FSpot.Exporters.CD
 					progress_dialog.Hide ();
 					burner.Run ();
 				} else
-					throw new System.Exception (System.String.Format ("{0}{3}{1}{3}{2}",
+					throw new System.Exception (System.string.Format ("{0}{3}{1}{3}{2}",
 											  progress_dialog.Message,
 											  Catalog.GetString ("Error While Transferring"),
 											  result.ToString (),

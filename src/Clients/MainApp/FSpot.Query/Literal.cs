@@ -211,7 +211,7 @@ namespace FSpot.Query
 			normal_icon = null;
 			negated_icon = null;
 			if (IsNegated) {
-				widget.TooltipText = String.Format (Catalog.GetString ("Not {0}"), Tag.Name);
+				widget.TooltipText = string.Format (Catalog.GetString ("Not {0}"), Tag.Name);
 				label.Text = "<s>" + System.Web.HttpUtility.HtmlEncode (Tag.Name) + "</s>";
 				image.Pixbuf = NegatedIcon;
 			} else {
@@ -269,9 +269,9 @@ namespace FSpot.Query
 				}
 			}
 
-			return String.Format (
+			return string.Format (
 				"id {0}IN (SELECT photo_id FROM photo_tags WHERE tag_id IN ({1}))",
-				(IsNegated ? "NOT " : String.Empty), ids);
+				(IsNegated ? "NOT " : string.Empty), ids);
 		}
 
 		public override Gtk.Widget SeparatorWidget ()
@@ -385,7 +385,7 @@ namespace FSpot.Query
 			if (args.Info == DragDropTargets.TagListEntry.Info || args.Info == DragDropTargets.TagQueryEntry.Info) {
 
 				// FIXME: do really write data
-				Byte [] data = Encoding.UTF8.GetBytes (String.Empty);
+				Byte [] data = Encoding.UTF8.GetBytes (string.Empty);
 				Atom [] targets = args.Context.Targets;
 
 				args.SelectionData.Set (targets [0], 8, data, data.Length);

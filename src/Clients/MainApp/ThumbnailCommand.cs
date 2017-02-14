@@ -59,7 +59,7 @@ public class ThumbnailCommand {
 		int count = 0;
 		foreach (IPhoto photo in photos) {
 			if (progress_dialog != null
-			    && progress_dialog.Update (String.Format (Mono.Unix.Catalog.GetString ("Updating picture \"{0}\""), photo.Name)))
+			    && progress_dialog.Update (string.Format (Mono.Unix.Catalog.GetString ("Updating picture \"{0}\""), photo.Name)))
 				break;
 
 			foreach (IPhotoVersion version in photo.Versions) {

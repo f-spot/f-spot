@@ -78,7 +78,7 @@ namespace FSpot {
 
 		public override string GlassLabel (int item)
 		{
-			return String.Format ("{0} ({1})", DateFromIndex (item).ToString ("MMMM yyyy"), Value (item));
+			return string.Format ("{0} ({1})", DateFromIndex (item).ToString ("MMMM yyyy"), Value (item));
 		}
 
 		public override string TickLabel (int item)

@@ -94,7 +94,7 @@ namespace FSpot.Widgets {
 
 		private void OnProcessingStep (int done) {
 			if (progress != null)
-				progress.Update (String.Empty);
+				progress.Update (string.Empty);
 		}
 
 		private void OnProcessingFinished () {
@@ -217,7 +217,7 @@ namespace FSpot.Widgets {
 				Log.DebugException (e);
 				string msg = Catalog.GetPluralString ("Error saving adjusted photo", "Error saving adjusted photos",
 									editor.State.Items.Length);
-				string desc = String.Format (Catalog.GetString ("Received exception \"{0}\". Note that you have to develop RAW files into JPEG before you can edit them."),
+				string desc = string.Format (Catalog.GetString ("Received exception \"{0}\". Note that you have to develop RAW files into JPEG before you can edit them."),
 							     e.Message);
 
 				HigMessageDialog md = new HigMessageDialog (App.Instance.Organizer.Window,
@@ -240,7 +240,7 @@ namespace FSpot.Widgets {
 			// Top label
 			VBox vbox = new VBox (false, 4);
 			Label label = new Label ();
-			label.Markup = String.Format("<big><b>{0}</b></big>", editor.Label);
+			label.Markup = string.Format("<big><b>{0}</b></big>", editor.Label);
 			vbox.PackStart (label, false, false, 5);
 
 			// Optional config widget

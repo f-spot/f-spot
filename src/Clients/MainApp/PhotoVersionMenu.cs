@@ -73,7 +73,7 @@ public class PhotoVersionMenu : Menu
 
 			if (version == photo.DefaultVersion) {
 				child.UseMarkup = true;
-				child.Markup = String.Format ("<b>{0}</b>", version.Name);
+				child.Markup = string.Format ("<b>{0}</b>", version.Name);
 			}
 
 			version_mapping.Add (menu_item, version);
