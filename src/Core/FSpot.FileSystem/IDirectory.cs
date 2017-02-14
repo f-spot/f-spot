@@ -34,5 +34,6 @@ namespace FSpot.FileSystem
 	{
 		bool Exists (SafeUri uri);
 		void CreateDirectory (SafeUri uri);
+		void Delete (SafeUri uri);
 	}
 }

@@ -29,69 +29,45 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
 using System.Collections.Generic;
-using System.Threading;
 using FSpot.Imaging;
 using FSpot.Utils;
-using Gtk;
 using Hyena;
 using Mono.Unix;
 
 namespace FSpot.Import
 {
-	class FileImportSource : IImportSource
+	public class FileImportSource : IImportSource
 	{
-		public string Name { get; set; }
+		#region fields
 
-		public string IconName { get; set; }
+		readonly SafeUri root;
+		readonly IImageFileFactory factory;
 
-		public SafeUri Root { get; set; }
+		#endregion
 
-		public event EventHandler<PhotoFoundEventArgs> PhotoFoundEvent;
-		public event EventHandler<PhotoScanFinishedEventArgs> PhotoScanFinishedEvent;
+		#region ctors
 
-		public Thread PhotoScanner;
-		bool run_photoscanner;
-
-		IImageFileFactory factory;
-
-		public FileImportSource (SafeUri root, string name, string iconName, IImageFileFactory factory)
+		public FileImportSource (SafeUri root, IImageFileFactory factory)
 		{
+			this.root = root;
 			this.factory = factory;
-
-			Root = root;
-			Name = name;
-
-			if (root != null) {
-				if (IsIPodPhoto) {
-					IconName = "multimedia-player";
-				} else if (IsCamera) {
-					IconName = "media-flash";
-				} else {
-					IconName = iconName;
-				}
-			}
 		}
 
-		public void StartPhotoScan (bool recurseSubdirectories, bool mergeRawAndJpeg)
+		#endregion
+
+		#region IImportSource
+
+		public virtual IEnumerable<FileImportInfo> ScanPhotos (bool recurseSubdirectories, bool mergeRawAndJpeg)
 		{
-			if (PhotoScanner != null) {
-				run_photoscanner = false;
-				PhotoScanner.Join ();
-			}
-
-			run_photoscanner = true;
-			PhotoScanner = ThreadAssist.Spawn (() => ScanPhotos (recurseSubdirectories, mergeRawAndJpeg));
+			return ScanPhotoDirectory (recurseSubdirectories, mergeRawAndJpeg, root);
 		}
 
-		protected virtual void ScanPhotos (bool recurseSubdirectories, bool mergeRawAndJpeg)
-		{
-			ScanPhotoDirectory (recurseSubdirectories, mergeRawAndJpeg, Root);
-			FirePhotoScanFinished ();
-		}
+		#endregion
 
-		protected void ScanPhotoDirectory (bool recurseSubdirectories, bool mergeRawAndJpeg, SafeUri uri)
+		#region private
+
+		protected IEnumerable<FileImportInfo> ScanPhotoDirectory (bool recurseSubdirectories, bool mergeRawAndJpeg, SafeUri uri)
 		{
 			var enumerator = (new RecursiveFileEnumerator (uri) {
 				Recurse = recurseSubdirectories,
@@ -136,77 +112,22 @@ namespace FSpot.Import
 					info.AddVersion (version, Catalog.GetString ("Original JPEG"));
 				}
 
-				ThreadAssist.ProxyToMain (() => {
-						if (PhotoFoundEvent != null) {
-							PhotoFoundEvent.Invoke (this, new PhotoFoundEventArgs { FileImportInfo = info });
-						}
-					});
-
-				if (!run_photoscanner)
-					return;
+				yield return info;
 			}
 		}
 
-		SafeUri NextImageFileOrNull(IEnumerator<GLib.File> enumerator)
+		SafeUri NextImageFileOrNull(IEnumerator<SafeUri> enumerator)
 		{
 			SafeUri nextImageFile;
 			do {
 				if (enumerator.MoveNext ())
-					nextImageFile = new SafeUri (enumerator.Current.Uri, true);
+					nextImageFile = enumerator.Current;
 				else
 					return null;
 			} while (!factory.HasLoader (nextImageFile));
 			return nextImageFile;
 		}
 
-		public void Deactivate ()
-		{
-			if (PhotoScanner != null) {
-				run_photoscanner = false;
-				PhotoScanner.Join ();
-
-				// Make sure all photos are added. This is needed to prevent
-				// a race condition where a source is deactivated, yet photos
-				// are still added to the collection because they are
-				// queued on the mainloop.
-				while (Application.EventsPending ()) {
-					Application.RunIteration (false);
-				}
-
-				PhotoScanner = null;
-			}
-		}
-
-		protected void FirePhotoScanFinished()
-		{
-			ThreadAssist.ProxyToMain (() => {
-				if (PhotoScanFinishedEvent != null) {
-					PhotoScanFinishedEvent.Invoke (this, new PhotoScanFinishedEventArgs ());
-				}
-			});
-		}
-
-		bool IsCamera {
-			get {
-				try {
-					var file = GLib.FileFactory.NewForUri (Root.Append ("DCIM"));
-					return file.Exists;
-				} catch {
-					return false;
-				}
-			}
-		}
-
-		bool IsIPodPhoto {
-			get {
-				try {
-					var file = GLib.FileFactory.NewForUri (Root.Append ("Photos"));
-					var file2 = GLib.FileFactory.NewForUri (Root.Append ("iPod_Control"));
-					return file.Exists && file2.Exists;
-				} catch {
-					return false;
-				}
-			}
-		}
+		#endregion
 	}
 }

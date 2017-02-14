@@ -84,9 +84,6 @@
     <Compile Include="FSpot\GroupAdaptor.cs" />
     <Compile Include="FSpot\GroupSelector.cs" />
     <Compile Include="FSpot\Histogram.cs" />
-    <Compile Include="FSpot.Import\FileImportSource.cs" />
-    <Compile Include="FSpot.Import\ImportController.cs" />
-    <Compile Include="FSpot.Import\MetadataImporter.cs" />
     <Compile Include="FSpot\InfoOverlay.cs" />
     <Compile Include="FSpot\ItemAction.cs" />
     <Compile Include="FSpot.Loaders\AreaPreparedEventArgs.cs" />
@@ -108,7 +105,6 @@
     <Compile Include="FSpot\SendEmail.cs" />
     <Compile Include="FSpot\SingleView.cs" />
     <Compile Include="FSpot\TagSelectionWidget.cs" />
-    <Compile Include="FSpot\ThumbnailGenerator.cs" />
     <Compile Include="FSpot\TimeAdaptor.cs" />
     <Compile Include="FSpot.UI.Dialog\AboutDialog.cs" />
     <Compile Include="FSpot.UI.Dialog\AdjustTimeDialog.cs" />
@@ -155,7 +151,6 @@
     <Compile Include="FSpot.Widgets\TrayView.cs" />
     <Compile Include="FSpot.Widgets\ViewContext.cs" />
     <Compile Include="FSpot\XScreenSaverSlide.cs" />
-    <Compile Include="ImageLoaderThread.cs" />
     <Compile Include="PhotoTagMenu.cs" />
     <Compile Include="PhotoVersionCommands.cs" />
     <Compile Include="PhotoVersionMenu.cs" />
@@ -176,7 +171,6 @@
     <Compile Include="Pinta\ColorBgra.cs" />
     <Compile Include="Pinta\CairoExtensions.cs" />
     <Compile Include="Pinta\GaussianBlurEffect.cs" />
-    <Compile Include="FSpot.Import\IImportSource.cs" />
     <Compile Include="FSpot.ColorAdjustment\AutoStretch.cs" />
     <Compile Include="FSpot.Editors\AutoStretchEditor.cs" />
     <Compile Include="FSpot.Widgets\EditorPageWidget.cs" />
@@ -196,15 +190,12 @@
     <Compile Include="FSpot.Query\TextLiteral.cs" />
     <Compile Include="FSpot.Query\QueryWidget.cs" />
     <Compile Include="FSpot.Widgets\StartDragArgs.cs" />
-    <Compile Include="FSpot.Import\MultiFileImportSource.cs" />
-    <Compile Include="FSpot.Import\FileImportInfo.cs" />
     <Compile Include="FSpot.Import\ImportEvent.cs" />
-    <Compile Include="FSpot.Import\PhotoFoundEventArgs.cs" />
-    <Compile Include="FSpot.Import\PhotoScanFinishedEventArgs.cs" />
-    <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="FSpot.Import\PhotoFileTracker.cs" />
     <Compile Include="FSpot\ObsoletePhotoQueries.cs" />
     <Compile Include="FSpot.Database\UpdaterUI.cs" />
+    <Compile Include="FSpot.Import\ImportDialogController.cs" />
+    <Compile Include="FSpot.Import\ImportSource.cs" />
+    <Compile Include="FSpot.Import\MultiImportSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\icons\f-spot-not.png">
@@ -396,6 +387,10 @@
     <ProjectReference Include="..\..\Core\FSpot.Database\FSpot.Database.csproj">
       <Project>{16E9C7DC-54BD-4C93-9B2A-AE9CDCE1CEFD}</Project>
       <Name>FSpot.Database</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\FSpot.Import\FSpot.Import.csproj">
+      <Project>{02523C56-7715-4B6E-891B-6A1CBDE1B98C}</Project>
+      <Name>FSpot.Import</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -1,9 +1,10 @@
-//  PhotoScanFinishedEventArgs.cs
+﻿//
+// IImportController.cs
 //
 // Author:
 //   Daniel Köb <daniel.koeb@peony.at>
 //
-// Copyright (C) 2014 Daniel Köb
+// Copyright (C) 2016 Daniel Köb
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -26,10 +27,19 @@
 //
 
 using System;
+using System.Collections.Generic;
+using System.Threading;
+using FSpot.Core;
+using FSpot.Database;
+using Hyena;
 
 namespace FSpot.Import
 {
-	public class PhotoScanFinishedEventArgs : EventArgs
+	public interface IImportController
 	{
+		void DoImport (IDb db, IBrowsableCollection photos, IList<Tag> tagsToAttach, bool duplicateDetect,
+			bool copyFiles, bool removeOriginals, Action<int, int> reportProgress, CancellationToken token);
+		int PhotosImported { get; }
+		IEnumerable<SafeUri> FailedImports { get; }
 	}
 }

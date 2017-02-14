@@ -1119,7 +1119,7 @@ namespace FSpot
 		public void ImportUriList (UriList list, bool copy)
 		{
 			// Drag'n drop import.
-			var controller = new ImportController (false);
+			var controller = new ImportDialogController (false);
 			controller.StatusEvent += (evnt) => ThreadAssist.ProxyToMain (() => {
 				if (evnt == ImportEvent.ImportFinished) {
 					if (controller.PhotosImported > 0) {
@@ -1128,7 +1128,7 @@ namespace FSpot
 				}
 			});
 
-			var source = new MultiFileImportSource (list.ToArray (), App.Instance.Container.Resolve<IImageFileFactory> ());
+			var source = new MultiImportSource (list.ToArray ());
 			controller.ActiveSource = source;
 			controller.CopyFiles = copy;
 			controller.DuplicateDetect = true;
@@ -1154,7 +1154,7 @@ namespace FSpot
 
 		void StartImport (SafeUri uri)
 		{
-			var controller = new ImportController (true);
+			var controller = new ImportDialogController (true);
 			controller.StatusEvent += evnt => {
 				if (evnt == ImportEvent.ImportFinished) {
 					if (controller.PhotosImported > 0) {

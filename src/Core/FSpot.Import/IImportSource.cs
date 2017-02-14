@@ -1,5 +1,5 @@
 //
-// ImportSource.cs
+// IImportSource.cs
 //
 // Author:
 //   Mike Gemünde <mike@gemuende.de>
@@ -31,19 +31,12 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
+using System.Collections.Generic;
 
 namespace FSpot.Import
 {
 	public interface IImportSource
 	{
-		string Name { get; }
-		string IconName { get; }
-
-		void StartPhotoScan (bool recurseSubdirectories, bool mergeRawAndJpeg);
-		void Deactivate ();
-
-		event EventHandler<PhotoFoundEventArgs> PhotoFoundEvent;
-		event EventHandler<PhotoScanFinishedEventArgs> PhotoScanFinishedEvent;
+		IEnumerable<FileImportInfo> ScanPhotos (bool recurseSubdirectories, bool mergeRawAndJpeg);
 	}
 }

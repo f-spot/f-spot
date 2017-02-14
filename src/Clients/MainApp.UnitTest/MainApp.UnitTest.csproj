@@ -47,10 +47,6 @@
     <Compile Include="FSpot\TestOf_AndTerm.cs" />
     <Compile Include="FSpot\PhotoStoreTests.cs" />
     <Compile Include="FSpot\Mocks\PhotoMock.cs" />
-    <Compile Include="FSpot.Import\ImportControllerTests.cs" />
-    <Compile Include="FSpot.Import\Mocks\PhotoMock.cs" />
-    <Compile Include="FSpot.Import\Mocks\FileSystemMock.cs" />
-    <Compile Include="FSpot.Import\PhotoFileTrackerTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

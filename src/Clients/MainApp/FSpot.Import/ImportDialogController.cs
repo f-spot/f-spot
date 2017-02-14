@@ -1,5 +1,5 @@
 //
-// ImportController.cs
+// ImportDialogController.cs
 //
 // Author:
 //   Daniel Köb <daniel.koeb@peony.at>
@@ -38,17 +38,17 @@ using FSpot.FileSystem;
 using FSpot.Imaging;
 using FSpot.Settings;
 using FSpot.Thumbnail;
-using FSpot.Utils;
+using Gtk;
 using Hyena;
 using Mono.Unix;
 
 namespace FSpot.Import
 {
-	public class ImportController
+	public class ImportDialogController
 	{
 		public BrowsableCollectionProxy Photos { get; private set; }
 
-		public ImportController (bool persistPreferences)
+		public ImportDialogController (bool persistPreferences)
 		{
 			// This flag determines whether or not the chosen options will be
 			// saved. You don't want to overwrite user preferences when running
@@ -58,11 +58,6 @@ namespace FSpot.Import
 			Photos = new BrowsableCollectionProxy ();
 			FailedImports = new List<SafeUri> ();
 			LoadPreferences ();
-		}
-
-		~ImportController ()
-		{
-			DeactivateSource (ActiveSource);
 		}
 
 #region Import Preferences
@@ -91,7 +86,7 @@ namespace FSpot.Import
 					return;
 				recurse_subdirectories = value;
 				SavePreferences ();
-				RescanPhotos ();
+				StartScan ();
 			}
 		}
 
@@ -107,7 +102,7 @@ namespace FSpot.Import
 					return;
 				merge_raw_and_jpeg = value;
 				SavePreferences ();
-				RescanPhotos ();
+				StartScan ();
 			}
 		}
 
@@ -139,8 +134,8 @@ namespace FSpot.Import
 
 #region Source Scanning
 
-		List<IImportSource> _sources;
-		public List<IImportSource> Sources {
+		List<ImportSource> _sources;
+		public List<ImportSource> Sources {
 			get {
 				if (_sources == null)
 					_sources = ScanSources ();
@@ -148,19 +143,18 @@ namespace FSpot.Import
 			}
 		}
 
-		static List<IImportSource> ScanSources ()
+		static List<ImportSource> ScanSources ()
 		{
 			var monitor = GLib.VolumeMonitor.Default;
-			var sources = new List<IImportSource> ();
+			var sources = new List<ImportSource> ();
 			foreach (var mount in monitor.Mounts) {
 				var root = new SafeUri (mount.Root.Uri, true);
 
 				var themed_icon = (mount.Icon as GLib.ThemedIcon);
-				var factory = App.Instance.Container.Resolve<IImageFileFactory> ();
 				if (themed_icon != null && themed_icon.Names.Length > 0) {
-					sources.Add (new FileImportSource (root, mount.Name, themed_icon.Names [0], factory));
+					sources.Add (new ImportSource (root, mount.Name, themed_icon.Names [0]));
 				} else {
-					sources.Add (new FileImportSource (root, mount.Name, null, factory));
+					sources.Add (new ImportSource (root, mount.Name, null));
 				}
 			}
 			return sources;
@@ -200,59 +194,71 @@ namespace FSpot.Import
 
 #region Source Switching
 
-		IImportSource active_source;
-		public IImportSource ActiveSource {
+		ImportSource active_source;
+		public ImportSource ActiveSource {
 			set {
 				if (value == active_source)
 					return;
-				var old_source = active_source;
 				active_source = value;
+
+				CancelScan ();
+				StartScan ();
+
 				FireEvent (ImportEvent.SourceChanged);
-				RescanPhotos ();
-				DeactivateSource (old_source);
 			}
 			get {
 				return active_source;
 			}
 		}
 
-		static void DeactivateSource (IImportSource source)
-		{
-			if (source == null)
-				return;
-			source.Deactivate ();
-		}
-
-		void RescanPhotos ()
-		{
-			if (ActiveSource == null)
-				return;
-
-			photo_scan_running = true;
-			var pl = new PhotoList ();
-			Photos.Collection = pl;
-			ActiveSource.PhotoFoundEvent += OnPhotoFound;
-			ActiveSource.PhotoScanFinishedEvent += OnPhotoScanFinished;
-			ActiveSource.StartPhotoScan (RecurseSubdirectories, MergeRawAndJpeg);
-			FireEvent (ImportEvent.PhotoScanStarted);
-		}
-
 #endregion
 
-#region Source Progress Signalling
+#region Photo Scanning
 
-		// These are callbacks that should be called by the sources.
+		Thread scanThread;
+		CancellationTokenSource scanTokenSource;
 
-		public void OnPhotoFound (object sender, PhotoFoundEventArgs args)
+		void StartScan ()
 		{
-			((PhotoList)Photos.Collection).Add (args.FileImportInfo);
+			if (scanThread != null) {
+				CancelScan ();
+			}
+
+			var source = active_source.GetFileImportSource (App.Instance.Container.Resolve<IImageFileFactory> ());
+			Photos.Collection = new PhotoList ();
+
+			scanTokenSource = new CancellationTokenSource ();
+			scanThread = ThreadAssist.Spawn (() => DoScan (source, recurse_subdirectories, merge_raw_and_jpeg, scanTokenSource.Token));
 		}
 
-		public void OnPhotoScanFinished (object sender, PhotoScanFinishedEventArgs args)
+		void CancelScan ()
 		{
-			photo_scan_running = false;
-			ActiveSource.PhotoScanFinishedEvent -= OnPhotoScanFinished;
-			ActiveSource.PhotoFoundEvent -= OnPhotoFound;
+			if (scanThread == null)
+				return;
+			scanTokenSource.Cancel ();
+			scanThread.Join ();
+			scanThread = null;
+			scanTokenSource = null;
+
+			// Make sure all photos are added. This is needed to prevent
+			// a race condition where a source is deactivated, yet photos
+			// are still added to the collection because they are
+			// queued on the mainloop.
+			while (Application.EventsPending ()) {
+				Application.RunIteration (false);
+			}
+		}
+
+		void DoScan (IImportSource source, bool recurse, bool merge, CancellationToken token)
+		{
+			FireEvent (ImportEvent.PhotoScanStarted);
+
+			foreach (var info in source.ScanPhotos (recurse, merge)) {
+				ThreadAssist.ProxyToMain (() => ((PhotoList)Photos.Collection).Add (info));
+				if (token.IsCancellationRequested)
+					break;
+			}
+
 			FireEvent (ImportEvent.PhotoScanFinished);
 		}
 
@@ -261,202 +267,49 @@ namespace FSpot.Import
 #region Importing
 
 		Thread ImportThread;
+		CancellationTokenSource importTokenSource;
 
 		public void StartImport ()
 		{
 			if (ImportThread != null)
 				throw new Exception ("Import already running!");
 
-			ImportThread = ThreadAssist.Spawn (DoImport);
+			importTokenSource = new CancellationTokenSource ();
+			ImportThread = ThreadAssist.Spawn (() => DoImport (importTokenSource.Token));
 		}
 
 		public void CancelImport ()
 		{
-			if (ActiveSource != null) {
-				ActiveSource.Deactivate ();
-			}
+			CancelScan ();
 
-			import_cancelled = true;
+			if (importTokenSource != null)
+				importTokenSource.Cancel ();
 			if (ImportThread != null)
+				//FIXME: there is a race condition between the null check and calling join
 				ImportThread.Join ();
-			Cleanup ();
 		}
 
-		Stack<SafeUri> created_directories;
-		List<uint> imported_photos;
-		PhotoFileTracker photo_file_tracker;
-		PhotoStore store = App.Instance.Database.Photos;
-		RollStore rolls = App.Instance.Database.Rolls;
-		volatile bool photo_scan_running;
-		MetadataImporter metadata_importer;
-		volatile bool import_cancelled;
-		IFileSystem file_system = App.Instance.Container.Resolve<IFileSystem> ();
-
-		void DoImport ()
+		void DoImport (CancellationToken token)
 		{
-			while (photo_scan_running) {
-				Thread.Sleep (1000); // FIXME: we can do this with a better primitive!
-			}
+			if (scanThread != null)
+				scanThread.Join ();
 
 			FireEvent (ImportEvent.ImportStarted);
-			App.Instance.Database.Sync = false;
-			created_directories = new Stack<SafeUri> ();
-			imported_photos = new List<uint> ();
-			photo_file_tracker = new PhotoFileTracker (file_system);
-			metadata_importer = new MetadataImporter ();
-			CreatedRoll = rolls.Create ();
 
-			EnsureDirectory (Global.PhotoUri);
+			var importer = App.Instance.Container.Resolve<IImportController> ();
+			importer.DoImport (App.Instance.Database, Photos.Collection, attach_tags, DuplicateDetect, CopyFiles,
+				RemoveOriginals, (current, total) => ThreadAssist.ProxyToMain (() => ReportProgress (current, total)),
+				token);
 
-			try {
-				int i = 0;
-				int total = Photos.Count;
-				foreach (var info in Photos.Items) {
-					if (import_cancelled) {
-						RollbackImport ();
-						return;
-					}
+			PhotosImported = importer.PhotosImported;
+			FailedImports.Clear ();
+			FailedImports.AddRange (importer.FailedImports);
 
-					ThreadAssist.ProxyToMain (() => ReportProgress (i++, total));
-					try {
-						ImportPhoto (info, CreatedRoll);
-					} catch (Exception e) {
-						Log.DebugFormat ("Failed to import {0}", info.DefaultVersion.Uri);
-						Log.DebugException (e);
-						FailedImports.Add (info.DefaultVersion.Uri);
-					}
-				}
-
-				PhotosImported = imported_photos.Count;
-				FinishImport ();
-			} catch (Exception e) {
-				RollbackImport ();
-				throw e;
-			} finally {
-				Cleanup ();
-			}
-		}
-
-		void Cleanup ()
-		{
-			if (imported_photos != null && imported_photos.Count == 0)
-				rolls.Remove (CreatedRoll);
-			imported_photos = null;
-			created_directories = null;
-			Photo.ResetMD5Cache ();
-			DeactivateSource (ActiveSource);
-			GC.Collect ();
-			App.Instance.Database.Sync = true;
-		}
-
-		void FinishImport ()
-		{
-			if (RemoveOriginals) {
-				foreach (var uri in photo_file_tracker.OriginalFiles) {
-					try {
-						var file = GLib.FileFactory.NewForUri (uri);
-						file.Delete (null);
-					} catch (Exception) {
-						Log.WarningFormat ("Failed to remove original file: {0}", uri);
-					}
-				}
+			if (!token.IsCancellationRequested) {
+				ImportThread = null;
 			}
 
-			ImportThread = null;
 			FireEvent (ImportEvent.ImportFinished);
-		}
-
-		void RollbackImport ()
-		{
-			// Remove photos
-			foreach (var id in imported_photos) {
-				store.Remove (store.Get (id));
-			}
-
-			foreach (var uri in photo_file_tracker.CopiedFiles) {
-				var file = GLib.FileFactory.NewForUri (uri);
-				file.Delete (null);
-			}
-
-			// Clean up directories
-			while (created_directories.Count > 0) {
-				var uri = created_directories.Pop ();
-				var dir = GLib.FileFactory.NewForUri (uri);
-				var enumerator = dir.EnumerateChildren ("standard::name", GLib.FileQueryInfoFlags.None, null);
-				if (!enumerator.HasPending) {
-					dir.Delete (null);
-				}
-			}
-
-			// Clean created tags
-			metadata_importer.Cancel ();
-
-			// Remove created roll
-			rolls.Remove (CreatedRoll);
-		}
-
-		void ImportPhoto (IPhoto item, DbItem roll)
-		{
-			if (item is IInvalidPhotoCheck && (item as IInvalidPhotoCheck).IsInvalid) {
-				throw new Exception ("Failed to parse metadata, probably not a photo");
-			}
-
-			// Do duplicate detection
-			if (DuplicateDetect && store.HasDuplicate (item)) {
-				return;
-			}
-
-			if (CopyFiles) {
-				var destinationBase = FindImportDestination (item, Global.PhotoUri);
-				EnsureDirectory (destinationBase);
-				// Copy into photo folder.
-				photo_file_tracker.CopyIfNeeded (item, destinationBase);
-			}
-
-			// Import photo
-			var photo = store.CreateFrom (item, false, roll.Id);
-
-			bool needs_commit = false;
-
-			// Add tags
-			if (attach_tags.Count > 0) {
-				photo.AddTag (attach_tags);
-				needs_commit = true;
-			}
-
-			// Import XMP metadata
-			needs_commit |= metadata_importer.Import (photo, item);
-
-			if (needs_commit) {
-				store.Commit (photo);
-			}
-
-			// Prepare thumbnail (Import is I/O bound anyway)
-			ThumbnailLoader.Default.Request (item.DefaultVersion.Uri, ThumbnailSize.Large, 10);
-
-			imported_photos.Add (photo.Id);
-		}
-
-		internal static SafeUri FindImportDestination (IPhoto item, SafeUri baseUri)
-		{
-			DateTime time = item.Time;
-			return baseUri
-				.Append (time.Year.ToString ())
-				.Append (String.Format ("{0:D2}", time.Month))
-				.Append (String.Format ("{0:D2}", time.Day));
-		}
-
-		static void EnsureDirectory (SafeUri uri)
-		{
-			var parts = uri.AbsolutePath.Split('/');
-			var current = new SafeUri (uri.Scheme + ":///", true);
-			for (int i = 0; i < parts.Length; i++) {
-				current = current.Append (parts [i]);
-				var file = GLib.FileFactory.NewForUri (current);
-				if (!file.Exists) {
-					file.MakeDirectory (null);
-				}
-			}
 		}
 
 #endregion

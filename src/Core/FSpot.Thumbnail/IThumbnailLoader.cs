@@ -1,5 +1,5 @@
 ﻿//
-// IDb.cs
+// IThumbnailLoader.cs
 //
 // Author:
 //   Daniel Köb <daniel.koeb@peony.at>
@@ -26,18 +26,14 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-namespace FSpot.Database
-{
-	public interface IDb
-	{
-		FSpotDatabaseConnection Database { get; }
-		bool Sync { set; }
+using FSpot.Imaging;
+using FSpot.Thumbnail;
+using Hyena;
 
-		TagStore Tags { get; }
-		RollStore Rolls { get; }
-		ExportStore Exports { get; }
-		JobStore Jobs { get; }
-		PhotoStore Photos { get; }
-		MetaStore Meta { get; }
+namespace FSpot.Thumbnail
+{
+	public interface IThumbnailLoader : IImageLoaderThread
+	{
+		void Request (SafeUri uri, ThumbnailSize size, int order);
 	}
 }

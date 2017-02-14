@@ -1,5 +1,5 @@
 ﻿//
-// IDb.cs
+// AssemblyInfo.cs
 //
 // Author:
 //   Daniel Köb <daniel.koeb@peony.at>
@@ -26,18 +26,6 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-namespace FSpot.Database
-{
-	public interface IDb
-	{
-		FSpotDatabaseConnection Database { get; }
-		bool Sync { set; }
+using System.Runtime.CompilerServices;
 
-		TagStore Tags { get; }
-		RollStore Rolls { get; }
-		ExportStore Exports { get; }
-		JobStore Jobs { get; }
-		PhotoStore Photos { get; }
-		MetaStore Meta { get; }
-	}
-}
+[assembly: InternalsVisibleTo("FSpot.Import.UnitTest")]

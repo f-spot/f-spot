@@ -1,5 +1,5 @@
 ﻿//
-// GLibDirectory.cs
+// ImportSource.cs
 //
 // Author:
 //   Daniel Köb <daniel.koeb@peony.at>
@@ -26,42 +26,78 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using FSpot.Utils;
 using Hyena;
-using GLib;
+using FSpot.Utils;
+using FSpot.Imaging;
 
-namespace FSpot.FileSystem
+namespace FSpot.Import
 {
-	class GLibDirectory : IDirectory
+	public class ImportSource
 	{
-		public bool Exists (SafeUri uri)
-		{
-			var directory = FileFactory.NewForUri (uri);
-			return directory.Exists && directory.QueryFileType (FileQueryInfoFlags.None, null) == FileType.Directory;
-		}
+		#region props
 
-		public void CreateDirectory (SafeUri uri)
+		public string Name { get; private set; }
+
+		public string IconName { get; private set; }
+
+		public SafeUri Root { get; private set; }
+
+		#endregion
+
+		#region ctors
+
+		public ImportSource (SafeUri root, string name, string iconName)
 		{
-			var parts = uri.AbsolutePath.Split('/');
-			var current = new SafeUri (uri.Scheme + ":///", true);
-			for (int i = 0; i < parts.Length; i++) {
-				current = current.Append (parts [i]);
-				var file = FileFactory.NewForUri (current);
-				if (!file.Exists) {
-					file.MakeDirectory (null);
+			Name = name;
+			Root = root;
+
+			if (root != null) {
+				if (IsIPodPhoto) {
+					IconName = "multimedia-player";
+				} else if (IsCamera) {
+					IconName = "media-flash";
+				} else {
+					IconName = iconName;
 				}
 			}
 		}
 
-		public void Delete (SafeUri uri)
+		#endregion
+
+		#region public API
+
+		public virtual IImportSource GetFileImportSource (IImageFileFactory factory)
 		{
-			var directory = FileFactory.NewForUri (uri);
-			if (!directory.Exists || directory.QueryFileType (FileQueryInfoFlags.None, null) != FileType.Directory) {
-				//FIXME to be consistent with System.IO.Directory.Delete we should throw an exception in this case
-				return;
-			}
-			directory.Delete (null);
+			return new FileImportSource (Root, factory);
 		}
+
+		#endregion
+
+		#region private
+
+		bool IsCamera {
+			get {
+				try {
+					var file = GLib.FileFactory.NewForUri (Root.Append ("DCIM"));
+					return file.Exists;
+				} catch {
+					return false;
+				}
+			}
+		}
+
+		bool IsIPodPhoto {
+			get {
+				try {
+					var file = GLib.FileFactory.NewForUri (Root.Append ("Photos"));
+					var file2 = GLib.FileFactory.NewForUri (Root.Append ("iPod_Control"));
+					return file.Exists && file2.Exists;
+				} catch {
+					return false;
+				}
+			}
+		}
+
+		#endregion
 	}
 }

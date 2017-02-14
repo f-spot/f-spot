@@ -33,12 +33,13 @@
 
 using System.Collections;
 using System.Collections.Generic;
-
+using System.Linq;
 using GLib;
+using Hyena;
 
 namespace FSpot.Utils
 {
-	public class RecursiveFileEnumerator : IEnumerable<File>
+	public class RecursiveFileEnumerator : IEnumerable<SafeUri>
 	{
 		string root;
 
@@ -113,10 +114,10 @@ namespace FSpot.Utils
 			}
 		}
 
-		public IEnumerator<File> GetEnumerator ()
+		public IEnumerator<SafeUri> GetEnumerator ()
 		{
 			var file = FileFactory.NewForUri (root);
-			return ScanForFiles (file).GetEnumerator ();
+			return ScanForFiles (file).Select (f => new SafeUri (f.Uri, true)).GetEnumerator ();
 		}
 
 		IEnumerator IEnumerable.GetEnumerator ()

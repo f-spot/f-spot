@@ -32,6 +32,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using FSpot.Imaging;
 using FSpot.Thumbnail;
 using FSpot.Utils;
 using Hyena;
@@ -58,10 +59,10 @@ namespace FSpot
 			worker = new Thread (new ThreadStart (WorkerTask));
 			worker.Start ();
 
-			ThumbnailLoader.Default.OnPixbufLoaded += HandleThumbnailLoaded;
+			App.Instance.Container.Resolve<IThumbnailLoader> ().OnPixbufLoaded += HandleThumbnailLoaded;
 		}
 
-		public void HandleThumbnailLoaded (ImageLoaderThread loader, ImageLoaderThread.RequestItem result)
+		public void HandleThumbnailLoaded (IImageLoaderThread loader, RequestItem result)
 		{
 			Reload (result.Uri);
 		}

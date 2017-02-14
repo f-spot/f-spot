@@ -1,10 +1,10 @@
-//
-// PhotoFoundEventArgs
+﻿//
+// IImageLoaderThread.cs
 //
 // Author:
 //   Daniel Köb <daniel.koeb@peony.at>
 //
-// Copyright (C) 2014 Daniel Köb
+// Copyright (C) 2016 Daniel Köb
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -26,12 +26,12 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-
-namespace FSpot.Import
+namespace FSpot.Imaging
 {
-	public class PhotoFoundEventArgs : EventArgs
+	public delegate void PixbufLoadedHandler (IImageLoaderThread loader, RequestItem result);
+
+	public interface IImageLoaderThread
 	{
-		public FileImportInfo FileImportInfo { get; set; }
+		event PixbufLoadedHandler OnPixbufLoaded;
 	}
 }
