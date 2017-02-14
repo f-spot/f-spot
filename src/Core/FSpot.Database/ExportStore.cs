@@ -35,14 +35,11 @@
 using System;
 using System.Collections.Generic;
 
-using FSpot;
 using FSpot.Core;
-using FSpot.Database;
 
 using Hyena.Data.Sqlite;
-using System.Data;
 
-namespace FSpot
+namespace FSpot.Database
 {
 	public class ExportItem : DbItem
 	{
@@ -160,7 +157,7 @@ namespace FSpot
 		}
 
 		#region Constructor
-		public ExportStore (FSpotDatabaseConnection database, bool is_new) : base (database, true)
+		public ExportStore (IDb db, bool is_new) : base (db, true)
 		{
 			if (is_new || !Database.TableExists ("exports"))
 				CreateTable ();

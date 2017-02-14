@@ -40,6 +40,7 @@ using Mono.Unix;
 
 using FSpot.Core;
 using FSpot.Imaging;
+using FSpot.Settings;
 using FSpot.Thumbnail;
 using FSpot.Utils;
 
@@ -47,6 +48,12 @@ namespace FSpot
 {
 	public class Photo : DbItem, IComparable, IPhoto, IPhotoVersionable
 	{
+		#region fields
+
+		readonly IImageFileFactory imageFileFactory;
+		readonly IThumbnailService thumbnailService;
+
+		#endregion
 
 		#region Properties
 		PhotoChanges changes = new PhotoChanges ();
@@ -83,7 +90,7 @@ namespace FSpot
 		}
 
 		private bool all_versions_loaded = false;
-		internal bool AllVersionsLoaded {
+		public bool AllVersionsLoaded {
 			get { return all_versions_loaded; }
 			set {
 				if (value)
@@ -176,7 +183,7 @@ namespace FSpot
 
 		// This doesn't check if a version of that name already exists,
 		// it's supposed to be used only within the Photo and PhotoStore classes.
-		internal void AddVersionUnsafely (uint version_id, SafeUri base_uri, string filename, string import_md5, string name, bool is_protected)
+		public void AddVersionUnsafely (uint version_id, SafeUri base_uri, string filename, string import_md5, string name, bool is_protected)
 		{
 			versions [version_id] = new PhotoVersion (this, version_id, base_uri, filename, import_md5, name, is_protected);
 
@@ -248,10 +255,9 @@ namespace FSpot
 		public uint SaveVersion (Gdk.Pixbuf buffer, bool create_version)
 		{
 			uint version = DefaultVersionId;
-			var factory = App.Instance.Container.Resolve<IImageFileFactory> ();
-			using (var img = factory.Create (DefaultVersion.Uri)) {
+			using (var img = imageFileFactory.Create (DefaultVersion.Uri)) {
 				// Always create a version if the source is not a jpeg for now.
-				create_version = create_version || factory.IsJpeg (DefaultVersion.Uri);
+				create_version = create_version || imageFileFactory.IsJpeg (DefaultVersion.Uri);
 
 				if (buffer == null)
 					throw new ApplicationException ("invalid (null) image");
@@ -262,7 +268,7 @@ namespace FSpot
 				try {
 					var versionUri = VersionUri (version);
 
-					PixbufUtils.CreateDerivedVersion (DefaultVersion.Uri, versionUri, 95, buffer);
+					FSpot.Utils.PixbufUtils.CreateDerivedVersion (DefaultVersion.Uri, versionUri, 95, buffer);
 					GetVersion (version).ImportMD5 = HashUtils.GenerateMD5 (VersionUri (version));
 					DefaultVersionId = version;
 				} catch (System.Exception e) {
@@ -306,7 +312,7 @@ namespace FSpot
 				}
 
 				try {
-					App.Instance.Container.Resolve<IThumbnailService> ().DeleteThumbnails (uri);
+					thumbnailService.DeleteThumbnails (uri);
 				} catch {
 					// ignore an error here we don't really care.
 				}
@@ -584,9 +590,12 @@ namespace FSpot
 		#endregion
 
 		#region Constructor
-		public Photo (uint id, long unix_time)
+		public Photo (IImageFileFactory imageFactory, IThumbnailService thumbnailService, uint id, long unix_time)
 			: base (id)
 		{
+			this.imageFileFactory = imageFactory;
+			this.thumbnailService = thumbnailService;
+
 			time = DateTimeUtil.ToDateTime (unix_time);
 			tags = new List<Tag> ();
 

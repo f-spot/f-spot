@@ -43,6 +43,9 @@ using Hyena;
 
 using FSpot.Core;
 using FSpot.Database;
+using FSpot.Imaging;
+using FSpot.Settings;
+using FSpot.Thumbnail;
 using FSpot.Utils;
 
 namespace FSpot
@@ -89,7 +92,7 @@ namespace FSpot
 						if (!File.Exists (Global.BaseDirectory))
 							Directory.CreateDirectory (Global.BaseDirectory);
 
-						db = new Db ();
+						db = new Db (Container.Resolve<IImageFileFactory> (), Container.Resolve<IThumbnailService> (), new UpdaterUI ());
 
 						try {
 							db.Init (Path.Combine (Global.BaseDirectory, "photos.db"), true);
@@ -291,9 +294,9 @@ namespace FSpot
 
 			IPhoto[] photos;
 			if (tag != null)
-				photos = Database.Photos.Query (new Tag[] {tag});
+				photos = ObsoletePhotoQueries.Query (new Tag[] {tag});
 			else if (Preferences.Get<int> (Preferences.SCREENSAVER_TAG) == 0)
-				photos = Database.Photos.Query (new Tag [] {});
+				photos = ObsoletePhotoQueries.Query (new Tag [] {});
 			else
 				photos = new IPhoto [0];
 

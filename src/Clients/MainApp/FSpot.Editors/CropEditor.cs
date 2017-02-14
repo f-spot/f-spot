@@ -33,6 +33,7 @@ using System.IO;
 using System.Xml.Serialization;
 
 using FSpot;
+using FSpot.Settings;
 using FSpot.UI.Dialog;
 using FSpot.Utils;
 
@@ -189,7 +190,7 @@ namespace FSpot.Editors {
 		{
 			string stockname = (string)tree_model.GetValue (iter, 0);
 			if (stockname != null)
-				(cell as CellRendererPixbuf).Pixbuf = GtkUtil.TryLoadIcon (FSpot.Core.Global.IconTheme, stockname, 16, (Gtk.IconLookupFlags)0);
+				(cell as CellRendererPixbuf).Pixbuf = GtkUtil.TryLoadIcon (FSpot.Settings.Global.IconTheme, stockname, 16, (Gtk.IconLookupFlags)0);
 			else
 				(cell as CellRendererPixbuf).Pixbuf = null;
 		}

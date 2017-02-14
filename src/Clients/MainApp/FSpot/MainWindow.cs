@@ -47,6 +47,7 @@ using Hyena.Widgets;
 using FSpot;
 using FSpot.Core;
 using FSpot.Database;
+using FSpot.Database.Jobs;
 using FSpot.Extensions;
 using FSpot.Query;
 using FSpot.Widgets;
@@ -55,6 +56,7 @@ using FSpot.UI.Dialog;
 using FSpot.Platform;
 using FSpot.Import;
 using FSpot.Imaging;
+using FSpot.Settings;
 
 namespace FSpot
 {
@@ -200,7 +202,7 @@ namespace FSpot
 		// Tag Icon Sizes
 		public int TagsIconSize {
 			get { return (int)Tag.TagIconSize; }
-			set { Tag.TagIconSize = (Tag.IconSize)value; }
+			set { Tag.TagIconSize = (Settings.IconSize)value; }
 		}
 
 		static TargetEntry[] tag_target_table =
@@ -666,7 +668,7 @@ namespace FSpot
 		void HandleDbItemsChanged (object sender, DbItemEventArgs<Photo> args)
 		{
 			foreach (Photo p in args.Items.Where(p => p != null).Where(p => write_metadata)) {
-				FSpot.Jobs.SyncMetadataJob.Create (Database.Jobs, p);
+				SyncMetadataJob.Create (Database.Jobs, p);
 			}
 
 			if (args is PhotoEventArgs && (args as PhotoEventArgs).Changes.TimeChanged)
@@ -1455,7 +1457,7 @@ namespace FSpot
 
 		void HandlePageSetupActivated (object o, EventArgs e)
 		{
-			FSpot.Core.Global.PageSetup = Print.RunPageSetupDialog (this.Window, FSpot.Core.Global.PageSetup, null);
+			FSpot.Settings.Global.PageSetup = Print.RunPageSetupDialog (this.Window, FSpot.Settings.Global.PageSetup, null);
 		}
 
 		// XXX: never called
@@ -1507,13 +1509,13 @@ namespace FSpot
 			int old_size = TagsIconSize;
 
 			if (choice == tag_icon_hidden) {
-				TagsIconSize = (int)Tag.IconSize.Hidden;
+				TagsIconSize = (int)Settings.IconSize.Hidden;
 			} else if (choice == tag_icon_small) {
-				TagsIconSize = (int)Tag.IconSize.Small;
+				TagsIconSize = (int)Settings.IconSize.Small;
 			} else if (choice == tag_icon_medium) {
-				TagsIconSize = (int)Tag.IconSize.Medium;
+				TagsIconSize = (int)Settings.IconSize.Medium;
 			} else if (choice == tag_icon_large) {
-				TagsIconSize = (int)Tag.IconSize.Large;
+				TagsIconSize = (int)Settings.IconSize.Large;
 			} else {
 				return;
 			}
@@ -1777,7 +1779,7 @@ namespace FSpot
 			Array.Copy (tags, 0, removetags, 0, tags.Length - 1);
 
 			// Add the surviving tag to all the photos with the other tags
-			var photos = Database.Photos.Query (removetags);
+			var photos = ObsoletePhotoQueries.Query (removetags);
 			foreach (Photo p in photos) {
 				p.AddTag (survivor);
 			}
@@ -2523,10 +2525,10 @@ namespace FSpot
 
 			case Preferences.TAG_ICON_SIZE:
 				int s = Preferences.Get<int> (key);
-				tag_icon_hidden.Active = (s == (int)Tag.IconSize.Hidden);
-				tag_icon_small.Active = (s == (int)Tag.IconSize.Small);
-				tag_icon_medium.Active = (s == (int)Tag.IconSize.Medium);
-				tag_icon_large.Active = (s == (int)Tag.IconSize.Large);
+				tag_icon_hidden.Active = (s == (int)Settings.IconSize.Hidden);
+				tag_icon_small.Active = (s == (int)Settings.IconSize.Small);
+				tag_icon_medium.Active = (s == (int)Settings.IconSize.Medium);
+				tag_icon_large.Active = (s == (int)Settings.IconSize.Large);
 
 				break;
 

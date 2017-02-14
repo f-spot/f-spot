@@ -48,7 +48,9 @@ using Hyena;
 
 using FSpot;
 using FSpot.Core;
+using FSpot.Database;
 using FSpot.Filters;
+using FSpot.Settings;
 using FSpot.Widgets;
 using FSpot.UI.Dialog;
 

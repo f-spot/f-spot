@@ -36,7 +36,9 @@ using System.Collections.Generic;
 using Gtk;
 
 using FSpot.Core;
+using FSpot.Database;
 using FSpot.Query;
+using FSpot.Settings;
 using FSpot.UI.Dialog;
 
 namespace FSpot.UI.Dialog
@@ -56,7 +58,7 @@ namespace FSpot.UI.Dialog
 		{
 			this.query = query;
 			this.rollstore = rollstore;
-			rolls = rollstore.GetRolls (FSpot.Preferences.Get<int> (FSpot.Preferences.IMPORT_GUI_ROLL_HISTORY));
+			rolls = rollstore.GetRolls (Preferences.Get<int> (Preferences.IMPORT_GUI_ROLL_HISTORY));
 
 			TransientFor = parent;
 

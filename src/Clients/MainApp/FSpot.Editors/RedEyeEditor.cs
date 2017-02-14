@@ -29,7 +29,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using FSpot;
+using FSpot.Settings;
 
 using Gdk;
 using Gtk;

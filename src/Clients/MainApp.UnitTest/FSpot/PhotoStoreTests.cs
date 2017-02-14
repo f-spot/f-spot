@@ -32,6 +32,7 @@ using FSpot.Database;
 using FSpot.Mocks;
 using Hyena;
 using Mono.Unix;
+using Moq;
 using NUnit.Framework;
 
 namespace FSpot
@@ -59,7 +60,10 @@ namespace FSpot
 		[Test]
 		public void CreateFrom()
 		{
-			var store = new PhotoStore (new FSpotDatabaseConnection (database), true);
+			var databaseConnection = new FSpotDatabaseConnection (database);
+			var dbMock = new Mock<IDb> ();
+			dbMock.Setup (m => m.Database).Returns (databaseConnection);
+			var store = new PhotoStore (null, null, dbMock.Object, true);
 			var photoMock = PhotoMock.Create (uri, originalName);
 
 			var photo = store.CreateFrom (photoMock, true, 1);
@@ -75,7 +79,10 @@ namespace FSpot
 		[Test]
 		public void CreateFromWithVersionIgnored()
 		{
-			var store = new PhotoStore (new FSpotDatabaseConnection (database), true);
+			var databaseConnection = new FSpotDatabaseConnection (database);
+			var dbMock = new Mock<IDb> ();
+			dbMock.Setup (m => m.Database).Returns (databaseConnection);
+			var store = new PhotoStore (null, null, dbMock.Object, true);
 			var photoMock = PhotoMock.CreateWithVersion (uri, originalName, modifiedUri, modifiedName);
 
 			var photo = store.CreateFrom (photoMock, true, 1);
@@ -91,7 +98,10 @@ namespace FSpot
 		[Test]
 		public void CreateFromWithVersionAdded()
 		{
-			var store = new PhotoStore (new FSpotDatabaseConnection (database), true);
+			var databaseConnection = new FSpotDatabaseConnection (database);
+			var dbMock = new Mock<IDb> ();
+			dbMock.Setup (m => m.Database).Returns (databaseConnection);
+			var store = new PhotoStore (null, null, dbMock.Object, true);
 			var photoMock = PhotoMock.CreateWithVersion (uri, originalName, modifiedUri, modifiedName);
 
 			var photo = store.CreateFrom (photoMock, false, 1);

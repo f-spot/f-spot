@@ -77,6 +77,14 @@
       <Project>{069D1797-427D-4CED-A754-233DE64FC5DD}</Project>
       <Name>gtk-sharp-beans</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\FSpot.Settings\FSpot.Settings.csproj">
+      <Project>{423B5DED-65C8-4C4A-9DBB-7D7BD440F78F}</Project>
+      <Name>FSpot.Settings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\FSpot.Database\FSpot.Database.csproj">
+      <Project>{16E9C7DC-54BD-4C93-9B2A-AE9CDCE1CEFD}</Project>
+      <Name>FSpot.Database</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="FSpot.Tools.ScreensaverConfig\" />

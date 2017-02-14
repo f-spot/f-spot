@@ -59,9 +59,9 @@ using Hyena;
 
 using Mono.Unix;
 
-using FSpot;
 using FSpot.Core;
 using FSpot.Filters;
+using FSpot.Settings;
 using FSpot.Widgets;
 using FSpot.Utils;
 using FSpot.UI.Dialog;
@@ -139,9 +139,9 @@ namespace FSpot.Exporters.Folder
 			HandleSizeActive (null, null);
 			name_entry.Text = gallery_name;
 
-			string uri_path = System.IO.Path.Combine (FSpot.Core.Global.HomeDirectory, "Desktop");
+			string uri_path = System.IO.Path.Combine (FSpot.Settings.Global.HomeDirectory, "Desktop");
 			if (!System.IO.Directory.Exists (uri_path))
-			        uri_path = FSpot.Core.Global.HomeDirectory;
+				uri_path = FSpot.Settings.Global.HomeDirectory;
 
 			uri_chooser = new Gtk.FileChooserButton (Catalog.GetString ("Select Export Folder"),
 								 Gtk.FileChooserAction.SelectFolder);

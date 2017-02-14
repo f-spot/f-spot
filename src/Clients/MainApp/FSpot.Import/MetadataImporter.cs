@@ -30,6 +30,7 @@
 using System;
 using System.Collections.Generic;
 using FSpot.Core;
+using FSpot.Database;
 using FSpot.Utils;
 using Mono.Unix;
 

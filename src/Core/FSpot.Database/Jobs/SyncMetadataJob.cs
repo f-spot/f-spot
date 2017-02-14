@@ -36,23 +36,25 @@ using Banshee.Kernel;
 using Hyena;
 
 using FSpot.Core;
+using FSpot.Database;
+using FSpot.Settings;
 using FSpot.Utils;
 
-namespace FSpot.Jobs {
+namespace FSpot.Database.Jobs {
     public class SyncMetadataJob : Job
     {
-        public SyncMetadataJob (uint id, string job_options, int run_at, JobPriority job_priority, bool persistent) : this (id, job_options, DateTimeUtil.ToDateTime (run_at), job_priority, persistent)
+        public SyncMetadataJob (IDb db, uint id, string job_options, int run_at, JobPriority job_priority, bool persistent) : this (db, id, job_options, DateTimeUtil.ToDateTime (run_at), job_priority, persistent)
         {
         }
 
-        public SyncMetadataJob (uint id, string job_options, DateTime run_at, JobPriority job_priority, bool persistent) : base (id, job_options, job_priority, run_at, persistent)
+        public SyncMetadataJob (IDb db, uint id, string job_options, DateTime run_at, JobPriority job_priority, bool persistent) : base (db, id, job_options, job_priority, run_at, persistent)
         {
         }
 
         //Use THIS static method to create a job...
         public static SyncMetadataJob Create (JobStore job_store, Photo photo)
         {
-            return (SyncMetadataJob) job_store.CreatePersistent (typeof (FSpot.Jobs.SyncMetadataJob), photo.Id.ToString ());
+            return (SyncMetadataJob) job_store.CreatePersistent (typeof (SyncMetadataJob), photo.Id.ToString ());
         }
 
         protected override bool Execute ()
@@ -61,7 +63,7 @@ namespace FSpot.Jobs {
             System.Threading.Thread.Sleep (500);
 
             try {
-                Photo photo = FSpot.App.Instance.Database.Photos.Get (Convert.ToUInt32 (JobOptions));
+                Photo photo = Db.Photos.Get (Convert.ToUInt32 (JobOptions));
                 if (photo == null)
                     return false;
 

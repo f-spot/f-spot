@@ -31,7 +31,7 @@
 
 using FSpot.Core;
 
-namespace FSpot
+namespace FSpot.Database
 {
 	public class PhotoEventArgs : DbItemEventArgs<Photo> {
 		public PhotosChanges Changes { get; private set; }

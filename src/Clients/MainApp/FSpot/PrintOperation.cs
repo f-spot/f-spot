@@ -35,6 +35,7 @@ using System.Runtime.InteropServices;
 using Mono.Unix;
 
 using FSpot.Core;
+using FSpot.Settings;
 using FSpot.Widgets;
 using FSpot.Imaging;
 using FSpot.Utils;

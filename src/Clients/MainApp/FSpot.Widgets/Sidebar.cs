@@ -32,6 +32,7 @@ using System.Collections.Generic;
 
 using FSpot.Core;
 using FSpot.Extensions;
+using FSpot.Settings;
 
 using Gtk;
 
@@ -129,7 +130,7 @@ namespace FSpot.Widgets
 			PackStart (Notebook, true, true, 0);
 
 			Button button = new Button ();
-			button.Image = new Image ("gtk-close", IconSize.Button);
+			button.Image = new Image ("gtk-close", Gtk.IconSize.Button);
 			button.Relief = ReliefStyle.None;
 			button.Pressed += HandleCloseButtonPressed;
 			button_box.PackEnd (button, false, true, 0);

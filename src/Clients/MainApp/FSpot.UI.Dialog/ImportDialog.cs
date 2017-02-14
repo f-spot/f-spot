@@ -31,6 +31,7 @@ using System;
 using System.Collections.Generic;
 using FSpot.Imaging;
 using FSpot.Import;
+using FSpot.Settings;
 using FSpot.UI.Dialog;
 using FSpot.Utils;
 using FSpot.Widgets;
@@ -111,7 +112,7 @@ namespace FSpot.UI.Dialog
 
 		void ResetPreview ()
 		{
-			photo_view.Pixbuf = GtkUtil.TryLoadIcon (FSpot.Core.Global.IconTheme, "f-spot", 128, (IconLookupFlags)0);
+			photo_view.Pixbuf = GtkUtil.TryLoadIcon (FSpot.Settings.Global.IconTheme, "f-spot", 128, (IconLookupFlags)0);
 			photo_view.ZoomFit (false);
 		}
 

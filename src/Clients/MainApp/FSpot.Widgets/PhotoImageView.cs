@@ -35,6 +35,7 @@ using System;
 
 using FSpot.Core;
 using FSpot.Loaders;
+using FSpot.Settings;
 
 using Hyena;
 

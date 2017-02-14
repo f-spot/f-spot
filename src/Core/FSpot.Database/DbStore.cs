@@ -129,16 +129,16 @@ namespace FSpot.Database
 			get { return item_cache.Count == 0; }
 		}
 
-		protected FSpotDatabaseConnection Database { get; private set; }
-
+		protected IDb Db { get; private set; }
+		protected FSpotDatabaseConnection Database { get { return Db.Database; } }
 
 		// Constructor.
 
-		public DbStore (FSpotDatabaseConnection database, bool cache_is_immortal)
+		public DbStore (IDb db, bool cache_is_immortal)
 		{
-			Database = database;
+			Db = db;
 			this.cache_is_immortal = cache_is_immortal;
-            
+
 			item_cache = new Dictionary<uint, object> ();
 		}
 

@@ -33,24 +33,23 @@ using System;
 
 using Banshee.Kernel;
 
-using FSpot;
 using FSpot.Core;
-using FSpot.Database;
 using FSpot.Jobs;
 
 using Hyena;
 using Hyena.Data.Sqlite;
-using System.Data;
 
-namespace FSpot {
+namespace FSpot.Database
+{
     public abstract class Job : DbItem, IJob
     {
-    	public Job (uint id, string job_options, JobPriority job_priority, DateTime run_at, bool persistent) : base (id)
+    	public Job (IDb db, uint id, string job_options, JobPriority job_priority, DateTime run_at, bool persistent) : base (id)
     	{
     		JobOptions = job_options;
     		JobPriority = job_priority;
     		RunAt = run_at;
     		Persistent = persistent;
+			Db = db;
     	}
     
     	public string JobOptions { get; set; }
@@ -58,6 +57,7 @@ namespace FSpot {
     	//Not in use yet !
     	public DateTime RunAt { get; private set; }
     	public bool Persistent { get; private set; }
+		protected IDb Db { get; private set; }
     
     	public event EventHandler Finished;
     
@@ -113,6 +113,7 @@ namespace FSpot {
     	{
     		return (Job) Activator.CreateInstance (
     				Type.GetType (reader ["job_type"].ToString ()),
+    				Db,
     				Convert.ToUInt32 (reader["id"]),
     				reader["job_options"].ToString (),
     				Convert.ToInt32 (reader["run_at"]),
@@ -156,7 +157,7 @@ namespace FSpot {
     						DateTimeUtil.FromDateTime (run_at),
     						Convert.ToInt32 (job_priority)));
     
-			Job job = (Job)Activator.CreateInstance (job_type, (uint) id, job_options, run_at, job_priority, true);
+			Job job = (Job)Activator.CreateInstance (job_type, Db, (uint) id, job_options, run_at, job_priority, true);
     
     		AddToCache (job);
     		job.Finished += HandleRemoveJob;
@@ -206,10 +207,10 @@ namespace FSpot {
     		Remove (o as Job);
     	}
     
-    	public JobStore (FSpotDatabaseConnection database, bool is_new) : base (database, true)
+		public JobStore (IDb db, bool is_new) : base (db, true)
     	{
     		if (is_new || !Database.TableExists ("jobs")) {
-    			CreateTable (database);
+    			CreateTable (Database);
     		} else {
     			LoadAllItems ();
             }

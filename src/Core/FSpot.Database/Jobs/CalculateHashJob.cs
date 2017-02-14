@@ -33,24 +33,26 @@ using System;
 
 using Banshee.Kernel;
 
+using FSpot.Database;
+
 using Hyena;
 
-namespace FSpot.Jobs {
+namespace FSpot.Database.Jobs {
 	public class CalculateHashJob : Job
 	{
-		public CalculateHashJob (uint id, string job_options, int run_at, JobPriority job_priority, bool persistent)
-			: this (id, job_options, DateTimeUtil.ToDateTime (run_at), job_priority, persistent)
+		public CalculateHashJob (IDb db, uint id, string job_options, int run_at, JobPriority job_priority, bool persistent)
+			: this (db, id, job_options, DateTimeUtil.ToDateTime (run_at), job_priority, persistent)
 		{
 		}
 
-		public CalculateHashJob (uint id, string job_options, DateTime run_at, JobPriority job_priority, bool persistent)
-			: base (id, job_options, job_priority, run_at, persistent)
+		public CalculateHashJob (IDb db, uint id, string job_options, DateTime run_at, JobPriority job_priority, bool persistent)
+			: base (db, id, job_options, job_priority, run_at, persistent)
 		{
 		}
 
 		public static CalculateHashJob Create (JobStore job_store, uint photo_id)
 		{
-			return (CalculateHashJob) job_store.CreatePersistent (typeof(FSpot.Jobs.CalculateHashJob), photo_id.ToString ());
+			return (CalculateHashJob) job_store.CreatePersistent (typeof(CalculateHashJob), photo_id.ToString ());
 		}
 
 		protected override bool Execute ()
@@ -62,8 +64,8 @@ namespace FSpot.Jobs {
 			Log.DebugFormat ("Calculating Hash {0}...", photo_id);
 
 			try {
-				Photo photo = FSpot.App.Instance.Database.Photos.Get (Convert.ToUInt32 (photo_id));
-				FSpot.App.Instance.Database.Photos.CalculateMD5Sum (photo);
+				Photo photo = Db.Photos.Get (Convert.ToUInt32 (photo_id));
+				Db.Photos.CalculateMD5Sum (photo);
 				return true;
 			} catch (System.Exception e) {
 				Log.DebugFormat ("Error Calculating Hash for photo {0}: {1}", JobOptions, e.Message);

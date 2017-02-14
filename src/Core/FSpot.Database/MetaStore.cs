@@ -31,14 +31,13 @@
 
 using System;
 
-using FSpot;
 using FSpot.Core;
-using FSpot.Database;
+using FSpot.Settings;
 
 using Hyena.Data.Sqlite;
-using System.Data;
 
-namespace FSpot {
+namespace FSpot.Database
+{
     public class MetaItem : DbItem {
     
     	public string Name { get; set; }
@@ -173,8 +172,8 @@ namespace FSpot {
     
     	// Constructor
     
-    	public MetaStore (FSpotDatabaseConnection database, bool is_new)
-    		: base (database, true)
+    	public MetaStore (IDb db, bool is_new)
+    		: base (db, true)
     	{
     		if (is_new || !Database.TableExists ("meta")) {
     			CreateTable ();

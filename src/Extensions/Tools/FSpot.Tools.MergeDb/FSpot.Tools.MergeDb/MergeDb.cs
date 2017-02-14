@@ -41,7 +41,9 @@ using FSpot;
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Extensions;
+using FSpot.Imaging;
 using FSpot.Query;
+using FSpot.Thumbnail;
 using FSpot.Utils;
 
 using Mono.Unix;
@@ -63,7 +65,7 @@ namespace FSpot.Tools.MergeDb
 
 		public void Run (object o, EventArgs e)
 		{
-			from_db = new Db ();
+			from_db = new Db (App.Instance.Container.Resolve<IImageFileFactory> (), App.Instance.Container.Resolve<IThumbnailService> (), new UpdaterUI ());
 			to_db = App.Instance.Database;
 
 			//ShowDialog ();
@@ -130,8 +132,8 @@ namespace FSpot.Tools.MergeDb
 
 		public static void Merge (string path, Db to_db)
 		{
-			Log.WarningFormat ("Will merge db {0} into main f-spot db {1}", path, FSpot.Core.Global.BaseDirectory + "/photos.db" );
-			Db from_db = new Db ();
+			Log.WarningFormat ("Will merge db {0} into main f-spot db {1}", path, FSpot.Settings.Global.BaseDirectory + "/photos.db" );
+			Db from_db = new Db (App.Instance.Container.Resolve<IImageFileFactory> (), App.Instance.Container.Resolve<IThumbnailService> (), new UpdaterUI ());
 			from_db.Init (path, true);
 			//MergeDb mdb = new MergeDb (from_db, to_db);
 
@@ -311,7 +313,7 @@ namespace FSpot.Tools.MergeDb
             // Find a new unique location inside the photo folder
             string name = uri.GetFilename ();
 
-            var dest_uri = FSpot.Core.Global.PhotoUri.Append (time.Year.ToString ())
+            var dest_uri = FSpot.Settings.Global.PhotoUri.Append (time.Year.ToString ())
                                           .Append (String.Format ("{0:D2}", time.Month))
                                           .Append (String.Format ("{0:D2}", time.Day));
             EnsureDirectory (dest_uri);

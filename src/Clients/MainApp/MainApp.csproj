@@ -46,10 +46,6 @@
     <Compile Include="FSpot.ColorAdjustment\SepiaTone.cs" />
     <Compile Include="FSpot\ColorManagement.cs" />
     <Compile Include="FSpot\ControlOverlay.cs" />
-    <Compile Include="FSpot.Database\Db.cs" />
-    <Compile Include="FSpot.Database\FSpotDatabaseConnection.cs" />
-    <Compile Include="FSpot.Database\Tests\UpdaterTests.cs" />
-    <Compile Include="FSpot.Database\Updater.cs" />
     <Compile Include="FSpot\DragDropTargets.cs" />
     <Compile Include="FSpot.Editors\ColorEditor.cs" />
     <Compile Include="FSpot.Editors\CropEditor.cs" />
@@ -93,8 +89,6 @@
     <Compile Include="FSpot.Import\MetadataImporter.cs" />
     <Compile Include="FSpot\InfoOverlay.cs" />
     <Compile Include="FSpot\ItemAction.cs" />
-    <Compile Include="FSpot.Jobs\CalculateHashJob.cs" />
-    <Compile Include="FSpot.Jobs\SyncMetadataJob.cs" />
     <Compile Include="FSpot.Loaders\AreaPreparedEventArgs.cs" />
     <Compile Include="FSpot.Loaders\AreaUpdatedEventArgs.cs" />
     <Compile Include="FSpot.Loaders\GdkImageLoader.cs" />
@@ -102,18 +96,13 @@
     <Compile Include="FSpot.Loaders\ImageLoader.cs" />
     <Compile Include="FSpot\main.cs" />
     <Compile Include="FSpot\MainWindow.cs" />
-    <Compile Include="FSpot\Photo.cs" />
-    <Compile Include="FSpot\PhotoEventArgs.cs" />
     <Compile Include="FSpot\PhotoLoader.cs" />
     <Compile Include="FSpot\PhotoPopup.cs" />
     <Compile Include="FSpot\PhotoQuery.cs" />
-    <Compile Include="FSpot\PhotoVersion.cs" />
     <Compile Include="FSpot\PhotoView.cs" />
     <Compile Include="FSpot\PixbufCache.cs" />
-    <Compile Include="FSpot\Preferences.cs" />
     <Compile Include="FSpot\PrintOperation.cs" />
     <Compile Include="FSpot\ProgressItem.cs" />
-    <Compile Include="FSpot.Query\HiddenTag.cs" />
     <Compile Include="FSpot\RotateCommand.cs" />
     <Compile Include="FSpot\SelectionDataExtensions.cs" />
     <Compile Include="FSpot\SendEmail.cs" />
@@ -174,14 +163,6 @@
     <Compile Include="TagCommands.cs" />
     <Compile Include="TagPopup.cs" />
     <Compile Include="ThumbnailCommand.cs" />
-    <Compile Include="FSpot\ExportStore.cs" />
-    <Compile Include="FSpot\JobStore.cs" />
-    <Compile Include="FSpot\MetaStore.cs" />
-    <Compile Include="FSpot\PhotoStore.cs" />
-    <Compile Include="FSpot\RollStore.cs" />
-    <Compile Include="FSpot\TagStore.cs" />
-    <Compile Include="FSpot.Database\DbException.cs" />
-    <Compile Include="FSpot.Database\DbStore.cs" />
     <Compile Include="FSpot.Widgets\ThumbnailCaptionRenderer.cs" />
     <Compile Include="FSpot.Widgets\ThumbnailDateCaptionRenderer.cs" />
     <Compile Include="FSpot.Widgets\ThumbnailDecorationRenderer.cs" />
@@ -222,6 +203,8 @@
     <Compile Include="FSpot.Import\PhotoScanFinishedEventArgs.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="FSpot.Import\PhotoFileTracker.cs" />
+    <Compile Include="FSpot\ObsoletePhotoQueries.cs" />
+    <Compile Include="FSpot.Database\UpdaterUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\icons\f-spot-not.png">
@@ -405,6 +388,14 @@
     <ProjectReference Include="..\..\Core\FSpot.Thumbnail\FSpot.Thumbnail.csproj">
       <Project>{A1DEDA9C-E664-485E-AD65-6ABA83C58BC2}</Project>
       <Name>FSpot.Thumbnail</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\FSpot.Settings\FSpot.Settings.csproj">
+      <Project>{423B5DED-65C8-4C4A-9DBB-7D7BD440F78F}</Project>
+      <Name>FSpot.Settings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\FSpot.Database\FSpot.Database.csproj">
+      <Project>{16E9C7DC-54BD-4C93-9B2A-AE9CDCE1CEFD}</Project>
+      <Name>FSpot.Database</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

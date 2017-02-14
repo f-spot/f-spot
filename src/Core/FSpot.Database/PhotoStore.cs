@@ -43,15 +43,17 @@ using System.Linq;
 using System.Text;
 using FSpot;
 using FSpot.Core;
-using FSpot.Database;
-using FSpot.Jobs;
+using FSpot.Database.Jobs;
+using FSpot.Imaging;
 using FSpot.Query;
+using FSpot.Thumbnail;
 using FSpot.Utils;
 using Hyena;
 using Hyena.Data.Sqlite;
 using Mono.Unix;
 
-namespace FSpot {
+namespace FSpot.Database
+{
 	public class PhotoStore : DbStore<Photo> {
 		public int TotalPhotos {
 			get {
@@ -62,10 +64,20 @@ namespace FSpot {
 			}
 		}
 
+		#region fields
+
+		readonly IImageFileFactory imageFileFactory;
+		readonly IThumbnailService thumbnailService;
+
+		#endregion
+
 		// Constructor
-		public PhotoStore (FSpotDatabaseConnection database, bool isNew)
-			: base (database, false)
+		public PhotoStore (IImageFileFactory imageFileFactory, IThumbnailService thumbnailService, IDb db, bool isNew)
+			: base (db, false)
 		{
+			this.imageFileFactory = imageFileFactory;
+			this.thumbnailService = thumbnailService;
+
 			if (!isNew)
 				return;
 
@@ -150,7 +162,7 @@ namespace FSpot {
 						Log.Debug ("Skipping duplicate", uri);
 
 						// Schedule a hash calculation job on the existing file.
-						CalculateHashJob.Create (App.Instance.Database.Jobs, Convert.ToUInt32 (reader ["id"]));
+						CalculateHashJob.Create (Db.Jobs, Convert.ToUInt32 (reader ["id"]));
 
 						return true;
 					}
@@ -179,7 +191,7 @@ namespace FSpot {
 					"0"
 				));
 
-			photo = new Photo (id, unix_time);
+			photo = new Photo (imageFileFactory, thumbnailService, id, unix_time);
 
 			uint versionId = Photo.OriginalVersionId;
 			IEnumerable<IPhotoVersion> versions = defaultVersionOnly ? new[] { item.DefaultVersion } : item.Versions;
@@ -237,7 +249,7 @@ namespace FSpot {
 			using (var reader = Database.Query (new HyenaSqliteCommand ("SELECT tag_id FROM photo_tags WHERE photo_id = ?", photo.Id))) {
 				while (reader.Read ()) {
 					uint tag_id = Convert.ToUInt32 (reader ["tag_id"]);
-					Tag tag = App.Instance.Database.Tags.Get (tag_id);
+					Tag tag = Db.Tags.Get (tag_id);
 					photo.AddTagUnsafely (tag);
 				}
 			}
@@ -285,7 +297,7 @@ namespace FSpot {
 
 					if (reader [1] != null) {
 						uint tag_id = Convert.ToUInt32 (reader ["tag_id"]);
-						Tag tag = App.Instance.Database.Tags.Get (tag_id);
+						Tag tag = Db.Tags.Get (tag_id);
 						photo.AddTagUnsafely (tag);
 					}
 				}
@@ -304,7 +316,7 @@ namespace FSpot {
 				"WHERE id = ?", id))) {
 
 				if (reader.Read ()) {
-					photo = new Photo (id, Convert.ToInt64 (reader ["time"]));
+					photo = new Photo (imageFileFactory, thumbnailService, id, Convert.ToInt64 (reader ["time"]));
 					photo.Description = reader ["description"].ToString ();
 					photo.RollId = Convert.ToUInt32 (reader ["roll_id"]);
 					photo.DefaultVersionId = Convert.ToUInt32 (reader ["default_version_id"]);
@@ -339,7 +351,7 @@ namespace FSpot {
 				base_uri.ToString (), filename))) {
 
 				if (reader.Read ()) {
-					photo = new Photo (Convert.ToUInt32 (reader ["id"]),
+					photo = new Photo (imageFileFactory, thumbnailService, Convert.ToUInt32 (reader ["id"]),
 						Convert.ToInt64 (reader ["time"]));
 
 					photo.Description = reader ["description"].ToString ();
@@ -367,14 +379,14 @@ namespace FSpot {
 
 		public void Remove (Tag []tags)
 		{
-			Photo[] photos = Query (tags, String.Empty, null, null);
+			Photo[] photos = Query (new OrTerm (tags.Select (t => new TagTerm (t)).ToArray ()));
 
 			foreach (Photo photo in photos)
 				photo.RemoveCategory (tags);
 			Commit (photos);
 
 			foreach (Tag tag in tags)
-				App.Instance.Database.Tags.Remove (tag);
+				Db.Tags.Remove (tag);
 		}
 
 		public void Remove (Photo []items)
@@ -647,13 +659,7 @@ namespace FSpot {
 		}
 
 		// Queries.
-		[Obsolete ("drop this, use IQueryCondition correctly instead")]
-		public Photo [] Query (Tag [] tags)
-		{
-			return Query (tags, null, null, null, null);
-		}
-
-		static string BuildQuery (params IQueryCondition [] conditions)
+		public static string BuildQuery (params IQueryCondition [] conditions)
 		{
 			var query_builder = new StringBuilder ("SELECT * FROM photos ");
 
@@ -758,7 +764,7 @@ namespace FSpot {
 					Photo photo = LookupInCache (id);
 
 					if (photo == null) {
-						photo = new Photo (id, Convert.ToInt64 (reader ["time"]));
+						photo = new Photo (imageFileFactory, thumbnailService, id, Convert.ToInt64 (reader ["time"]));
 						photo.Description = reader ["description"].ToString ();
 						photo.RollId = Convert.ToUInt32 (reader ["roll_id"]);
 						photo.DefaultVersionId = Convert.ToUInt32 (reader ["default_version_id"]);
@@ -831,89 +837,6 @@ namespace FSpot {
 				"AND base_uri NOT LIKE ?",
 				uri + "%",
 				uri + "/%/%"));
-		}
-
-		[Obsolete ("drop this, use IQueryCondition correctly instead")]
-		public Photo [] Query (Tag [] tags, string extraCondition, DateRange range, RollSet importidrange)
-		{
-			return Query (OrTerm.FromTags(tags), extraCondition, range, importidrange, null);
-		}
-
-		[Obsolete ("drop this, use IQueryCondition correctly instead")]
-		public Photo [] Query (Tag [] tags, string extraCondition, DateRange range, RollSet importidrange, RatingRange ratingrange)
-		{
-			return Query (OrTerm.FromTags(tags), extraCondition, range, importidrange, ratingrange);
-		}
-
-		[Obsolete ("drop this, use IQueryCondition correctly instead")]
-		public Photo [] Query (Term searchexpression, string extraCondition, DateRange range, RollSet importidrange, RatingRange ratingrange)
-		{
-			bool hide = (extraCondition == null);
-
-			// The SQL query that we want to construct is:
-			//
-			// SELECT photos.id
-			//        photos.time
-			//        photos.uri,
-			//        photos.description,
-			//        photos.roll_id,
-			//        photos.default_version_id
-			//        photos.rating
-			//                  FROM photos, photo_tags
-			//                  WHERE photos.time >= time1 AND photos.time <= time2
-			//                              AND photos.rating >= rat1 AND photos.rating <= rat2
-			//                              AND photos.id NOT IN (select photo_id FROM photo_tags WHERE tag_id = HIDDEN)
-			//                              AND photos.id IN (select photo_id FROM photo_tags where tag_id IN (tag1, tag2..)
-			//                              AND extra_condition_string
-			//                  GROUP BY photos.id
-
-			var query_builder = new StringBuilder ();
-			var where_clauses = new List<string> ();
-			query_builder.Append ("SELECT id, " +
-					"time, " +
-					"base_uri, " +
-					"filename, " +
-					"description, " +
-					"roll_id, " +
-					"default_version_id, " +
-					"rating " +
-				"FROM photos ");
-
-			if (range != null) {
-				where_clauses.Add (String.Format ("time >= {0} AND time <= {1}",
-					DateTimeUtil.FromDateTime (range.Start),
-					DateTimeUtil.FromDateTime (range.End)));
-
-			}
-
-			if (ratingrange != null) {
-				where_clauses.Add (ratingrange.SqlClause ());
-			}
-
-			if (importidrange != null) {
-				where_clauses.Add (importidrange.SqlClause ());
-			}
-
-			if (hide && App.Instance.Database.Tags.Hidden != null) {
-				where_clauses.Add (String.Format ("id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {0})",
-					App.Instance.Database.Tags.Hidden.Id));
-			}
-
-			if (searchexpression != null) {
-				where_clauses.Add (searchexpression.SqlCondition ());
-			}
-
-			if (extraCondition != null && extraCondition.Trim () != String.Empty) {
-				where_clauses.Add (extraCondition);
-			}
-
-			if (where_clauses.Count > 0) {
-				query_builder.Append (" WHERE ");
-				query_builder.Append (String.Join (" AND ", where_clauses.ToArray ()));
-			}
-
-			query_builder.Append (" ORDER BY time");
-			return Query (query_builder.ToString ());
 		}
 	}
 }

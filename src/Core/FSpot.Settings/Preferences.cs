@@ -35,12 +35,11 @@
 
 using System;
 using System.Collections.Generic;
-using FSpot.Core;
 using FSpot.Platform;
 using Hyena;
 using Mono.Unix;
 
-namespace FSpot
+namespace FSpot.Settings
 {
 	public static class Preferences
 	{
@@ -173,7 +172,7 @@ namespace FSpot
 				return true;
 
 			case TAG_ICON_SIZE:
-				return (int) Tag.IconSize.Medium;
+				return (int) IconSize.Medium;
 
 			case TAG_ICON_AUTOMATIC:
 				return true;

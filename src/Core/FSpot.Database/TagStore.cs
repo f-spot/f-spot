@@ -2,10 +2,12 @@
 // TagStore.cs
 //
 // Author:
+//   Daniel Köb <daniel.koeb@peony.at>
 //   Ettore Perazzoli <ettore@src.gnome.org>
 //   Stephane Delcroix <stephane@delcroix.org>
 //   Larry Ewing <lewing@novell.com>
 //
+// Copyright (C) 2016 Daniel Köb
 // Copyright (C) 2003-2009 Novell, Inc.
 // Copyright (C) 2003 Ettore Perazzoli
 // Copyright (C) 2007-2009 Stephane Delcroix
@@ -36,14 +38,16 @@ using System.Collections;
 using System.Collections.Generic;
 using FSpot;
 using FSpot.Core;
-using FSpot.Database;
-using FSpot.Jobs;
+using FSpot.Database.Jobs;
+using FSpot.Query;
+using FSpot.Settings;
 using FSpot.Utils;
 using Hyena;
 using Hyena.Data.Sqlite;
 using Mono.Unix;
 
-namespace FSpot {
+namespace FSpot.Database
+{
 	public class InvalidTagOperationException : InvalidOperationException {
 
 		public InvalidTagOperationException (Tag t, string message) : base (message)
@@ -77,11 +81,19 @@ namespace FSpot {
 		}
 	}
 
-	public class TagStore : DbStore<Tag>, IDisposable {
+	public class TagStore : DbStore<Tag>, IDisposable
+	{
 		bool disposed;
+		Tag hidden;
 
 		public Category RootCategory { get; private set; }
-		public Tag Hidden { get; private set; }
+		public Tag Hidden {
+			get { return hidden; }
+			private set {
+				hidden = value;
+				HiddenTag.Tag = value;
+			}
+		}
 		const string STOCK_ICON_DB_PREFIX = "stock_icon:";
 
 		static void SetIconFromString (Tag tag, string iconString)
@@ -197,8 +209,8 @@ namespace FSpot {
 			}
 			reader.Dispose ();
 
-			if (App.Instance.Database.Meta.HiddenTagId.Value != null)
-				Hidden = LookupInCache ((uint)App.Instance.Database.Meta.HiddenTagId.ValueAsInt);
+			if (Db.Meta.HiddenTagId.Value != null)
+				Hidden = LookupInCache ((uint)Db.Meta.HiddenTagId.ValueAsInt);
 		}
 
 		void CreateTable ()
@@ -226,8 +238,8 @@ namespace FSpot {
 			hidden_tag.SortPriority = -9;
 			Hidden = hidden_tag;
 			Commit (hidden_tag);
-			App.Instance.Database.Meta.HiddenTagId.ValueAsInt = (int) hidden_tag.Id;
-			App.Instance.Database.Meta.Commit (App.Instance.Database.Meta.HiddenTagId);
+			Db.Meta.HiddenTagId.ValueAsInt = (int) hidden_tag.Id;
+			Db.Meta.Commit (Db.Meta.HiddenTagId);
 
 			Tag people_category = CreateCategory (RootCategory, Catalog.GetString ("People"), false);
 			people_category.ThemeIconName = "emblem-people";
@@ -246,8 +258,8 @@ namespace FSpot {
 		}
 
 		// Constructor
-		public TagStore (FSpotDatabaseConnection database, bool isNew)
-			: base (database, true)
+		public TagStore (IDb db, bool isNew)
+			: base (db, true)
 		{
 			// The label for the root category is used in new and edit tag dialogs
 			RootCategory = new Category (null, 0, Catalog.GetString ("(None)"));
@@ -385,10 +397,10 @@ namespace FSpot {
 								  tag.Id));
 	
 				if (updateXmp && Preferences.Get<bool> (Preferences.METADATA_EMBED_IN_IMAGE)) {
-					Photo [] photos = App.Instance.Database.Photos.Query (new Tag [] { tag });
+					Photo [] photos = Db.Photos.Query (new TagTerm (tag));
 					foreach (Photo p in photos)
 						if (p.HasTag (tag)) // the query returns all the pics of the tag and all its child. this avoids updating child tags
-							SyncMetadataJob.Create (App.Instance.Database.Jobs, p);
+							SyncMetadataJob.Create (Db.Jobs, p);
 				}
 			}
 

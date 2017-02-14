@@ -39,8 +39,9 @@ using Gdk;
 
 using Mono.Unix;
 
-using FSpot;
 using FSpot.Core;
+using FSpot.Database;
+using FSpot.Settings;
 using FSpot.UI.Dialog;
 
 using Hyena;

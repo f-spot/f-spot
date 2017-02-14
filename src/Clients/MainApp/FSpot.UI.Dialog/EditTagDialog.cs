@@ -36,6 +36,7 @@ using Gtk;
 
 using FSpot.Core;
 using FSpot.Database;
+using FSpot.Settings;
 
 namespace FSpot.UI.Dialog
 {

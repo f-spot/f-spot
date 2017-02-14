@@ -29,10 +29,9 @@
 
 using System;
 using System.IO;
-
-using Mono.Unix;
-
+using FSpot.Settings;
 using Hyena;
+using Mono.Unix;
 
 namespace FSpot.UI.Dialog
 {
@@ -150,7 +149,7 @@ namespace FSpot.UI.Dialog
             TranslatorCredits = Catalog.GetString ("translator-credits");
             if (System.String.Compare (TranslatorCredits, "translator-credits") == 0)
                 TranslatorCredits = null;
-            Version = FSpot.Core.Defines.VERSION;
+            Version = Defines.VERSION;
             Website = "http://f-spot.org";
             WebsiteLabel = Catalog.GetString ("F-Spot Website");
             WrapLicense = true;

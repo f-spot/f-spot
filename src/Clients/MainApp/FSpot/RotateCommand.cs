@@ -38,6 +38,7 @@ using Gtk;
 
 using FSpot;
 using FSpot.Core;
+using FSpot.Settings;
 using FSpot.Thumbnail;
 using FSpot.UI.Dialog;
 using FSpot.Utils;
