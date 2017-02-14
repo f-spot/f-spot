@@ -28,8 +28,10 @@
 //
 
 using System;
+using System.Runtime.InteropServices;
 
 using Cairo;
+using Gdk;
 
 namespace FSpot.Utils
 {
@@ -44,6 +46,54 @@ namespace FSpot.Utils
 							       GdkUtils.GetXVisual (d.Visual),
 							       width, height);
 			return surface;
+		}
+
+		unsafe public static Pixbuf PixbufFromSurface(ImageSurface source)
+		{
+			int width = source.Width;
+			int height = source.Height;
+                        byte []gdkPixels = new byte[width*height*4];
+
+			Format format = source.Format;
+		
+			Surface surface = new ImageSurface(gdkPixels, format, width, height, 4*width);
+			Context ctx = new Context(surface);
+			ctx.SetSourceSurface(source, 0, 0);
+
+			if (format == Format.ARGB32)
+				ctx.MaskSurface(source, 0, 0);
+			else
+				ctx.Paint();
+
+			int j;
+			for (j=height; j > 0 ;j--)
+			{
+				int p = (height-j)*4*width;
+				int end = p + 4*width;
+				byte tmp;
+
+				while (p < end)
+				{
+					tmp = gdkPixels[p+0];
+					if(System.BitConverter.IsLittleEndian)
+					{
+						gdkPixels[p+0] = gdkPixels[p+2];
+						gdkPixels[p+2] = tmp;
+					}
+					else
+					{
+						gdkPixels[p+0] = gdkPixels[p+1];
+						gdkPixels[p+1] = gdkPixels[p+2];
+						gdkPixels[p+2] = gdkPixels[p+3];
+						gdkPixels[p+3] = tmp;
+					}
+					p += 4;
+				}
+			}
+
+			surface.Destroy();
+			Pixbuf pixbuf = new Pixbuf(gdkPixels, Colorspace.Rgb, true, 8, width, height, 4*width);
+			return pixbuf;
 		}
 	}
 }

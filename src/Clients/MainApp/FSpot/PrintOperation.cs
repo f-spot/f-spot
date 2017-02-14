@@ -37,6 +37,7 @@ using Mono.Unix;
 using FSpot.Core;
 using FSpot.Widgets;
 using FSpot.Imaging;
+using FSpot.Utils;
 
 using Hyena;
 
@@ -123,8 +124,8 @@ namespace FSpot
 			double w = context.Width / ppx;
 			double h = context.Height / ppy;
 
-			// compute picture size using 4800DPI
-			double mx=(w / 25.4) * 4800, my=(h / 25.4) * 4800;
+			// compute picture size
+			double mx=(w / 25.4) * context.DpiX, my=(h / 25.4) * context.DpiY;
 
 			for (int x = 0; x <= ppx; x++) {
 				for (int y = 0; y <= ppy; y++) {
@@ -138,6 +139,10 @@ namespace FSpot
 						Gdk.Pixbuf pixbuf;
 						try {
 							pixbuf = img.Load ((int) mx, (int) my);
+							if (pixbuf == null) {
+								Log.Error ("Not enough memory for printing " + selected_photos [p_index].DefaultVersion.Uri);
+								continue;
+							}
 							Cms.Profile printer_profile;
 							if (ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_OUTPUT_PROFILE), out printer_profile))
 								ColorManagement.ApplyProfile (pixbuf, img.GetProfile (), printer_profile);
@@ -148,7 +153,7 @@ namespace FSpot
 										      PixbufUtils.ErrorPixbuf.Width,
 										      PixbufUtils.ErrorPixbuf.Height);
 						}
-						//Gdk.Pixbuf pixbuf = img.Load (100, 100);
+
 						bool rotated = false;
 						if (Math.Sign ((double)pixbuf.Width/pixbuf.Height - 1.0) != Math.Sign (w/h - 1.0)) {
 							Gdk.Pixbuf d_pixbuf = pixbuf.RotateSimple (Gdk.PixbufRotation.Counterclockwise);
@@ -267,14 +272,9 @@ namespace FSpot
 			cr.Restore ();
 		}
 
-		//FIXME: f_pixbuf_from_cairo_surface is missing from libfspot
-		[DllImport("libfspot")]
-		static extern IntPtr f_pixbuf_from_cairo_surface (IntPtr handle);
-
-		static Gdk.Pixbuf CreatePixbuf (Surface s)
+		static Gdk.Pixbuf CreatePixbuf (ImageSurface s)
 		{
-			IntPtr result = f_pixbuf_from_cairo_surface (s.Handle);
-			return (Gdk.Pixbuf) GLib.Object.GetObject (result, true);
+			return CairoUtils.PixbufFromSurface(s);
 		}
 	}
 }
