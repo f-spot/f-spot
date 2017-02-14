@@ -1,10 +1,13 @@
-﻿//
-// FileImportSourceTests.cs
+//
+// DCRawImageFile.cs
 //
 // Author:
-//   Daniel Köb <daniel.koeb@peony.at>
+//   Larry Ewing <lewing@novell.com>
+//   Ruben Vermeersch <ruben@savanne.be>
 //
-// Copyright (C) 2016 Daniel Köb
+// Copyright (C) 2005-2010 Novell, Inc.
+// Copyright (C) 2005-2006 Larry Ewing
+// Copyright (C) 2010 Ruben Vermeersch
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -27,37 +30,30 @@
 //
 
 using Hyena;
-using NUnit.Framework;
 
-namespace FSpot.Import
+namespace FSpot.Imaging
 {
-	[TestFixture]
-	public class FileImportSourceTests
+	class DCRawImageFile : BaseImageFile
 	{
-		[Test]
-		public void TestIsJpegRawPair ()
+		const string dcraw_command = "dcraw";
+
+		public DCRawImageFile (SafeUri uri) : base (uri)
 		{
-			var jpeg = new SafeUri ("file:///a/photo.jpeg");
-			var jpg = new SafeUri ("file:///a/photo.jpg");
+		}
 
-			var nef = new SafeUri ("file:///a/photo.nef");
-			var nef2 = new SafeUri ("file:///b/photo.nef");
-			var crw = new SafeUri ("file:///a/photo.crw");
-			var crw2 = new SafeUri ("file:///a/photo2.jpeg");
+		public override System.IO.Stream PixbufStream ()
+		{
+			return RawPixbufStream (Uri);
+		}
 
-			// both jpegs
-			Assert.IsFalse (FileImportSource.IsJpegRawPair (jpeg, jpg));
-			// both raw
-			Assert.IsFalse (FileImportSource.IsJpegRawPair (nef, crw));
-			// different filename
-			Assert.IsFalse (FileImportSource.IsJpegRawPair (jpeg, crw2));
-			// different basedir
-			Assert.IsFalse (FileImportSource.IsJpegRawPair (jpeg, nef2));
+		internal static System.IO.Stream RawPixbufStream (SafeUri location)
+		{
+			string path = location.LocalPath;
+			string [] args = { dcraw_command, "-h", "-w", "-c", "-t", "0", path };
 
-			Assert.IsTrue (FileImportSource.IsJpegRawPair (jpeg, nef));
-			Assert.IsTrue (FileImportSource.IsJpegRawPair (jpeg, crw));
-			Assert.IsTrue (FileImportSource.IsJpegRawPair (jpg, nef));
+			var proc = new InternalProcess (System.IO.Path.GetDirectoryName (path), args);
+			proc.StandardInput.Close ();
+			return proc.StandardOutput;
 		}
 	}
 }
-

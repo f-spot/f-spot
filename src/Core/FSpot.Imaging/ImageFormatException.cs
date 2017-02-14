@@ -1,12 +1,13 @@
 //
-// SharpFilter.cs
+// ImageFormatException.cs
 //
 // Author:
-//   Stephane Delcroix <sdelcroix@src.gnome.org>
+//   Stephane Delcroix <stephane@delcroix.org>
 //   Ruben Vermeersch <ruben@savanne.be>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
 // Copyright (C) 2007-2010 Novell, Inc.
-// Copyright (C) 2007 Stephane Delcroix
+// Copyright (C) 2007-2009 Stephane Delcroix
 // Copyright (C) 2010 Ruben Vermeersch
 //
 // Permission is hereby granted, free of charge, to any person obtaining
@@ -29,37 +30,14 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Gdk;
+using System;
 
-using FSpot.Imaging;
-using FSpot.Utils;
-
-namespace FSpot.Filters {
-    public class SharpFilter : IFilter
-    {
-        double radius, amount, threshold;
-
-        public SharpFilter (double radius, double amount, double threshold)
-        {
-            this.radius = radius;
-            this.amount = amount;
-            this.threshold = threshold;
-        }
-
-        public bool Convert (FilterRequest req)
-        {
-            var dest_uri = req.TempUri (req.Current.GetExtension ());
-
-            using (var img = App.Instance.Container.Resolve<IImageFileFactory> ().Create (req.Current)) {
-                using (Pixbuf in_pixbuf = img.Load ()) {
-                    using (Pixbuf out_pixbuf = PixbufUtils.UnsharpMask (in_pixbuf, radius, amount, threshold, null)) {
-                        PixbufUtils.CreateDerivedVersion (req.Current, dest_uri, 95, out_pixbuf);
-                    }
-                }
-            }
-
-            req.Current = dest_uri;
-            return true;
-        }
-    }
+namespace FSpot.Imaging
+{
+	public class ImageFormatException : ApplicationException
+	{
+		public ImageFormatException (string msg) : base (msg)
+		{
+		}
+	}
 }

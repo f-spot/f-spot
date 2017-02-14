@@ -34,10 +34,12 @@ namespace FSpot.Thumbnail
 {
 	class ThumbnailerFactory : IThumbnailerFactory
 	{
+		readonly IImageFileFactory factory;
 		readonly IFileSystem fileSystem;
 
-		public ThumbnailerFactory(IFileSystem fileSystem)
+		public ThumbnailerFactory(IImageFileFactory factory, IFileSystem fileSystem)
 		{
+			this.factory = factory;
 			this.fileSystem = fileSystem;
 		}
 
@@ -45,8 +47,8 @@ namespace FSpot.Thumbnail
 
 		public IThumbnailer GetThumbnailerForUri (SafeUri uri)
 		{
-			if (ImageFile.HasLoader (uri)) {
-				return new ImageThumbnailer (uri, fileSystem);
+			if (factory.HasLoader (uri)) {
+				return new ImageThumbnailer (uri, factory, fileSystem);
 			}
 			return null;
 		}

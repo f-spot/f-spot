@@ -1,13 +1,13 @@
-//
-// DCRawFile.cs
+﻿//
+// NefImageFile.cs
 //
 // Author:
-//   Larry Ewing <lewing@novell.com>
 //   Ruben Vermeersch <ruben@savanne.be>
+//   Larry Ewing <lewing@src.gnome.org>
 //
 // Copyright (C) 2005-2010 Novell, Inc.
-// Copyright (C) 2005-2006 Larry Ewing
 // Copyright (C) 2010 Ruben Vermeersch
+// Copyright (C) 2005-2007 Larry Ewing
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -29,29 +29,46 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System;
+using System.IO;
 using Hyena;
+using TagLib;
+using TagLib.IFD;
+using TagLib.IFD.Entries;
+using TagLib.IFD.Tags;
 
-namespace FSpot.Imaging {
-	public class DCRawFile : BaseImageFile {
-		const string dcraw_command = "dcraw";
+namespace FSpot.Imaging
+{
+	class NefImageFile : BaseImageFile
+	{
+		byte[] jpeg_data;
 
-		public DCRawFile (SafeUri uri) : base (uri)
+		public NefImageFile (SafeUri uri) : base (uri)
 		{
 		}
 
-		public override System.IO.Stream PixbufStream ()
+		protected override void ExtractMetadata (TagLib.Image.File metadata)
 		{
-			return RawPixbufStream (Uri);
+			base.ExtractMetadata (metadata);
+
+			if (metadata == null)
+				return;
+
+			try {
+				var tag = metadata.GetTag (TagTypes.TiffIFD) as IFDTag;
+				var structure = tag.Structure;
+				var SubImage1_structure = (structure.GetEntry (0, (ushort)IFDEntryTag.SubIFDs) as SubIFDArrayEntry).Entries [0];
+				var entry = SubImage1_structure.GetEntry (0, (ushort)IFDEntryTag.JPEGInterchangeFormat);
+				jpeg_data = (entry as ThumbnailDataIFDEntry).Data.Data;
+			} catch (Exception e) {
+				Log.DebugException (e);
+				jpeg_data = null;
+			}
 		}
 
-		internal static System.IO.Stream RawPixbufStream (SafeUri location)
+		public override Stream PixbufStream ()
 		{
-			string path = location.LocalPath;
-			string [] args = new string [] { dcraw_command, "-h", "-w", "-c", "-t", "0", path };
-
-			InternalProcess proc = new InternalProcess (System.IO.Path.GetDirectoryName (path), args);
-			proc.StandardInput.Close ();
-			return proc.StandardOutput;
+			return jpeg_data != null ? new MemoryStream (jpeg_data) : DCRawImageFile.RawPixbufStream (Uri);
 		}
 	}
 }

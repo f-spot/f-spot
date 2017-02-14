@@ -42,15 +42,17 @@ namespace FSpot.Thumbnail
 		#region fields
 
 		readonly SafeUri fileUri;
+		readonly IImageFileFactory factory;
 		readonly IFileSystem fileSystem;
 
 		#endregion
 
 		#region ctors
 
-		public ImageThumbnailer (SafeUri fileUri, IFileSystem fileSystem)
+		public ImageThumbnailer (SafeUri fileUri, IImageFileFactory factory, IFileSystem fileSystem)
 		{
 			this.fileUri = fileUri;
+			this.factory = factory;
 			this.fileSystem = fileSystem;
 		}
 
@@ -61,7 +63,7 @@ namespace FSpot.Thumbnail
 		public bool TryCreateThumbnail (SafeUri thumbnailUri, ThumbnailSize size)
 		{
 			try {
-				var imageFile = ImageFile.Create (fileUri);
+				var imageFile = factory.Create (fileUri);
 				return CreateThumbnail (thumbnailUri, size, imageFile);
 			}
 			catch {

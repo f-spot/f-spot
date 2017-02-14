@@ -76,7 +76,7 @@ namespace FSpot.Loaders
 				}
 			}
 
-			using (var image_file = ImageFile.Create (uri)) {
+			using (var image_file = App.Instance.Container.Resolve<IImageFileFactory> ().Create (uri)) {
 				image_stream = image_file.PixbufStream ();
 				pixbuf_orientation = image_file.Orientation;
 			}

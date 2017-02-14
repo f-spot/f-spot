@@ -133,7 +133,7 @@ namespace FSpot
 						DrawCropMarks (cr, x*w, y*h, w*.1);
 					if (x == ppx || y == ppy || p_index >= selected_photos.Length)
 						continue;
-					using (var img = ImageFile.Create (selected_photos[p_index].DefaultVersion.Uri))
+					using (var img = App.Instance.Container.Resolve<IImageFileFactory> ().Create (selected_photos[p_index].DefaultVersion.Uri))
 					{
 						Gdk.Pixbuf pixbuf;
 						try {

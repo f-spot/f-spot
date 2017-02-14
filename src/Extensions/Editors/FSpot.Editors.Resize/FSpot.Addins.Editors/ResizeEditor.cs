@@ -61,7 +61,7 @@ namespace FSpot.Addins.Editors
 		public override Widget ConfigurationWidget ()
 		{
 			int max;
-			using (var img = ImageFile.Create (State.Items[0].DefaultVersion.Uri))
+			using (var img = App.Instance.Container.Resolve<IImageFileFactory> ().Create (State.Items[0].DefaultVersion.Uri))
 				using (Pixbuf p = img.Load ())
 					max = Math.Max (p.Width, p.Height);
 

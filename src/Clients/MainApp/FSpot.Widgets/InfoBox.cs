@@ -582,7 +582,7 @@ namespace FSpot.Widgets
             
             try {
                 if (hint == null)
-                    using (var img = ImageFile.Create (photo.DefaultVersion.Uri)) {
+                    using (var img = App.Instance.Container.Resolve<IImageFileFactory> ().Create (photo.DefaultVersion.Uri)) {
                         hint = img.Load (256, 256);
                     }
                 

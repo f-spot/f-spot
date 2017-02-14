@@ -1,15 +1,10 @@
-//
-//  MultiFileImportSource.cs
+﻿//
+// ModuleController.cs
 //
 // Author:
-//   Mike Gemünde <mike@gemuende.de>
-//   Ruben Vermeersch <ruben@savanne.be>
 //   Daniel Köb <daniel.koeb@peony.at>
 //
-// Copyright (C) 2010 Novell, Inc.
-// Copyright (C) 2010 Mike Gemünde
-// Copyright (C) 2010 Ruben Vermeersch
-// Copyright (C) 2014 Daniel Köb
+// Copyright (C) 2016 Daniel Köb
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -31,31 +26,15 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using System.Collections.Generic;
-using FSpot.Imaging;
-using Hyena;
+using FSpot.Utils;
 
-namespace FSpot.Import
+namespace FSpot.Imaging
 {
-	// Multi root version for drag and drop import.
-	class MultiFileImportSource : FileImportSource
+	public static class ModuleController
 	{
-		readonly IEnumerable<SafeUri> uris;
-
-		public MultiFileImportSource (IEnumerable<SafeUri> uris, IImageFileFactory factory)
-			: base (null, String.Empty, String.Empty, factory)
+		public static void RegisterTypes (TinyIoCContainer container)
 		{
-			this.uris = uris;
-		}
-
-		protected override void ScanPhotos (bool recurseSubdirectories, bool mergeRawAndJpeg)
-		{
-			foreach (var uri in uris) {
-				Log.Debug ("Scanning " + uri);
-				ScanPhotoDirectory (recurseSubdirectories, mergeRawAndJpeg, uri);
-			}
-			FirePhotoScanFinished ();
+			container.Register<IImageFileFactory, ImageFileFactory> ().AsSingleton ();
 		}
 	}
 }

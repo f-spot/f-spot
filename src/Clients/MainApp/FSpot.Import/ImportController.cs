@@ -34,6 +34,7 @@ using System.Collections.Generic;
 using System.Threading;
 using FSpot.Core;
 using FSpot.FileSystem;
+using FSpot.Imaging;
 using FSpot.Thumbnail;
 using FSpot.Utils;
 using Hyena;
@@ -153,10 +154,11 @@ namespace FSpot.Import
 				var root = new SafeUri (mount.Root.Uri, true);
 
 				var themed_icon = (mount.Icon as GLib.ThemedIcon);
+				var factory = App.Instance.Container.Resolve<IImageFileFactory> ();
 				if (themed_icon != null && themed_icon.Names.Length > 0) {
-					sources.Add (new FileImportSource (root, mount.Name, themed_icon.Names [0]));
+					sources.Add (new FileImportSource (root, mount.Name, themed_icon.Names [0], factory));
 				} else {
-					sources.Add (new FileImportSource (root, mount.Name, null));
+					sources.Add (new FileImportSource (root, mount.Name, null, factory));
 				}
 			}
 			return sources;

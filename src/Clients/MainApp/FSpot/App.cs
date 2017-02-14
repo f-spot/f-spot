@@ -206,6 +206,7 @@ namespace FSpot
 			}
 
 			FSpot.FileSystem.ModuleController.RegisterTypes (Container);
+			FSpot.Imaging.ModuleController.RegisterTypes (Container);
 			FSpot.Thumbnail.ModuleController.RegisterTypes (Container);
 		}
 

@@ -1,15 +1,10 @@
-//
-//  MultiFileImportSource.cs
+﻿//
+// ImageFileTests.cs
 //
 // Author:
-//   Mike Gemünde <mike@gemuende.de>
-//   Ruben Vermeersch <ruben@savanne.be>
 //   Daniel Köb <daniel.koeb@peony.at>
 //
-// Copyright (C) 2010 Novell, Inc.
-// Copyright (C) 2010 Mike Gemünde
-// Copyright (C) 2010 Ruben Vermeersch
-// Copyright (C) 2014 Daniel Köb
+// Copyright (C) 2016 Daniel Köb
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -31,31 +26,39 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using System.Collections.Generic;
-using FSpot.Imaging;
 using Hyena;
+using NUnit.Framework;
 
-namespace FSpot.Import
+namespace FSpot.Imaging.UnitTest
 {
-	// Multi root version for drag and drop import.
-	class MultiFileImportSource : FileImportSource
+	[TestFixture]
+	public class ImageFileTests
 	{
-		readonly IEnumerable<SafeUri> uris;
-
-		public MultiFileImportSource (IEnumerable<SafeUri> uris, IImageFileFactory factory)
-			: base (null, String.Empty, String.Empty, factory)
+		[Test]
+		public void TestIsJpegRawPair ()
 		{
-			this.uris = uris;
-		}
+			var jpeg = new SafeUri ("file:///a/photo.jpeg");
+			var jpg = new SafeUri ("file:///a/photo.jpg");
 
-		protected override void ScanPhotos (bool recurseSubdirectories, bool mergeRawAndJpeg)
-		{
-			foreach (var uri in uris) {
-				Log.Debug ("Scanning " + uri);
-				ScanPhotoDirectory (recurseSubdirectories, mergeRawAndJpeg, uri);
-			}
-			FirePhotoScanFinished ();
+			var nef = new SafeUri ("file:///a/photo.nef");
+			var nef2 = new SafeUri ("file:///b/photo.nef");
+			var crw = new SafeUri ("file:///a/photo.crw");
+			var crw2 = new SafeUri ("file:///a/photo2.jpeg");
+
+			var factory = new ImageFileFactory (null);
+
+			// both jpegs
+			Assert.IsFalse (factory.IsJpegRawPair (jpeg, jpg));
+			// both raw
+			Assert.IsFalse (factory.IsJpegRawPair (nef, crw));
+			// different filename
+			Assert.IsFalse (factory.IsJpegRawPair (jpeg, crw2));
+			// different basedir
+			Assert.IsFalse (factory.IsJpegRawPair (jpeg, nef2));
+
+			Assert.IsTrue (factory.IsJpegRawPair (jpeg, nef));
+			Assert.IsTrue (factory.IsJpegRawPair (jpeg, crw));
+			Assert.IsTrue (factory.IsJpegRawPair (jpg, nef));
 		}
 	}
 }

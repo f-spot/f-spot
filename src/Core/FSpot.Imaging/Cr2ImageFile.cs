@@ -1,13 +1,13 @@
-//
-// SharpFilter.cs
+﻿//
+// Cr2ImageFile.cs
 //
 // Author:
-//   Stephane Delcroix <sdelcroix@src.gnome.org>
 //   Ruben Vermeersch <ruben@savanne.be>
+//   Larry Ewing <lewing@src.gnome.org>
 //
-// Copyright (C) 2007-2010 Novell, Inc.
-// Copyright (C) 2007 Stephane Delcroix
+// Copyright (C) 2005-2010 Novell, Inc.
 // Copyright (C) 2010 Ruben Vermeersch
+// Copyright (C) 2005-2007 Larry Ewing
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -29,37 +29,45 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Gdk;
+using System;
+using Hyena;
+using TagLib;
+using TagLib.IFD;
+using TagLib.IFD.Entries;
+using TagLib.IFD.Tags;
 
-using FSpot.Imaging;
-using FSpot.Utils;
+namespace FSpot.Imaging
+{
+	class Cr2ImageFile : BaseImageFile
+	{
+		uint offset;
 
-namespace FSpot.Filters {
-    public class SharpFilter : IFilter
-    {
-        double radius, amount, threshold;
+		public Cr2ImageFile (SafeUri uri) : base (uri)
+		{
+		}
 
-        public SharpFilter (double radius, double amount, double threshold)
-        {
-            this.radius = radius;
-            this.amount = amount;
-            this.threshold = threshold;
-        }
+		protected override void ExtractMetadata (TagLib.Image.File metadata)
+		{
+			base.ExtractMetadata (metadata);
 
-        public bool Convert (FilterRequest req)
-        {
-            var dest_uri = req.TempUri (req.Current.GetExtension ());
+			if (metadata == null)
+				return;
 
-            using (var img = App.Instance.Container.Resolve<IImageFileFactory> ().Create (req.Current)) {
-                using (Pixbuf in_pixbuf = img.Load ()) {
-                    using (Pixbuf out_pixbuf = PixbufUtils.UnsharpMask (in_pixbuf, radius, amount, threshold, null)) {
-                        PixbufUtils.CreateDerivedVersion (req.Current, dest_uri, 95, out_pixbuf);
-                    }
-                }
-            }
+			try {
+				var tag = metadata.GetTag (TagTypes.TiffIFD) as IFDTag;
+				var structure = tag.Structure;
+				var entry = structure.GetEntry (0, (ushort)IFDEntryTag.StripOffsets);
+				offset = (entry as StripOffsetsIFDEntry).Values [0];
+			} catch (Exception e) {
+				Log.DebugException (e);
+			}
+		}
 
-            req.Current = dest_uri;
-            return true;
-        }
-    }
+		public override System.IO.Stream PixbufStream ()
+		{
+			System.IO.Stream file = base.PixbufStream ();
+			file.Position = offset;
+			return file;
+		}
+	}
 }

@@ -1,5 +1,5 @@
 //
-// ImageFile.cs
+// IImageFile.cs
 //
 // Author:
 //   Stephane Delcroix <stephane@delcroix.org>
@@ -32,11 +32,8 @@
 
 using System;
 using System.IO;
-using FSpot.Utils;
 using Hyena;
 using TagLib.Image;
-using GFileInfo = GLib.FileInfo;
-
 
 namespace FSpot.Imaging
 {
@@ -49,89 +46,5 @@ namespace FSpot.Imaging
 		Cms.Profile GetProfile ();
 		Gdk.Pixbuf Load (int maxWidth, int maxHeight);
 		Stream PixbufStream ();
-	}
-
-	public class BaseImageFile : IImageFile
-	{
-		bool disposed;
-
-		public SafeUri Uri { get; private set; }
-
-		public ImageOrientation Orientation { get; private set; }
-
-		public BaseImageFile (SafeUri uri)
-		{
-			Uri = uri;
-			Orientation = ImageOrientation.TopLeft;
-
-			using (var metadata_file = Metadata.Parse (uri)) {
-				ExtractMetadata (metadata_file);
-			}
-		}
-
-		protected virtual void ExtractMetadata (TagLib.Image.File metadata)
-		{
-			if (metadata != null)
-				Orientation = metadata.ImageTag.Orientation;
-		}
-
-		public virtual Stream PixbufStream ()
-		{
-			Log.DebugFormat ("open uri = {0}", Uri);
-			return new GLib.GioStream (GLib.FileFactory.NewForUri (Uri).Read (null));
-		}
-
-		protected Gdk.Pixbuf TransformAndDispose (Gdk.Pixbuf orig)
-		{
-			if (orig == null)
-				return null;
-
-			Gdk.Pixbuf rotated = FSpot.Utils.PixbufUtils.TransformOrientation (orig, Orientation);
-
-			orig.Dispose ();
-
-			return rotated;
-		}
-
-		public Gdk.Pixbuf Load ()
-		{
-			using (Stream stream = PixbufStream ()) {
-				Gdk.Pixbuf orig = new Gdk.Pixbuf (stream);
-				return TransformAndDispose (orig);
-			}
-		}
-
-		public Gdk.Pixbuf Load (int maxWidth, int maxHeight)
-		{
-			using (Gdk.Pixbuf full = Load ()) {
-				return PixbufUtils.ScaleToMaxSize (full, maxWidth, maxHeight);
-			}
-		}
-
-		// FIXME this need to have an intent just like the loading stuff.
-		public virtual Cms.Profile GetProfile ()
-		{
-			return null;
-		}
-
-		public void Dispose ()
-		{
-			Dispose (true);
-			GC.SuppressFinalize (this);
-		}
-
-		protected virtual void Dispose (bool disposing)
-		{
-			if (disposed)
-				return;
-			disposed = true;
-
-			if (disposing)
-				Close ();
-		}
-
-		protected virtual void Close ()
-		{
-		}
 	}
 }

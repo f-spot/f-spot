@@ -51,7 +51,6 @@
     <Compile Include="FSpot.Import\Mocks\PhotoMock.cs" />
     <Compile Include="FSpot.Import\Mocks\FileSystemMock.cs" />
     <Compile Include="FSpot.Import\PhotoFileTrackerTests.cs" />
-    <Compile Include="FSpot.Import\FileImportSourceTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
