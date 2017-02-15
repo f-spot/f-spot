@@ -35,7 +35,6 @@ using Cairo;
 using Gdk;
 
 using FSpot.Core;
-using FSpot.Widgets;
 using FSpot.Utils;
 using FSpot.Gui;
 
@@ -154,7 +153,7 @@ namespace FSpot.Widgets
 				pixbuf.Dispose ();
 			}
 
-			string desc = String.Empty;
+			string desc = string.Empty;
 			if (!string.IsNullOrEmpty (item.Description))
 				desc = item.Description + Environment.NewLine;
 
@@ -267,11 +266,9 @@ namespace FSpot.Widgets
 
 		protected override bool OnMotionNotifyEvent (EventMotion args)
 		{
-			//
 			// We look for motion events on the popup window so that
 			// if the pointer manages to get over the window we can
 			// Update the image properly and/or get out of the way.
-			//
 			UpdateItem ();
 			return false;
 		}
@@ -311,7 +308,7 @@ namespace FSpot.Widgets
 			image.CanFocus = false;
 
 
-			label = new Gtk.Label (String.Empty);
+			label = new Gtk.Label (string.Empty);
 			label.CanFocus = false;
 			label.ModifyFg (Gtk.StateType.Normal, new Gdk.Color (127, 127, 127));
 			label.ModifyBg (Gtk.StateType.Normal, new Gdk.Color (0, 0, 0));

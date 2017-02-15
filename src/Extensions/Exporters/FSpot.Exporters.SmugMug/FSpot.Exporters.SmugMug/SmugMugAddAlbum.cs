@@ -76,7 +76,7 @@ namespace FSpot.Exporters.SmugMug
 		{
 			title = title_entry.Text;
 
-			if (title == String.Empty)
+			if (title == string.Empty)
 				add_button.Sensitive = false;
 			else
 				add_button.Sensitive = true;

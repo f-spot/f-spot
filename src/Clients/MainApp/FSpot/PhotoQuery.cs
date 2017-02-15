@@ -42,8 +42,10 @@ using FSpot.Query;
 
 using Hyena;
 
-namespace FSpot {
-	public class PhotoQuery : IBrowsableCollection {
+namespace FSpot
+{
+	public class PhotoQuery : IBrowsableCollection
+	{
 		class PhotoCache
 		{
 			static int SIZE = 100;
@@ -51,9 +53,9 @@ namespace FSpot {
 				get { return SIZE; }
 			}
 
-			Dictionary <int, Photo []> cache;
-			string temp_table;
-			PhotoStore store;
+			readonly Dictionary<int, Photo []> cache;
+			readonly string temp_table;
+			readonly PhotoStore store;
 
 			public PhotoCache (PhotoStore store, string temp_table)
 			{
@@ -86,8 +88,8 @@ namespace FSpot {
 		}
 
 		PhotoCache cache;
-		private PhotoStore store;
-		private Term terms;
+		PhotoStore store;
+		Term terms;
 
 		static int query_count = 0;
 		static int QueryCount {
@@ -98,9 +100,8 @@ namespace FSpot {
 
 		int count = -1;
 
-		string temp_table = String.Format ("photoquery_temp_{0}", QueryCount);
+		string temp_table = string.Format ("photoquery_temp_{0}", QueryCount);
 
-		// Constructor
 		public PhotoQuery (PhotoStore store, params IQueryCondition [] conditions)
 		{
 			this.store = store;
@@ -150,15 +151,15 @@ namespace FSpot {
 		}
 
 		//Query Conditions
-		private Dictionary<Type, IQueryCondition> conditions;
-		private Dictionary<Type, IQueryCondition> Conditions {
+		Dictionary<Type, IQueryCondition> conditions;
+		Dictionary<Type, IQueryCondition> Conditions {
 			get { return conditions ?? (conditions = new Dictionary<Type, IQueryCondition>()); }
 		}
 
 		internal bool SetCondition (IQueryCondition condition)
 		{
 			if (condition == null)
-				throw new ArgumentNullException ("condition");
+				throw new ArgumentNullException (nameof (condition));
 			if (Conditions.ContainsKey (condition.GetType ()) && Conditions [condition.GetType ()] == condition)
 				return false;
 			Conditions [condition.GetType ()] = condition;
@@ -197,7 +198,7 @@ namespace FSpot {
 			}
 		}
 
-		private bool untagged = false;
+		bool untagged = false;
 		public bool Untagged {
 			get { return untagged; }
 			set {
@@ -314,11 +315,11 @@ namespace FSpot {
 			return store.IndexOf (temp_table, photo as Photo);
 		}
 
-		private int [] IndicesOf (DbItem [] dbitems)
+		int [] IndicesOf (DbItem [] dbitems)
 		{
 			uint timer = Log.DebugTimerStart ();
-			List<int> indices = new List<int> ();
-			List<uint> items_to_search = new List<uint> ();
+			var indices = new List<int> ();
+			var items_to_search = new List<uint> ();
 			int cur;
 			foreach (DbItem dbitem in dbitems) {
 				if (reverse_lookup.TryGetValue (dbitem.Id, out cur))
@@ -333,12 +334,12 @@ namespace FSpot {
 			return indices.ToArray ();
 		}
 
-		public int LookupItem (System.DateTime date)
+		public int LookupItem (DateTime date)
 		{
 			return LookupItem (date, TimeOrderAsc);
 		}
 
-		private int LookupItem (System.DateTime date, bool asc)
+		int LookupItem (DateTime date, bool asc)
 		{
 			if (Count == 0)
 				return -1;
@@ -367,8 +368,8 @@ namespace FSpot {
 			Log.DebugTimerPrint (timer, "LookupItem took {0}");
 			if (asc)
 				return this[mid].Time < date ? mid + 1 : mid;
+			
 			return this[mid].Time > date ? mid + 1 : mid;
-
 		}
 
 		public void Commit (int index)
@@ -386,7 +387,7 @@ namespace FSpot {
 			store.Commit (to_commit.ToArray ());
 		}
 
-		private void MarkChanged (object sender, DbItemEventArgs<Photo> args)
+		void MarkChanged (object sender, DbItemEventArgs<Photo> args)
 		{
 			int [] indexes = IndicesOf (args.Items);
 

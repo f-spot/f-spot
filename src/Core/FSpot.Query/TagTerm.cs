@@ -75,8 +75,8 @@ namespace FSpot.Query
 			if (tagids.Count == 0)
 				return null;
 			if (tagids.Count == 1)
-				return String.Format (" (photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id = {0})) ", tagids [0]);
-			return String.Format (" (photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id IN ({0}))) ", String.Join (", ", tagids));
+				return string.Format (" (photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id = {0})) ", tagids [0]);
+			return string.Format (" (photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id IN ({0}))) ", string.Join (", ", tagids));
 		}
 	}
 }

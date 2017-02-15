@@ -54,7 +54,7 @@ namespace FSpot.Utils
 
             if (mime.StartsWith ("application/x-extension-")) {
                 // Works around broken metadata detection - https://bugzilla.gnome.org/show_bug.cgi?id=624781
-                mime = String.Format ("taglib/{0}", mime.Substring (24));
+                mime = string.Format ("taglib/{0}", mime.Substring (24));
             }
 
             // Parse file

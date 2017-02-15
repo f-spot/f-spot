@@ -84,7 +84,7 @@ namespace FSpot.Exporters.Gallery
 			password = password_entry.Text;
 			username = username_entry.Text;
 
-			if (name == String.Empty || url == String.Empty || password == String.Empty || username == String.Empty)
+			if (name == string.Empty || url == string.Empty || password == string.Empty || username == string.Empty)
 				add_button.Sensitive = false;
 			else
 				add_button.Sensitive = true;
@@ -131,7 +131,7 @@ namespace FSpot.Exporters.Gallery
 								      Gtk.DialogFlags.DestroyWithParent,
 								      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
 								      Catalog.GetString ("Error while connecting to Gallery"),
-								      String.Format (Catalog.GetString ("The following error was encountered while attempting to log in: {0}"), e.Message));
+								      string.Format (Catalog.GetString ("The following error was encountered while attempting to log in: {0}"), e.Message));
 					if (e.ResponseText != null) {
 						Log.Debug (e.Message);
 						Log.Debug (e.ResponseText);
@@ -146,7 +146,7 @@ namespace FSpot.Exporters.Gallery
 								      Gtk.DialogFlags.DestroyWithParent,
 								      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
 								      Catalog.GetString ("A Gallery with this name already exists"),
-								      String.Format (Catalog.GetString ("There is already a Gallery with the same name in your registered Galleries. Please choose a unique name.")));
+								      string.Format (Catalog.GetString ("There is already a Gallery with the same name in your registered Galleries. Please choose a unique name.")));
 					Log.Exception (ae);
 					md.Run ();
 					md.Destroy ();
@@ -158,7 +158,7 @@ namespace FSpot.Exporters.Gallery
 								      Gtk.DialogFlags.DestroyWithParent,
 								      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
 								      Catalog.GetString ("Error while connecting to Gallery"),
-								      String.Format (Catalog.GetString ("The following error was encountered while attempting to log in: {0}"), we.Message));
+								      string.Format (Catalog.GetString ("The following error was encountered while attempting to log in: {0}"), we.Message));
 					md.Run ();
 					md.Destroy ();
 					return;
@@ -169,7 +169,7 @@ namespace FSpot.Exporters.Gallery
 								      Gtk.DialogFlags.DestroyWithParent,
 								      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
 								      Catalog.GetString ("Error while connecting to Gallery"),
-								      String.Format (Catalog.GetString ("The following error was encountered while attempting to log in: {0}"), se.Message));
+								      string.Format (Catalog.GetString ("The following error was encountered while attempting to log in: {0}"), se.Message));
 					Log.Exception (se);
 					md.Run ();
 					md.Destroy ();

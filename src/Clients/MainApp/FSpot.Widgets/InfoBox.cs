@@ -53,9 +53,9 @@ namespace FSpot.Widgets
 {
     public class InfoBox : VBox
     {
-        DelayedOperation update_delay;
+		readonly DelayedOperation update_delay;
 
-        public struct InfoEntry
+		public struct InfoEntry
         {
             public bool TwoColumns;
             public bool AlwaysVisible;
@@ -68,9 +68,9 @@ namespace FSpot.Widgets
             public Action<Widget, IPhoto[]> SetMultiple;
         }
 
-        private List<InfoEntry> entries = new List<InfoEntry> ();
+        List<InfoEntry> entries = new List<InfoEntry> ();
 
-        private void AddEntry (string id, string name, string description, Widget info_widget, float label_y_align,
+        void AddEntry (string id, string name, string description, Widget info_widget, float label_y_align,
                                bool default_visibility,
                                Action<Widget, IPhoto, TagLib.Image.File> set_single,
                                Action<Widget, IPhoto[]> set_multiple)
@@ -81,42 +81,42 @@ namespace FSpot.Widgets
                 DefaultVisibility = default_visibility,
                 Id = id,
                 Description = description,
-                LabelWidget = CreateRightAlignedLabel (String.Format ("<b>{0}</b>", name), label_y_align),
+                LabelWidget = CreateRightAlignedLabel (string.Format ("<b>{0}</b>", name), label_y_align),
                 InfoWidget = info_widget,
                 SetSingle = set_single,
                 SetMultiple = set_multiple
             });
         }
 
-        private void AddEntry (string id, string name, string description, Widget info_widget, float label_y_align,
+        void AddEntry (string id, string name, string description, Widget info_widget, float label_y_align,
                                Action<Widget, IPhoto, TagLib.Image.File> set_single,
                                Action<Widget, IPhoto[]> set_multiple)
         {
             AddEntry (id, name, description, info_widget, label_y_align, true, set_single, set_multiple);
         }
 
-        private void AddEntry (string id, string name, string description, Widget info_widget, bool default_visibility,
+        void AddEntry (string id, string name, string description, Widget info_widget, bool default_visibility,
                                Action<Widget, IPhoto, TagLib.Image.File> set_single,
                                Action<Widget, IPhoto[]> set_multiple)
         {
             AddEntry (id, name, description, info_widget, 0.0f, default_visibility, set_single, set_multiple);
         }
 
-        private void AddEntry (string id, string name, string description, Widget info_widget,
+        void AddEntry (string id, string name, string description, Widget info_widget,
                                Action<Widget, IPhoto, TagLib.Image.File> set_single,
                                Action<Widget, IPhoto[]> set_multiple)
         {
             AddEntry (id, name, description, info_widget, 0.0f, set_single, set_multiple);
         }
 
-        private void AddLabelEntry (string id, string name, string description,
+        void AddLabelEntry (string id, string name, string description,
                                     Func<IPhoto, TagLib.Image.File, string> single_string,
                                     Func<IPhoto[], string> multiple_string)
         {
             AddLabelEntry (id, name, description, true, single_string, multiple_string);
         }
 
-        private void AddLabelEntry (string id, string name, string description, bool default_visibility,
+        void AddLabelEntry (string id, string name, string description, bool default_visibility,
                                     Func<IPhoto, TagLib.Image.File, string> single_string,
                                     Func<IPhoto[], string> multiple_string)
         {
@@ -131,13 +131,13 @@ namespace FSpot.Widgets
                 (widget as Label).Text = multiple_string (photos);
             };
             
-            AddEntry (id, name, description, CreateLeftAlignedLabel (String.Empty), default_visibility,
+            AddEntry (id, name, description, CreateLeftAlignedLabel (string.Empty), default_visibility,
                       single_string == null ? null : set_single,
                       multiple_string == null ? null : set_multiple);
         }
 
 
-        private IPhoto[] photos = new IPhoto[0];
+        IPhoto[] photos = new IPhoto[0];
         public IPhoto[] Photos {
             private get { return photos; }
             set {
@@ -154,7 +154,7 @@ namespace FSpot.Widgets
             }
         }
 
-        private bool show_tags = false;
+        bool show_tags;
         public bool ShowTags {
             get { return show_tags; }
             set {
@@ -166,7 +166,7 @@ namespace FSpot.Widgets
             }
         }
 
-        private bool show_rating = false;
+        bool show_rating;
         public bool ShowRating {
             get { return show_rating; }
             set {
@@ -182,42 +182,40 @@ namespace FSpot.Widgets
         public delegate void VersionChangedHandler (InfoBox info_box, IPhotoVersion version);
         public event VersionChangedHandler VersionChanged;
 
-        private Expander info_expander;
-        private Expander histogram_expander;
+        Expander info_expander;
+        Expander histogram_expander;
 
-        private Gtk.Image histogram_image;
-        private Histogram histogram;
+        Image histogram_image;
+        Histogram histogram;
+		readonly DelayedOperation histogram_delay;
 
-        private DelayedOperation histogram_delay;
+		// Context switching (toggles visibility).
+		public event EventHandler ContextChanged;
 
-        // Context switching (toggles visibility).
-        public event EventHandler ContextChanged;
-
-        private ViewContext view_context = ViewContext.Unknown;
+        ViewContext view_context = ViewContext.Unknown;
         public ViewContext Context {
             get { return view_context; }
             set {
                 view_context = value;
-                if (ContextChanged != null)
-                    ContextChanged (this, null);
+				ContextChanged?.Invoke (this, null);
             }
         }
 
-        private readonly InfoBoxContextSwitchStrategy ContextSwitchStrategy;
+        readonly InfoBoxContextSwitchStrategy ContextSwitchStrategy;
 
         // Widgetry.
-        private ListStore version_list;
-        private ComboBox version_combo;
+        ListStore version_list;
+        ComboBox version_combo;
 
 
-        private void HandleRatingChanged (object o, EventArgs e)
+        void HandleRatingChanged (object o, EventArgs e)
         {
-            App.Instance.Organizer.HandleRatingMenuSelected ((o as Widgets.RatingEntry).Value);
+            App.Instance.Organizer.HandleRatingMenuSelected ((o as RatingEntry).Value);
         }
 
-        private Label CreateRightAlignedLabel (string text, float yalign)
+        Label CreateRightAlignedLabel (string text, float yalign)
         {
-            Label label = new Label ();
+            var label = new Label ();
             label.UseMarkup = true;
             label.Markup = text;
             label.Xalign = 1.0f;
@@ -226,9 +224,9 @@ namespace FSpot.Widgets
             return label;
         }
 
-        private Label CreateLeftAlignedLabel (string text)
+        Label CreateLeftAlignedLabel (string text)
         {
-            Label label = new Label ();
+            var label = new Label ();
             label.UseMarkup = true;
             label.Markup = text;
             label.Xalign = 0.0f;
@@ -239,9 +237,9 @@ namespace FSpot.Widgets
             return label;
         }
 
-        private Table info_table;
+        Table info_table;
 
-        private void AttachRow (int row, InfoEntry entry)
+        void AttachRow (int row, InfoEntry entry)
         {
             if (!entry.TwoColumns) {
                 info_table.Attach (entry.LabelWidget, 0, 1, (uint)row, (uint)row + 1, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
@@ -256,10 +254,9 @@ namespace FSpot.Widgets
             var info_entry = entry.InfoWidget as Entry;
             if (info_entry != null)
                 info_entry.PopulatePopup += HandlePopulatePopup;
-            ;
         }
 
-        private void UpdateTable ()
+        void UpdateTable ()
         {
             info_table.Resize ((uint)(head_rows + entries.Count), 2);
             int i = 0;
@@ -270,23 +267,23 @@ namespace FSpot.Widgets
         }
 
 
-        private void SetEntryWidgetVisibility (InfoEntry entry, bool def)
+        void SetEntryWidgetVisibility (InfoEntry entry, bool def)
         {
             entry.InfoWidget.Visible = ContextSwitchStrategy.InfoEntryVisible (Context, entry) && def;
             entry.LabelWidget.Visible = ContextSwitchStrategy.InfoEntryVisible (Context, entry) && def;
             
         }
 
-        private void UpdateEntries ()
+        void UpdateEntries ()
         {
             
         }
 
         const int TABLE_XPADDING = 3;
         const int TABLE_YPADDING = 3;
-        private Label AttachLabel (Table table, int row_num, Widget entry)
+        Label AttachLabel (Table table, int row_num, Widget entry)
         {
-            Label label = new Label (String.Empty);
+            var label = new Label (string.Empty);
             label.Xalign = 0;
             label.Selectable = true;
             label.Ellipsize = Pango.EllipsizeMode.End;
@@ -299,42 +296,43 @@ namespace FSpot.Widgets
             return label;
         }
 
-        private const int head_rows = 0;
+        const int head_rows = 0;
 
-        private void SetupWidgets ()
+        void SetupWidgets ()
         {
-            
             histogram_expander = new Expander (Catalog.GetString ("Histogram"));
-            histogram_expander.Activated += delegate(object sender, EventArgs e) {
+			histogram_expander.Activated += (s, e) => {
                 ContextSwitchStrategy.SetHistogramVisible (Context, histogram_expander.Expanded);
                 UpdateHistogram ();
             };
-            histogram_expander.StyleSet += delegate(object sender, StyleSetArgs args) {
-                Gdk.Color c = this.Toplevel.Style.Backgrounds[(int)Gtk.StateType.Active];
+
+            histogram_expander.StyleSet += (s, a) => {
+                Gdk.Color c = Toplevel.Style.Backgrounds[(int)Gtk.StateType.Active];
                 histogram.RedColorHint = (byte)(c.Red / 0xff);
                 histogram.GreenColorHint = (byte)(c.Green / 0xff);
                 histogram.BlueColorHint = (byte)(c.Blue / 0xff);
                 histogram.BackgroundColorHint = 0xff;
                 UpdateHistogram ();
             };
-            histogram_image = new Gtk.Image ();
+
+            histogram_image = new Image ();
             histogram = new Histogram ();
             histogram_expander.Add (histogram_image);
             
             Add (histogram_expander);
             
             info_expander = new Expander (Catalog.GetString ("Image Information"));
-            info_expander.Activated += (sender, e) => {
+            info_expander.Activated += (s, e) => {
                 ContextSwitchStrategy.SetInfoBoxVisible (Context, info_expander.Expanded);
             };
 
             info_table = new Table (head_rows, 2, false) { BorderWidth = 0 };
             
             AddLabelEntry (null, null, null, null,
-                           photos => { return String.Format (Catalog.GetString ("{0} Photos"), photos.Length); });
+                           photos => { return string.Format (Catalog.GetString ("{0} Photos"), photos.Length); });
             
             AddLabelEntry (null, Catalog.GetString ("Name"), null,
-                           (photo, file) => { return photo.Name ?? String.Empty; }, null);
+                           (photo, file) => { return photo.Name ?? string.Empty; }, null);
             
             version_list = new ListStore (typeof(IPhotoVersion), typeof(string), typeof(bool));
             version_combo = new ComboBox ();
@@ -364,7 +362,7 @@ namespace FSpot.Widgets
                             } else {
                                 version_combo.Sensitive = true;
                                 version_combo.TooltipText =
-                                    String.Format (Catalog.GetPluralString ("(One Edit)", "({0} Edits)", count - 1),
+                                    string.Format (Catalog.GetPluralString ("(One Edit)", "({0} Edits)", count - 1),
                                                    count - 1);
                             }
                             version_combo.Changed += OnVersionComboChanged;
@@ -372,7 +370,7 @@ namespace FSpot.Widgets
             
             AddLabelEntry ("date", Catalog.GetString ("Date"), Catalog.GetString ("Show Date"),
                            (photo, file) => {
-                               return String.Format ("{0}{2}{1}",
+                               return string.Format ("{0}{2}{1}",
                                                      photo.Time.ToShortDateString (),
                                                      photo.Time.ToShortTimeString (),
                                                      Environment.NewLine); },
@@ -381,12 +379,12 @@ namespace FSpot.Widgets
                                 IPhoto last = photos[0];
                                 if (first.Time.Date == last.Time.Date) {
                                     //Note for translators: {0} is a date, {1} and {2} are times.
-                                    return String.Format (Catalog.GetString ("On {0} between \n{1} and {2}"),
+                                    return string.Format (Catalog.GetString ("On {0} between \n{1} and {2}"),
                                                           first.Time.ToShortDateString (),
                                                           first.Time.ToShortTimeString (),
                                                           last.Time.ToShortTimeString ());
                                 } else {
-                                    return String.Format (Catalog.GetString ("Between {0} \nand {1}"),
+                                    return string.Format (Catalog.GetString ("Between {0} \nand {1}"),
                                                           first.Time.ToShortDateString (),
                                                           last.Time.ToShortDateString ());
                                 }
@@ -402,7 +400,7 @@ namespace FSpot.Widgets
 				}
 
                                 if (width != 0 && height != 0)
-                                    return String.Format ("{0}x{1}", width, height);
+                                    return string.Format ("{0}x{1}", width, height);
                                 
 				return Catalog.GetString ("(Unknown)");
                            }, null);
@@ -413,22 +411,22 @@ namespace FSpot.Widgets
                                 var exposure_time = metadata.ImageTag.ExposureTime;
                                 var iso_speed = metadata.ImageTag.ISOSpeedRatings;
 
-                                string info = String.Empty;
+                                string info = string.Empty;
 
                                 if (fnumber.HasValue && fnumber.Value != 0.0) {
-                                    info += String.Format ("f/{0:.0} ", fnumber.Value);
+                                    info += string.Format ("f/{0:.0} ", fnumber.Value);
                                 }
 
                                 if (exposure_time.HasValue) {
                                     if (Math.Abs (exposure_time.Value) >= 1.0) {
-                                        info += String.Format ("{0} sec ", exposure_time.Value);
+                                        info += string.Format ("{0} sec ", exposure_time.Value);
                                     } else {
-                                        info += String.Format ("1/{0} sec ", (int)(1 / exposure_time.Value));
+                                        info += string.Format ("1/{0} sec ", (int)(1 / exposure_time.Value));
                                     }
                                 }
 
                                 if (iso_speed.HasValue) {
-                                    info += String.Format ("{0}ISO {1}", Environment.NewLine, iso_speed.Value);
+                                    info += string.Format ("{0}ISO {1}", Environment.NewLine, iso_speed.Value);
                                 }
 
                                 var exif = metadata.ImageTag.Exif;
@@ -437,13 +435,13 @@ namespace FSpot.Widgets
 
                                     if (flash.HasValue) {
                                         if ((flash.Value & 0x01) == 0x01)
-                                            info += String.Format (", {0}", Catalog.GetString ("flash fired"));
+                                            info += string.Format (", {0}", Catalog.GetString ("flash fired"));
                                         else
-                                            info += String.Format (", {0}", Catalog.GetString ("flash didn't fire"));
+                                            info += string.Format (", {0}", Catalog.GetString ("flash didn't fire"));
                                     }
                                 }
 
-                                if (info == String.Empty)
+                                if (info == string.Empty)
                                     return Catalog.GetString ("(None)");
 
                                 return info;
@@ -456,7 +454,7 @@ namespace FSpot.Widgets
                                 if (focal_length == null)
                                     return Catalog.GetString ("(Unknown)");
 
-				return String.Format ("{0} mm", focal_length.Value);
+				return string.Format ("{0} mm", focal_length.Value);
                             }, null);
 
             AddLabelEntry ("camera", Catalog.GetString ("Camera"), Catalog.GetString ("Show Camera"), false,
@@ -492,7 +490,7 @@ namespace FSpot.Widgets
 
             UpdateTable ();
 
-            EventBox eb = new EventBox ();
+            var eb = new EventBox ();
             eb.Add (info_table);
             info_expander.Add (eb);
             eb.ButtonPressEvent += HandleButtonPressEvent;
@@ -556,9 +554,9 @@ namespace FSpot.Widgets
                 VersionChanged (this, (IPhotoVersion)version_list.GetValue (iter, 0));
         }
 
-        private Gdk.Pixbuf histogram_hint;
+        Gdk.Pixbuf histogram_hint;
 
-        private void UpdateHistogram ()
+        void UpdateHistogram ()
         {
             if (histogram_expander.Expanded)
                 histogram_delay.Start ();
@@ -570,7 +568,7 @@ namespace FSpot.Widgets
             UpdateHistogram ();
         }
 
-        private bool DelayedUpdateHistogram ()
+        bool DelayedUpdateHistogram ()
         {
             if (Photos.Length == 0)
                 return false;
@@ -590,7 +588,7 @@ namespace FSpot.Widgets
                 histogram_image.Pixbuf = histogram.Generate (hint, max);
                 
                 hint.Dispose ();
-            } catch (System.Exception e) {
+            } catch (Exception e) {
                 Hyena.Log.Debug (e.StackTrace);
                 using (Gdk.Pixbuf empty = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, true, 8, 256, 256)) {
                     empty.Fill (0x0);
@@ -603,7 +601,7 @@ namespace FSpot.Widgets
 
         // Context switching
 
-        private void HandleContextChanged (object sender, EventArgs args)
+        void HandleContextChanged (object sender, EventArgs args)
         {
             bool infobox_visible = ContextSwitchStrategy.InfoBoxVisible (Context);
             info_expander.Expanded = infobox_visible;
@@ -619,9 +617,9 @@ namespace FSpot.Widgets
         {
             MainWindow.ModeType mode = App.Instance.Organizer.ViewMode;
             if (mode == MainWindow.ModeType.IconView)
-                Context = ViewContext.Library; else if (mode == MainWindow.ModeType.PhotoView) {
+                Context = ViewContext.Library;
+			else if (mode == MainWindow.ModeType.PhotoView)
                 Context = ViewContext.Edit;
-            }
         }
 
         void HandleButtonPressEvent (object sender, ButtonPressEventArgs args)
@@ -647,7 +645,7 @@ namespace FSpot.Widgets
             args.RetVal = true;
         }
 
-        private void AddMenuItems (Menu popup_menu)
+        void AddMenuItems (Menu popup_menu)
         {
             var items = new Dictionary <MenuItem, InfoEntry> ();
 
@@ -670,13 +668,13 @@ namespace FSpot.Widgets
             }
         }
 
-        private void HandleMenuItemSelected (object sender, EventArgs args)
+        void HandleMenuItemSelected (object sender, EventArgs args)
         {
 
         }
 
 		#region Constructor
-        public InfoBox () : base(false, 0)
+        public InfoBox () : base (false, 0)
         {
             ContextSwitchStrategy = new MRUInfoBoxContextSwitchStrategy ();
             ContextChanged += HandleContextChanged;
@@ -715,40 +713,40 @@ namespace FSpot.Widgets
     {
         public const string PREF_PREFIX = Preferences.APP_FSPOT + "ui";
 
-        private string PrefKeyForContext (ViewContext context, string item)
+        string PrefKeyForContext (ViewContext context, string item)
         {
-            return String.Format ("{0}/{1}_visible/{2}", PREF_PREFIX, item, context);
+            return string.Format ("{0}/{1}_visible/{2}", PREF_PREFIX, item, context);
         }
 
-        private string PrefKeyForContext (ViewContext context, string parent, string item)
+        string PrefKeyForContext (ViewContext context, string parent, string item)
         {
-            return String.Format ("{0}/{1}_visible/{2}/{3}", PREF_PREFIX, parent, item, context);
+            return string.Format ("{0}/{1}_visible/{2}/{3}", PREF_PREFIX, parent, item, context);
         }
 
-        private bool VisibilityForContext (ViewContext context, string item, bool default_value)
+        bool VisibilityForContext (ViewContext context, string item, bool default_value)
         {
             string visible = Preferences.Get<string> (PrefKeyForContext (context, item));
             if (visible == null)
                 return default_value;
-            else
-                return visible == "1";
+
+			return visible == "1";
         }
 
-        private bool VisibilityForContext (ViewContext context, string parent, string item, bool default_value)
+        bool VisibilityForContext (ViewContext context, string parent, string item, bool default_value)
         {
             string visible = Preferences.Get<string> (PrefKeyForContext (context, parent, item));
             if (visible == null)
                 return default_value;
-            else
-                return visible == "1";
+
+			return visible == "1";
         }
 
-        private void SetVisibilityForContext (ViewContext context, string item, bool visible)
+        void SetVisibilityForContext (ViewContext context, string item, bool visible)
         {
             Preferences.Set (PrefKeyForContext (context, item), visible ? "1" : "0");
         }
 
-        private void SetVisibilityForContext (ViewContext context, string parent, string item, bool visible)
+        void SetVisibilityForContext (ViewContext context, string parent, string item, bool visible)
         {
             Preferences.Set (PrefKeyForContext (context, parent, item), visible ? "1" : "0");
         }

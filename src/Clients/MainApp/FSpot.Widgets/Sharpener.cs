@@ -35,7 +35,6 @@ using Gtk;
 
 using Mono.Unix;
 
-using FSpot.Widgets;
 using FSpot.UI.Dialog;
 
 using Hyena.Widgets;
@@ -49,7 +48,7 @@ namespace FSpot.Widgets
 		Gtk.SpinButton threshold_spin = new Gtk.SpinButton (0.0, 50.0, .01);
 		Gtk.Dialog dialog;
 		ThreadProgressDialog progressDialog;
-		private bool okClicked;
+		bool okClicked;
 
 		public Sharpener (PhotoImageView view) : base (view)
 		{
@@ -73,7 +72,7 @@ namespace FSpot.Widgets
 			}
 		}
 
-		private void HandleSettingsChanged (object sender, EventArgs args)
+		void HandleSettingsChanged (object sender, EventArgs args)
 		{
 			UpdateSample ();
 		}
@@ -103,9 +102,9 @@ namespace FSpot.Widgets
 				photo.SaveVersion (final, create_version);
 				photo.Changes.DataChanged = true;
 				App.Instance.Database.Photos.Commit (photo);
-			} catch (System.Exception e) {
+			} catch (Exception e) {
 				string msg = Catalog.GetString ("Error saving sharpened photo");
-				string desc = String.Format (Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"),
+				string desc = string.Format (Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"),
                                  e.Message, photo.Name);
 
 				HigMessageDialog md = new HigMessageDialog (this, DialogFlags.DestroyWithParent,
@@ -125,9 +124,9 @@ namespace FSpot.Widgets
 			Destroy ();
 		}
 
-		private void HandleOkClicked (object sender, EventArgs args)
+		void HandleOkClicked (object sender, EventArgs args)
 		{
-			this.Hide ();
+			Hide ();
 			dialog.Hide ();
 
 			System.Threading.Thread command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (doSharpening));

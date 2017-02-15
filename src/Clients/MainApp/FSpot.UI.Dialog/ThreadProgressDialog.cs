@@ -39,8 +39,10 @@ using Gtk;
 
 using FSpot.Utils;
 
-namespace FSpot.UI.Dialog {
-	public class ThreadProgressDialog : Gtk.Dialog {
+namespace FSpot.UI.Dialog
+{
+	public class ThreadProgressDialog : Gtk.Dialog
+	{
 		DelayedOperation delay;
 
 		Gtk.ProgressBar progress_bar;
@@ -53,33 +55,33 @@ namespace FSpot.UI.Dialog {
 		AutoResetEvent error_response_event;
 
 		object syncHandle = new object ();
-
-		Thread thread;
+		readonly Thread thread;
 
 		// FIXME: The total parameter makes sense, but doesn't seem to ever be used?
-		public ThreadProgressDialog (Thread thread, int total) {
+		public ThreadProgressDialog (Thread thread, int total)
+		{
 			/*
 			if (parent_window)
 				this.TransientFor = parent_window;
 
 			*/
-			this.Title = thread.Name;
+			Title = thread.Name;
 			this.thread = thread;
 
 			HasSeparator = false;
 			BorderWidth = 6;
 			SetDefaultSize (300, -1);
 
-			message_label = new Gtk.Label (String.Empty);
+			message_label = new Gtk.Label (string.Empty);
 			VBox.PackStart (message_label, true, true, 12);
 
 			progress_bar = new Gtk.ProgressBar ();
 			VBox.PackStart (progress_bar, true, true, 6);
 
 			retry_button = new Gtk.Button (Mono.Unix.Catalog.GetString ("Retry"));
-			retry_button.Clicked += new EventHandler (HandleRetryClicked);
+			retry_button.Clicked += HandleRetryClicked;
 			skip_button = new Gtk.Button (Mono.Unix.Catalog.GetString ("Skip"));
-			skip_button.Clicked += new EventHandler (HandleSkipClicked);
+			skip_button.Clicked += HandleSkipClicked;
 
 			ActionArea.Add (retry_button);
 			ActionArea.Add (skip_button);
@@ -181,14 +183,14 @@ namespace FSpot.UI.Dialog {
 		}
 
 		void HandleResponse (object obj, Gtk.ResponseArgs args) {
-			this.Destroy ();
+			Destroy ();
 		}
 
 		bool HandleUpdate ()
 		{
 			message_label.Text = message;
 			progress_bar.Text = progress_text;
-			progress_bar.Fraction = System.Math.Min (1.0, System.Math.Max (0.0, fraction));
+			progress_bar.Fraction = Math.Min (1.0, Math.Max (0.0, fraction));
 			button.Label = button_label;
 			retry_button.Visible = skip_button.Visible = retry_skip;
 

@@ -27,7 +27,6 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#if ENABLE_TESTS
 using NUnit.Framework;
 
 namespace FSpot.Widgets.Tests
@@ -38,7 +37,7 @@ namespace FSpot.Widgets.Tests
 		[Test]
 		public void SuccessfulCompletionTest ()
 		{
-			CompletionLogic logic = new CompletionLogic ();
+			var logic = new CompletionLogic ();
 
 			Assert.IsTrue (logic.MatchFunc ("Tagname", "T", 0), "first char");
 			Assert.IsTrue (logic.MatchFunc ("Tagname", "t", 0), "first char, different casing");
@@ -51,7 +50,7 @@ namespace FSpot.Widgets.Tests
 		[Test]
 		public void MatchTagsWithDiacritics ()
 		{
-			CompletionLogic logic = new CompletionLogic ();
+			var logic = new CompletionLogic ();
 
 			Assert.IsTrue (logic.MatchFunc ("àáâãäåa", "àáâãäå", 5), "chars with diacritics");
 			Assert.IsTrue (logic.MatchFunc ("ÒÓÔÕÖØO", "òóôõöø", 5), "chars with diacritics, different casing");
@@ -62,7 +61,7 @@ namespace FSpot.Widgets.Tests
 		[Test]
 		public void MatchTagsWithSpaces ()
 		{
-			CompletionLogic logic = new CompletionLogic ();
+			var logic = new CompletionLogic ();
 
 			Assert.IsTrue (logic.MatchFunc ("Tag with spaces", "Ta", 1), "");
 			Assert.IsTrue (logic.MatchFunc ("Tag with spaces", "Tag", 2), "");
@@ -79,7 +78,7 @@ namespace FSpot.Widgets.Tests
 		[Test]
 		public void UnsuccessfulCompletionTest ()
 		{
-			CompletionLogic logic = new CompletionLogic ();
+			var logic = new CompletionLogic ();
 
 			Assert.IsFalse (logic.MatchFunc ("Tagname", "", 0), "empty string");
 			Assert.IsFalse (logic.MatchFunc ("Tagname", "a", 0), "single char, no match");
@@ -90,7 +89,7 @@ namespace FSpot.Widgets.Tests
 		[Test]
 		public void SuccessfulCompletionTestWithParenthesis ()
 		{
-			CompletionLogic logic = new CompletionLogic ();
+			var logic = new CompletionLogic ();
 
 			Assert.IsTrue (logic.MatchFunc ("Tagname", "(T", 1), "first char");
 			Assert.IsTrue (logic.MatchFunc ("Tagname", "(tagnam", 6), "except one char, different casing");
@@ -101,7 +100,7 @@ namespace FSpot.Widgets.Tests
 		[Test]
 		public void SuccessfulCompletionTestWithAndOperator ()
 		{
-			CompletionLogic logic = new CompletionLogic ();
+			var logic = new CompletionLogic ();
 
 			Assert.IsTrue (logic.MatchFunc ("Tagname", "XY and T", 7), "first char, after operator");
 			Assert.IsTrue (logic.MatchFunc ("Tagname", "XY and tagnam", 12), "except one char, different casing, after operator");
@@ -112,7 +111,7 @@ namespace FSpot.Widgets.Tests
 		[Test]
 		public void SuccessfulCompletionTestWithOrOperator ()
 		{
-			CompletionLogic logic = new CompletionLogic ();
+			var logic = new CompletionLogic ();
 
 			Assert.IsTrue (logic.MatchFunc ("Tagname", "XY or T", 6), "first char");
 			Assert.IsTrue (logic.MatchFunc ("Tagname", "XY or tagnam", 11), "except one char, different casing");
@@ -123,7 +122,7 @@ namespace FSpot.Widgets.Tests
 		[Test]
 		public void SuccessfulCompletionTestInBetween ()
 		{
-			CompletionLogic logic = new CompletionLogic ();
+			var logic = new CompletionLogic ();
 
 			Assert.IsTrue (logic.MatchFunc ("Tagname", "XY and T and AB", 7), "first char");
 			Assert.IsTrue (logic.MatchFunc ("Tagname", "XY and tagnam and AB", 12), "except one char, different casing");
@@ -133,7 +132,7 @@ namespace FSpot.Widgets.Tests
 		public void ReplaceKeyTest ()
 		{
 			int pos;
-			CompletionLogic logic = new CompletionLogic ();
+			var logic = new CompletionLogic ();
 
 			pos = 0;
 			logic.MatchFunc ("Tagname", "T", pos);
@@ -152,4 +151,3 @@ namespace FSpot.Widgets.Tests
 		}
 	}
 }
-#endif

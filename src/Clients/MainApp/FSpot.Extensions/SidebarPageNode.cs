@@ -31,11 +31,13 @@ using Mono.Addins;
 
 namespace FSpot.Extensions
 {
-	public class SidebarPageNode : ExtensionNode {
+	public class SidebarPageNode : ExtensionNode
+	{
 		[NodeAttribute (Required=true)]
 		protected string sidebar_page_type;
 
-		public SidebarPage GetPage () {
+		public SidebarPage GetPage ()
+		{
 			return (SidebarPage) Addin.CreateInstance (sidebar_page_type);
 		}
 	}

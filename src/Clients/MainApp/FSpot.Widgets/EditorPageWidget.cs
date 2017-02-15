@@ -32,12 +32,9 @@
 using System;
 using System.Collections.Generic;
 
-using FSpot;
-using FSpot.Extensions;
 using FSpot.Editors;
 using FSpot.UI.Dialog;
 using FSpot.Utils;
-using FSpot.Core;
 
 using Gtk;
 
@@ -47,34 +44,36 @@ using Mono.Unix;
 using Hyena;
 using Hyena.Widgets;
 
-namespace FSpot.Widgets {
+namespace FSpot.Widgets
+{
+	public class EditorPageWidget : Gtk.ScrolledWindow
+	{
+		VBox widgets;
+		VButtonBox buttons;
+		Widget active_editor;
 
-	public class EditorPageWidget : Gtk.ScrolledWindow {
-		private VBox widgets;
-		private VButtonBox buttons;
-		private Widget active_editor;
-
-		private List<Editor> editors;
-		private Editor current_editor;
+		List<Editor> editors;
+		Editor current_editor;
 
 		// Used to make buttons insensitive when selecting multiple images.
-		private Dictionary<Editor, Button> editor_buttons;
+		Dictionary<Editor, Button> editor_buttons;
 
-		private EditorPage page;
+		EditorPage page;
 		internal EditorPage Page {
 			get { return page; }
 			set { page = value; ChangeButtonVisibility (); }
 		}
 
-		public EditorPageWidget () {
+		public EditorPageWidget ()
+		{
 			editors = new List<Editor> ();
 			editor_buttons = new Dictionary<Editor, Button> ();
 			ShowTools ();
 			AddinManager.AddExtensionNodeHandler ("/FSpot/Editors", OnExtensionChanged);
-
 		}
 
-		private void OnExtensionChanged (object s, ExtensionNodeEventArgs args) {
+		void OnExtensionChanged (object s, ExtensionNodeEventArgs args)
+		{
 			// FIXME: We do not do run-time removal of editors yet!
 			if (args.Change == ExtensionChange.Add) {
 				Editor editor = (args.ExtensionNode as EditorNode).GetEditor ();
@@ -86,25 +85,28 @@ namespace FSpot.Widgets {
 			}
 		}
 
-		private ProgressDialog progress;
+		ProgressDialog progress;
 
-		private void OnProcessingStarted (string name, int count) {
+		void OnProcessingStarted (string name, int count) {
 			progress = new ProgressDialog (name, ProgressDialog.CancelButtonType.None, count, App.Instance.Organizer.Window);
 		}
 
-		private void OnProcessingStep (int done) {
+		void OnProcessingStep (int done)
+		{
 			if (progress != null)
-				progress.Update (String.Empty);
+				progress.Update (string.Empty);
 		}
 
-		private void OnProcessingFinished () {
+		void OnProcessingFinished ()
+		{
 			if (progress != null) {
 				progress.Destroy ();
 				progress = null;
 			}
 		}
 
-		internal void ChangeButtonVisibility () {
+		internal void ChangeButtonVisibility ()
+		{
 			foreach (Editor editor in editors) {
 				Button button;
 				if (editor_buttons.TryGetValue (editor, out button))
@@ -117,13 +119,14 @@ namespace FSpot.Widgets {
 			Button button = new Button (editor.Label);
 			if (editor.IconName != null)
 				button.Image = new Image (GtkUtil.TryLoadIcon (FSpot.Settings.Global.IconTheme, editor.IconName, 22, (Gtk.IconLookupFlags)0));
-			button.Clicked += delegate (object o, EventArgs e) { ChooseEditor (editor); };
+			button.Clicked += (o, e) => { ChooseEditor (editor); };
 			button.Show ();
 			buttons.Add (button);
 			editor_buttons.Add (editor, button);
 		}
 
-		public void ShowTools () {
+		public void ShowTools ()
+		{
 			// Remove any open editor, if present.
 			if (current_editor != null) {
 				active_editor.Hide ();
@@ -162,7 +165,8 @@ namespace FSpot.Widgets {
 			widgets.Add (buttons);
 		}
 
-		private void ChooseEditor (Editor editor) {
+		void ChooseEditor (Editor editor)
+		{
 			SetupEditor (editor);
 
 			if (!editor.CanBeApplied || editor.HasSettings)
@@ -171,7 +175,8 @@ namespace FSpot.Widgets {
 				Apply (editor); // Instant apply
 		}
 
-		private bool SetupEditor (Editor editor) {
+		bool SetupEditor (Editor editor)
+		{
 			EditorState state = editor.CreateState ();
 
 			PhotoImageView photo_view = App.Instance.Organizer.PhotoView.View;
@@ -191,7 +196,8 @@ namespace FSpot.Widgets {
 			return true;
 		}
 
-		private void Apply (Editor editor) {
+		void Apply (Editor editor)
+		{
 			if (!SetupEditor (editor))
 				return;
 
@@ -217,12 +223,12 @@ namespace FSpot.Widgets {
 				Log.DebugException (e);
 				string msg = Catalog.GetPluralString ("Error saving adjusted photo", "Error saving adjusted photos",
 									editor.State.Items.Length);
-				string desc = String.Format (Catalog.GetString ("Received exception \"{0}\". Note that you have to develop RAW files into JPEG before you can edit them."),
+				string desc = string.Format (Catalog.GetString ("Received exception \"{0}\". Note that you have to develop RAW files into JPEG before you can edit them."),
 							     e.Message);
 
 				HigMessageDialog md = new HigMessageDialog (App.Instance.Organizer.Window,
 									    DialogFlags.DestroyWithParent,
-									    Gtk.MessageType.Error, ButtonsType.Ok,
+									    MessageType.Error, ButtonsType.Ok,
 									    msg,
 									    desc);
 				md.Run ();
@@ -231,7 +237,8 @@ namespace FSpot.Widgets {
 			ShowTools ();
 		}
 
-		private void ShowEditor (Editor editor) {
+		void ShowEditor (Editor editor)
+		{
 			SetupEditor (editor);
 			current_editor = editor;
 
@@ -240,7 +247,7 @@ namespace FSpot.Widgets {
 			// Top label
 			VBox vbox = new VBox (false, 4);
 			Label label = new Label ();
-			label.Markup = String.Format("<big><b>{0}</b></big>", editor.Label);
+			label.Markup = string.Format("<big><b>{0}</b></big>", editor.Label);
 			vbox.PackStart (label, false, false, 5);
 
 			// Optional config widget
@@ -267,8 +274,8 @@ namespace FSpot.Widgets {
 			tool_buttons.Add (cancel);
 
 			Button apply = new Button (editor.ApplyLabel);
-			apply.Image = new Image (GtkUtil.TryLoadIcon (FSpot.Settings.Global.IconTheme, editor.IconName, 22, (Gtk.IconLookupFlags)0));
-			apply.Clicked += delegate { Apply (editor); };
+			apply.Image = new Image (GtkUtil.TryLoadIcon (FSpot.Settings.Global.IconTheme, editor.IconName, 22, 0));
+			apply.Clicked += (s, e) => { Apply (editor); };
 			tool_buttons.Add (apply);
 
 			// Pack it all together
@@ -278,7 +285,8 @@ namespace FSpot.Widgets {
 			active_editor.ShowAll ();
 		}
 
-		void HandleCancel (object sender, System.EventArgs args) {
+		void HandleCancel (object sender, EventArgs args)
+		{
 			ShowTools ();
 		}
 	}

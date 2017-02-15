@@ -33,20 +33,20 @@ using Gtk;
 
 namespace FSpot.Extensions
 {
-	public class SidebarPage {
+	public class SidebarPage
+	{
 		// The widget shown on the sidebar page.
-		private readonly Widget widget;
+		readonly Widget widget;
 		public Widget SidebarWidget {
 			get { return widget; }
 		}
 
 		// Whether this page can be selected
-		private bool can_select;
+		bool can_select;
 		public bool CanSelect {
 			protected set {
 				can_select = value;
-				if (CanSelectChanged != null)
-					CanSelectChanged (this, null);
+				CanSelectChanged?.Invoke (this, null);
 			}
 			get { return can_select; }
 		}
@@ -54,19 +54,19 @@ namespace FSpot.Extensions
 		public event EventHandler CanSelectChanged;
 
 		// The label of the sidebar page.
-		private readonly string label;
+		readonly string label;
 		public string Label {
 			get { return label; }
 		}
 
 		// The icon name, used for the selector
-		private readonly string icon_name;
+		readonly string icon_name;
 		public string IconName {
 			get { return icon_name; }
 		}
 
 		// The sidebar onto which this page is attached
-		private Gtk.Widget sidebar;
+		Gtk.Widget sidebar;
 		public Gtk.Widget Sidebar {
 			get { return sidebar; }
 			set {
@@ -83,7 +83,8 @@ namespace FSpot.Extensions
 //			get { return Sidebar.IsActive (this); }
 //		}
 
-		public SidebarPage (Widget widget, string label, string icon_name) {
+		public SidebarPage (Widget widget, string label, string icon_name)
+		{
 			this.widget = widget;
 			this.label = label;
 			this.icon_name = icon_name;

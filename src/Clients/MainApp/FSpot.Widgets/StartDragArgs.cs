@@ -33,9 +33,9 @@ namespace FSpot.Widgets
 {
 	public class StartDragArgs
 	{
-		public Event Event { get; set; }
+		public Event Event { get; private set; }
 
-		public uint Button { get; set; }
+		public uint Button { get; private set; }
 
 		public StartDragArgs (uint but, Event evt)
 		{

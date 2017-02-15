@@ -40,17 +40,18 @@ using FSpot.Widgets;
 
 namespace FSpot.UI.Dialog
 {
-	public class DateRangeDialog : BuilderDialog {
+	public class DateRangeDialog : BuilderDialog
+	{
 		[GtkBeans.Builder.Object] Frame startframe;
 		[GtkBeans.Builder.Object] Frame endframe;
 		[GtkBeans.Builder.Object] ComboBox period_combobox;
 
-		DateEdit start_dateedit;
-		DateEdit end_dateedit;
+		readonly DateEdit start_dateedit;
+		readonly DateEdit end_dateedit;
 
 		TreeStore rangestore;
 
-		static string [] ranges = {
+		static readonly string [] ranges = {
 			"today",
 			"yesterday",
 			"last7days",
@@ -104,9 +105,9 @@ namespace FSpot.UI.Dialog
 			(cell as CellRendererText).Text = name;
 		}
 
-		private string GetString(string rangename)
+		string GetString(string rangename)
 		{
-			System.DateTime today = System.DateTime.Today;
+			DateTime today = DateTime.Today;
 			switch (rangename) {
 			case "today":
 				return Catalog.GetString("Today");
@@ -151,16 +152,17 @@ namespace FSpot.UI.Dialog
 			get { return QueryRange (period_combobox.Active); }
 		}
 
-		private DateRange QueryRange (int index)
+		DateRange QueryRange (int index)
 		{
 			return QueryRange ( ranges [index]);
 		}
 
-		private DateRange QueryRange (string rangename)
+		DateRange QueryRange (string rangename)
 		{
-			System.DateTime today = System.DateTime.Today;
-			System.DateTime startdate = today;
-			System.DateTime enddate = today;
+			DateTime today = DateTime.Today;
+			DateTime startdate = today;
+			DateTime enddate = today;
+
 			bool clear = false;
 
 			switch (rangename) {
@@ -228,14 +230,14 @@ namespace FSpot.UI.Dialog
 			}
 			if (!clear)
 				return new DateRange (startdate, enddate.Add (new System.TimeSpan(23,59,59)));
-			else
-				return null;
+
+			return null;
 		}
 
 		void HandleDateEditChanged (object o, EventArgs args)
 		{
 			period_combobox.Changed -= HandlePeriodComboboxChanged;
-			period_combobox.Active = System.Array.IndexOf (ranges, "customizedrange");
+			period_combobox.Active = Array.IndexOf (ranges, "customizedrange");
 			period_combobox.Changed += HandlePeriodComboboxChanged;
 		}
 
@@ -250,8 +252,8 @@ namespace FSpot.UI.Dialog
 			if (o == null)
 				return;
 
-			start_dateedit.Sensitive = (combo.Active != System.Array.IndexOf (ranges, "alldates"));
-			end_dateedit.Sensitive = (combo.Active != System.Array.IndexOf (ranges, "alldates"));
+			start_dateedit.Sensitive = (combo.Active != Array.IndexOf (ranges, "alldates"));
+			end_dateedit.Sensitive = (combo.Active != Array.IndexOf (ranges, "alldates"));
 
 			DateRange range = QueryRange (period_combobox.Active);
 			if (range != null) {

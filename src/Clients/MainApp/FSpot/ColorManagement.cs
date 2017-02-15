@@ -80,15 +80,13 @@ namespace FSpot
 		static void AddProfiles (string path)
 		{
 			//recursive search, only RGB color profiles would be added
-			if (!Directory.Exists (path)) {
+			if (!Directory.Exists (path))
 				return;
-			}
 
 			AddProfilesByExtension (path, "*.icc");
-
 			AddProfilesByExtension (path, "*.icm");
 
-			string[] DirList = Directory.GetDirectories (path);
+			var DirList = Directory.GetDirectories (path);
 				foreach (string dir in DirList)
 					AddProfiles (dir);
 		}

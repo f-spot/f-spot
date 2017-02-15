@@ -37,7 +37,7 @@ namespace FSpot.Utils
 		{
 			UriBuilder builder = new UriBuilder (uri);
 			builder.Path =
-				String.Format ("{0}/", System.IO.Path.GetDirectoryName (uri.AbsolutePath));
+				string.Format ("{0}/", System.IO.Path.GetDirectoryName (uri.AbsolutePath));
 			
 			return builder.Uri;
 		}

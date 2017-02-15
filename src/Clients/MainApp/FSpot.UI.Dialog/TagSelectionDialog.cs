@@ -36,7 +36,8 @@ using Gtk;
 using FSpot.Core;
 using FSpot.Database;
 
-namespace FSpot.UI.Dialog {
+namespace FSpot.UI.Dialog
+{
 	public class TagSelectionDialog : BuilderDialog
 	{
 		[GtkBeans.Builder.Object] Gtk.ScrolledWindow tag_selection_scrolled;

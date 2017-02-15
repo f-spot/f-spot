@@ -112,11 +112,11 @@ namespace FSpot
 
 				string desc = Item.Current.Description;
 				if (description_entry.Text != desc) {
-					description_entry.Text = desc ?? String.Empty;
+					description_entry.Text = desc ?? string.Empty;
 				}
 			} else {
 				description_entry.Sensitive = false;
-				description_entry.Text = String.Empty;
+				description_entry.Text = string.Empty;
 			}
 
 			description_entry.Changed += HandleDescriptionChanged;
@@ -164,14 +164,14 @@ namespace FSpot
 				    DoubleClicked (this, null);
 			if (args.Event.Type == EventType.ButtonPress
 			    && args.Event.Button == 3) {
-				PhotoPopup popup = new PhotoPopup ();
+				var popup = new PhotoPopup ();
 				popup.Activate (Toplevel, args.Event);
 			}
 		}
 
 		protected override bool OnPopupMenu ()
 		{
-			PhotoPopup popup = new PhotoPopup ();
+			var popup = new PhotoPopup ();
 			popup.Activate (Toplevel);
 			return true;
 		}
@@ -248,7 +248,7 @@ namespace FSpot
 			LoadPreference (args.Key);
 		}
 
-		void LoadPreference (String key)
+		void LoadPreference (string key)
 		{
 			switch (key) {
 			case Preferences.FILMSTRIP_ORIENTATION:

@@ -49,14 +49,14 @@ namespace FSpot.Widgets
 	{
 		bool running;
 		BrowsablePointer item;
-		int loadRetries = 0;
+		int loadRetries;
 #region Public API
 
 		public SlideShow (BrowsablePointer item) : this (item, 6000, false)
 		{
 		}
 
-		public SlideShow (BrowsablePointer item, uint interval_ms, bool init) : base ()
+		public SlideShow (BrowsablePointer item, uint interval_ms, bool init)
 		{
 			this.item = item;
 			DoubleBuffered = false;
@@ -133,38 +133,38 @@ namespace FSpot.Widgets
 
 		void LoadNext ()
 		{
-				if (next != null) {
-					next = null;
-				}
+			if (next != null) {
+				next = null;
+			}
 
-				if (item == null || item.Current == null)
-					return;
+			if (item == null || item.Current == null)
+				return;
 
-				using (var img = App.Instance.Container.Resolve<IImageFileFactory> ().Create (item.Current.DefaultVersion.Uri)) {
-					try {
-						using (var pb =  img.Load ()) {
-							double scale = Math.Min ((double)Allocation.Width/(double)pb.Width, (double)Allocation.Height/(double)pb.Height);
-							int w = (int)(pb.Width * scale);
-							int h = (int)(pb.Height * scale);
+			using (var img = App.Instance.Container.Resolve<IImageFileFactory> ().Create (item.Current.DefaultVersion.Uri)) {
+				try {
+					using (var pb =  img.Load ()) {
+						double scale = Math.Min ((double)Allocation.Width/(double)pb.Width, (double)Allocation.Height/(double)pb.Height);
+						int w = (int)(pb.Width * scale);
+						int h = (int)(pb.Height * scale);
 
-							if (w > 0 && h > 0)
-								next = pb.ScaleSimple ((int)(pb.Width * scale), (int)(pb.Height * scale), InterpType.Bilinear);
-						}
-						Cms.Profile screen_profile;
-						if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile))
-							FSpot.ColorManagement.ApplyProfile (next, screen_profile);
-						loadRetries = 0;
-					} catch (Exception) {
-						next = PixbufUtils.ErrorPixbuf;
-						if (++loadRetries < 10)
-							item.MoveNext (true);
-						else
-							loadRetries = 0;
+						if (w > 0 && h > 0)
+							next = pb.ScaleSimple ((int)(pb.Width * scale), (int)(pb.Height * scale), InterpType.Bilinear);
 					}
+					Cms.Profile screen_profile;
+					if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile))
+						FSpot.ColorManagement.ApplyProfile (next, screen_profile);
+					loadRetries = 0;
+				} catch (Exception) {
+					next = PixbufUtils.ErrorPixbuf;
+					if (++loadRetries < 10)
+						item.MoveNext (true);
+					else
+						loadRetries = 0;
 				}
+			}
 		}
 
-		double progress = 0;
+		double progress;
 		void HandleProgressChanged (double progress)
 		{
 			lock (sync_handle) {

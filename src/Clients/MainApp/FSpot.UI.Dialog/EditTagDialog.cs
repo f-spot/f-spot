@@ -42,7 +42,7 @@ namespace FSpot.UI.Dialog
 {
 	public class EditTagDialog : BuilderDialog
 	{
-		Db db;
+		readonly Db db;
 		Tag tag;
 		[GtkBeans.Builder.Object] Button ok_button;
 		[GtkBeans.Builder.Object] Entry tag_name_entry;
@@ -89,16 +89,16 @@ namespace FSpot.UI.Dialog
 		{
 			string name = tag_name_entry.Text;
 
-			if (name == String.Empty) {
+			if (name == string.Empty) {
 				ok_button.Sensitive = false;
-				already_in_use_label.Markup = String.Empty;
+				already_in_use_label.Markup = string.Empty;
 			} else if (TagNameExistsInCategory (name, db.Tags.RootCategory)
-				   && String.Compare (name, orig_name, true) != 0) {
+				   && string.Compare (name, orig_name, true) != 0) {
 				ok_button.Sensitive = false;
 				already_in_use_label.Markup = "<small>" + Catalog.GetString ("This name is already in use") + "</small>";
 			} else {
 				ok_button.Sensitive = true;
-				already_in_use_label.Markup = String.Empty;
+				already_in_use_label.Markup = string.Empty;
 				last_valid_name = tag_name_entry.Text;
 			}
 		}
@@ -106,7 +106,7 @@ namespace FSpot.UI.Dialog
 		bool TagNameExistsInCategory (string name, Category category)
 		{
 			foreach (Tag tag in category.Children) {
-				if (String.Compare (tag.Name, name, true) == 0)
+				if (string.Compare (tag.Name, name, true) == 0)
 					return true;
 
 				if (tag is Category && TagNameExistsInCategory (name, tag as Category))

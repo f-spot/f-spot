@@ -29,12 +29,13 @@
 
 using System;
 
-namespace FSpot.Loaders {
+namespace FSpot.Loaders
+{
 	public class AreaPreparedEventArgs : EventArgs
 	{
 		public bool ReducedResolution { get; private set; }
 
-		public AreaPreparedEventArgs (bool reduced_resolution) : base ()
+		public AreaPreparedEventArgs (bool reduced_resolution)
 		{
 			ReducedResolution = reduced_resolution;
 		}

@@ -42,17 +42,22 @@ using FSpot.Query;
 
 using Hyena;
 
-namespace FSpot {
-	public class TimeAdaptor : GroupAdaptor, FSpot.ILimitable {
+namespace FSpot
+{
+	public class TimeAdaptor : GroupAdaptor, ILimitable
+	{
 		Dictionary <int, int[]> years = new Dictionary<int, int[]> ();
 
 		public override event GlassSetHandler GlassSet;
+
+		public TimeAdaptor (PhotoQuery query, bool order_ascending) : base (query, order_ascending)
+		{ }
+
 		public override void SetGlass (int min)
 		{
 			DateTime date = DateFromIndex (min);
 
-			if (GlassSet != null)
-				GlassSet (this, query.LookupItem (date));
+			GlassSet?.Invoke (this, query.LookupItem (date));
 		}
 
 		public void SetLimits (int min, int max)
@@ -78,7 +83,7 @@ namespace FSpot {
 
 		public override string GlassLabel (int item)
 		{
-			return String.Format ("{0} ({1})", DateFromIndex (item).ToString ("MMMM yyyy"), Value (item));
+			return string.Format ("{0} ({1})", DateFromIndex (item).ToString ("MMMM yyyy"), Value (item));
 		}
 
 		public override string TickLabel (int item)
@@ -109,7 +114,7 @@ namespace FSpot {
 			return DateFromIndexDescending (item);
 		}
 
-		private DateTime DateFromIndexAscending (int item)
+		DateTime DateFromIndexAscending (int item)
 		{
 			int year = startyear + item/12;
 			int month = 1 + (item % 12);
@@ -117,7 +122,7 @@ namespace FSpot {
 			return new DateTime(year, month, 1);
 		}
 
-		private DateTime DateFromIndexDescending (int item)
+		DateTime DateFromIndexDescending (int item)
 		{
 			int year = endyear - item/12;
 			int month = 12 - (item % 12);
@@ -148,7 +153,7 @@ namespace FSpot {
 			return IndexFromDateDescending(date);
 		}
 
-		private int IndexFromDateAscending(DateTime date)
+		int IndexFromDateAscending(DateTime date)
 		{
 			int year = date.Year;
 			int min_year = startyear;
@@ -162,7 +167,7 @@ namespace FSpot {
 			return (year - startyear) * 12 + date.Month - 1 ;
 		}
 
-		private int IndexFromDateDescending(DateTime date)
+		int IndexFromDateDescending(DateTime date)
 		{
 			int year = date.Year;
 			int min_year = startyear;
@@ -199,7 +204,7 @@ namespace FSpot {
 		void DoReload ()
 		{
 			Thread.Sleep (200);
-			Dictionary <int, int[]> years_tmp = query.Store.PhotosPerMonth ();
+			var years_tmp = query.Store.PhotosPerMonth ();
 			int startyear_tmp = Int32.MaxValue;
 			int endyear_tmp = Int32.MinValue;
 
@@ -213,15 +218,10 @@ namespace FSpot {
 				startyear = startyear_tmp;
 				endyear = endyear_tmp;
 
-				if (Changed != null)
-					Changed (this);
+				Changed?.Invoke (this);
 			});
 
 			Log.DebugTimerPrint (timer, "TimeAdaptor REAL Reload took {0}");
 		}
-
-		public TimeAdaptor (PhotoQuery query, bool order_ascending)
-			: base (query, order_ascending)
-		{ }
 	}
 }

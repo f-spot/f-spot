@@ -38,7 +38,6 @@ using System.Linq;
 using Gtk;
 using Gdk;
 
-using FSpot;
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Utils;
@@ -56,7 +55,7 @@ namespace FSpot
 				byte [] bytes = System.BitConverter.GetBytes (photo.Id);
 
 				foreach (byte b in bytes) {
-					data[i] = b;
+					data [i] = b;
 					i++;
 				}
 			}
@@ -73,9 +72,9 @@ namespace FSpot
 
 			Photo [] photos = new Photo [length];
 
-			for (int i = 0; i < length; i ++) {
+			for (int i = 0; i < length; i++) {
 				uint id = System.BitConverter.ToUInt32 (selection_data.Data, i * size);
-				photos[i] = photo_store.Get (id);
+				photos [i] = photo_store.Get (id);
 			}
 
 			return photos;
@@ -90,7 +89,7 @@ namespace FSpot
 				byte [] bytes = System.BitConverter.GetBytes (tag.Id);
 
 				foreach (byte b in bytes) {
-					data[i] = b;
+					data [i] = b;
 					i++;
 				}
 			}
@@ -107,9 +106,9 @@ namespace FSpot
 
 			Tag [] tags = new Tag [length];
 
-			for (int i = 0; i < length; i ++) {
+			for (int i = 0; i < length; i++) {
 				uint id = System.BitConverter.ToUInt32 (selection_data.Data, i * size);
-				tags[i] = tag_store.Get (id);
+				tags [i] = tag_store.Get (id);
 			}
 
 			return tags;
@@ -118,12 +117,12 @@ namespace FSpot
 		public static string GetStringData (this SelectionData selection_data)
 		{
 			if (selection_data.Length <= 0)
-				return String.Empty;
+				return string.Empty;
 
 			try {
 				return Encoding.UTF8.GetString (selection_data.Data);
 			} catch (Exception) {
-				return String.Empty;
+				return string.Empty;
 			}
 		}
 
@@ -134,22 +133,22 @@ namespace FSpot
 			selection_data.Set (target, 8, data, data.Length);
 		}
 
-                public static void SetUriListData (this SelectionData selection_data, UriList uri_list)
-                {
-                    selection_data.SetUriListData (uri_list, Atom.Intern ("text/uri-list", true));
-                }
-        
+		public static void SetUriListData (this SelectionData selection_data, UriList uri_list)
+		{
+			selection_data.SetUriListData (uri_list, Atom.Intern ("text/uri-list", true));
+		}
+
 		public static UriList GetUriListData (this SelectionData selection_data)
 		{
 			return new UriList (GetStringData (selection_data));
 		}
 
-                public static void SetCopyFiles (this SelectionData selection_data, UriList uri_list)
-                {
-                    var uris = (from p in uri_list select p.ToString ()).ToArray ();
-                    var data = Encoding.UTF8.GetBytes ("copy\n" + String.Join ("\n", uris));
-        
-                    selection_data.Set (Atom.Intern ("x-special/gnome-copied-files", true), 8, data, data.Length);
-                }
+		public static void SetCopyFiles (this SelectionData selection_data, UriList uri_list)
+		{
+			var uris = (from p in uri_list select p.ToString ()).ToArray ();
+			var data = Encoding.UTF8.GetBytes ("copy\n" + string.Join ("\n", uris));
+
+			selection_data.Set (Atom.Intern ("x-special/gnome-copied-files", true), 8, data, data.Length);
+		}
 	}
 }

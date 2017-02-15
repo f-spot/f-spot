@@ -29,16 +29,14 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-
 using FSpot;
 using FSpot.Core;
 using FSpot.Thumbnail;
 using FSpot.UI.Dialog;
 
-public class ThumbnailCommand {
-
-	private Gtk.Window parent_window;
+public class ThumbnailCommand
+{
+	readonly Gtk.Window parent_window;
 
 	public ThumbnailCommand (Gtk.Window parent_window)
 	{
@@ -59,7 +57,7 @@ public class ThumbnailCommand {
 		int count = 0;
 		foreach (IPhoto photo in photos) {
 			if (progress_dialog != null
-			    && progress_dialog.Update (String.Format (Mono.Unix.Catalog.GetString ("Updating picture \"{0}\""), photo.Name)))
+			    && progress_dialog.Update (string.Format (Mono.Unix.Catalog.GetString ("Updating picture \"{0}\""), photo.Name)))
 				break;
 
 			foreach (IPhotoVersion version in photo.Versions) {

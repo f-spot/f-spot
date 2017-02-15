@@ -43,7 +43,8 @@ using FSpot.Widgets;
 
 using Hyena;
 
-namespace FSpot.UI.Dialog {
+namespace FSpot.UI.Dialog
+{
 	public class AdjustTimeDialog : BuilderDialog
 	{
 		[GtkBeans.Builder.Object] ScrolledWindow view_scrolled;
@@ -137,7 +138,7 @@ namespace FSpot.UI.Dialog {
 				offset_entry.Text = span.ToString ();
 
 			starting_label.Text = "min.";
-			difference_check.Label = String.Format (Catalog.GetString ("Shift all photos by {0}"),
+			difference_check.Label = string.Format (Catalog.GetString ("Shift all photos by {0}"),
 							      Offset);
 		}
 
@@ -149,23 +150,24 @@ namespace FSpot.UI.Dialog {
 			if (item.IsValid) {
 				IPhoto curr_item = item.Current;
 
-				name_label.Text = System.Uri.UnescapeDataString(curr_item.Name);
+				name_label.Text = Uri.UnescapeDataString(curr_item.Name);
 				old_label.Text = (curr_item.Time).ToString ();
 
 				int i = collection.Count > 0 ? item.Index + 1: 0;
 				// Note for translators: This indicates the current photo is photo {0} of {1} out of photos
-				count_label.Text = System.String.Format (Catalog.GetString ("{0} of {1}"), i, collection.Count);
+				count_label.Text = string.Format (Catalog.GetString ("{0} of {1}"), i, collection.Count);
 
 				DateTime actual = curr_item.Time;
 				date_edit.Time = actual;
 				gnome_dateedit_sucks = date_edit.Time - actual;
 			}
-			HandleTimeChanged (this, System.EventArgs.Empty);
+
+			HandleTimeChanged (this, EventArgs.Empty);
 
 			photo_spin.Value = item.Index + 1;
 		}
 
-		private void ShiftByDifference ()
+		void ShiftByDifference ()
 		{
 			TimeSpan span = Offset;
 			Photo [] photos = new Photo [collection.Count];
@@ -181,7 +183,7 @@ namespace FSpot.UI.Dialog {
 			db.Photos.Commit (photos);
 		}
 
-		private void SpaceByInterval ()
+		void SpaceByInterval ()
 		{
 			DateTime date = EditTime;
 		        long ticks = (long) (double.Parse (spacing_entry.Text) * TimeSpan.TicksPerMinute);
@@ -234,7 +236,7 @@ namespace FSpot.UI.Dialog {
 				TimeSpan span = TimeSpan.Parse (offset_entry.Text);
 				if (span != current)
 					Offset = span;
-			} catch (System.Exception) {
+			} catch (Exception) {
 				Log.WarningFormat ("unparsable span {0}", offset_entry.Text);
 			}
 		}

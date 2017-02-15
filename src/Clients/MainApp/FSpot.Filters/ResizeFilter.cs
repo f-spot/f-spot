@@ -33,44 +33,40 @@ using FSpot.Imaging;
 
 using Gdk;
 
-namespace FSpot.Filters {
-    public class ResizeFilter : IFilter
-    {
-        public ResizeFilter ()
-        {
-        }
+namespace FSpot.Filters
+{
+	public class ResizeFilter : IFilter
+	{
+		public ResizeFilter ()
+		{
+		}
 
-        public ResizeFilter (uint size)
-        {
-            this.size = size;
-        }
+		public ResizeFilter (uint size)
+		{
+			Size = size;
+		}
 
-        private uint size = 600;
+		public uint Size { get; set; } = 600;
 
-        public uint Size {
-            get { return size; }
-            set { size = value; }
-        }
+		public bool Convert (FilterRequest req)
+		{
+			string source = req.Current.LocalPath;
+			var dest_uri = req.TempUri (System.IO.Path.GetExtension (source));
 
-        public bool Convert (FilterRequest req)
-        {
-            string source = req.Current.LocalPath;
-            var dest_uri = req.TempUri (System.IO.Path.GetExtension (source));
+			using (var img = App.Instance.Container.Resolve<IImageFileFactory> ().Create (req.Current)) {
 
-            using (var img = App.Instance.Container.Resolve<IImageFileFactory> ().Create (req.Current)) {
+				using (Pixbuf pixbuf = img.Load ()) {
+					if (pixbuf.Width < Size && pixbuf.Height < Size)
+						return false;
+				}
 
-                using (Pixbuf pixbuf = img.Load ()) {
-                    if (pixbuf.Width < size && pixbuf.Height < size)
-                        return false;
-                }
+				using (Pixbuf pixbuf = img.Load ((int)Size, (int)Size)) {
+					FSpot.Utils.PixbufUtils.CreateDerivedVersion (req.Current, dest_uri, 95, pixbuf);
+				}
+			}
 
-                using (Pixbuf pixbuf = img.Load ((int)size, (int)size)) {
-                    FSpot.Utils.PixbufUtils.CreateDerivedVersion (req.Current, dest_uri, 95, pixbuf);
-                }
-            }
-
-            req.Current = dest_uri;
-            return true;
-        }
-    }
+			req.Current = dest_uri;
+			return true;
+		}
+	}
 }

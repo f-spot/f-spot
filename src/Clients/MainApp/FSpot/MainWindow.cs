@@ -44,7 +44,6 @@ using Mono.Unix;
 using Hyena;
 using Hyena.Widgets;
 
-using FSpot;
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Database.Jobs;
@@ -55,7 +54,6 @@ using FSpot.Utils;
 using FSpot.UI.Dialog;
 using FSpot.Platform;
 using FSpot.Import;
-using FSpot.Imaging;
 using FSpot.Settings;
 
 namespace FSpot
@@ -205,10 +203,9 @@ namespace FSpot
 			set { Tag.TagIconSize = (Settings.IconSize)value; }
 		}
 
-		static TargetEntry[] tag_target_table =
-			new TargetEntry [] {
+		static TargetEntry[] tag_target_table = {
 				DragDropTargets.TagListEntry
-			};
+		};
 
 		const int PHOTO_IDX_NONE = -1;
 
@@ -235,9 +232,6 @@ namespace FSpot
 			iconDestTargetList.AddUriTargets ((uint)DragDropTargets.TargetType.UriList);
 		}
 
-		//
-		// Constructor
-		//
 		public MainWindow (Db db)
 		{
 			foreach (ServiceNode service in AddinManager.GetExtensionNodes ("/FSpot/Services")) {
@@ -252,7 +246,7 @@ namespace FSpot
 
 			Database = db;
 
-			GtkBeans.Builder builder = new GtkBeans.Builder ("main_window.ui");
+			var builder = new GtkBeans.Builder ("main_window.ui");
 			builder.Autoconnect (this);
 
 			//Set the global DefaultColormap. Allows transparency according
@@ -328,19 +322,19 @@ namespace FSpot
 			toolbar.Insert (white_space, -1);
 
 			ToolItem label_item = new ToolItem ();
-			count_label = new Label (String.Empty);
+			count_label = new Label (string.Empty);
 			label_item.Child = count_label;
 			toolbar.Insert (label_item, -1);
 
 			display_previous_button = new ToolButton (Stock.GoBack);
 			toolbar.Insert (display_previous_button, -1);
 			display_previous_button.TooltipText = Catalog.GetString ("Previous photo");
-			display_previous_button.Clicked += new EventHandler (HandleDisplayPreviousButtonClicked);
+			display_previous_button.Clicked += HandleDisplayPreviousButtonClicked;
 
 			display_next_button = new ToolButton (Stock.GoForward);
 			toolbar.Insert (display_next_button, -1);
 			display_next_button.TooltipText = Catalog.GetString ("Next photo");
-			display_next_button.Clicked += new EventHandler (HandleDisplayNextButtonClicked);
+			display_next_button.Clicked += HandleDisplayNextButtonClicked;
 
 			Sidebar = new Sidebar ();
 			ViewModeChanged += Sidebar.HandleMainWindowViewModeChanged;
@@ -363,7 +357,7 @@ namespace FSpot
 
 			InfoBox = new InfoBox ();
 			ViewModeChanged += InfoBox.HandleMainWindowViewModeChanged;
-			InfoBox.VersionChanged += delegate (InfoBox box, IPhotoVersion version) {
+			InfoBox.VersionChanged += (info_box, version) => {
 				UpdateForVersionChange (version);
 			};
 			sidebar_vbox.PackEnd (InfoBox, false, false, 0);
@@ -380,7 +374,7 @@ namespace FSpot
 
 			try {
 				query = new PhotoQuery (Database.Photos);
-			} catch (System.Exception e) {
+			} catch (Exception e) {
 				//FIXME assume any exception here is due to a corrupt db and handle that.
 				new RepairDbDialog (e, Database.Repair (), main_window);
 				query = new PhotoQuery (Database.Photos);
@@ -399,9 +393,8 @@ namespace FSpot
 
 			group_selector.ShowAll ();
 
-			if (zoom_scale != null) {
+			if (zoom_scale != null)
 				zoom_scale.ValueChanged += HandleZoomScaleValueChanged;
-			}
 
 			view_vbox.PackStart (group_selector, false, false, 0);
 			view_vbox.ReorderChild (group_selector, 0);
@@ -417,10 +410,10 @@ namespace FSpot
 			view_vbox.ReorderChild (query_widget, 2);
 
 			MenuItem findByTag = uimanager.GetWidget ("/ui/menubar1/find/find_by_tag") as MenuItem;
-			query_widget.Hidden += delegate {
+			query_widget.Hidden += (s, e) => {
 				((Gtk.Label)findByTag.Child).TextWithMnemonic = Catalog.GetString ("Show _Find Bar");
 			};
-			query_widget.Shown += delegate {
+			query_widget.Shown += (s, e) => {
 				((Gtk.Label)findByTag.Child).TextWithMnemonic = Catalog.GetString ("Hide _Find Bar");
 			};
 
@@ -446,7 +439,7 @@ namespace FSpot
 			icon_view.StartDrag += HandleIconViewStartDrag;
 
 			TagMenu tag_menu = new TagMenu (null, Database.Tags);
-			tag_menu.NewTagHandler += delegate {
+			tag_menu.NewTagHandler += (s, e) => {
 				HandleCreateTagAndAttach (this, null);
 			};
 			tag_menu.TagSelected += HandleAttachTagMenuSelected;
@@ -558,8 +551,8 @@ namespace FSpot
 				int active = ActiveIndex ();
 				if (active >= 0)
 					return query [active] as Photo;
-				else
-					return null;
+
+				return null;
 			}
 		}
 
@@ -573,9 +566,8 @@ namespace FSpot
 		public enum ModeType
 		{
 			IconView,
-			PhotoView}
-
-		;
+			PhotoView
+		};
 
 		public event EventHandler ViewModeChanged;
 
@@ -648,16 +640,15 @@ namespace FSpot
 				display_next_button.Sensitive = next;
 
 				if (Query == null)
-					count_label.Text = String.Empty;
+					count_label.Text = string.Empty;
 				else
 					// Note for translators: This indicates the current photo is photo {0} of {1} out of photos
-					count_label.Text = String.Format (Catalog.GetString ("{0} of {1}"), Query.Count == 0 ? 0 : photo_view.View.Item.Index + 1, Query.Count == 0 ? 0 : Query.Count);
+					count_label.Text = string.Format (Catalog.GetString ("{0} of {1}"), Query.Count == 0 ? 0 : photo_view.View.Item.Index + 1, Query.Count == 0 ? 0 : Query.Count);
 			} else {
 				display_previous_button.Visible = false;
 				display_next_button.Visible = false;
 				count_label.Visible = false;
 			}
-
 		}
 
 		void HandleExportActivated (object o, EventArgs e)
@@ -912,7 +903,7 @@ namespace FSpot
 				// FIXME this needs a lot more work.
 				Pixbuf icon = null;
 				try {
-					Pixbuf tmp = PhotoLoader.LoadAtMaxSize (query [nums [0]], 128, 128);
+					var tmp = PhotoLoader.LoadAtMaxSize (query [nums [0]], 128, 128);
 					icon = PixbufUtils.TagIconFromPixbuf (tmp);
 					tmp.Dispose ();
 				} catch {
@@ -940,7 +931,7 @@ namespace FSpot
 		void HandleTagSelectionButtonPressEvent (object sender, ButtonPressEventArgs args)
 		{
 			if (args.Event.Button == 3) {
-				TagPopup popup = new TagPopup ();
+				var popup = new TagPopup ();
 				popup.Activate (args.Event, tag_selection_widget.TagAtPosition (args.Event.X, args.Event.Y),
 					tag_selection_widget.TagHighlight);
 				args.RetVal = true;
@@ -949,7 +940,7 @@ namespace FSpot
 
 		void HandleTagSelectionPopupMenu (object sender, PopupMenuArgs args)
 		{
-			TagPopup popup = new TagPopup ();
+			var popup = new TagPopup ();
 			popup.Activate (null, null, tag_selection_widget.TagHighlight);
 			args.RetVal = true;
 		}
@@ -1033,7 +1024,7 @@ namespace FSpot
 
 		public void HandleIconViewDragBegin (object sender, DragBeginArgs args)
 		{
-			Photo[] photos = SelectedPhotos ();
+			var photos = SelectedPhotos ();
 
 			if (photos.Length > 0) {
 				int len = Math.Min (photos.Length, 4);
@@ -1045,7 +1036,7 @@ namespace FSpot
 				container.Fill (0x00000000);
 
 				bool use_icon = false;
-				;
+
 				while (len-- > 0) {
 					FSpot.PixbufCache.CacheEntry entry = icon_view.Cache.Lookup (photos [len].DefaultVersion.Uri);
 
@@ -1141,7 +1132,6 @@ namespace FSpot
 			controller.StartImport ();
 		}
 
-		// XXX: never called
 		void HandleImportCommand (object obj, EventArgs args)
 		{
 			StartImport (null);
@@ -1227,10 +1217,9 @@ namespace FSpot
 		//
 		// IconView event handlers
 		//
-
 		void HandleDoubleClicked (object sender, BrowsableEventArgs args)
 		{
-			Widget widget = sender as Widget;
+			var widget = sender as Widget;
 			if (widget == null)
 				return;
 
@@ -1314,7 +1303,6 @@ namespace FSpot
 		//
 		// FullScreenView event handlers.
 		//
-
 		void HandleFullScreenViewKeyPressEvent (object sender, Gtk.KeyPressEventArgs args)
 		{
 			HandleCommonPhotoCommands (sender, args);
@@ -1326,7 +1314,6 @@ namespace FSpot
 		//
 		// PhotoView event handlers.
 		//
-
 		void HandlePhotoViewKeyPressEvent (object sender, Gtk.KeyPressEventArgs args)
 		{
 			HandleCommonPhotoCommands (sender, args);
@@ -1393,11 +1380,10 @@ namespace FSpot
 		//
 		// RatingMenu commands
 		//
-
 		public void HandleRatingMenuSelected (int r)
 		{
 			if (ViewMode == ModeType.PhotoView)
-				this.photo_view.UpdateRating (r);
+				photo_view.UpdateRating (r);
 
 			Photo p;
 			Database.BeginTransaction ();
@@ -1413,10 +1399,8 @@ namespace FSpot
 		//
 		// TagMenu commands.
 		//
-
 		public void HandleTagMenuActivate (object sender, EventArgs args)
 		{
-
 			MenuItem parent = sender as MenuItem ?? uimanager.GetWidget ("/ui/menubar1/edit2/remove_tag") as MenuItem;
 			if (parent != null && parent.Submenu is PhotoTagMenu) {
 				PhotoTagMenu menu = (PhotoTagMenu)parent.Submenu;
@@ -1454,13 +1438,11 @@ namespace FSpot
 		//
 		// Main menu commands
 		//
-
 		void HandlePageSetupActivated (object o, EventArgs e)
 		{
 			FSpot.Settings.Global.PageSetup = Print.RunPageSetupDialog (this.Window, FSpot.Settings.Global.PageSetup, null);
 		}
 
-		// XXX: never called
 		void HandlePrintCommand (object sender, EventArgs e)
 		{
 			FSpot.PrintOperation print = new FSpot.PrintOperation (SelectedPhotos ());
@@ -1479,7 +1461,6 @@ namespace FSpot
 			Mono.Addins.Gui.AddinManagerWindow.Run (main_window);
 		}
 
-		// XXX: never called
 		void HandleSendMailCommand (object sender, EventArgs args)
 		{
 			//TestDisplay ();
@@ -1496,7 +1477,6 @@ namespace FSpot
 			FSpot.UI.Dialog.AboutDialog.ShowUp ();
 		}
 
-		// XXX: never called
 		void HandleTagSizeChange (object sender, EventArgs args)
 		{
 			RadioAction choice = sender as RadioAction;
@@ -1546,7 +1526,7 @@ namespace FSpot
 
 		public void HandleReverseOrder (object sender, EventArgs args)
 		{
-			ToggleAction item = sender as ToggleAction;
+			var item = sender as ToggleAction;
 
 			if (group_selector.Adaptor.OrderAscending == item.Active)
 				return;
@@ -1559,11 +1539,8 @@ namespace FSpot
 				reverse_order.Active = item.Active;
 
 			//update the selection in the timeline
-			if (query.Range != null && group_selector.Adaptor is TimeAdaptor) {
+			if (query.Range != null && group_selector.Adaptor is TimeAdaptor)
 				group_selector.SetLimitsToDates (query.Range.Start, query.Range.End);
-
-			}
-
 		}
 
 		// Called when the user clicks the X button
@@ -1573,7 +1550,6 @@ namespace FSpot
 			args.RetVal = true;
 		}
 
-		// XXX: never called
 		void HandleCloseCommand (object sender, EventArgs args)
 		{
 			Close ();
@@ -1617,21 +1593,18 @@ namespace FSpot
 			preview_popup.Dispose ();
 		}
 
-		// XXX: never called
 		void HandleCreateVersionCommand (object obj, EventArgs args)
 		{
 			PhotoVersionCommands.Create cmd = new PhotoVersionCommands.Create ();
 			cmd.Execute (Database.Photos, CurrentPhoto, GetToplevel (null));
 		}
 
-		// XXX: never called
 		void HandleDeleteVersionCommand (object obj, EventArgs args)
 		{
 			PhotoVersionCommands.Delete cmd = new PhotoVersionCommands.Delete ();
 			cmd.Execute (Database.Photos, CurrentPhoto, GetToplevel (null));
 		}
 
-		// XXX: never called
 		void HandleDetachVersionCommand (object obj, EventArgs args)
 		{
 			PhotoVersionCommands.Detach cmd = new PhotoVersionCommands.Detach ();
@@ -1639,7 +1612,6 @@ namespace FSpot
 			UpdateQuery ();
 		}
 
-		// XXX: never called
 		void HandleRenameVersionCommand (object obj, EventArgs args)
 		{
 			PhotoVersionCommands.Rename cmd = new PhotoVersionCommands.Rename ();
@@ -1734,7 +1706,7 @@ namespace FSpot
 			// Translators, The singular case will never happen here.
 			string header = Catalog.GetPluralString ("Merge the selected tag",
 				                "Merge the {0} selected tags?", tags.Length);
-			header = String.Format (header, tags.Length);
+			header = string.Format (header, tags.Length);
 
 			// If a tag with children tags is selected for merging, we
 			// should also merge its children..
@@ -1793,7 +1765,6 @@ namespace FSpot
 			HandleEditSelectedTagWithTag (survivor);
 		}
 
-		// XXX: never called
 		void HandleAdjustTime (object sender, EventArgs args)
 		{
 			PhotoList list = new PhotoList (Selection.Items);
@@ -1806,7 +1777,6 @@ namespace FSpot
 			loupe_menu_item.Active = false;
 		}
 
-		// XXX: never called
 		void HandleLoupe (object sender, EventArgs args)
 		{
 			// Don't steal characters from any text entries
@@ -1818,7 +1788,6 @@ namespace FSpot
 			photo_view.View.ShowHideLoupe ();
 		}
 
-		// XXX: never called
 		void HandleSharpen (object sender, EventArgs args)
 		{
 			// Don't steal characters from any text entries
@@ -1830,7 +1799,6 @@ namespace FSpot
 			photo_view.View.ShowSharpener ();
 		}
 
-		// XXX: never called
 		void HandleDisplayToolbar (object sender, EventArgs args)
 		{
 			if (display_toolbar.Active)
@@ -1839,13 +1807,11 @@ namespace FSpot
 				toolbar.Hide ();
 		}
 
-		// XXX: never called
 		void HandleDisplayTags (object sender, EventArgs args)
 		{
 			icon_view.DisplayTags = !icon_view.DisplayTags;
 		}
 
-		// XXX: never called
 		void HandleDisplayDates (object sender, EventArgs args)
 		{
 			// Peg the icon_view's value to the MenuItem's active state,
@@ -1854,13 +1820,11 @@ namespace FSpot
 			icon_view.DisplayDates = display_dates_menu_item.Active;
 		}
 
-		// XXX: never called
 		void HandleDisplayRatings (object sender, EventArgs args)
 		{
 			icon_view.DisplayRatings = display_ratings_menu_item.Active;
 		}
 
-		// XXX: never called
 		void HandleDisplayGroupSelector (object sender, EventArgs args)
 		{
 			if (group_selector.Visible)
@@ -1869,7 +1833,6 @@ namespace FSpot
 				group_selector.Show ();
 		}
 
-		// XXX: never called
 		void HandleDisplayFilmstrip (object sender, EventArgs args)
 		{
 			photo_view.FilmStripVisibility = display_filmstrip.Active;
@@ -1877,7 +1840,6 @@ namespace FSpot
 				photo_view.QueueDraw ();
 		}
 
-		// XXX: never called
 		void HandleDisplayInfoSidebar (object sender, EventArgs args)
 		{
 			if (info_vbox.Visible)
@@ -1908,13 +1870,11 @@ namespace FSpot
 				SetViewMode (ModeType.PhotoView);
 		}
 
-		// XXX: never called
 		void HandleViewBrowse (object sender, EventArgs args)
 		{
 			SetViewMode (ModeType.IconView);
 		}
 
-		// XXX: never called
 		void HandleViewPhoto (object sender, EventArgs args)
 		{
 			SetViewMode (ModeType.PhotoView);
@@ -1979,12 +1939,12 @@ namespace FSpot
 			update_status_label = false;
 			int total_photos = Database.Photos.TotalPhotos;
 			if (total_photos != query.Count)
-				status_label.Text = String.Format (Catalog.GetPluralString ("{0} photo out of {1}", "{0} photos out of {1}", query.Count), query.Count, total_photos);
+				status_label.Text = string.Format (Catalog.GetPluralString ("{0} photo out of {1}", "{0} photos out of {1}", query.Count), query.Count, total_photos);
 			else
-				status_label.Text = String.Format (Catalog.GetPluralString ("{0} photo", "{0} photos", query.Count), query.Count);
+				status_label.Text = string.Format (Catalog.GetPluralString ("{0} photo", "{0} photos", query.Count), query.Count);
 
 			if ((Selection != null) && (Selection.Count > 0))
-				status_label.Text += String.Format (Catalog.GetPluralString (" ({0} selected)", " ({0} selected)", Selection.Count), Selection.Count);
+				status_label.Text += string.Format (Catalog.GetPluralString (" ({0} selected)", " ({0} selected)", Selection.Count), Selection.Count);
 			status_label.UseMarkup = true;
 			return update_status_label;
 		}
@@ -2013,25 +1973,21 @@ namespace FSpot
 			zoom_scale.ValueChanged += HandleZoomScaleValueChanged;
 		}
 
-		// XXX: never called
 		void HandleZoomOut (object sender, ButtonPressEventArgs args)
 		{
 			ZoomOut ();
 		}
 
-		// XXX: never called
 		void HandleZoomOut (object sender, EventArgs args)
 		{
 			ZoomOut ();
 		}
 
-		// XXX: never called
 		void HandleZoomIn (object sender, ButtonPressEventArgs args)
 		{
 			ZoomIn ();
 		}
 
-		// XXX: never called
 		void HandleZoomIn (object sender, EventArgs args)
 		{
 			ZoomIn ();
@@ -2074,11 +2030,11 @@ namespace FSpot
 			string msg;
 
 			if (e is UnauthorizedAccessException)
-				msg = String.Format (
+				msg = string.Format (
 					Catalog.GetString ("No permission to delete the file:{1}{0}"),
 					fname, Environment.NewLine).Replace ("_", "__");
 			else
-				msg = String.Format (
+				msg = string.Format (
 					Catalog.GetString ("An error of type {0} occurred while deleting the file:{2}{1}"),
 					e.GetType (), fname.Replace ("_", "__"), Environment.NewLine);
 
@@ -2114,7 +2070,7 @@ namespace FSpot
 			string header = Catalog.GetPluralString ("Delete the selected photo permanently?",
 				                "Delete the {0} selected photos permanently?",
 				                photos.Length);
-			header = String.Format (header, photos.Length);
+			header = string.Format (header, photos.Length);
 			string msg = Catalog.GetPluralString ("This deletes all versions of the selected photo from your drive.",
 				             "This deletes all versions of the selected photos from your drive.",
 				             photos.Length);
@@ -2158,7 +2114,7 @@ namespace FSpot
 				                "Remove the {0} selected photos from F-Spot?",
 				                photos.Length);
 
-			header = String.Format (header, photos.Length);
+			header = string.Format (header, photos.Length);
 			string msg = Catalog.GetString ("If you remove photos from the F-Spot catalog all tag information will be lost. The photos remain on your computer and can be imported into F-Spot again.");
 			string ok_caption = Catalog.GetString ("_Remove from Catalog");
 			if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation (GetToplevel (sender), DialogFlags.DestroyWithParent,
@@ -2168,7 +2124,6 @@ namespace FSpot
 			}
 		}
 
-		// XXX: never called
 		void HandleSelectAllCommand (object sender, EventArgs args)
 		{
 			if (Window.Focus is Editable) {
@@ -2180,14 +2135,12 @@ namespace FSpot
 			UpdateStatusLabel ();
 		}
 
-		// XXX: never called
 		void HandleSelectNoneCommand (object sender, EventArgs args)
 		{
 			icon_view.Selection.Clear ();
 			UpdateStatusLabel ();
 		}
 
-		// XXX: never called
 		void HandleSelectInvertCommand (object sender, EventArgs args)
 		{
 			icon_view.Selection.SelectionInvert ();
@@ -2227,7 +2180,7 @@ namespace FSpot
 		{
 			Tag[] tags = this.tag_selection_widget.TagHighlight;
 
-			System.Array.Sort (tags, new TagRemoveComparer ());
+			Array.Sort (tags, new TagRemoveComparer ());
 
 			//How many pictures are associated to these tags?
 			Db db = App.Instance.Database;
@@ -2237,15 +2190,15 @@ namespace FSpot
 
 			string header;
 			if (tags.Length == 1)
-				header = String.Format (Catalog.GetString ("Delete tag \"{0}\"?"), tags [0].Name.Replace ("_", "__"));
+				header = string.Format (Catalog.GetString ("Delete tag \"{0}\"?"), tags [0].Name.Replace ("_", "__"));
 			else
-				header = String.Format (Catalog.GetString ("Delete the {0} selected tags?"), tags.Length);
+				header = string.Format (Catalog.GetString ("Delete the {0} selected tags?"), tags.Length);
 
-			header = String.Format (header, tags.Length);
-			string msg = String.Empty;
+			header = string.Format (header, tags.Length);
+			string msg = string.Empty;
 			if (associated_photos > 0) {
 				string photodesc = Catalog.GetPluralString ("photo", "photos", associated_photos);
-				msg = String.Format (
+				msg = string.Format (
 					Catalog.GetPluralString ("If you delete this tag, the association with {0} {1} will be lost.",
 						"If you delete these tags, the association with {0} {1} will be lost.",
 						tags.Length),
@@ -2266,7 +2219,7 @@ namespace FSpot
 
 					// A Category is not empty. Can not delete it.
 					string error_msg = Catalog.GetString ("Tag is not empty");
-					string error_desc = String.Format (Catalog.GetString ("Can not delete tags that have tags within them.  " +
+					string error_desc = string.Format (Catalog.GetString ("Can not delete tags that have tags within them.  " +
 					                    "Please delete tags under \"{0}\" first"),
 						                    e.Tag.Name.Replace ("_", "__"));
 
@@ -2332,7 +2285,7 @@ namespace FSpot
 			// use eager evaluation, because we want to copy the photos which are currently selected ...
 			var uris = new UriList (from p in SelectedPhotos ()
 			                                 select p.DefaultVersion.Uri);
-			var paths = String.Join (" ",
+			var paths = string.Join (" ",
 				                     (from p in SelectedPhotos ()
 				                                  select p.DefaultVersion.Uri.LocalPath).ToArray ()
 			                     );
@@ -2371,7 +2324,6 @@ namespace FSpot
 			Desktop.SetBackgroundImage (current.DefaultVersion.Uri.LocalPath);
 		}
 
-		// XXX: never called
 		void HandleSetDateRange (object sender, EventArgs args)
 		{
 			var date_range_dialog = new DateRangeDialog (query.Range, main_window);
@@ -2392,25 +2344,21 @@ namespace FSpot
 			query.Range = null;
 		}
 
-		// XXX: never called
 		void HandleSelectLastRoll (object sender, EventArgs args)
 		{
 			query.RollSet = new RollSet (Database.Rolls.GetRolls (1));
 		}
 
-		// XXX: never called
 		void HandleSelectRolls (object sender, EventArgs args)
 		{
 			new LastRolls (query, Database.Rolls, main_window);
 		}
 
-		// XXX: never called
 		void HandleClearRollFilter (object sender, EventArgs args)
 		{
 			query.RollSet = null;
 		}
 
-		// XXX: never called
 		void HandleSetRatingFilter (object sender, EventArgs args)
 		{
 			new RatingFilterDialog (query, main_window);
@@ -2421,7 +2369,6 @@ namespace FSpot
 			query.RatingRange = null;
 		}
 
-		// XXX: never called
 		void HandleFindUntagged (object sender, EventArgs args)
 		{
 			if (query.Untagged == find_untagged.Active)
@@ -2435,7 +2382,7 @@ namespace FSpot
 			LoadPreference (args.Key);
 		}
 
-		void LoadPreference (String key)
+		void LoadPreference (string key)
 		{
 			switch (key) {
 			case Preferences.MAIN_WINDOW_MAXIMIZED:
@@ -2546,7 +2493,6 @@ namespace FSpot
 		}
 
 		// Version Id updates.
-
 		void UpdateForVersionChange (IPhotoVersion version)
 		{
 			IPhotoVersionable versionable = CurrentPhoto;
@@ -2558,7 +2504,6 @@ namespace FSpot
 		}
 
 		// Queries.
-
 		public void UpdateQuery ()
 		{
 			main_window.GdkWindow.Cursor = watch;
@@ -2598,7 +2543,6 @@ namespace FSpot
 			query_widget.UnInclude (tag_selection_widget.TagHighlight);
 		}
 
-		// XXX: never called
 		void HandleFindByTag (object sender, EventArgs args)
 		{
 			UpdateFindByTagMenu ();
@@ -2646,7 +2590,6 @@ namespace FSpot
 
 		//
 		// Handle Main Menu
-
 		void UpdateMenus ()
 		{
 			int tags_selected = tag_selection_widget.Selection.CountSelectedRows ();
@@ -2728,26 +2671,26 @@ namespace FSpot
 			if (rl_button != null) {
 				if (Selection.Count == 0) {
 					rl_button.Sensitive = false;
-					rl_button.TooltipText = String.Empty;
+					rl_button.TooltipText = string.Empty;
 				} else {
 					rl_button.Sensitive = true;
 
 					string msg = Catalog.GetPluralString ("Rotate selected photo left",
 						             "Rotate selected photos left", Selection.Count);
-					rl_button.TooltipText = String.Format (msg, Selection.Count);
+					rl_button.TooltipText = string.Format (msg, Selection.Count);
 				}
 			}
 
 			if (rr_button != null) {
 				if (Selection.Count == 0) {
 					rr_button.Sensitive = false;
-					rr_button.TooltipText = String.Empty;
+					rr_button.TooltipText = string.Empty;
 				} else {
 					rr_button.Sensitive = true;
 
 					string msg = Catalog.GetPluralString ("Rotate selected photo right",
 						             "Rotate selected photos right", Selection.Count);
-					rr_button.TooltipText = String.Format (msg, Selection.Count);
+					rr_button.TooltipText = string.Format (msg, Selection.Count);
 				}
 			}
 
@@ -2755,11 +2698,11 @@ namespace FSpot
 			MenuItem find_add_tag = uimanager.GetWidget ("/ui/menubar1/find/find_add_tag") as MenuItem;
 			MenuItem find_add_tag_with = uimanager.GetWidget ("/ui/menubar1/find/find_add_tag_with") as MenuItem;
 
-			((Gtk.Label)find_add_tag.Child).TextWithMnemonic = String.Format (
+			((Gtk.Label)find_add_tag.Child).TextWithMnemonic = string.Format (
 				Catalog.GetPluralString ("Find _Selected Tag", "Find _Selected Tags", tags_selected), tags_selected
 			);
 
-			((Gtk.Label)find_add_tag_with.Child).TextWithMnemonic = String.Format (
+			((Gtk.Label)find_add_tag_with.Child).TextWithMnemonic = string.Format (
 				Catalog.GetPluralString ("Find Selected Tag _With", "Find Selected Tags _With", tags_selected), tags_selected
 			);
 
@@ -2801,7 +2744,7 @@ namespace FSpot
 				return;
 
 			string header = Catalog.GetPluralString ("Create New Version?", "Create New Versions?", selected.Length);
-			string msg = String.Format (Catalog.GetPluralString (
+			string msg = string.Format (Catalog.GetPluralString (
 				             "Before launching {1}, should F-Spot create a new version of the selected photo to preserve the original?",
 				             "Before launching {1}, should F-Spot create new versions of the selected photos to preserve the originals?", selected.Length),
 				             selected.Length, application.Name);
@@ -3001,7 +2944,7 @@ namespace FSpot
 
 		public List<string> SelectedMimeTypes ()
 		{
-			List<string> contents = new List<string> ();
+			var contents = new List<string> ();
 
 			foreach (Photo p in SelectedPhotos ()) {
 				string content;
@@ -3021,7 +2964,7 @@ namespace FSpot
 		void ShowQueryWidget ()
 		{
 			if (find_bar.Visible) {
-				find_bar.Entry.Text = String.Empty;
+				find_bar.Entry.Text = string.Empty;
 				find_bar.Hide ();
 			}
 

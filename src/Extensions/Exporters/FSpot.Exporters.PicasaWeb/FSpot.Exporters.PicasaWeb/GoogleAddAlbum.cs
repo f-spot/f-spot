@@ -77,7 +77,7 @@ namespace FSpot.Exporters.PicasaWeb
 			title = title_entry.Text;
 			public_album = public_check.Active;
 
-			if (title == String.Empty)
+			if (title == string.Empty)
 				add_button.Sensitive = false;
 			else
 				add_button.Sensitive = true;
@@ -98,7 +98,7 @@ namespace FSpot.Exporters.PicasaWeb
 							      Gtk.DialogFlags.DestroyWithParent,
 								      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
 							      Catalog.GetString ("Error while creating Album"),
-							      String.Format (Catalog.GetString ("The following error was encountered while attempting to create an album: {0}"), e.Message));
+							      string.Format (Catalog.GetString ("The following error was encountered while attempting to create an album: {0}"), e.Message));
 					md.Run ();
 					md.Destroy ();
 					return;

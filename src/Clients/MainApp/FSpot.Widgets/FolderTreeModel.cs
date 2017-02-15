@@ -33,7 +33,6 @@ using System;
 
 using Gtk;
 
-using FSpot;
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Utils;
@@ -46,7 +45,7 @@ namespace FSpot.Widgets
 	{
 		protected FolderTreeModel (IntPtr raw) : base (raw) { }
 
-		Db database;
+		readonly Db database;
 
 		const string query_string =
 			"SELECT base_uri, COUNT(*) AS count " +
@@ -121,7 +120,7 @@ namespace FSpot.Widgets
 			TreeIter iter = TreeIter.Zero;
 
 			/* stores the segments of the last inserted uri */
-			string[] last_segments = new string[] {};
+			string[] last_segments = {};
 
 			int last_count = 0;
 
@@ -175,13 +174,13 @@ namespace FSpot.Widgets
 							AppendValues (parent_iter,
 							              Uri.UnescapeDataString (segments[i]),
 							              (segments.Length - 1 == i)? count : 0,
-							              (GetValue (parent_iter, 2) as SafeUri).Append (String.Format ("{0}/", segments[i]))
+							              (GetValue (parent_iter, 2) as SafeUri).Append (string.Format ("{0}/", segments[i]))
 							              );
 					} else {
 						iter =
 							AppendValues (Uri.UnescapeDataString (segments[i]),
 							              (segments.Length - 1 == i)? count : 0,
-							              new SafeUri (String.Format ("{0}:///", base_uri.Scheme), true));
+							              new SafeUri (string.Format ("{0}:///", base_uri.Scheme), true));
 					}
 
 					parent_iter = iter;

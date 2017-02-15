@@ -48,13 +48,13 @@ namespace FSpot.Widgets
 	public class FindBar : HighlightedBox
 	{
 		Entry entry;
-		string last_entry_text = String.Empty;
-		int open_parens = 0;
-		int close_parens = 0;
+		string last_entry_text = string.Empty;
+		int open_parens;
+		int close_parens;
 		PhotoQuery query;
-		Term root_term = null;
+		Term root_term;
 		HBox box;
-		System.Object lockObject = new System.Object ();
+		readonly object lockObject = new object ();
 
 		#region Properties
 		public bool Completing {
@@ -192,7 +192,7 @@ namespace FSpot.Widgets
 
 		void Clear ()
 		{
-			entry.Text = String.Empty;
+			entry.Text = string.Empty;
 			Hide ();
 		}
 
@@ -208,17 +208,17 @@ namespace FSpot.Widgets
 		static string term_str = "(((?'Open'{0})(?'Pre'[^{0}{1}]*?))+((?'Close-Open'{1})(?'Post'[^{0}{1}]*?))+)*?(?(Open)(?!))";
 
 		// Match a group surrounded by parenthesis and one or more terms separated by operators, surrounded by not()
-		//private static string not_term_str = String.Format("not\\s*(?'NotTerm'{0})", term_str);
+		//private static string not_term_str = string.Format("not\\s*(?'NotTerm'{0})", term_str);
 
 		// Match a simple term or a group term or a not(group term)
-		//private static string comb_term_str = String.Format ("(?'Term'{0}|{2}|{1})", simple_term_str, term_str, not_term_str);
-		static string comb_term_str = String.Format ("(?'Term'{0}|{1})|not\\s*\\((?'NotTerm'{0})\\)|not\\s*(?'NotTerm'{1})", literal_str, term_str);
+		//private static string comb_term_str = string.Format ("(?'Term'{0}|{2}|{1})", simple_term_str, term_str, not_term_str);
+		static string comb_term_str = string.Format ("(?'Term'{0}|{1})|not\\s*\\((?'NotTerm'{0})\\)|not\\s*(?'NotTerm'{1})", literal_str, term_str);
 
 		// Match a single term or a set of terms separated by operators
-		static string regex_str = String.Format ("^((?'Terms'{0}){1})*(?'Terms'{0})$", comb_term_str, op_str);
+		static string regex_str = string.Format ("^((?'Terms'{0}){1})*(?'Terms'{0})$", comb_term_str, op_str);
 
 		static Regex term_regex = new Regex (
-						  String.Format (regex_str, "\\(", "\\)"),
+						  string.Format (regex_str, "\\(", "\\)"),
 						  RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
 		// Breaking the query the user typed into something useful involves running
@@ -234,7 +234,7 @@ namespace FSpot.Widgets
 			if (string.IsNullOrEmpty(txt))
 				return true;
 
-			string indent = String.Format ("{0," + depth*2 + "}", " ");
+			string indent = string.Format ("{0," + depth*2 + "}", " ");
 
 			//Log.DebugFormat (indent + "Have text: {0}", txt);
 
@@ -247,13 +247,13 @@ namespace FSpot.Widgets
 			}
 
 			bool op_valid = true;
-			string op = String.Empty;
+			string op = string.Empty;
 
 			// For the moment at least we don't support operator precedence, so we require
 			// that only a single operator is used for any given term unless it is made unambiguous
 			// by using parenthesis.
 			foreach (Capture capture in match.Groups ["Ops"].Captures) {
-				if (op == String.Empty)
+				if (op == string.Empty)
 					op = capture.Value;
 				else if (op != capture.Value) {
 					op_valid = false;
@@ -307,7 +307,7 @@ namespace FSpot.Widgets
 				return true;
 			} else {
 				Term us = null;
-				if (op != null && op != String.Empty) {
+				if (op != null && op != string.Empty) {
 					us = Term.TermFromOperator (op, parent, null);
 					if (RootTerm == null)
 						root_term = us;
@@ -360,7 +360,7 @@ namespace FSpot.Widgets
 			}
 		}
 
-		bool updating = false;
+		bool updating;
 		uint update_timeout_id = 0;
 		void QueueUpdate ()
 		{

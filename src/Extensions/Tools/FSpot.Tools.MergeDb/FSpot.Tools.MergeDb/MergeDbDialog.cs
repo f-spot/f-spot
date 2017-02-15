@@ -85,7 +85,7 @@ namespace FSpot.Tools.MergeDb
 					uint numphotos = parent.FromDb.Rolls.PhotosInRoll (r);
 					// Roll time is in UTC always
 					DateTime date = r.Time.ToLocalTime ();
-					rolls_combo.AppendText (String.Format ("{0} ({1})", date.ToString("%dd %MMM, %HH:%mm"), numphotos));
+					rolls_combo.AppendText (string.Format ("{0} ({1})", date.ToString("%dd %MMM, %HH:%mm"), numphotos));
 					rolls_combo.Active = 0;
 				}
 			}

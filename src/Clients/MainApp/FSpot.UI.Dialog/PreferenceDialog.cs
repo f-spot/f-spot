@@ -31,7 +31,6 @@
 
 using System;
 using System.IO;
-using System.Collections.Generic;
 using System.Linq;
 
 using FSpot.Settings;
@@ -43,7 +42,8 @@ using Mono.Unix;
 using Hyena;
 
 
-namespace FSpot.UI.Dialog {
+namespace FSpot.UI.Dialog
+{
 	public class PreferenceDialog : BuilderDialog
 	{
 		[GtkBeans.Builder.Object] FileChooserButton photosdir_chooser;
@@ -122,11 +122,13 @@ namespace FSpot.UI.Dialog {
 			themes.AppendValues (null, null); //Separator
 			string gtkrc = System.IO.Path.Combine ("gtk-2.0", "gtkrc");
 			string [] search = {System.IO.Path.Combine (FSpot.Settings.Global.HomeDirectory, ".themes"), "/usr/share/themes"};
+
 			foreach (string path in search)
-				if (System.IO.Directory.Exists (path))
-					foreach (string dir in System.IO.Directory.GetDirectories (path))
+				if (Directory.Exists (path))
+					foreach (string dir in Directory.GetDirectories (path))
 						if (File.Exists (System.IO.Path.Combine (dir, gtkrc)))
 							themes.AppendValues (System.IO.Path.GetFileName (dir), System.IO.Path.Combine (dir, gtkrc));
+
 			CellRenderer themecellrenderer = new CellRendererText ();
 			theme_combo.Model = themes;
 			theme_combo.PackStart (themecellrenderer, true);
@@ -169,7 +171,7 @@ namespace FSpot.UI.Dialog {
 				break;
 			case Preferences.GTK_RC:
 				pref = Preferences.Get<string> (key);
-				if (String.IsNullOrEmpty (pref)) {
+				if (string.IsNullOrEmpty (pref)) {
 					theme_combo.Active = 0;
 					break;
 				}
@@ -184,7 +186,7 @@ namespace FSpot.UI.Dialog {
 				break;
 			case Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE:
 				pref = Preferences.Get<string> (key);
-				if (String.IsNullOrEmpty (pref)) {
+				if (string.IsNullOrEmpty (pref)) {
 					screenprofile_combo.Active = 0;
 					break;
 				}
@@ -203,7 +205,7 @@ namespace FSpot.UI.Dialog {
 				break;
 			case Preferences.COLOR_MANAGEMENT_OUTPUT_PROFILE:
 				pref = Preferences.Get<string> (key);
-				if (String.IsNullOrEmpty (pref)) {
+				if (string.IsNullOrEmpty (pref)) {
 					printprofile_combo.Active = 0;
 					break;
 				}
@@ -231,7 +233,7 @@ namespace FSpot.UI.Dialog {
 			always_sidecar_check.Toggled += HandleAlwaysSidecareCheckToggled;
 		}
 
-		void HandlePhotosdirChanged (object sender, System.EventArgs args)
+		void HandlePhotosdirChanged (object sender, EventArgs args)
 		{
 			photosdir_chooser.CurrentFolderChanged -= HandlePhotosdirChanged;
 			Preferences.Set (Preferences.STORAGE_PATH, photosdir_chooser.Filename);
@@ -239,7 +241,7 @@ namespace FSpot.UI.Dialog {
 			FSpot.Settings.Global.PhotoUri = new SafeUri (photosdir_chooser.Uri, true);
 		}
 
-		void HandleWritemetadataGroupChanged (object sender, System.EventArgs args)
+		void HandleWritemetadataGroupChanged (object sender, EventArgs args)
 		{
 			Preferences.Set (Preferences.METADATA_EMBED_IN_IMAGE, writemetadata_radio.Active);
 		}
@@ -257,10 +259,10 @@ namespace FSpot.UI.Dialog {
 			TreeIter iter;
 			if (combo.GetActiveIter (out iter)) {
 				string gtkrc = (string)combo.Model.GetValue (iter, 1);
-				if (!String.IsNullOrEmpty (gtkrc))
+				if (!string.IsNullOrEmpty (gtkrc))
 					Preferences.Set (Preferences.GTK_RC, gtkrc);
 				else
-					Preferences.Set (Preferences.GTK_RC, String.Empty);
+					Preferences.Set (Preferences.GTK_RC, string.Empty);
 			}
 			Gtk.Rc.DefaultFiles = FSpot.Settings.Global.DefaultRcFiles;
 			Gtk.Rc.AddDefaultFile (Preferences.Get<string> (Preferences.GTK_RC));
@@ -276,7 +278,7 @@ namespace FSpot.UI.Dialog {
 			if (combo.GetActiveIter (out iter)) {
 				switch ((int)combo.Model.GetValue (iter, 1)) {
 				case 0:
-					Preferences.Set (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE, String.Empty);
+					Preferences.Set (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE, string.Empty);
 					break;
 				case -1:
 					Preferences.Set (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE, "_x_profile_");
@@ -297,7 +299,7 @@ namespace FSpot.UI.Dialog {
 			if (combo.GetActiveIter (out iter)) {
 				switch ((int)combo.Model.GetValue (iter, 1)) {
 				case 0:
-					Preferences.Set (Preferences.COLOR_MANAGEMENT_OUTPUT_PROFILE, String.Empty);
+					Preferences.Set (Preferences.COLOR_MANAGEMENT_OUTPUT_PROFILE, string.Empty);
 					break;
 				case 1:
 					Preferences.Set (Preferences.COLOR_MANAGEMENT_OUTPUT_PROFILE, (string)combo.Model.GetValue (iter, 0));

@@ -38,18 +38,14 @@ using FSpot.Core;
 
 public class PhotoVersionMenu : Menu
 {
-
-	public IPhotoVersion Version {
-		get; private set;
-	}
+	public IPhotoVersion Version { get; private set; }
 
 	public delegate void VersionChangedHandler (PhotoVersionMenu menu);
 	public event VersionChangedHandler VersionChanged;
 
-	private Dictionary <MenuItem, IPhotoVersion> version_mapping;
+	readonly Dictionary<MenuItem, IPhotoVersion> version_mapping;
 
-    // XXX: never called
-    private void HandleMenuItemActivated(object sender, EventArgs args)
+	void HandleMenuItemActivated (object sender, EventArgs args)
 	{
 		MenuItem item = sender as MenuItem;
 
@@ -69,11 +65,11 @@ public class PhotoVersionMenu : Menu
 			MenuItem menu_item = new MenuItem (version.Name);
 			menu_item.Show ();
 			menu_item.Sensitive = true;
-			Gtk.Label child = ((Gtk.Label) menu_item.Child);
+			Gtk.Label child = ((Gtk.Label)menu_item.Child);
 
 			if (version == photo.DefaultVersion) {
 				child.UseMarkup = true;
-				child.Markup = String.Format ("<b>{0}</b>", version.Name);
+				child.Markup = string.Format ("<b>{0}</b>", version.Name);
 			}
 
 			version_mapping.Add (menu_item, version);

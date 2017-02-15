@@ -249,7 +249,7 @@ namespace FSpot.Imaging
 		{
 			var name = GetLoaderType (uri);
 			if (name == null)
-				throw new Exception (String.Format ("Unsupported image: {0}", uri));
+				throw new Exception (string.Format ("Unsupported image: {0}", uri));
 
 			try {
 				return container.Resolve<IImageFile> (name, UriAsParameter (uri));

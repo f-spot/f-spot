@@ -41,8 +41,10 @@ using FSpot.Utils;
 using FSpot.Widgets;
 using Layout = Pango.Layout;
 
-namespace FSpot {
-	public class GroupSelector : Fixed {
+namespace FSpot
+{
+	public class GroupSelector : Fixed
+    {
 		internal static GType groupSelectorGType;
 
 		int border = 6;
@@ -50,16 +52,16 @@ namespace FSpot {
 		int box_top_padding = 6;
 		public static int MIN_BOX_WIDTH = 20;
 
-		private Glass glass;
-		private Limit min_limit;
-		private Limit max_limit;
+		Glass glass;
+		Limit min_limit;
+		Limit max_limit;
 
-		private Gtk.Button left;
-		private Gtk.Button right;
-		private DelayedOperation left_delay;
-		private DelayedOperation right_delay;
+		Gtk.Button left;
+		Gtk.Button right;
+		DelayedOperation left_delay;
+		DelayedOperation right_delay;
 
-		private Gdk.Window event_window;
+		Gdk.Window event_window;
 
 		public Gdk.Rectangle background;
 		public Gdk.Rectangle legend;
@@ -119,7 +121,7 @@ namespace FSpot {
 			}
 		}
 
-		private void HandleAdaptorChanged (GroupAdaptor adaptor)
+		void HandleAdaptorChanged (GroupAdaptor adaptor)
 		{
 			bool size_changed = box_counts.Length != adaptor.Count ();
 			int [] box_values = new int [adaptor.Count ()];
@@ -162,7 +164,7 @@ namespace FSpot {
 			this.QueueDraw ();
 		}
 
-		private int [] Counts {
+		int [] Counts {
 			set {
 				bool min_found = false;
 				box_count_max = 0;
@@ -195,7 +197,7 @@ namespace FSpot {
 			Min
 		}
 
-		private RangeType mode = RangeType.Min;
+		RangeType mode = RangeType.Min;
 		public RangeType Mode {
 			get {
 				return mode;
@@ -207,7 +209,7 @@ namespace FSpot {
 			}
 		}
 
-		private void ScrollTo (int position)
+		void ScrollTo (int position)
 		{
 			if (position ==  min_filled)
 				position = 0;
@@ -226,7 +228,7 @@ namespace FSpot {
 			}
 		}
 
-		private int scroll_offset;
+		int scroll_offset;
 		public int Offset {
 			get {
 				return scroll_offset;
@@ -249,7 +251,7 @@ namespace FSpot {
 			}
 		}
 
-		private void UpdateButtons ()
+		void UpdateButtons ()
 		{
 			left.Sensitive = (scroll_offset < 0);
 			right.Sensitive = (box_counts.Length * BoxWidth > background.Width - scroll_offset);
@@ -261,7 +263,7 @@ namespace FSpot {
 				right_delay.Stop ();
 		}
 
-		private void BoxXHitFilled (double x, out int out_position)
+		void BoxXHitFilled (double x, out int out_position)
 		{
 			x -= BoxX (0);
 			double position = (x / BoxWidth);
@@ -293,7 +295,7 @@ namespace FSpot {
 			}
 		}
 
-		private bool BoxXHit (double x, out int position)
+		bool BoxXHit (double x, out int position)
 		{
 			x -= BoxX (0);
 			position = (int) (x / BoxWidth);
@@ -309,7 +311,7 @@ namespace FSpot {
 		    return true;
 		}
 
-		private bool BoxHit (double x, double y, out int position)
+		bool BoxHit (double x, double y, out int position)
 		{
 			if (BoxXHit (x, out position)) {
 				Box box = new Box (this, position);
@@ -438,7 +440,7 @@ namespace FSpot {
 			base.OnUnrealized ();
 		}
 
-		private Double BoxWidth {
+		Double BoxWidth {
 			get {
 				switch (mode) {
 				case RangeType.All:
@@ -453,12 +455,12 @@ namespace FSpot {
 			}
 		}
 
-		private int BoxX (int item)
+		int BoxX (int item)
 		{
 			 return scroll_offset + background.X + (int) Math.Round (BoxWidth * item);
 		}
 
-		private struct Box {
+		struct Box {
 			Gdk.Rectangle bounds;
 			Gdk.Rectangle bar;
 
@@ -501,7 +503,7 @@ namespace FSpot {
 		/// </summary>
 		/// <param name='area'>screen area where legend is to be drawn</param>
 		/// <param name='item'>index of a tick</param>
-		private void DrawBox (Rectangle area, int item)
+		void DrawBox (Rectangle area, int item)
 		{
 			Box box = new Box (this, item);
 			Rectangle bar = box.Bar;
@@ -562,7 +564,7 @@ namespace FSpot {
 			return true;
 		}
 
-		private bool DrawOrderMenu (Gdk.EventButton args)
+		bool DrawOrderMenu (Gdk.EventButton args)
 		{
 			Gtk.Menu order_menu = new Gtk.Menu();
 
@@ -579,7 +581,8 @@ namespace FSpot {
 			return true;
 		}
 
-		public abstract class Manipulator {
+		public abstract class Manipulator
+        {
 			protected GroupSelector selector;
 			protected DelayedOperation timer;
 			public bool Dragging;
@@ -587,7 +590,7 @@ namespace FSpot {
 			public bool GlassUpdating;
 			public Point DragStart;
 
-			public Manipulator (GroupSelector selector)
+			protected Manipulator (GroupSelector selector)
 			{
 				this.selector = selector;
 				timer = new DelayedOperation (50, new GLib.IdleHandler (DragTimeout));
@@ -622,7 +625,7 @@ namespace FSpot {
 				DragOffset = 0;  // InvalidateRect
 			}
 
-			private bool DragTimeout ()
+			bool DragTimeout ()
 			{
 				int x, y;
 				selector.GetPointer (out x, out y);
@@ -686,7 +689,7 @@ namespace FSpot {
 				}
 			}
 
-			private StateType state;
+			StateType state;
 			public StateType State {
 				get {
 					return state;
@@ -737,7 +740,8 @@ namespace FSpot {
 			}
 		}
 
-		private class Glass : Manipulator {
+		class Glass : Manipulator
+        {
 			Gtk.Window popup_window;
 			Gtk.Label popup_label;
 			int drag_position;
@@ -745,19 +749,19 @@ namespace FSpot {
 			public Glass (GroupSelector selector) : base (selector)
 			{
 				popup_window = new ToolTipWindow ();
-				popup_label = new Gtk.Label (String.Empty);
+				popup_label = new Gtk.Label (string.Empty);
 				popup_label.Show ();
 				popup_window.Add (popup_label);
 			}
 
 			public int handle_height = 15;
-			private int Border {
+			int Border {
 				get {
 					return selector.box_spacing * 2;
 				}
 			}
 
-			private void UpdatePopupPosition ()
+			void UpdatePopupPosition ()
 			{
 				int x = 0, y = 0;
 				Rectangle bounds = Bounds ();
@@ -823,7 +827,7 @@ namespace FSpot {
 				popup_window.Hide ();
 			}
 
-			private Rectangle InnerBounds ()
+			Rectangle InnerBounds ()
 			{
 				Rectangle box = new Box (selector, Position).Bounds;
 				if (Dragging) {
@@ -899,7 +903,8 @@ namespace FSpot {
 
 		}
 
-		public class Limit : Manipulator {
+		public class Limit : Manipulator
+        {
 			int width = 10;
 			int handle_height = 10;
 
@@ -908,7 +913,7 @@ namespace FSpot {
 				Max
 			}
 
-			private LimitType limit_type;
+			LimitType limit_type;
 
 			public override Rectangle Bounds ()
 			{
@@ -1045,7 +1050,7 @@ namespace FSpot {
 				(val - 1024 / 2) / 1024;
 		}
 
-		private int LegendHeight ()
+		int LegendHeight ()
 		{
 			int max_height = 0;
 
@@ -1065,7 +1070,7 @@ namespace FSpot {
 			return (int) (max_height * 1.5);
 		}
 
-		private bool HandleScrollRight ()
+		bool HandleScrollRight ()
 		{
 			if (glass.Dragging)
 				glass.MaintainPosition ();
@@ -1074,7 +1079,7 @@ namespace FSpot {
 			return true;
 		}
 
-		private bool HandleScrollLeft ()
+		bool HandleScrollLeft ()
 		{
 			if (glass.Dragging)
 				glass.MaintainPosition ();
@@ -1083,26 +1088,26 @@ namespace FSpot {
 			return true;
 		}
 
-		private void HandleLeftPressed (object sender, System.EventArgs ars)
+		void HandleLeftPressed (object sender, System.EventArgs ars)
 		{
 			HandleScrollLeft ();
 			left_delay.Start ();
 		}
 
-		private void HandleRightPressed (object sender, System.EventArgs ars)
+		void HandleRightPressed (object sender, System.EventArgs ars)
 		{
 			HandleScrollRight ();
 			right_delay.Start ();
 		}
 
 		[GLib.ConnectBefore]
-		private void HandleScrollReleaseEvent (object sender, ButtonReleaseEventArgs args)
+		void HandleScrollReleaseEvent (object sender, ButtonReleaseEventArgs args)
 		{
 			right_delay.Stop ();
 			left_delay.Stop ();
 		}
 
-		private void SetMouseActionArea ()
+		void SetMouseActionArea ()
 		{
 			Rectangle glass_bounds = glass.Bounds ();
 			action_area = background;

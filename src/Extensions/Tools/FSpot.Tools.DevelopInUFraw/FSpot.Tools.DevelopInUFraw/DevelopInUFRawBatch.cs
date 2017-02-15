@@ -54,7 +54,7 @@ namespace FSpot.Tools.DevelopInUFraw
 			Log.Information ("Executing DevelopInUFRaw extension in batch mode");
 
 			foreach (Photo p in App.Instance.Organizer.SelectedPhotos ()) {
-				bool cancelled = pdialog.Update(String.Format(Catalog.GetString ("Developing {0}"), p.Name));
+				bool cancelled = pdialog.Update(string.Format(Catalog.GetString ("Developing {0}"), p.Name));
 				if (cancelled) {
 					break;
 				}

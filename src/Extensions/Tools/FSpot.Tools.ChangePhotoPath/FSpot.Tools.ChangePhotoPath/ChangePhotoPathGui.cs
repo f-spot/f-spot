@@ -219,7 +219,7 @@ namespace FSpot.Tools.ChangePhotoPath
 			if (progress_dialog == null)
 				create_progress_dialog(hdr_txt, total);
 			progress_dialog_total = total;
-			return progress_dialog.Update (String.Format ("{0} ", txt));
+			return progress_dialog.Update (string.Format ("{0} ", txt));
 		}
 
 		public void Run (object sender, EventArgs args)

@@ -56,12 +56,12 @@ namespace FSpot.Query
 
 			if (literal.IsNegated) {
 				GtkUtil.MakeMenuItem (popupMenu,
-						      String.Format (Catalog.GetString ("Include Photos Tagged \"{0}\""), literal.Tag.Name),
+						      string.Format (Catalog.GetString ("Include Photos Tagged \"{0}\""), literal.Tag.Name),
 						      new EventHandler (literal.HandleToggleNegatedCommand),
 						      true);
 			} else {
 				GtkUtil.MakeMenuItem (popupMenu,
-						      String.Format (Catalog.GetString ("Exclude Photos Tagged \"{0}\""), literal.Tag.Name),
+						      string.Format (Catalog.GetString ("Exclude Photos Tagged \"{0}\""), literal.Tag.Name),
 						      new EventHandler (literal.HandleToggleNegatedCommand),
 						      true);
 			}

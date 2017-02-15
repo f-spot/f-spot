@@ -42,11 +42,14 @@
 
 using System.Collections.Generic;
 
-namespace FSpot.Filters {
-	public class FilterSet : IFilter {
-		public List<IFilter> ifilters;
+namespace FSpot.Filters
+{
+	public class FilterSet : IFilter
+	{
+		readonly List<IFilter> ifilters;
 
-		public FilterSet () {
+		public FilterSet ()
+		{
 			ifilters = new List<IFilter> ();
 		}
 

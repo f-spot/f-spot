@@ -41,19 +41,17 @@ using FSpot.Utils;
 
 using Hyena;
 
-public class TagMenu : Menu {
-	private TagStore tag_store;
+public class TagMenu : Menu
+{
+	TagStore tag_store;
 
 	public delegate void TagSelectedHandler (Tag t);
 	public event TagSelectedHandler TagSelected;
 
-	private EventHandler new_tag_handler = null;
-	public EventHandler NewTagHandler {
-		get { return new_tag_handler; }
-		set { new_tag_handler = value; }
-	}
+	public EventHandler NewTagHandler { get; set; }
 
-	public class TagMenuItem : Gtk.ImageMenuItem {
+	public class TagMenuItem : ImageMenuItem
+	{
 		public Tag Value;
 
 		public TagMenuItem (Tag t) : this (t, t.Name) { }
@@ -62,7 +60,7 @@ public class TagMenu : Menu {
 		{
 			Value = t;
 			if (t.Icon != null) {
-				this.Image = new Gtk.Image (t.SizedIcon);
+				Image = new Gtk.Image (t.SizedIcon);
 				// FIXME:  Where did this method go?
 				//this.SetAlwaysShowImage (true);
 			}
@@ -70,7 +68,7 @@ public class TagMenu : Menu {
 
 		public static TagMenuItem IndentedItem (Tag t)
 		{
-			System.Text.StringBuilder label_builder = new System.Text.StringBuilder ();
+			var label_builder = new System.Text.StringBuilder ();
 
 			for (Category parent = t.Category;
 			     parent != null && parent.Category != null;
@@ -101,8 +99,8 @@ public class TagMenu : Menu {
 		// FIXME right now this only works on flat menus
 
 		int i = 0;
-		foreach (Widget w in this.Children) {
-			TagMenuItem item = w as TagMenuItem;
+		foreach (Widget w in Children) {
+			var item = w as TagMenuItem;
 			if (item != null) {
 				if (t == item.Value)
 					return i;
@@ -130,11 +128,11 @@ public class TagMenu : Menu {
         public void PopulateFlat (Category cat, Gtk.Menu parent)
 	{
 		foreach (Tag t in cat.Children) {
-			TagMenuItem item = TagMenuItem.IndentedItem (t);
+			var item = TagMenuItem.IndentedItem (t);
 			parent.Append (item);
 			item.ShowAll ();
 
-			Category subcat = t as Category;
+			var subcat = t as Category;
 			if (subcat != null && subcat.Children.Count != 0) {
 				PopulateFlat (t as Category, parent);
 			} else {
@@ -150,20 +148,20 @@ public class TagMenu : Menu {
 			dead_pool [i].Destroy ();
 
 		foreach (Tag t in cat.Children) {
-			TagMenuItem item = new TagMenuItem (t);
+			var item = new TagMenuItem (t);
 			parent.Append (item);
 			item.ShowAll ();
 
 			Category subcat = t as Category;
 			if (subcat != null && subcat.Children.Count != 0) {
-				Gtk.Menu submenu = new Menu ();
+				var submenu = new Menu ();
 				Populate (t as Category, submenu);
 
-				Gtk.SeparatorMenuItem sep = new Gtk.SeparatorMenuItem ();
+				var sep = new Gtk.SeparatorMenuItem ();
 				submenu.Prepend (sep);
 				sep.ShowAll ();
 
-				TagMenuItem subitem = new TagMenuItem (t);
+				var subitem = new TagMenuItem (t);
 				subitem.Activated += HandleActivate;
 				submenu.Prepend (subitem);
 				subitem.ShowAll ();
@@ -175,9 +173,9 @@ public class TagMenu : Menu {
 		}
 	}
 
-	private void HandlePopulate (object obj, EventArgs args)
+	void HandlePopulate (object obj, EventArgs args)
 	{
-		this.Populate ();
+		Populate ();
 	}
 
 	void HandleActivate (object obj, EventArgs args)

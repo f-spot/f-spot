@@ -67,7 +67,7 @@ namespace FSpot.ColorAdjustment
 			set { destination_profile = value; }
 		}
 
-		public Adjustment (Pixbuf input, Cms.Profile input_profile)
+		protected Adjustment (Pixbuf input, Cms.Profile input_profile)
 		{
 			Input = input;
 			InputProfile = input_profile;

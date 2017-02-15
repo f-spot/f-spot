@@ -42,7 +42,7 @@ namespace FSpot.Extensions
 	{
 		public PhotoSelectionCondition()
 		{
-			App.Instance.Organizer.Selection.Changed += delegate { NotifyChanged ();};
+			App.Instance.Organizer.Selection.Changed += (collection) => { NotifyChanged (); };
 		}
 
 		public override bool Evaluate (NodeElement conditionNode)
@@ -53,11 +53,13 @@ namespace FSpot.Extensions
 				foreach (string selection in val.Split(',')) {
 					if (selection == "multiple" && count > 1) {
 						return true;
-					} else if (selection == "single" && count == 1) {
+					}
+					if (selection == "single" && count == 1) {
 						return true;
 					}
 				}
 			}
+
 			return false;
 		}
 	}

@@ -44,10 +44,12 @@ using Gtk;
 
 using Mono.Unix;
 
-namespace FSpot.Editors {
-	class CropEditor : Editor {
-		private TreeStore constraints_store;
-		private ComboBox constraints_combo;
+namespace FSpot.Editors
+{
+	class CropEditor : Editor
+	{
+		TreeStore constraints_store;
+		ComboBox constraints_combo;
 
 		public enum ConstraintType {
 			Normal,
@@ -55,9 +57,9 @@ namespace FSpot.Editors {
 			SameAsPhoto
 		}
 
-		private List<SelectionRatioDialog.SelectionConstraint> custom_constraints;
+		List<SelectionRatioDialog.SelectionConstraint> custom_constraints;
 
-		private static SelectionRatioDialog.SelectionConstraint [] default_constraints = {
+		static SelectionRatioDialog.SelectionConstraint [] default_constraints = {
 			new SelectionRatioDialog.SelectionConstraint (Catalog.GetString ("4 x 3 (Book)"), 4.0 / 3.0),
 			new SelectionRatioDialog.SelectionConstraint (Catalog.GetString ("4 x 6 (Postcard)"), 6.0 / 4.0),
 			new SelectionRatioDialog.SelectionConstraint (Catalog.GetString ("5 x 7 (L, 2L)"), 7.0 / 5.0),
@@ -65,20 +67,21 @@ namespace FSpot.Editors {
 			new SelectionRatioDialog.SelectionConstraint (Catalog.GetString ("Square"), 1.0)
 		};
 
-		public CropEditor () : base (Catalog.GetString ("Crop"), "crop") {
+		public CropEditor () : base (Catalog.GetString ("Crop"), "crop")
+		{
 			NeedsSelection = true;
 
 			Preferences.SettingChanged += OnPreferencesChanged;
 
-			Initialized += delegate { State.PhotoImageView.PhotoChanged += delegate { UpdateSelectionCombo (); }; };
+			Initialized += delegate { State.PhotoImageView.PhotoChanged += UpdateSelectionCombo; };
 		}
 
-		private void OnPreferencesChanged (object sender, NotifyEventArgs args)
+		void OnPreferencesChanged (object sender, NotifyEventArgs args)
 		{
 			LoadPreference (args.Key);
 		}
 
-		private void LoadPreference (String key)
+		void LoadPreference (string key)
 		{
 			switch (key) {
 			case Preferences.CUSTOM_CROP_RATIOS:
@@ -93,7 +96,8 @@ namespace FSpot.Editors {
 			}
 		}
 
-		public override Widget ConfigurationWidget () {
+		public override Widget ConfigurationWidget ()
+		{
 			VBox vbox = new VBox ();
 
 			Label info = new Label (Catalog.GetString ("Select the area that needs cropping."));
@@ -117,7 +121,7 @@ namespace FSpot.Editors {
 			return vbox;
 		}
 
-		private void PopulateConstraints()
+		void PopulateConstraints ()
 		{
 			constraints_store = new TreeStore (typeof (string), typeof (string), typeof (double), typeof (ConstraintType));
 			constraints_combo.Model = constraints_store;
@@ -131,7 +135,7 @@ namespace FSpot.Editors {
 			constraints_combo.Active = 0;
 		}
 
-		public void UpdateSelectionCombo ()
+		void UpdateSelectionCombo (object sender, EventArgs e)
 		{
 			if (!StateInitialized || constraints_combo == null)
 				// Don't bomb out on instant-apply.
@@ -145,7 +149,7 @@ namespace FSpot.Editors {
 			}
 		}
 
-		private void HandleConstraintsComboChanged (object o, EventArgs e)
+		void HandleConstraintsComboChanged (object o, EventArgs e)
 		{
 			if (State.PhotoImageView == null) {
 				Log.Debug ("PhotoImageView is null");
@@ -195,7 +199,8 @@ namespace FSpot.Editors {
 				(cell as CellRendererPixbuf).Pixbuf = null;
 		}
 
-		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile) {
+		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile)
+		{
 			Rectangle selection = FSpot.Utils.PixbufUtils.TransformOrientation ((int)State.PhotoImageView.PixbufOrientation <= 4 ? input.Width : input.Height,
 											    (int)State.PhotoImageView.PixbufOrientation <= 4 ? input.Height : input.Width,
 											    State.Selection, State.PhotoImageView.PixbufOrientation);

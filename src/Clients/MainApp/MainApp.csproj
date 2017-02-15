@@ -10,7 +10,7 @@
     <RootNamespace>MainApp</RootNamespace>
     <AssemblyName>f-spot</AssemblyName>
     <ReleaseVersion>0.9.0</ReleaseVersion>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -147,7 +147,6 @@
     <Compile Include="FSpot.Widgets\TagEntry.cs" />
     <Compile Include="FSpot.Widgets\TagMenu.cs" />
     <Compile Include="FSpot.Widgets\TagView.cs" />
-    <Compile Include="FSpot.Widgets\Tests\FindBarTests.cs" />
     <Compile Include="FSpot.Widgets\TrayView.cs" />
     <Compile Include="FSpot.Widgets\ViewContext.cs" />
     <Compile Include="FSpot\XScreenSaverSlide.cs" />
@@ -196,6 +195,9 @@
     <Compile Include="FSpot.Import\ImportDialogController.cs" />
     <Compile Include="FSpot.Import\ImportSource.cs" />
     <Compile Include="FSpot.Import\MultiImportSource.cs" />
+    <Compile Include="FSpot\InfoItem.cs" />
+    <Compile Include="FSpot.Editors\EditorState.cs" />
+    <Compile Include="FSpot.Editors\EditorNode.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\icons\f-spot-not.png">
@@ -397,7 +399,6 @@
     <Folder Include="FSpot\" />
     <Folder Include="FSpot.Widgets\" />
     <Folder Include="Pinta\" />
-    <Folder Include="FSpot.TagQuery\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="f-spot.exe.config">

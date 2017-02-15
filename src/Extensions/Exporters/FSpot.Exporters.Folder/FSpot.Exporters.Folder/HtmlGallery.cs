@@ -87,7 +87,7 @@ namespace FSpot.Exporters.Folder
 
 		protected override string ImageName (int photo_index)
 		{
-			return String.Format ("img-{0}.jpg", photo_index + 1);
+			return string.Format ("img-{0}.jpg", photo_index + 1);
 		}
 
 		public override void GenerateLayout ()
@@ -306,7 +306,7 @@ namespace FSpot.Exporters.Folder
 			if (page_num == 0)
 				return "index.html";
 			else
-				return String.Format ("index{0}.html", page_num);
+				return string.Format ("index{0}.html", page_num);
 		}
 
 		public static string TagsIndexPath ()
@@ -321,12 +321,12 @@ namespace FSpot.Exporters.Folder
 			if (page_num == 0)
 				return name + ".html";
 			else
-				return name + String.Format ("_{0}.html", page_num);
+				return name + string.Format ("_{0}.html", page_num);
 		}
 
 		static string IndexTitle (int page)
 		{
-			return String.Format ("{0}", page + 1);
+			return string.Format ("{0}", page + 1);
 		}
 
 		public void WriteHeader (System.Web.UI.HtmlTextWriter writer)
@@ -345,12 +345,12 @@ namespace FSpot.Exporters.Folder
 			writer.RenderEndTag ();
 
 			writer.Write ("<link type=\"text/css\" rel=\"stylesheet\" href=\"");
-			writer.Write (String.Format ("{0}", "style/" + stylesheet));
+			writer.Write (string.Format ("{0}", "style/" + stylesheet));
 			writer.Write ("\" title=\"" + dark + "\" media=\"screen\" />" + Environment.NewLine);
 
 			writer.Write ("<link type=\"text/css\" rel=\"prefetch ") ;
 			writer.Write ("alternate stylesheet\" href=\"");
-			writer.Write (String.Format ("{0}", "style/" + altstylesheet));
+			writer.Write (string.Format ("{0}", "style/" + altstylesheet));
 			writer.Write ("\" title=\"" + light + "\" media=\"screen\" />" + Environment.NewLine);
 
 			writer.Write ("<script src=\"script/" + javascript + "\"");
@@ -368,7 +368,7 @@ namespace FSpot.Exporters.Folder
 
 			writer.AddAttribute ("href", "http://f-spot.org");
 			writer.RenderBeginTag ("a");
-			writer.Write (String.Format ("{0} {1}", Defines.PACKAGE, Defines.VERSION));
+			writer.Write (string.Format ("{0} {1}", Defines.PACKAGE, Defines.VERSION));
 			writer.RenderEndTag ();
 
 			writer.RenderEndTag ();

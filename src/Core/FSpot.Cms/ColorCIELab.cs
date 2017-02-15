@@ -55,7 +55,7 @@ namespace FSpot.Cms
 
 		public override string ToString ()
 		{
-			return String.Format ("(L={0}, a={1}, b={2})", L, a, b);
+			return string.Format ("(L={0}, a={1}, b={2})", L, a, b);
 		}
 	}
 }

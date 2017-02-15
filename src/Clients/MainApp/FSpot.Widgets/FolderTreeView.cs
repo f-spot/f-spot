@@ -34,7 +34,6 @@ using System;
 using Gtk;
 using GLib;
 
-using FSpot;
 using FSpot.Utils;
 
 using Hyena;
@@ -48,7 +47,7 @@ namespace FSpot.Widgets
 
 		protected FolderTreeView (IntPtr raw) : base (raw) {}
 
-        private static TargetList folderTreeSourceTargetList = new TargetList();
+        static TargetList folderTreeSourceTargetList = new TargetList();
 
         static FolderTreeView()
         {
@@ -67,27 +66,27 @@ namespace FSpot.Widgets
 
 			HeadersVisible = false;
 
-			TreeViewColumn column = new TreeViewColumn ();
+			var column = new TreeViewColumn ();
 
-			CellRendererPixbuf pixbuf_renderer = new CellRendererPixbuf ();
+			var pixbuf_renderer = new CellRendererPixbuf ();
 			column.PackStart (pixbuf_renderer, false);
 			column.SetCellDataFunc (pixbuf_renderer, PixbufDataFunc);
 
-			CellRendererTextProgress folder_renderer = new CellRendererTextProgress ();
+			var folder_renderer = new CellRendererTextProgress ();
 			column.PackStart (folder_renderer, true);
 			column.SetCellDataFunc (folder_renderer, FolderDataFunc);
 
 			AppendColumn (column);
 
-			Gtk.Drag.SourceSet (this, Gdk.ModifierType.Button1Mask | Gdk.ModifierType.Button3Mask,
+			Drag.SourceSet (this, Gdk.ModifierType.Button1Mask | Gdk.ModifierType.Button3Mask,
 				    (TargetEntry[])folderTreeSourceTargetList, Gdk.DragAction.Copy | Gdk.DragAction.Move);
 		}
 
 		public UriList SelectedUris {
 			get {
-				UriList list = new UriList ();
+				var list = new UriList ();
 
-				TreePath[] selected_rows = Selection.GetSelectedRows ();
+				var selected_rows = Selection.GetSelectedRows ();
 
 				foreach (TreePath row in selected_rows)
 					list.Add (new SafeUri (folder_tree_model.GetUriByPath (row)));
@@ -98,7 +97,7 @@ namespace FSpot.Widgets
 
 		void PixbufDataFunc (TreeViewColumn tree_column, CellRenderer cell, TreeModel tree_model, TreeIter iter)
 		{
-			CellRendererPixbuf renderer = cell as CellRendererPixbuf;
+			var renderer = cell as CellRendererPixbuf;
 
 			string stock;
 			var uri = folder_tree_model.GetUriByIter (iter);
@@ -155,9 +154,9 @@ namespace FSpot.Widgets
 				 * possible.
 				 */
 				if (text == Uri.UriSchemeFile)
-					renderer.Text = String.Format ("<b>{0}</b>", Catalog.GetString ("Filesystem"));
+					renderer.Text = string.Format ("<b>{0}</b>", Catalog.GetString ("Filesystem"));
 				else
-					renderer.Text = String.Format ("<b>{0}</b>", text);
+					renderer.Text = string.Format ("<b>{0}</b>", text);
 
 				renderer.CellBackgroundGdk = Style.Background (StateType.Selected);
 			}
@@ -183,6 +182,5 @@ namespace FSpot.Widgets
 		{
 			App.Instance.Organizer.SetFolderQuery (SelectedUris);
 		}
-
 	}
 }

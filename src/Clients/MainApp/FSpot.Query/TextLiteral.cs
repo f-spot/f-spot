@@ -34,8 +34,6 @@
 // This has to do with Finding photos based on tags
 // http://mail.gnome.org/archives/f-spot-list/2005-November/msg00053.html
 // http://bugzilla-attachments.gnome.org/attachment.cgi?id=54566
-using System;
-
 namespace FSpot.Query
 {
 	public class TextLiteral : AbstractLiteral
@@ -49,7 +47,7 @@ namespace FSpot.Query
 
 		public override string SqlCondition ()
 		{
-			return String.Format (
+			return string.Format (
 					"id {0}IN (SELECT id FROM photos WHERE base_uri LIKE '%{1}%' OR filename LIKE '%{1}%' OR description LIKE '%{1}%')",
 					(IsNegated ? "NOT " : ""), EscapeQuotes (text)
 					);
@@ -57,7 +55,7 @@ namespace FSpot.Query
 
 		protected static string EscapeQuotes (string v)
 		{
-			return v == null ? String.Empty : v.Replace ("'", "''");
+			return v == null ? string.Empty : v.Replace ("'", "''");
 		}
 	}
 }

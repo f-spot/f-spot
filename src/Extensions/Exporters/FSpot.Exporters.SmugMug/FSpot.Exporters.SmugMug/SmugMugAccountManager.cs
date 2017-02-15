@@ -135,7 +135,7 @@ namespace FSpot.Exporters.SmugMug
 					string username = (string)result.Attributes["username"];
 					string password = result.Secret;
 
-					if (username == null || username == String.Empty || password == null || password == String.Empty)
+					if (username == null || username == string.Empty || password == null || password == string.Empty)
 						throw new ApplicationException ("Invalid username/password in keyring");
 
 					SmugMugAccount account = new SmugMugAccount(username, password);

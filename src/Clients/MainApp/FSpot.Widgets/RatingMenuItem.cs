@@ -34,11 +34,11 @@ namespace FSpot.Widgets
 {
     public class RatingMenuItem : Hyena.Widgets.RatingMenuItem
     {
-        private RatingEntry entry;
+        RatingEntry entry;
 
-        public RatingMenuItem () : base (new FSpot.Widgets.RatingEntry ())
+        public RatingMenuItem () : base (new RatingEntry ())
         {
-            entry = this.RatingEntry as FSpot.Widgets.RatingEntry;
+            entry = RatingEntry as RatingEntry;
         }
 
         public RatingMenuItem (object parent) : this ()

@@ -38,7 +38,7 @@ namespace FSpot.Extensions
 		[NodeAttribute ("transition_type", true)]
 		protected string class_name;
 
-		SlideShowTransition transition = null;
+		SlideShowTransition transition;
 		public SlideShowTransition Transition {
 			get {
 				if (transition == null)

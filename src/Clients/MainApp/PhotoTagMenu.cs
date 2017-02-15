@@ -60,7 +60,7 @@ public class PhotoTagMenu : Menu
 			}
 		}
 
-		foreach (Widget w in this.Children) {
+		foreach (Widget w in Children) {
 			w.Destroy ();
 		}
 
@@ -76,7 +76,7 @@ public class PhotoTagMenu : Menu
 
 		foreach (Tag t in dict.Values) {
 			MenuItem item = new TagMenu.TagMenuItem (t);
-			this.Append (item);
+			Append (item);
 			item.ShowAll ();
 			item.Activated += HandleActivate;
 		}

@@ -31,32 +31,23 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using System.Text;
-using System.Text.RegularExpressions;
-
-using Gtk;
-
 using Mono.Unix;
-
-using FSpot.Core;
-using FSpot.Query;
 
 using Hyena;
 
-namespace FSpot.Widgets {
-
+namespace FSpot.Widgets
+{
 	public class CompletionLogic
 	{
-		string last_key = String.Empty;
-		string transformed_key = String.Empty;
+		string last_key = string.Empty;
+		string transformed_key = string.Empty;
 		int start = 0;
 
-		private static string or_op = " " + Catalog.GetString ("or") + " ";
-		private static string and_op = " " + Catalog.GetString ("and") + " ";
+		static string or_op = " " + Catalog.GetString ("or") + " ";
+		static string and_op = " " + Catalog.GetString ("and") + " ";
 
-		private static int or_op_len = or_op.Length;
-		private static int and_op_len = and_op.Length;
+		static int or_op_len = or_op.Length;
+		static int and_op_len = and_op.Length;
 
 		public bool MatchFunc (string name, string key, int pos)
 		{
@@ -66,15 +57,15 @@ namespace FSpot.Widgets {
 				last_key = key;
 
 				if (key == null || key.Length == 0 || pos < 0 || pos > key.Length - 1)
-					transformed_key = String.Empty;
+					transformed_key = string.Empty;
 				else if (key [pos] == '(' || key [pos] == ')' || key [pos] == ',')
-					transformed_key = String.Empty;
+					transformed_key = string.Empty;
 				else {
 					start = 0;
 					for (int i = pos; i >= 0; i--) {
 						if (key [i] == ')' || key [i] == '(' ||
-						   (i >= and_op_len - 1 && String.Compare (key.Substring (i - and_op_len + 1, and_op_len), and_op, true) == 0) ||
-						   (i >= or_op_len - 1 && String.Compare (key.Substring (i - or_op_len + 1, or_op_len), or_op, true) == 0)) {
+						   (i >= and_op_len - 1 && string.Compare (key.Substring (i - and_op_len + 1, and_op_len), and_op, true) == 0) ||
+						   (i >= or_op_len - 1 && string.Compare (key.Substring (i - or_op_len + 1, or_op_len), or_op, true) == 0)) {
 							//Log.DebugFormat ("have start break char at {0}", i);
 							start = i + 1;
 							break;
@@ -84,8 +75,8 @@ namespace FSpot.Widgets {
 					int end = key.Length - 1;
 					for (int j = pos; j < key.Length; j++) {
 						if (key [j] == ')' || key [j] == '(' ||
-						   (key.Length >= j + and_op_len && String.Compare (key.Substring (j, and_op_len), and_op, true) == 0) ||
-						   (key.Length >= j + or_op_len && String.Compare (key.Substring (j, or_op_len), or_op, true) == 0)) {
+						   (key.Length >= j + and_op_len && string.Compare (key.Substring (j, and_op_len), and_op, true) == 0) ||
+						   (key.Length >= j + or_op_len && string.Compare (key.Substring (j, or_op_len), or_op, true) == 0)) {
 							end = j - 1;
 							break;
 						}
@@ -97,12 +88,12 @@ namespace FSpot.Widgets {
 					if (len > 0 && start < last_key.Length)
 						transformed_key = last_key.Substring (start, end - start + 1);
 					else
-						transformed_key = String.Empty;
+						transformed_key = string.Empty;
 				}
 				//Log.DebugFormat ("transformed key {0} into {1}", key, transformed_key);
 			}
 
-			if (transformed_key == String.Empty)
+			if (transformed_key == string.Empty)
 				return false;
 
 			// Ignore null or names that are too short
@@ -112,14 +103,14 @@ namespace FSpot.Widgets {
 			//Log.DebugFormat ("entered = {0} compared to {1}", transformed_key, name);
 
 			// Try to match key and name case insensitive
-			if (String.Compare (transformed_key, name.Substring (0, transformed_key.Length), true) == 0) {
+			if (string.Compare (transformed_key, name.Substring (0, transformed_key.Length), true) == 0) {
 				return true;
 			}
 
 			// Try to match with diacritics removed from name
 			string simplified_name = StringUtil.SearchKey (name.Substring (0, transformed_key.Length));
 			//Log.DebugFormat ("entered = {0} compared to {1}", transformed_key, simplified_name);
-			return (String.Compare (transformed_key, simplified_name, true) == 0);
+			return (string.Compare (transformed_key, simplified_name, true) == 0);
 		}
 
 		public string ReplaceKey (string query, string name, ref int pos)

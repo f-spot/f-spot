@@ -94,7 +94,7 @@ namespace FSpot.Exporters.PicasaWeb
 			password = password_entry.Text;
 			username = username_entry.Text;
 
-			add_button.Sensitive = !(password == String.Empty || username == String.Empty);
+			add_button.Sensitive = !(password == string.Empty || username == string.Empty);
 		}
 
 		[GLib.ConnectBefore]

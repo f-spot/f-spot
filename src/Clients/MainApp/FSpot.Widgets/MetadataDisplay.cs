@@ -63,10 +63,10 @@ namespace FSpot.Widgets
 
 		/* 	This VBox only contains exif-data,
 			so it is seperated from other information */
-		VBox metadata_vbox;
+		readonly VBox metadata_vbox;
 
-		VBox main_vbox;
-		Label metadata_message;
+		readonly VBox main_vbox;
+		readonly Label metadata_message;
 		State display;
 
 		public MetadataDisplayPage Page { get; set; }
@@ -76,7 +76,7 @@ namespace FSpot.Widgets
 
 		ListStore extended_metadata;
 
-		bool up_to_date = false;
+		bool up_to_date;
 
 		enum State
 		{
@@ -89,7 +89,7 @@ namespace FSpot.Widgets
 			main_vbox = new VBox ();
 			main_vbox.Spacing = 6;
 
-			metadata_message = new Label (String.Empty);
+			metadata_message = new Label (string.Empty);
 			metadata_message.UseMarkup = true;
 			metadata_message.LineWrap = true;
 			metadata_vbox = new VBox ();
@@ -123,7 +123,7 @@ namespace FSpot.Widgets
 			extended_metadata = new ListStore (typeof(string));
 			tree_view.Model = extended_metadata;
 
-			var expander = new Expander (String.Format ("<span weight=\"bold\"><small>{0}</small></span>", Catalog.GetString ("Extended Metadata")));
+			var expander = new Expander (string.Format ("<span weight=\"bold\"><small>{0}</small></span>", Catalog.GetString ("Extended Metadata")));
 			expander.UseMarkup = true;
 			expander.Add (tree_view);
 			expander.Expanded = true;
@@ -198,7 +198,7 @@ namespace FSpot.Widgets
 			ListStore model = new ListStore (typeof(string));
 			tree_view.Model = model;
 
-			Expander expander = new Expander (String.Format ("<span weight=\"bold\"><small>{0}</small></span>", name));
+			Expander expander = new Expander (string.Format ("<span weight=\"bold\"><small>{0}</small></span>", name));
 			expander.UseMarkup = true;
 			expander.Add (tree_view);
 			expander.Expanded = true;
@@ -273,9 +273,9 @@ namespace FSpot.Widgets
 						string s;
 
 						if (entry.Title != null)
-							s = String.Format ("{0}\n\t<small>{1}</small>", entry.Title, entry.Value);
+							s = string.Format ("{0}\n\t<small>{1}</small>", entry.Title, entry.Value);
 						else
-							s = String.Format ("Unknown Tag ID={0}\n\t<small>{1}</small>", entry.Tag.ToString (), entry.Value);
+							s = string.Format ("Unknown Tag ID={0}\n\t<small>{1}</small>", entry.Tag.ToString (), entry.Value);
 
 						if (model.IterIsValid(iter)) {
 							model.SetValue (iter, 0, s);
@@ -348,7 +348,7 @@ namespace FSpot.Widgets
 							} else
 								model.AppendValues (collection.ToString ());
 						} else {
-							s = String.Format ("{0}\n\t<small>{1}</small>", title, value);
+							s = string.Format ("{0}\n\t<small>{1}</small>", title, value);
 							if (model.IterIsValid(iter))
 							{
 								model.SetValue (iter, 0, s);
@@ -360,7 +360,7 @@ namespace FSpot.Widgets
 
 				} else {
 					// clear Extended Metadata
-					String s = String.Format ("<small>{0}</small>", Catalog.GetString ("No Extended Metadata Available"));
+					String s = string.Format ("<small>{0}</small>", Catalog.GetString ("No Extended Metadata Available"));
 					if (model.IterIsValid(iter))
 					{
 						model.SetValue (iter, 0, s);
@@ -380,12 +380,12 @@ namespace FSpot.Widgets
 				if (photo == null) {
 					msg = Catalog.GetString ("No active photo");
 				} else if (missing) {
-					msg = String.Format (Catalog.GetString ("The photo \"{0}\" does not exist"), photo.DefaultVersion.Uri);
+					msg = string.Format (Catalog.GetString ("The photo \"{0}\" does not exist"), photo.DefaultVersion.Uri);
 				} else {
 					msg = Catalog.GetString ("No metadata available");
 
 					if (error != null) {
-						msg = String.Format ("<i>{0}</i>", error);
+						msg = string.Format ("<i>{0}</i>", error);
 					}
 				}
 

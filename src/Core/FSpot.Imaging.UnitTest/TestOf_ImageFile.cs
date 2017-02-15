@@ -116,7 +116,7 @@ namespace FSpot.Imaging
 			foreach (var key in _imageTypes) {
 				string type = key;
 				if (type.StartsWith ("."))
-					type = String.Format ("taglib/{0}", type.Substring (1));
+					type = string.Format ("taglib/{0}", type.Substring (1));
 
 				if (!TagLib.FileTypes.AvailableTypes.ContainsKey (type)) {
 					Log.InformationFormat ("Missing type support in Taglib# for {0}", type);

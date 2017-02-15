@@ -27,7 +27,6 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
 using System.Collections.Generic;
 
 using Gtk;
@@ -43,21 +42,19 @@ namespace FSpot.UI.Dialog
 	{
 		// FIXME: Replace with ErrorListDialog from Banshee when possible
 
-        private VBox inner_vbox;
+        VBox inner_vbox;
 
-        private Label header_label;
-        private Hyena.Widgets.WrapLabel message_label;
-        private TreeView list_view;
-        private Expander details_expander;
+        Label header_label;
+        Hyena.Widgets.WrapLabel message_label;
+        TreeView list_view;
+        Expander details_expander;
 
-        private AccelGroup accel_group;
+        AccelGroup accel_group;
         protected AccelGroup AccelGroup {
             get { return accel_group; }
         }
 
-
-
-		public ImportFailureDialog (List<SafeUri> files) : base ()
+		public ImportFailureDialog (List<SafeUri> files)
 		{
 			BuildUI ();
 
@@ -76,7 +73,7 @@ namespace FSpot.UI.Dialog
 			}
 		}
 
-		private void BuildUI ()
+		void BuildUI ()
 		{
             // The BorderWidth situation here is a bit nuts b/c the
             // ActionArea's is set to 5.  So we work everything else out
@@ -88,14 +85,14 @@ namespace FSpot.UI.Dialog
             //     inner_vbox   5 => total = 12
             //     ActionArea   5 => total = 12
             BorderWidth = 5;
-            base.VBox.BorderWidth = 0;
+            VBox.BorderWidth = 0;
 
             // This spacing is 2 b/c the inner_vbox and ActionArea should be
             // 12 apart, and they already have BorderWidth 5 each
-            base.VBox.Spacing = 2;
+            VBox.Spacing = 2;
 
-            inner_vbox = new VBox () { Spacing = 12, BorderWidth = 5, Visible = true };
-            base.VBox.PackStart (inner_vbox, true, true, 0);
+            inner_vbox = new VBox { Spacing = 12, BorderWidth = 5, Visible = true };
+            VBox.PackStart (inner_vbox, true, true, 0);
 
             Visible = false;
             HasSeparator = false;
@@ -105,13 +102,13 @@ namespace FSpot.UI.Dialog
                 ColumnSpacing = 16
             };
 
-            table.Attach (new Image () {
+            table.Attach (new Image {
                     IconName = "dialog-error",
                     IconSize = (int)IconSize.Dialog,
                     Yalign = 0.0f
                 }, 0, 1, 0, 3, AttachOptions.Shrink, AttachOptions.Fill | AttachOptions.Expand, 0, 0);
 
-            table.Attach (header_label = new Label () { Xalign = 0.0f }, 1, 2, 0, 1,
+            table.Attach (header_label = new Label { Xalign = 0.0f }, 1, 2, 0, 1,
                 AttachOptions.Fill | AttachOptions.Expand,
                 AttachOptions.Shrink, 0, 0);
 
@@ -119,7 +116,7 @@ namespace FSpot.UI.Dialog
                 AttachOptions.Fill | AttachOptions.Expand,
                 AttachOptions.Shrink, 0, 0);
 
-            var scrolled_window = new ScrolledWindow () {
+            var scrolled_window = new ScrolledWindow {
                 HscrollbarPolicy = PolicyType.Automatic,
                 VscrollbarPolicy = PolicyType.Automatic,
                 ShadowType = ShadowType.In
@@ -161,7 +158,7 @@ namespace FSpot.UI.Dialog
 
         public string Header {
             set {
-                header_label.Markup = String.Format("<b><big>{0}</big></b>",
+                header_label.Markup = string.Format("<b><big>{0}</big></b>",
                     GLib.Markup.EscapeText(value));
             }
         }

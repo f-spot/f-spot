@@ -82,7 +82,7 @@ namespace FSpot.Cms
 
 		public override string ToString ()
 		{
-			return String.Format ("(x={0}, y={1}, z={2})", x, y, z);
+			return string.Format ("(x={0}, y={1}, z={2})", x, y, z);
 		}
 	}
 

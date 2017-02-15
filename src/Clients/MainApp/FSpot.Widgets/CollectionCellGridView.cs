@@ -39,50 +39,34 @@ using FSpot.Utils;
 
 namespace FSpot.Widgets
 {
-
     /// <summary>
     ///    This class extends CellGridView to provide a grid view for a photo collection.
     /// </summary>
     public abstract class CollectionGridView : CellGridView
     {
+        ThumbnailDecorationRenderer rating_renderer = new ThumbnailRatingDecorationRenderer ();
 
-#region Private Fields
+        ThumbnailCaptionRenderer tag_renderer = new ThumbnailTagsCaptionRenderer ();
+        ThumbnailCaptionRenderer date_renderer = new ThumbnailDateCaptionRenderer ();
+        ThumbnailCaptionRenderer filename_renderer = new ThumbnailFilenameCaptionRenderer ();
 
-        private ThumbnailDecorationRenderer rating_renderer = new ThumbnailRatingDecorationRenderer ();
+        public IBrowsableCollection Collection { get; private set; }
 
-        private ThumbnailCaptionRenderer tag_renderer = new ThumbnailTagsCaptionRenderer ();
-        private ThumbnailCaptionRenderer date_renderer = new ThumbnailDateCaptionRenderer ();
-        private ThumbnailCaptionRenderer filename_renderer = new ThumbnailFilenameCaptionRenderer ();
+        public PixbufCache Cache { get; private set; }
 
-#endregion
-
-#region Public Properties
-
-        public IBrowsableCollection Collection {
-            get; private set;
-        }
-
-        public FSpot.PixbufCache Cache {
-            get; private set;
-        }
-
-#endregion
-
-#region Constructors
-
-        public CollectionGridView (IntPtr raw) : base (raw)
+        protected CollectionGridView (IntPtr raw) : base (raw)
         {
         }
 
-        public CollectionGridView (IBrowsableCollection collection) : base ()
+        protected CollectionGridView (IBrowsableCollection collection)
         {
             Collection = collection;
 
-            Collection.Changed += (obj) => {
+            Collection.Changed += (c) => {
                 QueueResize ();
             };
 
-            Collection.ItemsChanged += (obj, args) => {
+			Collection.ItemsChanged += (c, args) => {
                 foreach (int item in args.Items) {
                     if (args.Changes.DataChanged)
                         UpdateThumbnail (item);
@@ -92,11 +76,9 @@ namespace FSpot.Widgets
 
             Name = "ImageContainer";
 
-            Cache = new FSpot.PixbufCache ();
+            Cache = new PixbufCache ();
             Cache.OnPixbufLoaded += HandlePixbufLoaded;
         }
-
-#endregion
 
 #region Zooming and Thumbnail Size
 
@@ -116,10 +98,10 @@ namespace FSpot.Widgets
 
 
         // current with of the thumbnails. (height is calculated)
-        private int thumbnail_width = 128;
+        int thumbnail_width = 128;
 
         // current ratio of thumbnail width and height
-        private double thumbnail_ratio = 4.0 / 3.0;
+        double thumbnail_ratio = 4.0 / 3.0;
 
         public int ThumbnailWidth {
             get { return thumbnail_width; }
@@ -131,8 +113,7 @@ namespace FSpot.Widgets
                     thumbnail_width = value;
                     QueueResize ();
 
-                    if (ZoomChanged != null)
-                        ZoomChanged (this, System.EventArgs.Empty);
+					ZoomChanged?.Invoke (this, EventArgs.Empty);
                 }
             }
         }
@@ -174,21 +155,21 @@ namespace FSpot.Widgets
 
         protected override int MinCellHeight {
             get {
-                int cell_height = ThumbnailHeight + 2 * CELL_BORDER_WIDTH;
+				int minCellHeight = ThumbnailHeight + 2 * CELL_BORDER_WIDTH;
 
                 if (DisplayTags || DisplayDates || DisplayFilenames)
-                    cell_height += CAPTION_PADDING;
+                    minCellHeight += CAPTION_PADDING;
 
                 if (DisplayTags)
-                    cell_height += tag_renderer.GetHeight (this, ThumbnailWidth);
+                    minCellHeight += tag_renderer.GetHeight (this, ThumbnailWidth);
 
                 if (DisplayDates && Style != null)
-                    cell_height += date_renderer.GetHeight (this, ThumbnailWidth);
+                    minCellHeight += date_renderer.GetHeight (this, ThumbnailWidth);
 
                 if (DisplayFilenames && Style != null)
-                    cell_height += filename_renderer.GetHeight (this, ThumbnailWidth);
+                    minCellHeight += filename_renderer.GetHeight (this, ThumbnailWidth);
 
-                return cell_height;
+                return minCellHeight;
             }
         }
 
@@ -209,7 +190,7 @@ namespace FSpot.Widgets
 
 #region Thumbnail Decoration
 
-        private bool display_tags = true;
+        bool display_tags = true;
         public bool DisplayTags {
             get {
                 return display_tags;
@@ -221,14 +202,14 @@ namespace FSpot.Widgets
             }
         }
 
-        private bool display_dates = true;
+        bool display_dates = true;
         public bool DisplayDates {
             get {
                 if (MinCellWidth > 100)
                     return display_dates;
-                else
-                    return false;
-            }
+
+				return false;
+			}
 
             set {
                 display_dates = value;
@@ -236,7 +217,7 @@ namespace FSpot.Widgets
             }
         }
 
-        private bool display_filenames = false;
+        bool display_filenames;
         public bool DisplayFilenames {
             get { return display_filenames; }
             set {
@@ -247,13 +228,13 @@ namespace FSpot.Widgets
             }
         }
 
-        private bool display_ratings = true;
+        bool display_ratings = true;
         public bool DisplayRatings {
             get {
                 if (MinCellWidth > 100)
                     return display_ratings;
-                else
-                    return false;
+
+				return false;
             }
 
             set {
@@ -272,9 +253,9 @@ namespace FSpot.Widgets
 
 #region Event Handlers
 
-        private void HandlePixbufLoaded (FSpot.PixbufCache Cache, FSpot.PixbufCache.CacheEntry entry)
+        void HandlePixbufLoaded (PixbufCache Cache, PixbufCache.CacheEntry entry)
         {
-            Gdk.Pixbuf result = entry.ShallowCopyPixbuf ();
+            Pixbuf result = entry.ShallowCopyPixbuf ();
             int order = (int) entry.Data;
 
             if (result == null)
@@ -286,13 +267,13 @@ namespace FSpot.Widgets
             PixbufUtils.Fit (result, ThumbnailWidth, ThumbnailHeight, false, out width, out height);
             if (result.Width > width && result.Height > height) {
                 //  Log.Debug ("scaling");
-                Gdk.Pixbuf temp = result.ScaleSimple(width, height, InterpType.Nearest);
+                Pixbuf temp = result.ScaleSimple(width, height, InterpType.Nearest);
                 result.Dispose ();
                 result = temp;
             } else if (result.Width < ThumbnailWidth && result.Height < ThumbnailHeight) {
                 // FIXME this is a workaround to handle images whose actual size is smaller than
                 // the thumbnail size, it needs to be fixed at a different level.
-                Gdk.Pixbuf temp = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, true, 8, ThumbnailWidth, ThumbnailHeight);
+                Pixbuf temp = new Pixbuf (Colorspace.Rgb, true, 8, ThumbnailWidth, ThumbnailHeight);
                 temp.Fill (0x00000000);
                 result.CopyArea (0, 0,
                         result.Width, result.Height,
@@ -332,7 +313,7 @@ namespace FSpot.Widgets
 
             IPhoto photo = Collection [cell_num];
 
-            FSpot.PixbufCache.CacheEntry entry = Cache.Lookup (photo.DefaultVersion.Uri);
+            PixbufCache.CacheEntry entry = Cache.Lookup (photo.DefaultVersion.Uri);
             if (entry == null)
                 Cache.Request (photo.DefaultVersion.Uri, cell_num, ThumbnailWidth, ThumbnailHeight);
             else
@@ -346,7 +327,7 @@ namespace FSpot.Widgets
                     cell_area.X, cell_area.Y,
                     cell_area.Width - 1, cell_area.Height - 1);
 
-            Gdk.Rectangle focus = Gdk.Rectangle.Inflate (cell_area, -3, -3);
+            var focus = Rectangle.Inflate (cell_area, -3, -3);
 
             if (HasFocus && focussed) {
                 Style.PaintFocus(Style, BinWindow,
@@ -356,16 +337,16 @@ namespace FSpot.Widgets
                         focus.Width, focus.Height);
             }
 
-            Gdk.Rectangle region = Gdk.Rectangle.Zero;
-            Gdk.Rectangle image_bounds = Gdk.Rectangle.Inflate (cell_area, -CELL_BORDER_WIDTH, -CELL_BORDER_WIDTH);
+            var region = Rectangle.Zero;
+            var image_bounds = Rectangle.Inflate (cell_area, -CELL_BORDER_WIDTH, -CELL_BORDER_WIDTH);
             int expansion = ThrobExpansion (cell_num, selected);
 
-            Gdk.Pixbuf thumbnail = null;
+            Pixbuf thumbnail = null;
             if (entry != null)
                 thumbnail = entry.ShallowCopyPixbuf ();
 
-            Gdk.Rectangle draw = Gdk.Rectangle.Zero;
-            if (Gdk.Rectangle.Inflate (image_bounds, expansion + 1, expansion + 1).Intersect (expose_area, out image_bounds) && thumbnail != null) {
+            var draw = Rectangle.Zero;
+            if (Rectangle.Inflate (image_bounds, expansion + 1, expansion + 1).Intersect (expose_area, out image_bounds) && thumbnail != null) {
 
                 PixbufUtils.Fit (thumbnail, ThumbnailWidth, ThumbnailHeight,
                         true, out region.Width, out region.Height);
@@ -377,10 +358,10 @@ namespace FSpot.Widgets
                     && Math.Abs (region.Height - thumbnail.Height) > 1)
                 Cache.Reload (entry, cell_num, thumbnail.Width, thumbnail.Height);
 
-                region = Gdk.Rectangle.Inflate (region, expansion, expansion);
+                region = Rectangle.Inflate (region, expansion, expansion);
                 Pixbuf temp_thumbnail;
-                region.Width = System.Math.Max (1, region.Width);
-                region.Height = System.Math.Max (1, region.Height);
+                region.Width = Math.Max (1, region.Width);
+                region.Height = Math.Max (1, region.Height);
 
                 if (Math.Abs (region.Width - thumbnail.Width) > 1
                     && Math.Abs (region.Height - thumbnail.Height) > 1) {
@@ -412,7 +393,7 @@ namespace FSpot.Widgets
                 region.Width = temp_thumbnail.Width;
                 region.Height = temp_thumbnail.Height;
 
-                draw = Gdk.Rectangle.Inflate (region, 1, 1);
+                draw = Rectangle.Inflate (region, 1, 1);
 
                 if (!temp_thumbnail.HasAlpha)
                     Style.PaintShadow (Style, BinWindow, cell_state,
@@ -423,11 +404,11 @@ namespace FSpot.Widgets
 
                 if (region.Intersect (expose_area, out draw)) {
                     Cms.Profile screen_profile;
-                    if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile)) {
+                    if (ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile)) {
                         Pixbuf t = temp_thumbnail.Copy ();
                         temp_thumbnail.Dispose ();
                         temp_thumbnail = t;
-                        FSpot.ColorManagement.ApplyProfile (temp_thumbnail, screen_profile);
+                        ColorManagement.ApplyProfile (temp_thumbnail, screen_profile);
                     }
                     temp_thumbnail.RenderToDrawable (BinWindow, Style.WhiteGC,
                             draw.X - region.X,
@@ -495,10 +476,10 @@ namespace FSpot.Widgets
 
 #region Throb Interface
 
-        private uint throb_timer_id;
-        private int throb_cell = -1;
-        private int throb_state;
-        private const int throb_state_max = 40;
+        uint throb_timer_id;
+        int throb_cell = -1;
+        int throb_state;
+        const int throb_state_max = 40;
 
         public void Throb (int cell_num)
         {
@@ -511,25 +492,24 @@ namespace FSpot.Widgets
             InvalidateCell (cell_num);
         }
 
-        private void CancelThrob ()
+        void CancelThrob ()
         {
             if (throb_timer_id != 0)
                 GLib.Source.Remove (throb_timer_id);
         }
 
-        private bool HandleThrobTimer ()
+        bool HandleThrobTimer ()
         {
             InvalidateCell (throb_cell);
-            if (throb_state++ < throb_state_max) {
-                return true;
-            } else {
-                throb_cell = -1;
-                throb_timer_id = 0;
-                return false;
-            }
-        }
+			if (throb_state++ < throb_state_max)
+				return true;
+		
+			throb_cell = -1;
+			throb_timer_id = 0;
+			return false;
+		}
 
-        private int ThrobExpansion (int cell, bool selected)
+        int ThrobExpansion (int cell, bool selected)
         {
             int expansion = 0;
             if (cell == throb_cell) {
@@ -552,11 +532,10 @@ namespace FSpot.Widgets
 
 #region Theming
 
-        private void SetColors ()
+        void SetColors ()
         {
-            if (IsRealized) {
+            if (IsRealized)
                 BinWindow.Background = Style.DarkColors [(int)State];
-            }
         }
 
         protected override void OnRealized ()

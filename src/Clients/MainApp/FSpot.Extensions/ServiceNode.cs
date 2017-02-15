@@ -38,7 +38,7 @@ namespace FSpot.Extensions
 		[NodeAttribute ("class", true)]
 		protected string class_name;
 
-		IService service = null;
+		IService service;
 
 		public void Initialize ()
 		{

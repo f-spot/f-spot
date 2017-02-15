@@ -38,7 +38,6 @@ using Mono.Unix;
 
 using FSpot.Core;
 using FSpot.Utils;
-using FSpot.Query;
 
 namespace FSpot.Query
 {
@@ -47,7 +46,7 @@ namespace FSpot.Query
 		public static void Create (Tag [] tags, Gtk.Menu menu)
 		{
 			var findWithString = Catalog.GetPluralString ("Find _With", "Find _With", tags.Length);
-			var item = new Gtk.MenuItem (String.Format (findWithString, tags.Length));
+			var item = new Gtk.MenuItem (string.Format (findWithString, tags.Length));
 
 			Gtk.Menu submenu = GetSubmenu (tags);
 			if (submenu == null)
@@ -67,32 +66,32 @@ namespace FSpot.Query
 
 			if (LogicWidget.Root == null || LogicWidget.Root.SubTerms.Count == 0) {
 				return null;
-			} else {
-				var m = new Gtk.Menu ();
-
-				Gtk.MenuItem all_item = GtkUtil.MakeMenuItem (m, Catalog.GetString ("All"), new EventHandler (App.Instance.Organizer.HandleRequireTag));
-				GtkUtil.MakeMenuSeparator (m);
-
-				int sensitive_items = 0;
-				foreach (Term term in LogicWidget.Root.SubTerms) {
-					var term_parts = new List<string> ();
-
-					bool contains_tag = AppendTerm (term_parts, term, single_tag);
-
-					string name = "_" + String.Join (", ", term_parts.ToArray ());
-
-					Gtk.MenuItem item = GtkUtil.MakeMenuItem (m, name, new EventHandler (App.Instance.Organizer.HandleAddTagToTerm));
-					item.Sensitive = !contains_tag;
-
-					if (!contains_tag)
-						sensitive_items++;
-				}
-
-				if (sensitive_items == 0)
-					all_item.Sensitive = false;
-
-				return m;
 			}
+
+			var m = new Gtk.Menu ();
+
+			Gtk.MenuItem all_item = GtkUtil.MakeMenuItem (m, Catalog.GetString ("All"), new EventHandler (App.Instance.Organizer.HandleRequireTag));
+			GtkUtil.MakeMenuSeparator (m);
+
+			int sensitive_items = 0;
+			foreach (Term term in LogicWidget.Root.SubTerms) {
+				var term_parts = new List<string> ();
+
+				bool contains_tag = AppendTerm (term_parts, term, single_tag);
+
+				string name = "_" + string.Join (", ", term_parts.ToArray ());
+
+				Gtk.MenuItem item = GtkUtil.MakeMenuItem (m, name, new EventHandler (App.Instance.Organizer.HandleAddTagToTerm));
+				item.Sensitive = !contains_tag;
+
+				if (!contains_tag)
+					sensitive_items++;
+			}
+
+			if (sensitive_items == 0)
+				all_item.Sensitive = false;
+
+			return m;
 		}
 
 		static bool AppendTerm (List<string> parts, Term term, Tag singleTag)
@@ -105,7 +104,7 @@ namespace FSpot.Query
 						tag_matches = true;
 
 					if (literal.IsNegated)
-						parts.Add (String.Format (Catalog.GetString ("Not {0}"), literal.Tag.Name));
+						parts.Add (string.Format (Catalog.GetString ("Not {0}"), literal.Tag.Name));
 					else
 						parts.Add (literal.Tag.Name);
 				} else {

@@ -40,17 +40,6 @@ namespace FSpot.Widgets
     /// </summary>
     public abstract class ThumbnailCaptionRenderer
     {
-
-#region Constructor
-
-        public ThumbnailCaptionRenderer ()
-        {
-        }
-
-#endregion
-
-#region Drawing Methods
-
         public abstract int GetHeight (Widget widget, int width);
 
         public abstract void Render (Drawable window,
@@ -59,8 +48,6 @@ namespace FSpot.Widgets
                                      Rectangle expose_area,
                                      StateType cell_state,
                                      IPhoto photo);
-
-#endregion
 
     }
 }

@@ -30,27 +30,17 @@
 //
 
 using System;
-using System.Collections.Generic;
 
-using FSpot;
 using FSpot.Extensions;
-using FSpot.Editors;
-using FSpot.UI.Dialog;
-using FSpot.Utils;
-using FSpot.Core;
 
-using Gtk;
-
-using Mono.Addins;
 using Mono.Unix;
 
-using Hyena;
-using Hyena.Widgets;
-
-namespace FSpot.Widgets {
-	public class EditorPage : SidebarPage {
+namespace FSpot.Widgets
+{
+	public class EditorPage : SidebarPage
+	{
 		internal bool InPhotoView;
-		private readonly EditorPageWidget EditorPageWidget;
+		readonly EditorPageWidget EditorPageWidget;
 
 		public EditorPage () : base (new EditorPageWidget (),
 									   Catalog.GetString ("Edit"),
@@ -61,16 +51,16 @@ namespace FSpot.Widgets {
 			EditorPageWidget.Page = this;
 		}
 
-		protected override void AddedToSidebar () {
-			(Sidebar as Sidebar).SelectionChanged += delegate (IBrowsableCollection collection) { EditorPageWidget.ShowTools (); };
+		protected override void AddedToSidebar ()
+		{
+			(Sidebar as Sidebar).SelectionChanged += (collection) => { EditorPageWidget.ShowTools (); };
 			(Sidebar as Sidebar).ContextChanged += HandleContextChanged;
 		}
 
-		private void HandleContextChanged (object sender, EventArgs args)
+		void HandleContextChanged (object sender, EventArgs args)
 		{
 			InPhotoView = ((Sidebar as Sidebar).Context == ViewContext.Edit);
 			EditorPageWidget.ChangeButtonVisibility ();
 		}
 	}
-
 }

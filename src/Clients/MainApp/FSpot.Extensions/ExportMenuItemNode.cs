@@ -48,7 +48,7 @@ namespace FSpot.Extensions
 
 		protected override void OnActivated (object o, EventArgs e)
 		{
-			IExporter exporter = (IExporter) Addin.CreateInstance (class_name);
+			var exporter = (IExporter) Addin.CreateInstance (class_name);
 			exporter.Run (SelectedImages ());
 		}
 	}

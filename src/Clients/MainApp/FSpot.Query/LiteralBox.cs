@@ -35,7 +35,8 @@ using Gtk;
 
 namespace FSpot.Query
 {
-	public class LiteralBox : VBox {
+	public class LiteralBox : VBox
+	{
 		readonly GrabHandle handle;
 
 		public LiteralBox ()

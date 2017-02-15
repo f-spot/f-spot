@@ -34,11 +34,13 @@ using Gdk;
 
 using System;
 
-namespace FSpot {
-	public class XScreenSaverSlide : Gtk.Window {
+namespace FSpot
+{
+	public class XScreenSaverSlide : Gtk.Window
+	{
 		public const string ScreenSaverEnviroment = "XSCREENSAVER_WINDOW";
 
-		public XScreenSaverSlide () : base (String.Empty)
+		public XScreenSaverSlide () : base (string.Empty)
 		{
 		}
 
@@ -64,7 +66,7 @@ namespace FSpot {
 						| EventMask.FocusChangeMask;
 
 					Style.SetBackground (GdkWindow, Gtk.StateType.Normal);
-					GdkWindow.SetDecorations ((Gdk.WMDecoration) 0);
+					GdkWindow.SetDecorations (0);
 					GdkWindow.UserData = this.Handle;
 					SetFlag (WidgetFlags.Realized);
 					SizeRequest ();
@@ -74,7 +76,7 @@ namespace FSpot {
 					SizeAllocate (new Gdk.Rectangle (geom.X, geom.Y, geom.Width, geom.Height));
 					Resize (geom.Width, geom.Height);
 					return;
-				} catch (System.Exception e) {
+				} catch (Exception e) {
 					Hyena.Log.Exception (e);
 				}
 			} else {

@@ -42,8 +42,8 @@ namespace FSpot. UI.Dialog
 	{
 		[GtkBeans.Builder.Object] ScrolledWindow view_scrolled;
 
-		IBrowsableCollection source;
-		PhotoList missing;
+		readonly IBrowsableCollection source;
+		readonly PhotoList missing;
 
 		public RepairDialog (IBrowsableCollection collection) : base ("RepairDialog.ui", "repair_dialog")
 		{
@@ -54,7 +54,7 @@ namespace FSpot. UI.Dialog
 			TrayView view = new TrayView (missing);
 			view_scrolled.Add (view);
 
-			this.ShowAll ();
+			ShowAll ();
 		}
 
 		public void FindMissing ()

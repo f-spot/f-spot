@@ -49,23 +49,21 @@ namespace FSpot.Extensions
 	// because there is no way to get hold of a reference to the current window.
 	public class ViewModeCondition : ConditionType
 	{
-		private delegate void ViewModeChangedHandler ();
+		delegate void ViewModeChangedHandler ();
 		private static event ViewModeChangedHandler ViewModeChanged;
 
-		private static ViewMode mode = ViewMode.Unknown;
+		static ViewMode mode = ViewMode.Unknown;
 		public static ViewMode Mode {
 			get { return mode; }
 			set {
 				mode = value;
-
-				if (ViewModeChanged != null)
-					ViewModeChanged ();
+				ViewModeChanged?.Invoke ();
 			}
 		}
 
 		public ViewModeCondition ()
 		{
-			ViewModeChanged += delegate { NotifyChanged (); };
+			ViewModeChanged += NotifyChanged;
 		}
 
 		public override bool Evaluate (NodeElement conditionNode)
@@ -75,7 +73,8 @@ namespace FSpot.Extensions
 				foreach (string mode in val.Split(',')) {
 					if (mode == "single" && Mode == ViewMode.Single) {
 						return true;
-					} else if (mode == "library" && Mode == ViewMode.Library) {
+					}
+					if (mode == "library" && Mode == ViewMode.Library) {
 						return true;
 					}
 				}

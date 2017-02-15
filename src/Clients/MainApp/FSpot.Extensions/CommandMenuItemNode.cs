@@ -37,7 +37,6 @@ namespace FSpot.Extensions
 	[ExtensionNode ("Command")]
 	public class CommandMenuItemNode : MenuItemNode
 	{
-
 		[NodeAttribute ("command_type", true)]
 		protected string command_type;
 

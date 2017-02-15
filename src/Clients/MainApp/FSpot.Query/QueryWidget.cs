@@ -48,7 +48,8 @@ using Mono.Unix;
 
 namespace FSpot.Query
 {
-	public class QueryWidget : HighlightedBox {
+	public class QueryWidget : HighlightedBox
+	{
 		PhotoQuery query;
 		LogicWidget logic_widget;
 		FolderQueryWidget folder_query_widget;
@@ -114,7 +115,7 @@ namespace FSpot.Query
 			box.PackStart (logic_widget, true, true, 0);
 
 			warning_box = new Gtk.HBox ();
-			warning_box.PackStart (new Gtk.Label (System.String.Empty));
+			warning_box.PackStart (new Gtk.Label (string.Empty));
 
 			Gtk.Image warning_image = new Gtk.Image ("gtk-info", Gtk.IconSize.Button);
 			warning_image.Show ();

@@ -38,7 +38,6 @@ using Gtk;
 
 using Mono.Unix;
 
-using FSpot;
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Settings;
@@ -49,19 +48,19 @@ using Hyena.Widgets;
 
 
 
-namespace FSpot {
-
-	public class TagSelectionWidget : SaneTreeView {
-
-		Db database;
+namespace FSpot
+{
+	public class TagSelectionWidget : SaneTreeView
+	{
+		readonly Db database;
 		TagStore tag_store;
 
 		// FIXME this is a hack.
-		private static Pixbuf empty_pixbuf = new Pixbuf (Colorspace.Rgb, true, 8, 1, 1);
+		static Pixbuf empty_pixbuf = new Pixbuf (Colorspace.Rgb, true, 8, 1, 1);
 
 		// If these are changed, the base () call in the constructor must be updated.
-		private const int IdColumn = 0;
-		private const int NameColumn = 1;
+		const int IdColumn = 0;
+		const int NameColumn = 1;
 
 		// Selection management.
 
@@ -75,7 +74,7 @@ namespace FSpot {
 			TreePath path;
 
 			// Work out which tag we're dropping onto
-			if (!this.GetPathAtPos (x, y, out path))
+			if (!GetPathAtPos (x, y, out path))
 				return null;
 
 			return TagByPath (path);
@@ -102,7 +101,7 @@ namespace FSpot {
 		}
 
 		// Loading up the store.
-		private void LoadCategory (Category category, TreeIter parent_iter)
+		void LoadCategory (Category category, TreeIter parent_iter)
 		{
 			IList<Tag> tags = category.Children;
 
@@ -174,8 +173,7 @@ namespace FSpot {
 		}
 
 		// Data functions.
-
-		private void SetBackground (CellRenderer renderer, Tag tag)
+		void SetBackground (CellRenderer renderer, Tag tag)
 		{
 			// FIXME this should be themable but Gtk# doesn't give me access to the proper
 			// members in GtkStyle for that.
@@ -187,10 +185,7 @@ namespace FSpot {
 			*/
 		}
 
-		private void IconDataFunc (TreeViewColumn column,
-					   CellRenderer renderer,
-					   TreeModel model,
-					   TreeIter iter)
+		void IconDataFunc (TreeViewColumn column, CellRenderer renderer, TreeModel model, TreeIter iter)
 		{
 			GLib.Value value = new GLib.Value ();
 			Model.GetValue (iter, IdColumn, ref value);
@@ -216,10 +211,7 @@ namespace FSpot {
 				(renderer as CellRendererPixbuf).Pixbuf = empty_pixbuf;
 		}
 
-		private void NameDataFunc (TreeViewColumn column,
-					   CellRenderer renderer,
-					   TreeModel model,
-					   TreeIter iter)
+		void NameDataFunc (TreeViewColumn column, CellRenderer renderer, TreeModel model, TreeIter iter)
 		{
 			// FIXME not sure why it happens...
 			if (model == null)
@@ -238,7 +230,7 @@ namespace FSpot {
 			(renderer as CellRendererText).Text = tag.Name;
 		}
 
-		private bool TreeIterForTag(Tag tag, out TreeIter iter)
+		bool TreeIterForTag(Tag tag, out TreeIter iter)
 		{
 			TreeIter root = TreeIter.Zero;
 			iter = TreeIter.Zero;
@@ -255,7 +247,7 @@ namespace FSpot {
 		}
 
 		// Depth first traversal
-		private bool TreeIterForTagRecurse (Tag tag, TreeIter parent, out TreeIter iter)
+		bool TreeIterForTagRecurse (Tag tag, TreeIter parent, out TreeIter iter)
 		{
 			bool valid = Model.IterChildren (out iter, parent);
 
@@ -277,7 +269,7 @@ namespace FSpot {
 
 		// Copy a branch of the tree to a new parent
 		// (note, this doesn't work generically as it only copies the first value of each node)
-		private void CopyBranch (TreeIter src, TreeIter dest, bool is_root, bool is_parent)
+		void CopyBranch (TreeIter src, TreeIter dest, bool is_root, bool is_parent)
 		{
 			TreeIter copy, iter;
 			GLib.Value value = new GLib.Value ();
@@ -302,7 +294,7 @@ namespace FSpot {
 		}
 
 		// insert tag into the correct place in the tree, with parent. return the new TagIter in iter.
-		private TreeIter InsertInOrder (TreeIter parent, bool is_root, Tag tag)
+		TreeIter InsertInOrder (TreeIter parent, bool is_root, Tag tag)
 		{
 			TreeStore store = Model as TreeStore;
 			TreeIter iter;
@@ -344,7 +336,7 @@ namespace FSpot {
 			return iter;
 		}
 
-		private void HandleTagsRemoved (object sender, DbItemEventArgs<Tag> args)
+		void HandleTagsRemoved (object sender, DbItemEventArgs<Tag> args)
 		{
 			TreeIter iter;
 
@@ -354,7 +346,7 @@ namespace FSpot {
 			}
 		}
 
-		private void HandleTagsAdded (object sender, DbItemEventArgs<Tag> args)
+		void HandleTagsAdded (object sender, DbItemEventArgs<Tag> args)
 		{
 			TreeIter iter = TreeIter.Zero;
 
@@ -368,7 +360,7 @@ namespace FSpot {
 			}
 		}
 
-		private void HandleTagsChanged (object sender, DbItemEventArgs<Tag> args)
+		void HandleTagsChanged (object sender, DbItemEventArgs<Tag> args)
 		{
 			TreeStore store = Model as TreeStore;
 			TreeIter iter, category_iter, parent_iter;
@@ -511,7 +503,7 @@ namespace FSpot {
 				return;
 
 			// Check that the tag doesn't already exist
-			if (String.Compare (args.NewText, tag.Name, true) != 0 &&
+			if (string.Compare (args.NewText, tag.Name, true) != 0 &&
 			    tag_store.GetTagByName (args.NewText) != null) {
 				HigMessageDialog md = new HigMessageDialog (App.Instance.Organizer.Window,
 					DialogFlags.DestroyWithParent,
@@ -533,8 +525,8 @@ namespace FSpot {
 			args.RetVal = true;
 		}
 
-        private static TargetList tagSourceTargetList = new TargetList();
-        private static TargetList tagDestTargetList = new TargetList();
+        static TargetList tagSourceTargetList = new TargetList();
+        static TargetList tagDestTargetList = new TargetList();
 
         static TagSelectionWidget()
         {

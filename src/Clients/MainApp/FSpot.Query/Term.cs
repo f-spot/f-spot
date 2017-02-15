@@ -46,9 +46,9 @@ namespace FSpot.Query
 {
 	public abstract class Term
 	{
-		Term parent = null;
-		protected bool is_negated = false;
-		protected Tag tag = null;
+		Term parent;
+		protected bool is_negated;
+		protected Tag tag;
 
 		protected Term (Term parent, Literal after)
 		{
@@ -231,7 +231,7 @@ namespace FSpot.Query
 
 		public bool TagRequired (Tag t, out int numTerms, out int groupedWith)
 		{
-			List<Term> parents = LiteralParents ();
+			var parents = LiteralParents ();
 
 			numTerms = 0;
 			groupedWith = 100;
@@ -301,7 +301,7 @@ namespace FSpot.Query
 
 		public virtual string SQLOperator ()
 		{
-			return String.Empty;
+			return string.Empty;
 		}
 
 		public static Term TermFromOperator (string op, Term parent, Literal after)

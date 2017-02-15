@@ -54,7 +54,7 @@ namespace FSpot.UI.Dialog
 		PhotoImageView image_view;
 		Gtk.IconView icon_view;
 		ListStore icon_store;
-		string icon_name = String.Empty;
+		string icon_name = string.Empty;
 		Gtk.FileChooserButton external_photo_chooser;
 
 		[GtkBeans.Builder.Object] Gtk.Image preview_image;
@@ -68,7 +68,7 @@ namespace FSpot.UI.Dialog
 		public EditTagIconDialog (Db db, Tag t, Gtk.Window parent_window) : base ("EditTagIconDialog.ui", "edit_tag_icon_dialog")
 		{
 			TransientFor = parent_window;
-			Title = String.Format (Catalog.GetString ("Edit Icon for Tag {0}"), t.Name);
+			Title = string.Format (Catalog.GetString ("Edit Icon for Tag {0}"), t.Name);
 
 			preview_pixbuf = t.Icon;
 			Cms.Profile screen_profile;
@@ -111,7 +111,7 @@ namespace FSpot.UI.Dialog
 
 				image_view.Item.Index = 0;
 			} else {
-				from_photo_label.Markup = String.Format (Catalog.GetString (
+				from_photo_label.Markup = string.Format (Catalog.GetString (
 					"\n<b>From Photo</b>\n" +
 					" You can use one of your library photos as an icon for this tag.\n" +
 					" However, first you must have at least one photo associated\n" +
@@ -191,7 +191,7 @@ namespace FSpot.UI.Dialog
 				}
 			} catch (Exception) {
 				string caption = Catalog.GetString ("Unable to load image");
-				string message = String.Format (Catalog.GetString ("Unable to load \"{0}\" as icon for the tag"),
+				string message = string.Format (Catalog.GetString ("Unable to load \"{0}\" as icon for the tag"),
 					                 external_photo_chooser.Uri);
 				HigMessageDialog md = new HigMessageDialog (this,
 									    DialogFlags.DestroyWithParent,
@@ -229,7 +229,7 @@ namespace FSpot.UI.Dialog
 		public void HandlePhotoChanged (object sender, EventArgs e)
 		{
 			int item = image_view.Item.Index;
-			photo_label.Text = String.Format (Catalog.GetString ("Photo {0} of {1}"),
+			photo_label.Text = string.Format (Catalog.GetString ("Photo {0} of {1}"),
 							  item + 1, query.Count);
 
 			photo_spin_button.Value = item + 1;

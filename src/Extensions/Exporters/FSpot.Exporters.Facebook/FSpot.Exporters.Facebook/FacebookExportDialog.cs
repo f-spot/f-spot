@@ -299,7 +299,7 @@ namespace FSpot.Exporters.Facebook
 							login_button.Visible = false;
 							logout_button.Visible = true;
 							// Note for translators: {0} and {1} are respectively firstname and surname of the user
-							LoginProgress (1.0, String.Format (Catalog.GetString ("{0} {1} is logged into Facebook"), me.first_name, me.last_name));
+							LoginProgress (1.0, string.Format (Catalog.GetString ("{0} {1} is logged into Facebook"), me.first_name, me.last_name));
 
 							existing_album_combobox.Model = new AlbumStore (albums);
 							existing_album_combobox.Active = 0;
@@ -309,7 +309,7 @@ namespace FSpot.Exporters.Facebook
 						ThreadAssist.ProxyToMain (() => {
 							HigMessageDialog error = new HigMessageDialog (this, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal,
 									Gtk.MessageType.Error, Gtk.ButtonsType.Ok, Catalog.GetString ("Facebook Connection Error"),
-									String.Format (Catalog.GetString ("There was an error when downloading your information from Facebook.\n\nFacebook said: {0}"), e.Message));
+									string.Format (Catalog.GetString ("There was an error when downloading your information from Facebook.\n\nFacebook said: {0}"), e.Message));
 							error.Run ();
 							error.Destroy ();
 						});

@@ -85,7 +85,7 @@ namespace FSpot.Exporters.Folder
 
 		protected override string ImageName (int photo_index)
 		{
-			return String.Format ("img-{0}.jpg", photo_index + 1);
+			return string.Format ("img-{0}.jpg", photo_index + 1);
 		}
 
 		private void SetTime ()

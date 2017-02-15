@@ -40,15 +40,6 @@ namespace FSpot.Widgets
     /// </summary>
     public abstract class ThumbnailDecorationRenderer
     {
-
-#region Constructor
-
-        public ThumbnailDecorationRenderer ()
-        {
-        }
-
-#endregion
-
 #region Drawing Methods
 
         public abstract void Render (Drawable window,

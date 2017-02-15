@@ -56,7 +56,7 @@ namespace FSpot.Utils
         {
             var abs_uri = uri.AbsoluteUri;
             var index = abs_uri.LastIndexOf ('.');
-            return index == -1 ? String.Empty : abs_uri.Substring (index);
+            return index == -1 ? string.Empty : abs_uri.Substring (index);
         }
 
         public static string GetFilenameWithoutExtension (this SafeUri uri)

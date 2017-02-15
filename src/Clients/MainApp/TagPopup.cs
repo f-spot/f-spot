@@ -52,7 +52,7 @@ public class TagPopup
 		Gtk.Menu popup_menu = new Gtk.Menu ();
 
 		GtkUtil.MakeMenuItem (popup_menu,
-                String.Format (Catalog.GetPluralString ("Find", "Find", tags.Length), tags.Length),
+                string.Format (Catalog.GetPluralString ("Find", "Find", tags.Length), tags.Length),
                 "gtk-add",
                 new EventHandler (App.Instance.Organizer.HandleIncludeTag),
                 true
@@ -99,6 +99,5 @@ public class TagPopup
 		} else {
 			popup_menu.Popup (null, null, null, 0, Gtk.Global.CurrentEventTime);
 		}
-
 	}
 }

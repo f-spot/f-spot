@@ -211,7 +211,7 @@ namespace FSpot.Query
 			normal_icon = null;
 			negated_icon = null;
 			if (IsNegated) {
-				widget.TooltipText = String.Format (Catalog.GetString ("Not {0}"), Tag.Name);
+				widget.TooltipText = string.Format (Catalog.GetString ("Not {0}"), Tag.Name);
 				label.Text = "<s>" + System.Web.HttpUtility.HtmlEncode (Tag.Name) + "</s>";
 				image.Pixbuf = NegatedIcon;
 			} else {
@@ -230,7 +230,6 @@ namespace FSpot.Query
 				container.Remove (label);
 				container.Add (image);
 			}
-
 
 			if (isHoveredOver && image.Pixbuf != null) {
 				// Brighten the image slightly
@@ -269,9 +268,9 @@ namespace FSpot.Query
 				}
 			}
 
-			return String.Format (
+			return string.Format (
 				"id {0}IN (SELECT photo_id FROM photo_tags WHERE tag_id IN ({1}))",
-				(IsNegated ? "NOT " : String.Empty), ids);
+				(IsNegated ? "NOT " : string.Empty), ids);
 		}
 
 		public override Gtk.Widget SeparatorWidget ()
@@ -293,10 +292,11 @@ namespace FSpot.Query
 
 		public static void RemoveFocusedLiterals ()
 		{
-			if (focusedLiterals != null)
-				foreach (Literal literal in focusedLiterals) {
-					literal.RemoveSelf ();
-				}
+			if (focusedLiterals == null)
+				return;
+
+			foreach (var literal in focusedLiterals)
+				literal.RemoveSelf ();
 		}
 		#endregion
 
@@ -385,7 +385,7 @@ namespace FSpot.Query
 			if (args.Info == DragDropTargets.TagListEntry.Info || args.Info == DragDropTargets.TagQueryEntry.Info) {
 
 				// FIXME: do really write data
-				Byte [] data = Encoding.UTF8.GetBytes (String.Empty);
+				Byte [] data = Encoding.UTF8.GetBytes (string.Empty);
 				Atom [] targets = args.Context.Targets;
 
 				args.SelectionData.Set (targets [0], 8, data, data.Length);
@@ -433,25 +433,21 @@ namespace FSpot.Query
 			args.RetVal = true;
 
 			if (args.Info == DragDropTargets.TagListEntry.Info) {
-
-				if (TagsAdded != null)
-					TagsAdded (args.SelectionData.GetTagsData (), Parent, this);
-
+				TagsAdded?.Invoke (args.SelectionData.GetTagsData (), Parent, this);
 				return;
 			}
 
 			if (args.Info == DragDropTargets.TagQueryEntry.Info) {
 
-				if (! focusedLiterals.Contains (this))
-				if (LiteralsMoved != null)
-					LiteralsMoved (focusedLiterals, Parent, this);
+				if (!focusedLiterals.Contains (this))
+					LiteralsMoved?.Invoke (focusedLiterals, Parent, this);
 
 				// Unmark the literals as focused so they don't get nixed
 				focusedLiterals = null;
 			}
 		}
 
-		bool preview = false;
+		bool preview;
 		Gtk.Widget preview_widget;
 
 		void HandleDragMotion (object o, DragMotionArgs args)
@@ -485,20 +481,17 @@ namespace FSpot.Query
 
 		public void HandleAttachTagCommand (Tag t)
 		{
-			if (AttachTag != null)
-				AttachTag (t, Parent, this);
+			AttachTag?.Invoke (t, Parent, this);
 		}
 
 		public void HandleRequireTag (object sender, EventArgs args)
 		{
-			if (RequireTag != null)
-				RequireTag (new[] {this.Tag});
+			RequireTag?.Invoke (new[] { Tag });
 		}
 
 		public void HandleUnRequireTag (object sender, EventArgs args)
 		{
-			if (UnRequireTag != null)
-				UnRequireTag (new[] {this.Tag});
+			UnRequireTag?.Invoke (new[] { Tag });
 		}
 
 		const int ICON_SIZE = 24;
@@ -522,7 +515,7 @@ namespace FSpot.Query
 		Widget widget;
 		Pixbuf negated_icon;
 		static Pixbuf negated_overlay;
-		bool isHoveredOver = false;
+		bool isHoveredOver;
 
 		public delegate void NegatedToggleHandler (Literal group);
 

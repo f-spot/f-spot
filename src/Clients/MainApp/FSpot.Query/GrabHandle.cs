@@ -59,5 +59,4 @@ namespace FSpot.Query
 			return ret;
 		}
 	}
-	
 }

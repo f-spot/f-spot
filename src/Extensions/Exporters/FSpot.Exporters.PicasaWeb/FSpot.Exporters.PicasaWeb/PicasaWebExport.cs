@@ -204,16 +204,16 @@ namespace FSpot.Exporters.PicasaWeb
 			size_spin.Sensitive = scale_check.Active;
 		}
 
-		private void HandleUploadProgress (object o, UploadProgressEventArgs args)
+		void HandleUploadProgress (object o, UploadProgressEventArgs args)
 		{
 			if (approx_size == 0)
-				progress_dialog.ProgressText = System.String.Format (Catalog.GetString ("{0} Sent"), GLib.Format.SizeForDisplay (args.BytesSent));
+				progress_dialog.ProgressText = string.Format (Catalog.GetString ("{0} Sent"), GLib.Format.SizeForDisplay (args.BytesSent));
 			else
-				progress_dialog.ProgressText = System.String.Format (Catalog.GetString ("{0} of approx. {1}"), GLib.Format.SizeForDisplay (sent_bytes + args.BytesSent), GLib.Format.SizeForDisplay (approx_size));
+				progress_dialog.ProgressText = string.Format (Catalog.GetString ("{0} of approx. {1}"), GLib.Format.SizeForDisplay (sent_bytes + args.BytesSent), GLib.Format.SizeForDisplay (approx_size));
 			progress_dialog.Fraction = ((photo_index - 1) / (double)items.Length) + (args.BytesSent / (args.BytesTotal * (double)items.Length));
 		}
 
-		private class DateComparer : IComparer
+		class DateComparer : IComparer
 		{
 			public int Compare (object left, object right)
 			{
@@ -221,7 +221,7 @@ namespace FSpot.Exporters.PicasaWeb
 			}
 		}
 
-		private void Upload ()
+		void Upload ()
 		{
 			album.UploadProgress += HandleUploadProgress;
 			sent_bytes = 0;
@@ -244,7 +244,7 @@ namespace FSpot.Exporters.PicasaWeb
 					FileInfo file_info;
 					Log.Debug ("Picasa uploading " + photo_index);
 
-					progress_dialog.Message = String.Format (Catalog.GetString ("Uploading picture \"{0}\" ({1} of {2})"),
+					progress_dialog.Message = string.Format (Catalog.GetString ("Uploading picture \"{0}\" ({1} of {2})"),
 										 item.Name, photo_index + 1, items.Length);
 					photo_index++;
 
@@ -276,7 +276,7 @@ namespace FSpot.Exporters.PicasaWeb
 					Log.Exception (te);
 					System.Threading.Thread.ResetAbort ();
 				} catch (System.Exception e) {
-					progress_dialog.Message = String.Format (Catalog.GetString ("Error Uploading To Gallery: {0}"),
+					progress_dialog.Message = string.Format (Catalog.GetString ("Error Uploading To Gallery: {0}"),
 										 e.Message);
 					progress_dialog.ProgressText = Catalog.GetString ("Error");
 					Log.DebugException (e);
@@ -364,7 +364,7 @@ namespace FSpot.Exporters.PicasaWeb
 					long ql = account.Picasa.QuotaLimit;
 
 					StringBuilder sb = new StringBuilder ("<small>");
-					sb.Append (String.Format (Catalog.GetString ("Available space: {0}, {1}% used out of {2}"),
+					sb.Append (string.Format (Catalog.GetString ("Available space: {0}, {1}% used out of {2}"),
 								GLib.Format.SizeForDisplay (ql - qu),
 								(100 * qu / ql),
 								GLib.Format.SizeForDisplay (ql)));
@@ -393,7 +393,7 @@ namespace FSpot.Exporters.PicasaWeb
 
 				PopulateAlbumOptionMenu (account.Picasa);
 
-				status_label.Text = String.Empty;
+				status_label.Text = string.Empty;
 				album_button.Sensitive = false;
 
 				new GoogleAccountDialog (this.Dialog, account, true, null);
@@ -468,14 +468,14 @@ namespace FSpot.Exporters.PicasaWeb
 			export_button.Sensitive = a.PicturesRemaining >= items.Length;
 			if (album_status_label.Visible = !export_button.Sensitive) {
 				StringBuilder sb = new StringBuilder ("<small>");
-				sb.Append (String.Format (Catalog.GetString ("The selected album has a limit of {0} pictures,\n" +
+				sb.Append (string.Format (Catalog.GetString ("The selected album has a limit of {0} pictures,\n" +
 								"which would be passed with the current selection of {1} images"),
 								a.PicturesCount + a.PicturesRemaining, items.Length));
 				sb.Append ("</small>");
-				album_status_label.Text = String.Format (sb.ToString ());
+				album_status_label.Text = string.Format (sb.ToString ());
 				album_status_label.UseMarkup = true;
 			} else
-				album_status_label.Text = String.Empty;
+				album_status_label.Text = string.Empty;
 		}
 
 		public void HandleAddGallery (object sender, System.EventArgs args)

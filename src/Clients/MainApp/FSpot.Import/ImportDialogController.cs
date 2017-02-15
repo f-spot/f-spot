@@ -34,10 +34,8 @@ using System.Collections.Generic;
 using System.Threading;
 using FSpot.Core;
 using FSpot.Database;
-using FSpot.FileSystem;
 using FSpot.Imaging;
 using FSpot.Settings;
-using FSpot.Thumbnail;
 using Gtk;
 using Hyena;
 using Mono.Unix;
@@ -282,17 +280,14 @@ namespace FSpot.Import
 		{
 			CancelScan ();
 
-			if (importTokenSource != null)
-				importTokenSource.Cancel ();
-			if (ImportThread != null)
-				//FIXME: there is a race condition between the null check and calling join
-				ImportThread.Join ();
+			importTokenSource?.Cancel ();
+			//FIXME: there is a race condition between the null check and calling join
+			ImportThread?.Join ();
 		}
 
 		void DoImport (CancellationToken token)
 		{
-			if (scanThread != null)
-				scanThread.Join ();
+			scanThread?.Join ();
 
 			FireEvent (ImportEvent.ImportStarted);
 
