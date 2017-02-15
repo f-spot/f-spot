@@ -281,9 +281,7 @@ namespace FSpot.Widgets
 			if (prev != this.Pixbuf && prev != null)
 				prev.Dispose ();
 
-			EventHandler handler = PhotoLoaded;
-			if (handler != null)
-				handler (this, EventArgs.Empty);
+			PhotoLoaded?.Invoke (this, EventArgs.Empty);
 		}
 		#endregion
 

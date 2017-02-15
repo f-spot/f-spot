@@ -114,7 +114,7 @@ namespace FSpot.Database
 			EmitEvent (ItemsRemoved, new DbItemEventArgs<T> (items));
 		}
 
-		private void EmitEvent (EventHandler<DbItemEventArgs<T>> evnt, DbItemEventArgs<T> args)
+		void EmitEvent (EventHandler<DbItemEventArgs<T>> evnt, DbItemEventArgs<T> args)
 		{
 			if (evnt == null) {
 				// No subscribers.

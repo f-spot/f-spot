@@ -55,9 +55,8 @@ namespace FSpot.Widgets
 			CurveType old_type = CurveType;
 			CurveType = CurveType.Spline;
 			ResetVector ();
-			EventHandler eh;
-			if (old_type != CurveType.Spline && (eh = CurveTypeChanged) != null) 
-				eh (this, EventArgs.Empty);
+			if (old_type != CurveType.Spline)
+				CurveTypeChanged?.Invoke (this, EventArgs.Empty);
 		}
 
 		float min_x = 0f;
@@ -160,9 +159,7 @@ namespace FSpot.Widgets
 		public void AddPoint (float x, float y)
 		{
 			points.Add (x, y);
-			EventHandler eh = CurveChanged;
-			if (eh != null)
-				eh (this, EventArgs.Empty);
+			CurveChanged?.Invoke (this, EventArgs.Empty);
 		}
 
 		public event EventHandler CurveTypeChanged;

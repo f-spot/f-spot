@@ -85,23 +85,17 @@ namespace FSpot.Widgets
 
 		protected void OnDateChanged ()
 		{
-			EventHandler h = DateChanged;
-			if (h != null)
-				h (this, EventArgs.Empty);
+			DateChanged?.Invoke (this, EventArgs.Empty);
 		}
 
 		protected void OnTimeChanged ()
 		{
-			EventHandler h = TimeChanged;
-			if (h != null)
-				h (this, EventArgs.Empty);
+			TimeChanged?.Invoke (this, EventArgs.Empty);
 		}
 
 		protected void OnOffsetChanged ()
 		{
-			EventHandler h = OffsetChanged;
-			if (h != null)
-				h (this, EventArgs.Empty);
+			OffsetChanged?.Invoke (this, EventArgs.Empty);
 		}
 
 		bool ShowSeconds {

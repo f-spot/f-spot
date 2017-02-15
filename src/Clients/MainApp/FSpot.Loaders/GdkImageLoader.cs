@@ -64,14 +64,8 @@ namespace FSpot.Loaders
 			//First, send a thumbnail if we have one
 			if ((thumb = App.Instance.Container.Resolve<IThumbnailService> ().TryLoadThumbnail (uri, ThumbnailSize.Large)) != null) {
 				pixbuf_orientation = ImageOrientation.TopLeft;
-				EventHandler<AreaPreparedEventArgs> prep = AreaPrepared;
-				if (prep != null) {
-					prep (this, new AreaPreparedEventArgs (true));
-				}
-				EventHandler<AreaUpdatedEventArgs> upd = AreaUpdated;
-				if (upd != null) {
-					upd (this, new AreaUpdatedEventArgs (new Rectangle (0, 0, thumb.Width, thumb.Height)));
-				}
+				AreaPrepared?.Invoke (this, new AreaPreparedEventArgs (true));
+				AreaUpdated?.Invoke (this, new AreaUpdatedEventArgs (new Rectangle (0, 0, thumb.Width, thumb.Height)));
 			}
 
 			using (var image_file = App.Instance.Container.Resolve<IImageFileFactory> ().Create (uri)) {
@@ -173,10 +167,7 @@ namespace FSpot.Loaders
 			if (is_disposed)
 				return;
 
-			EventHandler eh = Completed;
-			if (eh != null) {
-				eh (this, EventArgs.Empty);
-			}
+			Completed?.Invoke (this, EventArgs.Empty);
 			Close ();
 		}
 #endregion

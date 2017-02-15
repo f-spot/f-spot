@@ -171,17 +171,13 @@ namespace FSpot.Import
 		void FireEvent (ImportEvent evnt)
 		{
 			ThreadAssist.ProxyToMain (() => {
-				var h = StatusEvent;
-				if (h != null)
-					h (evnt);
+				StatusEvent?.Invoke (evnt);
 			});
 		}
 
 		void ReportProgress (int current, int total)
 		{
-			var h = ProgressUpdated;
-			if (h != null)
-				h (current, total);
+			ProgressUpdated?.Invoke (current, total);
 		}
 
 		public int PhotosImported { get; private set; }
