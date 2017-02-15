@@ -32,10 +32,12 @@
 using System;
 using FSpot.Utils;
 
-namespace FSpot {
-	public class Histogram {
+namespace FSpot
+{
+	public class Histogram
+    {
 #region Color hints
-		private byte [] colors = new byte [] {0x00, 0x00, 0x00, 0xff};
+		byte [] colors = {0x00, 0x00, 0x00, 0xff};
 
 		public byte RedColorHint {
 			set { colors [0] = value; }
@@ -53,22 +55,22 @@ namespace FSpot {
 			set { colors [3] = value; }
 		}
 
-		private int [,] values = new int [256, 3];
+		int [,] values = new int [256, 3];
 #endregion
 
 		public Histogram (Gdk.Pixbuf src)
 		{
-		        FillValues (src);
+            FillValues (src);
 		}
 
 		public Histogram () {}
 
-		private void FillValues (Gdk.Pixbuf src)
+		void FillValues (Gdk.Pixbuf src)
 		{
 			values = new int [256, 3];
 
 			if (src.BitsPerSample != 8)
-				throw new System.Exception ("Invalid bits per sample");
+				throw new Exception ("Invalid bits per sample");
 
 			unsafe {
 				byte * srcb = (byte *)src.Pixels;
@@ -91,13 +93,13 @@ namespace FSpot {
 								srcb++;
 
 						}
-						srcb =  ((byte *) pixels) + j * rowstride;
+						srcb = pixels + j * rowstride;
 					}
 				}
 			}
 		}
 
-		private int ChannelSum (int channel)
+		int ChannelSum (int channel)
 		{
 			int sum = 0;
 			for (int i = 0; i < values.GetLength (0); i++) {
@@ -138,12 +140,12 @@ namespace FSpot {
 			}
 		}
 
-		private void Draw (Gdk.Pixbuf image)
+		void Draw (Gdk.Pixbuf image)
 		{
 			int max = 0;
 			for (int i = 0; i < values.GetLength (0); i++) {
 				for (int j = 0; j < values.GetLength (1); j++) {
-					max = System.Math.Max (max, values [i, j]);
+					max = Math.Max (max, values [i, j]);
 				}
 			}
 			unsafe {

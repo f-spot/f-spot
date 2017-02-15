@@ -202,11 +202,11 @@ namespace FSpot.Exporters.Gallery
 
 				Log.DebugFormat ("uploading {0}", photo_index);
 
-				progress_dialog.Message = System.string.Format (Catalog.GetString ("Uploading picture \"{0}\""), item.Name);
+				progress_dialog.Message = string.Format (Catalog.GetString ("Uploading picture \"{0}\""), item.Name);
 				progress_dialog.Fraction = photo_index / (double)items.Length;
 				photo_index++;
 
-				progress_dialog.ProgressText = System.string.Format (Catalog.GetString ("{0} of {1}"), photo_index, items.Length);
+				progress_dialog.ProgressText = string.Format (Catalog.GetString ("{0} of {1}"), photo_index, items.Length);
 
 
 				FilterRequest req = new FilterRequest (item.DefaultVersion.Uri);
@@ -218,8 +218,8 @@ namespace FSpot.Exporters.Gallery
 					if (item != null && item is Photo && App.Instance.Database != null && id != 0)
 							App.Instance.Database.Exports.Create ((item as Photo).Id, (item as Photo).DefaultVersionId,
 										      ExportStore.Gallery2ExportType,
-										      string.Format("{0}:{1}",album.Gallery.Uri.ToString (), id.ToString ()));
-				} catch (System.Exception e) {
+										      string.Format("{0}:{1}",album.Gallery.Uri, id.ToString ()));
+				} catch (Exception e) {
 					progress_dialog.Message = string.Format (Catalog.GetString ("Error uploading picture \"{0}\" to Gallery: {1}"), item.Name, e.Message);
 					progress_dialog.ProgressText = Catalog.GetString ("Error");
 					Log.Exception (e);

@@ -1,14 +1,9 @@
-//  TextLiteral.cs
+//  InfoItem.cs
 //
 //  Author:
-//   Gabriel Burt <gabriel.burt@gmail.com>
-//   Stephane Delcroix <stephane@delcroix.org>
-//   Stephen Shaw <sshaw@decriptor.com>
+//       Stephen Shaw <sshaw@decriptor.com>
 //
-// Copyright (C) 2013 Stephen Shaw
-// Copyright (C) 2007-2009 Novell, Inc.
-// Copyright (C) 2007 Gabriel Burt
-// Copyright (C) 2007-2009 Stephane Delcroix
+//  Copyright (c) 2017 Stehen Shaw.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining
 //  a copy of this software and associated documentation files (the
@@ -31,31 +26,40 @@
 //
 //
 
-// This has to do with Finding photos based on tags
-// http://mail.gnome.org/archives/f-spot-list/2005-November/msg00053.html
-// http://bugzilla-attachments.gnome.org/attachment.cgi?id=54566
-namespace FSpot.Query
+using FSpot.Core;
+using FSpot.Widgets;
+
+namespace FSpot
 {
-	public class TextLiteral : AbstractLiteral
-	{
-		readonly string text;
+	public class InfoItem : InfoBox
+    {
+        readonly BrowsablePointer item;
 
-		public TextLiteral (Term parent, string text) : base (parent, null)
+        public InfoItem (BrowsablePointer item)
 		{
-			this.text = text;
+			this.item = item;
+			item.Changed += HandleItemChanged;
+			HandleItemChanged (item, null);
+			VersionChanged += HandleVersionChanged;
+			ShowTags = true;
+			ShowRating = true;
+			Context = ViewContext.FullScreen;
 		}
 
-		public override string SqlCondition ()
+		void HandleItemChanged (object sender, BrowsablePointerChangedEventArgs args)
 		{
-			return string.Format (
-					"id {0}IN (SELECT id FROM photos WHERE base_uri LIKE '%{1}%' OR filename LIKE '%{1}%' OR description LIKE '%{1}%')",
-					(IsNegated ? "NOT " : ""), EscapeQuotes (text)
-					);
+			Photo = item.Current;
 		}
 
-		protected static string EscapeQuotes (string v)
+		void HandleVersionChanged (InfoBox box, IPhotoVersion version)
 		{
-			return v == null ? string.Empty : v.Replace ("'", "''");
+			var versionable = item.Current as IPhotoVersionable;
+			var q = item.Collection as PhotoQuery;
+
+			if (versionable != null && q != null) {
+				versionable.SetDefaultVersion (version);
+				q.Commit (item.Index);
+			}
 		}
 	}
 }

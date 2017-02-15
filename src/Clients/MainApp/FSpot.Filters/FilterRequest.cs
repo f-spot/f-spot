@@ -36,21 +36,21 @@ using System.Collections.Generic;
 
 using Hyena;
 
-namespace FSpot.Filters {
-
+namespace FSpot.Filters
+{
 	public class FilterRequest : IDisposable
 	{
 		SafeUri current;
-
-		List<SafeUri> temp_uris;
+		readonly List<SafeUri> temp_uris;
 
 		public FilterRequest (SafeUri source)
 		{
 			Source = source;
-			this.current = source;
+			current = source;
 			temp_uris = new List<SafeUri> ();
 		}
 
+		// FIXME: We probably don't want this?
 		~FilterRequest ()
 		{
 			Close ();
@@ -82,7 +82,7 @@ namespace FSpot.Filters {
 		public void Dispose ()
 		{
 			Close ();
-			System.GC.SuppressFinalize (this);
+			GC.SuppressFinalize (this);
 		}
 
 		public SafeUri TempUri ()

@@ -41,16 +41,7 @@ namespace FSpot.Widgets
     /// </summary>
     public class BrowseablePointerGridView : CollectionGridView
     {
-
-#region Public Properties
-
-        public BrowsablePointer Pointer {
-            get; private set;
-        }
-
-#endregion
-
-#region Constructors
+        public BrowsablePointer Pointer { get; private set; }
 
         public BrowseablePointerGridView (IntPtr raw) : base (raw)
         {
@@ -71,8 +62,6 @@ namespace FSpot.Widgets
 
             CanFocus = true;
         }
-
-#endregion
 
 #region Drawing Methods
 
@@ -159,7 +148,6 @@ namespace FSpot.Widgets
         }
 
 #endregion
-
     }
 }
 

@@ -35,7 +35,6 @@ using Cairo;
 using Gdk;
 
 using FSpot.Core;
-using FSpot.Widgets;
 using FSpot.Utils;
 using FSpot.Gui;
 
@@ -267,11 +266,9 @@ namespace FSpot.Widgets
 
 		protected override bool OnMotionNotifyEvent (EventMotion args)
 		{
-			//
 			// We look for motion events on the popup window so that
 			// if the pointer manages to get over the window we can
 			// Update the image properly and/or get out of the way.
-			//
 			UpdateItem ();
 			return false;
 		}

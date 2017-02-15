@@ -44,24 +44,11 @@ namespace FSpot.Widgets
     /// </summary>
     public class ThumbnailDateCaptionRenderer : ThumbnailCaptionRenderer
     {
+		readonly Dictionary<string, Pango.Layout> cache = new Dictionary<string, Pango.Layout> ();
 
-#region Private Fields
+		#region Drawing Methods
 
-        private Dictionary <string, Pango.Layout> cache = new Dictionary <string, Pango.Layout> ();
-
-#endregion
-
-#region Constructor
-
-        public ThumbnailDateCaptionRenderer ()
-        {
-        }
-
-#endregion
-
-#region Drawing Methods
-
-        public override int GetHeight (Widget widget, int width)
+		public override int GetHeight (Widget widget, int width)
         {
             return widget.Style.FontDescription.MeasureTextHeight (widget.PangoContext);
         }

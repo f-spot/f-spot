@@ -44,13 +44,15 @@
     <Reference Include="Mono.Posix" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FSpot\TestOf_AndTerm.cs" />
+    <Compile Include="FSpot\AndTermTests.cs" />
     <Compile Include="FSpot\PhotoStoreTests.cs" />
     <Compile Include="FSpot\Mocks\PhotoMock.cs" />
+    <Compile Include="FSpot.Widgets\FindBarTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="FSpot\" />
+    <Folder Include="FSpot.Widgets\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MainApp\MainApp.csproj">

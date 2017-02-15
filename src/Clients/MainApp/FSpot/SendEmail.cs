@@ -51,29 +51,28 @@ namespace FSpot
 {
 	public class SendEmail : BuilderDialog
 	{
-		Window parent_window;
+		readonly Window parent_window;
 
 #pragma warning disable 0649
-		[GtkBeans.Builder.Object] private Gtk.ScrolledWindow   tray_scrolled;
-		[GtkBeans.Builder.Object] private Label 		NumberOfPictures, TotalOriginalSize, ApproxNewSize;
-		[GtkBeans.Builder.Object] private RadioButton 	tiny_size, small_size, medium_size, large_size, x_large_size, original_size;
+		[GtkBeans.Builder.Object] Gtk.ScrolledWindow tray_scrolled;
+		[GtkBeans.Builder.Object] Label NumberOfPictures, TotalOriginalSize, ApproxNewSize;
+		[GtkBeans.Builder.Object] RadioButton tiny_size, small_size, medium_size, large_size, x_large_size, original_size;
 #pragma warning restore 0649
 
-		long Orig_Photo_Size 	= 0;
+		long Orig_Photo_Size = 0;
 		double scale_percentage = 0.3;
 
 		// The different sizes we can shrink to foto to. See RadioButton above for labels.
-		static int[] sizes 	= { 0, 320, 	480, 	640, 	800, 	1024 };
+		static int[] sizes = { 0, 320, 480, 640, 800, 1024 };
 
 		// Estimated size relative to original after shrinking down the photo.
-		double[] avg_scale_ref 	= { 0, 0.0186,	0.0348,	0.0532,	0.0826,	0.1234 };
+		double[] avg_scale_ref = { 0, 0.0186,	0.0348,	0.0532,	0.0826,	0.1234 };
 
-		static int NoOfSizes	= sizes.Length;
-		double[] avg_scale	= new double [NoOfSizes];
+		static int NoOfSizes = sizes.Length;
+		double[] avg_scale = new double [NoOfSizes];
 		string tmp_mail_dir;	// To temporary keep the resized images
-		bool force_original = false;
-
-		IBrowsableCollection selection;
+		bool force_original;
+		readonly IBrowsableCollection selection;
 
 		public SendEmail (IBrowsableCollection selection, Window parent_window) : base ("mail_dialog.ui", "mail_dialog")
 		{
@@ -127,7 +126,7 @@ namespace FSpot
 				// Get first photos file size
 				long orig_size = FileFactory.NewForUri (scalephoto.DefaultVersion.Uri).QueryInfo ("standard::size", FileQueryInfoFlags.None, null).Size;
 
-				FilterSet filters = new FilterSet ();
+				var filters = new FilterSet ();
 				filters.Add (new ResizeFilter ((uint)(sizes [3])));
 				long new_size;
 				using (FilterRequest request = new FilterRequest (scalephoto.DefaultVersion.Uri)) {
@@ -168,7 +167,7 @@ namespace FSpot
 			Response += HandleResponse;
 		}
 
-		private int GetScaleSize()
+		int GetScaleSize()
 		{
 			// not only convert dialog size to pixel size, but also set preferences se we use same size next time
 			int size_number = 0; // default to original size
@@ -188,7 +187,7 @@ namespace FSpot
 			return sizes [ size_number ];
 		}
 
-		private int GetScaleIndex ()
+		int GetScaleIndex ()
 		{
 			int scale = GetScaleSize();
 			for (int k = 0; k < sizes.Length; k++)
@@ -197,7 +196,7 @@ namespace FSpot
 			return 0;
 		}
 
-		private void UpdateEstimatedSize()
+		void UpdateEstimatedSize()
 		{
 			int new_size_index;
 			long new_approx_total_size;
@@ -218,7 +217,7 @@ namespace FSpot
 			UpdateEstimatedSize();
 		}
 
-		private void HandleResponse (object sender, Gtk.ResponseArgs args)
+		void HandleResponse (object sender, Gtk.ResponseArgs args)
 		{
 			int size = 0;
 			bool UserCancelled = false;

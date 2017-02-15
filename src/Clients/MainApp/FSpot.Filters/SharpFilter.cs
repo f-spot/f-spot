@@ -34,32 +34,35 @@ using Gdk;
 using FSpot.Imaging;
 using FSpot.Utils;
 
-namespace FSpot.Filters {
+namespace FSpot.Filters
+{
     public class SharpFilter : IFilter
     {
-        double radius, amount, threshold;
+		readonly double threshold;
+		readonly double amount;
+		readonly double radius;
 
-        public SharpFilter (double radius, double amount, double threshold)
+		public SharpFilter (double radius, double amount, double threshold)
         {
             this.radius = radius;
             this.amount = amount;
             this.threshold = threshold;
         }
 
-        public bool Convert (FilterRequest req)
-        {
-            var dest_uri = req.TempUri (req.Current.GetExtension ());
+		public bool Convert (FilterRequest req)
+		{
+			var dest_uri = req.TempUri (req.Current.GetExtension ());
 
-            using (var img = App.Instance.Container.Resolve<IImageFileFactory> ().Create (req.Current)) {
-                using (Pixbuf in_pixbuf = img.Load ()) {
-                    using (Pixbuf out_pixbuf = PixbufUtils.UnsharpMask (in_pixbuf, radius, amount, threshold, null)) {
-                        FSpot.Utils.PixbufUtils.CreateDerivedVersion (req.Current, dest_uri, 95, out_pixbuf);
-                    }
-                }
-            }
+			using (var img = App.Instance.Container.Resolve<IImageFileFactory> ().Create (req.Current)) {
+				using (Pixbuf in_pixbuf = img.Load ()) {
+					using (Pixbuf out_pixbuf = PixbufUtils.UnsharpMask (in_pixbuf, radius, amount, threshold, null)) {
+						FSpot.Utils.PixbufUtils.CreateDerivedVersion (req.Current, dest_uri, 95, out_pixbuf);
+					}
+				}
+			}
 
-            req.Current = dest_uri;
-            return true;
-        }
-    }
+			req.Current = dest_uri;
+			return true;
+		}
+	}
 }

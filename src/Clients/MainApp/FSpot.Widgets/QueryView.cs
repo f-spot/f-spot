@@ -50,7 +50,7 @@ namespace FSpot.Widgets
 
         public QueryView (IBrowsableCollection query) : base(query)
         {
-            ScrollEvent += new ScrollEventHandler (HandleScrollEvent);
+            ScrollEvent += HandleScrollEvent;
         }
 
         protected override bool OnPopupMenu ()
@@ -63,10 +63,10 @@ namespace FSpot.Widgets
         protected override void ContextMenu (EventButton evnt, int cell_num)
         {
             PhotoPopup popup = new PhotoPopup ();
-            popup.Activate (this.Toplevel, evnt);
+            popup.Activate (Toplevel, evnt);
         }
 
-        private void HandleScrollEvent(object sender, ScrollEventArgs args)
+        void HandleScrollEvent(object sender, ScrollEventArgs args)
         {
             // Activated only by Control + ScrollWheelUp/ScrollWheelDown
             if (ModifierType.ControlMask != (args.Event.State & ModifierType.ControlMask))

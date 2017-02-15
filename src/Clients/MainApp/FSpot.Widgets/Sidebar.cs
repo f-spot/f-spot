@@ -40,11 +40,11 @@ using Mono.Unix;
 
 namespace FSpot.Widgets
 {
-
 	// Decides which sidebar page should be shown for each context. Implemented
 	// using the Strategy pattern, to make it swappable easily, in case the
 	// default MRUSidebarContextSwitchStrategy is not sufficiently usable.
-	public interface ISidebarContextSwitchStrategy {
+	public interface ISidebarContextSwitchStrategy
+	{
 		string PageForContext (ViewContext context);
 
 		void SwitchedToPage (ViewContext context, string name);
@@ -52,25 +52,30 @@ namespace FSpot.Widgets
 
 	// Implements a Most Recently Used switching strategy. The last page you used
 	// for a given context is used.
-	public class MRUSidebarContextSwitchStrategy : ISidebarContextSwitchStrategy {
+	public class MRUSidebarContextSwitchStrategy : ISidebarContextSwitchStrategy
+	{
 		public const string PREF_PREFIX = Preferences.APP_FSPOT + "ui/sidebar";
 
-		private string PrefKeyForContext (ViewContext context) {
+		string PrefKeyForContext (ViewContext context)
+		{
 			return string.Format ("{0}/{1}", PREF_PREFIX, context);
 		}
 
-		public string PageForContext (ViewContext context) {
+		public string PageForContext (ViewContext context)
+		{
 			string name = Preferences.Get<string> (PrefKeyForContext (context));
 			if (name == null)
 				name = DefaultForContext (context);
 			return name;
 		}
 
-		public void SwitchedToPage (ViewContext context, string name) {
+		public void SwitchedToPage (ViewContext context, string name)
+		{
 			Preferences.Set (PrefKeyForContext (context), name);
 		}
 
-		private string DefaultForContext (ViewContext context) {
+		string DefaultForContext (ViewContext context)
+		{
 			if (context == ViewContext.Edit)
 				return Catalog.GetString ("Edit");
 			// Don't care otherwise, Tags sounds reasonable
@@ -80,13 +85,13 @@ namespace FSpot.Widgets
 
 	public class Sidebar : VBox  {
 
-		private HBox button_box;
+		HBox button_box;
 		public Notebook Notebook { get; private set; }
-		private MenuButton choose_button;
-		private EventBox eventBox;
-		private Menu choose_menu;
-		private List<string> menu_list;
-		private List<string> image_list;
+		MenuButton choose_button;
+		EventBox eventBox;
+		Menu choose_menu;
+		List<string> menu_list;
+		List<string> image_list;
 
 		public event EventHandler CloseRequested;
 
@@ -95,28 +100,23 @@ namespace FSpot.Widgets
 		public event IBrowsableCollectionItemsChangedHandler SelectionItemsChanged;
 
 		// The photos selected.
-		private IBrowsableCollection selection;
-		public IBrowsableCollection Selection {
-			get { return selection; }
-			private set { selection = value; }
-		}
+		public IBrowsableCollection Selection { get; private set; }
 
 		public event EventHandler ContextChanged;
 		public event EventHandler PageSwitched;
 		
-		private ViewContext view_context = ViewContext.Unknown;
+		ViewContext view_context = ViewContext.Unknown;
 		public ViewContext Context {
 			get { return view_context; }
 			set {
 				view_context = value;
-				if (ContextChanged != null)
-					ContextChanged (this, null);
+				ContextChanged?.Invoke (this, null);
 			}
 		}
 
-		private readonly ISidebarContextSwitchStrategy ContextSwitchStrategy;
+		readonly ISidebarContextSwitchStrategy ContextSwitchStrategy;
 
-		public Sidebar () : base ()
+		public Sidebar ()
 		{
 			ContextSwitchStrategy = new MRUSidebarContextSwitchStrategy ();
 			ContextChanged += HandleContextChanged;
@@ -129,7 +129,7 @@ namespace FSpot.Widgets
 			Notebook.ShowBorder = false;
 			PackStart (Notebook, true, true, 0);
 
-			Button button = new Button ();
+			var button = new Button ();
 			button.Image = new Image ("gtk-close", Gtk.IconSize.Button);
 			button.Relief = ReliefStyle.None;
 			button.Pressed += HandleCloseButtonPressed;
@@ -150,7 +150,7 @@ namespace FSpot.Widgets
 			image_list = new List<string> ();
 		}
 
-		private void HandleContextChanged (object sender, EventArgs args)
+		void HandleContextChanged (object sender, EventArgs args)
 		{
 			// Make sure the ViewModeCondition is set correctly.
 			if (Context == ViewContext.Single)
@@ -164,7 +164,7 @@ namespace FSpot.Widgets
 			SwitchTo (name);
 		}
 
-		private void HandleCanSelectChanged (object sender, EventArgs args)
+		void HandleCanSelectChanged (object sender, EventArgs args)
 		{
 			//Log.Debug ("Can select changed for {0} to {1}", sender, (sender as SidebarPage).CanSelect);
 		}
@@ -224,8 +224,7 @@ namespace FSpot.Widgets
 
 		public void HandleCloseButtonPressed (object sender, EventArgs args)
 		{
-			if (CloseRequested != null)
-				CloseRequested (this, args);
+			CloseRequested?.Invoke (this, args);
 		}
 
 		public void SwitchTo (int n)
@@ -238,9 +237,7 @@ namespace FSpot.Widgets
 			choose_button.Label = menu_list [n];
 			choose_button.Image.IconName = image_list [n];
 
-			EventHandler handler = PageSwitched;
-			if (handler != null)
-				handler (this, EventArgs.Empty);
+			PageSwitched?.Invoke (this, EventArgs.Empty);
 		}
 
 		public int CurrentPage

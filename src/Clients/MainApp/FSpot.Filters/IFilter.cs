@@ -27,7 +27,8 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-namespace FSpot.Filters {
+namespace FSpot.Filters
+{
 	public interface IFilter
 	{
 		bool Convert (FilterRequest request);

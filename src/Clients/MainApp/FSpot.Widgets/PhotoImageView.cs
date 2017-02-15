@@ -47,7 +47,7 @@ namespace FSpot.Widgets
 {
 	public class PhotoImageView : ImageView
 	{
-#region public API
+		#region public API
 
 		protected PhotoImageView (IntPtr raw) : base (raw) { }
 
@@ -55,7 +55,7 @@ namespace FSpot.Widgets
 		{
 		}
 
-		public PhotoImageView (BrowsablePointer item) : base ()
+		public PhotoImageView (BrowsablePointer item)
 		{
 			Preferences.SettingChanged += OnPreferencesChanged;
 
@@ -100,9 +100,9 @@ namespace FSpot.Widgets
 
 		public event EventHandler PhotoChanged;
 		public event EventHandler PhotoLoaded;
-#endregion
+		#endregion
 
-#region Gtk widgetry
+		#region Gtk widgetry
 		protected override void OnStyleSet (Gtk.Style previous)
 		{
 			CheckPattern = new CheckPattern (this.Style.Backgrounds [(int)Gtk.StateType.Normal]);
@@ -132,14 +132,14 @@ namespace FSpot.Widgets
 				if (scrolled)
 					handled = false;
 				else
-					this.Item.MovePrevious ();
+					Item.MovePrevious ();
 				break;
 			case Gdk.Key.Page_Up:
 			case Gdk.Key.KP_Page_Up:
 			case Gdk.Key.BackSpace:
 			case Gdk.Key.b:
 			case Gdk.Key.B:
-				this.Item.MovePrevious ();
+				Item.MovePrevious ();
 				break;
 			case Gdk.Key.Down:
 			case Gdk.Key.KP_Down:
@@ -152,7 +152,7 @@ namespace FSpot.Widgets
 				if (scrolled)
 					handled = false;
 				else
-					this.Item.MoveNext ();
+					Item.MoveNext ();
 				break;
 			case Gdk.Key.Page_Down:
 			case Gdk.Key.KP_Page_Down:
@@ -160,19 +160,19 @@ namespace FSpot.Widgets
 			case Gdk.Key.KP_Space:
 			case Gdk.Key.n:
 			case Gdk.Key.N:
-				this.Item.MoveNext ();
+				Item.MoveNext ();
 				break;
 			case Gdk.Key.Home:
 			case Gdk.Key.KP_Home:
-				this.Item.Index = 0;
+				Item.Index = 0;
 				break;
 			case Gdk.Key.r:
 			case Gdk.Key.R:
-				this.Item.Index = new Random().Next(0, this.Query.Count - 1);
+				Item.Index = new Random ().Next (0, Query.Count - 1);
 				break;
 			case Gdk.Key.End:
 			case Gdk.Key.KP_End:
-				this.Item.Index = this.Query.Count - 1;
+				Item.Index = Query.Count - 1;
 				break;
 			default:
 				handled = false;
@@ -191,9 +191,9 @@ namespace FSpot.Widgets
 			}
 			base.OnDestroyed ();
 		}
-#endregion
+		#endregion
 
-#region loader
+		#region loader
 		uint timer;
 		IImageLoader loader;
 		void Load (SafeUri uri)
@@ -211,7 +211,7 @@ namespace FSpot.Widgets
 
 		void HandlePixbufPrepared (object sender, AreaPreparedEventArgs args)
 		{
-			IImageLoader loader = sender as IImageLoader;
+			var loader = sender as IImageLoader;
 			if (loader != this.loader)
 				return;
 
@@ -223,23 +223,23 @@ namespace FSpot.Widgets
 			if (prev != null)
 				prev.Dispose ();
 
-			this.ZoomFit (args.ReducedResolution);
+			ZoomFit (args.ReducedResolution);
 		}
 
 		void HandlePixbufAreaUpdated (object sender, AreaUpdatedEventArgs args)
 		{
-			IImageLoader loader = sender as IImageLoader;
+			var loader = sender as IImageLoader;
 			if (loader != this.loader)
 				return;
 
 			if (!ShowProgress)
 				return;
 
-			Gdk.Rectangle area = this.ImageCoordsToWindow (args.Area);
-			this.QueueDrawArea (area.X, area.Y, area.Width, area.Height);
+			Gdk.Rectangle area = ImageCoordsToWindow (args.Area);
+			QueueDrawArea (area.X, area.Y, area.Width, area.Height);
 		}
 
-		void HandleDone (object sender, System.EventArgs args)
+		void HandleDone (object sender, EventArgs args)
 		{
 			Log.DebugTimerPrint (timer, "Loading image took {0}");
 			IImageLoader loader = sender as IImageLoader;
@@ -267,9 +267,9 @@ namespace FSpot.Widgets
 			if (loader.Pixbuf == null) //FIXME: this test in case the photo was loaded with the direct loader
 				PixbufOrientation = ImageOrientation.TopLeft;
 			else
-			  // Accelerometer was lost, but keep this for future reference:
-			  // PixbufOrientation = Accelerometer.GetViewOrientation (loader.PixbufOrientation);
-			  PixbufOrientation = loader.PixbufOrientation;
+				// Accelerometer was lost, but keep this for future reference:
+				// PixbufOrientation = Accelerometer.GetViewOrientation (loader.PixbufOrientation);
+				PixbufOrientation = loader.PixbufOrientation;
 
 			if (Pixbuf == null)
 				LoadErrorImage (null);
@@ -285,7 +285,7 @@ namespace FSpot.Widgets
 			if (handler != null)
 				handler (this, EventArgs.Empty);
 		}
-#endregion
+		#endregion
 
 		protected BrowsablePointer item;
 		protected Loupe loupe;
@@ -296,15 +296,16 @@ namespace FSpot.Widgets
 			get { return progressive_display; }
 		}
 
-		void LoadErrorImage (System.Exception e)
+		void LoadErrorImage (Exception e)
 		{
 			// FIXME we should check the exception type and do something
 			// like offer the user a chance to locate the moved file and
 			// update the db entry, but for now just set the error pixbuf
 			Pixbuf old = Pixbuf;
 			Pixbuf = new Pixbuf (PixbufUtils.ErrorPixbuf, 0, 0,
-					     PixbufUtils.ErrorPixbuf.Width,
-					     PixbufUtils.ErrorPixbuf.Height);
+						 PixbufUtils.ErrorPixbuf.Width,
+						 PixbufUtils.ErrorPixbuf.Height);
+
 			if (old != null)
 				old.Dispose ();
 
@@ -316,25 +317,25 @@ namespace FSpot.Widgets
 		{
 			// If it is just the position that changed fall out
 			if (args != null &&
-			    args.PreviousItem != null &&
-			    Item.IsValid &&
-			    (args.PreviousIndex != item.Index) &&
-			    (this.Item.Current.DefaultVersion.Uri == args.PreviousItem.DefaultVersion.Uri))
+				args.PreviousItem != null &&
+				Item.IsValid &&
+				(args.PreviousIndex != item.Index) &&
+				(Item.Current.DefaultVersion.Uri == args.PreviousItem.DefaultVersion.Uri))
 				return;
 
 			// Don't reload if the image didn't change at all.
 			if (args != null && args.Changes != null &&
-			    !args.Changes.DataChanged &&
-			    args.PreviousItem != null &&
-			    Item.IsValid &&
-			    this.Item.Current.DefaultVersion.Uri == args.PreviousItem.DefaultVersion.Uri)
+				!args.Changes.DataChanged &&
+				args.PreviousItem != null &&
+				Item.IsValid &&
+				Item.Current.DefaultVersion.Uri == args.PreviousItem.DefaultVersion.Uri)
 				return;
 
 			// Same image, don't load it progressively
 			if (args != null &&
-			    args.PreviousItem != null &&
-			    Item.IsValid &&
-			    Item.Current.DefaultVersion.Uri == args.PreviousItem.DefaultVersion.Uri)
+				args.PreviousItem != null &&
+				Item.IsValid &&
+				Item.Current.DefaultVersion.Uri == args.PreviousItem.DefaultVersion.Uri)
 				progressive_display = false;
 
 			try {
@@ -342,29 +343,24 @@ namespace FSpot.Widgets
 					Load (Item.Current.DefaultVersion.Uri);
 				else
 					LoadErrorImage (null);
-			} catch (System.Exception e) {
+			} catch (Exception e) {
 				Log.DebugException (e);
 				LoadErrorImage (e);
 			}
 
 			Selection = Gdk.Rectangle.Zero;
 
-			EventHandler eh = PhotoChanged;
-			if (eh != null)
-				eh (this, EventArgs.Empty);
+			PhotoChanged?.Invoke (this, EventArgs.Empty);
 		}
 
-
-		private void HandleLoupeDestroy (object sender, EventArgs args)
+		void HandleLoupeDestroy (object sender, EventArgs args)
 		{
 			if (sender == loupe)
 				loupe = null;
 
 			if (sender == sharpener)
 				sharpener = null;
-
 		}
-
 
 		public void ShowHideLoupe ()
 		{
@@ -393,7 +389,7 @@ namespace FSpot.Widgets
 			LoadPreference (args.Key);
 		}
 
-		void LoadPreference (String key)
+		void LoadPreference (string key)
 		{
 			switch (key) {
 			case Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE:
@@ -430,16 +426,16 @@ namespace FSpot.Widgets
 
 			using (Cairo.Context ctx = CairoHelper.Create (GdkWindow)) {
 				ctx.SetSourceRGBA (.7, .7, .7, .8);
-				ctx.SetDash (new double [] {10, 15}, 0);
+				ctx.SetDash (new double [] { 10, 15 }, 0);
 				ctx.LineWidth = .8;
-				for (int i=1; i<3; i++) {
+				for (int i = 1; i < 3; i++) {
 					Point s = ImageCoordsToWindow (new Point (Selection.X + Selection.Width / 3 * i, Selection.Y));
 					Point e = ImageCoordsToWindow (new Point (Selection.X + Selection.Width / 3 * i, Selection.Y + Selection.Height));
 					ctx.MoveTo (s.X, s.Y);
 					ctx.LineTo (e.X, e.Y);
 					ctx.Stroke ();
 				}
-				for (int i=1; i<3; i++) {
+				for (int i = 1; i < 3; i++) {
 					Point s = ImageCoordsToWindow (new Point (Selection.X, Selection.Y + Selection.Height / 3 * i));
 					Point e = ImageCoordsToWindow (new Point (Selection.X + Selection.Width, Selection.Y + Selection.Height / 3 * i));
 					ctx.MoveTo (s.X, s.Y);
@@ -449,6 +445,5 @@ namespace FSpot.Widgets
 			}
 			return true;
 		}
-
 	}
 }

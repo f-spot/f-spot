@@ -42,7 +42,7 @@ namespace FSpot.UI.Dialog
 {
 	public class EditTagDialog : BuilderDialog
 	{
-		Db db;
+		readonly Db db;
 		Tag tag;
 		[GtkBeans.Builder.Object] Button ok_button;
 		[GtkBeans.Builder.Object] Entry tag_name_entry;

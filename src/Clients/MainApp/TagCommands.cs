@@ -53,9 +53,9 @@ public class TagCommands {
 		Category
 	}
 
-	public class Create : BuilderDialog {
-		TagStore tag_store;
-
+	public class Create : BuilderDialog
+	{
+		readonly TagStore tag_store;
 
 		[GtkBeans.Builder.Object] Button create_button;
 		[GtkBeans.Builder.Object] Entry tag_name_entry;
@@ -64,9 +64,9 @@ public class TagCommands {
 		[GtkBeans.Builder.Object] ComboBox category_option_menu;
 		[GtkBeans.Builder.Object] CheckButton auto_icon_checkbutton;
 
-		private List<Tag> categories;
+		List<Tag> categories;
 
-		private void PopulateCategories (List<Tag> categories, Category parent)
+		void PopulateCategories (List<Tag> categories, Category parent)
 		{
 			foreach (Tag tag in parent.Children) {
 				if (tag is Category) {
@@ -76,23 +76,23 @@ public class TagCommands {
 			}
 		}
 
-		private string Indentation (Category category)
+		string Indentation (Category category)
 		{
 			int indentations = 0;
 			for (Category parent = category.Category;
-			     parent != null && parent.Category != null;
-			     parent = parent.Category)
+				 parent != null && parent.Category != null;
+				 parent = parent.Category)
 				indentations++;
-			return new string (' ', indentations*2);
+			return new string (' ', indentations * 2);
 		}
 
-		private void PopulateCategoryOptionMenu ()
+		void PopulateCategoryOptionMenu ()
 		{
 			categories = new List<Tag> ();
 			categories.Add (tag_store.RootCategory);
 			PopulateCategories (categories, tag_store.RootCategory);
 
-			ListStore category_store = new ListStore (typeof(Pixbuf), typeof(string));
+			ListStore category_store = new ListStore (typeof (Pixbuf), typeof (string));
 
 			foreach (Category category in categories) {
 				category_store.AppendValues (category.SizedIcon, Indentation (category) + category.Name);
@@ -115,10 +115,10 @@ public class TagCommands {
 			category_option_menu.ShowAll ();
 		}
 
-		private bool TagNameExistsInCategory (string name, Category category)
+		bool TagNameExistsInCategory (string name, Category category)
 		{
 			foreach (Tag tag in category.Children) {
-				if (string.Compare(tag.Name, name, true) == 0)
+				if (string.Compare (tag.Name, name, true) == 0)
 					return true;
 
 				if (tag is Category && TagNameExistsInCategory (name, tag as Category))
@@ -128,7 +128,7 @@ public class TagCommands {
 			return false;
 		}
 
-		private void Update ()
+		void Update ()
 		{
 			if (tag_name_entry.Text == string.Empty) {
 				create_button.Sensitive = false;
@@ -142,24 +142,22 @@ public class TagCommands {
 			}
 		}
 
-        // XXX: never called
-        private void HandleTagNameEntryChanged(object sender, EventArgs args)
+		void HandleTagNameEntryChanged (object sender, EventArgs args)
 		{
 			Update ();
 		}
 
-		private Category Category {
-			get
-			{
-			    if (categories.Count == 0)
+		Category Category {
+			get {
+				if (categories.Count == 0)
 					return tag_store.RootCategory;
-			    return categories [category_option_menu.Active] as Category;
+				return categories [category_option_menu.Active] as Category;
 			}
-		    set {
+			set {
 				if ((value != null) && (categories.Count > 0)) {
 					//System.Console.WriteLine("TagCreateCommand.set_Category(" + value.Name + ")");
 					for (int i = 0; i < categories.Count; i++) {
-						Category category = (Category)categories[i];
+						Category category = (Category)categories [i];
 						// should there be an equals type method?
 						if (value.Id == category.Id) {
 							category_option_menu.Active = i;
@@ -184,18 +182,18 @@ public class TagCommands {
 				default_category = tag_store.RootCategory;
 			}
 
-			this.DefaultResponse = ResponseType.Ok;
+			DefaultResponse = ResponseType.Ok;
 
-			this.Title = Catalog.GetString ("Create New Tag");
+			Title = Catalog.GetString ("Create New Tag");
 			prompt_label.Text = Catalog.GetString ("Name of New Tag:");
-			this.auto_icon_checkbutton.Active = Preferences.Get<bool> (Preferences.TAG_ICON_AUTOMATIC);
+			auto_icon_checkbutton.Active = Preferences.Get<bool> (Preferences.TAG_ICON_AUTOMATIC);
 
 			PopulateCategoryOptionMenu ();
-			this.Category = default_category;
+			Category = default_category;
 			Update ();
 			tag_name_entry.GrabFocus ();
 
-			ResponseType response = (ResponseType) this.Run ();
+			ResponseType response = (ResponseType) Run ();
 
 
 			Tag new_tag = null;
@@ -215,7 +213,7 @@ public class TagCommands {
 				}
 			}
 
-			this.Destroy ();
+			Destroy ();
 			return new_tag;
 		}
 

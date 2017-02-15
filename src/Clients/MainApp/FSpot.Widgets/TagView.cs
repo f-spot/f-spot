@@ -39,112 +39,113 @@ using Gdk;
 using FSpot.Core;
 using FSpot.Settings;
 
-namespace FSpot.Widgets {
-public class TagView : EventBox {
-	private int thumbnail_size = 20;
-	private IPhoto photo;
-	private Tag [] tags;
-	private static int TAG_ICON_VSPACING = 5;
-
-	private bool HideTags {
-		get {
-			return (Preferences.Get<int> (Preferences.TAG_ICON_SIZE) == (int) FSpot.Settings.IconSize.Hidden);
-		}
-	}
-
-
-	public TagView ()
+namespace FSpot.Widgets
+{
+	public class TagView : EventBox
 	{
-		VisibleWindow = false;
-	}
+		int thumbnail_size = 20;
+		IPhoto photo;
+		Tag [] tags;
+		static int TAG_ICON_VSPACING = 5;
 
-	protected TagView (IntPtr raw) : base (raw)
-	{
-		VisibleWindow = false;
-	}
-
-	public IPhoto Current {
-		set {
-			photo = value;
-
-			if (photo != null && photo.Tags != null && !HideTags) {
-				SetSizeRequest ((thumbnail_size + TAG_ICON_VSPACING) * photo.Tags.Length,
-						thumbnail_size);
-			} else {
-				SetSizeRequest (0, thumbnail_size);
+		bool HideTags {
+			get {
+				return (Preferences.Get<int> (Preferences.TAG_ICON_SIZE) == (int)FSpot.Settings.IconSize.Hidden);
 			}
-			QueueResize ();
-			QueueDraw ();
 		}
-	}
 
-	public Tag [] Tags {
-		get { return tags; }
-		set {
-			this.tags = value;
-			this.QueueDraw ();
+		public TagView ()
+		{
+			VisibleWindow = false;
 		}
-	}
 
-	protected override bool OnExposeEvent (Gdk.EventExpose args)
-	{
-		if (photo != null)
-			tags = photo.Tags;
+		protected TagView (IntPtr raw) : base (raw)
+		{
+			VisibleWindow = false;
+		}
 
-		if (tags == null || HideTags) {
-			SetSizeRequest(0,thumbnail_size);
+		public IPhoto Current {
+			set {
+				photo = value;
+
+				if (photo != null && photo.Tags != null && !HideTags) {
+					SetSizeRequest ((thumbnail_size + TAG_ICON_VSPACING) * photo.Tags.Length,
+							thumbnail_size);
+				} else {
+					SetSizeRequest (0, thumbnail_size);
+				}
+				QueueResize ();
+				QueueDraw ();
+			}
+		}
+
+		public Tag [] Tags {
+			get { return tags; }
+			set {
+				tags = value;
+				QueueDraw ();
+			}
+		}
+
+		protected override bool OnExposeEvent (EventExpose args)
+		{
+			if (photo != null)
+				tags = photo.Tags;
+
+			if (tags == null || HideTags) {
+				SetSizeRequest (0, thumbnail_size);
+				return base.OnExposeEvent (args);
+			}
+
+			DrawTags ();
+
 			return base.OnExposeEvent (args);
 		}
 
-		DrawTags();
+		public void DrawTags ()
+		{
+			if (tags == null)
+				return;
 
-		return base.OnExposeEvent (args);
-	}
+			SetSizeRequest ((thumbnail_size + TAG_ICON_VSPACING) * tags.Length,
+					thumbnail_size);
 
-	public void DrawTags()
-	{
-		if (tags == null)
-			return;
+			int tag_x = Allocation.X;
+			int tag_y = Allocation.Y + (Allocation.Height - thumbnail_size) / 2;
 
-		SetSizeRequest ((thumbnail_size + TAG_ICON_VSPACING) * tags.Length,
-				thumbnail_size);
+			string [] names = new string [tags.Length];
+			int i = 0;
+			foreach (Tag t in tags) {
+				names [i++] = t.Name;
 
-		int tag_x = Allocation.X;
-		int tag_y = Allocation.Y + (Allocation.Height - thumbnail_size)/2;
+				Pixbuf icon = t.Icon;
 
-		string [] names = new string [tags.Length];
-		int i = 0;
-		foreach (Tag t in tags) {
-			names [i++] = t.Name;
+				Category category = t.Category;
+				while (icon == null && category != null) {
+					icon = category.Icon;
+					category = category.Category;
+				}
 
-			Pixbuf icon = t.Icon;
+				if (icon == null)
+					continue;
 
-			Category category = t.Category;
-			while (icon == null && category != null) {
-				icon = category.Icon;
-				category = category.Category;
-			}
-
-			if (icon == null)
-				continue;
-
-			Pixbuf scaled_icon;
-			if (icon.Width == thumbnail_size) {
-				scaled_icon = icon;
-			} else {
-				scaled_icon = icon.ScaleSimple (thumbnail_size, thumbnail_size, InterpType.Bilinear);
-			}
+				Pixbuf scaled_icon;
+				if (icon.Width == thumbnail_size) {
+					scaled_icon = icon;
+				} else {
+					scaled_icon = icon.ScaleSimple (thumbnail_size, thumbnail_size, InterpType.Bilinear);
+				}
 				Cms.Profile screen_profile;
 				if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile))
 					FSpot.ColorManagement.ApplyProfile (scaled_icon, screen_profile);
 
-			scaled_icon.RenderToDrawable (GdkWindow, Style.WhiteGC,
-						      0, 0, tag_x, tag_y, thumbnail_size, thumbnail_size,
-						      RgbDither.None, tag_x, tag_y);
-			tag_x += thumbnail_size + TAG_ICON_VSPACING;
-		}
+				scaled_icon.RenderToDrawable (GdkWindow, Style.WhiteGC,
+								  0, 0, tag_x, tag_y, thumbnail_size, thumbnail_size,
+								  RgbDither.None, tag_x, tag_y);
+				tag_x += thumbnail_size + TAG_ICON_VSPACING;
+			}
 
-        this.TooltipText =  string.Join (", ", names);
+			TooltipText = string.Join (", ", names);
+		}
 	}
-}
 }

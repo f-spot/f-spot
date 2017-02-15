@@ -8,7 +8,7 @@ using FSpot.Query;
 namespace FSpot
 {
 	[TestFixture]
-	public class TestOf_AndTerm
+	public class AndTermTests
 	{
 		//private AndTerm andTerm = null;
 		AndTerm andTerm = null;

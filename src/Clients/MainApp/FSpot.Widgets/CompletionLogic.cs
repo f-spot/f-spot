@@ -31,32 +31,23 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using System.Text;
-using System.Text.RegularExpressions;
-
-using Gtk;
-
 using Mono.Unix;
-
-using FSpot.Core;
-using FSpot.Query;
 
 using Hyena;
 
-namespace FSpot.Widgets {
-
+namespace FSpot.Widgets
+{
 	public class CompletionLogic
 	{
 		string last_key = string.Empty;
 		string transformed_key = string.Empty;
 		int start = 0;
 
-		private static string or_op = " " + Catalog.GetString ("or") + " ";
-		private static string and_op = " " + Catalog.GetString ("and") + " ";
+		static string or_op = " " + Catalog.GetString ("or") + " ";
+		static string and_op = " " + Catalog.GetString ("and") + " ";
 
-		private static int or_op_len = or_op.Length;
-		private static int and_op_len = and_op.Length;
+		static int or_op_len = or_op.Length;
+		static int and_op_len = and_op.Length;
 
 		public bool MatchFunc (string name, string key, int pos)
 		{

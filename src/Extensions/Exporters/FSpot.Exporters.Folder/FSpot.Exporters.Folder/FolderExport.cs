@@ -232,10 +232,10 @@ namespace FSpot.Exporters.Folder
 				for (int photo_index = 0; photo_index < selection.Count; photo_index++)
 				{
 					try {
-						progress_dialog.Message = System.string.Format (Catalog.GetString ("Exporting \"{0}\"..."), selection[photo_index].Name);
+						progress_dialog.Message = string.Format (Catalog.GetString ("Exporting \"{0}\"..."), selection[photo_index].Name);
 						progress_dialog.Fraction = photo_index / (double) selection.Count;
 						gallery.ProcessImage (photo_index, filter_set);
-						progress_dialog.ProgressText = System.string.Format (Catalog.GetString ("{0} of {1}"), (photo_index + 1), selection.Count);
+						progress_dialog.ProgressText = string.Format (Catalog.GetString ("{0} of {1}"), (photo_index + 1), selection.Count);
 					}
 					catch (Exception e) {
 						Log.Error (e.ToString ());

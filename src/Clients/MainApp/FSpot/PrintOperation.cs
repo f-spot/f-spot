@@ -30,7 +30,6 @@
 using Cairo;
 
 using System;
-using System.Runtime.InteropServices;
 
 using Mono.Unix;
 
@@ -72,11 +71,11 @@ namespace FSpot
 
 		protected override void OnCustomWidgetApply (Gtk.Widget widget)
 		{
-			CustomPrintWidget cpw = widget as CustomPrintWidget;
+			var cpw = widget as CustomPrintWidget;
 			UseFullPage = cpw.UseFullPage;
 			photos_per_page = cpw.PhotosPerPage;
 			repeat = cpw.Repeat;
-			NPages = repeat ? selected_photos.Length :(int) Math.Ceiling (1.0 * selected_photos.Length / photos_per_page);
+			NPages = repeat ? selected_photos.Length : (int)Math.Ceiling (1.0 * selected_photos.Length / photos_per_page);
 			fit = cpw.Fitmode;
 			white_borders = cpw.WhiteBorders;
 			crop_marks = cpw.CropMarks;
@@ -87,16 +86,13 @@ namespace FSpot
 		protected void OnCustomWidgetChanged (Gtk.Widget widget)
 		{
 			OnCustomWidgetApply (widget);
-			using (var surface = new ImageSurface (Format.ARGB32, 360, 254))
-			{
-				using (var gr = new Context (surface))
-				{
+			using (var surface = new ImageSurface (Format.ARGB32, 360, 254)) {
+				using (var gr = new Context (surface)) {
 					gr.SetSourceColor (new Color (1, 1, 1));
 					gr.Rectangle (0, 0, 360, 254);
 					gr.Fill ();
-					using (Gdk.Pixbuf pixbuf = Gdk.Pixbuf.LoadFromResource ("flower.png"))
-					{
-						DrawImage (gr, pixbuf,0, 0, 360, 254);
+					using (Gdk.Pixbuf pixbuf = Gdk.Pixbuf.LoadFromResource ("flower.png")) {
+						DrawImage (gr, pixbuf, 0, 0, 360, 254);
 					}
 				}
 				(widget as CustomPrintWidget).PreviewImage.Pixbuf = CreatePixbuf (surface);
@@ -111,7 +107,7 @@ namespace FSpot
 			int ppx, ppy;
 			switch (photos_per_page) {
 			default:
-			case 1: ppx = ppy =1; break;
+			case 1: ppx = ppy = 1; break;
 			case 2: ppx = 1; ppy = 2; break;
 			case 4: ppx = ppy = 2; break;
 			case 9: ppx = ppy = 3; break;
@@ -126,20 +122,19 @@ namespace FSpot
 			double h = context.Height / ppy;
 
 			// compute picture size
-			double mx=(w / 25.4) * context.DpiX, my=(h / 25.4) * context.DpiY;
+			double mx = (w / 25.4) * context.DpiX, my = (h / 25.4) * context.DpiY;
 
 			for (int x = 0; x <= ppx; x++) {
 				for (int y = 0; y <= ppy; y++) {
 					int p_index = repeat ? page_nr : page_nr * photos_per_page + y * ppx + x;
 					if (crop_marks)
-						DrawCropMarks (cr, x*w, y*h, w*.1);
+						DrawCropMarks (cr, x * w, y * h, w * .1);
 					if (x == ppx || y == ppy || p_index >= selected_photos.Length)
 						continue;
-					using (var img = App.Instance.Container.Resolve<IImageFileFactory> ().Create (selected_photos[p_index].DefaultVersion.Uri))
-					{
+					using (var img = App.Instance.Container.Resolve<IImageFileFactory> ().Create (selected_photos [p_index].DefaultVersion.Uri)) {
 						Gdk.Pixbuf pixbuf;
 						try {
-							pixbuf = img.Load ((int) mx, (int) my);
+							pixbuf = img.Load ((int)mx, (int)my);
 							if (pixbuf == null) {
 								Log.Error ("Not enough memory for printing " + selected_photos [p_index].DefaultVersion.Uri);
 								continue;
@@ -148,15 +143,15 @@ namespace FSpot
 							if (ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_OUTPUT_PROFILE), out printer_profile))
 								ColorManagement.ApplyProfile (pixbuf, img.GetProfile (), printer_profile);
 						} catch (Exception e) {
-							Log.Exception ("Unable to load image " + selected_photos[p_index].DefaultVersion.Uri + "\n", e);
+							Log.Exception ("Unable to load image " + selected_photos [p_index].DefaultVersion.Uri + "\n", e);
 							// If the image is not found load error pixbuf
 							pixbuf = new Gdk.Pixbuf (PixbufUtils.ErrorPixbuf, 0, 0,
-										      PixbufUtils.ErrorPixbuf.Width,
-										      PixbufUtils.ErrorPixbuf.Height);
+											  PixbufUtils.ErrorPixbuf.Width,
+											  PixbufUtils.ErrorPixbuf.Height);
 						}
 
 						bool rotated = false;
-						if (Math.Sign ((double)pixbuf.Width/pixbuf.Height - 1.0) != Math.Sign (w/h - 1.0)) {
+						if (Math.Sign ((double)pixbuf.Width / pixbuf.Height - 1.0) != Math.Sign (w / h - 1.0)) {
 							Gdk.Pixbuf d_pixbuf = pixbuf.RotateSimple (Gdk.PixbufRotation.Counterclockwise);
 							pixbuf.Dispose ();
 							pixbuf = d_pixbuf;
@@ -166,16 +161,17 @@ namespace FSpot
 						DrawImage (cr, pixbuf, x * w, y * h, w, h);
 
 						string tag_string = "";
-						foreach (Tag t in selected_photos[p_index].Tags)
-							tag_string = string.concat (tag_string, t.Name);
+						foreach (Tag t in selected_photos [p_index].Tags)
+							tag_string = string.Concat (tag_string, t.Name);
 
-						string label = string.Format (print_label_format,
-									      comment,
-									      selected_photos[p_index].Name,
-									      selected_photos[p_index].Time.ToLocalTime ().ToShortDateString (),
-									      selected_photos[p_index].Time.ToLocalTime ().ToShortTimeString (),
-									      tag_string,
-									      selected_photos[p_index].Description);
+						// FIXME: Convert this to StringBuilder?
+						var label = string.Format (print_label_format,
+										  comment,
+										  selected_photos [p_index].Name,
+										  selected_photos [p_index].Time.ToLocalTime ().ToShortDateString (),
+										  selected_photos [p_index].Time.ToLocalTime ().ToShortTimeString (),
+										  tag_string,
+										  selected_photos [p_index].Description);
 
 						DrawComment (context, (x + 1) * w, (rotated ? y : y + 1) * h, (rotated ? w : h) * .025, label, rotated);
 
@@ -196,19 +192,19 @@ namespace FSpot
 		{
 			cr.Save ();
 			cr.SetSourceColor (new Color (0, 0, 0));
-			cr.MoveTo (x - length/2, y);
-			cr.LineTo (x + length/2, y);
-			cr.MoveTo (x, y - length/2);
-			cr.LineTo (x, y + length/2);
+			cr.MoveTo (x - length / 2, y);
+			cr.LineTo (x + length / 2, y);
+			cr.MoveTo (x, y - length / 2);
+			cr.LineTo (x, y + length / 2);
 			cr.LineWidth = .2;
-			cr.SetDash (new [] {length*.4, length*.2}, 0);
+			cr.SetDash (new [] { length * .4, length * .2 }, 0);
 			cr.Stroke ();
 			cr.Restore ();
 		}
 
 		static void DrawComment (Gtk.PrintContext context, double x, double y, double h, string comment, bool rotated)
 		{
-			if (string.IsNullOrEmpty(comment))
+			if (string.IsNullOrEmpty (comment))
 				return;
 
 			Context cr = context.CairoContext;
@@ -219,12 +215,11 @@ namespace FSpot
 			layout.SetText (comment);
 			int lay_w, lay_h;
 			layout.GetPixelSize (out lay_w, out lay_h);
-			double scale = h/lay_h;
+			double scale = h / lay_h;
 			if (rotated) {
 				cr.Translate (x - h, y + lay_w * scale);
-				cr.Rotate (- Math.PI / 2);
-			}
-			else
+				cr.Rotate (-Math.PI / 2);
+			} else
 				cr.Translate (x - lay_w * scale, y - h);
 			cr.Scale (scale, scale);
 			Pango.CairoHelper.ShowLayout (context.CairoContext, layout);
@@ -232,20 +227,20 @@ namespace FSpot
 		}
 
 
-		private void DrawImage (Context cr, Gdk.Pixbuf pixbuf, double x, double y, double w, double h)
+		void DrawImage (Context cr, Gdk.Pixbuf pixbuf, double x, double y, double w, double h)
 		{
 			double scalex, scaley;
 			switch (fit) {
 			case CustomPrintWidget.FitMode.Zoom:
-				scalex = scaley = Math.Max (w/pixbuf.Width, h/pixbuf.Height);
+				scalex = scaley = Math.Max (w / pixbuf.Width, h / pixbuf.Height);
 				break;
 			case CustomPrintWidget.FitMode.Fill:
-				scalex = w/pixbuf.Width;
-				scaley = h/pixbuf.Height;
+				scalex = w / pixbuf.Width;
+				scaley = h / pixbuf.Height;
 				break;
-			default:
 			case CustomPrintWidget.FitMode.Scaled:
-				scalex = scaley = Math.Min (w/pixbuf.Width, h/pixbuf.Height);
+			default:
+				scalex = scaley = Math.Min (w / pixbuf.Width, h / pixbuf.Height);
 				break;
 			}
 
@@ -265,7 +260,7 @@ namespace FSpot
 			cr.Fill ();
 
 			if (white_borders) {
-				cr.Rectangle (0, 0 ,rectw, recth);
+				cr.Rectangle (0, 0, rectw, recth);
 				cr.SetSourceColor (new Color (0, 0, 0));
 				cr.LineWidth = 1 / scalex;
 				cr.Stroke ();
@@ -275,7 +270,7 @@ namespace FSpot
 
 		static Gdk.Pixbuf CreatePixbuf (ImageSurface s)
 		{
-			return CairoUtils.PixbufFromSurface(s);
+			return CairoUtils.PixbufFromSurface (s);
 		}
 	}
 }

@@ -30,31 +30,29 @@
 //
 
 
-namespace FSpot.Filters {
-    public class JpegFilter : IFilter {
-        private uint quality = 95;
-        public uint Quality {
-            get { return quality; }
-            set { quality = value; }
-        }
+namespace FSpot.Filters
+{
+	public class JpegFilter : IFilter
+	{
+		public uint Quality { get; set; } = 95;
 
-        public JpegFilter (uint quality)
-        {
-            this.quality = quality;
-        }
+		public JpegFilter ()
+		{
+		}
 
-        public JpegFilter()
-        {
-        }
+		public JpegFilter (uint quality)
+		{
+			Quality = quality;
+		}
 
-        public bool Convert (FilterRequest req)
-        {
-            var source = req.Current;
-            req.Current = req.TempUri ("jpg");
+		public bool Convert (FilterRequest req)
+		{
+			var source = req.Current;
+			req.Current = req.TempUri ("jpg");
 
-            PixbufUtils.CreateDerivedVersion (source, req.Current, quality);
+			PixbufUtils.CreateDerivedVersion (source, req.Current, Quality);
 
-            return true;
-        }
-    }
+			return true;
+		}
+	}
 }

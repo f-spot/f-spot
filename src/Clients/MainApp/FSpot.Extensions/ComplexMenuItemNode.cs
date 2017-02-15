@@ -50,7 +50,7 @@ namespace FSpot.Extensions
 
 		public override Gtk.MenuItem GetMenuItem (object parent)
 		{
-			ComplexMenuItem item = System.Activator.CreateInstance (Type.GetType (widget_type), parent) as ComplexMenuItem;
+			ComplexMenuItem item = Activator.CreateInstance (Type.GetType (widget_type), parent) as ComplexMenuItem;
 			cmd = (ICommand) Addin.CreateInstance (command_type);
 
             if (item != null)
@@ -58,11 +58,10 @@ namespace FSpot.Extensions
             return item;
         }
 
-        private void OnActivated (object o, EventArgs e)
+        void OnActivated (object o, EventArgs e)
         {
             if (cmd != null)
                 cmd.Run (o, e);
         }
 	}
-
 }

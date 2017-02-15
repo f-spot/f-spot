@@ -29,11 +29,13 @@
 //
 
 using System.Collections.Generic;
+using System.IO;
 
-namespace FSpot.Filters {
+namespace FSpot.Filters
+{
 	public class WhiteListFilter : IFilter
 	{
-		List<string> valid_extensions;
+		readonly List<string> valid_extensions;
 
 		public WhiteListFilter (string [] valid_extensions)
 		{
@@ -44,11 +46,11 @@ namespace FSpot.Filters {
 
 		public bool Convert (FilterRequest req)
 		{
-			if ( valid_extensions.Contains (System.IO.Path.GetExtension(req.Current.LocalPath).ToLower ()) )
+			if (valid_extensions.Contains (Path.GetExtension (req.Current.LocalPath).ToLower ()))
 				return false;
 
 			// FIXME:  Should we add the other jpeg extensions?
-			if ( !valid_extensions.Contains (".jpg") &&
+			if (!valid_extensions.Contains (".jpg") &&
 			    !valid_extensions.Contains (".jpeg"))
 				throw new System.NotImplementedException ("can only save jpeg :(");
 

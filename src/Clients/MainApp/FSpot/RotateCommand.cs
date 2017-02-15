@@ -36,7 +36,6 @@ using System.IO;
 
 using Gtk;
 
-using FSpot;
 using FSpot.Core;
 using FSpot.Settings;
 using FSpot.Thumbnail;
@@ -48,27 +47,31 @@ using Hyena.Widgets;
 
 using Mono.Unix;
 
-namespace FSpot {
-	public class RotateException : ApplicationException {
-
-                public bool ReadOnly = false;
+namespace FSpot
+{
+	public class RotateException : ApplicationException
+	{
+		public bool ReadOnly;
 		public string Path { get; private set; }
 
-		public RotateException (string msg, string path) : this (msg, path, false) {}
+		public RotateException (string msg, string path) : this (msg, path, false) { }
 
-		public RotateException (string msg, string path, bool ro) : base (msg) {
+		public RotateException (string msg, string path, bool ro) : base (msg)
+		{
 			Path = path;
-			this.ReadOnly = ro;
+			ReadOnly = ro;
 		}
 	}
 
-	public enum RotateDirection {
+	public enum RotateDirection
+	{
 		Clockwise,
 		Counterclockwise,
 	}
 
-	public class RotateOperation {
-		IPhoto item;
+	public class RotateOperation
+	{
+		readonly IPhoto item;
 		RotateDirection direction;
 		bool done;
 
@@ -79,51 +82,52 @@ namespace FSpot {
 			done = false;
 		}
 
-	        private static void RotateOrientation (string original_path, RotateDirection direction)
-	        {
-                    try {
-                        var uri = new SafeUri (original_path);
-                        using (var metadata = Metadata.Parse (uri)) {
-                            metadata.EnsureAvailableTags ();
-                            var tag = metadata.ImageTag;
-                            var orientation = direction == RotateDirection.Clockwise
-                                ? FSpot.Utils.PixbufUtils.Rotate90 (tag.Orientation)
-                                : FSpot.Utils.PixbufUtils.Rotate270 (tag.Orientation);
-        
-                            tag.Orientation = orientation;
-                            var always_sidecar = Preferences.Get<bool> (Preferences.METADATA_ALWAYS_USE_SIDECAR);
-                            metadata.SaveSafely (uri, always_sidecar);
-                            App.Instance.Container.Resolve<IThumbnailService> ().DeleteThumbnails (uri);
-                        }
-                    } catch (Exception e) {
-                        Log.DebugException (e);
-                        throw new RotateException (Catalog.GetString ("Unable to rotate this type of photo"), original_path);
-                    }
-                }
+		static void RotateOrientation (string original_path, RotateDirection direction)
+		{
+			try {
+				var uri = new SafeUri (original_path);
+				using (var metadata = Metadata.Parse (uri)) {
+					metadata.EnsureAvailableTags ();
+					var tag = metadata.ImageTag;
+					var orientation = direction == RotateDirection.Clockwise
+						? FSpot.Utils.PixbufUtils.Rotate90 (tag.Orientation)
+						: FSpot.Utils.PixbufUtils.Rotate270 (tag.Orientation);
 
-                private void Rotate (string original_path, RotateDirection dir)
-                {
-                    RotateOrientation (original_path, dir);
-                }
-        
-                public bool Step ()
-                {
-                    if (done)
-                        return false;
-        
-                    GLib.FileInfo info = GLib.FileFactory.NewForUri (item.DefaultVersion.Uri).QueryInfo ("access::can-write", GLib.FileQueryInfoFlags.None, null);
-                    if (!info.GetAttributeBoolean("access::can-write")) {
-                        throw new RotateException (Catalog.GetString ("Unable to rotate readonly file"), item.DefaultVersion.Uri, true);
-                    }
-        
-                    Rotate (item.DefaultVersion.Uri, direction);
+					tag.Orientation = orientation;
+					var always_sidecar = Preferences.Get<bool> (Preferences.METADATA_ALWAYS_USE_SIDECAR);
+					metadata.SaveSafely (uri, always_sidecar);
+					App.Instance.Container.Resolve<IThumbnailService> ().DeleteThumbnails (uri);
+				}
+			} catch (Exception e) {
+				Log.DebugException (e);
+				throw new RotateException (Catalog.GetString ("Unable to rotate this type of photo"), original_path);
+			}
+		}
 
-                    done = true;
-                    return !done;
-                }
-        }
+		void Rotate (string original_path, RotateDirection dir)
+		{
+			RotateOrientation (original_path, dir);
+		}
 
-	public class RotateMultiple {
+		public bool Step ()
+		{
+			if (done)
+				return false;
+
+			var info = GLib.FileFactory.NewForUri (item.DefaultVersion.Uri).QueryInfo ("access::can-write", GLib.FileQueryInfoFlags.None, null);
+			if (!info.GetAttributeBoolean ("access::can-write")) {
+				throw new RotateException (Catalog.GetString ("Unable to rotate readonly file"), item.DefaultVersion.Uri, true);
+			}
+
+			Rotate (item.DefaultVersion.Uri, direction);
+
+			done = true;
+			return !done;
+		}
+	}
+
+	public class RotateMultiple
+	{
 		RotateDirection direction;
 		RotateOperation op;
 
@@ -156,102 +160,103 @@ namespace FSpot {
 			return (Index < Items.Length);
 		}
 	}
-}
 
-public class RotateCommand {
-	private Gtk.Window parent_window;
-
-	public RotateCommand (Gtk.Window parent_window)
+	public class RotateCommand
 	{
-		this.parent_window = parent_window;
-	}
+		readonly Gtk.Window parent_window;
 
-	public bool Execute (RotateDirection direction, IPhoto [] items)
-	{
-		ProgressDialog progress_dialog = null;
-
-		if (items.Length > 1)
-			progress_dialog = new ProgressDialog (Catalog.GetString ("Rotating photos"),
-							      ProgressDialog.CancelButtonType.Stop,
-							      items.Length, parent_window);
-
-	        RotateMultiple op = new RotateMultiple (items, direction);
-		int readonly_count = 0;
-		bool done = false;
-		int index = 0;
-
-		while (!done) {
-			if (progress_dialog != null && op.Index != -1 && index < items.Length)
-				if (progress_dialog.Update (string.Format (Catalog.GetString ("Rotating photo \"{0}\""), op.Items [op.Index].Name)))
-					break;
-
-			try {
-				done = !op.Step ();
-			} catch (RotateException re) {
-				if (!re.ReadOnly)
-					RunGenericError (re, re.Path, re.Message);
-				else
-					readonly_count++;
-			} catch (GLib.GException) {
-				readonly_count++;
-			} catch (DirectoryNotFoundException e) {
-				RunGenericError (e, op.Items [op.Index].DefaultVersion.Uri.LocalPath, Catalog.GetString ("Directory not found"));
-			} catch (FileNotFoundException e) {
-				RunGenericError (e, op.Items [op.Index].DefaultVersion.Uri.LocalPath, Catalog.GetString ("File not found"));
-			} catch (Exception e) {
-				RunGenericError (e, op.Items [op.Index].DefaultVersion.Uri.LocalPath);
-			}
-			index ++;
+		public RotateCommand (Gtk.Window parent_window)
+		{
+			this.parent_window = parent_window;
 		}
 
-		if (progress_dialog != null)
-			progress_dialog.Destroy ();
+		public bool Execute (RotateDirection direction, IPhoto [] items)
+		{
+			ProgressDialog progress_dialog = null;
 
-		if (readonly_count > 0)
-			RunReadonlyError (readonly_count);
+			if (items.Length > 1)
+				progress_dialog = new ProgressDialog (Catalog.GetString ("Rotating photos"),
+									  ProgressDialog.CancelButtonType.Stop,
+									  items.Length, parent_window);
 
-		return true;
-	}
+			RotateMultiple op = new RotateMultiple (items, direction);
+			int readonly_count = 0;
+			bool done = false;
+			int index = 0;
 
-	private void RunReadonlyError (int readonly_count)
-	{
-		string notice = Catalog.GetPluralString ("Unable to rotate photo", "Unable to rotate {0} photos", readonly_count);
-		string desc = Catalog.GetPluralString (
-			"The photo could not be rotated because it is on a read only file system or media such as a CD-ROM.  Please check the permissions and try again.",
-			"{0} photos could not be rotated because they are on a read only file system or media such as a CD-ROM.  Please check the permissions and try again.",
-			readonly_count
-		);
+			while (!done) {
+				if (progress_dialog != null && op.Index != -1 && index < items.Length)
+					if (progress_dialog.Update (string.Format (Catalog.GetString ("Rotating photo \"{0}\""), op.Items [op.Index].Name)))
+						break;
 
-		notice = string.Format (notice, readonly_count);
-		desc = string.Format (desc, readonly_count);
+				try {
+					done = !op.Step ();
+				} catch (RotateException re) {
+					if (!re.ReadOnly)
+						RunGenericError (re, re.Path, re.Message);
+					else
+						readonly_count++;
+				} catch (GLib.GException) {
+					readonly_count++;
+				} catch (DirectoryNotFoundException e) {
+					RunGenericError (e, op.Items [op.Index].DefaultVersion.Uri.LocalPath, Catalog.GetString ("Directory not found"));
+				} catch (FileNotFoundException e) {
+					RunGenericError (e, op.Items [op.Index].DefaultVersion.Uri.LocalPath, Catalog.GetString ("File not found"));
+				} catch (Exception e) {
+					RunGenericError (e, op.Items [op.Index].DefaultVersion.Uri.LocalPath);
+				}
+				index++;
+			}
 
-		HigMessageDialog md = new HigMessageDialog (parent_window,
-							    DialogFlags.DestroyWithParent,
-							    MessageType.Error,
-							    ButtonsType.Close,
-							    notice,
-							    desc);
-		md.Run();
-		md.Destroy();
-	}
+			if (progress_dialog != null)
+				progress_dialog.Destroy ();
 
-	// FIXME shouldn't need this method, should catch all exceptions explicitly
-	// so can present translated error messages.
-	private void RunGenericError (System.Exception e, string path)
-	{
-		RunGenericError (e, path, e.Message);
-	}
+			if (readonly_count > 0)
+				RunReadonlyError (readonly_count);
 
-	private void RunGenericError (System.Exception e, string path, string msg)
-	{
-		string longmsg = string.Format (Catalog.GetString ("Received error \"{0}\" while attempting to rotate {1}"),
-						msg, System.IO.Path.GetFileName (path));
+			return true;
+		}
 
-		HigMessageDialog md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent,
-							    MessageType.Warning, ButtonsType.Ok,
-							    Catalog.GetString ("Error while rotating photo."),
-							    longmsg);
-		md.Run ();
-		md.Destroy ();
+		void RunReadonlyError (int readonly_count)
+		{
+			string notice = Catalog.GetPluralString ("Unable to rotate photo", "Unable to rotate {0} photos", readonly_count);
+			string desc = Catalog.GetPluralString (
+				"The photo could not be rotated because it is on a read only file system or media such as a CD-ROM.  Please check the permissions and try again.",
+				"{0} photos could not be rotated because they are on a read only file system or media such as a CD-ROM.  Please check the permissions and try again.",
+				readonly_count
+			);
+
+			notice = string.Format (notice, readonly_count);
+			desc = string.Format (desc, readonly_count);
+
+			var md = new HigMessageDialog (parent_window,
+									DialogFlags.DestroyWithParent,
+									MessageType.Error,
+									ButtonsType.Close,
+									notice,
+									desc);
+			md.Run ();
+			md.Destroy ();
+		}
+
+		// FIXME shouldn't need this method, should catch all exceptions explicitly
+		// so can present translated error messages.
+		void RunGenericError (Exception e, string path)
+		{
+			RunGenericError (e, path, e.Message);
+		}
+
+		void RunGenericError (Exception e, string path, string msg)
+		{
+			string longmsg = string.Format (Catalog.GetString ("Received error \"{0}\" while attempting to rotate {1}"),
+							msg, System.IO.Path.GetFileName (path));
+
+			var md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent,
+									MessageType.Warning, ButtonsType.Ok,
+									Catalog.GetString ("Error while rotating photo."),
+									longmsg);
+			md.Run ();
+			md.Destroy ();
+		}
 	}
 }

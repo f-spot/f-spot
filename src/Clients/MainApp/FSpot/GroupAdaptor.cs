@@ -31,18 +31,17 @@
 
 using FSpot.Core;
 
-namespace FSpot {
-	public interface ILimitable {
+namespace FSpot
+{
+	public interface ILimitable
+    {
 		void SetLimits (int min, int max);
 	}
 
-	public abstract class GroupAdaptor {
+	public abstract class GroupAdaptor
+    {
 		protected PhotoQuery query;
-		public PhotoQuery Query {
-			get {
-				return query;
-			}
-		}
+        public PhotoQuery Query { get { return query; } }
 
 		protected bool order_ascending = false;
 		public bool OrderAscending {
@@ -80,7 +79,7 @@ namespace FSpot {
 
 		public void Dispose ()
 		{
-			this.query.Changed -= HandleQueryChanged;
+			query.Changed -= HandleQueryChanged;
 		}
 
 		protected GroupAdaptor (PhotoQuery query, bool order_ascending)

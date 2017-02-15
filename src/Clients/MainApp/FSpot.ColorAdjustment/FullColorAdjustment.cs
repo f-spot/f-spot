@@ -32,15 +32,18 @@ using System.Collections.Generic;
 
 using Gdk;
 
-namespace FSpot.ColorAdjustment {
-	public class FullColorAdjustment : Adjustment {
-		private double exposure;
-		private double brightness;
-		private double contrast;
-		private double hue;
-		private double saturation;
-		private Cms.ColorCIEXYZ src_wp;
-		private Cms.ColorCIEXYZ dest_wp;
+namespace FSpot.ColorAdjustment
+{
+	public class FullColorAdjustment : Adjustment
+	{
+		readonly double exposure;
+		readonly double brightness;
+		readonly double contrast;
+		readonly double hue;
+		readonly double saturation;
+
+		Cms.ColorCIEXYZ src_wp;
+		Cms.ColorCIEXYZ dest_wp;
 
 		public FullColorAdjustment (Pixbuf input, Cms.Profile input_profile,
 				double exposure, double brightness, double contrast,
@@ -59,7 +62,7 @@ namespace FSpot.ColorAdjustment {
 
 		protected override List <Cms.Profile> GenerateAdjustments ()
 		{
-			List <Cms.Profile> profiles = new List <Cms.Profile> ();
+			var profiles = new List <Cms.Profile> ();
 			profiles.Add (InputProfile);
 			profiles.Add (Cms.Profile.CreateAbstract (nsteps,
 						Math.Pow (Math.Sqrt (2.0), exposure),

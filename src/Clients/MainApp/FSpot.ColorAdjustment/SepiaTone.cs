@@ -33,8 +33,10 @@ using FSpot.Cms;
 
 using Gdk;
 
-namespace FSpot.ColorAdjustment {
-	public class SepiaTone : Adjustment {
+namespace FSpot.ColorAdjustment
+{
+	public class SepiaTone : Adjustment
+	{
 		public SepiaTone (Pixbuf input, Profile inputProfile) : base (input, inputProfile)
 		{
 		}

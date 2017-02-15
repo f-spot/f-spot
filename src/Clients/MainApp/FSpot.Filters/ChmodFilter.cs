@@ -31,11 +31,11 @@
 
 using Mono.Unix.Native;
 
-namespace FSpot.Filters {
+namespace FSpot.Filters
+{
 	public class ChmodFilter : IFilter
 	{
-
-		FilePermissions mode;
+		readonly FilePermissions mode;
 
 		public ChmodFilter () : this (FilePermissions.S_IRUSR |
 					      FilePermissions.S_IWUSR |

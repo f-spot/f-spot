@@ -58,9 +58,9 @@ namespace FSpot.Widgets
 		public TagEntry (TagStore tagStore, bool updateOnFocusOut = true)
 		{
 			_tagStore = tagStore;
-			this.KeyPressEvent += HandleKeyPressEvent;
+			KeyPressEvent += HandleKeyPressEvent;
 			if (updateOnFocusOut)
-				this.FocusOutEvent += HandleFocusOutEvent;
+				FocusOutEvent += HandleFocusOutEvent;
 		}
 
 		List<string> selected_photos_tagnames;
@@ -102,7 +102,7 @@ namespace FSpot.Widgets
 			Update ();
 		}
 
-		private void Update ()
+		void Update ()
 		{
 			selected_photos_tagnames.Sort ();
 
@@ -118,7 +118,7 @@ namespace FSpot.Widgets
 			ClearTagCompletions ();
 		}
 
-		private void AppendComma ()
+		void AppendComma ()
 		{
 			if (Text.Length != 0 && !Text.Trim ().EndsWith (",")) {
 				int pos = Text.Length;
@@ -151,7 +151,7 @@ namespace FSpot.Widgets
 		}
 
 		[GLib.ConnectBefore]
-		private void HandleKeyPressEvent (object o, Gtk.KeyPressEventArgs args)
+		void HandleKeyPressEvent (object o, Gtk.KeyPressEventArgs args)
 		{
 			args.RetVal = false;
 			if (args.Event.Key == Gdk.Key.Escape) {
@@ -180,7 +180,7 @@ namespace FSpot.Widgets
 			}
 		}
 
-		bool tag_ignore_changes = false;
+		bool tag_ignore_changes;
 
 		protected override void OnChanged ()
 		{
@@ -193,7 +193,7 @@ namespace FSpot.Widgets
 		string tag_completion_typed_so_far;
 		int tag_completion_typed_position;
 
-		private void DoTagCompletion (bool forward)
+		void DoTagCompletion (bool forward)
 		{
 			string completion;
 
@@ -298,7 +298,7 @@ namespace FSpot.Widgets
 				TagsRemoved (this, remove_tags.ToArray ());
 		}
 
-		private static bool IsTagInList (string [] tags, string tag)
+		static bool IsTagInList (string [] tags, string tag)
 		{
 			foreach (string t in tags)
 				if (t == tag)
@@ -306,7 +306,7 @@ namespace FSpot.Widgets
 			return false;
 		}
 
-		private void HandleFocusOutEvent (object o, Gtk.FocusOutEventArgs args)
+		void HandleFocusOutEvent (object o, Gtk.FocusOutEventArgs args)
 		{
 			Update ();
 		}

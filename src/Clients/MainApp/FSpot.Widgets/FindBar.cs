@@ -49,12 +49,12 @@ namespace FSpot.Widgets
 	{
 		Entry entry;
 		string last_entry_text = string.Empty;
-		int open_parens = 0;
-		int close_parens = 0;
+		int open_parens;
+		int close_parens;
 		PhotoQuery query;
-		Term root_term = null;
+		Term root_term;
 		HBox box;
-		System.Object lockObject = new System.Object ();
+		readonly object lockObject = new object ();
 
 		#region Properties
 		public bool Completing {
@@ -360,7 +360,7 @@ namespace FSpot.Widgets
 			}
 		}
 
-		bool updating = false;
+		bool updating;
 		uint update_timeout_id = 0;
 		void QueueUpdate ()
 		{

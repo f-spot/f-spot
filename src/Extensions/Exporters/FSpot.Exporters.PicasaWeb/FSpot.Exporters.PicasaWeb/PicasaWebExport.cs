@@ -204,16 +204,16 @@ namespace FSpot.Exporters.PicasaWeb
 			size_spin.Sensitive = scale_check.Active;
 		}
 
-		private void HandleUploadProgress (object o, UploadProgressEventArgs args)
+		void HandleUploadProgress (object o, UploadProgressEventArgs args)
 		{
 			if (approx_size == 0)
-				progress_dialog.ProgressText = System.string.Format (Catalog.GetString ("{0} Sent"), GLib.Format.SizeForDisplay (args.BytesSent));
+				progress_dialog.ProgressText = string.Format (Catalog.GetString ("{0} Sent"), GLib.Format.SizeForDisplay (args.BytesSent));
 			else
-				progress_dialog.ProgressText = System.string.Format (Catalog.GetString ("{0} of approx. {1}"), GLib.Format.SizeForDisplay (sent_bytes + args.BytesSent), GLib.Format.SizeForDisplay (approx_size));
+				progress_dialog.ProgressText = string.Format (Catalog.GetString ("{0} of approx. {1}"), GLib.Format.SizeForDisplay (sent_bytes + args.BytesSent), GLib.Format.SizeForDisplay (approx_size));
 			progress_dialog.Fraction = ((photo_index - 1) / (double)items.Length) + (args.BytesSent / (args.BytesTotal * (double)items.Length));
 		}
 
-		private class DateComparer : IComparer
+		class DateComparer : IComparer
 		{
 			public int Compare (object left, object right)
 			{
@@ -221,7 +221,7 @@ namespace FSpot.Exporters.PicasaWeb
 			}
 		}
 
-		private void Upload ()
+		void Upload ()
 		{
 			album.UploadProgress += HandleUploadProgress;
 			sent_bytes = 0;

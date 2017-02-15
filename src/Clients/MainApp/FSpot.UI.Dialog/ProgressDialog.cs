@@ -29,18 +29,17 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-
 using Gtk;
 
 using Mono.Unix;
 
-namespace FSpot.UI.Dialog {
-	public class ProgressDialog : Gtk.Dialog {
+namespace FSpot.UI.Dialog
+{
+	public class ProgressDialog : Gtk.Dialog
+	{
+		bool cancelled;
 
-		private bool cancelled;
-
-		private void HandleResponse (object me, ResponseArgs args)
+		void HandleResponse (object me, ResponseArgs args)
 		{
 			cancelled = true;
 		}
@@ -51,19 +50,19 @@ namespace FSpot.UI.Dialog {
 			None
 		};
 
-		private int total_count;
+		int total_count;
 
-		private ProgressBar progress_bar;
+		ProgressBar progress_bar;
 		public ProgressBar Bar {
 			get { return progress_bar; }
 		}
 
-		private Label message_label;
+		Label message_label;
 		public Label Message {
 			get { return message_label; }
 		}
 
-		private Gtk.Button button;
+		Gtk.Button button;
 		public Gtk.Button Button {
 			get {
 				return button;
@@ -76,7 +75,7 @@ namespace FSpot.UI.Dialog {
 			this.total_count = total_count;
 
 			if (parent_window != null)
-				this.TransientFor = parent_window;
+				TransientFor = parent_window;
 
 			HasSeparator = false;
 			BorderWidth = 6;
@@ -97,10 +96,10 @@ namespace FSpot.UI.Dialog {
 				break;
 			}
 
-			Response += new ResponseHandler (HandleResponse);
+			Response += HandleResponse;
 		}
 
-		private int current_count;
+		int current_count;
 
 		// Return true if the operation was cancelled by the user.
 		public bool Update (string message)

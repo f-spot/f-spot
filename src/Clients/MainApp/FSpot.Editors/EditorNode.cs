@@ -1,14 +1,9 @@
-//  TextLiteral.cs
+﻿//  EditorNode.cs
 //
 //  Author:
-//   Gabriel Burt <gabriel.burt@gmail.com>
-//   Stephane Delcroix <stephane@delcroix.org>
-//   Stephen Shaw <sshaw@decriptor.com>
+//       Stephen Shaw <sshaw@decriptor.com>
 //
-// Copyright (C) 2013 Stephen Shaw
-// Copyright (C) 2007-2009 Novell, Inc.
-// Copyright (C) 2007 Gabriel Burt
-// Copyright (C) 2007-2009 Stephane Delcroix
+//  Copyright (c) 2017 SUSE LINUX Products GmbH, Nuernberg, Germany.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining
 //  a copy of this software and associated documentation files (the
@@ -31,31 +26,20 @@
 //
 //
 
-// This has to do with Finding photos based on tags
-// http://mail.gnome.org/archives/f-spot-list/2005-November/msg00053.html
-// http://bugzilla-attachments.gnome.org/attachment.cgi?id=54566
-namespace FSpot.Query
+using Mono.Addins;
+
+namespace FSpot.Editors
 {
-	public class TextLiteral : AbstractLiteral
+	// TODO: Move EditorNode to FSpot.Extionsions?
+	[ExtensionNode ("Editor")]
+	public class EditorNode : ExtensionNode
 	{
-		readonly string text;
+		[NodeAttribute (Required=true)]
+		protected string editor_type;
 
-		public TextLiteral (Term parent, string text) : base (parent, null)
+		public Editor GetEditor ()
 		{
-			this.text = text;
-		}
-
-		public override string SqlCondition ()
-		{
-			return string.Format (
-					"id {0}IN (SELECT id FROM photos WHERE base_uri LIKE '%{1}%' OR filename LIKE '%{1}%' OR description LIKE '%{1}%')",
-					(IsNegated ? "NOT " : ""), EscapeQuotes (text)
-					);
-		}
-
-		protected static string EscapeQuotes (string v)
-		{
-			return v == null ? string.Empty : v.Replace ("'", "''");
+			return (Editor) Addin.CreateInstance (editor_type);
 		}
 	}
 }

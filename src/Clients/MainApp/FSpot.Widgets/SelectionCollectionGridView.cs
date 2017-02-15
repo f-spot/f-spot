@@ -42,8 +42,6 @@ namespace FSpot.Widgets
 
 	public class SelectionCollectionGridView : CollectionGridView
 	{
-		#region Public Properties
-
 		public SelectionCollection Selection { get; private set; }
 
 		// Focus Handling
@@ -61,10 +59,6 @@ namespace FSpot.Widgets
 				}
 			}
 		}
-
-		#endregion
-
-		#region Constructors
 
 		public SelectionCollectionGridView (IntPtr raw) : base (raw)
 		{
@@ -91,8 +85,6 @@ namespace FSpot.Widgets
 
 			CanFocus = true;
 		}
-
-		#endregion
 
 		#region Event Handlers
 
@@ -180,8 +172,8 @@ namespace FSpot.Widgets
 				if (evnt.Button != 1 ||
 				    (evnt.State & (ModifierType.ControlMask | ModifierType.ShiftMask)) != 0)
 					return false;
-				if (DoubleClicked != null)
-					DoubleClicked (this, new BrowsableEventArgs (cell_num, null));
+
+				DoubleClicked?.Invoke (this, new BrowsableEventArgs (cell_num, null));
 				return true;
 
 			case EventType.ButtonPress:

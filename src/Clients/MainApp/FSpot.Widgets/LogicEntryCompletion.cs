@@ -32,34 +32,23 @@
 //
 
 
-using System;
 using System.Text;
-using System.Text.RegularExpressions;
 
 using Gtk;
 
-using Mono.Unix;
+namespace FSpot.Widgets
+{
+	public class LogicEntryCompletion : EntryCompletion
+	{
+		readonly Entry entry;
 
-using FSpot.Core;
-using FSpot.Query;
-
-using Hyena;
-
-namespace FSpot.Widgets {
-
-	public class LogicEntryCompletion : EntryCompletion {
-		private Entry entry;
-
-		private bool completing = false;
-		public bool Completing {
-			get { return completing; }
-		}
+		public bool Completing { get; private set; }
 
 		public LogicEntryCompletion (Entry entry, TreeModel tree_model)
 		{
 			this.entry = entry;
 
-			Model = new DependentListStore(tree_model);
+			Model = new DependentListStore (tree_model);
 
 			InlineCompletion = false;
 			MinimumKeyLength = 1;
@@ -75,7 +64,7 @@ namespace FSpot.Widgets {
 		}
 
 		[GLib.ConnectBefore]
-		private void HandleMatchSelected (object sender, MatchSelectedArgs args)
+		void HandleMatchSelected (object sender, MatchSelectedArgs args)
 		{
 			string name = args.Model.GetValue (args.Iter, TextColumn) as string;
 			//Log.DebugFormat ("match selected..{0}", name);
@@ -83,26 +72,25 @@ namespace FSpot.Widgets {
 			int pos = entry.Position;
 			string updated_text = completion_logic.ReplaceKey (entry.Text, name, ref pos);
 
-			completing = true;
+			Completing = true;
 			entry.Text = updated_text;
 			entry.Position = pos;
-			completing = false;
+			Completing = false;
 
 			args.RetVal = true;
 			//Log.Debug ("done w/ match selected");
 		}
 
-		private CompletionLogic completion_logic = new CompletionLogic ();
+		readonly CompletionLogic completion_logic = new CompletionLogic ();
 		public bool LogicEntryCompletionMatchFunc (EntryCompletion completion, string key, TreeIter iter)
 		{
 			if (Completing)
 				return false;
 
-			key = key == null ? null : key.Normalize(NormalizationForm.FormC);
+			key = key == null ? null : key.Normalize (NormalizationForm.FormC);
 			string name = completion.Model.GetValue (iter, completion.TextColumn) as string;
 			int pos = entry.Position - 1;
 			return completion_logic.MatchFunc (name, key, pos);
 		}
 	}
-	
 }

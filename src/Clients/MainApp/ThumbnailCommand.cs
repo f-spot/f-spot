@@ -29,16 +29,14 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-
 using FSpot;
 using FSpot.Core;
 using FSpot.Thumbnail;
 using FSpot.UI.Dialog;
 
-public class ThumbnailCommand {
-
-	private Gtk.Window parent_window;
+public class ThumbnailCommand
+{
+	readonly Gtk.Window parent_window;
 
 	public ThumbnailCommand (Gtk.Window parent_window)
 	{

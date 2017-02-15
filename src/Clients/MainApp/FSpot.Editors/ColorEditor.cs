@@ -38,43 +38,45 @@ using Gtk;
 
 using Mono.Unix;
 
-
-
-namespace FSpot.Editors {
-	class ColorEditor : Editor {
+namespace FSpot.Editors
+{
+	class ColorEditor : Editor
+	{
 		GtkBeans.Builder builder;
 
-		[GtkBeans.Builder.Object] private Gtk.HScale exposure_scale;
-		[GtkBeans.Builder.Object] private Gtk.HScale temp_scale;
-		[GtkBeans.Builder.Object] private Gtk.HScale temptint_scale;
-		[GtkBeans.Builder.Object] private Gtk.HScale brightness_scale;
-		[GtkBeans.Builder.Object] private Gtk.HScale contrast_scale;
-		[GtkBeans.Builder.Object] private Gtk.HScale hue_scale;
-		[GtkBeans.Builder.Object] private Gtk.HScale sat_scale;
+		[GtkBeans.Builder.Object] Gtk.HScale exposure_scale;
+		[GtkBeans.Builder.Object] Gtk.HScale temp_scale;
+		[GtkBeans.Builder.Object] Gtk.HScale temptint_scale;
+		[GtkBeans.Builder.Object] Gtk.HScale brightness_scale;
+		[GtkBeans.Builder.Object] Gtk.HScale contrast_scale;
+		[GtkBeans.Builder.Object] Gtk.HScale hue_scale;
+		[GtkBeans.Builder.Object] Gtk.HScale sat_scale;
 
-		[GtkBeans.Builder.Object] private Gtk.SpinButton exposure_spinbutton;
-		[GtkBeans.Builder.Object] private Gtk.SpinButton temp_spinbutton;
-		[GtkBeans.Builder.Object] private Gtk.SpinButton temptint_spinbutton;
-		[GtkBeans.Builder.Object] private Gtk.SpinButton brightness_spinbutton;
-		[GtkBeans.Builder.Object] private Gtk.SpinButton contrast_spinbutton;
-		[GtkBeans.Builder.Object] private Gtk.SpinButton hue_spinbutton;
-		[GtkBeans.Builder.Object] private Gtk.SpinButton sat_spinbutton;
+		[GtkBeans.Builder.Object] Gtk.SpinButton exposure_spinbutton;
+		[GtkBeans.Builder.Object] Gtk.SpinButton temp_spinbutton;
+		[GtkBeans.Builder.Object] Gtk.SpinButton temptint_spinbutton;
+		[GtkBeans.Builder.Object] Gtk.SpinButton brightness_spinbutton;
+		[GtkBeans.Builder.Object] Gtk.SpinButton contrast_spinbutton;
+		[GtkBeans.Builder.Object] Gtk.SpinButton hue_spinbutton;
+		[GtkBeans.Builder.Object] Gtk.SpinButton sat_spinbutton;
 
-		public ColorEditor () : base (Catalog.GetString ("Adjust Colors"), "adjust-colors") {
+		public ColorEditor () : base (Catalog.GetString ("Adjust Colors"), "adjust-colors")
+		{
 			// FIXME: need tooltip Catalog.GetString ("Adjust the photo colors")
 			HasSettings = true;
 			ApplyLabel = Catalog.GetString ("Adjust");
 		}
 
-		public override Widget ConfigurationWidget () {
+		public override Widget ConfigurationWidget ()
+		{
 			builder = new GtkBeans.Builder (null, "color_editor_prefs_window.ui", null);
 			builder.Autoconnect (this);
 			AttachInterface ();
 			return new VBox (builder.GetRawObject ("color_editor_prefs"));
 		}
 
-		private void AttachInterface () {
-
+		void AttachInterface ()
+		{
 			temp_spinbutton.Adjustment.ChangeValue ();
 			temptint_spinbutton.Adjustment.ChangeValue ();
 			brightness_spinbutton.Adjustment.ChangeValue ();
@@ -94,11 +96,13 @@ namespace FSpot.Editors {
 			sat_scale.ValueChanged += RangeChanged;
 		}
 
-		public void RangeChanged (object sender, EventArgs args) {
+		public void RangeChanged (object sender, EventArgs args)
+		{
 			UpdatePreview ();
 		}
 
-		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile) {
+		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile)
+		{
 			Cms.ColorCIEXYZ src_wp;
 			Cms.ColorCIEXYZ dest_wp;
 

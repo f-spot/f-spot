@@ -33,17 +33,8 @@ using FSpot.Core;
 
 namespace FSpot.Widgets
 {
-
     public class ThumbnailFilenameCaptionRenderer : ThumbnailTextCaptionRenderer
     {
-#region Constructor
-
-        public ThumbnailFilenameCaptionRenderer ()
-        {
-        }
-
-#endregion
-
 #region Drawing Methods
 
         protected override string GetRenderText (IPhoto photo)
@@ -52,6 +43,5 @@ namespace FSpot.Widgets
         }
 
 #endregion
-
     }
 }

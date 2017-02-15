@@ -36,12 +36,15 @@ using System;
 using FSpot.Core;
 using FSpot.Imaging;
 
-namespace FSpot {
+namespace FSpot
+{
 	[Obsolete ("nuke or rename this")]
-	public class PhotoLoader {
+	public class PhotoLoader
+	{
 		public PhotoQuery query;
 
-		public Gdk.Pixbuf Load (int index) {
+		public Gdk.Pixbuf Load (int index)
+		{
 			return Load (query, index);
 		}
 

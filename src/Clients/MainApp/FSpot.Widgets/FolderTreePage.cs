@@ -44,7 +44,7 @@ namespace FSpot.Widgets
 		public FolderTreePage ()
 			: base (new ScrolledWindow (), Catalog.GetString ("Folders"), "gtk-directory")
 		{
-			ScrolledWindow scrolled_window = SidebarWidget as ScrolledWindow;
+			var scrolled_window = SidebarWidget as ScrolledWindow;
 			folder_tree_widget = new FolderTreeView ();
 			scrolled_window.Add (folder_tree_widget);
 		}

@@ -39,17 +39,20 @@ using Gtk;
 using Mono.Unix;
 using Hyena;
 
-namespace FSpot.UI.Dialog {
+namespace FSpot.UI.Dialog
+{
 	public class SelectionRatioDialog : BuilderDialog
 	{
 		[Serializable]
-		public struct SelectionConstraint {
-			private string label;
+		public struct SelectionConstraint
+		{
+			string label;
 			public string Label {
 				get { return label; }
 				set { label = value; }
 			}
-			private double ratio;
+
+			double ratio;
 			public double XyRatio {
 				get { return ratio; }
 				set { ratio = value; }
@@ -68,16 +71,20 @@ namespace FSpot.UI.Dialog {
 		[GtkBeans.Builder.Object] Button up_button;
 		[GtkBeans.Builder.Object] Button down_button;
 		[GtkBeans.Builder.Object] TreeView content_treeview;
-		private ListStore constraints_store;
+		ListStore constraints_store;
 
 		public SelectionRatioDialog () : base ("SelectionRatioDialog.ui", "customratio_dialog")
 		{
-			close_button.Clicked += delegate (object o, EventArgs e) {SavePrefs (); this.Destroy (); };
-                        add_button.Clicked += delegate (object o, EventArgs e) {constraints_store.AppendValues (Catalog.GetString("New Selection"), 1.0);};
+			close_button.Clicked += (o, e) => {
+				SavePrefs ();
+				Destroy ();
+			};
+
+			add_button.Clicked += (o, e) => {constraints_store.AppendValues (Catalog.GetString("New Selection"), 1.0); };
 			delete_button.Clicked += DeleteSelectedRows;
 			up_button.Clicked += MoveUp;
 			down_button.Clicked += MoveDown;
-			CellRendererText text_renderer = new CellRendererText ();
+			var text_renderer = new CellRendererText ();
 			text_renderer.Editable = true;
 			text_renderer.Edited += HandleLabelEdited;
 			content_treeview.AppendColumn (Catalog.GetString ("Label"), text_renderer, "text", 0);
@@ -90,7 +97,7 @@ namespace FSpot.UI.Dialog {
 			Preferences.SettingChanged += OnPreferencesChanged;
 		}
 
-		private void Populate ()
+		void Populate ()
 		{
 			constraints_store = new ListStore (typeof (string), typeof (double));
 			content_treeview.Model = constraints_store;
@@ -103,12 +110,12 @@ namespace FSpot.UI.Dialog {
 				}
 		}
 
-		private void OnPreferencesChanged (object sender, NotifyEventArgs args)
+		void OnPreferencesChanged (object sender, NotifyEventArgs args)
 		{
 			LoadPreference (args.Key);
 		}
 
-		private void LoadPreference (String key)
+		void LoadPreference (string key)
 		{
 			switch (key) {
 			case Preferences.CUSTOM_CROP_RATIOS:
@@ -117,10 +124,10 @@ namespace FSpot.UI.Dialog {
 			}
 		}
 
-		private void SavePrefs ()
+		void SavePrefs ()
 		{
-			List<string> prefs = new List<string> ();
-			XmlSerializer serializer = new XmlSerializer (typeof (SelectionConstraint));
+			var prefs = new List<string> ();
+			var serializer = new XmlSerializer (typeof (SelectionConstraint));
 			foreach (object[] row in constraints_store) {
 				StringWriter sw = new StringWriter ();
 				serializer.Serialize (sw, new SelectionConstraint ((string)row[0], (double)row[1]));
@@ -174,7 +181,7 @@ namespace FSpot.UI.Dialog {
 			args.RetVal = true;
 		}
 
-		private double ParseRatio (string text)
+		double ParseRatio (string text)
 		{
 			try {
 				return Convert.ToDouble (text);
@@ -191,7 +198,7 @@ namespace FSpot.UI.Dialog {
 			}
 		}
 
-		private void DeleteSelectedRows (object o, EventArgs e)
+		void DeleteSelectedRows (object o, EventArgs e)
 		{
 			TreeIter iter;
 			TreeModel model;
@@ -199,7 +206,7 @@ namespace FSpot.UI.Dialog {
 				(model as ListStore).Remove (ref iter);
 		}
 
-		private void MoveUp (object o, EventArgs e)
+		void MoveUp (object o, EventArgs e)
 		{
 			TreeIter selected;
 			TreeModel model;
@@ -213,7 +220,7 @@ namespace FSpot.UI.Dialog {
 			}
 		}
 
-		private void MoveDown (object o, EventArgs e)
+		void MoveDown (object o, EventArgs e)
 		{
 			TreeIter current;
 			TreeModel model;

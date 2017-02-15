@@ -164,14 +164,14 @@ namespace FSpot
 				    DoubleClicked (this, null);
 			if (args.Event.Type == EventType.ButtonPress
 			    && args.Event.Button == 3) {
-				PhotoPopup popup = new PhotoPopup ();
+				var popup = new PhotoPopup ();
 				popup.Activate (Toplevel, args.Event);
 			}
 		}
 
 		protected override bool OnPopupMenu ()
 		{
-			PhotoPopup popup = new PhotoPopup ();
+			var popup = new PhotoPopup ();
 			popup.Activate (Toplevel);
 			return true;
 		}
@@ -248,7 +248,7 @@ namespace FSpot
 			LoadPreference (args.Key);
 		}
 
-		void LoadPreference (String key)
+		void LoadPreference (string key)
 		{
 			switch (key) {
 			case Preferences.FILMSTRIP_ORIENTATION:

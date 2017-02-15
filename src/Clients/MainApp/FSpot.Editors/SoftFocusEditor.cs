@@ -62,8 +62,8 @@ namespace FSpot.Editors
 			return scale;
 		}
 
-
-		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile) {
+		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile)
+		{
 			return ProcessImpl (input, input_profile, false);
 		}
 
@@ -73,7 +73,8 @@ namespace FSpot.Editors
 		}
 
 
-		private Pixbuf ProcessImpl (Pixbuf input, Cms.Profile input_profile, bool fast) {
+		Pixbuf ProcessImpl (Pixbuf input, Cms.Profile input_profile, bool fast)
+		{
 			Pixbuf result;
 			using (ImageInfo info = new ImageInfo (input)) {
 				using (Widgets.SoftFocus soft = new Widgets.SoftFocus (info)) {
@@ -95,7 +96,7 @@ namespace FSpot.Editors
 			return result;
 		}
 
-		private void HandleValueChanged (object sender, System.EventArgs args)
+		void HandleValueChanged (object sender, System.EventArgs args)
 		{
 			radius = scale.Value;
 			UpdatePreview ();

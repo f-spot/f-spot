@@ -40,7 +40,6 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using FSpot;
 using FSpot.Core;
 using FSpot.Query;
 using Hyena;

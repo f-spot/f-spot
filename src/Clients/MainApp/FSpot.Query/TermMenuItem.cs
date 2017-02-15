@@ -38,7 +38,6 @@ using Mono.Unix;
 
 using FSpot.Core;
 using FSpot.Utils;
-using FSpot.Query;
 
 namespace FSpot.Query
 {
@@ -67,32 +66,32 @@ namespace FSpot.Query
 
 			if (LogicWidget.Root == null || LogicWidget.Root.SubTerms.Count == 0) {
 				return null;
-			} else {
-				var m = new Gtk.Menu ();
-
-				Gtk.MenuItem all_item = GtkUtil.MakeMenuItem (m, Catalog.GetString ("All"), new EventHandler (App.Instance.Organizer.HandleRequireTag));
-				GtkUtil.MakeMenuSeparator (m);
-
-				int sensitive_items = 0;
-				foreach (Term term in LogicWidget.Root.SubTerms) {
-					var term_parts = new List<string> ();
-
-					bool contains_tag = AppendTerm (term_parts, term, single_tag);
-
-					string name = "_" + string.Join (", ", term_parts.ToArray ());
-
-					Gtk.MenuItem item = GtkUtil.MakeMenuItem (m, name, new EventHandler (App.Instance.Organizer.HandleAddTagToTerm));
-					item.Sensitive = !contains_tag;
-
-					if (!contains_tag)
-						sensitive_items++;
-				}
-
-				if (sensitive_items == 0)
-					all_item.Sensitive = false;
-
-				return m;
 			}
+
+			var m = new Gtk.Menu ();
+
+			Gtk.MenuItem all_item = GtkUtil.MakeMenuItem (m, Catalog.GetString ("All"), new EventHandler (App.Instance.Organizer.HandleRequireTag));
+			GtkUtil.MakeMenuSeparator (m);
+
+			int sensitive_items = 0;
+			foreach (Term term in LogicWidget.Root.SubTerms) {
+				var term_parts = new List<string> ();
+
+				bool contains_tag = AppendTerm (term_parts, term, single_tag);
+
+				string name = "_" + string.Join (", ", term_parts.ToArray ());
+
+				Gtk.MenuItem item = GtkUtil.MakeMenuItem (m, name, new EventHandler (App.Instance.Organizer.HandleAddTagToTerm));
+				item.Sensitive = !contains_tag;
+
+				if (!contains_tag)
+					sensitive_items++;
+			}
+
+			if (sensitive_items == 0)
+				all_item.Sensitive = false;
+
+			return m;
 		}
 
 		static bool AppendTerm (List<string> parts, Term term, Tag singleTag)

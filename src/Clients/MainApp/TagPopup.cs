@@ -99,6 +99,5 @@ public class TagPopup
 		} else {
 			popup_menu.Popup (null, null, null, 0, Gtk.Global.CurrentEventTime);
 		}
-
 	}
 }

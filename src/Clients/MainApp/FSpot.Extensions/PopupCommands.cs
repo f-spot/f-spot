@@ -75,7 +75,7 @@ namespace FSpot.Extensions
 
 	public class OpenWith : IMenuGenerator
 	{
-		private Widgets.OpenWithMenu owm;
+		Widgets.OpenWithMenu owm;
 
 		public Gtk.Menu GetMenu ()
 		{
@@ -97,7 +97,7 @@ namespace FSpot.Extensions
 		{
 			PhotoTagMenu tag_menu = new PhotoTagMenu ();
 			tag_menu.TagSelected += App.Instance.Organizer.HandleRemoveTagMenuSelected;
-			return (Gtk.Menu) tag_menu;
+			return tag_menu;
 		}
 
 		public void OnActivated (object o, EventArgs e)

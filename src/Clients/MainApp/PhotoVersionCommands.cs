@@ -48,27 +48,29 @@ using Hyena.Widgets;
 
 public class PhotoVersionCommands
 {
-	private class VersionNameRequest : BuilderDialog {
-		private Photo photo;
+	class VersionNameRequest : BuilderDialog
+	{
+		readonly Photo photo;
 
 		[GtkBeans.Builder.Object] Button ok_button;
 		[GtkBeans.Builder.Object] Entry version_name_entry;
 		[GtkBeans.Builder.Object] Label prompt_label;
 		[GtkBeans.Builder.Object] Label already_in_use_label;
 
-		public enum RequestType {
+		public enum RequestType
+		{
 			Create,
 			Rename
 		}
 
-		private RequestType request_type;
+		RequestType request_type;
 
-		private void Update ()
+		void Update ()
 		{
 			string new_name = version_name_entry.Text;
 
 			if (photo.VersionNameExists (new_name)
-			    && ! (request_type == RequestType.Rename
+				&& !(request_type == RequestType.Rename
 				  && new_name == photo.GetVersion (photo.DefaultVersionId).Name)) {
 				already_in_use_label.Markup = "<small>This name is already in use</small>";
 				ok_button.Sensitive = false;
@@ -83,7 +85,7 @@ public class PhotoVersionCommands
 				ok_button.Sensitive = true;
 		}
 
-		private void HandleVersionNameEntryChanged (object obj, EventArgs args)
+		void HandleVersionNameEntryChanged (object obj, EventArgs args)
 		{
 			Update ();
 		}
@@ -95,12 +97,12 @@ public class PhotoVersionCommands
 
 			switch (request_type) {
 			case RequestType.Create:
-				this.Title = Catalog.GetString ("Create New Version");
+				Title = Catalog.GetString ("Create New Version");
 				prompt_label.Text = Catalog.GetString ("Name:");
 				break;
 
 			case RequestType.Rename:
-				this.Title = Catalog.GetString ("Rename Version");
+				Title = Catalog.GetString ("Rename Version");
 				prompt_label.Text = Catalog.GetString ("New name:");
 				version_name_entry.Text = photo.GetVersion (photo.DefaultVersionId).Name;
 				version_name_entry.SelectRegion (0, -1);
@@ -110,33 +112,32 @@ public class PhotoVersionCommands
 			version_name_entry.Changed += HandleVersionNameEntryChanged;
 			version_name_entry.ActivatesDefault = true;
 
-			this.TransientFor = parent_window;
-			this.DefaultResponse = ResponseType.Ok;
+			TransientFor = parent_window;
+			DefaultResponse = ResponseType.Ok;
 
 			Update ();
 		}
 
 		public ResponseType Run (out string name)
 		{
-			ResponseType response = (ResponseType) this.Run ();
+			ResponseType response = (ResponseType)Run ();
 
 			name = version_name_entry.Text;
 			if (request_type == RequestType.Rename && name == photo.GetVersion (photo.DefaultVersionId).Name)
 				response = ResponseType.Cancel;
 
-			this.Destroy ();
+			Destroy ();
 
 			return response;
 		}
 	}
 
 	// Creating a new version.
-
-	public class Create {
+	public class Create
+	{
 		public bool Execute (PhotoStore store, Photo photo, Gtk.Window parent_window)
 		{
-			VersionNameRequest request = new VersionNameRequest (VersionNameRequest.RequestType.Create,
-									     photo, parent_window);
+			var request = new VersionNameRequest (VersionNameRequest.RequestType.Create, photo, parent_window);
 
 			string name;
 			ResponseType response = request.Run (out name);
@@ -157,8 +158,8 @@ public class PhotoVersionCommands
 
 
 	// Deleting a version.
-
-	public class Delete {
+	public class Delete
+	{
 		public bool Execute (PhotoStore store, Photo photo, Gtk.Window parent_window)
 		{
 			string ok_caption = Catalog.GetString ("Delete");
@@ -179,8 +180,8 @@ public class PhotoVersionCommands
 	}
 
 	// Renaming a version.
-
-	public class Rename {
+	public class Rename
+	{
 		public bool Execute (PhotoStore store, Photo photo, Gtk.Window parent_window)
 		{
 			VersionNameRequest request = new VersionNameRequest (VersionNameRequest.RequestType.Rename,
@@ -204,8 +205,8 @@ public class PhotoVersionCommands
 	}
 
 	// Detaching a version (making it a separate photo).
-
-	public class Detach {
+	public class Detach
+	{
 		public bool Execute (PhotoStore store, Photo photo, Gtk.Window parent_window)
 		{
 			string ok_caption = Catalog.GetString ("De_tach");
@@ -228,8 +229,8 @@ public class PhotoVersionCommands
 	}
 
 	// Reparenting a photo as version of another one
-
-	public class Reparent {
+	public class Reparent
+	{
 		public bool Execute (PhotoStore store, Photo [] photos, Photo new_parent, Gtk.Window parent_window)
 		{
 			string ok_caption = Catalog.GetString ("Re_parent");
@@ -273,12 +274,13 @@ public class PhotoVersionCommands
 		}
 	}
 
-	private static void HandleException (string msg, Exception e, Gtk.Window parent_window) {
+	static void HandleException (string msg, Exception e, Gtk.Window parent_window)
+	{
 		Log.DebugException (e);
 		msg = Catalog.GetString (msg);
 		string desc = string.Format (Catalog.GetString ("Received exception \"{0}\"."), e.Message);
 		HigMessageDialog md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent,
-							    Gtk.MessageType.Error, ButtonsType.Ok, msg, desc);
+								Gtk.MessageType.Error, ButtonsType.Ok, msg, desc);
 		md.Run ();
 		md.Destroy ();
 	}

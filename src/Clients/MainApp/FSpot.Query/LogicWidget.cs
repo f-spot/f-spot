@@ -44,7 +44,8 @@ using FSpot.Database;
 
 namespace FSpot.Query
 {
-	public class LogicWidget : HBox {
+	public class LogicWidget : HBox
+	{
 		readonly PhotoQuery query;
 
 		static Term rootTerm;
@@ -53,8 +54,8 @@ namespace FSpot.Query
 		Label help;
 		HBox sepBox;
 
-		bool preventUpdate = false;
-		bool preview = false;
+		bool preventUpdate;
+		bool preview;
 
 		public event EventHandler Changed;
 
@@ -65,7 +66,7 @@ namespace FSpot.Query
 			}
 		}
 
-		static LogicWidget logic_widget = null;
+		static LogicWidget logic_widget;
 		public static LogicWidget Box {
 			get { return logic_widget; }
 		}
@@ -219,7 +220,7 @@ namespace FSpot.Query
 		void HandleRemoving (Literal term)
 		{
 			foreach (Widget w in HangersOn (term))
-			Remove (w);
+				Remove (w);
 
 			// Remove the term's widget
 			Remove (term.Widget);
@@ -514,16 +515,10 @@ namespace FSpot.Query
 				query.TagTerm = new ConditionWrapper (rootTerm.SqlCondition ());
 			}
 
-			EventHandler handler = Changed;
-			if (handler != null)
-				handler (this, new EventArgs ());
+			Changed?.Invoke (this, new EventArgs ());
 		}
 
-		public bool IsClear {
-			get {
-				return rootTerm.Count == 0;
-			}
-		}
+		public bool IsClear => rootTerm.Count == 0;
 
 		public void Clear ()
 		{

@@ -53,35 +53,34 @@ namespace FSpot
 {
 	public static class Driver
 	{
-		private static void ShowVersion ()
+		static void ShowVersion ()
 		{
 			Console.WriteLine ("F-Spot {0}", Defines.VERSION);
 			Console.WriteLine ("http://f-spot.org");
 			Console.WriteLine ("\t(c)2003-2009, Novell Inc");
 			Console.WriteLine ("\t(c)2009 Stephane Delcroix");
-			Console.WriteLine("Personal photo management for the GNOME Desktop");
+			Console.WriteLine ("Personal photo management for the GNOME Desktop");
 		}
 
-		private static void ShowAssemblyVersions ()
+		static void ShowAssemblyVersions ()
 		{
 			ShowVersion ();
 			Console.WriteLine ();
-			Console.WriteLine ("Mono/.NET Version: " + Environment.Version.ToString ());
+			Console.WriteLine ("Mono/.NET Version: " + Environment.Version);
 			Console.WriteLine (string.Format ("{0}Assembly Version Information:", Environment.NewLine));
 
-			foreach (Assembly asm in AppDomain.CurrentDomain.GetAssemblies ())
-			{
+			foreach (Assembly asm in AppDomain.CurrentDomain.GetAssemblies ()) {
 				AssemblyName name = asm.GetName ();
-				Console.WriteLine ("\t" + name.Name + " (" + name.Version.ToString () + ")");
+				Console.WriteLine ("\t" + name.Name + " (" + name.Version + ")");
 			}
 		}
 
-		private static void ShowHelp ()
+		static void ShowHelp ()
 		{
 			Console.WriteLine ("Usage: f-spot [options...] [files|URIs...]");
 			Console.WriteLine ();
 
-			Hyena.CommandLine.Layout commands = new Hyena.CommandLine.Layout (
+			var commands = new Hyena.CommandLine.Layout (
 				new LayoutGroup ("help", "Help Options",
 					new LayoutOption ("help", "Show this help"),
 					new LayoutOption ("help-options", "Show command line options"),
@@ -105,13 +104,13 @@ namespace FSpot
 			List<string> errors = null;
 			foreach (KeyValuePair<string, string> argument in ApplicationContext.CommandLine.Arguments) {
 				switch (argument.Key) {
-					case "help": Console.WriteLine (commands.ToString ("help")); break;
-					case "help-options": Console.WriteLine (commands.ToString ("options")); break;
-					default:
-						if (argument.Key.StartsWith ("help")) {
-							(errors ?? (errors = new List<string> ())).Add (argument.Key);
-						}
-						break;
+				case "help": Console.WriteLine (commands.ToString ("help")); break;
+				case "help-options": Console.WriteLine (commands.ToString ("options")); break;
+				default:
+					if (argument.Key.StartsWith ("help")) {
+						(errors ?? (errors = new List<string> ())).Add (argument.Key);
+					}
+					break;
 				}
 			}
 
@@ -128,36 +127,46 @@ namespace FSpot
 			var outargs = new List<string> ();
 			for (int i = 0; i < args.Length; i++) {
 				switch (args [i]) {
-					case "-h": case "-help": case "-usage":
-						outargs.Add ("--help");
-						break;
-					case "-V": case "-version":
-						outargs.Add ("--version");
-						break;
-					case "-versions":
-						outargs.Add ("--versions");
-						break;
-					case "-shutdown":
-						outargs.Add ("--shutdown");
-						break;
-					case "-b": case "-basedir": case "--basedir":
-						outargs.Add ("--basedir=" + (i + 1 == args.Length ? string.Empty : args [++i]));
-						break;
-					case "-p": case "-photodir": case "--photodir":
-						outargs.Add ("--photodir=" + (i + 1 == args.Length ? string.Empty : args [++i]));
-						break;
-					case "-i": case "-import": case "--import":
-						outargs.Add ("--import=" + (i + 1 == args.Length ? string.Empty : args [++i]));
-						break;
-					case "-v": case "-view":
-						outargs.Add ("--view");
-						break;
-					case "-slideshow":
-						outargs.Add ("--slideshow");
-						break;
-					default:
-						outargs.Add (args [i]);
-						break;
+				case "-h":
+				case "-help":
+				case "-usage":
+					outargs.Add ("--help");
+					break;
+				case "-V":
+				case "-version":
+					outargs.Add ("--version");
+					break;
+				case "-versions":
+					outargs.Add ("--versions");
+					break;
+				case "-shutdown":
+					outargs.Add ("--shutdown");
+					break;
+				case "-b":
+				case "-basedir":
+				case "--basedir":
+					outargs.Add ("--basedir=" + (i + 1 == args.Length ? string.Empty : args [++i]));
+					break;
+				case "-p":
+				case "-photodir":
+				case "--photodir":
+					outargs.Add ("--photodir=" + (i + 1 == args.Length ? string.Empty : args [++i]));
+					break;
+				case "-i":
+				case "-import":
+				case "--import":
+					outargs.Add ("--import=" + (i + 1 == args.Length ? string.Empty : args [++i]));
+					break;
+				case "-v":
+				case "-view":
+					outargs.Add ("--view");
+					break;
+				case "-slideshow":
+					outargs.Add ("--slideshow");
+					break;
+				default:
+					outargs.Add (args [i]);
+					break;
 				}
 			}
 			return outargs.ToArray ();
@@ -215,8 +224,7 @@ namespace FSpot
 			if (ApplicationContext.CommandLine.Contains ("basedir")) {
 				string dir = ApplicationContext.CommandLine ["basedir"];
 
-				if (!string.IsNullOrEmpty (dir))
-				{
+				if (!string.IsNullOrEmpty (dir)) {
 					Global.BaseDirectory = dir;
 					Log.InformationFormat ("BaseDirectory is now {0}", dir);
 				} else {
@@ -228,8 +236,7 @@ namespace FSpot
 			if (ApplicationContext.CommandLine.Contains ("photodir")) {
 				string dir = ApplicationContext.CommandLine ["photodir"];
 
-				if (!string.IsNullOrEmpty (dir))
-				{
+				if (!string.IsNullOrEmpty (dir)) {
 					Global.PhotoUri = new SafeUri (dir);
 					Log.InformationFormat ("PhotoDirectory is now {0}", dir);
 				} else {
@@ -247,7 +254,7 @@ namespace FSpot
 			if (ApplicationContext.CommandLine.Contains ("debug")) {
 				Log.Debugging = true;
 				// Debug GdkPixbuf critical warnings
-				GLib.LogFunc logFunc = new GLib.LogFunc (GLib.Log.PrintTraceLogFunction);
+				var logFunc = new GLib.LogFunc (GLib.Log.PrintTraceLogFunction);
 				GLib.Log.SetLogHandler ("GdkPixbuf", GLib.LogLevelFlags.Critical, logFunc);
 
 				// Debug Gtk critical warnings
@@ -265,8 +272,7 @@ namespace FSpot
 			// Validate command line options
 			if ((import && (view || shutdown || slideshow)) ||
 				(view && (shutdown || slideshow)) ||
-				(shutdown && slideshow))
-			{
+				(shutdown && slideshow)) {
 				Log.Error ("Can't mix -import, -view, -shutdown or -slideshow");
 				return 1;
 			}
@@ -292,18 +298,20 @@ namespace FSpot
 
 			try {
 				Gtk.Window.DefaultIconList = new Gdk.Pixbuf [] {
-					GtkUtil.TryLoadIcon (Global.IconTheme, "f-spot", 16, (Gtk.IconLookupFlags)0),
-					GtkUtil.TryLoadIcon (Global.IconTheme, "f-spot", 22, (Gtk.IconLookupFlags)0),
-					GtkUtil.TryLoadIcon (Global.IconTheme, "f-spot", 32, (Gtk.IconLookupFlags)0),
-					GtkUtil.TryLoadIcon (Global.IconTheme, "f-spot", 48, (Gtk.IconLookupFlags)0)
+					GtkUtil.TryLoadIcon (Global.IconTheme, "f-spot", 16, 0),
+					GtkUtil.TryLoadIcon (Global.IconTheme, "f-spot", 22, 0),
+					GtkUtil.TryLoadIcon (Global.IconTheme, "f-spot", 32, 0),
+					GtkUtil.TryLoadIcon (Global.IconTheme, "f-spot", 48, 0)
 				};
-			} catch {}
+			} catch (Exception ex) {
+				Log.Exception ("Loading default f-spot icons", ex);
+			}
 
 			CleanRoomStartup.Startup (Startup);
 
 			// Running threads are preventing the application from quitting
 			// we force it for now until this is fixed
-			System.Environment.Exit (0);
+			Environment.Exit (0);
 			return 0;
 		}
 
@@ -316,7 +324,8 @@ namespace FSpot
 				Log.Debug ("Failed to initialize plugins, will remove addin-db and try again.");
 				ResetPluginDb ();
 			}
-			SetupService setupService = new SetupService (AddinManager.Registry);
+
+			var setupService = new SetupService (AddinManager.Registry);
 			foreach (AddinRepository repo in setupService.Repositories.GetRepositories ()) {
 				if (repo.Url.StartsWith ("http://addins.f-spot.org/")) {
 					Log.InformationFormat ("Unregistering {0}", repo.Url);
@@ -357,7 +366,7 @@ namespace FSpot
 			else if (ApplicationContext.CommandLine.Contains ("view")) {
 				if (ApplicationContext.CommandLine.Files.Count == 0) {
 					Log.Error ("f-spot: -view option takes at least one argument");
-					System.Environment.Exit (1);
+					Environment.Exit (1);
 				}
 
 				var list = new UriList ();
@@ -367,7 +376,7 @@ namespace FSpot
 
 				if (list.Count == 0) {
 					ShowHelp ();
-					System.Environment.Exit (1);
+					Environment.Exit (1);
 				}
 
 				App.Instance.View (list);
@@ -376,7 +385,7 @@ namespace FSpot
 
 				if (string.IsNullOrEmpty (dir)) {
 					Log.Error ("f-spot: -import option takes one argument");
-					System.Environment.Exit (1);
+					Environment.Exit (1);
 				}
 
 				App.Instance.Import (dir);

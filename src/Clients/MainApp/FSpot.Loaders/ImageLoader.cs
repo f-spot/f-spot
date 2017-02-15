@@ -36,8 +36,10 @@ using FSpot.Imaging;
 using FSpot.Utils;
 using Hyena;
 
-namespace FSpot.Loaders {
-	public static class ImageLoader {
+namespace FSpot.Loaders
+{
+	public static class ImageLoader
+	{
 		public static IImageLoader Create (SafeUri uri)
 		{
 			if (!App.Instance.Container.Resolve<IImageFileFactory> ().HasLoader (uri))

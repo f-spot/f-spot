@@ -79,7 +79,7 @@ namespace FSpot.Extensions
 		[NodeAttribute ("generator_type", true)]
 		protected string command_type;
 
-		private IMenuGenerator menu_generator;
+		IMenuGenerator menu_generator;
 
 		public override Gtk.MenuItem GetMenuItem (object parent)
 		{

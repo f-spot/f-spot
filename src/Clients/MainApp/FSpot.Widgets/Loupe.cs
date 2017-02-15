@@ -234,7 +234,7 @@ namespace FSpot.Widgets
 		}
 
 		Gdk.Point Center;
-	        Requisition Bounds;
+		Requisition Bounds;
 
 		public void Layout ()
 		{
@@ -296,7 +296,7 @@ namespace FSpot.Widgets
 			g.Matrix = new Matrix ();
 			g.Translate (cx, cy);
 			if (source != null)
-			CairoHelper.SetSourcePixbuf (g, source, -source.Width / 2, -source.Height / 2);
+				CairoHelper.SetSourcePixbuf (g, source, -source.Width / 2, -source.Height / 2);
 
 			g.Arc (0, 0, radius, 0, 2 * Math.PI);
 			g.Fill ();
@@ -322,8 +322,8 @@ namespace FSpot.Widgets
 
 		}
 
-		bool dragging = false;
-		bool rotate = false;
+		bool dragging;
+		bool rotate;
 		DelayedOperation drag;
 		Gdk.Point pos;
 		double start_angle = 0;
@@ -334,8 +334,8 @@ namespace FSpot.Widgets
 
 		void HandleMotionNotifyEvent (object sender, MotionNotifyEventArgs args)
 		{
-		        pos.X = (int) args.Event.XRoot - start.X;
-		        pos.Y = (int) args.Event.YRoot - start.Y;
+			pos.X = (int) args.Event.XRoot - start.X;
+			pos.Y = (int) args.Event.YRoot - start.Y;
 
 			root_pos.X = (int) args.Event.XRoot;
 			root_pos.Y = (int) args.Event.YRoot;
@@ -349,30 +349,29 @@ namespace FSpot.Widgets
 			if (!dragging)
 				return false;
 
-			if (!rotate) {
+			if (!rotate)
 				return MoveWindow ();
-			} else {
-				Gdk.Point initial = start_root;
-				Gdk.Point hot = start_hot;
-				Gdk.Point win = Gdk.Point.Zero;
 
-				hot.X += win.X;
-				hot.Y += win.Y;
+			Gdk.Point initial = start_root;
+			Gdk.Point hot = start_hot;
+			Gdk.Point win = Gdk.Point.Zero;
 
-				initial.X -= hot.X;
-				initial.Y -= hot.Y;
-				Gdk.Point now = root_pos;
-				now.X -= hot.X;
-				now.Y -= hot.Y;
+			hot.X += win.X;
+			hot.Y += win.Y;
 
-				var v1 = new Vector (initial);
-				var v2 = new Vector (now);
+			initial.X -= hot.X;
+			initial.Y -= hot.Y;
+			Gdk.Point now = root_pos;
+			now.X -= hot.X;
+			now.Y -= hot.Y;
 
-				double angleBetween = Vector.AngleBetween (v1, v2);
+			var v1 = new Vector (initial);
+			var v2 = new Vector (now);
 
-				Angle = start_angle + angleBetween;
-				return false;
-			}
+			double angleBetween = Vector.AngleBetween (v1, v2);
+
+			Angle = start_angle + angleBetween;
+			return false;
 		}
 
 		bool MoveWindow ()

@@ -40,24 +40,11 @@ namespace FSpot.Widgets
     /// </summary>
     public class ThumbnailRatingDecorationRenderer : ThumbnailDecorationRenderer
     {
+		readonly RatingRenderer rating_renderer = new RatingRenderer ();
 
-#region Private Fields
+		#region Drawing Methods
 
-        RatingRenderer rating_renderer = new RatingRenderer ();
-
-#endregion
-
-#region Constructor
-
-        public ThumbnailRatingDecorationRenderer ()
-        {
-        }
-
-#endregion
-
-#region Drawing Methods
-
-        public override void Render (Drawable window,
+		public override void Render (Drawable window,
                                      Widget widget,
                                      Rectangle cell_area,
                                      Rectangle expose_area,

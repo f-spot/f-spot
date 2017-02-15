@@ -35,19 +35,19 @@ using Gtk;
 
 using FSpot.Query;
 using FSpot.Widgets;
-using FSpot.UI.Dialog;
 
 namespace FSpot.UI.Dialog
 {
-	public class RatingFilterDialog : BuilderDialog {
+	public class RatingFilterDialog : BuilderDialog
+	{
 		[GtkBeans.Builder.Object] Button ok_button;
 		[GtkBeans.Builder.Object] HBox minrating_hbox;
 		[GtkBeans.Builder.Object] HBox maxrating_hbox;
 
-		private int minrating_value = 4;
-		private int maxrating_value = 5;
-		private RatingEntry minrating;
-		private RatingEntry maxrating;
+		int minrating_value = 4;
+		int maxrating_value = 5;
+		RatingEntry minrating;
+		RatingEntry maxrating;
 
 		public RatingFilterDialog (FSpot.PhotoQuery query, Gtk.Window parent_window)
             : base ("RatingFilterDialog.ui", "rating_filter_dialog")

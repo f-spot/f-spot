@@ -63,10 +63,10 @@ namespace FSpot.Widgets
 
 		/* 	This VBox only contains exif-data,
 			so it is seperated from other information */
-		VBox metadata_vbox;
+		readonly VBox metadata_vbox;
 
-		VBox main_vbox;
-		Label metadata_message;
+		readonly VBox main_vbox;
+		readonly Label metadata_message;
 		State display;
 
 		public MetadataDisplayPage Page { get; set; }
@@ -76,7 +76,7 @@ namespace FSpot.Widgets
 
 		ListStore extended_metadata;
 
-		bool up_to_date = false;
+		bool up_to_date;
 
 		enum State
 		{

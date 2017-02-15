@@ -35,8 +35,10 @@ using Hyena;
 
 using TagLib.Image;
 
-namespace FSpot.Loaders {
-	public interface IImageLoader : IDisposable {
+namespace FSpot.Loaders
+{
+	public interface IImageLoader : IDisposable
+	{
 		bool Loading { get; }
 
 		event EventHandler<AreaPreparedEventArgs> AreaPrepared;

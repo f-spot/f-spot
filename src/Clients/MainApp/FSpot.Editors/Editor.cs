@@ -38,46 +38,11 @@ using FSpot.Imaging;
 using Gdk;
 using Gtk;
 
-using Mono.Addins;
-
-
-
-namespace FSpot.Editors {
-
-	// TODO: Move EditorNode to FSpot.Extionsions?
-	[ExtensionNode ("Editor")]
-	public class EditorNode : ExtensionNode {
-		[NodeAttribute (Required=true)]
-		protected string editor_type;
-
-		public Editor GetEditor () {
-			return (Editor) Addin.CreateInstance (editor_type);
-		}
-	}
-
-	public class EditorState {
-		// The area selected by the user.
-		public Rectangle Selection;
-
-		// The images selected by the user.
-		public IPhoto [] Items;
-
-		// The view, into which images are shown (null if we are in the browse view).
-		public PhotoImageView PhotoImageView;
-
-		// Has a portion of the image been selected?
-		public bool HasSelection {
-			get { return Selection != Rectangle.Zero; }
-		}
-
-		// Is the user in browse mode?
-		public bool InBrowseMode {
-			get { return PhotoImageView == null; }
-		}
-	}
-
+namespace FSpot.Editors
+{
 	// This is the base class from which all editors inherit.
-	public abstract class Editor {
+	public abstract class Editor
+	{
 		public delegate void ProcessingStartedHandler (string name, int count);
 		public delegate void ProcessingStepHandler (int done);
 		public delegate void ProcessingFinishedHandler ();
@@ -87,7 +52,7 @@ namespace FSpot.Editors {
 		public event ProcessingFinishedHandler ProcessingFinished;
 
 		// Contains the current selection, the items being edited, ...
-		private EditorState state;
+		EditorState state;
 		public EditorState State {
 			get {
 				if (!StateInitialized)
@@ -114,7 +79,7 @@ namespace FSpot.Editors {
 			}
 		}
 
-		private bool can_handle_multiple = false;
+		bool can_handle_multiple = false;
 		public bool CanHandleMultiple {
 			get { return can_handle_multiple; }
 			protected set { can_handle_multiple = value; }
@@ -133,7 +98,7 @@ namespace FSpot.Editors {
 		public readonly string Label;
 
 		// The label on the apply button (usually shorter than the label).
-		private string apply_label = "";
+		string apply_label = "";
 		public string ApplyLabel {
 			get { return apply_label == "" ? Label : apply_label; }
 			protected set { apply_label = value; }
@@ -143,13 +108,15 @@ namespace FSpot.Editors {
 		// The icon name for this action (will be loaded from the theme).
 		public readonly string IconName;
 
-		public Editor (string label, string icon_name) {
+		protected Editor (string label, string icon_name)
+		{
 			Label = label;
 			IconName = icon_name;
 		}
 
 		// Apply the editor's action to a photo.
-		public void Apply () {
+		public void Apply ()
+		{
 			try {
 				if (ProcessingStarted != null) {
 					ProcessingStarted (Label, State.Items.Length);
@@ -162,7 +129,8 @@ namespace FSpot.Editors {
 			}
 		}
 
-		private void TryApply () {
+		void TryApply ()
+		{
 			if (NeedsSelection && !State.HasSelection) {
 				throw new Exception ("Cannot apply without selection!");
 			}
@@ -192,19 +160,22 @@ namespace FSpot.Editors {
 
 		protected abstract Pixbuf Process (Pixbuf input, Cms.Profile input_profile);
 
-		protected virtual Pixbuf ProcessFast (Pixbuf input, Cms.Profile input_profile) {
+		protected virtual Pixbuf ProcessFast (Pixbuf input, Cms.Profile input_profile)
+		{
 			return Process (input, input_profile);
 		}
 
-		private bool has_settings;
-		public bool HasSettings {
+		bool has_settings;
+		public bool HasSettings
+		{
 			get { return has_settings; }
 			protected set { has_settings = value; }
 		}
 
-		private Pixbuf original;
-		private Pixbuf preview;
-		protected void UpdatePreview () {
+		Pixbuf original;
+		Pixbuf preview;
+		protected void UpdatePreview ()
+		{
 			if (State.InBrowseMode) {
 				throw new Exception ("Previews cannot be made in browse mode!");
 			}
@@ -237,7 +208,8 @@ namespace FSpot.Editors {
 			}
 		}
 
-		private void CalcPreviewSize (Pixbuf input, out int width, out int height) {
+		void CalcPreviewSize (Pixbuf input, out int width, out int height)
+		{
 			int awidth = State.PhotoImageView.Allocation.Width;
 			int aheight = State.PhotoImageView.Allocation.Height;
 			int iwidth = input.Width;
@@ -258,7 +230,8 @@ namespace FSpot.Editors {
 			//Log.Debug ("Preview size: Allocation: {0}x{1}, Input: {2}x{3}, Result: {4}x{5}", awidth, aheight, iwidth, iheight, width, height);
 		}
 
-		public void Restore () {
+		public void Restore ()
+		{
 			if (original != null && State.PhotoImageView != null) {
 				State.PhotoImageView.Pixbuf = original;
 				State.PhotoImageView.ZoomFit (false);
@@ -269,10 +242,9 @@ namespace FSpot.Editors {
 			Reset ();
 		}
 
-		private void Reset () {
-			if (preview != null) {
-				preview.Dispose ();
-			}
+		void Reset ()
+		{
+			preview?.Dispose ();
 
 			preview = null;
 			original = null;
@@ -281,23 +253,24 @@ namespace FSpot.Editors {
 
 		// Can be overriden to provide a specific configuration widget.
 		// Returning null means no configuration widget.
-		public virtual Widget ConfigurationWidget () {
+		public virtual Widget ConfigurationWidget ()
+		{
 			return null;
 		}
 
 
-		public virtual EditorState CreateState () {
+		public virtual EditorState CreateState ()
+		{
 			return new EditorState ();
 		}
 
 		public delegate void InitializedHandler ();
 		public event InitializedHandler Initialized;
 
-		public void Initialize (EditorState state) {
+		public void Initialize (EditorState state)
+		{
 			State = state;
-
-			if (Initialized != null)
-				Initialized ();
+			Initialized?.Invoke ();
 		}
 	}
 }

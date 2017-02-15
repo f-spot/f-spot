@@ -49,7 +49,8 @@ namespace FSpot.Editors
 		double angle;
 		Scale scale;
 
-		public TiltEditor () : base (Catalog.GetString ("Straighten"), "align-horizon") {
+		public TiltEditor () : base (Catalog.GetString ("Straighten"), "align-horizon")
+		{
 			// FIXME: need tooltip Catalog.GetString ("Adjust the angle of the image to straighten the horizon")
 			HasSettings = true;
         }
@@ -63,7 +64,8 @@ namespace FSpot.Editors
 		}
 
 
-		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile) {
+		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile)
+		{
 			return ProcessImpl (input, input_profile, false);
 		}
 

@@ -29,7 +29,6 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System.IO;
 using System.Collections.Generic;
 using System.Xml;
 
@@ -40,8 +39,10 @@ using GLib;
 using FSpot.Core;
 using FSpot.Imaging;
 
-namespace FSpot {
-	public class UriCollection : PhotoList {
+namespace FSpot
+{
+	public class UriCollection : PhotoList
+	{
 		public UriCollection () : base (new IPhoto [0])
 		{
 		}
@@ -62,7 +63,7 @@ namespace FSpot {
 				//Console.WriteLine ("using image loader {0}", uri.ToString ());
 				Add (new FilePhoto (uri));
 			} else {
-				GLib.FileInfo info = FileFactory.NewForUri (uri).QueryInfo ("standard::type,standard::content-type", FileQueryInfoFlags.None, null);
+				var info = FileFactory.NewForUri (uri).QueryInfo ("standard::type,standard::content-type", FileQueryInfoFlags.None, null);
 
 				if (info.FileType == FileType.Directory)
 					new DirectoryLoader (this, uri);
@@ -85,13 +86,13 @@ namespace FSpot {
 			}
 		}
 
-		private class RssLoader
+		class RssLoader
 		{
 			public RssLoader (UriCollection collection, SafeUri uri)
 			{
-				XmlDocument doc = new XmlDocument ();
+				var doc = new XmlDocument ();
 				doc.Load (uri.ToString ());
-				XmlNamespaceManager ns = new XmlNamespaceManager (doc.NameTable);
+				var ns = new XmlNamespaceManager (doc.NameTable);
 				ns.AddNamespace ("media", "http://search.yahoo.com/mrss/");
 				ns.AddNamespace ("pheed", "http://www.pheed.com/pheed/");
 				ns.AddNamespace ("apple", "http://www.apple.com/ilife/wallpapers");
@@ -125,10 +126,10 @@ namespace FSpot {
 			}
 		}
 
-		private class DirectoryLoader
+		class DirectoryLoader
 		{
-			UriCollection collection;
-			GLib.File file;
+			readonly UriCollection collection;
+			readonly GLib.File file;
 
 			public DirectoryLoader (UriCollection collection, SafeUri uri)
 			{
@@ -166,9 +167,7 @@ namespace FSpot {
 			}
 
 			list = items;
-			this.Reload ();
+			Reload ();
 		}
 	}
-
-
 }
