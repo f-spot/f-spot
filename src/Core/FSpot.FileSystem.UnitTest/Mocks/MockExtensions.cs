@@ -30,7 +30,7 @@ using System;
 using Moq.Language.Flow;
 using System.Collections;
 
-namespace FSpot.Utils.UnitTest.Mocks
+namespace FSpot.FileSystem.UnitTest.Mocks
 {
 	public static class MockExtensions
 	{

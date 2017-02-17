@@ -29,13 +29,12 @@
 using System;
 using System.Collections;
 using System.Linq;
-using FSpot.FileSystem;
-using FSpot.Utils.UnitTest.Mocks;
+using FSpot.FileSystem.UnitTest.Mocks;
 using GLib;
 using Moq;
 using NUnit.Framework;
 
-namespace FSpot.Utils.UnitTest
+namespace FSpot.FileSystem.UnitTest
 {
 	[TestFixture]
 	public class SortedFileEnumeratorTests
