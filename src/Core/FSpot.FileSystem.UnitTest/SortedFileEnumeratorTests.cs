@@ -29,7 +29,6 @@
 using System;
 using System.Collections;
 using System.Linq;
-using FSpot.FileSystem.UnitTest.Mocks;
 using GLib;
 using Moq;
 using NUnit.Framework;
@@ -91,8 +90,14 @@ namespace FSpot.FileSystem.UnitTest
 			var file3 = new FileInfo{ Name = "3", FileType = FileType.Regular };
 
 			var list = new Mock<IEnumerator> ();
-			list.Setup (l => l.MoveNext ()).ReturnsInOrder (true, new GException (IntPtr.Zero), true, false);
-			list.Setup (l => l.Current).ReturnsInOrder (file1, file3);
+			list.SetupSequence (l => l.MoveNext ())
+			    .Returns (true)
+			    .Throws (new GException (IntPtr.Zero))
+			    .Returns (true)
+			    .Returns (false);
+			list.SetupSequence (l => l.Current)
+			    .Returns (file1)
+			    .Returns (file3);
 
 			// file, dir
 			var result = new SortedFileEnumerator (list.Object, true).ToArray ();

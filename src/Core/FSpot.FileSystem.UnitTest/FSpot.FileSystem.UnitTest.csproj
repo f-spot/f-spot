@@ -46,7 +46,6 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Compile Include="SortedFileEnumeratorTests.cs" />
-    <Compile Include="Mocks\MockExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FSpot.FileSystem\FSpot.FileSystem.csproj">
