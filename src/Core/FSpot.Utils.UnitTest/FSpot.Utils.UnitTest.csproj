@@ -77,6 +77,10 @@
       <Project>{A1DEDA9C-E664-485E-AD65-6ABA83C58BC2}</Project>
       <Name>FSpot.Thumbnail</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FSpot.FileSystem\FSpot.FileSystem.csproj">
+      <Project>{F7821E0B-6861-47D7-9FCE-F853CDF2F838}</Project>
+      <Name>FSpot.FileSystem</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="TestData\" />

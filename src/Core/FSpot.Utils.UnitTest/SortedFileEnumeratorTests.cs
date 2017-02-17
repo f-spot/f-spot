@@ -26,13 +26,14 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using GLib;
-using NUnit.Framework;
-using System.Linq;
-using Moq;
-using System.Collections;
-using FSpot.Utils.UnitTest.Mocks;
 using System;
+using System.Collections;
+using System.Linq;
+using FSpot.FileSystem;
+using FSpot.Utils.UnitTest.Mocks;
+using GLib;
+using Moq;
+using NUnit.Framework;
 
 namespace FSpot.Utils.UnitTest
 {

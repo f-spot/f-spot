@@ -37,7 +37,7 @@ using System.Linq;
 using GLib;
 using Hyena;
 
-namespace FSpot.Utils
+namespace FSpot.FileSystem
 {
 	public class RecursiveFileEnumerator : IEnumerable<SafeUri>
 	{

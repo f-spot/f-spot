@@ -30,8 +30,8 @@
 //
 
 using System.Collections.Generic;
+using FSpot.FileSystem;
 using FSpot.Imaging;
-using FSpot.Utils;
 using Hyena;
 using Mono.Unix;
 

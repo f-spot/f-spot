@@ -30,7 +30,7 @@ using GLib;
 using System.Collections.Generic;
 using System.Collections;
 
-namespace FSpot.Utils
+namespace FSpot.FileSystem
 {
 	public class SortedFileEnumerator : IEnumerable<FileInfo>
 	{
