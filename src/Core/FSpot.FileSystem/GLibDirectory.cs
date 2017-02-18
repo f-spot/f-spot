@@ -71,8 +71,9 @@ namespace FSpot.FileSystem
 				yield break;
 			}
 			using (var fileEnumerator = directory.EnumerateChildren ("standard::name", FileQueryInfoFlags.None, null)) {
-				foreach (var fileInfo in fileEnumerator) {
-					yield return uri.Append (((FileInfo)fileInfo).Name);
+				foreach (FileInfo fileInfo in fileEnumerator) {
+					yield return uri.Append (fileInfo.Name);
+					fileInfo.Dispose ();
 				}
 			}
 		}
