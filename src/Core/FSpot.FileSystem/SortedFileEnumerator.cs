@@ -1,5 +1,5 @@
-﻿//
-// MockExtensions.cs
+//
+// SortedFileEnumerator.cs
 //
 // Author:
 //   Daniel Köb <daniel.koeb@peony.at>
@@ -27,27 +27,47 @@
 //
 
 using System;
-using Moq.Language.Flow;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using Hyena;
 
-namespace FSpot.Utils.UnitTest.Mocks
+namespace FSpot.FileSystem
 {
-	public static class MockExtensions
+	class SortedFileEnumerator : IEnumerable<SafeUri>
 	{
-		// Inspired by http://haacked.com/archive/2010/11/24/moq-sequences-revisited.aspx/
-		// licensed under MIT license.
-		public static void ReturnsInOrder<T, TResult>(this ISetup<T, TResult> setup, params object[] results)
-			where T : class
+		readonly List<SafeUri> files;
+
+		public SortedFileEnumerator (IEnumerable<SafeUri> baseEnumerable, IFileSystem fileSystem)
 		{
-			var queue = new Queue (results);
-			setup.Returns (() => {
-				var result = queue.Dequeue ();
-				var exception = result as Exception;
-				if (exception != null) {
-					throw exception;
+			files = baseEnumerable.ToList ();
+
+			files.Sort ((x, y) => {
+				if (fileSystem.Directory.Exists (x)) {
+					if (fileSystem.File.Exists (y)) {
+						return -1;
+					}
+					return string.Compare (x.LocalPath, y.LocalPath, StringComparison.Ordinal);
 				}
-				return (TResult)result;
+				if (fileSystem.Directory.Exists (y)) {
+					return 1;
+				}
+				return string.Compare (x.LocalPath, y.LocalPath, StringComparison.Ordinal);
 			});
 		}
+
+		#region IEnumerable implementation
+
+		public IEnumerator<SafeUri> GetEnumerator ()
+		{
+			return files.GetEnumerator ();
+		}
+
+		IEnumerator IEnumerable.GetEnumerator ()
+		{
+			return files.GetEnumerator ();
+		}
+
+		#endregion
 	}
 }

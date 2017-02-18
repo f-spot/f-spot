@@ -31,93 +31,62 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using GLib;
 using Hyena;
 
-namespace FSpot.Utils
+namespace FSpot.FileSystem
 {
 	public class RecursiveFileEnumerator : IEnumerable<SafeUri>
 	{
-		string root;
+		SafeUri root;
+		IFileSystem fileSystem;
 
 		public bool Recurse { get; set; }
 		public bool CatchErrors { get; set; }
 		public bool IgnoreSymlinks { get; set; }
 
-		public RecursiveFileEnumerator (string root)
+		public RecursiveFileEnumerator (SafeUri root, IFileSystem fileSystem)
 		{
 			this.root = root;
+			this.fileSystem = fileSystem;
+
 			Recurse = true;
 			CatchErrors = false;
 			IgnoreSymlinks = false;
 		}
 
-		IEnumerable<File> ScanForFiles (File rootFile)
+		IEnumerable<SafeUri> ScanForFiles (SafeUri rootPath)
 		{
-			FileInfo root_info;
+			bool isSymlink;
+			// TODO: this try catch was ported from the old glib implementation
+			// could be removed when exceptions are handle up the call stack
 			try {
-				root_info = rootFile.QueryInfo ("standard::name,standard::type,standard::is-symlink", FileQueryInfoFlags.None, null);
-			} catch (GException e) {
+				isSymlink = fileSystem.File.IsSymlink (rootPath);
+			} catch (Exception e) {
 				if (!CatchErrors)
 					throw e;
 				yield break;
 			}
 
-			using (root_info) {
-				if (root_info.IsSymlink && IgnoreSymlinks) {
-					yield break;
-				}
-				if (root_info.FileType == FileType.Regular) {
-					yield return rootFile;
-				} else if (root_info.FileType == FileType.Directory) {
-					foreach (var child in ScanDirectoryForFiles (rootFile)) {
-						yield return child;
-					}
-				}
-			}
-		}
-
-		IEnumerable<File> ScanDirectoryForFiles (File rootDir)
-		{
-			SortedFileEnumerator enumerator;
-			try {
-				using (var fileEnumerator = rootDir.EnumerateChildren ("standard::name,standard::type,standard::is-symlink", FileQueryInfoFlags.None, null)) {
-					enumerator = new SortedFileEnumerator (fileEnumerator.GetEnumerator (), CatchErrors);
-				}
-			} catch (GException e) {
-				if (!CatchErrors)
-					throw e;
+			if (isSymlink && IgnoreSymlinks) {
 				yield break;
 			}
-
-			foreach (var info in enumerator) {
-				File file = rootDir.GetChild (info.Name);
-
-				// The code below looks like a duplication of ScanForFiles
-				// (which could be invoked here instead), but doing so would
-				// lead to a double type query on files (using QueryInfo).
-				if (info.IsSymlink && IgnoreSymlinks) {
-					continue;
-				}
-
-				if (info.FileType == FileType.Regular) {
-					yield return file;
-				} else if (info.FileType == FileType.Directory && Recurse) {
-					foreach (var child in ScanDirectoryForFiles (file)) {
-						yield return child;
+			if (fileSystem.File.Exists (rootPath)) {
+				yield return rootPath;
+			} else if (fileSystem.Directory.Exists (rootPath)) {
+				foreach (var child in new SortedFileEnumerator (fileSystem.Directory.Enumerate (rootPath), fileSystem)) {
+					foreach (var file in ScanForFiles (child)) {
+						yield return file;
 					}
 				}
-				info.Dispose ();
 			}
 		}
 
 		public IEnumerator<SafeUri> GetEnumerator ()
 		{
-			var file = FileFactory.NewForUri (root);
-			return ScanForFiles (file).Select (f => new SafeUri (f.Uri, true)).GetEnumerator ();
+			return ScanForFiles (root).GetEnumerator ();
 		}
 
 		IEnumerator IEnumerable.GetEnumerator ()

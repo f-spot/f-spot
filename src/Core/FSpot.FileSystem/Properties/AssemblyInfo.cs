@@ -1,10 +1,10 @@
 ﻿//
-// MultiImportSource.cs
+// AssemblyInfo.cs
 //
 // Author:
 //   Daniel Köb <daniel.koeb@peony.at>
 //
-// Copyright (C) 2016 Daniel Köb
+// Copyright (C) 2017 Daniel Köb
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -26,26 +26,6 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System.Collections.Generic;
-using FSpot.FileSystem;
-using FSpot.Imaging;
-using Hyena;
+using System.Runtime.CompilerServices;
 
-namespace FSpot.Import
-{
-	public class MultiImportSource : ImportSource
-	{
-		readonly IEnumerable<SafeUri> uris;
-
-		public MultiImportSource (IEnumerable<SafeUri> uris)
-			: base (null, string.Empty, string.Empty)
-		{
-			this.uris = uris;
-		}
-
-		public override IImportSource GetFileImportSource (IImageFileFactory factory, IFileSystem fileSystem)
-		{
-			return new MultiFileImportSource (uris, factory, fileSystem);
-		}
-	}
-}
+[assembly: InternalsVisibleTo ("FSpot.FileSystem.UnitTest")]

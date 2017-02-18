@@ -30,8 +30,8 @@
 //
 
 using System.Collections.Generic;
+using FSpot.FileSystem;
 using FSpot.Imaging;
-using FSpot.Utils;
 using Hyena;
 using Mono.Unix;
 
@@ -42,15 +42,17 @@ namespace FSpot.Import
 		#region fields
 
 		readonly SafeUri root;
+		readonly IFileSystem fileSystem;
 		readonly IImageFileFactory factory;
 
 		#endregion
 
 		#region ctors
 
-		public FileImportSource (SafeUri root, IImageFileFactory factory)
+		public FileImportSource (SafeUri root, IImageFileFactory factory, IFileSystem fileSystem)
 		{
 			this.root = root;
+			this.fileSystem = fileSystem;
 			this.factory = factory;
 		}
 
@@ -69,7 +71,7 @@ namespace FSpot.Import
 
 		protected IEnumerable<FileImportInfo> ScanPhotoDirectory (bool recurseSubdirectories, bool mergeRawAndJpeg, SafeUri uri)
 		{
-			var enumerator = (new RecursiveFileEnumerator (uri) {
+			var enumerator = (new RecursiveFileEnumerator (uri, fileSystem) {
 				Recurse = recurseSubdirectories,
 				CatchErrors = true,
 				IgnoreSymlinks = true

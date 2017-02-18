@@ -46,6 +46,9 @@
     <Compile Include="GLibDirectory.cs" />
     <Compile Include="IDirectory.cs" />
     <Compile Include="ModuleController.cs" />
+    <Compile Include="RecursiveFileEnumerator.cs" />
+    <Compile Include="SortedFileEnumerator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\lib\gio-sharp\gio-sharp.csproj">
