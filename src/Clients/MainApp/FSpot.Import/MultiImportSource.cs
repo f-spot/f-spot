@@ -27,6 +27,7 @@
 //
 
 using System.Collections.Generic;
+using FSpot.FileSystem;
 using FSpot.Imaging;
 using Hyena;
 
@@ -42,9 +43,9 @@ namespace FSpot.Import
 			this.uris = uris;
 		}
 
-		public override IImportSource GetFileImportSource (IImageFileFactory factory)
+		public override IImportSource GetFileImportSource (IImageFileFactory factory, IFileSystem fileSystem)
 		{
-			return new MultiFileImportSource (uris, factory);
+			return new MultiFileImportSource (uris, factory, fileSystem);
 		}
 	}
 }

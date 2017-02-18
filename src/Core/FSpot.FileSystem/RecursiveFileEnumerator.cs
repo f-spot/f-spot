@@ -47,10 +47,10 @@ namespace FSpot.FileSystem
 		public bool CatchErrors { get; set; }
 		public bool IgnoreSymlinks { get; set; }
 
-		public RecursiveFileEnumerator (string root)
+		public RecursiveFileEnumerator (SafeUri root, IFileSystem fileSystem)
 		{
-			this.root = new SafeUri (root);
-			fileSystem = new GLibFileSystem ();
+			this.root = root;
+			this.fileSystem = fileSystem;
 
 			Recurse = true;
 			CatchErrors = false;

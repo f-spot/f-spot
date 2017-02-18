@@ -34,6 +34,7 @@ using System.Collections.Generic;
 using System.Threading;
 using FSpot.Core;
 using FSpot.Database;
+using FSpot.FileSystem;
 using FSpot.Imaging;
 using FSpot.Settings;
 using Gtk;
@@ -218,7 +219,9 @@ namespace FSpot.Import
 				CancelScan ();
 			}
 
-			var source = active_source.GetFileImportSource (App.Instance.Container.Resolve<IImageFileFactory> ());
+			var source = active_source.GetFileImportSource (
+				App.Instance.Container.Resolve<IImageFileFactory> (),
+				App.Instance.Container.Resolve<IFileSystem> ());
 			Photos.Collection = new PhotoList ();
 
 			scanTokenSource = new CancellationTokenSource ();
