@@ -69,22 +69,25 @@ namespace FSpot.FileSystem
 		public string GetMimeType (SafeUri uri)
 		{
 			var file = FileFactory.NewForUri (uri);
-			var info = file.QueryInfo ("standard::content-type", FileQueryInfoFlags.None, null);
-			return info.ContentType;
+			using (var info = file.QueryInfo ("standard::content-type", FileQueryInfoFlags.None, null)) {
+				return info.ContentType;
+			}
 		}
 
 		public ulong GetMTime (SafeUri uri)
 		{
 			var file = FileFactory.NewForUri (uri);
-			var info = file.QueryInfo ("time::modified", FileQueryInfoFlags.None, null);
-			return info.GetAttributeULong ("time::modified");
+			using (var info = file.QueryInfo ("time::modified", FileQueryInfoFlags.None, null)) {
+				return info.GetAttributeULong ("time::modified");
+			}
 		}
 
 		public long GetSize (SafeUri uri)
 		{
 			var file = FileFactory.NewForUri (uri);
-			var info = file.QueryInfo ("standard::size", FileQueryInfoFlags.None, null);
-			return info.Size;
+			using (var info = file.QueryInfo ("standard::size", FileQueryInfoFlags.None, null)) {
+				return info.Size;
+			}
 		}
 
 		public Stream Read (SafeUri uri)
