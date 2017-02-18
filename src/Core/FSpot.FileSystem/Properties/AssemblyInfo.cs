@@ -1,10 +1,10 @@
-//
-// SortedFileEnumerator.cs
+﻿//
+// AssemblyInfo.cs
 //
 // Author:
 //   Daniel Köb <daniel.koeb@peony.at>
 //
-// Copyright (C) 2016 Daniel Köb
+// Copyright (C) 2017 Daniel Köb
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -26,48 +26,6 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Hyena;
+using System.Runtime.CompilerServices;
 
-namespace FSpot.FileSystem
-{
-	class SortedFileEnumerator : IEnumerable<SafeUri>
-	{
-		readonly List<SafeUri> files;
-
-		public SortedFileEnumerator (IEnumerable<SafeUri> baseEnumerable, IFileSystem fileSystem)
-		{
-			files = baseEnumerable.ToList ();
-
-			files.Sort ((x, y) => {
-				if (fileSystem.Directory.Exists (x)) {
-					if (fileSystem.File.Exists (y)) {
-						return -1;
-					}
-					return string.Compare (x.LocalPath, y.LocalPath, StringComparison.Ordinal);
-				}
-				if (fileSystem.Directory.Exists (y)) {
-					return 1;
-				}
-				return string.Compare (x.LocalPath, y.LocalPath, StringComparison.Ordinal);
-			});
-		}
-
-		#region IEnumerable implementation
-
-		public IEnumerator<SafeUri> GetEnumerator ()
-		{
-			return files.GetEnumerator ();
-		}
-
-		IEnumerator IEnumerable.GetEnumerator ()
-		{
-			return files.GetEnumerator ();
-		}
-
-		#endregion
-	}
-}
+[assembly: InternalsVisibleTo ("FSpot.FileSystem.UnitTest")]

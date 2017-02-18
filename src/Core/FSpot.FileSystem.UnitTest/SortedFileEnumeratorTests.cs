@@ -26,10 +26,8 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using System.Collections;
 using System.Linq;
-using GLib;
+using Hyena;
 using Moq;
 using NUnit.Framework;
 
@@ -38,80 +36,78 @@ namespace FSpot.FileSystem.UnitTest
 	[TestFixture]
 	public class SortedFileEnumeratorTests
 	{
+		IFileSystem GetFileSystemMock ()
+		{
+			return Mock.Of<IFileSystem> (m =>
+				m.File == Mock.Of<IFile> () &&
+				m.Directory == Mock.Of<IDirectory> ());
+		}
+
+		void AddFile (IFileSystem fileSystem, SafeUri file)
+		{
+			Mock.Get (fileSystem.File).Setup (m => m.Exists (file)).Returns (true);
+		}
+
+		void AddDirectory (IFileSystem fileSystem, SafeUri dir)
+		{
+			Mock.Get (fileSystem.Directory).Setup (m => m.Exists (dir)).Returns (true);
+		}
+
 		[Test]
 		public void FilesAppearSorted ()
 		{
-			var file1 = new FileInfo{ Name = "1", FileType = FileType.Regular };
-			var file2 = new FileInfo{ Name = "2", FileType = FileType.Regular };
+			var file1 = new SafeUri ("/1");
+			var file2 = new SafeUri ("/2");
+
+			var fileSystem = GetFileSystemMock ();
+			AddFile (fileSystem, file1);
+			AddFile (fileSystem, file2);
 
 			// 1-2
-			var result1 = new SortedFileEnumerator (new[]{ file1, file2 }.GetEnumerator (), true).ToArray ();
+			var result1 = new SortedFileEnumerator (new [] { file1, file2 }, fileSystem).ToArray ();
 			// 2-1
-			var result2 = new SortedFileEnumerator (new[]{ file2, file1 }.GetEnumerator (), true).ToArray ();
+			var result2 = new SortedFileEnumerator (new [] { file2, file1 }, fileSystem).ToArray ();
 
-			CollectionAssert.AreEqual (new[]{ file1, file2 }, result1);
-			CollectionAssert.AreEqual (new[]{ file1, file2 }, result2);
+			CollectionAssert.AreEqual (new [] { file1, file2 }, result1);
+			CollectionAssert.AreEqual (new [] { file1, file2 }, result2);
 		}
 
 		[Test]
 		public void DirectoriesAppearSorted ()
 		{
-			var dir1 = new FileInfo{ Name = "1", FileType = FileType.Directory };
-			var dir2 = new FileInfo{ Name = "2", FileType = FileType.Directory };
+			var dir1 = new SafeUri ("/1");
+			var dir2 = new SafeUri ("/2");
+
+			var fileSystem = GetFileSystemMock ();
+			AddDirectory (fileSystem, dir1);
+			AddDirectory (fileSystem, dir2);
 
 			// 1-2
-			var result1 = new SortedFileEnumerator (new[]{ dir1, dir2 }.GetEnumerator (), true).ToArray ();
+			var result1 = new SortedFileEnumerator (new [] { dir1, dir2 }, fileSystem).ToArray ();
 			// 2-1
-			var result2 = new SortedFileEnumerator (new[]{ dir2, dir1 }.GetEnumerator (), true).ToArray ();
+			var result2 = new SortedFileEnumerator (new [] { dir2, dir1 }, fileSystem).ToArray ();
 
-			CollectionAssert.AreEqual (new[]{ dir1, dir2 }, result1);
-			CollectionAssert.AreEqual (new[]{ dir1, dir2 }, result2);
+			CollectionAssert.AreEqual (new [] { dir1, dir2 }, result1);
+			CollectionAssert.AreEqual (new [] { dir1, dir2 }, result2);
 		}
 
 		[Test]
 		public void DirectoriesAppearBeforeFiles ()
 		{
-			var file = new FileInfo{ Name = "1", FileType = FileType.Directory };
-			var dir = new FileInfo{ Name = "1", FileType = FileType.Regular };
+			var file = new SafeUri ("/1");
+			var dir = new SafeUri ("/2");
+
+			var fileSystem = GetFileSystemMock ();
+			AddFile (fileSystem, file);
+			AddDirectory (fileSystem, dir);
 
 			// file, dir
-			var result1 = new SortedFileEnumerator (new[]{ file, dir }.GetEnumerator (), true).ToArray ();
+			var result1 = new SortedFileEnumerator (new [] { file, dir }, fileSystem).ToArray ();
 			// dir, file
-			var result2 = new SortedFileEnumerator (new[]{ dir, file }.GetEnumerator (), true).ToArray ();
+			var result2 = new SortedFileEnumerator (new [] { dir, file }, fileSystem).ToArray ();
 
-			CollectionAssert.AreEqual (new[]{ dir, file }, result1);
-			CollectionAssert.AreEqual (new[]{ dir, file }, result2);
-		}
-
-		[Test]
-		public void FilesAreSkippedOnExceptions ()
-		{
-			var file1 = new FileInfo{ Name = "1", FileType = FileType.Regular };
-			var file3 = new FileInfo{ Name = "3", FileType = FileType.Regular };
-
-			var list = new Mock<IEnumerator> ();
-			list.SetupSequence (l => l.MoveNext ())
-			    .Returns (true)
-			    .Throws (new GException (IntPtr.Zero))
-			    .Returns (true)
-			    .Returns (false);
-			list.SetupSequence (l => l.Current)
-			    .Returns (file1)
-			    .Returns (file3);
-
-			// file, dir
-			var result = new SortedFileEnumerator (list.Object, true).ToArray ();
-
-			CollectionAssert.AreEqual (new[]{ file1, file3 }, result);
-		}
-
-		[Test]
-		public void ExceptionIsThrownIfNotCaught ()
-		{
-			var list = new Mock<IEnumerator> ();
-			list.Setup (l => l.MoveNext ()).Throws (new GException (IntPtr.Zero));
-
-			Assert.Throws<GException> (() => new SortedFileEnumerator (list.Object, false));
+			CollectionAssert.AreEqual (new [] { dir, file }, result1);
+			CollectionAssert.AreEqual (new [] { dir, file }, result2);
 		}
 	}
 }
