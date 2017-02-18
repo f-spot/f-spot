@@ -42,6 +42,14 @@ namespace FSpot.FileSystem
 			return file.Exists && file.QueryFileType (FileQueryInfoFlags.None, null) == FileType.Regular;
 		}
 
+		public bool IsSymlink (SafeUri uri)
+		{
+			var file = FileFactory.NewForUri (uri);
+			using (var root_info = file.QueryInfo ("standard::is-symlink", FileQueryInfoFlags.None, null)) {
+				return root_info.IsSymlink;
+			}
+		}
+
 		public void Copy (SafeUri source, SafeUri destination, bool overwrite)
 		{
 			var source_file = FileFactory.NewForUri (source);
