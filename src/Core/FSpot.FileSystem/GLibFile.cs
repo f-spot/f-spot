@@ -39,7 +39,7 @@ namespace FSpot.FileSystem
 		public bool Exists (SafeUri uri)
 		{
 			var file = FileFactory.NewForUri (uri);
-			return file.Exists;
+			return file.Exists && file.QueryFileType (FileQueryInfoFlags.None, null) == FileType.Regular;
 		}
 
 		public void Copy (SafeUri source, SafeUri destination, bool overwrite)
