@@ -26,10 +26,10 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
+using System.Collections.Generic;
 using FSpot.Utils;
-using Hyena;
 using GLib;
+using Hyena;
 
 namespace FSpot.FileSystem
 {
@@ -62,6 +62,19 @@ namespace FSpot.FileSystem
 				return;
 			}
 			directory.Delete (null);
+		}
+
+		public IEnumerable<SafeUri> Enumerate (SafeUri uri)
+		{
+			var directory = FileFactory.NewForUri (uri);
+			if (!directory.Exists || directory.QueryFileType (FileQueryInfoFlags.None, null) != FileType.Directory) {
+				yield break;
+			}
+			using (var fileEnumerator = directory.EnumerateChildren ("standard::name", FileQueryInfoFlags.None, null)) {
+				foreach (var fileInfo in fileEnumerator) {
+					yield return uri.Append (((FileInfo)fileInfo).Name);
+				}
+			}
 		}
 	}
 }
