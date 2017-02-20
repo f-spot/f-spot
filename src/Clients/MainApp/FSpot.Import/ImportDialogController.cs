@@ -218,6 +218,9 @@ namespace FSpot.Import
 			if (scanThread != null) {
 				CancelScan ();
 			}
+			if (active_source == null) {
+				return;
+			}
 
 			var source = active_source.GetFileImportSource (
 				App.Instance.Container.Resolve<IImageFileFactory> (),

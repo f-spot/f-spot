@@ -57,7 +57,7 @@ namespace FSpot.FileSystem
 			IgnoreSymlinks = false;
 		}
 
-		IEnumerable<SafeUri> ScanForFiles (SafeUri rootPath)
+		IEnumerable<SafeUri> ScanForFiles (SafeUri rootPath, bool firstLevel)
 		{
 			bool isSymlink;
 			// TODO: this try catch was ported from the old glib implementation
@@ -76,8 +76,11 @@ namespace FSpot.FileSystem
 			if (fileSystem.File.Exists (rootPath)) {
 				yield return rootPath;
 			} else if (fileSystem.Directory.Exists (rootPath)) {
+				if (!firstLevel && ! Recurse) {
+					yield break;
+				}
 				foreach (var child in new SortedFileEnumerator (fileSystem.Directory.Enumerate (rootPath), fileSystem)) {
-					foreach (var file in ScanForFiles (child)) {
+					foreach (var file in ScanForFiles (child, false)) {
 						yield return file;
 					}
 				}
@@ -86,7 +89,7 @@ namespace FSpot.FileSystem
 
 		public IEnumerator<SafeUri> GetEnumerator ()
 		{
-			return ScanForFiles (root).GetEnumerator ();
+			return ScanForFiles (root, true).GetEnumerator ();
 		}
 
 		IEnumerator IEnumerable.GetEnumerator ()
