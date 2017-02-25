@@ -45,7 +45,7 @@ namespace FSpot.Import
 {
 	public class ImportDialogController
 	{
-		public BrowsableCollectionProxy Photos { get; private set; }
+		public PhotoList Photos { get; private set; }
 
 		public ImportDialogController (bool persistPreferences)
 		{
@@ -54,7 +54,7 @@ namespace FSpot.Import
 			// headless.
 			persist_preferences = persistPreferences;
 
-			Photos = new BrowsableCollectionProxy ();
+			Photos = new PhotoList ();
 			FailedImports = new List<SafeUri> ();
 			LoadPreferences ();
 		}
@@ -225,7 +225,7 @@ namespace FSpot.Import
 			var source = active_source.GetFileImportSource (
 				App.Instance.Container.Resolve<IImageFileFactory> (),
 				App.Instance.Container.Resolve<IFileSystem> ());
-			Photos.Collection = new PhotoList ();
+			Photos.Clear ();
 
 			scanTokenSource = new CancellationTokenSource ();
 			scanThread = ThreadAssist.Spawn (() => DoScan (source, recurse_subdirectories, merge_raw_and_jpeg, scanTokenSource.Token));
@@ -254,7 +254,7 @@ namespace FSpot.Import
 			FireEvent (ImportEvent.PhotoScanStarted);
 
 			foreach (var info in source.ScanPhotos (recurse, merge)) {
-				ThreadAssist.ProxyToMain (() => ((PhotoList)Photos.Collection).Add (info));
+				ThreadAssist.ProxyToMain (() => Photos.Add (info));
 				if (token.IsCancellationRequested)
 					break;
 			}
@@ -294,7 +294,7 @@ namespace FSpot.Import
 			FireEvent (ImportEvent.ImportStarted);
 
 			var importer = App.Instance.Container.Resolve<IImportController> ();
-			importer.DoImport (App.Instance.Database, Photos.Collection, attach_tags, DuplicateDetect, CopyFiles,
+			importer.DoImport (App.Instance.Database, Photos, attach_tags, DuplicateDetect, CopyFiles,
 				RemoveOriginals, (current, total) => ThreadAssist.ProxyToMain (() => ReportProgress (current, total)),
 				token);
 

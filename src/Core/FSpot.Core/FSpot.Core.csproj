@@ -28,7 +28,6 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="BrowsableCollectionProxy.cs" />
     <Compile Include="BrowsableEventArgs.cs" />
     <Compile Include="BrowsablePointer.cs" />
     <Compile Include="BrowsablePointerChangedEventArgs.cs" />
