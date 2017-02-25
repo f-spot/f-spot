@@ -142,7 +142,7 @@ namespace FSpot
 		}
 
 		[Obsolete ("DO NOT USE Items on PhotoQuery")]
-		public IPhoto [] Items {
+		public IEnumerable<IPhoto> Items {
 			get { throw new NotImplementedException (); }
 		}
 

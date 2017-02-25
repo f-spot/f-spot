@@ -43,6 +43,7 @@ using Mono.Unix;
 
 using Hyena;
 using Hyena.Widgets;
+using System.Linq;
 
 namespace FSpot.Widgets
 {
@@ -190,7 +191,7 @@ namespace FSpot.Widgets
 			}
 			if ((Page.Sidebar as Sidebar).Selection == null)
 				return false;
-			state.Items = (Page.Sidebar as Sidebar).Selection.Items;
+			state.Items = (Page.Sidebar as Sidebar).Selection.Items.ToArray ();
 
 			editor.Initialize (state);
 			return true;

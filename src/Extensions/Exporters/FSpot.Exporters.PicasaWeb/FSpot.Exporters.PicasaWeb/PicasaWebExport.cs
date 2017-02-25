@@ -56,6 +56,7 @@ using FSpot.UI.Dialog;
 
 using Mono.Google;
 using Mono.Google.Picasa;
+using System.Linq;
 
 namespace FSpot.Exporters.PicasaWeb
 {
@@ -81,7 +82,7 @@ namespace FSpot.Exporters.PicasaWeb
 			gallery_optionmenu.Show ();
 			album_optionmenu.Show ();
 
-			this.items = selection.Items;
+			this.items = selection.Items.ToArray ();
 			album_button.Sensitive = false;
 			var view = new TrayView (selection);
 			view.DisplayDates = false;

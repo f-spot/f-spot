@@ -25,6 +25,7 @@
 //
 
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FSpot.Core.UnitTest.Mocks
 {
@@ -61,9 +62,9 @@ namespace FSpot.Core.UnitTest.Mocks
         {
             throw new System.NotImplementedException ();
         }
-        public IPhoto[] Items {
+        public IEnumerable<IPhoto> Items {
             get {
-                return itemCollection.ToArray ();
+                return itemCollection.AsEnumerable ();
             }
         }
         public IPhoto this [int index] {

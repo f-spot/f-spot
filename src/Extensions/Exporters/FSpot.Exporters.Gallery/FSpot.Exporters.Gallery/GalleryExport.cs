@@ -45,6 +45,7 @@ using FSpot.UI.Dialog;
 using FSpot.Extensions;
 
 using Hyena;
+using System.Linq;
 
 namespace FSpot.Exporters.Gallery
 {
@@ -70,7 +71,7 @@ namespace FSpot.Exporters.Gallery
 			(edit_button.Parent as Gtk.HBox).ReorderChild (gallery_optionmenu, 1);
 			gallery_optionmenu.Show ();
 
-			this.items = selection.Items;
+			this.items = selection.Items.ToArray ();
 			Array.Sort<IPhoto> (this.items, new IPhotoComparer.CompareDateName ());
 			album_button.Sensitive = false;
 			var view = new TrayView (selection);

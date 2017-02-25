@@ -28,13 +28,13 @@
 //
 
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FSpot.Core
 {
     public class PhotoList : IBrowsableCollection
     {
         protected List<IPhoto> list;
-        IPhoto[] cache;
 
         public PhotoList (IEnumerable<IPhoto> photos)
         {
@@ -95,7 +95,6 @@ namespace FSpot.Core
 
         public void Reload ()
         {
-            cache = null;
             Changed?.Invoke (this);
         }
 
@@ -109,13 +108,7 @@ namespace FSpot.Core
             ItemsChanged?.Invoke (this, args);
         }
 
-        public IPhoto[] Items {
-            get { return cache ?? (cache = list.ToArray ()); }
-            set {
-                list.Clear ();
-                Add (value);
-            }
-        }
+        public IEnumerable<IPhoto> Items => list.AsEnumerable ();
 
         public event IBrowsableCollectionChangedHandler Changed;
         public event IBrowsableCollectionItemsChangedHandler ItemsChanged;

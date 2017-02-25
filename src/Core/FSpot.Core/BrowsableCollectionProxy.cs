@@ -27,6 +27,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System.Collections.Generic;
 
 namespace FSpot.Core
 {
@@ -86,7 +87,7 @@ namespace FSpot.Core
             collection?.MarkChanged (num, changes);
         }
 
-        public IPhoto [] Items => collection.Items;
+        public IEnumerable<IPhoto> Items => collection.Items;
 
         protected virtual void ChangedHandler (IBrowsableCollection collection)
         {
