@@ -64,6 +64,7 @@ namespace GLib
 			can_seek = stream is Seekable && (stream as Seekable).CanSeek;
 		}
 
+#if GIO_SHARP_2_22
 		public GioStream (IOStream stream)
 		{
 			this.stream = stream;
@@ -71,6 +72,7 @@ namespace GLib
 			can_write = true;
 			can_seek = stream is Seekable && (stream as Seekable).CanSeek;
 		}
+#endif
 
 		public override bool CanSeek {
 			get { return can_seek; }
@@ -99,10 +101,12 @@ namespace GLib
 					FileInfo info = (stream as FileOutputStream).QueryInfo ("standard::size", null);
 					return info.Size;
 				}
+#if GIO_SHARP_2_22
 				if (stream is FileIOStream) {
 					FileInfo info = (stream as FileIOStream).QueryInfo ("standard::size", null);
 					return info.Size;
 				}
+#endif
 				throw new NotImplementedException (String.Format ("not implemented for {0} streams", stream.GetType()));
 			}
 		}
@@ -143,8 +147,10 @@ namespace GLib
 			InputStream input_stream = null;
 			if (stream is InputStream)
 				input_stream = stream as InputStream;
+#if GIO_SHARP_2_22
 			else if (stream is IOStream)
 				input_stream = (stream as IOStream).InputStream;
+#endif
 			if (input_stream == null)
 				throw new System.Exception ("this shouldn't happen");
 
@@ -175,8 +181,10 @@ namespace GLib
 			OutputStream output_stream = null;
 			if (stream is OutputStream)
 				output_stream = stream as OutputStream;
+#if GIO_SHARP_2_22
 			else if (stream is IOStream)
 				output_stream = (stream as IOStream).OutputStream;
+#endif
 			if (output_stream == null)
 				throw new System.Exception ("this shouldn't happen");
 			if (offset == 0) {
@@ -237,8 +245,10 @@ namespace GLib
 				(stream as InputStream).Close (null);
 			if (stream is OutputStream)
 				(stream as OutputStream).Close (null);
+#if GIO_SHARP_2_22
 			if (stream is IOStream)
 				(stream as IOStream).Close (null);
+#endif
 			is_disposed = true;
 		}
 	}

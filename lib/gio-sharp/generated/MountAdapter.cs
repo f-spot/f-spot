@@ -87,10 +87,10 @@ namespace GLib {
 		[DllImport("libgio-2.0-0.dll")]
 		static extern IntPtr g_mount_guess_content_type_sync(IntPtr raw, bool force_rescan, IntPtr cancellable, out IntPtr error);
 
-		public string GuessContentTypeSync(bool force_rescan, GLib.Cancellable cancellable) {
+		public string[] GuessContentTypeSync(bool force_rescan, GLib.Cancellable cancellable) {
 			IntPtr error = IntPtr.Zero;
 			IntPtr raw_ret = g_mount_guess_content_type_sync(Handle, force_rescan, cancellable == null ? IntPtr.Zero : cancellable.Handle, out error);
-			string ret = GLib.Marshaller.PtrToStringGFree(raw_ret);
+			string[] ret = GLib.Marshaller.NullTermPtrToStringArray (raw_ret, false);
 			if (error != IntPtr.Zero) throw new GLib.GException (error);
 			return ret;
 		}
@@ -208,10 +208,10 @@ namespace GLib {
 		[DllImport("libgio-2.0-0.dll")]
 		static extern IntPtr g_mount_guess_content_type_finish(IntPtr raw, IntPtr result, out IntPtr error);
 
-		public string GuessContentTypeFinish(GLib.AsyncResult result) {
+		public string[] GuessContentTypeFinish(GLib.AsyncResult result) {
 			IntPtr error = IntPtr.Zero;
 			IntPtr raw_ret = g_mount_guess_content_type_finish(Handle, result == null ? IntPtr.Zero : result.Handle, out error);
-			string ret = GLib.Marshaller.PtrToStringGFree(raw_ret);
+			string[] ret = GLib.Marshaller.NullTermPtrToStringArray (raw_ret, false);
 			if (error != IntPtr.Zero) throw new GLib.GException (error);
 			return ret;
 		}

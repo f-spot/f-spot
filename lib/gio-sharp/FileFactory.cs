@@ -48,10 +48,10 @@ namespace GLib
 
 		[DllImport ("libgio-2.0-0.dll")]
 		private static extern IntPtr g_file_new_for_path (string path);
-		
+
 		public static File NewForPath (string path)
 		{
-			return GLib.FileAdapter.GetObject (g_file_new_for_path (path), false) as File;	
+			return GLib.FileAdapter.GetObject (g_file_new_for_path (path), false) as File;
 		}
 
 		[DllImport ("libgio-2.0-0.dll")]

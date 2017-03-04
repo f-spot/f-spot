@@ -120,9 +120,6 @@ namespace GLib {
 		bool MakeSymbolicLink(string symlink_value, GLib.Cancellable cancellable);
 		bool ReplaceContents(string contents, string etag, bool make_backup, GLib.FileCreateFlags flags, string new_etag, GLib.Cancellable cancellable);
 		void UnmountMountable(GLib.MountUnmountFlags flags, GLib.Cancellable cancellable, GLib.AsyncReadyCallback cb);
-		string Uri { 
-			get;
-		}
 		GLib.FileInfo QueryFilesystemInfo(string attributes, GLib.Cancellable cancellable);
 		GLib.FileInputStream ReadFinish(GLib.AsyncResult res);
 		GLib.FileIOStream ReplaceReadwrite(string etag, bool make_backup, GLib.FileCreateFlags flags, GLib.Cancellable cancellable);
@@ -159,7 +156,14 @@ bool Exists
 	get;
 }
 
-bool Delete();
+System.Uri Uri
+{
+	get;
+}
+
+bool Delete ();
+
+void Dispose ();
 
 #endregion
 	}

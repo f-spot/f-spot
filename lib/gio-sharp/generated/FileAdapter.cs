@@ -23,7 +23,7 @@ namespace GLib {
 			public GetUriSchemeDelegate get_uri_scheme;
 			public GetBasenameDelegate get_basename;
 			public GetPathDelegate get_path;
-			public GetUriDelegate get_uri;
+			public IntPtr get_uri;
 			public IntPtr get_parse_name;
 			public GetParentDelegate get_parent;
 			public IntPtr prefix_matches;
@@ -127,7 +127,6 @@ namespace GLib {
 			iface.get_uri_scheme = new GetUriSchemeDelegate (GetUriSchemeCallback);
 			iface.get_basename = new GetBasenameDelegate (GetBasenameCallback);
 			iface.get_path = new GetPathDelegate (GetPathCallback);
-			iface.get_uri = new GetUriDelegate (GetUriCallback);
 			iface.get_parent = new GetParentDelegate (GetParentCallback);
 			iface.get_relative_path = new GetRelativePathDelegate (GetRelativePathCallback);
 			iface.resolve_relative_path = new ResolveRelativePathDelegate (ResolveRelativePathCallback);
@@ -321,22 +320,6 @@ namespace GLib {
 			try {
 				GLib.FileImplementor __obj = GLib.Object.GetObject (file, false) as GLib.FileImplementor;
 				string __result = __obj.Path;
-				return GLib.Marshaller.StringToPtrGStrdup(__result);
-			} catch (Exception e) {
-				GLib.ExceptionManager.RaiseUnhandledException (e, true);
-				// NOTREACHED: above call does not return.
-				throw e;
-			}
-		}
-
-		[GLib.CDeclCallback]
-		delegate IntPtr GetUriDelegate (IntPtr file);
-
-		static IntPtr GetUriCallback (IntPtr file)
-		{
-			try {
-				GLib.FileImplementor __obj = GLib.Object.GetObject (file, false) as GLib.FileImplementor;
-				string __result = __obj.Uri;
 				return GLib.Marshaller.StringToPtrGStrdup(__result);
 			} catch (Exception e) {
 				GLib.ExceptionManager.RaiseUnhandledException (e, true);
@@ -2787,17 +2770,6 @@ namespace GLib {
 		}
 
 		[DllImport("libgio-2.0-0.dll")]
-		static extern IntPtr g_file_get_uri(IntPtr raw);
-
-		public string Uri { 
-			get {
-				IntPtr raw_ret = g_file_get_uri(Handle);
-				string ret = GLib.Marshaller.PtrToStringGFree(raw_ret);
-				return ret;
-			}
-		}
-
-		[DllImport("libgio-2.0-0.dll")]
 		static extern IntPtr g_file_query_filesystem_info(IntPtr raw, IntPtr attributes, IntPtr cancellable, out IntPtr error);
 
 		public GLib.FileInfo QueryFilesystemInfo(string attributes, GLib.Cancellable cancellable) {
@@ -2877,7 +2849,7 @@ namespace GLib {
 
 public override string ToString ()
 {
-	return Uri;
+	return Uri.ToString ();
 }
 
 public bool Exists {
@@ -2888,6 +2860,35 @@ public bool Delete ()
 {
 	return Delete (null);
 }
+
+[DllImport("libgio-2.0-0.dll")]
+static extern IntPtr g_file_get_uri(IntPtr raw);
+
+public System.Uri Uri {
+	get {
+		IntPtr raw_ret = g_file_get_uri(Handle);
+		string ret = GLib.Marshaller.PtrToStringGFree(raw_ret);
+		return new System.Uri (ret);
+	}
+}
+
+bool disposed = false;
+public void Dispose ()
+{
+    if (!disposed) {
+	    disposed = true;
+	    var o = GLib.Object.GetObject (Handle, false);
+	    if (o != null)
+		    o.Dispose ();
+    }
+}
+
+~FileAdapter ()
+{
+	if (!disposed)
+		Dispose ();
+}
+
 
 
 #endregion
