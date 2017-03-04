@@ -103,10 +103,12 @@ namespace FSpot.Exporters.CD
 		void Clean (System.Uri path)
 		{
 			GLib.File source = FileFactory.NewForUri (path);
-			foreach (GLib.FileInfo info in source.EnumerateChildren ("*", FileQueryInfoFlags.None, null)) {
-				if (info.FileType == FileType.Directory)
-					Clean (new System.Uri(path, info.Name + "/"));
-				FileFactory.NewForUri (new System.Uri (path, info.Name)).Delete ();
+			using (var children = source.EnumerateChildren ("*", FileQueryInfoFlags.None, null)) {
+				foreach (GLib.FileInfo info in children) {
+					if (info.FileType == FileType.Directory)
+						Clean (new System.Uri (path, info.Name + "/"));
+					FileFactory.NewForUri (new System.Uri (path, info.Name)).Delete ();
+				}
 			}
 		}
 
