@@ -90,7 +90,9 @@ namespace FSpot.Utils
         {
             if (always_sidecar || !metadata.Writeable || metadata.PossiblyCorrupt) {
                 if (!always_sidecar && metadata.PossiblyCorrupt) {
-                    Hyena.Log.WarningFormat ("Metadata of file {0} may be corrupt, refusing to write to it, falling back to XMP sidecar.", photo_uri);
+                    Hyena.Log.WarningFormat (
+                        "Metadata of file {0} may be corrupt, refusing to write to it, falling back to XMP sidecar.\nCorruption reasons:\n  {1}",
+                        photo_uri, string.Join ("\n  ", metadata.CorruptionReasons));
                 }
 
                 var sidecar_res = new GIOTagLibFileAbstraction () { Uri = GetSidecarUri (photo_uri) };
