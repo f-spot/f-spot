@@ -29,7 +29,7 @@ namespace GLib {
 		}
 
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate uint HashDelegate (IntPtr icon);
 
 		static uint HashCallback (IntPtr icon)
@@ -45,7 +45,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate bool EqualDelegate (IntPtr icon1, IntPtr icon2);
 
 		static bool EqualCallback (IntPtr icon1, IntPtr icon2)

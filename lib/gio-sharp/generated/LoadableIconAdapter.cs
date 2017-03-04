@@ -29,7 +29,7 @@ namespace GLib {
 		}
 
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr LoadDelegate (IntPtr icon, int size, IntPtr type, IntPtr cancellable, out IntPtr error);
 
 		static IntPtr LoadCallback (IntPtr icon, int size, IntPtr type, IntPtr cancellable, out IntPtr error)
@@ -47,7 +47,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void LoadAsyncDelegate (IntPtr icon, int size, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		static void LoadAsyncCallback (IntPtr icon, int size, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data)
@@ -61,7 +61,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr LoadFinishDelegate (IntPtr icon, IntPtr res, IntPtr type, out IntPtr error);
 
 		static IntPtr LoadFinishCallback (IntPtr icon, IntPtr res, IntPtr type, out IntPtr error)

@@ -200,7 +200,7 @@ namespace GLib {
 		}
 
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr DupDelegate (IntPtr file);
 
 		static IntPtr DupCallback (IntPtr file)
@@ -216,7 +216,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate uint HashDelegate (IntPtr file);
 
 		static uint HashCallback (IntPtr file)
@@ -232,7 +232,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate bool EqualDelegate (IntPtr file1, IntPtr file2);
 
 		static bool EqualCallback (IntPtr file1, IntPtr file2)
@@ -248,7 +248,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate bool IsNativeDelegate (IntPtr file);
 
 		static bool IsNativeCallback (IntPtr file)
@@ -264,7 +264,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate bool HasUriSchemeDelegate (IntPtr file, IntPtr uri_scheme);
 
 		static bool HasUriSchemeCallback (IntPtr file, IntPtr uri_scheme)
@@ -280,7 +280,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr GetUriSchemeDelegate (IntPtr file);
 
 		static IntPtr GetUriSchemeCallback (IntPtr file)
@@ -296,7 +296,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr GetBasenameDelegate (IntPtr file);
 
 		static IntPtr GetBasenameCallback (IntPtr file)
@@ -312,7 +312,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr GetPathDelegate (IntPtr file);
 
 		static IntPtr GetPathCallback (IntPtr file)
@@ -328,7 +328,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr GetParentDelegate (IntPtr file);
 
 		static IntPtr GetParentCallback (IntPtr file)
@@ -344,7 +344,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr GetRelativePathDelegate (IntPtr parent, IntPtr descendant);
 
 		static IntPtr GetRelativePathCallback (IntPtr parent, IntPtr descendant)
@@ -360,7 +360,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr ResolveRelativePathDelegate (IntPtr file, IntPtr relative_path);
 
 		static IntPtr ResolveRelativePathCallback (IntPtr file, IntPtr relative_path)
@@ -376,7 +376,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr GetChildForDisplayNameDelegate (IntPtr file, IntPtr display_name, out IntPtr error);
 
 		static IntPtr GetChildForDisplayNameCallback (IntPtr file, IntPtr display_name, out IntPtr error)
@@ -394,7 +394,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr EnumerateChildrenDelegate (IntPtr file, IntPtr attributes, int flags, IntPtr cancellable, out IntPtr error);
 
 		static IntPtr EnumerateChildrenCallback (IntPtr file, IntPtr attributes, int flags, IntPtr cancellable, out IntPtr error)
@@ -412,7 +412,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void EnumerateChildrenAsyncDelegate (IntPtr file, IntPtr attributes, int flags, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		static void EnumerateChildrenAsyncCallback (IntPtr file, IntPtr attributes, int flags, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data)
@@ -426,7 +426,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr EnumerateChildrenFinishDelegate (IntPtr file, IntPtr res, out IntPtr error);
 
 		static IntPtr EnumerateChildrenFinishCallback (IntPtr file, IntPtr res, out IntPtr error)
@@ -444,7 +444,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr QueryInfoDelegate (IntPtr file, IntPtr attributes, int flags, IntPtr cancellable, out IntPtr error);
 
 		static IntPtr QueryInfoCallback (IntPtr file, IntPtr attributes, int flags, IntPtr cancellable, out IntPtr error)
@@ -462,7 +462,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void QueryInfoAsyncDelegate (IntPtr file, IntPtr attributes, int flags, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		static void QueryInfoAsyncCallback (IntPtr file, IntPtr attributes, int flags, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data)
@@ -476,7 +476,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr QueryInfoFinishDelegate (IntPtr file, IntPtr res, out IntPtr error);
 
 		static IntPtr QueryInfoFinishCallback (IntPtr file, IntPtr res, out IntPtr error)
@@ -494,7 +494,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr QueryFilesystemInfoDelegate (IntPtr file, IntPtr attributes, IntPtr cancellable, out IntPtr error);
 
 		static IntPtr QueryFilesystemInfoCallback (IntPtr file, IntPtr attributes, IntPtr cancellable, out IntPtr error)
@@ -512,7 +512,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void QueryFilesystemInfoAsyncDelegate (IntPtr file, IntPtr attributes, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		static void QueryFilesystemInfoAsyncCallback (IntPtr file, IntPtr attributes, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data)
@@ -526,7 +526,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr QueryFilesystemInfoFinishDelegate (IntPtr file, IntPtr res, out IntPtr error);
 
 		static IntPtr QueryFilesystemInfoFinishCallback (IntPtr file, IntPtr res, out IntPtr error)
@@ -544,7 +544,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr FindEnclosingMountDelegate (IntPtr file, IntPtr cancellable, out IntPtr error);
 
 		static IntPtr FindEnclosingMountCallback (IntPtr file, IntPtr cancellable, out IntPtr error)
@@ -562,7 +562,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void FindEnclosingMountAsyncDelegate (IntPtr file, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		static void FindEnclosingMountAsyncCallback (IntPtr file, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data)
@@ -576,7 +576,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr FindEnclosingMountFinishDelegate (IntPtr file, IntPtr res, out IntPtr error);
 
 		static IntPtr FindEnclosingMountFinishCallback (IntPtr file, IntPtr res, out IntPtr error)
@@ -594,7 +594,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr SetDisplayNameDelegate (IntPtr file, IntPtr display_name, IntPtr cancellable, out IntPtr error);
 
 		static IntPtr SetDisplayNameCallback (IntPtr file, IntPtr display_name, IntPtr cancellable, out IntPtr error)
@@ -612,7 +612,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void SetDisplayNameAsyncDelegate (IntPtr file, IntPtr display_name, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		static void SetDisplayNameAsyncCallback (IntPtr file, IntPtr display_name, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data)
@@ -626,7 +626,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr SetDisplayNameFinishDelegate (IntPtr file, IntPtr res, out IntPtr error);
 
 		static IntPtr SetDisplayNameFinishCallback (IntPtr file, IntPtr res, out IntPtr error)
@@ -644,7 +644,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr QuerySettableAttributesDelegate (IntPtr file, IntPtr cancellable, out IntPtr error);
 
 		static IntPtr QuerySettableAttributesCallback (IntPtr file, IntPtr cancellable, out IntPtr error)
@@ -662,7 +662,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr QueryWritableNamespacesDelegate (IntPtr file, IntPtr cancellable, out IntPtr error);
 
 		static IntPtr QueryWritableNamespacesCallback (IntPtr file, IntPtr cancellable, out IntPtr error)
@@ -680,7 +680,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate bool SetAttributeDelegate (IntPtr file, IntPtr attribute, int type, IntPtr value_p, int flags, IntPtr cancellable, out IntPtr error);
 
 		static bool SetAttributeCallback (IntPtr file, IntPtr attribute, int type, IntPtr value_p, int flags, IntPtr cancellable, out IntPtr error)
@@ -698,7 +698,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate bool SetAttributesFromInfoDelegate (IntPtr file, IntPtr info, int flags, IntPtr cancellable, out IntPtr error);
 
 		static bool SetAttributesFromInfoCallback (IntPtr file, IntPtr info, int flags, IntPtr cancellable, out IntPtr error)
@@ -716,7 +716,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void SetAttributesAsyncDelegate (IntPtr file, IntPtr info, int flags, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		static void SetAttributesAsyncCallback (IntPtr file, IntPtr info, int flags, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data)
@@ -730,7 +730,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate bool SetAttributesFinishDelegate (IntPtr file, IntPtr result, IntPtr info, out IntPtr error);
 
 		static bool SetAttributesFinishCallback (IntPtr file, IntPtr result, IntPtr info, out IntPtr error)
@@ -748,7 +748,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void ReadAsyncDelegate (IntPtr file, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		static void ReadAsyncCallback (IntPtr file, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data)
@@ -762,7 +762,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr ReadFinishDelegate (IntPtr file, IntPtr res, out IntPtr error);
 
 		static IntPtr ReadFinishCallback (IntPtr file, IntPtr res, out IntPtr error)
@@ -780,7 +780,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr AppendToDelegate (IntPtr file, int flags, IntPtr cancellable, out IntPtr error);
 
 		static IntPtr AppendToCallback (IntPtr file, int flags, IntPtr cancellable, out IntPtr error)
@@ -798,7 +798,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void AppendToAsyncDelegate (IntPtr file, int flags, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		static void AppendToAsyncCallback (IntPtr file, int flags, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data)
@@ -812,7 +812,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr AppendToFinishDelegate (IntPtr file, IntPtr res, out IntPtr error);
 
 		static IntPtr AppendToFinishCallback (IntPtr file, IntPtr res, out IntPtr error)
@@ -830,7 +830,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr CreateDelegate (IntPtr file, int flags, IntPtr cancellable, out IntPtr error);
 
 		static IntPtr CreateCallback (IntPtr file, int flags, IntPtr cancellable, out IntPtr error)
@@ -848,7 +848,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void CreateAsyncDelegate (IntPtr file, int flags, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		static void CreateAsyncCallback (IntPtr file, int flags, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data)
@@ -862,7 +862,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr CreateFinishDelegate (IntPtr file, IntPtr res, out IntPtr error);
 
 		static IntPtr CreateFinishCallback (IntPtr file, IntPtr res, out IntPtr error)
@@ -880,7 +880,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr ReplaceDelegate (IntPtr file, IntPtr etag, bool make_backup, int flags, IntPtr cancellable, out IntPtr error);
 
 		static IntPtr ReplaceCallback (IntPtr file, IntPtr etag, bool make_backup, int flags, IntPtr cancellable, out IntPtr error)
@@ -898,7 +898,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void ReplaceAsyncDelegate (IntPtr file, IntPtr etag, bool make_backup, int flags, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		static void ReplaceAsyncCallback (IntPtr file, IntPtr etag, bool make_backup, int flags, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data)
@@ -912,7 +912,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr ReplaceFinishDelegate (IntPtr file, IntPtr res, out IntPtr error);
 
 		static IntPtr ReplaceFinishCallback (IntPtr file, IntPtr res, out IntPtr error)
@@ -930,7 +930,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate bool TrashDelegate (IntPtr file, IntPtr cancellable, out IntPtr error);
 
 		static bool TrashCallback (IntPtr file, IntPtr cancellable, out IntPtr error)
@@ -948,7 +948,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate bool MakeDirectoryDelegate (IntPtr file, IntPtr cancellable, out IntPtr error);
 
 		static bool MakeDirectoryCallback (IntPtr file, IntPtr cancellable, out IntPtr error)
@@ -966,7 +966,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate bool MakeSymbolicLinkDelegate (IntPtr file, IntPtr symlink_value, IntPtr cancellable, out IntPtr error);
 
 		static bool MakeSymbolicLinkCallback (IntPtr file, IntPtr symlink_value, IntPtr cancellable, out IntPtr error)
@@ -984,7 +984,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate bool CopyDelegate (IntPtr source, IntPtr destination, int flags, IntPtr cancellable, GLibSharp.FileProgressCallbackNative progress_callback, IntPtr progress_callback_data, out IntPtr error);
 
 		static bool CopyCallback (IntPtr source, IntPtr destination, int flags, IntPtr cancellable, GLibSharp.FileProgressCallbackNative progress_callback, IntPtr progress_callback_data, out IntPtr error)
@@ -1003,7 +1003,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void CopyAsyncDelegate (IntPtr source, IntPtr destination, int flags, int io_priority, IntPtr cancellable, GLibSharp.FileProgressCallbackNative progress_callback, IntPtr progress_callback_data, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		static void CopyAsyncCallback (IntPtr source, IntPtr destination, int flags, int io_priority, IntPtr cancellable, GLibSharp.FileProgressCallbackNative progress_callback, IntPtr progress_callback_data, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data)
@@ -1018,7 +1018,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate bool CopyFinishDelegate (IntPtr file, IntPtr res, out IntPtr error);
 
 		static bool CopyFinishCallback (IntPtr file, IntPtr res, out IntPtr error)
@@ -1036,7 +1036,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate bool MoveDelegate (IntPtr source, IntPtr destination, int flags, IntPtr cancellable, GLibSharp.FileProgressCallbackNative progress_callback, IntPtr progress_callback_data, out IntPtr error);
 
 		static bool MoveCallback (IntPtr source, IntPtr destination, int flags, IntPtr cancellable, GLibSharp.FileProgressCallbackNative progress_callback, IntPtr progress_callback_data, out IntPtr error)
@@ -1055,7 +1055,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void MountMountableDelegate (IntPtr file, int flags, IntPtr mount_operation, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		static void MountMountableCallback (IntPtr file, int flags, IntPtr mount_operation, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data)
@@ -1069,7 +1069,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr MountMountableFinishDelegate (IntPtr file, IntPtr result, out IntPtr error);
 
 		static IntPtr MountMountableFinishCallback (IntPtr file, IntPtr result, out IntPtr error)
@@ -1087,7 +1087,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void UnmountMountableDelegate (IntPtr file, int flags, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		static void UnmountMountableCallback (IntPtr file, int flags, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data)
@@ -1101,7 +1101,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate bool UnmountMountableFinishDelegate (IntPtr file, IntPtr result, out IntPtr error);
 
 		static bool UnmountMountableFinishCallback (IntPtr file, IntPtr result, out IntPtr error)
@@ -1119,7 +1119,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void EjectMountableDelegate (IntPtr file, int flags, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		static void EjectMountableCallback (IntPtr file, int flags, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data)
@@ -1133,7 +1133,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate bool EjectMountableFinishDelegate (IntPtr file, IntPtr result, out IntPtr error);
 
 		static bool EjectMountableFinishCallback (IntPtr file, IntPtr result, out IntPtr error)
@@ -1151,7 +1151,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void MountEnclosingVolumeDelegate (IntPtr location, int flags, IntPtr mount_operation, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		static void MountEnclosingVolumeCallback (IntPtr location, int flags, IntPtr mount_operation, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data)
@@ -1165,7 +1165,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate bool MountEnclosingVolumeFinishDelegate (IntPtr location, IntPtr result, out IntPtr error);
 
 		static bool MountEnclosingVolumeFinishCallback (IntPtr location, IntPtr result, out IntPtr error)
@@ -1183,7 +1183,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr OpenReadwriteDelegate (IntPtr file, IntPtr cancellable, out IntPtr error);
 
 		static IntPtr OpenReadwriteCallback (IntPtr file, IntPtr cancellable, out IntPtr error)
@@ -1201,7 +1201,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void OpenReadwriteAsyncDelegate (IntPtr file, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		static void OpenReadwriteAsyncCallback (IntPtr file, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data)
@@ -1215,7 +1215,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr OpenReadwriteFinishDelegate (IntPtr file, IntPtr res, out IntPtr error);
 
 		static IntPtr OpenReadwriteFinishCallback (IntPtr file, IntPtr res, out IntPtr error)
@@ -1233,7 +1233,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr CreateReadwriteDelegate (IntPtr file, int flags, IntPtr cancellable, out IntPtr error);
 
 		static IntPtr CreateReadwriteCallback (IntPtr file, int flags, IntPtr cancellable, out IntPtr error)
@@ -1251,7 +1251,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void CreateReadwriteAsyncDelegate (IntPtr file, int flags, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		static void CreateReadwriteAsyncCallback (IntPtr file, int flags, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data)
@@ -1265,7 +1265,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr CreateReadwriteFinishDelegate (IntPtr file, IntPtr res, out IntPtr error);
 
 		static IntPtr CreateReadwriteFinishCallback (IntPtr file, IntPtr res, out IntPtr error)
@@ -1283,7 +1283,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr ReplaceReadwriteDelegate (IntPtr file, IntPtr etag, bool make_backup, int flags, IntPtr cancellable, out IntPtr error);
 
 		static IntPtr ReplaceReadwriteCallback (IntPtr file, IntPtr etag, bool make_backup, int flags, IntPtr cancellable, out IntPtr error)
@@ -1301,7 +1301,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void ReplaceReadwriteAsyncDelegate (IntPtr file, IntPtr etag, bool make_backup, int flags, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		static void ReplaceReadwriteAsyncCallback (IntPtr file, IntPtr etag, bool make_backup, int flags, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data)
@@ -1315,7 +1315,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr ReplaceReadwriteFinishDelegate (IntPtr file, IntPtr res, out IntPtr error);
 
 		static IntPtr ReplaceReadwriteFinishCallback (IntPtr file, IntPtr res, out IntPtr error)
@@ -1333,7 +1333,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void StartMountableDelegate (IntPtr file, int flags, IntPtr start_operation, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		static void StartMountableCallback (IntPtr file, int flags, IntPtr start_operation, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data)
@@ -1347,7 +1347,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate bool StartMountableFinishDelegate (IntPtr file, IntPtr result, out IntPtr error);
 
 		static bool StartMountableFinishCallback (IntPtr file, IntPtr result, out IntPtr error)
@@ -1365,7 +1365,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void StopMountableDelegate (IntPtr file, int flags, IntPtr mount_operation, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		static void StopMountableCallback (IntPtr file, int flags, IntPtr mount_operation, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data)
@@ -1379,7 +1379,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate bool StopMountableFinishDelegate (IntPtr file, IntPtr result, out IntPtr error);
 
 		static bool StopMountableFinishCallback (IntPtr file, IntPtr result, out IntPtr error)
@@ -1397,7 +1397,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void UnmountMountableWithOperationDelegate (IntPtr file, int flags, IntPtr mount_operation, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		static void UnmountMountableWithOperationCallback (IntPtr file, int flags, IntPtr mount_operation, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data)
@@ -1411,7 +1411,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate bool UnmountMountableWithOperationFinishDelegate (IntPtr file, IntPtr result, out IntPtr error);
 
 		static bool UnmountMountableWithOperationFinishCallback (IntPtr file, IntPtr result, out IntPtr error)
@@ -1429,7 +1429,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void EjectMountableWithOperationDelegate (IntPtr file, int flags, IntPtr mount_operation, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		static void EjectMountableWithOperationCallback (IntPtr file, int flags, IntPtr mount_operation, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data)
@@ -1443,7 +1443,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate bool EjectMountableWithOperationFinishDelegate (IntPtr file, IntPtr result, out IntPtr error);
 
 		static bool EjectMountableWithOperationFinishCallback (IntPtr file, IntPtr result, out IntPtr error)
@@ -1461,7 +1461,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void PollMountableDelegate (IntPtr file, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		static void PollMountableCallback (IntPtr file, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data)
@@ -1475,7 +1475,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate bool PollMountableFinishDelegate (IntPtr file, IntPtr result, out IntPtr error);
 
 		static bool PollMountableFinishCallback (IntPtr file, IntPtr result, out IntPtr error)

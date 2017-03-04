@@ -8,6 +8,9 @@ pushd gio-sharp
 # use mcs instead of gmcs to compile
 sed -i "s/AC_PATH_PROG(CSC, gmcs)/AC_PATH_PROG(CSC, mcs)/" configure.ac.in
 
+# fix generator
+sed -i "s/GLib.CDeclCallback/UnmanagedFunctionPointer (CallingConvention.Cdecl)/" generator/{CallbackGen.cs,Signal.cs,VirtualMethod.cs}
+
 # modify FileEnumerator
 cat >> gio/FileEnumerator.custom <<EOF
 public override void Dispose ()

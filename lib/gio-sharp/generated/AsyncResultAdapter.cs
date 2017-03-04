@@ -27,7 +27,7 @@ namespace GLib {
 		}
 
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr GetUserDataDelegate (IntPtr async_result);
 
 		static IntPtr GetUserDataCallback (IntPtr async_result)
@@ -43,7 +43,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr GetSourceObjectDelegate (IntPtr async_result);
 
 		static IntPtr GetSourceObjectCallback (IntPtr async_result)
