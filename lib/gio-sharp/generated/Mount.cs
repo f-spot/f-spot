@@ -11,7 +11,7 @@ namespace GLib {
 		event System.EventHandler PreUnmount;
 		event System.EventHandler Changed;
 		event System.EventHandler Unmounted;
-		string GuessContentTypeSync(bool force_rescan, GLib.Cancellable cancellable);
+		string[] GuessContentTypeSync(bool force_rescan, GLib.Cancellable cancellable);
 		bool UnmountFinish(GLib.AsyncResult result);
 		GLib.Volume Volume { 
 			get;
@@ -31,7 +31,7 @@ namespace GLib {
 		void EjectWithOperation(GLib.MountUnmountFlags flags, GLib.MountOperation mount_operation, GLib.Cancellable cancellable, GLib.AsyncReadyCallback cb);
 		void GuessContentType(bool force_rescan, GLib.Cancellable cancellable, GLib.AsyncReadyCallback cb);
 		void Remount(GLib.MountMountFlags flags, GLib.MountOperation mount_operation, GLib.Cancellable cancellable, GLib.AsyncReadyCallback cb);
-		string GuessContentTypeFinish(GLib.AsyncResult result);
+		string[] GuessContentTypeFinish(GLib.AsyncResult result);
 		bool RemountFinish(GLib.AsyncResult result);
 		void Eject(GLib.MountUnmountFlags flags, GLib.Cancellable cancellable, GLib.AsyncReadyCallback cb);
 		string Name { 

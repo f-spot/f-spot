@@ -25,7 +25,7 @@ namespace GLib {
 		}
 
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate bool InitDelegate (IntPtr initable, IntPtr cancellable, out IntPtr error);
 
 		static bool InitCallback (IntPtr initable, IntPtr cancellable, out IntPtr error)

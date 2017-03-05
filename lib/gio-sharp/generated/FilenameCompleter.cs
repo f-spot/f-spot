@@ -26,7 +26,7 @@ namespace GLib {
 			Raw = g_filename_completer_new();
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void GotCompletionDataVMDelegate (IntPtr filename_completer);
 
 		static GotCompletionDataVMDelegate GotCompletionDataVMCallback;

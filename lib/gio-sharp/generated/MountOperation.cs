@@ -140,7 +140,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void AbortedVMDelegate (IntPtr op);
 
 		static AbortedVMDelegate AbortedVMCallback;
@@ -187,7 +187,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void ReplyVMDelegate (IntPtr op, int result);
 
 		static ReplyVMDelegate ReplyVMCallback;
@@ -236,7 +236,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void AskPasswordVMDelegate (IntPtr op, IntPtr message, IntPtr default_user, IntPtr default_domain, int flags);
 
 		static AskPasswordVMDelegate AskPasswordVMCallback;
@@ -291,7 +291,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void AskQuestionVMDelegate (IntPtr op, IntPtr message, IntPtr[] choices);
 
 		static AskQuestionVMDelegate AskQuestionVMCallback;
@@ -342,7 +342,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void ShowProcessesVMDelegate (IntPtr op, IntPtr message, IntPtr processes, IntPtr[] choices);
 
 		static ShowProcessesVMDelegate ShowProcessesVMCallback;

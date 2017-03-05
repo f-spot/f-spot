@@ -98,8 +98,10 @@ namespace FSpot.Exporters.CD
 		bool IsDestEmpty (System.Uri path)
 		{
 			GLib.File f = FileFactory.NewForUri (path);
-			foreach (GLib.FileInfo info in f.EnumerateChildren ("*", FileQueryInfoFlags.None, null)) {
-				return false;
+			using (var children = f.EnumerateChildren ("*", FileQueryInfoFlags.None, null)) {
+				foreach (GLib.FileInfo info in children) {
+					return false;
+				}
 			}
 			return true;
 		}
@@ -124,10 +126,12 @@ namespace FSpot.Exporters.CD
 		void ListAll (Gtk.TextBuffer t, System.Uri path)
 		{
 			GLib.File f = FileFactory.NewForUri (path);
-			foreach (GLib.FileInfo info in f.EnumerateChildren ("*", FileQueryInfoFlags.None, null)) {
-				t.Text += new System.Uri (path, info.Name).ToString () + Environment.NewLine;
-				if (info.FileType == FileType.Directory)
-					ListAll (t, new System.Uri (path, info.Name + "/"));
+			using (var children = f.EnumerateChildren ("*", FileQueryInfoFlags.None, null)) {
+				foreach (GLib.FileInfo info in children) {
+					t.Text += new System.Uri (path, info.Name).ToString () + Environment.NewLine;
+					if (info.FileType == FileType.Directory)
+						ListAll (t, new System.Uri (path, info.Name + "/"));
+				}
 			}
 		}
 		

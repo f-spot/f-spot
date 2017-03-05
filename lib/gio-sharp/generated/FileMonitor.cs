@@ -45,7 +45,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void ChangedVMDelegate (IntPtr monitor, IntPtr file, IntPtr other_file, int event_type);
 
 		static ChangedVMDelegate ChangedVMCallback;

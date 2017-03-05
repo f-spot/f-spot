@@ -366,10 +366,10 @@ namespace FSpot
 		private bool DirectoryIsEmpty (GLib.File directory)
 		{
 			uint count = 0;
-			GLib.FileEnumerator list = directory.EnumerateChildren ("standard::name",
-				GLib.FileQueryInfoFlags.None, null);
-			foreach (var item in list) {
-				count++;
+			using (GLib.FileEnumerator list = directory.EnumerateChildren ("standard::name", GLib.FileQueryInfoFlags.None, null)) {
+				foreach (var item in list) {
+					count++;
+				}
 			}
 			return count == 0;
 		}

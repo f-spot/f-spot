@@ -345,11 +345,12 @@ namespace FSpot
 		{
 			// Nuke addin-db
 			var directory = GLib.FileFactory.NewForUri (new SafeUri (Global.BaseDirectory));
-			var list = directory.EnumerateChildren ("standard::name", GLib.FileQueryInfoFlags.None, null);
-			foreach (GLib.FileInfo info in list) {
-				if (info.Name.StartsWith ("addin-db-")) {
-					var file = GLib.FileFactory.NewForPath (Path.Combine (directory.Path, info.Name));
-					file.DeleteRecursive ();
+			using (var list = directory.EnumerateChildren ("standard::name", GLib.FileQueryInfoFlags.None, null)) {
+				foreach (GLib.FileInfo info in list) {
+					if (info.Name.StartsWith ("addin-db-")) {
+						var file = GLib.FileFactory.NewForPath (Path.Combine (directory.Path, info.Name));
+						file.DeleteRecursive ();
+					}
 				}
 			}
 

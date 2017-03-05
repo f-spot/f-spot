@@ -30,7 +30,7 @@ namespace GLib {
 		}
 
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate bool SeekDelegate (IntPtr seekable, long offset, GLib.SeekType type, IntPtr cancellable, out IntPtr error);
 
 		static bool SeekCallback (IntPtr seekable, long offset, GLib.SeekType type, IntPtr cancellable, out IntPtr error)
@@ -48,7 +48,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate bool CanTruncateDelegate (IntPtr seekable);
 
 		static bool CanTruncateCallback (IntPtr seekable)
