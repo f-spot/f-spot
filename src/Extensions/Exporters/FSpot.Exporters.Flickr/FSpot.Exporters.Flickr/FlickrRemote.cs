@@ -57,10 +57,10 @@ namespace FSpot.Exporters.Flickr
     public class FlickrRemote
     {
         public static LicenseCollection licenses;
-        string frob;
-        string token;
-        Auth auth;
         FlickrNet.Flickr flickr;
+
+        OAuthRequestToken requestToken;
+        OAuthAccessToken accessToken;
 
         public bool ExportTags;
         public bool ExportTagHierarchy;
@@ -71,24 +71,27 @@ namespace FSpot.Exporters.Flickr
         public const string TOKEN_23HQ = Preferences.APP_FSPOT_EXPORT_TOKENS + "23hq";
         public const string TOKEN_ZOOOMR = Preferences.APP_FSPOT_EXPORT_TOKENS + "zooomr";
 
-        public FlickrRemote (string token, Service service)
+        public FlickrRemote (OAuthAccessToken token, Service service)
         {
-            if (string.IsNullOrEmpty (token)) {
+            if (token == null) {
                 flickr = new FlickrNet.Flickr (service.ApiKey, service.Secret);
-                this.token = null;
+                this.accessToken = null;
             } else {
-                flickr = new FlickrNet.Flickr (service.ApiKey, service.Secret, token);
-                this.token = token;
+                flickr = new FlickrNet.Flickr (service.ApiKey, service.Secret, token.Token);
+                this.accessToken = token;
+                flickr.OAuthAccessToken = token.Token;
+                flickr.OAuthAccessTokenSecret = token.TokenSecret;
             }
 
             flickr.CurrentService = service.Id;
         }
 
-        public string Token {
-            get { return token; }
+        public OAuthAccessToken Token {
+            get { return accessToken; }
             set {
-                token = value;
-                flickr.AuthToken = value;
+                accessToken = value;
+                flickr.OAuthAccessToken = value.Token;
+                flickr.OAuthAccessTokenSecret = value.TokenSecret;
             }
         }
 
@@ -142,41 +145,48 @@ namespace FSpot.Exporters.Flickr
             return photos_url;
         }
 
-        public Auth CheckLogin ()
+        public OAuthAccessToken CheckLogin (string oauth_verification_code)
         {
+            // CF: https://www.flickr.com/services/api/auth.oauth.html
+            // OAuth flow step 1: Get a new request token if we don't already have one
             try {
-                if (frob == null) {
-                    frob = flickr.AuthGetFrob ();
-                    if (frob == null) {
-                        Log.Error ("ERROR: Problems login in Flickr. Don't have a frob");
+                if (flickr.AuthOAuthCheckToken() == null) {
+                    requestToken = flickr.OAuthGetRequestToken ("oob");
+                    if (requestToken == null) {
+                        Log.Error ("ERROR: Unable to Obtain OAuth Request token");
                         return null;
+                    } else {
+                        Log.Debug("Victory! got a Requet Token: " + requestToken.Token);
                     }
                 }
             } catch (Exception e) {
-                Log.Error ("Error logging in: {0}", e.Message);
+                Log.Error ("Error logging in: " + e.Message);
                 return null;
             }
 
-            if (token == null) {
-                try {
-                    auth = flickr.AuthGetToken (frob);
-                    token = auth.Token;
-                    flickr.AuthToken = token;
+            // OAuth flow step 2: Ask for permissions
 
-                    return auth;
+            // OAuth flow step 3: Exchange Request token for Access token
+
+            if (accessToken == null) {
+                try {
+                    Log.Debug("No token available, trying to obtain access token with requestToken={" + requestToken.Token + "},verificationCode={" + oauth_verification_code + "}");
+                    accessToken = flickr.OAuthGetAccessToken(requestToken, oauth_verification_code);
+                    Log.Debug("Obtained access token:" + accessToken.Token);
+                    flickr.OAuthAccessToken = accessToken.Token;
+                    flickr.OAuthAccessTokenSecret = accessToken.TokenSecret;
                 } catch (FlickrApiException ex) {
                     Log.Error ("Problems logging in to Flickr - " + ex.OriginalMessage);
                     return null;
                 }
             }
 
-            auth = flickr.AuthCheckToken ("token");
-            return auth;
+            return accessToken;
         }
 
         public string Upload (IPhoto photo, IFilter filter, bool is_public, bool is_family, bool is_friend)
         {
-            if (token == null) {
+            if (accessToken == null) {
                 throw new Exception ("Must Login First");
             }
             // FIXME flickr needs rotation
@@ -240,9 +250,12 @@ namespace FSpot.Exporters.Flickr
 
         public void TryWebLogin ()
         {
-            frob = flickr.AuthGetFrob ();
-            string login_url = flickr.AuthCalcUrl (frob, AuthLevel.Write);
-
+            // First we get the OAuth Token
+            requestToken = flickr.OAuthGetRequestToken("oob");
+            // Then we calculate the OAuth Authorization URL
+            string login_url = flickr.OAuthCalculateAuthorizationUrl(requestToken.Token, AuthLevel.Write);
+            Log.Debug("FlickrRemote: Opening browser to ask user permissions at {0}",login_url);
+            // Redirection time. Now we can ask permission.
             GtkBeans.Global.ShowUri (null, login_url);
         }
 
