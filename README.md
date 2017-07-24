@@ -74,13 +74,17 @@ To launch F-Spot, run `$(prefix)/bin/f-spot`.
 If you want to use MonoDevelop to build and run F-Spot here are notes about that process.
 
 There are a few steps you have to run before you can open MonoDevelop:
-		1.  ./autogen.sh (on ubuntu you have to do ./autogen.sh)
-		2.  cd build; make
-		3.  cd lib/libfspot; make
-		4.  sudo make install (this will install the libfspot.so files)
-- OR -
-		1. ./prep_linux_build.sh prefix={some/path}
-			I like to do ~/staging
+
+	1.  ./autogen.sh (on ubuntu you have to do ./autogen.sh)
+	2.  cd build; make
+	3.  cd lib/libfspot; make
+	4.  sudo make install (this will install the libfspot.so files)
+
+OR
+
+	1. ./prep_linux_build.sh prefix={some/path}
+
+I like to do `~/staging`
 
 This will build a couple tools in ./build that are needed to build the projects in ./lib.
 
