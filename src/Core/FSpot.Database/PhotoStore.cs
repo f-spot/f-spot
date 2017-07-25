@@ -41,7 +41,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using FSpot;
 using FSpot.Core;
 using FSpot.Database.Jobs;
 using FSpot.Imaging;
@@ -610,52 +609,53 @@ namespace FSpot.Database
 			}
 		}
 
-		public Dictionary<int,int[]> PhotosPerMonth (params IQueryCondition [] conditions)
+		static object populationTableLock = new object ();
+		public Dictionary<int, int []> PhotosPerMonth (params IQueryCondition [] conditions)
 		{
-			uint timer = Log.DebugTimerStart ();
-			var val = new Dictionary<int, int[]> ();
+			lock (populationTableLock) {
+				uint timer = Log.DebugTimerStart ();
+				var val = new Dictionary<int, int []> ();
 
-			//Sqlite is way more efficient querying to a temp then grouping than grouping at once
-			Database.Execute ("DROP TABLE IF EXISTS population");
-			var query_builder = new StringBuilder ("CREATE TEMPORARY TABLE population AS SELECT strftime('%Y%m', datetime(time, 'unixepoch')) AS month FROM photos");
-			bool where_added = false;
-			foreach (IQueryCondition condition in conditions) {
-				if (condition == null)
-					continue;
-				if (condition is IOrderCondition)
-					continue;
-				query_builder.Append (where_added ? " AND " : " WHERE ");
-				query_builder.Append (condition.SqlClause ());
-				where_added = true;
-			}
-			Database.Execute (query_builder.ToString ());
-
-			int minyear = Int32.MaxValue;
-			int maxyear = Int32.MinValue;
-
-			// FIXME: There appears to be a race condition here where it tries to query the population
-			// table before Database.Execute (query_builder.ToString ()); creates it.
-			using (var reader = Database.Query ("SELECT COUNT (*) as count, month from population GROUP BY month")) {
-				while (reader.Read ()) {
-					string yyyymm = reader ["month"].ToString ();
-					int count = Convert.ToInt32 (reader ["count"]);
-					int year = Convert.ToInt32 (yyyymm.Substring (0, 4));
-					maxyear = Math.Max (year, maxyear);
-					minyear = Math.Min (year, minyear);
-					int month = Convert.ToInt32 (yyyymm.Substring (4));
-					if (!val.ContainsKey (year))
-						val.Add (year, new int[12]);
-					val [year] [month - 1] = count;
+				//Sqlite is way more efficient querying to a temp then grouping than grouping at once
+				Database.Execute ("DROP TABLE IF EXISTS population");
+				var query_builder = new StringBuilder ("CREATE TEMPORARY TABLE population AS SELECT strftime('%Y%m', datetime(time, 'unixepoch')) AS month FROM photos");
+				bool where_added = false;
+				foreach (IQueryCondition condition in conditions) {
+					if (condition == null)
+						continue;
+					if (condition is IOrderCondition)
+						continue;
+					query_builder.Append (where_added ? " AND " : " WHERE ");
+					query_builder.Append (condition.SqlClause ());
+					where_added = true;
 				}
+				Database.Execute (query_builder.ToString ());
+
+				int minyear = Int32.MaxValue;
+				int maxyear = Int32.MinValue;
+
+				using (var reader = Database.Query ("SELECT COUNT (*) as count, month from population GROUP BY month")) {
+					while (reader.Read ()) {
+						string yyyymm = reader ["month"].ToString ();
+						int count = Convert.ToInt32 (reader ["count"]);
+						int year = Convert.ToInt32 (yyyymm.Substring (0, 4));
+						maxyear = Math.Max (year, maxyear);
+						minyear = Math.Min (year, minyear);
+						int month = Convert.ToInt32 (yyyymm.Substring (4));
+						if (!val.ContainsKey (year))
+							val.Add (year, new int [12]);
+						val [year] [month - 1] = count;
+					}
+				}
+
+				//Fill the blank
+				for (int i = minyear; i <= maxyear; i++)
+					if (!val.ContainsKey (i))
+						val.Add (i, new int [12]);
+
+				Log.DebugTimerPrint (timer, "PhotosPerMonth took {0}");
+				return val;
 			}
-
-			//Fill the blank
-			for (int i = minyear; i <= maxyear; i++)
-				if (!val.ContainsKey (i))
-					val.Add (i, new int[12]);
-
-			Log.DebugTimerPrint (timer, "PhotosPerMonth took {0}");
-			return val;
 		}
 
 		// Queries.
