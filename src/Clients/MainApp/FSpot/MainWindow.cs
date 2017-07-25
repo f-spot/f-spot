@@ -1769,6 +1769,11 @@ namespace FSpot
 		{
 			PhotoList list = new PhotoList (Selection.Items);
 			list.Sort (new IPhotoComparer.CompareDateName ());
+
+			// HACK: force libgnomeui to be loaded by accessing some type
+			// this resolves "Invalid object type `GnomeDateEdit'" on loading the AdjustTimeDialog
+			var type = Gnome.DateEdit.GType;
+
 			(new AdjustTimeDialog (Database, list)).Run ();
 		}
 
