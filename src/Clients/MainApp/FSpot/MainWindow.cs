@@ -1774,7 +1774,9 @@ namespace FSpot
 			// this resolves "Invalid object type `GnomeDateEdit'" on loading the AdjustTimeDialog
 			var type = Gnome.DateEdit.GType;
 
-			(new AdjustTimeDialog (Database, list)).Run ();
+			var dialog = new AdjustTimeDialog (Database, list);
+			dialog.Run ();
+			dialog.Destroy ();
 		}
 
 		public void HideLoupe ()
