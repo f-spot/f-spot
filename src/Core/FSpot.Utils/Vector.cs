@@ -36,12 +36,6 @@ namespace FSpot.Utils
 		double X;
 		double Y;
 
-		public Vector (Gdk.Point p)
-		{
-			X = p.X;
-			Y = p.Y;
-		}
-
 		public Vector (double x, double y)
 		{
 			X = x;
