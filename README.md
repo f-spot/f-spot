@@ -1,17 +1,17 @@
 F-Spot Photo Manager
 http://f-spot.org/
 
-# Chat:
+# Chat
 * [![Join the chat at https://gitter.im/mono/f-spot](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mono/f-spot?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 * Also on #f-spot on gimpnet
 
-# Build Status:
+# Build Status
 
 | Branch | Status |
 |--------|--------|
 | Master |[![Build Status](https://travis-ci.org/mono/f-spot.svg?branch=master)](https://travis-ci.org/mono/f-spot)|
 
-# Requirements:
+# Requirements
 
 	- GNOME development libraries 2.4 or later, http://www.gnome.org
 
@@ -31,7 +31,14 @@ http://f-spot.org/
 
 	- dbus-sharp-glib 0.6 or later, https://github.com/mono/dbus-sharp-glib
 
-    - Nunit 2.6.4 if you want to run the unit tests, https://github.com/nunit/nunitv2/releases
+	- NuGet 2.14, if you want to build and run unit tests
+
+The following requirements are automatically installed by make via
+NuGet if you enable tests.
+
+	- NUnit 2.6.4
+
+	- Moq 4.2
 
 # Installing missing Certificates
 
