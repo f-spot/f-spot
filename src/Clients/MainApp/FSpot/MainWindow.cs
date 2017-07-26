@@ -65,9 +65,7 @@ namespace FSpot
 		TagSelectionWidget tag_selection_widget;
 		[GtkBeans.Builder.Object] Gtk.Window main_window;
 
-		public Gtk.Window Window {
-			get { return main_window; }
-		}
+		public Gtk.Window Window => main_window;
 
 		[GtkBeans.Builder.Object] Gtk.HPaned main_hpaned;
 		[GtkBeans.Builder.Object] Gtk.VBox view_vbox;
@@ -132,9 +130,7 @@ namespace FSpot
 
 		[GtkBeans.Builder.Object] Gtk.ToggleAction reverse_order;
 
-		public Gtk.ToggleAction ReverseOrderAction {
-			get { return reverse_order; }
-		}
+		public Gtk.ToggleAction ReverseOrderAction => reverse_order;
 
 		// Find
 		[GtkBeans.Builder.Object] Gtk.Action clear_date_range;
@@ -199,8 +195,8 @@ namespace FSpot
 
 		// Tag Icon Sizes
 		public int TagsIconSize {
-			get { return (int)Tag.TagIconSize; }
-			set { Tag.TagIconSize = (Settings.IconSize)value; }
+			get => (int)Tag.TagIconSize;
+			set => Tag.TagIconSize = (Settings.IconSize)value;
 		}
 
 		static TargetEntry[] tag_target_table = {
@@ -755,8 +751,7 @@ namespace FSpot
 
 			public void MarkChanged ()
 			{
-				if (Changed != null)
-					Changed (this);
+				Changed?.Invoke (this);
 			}
 
 			public void MarkChanged (int index, IBrowsableItemChanges changes)
@@ -809,22 +804,22 @@ namespace FSpot
 
 			void HandlePhotoChanged (PhotoView sender)
 			{
-				if (win.ViewMode == ModeType.PhotoView && Changed != null)
-					Changed (this);
+				if (win.ViewMode == ModeType.PhotoView)
+					Changed?.Invoke (this);
 			}
 
 			public void HandleSelectionChanged (IBrowsableCollection collection)
 			{
-				if (win.ViewMode == ModeType.IconView && Changed != null)
-					Changed (this);
+				if (win.ViewMode == ModeType.IconView)
+					Changed?.Invoke (this);
 
 
 			}
 
 			void HandleSelectionItemsChanged (IBrowsableCollection collection, BrowsableEventArgs args)
 			{
-				if (win.ViewMode == ModeType.IconView && ItemsChanged != null)
-					ItemsChanged (this, args);
+				if (win.ViewMode == ModeType.IconView)
+					ItemsChanged?.Invoke (this, args);
 			}
 
 			public event IBrowsableCollectionChangedHandler Changed;
@@ -870,9 +865,7 @@ namespace FSpot
 			return SelectedPhotos (SelectedIds ());
 		}
 
-		public PhotoQuery Query {
-			get { return query; }
-		}
+		public PhotoQuery Query => query;
 
 		//
 		// Commands
@@ -1502,8 +1495,7 @@ namespace FSpot
 
 			if (old_size != TagsIconSize) {
 				tag_selection_widget.ColumnsAutosize ();
-				if (photo_view != null)
-					photo_view.UpdateTagView ();
+				photo_view?.UpdateTagView ();
 				Preferences.Set (Preferences.TAG_ICON_SIZE, TagsIconSize);
 			}
 		}
