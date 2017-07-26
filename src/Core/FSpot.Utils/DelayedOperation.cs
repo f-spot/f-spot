@@ -75,20 +75,13 @@ namespace FSpot.Utils
             }
         }
 
-        public bool IsPending {
-            get { return source != 0; }
-        }
+        public bool IsPending => (source != 0);
 
         public void Connect (Gtk.Object obj)
         {
             if (obj == null)
                 throw new ArgumentNullException (nameof (obj));
-            obj.Destroyed += HandleDestroy;
-        }
-
-        void HandleDestroy (object sender, EventArgs args)
-        {
-            Stop ();
+            obj.Destroyed += (s, e) => Stop();
         }
 
         public void Stop ()

@@ -40,13 +40,13 @@ namespace FSpot.Utils
 {
 	public static class PixbufUtils
 	{
-	        static public ImageOrientation Rotate270 (ImageOrientation orientation)
+	        public static ImageOrientation Rotate270 (ImageOrientation orientation)
 	        {
 	            if (orientation == ImageOrientation.None) {
 	                orientation = ImageOrientation.TopLeft;
 	            }
 
-	            ImageOrientation [] rot = new ImageOrientation [] {
+	            ImageOrientation [] rot = {
 	                ImageOrientation.LeftBottom,
 	                    ImageOrientation.LeftTop,
 	                    ImageOrientation.RightTop,
@@ -61,7 +61,7 @@ namespace FSpot.Utils
 	            return orientation;
 	        }
 	
-		static public ImageOrientation Rotate90 (ImageOrientation orientation)
+		public static ImageOrientation Rotate90 (ImageOrientation orientation)
 		{
 			orientation = Rotate270 (orientation);
 			orientation = Rotate270 (orientation);
@@ -185,7 +185,7 @@ namespace FSpot.Utils
 			switch (orientation) {
 			default:
 			case ImageOrientation.TopLeft:
-				dest = PixbufUtils.ShallowCopy (src);
+				dest = src.ShallowCopy ();
 				break;
 			case ImageOrientation.TopRight:
 				dest = src.Flip (false);
