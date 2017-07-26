@@ -82,7 +82,7 @@ namespace FSpot.Utils
         public void Connect (Gtk.Object obj)
         {
             if (obj == null)
-                throw new ArgumentNullException ("obj");
+                throw new ArgumentNullException (nameof (obj));
             obj.Destroyed += HandleDestroy;
         }
 

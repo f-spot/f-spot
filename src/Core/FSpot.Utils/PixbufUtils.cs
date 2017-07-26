@@ -221,6 +221,7 @@ namespace FSpot.Utils
 		{
 			if (pixbuf == null)
 				return null;
+
 			var result = new Pixbuf (pixbuf, 0, 0, pixbuf.Width, pixbuf.Height);
 			return result;
 		}
@@ -240,10 +241,7 @@ namespace FSpot.Utils
 			return result;
 		}
 
-		public static double Fit (Pixbuf pixbuf,
-			int dest_width, int dest_height,
-			bool upscale_smaller,
-			out int fit_width, out int fit_height)
+		public static double Fit (Pixbuf pixbuf, int dest_width, int dest_height, bool upscale_smaller, out int fit_width, out int fit_height)
 		{
 			return Fit (pixbuf.Width, pixbuf.Height,
 				dest_width, dest_height,
@@ -251,10 +249,7 @@ namespace FSpot.Utils
 				out fit_width, out fit_height);
 		}
 
-		public static double Fit (int orig_width, int orig_height,
-			int dest_width, int dest_height,
-			bool upscale_smaller,
-			out int fit_width, out int fit_height)
+		public static double Fit (int orig_width, int orig_height, int dest_width, int dest_height, bool upscale_smaller, out int fit_width, out int fit_height)
 		{
 			if (orig_width == 0 || orig_height == 0) {
 				fit_width = 0;
@@ -309,8 +304,7 @@ namespace FSpot.Utils
 		// possible with p/invoke).
 
 		[DllImport("libgdk_pixbuf-2.0-0.dll")]
-		static extern bool gdk_pixbuf_save (IntPtr raw, IntPtr filename, IntPtr type, out IntPtr error,
-			IntPtr optlabel1, IntPtr optvalue1, IntPtr dummy);
+		static extern bool gdk_pixbuf_save (IntPtr raw, IntPtr filename, IntPtr type, out IntPtr error, IntPtr optlabel1, IntPtr optvalue1, IntPtr dummy);
 
 		static bool Save (this Pixbuf pixbuf, string filename, string type, uint jpeg_quality)
 		{

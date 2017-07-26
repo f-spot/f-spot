@@ -31,14 +31,16 @@ using Hyena;
 
 namespace FSpot.Utils
 {
-	public class HashUtils
+	public static class HashUtils
 	{
 		public static string GenerateMD5 (SafeUri uri)
 		{
+			string hash = string.Empty;
 			var file = GLib.FileFactory.NewForUri (uri);
-			var stream = new GLib.GioStream (file.Read (null));
-			var hash = CryptoUtil.Md5EncodeStream (stream);
-			stream.Close ();
+			using (var stream = new GLib.GioStream (file.Read (null))) {
+				hash = CryptoUtil.Md5EncodeStream (stream);
+			}
+
 			return hash;
 		}
 	}
