@@ -57,12 +57,14 @@ namespace FSpot.UI.Dialog
 
 		readonly TagStore tag_store;
 
+#pragma warning disable 649
 		[GtkBeans.Builder.Object] Button create_button;
 		[GtkBeans.Builder.Object] Entry tag_name_entry;
 		[GtkBeans.Builder.Object] Label prompt_label;
 		[GtkBeans.Builder.Object] Label already_in_use_label;
 		[GtkBeans.Builder.Object] ComboBox category_option_menu;
 		[GtkBeans.Builder.Object] CheckButton auto_icon_checkbutton;
+#pragma warning restore 649
 
 		List<Tag> categories;
 

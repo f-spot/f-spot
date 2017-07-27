@@ -42,9 +42,11 @@ namespace FSpot.UI.Dialog
 {
 	public class DateRangeDialog : BuilderDialog
 	{
+#pragma warning disable 649
 		[GtkBeans.Builder.Object] Frame startframe;
 		[GtkBeans.Builder.Object] Frame endframe;
 		[GtkBeans.Builder.Object] ComboBox period_combobox;
+#pragma warning restore 649
 
 		readonly DateEdit start_dateedit;
 		readonly DateEdit end_dateedit;

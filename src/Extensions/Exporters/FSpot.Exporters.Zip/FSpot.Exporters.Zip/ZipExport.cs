@@ -51,12 +51,14 @@ namespace FSpot.Exporters.Zip
 {
 	public class Zip : IExporter
 	{
+#pragma warning disable 649
 		[GtkBeans.Builder.Object] Gtk.Dialog zipdiag;
 		[GtkBeans.Builder.Object] Gtk.HBox dirchooser_hbox;
 		[GtkBeans.Builder.Object] Gtk.CheckButton scale_check;
 		[GtkBeans.Builder.Object] Gtk.Entry filename;
 		[GtkBeans.Builder.Object] Gtk.SpinButton scale_size;
 		[GtkBeans.Builder.Object] Gtk.Button create_button;
+#pragma warning restore 649
 
 		IPhoto [] photos;
 		Gtk.FileChooserButton uri_chooser;

@@ -47,11 +47,14 @@ namespace FSpot.UI.Dialog
 		FSpot.PhotoQuery query;
 		RollStore rollstore;
 		Roll[] rolls;
+
+#pragma warning disable 649
 		[GtkBeans.Builder.Object] ComboBox combo_filter; // at, after, or between
 		[GtkBeans.Builder.Object] ComboBox combo_roll_1;
 		[GtkBeans.Builder.Object] ComboBox combo_roll_2;
 		[GtkBeans.Builder.Object] Label and_label; // and label between two comboboxes.
 		[GtkBeans.Builder.Object] Label photos_in_selected_rolls;
+#pragma warning restore 649
 
 		public LastRolls (FSpot.PhotoQuery query, RollStore rollstore, Window parent) : base ("LastImportRollFilterDialog.ui", "last_import_rolls_filter")
 		{

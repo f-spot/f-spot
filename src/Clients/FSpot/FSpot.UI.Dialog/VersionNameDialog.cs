@@ -43,10 +43,12 @@ namespace FSpot.UI.Dialog
 	{
 		readonly Photo photo;
 
+#pragma warning disable 649
 		[GtkBeans.Builder.Object] Button ok_button;
 		[GtkBeans.Builder.Object] Entry version_name_entry;
 		[GtkBeans.Builder.Object] Label prompt_label;
 		[GtkBeans.Builder.Object] Label already_in_use_label;
+#pragma warning restore 649
 
 		public enum RequestType
 		{

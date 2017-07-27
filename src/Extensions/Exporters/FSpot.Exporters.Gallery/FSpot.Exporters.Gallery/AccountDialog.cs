@@ -200,6 +200,7 @@ namespace FSpot.Exporters.Gallery
 		private string password;
 		private string username;
 
+#pragma warning disable 649
 		// widgets
 		[GtkBeans.Builder.Object] Gtk.Dialog add_dialog;
 
@@ -212,5 +213,6 @@ namespace FSpot.Exporters.Gallery
 		[GtkBeans.Builder.Object] Gtk.Button remove_button;
 
 		[GtkBeans.Builder.Object] Gtk.HBox status_area;
+#pragma warning restore 649
 	}
 }

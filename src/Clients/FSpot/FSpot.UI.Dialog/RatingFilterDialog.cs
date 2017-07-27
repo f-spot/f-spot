@@ -40,9 +40,11 @@ namespace FSpot.UI.Dialog
 {
 	public class RatingFilterDialog : BuilderDialog
 	{
+#pragma warning disable 649
 		[GtkBeans.Builder.Object] Button ok_button;
 		[GtkBeans.Builder.Object] HBox minrating_hbox;
 		[GtkBeans.Builder.Object] HBox maxrating_hbox;
+#pragma warning restore 649
 
 		int minrating_value = 4;
 		int maxrating_value = 5;

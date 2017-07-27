@@ -57,6 +57,7 @@ namespace FSpot.Exporters.Flickr
     {
 		IBrowsableCollection selection;
 
+#pragma warning disable 649
 		[GtkBeans.Builder.Object] Gtk.Dialog         dialog;
 		[GtkBeans.Builder.Object] Gtk.CheckButton    scale_check;
 		[GtkBeans.Builder.Object] Gtk.CheckButton    tag_check;
@@ -72,6 +73,7 @@ namespace FSpot.Exporters.Flickr
 		[GtkBeans.Builder.Object] Gtk.RadioButton    public_radio;
 		[GtkBeans.Builder.Object] Gtk.CheckButton    family_check;
 		[GtkBeans.Builder.Object] Gtk.CheckButton    friend_check;
+#pragma warning restore 649
 
 		GtkBeans.Builder builder;
 		string dialog_name = "flickr_export_dialog";

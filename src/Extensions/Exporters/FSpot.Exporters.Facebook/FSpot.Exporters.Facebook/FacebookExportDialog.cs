@@ -49,6 +49,7 @@ namespace FSpot.Exporters.Facebook
 {
 	internal class FacebookExportDialog : BuilderDialog
 	{
+#pragma warning disable 649
 		[GtkBeans.Builder.Object] VBox album_info_vbox;
 		[GtkBeans.Builder.Object] VBox picture_info_vbox;
 		[GtkBeans.Builder.Object] HBox log_buttons_hbox;
@@ -70,6 +71,7 @@ namespace FSpot.Exporters.Facebook
 		[GtkBeans.Builder.Object] HBox permissions_hbox;
 		[GtkBeans.Builder.Object] CheckButton offline_perm_check;
 		[GtkBeans.Builder.Object] CheckButton photo_perm_check;
+#pragma warning restore 649
 
 		Gtk.Image tag_image;
 		int tag_image_height;

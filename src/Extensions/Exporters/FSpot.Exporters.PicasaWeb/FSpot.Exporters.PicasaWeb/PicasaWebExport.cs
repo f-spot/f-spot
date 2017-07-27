@@ -140,6 +140,7 @@ namespace FSpot.Exporters.PicasaWeb
 		Gtk.Dialog dialog;
 		Gtk.ComboBox gallery_optionmenu;
 		Gtk.ComboBox album_optionmenu;
+#pragma warning disable 649
 		[GtkBeans.Builder.Object]
 		Gtk.Label status_label;
 		[GtkBeans.Builder.Object]
@@ -160,6 +161,7 @@ namespace FSpot.Exporters.PicasaWeb
 		Gtk.Button export_button;
 		[GtkBeans.Builder.Object]
 		Gtk.ScrolledWindow thumb_scrolledwindow;
+#pragma warning restore 649
 		System.Threading.Thread command_thread;
 
 		private void HandleResponse (object sender, Gtk.ResponseArgs args)

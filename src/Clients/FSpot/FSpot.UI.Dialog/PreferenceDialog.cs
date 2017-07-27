@@ -46,6 +46,7 @@ namespace FSpot.UI.Dialog
 {
 	public class PreferenceDialog : BuilderDialog
 	{
+#pragma warning disable 649
 		[GtkBeans.Builder.Object] FileChooserButton photosdir_chooser;
 
 		[GtkBeans.Builder.Object] RadioButton writemetadata_radio;
@@ -55,6 +56,7 @@ namespace FSpot.UI.Dialog
 		[GtkBeans.Builder.Object] ComboBox theme_combo;
 		[GtkBeans.Builder.Object] ComboBox screenprofile_combo;
 		[GtkBeans.Builder.Object] ComboBox printprofile_combo;
+#pragma warning restore 649
 
 #region public API (ctor)
 		public PreferenceDialog (Window parent) : base ("PreferenceDialog.ui", "preference_dialog")

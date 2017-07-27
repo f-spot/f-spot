@@ -61,11 +61,14 @@ namespace FSpot
 	public class MainWindow
 	{
 		public Sidebar Sidebar { get; set; }
+		public Gtk.Window Window => main_window;
+		public Gtk.ToggleAction ReverseOrderAction => reverse_order;
 
 		TagSelectionWidget tag_selection_widget;
-		[GtkBeans.Builder.Object] Gtk.Window main_window;
+		Gtk.ScrolledWindow tag_selection_scrolled;
 
-		public Gtk.Window Window => main_window;
+#pragma warning disable 649
+		[GtkBeans.Builder.Object] Gtk.Window main_window;
 
 		[GtkBeans.Builder.Object] Gtk.HPaned main_hpaned;
 		[GtkBeans.Builder.Object] Gtk.VBox view_vbox;
@@ -75,8 +78,6 @@ namespace FSpot
 		[GtkBeans.Builder.Object] Gtk.ScrolledWindow icon_view_scrolled;
 		[GtkBeans.Builder.Object] Box photo_box;
 		[GtkBeans.Builder.Object] Notebook view_notebook;
-
-		Gtk.ScrolledWindow tag_selection_scrolled;
 
 		[GtkBeans.Builder.Object] Label status_label;
 
@@ -130,8 +131,6 @@ namespace FSpot
 
 		[GtkBeans.Builder.Object] Gtk.ToggleAction reverse_order;
 
-		public Gtk.ToggleAction ReverseOrderAction => reverse_order;
-
 		// Find
 		[GtkBeans.Builder.Object] Gtk.Action clear_date_range;
 		[GtkBeans.Builder.Object] Gtk.Action clear_rating_filter;
@@ -155,6 +154,8 @@ namespace FSpot
 		[GtkBeans.Builder.Object] Gtk.HBox tagbar;
 		[GtkBeans.Builder.Object] Gtk.VBox tag_entry_container;
 		[GtkBeans.Builder.Object] Gtk.VBox sidebar_vbox;
+#pragma warning restore 649
+
 		TagEntry tag_entry;
 
 		Gtk.Toolbar toolbar;
