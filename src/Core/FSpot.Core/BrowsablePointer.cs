@@ -33,10 +33,9 @@ using System;
 
 namespace FSpot.Core
 {
-
 	public class BrowsablePointer
 	{
-		IBrowsableCollection collection;
+		readonly IBrowsableCollection collection;
 		IPhoto item;
 		int index;
 		public event EventHandler<BrowsablePointerChangedEventArgs> Changed;
@@ -44,7 +43,7 @@ namespace FSpot.Core
 		public BrowsablePointer (IBrowsableCollection collection, int index)
 		{
 			if (collection == null)
-				throw new ArgumentNullException ("collection");
+				throw new ArgumentNullException (nameof (collection));
 
 			this.collection = collection;
 			Index = index;
@@ -54,9 +53,7 @@ namespace FSpot.Core
 			collection.ItemsChanged += HandleCollectionItemsChanged;
 		}
 
-		public IBrowsableCollection Collection {
-			get { return collection; }
-		}
+		public IBrowsableCollection Collection => collection;
 
 		public IPhoto Current {
 			get {
@@ -72,9 +69,7 @@ namespace FSpot.Core
 			return val >= 0 && val < collection.Count;
 		}
 
-		public bool IsValid {
-			get { return Valid (Index); }
-		}
+		public bool IsValid => Valid (Index);
 
 		public void MoveFirst ()
 		{
@@ -127,36 +122,30 @@ namespace FSpot.Core
 			}
 		}
 
-		void SetIndex (int value)
-		{
-			SetIndex (value, null);
-		}
-
-		void SetIndex (int value, IBrowsableItemChanges changes)
+		void SetIndex (int value, IBrowsableItemChanges changes = null)
 		{
 			var args = new BrowsablePointerChangedEventArgs (Current, index, changes);
 
 			index = value;
 			item = Current;
 
-			if (Changed != null)
-				Changed (this, args);
+			Changed?.Invoke (this, args);
 		}
 
-		protected void HandleCollectionItemsChanged (IBrowsableCollection collection, BrowsableEventArgs eventArgs)
+		protected void HandleCollectionItemsChanged (IBrowsableCollection browsableCollection, BrowsableEventArgs eventArgs)
 		{
-			foreach (int item in eventArgs.Items) {
-				if (item == Index)
+			foreach (var eventItem in eventArgs.Items) {
+				if (eventItem == Index)
 					SetIndex (Index, eventArgs.Changes);
 			}
 		}
 
-		protected void HandleCollectionChanged (IBrowsableCollection collection)
+		protected void HandleCollectionChanged (IBrowsableCollection browsableCollection)
 		{
-			if (collection == null)
-				throw new ArgumentNullException ("collection");
+			if (browsableCollection == null)
+				throw new ArgumentNullException (nameof (browsableCollection));
 			int old_location = Index;
-			int next_location = collection.IndexOf (item);
+			int next_location = browsableCollection.IndexOf (item);
 
 			if (old_location == next_location) {
 				if (! Valid (next_location))

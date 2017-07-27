@@ -45,9 +45,7 @@ namespace FSpot.Core
         {
         }
 
-        public int Count {
-            get { return list.Count; }
-        }
+        public int Count => list.Count;
 
         public void Clear ()
         {
@@ -98,8 +96,7 @@ namespace FSpot.Core
         public void Reload ()
         {
             cache = null;
-            if (Changed != null)
-                Changed (this);
+            Changed?.Invoke (this);
         }
 
         public void MarkChanged (int num, IBrowsableItemChanges changes)
@@ -109,17 +106,11 @@ namespace FSpot.Core
 
         public void MarkChanged (BrowsableEventArgs args)
         {
-            if (ItemsChanged != null)
-                ItemsChanged (this, args);
+            ItemsChanged?.Invoke (this, args);
         }
 
         public IPhoto[] Items {
-            get {
-                if (cache == null)
-                    cache = list.ToArray ();
-                
-                return cache;
-            }
+            get { return cache ?? (cache = list.ToArray ()); }
             set {
                 list.Clear ();
                 Add (value);

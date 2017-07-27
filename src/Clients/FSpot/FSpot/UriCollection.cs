@@ -97,7 +97,7 @@ namespace FSpot
 				ns.AddNamespace ("pheed", "http://www.pheed.com/pheed/");
 				ns.AddNamespace ("apple", "http://www.apple.com/ilife/wallpapers");
 
-				List<FilePhoto> items = new List<FilePhoto> ();
+				var items = new List<FilePhoto> ();
 				XmlNodeList list = doc.SelectNodes ("/rss/channel/item/media:content", ns);
 				foreach (XmlNode item in list) {
 					SafeUri image_uri = new SafeUri (item.Attributes ["url"].Value);
@@ -145,7 +145,7 @@ namespace FSpot
 
 			void InfoLoaded (GLib.Object o, GLib.AsyncResult res)
 			{
-				List<FilePhoto> items = new List<FilePhoto> ();
+				var items = new List<FilePhoto> ();
 				foreach (GLib.FileInfo info in file.EnumerateChildrenFinish (res)) {
 					SafeUri i = new SafeUri (file.GetChild (info.Name).Uri);
 					Hyena.Log.DebugFormat ("testing uri = {0}", i);
@@ -158,7 +158,7 @@ namespace FSpot
 
 		protected void LoadItems (System.IO.FileInfo [] files)
 		{
-			List<IPhoto> items = new List<IPhoto> ();
+			var items = new List<IPhoto> ();
 			foreach (var f in files) {
 				if (App.Instance.Container.Resolve<IImageFileFactory> ().HasLoader (new SafeUri (f.FullName))) {
 					Hyena.Log.Debug (f.FullName);
