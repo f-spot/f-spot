@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -56,21 +56,21 @@
     <Compile Include="FSpot.Editors\SepiaEditor.cs" />
     <Compile Include="FSpot.Editors\SoftFocusEditor.cs" />
     <Compile Include="FSpot.Editors\TiltEditor.cs" />
-    <Compile Include="FSpot.Extensions\CommandMenuItemNode.cs" />
-    <Compile Include="FSpot.Extensions\ComplexMenuItemNode.cs" />
-    <Compile Include="FSpot.Extensions\ExportMenuItemNode.cs" />
-    <Compile Include="FSpot.Extensions\ICommand.cs" />
-    <Compile Include="FSpot.Extensions\IExporter.cs" />
-    <Compile Include="FSpot.Extensions\IMenuGenerator.cs" />
-    <Compile Include="FSpot.Extensions\IService.cs" />
-    <Compile Include="FSpot.Extensions\MenuNode.cs" />
-    <Compile Include="FSpot.Extensions\PhotoSelectionCondition.cs" />
-    <Compile Include="FSpot.Extensions\PopupCommands.cs" />
-    <Compile Include="FSpot.Extensions\ServiceNode.cs" />
-    <Compile Include="FSpot.Extensions\SidebarPage.cs" />
-    <Compile Include="FSpot.Extensions\SidebarPageNode.cs" />
-    <Compile Include="FSpot.Extensions\TransitionNode.cs" />
-    <Compile Include="FSpot.Extensions\ViewModeCondition.cs" />
+    <Compile Include="Extensions\CommandMenuItemNode.cs" />
+    <Compile Include="Extensions\ComplexMenuItemNode.cs" />
+    <Compile Include="Extensions\ExportMenuItemNode.cs" />
+    <Compile Include="Extensions\ICommand.cs" />
+    <Compile Include="Extensions\IExporter.cs" />
+    <Compile Include="Extensions\IMenuGenerator.cs" />
+    <Compile Include="Extensions\IService.cs" />
+    <Compile Include="Extensions\MenuNode.cs" />
+    <Compile Include="Extensions\PhotoSelectionCondition.cs" />
+    <Compile Include="Extensions\PopupCommands.cs" />
+    <Compile Include="Extensions\ServiceNode.cs" />
+    <Compile Include="Extensions\SidebarPage.cs" />
+    <Compile Include="Extensions\SidebarPageNode.cs" />
+    <Compile Include="Extensions\TransitionNode.cs" />
+    <Compile Include="Extensions\ViewModeCondition.cs" />
     <Compile Include="FSpot.Filters\ChmodFilter.cs" />
     <Compile Include="FSpot.Filters\FilterRequest.cs" />
     <Compile Include="FSpot.Filters\FilterSet.cs" />
