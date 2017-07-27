@@ -44,6 +44,7 @@ namespace FSpot.Editors
 	{
 		GtkBeans.Builder builder;
 
+#pragma warning disable 649
 		[GtkBeans.Builder.Object] Gtk.HScale exposure_scale;
 		[GtkBeans.Builder.Object] Gtk.HScale temp_scale;
 		[GtkBeans.Builder.Object] Gtk.HScale temptint_scale;
@@ -59,6 +60,7 @@ namespace FSpot.Editors
 		[GtkBeans.Builder.Object] Gtk.SpinButton contrast_spinbutton;
 		[GtkBeans.Builder.Object] Gtk.SpinButton hue_spinbutton;
 		[GtkBeans.Builder.Object] Gtk.SpinButton sat_spinbutton;
+#pragma warning restore 649
 
 		public ColorEditor () : base (Catalog.GetString ("Adjust Colors"), "adjust-colors")
 		{

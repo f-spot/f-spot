@@ -57,8 +57,10 @@ namespace FSpot.Tools.ChangePhotoPath
 		private ProgressDialog progress_dialog;
 		private int progress_dialog_total = 0;
 
+#pragma warning disable 649
 		[GtkBeans.Builder.Object] Gtk.Entry old_common_uri;
 		[GtkBeans.Builder.Object] Gtk.Label new_common_uri;
+#pragma warning restore 649
 
 		private bool LaunchController()
 		{

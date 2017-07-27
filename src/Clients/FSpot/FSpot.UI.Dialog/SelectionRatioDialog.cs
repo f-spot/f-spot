@@ -65,12 +65,15 @@ namespace FSpot.UI.Dialog
 			}
 		}
 
+#pragma warning disable 649
 		[GtkBeans.Builder.Object] Button close_button;
 		[GtkBeans.Builder.Object] Button add_button;
 		[GtkBeans.Builder.Object] Button delete_button;
 		[GtkBeans.Builder.Object] Button up_button;
 		[GtkBeans.Builder.Object] Button down_button;
 		[GtkBeans.Builder.Object] TreeView content_treeview;
+#pragma warning restore 649
+
 		ListStore constraints_store;
 
 		public SelectionRatioDialog () : base ("SelectionRatioDialog.ui", "customratio_dialog")

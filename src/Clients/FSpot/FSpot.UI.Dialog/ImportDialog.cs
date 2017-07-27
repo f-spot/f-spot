@@ -47,7 +47,7 @@ namespace FSpot.UI.Dialog
 
 		static Dictionary<string, ImportSource> history_sources = new Dictionary<string, ImportSource> ();
 
-#pragma warning disable 169
+#pragma warning disable 649
 		[GtkBeans.Builder.Object] Button cancel_button;
 		[GtkBeans.Builder.Object] Button import_button;
 		[GtkBeans.Builder.Object] CheckButton copy_check;
@@ -63,7 +63,7 @@ namespace FSpot.UI.Dialog
 		[GtkBeans.Builder.Object] ScrolledWindow icon_scrolled;
 		[GtkBeans.Builder.Object] ScrolledWindow photo_scrolled;
 		[GtkBeans.Builder.Object] Label attachtags_label;
-#pragma warning restore 169
+#pragma warning restore 649
 
 		PhotoImageView photo_view;
 		TagEntry tag_entry;

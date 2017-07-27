@@ -39,9 +39,11 @@ namespace FSpot.Tools.MergeDb
 {
 	internal class PickFolderDialog
 	{
+#pragma warning disable 649
 		[GtkBeans.Builder.Object] Gtk.Dialog pickfolder_dialog;
 		[GtkBeans.Builder.Object] Gtk.FileChooserWidget pickfolder_chooser;
 		[GtkBeans.Builder.Object] Gtk.Label pickfolder_label;
+#pragma warning restore 649
 
 		public PickFolderDialog (Gtk.Dialog parent, string folder)
 		{

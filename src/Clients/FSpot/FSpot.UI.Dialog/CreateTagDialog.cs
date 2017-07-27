@@ -1,5 +1,5 @@
-//
-// TagCommands.cs
+﻿//
+// CreateTagDialog.cs
 //
 // Author:
 //   Ettore Perazzoli <ettore@src.gnome.org>
@@ -42,27 +42,29 @@ using Mono.Unix;
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Settings;
-using FSpot.UI.Dialog;
 
 using Hyena;
 
-public class TagCommands {
-
-	public enum TagType {
-		Tag,
-		Category
-	}
-
-	public class Create : BuilderDialog
+namespace FSpot.UI.Dialog
+{
+	public class CreateTagDialog : BuilderDialog
 	{
+		public enum TagType
+		{
+			Tag,
+			Category
+		}
+
 		readonly TagStore tag_store;
 
+#pragma warning disable 649
 		[GtkBeans.Builder.Object] Button create_button;
 		[GtkBeans.Builder.Object] Entry tag_name_entry;
 		[GtkBeans.Builder.Object] Label prompt_label;
 		[GtkBeans.Builder.Object] Label already_in_use_label;
 		[GtkBeans.Builder.Object] ComboBox category_option_menu;
 		[GtkBeans.Builder.Object] CheckButton auto_icon_checkbutton;
+#pragma warning restore 649
 
 		List<Tag> categories;
 
@@ -175,7 +177,7 @@ public class TagCommands {
 			Category default_category = null;
 			if (selection.Length > 0) {
 				if (selection [0] is Category)
-					default_category = (Category) selection [0];
+					default_category = (Category)selection [0];
 				else
 					default_category = selection [0].Category;
 			} else {
@@ -193,7 +195,7 @@ public class TagCommands {
 			Update ();
 			tag_name_entry.GrabFocus ();
 
-			ResponseType response = (ResponseType) Run ();
+			ResponseType response = (ResponseType)Run ();
 
 
 			Tag new_tag = null;
@@ -217,7 +219,7 @@ public class TagCommands {
 			return new_tag;
 		}
 
-		public Create (TagStore tag_store) : base ("CreateTagDialog.ui", "create_tag_dialog")
+		public CreateTagDialog (TagStore tag_store) : base ("CreateTagDialog.ui", "create_tag_dialog")
 		{
 			this.tag_store = tag_store;
 		}

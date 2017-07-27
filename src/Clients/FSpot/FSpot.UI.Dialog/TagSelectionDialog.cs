@@ -40,7 +40,9 @@ namespace FSpot.UI.Dialog
 {
 	public class TagSelectionDialog : BuilderDialog
 	{
+#pragma warning disable 649
 		[GtkBeans.Builder.Object] Gtk.ScrolledWindow tag_selection_scrolled;
+#pragma warning restore 649
 
 		TagSelectionWidget tag_selection_widget;
 

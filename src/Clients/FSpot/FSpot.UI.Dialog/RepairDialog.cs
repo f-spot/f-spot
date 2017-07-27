@@ -40,7 +40,9 @@ namespace FSpot. UI.Dialog
 {
 	public class RepairDialog : BuilderDialog
 	{
+#pragma warning disable 649
 		[GtkBeans.Builder.Object] ScrolledWindow view_scrolled;
+#pragma warning restore 649
 
 		readonly IBrowsableCollection source;
 		readonly PhotoList missing;

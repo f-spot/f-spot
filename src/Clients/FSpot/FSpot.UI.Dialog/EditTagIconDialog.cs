@@ -57,6 +57,7 @@ namespace FSpot.UI.Dialog
 		string icon_name = string.Empty;
 		Gtk.FileChooserButton external_photo_chooser;
 
+#pragma warning disable 649
 		[GtkBeans.Builder.Object] Gtk.Image preview_image;
 		[GtkBeans.Builder.Object] Gtk.ScrolledWindow photo_scrolled_window;
 		[GtkBeans.Builder.Object] Gtk.ScrolledWindow icon_scrolled_window;
@@ -64,6 +65,7 @@ namespace FSpot.UI.Dialog
 		[GtkBeans.Builder.Object] Label from_photo_label;
 		[GtkBeans.Builder.Object] SpinButton photo_spin_button;
 		[GtkBeans.Builder.Object] HBox external_photo_chooser_hbox;
+#pragma warning restore 649
 
 		public EditTagIconDialog (Db db, Tag t, Gtk.Window parent_window) : base ("EditTagIconDialog.ui", "edit_tag_icon_dialog")
 		{

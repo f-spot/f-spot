@@ -44,11 +44,14 @@ namespace FSpot.UI.Dialog
 	{
 		readonly Db db;
 		Tag tag;
+
+#pragma warning disable 649
 		[GtkBeans.Builder.Object] Button ok_button;
 		[GtkBeans.Builder.Object] Entry tag_name_entry;
 		[GtkBeans.Builder.Object] Label already_in_use_label;
 		[GtkBeans.Builder.Object] Gtk.Image icon_image;
 		[GtkBeans.Builder.Object] Gtk.ComboBox category_option_menu;
+#pragma warning restore 649
 
 		public EditTagDialog (Db db, Tag t, Gtk.Window parent_window) : base ("EditTagDialog.ui", "edit_tag_dialog")
 		{

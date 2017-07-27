@@ -53,11 +53,14 @@ using FSpot.Thumbnail;
 
 namespace FSpot {
 	public class SingleView {
+		ToolButton rr_button, rl_button;
+		Sidebar sidebar;
+		Gtk.ScrolledWindow directory_scrolled;
+
+#pragma warning disable 649
 		[GtkBeans.Builder.Object]  Gtk.HBox toolbar_hbox;
 		[GtkBeans.Builder.Object]  Gtk.VBox info_vbox;
 		[GtkBeans.Builder.Object]  Gtk.ScrolledWindow image_scrolled;
-
-		Gtk.ScrolledWindow directory_scrolled;
 
 		[GtkBeans.Builder.Object]  Gtk.CheckMenuItem side_pane_item;
 		[GtkBeans.Builder.Object]  Gtk.CheckMenuItem toolbar_item;
@@ -72,11 +75,8 @@ namespace FSpot {
 		[GtkBeans.Builder.Object]  ImageMenuItem rotate_left;
 		[GtkBeans.Builder.Object]  ImageMenuItem rotate_right;
 
-		ToolButton rr_button, rl_button;
-
-		Sidebar sidebar;
-
 		[GtkBeans.Builder.Object] Gtk.Window single_view;
+#pragma warning restore 649
 
 		public Gtk.Window Window {
 			get {
@@ -608,11 +608,13 @@ namespace FSpot {
 
 		public class PreferenceDialog : BuilderDialog
 		{
+#pragma warning disable 649
 			[GtkBeans.Builder.Object] CheckButton interpolation_check;
 			[GtkBeans.Builder.Object] ColorButton color_button;
 			[GtkBeans.Builder.Object] RadioButton as_background_radio;
 			[GtkBeans.Builder.Object] RadioButton as_check_radio;
 			[GtkBeans.Builder.Object] RadioButton as_color_radio;
+#pragma warning restore 649
 
 			public PreferenceDialog () : base ("viewer_preferences.ui", "viewer_preferences")
 			{

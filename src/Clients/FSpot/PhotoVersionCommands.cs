@@ -48,96 +48,12 @@ using Hyena.Widgets;
 
 public class PhotoVersionCommands
 {
-	class VersionNameRequest : BuilderDialog
-	{
-		readonly Photo photo;
-
-		[GtkBeans.Builder.Object] Button ok_button;
-		[GtkBeans.Builder.Object] Entry version_name_entry;
-		[GtkBeans.Builder.Object] Label prompt_label;
-		[GtkBeans.Builder.Object] Label already_in_use_label;
-
-		public enum RequestType
-		{
-			Create,
-			Rename
-		}
-
-		RequestType request_type;
-
-		void Update ()
-		{
-			string new_name = version_name_entry.Text;
-
-			if (photo.VersionNameExists (new_name)
-				&& !(request_type == RequestType.Rename
-				  && new_name == photo.GetVersion (photo.DefaultVersionId).Name)) {
-				already_in_use_label.Markup = "<small>This name is already in use</small>";
-				ok_button.Sensitive = false;
-				return;
-			}
-
-			already_in_use_label.Text = string.Empty;
-
-			if (new_name.Length == 0)
-				ok_button.Sensitive = false;
-			else
-				ok_button.Sensitive = true;
-		}
-
-		void HandleVersionNameEntryChanged (object obj, EventArgs args)
-		{
-			Update ();
-		}
-
-		public VersionNameRequest (RequestType request_type, Photo photo, Gtk.Window parent_window) : base ("version_name_dialog.ui", "version_name_dialog")
-		{
-			this.request_type = request_type;
-			this.photo = photo;
-
-			switch (request_type) {
-			case RequestType.Create:
-				Title = Catalog.GetString ("Create New Version");
-				prompt_label.Text = Catalog.GetString ("Name:");
-				break;
-
-			case RequestType.Rename:
-				Title = Catalog.GetString ("Rename Version");
-				prompt_label.Text = Catalog.GetString ("New name:");
-				version_name_entry.Text = photo.GetVersion (photo.DefaultVersionId).Name;
-				version_name_entry.SelectRegion (0, -1);
-				break;
-			}
-
-			version_name_entry.Changed += HandleVersionNameEntryChanged;
-			version_name_entry.ActivatesDefault = true;
-
-			TransientFor = parent_window;
-			DefaultResponse = ResponseType.Ok;
-
-			Update ();
-		}
-
-		public ResponseType Run (out string name)
-		{
-			ResponseType response = (ResponseType)Run ();
-
-			name = version_name_entry.Text;
-			if (request_type == RequestType.Rename && name == photo.GetVersion (photo.DefaultVersionId).Name)
-				response = ResponseType.Cancel;
-
-			Destroy ();
-
-			return response;
-		}
-	}
-
 	// Creating a new version.
 	public class Create
 	{
 		public bool Execute (PhotoStore store, Photo photo, Gtk.Window parent_window)
 		{
-			var request = new VersionNameRequest (VersionNameRequest.RequestType.Create, photo, parent_window);
+			var request = new VersionNameDialog (VersionNameDialog.RequestType.Create, photo, parent_window);
 
 			string name;
 			ResponseType response = request.Run (out name);
@@ -184,7 +100,7 @@ public class PhotoVersionCommands
 	{
 		public bool Execute (PhotoStore store, Photo photo, Gtk.Window parent_window)
 		{
-			VersionNameRequest request = new VersionNameRequest (VersionNameRequest.RequestType.Rename,
+			VersionNameDialog request = new VersionNameDialog (VersionNameDialog.RequestType.Rename,
 									     photo, parent_window);
 
 			string new_name;

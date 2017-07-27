@@ -14,7 +14,6 @@ RESOURCES =  \
 	ui/main_window.ui \
 	ui/single_view.ui  \
 	ui/tag_selection_dialog.ui \
-	ui/version_name_dialog.ui \
 	ui/viewer_preferences.ui \
 	FSpot.UI.Dialog/ui/EditTagDialog.ui \
 	FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui \
@@ -25,6 +24,5 @@ RESOURCES =  \
 	FSpot.UI.Dialog/ui/CreateTagDialog.ui \
 	FSpot.UI.Dialog/ui/AdjustTimeDialog.ui \
 	FSpot.UI.Dialog/ui/RatingFilterDialog.ui \
-	FSpot.UI.Dialog/ui/EditTagIconDialog.ui
-
-
+	FSpot.UI.Dialog/ui/EditTagIconDialog.ui \
+	FSpot.UI.Dialog/ui/VersionNameDialog.ui

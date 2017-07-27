@@ -47,6 +47,7 @@ namespace FSpot.UI.Dialog
 {
 	public class AdjustTimeDialog : BuilderDialog
 	{
+#pragma warning disable 649
 		[GtkBeans.Builder.Object] ScrolledWindow view_scrolled;
 		[GtkBeans.Builder.Object] ScrolledWindow tray_scrolled;
 		[GtkBeans.Builder.Object] Button ok_button;
@@ -62,6 +63,7 @@ namespace FSpot.UI.Dialog
 		[GtkBeans.Builder.Object] Gtk.Frame action_frame;
 		[GtkBeans.Builder.Object] Gtk.Entry spacing_entry;
 		[GtkBeans.Builder.Object] Gtk.Label starting_label;
+#pragma warning restore 649
 
 		IBrowsableCollection collection;
 		BrowsablePointer item;

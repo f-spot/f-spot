@@ -37,12 +37,14 @@ namespace FSpot.Exporters.SmugMug
 {
 	public class SmugMugAddAlbum
 	{
+#pragma warning disable 649
 		[GtkBeans.Builder.Object] Gtk.Dialog dialog;
 		[GtkBeans.Builder.Object] Gtk.Entry title_entry;
 		[GtkBeans.Builder.Object] Gtk.CheckButton public_check;
 		[GtkBeans.Builder.Object] Gtk.ComboBox category_combo;
 
 		[GtkBeans.Builder.Object] Gtk.Button add_button;
+#pragma warning restore 649
 
 		private string dialog_name = "smugmug_add_album_dialog";
 		private GtkBeans.Builder builder;
