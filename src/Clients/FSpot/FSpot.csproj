@@ -198,6 +198,7 @@
     <Compile Include="FSpot.Editors\EditorState.cs" />
     <Compile Include="FSpot.Editors\EditorNode.cs" />
     <Compile Include="FSpot.UI.Dialog\CreateTagDialog.cs" />
+    <Compile Include="FSpot.UI.Dialog\VersionNameDialog.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\icons\f-spot-not.png">
@@ -223,9 +224,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ui\single_view.ui">
       <LogicalName>single_view.ui</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ui\version_name_dialog.ui">
-      <LogicalName>version_name_dialog.ui</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="ui\viewer_preferences.ui">
       <LogicalName>viewer_preferences.ui</LogicalName>
@@ -268,6 +266,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FSpot.UI.Dialog\ui\SelectionRatioDialog.ui">
       <LogicalName>SelectionRatioDialog.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FSpot.UI.Dialog\ui\VersionNameDialog.ui">
+      <LogicalName>VersionNameDialog.ui</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
