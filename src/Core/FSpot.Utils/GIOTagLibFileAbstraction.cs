@@ -53,7 +53,9 @@ namespace FSpot.Utils
         const string TMP_INFIX = ".tmpwrite";
 
         public string Name {
-            get => Uri.ToString ();
+			get {
+				return Uri.ToString ();
+			}
             set {
                 Uri = new SafeUri (value);
             }
