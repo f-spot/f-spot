@@ -77,10 +77,11 @@ namespace FSpot.Utils
 	
 		public static Gtk.MenuItem MakeCheckMenuItem (Gtk.Menu menu, string label, EventHandler e, bool enabled, bool active, bool as_radio)
 		{
-			Gtk.CheckMenuItem i = new Gtk.CheckMenuItem (label);
-			i.Sensitive = enabled;
-			i.DrawAsRadio = as_radio;
-			i.Active = active;
+			Gtk.CheckMenuItem i = new Gtk.CheckMenuItem (label) {
+				Sensitive = enabled,
+				DrawAsRadio = as_radio,
+				Active = active
+			};
 
 			i.Activated += e;
 	
@@ -99,11 +100,13 @@ namespace FSpot.Utils
 		
 		public static Gtk.ToolButton ToolButtonFromTheme (string theme_id, string label, bool important)
 		{
-			var button = new Gtk.ToolButton (null, null);
-			button.Label = label;
-			button.IconName = theme_id;
-			button.IsImportant = important;
-			button.UseUnderline = true;
+			var button = new Gtk.ToolButton (null, null) {
+				Label = label,
+				IconName = theme_id,
+				IsImportant = important,
+				UseUnderline = true
+			};
+
 			return button;
 		}
 

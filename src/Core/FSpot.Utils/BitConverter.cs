@@ -29,43 +29,45 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-namespace FSpot {
+namespace FSpot
+{
 	//[Obsolete ("use Mono.DataConvert instead")]
-	public class BitConverter {
+	public static class BitConverter
+	{
 		public static uint Swap (uint val, bool little)
 		{
 			return (little != System.BitConverter.IsLittleEndian) ?
-				((uint) ((((uint) (val) & (uint) 0x000000ffU) << 24) |
-					 (((uint) (val) & (uint) 0x0000ff00U) <<  8) |
-					 (((uint) (val) & (uint) 0x00ff0000U) >>  8) |
-					 (((uint) (val) & (uint) 0xff000000U) >> 24)))
+				((uint)((((uint)(val) & (uint)0x000000ffU) << 24) |
+					 (((uint)(val) & (uint)0x0000ff00U) << 8) |
+					 (((uint)(val) & (uint)0x00ff0000U) >> 8) |
+					 (((uint)(val) & (uint)0xff000000U) >> 24)))
 				: val;
 		}
 
 		public static ushort Swap (ushort val, bool little)
 		{
 			return (little != System.BitConverter.IsLittleEndian) ?
-				((ushort) ((ushort)(val >> 8) | (ushort)(val << 8)))
+				((ushort)((ushort)(val >> 8) | (ushort)(val << 8)))
 				: val;
 		}
 
 		public static ushort Swap (ushort val)
 		{
-			return ((ushort) ((ushort)(val >> 8) | (ushort)(val << 8)));
+			return ((ushort)((ushort)(val >> 8) | (ushort)(val << 8)));
 		}
 
 		public static ulong Swap (ulong val, bool little)
 		{
-		        return (little != System.BitConverter.IsLittleEndian) ?
-			((ulong) ((((ulong) (val) & (ulong) 0x00000000000000ffU) << 56) |
-				  (((ulong) (val) & (ulong) 0x000000000000ff00U) << 40) |
-				  (((ulong) (val) & (ulong) 0x0000000000ff0000U) << 24) |
-				  (((ulong) (val) & (ulong) 0x00000000ff000000U) <<  8) |
-				  (((ulong) (val) & (ulong) 0x000000ff00000000U) >>  8) |
-				  (((ulong) (val) & (ulong) 0x0000ff0000000000U) >> 24) |
-				  (((ulong) (val) & (ulong) 0x00ff000000000000U) >> 40) |
-				  (((ulong) (val) & (ulong) 0xff00000000000000U) >> 56)))
-				: val;
+			return (little != System.BitConverter.IsLittleEndian) ?
+		((ulong)((((ulong)(val) & (ulong)0x00000000000000ffU) << 56) |
+			  (((ulong)(val) & (ulong)0x000000000000ff00U) << 40) |
+			  (((ulong)(val) & (ulong)0x0000000000ff0000U) << 24) |
+			  (((ulong)(val) & (ulong)0x00000000ff000000U) << 8) |
+			  (((ulong)(val) & (ulong)0x000000ff00000000U) >> 8) |
+			  (((ulong)(val) & (ulong)0x0000ff0000000000U) >> 24) |
+			  (((ulong)(val) & (ulong)0x00ff000000000000U) >> 40) |
+			  (((ulong)(val) & (ulong)0xff00000000000000U) >> 56)))
+			: val;
 		}
 
 		public static byte [] GetBytes (uint val, bool little)
@@ -102,8 +104,8 @@ namespace FSpot {
 		{
 			float retval;
 			unsafe {
-				uint * ptr;
-				ptr = (uint *)&retval;
+				uint* ptr;
+				ptr = (uint*)&retval;
 				*ptr = ToUInt32 (data, position, little);
 			}
 			return retval;
@@ -111,12 +113,12 @@ namespace FSpot {
 
 		public static int ToInt32 (byte [] data, int position, bool little)
 		{
-			return unchecked ((int) ToUInt32 (data, position, little));
+			return unchecked((int)ToUInt32 (data, position, little));
 		}
 
 		public static ulong ToUInt64 (byte [] data, int position, bool little)
 		{
-			ulong val = System.BitConverter.ToUInt64(data, position);
+			ulong val = System.BitConverter.ToUInt64 (data, position);
 			return Swap (val, little);
 		}
 	}

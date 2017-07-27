@@ -365,8 +365,8 @@ namespace FSpot.Widgets
 			now.X -= hot.X;
 			now.Y -= hot.Y;
 
-			var v1 = new Vector (initial);
-			var v2 = new Vector (now);
+			var v1 = new Vector (initial.X, initial.Y);
+			var v2 = new Vector (now.X, now.Y);
 
 			double angleBetween = Vector.AngleBetween (v1, v2);
 

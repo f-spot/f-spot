@@ -348,8 +348,7 @@ namespace FSpot.UI.Dialog
 			Destroy ();
 		}
 
-		bool pulse_timeout_running;
-
+		System.Threading.Timer progressBarTimer;
 		void ShowImportProgress ()
 		{
 			progress_bar.Text = Catalog.GetString ("Importing photos...");
@@ -361,20 +360,14 @@ namespace FSpot.UI.Dialog
 			//FIXME Using a GtkSpinner would be nicer here.
 			progress_bar.Text = Catalog.GetString ("Searching for photos... (You can already click Import to continue)");
 			progress_bar.Show ();
-			pulse_timeout_running = true;
-			GLib.Timeout.Add (40, () => {
-				if (!pulse_timeout_running) {
-					return false;
-				}
-
+			progressBarTimer = new System.Threading.Timer ((s) => {
 				progress_bar.Pulse ();
-				return pulse_timeout_running;
-			});
+			}, null, 40, 40);
 		}
 
 		void HideScanSpinner ()
 		{
-			pulse_timeout_running = false;
+			progressBarTimer?.Dispose ();
 			progress_bar.Hide ();
 		}
 

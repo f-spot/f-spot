@@ -28,6 +28,7 @@
 //
 
 using System;
+using System.IO;
 
 namespace FSpot.Utils
 {
@@ -35,16 +36,16 @@ namespace FSpot.Utils
 	{
 		public static Uri GetDirectoryUri (this Uri uri)
 		{
-			UriBuilder builder = new UriBuilder (uri);
-			builder.Path =
-				string.Format ("{0}/", System.IO.Path.GetDirectoryName (uri.AbsolutePath));
-			
+			UriBuilder builder = new UriBuilder (uri) {
+				Path = string.Format ($"{Path.GetDirectoryName (uri.AbsolutePath)}/")
+			};
+
 			return builder.Uri;
 		}
 		
 		public static string GetFilename (this Uri uri)
 		{
-			return System.IO.Path.GetFileName (uri.AbsolutePath);
+			return Path.GetFileName (uri.AbsolutePath);
 		}
 	}
 }
