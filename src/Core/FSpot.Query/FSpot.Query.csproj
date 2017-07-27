@@ -32,7 +32,7 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="AndTerm.cs" />
+    <Compile Include="AndOperator.cs" />
     <Compile Include="ConditionWrapper.cs" />
     <Compile Include="DateRange.cs" />
     <Compile Include="FolderSet.cs" />
@@ -48,7 +48,7 @@
     <Compile Include="TextTerm.cs" />
     <Compile Include="UntaggedCondition.cs" />
     <Compile Include="HiddenTag.cs" />
-    <Compile Include="OrTerm.cs" />
+    <Compile Include="OrOperator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FSpot.Core\FSpot.Core.csproj">

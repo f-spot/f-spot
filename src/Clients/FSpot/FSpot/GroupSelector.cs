@@ -44,9 +44,7 @@ using Layout = Pango.Layout;
 namespace FSpot
 {
 	public class GroupSelector : Fixed
-    {
-		internal static GType groupSelectorGType;
-
+	{
 		int border = 6;
 		int box_spacing = 2;
 		int box_top_padding = 6;
@@ -87,8 +85,8 @@ namespace FSpot
 				has_limits = adaptor is FSpot.ILimitable;
 
 				if (has_limits) {
-				    min_limit.SetPosition (0, false);
-				    max_limit.SetPosition (adaptor.Count () - 1, false);
+					min_limit.SetPosition (0, false);
+					max_limit.SetPosition (adaptor.Count () - 1, false);
 				}
 
 				if (adaptor is TimeAdaptor) {
@@ -129,7 +127,7 @@ namespace FSpot
 			if (tick_layouts != null) {
 				foreach (Layout l in tick_layouts.Where(l => l != null))
 				{
-				    l.Dispose ();
+					l.Dispose ();
 				}
 			}
 			tick_layouts = new Pango.Layout [adaptor.Count ()];
@@ -304,11 +302,11 @@ namespace FSpot
 				return false;
 			}
 
-		    if (position >= box_counts.Length) {
-		        position = box_counts.Length -1;
-		        return false;
-		    }
-		    return true;
+			if (position >= box_counts.Length) {
+				position = box_counts.Length -1;
+				return false;
+			}
+			return true;
 		}
 
 		bool BoxHit (double x, double y, out int position)
@@ -582,7 +580,7 @@ namespace FSpot
 		}
 
 		public abstract class Manipulator
-        {
+		{
 			protected GroupSelector selector;
 			protected DelayedOperation timer;
 			public bool Dragging;
@@ -609,7 +607,7 @@ namespace FSpot
 					}
 				}
 				get {
-				    return Dragging ? drag_offset : 0;
+					return Dragging ? drag_offset : 0;
 				}
 			}
 
@@ -638,10 +636,10 @@ namespace FSpot
 
 			protected bool PositionValid (int pos)
 			{
-			    return pos >= 0 && pos <= selector.box_counts.Length - 1;
+				return pos >= 0 && pos <= selector.box_counts.Length - 1;
 			}
 
-		    public virtual void UpdateDrag (double x, double y)
+			public virtual void UpdateDrag (double x, double y)
 			{
 				Rectangle bounds = Bounds ();
 				double drag_lower_limit = (selector.background.Left) - (bounds.Width/2);
@@ -726,9 +724,9 @@ namespace FSpot
 					PositionChanged ();
 			}
 
-		    public int Position { get; private set; }
+			public int Position { get; private set; }
 
-		    public abstract void Draw (Rectangle area);
+			public abstract void Draw (Rectangle area);
 
 			public abstract void PositionChanged ();
 
@@ -741,7 +739,7 @@ namespace FSpot
 		}
 
 		class Glass : Manipulator
-        {
+		{
 			Gtk.Window popup_window;
 			Gtk.Label popup_label;
 			int drag_position;
@@ -859,7 +857,7 @@ namespace FSpot
 				Rectangle bounds = Bounds ();
 
 				if (! bounds.Intersect (area, out area))
-				    return;
+					return;
 
 				selector.Style.BackgroundGC (State).ClipRectangle = area;
 
@@ -871,23 +869,23 @@ namespace FSpot
 				while (i < Border) {
 					box.Inflate (1, 1);
 					selector.GdkWindow.DrawRectangle (selector.Style.BackgroundGC (State),
-							                          false, box);
+					                                  false, box);
 					i++;
 				}
 
 				Style.PaintFlatBox (selector.Style, selector.GdkWindow, State, ShadowType.In,
-						    area, selector, "glass", bounds.X, inner.Y + inner.Height + Border,
-						    bounds.Width, handle_height);
+				                    area, selector, "glass", bounds.X, inner.Y + inner.Height + Border,
+				                    bounds.Width, handle_height);
 
 				Style.PaintHandle (selector.Style, selector.GdkWindow, State, ShadowType.In,
-						   area, selector, "glass", bounds.X, inner.Y + inner.Height + Border,
-						   bounds.Width, handle_height, Orientation.Horizontal);
+				                   area, selector, "glass", bounds.X, inner.Y + inner.Height + Border,
+				                   bounds.Width, handle_height, Orientation.Horizontal);
 
 				Style.PaintShadow (selector.Style, selector.GdkWindow, State, ShadowType.Out,
-						   area, selector, null, bounds.X, bounds.Y, bounds.Width, bounds.Height);
+				                   area, selector, null, bounds.X, bounds.Y, bounds.Width, bounds.Height);
 
 				Style.PaintShadow (selector.Style, selector.GdkWindow, State, ShadowType.In,
-						   area, selector, null, inner.X, inner.Y, inner.Width, inner.Height);
+				                   area, selector, null, inner.X, inner.Y, inner.Width, inner.Height);
 
 			}
 
@@ -904,7 +902,7 @@ namespace FSpot
 		}
 
 		public class Limit : Manipulator
-        {
+		{
 			int width = 10;
 			int handle_height = 10;
 
@@ -934,19 +932,19 @@ namespace FSpot
 			{
 				Rectangle bounds = Bounds ();
 				Rectangle top = new Rectangle (bounds.X,
-							       bounds.Y,
-							       bounds.Width,
-							       handle_height);
+				                               bounds.Y,
+				                               bounds.Width,
+				                               handle_height);
 
 				Rectangle bottom = new Rectangle (bounds.X,
-								  bounds.Y + bounds.Height - handle_height,
-								  bounds.Width,
-								  handle_height);
+				                                  bounds.Y + bounds.Height - handle_height,
+				                                  bounds.Width,
+				                                  handle_height);
 				Style.PaintBox (selector.Style, selector.GdkWindow, State, ShadowType.Out, area,
-						selector, null, top.X, top.Y, top.Width, top.Height);
+				                selector, null, top.X, top.Y, top.Width, top.Height);
 
 				Style.PaintBox (selector.Style, selector.GdkWindow, State, ShadowType.Out, area,
-						selector, null, bottom.X, bottom.Y, bottom.Width, bottom.Height);
+				                selector, null, bottom.X, bottom.Y, bottom.Width, bottom.Height);
 			}
 
 			public Limit (GroupSelector selector, LimitType type) : base (selector)
@@ -1138,15 +1136,15 @@ namespace FSpot
 			if (right.Allocation.Y != bar.Y || right.Allocation.X != bar.X + bar.Width - right.Allocation.Width) {
 				right.SetSizeRequest (-1, bar.Height);
 				this.Move (right,  bar.X - Allocation.X + bar.Width - right.Allocation.Width,
-					   bar.Y - Allocation.Y);
+				           bar.Y - Allocation.Y);
 			}
 
 			background = new Rectangle (bar.X + left.Allocation.Width, bar.Y,
-						    bar.Width - left.Allocation.Width - right.Allocation.Width,
-						    bar.Height);
+			                            bar.Width - left.Allocation.Width - right.Allocation.Width,
+			                            bar.Height);
 
 			legend = new Rectangle (background.X, background.Y,
-						background.Width, legend_height);
+			                        background.Width, legend_height);
 
 			SetMouseActionArea ();
 

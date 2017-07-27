@@ -67,7 +67,7 @@ namespace FSpot.Widgets
 
 		readonly VBox main_vbox;
 		readonly Label metadata_message;
-		State display;
+		DisplayState display;
 
 		public MetadataDisplayPage Page { get; set; }
 
@@ -78,7 +78,7 @@ namespace FSpot.Widgets
 
 		bool up_to_date;
 
-		enum State
+		enum DisplayState
 		{
 			metadata,
 			message
@@ -100,7 +100,7 @@ namespace FSpot.Widgets
 			((Viewport)Child).ShadowType = ShadowType.None;
 			BorderWidth = 3;
 
-			display = State.message;
+			display = DisplayState.message;
 			ExposeEvent += HandleExposeEvent;
 
 			open_list = new List<string> ();
@@ -391,11 +391,11 @@ namespace FSpot.Widgets
 
 				metadata_message.Markup = "<span weight=\"bold\">" + msg + "</span>";
 
-				if (display == State.metadata) {
+				if (display == DisplayState.metadata) {
 					// Child is a Viewport, (AddWithViewport in ctor)
 					((Viewport)Child).Remove (main_vbox);
 					((Viewport)Child).Add (metadata_message);
-					display = State.message;
+					display = DisplayState.message;
 					metadata_message.Show ();
 				}
 			} else {
@@ -403,11 +403,11 @@ namespace FSpot.Widgets
 				while (index_of_expander < metadata_vbox.Children.Length)
 					metadata_vbox.Remove (metadata_vbox.Children [index_of_expander]);
 
-				if (display == State.message) {
+				if (display == DisplayState.message) {
 					// Child is a Viewport, (AddWithViewport in ctor)
 					((Viewport)Child).Remove (metadata_message);
 					((Viewport)Child).Add (main_vbox);
-					display = State.metadata;
+					display = DisplayState.metadata;
 					main_vbox.ShowAll ();
 				}
 			}

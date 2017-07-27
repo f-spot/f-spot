@@ -28,6 +28,7 @@
 //
 
 using System;
+using System.Numerics;
 
 using FSpot.Editors;
 
@@ -35,7 +36,6 @@ using Gtk;
 using Gdk;
 
 using Mono.Unix;
-using Mono.Simd;
 
 using Hyena;
 
@@ -63,15 +63,14 @@ namespace FSpot.Addins.Editors
 				return (Pixbuf)input.Clone ();
 			}
 			Pixbuf output = new Pixbuf (input.Colorspace, input.HasAlpha, input.BitsPerSample, input.Width, input.Height);
-			Vector4f multiply = new Vector4f ((float)(r.Value/100.0), (float)(g.Value/100.0), (float)(b.Value/100.0), 0);
+			Vector4 multiply = new Vector4 ((float)(r.Value/100.0), (float)(g.Value/100.0), (float)(b.Value/100.0), 0);
 			Normalize (ref multiply);
 
 			bool has_alpha = input.HasAlpha;
 			int chan = input.NChannels;
 			int rowstride_in = input.Rowstride;
 			int rowstride_out = output.Rowstride;
-			Vector4f v_in;
-			Vector4f v_out = new Vector4f (0);
+			Vector4 v_in;
 			float[] fcurve = new float [256];
 			c.GetVector (fcurve.Length, fcurve);
 			byte[] curve = new byte [fcurve.Length];
@@ -82,14 +81,14 @@ namespace FSpot.Addins.Editors
 				byte *pix_out = (byte *)output.Pixels;
 				for (int i=0; i < input.Height; i++)
 					for (int j=0; j<input.Width; j++) {
-						v_in = new Vector4f (pix_in[i*rowstride_in + j*chan],
+						v_in = new Vector4 (pix_in[i*rowstride_in + j*chan],
 								     pix_in[i*rowstride_in + j*chan + 1],
 								     pix_in[i*rowstride_in + j*chan + 2],
 								     0);
-						Desaturate (ref v_in, ref multiply, ref v_out);
-						pix_out[i*rowstride_out + j*chan] = curve [unchecked ((byte)v_out.X)];
-						pix_out[i*rowstride_out + j*chan + 1] = curve [unchecked ((byte)v_out.Y)];
-						pix_out[i*rowstride_out + j*chan + 2] = curve [unchecked ((byte)v_out.Z)];
+						float val = Desaturate (ref v_in, ref multiply);
+						pix_out[i*rowstride_out + j*chan] = curve [unchecked ((byte)val)];
+						pix_out[i*rowstride_out + j*chan + 1] = curve [unchecked ((byte)val)];
+						pix_out[i*rowstride_out + j*chan + 2] = curve [unchecked ((byte)val)];
 						if (has_alpha)
 							pix_out[i*rowstride_out + j*chan + 3] = pix_in[i*rowstride_in + j*chan + 3];
 					}
@@ -98,17 +97,16 @@ namespace FSpot.Addins.Editors
 			return output;
 		}
 
-		static void Desaturate (ref Vector4f input, ref Vector4f chan_multiplier, ref Vector4f output)
+		static float Desaturate (ref Vector4 input, ref Vector4 chan_multiplier)
 		{
-			Vector4f temp = input * chan_multiplier;	//(r1,g1,b1,0) = (r,g,b,a) * (rx, gx, bx, 0)
-			temp = temp.HorizontalAdd (temp);		//(r1+g1, b1+0, r1+g1, b1+0)
-			output = temp.HorizontalAdd (temp);		//(r1+g1+b1+0, r1+g1+b1+0, ..., ...)
+			Vector4 temp = input * chan_multiplier;	//(r1,g1,b1,0) = (r,g,b,a) * (rx, gx, bx, 0)
+			return temp.X + temp.Y + temp.Z;
 		}
 
-		static void Normalize (ref Vector4f v)
+		static void Normalize (ref Vector4 v)
 		{
 			float sum = v.X + v.Y + v.Z;
-			v /= new Vector4f (sum);
+			v /= new Vector4 (sum);
 		}
 
 		HScale r, g, b;
