@@ -195,9 +195,10 @@ namespace FSpot
 		Gdk.Cursor watch = new Gdk.Cursor (Gdk.CursorType.Watch);
 
 		// Tag Icon Sizes
-		public int TagsIconSize {
-			get => (int)Tag.TagIconSize;
-			set => Tag.TagIconSize = (Settings.IconSize)value;
+		public int TagsIconSize
+		{
+			get { return (int) Tag.TagIconSize; }
+			set { Tag.TagIconSize = (Settings.IconSize) value; }
 		}
 
 		static TargetEntry[] tag_target_table = {
