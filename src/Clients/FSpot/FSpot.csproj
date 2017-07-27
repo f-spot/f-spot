@@ -154,7 +154,6 @@
     <Compile Include="PhotoVersionCommands.cs" />
     <Compile Include="PhotoVersionMenu.cs" />
     <Compile Include="PixbufUtils.cs" />
-    <Compile Include="TagCommands.cs" />
     <Compile Include="TagPopup.cs" />
     <Compile Include="ThumbnailCommand.cs" />
     <Compile Include="FSpot.Widgets\ThumbnailCaptionRenderer.cs" />
@@ -198,6 +197,7 @@
     <Compile Include="FSpot\InfoItem.cs" />
     <Compile Include="FSpot.Editors\EditorState.cs" />
     <Compile Include="FSpot.Editors\EditorNode.cs" />
+    <Compile Include="FSpot.UI.Dialog\CreateTagDialog.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\icons\f-spot-not.png">

@@ -1630,8 +1630,8 @@ namespace FSpot
 
 		public Tag CreateTag (object sender, EventArgs args)
 		{
-			TagCommands.Create command = new TagCommands.Create (Database.Tags);
-			return command.Execute (TagCommands.TagType.Category, tag_selection_widget.TagHighlight);
+			CreateTagDialog dialog = new CreateTagDialog (Database.Tags);
+			return dialog.Execute (CreateTagDialog.TagType.Category, tag_selection_widget.TagHighlight);
 		}
 
 		public void HandleAttachTagCommand (object obj, EventArgs args)
