@@ -45,8 +45,6 @@ namespace FSpot
 {
 	public class GroupSelector : Fixed
     {
-		internal static GType groupSelectorGType;
-
 		int border = 6;
 		int box_spacing = 2;
 		int box_top_padding = 6;
