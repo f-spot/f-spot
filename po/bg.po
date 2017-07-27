@@ -278,55 +278,55 @@ msgstr "Влизане в Tabblo"
 msgid "Obtaining URL for upload"
 msgstr "Получаване на адрес за качване"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:1
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:1
 msgid "Copy Photo"
 msgstr "Копиране на снимка"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:2
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:2
 msgid "Export to"
 msgstr "Изнасяне в"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:3
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:3
 msgid "Open _With"
 msgstr "Отваряне _с"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:4
-#: ../src/Clients/MainApp/ui/main_window.ui.h:15
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:4
+#: ../src/Clients/FSpot/ui/main_window.ui.h:15
 msgid "Rem_ove Tag"
 msgstr "Премахване на _етикет"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:5
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:458
-#: ../src/Clients/MainApp/ui/main_window.ui.h:16
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:5
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:458
+#: ../src/Clients/FSpot/ui/main_window.ui.h:16
 msgid "Rotate _Left"
 msgstr "Завъртане на_ляво"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:6
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:459
-#: ../src/Clients/MainApp/ui/main_window.ui.h:17
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:6
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:459
+#: ../src/Clients/FSpot/ui/main_window.ui.h:17
 msgid "Rotate _Right"
 msgstr "Завъртане на_дясно"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:7
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:7
 msgid "Tools"
 msgstr "Инструменти"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:8
-#: ../src/Clients/MainApp/ui/main_window.ui.h:41
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:8
+#: ../src/Clients/FSpot/ui/main_window.ui.h:41
 msgid "_Delete From Drive"
 msgstr "Из_триване от диска"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:9
-#: ../src/Clients/MainApp/ui/main_window.ui.h:60
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:9
+#: ../src/Clients/FSpot/ui/main_window.ui.h:60
 msgid "_Remove From Catalog"
 msgstr "Према_хване от каталога"
 
-#: ../src/Clients/MainApp/FSpot/App.cs:320
+#: ../src/Clients/FSpot/FSpot/App.cs:320
 #, csharp-format
 msgid "No photos matching {0} found"
 msgstr "Не са открити снимки отговарящи на {0}"
 
-#: ../src/Clients/MainApp/FSpot/App.cs:321
+#: ../src/Clients/FSpot/FSpot/App.cs:321
 #, csharp-format
 msgid ""
 "The tag \"{0}\" is not applied to any photos. Try adding\n"
@@ -337,11 +337,11 @@ msgstr ""
 "го поне към една или изберете друг етикет в прозореца\n"
 "с настройки на F-Spot."
 
-#: ../src/Clients/MainApp/FSpot/App.cs:325
+#: ../src/Clients/FSpot/FSpot/App.cs:325
 msgid "Search returned no results"
 msgstr "Търсенето не върна никакви резултати"
 
-#: ../src/Clients/MainApp/FSpot/App.cs:326
+#: ../src/Clients/FSpot/FSpot/App.cs:326
 msgid ""
 "The tag F-Spot is looking for does not exist. Try\n"
 "selecting a different tag in the F-Spot preference\n"
@@ -351,11 +351,11 @@ msgstr ""
 "Добавете го поне към една или изберете друг етикет в\n"
 "прозореца с настройки на F-Spot."
 
-#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:762
+#: ../src/Clients/FSpot/FSpot.Database/Updater.cs:762
 msgid "Updating F-Spot Database"
 msgstr "Обновяване на базата от данни на F-Spot"
 
-#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:763
+#: ../src/Clients/FSpot/FSpot.Database/Updater.cs:763
 msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
@@ -363,250 +363,250 @@ msgstr ""
 "Изчакайте докато базата от данни на галерията бъде обновена. Това може да "
 "отнеме малко време."
 
-#: ../src/Clients/MainApp/FSpot.Editors/AutoStretchEditor.cs:37
+#: ../src/Clients/FSpot/FSpot.Editors/AutoStretchEditor.cs:37
 msgid "Auto Color"
 msgstr "Автоматични цветове"
 
-#: ../src/Clients/MainApp/FSpot.Editors/ColorEditor.cs:61
+#: ../src/Clients/FSpot/FSpot.Editors/ColorEditor.cs:61
 msgid "Adjust Colors"
 msgstr "Цветове"
 
-#: ../src/Clients/MainApp/FSpot.Editors/ColorEditor.cs:64
+#: ../src/Clients/FSpot/FSpot.Editors/ColorEditor.cs:64
 msgid "Adjust"
 msgstr "Регулиране"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:56
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:56
 msgid "4 x 3 (Book)"
 msgstr "4×3 (вертикално)"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:57
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:57
 msgid "4 x 6 (Postcard)"
 msgstr "4×6 (хоризонтално)"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:58
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:58
 msgid "5 x 7 (L, 2L)"
 msgstr "5×7 (L, 2L)"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:59
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:59
 msgid "8 x 10"
 msgstr "8×10"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:60
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:60
 msgid "Square"
 msgstr "Квадрат"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:63
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:63
 msgid "Crop"
 msgstr "Изрязване"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:94
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:94
 msgid "Select the area that needs cropping."
 msgstr "Изберете зоната, която трябва да се изреже."
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:119
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:119
 msgid "No Constraint"
 msgstr "Без ограничители"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:120
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:120
 msgid "Same as photo"
 msgstr "Същия като снимката"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:125
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:125
 msgid "Custom Ratios..."
 msgstr "Потребителски пропорции…"
 
 # FIXME
-#: ../src/Clients/MainApp/FSpot.Editors/DesaturateEditor.cs:37
+#: ../src/Clients/FSpot/FSpot.Editors/DesaturateEditor.cs:37
 msgid "Desaturate"
 msgstr "Разводняване"
 
-#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:41
+#: ../src/Clients/FSpot/FSpot.Editors/RedEyeEditor.cs:41
 msgid "Red-eye Reduction"
 msgstr "Без червени очи"
 
-#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:43
+#: ../src/Clients/FSpot/FSpot.Editors/RedEyeEditor.cs:43
 msgid "Fix!"
 msgstr "Поправяне!"
 
-#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:47
+#: ../src/Clients/FSpot/FSpot.Editors/RedEyeEditor.cs:47
 msgid "Select the eyes you wish to fix."
 msgstr "Изберете червените очи, които искате да се поправят."
 
-#: ../src/Clients/MainApp/FSpot.Editors/SepiaEditor.cs:37
+#: ../src/Clients/FSpot/FSpot.Editors/SepiaEditor.cs:37
 msgid "Sepia Tone"
 msgstr "В сепия"
 
-#: ../src/Clients/MainApp/FSpot.Editors/SoftFocusEditor.cs:51
+#: ../src/Clients/FSpot/FSpot.Editors/SoftFocusEditor.cs:51
 msgid "Soft Focus"
 msgstr "Мек фокус"
 
-#: ../src/Clients/MainApp/FSpot.Editors/TiltEditor.cs:49
+#: ../src/Clients/FSpot/FSpot.Editors/TiltEditor.cs:49
 msgid "Straighten"
 msgstr "Изправяне"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:82
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:82
 msgid "Hide"
 msgstr "Скриване"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:84
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:84
 msgid "Hide toolbar"
 msgstr "Скриване на лентата с инструменти"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:90
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:90
 msgid "Info"
 msgstr "Информация"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:92
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:92
 msgid "Image information"
 msgstr "Информация за снимката"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:97
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:97
 msgid "Exit fullscreen"
 msgstr "Изход от цял екран"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:105
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:341
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:122
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:105
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:341
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:122
 msgid "Slideshow"
 msgstr "Прожекция"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:106
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:106
 msgid "Start slideshow"
 msgstr "Прожекция"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:152
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:152
 msgid "Slide transition:"
 msgstr "Преход:"
 
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:90
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:91
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:90
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:91
 msgid "More dates"
 msgstr "Още дати"
 
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:93
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:94
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:93
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:94
 msgid "More"
 msgstr "Още"
 
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:554
-#: ../src/Clients/MainApp/ui/main_window.ui.h:34
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:554
+#: ../src/Clients/FSpot/ui/main_window.ui.h:34
 msgid "_Clear Date Range"
 msgstr "_Изчистване на времевия обхват"
 
-#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:506
-#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:508
-#: ../src/Clients/MainApp/FSpot.Import/MetadataImporter.cs:80
+#: ../src/Clients/FSpot/FSpot.Import/ImportController.cs:506
+#: ../src/Clients/FSpot/FSpot.Import/ImportController.cs:508
+#: ../src/Clients/FSpot/FSpot.Import/MetadataImporter.cs:80
 msgid "Imported Tags"
 msgstr "Внасяне на етикети"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:102
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:308
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:105
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:102
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:308
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:105
 msgid "Rotate Left"
 msgstr "Завъртане наляво"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:103
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:103
 msgid "Rotate picture left"
 msgstr "Завъртане на снимката наляво"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:114
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:312
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:110
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:114
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:312
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:110
 msgid "Rotate Right"
 msgstr "Завъртане надясно"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:115
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:115
 msgid "Rotate picture right"
 msgstr "Завъртане на снимката надясно"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:125
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:125
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:936
 msgid "Next"
 msgstr "Следваща"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:126
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:126
 msgid "Next picture"
 msgstr "Следваща снимка"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:146
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:146
 msgid "Previous"
 msgstr "Предна"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:147
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:147
 msgid "Previous picture"
 msgstr "Предишна снимка"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:301
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:222
-#: ../src/Clients/MainApp/ui/import.ui.h:3
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:301
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:222
+#: ../src/Clients/FSpot/ui/import.ui.h:3
 msgid "Import"
 msgstr "Внасяне"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:303
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:303
 msgid "Import new images"
 msgstr "Внасяне на нови снимки"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:319
-#: ../src/Clients/MainApp/ui/main_window.ui.h:3
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:319
+#: ../src/Clients/FSpot/ui/main_window.ui.h:3
 msgid "Browse"
 msgstr "Разглеждане"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:323
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:323
 msgid "Browse many photos simultaneously"
 msgstr "Едновременно преглеждане на много снимки"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:327
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:327
 msgid "Edit Image"
 msgstr "Редактиране"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:331
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:331
 msgid "View and edit a photo"
 msgstr "Преглед и редактиране на снимка"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:336
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:117
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:336
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:117
 msgid "Fullscreen"
 msgstr "На цял екран"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:338
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:119
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:338
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:119
 msgid "View photos fullscreen"
 msgstr "Преглед на цял екран"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:343
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:124
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:343
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:124
 msgid "View photos in a slideshow"
 msgstr "Преглед на снимки в прожекция"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:358
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:358
 msgid "Previous photo"
 msgstr "Предишна снимка"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:363
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:363
 msgid "Next photo"
 msgstr "Следваща снимка"
 
 #. Don't care otherwise, Tags sounds reasonable
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:376
-#: ../src/Clients/MainApp/FSpot.Widgets/Sidebar.cs:75
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:376
+#: ../src/Clients/FSpot/FSpot.Widgets/Sidebar.cs:75
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:933
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1105
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1145
 msgid "Tags"
 msgstr "Етикети"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:440
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:440
 msgid "Show _Find Bar"
 msgstr "Показване на лентата за _търсене"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:443
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:443
 msgid "Hide _Find Bar"
 msgstr "Скриване на лентата за _търсене"
 
 #. Note for translators: This indicates the current photo is photo {0} of {1} out of photos
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:672
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs:154
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ProgressDialog.cs:111
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:672
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AdjustTimeDialog.cs:154
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ProgressDialog.cs:111
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:134
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:389
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:240
@@ -616,91 +616,91 @@ msgid "{0} of {1}"
 msgstr "{0} от общо {1}"
 
 #. Translators, The singular case will never happen here.
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1746
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1746
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
 msgstr[0] "Обединяване на избрания етикет?"
 msgstr[1] "Обединяване на избраните {0} етикета?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1773
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1773
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
 msgstr "Тази операция ще обедини избраните етикети с всички подетикети в един."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1775
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1775
 msgid "_Merge Tags"
 msgstr "_Обединяване на етикети"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1980
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1980
 #, csharp-format
 msgid "{0} Photo out of {1}"
 msgid_plural "{0} Photos out of {1}"
 msgstr[0] "{0} снимка от общо {1}"
 msgstr[1] "{0} снимки от общо {1}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1982
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:500
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1982
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:500
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
 msgstr[0] "{0} снимка"
 msgstr[1] "{0} снимки"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1985
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1985
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
 msgstr[0] " ({0} избрана)"
 msgstr[1] " ({0} избрани)"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2066
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2066
 msgid "_Ok"
 msgstr "_Добре"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2067
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2067
 msgid "Error Deleting Picture"
 msgstr "Грешка при изтриване"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2072
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2072
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
 msgstr "Нямате права за изтриване на файла:{1}{0}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2076
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2076
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
 msgstr "Възникна грешка от вида {0} при изтриване на файла:{2}{1}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2108
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2108
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "Да се изтрие ли избраната снимка окончателно?"
 msgstr[1] "Да се изтрият ле {0}-те избрани снимки окончателно?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2112
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2112
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
 msgstr[0] "Това изтрива всички варианти на избраната снимка от диска ви."
 msgstr[1] "Това изтрива всички варианти на избраните снимки от диска ви."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2115
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2115
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Изтриване на снимката"
 msgstr[1] "_Изтриване на снимките"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2151
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2151
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "Премахване на избраната снимка от каталога?"
 msgstr[1] "Премахване на {0}-те избрани снимки от каталога?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2156
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2156
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -710,27 +710,27 @@ msgstr ""
 "Самите снимки остават на компютъра ви и могат по-късно да се внесат във F-"
 "Spot отново."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2157
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2157
 msgid "_Remove from Catalog"
 msgstr "_Премахване от каталога"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2231
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2231
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Изтриване на етикета „{0}“?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2233
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2233
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Изтриване на {0}-те избрани етикета?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2238
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2238
 msgid "photo"
 msgid_plural "photos"
 msgstr[0] "снимка"
 msgstr[1] "снимки"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2240
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2240
 #, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
 msgid_plural ""
@@ -738,18 +738,18 @@ msgid_plural ""
 msgstr[0] "Ако изтриете този етикет, всички връзки с {0} {1} ще се изгубят."
 msgstr[1] "Ако изтриете тези етикети, всички връзки с {0} {1} ще се изгубят."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2245
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2245
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Изтриване на етикет"
 msgstr[1] "_Изтриване на етикети"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2259
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2259
 msgid "Tag is not empty"
 msgstr "Етикетът не е празен"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2260
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2260
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -758,39 +758,39 @@ msgstr ""
 "Не могат да се изтриват етикети, в които има подетикети. Първо изтрийте "
 "подетикетите в „{0}“."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2709
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2709
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Завъртане на снимката наляво"
 msgstr[1] "Завъртане на снимките наляво"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2722
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2722
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Завъртане на снимката наляво"
 msgstr[1] "Завъртане на снимките надясно"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2733
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2733
 #, csharp-format
 msgid "Find _Selected Tag"
 msgid_plural "Find _Selected Tags"
 msgstr[0] "Търсене на избрания _етикет"
 msgstr[1] "Търсене на избраните _етикети"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2737
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2737
 #, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
 msgstr[0] "Търсене на избрания етикет _с"
 msgstr[1] "Търсене на избраните етикети _с"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2778
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2778
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Създаване на нов вариант?"
 msgstr[1] "Създаване на нови варианти?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2780
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2780
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -805,111 +805,111 @@ msgstr[1] ""
 "Дали F-Spot да създаде нов вариант на избраните снимки, преди да стартирате "
 "{1}, за да запазите оригиналите?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2802
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2802
 msgid "XCF version"
 msgstr "Версия на XCF"
 
 #. Note for translators: Reparented is a picture becoming a version of another one
-#: ../src/Clients/MainApp/FSpot/Photo.cs:426
+#: ../src/Clients/FSpot/FSpot/Photo.cs:426
 msgid "Reparented"
 msgstr "Вариант на снимка"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:443
+#: ../src/Clients/FSpot/FSpot/Photo.cs:443
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
 msgstr[0] "Променена"
 msgstr[1] "Променени ({0})"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:466
+#: ../src/Clients/FSpot/FSpot/Photo.cs:466
 #, csharp-format
 msgid "Modified in {1}"
 msgstr "Променена в {1}"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:466
+#: ../src/Clients/FSpot/FSpot/Photo.cs:466
 #, csharp-format
 msgid "Modified in {1} ({0})"
 msgstr "Променена в {1} ({0})"
 
-#: ../src/Clients/MainApp/FSpot/PhotoStore.cs:204
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:17
+#: ../src/Clients/FSpot/FSpot/PhotoStore.cs:204
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:17
 msgid "Original"
 msgstr "Оригинал"
 
-#: ../src/Clients/MainApp/FSpot/PhotoView.cs:359
+#: ../src/Clients/FSpot/FSpot/PhotoView.cs:359
 msgid "Description:"
 msgstr "Описание:"
 
-#: ../src/Clients/MainApp/FSpot/Preferences.cs:191
+#: ../src/Clients/FSpot/FSpot/Preferences.cs:191
 msgid "Photos"
 msgstr "Снимки"
 
-#: ../src/Clients/MainApp/FSpot/PrintOperation.cs:54
+#: ../src/Clients/FSpot/FSpot/PrintOperation.cs:54
 msgid "Image Settings"
 msgstr "Настройки на снимка"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:84
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:84
 msgid "Find: "
 msgstr "Търсене:"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:89
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:89
 msgid "Untagged photos"
 msgstr "Снимки без етикети"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:97
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:97
 msgid "Rated photos"
 msgstr "Оценени снимки"
 
 #. Note for translators: 'Import roll' is no command, it means 'Roll that has been imported'
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:106
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:106
 msgid "Import roll"
 msgstr "Внесена фотосесия"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:129
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:129
 msgid "Clear search"
 msgstr "Изчистване"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:136
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:136
 msgid "Refresh search"
 msgstr "Обновяване"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:139
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:139
 msgid "No matching photos found"
 msgstr "Не са открити съвпадения"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:102
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:102
 msgid "Unable to rotate this type of photo"
 msgstr "Този вид снимка не може да се завърти"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:121
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:121
 msgid "Unable to rotate readonly file"
 msgstr "Файл само за четене не може да се завърти"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:184
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:184
 msgid "Rotating photos"
 msgstr "Завъртане на снимки"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:195
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:195
 #, csharp-format
 msgid "Rotating photo \"{0}\""
 msgstr "Завъртане на снимката „{0}“"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:208
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:208
 msgid "Directory not found"
 msgstr "Папката не е намерена"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:210
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:210
 msgid "File not found"
 msgstr "Файлът не е открит"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:228
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:228
 #, csharp-format
 msgid "Unable to rotate photo"
 msgid_plural "Unable to rotate {0} photos"
 msgstr[0] "Снимката не може да се завърти"
 msgstr[1] "{0} снимки не могат да се завъртят"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:230
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:230
 #, csharp-format
 msgid ""
 "The photo could not be rotated because it is on a read only file system or "
@@ -924,164 +924,164 @@ msgstr[1] ""
 "{0} снимки не могат да се завъртят, защото са на файлова система само за "
 "четене или са на носител като CD-ROM. Проверете правата и пробвайте отново."
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:257
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:257
 #, csharp-format
 msgid "Received error \"{0}\" while attempting to rotate {1}"
 msgstr "Получи се грешка „{0}“ при опит за завъртане на {1}"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:262
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:262
 msgid "Error while rotating photo."
 msgstr "Грешка при завъртане на снимка."
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:236
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:236
 msgid "Preparing email"
 msgstr "Подготовка на писмо"
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:280
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:280
 #, csharp-format
 msgid "Exporting picture \"{0}\""
 msgstr "Изнасяне на снимка „{0}“"
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:299
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:299
 msgid "Error processing image"
 msgstr "Грешка при обработката на снимка"
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:300
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:300
 #, csharp-format
 msgid "An error occurred while processing \"{0}\": {1}"
 msgstr "Възникна грешка при обработка на „{0}“: {1}"
 
 #. Send the mail :)
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:313
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:313
 msgid "My Photos"
 msgstr "Моите снимки"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:107
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:107
 msgid "Rotate photo left"
 msgstr "Завъртане наляво"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:112
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:112
 msgid "Rotate photo right"
 msgstr "Завъртане надясно"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:149
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:149
 msgid "Folder"
 msgstr "Папка:"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:374
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:374
 msgid "Open"
 msgstr "Отваряне"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:377
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:377
 msgid "Select Folder"
 msgstr "Избор на папка"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:461
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:461
 msgid "Set as Background"
 msgstr "Задаване като фон"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:66
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:66
 #, csharp-format
 msgid "Include Photos Tagged \"{0}\""
 msgstr "Включване на снимки с етикет „{0}“"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:71
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:71
 #, csharp-format
 msgid "Exclude Photos Tagged \"{0}\""
 msgstr "Изключване на снимки с етикет „{0}“"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:76
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:76
 msgid "Remove From Search"
 msgstr "Премахване от резултатите"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:120
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:120
 #, csharp-format
 msgid "Find _With"
 msgid_plural "Find _With"
 msgstr[0] "Търсене _с:"
 msgstr[1] "Търсене _с:"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:146
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:146
 msgid "All"
 msgstr "Всички"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:181
-#: ../src/Clients/MainApp/FSpot/Term.cs:612
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:181
+#: ../src/Clients/FSpot/FSpot/Term.cs:612
 #, csharp-format
 msgid "Not {0}"
 msgstr "Не и {0}"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:305
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:305
 msgid "Drag tags here to search for them"
 msgstr "Издърпайте етикети тук, за да търсите"
 
-#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:520
+#: ../src/Clients/FSpot/FSpot/TagSelectionWidget.cs:520
 msgid "Error renaming tag"
 msgstr "Грешка при преименуване на етикет"
 
-#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:521
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagDialog.cs:94
-#: ../src/Clients/MainApp/TagCommands.cs:137
+#: ../src/Clients/FSpot/FSpot/TagSelectionWidget.cs:521
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagDialog.cs:94
+#: ../src/Clients/FSpot/TagCommands.cs:137
 msgid "This name is already in use"
 msgstr "Това име вече е заето"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:241
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:241
 msgid "Favorites"
 msgstr "Любими"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:246
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:246
 msgid "Hidden"
 msgstr "Скрити"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:254
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:254
 msgid "People"
 msgstr "Хора"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:259
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:259
 msgid "Places"
 msgstr "Места"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:264
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:264
 msgid "Events"
 msgstr "Събития"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:277
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:361
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:277
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:361
 msgid "(None)"
 msgstr "(няма)"
 
-#: ../src/Clients/MainApp/FSpot/Term.cs:324
+#: ../src/Clients/FSpot/FSpot/Term.cs:324
 msgid " and "
 msgstr " и "
 
 #. operators.Add (Catalog.GetString (" && "));
-#: ../src/Clients/MainApp/FSpot/Term.cs:326
+#: ../src/Clients/FSpot/FSpot/Term.cs:326
 msgid ", "
 msgstr ", "
 
-#: ../src/Clients/MainApp/FSpot/Term.cs:382
+#: ../src/Clients/FSpot/FSpot/Term.cs:382
 msgid " or "
 msgstr " или"
 
 #. OPS The operators we support, case insensitive
 #. private static string op_str = "(?'Ops' or | and |, | \\s+ )";
-#: ../src/Clients/MainApp/FSpot/Term.cs:406
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:7
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:202
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:557
+#: ../src/Clients/FSpot/FSpot/Term.cs:406
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:202
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:557
 msgid "or"
 msgstr "или"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:122
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AboutDialog.cs:122
 msgid "Photo management for GNOME"
 msgstr "Организиране на снимки"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:123
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AboutDialog.cs:123
 msgid "Copyright © 2003-2010 Novell Inc."
 msgstr "Авторски права: © 2003-2010 Novell Inc."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:147
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AboutDialog.cs:147
 msgid "translator-credits"
 msgstr ""
 "Ростислав „zbrox“ Райков <zbrox@i-space.org>\n"
@@ -1093,77 +1093,77 @@ msgstr ""
 "Научете повече за нас на http://gnome.cult.bg\n"
 "Докладвайте за грешки на http://gnome.cult.bg/bugs"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:152
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AboutDialog.cs:152
 msgid "F-Spot Website"
 msgstr "Уеб сайт на F-Spot"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs:137
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:10
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AdjustTimeDialog.cs:137
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:10
 #, csharp-format
 msgid "Shift all photos by {0}"
 msgstr "Изместване на всички снимки с {0}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:109
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:109
 msgid "Today"
 msgstr "Днес"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:111
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:111
 msgid "Yesterday"
 msgstr "Вчера"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:113
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:113
 msgid "Last 7 days"
 msgstr "Последните 7 дни"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:115
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:115
 msgid "Last 30 days"
 msgstr "Последните 30 дни"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:117
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:117
 msgid "Last 90 days"
 msgstr "Последните 90 дни"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:119
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:119
 msgid "Last 360 days"
 msgstr "Последните 360 дни"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:121
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:121
 msgid "Current Week (Mon-Sun)"
 msgstr "Тази седмица (пн.-нд.)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:123
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:123
 msgid "Previous Week (Mon-Sun)"
 msgstr "Предишната седмица (пн.-нд.)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:139
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:139
 #: ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui.h:1
 msgid "All Images"
 msgstr "Всички снимки"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:141
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:141
 msgid "Customized Range"
 msgstr "Потребителски обхват"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditExceptionDialog.cs:50
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:95
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditExceptionDialog.cs:50
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:95
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr "Получи се изключение „{0}“. Не може да се запази снимката {1}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditExceptionDialog.cs:63
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditExceptionDialog.cs:63
 msgid "Error editing photo"
 msgstr "Грешка при редактиране на снимката"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:64
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:64
 #, csharp-format
 msgid "Edit Icon for Tag {0}"
 msgstr "Редактиране на иконата за етикета {0}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:86
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:86
 msgid "Select Photo from file"
 msgstr "Избор на снимка от файл"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:108
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:108
 #, csharp-format
 msgid ""
 "\n"
@@ -1181,33 +1181,33 @@ msgstr ""
 " Задайте етикет на снимка като „{0}“ и се върнете тук,\n"
 " за да я използвате като икона."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:186
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:186
 msgid "Unable to load image"
 msgstr "Изображението не може да се зареди"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:187
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:187
 #, csharp-format
 msgid "Unable to load \"{0}\" as icon for the tag"
 msgstr "„{0}“ не може да се зареди като икона на етикета"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:225
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:225
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "Снимка {0} от общо {1}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:45
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:45
 msgid "Choose Folder..."
 msgstr "Избор на папка…"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:158
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:158
 msgid "Choose Import source..."
 msgstr "Избор на източник…"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:170
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:170
 msgid "(No Cameras Detected)"
 msgstr "(не са открити фотоапарати)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:205
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:205
 msgid ""
 "Checking this box will remove the imported photos from the camera after the "
 "import finished successfully.\n"
@@ -1221,33 +1221,33 @@ msgstr ""
 "Препоръчва се правенето на резервно копие на всички снимки преди да бъдат "
 "изтрити. <b>Да се използва на собствен риск!</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:206
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:206
 msgid "Warning"
 msgstr "Предупреждение"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:324
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:324
 #, csharp-format
 msgid "Importing Photos: {0} of {1}..."
 msgstr "Внасяне на снимки — {0} от общо {1}…"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:348
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:348
 msgid "Importing photos..."
 msgstr "Внасяне на снимки…"
 
 #. TODO: Using a GtkSpinner would be nicer here.
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:355
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:355
 msgid "Searching for photos... (You can already click Import to continue)"
 msgstr "Търсене на снимки… (Можете да натиснете „Внасяне“, за да продължите)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:65
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportFailureDialog.cs:65
 msgid "Import failures"
 msgstr "Грешки при внасяне"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:66
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportFailureDialog.cs:66
 msgid "Some files failed to import"
 msgstr "Някои файлове не са внесени"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:67
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportFailureDialog.cs:67
 msgid ""
 "Some files could not be imported, they might be corrupt or there might be "
 "something wrong with the storage on which they reside."
@@ -1255,28 +1255,28 @@ msgstr ""
 "Някои файлове не са внесени. Възможно е да са повредени или да има проблем с "
 "носителя, на който са съхранени."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:130
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportFailureDialog.cs:130
 msgid "Details"
 msgstr "Подробности"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:77
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:100
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/PreferenceDialog.cs:77
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/PreferenceDialog.cs:100
 msgid "None"
 msgstr "Няма"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:79
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/PreferenceDialog.cs:79
 msgid "System profile"
 msgstr "Системен профил"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:117
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/PreferenceDialog.cs:117
 msgid "Standard theme"
 msgstr "Стандартна тема"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/RepairDbDialog.cs:44
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/RepairDbDialog.cs:44
 msgid "Error loading database."
 msgstr "Грешка при зареждане на базата от данни."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/RepairDbDialog.cs:45
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/RepairDbDialog.cs:45
 #, csharp-format
 msgid ""
 "F-Spot encountered an error while loading the photo database. The old "
@@ -1285,41 +1285,41 @@ msgstr ""
 "F-Spot получи грешка при зареждане на база от данни със снимки. Старата база "
 "бе преместена в {0} и беше създадена нова."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/SelectionRatioDialog.cs:81
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/SelectionRatioDialog.cs:81
 msgid "Label"
 msgstr "Етикет"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/SelectionRatioDialog.cs:85
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/SelectionRatioDialog.cs:85
 msgid "Ratio"
 msgstr "Пропорции"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ThreadProgressDialog.cs:78
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ThreadProgressDialog.cs:78
 msgid "Retry"
 msgstr "Повторен опит"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ThreadProgressDialog.cs:80
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ThreadProgressDialog.cs:80
 #: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/pickfolder_dialog.ui.h:1
 msgid "Skip"
 msgstr "Пропускане"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:1
 msgid "0000:00:00 00:00:00"
 msgstr "0000:00:00 00:00:00"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:2
 msgid "00:00:00"
 msgstr "00:00:00"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:3
 msgid "5"
 msgstr "5"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:4
 msgid "<b>Action</b>"
 msgstr "<b>Действие</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:5
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:5
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:6
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:2
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:3
 #: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:3
@@ -1329,171 +1329,171 @@ msgstr "<b>Действие</b>"
 msgid "<b>Photos</b>"
 msgstr "<b>Снимки</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:6
 msgid "<b>Reference Photo</b>"
 msgstr "<b>Референта снимка</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:7
 msgid "Adjust Time"
 msgstr "Задаване на час"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:8
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:8
 msgid "Adjusted date: "
 msgstr "Зададена дата: "
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:9
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:9
 msgid "Current date:"
 msgstr "Текуща дата:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:11
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:11
 msgid "Space all photos by"
 msgstr "Интервал между снимките"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:12
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:12
 msgid "difference:"
 msgstr "разлика:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:13
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:13
 msgid "min. Starting at {0}"
 msgstr "мин. Начало в {0}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:1
 msgid "C_reate"
 msgstr "_Създаване"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:2
 msgid "Create _icon for this tag when first used"
 msgstr "При първо използване да се създаде _икона за етикет"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:3
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:3
 msgid "P_arent Tag:"
 msgstr "_Родителски етикет:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:4
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:5
 msgid "_Tag Name:"
 msgstr "_Име на етикет:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:1
 msgid "<b>End Date</b>"
 msgstr "<b>Крайна дата</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:2
 msgid "<b>Select period</b>"
 msgstr "<b>Избор на период</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:3
 msgid "<b>Start Date</b>"
 msgstr "<b>Начална дата</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:4
 msgid "Cancel, do not change the current timeline. "
 msgstr "Отказ, да не се променя текущата времева скала."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:5
 msgid "Only photos taken within these dates will be displayed."
 msgstr "Ще бъдат показани само снимки заснети между тези дати."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:6
 msgid "Set date range"
 msgstr "Задаване на обхват от дати"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:1
 msgid "Edit Tag"
 msgstr "Редактиране на етикет"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:2
 msgid "Edit icon"
 msgstr "Редактиране на иконата"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:4
 msgid "_Icon:"
 msgstr "_Икона:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:1
 msgid "<b>From External Photo</b>"
 msgstr "<b>От външна снимка</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:2
 msgid "<b>From Photo</b>"
 msgstr "<b>От снимка</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:3
 msgid "<b>Predefined icons</b>"
 msgstr "<b>Стандартни икони</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:4
 msgid "<b>Preview</b>"
 msgstr "<b>Преглед</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:5
 msgid "Design icon from"
 msgstr "Проектиране на икона от"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:6
 msgid "Edit Tag Icon"
 msgstr "Редактиране на иконата за етикет"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:7
 msgid "No _image"
 msgstr "Няма _изображение"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:1
 msgid "<b>View all pictures imported</b>"
 msgstr "<b>Преглед на всички внесени снимки</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:2
 msgid "Display only those photos that were imported in specified Rolls."
 msgstr "Показване само на снимките от определени фотосесии."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:3
 msgid "Filter on selected rolls"
 msgstr "Филтриране по избраните фотосесии"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:4
 msgid "Number of photos in selected rolls:"
 msgstr "Брой снимки в избраните фотосесии:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:5
 msgid "Show all photos."
 msgstr "Показване на всички снимки."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:6
 msgid "after"
 msgstr "след"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:7
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:202
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:558
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:202
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:558
 msgid "and"
 msgstr "и"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:8
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:8
 msgid "at"
 msgstr "на"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:9
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:9
 msgid "between"
 msgstr "между"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:1
 msgid "Color profile for display:"
 msgstr "Цветови профил за прегледа:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:2
 msgid "Color profile for printing:"
 msgstr "Цветови профил за печат:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:3
 msgid "F-Spot Preferences"
 msgstr "Настройки на F-Spot"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:4
 msgid "F-Spot appearance:"
 msgstr "Външен вид на F-Spot:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:5
 msgid ""
 "Inside the image files when possible\n"
 "<small>Makes them accessible to other image-editing programs.</small>"
@@ -1502,7 +1502,7 @@ msgstr ""
 "<small>Така ще са достъпни и за другите програми за редактиране на "
 "изображения.</small>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:7
 msgid ""
 "Never modify image files.\n"
 "<small>Write XMP files next to the images instead.</small>"
@@ -1510,57 +1510,57 @@ msgstr ""
 "Без промяна на файловете на изображенията.\n"
 "<small>Вместо това до тях ще се записват файлове във формат XMP.</small>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:9
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:9
 msgid "Select A Folder"
 msgstr "Избор на папка"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:10
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:10
 msgid "Separately from the image files"
 msgstr "Отделно от изображенията"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:11
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:11
 msgid "Store tags and descriptions for photos:"
 msgstr "Запазване на етикети и описания на снимките:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:12
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:12
 msgid "When importing photos, copy them to:"
 msgstr "Когато се внасят снимки, да се копират в:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:1
 msgid "<b>Max Rating</b>"
 msgstr "<b>Максимална оценка</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:2
 msgid "<b>Min Rating</b>"
 msgstr "<b>Минимална оценка</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:3
 msgid "Set Rating Filter"
 msgstr "Задаване на филтър по оценка"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RepairDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/RepairDialog.ui.h:1
 msgid "Repair"
 msgstr "Поправка"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui.h:1
 msgid "Manage your custom selection ratios"
 msgstr "Управление на потребителските диапазони от избори"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui.h:2
 msgid "Selection Constraints"
 msgstr "Ограничения на избора"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:55
-#: ../src/Clients/MainApp/FSpot.Widgets/Sidebar.cs:73
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:55
+#: ../src/Clients/FSpot/FSpot.Widgets/Sidebar.cs:73
 msgid "Edit"
 msgstr "Редактиране"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:223
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:223
 #: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:66
 msgid "No selection available"
 msgstr "Нищо не е избрано"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:224
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:224
 msgid ""
 "This tool requires an active selection. Please select a region of the photo "
 "and try the operation again"
@@ -1568,13 +1568,13 @@ msgstr ""
 "Този инструмент изисква да е избрана част от снимката. Изберете и пробвайте "
 "операцията отново"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:242
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:242
 msgid "Error saving adjusted photo"
 msgid_plural "Error saving adjusted photos"
 msgstr[0] "Грешка при запазване на променената снимка"
 msgstr[1] "Грешка при запазване на променените снимки"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:244
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:244
 #, csharp-format
 msgid ""
 "Received exception \"{0}\". Note that you have to develop RAW files into "
@@ -1583,105 +1583,105 @@ msgstr ""
 "Получено е изключение „{0}“. Трябва да преобразувате файловете от формат RAW "
 "към JPEG, преди да ги редактирате."
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:495
+#: ../src/Clients/FSpot/FSpot.Widgets/Filmstrip.cs:495
 msgid "_Horizontal"
 msgstr "_Хоризонтално"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:499
+#: ../src/Clients/FSpot/FSpot.Widgets/Filmstrip.cs:499
 msgid "_Vertical"
 msgstr "_Вертикално"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:83
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:83
 msgid "Find:"
 msgstr "Търсене:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/FolderTreePage.cs:44
+#: ../src/Clients/FSpot/FSpot.Widgets/FolderTreePage.cs:44
 msgid "Folders"
 msgstr "Папки"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/FolderTreeView.cs:150
+#: ../src/Clients/FSpot/FSpot.Widgets/FolderTreeView.cs:150
 msgid "Filesystem"
 msgstr "Файлова система"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:199
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:199
 msgid "Histogram"
 msgstr "Хистограма"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:218
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:218
 msgid "Image Information"
 msgstr "Информация за снимката"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:229
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:229
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:10
 msgid "Name"
 msgstr "Име"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:232
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:232
 msgid "Version"
 msgstr "Вариант"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:235
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:235
 msgid "Date"
 msgstr "Дата"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:238
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:238
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:4
 msgid "Size"
 msgstr "Размер"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:241
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:241
 msgid "Exposure"
 msgstr "Експонация"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:245
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:245
 msgid "Focal Length"
 msgstr "Основно фокусно разстояние"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:248
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:248
 msgid "Camera"
 msgstr "Фотоапарат"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:251
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:251
 msgid "File Size"
 msgstr "Размер"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:254
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:254
 msgid "Rating"
 msgstr "Оценка"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:344
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:344
 msgid "(wrong format)"
 msgstr "(неправилен формат)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:370
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:381
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:391
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:370
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:381
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:391
 msgid "(Unknown)"
 msgstr "(Неизвестно)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:487
-#: ../src/Clients/MainApp/PhotoVersionMenu.cs:86
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:487
+#: ../src/Clients/FSpot/PhotoVersionMenu.cs:86
 msgid "(No Edits)"
 msgstr "(без редакции)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:491
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:491
 #, csharp-format
 msgid "(One Edit)"
 msgid_plural "({0} Edits)"
 msgstr[0] "(1 редакция)"
 msgstr[1] "({0} редакции)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:501
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:501
 msgid "(File read error)"
 msgstr "(Грешка при четене на файл)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:546
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:546
 #, csharp-format
 msgid "{0} Photos"
 msgstr "{0} снимки"
 
 #. Note for translators: {0} is a date, {1} and {2} are times.
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:566
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:566
 #, csharp-format
 msgid ""
 "On {0} between \n"
@@ -1690,7 +1690,7 @@ msgstr ""
 "На {0}, между \n"
 "{1} и {2}"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:571
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:571
 #, csharp-format
 msgid ""
 "Between {0} \n"
@@ -1699,129 +1699,129 @@ msgstr ""
 "Между {0} \n"
 "и {1}"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:598
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:598
 msgid "(At least one File not found)"
 msgstr "(не са открити файлове)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:715
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:715
 msgid "Show Photo Name"
 msgstr "Показване на името на снимката"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:724
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:724
 msgid "Show Date"
 msgstr "Показване на датата"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:733
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:733
 msgid "Show Size"
 msgstr "Показване на размера"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:742
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:742
 msgid "Show Exposure"
 msgstr "Показване на експонацията"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:751
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:751
 msgid "Show Focal Length"
 msgstr "Показване на основното фокусно разстояние"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:760
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:760
 msgid "Show Camera"
 msgstr "Показване на фотоапарата"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:769
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:769
 msgid "Show File Size"
 msgstr "Показване на размера"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:46
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:46
 msgid "Metadata"
 msgstr "Метаданни"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:127
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:127
 msgid "Extended Metadata"
 msgstr "Още метаданни"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:380
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:380
 msgid "No active photo"
 msgstr "Няма активна снимка"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:382
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:382
 #, csharp-format
 msgid "The photo \"{0}\" does not exist"
 msgstr "Снимката „{0}“ не съществува"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:384
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:384
 msgid "No metadata available"
 msgstr "Няма налични метаданни"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:94
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:94
 msgid "Error saving sharpened photo"
 msgstr "Грешка при запазване на изострената снимка."
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:124
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:124
 msgid "Sharpen"
 msgstr "Изостряне на снимката"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:134
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:134
 msgid "Amount:"
 msgstr "Количество:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:135
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:135
 msgid "Radius:"
 msgstr "Радиус:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:136
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:136
 msgid "Threshold:"
 msgstr "Праг:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/TagMenu.cs:132
-#: ../src/Clients/MainApp/TagPopup.cs:61
+#: ../src/Clients/FSpot/FSpot.Widgets/TagMenu.cs:132
+#: ../src/Clients/FSpot/TagPopup.cs:61
 msgid "Create New Tag..."
 msgstr "Създаване на нов етикет…"
 
 #. Fixme this should really set parent menu
 #. items insensitve
-#: ../src/Clients/MainApp/PhotoTagMenu.cs:92
+#: ../src/Clients/FSpot/PhotoTagMenu.cs:92
 msgid "(No Tags)"
 msgstr "(без етикет)"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:91
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:91
 msgid "Create New Version"
 msgstr "Създаване на нов вариант"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:92
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:92
 msgid "Name:"
 msgstr "Име:"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:96
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:96
 msgid "Rename Version"
 msgstr "Преименуване на варианта"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:97
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:97
 msgid "New name:"
 msgstr "Ново име:"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:157
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:157
 msgid "Delete"
 msgstr "Изтриване"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:158
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:158
 #, csharp-format
 msgid "Really delete version \"{0}\"?"
 msgstr "Наистина ли да се изтрие вариантът „{0}“?"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:159
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:159
 msgid "This removes the version and deletes the corresponding file from disk."
 msgstr "Премахване на варианта и изтриване на съответстващия файл от диска."
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:204
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:204
 msgid "De_tach"
 msgstr "О_тделяне"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:205
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:205
 #, csharp-format
 msgid "Really detach version \"{0}\" from \"{1}\"?"
 msgstr "Наистина ли да се отдели вариантът „{0}“ от „{1}“?"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:206
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:206
 msgid ""
 "This makes the version appear as a separate photo in the library. To undo, "
 "drag the new photo back to its parent."
@@ -1829,18 +1829,18 @@ msgstr ""
 "Вариантът ще изглежда като отделна снимка в библиотеката. Влаченето на "
 "снимката върху оригинала отменя отделянето."
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:228
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:228
 msgid "Re_parent"
 msgstr "_Свързване"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:229
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:229
 #, csharp-format
 msgid "Really reparent \"{0}\" as version of \"{1}\"?"
 msgid_plural "Really reparent {2} photos as versions of \"{1}\"?"
 msgstr[0] "Наистина ли да се свърже снимката „{0}“ като вариант на „{1}“?"
 msgstr[1] "Наистина ли да се свържат {2} снимки като варианти на „{1}“?"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:232
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:232
 msgid ""
 "This makes the photos appear as a single one in the library. The versions "
 "can be detached using the Photo menu."
@@ -1848,520 +1848,520 @@ msgstr ""
 "Снимките ще изглеждат като една в библиотеката. Вариантите могат де се "
 "отделят като самостоятелни снимки от менюто „Снимка“."
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:272
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:272
 #, csharp-format
 msgid "Received exception \"{0}\"."
 msgstr "Получи се изключение „{0}“."
 
-#: ../src/Clients/MainApp/TagCommands.cs:187
+#: ../src/Clients/FSpot/TagCommands.cs:187
 msgid "Create New Tag"
 msgstr "Създаване на нов етикет"
 
-#: ../src/Clients/MainApp/TagCommands.cs:188
+#: ../src/Clients/FSpot/TagCommands.cs:188
 msgid "Name of New Tag:"
 msgstr "Име за новия етикет:"
 
-#: ../src/Clients/MainApp/TagPopup.cs:51
+#: ../src/Clients/FSpot/TagPopup.cs:51
 #, csharp-format
 msgid "Find"
 msgid_plural "Find"
 msgstr[0] "Търсене"
 msgstr[1] "Търсене"
 
-#: ../src/Clients/MainApp/TagPopup.cs:67
+#: ../src/Clients/FSpot/TagPopup.cs:67
 msgid "Edit Tag..."
 msgstr "Редактиране на етикет…"
 
-#: ../src/Clients/MainApp/TagPopup.cs:71
+#: ../src/Clients/FSpot/TagPopup.cs:71
 msgid "Delete Tag"
 msgid_plural "Delete Tags"
 msgstr[0] "Изтриване на етикет"
 msgstr[1] "Изтриване на етикети"
 
-#: ../src/Clients/MainApp/TagPopup.cs:77
+#: ../src/Clients/FSpot/TagPopup.cs:77
 msgid "Attach Tag to Selection"
 msgid_plural "Attach Tags to Selection"
 msgstr[0] "Прикачване на етикет към избраното"
 msgstr[1] "Прикачване на етикети към избраното"
 
-#: ../src/Clients/MainApp/TagPopup.cs:81
+#: ../src/Clients/FSpot/TagPopup.cs:81
 msgid "Remove Tag From Selection"
 msgid_plural "Remove Tags From Selection"
 msgstr[0] "Премахване на етикет от избраното"
 msgstr[1] "Премахване на етикети от избраното"
 
-#: ../src/Clients/MainApp/TagPopup.cs:87
+#: ../src/Clients/FSpot/TagPopup.cs:87
 msgid "Merge Tags"
 msgstr "Обединяване на етикети"
 
-#: ../src/Clients/MainApp/ThumbnailCommand.cs:53
+#: ../src/Clients/FSpot/ThumbnailCommand.cs:53
 msgid "Updating Thumbnails"
 msgstr "Обновяване на миниатюрите"
 
-#: ../src/Clients/MainApp/ThumbnailCommand.cs:61
+#: ../src/Clients/FSpot/ThumbnailCommand.cs:61
 #, csharp-format
 msgid "Updating picture \"{0}\""
 msgstr "Качване на снимка „{0}“"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:1
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:1
 msgid "<b>Co_rrections</b>"
 msgstr "<b>Ко_рекции</b>"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:2
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:2
 msgid "<b>_White Balance</b>"
 msgstr "<b>_Баланс на бялото</b>"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:3
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:3
 msgid "C_ontrast:"
 msgstr "К_онтраст:"
 
 #. Note for translators: meant as Temperature
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:5
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:5
 msgid "Te_mp:"
 msgstr "Вре_менен:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:6
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:6
 msgid "_Brightness:"
 msgstr "_Яркост:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:7
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:7
 msgid "_Exposure:"
 msgstr "_Eкспонация:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:8
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:8
 msgid "_Hue:"
 msgstr "_Отенък:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:9
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:9
 msgid "_Saturation:"
 msgstr "_Наситеност:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:10
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:10
 msgid "_Tint:"
 msgstr "_Отенък:"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:1
+#: ../src/Clients/FSpot/ui/import.ui.h:1
 msgid "C_opy files to the Photos folder"
 msgstr "К_опиране на файловете в папката за изображения и снимки"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:2
+#: ../src/Clients/FSpot/ui/import.ui.h:2
 msgid "I_nclude subfolders"
 msgstr "В_ключително и подпапките"
 
 #. Translators: this string means 'source of import'
-#: ../src/Clients/MainApp/ui/import.ui.h:5
+#: ../src/Clients/FSpot/ui/import.ui.h:5
 msgid "Import _from:"
 msgstr "Внасяне _от:"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:6
+#: ../src/Clients/FSpot/ui/import.ui.h:6
 msgid "_Attach tags:"
 msgstr "До_бавяне на етикети:"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:7
+#: ../src/Clients/FSpot/ui/import.ui.h:7
 msgid "_Detect duplicates"
 msgstr "Откриване на _дубликати"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:8
+#: ../src/Clients/FSpot/ui/import.ui.h:8
 msgid "_Import"
 msgstr "_Внасяне"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:9
+#: ../src/Clients/FSpot/ui/import.ui.h:9
 msgid "_Remove original files after import"
 msgstr "Изт_риване на оригиналните файлове след внасяне"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:1
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:1
 msgid "1024 px"
 msgstr "1024 пикс."
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:2
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:2
 msgid "320 px"
 msgstr "320 пикс."
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:3
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:3
 msgid "480 px"
 msgstr "480 пикс."
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:4
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:4
 msgid "640 px"
 msgstr "640 пикс."
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:5
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:5
 msgid "800 px"
 msgstr "800 пикс."
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:7
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:7
 msgid "<b>Size</b>"
 msgstr "<b>Размер</b>"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:8
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:8
 msgid "<b>Summary</b>"
 msgstr "<b>Резюме</b>"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:9
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:9
 msgid "Create Mail"
 msgstr "Създаване на писмо"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:10
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:10
 msgid "Create a mail with the selected photos (possibly resized) attached"
 msgstr ""
 "Създаване на писмо с избраните снимки (вероятно с по-малък размер) като "
 "прикачени файлове "
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:11
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:11
 msgid "Do not send a mail"
 msgstr "Да не се изпраща писмо"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:12
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:12
 msgid "Estimated new size"
 msgstr "Предполагаем нов размер"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:13
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:13
 msgid "Extra large"
 msgstr "Много голям"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:14
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:14
 msgid "Large"
 msgstr "Голям"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:15
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:15
 msgid "Medium"
 msgstr "Среден"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:16
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:16
 msgid "Number of pictures"
 msgstr "Брой снимки"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:18
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:18
 msgid "Original size (possible very large file size)"
 msgstr "Оригинален размер (възможен е много голям файл)"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:19
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:19
 msgid "Small"
 msgstr "Малък"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:20
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:20
 msgid "Tiny"
 msgstr "Много малък"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:21
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:21
 msgid "Total original size"
 msgstr "Общ оригинален размер"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:22
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:22
 msgid "_Create Mail"
 msgstr "_Създаване на писмо"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:1
+#: ../src/Clients/FSpot/ui/main_window.ui.h:1
 msgid "Adjust _Time..."
 msgstr "_Задаване на час…"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:2
+#: ../src/Clients/FSpot/ui/main_window.ui.h:2
 msgid "Arrange _by"
 msgstr "Подреждане _по"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:4
+#: ../src/Clients/FSpot/ui/main_window.ui.h:4
 msgid "By _Date"
 msgstr "По _дата"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:5
+#: ../src/Clients/FSpot/ui/main_window.ui.h:5
 msgid "By _Import Roll"
 msgstr "По _внесени фотосесии"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:6
+#: ../src/Clients/FSpot/ui/main_window.ui.h:6
 msgid "By _Rating"
 msgstr "По _оценка"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:7
+#: ../src/Clients/FSpot/ui/main_window.ui.h:7
 msgid "Copy"
 msgstr "Копиране"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:8
+#: ../src/Clients/FSpot/ui/main_window.ui.h:8
 msgid "Create New _Tag..."
 msgstr "_Създаване на нов етикет…"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:9
+#: ../src/Clients/FSpot/ui/main_window.ui.h:9
 msgid "Create _New Version..."
 msgstr "Създаване на _нов вариант…"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:10
+#: ../src/Clients/FSpot/ui/main_window.ui.h:10
 msgid "De_tach Version"
 msgstr "_Отделяне на варианта"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:11
+#: ../src/Clients/FSpot/ui/main_window.ui.h:11
 msgid "Fin_d"
 msgstr "_Търсене"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:12
+#: ../src/Clients/FSpot/ui/main_window.ui.h:12
 msgid "Manage _Extensions"
 msgstr "_Разширения"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:13
+#: ../src/Clients/FSpot/ui/main_window.ui.h:13
 msgid "Page Set_up..."
 msgstr "_Настройки на страница…"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:14
+#: ../src/Clients/FSpot/ui/main_window.ui.h:14
 msgid "Re_fresh Thumbnail"
 msgstr "Обновяване на _миниатюрата"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:18
+#: ../src/Clients/FSpot/ui/main_window.ui.h:18
 msgid "Select _All"
 msgstr "Избор на вси_чко"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:19
+#: ../src/Clients/FSpot/ui/main_window.ui.h:19
 msgid "Select _None"
 msgstr "_Изчистване на избора"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:20
+#: ../src/Clients/FSpot/ui/main_window.ui.h:20
 msgid "Send by _Mail..."
 msgstr "Изпра_щане по пощата…"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:21
-#: ../src/Clients/MainApp/ui/single_view.ui.h:3
+#: ../src/Clients/FSpot/ui/main_window.ui.h:21
+#: ../src/Clients/FSpot/ui/single_view.ui.h:3
 msgid "Set as _Background"
 msgstr "Задаване като _фон"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:22
+#: ../src/Clients/FSpot/ui/main_window.ui.h:22
 msgid "Side_bar"
 msgstr "_Странична лента"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:23
+#: ../src/Clients/FSpot/ui/main_window.ui.h:23
 msgid "T_ags"
 msgstr "Е_тикети"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:24
+#: ../src/Clients/FSpot/ui/main_window.ui.h:24
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1116
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1117
 msgid "Tags: "
 msgstr "Етикети: "
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:25
+#: ../src/Clients/FSpot/ui/main_window.ui.h:25
 msgid "Thumbnail _elements"
 msgstr "_Елементи на миниатюра"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:26
+#: ../src/Clients/FSpot/ui/main_window.ui.h:26
 msgid "Too_lbar"
 msgstr "Лента с _инструменти"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:27
+#: ../src/Clients/FSpot/ui/main_window.ui.h:27
 msgid "View"
 msgstr "Преглед"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:28
-#: ../src/Clients/MainApp/ui/single_view.ui.h:7
+#: ../src/Clients/FSpot/ui/main_window.ui.h:28
+#: ../src/Clients/FSpot/ui/single_view.ui.h:7
 msgid "Zoom _in"
 msgstr "_Увеличаване"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:29
-#: ../src/Clients/MainApp/ui/single_view.ui.h:8
+#: ../src/Clients/FSpot/ui/main_window.ui.h:29
+#: ../src/Clients/FSpot/ui/single_view.ui.h:8
 msgid "Zoom _out"
 msgstr "_Намаляване"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:30
-#: ../src/Clients/MainApp/ui/single_view.ui.h:9
+#: ../src/Clients/FSpot/ui/main_window.ui.h:30
+#: ../src/Clients/FSpot/ui/single_view.ui.h:9
 msgid "Zoom in"
 msgstr "Увеличаване"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:31
-#: ../src/Clients/MainApp/ui/single_view.ui.h:10
+#: ../src/Clients/FSpot/ui/main_window.ui.h:31
+#: ../src/Clients/FSpot/ui/single_view.ui.h:10
 msgid "Zoom out"
 msgstr "Намаляване"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:32
+#: ../src/Clients/FSpot/ui/main_window.ui.h:32
 msgid "_Attach Tag"
 msgstr "_Добавяне на етикет"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:33
+#: ../src/Clients/FSpot/ui/main_window.ui.h:33
 msgid "_Attach Tag to Selection"
 msgstr "_Прикачване на етикет към избрания елемент"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:35
+#: ../src/Clients/FSpot/ui/main_window.ui.h:35
 msgid "_Clear Rating Filter"
 msgstr "Из_чистване на оценките"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:36
+#: ../src/Clients/FSpot/ui/main_window.ui.h:36
 msgid "_Clear Roll Filter"
 msgstr "Из_чистване на фотосесиите"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:37
+#: ../src/Clients/FSpot/ui/main_window.ui.h:37
 msgid "_Close"
 msgstr "_Затваряне"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:38
+#: ../src/Clients/FSpot/ui/main_window.ui.h:38
 msgid "_Components"
 msgstr "_Компоненти"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:39
+#: ../src/Clients/FSpot/ui/main_window.ui.h:39
 msgid "_Contents"
 msgstr "_Съдържание"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:40
+#: ../src/Clients/FSpot/ui/main_window.ui.h:40
 msgid "_Dates"
 msgstr "_Дати"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:42
+#: ../src/Clients/FSpot/ui/main_window.ui.h:42
 msgid "_Delete Selected Tag"
 msgstr "_Изтриване на избрания етикет"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:43
+#: ../src/Clients/FSpot/ui/main_window.ui.h:43
 msgid "_Delete Version"
 msgstr "_Изтриване на варианта"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:44
-#: ../src/Clients/MainApp/ui/single_view.ui.h:11
+#: ../src/Clients/FSpot/ui/main_window.ui.h:44
+#: ../src/Clients/FSpot/ui/single_view.ui.h:11
 msgid "_Edit"
 msgstr "_Редактиране"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:45
+#: ../src/Clients/FSpot/ui/main_window.ui.h:45
 msgid "_Edit Tag..."
 msgstr "_Редактиране на етикет…"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:46
+#: ../src/Clients/FSpot/ui/main_window.ui.h:46
 msgid "_Export to"
 msgstr "И_знасяне към"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:47
+#: ../src/Clients/FSpot/ui/main_window.ui.h:47
 msgid "_Filmstrip"
 msgstr "_Филмова лента"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:48
-#: ../src/Clients/MainApp/ui/single_view.ui.h:13
+#: ../src/Clients/FSpot/ui/main_window.ui.h:48
+#: ../src/Clients/FSpot/ui/single_view.ui.h:13
 msgid "_Fullscreen"
 msgstr "На _цял екран"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:49
-#: ../src/Clients/MainApp/ui/single_view.ui.h:14
+#: ../src/Clients/FSpot/ui/main_window.ui.h:49
+#: ../src/Clients/FSpot/ui/single_view.ui.h:14
 msgid "_Help"
 msgstr "Помо_щ"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:50
+#: ../src/Clients/FSpot/ui/main_window.ui.h:50
 msgid "_Hidden"
 msgstr "_Скрити"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:51
+#: ../src/Clients/FSpot/ui/main_window.ui.h:51
 msgid "_Import..."
 msgstr "_Внасяне…"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:52
+#: ../src/Clients/FSpot/ui/main_window.ui.h:52
 msgid "_Invert Selection"
 msgstr "_Обръщане на избора"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:53
+#: ../src/Clients/FSpot/ui/main_window.ui.h:53
 msgid "_Large"
 msgstr "_Големи"
 
 # FIXME continue
-#: ../src/Clients/MainApp/ui/main_window.ui.h:54
+#: ../src/Clients/FSpot/ui/main_window.ui.h:54
 msgid "_Last Import Roll"
 msgstr "_Последно внесена фотосесия"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:55
+#: ../src/Clients/FSpot/ui/main_window.ui.h:55
 msgid "_Loupe"
 msgstr "_Лупа"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:56
+#: ../src/Clients/FSpot/ui/main_window.ui.h:56
 msgid "_Medium"
 msgstr "С_редни"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:57
-#: ../src/Clients/MainApp/ui/single_view.ui.h:15
+#: ../src/Clients/FSpot/ui/main_window.ui.h:57
+#: ../src/Clients/FSpot/ui/single_view.ui.h:15
 msgid "_Photo"
 msgstr "_Снимка"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:58
+#: ../src/Clients/FSpot/ui/main_window.ui.h:58
 msgid "_Quit"
 msgstr "_Спиране на програмата"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:59
+#: ../src/Clients/FSpot/ui/main_window.ui.h:59
 msgid "_Ratings"
 msgstr "_Оценки"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:61
+#: ../src/Clients/FSpot/ui/main_window.ui.h:61
 msgid "_Remove Tag From Selection"
 msgstr "Премахване на _етикет от избраното"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:62
+#: ../src/Clients/FSpot/ui/main_window.ui.h:62
 msgid "_Rename Version"
 msgstr "П_реименуване на варианта"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:63
+#: ../src/Clients/FSpot/ui/main_window.ui.h:63
 msgid "_Reverse Order"
 msgstr "_Обратен ред"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:64
+#: ../src/Clients/FSpot/ui/main_window.ui.h:64
 msgid "_Select Import Rolls..."
 msgstr "_Избор на внесена фотосесия…"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:65
+#: ../src/Clients/FSpot/ui/main_window.ui.h:65
 msgid "_Set Date Range..."
 msgstr "_Избор на обхват от дати…"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:66
+#: ../src/Clients/FSpot/ui/main_window.ui.h:66
 msgid "_Set Rating filter..."
 msgstr "_Избор на филтър за оценки…"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:67
+#: ../src/Clients/FSpot/ui/main_window.ui.h:67
 msgid "_Sharpen..."
 msgstr "Из_остряне на снимката…"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:68
-#: ../src/Clients/MainApp/ui/single_view.ui.h:16
+#: ../src/Clients/FSpot/ui/main_window.ui.h:68
+#: ../src/Clients/FSpot/ui/single_view.ui.h:16
 msgid "_Slideshow"
 msgstr "Про_жекция"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:69
+#: ../src/Clients/FSpot/ui/main_window.ui.h:69
 msgid "_Small"
 msgstr "_Малки"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:70
+#: ../src/Clients/FSpot/ui/main_window.ui.h:70
 msgid "_Tag Icons"
 msgstr "_Икони на етикетите"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:71
+#: ../src/Clients/FSpot/ui/main_window.ui.h:71
 msgid "_Tags"
 msgstr "_Етикети"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:72
+#: ../src/Clients/FSpot/ui/main_window.ui.h:72
 msgid "_Timeline"
 msgstr "_Времева скала"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:73
+#: ../src/Clients/FSpot/ui/main_window.ui.h:73
 msgid "_Tools"
 msgstr "_Инструменти"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:74
+#: ../src/Clients/FSpot/ui/main_window.ui.h:74
 msgid "_Untagged Photos"
 msgstr "Снимки _без етикети"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:75
+#: ../src/Clients/FSpot/ui/main_window.ui.h:75
 msgid "_Version"
 msgstr "В_ерсия"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:76
-#: ../src/Clients/MainApp/ui/single_view.ui.h:18
+#: ../src/Clients/FSpot/ui/main_window.ui.h:76
+#: ../src/Clients/FSpot/ui/single_view.ui.h:18
 msgid "_View"
 msgstr "_Преглед"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:1
+#: ../src/Clients/FSpot/ui/single_view.ui.h:1
 msgid "Display File _Names"
 msgstr "Показване на _имената на файловете"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:2
+#: ../src/Clients/FSpot/ui/single_view.ui.h:2
 msgid "F-Spot View"
 msgstr "Преглед с F-Spot"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:4
+#: ../src/Clients/FSpot/ui/single_view.ui.h:4
 msgid "Show or hide the side pane"
 msgstr "Показване или скриване на страничния панел"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:5
+#: ../src/Clients/FSpot/ui/single_view.ui.h:5
 msgid "Show or hide the toolbar"
 msgstr "Показване или скриване на лентата с инструментите"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:6
+#: ../src/Clients/FSpot/ui/single_view.ui.h:6
 msgid "Side _pane"
 msgstr "_Страничен панел"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:12
+#: ../src/Clients/FSpot/ui/single_view.ui.h:12
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:7
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:14
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:13
@@ -2372,23 +2372,23 @@ msgstr "_Страничен панел"
 msgid "_Export"
 msgstr "_Изнасяне"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:17
+#: ../src/Clients/FSpot/ui/single_view.ui.h:17
 msgid "_Toolbar"
 msgstr "_Лента с инструменти"
 
-#: ../src/Clients/MainApp/ui/tag_selection_dialog.ui.h:1
+#: ../src/Clients/FSpot/ui/tag_selection_dialog.ui.h:1
 msgid "Select a Tag..."
 msgstr "Избор на етикет…"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:1
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:1
 msgid "<b>Image Interpolation</b>"
 msgstr "<b>Интерполация на снимка</b>"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:2
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:2
 msgid "<b>Transparent Parts</b>"
 msgstr "<b>Прозрачни части</b>"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:3
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:3
 msgid ""
 "<small><i>Enable this to allow interpolation on zoomed images. You shouldn't "
 "disable this for viewing photos, but disabling the interpolation could be "
@@ -2398,7 +2398,7 @@ msgstr ""
 "Не го забранявайте за преглед на снимки. При проектиране на икони може да го "
 "изключите.</i></small>"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:4
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:4
 msgid ""
 "<small><i>You can choose how to display transparent parts in images. This "
 "option has no effect on photos, but setting this as check pattern or custom "
@@ -2410,23 +2410,23 @@ msgstr ""
 "използването на потребителски цвят, може да е полезно при преглед на икони "
 "или други изображения с прозрачни части.</i></small>"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:5
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:5
 msgid "As _background"
 msgstr "Задаване като _фон"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:6
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:6
 msgid "As _custom color: "
 msgstr "Като _потребителски цвят: "
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:7
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:7
 msgid "As check _pattern"
 msgstr "Като _шарка"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:8
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:8
 msgid "Preferences"
 msgstr "Настройки"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:9
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:9
 msgid "_Interpolate image on zoom"
 msgstr "_Интерполиране на снимките при мащабиране"
 

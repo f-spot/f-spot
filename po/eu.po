@@ -22,7 +22,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "\n"
 
-#. ../src/Clients/MainApp/FSpot.addin.xml
+#. ../src/Clients/FSpot/FSpot.addin.xml
 #. ../src/Extensions/Editors/FSpot.Editors.Blackout/Resources/BlackoutEditor.addin.xml
 #: ../data/addin-xml-strings.cs:10
 msgid "BlackoutEditor"
@@ -206,7 +206,7 @@ msgstr ""
 #: ../data/addin-xml-strings.cs:102 ../data/addin-xml-strings.cs:107
 #: ../data/addin-xml-strings.cs:112 ../data/addin-xml-strings.cs:117
 #: ../data/addin-xml-strings.cs:122 ../data/addin-xml-strings.cs:127
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:7
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:7
 msgid "Tools"
 msgstr "Tresnak"
 
@@ -571,51 +571,51 @@ msgstr "Tabblo-n saioa hasten"
 msgid "Obtaining URL for upload"
 msgstr "URLa eskuratzen igotzeko"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:1
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:1
 msgid "Copy Photo"
 msgstr "Kopiatu argazkia"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:2
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:2
 msgid "Export to"
 msgstr "Esportatu hona"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:3
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:3
 msgid "Open _With"
 msgstr "Ireki _honekin"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:4
-#: ../src/Clients/MainApp/ui/main_window.ui.h:15
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:4
+#: ../src/Clients/FSpot/ui/main_window.ui.h:15
 msgid "Rem_ove Tag"
 msgstr "Ken_du etiketa"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:5
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:458
-#: ../src/Clients/MainApp/ui/main_window.ui.h:16
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:5
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:458
+#: ../src/Clients/FSpot/ui/main_window.ui.h:16
 msgid "Rotate _Left"
 msgstr "Biratu e_zkerrera"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:6
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:459
-#: ../src/Clients/MainApp/ui/main_window.ui.h:17
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:6
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:459
+#: ../src/Clients/FSpot/ui/main_window.ui.h:17
 msgid "Rotate _Right"
 msgstr "Biratu e_skuinera"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:8
-#: ../src/Clients/MainApp/ui/main_window.ui.h:41
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:8
+#: ../src/Clients/FSpot/ui/main_window.ui.h:41
 msgid "_Delete From Drive"
 msgstr "_Ezabatu unitatetik"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:9
-#: ../src/Clients/MainApp/ui/main_window.ui.h:60
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:9
+#: ../src/Clients/FSpot/ui/main_window.ui.h:60
 msgid "_Remove From Catalog"
 msgstr "_Kendu katalogotik"
 
-#: ../src/Clients/MainApp/FSpot/App.cs:320
+#: ../src/Clients/FSpot/FSpot/App.cs:320
 #, csharp-format
 msgid "No photos matching {0} found"
 msgstr "Ez da {0}(r)ekin bat datorren argazkirik aurkitu"
 
-#: ../src/Clients/MainApp/FSpot/App.cs:321
+#: ../src/Clients/FSpot/FSpot/App.cs:321
 #, csharp-format
 msgid ""
 "The tag \"{0}\" is not applied to any photos. Try adding\n"
@@ -626,11 +626,11 @@ msgstr ""
 "argazki batzuei gehitzen edo F-Spot aplikazioaren hobespenen \n"
 "elkarrizketa-koadroan bestelako etiketa hautatzen."
 
-#: ../src/Clients/MainApp/FSpot/App.cs:325
+#: ../src/Clients/FSpot/FSpot/App.cs:325
 msgid "Search returned no results"
 msgstr "Bilaketak ez du emaitzik aurkitu"
 
-#: ../src/Clients/MainApp/FSpot/App.cs:326
+#: ../src/Clients/FSpot/FSpot/App.cs:326
 msgid ""
 "The tag F-Spot is looking for does not exist. Try\n"
 "selecting a different tag in the F-Spot preference\n"
@@ -640,11 +640,11 @@ msgstr ""
 "F-Spot aplikazioaren hobespenen elkarrizketa-koadroan \n"
 "bestelako etiketa hautatzen."
 
-#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:761
+#: ../src/Clients/FSpot/FSpot.Database/Updater.cs:761
 msgid "Updating F-Spot Database"
 msgstr "F-Spot datu-basea eguneratzen"
 
-#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:762
+#: ../src/Clients/FSpot/FSpot.Database/Updater.cs:762
 msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
@@ -652,249 +652,249 @@ msgstr ""
 "Itxaron F-Spot aplikazioko galeriaren datu-basea eguneratu arte. Denbora "
 "piska bat beharko du."
 
-#: ../src/Clients/MainApp/FSpot.Editors/AutoStretchEditor.cs:37
+#: ../src/Clients/FSpot/FSpot.Editors/AutoStretchEditor.cs:37
 msgid "Auto Color"
 msgstr "Kolore automatikoa"
 
-#: ../src/Clients/MainApp/FSpot.Editors/ColorEditor.cs:61
+#: ../src/Clients/FSpot/FSpot.Editors/ColorEditor.cs:61
 msgid "Adjust Colors"
 msgstr "Doitu koloreak"
 
-#: ../src/Clients/MainApp/FSpot.Editors/ColorEditor.cs:64
+#: ../src/Clients/FSpot/FSpot.Editors/ColorEditor.cs:64
 msgid "Adjust"
 msgstr "Doitu"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:56
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:56
 msgid "4 x 3 (Book)"
 msgstr "4 x 3 (liburua)"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:57
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:57
 msgid "4 x 6 (Postcard)"
 msgstr "4 x 6 (postala)"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:58
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:58
 msgid "5 x 7 (L, 2L)"
 msgstr "5 x 7 (L, 2L)"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:59
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:59
 msgid "8 x 10"
 msgstr "8 x 10"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:60
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:60
 msgid "Square"
 msgstr "Karratua"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:63
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:63
 msgid "Crop"
 msgstr "Moztu"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:94
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:94
 msgid "Select the area that needs cropping."
 msgstr "Hautatu mozketa behar duen area."
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:119
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:119
 msgid "No Constraint"
 msgstr "Murriztapenik gabe"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:120
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:120
 msgid "Same as photo"
 msgstr "Argazkiaren berdina"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:125
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:125
 msgid "Custom Ratios..."
 msgstr "Erlazio pertsonalizatua..."
 
-#: ../src/Clients/MainApp/FSpot.Editors/DesaturateEditor.cs:37
+#: ../src/Clients/FSpot/FSpot.Editors/DesaturateEditor.cs:37
 msgid "Desaturate"
 msgstr "Desasetu"
 
-#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:41
+#: ../src/Clients/FSpot/FSpot.Editors/RedEyeEditor.cs:41
 msgid "Red-eye Reduction"
 msgstr "Begi gorriak gutxitzea"
 
-#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:43
+#: ../src/Clients/FSpot/FSpot.Editors/RedEyeEditor.cs:43
 msgid "Fix!"
 msgstr "Finkatu"
 
-#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:47
+#: ../src/Clients/FSpot/FSpot.Editors/RedEyeEditor.cs:47
 msgid "Select the eyes you wish to fix."
 msgstr "Hautatu finkatzea nahi dituzun begiak."
 
-#: ../src/Clients/MainApp/FSpot.Editors/SepiaEditor.cs:37
+#: ../src/Clients/FSpot/FSpot.Editors/SepiaEditor.cs:37
 msgid "Sepia Tone"
 msgstr "Sepia tonoa"
 
-#: ../src/Clients/MainApp/FSpot.Editors/SoftFocusEditor.cs:51
+#: ../src/Clients/FSpot/FSpot.Editors/SoftFocusEditor.cs:51
 msgid "Soft Focus"
 msgstr "Laino artistikoa"
 
-#: ../src/Clients/MainApp/FSpot.Editors/TiltEditor.cs:49
+#: ../src/Clients/FSpot/FSpot.Editors/TiltEditor.cs:49
 msgid "Straighten"
 msgstr "Zuzen jarri"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:82
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:82
 msgid "Hide"
 msgstr "Ezkutatu"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:84
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:84
 msgid "Hide toolbar"
 msgstr "Ezkutatu tresna-barra"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:90
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:90
 msgid "Info"
 msgstr "Informazioa"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:92
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:92
 msgid "Image information"
 msgstr "Irudiaren informazioa"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:97
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:97
 msgid "Exit fullscreen"
 msgstr "Irten pantaila osotik"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:105
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:341
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:122
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:105
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:341
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:122
 msgid "Slideshow"
 msgstr "Diapositiba erakusketa"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:106
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:106
 msgid "Start slideshow"
 msgstr "Hasi diapositiba erakusketa"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:152
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:152
 msgid "Slide transition:"
 msgstr "Diapositiben trantsizioa:"
 
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:90
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:91
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:90
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:91
 msgid "More dates"
 msgstr "Data gehiago"
 
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:93
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:94
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:93
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:94
 msgid "More"
 msgstr "Gehiago"
 
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:554
-#: ../src/Clients/MainApp/ui/main_window.ui.h:34
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:554
+#: ../src/Clients/FSpot/ui/main_window.ui.h:34
 msgid "_Clear Date Range"
 msgstr "_Garbitu data bitartea"
 
-#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:510
-#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:512
-#: ../src/Clients/MainApp/FSpot.Import/MetadataImporter.cs:80
+#: ../src/Clients/FSpot/FSpot.Import/ImportController.cs:510
+#: ../src/Clients/FSpot/FSpot.Import/ImportController.cs:512
+#: ../src/Clients/FSpot/FSpot.Import/MetadataImporter.cs:80
 msgid "Imported Tags"
 msgstr "Inportatu etiketak"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:102
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:308
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:105
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:102
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:308
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:105
 msgid "Rotate Left"
 msgstr "Biratu ezkerrera"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:103
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:103
 msgid "Rotate picture left"
 msgstr "Biratu argazkia ezkerrera"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:114
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:312
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:110
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:114
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:312
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:110
 msgid "Rotate Right"
 msgstr "Biratu eskuinera"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:115
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:115
 msgid "Rotate picture right"
 msgstr "Biratu argazkia eskuinera"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:125
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:125
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:936
 msgid "Next"
 msgstr "Hurrengoa"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:126
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:126
 msgid "Next picture"
 msgstr "Hurrengo argazkia"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:146
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:146
 msgid "Previous"
 msgstr "Aurrekoa"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:147
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:147
 msgid "Previous picture"
 msgstr "Aurreko argazkia"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:301
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:229
-#: ../src/Clients/MainApp/ui/import.ui.h:3
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:301
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:229
+#: ../src/Clients/FSpot/ui/import.ui.h:3
 msgid "Import"
 msgstr "Inportatu"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:303
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:303
 msgid "Import new images"
 msgstr "Inportatu irudi berriak"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:319
-#: ../src/Clients/MainApp/ui/main_window.ui.h:3
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:319
+#: ../src/Clients/FSpot/ui/main_window.ui.h:3
 msgid "Browse"
 msgstr "Arakatu"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:323
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:323
 msgid "Browse many photos simultaneously"
 msgstr "Arakatu hainbat argazki aldi berean"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:327
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:327
 msgid "Edit Image"
 msgstr "Editatu irudia"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:331
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:331
 msgid "View and edit a photo"
 msgstr "Ikusi eta editatu argazkia"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:336
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:117
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:336
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:117
 msgid "Fullscreen"
 msgstr "Pantaila osoa"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:338
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:119
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:338
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:119
 msgid "View photos fullscreen"
 msgstr "Ikusi argazkiak pantaila osoan"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:343
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:124
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:343
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:124
 msgid "View photos in a slideshow"
 msgstr "Ikus argazkiak diapositiba-aurkezpenean"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:358
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:358
 msgid "Previous photo"
 msgstr "Aurreko argazkia"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:363
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:363
 msgid "Next photo"
 msgstr "Hurrengo argazkia"
 
 #. Don't care otherwise, Tags sounds reasonable
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:376
-#: ../src/Clients/MainApp/FSpot.Widgets/Sidebar.cs:75
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:376
+#: ../src/Clients/FSpot/FSpot.Widgets/Sidebar.cs:75
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:933
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1105
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1145
 msgid "Tags"
 msgstr "Etiketak"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:440
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:440
 msgid "Show _Find Bar"
 msgstr "Erakutsi _bilaketa-barra"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:443
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:443
 msgid "Hide _Find Bar"
 msgstr "Ezkutatu _bilaketa-barra"
 
 #. Note for translators: This indicates the current photo is photo {0} of {1} out of photos
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:672
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs:154
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ProgressDialog.cs:111
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:672
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AdjustTimeDialog.cs:154
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ProgressDialog.cs:111
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:134
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:389
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:240
@@ -904,14 +904,14 @@ msgid "{0} of {1}"
 msgstr "{0} / {1}"
 
 #. Translators, The singular case will never happen here.
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1746
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1746
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
 msgstr[0] "Batu hautatutako etiketa"
 msgstr[1] "Batu hautatutako {0} etiketak?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1773
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1773
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
@@ -919,58 +919,58 @@ msgstr ""
 "Eragiketa honek hautatutako etiketak eta edozein azpi-etiketa batu egingo "
 "ditu etiketa bakarrean."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1775
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1775
 msgid "_Merge Tags"
 msgstr "_Batu etiketak"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1980
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1980
 #, csharp-format
 msgid "{0} Photo out of {1}"
 msgid_plural "{0} Photos out of {1}"
 msgstr[0] "{0} / {1} argazkia"
 msgstr[1] "{0} / {1} argazkia"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1982
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:500
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1982
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:500
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
 msgstr[0] "Argazki {0}"
 msgstr[1] "{0} argazki"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1985
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1985
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
 msgstr[0] " ({0} hautatuta)"
 msgstr[1] " ({0} hautatuta)"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2066
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2066
 msgid "_Ok"
 msgstr "_Ados"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2067
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2067
 msgid "Error Deleting Picture"
 msgstr "Errorea argazkia ezabatzean"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2072
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2072
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
 msgstr "Ez dago baimenik fitxategia ezabatzeko: {1}{0}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2076
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2076
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
 msgstr "{0} motako errorea gertatu da fitxategia ezabatzean: {2}{1}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2108
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2108
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "Ezabatu hautatutako argazkiak betirako?"
 msgstr[1] "Ezabatu hautatutako {0} argazki betirako?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2112
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2112
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural "This deletes all versions of the selected photos from your drive."
 msgstr[0] ""
@@ -978,20 +978,20 @@ msgstr[0] ""
 "ditu."
 msgstr[1] "Honek hautatutako argazkien bertsio guztiak zure euskarritik ezabatuko ditu."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2115
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2115
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Ezabatu argazkia"
 msgstr[1] "_Ezabatu argazkiak"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2151
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2151
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "Ezabatu hautatutako argazkia F-Spot-etik?"
 msgstr[1] "Ezabatu hautatutako {0} argazki F-Spot-etik?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2156
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2156
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1001,45 +1001,45 @@ msgstr ""
 "galduko da. Argazkiak ordenagailuan egoten jarraituko dute, eta F-Spot-era "
 "berriro inportatzeko aukera egongo da."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2157
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2157
 msgid "_Remove from Catalog"
 msgstr "_Kendu katalogotik"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2231
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2231
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Ezabatu \"{0}\" etiketa?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2233
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2233
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Ezabatu hautatutako {0} etiketak?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2238
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2238
 msgid "photo"
 msgid_plural "photos"
 msgstr[0] "argazkia"
 msgstr[1] "argazkiak"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2240
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2240
 #, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
 msgid_plural "If you delete these tags, the association with {0} {1} will be lost."
 msgstr[0] "Etiketa hau ezabatuz gero, {0} {1} esleipena ere galduko da."
 msgstr[1] "Etiketa hauek ezabatuz gero, {0} {1} esleipena ere galduko da."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2245
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2245
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Ezabatu etiketa"
 msgstr[1] "_Ezabatu etiketak"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2259
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2259
 msgid "Tag is not empty"
 msgstr "Etiketa ez dago hutsik"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2260
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2260
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -1048,39 +1048,39 @@ msgstr ""
 "Ezin dira etiketak dituzten etiketak ezabatu . Aurrenik ezabatu {0} pean "
 "dauden etiketak"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2709
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2709
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Biratu hautatutako argazkia ezkerrera"
 msgstr[1] "Biratu hautatutako argazkiak ezkerrera"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2722
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2722
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Biratu hautatutako argazkia eskuinera"
 msgstr[1] "Biratu hautatutako argazkiak eskuinera"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2733
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2733
 #, csharp-format
 msgid "Find _Selected Tag"
 msgid_plural "Find _Selected Tags"
 msgstr[0] "Bilatu _hautatutako etiketa"
 msgstr[1] "Bilatu _hautatutako etiketak"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2737
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2737
 #, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
 msgstr[0] "Bilatu hautatutako etiketa _honekin"
 msgstr[1] "Bilatu hautatutako etiketak _honekin"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2778
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2778
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Sortu bertsio berria?"
 msgstr[1] "Sortu bertsio berriak?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2780
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2780
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -1095,111 +1095,111 @@ msgstr[1] ""
 "{1} abiarazi aurretik, F-Spot aplikazioak hautatutako argazkien bertsio "
 "berria sortu behar al du (jatorrizkoa babesteko)?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2802
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2802
 msgid "XCF version"
 msgstr "XCF bertsioa"
 
 #. Note for translators: Reparented is a picture becoming a version of another one
-#: ../src/Clients/MainApp/FSpot/Photo.cs:426
+#: ../src/Clients/FSpot/FSpot/Photo.cs:426
 msgid "Reparented"
 msgstr "Guraso berriarekin jarrita"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:443
+#: ../src/Clients/FSpot/FSpot/Photo.cs:443
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
 msgstr[0] "Aldatuta"
 msgstr[1] "Aldatuta ({0})"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:466
+#: ../src/Clients/FSpot/FSpot/Photo.cs:466
 #, csharp-format
 msgid "Modified in {1}"
 msgstr "{1}-(e)n aldatuta"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:466
+#: ../src/Clients/FSpot/FSpot/Photo.cs:466
 #, csharp-format
 msgid "Modified in {1} ({0})"
 msgstr "{1}-(e)n aldatuta ({0})"
 
-#: ../src/Clients/MainApp/FSpot/PhotoStore.cs:203
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:17
+#: ../src/Clients/FSpot/FSpot/PhotoStore.cs:203
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:17
 msgid "Original"
 msgstr "Jatorrizkoa"
 
-#: ../src/Clients/MainApp/FSpot/PhotoView.cs:359
+#: ../src/Clients/FSpot/FSpot/PhotoView.cs:359
 msgid "Description:"
 msgstr "Azalpena:"
 
-#: ../src/Clients/MainApp/FSpot/Preferences.cs:191
+#: ../src/Clients/FSpot/FSpot/Preferences.cs:191
 msgid "Photos"
 msgstr "Argazkiak"
 
-#: ../src/Clients/MainApp/FSpot/PrintOperation.cs:54
+#: ../src/Clients/FSpot/FSpot/PrintOperation.cs:54
 msgid "Image Settings"
 msgstr "Irudiaren ezarpenak"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:84
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:84
 msgid "Find: "
 msgstr "Bilatu: "
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:89
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:89
 msgid "Untagged photos"
 msgstr "Etiketarik gabeko argazkiak"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:97
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:97
 msgid "Rated photos"
 msgstr "Puntuatutako argazkiak"
 
 #. Note for translators: 'Import roll' is no command, it means 'Roll that has been imported'
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:106
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:106
 msgid "Import roll"
 msgstr "Inportatu erroilua"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:129
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:129
 msgid "Clear search"
 msgstr "Garbitu bilaketa"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:136
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:136
 msgid "Refresh search"
 msgstr "Freskatu bilaketa"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:139
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:139
 msgid "No matching photos found"
 msgstr "Ez da bat datorren argazkirik aurkitu"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:102
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:102
 msgid "Unable to rotate this type of photo"
 msgstr "Ezin da argazki mota hau biratu"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:118
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:118
 msgid "Unable to rotate readonly file"
 msgstr "Ezin da irakurtzeko soilik den fitxategia biratu"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:182
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:182
 msgid "Rotating photos"
 msgstr "Argazkiak biratzen"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:193
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:193
 #, csharp-format
 msgid "Rotating photo \"{0}\""
 msgstr "\"{0}\" argazkia biratzen"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:206
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:206
 msgid "Directory not found"
 msgstr "Ez da direktorioa aurkitu"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:208
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:208
 msgid "File not found"
 msgstr "Ez da fitxategia aurkitu"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:226
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:226
 #, csharp-format
 msgid "Unable to rotate photo"
 msgid_plural "Unable to rotate {0} photos"
 msgstr[0] "Ezin izan da argazkia biratu"
 msgstr[1] "Ezin izan dira {0} argazki biratu"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:228
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:228
 #, csharp-format
 msgid ""
 "The photo could not be rotated because it is on a read only file system or "
@@ -1216,240 +1216,240 @@ msgstr[1] ""
 "sisteman edo euskarrian (CDROM bat adibidez) daudelako. Egiaztatu baimenak "
 "eta saiatu berriro"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:255
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:255
 #, csharp-format
 msgid "Received error \"{0}\" while attempting to rotate {1}"
 msgstr "\"{0}\" errorea jaso da {1} biratzen saiatzean"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:260
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:260
 msgid "Error while rotating photo."
 msgstr "Errorea argazkia biratzean."
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:236
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:236
 msgid "Preparing email"
 msgstr "Mezua prestatzen"
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:280
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:280
 #, csharp-format
 msgid "Exporting picture \"{0}\""
 msgstr "\"{0}\" argazkia esportatzen"
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:299
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:299
 msgid "Error processing image"
 msgstr "Errorea irudia prozesatzean"
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:300
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:300
 #, csharp-format
 msgid "An error occurred while processing \"{0}\": {1}"
 msgstr "Errorea gertatu da \"{0}\" prozesatzean: {1}"
 
 #. Send the mail :)
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:313
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:313
 msgid "My Photos"
 msgstr "Nire argazkiak"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:107
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:107
 msgid "Rotate photo left"
 msgstr "Biratu argazkia ezkerrera"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:112
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:112
 msgid "Rotate photo right"
 msgstr "Biratu argazkia eskuinera"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:149
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:149
 msgid "Folder"
 msgstr "Karpeta"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:374
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:374
 msgid "Open"
 msgstr "Ireki"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:377
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:377
 msgid "Select Folder"
 msgstr "Hautatu karpeta"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:461
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:461
 msgid "Set as Background"
 msgstr "Ezarri atzeko plano gisa"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:66
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:66
 #, csharp-format
 msgid "Include Photos Tagged \"{0}\""
 msgstr "Txertatu \"{0}\" etiketadun argazkiak"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:71
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:71
 #, csharp-format
 msgid "Exclude Photos Tagged \"{0}\""
 msgstr "Baztertu \"{0}\" etiketadun argazkiak"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:76
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:76
 msgid "Remove From Search"
 msgstr "Kendu bilaketatik"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:120
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:120
 #, csharp-format
 msgid "Find _With"
 msgid_plural "Find _With"
 msgstr[0] "Bilatu _honekin"
 msgstr[1] "Bilatu _honekin"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:146
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:146
 msgid "All"
 msgstr "Denak"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:181
-#: ../src/Clients/MainApp/FSpot/Term.cs:612
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:181
+#: ../src/Clients/FSpot/FSpot/Term.cs:612
 #, csharp-format
 msgid "Not {0}"
 msgstr "{0} ez"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:305
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:305
 msgid "Drag tags here to search for them"
 msgstr "Arrastatu etiketak hona bilatzeko"
 
-#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:520
+#: ../src/Clients/FSpot/FSpot/TagSelectionWidget.cs:520
 msgid "Error renaming tag"
 msgstr "Errorea etiketaren izena aldatzean"
 
-#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:521
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagDialog.cs:94
-#: ../src/Clients/MainApp/TagCommands.cs:137
+#: ../src/Clients/FSpot/FSpot/TagSelectionWidget.cs:521
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagDialog.cs:94
+#: ../src/Clients/FSpot/TagCommands.cs:137
 msgid "This name is already in use"
 msgstr "Izen hau lehendik ere erabilita dago"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:239
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:239
 msgid "Favorites"
 msgstr "Gogokoak"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:244
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:244
 msgid "Hidden"
 msgstr "Ezkutuan"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:252
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:252
 msgid "People"
 msgstr "Pertsonak"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:257
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:257
 msgid "Places"
 msgstr "Lekuak"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:262
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:262
 msgid "Events"
 msgstr "Gertaerak"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:275
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:438
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:275
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:438
 msgid "(None)"
 msgstr "(bat ere ez)"
 
-#: ../src/Clients/MainApp/FSpot/Term.cs:324
+#: ../src/Clients/FSpot/FSpot/Term.cs:324
 msgid " and "
 msgstr " eta "
 
 #. operators.Add (Catalog.GetString (" && "));
-#: ../src/Clients/MainApp/FSpot/Term.cs:326
+#: ../src/Clients/FSpot/FSpot/Term.cs:326
 msgid ", "
 msgstr ", "
 
-#: ../src/Clients/MainApp/FSpot/Term.cs:382
+#: ../src/Clients/FSpot/FSpot/Term.cs:382
 msgid " or "
 msgstr " edo "
 
 #. OPS The operators we support, case insensitive
 #. private static string op_str = "(?'Ops' or | and |, | \\s+ )";
-#: ../src/Clients/MainApp/FSpot/Term.cs:406
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:7
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:202
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:557
+#: ../src/Clients/FSpot/FSpot/Term.cs:406
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:202
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:557
 msgid "or"
 msgstr "edo"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:122
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AboutDialog.cs:122
 msgid "Photo management for GNOME"
 msgstr "GNOMEren argazki-kudeatzailea"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:123
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AboutDialog.cs:123
 msgid "Copyright © 2003-2010 Novell Inc."
 msgstr "Copyright-a © 2003-2010 Novell Inc."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:147
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AboutDialog.cs:147
 msgid "translator-credits"
 msgstr ""
 "Mikel Olasagasti <hey_neken@mundurat.net>\n"
 "Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:152
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AboutDialog.cs:152
 msgid "F-Spot Website"
 msgstr "'F-Spot'-en web gunea"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs:137
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:10
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AdjustTimeDialog.cs:137
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:10
 #, csharp-format
 msgid "Shift all photos by {0}"
 msgstr "Desplazatu argazki guztiak {0}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:109
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:109
 msgid "Today"
 msgstr "Gaur"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:111
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:111
 msgid "Yesterday"
 msgstr "Atzo"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:113
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:113
 msgid "Last 7 days"
 msgstr "Azken 7 egun"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:115
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:115
 msgid "Last 30 days"
 msgstr "Azken 30 egun"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:117
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:117
 msgid "Last 90 days"
 msgstr "Azken 90 egun"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:119
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:119
 msgid "Last 360 days"
 msgstr "Azken 360 egun"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:121
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:121
 msgid "Current Week (Mon-Sun)"
 msgstr "Uneko astea (Al.-Ig.)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:123
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:123
 msgid "Previous Week (Mon-Sun)"
 msgstr "Aurreko astea (Al.-Ig.)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:139
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:139
 #: ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui.h:1
 msgid "All Images"
 msgstr "Irudi guztiak"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:141
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:141
 msgid "Customized Range"
 msgstr "Barruti pertsonalizatua"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditExceptionDialog.cs:50
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:95
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditExceptionDialog.cs:50
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:95
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr "\"{0}\" salbuespena jaso da. Ezin izan da {1} argazkia gorde"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditExceptionDialog.cs:63
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditExceptionDialog.cs:63
 msgid "Error editing photo"
 msgstr "Errorea argazkia editatzean"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:64
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:64
 #, csharp-format
 msgid "Edit Icon for Tag {0}"
 msgstr "Editatu ikonoa, {0} etiketarena"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:86
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:86
 msgid "Select Photo from file"
 msgstr "Hautatu argazkia fitxategitik"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:108
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:108
 #, csharp-format
 msgid ""
 "\n"
@@ -1466,33 +1466,33 @@ msgstr ""
 " etiketa honekin. Etiketatu argazki bat '{0}' gisa eta itzuli hona\n"
 " hori ikono gisa erabiltzeko."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:186
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:186
 msgid "Unable to load image"
 msgstr "Ezin da irudia kargatu"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:187
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:187
 #, csharp-format
 msgid "Unable to load \"{0}\" as icon for the tag"
 msgstr "Ezin da \"{0}\" kargatu etiketaren ikono gisa"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:225
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:225
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "{0} / {1} argazkia"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:45
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:45
 msgid "Choose Folder..."
 msgstr "Aukeratu karpeta..."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:164
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:164
 msgid "Choose Import source..."
 msgstr "Aukeratu inportatzeko iturburua..."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:176
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:176
 msgid "(No Cameras Detected)"
 msgstr "(Ez da kamerarik detektatu)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:211
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:211
 msgid ""
 "Checking this box will remove the imported photos from the camera after the "
 "import finished successfully.\n"
@@ -1506,33 +1506,33 @@ msgstr ""
 "Aurrenik zure argazkien babeskopiak egitea gomendatzen da kameratik kendu "
 "aurretik. <b>Zure erantzukizun pean erabili aukera hau!</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:212
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:212
 msgid "Warning"
 msgstr "Abisua"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:331
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:331
 #, csharp-format
 msgid "Importing Photos: {0} of {1}..."
 msgstr "Argazkiak inportatzen: {0} / {1}..."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:355
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:355
 msgid "Importing photos..."
 msgstr "Argazkiak inportatzen..."
 
 #. TODO: Using a GtkSpinner would be nicer here.
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:362
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:362
 msgid "Searching for photos... (You can already click Import to continue)"
 msgstr "Bilatu argazkiak... (jadanik klik egin dezakezu 'Inportatu'n jarratzeko)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:65
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportFailureDialog.cs:65
 msgid "Import failures"
 msgstr "Inportazioaren hutsegiteak"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:66
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportFailureDialog.cs:66
 msgid "Some files failed to import"
 msgstr "Fitxategi batzuk huts egin dute inportatzean"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:67
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportFailureDialog.cs:67
 msgid ""
 "Some files could not be imported, they might be corrupt or there might be "
 "something wrong with the storage on which they reside."
@@ -1540,28 +1540,28 @@ msgstr ""
 "Fitxategi batzuk ezin izan dira inportatu, hondatuta egon daiteke, edo "
 "zerbait gaizki dago hauek kokatuta dauden biltegian."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:130
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportFailureDialog.cs:130
 msgid "Details"
 msgstr "Xehetasunak"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:77
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:100
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/PreferenceDialog.cs:77
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/PreferenceDialog.cs:100
 msgid "None"
 msgstr "Bat ere ez"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:79
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/PreferenceDialog.cs:79
 msgid "System profile"
 msgstr "Sistemaren profila"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:117
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/PreferenceDialog.cs:117
 msgid "Standard theme"
 msgstr "Gai estandarra"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/RepairDbDialog.cs:44
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/RepairDbDialog.cs:44
 msgid "Error loading database."
 msgstr "Errorea datu-basea kargatzean."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/RepairDbDialog.cs:45
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/RepairDbDialog.cs:45
 #, csharp-format
 msgid ""
 "F-Spot encountered an error while loading the photo database. The old "
@@ -1570,41 +1570,41 @@ msgstr ""
 "F-Spot aplikazioak errorea aurkitu du argazkien datu-basea kargatzean. Datu-"
 "base zaharra {0} kokalekura aldatu da eta datu-base berria sortu da."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/SelectionRatioDialog.cs:81
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/SelectionRatioDialog.cs:81
 msgid "Label"
 msgstr "Etiketa"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/SelectionRatioDialog.cs:85
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/SelectionRatioDialog.cs:85
 msgid "Ratio"
 msgstr "Erlazioa"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ThreadProgressDialog.cs:78
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ThreadProgressDialog.cs:78
 msgid "Retry"
 msgstr "Saiatu berriro"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ThreadProgressDialog.cs:80
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ThreadProgressDialog.cs:80
 #: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/pickfolder_dialog.ui.h:1
 msgid "Skip"
 msgstr "Saltatu"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:1
 msgid "0000:00:00 00:00:00"
 msgstr "0000:00:00 00:00:00"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:2
 msgid "00:00:00"
 msgstr "00:00:00"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:3
 msgid "5"
 msgstr "5"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:4
 msgid "<b>Action</b>"
 msgstr "<b>Ekintza</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:5
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:5
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:6
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:2
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:3
 #: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:3
@@ -1614,171 +1614,171 @@ msgstr "<b>Ekintza</b>"
 msgid "<b>Photos</b>"
 msgstr "<b>Argazkiak</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:6
 msgid "<b>Reference Photo</b>"
 msgstr "<b>Erreferentziako argazkia</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:7
 msgid "Adjust Time"
 msgstr "Doitu denbora"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:8
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:8
 msgid "Adjusted date: "
 msgstr "Doitu data: "
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:9
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:9
 msgid "Current date:"
 msgstr "Uneko data:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:11
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:11
 msgid "Space all photos by"
 msgstr "Argazki guztien arteko tartea:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:12
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:12
 msgid "difference:"
 msgstr "diferentzia:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:13
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:13
 msgid "min. Starting at {0}"
 msgstr "min. Hasiera: {0}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:1
 msgid "C_reate"
 msgstr "_Sortu"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:2
 msgid "Create _icon for this tag when first used"
 msgstr "Sortu _ikonoa etiketa honentzako aurreneko aldiz erabiltzean"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:3
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:3
 msgid "P_arent Tag:"
 msgstr "Etiketa _gurasoa:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:4
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:5
 msgid "_Tag Name:"
 msgstr "_Etiketa-izena:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:1
 msgid "<b>End Date</b>"
 msgstr "<b>Amaiera-eguna</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:2
 msgid "<b>Select period</b>"
 msgstr "<b>Hautatu aldia</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:3
 msgid "<b>Start Date</b>"
 msgstr "<b>Hasiera-data</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:4
 msgid "Cancel, do not change the current timeline. "
 msgstr "Utzi, ez aldatu uneko denbora-lerroa. "
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:5
 msgid "Only photos taken within these dates will be displayed."
 msgstr "Data hauetan kapturatutako argazkiak bistaratuko dira."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:6
 msgid "Set date range"
 msgstr "Ezarri data barrutia"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:1
 msgid "Edit Tag"
 msgstr "Editatu etiketa"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:2
 msgid "Edit icon"
 msgstr "Editatu ikonoa"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:4
 msgid "_Icon:"
 msgstr "_Ikonoa:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:1
 msgid "<b>From External Photo</b>"
 msgstr "<b>Kanpoko argazkitik</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:2
 msgid "<b>From Photo</b>"
 msgstr "<b>Argazkitik</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:3
 msgid "<b>Predefined icons</b>"
 msgstr "<b>Aurredefinitutako ikonoak</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:4
 msgid "<b>Preview</b>"
 msgstr "<b>Aurrebista</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:5
 msgid "Design icon from"
 msgstr "Ikonoen diseinua:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:6
 msgid "Edit Tag Icon"
 msgstr "Editatu etiketa-ikonoa"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:7
 msgid "No _image"
 msgstr "_Irudirik ez"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:1
 msgid "<b>View all pictures imported</b>"
 msgstr "<b>Ikusi inportatutako argazki guztiak</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:2
 msgid "Display only those photos that were imported in specified Rolls."
 msgstr "Erakutsi erroilu zehatz batetik inportatutako argazkiak soilik."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:3
 msgid "Filter on selected rolls"
 msgstr "Iragazi hautatutako erroiluetan"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:4
 msgid "Number of photos in selected rolls:"
 msgstr "Argazki kopurua hautatutako erroiluetan:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:5
 msgid "Show all photos."
 msgstr "Erakutsi argazki guztiak."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:6
 msgid "after"
 msgstr "ondoren"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:7
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:202
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:558
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:202
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:558
 msgid "and"
 msgstr "eta"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:8
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:8
 msgid "at"
 msgstr "noiz"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:9
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:9
 msgid "between"
 msgstr "bitartean"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:1
 msgid "Color profile for display:"
 msgstr "Kolore-profila pantailarentzako:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:2
 msgid "Color profile for printing:"
 msgstr "Kolore-profila inprimatzeko:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:3
 msgid "F-Spot Preferences"
 msgstr "F-Spot hobespenak"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:4
 msgid "F-Spot appearance:"
 msgstr "F-Spot itxura:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:5
 msgid ""
 "Inside the image files when possible\n"
 "<small>Makes them accessible to other image-editing programs.</small>"
@@ -1786,7 +1786,7 @@ msgstr ""
 "Irudien fitxategien barruan ahal denean\n"
 "<small>Egin haiek atzigarri irudiak editatzeko beste programentzako.</small>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:7
 msgid ""
 "Never modify image files.\n"
 "<small>Write XMP files next to the images instead.</small>"
@@ -1794,57 +1794,57 @@ msgstr ""
 "Inoiz ere ez aldatu irudien fitxategiak.\n"
 "<small>Horren ordez, idatzi XMP fitxategiak irudietarik gertu.</small>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:9
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:9
 msgid "Select A Folder"
 msgstr "Hautatu karpeta"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:10
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:10
 msgid "Separately from the image files"
 msgstr "Bereiztuta irudien fitxategietatik"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:11
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:11
 msgid "Store tags and descriptions for photos:"
 msgstr "Gorde argazkien etiketak eta azalpenak:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:12
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:12
 msgid "When importing photos, copy them to:"
 msgstr "Argazkiak inportatzean, kopiatu haiek hemen:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:1
 msgid "<b>Max Rating</b>"
 msgstr "<b>Geh. puntuazioa</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:2
 msgid "<b>Min Rating</b>"
 msgstr "<b>Gut. puntuazioa</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:3
 msgid "Set Rating Filter"
 msgstr "Ezarri puntuazio-iragazkia"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RepairDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/RepairDialog.ui.h:1
 msgid "Repair"
 msgstr "Konpondu"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui.h:1
 msgid "Manage your custom selection ratios"
 msgstr "Kudeatu zure hautapen-erlazio pertsonalizatuak"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui.h:2
 msgid "Selection Constraints"
 msgstr "Hautapenaren murriztapena"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:55
-#: ../src/Clients/MainApp/FSpot.Widgets/Sidebar.cs:73
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:55
+#: ../src/Clients/FSpot/FSpot.Widgets/Sidebar.cs:73
 msgid "Edit"
 msgstr "Editatu"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:223
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:223
 #: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:66
 msgid "No selection available"
 msgstr "Ez dago hautapenik erabilgarri"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:224
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:224
 msgid ""
 "This tool requires an active selection. Please select a region of the photo "
 "and try the operation again"
@@ -1852,13 +1852,13 @@ msgstr ""
 "Tresna honek hautapena aktibo egotea eskatzen du. Hautatu argazkiko area bat "
 "eta saiatu eragiketarekin berriro"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:242
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:242
 msgid "Error saving adjusted photo"
 msgid_plural "Error saving adjusted photos"
 msgstr[0] "Errorea doitutako argazkia gordetzean"
 msgstr[1] "Errorea doitutako argazkiak gordetzean"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:244
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:244
 #, csharp-format
 msgid ""
 "Received exception \"{0}\". Note that you have to develop RAW files into "
@@ -1867,70 +1867,70 @@ msgstr ""
 "\"{0}\" salbuespena jaso da. Jakin ezazu RAW fitxategiak bihurtu behar "
 "dituzula JPEG formatura hauek editatu baino lehen."
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:495
+#: ../src/Clients/FSpot/FSpot.Widgets/Filmstrip.cs:495
 msgid "_Horizontal"
 msgstr "_Horizontala"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:499
+#: ../src/Clients/FSpot/FSpot.Widgets/Filmstrip.cs:499
 msgid "_Vertical"
 msgstr "_Bertikala"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:83
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:83
 msgid "Find:"
 msgstr "Bilatu:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/FolderTreePage.cs:44
+#: ../src/Clients/FSpot/FSpot.Widgets/FolderTreePage.cs:44
 msgid "Folders"
 msgstr "Karpetak"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/FolderTreeView.cs:150
+#: ../src/Clients/FSpot/FSpot.Widgets/FolderTreeView.cs:150
 msgid "Filesystem"
 msgstr "Fitxategi-sistema"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:302
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:302
 msgid "Histogram"
 msgstr "Histograma"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:321
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:321
 msgid "Image Information"
 msgstr "Irudiaren informazioa"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:329
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:329
 #, csharp-format
 msgid "{0} Photos"
 msgstr "{0} argazki"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:331
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:331
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:10
 msgid "Name"
 msgstr "Izena"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:343
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:343
 msgid "Version"
 msgstr "Bertsioa"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:358
-#: ../src/Clients/MainApp/PhotoVersionMenu.cs:86
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:358
+#: ../src/Clients/FSpot/PhotoVersionMenu.cs:86
 msgid "(No Edits)"
 msgstr "(aldaketarik gabe)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:362
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:362
 #, csharp-format
 msgid "(One Edit)"
 msgid_plural "({0} Edits)"
 msgstr[0] "(edizio bat)"
 msgstr[1] "({0} edizio)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:368
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:368
 msgid "Date"
 msgstr "Data"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:368
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:368
 msgid "Show Date"
 msgstr "Erakutsi data"
 
 #. Note for translators: {0} is a date, {1} and {2} are times.
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:379
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:379
 #, csharp-format
 msgid ""
 "On {0} between \n"
@@ -1939,7 +1939,7 @@ msgstr ""
 "{0}:\n"
 "{1} eta {2} bitartean"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:384
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:384
 #, csharp-format
 msgid ""
 "Between {0} \n"
@@ -1948,177 +1948,177 @@ msgstr ""
 "{0} eta\n"
 "{1} bitartean"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:390
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:390
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:4
 msgid "Size"
 msgstr "Tamaina"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:390
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:390
 msgid "Show Size"
 msgstr "Erakutsi tamaina"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:398
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:448
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:454
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:458
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:398
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:448
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:454
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:458
 msgid "(Unknown)"
 msgstr "(Ezezaguna)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:401
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:401
 msgid "Exposure"
 msgstr "Esposizioa"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:401
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:401
 msgid "Show Exposure"
 msgstr "Erakutsi esposizioa"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:431
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:431
 msgid "flash fired"
 msgstr "flash-a piztuta"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:433
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:433
 msgid "flash didn't fire"
 msgstr "flash-a ez da piztu"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:443
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:443
 msgid "Focal Length"
 msgstr "Foku-luzera"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:443
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:443
 msgid "Show Focal Length"
 msgstr "Erakutsi foku-luzera"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:453
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:453
 msgid "Camera"
 msgstr "Kamera"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:453
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:453
 msgid "Show Camera"
 msgstr "Erakutsi kamera"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:457
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:457
 msgid "Creator"
 msgstr "Sortzailea"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:457
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:457
 msgid "Show Creator"
 msgstr "Erakutsi sortzailea"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:461
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:461
 msgid "File Size"
 msgstr "Fitxategi-tamaina"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:461
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:461
 msgid "Show File Size"
 msgstr "Erakutsi fitxategi-tamaina"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:469
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:469
 msgid "(File read error)"
 msgstr "(errorea fitxategia irakurtzean)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:477
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:477
 msgid "Rating"
 msgstr "Puntuazioa"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:477
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:477
 msgid "Show Rating"
 msgstr "Erakutsi puntuazioa"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:481
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:481
 msgid "Show Tags"
 msgstr "Erakutsi etiketak"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:46
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:46
 msgid "Metadata"
 msgstr "Meta-datuak"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:127
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:127
 msgid "Extended Metadata"
 msgstr "Metadatu hedatuak"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:380
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:380
 msgid "No active photo"
 msgstr "Ez dago argazki aktiborik"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:382
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:382
 #, csharp-format
 msgid "The photo \"{0}\" does not exist"
 msgstr "\"{0}\" argazkia ez da existitzen"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:384
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:384
 msgid "No metadata available"
 msgstr "Ez dago metadaturik eskuragarri"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:94
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:94
 msgid "Error saving sharpened photo"
 msgstr "Errorea zorroztutako argazkia gordetzean"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:124
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:124
 msgid "Sharpen"
 msgstr "Enfokatzea"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:134
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:134
 msgid "Amount:"
 msgstr "Kopurua:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:135
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:135
 msgid "Radius:"
 msgstr "Erradioa:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:136
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:136
 msgid "Threshold:"
 msgstr "Atalasea:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/TagMenu.cs:132
-#: ../src/Clients/MainApp/TagPopup.cs:61
+#: ../src/Clients/FSpot/FSpot.Widgets/TagMenu.cs:132
+#: ../src/Clients/FSpot/TagPopup.cs:61
 msgid "Create New Tag..."
 msgstr "Sortu etiketa berria..."
 
 #. Fixme this should really set parent menu
 #. items insensitve
-#: ../src/Clients/MainApp/PhotoTagMenu.cs:92
+#: ../src/Clients/FSpot/PhotoTagMenu.cs:92
 msgid "(No Tags)"
 msgstr "(Etiketarik ez)"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:91
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:91
 msgid "Create New Version"
 msgstr "Sortu bertsio berria"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:92
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:92
 msgid "Name:"
 msgstr "Izena:"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:96
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:96
 msgid "Rename Version"
 msgstr "Berrizendatu bertsioa"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:97
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:97
 msgid "New name:"
 msgstr "Izen berria:"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:157
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:157
 msgid "Delete"
 msgstr "Ezabatu"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:158
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:158
 #, csharp-format
 msgid "Really delete version \"{0}\"?"
 msgstr "\"{0}\" bertsioa ezabatzea nahi duzu?"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:159
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:159
 msgid "This removes the version and deletes the corresponding file from disk."
 msgstr "Honek bertsioa kentzen du, eta dagokion fitxategia ezabatzen du diskotik."
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:204
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:204
 msgid "De_tach"
 msgstr "_Desuztartu"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:205
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:205
 #, csharp-format
 msgid "Really detach version \"{0}\" from \"{1}\"?"
 msgstr "\"{0}\" bertsioa desuztartzea nahi duzu \"{1}\"(e)tik?"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:206
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:206
 msgid ""
 "This makes the version appear as a separate photo in the library. To undo, "
 "drag the new photo back to its parent."
@@ -2126,18 +2126,18 @@ msgstr ""
 "Bertsioa liburutegian bereiztutako argazki gisa agertzea eragiten du honek. "
 "Desegiteko, arrastatu atzerantz argazki berria bere gurasora."
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:228
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:228
 msgid "Re_parent"
 msgstr "Gurasoarekin _jarri"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:229
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:229
 #, csharp-format
 msgid "Really reparent \"{0}\" as version of \"{1}\"?"
 msgid_plural "Really reparent {2} photos as versions of \"{1}\"?"
 msgstr[0] "\"{0}\" \"{1}\"(r)en bertsio gisa guraso jarri nahi duzu?"
 msgstr[1] "{2} argazki \"{1}\"(r)en bertsio gisa guraso jarri nahi duzu?"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:232
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:232
 msgid ""
 "This makes the photos appear as a single one in the library. The versions "
 "can be detached using the Photo menu."
@@ -2145,517 +2145,517 @@ msgstr ""
 "Argazkiak liburutegian bakarrak bezala agertzea eragiten du honek. Bertsioak "
 "desuztartu daiteke Argazkia menua erabiliz."
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:272
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:272
 #, csharp-format
 msgid "Received exception \"{0}\"."
 msgstr "\"{0}\" salbuespena jaso da"
 
-#: ../src/Clients/MainApp/TagCommands.cs:187
+#: ../src/Clients/FSpot/TagCommands.cs:187
 msgid "Create New Tag"
 msgstr "Sortu etiketa berria"
 
-#: ../src/Clients/MainApp/TagCommands.cs:188
+#: ../src/Clients/FSpot/TagCommands.cs:188
 msgid "Name of New Tag:"
 msgstr "Etiketa berriaren izena:"
 
-#: ../src/Clients/MainApp/TagPopup.cs:51
+#: ../src/Clients/FSpot/TagPopup.cs:51
 #, csharp-format
 msgid "Find"
 msgid_plural "Find"
 msgstr[0] "Bilatu"
 msgstr[1] "Bilatu"
 
-#: ../src/Clients/MainApp/TagPopup.cs:67
+#: ../src/Clients/FSpot/TagPopup.cs:67
 msgid "Edit Tag..."
 msgstr "Editatu etiketa..."
 
-#: ../src/Clients/MainApp/TagPopup.cs:71
+#: ../src/Clients/FSpot/TagPopup.cs:71
 msgid "Delete Tag"
 msgid_plural "Delete Tags"
 msgstr[0] "Ezabatu etiketa"
 msgstr[1] "Ezabatu etiketak"
 
-#: ../src/Clients/MainApp/TagPopup.cs:77
+#: ../src/Clients/FSpot/TagPopup.cs:77
 msgid "Attach Tag to Selection"
 msgid_plural "Attach Tags to Selection"
 msgstr[0] "Erantsi etiketa hautapenari"
 msgstr[1] "Erantsi etiketak hautapenari"
 
-#: ../src/Clients/MainApp/TagPopup.cs:81
+#: ../src/Clients/FSpot/TagPopup.cs:81
 msgid "Remove Tag From Selection"
 msgid_plural "Remove Tags From Selection"
 msgstr[0] "Kendu etiketa hautapenetik"
 msgstr[1] "Kendu etiketak hautapenetik"
 
-#: ../src/Clients/MainApp/TagPopup.cs:87
+#: ../src/Clients/FSpot/TagPopup.cs:87
 msgid "Merge Tags"
 msgstr "Batu etiketak"
 
-#: ../src/Clients/MainApp/ThumbnailCommand.cs:53
+#: ../src/Clients/FSpot/ThumbnailCommand.cs:53
 msgid "Updating Thumbnails"
 msgstr "Koadro txikiak eguneratzen"
 
-#: ../src/Clients/MainApp/ThumbnailCommand.cs:61
+#: ../src/Clients/FSpot/ThumbnailCommand.cs:61
 #, csharp-format
 msgid "Updating picture \"{0}\""
 msgstr "\"{0}\" argazkia eguneratzen"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:1
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:1
 msgid "<b>Co_rrections</b>"
 msgstr "<b>_Zuzenketak</b>"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:2
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:2
 msgid "<b>_White Balance</b>"
 msgstr "<b>_Txurien balantzea</b>"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:3
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:3
 msgid "C_ontrast:"
 msgstr "_Kontrastea:"
 
 #. Note for translators: meant as Temperature
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:5
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:5
 msgid "Te_mp:"
 msgstr "_Tenperatura:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:6
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:6
 msgid "_Brightness:"
 msgstr "_Distira:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:7
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:7
 msgid "_Exposure:"
 msgstr "_Esposizioa:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:8
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:8
 msgid "_Hue:"
 msgstr "_Ñabardura:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:9
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:9
 msgid "_Saturation:"
 msgstr "_Saturazioa:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:10
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:10
 msgid "_Tint:"
 msgstr "_Ñabardura:"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:1
+#: ../src/Clients/FSpot/ui/import.ui.h:1
 msgid "C_opy files to the Photos folder"
 msgstr "_Kopiatu fitxategiak argazkien karpetara"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:2
+#: ../src/Clients/FSpot/ui/import.ui.h:2
 msgid "I_nclude subfolders"
 msgstr "_Sartu azpikarpetak"
 
 #. Translators: this string means 'source of import'
-#: ../src/Clients/MainApp/ui/import.ui.h:5
+#: ../src/Clients/FSpot/ui/import.ui.h:5
 msgid "Import _from:"
 msgstr "Inportatu _hemendik:"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:6
+#: ../src/Clients/FSpot/ui/import.ui.h:6
 msgid "_Attach tags:"
 msgstr "_Erantsi etiketak:"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:7
+#: ../src/Clients/FSpot/ui/import.ui.h:7
 msgid "_Detect duplicates"
 msgstr "_Detektatu bikoiztutakoak"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:8
+#: ../src/Clients/FSpot/ui/import.ui.h:8
 msgid "_Import"
 msgstr "_Inportatu"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:9
+#: ../src/Clients/FSpot/ui/import.ui.h:9
 msgid "_Remove original files after import"
 msgstr "_Kendu jatorrizko fitxategiak inportatu ondoren"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:1
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:1
 msgid "1024 px"
 msgstr "1024 px"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:2
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:2
 msgid "320 px"
 msgstr "320 px"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:3
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:3
 msgid "480 px"
 msgstr "480 px"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:4
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:4
 msgid "640 px"
 msgstr "640 px"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:5
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:5
 msgid "800 px"
 msgstr "800 px"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:7
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:7
 msgid "<b>Size</b>"
 msgstr "<b>Tamaina</b>"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:8
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:8
 msgid "<b>Summary</b>"
 msgstr "<b>Laburpena</b>"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:9
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:9
 msgid "Create Mail"
 msgstr "Sortu mezua"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:10
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:10
 msgid "Create a mail with the selected photos (possibly resized) attached"
 msgstr "Sortu mezua hautatutako argazkiak (tamainaz alda daitezke) erantsita"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:11
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:11
 msgid "Do not send a mail"
 msgstr "Ez bidali mezua"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:12
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:12
 msgid "Estimated new size"
 msgstr "Aurrikusitako tamaina berria"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:13
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:13
 msgid "Extra large"
 msgstr "Oso handia"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:14
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:14
 msgid "Large"
 msgstr "Handia"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:15
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:15
 msgid "Medium"
 msgstr "Tartekoa"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:16
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:16
 msgid "Number of pictures"
 msgstr "Argazki-kopurua"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:18
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:18
 msgid "Original size (possible very large file size)"
 msgstr "Jatorrizko tamaina (baliteke fitxategi-tamaina oso handia izatea)"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:19
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:19
 msgid "Small"
 msgstr "Txikia"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:20
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:20
 msgid "Tiny"
 msgstr "Txikitxoa"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:21
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:21
 msgid "Total original size"
 msgstr "Jatorrizko guztirako tamaina"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:22
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:22
 msgid "_Create Mail"
 msgstr "_Sortu mezua"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:1
+#: ../src/Clients/FSpot/ui/main_window.ui.h:1
 msgid "Adjust _Time..."
 msgstr "Doitu _ordua..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:2
+#: ../src/Clients/FSpot/ui/main_window.ui.h:2
 msgid "Arrange _by"
 msgstr "_Honela antolatua"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:4
+#: ../src/Clients/FSpot/ui/main_window.ui.h:4
 msgid "By _Date"
 msgstr "_Dataren arabera"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:5
+#: ../src/Clients/FSpot/ui/main_window.ui.h:5
 msgid "By _Import Roll"
 msgstr "_Inportatutako erroiluen arabera"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:6
+#: ../src/Clients/FSpot/ui/main_window.ui.h:6
 msgid "By _Rating"
 msgstr "_Puntuazioaren arabera"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:7
+#: ../src/Clients/FSpot/ui/main_window.ui.h:7
 msgid "Copy"
 msgstr "Kopiatu"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:8
+#: ../src/Clients/FSpot/ui/main_window.ui.h:8
 msgid "Create New _Tag..."
 msgstr "Sortu _etiketa berria..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:9
+#: ../src/Clients/FSpot/ui/main_window.ui.h:9
 msgid "Create _New Version..."
 msgstr "Sortu _bertsio berria..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:10
+#: ../src/Clients/FSpot/ui/main_window.ui.h:10
 msgid "De_tach Version"
 msgstr "Desu_ztartu bertsioa"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:11
+#: ../src/Clients/FSpot/ui/main_window.ui.h:11
 msgid "Fin_d"
 msgstr "Bila_tu"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:12
+#: ../src/Clients/FSpot/ui/main_window.ui.h:12
 msgid "Manage _Extensions"
 msgstr "Kudeatu _luzapenak"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:13
+#: ../src/Clients/FSpot/ui/main_window.ui.h:13
 msgid "Page Set_up..."
 msgstr "_Prestatu orrialdea..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:14
+#: ../src/Clients/FSpot/ui/main_window.ui.h:14
 msgid "Re_fresh Thumbnail"
 msgstr "_Freskatu koadro txikiak"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:18
+#: ../src/Clients/FSpot/ui/main_window.ui.h:18
 msgid "Select _All"
 msgstr "Hautatu _dena"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:19
+#: ../src/Clients/FSpot/ui/main_window.ui.h:19
 msgid "Select _None"
 msgstr "Hautatu _bat ere ez"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:20
+#: ../src/Clients/FSpot/ui/main_window.ui.h:20
 msgid "Send by _Mail..."
 msgstr "Bidali posta _elektronikoz..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:21
-#: ../src/Clients/MainApp/ui/single_view.ui.h:3
+#: ../src/Clients/FSpot/ui/main_window.ui.h:21
+#: ../src/Clients/FSpot/ui/single_view.ui.h:3
 msgid "Set as _Background"
 msgstr "Ezarri _atzeko plano gisa"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:22
+#: ../src/Clients/FSpot/ui/main_window.ui.h:22
 msgid "Side_bar"
 msgstr "Albo-_panela"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:23
+#: ../src/Clients/FSpot/ui/main_window.ui.h:23
 msgid "T_ags"
 msgstr "_Etiketak"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:24
+#: ../src/Clients/FSpot/ui/main_window.ui.h:24
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1116
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1117
 msgid "Tags: "
 msgstr "Etiketak: "
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:25
+#: ../src/Clients/FSpot/ui/main_window.ui.h:25
 msgid "Thumbnail _elements"
 msgstr "Koadro txikien _elementuak"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:26
+#: ../src/Clients/FSpot/ui/main_window.ui.h:26
 msgid "Too_lbar"
 msgstr "_Tresna-barra"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:27
+#: ../src/Clients/FSpot/ui/main_window.ui.h:27
 msgid "View"
 msgstr "Ikusi"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:28
-#: ../src/Clients/MainApp/ui/single_view.ui.h:7
+#: ../src/Clients/FSpot/ui/main_window.ui.h:28
+#: ../src/Clients/FSpot/ui/single_view.ui.h:7
 msgid "Zoom _in"
 msgstr "Zooma _handiagotu"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:29
-#: ../src/Clients/MainApp/ui/single_view.ui.h:8
+#: ../src/Clients/FSpot/ui/main_window.ui.h:29
+#: ../src/Clients/FSpot/ui/single_view.ui.h:8
 msgid "Zoom _out"
 msgstr "Zooma _txikiagotu"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:30
-#: ../src/Clients/MainApp/ui/single_view.ui.h:9
+#: ../src/Clients/FSpot/ui/main_window.ui.h:30
+#: ../src/Clients/FSpot/ui/single_view.ui.h:9
 msgid "Zoom in"
 msgstr "Zooma handiagotu"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:31
-#: ../src/Clients/MainApp/ui/single_view.ui.h:10
+#: ../src/Clients/FSpot/ui/main_window.ui.h:31
+#: ../src/Clients/FSpot/ui/single_view.ui.h:10
 msgid "Zoom out"
 msgstr "Zooma txikiagotu"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:32
+#: ../src/Clients/FSpot/ui/main_window.ui.h:32
 msgid "_Attach Tag"
 msgstr "_Gehitu etiketa"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:33
+#: ../src/Clients/FSpot/ui/main_window.ui.h:33
 msgid "_Attach Tag to Selection"
 msgstr "_Erantsi etiketa hautapenari"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:35
+#: ../src/Clients/FSpot/ui/main_window.ui.h:35
 msgid "_Clear Rating Filter"
 msgstr "_Garbitu puntuazio-iragazkia"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:36
+#: ../src/Clients/FSpot/ui/main_window.ui.h:36
 msgid "_Clear Roll Filter"
 msgstr "_Garbitu erroiluaren iragazkia"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:37
+#: ../src/Clients/FSpot/ui/main_window.ui.h:37
 msgid "_Close"
 msgstr "It_xi"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:38
+#: ../src/Clients/FSpot/ui/main_window.ui.h:38
 msgid "_Components"
 msgstr "_Osagaiak"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:39
+#: ../src/Clients/FSpot/ui/main_window.ui.h:39
 msgid "_Contents"
 msgstr "_Edukia"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:40
+#: ../src/Clients/FSpot/ui/main_window.ui.h:40
 msgid "_Dates"
 msgstr "_Datak"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:42
+#: ../src/Clients/FSpot/ui/main_window.ui.h:42
 msgid "_Delete Selected Tag"
 msgstr "_Ezabatu hautatutako etiketa"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:43
+#: ../src/Clients/FSpot/ui/main_window.ui.h:43
 msgid "_Delete Version"
 msgstr "_Ezabatu bertsioa"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:44
-#: ../src/Clients/MainApp/ui/single_view.ui.h:11
+#: ../src/Clients/FSpot/ui/main_window.ui.h:44
+#: ../src/Clients/FSpot/ui/single_view.ui.h:11
 msgid "_Edit"
 msgstr "_Editatu"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:45
+#: ../src/Clients/FSpot/ui/main_window.ui.h:45
 msgid "_Edit Tag..."
 msgstr "_Editatu etiketa..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:46
+#: ../src/Clients/FSpot/ui/main_window.ui.h:46
 msgid "_Export to"
 msgstr "_Esportatu hona"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:47
+#: ../src/Clients/FSpot/ui/main_window.ui.h:47
 msgid "_Filmstrip"
 msgstr "_Film-xingola"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:48
-#: ../src/Clients/MainApp/ui/single_view.ui.h:13
+#: ../src/Clients/FSpot/ui/main_window.ui.h:48
+#: ../src/Clients/FSpot/ui/single_view.ui.h:13
 msgid "_Fullscreen"
 msgstr "_Pantaila osoa"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:49
-#: ../src/Clients/MainApp/ui/single_view.ui.h:14
+#: ../src/Clients/FSpot/ui/main_window.ui.h:49
+#: ../src/Clients/FSpot/ui/single_view.ui.h:14
 msgid "_Help"
 msgstr "_Laguntza"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:50
+#: ../src/Clients/FSpot/ui/main_window.ui.h:50
 msgid "_Hidden"
 msgstr "_Ezkutukoa"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:51
+#: ../src/Clients/FSpot/ui/main_window.ui.h:51
 msgid "_Import..."
 msgstr "_Inportatu..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:52
+#: ../src/Clients/FSpot/ui/main_window.ui.h:52
 msgid "_Invert Selection"
 msgstr "A_lderantzikatu hautapena"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:53
+#: ../src/Clients/FSpot/ui/main_window.ui.h:53
 msgid "_Large"
 msgstr "_Handia"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:54
+#: ../src/Clients/FSpot/ui/main_window.ui.h:54
 msgid "_Last Import Roll"
 msgstr "_Azken erroilu inportazioa"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:55
+#: ../src/Clients/FSpot/ui/main_window.ui.h:55
 msgid "_Loupe"
 msgstr "_Lupa"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:56
+#: ../src/Clients/FSpot/ui/main_window.ui.h:56
 msgid "_Medium"
 msgstr "_Tartekoa"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:57
-#: ../src/Clients/MainApp/ui/single_view.ui.h:15
+#: ../src/Clients/FSpot/ui/main_window.ui.h:57
+#: ../src/Clients/FSpot/ui/single_view.ui.h:15
 msgid "_Photo"
 msgstr "_Argazkia"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:58
+#: ../src/Clients/FSpot/ui/main_window.ui.h:58
 msgid "_Quit"
 msgstr "I_rten"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:59
+#: ../src/Clients/FSpot/ui/main_window.ui.h:59
 msgid "_Ratings"
 msgstr "_Puntuazioak"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:61
+#: ../src/Clients/FSpot/ui/main_window.ui.h:61
 msgid "_Remove Tag From Selection"
 msgstr "_Kendu etiketa hautapenetik"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:62
+#: ../src/Clients/FSpot/ui/main_window.ui.h:62
 msgid "_Rename Version"
 msgstr "_Berrizendatu bertsioa"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:63
+#: ../src/Clients/FSpot/ui/main_window.ui.h:63
 msgid "_Reverse Order"
 msgstr "_Alderantzizko ordena"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:64
+#: ../src/Clients/FSpot/ui/main_window.ui.h:64
 msgid "_Select Import Rolls..."
 msgstr "_Hautatu inportatzeko erroiluak..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:65
+#: ../src/Clients/FSpot/ui/main_window.ui.h:65
 msgid "_Set Date Range..."
 msgstr "Ezarri _data bitartea..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:66
+#: ../src/Clients/FSpot/ui/main_window.ui.h:66
 msgid "_Set Rating filter..."
 msgstr "_Ezarri puntuazio-iragazkia..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:67
+#: ../src/Clients/FSpot/ui/main_window.ui.h:67
 msgid "_Sharpen..."
 msgstr "_Zorroztasuna..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:68
-#: ../src/Clients/MainApp/ui/single_view.ui.h:16
+#: ../src/Clients/FSpot/ui/main_window.ui.h:68
+#: ../src/Clients/FSpot/ui/single_view.ui.h:16
 msgid "_Slideshow"
 msgstr "_Diapositiba-aurkezpena"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:69
+#: ../src/Clients/FSpot/ui/main_window.ui.h:69
 msgid "_Small"
 msgstr "_Txikia"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:70
+#: ../src/Clients/FSpot/ui/main_window.ui.h:70
 msgid "_Tag Icons"
 msgstr "_Etiketatu ikonoak"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:71
+#: ../src/Clients/FSpot/ui/main_window.ui.h:71
 msgid "_Tags"
 msgstr "_Etiketak"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:72
+#: ../src/Clients/FSpot/ui/main_window.ui.h:72
 msgid "_Timeline"
 msgstr "_Denbora-lerroa"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:73
+#: ../src/Clients/FSpot/ui/main_window.ui.h:73
 msgid "_Tools"
 msgstr "_Tresnak"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:74
+#: ../src/Clients/FSpot/ui/main_window.ui.h:74
 msgid "_Untagged Photos"
 msgstr "_Etiketarik gabeko argazkiak"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:75
+#: ../src/Clients/FSpot/ui/main_window.ui.h:75
 msgid "_Version"
 msgstr "_Bertsioa"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:76
-#: ../src/Clients/MainApp/ui/single_view.ui.h:18
+#: ../src/Clients/FSpot/ui/main_window.ui.h:76
+#: ../src/Clients/FSpot/ui/single_view.ui.h:18
 msgid "_View"
 msgstr "_Ikusi"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:1
+#: ../src/Clients/FSpot/ui/single_view.ui.h:1
 msgid "Display File _Names"
 msgstr "Erakutsi fitxategi-_izenak"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:2
+#: ../src/Clients/FSpot/ui/single_view.ui.h:2
 msgid "F-Spot View"
 msgstr "F-Spot ikuspegia"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:4
+#: ../src/Clients/FSpot/ui/single_view.ui.h:4
 msgid "Show or hide the side pane"
 msgstr "Erakutsi edo ezkutatu albo-panela"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:5
+#: ../src/Clients/FSpot/ui/single_view.ui.h:5
 msgid "Show or hide the toolbar"
 msgstr "Erakutsi edo ezkutatu tresna-barra"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:6
+#: ../src/Clients/FSpot/ui/single_view.ui.h:6
 msgid "Side _pane"
 msgstr "Albo-panela"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:12
+#: ../src/Clients/FSpot/ui/single_view.ui.h:12
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:7
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:14
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:13
@@ -2666,23 +2666,23 @@ msgstr "Albo-panela"
 msgid "_Export"
 msgstr "_Esportatu"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:17
+#: ../src/Clients/FSpot/ui/single_view.ui.h:17
 msgid "_Toolbar"
 msgstr "_Tresna-barra"
 
-#: ../src/Clients/MainApp/ui/tag_selection_dialog.ui.h:1
+#: ../src/Clients/FSpot/ui/tag_selection_dialog.ui.h:1
 msgid "Select a Tag..."
 msgstr "Hautatu etiketa..."
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:1
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:1
 msgid "<b>Image Interpolation</b>"
 msgstr "<b>Irudiaren interpolazioa</b>"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:2
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:2
 msgid "<b>Transparent Parts</b>"
 msgstr "<b>Zati gardenak</b>"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:3
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:3
 msgid ""
 "<small><i>Enable this to allow interpolation on zoomed images. You shouldn't "
 "disable this for viewing photos, but disabling the interpolation could be "
@@ -2692,7 +2692,7 @@ msgstr ""
 "zenuke hau desgaitu behar argazkiak ikusteko, hala ere interpolazioa "
 "desgaitzea ikonoak diseinatzean erabilgarria izan ohi da.</i></small>"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:4
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:4
 msgid ""
 "<small><i>You can choose how to display transparent parts in images. This "
 "option has no effect on photos, but setting this as check pattern or custom "
@@ -2704,23 +2704,23 @@ msgstr ""
 "koloreak pertsonalizatu gisa ezartzea erabigarri izan daiteke zati gardenak "
 "dituzten ikonoak edo bestelako arte lanak ikustean.</i></small>"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:5
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:5
 msgid "As _background"
 msgstr "A_tzeko plano gisa"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:6
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:6
 msgid "As _custom color: "
 msgstr "Kolore _pertsonalizatu gisa: "
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:7
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:7
 msgid "As check _pattern"
 msgstr "_Lauki-eredu gisa"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:8
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:8
 msgid "Preferences"
 msgstr "Hobespenak"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:9
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:9
 msgid "_Interpolate image on zoom"
 msgstr "_Interpolatu irudia handitzean"
 

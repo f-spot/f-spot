@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8-bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. ../src/Clients/MainApp/FSpot.addin.xml
+#. ../src/Clients/FSpot/FSpot.addin.xml
 #. ../src/Extensions/Editors/FSpot.Editors.Blackout/Resources/BlackoutEditor.addin.xml
 #: ../data/addin-xml-strings.cs:10
 msgid "BlackoutEditor"
@@ -216,7 +216,7 @@ msgstr ""
 #: ../data/addin-xml-strings.cs:102 ../data/addin-xml-strings.cs:107
 #: ../data/addin-xml-strings.cs:112 ../data/addin-xml-strings.cs:117
 #: ../data/addin-xml-strings.cs:122 ../data/addin-xml-strings.cs:127
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:7
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:7
 msgid "Tools"
 msgstr "Strumenti"
 
@@ -592,51 +592,51 @@ msgstr "Accesso a Tabblo"
 msgid "Obtaining URL for upload"
 msgstr "Ricezione indirizzo di caricamento"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:1
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:1
 msgid "Copy Photo"
 msgstr "Copia foto"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:2
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:2
 msgid "Export to"
 msgstr "Esporta su"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:3
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:3
 msgid "Open _With"
 msgstr "Apri _con"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:4
-#: ../src/Clients/MainApp/ui/main_window.ui.h:15
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:4
+#: ../src/Clients/FSpot/ui/main_window.ui.h:15
 msgid "Rem_ove Tag"
 msgstr "Ri_muovi etichetta"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:5
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:458
-#: ../src/Clients/MainApp/ui/main_window.ui.h:16
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:5
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:458
+#: ../src/Clients/FSpot/ui/main_window.ui.h:16
 msgid "Rotate _Left"
 msgstr "Ruota a _sinistra"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:6
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:459
-#: ../src/Clients/MainApp/ui/main_window.ui.h:17
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:6
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:459
+#: ../src/Clients/FSpot/ui/main_window.ui.h:17
 msgid "Rotate _Right"
 msgstr "Ruota a _destra"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:8
-#: ../src/Clients/MainApp/ui/main_window.ui.h:41
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:8
+#: ../src/Clients/FSpot/ui/main_window.ui.h:41
 msgid "_Delete From Drive"
 msgstr "_Elimina dal disco"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:9
-#: ../src/Clients/MainApp/ui/main_window.ui.h:60
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:9
+#: ../src/Clients/FSpot/ui/main_window.ui.h:60
 msgid "_Remove From Catalog"
 msgstr "_Rimuovi dal catalogo"
 
-#: ../src/Clients/MainApp/FSpot/App.cs:320
+#: ../src/Clients/FSpot/FSpot/App.cs:320
 #, csharp-format
 msgid "No photos matching {0} found"
 msgstr "Nessuna foto corrispondente a {0}"
 
-#: ../src/Clients/MainApp/FSpot/App.cs:321
+#: ../src/Clients/FSpot/FSpot/App.cs:321
 #, csharp-format
 msgid ""
 "The tag \"{0}\" is not applied to any photos. Try adding\n"
@@ -647,11 +647,11 @@ msgstr ""
 "aggiungere l'etichetta a qualche fotografia o a selezionare un'etichetta\n"
 "diversa dal dialogo preferenze di F-Spot."
 
-#: ../src/Clients/MainApp/FSpot/App.cs:325
+#: ../src/Clients/FSpot/FSpot/App.cs:325
 msgid "Search returned no results"
 msgstr "La ricerca non ha prodotto risultati"
 
-#: ../src/Clients/MainApp/FSpot/App.cs:326
+#: ../src/Clients/FSpot/FSpot/App.cs:326
 msgid ""
 "The tag F-Spot is looking for does not exist. Try\n"
 "selecting a different tag in the F-Spot preference\n"
@@ -661,11 +661,11 @@ msgstr ""
 "selezionare un'etichetta diversa dal dialogo preferenze\n"
 "di F-Spot."
 
-#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:762
+#: ../src/Clients/FSpot/FSpot.Database/Updater.cs:762
 msgid "Updating F-Spot Database"
 msgstr "Aggiornamento database di F-Spot"
 
-#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:763
+#: ../src/Clients/FSpot/FSpot.Database/Updater.cs:763
 msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
@@ -673,255 +673,255 @@ msgstr ""
 "Attendere mentre il database di F-Spot viene aggiornato. Potrebbe richiedere "
 "alcuni minuti."
 
-#: ../src/Clients/MainApp/FSpot.Editors/AutoStretchEditor.cs:37
+#: ../src/Clients/FSpot/FSpot.Editors/AutoStretchEditor.cs:37
 msgid "Auto Color"
 msgstr "Colore automatico"
 
-#: ../src/Clients/MainApp/FSpot.Editors/ColorEditor.cs:61
+#: ../src/Clients/FSpot/FSpot.Editors/ColorEditor.cs:61
 msgid "Adjust Colors"
 msgstr "Regola colori"
 
-#: ../src/Clients/MainApp/FSpot.Editors/ColorEditor.cs:64
+#: ../src/Clients/FSpot/FSpot.Editors/ColorEditor.cs:64
 msgid "Adjust"
 msgstr "Regola"
 
 # (NdT) le misure sottostanti sono state convertite in cm
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:56
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:56
 msgid "4 x 3 (Book)"
 msgstr "11 × 15 cm (Libro) (4×3 in)"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:57
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:57
 msgid "4 x 6 (Postcard)"
 msgstr "11 × 30 cm (Cartolina) (4×6 in)"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:58
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:58
 msgid "5 x 7 (L, 2L)"
 msgstr "13 × 18 cm (L, 2L) (5×7 in)"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:59
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:59
 msgid "8 x 10"
 msgstr "20 × 25 cm (8×10 in)"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:60
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:60
 msgid "Square"
 msgstr "Quadrato"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:63
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:63
 msgid "Crop"
 msgstr "Ritaglia"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:94
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:94
 msgid "Select the area that needs cropping."
 msgstr "Selezionare un'area da ritagliare."
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:119
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:119
 msgid "No Constraint"
 msgstr "Nessun vincolo"
 
 # (NdT) blocco della selezione (proporzione)
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:120
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:120
 msgid "Same as photo"
 msgstr "Come foto"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:125
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:125
 msgid "Custom Ratios..."
 msgstr "Proporzioni personalizzate..."
 
-#: ../src/Clients/MainApp/FSpot.Editors/DesaturateEditor.cs:37
+#: ../src/Clients/FSpot/FSpot.Editors/DesaturateEditor.cs:37
 msgid "Desaturate"
 msgstr "Desaturazione"
 
-#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:41
+#: ../src/Clients/FSpot/FSpot.Editors/RedEyeEditor.cs:41
 msgid "Red-eye Reduction"
 msgstr "Riduzione occhi rossi"
 
-#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:43
+#: ../src/Clients/FSpot/FSpot.Editors/RedEyeEditor.cs:43
 msgid "Fix!"
 msgstr "Correggi!"
 
-#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:47
+#: ../src/Clients/FSpot/FSpot.Editors/RedEyeEditor.cs:47
 msgid "Select the eyes you wish to fix."
 msgstr "Selezionare gli occhi che si desidera correggere."
 
-#: ../src/Clients/MainApp/FSpot.Editors/SepiaEditor.cs:37
+#: ../src/Clients/FSpot/FSpot.Editors/SepiaEditor.cs:37
 msgid "Sepia Tone"
 msgstr "Tonalità seppia"
 
-#: ../src/Clients/MainApp/FSpot.Editors/SoftFocusEditor.cs:51
+#: ../src/Clients/FSpot/FSpot.Editors/SoftFocusEditor.cs:51
 msgid "Soft Focus"
 msgstr "Sfocatura leggera"
 
-#: ../src/Clients/MainApp/FSpot.Editors/TiltEditor.cs:49
+#: ../src/Clients/FSpot/FSpot.Editors/TiltEditor.cs:49
 msgid "Straighten"
 msgstr "Raddrizza"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:82
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:82
 msgid "Hide"
 msgstr "Nascondi"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:84
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:84
 #, fuzzy
 #| msgid "Hide Toolbar"
 msgid "Hide toolbar"
 msgstr "Nasconde la barra degli strumenti"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:90
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:90
 msgid "Info"
 msgstr "Info"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:92
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:92
 #, fuzzy
 #| msgid "Image Information"
 msgid "Image information"
 msgstr "Visualizza informazioni sull'immagine"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:97
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:97
 msgid "Exit fullscreen"
 msgstr "Torna a finestra normale"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:105
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:341
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:122
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:105
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:341
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:122
 msgid "Slideshow"
 msgstr "Presentazione"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:106
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:106
 msgid "Start slideshow"
 msgstr "Avvia presentazione"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:152
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:152
 msgid "Slide transition:"
 msgstr "Transizione diapositive:"
 
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:90
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:91
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:90
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:91
 msgid "More dates"
 msgstr "Altre date"
 
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:93
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:94
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:93
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:94
 msgid "More"
 msgstr "Altro"
 
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:554
-#: ../src/Clients/MainApp/ui/main_window.ui.h:34
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:554
+#: ../src/Clients/FSpot/ui/main_window.ui.h:34
 msgid "_Clear Date Range"
 msgstr "_Pulisci intervallo date"
 
-#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:510
-#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:512
-#: ../src/Clients/MainApp/FSpot.Import/MetadataImporter.cs:80
+#: ../src/Clients/FSpot/FSpot.Import/ImportController.cs:510
+#: ../src/Clients/FSpot/FSpot.Import/ImportController.cs:512
+#: ../src/Clients/FSpot/FSpot.Import/MetadataImporter.cs:80
 msgid "Imported Tags"
 msgstr "Etichette importate"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:102
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:308
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:105
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:102
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:308
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:105
 msgid "Rotate Left"
 msgstr "Ruota a sinistra"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:103
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:103
 msgid "Rotate picture left"
 msgstr "Ruota l'immagine a sinistra"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:114
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:312
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:110
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:114
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:312
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:110
 msgid "Rotate Right"
 msgstr "Ruota a destra"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:115
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:115
 msgid "Rotate picture right"
 msgstr "Ruota l'immagine a destra"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:125
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:125
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:936
 msgid "Next"
 msgstr "Successiva"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:126
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:126
 msgid "Next picture"
 msgstr "Immagine successiva"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:146
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:146
 msgid "Previous"
 msgstr "Precedente"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:147
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:147
 msgid "Previous picture"
 msgstr "Immagine precedente"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:301
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:229
-#: ../src/Clients/MainApp/ui/import.ui.h:3
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:301
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:229
+#: ../src/Clients/FSpot/ui/import.ui.h:3
 msgid "Import"
 msgstr "Importa"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:303
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:303
 msgid "Import new images"
 msgstr "Importa nuove immagini"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:319
-#: ../src/Clients/MainApp/ui/main_window.ui.h:3
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:319
+#: ../src/Clients/FSpot/ui/main_window.ui.h:3
 msgid "Browse"
 msgstr "Sfoglia"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:323
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:323
 msgid "Browse many photos simultaneously"
 msgstr "Sfoglia molte fotografie simultaneamente"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:327
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:327
 msgid "Edit Image"
 msgstr "Modifica immagine"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:331
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:331
 msgid "View and edit a photo"
 msgstr "Visualizza e modifica una foto"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:336
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:117
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:336
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:117
 msgid "Fullscreen"
 msgstr "Schermo intero"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:338
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:119
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:338
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:119
 msgid "View photos fullscreen"
 msgstr "Visualizza le foto a schermo intero"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:343
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:124
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:343
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:124
 msgid "View photos in a slideshow"
 msgstr "Visualizza le foto in una presentazione"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:358
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:358
 msgid "Previous photo"
 msgstr "Foto precedente"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:363
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:363
 msgid "Next photo"
 msgstr "Foto successiva"
 
 #. Don't care otherwise, Tags sounds reasonable
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:376
-#: ../src/Clients/MainApp/FSpot.Widgets/Sidebar.cs:75
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:376
+#: ../src/Clients/FSpot/FSpot.Widgets/Sidebar.cs:75
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:933
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1105
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1145
 msgid "Tags"
 msgstr "Etichette"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:440
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:440
 msgid "Show _Find Bar"
 msgstr "Visualizza barra della _ricerca"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:443
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:443
 msgid "Hide _Find Bar"
 msgstr "Nascondi barra della _ricerca"
 
 #. Note for translators: This indicates the current photo is photo {0} of {1} out of photos
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:672
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs:154
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ProgressDialog.cs:111
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:672
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AdjustTimeDialog.cs:154
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ProgressDialog.cs:111
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:134
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:389
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:240
@@ -931,14 +931,14 @@ msgid "{0} of {1}"
 msgstr "{0} di {1}"
 
 #. Translators, The singular case will never happen here.
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1746
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1746
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
 msgstr[0] "Unire l'etichetta selezionata"
 msgstr[1] "Unire le {0} etichette selezionate?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1773
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1773
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
@@ -946,59 +946,59 @@ msgstr ""
 "L'operazione unirà le etichette selezionate e ogni sotto etichetta in una "
 "sola."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1775
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1775
 msgid "_Merge Tags"
 msgstr "_Unisci etichette"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1980
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1980
 #, csharp-format
 msgid "{0} Photo out of {1}"
 msgid_plural "{0} Photos out of {1}"
 msgstr[0] "{0} fotografia di {1}"
 msgstr[1] "{0} fotografie di {1}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1982
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:500
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1982
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:500
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
 msgstr[0] "{0} fotografia"
 msgstr[1] "{0} fotografie"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1985
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1985
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
 msgstr[0] " ({0} selezionata)"
 msgstr[1] " ({0} selezionate)"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2066
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2066
 msgid "_Ok"
 msgstr "_OK"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2067
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2067
 msgid "Error Deleting Picture"
 msgstr "Errore nell'eliminare l'immagine"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2072
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2072
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
 msgstr "Permessi non sufficienti per eliminare il file:{1}{0}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2076
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2076
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
 msgstr ""
 "Si è verificato un errore del tipo {0} durante l'eliminazione del file:{2}{1}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2108
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2108
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "Eliminare definitivamente la fotografia selezionata?"
 msgstr[1] "Eliminare definitivamente le {0} fotografie selezionate?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2112
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2112
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
@@ -1009,20 +1009,20 @@ msgstr[1] ""
 "In questo modo verranno eliminate dall'unità tutte le versioni delle "
 "fotografie selezionate."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2115
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2115
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "Eli_mina fotografia"
 msgstr[1] "Eli_mina fotografie"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2151
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2151
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "Rimuovere la fotografia selezionata da F-Spot?"
 msgstr[1] "Rimuovere le {0} fotografie selezionate da F-Spot?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2156
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2156
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1032,27 +1032,27 @@ msgstr ""
 "sulle etichette saranno perse. Le foto rimarranno sul computer e potranno "
 "essere importate nuovamente in F-Spot."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2157
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2157
 msgid "_Remove from Catalog"
 msgstr "_Rimuovi dal catalogo"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2231
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2231
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Eliminare l'etichetta «{0}»?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2233
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2233
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Eliminare le {0} etichette selezionate?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2238
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2238
 msgid "photo"
 msgid_plural "photos"
 msgstr[0] "Foto"
 msgstr[1] "Foto"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2240
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2240
 #, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
 msgid_plural ""
@@ -1063,18 +1063,18 @@ msgstr[1] ""
 "Se vengono eliminate queste etichette, le associazioni con {0} {1} verranno "
 "perse."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2245
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2245
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "Eli_mina etichetta"
 msgstr[1] "Eli_mina etichette"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2259
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2259
 msgid "Tag is not empty"
 msgstr "Etichetta non vuota"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2260
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2260
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -1083,39 +1083,39 @@ msgstr ""
 "Impossibile eliminare etichette contenenti altre etichette. Prima eliminare "
 "le etichette all'interno di «{0}»"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2709
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2709
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Ruota la fotografia selezionata a sinistra"
 msgstr[1] "Ruota le fotografie selezionate a sinistra"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2722
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2722
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Ruota la fotografia selezionata a destra"
 msgstr[1] "Ruota le fotografie selezionate a destra"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2733
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2733
 #, csharp-format
 msgid "Find _Selected Tag"
 msgid_plural "Find _Selected Tags"
 msgstr[0] "Trova etichetta _selezionata"
 msgstr[1] "Trova etichette _selezionate"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2737
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2737
 #, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
 msgstr[0] "Trova etichetta selezionata _con"
 msgstr[1] "Trova etichette selezionate _con"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2778
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2778
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Creare una nuova versione?"
 msgstr[1] "Creare nuove versioni?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2780
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2780
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -1130,113 +1130,113 @@ msgstr[1] ""
 "Prima di avviare {1}, creare con F-Spot delle nuove versioni delle "
 "fotografie selezionate per preservare le originali?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2802
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2802
 msgid "XCF version"
 msgstr "Versione XCF"
 
 #. Note for translators: Reparented is a picture becoming a version of another one
-#: ../src/Clients/MainApp/FSpot/Photo.cs:426
+#: ../src/Clients/FSpot/FSpot/Photo.cs:426
 msgid "Reparented"
 msgstr "Riassegnata"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:443
+#: ../src/Clients/FSpot/FSpot/Photo.cs:443
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
 msgstr[0] "Modificata"
 msgstr[1] "Modificate ({0})"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:466
+#: ../src/Clients/FSpot/FSpot/Photo.cs:466
 #, csharp-format
 msgid "Modified in {1}"
 msgstr "Modificata in {1}"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:466
+#: ../src/Clients/FSpot/FSpot/Photo.cs:466
 #, csharp-format
 msgid "Modified in {1} ({0})"
 msgstr "Modificata in {1} ({0})"
 
-#: ../src/Clients/MainApp/FSpot/PhotoStore.cs:204
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:17
+#: ../src/Clients/FSpot/FSpot/PhotoStore.cs:204
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:17
 msgid "Original"
 msgstr "Originale"
 
-#: ../src/Clients/MainApp/FSpot/PhotoView.cs:359
+#: ../src/Clients/FSpot/FSpot/PhotoView.cs:359
 #, fuzzy
 #| msgid "D_escription:"
 msgid "Description:"
 msgstr "_Descrizione:"
 
-#: ../src/Clients/MainApp/FSpot/Preferences.cs:191
+#: ../src/Clients/FSpot/FSpot/Preferences.cs:191
 msgid "Photos"
 msgstr "Foto"
 
-#: ../src/Clients/MainApp/FSpot/PrintOperation.cs:54
+#: ../src/Clients/FSpot/FSpot/PrintOperation.cs:54
 msgid "Image Settings"
 msgstr "Impostazioni immagine"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:84
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:84
 msgid "Find: "
 msgstr "Trova: "
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:89
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:89
 msgid "Untagged photos"
 msgstr "Foto senza etichetta"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:97
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:97
 msgid "Rated photos"
 msgstr "Foto con valutazione"
 
 #. Note for translators: 'Import roll' is no command, it means 'Roll that has been imported'
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:106
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:106
 msgid "Import roll"
 msgstr "Rullino di importazione"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:129
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:129
 msgid "Clear search"
 msgstr "Pulisci ricerca"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:136
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:136
 msgid "Refresh search"
 msgstr "Aggiorna ricerca"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:139
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:139
 msgid "No matching photos found"
 msgstr "Nessuna fotografia corrispondente"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:102
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:102
 msgid "Unable to rotate this type of photo"
 msgstr "Impossibile ruotare questo tipo di foto"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:118
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:118
 msgid "Unable to rotate readonly file"
 msgstr "Impossibile ruotare un file in sola lettura"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:182
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:182
 msgid "Rotating photos"
 msgstr "Rotazione fotografie"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:193
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:193
 #, csharp-format
 msgid "Rotating photo \"{0}\""
 msgstr "Rotazione fotografia «{0}»"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:206
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:206
 msgid "Directory not found"
 msgstr "Directory non trovata"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:208
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:208
 msgid "File not found"
 msgstr "File non trovato"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:226
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:226
 #, csharp-format
 msgid "Unable to rotate photo"
 msgid_plural "Unable to rotate {0} photos"
 msgstr[0] "Impossibile ruotare la fotografia"
 msgstr[1] "Impossibile ruotare {0} fotografie"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:228
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:228
 #, csharp-format
 msgid ""
 "The photo could not be rotated because it is on a read only file system or "
@@ -1253,164 +1253,164 @@ msgstr[1] ""
 "sola lettura o su un supporto come un CD-ROM. Controllare i permessi e "
 "provare nuovamente"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:255
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:255
 #, csharp-format
 msgid "Received error \"{0}\" while attempting to rotate {1}"
 msgstr "Ricevuto l'errore «{0}» durante la rotazione {1}"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:260
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:260
 msgid "Error while rotating photo."
 msgstr "Errore durante la rotazione della fotografia."
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:236
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:236
 msgid "Preparing email"
 msgstr "Preparazione email"
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:280
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:280
 #, csharp-format
 msgid "Exporting picture \"{0}\""
 msgstr "Esportazione immagine «{0}»"
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:299
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:299
 msgid "Error processing image"
 msgstr "Errore nell'elaborazione dell'immagine"
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:300
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:300
 #, csharp-format
 msgid "An error occurred while processing \"{0}\": {1}"
 msgstr "Si è verificato un errore nel processare l'immagine «{0}»: {1}"
 
 #. Send the mail :)
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:313
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:313
 msgid "My Photos"
 msgstr "Le mie foto"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:107
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:107
 msgid "Rotate photo left"
 msgstr "Ruota la fotografia selezionata a sinistra"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:112
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:112
 msgid "Rotate photo right"
 msgstr "Ruota la fotografia selezionata a destra"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:149
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:149
 msgid "Folder"
 msgstr "Cartella"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:374
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:374
 msgid "Open"
 msgstr "Apri"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:377
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:377
 msgid "Select Folder"
 msgstr "Seleziona cartella"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:461
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:461
 msgid "Set as Background"
 msgstr "Imposta come sfondo"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:66
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:66
 #, csharp-format
 msgid "Include Photos Tagged \"{0}\""
 msgstr "Includi foto etichettate «{0}»"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:71
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:71
 #, csharp-format
 msgid "Exclude Photos Tagged \"{0}\""
 msgstr "Escludi foto etichettate «{0}»"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:76
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:76
 msgid "Remove From Search"
 msgstr "Rimuovi dalla ricerca"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:120
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:120
 #, csharp-format
 msgid "Find _With"
 msgid_plural "Find _With"
 msgstr[0] "_Trova con"
 msgstr[1] "_Trova con"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:146
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:146
 msgid "All"
 msgstr "Tutte"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:181
-#: ../src/Clients/MainApp/FSpot/Term.cs:612
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:181
+#: ../src/Clients/FSpot/FSpot/Term.cs:612
 #, csharp-format
 msgid "Not {0}"
 msgstr "Esclusa {0}"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:305
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:305
 msgid "Drag tags here to search for them"
 msgstr "Trascinare qui le etichette da cercare"
 
-#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:520
+#: ../src/Clients/FSpot/FSpot/TagSelectionWidget.cs:520
 msgid "Error renaming tag"
 msgstr "Errore nel rinominare l'etichetta"
 
-#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:521
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagDialog.cs:94
-#: ../src/Clients/MainApp/TagCommands.cs:137
+#: ../src/Clients/FSpot/FSpot/TagSelectionWidget.cs:521
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagDialog.cs:94
+#: ../src/Clients/FSpot/TagCommands.cs:137
 msgid "This name is already in use"
 msgstr "Questo nome è già in uso"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:241
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:241
 msgid "Favorites"
 msgstr "Preferite"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:246
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:246
 msgid "Hidden"
 msgstr "Nascoste"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:254
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:254
 msgid "People"
 msgstr "Persone"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:259
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:259
 msgid "Places"
 msgstr "Luoghi"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:264
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:264
 msgid "Events"
 msgstr "Eventi"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:277
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:438
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:277
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:438
 msgid "(None)"
 msgstr "(Nessuno)"
 
-#: ../src/Clients/MainApp/FSpot/Term.cs:324
+#: ../src/Clients/FSpot/FSpot/Term.cs:324
 msgid " and "
 msgstr " con "
 
 #. operators.Add (Catalog.GetString (" && "));
-#: ../src/Clients/MainApp/FSpot/Term.cs:326
+#: ../src/Clients/FSpot/FSpot/Term.cs:326
 msgid ", "
 msgstr ", "
 
-#: ../src/Clients/MainApp/FSpot/Term.cs:382
+#: ../src/Clients/FSpot/FSpot/Term.cs:382
 msgid " or "
 msgstr " o "
 
 #. OPS The operators we support, case insensitive
 #. private static string op_str = "(?'Ops' or | and |, | \\s+ )";
-#: ../src/Clients/MainApp/FSpot/Term.cs:406
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:7
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:202
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:557
+#: ../src/Clients/FSpot/FSpot/Term.cs:406
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:202
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:557
 msgid "or"
 msgstr "o"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:122
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AboutDialog.cs:122
 msgid "Photo management for GNOME"
 msgstr "Gestore di fotografie per GNOME"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:123
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AboutDialog.cs:123
 msgid "Copyright © 2003-2010 Novell Inc."
 msgstr "Copyright © 2003-2010 Novell Inc."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:147
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AboutDialog.cs:147
 msgid "translator-credits"
 msgstr ""
 "Marco Colombo <m.colombo@ed.ac.uk>\n"
@@ -1419,77 +1419,77 @@ msgstr ""
 "Maxxer <maxxer@yetopen.it>\n"
 "e il contributo di Luca Ferretti"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:152
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AboutDialog.cs:152
 msgid "F-Spot Website"
 msgstr "Sito web di F-Spot"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs:137
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:10
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AdjustTimeDialog.cs:137
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:10
 #, csharp-format
 msgid "Shift all photos by {0}"
 msgstr "Sposta tutte le foto di {0}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:109
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:109
 msgid "Today"
 msgstr "Oggi"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:111
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:111
 msgid "Yesterday"
 msgstr "Ieri"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:113
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:113
 msgid "Last 7 days"
 msgstr "Ultimi 7 giorni"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:115
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:115
 msgid "Last 30 days"
 msgstr "Ultimi 30 giorni"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:117
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:117
 msgid "Last 90 days"
 msgstr "Ultimi 90 giorni"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:119
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:119
 msgid "Last 360 days"
 msgstr "Ultimi 360 giorni"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:121
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:121
 msgid "Current Week (Mon-Sun)"
 msgstr "Settimana corrente (Lun-Dom)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:123
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:123
 msgid "Previous Week (Mon-Sun)"
 msgstr "Settimana precedente (Lun-Dom)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:139
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:139
 #: ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui.h:1
 msgid "All Images"
 msgstr "Tutte le immagini"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:141
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:141
 msgid "Customized Range"
 msgstr "Intervallo personalizzato"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditExceptionDialog.cs:50
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:95
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditExceptionDialog.cs:50
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:95
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr "Ricevuta l'eccezione «{0}». Impossibile salvare la fotografia {1}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditExceptionDialog.cs:63
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditExceptionDialog.cs:63
 msgid "Error editing photo"
 msgstr "Errore nella modifica della foto"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:64
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:64
 #, csharp-format
 msgid "Edit Icon for Tag {0}"
 msgstr "Modifica icona per l'etichetta {0}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:86
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:86
 msgid "Select Photo from file"
 msgstr "Seleziona foto da file"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:108
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:108
 #, csharp-format
 msgid ""
 "\n"
@@ -1506,33 +1506,33 @@ msgstr ""
 "a questa etichetta. Etichettare una foto con «{0}» e tornare\n"
 "qui per utilizzarla come icona."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:186
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:186
 msgid "Unable to load image"
 msgstr "Impossibile caricare l'immagine"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:187
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:187
 #, csharp-format
 msgid "Unable to load \"{0}\" as icon for the tag"
 msgstr "Impossibile caricare «{0}» come icona per l'etichetta"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:225
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:225
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "Fotografia {0} di {1}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:45
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:45
 msgid "Choose Folder..."
 msgstr "Selezionare una cartella..."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:164
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:164
 msgid "Choose Import source..."
 msgstr "Selezionare la sorgente di importazione..."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:176
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:176
 msgid "(No Cameras Detected)"
 msgstr "(Nessuna fotocamera rilevata)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:211
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:211
 msgid ""
 "Checking this box will remove the imported photos from the camera after the "
 "import finished successfully.\n"
@@ -1541,64 +1541,64 @@ msgid ""
 "the camera. <b>Use this option at your own risk!</b>"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:212
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:212
 #, fuzzy
 #| msgid "Rating"
 msgid "Warning"
 msgstr "Valutazione"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:331
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:331
 #, csharp-format
 msgid "Importing Photos: {0} of {1}..."
 msgstr "Importazione fotografia {0} di {1}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:355
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:355
 msgid "Importing photos..."
 msgstr "Importazione fotografie..."
 
 #. TODO: Using a GtkSpinner would be nicer here.
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:362
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:362
 msgid "Searching for photos... (You can already click Import to continue)"
 msgstr "Ricerca fotografie... (Si può premere Importa per procedere)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:65
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportFailureDialog.cs:65
 #, fuzzy
 #| msgid "Exporting files"
 msgid "Import failures"
 msgstr "Esportazione file"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:66
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportFailureDialog.cs:66
 msgid "Some files failed to import"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:67
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportFailureDialog.cs:67
 msgid ""
 "Some files could not be imported, they might be corrupt or there might be "
 "something wrong with the storage on which they reside."
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:130
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportFailureDialog.cs:130
 msgid "Details"
 msgstr "Dettagli"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:77
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:100
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/PreferenceDialog.cs:77
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/PreferenceDialog.cs:100
 msgid "None"
 msgstr "Nessuno"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:79
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/PreferenceDialog.cs:79
 msgid "System profile"
 msgstr "Profilo di sistema"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:117
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/PreferenceDialog.cs:117
 msgid "Standard theme"
 msgstr "Tema standard"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/RepairDbDialog.cs:44
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/RepairDbDialog.cs:44
 msgid "Error loading database."
 msgstr "Errore nel caricare il database."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/RepairDbDialog.cs:45
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/RepairDbDialog.cs:45
 #, csharp-format
 msgid ""
 "F-Spot encountered an error while loading the photo database. The old "
@@ -1609,42 +1609,42 @@ msgstr ""
 "nuovo."
 
 # (NdT) Nome/etichetta proporzione
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/SelectionRatioDialog.cs:81
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/SelectionRatioDialog.cs:81
 msgid "Label"
 msgstr "Nome"
 
 # (NdT) Valore proporzione (ad es 1.2)
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/SelectionRatioDialog.cs:85
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/SelectionRatioDialog.cs:85
 msgid "Ratio"
 msgstr "Rapporto"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ThreadProgressDialog.cs:78
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ThreadProgressDialog.cs:78
 msgid "Retry"
 msgstr "Ritenta"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ThreadProgressDialog.cs:80
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ThreadProgressDialog.cs:80
 #: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/pickfolder_dialog.ui.h:1
 msgid "Skip"
 msgstr "Salta"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:1
 msgid "0000:00:00 00:00:00"
 msgstr "0000.00.00 00.00.00"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:2
 msgid "00:00:00"
 msgstr "00.00.00"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:3
 msgid "5"
 msgstr "5"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:4
 msgid "<b>Action</b>"
 msgstr "<b>Azione</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:5
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:5
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:6
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:2
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:3
 #: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:3
@@ -1654,155 +1654,155 @@ msgstr "<b>Azione</b>"
 msgid "<b>Photos</b>"
 msgstr "<b>Fotografie</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:6
 msgid "<b>Reference Photo</b>"
 msgstr "<b>Fotografia di riferimento</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:7
 msgid "Adjust Time"
 msgstr "Regola data"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:8
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:8
 msgid "Adjusted date: "
 msgstr "Data modificata: "
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:9
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:9
 msgid "Current date:"
 msgstr "Data corrente:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:11
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:11
 msgid "Space all photos by"
 msgstr "Spazia tutte le foto di"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:12
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:12
 msgid "difference:"
 msgstr "differenza:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:13
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:13
 msgid "min. Starting at {0}"
 msgstr "min. Iniziando da {0}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:1
 msgid "C_reate"
 msgstr "_Crea"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:2
 msgid "Create _icon for this tag when first used"
 msgstr "Crea un'_icona per questa etichetta al primo utilizzo"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:3
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:3
 msgid "P_arent Tag:"
 msgstr "Etichett_a genitore:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:4
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:5
 msgid "_Tag Name:"
 msgstr "Nome e_tichetta:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:1
 msgid "<b>End Date</b>"
 msgstr "<b>Data fine</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:2
 msgid "<b>Select period</b>"
 msgstr "<b>Seleziona periodo</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:3
 msgid "<b>Start Date</b>"
 msgstr "<b>Data inizio</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:4
 msgid "Cancel, do not change the current timeline. "
 msgstr "Annulla, non cambiare la linea temporale corrente. "
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:5
 msgid "Only photos taken within these dates will be displayed."
 msgstr "Solo le foto scattate tra queste date saranno visualizzate."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:6
 msgid "Set date range"
 msgstr "Imposta intervallo data"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:1
 msgid "Edit Tag"
 msgstr "Modifica etichetta"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:2
 msgid "Edit icon"
 msgstr "Modifica icona"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:4
 msgid "_Icon:"
 msgstr "_Icona:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:1
 msgid "<b>From External Photo</b>"
 msgstr "<b>Da foto esterna</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:2
 msgid "<b>From Photo</b>"
 msgstr "<b>Da foto</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:3
 msgid "<b>Predefined icons</b>"
 msgstr "<b>Icone predefinite</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:4
 msgid "<b>Preview</b>"
 msgstr "<b>Anteprima</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:5
 msgid "Design icon from"
 msgstr "Disegna icona da"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:6
 msgid "Edit Tag Icon"
 msgstr "Modifica icona etichetta"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:7
 msgid "No _image"
 msgstr "Nessuna _immagine"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:1
 msgid "<b>View all pictures imported</b>"
 msgstr "<b>Visualizza tutte le immagini importate</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:2
 msgid "Display only those photos that were imported in specified Rolls."
 msgstr "Visualizza solo le fotografie importate nei rullini specificati."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:3
 msgid "Filter on selected rolls"
 msgstr "Filtra sui rullini selezionati"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:4
 msgid "Number of photos in selected rolls:"
 msgstr "Numero di foto nei rullini selezionati:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:5
 msgid "Show all photos."
 msgstr "Visualizza tutte le foto."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:6
 #, fuzzy
 #| msgid "Date"
 msgid "after"
 msgstr "Data"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:7
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:202
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:558
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:202
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:558
 msgid "and"
 msgstr "e"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:8
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:8
 #, fuzzy
 #| msgid "Date"
 msgid "at"
 msgstr "Data"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:9
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:9
 #, fuzzy
 #| msgid ""
 #| "at\n"
@@ -1814,23 +1814,23 @@ msgstr ""
 "dopo\n"
 "tra"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:1
 msgid "Color profile for display:"
 msgstr "Profilo colore per visualizzazione:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:2
 msgid "Color profile for printing:"
 msgstr "Profilo colore per stampa:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:3
 msgid "F-Spot Preferences"
 msgstr "Preferenze di F-Spot"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:4
 msgid "F-Spot appearance:"
 msgstr "Tema di F-Spot:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:5
 msgid ""
 "Inside the image files when possible\n"
 "<small>Makes them accessible to other image-editing programs.</small>"
@@ -1838,63 +1838,63 @@ msgstr ""
 "All'interno delle immagini quando possibile\n"
 "<small>Le renderà accessibili ad altri programmi.</small>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:7
 msgid ""
 "Never modify image files.\n"
 "<small>Write XMP files next to the images instead.</small>"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:9
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:9
 msgid "Select A Folder"
 msgstr "Seleziona cartella"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:10
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:10
 msgid "Separately from the image files"
 msgstr "Separate dalle immagini"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:11
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:11
 msgid "Store tags and descriptions for photos:"
 msgstr "Memorizza etichette e descrizioni delle foto:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:12
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:12
 msgid "When importing photos, copy them to:"
 msgstr "Durante l'importazione delle immagini, copiarle in:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:1
 msgid "<b>Max Rating</b>"
 msgstr "<b>Valutazione massima</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:2
 msgid "<b>Min Rating</b>"
 msgstr "<b>Valutazione minima</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:3
 msgid "Set Rating Filter"
 msgstr "Imposta filtro valutazione"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RepairDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/RepairDialog.ui.h:1
 msgid "Repair"
 msgstr "Ripara"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui.h:1
 msgid "Manage your custom selection ratios"
 msgstr "Gestisci proporzioni personalizzate"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui.h:2
 msgid "Selection Constraints"
 msgstr "Vincoli selezione"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:55
-#: ../src/Clients/MainApp/FSpot.Widgets/Sidebar.cs:73
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:55
+#: ../src/Clients/FSpot/FSpot.Widgets/Sidebar.cs:73
 msgid "Edit"
 msgstr "Modifica"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:223
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:223
 #: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:66
 msgid "No selection available"
 msgstr "Nessuna selezione disponibile"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:224
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:224
 msgid ""
 "This tool requires an active selection. Please select a region of the photo "
 "and try the operation again"
@@ -1902,13 +1902,13 @@ msgstr ""
 "Questo strumento richiede una selezione attiva. Selezionare una regione "
 "della fotografia e riprovare l'azione"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:242
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:242
 msgid "Error saving adjusted photo"
 msgid_plural "Error saving adjusted photos"
 msgstr[0] "Errore nel salvare la fotografia modificata"
 msgstr[1] "Errore nel salvare le fotografie modificate"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:244
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:244
 #, csharp-format
 msgid ""
 "Received exception \"{0}\". Note that you have to develop RAW files into "
@@ -1917,70 +1917,70 @@ msgstr ""
 "Ricevuta eccezione «{0}». Attenzione che è necessario sviluppare i file RAW "
 "in JPEG prima di poterli modificare."
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:495
+#: ../src/Clients/FSpot/FSpot.Widgets/Filmstrip.cs:495
 msgid "_Horizontal"
 msgstr "_Orizzontale"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:499
+#: ../src/Clients/FSpot/FSpot.Widgets/Filmstrip.cs:499
 msgid "_Vertical"
 msgstr "_Verticale"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:83
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:83
 msgid "Find:"
 msgstr "Trova:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/FolderTreePage.cs:44
+#: ../src/Clients/FSpot/FSpot.Widgets/FolderTreePage.cs:44
 msgid "Folders"
 msgstr "Cartelle"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/FolderTreeView.cs:150
+#: ../src/Clients/FSpot/FSpot.Widgets/FolderTreeView.cs:150
 msgid "Filesystem"
 msgstr "File system"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:302
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:302
 msgid "Histogram"
 msgstr "Istogramma"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:321
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:321
 msgid "Image Information"
 msgstr "Visualizza informazioni sull'immagine"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:329
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:329
 #, csharp-format
 msgid "{0} Photos"
 msgstr "{0} foto"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:331
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:331
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:10
 msgid "Name"
 msgstr "Nome"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:343
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:343
 msgid "Version"
 msgstr "Versione"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:358
-#: ../src/Clients/MainApp/PhotoVersionMenu.cs:86
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:358
+#: ../src/Clients/FSpot/PhotoVersionMenu.cs:86
 msgid "(No Edits)"
 msgstr "(Nessuna modifica)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:362
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:362
 #, csharp-format
 msgid "(One Edit)"
 msgid_plural "({0} Edits)"
 msgstr[0] "(Una modifica)"
 msgstr[1] "({0} modifiche)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:368
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:368
 msgid "Date"
 msgstr "Data"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:368
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:368
 msgid "Show Date"
 msgstr "Mostra data"
 
 #. Note for translators: {0} is a date, {1} and {2} are times.
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:379
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:379
 #, csharp-format
 msgid ""
 "On {0} between \n"
@@ -1989,7 +1989,7 @@ msgstr ""
 "Il {0} tra \n"
 "le {1} e le {2}"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:384
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:384
 #, csharp-format
 msgid ""
 "Between {0} \n"
@@ -1998,185 +1998,185 @@ msgstr ""
 "Tra {0} \n"
 "e {1}"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:390
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:390
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:4
 msgid "Size"
 msgstr "Dimensione"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:390
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:390
 msgid "Show Size"
 msgstr "Mostra dimensione"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:398
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:448
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:454
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:458
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:398
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:448
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:454
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:458
 msgid "(Unknown)"
 msgstr "(Sconosciuto)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:401
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:401
 msgid "Exposure"
 msgstr "Esposizione"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:401
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:401
 msgid "Show Exposure"
 msgstr "Mostra esposizione"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:431
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:431
 msgid "flash fired"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:433
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:433
 msgid "flash didn't fire"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:443
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:443
 msgid "Focal Length"
 msgstr "Lunghezza focale"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:443
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:443
 msgid "Show Focal Length"
 msgstr "Mostra lunghezza focale"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:453
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:453
 msgid "Camera"
 msgstr "Fotocamera"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:453
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:453
 msgid "Show Camera"
 msgstr "Mostra fotocamera"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:457
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:457
 msgid "Creator"
 msgstr "Creatore"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:457
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:457
 #, fuzzy
 #| msgid "Creator"
 msgid "Show Creator"
 msgstr "Creatore"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:461
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:461
 msgid "File Size"
 msgstr "Dimensione file"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:461
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:461
 msgid "Show File Size"
 msgstr "Mostra dimensione file"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:469
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:469
 msgid "(File read error)"
 msgstr "(Errore lettura file)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:477
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:477
 msgid "Rating"
 msgstr "Valutazione"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:477
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:477
 #, fuzzy
 #| msgid "Rating"
 msgid "Show Rating"
 msgstr "Valutazione"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:481
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:481
 #, fuzzy
 #| msgid "(No Tags)"
 msgid "Show Tags"
 msgstr "(Nessuna etichetta)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:46
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:46
 msgid "Metadata"
 msgstr "Metadati"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:127
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:127
 msgid "Extended Metadata"
 msgstr "Metadati estesi"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:380
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:380
 msgid "No active photo"
 msgstr "Nessuna foto attiva"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:382
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:382
 #, csharp-format
 msgid "The photo \"{0}\" does not exist"
 msgstr "La fotografia «{0}» non esiste"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:384
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:384
 msgid "No metadata available"
 msgstr "Metadati non disponibili"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:94
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:94
 msgid "Error saving sharpened photo"
 msgstr "Errore nel salvare la fotografia resa nitida"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:124
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:124
 msgid "Sharpen"
 msgstr "Nitidezza"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:134
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:134
 msgid "Amount:"
 msgstr "Percentuale:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:135
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:135
 msgid "Radius:"
 msgstr "Raggio:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:136
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:136
 msgid "Threshold:"
 msgstr "Soglia:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/TagMenu.cs:132
-#: ../src/Clients/MainApp/TagPopup.cs:61
+#: ../src/Clients/FSpot/FSpot.Widgets/TagMenu.cs:132
+#: ../src/Clients/FSpot/TagPopup.cs:61
 msgid "Create New Tag..."
 msgstr "Crea nuova etichetta..."
 
 #. Fixme this should really set parent menu
 #. items insensitve
-#: ../src/Clients/MainApp/PhotoTagMenu.cs:92
+#: ../src/Clients/FSpot/PhotoTagMenu.cs:92
 msgid "(No Tags)"
 msgstr "(Nessuna etichetta)"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:91
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:91
 msgid "Create New Version"
 msgstr "Crea nuova versione"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:92
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:92
 msgid "Name:"
 msgstr "Nome:"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:96
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:96
 msgid "Rename Version"
 msgstr "Rinomina versione"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:97
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:97
 msgid "New name:"
 msgstr "Nuovo nome:"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:157
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:157
 msgid "Delete"
 msgstr "Elimina"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:158
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:158
 #, csharp-format
 msgid "Really delete version \"{0}\"?"
 msgstr "Eliminare veramente la versione «{0}»?"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:159
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:159
 msgid "This removes the version and deletes the corresponding file from disk."
 msgstr ""
 "Questa funzione rimuove la versione ed elimina il file corrispondente dal "
 "disco."
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:204
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:204
 msgid "De_tach"
 msgstr "Dis_taccare"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:205
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:205
 #, csharp-format
 msgid "Really detach version \"{0}\" from \"{1}\"?"
 msgstr "Distaccare la versione «{0}» da «{1}»?"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:206
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:206
 msgid ""
 "This makes the version appear as a separate photo in the library. To undo, "
 "drag the new photo back to its parent."
@@ -2184,18 +2184,18 @@ msgstr ""
 "Questa funzione renderà la versione come una foto separata nella libreria. "
 "Per annullare, trascinare la foto sopra l'originale."
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:228
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:228
 msgid "Re_parent"
 msgstr "Ri_assegna"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:229
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:229
 #, csharp-format
 msgid "Really reparent \"{0}\" as version of \"{1}\"?"
 msgid_plural "Really reparent {2} photos as versions of \"{1}\"?"
 msgstr[0] "Riassegnare la versione «{0}» come figlia di «{1}»?"
 msgstr[1] "Riassegnare «{2}» foto come figlie di «{1}»?"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:232
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:232
 msgid ""
 "This makes the photos appear as a single one in the library. The versions "
 "can be detached using the Photo menu."
@@ -2203,527 +2203,527 @@ msgstr ""
 "Questa funzione farà apparire le foto come una unica nella libreria. La "
 "versione può essere distaccata tramite il menù Foto."
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:272
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:272
 #, csharp-format
 msgid "Received exception \"{0}\"."
 msgstr "Ricevuta l'eccezione «{0}»."
 
-#: ../src/Clients/MainApp/TagCommands.cs:187
+#: ../src/Clients/FSpot/TagCommands.cs:187
 msgid "Create New Tag"
 msgstr "Crea nuova etichetta"
 
-#: ../src/Clients/MainApp/TagCommands.cs:188
+#: ../src/Clients/FSpot/TagCommands.cs:188
 msgid "Name of New Tag:"
 msgstr "Nome della nuova etichetta:"
 
-#: ../src/Clients/MainApp/TagPopup.cs:51
+#: ../src/Clients/FSpot/TagPopup.cs:51
 #, csharp-format
 msgid "Find"
 msgid_plural "Find"
 msgstr[0] "Trova"
 msgstr[1] "Trova"
 
-#: ../src/Clients/MainApp/TagPopup.cs:67
+#: ../src/Clients/FSpot/TagPopup.cs:67
 msgid "Edit Tag..."
 msgstr "Modifica etichetta..."
 
-#: ../src/Clients/MainApp/TagPopup.cs:71
+#: ../src/Clients/FSpot/TagPopup.cs:71
 msgid "Delete Tag"
 msgid_plural "Delete Tags"
 msgstr[0] "Elimina etichetta"
 msgstr[1] "Elimina etichette"
 
-#: ../src/Clients/MainApp/TagPopup.cs:77
+#: ../src/Clients/FSpot/TagPopup.cs:77
 msgid "Attach Tag to Selection"
 msgid_plural "Attach Tags to Selection"
 msgstr[0] "Attacca etichetta alla selezione"
 msgstr[1] "Attacca etichette alla selezione"
 
-#: ../src/Clients/MainApp/TagPopup.cs:81
+#: ../src/Clients/FSpot/TagPopup.cs:81
 msgid "Remove Tag From Selection"
 msgid_plural "Remove Tags From Selection"
 msgstr[0] "Rimuovi etichetta dalla selezione"
 msgstr[1] "Rimuovi etichette dalla selezione"
 
-#: ../src/Clients/MainApp/TagPopup.cs:87
+#: ../src/Clients/FSpot/TagPopup.cs:87
 msgid "Merge Tags"
 msgstr "Unisci etichette"
 
-#: ../src/Clients/MainApp/ThumbnailCommand.cs:53
+#: ../src/Clients/FSpot/ThumbnailCommand.cs:53
 msgid "Updating Thumbnails"
 msgstr "Aggiornamento miniature"
 
-#: ../src/Clients/MainApp/ThumbnailCommand.cs:61
+#: ../src/Clients/FSpot/ThumbnailCommand.cs:61
 #, csharp-format
 msgid "Updating picture \"{0}\""
 msgstr "Aggiornamento immagine «{0}»"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:1
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:1
 msgid "<b>Co_rrections</b>"
 msgstr "<b>Co_rrezioni</b>"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:2
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:2
 msgid "<b>_White Balance</b>"
 msgstr "<b>Bilanciamento del _bianco</b>"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:3
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:3
 msgid "C_ontrast:"
 msgstr "C_ontrasto:"
 
 #. Note for translators: meant as Temperature
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:5
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:5
 msgid "Te_mp:"
 msgstr "Te_mp.:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:6
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:6
 msgid "_Brightness:"
 msgstr "_Luminosità:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:7
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:7
 msgid "_Exposure:"
 msgstr "_Esposizione:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:8
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:8
 msgid "_Hue:"
 msgstr "_Tonalità:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:9
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:9
 msgid "_Saturation:"
 msgstr "_Saturazione:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:10
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:10
 msgid "_Tint:"
 msgstr "_Tinta:"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:1
+#: ../src/Clients/FSpot/ui/import.ui.h:1
 #| msgid "Copy files to the Photos folder"
 msgid "C_opy files to the Photos folder"
 msgstr "Copiare i _file nella cartella delle foto"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:2
+#: ../src/Clients/FSpot/ui/import.ui.h:2
 #| msgid "Include subfolders"
 msgid "I_nclude subfolders"
 msgstr "Includere le _sottocartelle"
 
 #. Translators: this string means 'source of import'
-#: ../src/Clients/MainApp/ui/import.ui.h:5
+#: ../src/Clients/FSpot/ui/import.ui.h:5
 #| msgid "Import from:"
 msgid "Import _from:"
 msgstr "_Importare da:"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:6
+#: ../src/Clients/FSpot/ui/import.ui.h:6
 #, fuzzy
 #| msgid "Attach tag:"
 msgid "_Attach tags:"
 msgstr "Attacca etichetta:"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:7
+#: ../src/Clients/FSpot/ui/import.ui.h:7
 #| msgid "Detect duplicates"
 msgid "_Detect duplicates"
 msgstr "Rilevare _duplicati"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:8
+#: ../src/Clients/FSpot/ui/import.ui.h:8
 #, fuzzy
 #| msgid "Import"
 msgid "_Import"
 msgstr "Importa"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:9
+#: ../src/Clients/FSpot/ui/import.ui.h:9
 msgid "_Remove original files after import"
 msgstr ""
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:1
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:1
 msgid "1024 px"
 msgstr "1024 px"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:2
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:2
 msgid "320 px"
 msgstr "320 px"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:3
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:3
 msgid "480 px"
 msgstr "480 px"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:4
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:4
 msgid "640 px"
 msgstr "640 px"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:5
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:5
 msgid "800 px"
 msgstr "800 px"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:7
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:7
 msgid "<b>Size</b>"
 msgstr "<b>Dimensione</b>"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:8
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:8
 msgid "<b>Summary</b>"
 msgstr "<b>Sommario</b>"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:9
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:9
 msgid "Create Mail"
 msgstr "Crea email"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:10
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:10
 msgid "Create a mail with the selected photos (possibly resized) attached"
 msgstr ""
 "Crea una email con le fotografie selezionate (eventualmente ridimensionate) "
 "in allegato"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:11
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:11
 msgid "Do not send a mail"
 msgstr "Non inviare email"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:12
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:12
 msgid "Estimated new size"
 msgstr "Nuova dimensione stimata"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:13
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:13
 msgid "Extra large"
 msgstr "Molto grande"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:14
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:14
 msgid "Large"
 msgstr "Grande"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:15
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:15
 msgid "Medium"
 msgstr "Medie"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:16
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:16
 msgid "Number of pictures"
 msgstr "Numero di immagini"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:18
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:18
 msgid "Original size (possible very large file size)"
 msgstr "Dimensione originale (potrebbero essere file molto grandi)"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:19
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:19
 msgid "Small"
 msgstr "Piccole"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:20
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:20
 msgid "Tiny"
 msgstr "Minuscola"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:21
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:21
 msgid "Total original size"
 msgstr "Dimensione originale"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:22
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:22
 msgid "_Create Mail"
 msgstr "_Crea email"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:1
+#: ../src/Clients/FSpot/ui/main_window.ui.h:1
 msgid "Adjust _Time..."
 msgstr "Regola da_ta..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:2
+#: ../src/Clients/FSpot/ui/main_window.ui.h:2
 msgid "Arrange _by"
 msgstr "Or_dina per"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:4
+#: ../src/Clients/FSpot/ui/main_window.ui.h:4
 msgid "By _Date"
 msgstr "Per _data"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:5
+#: ../src/Clients/FSpot/ui/main_window.ui.h:5
 msgid "By _Import Roll"
 msgstr "Per rullino di _importazione"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:6
+#: ../src/Clients/FSpot/ui/main_window.ui.h:6
 msgid "By _Rating"
 msgstr "Per _valutazione"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:7
+#: ../src/Clients/FSpot/ui/main_window.ui.h:7
 msgid "Copy"
 msgstr "Copia"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:8
+#: ../src/Clients/FSpot/ui/main_window.ui.h:8
 msgid "Create New _Tag..."
 msgstr "Crea nuova _etichetta..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:9
+#: ../src/Clients/FSpot/ui/main_window.ui.h:9
 msgid "Create _New Version..."
 msgstr "Crea _nuova versione..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:10
+#: ../src/Clients/FSpot/ui/main_window.ui.h:10
 msgid "De_tach Version"
 msgstr "Dis_tacca versione"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:11
+#: ../src/Clients/FSpot/ui/main_window.ui.h:11
 msgid "Fin_d"
 msgstr "Tr_ova"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:12
+#: ../src/Clients/FSpot/ui/main_window.ui.h:12
 msgid "Manage _Extensions"
 msgstr "Gestisci estensi_oni"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:13
+#: ../src/Clients/FSpot/ui/main_window.ui.h:13
 msgid "Page Set_up..."
 msgstr "Impostazioni pa_gina"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:14
+#: ../src/Clients/FSpot/ui/main_window.ui.h:14
 msgid "Re_fresh Thumbnail"
 msgstr "A_ggiorna miniatura"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:18
+#: ../src/Clients/FSpot/ui/main_window.ui.h:18
 msgid "Select _All"
 msgstr "Selezion_a tutto"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:19
+#: ../src/Clients/FSpot/ui/main_window.ui.h:19
 msgid "Select _None"
 msgstr "Annu_lla selezione"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:20
+#: ../src/Clients/FSpot/ui/main_window.ui.h:20
 msgid "Send by _Mail..."
 msgstr "Invia per emai_l..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:21
-#: ../src/Clients/MainApp/ui/single_view.ui.h:3
+#: ../src/Clients/FSpot/ui/main_window.ui.h:21
+#: ../src/Clients/FSpot/ui/single_view.ui.h:3
 msgid "Set as _Background"
 msgstr "Imposta come s_fondo"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:22
+#: ../src/Clients/FSpot/ui/main_window.ui.h:22
 msgid "Side_bar"
 msgstr "Riquadro _laterale"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:23
+#: ../src/Clients/FSpot/ui/main_window.ui.h:23
 msgid "T_ags"
 msgstr "_Etichette"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:24
+#: ../src/Clients/FSpot/ui/main_window.ui.h:24
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1116
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1117
 msgid "Tags: "
 msgstr "Etichette: "
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:25
+#: ../src/Clients/FSpot/ui/main_window.ui.h:25
 msgid "Thumbnail _elements"
 msgstr "Elementi _miniature"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:26
+#: ../src/Clients/FSpot/ui/main_window.ui.h:26
 msgid "Too_lbar"
 msgstr "Barra degli _strumenti"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:27
+#: ../src/Clients/FSpot/ui/main_window.ui.h:27
 msgid "View"
 msgstr "Visualizza"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:28
-#: ../src/Clients/MainApp/ui/single_view.ui.h:7
+#: ../src/Clients/FSpot/ui/main_window.ui.h:28
+#: ../src/Clients/FSpot/ui/single_view.ui.h:7
 msgid "Zoom _in"
 msgstr "_Aumenta ingrandimento"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:29
-#: ../src/Clients/MainApp/ui/single_view.ui.h:8
+#: ../src/Clients/FSpot/ui/main_window.ui.h:29
+#: ../src/Clients/FSpot/ui/single_view.ui.h:8
 msgid "Zoom _out"
 msgstr "_Riduci ingrandimento"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:30
-#: ../src/Clients/MainApp/ui/single_view.ui.h:9
+#: ../src/Clients/FSpot/ui/main_window.ui.h:30
+#: ../src/Clients/FSpot/ui/single_view.ui.h:9
 msgid "Zoom in"
 msgstr "Aumenta l'ingrandimento"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:31
-#: ../src/Clients/MainApp/ui/single_view.ui.h:10
+#: ../src/Clients/FSpot/ui/main_window.ui.h:31
+#: ../src/Clients/FSpot/ui/single_view.ui.h:10
 msgid "Zoom out"
 msgstr "Riduce l'ingrandimento"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:32
+#: ../src/Clients/FSpot/ui/main_window.ui.h:32
 msgid "_Attach Tag"
 msgstr "_Attacca etichetta"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:33
+#: ../src/Clients/FSpot/ui/main_window.ui.h:33
 msgid "_Attach Tag to Selection"
 msgstr "_Attacca etichetta alla selezione"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:35
+#: ../src/Clients/FSpot/ui/main_window.ui.h:35
 msgid "_Clear Rating Filter"
 msgstr "_Pulisci filtro valutazione"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:36
+#: ../src/Clients/FSpot/ui/main_window.ui.h:36
 msgid "_Clear Roll Filter"
 msgstr "_Pulisci filtro rullino di importazione"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:37
+#: ../src/Clients/FSpot/ui/main_window.ui.h:37
 msgid "_Close"
 msgstr "_Chiudi"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:38
+#: ../src/Clients/FSpot/ui/main_window.ui.h:38
 msgid "_Components"
 msgstr "_Componenti"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:39
+#: ../src/Clients/FSpot/ui/main_window.ui.h:39
 msgid "_Contents"
 msgstr "_Sommario"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:40
+#: ../src/Clients/FSpot/ui/main_window.ui.h:40
 msgid "_Dates"
 msgstr "_Date"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:42
+#: ../src/Clients/FSpot/ui/main_window.ui.h:42
 msgid "_Delete Selected Tag"
 msgstr "El_imina etichette selezionate"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:43
+#: ../src/Clients/FSpot/ui/main_window.ui.h:43
 msgid "_Delete Version"
 msgstr "Eli_mina versione"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:44
-#: ../src/Clients/MainApp/ui/single_view.ui.h:11
+#: ../src/Clients/FSpot/ui/main_window.ui.h:44
+#: ../src/Clients/FSpot/ui/single_view.ui.h:11
 msgid "_Edit"
 msgstr "_Modifica"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:45
+#: ../src/Clients/FSpot/ui/main_window.ui.h:45
 msgid "_Edit Tag..."
 msgstr "_Modifica etichetta..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:46
+#: ../src/Clients/FSpot/ui/main_window.ui.h:46
 msgid "_Export to"
 msgstr "E_sporta su"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:47
+#: ../src/Clients/FSpot/ui/main_window.ui.h:47
 msgid "_Filmstrip"
 msgstr "Barra _miniature"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:48
-#: ../src/Clients/MainApp/ui/single_view.ui.h:13
+#: ../src/Clients/FSpot/ui/main_window.ui.h:48
+#: ../src/Clients/FSpot/ui/single_view.ui.h:13
 msgid "_Fullscreen"
 msgstr "Schermo _intero"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:49
-#: ../src/Clients/MainApp/ui/single_view.ui.h:14
+#: ../src/Clients/FSpot/ui/main_window.ui.h:49
+#: ../src/Clients/FSpot/ui/single_view.ui.h:14
 msgid "_Help"
 msgstr "A_iuto"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:50
+#: ../src/Clients/FSpot/ui/main_window.ui.h:50
 msgid "_Hidden"
 msgstr "_Nascoste"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:51
+#: ../src/Clients/FSpot/ui/main_window.ui.h:51
 msgid "_Import..."
 msgstr "_Importa..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:52
+#: ../src/Clients/FSpot/ui/main_window.ui.h:52
 msgid "_Invert Selection"
 msgstr "_Inverti selezione"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:53
+#: ../src/Clients/FSpot/ui/main_window.ui.h:53
 msgid "_Large"
 msgstr "_Grandi"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:54
+#: ../src/Clients/FSpot/ui/main_window.ui.h:54
 msgid "_Last Import Roll"
 msgstr "_Ultimo rullino di importazione"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:55
+#: ../src/Clients/FSpot/ui/main_window.ui.h:55
 msgid "_Loupe"
 msgstr "_Lente di ingrandimento"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:56
+#: ../src/Clients/FSpot/ui/main_window.ui.h:56
 msgid "_Medium"
 msgstr "_Medie"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:57
-#: ../src/Clients/MainApp/ui/single_view.ui.h:15
+#: ../src/Clients/FSpot/ui/main_window.ui.h:57
+#: ../src/Clients/FSpot/ui/single_view.ui.h:15
 msgid "_Photo"
 msgstr "_Foto"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:58
+#: ../src/Clients/FSpot/ui/main_window.ui.h:58
 msgid "_Quit"
 msgstr "_Esci"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:59
+#: ../src/Clients/FSpot/ui/main_window.ui.h:59
 msgid "_Ratings"
 msgstr "_Valutazioni"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:61
+#: ../src/Clients/FSpot/ui/main_window.ui.h:61
 msgid "_Remove Tag From Selection"
 msgstr "_Rimuovi etichetta dalla selezione"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:62
+#: ../src/Clients/FSpot/ui/main_window.ui.h:62
 msgid "_Rename Version"
 msgstr "_Rinomina versione"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:63
+#: ../src/Clients/FSpot/ui/main_window.ui.h:63
 msgid "_Reverse Order"
 msgstr "_Ordine inverso"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:64
+#: ../src/Clients/FSpot/ui/main_window.ui.h:64
 msgid "_Select Import Rolls..."
 msgstr "Selezionare i rullini di _importazione..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:65
+#: ../src/Clients/FSpot/ui/main_window.ui.h:65
 msgid "_Set Date Range..."
 msgstr "Imposta intervallo _data..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:66
+#: ../src/Clients/FSpot/ui/main_window.ui.h:66
 msgid "_Set Rating filter..."
 msgstr "Imposta intervallo _valutazione..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:67
+#: ../src/Clients/FSpot/ui/main_window.ui.h:67
 msgid "_Sharpen..."
 msgstr "_Nitidezza..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:68
-#: ../src/Clients/MainApp/ui/single_view.ui.h:16
+#: ../src/Clients/FSpot/ui/main_window.ui.h:68
+#: ../src/Clients/FSpot/ui/single_view.ui.h:16
 msgid "_Slideshow"
 msgstr "_Presentazione"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:69
+#: ../src/Clients/FSpot/ui/main_window.ui.h:69
 msgid "_Small"
 msgstr "_Piccole"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:70
+#: ../src/Clients/FSpot/ui/main_window.ui.h:70
 msgid "_Tag Icons"
 msgstr "Ico_ne etichette"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:71
+#: ../src/Clients/FSpot/ui/main_window.ui.h:71
 msgid "_Tags"
 msgstr "_Etichette"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:72
+#: ../src/Clients/FSpot/ui/main_window.ui.h:72
 msgid "_Timeline"
 msgstr "Linea _temporale"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:73
+#: ../src/Clients/FSpot/ui/main_window.ui.h:73
 msgid "_Tools"
 msgstr "_Strumenti"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:74
+#: ../src/Clients/FSpot/ui/main_window.ui.h:74
 msgid "_Untagged Photos"
 msgstr "_Foto senza etichetta"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:75
+#: ../src/Clients/FSpot/ui/main_window.ui.h:75
 msgid "_Version"
 msgstr "_Versione"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:76
-#: ../src/Clients/MainApp/ui/single_view.ui.h:18
+#: ../src/Clients/FSpot/ui/main_window.ui.h:76
+#: ../src/Clients/FSpot/ui/single_view.ui.h:18
 msgid "_View"
 msgstr "_Visualizza"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:1
+#: ../src/Clients/FSpot/ui/single_view.ui.h:1
 msgid "Display File _Names"
 msgstr "Visualizza _nomi file"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:2
+#: ../src/Clients/FSpot/ui/single_view.ui.h:2
 msgid "F-Spot View"
 msgstr "Visualizzatore F-Spot"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:4
+#: ../src/Clients/FSpot/ui/single_view.ui.h:4
 msgid "Show or hide the side pane"
 msgstr "Mostra o nasconde il riquadro laterale"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:5
+#: ../src/Clients/FSpot/ui/single_view.ui.h:5
 msgid "Show or hide the toolbar"
 msgstr "Mostra o nasconde la barra degli strumenti"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:6
+#: ../src/Clients/FSpot/ui/single_view.ui.h:6
 msgid "Side _pane"
 msgstr "_Riquadro laterale"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:12
+#: ../src/Clients/FSpot/ui/single_view.ui.h:12
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:7
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:14
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:13
@@ -2734,23 +2734,23 @@ msgstr "_Riquadro laterale"
 msgid "_Export"
 msgstr "_Esporta"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:17
+#: ../src/Clients/FSpot/ui/single_view.ui.h:17
 msgid "_Toolbar"
 msgstr "Barra degli _strumenti"
 
-#: ../src/Clients/MainApp/ui/tag_selection_dialog.ui.h:1
+#: ../src/Clients/FSpot/ui/tag_selection_dialog.ui.h:1
 msgid "Select a Tag..."
 msgstr "Seleziona un'etichetta..."
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:1
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:1
 msgid "<b>Image Interpolation</b>"
 msgstr "<b>Interpolazione immagine</b>"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:2
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:2
 msgid "<b>Transparent Parts</b>"
 msgstr "<b>Parti trasparenti</b>"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:3
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:3
 msgid ""
 "<small><i>Enable this to allow interpolation on zoomed images. You shouldn't "
 "disable this for viewing photos, but disabling the interpolation could be "
@@ -2761,7 +2761,7 @@ msgstr ""
 "visualizzare le foto, ma disabilitare l'interpolazione può risultare utile "
 "per la progettazione di icone.</i></small>"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:4
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:4
 msgid ""
 "<small><i>You can choose how to display transparent parts in images. This "
 "option has no effect on photos, but setting this as check pattern or custom "
@@ -2773,23 +2773,23 @@ msgstr ""
 "tipo di scacchiera o colore personalizzato può risultare utile nella "
 "visualizzazione di icone o altre immagini con parti trasparenti.</i></small>"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:5
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:5
 msgid "As _background"
 msgstr "Come s_fondo"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:6
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:6
 msgid "As _custom color: "
 msgstr "Come _colore personalizzato: "
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:7
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:7
 msgid "As check _pattern"
 msgstr "Come _scacchiera"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:8
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:8
 msgid "Preferences"
 msgstr "Preferenze"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:9
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:9
 msgid "_Interpolate image on zoom"
 msgstr "_Interpolazione immagine all'ingrandimento"
 

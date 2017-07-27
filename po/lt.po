@@ -22,32 +22,32 @@ msgstr ""
 "%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Gtranslator 2.91.6\n"
 
-#. ../src/Clients/MainApp/FSpot.addin.xml
-#: ../data/addin-xml-strings.cs:8 ../src/Clients/MainApp/FSpot.addin.xml.h:3
+#. ../src/Clients/FSpot/FSpot.addin.xml
+#: ../data/addin-xml-strings.cs:8 ../src/Clients/FSpot/FSpot.addin.xml.h:3
 msgid "Copy Photo"
 msgstr "Kopijuoti fotografiją"
 
-#: ../data/addin-xml-strings.cs:9 ../src/Clients/MainApp/FSpot.addin.xml.h:4
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:467
-#: ../src/Clients/MainApp/ui/main_window.ui.h:18
-#: ../src/Clients/MainApp/ui/single_view.ui.h:7
+#: ../data/addin-xml-strings.cs:9 ../src/Clients/FSpot/FSpot.addin.xml.h:4
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:467
+#: ../src/Clients/FSpot/ui/main_window.ui.h:18
+#: ../src/Clients/FSpot/ui/single_view.ui.h:7
 msgid "Rotate _Left"
 msgstr "Pasukti _kairėn"
 
-#: ../data/addin-xml-strings.cs:10 ../src/Clients/MainApp/FSpot.addin.xml.h:5
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:468
-#: ../src/Clients/MainApp/ui/main_window.ui.h:19
-#: ../src/Clients/MainApp/ui/single_view.ui.h:8
+#: ../data/addin-xml-strings.cs:10 ../src/Clients/FSpot/FSpot.addin.xml.h:5
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:468
+#: ../src/Clients/FSpot/ui/main_window.ui.h:19
+#: ../src/Clients/FSpot/ui/single_view.ui.h:8
 msgid "Rotate _Right"
 msgstr "Pasukti _dešinėn"
 
-#: ../data/addin-xml-strings.cs:11 ../src/Clients/MainApp/FSpot.addin.xml.h:7
-#: ../src/Clients/MainApp/ui/main_window.ui.h:24
+#: ../data/addin-xml-strings.cs:11 ../src/Clients/FSpot/FSpot.addin.xml.h:7
+#: ../src/Clients/FSpot/ui/main_window.ui.h:24
 msgid "_Remove From Catalog"
 msgstr "_Pašalinti iš katalogo"
 
-#: ../data/addin-xml-strings.cs:12 ../src/Clients/MainApp/FSpot.addin.xml.h:8
-#: ../src/Clients/MainApp/ui/main_window.ui.h:23
+#: ../data/addin-xml-strings.cs:12 ../src/Clients/FSpot/FSpot.addin.xml.h:8
+#: ../src/Clients/FSpot/ui/main_window.ui.h:23
 msgid "_Delete From Drive"
 msgstr "_Ištrinti iš disko"
 
@@ -289,7 +289,7 @@ msgstr ""
 #: ../data/addin-xml-strings.cs:122 ../data/addin-xml-strings.cs:128
 #: ../data/addin-xml-strings.cs:134 ../data/addin-xml-strings.cs:140
 #: ../data/addin-xml-strings.cs:146 ../data/addin-xml-strings.cs:152
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:2
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:2
 msgid "Tools"
 msgstr "Įrankiai"
 
@@ -730,25 +730,25 @@ msgstr "Jungiamasi prie Tabblo"
 msgid "Obtaining URL for upload"
 msgstr "Gaunamas URL išsiuntimui"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:1
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:1
 msgid "Export to"
 msgstr "Eksportuoti į"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:6
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:6
 msgid "Open _With"
 msgstr "Atverti _su"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:9
-#: ../src/Clients/MainApp/ui/main_window.ui.h:27
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:9
+#: ../src/Clients/FSpot/ui/main_window.ui.h:27
 msgid "Rem_ove Tag"
 msgstr "Paša_linti žymą"
 
-#: ../src/Clients/MainApp/FSpot/App.cs:319
+#: ../src/Clients/FSpot/FSpot/App.cs:319
 #, csharp-format
 msgid "No photos matching {0} found"
 msgstr "Fotografijų atitinkančių {0} nerasta"
 
-#: ../src/Clients/MainApp/FSpot/App.cs:320
+#: ../src/Clients/FSpot/FSpot/App.cs:320
 #, csharp-format
 msgid ""
 "The tag \"{0}\" is not applied to any photos. Try adding\n"
@@ -759,11 +759,11 @@ msgstr ""
 "pridėti žymą kai kurioms fotografijoms arba F-Spot nustatymų\n"
 "dialoge pasirinkite kitą žymą."
 
-#: ../src/Clients/MainApp/FSpot/App.cs:324
+#: ../src/Clients/FSpot/FSpot/App.cs:324
 msgid "Search returned no results"
 msgstr "Paieška negrąžino jokių rezultatų"
 
-#: ../src/Clients/MainApp/FSpot/App.cs:325
+#: ../src/Clients/FSpot/FSpot/App.cs:325
 msgid ""
 "The tag F-Spot is looking for does not exist. Try\n"
 "selecting a different tag in the F-Spot preference\n"
@@ -772,11 +772,11 @@ msgstr ""
 "F-Spot ieškomos žymos nėra. Pabandykite F-Spot\n"
 "nustatymų dialoge pasirinkti kitą žymą."
 
-#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:769
+#: ../src/Clients/FSpot/FSpot.Database/Updater.cs:769
 msgid "Updating F-Spot Database"
 msgstr "Atnaujinama F-Spot duomenų bazė"
 
-#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:770
+#: ../src/Clients/FSpot/FSpot.Database/Updater.cs:770
 msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
@@ -784,257 +784,257 @@ msgstr ""
 "Luktelėkite, kol bus atnaujinta jūsų F-Spot galerijos duomenų bazė. Tai gali "
 "šiek tiek užtrukti."
 
-#: ../src/Clients/MainApp/FSpot.Editors/AutoStretchEditor.cs:38
+#: ../src/Clients/FSpot/FSpot.Editors/AutoStretchEditor.cs:38
 msgid "Auto Color"
 msgstr "Automatinės spalvos"
 
-#: ../src/Clients/MainApp/FSpot.Editors/ColorEditor.cs:63
+#: ../src/Clients/FSpot/FSpot.Editors/ColorEditor.cs:63
 msgid "Adjust Colors"
 msgstr "Koreguoti spalvas"
 
-#: ../src/Clients/MainApp/FSpot.Editors/ColorEditor.cs:66
+#: ../src/Clients/FSpot/FSpot.Editors/ColorEditor.cs:66
 msgid "Adjust"
 msgstr "Koreguoti"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:60
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:60
 msgid "4 x 3 (Book)"
 msgstr "4 x 3 (Knyga)"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:61
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:61
 msgid "4 x 6 (Postcard)"
 msgstr "4 x 6 (Atvirutė)"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:62
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:62
 msgid "5 x 7 (L, 2L)"
 msgstr "5 x 7 (L, 2L)"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:63
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:63
 msgid "8 x 10"
 msgstr "8 x 10"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:64
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:64
 msgid "Square"
 msgstr "Kontrastas"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:67
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:67
 msgid "Crop"
 msgstr "Apkirpti"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:98
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:98
 msgid "Select the area that needs cropping."
 msgstr "Pasirinkite apkirptiną sritį."
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:123
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:123
 msgid "No Constraint"
 msgstr "Nėra apribojimų"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:124
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:124
 msgid "Same as photo"
 msgstr "Taip kaip fotografija"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:129
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:129
 msgid "Custom Ratios..."
 msgstr "Pasirinktinės proporcijos..."
 
-#: ../src/Clients/MainApp/FSpot.Editors/DesaturateEditor.cs:38
+#: ../src/Clients/FSpot/FSpot.Editors/DesaturateEditor.cs:38
 msgid "Desaturate"
 msgstr "Nusodrinti"
 
-#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:41
+#: ../src/Clients/FSpot/FSpot.Editors/RedEyeEditor.cs:41
 msgid "Red-eye Reduction"
 msgstr "Akių raudonumo sumažinimas"
 
-#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:44
+#: ../src/Clients/FSpot/FSpot.Editors/RedEyeEditor.cs:44
 msgid "Fix!"
 msgstr "Taisyti!"
 
-#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:48
+#: ../src/Clients/FSpot/FSpot.Editors/RedEyeEditor.cs:48
 msgid "Select the eyes you wish to fix."
 msgstr "Pasirinkite taisytinas akis."
 
-#: ../src/Clients/MainApp/FSpot.Editors/SepiaEditor.cs:38
+#: ../src/Clients/FSpot/FSpot.Editors/SepiaEditor.cs:38
 msgid "Sepia Tone"
 msgstr "Sepijos tonas"
 
-#: ../src/Clients/MainApp/FSpot.Editors/SoftFocusEditor.cs:51
+#: ../src/Clients/FSpot/FSpot.Editors/SoftFocusEditor.cs:51
 msgid "Soft Focus"
 msgstr "Išfokusavimas"
 
-#: ../src/Clients/MainApp/FSpot.Editors/TiltEditor.cs:52
+#: ../src/Clients/FSpot/FSpot.Editors/TiltEditor.cs:52
 msgid "Straighten"
 msgstr "Ištiesinti"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:85
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:85
 msgid "Hide"
 msgstr "Paslėpti"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:87
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:87
 #| msgid "Hide Toolbar"
 msgid "Hide toolbar"
 msgstr "Paslėpti įrankių juostą"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:93
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:93
 msgid "Info"
 msgstr "Informacija"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:95
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:95
 #| msgid "Image Information"
 msgid "Image information"
 msgstr "Paveikslėlio informacija"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:100
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:100
 msgid "Exit fullscreen"
 msgstr "Išjungti viso ekrano veikseną"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:108
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:337
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:124
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:108
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:337
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:124
 msgid "Slideshow"
 msgstr "Skaidrių rodymas"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:109
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:109
 msgid "Start slideshow"
 msgstr "Pradėti skaidrių rodymą"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:155
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:155
 msgid "Slide transition:"
 msgstr "Skaidrių perėjimas:"
 
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:93
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:94
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:93
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:94
 msgid "More dates"
 msgstr "Daugiau datų"
 
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:96
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:97
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:96
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:97
 msgid "More"
 msgstr "Daugiau"
 
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:559
-#: ../src/Clients/MainApp/ui/main_window.ui.h:57
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:559
+#: ../src/Clients/FSpot/ui/main_window.ui.h:57
 msgid "_Clear Date Range"
 msgstr "_Išvalyti datos diapazoną"
 
-#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:513
-#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:515
-#: ../src/Clients/MainApp/FSpot.Import/MetadataImporter.cs:74
+#: ../src/Clients/FSpot/FSpot.Import/ImportController.cs:513
+#: ../src/Clients/FSpot/FSpot.Import/ImportController.cs:515
+#: ../src/Clients/FSpot/FSpot.Import/MetadataImporter.cs:74
 msgid "Imported Tags"
 msgstr "Importuotos žymos"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:104
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:304
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:107
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:104
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:304
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:107
 msgid "Rotate Left"
 msgstr "Pasukti kairėn"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:105
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:105
 msgid "Rotate picture left"
 msgstr "Pasukti fotografiją kairėn"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:116
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:308
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:112
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:116
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:308
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:112
 msgid "Rotate Right"
 msgstr "Pasukti dešinėn"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:117
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:117
 msgid "Rotate picture right"
 msgstr "Pasukti fotografiją dešinėn"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:127
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:127
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:262
 msgid "Next"
 msgstr "Kitas"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:128
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:128
 msgid "Next picture"
 msgstr "Kitas paveikslėlis"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:148
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:148
 msgid "Previous"
 msgstr "Ankstesnis"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:149
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:149
 msgid "Previous picture"
 msgstr "Ankstesnis paveikslėlis"
 
-#: ../src/Clients/MainApp/FSpot/Literal.cs:226
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:182
+#: ../src/Clients/FSpot/FSpot/Literal.cs:226
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:182
 #, csharp-format
 msgid "Not {0}"
 msgstr "Ne {0}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:297
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:232
-#: ../src/Clients/MainApp/ui/import.ui.h:1
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:297
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:232
+#: ../src/Clients/FSpot/ui/import.ui.h:1
 msgid "Import"
 msgstr "Importuoti"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:299
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:299
 msgid "Import new images"
 msgstr "Importuoti naujus paveikslėlius"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:315
-#: ../src/Clients/MainApp/ui/main_window.ui.h:72
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:315
+#: ../src/Clients/FSpot/ui/main_window.ui.h:72
 msgid "Browse"
 msgstr "Naršyti"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:319
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:319
 msgid "Browse many photos simultaneously"
 msgstr "Naršyti vienu metu daug fotografijų"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:323
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:323
 msgid "Edit Image"
 msgstr "Redaguoti paveikslėlį"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:327
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:327
 msgid "View and edit a photo"
 msgstr "Žiūrėti ir redaguoti fotografiją"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:332
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:119
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:332
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:119
 msgid "Fullscreen"
 msgstr "Visame ekrane"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:334
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:121
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:334
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:121
 msgid "View photos fullscreen"
 msgstr "Žiūrėti fotografijas visame ekrane"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:339
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:126
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:339
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:126
 msgid "View photos in a slideshow"
 msgstr "Žiūrėti fotografijas kaip skaidres"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:354
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:354
 msgid "Previous photo"
 msgstr "Ankstesnė fotografija"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:359
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:359
 msgid "Next photo"
 msgstr "Kita fotografija"
 
 #. Don't care otherwise, Tags sounds reasonable
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:372
-#: ../src/Clients/MainApp/FSpot.Widgets/Sidebar.cs:76
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:372
+#: ../src/Clients/FSpot/FSpot.Widgets/Sidebar.cs:76
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:259
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:431
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:471
 msgid "Tags"
 msgstr "Žymos"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:436
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:436
 msgid "Show _Find Bar"
 msgstr "Rodyti _paieškos juostą"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:439
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:439
 msgid "Hide _Find Bar"
 msgstr "Paslėpti _paieškos juostą"
 
 #. Note for translators: This indicates the current photo is photo {0} of {1} out of photos
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:664
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs:157
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ProgressDialog.cs:111
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:664
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AdjustTimeDialog.cs:157
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ProgressDialog.cs:111
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:130
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:393
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:238
@@ -1044,7 +1044,7 @@ msgid "{0} of {1}"
 msgstr "{0} iš {1}"
 
 #. Translators, The singular case will never happen here.
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1740
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1740
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
@@ -1052,7 +1052,7 @@ msgstr[0] "Sujungti {0} pasirinktą žymą?"
 msgstr[1] "Sujungti {0} pasirinktas žymas?"
 msgstr[2] "Sujungti {0} pasirinktų žymų?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1767
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1767
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
@@ -1060,11 +1060,11 @@ msgstr ""
 "Atlikus šią operaciją visos pasirinktos žymos ir bet kokios jose esančios "
 "žymos bus sujungtos į vieną žymą."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1769
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1769
 msgid "_Merge Tags"
 msgstr "_Sujungti žymas"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1986
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1986
 #, csharp-format
 msgid "{0} Photo out of {1}"
 msgid_plural "{0} Photos out of {1}"
@@ -1072,8 +1072,8 @@ msgstr[0] "{0} fotografija iš {1}"
 msgstr[1] "{0} fotografijos iš {1}"
 msgstr[2] "{0} fotografijų iš {1}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1988
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:507
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1988
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:507
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
@@ -1081,7 +1081,7 @@ msgstr[0] "{0} fotografija"
 msgstr[1] "{0} fotografijos"
 msgstr[2] "{0} fotografijų"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1991
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1991
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
@@ -1089,25 +1089,25 @@ msgstr[0] " (pasirinkta {0})"
 msgstr[1] " (pasirinktos {0})"
 msgstr[2] " (pasirinkta {0})"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2076
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2076
 msgid "_Ok"
 msgstr "_Gerai"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2077
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2077
 msgid "Error Deleting Picture"
 msgstr "Klaida trinant paveikslėlį"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2082
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2082
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
 msgstr "Nėra leidimo ištrinti šį failą:{1}{0}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2086
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2086
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
 msgstr "Iškilo {0} tipo klaida trinant failą:{2}{1}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2118
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2118
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
@@ -1115,7 +1115,7 @@ msgstr[0] "Visam laikui ištrinti {0} pasirinktą fotografiją?"
 msgstr[1] "Visam laikui ištrinti {0} pasirinktas fotografijas?"
 msgstr[2] "Visam laikui ištrinti {0} pasirinktų fotografijų?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2122
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2122
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
@@ -1124,14 +1124,14 @@ msgstr[0] ""
 msgstr[1] "Iš jūsų disko bus ištrintos visos pasirinktų fotografijų versijos."
 msgstr[2] "Iš jūsų disko bus ištrintos visos pasirinktų fotografijų versijos."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2125
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2125
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Ištrinti fotografiją"
 msgstr[1] "_Ištrinti fotografijas"
 msgstr[2] "_Ištrinti fotografijas"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2161
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2161
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
@@ -1139,7 +1139,7 @@ msgstr[0] "Pašalinti {0} pasirinktą fotografiją iš F-Spot?"
 msgstr[1] "Pašalinti {0} pasirinktas fotografijas iš F-Spot?"
 msgstr[2] "Pašalinti {0} pasirinktų fotografijų iš F-Spot?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2166
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2166
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1149,28 +1149,28 @@ msgstr ""
 "prarasta. Fotografijos liks jūsų kompiuteryje ir jas bus galima importuoti į "
 "F-Spot dar kartą."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2167
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2167
 msgid "_Remove from Catalog"
 msgstr "_Pašalinti iš katalogo"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2244
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2244
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Ištrinti žymą „{0}“?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2246
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2246
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Ištrinti {0} pasirinktas žymas?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2251
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2251
 msgid "photo"
 msgid_plural "photos"
 msgstr[0] "fotografija"
 msgstr[1] "fotografijos"
 msgstr[2] "fotografijų"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2253
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2253
 #, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
 msgid_plural ""
@@ -1179,7 +1179,7 @@ msgstr[0] "Jeigu ištrinsite šią žymą, saitas su {0} {1} bus prarastas."
 msgstr[1] "Jeigu ištrinsite šias žymas, saitas su {0} {1} bus prarastas."
 msgstr[2] "Jeigu ištrinsite šias žymas, saitas su {0} {1} bus prarastas."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2258
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2258
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Ištrinti žymą"
@@ -1187,11 +1187,11 @@ msgstr[1] "_Ištrinti žymas"
 msgstr[2] "_Ištrinti žymas"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2272
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2272
 msgid "Tag is not empty"
 msgstr "Žyma yra netuščia"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2273
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2273
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -1200,21 +1200,21 @@ msgstr ""
 "Nepavyko ištrinti žymų, kuriose yra žymų. Pirma ištrinkite žymas, esančias "
 "„{0}“"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2733
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2733
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Pasukti pasirinktą fotografiją kairėn"
 msgstr[1] "Pasukti pasirinktas fotografijas kairėn"
 msgstr[2] "Pasukti pasirinktas fotografijas kairėn"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2746
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2746
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Pasukti pasirinktą fotografiją dešinėn"
 msgstr[1] "Pasukti pasirinktas fotografijas dešinėn"
 msgstr[2] "Pasukti pasirinktas fotografijas dešinėn"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2757
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2757
 #, csharp-format
 msgid "Find _Selected Tag"
 msgid_plural "Find _Selected Tags"
@@ -1222,7 +1222,7 @@ msgstr[0] "Rasti _pasirinktą žymą"
 msgstr[1] "Rasti _pasirinktas žymas"
 msgstr[2] "Rasti _pasirinktas žymas"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2761
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2761
 #, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
@@ -1230,14 +1230,14 @@ msgstr[0] "Rasti pasirinktą žymą _su"
 msgstr[1] "Rasti pasirinktas žymas _su"
 msgstr[2] "Rasti pasirinktas žymas _su"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2802
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2802
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Sukurti naują versiją?"
 msgstr[1] "Sukurti naujas versijas?"
 msgstr[2] "Sukurti naujas versijas?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2804
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2804
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -1255,16 +1255,16 @@ msgstr[2] ""
 "Ar prieš paleidžiant {1}, F-Spot, siekiant išsaugoti originalias, turėtų "
 "sukurti naujas pasirinktų fotografijų versijas?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2825
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2825
 msgid "XCF version"
 msgstr "XCF versija"
 
 #. Note for translators: Reparented is a picture becoming a version of another one
-#: ../src/Clients/MainApp/FSpot/Photo.cs:425
+#: ../src/Clients/FSpot/FSpot/Photo.cs:425
 msgid "Reparented"
 msgstr "Pakeista pirminė fotografija"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:443
+#: ../src/Clients/FSpot/FSpot/Photo.cs:443
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
@@ -1272,89 +1272,89 @@ msgstr[0] "Modifikuota ({0})"
 msgstr[1] "Modifikuota ({0})"
 msgstr[2] "Modifikuota ({0})"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:466
+#: ../src/Clients/FSpot/FSpot/Photo.cs:466
 #, csharp-format
 msgid "Modified in {1}"
 msgstr "Pakeista {1}"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:466
+#: ../src/Clients/FSpot/FSpot/Photo.cs:466
 #, csharp-format
 msgid "Modified in {1} ({0})"
 msgstr "Pakeista {1} ({0})"
 
-#: ../src/Clients/MainApp/FSpot/PhotoStore.cs:196
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:13
+#: ../src/Clients/FSpot/FSpot/PhotoStore.cs:196
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:13
 msgid "Original"
 msgstr "Originalas"
 
-#: ../src/Clients/MainApp/FSpot/PhotoView.cs:349
+#: ../src/Clients/FSpot/FSpot/PhotoView.cs:349
 #| msgid "_Description:"
 msgid "Description:"
 msgstr "Aprašymas:"
 
-#: ../src/Clients/MainApp/FSpot/Preferences.cs:193
+#: ../src/Clients/FSpot/FSpot/Preferences.cs:193
 msgid "Photos"
 msgstr "Fotografijos"
 
-#: ../src/Clients/MainApp/FSpot/PrintOperation.cs:57
+#: ../src/Clients/FSpot/FSpot/PrintOperation.cs:57
 msgid "Image Settings"
 msgstr "Paveikslėlio parametrai"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:83
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:83
 msgid "Find: "
 msgstr "Rasti: "
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:88
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:88
 msgid "Untagged photos"
 msgstr "Fotografijos be žymų"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:96
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:96
 msgid "Rated photos"
 msgstr "Įvertintos fotografijos"
 
 #. Note for translators: 'Import roll' is no command, it means 'Roll that has been imported'
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:105
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:105
 msgid "Import roll"
 msgstr "Importuoti juostelę"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:128
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:128
 msgid "Clear search"
 msgstr "Išvalyti paiešką"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:135
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:135
 msgid "Refresh search"
 msgstr "Atnaujinti paiešką"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:138
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:138
 msgid "No matching photos found"
 msgstr "Atitinkančių fotografijų nerasta"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:98
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:98
 msgid "Unable to rotate this type of photo"
 msgstr "Nepavyko pasukti šio tipo fotografijos"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:114
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:114
 msgid "Unable to rotate readonly file"
 msgstr "Nepavyko sukurti vien tik skaitomo failo"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:172
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:172
 msgid "Rotating photos"
 msgstr "Sukamos fotografijos"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:183
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:183
 #, csharp-format
 msgid "Rotating photo \"{0}\""
 msgstr "Sukama fotografija „{0}“"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:196
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:196
 msgid "Directory not found"
 msgstr "Aplankas nerastas"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:198
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:198
 msgid "File not found"
 msgstr "Failas nerastas"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:216
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:216
 #, csharp-format
 msgid "Unable to rotate photo"
 msgid_plural "Unable to rotate {0} photos"
@@ -1362,7 +1362,7 @@ msgstr[0] "Nepavyko pasukti {0} fotografijos"
 msgstr[1] "Nepavyko pasukti {0} fotografijų"
 msgstr[2] "Nepavyko pasukti {0} fotografijų"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:218
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:218
 #, csharp-format
 #| msgid ""
 #| "The photo could not be rotated because it is on a read only file system "
@@ -1390,77 +1390,77 @@ msgstr[2] ""
 "sistemoje arba laikmenoje, pvz., CD-ROM. Patikrinkite teises ir bandykite "
 "dar kartą"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:245
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:245
 #, csharp-format
 msgid "Received error \"{0}\" while attempting to rotate {1}"
 msgstr "Bandant pasukti {1} gauta klaida „{0}“"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:250
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:250
 msgid "Error while rotating photo."
 msgstr "Sukant paveikslėlį įvyko klaida."
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:233
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:233
 msgid "Preparing email"
 msgstr "Ruošiamas el. laiškas"
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:277
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:277
 #, csharp-format
 msgid "Exporting picture \"{0}\""
 msgstr "Eksportuojamas paveikslėlis „{0}“"
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:296
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:296
 msgid "Error processing image"
 msgstr "Klaida apdorojant paveikslėlį"
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:297
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:297
 #, csharp-format
 msgid "An error occurred while processing \"{0}\": {1}"
 msgstr "Klaida apdorojant „{0}“: {1}"
 
 #. Send the mail :)
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:312
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:312
 msgid "My Photos"
 msgstr "Mano fotografijos"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:109
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:109
 msgid "Rotate photo left"
 msgstr "Pasukti fotografiją kairėn"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:114
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:114
 msgid "Rotate photo right"
 msgstr "Pasukti fotografiją dešinėn"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:150
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:150
 msgid "Folder"
 msgstr "Aplankas"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:383
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:383
 msgid "Open"
 msgstr "Atverti"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:386
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:386
 msgid "Select Folder"
 msgstr "Pasirinkite aplanką"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:470
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:470
 msgid "Set as Background"
 msgstr "Nustatyti kaip darbastalio foną"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:67
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:67
 #, csharp-format
 msgid "Include Photos Tagged \"{0}\""
 msgstr "Įtraukti fotografijas, pažymėtas kaip „{0}“"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:72
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:72
 #, csharp-format
 msgid "Exclude Photos Tagged \"{0}\""
 msgstr "Išskirtas fotografijas, pažymėtas kaip „{0}“"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:77
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:77
 msgid "Remove From Search"
 msgstr "Pašalinti iš paieškos"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:121
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:121
 #, csharp-format
 msgid "Find _With"
 msgid_plural "Find _With"
@@ -1468,158 +1468,158 @@ msgstr[0] "Rasti _su"
 msgstr[1] "Rasti _su"
 msgstr[2] "Rasti _su"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:147
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:147
 msgid "All"
 msgstr "Visus"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:306
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:306
 msgid "Drag tags here to search for them"
 msgstr "Norėdami ieškoti žymų, nuvilkite jas čia"
 
-#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:518
+#: ../src/Clients/FSpot/FSpot/TagSelectionWidget.cs:518
 msgid "Error renaming tag"
 msgstr "Pervadinant žymą įvyko klaida"
 
-#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:519
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagDialog.cs:97
-#: ../src/Clients/MainApp/TagCommands.cs:137
+#: ../src/Clients/FSpot/FSpot/TagSelectionWidget.cs:519
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagDialog.cs:97
+#: ../src/Clients/FSpot/TagCommands.cs:137
 msgid "This name is already in use"
 msgstr "Šis pavadinimas jau naudojamas"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:222
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:222
 msgid "Favorites"
 msgstr "Mėgstamos"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:227
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:227
 msgid "Hidden"
 msgstr "Paslėptos"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:235
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:235
 msgid "People"
 msgstr "Žmonės"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:240
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:240
 msgid "Places"
 msgstr "Vietos"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:245
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:245
 msgid "Events"
 msgstr "Įvykiai"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:257
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:446
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:257
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:446
 msgid "(None)"
 msgstr "(Nėra)"
 
-#: ../src/Clients/MainApp/FSpot/Term.cs:338
+#: ../src/Clients/FSpot/FSpot/Term.cs:338
 msgid " and "
 msgstr " ir "
 
 #. Operators.Add (Catalog.GetString (" && "));
-#: ../src/Clients/MainApp/FSpot/Term.cs:340
+#: ../src/Clients/FSpot/FSpot/Term.cs:340
 msgid ", "
 msgstr ", "
 
-#: ../src/Clients/MainApp/FSpot/Term.cs:396
+#: ../src/Clients/FSpot/FSpot/Term.cs:396
 msgid " or "
 msgstr " arba "
 
 #. OPS The operators we support, case insensitive
 #. private static string op_str = "(?'Ops' or | and |, | \\s+ )";
-#: ../src/Clients/MainApp/FSpot/Term.cs:417
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:3
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:203
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:557
+#: ../src/Clients/FSpot/FSpot/Term.cs:417
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:203
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:557
 msgid "or"
 msgstr "arba"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:125
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AboutDialog.cs:125
 msgid "Photo management for GNOME"
 msgstr "GNOME fotografijų valdymas"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:126
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AboutDialog.cs:126
 #| msgid "Copyright © 2003-2009 Novell Inc."
 msgid "Copyright © 2003-2010 Novell Inc."
 msgstr "Autorinės teisės © 2003-2010 Novell Inc."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:150
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AboutDialog.cs:150
 msgid "translator-credits"
 msgstr ""
 "Žygimantas Beručka <zygis@gnome.org>\n"
 "Justina Klingaitė <justina.klingaite@gmail.com>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:155
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AboutDialog.cs:155
 msgid "F-Spot Website"
 msgstr "F-Spot tinklalapis"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs:140
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:8
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AdjustTimeDialog.cs:140
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:8
 #, csharp-format
 msgid "Shift all photos by {0}"
 msgstr "Paslinkti visas fotografijas {0}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:112
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:112
 msgid "Today"
 msgstr "Šiandien"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:114
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:114
 msgid "Yesterday"
 msgstr "Vakar"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:116
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:116
 msgid "Last 7 days"
 msgstr "Paskutinės 7 dienos"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:118
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:118
 msgid "Last 30 days"
 msgstr "Paskutinės 30 dienų"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:120
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:120
 msgid "Last 90 days"
 msgstr "Paskutinės 90 dienų"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:122
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:122
 msgid "Last 360 days"
 msgstr "Paskutinės 360 dienų"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:124
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:124
 msgid "Current Week (Mon-Sun)"
 msgstr "Dabartinė savaitė (Pir-Sek)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:126
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:126
 msgid "Previous Week (Mon-Sun)"
 msgstr "Ankstesnė savaitė (Pir-Sek)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:142
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:142
 #: ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui.h:3
 msgid "All Images"
 msgstr "Visi paveikslėliai"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:144
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:144
 msgid "Customized Range"
 msgstr "Pasirinktinis diapazonas"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditExceptionDialog.cs:54
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:108
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditExceptionDialog.cs:54
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:108
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr "Gauta išimtis „{0}“. Nepavyko išsaugoti fotografijos {1}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditExceptionDialog.cs:67
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditExceptionDialog.cs:67
 msgid "Error editing photo"
 msgstr "Redaguojant fotografiją įvyko klaida"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:69
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:69
 #, csharp-format
 msgid "Edit Icon for Tag {0}"
 msgstr "Keisti žymos {0} piktogramą"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:91
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:91
 msgid "Select Photo from file"
 msgstr "Pasirinkti fotografiją iš failo"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:113
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:113
 #, csharp-format
 msgid ""
 "\n"
@@ -1636,35 +1636,35 @@ msgstr ""
 " fotografiją. Pažymėkite šią fotografiją kaip „{0}“ ir\n"
 " tuomet grįžkite čia, kad naudotumėte ją kaip piktogramą."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:191
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:191
 msgid "Unable to load image"
 msgstr "Nepavyko įkelti paveikslėlio"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:192
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:192
 #, csharp-format
 msgid "Unable to load \"{0}\" as icon for the tag"
 msgstr "Nepavyko įkelti „{0}“ kaip žymos piktogramos"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:230
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:230
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "{0} fotografija iš {1}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:48
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:48
 #| msgid "Open _Folder..."
 msgid "Choose Folder..."
 msgstr "Pasirinkite aplanką..."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:167
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:167
 #| msgid "Import Source:"
 msgid "Choose Import source..."
 msgstr "Pasirinkite importavimo šaltinį..."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:179
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:179
 msgid "(No Cameras Detected)"
 msgstr "(Fotoaparatų neaptikta)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:214
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:214
 msgid ""
 "Checking this box will remove the imported photos from the camera after the "
 "import finished successfully.\n"
@@ -1678,36 +1678,36 @@ msgstr ""
 "Paprastai rekomenduojama pasidaryti fotografijų atsarginę kopiją prieš jas "
 "ištrinant iš fotoaparato. <b>Atsargiai naudokitės šia parinktimi!</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:215
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:215
 msgid "Warning"
 msgstr "Įspėjimas"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:334
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:334
 #, csharp-format
 #| msgid "Photo {0} of {1}"
 msgid "Importing Photos: {0} of {1}..."
 msgstr "Importuojamos fotografijos: {0} iš {1}..."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:358
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:358
 #| msgid "Rotating photos"
 msgid "Importing photos..."
 msgstr "Importuojamos fotografijos..."
 
 #. TODO: Using a GtkSpinner would be nicer here.
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:365
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:365
 msgid "Searching for photos... (You can already click Import to continue)"
 msgstr "Ieškoma fotografijų... (Jau galite spausti Importuoti ir tęsti)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:68
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportFailureDialog.cs:68
 #| msgid "Import Source:"
 msgid "Import failures"
 msgstr "Importo klaidos"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:69
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportFailureDialog.cs:69
 msgid "Some files failed to import"
 msgstr "Kai kurių failų nepavyko importuoti"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:70
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportFailureDialog.cs:70
 msgid ""
 "Some files could not be imported, they might be corrupt or there might be "
 "something wrong with the storage on which they reside."
@@ -1715,28 +1715,28 @@ msgstr ""
 "Kai kurių failų nepavyko importuoti, jie gali būti sugadinti arba gali būti "
 "kažkas negerai su saugykla, kur jie yra."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:133
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportFailureDialog.cs:133
 msgid "Details"
 msgstr "Išsami informacija"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:79
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:102
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/PreferenceDialog.cs:79
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/PreferenceDialog.cs:102
 msgid "None"
 msgstr "Nėra"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:81
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/PreferenceDialog.cs:81
 msgid "System profile"
 msgstr "Sistemos profilis"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:119
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/PreferenceDialog.cs:119
 msgid "Standard theme"
 msgstr "Standartinė tema"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/RepairDbDialog.cs:47
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/RepairDbDialog.cs:47
 msgid "Error loading database."
 msgstr "Įvyko klaida įkeliant duomenų bazę."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/RepairDbDialog.cs:48
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/RepairDbDialog.cs:48
 #, csharp-format
 msgid ""
 "F-Spot encountered an error while loading the photo database. The old "
@@ -1745,74 +1745,74 @@ msgstr ""
 "F-Spot aptiko klaidą įkeliant fotografijų duomenų bazę. Sena duomenų bazė "
 "perkelta į {0} ir buvo sukurta nauja duomenų bazė."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/SelectionRatioDialog.cs:74
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/SelectionRatioDialog.cs:74
 #| msgid "Camera Selection"
 msgid "New Selection"
 msgstr "Naujas pasirinkimas"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/SelectionRatioDialog.cs:81
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/SelectionRatioDialog.cs:81
 msgid "Label"
 msgstr "Užrašas"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/SelectionRatioDialog.cs:85
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/SelectionRatioDialog.cs:85
 msgid "Ratio"
 msgstr "Proporcija"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ThreadProgressDialog.cs:79
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ThreadProgressDialog.cs:79
 msgid "Retry"
 msgstr "Kartoti"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ThreadProgressDialog.cs:81
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ThreadProgressDialog.cs:81
 #: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/pickfolder_dialog.ui.h:1
 msgid "Skip"
 msgstr "Praleisti"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:1
 msgid "Adjust Time"
 msgstr "Koreguoti laiką"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:2
 msgid "Adjusted date: "
 msgstr "Pakoreguota data:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:3
 msgid "Current date:"
 msgstr "Dabartinė data:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:4
 msgid "0000:00:00 00:00:00"
 msgstr "0000:00:00 00:00:00"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:5
 msgid "difference:"
 msgstr "skirtumas:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:6
 msgid "00:00:00"
 msgstr "00:00:00"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:7
 msgid "<b>Reference Photo</b>"
 msgstr "<b>Pamatinė fotografija</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:9
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:9
 msgid "Space all photos by"
 msgstr "Praretinti visas fotografijas"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:10
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:10
 msgid "5"
 msgstr "5"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:11
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:11
 msgid "min. Starting at {0}"
 msgstr "min. Pradedant nuo {0}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:12
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:12
 msgid "<b>Action</b>"
 msgstr "<b>Veiksmas</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:13
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:13
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:2
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:2
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:2
 #: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:2
@@ -1822,125 +1822,125 @@ msgstr "<b>Veiksmas</b>"
 msgid "<b>Photos</b>"
 msgstr "<b>Fotografijos</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:1
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:3
 msgid "P_arent Tag:"
 msgstr "_Pirminė žyma:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:2
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:2
 msgid "_Tag Name:"
 msgstr "Ž_ymos pavadinimas:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:3
 msgid "Create _icon for this tag when first used"
 msgstr "Sukurti _piktogramą šiai žymai, pirmąkart ją panaudojus"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:4
 msgid "C_reate"
 msgstr "_Sukurti"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:1
 msgid "Set date range"
 msgstr "Nustatyti datos diapazoną"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:2
 msgid "<b>Select period</b>"
 msgstr "<b>Pasirinkite laikotarpį</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:4
 msgid "<b>Start Date</b>"
 msgstr "<b>Pradžios data</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:5
 msgid "<b>End Date</b>"
 msgstr "<b>Pabaigos data</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:6
 msgid "Cancel, do not change the current timeline. "
 msgstr "Atšaukti, nekeisti dabartinės laiko juostos."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:7
 msgid "Only photos taken within these dates will be displayed."
 msgstr "Bus rodomos tik fotografjos, nufotografuotos šiuo laikotarpiu."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:1
 msgid "Edit Tag"
 msgstr "Keisti žymą"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:4
 msgid "_Icon:"
 msgstr "_Piktograma:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:5
 msgid "Edit icon"
 msgstr "Keisti piktogramą"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:1
 msgid "Edit Tag Icon"
 msgstr "Keisti žymos piktogramą"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:2
 msgid "<b>Preview</b>"
 msgstr "<b>Peržiūra</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:3
 msgid "Design icon from"
 msgstr "Sukurti piktogramą iš"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:4
 msgid "<b>From External Photo</b>"
 msgstr "<b>Iš išorinės fotografijos</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:5
 msgid "<b>Predefined icons</b>"
 msgstr "<b>Numatytosios piktogramos</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:6
 msgid "<b>From Photo</b>"
 msgstr "<b>Iš fotografijos</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:7
 msgid "No _image"
 msgstr "Nėra _paveikslėlio"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:1
 msgid "Filter on selected rolls"
 msgstr "Filtruoti pagal pasirinktas juosteles"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:2
 msgid "<b>View all pictures imported</b>"
 msgstr "<b>Žiūrėti visus importuotus paveikslėlius</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:3
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:203
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:558
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:203
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:558
 msgid "and"
 msgstr "ir"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:4
 msgid "Number of photos in selected rolls:"
 msgstr "Fotografijų pasirinktose juostelėse skaičius:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:5
 msgid "Show all photos."
 msgstr "Rodyti visas fotografijas."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:6
 msgid "Display only those photos that were imported in specified Rolls."
 msgstr ""
 "Rodyti tik tas fotografijas, kurios buvo importuotos pasirinktose juostelėse."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:7
 #| msgid "Path"
 msgid "at"
 msgstr "vietoje"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:8
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:8
 msgid "after"
 msgstr "po"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:9
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:9
 #| msgid ""
 #| "at\n"
 #| "after\n"
@@ -1948,31 +1948,31 @@ msgstr "po"
 msgid "between"
 msgstr "tarp"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:1
 msgid "F-Spot Preferences"
 msgstr "F-Spot nustatymai"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:2
 msgid "When importing photos, copy them to:"
 msgstr "Importuojant fotografijas, nukopijuotis juos į:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:3
 msgid "Color profile for display:"
 msgstr "Spalvos profilis rodymui ekrane:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:4
 msgid "Color profile for printing:"
 msgstr "Spalvos profilis spausdinimui:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:5
 msgid "F-Spot appearance:"
 msgstr "F-Spot išvaizda:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:6
 msgid "Select A Folder"
 msgstr "Pasirinkite aplanką"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:7
 msgid ""
 "Inside the image files when possible\n"
 "<small>Makes them accessible to other image-editing programs.</small>"
@@ -1980,11 +1980,11 @@ msgstr ""
 "Paveikslėlių failuose, kai įmanoma\n"
 "<small>Taip jie prieinami kitoms paveikslėlių redagavimo programoms.</small>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:9
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:9
 msgid "Store tags and descriptions for photos:"
 msgstr "Saugoti paveikslėlių žymas ir aprašymus:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:10
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:10
 msgid ""
 "Never modify image files.\n"
 "<small>Write XMP files next to the images instead.</small>"
@@ -1992,45 +1992,45 @@ msgstr ""
 "Niekada nekeisti paveikslėlių failų.\n"
 "<small>Vietoj to įrašyti XMP failus šalia paveikslėlių.</small>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:12
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:12
 msgid "Separately from the image files"
 msgstr "Atskirai nuo paveikslėlių failų"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:1
 msgid "Set Rating Filter"
 msgstr "Nustatyti įvertinimo filtrą"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:2
 msgid "<b>Min Rating</b>"
 msgstr "<b>Mažiausias įvertinimas</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:3
 msgid "<b>Max Rating</b>"
 msgstr "<b>Didžiausias įvertinimas</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RepairDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/RepairDialog.ui.h:1
 msgid "Repair"
 msgstr "Pataisyti"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui.h:1
 msgid "Selection Constraints"
 msgstr "Pasirinkimo apribojimai"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui.h:2
 msgid "Manage your custom selection ratios"
 msgstr "Valdyti pasirinktines žymėjimo proporcijas"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:56
-#: ../src/Clients/MainApp/FSpot.Widgets/Sidebar.cs:74
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:56
+#: ../src/Clients/FSpot/FSpot.Widgets/Sidebar.cs:74
 msgid "Edit"
 msgstr "Taisyti"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:224
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:224
 #: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:69
 msgid "No selection available"
 msgstr "Pasirinkimas negalimas"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:225
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:225
 msgid ""
 "This tool requires an active selection. Please select a region of the photo "
 "and try the operation again"
@@ -2038,14 +2038,14 @@ msgstr ""
 "Šiam įrankiui reikia aktyvaus pažymėjimo. Pažymėkite dalį fotografijos ir "
 "bandykite dar kartą"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:243
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:243
 msgid "Error saving adjusted photo"
 msgid_plural "Error saving adjusted photos"
 msgstr[0] "Saugant pakoreguotą fotografiją įvyko klaida"
 msgstr[1] "Saugant pakoreguotas fotografijas įvyko klaida"
 msgstr[2] "Saugant pakoreguotas fotografijas įvyko klaida"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:245
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:245
 #, csharp-format
 msgid ""
 "Received exception \"{0}\". Note that you have to develop RAW files into "
@@ -2054,62 +2054,62 @@ msgstr ""
 "Gauta išimtis „{0}“. Atminkite, kad prieš redaguodami turite konvertuoti RAW "
 "failą į JPEG."
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:495
+#: ../src/Clients/FSpot/FSpot.Widgets/Filmstrip.cs:495
 msgid "_Horizontal"
 msgstr "_Horizontali"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:499
+#: ../src/Clients/FSpot/FSpot.Widgets/Filmstrip.cs:499
 msgid "_Vertical"
 msgstr "_Vertikali"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:84
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:84
 msgid "Find:"
 msgstr "Rasti:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/FolderTreePage.cs:45
+#: ../src/Clients/FSpot/FSpot.Widgets/FolderTreePage.cs:45
 msgid "Folders"
 msgstr "Aplankai"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/FolderTreeView.cs:158
+#: ../src/Clients/FSpot/FSpot.Widgets/FolderTreeView.cs:158
 msgid "Filesystem"
 msgstr "Failų sistema"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:126
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:406
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:456
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:462
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:466
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:126
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:406
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:456
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:462
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:466
 msgid "(Unknown)"
 msgstr "(Nežinoma)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:306
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:306
 msgid "Histogram"
 msgstr "Histograma"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:325
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:325
 msgid "Image Information"
 msgstr "Paveikslėlio informacija"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:333
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:333
 #, csharp-format
 msgid "{0} Photos"
 msgstr "{0} fotografijos"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:335
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:335
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:9
 msgid "Name"
 msgstr "Pavadinimas"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:347
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:347
 msgid "Version"
 msgstr "Versija"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:362
-#: ../src/Clients/MainApp/PhotoVersionMenu.cs:85
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:362
+#: ../src/Clients/FSpot/PhotoVersionMenu.cs:85
 msgid "(No Edits)"
 msgstr "(Nėra redagavimų)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:366
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:366
 #, csharp-format
 msgid "(One Edit)"
 msgid_plural "({0} Edits)"
@@ -2117,16 +2117,16 @@ msgstr[0] "({0} kartą redaguota)"
 msgstr[1] "({0} kartus redaguota)"
 msgstr[2] "({0} kartų redaguota)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:372
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:372
 msgid "Date"
 msgstr "Data"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:372
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:372
 msgid "Show Date"
 msgstr "Rodyti datą"
 
 #. Note for translators: {0} is a date, {1} and {2} are times.
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:383
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:383
 #, csharp-format
 msgid ""
 "On {0} between \n"
@@ -2135,7 +2135,7 @@ msgstr ""
 "{0} tarp\n"
 "{1} ir {2}"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:388
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:388
 #, csharp-format
 msgid ""
 "Between {0} \n"
@@ -2144,174 +2144,174 @@ msgstr ""
 "Tarp {0} \n"
 "ir {1}"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:394
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:394
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:6
 msgid "Size"
 msgstr "Dydis"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:394
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:394
 msgid "Show Size"
 msgstr "Rodyti dydį"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:409
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:409
 msgid "Exposure"
 msgstr "Ekspozicija"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:409
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:409
 msgid "Show Exposure"
 msgstr "Rodyti ekspoziciją"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:439
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:439
 msgid "flash fired"
 msgstr "blykstė suveikė"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:441
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:441
 msgid "flash didn't fire"
 msgstr "blykstė nesuveikė"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:451
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:451
 msgid "Focal Length"
 msgstr "Židinio nuotolis"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:451
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:451
 msgid "Show Focal Length"
 msgstr "Rodyti židinio nuotolį"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:461
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:461
 msgid "Camera"
 msgstr "Fotoaparatas"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:461
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:461
 msgid "Show Camera"
 msgstr "Rodyti fotoaparatą"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:465
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:465
 msgid "Creator"
 msgstr "Kūrėjas"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:465
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:465
 #| msgid "Creator"
 msgid "Show Creator"
 msgstr "Rodyti kūrėją"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:469
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:469
 msgid "File Size"
 msgstr "Failo dydis"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:469
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:469
 msgid "Show File Size"
 msgstr "Rodyti failo dydį"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:477
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:477
 msgid "(File read error)"
 msgstr "(Failo skaitymo klaida)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:485
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:485
 msgid "Rating"
 msgstr "Įvertinimas"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:485
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:485
 #| msgid "Rating"
 msgid "Show Rating"
 msgstr "Rodyti įvertinimą"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:489
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:489
 #| msgid "(No Tags)"
 msgid "Show Tags"
 msgstr "Rodyti žymas"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:44
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:44
 msgid "Metadata"
 msgstr "Metaduomenys"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:125
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:125
 msgid "Extended Metadata"
 msgstr "Išplėstiniai metaduomenys"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:378
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:378
 msgid "No active photo"
 msgstr "Nėra aktyvios fotografijos"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:380
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:380
 #, csharp-format
 msgid "The photo \"{0}\" does not exist"
 msgstr "Fotografija „{0}“ neegzistuoja"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:382
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:382
 msgid "No metadata available"
 msgstr "Metaduomenų neprieinama"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:107
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:107
 msgid "Error saving sharpened photo"
 msgstr "Klaida saugant paryškintą fotografiją"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:154
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:154
 msgid "Sharpen"
 msgstr "Paryškinti"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:164
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:164
 msgid "Amount:"
 msgstr "Kiekis:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:165
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:165
 msgid "Radius:"
 msgstr "Spindulys"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:166
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:166
 msgid "Threshold:"
 msgstr "Slenkstis:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/TagMenu.cs:126
-#: ../src/Clients/MainApp/TagPopup.cs:64
+#: ../src/Clients/FSpot/FSpot.Widgets/TagMenu.cs:126
+#: ../src/Clients/FSpot/TagPopup.cs:64
 msgid "Create New Tag..."
 msgstr "Sukurti naują žymą..."
 
 #. Fixme this should really set parent menu
 #. items insensitve
-#: ../src/Clients/MainApp/PhotoTagMenu.cs:70
+#: ../src/Clients/FSpot/PhotoTagMenu.cs:70
 msgid "(No Tags)"
 msgstr "(Žymų nėra)"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:95
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:95
 msgid "Create New Version"
 msgstr "Sukurti naują versiją"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:96
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:96
 msgid "Name:"
 msgstr "Pavadinimas:"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:100
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:100
 msgid "Rename Version"
 msgstr "Pervadinti versiją"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:101
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:101
 msgid "New name:"
 msgstr "Naujas pavadinimas:"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:161
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:161
 msgid "Delete"
 msgstr "Ištrinti"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:162
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:162
 #, csharp-format
 msgid "Really delete version \"{0}\"?"
 msgstr "Tikrai ištrinti versiją „{0}“?"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:163
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:163
 msgid "This removes the version and deletes the corresponding file from disk."
 msgstr "Tai pašalina versiją ir ištrina atitinkamą failą iš disko."
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:208
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:208
 msgid "De_tach"
 msgstr "A_tkabinti"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:209
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:209
 #, csharp-format
 #| msgid "Really delete version \"{0}\"?"
 msgid "Really detach version \"{0}\" from \"{1}\"?"
 msgstr "Tikrai atkabinti versiją „{0}“ nuo „{1}“?"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:210
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:210
 msgid ""
 "This makes the version appear as a separate photo in the library. To undo, "
 "drag the new photo back to its parent."
@@ -2319,12 +2319,12 @@ msgstr ""
 "Tai rodo versiją kaip atskirą fotografiją bibliotekoje. Atšaukimui "
 "nutempkite fotografiją atgal prie tėvinės."
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:232
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:232
 #| msgid "Reparented"
 msgid "Re_parent"
 msgstr "_Keisti tėvą"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:233
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:233
 #, csharp-format
 #| msgid "Really delete version \"{0}\"?"
 msgid "Really reparent \"{0}\" as version of \"{1}\"?"
@@ -2333,7 +2333,7 @@ msgstr[0] "Tikrai keisti {2} fotografiją kaip „{1}“ versiją?"
 msgstr[1] "Tikrai keisti {2} fotografijas kaip „{1}“ versijas?"
 msgstr[2] "Tikrai keisti {2} fotografijų kaip „{1}“ versijas?"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:236
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:236
 msgid ""
 "This makes the photos appear as a single one in the library. The versions "
 "can be detached using the Photo menu."
@@ -2341,21 +2341,21 @@ msgstr ""
 "Tai rodys fotografijas kaip vieną bibliotekoje. Versijos gali būti "
 "atkabintus naudojant fotografijų meniu."
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:276
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:276
 #, csharp-format
 #| msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgid "Received exception \"{0}\"."
 msgstr "Gauta išimtis „{0}“."
 
-#: ../src/Clients/MainApp/TagCommands.cs:188
+#: ../src/Clients/FSpot/TagCommands.cs:188
 msgid "Create New Tag"
 msgstr "Sukurti naują žymą"
 
-#: ../src/Clients/MainApp/TagCommands.cs:189
+#: ../src/Clients/FSpot/TagCommands.cs:189
 msgid "Name of New Tag:"
 msgstr "Naujos žymos pavadinimas:"
 
-#: ../src/Clients/MainApp/TagPopup.cs:54
+#: ../src/Clients/FSpot/TagPopup.cs:54
 #, csharp-format
 msgid "Find"
 msgid_plural "Find"
@@ -2363,502 +2363,502 @@ msgstr[0] "Rasti"
 msgstr[1] "Rasti"
 msgstr[2] "Rasti"
 
-#: ../src/Clients/MainApp/TagPopup.cs:70
+#: ../src/Clients/FSpot/TagPopup.cs:70
 msgid "Edit Tag..."
 msgstr "Keisti žymą..."
 
-#: ../src/Clients/MainApp/TagPopup.cs:75
+#: ../src/Clients/FSpot/TagPopup.cs:75
 msgid "Delete Tag"
 msgid_plural "Delete Tags"
 msgstr[0] "Ištrinti žymą"
 msgstr[1] "Ištrinti žymas"
 msgstr[2] "Ištrinti žymas"
 
-#: ../src/Clients/MainApp/TagPopup.cs:81
+#: ../src/Clients/FSpot/TagPopup.cs:81
 msgid "Attach Tag to Selection"
 msgid_plural "Attach Tags to Selection"
 msgstr[0] "_Prisegti žymą pasirinktai"
 msgstr[1] "_Prisegti žymą pasirinktoms"
 msgstr[2] "_Prisegti žymą pasirinktoms"
 
-#: ../src/Clients/MainApp/TagPopup.cs:85
+#: ../src/Clients/FSpot/TagPopup.cs:85
 msgid "Remove Tag From Selection"
 msgid_plural "Remove Tags From Selection"
 msgstr[0] "Pašalinti žymą nuo pasirinkos"
 msgstr[1] "Pašalinti žymas nuo pasirinktų"
 msgstr[2] "Pašalinti žymas nuo pasirinktų"
 
-#: ../src/Clients/MainApp/TagPopup.cs:91
+#: ../src/Clients/FSpot/TagPopup.cs:91
 msgid "Merge Tags"
 msgstr "Sujungti žymas"
 
-#: ../src/Clients/MainApp/ThumbnailCommand.cs:54
+#: ../src/Clients/FSpot/ThumbnailCommand.cs:54
 msgid "Updating Thumbnails"
 msgstr "Atnaujinamos miniatiūros"
 
-#: ../src/Clients/MainApp/ThumbnailCommand.cs:62
+#: ../src/Clients/FSpot/ThumbnailCommand.cs:62
 #, csharp-format
 msgid "Updating picture \"{0}\""
 msgstr "Atnaujinamas paveikslėlis „{0}“"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:1
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:1
 msgid "C_ontrast:"
 msgstr "K_ontrastas:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:2
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:2
 msgid "_Hue:"
 msgstr "_Atspalvis:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:3
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:3
 msgid "_Brightness:"
 msgstr "R_yškumas:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:4
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:4
 msgid "_Saturation:"
 msgstr "_Sodrumas:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:5
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:5
 msgid "_Exposure:"
 msgstr "_Ekspozicija:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:6
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:6
 msgid "<b>Co_rrections</b>"
 msgstr "<b>_Korekcijos</b>"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:7
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:7
 msgid "_Tint:"
 msgstr "_Atspalvis:"
 
 #. Note for translators: meant as Temperature
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:9
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:9
 msgid "Te_mp:"
 msgstr "Te_mp:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:10
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:10
 msgid "<b>_White Balance</b>"
 msgstr "<b>_Baltumo balansas</b>"
 
 #. Translators: this string means 'source of import'
-#: ../src/Clients/MainApp/ui/import.ui.h:3
+#: ../src/Clients/FSpot/ui/import.ui.h:3
 #| msgid "Import roll"
 msgid "Import _from:"
 msgstr "Importuoti _iš:"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:4
+#: ../src/Clients/FSpot/ui/import.ui.h:4
 #| msgid "Attach tag:"
 msgid "_Attach tags:"
 msgstr "_Atsegti žymą:"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:5
+#: ../src/Clients/FSpot/ui/import.ui.h:5
 #| msgid "Detect duplicates"
 msgid "_Detect duplicates"
 msgstr "_Rasti dublikatus"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:6
+#: ../src/Clients/FSpot/ui/import.ui.h:6
 #| msgid "Copy files to the Photos folder"
 msgid "C_opy files to the Photos folder"
 msgstr "K_opijuoti failus į fotografijų aplanką"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:7
+#: ../src/Clients/FSpot/ui/import.ui.h:7
 #| msgid "Include subfolders"
 msgid "I_nclude subfolders"
 msgstr "Įtraukti poapla_nkius"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:8
+#: ../src/Clients/FSpot/ui/import.ui.h:8
 msgid "_Remove original files after import"
 msgstr "Pašalinti o_riginalo failus po importo"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:9
+#: ../src/Clients/FSpot/ui/import.ui.h:9
 #| msgid "Import"
 msgid "_Import"
 msgstr "_Importuoti"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:1
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:1
 msgid "Create Mail"
 msgstr "Sukurti el. laišką"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:3
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:3
 msgid "Tiny"
 msgstr "Mažytis"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:4
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:4
 msgid "320 px"
 msgstr "320 px"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:5
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:5
 msgid "Small"
 msgstr "Mažas"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:6
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:6
 msgid "480 px"
 msgstr "480 px"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:7
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:7
 msgid "Medium"
 msgstr "Vidutinis"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:8
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:8
 msgid "640 px"
 msgstr "640 px"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:9
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:9
 msgid "Large"
 msgstr "Didelis"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:10
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:10
 msgid "800 px"
 msgstr "800 px"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:11
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:11
 msgid "Extra large"
 msgstr "Labai didelis"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:12
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:12
 msgid "1024 px"
 msgstr "1024 px"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:14
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:14
 msgid "Original size (possible very large file size)"
 msgstr "Originalus dydis (gali būti labai didelis failų dydis)"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:15
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:15
 msgid "<b>Size</b>"
 msgstr "<b>Dydis</b>"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:16
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:16
 msgid "Number of pictures"
 msgstr "Paveikslėlių skaičius"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:17
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:17
 msgid "Total original size"
 msgstr "Visas originalus dydis"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:18
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:18
 msgid "Estimated new size"
 msgstr "Apskaičiuotas naujas dydis"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:19
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:19
 msgid "<b>Summary</b>"
 msgstr "<b>Santrauka</b>"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:20
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:20
 msgid "Do not send a mail"
 msgstr "Nesiųsti el. laiško"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:21
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:21
 msgid "_Create Mail"
 msgstr "_Sukurti el. laišką"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:22
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:22
 msgid "Create a mail with the selected photos (possibly resized) attached"
 msgstr ""
 "Sukurti el. laišką su prisegtomis pasirinktomis fotografijomis "
 "(pageidaujant, pakeisto dydžio)"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:1
-#: ../src/Clients/MainApp/ui/single_view.ui.h:2
+#: ../src/Clients/FSpot/ui/main_window.ui.h:1
+#: ../src/Clients/FSpot/ui/single_view.ui.h:2
 msgid "_Photo"
 msgstr "_Fotografija"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:2
+#: ../src/Clients/FSpot/ui/main_window.ui.h:2
 msgid "_Import..."
 msgstr "_Importuoti..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:3
+#: ../src/Clients/FSpot/ui/main_window.ui.h:3
 msgid "_Version"
 msgstr "_Versija"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:4
+#: ../src/Clients/FSpot/ui/main_window.ui.h:4
 msgid "Create _New Version..."
 msgstr "Sukurti _naują versiją..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:5
+#: ../src/Clients/FSpot/ui/main_window.ui.h:5
 msgid "_Delete Version"
 msgstr "_Ištrinti versiją"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:6
+#: ../src/Clients/FSpot/ui/main_window.ui.h:6
 msgid "_Rename Version"
 msgstr "_Pervadinti versiją"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:7
+#: ../src/Clients/FSpot/ui/main_window.ui.h:7
 #| msgid "_Delete Version"
 msgid "De_tach Version"
 msgstr "A_tkabinti versiją"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:8
+#: ../src/Clients/FSpot/ui/main_window.ui.h:8
 msgid "_Export to"
 msgstr "_Eksportuoti į"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:9
+#: ../src/Clients/FSpot/ui/main_window.ui.h:9
 msgid "Page Set_up..."
 msgstr "Puslapio sąran_ka..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:10
+#: ../src/Clients/FSpot/ui/main_window.ui.h:10
 msgid "Send by _Mail..."
 msgstr "Siųsti _el. paštu..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:11
+#: ../src/Clients/FSpot/ui/main_window.ui.h:11
 msgid "_Close"
 msgstr "_Užverti"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:12
+#: ../src/Clients/FSpot/ui/main_window.ui.h:12
 msgid "_Quit"
 msgstr "Iš_eiti"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:13
-#: ../src/Clients/MainApp/ui/single_view.ui.h:6
+#: ../src/Clients/FSpot/ui/main_window.ui.h:13
+#: ../src/Clients/FSpot/ui/single_view.ui.h:6
 msgid "_Edit"
 msgstr "_Keisti"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:14
+#: ../src/Clients/FSpot/ui/main_window.ui.h:14
 msgid "Copy"
 msgstr "Kopijuoti"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:15
+#: ../src/Clients/FSpot/ui/main_window.ui.h:15
 msgid "Select _All"
 msgstr "Pasirinkti _visas"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:16
+#: ../src/Clients/FSpot/ui/main_window.ui.h:16
 msgid "Select _None"
 msgstr "_Nepasirinkti jokių"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:17
+#: ../src/Clients/FSpot/ui/main_window.ui.h:17
 #| msgid "Camera Selection"
 msgid "_Invert Selection"
 msgstr "_Invertuoti žymėjimą"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:20
+#: ../src/Clients/FSpot/ui/main_window.ui.h:20
 msgid "_Sharpen..."
 msgstr "_Paryškinti..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:21
+#: ../src/Clients/FSpot/ui/main_window.ui.h:21
 msgid "Adjust _Time..."
 msgstr "Koreguoti _laiką..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:22
+#: ../src/Clients/FSpot/ui/main_window.ui.h:22
 msgid "Re_fresh Thumbnail"
 msgstr "_Atnaujinti miniatiūrą"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:25
-#: ../src/Clients/MainApp/ui/single_view.ui.h:9
+#: ../src/Clients/FSpot/ui/main_window.ui.h:25
+#: ../src/Clients/FSpot/ui/single_view.ui.h:9
 msgid "Set as _Background"
 msgstr "Padaryti darbastalio _fonu"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:26
+#: ../src/Clients/FSpot/ui/main_window.ui.h:26
 msgid "_Attach Tag"
 msgstr "_Pridėti žymą"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:28
+#: ../src/Clients/FSpot/ui/main_window.ui.h:28
 msgid "Manage _Extensions"
 msgstr "Valdyti _plėtinius"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:29
-#: ../src/Clients/MainApp/ui/single_view.ui.h:10
+#: ../src/Clients/FSpot/ui/main_window.ui.h:29
+#: ../src/Clients/FSpot/ui/single_view.ui.h:10
 msgid "_View"
 msgstr "R_odymas"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:30
-#: ../src/Clients/MainApp/ui/single_view.ui.h:11
+#: ../src/Clients/FSpot/ui/main_window.ui.h:30
+#: ../src/Clients/FSpot/ui/single_view.ui.h:11
 msgid "_Slideshow"
 msgstr "_Skaidrių rodymas"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:31
-#: ../src/Clients/MainApp/ui/single_view.ui.h:12
+#: ../src/Clients/FSpot/ui/main_window.ui.h:31
+#: ../src/Clients/FSpot/ui/single_view.ui.h:12
 msgid "_Fullscreen"
 msgstr "_Visame ekrane"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:32
+#: ../src/Clients/FSpot/ui/main_window.ui.h:32
 msgid "Thumbnail _elements"
 msgstr "Miniatiūrų _elementai"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:33
+#: ../src/Clients/FSpot/ui/main_window.ui.h:33
 msgid "_Dates"
 msgstr "_Datos"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:34
+#: ../src/Clients/FSpot/ui/main_window.ui.h:34
 msgid "T_ags"
 msgstr "Žy_mos"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:35
+#: ../src/Clients/FSpot/ui/main_window.ui.h:35
 msgid "_Ratings"
 msgstr "Į_vertinimai"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:36
+#: ../src/Clients/FSpot/ui/main_window.ui.h:36
 msgid "_Components"
 msgstr "_Komponentai"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:37
+#: ../src/Clients/FSpot/ui/main_window.ui.h:37
 msgid "Side_bar"
 msgstr "Šoninė j_uosta"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:38
+#: ../src/Clients/FSpot/ui/main_window.ui.h:38
 msgid "_Timeline"
 msgstr "_Laiko juosta"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:39
+#: ../src/Clients/FSpot/ui/main_window.ui.h:39
 msgid "_Filmstrip"
 msgstr "_Diafilmas"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:40
+#: ../src/Clients/FSpot/ui/main_window.ui.h:40
 msgid "Too_lbar"
 msgstr "Į_rankinė"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:41
-#: ../src/Clients/MainApp/ui/single_view.ui.h:18
+#: ../src/Clients/FSpot/ui/main_window.ui.h:41
+#: ../src/Clients/FSpot/ui/single_view.ui.h:18
 msgid "Zoom _in"
 msgstr "_Didinti"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:42
-#: ../src/Clients/MainApp/ui/single_view.ui.h:19
+#: ../src/Clients/FSpot/ui/main_window.ui.h:42
+#: ../src/Clients/FSpot/ui/single_view.ui.h:19
 msgid "Zoom _out"
 msgstr "_Mažinti"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:43
+#: ../src/Clients/FSpot/ui/main_window.ui.h:43
 msgid "_Loupe"
 msgstr "_Lupa"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:44
+#: ../src/Clients/FSpot/ui/main_window.ui.h:44
 msgid "_Tag Icons"
 msgstr "Ž_ymų piktogramos"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:45
+#: ../src/Clients/FSpot/ui/main_window.ui.h:45
 msgid "_Hidden"
 msgstr "_Paslėptos"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:46
+#: ../src/Clients/FSpot/ui/main_window.ui.h:46
 msgid "_Small"
 msgstr "_Mažos"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:47
+#: ../src/Clients/FSpot/ui/main_window.ui.h:47
 msgid "_Medium"
 msgstr "_Vidutinės"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:48
+#: ../src/Clients/FSpot/ui/main_window.ui.h:48
 msgid "_Large"
 msgstr "_Didelės"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:49
+#: ../src/Clients/FSpot/ui/main_window.ui.h:49
 msgid "Arrange _by"
 msgstr "Rikiuoti _pagal"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:50
+#: ../src/Clients/FSpot/ui/main_window.ui.h:50
 msgid "_Reverse Order"
 msgstr "_Atvirkštinė tvarka"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:51
+#: ../src/Clients/FSpot/ui/main_window.ui.h:51
 msgid "Fin_d"
 msgstr "Ra_sti"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:52
+#: ../src/Clients/FSpot/ui/main_window.ui.h:52
 msgid "By _Rating"
 msgstr "Pagal į_vertinimą"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:53
+#: ../src/Clients/FSpot/ui/main_window.ui.h:53
 msgid "_Set Rating filter..."
 msgstr "_Nustatyti įvertinimo filtrą..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:54
+#: ../src/Clients/FSpot/ui/main_window.ui.h:54
 msgid "_Clear Rating Filter"
 msgstr "_Išvalyti įvertinimų filtrą"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:55
+#: ../src/Clients/FSpot/ui/main_window.ui.h:55
 msgid "By _Date"
 msgstr "Pagal _datą"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:56
+#: ../src/Clients/FSpot/ui/main_window.ui.h:56
 msgid "_Set Date Range..."
 msgstr "_Nustatyti datos diapazoną..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:58
+#: ../src/Clients/FSpot/ui/main_window.ui.h:58
 msgid "By _Import Roll"
 msgstr "Pagal _importavimo juostelę"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:59
+#: ../src/Clients/FSpot/ui/main_window.ui.h:59
 msgid "_Last Import Roll"
 msgstr "_Paskutinioji importuota juostelė"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:60
+#: ../src/Clients/FSpot/ui/main_window.ui.h:60
 msgid "_Select Import Rolls..."
 msgstr "_Pasirinkti importuotinas juosteles..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:61
+#: ../src/Clients/FSpot/ui/main_window.ui.h:61
 msgid "_Clear Roll Filter"
 msgstr "_Išvalyti juostelių filtrą"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:62
+#: ../src/Clients/FSpot/ui/main_window.ui.h:62
 msgid "_Untagged Photos"
 msgstr "_Fotografijos be žymų"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:63
+#: ../src/Clients/FSpot/ui/main_window.ui.h:63
 msgid "_Tags"
 msgstr "Žy_mos"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:64
+#: ../src/Clients/FSpot/ui/main_window.ui.h:64
 msgid "Create New _Tag..."
 msgstr "Sukurti naują žy_mą..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:65
+#: ../src/Clients/FSpot/ui/main_window.ui.h:65
 msgid "_Edit Tag..."
 msgstr "_Keisti žymą..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:66
+#: ../src/Clients/FSpot/ui/main_window.ui.h:66
 msgid "_Delete Selected Tag"
 msgstr "_Ištrinti pažymėtą žymą"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:67
+#: ../src/Clients/FSpot/ui/main_window.ui.h:67
 msgid "_Attach Tag to Selection"
 msgstr "_Prisegti žymą pažymėtoms"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:68
+#: ../src/Clients/FSpot/ui/main_window.ui.h:68
 msgid "_Remove Tag From Selection"
 msgstr "_Pašalinti žymą iš pasirinktų elementų"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:69
+#: ../src/Clients/FSpot/ui/main_window.ui.h:69
 msgid "_Tools"
 msgstr "Įran_kiai"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:70
-#: ../src/Clients/MainApp/ui/single_view.ui.h:20
+#: ../src/Clients/FSpot/ui/main_window.ui.h:70
+#: ../src/Clients/FSpot/ui/single_view.ui.h:20
 msgid "_Help"
 msgstr "_Žinynas"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:71
+#: ../src/Clients/FSpot/ui/main_window.ui.h:71
 msgid "_Contents"
 msgstr "_Turinys"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:73
+#: ../src/Clients/FSpot/ui/main_window.ui.h:73
 msgid "View"
 msgstr "Vaizduoti"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:74
+#: ../src/Clients/FSpot/ui/main_window.ui.h:74
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:442
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:443
 msgid "Tags: "
 msgstr "Žymos: "
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:75
-#: ../src/Clients/MainApp/ui/single_view.ui.h:21
+#: ../src/Clients/FSpot/ui/main_window.ui.h:75
+#: ../src/Clients/FSpot/ui/single_view.ui.h:21
 msgid "Zoom out"
 msgstr "Mažinti"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:76
-#: ../src/Clients/MainApp/ui/single_view.ui.h:22
+#: ../src/Clients/FSpot/ui/main_window.ui.h:76
+#: ../src/Clients/FSpot/ui/single_view.ui.h:22
 msgid "Zoom in"
 msgstr "Didinti"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:1
+#: ../src/Clients/FSpot/ui/single_view.ui.h:1
 msgid "F-Spot View"
 msgstr "F-Spot rodinys"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:3
+#: ../src/Clients/FSpot/ui/single_view.ui.h:3
 msgid "_New Window"
 msgstr "_Naujas langas"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:4
+#: ../src/Clients/FSpot/ui/single_view.ui.h:4
 msgid "Open _Folder..."
 msgstr "Atverti _aplanką..."
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:5
+#: ../src/Clients/FSpot/ui/single_view.ui.h:5
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:8
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:18
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:17
@@ -2869,39 +2869,39 @@ msgstr "Atverti _aplanką..."
 msgid "_Export"
 msgstr "_Eksportuoti"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:13
+#: ../src/Clients/FSpot/ui/single_view.ui.h:13
 msgid "Show or hide the toolbar"
 msgstr "Rodyti arba slėpti įrankinę"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:14
+#: ../src/Clients/FSpot/ui/single_view.ui.h:14
 msgid "_Toolbar"
 msgstr "Į_rankinė"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:15
+#: ../src/Clients/FSpot/ui/single_view.ui.h:15
 msgid "Show or hide the side pane"
 msgstr "Rodyti arba slėpti šoninį polangį"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:16
+#: ../src/Clients/FSpot/ui/single_view.ui.h:16
 msgid "Side _pane"
 msgstr "Šoninis _polangis"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:17
+#: ../src/Clients/FSpot/ui/single_view.ui.h:17
 msgid "Display File _Names"
 msgstr "Rodyti failų _pavadinimus"
 
-#: ../src/Clients/MainApp/ui/tag_selection_dialog.ui.h:1
+#: ../src/Clients/FSpot/ui/tag_selection_dialog.ui.h:1
 msgid "Select a Tag..."
 msgstr "Pasirinkite žymą..."
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:1
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:1
 msgid "Preferences"
 msgstr "Nustatymai"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:2
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:2
 msgid "_Interpolate image on zoom"
 msgstr "_Keičiant mastelį interpoliuoti paveikslėlį"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:3
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:3
 msgid ""
 "<small><i>Enable this to allow interpolation on zoomed images. You shouldn't "
 "disable this for viewing photos, but disabling the interpolation could be "
@@ -2911,23 +2911,23 @@ msgstr ""
 "paveikslėliuose. To nereikėtų išjungti fotografijų peržiūrai, tačiau gali "
 "būti naudinga išjungti interpoliaciją kuriant piktogramas.<i></small>"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:4
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:4
 msgid "<b>Image Interpolation</b>"
 msgstr "<b>Paveikslėlių interpoliacija</b>"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:5
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:5
 msgid "As _background"
 msgstr "Kaip _fonas"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:6
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:6
 msgid "As check _pattern"
 msgstr "Kaip šachmatų _raštas"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:7
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:7
 msgid "As _custom color: "
 msgstr "Kaip _pasirinktinė spalva: "
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:8
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:8
 msgid ""
 "<small><i>You can choose how to display transparent parts in images. This "
 "option has no effect on photos, but setting this as check pattern or custom "
@@ -2939,7 +2939,7 @@ msgstr ""
 "kitus paveikslėlius su permatomis dalimis, šios parinkties nustatymas į "
 "šachmatų lentos raštą ar kitą spalvą gali būti naudingas.</i></small>"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:9
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:9
 msgid "<b>Transparent Parts</b>"
 msgstr "<b>Permatomos dalys</b>"
 

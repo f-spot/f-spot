@@ -264,55 +264,55 @@ msgstr "กำลังเข้าสู่ระบบ Tabblo"
 msgid "Obtaining URL for upload"
 msgstr "กำลังขอ URL สำหรับอัปโหลด"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:1
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:1
 msgid "Copy Photo"
 msgstr "คัดลอกภาพถ่าย"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:2
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:2
 msgid "Export to"
 msgstr "ส่งออกไปยัง"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:3
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:3
 msgid "Open _With"
 msgstr "เปิด_ด้วย"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:4
-#: ../src/Clients/MainApp/ui/main_window.ui.h:15
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:4
+#: ../src/Clients/FSpot/ui/main_window.ui.h:15
 msgid "Rem_ove Tag"
 msgstr "_ลบป้ายกำกับ"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:5
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:425
-#: ../src/Clients/MainApp/ui/main_window.ui.h:16
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:5
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:425
+#: ../src/Clients/FSpot/ui/main_window.ui.h:16
 msgid "Rotate _Left"
 msgstr "หมุนซ้า_ย"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:6
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:426
-#: ../src/Clients/MainApp/ui/main_window.ui.h:17
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:6
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:426
+#: ../src/Clients/FSpot/ui/main_window.ui.h:17
 msgid "Rotate _Right"
 msgstr "หมุน_ขวา"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:7
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:7
 msgid "Tools"
 msgstr "เครื่องมือ"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:8
-#: ../src/Clients/MainApp/ui/main_window.ui.h:41
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:8
+#: ../src/Clients/FSpot/ui/main_window.ui.h:41
 msgid "_Delete From Drive"
 msgstr "_ลบจากดิสก์"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:9
-#: ../src/Clients/MainApp/ui/main_window.ui.h:60
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:9
+#: ../src/Clients/FSpot/ui/main_window.ui.h:60
 msgid "_Remove From Catalog"
 msgstr "_ลบจากแค็ตตาล็อก"
 
-#: ../src/Clients/MainApp/FSpot/App.cs:300
+#: ../src/Clients/FSpot/FSpot/App.cs:300
 #, csharp-format
 msgid "No photos matching {0} found"
 msgstr "ไม่พบภาพถ่ายที่ตรงกับ {0}"
 
-#: ../src/Clients/MainApp/FSpot/App.cs:301
+#: ../src/Clients/FSpot/FSpot/App.cs:301
 #, csharp-format
 msgid ""
 "The tag \"{0}\" is not applied to any photos. Try adding\n"
@@ -320,270 +320,270 @@ msgid ""
 "F-Spot preference dialog."
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot/App.cs:305
+#: ../src/Clients/FSpot/FSpot/App.cs:305
 msgid "Search returned no results"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot/App.cs:306
+#: ../src/Clients/FSpot/FSpot/App.cs:306
 msgid ""
 "The tag F-Spot is looking for does not exist. Try\n"
 "selecting a different tag in the F-Spot preference\n"
 "dialog."
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:727
+#: ../src/Clients/FSpot/FSpot.Database/Updater.cs:727
 msgid "Updating F-Spot Database"
 msgstr "กำลังปรับข้อมูลฐานข้อมูล F-Spot"
 
-#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:728
+#: ../src/Clients/FSpot/FSpot.Database/Updater.cs:728
 msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.Editors/AutoStretchEditor.cs:17
+#: ../src/Clients/FSpot/FSpot.Editors/AutoStretchEditor.cs:17
 msgid "Auto Color"
 msgstr "ปรับสีอัตโนมัติ"
 
-#: ../src/Clients/MainApp/FSpot.Editors/ColorEditor.cs:41
+#: ../src/Clients/FSpot/FSpot.Editors/ColorEditor.cs:41
 msgid "Adjust Colors"
 msgstr "ปรับสี"
 
-#: ../src/Clients/MainApp/FSpot.Editors/ColorEditor.cs:44
+#: ../src/Clients/FSpot/FSpot.Editors/ColorEditor.cs:44
 msgid "Adjust"
 msgstr "ปรับ"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:36
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:36
 msgid "4 x 3 (Book)"
 msgstr "4 x 3 (หนังสือ)"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:37
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:37
 msgid "4 x 6 (Postcard)"
 msgstr "4 x 6 (ไปรษณียบัตร)"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:38
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:38
 msgid "5 x 7 (L, 2L)"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:39
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:39
 msgid "8 x 10"
 msgstr "8 x 10"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:40
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:40
 msgid "Square"
 msgstr "สี่เหลี่ยมจัตุรัส"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:43
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:43
 msgid "Crop"
 msgstr "ครอบตัด"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:74
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:74
 msgid "Select the area that needs cropping."
 msgstr "เลือกพื้นที่ที่ต้องการครอบตัด"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:99
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:99
 msgid "No Constraint"
 msgstr "ไม่มีข้อกำหนด"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:100
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:100
 msgid "Same as photo"
 msgstr "เหมือนภาพถ่าย"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:105
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:105
 msgid "Custom Ratios..."
 msgstr "กำหนดสัดส่วน..."
 
-#: ../src/Clients/MainApp/FSpot.Editors/DesaturateEditor.cs:17
+#: ../src/Clients/FSpot/FSpot.Editors/DesaturateEditor.cs:17
 msgid "Desaturate"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:19
+#: ../src/Clients/FSpot/FSpot.Editors/RedEyeEditor.cs:19
 msgid "Red-eye Reduction"
 msgstr "ลดตาแดง"
 
-#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:21
+#: ../src/Clients/FSpot/FSpot.Editors/RedEyeEditor.cs:21
 msgid "Fix!"
 msgstr "แก้!"
 
-#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:25
+#: ../src/Clients/FSpot/FSpot.Editors/RedEyeEditor.cs:25
 msgid "Select the eyes you wish to fix."
 msgstr "เลือกตำแหน่งตาที่คุณต้องการแก้"
 
-#: ../src/Clients/MainApp/FSpot.Editors/SepiaEditor.cs:17
+#: ../src/Clients/FSpot/FSpot.Editors/SepiaEditor.cs:17
 msgid "Sepia Tone"
 msgstr "สีซีเปีย"
 
-#: ../src/Clients/MainApp/FSpot.Editors/SoftFocusEditor.cs:32
+#: ../src/Clients/FSpot/FSpot.Editors/SoftFocusEditor.cs:32
 msgid "Soft Focus"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.Editors/TiltEditor.cs:30
+#: ../src/Clients/FSpot/FSpot.Editors/TiltEditor.cs:30
 msgid "Straighten"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:60
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:60
 msgid "Hide"
 msgstr "ซ่อน"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:62
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:62
 msgid "Hide toolbar"
 msgstr "ซ่อนแถบเครื่องมือ"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:68
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:68
 msgid "Info"
 msgstr "ข้อมูล"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:70
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:70
 msgid "Image information"
 msgstr "ข้อมูลของรูปภาพ"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:75
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:75
 msgid "Exit fullscreen"
 msgstr "ออกจากโหมดเต็มจอ"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:83
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:318
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:89
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:83
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:318
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:89
 msgid "Slideshow"
 msgstr "แสดงสไลด์"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:84
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:84
 msgid "Start slideshow"
 msgstr "เริ่มแสดงสไลด์"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:130
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:130
 msgid "Slide transition:"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:59
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:60
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:59
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:60
 msgid "More dates"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:62
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:63
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:62
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:63
 msgid "More"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:523
-#: ../src/Clients/MainApp/ui/main_window.ui.h:34
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:523
+#: ../src/Clients/FSpot/ui/main_window.ui.h:34
 msgid "_Clear Date Range"
 msgstr "_ล้างช่วงเวลา"
 
-#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:477
-#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:479
-#: ../src/Clients/MainApp/FSpot.Import/MetadataImporter.cs:51
+#: ../src/Clients/FSpot/FSpot.Import/ImportController.cs:477
+#: ../src/Clients/FSpot/FSpot.Import/ImportController.cs:479
+#: ../src/Clients/FSpot/FSpot.Import/MetadataImporter.cs:51
 msgid "Imported Tags"
 msgstr "ป้ายกำกับที่นำเข้า"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:80
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:285
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:72
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:80
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:285
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:72
 msgid "Rotate Left"
 msgstr "หมุนซ้าย"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:81
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:81
 msgid "Rotate picture left"
 msgstr "หมุนรูปไปทางซ้าย"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:92
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:289
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:77
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:92
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:289
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:77
 msgid "Rotate Right"
 msgstr "หมุนขวา"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:93
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:93
 msgid "Rotate picture right"
 msgstr "หมุนรูปไปทางขวา"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:103
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:103
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:905
 msgid "Next"
 msgstr "ถัดไป"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:104
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:104
 msgid "Next picture"
 msgstr "รูปถัดไป"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:124
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:124
 msgid "Previous"
 msgstr "ก่อนหน้า"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:125
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:125
 msgid "Previous picture"
 msgstr "รูปก่อนหน้า"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:278
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:193
-#: ../src/Clients/MainApp/ui/import.ui.h:3
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:278
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:193
+#: ../src/Clients/FSpot/ui/import.ui.h:3
 msgid "Import"
 msgstr "นำเข้า"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:280
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:280
 msgid "Import new images"
 msgstr "นำเข้ารูปภาพใหม่"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:296
-#: ../src/Clients/MainApp/ui/main_window.ui.h:3
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:296
+#: ../src/Clients/FSpot/ui/main_window.ui.h:3
 msgid "Browse"
 msgstr "ท่องดู"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:300
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:300
 msgid "Browse many photos simultaneously"
 msgstr "ท่องดูภาพถ่ายพร้อมกันหลายภาพ"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:304
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:304
 msgid "Edit Image"
 msgstr "แก้ไขรูปภาพ"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:308
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:308
 msgid "View and edit a photo"
 msgstr "แสดงและแก้ไขภาพถ่าย"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:313
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:84
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:313
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:84
 msgid "Fullscreen"
 msgstr "เต็มจอ"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:315
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:86
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:315
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:86
 msgid "View photos fullscreen"
 msgstr "ดูภาพถ่ายแบบเต็มหน้าจอ"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:320
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:91
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:320
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:91
 msgid "View photos in a slideshow"
 msgstr "ดูภาพถ่ายแบบฉายสไลด์"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:335
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:335
 msgid "Previous photo"
 msgstr "ภาพก่อนหน้า"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:340
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:340
 msgid "Next photo"
 msgstr "ภาพถัดไป"
 
 #. Don't care otherwise, Tags sounds reasonable
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:353
-#: ../src/Clients/MainApp/FSpot.Widgets/Sidebar.cs:57
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:353
+#: ../src/Clients/FSpot/FSpot.Widgets/Sidebar.cs:57
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:902
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1074
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1114
 msgid "Tags"
 msgstr "ป้ายกำกับ"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:417
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:417
 msgid "Show _Find Bar"
 msgstr "แสดงแ_ถบค้นหา"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:420
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:420
 msgid "Hide _Find Bar"
 msgstr "ซ่อนแ_ถบค้นหา"
 
 #. Note for translators: This indicates the current photo is photo {0} of {1} out of photos
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:649
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs:134
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ProgressDialog.cs:90
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:649
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AdjustTimeDialog.cs:134
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ProgressDialog.cs:90
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:117
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:358
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:209
@@ -593,99 +593,99 @@ msgid "{0} of {1}"
 msgstr "{0} จาก {1}"
 
 #. Translators, The singular case will never happen here.
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1723
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1723
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
 msgstr[0] "ผสานป้ายกำกับ {0} ป้ายที่เลือกเข้าด้วยกัน"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1750
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1750
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1752
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1752
 msgid "_Merge Tags"
 msgstr "_ผสานป้ายกำกับ"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1957
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1957
 #, csharp-format
 msgid "{0} Photo out of {1}"
 msgid_plural "{0} Photos out of {1}"
 msgstr[0] "ภาพถ่าย {0} จาก {1} ภาพ"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1959
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:467
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1959
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:467
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
 msgstr[0] "ภาพถ่าย {0} ภาพ"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1962
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1962
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
 msgstr[0] "(เลือกไว้ {0} ภาพ)"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2043
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2043
 msgid "_Ok"
 msgstr "_ตกลง"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2044
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2044
 msgid "Error Deleting Picture"
 msgstr "เกิดข้อผิดพลาดขณะลบรูป"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2049
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2049
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
 msgstr "ไม่มีสิทธิ์ในการลบแฟ้ม:{1}{0}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2053
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2053
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
 msgstr "เกิดข้อผิดพลาดแบบ {0} ขณะลบแฟ้ม:{2}{1}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2085
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2085
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "ต้องการลบภาพถ่าย {0} ภาพที่เลือกอย่างถาวรหรือไม่?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2089
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2089
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
 msgstr[0] ""
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2092
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2092
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_ลบภาพถ่าย"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2128
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2128
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "ต้องการลบภาพถ่าย {0} ภาพที่เลือกออกจาก F-Spot หรือไม่?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2133
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2133
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
 "again."
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2134
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2134
 msgid "_Remove from Catalog"
 msgstr "_ลบจากแค็ตตาล็อก"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2208
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2208
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "ต้องการลบป้ายกำกับ \"{0}\" หรือไม่?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2210
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2210
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "ต้องการลบป้ายกำกับที่เลือก {0} ป้ายหรือไม่?"
@@ -693,7 +693,7 @@ msgstr "ต้องการลบป้ายกำกับที่เลื
 # Note: This is part of the next string:
 # "If you delete these tags, the association with {0} {1} will be lost."
 # where {0} is photos count, and {1} is replaced by this string
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2215
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2215
 msgid "photo"
 msgid_plural "photos"
 msgstr[0] "ภาพ"
@@ -701,24 +701,24 @@ msgstr[0] "ภาพ"
 # Note: This is part of the previous string:
 # "If you delete these tags, the association with {0} {1} will be lost."
 # where {0} is photos count, and {1} is replaced by previous "photo(s)" string
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2217
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2217
 #, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
 msgid_plural ""
 "If you delete these tags, the association with {0} {1} will be lost."
 msgstr[0] "ถ้าคุณลบป้ายกำกับเหล่านี้ การเชื่อมโยงกับภาพถ่าย {0} {1}ก็จะสูญหายไป"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2222
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2222
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_ลบป้ายกำกับ"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2236
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2236
 msgid "Tag is not empty"
 msgstr "ป้ายกำกับมีข้อมูลอยู่"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2237
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2237
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -726,34 +726,34 @@ msgid ""
 msgstr ""
 "ไม่สามารถลบป้ายกำกับที่มีป้ายกำกับย่อยอยู่ภายในได้ กรุณาลบป้ายกำกับต่างๆ ภายใต้ \"{0}\" เสียก่อน"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2686
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2686
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "หมุนภาพถ่ายที่เลือกไปทางซ้าย"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2699
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2699
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "หมุนภาพถ่ายที่เลือกไปทางขวา"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2710
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2710
 #, csharp-format
 msgid "Find _Selected Tag"
 msgid_plural "Find _Selected Tags"
 msgstr[0] "_ค้นหาป้ายกำกับที่เลือก"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2714
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2714
 #, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
 msgstr[0] "ค้นหาป้ายกำกับที่เลือก _ด้วย"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2755
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2755
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "จะสร้างฉบับสำเนาใหม่หรือไม่?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2757
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2757
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -764,109 +764,109 @@ msgid_plural ""
 msgstr[0] ""
 "ก่อนที่จะเรียก {1} จะให้ F-Spot สร้างฉบับสำเนาของภาพถ่ายที่เลือกเพื่อรักษาต้นฉบับไว้หรือไม่?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2779
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2779
 msgid "XCF version"
 msgstr "ฉบับ XCF"
 
 #. Note for translators: Reparented is a picture becoming a version of another one
-#: ../src/Clients/MainApp/FSpot/Photo.cs:406
+#: ../src/Clients/FSpot/FSpot/Photo.cs:406
 msgid "Reparented"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:423
+#: ../src/Clients/FSpot/FSpot/Photo.cs:423
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
 msgstr[0] "มีการแก้ไข ({0})"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:446
+#: ../src/Clients/FSpot/FSpot/Photo.cs:446
 #, csharp-format
 msgid "Modified in {1}"
 msgstr "มีการแก้ไขใน {1}"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:446
+#: ../src/Clients/FSpot/FSpot/Photo.cs:446
 #, csharp-format
 msgid "Modified in {1} ({0})"
 msgstr "มีการแก้ไขใน {1} ({0})"
 
-#: ../src/Clients/MainApp/FSpot/PhotoStore.cs:180
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:17
+#: ../src/Clients/FSpot/FSpot/PhotoStore.cs:180
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:17
 msgid "Original"
 msgstr "ต้นฉบับ"
 
-#: ../src/Clients/MainApp/FSpot/PhotoView.cs:337
+#: ../src/Clients/FSpot/FSpot/PhotoView.cs:337
 msgid "Description:"
 msgstr "คำอธิบาย:"
 
-#: ../src/Clients/MainApp/FSpot/Preferences.cs:158
+#: ../src/Clients/FSpot/FSpot/Preferences.cs:158
 msgid "Photos"
 msgstr "ภาพถ่าย"
 
-#: ../src/Clients/MainApp/FSpot/PrintOperation.cs:34
+#: ../src/Clients/FSpot/FSpot/PrintOperation.cs:34
 msgid "Image Settings"
 msgstr "ตั้งค่ารูปภาพ"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:59
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:59
 msgid "Find: "
 msgstr "ค้นหา: "
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:64
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:64
 msgid "Untagged photos"
 msgstr "ภาพถ่ายไม่มีป้ายกำกับ"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:72
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:72
 msgid "Rated photos"
 msgstr ""
 
 #. Note for translators: 'Import roll' is no command, it means 'Roll that has been imported'
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:81
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:81
 msgid "Import roll"
 msgstr "ชุดการนำเข้า"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:104
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:104
 msgid "Clear search"
 msgstr "ล้างการค้นหา"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:111
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:111
 msgid "Refresh search"
 msgstr "ปรับแสดงผลการค้นหาใหม่"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:114
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:114
 msgid "No matching photos found"
 msgstr "ไม่พบภาพถ่ายที่ตรงเงื่อนไข"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:79
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:79
 msgid "Unable to rotate this type of photo"
 msgstr "ไม่สามารถหมุนภาพถ่ายชนิดนี้ได้"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:98
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:98
 msgid "Unable to rotate readonly file"
 msgstr "ไม่สามารถหมุนภาพถ่ายในแฟ้มที่อ่านอย่างเดียวได้"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:161
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:161
 msgid "Rotating photos"
 msgstr "กำลังหมุนภาพถ่าย"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:172
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:172
 #, csharp-format
 msgid "Rotating photo \"{0}\""
 msgstr "กำลังหมุนภาพถ่าย \"{0}\""
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:185
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:185
 msgid "Directory not found"
 msgstr "ไม่พบไดเรกทอรี"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:187
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:187
 msgid "File not found"
 msgstr "ไม่พบแฟ้ม"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:205
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:205
 #, csharp-format
 msgid "Unable to rotate photo"
 msgid_plural "Unable to rotate {0} photos"
 msgstr[0] "ไม่สามารถหมุนภาพถ่าย {0} ภาพนี้ได้"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:207
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:207
 #, csharp-format
 msgid ""
 "The photo could not be rotated because it is on a read only file system or "
@@ -876,163 +876,163 @@ msgid_plural ""
 "or media such as a CDROM.  Please check the permissions and try again."
 msgstr[0] ""
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:234
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:234
 #, csharp-format
 msgid "Received error \"{0}\" while attempting to rotate {1}"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:239
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:239
 msgid "Error while rotating photo."
 msgstr "เกิดข้อผิดพลาดขณะหมุนภาพถ่าย"
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:212
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:212
 msgid "Preparing email"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:256
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:256
 #, csharp-format
 msgid "Exporting picture \"{0}\""
 msgstr "กำลังส่งออกรูปภาพ \"{0}\""
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:275
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:275
 msgid "Error processing image"
 msgstr "เกิดข้อผิดพลาดขณะประมวลผลรูปภาพ"
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:276
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:276
 #, csharp-format
 msgid "An error occurred while processing \"{0}\": {1}"
 msgstr "เกิดข้อผิดพลาดขณะประมวลผล \"{0}\": {1}"
 
 #. Send the mail :)
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:289
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:289
 msgid "My Photos"
 msgstr "ภาพถ่ายของฉัน"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:74
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:74
 msgid "Rotate photo left"
 msgstr "หมุนภาพถ่ายไปทางซ้าย"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:79
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:79
 msgid "Rotate photo right"
 msgstr "หมุนภาพถ่ายไปทางขวา"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:116
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:116
 msgid "Folder"
 msgstr "โฟลเดอร์"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:341
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:341
 msgid "Open"
 msgstr "เปิด"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:344
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:344
 msgid "Select Folder"
 msgstr "เลือกโฟลเดอร์"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:428
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:428
 msgid "Set as Background"
 msgstr "ตั้งเป็นพื้นหลัง"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:35
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:35
 #, csharp-format
 msgid "Include Photos Tagged \"{0}\""
 msgstr "นับรวมภาพถ่ายที่มีป้ายกำกับ \"{0}\""
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:40
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:40
 #, csharp-format
 msgid "Exclude Photos Tagged \"{0}\""
 msgstr "ไม่นับรวมภาพถ่ายที่มีป้ายกำกับ \"{0}\""
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:45
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:45
 msgid "Remove From Search"
 msgstr "ตัดออกจากการค้นหา"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:89
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:89
 #, csharp-format
 msgid "Find _With"
 msgid_plural "Find _With"
 msgstr[0] "ค้นหา _ด้วย"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:115
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:115
 msgid "All"
 msgstr "ทั้งหมด"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:150
-#: ../src/Clients/MainApp/FSpot/Term.cs:587
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:150
+#: ../src/Clients/FSpot/FSpot/Term.cs:587
 #, csharp-format
 msgid "Not {0}"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:274
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:274
 msgid "Drag tags here to search for them"
 msgstr "ลากป้ายกำกับที่ต้องการค้นหามาวางที่นี่"
 
-#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:498
+#: ../src/Clients/FSpot/FSpot/TagSelectionWidget.cs:498
 msgid "Error renaming tag"
 msgstr "เกิดข้อผิดพลาดขณะเปลี่ยนชื่อป้ายกำกับ"
 
-#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:499
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagDialog.cs:78
-#: ../src/Clients/MainApp/TagCommands.cs:117
+#: ../src/Clients/FSpot/FSpot/TagSelectionWidget.cs:499
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagDialog.cs:78
+#: ../src/Clients/FSpot/TagCommands.cs:117
 msgid "This name is already in use"
 msgstr "ชื่อนี้ถูกใช้แล้ว"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:208
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:208
 msgid "Favorites"
 msgstr "โปรดปราน"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:213
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:213
 msgid "Hidden"
 msgstr "ซ่อน"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:221
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:221
 msgid "People"
 msgstr "บุคคล"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:226
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:226
 msgid "Places"
 msgstr "สถานที่"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:231
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:231
 msgid "Events"
 msgstr "เหตุการณ์"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:244
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:345
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:244
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:345
 msgid "(None)"
 msgstr "(ไม่มี)"
 
-#: ../src/Clients/MainApp/FSpot/Term.cs:299
+#: ../src/Clients/FSpot/FSpot/Term.cs:299
 msgid " and "
 msgstr " และ "
 
 #. operators.Add (Catalog.GetString (" && "));
-#: ../src/Clients/MainApp/FSpot/Term.cs:301
+#: ../src/Clients/FSpot/FSpot/Term.cs:301
 msgid ", "
 msgstr ", "
 
-#: ../src/Clients/MainApp/FSpot/Term.cs:357
+#: ../src/Clients/FSpot/FSpot/Term.cs:357
 msgid " or "
 msgstr " หรือ "
 
 #. OPS The operators we support, case insensitive
 #. private static string op_str = "(?'Ops' or | and |, | \\s+ )";
-#: ../src/Clients/MainApp/FSpot/Term.cs:381
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:7
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:179
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:534
+#: ../src/Clients/FSpot/FSpot/Term.cs:381
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:179
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:534
 msgid "or"
 msgstr "หรือ"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:104
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AboutDialog.cs:104
 msgid "Photo management for GNOME"
 msgstr "โปรแกรมจัดการภาพถ่ายสำหรับ GNOME"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:105
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AboutDialog.cs:105
 msgid "Copyright © 2003-2010 Novell Inc."
 msgstr "Copyright © 2003-2010 Novell Inc."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:129
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AboutDialog.cs:129
 msgid "translator-credits"
 msgstr ""
 "Isriya Paireepairit <markpeak@gmail.com>\n"
@@ -1041,77 +1041,77 @@ msgstr ""
 "Sarita Kangkerkkul <saritaoil@hotmail.com>\n"
 "Maetinee <your_friend_mn17@hotmail.com>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:134
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AboutDialog.cs:134
 msgid "F-Spot Website"
 msgstr "เว็บไซต์ F-Spot"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs:117
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:10
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AdjustTimeDialog.cs:117
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:10
 #, csharp-format
 msgid "Shift all photos by {0}"
 msgstr "เลื่อนภาพถ่ายทั้งหมดเป็นเวลา {0}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:90
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:90
 msgid "Today"
 msgstr "วันนี้"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:92
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:92
 msgid "Yesterday"
 msgstr "เมื่อวาน"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:94
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:94
 msgid "Last 7 days"
 msgstr "7 วันก่อน"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:96
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:96
 msgid "Last 30 days"
 msgstr "30 วันก่อน"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:98
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:98
 msgid "Last 90 days"
 msgstr "90 วันก่อน"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:100
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:100
 msgid "Last 360 days"
 msgstr "360 วันก่อน"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:102
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:102
 msgid "Current Week (Mon-Sun)"
 msgstr "สัปดาห์นี้ (จ.-อา.)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:104
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:104
 msgid "Previous Week (Mon-Sun)"
 msgstr "สัปดาห์ที่แล้ว (จ.-อา.)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:120
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:120
 #: ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui.h:1
 msgid "All Images"
 msgstr "รูปภาพทั้งหมด"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:122
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:122
 msgid "Customized Range"
 msgstr "กำหนดช่วงเวลา"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditExceptionDialog.cs:28
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:74
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditExceptionDialog.cs:28
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:74
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditExceptionDialog.cs:41
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditExceptionDialog.cs:41
 msgid "Error editing photo"
 msgstr "เกิดปัญหาในการแก้ไขภาพถ่าย"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:46
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:46
 #, csharp-format
 msgid "Edit Icon for Tag {0}"
 msgstr "แก้ไขไอคอนของป้ายกำกับ {0}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:68
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:68
 msgid "Select Photo from file"
 msgstr "เลือกภาพถ่ายจากแฟ้ม"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:90
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:90
 #, csharp-format
 msgid ""
 "\n"
@@ -1122,33 +1122,33 @@ msgid ""
 " to use it as an icon."
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:168
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:168
 msgid "Unable to load image"
 msgstr "ไม่สามารถโหลดรูปภาพได้"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:169
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:169
 #, csharp-format
 msgid "Unable to load \"{0}\" as icon for the tag"
 msgstr "ไม่สามารถโหลด \"{0}\" เป็นไอคอนสำหรับป้ายกำกับ"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:207
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:207
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "ภาพถ่ายที่ {0} จาก {1}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:16
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:16
 msgid "Choose Folder..."
 msgstr "เลือกโฟลเดอร์..."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:129
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:129
 msgid "Choose Import source..."
 msgstr "เลือกแหล่งที่จะนำเข้า..."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:141
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:141
 msgid "(No Cameras Detected)"
 msgstr "(ไม่พบกล้องดิจิทัล)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:176
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:176
 msgid ""
 "Checking this box will remove the imported photos from the camera after the "
 "import finished successfully.\n"
@@ -1157,101 +1157,101 @@ msgid ""
 "the camera. <b>Use this option at your own risk!</b>"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:177
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:177
 msgid "Warning"
 msgstr "คำเตือน"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:295
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:295
 #, csharp-format
 msgid "Importing Photos: {0} of {1}..."
 msgstr "กำลังนำเข้าภาพถ่าย: {0} จาก {1}..."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:319
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:319
 msgid "Importing photos..."
 msgstr "กำลังนำเข้าภาพถ่าย..."
 
 #. TODO: Using a GtkSpinner would be nicer here.
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:326
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:326
 msgid "Searching for photos... (You can already click Import to continue)"
 msgstr "กำลังค้นหาภาพถ่าย... (คุณสามารถคลิก \"นำเข้า\" เพื่อนดำเนินการต่อได้ทันที)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:36
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportFailureDialog.cs:36
 msgid "Import failures"
 msgstr "นำเข้าไม่สำเร็จ"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:37
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportFailureDialog.cs:37
 msgid "Some files failed to import"
 msgstr "นำเข้าแฟ้มบางแฟ้มไม่สำเร็จ"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:38
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportFailureDialog.cs:38
 msgid ""
 "Some files could not be imported, they might be corrupt or there might be "
 "something wrong with the storage on which they reside."
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:101
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportFailureDialog.cs:101
 msgid "Details"
 msgstr "รายละเอียด"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:59
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:82
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/PreferenceDialog.cs:59
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/PreferenceDialog.cs:82
 msgid "None"
 msgstr "ไม่มี"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:61
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/PreferenceDialog.cs:61
 msgid "System profile"
 msgstr "โพรไฟล์ระบบ"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:99
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/PreferenceDialog.cs:99
 msgid "Standard theme"
 msgstr "ชุดตกแต่งมาตรฐาน"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/RepairDbDialog.cs:22
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/RepairDbDialog.cs:22
 msgid "Error loading database."
 msgstr "เกิดข้อผิดพลาดขณะโหลดฐานข้อมูล"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/RepairDbDialog.cs:23
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/RepairDbDialog.cs:23
 #, csharp-format
 msgid ""
 "F-Spot encountered an error while loading the photo database. The old "
 "database has be moved to {0} and a new database has been created."
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/SelectionRatioDialog.cs:61
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/SelectionRatioDialog.cs:61
 msgid "Label"
 msgstr "ป้ายชื่อ"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/SelectionRatioDialog.cs:65
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/SelectionRatioDialog.cs:65
 msgid "Ratio"
 msgstr "สัดส่วน"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ThreadProgressDialog.cs:57
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ThreadProgressDialog.cs:57
 msgid "Retry"
 msgstr "ลองใหม่"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ThreadProgressDialog.cs:59
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ThreadProgressDialog.cs:59
 #: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/pickfolder_dialog.ui.h:1
 msgid "Skip"
 msgstr "ข้าม"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:1
 msgid "0000:00:00 00:00:00"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:2
 msgid "00:00:00"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:3
 msgid "5"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:4
 msgid "<b>Action</b>"
 msgstr "<b>การดำเนินการ</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:5
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:5
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:6
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:2
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:3
 #: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:3
@@ -1261,1012 +1261,1012 @@ msgstr "<b>การดำเนินการ</b>"
 msgid "<b>Photos</b>"
 msgstr "<b>ภาพถ่าย</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:6
 msgid "<b>Reference Photo</b>"
 msgstr "<b>ภาพถ่ายอ้างอิง</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:7
 msgid "Adjust Time"
 msgstr "แก้ไขเวลา"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:8
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:8
 msgid "Adjusted date: "
 msgstr "แก้ไขวันที่: "
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:9
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:9
 msgid "Current date:"
 msgstr "วันที่ปัจจุบัน:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:11
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:11
 msgid "Space all photos by"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:12
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:12
 msgid "difference:"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:13
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:13
 msgid "min. Starting at {0}"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:1
 msgid "C_reate"
 msgstr "_สร้าง"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:2
 msgid "Create _icon for this tag when first used"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:3
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:3
 msgid "P_arent Tag:"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:4
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:5
 msgid "_Tag Name:"
 msgstr "ชื่อ_ป้ายกำกับ:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:1
 msgid "<b>End Date</b>"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:2
 msgid "<b>Select period</b>"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:3
 msgid "<b>Start Date</b>"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:4
 msgid "Cancel, do not change the current timeline. "
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:5
 msgid "Only photos taken within these dates will be displayed."
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:6
 msgid "Set date range"
 msgstr "กำหนดช่วงเวลา"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:1
 msgid "Edit Tag"
 msgstr "แก้ไขป้ายกำกับ"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:2
 msgid "Edit icon"
 msgstr "แก้ไขไอคอน"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:4
 msgid "_Icon:"
 msgstr "ไ_อคอน:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:1
 msgid "<b>From External Photo</b>"
 msgstr "<b>จากภาพถ่ายภายนอก</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:2
 msgid "<b>From Photo</b>"
 msgstr "<b>จากภาพถ่าย</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:3
 msgid "<b>Predefined icons</b>"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:4
 msgid "<b>Preview</b>"
 msgstr "<b>ดูตัวอย่าง</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:5
 msgid "Design icon from"
 msgstr "ออกแบบไอคอนจาก"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:6
 msgid "Edit Tag Icon"
 msgstr "แก้ไขไอคอนป้ายกำกับ"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:7
 msgid "No _image"
 msgstr "ไม่ใช้รู_ปภาพ"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:1
 msgid "<b>View all pictures imported</b>"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:2
 msgid "Display only those photos that were imported in specified Rolls."
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:3
 msgid "Filter on selected rolls"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:4
 msgid "Number of photos in selected rolls:"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:5
 msgid "Show all photos."
 msgstr "แสดงภาพถ่ายทั้งหมด"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:6
 msgid "after"
 msgstr "หลังจาก"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:7
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:179
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:535
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:179
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:535
 msgid "and"
 msgstr "ถึง"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:8
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:8
 msgid "at"
 msgstr "เมื่อ"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:9
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:9
 msgid "between"
 msgstr "ระหว่าง"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:1
 msgid "Color profile for display:"
 msgstr "โพรไฟล์สีสำหรับการแสดงผล:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:2
 msgid "Color profile for printing:"
 msgstr "โพรไฟล์สีสำหรับการพิมพ์:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:3
 msgid "F-Spot Preferences"
 msgstr "ปรับแต่ง F-Spot"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:4
 msgid "F-Spot appearance:"
 msgstr "รูปโฉมของ F-Spot:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:5
 msgid ""
 "Inside the image files when possible\n"
 "<small>Makes them accessible to other image-editing programs.</small>"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:7
 msgid ""
 "Never modify image files.\n"
 "<small>Write XMP files next to the images instead.</small>"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:9
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:9
 msgid "Select A Folder"
 msgstr "เลือกโฟลเดอร์"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:10
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:10
 msgid "Separately from the image files"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:11
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:11
 msgid "Store tags and descriptions for photos:"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:12
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:12
 msgid "When importing photos, copy them to:"
 msgstr "เมื่อนำเข้าภาพถ่าย ให้คัดลอกภาพถ่ายไปที่:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:1
 msgid "<b>Max Rating</b>"
 msgstr "<b>คะแนนนิยมสูงสุด</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:2
 msgid "<b>Min Rating</b>"
 msgstr "<b>คะแนนนิยมต่ำสุด</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:3
 msgid "Set Rating Filter"
 msgstr "กำหนดตัวกรองคะแนนนิยม"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RepairDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/RepairDialog.ui.h:1
 msgid "Repair"
 msgstr "ซ่อมแซม"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui.h:1
 msgid "Manage your custom selection ratios"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui.h:2
 msgid "Selection Constraints"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:33
-#: ../src/Clients/MainApp/FSpot.Widgets/Sidebar.cs:55
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:33
+#: ../src/Clients/FSpot/FSpot.Widgets/Sidebar.cs:55
 msgid "Edit"
 msgstr "แก้ไข"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:201
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:201
 #: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:49
 msgid "No selection available"
 msgstr "ไม่ได้เลือกพื้นที่"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:202
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:202
 msgid ""
 "This tool requires an active selection. Please select a region of the photo "
 "and try the operation again"
 msgstr "เครื่องมือนี้จำเป็นต้องเลือกพื้นที่ที่ต้องการทำงานก่อน กรุณาลองอีกครั้ง"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:220
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:220
 msgid "Error saving adjusted photo"
 msgid_plural "Error saving adjusted photos"
 msgstr[0] "เกิดข้อผิดพลาดขณะบันทึกภาพถ่ายที่ปรับแก้แล้ว"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:222
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:222
 #, csharp-format
 msgid ""
 "Received exception \"{0}\". Note that you have to develop RAW files into "
 "JPEG before you can edit them."
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:471
+#: ../src/Clients/FSpot/FSpot.Widgets/Filmstrip.cs:471
 msgid "_Horizontal"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:475
+#: ../src/Clients/FSpot/FSpot.Widgets/Filmstrip.cs:475
 msgid "_Vertical"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:60
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:60
 msgid "Find:"
 msgstr "หา:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/FolderTreePage.cs:22
+#: ../src/Clients/FSpot/FSpot.Widgets/FolderTreePage.cs:22
 msgid "Folders"
 msgstr "โฟลเดอร์"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/FolderTreeView.cs:129
+#: ../src/Clients/FSpot/FSpot.Widgets/FolderTreeView.cs:129
 msgid "Filesystem"
 msgstr "ระบบแฟ้ม"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:183
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:183
 msgid "Histogram"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:202
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:202
 msgid "Image Information"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:213
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:213
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:10
 msgid "Name"
 msgstr "ชื่อ"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:216
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:216
 msgid "Version"
 msgstr "รุ่น"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:219
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:219
 msgid "Date"
 msgstr "วันที่"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:222
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:222
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:4
 msgid "Size"
 msgstr "ขนาด"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:225
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:225
 msgid "Exposure"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:229
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:229
 msgid "Focal Length"
 msgstr "ระยะโฟกัส"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:232
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:232
 msgid "Camera"
 msgstr "กล้อง"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:235
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:235
 msgid "File Size"
 msgstr "ขนาดแฟ้ม"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:238
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:238
 msgid "Rating"
 msgstr "คะแนนนิยม"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:328
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:328
 msgid "(wrong format)"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:354
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:365
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:375
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:354
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:365
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:375
 msgid "(Unknown)"
 msgstr "(ไม่มีข้อมูล)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:471
-#: ../src/Clients/MainApp/PhotoVersionMenu.cs:55
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:471
+#: ../src/Clients/FSpot/PhotoVersionMenu.cs:55
 msgid "(No Edits)"
 msgstr "(ไม่มีการแก้ไข)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:475
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:475
 #, csharp-format
 msgid "(One Edit)"
 msgid_plural "({0} Edits)"
 msgstr[0] "(การแก้ไข {0} รายการ)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:485
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:485
 msgid "(File read error)"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:530
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:530
 #, csharp-format
 msgid "{0} Photos"
 msgstr "ภาพถ่าย {0} ภาพ"
 
 #. Note for translators: {0} is a date, {1} and {2} are times.
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:550
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:550
 #, csharp-format
 msgid ""
 "On {0} between \n"
 "{1} and {2}"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:555
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:555
 #, csharp-format
 msgid ""
 "Between {0} \n"
 "and {1}"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:582
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:582
 msgid "(At least one File not found)"
 msgstr "(ไม่พบแฟ้มอย่างน้อยหนึ่งแฟ้ม)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:699
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:699
 msgid "Show Photo Name"
 msgstr "แสดงชื่อภาพถ่าย"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:708
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:708
 msgid "Show Date"
 msgstr "แสดงวันที่"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:717
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:717
 msgid "Show Size"
 msgstr "แสดงขนาด"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:726
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:726
 msgid "Show Exposure"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:735
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:735
 msgid "Show Focal Length"
 msgstr "แสดงระยะโฟกัส"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:744
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:744
 msgid "Show Camera"
 msgstr "แสดงกล้อง"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:753
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:753
 msgid "Show File Size"
 msgstr "แสดงขนาดแฟ้ม"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:27
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:27
 msgid "Metadata"
 msgstr "ข้อมูลภาพถ่าย"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:108
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:108
 msgid "Extended Metadata"
 msgstr "ข้อมูลภาพถ่ายเพิ่มเติม"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:361
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:361
 msgid "No active photo"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:363
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:363
 #, csharp-format
 msgid "The photo \"{0}\" does not exist"
 msgstr "ไม่มีภาพถ่าย \"{0}\" อยู่"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:365
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:365
 msgid "No metadata available"
 msgstr "ไม่มีข้อมูลภาพถ่าย"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:73
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:73
 msgid "Error saving sharpened photo"
 msgstr "เกิดข้อผิดพลาดขณะบันทึกภาพถ่ายที่เพิ่มความคมแล้ว"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:103
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:103
 msgid "Sharpen"
 msgstr "เพิ่มความคม"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:113
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:113
 msgid "Amount:"
 msgstr "ปริมาณ:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:114
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:114
 msgid "Radius:"
 msgstr "รัศมี:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:115
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:115
 msgid "Threshold:"
 msgstr "ขีดเริ่ม:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/TagMenu.cs:99
-#: ../src/Clients/MainApp/TagPopup.cs:37
+#: ../src/Clients/FSpot/FSpot.Widgets/TagMenu.cs:99
+#: ../src/Clients/FSpot/TagPopup.cs:37
 msgid "Create New Tag..."
 msgstr "สร้างป้ายกำกับใหม่..."
 
 #. Fixme this should really set parent menu
 #. items insensitve
-#: ../src/Clients/MainApp/PhotoTagMenu.cs:63
+#: ../src/Clients/FSpot/PhotoTagMenu.cs:63
 msgid "(No Tags)"
 msgstr "(ไม่มี)"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:58
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:58
 msgid "Create New Version"
 msgstr "สร้างฉบับสำเนาใหม่"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:59
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:59
 msgid "Name:"
 msgstr "ชื่อ:"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:63
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:63
 msgid "Rename Version"
 msgstr "เปลี่ยนชื่อฉบับสำเนา"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:64
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:64
 msgid "New name:"
 msgstr "ชื่อใหม่:"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:124
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:124
 msgid "Delete"
 msgstr "ลบ"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:125
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:125
 #, csharp-format
 msgid "Really delete version \"{0}\"?"
 msgstr ""
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:126
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:126
 msgid "This removes the version and deletes the corresponding file from disk."
 msgstr ""
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:171
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:171
 msgid "De_tach"
 msgstr ""
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:172
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:172
 #, csharp-format
 msgid "Really detach version \"{0}\" from \"{1}\"?"
 msgstr ""
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:173
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:173
 msgid ""
 "This makes the version appear as a separate photo in the library. To undo, "
 "drag the new photo back to its parent."
 msgstr ""
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:195
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:195
 msgid "Re_parent"
 msgstr ""
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:196
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:196
 #, csharp-format
 msgid "Really reparent \"{0}\" as version of \"{1}\"?"
 msgid_plural "Really reparent {2} photos as versions of \"{1}\"?"
 msgstr[0] ""
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:199
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:199
 msgid ""
 "This makes the photos appear as a single one in the library. The versions "
 "can be detached using the Photo menu."
 msgstr ""
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:239
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:239
 #, csharp-format
 msgid "Received exception \"{0}\"."
 msgstr ""
 
-#: ../src/Clients/MainApp/TagCommands.cs:167
+#: ../src/Clients/FSpot/TagCommands.cs:167
 msgid "Create New Tag"
 msgstr "สร้างป้ายกำกับใหม่"
 
-#: ../src/Clients/MainApp/TagCommands.cs:168
+#: ../src/Clients/FSpot/TagCommands.cs:168
 msgid "Name of New Tag:"
 msgstr "ชื่อของป้ายกำกับใหม่:"
 
-#: ../src/Clients/MainApp/TagPopup.cs:27
+#: ../src/Clients/FSpot/TagPopup.cs:27
 #, csharp-format
 msgid "Find"
 msgid_plural "Find"
 msgstr[0] "หา"
 
-#: ../src/Clients/MainApp/TagPopup.cs:43
+#: ../src/Clients/FSpot/TagPopup.cs:43
 msgid "Edit Tag..."
 msgstr "แก้ไขป้ายกำกับ..."
 
-#: ../src/Clients/MainApp/TagPopup.cs:47
+#: ../src/Clients/FSpot/TagPopup.cs:47
 msgid "Delete Tag"
 msgid_plural "Delete Tags"
 msgstr[0] "ลบป้ายกำกับ"
 
-#: ../src/Clients/MainApp/TagPopup.cs:53
+#: ../src/Clients/FSpot/TagPopup.cs:53
 msgid "Attach Tag to Selection"
 msgid_plural "Attach Tags to Selection"
 msgstr[0] "แปะป้ายกำกับให้ภาพที่เลือก"
 
-#: ../src/Clients/MainApp/TagPopup.cs:57
+#: ../src/Clients/FSpot/TagPopup.cs:57
 msgid "Remove Tag From Selection"
 msgid_plural "Remove Tags From Selection"
 msgstr[0] "ลบป้ายกำกับจากภาพที่เลือก"
 
-#: ../src/Clients/MainApp/TagPopup.cs:63
+#: ../src/Clients/FSpot/TagPopup.cs:63
 msgid "Merge Tags"
 msgstr "ผสานป้ายกำกับ"
 
-#: ../src/Clients/MainApp/ThumbnailCommand.cs:22
+#: ../src/Clients/FSpot/ThumbnailCommand.cs:22
 msgid "Updating Thumbnails"
 msgstr "กำลังปรับข้อมูลภาพย่อ"
 
-#: ../src/Clients/MainApp/ThumbnailCommand.cs:30
+#: ../src/Clients/FSpot/ThumbnailCommand.cs:30
 #, csharp-format
 msgid "Updating picture \"{0}\""
 msgstr "กำลังปรับข้อมูลรูปภาพ \"{0}\""
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:1
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:1
 msgid "<b>Co_rrections</b>"
 msgstr "<b>การ_ปรับแก้</b>"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:2
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:2
 msgid "<b>_White Balance</b>"
 msgstr "<b>สมดุลแสง_ขาว</b>"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:3
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:3
 msgid "C_ontrast:"
 msgstr "ความ_ต่างระดับสี:"
 
 #. Note for translators: meant as Temperature
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:5
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:5
 msgid "Te_mp:"
 msgstr "อุณหภู_มิ:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:6
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:6
 msgid "_Brightness:"
 msgstr "ความส_ว่าง:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:7
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:7
 msgid "_Exposure:"
 msgstr "ความเร็ว_ชัตเตอร์:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:8
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:8
 msgid "_Hue:"
 msgstr "ธาตุ_สี:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:9
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:9
 msgid "_Saturation:"
 msgstr "ความส_ดของสี:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:10
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:10
 msgid "_Tint:"
 msgstr "ความ_อ่อนแก่:"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:1
+#: ../src/Clients/FSpot/ui/import.ui.h:1
 msgid "C_opy files to the Photos folder"
 msgstr "_คัดลอกแฟ้มไปยังโฟลเดอร์ \"ภาพถ่าย\""
 
-#: ../src/Clients/MainApp/ui/import.ui.h:2
+#: ../src/Clients/FSpot/ui/import.ui.h:2
 msgid "I_nclude subfolders"
 msgstr "_รวมโฟลเดอร์ย่อยด้วย"
 
 #. Translators: this string means 'source of import'
-#: ../src/Clients/MainApp/ui/import.ui.h:5
+#: ../src/Clients/FSpot/ui/import.ui.h:5
 msgid "Import _from:"
 msgstr "นำเข้า_จาก:"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:6
+#: ../src/Clients/FSpot/ui/import.ui.h:6
 msgid "_Attach tags:"
 msgstr "แ_ปะป้ายกำกับ:"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:7
+#: ../src/Clients/FSpot/ui/import.ui.h:7
 msgid "_Detect duplicates"
 msgstr "_ตรวจสอบภาพถ่ายซ้ำ"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:8
+#: ../src/Clients/FSpot/ui/import.ui.h:8
 msgid "_Import"
 msgstr "_นำเข้า"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:9
+#: ../src/Clients/FSpot/ui/import.ui.h:9
 msgid "_Remove original files after import"
 msgstr "_ลบแฟ้มต้นฉบับหลังจากนำเข้า"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:1
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:1
 msgid "1024 px"
 msgstr "1024 พิกเซล"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:2
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:2
 msgid "320 px"
 msgstr "320 พิกเซล"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:3
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:3
 msgid "480 px"
 msgstr "480 พิกเซล"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:4
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:4
 msgid "640 px"
 msgstr "640 พิกเซล"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:5
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:5
 msgid "800 px"
 msgstr "800 พิกเซล"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:7
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:7
 msgid "<b>Size</b>"
 msgstr "<b>ขนาด</b>"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:8
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:8
 msgid "<b>Summary</b>"
 msgstr "<b>สรุป</b>"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:9
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:9
 msgid "Create Mail"
 msgstr "สร้างเมล"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:10
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:10
 msgid "Create a mail with the selected photos (possibly resized) attached"
 msgstr "สร้างเมลพร้อมแนบภาพถ่ายที่เลือก (โดยอาจมีการปรับขนาด)"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:11
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:11
 msgid "Do not send a mail"
 msgstr "ไม่ต้องส่งจดหมาย"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:12
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:12
 msgid "Estimated new size"
 msgstr "ขนาดใหม่โดยประมาณ"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:13
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:13
 msgid "Extra large"
 msgstr "ใหญ่พิเศษ"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:14
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:14
 msgid "Large"
 msgstr "ใหญ่"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:15
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:15
 msgid "Medium"
 msgstr "กลาง"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:16
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:16
 msgid "Number of pictures"
 msgstr "จำนวนรูปภาพ"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:18
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:18
 msgid "Original size (possible very large file size)"
 msgstr "ขนาดต้นฉบับ (ขนาดแฟ้มอาจจะใหญ่มาก)"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:19
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:19
 msgid "Small"
 msgstr "เล็ก"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:20
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:20
 msgid "Tiny"
 msgstr "จิ๋ว"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:21
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:21
 msgid "Total original size"
 msgstr "ขนาดต้นฉบับทั้งหมด"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:22
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:22
 msgid "_Create Mail"
 msgstr "_สร้างเมล"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:1
+#: ../src/Clients/FSpot/ui/main_window.ui.h:1
 msgid "Adjust _Time..."
 msgstr "แก้ไขเ_วลา..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:2
+#: ../src/Clients/FSpot/ui/main_window.ui.h:2
 msgid "Arrange _by"
 msgstr "เ_รียงตาม"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:4
+#: ../src/Clients/FSpot/ui/main_window.ui.h:4
 msgid "By _Date"
 msgstr "ตาม_วันที่"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:5
+#: ../src/Clients/FSpot/ui/main_window.ui.h:5
 msgid "By _Import Roll"
 msgstr "ตามชุดการ_นำเข้า"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:6
+#: ../src/Clients/FSpot/ui/main_window.ui.h:6
 msgid "By _Rating"
 msgstr "ตามคะแนน_นิยม"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:7
+#: ../src/Clients/FSpot/ui/main_window.ui.h:7
 msgid "Copy"
 msgstr "คัดลอก"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:8
+#: ../src/Clients/FSpot/ui/main_window.ui.h:8
 msgid "Create New _Tag..."
 msgstr "สร้าง_ป้ายกำกับใหม่..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:9
+#: ../src/Clients/FSpot/ui/main_window.ui.h:9
 msgid "Create _New Version..."
 msgstr "สร้างฉบับ_สำเนาใหม่..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:10
+#: ../src/Clients/FSpot/ui/main_window.ui.h:10
 msgid "De_tach Version"
 msgstr "_ถอนฉบับสำเนาออก"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:11
+#: ../src/Clients/FSpot/ui/main_window.ui.h:11
 msgid "Fin_d"
 msgstr "_หา"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:12
+#: ../src/Clients/FSpot/ui/main_window.ui.h:12
 msgid "Manage _Extensions"
 msgstr "จัดการ_ส่วนเสริม"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:13
+#: ../src/Clients/FSpot/ui/main_window.ui.h:13
 msgid "Page Set_up..."
 msgstr "_ตั้งค่าหน้ากระดาษ..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:14
+#: ../src/Clients/FSpot/ui/main_window.ui.h:14
 msgid "Re_fresh Thumbnail"
 msgstr "ปรับแ_สดงภาพย่อ"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:18
+#: ../src/Clients/FSpot/ui/main_window.ui.h:18
 msgid "Select _All"
 msgstr "เลือก_ทั้งหมด"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:19
+#: ../src/Clients/FSpot/ui/main_window.ui.h:19
 msgid "Select _None"
 msgstr "ไม่เลือกทั้ง_หมด"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:20
+#: ../src/Clients/FSpot/ui/main_window.ui.h:20
 msgid "Send by _Mail..."
 msgstr "ส่งทาง_อีเมล..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:21
-#: ../src/Clients/MainApp/ui/single_view.ui.h:3
+#: ../src/Clients/FSpot/ui/main_window.ui.h:21
+#: ../src/Clients/FSpot/ui/single_view.ui.h:3
 msgid "Set as _Background"
 msgstr "ตั้งเป็น_พื้นหลัง"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:22
+#: ../src/Clients/FSpot/ui/main_window.ui.h:22
 msgid "Side_bar"
 msgstr "แถบ_ข้าง"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:23
+#: ../src/Clients/FSpot/ui/main_window.ui.h:23
 msgid "T_ags"
 msgstr "_ป้ายกำกับ"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:24
+#: ../src/Clients/FSpot/ui/main_window.ui.h:24
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1085
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1086
 msgid "Tags: "
 msgstr "ป้ายกำกับ: "
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:25
+#: ../src/Clients/FSpot/ui/main_window.ui.h:25
 msgid "Thumbnail _elements"
 msgstr "ส่ว_นประกอบภาพย่อ"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:26
+#: ../src/Clients/FSpot/ui/main_window.ui.h:26
 msgid "Too_lbar"
 msgstr "แถบเ_ครื่องมือ"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:27
+#: ../src/Clients/FSpot/ui/main_window.ui.h:27
 msgid "View"
 msgstr "มุมมอง"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:28
-#: ../src/Clients/MainApp/ui/single_view.ui.h:7
+#: ../src/Clients/FSpot/ui/main_window.ui.h:28
+#: ../src/Clients/FSpot/ui/single_view.ui.h:7
 msgid "Zoom _in"
 msgstr "ซูมเ_ข้า"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:29
-#: ../src/Clients/MainApp/ui/single_view.ui.h:8
+#: ../src/Clients/FSpot/ui/main_window.ui.h:29
+#: ../src/Clients/FSpot/ui/single_view.ui.h:8
 msgid "Zoom _out"
 msgstr "ซูม_ออก"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:30
-#: ../src/Clients/MainApp/ui/single_view.ui.h:9
+#: ../src/Clients/FSpot/ui/main_window.ui.h:30
+#: ../src/Clients/FSpot/ui/single_view.ui.h:9
 msgid "Zoom in"
 msgstr "ซูมเข้า"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:31
-#: ../src/Clients/MainApp/ui/single_view.ui.h:10
+#: ../src/Clients/FSpot/ui/main_window.ui.h:31
+#: ../src/Clients/FSpot/ui/single_view.ui.h:10
 msgid "Zoom out"
 msgstr "ซูมออก"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:32
+#: ../src/Clients/FSpot/ui/main_window.ui.h:32
 msgid "_Attach Tag"
 msgstr "แ_ปะป้ายกำกับ"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:33
+#: ../src/Clients/FSpot/ui/main_window.ui.h:33
 msgid "_Attach Tag to Selection"
 msgstr "แ_ปะป้ายกำกับให้ภาพที่เลือก"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:35
+#: ../src/Clients/FSpot/ui/main_window.ui.h:35
 msgid "_Clear Rating Filter"
 msgstr "_ล้างตัวกรองคะแนนนิยม"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:36
+#: ../src/Clients/FSpot/ui/main_window.ui.h:36
 msgid "_Clear Roll Filter"
 msgstr "_ล้างตัวกรองชุดนำเข้า"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:37
+#: ../src/Clients/FSpot/ui/main_window.ui.h:37
 msgid "_Close"
 msgstr "ปิ_ด"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:38
+#: ../src/Clients/FSpot/ui/main_window.ui.h:38
 msgid "_Components"
 msgstr "_องค์ประกอบ"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:39
+#: ../src/Clients/FSpot/ui/main_window.ui.h:39
 msgid "_Contents"
 msgstr "เนื้อ_หา"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:40
+#: ../src/Clients/FSpot/ui/main_window.ui.h:40
 msgid "_Dates"
 msgstr "_วันที่"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:42
+#: ../src/Clients/FSpot/ui/main_window.ui.h:42
 msgid "_Delete Selected Tag"
 msgstr "_ลบป้ายกำกับที่เลือก"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:43
+#: ../src/Clients/FSpot/ui/main_window.ui.h:43
 msgid "_Delete Version"
 msgstr "_ลบฉบับสำเนา"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:44
-#: ../src/Clients/MainApp/ui/single_view.ui.h:11
+#: ../src/Clients/FSpot/ui/main_window.ui.h:44
+#: ../src/Clients/FSpot/ui/single_view.ui.h:11
 msgid "_Edit"
 msgstr "แ_ก้ไข"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:45
+#: ../src/Clients/FSpot/ui/main_window.ui.h:45
 msgid "_Edit Tag..."
 msgstr "แ_ก้ไขป้ายกำกับ..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:46
+#: ../src/Clients/FSpot/ui/main_window.ui.h:46
 msgid "_Export to"
 msgstr "_ส่งออกไปยัง"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:47
+#: ../src/Clients/FSpot/ui/main_window.ui.h:47
 msgid "_Filmstrip"
 msgstr "แ_ผ่นฟิล์ม"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:48
-#: ../src/Clients/MainApp/ui/single_view.ui.h:13
+#: ../src/Clients/FSpot/ui/main_window.ui.h:48
+#: ../src/Clients/FSpot/ui/single_view.ui.h:13
 msgid "_Fullscreen"
 msgstr "เ_ต็มจอ"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:49
-#: ../src/Clients/MainApp/ui/single_view.ui.h:14
+#: ../src/Clients/FSpot/ui/main_window.ui.h:49
+#: ../src/Clients/FSpot/ui/single_view.ui.h:14
 msgid "_Help"
 msgstr "_วิธีใช้"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:50
+#: ../src/Clients/FSpot/ui/main_window.ui.h:50
 msgid "_Hidden"
 msgstr "_ซ่อน"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:51
+#: ../src/Clients/FSpot/ui/main_window.ui.h:51
 msgid "_Import..."
 msgstr "_นำเข้า..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:52
+#: ../src/Clients/FSpot/ui/main_window.ui.h:52
 msgid "_Invert Selection"
 msgstr "_สลับการเลือก"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:53
+#: ../src/Clients/FSpot/ui/main_window.ui.h:53
 msgid "_Large"
 msgstr "ใ_หญ่"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:54
+#: ../src/Clients/FSpot/ui/main_window.ui.h:54
 msgid "_Last Import Roll"
 msgstr "ชุดนำเข้า_ล่าสุด"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:55
+#: ../src/Clients/FSpot/ui/main_window.ui.h:55
 msgid "_Loupe"
 msgstr "แ_ว่นขยาย"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:56
+#: ../src/Clients/FSpot/ui/main_window.ui.h:56
 msgid "_Medium"
 msgstr "_กลาง"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:57
-#: ../src/Clients/MainApp/ui/single_view.ui.h:15
+#: ../src/Clients/FSpot/ui/main_window.ui.h:57
+#: ../src/Clients/FSpot/ui/single_view.ui.h:15
 msgid "_Photo"
 msgstr "_ภาพถ่าย"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:58
+#: ../src/Clients/FSpot/ui/main_window.ui.h:58
 msgid "_Quit"
 msgstr "_ออก"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:59
+#: ../src/Clients/FSpot/ui/main_window.ui.h:59
 msgid "_Ratings"
 msgstr "_คะแนนนิยม"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:61
+#: ../src/Clients/FSpot/ui/main_window.ui.h:61
 msgid "_Remove Tag From Selection"
 msgstr "_ลบป้ายกำกับจากภาพที่เลือก"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:62
+#: ../src/Clients/FSpot/ui/main_window.ui.h:62
 msgid "_Rename Version"
 msgstr "เปลี่ยน_ชื่อฉบับสำเนา"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:63
+#: ../src/Clients/FSpot/ui/main_window.ui.h:63
 msgid "_Reverse Order"
 msgstr "_ย้อนลำดับการเรียง"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:64
+#: ../src/Clients/FSpot/ui/main_window.ui.h:64
 msgid "_Select Import Rolls..."
 msgstr "เ_ลือกชุดนำเข้า..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:65
+#: ../src/Clients/FSpot/ui/main_window.ui.h:65
 msgid "_Set Date Range..."
 msgstr "กำหนด_ช่วงเวลา..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:66
+#: ../src/Clients/FSpot/ui/main_window.ui.h:66
 msgid "_Set Rating filter..."
 msgstr "กำหนดตัวกรอง_คะแนนนิยม..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:67
+#: ../src/Clients/FSpot/ui/main_window.ui.h:67
 msgid "_Sharpen..."
 msgstr "เพิ่มความ_คม..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:68
-#: ../src/Clients/MainApp/ui/single_view.ui.h:16
+#: ../src/Clients/FSpot/ui/main_window.ui.h:68
+#: ../src/Clients/FSpot/ui/single_view.ui.h:16
 msgid "_Slideshow"
 msgstr "แสดง_สไลด์"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:69
+#: ../src/Clients/FSpot/ui/main_window.ui.h:69
 msgid "_Small"
 msgstr "เ_ล็ก"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:70
+#: ../src/Clients/FSpot/ui/main_window.ui.h:70
 msgid "_Tag Icons"
 msgstr "ไ_อคอนป้ายกำกับ"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:71
+#: ../src/Clients/FSpot/ui/main_window.ui.h:71
 msgid "_Tags"
 msgstr "_ป้ายกำกับ"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:72
+#: ../src/Clients/FSpot/ui/main_window.ui.h:72
 msgid "_Timeline"
 msgstr "ลำดับเว_ลา"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:73
+#: ../src/Clients/FSpot/ui/main_window.ui.h:73
 msgid "_Tools"
 msgstr "เ_ครื่องมือ"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:74
+#: ../src/Clients/FSpot/ui/main_window.ui.h:74
 msgid "_Untagged Photos"
 msgstr "ภาพถ่ายไ_ม่มีป้ายกำกับ"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:75
+#: ../src/Clients/FSpot/ui/main_window.ui.h:75
 msgid "_Version"
 msgstr "ฉบับ_สำเนา"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:76
-#: ../src/Clients/MainApp/ui/single_view.ui.h:18
+#: ../src/Clients/FSpot/ui/main_window.ui.h:76
+#: ../src/Clients/FSpot/ui/single_view.ui.h:18
 msgid "_View"
 msgstr "_มุมมอง"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:1
+#: ../src/Clients/FSpot/ui/single_view.ui.h:1
 msgid "Display File _Names"
 msgstr "แสดง_ชื่อแฟ้ม"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:2
+#: ../src/Clients/FSpot/ui/single_view.ui.h:2
 msgid "F-Spot View"
 msgstr "มุมมอง F-Spot"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:4
+#: ../src/Clients/FSpot/ui/single_view.ui.h:4
 msgid "Show or hide the side pane"
 msgstr "แสดงหรือซ่อนช่องด้านข้าง"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:5
+#: ../src/Clients/FSpot/ui/single_view.ui.h:5
 msgid "Show or hide the toolbar"
 msgstr "แสดงหรือซ่อนแถบเครื่องมือ"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:6
+#: ../src/Clients/FSpot/ui/single_view.ui.h:6
 msgid "Side _pane"
 msgstr "ช่องด้าน_ข้าง"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:12
+#: ../src/Clients/FSpot/ui/single_view.ui.h:12
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:7
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:14
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:13
@@ -2277,23 +2277,23 @@ msgstr "ช่องด้าน_ข้าง"
 msgid "_Export"
 msgstr "_ส่งออก"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:17
+#: ../src/Clients/FSpot/ui/single_view.ui.h:17
 msgid "_Toolbar"
 msgstr "แถบเ_ครื่องมือ"
 
-#: ../src/Clients/MainApp/ui/tag_selection_dialog.ui.h:1
+#: ../src/Clients/FSpot/ui/tag_selection_dialog.ui.h:1
 msgid "Select a Tag..."
 msgstr "เลือกป้ายกำกับ..."
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:1
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:1
 msgid "<b>Image Interpolation</b>"
 msgstr "<b>การประมาณจุดภาพ</b>"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:2
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:2
 msgid "<b>Transparent Parts</b>"
 msgstr "<b>ส่วนที่โปร่งใส</b>"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:3
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:3
 msgid ""
 "<small><i>Enable this to allow interpolation on zoomed images. You shouldn't "
 "disable this for viewing photos, but disabling the interpolation could be "
@@ -2303,7 +2303,7 @@ msgstr ""
 "คุณไม่ควรปิดตัวเลือกนี้ขณะดูภาพถ่าย "
 "แต่การปิดการประมาณจุดภาพจะเป็นประโยชน์สำหรับการออกแบบไอคอน</i></small>"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:4
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:4
 msgid ""
 "<small><i>You can choose how to display transparent parts in images. This "
 "option has no effect on photos, but setting this as check pattern or custom "
@@ -2314,23 +2314,23 @@ msgstr ""
 "แต่การกำหนดค่านี้เป็นตาหมากรุกหรือสีที่กำหนดจะมีประโยชน์เมื่อดูไอคอนหรืองานศิลป์อื่น ๆ "
 "ที่มีส่วนที่โปร่งใส</i></small>"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:5
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:5
 msgid "As _background"
 msgstr "แสดง_พื้นหลัง"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:6
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:6
 msgid "As _custom color: "
 msgstr "แสดงสีที่_กำหนด: "
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:7
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:7
 msgid "As check _pattern"
 msgstr "แสดงตาห_มากรุก"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:8
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:8
 msgid "Preferences"
 msgstr "ปรับแต่ง"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:9
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:9
 msgid "_Interpolate image on zoom"
 msgstr "_ประมาณจุดภาพเมื่อซูม"
 

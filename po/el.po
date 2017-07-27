@@ -23,32 +23,32 @@ msgstr ""
 "X-Generator: Virtaal 0.7.1\n"
 "X-Project-Style: gnome\n"
 
-#. ../src/Clients/MainApp/FSpot.addin.xml
-#: ../data/addin-xml-strings.cs:8 ../src/Clients/MainApp/FSpot.addin.xml.h:3
+#. ../src/Clients/FSpot/FSpot.addin.xml
+#: ../data/addin-xml-strings.cs:8 ../src/Clients/FSpot/FSpot.addin.xml.h:3
 msgid "Copy Photo"
 msgstr "Αντιγραφή φωτογραφίας"
 
-#: ../data/addin-xml-strings.cs:9 ../src/Clients/MainApp/FSpot.addin.xml.h:4
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:467
-#: ../src/Clients/MainApp/ui/main_window.ui.h:18
-#: ../src/Clients/MainApp/ui/single_view.ui.h:7
+#: ../data/addin-xml-strings.cs:9 ../src/Clients/FSpot/FSpot.addin.xml.h:4
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:467
+#: ../src/Clients/FSpot/ui/main_window.ui.h:18
+#: ../src/Clients/FSpot/ui/single_view.ui.h:7
 msgid "Rotate _Left"
 msgstr "Περιστροφή _αριστερά"
 
-#: ../data/addin-xml-strings.cs:10 ../src/Clients/MainApp/FSpot.addin.xml.h:5
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:468
-#: ../src/Clients/MainApp/ui/main_window.ui.h:19
-#: ../src/Clients/MainApp/ui/single_view.ui.h:8
+#: ../data/addin-xml-strings.cs:10 ../src/Clients/FSpot/FSpot.addin.xml.h:5
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:468
+#: ../src/Clients/FSpot/ui/main_window.ui.h:19
+#: ../src/Clients/FSpot/ui/single_view.ui.h:8
 msgid "Rotate _Right"
 msgstr "Περιστροφή _δεξιά"
 
-#: ../data/addin-xml-strings.cs:11 ../src/Clients/MainApp/FSpot.addin.xml.h:7
-#: ../src/Clients/MainApp/ui/main_window.ui.h:24
+#: ../data/addin-xml-strings.cs:11 ../src/Clients/FSpot/FSpot.addin.xml.h:7
+#: ../src/Clients/FSpot/ui/main_window.ui.h:24
 msgid "_Remove From Catalog"
 msgstr "_Αφαίρεση από τον κατάλογο"
 
-#: ../data/addin-xml-strings.cs:12 ../src/Clients/MainApp/FSpot.addin.xml.h:8
-#: ../src/Clients/MainApp/ui/main_window.ui.h:23
+#: ../data/addin-xml-strings.cs:12 ../src/Clients/FSpot/FSpot.addin.xml.h:8
+#: ../src/Clients/FSpot/ui/main_window.ui.h:23
 msgid "_Delete From Drive"
 msgstr "_Διαγραφή από το δίσκο"
 
@@ -283,7 +283,7 @@ msgstr ""
 #: ../data/addin-xml-strings.cs:122 ../data/addin-xml-strings.cs:128
 #: ../data/addin-xml-strings.cs:134 ../data/addin-xml-strings.cs:140
 #: ../data/addin-xml-strings.cs:146 ../data/addin-xml-strings.cs:152
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:2
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:2
 msgid "Tools"
 msgstr "Εργαλεία"
 
@@ -717,25 +717,25 @@ msgstr "Σύνδεση στο Tabblo"
 msgid "Obtaining URL for upload"
 msgstr "Εύρεση URL για ανέβασμα"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:1
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:1
 msgid "Export to"
 msgstr "Εξαγωγή σε"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:6
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:6
 msgid "Open _With"
 msgstr "Άνοιγμα _με"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:9
-#: ../src/Clients/MainApp/ui/main_window.ui.h:27
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:9
+#: ../src/Clients/FSpot/ui/main_window.ui.h:27
 msgid "Rem_ove Tag"
 msgstr "Α_φαίρεση ετικέτας"
 
-#: ../src/Clients/MainApp/FSpot/App.cs:319
+#: ../src/Clients/FSpot/FSpot/App.cs:319
 #, csharp-format
 msgid "No photos matching {0} found"
 msgstr "Δεν βρέθηκαν φωτογραφίες που να ταιριάζουν στο {0}"
 
-#: ../src/Clients/MainApp/FSpot/App.cs:320
+#: ../src/Clients/FSpot/FSpot/App.cs:320
 #, csharp-format
 msgid ""
 "The tag \"{0}\" is not applied to any photos. Try adding\n"
@@ -746,11 +746,11 @@ msgstr ""
 "προσθέσετε την ετικέτα σε μερικές φωτογραφίες ή να επιλέξετε μια\n"
 "διαφορετική ετικέτα στο διάλογο προτιμήσεων του F-Spot."
 
-#: ../src/Clients/MainApp/FSpot/App.cs:324
+#: ../src/Clients/FSpot/FSpot/App.cs:324
 msgid "Search returned no results"
 msgstr "Η αναζήτηση δεν επέστρεψε αποτελέσματα"
 
-#: ../src/Clients/MainApp/FSpot/App.cs:325
+#: ../src/Clients/FSpot/FSpot/App.cs:325
 msgid ""
 "The tag F-Spot is looking for does not exist. Try\n"
 "selecting a different tag in the F-Spot preference\n"
@@ -760,11 +760,11 @@ msgstr ""
 "να επιλέξτε μια διαφορετική ετικέτα από το διάλογο προτιμήσεων\n"
 "του F-Spot."
 
-#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:769
+#: ../src/Clients/FSpot/FSpot.Database/Updater.cs:769
 msgid "Updating F-Spot Database"
 msgstr "Ενημερώνεται η βάσης δεδομένων του F-Spot"
 
-#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:770
+#: ../src/Clients/FSpot/FSpot.Database/Updater.cs:770
 msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
@@ -772,255 +772,255 @@ msgstr ""
 "Παρακαλούμε, περιμένετε καθώς ενημερώνεται η βάση δεδομένων του εκθετηρίου "
 "του F-Spot. Αυτό μπορεί να διαρκέσει κάποιο χρόνο."
 
-#: ../src/Clients/MainApp/FSpot.Editors/AutoStretchEditor.cs:38
+#: ../src/Clients/FSpot/FSpot.Editors/AutoStretchEditor.cs:38
 msgid "Auto Color"
 msgstr "Αυτόματο χρώμα"
 
-#: ../src/Clients/MainApp/FSpot.Editors/ColorEditor.cs:63
+#: ../src/Clients/FSpot/FSpot.Editors/ColorEditor.cs:63
 msgid "Adjust Colors"
 msgstr "Προσαρμογή χρωμάτων"
 
-#: ../src/Clients/MainApp/FSpot.Editors/ColorEditor.cs:66
+#: ../src/Clients/FSpot/FSpot.Editors/ColorEditor.cs:66
 msgid "Adjust"
 msgstr "Προσαρμογή"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:60
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:60
 msgid "4 x 3 (Book)"
 msgstr "4 x 3 (Βιβλίο)"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:61
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:61
 msgid "4 x 6 (Postcard)"
 msgstr "4 x 6 (Κάρτα)"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:62
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:62
 msgid "5 x 7 (L, 2L)"
 msgstr "5 x 7 (L, 2L)"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:63
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:63
 msgid "8 x 10"
 msgstr "8 x 10"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:64
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:64
 msgid "Square"
 msgstr "Τετράγωνο"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:67
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:67
 msgid "Crop"
 msgstr "Περικοπή"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:98
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:98
 msgid "Select the area that needs cropping."
 msgstr "Επιλέξτε την περιοχή που χρειάζεται περικοπή."
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:123
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:123
 msgid "No Constraint"
 msgstr "Κανένας περιορισμός"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:124
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:124
 msgid "Same as photo"
 msgstr "Το ίδιο με την φωτογραφία"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:129
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:129
 msgid "Custom Ratios..."
 msgstr "Προσαρμοσμένες αναλογίες..."
 
-#: ../src/Clients/MainApp/FSpot.Editors/DesaturateEditor.cs:38
+#: ../src/Clients/FSpot/FSpot.Editors/DesaturateEditor.cs:38
 msgid "Desaturate"
 msgstr "Αποκορεσμός"
 
-#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:41
+#: ../src/Clients/FSpot/FSpot.Editors/RedEyeEditor.cs:41
 msgid "Red-eye Reduction"
 msgstr "Μείωση κόκκινων ματιών"
 
-#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:44
+#: ../src/Clients/FSpot/FSpot.Editors/RedEyeEditor.cs:44
 msgid "Fix!"
 msgstr "Διόρθωση!"
 
-#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:48
+#: ../src/Clients/FSpot/FSpot.Editors/RedEyeEditor.cs:48
 msgid "Select the eyes you wish to fix."
 msgstr "Επιλέξτε τα μάτια που θέλετε να διορθώσετε."
 
-#: ../src/Clients/MainApp/FSpot.Editors/SepiaEditor.cs:38
+#: ../src/Clients/FSpot/FSpot.Editors/SepiaEditor.cs:38
 msgid "Sepia Tone"
 msgstr "Τόνος σέπια"
 
-#: ../src/Clients/MainApp/FSpot.Editors/SoftFocusEditor.cs:51
+#: ../src/Clients/FSpot/FSpot.Editors/SoftFocusEditor.cs:51
 msgid "Soft Focus"
 msgstr "Ελαφρά εστίαση"
 
-#: ../src/Clients/MainApp/FSpot.Editors/TiltEditor.cs:52
+#: ../src/Clients/FSpot/FSpot.Editors/TiltEditor.cs:52
 msgid "Straighten"
 msgstr "Ευθυγράμμιση"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:85
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:85
 msgid "Hide"
 msgstr "Απόκρυψη"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:87
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:87
 msgid "Hide toolbar"
 msgstr "Απόκρυψη εργαλειοθήκης"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:93
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:93
 msgid "Info"
 msgstr "Πληροφορίες"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:95
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:95
 msgid "Image information"
 msgstr "Πληροφορίες εικόνας"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:100
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:100
 msgid "Exit fullscreen"
 msgstr "Έξοδος από πλήρη οθόνη"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:108
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:337
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:124
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:108
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:337
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:124
 msgid "Slideshow"
 msgstr "Προβολή διαφανειών"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:109
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:109
 msgid "Start slideshow"
 msgstr "Έναρξη προβολής διαφανειών"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:155
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:155
 msgid "Slide transition:"
 msgstr "Μετάβαση διαφάνειας:"
 
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:93
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:94
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:93
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:94
 msgid "More dates"
 msgstr "Περισσότερες ημερομηνίες"
 
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:96
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:97
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:96
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:97
 msgid "More"
 msgstr "Περισσότερα"
 
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:559
-#: ../src/Clients/MainApp/ui/main_window.ui.h:57
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:559
+#: ../src/Clients/FSpot/ui/main_window.ui.h:57
 msgid "_Clear Date Range"
 msgstr "Κα_θαρισμός περιοχής ημερομηνίας"
 
-#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:513
-#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:515
-#: ../src/Clients/MainApp/FSpot.Import/MetadataImporter.cs:74
+#: ../src/Clients/FSpot/FSpot.Import/ImportController.cs:513
+#: ../src/Clients/FSpot/FSpot.Import/ImportController.cs:515
+#: ../src/Clients/FSpot/FSpot.Import/MetadataImporter.cs:74
 msgid "Imported Tags"
 msgstr "Εισαγόμενες ετικέτες"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:104
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:304
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:107
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:104
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:304
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:107
 msgid "Rotate Left"
 msgstr "Περιστροφή αριστερά"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:105
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:105
 msgid "Rotate picture left"
 msgstr "Περιστροφή της εικόνας αριστερά"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:116
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:308
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:112
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:116
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:308
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:112
 msgid "Rotate Right"
 msgstr "Περιστροφή δεξιά"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:117
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:117
 msgid "Rotate picture right"
 msgstr "Περιστροφή της εικόνας δεξιά"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:127
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:127
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:262
 msgid "Next"
 msgstr "Επόμενη"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:128
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:128
 msgid "Next picture"
 msgstr "Επόμενη εικόνα"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:148
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:148
 msgid "Previous"
 msgstr "Προηγούμενη"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:149
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:149
 msgid "Previous picture"
 msgstr "Προηγούμενη εικόνα"
 
-#: ../src/Clients/MainApp/FSpot/Literal.cs:226
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:182
+#: ../src/Clients/FSpot/FSpot/Literal.cs:226
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:182
 #, csharp-format
 msgid "Not {0}"
 msgstr "Όχι η {0}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:297
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:232
-#: ../src/Clients/MainApp/ui/import.ui.h:1
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:297
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:232
+#: ../src/Clients/FSpot/ui/import.ui.h:1
 msgid "Import"
 msgstr "Εισαγωγή"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:299
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:299
 msgid "Import new images"
 msgstr "Εισαγωγή νέων εικόνων"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:315
-#: ../src/Clients/MainApp/ui/main_window.ui.h:72
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:315
+#: ../src/Clients/FSpot/ui/main_window.ui.h:72
 msgid "Browse"
 msgstr "Περιήγηση"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:319
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:319
 msgid "Browse many photos simultaneously"
 msgstr "Περιήγηση πολλών φωτογραφιών ταυτόχρονα"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:323
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:323
 msgid "Edit Image"
 msgstr "Επεξεργασία εικόνας"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:327
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:327
 msgid "View and edit a photo"
 msgstr "Προβολή και επεξεργασία φωτογραφίας"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:332
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:119
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:332
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:119
 msgid "Fullscreen"
 msgstr "Πλήρης οθόνη"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:334
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:121
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:334
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:121
 msgid "View photos fullscreen"
 msgstr "Προβολή φωτογραφιών σε πλήρη οθόνη"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:339
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:126
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:339
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:126
 msgid "View photos in a slideshow"
 msgstr "Προβολή φωτογραφιών ως προβολή διαφανειών"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:354
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:354
 msgid "Previous photo"
 msgstr "Προηγούμενη φωτογραφία"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:359
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:359
 msgid "Next photo"
 msgstr "Επόμενη φωτογραφία"
 
 #. Don't care otherwise, Tags sounds reasonable
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:372
-#: ../src/Clients/MainApp/FSpot.Widgets/Sidebar.cs:76
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:372
+#: ../src/Clients/FSpot/FSpot.Widgets/Sidebar.cs:76
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:259
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:431
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:471
 msgid "Tags"
 msgstr "Ετικέτες"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:436
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:436
 msgid "Show _Find Bar"
 msgstr "Εμφάνιση γραμμής α_ναζήτησης"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:439
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:439
 msgid "Hide _Find Bar"
 msgstr "Απόκρυψη γραμμής α_ναζήτησης"
 
 #. Note for translators: This indicates the current photo is photo {0} of {1} out of photos
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:664
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs:157
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ProgressDialog.cs:111
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:664
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AdjustTimeDialog.cs:157
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ProgressDialog.cs:111
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:130
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:393
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:238
@@ -1030,14 +1030,14 @@ msgid "{0} of {1}"
 msgstr "{0} από {1}"
 
 #. Translators, The singular case will never happen here.
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1740
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1740
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
 msgstr[0] "Συγχώνευση της επιλεγμένης ετικέτας"
 msgstr[1] "Συγχώνευση των {0} επιλεγμένων ετικετών;"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1767
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1767
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
@@ -1045,58 +1045,58 @@ msgstr ""
 "Αυτή η λειτουργία θα συγχωνεύσει τις επιλεγμένες ετικέτες και όλες τις "
 "υποετικέτες σε μια απλή ετικέτα."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1769
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1769
 msgid "_Merge Tags"
 msgstr "Συγ_χώνευση ετικετών"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1986
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1986
 #, csharp-format
 msgid "{0} Photo out of {1}"
 msgid_plural "{0} Photos out of {1}"
 msgstr[0] "Φωτογραφία {0} από {1}"
 msgstr[1] "Φωτογραφίες {0} από {1}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1988
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:507
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1988
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:507
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
 msgstr[0] "{0} φωτογραφία"
 msgstr[1] "{0} φωτογραφίες"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1991
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1991
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
 msgstr[0] " (Επιλέχτηκε το {0})"
 msgstr[1] " (Επιλέχτηκαν τα {0})"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2076
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2076
 msgid "_Ok"
 msgstr "Εν_τάξει"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2077
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2077
 msgid "Error Deleting Picture"
 msgstr "Σφάλμα κατά τη διαγραφή της εικόνας"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2082
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2082
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
 msgstr "Δεν έχετε άδεια να διαγράψετε το αρχείο:{1}{0}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2086
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2086
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
 msgstr "Υπήρξε ένα σφάλμα τύπου {0} κατά τη διαγραφή του αρχείου:{2}{1}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2118
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2118
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "Να διαγραφεί μόνιμα η επιλεγμένη φωτογραφία;"
 msgstr[1] "Να διαγραφούν μόνιμα οι {0} επιλεγμένες φωτογραφίες;"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2122
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2122
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
@@ -1107,20 +1107,20 @@ msgstr[1] ""
 "Αυτό διαγράφει όλες τις εκδόσεις της επιλεγμένων φωτογραφιών από τον δίσκο "
 "σας."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2125
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2125
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Διαγραφή φωτογραφίας"
 msgstr[1] "_Διαγραφή φωτογραφιών"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2161
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2161
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "Διαγραφή της επιλεγμένης φωτογραφίας από το F-Spot;"
 msgstr[1] "Διαγραφή των {0} επιλεγμένων φωτογραφιών από το F-Spot;"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2166
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2166
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1130,27 +1130,27 @@ msgstr ""
 "των ετικετών θα χαθούν. Οι φωτογραφίες θα παραμείνουν στον υπολογιστή και θα "
 "μπορούν να εισαχθούν από το F-Spot ξανά."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2167
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2167
 msgid "_Remove from Catalog"
 msgstr "_Αφαίρεση από τον κατάλογο"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2244
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2244
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Να διαγραφεί η ετικέτα \"{0}\";"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2246
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2246
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Να διαγραφούν οι {0} επιλεγμένες ετικέτες;"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2251
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2251
 msgid "photo"
 msgid_plural "photos"
 msgstr[0] "φωτογραφία"
 msgstr[1] "φωτογραφίες"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2253
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2253
 #, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
 msgid_plural ""
@@ -1159,18 +1159,18 @@ msgstr[0] "Αν διαγράψετε αυτήν την ετικέτα, η συσ
 msgstr[1] ""
 "Αν διαγράψετε αυτές τις ετικέτες, οι συσχετίσεις με τις {0} {1} θα χαθούν."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2258
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2258
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Διαγραφή ετικέτας"
 msgstr[1] "_Διαγραφή ετικετών"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2272
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2272
 msgid "Tag is not empty"
 msgstr "Η ετικέτα δεν είναι κενή"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2273
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2273
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -1179,39 +1179,39 @@ msgstr ""
 "Αδύνατη η διαγραφή ετικετών οι οποίες περιέχουν άλλες ετικέτες. Παρακαλούμε, "
 "διαγράψτε πρώτα τις ετικέτες κάτω από την \"{0}\""
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2733
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2733
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Περιστροφή της επιλεγμένης φωτογραφίας αριστερά"
 msgstr[1] "Περιστροφή των επιλεγμένων φωτογραφιών αριστερά"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2746
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2746
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Περιστροφή της επιλεγμένης φωτογραφίας δεξιά"
 msgstr[1] "Περιστροφή των επιλεγμένων φωτογραφιών δεξιά"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2757
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2757
 #, csharp-format
 msgid "Find _Selected Tag"
 msgid_plural "Find _Selected Tags"
 msgstr[0] "Εύρεση επι_λεγμένης ετικέτας"
 msgstr[1] "Εύρεση ε_πιλεγμένων ετικετών"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2761
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2761
 #, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
 msgstr[0] "Εύρεση επιλεγμένης ετικέτας _με"
 msgstr[1] "Εύρεση επιλεγμένων ετικετών _με"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2802
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2802
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Δημιουργία νέας έκδοσης;"
 msgstr[1] "Δημιουργία νέων εκδόσεων;"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2804
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2804
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -1226,111 +1226,111 @@ msgstr[1] ""
 "Πριν την εκκίνηση του {1}, να δημιουργήσει το F-Spot νέες εκδόσεις των "
 "επιλεγμένων φωτογραφιών για να διατηρήσει τις αρχικές;"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2825
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2825
 msgid "XCF version"
 msgstr "Έκδοση XCF"
 
 #. Note for translators: Reparented is a picture becoming a version of another one
-#: ../src/Clients/MainApp/FSpot/Photo.cs:425
+#: ../src/Clients/FSpot/FSpot/Photo.cs:425
 msgid "Reparented"
 msgstr "Με νέο γονέα"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:443
+#: ../src/Clients/FSpot/FSpot/Photo.cs:443
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
 msgstr[0] "Τροποποιημένο"
 msgstr[1] "Τροποποιημένα ({0})"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:466
+#: ../src/Clients/FSpot/FSpot/Photo.cs:466
 #, csharp-format
 msgid "Modified in {1}"
 msgstr "Τροποποιήθηκε στο {1}"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:466
+#: ../src/Clients/FSpot/FSpot/Photo.cs:466
 #, csharp-format
 msgid "Modified in {1} ({0})"
 msgstr "Τροποποιήθηκε στο {1} ({0})"
 
-#: ../src/Clients/MainApp/FSpot/PhotoStore.cs:196
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:13
+#: ../src/Clients/FSpot/FSpot/PhotoStore.cs:196
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:13
 msgid "Original"
 msgstr "Αρχική"
 
-#: ../src/Clients/MainApp/FSpot/PhotoView.cs:349
+#: ../src/Clients/FSpot/FSpot/PhotoView.cs:349
 msgid "Description:"
 msgstr "Περιγραφή:"
 
-#: ../src/Clients/MainApp/FSpot/Preferences.cs:193
+#: ../src/Clients/FSpot/FSpot/Preferences.cs:193
 msgid "Photos"
 msgstr "Φωτογραφίες"
 
-#: ../src/Clients/MainApp/FSpot/PrintOperation.cs:57
+#: ../src/Clients/FSpot/FSpot/PrintOperation.cs:57
 msgid "Image Settings"
 msgstr "Ρυθμίσεις εικόνας"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:83
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:83
 msgid "Find: "
 msgstr "Εύρεση: "
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:88
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:88
 msgid "Untagged photos"
 msgstr "Φωτογραφίες χωρίς ετικέτες"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:96
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:96
 msgid "Rated photos"
 msgstr "Βαθμολογημένες φωτογραφίες"
 
 #. Note for translators: 'Import roll' is no command, it means 'Roll that has been imported'
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:105
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:105
 msgid "Import roll"
 msgstr "Εισαγωγή καταλόγου"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:128
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:128
 msgid "Clear search"
 msgstr "Καθαρισμός αναζήτησης"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:135
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:135
 msgid "Refresh search"
 msgstr "Καθαρισμός αναζήτησης"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:138
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:138
 msgid "No matching photos found"
 msgstr "Δεν βρέθηκαν φωτογραφίες που να ταιριάζουν"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:98
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:98
 msgid "Unable to rotate this type of photo"
 msgstr "Αδύνατη η περιστροφή της φωτογραφίας αυτού του τύπου"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:114
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:114
 msgid "Unable to rotate readonly file"
 msgstr "Αδύνατη η περιστροφή του αρχείου που είναι μόνο για ανάγνωση"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:172
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:172
 msgid "Rotating photos"
 msgstr "Περιστρέφονται οι φωτογραφίες"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:183
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:183
 #, csharp-format
 msgid "Rotating photo \"{0}\""
 msgstr "Περιστρέφεται η φωτογραφία \"{0}\""
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:196
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:196
 msgid "Directory not found"
 msgstr "Δε βρέθηκε ο κατάλογος"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:198
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:198
 msgid "File not found"
 msgstr "Το αρχείο δε βρέθηκε"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:216
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:216
 #, csharp-format
 msgid "Unable to rotate photo"
 msgid_plural "Unable to rotate {0} photos"
 msgstr[0] "Αδύνατη η περιστροφή της φωτογραφίας"
 msgstr[1] "Αδύνατη η περιστροφή των {0} φωτογραφιών"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:218
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:218
 #, csharp-format
 #| msgid ""
 #| "The photo could not be rotated because it is on a read only file system "
@@ -1354,158 +1354,158 @@ msgstr[1] ""
 "ή μέσο μόνο για ανάγνωση, όπως ένα CD-ROM. Παρακαλούμε, ελέγξτε τα "
 "δικαιώματα και προσπαθήστε ξανά."
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:245
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:245
 #, csharp-format
 msgid "Received error \"{0}\" while attempting to rotate {1}"
 msgstr "Ελήφθη σφάλμα \"{0}\" κατά την προσπάθεια περιστροφής {1}"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:250
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:250
 msgid "Error while rotating photo."
 msgstr "Σφάλμα κατά την περιστροφή της φωτογραφίας."
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:233
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:233
 msgid "Preparing email"
 msgstr "Προετοιμάζεται η ηλεκτρονική ταχυδρόμηση"
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:277
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:277
 #, csharp-format
 msgid "Exporting picture \"{0}\""
 msgstr "Εξάγεται η εικόνα \"{0}\""
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:296
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:296
 msgid "Error processing image"
 msgstr "Σφάλμα κατά την επεξεργασία της εικόνας"
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:297
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:297
 #, csharp-format
 msgid "An error occurred while processing \"{0}\": {1}"
 msgstr "Παρουσιάστηκε σφάλμα κατά την επεξεργασία \"{0}\": {1}"
 
 #. Send the mail :)
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:312
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:312
 msgid "My Photos"
 msgstr "Οι φωτογραφίες μου"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:109
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:109
 msgid "Rotate photo left"
 msgstr "Περιστροφή της φωτογραφίας αριστερά"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:114
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:114
 msgid "Rotate photo right"
 msgstr "Περιστροφή της φωτογραφίας δεξιά"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:150
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:150
 msgid "Folder"
 msgstr "Φάκελος"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:383
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:383
 msgid "Open"
 msgstr "Άνοιγμα"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:386
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:386
 msgid "Select Folder"
 msgstr "Επιλογή φακέλου"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:470
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:470
 msgid "Set as Background"
 msgstr "Ορισμός ως παρασκήνιο"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:67
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:67
 #, csharp-format
 msgid "Include Photos Tagged \"{0}\""
 msgstr "Εισαγωγή φωτογραφιών με ετικέτα \"{0}\""
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:72
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:72
 #, csharp-format
 msgid "Exclude Photos Tagged \"{0}\""
 msgstr "Εξαγωγή φωτογραφιών με ετικέτα \"{0}\""
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:77
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:77
 msgid "Remove From Search"
 msgstr "Αφαίρεση από την αναζήτηση"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:121
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:121
 #, csharp-format
 msgid "Find _With"
 msgid_plural "Find _With"
 msgstr[0] "Αναζήτηση _με"
 msgstr[1] "Αναζητήσεις _με"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:147
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:147
 msgid "All"
 msgstr "Όλες"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:306
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:306
 msgid "Drag tags here to search for them"
 msgstr "Μεταφορά ετικετών εδώ για αναζήτηση για αυτές"
 
-#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:518
+#: ../src/Clients/FSpot/FSpot/TagSelectionWidget.cs:518
 msgid "Error renaming tag"
 msgstr "Σφάλμα κατά τη μετονομασία ετικέτας"
 
-#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:519
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagDialog.cs:97
-#: ../src/Clients/MainApp/TagCommands.cs:137
+#: ../src/Clients/FSpot/FSpot/TagSelectionWidget.cs:519
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagDialog.cs:97
+#: ../src/Clients/FSpot/TagCommands.cs:137
 msgid "This name is already in use"
 msgstr "Το όνομα αυτό χρησιμοποιείται ήδη"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:222
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:222
 msgid "Favorites"
 msgstr "Αγαπημένες"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:227
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:227
 msgid "Hidden"
 msgstr "Κρυφές"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:235
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:235
 msgid "People"
 msgstr "Άτομα"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:240
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:240
 msgid "Places"
 msgstr "Τοποθεσίες"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:245
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:245
 msgid "Events"
 msgstr "Συμβάντα"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:257
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:446
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:257
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:446
 msgid "(None)"
 msgstr "(Κανένα)"
 
-#: ../src/Clients/MainApp/FSpot/Term.cs:338
+#: ../src/Clients/FSpot/FSpot/Term.cs:338
 msgid " and "
 msgstr " και "
 
 #. Operators.Add (Catalog.GetString (" && "));
-#: ../src/Clients/MainApp/FSpot/Term.cs:340
+#: ../src/Clients/FSpot/FSpot/Term.cs:340
 msgid ", "
 msgstr ", "
 
-#: ../src/Clients/MainApp/FSpot/Term.cs:396
+#: ../src/Clients/FSpot/FSpot/Term.cs:396
 msgid " or "
 msgstr " ή "
 
 #. OPS The operators we support, case insensitive
 #. private static string op_str = "(?'Ops' or | and |, | \\s+ )";
-#: ../src/Clients/MainApp/FSpot/Term.cs:417
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:3
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:203
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:557
+#: ../src/Clients/FSpot/FSpot/Term.cs:417
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:203
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:557
 msgid "or"
 msgstr "ή"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:125
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AboutDialog.cs:125
 msgid "Photo management for GNOME"
 msgstr "Διαχείριση εικόνων για το GNOME"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:126
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AboutDialog.cs:126
 msgid "Copyright © 2003-2010 Novell Inc."
 msgstr "Πνευματικά διακαιώματα © 2003-2010 Novell Inc."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:150
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AboutDialog.cs:150
 msgid "translator-credits"
 msgstr ""
 "Ελληνική μεταφραστική ομάδα GNOME\n"
@@ -1515,77 +1515,77 @@ msgstr ""
 " Giannis Katsampiris <giannis1_86@hotmail.com>\n"
 "Για περισσότερες λεπτομέρειες http://gnome.gr"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:155
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AboutDialog.cs:155
 msgid "F-Spot Website"
 msgstr "Ιστοσελίδα του F-Spot"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs:140
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:8
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AdjustTimeDialog.cs:140
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:8
 #, csharp-format
 msgid "Shift all photos by {0}"
 msgstr "Μετακίνηση όλων των φωτογραφιών από {0}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:112
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:112
 msgid "Today"
 msgstr "Σήμερα"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:114
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:114
 msgid "Yesterday"
 msgstr "Χθες"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:116
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:116
 msgid "Last 7 days"
 msgstr "Την τελευταία εβδομάδα"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:118
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:118
 msgid "Last 30 days"
 msgstr "Τον τελευταίο μήνα"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:120
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:120
 msgid "Last 90 days"
 msgstr "Τις τελευταίες 90 ημέρες"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:122
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:122
 msgid "Last 360 days"
 msgstr "Το τελευταίο έτος"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:124
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:124
 msgid "Current Week (Mon-Sun)"
 msgstr "Την τρέχουσα εβδομάδα (Δευ-Κυρ)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:126
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:126
 msgid "Previous Week (Mon-Sun)"
 msgstr "Την προηγούμενη εβδομάδα (Δευ-Κυρ)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:142
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:142
 #: ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui.h:3
 msgid "All Images"
 msgstr "Όλες οι εικόνες"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:144
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:144
 msgid "Customized Range"
 msgstr "Προσαρμοσμένη περιοχή"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditExceptionDialog.cs:54
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:108
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditExceptionDialog.cs:54
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:108
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr "Ελήφθη η εξαίρεση \"{0}\". Αδύνατη η αποθήκευση της φωτογραφίας {1}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditExceptionDialog.cs:67
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditExceptionDialog.cs:67
 msgid "Error editing photo"
 msgstr "Σφάλμα κατά την επεξεργασία φωτογραφίας"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:69
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:69
 #, csharp-format
 msgid "Edit Icon for Tag {0}"
 msgstr "Επεξεργασία εικονιδίου για την ετικέτα {0}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:91
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:91
 msgid "Select Photo from file"
 msgstr "Επιλέξτε φωτογραφία από το αρχείο"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:113
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:113
 #, csharp-format
 msgid ""
 "\n"
@@ -1604,33 +1604,33 @@ msgstr ""
 "Παρακαλούμε, εισάγετε μια ετικέτα σε φωτογραφία ως '{0}' επιστρέψτε εδώ για "
 "να την χρησιμοποιήσετε ως εικονίδιο."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:191
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:191
 msgid "Unable to load image"
 msgstr "Αδύνατη η φόρτωση της εικόνας"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:192
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:192
 #, csharp-format
 msgid "Unable to load \"{0}\" as icon for the tag"
 msgstr "Αδύνατη η φόρτωση \"{0}\" ως εικονίδιο για την ετικέτα"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:230
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:230
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "Φωτογραφία {0} από {1}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:48
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:48
 msgid "Choose Folder..."
 msgstr "Επιλογή φακέλου..."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:167
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:167
 msgid "Choose Import source..."
 msgstr "Επιλογή πηγή εισαγωγής..."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:179
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:179
 msgid "(No Cameras Detected)"
 msgstr "(Δεν εντοπίσθηκαν φωτογραφικές μηχανές)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:214
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:214
 msgid ""
 "Checking this box will remove the imported photos from the camera after the "
 "import finished successfully.\n"
@@ -1645,35 +1645,35 @@ msgstr ""
 "πριν τις διαγράψετε από την φωτογραφική μηχανή. <b>Χρησιμοποιείστε αυτήν την "
 "επιλογή με δική σας ευθύνη!</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:215
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:215
 msgid "Warning"
 msgstr "Προειδοποίηση"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:334
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:334
 #, csharp-format
 msgid "Importing Photos: {0} of {1}..."
 msgstr "Εισαγωγή φωτογραφιών: {0} από {1}..."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:358
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:358
 msgid "Importing photos..."
 msgstr "Εισαγωγή φωτογραφιών..."
 
 #. TODO: Using a GtkSpinner would be nicer here.
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:365
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:365
 msgid "Searching for photos... (You can already click Import to continue)"
 msgstr ""
 "Αναζήτηση φωτογραφιών... (Μπορείτε να πατήσετε ήδη στην Εισαγωγή για να "
 "συνεχίσετε)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:68
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportFailureDialog.cs:68
 msgid "Import failures"
 msgstr "Αποτυχίες εισαγωγής"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:69
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportFailureDialog.cs:69
 msgid "Some files failed to import"
 msgstr "Αποτυχία εισαγωγής ορισμένων αρχείων"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:70
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportFailureDialog.cs:70
 msgid ""
 "Some files could not be imported, they might be corrupt or there might be "
 "something wrong with the storage on which they reside."
@@ -1681,28 +1681,28 @@ msgstr ""
 "Αδύνατη η εισαγωγή ορισμένων αρχείων, επειδή είναι κατεστραμμένα ή επειδή "
 "υπάρχει κάποιο πρόβλημα στο μέσο που είναι αποθηκευμένα."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:133
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportFailureDialog.cs:133
 msgid "Details"
 msgstr "Λεπτομέρειες"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:79
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:102
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/PreferenceDialog.cs:79
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/PreferenceDialog.cs:102
 msgid "None"
 msgstr "Κανένα"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:81
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/PreferenceDialog.cs:81
 msgid "System profile"
 msgstr "Κατατομή συστήματος"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:119
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/PreferenceDialog.cs:119
 msgid "Standard theme"
 msgstr "Προεπιλεγμένο θέμα"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/RepairDbDialog.cs:47
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/RepairDbDialog.cs:47
 msgid "Error loading database."
 msgstr "Σφάλμα κατά τη φόρτωση της βάσης δεδομένων."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/RepairDbDialog.cs:48
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/RepairDbDialog.cs:48
 #, csharp-format
 msgid ""
 "F-Spot encountered an error while loading the photo database. The old "
@@ -1712,74 +1712,74 @@ msgstr ""
 "φωτογραφιών. Η παλιά βάση δεδομένων έχει μετακινηθεί στο {0} και έχει "
 "δημιουργηθεί μια νέα βάση δεδομένων."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/SelectionRatioDialog.cs:74
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/SelectionRatioDialog.cs:74
 #| msgid "_Invert Selection"
 msgid "New Selection"
 msgstr "Νέα επιλογή"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/SelectionRatioDialog.cs:81
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/SelectionRatioDialog.cs:81
 msgid "Label"
 msgstr "Ετικέτα"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/SelectionRatioDialog.cs:85
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/SelectionRatioDialog.cs:85
 msgid "Ratio"
 msgstr "Αναλογία"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ThreadProgressDialog.cs:79
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ThreadProgressDialog.cs:79
 msgid "Retry"
 msgstr "Επανάληψη"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ThreadProgressDialog.cs:81
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ThreadProgressDialog.cs:81
 #: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/pickfolder_dialog.ui.h:1
 msgid "Skip"
 msgstr "Παράβλεψη"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:1
 msgid "Adjust Time"
 msgstr "Προσαρμογή χρόνου"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:2
 msgid "Adjusted date: "
 msgstr "Προσαρμοσμένη ημερομηνία: "
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:3
 msgid "Current date:"
 msgstr "Τρέχουσα ημερομηνία:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:4
 msgid "0000:00:00 00:00:00"
 msgstr "0000:00:00 00:00:00"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:5
 msgid "difference:"
 msgstr "διαφορά:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:6
 msgid "00:00:00"
 msgstr "00:00:00"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:7
 msgid "<b>Reference Photo</b>"
 msgstr "<b>Φωτογραφία αναφοράς</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:9
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:9
 msgid "Space all photos by"
 msgstr "Διάταξη όλων των φωτογραφιών από"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:10
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:10
 msgid "5"
 msgstr "5"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:11
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:11
 msgid "min. Starting at {0}"
 msgstr "Ελάχιστη έναρξη στο {0}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:12
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:12
 msgid "<b>Action</b>"
 msgstr "<b>Ενέργεια</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:13
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:13
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:2
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:2
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:2
 #: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:2
@@ -1789,152 +1789,152 @@ msgstr "<b>Ενέργεια</b>"
 msgid "<b>Photos</b>"
 msgstr "<b>Φωτογραφίες</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:1
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:3
 msgid "P_arent Tag:"
 msgstr "Γονική ετικέτ_α:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:2
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:2
 msgid "_Tag Name:"
 msgstr "Όνομα ε_τικέτας:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:3
 msgid "Create _icon for this tag when first used"
 msgstr "Δημιουργία ε_ικονιδίου για αυτή την ετικέτα στην πρώτη χρήση"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:4
 msgid "C_reate"
 msgstr "Δημιου_ργία"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:1
 msgid "Set date range"
 msgstr "Ορισμός περιοχής ημερομηνίας"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:2
 msgid "<b>Select period</b>"
 msgstr "<b>Επιλογή περιόδου</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:4
 msgid "<b>Start Date</b>"
 msgstr "<b>Αρχική ημερομηνία</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:5
 msgid "<b>End Date</b>"
 msgstr "<b>Τελική ημερομηνία</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:6
 msgid "Cancel, do not change the current timeline. "
 msgstr "Ακυρώστε, μην αλλάζετε την τρέχουσα ζώνη ώρας. "
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:7
 msgid "Only photos taken within these dates will be displayed."
 msgstr "Θα εμφανιστούν μόνο οι φωτογραφίες μεταξύ αυτών των ημερομηνιών."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:1
 msgid "Edit Tag"
 msgstr "Επεξεργασία ετικέτας"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:4
 msgid "_Icon:"
 msgstr "Ε_ικονίδιο:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:5
 msgid "Edit icon"
 msgstr "Επεξεργασία εικονιδίου"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:1
 msgid "Edit Tag Icon"
 msgstr "Επεξεργασία εικονιδίου ετικέτας"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:2
 msgid "<b>Preview</b>"
 msgstr "<b>Προεπισκόπηση</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:3
 msgid "Design icon from"
 msgstr "Δημιουργία εικονιδίου από"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:4
 msgid "<b>From External Photo</b>"
 msgstr "<b>Από εξωτερική φωτογραφία</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:5
 msgid "<b>Predefined icons</b>"
 msgstr "<b>Προκαθορισμένα εικονίδια</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:6
 msgid "<b>From Photo</b>"
 msgstr "<b>Από φωτογραφία</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:7
 msgid "No _image"
 msgstr "Καμία ε_ικόνα"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:1
 msgid "Filter on selected rolls"
 msgstr "Φιλτράρισμα σε επιλεγμένους καταλόγους"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:2
 msgid "<b>View all pictures imported</b>"
 msgstr "<b>Προβολή όλων των φωτογραφιών που έχουν εισαχθεί</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:3
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:203
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:558
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:203
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:558
 msgid "and"
 msgstr "και"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:4
 msgid "Number of photos in selected rolls:"
 msgstr "Αριθμοί φωτογραφιών στους επιλεγμένους καταλόγους:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:5
 msgid "Show all photos."
 msgstr "Εμφάνιση όλων των φωτογραφιών."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:6
 msgid "Display only those photos that were imported in specified Rolls."
 msgstr ""
 "Προβολή μόνο των φωτογραφιών που εισήχθηκαν σε συγκεκριμένους καταλόγους."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:7
 msgid "at"
 msgstr "στις"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:8
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:8
 msgid "after"
 msgstr "μετά"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:9
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:9
 msgid "between"
 msgstr "μεταξύ"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:1
 msgid "F-Spot Preferences"
 msgstr "Προτιμήσεις F-Spot"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:2
 msgid "When importing photos, copy them to:"
 msgstr "Κατά την εισαγωγή φωτογραφιών, να αντιγράφονται στο:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:3
 msgid "Color profile for display:"
 msgstr "Χρωματική κατατομή για οθόνη:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:4
 msgid "Color profile for printing:"
 msgstr "Χρωματική κατατομή για εκτύπωση:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:5
 msgid "F-Spot appearance:"
 msgstr "Εμφάνιση F-Spot:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:6
 msgid "Select A Folder"
 msgstr "Επιλέξτε φάκελο"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:7
 msgid ""
 "Inside the image files when possible\n"
 "<small>Makes them accessible to other image-editing programs.</small>"
@@ -1943,11 +1943,11 @@ msgstr ""
 "<small>Να είναι προσβάσιμα και από άλλα προγράμματα επεξεργασίας "
 "εικόνων.</small>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:9
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:9
 msgid "Store tags and descriptions for photos:"
 msgstr "Αποθήκευση ετικετών και περιγραφών των φωτογραφιών:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:10
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:10
 msgid ""
 "Never modify image files.\n"
 "<small>Write XMP files next to the images instead.</small>"
@@ -1956,45 +1956,45 @@ msgstr ""
 "<small>Αντί αυτού, να γίνεται εγγραφή των αρχείων XMP δίπλα στις "
 "εικόνες.</small>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:12
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:12
 msgid "Separately from the image files"
 msgstr "Χωριστά από τα αρχεία των εικόνων"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:1
 msgid "Set Rating Filter"
 msgstr "Καθορισμός φίλτρου βαθμολογήσεων"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:2
 msgid "<b>Min Rating</b>"
 msgstr "<b>Ελάχιστη βαθμολογία</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:3
 msgid "<b>Max Rating</b>"
 msgstr "<b>Βέλτιστη βαθμολογία</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RepairDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/RepairDialog.ui.h:1
 msgid "Repair"
 msgstr "Διόρθωση"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui.h:1
 msgid "Selection Constraints"
 msgstr "Περιορισμοί επιλογής"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui.h:2
 msgid "Manage your custom selection ratios"
 msgstr "Διαχείριση των προσαρμοσμένων αναλογιών επιλογής σας"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:56
-#: ../src/Clients/MainApp/FSpot.Widgets/Sidebar.cs:74
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:56
+#: ../src/Clients/FSpot/FSpot.Widgets/Sidebar.cs:74
 msgid "Edit"
 msgstr "Επεξεργασία"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:224
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:224
 #: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:69
 msgid "No selection available"
 msgstr "Δεν υπάρχει διαθέσιμη επιλογή"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:225
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:225
 msgid ""
 "This tool requires an active selection. Please select a region of the photo "
 "and try the operation again"
@@ -2002,13 +2002,13 @@ msgstr ""
 "Το εργαλείο απαιτεί μια ενεργή επιλογή. Παρακαλούμε, επιλέξτε μια περιοχή "
 "της φωτογραφίας και προσπαθήστε ξανά"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:243
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:243
 msgid "Error saving adjusted photo"
 msgid_plural "Error saving adjusted photos"
 msgstr[0] "Σφάλμα κατά την αποθήκευση προσαρμοσμένης φωτογραφίας"
 msgstr[1] "Σφάλμα κατά την αποθήκευση προσαρμοσμένων φωτογραφιών"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:245
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:245
 #, csharp-format
 msgid ""
 "Received exception \"{0}\". Note that you have to develop RAW files into "
@@ -2017,78 +2017,78 @@ msgstr ""
 "Λήψη εξαίρεσης \"{0}\". Προσοχή, πρέπει να αναπτύξετε αρχεία RAW σε JPEG πριν "
 "την επεξεργασία τους."
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:495
+#: ../src/Clients/FSpot/FSpot.Widgets/Filmstrip.cs:495
 msgid "_Horizontal"
 msgstr "_Οριζόντια"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:499
+#: ../src/Clients/FSpot/FSpot.Widgets/Filmstrip.cs:499
 msgid "_Vertical"
 msgstr "_Κάθετα"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:84
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:84
 msgid "Find:"
 msgstr "Εύρεση:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/FolderTreePage.cs:45
+#: ../src/Clients/FSpot/FSpot.Widgets/FolderTreePage.cs:45
 msgid "Folders"
 msgstr "Φάκελοι"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/FolderTreeView.cs:158
+#: ../src/Clients/FSpot/FSpot.Widgets/FolderTreeView.cs:158
 msgid "Filesystem"
 msgstr "Σύστημα αρχείων"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:126
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:406
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:456
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:462
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:466
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:126
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:406
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:456
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:462
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:466
 msgid "(Unknown)"
 msgstr "(Άγνωστο)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:306
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:306
 msgid "Histogram"
 msgstr "Ιστόγραμμα"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:325
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:325
 msgid "Image Information"
 msgstr "Πληροφορίες εικόνας"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:333
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:333
 #, csharp-format
 msgid "{0} Photos"
 msgstr "{0} Φωτογραφίες"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:335
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:335
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:9
 msgid "Name"
 msgstr "Όνομα"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:347
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:347
 msgid "Version"
 msgstr "Έκδοση"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:362
-#: ../src/Clients/MainApp/PhotoVersionMenu.cs:85
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:362
+#: ../src/Clients/FSpot/PhotoVersionMenu.cs:85
 msgid "(No Edits)"
 msgstr "(Χωρίς τροποποιήσεις)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:366
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:366
 #, csharp-format
 msgid "(One Edit)"
 msgid_plural "({0} Edits)"
 msgstr[0] "(Μία τροποποίηση)"
 msgstr[1] "({0} τροποποιήσεις)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:372
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:372
 msgid "Date"
 msgstr "Ημερομηνία"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:372
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:372
 msgid "Show Date"
 msgstr "Προβολή ημερομηνίας"
 
 #. Note for translators: {0} is a date, {1} and {2} are times.
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:383
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:383
 #, csharp-format
 msgid ""
 "On {0} between \n"
@@ -2097,7 +2097,7 @@ msgstr ""
 "Στο {0} μεταξύ \n"
 "{1} και {2}"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:388
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:388
 #, csharp-format
 msgid ""
 "Between {0} \n"
@@ -2106,171 +2106,171 @@ msgstr ""
 "Μεταξύ {0} \n"
 "και {1}"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:394
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:394
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:6
 msgid "Size"
 msgstr "Μέγεθος"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:394
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:394
 msgid "Show Size"
 msgstr "Προβολή μεγέθους"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:409
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:409
 msgid "Exposure"
 msgstr "Έκθεση"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:409
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:409
 msgid "Show Exposure"
 msgstr "Προβολή έκθεσης"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:439
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:439
 msgid "flash fired"
 msgstr "χρήση αναλαμπής"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:441
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:441
 msgid "flash didn't fire"
 msgstr "Χωρίς χρήση αναλαμπής"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:451
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:451
 msgid "Focal Length"
 msgstr "Εστιακή απόσταση"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:451
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:451
 msgid "Show Focal Length"
 msgstr "Προβολή εστιακής απόστασης"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:461
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:461
 msgid "Camera"
 msgstr "Φωτογραφική μηχανή"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:461
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:461
 msgid "Show Camera"
 msgstr "Προβολή φωτογραφικής μηχανής"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:465
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:465
 msgid "Creator"
 msgstr "Δημιουργός"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:465
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:465
 msgid "Show Creator"
 msgstr "Εμφάνιση δημιουργού"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:469
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:469
 msgid "File Size"
 msgstr "Μέγεθος αρχείου"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:469
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:469
 msgid "Show File Size"
 msgstr "Προβολή μεγέθους αρχείου"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:477
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:477
 msgid "(File read error)"
 msgstr "(Σφάλμα ανάγνωσης αρχείου)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:485
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:485
 msgid "Rating"
 msgstr "Βαθμολόγηση"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:485
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:485
 msgid "Show Rating"
 msgstr "Εμφάνιση βαθμολόγησης"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:489
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:489
 msgid "Show Tags"
 msgstr "Εμφάνιση ετικετών"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:44
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:44
 msgid "Metadata"
 msgstr "Μεταδεδομένα"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:125
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:125
 msgid "Extended Metadata"
 msgstr "Εκτεταμένα μεταδεδομένα"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:378
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:378
 msgid "No active photo"
 msgstr "Καμιά ενεργή φωτογραφία"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:380
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:380
 #, csharp-format
 msgid "The photo \"{0}\" does not exist"
 msgstr "Η φωτογραφία \"{0}\" δεν υπάρχει"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:382
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:382
 msgid "No metadata available"
 msgstr "Χωρίς διαθέσιμα μεταδεδομένα"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:107
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:107
 msgid "Error saving sharpened photo"
 msgstr "Σφάλμα κατά την αποθήκευση φωτογραφίας που έχει οξυνθεί"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:154
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:154
 msgid "Sharpen"
 msgstr "Όξυνση"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:164
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:164
 msgid "Amount:"
 msgstr "Ποσό:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:165
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:165
 msgid "Radius:"
 msgstr "Ακτίνα:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:166
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:166
 msgid "Threshold:"
 msgstr "Κατώφλι:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/TagMenu.cs:126
-#: ../src/Clients/MainApp/TagPopup.cs:64
+#: ../src/Clients/FSpot/FSpot.Widgets/TagMenu.cs:126
+#: ../src/Clients/FSpot/TagPopup.cs:64
 msgid "Create New Tag..."
 msgstr "Δημιουργία νέας ετικέτας..."
 
 #. Fixme this should really set parent menu
 #. items insensitve
-#: ../src/Clients/MainApp/PhotoTagMenu.cs:70
+#: ../src/Clients/FSpot/PhotoTagMenu.cs:70
 msgid "(No Tags)"
 msgstr "(Καμία ετικέτα)"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:95
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:95
 msgid "Create New Version"
 msgstr "Δημιουργία νέας έκδοσης"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:96
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:96
 msgid "Name:"
 msgstr "Όνομα:"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:100
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:100
 msgid "Rename Version"
 msgstr "Μετονομασία έκδοσης"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:101
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:101
 msgid "New name:"
 msgstr "Νέο όνομα:"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:161
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:161
 msgid "Delete"
 msgstr "Διαγραφή"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:162
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:162
 #, csharp-format
 msgid "Really delete version \"{0}\"?"
 msgstr "Είστε βέβαιος για την διαγραφή της έκδοσης \"{0}\";"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:163
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:163
 msgid "This removes the version and deletes the corresponding file from disk."
 msgstr ""
 "Αυτό αφαιρεί την έκδοση και διαγράφει το αντίστοιχο αρχείο από τον δίσκο."
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:208
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:208
 msgid "De_tach"
 msgstr "_Απόσπαση"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:209
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:209
 #, csharp-format
 msgid "Really detach version \"{0}\" from \"{1}\"?"
 msgstr "Είστε βέβαιος για την απόσπαση της έκδοσης \"{0}\" από την \"{1}\";"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:210
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:210
 msgid ""
 "This makes the version appear as a separate photo in the library. To undo, "
 "drag the new photo back to its parent."
@@ -2278,18 +2278,18 @@ msgstr ""
 "Αυτό εμφανίζει την έκδοση ως ξεχωριστή φωτογραφία στην βιβλιοθήκη. Για "
 "αναίρεση, μεταφέρτε την νέα φωτογραφία πίσω στον γονέα της."
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:232
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:232
 msgid "Re_parent"
 msgstr "Νέος _γονέας"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:233
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:233
 #, csharp-format
 msgid "Really reparent \"{0}\" as version of \"{1}\"?"
 msgid_plural "Really reparent {2} photos as versions of \"{1}\"?"
 msgstr[0] "Νέος γονέας του \"{0}\" ως έκδοσης του \"{1}\";"
 msgstr[1] "Νέος γονέας {2} των φωτογραφιών ως εκδόσεις του \"{1}\";"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:236
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:236
 msgid ""
 "This makes the photos appear as a single one in the library. The versions "
 "can be detached using the Photo menu."
@@ -2297,512 +2297,512 @@ msgstr ""
 "Αυτό εμφανίζει τις φωτογραφίες ως μια στην βιβλιοθήκη. Οι εκδόσεις μπορούν "
 "να αποσπαστούν από το μενού Φωτογραφίες."
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:276
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:276
 #, csharp-format
 msgid "Received exception \"{0}\"."
 msgstr "Ελήφθη η εξαίρεση \"{0}\"."
 
-#: ../src/Clients/MainApp/TagCommands.cs:188
+#: ../src/Clients/FSpot/TagCommands.cs:188
 msgid "Create New Tag"
 msgstr "Δημιουργία νέας ετικέτας"
 
-#: ../src/Clients/MainApp/TagCommands.cs:189
+#: ../src/Clients/FSpot/TagCommands.cs:189
 msgid "Name of New Tag:"
 msgstr "Το όνομα της νέας ετικέτας:"
 
-#: ../src/Clients/MainApp/TagPopup.cs:54
+#: ../src/Clients/FSpot/TagPopup.cs:54
 #, csharp-format
 msgid "Find"
 msgid_plural "Find"
 msgstr[0] "Αναζήτηση"
 msgstr[1] "Αναζητήσεις"
 
-#: ../src/Clients/MainApp/TagPopup.cs:70
+#: ../src/Clients/FSpot/TagPopup.cs:70
 msgid "Edit Tag..."
 msgstr "Επεξεργασία ετικέτας..."
 
-#: ../src/Clients/MainApp/TagPopup.cs:75
+#: ../src/Clients/FSpot/TagPopup.cs:75
 msgid "Delete Tag"
 msgid_plural "Delete Tags"
 msgstr[0] "Διαγραφή ετικέτας"
 msgstr[1] "Διαγραφή ετικετών"
 
-#: ../src/Clients/MainApp/TagPopup.cs:81
+#: ../src/Clients/FSpot/TagPopup.cs:81
 msgid "Attach Tag to Selection"
 msgid_plural "Attach Tags to Selection"
 msgstr[0] "Επισύναψη ετικέτας στην επιλογή"
 msgstr[1] "Επισύναψη ετικετών στην επιλογή"
 
-#: ../src/Clients/MainApp/TagPopup.cs:85
+#: ../src/Clients/FSpot/TagPopup.cs:85
 msgid "Remove Tag From Selection"
 msgid_plural "Remove Tags From Selection"
 msgstr[0] "Αφαίρεση ετικέτας από την επιλογή"
 msgstr[1] "Αφαίρεση ετικετών από την επιλογή"
 
-#: ../src/Clients/MainApp/TagPopup.cs:91
+#: ../src/Clients/FSpot/TagPopup.cs:91
 msgid "Merge Tags"
 msgstr "Συγχώνευση ετικετών"
 
-#: ../src/Clients/MainApp/ThumbnailCommand.cs:54
+#: ../src/Clients/FSpot/ThumbnailCommand.cs:54
 msgid "Updating Thumbnails"
 msgstr "Ενημερώνονται οι μικρογραφίες"
 
-#: ../src/Clients/MainApp/ThumbnailCommand.cs:62
+#: ../src/Clients/FSpot/ThumbnailCommand.cs:62
 #, csharp-format
 msgid "Updating picture \"{0}\""
 msgstr "Ενημερώνεται η εικόνα \"{0}\""
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:1
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:1
 msgid "C_ontrast:"
 msgstr "Α_ντίθεση:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:2
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:2
 msgid "_Hue:"
 msgstr "Α_πόχρωση:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:3
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:3
 msgid "_Brightness:"
 msgstr "_Φωτεινότητα:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:4
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:4
 msgid "_Saturation:"
 msgstr "_Κορεσμός:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:5
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:5
 msgid "_Exposure:"
 msgstr "Έ_κθεση:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:6
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:6
 msgid "<b>Co_rrections</b>"
 msgstr "<b>Διο_ρθώσεις</b>"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:7
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:7
 msgid "_Tint:"
 msgstr "_Απόχρωση:"
 
 #. Note for translators: meant as Temperature
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:9
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:9
 msgid "Te_mp:"
 msgstr "Προ_σωρινό:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:10
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:10
 msgid "<b>_White Balance</b>"
 msgstr "<b>Ισορροπία _λευκού</b>"
 
 #. Translators: this string means 'source of import'
-#: ../src/Clients/MainApp/ui/import.ui.h:3
+#: ../src/Clients/FSpot/ui/import.ui.h:3
 msgid "Import _from:"
 msgstr "Εισαγωγή _από:"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:4
+#: ../src/Clients/FSpot/ui/import.ui.h:4
 msgid "_Attach tags:"
 msgstr "_Επισύναψη ετικετών:"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:5
+#: ../src/Clients/FSpot/ui/import.ui.h:5
 msgid "_Detect duplicates"
 msgstr "_Εντοπισμός διπλοεγγραφών"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:6
+#: ../src/Clients/FSpot/ui/import.ui.h:6
 msgid "C_opy files to the Photos folder"
 msgstr "Αντιγρα_φή αρχείων στον φάκελο φωτογραφιών"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:7
+#: ../src/Clients/FSpot/ui/import.ui.h:7
 msgid "I_nclude subfolders"
 msgstr "_Συμπερίληψη υποφακέλων"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:8
+#: ../src/Clients/FSpot/ui/import.ui.h:8
 msgid "_Remove original files after import"
 msgstr "_Διαγραφή αρχικών αρχείων μετά την εισαγωγή"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:9
+#: ../src/Clients/FSpot/ui/import.ui.h:9
 msgid "_Import"
 msgstr "_Εισαγωγή"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:1
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:1
 msgid "Create Mail"
 msgstr "Δημιουργία μηνύματος"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:3
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:3
 msgid "Tiny"
 msgstr "Μικροσκοπικό"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:4
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:4
 msgid "320 px"
 msgstr "320 εικονοστοιχεία"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:5
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:5
 msgid "Small"
 msgstr "Μικρό"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:6
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:6
 msgid "480 px"
 msgstr "480 εικονοστοιχεία"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:7
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:7
 msgid "Medium"
 msgstr "Μεσαίο"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:8
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:8
 msgid "640 px"
 msgstr "640 εικονοστοιχεία"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:9
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:9
 msgid "Large"
 msgstr "Μεγάλο"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:10
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:10
 msgid "800 px"
 msgstr "800 εικονοστοιχεία"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:11
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:11
 msgid "Extra large"
 msgstr "Πολύ μεγάλο"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:12
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:12
 msgid "1024 px"
 msgstr "1024 εικονοστοιχεία"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:14
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:14
 msgid "Original size (possible very large file size)"
 msgstr "Αρχικό μέγεθος (πιθανώς αρχείο πολύ μεγάλου μεγέθους)"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:15
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:15
 msgid "<b>Size</b>"
 msgstr "<b>Μέγεθος</b>"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:16
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:16
 msgid "Number of pictures"
 msgstr "Αριθμός εικόνων"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:17
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:17
 msgid "Total original size"
 msgstr "Συνολικό αρχικό μέγεθος"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:18
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:18
 msgid "Estimated new size"
 msgstr "Εκτιμώμενο νέο μέγεθος"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:19
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:19
 msgid "<b>Summary</b>"
 msgstr "<b>Περίληψη</b>"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:20
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:20
 msgid "Do not send a mail"
 msgstr "Να μην σταλεί κανένα μήνυμα"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:21
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:21
 msgid "_Create Mail"
 msgstr "_Δημιουργία μηνύματος"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:22
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:22
 msgid "Create a mail with the selected photos (possibly resized) attached"
 msgstr ""
 "Δημιουργία ενός μηνύματος με συνημμένες τις επιλεγμένες φωτογραφίες (πιθανώς "
 "με αυξομείωση)"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:1
-#: ../src/Clients/MainApp/ui/single_view.ui.h:2
+#: ../src/Clients/FSpot/ui/main_window.ui.h:1
+#: ../src/Clients/FSpot/ui/single_view.ui.h:2
 msgid "_Photo"
 msgstr "_Φωτογραφία"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:2
+#: ../src/Clients/FSpot/ui/main_window.ui.h:2
 msgid "_Import..."
 msgstr "Ει_σαγωγή..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:3
+#: ../src/Clients/FSpot/ui/main_window.ui.h:3
 msgid "_Version"
 msgstr "Έ_κδοση"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:4
+#: ../src/Clients/FSpot/ui/main_window.ui.h:4
 msgid "Create _New Version..."
 msgstr "Δημιουργία _νέας έκδοσης..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:5
+#: ../src/Clients/FSpot/ui/main_window.ui.h:5
 msgid "_Delete Version"
 msgstr "_Διαγραφή έκδοσης"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:6
+#: ../src/Clients/FSpot/ui/main_window.ui.h:6
 msgid "_Rename Version"
 msgstr "_Μετονομασία έκδοσης"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:7
+#: ../src/Clients/FSpot/ui/main_window.ui.h:7
 msgid "De_tach Version"
 msgstr "_Απόσπαση έκδοσης"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:8
+#: ../src/Clients/FSpot/ui/main_window.ui.h:8
 msgid "_Export to"
 msgstr "Εξα_γωγή σε"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:9
+#: ../src/Clients/FSpot/ui/main_window.ui.h:9
 msgid "Page Set_up..."
 msgstr "_Διαμόρφωση σελίδας..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:10
+#: ../src/Clients/FSpot/ui/main_window.ui.h:10
 msgid "Send by _Mail..."
 msgstr "Αποστολή μέσω _μηνύματος..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:11
+#: ../src/Clients/FSpot/ui/main_window.ui.h:11
 msgid "_Close"
 msgstr "_Κλείσιμο"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:12
+#: ../src/Clients/FSpot/ui/main_window.ui.h:12
 msgid "_Quit"
 msgstr "Τε_ρματισμός"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:13
-#: ../src/Clients/MainApp/ui/single_view.ui.h:6
+#: ../src/Clients/FSpot/ui/main_window.ui.h:13
+#: ../src/Clients/FSpot/ui/single_view.ui.h:6
 msgid "_Edit"
 msgstr "Επε_ξεργασία"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:14
+#: ../src/Clients/FSpot/ui/main_window.ui.h:14
 msgid "Copy"
 msgstr "Αντιγραφή"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:15
+#: ../src/Clients/FSpot/ui/main_window.ui.h:15
 msgid "Select _All"
 msgstr "Επιλογή ό_λων"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:16
+#: ../src/Clients/FSpot/ui/main_window.ui.h:16
 msgid "Select _None"
 msgstr "_Χωρίς επιλογή"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:17
+#: ../src/Clients/FSpot/ui/main_window.ui.h:17
 msgid "_Invert Selection"
 msgstr "_Αντιστροφή επιλογής"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:20
+#: ../src/Clients/FSpot/ui/main_window.ui.h:20
 msgid "_Sharpen..."
 msgstr "Ό_ξυνση..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:21
+#: ../src/Clients/FSpot/ui/main_window.ui.h:21
 msgid "Adjust _Time..."
 msgstr "Προσαρμογή ώ_ρας..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:22
+#: ../src/Clients/FSpot/ui/main_window.ui.h:22
 msgid "Re_fresh Thumbnail"
 msgstr "Α_νανέωση μικρογραφίας"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:25
-#: ../src/Clients/MainApp/ui/single_view.ui.h:9
+#: ../src/Clients/FSpot/ui/main_window.ui.h:25
+#: ../src/Clients/FSpot/ui/single_view.ui.h:9
 msgid "Set as _Background"
 msgstr "Ορισμός ως _παρασκήνιο"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:26
+#: ../src/Clients/FSpot/ui/main_window.ui.h:26
 msgid "_Attach Tag"
 msgstr "_Επισύναψη ετικέτας"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:28
+#: ../src/Clients/FSpot/ui/main_window.ui.h:28
 msgid "Manage _Extensions"
 msgstr "Διαχείριση ε_πεκτάσεων"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:29
-#: ../src/Clients/MainApp/ui/single_view.ui.h:10
+#: ../src/Clients/FSpot/ui/main_window.ui.h:29
+#: ../src/Clients/FSpot/ui/single_view.ui.h:10
 msgid "_View"
 msgstr "_Προβολή"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:30
-#: ../src/Clients/MainApp/ui/single_view.ui.h:11
+#: ../src/Clients/FSpot/ui/main_window.ui.h:30
+#: ../src/Clients/FSpot/ui/single_view.ui.h:11
 msgid "_Slideshow"
 msgstr "_Προβολή διαφανειών"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:31
-#: ../src/Clients/MainApp/ui/single_view.ui.h:12
+#: ../src/Clients/FSpot/ui/main_window.ui.h:31
+#: ../src/Clients/FSpot/ui/single_view.ui.h:12
 msgid "_Fullscreen"
 msgstr "_Πλήρης οθόνη"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:32
+#: ../src/Clients/FSpot/ui/main_window.ui.h:32
 msgid "Thumbnail _elements"
 msgstr "_Στοιχεία μικρογραφιών"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:33
+#: ../src/Clients/FSpot/ui/main_window.ui.h:33
 msgid "_Dates"
 msgstr "Η_μερομηνίες"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:34
+#: ../src/Clients/FSpot/ui/main_window.ui.h:34
 msgid "T_ags"
 msgstr "Ε_τικέτες"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:35
+#: ../src/Clients/FSpot/ui/main_window.ui.h:35
 msgid "_Ratings"
 msgstr "_Βαθμολογίες"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:36
+#: ../src/Clients/FSpot/ui/main_window.ui.h:36
 msgid "_Components"
 msgstr "_Στοιχεία"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:37
+#: ../src/Clients/FSpot/ui/main_window.ui.h:37
 msgid "Side_bar"
 msgstr "Πλευρική _στήλη"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:38
+#: ../src/Clients/FSpot/ui/main_window.ui.h:38
 msgid "_Timeline"
 msgstr "_Ζώνη ώρας"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:39
+#: ../src/Clients/FSpot/ui/main_window.ui.h:39
 msgid "_Filmstrip"
 msgstr "_Λουρίδα ταινίας"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:40
+#: ../src/Clients/FSpot/ui/main_window.ui.h:40
 msgid "Too_lbar"
 msgstr "Εργαλειο_θήκη"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:41
-#: ../src/Clients/MainApp/ui/single_view.ui.h:18
+#: ../src/Clients/FSpot/ui/main_window.ui.h:41
+#: ../src/Clients/FSpot/ui/single_view.ui.h:18
 msgid "Zoom _in"
 msgstr "_Μεγέθυνση"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:42
-#: ../src/Clients/MainApp/ui/single_view.ui.h:19
+#: ../src/Clients/FSpot/ui/main_window.ui.h:42
+#: ../src/Clients/FSpot/ui/single_view.ui.h:19
 msgid "Zoom _out"
 msgstr "Σ_μίκρυνση"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:43
+#: ../src/Clients/FSpot/ui/main_window.ui.h:43
 msgid "_Loupe"
 msgstr "_Μεγεθυντικός φακός"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:44
+#: ../src/Clients/FSpot/ui/main_window.ui.h:44
 msgid "_Tag Icons"
 msgstr "Εικονίδια ετι_κέτας"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:45
+#: ../src/Clients/FSpot/ui/main_window.ui.h:45
 msgid "_Hidden"
 msgstr "Κρ_υφό"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:46
+#: ../src/Clients/FSpot/ui/main_window.ui.h:46
 msgid "_Small"
 msgstr "_Μικρό"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:47
+#: ../src/Clients/FSpot/ui/main_window.ui.h:47
 msgid "_Medium"
 msgstr "Με_σαίο"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:48
+#: ../src/Clients/FSpot/ui/main_window.ui.h:48
 msgid "_Large"
 msgstr "Με_γάλο"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:49
+#: ../src/Clients/FSpot/ui/main_window.ui.h:49
 msgid "Arrange _by"
 msgstr "Ταξινόμηση α_νά"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:50
+#: ../src/Clients/FSpot/ui/main_window.ui.h:50
 msgid "_Reverse Order"
 msgstr "Α_ντιστροφή σειράς"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:51
+#: ../src/Clients/FSpot/ui/main_window.ui.h:51
 msgid "Fin_d"
 msgstr "Εύ_ρεση"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:52
+#: ../src/Clients/FSpot/ui/main_window.ui.h:52
 msgid "By _Rating"
 msgstr "Ανά _βαθμολόγηση"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:53
+#: ../src/Clients/FSpot/ui/main_window.ui.h:53
 msgid "_Set Rating filter..."
 msgstr "Ορισμός φίλτρου _βαθμολόγησης..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:54
+#: ../src/Clients/FSpot/ui/main_window.ui.h:54
 msgid "_Clear Rating Filter"
 msgstr "Κα_θαρισμός φίλτρου βαθμολόγησης"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:55
+#: ../src/Clients/FSpot/ui/main_window.ui.h:55
 msgid "By _Date"
 msgstr "Ανά η_μερομηνία"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:56
+#: ../src/Clients/FSpot/ui/main_window.ui.h:56
 msgid "_Set Date Range..."
 msgstr "Ορισμός εύρους η_μερομηνίας..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:58
+#: ../src/Clients/FSpot/ui/main_window.ui.h:58
 msgid "By _Import Roll"
 msgstr "Ανά εισα_γωγή καταλόγου"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:59
+#: ../src/Clients/FSpot/ui/main_window.ui.h:59
 msgid "_Last Import Roll"
 msgstr "_Τελευταία εισαγωγή καταλόγου"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:60
+#: ../src/Clients/FSpot/ui/main_window.ui.h:60
 msgid "_Select Import Rolls..."
 msgstr "Ε_πιλέξτε την εισαγωγή καταλόγων..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:61
+#: ../src/Clients/FSpot/ui/main_window.ui.h:61
 msgid "_Clear Roll Filter"
 msgstr "Κα_θαρισμός φίλτρου καταλόγων"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:62
+#: ../src/Clients/FSpot/ui/main_window.ui.h:62
 msgid "_Untagged Photos"
 msgstr "Φωτογραφίες _χωρίς ετικέτα"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:63
+#: ../src/Clients/FSpot/ui/main_window.ui.h:63
 msgid "_Tags"
 msgstr "_Ετικέτες"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:64
+#: ../src/Clients/FSpot/ui/main_window.ui.h:64
 msgid "Create New _Tag..."
 msgstr "Δημιουργία νέας _ετικέτας..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:65
+#: ../src/Clients/FSpot/ui/main_window.ui.h:65
 msgid "_Edit Tag..."
 msgstr "Επε_ξεργασία ετικέτας..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:66
+#: ../src/Clients/FSpot/ui/main_window.ui.h:66
 msgid "_Delete Selected Tag"
 msgstr "_Διαγραφή επιλεγμένης ετικέτας"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:67
+#: ../src/Clients/FSpot/ui/main_window.ui.h:67
 msgid "_Attach Tag to Selection"
 msgstr "Ε_πισύναψη ετικέτας στην επιλογή"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:68
+#: ../src/Clients/FSpot/ui/main_window.ui.h:68
 msgid "_Remove Tag From Selection"
 msgstr "Α_φαίρεση ετικέτας από την επιλογή"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:69
+#: ../src/Clients/FSpot/ui/main_window.ui.h:69
 msgid "_Tools"
 msgstr "Ερ_γαλεία"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:70
-#: ../src/Clients/MainApp/ui/single_view.ui.h:20
+#: ../src/Clients/FSpot/ui/main_window.ui.h:70
+#: ../src/Clients/FSpot/ui/single_view.ui.h:20
 msgid "_Help"
 msgstr "_Βοήθεια"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:71
+#: ../src/Clients/FSpot/ui/main_window.ui.h:71
 msgid "_Contents"
 msgstr "_Περιεχόμενα"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:73
+#: ../src/Clients/FSpot/ui/main_window.ui.h:73
 msgid "View"
 msgstr "Προβολή"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:74
+#: ../src/Clients/FSpot/ui/main_window.ui.h:74
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:442
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:443
 msgid "Tags: "
 msgstr "Ετικέτες: "
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:75
-#: ../src/Clients/MainApp/ui/single_view.ui.h:21
+#: ../src/Clients/FSpot/ui/main_window.ui.h:75
+#: ../src/Clients/FSpot/ui/single_view.ui.h:21
 msgid "Zoom out"
 msgstr "Σμίκρυνση"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:76
-#: ../src/Clients/MainApp/ui/single_view.ui.h:22
+#: ../src/Clients/FSpot/ui/main_window.ui.h:76
+#: ../src/Clients/FSpot/ui/single_view.ui.h:22
 msgid "Zoom in"
 msgstr "Μεγέθυνση"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:1
+#: ../src/Clients/FSpot/ui/single_view.ui.h:1
 msgid "F-Spot View"
 msgstr "Προβολή F-Spot"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:3
+#: ../src/Clients/FSpot/ui/single_view.ui.h:3
 msgid "_New Window"
 msgstr "_Νέο παράθυρο"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:4
+#: ../src/Clients/FSpot/ui/single_view.ui.h:4
 #| msgid "F_older..."
 msgid "Open _Folder..."
 msgstr "Άνοιγμα _φακέλου..."
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:5
+#: ../src/Clients/FSpot/ui/single_view.ui.h:5
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:8
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:18
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:17
@@ -2813,39 +2813,39 @@ msgstr "Άνοιγμα _φακέλου..."
 msgid "_Export"
 msgstr "_Εξαγωγή"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:13
+#: ../src/Clients/FSpot/ui/single_view.ui.h:13
 msgid "Show or hide the toolbar"
 msgstr "Εμφάνιση ή απόκρυψη της εργαλειοθήκης"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:14
+#: ../src/Clients/FSpot/ui/single_view.ui.h:14
 msgid "_Toolbar"
 msgstr "Εργαλειο_θήκη"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:15
+#: ../src/Clients/FSpot/ui/single_view.ui.h:15
 msgid "Show or hide the side pane"
 msgstr "Εμφάνιση ή απόκρυψη του πλευρικού πλαισίου"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:16
+#: ../src/Clients/FSpot/ui/single_view.ui.h:16
 msgid "Side _pane"
 msgstr "Πλευρικό _πλαίσιο"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:17
+#: ../src/Clients/FSpot/ui/single_view.ui.h:17
 msgid "Display File _Names"
 msgstr "Εμφάνιση ο_νομάτων αρχείων"
 
-#: ../src/Clients/MainApp/ui/tag_selection_dialog.ui.h:1
+#: ../src/Clients/FSpot/ui/tag_selection_dialog.ui.h:1
 msgid "Select a Tag..."
 msgstr "Επιλέξτε ετικέτα..."
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:1
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:1
 msgid "Preferences"
 msgstr "Προτιμήσεις"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:2
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:2
 msgid "_Interpolate image on zoom"
 msgstr "Παρεμ_βολή της εικόνας κατά την εστίαση"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:3
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:3
 msgid ""
 "<small><i>Enable this to allow interpolation on zoomed images. You shouldn't "
 "disable this for viewing photos, but disabling the interpolation could be "
@@ -2856,23 +2856,23 @@ msgstr ""
 "φωτογραφιών, αλλά η απενεργοποίηση της παρεμβολής θα μπορούσε να είναι "
 "χρήσιμη για τη σχεδίαση εικονιδίων.</i></small>"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:4
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:4
 msgid "<b>Image Interpolation</b>"
 msgstr "<b>Παρεμβολή εικόνας</b>"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:5
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:5
 msgid "As _background"
 msgstr "Ως _παρασκήνιο"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:6
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:6
 msgid "As check _pattern"
 msgstr "Ως υ_πόδειγμα ελέγχου"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:7
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:7
 msgid "As _custom color: "
 msgstr "Ως _προσαρμοσμένο χρώμα: "
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:8
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:8
 msgid ""
 "<small><i>You can choose how to display transparent parts in images. This "
 "option has no effect on photos, but setting this as check pattern or custom "
@@ -2885,7 +2885,7 @@ msgstr ""
 "κατά την προβολή εικονιδίων ή άλλων καλλιτεχνικών εργασιών με διαφανείς "
 "περιοχές.</i></small>"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:9
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:9
 msgid "<b>Transparent Parts</b>"
 msgstr "<b>Διαφανείς περιοχές</b>"
 

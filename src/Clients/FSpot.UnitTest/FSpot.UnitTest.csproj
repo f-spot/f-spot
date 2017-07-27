@@ -7,8 +7,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{A2A7E62B-8AE1-44F3-BB1B-B8E2DE7916C4}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>MainApp.UnitTest</RootNamespace>
-    <AssemblyName>MainApp.UnitTest</AssemblyName>
+    <RootNamespace>FSpot.UnitTest</RootNamespace>
+    <AssemblyName>FSpot.UnitTest</AssemblyName>
     <ReleaseVersion>0.9.0</ReleaseVersion>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
   </PropertyGroup>
@@ -55,9 +55,9 @@
     <Folder Include="FSpot.Widgets\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MainApp\MainApp.csproj">
+    <ProjectReference Include="..\FSpot\FSpot.csproj">
       <Project>{27EC05FB-0223-4B26-8157-E49AF81D0007}</Project>
-      <Name>MainApp</Name>
+      <Name>FSpot</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\lib\Hyena\Hyena\Hyena.csproj">
       <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
