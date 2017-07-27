@@ -60,7 +60,7 @@ csharp:
 
 run:
 	@pushd bin/; \
-	../src/Clients/MainApp/f-spot --uninstalled --debug; \
+	../src/Clients/FSpot/f-spot --uninstalled --debug; \
 	popd;
 
 copy_bin:

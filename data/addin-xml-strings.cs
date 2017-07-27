@@ -4,7 +4,7 @@ internal static class AddinXmlStringCatalog
 {
     private static void Strings ()
     {
-        // ../src/Clients/MainApp/FSpot.addin.xml
+        // ../src/Clients/FSpot/FSpot.addin.xml
         Catalog.GetString (@"Copy Photo");
         Catalog.GetString (@"Rotate _Left");
         Catalog.GetString (@"Rotate _Right");

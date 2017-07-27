@@ -18,34 +18,34 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
 
-#. ../src/Clients/MainApp/FSpot.addin.xml
-#: ../data/addin-xml-strings.cs:8 ../src/Clients/MainApp/FSpot.addin.xml.h:3
+#. ../src/Clients/FSpot/FSpot.addin.xml
+#: ../data/addin-xml-strings.cs:8 ../src/Clients/FSpot/FSpot.addin.xml.h:3
 #, fuzzy
 #| msgid "Copy Photo Locat_ion"
 msgid "Copy Photo"
 msgstr "Kopírovať um_iestnenie fotky"
 
-#: ../data/addin-xml-strings.cs:9 ../src/Clients/MainApp/FSpot.addin.xml.h:4
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:467
-#: ../src/Clients/MainApp/ui/main_window.ui.h:18
-#: ../src/Clients/MainApp/ui/single_view.ui.h:7
+#: ../data/addin-xml-strings.cs:9 ../src/Clients/FSpot/FSpot.addin.xml.h:4
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:467
+#: ../src/Clients/FSpot/ui/main_window.ui.h:18
+#: ../src/Clients/FSpot/ui/single_view.ui.h:7
 msgid "Rotate _Left"
 msgstr "Otočiť _vľavo"
 
-#: ../data/addin-xml-strings.cs:10 ../src/Clients/MainApp/FSpot.addin.xml.h:5
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:468
-#: ../src/Clients/MainApp/ui/main_window.ui.h:19
-#: ../src/Clients/MainApp/ui/single_view.ui.h:8
+#: ../data/addin-xml-strings.cs:10 ../src/Clients/FSpot/FSpot.addin.xml.h:5
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:468
+#: ../src/Clients/FSpot/ui/main_window.ui.h:19
+#: ../src/Clients/FSpot/ui/single_view.ui.h:8
 msgid "Rotate _Right"
 msgstr "Otočiť vp_ravo"
 
-#: ../data/addin-xml-strings.cs:11 ../src/Clients/MainApp/FSpot.addin.xml.h:7
-#: ../src/Clients/MainApp/ui/main_window.ui.h:24
+#: ../data/addin-xml-strings.cs:11 ../src/Clients/FSpot/FSpot.addin.xml.h:7
+#: ../src/Clients/FSpot/ui/main_window.ui.h:24
 msgid "_Remove From Catalog"
 msgstr "Odst_rániť z katalógu"
 
-#: ../data/addin-xml-strings.cs:12 ../src/Clients/MainApp/FSpot.addin.xml.h:8
-#: ../src/Clients/MainApp/ui/main_window.ui.h:23
+#: ../data/addin-xml-strings.cs:12 ../src/Clients/FSpot/FSpot.addin.xml.h:8
+#: ../src/Clients/FSpot/ui/main_window.ui.h:23
 msgid "_Delete From Drive"
 msgstr "O_dstrániť z disku"
 
@@ -293,7 +293,7 @@ msgstr ""
 #: ../data/addin-xml-strings.cs:122 ../data/addin-xml-strings.cs:128
 #: ../data/addin-xml-strings.cs:134 ../data/addin-xml-strings.cs:140
 #: ../data/addin-xml-strings.cs:146 ../data/addin-xml-strings.cs:152
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:2
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:2
 msgid "Tools"
 msgstr "Nástroje"
 
@@ -723,25 +723,25 @@ msgstr "Prihlasuje sa na Tabblo"
 msgid "Obtaining URL for upload"
 msgstr "Získava sa URL pre nahrávanie"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:1
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:1
 msgid "Export to"
 msgstr "Exportovať do"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:6
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:6
 msgid "Open _With"
 msgstr "Otvoriť _pomocou"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:9
-#: ../src/Clients/MainApp/ui/main_window.ui.h:27
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:9
+#: ../src/Clients/FSpot/ui/main_window.ui.h:27
 msgid "Rem_ove Tag"
 msgstr "_Odstrániť emblém"
 
-#: ../src/Clients/MainApp/FSpot/App.cs:319
+#: ../src/Clients/FSpot/FSpot/App.cs:319
 #, csharp-format
 msgid "No photos matching {0} found"
 msgstr "Nenájdené žiadne fotky zhodujúce sa s {0}"
 
-#: ../src/Clients/MainApp/FSpot/App.cs:320
+#: ../src/Clients/FSpot/FSpot/App.cs:320
 #, csharp-format
 msgid ""
 "The tag \"{0}\" is not applied to any photos. Try adding\n"
@@ -749,22 +749,22 @@ msgid ""
 "F-Spot preference dialog."
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot/App.cs:324
+#: ../src/Clients/FSpot/FSpot/App.cs:324
 msgid "Search returned no results"
 msgstr "Hľadanie nevrátilo žiadne výsledky"
 
-#: ../src/Clients/MainApp/FSpot/App.cs:325
+#: ../src/Clients/FSpot/FSpot/App.cs:325
 msgid ""
 "The tag F-Spot is looking for does not exist. Try\n"
 "selecting a different tag in the F-Spot preference\n"
 "dialog."
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:769
+#: ../src/Clients/FSpot/FSpot.Database/Updater.cs:769
 msgid "Updating F-Spot Database"
 msgstr "Aktualizuje sa databáza F-Spot"
 
-#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:770
+#: ../src/Clients/FSpot/FSpot.Database/Updater.cs:770
 msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
@@ -772,262 +772,262 @@ msgstr ""
 "Počkajte , prosím, pokiaľ je vaša F-Spot galéria aktualizovaná. Môže to "
 "chvíľu trvať."
 
-#: ../src/Clients/MainApp/FSpot.Editors/AutoStretchEditor.cs:38
+#: ../src/Clients/FSpot/FSpot.Editors/AutoStretchEditor.cs:38
 msgid "Auto Color"
 msgstr "Automatická farba"
 
-#: ../src/Clients/MainApp/FSpot.Editors/ColorEditor.cs:63
+#: ../src/Clients/FSpot/FSpot.Editors/ColorEditor.cs:63
 msgid "Adjust Colors"
 msgstr "Upraviť farby"
 
-#: ../src/Clients/MainApp/FSpot.Editors/ColorEditor.cs:66
+#: ../src/Clients/FSpot/FSpot.Editors/ColorEditor.cs:66
 msgid "Adjust"
 msgstr "Upraviť"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:60
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:60
 msgid "4 x 3 (Book)"
 msgstr "4 x 3 (Kniha)"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:61
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:61
 msgid "4 x 6 (Postcard)"
 msgstr "4 x 6 (Pohľadnica)"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:62
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:62
 msgid "5 x 7 (L, 2L)"
 msgstr "5 x 7 (L, 2L)"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:63
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:63
 msgid "8 x 10"
 msgstr "8 x 10"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:64
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:64
 msgid "Square"
 msgstr "Štvorec"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:67
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:67
 msgid "Crop"
 msgstr "Orezať"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:98
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:98
 msgid "Select the area that needs cropping."
 msgstr "Vybrať oblasť, ktorú treba orezať."
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:123
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:123
 msgid "No Constraint"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:124
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:124
 msgid "Same as photo"
 msgstr "Rovnaká ako fotka"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:129
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:129
 msgid "Custom Ratios..."
 msgstr "Vlastné pomery..."
 
-#: ../src/Clients/MainApp/FSpot.Editors/DesaturateEditor.cs:38
+#: ../src/Clients/FSpot/FSpot.Editors/DesaturateEditor.cs:38
 msgid "Desaturate"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:41
+#: ../src/Clients/FSpot/FSpot.Editors/RedEyeEditor.cs:41
 msgid "Red-eye Reduction"
 msgstr "Redukcia červených očí"
 
-#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:44
+#: ../src/Clients/FSpot/FSpot.Editors/RedEyeEditor.cs:44
 msgid "Fix!"
 msgstr "Oprav!"
 
-#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:48
+#: ../src/Clients/FSpot/FSpot.Editors/RedEyeEditor.cs:48
 msgid "Select the eyes you wish to fix."
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.Editors/SepiaEditor.cs:38
+#: ../src/Clients/FSpot/FSpot.Editors/SepiaEditor.cs:38
 msgid "Sepia Tone"
 msgstr "Sépiový odtieň"
 
-#: ../src/Clients/MainApp/FSpot.Editors/SoftFocusEditor.cs:51
+#: ../src/Clients/FSpot/FSpot.Editors/SoftFocusEditor.cs:51
 msgid "Soft Focus"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.Editors/TiltEditor.cs:52
+#: ../src/Clients/FSpot/FSpot.Editors/TiltEditor.cs:52
 msgid "Straighten"
 msgstr "Vyrovanie"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:85
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:85
 msgid "Hide"
 msgstr "Skryť"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:87
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:87
 #, fuzzy
 #| msgid "Hide Toolbar"
 msgid "Hide toolbar"
 msgstr "Skryť panel nástrojov"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:93
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:93
 msgid "Info"
 msgstr "Informácie"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:95
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:95
 #, fuzzy
 #| msgid "Image Information"
 msgid "Image information"
 msgstr "Informácie obrázku"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:100
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:100
 msgid "Exit fullscreen"
 msgstr "Opustiť režim celej obrazovky"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:108
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:337
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:124
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:108
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:337
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:124
 msgid "Slideshow"
 msgstr "Prezentácia"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:109
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:109
 msgid "Start slideshow"
 msgstr "Spustiť prezentáciu"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:155
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:155
 #, fuzzy
 msgid "Slide transition:"
 msgstr "_Sýtosť:"
 
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:93
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:94
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:93
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:94
 msgid "More dates"
 msgstr "Viac údajov"
 
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:96
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:97
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:96
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:97
 msgid "More"
 msgstr "Viac"
 
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:559
-#: ../src/Clients/MainApp/ui/main_window.ui.h:57
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:559
+#: ../src/Clients/FSpot/ui/main_window.ui.h:57
 msgid "_Clear Date Range"
 msgstr "_Vymazať rozsah dátumu"
 
-#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:513
-#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:515
-#: ../src/Clients/MainApp/FSpot.Import/MetadataImporter.cs:74
+#: ../src/Clients/FSpot/FSpot.Import/ImportController.cs:513
+#: ../src/Clients/FSpot/FSpot.Import/ImportController.cs:515
+#: ../src/Clients/FSpot/FSpot.Import/MetadataImporter.cs:74
 #, fuzzy
 #| msgid "Import Tags"
 msgid "Imported Tags"
 msgstr "Importovať emblémy"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:104
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:304
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:107
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:104
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:304
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:107
 msgid "Rotate Left"
 msgstr "Otočiť vľavo"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:105
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:105
 msgid "Rotate picture left"
 msgstr "Otočiť obrázok vľavo"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:116
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:308
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:112
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:116
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:308
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:112
 msgid "Rotate Right"
 msgstr "Otočiť vpravo"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:117
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:117
 msgid "Rotate picture right"
 msgstr "Otočiť obrázok vpravo"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:127
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:127
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:262
 msgid "Next"
 msgstr "Ďalšia"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:128
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:128
 msgid "Next picture"
 msgstr "Ďalší obrázok"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:148
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:148
 msgid "Previous"
 msgstr "Predchádzajúca"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:149
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:149
 msgid "Previous picture"
 msgstr "Predchádzajúci obrázok"
 
-#: ../src/Clients/MainApp/FSpot/Literal.cs:226
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:182
+#: ../src/Clients/FSpot/FSpot/Literal.cs:226
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:182
 #, csharp-format
 msgid "Not {0}"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:297
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:232
-#: ../src/Clients/MainApp/ui/import.ui.h:1
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:297
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:232
+#: ../src/Clients/FSpot/ui/import.ui.h:1
 msgid "Import"
 msgstr "Importovať"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:299
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:299
 msgid "Import new images"
 msgstr "Importovať nové obrázky"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:315
-#: ../src/Clients/MainApp/ui/main_window.ui.h:72
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:315
+#: ../src/Clients/FSpot/ui/main_window.ui.h:72
 msgid "Browse"
 msgstr "Prehliadať"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:319
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:319
 msgid "Browse many photos simultaneously"
 msgstr "Prehliadať viac fotiek súčasne"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:323
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:323
 msgid "Edit Image"
 msgstr "Upraviť obrázok"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:327
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:327
 msgid "View and edit a photo"
 msgstr "Zobraziť a upraviť fotku"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:332
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:119
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:332
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:119
 msgid "Fullscreen"
 msgstr "Celá obrazovka"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:334
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:121
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:334
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:121
 msgid "View photos fullscreen"
 msgstr "Zobraziť fotky na celú obrazovku"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:339
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:126
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:339
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:126
 msgid "View photos in a slideshow"
 msgstr "Zobraziť fotky v prezentácii"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:354
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:354
 msgid "Previous photo"
 msgstr "Predchádzajúca fotka"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:359
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:359
 msgid "Next photo"
 msgstr "Ďalšia fotka"
 
 #. Don't care otherwise, Tags sounds reasonable
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:372
-#: ../src/Clients/MainApp/FSpot.Widgets/Sidebar.cs:76
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:372
+#: ../src/Clients/FSpot/FSpot.Widgets/Sidebar.cs:76
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:259
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:431
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:471
 msgid "Tags"
 msgstr "Emblémy"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:436
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:436
 msgid "Show _Find Bar"
 msgstr "Zobraziť panel _hľadania"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:439
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:439
 msgid "Hide _Find Bar"
 msgstr "Skryť panel _hľadania"
 
 #. Note for translators: This indicates the current photo is photo {0} of {1} out of photos
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:664
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs:157
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ProgressDialog.cs:111
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:664
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AdjustTimeDialog.cs:157
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ProgressDialog.cs:111
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:130
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:393
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:238
@@ -1037,7 +1037,7 @@ msgid "{0} of {1}"
 msgstr "{0} z {1}"
 
 #. Translators, The singular case will never happen here.
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1740
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1740
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
@@ -1045,18 +1045,18 @@ msgstr[0] "Zlúčiť {0} vybraných emblémov?"
 msgstr[1] "Zlúčiť vybraný emblém?"
 msgstr[2] "Zlúčiť {0} vybrané emblémy?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1767
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1767
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
 msgstr ""
 "Táto operácia zlúči vybrané emblémy a každý podemblém do jedného emblému."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1769
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1769
 msgid "_Merge Tags"
 msgstr "Zlúčiť e_mblémy"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1986
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1986
 #, csharp-format
 msgid "{0} Photo out of {1}"
 msgid_plural "{0} Photos out of {1}"
@@ -1064,8 +1064,8 @@ msgstr[0] "{0} fotiek z {1}"
 msgstr[1] "{0} fotka z {1}"
 msgstr[2] "{0} fotky z {1}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1988
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:507
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1988
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:507
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
@@ -1073,7 +1073,7 @@ msgstr[0] "{0} fotiek"
 msgstr[1] "{0} fotka"
 msgstr[2] "{0} fotky"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1991
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1991
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
@@ -1081,25 +1081,25 @@ msgstr[0] " ({0} vybraných)"
 msgstr[1] " ({0} vybraná)"
 msgstr[2] " ({0} vybrané)"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2076
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2076
 msgid "_Ok"
 msgstr "_Ok"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2077
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2077
 msgid "Error Deleting Picture"
 msgstr "Chyba odstraňovania obrázka"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2082
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2082
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
 msgstr "Nemáte oprávnenie na odstránenie súboru:{1}{0}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2086
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2086
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
 msgstr "Vyskytla sa chyba typu {0} počas odstraňovania súboru:{2}{1}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2118
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2118
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
@@ -1107,7 +1107,7 @@ msgstr[0] "Odstrániť {0} vybraných fotiek navždy?"
 msgstr[1] "Odstrániť vybranú fotku navždy?"
 msgstr[2] "Odstrániť {0} vybrané fotky navždy?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2122
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2122
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
@@ -1115,14 +1115,14 @@ msgstr[0] "Toto odstráni všetky verzie vybraných fotiek z vášho disku."
 msgstr[1] "Toto odstráni všetky verzie vybranej fotky z vášho disku."
 msgstr[2] "Toto odstráni všetky verzie vybraných fotiek z vášho disku."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2125
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2125
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "O_dstrániť fotky"
 msgstr[1] "O_dstrániť fotku"
 msgstr[2] "O_dstrániť fotky"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2161
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2161
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
@@ -1130,7 +1130,7 @@ msgstr[0] "Odstrániť {0} vybraných fotiek z F-Spot?"
 msgstr[1] "Odstrániť vybranú fotku z F-Spot?"
 msgstr[2] "Odstrániť {0} vybrané fotky z F-Spot?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2166
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2166
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1140,28 +1140,28 @@ msgstr ""
 "Fotky zostávajú vo vašom počítači a môžu byť importované do programu F-Spot "
 "znovu."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2167
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2167
 msgid "_Remove from Catalog"
 msgstr "Odst_rániť z katalógu"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2244
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2244
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Odstrániť emblém \"{0}\"?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2246
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2246
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Odstrániť {0} vybraných emblémov?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2251
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2251
 msgid "photo"
 msgid_plural "photos"
 msgstr[0] "fotiek"
 msgstr[1] "fotka"
 msgstr[2] "fotky"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2253
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2253
 #, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
 msgid_plural ""
@@ -1170,7 +1170,7 @@ msgstr[0] "Ak odstránite tieto emblémy, spojenie s {0} {1} bude stratené."
 msgstr[1] "Ak odstránite tento emblém, spojenie s {0} {1} bude stratené."
 msgstr[2] "Ak odstránite tieto emblémy, spojenie s {0} {1} bude stratené."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2258
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2258
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "O_dstrániť emblémy"
@@ -1178,32 +1178,32 @@ msgstr[1] "O_dstrániť emblém"
 msgstr[2] "O_dstrániť emblémy"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2272
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2272
 msgid "Tag is not empty"
 msgstr "Emblém nie je prázdny"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2273
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2273
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
 "\"{0}\" first"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2733
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2733
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Otočiť vybrané fotky vľavo"
 msgstr[1] "Otočiť vybranú fotku vľavo"
 msgstr[2] "Otočiť vybrané fotky vľavo"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2746
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2746
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Otočiť vybrané fotky vpravo"
 msgstr[1] "Otočiť vybranú fotku vpravo"
 msgstr[2] "Otočiť vybrané fotky vpravo"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2757
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2757
 #, csharp-format
 msgid "Find _Selected Tag"
 msgid_plural "Find _Selected Tags"
@@ -1211,7 +1211,7 @@ msgstr[0] "Nájsť _vybraný emblém"
 msgstr[1] "Nájsť _vybrané emblémy"
 msgstr[2] "Nájsť _vybrané emblémy"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2761
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2761
 #, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
@@ -1219,14 +1219,14 @@ msgstr[0] "Nájsť vybraný emblém _pomocou"
 msgstr[1] "Nájsť vybrané emblémy _pomocou"
 msgstr[2] "Nájsť vybrané emblémy _pomocou"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2802
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2802
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Vytvoriť nové verzie?"
 msgstr[1] "Vytvoriť novú verziu?"
 msgstr[2] "Vytvoriť nové verzie?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2804
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2804
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -1238,16 +1238,16 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2825
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2825
 msgid "XCF version"
 msgstr "XCF verzia"
 
 #. Note for translators: Reparented is a picture becoming a version of another one
-#: ../src/Clients/MainApp/FSpot/Photo.cs:425
+#: ../src/Clients/FSpot/FSpot/Photo.cs:425
 msgid "Reparented"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:443
+#: ../src/Clients/FSpot/FSpot/Photo.cs:443
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
@@ -1255,90 +1255,90 @@ msgstr[0] "Modifikované ({0})"
 msgstr[1] "Modifikovaná"
 msgstr[2] "Modifikovaných ({0})"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:466
+#: ../src/Clients/FSpot/FSpot/Photo.cs:466
 #, csharp-format
 msgid "Modified in {1}"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:466
+#: ../src/Clients/FSpot/FSpot/Photo.cs:466
 #, csharp-format
 msgid "Modified in {1} ({0})"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot/PhotoStore.cs:196
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:13
+#: ../src/Clients/FSpot/FSpot/PhotoStore.cs:196
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:13
 msgid "Original"
 msgstr "Pôvodná"
 
-#: ../src/Clients/MainApp/FSpot/PhotoView.cs:349
+#: ../src/Clients/FSpot/FSpot/PhotoView.cs:349
 #, fuzzy
 #| msgid "_Description:"
 msgid "Description:"
 msgstr "_Popis:"
 
-#: ../src/Clients/MainApp/FSpot/Preferences.cs:193
+#: ../src/Clients/FSpot/FSpot/Preferences.cs:193
 msgid "Photos"
 msgstr "Fotky"
 
-#: ../src/Clients/MainApp/FSpot/PrintOperation.cs:57
+#: ../src/Clients/FSpot/FSpot/PrintOperation.cs:57
 msgid "Image Settings"
 msgstr "Nastavenia obrázku"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:83
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:83
 msgid "Find: "
 msgstr "Nájsť: "
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:88
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:88
 msgid "Untagged photos"
 msgstr "Fotka bez emblému"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:96
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:96
 msgid "Rated photos"
 msgstr "Hodnotené fotky"
 
 #. Note for translators: 'Import roll' is no command, it means 'Roll that has been imported'
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:105
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:105
 msgid "Import roll"
 msgstr "Register importovania"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:128
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:128
 msgid "Clear search"
 msgstr "Vymazať hľadanie"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:135
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:135
 msgid "Refresh search"
 msgstr "Obnoviť hľadanie"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:138
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:138
 msgid "No matching photos found"
 msgstr "Nenájdené žiadne zhodujúce sa fotky"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:98
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:98
 msgid "Unable to rotate this type of photo"
 msgstr "Nepodarilo sa otočiť tento typ fotky"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:114
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:114
 msgid "Unable to rotate readonly file"
 msgstr "Nepodarilo sa otočiť súbor iba na čítanie"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:172
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:172
 msgid "Rotating photos"
 msgstr "Otáčajú sa fotky"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:183
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:183
 #, csharp-format
 msgid "Rotating photo \"{0}\""
 msgstr "Otáča sa fotka \"{0}\""
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:196
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:196
 msgid "Directory not found"
 msgstr "Priečinok nebol nájdený"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:198
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:198
 msgid "File not found"
 msgstr "Súbor nebol nájdený"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:216
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:216
 #, csharp-format
 msgid "Unable to rotate photo"
 msgid_plural "Unable to rotate {0} photos"
@@ -1346,7 +1346,7 @@ msgstr[0] "Nepodarilo sa otočiť {0} fotiek"
 msgstr[1] "Nepodarilo sa otočiť fotku"
 msgstr[2] "Nepodarilo sa otočiť {0} fotky"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:218
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:218
 #, fuzzy, csharp-format
 #| msgid ""
 #| "The photo could not be rotated because it is on a read only file system "
@@ -1374,79 +1374,79 @@ msgstr[2] ""
 "na čítanie alebo na médiu takom ako CDROM.  Skontrolujte, prosím, oprávnenia "
 "a skúste to znovu."
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:245
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:245
 #, csharp-format
 msgid "Received error \"{0}\" while attempting to rotate {1}"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:250
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:250
 msgid "Error while rotating photo."
 msgstr "Chyba počas otáčania fotky."
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:233
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:233
 msgid "Preparing email"
 msgstr "Zostavuje sa e-mail"
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:277
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:277
 #, csharp-format
 msgid "Exporting picture \"{0}\""
 msgstr "Exportuje sa obrázok \"{0}\""
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:296
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:296
 msgid "Error processing image"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:297
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:297
 #, csharp-format
 msgid "An error occured while processing \"{0}\": {1}"
 msgstr "Vyskytla sa chyba počas spracovania \"{0}\": {1}"
 
 #. Send the mail :)
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:312
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:312
 #, fuzzy
 #| msgid "Photos"
 msgid "My Photos"
 msgstr "Fotky"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:109
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:109
 msgid "Rotate photo left"
 msgstr "Otočiť fotku vľavo"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:114
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:114
 msgid "Rotate photo right"
 msgstr "Otočiť fotku vpavo"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:150
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:150
 msgid "Folder"
 msgstr "Priečinok"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:383
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:383
 msgid "Open"
 msgstr "Otvoriť"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:386
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:386
 msgid "Select Folder"
 msgstr "Vybrať priečinok"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:470
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:470
 msgid "Set as Background"
 msgstr "Nastaviť ako pozadie"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:67
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:67
 #, csharp-format
 msgid "Include Photos Tagged \"{0}\""
 msgstr "Zahrnúť fotky s emblémom \"{0}\""
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:72
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:72
 #, csharp-format
 msgid "Exclude Photos Tagged \"{0}\""
 msgstr "Vyňať fotky s emblémom \"{0}\""
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:77
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:77
 msgid "Remove From Search"
 msgstr "Odstrániť z hľadania"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:121
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:121
 #, csharp-format
 msgid "Find _With"
 msgid_plural "Find _With"
@@ -1454,157 +1454,157 @@ msgstr[0] "Nájsť _pomocou"
 msgstr[1] "Nájsť _pomocou"
 msgstr[2] "Nájsť _pomocou"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:147
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:147
 msgid "All"
 msgstr "Všetky"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:306
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:306
 msgid "Drag tags here to search for them"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:518
+#: ../src/Clients/FSpot/FSpot/TagSelectionWidget.cs:518
 msgid "Error renaming tag"
 msgstr "Chyba premenovania emblému"
 
-#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:519
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagDialog.cs:97
-#: ../src/Clients/MainApp/TagCommands.cs:137
+#: ../src/Clients/FSpot/FSpot/TagSelectionWidget.cs:519
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagDialog.cs:97
+#: ../src/Clients/FSpot/TagCommands.cs:137
 msgid "This name is already in use"
 msgstr "Tento názov sa už používa"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:222
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:222
 msgid "Favorites"
 msgstr "Obľúbené"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:227
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:227
 msgid "Hidden"
 msgstr "Skryté"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:235
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:235
 msgid "People"
 msgstr "Ľudia"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:240
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:240
 msgid "Places"
 msgstr "Miesta"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:245
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:245
 msgid "Events"
 msgstr "Udalosti"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:257
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:446
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:257
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:446
 msgid "(None)"
 msgstr "(Žiadny)"
 
-#: ../src/Clients/MainApp/FSpot/Term.cs:338
+#: ../src/Clients/FSpot/FSpot/Term.cs:338
 msgid " and "
 msgstr " a "
 
 #. Operators.Add (Catalog.GetString (" && "));
-#: ../src/Clients/MainApp/FSpot/Term.cs:340
+#: ../src/Clients/FSpot/FSpot/Term.cs:340
 msgid ", "
 msgstr ", "
 
-#: ../src/Clients/MainApp/FSpot/Term.cs:396
+#: ../src/Clients/FSpot/FSpot/Term.cs:396
 msgid " or "
 msgstr " alebo "
 
 #. OPS The operators we support, case insensitive
 #. private static string op_str = "(?'Ops' or | and |, | \\s+ )";
-#: ../src/Clients/MainApp/FSpot/Term.cs:417
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:3
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:203
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:557
+#: ../src/Clients/FSpot/FSpot/Term.cs:417
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:203
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:557
 msgid "or"
 msgstr "alebo"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:125
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AboutDialog.cs:125
 msgid "Photo management for GNOME"
 msgstr "Správa fotiek pre GNOME"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:126
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AboutDialog.cs:126
 #, fuzzy
 #| msgid "Copyright © 2003-2008 Novell Inc."
 msgid "Copyright © 2003-2010 Novell Inc."
 msgstr "Autorské práva © 2003-2008 Novell Inc."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:150
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AboutDialog.cs:150
 msgid "translator-credits"
 msgstr "Pavol Klačanský <pavol@klacansky.com>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:155
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AboutDialog.cs:155
 msgid "F-Spot Website"
 msgstr "Webová stránka F-Spot"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs:140
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:8
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AdjustTimeDialog.cs:140
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:8
 #, csharp-format
 msgid "Shift all photos by {0}"
 msgstr "Zoradiť všetky fotky podľa {0}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:112
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:112
 msgid "Today"
 msgstr "Dnes"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:114
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:114
 msgid "Yesterday"
 msgstr "Včera"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:116
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:116
 msgid "Last 7 days"
 msgstr "Posledných 7 dní"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:118
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:118
 msgid "Last 30 days"
 msgstr "Posledných 30 dní"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:120
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:120
 msgid "Last 90 days"
 msgstr "Posledných 90 dní"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:122
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:122
 msgid "Last 360 days"
 msgstr "Posledných 360 dní"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:124
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:124
 msgid "Current Week (Mon-Sun)"
 msgstr "Súčasný týždeň (Pondelok-Nedeľa)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:126
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:126
 msgid "Previous Week (Mon-Sun)"
 msgstr "Predchádzajúci týždeň (Pondelok-Nedela)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:142
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:142
 #: ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui.h:3
 msgid "All Images"
 msgstr "Všetky obrázky"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:144
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:144
 msgid "Customized Range"
 msgstr "Upravený rozsah"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditExceptionDialog.cs:54
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:108
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditExceptionDialog.cs:54
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:108
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr "Nastala výnimka \"{0}\". Nepodarilo sa uložiť fotku {1}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditExceptionDialog.cs:67
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditExceptionDialog.cs:67
 msgid "Error editing photo"
 msgstr "Chyba upravovania fotky"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:69
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:69
 #, csharp-format
 msgid "Edit Icon for Tag {0}"
 msgstr "Upraviť ikonu pre emblém {0}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:91
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:91
 msgid "Select Photo from file"
 msgstr "Vybrať fotku zo súboru"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:113
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:113
 #, csharp-format
 msgid ""
 "\n"
@@ -1615,37 +1615,37 @@ msgid ""
 " to use it as an icon."
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:191
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:191
 msgid "Unable to load image"
 msgstr "Nepodarilo načítať fotku"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:192
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:192
 #, csharp-format
 msgid "Unable to load \"{0}\" as icon for the tag"
 msgstr "Nepodarilo sa načítať \"{0}\" ako ikonu pre emblém"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:230
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:230
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "Fotka {0} z {1}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:48
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:48
 #, fuzzy
 #| msgid "Open _Folder..."
 msgid "Choose Folder..."
 msgstr "Otvoriť _priečinok..."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:167
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:167
 #, fuzzy
 #| msgid "Import Source:"
 msgid "Choose Import source..."
 msgstr "Zdroj importu:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:179
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:179
 msgid "(No Cameras Detected)"
 msgstr "(Nebol zistený žiadny fotoaparát)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:214
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:214
 msgid ""
 "Checking this box will remove the imported photos from the camera after the "
 "import finished successfully.\n"
@@ -1654,69 +1654,69 @@ msgid ""
 "the camera. <b>Use this option at your own risk!</b>"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:215
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:215
 msgid "Warning"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:334
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:334
 #, fuzzy, csharp-format
 #| msgid "Photo {0} of {1}"
 msgid "Importing Photos: {0} of {1}..."
 msgstr "Fotka {0} z {1}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:358
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:358
 #, fuzzy
 #| msgid "Rotating photos"
 msgid "Importing photos..."
 msgstr "Otáčajú sa fotky"
 
 #. TODO: Using a GtkSpinner would be nicer here.
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:365
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:365
 msgid "Searching for photos... (You can already click Import to continue)"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:68
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportFailureDialog.cs:68
 #, fuzzy
 #| msgid "Import Tags"
 msgid "Import failures"
 msgstr "Importovať emblémy"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:69
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportFailureDialog.cs:69
 msgid "Some files failed to import"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:70
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportFailureDialog.cs:70
 msgid ""
 "Some files could not be imported, they might be corrupt or there might be "
 "something wrong with the storage on which they reside."
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:133
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportFailureDialog.cs:133
 msgid "Details"
 msgstr "Podrobnosti"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:79
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:102
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/PreferenceDialog.cs:79
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/PreferenceDialog.cs:102
 #, fuzzy
 #| msgid "(None)"
 msgid "None"
 msgstr "(Žiadny)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:81
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/PreferenceDialog.cs:81
 #, fuzzy
 #| msgid "System Theme"
 msgid "System profile"
 msgstr "Systémová téma"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:119
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/PreferenceDialog.cs:119
 msgid "Standard theme"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/RepairDbDialog.cs:47
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/RepairDbDialog.cs:47
 msgid "Error loading database."
 msgstr "Chyba načítavania databázy."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/RepairDbDialog.cs:48
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/RepairDbDialog.cs:48
 #, csharp-format
 msgid ""
 "F-Spot encountered an error while loading the photo database. The old "
@@ -1725,75 +1725,75 @@ msgstr ""
 "F-Spot narazil na chybu počas načítavania databázy fotiek. Stará databáza "
 "bola presunutá do {0} a nová databáza bola vytvorená."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/SelectionRatioDialog.cs:74
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/SelectionRatioDialog.cs:74
 #, fuzzy
 #| msgid "Camera Selection"
 msgid "New Selection"
 msgstr "Výber fotoaparátu"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/SelectionRatioDialog.cs:81
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/SelectionRatioDialog.cs:81
 msgid "Label"
 msgstr "Menovka"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/SelectionRatioDialog.cs:85
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/SelectionRatioDialog.cs:85
 msgid "Ratio"
 msgstr "Pomer"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ThreadProgressDialog.cs:79
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ThreadProgressDialog.cs:79
 msgid "Retry"
 msgstr "Znovu"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ThreadProgressDialog.cs:81
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ThreadProgressDialog.cs:81
 #: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/pickfolder_dialog.ui.h:1
 msgid "Skip"
 msgstr "Preskočiť"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:1
 msgid "Adjust Time"
 msgstr "Upraviť čas"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:2
 msgid "Adjusted date: "
 msgstr "Nastavený dátum: "
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:3
 msgid "Current date:"
 msgstr "Súčasný dátum:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:4
 msgid "0000:00:00 00:00:00"
 msgstr "0000:00:00 00:00:00"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:5
 msgid "difference:"
 msgstr "rozdiel:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:6
 msgid "00:00:00"
 msgstr "00:00:00"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:7
 msgid "<b>Reference Photo</b>"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:9
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:9
 msgid "Space all photos by"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:10
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:10
 msgid "5"
 msgstr "5"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:11
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:11
 msgid "min. Starting at {0}"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:12
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:12
 msgid "<b>Action</b>"
 msgstr "<b>Akcia</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:13
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:13
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:2
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:2
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:2
 #: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:2
@@ -1803,129 +1803,129 @@ msgstr "<b>Akcia</b>"
 msgid "<b>Photos</b>"
 msgstr "<b>Fotky</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:1
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:3
 msgid "P_arent Tag:"
 msgstr "_Rodičovský emblém:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:2
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:2
 msgid "_Tag Name:"
 msgstr "Názov _emblému:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:3
 msgid "Create _icon for this tag when first used"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:4
 #, fuzzy
 #| msgid "_Create"
 msgid "C_reate"
 msgstr "_Vytvoriť"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:1
 msgid "Set date range"
 msgstr "Nastaviť rozsah dátumu"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:2
 msgid "<b>Select period</b>"
 msgstr "<b>Vyberte obdobie</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:4
 msgid "<b>Start Date</b>"
 msgstr "<b>Počiatočný dátum</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:5
 msgid "<b>End Date</b>"
 msgstr "<b>Dátum konca</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:6
 msgid "Cancel, do not change the current timeline. "
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:7
 msgid "Only photos taken within these dates will be displayed."
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:1
 msgid "Edit Tag"
 msgstr "Upraviť emblém"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:4
 msgid "_Icon:"
 msgstr "_Ikona:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:5
 msgid "Edit icon"
 msgstr "Upraviť ikonu"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:1
 msgid "Edit Tag Icon"
 msgstr "Upraviť ikonu emblému"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:2
 msgid "<b>Preview</b>"
 msgstr "<b>Náhľad</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:3
 msgid "Design icon from"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:4
 msgid "<b>From External Photo</b>"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:5
 #, fuzzy
 #| msgid "<b>Predefined</b>"
 msgid "<b>Predefined icons</b>"
 msgstr "<b>Preddefinovaná</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:6
 msgid "<b>From Photo</b>"
 msgstr "<b>Z fotky</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:7
 msgid "No _image"
 msgstr "Žiadny o_brázok"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:1
 msgid "Filter on selected rolls"
 msgstr "Filter na vybraných registroch"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:2
 msgid "<b>View all pictures imported</b>"
 msgstr "<b>Zobraziť všetky importované obrázky</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:3
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:203
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:558
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:203
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:558
 msgid "and"
 msgstr "a"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:4
 msgid "Number of photos in selected rolls:"
 msgstr "Počet fotiek vo vybraných registroch:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:5
 msgid "Show all photos."
 msgstr "Zobraziť všetky fotky."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:6
 msgid "Display only those photos that were imported in specified Rolls."
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:7
 #, fuzzy
 #| msgid "Path"
 msgid "at"
 msgstr "Umiestnenie"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:8
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:8
 msgid "after"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:9
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:9
 #, fuzzy
 #| msgid ""
 #| "at\n"
@@ -1937,87 +1937,87 @@ msgstr ""
 "po\n"
 "medzi"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:1
 #, fuzzy
 #| msgid "Preferences"
 msgid "F-Spot Preferences"
 msgstr "Predvoľby"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:2
 msgid "When importing photos, copy them to:"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:3
 msgid "Color profile for display:"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:4
 msgid "Color profile for printing:"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:5
 msgid "F-Spot appearance:"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:6
 msgid "Select A Folder"
 msgstr "Vybrať priečinok"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:7
 msgid ""
 "Inside the image files when possible\n"
 "<small>Makes them accessible to other image-editing programs.</small>"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:9
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:9
 msgid "Store tags and descriptions for photos:"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:10
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:10
 msgid ""
 "Never modify image files.\n"
 "<small>Write XMP files next to the images instead.</small>"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:12
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:12
 msgid "Separately from the image files"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:1
 msgid "Set Rating Filter"
 msgstr "Nastaviť filter hodnotenia"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:2
 msgid "<b>Min Rating</b>"
 msgstr "<b>Minimálne hodnotenie</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:3
 msgid "<b>Max Rating</b>"
 msgstr "<b>Maximálne hodnotenie</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RepairDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/RepairDialog.ui.h:1
 msgid "Repair"
 msgstr "Opraviť"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui.h:1
 msgid "Selection Constraints"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui.h:2
 msgid "Manage your custom selection ratios"
 msgstr "Spravovať vaše vlastné vybrané pomery"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:56
-#: ../src/Clients/MainApp/FSpot.Widgets/Sidebar.cs:74
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:56
+#: ../src/Clients/FSpot/FSpot.Widgets/Sidebar.cs:74
 msgid "Edit"
 msgstr "Upraviť"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:224
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:224
 #: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:69
 msgid "No selection available"
 msgstr "Žiadny dostupný výber"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:225
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:225
 msgid ""
 "This tool requires an active selection. Please select a region of the photo "
 "and try the operation again"
@@ -2025,80 +2025,80 @@ msgstr ""
 "Tento nástroj vyžaduje aktívny výber. Vyberte, prosím, oblasť fotky a skúste "
 "túto operáciu znovu"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:243
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:243
 msgid "Error saving adjusted photo"
 msgid_plural "Error saving adjusted photos"
 msgstr[0] "Chyba ukladania upravených fotiek"
 msgstr[1] "Chyba ukladania upravenej fotky"
 msgstr[2] "Chyba ukladania upravených fotiek"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:245
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:245
 #, csharp-format
 msgid ""
 "Received exception \"{0}\". Note that you have to develop RAW files into "
 "JPEG before you can edit them."
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:495
+#: ../src/Clients/FSpot/FSpot.Widgets/Filmstrip.cs:495
 msgid "_Horizontal"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:499
+#: ../src/Clients/FSpot/FSpot.Widgets/Filmstrip.cs:499
 msgid "_Vertical"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:84
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:84
 msgid "Find:"
 msgstr "Nájsť:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/FolderTreePage.cs:45
+#: ../src/Clients/FSpot/FSpot.Widgets/FolderTreePage.cs:45
 #, fuzzy
 #| msgid "Folder"
 msgid "Folders"
 msgstr "Priečinok"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/FolderTreeView.cs:158
+#: ../src/Clients/FSpot/FSpot.Widgets/FolderTreeView.cs:158
 #, fuzzy
 #| msgid "_Virtual Filesystem"
 msgid "Filesystem"
 msgstr "_Virtuálny súborový systém"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:126
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:406
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:456
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:462
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:466
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:126
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:406
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:456
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:462
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:466
 msgid "(Unknown)"
 msgstr "(Neznámy)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:306
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:306
 msgid "Histogram"
 msgstr "Histogram"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:325
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:325
 msgid "Image Information"
 msgstr "Informácie obrázku"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:333
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:333
 #, csharp-format
 msgid "{0} Photos"
 msgstr "{0} fotiek"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:335
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:335
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:9
 msgid "Name"
 msgstr "Názov"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:347
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:347
 msgid "Version"
 msgstr "Verzia"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:362
-#: ../src/Clients/MainApp/PhotoVersionMenu.cs:85
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:362
+#: ../src/Clients/FSpot/PhotoVersionMenu.cs:85
 msgid "(No Edits)"
 msgstr "(Bez úprav)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:366
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:366
 #, fuzzy, csharp-format
 #| msgid "(No Edits)"
 msgid "(One Edit)"
@@ -2107,23 +2107,23 @@ msgstr[0] "(Bez úprav)"
 msgstr[1] "(Bez úprav)"
 msgstr[2] "(Bez úprav)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:372
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:372
 msgid "Date"
 msgstr "Dátum"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:372
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:372
 msgid "Show Date"
 msgstr "Zobraziť dátum"
 
 #. Note for translators: {0} is a date, {1} and {2} are times.
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:383
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:383
 #, csharp-format
 msgid ""
 "On {0} between \n"
 "{1} and {2}"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:388
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:388
 #, csharp-format
 msgid ""
 "Between {0} \n"
@@ -2132,187 +2132,187 @@ msgstr ""
 "Medzi {0} \n"
 "a {1}"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:394
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:394
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:6
 msgid "Size"
 msgstr "Veľkosť"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:394
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:394
 msgid "Show Size"
 msgstr "Zobraziť veľkosť"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:409
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:409
 msgid "Exposure"
 msgstr "Expozícia"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:409
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:409
 msgid "Show Exposure"
 msgstr "Zobraziť expozíciu"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:439
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:439
 msgid "flash fired"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:441
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:441
 msgid "flash didn't fire"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:451
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:451
 msgid "Focal Length"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:451
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:451
 msgid "Show Focal Length"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:461
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:461
 msgid "Camera"
 msgstr "Fotoaparát"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:461
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:461
 msgid "Show Camera"
 msgstr "Zobraziť fotoaparát"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:465
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:465
 msgid "Creator"
 msgstr "Tvorca"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:465
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:465
 #, fuzzy
 #| msgid "Creator"
 msgid "Show Creator"
 msgstr "Tvorca"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:469
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:469
 msgid "File Size"
 msgstr "Veľkosť súboru"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:469
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:469
 msgid "Show File Size"
 msgstr "Zobraziť veľkosť súboru"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:477
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:477
 msgid "(File read error)"
 msgstr "(Chyba čítania súboru)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:485
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:485
 msgid "Rating"
 msgstr "Hodnotenie"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:485
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:485
 #, fuzzy
 #| msgid "Rating"
 msgid "Show Rating"
 msgstr "Hodnotenie"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:489
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:489
 #, fuzzy
 #| msgid "(No Tags)"
 msgid "Show Tags"
 msgstr "(Žiadne emblémy)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:44
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:44
 msgid "Metadata"
 msgstr "Metaúdaje"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:125
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:125
 msgid "Extended Metadata"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:378
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:378
 msgid "No active photo"
 msgstr "Žiadna aktívna fotka"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:380
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:380
 #, csharp-format
 msgid "The photo \"{0}\" does not exist"
 msgstr "Fotka \"{0}\" neexistuje"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:382
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:382
 msgid "No metadata available"
 msgstr "Nedostupné metaúdaje"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:107
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:107
 msgid "Error saving sharpened photo"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:154
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:154
 msgid "Sharpen"
 msgstr "Ostrosť"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:164
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:164
 msgid "Amount:"
 msgstr "Množstvo:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:165
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:165
 msgid "Radius:"
 msgstr "Rozsah:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:166
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:166
 msgid "Threshold:"
 msgstr "Prah:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/TagMenu.cs:126
-#: ../src/Clients/MainApp/TagPopup.cs:64
+#: ../src/Clients/FSpot/FSpot.Widgets/TagMenu.cs:126
+#: ../src/Clients/FSpot/TagPopup.cs:64
 msgid "Create New Tag..."
 msgstr "Vytvoriť nový emblém..."
 
 #. Fixme this should really set parent menu
 #. items insensitve
-#: ../src/Clients/MainApp/PhotoTagMenu.cs:70
+#: ../src/Clients/FSpot/PhotoTagMenu.cs:70
 msgid "(No Tags)"
 msgstr "(Žiadne emblémy)"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:95
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:95
 msgid "Create New Version"
 msgstr "Vytvoriť novú verziu"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:96
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:96
 msgid "Name:"
 msgstr "Názov:"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:100
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:100
 msgid "Rename Version"
 msgstr "Premenovať verziu"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:101
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:101
 msgid "New name:"
 msgstr "Nový názov:"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:161
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:161
 msgid "Delete"
 msgstr "Odstrániť"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:162
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:162
 #, csharp-format
 msgid "Really delete version \"{0}\"?"
 msgstr "Skutočne odstrániť verziu \"{0}\"?"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:163
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:163
 msgid "This removes the version and deletes the corresponding file from disk."
 msgstr ""
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:208
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:208
 msgid "De_tach"
 msgstr ""
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:209
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:209
 #, fuzzy, csharp-format
 #| msgid "Really delete version \"{0}\"?"
 msgid "Really detach version \"{0}\" from \"{1}\"?"
 msgstr "Skutočne odstrániť verziu \"{0}\"?"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:210
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:210
 msgid ""
 "This makes the version appear as a separate photo in the library. To undo, "
 "drag the new photo back to its parent."
 msgstr ""
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:232
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:232
 msgid "Re_parent"
 msgstr ""
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:233
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:233
 #, fuzzy, csharp-format
 #| msgid "Really delete version \"{0}\"?"
 msgid "Really reparent \"{0}\" as version of \"{1}\"?"
@@ -2321,27 +2321,27 @@ msgstr[0] "Skutočne odstrániť verziu \"{0}\"?"
 msgstr[1] "Skutočne odstrániť verziu \"{0}\"?"
 msgstr[2] "Skutočne odstrániť verziu \"{0}\"?"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:236
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:236
 msgid ""
 "This makes the photos appear as a single one in the library. The versions "
 "can be detached using the Photo menu."
 msgstr ""
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:276
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:276
 #, fuzzy, csharp-format
 #| msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgid "Received exception \"{0}\"."
 msgstr "Nastala výnimka \"{0}\". Nepodarilo sa uložiť fotku {1}"
 
-#: ../src/Clients/MainApp/TagCommands.cs:188
+#: ../src/Clients/FSpot/TagCommands.cs:188
 msgid "Create New Tag"
 msgstr "Vytvoriť nový emblém"
 
-#: ../src/Clients/MainApp/TagCommands.cs:189
+#: ../src/Clients/FSpot/TagCommands.cs:189
 msgid "Name of New Tag:"
 msgstr "Názov nového emblému:"
 
-#: ../src/Clients/MainApp/TagPopup.cs:54
+#: ../src/Clients/FSpot/TagPopup.cs:54
 #, csharp-format
 msgid "Find"
 msgid_plural "Find"
@@ -2349,517 +2349,517 @@ msgstr[0] "Nájsť"
 msgstr[1] "Nájsť"
 msgstr[2] "Nájsť"
 
-#: ../src/Clients/MainApp/TagPopup.cs:70
+#: ../src/Clients/FSpot/TagPopup.cs:70
 #, fuzzy
 #| msgid "Edit Tag"
 msgid "Edit Tag..."
 msgstr "Upraviť emblém"
 
-#: ../src/Clients/MainApp/TagPopup.cs:75
+#: ../src/Clients/FSpot/TagPopup.cs:75
 msgid "Delete Tag"
 msgid_plural "Delete Tags"
 msgstr[0] "Odstrániť emblémy"
 msgstr[1] "Odstrániť emblém"
 msgstr[2] "Odstrániť emblémy"
 
-#: ../src/Clients/MainApp/TagPopup.cs:81
+#: ../src/Clients/FSpot/TagPopup.cs:81
 msgid "Attach Tag to Selection"
 msgid_plural "Attach Tags to Selection"
 msgstr[0] "Pridať emblémy do výberu"
 msgstr[1] "Pridať emblém do výberu"
 msgstr[2] "Pridať emblémy do výberu"
 
-#: ../src/Clients/MainApp/TagPopup.cs:85
+#: ../src/Clients/FSpot/TagPopup.cs:85
 msgid "Remove Tag From Selection"
 msgid_plural "Remove Tags From Selection"
 msgstr[0] "Odstrániť emblémy z výberu"
 msgstr[1] "Odstrániť emblém z výberu"
 msgstr[2] "Odstrániť emblémy z výberu"
 
-#: ../src/Clients/MainApp/TagPopup.cs:91
+#: ../src/Clients/FSpot/TagPopup.cs:91
 msgid "Merge Tags"
 msgstr "Zlúčiť emblémy"
 
-#: ../src/Clients/MainApp/ThumbnailCommand.cs:54
+#: ../src/Clients/FSpot/ThumbnailCommand.cs:54
 msgid "Updating Thumbnails"
 msgstr ""
 
-#: ../src/Clients/MainApp/ThumbnailCommand.cs:62
+#: ../src/Clients/FSpot/ThumbnailCommand.cs:62
 #, fuzzy, csharp-format
 #| msgid "Uploading picture \"{0}\""
 msgid "Updating picture \"{0}\""
 msgstr "Nahráva sa obrázok \"{0}\""
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:1
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:1
 msgid "C_ontrast:"
 msgstr "K_ontrast:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:2
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:2
 msgid "_Hue:"
 msgstr "O_dtieň:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:3
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:3
 msgid "_Brightness:"
 msgstr "_Jas:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:4
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:4
 msgid "_Saturation:"
 msgstr "_Sýtosť:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:5
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:5
 msgid "_Exposure:"
 msgstr "_Expozícia:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:6
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:6
 msgid "<b>Co_rrections</b>"
 msgstr "<b>Ko_rekcie</b>"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:7
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:7
 #, fuzzy
 msgid "_Tint:"
 msgstr "_Titulok:"
 
 #. Note for translators: meant as Temperature
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:9
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:9
 msgid "Te_mp:"
 msgstr ""
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:10
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:10
 msgid "<b>_White Balance</b>"
 msgstr "<b>_Vyváženie bielej</b>"
 
 #. Translators: this string means 'source of import'
-#: ../src/Clients/MainApp/ui/import.ui.h:3
+#: ../src/Clients/FSpot/ui/import.ui.h:3
 #, fuzzy
 #| msgid "Import roll"
 msgid "Import _from:"
 msgstr "Register importovania"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:4
+#: ../src/Clients/FSpot/ui/import.ui.h:4
 #, fuzzy
 #| msgid "Attach tag:"
 msgid "_Attach tags:"
 msgstr "Pripojiť emblém:"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:5
+#: ../src/Clients/FSpot/ui/import.ui.h:5
 #, fuzzy
 #| msgid "Detect duplicates"
 msgid "_Detect duplicates"
 msgstr "Zistiť duplikáty"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:6
+#: ../src/Clients/FSpot/ui/import.ui.h:6
 #, fuzzy
 #| msgid "Copy files to the Photos folder"
 msgid "C_opy files to the Photos folder"
 msgstr "Kopírovať súbory do priečinku s fotkami"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:7
+#: ../src/Clients/FSpot/ui/import.ui.h:7
 #, fuzzy
 #| msgid "Include subfolders"
 msgid "I_nclude subfolders"
 msgstr "Zahrnúť podpriečinky"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:8
+#: ../src/Clients/FSpot/ui/import.ui.h:8
 msgid "_Remove original files after import"
 msgstr ""
 
-#: ../src/Clients/MainApp/ui/import.ui.h:9
+#: ../src/Clients/FSpot/ui/import.ui.h:9
 #, fuzzy
 #| msgid "Import"
 msgid "_Import"
 msgstr "Importovať"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:1
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:1
 msgid "Create Mail"
 msgstr "Vytvoriť e-mail"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:3
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:3
 msgid "Tiny"
 msgstr "Nepatrná"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:4
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:4
 msgid "320 px"
 msgstr "320 px"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:5
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:5
 msgid "Small"
 msgstr "Malá"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:6
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:6
 msgid "480 px"
 msgstr "480 px"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:7
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:7
 msgid "Medium"
 msgstr "Stredná"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:8
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:8
 msgid "640 px"
 msgstr "640 px"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:9
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:9
 msgid "Large"
 msgstr "Veľká"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:10
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:10
 msgid "800 px"
 msgstr "800 px"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:11
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:11
 msgid "Extra large"
 msgstr "Mimoriadne veľká"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:12
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:12
 msgid "1024 px"
 msgstr "1024 px"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:14
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:14
 msgid "Original size (possible very large file size)"
 msgstr "Pôvodná veľkosť (možný veľmi veľký súbor)"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:15
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:15
 msgid "<b>Size</b>"
 msgstr "<b>Veľkosť</b>"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:16
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:16
 msgid "Number of pictures"
 msgstr "Počet obrázkov"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:17
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:17
 msgid "Total original size"
 msgstr "Celková pôvodná veľkosť"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:18
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:18
 msgid "Estimated new size"
 msgstr "Odhadovaná nová veľkosť"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:19
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:19
 msgid "<b>Summary</b>"
 msgstr "<b>Zhrnutie</b>"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:20
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:20
 msgid "Do not send a mail"
 msgstr "Neposlať e-mail"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:21
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:21
 msgid "_Create Mail"
 msgstr "_Vytvoriť e-mail"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:22
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:22
 msgid "Create a mail with the selected photos (possibly resized) attached"
 msgstr ""
 "Vytvoriť e-mail s priloženými vybranými fotkami (možno so zmenenou veľkosťou)"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:1
-#: ../src/Clients/MainApp/ui/single_view.ui.h:2
+#: ../src/Clients/FSpot/ui/main_window.ui.h:1
+#: ../src/Clients/FSpot/ui/single_view.ui.h:2
 msgid "_Photo"
 msgstr "_Fotka"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:2
+#: ../src/Clients/FSpot/ui/main_window.ui.h:2
 msgid "_Import..."
 msgstr "_Importovať..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:3
+#: ../src/Clients/FSpot/ui/main_window.ui.h:3
 msgid "_Version"
 msgstr "_Verzia"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:4
+#: ../src/Clients/FSpot/ui/main_window.ui.h:4
 msgid "Create _New Version..."
 msgstr "Vytvoriť _novú verziu..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:5
+#: ../src/Clients/FSpot/ui/main_window.ui.h:5
 msgid "_Delete Version"
 msgstr "O_dstrániť verziu"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:6
+#: ../src/Clients/FSpot/ui/main_window.ui.h:6
 msgid "_Rename Version"
 msgstr "P_remenovať verziu"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:7
+#: ../src/Clients/FSpot/ui/main_window.ui.h:7
 #, fuzzy
 #| msgid "_Delete Version"
 msgid "De_tach Version"
 msgstr "O_dstrániť verziu"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:8
+#: ../src/Clients/FSpot/ui/main_window.ui.h:8
 msgid "_Export to"
 msgstr "_Exportovať do"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:9
+#: ../src/Clients/FSpot/ui/main_window.ui.h:9
 msgid "Page Set_up..."
 msgstr "N_astavenie strany..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:10
+#: ../src/Clients/FSpot/ui/main_window.ui.h:10
 msgid "Send by _Mail..."
 msgstr "Poslať e-_mailom..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:11
+#: ../src/Clients/FSpot/ui/main_window.ui.h:11
 msgid "_Close"
 msgstr ""
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:12
+#: ../src/Clients/FSpot/ui/main_window.ui.h:12
 msgid "_Quit"
 msgstr "_Koniec"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:13
-#: ../src/Clients/MainApp/ui/single_view.ui.h:6
+#: ../src/Clients/FSpot/ui/main_window.ui.h:13
+#: ../src/Clients/FSpot/ui/single_view.ui.h:6
 msgid "_Edit"
 msgstr "_Upraviť"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:14
+#: ../src/Clients/FSpot/ui/main_window.ui.h:14
 #, fuzzy
 #| msgid "Copyright"
 msgid "Copy"
 msgstr "Autorské práva"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:15
+#: ../src/Clients/FSpot/ui/main_window.ui.h:15
 msgid "Select _All"
 msgstr "Vybr_ať všetko"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:16
+#: ../src/Clients/FSpot/ui/main_window.ui.h:16
 msgid "Select _None"
 msgstr "Odz_načiť všetko"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:17
+#: ../src/Clients/FSpot/ui/main_window.ui.h:17
 #, fuzzy
 #| msgid "Camera Selection"
 msgid "_Invert Selection"
 msgstr "Výber fotoaparátu"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:20
+#: ../src/Clients/FSpot/ui/main_window.ui.h:20
 msgid "_Sharpen..."
 msgstr "O_strosť..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:21
+#: ../src/Clients/FSpot/ui/main_window.ui.h:21
 msgid "Adjust _Time..."
 msgstr "Upraviť č_as..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:22
+#: ../src/Clients/FSpot/ui/main_window.ui.h:22
 msgid "Re_fresh Thumbnail"
 msgstr "_Obnoviť náhľady"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:25
-#: ../src/Clients/MainApp/ui/single_view.ui.h:9
+#: ../src/Clients/FSpot/ui/main_window.ui.h:25
+#: ../src/Clients/FSpot/ui/single_view.ui.h:9
 msgid "Set as _Background"
 msgstr "Nastaviť ako _pozadie"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:26
+#: ../src/Clients/FSpot/ui/main_window.ui.h:26
 msgid "_Attach Tag"
 msgstr "Pr_ipojiť emblém"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:28
+#: ../src/Clients/FSpot/ui/main_window.ui.h:28
 msgid "Manage _Extensions"
 msgstr "Spravovať rozšír_enia"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:29
-#: ../src/Clients/MainApp/ui/single_view.ui.h:10
+#: ../src/Clients/FSpot/ui/main_window.ui.h:29
+#: ../src/Clients/FSpot/ui/single_view.ui.h:10
 msgid "_View"
 msgstr "_Zobraziť"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:30
-#: ../src/Clients/MainApp/ui/single_view.ui.h:11
+#: ../src/Clients/FSpot/ui/main_window.ui.h:30
+#: ../src/Clients/FSpot/ui/single_view.ui.h:11
 msgid "_Slideshow"
 msgstr "_Prezentácia"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:31
-#: ../src/Clients/MainApp/ui/single_view.ui.h:12
+#: ../src/Clients/FSpot/ui/main_window.ui.h:31
+#: ../src/Clients/FSpot/ui/single_view.ui.h:12
 msgid "_Fullscreen"
 msgstr "_Celá obrazovka"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:32
+#: ../src/Clients/FSpot/ui/main_window.ui.h:32
 msgid "Thumbnail _elements"
 msgstr "_Prvky náhľadov"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:33
+#: ../src/Clients/FSpot/ui/main_window.ui.h:33
 msgid "_Dates"
 msgstr "_Dátumy"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:34
+#: ../src/Clients/FSpot/ui/main_window.ui.h:34
 msgid "T_ags"
 msgstr "E_mblémy"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:35
+#: ../src/Clients/FSpot/ui/main_window.ui.h:35
 msgid "_Ratings"
 msgstr "_Hodnotenia"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:36
+#: ../src/Clients/FSpot/ui/main_window.ui.h:36
 msgid "_Components"
 msgstr "_Komponenty"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:37
+#: ../src/Clients/FSpot/ui/main_window.ui.h:37
 msgid "Side_bar"
 msgstr "_Bočný panel"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:38
+#: ../src/Clients/FSpot/ui/main_window.ui.h:38
 msgid "_Timeline"
 msgstr "Č_asová línia"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:39
+#: ../src/Clients/FSpot/ui/main_window.ui.h:39
 msgid "_Filmstrip"
 msgstr ""
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:40
+#: ../src/Clients/FSpot/ui/main_window.ui.h:40
 msgid "Too_lbar"
 msgstr "Pane_l nástrojov"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:41
-#: ../src/Clients/MainApp/ui/single_view.ui.h:18
+#: ../src/Clients/FSpot/ui/main_window.ui.h:41
+#: ../src/Clients/FSpot/ui/single_view.ui.h:18
 msgid "Zoom _in"
 msgstr "_Zväčšiť"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:42
-#: ../src/Clients/MainApp/ui/single_view.ui.h:19
+#: ../src/Clients/FSpot/ui/main_window.ui.h:42
+#: ../src/Clients/FSpot/ui/single_view.ui.h:19
 msgid "Zoom _out"
 msgstr "Z_menšiť"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:43
+#: ../src/Clients/FSpot/ui/main_window.ui.h:43
 msgid "_Loupe"
 msgstr ""
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:44
+#: ../src/Clients/FSpot/ui/main_window.ui.h:44
 msgid "_Tag Icons"
 msgstr "Ikony _emblémov"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:45
+#: ../src/Clients/FSpot/ui/main_window.ui.h:45
 msgid "_Hidden"
 msgstr "_Skryté"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:46
+#: ../src/Clients/FSpot/ui/main_window.ui.h:46
 msgid "_Small"
 msgstr "_Malé"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:47
+#: ../src/Clients/FSpot/ui/main_window.ui.h:47
 msgid "_Medium"
 msgstr "S_tredné"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:48
+#: ../src/Clients/FSpot/ui/main_window.ui.h:48
 msgid "_Large"
 msgstr "V_eľké"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:49
+#: ../src/Clients/FSpot/ui/main_window.ui.h:49
 msgid "Arrange _by"
 msgstr "Usporiadať _podľa"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:50
+#: ../src/Clients/FSpot/ui/main_window.ui.h:50
 msgid "_Reverse Order"
 msgstr "Opačné po_radie"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:51
+#: ../src/Clients/FSpot/ui/main_window.ui.h:51
 msgid "Fin_d"
 msgstr "_Nájsť"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:52
+#: ../src/Clients/FSpot/ui/main_window.ui.h:52
 msgid "By _Rating"
 msgstr "Podľa _hodnotenia"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:53
+#: ../src/Clients/FSpot/ui/main_window.ui.h:53
 msgid "_Set Rating filter..."
 msgstr "Na_staviť filter hodnotenia..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:54
+#: ../src/Clients/FSpot/ui/main_window.ui.h:54
 msgid "_Clear Rating Filter"
 msgstr "_Vymazať filter hodnotenia"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:55
+#: ../src/Clients/FSpot/ui/main_window.ui.h:55
 msgid "By _Date"
 msgstr "Podľa _dátumu"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:56
+#: ../src/Clients/FSpot/ui/main_window.ui.h:56
 msgid "_Set Date Range..."
 msgstr "Na_staviť rozsah dátumu..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:58
+#: ../src/Clients/FSpot/ui/main_window.ui.h:58
 msgid "By _Import Roll"
 msgstr "Podľa registru _importovania"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:59
+#: ../src/Clients/FSpot/ui/main_window.ui.h:59
 msgid "_Last Import Roll"
 msgstr "Pos_ledný register importovania"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:60
+#: ../src/Clients/FSpot/ui/main_window.ui.h:60
 msgid "_Select Import Rolls..."
 msgstr "_Vybrať registre importovania..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:61
+#: ../src/Clients/FSpot/ui/main_window.ui.h:61
 msgid "_Clear Roll Filter"
 msgstr "Vy_mazať filter registru"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:62
+#: ../src/Clients/FSpot/ui/main_window.ui.h:62
 msgid "_Untagged Photos"
 msgstr "Fotky _bez emblémov"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:63
+#: ../src/Clients/FSpot/ui/main_window.ui.h:63
 msgid "_Tags"
 msgstr "_Emblémy"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:64
+#: ../src/Clients/FSpot/ui/main_window.ui.h:64
 msgid "Create New _Tag..."
 msgstr "Vytvoriť nový _emblém..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:65
+#: ../src/Clients/FSpot/ui/main_window.ui.h:65
 #, fuzzy
 #| msgid "Edit Tag"
 msgid "_Edit Tag..."
 msgstr "Upraviť emblém"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:66
+#: ../src/Clients/FSpot/ui/main_window.ui.h:66
 msgid "_Delete Selected Tag"
 msgstr "O_dstrániť vybraný emblém"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:67
+#: ../src/Clients/FSpot/ui/main_window.ui.h:67
 msgid "_Attach Tag to Selection"
 msgstr "Prid_ať emblém do výberu"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:68
+#: ../src/Clients/FSpot/ui/main_window.ui.h:68
 msgid "_Remove Tag From Selection"
 msgstr "Odst_rániť emblém z výberu"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:69
+#: ../src/Clients/FSpot/ui/main_window.ui.h:69
 msgid "_Tools"
 msgstr "Nás_troje"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:70
-#: ../src/Clients/MainApp/ui/single_view.ui.h:20
+#: ../src/Clients/FSpot/ui/main_window.ui.h:70
+#: ../src/Clients/FSpot/ui/single_view.ui.h:20
 msgid "_Help"
 msgstr "_Pomocník"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:71
+#: ../src/Clients/FSpot/ui/main_window.ui.h:71
 msgid "_Contents"
 msgstr "Ob_sah"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:73
+#: ../src/Clients/FSpot/ui/main_window.ui.h:73
 msgid "View"
 msgstr "Zobraziť"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:74
+#: ../src/Clients/FSpot/ui/main_window.ui.h:74
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:442
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:443
 msgid "Tags: "
 msgstr "Emblémy:"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:75
-#: ../src/Clients/MainApp/ui/single_view.ui.h:21
+#: ../src/Clients/FSpot/ui/main_window.ui.h:75
+#: ../src/Clients/FSpot/ui/single_view.ui.h:21
 msgid "Zoom out"
 msgstr "Zmenšiť"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:76
-#: ../src/Clients/MainApp/ui/single_view.ui.h:22
+#: ../src/Clients/FSpot/ui/main_window.ui.h:76
+#: ../src/Clients/FSpot/ui/single_view.ui.h:22
 msgid "Zoom in"
 msgstr "Zväčšiť"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:1
+#: ../src/Clients/FSpot/ui/single_view.ui.h:1
 msgid "F-Spot View"
 msgstr "Prehliadka F-Spot"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:3
+#: ../src/Clients/FSpot/ui/single_view.ui.h:3
 msgid "_New Window"
 msgstr "_Nové okno"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:4
+#: ../src/Clients/FSpot/ui/single_view.ui.h:4
 msgid "Open _Folder..."
 msgstr "Otvoriť _priečinok..."
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:5
+#: ../src/Clients/FSpot/ui/single_view.ui.h:5
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:8
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:18
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:17
@@ -2870,62 +2870,62 @@ msgstr "Otvoriť _priečinok..."
 msgid "_Export"
 msgstr "_Exportovať"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:13
+#: ../src/Clients/FSpot/ui/single_view.ui.h:13
 msgid "Show or hide the toolbar"
 msgstr "Zobraziť alebo skryť panel nástrojov"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:14
+#: ../src/Clients/FSpot/ui/single_view.ui.h:14
 msgid "_Toolbar"
 msgstr "Panel nás_trojov"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:15
+#: ../src/Clients/FSpot/ui/single_view.ui.h:15
 msgid "Show or hide the side pane"
 msgstr "Zobraziť alebo skryť bočný panel"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:16
+#: ../src/Clients/FSpot/ui/single_view.ui.h:16
 msgid "Side _pane"
 msgstr "_Bočný panel"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:17
+#: ../src/Clients/FSpot/ui/single_view.ui.h:17
 msgid "Display File _Names"
 msgstr "Zobraziť _názvy súborov"
 
-#: ../src/Clients/MainApp/ui/tag_selection_dialog.ui.h:1
+#: ../src/Clients/FSpot/ui/tag_selection_dialog.ui.h:1
 msgid "Select a Tag..."
 msgstr "Vybrať emblém..."
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:1
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:1
 msgid "Preferences"
 msgstr "Predvoľby"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:2
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:2
 msgid "_Interpolate image on zoom"
 msgstr ""
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:3
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:3
 msgid ""
 "<small><i>Enable this to allow interpolation on zoomed images. You shouldn't "
 "disable this for viewing photos, but disabling the interpolation could be "
 "useful in icon design.</i></small>"
 msgstr ""
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:4
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:4
 msgid "<b>Image Interpolation</b>"
 msgstr ""
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:5
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:5
 msgid "As _background"
 msgstr "Ako _pozadie"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:6
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:6
 msgid "As check _pattern"
 msgstr ""
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:7
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:7
 msgid "As _custom color: "
 msgstr ""
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:8
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:8
 msgid ""
 "<small><i>You can choose how to display transparent parts in images. This "
 "option has no effect on photos, but setting this as check pattern or custom "
@@ -2933,7 +2933,7 @@ msgid ""
 "parts.</i></small>"
 msgstr ""
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:9
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:9
 msgid "<b>Transparent Parts</b>"
 msgstr "<b>Priehľadné časti</b>"
 

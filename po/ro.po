@@ -23,7 +23,7 @@ msgstr ""
 "X-Launchpad-Export-Date: 2009-11-28 23:20+0000\n"
 "100 > 19) || ((n % 100 == 0) && (n != 0))) ? 2: 1))\n"
 
-#. ../src/Clients/MainApp/FSpot.addin.xml
+#. ../src/Clients/FSpot/FSpot.addin.xml
 #. ../src/Extensions/Editors/FSpot.Editors.Blackout/Resources/BlackoutEditor.addin.xml
 #: ../data/addin-xml-strings.cs:10
 msgid "BlackoutEditor"
@@ -207,7 +207,7 @@ msgstr ""
 #: ../data/addin-xml-strings.cs:102 ../data/addin-xml-strings.cs:107
 #: ../data/addin-xml-strings.cs:112 ../data/addin-xml-strings.cs:117
 #: ../data/addin-xml-strings.cs:122 ../data/addin-xml-strings.cs:127
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:7
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:7
 msgid "Tools"
 msgstr "Unelte"
 
@@ -571,51 +571,51 @@ msgstr "Se conectează la Tabblo"
 msgid "Obtaining URL for upload"
 msgstr "Se obține legătura pentru trimitere"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:1
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:1
 msgid "Copy Photo"
 msgstr "Copiază locația fotografiei"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:2
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:2
 msgid "Export to"
 msgstr "Exportă către"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:3
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:3
 msgid "Open _With"
 msgstr "Deschide _cu"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:4
-#: ../src/Clients/MainApp/ui/main_window.ui.h:15
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:4
+#: ../src/Clients/FSpot/ui/main_window.ui.h:15
 msgid "Rem_ove Tag"
 msgstr "În_lătură eticheta"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:5
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:457
-#: ../src/Clients/MainApp/ui/main_window.ui.h:16
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:5
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:457
+#: ../src/Clients/FSpot/ui/main_window.ui.h:16
 msgid "Rotate _Left"
 msgstr "Rotește la _stânga"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:6
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:458
-#: ../src/Clients/MainApp/ui/main_window.ui.h:17
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:6
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:458
+#: ../src/Clients/FSpot/ui/main_window.ui.h:17
 msgid "Rotate _Right"
 msgstr "Rotește la _dreapta"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:8
-#: ../src/Clients/MainApp/ui/main_window.ui.h:41
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:8
+#: ../src/Clients/FSpot/ui/main_window.ui.h:41
 msgid "_Delete From Drive"
 msgstr "Ș_terge de pe disc"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:9
-#: ../src/Clients/MainApp/ui/main_window.ui.h:60
+#: ../src/Clients/FSpot/FSpot.addin.xml.h:9
+#: ../src/Clients/FSpot/ui/main_window.ui.h:60
 msgid "_Remove From Catalog"
 msgstr "Ște_rge din catalog"
 
-#: ../src/Clients/MainApp/FSpot/App.cs:320
+#: ../src/Clients/FSpot/FSpot/App.cs:320
 #, csharp-format
 msgid "No photos matching {0} found"
 msgstr "Nu s-au găsit fotografii care să se potrivească cu {0}"
 
-#: ../src/Clients/MainApp/FSpot/App.cs:321
+#: ../src/Clients/FSpot/FSpot/App.cs:321
 #, csharp-format
 msgid ""
 "The tag \"{0}\" is not applied to any photos. Try adding\n"
@@ -626,11 +626,11 @@ msgstr ""
 "eticheta unor fotografii sau să alegeți o altă etichetă din\n"
 "dialogul de preferințe F-Spot."
 
-#: ../src/Clients/MainApp/FSpot/App.cs:325
+#: ../src/Clients/FSpot/FSpot/App.cs:325
 msgid "Search returned no results"
 msgstr "Căutarea nu a dat rezultate"
 
-#: ../src/Clients/MainApp/FSpot/App.cs:326
+#: ../src/Clients/FSpot/FSpot/App.cs:326
 msgid ""
 "The tag F-Spot is looking for does not exist. Try\n"
 "selecting a different tag in the F-Spot preference\n"
@@ -640,11 +640,11 @@ msgstr ""
 "să alegeți o altă etichetă din fereastra de \n"
 "preferințe F-Spot"
 
-#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:761
+#: ../src/Clients/FSpot/FSpot.Database/Updater.cs:761
 msgid "Updating F-Spot Database"
 msgstr "Se actualizează baza de date F-Spot"
 
-#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:762
+#: ../src/Clients/FSpot/FSpot.Database/Updater.cs:762
 msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
@@ -652,249 +652,249 @@ msgstr ""
 "Așteptați actualizarea galeriilor din baza de date F-Spot. Această acțiune "
 "poate dura mai mult timp."
 
-#: ../src/Clients/MainApp/FSpot.Editors/AutoStretchEditor.cs:37
+#: ../src/Clients/FSpot/FSpot.Editors/AutoStretchEditor.cs:37
 msgid "Auto Color"
 msgstr "Culoare automată"
 
-#: ../src/Clients/MainApp/FSpot.Editors/ColorEditor.cs:61
+#: ../src/Clients/FSpot/FSpot.Editors/ColorEditor.cs:61
 msgid "Adjust Colors"
 msgstr "Ajustare culori"
 
-#: ../src/Clients/MainApp/FSpot.Editors/ColorEditor.cs:64
+#: ../src/Clients/FSpot/FSpot.Editors/ColorEditor.cs:64
 msgid "Adjust"
 msgstr "Ajustează"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:56
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:56
 msgid "4 x 3 (Book)"
 msgstr "4 x 3 (Carte)"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:57
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:57
 msgid "4 x 6 (Postcard)"
 msgstr "4 x 6 (Carte poștală)"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:58
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:58
 msgid "5 x 7 (L, 2L)"
 msgstr "5 x 7 (L, 2L)"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:59
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:59
 msgid "8 x 10"
 msgstr "8 x 10"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:60
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:60
 msgid "Square"
 msgstr "Pătrat"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:63
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:63
 msgid "Crop"
 msgstr "Decupează"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:94
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:94
 msgid "Select the area that needs cropping."
 msgstr "Selectați zona care trebuie tăiată."
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:119
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:119
 msgid "No Constraint"
 msgstr "Nicio restricție"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:120
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:120
 msgid "Same as photo"
 msgstr "La fel ca fotografia"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:125
+#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:125
 msgid "Custom Ratios..."
 msgstr "Proporții personalizate..."
 
-#: ../src/Clients/MainApp/FSpot.Editors/DesaturateEditor.cs:37
+#: ../src/Clients/FSpot/FSpot.Editors/DesaturateEditor.cs:37
 msgid "Desaturate"
 msgstr "Desaturează"
 
-#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:41
+#: ../src/Clients/FSpot/FSpot.Editors/RedEyeEditor.cs:41
 msgid "Red-eye Reduction"
 msgstr "Elimină efectul de „ochi roșii”"
 
-#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:43
+#: ../src/Clients/FSpot/FSpot.Editors/RedEyeEditor.cs:43
 msgid "Fix!"
 msgstr "Repară!"
 
-#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:47
+#: ../src/Clients/FSpot/FSpot.Editors/RedEyeEditor.cs:47
 msgid "Select the eyes you wish to fix."
 msgstr "Alegeți ochii pe care doriți să-i reparați."
 
-#: ../src/Clients/MainApp/FSpot.Editors/SepiaEditor.cs:37
+#: ../src/Clients/FSpot/FSpot.Editors/SepiaEditor.cs:37
 msgid "Sepia Tone"
 msgstr "Tonuri sepia"
 
-#: ../src/Clients/MainApp/FSpot.Editors/SoftFocusEditor.cs:51
+#: ../src/Clients/FSpot/FSpot.Editors/SoftFocusEditor.cs:51
 msgid "Soft Focus"
 msgstr "Focalizează ușor"
 
-#: ../src/Clients/MainApp/FSpot.Editors/TiltEditor.cs:49
+#: ../src/Clients/FSpot/FSpot.Editors/TiltEditor.cs:49
 msgid "Straighten"
 msgstr "Îndreaptă"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:82
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:82
 msgid "Hide"
 msgstr "Ascunde"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:84
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:84
 msgid "Hide toolbar"
 msgstr "Ascunde bara de unelte"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:90
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:90
 msgid "Info"
 msgstr "Informații"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:92
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:92
 msgid "Image information"
 msgstr "Informații imagine"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:97
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:97
 msgid "Exit fullscreen"
 msgstr "Ieșire din mod pe tot ecranul"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:105
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:341
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:122
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:105
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:341
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:122
 msgid "Slideshow"
 msgstr "Diapozitive"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:106
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:106
 msgid "Start slideshow"
 msgstr "Pornire prezentare diapozitive"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:152
+#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:152
 msgid "Slide transition:"
 msgstr "Tranziție diapozitive:"
 
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:90
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:91
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:90
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:91
 msgid "More dates"
 msgstr "Mai multe date"
 
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:93
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:94
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:93
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:94
 msgid "More"
 msgstr "Mai mult"
 
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:554
-#: ../src/Clients/MainApp/ui/main_window.ui.h:34
+#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:554
+#: ../src/Clients/FSpot/ui/main_window.ui.h:34
 msgid "_Clear Date Range"
 msgstr "_Curăță intervalul de timp"
 
-#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:510
-#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:512
-#: ../src/Clients/MainApp/FSpot.Import/MetadataImporter.cs:80
+#: ../src/Clients/FSpot/FSpot.Import/ImportController.cs:510
+#: ../src/Clients/FSpot/FSpot.Import/ImportController.cs:512
+#: ../src/Clients/FSpot/FSpot.Import/MetadataImporter.cs:80
 msgid "Imported Tags"
 msgstr "Etichete importate"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:102
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:308
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:105
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:102
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:308
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:105
 msgid "Rotate Left"
 msgstr "Rotire la stânga"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:103
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:103
 msgid "Rotate picture left"
 msgstr "Rotește fotografia spre dreapta"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:114
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:312
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:110
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:114
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:312
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:110
 msgid "Rotate Right"
 msgstr "Rotire la dreapta"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:115
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:115
 msgid "Rotate picture right"
 msgstr "Rotește fotografia spre dreapta"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:125
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:125
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:936
 msgid "Next"
 msgstr "Următoarea"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:126
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:126
 msgid "Next picture"
 msgstr "Următoarea fotografie"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:146
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:146
 msgid "Previous"
 msgstr "Precedenta"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:147
+#: ../src/Clients/FSpot/FSpot/ItemAction.cs:147
 msgid "Previous picture"
 msgstr "Fotografia precedentă"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:301
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:229
-#: ../src/Clients/MainApp/ui/import.ui.h:3
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:301
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:229
+#: ../src/Clients/FSpot/ui/import.ui.h:3
 msgid "Import"
 msgstr "Import"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:303
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:303
 msgid "Import new images"
 msgstr "Importă imagini noi"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:319
-#: ../src/Clients/MainApp/ui/main_window.ui.h:3
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:319
+#: ../src/Clients/FSpot/ui/main_window.ui.h:3
 msgid "Browse"
 msgstr "Navigare"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:323
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:323
 msgid "Browse many photos simultaneously"
 msgstr "Căutați printre mai multe fotografii simultan"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:327
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:327
 msgid "Edit Image"
 msgstr "Editare imagine"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:331
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:331
 msgid "View and edit a photo"
 msgstr "Afișează și editează o fotografie"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:336
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:117
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:336
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:117
 msgid "Fullscreen"
 msgstr "Pe tot ecranul"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:338
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:119
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:338
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:119
 msgid "View photos fullscreen"
 msgstr "Afișează fotografiile pe tot ecranul"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:343
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:124
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:343
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:124
 msgid "View photos in a slideshow"
 msgstr "Afișează fotografiile ca prezentare de diapozitive"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:358
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:358
 msgid "Previous photo"
 msgstr "Fotografia precedentă"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:363
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:363
 msgid "Next photo"
 msgstr "Fotografia următoare"
 
 #. Don't care otherwise, Tags sounds reasonable
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:376
-#: ../src/Clients/MainApp/FSpot.Widgets/Sidebar.cs:75
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:376
+#: ../src/Clients/FSpot/FSpot.Widgets/Sidebar.cs:75
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:933
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1105
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1145
 msgid "Tags"
 msgstr "Etichete"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:440
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:440
 msgid "Show _Find Bar"
 msgstr "Arată bara „_Caută”"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:443
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:443
 msgid "Hide _Find Bar"
 msgstr "Ascunde bara „_Caută”"
 
 #. Note for translators: This indicates the current photo is photo {0} of {1} out of photos
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:671
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs:154
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ProgressDialog.cs:111
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:671
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AdjustTimeDialog.cs:154
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ProgressDialog.cs:111
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:134
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:389
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:240
@@ -904,7 +904,7 @@ msgid "{0} of {1}"
 msgstr "{0} din {1}"
 
 #. Translators, The singular case will never happen here.
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1745
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1745
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
@@ -912,7 +912,7 @@ msgstr[0] "Combinați eticheta selectată?"
 msgstr[1] "Combinați cele {0} etichete selectate?"
 msgstr[2] "Combinați cele {0} de etichete selectate?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1772
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1772
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
@@ -920,11 +920,11 @@ msgstr ""
 "Această operație va combina etichetele selectate și toate sub-etichetele "
 "într-o singură etichetă."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1774
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1774
 msgid "_Merge Tags"
 msgstr "Co_mbină etichete"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1979
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1979
 #, csharp-format
 msgid "{0} Photo out of {1}"
 msgid_plural "{0} Photos out of {1}"
@@ -932,8 +932,8 @@ msgstr[0] "Fotografia {0} din {1}"
 msgstr[1] "{0} fotografii din {1}"
 msgstr[2] "{0} de fotografii din {1}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1981
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:499
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1981
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:499
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
@@ -941,7 +941,7 @@ msgstr[0] "Fotografia {0}"
 msgstr[1] "{0} fotografii"
 msgstr[2] "{0} de fotografii"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1984
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1984
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
@@ -949,25 +949,25 @@ msgstr[0] " {0} selectată"
 msgstr[1] " {0} selectate"
 msgstr[2] " {0} selectate"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2065
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2065
 msgid "_Ok"
 msgstr "_Ok"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2066
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2066
 msgid "Error Deleting Picture"
 msgstr "Eroare la ștergerea fotografiei"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2071
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2071
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
 msgstr "Nu aveți permisiunea de a șterge fișierul: {1}{0}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2075
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2075
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
 msgstr "La ștergerea fișierului {2}{1} s-a produs o eroare de tipul {0}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2107
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2107
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
@@ -975,7 +975,7 @@ msgstr[0] "Ștergeți definitiv fotografia selectată?"
 msgstr[1] "Ștergeți definitiv cele {0} fotografii?"
 msgstr[2] "Ștergeți definitiv cele {0} de fotografii?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2111
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2111
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
@@ -986,14 +986,14 @@ msgstr[1] ""
 msgstr[2] ""
 "Aceasta va șterge de pe disc toate versiunile fotografiilor selectate."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2114
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2114
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "Ște_rge fotografia"
 msgstr[1] "Ște_rge fotografiile"
 msgstr[2] "Ște_rge fotografiile"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2150
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2150
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
@@ -1001,7 +1001,7 @@ msgstr[0] "Ștergeți din F-Spot fotografia selectată?"
 msgstr[1] "Ștergeți din F-Spot cele {0} fotografii selectate?"
 msgstr[2] "Ștergeți din F-Spot cele {0} de fotografii selectate?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2155
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2155
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1011,28 +1011,28 @@ msgstr ""
 "etichete se vor pierde. Fotografiile rămân în calculator și pot fi importate "
 "din nou în F-Spot."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2156
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2156
 msgid "_Remove from Catalog"
 msgstr "Ș_terge din catalog"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2230
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2230
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Ștergeți eticheta „{0}”?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2232
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2232
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Ștergeți cele {0} etichete selectate?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2237
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2237
 msgid "photo"
 msgid_plural "photos"
 msgstr[0] "fotografie"
 msgstr[1] "fotografii"
 msgstr[2] "de fotografii"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2239
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2239
 #, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
 msgid_plural ""
@@ -1044,7 +1044,7 @@ msgstr[1] ""
 msgstr[2] ""
 "Dacă ștergeți aceste etichete, asocierile cu {0} {1} vor fi pierdute."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2244
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2244
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "Ște_rge etichetă"
@@ -1052,11 +1052,11 @@ msgstr[1] "Ște_rge etichete"
 msgstr[2] "Ște_rge etichete"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2258
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2258
 msgid "Tag is not empty"
 msgstr "Eticheta părinte nu este goală"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2259
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2259
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -1065,21 +1065,21 @@ msgstr ""
 "Nu pot șterge etichete care conțin alte etichete. Ștergeți mai întâi "
 "etichetele conținute de „{0}”"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2711
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2711
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Rotește fotografia selectată către stânga"
 msgstr[1] "Rotește fotografiile selectate către stânga"
 msgstr[2] "Rotește fotografiile selectate către stânga"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2724
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2724
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Rotește fotografia selectată către dreapta"
 msgstr[1] "Rotește fotografiile selectate către dreapta"
 msgstr[2] "Rotește fotografiile selectate către dreapta"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2735
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2735
 #, csharp-format
 msgid "Find _Selected Tag"
 msgid_plural "Find _Selected Tags"
@@ -1087,7 +1087,7 @@ msgstr[0] "Caută _eticheta selectată"
 msgstr[1] "Caută _etichetele selectate"
 msgstr[2] "Caută _etichetele selectate"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2739
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2739
 #, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
@@ -1095,14 +1095,14 @@ msgstr[0] "Caută eticheta selectată _cu"
 msgstr[1] "Caută etichetele selectate _cu"
 msgstr[2] "Caută etichetele selectate _cu"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2780
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2780
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Creez versiune nouă?"
 msgstr[1] "Creez versiuni noi?"
 msgstr[2] "Creez versiuni noi?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2782
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2782
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -1120,16 +1120,16 @@ msgstr[2] ""
 "Înainte de a lansa {1}, doriți ca F-Spot să creeze versiuni noi ale "
 "fotografiilor selectate, pentru a păstra originalele nemodificate?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2804
+#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2804
 msgid "XCF version"
 msgstr "versiune XCF"
 
 #. Note for translators: Reparented is a picture becoming a version of another one
-#: ../src/Clients/MainApp/FSpot/Photo.cs:426
+#: ../src/Clients/FSpot/FSpot/Photo.cs:426
 msgid "Reparented"
 msgstr "Reversionat"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:443
+#: ../src/Clients/FSpot/FSpot/Photo.cs:443
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
@@ -1137,88 +1137,88 @@ msgstr[0] "Modificată"
 msgstr[1] "Modificate ({0})"
 msgstr[2] "Modificate ({0})"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:466
+#: ../src/Clients/FSpot/FSpot/Photo.cs:466
 #, csharp-format
 msgid "Modified in {1}"
 msgstr "Modificată în {1}"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:466
+#: ../src/Clients/FSpot/FSpot/Photo.cs:466
 #, csharp-format
 msgid "Modified in {1} ({0})"
 msgstr "Modificată în {1} ({0})"
 
-#: ../src/Clients/MainApp/FSpot/PhotoStore.cs:203
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:17
+#: ../src/Clients/FSpot/FSpot/PhotoStore.cs:203
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:17
 msgid "Original"
 msgstr "Original"
 
-#: ../src/Clients/MainApp/FSpot/PhotoView.cs:359
+#: ../src/Clients/FSpot/FSpot/PhotoView.cs:359
 msgid "Description:"
 msgstr "Descriere:"
 
-#: ../src/Clients/MainApp/FSpot/Preferences.cs:191
+#: ../src/Clients/FSpot/FSpot/Preferences.cs:191
 msgid "Photos"
 msgstr "Fotografii"
 
-#: ../src/Clients/MainApp/FSpot/PrintOperation.cs:54
+#: ../src/Clients/FSpot/FSpot/PrintOperation.cs:54
 msgid "Image Settings"
 msgstr "Preferințe imagine"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:84
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:84
 msgid "Find: "
 msgstr "Caută: "
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:89
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:89
 msgid "Untagged photos"
 msgstr "Fotografii fără etichete"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:97
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:97
 msgid "Rated photos"
 msgstr "Fotografii cu apreciere"
 
 #. Note for translators: 'Import roll' is no command, it means 'Roll that has been imported'
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:106
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:106
 msgid "Import roll"
 msgstr "Set de importat"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:129
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:129
 msgid "Clear search"
 msgstr "Resetează căutarea"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:136
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:136
 msgid "Refresh search"
 msgstr "Caută din nou"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:139
+#: ../src/Clients/FSpot/FSpot/QueryWidget.cs:139
 msgid "No matching photos found"
 msgstr "Nu au fost găsite fotografii care corespund căutării"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:102
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:102
 msgid "Unable to rotate this type of photo"
 msgstr "Acest tip de fotografie nu poate fi rotit"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:118
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:118
 msgid "Unable to rotate readonly file"
 msgstr "Fișierul cu proprietăți care nu permit editarea nu poate fi rotit"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:182
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:182
 msgid "Rotating photos"
 msgstr "Rotire fotografii"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:193
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:193
 #, csharp-format
 msgid "Rotating photo \"{0}\""
 msgstr "Se rotește fotografia „{0}”"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:206
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:206
 msgid "Directory not found"
 msgstr "Dosarul nu a fost găsit"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:208
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:208
 msgid "File not found"
 msgstr "Fișierul nu a fost găsit"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:226
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:226
 #, csharp-format
 msgid "Unable to rotate photo"
 msgid_plural "Unable to rotate {0} photos"
@@ -1226,7 +1226,7 @@ msgstr[0] "Fotografia nu poate fi rotită"
 msgstr[1] "{0} fotografii nu pot fi rotite"
 msgstr[2] "{0} de fotografii nu pot fi rotite"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:228
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:228
 #, csharp-format
 msgid ""
 "The photo could not be rotated because it is on a read only file system or "
@@ -1247,77 +1247,77 @@ msgstr[2] ""
 "cu permisiunea doar citire sau pe un mediu cum ar fi CD-ROM. Verificați "
 "permisiunile și încercați din nou."
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:255
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:255
 #, csharp-format
 msgid "Received error \"{0}\" while attempting to rotate {1}"
 msgstr "La încercarea de a roti {1} s-a primit eroarea „{0}”"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:260
+#: ../src/Clients/FSpot/FSpot/RotateCommand.cs:260
 msgid "Error while rotating photo."
 msgstr "Eroare la rotirea fotografiei"
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:236
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:236
 msgid "Preparing email"
 msgstr "Se pregătește emailul"
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:280
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:280
 #, csharp-format
 msgid "Exporting picture \"{0}\""
 msgstr "Se exportă fotografia „{0}”"
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:299
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:299
 msgid "Error processing image"
 msgstr "Eroare la procesarea imaginii"
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:300
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:300
 #, csharp-format
 msgid "An error occurred while processing \"{0}\": {1}"
 msgstr "S-a produs o eroare în timpul procesării „{0}”: {1}"
 
 #. Send the mail :)
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:313
+#: ../src/Clients/FSpot/FSpot/SendEmail.cs:313
 msgid "My Photos"
 msgstr "Fotografiile mele"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:107
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:107
 msgid "Rotate photo left"
 msgstr "Rotește fotografia la stânga"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:112
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:112
 msgid "Rotate photo right"
 msgstr "Rotește fotografia la dreapta"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:148
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:148
 msgid "Folder"
 msgstr "Dosar"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:373
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:373
 msgid "Open"
 msgstr "Deschide"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:376
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:376
 msgid "Select Folder"
 msgstr "Selectare dosar"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:460
+#: ../src/Clients/FSpot/FSpot/SingleView.cs:460
 msgid "Set as Background"
 msgstr "Utilizează ca fundal"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:66
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:66
 #, csharp-format
 msgid "Include Photos Tagged \"{0}\""
 msgstr "Include fotografiile etichetate „{0}”"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:71
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:71
 #, csharp-format
 msgid "Exclude Photos Tagged \"{0}\""
 msgstr "Exclude fotografiile etichetate „{0}”"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:76
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:76
 msgid "Remove From Search"
 msgstr "Șterge din căutare"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:120
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:120
 #, csharp-format
 msgid "Find _With"
 msgid_plural "Find _With"
@@ -1325,87 +1325,87 @@ msgstr[0] "Caută _cu"
 msgstr[1] "Caută _cu"
 msgstr[2] "Caută _cu"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:146
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:146
 msgid "All"
 msgstr "Toate"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:181
-#: ../src/Clients/MainApp/FSpot/Term.cs:612
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:181
+#: ../src/Clients/FSpot/FSpot/Term.cs:612
 #, csharp-format
 msgid "Not {0}"
 msgstr "Fără {0}"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:305
+#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:305
 msgid "Drag tags here to search for them"
 msgstr "Trage etichetele aici pentru a realiza căutarea"
 
-#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:520
+#: ../src/Clients/FSpot/FSpot/TagSelectionWidget.cs:520
 msgid "Error renaming tag"
 msgstr "Eroare redenumire etichetă"
 
-#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:521
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagDialog.cs:93
-#: ../src/Clients/MainApp/TagCommands.cs:137
+#: ../src/Clients/FSpot/FSpot/TagSelectionWidget.cs:521
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagDialog.cs:93
+#: ../src/Clients/FSpot/TagCommands.cs:137
 msgid "This name is already in use"
 msgstr "Acest nume este folosit deja"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:239
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:239
 msgid "Favorites"
 msgstr "Favorite"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:244
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:244
 msgid "Hidden"
 msgstr "Ascunse"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:252
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:252
 msgid "People"
 msgstr "Persoane"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:257
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:257
 msgid "Places"
 msgstr "Locuri"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:262
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:262
 msgid "Events"
 msgstr "Evenimente"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:275
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:438
+#: ../src/Clients/FSpot/FSpot/TagStore.cs:275
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:438
 msgid "(None)"
 msgstr "(Niciuna)"
 
-#: ../src/Clients/MainApp/FSpot/Term.cs:324
+#: ../src/Clients/FSpot/FSpot/Term.cs:324
 msgid " and "
 msgstr " și "
 
 #. operators.Add (Catalog.GetString (" && "));
-#: ../src/Clients/MainApp/FSpot/Term.cs:326
+#: ../src/Clients/FSpot/FSpot/Term.cs:326
 msgid ", "
 msgstr ", "
 
-#: ../src/Clients/MainApp/FSpot/Term.cs:382
+#: ../src/Clients/FSpot/FSpot/Term.cs:382
 msgid " or "
 msgstr " sau "
 
 #. OPS The operators we support, case insensitive
 #. private static string op_str = "(?'Ops' or | and |, | \\s+ )";
-#: ../src/Clients/MainApp/FSpot/Term.cs:406
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:7
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:202
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:557
+#: ../src/Clients/FSpot/FSpot/Term.cs:406
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:202
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:557
 msgid "or"
 msgstr "sau"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:122
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AboutDialog.cs:122
 msgid "Photo management for GNOME"
 msgstr "Administrator de fotografii pentru GNOME"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:123
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AboutDialog.cs:123
 msgid "Copyright © 2003-2010 Novell Inc."
 msgstr "Drepturi de autor © 2003-2010 Novell Inc."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:147
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AboutDialog.cs:147
 msgid "translator-credits"
 msgstr ""
 "Lucian Adrian Grijincu\n"
@@ -1419,77 +1419,77 @@ msgstr ""
 "  Riddick https://launchpad.net/~riddickbb\n"
 "  marianvasile https://launchpad.net/~marianvasile-upcmail"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:152
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AboutDialog.cs:152
 msgid "F-Spot Website"
 msgstr "Pagina web F-Spot"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs:137
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:10
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/AdjustTimeDialog.cs:137
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:10
 #, csharp-format
 msgid "Shift all photos by {0}"
 msgstr "Deplasează toate fotografiile cu {0}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:109
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:109
 msgid "Today"
 msgstr "Astăzi"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:111
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:111
 msgid "Yesterday"
 msgstr "Ieri"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:113
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:113
 msgid "Last 7 days"
 msgstr "Ultimele 7 zile"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:115
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:115
 msgid "Last 30 days"
 msgstr "Ultimele 30 de zile"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:117
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:117
 msgid "Last 90 days"
 msgstr "Ultimele 90 de zile"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:119
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:119
 msgid "Last 360 days"
 msgstr "Ultimele 360 de zile"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:121
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:121
 msgid "Current Week (Mon-Sun)"
 msgstr "Săptămâna curentă (Lu-Du)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:123
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:123
 msgid "Previous Week (Mon-Sun)"
 msgstr "Săptămâna trecută (Lu-Du)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:139
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:139
 #: ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui.h:1
 msgid "All Images"
 msgstr "Toate imaginile"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:141
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/DateRangeDialog.cs:141
 msgid "Customized Range"
 msgstr "Perioadă personalizată"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditExceptionDialog.cs:50
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:95
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditExceptionDialog.cs:50
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:95
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr "S-a primit excepția „{0}”. Fotografia {1} nu poate fi salvată."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditExceptionDialog.cs:63
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditExceptionDialog.cs:63
 msgid "Error editing photo"
 msgstr "Eroare la editarea fotografiei"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:64
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:64
 #, csharp-format
 msgid "Edit Icon for Tag {0}"
 msgstr "Modifică iconița pentru eticheta {0}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:86
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:86
 msgid "Select Photo from file"
 msgstr "selectează fotografia din fișier"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:108
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:108
 #, csharp-format
 msgid ""
 "\n"
@@ -1507,33 +1507,33 @@ msgstr ""
 " cel puțin o fotografie. Etichetați o fotografie ca „{0}” și reveniți aici\n"
 " pentru a o folosi ca iconiță."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:186
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:186
 msgid "Unable to load image"
 msgstr "Nu se poate încărca imaginea"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:187
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:187
 #, csharp-format
 msgid "Unable to load \"{0}\" as icon for the tag"
 msgstr "Nu se poate încărca „{0}” ca iconiță pentru etichetă"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:225
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/EditTagIconDialog.cs:225
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "Fotografia {0} din {1}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:45
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:45
 msgid "Choose Folder..."
 msgstr "Alegeți dosarul..."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:164
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:164
 msgid "Choose Import source..."
 msgstr "Alegeți sursa de import..."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:176
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:176
 msgid "(No Cameras Detected)"
 msgstr "(Nu s-a detectat nicio cameră)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:211
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:211
 msgid ""
 "Checking this box will remove the imported photos from the camera after the "
 "import finished successfully.\n"
@@ -1547,34 +1547,34 @@ msgstr ""
 "Este recomandat să vă copiați fotografiile înainte să le ștergeți de pe "
 "aparatul foto.<b>Folosiți această opțiune pe riscul dumneavoastră!</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:212
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:212
 msgid "Warning"
 msgstr "Atenție"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:331
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:331
 #, csharp-format
 msgid "Importing Photos: {0} of {1}..."
 msgstr "Se importă fotografiile: {0} din {1}..."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:355
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:355
 msgid "Importing photos..."
 msgstr "Se importă fotografiile..."
 
 #. TODO: Using a GtkSpinner would be nicer here.
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:362
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:362
 msgid "Searching for photos... (You can already click Import to continue)"
 msgstr ""
 "Se caută fotografii... (Puteți sa dați clic pe Importă pentru a continua)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:65
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportFailureDialog.cs:65
 msgid "Import failures"
 msgstr "Eșecuri la import"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:66
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportFailureDialog.cs:66
 msgid "Some files failed to import"
 msgstr "Unele fișiere nu au reușit sa fie importate"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:67
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportFailureDialog.cs:67
 msgid ""
 "Some files could not be imported, they might be corrupt or there might be "
 "something wrong with the storage on which they reside."
@@ -1582,28 +1582,28 @@ msgstr ""
 "Unele fișiere nu au putut fi importate, ele pot fi corupte sau s-ar putea să "
 "fie ceva în neregulă cu mediul de stocare pe care se află."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:130
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportFailureDialog.cs:130
 msgid "Details"
 msgstr "Detalii"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:77
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:100
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/PreferenceDialog.cs:77
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/PreferenceDialog.cs:100
 msgid "None"
 msgstr "Niciunul"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:79
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/PreferenceDialog.cs:79
 msgid "System profile"
 msgstr "Profil sistem"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:117
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/PreferenceDialog.cs:117
 msgid "Standard theme"
 msgstr "Temă standard"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/RepairDbDialog.cs:44
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/RepairDbDialog.cs:44
 msgid "Error loading database."
 msgstr "Eroare la încărcarea bazei de date."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/RepairDbDialog.cs:45
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/RepairDbDialog.cs:45
 #, csharp-format
 msgid ""
 "F-Spot encountered an error while loading the photo database. The old "
@@ -1613,41 +1613,41 @@ msgstr ""
 "F-Spot. Baza de date veche a fost mutată în {0} și a fost creată o bază de "
 "date nouă."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/SelectionRatioDialog.cs:81
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/SelectionRatioDialog.cs:81
 msgid "Label"
 msgstr "Etichetă"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/SelectionRatioDialog.cs:85
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/SelectionRatioDialog.cs:85
 msgid "Ratio"
 msgstr "Raport"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ThreadProgressDialog.cs:78
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ThreadProgressDialog.cs:78
 msgid "Retry"
 msgstr "Încearcă din nou"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ThreadProgressDialog.cs:80
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ThreadProgressDialog.cs:80
 #: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/pickfolder_dialog.ui.h:1
 msgid "Skip"
 msgstr "Omite"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:1
 msgid "0000:00:00 00:00:00"
 msgstr "0000:00:00 00:00:00"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:2
 msgid "00:00:00"
 msgstr "00:00:00"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:3
 msgid "5"
 msgstr "5"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:4
 msgid "<b>Action</b>"
 msgstr "<b>Acțiune</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:5
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:5
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:6
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:2
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:3
 #: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:3
@@ -1657,175 +1657,175 @@ msgstr "<b>Acțiune</b>"
 msgid "<b>Photos</b>"
 msgstr "<b>Fotografii</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:6
 msgid "<b>Reference Photo</b>"
 msgstr "<b>Fotografia de referință</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:7
 msgid "Adjust Time"
 msgstr "Configurează data"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:8
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:8
 msgid "Adjusted date: "
 msgstr "Data modificată: "
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:9
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:9
 msgid "Current date:"
 msgstr "Data curentă:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:11
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:11
 msgid "Space all photos by"
 msgstr "Depărtați toate fotografiile cu"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:12
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:12
 msgid "difference:"
 msgstr "diferență:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:13
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:13
 msgid "min. Starting at {0}"
 msgstr "min. Se începe la {0}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:1
 msgid "C_reate"
 msgstr "C_reează"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:2
 msgid "Create _icon for this tag when first used"
 msgstr "Creează _iconiță pentru această etichetă la prima utilizare"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:3
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:3
 msgid "P_arent Tag:"
 msgstr "Etichetă _părinte:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:4
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:5
 msgid "_Tag Name:"
 msgstr "Nume e_tichetă:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:1
 msgid "<b>End Date</b>"
 msgstr "<b>Se termină la data</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:2
 msgid "<b>Select period</b>"
 msgstr "<b>Alegeți perioada</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:3
 msgid "<b>Start Date</b>"
 msgstr "<b>Se începe la data</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:4
 msgid "Cancel, do not change the current timeline. "
 msgstr "Anulează, nu se modifică selecția cronologică curentă. "
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:5
 msgid "Only photos taken within these dates will be displayed."
 msgstr "Se vor afișa numai fotografiile realizate între aceste date."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:6
 msgid "Set date range"
 msgstr "Configurați intervalul de timp"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:1
 msgid "Edit Tag"
 msgstr "Editare etichetă"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:2
 msgid "Edit icon"
 msgstr "Modifică iconița"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:4
 msgid "_Icon:"
 msgstr "_Iconiță:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:1
 msgid "<b>From External Photo</b>"
 msgstr "<b>Din altă fotografie</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:2
 msgid "<b>From Photo</b>"
 msgstr "<b>Din fotografie</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:3
 msgid "<b>Predefined icons</b>"
 msgstr "<b>Iconițe predefinite</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:4
 msgid "<b>Preview</b>"
 msgstr "<b>Previzualizare</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:5
 msgid "Design icon from"
 msgstr "Creează iconiță din"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:6
 msgid "Edit Tag Icon"
 msgstr "Modifică iconița etichetei"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:7
 msgid "No _image"
 msgstr "Fără _imagine"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:1
 msgid "<b>View all pictures imported</b>"
 msgstr "<b>Afișează toate fotografiile importate</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:2
 msgid "Display only those photos that were imported in specified Rolls."
 msgstr ""
 "Afișează numai fotografiile care au fost importate în seturile specificate."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:3
 msgid "Filter on selected rolls"
 msgstr "Filtru pe set selectat"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:4
 msgid "Number of photos in selected rolls:"
 msgstr "Număr de fotografii în seturile selectate:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:5
 msgid "Show all photos."
 msgstr "Arată toate fotografiile."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:6
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:6
 msgid "after"
 msgstr "după"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:7
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:202
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:558
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:202
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:558
 msgid "and"
 msgstr "și"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:8
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:8
 msgid "at"
 msgstr "la"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:9
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:9
 msgid "between"
 msgstr ""
 "la\n"
 "după\n"
 "între"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:1
 msgid "Color profile for display:"
 msgstr "Profil de culoare pentru ecran"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:2
 msgid "Color profile for printing:"
 msgstr "Profil de culoare pentru tipărire"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:3
 msgid "F-Spot Preferences"
 msgstr "Preferințe F-Spot"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:4
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:4
 msgid "F-Spot appearance:"
 msgstr "Aspect F-Spot"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:5
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:5
 msgid ""
 "Inside the image files when possible\n"
 "<small>Makes them accessible to other image-editing programs.</small>"
@@ -1834,7 +1834,7 @@ msgstr ""
 "<small>permite vizibilitate față de alte programe pentru editare imagini.</"
 "small>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:7
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:7
 msgid ""
 "Never modify image files.\n"
 "<small>Write XMP files next to the images instead.</small>"
@@ -1842,57 +1842,57 @@ msgstr ""
 "Nu modifica niciodată fișierele imaginilor.\n"
 "<small>În loc, scrie fișiere XMP lângă imagini.</small>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:9
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:9
 msgid "Select A Folder"
 msgstr "Selectați un dosar"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:10
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:10
 msgid "Separately from the image files"
 msgstr "Separat față de fișiere imagine"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:11
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:11
 msgid "Store tags and descriptions for photos:"
 msgstr "Păstrează etichetele și descrierile pentru fotografii:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:12
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:12
 msgid "When importing photos, copy them to:"
 msgstr "Copiază fotografiile importate în:"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:1
 msgid "<b>Max Rating</b>"
 msgstr "<b>Apreciere maximă</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:2
 msgid "<b>Min Rating</b>"
 msgstr "<b>Apreciere minimă</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:3
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:3
 msgid "Set Rating Filter"
 msgstr "Configurează filtru de apreciere"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RepairDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/RepairDialog.ui.h:1
 msgid "Repair"
 msgstr "Repară"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui.h:1
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui.h:1
 msgid "Manage your custom selection ratios"
 msgstr "Administrați proporțiile selectate personalizat"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui.h:2
+#: ../src/Clients/FSpot/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui.h:2
 msgid "Selection Constraints"
 msgstr "Condiționări selecție"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:55
-#: ../src/Clients/MainApp/FSpot.Widgets/Sidebar.cs:73
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:55
+#: ../src/Clients/FSpot/FSpot.Widgets/Sidebar.cs:73
 msgid "Edit"
 msgstr "Editează"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:223
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:223
 #: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:66
 msgid "No selection available"
 msgstr "Nicio selecție disponibilă"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:224
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:224
 msgid ""
 "This tool requires an active selection. Please select a region of the photo "
 "and try the operation again"
@@ -1900,14 +1900,14 @@ msgstr ""
 "Această unealtă necesită selectarea unei zone. Selectați o regiune a "
 "fotografiei și acționați unealta din nou."
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:242
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:242
 msgid "Error saving adjusted photo"
 msgid_plural "Error saving adjusted photos"
 msgstr[0] "Eroare la salvarea fotografiei retușate"
 msgstr[1] "Eroare la salvarea fotografiilor retușate"
 msgstr[2] "Eroare la salvarea fotografiilor retușate"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:244
+#: ../src/Clients/FSpot/FSpot.Widgets/EditorPage.cs:244
 #, csharp-format
 msgid ""
 "Received exception \"{0}\". Note that you have to develop RAW files into "
@@ -1916,54 +1916,54 @@ msgstr ""
 "S-a primit eroarea „{0}”. Luați aminte că trebuie să transformați fișierele "
 "RAW în format JPEG înainte de a le edita."
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:495
+#: ../src/Clients/FSpot/FSpot.Widgets/Filmstrip.cs:495
 msgid "_Horizontal"
 msgstr "_Orizontal"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:499
+#: ../src/Clients/FSpot/FSpot.Widgets/Filmstrip.cs:499
 msgid "_Vertical"
 msgstr "_Vertical"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:83
+#: ../src/Clients/FSpot/FSpot.Widgets/FindBar.cs:83
 msgid "Find:"
 msgstr "Caută:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/FolderTreePage.cs:44
+#: ../src/Clients/FSpot/FSpot.Widgets/FolderTreePage.cs:44
 msgid "Folders"
 msgstr "Dosare"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/FolderTreeView.cs:159
+#: ../src/Clients/FSpot/FSpot.Widgets/FolderTreeView.cs:159
 msgid "Filesystem"
 msgstr "Sistem de fișiere"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:302
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:302
 msgid "Histogram"
 msgstr "Histogramă"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:321
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:321
 msgid "Image Information"
 msgstr "Informații imagine"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:329
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:329
 #, csharp-format
 msgid "{0} Photos"
 msgstr "{0} fotografii"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:331
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:331
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:10
 msgid "Name"
 msgstr "Nume"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:343
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:343
 msgid "Version"
 msgstr "Versiune"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:358
-#: ../src/Clients/MainApp/PhotoVersionMenu.cs:86
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:358
+#: ../src/Clients/FSpot/PhotoVersionMenu.cs:86
 msgid "(No Edits)"
 msgstr "(Fără modificări)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:362
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:362
 #, csharp-format
 msgid "(One Edit)"
 msgid_plural "({0} Edits)"
@@ -1971,16 +1971,16 @@ msgstr[0] "(o modificare)"
 msgstr[1] "({0} modificări)"
 msgstr[2] "({0} de modificări)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:368
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:368
 msgid "Date"
 msgstr "Dată"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:368
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:368
 msgid "Show Date"
 msgstr "Arată data"
 
 #. Note for translators: {0} is a date, {1} and {2} are times.
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:379
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:379
 #, csharp-format
 msgid ""
 "On {0} between \n"
@@ -1989,7 +1989,7 @@ msgstr ""
 "La {0} între \n"
 "{1} și {2}"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:384
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:384
 #, csharp-format
 msgid ""
 "Between {0} \n"
@@ -1998,177 +1998,177 @@ msgstr ""
 "Între {0} \n"
 "și {1}"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:390
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:390
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:4
 msgid "Size"
 msgstr "Dimensiune"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:390
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:390
 msgid "Show Size"
 msgstr "Arată dimensiunea"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:398
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:448
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:454
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:458
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:398
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:448
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:454
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:458
 msgid "(Unknown)"
 msgstr "(Necunoscut)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:401
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:401
 msgid "Exposure"
 msgstr "Expunere"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:401
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:401
 msgid "Show Exposure"
 msgstr "Arată expunerea"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:431
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:431
 msgid "flash fired"
 msgstr "blițul a pornit"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:433
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:433
 msgid "flash didn't fire"
 msgstr "blițul nu a pornit"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:443
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:443
 msgid "Focal Length"
 msgstr "Distanță focală"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:443
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:443
 msgid "Show Focal Length"
 msgstr "Arată distanța focală"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:453
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:453
 msgid "Camera"
 msgstr "Cameră foto"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:453
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:453
 msgid "Show Camera"
 msgstr "Arată aparatul foto"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:457
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:457
 msgid "Creator"
 msgstr "Realizat de"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:457
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:457
 msgid "Show Creator"
 msgstr "Realizat de"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:461
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:461
 msgid "File Size"
 msgstr "Dimensiune fișier"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:461
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:461
 msgid "Show File Size"
 msgstr "Arată mărimea fișierului"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:469
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:469
 msgid "(File read error)"
 msgstr "(Eroare la citirea fișierului)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:477
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:477
 msgid "Rating"
 msgstr "Apreciere"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:477
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:477
 msgid "Show Rating"
 msgstr "Arată aprecierea"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:481
+#: ../src/Clients/FSpot/FSpot.Widgets/InfoBox.cs:481
 msgid "Show Tags"
 msgstr "Arată etichetele"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:46
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:46
 msgid "Metadata"
 msgstr "Metadate"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:127
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:127
 msgid "Extended Metadata"
 msgstr "Metadate extinse"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:380
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:380
 msgid "No active photo"
 msgstr "Nicio fotografie selectată"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:382
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:382
 #, csharp-format
 msgid "The photo \"{0}\" does not exist"
 msgstr "Fotografia „{0}” nu există"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:384
+#: ../src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs:384
 msgid "No metadata available"
 msgstr "Nu există metadate disponibile"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:94
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:94
 msgid "Error saving sharpened photo"
 msgstr "Eroare la salvarea fotografiei cu claritatea îmbunătățită"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:124
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:124
 msgid "Sharpen"
 msgstr "Accentuează claritatea"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:134
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:134
 msgid "Amount:"
 msgstr "Cantitate:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:135
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:135
 msgid "Radius:"
 msgstr "Raza:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:136
+#: ../src/Clients/FSpot/FSpot.Widgets/Sharpener.cs:136
 msgid "Threshold:"
 msgstr "Prag:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/TagMenu.cs:132
-#: ../src/Clients/MainApp/TagPopup.cs:61
+#: ../src/Clients/FSpot/FSpot.Widgets/TagMenu.cs:132
+#: ../src/Clients/FSpot/TagPopup.cs:61
 msgid "Create New Tag..."
 msgstr "Creează etichetă nouă..."
 
 #. Fixme this should really set parent menu
 #. items insensitve
-#: ../src/Clients/MainApp/PhotoTagMenu.cs:92
+#: ../src/Clients/FSpot/PhotoTagMenu.cs:92
 msgid "(No Tags)"
 msgstr "(Fără etichetă)"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:91
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:91
 msgid "Create New Version"
 msgstr "Crează o versiune nouă"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:92
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:92
 msgid "Name:"
 msgstr "Nume:"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:96
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:96
 msgid "Rename Version"
 msgstr "Redenumire versiune"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:97
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:97
 msgid "New name:"
 msgstr "Nume nou:"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:157
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:157
 msgid "Delete"
 msgstr "Șterge"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:158
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:158
 #, csharp-format
 msgid "Really delete version \"{0}\"?"
 msgstr "Ștergeți definitiv versiunea „{0}”?"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:159
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:159
 msgid "This removes the version and deletes the corresponding file from disk."
 msgstr "Șterge versiunea și fișierele corespondente de pe disc."
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:204
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:204
 msgid "De_tach"
 msgstr "De_tașează"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:205
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:205
 #, csharp-format
 msgid "Really detach version \"{0}\" from \"{1}\"?"
 msgstr "Detașați definitiv versiunea „{0}” din „{1}”?"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:206
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:206
 msgid ""
 "This makes the version appear as a separate photo in the library. To undo, "
 "drag the new photo back to its parent."
@@ -2176,12 +2176,12 @@ msgstr ""
 "Face ca versiunea să apară ca o fotografie separată în bibliotecă. Pentru a "
 "anula, trageți noua imagine înapoi peste părinte."
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:228
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:228
 #| msgid "Reparented"
 msgid "Re_parent"
 msgstr "Re_versionează"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:229
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:229
 #, csharp-format
 #| msgid "Really delete version \"{0}\"?"
 msgid "Really reparent \"{0}\" as version of \"{1}\"?"
@@ -2190,7 +2190,7 @@ msgstr[0] "Sigur doriți reversionarea lui „{0}” ca versiune a „{1}”?"
 msgstr[1] "Sigur doriți reversionarea a {2} fotografii ca versiuni ale „{1}”?"
 msgstr[2] "Sigur doriți reversionarea a {2} de fotografii ca versiuni ale „{1}”?"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:232
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:232
 msgid ""
 "This makes the photos appear as a single one in the library. The versions "
 "can be detached using the Photo menu."
@@ -2198,20 +2198,20 @@ msgstr ""
 "Face pozele să apară individual în bibliotecă. Versiunile pot fi detașate "
 "folosind meniul Fotografii."
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:272
+#: ../src/Clients/FSpot/PhotoVersionCommands.cs:272
 #, csharp-format
 msgid "Received exception \"{0}\"."
 msgstr "S-a primit excepția „{0}”."
 
-#: ../src/Clients/MainApp/TagCommands.cs:187
+#: ../src/Clients/FSpot/TagCommands.cs:187
 msgid "Create New Tag"
 msgstr "Creare etichetă nouă"
 
-#: ../src/Clients/MainApp/TagCommands.cs:188
+#: ../src/Clients/FSpot/TagCommands.cs:188
 msgid "Name of New Tag:"
 msgstr "Numele etichetei noi:"
 
-#: ../src/Clients/MainApp/TagPopup.cs:51
+#: ../src/Clients/FSpot/TagPopup.cs:51
 #, csharp-format
 msgid "Find"
 msgid_plural "Find"
@@ -2219,501 +2219,501 @@ msgstr[0] "Caută"
 msgstr[1] "Caută"
 msgstr[2] "Caută"
 
-#: ../src/Clients/MainApp/TagPopup.cs:67
+#: ../src/Clients/FSpot/TagPopup.cs:67
 msgid "Edit Tag..."
 msgstr "Editare etichetă..."
 
-#: ../src/Clients/MainApp/TagPopup.cs:71
+#: ../src/Clients/FSpot/TagPopup.cs:71
 msgid "Delete Tag"
 msgid_plural "Delete Tags"
 msgstr[0] "Șterge eticheta"
 msgstr[1] "Șterge etichetele"
 msgstr[2] "Șterge etichetele"
 
-#: ../src/Clients/MainApp/TagPopup.cs:77
+#: ../src/Clients/FSpot/TagPopup.cs:77
 msgid "Attach Tag to Selection"
 msgid_plural "Attach Tags to Selection"
 msgstr[0] "Aplică eticheta selecției"
 msgstr[1] "Aplică etichetele selecției"
 msgstr[2] "Aplică etichetele selecției"
 
-#: ../src/Clients/MainApp/TagPopup.cs:81
+#: ../src/Clients/FSpot/TagPopup.cs:81
 msgid "Remove Tag From Selection"
 msgid_plural "Remove Tags From Selection"
 msgstr[0] "Șterge eticheta din selecție"
 msgstr[1] "Șterge etichetele din selecție"
 msgstr[2] "Șterge etichetele din selecție"
 
-#: ../src/Clients/MainApp/TagPopup.cs:87
+#: ../src/Clients/FSpot/TagPopup.cs:87
 msgid "Merge Tags"
 msgstr "Combină etichetele"
 
-#: ../src/Clients/MainApp/ThumbnailCommand.cs:53
+#: ../src/Clients/FSpot/ThumbnailCommand.cs:53
 msgid "Updating Thumbnails"
 msgstr "Se actualizează miniaturilie"
 
-#: ../src/Clients/MainApp/ThumbnailCommand.cs:61
+#: ../src/Clients/FSpot/ThumbnailCommand.cs:61
 #, csharp-format
 msgid "Updating picture \"{0}\""
 msgstr "Se actualizează fotografia „{0}”"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:1
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:1
 msgid "<b>Co_rrections</b>"
 msgstr "<b>Co_recții</b>"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:2
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:2
 msgid "<b>_White Balance</b>"
 msgstr "<b>_Balans de alb</b>"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:3
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:3
 msgid "C_ontrast:"
 msgstr "C_ontrast:"
 
 #. Note for translators: meant as Temperature
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:5
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:5
 msgid "Te_mp:"
 msgstr "Te_mp:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:6
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:6
 msgid "_Brightness:"
 msgstr "_Luminozitate:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:7
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:7
 msgid "_Exposure:"
 msgstr "_Expunere:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:8
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:8
 msgid "_Hue:"
 msgstr "_Nuanță:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:9
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:9
 msgid "_Saturation:"
 msgstr "_Saturație:"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:10
+#: ../src/Clients/FSpot/ui/color_editor_prefs_window.ui.h:10
 msgid "_Tint:"
 msgstr "_Nuanță:"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:1
+#: ../src/Clients/FSpot/ui/import.ui.h:1
 msgid "C_opy files to the Photos folder"
 msgstr "C_opiază fișierele în dosarul Fotografii"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:2
+#: ../src/Clients/FSpot/ui/import.ui.h:2
 msgid "I_nclude subfolders"
 msgstr "I_nclude subdirectoare"
 
 #. Translators: this string means 'source of import'
-#: ../src/Clients/MainApp/ui/import.ui.h:5
+#: ../src/Clients/FSpot/ui/import.ui.h:5
 msgid "Import _from:"
 msgstr "Impo_rtă din:"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:6
+#: ../src/Clients/FSpot/ui/import.ui.h:6
 msgid "_Attach tags:"
 msgstr "_Atașează etichete:"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:7
+#: ../src/Clients/FSpot/ui/import.ui.h:7
 msgid "_Detect duplicates"
 msgstr "_Detectează duplicatele"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:8
+#: ../src/Clients/FSpot/ui/import.ui.h:8
 msgid "_Import"
 msgstr "_Importă"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:9
+#: ../src/Clients/FSpot/ui/import.ui.h:9
 msgid "_Remove original files after import"
 msgstr "Elimină fișie_rele originale după import"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:1
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:1
 msgid "1024 px"
 msgstr "1024 px"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:2
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:2
 msgid "320 px"
 msgstr "320 px"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:3
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:3
 msgid "480 px"
 msgstr "480 px"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:4
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:4
 msgid "640 px"
 msgstr "640 px"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:5
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:5
 msgid "800 px"
 msgstr "800 px"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:7
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:7
 msgid "<b>Size</b>"
 msgstr "<b>Dimensiune</b>"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:8
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:8
 msgid "<b>Summary</b>"
 msgstr "<b>Sumar</b>"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:9
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:9
 msgid "Create Mail"
 msgstr "Creează email"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:10
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:10
 msgid "Create a mail with the selected photos (possibly resized) attached"
 msgstr ""
 "Creează un email cu fotografia selectată (posibil redimensionată) atașată"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:11
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:11
 msgid "Do not send a mail"
 msgstr "Nu trimite email"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:12
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:12
 msgid "Estimated new size"
 msgstr "Dimensiune nouă estimată"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:13
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:13
 msgid "Extra large"
 msgstr "Foarte mare"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:14
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:14
 msgid "Large"
 msgstr "Mare"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:15
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:15
 msgid "Medium"
 msgstr "Mediu"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:16
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:16
 msgid "Number of pictures"
 msgstr "Număr de imagini"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:18
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:18
 msgid "Original size (possible very large file size)"
 msgstr "Dimensiune originală (posibil fișier de dimensiune foarte mare)"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:19
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:19
 msgid "Small"
 msgstr "Mic"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:20
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:20
 msgid "Tiny"
 msgstr "Foarte mic"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:21
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:21
 msgid "Total original size"
 msgstr "Totalizare dimensiune originală"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:22
+#: ../src/Clients/FSpot/ui/mail_dialog.ui.h:22
 msgid "_Create Mail"
 msgstr "_Creează email"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:1
+#: ../src/Clients/FSpot/ui/main_window.ui.h:1
 msgid "Adjust _Time..."
 msgstr "Reglează timp_ul..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:2
+#: ../src/Clients/FSpot/ui/main_window.ui.h:2
 msgid "Arrange _by"
 msgstr "Aranjează _după"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:4
+#: ../src/Clients/FSpot/ui/main_window.ui.h:4
 msgid "By _Date"
 msgstr "După _dată"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:5
+#: ../src/Clients/FSpot/ui/main_window.ui.h:5
 msgid "By _Import Roll"
 msgstr "După setul _importat"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:6
+#: ../src/Clients/FSpot/ui/main_window.ui.h:6
 msgid "By _Rating"
 msgstr "După ap_reciere"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:7
+#: ../src/Clients/FSpot/ui/main_window.ui.h:7
 msgid "Copy"
 msgstr "Copiază"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:8
+#: ../src/Clients/FSpot/ui/main_window.ui.h:8
 msgid "Create New _Tag..."
 msgstr "Creează e_tichetă nouă..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:9
+#: ../src/Clients/FSpot/ui/main_window.ui.h:9
 msgid "Create _New Version..."
 msgstr "Creează versiune _nouă..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:10
+#: ../src/Clients/FSpot/ui/main_window.ui.h:10
 msgid "De_tach Version"
 msgstr "De_tașează versiunea"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:11
+#: ../src/Clients/FSpot/ui/main_window.ui.h:11
 msgid "Fin_d"
 msgstr "_Caută"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:12
+#: ../src/Clients/FSpot/ui/main_window.ui.h:12
 msgid "Manage _Extensions"
 msgstr "Gestionează _extensii"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:13
+#: ../src/Clients/FSpot/ui/main_window.ui.h:13
 msgid "Page Set_up..."
 msgstr "Opți_uni pagină..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:14
+#: ../src/Clients/FSpot/ui/main_window.ui.h:14
 msgid "Re_fresh Thumbnail"
 msgstr "Actualizează _miniaturi"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:18
+#: ../src/Clients/FSpot/ui/main_window.ui.h:18
 msgid "Select _All"
 msgstr "_Selectează tot"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:19
+#: ../src/Clients/FSpot/ui/main_window.ui.h:19
 msgid "Select _None"
 msgstr "_Fără selecție"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:20
+#: ../src/Clients/FSpot/ui/main_window.ui.h:20
 msgid "Send by _Mail..."
 msgstr "Trimite prin e_mail..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:21
-#: ../src/Clients/MainApp/ui/single_view.ui.h:3
+#: ../src/Clients/FSpot/ui/main_window.ui.h:21
+#: ../src/Clients/FSpot/ui/single_view.ui.h:3
 msgid "Set as _Background"
 msgstr "Definește ca _fundal"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:22
+#: ../src/Clients/FSpot/ui/main_window.ui.h:22
 msgid "Side_bar"
 msgstr "_Bară laterală"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:23
+#: ../src/Clients/FSpot/ui/main_window.ui.h:23
 msgid "T_ags"
 msgstr "E_tichete"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:24
+#: ../src/Clients/FSpot/ui/main_window.ui.h:24
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1116
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1117
 msgid "Tags: "
 msgstr "Etichete: "
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:25
+#: ../src/Clients/FSpot/ui/main_window.ui.h:25
 msgid "Thumbnail _elements"
 msgstr "_Elemente miniatură"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:26
+#: ../src/Clients/FSpot/ui/main_window.ui.h:26
 msgid "Too_lbar"
 msgstr "Bară de _unelte"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:27
+#: ../src/Clients/FSpot/ui/main_window.ui.h:27
 msgid "View"
 msgstr "Vizualizare"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:28
-#: ../src/Clients/MainApp/ui/single_view.ui.h:7
+#: ../src/Clients/FSpot/ui/main_window.ui.h:28
+#: ../src/Clients/FSpot/ui/single_view.ui.h:7
 msgid "Zoom _in"
 msgstr "Măr_ire"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:29
-#: ../src/Clients/MainApp/ui/single_view.ui.h:8
+#: ../src/Clients/FSpot/ui/main_window.ui.h:29
+#: ../src/Clients/FSpot/ui/single_view.ui.h:8
 msgid "Zoom _out"
 msgstr "Micș_orare"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:30
-#: ../src/Clients/MainApp/ui/single_view.ui.h:9
+#: ../src/Clients/FSpot/ui/main_window.ui.h:30
+#: ../src/Clients/FSpot/ui/single_view.ui.h:9
 msgid "Zoom in"
 msgstr "Mărește"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:31
-#: ../src/Clients/MainApp/ui/single_view.ui.h:10
+#: ../src/Clients/FSpot/ui/main_window.ui.h:31
+#: ../src/Clients/FSpot/ui/single_view.ui.h:10
 msgid "Zoom out"
 msgstr "Micșorează"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:32
+#: ../src/Clients/FSpot/ui/main_window.ui.h:32
 msgid "_Attach Tag"
 msgstr "_Atașează etichetă"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:33
+#: ../src/Clients/FSpot/ui/main_window.ui.h:33
 msgid "_Attach Tag to Selection"
 msgstr "_Aplică eticheta la selecție"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:35
+#: ../src/Clients/FSpot/ui/main_window.ui.h:35
 msgid "_Clear Rating Filter"
 msgstr "_Curăță filtrul de apreciere"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:36
+#: ../src/Clients/FSpot/ui/main_window.ui.h:36
 msgid "_Clear Roll Filter"
 msgstr "_Curăță filtrul de seturi"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:37
+#: ../src/Clients/FSpot/ui/main_window.ui.h:37
 msgid "_Close"
 msgstr "În_chide"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:38
+#: ../src/Clients/FSpot/ui/main_window.ui.h:38
 msgid "_Components"
 msgstr "_Componente"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:39
+#: ../src/Clients/FSpot/ui/main_window.ui.h:39
 msgid "_Contents"
 msgstr "_Conținut"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:40
+#: ../src/Clients/FSpot/ui/main_window.ui.h:40
 msgid "_Dates"
 msgstr "_Date"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:42
+#: ../src/Clients/FSpot/ui/main_window.ui.h:42
 msgid "_Delete Selected Tag"
 msgstr "Ș_terge eticheta selectată"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:43
+#: ../src/Clients/FSpot/ui/main_window.ui.h:43
 msgid "_Delete Version"
 msgstr "Ș_terge versiunea"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:44
-#: ../src/Clients/MainApp/ui/single_view.ui.h:11
+#: ../src/Clients/FSpot/ui/main_window.ui.h:44
+#: ../src/Clients/FSpot/ui/single_view.ui.h:11
 msgid "_Edit"
 msgstr "_Editare"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:45
+#: ../src/Clients/FSpot/ui/main_window.ui.h:45
 msgid "_Edit Tag..."
 msgstr "_Editare etichetă..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:46
+#: ../src/Clients/FSpot/ui/main_window.ui.h:46
 msgid "_Export to"
 msgstr "_Exportă către"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:47
+#: ../src/Clients/FSpot/ui/main_window.ui.h:47
 msgid "_Filmstrip"
 msgstr "Dia_film"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:48
-#: ../src/Clients/MainApp/ui/single_view.ui.h:13
+#: ../src/Clients/FSpot/ui/main_window.ui.h:48
+#: ../src/Clients/FSpot/ui/single_view.ui.h:13
 msgid "_Fullscreen"
 msgstr "_Afișare pe tot ecranul"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:49
-#: ../src/Clients/MainApp/ui/single_view.ui.h:14
+#: ../src/Clients/FSpot/ui/main_window.ui.h:49
+#: ../src/Clients/FSpot/ui/single_view.ui.h:14
 msgid "_Help"
 msgstr "_Ajutor"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:50
+#: ../src/Clients/FSpot/ui/main_window.ui.h:50
 msgid "_Hidden"
 msgstr "_Ascuns"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:51
+#: ../src/Clients/FSpot/ui/main_window.ui.h:51
 msgid "_Import..."
 msgstr "_Importă..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:52
+#: ../src/Clients/FSpot/ui/main_window.ui.h:52
 msgid "_Invert Selection"
 msgstr "_Inversează selecția"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:53
+#: ../src/Clients/FSpot/ui/main_window.ui.h:53
 msgid "_Large"
 msgstr "_Mare"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:54
+#: ../src/Clients/FSpot/ui/main_window.ui.h:54
 msgid "_Last Import Roll"
 msgstr "U_ltimul set importat"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:55
+#: ../src/Clients/FSpot/ui/main_window.ui.h:55
 msgid "_Loupe"
 msgstr "_Lupă"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:56
+#: ../src/Clients/FSpot/ui/main_window.ui.h:56
 msgid "_Medium"
 msgstr "M_ediu"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:57
-#: ../src/Clients/MainApp/ui/single_view.ui.h:15
+#: ../src/Clients/FSpot/ui/main_window.ui.h:57
+#: ../src/Clients/FSpot/ui/single_view.ui.h:15
 msgid "_Photo"
 msgstr "_Fotografie"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:58
+#: ../src/Clients/FSpot/ui/main_window.ui.h:58
 msgid "_Quit"
 msgstr "Ieși_re"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:59
+#: ../src/Clients/FSpot/ui/main_window.ui.h:59
 msgid "_Ratings"
 msgstr "Ap_reciere"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:61
+#: ../src/Clients/FSpot/ui/main_window.ui.h:61
 msgid "_Remove Tag From Selection"
 msgstr "Ș_terge eticheta aplicată selecției"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:62
+#: ../src/Clients/FSpot/ui/main_window.ui.h:62
 msgid "_Rename Version"
 msgstr "Re_denumește versiunea"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:63
+#: ../src/Clients/FSpot/ui/main_window.ui.h:63
 msgid "_Reverse Order"
 msgstr "Ordine _inversă"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:64
+#: ../src/Clients/FSpot/ui/main_window.ui.h:64
 msgid "_Select Import Rolls..."
 msgstr "_Selectează seturi de importat..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:65
+#: ../src/Clients/FSpot/ui/main_window.ui.h:65
 msgid "_Set Date Range..."
 msgstr "_Configurează intervalul calendaristic..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:66
+#: ../src/Clients/FSpot/ui/main_window.ui.h:66
 msgid "_Set Rating filter..."
 msgstr "_Configurează filtrul de apreciere..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:67
+#: ../src/Clients/FSpot/ui/main_window.ui.h:67
 msgid "_Sharpen..."
 msgstr "Inten_sifică claritatea..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:68
-#: ../src/Clients/MainApp/ui/single_view.ui.h:16
+#: ../src/Clients/FSpot/ui/main_window.ui.h:68
+#: ../src/Clients/FSpot/ui/single_view.ui.h:16
 msgid "_Slideshow"
 msgstr "_Diapozitive"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:69
+#: ../src/Clients/FSpot/ui/main_window.ui.h:69
 msgid "_Small"
 msgstr "Mi_c"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:70
+#: ../src/Clients/FSpot/ui/main_window.ui.h:70
 msgid "_Tag Icons"
 msgstr "Iconițe _etichete"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:71
+#: ../src/Clients/FSpot/ui/main_window.ui.h:71
 msgid "_Tags"
 msgstr "E_tichete"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:72
+#: ../src/Clients/FSpot/ui/main_window.ui.h:72
 msgid "_Timeline"
 msgstr "_Cronologie"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:73
+#: ../src/Clients/FSpot/ui/main_window.ui.h:73
 msgid "_Tools"
 msgstr "_Unelte"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:74
+#: ../src/Clients/FSpot/ui/main_window.ui.h:74
 msgid "_Untagged Photos"
 msgstr "Fotografii _fără etichetă"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:75
+#: ../src/Clients/FSpot/ui/main_window.ui.h:75
 msgid "_Version"
 msgstr "_Versiune"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:76
-#: ../src/Clients/MainApp/ui/single_view.ui.h:18
+#: ../src/Clients/FSpot/ui/main_window.ui.h:76
+#: ../src/Clients/FSpot/ui/single_view.ui.h:18
 msgid "_View"
 msgstr "_Vizualizare"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:1
+#: ../src/Clients/FSpot/ui/single_view.ui.h:1
 msgid "Display File _Names"
 msgstr "Afișează _numele fișierelor"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:2
+#: ../src/Clients/FSpot/ui/single_view.ui.h:2
 msgid "F-Spot View"
 msgstr "Vizualizare F-Spot"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:4
+#: ../src/Clients/FSpot/ui/single_view.ui.h:4
 msgid "Show or hide the side pane"
 msgstr "Arată sau ascunde panoul lateral"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:5
+#: ../src/Clients/FSpot/ui/single_view.ui.h:5
 msgid "Show or hide the toolbar"
 msgstr "Arată sau ascunde bara de unelte"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:6
+#: ../src/Clients/FSpot/ui/single_view.ui.h:6
 msgid "Side _pane"
 msgstr "_Panou lateral"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:12
+#: ../src/Clients/FSpot/ui/single_view.ui.h:12
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:7
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:14
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:13
@@ -2724,23 +2724,23 @@ msgstr "_Panou lateral"
 msgid "_Export"
 msgstr "_Exportă"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:17
+#: ../src/Clients/FSpot/ui/single_view.ui.h:17
 msgid "_Toolbar"
 msgstr "Bară de unel_te"
 
-#: ../src/Clients/MainApp/ui/tag_selection_dialog.ui.h:1
+#: ../src/Clients/FSpot/ui/tag_selection_dialog.ui.h:1
 msgid "Select a Tag..."
 msgstr "Selectați o etichetă..."
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:1
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:1
 msgid "<b>Image Interpolation</b>"
 msgstr "<b>Interpolare imagine</b>"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:2
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:2
 msgid "<b>Transparent Parts</b>"
 msgstr "<b>Părți transparente</b>"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:3
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:3
 msgid ""
 "<small><i>Enable this to allow interpolation on zoomed images. You shouldn't "
 "disable this for viewing photos, but disabling the interpolation could be "
@@ -2751,7 +2751,7 @@ msgstr ""
 "dezactivarea interpolării poate fi utilă la realizarea iconițelor.</i></"
 "small>"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:4
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:4
 msgid ""
 "<small><i>You can choose how to display transparent parts in images. This "
 "option has no effect on photos, but setting this as check pattern or custom "
@@ -2764,23 +2764,23 @@ msgstr ""
 "utilă la vizualizarea iconițelor sau a altor elemente de design care conțin "
 "părți transparente. </i></small>"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:5
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:5
 msgid "As _background"
 msgstr "Ca _fundal"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:6
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:6
 msgid "As _custom color: "
 msgstr "Ca o _culoare personalizată: "
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:7
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:7
 msgid "As check _pattern"
 msgstr "Ca _model mozaic"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:8
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:8
 msgid "Preferences"
 msgstr "Preferințe"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:9
+#: ../src/Clients/FSpot/ui/viewer_preferences.ui.h:9
 msgid "_Interpolate image on zoom"
 msgstr "_Interpolează imaginea la zoom"
 
