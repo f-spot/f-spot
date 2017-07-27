@@ -56,6 +56,7 @@ using FSpot.UI.Dialog;
 using Hyena;
 
 using SmugMugNet;
+using System.Linq;
 
 namespace FSpot.Exporters.SmugMug
 {
@@ -78,7 +79,7 @@ namespace FSpot.Exporters.SmugMug
             gallery_optionmenu.Show ();
             album_optionmenu.Show ();
 
-			this.items = selection.Items;
+			this.items = selection.Items.ToArray ();
 			album_button.Sensitive = false;
 			var view = new TrayView (selection);
 			view.DisplayDates = false;

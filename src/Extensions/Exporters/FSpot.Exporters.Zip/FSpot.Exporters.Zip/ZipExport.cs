@@ -46,6 +46,7 @@ using Mono.Unix;
 using Gtk;
 using ICSharpCode.SharpZipLib.Checksums;
 using ICSharpCode.SharpZipLib.Zip;
+using System.Linq;
 
 namespace FSpot.Exporters.Zip
 {
@@ -75,7 +76,7 @@ namespace FSpot.Exporters.Zip
 				md.Destroy ();
 				return;
 			}
-			photos = p.Items;
+			photos = p.Items.ToArray ();
 			ShowDialog ();
 		}
 

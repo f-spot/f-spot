@@ -49,6 +49,7 @@ using FSpot.UI.Dialog;
 
 using Hyena;
 using Hyena.Widgets;
+using System.Linq;
 
 
 namespace FSpot.Exporters.Flickr
@@ -364,7 +365,7 @@ namespace FSpot.Exporters.Flickr
 			fr.Connection.OnUploadProgress += HandleFlickrProgress;
 
 			var ids = new List<string> ();
-			IPhoto [] photos = selection.Items;
+			IPhoto [] photos = selection.Items.ToArray ();
 			Array.Sort (photos, new DateComparer ());
 
 			for (int index = 0; index < photos.Length; index++) {

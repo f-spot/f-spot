@@ -775,7 +775,7 @@ namespace FSpot
 				}
 			}
 
-			public IPhoto [] Items {
+			public IEnumerable<IPhoto> Items {
 				get {
 					switch (win.ViewMode) {
 					case ModeType.PhotoView:

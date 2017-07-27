@@ -49,6 +49,7 @@ using Hyena;
 using Hyena.Widgets;
 
 using Mono.Facebook;
+using System.Linq;
 
 namespace FSpot.Exporters.Facebook
 {
@@ -292,7 +293,7 @@ namespace FSpot.Exporters.Facebook
 
 			dialog = new FacebookExportDialog (selection);
 
-			if (selection.Items.Length > max_photos_per_album) {
+			if (selection.Items.Count () > max_photos_per_album) {
 				HigMessageDialog mbox = new HigMessageDialog (dialog,
 						Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal, Gtk.MessageType.Error,
 						Gtk.ButtonsType.Ok, Catalog.GetString ("Too many images to export"),
@@ -342,7 +343,7 @@ namespace FSpot.Exporters.Facebook
 				command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (Upload));
 				command_thread.Name = Mono.Unix.Catalog.GetString ("Uploading Pictures");
 
-				progress_dialog = new ThreadProgressDialog (command_thread, selection.Items.Length);
+				progress_dialog = new ThreadProgressDialog (command_thread, selection.Items.Count ());
 				progress_dialog.Start ();
 			}
 
