@@ -56,9 +56,7 @@ namespace FSpot.Core
             }
         }
 
-        public int Count {
-            get { return collection != null ? collection.Count : 0; }
-        }
+        public int Count => collection?.Count ?? 0;
 
         public int IndexOf (IPhoto item)
         {
@@ -71,6 +69,7 @@ namespace FSpot.Core
         {
             if (collection == null)
                 return false;
+
             return collection.Contains (item);
         }
 
@@ -84,26 +83,19 @@ namespace FSpot.Core
 
         public void MarkChanged (int num, IBrowsableItemChanges changes)
         {
-            if (collection != null)
-                collection.MarkChanged (num, changes);
+            collection?.MarkChanged (num, changes);
         }
 
-        public IPhoto [] Items {
-            get {
-                return collection.Items;
-            }
-        }
+        public IPhoto [] Items => collection.Items;
 
         protected virtual void ChangedHandler (IBrowsableCollection collection)
         {
-            if (Changed != null)
-                Changed (this);
+            Changed?.Invoke (this);
         }
 
         protected virtual void ItemsChangedHandler (IBrowsableCollection collection, BrowsableEventArgs args)
         {
-            if (ItemsChanged != null)
-                ItemsChanged (this, args);
+            ItemsChanged?.Invoke (this, args);
         }
 
         public event IBrowsableCollectionChangedHandler Changed;
