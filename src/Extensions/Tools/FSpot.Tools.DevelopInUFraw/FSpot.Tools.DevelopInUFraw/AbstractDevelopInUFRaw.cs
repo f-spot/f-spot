@@ -37,6 +37,7 @@ using Mono.Unix;
 using Hyena;
 
 using FSpot;
+using FSpot.Core;
 using FSpot.Extensions;
 using FSpot.Imaging;
 using FSpot.Settings;

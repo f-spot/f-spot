@@ -42,7 +42,6 @@ using FSpot;
 using FSpot.Cms;
 using FSpot.Imaging;
 using FSpot.Settings;
-using FSpot.UI.Dialog;
 using FSpot.Utils;
 
 using Hyena;
@@ -118,7 +117,7 @@ public static class PixbufUtils
 			loader.SizePrepared += HandleSizePrepared;
 		}
 
-		private void HandleSizePrepared (object obj, SizePreparedArgs args)
+		void HandleSizePrepared (object obj, SizePreparedArgs args)
 		{
 			switch (orientation) {
 			case ImageOrientation.LeftTop:
@@ -174,7 +173,7 @@ public static class PixbufUtils
 		}
 	}
 
-	static public Pixbuf LoadAtMaxSize (string path, int max_width, int max_height)
+	public static Pixbuf LoadAtMaxSize (string path, int max_width, int max_height)
 	{
 		PixbufUtils.AspectLoader loader = new AspectLoader (max_width, max_height);
 		return loader.LoadFromFile (path);
@@ -200,8 +199,7 @@ public static class PixbufUtils
 		else
 			throw new Exception ("Bad logic leads to bad accidents");
 
-		if (tmp != null)
-			tmp.Dispose ();
+		tmp?.Dispose ();
 
 		return icon;
 	}
@@ -249,7 +247,7 @@ public static class PixbufUtils
 		return flattened;
 	}
 
-	unsafe public static byte[] Pixbuf_GetRow (byte* pixels, int row, int rowstride, int width, int channels, byte[] dest)
+	public static unsafe byte[] Pixbuf_GetRow (byte* pixels, int row, int rowstride, int width, int channels, byte[] dest)
 	{
 		byte* ptr = ((byte*)pixels) + (row * rowstride);
 
@@ -258,7 +256,7 @@ public static class PixbufUtils
 		return dest;
 	}
 
-	unsafe public static void Pixbuf_SetRow (byte* pixels, byte[] dest, int row, int rowstride, int width, int channels)
+	public static unsafe void Pixbuf_SetRow (byte* pixels, byte[] dest, int row, int rowstride, int width, int channels)
 	{
 		byte* destPtr = pixels + row * rowstride;
 
@@ -267,16 +265,12 @@ public static class PixbufUtils
 		}
 	}
 
-	unsafe public static Pixbuf UnsharpMask (Pixbuf src,
-                                             double radius,
-                                             double amount,
-                                             double threshold,
-                                             ThreadProgressDialog progressDialog)
+	public static unsafe Pixbuf UnsharpMask (Pixbuf src, double radius, double amount, double threshold, IProgress<double> progress)
 	{
 		// Make sure the pixbuf has an alpha channel before we try to blur it
 		src = src.AddAlpha (false, 0, 0, 0);
 
-		Pixbuf result = Blur (src, (int)radius, progressDialog);
+		Pixbuf result = Blur (src, (int)radius, progress);
 
 		int sourceRowstride = src.Rowstride;
 		int sourceHeight = src.Height;
@@ -316,14 +310,13 @@ public static class PixbufUtils
 			Pixbuf_SetRow (resultPixels, destRow, row, resultRowstride, resultWidth, resultChannels);
 
 			// This is the other half of the progress so start and halfway
-			if (progressDialog != null)
-				progressDialog.Fraction = ((double)row / ((double) sourceHeight - 1) ) * 0.25 + 0.75;
+			progress?.Report (((double)row / ((double) sourceHeight - 1) ) * 0.25 + 0.75);
 		}
 
 		return result;
 	}
 
-	public static Pixbuf Blur (Pixbuf src, int radius, ThreadProgressDialog dialog)
+	public static Pixbuf Blur (Pixbuf src, int radius, IProgress<double> progress)
 	{
 		ImageSurface sourceSurface = Hyena.Gui.PixbufImageSurface.Create (src);
 		ImageSurface destinationSurface = new ImageSurface (Cairo.Format.Rgb24, src.Width, src.Height);
@@ -333,11 +326,8 @@ public static class PixbufUtils
 		for (int i=0; i < src.Height; i++) {
 			GaussianBlurEffect.RenderBlurEffect (sourceSurface, destinationSurface, new[] { new Gdk.Rectangle (0, i, src.Width, 1) }, radius);
 
-			if (dialog != null) {
-				// This only half of the entire process
-				double fraction = ((double)i / (double)(src.Height - 1)) * 0.75;
-				dialog.Fraction = fraction;
-			}
+			// This only half of the entire process
+			progress?.Report (((double)i / (double)(src.Height - 1)) * 0.75);
 		}
 
 		return destinationSurface.ToPixbuf ();
@@ -351,17 +341,17 @@ public static class PixbufUtils
 			g.SetSource (surf);
 			g.Paint ();
 		}
-        
+
 		return newsurf;
 	}
 
-	public unsafe static Gdk.Pixbuf RemoveRedeye (Gdk.Pixbuf src, Gdk.Rectangle area)
+	public static unsafe Gdk.Pixbuf RemoveRedeye (Gdk.Pixbuf src, Gdk.Rectangle area)
 	{
 		return RemoveRedeye (src, area, -15);
 	}
 
 	//threshold, factors and comparisons borrowed from the gimp plugin 'redeye.c' by Robert Merkel
-	public unsafe static Gdk.Pixbuf RemoveRedeye (Gdk.Pixbuf src, Gdk.Rectangle area, int threshold)
+	public static unsafe Gdk.Pixbuf RemoveRedeye (Gdk.Pixbuf src, Gdk.Rectangle area, int threshold)
 	{
 		Gdk.Pixbuf copy = src.Copy ();
 		Gdk.Pixbuf selection = new Gdk.Pixbuf (copy, area.X, area.Y, area.Width, area.Height);

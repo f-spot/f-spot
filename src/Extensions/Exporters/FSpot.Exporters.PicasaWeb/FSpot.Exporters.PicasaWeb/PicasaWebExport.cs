@@ -36,17 +36,19 @@
  *
  * Copyright (C) 2006 Stephane Delcroix
  */
+
 using System;
 using System.IO;
-using System.Text;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 using Mono.Unix;
 
 using Hyena;
 
-using FSpot;
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Filters;
@@ -56,16 +58,11 @@ using FSpot.UI.Dialog;
 
 using Mono.Google;
 using Mono.Google.Picasa;
-using System.Linq;
 
 namespace FSpot.Exporters.PicasaWeb
 {
 	public class GoogleExport : FSpot.Extensions.IExporter
 	{
-		public GoogleExport ()
-		{
-		}
-
 		public void Run (IBrowsableCollection selection)
 		{
 			builder = new GtkBeans.Builder (null, "google_export_dialog.ui", null);
@@ -78,7 +75,7 @@ namespace FSpot.Exporters.PicasaWeb
 			(album_button.Parent as Gtk.HBox).PackStart (album_optionmenu);
 			(edit_button.Parent as Gtk.HBox).ReorderChild (gallery_optionmenu, 1);
 			(album_button.Parent as Gtk.HBox).ReorderChild (album_optionmenu, 1);
-		
+
 			gallery_optionmenu.Show ();
 			album_optionmenu.Show ();
 
@@ -114,22 +111,22 @@ namespace FSpot.Exporters.PicasaWeb
 			LoadPreference (TAG_KEY);
 		}
 
-		private bool scale;
-		private int size;
-		private bool browser;
-		private bool export_tag;
-		private bool connect = false;
-		private long approx_size = 0;
-		private long sent_bytes = 0;
+		bool scale;
+		int size;
+		bool browser;
+		bool export_tag;
+		bool connect = false;
+		long approx_size = 0;
+		long sent_bytes = 0;
 		IPhoto[] items;
 		int photo_index;
-		ThreadProgressDialog progress_dialog;
+		TaskProgressDialog progress_dialog;
 		List<GoogleAccount> accounts;
-		private GoogleAccount account;
-		private PicasaAlbum album;
-		private PicasaAlbumCollection albums = null;
-		private GtkBeans.Builder builder;
-		private string dialog_name = "google_export_dialog";
+		GoogleAccount account;
+		PicasaAlbum album;
+		PicasaAlbumCollection albums = null;
+		GtkBeans.Builder builder;
+		string dialog_name = "google_export_dialog";
 		public const string EXPORT_SERVICE = "picasaweb/";
 		public const string SCALE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "scale";
 		public const string SIZE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "size";
@@ -163,9 +160,9 @@ namespace FSpot.Exporters.PicasaWeb
 		[GtkBeans.Builder.Object]
 		Gtk.ScrolledWindow thumb_scrolledwindow;
 #pragma warning restore 649
-		System.Threading.Thread command_thread;
+		Task task;
 
-		private void HandleResponse (object sender, Gtk.ResponseArgs args)
+		void HandleResponse (object sender, Gtk.ResponseArgs args)
 		{
 			if (args.ResponseId != Gtk.ResponseType.Ok) {
 				Dialog.Destroy ();
@@ -187,10 +184,9 @@ namespace FSpot.Exporters.PicasaWeb
 
 				Dialog.Destroy ();
 
-				command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (this.Upload));
-				command_thread.Name = Catalog.GetString ("Uploading Pictures");
+				task = new Task (Upload);
 
-				progress_dialog = new ThreadProgressDialog (command_thread, items.Length);
+				progress_dialog = new TaskProgressDialog (task, Catalog.GetString ("Uploading Pictures"));
 				progress_dialog.Start ();
 
 				// Save these settings for next time
@@ -278,7 +274,7 @@ namespace FSpot.Exporters.PicasaWeb
 				} catch (System.Threading.ThreadAbortException te) {
 					Log.Exception (te);
 					System.Threading.Thread.ResetAbort ();
-				} catch (System.Exception e) {
+				} catch (Exception e) {
 					progress_dialog.Message = string.Format (Catalog.GetString ("Error Uploading To Gallery: {0}"),
 										 e.Message);
 					progress_dialog.ProgressText = Catalog.GetString ("Error");
@@ -301,7 +297,7 @@ namespace FSpot.Exporters.PicasaWeb
 				GtkBeans.Global.ShowUri (Dialog.Screen, album.Link);
 		}
 
-		private void PopulateGoogleOptionMenu (GoogleAccountManager manager, GoogleAccount changed_account)
+		void PopulateGoogleOptionMenu (GoogleAccountManager manager, GoogleAccount changed_account)
 		{
 			this.account = changed_account;
 			int pos = -1;
@@ -339,17 +335,12 @@ namespace FSpot.Exporters.PicasaWeb
 			gallery_optionmenu.Active = pos;
 		}
 
-		private void Connect ()
-		{
-			Connect (null);
-		}
-
-		private void Connect (GoogleAccount selected)
+		void Connect (GoogleAccount selected = null)
 		{
 			Connect (selected, null, null);
 		}
 
-		private void Connect (GoogleAccount selected, string token, string text)
+		void Connect (GoogleAccount selected, string token, string text)
 		{
 			try {
 				if (accounts.Count != 0 && connect) {
@@ -385,11 +376,11 @@ namespace FSpot.Exporters.PicasaWeb
 				PopulateAlbumOptionMenu (account.Picasa);
 				album_button.Sensitive = false;
 
-				new GoogleAccountDialog (this.Dialog, account, false, exc);
+				new GoogleAccountDialog (Dialog, account, false, exc);
 
 				Log.Warning ("Your Google account is locked, you can unlock it by visiting: {0}", CaptchaException.UnlockCaptchaURL);
 
-			} catch (System.Exception) {
+			} catch (Exception) {
 				Log.Warning ("Can not connect to Picasa. Bad username? password? network connection?");
 				if (selected != null)
 					account = selected;
@@ -399,11 +390,11 @@ namespace FSpot.Exporters.PicasaWeb
 				status_label.Text = string.Empty;
 				album_button.Sensitive = false;
 
-				new GoogleAccountDialog (this.Dialog, account, true, null);
+				new GoogleAccountDialog (Dialog, account, true, null);
 			}
 		}
 
-		private void HandleAccountSelected (object sender, System.EventArgs args)
+		void HandleAccountSelected (object sender, EventArgs args)
 		{
 			Connect ();
 		}
@@ -421,7 +412,7 @@ namespace FSpot.Exporters.PicasaWeb
 			}
 		}
 
-		private void PopulateAlbumOptionMenu (Mono.Google.Picasa.PicasaWeb picasa)
+		void PopulateAlbumOptionMenu (Mono.Google.Picasa.PicasaWeb picasa)
 		{
 			if (picasa != null)
 				try {
@@ -448,7 +439,7 @@ namespace FSpot.Exporters.PicasaWeb
 					album_button.Sensitive = false;
 			} else {
 				foreach (PicasaAlbum album in albums.AllValues) {
-					System.Text.StringBuilder label_builder = new System.Text.StringBuilder ();
+					StringBuilder label_builder = new StringBuilder ();
 
 					label_builder.Append (album.Title);
 					label_builder.Append (" (" + album.PicturesCount + ")");
@@ -462,7 +453,7 @@ namespace FSpot.Exporters.PicasaWeb
 			}
 		}
 
-		public void HandleAlbumOptionMenuChanged (object sender, System.EventArgs args)
+		public void HandleAlbumOptionMenuChanged (object sender, EventArgs args)
 		{
 			if (albums == null || albums.Count == 0)
 				return;
@@ -481,17 +472,17 @@ namespace FSpot.Exporters.PicasaWeb
 				album_status_label.Text = string.Empty;
 		}
 
-		public void HandleAddGallery (object sender, System.EventArgs args)
+		public void HandleAddGallery (object sender, EventArgs args)
 		{
-			new GoogleAccountDialog (this.Dialog);
+			new GoogleAccountDialog (Dialog);
 		}
 
-		public void HandleEditGallery (object sender, System.EventArgs args)
+		public void HandleEditGallery (object sender, EventArgs args)
 		{
-			new GoogleAccountDialog (this.Dialog, account, false, null);
+			new GoogleAccountDialog (Dialog, account, false, null);
 		}
 
-		public void HandleAddAlbum (object sender, System.EventArgs args)
+		public void HandleAddAlbum (object sender, EventArgs args)
 		{
 			if (account == null)
 				throw new Exception (Catalog.GetString ("No account selected"));
@@ -523,7 +514,7 @@ namespace FSpot.Exporters.PicasaWeb
 			}
 		}
 
-		private Gtk.Dialog Dialog {
+		Gtk.Dialog Dialog {
 			get {
 				if (dialog == null)
 					dialog = new Gtk.Dialog (builder.GetRawObject (dialog_name));

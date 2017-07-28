@@ -42,10 +42,11 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 using Mono.Unix;
 
-using FSpot;
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Filters;
@@ -56,13 +57,11 @@ using FSpot.UI.Dialog;
 using Hyena;
 
 using SmugMugNet;
-using System.Linq;
 
 namespace FSpot.Exporters.SmugMug
 {
 	public class SmugMugExport : FSpot.Extensions.IExporter
 	{
-		public SmugMugExport () {}
 		public void Run (IBrowsableCollection selection)
 		{
 			builder = new GtkBeans.Builder (null, "smugmug_export_dialog.ui", null);
@@ -79,11 +78,13 @@ namespace FSpot.Exporters.SmugMug
             gallery_optionmenu.Show ();
             album_optionmenu.Show ();
 
-			this.items = selection.Items.ToArray ();
+			items = selection.Items.ToArray ();
 			album_button.Sensitive = false;
-			var view = new TrayView (selection);
-			view.DisplayDates = false;
-			view.DisplayTags = false;
+
+			var view = new TrayView (selection) {
+				DisplayDates = false,
+				DisplayTags = false
+			};
 
 			Dialog.Modal = false;
 			Dialog.TransientFor = null;
@@ -110,24 +111,24 @@ namespace FSpot.Exporters.SmugMug
 			LoadPreference (BROWSER_KEY);
 		}
 
-		private bool scale;
-		private int size;
-		private bool browser;
-		private bool connect = false;
+		bool scale;
+		int size;
+		bool browser;
+		bool connect = false;
 
-		private long approx_size = 0;
-		private long sent_bytes = 0;
+		long approx_size = 0;
+		long sent_bytes = 0;
 
 		IPhoto [] items;
 		int photo_index;
-		ThreadProgressDialog progress_dialog;
+		TaskProgressDialog progress_dialog;
 
 		List<SmugMugAccount> accounts;
-		private SmugMugAccount account;
-		private Album album;
+		SmugMugAccount account;
+		Album album;
 
-		private string dialog_name = "smugmug_export_dialog";
-		private GtkBeans.Builder builder;
+		string dialog_name = "smugmug_export_dialog";
+		GtkBeans.Builder builder;
 
 		// Widgets
 		[GtkBeans.Builder.Object] Gtk.Dialog dialog;
@@ -148,14 +149,14 @@ namespace FSpot.Exporters.SmugMug
 		[GtkBeans.Builder.Object] Gtk.ScrolledWindow thumb_scrolledwindow;
 #pragma warning restore 649
 
-		System.Threading.Thread command_thread;
+		Task task;
 
 		public const string EXPORT_SERVICE = "smugmug/";
 		public const string SCALE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "scale";
 		public const string SIZE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "size";
 		public const string BROWSER_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "browser";
 
-		private void HandleResponse (object sender, Gtk.ResponseArgs args)
+		void HandleResponse (object sender, Gtk.ResponseArgs args)
 		{
 			if (args.ResponseId != Gtk.ResponseType.Ok) {
 				Dialog.Destroy ();
@@ -176,10 +177,9 @@ namespace FSpot.Exporters.SmugMug
 
 				Dialog.Destroy ();
 
-				command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (this.Upload));
-				command_thread.Name = Mono.Unix.Catalog.GetString ("Uploading Pictures");
+				task = new Task (Upload);
 
-				progress_dialog = new ThreadProgressDialog (command_thread, items.Length);
+				progress_dialog = new TaskProgressDialog (task, Catalog.GetString ("Uploading Pictures"));
 				progress_dialog.Start ();
 
 				// Save these settings for next time
@@ -194,12 +194,12 @@ namespace FSpot.Exporters.SmugMug
 			size_spin.Sensitive = scale_check.Active;
 		}
 
-		private void Upload ()
+		void Upload ()
 		{
 			sent_bytes = 0;
 			approx_size = 0;
 
-			System.Uri album_uri = null;
+			Uri album_uri = null;
 
 			Log.Debug ("Starting Upload to Smugmug, album " + album.Title + " - " + album.AlbumID);
 
@@ -244,10 +244,10 @@ namespace FSpot.Exporters.SmugMug
 
 					if (album_uri == null)
 						album_uri = account.SmugMug.GetAlbumUrl (image_id);
-				} catch (System.Exception e) {
-					progress_dialog.Message = string.Format (Mono.Unix.Catalog.GetString ("Error Uploading To Gallery: {0}"),
+				} catch (Exception e) {
+					progress_dialog.Message = string.Format (Catalog.GetString ("Error Uploading To Gallery: {0}"),
 										 e.Message);
-					progress_dialog.ProgressText = Mono.Unix.Catalog.GetString ("Error");
+					progress_dialog.ProgressText = Catalog.GetString ("Error");
 					Log.DebugException (e);
 
 					if (progress_dialog.PerformRetrySkip ()) {
@@ -260,7 +260,7 @@ namespace FSpot.Exporters.SmugMug
 
 			progress_dialog.Message = Catalog.GetString ("Done Sending Photos");
 			progress_dialog.Fraction = 1.0;
-			progress_dialog.ProgressText = Mono.Unix.Catalog.GetString ("Upload Complete");
+			progress_dialog.ProgressText = Catalog.GetString ("Upload Complete");
 			progress_dialog.ButtonLabel = Gtk.Stock.Ok;
 
 			if (browser && album_uri != null) {
@@ -268,14 +268,14 @@ namespace FSpot.Exporters.SmugMug
 			}
 		}
 
-		private void PopulateSmugMugOptionMenu (SmugMugAccountManager manager, SmugMugAccount changed_account)
+		void PopulateSmugMugOptionMenu (SmugMugAccountManager manager, SmugMugAccount changed_account)
 		{
 			this.account = changed_account;
 			int pos = 0;
 
 			accounts = manager.GetAccounts ();
 			if (accounts == null || accounts.Count == 0) {
-                gallery_optionmenu.AppendText (Mono.Unix.Catalog.GetString ("(No Gallery)"));
+                gallery_optionmenu.AppendText (Catalog.GetString ("(No Gallery)"));
 
 				gallery_optionmenu.Sensitive = false;
 				edit_button.Sensitive = false;
@@ -296,17 +296,12 @@ namespace FSpot.Exporters.SmugMug
             gallery_optionmenu.Active = pos;
 		}
 
-		private void Connect ()
-		{
-			Connect (null);
-		}
-
-		private void Connect (SmugMugAccount selected)
+		void Connect (SmugMugAccount selected = null)
 		{
 			Connect (selected, null);
 		}
 
-		private void Connect (SmugMugAccount selected, string text)
+		void Connect (SmugMugAccount selected, string text)
 		{
 			try {
 				if (accounts.Count != 0 && connect) {
@@ -320,7 +315,7 @@ namespace FSpot.Exporters.SmugMug
 
 					PopulateAlbumOptionMenu (account.SmugMug);
 				}
-			} catch (System.Exception) {
+			} catch (Exception) {
 				Log.Warning ("Can not connect to SmugMug. Bad username? Password? Network connection?");
 				if (selected != null)
 					account = selected;
@@ -329,11 +324,11 @@ namespace FSpot.Exporters.SmugMug
 
 				album_button.Sensitive = false;
 
-				new SmugMugAccountDialog (this.Dialog, account);
+				new SmugMugAccountDialog (Dialog, account);
 			}
 		}
 
-		private void HandleAccountSelected (object sender, System.EventArgs args)
+		void HandleAccountSelected (object sender, EventArgs args)
 		{
 			Connect ();
 		}
@@ -351,7 +346,7 @@ namespace FSpot.Exporters.SmugMug
 			}
 		}
 
-		private void PopulateAlbumOptionMenu (SmugMugApi smugmug)
+		void PopulateAlbumOptionMenu (SmugMugApi smugmug)
 		{
 			Album[] albums = null;
 			if (smugmug != null) {
@@ -366,8 +361,8 @@ namespace FSpot.Exporters.SmugMug
 			bool disconnected = smugmug == null || !account.Connected || albums == null;
 
 			if (disconnected || albums.Length == 0) {
-				string msg = disconnected ? Mono.Unix.Catalog.GetString ("(Not Connected)")
-					: Mono.Unix.Catalog.GetString ("(No Albums)");
+				string msg = disconnected ? Catalog.GetString ("(Not Connected)")
+					: Catalog.GetString ("(No Albums)");
 
                 album_optionmenu.AppendText(msg);
 
@@ -393,12 +388,12 @@ namespace FSpot.Exporters.SmugMug
 
 		public void HandleAddGallery (object sender, System.EventArgs args)
 		{
-			new SmugMugAccountDialog (this.Dialog);
+			new SmugMugAccountDialog (Dialog);
 		}
 
 		public void HandleEditGallery (object sender, System.EventArgs args)
 		{
-			new SmugMugAccountDialog (this.Dialog, account);
+			new SmugMugAccountDialog (Dialog, account);
 		}
 
 		public void HandleAddAlbum (object sender, System.EventArgs args)
@@ -434,7 +429,7 @@ namespace FSpot.Exporters.SmugMug
 			account.SmugMug.Logout ();
 		}
 
-		private Gtk.Dialog Dialog {
+		Gtk.Dialog Dialog {
 			get {
 				if (dialog == null)
 					dialog = new Gtk.Dialog (builder.GetRawObject (dialog_name));

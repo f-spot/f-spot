@@ -31,7 +31,7 @@ using System;
 
 using Hyena;
 
-using FSpot;
+using FSpot.Core;
 
 namespace FSpot.Tools.DevelopInUFraw
 {

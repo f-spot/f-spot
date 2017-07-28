@@ -52,6 +52,8 @@ using FSpot.UI.Dialog;
 using Hyena;
 using Hyena.Widgets;
 using System.Linq;
+using System.Threading.Tasks;
+using Photo = FSpot.Core.Photo;
 
 
 namespace FSpot.Exporters.Flickr
@@ -61,28 +63,28 @@ namespace FSpot.Exporters.Flickr
 		IBrowsableCollection selection;
 
 #pragma warning disable 649
-		[GtkBeans.Builder.Object] Gtk.Dialog         dialog;
-		[GtkBeans.Builder.Object] Gtk.CheckButton    scale_check;
-		[GtkBeans.Builder.Object] Gtk.CheckButton    tag_check;
-		[GtkBeans.Builder.Object] Gtk.CheckButton    hierarchy_check;
-		[GtkBeans.Builder.Object] Gtk.CheckButton    ignore_top_level_check;
-		[GtkBeans.Builder.Object] Gtk.CheckButton    open_check;
-		[GtkBeans.Builder.Object] Gtk.SpinButton     size_spin;
+		[GtkBeans.Builder.Object] Dialog         dialog;
+		[GtkBeans.Builder.Object] CheckButton    scale_check;
+		[GtkBeans.Builder.Object] CheckButton    tag_check;
+		[GtkBeans.Builder.Object] CheckButton    hierarchy_check;
+		[GtkBeans.Builder.Object] CheckButton    ignore_top_level_check;
+		[GtkBeans.Builder.Object] CheckButton    open_check;
+		[GtkBeans.Builder.Object] SpinButton     size_spin;
 		[GtkBeans.Builder.Object] Gtk.ScrolledWindow thumb_scrolledwindow;
 		[GtkBeans.Builder.Object] Entry              oauth_verification_code;
-		[GtkBeans.Builder.Object] Gtk.Button         auth_flickr;
-		[GtkBeans.Builder.Object] Gtk.ProgressBar    used_bandwidth;
-		[GtkBeans.Builder.Object] Gtk.Button         do_export_flickr;
-		[GtkBeans.Builder.Object] Gtk.Label          auth_label;
-		[GtkBeans.Builder.Object] Gtk.RadioButton    public_radio;
-		[GtkBeans.Builder.Object] Gtk.CheckButton    family_check;
-		[GtkBeans.Builder.Object] Gtk.CheckButton    friend_check;
+		[GtkBeans.Builder.Object] Button         auth_flickr;
+		[GtkBeans.Builder.Object] ProgressBar    used_bandwidth;
+		[GtkBeans.Builder.Object] Button         do_export_flickr;
+		[GtkBeans.Builder.Object] Label          auth_label;
+		[GtkBeans.Builder.Object] RadioButton    public_radio;
+		[GtkBeans.Builder.Object] CheckButton    family_check;
+		[GtkBeans.Builder.Object] CheckButton    friend_check;
 #pragma warning restore 649
 
 		GtkBeans.Builder builder;
 		string dialog_name = "flickr_export_dialog";
-		Thread command_thread;
-		ThreadProgressDialog progress_dialog;
+		Task task;
+		TaskProgressDialog progressDialog;
 		ProgressItem progress_item;
 
 		public const string EXPORT_SERVICE = "flickr/";
@@ -204,9 +206,10 @@ namespace FSpot.Exporters.Flickr
 			this.selection = selection;
 			current_service = FlickrRemote.Service.FromSupported (service);
 
-			var view = new TrayView (selection);
-			view.DisplayTags = display_tags;
-			view.DisplayDates = false;
+			var view = new TrayView (selection) {
+				DisplayTags = display_tags,
+				DisplayDates = false
+			};
 
 			builder = new GtkBeans.Builder (null, "flickr_export.ui", null);
 			builder.Autoconnect (this);
@@ -251,9 +254,9 @@ namespace FSpot.Exporters.Flickr
 		public bool StartAuth ()
 		{
 			CurrentState = State.InAuth;
-			if (command_thread == null || ! command_thread.IsAlive) {
-				command_thread = new Thread (new ThreadStart (CheckAuthorization));
-				command_thread.Start ();
+			if (task == null) {
+				task = new Task (CheckAuthorization );
+				task.Start ();
 			}
 			return true;
 		}
@@ -268,9 +271,9 @@ namespace FSpot.Exporters.Flickr
 			} catch (Exception e) {
 				var md =
 					new HigMessageDialog (Dialog,
-							      Gtk.DialogFlags.Modal |
-							      Gtk.DialogFlags.DestroyWithParent,
-							      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
+							      DialogFlags.Modal |
+							      DialogFlags.DestroyWithParent,
+							      MessageType.Error, ButtonsType.Ok,
 							      Catalog.GetString ("Unable to log on"), e.Message);
 
 				md.Run ();
@@ -294,18 +297,9 @@ namespace FSpot.Exporters.Flickr
 
 		class AuthorizationEventArgs : EventArgs
         {
-			Exception e;
-			Auth auth;
+	        public Exception Exception { get; set; }
 
-			public Exception Exception {
-				get { return e; }
-				set { e = value; }
-			}
-
-			public Auth Auth {
-				get { return auth; }
-				set { auth = value; }
-			}
+	        public Auth Auth { get; set; }
         }
 
 		public void HandleSizeActive (object sender, EventArgs args)
@@ -334,9 +328,9 @@ namespace FSpot.Exporters.Flickr
 				} else {
 					var md =
 						new HigMessageDialog (Dialog,
-								      Gtk.DialogFlags.Modal |
-								      Gtk.DialogFlags.DestroyWithParent,
-								      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
+								      DialogFlags.Modal |
+								      DialogFlags.DestroyWithParent,
+								      MessageType.Error, ButtonsType.Ok,
 								      Catalog.GetString ("Unable to log on"), e.Message);
 
 					md.Run ();
@@ -349,18 +343,18 @@ namespace FSpot.Exporters.Flickr
 		void HandleProgressChanged (ProgressItem item)
 		{
 			//System.Console.WriteLine ("Changed value = {0}", item.Value);
-			progress_dialog.Fraction = (photo_index - 1.0 + item.Value) / (double) selection.Count;
+			progressDialog.Fraction = (photo_index - 1.0 + item.Value) / (double) selection.Count;
 		}
 
 		FileInfo info;
 		void HandleFlickrProgress (object sender, UploadProgressEventArgs args)
 		{
 			if (args.UploadComplete) {
-				progress_dialog.Fraction = photo_index / (double) selection.Count;
-				progress_dialog.ProgressText = string.Format (Catalog.GetString ("Waiting for response {0} of {1}"),
+				progressDialog.Fraction = photo_index / (double) selection.Count;
+				progressDialog.ProgressText = string.Format (Catalog.GetString ("Waiting for response {0} of {1}"),
 									      photo_index, selection.Count);
 			}
-            progress_dialog.Fraction = (photo_index - 1.0 + (args.BytesSent / (double) info.Length)) / (double) selection.Count;
+            progressDialog.Fraction = (photo_index - 1.0 + (args.BytesSent / (double) info.Length)) / (double) selection.Count;
 		}
 
 		class DateComparer : IComparer
@@ -384,12 +378,11 @@ namespace FSpot.Exporters.Flickr
 			for (int index = 0; index < photos.Length; index++) {
 				try {
 					IPhoto photo = photos [index];
-					progress_dialog.Message = string.Format (
-                                                Catalog.GetString ("Uploading picture \"{0}\""), photo.Name);
+					progressDialog.Message = Catalog.GetString ($"Uploading picture \"{photo.Name}\"");
 
-					progress_dialog.Fraction = photo_index / (double)selection.Count;
+					progressDialog.Fraction = photo_index / (double)selection.Count;
 					photo_index++;
-					progress_dialog.ProgressText = string.Format (
+					progressDialog.ProgressText = string.Format (
 						Catalog.GetString ("{0} of {1}"), photo_index,
 						selection.Count);
 
@@ -408,29 +401,29 @@ namespace FSpot.Exporters.Flickr
 									      token.UserId + ":" + token.Username + ":" + current_service.Name + ":" + id);
 
 				} catch (Exception e) {
-					progress_dialog.Message = string.Format (Catalog.GetString ("Error Uploading To {0}: {1}"),
+					progressDialog.Message = string.Format (Catalog.GetString ("Error Uploading To {0}: {1}"),
 										 current_service.Name,
 										 e.Message);
-					progress_dialog.ProgressText = Catalog.GetString ("Error");
+					progressDialog.ProgressText = Catalog.GetString ("Error");
 					Log.Exception (e);
 
-					if (progress_dialog.PerformRetrySkip ()) {
+					if (progressDialog.PerformRetrySkip ()) {
 						index--;
 						photo_index--;
 					}
 				}
 			}
-			progress_dialog.Message = Catalog.GetString ("Done Sending Photos");
-			progress_dialog.Fraction = 1.0;
-			progress_dialog.ProgressText = Catalog.GetString ("Upload Complete");
-			progress_dialog.ButtonLabel = Gtk.Stock.Ok;
+			progressDialog.Message = Catalog.GetString ("Done Sending Photos");
+			progressDialog.Fraction = 1.0;
+			progressDialog.ProgressText = Catalog.GetString ("Upload Complete");
+			progressDialog.ButtonLabel = Gtk.Stock.Ok;
 
 			if (open && ids.Count != 0) {
 				string view_url;
 				if (current_service.Name == "Zooomr.com")
-					view_url = string.Format ("http://www.{0}/photos/{1}/", current_service.Name, token.Username);
+					view_url = $"http://www.{current_service.Name}/photos/{token.Username}/";
 				else {
-					view_url = string.Format ("http://www.{0}/tools/uploader_edit.gne?ids", current_service.Name);
+					view_url = $"http://www.{current_service.Name}/tools/uploader_edit.gne?ids";
 					bool first = true;
 
 					foreach (string id in ids) {
@@ -483,11 +476,12 @@ namespace FSpot.Exporters.Flickr
 			ignore_top_level_check.Sensitive = hierarchy_check.Active;
 		}
 
-		void HandleResponse (object sender, Gtk.ResponseArgs args)
+		void HandleResponse (object sender, ResponseArgs args)
 		{
-			if (args.ResponseId != Gtk.ResponseType.Ok) {
-				if (command_thread != null && command_thread.IsAlive)
-					command_thread.Abort ();
+			if (args.ResponseId != ResponseType.Ok) {
+				// FIXME, fix cancellation
+				//if (task != null && task.IsAlive)
+				//	task.Abort ();
 
 				Dialog.Destroy ();
 				return;
@@ -497,9 +491,9 @@ namespace FSpot.Exporters.Flickr
 				do_export_flickr.Sensitive = false;
 				var md =
 					new HigMessageDialog (Dialog,
-							      Gtk.DialogFlags.Modal |
-							      Gtk.DialogFlags.DestroyWithParent,
-							      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
+							      DialogFlags.Modal |
+							      DialogFlags.DestroyWithParent,
+							      MessageType.Error, ButtonsType.Ok,
 							      Catalog.GetString ("Unable to log on."),
 							      string.Format (Catalog.GetString ("F-Spot was unable to log on to {0}.  Make sure you have given the authentication using {0} web browser interface."),
 									     current_service.Name));
@@ -519,12 +513,11 @@ namespace FSpot.Exporters.Flickr
 			if (scale)
 				size = size_spin.ValueAsInt;
 
-			command_thread = new Thread (new ThreadStart (Upload));
-			command_thread.Name = Catalog.GetString ("Uploading Pictures");
+			task = Task.Run (() => { Upload (); });
 
 			Dialog.Destroy ();
-			progress_dialog = new ThreadProgressDialog (command_thread, selection.Count);
-			progress_dialog.Start ();
+			progressDialog = new TaskProgressDialog (task, Catalog.GetString ("Uploading Pictures"));
+			progressDialog.Start ();
 
 			// Save these settings for next time
 			Preferences.Set (SCALE_KEY, scale);
@@ -548,23 +541,23 @@ namespace FSpot.Exporters.Flickr
 			case SCALE_KEY:
                 scale_check.Active = Preferences.Get<bool> (key);
                 break;
-				
+
 			case SIZE_KEY:
 				size_spin.Value = (double) Preferences.Get<int> (key);
 				break;
-				
+
 			case BROWSER_KEY:
                 open_check.Active = Preferences.Get<bool> (key);
                 break;
-				
+
 			case TAGS_KEY:
                 tag_check.Active = Preferences.Get<bool> (key);
                 break;
-				
+
 			case TAG_HIERARCHY_KEY:
                 hierarchy_check.Active = Preferences.Get<bool> (key);
                 break;
-				
+
 			case IGNORE_TOP_LEVEL_KEY:
                 ignore_top_level_check.Active = Preferences.Get<bool> (key);
                 break;
@@ -578,15 +571,15 @@ namespace FSpot.Exporters.Flickr
 				token.UserId = Preferences.Get<string> (key + "userId");
 				token.Username = Preferences.Get<string> (key + "userName");
 				break;
-				
+
 			case PUBLIC_KEY:
                 public_radio.Active = Preferences.Get<bool> (key);
                 break;
-				
+
 			case FAMILY_KEY:
                 family_check.Active = Preferences.Get<bool> (key);
                 break;
-				
+
 			case FRIENDS_KEY:
                 friend_check.Active = Preferences.Get<bool> (key);
                 break;
@@ -601,10 +594,10 @@ namespace FSpot.Exporters.Flickr
 			}
 		}
 
-		Gtk.Dialog Dialog {
+		Dialog Dialog {
 			get {
 				if (dialog == null)
-					dialog = new Gtk.Dialog (builder.GetRawObject (dialog_name));
+					dialog = new Dialog (builder.GetRawObject (dialog_name));
 
 				return dialog;
 			}
