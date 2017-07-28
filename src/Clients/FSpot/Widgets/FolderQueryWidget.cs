@@ -38,22 +38,22 @@ using Hyena;
 
 using FSpot.Query;
 
-namespace FSpot
+namespace FSpot.Widgets
 {
 	public class FolderQueryWidget : HBox
 	{
         readonly PhotoQuery query;
-        FolderSet folder_set;
+		readonly FolderSet folderSet;
 
 		public FolderQueryWidget (PhotoQuery query)
 		{
-			folder_set = new FolderSet ();
+			folderSet = new FolderSet ();
 			this.query = query;
 
-			query.SetCondition (folder_set);
+			query.SetCondition (folderSet);
 
 			Drag.DestSet (this, DestDefaults.All,
-			              folder_query_widget_source_table,
+			              FolderQueryWidgetSourceTable,
 			              Gdk.DragAction.Copy | Gdk.DragAction.Move);
 		}
 
@@ -62,7 +62,7 @@ namespace FSpot
 			while (Children.Length != 0)
 				Remove (Children[0]);
 
-			int length = folder_set.Folders.Count ();
+			int length = folderSet.Folders.Count ();
 
 			if (length == 0) {
 				Hide ();
@@ -71,9 +71,11 @@ namespace FSpot
 
 			if (length < 4) {
 
-				foreach (var uri in folder_set.Folders) {
-					var image = new Image ("gtk-directory", IconSize.Button);
-					image.TooltipText = uri.ToString ();
+				Image image;
+				foreach (var uri in folderSet.Folders) {
+					image = new Image ("gtk-directory", IconSize.Button) {
+						TooltipText = uri.ToString ()
+					};
 					PackStart (image);
 				}
 
@@ -81,15 +83,16 @@ namespace FSpot
 
 			} else {
 
-				var label = new Label (string.Format ("<i>{0}x</i>", length));
-				label.UseMarkup = true;
+				var label = new Label ($"<i>{length}x</i>") {
+					UseMarkup = true
+				};
 				PackStart (label);
 
 				var image = new Image ("gtk-directory", IconSize.Button);
 				PackStart (image);
 
 				var builder = new StringBuilder ();
-				foreach (var uri in folder_set.Folders) {
+				foreach (var uri in folderSet.Folders) {
 					if (builder.Length > 0)
 						builder.AppendLine ();
 
@@ -104,29 +107,27 @@ namespace FSpot
 
 		public void SetFolders (IEnumerable<SafeUri> uris)
 		{
-			folder_set.Folders = uris;
+			folderSet.Folders = uris;
 
 			UpdateGui ();
 		}
 
 		public void Clear ()
 		{
-			folder_set.Folders = null;
+			folderSet.Folders = null;
 		}
 
-		public bool Empty {
-			get { return folder_set.Folders == null || !folder_set.Folders.Any(); }
-		}
+		public bool Empty => folderSet.Folders == null || !folderSet.Folders.Any();
 
-		static TargetEntry [] folder_query_widget_source_table = {
+		static readonly TargetEntry [] FolderQueryWidgetSourceTable = {
 				DragDropTargets.UriQueryEntry
 		};
 
-		protected override void OnDragDataReceived (Gdk.DragContext context, int x, int y, SelectionData selection_data, uint info, uint time_)
+		protected override void OnDragDataReceived (Gdk.DragContext context, int x, int y, SelectionData selectionData, uint info, uint time)
 		{
-			base.OnDragDataReceived (context, x, y, selection_data, info, time_);
+			base.OnDragDataReceived (context, x, y, selectionData, info, time);
 
-			SetFolders (selection_data.GetUriListData ());
+			SetFolders (selectionData.GetUriListData ());
 			query.RequestReload ();
 		}
 	}
