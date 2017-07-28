@@ -40,6 +40,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="DependentListStore.cs" />
+    <Compile Include="FSpot.Widgets\TagSelectionWidget.cs" />
     <Compile Include="FSpot\App.cs" />
     <Compile Include="FSpot.ColorAdjustment\Adjustment.cs" />
     <Compile Include="FSpot.ColorAdjustment\Desaturate.cs" />
@@ -105,7 +106,6 @@
     <Compile Include="FSpot\SelectionDataExtensions.cs" />
     <Compile Include="FSpot\SendEmail.cs" />
     <Compile Include="FSpot\SingleView.cs" />
-    <Compile Include="FSpot\TagSelectionWidget.cs" />
     <Compile Include="FSpot\TimeAdaptor.cs" />
     <Compile Include="FSpot.UI.Dialog\AboutDialog.cs" />
     <Compile Include="FSpot.UI.Dialog\AdjustTimeDialog.cs" />
