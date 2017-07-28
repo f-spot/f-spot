@@ -98,7 +98,7 @@ namespace FSpot.Widgets
 				App.Instance.Database.Photos.Commit (photo);
 			} catch (Exception e) {
 				var msg = Catalog.GetString ("Error saving sharpened photo");
-				var desc = string.Format (Catalog.GetString ($"Received exception \"{e.Message}\". Unable to save photo {photo.Name}"));
+				var desc = string.Format (Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"), e.Message, photo.Name);
 
 				var md = new HigMessageDialog (this, DialogFlags.DestroyWithParent, MessageType.Error, ButtonsType.Ok, msg, desc);
 				md.Run ();

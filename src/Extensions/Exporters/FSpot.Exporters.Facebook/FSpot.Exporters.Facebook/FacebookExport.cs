@@ -284,7 +284,7 @@ namespace FSpot.Exporters.Facebook
 				HigMessageDialog mbox = new HigMessageDialog (dialog,
 						DialogFlags.DestroyWithParent | DialogFlags.Modal, MessageType.Error,
 						ButtonsType.Ok, Catalog.GetString ("Too many images to export"),
-						string.Format (Catalog.GetString ($"Facebook only permits {max_photos_per_album} photographs per album.  Please refine your selection and try again.")));
+						string.Format (Catalog.GetString ("Facebook only permits {0} photographs per album.  Please refine your selection and try again."), max_photos_per_album));
 				mbox.Run ();
 				mbox.Destroy ();
 				return;
@@ -315,7 +315,7 @@ namespace FSpot.Exporters.Facebook
 				catch (FacebookException fe) {
 					HigMessageDialog mbox = new HigMessageDialog (dialog, DialogFlags.DestroyWithParent | DialogFlags.Modal,
 							MessageType.Error, ButtonsType.Ok, Catalog.GetString ("Creating a new album failed"),
-							string.Format (Catalog.GetString ($"An error occurred creating a new album.\n\n{fe.Message}")));
+							string.Format (Catalog.GetString ("An error occurred creating a new album.\n\n{0}"), fe.Message));
 					mbox.Run ();
 					mbox.Destroy ();
 					return;
@@ -354,7 +354,7 @@ namespace FSpot.Exporters.Facebook
 
 					Log.DebugFormat ($"uploading {i}");
 
-					progressDialog.Message = string.Format (Catalog.GetString ($"Uploading picture \"{item.Name}\" ({i + 1} of {items.Length})"));
+					progressDialog.Message = string.Format (Catalog.GetString ("Uploading picture \"{0}\" ({1} of {2})"), item.Name, i + 1, items.Length);
 					progressDialog.ProgressText = string.Empty;
 					progressDialog.Fraction = i / (double) items.Length;
 
@@ -368,7 +368,7 @@ namespace FSpot.Exporters.Facebook
 					sent_bytes += fileInfo.Length;
 				}
 				catch (Exception e) {
-					progressDialog.Message = string.Format (Catalog.GetString ($"Error Uploading To Facebook: {e.Message}"));
+					progressDialog.Message = string.Format (Catalog.GetString ("Error Uploading To Facebook: {0}"), e.Message);
 					progressDialog.ProgressText = Catalog.GetString ("Error");
 					Log.DebugException (e);
 

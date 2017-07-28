@@ -378,7 +378,7 @@ namespace FSpot.Exporters.Flickr
 			for (int index = 0; index < photos.Length; index++) {
 				try {
 					IPhoto photo = photos [index];
-					progressDialog.Message = Catalog.GetString ($"Uploading picture \"{photo.Name}\"");
+					progressDialog.Message = string.Format(Catalog.GetString ("Uploading picture \"{0}\""), photo.Name);
 
 					progressDialog.Fraction = photo_index / (double)selection.Count;
 					photo_index++;

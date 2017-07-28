@@ -127,9 +127,9 @@ namespace FSpot.Exporters.CD
 						GLib.File target = UniqueName (dest, photo.Name);
 						FileProgressCallback cb = Progress;
 
-						progressDialog.Message = string.Format (Catalog.GetString ($"Transferring picture \"{photo.Name}\" To CD"));
+						progressDialog.Message = string.Format (Catalog.GetString ("Transferring picture \"{0}\" To CD"), photo.Name);
 						progressDialog.Fraction = photoIndex / (double)selection.Count;
-						progressDialog.ProgressText = string.Format (Catalog.GetString ($"{photoIndex} of {selection.Count}"));
+						progressDialog.ProgressText = string.Format (Catalog.GetString ("{0} of {1}"), photoIndex, selection.Count);
 
 						result &= source.Copy (target, FileCopyFlags.None, null, cb);
 					}
