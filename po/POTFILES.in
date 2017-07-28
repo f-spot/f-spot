@@ -60,17 +60,6 @@ src/Clients/FSpot/FSpot.UI.Dialog/ThreadProgressDialog.cs
 [type: gettext/glade]src/Clients/FSpot/FSpot.UI.Dialog/ui/RatingFilterDialog.ui
 [type: gettext/glade]src/Clients/FSpot/FSpot.UI.Dialog/ui/RepairDialog.ui
 [type: gettext/glade]src/Clients/FSpot/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui
-src/Clients/FSpot/FSpot.Widgets/EditorPage.cs
-src/Clients/FSpot/FSpot.Widgets/Filmstrip.cs
-src/Clients/FSpot/FSpot.Widgets/FindBar.cs
-src/Clients/FSpot/FSpot.Widgets/FolderTreePage.cs
-src/Clients/FSpot/FSpot.Widgets/FolderTreeView.cs
-src/Clients/FSpot/FSpot.Widgets/InfoBox.cs
-src/Clients/FSpot/FSpot.Widgets/MetadataDisplay.cs
-src/Clients/FSpot/FSpot.Widgets/RatingMenuItem.cs
-src/Clients/FSpot/FSpot.Widgets/Sharpener.cs
-src/Clients/FSpot/FSpot.Widgets/Sidebar.cs
-src/Clients/FSpot/FSpot.Widgets/TagMenu.cs
 src/Clients/FSpot/PhotoTagMenu.cs
 src/Clients/FSpot/PhotoVersionCommands.cs
 src/Clients/FSpot/PhotoVersionMenu.cs
@@ -84,6 +73,17 @@ src/Clients/FSpot/ThumbnailCommand.cs
 [type: gettext/glade]src/Clients/FSpot/ui/single_view.ui
 [type: gettext/glade]src/Clients/FSpot/ui/tag_selection_dialog.ui
 [type: gettext/glade]src/Clients/FSpot/ui/viewer_preferences.ui
+src/Clients/FSpot/Widgets/EditorPage.cs
+src/Clients/FSpot/Widgets/Filmstrip.cs
+src/Clients/FSpot/Widgets/FindBar.cs
+src/Clients/FSpot/Widgets/FolderTreePage.cs
+src/Clients/FSpot/Widgets/FolderTreeView.cs
+src/Clients/FSpot/Widgets/InfoBox.cs
+src/Clients/FSpot/Widgets/MetadataDisplay.cs
+src/Clients/FSpot/Widgets/RatingMenuItem.cs
+src/Clients/FSpot/Widgets/Sharpener.cs
+src/Clients/FSpot/Widgets/Sidebar.cs
+src/Clients/FSpot/Widgets/TagMenu.cs
 src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs
 src/Core/FSpot.Gui/FSpot.Widgets/OpenWithMenu.cs
 src/Extensions/Editors/FSpot.Editors.Blackout/FSpot.Addins.Editors/BlackoutEditor.cs
