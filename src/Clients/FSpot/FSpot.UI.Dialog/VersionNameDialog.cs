@@ -34,6 +34,7 @@
 //
 
 using System;
+using FSpot.Core;
 using Gtk;
 using Mono.Unix;
 

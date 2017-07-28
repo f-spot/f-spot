@@ -30,45 +30,47 @@
 //
 
 using System;
+using System.Threading.Tasks;
 
 using Banshee.Kernel;
 
-using FSpot.Database;
+using FSpot.Core;
 
 using Hyena;
 
-namespace FSpot.Database.Jobs {
+namespace FSpot.Database.Jobs
+{
 	public class CalculateHashJob : Job
 	{
-		public CalculateHashJob (IDb db, uint id, string job_options, int run_at, JobPriority job_priority, bool persistent)
-			: this (db, id, job_options, DateTimeUtil.ToDateTime (run_at), job_priority, persistent)
+		public CalculateHashJob (IDb db, uint id, string jobOptions, int runAt, JobPriority jobPriority, bool persistent)
+			: this (db, id, jobOptions, DateTimeUtil.ToDateTime (runAt), jobPriority, persistent)
 		{
 		}
 
-		public CalculateHashJob (IDb db, uint id, string job_options, DateTime run_at, JobPriority job_priority, bool persistent)
-			: base (db, id, job_options, job_priority, run_at, persistent)
+		public CalculateHashJob (IDb db, uint id, string jobOptions, DateTime runAt, JobPriority jobPriority, bool persistent)
+			: base (db, id, jobOptions, jobPriority, runAt, persistent)
 		{
 		}
 
-		public static CalculateHashJob Create (JobStore job_store, uint photo_id)
+		public static CalculateHashJob Create (JobStore jobStore, uint photoId)
 		{
-			return (CalculateHashJob) job_store.CreatePersistent (typeof(CalculateHashJob), photo_id.ToString ());
+			return (CalculateHashJob) jobStore.CreatePersistent (typeof(CalculateHashJob), photoId.ToString ());
 		}
 
 		protected override bool Execute ()
 		{
 			//this will add some more reactivity to the system
-			System.Threading.Thread.Sleep (200);
+			Task.Delay (200);
 
-			uint photo_id = Convert.ToUInt32 (JobOptions);
-			Log.DebugFormat ("Calculating Hash {0}...", photo_id);
+			var photoId = Convert.ToUInt32 (JobOptions);
+			Log.DebugFormat ($"Calculating Hash {photoId}...");
 
 			try {
-				Photo photo = Db.Photos.Get (Convert.ToUInt32 (photo_id));
+				Photo photo = Db.Photos.Get (Convert.ToUInt32 (photoId));
 				Db.Photos.CalculateMD5Sum (photo);
 				return true;
-			} catch (System.Exception e) {
-				Log.DebugFormat ("Error Calculating Hash for photo {0}: {1}", JobOptions, e.Message);
+			} catch (Exception e) {
+				Log.DebugFormat ($"Error Calculating Hash for photo {JobOptions}: {e.Message}");
 			}
 			return false;
 		}

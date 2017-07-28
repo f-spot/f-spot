@@ -57,7 +57,7 @@ namespace FSpot.Widgets
 		Editor current_editor;
 
 		// Used to make buttons insensitive when selecting multiple images.
-		Dictionary<Editor, Button> editor_buttons;
+		readonly Dictionary<Editor, Button> editor_buttons;
 
 		EditorPage page;
 		internal EditorPage Page {
@@ -94,8 +94,7 @@ namespace FSpot.Widgets
 
 		void OnProcessingStep (int done)
 		{
-			if (progress != null)
-				progress.Update (string.Empty);
+			progress?.Update (string.Empty);
 		}
 
 		void OnProcessingFinished ()
@@ -144,20 +143,23 @@ namespace FSpot.Widgets
 			}
 
 			if (widgets == null) {
-				widgets = new VBox (false, 0);
-				widgets.NoShowAll = true;
+				widgets = new VBox (false, 0) {
+					NoShowAll = true
+				};
 				widgets.Show ();
-				Viewport widgets_port = new Viewport ();
-				widgets_port.Add (widgets);
+				Viewport widgets_port = new Viewport {
+					widgets
+				};
 				Add (widgets_port);
 				widgets_port.ShowAll ();
 			}
 
 			// Build the widget (first time we call this method).
-			buttons = new VButtonBox ();
-			buttons.BorderWidth = 5;
-			buttons.Spacing = 5;
-			buttons.LayoutStyle = ButtonBoxStyle.Start;
+			buttons = new VButtonBox {
+				BorderWidth = 5,
+				Spacing = 5,
+				LayoutStyle = ButtonBoxStyle.Start
+			};
 
 			foreach (Editor editor in editors)
 				PackButton (editor);
@@ -247,8 +249,9 @@ namespace FSpot.Widgets
 
 			// Top label
 			VBox vbox = new VBox (false, 4);
-			Label label = new Label ();
-			label.Markup = string.Format("<big><b>{0}</b></big>", editor.Label);
+			Label label = new Label {
+				Markup = $"<big><b>{editor.Label}</b></big>"
+			};
 			vbox.PackStart (label, false, false, 5);
 
 			// Optional config widget
@@ -264,18 +267,20 @@ namespace FSpot.Widgets
 			}
 
 			// Apply / Cancel buttons
-			HButtonBox tool_buttons = new HButtonBox ();
-			tool_buttons.LayoutStyle = ButtonBoxStyle.End;
-			tool_buttons.Spacing = 5;
-			tool_buttons.BorderWidth = 5;
-			tool_buttons.Homogeneous = false;
+			HButtonBox tool_buttons = new HButtonBox {
+				LayoutStyle = ButtonBoxStyle.End,
+				Spacing = 5,
+				BorderWidth = 5,
+				Homogeneous = false
+			};
 
 			Button cancel = new Button (Stock.Cancel);
 			cancel.Clicked += HandleCancel;
 			tool_buttons.Add (cancel);
 
-			Button apply = new Button (editor.ApplyLabel);
-			apply.Image = new Image (GtkUtil.TryLoadIcon (FSpot.Settings.Global.IconTheme, editor.IconName, 22, 0));
+			Button apply = new Button (editor.ApplyLabel) {
+				Image = new Image (GtkUtil.TryLoadIcon (FSpot.Settings.Global.IconTheme, editor.IconName, 22, 0))
+			};
 			apply.Clicked += (s, e) => { Apply (editor); };
 			tool_buttons.Add (apply);
 

@@ -48,7 +48,6 @@ namespace FSpot.Query
 	{
 		readonly PhotoQuery query;
 
-		static Term rootTerm;
 		EventBox rootAdd;
 		HBox rootBox;
 		Label help;
@@ -59,17 +58,9 @@ namespace FSpot.Query
 
 		public event EventHandler Changed;
 
-		public static Term Root
-		{
-			get {
-				return rootTerm;
-			}
-		}
+		public static Term Root { get; set; }
 
-		static LogicWidget logic_widget;
-		public static LogicWidget Box {
-			get { return logic_widget; }
-		}
+		public static LogicWidget Box { get; set; }
 
 		// Drag and Drop
 		static readonly TargetEntry [] tag_dest_target_table =
@@ -93,7 +84,7 @@ namespace FSpot.Query
 
 			Show ();
 
-			logic_widget = this;
+			Box = this;
 		}
 
 		void Init ()
@@ -124,14 +115,14 @@ namespace FSpot.Query
 
 			PackEnd (rootAdd, true, true, 0);
 
-			rootTerm = new OrTerm (null, null);
+			Root = new OrTerm (null, null);
 		}
 
 		void Preview ()
 		{
 			if (sepBox == null) {
 				sepBox = new HBox ();
-				Widget sep = rootTerm.SeparatorWidget ();
+				Widget sep = Root.SeparatorWidget ();
 				if (sep != null) {
 					sep.Show ();
 					sepBox.PackStart (sep, false, false, 0);
@@ -150,7 +141,7 @@ namespace FSpot.Query
 		void HandleTagChanged (object sender, DbItemEventArgs<Tag> args)
 		{
 			foreach (Tag t in args.Items)
-		                foreach (Literal term in rootTerm.FindByTag (t))
+		                foreach (Literal term in Root.FindByTag (t))
 		                    term.Update ();
 		}
 
@@ -158,13 +149,13 @@ namespace FSpot.Query
 		void HandleTagDeleted (object sender, DbItemEventArgs<Tag> args)
 		{
 			foreach (Tag t in args.Items)
-		                foreach (Literal term in rootTerm.FindByTag (t))
+		                foreach (Literal term in Root.FindByTag (t))
 		                    term.RemoveSelf ();
 		}
 
 		void HandleDragMotion (object o, DragMotionArgs args)
 		{
-			if (!preview && rootTerm.Count > 0 && (Literal.FocusedLiterals.Count == 0 || Children.Length > 2)) {
+			if (!preview && Root.Count > 0 && (Literal.FocusedLiterals.Count == 0 || Children.Length > 2)) {
 				Preview ();
 				preview = true;
 			}
@@ -239,15 +230,12 @@ namespace FSpot.Query
 					else
 						w.Add (Children[WidgetPosition (term.Widget) + 1]);
 				}
-				else if (term.Parent.Count == 1)
-				{
-					if (term.Parent.Parent != null) {
-						if (term.Parent.Parent.Count > 1) {
-							if (term.Parent == term.Parent.Parent.Last)
-								w.Add (Children[WidgetPosition (term.Widget) - 1]);
-							else
-								w.Add (Children[WidgetPosition (term.Widget) + 1]);
-						}
+				else if (term.Parent.Count == 1) {
+					if (term.Parent.Parent?.Count > 1) {
+						if (term.Parent == term.Parent.Parent.Last)
+							w.Add (Children[WidgetPosition (term.Widget) - 1]);
+						else
+							w.Add (Children[WidgetPosition (term.Widget) + 1]);
 					}
 				}
 			}
@@ -265,14 +253,14 @@ namespace FSpot.Query
 
 			if (args.Info == DragDropTargets.TagListEntry.Info) {
 
-				InsertTerm (args.SelectionData.GetTagsData (), rootTerm, null);
+				InsertTerm (args.SelectionData.GetTagsData (), Root, null);
 				return;
 			}
 
 			if (args.Info == DragDropTargets.TagQueryEntry.Info) {
 
 				// FIXME: use drag data
-				HandleLiteralsMoved (Literal.FocusedLiterals, rootTerm, null);
+				HandleLiteralsMoved (Literal.FocusedLiterals, Root, null);
 
 				// Prevent them from being removed again
 				Literal.FocusedLiterals = new List<Literal> ();
@@ -286,7 +274,7 @@ namespace FSpot.Query
 			bool refresh_required = false;
 
 			foreach (Tag tag in tags) {
-				if ((rootTerm.FindByTag (tag)).Count > 0) {
+				if ((Root.FindByTag (tag)).Count > 0) {
 					refresh_required = true;
 					break;
 				}
@@ -304,7 +292,7 @@ namespace FSpot.Query
 		}
 
 		// Return the index position of a widget in this Box
-		int WidgetPosition (Gtk.Widget widget)
+		int WidgetPosition (Widget widget)
 		{
 			for (int i = 0; i < Children.Length; i++)
 				if (Children[i] == widget)
@@ -315,12 +303,12 @@ namespace FSpot.Query
 
 		public bool TagIncluded (Tag tag)
 		{
-			return rootTerm.TagIncluded (tag);
+			return Root.TagIncluded (tag);
 		}
 
 		public bool TagRequired (Tag tag)
 		{
-			return rootTerm.TagRequired (tag);
+			return Root.TagRequired (tag);
 		}
 
 		// Add a tag or group of tags to the rootTerm, at the end of the Box
@@ -330,7 +318,7 @@ namespace FSpot.Query
 			// FIXME: Does this really need to be set to a length?
 			List<Tag> new_tags = new List<Tag> (tags.Length);
 			foreach (Tag tag in tags) {
-				if (! rootTerm.TagIncluded (tag))
+				if (! Root.TagIncluded (tag))
 					new_tags.Add (tag);
 
 			}
@@ -340,14 +328,14 @@ namespace FSpot.Query
 
 			tags = new_tags.ToArray ();
 
-			InsertTerm (tags, rootTerm, null);
+			InsertTerm (tags, Root, null);
 		}
 
 		public void UnInclude (Tag [] tags)
 		{
 			var new_tags = new List<Tag> (tags.Length);
 			foreach (Tag tag in tags) {
-				if (rootTerm.TagIncluded (tag))
+				if (Root.TagIncluded (tag))
 					new_tags.Add (tag);
 			}
 
@@ -358,7 +346,7 @@ namespace FSpot.Query
 
 			bool needsUpdate = false;
 			preventUpdate = true;
-			foreach (Term parent in rootTerm.LiteralParents ()) {
+			foreach (Term parent in Root.LiteralParents ()) {
 				if (parent.Count == 1) {
 					foreach (Tag tag in tags) {
 						if ((parent.Last as Literal).Tag == tag) {
@@ -384,7 +372,7 @@ namespace FSpot.Query
 			// Trim out tags that are already required
 			var new_tags = new List<Tag> (tags.Length);
 			foreach (Tag tag in tags) {
-				if (! rootTerm.TagRequired (tag))
+				if (! Root.TagRequired (tag))
 					new_tags.Add (tag);
 			}
 
@@ -395,7 +383,7 @@ namespace FSpot.Query
 
 			bool added = false;
 			preventUpdate = true;
-			foreach (Term parent in rootTerm.LiteralParents ()) {
+			foreach (Term parent in Root.LiteralParents ()) {
 				// TODO logic could be broken if a term's SubTerms are a mixture
 				// of Literals and non-Literals
 				InsertTerm (tags, parent, parent.Last as Literal);
@@ -406,7 +394,7 @@ namespace FSpot.Query
 			// TODO should add the first tag in the array,
 			// then add the others to the first's parent (so they will be ANDed together)
 			if (!added)
-				InsertTerm (tags, rootTerm, null);
+				InsertTerm (tags, Root, null);
 
 			preventUpdate = false;
 
@@ -418,7 +406,7 @@ namespace FSpot.Query
 			// Trim out tags that are not required
 			var new_tags = new List<Tag> (tags.Length);
 			foreach (Tag tag in tags) {
-				if (rootTerm.TagRequired (tag))
+				if (Root.TagRequired (tag))
 					new_tags.Add (tag);
 			}
 
@@ -428,7 +416,7 @@ namespace FSpot.Query
 			tags = new_tags.ToArray ();
 
 			preventUpdate = true;
-			foreach (Term parent in rootTerm.LiteralParents ()) {
+			foreach (Term parent in Root.LiteralParents ()) {
 				// Don't remove if this tag is the only child of a term
 				if (parent.Count > 1) {
 					foreach (Tag tag in tags) {
@@ -472,8 +460,8 @@ namespace FSpot.Query
 				// TODO should really see what type of term the parent is, and
 				// encapsulate this term in a term of the opposite type. This will
 				// allow the query system to be expanded to work for multiple levels much easier.
-				if (parent == rootTerm) {
-					parent = new AndTerm (rootTerm, after);
+				if (parent == Root) {
+					parent = new AndTerm (Root, after);
 					after = null;
 				}
 
@@ -504,21 +492,20 @@ namespace FSpot.Query
 			if (preventUpdate)
 				return;
 
-			if (sepBox != null)
-				sepBox.Hide ();
+			sepBox?.Hide ();
 
-			if (rootTerm.Count == 0) {
+			if (Root.Count == 0) {
 				help.Show ();
 				query.TagTerm = null;
 			} else {
 				help.Hide ();
-				query.TagTerm = new ConditionWrapper (rootTerm.SqlCondition ());
+				query.TagTerm = new ConditionWrapper (Root.SqlCondition ());
 			}
 
 			Changed?.Invoke (this, new EventArgs ());
 		}
 
-		public bool IsClear => rootTerm.Count == 0;
+		public bool IsClear => Root.Count == 0;
 
 		public void Clear ()
 		{

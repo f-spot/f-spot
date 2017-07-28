@@ -67,7 +67,7 @@ namespace FSpot.Query
 		#region Properties
 		public static List<Literal> FocusedLiterals { get; set; }
 
-		public Tag Tag { get; private set; }
+		public Tag Tag { get; }
 
 		public override bool IsNegated {
 			get {
@@ -84,8 +84,7 @@ namespace FSpot.Query
 				NegatedIcon = null;
 				Update ();
 
-				if (NegatedToggled != null)
-					NegatedToggled (this);
+				NegatedToggled?.Invoke (this);
 			}
 		}
 
@@ -118,11 +117,13 @@ namespace FSpot.Query
 				container = new EventBox ();
 				box = new HBox ();
 
-				handle_box = new LiteralBox ();
-				handle_box.BorderWidth = 1;
+				handle_box = new LiteralBox {
+					BorderWidth = 1
+				};
 
-				label = new Label (System.Web.HttpUtility.HtmlEncode (Tag.Name));
-				label.UseMarkup = true;
+				label = new Label (System.Web.HttpUtility.HtmlEncode (Tag.Name)) {
+					UseMarkup = true
+				};
 
 				image = new Gtk.Image (NormalIcon);
 
@@ -243,14 +244,11 @@ namespace FSpot.Query
 
 		public void RemoveSelf ()
 		{
-			if (Removing != null)
-				Removing (this);
+			Removing?.Invoke (this);
 
-			if (Parent != null)
-				Parent.Remove (this);
+			Parent?.Remove (this);
 
-			if (Removed != null)
-				Removed (this);
+			Removed?.Invoke (this);
 		}
 
 		public override string SqlCondition ()
@@ -268,12 +266,10 @@ namespace FSpot.Query
 				}
 			}
 
-			return string.Format (
-				"id {0}IN (SELECT photo_id FROM photo_tags WHERE tag_id IN ({1}))",
-				(IsNegated ? "NOT " : string.Empty), ids);
+			return $"id {(IsNegated ? "NOT " : string.Empty)}IN (SELECT photo_id FROM photo_tags WHERE tag_id IN ({ids}))";
 		}
 
-		public override Gtk.Widget SeparatorWidget ()
+		public override Widget SeparatorWidget ()
 		{
 			return new Label ("ERR");
 		}
@@ -456,7 +452,7 @@ namespace FSpot.Query
                 return;
 
 		    if (preview_widget == null) {
-		        preview_widget = new Gtk.Label (" | ");
+		        preview_widget = new Label (" | ");
 		        box.Add (preview_widget);
 		    }
 
@@ -505,11 +501,11 @@ namespace FSpot.Query
 			};
 		static List<Literal> focusedLiterals = new List<Literal> ();
 		static readonly List<Widget> hiddenWidgets = new List<Widget> ();
-		Gtk.Container container;
+		Container container;
 		LiteralBox handle_box;
-		Gtk.Box box;
+		Box box;
 		Gtk.Image image;
-		Gtk.Label label;
+		Label label;
 		Pixbuf normal_icon;
 		//EventBox widget;
 		Widget widget;

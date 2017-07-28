@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -56,21 +56,21 @@
     <Compile Include="FSpot.Editors\SepiaEditor.cs" />
     <Compile Include="FSpot.Editors\SoftFocusEditor.cs" />
     <Compile Include="FSpot.Editors\TiltEditor.cs" />
-    <Compile Include="FSpot.Extensions\CommandMenuItemNode.cs" />
-    <Compile Include="FSpot.Extensions\ComplexMenuItemNode.cs" />
-    <Compile Include="FSpot.Extensions\ExportMenuItemNode.cs" />
-    <Compile Include="FSpot.Extensions\ICommand.cs" />
-    <Compile Include="FSpot.Extensions\IExporter.cs" />
-    <Compile Include="FSpot.Extensions\IMenuGenerator.cs" />
-    <Compile Include="FSpot.Extensions\IService.cs" />
-    <Compile Include="FSpot.Extensions\MenuNode.cs" />
-    <Compile Include="FSpot.Extensions\PhotoSelectionCondition.cs" />
-    <Compile Include="FSpot.Extensions\PopupCommands.cs" />
-    <Compile Include="FSpot.Extensions\ServiceNode.cs" />
-    <Compile Include="FSpot.Extensions\SidebarPage.cs" />
-    <Compile Include="FSpot.Extensions\SidebarPageNode.cs" />
-    <Compile Include="FSpot.Extensions\TransitionNode.cs" />
-    <Compile Include="FSpot.Extensions\ViewModeCondition.cs" />
+    <Compile Include="Extensions\CommandMenuItemNode.cs" />
+    <Compile Include="Extensions\ComplexMenuItemNode.cs" />
+    <Compile Include="Extensions\ExportMenuItemNode.cs" />
+    <Compile Include="Extensions\ICommand.cs" />
+    <Compile Include="Extensions\IExporter.cs" />
+    <Compile Include="Extensions\IMenuGenerator.cs" />
+    <Compile Include="Extensions\IService.cs" />
+    <Compile Include="Extensions\MenuNode.cs" />
+    <Compile Include="Extensions\PhotoSelectionCondition.cs" />
+    <Compile Include="Extensions\PopupCommands.cs" />
+    <Compile Include="Extensions\ServiceNode.cs" />
+    <Compile Include="Extensions\SidebarPage.cs" />
+    <Compile Include="Extensions\SidebarPageNode.cs" />
+    <Compile Include="Extensions\TransitionNode.cs" />
+    <Compile Include="Extensions\ViewModeCondition.cs" />
     <Compile Include="FSpot.Filters\ChmodFilter.cs" />
     <Compile Include="FSpot.Filters\FilterRequest.cs" />
     <Compile Include="FSpot.Filters\FilterSet.cs" />
@@ -80,7 +80,6 @@
     <Compile Include="FSpot.Filters\SharpFilter.cs" />
     <Compile Include="FSpot.Filters\UniqueNameFilter.cs" />
     <Compile Include="FSpot.Filters\WhiteListFilter.cs" />
-    <Compile Include="FSpot\FolderQueryWidget.cs" />
     <Compile Include="FSpot\FullScreenView.cs" />
     <Compile Include="FSpot\GroupAdaptor.cs" />
     <Compile Include="FSpot\GroupSelector.cs" />
@@ -105,7 +104,6 @@
     <Compile Include="FSpot\SelectionDataExtensions.cs" />
     <Compile Include="FSpot\SendEmail.cs" />
     <Compile Include="FSpot\SingleView.cs" />
-    <Compile Include="FSpot\TagSelectionWidget.cs" />
     <Compile Include="FSpot\TimeAdaptor.cs" />
     <Compile Include="FSpot.UI.Dialog\AboutDialog.cs" />
     <Compile Include="FSpot.UI.Dialog\AdjustTimeDialog.cs" />
@@ -124,32 +122,49 @@
     <Compile Include="FSpot.UI.Dialog\RepairDialog.cs" />
     <Compile Include="FSpot.UI.Dialog\SelectionRatioDialog.cs" />
     <Compile Include="FSpot.UI.Dialog\TagSelectionDialog.cs" />
-    <Compile Include="FSpot.UI.Dialog\ThreadProgressDialog.cs" />
+    <Compile Include="FSpot.UI.Dialog\TaskProgressDialog.cs" />
     <Compile Include="FSpot\UriCollection.cs" />
-    <Compile Include="FSpot.Widgets\CellRendererTextProgress.cs" />
-    <Compile Include="FSpot.Widgets\EditorPage.cs" />
-    <Compile Include="FSpot.Widgets\Filmstrip.cs" />
-    <Compile Include="FSpot.Widgets\FindBar.cs" />
-    <Compile Include="FSpot.Widgets\FolderTreeModel.cs" />
-    <Compile Include="FSpot.Widgets\FolderTreePage.cs" />
-    <Compile Include="FSpot.Widgets\FolderTreeView.cs" />
-    <Compile Include="FSpot.Widgets\ImageInfo.cs" />
-    <Compile Include="FSpot.Widgets\InfoBox.cs" />
-    <Compile Include="FSpot.Widgets\Loupe.cs" />
-    <Compile Include="FSpot.Widgets\MetadataDisplay.cs" />
-    <Compile Include="FSpot.Widgets\PhotoImageView.cs" />
-    <Compile Include="FSpot.Widgets\PreviewPopup.cs" />
-    <Compile Include="FSpot.Widgets\QueryView.cs" />
-    <Compile Include="FSpot.Widgets\RatingMenuItem.cs" />
-    <Compile Include="FSpot.Widgets\Sharpener.cs" />
-    <Compile Include="FSpot.Widgets\Sidebar.cs" />
-    <Compile Include="FSpot.Widgets\SlideShow.cs" />
-    <Compile Include="FSpot.Widgets\SoftFocus.cs" />
-    <Compile Include="FSpot.Widgets\TagEntry.cs" />
-    <Compile Include="FSpot.Widgets\TagMenu.cs" />
-    <Compile Include="FSpot.Widgets\TagView.cs" />
-    <Compile Include="FSpot.Widgets\TrayView.cs" />
-    <Compile Include="FSpot.Widgets\ViewContext.cs" />
+    <Compile Include="Widgets\FolderQueryWidget.cs" />
+    <Compile Include="Widgets\TagSelectionWidget.cs" />
+    <Compile Include="Widgets\CellRendererTextProgress.cs" />
+    <Compile Include="Widgets\EditorPage.cs" />
+    <Compile Include="Widgets\Filmstrip.cs" />
+    <Compile Include="Widgets\FindBar.cs" />
+    <Compile Include="Widgets\FolderTreeModel.cs" />
+    <Compile Include="Widgets\FolderTreePage.cs" />
+    <Compile Include="Widgets\FolderTreeView.cs" />
+    <Compile Include="Widgets\ImageInfo.cs" />
+    <Compile Include="Widgets\InfoBox.cs" />
+    <Compile Include="Widgets\Loupe.cs" />
+    <Compile Include="Widgets\MetadataDisplay.cs" />
+    <Compile Include="Widgets\PhotoImageView.cs" />
+    <Compile Include="Widgets\PreviewPopup.cs" />
+    <Compile Include="Widgets\QueryView.cs" />
+    <Compile Include="Widgets\RatingMenuItem.cs" />
+    <Compile Include="Widgets\Sharpener.cs" />
+    <Compile Include="Widgets\Sidebar.cs" />
+    <Compile Include="Widgets\SlideShow.cs" />
+    <Compile Include="Widgets\SoftFocus.cs" />
+    <Compile Include="Widgets\TagEntry.cs" />
+    <Compile Include="Widgets\TagMenu.cs" />
+    <Compile Include="Widgets\TagView.cs" />
+    <Compile Include="Widgets\TrayView.cs" />
+    <Compile Include="Widgets\ViewContext.cs" />
+    <Compile Include="Widgets\ThumbnailCaptionRenderer.cs" />
+    <Compile Include="Widgets\ThumbnailDateCaptionRenderer.cs" />
+    <Compile Include="Widgets\ThumbnailDecorationRenderer.cs" />
+    <Compile Include="Widgets\ThumbnailFilenameCaptionRenderer.cs" />
+    <Compile Include="Widgets\ThumbnailRatingDecorationRenderer.cs" />
+    <Compile Include="Widgets\ThumbnailTagsCaptionRenderer.cs" />
+    <Compile Include="Widgets\ThumbnailTextCaptionRenderer.cs" />
+    <Compile Include="Widgets\SelectionCollectionGridView.cs" />
+    <Compile Include="Widgets\CollectionCellGridView.cs" />
+    <Compile Include="Widgets\BrowseablePointerGridView.cs" />
+    <Compile Include="Widgets\EditorPageWidget.cs" />
+    <Compile Include="Widgets\LogicEntryCompletion.cs" />
+    <Compile Include="Widgets\CompletionLogic.cs" />
+    <Compile Include="Widgets\StartDragArgs.cs" />
+    <Compile Include="Pinta\ColorBgra.cs" />
     <Compile Include="FSpot\XScreenSaverSlide.cs" />
     <Compile Include="PhotoTagMenu.cs" />
     <Compile Include="PhotoVersionCommands.cs" />
@@ -157,24 +172,10 @@
     <Compile Include="PixbufUtils.cs" />
     <Compile Include="TagPopup.cs" />
     <Compile Include="ThumbnailCommand.cs" />
-    <Compile Include="FSpot.Widgets\ThumbnailCaptionRenderer.cs" />
-    <Compile Include="FSpot.Widgets\ThumbnailDateCaptionRenderer.cs" />
-    <Compile Include="FSpot.Widgets\ThumbnailDecorationRenderer.cs" />
-    <Compile Include="FSpot.Widgets\ThumbnailFilenameCaptionRenderer.cs" />
-    <Compile Include="FSpot.Widgets\ThumbnailRatingDecorationRenderer.cs" />
-    <Compile Include="FSpot.Widgets\ThumbnailTagsCaptionRenderer.cs" />
-    <Compile Include="FSpot.Widgets\ThumbnailTextCaptionRenderer.cs" />
-    <Compile Include="FSpot.Widgets\SelectionCollectionGridView.cs" />
-    <Compile Include="FSpot.Widgets\CollectionCellGridView.cs" />
-    <Compile Include="FSpot.Widgets\BrowseablePointerGridView.cs" />
-    <Compile Include="Pinta\ColorBgra.cs" />
     <Compile Include="Pinta\CairoExtensions.cs" />
     <Compile Include="Pinta\GaussianBlurEffect.cs" />
     <Compile Include="FSpot.ColorAdjustment\AutoStretch.cs" />
     <Compile Include="FSpot.Editors\AutoStretchEditor.cs" />
-    <Compile Include="FSpot.Widgets\EditorPageWidget.cs" />
-    <Compile Include="FSpot.Widgets\LogicEntryCompletion.cs" />
-    <Compile Include="FSpot.Widgets\CompletionLogic.cs" />
     <Compile Include="FSpot.Query\LiteralMenu.cs" />
     <Compile Include="FSpot.Query\TermMenuItem.cs" />
     <Compile Include="FSpot.Query\LiteralBox.cs" />
@@ -188,13 +189,12 @@
     <Compile Include="FSpot.Query\AbstractLiteral.cs" />
     <Compile Include="FSpot.Query\TextLiteral.cs" />
     <Compile Include="FSpot.Query\QueryWidget.cs" />
-    <Compile Include="FSpot.Widgets\StartDragArgs.cs" />
-    <Compile Include="FSpot.Import\ImportEvent.cs" />
     <Compile Include="FSpot\ObsoletePhotoQueries.cs" />
     <Compile Include="FSpot.Database\UpdaterUI.cs" />
-    <Compile Include="FSpot.Import\ImportDialogController.cs" />
-    <Compile Include="FSpot.Import\ImportSource.cs" />
-    <Compile Include="FSpot.Import\MultiImportSource.cs" />
+    <Compile Include="Import\ImportEvent.cs" />
+    <Compile Include="Import\ImportDialogController.cs" />
+    <Compile Include="Import\ImportSource.cs" />
+    <Compile Include="Import\MultiImportSource.cs" />
     <Compile Include="FSpot\InfoItem.cs" />
     <Compile Include="FSpot.Editors\EditorState.cs" />
     <Compile Include="FSpot.Editors\EditorNode.cs" />
@@ -396,11 +396,6 @@
       <Project>{02523C56-7715-4B6E-891B-6A1CBDE1B98C}</Project>
       <Name>FSpot.Import</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="FSpot\" />
-    <Folder Include="FSpot.Widgets\" />
-    <Folder Include="Pinta\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="f-spot.exe.config">

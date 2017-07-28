@@ -47,13 +47,14 @@ namespace FSpot.Query
 {
 	public class AndTerm : Term
 	{
-		public static List<string> Operators { get; private set; }
+		public static List<string> Operators { get; }
 
 		static AndTerm ()
 		{
-			Operators = new List<string> ();
-			Operators.Add (Catalog.GetString (" and "));
-			Operators.Add (Catalog.GetString (", "));
+			Operators = new List<string> {
+				Catalog.GetString (" and "),
+				Catalog.GetString (", ")
+			};
 		}
 
 		public AndTerm (Term parent, Literal after) : base (parent, after)
@@ -64,8 +65,7 @@ namespace FSpot.Query
 		{
 			var newme = new OrTerm (Parent, null);
 			newme.CopyAndInvertSubTermsFrom (this, recurse);
-			if (Parent != null)
-				Parent.Remove (this);
+			Parent?.Remove (this);
 			return newme;
 		}
 
@@ -86,9 +86,7 @@ namespace FSpot.Query
 			Tag hidden = App.Instance.Database.Tags.Hidden;
 			if (hidden != null)
 				if (FindByTag (hidden, true).Count == 0) {
-					condition.Append (string.Format (
-								" AND id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {0})", hidden.Id
-								));
+					condition.Append ($" AND id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {hidden.Id})");
 				}
 
 			condition.Append (")");

@@ -34,6 +34,8 @@ using System;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 using Mono.Unix;
 
@@ -49,7 +51,6 @@ using Hyena;
 using Hyena.Widgets;
 
 using Mono.Facebook;
-using System.Linq;
 
 namespace FSpot.Exporters.Facebook
 {
@@ -110,8 +111,8 @@ namespace FSpot.Exporters.Facebook
 			Uri uri = facebookSession.GetGrantUri (permission);
 			GtkBeans.Global.ShowUri (parent.Screen, uri.ToString ());
 
-			HigMessageDialog mbox = new HigMessageDialog (parent, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal,
-					Gtk.MessageType.Info, Gtk.ButtonsType.Ok, Catalog.GetString ("Waiting for authorization"),
+			HigMessageDialog mbox = new HigMessageDialog (parent, DialogFlags.DestroyWithParent | DialogFlags.Modal,
+					MessageType.Info, ButtonsType.Ok, Catalog.GetString ("Waiting for authorization"),
 					Catalog.GetString ("F-Spot will now launch your browser so that you can enable the permission you just selected.\n\nOnce you are directed by Facebook to return to this application, click \"Ok\" below." ));
 
 			mbox.Run ();
@@ -125,15 +126,9 @@ namespace FSpot.Exporters.Facebook
 			return facebookSession.HasAppPermission(permission);
 		}
 
-		public FacebookSession Facebook
-		{
-			get { return facebookSession; }
-		}
+		public FacebookSession Facebook => facebookSession;
 
-		public bool Authenticated
-		{
-			get { return connected; }
-		}
+		public bool Authenticated => connected;
 
 		bool SaveSessionInfo (SessionInfo info)
 		{
@@ -145,11 +140,12 @@ namespace FSpot.Exporters.Facebook
 				return false;
 			}
 
-			Hashtable attribs = new Hashtable();
+			Hashtable attribs = new Hashtable {
+				["name"] = keyring_item_name,
+				["uid"] = info.uid.ToString (),
+				["session_key"] = info.session_key
+			};
 			//Dictionary<string,string> attribs = new  Dictionary<string, string> ();
-			attribs["name"] = keyring_item_name;
-			attribs["uid"] = info.uid.ToString ();
-			attribs["session_key"] = info.session_key;
 			try {
 				Ring.CreateItem (keyring, ItemType.GenericSecret, keyring_item_name, attribs, info.secret, true);
 			} catch (KeyringException e) {
@@ -164,11 +160,12 @@ namespace FSpot.Exporters.Facebook
 		{
 			SessionInfo info = null;
 
-			Hashtable request_attributes = new Hashtable ();
+			Hashtable requestAttributes = new Hashtable {
+				["name"] = keyring_item_name
+			};
 			//Dictionary<string, string> request_attributes = new Dictionary<string, string> ();
-			request_attributes["name"] = keyring_item_name;
 			try {
-				foreach (ItemData result in Ring.Find (ItemType.GenericSecret, request_attributes)) {
+				foreach (ItemData result in Ring.Find (ItemType.GenericSecret, requestAttributes)) {
 					if (!result.Attributes.ContainsKey ("name") ||
 						!result.Attributes.ContainsKey ("uid") ||
 						!result.Attributes.ContainsKey ("session_key") ||
@@ -200,11 +197,12 @@ namespace FSpot.Exporters.Facebook
 				return false;
 			}
 
-			Hashtable request_attributes = new Hashtable ();
+			Hashtable requestAttributes = new Hashtable {
+				["name"] = keyring_item_name
+			};
 			//Dictionary<string,string> request_attributes = new Dictionary<string, string> ();
-			request_attributes["name"] = keyring_item_name;
 			try {
-				foreach (ItemData result in Ring.Find (ItemType.GenericSecret, request_attributes)) {
+				foreach (ItemData result in Ring.Find (ItemType.GenericSecret, requestAttributes)) {
 					Ring.DeleteItem(keyring, result.ItemID);
 					success = true;
 				}
@@ -243,60 +241,49 @@ namespace FSpot.Exporters.Facebook
 		}
 	}
 
-	internal class TagStore : ListStore
+	class TagStore : ListStore
 	{
-		private List<Mono.Facebook.Tag> _tags;
-
-		private Dictionary<long, User> _friends;
+		readonly List<Mono.Facebook.Tag> tags;
 
 		public TagStore (FacebookSession session, List<Mono.Facebook.Tag> tags, Dictionary<long, User> friends) : base (typeof (string))
 		{
-			_tags = tags;
-			_friends = friends;
+			this.tags = tags;
 
 			foreach (Mono.Facebook.Tag tag in Tags) {
 				long subject = tag.Subject;
-				User info = _friends [subject];
+				User info = friends [subject];
 				if (info == null ) {
 					try {
-						info = session.GetUserInfo (new long[] { subject }, new string[] { "first_name", "last_name" }) [0];
+						info = session.GetUserInfo (new [] { subject }, new [] { "first_name", "last_name" }) [0];
 					}
 					catch (FacebookException) {
 						continue;
 					}
 				}
-				AppendValues (string.Format ("{0} {1}", info.first_name ?? "", info.last_name ?? ""));
+				AppendValues ($"{info.first_name ?? ""} {info.last_name ?? ""}");
 			}
 		}
 
-		public List<Mono.Facebook.Tag> Tags
-		{
-			get { return _tags ?? new List<Mono.Facebook.Tag> (); }
-		}
+		public List<Mono.Facebook.Tag> Tags => tags ?? new List<Mono.Facebook.Tag> ();
 	}
 
 	public class FacebookExport : IExporter
 	{
-		private int size = 720;
-		private int max_photos_per_album = 200;
+		int size = 720;
+		int max_photos_per_album = 200;
 		FacebookExportDialog dialog;
-		ThreadProgressDialog progress_dialog;
-		System.Threading.Thread command_thread;
+		TaskProgressDialog progressDialog;
+		Task task;
 		Album album = null;
-
-		public FacebookExport ()
-		{
-		}
 
 		public void Run (IBrowsableCollection selection)
 		{
-
 			dialog = new FacebookExportDialog (selection);
 
 			if (selection.Items.Count () > max_photos_per_album) {
 				HigMessageDialog mbox = new HigMessageDialog (dialog,
-						Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal, Gtk.MessageType.Error,
-						Gtk.ButtonsType.Ok, Catalog.GetString ("Too many images to export"),
+						DialogFlags.DestroyWithParent | DialogFlags.Modal, MessageType.Error,
+						ButtonsType.Ok, Catalog.GetString ("Too many images to export"),
 						string.Format (Catalog.GetString ("Facebook only permits {0} photographs per album.  Please refine your selection and try again."), max_photos_per_album));
 				mbox.Run ();
 				mbox.Destroy ();
@@ -311,8 +298,8 @@ namespace FSpot.Exporters.Facebook
 			if (dialog.CreateAlbum) {
 				string name = dialog.AlbumName;
 				if (string.IsNullOrEmpty (name)) {
-					HigMessageDialog mbox = new HigMessageDialog (dialog, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal,
-							Gtk.MessageType.Error, Gtk.ButtonsType.Ok, Catalog.GetString ("Album must have a name"),
+					HigMessageDialog mbox = new HigMessageDialog (dialog, DialogFlags.DestroyWithParent | DialogFlags.Modal,
+							MessageType.Error, ButtonsType.Ok, Catalog.GetString ("Album must have a name"),
 							Catalog.GetString ("Please name your album or choose an existing album."));
 					mbox.Run ();
 					mbox.Destroy ();
@@ -326,8 +313,8 @@ namespace FSpot.Exporters.Facebook
 					album = dialog.Account.Facebook.CreateAlbum (name, description, location);
 				}
 				catch (FacebookException fe) {
-					HigMessageDialog mbox = new HigMessageDialog (dialog, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal,
-							Gtk.MessageType.Error, Gtk.ButtonsType.Ok, Catalog.GetString ("Creating a new album failed"),
+					HigMessageDialog mbox = new HigMessageDialog (dialog, DialogFlags.DestroyWithParent | DialogFlags.Modal,
+							MessageType.Error, ButtonsType.Ok, Catalog.GetString ("Creating a new album failed"),
 							string.Format (Catalog.GetString ("An error occurred creating a new album.\n\n{0}"), fe.Message));
 					mbox.Run ();
 					mbox.Destroy ();
@@ -340,11 +327,10 @@ namespace FSpot.Exporters.Facebook
 			if (dialog.Account != null) {
 				dialog.Hide ();
 
-				command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (Upload));
-				command_thread.Name = Mono.Unix.Catalog.GetString ("Uploading Pictures");
+				task = new Task (Upload);
 
-				progress_dialog = new ThreadProgressDialog (command_thread, selection.Items.Count ());
-				progress_dialog.Start ();
+				progressDialog = new TaskProgressDialog (task, Catalog.GetString ("Uploading Pictures"));
+				progressDialog.Start ();
 			}
 
 			dialog.Destroy ();
@@ -362,43 +348,42 @@ namespace FSpot.Exporters.Facebook
 			filters.Add (new JpegFilter ());
 			filters.Add (new ResizeFilter ((uint) size));
 
-			for (int i = 0; i < items.Length; i++) {
+			for (var i = 0; i < items.Length; i++) {
 				try {
 					IPhoto item = items [i];
 
-					FileInfo file_info;
-					Log.DebugFormat ("uploading {0}", i);
+					Log.DebugFormat ($"uploading {i}");
 
-					progress_dialog.Message = string.Format (Catalog.GetString ("Uploading picture \"{0}\" ({1} of {2})"), item.Name, i + 1, items.Length);
-					progress_dialog.ProgressText = string.Empty;
-					progress_dialog.Fraction = i / (double) items.Length;
+					progressDialog.Message = string.Format (Catalog.GetString ("Uploading picture \"{0}\" ({1} of {2})"), item.Name, i + 1, items.Length);
+					progressDialog.ProgressText = string.Empty;
+					progressDialog.Fraction = i / (double) items.Length;
 
 					FilterRequest request = new FilterRequest (item.DefaultVersion.Uri);
 					filters.Convert (request);
 
-					file_info = new FileInfo (request.Current.LocalPath);
+					var fileInfo = new FileInfo (request.Current.LocalPath);
 
 					album.Upload (captions [i] ?? "", request.Current.LocalPath);
 
-					sent_bytes += file_info.Length;
+					sent_bytes += fileInfo.Length;
 				}
 				catch (Exception e) {
-					progress_dialog.Message = string.Format (Catalog.GetString ("Error Uploading To Facebook: {0}"), e.Message);
-					progress_dialog.ProgressText = Catalog.GetString ("Error");
+					progressDialog.Message = string.Format (Catalog.GetString ("Error Uploading To Facebook: {0}"), e.Message);
+					progressDialog.ProgressText = Catalog.GetString ("Error");
 					Log.DebugException (e);
 
-					if (progress_dialog.PerformRetrySkip ())
+					if (progressDialog.PerformRetrySkip ())
 						i--;
 				}
 			}
 
-			progress_dialog.Message = Catalog.GetString ("Done Sending Photos");
-			progress_dialog.Fraction = 1.0;
-			progress_dialog.ProgressText = Catalog.GetString ("Upload Complete");
-			progress_dialog.ButtonLabel = Gtk.Stock.Ok;
+			progressDialog.Message = Catalog.GetString ("Done Sending Photos");
+			progressDialog.Fraction = 1.0;
+			progressDialog.ProgressText = Catalog.GetString ("Upload Complete");
+			progressDialog.ButtonLabel = Stock.Ok;
 
 			var li = new LinkButton ("http://www.facebook.com/group.php?gid=158960179844&ref=mf", Catalog.GetString ("Visit F-Spot group on Facebook"));
-			progress_dialog.VBoxPackEnd (li);
+			progressDialog.VBoxPackEnd (li);
 			li.ShowAll ();
 		}
 	}

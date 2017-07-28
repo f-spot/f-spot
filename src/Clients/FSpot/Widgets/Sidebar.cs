@@ -58,15 +58,12 @@ namespace FSpot.Widgets
 
 		string PrefKeyForContext (ViewContext context)
 		{
-			return string.Format ("{0}/{1}", PREF_PREFIX, context);
+			return $"{PREF_PREFIX}/{context}";
 		}
 
 		public string PageForContext (ViewContext context)
 		{
-			string name = Preferences.Get<string> (PrefKeyForContext (context));
-			if (name == null)
-				name = DefaultForContext (context);
-			return name;
+			return Preferences.Get<string> (PrefKeyForContext (context)) ?? DefaultForContext (context);
 		}
 
 		public void SwitchedToPage (ViewContext context, string name)
@@ -83,15 +80,13 @@ namespace FSpot.Widgets
 		}
 	}
 
-	public class Sidebar : VBox  {
-
-		HBox button_box;
-		public Notebook Notebook { get; private set; }
-		MenuButton choose_button;
-		EventBox eventBox;
-		Menu choose_menu;
-		List<string> menu_list;
-		List<string> image_list;
+	public class Sidebar : VBox
+	{
+		public Notebook Notebook { get; }
+		readonly MenuButton chooseButton;
+		readonly Menu chooseMenu;
+		readonly List<string> menuList;
+		readonly List<string> imageList;
 
 		public event EventHandler CloseRequested;
 
@@ -104,7 +99,7 @@ namespace FSpot.Widgets
 
 		public event EventHandler ContextChanged;
 		public event EventHandler PageSwitched;
-		
+
 		ViewContext view_context = ViewContext.Unknown;
 		public ViewContext Context {
 			get { return view_context; }
@@ -121,44 +116,44 @@ namespace FSpot.Widgets
 			ContextSwitchStrategy = new MRUSidebarContextSwitchStrategy ();
 			ContextChanged += HandleContextChanged;
 
-			button_box = new HBox ();
-			PackStart (button_box, false, false, 0);
+			var buttonBox = new HBox ();
+			PackStart (buttonBox, false, false, 0);
 
-			Notebook = new Notebook ();
-			Notebook.ShowTabs = false;
-			Notebook.ShowBorder = false;
+			Notebook = new Notebook {
+				ShowTabs = false,
+				ShowBorder = false
+			};
 			PackStart (Notebook, true, true, 0);
 
-			var button = new Button ();
-			button.Image = new Image ("gtk-close", Gtk.IconSize.Button);
-			button.Relief = ReliefStyle.None;
+			var button = new Button {
+				Image = new Image ("gtk-close", Gtk.IconSize.Button),
+				Relief = ReliefStyle.None
+			};
 			button.Pressed += HandleCloseButtonPressed;
-			button_box.PackEnd (button, false, true, 0);
+			buttonBox.PackEnd (button, false, true, 0);
 
-			choose_button = new MenuButton ();
-			choose_button.Relief = ReliefStyle.None;
+			chooseButton = new MenuButton { Relief = ReliefStyle.None };
 
-			eventBox = new EventBox ();
-			eventBox.Add (choose_button);
+			var eventBox = new EventBox { chooseButton };
 
-			button_box.PackStart (eventBox, true, true, 0);
+			buttonBox.PackStart (eventBox, true, true, 0);
 
-			choose_menu = new Menu ();
-			choose_button.Menu = choose_menu;
+			chooseMenu = new Menu ();
+			chooseButton.Menu = chooseMenu;
 
-			menu_list = new List<string> ();
-			image_list = new List<string> ();
+			menuList = new List<string> ();
+			imageList = new List<string> ();
 		}
 
 		void HandleContextChanged (object sender, EventArgs args)
 		{
 			// Make sure the ViewModeCondition is set correctly.
 			if (Context == ViewContext.Single)
-				ViewModeCondition.Mode = FSpot.Extensions.ViewMode.Single;
+				ViewModeCondition.Mode = ViewMode.Single;
 			else if (Context == ViewContext.Library || Context == ViewContext.Edit)
-				ViewModeCondition.Mode = FSpot.Extensions.ViewMode.Library;
+				ViewModeCondition.Mode = ViewMode.Library;
 			else
-				ViewModeCondition.Mode = FSpot.Extensions.ViewMode.Unknown;
+				ViewModeCondition.Mode = ViewMode.Unknown;
 
 			string name = ContextSwitchStrategy.PageForContext (Context);
 			SwitchTo (name);
@@ -180,30 +175,32 @@ namespace FSpot.Widgets
 			page.CanSelectChanged += HandleCanSelectChanged;
 
 			string label = page.Label;
-			string icon_name = page.IconName;
+			string iconName = page.IconName;
 
 			Notebook.AppendPage (page.SidebarWidget, new Label (label));
 			page.SidebarWidget.Show ();
 
 			MenuItem item;
-			if (icon_name == null)
+			if (iconName == null)
 				item = new MenuItem (label);
-			else {
-				item = new ImageMenuItem (label);
-				(item as ImageMenuItem).Image = new Image ();
-				((item as ImageMenuItem).Image as Image).IconName = icon_name;
+			else
+			{
+				item = new ImageMenuItem (label) {
+					Image = new Image { IconName = iconName }
+				};
 			}
 
 			item.Activated += HandleItemClicked;
-			choose_menu.Append (item);
+			chooseMenu.Append (item);
 			item.Show ();
 
 			if (Notebook.Children.Length == 1) {
-				choose_button.Label = label;
-				choose_button.Image.IconName = icon_name;
+				chooseButton.Label = label;
+				chooseButton.Image.IconName = iconName;
 			}
-			menu_list.Add (label);
-			image_list.Add (icon_name);
+
+			menuList.Add (label);
+			imageList.Add (iconName);
 		}
 
 		public void HandleMainWindowViewModeChanged (object o, EventArgs args)
@@ -234,21 +231,18 @@ namespace FSpot.Widgets
 			}
 
 			Notebook.CurrentPage = n;
-			choose_button.Label = menu_list [n];
-			choose_button.Image.IconName = image_list [n];
+			chooseButton.Label = menuList [n];
+			chooseButton.Image.IconName = imageList [n];
 
 			PageSwitched?.Invoke (this, EventArgs.Empty);
 		}
 
-		public int CurrentPage
-		{
-			get { return Notebook.CurrentPage; }
-		}
+		public int CurrentPage => Notebook.CurrentPage;
 
 		public void SwitchTo (string name)
 		{
-			if (menu_list.Contains (name))
-				SwitchTo (menu_list.IndexOf (name));
+			if (menuList.Contains (name))
+				SwitchTo (menuList.IndexOf (name));
 		}
 
 		public bool IsActive (SidebarPage page)
@@ -256,17 +250,17 @@ namespace FSpot.Widgets
 			return (Notebook.GetNthPage (Notebook.CurrentPage) == page.SidebarWidget);
 		}
 
-		public void HandleSelectionChanged (IBrowsableCollection collection) {
+		public void HandleSelectionChanged (IBrowsableCollection collection)
+		{
 			Selection = collection;
 			// Proxy selection change to the subscribed sidebar pages.
-			if (SelectionChanged != null)
-				SelectionChanged (collection);
+			SelectionChanged?.Invoke (collection);
 		}
 
 		// Proxy selection item changes to the subscribed sidebar pages.
-		public void HandleSelectionItemsChanged (IBrowsableCollection collection, BrowsableEventArgs args) {
-			if (SelectionItemsChanged != null)
-				SelectionItemsChanged (collection, args);
+		public void HandleSelectionItemsChanged (IBrowsableCollection collection, BrowsableEventArgs args)
+		{
+			SelectionItemsChanged?.Invoke (collection, args);
 		}
 	}
 }

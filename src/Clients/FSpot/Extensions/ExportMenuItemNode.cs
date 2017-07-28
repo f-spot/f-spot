@@ -35,20 +35,17 @@ using FSpot.Core;
 
 namespace FSpot.Extensions
 {
-	public delegate PhotoList SelectedImages ();
-
 	[ExtensionNode ("ExportMenuItem")]
 	public class ExportMenuItemNode : MenuItemNode
 	{
-
 		[NodeAttribute ("class", true)]
-		protected string class_name;
+		protected string className;
 
-		public static SelectedImages SelectedImages;
+		public static Func<PhotoList> SelectedImages;
 
 		protected override void OnActivated (object o, EventArgs e)
 		{
-			var exporter = (IExporter) Addin.CreateInstance (class_name);
+			var exporter = (IExporter) Addin.CreateInstance (className);
 			exporter.Run (SelectedImages ());
 		}
 	}

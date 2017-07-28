@@ -34,62 +34,62 @@ namespace FSpot.Core
 {
 	public class PhotoList : IBrowsableCollection
 	{
-		protected List<IPhoto> list;
+		protected List<IPhoto> photoList;
 
 		public PhotoList (IEnumerable<IPhoto> photos)
 		{
-			list = new List<IPhoto> (photos);
+			photoList = new List<IPhoto> (photos);
 		}
 
 		public PhotoList (params IPhoto[] photos) : this(photos as IEnumerable<IPhoto>)
 		{
 		}
 
-		public int Count => list.Count;
+		public int Count => photoList.Count;
 
 		public void Clear ()
 		{
-			list.Clear ();
+			photoList.Clear ();
 			Reload ();
 		}
 
 		public int Capacity {
-			set { list.Capacity = value; }
+			set { photoList.Capacity = value; }
 		}
 
 		public void Add (IPhoto photo)
 		{
-			list.Add (photo);
+			photoList.Add (photo);
 			Reload ();
 		}
 
 		public void Add (IEnumerable<IPhoto> items)
 		{
-			list.AddRange (items);
+			photoList.AddRange (items);
 			Reload ();
 		}
 
 		public int IndexOf (IPhoto item)
 		{
-			return list.IndexOf (item);
+			return photoList.IndexOf (item);
 		}
 
 		public bool Contains (IPhoto item)
 		{
-			return list.Contains (item);
+			return photoList.Contains (item);
 		}
 
 		public IPhoto this[int index] {
-			get { return list[index]; }
+			get { return photoList[index]; }
 			set {
-				list[index] = value;
+				photoList[index] = value;
 				MarkChanged (index, FullInvalidate.Instance);
 			}
 		}
 
 		public void Sort (IComparer<IPhoto> compare)
 		{
-			list.Sort (compare);
+			photoList.Sort (compare);
 			Reload ();
 		}
 
@@ -108,7 +108,7 @@ namespace FSpot.Core
 			ItemsChanged?.Invoke (this, args);
 		}
 
-		public IEnumerable<IPhoto> Items => list.AsEnumerable ();
+		public IEnumerable<IPhoto> Items => photoList.AsEnumerable ();
 
 		public event IBrowsableCollectionChangedHandler Changed;
 		public event IBrowsableCollectionItemsChangedHandler ItemsChanged;

@@ -166,7 +166,7 @@ namespace FSpot
 				}
 			}
 
-			list = items;
+			photoList = items;
 			Reload ();
 		}
 	}

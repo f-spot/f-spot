@@ -1,0 +1,16 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Default" type="DotNetProject" factoryName=".NET Project">
+    <option name="PROJECT_PATH" value="$PROJECT_DIR$/src/Clients/FSpot/FSpot.csproj" />
+    <option name="PROJECT_KIND" value="Console" />
+    <option name="PROJECT_TFM" value=".NETFramework,Version=v4.6" />
+    <option name="EXE_PATH" value="$PROJECT_DIR$/bin/f-spot.exe" />
+    <option name="PROGRAM_PARAMETERS" value="--debug" />
+    <option name="WORKING_DIRECTORY" value="" />
+    <option name="USE_MONO" value="0" />
+    <option name="USE_EXTERNAL_CONSOLE" value="0" />
+    <envs>
+      <env name="MONO_CAIRO_DEBUG_DISPOSE" value="1" />
+    </envs>
+    <method />
+  </configuration>
+</component>

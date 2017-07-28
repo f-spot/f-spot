@@ -55,6 +55,9 @@ using FSpot.UI.Dialog;
 using FSpot.Platform;
 using FSpot.Import;
 using FSpot.Settings;
+// ReSharper disable InconsistentNaming
+// ReSharper disable SuggestVarOrType_BuiltInTypes
+// ReSharper disable UnusedMember.Local
 
 namespace FSpot
 {
@@ -62,18 +65,18 @@ namespace FSpot
 	{
 		public Sidebar Sidebar { get; set; }
 		public Gtk.Window Window => main_window;
-		public Gtk.ToggleAction ReverseOrderAction => reverse_order;
+		public ToggleAction ReverseOrderAction => reverse_order;
 
 		TagSelectionWidget tag_selection_widget;
-		Gtk.ScrolledWindow tag_selection_scrolled;
+		readonly Gtk.ScrolledWindow tag_selection_scrolled;
 
 #pragma warning disable 649
 		[GtkBeans.Builder.Object] Gtk.Window main_window;
 
-		[GtkBeans.Builder.Object] Gtk.HPaned main_hpaned;
-		[GtkBeans.Builder.Object] Gtk.VBox view_vbox;
+		[GtkBeans.Builder.Object] HPaned main_hpaned;
+		[GtkBeans.Builder.Object] VBox view_vbox;
 
-		[GtkBeans.Builder.Object] Gtk.VBox toolbar_vbox;
+		[GtkBeans.Builder.Object] VBox toolbar_vbox;
 
 		[GtkBeans.Builder.Object] Gtk.ScrolledWindow icon_view_scrolled;
 		[GtkBeans.Builder.Object] Box photo_box;
@@ -81,7 +84,7 @@ namespace FSpot
 
 		[GtkBeans.Builder.Object] Label status_label;
 
-		[GtkBeans.Builder.Object] Gtk.UIManager uimanager;
+		[GtkBeans.Builder.Object] UIManager uimanager;
 		// Photo
 		[GtkBeans.Builder.Object] Gtk.Action create_version_menu_item;
 		[GtkBeans.Builder.Object] Gtk.Action delete_version_menu_item;
@@ -112,30 +115,30 @@ namespace FSpot
 		[GtkBeans.Builder.Object] Gtk.Action remove_tag;
 
 		// View
-		[GtkBeans.Builder.Object] Gtk.ToggleAction display_toolbar;
-		[GtkBeans.Builder.Object] Gtk.ToggleAction display_sidebar;
-		[GtkBeans.Builder.Object] Gtk.ToggleAction display_timeline;
-		[GtkBeans.Builder.Object] Gtk.ToggleAction display_filmstrip;
-		[GtkBeans.Builder.Object] Gtk.ToggleAction display_dates_menu_item;
-		[GtkBeans.Builder.Object] Gtk.ToggleAction display_tags_menu_item;
-		[GtkBeans.Builder.Object] Gtk.ToggleAction display_ratings_menu_item;
+		[GtkBeans.Builder.Object] ToggleAction display_toolbar;
+		[GtkBeans.Builder.Object] ToggleAction display_sidebar;
+		[GtkBeans.Builder.Object] ToggleAction display_timeline;
+		[GtkBeans.Builder.Object] ToggleAction display_filmstrip;
+		[GtkBeans.Builder.Object] ToggleAction display_dates_menu_item;
+		[GtkBeans.Builder.Object] ToggleAction display_tags_menu_item;
+		[GtkBeans.Builder.Object] ToggleAction display_ratings_menu_item;
 
 		[GtkBeans.Builder.Object] Gtk.Action zoom_in;
 		[GtkBeans.Builder.Object] Gtk.Action zoom_out;
-		[GtkBeans.Builder.Object] Gtk.ToggleAction loupe_menu_item;
+		[GtkBeans.Builder.Object] ToggleAction loupe_menu_item;
 
-		[GtkBeans.Builder.Object] Gtk.RadioAction tag_icon_hidden;
-		[GtkBeans.Builder.Object] Gtk.RadioAction tag_icon_small;
-		[GtkBeans.Builder.Object] Gtk.RadioAction tag_icon_medium;
-		[GtkBeans.Builder.Object] Gtk.RadioAction tag_icon_large;
+		[GtkBeans.Builder.Object] RadioAction tag_icon_hidden;
+		[GtkBeans.Builder.Object] RadioAction tag_icon_small;
+		[GtkBeans.Builder.Object] RadioAction tag_icon_medium;
+		[GtkBeans.Builder.Object] RadioAction tag_icon_large;
 
-		[GtkBeans.Builder.Object] Gtk.ToggleAction reverse_order;
+		[GtkBeans.Builder.Object] ToggleAction reverse_order;
 
 		// Find
 		[GtkBeans.Builder.Object] Gtk.Action clear_date_range;
 		[GtkBeans.Builder.Object] Gtk.Action clear_rating_filter;
 
-		[GtkBeans.Builder.Object] Gtk.ToggleAction find_untagged;
+		[GtkBeans.Builder.Object] ToggleAction find_untagged;
 
 		[GtkBeans.Builder.Object] Gtk.Action clear_roll_filter;
 
@@ -151,32 +154,27 @@ namespace FSpot
 
 		[GtkBeans.Builder.Object] VBox info_vbox;
 
-		[GtkBeans.Builder.Object] Gtk.HBox tagbar;
-		[GtkBeans.Builder.Object] Gtk.VBox tag_entry_container;
-		[GtkBeans.Builder.Object] Gtk.VBox sidebar_vbox;
+		[GtkBeans.Builder.Object] HBox tagbar;
+		[GtkBeans.Builder.Object] VBox tag_entry_container;
+		[GtkBeans.Builder.Object] VBox sidebar_vbox;
 #pragma warning restore 649
 
 		TagEntry tag_entry;
 
-		Gtk.Toolbar toolbar;
+		readonly Toolbar toolbar;
 
 		FindBar find_bar;
 
 		PhotoVersionMenu versions_submenu;
 
-		Gtk.ToggleToolButton browse_button;
-		Gtk.ToggleToolButton edit_button;
+		readonly ToggleToolButton browse_button;
+		readonly ToggleToolButton edit_button;
 
-		QueryView icon_view;
+		readonly QueryView icon_view;
 
-		PhotoView photo_view;
-
-		public PhotoView PhotoView {
-			get { return photo_view; }
-		}
+		public PhotoView PhotoView { get; }
 
 		FullScreenView fsview;
-		PhotoQuery query;
 		GroupSelector group_selector;
 		QueryWidget query_widget;
 
@@ -187,8 +185,8 @@ namespace FSpot
 
 		Label count_label;
 
-		Gtk.ToolButton display_next_button;
-		Gtk.ToolButton display_previous_button;
+		ToolButton display_next_button;
+		ToolButton display_previous_button;
 
 		bool write_metadata = false;
 
@@ -201,7 +199,7 @@ namespace FSpot
 			set { Tag.TagIconSize = (Settings.IconSize) value; }
 		}
 
-		static TargetEntry[] tag_target_table = {
+		static readonly TargetEntry[] tag_target_table = {
 				DragDropTargets.TagListEntry
 		};
 
@@ -215,8 +213,8 @@ namespace FSpot
 
 		public InfoBox InfoBox { get; set; }
 
-		static TargetList iconSourceTargetList = new TargetList ();
-		static TargetList iconDestTargetList = new TargetList ();
+		static readonly TargetList iconSourceTargetList = new TargetList ();
+		static readonly TargetList iconDestTargetList = new TargetList ();
 
 		static MainWindow ()
 		{
@@ -237,7 +235,7 @@ namespace FSpot
 					service.Initialize ();
 					service.Start ();
 				} catch (Exception e) {
-					Log.WarningFormat ("Something went wrong while starting the {0} extension.", service.Id);
+					Log.WarningFormat ($"Something went wrong while starting the {service.Id} extension.");
 					Log.DebugException (e);
 				}
 			}
@@ -254,7 +252,7 @@ namespace FSpot
 				Log.Debug ("Your screen doesn't support alpha channels!");
 				colormap = ((Widget)main_window).Screen.RgbColormap;
 			}
-			Gtk.Widget.DefaultColormap = colormap;
+			Widget.DefaultColormap = colormap;
 
 			LoadPreference (Preferences.MAIN_WINDOW_WIDTH);
 			LoadPreference (Preferences.MAIN_WINDOW_X);
@@ -266,7 +264,7 @@ namespace FSpot
 
 			pagesetup_menu_item.Activated += HandlePageSetupActivated;
 
-			toolbar = new Gtk.Toolbar ();
+			toolbar = new Toolbar ();
 			toolbar_vbox.PackStart (toolbar);
 
 			ToolButton import_button = GtkUtil.ToolButtonFromTheme ("gtk-add", Catalog.GetString ("Import Photos…"), true);
@@ -286,18 +284,20 @@ namespace FSpot
 
 			toolbar.Insert (new SeparatorToolItem (), -1);
 
-			browse_button = new ToggleToolButton ();
-			browse_button.Label = Catalog.GetString ("Browsing");
-			browse_button.IconName = "mode-browse";
-			browse_button.IsImportant = true;
+			browse_button = new ToggleToolButton {
+				Label = Catalog.GetString ("Browsing"),
+				IconName = "mode-browse",
+				IsImportant = true
+			};
 			browse_button.Toggled += HandleToggleViewBrowse;
 			browse_button.TooltipText = Catalog.GetString ("Browse your photo library");
 			toolbar.Insert (browse_button, -1);
 
-			edit_button = new ToggleToolButton ();
-			edit_button.Label = Catalog.GetString ("Editing");
-			edit_button.IconName = "mode-image-edit";
-			edit_button.IsImportant = true;
+			edit_button = new ToggleToolButton {
+				Label = Catalog.GetString ("Editing"),
+				IconName = "mode-image-edit",
+				IsImportant = true
+			};
 			edit_button.Toggled += HandleToggleViewPhoto;
 			edit_button.TooltipText = Catalog.GetString ("Edit your photos");
 			toolbar.Insert (edit_button, -1);
@@ -314,9 +314,10 @@ namespace FSpot
 			ss_button.TooltipText = Catalog.GetString ("View photos in a slideshow");
 			toolbar.Insert (ss_button, -1);
 
-			SeparatorToolItem white_space = new SeparatorToolItem ();
-			white_space.Draw = false;
-			white_space.Expand = true;
+			SeparatorToolItem white_space = new SeparatorToolItem {
+				Draw = false,
+				Expand = true
+			};
 			toolbar.Insert (white_space, -1);
 
 			ToolItem label_item = new ToolItem ();
@@ -338,8 +339,9 @@ namespace FSpot
 			ViewModeChanged += Sidebar.HandleMainWindowViewModeChanged;
 			sidebar_vbox.Add (Sidebar);
 
-			tag_selection_scrolled = new Gtk.ScrolledWindow ();
-			tag_selection_scrolled.ShadowType = ShadowType.In;
+			tag_selection_scrolled = new Gtk.ScrolledWindow {
+				ShadowType = ShadowType.In
+			};
 
 			tag_selection_widget = new TagSelectionWidget (Database.Tags);
 			tag_selection_scrolled.Add (tag_selection_widget);
@@ -371,23 +373,24 @@ namespace FSpot
 			LoadPreference (Preferences.TAG_ICON_SIZE);
 
 			try {
-				query = new PhotoQuery (Database.Photos);
+				Query = new PhotoQuery (Database.Photos);
 			} catch (Exception e) {
 				//FIXME assume any exception here is due to a corrupt db and handle that.
 				new RepairDbDialog (e, Database.Repair (), main_window);
-				query = new PhotoQuery (Database.Photos);
+				Query = new PhotoQuery (Database.Photos);
 			}
 
 			UpdateStatusLabel ();
-			query.Changed += HandleQueryChanged;
+			Query.Changed += HandleQueryChanged;
 
 			Database.Photos.ItemsChanged += HandleDbItemsChanged;
 			Database.Tags.ItemsChanged += HandleTagsChanged;
 			Database.Tags.ItemsAdded += HandleTagsChanged;
 			Database.Tags.ItemsRemoved += HandleTagsChanged;
 
-			group_selector = new GroupSelector ();
-			group_selector.Adaptor = new TimeAdaptor (query, Preferences.Get<bool> (Preferences.GROUP_ADAPTOR_ORDER_ASC));
+			group_selector = new GroupSelector {
+				Adaptor = new TimeAdaptor (Query, Preferences.Get<bool> (Preferences.GROUP_ADAPTOR_ORDER_ASC))
+			};
 
 			group_selector.ShowAll ();
 
@@ -397,25 +400,25 @@ namespace FSpot
 			view_vbox.PackStart (group_selector, false, false, 0);
 			view_vbox.ReorderChild (group_selector, 0);
 
-			find_bar = new FindBar (query, tag_selection_widget.Model);
+			find_bar = new FindBar (Query, tag_selection_widget.Model);
 			view_vbox.PackStart (find_bar, false, false, 0);
 			view_vbox.ReorderChild (find_bar, 1);
 			main_window.KeyPressEvent += HandleKeyPressEvent;
 
-			query_widget = new QueryWidget (query, Database);
+			query_widget = new QueryWidget (Query, Database);
 			query_widget.Logic.Changed += HandleQueryLogicChanged;
 			view_vbox.PackStart (query_widget, false, false, 0);
 			view_vbox.ReorderChild (query_widget, 2);
 
 			MenuItem findByTag = uimanager.GetWidget ("/ui/menubar1/find/find_by_tag") as MenuItem;
 			query_widget.Hidden += (s, e) => {
-				((Gtk.Label)findByTag.Child).TextWithMnemonic = Catalog.GetString ("Show _Find Bar");
+				((Label)findByTag.Child).TextWithMnemonic = Catalog.GetString ("Show _Find Bar");
 			};
 			query_widget.Shown += (s, e) => {
-				((Gtk.Label)findByTag.Child).TextWithMnemonic = Catalog.GetString ("Hide _Find Bar");
+				((Label)findByTag.Child).TextWithMnemonic = Catalog.GetString ("Hide _Find Bar");
 			};
 
-			icon_view = new QueryView (query);
+			icon_view = new QueryView (Query);
 			icon_view.ZoomChanged += HandleZoomChanged;
 			LoadPreference (Preferences.ZOOM);
 			LoadPreference (Preferences.SHOW_TAGS);
@@ -454,19 +457,19 @@ namespace FSpot
 			icon_view.DragDataReceived += HandleIconViewDragDataReceived;
 			icon_view.KeyPressEvent += HandleIconViewKeyPressEvent;
 
-			photo_view = new PhotoView (query);
-			photo_box.Add (photo_view);
+			PhotoView = new PhotoView (Query);
+			photo_box.Add (PhotoView);
 
-			photo_view.DoubleClicked += HandleDoubleClicked;
-			photo_view.KeyPressEvent += HandlePhotoViewKeyPressEvent;
-			photo_view.UpdateStarted += HandlePhotoViewUpdateStarted;
-			photo_view.UpdateFinished += HandlePhotoViewUpdateFinished;
+			PhotoView.DoubleClicked += HandleDoubleClicked;
+			PhotoView.KeyPressEvent += HandlePhotoViewKeyPressEvent;
+			PhotoView.UpdateStarted += HandlePhotoViewUpdateStarted;
+			PhotoView.UpdateFinished += HandlePhotoViewUpdateFinished;
 
-			photo_view.View.ZoomChanged += HandleZoomChanged;
+			PhotoView.View.ZoomChanged += HandleZoomChanged;
 
 			// Tag typing: focus the tag entry if the user starts typing a tag
 			icon_view.KeyPressEvent += HandlePossibleTagTyping;
-			photo_view.KeyPressEvent += HandlePossibleTagTyping;
+			PhotoView.KeyPressEvent += HandlePossibleTagTyping;
 			tag_entry = new TagEntry (Database.Tags);
 			tag_entry.KeyPressEvent += HandleTagEntryKeyPressEvent;
 			tag_entry.TagsAttached += HandleTagEntryTagsAttached;
@@ -474,12 +477,11 @@ namespace FSpot
 			tag_entry.Activated += HandleTagEntryActivate;
 			tag_entry_container.Add (tag_entry);
 
-			Gtk.Drag.DestSet (photo_view, DestDefaults.All, tag_target_table,
-				DragAction.Copy | DragAction.Move);
+			Gtk.Drag.DestSet (PhotoView, DestDefaults.All, tag_target_table, DragAction.Copy | DragAction.Move);
 
-			photo_view.DragMotion += HandlePhotoViewDragMotion;
-			photo_view.DragDrop += HandlePhotoViewDragDrop;
-			photo_view.DragDataReceived += HandlePhotoViewDragDataReceived;
+			PhotoView.DragMotion += HandlePhotoViewDragMotion;
+			PhotoView.DragDrop += HandlePhotoViewDragDrop;
+			PhotoView.DragDataReceived += HandlePhotoViewDragDataReceived;
 
 			view_notebook.SwitchPage += HandleViewNotebookSwitchPage;
 			group_selector.Adaptor.GlassSet += HandleAdaptorGlassSet;
@@ -539,16 +541,20 @@ namespace FSpot
 
 		void OnSidebarExtensionChanged (object s, ExtensionNodeEventArgs args)
 		{
-			// FIXME: No sidebar page removal yet!
 			if (args.Change == ExtensionChange.Add)
 				Sidebar.AppendPage ((args.ExtensionNode as SidebarPageNode).GetPage ());
+
+			// FIXME: No sidebar page removal yet!
+			// 			In theory it'd be something like this?
+			//if (args.Change == ExtensionChange.Remove)
+			//	Sidebar.RemovedPage ((args.ExtensionNode as SidebarPageNode).GetPage ());
 		}
 
 		Photo CurrentPhoto {
 			get {
 				int active = ActiveIndex ();
 				if (active >= 0)
-					return query [active] as Photo;
+					return Query [active] as Photo;
 
 				return null;
 			}
@@ -584,9 +590,9 @@ namespace FSpot
 				display_filmstrip.Sensitive = false;
 				group_selector.Visible = display_timeline.Active;
 
-				if (photo_view.View.Loupe != null)
+				if (PhotoView.View.Loupe != null)
 					loupe_menu_item.Active = false;
-				JumpTo (photo_view.Item.Index);
+				JumpTo (PhotoView.Item.Index);
 				zoom_scale.Value = icon_view.Zoom;
 				break;
 			case ModeType.PhotoView:
@@ -598,15 +604,14 @@ namespace FSpot
 				group_selector.Visible = false;
 
 				JumpTo (icon_view.FocusCell);
-				zoom_scale.Value = photo_view.NormalizedZoom;
+				zoom_scale.Value = PhotoView.NormalizedZoom;
 
-				photo_view.View.GrabFocus ();
+				PhotoView.View.GrabFocus ();
 				break;
 			}
 			Selection.MarkChanged ();
 			UpdateToolbar ();
-			if (ViewModeChanged != null)
-				ViewModeChanged (this, null);
+			ViewModeChanged?.Invoke (this, null);
 		}
 
 		void UpdateToolbar ()
@@ -630,9 +635,10 @@ namespace FSpot
 				display_next_button.Visible = true;
 				count_label.Visible = true;
 
-				bool valid = photo_view.View.Item.IsValid;
-				bool prev = valid && photo_view.View.Item.Index > 0;
-				bool next = valid && photo_view.View.Item.Index < query.Count - 1;
+				var item = PhotoView.View.Item;
+				bool valid = item.IsValid;
+				bool prev = valid && item.Index > 0;
+				bool next = valid && item.Index < Query.Count - 1;
 
 				display_previous_button.Sensitive = prev;
 				display_next_button.Sensitive = next;
@@ -641,7 +647,7 @@ namespace FSpot
 					count_label.Text = string.Empty;
 				else
 					// Note for translators: This indicates the current photo is photo {0} of {1} out of photos
-					count_label.Text = string.Format (Catalog.GetString ("{0} of {1}"), Query.Count == 0 ? 0 : photo_view.View.Item.Index + 1, Query.Count == 0 ? 0 : Query.Count);
+					count_label.Text = string.Format (Catalog.GetString ("{0} of {1}"), Query.Count == 0 ? 0 : item.Index + 1, Query.Count);
 			} else {
 				display_previous_button.Visible = false;
 				display_next_button.Visible = false;
@@ -660,8 +666,8 @@ namespace FSpot
 				SyncMetadataJob.Create (Database.Jobs, p);
 			}
 
-			if (args is PhotoEventArgs && (args as PhotoEventArgs).Changes.TimeChanged)
-				query.RequestReload ();
+			if (args is PhotoEventArgs && ((PhotoEventArgs) args).Changes.TimeChanged)
+				Query.RequestReload ();
 		}
 
 		void HandleTagsChanged (object sender, DbItemEventArgs<Tag> args)
@@ -672,14 +678,10 @@ namespace FSpot
 
 		void HandleViewNotebookSwitchPage (object sender, SwitchPageArgs args)
 		{
-			switch (view_notebook.CurrentPage) {
-			case 0:
+			if (view_notebook.CurrentPage == 0)
 				SetViewMode (ModeType.IconView);
-				break;
-			case 1:
+			else if (view_notebook.CurrentPage == 1)
 				SetViewMode (ModeType.PhotoView);
-				break;
-			}
 		}
 
 		int [] SelectedIds ()
@@ -687,7 +689,7 @@ namespace FSpot
 			int[] ids = new int [0];
 
 			if (fsview != null && fsview.View.Item.IsValid)
-				ids = new int [] { fsview.View.Item.Index };
+				ids = new [] { fsview.View.Item.Index };
 			else {
 				switch (ViewMode) {
 				case ModeType.IconView:
@@ -695,8 +697,8 @@ namespace FSpot
 					break;
 				default:
 				case ModeType.PhotoView:
-					if (photo_view.Item.IsValid)
-						ids = new [] { photo_view.Item.Index };
+					if (PhotoView.Item.IsValid)
+						ids = new [] { PhotoView.Item.Index };
 					break;
 				}
 			}
@@ -706,48 +708,48 @@ namespace FSpot
 
 		public class MainSelection : IBrowsableCollection
 		{
-			MainWindow win;
+			readonly MainWindow mainWindow;
 
-			public MainSelection (MainWindow win)
+			public MainSelection (MainWindow window)
 			{
-				this.win = win;
-				win.icon_view.Selection.Changed += HandleSelectionChanged;
-				win.icon_view.Selection.ItemsChanged += HandleSelectionItemsChanged;
-				win.photo_view.PhotoChanged += HandlePhotoChanged;
-				win.query.ItemsChanged += HandleQueryItemsChanged;
+				mainWindow = window;
+				mainWindow.icon_view.Selection.Changed += HandleSelectionChanged;
+				mainWindow.icon_view.Selection.ItemsChanged += HandleSelectionItemsChanged;
+				mainWindow.PhotoView.PhotoChanged += HandlePhotoChanged;
+				mainWindow.Query.ItemsChanged += HandleQueryItemsChanged;
 			}
 
 			public int Count {
 				get {
-					switch (win.ViewMode) {
-					case ModeType.PhotoView:
-						return win.photo_view.Item.IsValid ? 1 : 0;
-					case ModeType.IconView:
-						return win.icon_view.Selection.Count;
-					}
+					if (mainWindow.ViewMode == ModeType.PhotoView)
+						return mainWindow.PhotoView.Item.IsValid ? 1 : 0;
+
+					if (mainWindow.ViewMode == ModeType.IconView)
+						return mainWindow.icon_view.Selection.Count;
+
 					return 0;
 				}
 			}
 
 			public int IndexOf (IPhoto item)
 			{
-				switch (win.ViewMode) {
-				case ModeType.PhotoView:
-					return item == win.photo_view.Item.Current ? 0 : -1;
-				case ModeType.IconView:
-					return win.icon_view.Selection.IndexOf (item);
-				}
+				if (mainWindow.ViewMode == ModeType.PhotoView)
+					return item == mainWindow.PhotoView.Item.Current ? 0 : -1;
+
+				if (mainWindow.ViewMode == ModeType.IconView)
+					return mainWindow.icon_view.Selection.IndexOf (item);
+
 				return -1;
 			}
 
 			public bool Contains (IPhoto item)
 			{
-				switch (win.ViewMode) {
-				case ModeType.PhotoView:
-					return item == win.photo_view.Item.Current;
-				case ModeType.IconView:
-					return win.icon_view.Selection.Contains (item);
-				}
+				if (mainWindow.ViewMode == ModeType.PhotoView)
+					return item == mainWindow.PhotoView.Item.Current;
+
+				if (mainWindow.ViewMode == ModeType.IconView)
+					return mainWindow.icon_view.Selection.Contains (item);
+
 				return false;
 			}
 
@@ -763,29 +765,25 @@ namespace FSpot
 
 			public IPhoto this [int index] {
 				get {
-					switch (win.ViewMode) {
-					case ModeType.PhotoView:
-						if (index == 0)
-							return win.photo_view.Item.Current;
-						break;
-					case ModeType.IconView:
-						return win.icon_view.Selection [index];
-					}
+					if (mainWindow.ViewMode == ModeType.PhotoView && index == 0)
+						return mainWindow.PhotoView.Item.Current;
+
+					if (mainWindow.ViewMode == ModeType.IconView)
+						return mainWindow.icon_view.Selection [index];
+
 					throw new ArgumentOutOfRangeException ();
 				}
 			}
 
 			public IEnumerable<IPhoto> Items {
 				get {
-					switch (win.ViewMode) {
-					case ModeType.PhotoView:
-						if (win.photo_view.Item.IsValid)
-							return new IPhoto [] { win.photo_view.Item.Current };
-
-						break;
-					case ModeType.IconView:
-						return win.icon_view.Selection.Items;
+					if (mainWindow.ViewMode == ModeType.PhotoView) {
+						if (mainWindow.PhotoView.Item.IsValid)
+							return new [] { mainWindow.PhotoView.Item.Current };
+					} else if (mainWindow.ViewMode == ModeType.IconView) {
+						return mainWindow.icon_view.Selection.Items;
 					}
+
 					return new IPhoto [0];
 				}
 			}
@@ -795,32 +793,32 @@ namespace FSpot
 				// FIXME for now we only listen to changes directly from the query
 				// when we are in PhotoView mode because we presume that we'll get
 				// proper notification from the icon view selection in icon view mode
-				if (win.ViewMode != ModeType.PhotoView || ItemsChanged == null)
+				if (mainWindow.ViewMode != ModeType.PhotoView || ItemsChanged == null)
 					return;
 
-				foreach (int item in args.Items.Where(item => win.photo_view.Item.Index == item)) {
-					ItemsChanged (this, new BrowsableEventArgs (item, args.Changes));
-					break;
+				foreach (var item in args.Items) {
+					if (mainWindow.PhotoView.Item.Index == item) {
+						ItemsChanged (this, new BrowsableEventArgs (item, args.Changes));
+						break;
+					}
 				}
 			}
 
 			void HandlePhotoChanged (PhotoView sender)
 			{
-				if (win.ViewMode == ModeType.PhotoView)
+				if (mainWindow.ViewMode == ModeType.PhotoView)
 					Changed?.Invoke (this);
 			}
 
 			public void HandleSelectionChanged (IBrowsableCollection collection)
 			{
-				if (win.ViewMode == ModeType.IconView)
+				if (mainWindow.ViewMode == ModeType.IconView)
 					Changed?.Invoke (this);
-
-
 			}
 
 			void HandleSelectionItemsChanged (IBrowsableCollection collection, BrowsableEventArgs args)
 			{
-				if (win.ViewMode == ModeType.IconView)
+				if (mainWindow.ViewMode == ModeType.IconView)
 					ItemsChanged?.Invoke (this, args);
 			}
 
@@ -842,7 +840,7 @@ namespace FSpot
 		{
 			UpdateMenus ();
 			UpdateTagEntryFromSelection ();
-			photo_view.UpdateTagView ();
+			PhotoView.UpdateTagView ();
 			InfoBox.Photos = SelectedPhotos ();
 		}
 
@@ -851,23 +849,23 @@ namespace FSpot
 		// Selection Interface
 		//
 
-		Photo [] SelectedPhotos (int[] selected_ids)
+		Photo[] SelectedPhotos (IReadOnlyCollection<int> selected_ids)
 		{
-			Photo[] photo_list = new Photo [selected_ids.Length];
+			var photo_list = new Photo [selected_ids.Count];
 
 			int i = 0;
-			foreach (int num in selected_ids)
-				photo_list [i++] = query [num] as Photo;
+			foreach (var num in selected_ids)
+				photo_list [i++] = Query [num] as Photo;
 
 			return photo_list;
 		}
 
-		public Photo [] SelectedPhotos ()
+		public Photo[] SelectedPhotos ()
 		{
 			return SelectedPhotos (SelectedIds ());
 		}
 
-		public PhotoQuery Query => query;
+		public PhotoQuery Query { get; }
 
 		//
 		// Commands
@@ -879,7 +877,7 @@ namespace FSpot
 
 			int[] selected_ids = SelectedIds ();
 			if (command.Execute (direction, SelectedPhotos (selected_ids)))
-				query.MarkChanged (selected_ids, InvalidateData.Instance);
+				Query.MarkChanged (selected_ids, InvalidateData.Instance);
 		}
 
 		//
@@ -889,8 +887,8 @@ namespace FSpot
 		public void AddTagExtended (int[] nums, Tag[] tags)
 		{
 			foreach (int num in nums)
-				(query [num] as Photo).AddTag (tags);
-			query.Commit (nums);
+				(Query [num] as Photo).AddTag (tags);
+			Query.Commit (nums);
 
 			foreach (Tag t in tags) {
 				if (t.Icon != null || t.IconWasCleared)
@@ -898,7 +896,7 @@ namespace FSpot
 				// FIXME this needs a lot more work.
 				Pixbuf icon = null;
 				try {
-					var tmp = PhotoLoader.LoadAtMaxSize (query [nums [0]], 128, 128);
+					var tmp = PhotoLoader.LoadAtMaxSize (Query [nums [0]], 128, 128);
 					icon = PixbufUtils.TagIconFromPixbuf (tmp);
 					tmp.Dispose ();
 				} catch {
@@ -919,8 +917,8 @@ namespace FSpot
 		public void RemoveTags (int[] nums, Tag[] tags)
 		{
 			foreach (int num in nums)
-				(query [num] as Photo).RemoveTag (tags);
-			query.Commit (nums);
+				(Query [num] as Photo).RemoveTag (tags);
+			Query.Commit (nums);
 		}
 
 		void HandleTagSelectionButtonPressEvent (object sender, ButtonPressEventArgs args)
@@ -948,14 +946,11 @@ namespace FSpot
 
 		void JumpTo (int index)
 		{
-			switch (ViewMode) {
-			case ModeType.PhotoView:
-				photo_view.Item.Index = index;
-				break;
-			case ModeType.IconView:
+			if (ViewMode == ModeType.PhotoView) {
+				PhotoView.Item.Index = index;
+			} else if (ViewMode == ModeType.IconView) {
 				icon_view.ScrollTo (index);
 				icon_view.Throb (index);
-				break;
 			}
 		}
 
@@ -1087,7 +1082,6 @@ namespace FSpot
 
 			if (args.Info == DragDropTargets.RootWindowEntry.Info) {
 				HandleSetAsBackgroundCommand (null, null);
-				return;
 			}
 		}
 
@@ -1109,7 +1103,7 @@ namespace FSpot
 			controller.StatusEvent += (evnt) => ThreadAssist.ProxyToMain (() => {
 				if (evnt == ImportEvent.ImportFinished) {
 					if (controller.PhotosImported > 0) {
-						query.RollSet = new RollSet (Database.Rolls.GetRolls (1));
+						Query.RollSet = new RollSet (Database.Rolls.GetRolls (1));
 					}
 				}
 			});
@@ -1143,7 +1137,7 @@ namespace FSpot
 			controller.StatusEvent += evnt => {
 				if (evnt == ImportEvent.ImportFinished) {
 					if (controller.PhotosImported > 0) {
-						query.RollSet = new RollSet (Database.Rolls.GetRolls (1));
+						Query.RollSet = new RollSet (Database.Rolls.GetRolls (1));
 					}
 				}
 			};
@@ -1201,7 +1195,7 @@ namespace FSpot
 					Photo[] photos_to_reparent = SelectedPhotos ();
 					// Give feedback to user that something happened, and leave the parent selected after reparenting
 					icon_view.Selection.Add (p_item);
-					cmd.Execute (Database.Photos, photos_to_reparent, query.Photos [p_item], GetToplevel (null));
+					cmd.Execute (Database.Photos, photos_to_reparent, Query.Photos [p_item], GetToplevel (null));
 					UpdateQuery ();
 				}
 				Gtk.Drag.Finish (args.Context, true, false, args.Time);
@@ -1368,7 +1362,7 @@ namespace FSpot
 
 			Gtk.Drag.Finish (args.Context, true, false, args.Time);
 
-			photo_view.View.GrabFocus ();
+			PhotoView.View.GrabFocus ();
 		}
 		#endregion
 
@@ -1378,16 +1372,16 @@ namespace FSpot
 		public void HandleRatingMenuSelected (int r)
 		{
 			if (ViewMode == ModeType.PhotoView)
-				photo_view.UpdateRating (r);
+				PhotoView.UpdateRating (r);
 
 			Photo p;
 			Database.BeginTransaction ();
 			int[] selected_photos = SelectedIds ();
 			foreach (int num in selected_photos) {
-				p = query [num] as Photo;
+				p = Query [num] as Photo;
 				p.Rating = (uint)r;
 			}
-			query.Commit (selected_photos);
+			Query.Commit (selected_photos);
 			Database.CommitTransaction ();
 		}
 
@@ -1397,7 +1391,7 @@ namespace FSpot
 		public void HandleTagMenuActivate (object sender, EventArgs args)
 		{
 			MenuItem parent = sender as MenuItem ?? uimanager.GetWidget ("/ui/menubar1/edit2/remove_tag") as MenuItem;
-			if (parent != null && parent.Submenu is PhotoTagMenu) {
+			if (parent?.Submenu is PhotoTagMenu) {
 				PhotoTagMenu menu = (PhotoTagMenu)parent.Submenu;
 				menu.Populate (SelectedPhotos ());
 			}
@@ -1435,7 +1429,7 @@ namespace FSpot
 		//
 		void HandlePageSetupActivated (object o, EventArgs e)
 		{
-			FSpot.Settings.Global.PageSetup = Print.RunPageSetupDialog (this.Window, FSpot.Settings.Global.PageSetup, null);
+			FSpot.Settings.Global.PageSetup = Print.RunPageSetupDialog (Window, Settings.Global.PageSetup, null);
 		}
 
 		void HandlePrintCommand (object sender, EventArgs e)
@@ -1497,25 +1491,25 @@ namespace FSpot
 
 			if (old_size != TagsIconSize) {
 				tag_selection_widget.ColumnsAutosize ();
-				photo_view?.UpdateTagView ();
+				PhotoView?.UpdateTagView ();
 				Preferences.Set (Preferences.TAG_ICON_SIZE, TagsIconSize);
 			}
 		}
 
 		public void HandleFilmstripHorizontal (object sender, EventArgs args)
 		{
-			if (photo_view.FilmstripOrientation == Orientation.Horizontal)
+			if (PhotoView.FilmstripOrientation == Orientation.Horizontal)
 				return;
 			(sender as Gtk.CheckMenuItem).Active = false;
-			photo_view.PlaceFilmstrip (Orientation.Horizontal);
+			PhotoView.PlaceFilmstrip (Orientation.Horizontal);
 		}
 
 		public void HandleFilmstripVertical (object sender, EventArgs args)
 		{
-			if (photo_view.FilmstripOrientation == Orientation.Vertical)
+			if (PhotoView.FilmstripOrientation == Orientation.Vertical)
 				return;
 			(sender as Gtk.CheckMenuItem).Active = false;
-			photo_view.PlaceFilmstrip (Orientation.Vertical);
+			PhotoView.PlaceFilmstrip (Orientation.Vertical);
 		}
 
 		public void HandleReverseOrder (object sender, EventArgs args)
@@ -1526,15 +1520,15 @@ namespace FSpot
 				return;
 
 			group_selector.Adaptor.OrderAscending = item.Active;
-			query.TimeOrderAsc = item.Active;
+			Query.TimeOrderAsc = item.Active;
 
 			// FIXME this is blah...we need UIManager love here
 			if (item != reverse_order)
 				reverse_order.Active = item.Active;
 
 			//update the selection in the timeline
-			if (query.Range != null && group_selector.Adaptor is TimeAdaptor)
-				group_selector.SetLimitsToDates (query.Range.Start, query.Range.End);
+			if (Query.Range != null && group_selector.Adaptor is TimeAdaptor)
+				group_selector.SetLimitsToDates (Query.Range.Start, Query.Range.End);
 		}
 
 		// Called when the user clicks the X button
@@ -1581,9 +1575,9 @@ namespace FSpot
 
 			tag_selection_widget.SaveExpandDefaults ();
 
-			this.Window.Destroy ();
+			Window.Destroy ();
 
-			photo_view.Dispose ();
+			PhotoView.Dispose ();
 			preview_popup.Dispose ();
 		}
 
@@ -1626,7 +1620,7 @@ namespace FSpot
 
 			if (new_tag != null) {
 				tag_selection_widget.ScrollTo (new_tag);
-				tag_selection_widget.TagHighlight = new Tag [] { new_tag };
+				tag_selection_widget.TagHighlight = new [] { new_tag };
 			}
 		}
 
@@ -1651,7 +1645,7 @@ namespace FSpot
 
 		public void HandleRemoveTagCommand (object obj, EventArgs args)
 		{
-			Tag[] tags = this.tag_selection_widget.TagHighlight;
+			Tag[] tags = tag_selection_widget.TagHighlight;
 
 			Database.BeginTransaction ();
 			RemoveTags (SelectedIds (), tags);
@@ -1661,7 +1655,7 @@ namespace FSpot
 
 		public void HandleEditSelectedTag (object sender, EventArgs ea)
 		{
-			Tag[] tags = this.tag_selection_widget.TagHighlight;
+			Tag[] tags = tag_selection_widget.TagHighlight;
 			if (tags.Length != 1)
 				return;
 
@@ -1704,25 +1698,22 @@ namespace FSpot
 
 			// If a tag with children tags is selected for merging, we
 			// should also merge its children..
-			List<Tag> all_tags = new List<Tag> (tags.Length);
+			var allTags = new List<Tag> (tags.Length);
 			foreach (Tag tag in tags) {
-				if (!all_tags.Contains (tag))
-					all_tags.Add (tag);
+				if (!allTags.Contains (tag))
+					allTags.Add (tag);
 				else
 					continue;
 
-				if (!(tag is Category))
-					continue;
-
-				(tag as Category).AddDescendentsTo (all_tags);
+				(tag as Category)?.AddDescendentsTo (allTags);
 			}
 
 			// debug..
-			tags = all_tags.ToArray ();
-			System.Array.Sort (tags, new TagRemoveComparer ());
+			tags = allTags.ToArray ();
+			Array.Sort (tags, new TagRemoveComparer ());
 
 			foreach (Tag tag in tags) {
-				Log.Debug ("tag: {0}", tag.Name);
+				Log.Debug ($"tag: {tag.Name}");
 			}
 
 			string msg = Catalog.GetString ("This operation will merge the selected tags and any sub-tags into a single tag.");
@@ -1786,7 +1777,7 @@ namespace FSpot
 				return;
 			}
 
-			photo_view.View.ShowHideLoupe ();
+			PhotoView.View.ShowHideLoupe ();
 		}
 
 		void HandleSharpen (object sender, EventArgs args)
@@ -1797,7 +1788,7 @@ namespace FSpot
 				return;
 			}
 
-			photo_view.View.ShowSharpener ();
+			PhotoView.View.ShowSharpener ();
 		}
 
 		void HandleDisplayToolbar (object sender, EventArgs args)
@@ -1836,9 +1827,9 @@ namespace FSpot
 
 		void HandleDisplayFilmstrip (object sender, EventArgs args)
 		{
-			photo_view.FilmStripVisibility = display_filmstrip.Active;
+			PhotoView.FilmStripVisibility = display_filmstrip.Active;
 			if (ViewMode == ModeType.PhotoView)
-				photo_view.QueueDraw ();
+				PhotoView.QueueDraw ();
 		}
 
 		void HandleDisplayInfoSidebar (object sender, EventArgs args)
@@ -1885,7 +1876,7 @@ namespace FSpot
 		{
 			int active = (Selection.Count > 0 ? SelectedIds () [0] : 0);
 			if (fsview == null) {
-				fsview = new FSpot.FullScreenView (query, main_window);
+				fsview = new FullScreenView (Query, main_window);
 				fsview.Destroyed += HandleFullScreenViewDestroy;
 				fsview.KeyPressEvent += HandleFullScreenViewKeyPressEvent;
 				fsview.View.Item.Index = active;
@@ -1907,9 +1898,9 @@ namespace FSpot
 		{
 			switch (ViewMode) {
 			case ModeType.PhotoView:
-				photo_view.View.ZoomChanged -= HandleZoomChanged;
-				photo_view.NormalizedZoom = zoom_scale.Value;
-				photo_view.View.ZoomChanged += HandleZoomChanged;
+				PhotoView.View.ZoomChanged -= HandleZoomChanged;
+				PhotoView.NormalizedZoom = zoom_scale.Value;
+				PhotoView.View.ZoomChanged += HandleZoomChanged;
 				break;
 			case ModeType.IconView:
 				icon_view.ZoomChanged -= HandleZoomChanged;
@@ -1924,11 +1915,11 @@ namespace FSpot
 
 		void HandleQueryChanged (IBrowsableCollection sender)
 		{
-			if (find_untagged.Active != query.Untagged)
-				find_untagged.Active = query.Untagged;
+			if (find_untagged.Active != Query.Untagged)
+				find_untagged.Active = Query.Untagged;
 
-			clear_date_range.Sensitive = (query.Range != null);
-			clear_rating_filter.Sensitive = (query.RatingRange != null);
+			clear_date_range.Sensitive = (Query.Range != null);
+			clear_rating_filter.Sensitive = (Query.RatingRange != null);
 			update_status_label = true;
 			GLib.Idle.Add (UpdateStatusLabel);
 		}
@@ -1939,10 +1930,10 @@ namespace FSpot
 		{
 			update_status_label = false;
 			int total_photos = Database.Photos.TotalPhotos;
-			if (total_photos != query.Count)
-				status_label.Text = string.Format (Catalog.GetPluralString ("{0} photo out of {1}", "{0} photos out of {1}", query.Count), query.Count, total_photos);
+			if (total_photos != Query.Count)
+				status_label.Text = string.Format (Catalog.GetPluralString ("{0} photo out of {1}", "{0} photos out of {1}", Query.Count), Query.Count, total_photos);
 			else
-				status_label.Text = string.Format (Catalog.GetPluralString ("{0} photo", "{0} photos", query.Count), query.Count);
+				status_label.Text = string.Format (Catalog.GetPluralString ("{0} photo", "{0} photos", Query.Count), Query.Count);
 
 			if ((Selection != null) && (Selection.Count > 0))
 				status_label.Text += string.Format (Catalog.GetPluralString (" ({0} selected)", " ({0} selected)", Selection.Count), Selection.Count);
@@ -1957,7 +1948,7 @@ namespace FSpot
 			double zoom = .5;
 			switch (ViewMode) {
 			case ModeType.PhotoView:
-				zoom = photo_view.NormalizedZoom;
+				zoom = PhotoView.NormalizedZoom;
 				zoom_scale.Value = zoom;
 				break;
 			case ModeType.IconView:
@@ -1998,7 +1989,7 @@ namespace FSpot
 		{
 			switch (ViewMode) {
 			case ModeType.PhotoView:
-				photo_view.ZoomOut ();
+				PhotoView.ZoomOut ();
 				break;
 			case ModeType.IconView:
 				icon_view.ZoomOut ();
@@ -2010,11 +2001,11 @@ namespace FSpot
 		{
 			switch (ViewMode) {
 			case ModeType.PhotoView:
-				double old_zoom = photo_view.Zoom;
+				double old_zoom = PhotoView.Zoom;
 				try {
-					photo_view.ZoomIn ();
+					PhotoView.ZoomIn ();
 				} catch {
-					photo_view.Zoom = old_zoom;
+					PhotoView.Zoom = old_zoom;
 				}
 
 				break;
@@ -2179,14 +2170,15 @@ namespace FSpot
 
 		public void HandleDeleteSelectedTagCommand (object sender, EventArgs args)
 		{
-			Tag[] tags = this.tag_selection_widget.TagHighlight;
+			Tag[] tags = tag_selection_widget.TagHighlight;
 
 			Array.Sort (tags, new TagRemoveComparer ());
 
 			//How many pictures are associated to these tags?
 			Db db = App.Instance.Database;
-			FSpot.PhotoQuery count_query = new FSpot.PhotoQuery (db.Photos);
-			count_query.Terms = OrTerm.FromTags (tags);
+			PhotoQuery count_query = new PhotoQuery (db.Photos) {
+				Terms = OrTerm.FromTags (tags)
+			};
 			int associated_photos = count_query.Count;
 
 			string header;
@@ -2240,7 +2232,7 @@ namespace FSpot
 
 			int[] selected_ids = SelectedIds ();
 			if (command.Execute (SelectedPhotos (selected_ids)))
-				query.MarkChanged (selected_ids, InvalidateData.Instance);
+				Query.MarkChanged (selected_ids, InvalidateData.Instance);
 		}
 
 		public void HandleRotate90Command (object sender, EventArgs args)
@@ -2271,7 +2263,7 @@ namespace FSpot
 			Clipboard clipboard = Clipboard.Get (Atom.Intern ("CLIPBOARD", false));
 
 			if (Window.Focus is Editable) {
-				(Window.Focus as Editable).CopyClipboard ();
+				((Editable) Window.Focus).CopyClipboard ();
 				return;
 			}
 
@@ -2327,55 +2319,55 @@ namespace FSpot
 
 		void HandleSetDateRange (object sender, EventArgs args)
 		{
-			var date_range_dialog = new DateRangeDialog (query.Range, main_window);
+			var date_range_dialog = new DateRangeDialog (Query.Range, main_window);
 			if ((ResponseType)date_range_dialog.Run () == ResponseType.Ok)
-				query.Range = date_range_dialog.Range;
+				Query.Range = date_range_dialog.Range;
 			date_range_dialog.Destroy ();
 
 			//update the TimeLine
-			if (group_selector.Adaptor is TimeAdaptor && query.Range != null)
-				group_selector.SetLimitsToDates (query.Range.Start, query.Range.End);
+			if (group_selector.Adaptor is TimeAdaptor && Query.Range != null)
+				group_selector.SetLimitsToDates (Query.Range.Start, Query.Range.End);
 		}
 
 		public void HandleClearDateRange (object sender, EventArgs args)
 		{
-			if (group_selector.Adaptor is FSpot.TimeAdaptor) {
+			if (group_selector.Adaptor is TimeAdaptor) {
 				group_selector.ResetLimits ();
 			}
-			query.Range = null;
+			Query.Range = null;
 		}
 
 		void HandleSelectLastRoll (object sender, EventArgs args)
 		{
-			query.RollSet = new RollSet (Database.Rolls.GetRolls (1));
+			Query.RollSet = new RollSet (Database.Rolls.GetRolls (1));
 		}
 
 		void HandleSelectRolls (object sender, EventArgs args)
 		{
-			new LastRolls (query, Database.Rolls, main_window);
+			new LastRolls (Query, Database.Rolls, main_window);
 		}
 
 		void HandleClearRollFilter (object sender, EventArgs args)
 		{
-			query.RollSet = null;
+			Query.RollSet = null;
 		}
 
 		void HandleSetRatingFilter (object sender, EventArgs args)
 		{
-			new RatingFilterDialog (query, main_window);
+			new RatingFilterDialog (Query, main_window);
 		}
 
 		public void HandleClearRatingFilter (object sender, EventArgs args)
 		{
-			query.RatingRange = null;
+			Query.RatingRange = null;
 		}
 
 		void HandleFindUntagged (object sender, EventArgs args)
 		{
-			if (query.Untagged == find_untagged.Active)
+			if (Query.Untagged == find_untagged.Active)
 				return;
 
-			query.Untagged = !query.Untagged;
+			Query.Untagged = !Query.Untagged;
 		}
 
 		void OnPreferencesChanged (object sender, NotifyEventArgs args)
@@ -2448,18 +2440,18 @@ namespace FSpot
 			case Preferences.GROUP_ADAPTOR_ORDER_ASC:
 				group_selector.Adaptor.OrderAscending = Preferences.Get<bool> (key);
 				reverse_order.Active = Preferences.Get<bool> (key);
-				query.TimeOrderAsc = group_selector.Adaptor.OrderAscending;
+				Query.TimeOrderAsc = group_selector.Adaptor.OrderAscending;
 				break;
 
 			case Preferences.GLASS_POSITION:
-				if (query.Count > 0) {
+				if (Query.Count > 0) {
 					// If the database has changed since this pref was saved, this could cause
 					// an exception to be thrown.
 					try {
 						IPhoto photo = group_selector.Adaptor.PhotoFromIndex (Preferences.Get<int> (key));
 
 						if (photo != null)
-							JumpTo (query.IndexOf (photo));
+							JumpTo (Query.IndexOf (photo));
 					} catch (Exception) {
 					}
 				}
@@ -2500,7 +2492,7 @@ namespace FSpot
 
 			if (versionable != null) {
 				versionable.SetDefaultVersion (version);
-				query.Commit (ActiveIndex ());
+				Query.Commit (ActiveIndex ());
 			}
 		}
 
@@ -2509,7 +2501,7 @@ namespace FSpot
 		{
 			main_window.GdkWindow.Cursor = watch;
 			main_window.GdkWindow.Display.Sync ();
-			query.RequestReload ();
+			Query.RequestReload ();
 			main_window.GdkWindow.Cursor = null;
 		}
 
@@ -2561,8 +2553,7 @@ namespace FSpot
 		void HandleFindAddTagWith (object sender, EventArgs args)
 		{
 			MenuItem find_add_tag_with = uimanager.GetWidget ("/ui/menubar1/find/find_add_tag_with") as MenuItem;
-			if (find_add_tag_with.Submenu != null)
-				find_add_tag_with.Submenu.Dispose ();
+			find_add_tag_with.Submenu?.Dispose ();
 
 			Gtk.Menu submenu = TermMenuItem.GetSubmenu (tag_selection_widget.TagHighlight);
 			find_add_tag_with.Sensitive = (submenu != null);
@@ -2649,9 +2640,9 @@ namespace FSpot
 			copy.Sensitive = active_selection;
 			remove_from_catalog.Sensitive = active_selection;
 
-			clear_rating_filter.Sensitive = (query.RatingRange != null);
+			clear_rating_filter.Sensitive = (Query.RatingRange != null);
 
-			clear_roll_filter.Sensitive = (query.RollSet != null);
+			clear_roll_filter.Sensitive = (Query.RollSet != null);
 
 			delete_selected_tag.Sensitive = tag_sensitive;
 			edit_selected_tag.Sensitive = tag_sensitive;
@@ -2719,8 +2710,7 @@ namespace FSpot
 			var exportmenu = uimanager.GetWidget ("/ui/menubar1/file1/export") as MenuItem;
 			var toolsmenu = uimanager.GetWidget ("/ui/menubar1/tools") as MenuItem;
 			try {
-				if (exportmenu.Submenu != null)
-					exportmenu.Submenu.Dispose ();
+				exportmenu.Submenu?.Dispose ();
 				toolsmenu.Submenu = null;
 
 				exportmenu.Submenu = (AddinManager.GetExtensionNode ("/FSpot/Menus/Exports") as SubmenuNode).GetSubmenu ();
@@ -2752,12 +2742,12 @@ namespace FSpot
 
 			// FIXME add cancel button? add help button?
 			HigMessageDialog hmd = new HigMessageDialog (GetToplevel (sender), DialogFlags.DestroyWithParent,
-				                       MessageType.Question, Gtk.ButtonsType.None,
+				                       MessageType.Question, ButtonsType.None,
 				                       header, msg);
 
-			hmd.AddButton (Gtk.Stock.No, Gtk.ResponseType.No, false);
+			hmd.AddButton (Stock.No, ResponseType.No, false);
 			//hmd.AddButton (Gtk.Stock.Cancel, Gtk.ResponseType.Cancel, false);
-			hmd.AddButton (Gtk.Stock.Yes, Gtk.ResponseType.Yes, true);
+			hmd.AddButton (Stock.Yes, ResponseType.Yes, true);
 
 			bool support_xcf = false;
 			;
@@ -2768,17 +2758,18 @@ namespace FSpot
 			//This allows creating a version with a .xcf extension.
 			//There's no need to convert the file to xcf file format, gimp will take care of this
 			if (support_xcf) {
-				CheckButton cb = new CheckButton (Catalog.GetString ("XCF version"));
-				cb.Active = Preferences.Get<bool> (Preferences.EDIT_CREATE_XCF_VERSION);
+				CheckButton cb = new CheckButton (Catalog.GetString ("XCF version")) {
+					Active = Preferences.Get<bool> (Preferences.EDIT_CREATE_XCF_VERSION)
+				};
 				hmd.VBox.Add (cb);
 				cb.Toggled += (s, ea) => Preferences.Set (Preferences.EDIT_CREATE_XCF_VERSION, (s as CheckButton).Active);
 				cb.Show ();
 			}
 
-			Gtk.ResponseType response = Gtk.ResponseType.Cancel;
+			ResponseType response = ResponseType.Cancel;
 
 			try {
-				response = (Gtk.ResponseType)hmd.Run ();
+				response = (ResponseType)hmd.Run ();
 			} finally {
 				hmd.Destroy ();
 			}
@@ -2792,9 +2783,9 @@ namespace FSpot
 			if (response == Gtk.ResponseType.Cancel)
 				return;
 
-			bool create_new_versions = (response == Gtk.ResponseType.Yes);
+			bool create_new_versions = (response == ResponseType.Yes);
 
-			List<EditException> errors = new List<EditException> ();
+			var errors = new List<EditException> ();
 			GLib.List uri_list = new GLib.List (typeof(string));
 			foreach (Photo photo in selected) {
 				try {
@@ -2809,7 +2800,6 @@ namespace FSpot
 				uri_list.Append (photo.DefaultVersion.Uri.ToString ());
 			}
 
-			// FIXME need to clean up the error dialog here.
 			if (errors.Count > 0) {
 				Dialog md = new EditExceptionDialog (GetToplevel (sender), errors.ToArray ());
 				md.Run ();
@@ -2843,7 +2833,7 @@ namespace FSpot
 			tag_entry.UpdateFromSelection (SelectedPhotos ());
 		}
 
-		public void HandlePossibleTagTyping (object sender, Gtk.KeyPressEventArgs args)
+		public void HandlePossibleTagTyping (object sender, KeyPressEventArgs args)
 		{
 			if (Selection.Count == 0 || tagbar.Visible && tag_entry.HasFocus)
 				return;
@@ -2863,8 +2853,8 @@ namespace FSpot
 			if (ViewMode == ModeType.IconView) {
 				icon_view.GrabFocus ();
 			} else {
-				photo_view.QueueDraw ();
-				photo_view.View.GrabFocus ();
+				PhotoView.QueueDraw ();
+				PhotoView.View.GrabFocus ();
 			}
 		}
 
@@ -2921,8 +2911,8 @@ namespace FSpot
 			if (ViewMode == ModeType.IconView)
 				icon_view.GrabFocus ();
 			else {
-				photo_view.QueueDraw ();
-				photo_view.View.GrabFocus ();
+				PhotoView.QueueDraw ();
+				PhotoView.View.GrabFocus ();
 			}
 
 			tag_entry.ClearTagCompletions ();

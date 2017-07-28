@@ -29,8 +29,8 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 
 using Gdk;
 
@@ -42,21 +42,18 @@ using FSpot.Core;
 using FSpot.Database;
 using FSpot.Settings;
 using FSpot.Utils;
-using FSpot.Widgets;
 
 using Hyena.Widgets;
 
-
-
-namespace FSpot
+namespace FSpot.Widgets
 {
 	public class TagSelectionWidget : SaneTreeView
 	{
 		readonly Db database;
-		TagStore tag_store;
+		readonly TagStore tagStore;
 
 		// FIXME this is a hack.
-		static Pixbuf empty_pixbuf = new Pixbuf (Colorspace.Rgb, true, 8, 1, 1);
+		static readonly Pixbuf emptyPixbuf = new Pixbuf (Colorspace.Rgb, true, 8, 1, 1);
 
 		// If these are changed, the base () call in the constructor must be updated.
 		const int IdColumn = 0;
@@ -97,7 +94,7 @@ namespace FSpot
 			Model.GetValue (iter, IdColumn, ref val);
 			uint tag_id = (uint) val;
 
-			return tag_store.Get (tag_id);
+			return tagStore.Get (tag_id);
 		}
 
 		// Loading up the store.
@@ -138,7 +135,7 @@ namespace FSpot
 					Model.GetIter (out iter, path);
 					Model.GetValue (iter, IdColumn, ref value);
 					uint tag_id = (uint) value;
-					tags[i] = tag_store.Get (tag_id);
+					tags[i] = tagStore.Get (tag_id);
 					i++;
 				}
 				return tags;
@@ -165,7 +162,7 @@ namespace FSpot
 			// Gtk.TreeIter (since it's a struct, and not a class).
 			// FIXME: This should be fixed in GTK#...  It's gross.
 
-			foreach (Tag t in tag_store.RootCategory.Children) {
+			foreach (Tag t in tagStore.RootCategory.Children) {
 				TreeIter iter = (Model as TreeStore).AppendValues (t.Id, t.Name);
 				if (t is Category)
 					LoadCategory (t as Category, iter);
@@ -190,7 +187,7 @@ namespace FSpot
 			GLib.Value value = new GLib.Value ();
 			Model.GetValue (iter, IdColumn, ref value);
 			uint tag_id = (uint) value;
-			Tag tag = tag_store.Get (tag_id);
+			Tag tag = tagStore.Get (tag_id);
 
 			if (tag == null)
 				return;
@@ -208,7 +205,7 @@ namespace FSpot
 				} else
 					(renderer as CellRendererPixbuf).Pixbuf = tag.SizedIcon;
 			} else
-				(renderer as CellRendererPixbuf).Pixbuf = empty_pixbuf;
+				(renderer as CellRendererPixbuf).Pixbuf = emptyPixbuf;
 		}
 
 		void NameDataFunc (TreeViewColumn column, CellRenderer renderer, TreeModel model, TreeIter iter)
@@ -221,7 +218,7 @@ namespace FSpot
 			Model.GetValue (iter, IdColumn, ref value);
 			uint tag_id = (uint) value;
 
-			Tag tag = tag_store.Get (tag_id);
+			Tag tag = tagStore.Get (tag_id);
 			if (tag == null)
 				return;
 
@@ -277,7 +274,7 @@ namespace FSpot
 			bool valid;
 
 			store.GetValue (src, IdColumn, ref value);
-			Tag tag = tag_store.Get ((uint)value);
+			Tag tag = tagStore.Get ((uint)value);
 			if (is_parent) {
 				// we need to figure out where to insert it in the correct order
 				copy = InsertInOrder(dest, is_root, tag);
@@ -298,7 +295,6 @@ namespace FSpot
 		{
 			TreeStore store = Model as TreeStore;
 			TreeIter iter;
-			Tag compare;
 			bool valid;
 
 			if (is_root)
@@ -310,7 +306,7 @@ namespace FSpot
 				//I have no desire to figure out a more performant sort over this...
 				GLib.Value value = new GLib.Value ();
 				store.GetValue(iter, IdColumn, ref value);
-				compare = tag_store.Get ((uint) value);
+				var compare = tagStore.Get ((uint) value);
 
 				if (compare.CompareTo (tag) > 0) {
 					iter = store.InsertNodeBefore (iter);
@@ -351,11 +347,11 @@ namespace FSpot
 			TreeIter iter = TreeIter.Zero;
 
 			foreach (Tag tag in args.Items) {
-				if (tag.Category != tag_store.RootCategory)
+				if (tag.Category != tagStore.RootCategory)
 					TreeIterForTag (tag.Category, out iter);
 
 				InsertInOrder (iter,
-					       tag.Category.Name == tag_store.RootCategory.Name,
+					       tag.Category.Name == tagStore.RootCategory.Name,
 					       tag);
 			}
 		}
@@ -496,7 +492,7 @@ namespace FSpot
 			GLib.Value value = new GLib.Value ();
 			Model.GetValue (iter, IdColumn, ref value);
 			uint tag_id = (uint) value;
-			Tag tag = tag_store.Get (tag_id);
+			Tag tag = tagStore.Get (tag_id);
 
 			// Ignore if it hasn't changed
 			if (tag.Name == args.NewText)
@@ -504,7 +500,7 @@ namespace FSpot
 
 			// Check that the tag doesn't already exist
 			if (string.Compare (args.NewText, tag.Name, true) != 0 &&
-			    tag_store.GetTagByName (args.NewText) != null) {
+			    tagStore.GetTagByName (args.NewText) != null) {
 				HigMessageDialog md = new HigMessageDialog (App.Instance.Organizer.Window,
 					DialogFlags.DestroyWithParent,
 					MessageType.Warning, ButtonsType.Ok,
@@ -518,7 +514,7 @@ namespace FSpot
 			}
 
 			tag.Name = args.NewText;
-			tag_store.Commit (tag, true);
+			tagStore.Commit (tag, true);
 
 			text_render.Edited -= HandleTagNameEdited;
 
@@ -543,7 +539,6 @@ namespace FSpot
 
 		protected TagSelectionWidget (IntPtr raw) : base (raw) { }
 
-		// Constructor.
 		public TagSelectionWidget (TagStore tag_store)
 			: base (new TreeStore (typeof(uint), typeof(string)))
 		{
@@ -568,7 +563,7 @@ namespace FSpot
 
 			AppendColumn (complete_column);
 
-			this.tag_store = tag_store;
+			this.tagStore = tag_store;
 
 			Update ();
 
@@ -583,7 +578,7 @@ namespace FSpot
 			SearchColumn = NameColumn;
 
 			// Transparent white
-			empty_pixbuf.Fill(0xffffff00);
+			emptyPixbuf.Fill(0xffffff00);
 
 
 			/* set up drag and drop */
@@ -760,70 +755,5 @@ namespace FSpot
 	            args.RetVal = moved_count > 0;
 			}
 		}
-
-
-	#if TEST_TAG_SELECTION_WIDGET
-
-		class Test {
-
-			private TagSelectionWidget selection_widget;
-
-			private void OnSelectionChanged ()
-			{
-				Log.Debug ("Selection changed:");
-
-				foreach (Tag t in selection_widget.TagSelection)
-					Log.DebugFormat ("\t{0}", t.Name);
-			}
-
-			private Test ()
-			{
-				const string path = "/tmp/TagSelectionTest.db";
-
-				try {
-					File.Delete (path);
-				} catch {}
-
-				Db db = new Db (path, true);
-
-				Category people_category = db.Tags.CreateCategory (null, "People");
-				db.Tags.CreateTag (people_category, "Anna");
-				db.Tags.CreateTag (people_category, "Ettore");
-				db.Tags.CreateTag (people_category, "Miggy");
-				db.Tags.CreateTag (people_category, "Nat");
-
-				Category places_category = db.Tags.CreateCategory (null, "Places");
-				db.Tags.CreateTag (places_category, "Milan");
-				db.Tags.CreateTag (places_category, "Boston");
-
-				Category exotic_category = db.Tags.CreateCategory (places_category, "Exotic");
-				db.Tags.CreateTag (exotic_category, "Bengalore");
-				db.Tags.CreateTag (exotic_category, "Manila");
-				db.Tags.CreateTag (exotic_category, "Tokyo");
-
-				selection_widget = new TagSelectionWidget (db.Tags);
-				selection_widget.SelectionChanged += new SelectionChangedHandler (OnSelectionChanged);
-
-				Window window = new Window (WindowType.Toplevel);
-				window.SetDefaultSize (400, 200);
-				ScrolledWindow scrolled = new ScrolledWindow (null, null);
-				scrolled.SetPolicy (PolicyType.Automatic, PolicyType.Automatic);
-				scrolled.Add (selection_widget);
-				window.Add (scrolled);
-
-				window.ShowAll ();
-			}
-
-			static private void Main (string [] args)
-			{
-				Program program = new Program ("TagSelectionWidgetTest", "0.0", Modules.UI, args);
-
-				Test test = new Test ();
-
-				program.Run ();
-			}
-		}
-
-	#endif
 	}
 }
