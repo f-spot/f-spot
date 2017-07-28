@@ -255,7 +255,7 @@ namespace FSpot.Exporters.Flickr
 		{
 			CurrentState = State.InAuth;
 			if (task == null) {
-				task = new Task (CheckAuthorization );
+				task = new Task (CheckAuthorization);
 				task.Start ();
 			}
 			return true;
