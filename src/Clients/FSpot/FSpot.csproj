@@ -189,12 +189,12 @@
     <Compile Include="FSpot.Query\AbstractLiteral.cs" />
     <Compile Include="FSpot.Query\TextLiteral.cs" />
     <Compile Include="FSpot.Query\QueryWidget.cs" />
-    <Compile Include="FSpot.Import\ImportEvent.cs" />
     <Compile Include="FSpot\ObsoletePhotoQueries.cs" />
     <Compile Include="FSpot.Database\UpdaterUI.cs" />
-    <Compile Include="FSpot.Import\ImportDialogController.cs" />
-    <Compile Include="FSpot.Import\ImportSource.cs" />
-    <Compile Include="FSpot.Import\MultiImportSource.cs" />
+    <Compile Include="Import\ImportEvent.cs" />
+    <Compile Include="Import\ImportDialogController.cs" />
+    <Compile Include="Import\ImportSource.cs" />
+    <Compile Include="Import\MultiImportSource.cs" />
     <Compile Include="FSpot\InfoItem.cs" />
     <Compile Include="FSpot.Editors\EditorState.cs" />
     <Compile Include="FSpot.Editors\EditorNode.cs" />
@@ -396,11 +396,6 @@
       <Project>{02523C56-7715-4B6E-891B-6A1CBDE1B98C}</Project>
       <Name>FSpot.Import</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="FSpot\" />
-    <Folder Include="Widgets\" />
-    <Folder Include="Pinta\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="f-spot.exe.config">
