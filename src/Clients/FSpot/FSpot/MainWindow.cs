@@ -539,9 +539,13 @@ namespace FSpot
 
 		void OnSidebarExtensionChanged (object s, ExtensionNodeEventArgs args)
 		{
-			// FIXME: No sidebar page removal yet!
 			if (args.Change == ExtensionChange.Add)
 				Sidebar.AppendPage ((args.ExtensionNode as SidebarPageNode).GetPage ());
+
+			// FIXME: No sidebar page removal yet!
+			// 			In theory it'd be something like this?
+			//if (args.Change == ExtensionChange.Remove)
+			//	Sidebar.RemovedPage ((args.ExtensionNode as SidebarPageNode).GetPage ());
 		}
 
 		Photo CurrentPhoto {
