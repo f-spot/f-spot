@@ -47,12 +47,13 @@ namespace FSpot.Query
 {
 	public class OrTerm : Term
 	{
-		public static List<string> Operators { get; private set; }
+		public static List<string> Operators { get; }
 
 		static OrTerm ()
 		{
-			Operators = new List<string> ();
-			Operators.Add (Catalog.GetString (" or "));
+			Operators = new List<string> {
+				Catalog.GetString (" or ")
+			};
 		}
 
 		public OrTerm (Term parent, Literal after) : base (parent, after)
@@ -78,8 +79,7 @@ namespace FSpot.Query
 		{
 			var newme = new AndTerm (Parent, null);
 			newme.CopyAndInvertSubTermsFrom (this, recurse);
-			if (Parent != null)
-				Parent.Remove (this);
+			Parent?.Remove (this);
 			return newme;
 		}
 

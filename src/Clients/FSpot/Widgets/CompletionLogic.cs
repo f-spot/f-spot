@@ -56,7 +56,7 @@ namespace FSpot.Widgets
 			if (key != last_key) {
 				last_key = key;
 
-				if (key == null || key.Length == 0 || pos < 0 || pos > key.Length - 1)
+				if (string.IsNullOrEmpty (key) || pos < 0 || pos > key.Length - 1)
 					transformed_key = string.Empty;
 				else if (key [pos] == '(' || key [pos] == ')' || key [pos] == ',')
 					transformed_key = string.Empty;

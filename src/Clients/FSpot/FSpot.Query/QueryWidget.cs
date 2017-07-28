@@ -50,28 +50,25 @@ namespace FSpot.Query
 {
 	public class QueryWidget : HighlightedBox
 	{
-		PhotoQuery query;
-		LogicWidget logic_widget;
-		FolderQueryWidget folder_query_widget;
+		readonly PhotoQuery query;
+		readonly FolderQueryWidget folderQueryWidget;
 
-		Gtk.HBox box;
-		Gtk.Label label;
-		Gtk.Label untagged;
-		Gtk.Label rated;
-		Gtk.Label comma1_label;
-		Gtk.Label comma2_label;
-		Gtk.Label rollfilter;
-		Gtk.HBox warning_box;
-		Gtk.Button clear_button;
-		Gtk.Button refresh_button;
+		HBox box;
+		Label label;
+		Label untagged;
+		Label rated;
+		Label comma1_label;
+		Label comma2_label;
+		Label rollfilter;
+		HBox warning_box;
+		Button clear_button;
+		Button refresh_button;
 
-		public LogicWidget Logic {
-			get { return logic_widget; }
-		}
+		public LogicWidget Logic { get; }
 
 		protected QueryWidget (IntPtr raw) : base (raw) {}
 
-		public QueryWidget (PhotoQuery query, Db db) : base(new HBox())
+		public QueryWidget (PhotoQuery query, Db db) : base (new HBox())
 		{
 			box = Child as HBox;
 			box.Spacing = 6;
@@ -80,62 +77,70 @@ namespace FSpot.Query
 			this.query = query;
 			query.Changed += HandleChanged;
 
-			label = new Gtk.Label (Catalog.GetString ("Find: "));
+			label = new Label (Catalog.GetString ("Find: "));
 			label.Show ();
 			label.Ypad = 9;
 			box.PackStart (label, false, false, 0);
 
-			untagged = new Gtk.Label (Catalog.GetString ("Untagged photos"));
-			untagged.Visible = false;
+			untagged = new Label (Catalog.GetString ("Untagged photos")) {
+				Visible = false
+			};
 			box.PackStart (untagged, false, false, 0);
 
-			comma1_label = new Gtk.Label (", ");
-			comma1_label.Visible = false;
+			comma1_label = new Label (", ") {
+				Visible = false
+			};
 			box.PackStart (comma1_label, false, false, 0);
 
-			rated = new Gtk.Label (Catalog.GetString ("Rated photos"));
-			rated.Visible = false;
+			rated = new Label (Catalog.GetString ("Rated photos")) {
+				Visible = false
+			};
 			box.PackStart (rated, false, false, 0);
 
-			comma2_label = new Gtk.Label (", ");
-			comma2_label.Visible = false;
+			comma2_label = new Label (", ") {
+				Visible = false
+			};
 			box.PackStart (comma2_label, false, false, 0);
 
 			// Note for translators: 'Import roll' is no command, it means 'Roll that has been imported'
-			rollfilter = new Gtk.Label (Catalog.GetString ("Import roll"));
-			rollfilter.Visible = false;
+			rollfilter = new Label (Catalog.GetString ("Import roll")) {
+				Visible = false
+			};
 			box.PackStart (rollfilter, false, false, 0);
 
-			folder_query_widget = new FolderQueryWidget (query);
-			folder_query_widget.Visible = false;
-			box.PackStart (folder_query_widget, false, false, 0);
+			folderQueryWidget = new FolderQueryWidget (query) {
+				Visible = false
+			};
+			box.PackStart (folderQueryWidget, false, false, 0);
 
-			logic_widget = new LogicWidget (query, db.Tags);
-			logic_widget.Show ();
-			box.PackStart (logic_widget, true, true, 0);
+			Logic = new LogicWidget (query, db.Tags);
+			Logic.Show ();
+			box.PackStart (Logic, true, true, 0);
 
-			warning_box = new Gtk.HBox ();
-			warning_box.PackStart (new Gtk.Label (string.Empty));
+			warning_box = new HBox ();
+			warning_box.PackStart (new Label (string.Empty));
 
-			Gtk.Image warning_image = new Gtk.Image ("gtk-info", Gtk.IconSize.Button);
+			Image warning_image = new Image ("gtk-info", IconSize.Button);
 			warning_image.Show ();
 			warning_box.PackStart (warning_image, false, false, 0);
 
-			clear_button = new Gtk.Button ();
-			clear_button.Add (new Gtk.Image ("gtk-close", Gtk.IconSize.Button));
+			clear_button = new Button {
+				new Image ("gtk-close", IconSize.Button)
+			};
 			clear_button.Clicked += HandleClearButtonClicked;
 			clear_button.Relief = Gtk.ReliefStyle.None;
 			clear_button.TooltipText = Catalog.GetString("Clear search");
 			box.PackEnd (clear_button, false, false, 0);
 
-			refresh_button = new Gtk.Button ();
-			refresh_button.Add (new Gtk.Image ("gtk-refresh", Gtk.IconSize.Button));
+			refresh_button = new Button {
+				new Image ("gtk-refresh", IconSize.Button)
+			};
 			refresh_button.Clicked += HandleRefreshButtonClicked;
-			refresh_button.Relief = Gtk.ReliefStyle.None;
+			refresh_button.Relief = ReliefStyle.None;
 			refresh_button.TooltipText = Catalog.GetString("Refresh search");
 			box.PackEnd (refresh_button, false, false, 0);
 
-			Gtk.Label warning = new Gtk.Label (Catalog.GetString ("No matching photos found"));
+			Label warning = new Label (Catalog.GetString ("No matching photos found"));
 			warning_box.PackStart (warning, false, false, 0);
 			warning_box.ShowAll ();
 			warning_box.Spacing = 6;
@@ -165,10 +170,10 @@ namespace FSpot.Query
 				return;
 
 			query.RatingRange = null;
-			logic_widget.Clear ();
-			logic_widget.UpdateQuery ();
+			Logic.Clear ();
+			Logic.UpdateQuery ();
 
-			folder_query_widget.Clear ();
+			folderQueryWidget.Clear ();
 			query.RequestReload ();
 
 			HideBar ();
@@ -187,13 +192,13 @@ namespace FSpot.Query
 		public void HandleChanged (IBrowsableCollection collection)
 		{
 			if (query.TagTerm == null)
-				logic_widget.Clear();
+				Logic.Clear();
 
-			if ( ! logic_widget.IsClear
+			if ( ! Logic.IsClear
 			    || query.Untagged
 			    || (query.RollSet != null)
 			    || (query.RatingRange != null)
-			    || ! folder_query_widget.Empty)
+			    || ! folderQueryWidget.Empty)
 				ShowBar ();
 			else
 				HideBar ();
@@ -210,42 +215,42 @@ namespace FSpot.Query
 
 		public void PhotoTagsChanged (Tag[] tags)
 		{
-			logic_widget.PhotoTagsChanged (tags);
+			Logic.PhotoTagsChanged (tags);
 		}
 
 		public void Include (Tag [] tags)
 		{
-			logic_widget.Include (tags);
+			Logic.Include (tags);
 		}
 
 		public void UnInclude (Tag [] tags)
 		{
-			logic_widget.UnInclude (tags);
+			Logic.UnInclude (tags);
 		}
 
 		public void Require (Tag [] tags)
 		{
-			logic_widget.Require (tags);
+			Logic.Require (tags);
 		}
 
 		public void UnRequire (Tag [] tags)
 		{
-			logic_widget.UnRequire (tags);
+			Logic.UnRequire (tags);
 		}
 
 		public bool TagIncluded (Tag tag)
 		{
-			return logic_widget.TagIncluded (tag);
+			return Logic.TagIncluded (tag);
 		}
 
 		public bool TagRequired (Tag tag)
 		{
-			return logic_widget.TagRequired (tag);
+			return Logic.TagRequired (tag);
 		}
 
 		public void SetFolders (IEnumerable<SafeUri> uriList)
 		{
-			folder_query_widget.SetFolders (uriList);
+			folderQueryWidget.SetFolders (uriList);
 			query.RequestReload ();
 		}
 	}

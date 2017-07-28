@@ -45,7 +45,7 @@ namespace FSpot.Import
 {
 	public class ImportDialogController
 	{
-		public PhotoList Photos { get; private set; }
+		public PhotoList Photos { get; }
 
 		public ImportDialogController (bool persistPreferences)
 		{
@@ -183,7 +183,7 @@ namespace FSpot.Import
 
 		public int PhotosImported { get; private set; }
 		public Roll CreatedRoll { get; private set; }
-		public List<SafeUri> FailedImports { get; private set; }
+		public List<SafeUri> FailedImports { get; }
 
 #endregion
 

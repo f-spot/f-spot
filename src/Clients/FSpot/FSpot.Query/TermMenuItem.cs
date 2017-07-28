@@ -70,7 +70,7 @@ namespace FSpot.Query
 
 			var m = new Gtk.Menu ();
 
-			Gtk.MenuItem all_item = GtkUtil.MakeMenuItem (m, Catalog.GetString ("All"), new EventHandler (App.Instance.Organizer.HandleRequireTag));
+			Gtk.MenuItem all_item = GtkUtil.MakeMenuItem (m, Catalog.GetString ("All"), App.Instance.Organizer.HandleRequireTag);
 			GtkUtil.MakeMenuSeparator (m);
 
 			int sensitive_items = 0;
@@ -81,7 +81,7 @@ namespace FSpot.Query
 
 				string name = "_" + string.Join (", ", term_parts.ToArray ());
 
-				Gtk.MenuItem item = GtkUtil.MakeMenuItem (m, name, new EventHandler (App.Instance.Organizer.HandleAddTagToTerm));
+				Gtk.MenuItem item = GtkUtil.MakeMenuItem (m, name, App.Instance.Organizer.HandleAddTagToTerm);
 				item.Sensitive = !contains_tag;
 
 				if (!contains_tag)
