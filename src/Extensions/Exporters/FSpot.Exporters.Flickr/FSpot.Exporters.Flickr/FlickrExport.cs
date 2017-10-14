@@ -569,11 +569,14 @@ namespace FSpot.Exporters.Flickr
 			case FlickrRemote.TOKEN_FLICKR:
 			case FlickrRemote.TOKEN_23HQ:
 			case FlickrRemote.TOKEN_ZOOOMR:
-				token = new OAuthAccessToken();
-				token.Token = Preferences.Get<string> (key);
-				token.TokenSecret = Preferences.Get<string> (key + "secret");
-				token.UserId = Preferences.Get<string> (key + "userId");
-				token.Username = Preferences.Get<string> (key + "userName");
+				string storedToken = Preferences.Get<string> (key);
+				if (storedToken != null && storedToken.Length > 0){
+					token = new OAuthAccessToken();
+					token.Token = storedToken;
+					token.TokenSecret = Preferences.Get<string> (key + "secret");
+					token.UserId = Preferences.Get<string> (key + "userId");
+					token.Username = Preferences.Get<string> (key + "userName");
+				}
 				break;
 				
 			case PUBLIC_KEY:

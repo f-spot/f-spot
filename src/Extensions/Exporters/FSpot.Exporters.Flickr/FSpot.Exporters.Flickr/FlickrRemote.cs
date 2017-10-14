@@ -150,7 +150,7 @@ namespace FSpot.Exporters.Flickr
             // CF: https://www.flickr.com/services/api/auth.oauth.html
             // OAuth flow step 1: Get a new request token if we don't already have one
             try {
-                if (flickr.AuthOAuthCheckToken() == null) {
+                if ((flickr.OAuthAccessToken == null || flickr.AuthOAuthCheckToken() == null) && requestToken == null) {
                     requestToken = flickr.OAuthGetRequestToken ("oob");
                     if (requestToken == null) {
                         Log.Error ("ERROR: Unable to Obtain OAuth Request token");
