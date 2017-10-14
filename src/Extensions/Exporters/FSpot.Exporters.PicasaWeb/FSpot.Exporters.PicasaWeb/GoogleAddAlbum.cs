@@ -39,6 +39,7 @@ namespace FSpot.Exporters.PicasaWeb
 {
 	public class GoogleAddAlbum
 	{
+#pragma warning disable 649
 		[GtkBeans.Builder.Object] Gtk.Dialog dialog;
 
 		[GtkBeans.Builder.Object] Gtk.Entry title_entry;
@@ -46,6 +47,7 @@ namespace FSpot.Exporters.PicasaWeb
 		[GtkBeans.Builder.Object] Gtk.CheckButton public_check;
 
 		[GtkBeans.Builder.Object] Gtk.Button add_button;
+#pragma warning restore 649
 
 		private GtkBeans.Builder builder;
 		private string dialog_name = "google_add_album_dialog";

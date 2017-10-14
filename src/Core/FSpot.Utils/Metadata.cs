@@ -54,24 +54,24 @@ namespace FSpot.Utils
 
             if (mime.StartsWith ("application/x-extension-")) {
                 // Works around broken metadata detection - https://bugzilla.gnome.org/show_bug.cgi?id=624781
-                mime = string.Format ("taglib/{0}", mime.Substring (24));
+                mime = string.Format ($"taglib/{mime.Substring (24)}");
             }
 
             // Parse file
-            var res = new GIOTagLibFileAbstraction () { Uri = uri };
+            var res = new GIOTagLibFileAbstraction { Uri = uri };
             var sidecar_uri = GetSidecarUri (uri);
-            var sidecar_res = new GIOTagLibFileAbstraction () { Uri = sidecar_uri };
+            var sidecar_res = new GIOTagLibFileAbstraction { Uri = sidecar_uri };
 
             TagLib.Image.File file = null;
             try {
                 file = TagLib.File.Create (res, mime, ReadStyle.Average) as TagLib.Image.File;
             } catch (Exception) {
-                Hyena.Log.DebugFormat ("Loading of metadata failed for file: {0}, trying extension fallback", uri);
+                Hyena.Log.DebugFormat ($"Loading of metadata failed for file: {uri}, trying extension fallback");
                 
                 try {
                     file = TagLib.File.Create (res, ReadStyle.Average) as TagLib.Image.File;
                 } catch (Exception e) {
-                    Hyena.Log.DebugFormat ("Loading of metadata failed for file: {0}", uri);
+                    Hyena.Log.DebugFormat ($"Loading of metadata failed for file: {uri}");
                     Hyena.Log.DebugException (e);
                     return null;
                 }
@@ -90,7 +90,7 @@ namespace FSpot.Utils
         {
             if (always_sidecar || !metadata.Writeable || metadata.PossiblyCorrupt) {
                 if (!always_sidecar && metadata.PossiblyCorrupt) {
-                    Hyena.Log.WarningFormat ("Metadata of file {0} may be corrupt, refusing to write to it, falling back to XMP sidecar.", photo_uri);
+					Hyena.Log.WarningFormat ($"Metadata of file {photo_uri} may be corrupt, refusing to write to it, falling back to XMP sidecar.");
                 }
 
                 var sidecar_res = new GIOTagLibFileAbstraction () { Uri = GetSidecarUri (photo_uri) };
@@ -101,7 +101,7 @@ namespace FSpot.Utils
             }
         }
 
-        private delegate SafeUri GenerateSideCarName (SafeUri photo_uri);
+        delegate SafeUri GenerateSideCarName (SafeUri photo_uri);
         static readonly GenerateSideCarName[] SidecarNameGenerators = {
             (p) => new SafeUri (p.AbsoluteUri + ".xmp"),
             (p) => p.ReplaceExtension (".xmp"),

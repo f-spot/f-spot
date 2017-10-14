@@ -38,7 +38,7 @@ namespace FSpot.Utils
     public class UriList : List<SafeUri>
     {
         public UriList ()
-	{
+	    {
         }
 
         public UriList (string data)

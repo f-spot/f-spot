@@ -38,7 +38,7 @@ data/desktop-files/f-spot-view.desktop.in
 data/desktop-files/f-spot.desktop
 data/desktop-files/f-spot.desktop.in
 src/AssemblyInfo.cs
-src/Clients/MainApp/f-spot
+src/Clients/FSpot/f-spot
 src/Core/FSpot.Settings/Defines.cs
 tools/f-spot-screensaver.desktop
 
@@ -75,3 +75,12 @@ packages/*
 
 # monodevelop files
 *.userprefs
+
+# Rider
+# User-specific stuff:
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/dictionaries
+
+# User settings
+*.user

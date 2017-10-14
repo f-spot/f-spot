@@ -56,6 +56,7 @@ using FSpot.UI.Dialog;
 using Hyena;
 
 using SmugMugNet;
+using System.Linq;
 
 namespace FSpot.Exporters.SmugMug
 {
@@ -78,7 +79,7 @@ namespace FSpot.Exporters.SmugMug
             gallery_optionmenu.Show ();
             album_optionmenu.Show ();
 
-			this.items = selection.Items;
+			this.items = selection.Items.ToArray ();
 			album_button.Sensitive = false;
 			var view = new TrayView (selection);
 			view.DisplayDates = false;
@@ -133,6 +134,7 @@ namespace FSpot.Exporters.SmugMug
 		Gtk.ComboBox gallery_optionmenu;
 		Gtk.ComboBox album_optionmenu;
 
+#pragma warning disable 649
 		[GtkBeans.Builder.Object] Gtk.CheckButton browser_check;
 		[GtkBeans.Builder.Object] Gtk.CheckButton scale_check;
 
@@ -144,6 +146,7 @@ namespace FSpot.Exporters.SmugMug
 		[GtkBeans.Builder.Object] Gtk.Button export_button;
 
 		[GtkBeans.Builder.Object] Gtk.ScrolledWindow thumb_scrolledwindow;
+#pragma warning restore 649
 
 		System.Threading.Thread command_thread;
 

@@ -72,6 +72,7 @@ namespace FSpot.Exporters.Folder
 	{
 		IBrowsableCollection selection;
 
+#pragma warning disable 649
 		[GtkBeans.Builder.Object] Gtk.Dialog dialog;
 		[GtkBeans.Builder.Object] Gtk.ScrolledWindow thumb_scrolledwindow;
 		[GtkBeans.Builder.Object] Gtk.Entry name_entry;
@@ -89,6 +90,7 @@ namespace FSpot.Exporters.Folder
 		[GtkBeans.Builder.Object] Gtk.SpinButton size_spin;
 
 		[GtkBeans.Builder.Object] Gtk.HBox chooser_hbox;
+#pragma warning restore 649
 
 		public const string EXPORT_SERVICE = "folder/";
 		public const string SCALE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "scale";

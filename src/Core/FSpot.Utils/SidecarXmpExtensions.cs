@@ -55,7 +55,7 @@ namespace FSpot.Utils
                     }
                 }
             } catch (Exception e) {
-                Log.DebugFormat ("Sidecar cannot be read for file {0}", file.Name);
+                Log.DebugFormat ($"Sidecar cannot be read for file {file.Name}");
                 Log.DebugException (e);
                 return false;
             }
@@ -64,7 +64,7 @@ namespace FSpot.Utils
             try {
                 tag = new XmpTag (xmp, file);
             } catch (Exception e) {
-                Log.DebugFormat ("Metadata of Sidecar cannot be parsed for file {0}", file.Name);
+				Log.DebugFormat ($"Metadata of Sidecar cannot be parsed for file {file.Name}");
                 Log.DebugException (e);
                 return false;
             }
@@ -93,7 +93,7 @@ namespace FSpot.Utils
                     resource.CloseStream (stream);
                 }
             } catch (Exception e) {
-                Log.DebugFormat ("Sidecar cannot be saved: {0}", resource.Name);
+				Log.DebugFormat ($"Sidecar cannot be saved: {resource.Name}");
                 Log.DebugException (e);
                 return false;
             }

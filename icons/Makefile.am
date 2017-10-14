@@ -1,8 +1,14 @@
 theme = hicolor
 themedir = $(pkgdatadir)/icons/$(theme)
-hicolordir = $(DESTDIR)$(datadir)/icons/hicolor
 
 theme_icons = 					\
+	apps,f-spot-16.png			\
+	apps,f-spot-22.png			\
+	apps,f-spot-24.png			\
+	apps,f-spot-32.png			\
+	apps,f-spot-48.png			\
+	apps,f-spot-128.png			\
+	apps,f-spot-256.png			\
 	actions,adjust-colors-16.png		\
 	actions,adjust-colors-22.png		\
 	actions,adjust-colors-24.png		\
@@ -101,30 +107,9 @@ install_icon_exec = $(top_srcdir)/icon-theme-installer \
 
 install-data-local:
 	@-$(install_icon_exec) -i $(theme_icons)
-	$(mkinstalldirs) $(hicolordir)/16x16/apps
-	$(INSTALL_DATA) $(srcdir)/f-spot-16.png $(hicolordir)/16x16/apps/f-spot.png
-	$(mkinstalldirs) $(hicolordir)/22x22/apps
-	$(INSTALL_DATA) $(srcdir)/f-spot-22.png $(hicolordir)/22x22/apps/f-spot.png
-	$(mkinstalldirs) $(hicolordir)/24x24/apps
-	$(INSTALL_DATA) $(srcdir)/f-spot-24.png $(hicolordir)/24x24/apps/f-spot.png
-	$(mkinstalldirs) $(hicolordir)/32x32/apps
-	$(INSTALL_DATA) $(srcdir)/f-spot-32.png $(hicolordir)/32x32/apps/f-spot.png
-	$(mkinstalldirs) $(hicolordir)/48x48/apps
-	$(INSTALL_DATA) $(srcdir)/f-spot-48.png $(hicolordir)/48x48/apps/f-spot.png
-	$(mkinstalldirs) $(hicolordir)/128x128/apps
-	$(INSTALL_DATA) $(srcdir)/f-spot-128.png $(hicolordir)/128x128/apps/f-spot.png
-	$(mkinstalldirs) $(hicolordir)/256x256/apps
-	$(INSTALL_DATA) $(srcdir)/f-spot-256.png $(hicolordir)/256x256/apps/f-spot.png
 
 uninstall-hook: 
 	@-$(install_icon_exec) -u $(theme_icons)
-	rm -f $(hicolordir)/16x16/apps/f-spot.png
-	rm -f $(hicolordir)/22x22/apps/f-spot.png
-	rm -f $(hicolordir)/24x24/apps/f-spot.png
-	rm -f $(hicolordir)/32x32/apps/f-spot.png
-	rm -f $(hicolordir)/48x48/apps/f-spot.png
-	rm -f $(hicolordir)/128x128/apps/f-spot.png
-	rm -f $(hicolordir)/256x256/apps/f-spot.png
 
 MAINTAINERCLEANFILES = Makefile.in
 EXTRA_DIST = $(wildcard *.png *.svg)	\

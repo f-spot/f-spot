@@ -44,11 +44,13 @@ using FSpot.Widgets;
 
 using Mono.Facebook;
 using Mono.Unix;
+using System.Linq;
 
 namespace FSpot.Exporters.Facebook
 {
 	internal class FacebookExportDialog : BuilderDialog
 	{
+#pragma warning disable 649
 		[GtkBeans.Builder.Object] VBox album_info_vbox;
 		[GtkBeans.Builder.Object] VBox picture_info_vbox;
 		[GtkBeans.Builder.Object] HBox log_buttons_hbox;
@@ -70,6 +72,7 @@ namespace FSpot.Exporters.Facebook
 		[GtkBeans.Builder.Object] HBox permissions_hbox;
 		[GtkBeans.Builder.Object] CheckButton offline_perm_check;
 		[GtkBeans.Builder.Object] CheckButton photo_perm_check;
+#pragma warning restore 649
 
 		Gtk.Image tag_image;
 		int tag_image_height;
@@ -91,12 +94,12 @@ namespace FSpot.Exporters.Facebook
 		public FacebookExportDialog (IBrowsableCollection selection) : base (Assembly.GetExecutingAssembly (), "FacebookExport.ui", "facebook_export_dialog")
 		{
 			// Sort selection by date ascending
-			items = selection.Items;
+			items = selection.Items.ToArray ();
 			Array.Sort (items, new DateComparer ());
 			current_item = -1;
 
-			captions = new string [selection.Items.Length];
-			tags = new List<Mono.Facebook.Tag> [selection.Items.Length];
+			captions = new string [items.Length];
+			tags = new List<Mono.Facebook.Tag> [items.Length];
 
 			tray_view = new SelectionCollectionGridView (selection) {
                 MaxColumns = 1,

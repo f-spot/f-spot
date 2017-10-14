@@ -60,11 +60,14 @@ namespace FSpot.Tools.ScreensaverConfig
 
 		class ScreensaverConfigDialog : BuilderDialog
 		{
+#pragma warning disable 649
 			[GtkBeans.Builder.Object] Range delay_scale;
 			[GtkBeans.Builder.Object] Table table;
 			[GtkBeans.Builder.Object] RadioButton all_radio;
 			[GtkBeans.Builder.Object] RadioButton tagged_radio;
 			[GtkBeans.Builder.Object] Button do_button;
+#pragma warning restore 649
+
 			Adjustment delay_adjustment;
 			MenuButton tag_button;
 

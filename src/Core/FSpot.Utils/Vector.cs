@@ -36,12 +36,6 @@ namespace FSpot.Utils
 		double X;
 		double Y;
 
-		public Vector (Gdk.Point p)
-		{
-			X = p.X;
-			Y = p.Y;
-		}
-
 		public Vector (double x, double y)
 		{
 			X = x;
@@ -79,15 +73,11 @@ namespace FSpot.Utils
 			return v1.X * v2.X + v1.Y * v2.Y;
 		}
 
-		double Length {
-			get {
-				return Math.Sqrt (X * X + Y * Y);
-			}
-		}
+		double Length => Math.Sqrt (X * X + Y * Y);
 
 		public override string ToString ()
 		{
-			return string.Format ("v({0},{1}).{2}", X, Y, Length);
+			return $"v({X},{Y}).{Length}";
 		}
 	}
 }

@@ -40,11 +40,13 @@ namespace FSpot.Exporters.Gallery
 		[GtkBeans.Builder.Object] Gtk.Dialog add_album_dialog;
 		Gtk.ComboBox album_optionmenu;
 
+#pragma warning disable 649
 		[GtkBeans.Builder.Object] Gtk.Entry name_entry;
 		[GtkBeans.Builder.Object] Gtk.Entry description_entry;
 		[GtkBeans.Builder.Object] Gtk.Entry title_entry;
 
 		[GtkBeans.Builder.Object] Gtk.Button add_button;
+#pragma warning restore 649
 
 		private GalleryExport export;
 		private Gallery gallery;

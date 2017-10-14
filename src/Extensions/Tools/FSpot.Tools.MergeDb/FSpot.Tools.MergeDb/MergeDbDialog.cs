@@ -37,6 +37,7 @@ namespace FSpot.Tools.MergeDb
 {
 	internal class MergeDbDialog
 	{
+#pragma warning disable 649
 		[GtkBeans.Builder.Object] Gtk.Dialog mergedb_dialog;
 		[GtkBeans.Builder.Object] Gtk.Button apply_button;
 		[GtkBeans.Builder.Object] Gtk.FileChooserButton db_filechooser;
@@ -46,6 +47,7 @@ namespace FSpot.Tools.MergeDb
 		[GtkBeans.Builder.Object] Gtk.ComboBox rolls_combo;
 		[GtkBeans.Builder.Object] Gtk.RadioButton copy_radio;
 		[GtkBeans.Builder.Object] Gtk.RadioButton keep_radio;
+#pragma warning restore 649
 
 		MergeDb parent;
 

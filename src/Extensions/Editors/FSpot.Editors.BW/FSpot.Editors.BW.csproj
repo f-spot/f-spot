@@ -47,9 +47,9 @@
       <Name>FSpot.Core</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Clients\MainApp\MainApp.csproj">
+    <ProjectReference Include="..\..\..\Clients\FSpot\FSpot.csproj">
       <Project>{27EC05FB-0223-4B26-8157-E49AF81D0007}</Project>
-      <Name>MainApp</Name>
+      <Name>FSpot</Name>
       <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Core\FSpot.Cms\FSpot.Cms.csproj">
@@ -71,13 +71,13 @@
       <Package>gtk-sharp-2.0</Package>
     </Reference>
     <Reference Include="Mono.Posix" />
-    <Reference Include="Mono.Simd" />
     <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Package>gtk-sharp-2.0</Package>
     </Reference>
     <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Package>glib-sharp-2.0</Package>
     </Reference>
+    <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="FSpot.Addins.Editors\" />

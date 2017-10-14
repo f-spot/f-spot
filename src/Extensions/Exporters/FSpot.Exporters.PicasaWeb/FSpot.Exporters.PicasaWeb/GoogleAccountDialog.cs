@@ -138,6 +138,7 @@ namespace FSpot.Exporters.PicasaWeb
 
         GtkBeans.Builder builder;
 
+#pragma warning disable 649
 		// widgets
 		[GtkBeans.Builder.Object] Gtk.Dialog dialog;
 		[GtkBeans.Builder.Object] Gtk.Entry password_entry;
@@ -152,6 +153,6 @@ namespace FSpot.Exporters.PicasaWeb
 
 		[GtkBeans.Builder.Object] Gtk.Image captcha_image;
 		[GtkBeans.Builder.Object] Gtk.Label captcha_label;
-
+#pragma warning restore 649
 	}
 }

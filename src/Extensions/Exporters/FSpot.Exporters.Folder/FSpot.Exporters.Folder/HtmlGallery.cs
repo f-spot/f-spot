@@ -60,6 +60,7 @@ using Mono.Unix;
 
 using FSpot.Core;
 using FSpot.Settings;
+using System.Linq;
 
 namespace FSpot.Exporters.Folder
 {
@@ -97,7 +98,7 @@ namespace FSpot.Exporters.Folder
 
 			base.GenerateLayout ();
 
-			IPhoto [] photos = Collection.Items;
+			IPhoto [] photos = Collection.Items.ToArray ();
 
 			int i;
 			for (i = 0; i < photos.Length; i++)
@@ -176,7 +177,7 @@ namespace FSpot.Exporters.Folder
 
 		public int PageCount {
 			get {
-				return 	(int) System.Math.Ceiling (Collection.Items.Length / (double)perpage);
+				return 	(int) System.Math.Ceiling (Collection.Items.Count () / (double)perpage);
 			}
 		}
 
