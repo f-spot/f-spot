@@ -56,7 +56,7 @@ namespace FSpot.Query
 
 		public Literal (Term parent, Tag tag, Literal after) : base (parent, after)
 		{
-			Tag = tag;
+			this.tag = tag;
 		}
 
 		static Literal ()
@@ -67,7 +67,14 @@ namespace FSpot.Query
 		#region Properties
 		public static List<Literal> FocusedLiterals { get; set; }
 
-		public Tag Tag { get; private set; }
+		public Tag Tag {
+			get {
+				return tag;
+			}
+			private set {
+				tag = value;
+			}
+		}
 
 		public override bool IsNegated {
 			get {
