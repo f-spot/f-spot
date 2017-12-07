@@ -19,7 +19,7 @@ namespace GLib {
 			CreateNativeObject (new string [0], new GLib.Value [0]);
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void MountChangedVMDelegate (IntPtr volume_monitor, IntPtr mount);
 
 		static MountChangedVMDelegate MountChangedVMCallback;
@@ -68,7 +68,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void DriveDisconnectedVMDelegate (IntPtr volume_monitor, IntPtr drive);
 
 		static DriveDisconnectedVMDelegate DriveDisconnectedVMCallback;
@@ -117,7 +117,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void DriveConnectedVMDelegate (IntPtr volume_monitor, IntPtr drive);
 
 		static DriveConnectedVMDelegate DriveConnectedVMCallback;
@@ -166,7 +166,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void VolumeChangedVMDelegate (IntPtr volume_monitor, IntPtr volume);
 
 		static VolumeChangedVMDelegate VolumeChangedVMCallback;
@@ -215,7 +215,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void VolumeAddedVMDelegate (IntPtr volume_monitor, IntPtr volume);
 
 		static VolumeAddedVMDelegate VolumeAddedVMCallback;
@@ -264,7 +264,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void DriveStopButtonVMDelegate (IntPtr volume_monitor, IntPtr drive);
 
 		static DriveStopButtonVMDelegate DriveStopButtonVMCallback;
@@ -313,7 +313,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void MountAddedVMDelegate (IntPtr volume_monitor, IntPtr mount);
 
 		static MountAddedVMDelegate MountAddedVMCallback;
@@ -362,7 +362,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void DriveEjectButtonVMDelegate (IntPtr volume_monitor, IntPtr drive);
 
 		static DriveEjectButtonVMDelegate DriveEjectButtonVMCallback;
@@ -411,7 +411,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void DriveChangedVMDelegate (IntPtr volume_monitor, IntPtr drive);
 
 		static DriveChangedVMDelegate DriveChangedVMCallback;
@@ -460,7 +460,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void MountPreUnmountVMDelegate (IntPtr volume_monitor, IntPtr mount);
 
 		static MountPreUnmountVMDelegate MountPreUnmountVMCallback;
@@ -509,7 +509,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void VolumeRemovedVMDelegate (IntPtr volume_monitor, IntPtr volume);
 
 		static VolumeRemovedVMDelegate VolumeRemovedVMCallback;
@@ -558,7 +558,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void MountRemovedVMDelegate (IntPtr volume_monitor, IntPtr mount);
 
 		static MountRemovedVMDelegate MountRemovedVMCallback;

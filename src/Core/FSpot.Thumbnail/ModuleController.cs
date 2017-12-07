@@ -37,6 +37,7 @@ namespace FSpot.Thumbnail
 			container.Register<IXdgDirectoryService, XdgDirectoryService> ().AsSingleton ();
 			container.Register<IThumbnailService, ThumbnailService> ().AsSingleton ();
 			container.Register<IThumbnailerFactory, ThumbnailerFactory> ().AsSingleton ();
+			container.Register<IThumbnailLoader, ThumbnailLoader> ().AsSingleton ();
 		}
 	}
 }

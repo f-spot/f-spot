@@ -10,7 +10,7 @@
     <RootNamespace>FSpot.Thumbnail</RootNamespace>
     <AssemblyName>FSpot.Thumbnail</AssemblyName>
     <ReleaseVersion>0.9.0</ReleaseVersion>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -51,6 +51,8 @@
     <Compile Include="ThumbnailerFactory.cs" />
     <Compile Include="ImageThumbnailer.cs" />
     <Compile Include="ModuleController.cs" />
+    <Compile Include="IThumbnailLoader.cs" />
+    <Compile Include="ThumbnailLoader.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

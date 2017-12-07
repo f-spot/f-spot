@@ -39,7 +39,15 @@ namespace FSpot.FileSystem
 		public bool Exists (SafeUri uri)
 		{
 			var file = FileFactory.NewForUri (uri);
-			return file.Exists;
+			return file.Exists && file.QueryFileType (FileQueryInfoFlags.None, null) == FileType.Regular;
+		}
+
+		public bool IsSymlink (SafeUri uri)
+		{
+			var file = FileFactory.NewForUri (uri);
+			using (var root_info = file.QueryInfo ("standard::is-symlink", FileQueryInfoFlags.None, null)) {
+				return root_info.IsSymlink;
+			}
 		}
 
 		public void Copy (SafeUri source, SafeUri destination, bool overwrite)
@@ -58,11 +66,28 @@ namespace FSpot.FileSystem
 			file.Delete ();
 		}
 
+		public string GetMimeType (SafeUri uri)
+		{
+			var file = FileFactory.NewForUri (uri);
+			using (var info = file.QueryInfo ("standard::content-type", FileQueryInfoFlags.None, null)) {
+				return info.ContentType;
+			}
+		}
+
 		public ulong GetMTime (SafeUri uri)
 		{
 			var file = FileFactory.NewForUri (uri);
-			var info = file.QueryInfo ("time::modified", FileQueryInfoFlags.None, null);
-			return info.GetAttributeULong ("time::modified");
+			using (var info = file.QueryInfo ("time::modified", FileQueryInfoFlags.None, null)) {
+				return info.GetAttributeULong ("time::modified");
+			}
+		}
+
+		public long GetSize (SafeUri uri)
+		{
+			var file = FileFactory.NewForUri (uri);
+			using (var info = file.QueryInfo ("standard::size", FileQueryInfoFlags.None, null)) {
+				return info.Size;
+			}
 		}
 
 		public Stream Read (SafeUri uri)

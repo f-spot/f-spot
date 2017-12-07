@@ -53,7 +53,7 @@ namespace FSpot.Query
 		
 		protected static string EscapeQuotes (string v)
 		{
-			return v == null ? String.Empty : v.Replace("'", "''");
+			return v == null ? string.Empty : v.Replace("'", "''");
 		}
 		
 		public string SqlClause ()
@@ -66,12 +66,12 @@ namespace FSpot.Query
 			int i = 0;
 			foreach (var uri in uri_list) {
 				items[i] =
-					String.Format ("id IN (SELECT id FROM photos WHERE base_uri LIKE '{0}%')",
+					string.Format ("id IN (SELECT id FROM photos WHERE base_uri LIKE '{0}%')",
 					               EscapeQuotes (uri.ToString ()));
 				i++;
 			}
 			
-			return String.Join (" OR ", items);
+			return string.Join (" OR ", items);
 		}
 	}
 }

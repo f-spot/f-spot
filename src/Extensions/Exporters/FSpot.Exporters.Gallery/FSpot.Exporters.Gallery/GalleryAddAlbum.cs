@@ -40,11 +40,13 @@ namespace FSpot.Exporters.Gallery
 		[GtkBeans.Builder.Object] Gtk.Dialog add_album_dialog;
 		Gtk.ComboBox album_optionmenu;
 
+#pragma warning disable 649
 		[GtkBeans.Builder.Object] Gtk.Entry name_entry;
 		[GtkBeans.Builder.Object] Gtk.Entry description_entry;
 		[GtkBeans.Builder.Object] Gtk.Entry title_entry;
 
 		[GtkBeans.Builder.Object] Gtk.Button add_button;
+#pragma warning restore 649
 
 		private GalleryExport export;
 		private Gallery gallery;
@@ -103,12 +105,12 @@ namespace FSpot.Exporters.Gallery
 		{
 			if (gallery.Version == GalleryVersion.Version1)
 				if (gallery.Albums.Count == 0 || album_optionmenu.Active <= 0)
-					parent = String.Empty;
+					parent = string.Empty;
 				else
 					parent = ((Album) gallery.Albums [album_optionmenu.Active-1]).Name;
 			else
 				if (gallery.Albums.Count == 0 || album_optionmenu.Active < 0)
-					parent = String.Empty;
+					parent = string.Empty;
 				else
 					parent = ((Album) gallery.Albums [album_optionmenu.Active]).Name;
 
@@ -116,7 +118,7 @@ namespace FSpot.Exporters.Gallery
 			description = description_entry.Text;
 			title = title_entry.Text;
 
-			if (name == String.Empty || title == String.Empty)
+			if (name == string.Empty || title == string.Empty)
 				add_button.Sensitive = false;
 			else
 				add_button.Sensitive = true;

@@ -147,9 +147,7 @@ namespace FSpot.Widgets
 
 				selection = value;
 
-				EventHandler eh = SelectionChanged;
-				if (eh != null)
-					eh (this, EventArgs.Empty);
+				SelectionChanged?.Invoke (this, EventArgs.Empty);
 				QueueDraw ();
 			}
 		}
@@ -364,9 +362,7 @@ namespace FSpot.Widgets
             if (Fit || zoom < MIN_ZOOM)
                 zoom = MIN_ZOOM;
             // Since this affects the zoom_scale we should alert it
-            EventHandler eh = ZoomChanged;
-            if (eh != null)
-                eh (this, EventArgs.Empty);
+			ZoomChanged?.Invoke (this, EventArgs.Empty);
 
             ComputeScaledSize ();
 
@@ -620,9 +616,7 @@ namespace FSpot.Widgets
                 Vadjustment.Value = YOffset = Clamp ((int)(y_anchor * scaled_height - y), 0, (int)(Vadjustment.Upper - Vadjustment.PageSize));
             AdjustmentsChanged += ScrollToAdjustments;
 
-            EventHandler eh = ZoomChanged;
-            if (eh != null)
-                eh (this, EventArgs.Empty);
+			ZoomChanged?.Invoke (this, EventArgs.Empty);
 
             QueueDraw ();
         }
@@ -740,9 +734,7 @@ namespace FSpot.Widgets
 		event EventHandler AdjustmentsChanged;
 		void HandleAdjustmentsValueChanged (object sender, EventArgs e)
 		{
-			EventHandler eh = AdjustmentsChanged;
-			if (eh != null)
-				eh (this, EventArgs.Empty);
+			AdjustmentsChanged?.Invoke (this, EventArgs.Empty);
 		}
 
 		void ScrollToAdjustments (object sender, EventArgs e)

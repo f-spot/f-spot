@@ -37,12 +37,15 @@ using System.Collections.Generic;
 using Mono.Unix;
 
 using FSpot.Core;
+using FSpot.Database;
 using FSpot.Filters;
+using FSpot.Settings;
 using FSpot.Widgets;
 using FSpot.UI.Dialog;
 using FSpot.Extensions;
 
 using Hyena;
+using System.Linq;
 
 namespace FSpot.Exporters.Gallery
 {
@@ -68,7 +71,7 @@ namespace FSpot.Exporters.Gallery
 			(edit_button.Parent as Gtk.HBox).ReorderChild (gallery_optionmenu, 1);
 			gallery_optionmenu.Show ();
 
-			this.items = selection.Items;
+			this.items = selection.Items.ToArray ();
 			Array.Sort<IPhoto> (this.items, new IPhotoComparer.CompareDateName ());
 			album_button.Sensitive = false;
 			var view = new TrayView (selection);
@@ -123,6 +126,7 @@ namespace FSpot.Exporters.Gallery
 		Gtk.ComboBox gallery_optionmenu;
 		Gtk.ComboBox album_optionmenu;
 
+#pragma warning disable 649
 		[GtkBeans.Builder.Object] Gtk.CheckButton browser_check;
 		[GtkBeans.Builder.Object] Gtk.CheckButton scale_check;
 		[GtkBeans.Builder.Object] Gtk.CheckButton meta_check;
@@ -131,6 +135,7 @@ namespace FSpot.Exporters.Gallery
 		[GtkBeans.Builder.Object] Gtk.Button edit_button;
 		[GtkBeans.Builder.Object] Gtk.Button export_button;
 		[GtkBeans.Builder.Object] Gtk.ScrolledWindow thumb_scrolledwindow;
+#pragma warning restore 649
 
 		System.Threading.Thread command_thread;
 
@@ -200,11 +205,11 @@ namespace FSpot.Exporters.Gallery
 
 				Log.DebugFormat ("uploading {0}", photo_index);
 
-				progress_dialog.Message = System.String.Format (Catalog.GetString ("Uploading picture \"{0}\""), item.Name);
+				progress_dialog.Message = string.Format (Catalog.GetString ("Uploading picture \"{0}\""), item.Name);
 				progress_dialog.Fraction = photo_index / (double)items.Length;
 				photo_index++;
 
-				progress_dialog.ProgressText = System.String.Format (Catalog.GetString ("{0} of {1}"), photo_index, items.Length);
+				progress_dialog.ProgressText = string.Format (Catalog.GetString ("{0} of {1}"), photo_index, items.Length);
 
 
 				FilterRequest req = new FilterRequest (item.DefaultVersion.Uri);
@@ -216,9 +221,9 @@ namespace FSpot.Exporters.Gallery
 					if (item != null && item is Photo && App.Instance.Database != null && id != 0)
 							App.Instance.Database.Exports.Create ((item as Photo).Id, (item as Photo).DefaultVersionId,
 										      ExportStore.Gallery2ExportType,
-										      String.Format("{0}:{1}",album.Gallery.Uri.ToString (), id.ToString ()));
-				} catch (System.Exception e) {
-					progress_dialog.Message = String.Format (Catalog.GetString ("Error uploading picture \"{0}\" to Gallery: {1}"), item.Name, e.Message);
+										      string.Format("{0}:{1}",album.Gallery.Uri, id.ToString ()));
+				} catch (Exception e) {
+					progress_dialog.Message = string.Format (Catalog.GetString ("Error uploading picture \"{0}\" to Gallery: {1}"), item.Name, e.Message);
 					progress_dialog.ProgressText = Catalog.GetString ("Error");
 					Log.Exception (e);
 

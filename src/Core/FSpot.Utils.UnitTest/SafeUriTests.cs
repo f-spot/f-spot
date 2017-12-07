@@ -90,11 +90,11 @@ namespace FSpot.Utils.Tests
         {
             foreach (var test in tests) {
                 var suri = new SafeUri (test.Uri);
-                Assert.AreEqual (suri.AbsoluteUri, test.AbsoluteUri, String.Format("AbsoluteUri for {0}", test.Uri));
-                Assert.AreEqual (suri.GetExtension (), test.Extension, String.Format("Extension for {0}", test.Uri));
-                Assert.AreEqual (suri.GetBaseUri ().ToString (), test.BaseUri, String.Format("BaseUri for {0}", test.Uri));
-                Assert.AreEqual (suri.GetFilename (), test.Filename, String.Format("Filename for {0}", test.Uri));
-                Assert.AreEqual (suri.GetFilenameWithoutExtension (), test.FilenameWithoutExtension, String.Format("FilenameWithoutExtension for {0}", test.Uri));
+                Assert.AreEqual (suri.AbsoluteUri, test.AbsoluteUri, string.Format("AbsoluteUri for {0}", test.Uri));
+                Assert.AreEqual (suri.GetExtension (), test.Extension, string.Format("Extension for {0}", test.Uri));
+                Assert.AreEqual (suri.GetBaseUri ().ToString (), test.BaseUri, string.Format("BaseUri for {0}", test.Uri));
+                Assert.AreEqual (suri.GetFilename (), test.Filename, string.Format("Filename for {0}", test.Uri));
+                Assert.AreEqual (suri.GetFilenameWithoutExtension (), test.FilenameWithoutExtension, string.Format("FilenameWithoutExtension for {0}", test.Uri));
             }
         }
 

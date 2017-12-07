@@ -10,7 +10,7 @@
     <RootNamespace>FSpot.Widgets</RootNamespace>
     <AssemblyName>FSpot.Gui</AssemblyName>
     <ReleaseVersion>0.9.0</ReleaseVersion>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -120,6 +120,10 @@
     <ProjectReference Include="..\..\..\lib\gtk-sharp-beans\gtk-sharp-beans.csproj">
       <Project>{069D1797-427D-4CED-A754-233DE64FC5DD}</Project>
       <Name>gtk-sharp-beans</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSpot.Settings\FSpot.Settings.csproj">
+      <Project>{423B5DED-65C8-4C4A-9DBB-7D7BD440F78F}</Project>
+      <Name>FSpot.Settings</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

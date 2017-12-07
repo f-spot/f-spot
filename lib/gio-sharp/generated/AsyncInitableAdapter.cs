@@ -27,7 +27,7 @@ namespace GLib {
 		}
 
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void InitAsyncDelegate (IntPtr initable, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		static void InitAsyncCallback (IntPtr initable, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data)
@@ -41,7 +41,7 @@ namespace GLib {
 			}
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate bool InitFinishDelegate (IntPtr initable, IntPtr res, out IntPtr error);
 
 		static bool InitFinishCallback (IntPtr initable, IntPtr res, out IntPtr error)

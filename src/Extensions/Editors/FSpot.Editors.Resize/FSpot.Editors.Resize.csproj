@@ -10,7 +10,7 @@
     <RootNamespace>FSpot.Addins.Editors</RootNamespace>
     <AssemblyName>FSpot.Editors.ResizeEditor</AssemblyName>
     <ReleaseVersion>0.9.0</ReleaseVersion>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -55,9 +55,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Clients\MainApp\MainApp.csproj">
+    <ProjectReference Include="..\..\..\Clients\FSpot\FSpot.csproj">
       <Project>{27EC05FB-0223-4B26-8157-E49AF81D0007}</Project>
-      <Name>MainApp</Name>
+      <Name>FSpot</Name>
       <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Core\FSpot.Cms\FSpot.Cms.csproj">
@@ -76,6 +76,14 @@
     <ProjectReference Include="..\..\..\Core\FSpot.Imaging\FSpot.Imaging.csproj">
       <Project>{69C1F628-6CB4-4446-96AC-57810DD57594}</Project>
       <Name>FSpot.Imaging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\lib\unique-sharp\unique-sharp.csproj">
+      <Project>{5DBBB8C5-7BAF-46DA-B7D2-2486430141E2}</Project>
+      <Name>unique-sharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\FSpot.Utils\FSpot.Utils.csproj">
+      <Project>{CE160879-1BF0-4711-A18F-FDA2772900FA}</Project>
+      <Name>FSpot.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

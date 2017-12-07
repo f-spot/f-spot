@@ -25,57 +25,58 @@
 //
 
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FSpot.Core.UnitTest.Mocks
 {
-    internal class BrowsableCollectionMock : IBrowsableCollection
-    {
-        List<IPhoto> itemCollection;
+	internal class BrowsableCollectionMock : IBrowsableCollection
+	{
+		List<IPhoto> itemCollection;
 
-        public BrowsableCollectionMock (params IPhoto[] items)
-        {
-            itemCollection = new List<IPhoto> (items);
-        }
+		public BrowsableCollectionMock (params IPhoto[] items)
+		{
+			itemCollection = new List<IPhoto> (items);
+		}
 
-        public void RemoveAt (int index)
-        {
-            itemCollection.RemoveAt (index);
-            if (Changed != null)
-                Changed (this);
-        }
+		public void RemoveAt (int index)
+		{
+			itemCollection.RemoveAt (index);
+			if (Changed != null)
+				Changed (this);
+		}
 
-        #region IBrowsableCollection implementation
-        public event IBrowsableCollectionChangedHandler Changed;
-        #pragma warning disable 67 // ItemsChanged event unused in mock
-        public event IBrowsableCollectionItemsChangedHandler ItemsChanged;
-        #pragma warning restore 67
-        public int IndexOf (IPhoto item)
-        {
-            return itemCollection.IndexOf (item);
-        }
-        public bool Contains (IPhoto item)
-        {
-            throw new System.NotImplementedException ();
-        }
-        public void MarkChanged (int index, IBrowsableItemChanges changes)
-        {
-            throw new System.NotImplementedException ();
-        }
-        public IPhoto[] Items {
-            get {
-                return itemCollection.ToArray ();
-            }
-        }
-        public IPhoto this [int index] {
-            get {
-                return itemCollection[index];
-            }
-        }
-        public int Count {
-            get {
-                return itemCollection.Count;
-            }
-        }
-        #endregion
-    }
+		#region IBrowsableCollection implementation
+		public event IBrowsableCollectionChangedHandler Changed;
+		#pragma warning disable 67 // ItemsChanged event unused in mock
+		public event IBrowsableCollectionItemsChangedHandler ItemsChanged;
+		#pragma warning restore 67
+		public int IndexOf (IPhoto item)
+		{
+			return itemCollection.IndexOf (item);
+		}
+		public bool Contains (IPhoto item)
+		{
+			throw new System.NotImplementedException ();
+		}
+		public void MarkChanged (int index, IBrowsableItemChanges changes)
+		{
+			throw new System.NotImplementedException ();
+		}
+		public IEnumerable<IPhoto> Items {
+			get {
+				return itemCollection.AsEnumerable ();
+			}
+		}
+		public IPhoto this [int index] {
+			get {
+				return itemCollection[index];
+			}
+		}
+		public int Count {
+			get {
+				return itemCollection.Count;
+			}
+		}
+		#endregion
+	}
 }

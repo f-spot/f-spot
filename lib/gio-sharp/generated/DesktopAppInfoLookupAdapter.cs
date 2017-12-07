@@ -25,7 +25,7 @@ namespace GLib {
 		}
 
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate IntPtr GetDefaultForUriSchemeDelegate (IntPtr lookup, IntPtr uri_scheme);
 
 		static IntPtr GetDefaultForUriSchemeCallback (IntPtr lookup, IntPtr uri_scheme)

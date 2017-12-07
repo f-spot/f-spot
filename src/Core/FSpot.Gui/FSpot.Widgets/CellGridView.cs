@@ -322,9 +322,9 @@ namespace FSpot.Widgets
                                    (int) Vadjustment.Value,
                                    Allocation.Width,
                                    Allocation.Height);
-
-            if (BinWindow != null && cell_area.Intersect (visible, out cell_area))
-                BinWindow.InvalidateRect (cell_area, false);
+            Gdk.Rectangle intersection;
+            if (BinWindow != null && cell_area.Intersect (visible, out intersection))
+                BinWindow.InvalidateRect (intersection, false);
         }
 
 #endregion

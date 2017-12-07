@@ -29,6 +29,8 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System.Collections.Generic;
+
 namespace FSpot.Core
 {
 	public delegate void IBrowsableCollectionChangedHandler (IBrowsableCollection collection);
@@ -36,8 +38,7 @@ namespace FSpot.Core
 
 	public interface IBrowsableCollection
 	{
-		// FIXME this should really be ToArray ()
-		IPhoto [] Items {
+		IEnumerable<IPhoto> Items {
 			get;
 		}
 

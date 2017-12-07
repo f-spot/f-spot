@@ -10,7 +10,7 @@
     <RootNamespace>FSpot.Imaging.UnitTest</RootNamespace>
     <AssemblyName>FSpot.Imaging.UnitTest</AssemblyName>
     <ReleaseVersion>0.9.0</ReleaseVersion>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,6 +42,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Compile Include="TestOf_ImageFile.cs" />
+    <Compile Include="ImageFileTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\lib\Hyena\Hyena\Hyena.csproj">
@@ -56,5 +57,12 @@
       <Project>{6B143A39-C7B2-4743-9917-92262C60E9A6}</Project>
       <Name>taglib-sharp</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FSpot.FileSystem\FSpot.FileSystem.csproj">
+      <Project>{F7821E0B-6861-47D7-9FCE-F853CDF2F838}</Project>
+      <Name>FSpot.FileSystem</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

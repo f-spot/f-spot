@@ -62,6 +62,7 @@ namespace FSpot.Utils
 				fi = fe.NextFile ();
 			}
 			fe.Close (cancellable);
+			fe.Dispose ();
 			return result;
 		}
 
@@ -75,10 +76,11 @@ namespace FSpot.Utils
 				return;
 			}
 
-			var children = file.EnumerateChildren ("standard::name", GLib.FileQueryInfoFlags.None, null);
-			foreach (GLib.FileInfo child in children) {
-				var child_file = FileFactory.NewForPath (Path.Combine (file.Path, child.Name));
-				child_file.DeleteRecursive ();
+			using (var children = file.EnumerateChildren ("standard::name", GLib.FileQueryInfoFlags.None, null)) {
+				foreach (GLib.FileInfo child in children) {
+					var child_file = FileFactory.NewForPath (Path.Combine (file.Path, child.Name));
+					child_file.DeleteRecursive ();
+				}
 			}
 			file.Delete (null);
 		}

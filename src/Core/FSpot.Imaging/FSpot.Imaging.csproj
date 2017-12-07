@@ -10,7 +10,7 @@
     <RootNamespace>FSpot.Imaging</RootNamespace>
     <AssemblyName>FSpot.Imaging</AssemblyName>
     <ReleaseVersion>0.9.0</ReleaseVersion>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -46,14 +46,24 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="Ciff.cs" />
-    <Compile Include="DCRawFile.cs" />
     <Compile Include="IImageFile.cs" />
     <Compile Include="IOChannel.cs" />
-    <Compile Include="ImageFile.cs" />
     <Compile Include="InternalProcess.cs" />
-    <Compile Include="RafFile.cs" />
-    <Compile Include="Tiff.cs" />
+    <Compile Include="BaseImageFile.cs" />
+    <Compile Include="DCRawImageFile.cs" />
+    <Compile Include="ImageFormatException.cs" />
+    <Compile Include="CiffImageFile.cs" />
+    <Compile Include="Cr2ImageFile.cs" />
+    <Compile Include="DngImageFile.cs" />
+    <Compile Include="NefImageFile.cs" />
+    <Compile Include="RafImageFile.cs" />
+    <Compile Include="ImageFileFactory.cs" />
+    <Compile Include="ModuleController.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="IImageFileFactory.cs" />
+    <Compile Include="ImageLoaderThread.cs" />
+    <Compile Include="IImageLoaderThread.cs" />
+    <Compile Include="RequestItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\external\taglib-sharp\src\taglib-sharp.csproj">
@@ -80,5 +90,14 @@
       <Project>{CE160879-1BF0-4711-A18F-FDA2772900FA}</Project>
       <Name>FSpot.Utils</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FSpot.FileSystem\FSpot.FileSystem.csproj">
+      <Project>{F7821E0B-6861-47D7-9FCE-F853CDF2F838}</Project>
+      <Name>FSpot.FileSystem</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="FSpot.Imaging.dll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

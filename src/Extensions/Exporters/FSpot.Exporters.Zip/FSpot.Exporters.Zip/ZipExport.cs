@@ -46,17 +46,20 @@ using Mono.Unix;
 using Gtk;
 using ICSharpCode.SharpZipLib.Checksums;
 using ICSharpCode.SharpZipLib.Zip;
+using System.Linq;
 
 namespace FSpot.Exporters.Zip
 {
 	public class Zip : IExporter
 	{
+#pragma warning disable 649
 		[GtkBeans.Builder.Object] Gtk.Dialog zipdiag;
 		[GtkBeans.Builder.Object] Gtk.HBox dirchooser_hbox;
 		[GtkBeans.Builder.Object] Gtk.CheckButton scale_check;
 		[GtkBeans.Builder.Object] Gtk.Entry filename;
 		[GtkBeans.Builder.Object] Gtk.SpinButton scale_size;
 		[GtkBeans.Builder.Object] Gtk.Button create_button;
+#pragma warning restore 649
 
 		IPhoto [] photos;
 		Gtk.FileChooserButton uri_chooser;
@@ -73,7 +76,7 @@ namespace FSpot.Exporters.Zip
 				md.Destroy ();
 				return;
 			}
-			photos = p.Items;
+			photos = p.Items.ToArray ();
 			ShowDialog ();
 		}
 
@@ -86,7 +89,7 @@ namespace FSpot.Exporters.Zip
 			uri_chooser = new Gtk.FileChooserButton (Catalog.GetString ("Select export folder"),
 								 Gtk.FileChooserAction.SelectFolder);
 			uri_chooser.LocalOnly = true;
-			uri_chooser.SetFilename (System.IO.Path.Combine (FSpot.Core.Global.HomeDirectory, "Desktop"));
+			uri_chooser.SetFilename (System.IO.Path.Combine (FSpot.Settings.Global.HomeDirectory, "Desktop"));
 			dirchooser_hbox.PackStart (uri_chooser, false, false, 2);
 			filename.Text = "f-spot_export.zip";
 
@@ -127,7 +130,7 @@ namespace FSpot.Exporters.Zip
 
 			//Pack up
 			for (int i = 0; i < photos.Length; i ++) {
-				if (progress_dialog.Update (String.Format (Catalog.GetString ("Preparing photo \"{0}\""), photos[i].Name))) {
+				if (progress_dialog.Update (string.Format (Catalog.GetString ("Preparing photo \"{0}\""), photos[i].Name))) {
 					progress_dialog.Destroy ();
 					return;
 				}

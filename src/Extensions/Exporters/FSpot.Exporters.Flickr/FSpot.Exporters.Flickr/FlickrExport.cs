@@ -41,12 +41,15 @@ using Mono.Unix;
 using FlickrNet;
 
 using FSpot.Core;
+using FSpot.Database;
 using FSpot.Filters;
+using FSpot.Settings;
 using FSpot.Widgets;
 using FSpot.UI.Dialog;
 
 using Hyena;
 using Hyena.Widgets;
+using System.Linq;
 
 
 namespace FSpot.Exporters.Flickr
@@ -55,6 +58,7 @@ namespace FSpot.Exporters.Flickr
     {
 		IBrowsableCollection selection;
 
+#pragma warning disable 649
 		[GtkBeans.Builder.Object] Gtk.Dialog         dialog;
 		[GtkBeans.Builder.Object] Gtk.CheckButton    scale_check;
 		[GtkBeans.Builder.Object] Gtk.CheckButton    tag_check;
@@ -70,6 +74,7 @@ namespace FSpot.Exporters.Flickr
 		[GtkBeans.Builder.Object] Gtk.RadioButton    public_radio;
 		[GtkBeans.Builder.Object] Gtk.CheckButton    family_check;
 		[GtkBeans.Builder.Object] Gtk.CheckButton    friend_check;
+#pragma warning restore 649
 
 		GtkBeans.Builder builder;
 		string dialog_name = "flickr_export_dialog";
@@ -360,7 +365,7 @@ namespace FSpot.Exporters.Flickr
 			fr.Connection.OnUploadProgress += HandleFlickrProgress;
 
 			var ids = new List<string> ();
-			IPhoto [] photos = selection.Items;
+			IPhoto [] photos = selection.Items.ToArray ();
 			Array.Sort (photos, new DateComparer ());
 
 			for (int index = 0; index < photos.Length; index++) {

@@ -41,7 +41,9 @@ using FSpot;
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Extensions;
+using FSpot.Imaging;
 using FSpot.Query;
+using FSpot.Thumbnail;
 using FSpot.Utils;
 
 using Mono.Unix;
@@ -63,7 +65,7 @@ namespace FSpot.Tools.MergeDb
 
 		public void Run (object o, EventArgs e)
 		{
-			from_db = new Db ();
+			from_db = new Db (App.Instance.Container.Resolve<IImageFileFactory> (), App.Instance.Container.Resolve<IThumbnailService> (), new UpdaterUI ());
 			to_db = App.Instance.Database;
 
 			//ShowDialog ();
@@ -92,7 +94,7 @@ namespace FSpot.Tools.MergeDb
 
 			} catch (Exception ex) {
 				string msg = Catalog.GetString ("Error opening the selected file");
-				string desc = String.Format (Catalog.GetString ("The file you selected is not a valid or supported database.\n\nReceived exception \"{0}\"."), ex.Message);
+				string desc = string.Format (Catalog.GetString ("The file you selected is not a valid or supported database.\n\nReceived exception \"{0}\"."), ex.Message);
 
 				HigMessageDialog md = new HigMessageDialog (mdd.Dialog, DialogFlags.DestroyWithParent,
 									    Gtk.MessageType.Error,
@@ -130,8 +132,8 @@ namespace FSpot.Tools.MergeDb
 
 		public static void Merge (string path, Db to_db)
 		{
-			Log.WarningFormat ("Will merge db {0} into main f-spot db {1}", path, FSpot.Core.Global.BaseDirectory + "/photos.db" );
-			Db from_db = new Db ();
+			Log.WarningFormat ("Will merge db {0} into main f-spot db {1}", path, FSpot.Settings.Global.BaseDirectory + "/photos.db" );
+			Db from_db = new Db (App.Instance.Container.Resolve<IImageFileFactory> (), App.Instance.Container.Resolve<IThumbnailService> (), new UpdaterUI ());
 			from_db.Init (path, true);
 			//MergeDb mdb = new MergeDb (from_db, to_db);
 
@@ -232,7 +234,7 @@ namespace FSpot.Tools.MergeDb
 
 				string [] parts = photo_path.Split (new char[] {'/'});
 				if (parts.Length > 6) {
-					string folder = String.Join ("/", parts, 0, parts.Length - 4);
+					string folder = string.Join ("/", parts, 0, parts.Length - 4);
 					PickFolderDialog pfd = new PickFolderDialog (mdd.Dialog, folder);
 					string new_folder = pfd.Run ();
 					pfd.Dialog.Destroy ();
@@ -260,7 +262,7 @@ namespace FSpot.Tools.MergeDb
 			photo.DefaultVersionId = 1;
 			photo.DefaultVersion.Uri = dest_uri;
 
-			if (photo.DefaultVersion.ImportMD5 == String.Empty) {
+			if (photo.DefaultVersion.ImportMD5 == string.Empty) {
 				(photo.DefaultVersion as PhotoVersion).ImportMD5 = HashUtils.GenerateMD5 (photo.DefaultVersion.Uri);
 			}
 
@@ -311,9 +313,9 @@ namespace FSpot.Tools.MergeDb
             // Find a new unique location inside the photo folder
             string name = uri.GetFilename ();
 
-            var dest_uri = FSpot.Core.Global.PhotoUri.Append (time.Year.ToString ())
-                                          .Append (String.Format ("{0:D2}", time.Month))
-                                          .Append (String.Format ("{0:D2}", time.Day));
+            var dest_uri = FSpot.Settings.Global.PhotoUri.Append (time.Year.ToString ())
+                                          .Append (string.Format ("{0:D2}", time.Month))
+                                          .Append (string.Format ("{0:D2}", time.Day));
             EnsureDirectory (dest_uri);
 
             // If the destination we'd like to use is the file itself return that
@@ -327,7 +329,7 @@ namespace FSpot.Tools.MergeDb
             while (file.Exists) {
                 var filename = uri.GetFilenameWithoutExtension ();
                 var extension = uri.GetExtension ();
-                dest = dest_uri.Append (String.Format ("{0}-{1}{2}", filename, i++, extension));
+                dest = dest_uri.Append (string.Format ("{0}-{1}{2}", filename, i++, extension));
                 file = GLib.FileFactory.NewForUri (dest);
             }
 

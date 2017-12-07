@@ -26,10 +26,10 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
+using System.Collections.Generic;
 using FSpot.Utils;
-using Hyena;
 using GLib;
+using Hyena;
 
 namespace FSpot.FileSystem
 {
@@ -38,7 +38,7 @@ namespace FSpot.FileSystem
 		public bool Exists (SafeUri uri)
 		{
 			var directory = FileFactory.NewForUri (uri);
-			return directory.Exists && directory.QueryFileType (FileQueryInfoFlags.None, null) == FileType.Directory;
+			return ExistsAndIsDirectory (directory);
 		}
 
 		public void CreateDirectory (SafeUri uri)
@@ -52,6 +52,34 @@ namespace FSpot.FileSystem
 					file.MakeDirectory (null);
 				}
 			}
+		}
+
+		public void Delete (SafeUri uri)
+		{
+			var directory = FileFactory.NewForUri (uri);
+			if (!ExistsAndIsDirectory (directory)) {
+				//FIXME to be consistent with System.IO.Directory.Delete we should throw an exception in this case
+				return;
+			}
+			directory.Delete (null);
+		}
+
+		public IEnumerable<SafeUri> Enumerate (SafeUri uri)
+		{
+			var directory = FileFactory.NewForUri (uri);
+			if (!ExistsAndIsDirectory (directory)) {
+				yield break;
+			}
+			using (var fileEnumerator = directory.EnumerateChildren ("standard::name", FileQueryInfoFlags.None, null)) {
+				foreach (FileInfo fileInfo in fileEnumerator) {
+					yield return uri.Append (fileInfo.Name);
+					fileInfo.Dispose ();
+				}
+			}
+		}
+
+		bool ExistsAndIsDirectory (File directory) {
+			return directory.Exists && directory.QueryFileType (FileQueryInfoFlags.None, null) == FileType.Directory;
 		}
 	}
 }

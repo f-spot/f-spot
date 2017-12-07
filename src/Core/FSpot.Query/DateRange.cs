@@ -52,7 +52,7 @@ namespace FSpot.Query
 
 		public string SqlClause ()
 		{
-			return String.Format (" photos.time >= {0} AND photos.time <= {1} ", 
+			return string.Format (" photos.time >= {0} AND photos.time <= {1} ", 
 					DateTimeUtil.FromDateTime (Start),
 					DateTimeUtil.FromDateTime (End));
 		}

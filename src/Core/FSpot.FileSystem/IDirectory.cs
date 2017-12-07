@@ -26,6 +26,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System.Collections.Generic;
 using Hyena;
 
 namespace FSpot.FileSystem
@@ -34,5 +35,7 @@ namespace FSpot.FileSystem
 	{
 		bool Exists (SafeUri uri);
 		void CreateDirectory (SafeUri uri);
+		void Delete (SafeUri uri);
+		IEnumerable<SafeUri> Enumerate (SafeUri uri);
 	}
 }

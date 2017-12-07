@@ -34,9 +34,12 @@ namespace FSpot.FileSystem
 	public interface IFile
 	{
 		bool Exists (SafeUri uri);
+		bool IsSymlink (SafeUri uri);
 		void Copy (SafeUri source, SafeUri destination, bool overwrite);
 		void Delete (SafeUri uri);
+		string GetMimeType (SafeUri uri);
 		ulong GetMTime (SafeUri uri);
+		long GetSize (SafeUri uri);
 		Stream Read (SafeUri uri);
 	}
 }

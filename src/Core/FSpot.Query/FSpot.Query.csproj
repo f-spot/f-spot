@@ -10,7 +10,7 @@
     <RootNamespace>FSpot.Query</RootNamespace>
     <AssemblyName>FSpot.Query</AssemblyName>
     <ReleaseVersion>0.9.0</ReleaseVersion>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -32,7 +32,7 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="AndTerm.cs" />
+    <Compile Include="AndOperator.cs" />
     <Compile Include="ConditionWrapper.cs" />
     <Compile Include="DateRange.cs" />
     <Compile Include="FolderSet.cs" />
@@ -42,12 +42,13 @@
     <Compile Include="NAryOperator.cs" />
     <Compile Include="NotTerm.cs" />
     <Compile Include="OrderByTime.cs" />
-    <Compile Include="OrTerm.cs" />
     <Compile Include="RatingRange.cs" />
     <Compile Include="RollSet.cs" />
     <Compile Include="TagTerm.cs" />
     <Compile Include="TextTerm.cs" />
     <Compile Include="UntaggedCondition.cs" />
+    <Compile Include="HiddenTag.cs" />
+    <Compile Include="OrOperator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FSpot.Core\FSpot.Core.csproj">

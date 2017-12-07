@@ -10,7 +10,7 @@
     <RootNamespace>FSpot.Exporters.PicasaWeb</RootNamespace>
     <AssemblyName>FSpot.Exporters.PicasaWeb</AssemblyName>
     <ReleaseVersion>0.9.0</ReleaseVersion>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -81,9 +81,9 @@
       <Name>FSpot.Core</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Clients\MainApp\MainApp.csproj">
+    <ProjectReference Include="..\..\..\Clients\FSpot\FSpot.csproj">
       <Project>{27EC05FB-0223-4B26-8157-E49AF81D0007}</Project>
-      <Name>MainApp</Name>
+      <Name>FSpot</Name>
       <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\lib\Mono.Google\Mono.Google.csproj">
@@ -116,6 +116,18 @@
     <ProjectReference Include="..\..\..\Core\FSpot.Imaging\FSpot.Imaging.csproj">
       <Project>{69C1F628-6CB4-4446-96AC-57810DD57594}</Project>
       <Name>FSpot.Imaging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\FSpot.Utils\FSpot.Utils.csproj">
+      <Project>{CE160879-1BF0-4711-A18F-FDA2772900FA}</Project>
+      <Name>FSpot.Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\FSpot.Settings\FSpot.Settings.csproj">
+      <Project>{423B5DED-65C8-4C4A-9DBB-7D7BD440F78F}</Project>
+      <Name>FSpot.Settings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\FSpot.Database\FSpot.Database.csproj">
+      <Project>{16E9C7DC-54BD-4C93-9B2A-AE9CDCE1CEFD}</Project>
+      <Name>FSpot.Database</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

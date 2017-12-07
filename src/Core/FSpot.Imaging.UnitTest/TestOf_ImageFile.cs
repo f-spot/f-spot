@@ -45,7 +45,8 @@ namespace FSpot.Imaging
 		[SetUp]
 		public void Initialize () {
 			GLib.GType.Init ();
-			_imageTypes = ImageFile.UnitTestImageFileTypes();
+			var factory = new ImageFileFactory (null);
+			_imageTypes = factory.UnitTestImageFileTypes();
 		}
 
 		[TestCase("file.arw")]
@@ -61,7 +62,8 @@ namespace FSpot.Imaging
 		[TestCase("file.rw2")]
 		public void TestIfUriIsRaw (string uri)
 		{
-			var result = ImageFile.IsRaw(new SafeUri(uri, true));
+			var factory = new ImageFileFactory (null);
+			var result = factory.IsRaw(new SafeUri(uri, true));
 			Assert.That(result);
 		}
 
@@ -73,7 +75,8 @@ namespace FSpot.Imaging
 		[TestCase("file.jif")]
 		public void TestIfUriJpeg (string uri)
 		{
-			var result = ImageFile.IsJpeg(new SafeUri(uri, true));
+			var factory = new ImageFileFactory (null);
+			var result = factory.IsJpeg(new SafeUri(uri, true));
 			Assert.That(result);
 		}
 
@@ -113,7 +116,7 @@ namespace FSpot.Imaging
 			foreach (var key in _imageTypes) {
 				string type = key;
 				if (type.StartsWith ("."))
-					type = String.Format ("taglib/{0}", type.Substring (1));
+					type = string.Format ("taglib/{0}", type.Substring (1));
 
 				if (!TagLib.FileTypes.AvailableTypes.ContainsKey (type)) {
 					Log.InformationFormat ("Missing type support in Taglib# for {0}", type);

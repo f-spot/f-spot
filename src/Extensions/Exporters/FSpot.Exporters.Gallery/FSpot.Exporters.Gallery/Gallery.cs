@@ -462,7 +462,7 @@ namespace FSpot.Exporters.Gallery
 					Gtk.DialogFlags.DestroyWithParent,
 						      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
 						      Catalog.GetString ("Error while creating new album"),
-						      String.Format (Catalog.GetString ("The following error was encountered while attempting to perform the requested operation:\n{0} ({1})"), e.Message, e.Status));
+						      string.Format (Catalog.GetString ("The following error was encountered while attempting to perform the requested operation:\n{0} ({1})"), e.Message, e.Status));
 			md.Run ();
 			md.Destroy ();
 		}

@@ -10,7 +10,8 @@
     <RootNamespace>FSpot.Core</RootNamespace>
     <AssemblyName>FSpot.Core</AssemblyName>
     <ReleaseVersion>0.9.0</ReleaseVersion>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <LangVersion>6</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -27,15 +28,12 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="BrowsableCollectionProxy.cs" />
     <Compile Include="BrowsableEventArgs.cs" />
     <Compile Include="BrowsablePointer.cs" />
     <Compile Include="BrowsablePointerChangedEventArgs.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="DbItem.cs" />
-    <Compile Include="Defines.cs" />
     <Compile Include="FilePhoto.cs" />
-    <Compile Include="Global.cs" />
     <Compile Include="IBrowsableCollection.cs" />
     <Compile Include="IBrowsableItemChanges.cs" />
     <Compile Include="IInvalidPhotoCheck.cs" />
@@ -50,6 +48,8 @@
     <Compile Include="PhotosChanges.cs" />
     <Compile Include="Roll.cs" />
     <Compile Include="Tag.cs" />
+    <Compile Include="Photo.cs" />
+    <Compile Include="PhotoVersion.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FSpot.Utils\FSpot.Utils.csproj">
@@ -74,6 +74,18 @@
     <ProjectReference Include="..\..\..\lib\gio-sharp\gio-sharp.csproj">
       <Project>{942B6AEF-0A90-4A7F-B8E4-F1A4327E408C}</Project>
       <Name>gio-sharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSpot.Imaging\FSpot.Imaging.csproj">
+      <Project>{69C1F628-6CB4-4446-96AC-57810DD57594}</Project>
+      <Name>FSpot.Imaging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSpot.Thumbnail\FSpot.Thumbnail.csproj">
+      <Project>{A1DEDA9C-E664-485E-AD65-6ABA83C58BC2}</Project>
+      <Name>FSpot.Thumbnail</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSpot.Settings\FSpot.Settings.csproj">
+      <Project>{423B5DED-65C8-4C4A-9DBB-7D7BD440F78F}</Project>
+      <Name>FSpot.Settings</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

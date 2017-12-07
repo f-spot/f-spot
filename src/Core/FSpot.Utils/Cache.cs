@@ -105,7 +105,10 @@ namespace FSpot.Utils
 
 		public bool Contains (TKey key)
 		{
-			return mru.Contains (key);
+			lock (o)
+			{
+				return mru.Contains (key);
+			}
 		}
 	}
 }

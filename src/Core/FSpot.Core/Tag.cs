@@ -35,6 +35,7 @@ using System;
 
 using Gdk;
 
+using FSpot.Settings;
 using FSpot.Utils;
 
 namespace FSpot.Core
@@ -68,7 +69,7 @@ namespace FSpot.Core
 			get {
 				if (icon == null && ThemeIconName != null) {
 					cached_icon_size = IconSize.Hidden;
-					icon = GtkUtil.TryLoadIcon (Global.IconTheme, ThemeIconName, 48, (Gtk.IconLookupFlags)0);
+					icon = GtkUtil.TryLoadIcon (FSpot.Settings.Global.IconTheme, ThemeIconName, 48, (Gtk.IconLookupFlags)0);
 				}
 				return icon;
 			}
@@ -81,13 +82,6 @@ namespace FSpot.Core
 				IconWasCleared = value == null;
 			}
 		}
-
-		public enum IconSize {
-			Hidden = 0,
-			Small = 16,
-			Medium = 24,
-			Large = 48
-		};
 
 		static IconSize tag_icon_size = IconSize.Large;
 		public static IconSize TagIconSize {
@@ -109,7 +103,7 @@ namespace FSpot.Core
 					if (cached_icon != null)
 						cached_icon.Dispose ();
 					try {
-						cached_icon = GtkUtil.TryLoadIcon (Global.IconTheme, ThemeIconName, (int)tag_icon_size, (Gtk.IconLookupFlags)0);
+						cached_icon = GtkUtil.TryLoadIcon (FSpot.Settings.Global.IconTheme, ThemeIconName, (int)tag_icon_size, (Gtk.IconLookupFlags)0);
 
 						if (Math.Max (cached_icon.Width, cached_icon.Height) <= (int)tag_icon_size)
 							return cached_icon;

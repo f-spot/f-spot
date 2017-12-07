@@ -46,7 +46,8 @@ namespace FSpot.Exporters.CD
 		Gtk.Window listwindow;
 		System.Uri dest;
 
-      		[GtkBeans.Builder.Object] Button browse_button;
+#pragma warning disable 649
+		[GtkBeans.Builder.Object] Button browse_button;
 		[GtkBeans.Builder.Object] ScrolledWindow thumb_scrolledwindow;
 		[GtkBeans.Builder.Object] CheckButton remove_check;
 		[GtkBeans.Builder.Object] Label size_label;
@@ -54,6 +55,7 @@ namespace FSpot.Exporters.CD
 		// This is a frame for any photos that are still in the queue
 		// to be burned to disc.  As of now(March 3, 2012), that's burn:///
 		[GtkBeans.Builder.Object] Frame previous_frame;
+#pragma warning restore 649
 
 		public bool RemovePreviousPhotos {
 			get { return remove_check.Active; }
@@ -98,8 +100,10 @@ namespace FSpot.Exporters.CD
 		bool IsDestEmpty (System.Uri path)
 		{
 			GLib.File f = FileFactory.NewForUri (path);
-			foreach (GLib.FileInfo info in f.EnumerateChildren ("*", FileQueryInfoFlags.None, null)) {
-				return false;
+			using (var children = f.EnumerateChildren ("*", FileQueryInfoFlags.None, null)) {
+				foreach (GLib.FileInfo info in children) {
+					return false;
+				}
 			}
 			return true;
 		}
@@ -124,10 +128,12 @@ namespace FSpot.Exporters.CD
 		void ListAll (Gtk.TextBuffer t, System.Uri path)
 		{
 			GLib.File f = FileFactory.NewForUri (path);
-			foreach (GLib.FileInfo info in f.EnumerateChildren ("*", FileQueryInfoFlags.None, null)) {
-				t.Text += new System.Uri (path, info.Name).ToString () + Environment.NewLine;
-				if (info.FileType == FileType.Directory)
-					ListAll (t, new System.Uri (path, info.Name + "/"));
+			using (var children = f.EnumerateChildren ("*", FileQueryInfoFlags.None, null)) {
+				foreach (GLib.FileInfo info in children) {
+					t.Text += new System.Uri (path, info.Name).ToString () + Environment.NewLine;
+					if (info.FileType == FileType.Directory)
+						ListAll (t, new System.Uri (path, info.Name + "/"));
+				}
 			}
 		}
 		

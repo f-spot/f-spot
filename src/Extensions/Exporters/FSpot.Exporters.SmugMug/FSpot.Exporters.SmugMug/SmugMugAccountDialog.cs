@@ -74,7 +74,7 @@ namespace FSpot.Exporters.SmugMug
 			password = password_entry.Text;
 			username = username_entry.Text;
 
-			add_button.Sensitive = !(password == String.Empty || username == String.Empty);
+			add_button.Sensitive = !(password == string.Empty || username == string.Empty);
 		}
 
 		[GLib.ConnectBefore]
@@ -115,6 +115,7 @@ namespace FSpot.Exporters.SmugMug
 		private string dialog_name = "smugmug_add_dialog";
 		private GtkBeans.Builder builder;
 
+#pragma warning disable 649
 		// widgets
 		[GtkBeans.Builder.Object] Gtk.Dialog dialog;
 		[GtkBeans.Builder.Object] Gtk.Entry password_entry;
@@ -122,5 +123,6 @@ namespace FSpot.Exporters.SmugMug
 
 		[GtkBeans.Builder.Object] Gtk.Button add_button;
 		[GtkBeans.Builder.Object] Gtk.Button remove_button;
+#pragma warning restore 649
 	}
 }

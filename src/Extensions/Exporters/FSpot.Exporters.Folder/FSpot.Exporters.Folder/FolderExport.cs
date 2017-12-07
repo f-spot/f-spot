@@ -59,9 +59,9 @@ using Hyena;
 
 using Mono.Unix;
 
-using FSpot;
 using FSpot.Core;
 using FSpot.Filters;
+using FSpot.Settings;
 using FSpot.Widgets;
 using FSpot.Utils;
 using FSpot.UI.Dialog;
@@ -72,6 +72,7 @@ namespace FSpot.Exporters.Folder
 	{
 		IBrowsableCollection selection;
 
+#pragma warning disable 649
 		[GtkBeans.Builder.Object] Gtk.Dialog dialog;
 		[GtkBeans.Builder.Object] Gtk.ScrolledWindow thumb_scrolledwindow;
 		[GtkBeans.Builder.Object] Gtk.Entry name_entry;
@@ -89,6 +90,7 @@ namespace FSpot.Exporters.Folder
 		[GtkBeans.Builder.Object] Gtk.SpinButton size_spin;
 
 		[GtkBeans.Builder.Object] Gtk.HBox chooser_hbox;
+#pragma warning restore 649
 
 		public const string EXPORT_SERVICE = "folder/";
 		public const string SCALE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "scale";
@@ -139,16 +141,16 @@ namespace FSpot.Exporters.Folder
 			HandleSizeActive (null, null);
 			name_entry.Text = gallery_name;
 
-			string uri_path = System.IO.Path.Combine (FSpot.Core.Global.HomeDirectory, "Desktop");
+			string uri_path = System.IO.Path.Combine (FSpot.Settings.Global.HomeDirectory, "Desktop");
 			if (!System.IO.Directory.Exists (uri_path))
-			        uri_path = FSpot.Core.Global.HomeDirectory;
+				uri_path = FSpot.Settings.Global.HomeDirectory;
 
 			uri_chooser = new Gtk.FileChooserButton (Catalog.GetString ("Select Export Folder"),
 								 Gtk.FileChooserAction.SelectFolder);
 
 			uri_chooser.LocalOnly = false;
 
-			if (!String.IsNullOrEmpty (Preferences.Get<string> (URI_KEY)))
+			if (!string.IsNullOrEmpty (Preferences.Get<string> (URI_KEY)))
 				uri_chooser.SetCurrentFolderUri (Preferences.Get<string> (URI_KEY));
 			else
 				uri_chooser.SetFilename (uri_path);
@@ -232,14 +234,14 @@ namespace FSpot.Exporters.Folder
 				for (int photo_index = 0; photo_index < selection.Count; photo_index++)
 				{
 					try {
-						progress_dialog.Message = System.String.Format (Catalog.GetString ("Exporting \"{0}\"..."), selection[photo_index].Name);
+						progress_dialog.Message = string.Format (Catalog.GetString ("Exporting \"{0}\"..."), selection[photo_index].Name);
 						progress_dialog.Fraction = photo_index / (double) selection.Count;
 						gallery.ProcessImage (photo_index, filter_set);
-						progress_dialog.ProgressText = System.String.Format (Catalog.GetString ("{0} of {1}"), (photo_index + 1), selection.Count);
+						progress_dialog.ProgressText = string.Format (Catalog.GetString ("{0} of {1}"), (photo_index + 1), selection.Count);
 					}
 					catch (Exception e) {
 						Log.Error (e.ToString ());
-						progress_dialog.Message = String.Format (Catalog.GetString ("Error Copying \"{0}\" to Gallery:{2}{1}"),
+						progress_dialog.Message = string.Format (Catalog.GetString ("Error Copying \"{0}\" to Gallery:{2}{1}"),
 							selection[photo_index].Name, e.Message, Environment.NewLine);
 						progress_dialog.ProgressText = Catalog.GetString ("Error");
 
@@ -265,7 +267,7 @@ namespace FSpot.Exporters.Folder
 				// otherwise we xfer
 				if (!dest.IsNative) {
 					Log.DebugFormat ("Transferring \"{0}\" to \"{1}\"", source.Path, target.Path);
-					progress_dialog.Message = String.Format (Catalog.GetString ("Transferring to \"{0}\""), target.Path);
+					progress_dialog.Message = string.Format (Catalog.GetString ("Transferring to \"{0}\""), target.Path);
 					progress_dialog.ProgressText = Catalog.GetString ("Transferring...");
 					source.CopyRecursive (target, GLib.FileCopyFlags.Overwrite, new GLib.Cancellable (), Progress);
 				}
@@ -277,7 +279,7 @@ namespace FSpot.Exporters.Folder
 				progress_dialog.ButtonLabel = Gtk.Stock.Ok;
 
 				if (open) {
-					Log.DebugFormat (String.Format ("Open URI \"{0}\"", target.Uri.ToString ()));
+					Log.DebugFormat (string.Format ("Open URI \"{0}\"", target.Uri.ToString ()));
 					ThreadAssist.ProxyToMain (() => { GtkBeans.Global.ShowUri (Dialog.Screen, target.Uri.ToString () ); });
 				}
 

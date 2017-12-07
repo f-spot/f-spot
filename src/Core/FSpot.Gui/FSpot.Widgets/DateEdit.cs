@@ -85,23 +85,17 @@ namespace FSpot.Widgets
 
 		protected void OnDateChanged ()
 		{
-			EventHandler h = DateChanged;
-			if (h != null)
-				h (this, EventArgs.Empty);
+			DateChanged?.Invoke (this, EventArgs.Empty);
 		}
 
 		protected void OnTimeChanged ()
 		{
-			EventHandler h = TimeChanged;
-			if (h != null)
-				h (this, EventArgs.Empty);
+			TimeChanged?.Invoke (this, EventArgs.Empty);
 		}
 
 		protected void OnOffsetChanged ()
 		{
-			EventHandler h = OffsetChanged;
-			if (h != null)
-				h (this, EventArgs.Empty);
+			OffsetChanged?.Invoke (this, EventArgs.Empty);
 		}
 
 		bool ShowSeconds {
@@ -238,7 +232,7 @@ namespace FSpot.Widgets
 		void HandleTimeEntryChanged (object sender, EventArgs e)
 		{
 			DateTimeOffset new_date;
-			if (DateTimeOffset.TryParseExact (String.Format ("{0} {1}", DateTimeOffset.ToString ("d"), time_entry.Text), ShowSeconds ? "G" : "g", null, System.Globalization.DateTimeStyles.AssumeLocal | System.Globalization.DateTimeStyles.AllowWhiteSpaces, out new_date)) {
+			if (DateTimeOffset.TryParseExact (string.Format ("{0} {1}", DateTimeOffset.ToString ("d"), time_entry.Text), ShowSeconds ? "G" : "g", null, System.Globalization.DateTimeStyles.AssumeLocal | System.Globalization.DateTimeStyles.AllowWhiteSpaces, out new_date)) {
 				DateTimeOffset = DateTimeOffset.AddHours (new_date.Hour - DateTimeOffset.Hour).AddMinutes (new_date.Minute - DateTimeOffset.Minute).AddSeconds (new_date.Second - DateTimeOffset.Second);
 			} else
 				time_entry.ModifyBase (StateType.Normal, red);

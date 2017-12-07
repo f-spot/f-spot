@@ -47,13 +47,16 @@ using Mono.Unix;
 
 using FSpot;
 using FSpot.Core;
+using FSpot.Database;
 using FSpot.Filters;
+using FSpot.Settings;
 using FSpot.Widgets;
 using FSpot.UI.Dialog;
 
 using Hyena;
 
 using SmugMugNet;
+using System.Linq;
 
 namespace FSpot.Exporters.SmugMug
 {
@@ -76,7 +79,7 @@ namespace FSpot.Exporters.SmugMug
             gallery_optionmenu.Show ();
             album_optionmenu.Show ();
 
-			this.items = selection.Items;
+			this.items = selection.Items.ToArray ();
 			album_button.Sensitive = false;
 			var view = new TrayView (selection);
 			view.DisplayDates = false;
@@ -131,6 +134,7 @@ namespace FSpot.Exporters.SmugMug
 		Gtk.ComboBox gallery_optionmenu;
 		Gtk.ComboBox album_optionmenu;
 
+#pragma warning disable 649
 		[GtkBeans.Builder.Object] Gtk.CheckButton browser_check;
 		[GtkBeans.Builder.Object] Gtk.CheckButton scale_check;
 
@@ -142,6 +146,7 @@ namespace FSpot.Exporters.SmugMug
 		[GtkBeans.Builder.Object] Gtk.Button export_button;
 
 		[GtkBeans.Builder.Object] Gtk.ScrolledWindow thumb_scrolledwindow;
+#pragma warning restore 649
 
 		System.Threading.Thread command_thread;
 
@@ -211,7 +216,7 @@ namespace FSpot.Exporters.SmugMug
 					FileInfo file_info;
 					Log.Debug ("uploading " + photo_index);
 
-					progress_dialog.Message = String.Format (Catalog.GetString ("Uploading picture \"{0}\" ({1} of {2})"),
+					progress_dialog.Message = string.Format (Catalog.GetString ("Uploading picture \"{0}\" ({1} of {2})"),
 										 item.Name, photo_index+1, items.Length);
 					progress_dialog.ProgressText = string.Empty;
 					progress_dialog.Fraction = ((photo_index) / (double) items.Length);
@@ -240,7 +245,7 @@ namespace FSpot.Exporters.SmugMug
 					if (album_uri == null)
 						album_uri = account.SmugMug.GetAlbumUrl (image_id);
 				} catch (System.Exception e) {
-					progress_dialog.Message = String.Format (Mono.Unix.Catalog.GetString ("Error Uploading To Gallery: {0}"),
+					progress_dialog.Message = string.Format (Mono.Unix.Catalog.GetString ("Error Uploading To Gallery: {0}"),
 										 e.Message);
 					progress_dialog.ProgressText = Mono.Unix.Catalog.GetString ("Error");
 					Log.DebugException (e);

@@ -191,6 +191,13 @@ class Enumerator : IEnumerator
 		throw new NotImplementedException ();
 	}
 }
+public override void Dispose ()
+{
+	if (!IsClosed) {
+		Close (null);
+	}
+	base.Dispose ();
+}
 
 #endregion
 	}

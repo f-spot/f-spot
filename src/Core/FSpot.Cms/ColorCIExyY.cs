@@ -77,7 +77,7 @@ namespace FSpot.Cms
 				string [] subs = line.Split ('\t');
 				int ptemp = int.Parse (subs [0]);
 				if (ptemp != temp)
-					throw new CmsException (String.Format ("{0} != {1}", ptemp, temp));
+					throw new CmsException (string.Format ("{0} != {1}", ptemp, temp));
 				
 				double x = double.Parse (subs [1]);
 				double y = double.Parse (subs [2]);
@@ -113,7 +113,7 @@ namespace FSpot.Cms
 
 		public override string ToString ()
 		{
-			return String.Format ("(x={0}, y={1}, Y={2})", x, y, Y);
+			return string.Format ("(x={0}, y={1}, Y={2})", x, y, Y);
 		}
 	}
 

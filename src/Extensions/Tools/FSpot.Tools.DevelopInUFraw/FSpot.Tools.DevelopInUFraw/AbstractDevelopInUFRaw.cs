@@ -37,9 +37,9 @@ using Mono.Unix;
 using Hyena;
 
 using FSpot;
-using FSpot.Core;
 using FSpot.Extensions;
 using FSpot.Imaging;
+using FSpot.Settings;
 using FSpot.Utils;
 
 namespace FSpot.Tools.DevelopInUFraw
@@ -74,7 +74,7 @@ namespace FSpot.Tools.DevelopInUFraw
 			LoadPreference (UFRAW_BATCH_ARGUMENTS_KEY);
 
 			PhotoVersion raw = p.GetVersion (Photo.OriginalVersionId) as PhotoVersion;
-			if (!ImageFile.IsRaw (raw.Uri)) {
+			if (!App.Instance.Container.Resolve<IImageFileFactory> ().IsRaw (raw.Uri)) {
 				Log.Warning ("The original version of this image is not a (supported) RAW file");
 				return;
 			}
@@ -107,7 +107,7 @@ namespace FSpot.Tools.DevelopInUFraw
 					break;
 			}
 
-			args += String.Format(" --overwrite --create-id=also --compression={0} --out-type=jpeg {1} --output={2} {3}",
+			args += string.Format(" --overwrite --create-id=also --compression={0} --out-type=jpeg {1} --output={2} {3}",
 				ufraw_jpeg_quality,
 				idfile,
 				GLib.Shell.Quote (developed.LocalPath),
@@ -144,7 +144,7 @@ namespace FSpot.Tools.DevelopInUFraw
 		private static string GetVersionName (Photo p, int i)
 		{
 			string name = Catalog.GetPluralString ("Developed in UFRaw", "Developed in UFRaw ({0})", i);
-			name = String.Format (name, i);
+			name = string.Format (name, i);
 			if (p.VersionNameExists (name))
 				return GetVersionName (p, i + 1);
 			return name;

@@ -39,6 +39,7 @@ using System.Text;
 using System.Web;
 
 using FSpot.Core;
+using FSpot.Settings;
 
 using Mono.Unix;
 
@@ -116,7 +117,7 @@ namespace FSpot.Exporters.Gallery
 			// types we allow in .Add
 	
 			if (item.Value == null) {
-				Write (item.Name, (string)String.Empty);
+				Write (item.Name, (string)string.Empty);
 			} else if (item.Value is FileInfo) {
 				Write (item.Name, (FileInfo)item.Value);
 			} else if (item.Value is string) {
@@ -131,7 +132,7 @@ namespace FSpot.Exporters.Gallery
 			// types we allow in .Add
 	
 			if (item.Value == null) {
-				return MultipartLength (item.Name, (string)String.Empty);
+				return MultipartLength (item.Name, (string)string.Empty);
 			} else if (item.Value is FileInfo) {
 				return MultipartLength (item.Name, (FileInfo)item.Value);
 			} else if (item.Value is string) {
@@ -160,7 +161,7 @@ namespace FSpot.Exporters.Gallery
 			string cmd;
 			
 			if (multipart) {
-				cmd = String.Format ("{0}"
+				cmd = string.Format ("{0}"
 						     + "{1}\r\n",
 						     MultipartHeader (name, value), value);
 			} else {
@@ -239,7 +240,7 @@ namespace FSpot.Exporters.Gallery
 			Request = (HttpWebRequest) WebRequest.Create (uri);
 			CookieCollection cookie_collection = Cookies.GetCookies (uri);
 	
-			if (uri.UserInfo != null && uri.UserInfo != String.Empty) {
+			if (uri.UserInfo != null && uri.UserInfo != string.Empty) {
 				NetworkCredential cred = new NetworkCredential ();
 				cred.GetCredential (uri, "basic");
 				CredentialCache credcache = new CredentialCache();
@@ -261,7 +262,7 @@ namespace FSpot.Exporters.Gallery
 	
 			Request.Method = "POST";
 			Request.Headers["Accept-Charset"] = "utf-8;";
-			Request.UserAgent = String.Format("F-Spot {0} (http://www.f-spot.org)", Defines.VERSION);
+			Request.UserAgent = string.Format("F-Spot {0} (http://www.f-spot.org)", Defines.VERSION);
 	
 			if (multipart) {
 				GenerateBoundary ();

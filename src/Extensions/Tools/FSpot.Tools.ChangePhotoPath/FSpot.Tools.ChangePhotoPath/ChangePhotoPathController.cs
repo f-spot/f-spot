@@ -43,6 +43,7 @@ using System.Collections.Specialized;
 
 using FSpot;
 using FSpot.Core;
+using FSpot.Database;
 using FSpot.Utils;
 
 using Hyena;
@@ -95,7 +96,7 @@ namespace FSpot.Tools.ChangePhotoPath
 			gui_controller = gui;
 			total_photos = photo_store.TotalPhotos;
 			orig_base_path = EnsureEndsWithOneDirectorySeparator (FindOrigBasePath());			// NOT URI
-			string new_base_path = EnsureEndsWithOneDirectorySeparator (FSpot.Core.Global.PhotoUri.LocalPath);	// NOT URI
+			string new_base_path = EnsureEndsWithOneDirectorySeparator (FSpot.Settings.Global.PhotoUri.LocalPath);	// NOT URI
 			gui_controller.DisplayDefaultPaths (orig_base_path, new_base_path);
 			user_cancelled = false;
 		}
@@ -103,10 +104,10 @@ namespace FSpot.Tools.ChangePhotoPath
 		private string EnsureEndsWithOneDirectorySeparator (string tmp_str)
 		{
 			if ( (tmp_str == null) || (tmp_str.Length == 0) )
-				return String.Format ("{0}", Path.DirectorySeparatorChar);
-			while (tmp_str.EndsWith(String.Format ("{0}", Path.DirectorySeparatorChar)))
+				return string.Format ("{0}", Path.DirectorySeparatorChar);
+			while (tmp_str.EndsWith(string.Format ("{0}", Path.DirectorySeparatorChar)))
 				tmp_str = tmp_str.Remove (tmp_str.Length-1, 1);
-			return String.Format ("{0}{1}", tmp_str, Path.DirectorySeparatorChar);
+			return string.Format ("{0}{1}", tmp_str, Path.DirectorySeparatorChar);
 		}
 
 

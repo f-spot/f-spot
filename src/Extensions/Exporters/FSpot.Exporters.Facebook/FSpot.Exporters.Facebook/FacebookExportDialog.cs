@@ -44,11 +44,13 @@ using FSpot.Widgets;
 
 using Mono.Facebook;
 using Mono.Unix;
+using System.Linq;
 
 namespace FSpot.Exporters.Facebook
 {
 	internal class FacebookExportDialog : BuilderDialog
 	{
+#pragma warning disable 649
 		[GtkBeans.Builder.Object] VBox album_info_vbox;
 		[GtkBeans.Builder.Object] VBox picture_info_vbox;
 		[GtkBeans.Builder.Object] HBox log_buttons_hbox;
@@ -70,6 +72,7 @@ namespace FSpot.Exporters.Facebook
 		[GtkBeans.Builder.Object] HBox permissions_hbox;
 		[GtkBeans.Builder.Object] CheckButton offline_perm_check;
 		[GtkBeans.Builder.Object] CheckButton photo_perm_check;
+#pragma warning restore 649
 
 		Gtk.Image tag_image;
 		int tag_image_height;
@@ -91,12 +94,12 @@ namespace FSpot.Exporters.Facebook
 		public FacebookExportDialog (IBrowsableCollection selection) : base (Assembly.GetExecutingAssembly (), "FacebookExport.ui", "facebook_export_dialog")
 		{
 			// Sort selection by date ascending
-			items = selection.Items;
+			items = selection.Items.ToArray ();
 			Array.Sort (items, new DateComparer ());
 			current_item = -1;
 
-			captions = new string [selection.Items.Length];
-			tags = new List<Mono.Facebook.Tag> [selection.Items.Length];
+			captions = new string [items.Length];
+			tags = new List<Mono.Facebook.Tag> [items.Length];
 
 			tray_view = new SelectionCollectionGridView (selection) {
                 MaxColumns = 1,
@@ -299,7 +302,7 @@ namespace FSpot.Exporters.Facebook
 							login_button.Visible = false;
 							logout_button.Visible = true;
 							// Note for translators: {0} and {1} are respectively firstname and surname of the user
-							LoginProgress (1.0, String.Format (Catalog.GetString ("{0} {1} is logged into Facebook"), me.first_name, me.last_name));
+							LoginProgress (1.0, string.Format (Catalog.GetString ("{0} {1} is logged into Facebook"), me.first_name, me.last_name));
 
 							existing_album_combobox.Model = new AlbumStore (albums);
 							existing_album_combobox.Active = 0;
@@ -309,7 +312,7 @@ namespace FSpot.Exporters.Facebook
 						ThreadAssist.ProxyToMain (() => {
 							HigMessageDialog error = new HigMessageDialog (this, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal,
 									Gtk.MessageType.Error, Gtk.ButtonsType.Ok, Catalog.GetString ("Facebook Connection Error"),
-									String.Format (Catalog.GetString ("There was an error when downloading your information from Facebook.\n\nFacebook said: {0}"), e.Message));
+									string.Format (Catalog.GetString ("There was an error when downloading your information from Facebook.\n\nFacebook said: {0}"), e.Message));
 							error.Run ();
 							error.Destroy ();
 						});

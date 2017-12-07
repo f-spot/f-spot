@@ -142,18 +142,18 @@ namespace FSpot.Widgets
 			Frame page_frame = new Frame (Catalog.GetString ("Page Setup"));
 			VBox page_box = new VBox ();
 			Label current_settings = new Label ();
-			if (FSpot.Core.Global.PageSetup != null)
-				current_settings.Text = String.Format (Catalog.GetString ("Paper Size: {0} x {1} mm"), 
+			if (FSpot.Settings.Global.PageSetup != null)
+				current_settings.Text = string.Format (Catalog.GetString ("Paper Size: {0} x {1} mm"), 
 								Math.Round (print_operation.DefaultPageSetup.GetPaperWidth (Unit.Mm), 1), 
 								Math.Round (print_operation.DefaultPageSetup.GetPaperHeight (Unit.Mm), 1));
 			else
-				current_settings.Text = String.Format (Catalog.GetString ("Paper Size: {0} x {1} mm"), "...", "...");
+				current_settings.Text = string.Format (Catalog.GetString ("Paper Size: {0} x {1} mm"), "...", "...");
 
 			page_box.PackStart (current_settings, false, false, 0);
 			Button page_setup_btn = new Button (Catalog.GetString ("Set Page Size and Orientation"));
 			page_setup_btn.Clicked += delegate {
 				this.print_operation.DefaultPageSetup = Print.RunPageSetupDialog (null, print_operation.DefaultPageSetup, this.print_operation.PrintSettings); 
-				current_settings.Text = String.Format (Catalog.GetString ("Paper Size: {0} x {1} mm"), 
+				current_settings.Text = string.Format (Catalog.GetString ("Paper Size: {0} x {1} mm"), 
 								Math.Round (print_operation.DefaultPageSetup.GetPaperWidth (Unit.Mm), 1), 
 								Math.Round (print_operation.DefaultPageSetup.GetPaperHeight (Unit.Mm), 1));
 			};

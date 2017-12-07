@@ -273,42 +273,30 @@ namespace Banshee.Kernel
             get { return current_running_job; }
         }
         
-        private static void OnJobStarted(IJob job)
+        static void OnJobStarted(IJob job)
         {
-            JobEventHandler handler = JobStarted;
-            if(handler != null) {
-                handler(job);
-            }
+			JobStarted?.Invoke (job);
         }
         
-        private static void OnJobFinished(IJob job)
+        static void OnJobFinished(IJob job)
         {
-            JobEventHandler handler = JobFinished;
-            if(handler != null) {
-                handler(job);
-            }
+			JobFinished?.Invoke (job);
         }
         
-        private static void OnJobScheduled(IJob job)
+        static void OnJobScheduled(IJob job)
         {
-            JobEventHandler handler = JobScheduled;
-            if(handler != null) {
-                handler(job);
-            }
+			JobScheduled?.Invoke (job);
         }
         
-        private static void OnJobUnscheduled(IJob job)
+        static void OnJobUnscheduled(IJob job)
         {
-            JobEventHandler handler = JobUnscheduled;
-            if(handler != null) {
-                handler(job);
-            }
+			JobUnscheduled?.Invoke (job);
         }
         
-        private static void Debug(string message, params object [] args)
+        static void Debug(string message, params object [] args)
         {
             if(Banshee.Base.Globals.Debugging) {
-                Console.Error.WriteLine(String.Format("** Scheduler: {0}", message), args);
+                Console.Error.WriteLine(string.Format("** Scheduler: {0}", message), args);
             }
         }
     }

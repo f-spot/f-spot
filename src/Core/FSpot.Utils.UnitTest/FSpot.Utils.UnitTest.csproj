@@ -10,7 +10,7 @@
     <RootNamespace>FSpot.Utils.UnitTest</RootNamespace>
     <AssemblyName>FSpot.Utils.UnitTest</AssemblyName>
     <ReleaseVersion>0.9.0</ReleaseVersion>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -53,8 +53,6 @@
     <Compile Include="MetadataTest.cs" />
     <Compile Include="SafeUriTests.cs" />
     <Compile Include="SidecarXmpExtensionsTests.cs" />
-    <Compile Include="SortedFileEnumeratorTests.cs" />
-    <Compile Include="Mocks\MockExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FSpot.Utils\FSpot.Utils.csproj">

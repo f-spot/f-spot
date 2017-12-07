@@ -59,7 +59,9 @@ using Hyena;
 
 using FSpot;
 using FSpot.Core;
+using FSpot.Database;
 using FSpot.Filters;
+using FSpot.Settings;
 using FSpot.Utils;
 
 namespace FSpot.Exporters.Folder
@@ -73,11 +75,11 @@ namespace FSpot.Exporters.Folder
 			public int Height;
 			public bool Skip;
 			public bool CopyExif;
-			public static ScaleRequest Default = new ScaleRequest (String.Empty, 0, 0, false);
+			public static ScaleRequest Default = new ScaleRequest (string.Empty, 0, 0, false);
 
 			public ScaleRequest (string name, int width, int height, bool skip, bool exif = false)
 			{
-				this.Name = name != null ? name : String.Empty;
+				this.Name = name != null ? name : string.Empty;
 				this.Width = width;
 				this.Height = height;
 				this.Skip = skip;
@@ -167,7 +169,7 @@ namespace FSpot.Exporters.Folder
 			while (file.Exists) {
 				var filename = uri.GetFilenameWithoutExtension ();
 				var extension = uri.GetExtension ();
-				dest = dest_uri.Append (String.Format ("{0}-{1}{2}", filename, i++, extension));
+				dest = dest_uri.Append (string.Format ("{0}-{1}{2}", filename, i++, extension));
 				file = GLib.FileFactory.NewForUri (dest);
 			}
 	

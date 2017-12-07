@@ -129,7 +129,7 @@ namespace FSpot.Widgets
 			}
 		}
 
-		public IPhoto [] Items {
+		public IEnumerable<IPhoto> Items {
 			get {
 				if (items != null)
 					return items;
@@ -329,7 +329,7 @@ namespace FSpot.Widgets
 		public void SignalChange (int [] ids)
 		{
 			ClearCached ();
-			old = Items;
+			old = Items.ToArray ();
 
 
 			if (Changed != null)

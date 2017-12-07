@@ -44,6 +44,7 @@ namespace FSpot.Tools.LiveWebGallery
 {
 	internal class LiveWebGalleryDialog : FSpot.UI.Dialog.BuilderDialog
 	{
+#pragma warning disable 649
 		[GtkBeans.Builder.Object] Gtk.LinkButton url_button;
 		[GtkBeans.Builder.Object] Gtk.ToggleButton activate_button;
 		[GtkBeans.Builder.Object] Gtk.Button copy_button;
@@ -56,6 +57,7 @@ namespace FSpot.Tools.LiveWebGallery
 		[GtkBeans.Builder.Object] Gtk.SpinButton limit_spin;
 		[GtkBeans.Builder.Object] Gtk.CheckButton allow_tagging_checkbox;
 		[GtkBeans.Builder.Object] Gtk.Button tag_edit_button;
+#pragma warning restore 649
 
 		private SimpleWebServer server;
 		private ILiveWebGalleryOptions options;

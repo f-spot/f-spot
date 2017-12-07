@@ -50,8 +50,7 @@ namespace FSpot.Utils
 			lock (o) {
 				foreach (TValue value in Hash.Values) {
 					var iDisposable = value as IDisposable;
-					if (iDisposable != null)
-						iDisposable.Dispose ();
+					iDisposable?.Dispose ();
 				}
 				mru.Clear ();
 				Hash.Clear ();
@@ -69,8 +68,7 @@ namespace FSpot.Utils
 
 				while (mru.Count >= MaxCount) {
 					var iDisposable = Hash [mru [MaxCount - 1]] as IDisposable;
-					if (iDisposable != null)
-						iDisposable.Dispose ();
+					iDisposable?.Dispose ();
 					Hash.Remove (mru [MaxCount - 1]);
 					mru.RemoveAt (MaxCount - 1);
 				}	
@@ -81,8 +79,7 @@ namespace FSpot.Utils
 		{
 			lock (o) {
 				var iDisposable = Hash [key] as IDisposable;
-				if (iDisposable != null)
-					iDisposable.Dispose ();
+				iDisposable?.Dispose ();
 				mru.Remove (key);
 				Hash.Remove (key);
 			}

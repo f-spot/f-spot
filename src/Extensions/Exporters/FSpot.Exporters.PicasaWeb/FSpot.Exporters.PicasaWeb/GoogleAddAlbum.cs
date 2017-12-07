@@ -39,6 +39,7 @@ namespace FSpot.Exporters.PicasaWeb
 {
 	public class GoogleAddAlbum
 	{
+#pragma warning disable 649
 		[GtkBeans.Builder.Object] Gtk.Dialog dialog;
 
 		[GtkBeans.Builder.Object] Gtk.Entry title_entry;
@@ -46,6 +47,7 @@ namespace FSpot.Exporters.PicasaWeb
 		[GtkBeans.Builder.Object] Gtk.CheckButton public_check;
 
 		[GtkBeans.Builder.Object] Gtk.Button add_button;
+#pragma warning restore 649
 
 		private GtkBeans.Builder builder;
 		private string dialog_name = "google_add_album_dialog";
@@ -77,7 +79,7 @@ namespace FSpot.Exporters.PicasaWeb
 			title = title_entry.Text;
 			public_album = public_check.Active;
 
-			if (title == String.Empty)
+			if (title == string.Empty)
 				add_button.Sensitive = false;
 			else
 				add_button.Sensitive = true;
@@ -98,7 +100,7 @@ namespace FSpot.Exporters.PicasaWeb
 							      Gtk.DialogFlags.DestroyWithParent,
 								      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
 							      Catalog.GetString ("Error while creating Album"),
-							      String.Format (Catalog.GetString ("The following error was encountered while attempting to create an album: {0}"), e.Message));
+							      string.Format (Catalog.GetString ("The following error was encountered while attempting to create an album: {0}"), e.Message));
 					md.Run ();
 					md.Destroy ();
 					return;

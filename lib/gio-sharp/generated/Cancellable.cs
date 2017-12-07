@@ -26,7 +26,7 @@ namespace GLib {
 			Raw = g_cancellable_new();
 		}
 
-		[GLib.CDeclCallback]
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate void CancelledVMDelegate (IntPtr cancellable);
 
 		static CancelledVMDelegate CancelledVMCallback;

@@ -48,6 +48,7 @@ using System.Collections.Generic;
 using FlickrNet;
 using FSpot.Core;
 using FSpot.Filters;
+using FSpot.Settings;
 
 using Hyena;
 

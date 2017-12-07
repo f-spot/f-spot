@@ -10,7 +10,7 @@
     <RootNamespace>FSpot.Utils</RootNamespace>
     <AssemblyName>FSpot.Utils</AssemblyName>
     <ReleaseVersion>0.9.0</ReleaseVersion>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -45,7 +45,6 @@
     <Compile Include="HashUtils.cs" />
     <Compile Include="Metadata.cs" />
     <Compile Include="PixbufUtils.cs" />
-    <Compile Include="RecursiveFileEnumerator.cs" />
     <Compile Include="SafeUriExtensions.cs" />
     <Compile Include="SidecarXmpExtensions.cs" />
     <Compile Include="TargetListExtensionMethods.cs" />
@@ -53,7 +52,6 @@
     <Compile Include="UriList.cs" />
     <Compile Include="UriUtils.cs" />
     <Compile Include="Vector.cs" />
-    <Compile Include="SortedFileEnumerator.cs" />
     <Compile Include="BitConverter.cs" />
     <Compile Include="TinyIoC.cs" />
   </ItemGroup>

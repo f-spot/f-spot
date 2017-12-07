@@ -50,7 +50,7 @@ namespace FSpot.Query
 
 		public string SqlClause ()
 		{
-			return String.Format (" photos.rating >= {0} AND photos.rating <= {1} ", MinRating, MaxRating);
+			return string.Format (" photos.rating >= {0} AND photos.rating <= {1} ", MinRating, MaxRating);
 		}
 	}
 }

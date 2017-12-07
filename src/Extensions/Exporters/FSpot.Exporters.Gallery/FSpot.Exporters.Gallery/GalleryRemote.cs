@@ -58,14 +58,14 @@ namespace FSpot.Exporters.Gallery
 	public class Album : IComparable
 	{
 		public int RefNum;
-		public string Name = String.Empty;
-		public string Title = String.Empty;
-		public string Summary = String.Empty;
+		public string Name = string.Empty;
+		public string Title = string.Empty;
+		public string Summary = string.Empty;
 		public int ParentRefNum;
 		public int ResizeSize;
 		public int ThumbSize;
 		public List<Image> Images;
-		public string BaseURL = String.Empty;
+		public string BaseURL = string.Empty;
 		public AlbumPermission Perms = AlbumPermission.None;
 
 		public Album Parent {
