@@ -31,13 +31,14 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System;
 using FSpot.Utils;
 using Gdk;
 using Hyena;
 
 namespace FSpot
 {
-	public class RequestItem
+	public class RequestItem : IDisposable
 	{
 		/// <summary>
 		/// Gets or Sets image uri
@@ -72,16 +73,27 @@ namespace FSpot
 			Width = width;
 			Height = height;
 			if ((width <= 0 && height > 0) || (height <= 0 && width > 0)) {
-				throw new System.Exception ("Invalid arguments");
+				throw new Exception ("Invalid arguments");
 			}
 		}
 
-		~RequestItem ()
+		#region IDisposable
+
+		public void Dispose ()
 		{
-			if (result != null) {
-				result.Dispose ();
-			}
-			result = null;
+			Dispose (true);
+			System.GC.SuppressFinalize (this);
 		}
+
+		protected virtual void Dispose (bool disposing)
+		{
+			if (disposing) {
+				if (result != null) {
+					result.Dispose ();
+				}
+			}
+		}
+
+		#endregion
 	}
 }
