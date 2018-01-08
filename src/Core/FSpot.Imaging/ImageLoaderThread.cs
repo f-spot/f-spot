@@ -162,6 +162,7 @@ namespace FSpot.Imaging
 				if (r != null) {
 					requests_by_uri.Remove (uri);
 					queue.Remove (r);
+					r.Dispose ();
 				}
 			}
 		}
@@ -284,7 +285,6 @@ namespace FSpot.Imaging
 		{
 			Queue results;
 
-
 			lock (processed_requests) {
 				/* Copy the queued items out of the shared queue so we hold the lock for
 				   as little time as possible.  */
@@ -295,6 +295,10 @@ namespace FSpot.Imaging
 			}
 
 			EmitLoaded (results);
+
+			foreach (RequestItem request in results){
+				request.Dispose ();
+			}
 		}
 		#endregion
 	}
