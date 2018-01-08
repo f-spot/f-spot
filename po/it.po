@@ -1596,17 +1596,17 @@ msgstr "Tema standard"
 
 #: ../src/Clients/FSpot/FSpot.UI.Dialog/RepairDbDialog.cs:44
 msgid "Error loading database."
-msgstr "Errore nel caricare il database."
+msgstr "Errore nel caricare la bancadati."
 
 #: ../src/Clients/FSpot/FSpot.UI.Dialog/RepairDbDialog.cs:45
 #, csharp-format
 msgid ""
 "F-Spot encountered an error while loading the photo database. The old "
-"database has be moved to {0} and a new database has been created."
+"database has been moved to {0} and a new database has been created."
 msgstr ""
-"È stato riscontrato un errore durante il caricamento del database delle "
-"foto. Il vecchio database è stato spostato in {0} e ne è stato creato uno "
-"nuovo."
+"È stato riscontrato un errore durante il caricamento della bancadati delle "
+"foto. La vecchia bancadati è stata spostata in {0} e ne è stata creata una "
+"nuova."
 
 # (NdT) Nome/etichetta proporzione
 #: ../src/Clients/FSpot/FSpot.UI.Dialog/SelectionRatioDialog.cs:81
