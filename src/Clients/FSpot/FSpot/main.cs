@@ -307,6 +307,19 @@ namespace FSpot
 				Log.Exception ("Loading default f-spot icons", ex);
 			}
 
+			GLib.ExceptionManager.UnhandledException += exceptionArgs =>
+			{
+				Console.WriteLine ("Unhandeled exception handler:");
+				var exception = exceptionArgs.ExceptionObject as Exception;
+				if (exception != null) {
+					Console.WriteLine ("Message: " + exception.Message);
+					Console.WriteLine ("Stack trace: " + exception.StackTrace);
+				}
+				else {
+					Console.WriteLine ("Unknown exception type: " + exceptionArgs.ExceptionObject.GetType ().ToString ());
+				}
+			};
+
 			CleanRoomStartup.Startup (Startup);
 
 			// Running threads are preventing the application from quitting
