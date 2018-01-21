@@ -241,6 +241,9 @@ namespace FSpot.Database
 					photo.AddVersionUnsafely (version_id, base_uri, filename, import_md5, name, is_protected);
 				}
 			}
+				
+			if (photo.Versions.Count() == 0)
+				FixDefaultVersion (photo);
 		}
 
 		void GetTags (Photo photo)
@@ -252,6 +255,17 @@ namespace FSpot.Database
 					photo.AddTagUnsafely (tag);
 				}
 			}
+		}
+
+		private void FixDefaultVersion(Photo photo) {
+			var reader = Database.Query (new HyenaSqliteCommand ("SELECT base_uri, filename FROM photos WHERE id = ?", photo.Id));
+			using (reader) {
+				reader.Read ();
+				var base_uri = new SafeUri (reader ["base_uri"].ToString (), true);
+				var filename = reader ["filename"].ToString ();
+				photo.AddVersionUnsafely (photo.DefaultVersionId, base_uri, filename, "", Catalog.GetString ("Original"), true);
+			}
+			InsertVersion (photo, (PhotoVersion)photo.Versions.Last ());
 		}
 
 		void GetAllVersions  (string ids)
@@ -325,7 +339,6 @@ namespace FSpot.Database
 
 				if (photo == null)
 					return null;
-
 				GetTags (photo);
 				GetVersions (photo);
 
@@ -789,8 +802,11 @@ namespace FSpot.Database
 			if (need_load) {
 				GetAllTags (photo_ids);
 				GetAllVersions (photo_ids);
-				foreach (Photo photo in new_photos)
+				foreach (Photo photo in new_photos) {
+					if (photo.Versions.Count () == 0)
+						FixDefaultVersion (photo);
 					photo.AllVersionsLoaded = true;
+				}
 			}
 
 			foreach (Photo photo in new_photos)
