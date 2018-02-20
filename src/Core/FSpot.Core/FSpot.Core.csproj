@@ -49,6 +49,8 @@
     <Compile Include="Tag.cs" />
     <Compile Include="Photo.cs" />
     <Compile Include="PhotoVersion.cs" />
+    <Compile Include="Runtime.cs" />
+    <Compile Include="GtkSynchronizationContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FSpot.Utils\FSpot.Utils.csproj">

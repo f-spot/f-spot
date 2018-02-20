@@ -34,14 +34,16 @@
 //
 
 using System;
-using System.Reflection;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
+using System.Threading;
 
-using Mono.Unix;
 using Mono.Addins;
 using Mono.Addins.Setup;
+using Mono.Unix;
 
+using FSpot.Core;
 using FSpot.Settings;
 using FSpot.Utils;
 
@@ -182,6 +184,8 @@ namespace FSpot
 			Paths.ApplicationName = "f-spot";
 			ThreadAssist.InitializeMainThread ();
 			ThreadAssist.ProxyToMainHandler = RunIdle;
+			Runtime.Initialize (false);
+			SynchronizationContext.SetSynchronizationContext (new GtkSynchronizationContext());
 
 			// Options and Option parsing
 			bool shutdown = false;
