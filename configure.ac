@@ -62,8 +62,8 @@ SHAMROCK_EXPAND_DATADIR
 dnl User help
 SHAMROCK_CHECK_GNOME_DOC_UTILS(0.17.3)
 
-dnl Mono and mcs
-SHAMROCK_CHECK_MONO_MODULE(3.2.8)
+dnl Mono and csc
+SHAMROCK_CHECK_MONO_MODULE(5.8.0)
 SHAMROCK_FIND_MONO_4_0_COMPILER
 SHAMROCK_FIND_MONO_RUNTIME
 SHAMROCK_CHECK_MONO_4_5_GAC_ASSEMBLIES([
@@ -89,10 +89,10 @@ FSPOT_ENABLE_TESTS
 
 
 # ---------------------------------- <Old build stuff>
-dnl --- Check for mono and mcs
+dnl --- Check for mono and csc
 
 AC_PATH_PROG(MONO, mono)
-AC_PATH_PROG(MCS, mcs)
+AC_PATH_PROG(MCS, csc)
 
 CS="C#"
 if test ! -x "$MCS"; then
@@ -252,7 +252,7 @@ AM_CONDITIONAL(ENABLE_RELEASE, test "x$enable_release" = "xyes")
 ENABLE_RELEASE=$enable_release
 AC_SUBST(ENABLE_RELEASE)
 if test "x$enable_release" = "xyes"; then
-	MCS_FLAGS="-define:RELEASE -sdk:4"
+	MCS_FLAGS="-define:RELEASE"
 	PROFILE_NAME="Release"
 else
 	PROFILE_NAME="Debug"

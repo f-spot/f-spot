@@ -43,7 +43,7 @@ DEP_LINK = $(shell echo "$(LINK)" | $(UNIQUE_FILTER_PIPE) | sed s,-r:,,g | grep 
 
 OUTPUT_FILES = \
 	$(ASSEMBLY_FILE) \
-	$(ASSEMBLY_FILE).mdb
+	$(ASSEMBLY_FILE).pdb
 
 moduledir = $(INSTALL_DIR_RESOLVED)
 module_SCRIPTS = $(OUTPUT_FILES)
@@ -65,7 +65,7 @@ run:
 build-debug:
 	@echo $(DEP_LINK)
 
-$(ASSEMBLY_FILE).mdb: $(ASSEMBLY_FILE)
+$(ASSEMBLY_FILE).pdb: $(ASSEMBLY_FILE)
 
 $(ASSEMBLY_FILE): $(SOURCES_BUILD) $(RESOURCES_EXPANDED) $(DEP_LINK)
 	@mkdir -p $(top_builddir)/bin
