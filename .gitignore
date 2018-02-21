@@ -59,6 +59,7 @@ gnome-doc-utils.make
 [Oo]bj/
 TestResult.xml
 tests/*.addins
+tests/*.xml
 tests/TestData
 test-results/
 packages/*
@@ -75,6 +76,7 @@ packages/*
 
 # monodevelop files
 *.userprefs
+.vs
 
 # Rider
 # User-specific stuff:
