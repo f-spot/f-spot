@@ -96,4 +96,4 @@ run ./configure --enable-maintainer-mode $@
 # Stupid taglib-sharp snk garbage
 cp external/taglib-sharp/taglib-sharp.snk external/taglib-sharp/src
 
-rm -f bin/*.mdb
+rm -f bin/*.pdb

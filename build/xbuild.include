@@ -1,4 +1,4 @@
-XBUILD=xbuild
+XBUILD=msbuild
 XBUILD_ARGS=/verbosity:normal /nologo /property:CodePage=65001
 ALL_CSPROJ=$(wildcard *.csproj)
 MAIN_SLN=$(top_builddir)/F-Spot.sln

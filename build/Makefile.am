@@ -11,7 +11,7 @@ $(DLL_MAP_VERIFIER_ASSEMBLY): DllMapVerifier.cs
 	$(MCS) -out:$@ $<
 
 $(ADDIN_XML_STRING_EXTRACTOR_ASSEMBLY): AddinXmlStringExtractor.cs
-	$(MCS) -r:System.Xml -out:$@ $<
+	$(MCS) -out:$@ $<
 
 EXTRA_DIST = \
 	private-icon-theme-installer \
@@ -19,5 +19,5 @@ EXTRA_DIST = \
 	dll-map-makefile-verifier \
 	AddinXmlStringExtractor.cs
 
-CLEANFILES = *.exe *.mdb
+CLEANFILES = *.exe *.pdb
 MAINTAINERCLEANFILES = Makefile.in
