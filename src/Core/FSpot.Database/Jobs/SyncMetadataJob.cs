@@ -40,11 +40,6 @@ namespace FSpot.Database.Jobs
 {
 	public class SyncMetadataJob : Job
 	{
-		public SyncMetadataJob (IDb db, uint id, string job_options, int run_at, JobPriority job_priority, bool persistent)
-			: this (db, id, job_options, DateTimeUtil.ToDateTime (run_at), job_priority, persistent)
-		{
-		}
-
 		public SyncMetadataJob (IDb db, uint id, string job_options, DateTime run_at, JobPriority job_priority, bool persistent)
 			: base (db, id, job_options, job_priority, run_at, persistent)
 		{

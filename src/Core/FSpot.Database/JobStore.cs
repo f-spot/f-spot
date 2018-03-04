@@ -65,7 +65,7 @@ namespace FSpot.Database
 					Db,
 					Convert.ToUInt32 (reader ["id"]),
 					reader ["job_options"].ToString (),
-					Convert.ToInt32 (reader ["run_at"]),
+					DateTimeUtil.ToDateTime (Convert.ToInt32 (reader ["run_at"])),
 					(JobPriority)Convert.ToInt32 (reader ["job_priority"]),
 					true);
 		}
