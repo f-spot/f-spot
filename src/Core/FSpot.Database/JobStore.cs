@@ -40,14 +40,16 @@ namespace FSpot.Database
 {
 	public class JobStore : DbStore<Job>
 	{
+		private const string jobsTableName = "jobs";
+
 		internal static void CreateTable (FSpotDatabaseConnection database)
 		{
-			if (database.TableExists ("jobs")) {
+			if (database.TableExists (jobsTableName)) {
 				return;
 			}
 
 			database.Execute (
-				"CREATE TABLE jobs (\n" +
+				$"CREATE TABLE {jobsTableName} (\n" +
 				"  id           INTEGER PRIMARY KEY NOT NULL, \n" +
 				"  job_type     TEXT NOT NULL, \n" +
 				"  job_options  TEXT NOT NULL, \n" +
@@ -70,7 +72,7 @@ namespace FSpot.Database
 
 		private void LoadAllItems ()
 		{
-			Hyena.Data.Sqlite.IDataReader reader = Database.Query ("SELECT id, job_type, job_options, run_at, job_priority FROM jobs");
+			Hyena.Data.Sqlite.IDataReader reader = Database.Query ($"SELECT id, job_type, job_options, run_at, job_priority FROM {jobsTableName}");
 
 			Scheduler.Suspend ();
 			while (reader.Read ()) {
@@ -98,7 +100,7 @@ namespace FSpot.Database
 		{
 			long id = 0;
 			if (persistent)
-				id = Database.Execute (new HyenaSqliteCommand ("INSERT INTO jobs (job_type, job_options, run_at, job_priority) VALUES (?, ?, ?, ?)",
+				id = Database.Execute (new HyenaSqliteCommand ($"INSERT INTO {jobsTableName} (job_type, job_options, run_at, job_priority) VALUES (?, ?, ?, ?)",
 							job_type.ToString (),
 							job_options,
 							DateTimeUtil.FromDateTime (run_at),
@@ -119,7 +121,7 @@ namespace FSpot.Database
 		{
 			if (item.Persistent)
 				Database.Execute (new HyenaSqliteCommand (
-					"UPDATE jobs " +
+					$"UPDATE {jobsTableName} " +
 					"  SET job_type = ? " +
 					"  SET job_options = ? " +
 					"  SET run_at = ? " +
@@ -145,7 +147,7 @@ namespace FSpot.Database
 			RemoveFromCache (item);
 
 			if (item.Persistent)
-				Database.Execute (new HyenaSqliteCommand ("DELETE FROM jobs WHERE id = ?", item.Id));
+				Database.Execute (new HyenaSqliteCommand ($"DELETE FROM {jobsTableName} WHERE id = ?", item.Id));
 
 			EmitRemoved (item);
 		}
@@ -157,7 +159,7 @@ namespace FSpot.Database
 
 		public JobStore (IDb db, bool is_new) : base (db, true)
 		{
-			if (is_new || !Database.TableExists ("jobs")) {
+			if (is_new || !Database.TableExists (jobsTableName)) {
 				CreateTable (Database);
 			} else {
 				LoadAllItems ();
