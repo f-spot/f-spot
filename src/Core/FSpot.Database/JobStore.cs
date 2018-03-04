@@ -58,16 +58,19 @@ namespace FSpot.Database
 				")");
 		}
 
+		private Job CreateJob (Type type, uint id, string options, DateTime runAt, JobPriority priority)
+		{
+			return (Job)Activator.CreateInstance (type, Db, id, options, runAt, priority, true);
+		}
+
 		private Job LoadItem (Hyena.Data.Sqlite.IDataReader reader)
 		{
-			return (Job)Activator.CreateInstance (
+			return CreateJob (
 					Type.GetType (reader ["job_type"].ToString ()),
-					Db,
 					Convert.ToUInt32 (reader ["id"]),
 					reader ["job_options"].ToString (),
 					DateTimeUtil.ToDateTime (Convert.ToInt32 (reader ["run_at"])),
-					(JobPriority)Convert.ToInt32 (reader ["job_priority"]),
-					true);
+					(JobPriority)Convert.ToInt32 (reader ["job_priority"]));
 		}
 
 		private void LoadAllItems ()
@@ -86,27 +89,17 @@ namespace FSpot.Database
 			reader.Dispose ();
 		}
 
-		public Job Create (Type job_type, string job_options)
-		{
-			return Create (job_type, job_options, DateTime.Now, JobPriority.Lowest, false);
-		}
-
 		public Job CreatePersistent (Type job_type, string job_options)
 		{
-			return Create (job_type, job_options, DateTime.Now, JobPriority.Lowest, true);
-		}
+			var run_at = DateTime.Now;
+			var job_priority = JobPriority.Lowest;
+			var id = Database.Execute (new HyenaSqliteCommand ($"INSERT INTO {jobsTableName} (job_type, job_options, run_at, job_priority) VALUES (?, ?, ?, ?)",
+				job_type.ToString (),
+				job_options,
+				DateTimeUtil.FromDateTime (run_at),
+				Convert.ToInt32 (job_priority)));
 
-		internal Job Create (Type job_type, string job_options, DateTime run_at, JobPriority job_priority, bool persistent)
-		{
-			long id = 0;
-			if (persistent)
-				id = Database.Execute (new HyenaSqliteCommand ($"INSERT INTO {jobsTableName} (job_type, job_options, run_at, job_priority) VALUES (?, ?, ?, ?)",
-							job_type.ToString (),
-							job_options,
-							DateTimeUtil.FromDateTime (run_at),
-							Convert.ToInt32 (job_priority)));
-
-			Job job = (Job)Activator.CreateInstance (job_type, Db, (uint)id, job_options, run_at, job_priority, true);
+			Job job = CreateJob (job_type, (uint)id, job_options, run_at, job_priority);
 
 			AddToCache (job);
 			job.Finished += HandleRemoveJob;
