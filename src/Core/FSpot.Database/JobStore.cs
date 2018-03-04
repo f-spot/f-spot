@@ -34,6 +34,7 @@ using System;
 using Banshee.Kernel;
 
 using FSpot.Core;
+using FSpot.Database.Jobs;
 using FSpot.Jobs;
 
 using Hyena;
@@ -41,56 +42,6 @@ using Hyena.Data.Sqlite;
 
 namespace FSpot.Database
 {
-    public abstract class Job : DbItem, IJob
-    {
-    	public Job (IDb db, uint id, string job_options, JobPriority job_priority, DateTime run_at, bool persistent) : base (id)
-    	{
-    		JobOptions = job_options;
-    		JobPriority = job_priority;
-    		RunAt = run_at;
-    		Persistent = persistent;
-			Db = db;
-    	}
-    
-    	public string JobOptions { get; set; }
-    	internal JobPriority JobPriority { get; set; }
-    	//Not in use yet !
-    	public DateTime RunAt { get; private set; }
-    	public bool Persistent { get; private set; }
-		protected IDb Db { get; private set; }
-    
-    	public event EventHandler Finished;
-    
-    	private JobStatus status;
-    	public JobStatus Status
-    	{
-    		get { return status; }
-    		set {
-    			status = value;
-    			switch (value) {
-    			case JobStatus.Finished:
-    			case JobStatus.Failed:
-    				if (Finished != null)
-    					Finished (this, new EventArgs ());
-    				break;
-    			default:
-    				break;
-    			}
-    		}
-    	}
-    
-    	public void Run ()
-    	{
-    		Status = JobStatus.Running;
-    		if (Execute ())
-    			Status = JobStatus.Finished;
-    		else
-    			Status = JobStatus.Failed;
-    	}
-    
-    	protected abstract bool Execute ();
-    }
-
     public class JobStore : DbStore<Job> {
     
     	internal static void CreateTable (FSpotDatabaseConnection database)
