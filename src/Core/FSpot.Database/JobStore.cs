@@ -60,7 +60,14 @@ namespace FSpot.Database
 
 		private Job CreateJob (Type type, uint id, string options, DateTime runAt, JobPriority priority)
 		{
-			return (Job)Activator.CreateInstance (type, Db, id, options, runAt, priority, true);
+			return (Job)Activator.CreateInstance (type, Db, new JobData
+			{
+				Id = id,
+				JobOptions = options,
+				JobPriority = priority,
+				RunAt = runAt,
+				Persistent = true
+			});
 		}
 
 		private Job LoadItem (Hyena.Data.Sqlite.IDataReader reader)

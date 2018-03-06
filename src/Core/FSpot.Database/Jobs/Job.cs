@@ -38,12 +38,12 @@ namespace FSpot.Database.Jobs
 {
 	public abstract class Job : DbItem, IJob
 	{
-		public Job (IDb db, uint id, string job_options, JobPriority job_priority, DateTime run_at, bool persistent) : base (id)
+		public Job (IDb db, JobData jobData) : base (jobData.Id)
 		{
-			JobOptions = job_options;
-			JobPriority = job_priority;
-			RunAt = run_at;
-			Persistent = persistent;
+			JobOptions = jobData.JobOptions;
+			JobPriority = jobData.JobPriority;
+			RunAt = jobData.RunAt;
+			Persistent = jobData.Persistent;
 			Db = db;
 		}
 
