@@ -70,7 +70,7 @@ namespace FSpot.Database
 		static Updater ()
 		{
 			// Update from version 0 to 1: Remove empty Other tags
-			AddUpdate (new Version ("1"), delegate () {
+			AddUpdate (new Version (1, 0), delegate () {
 				string other_id = SelectSingleString ("SELECT id FROM tags WHERE name = 'Other'");
 
 				if (other_id == null)
@@ -95,7 +95,7 @@ namespace FSpot.Database
 			});
 
 			// Update from version 1 to 2: Restore Other tags that were removed leaving dangling child tags
-			AddUpdate (new Version ("2"), delegate () {
+			AddUpdate (new Version (2, 0), delegate () {
 				string tag_count = SelectSingleString ("SELECT COUNT(*) FROM tags WHERE category_id != 0 AND category_id NOT IN (SELECT id FROM tags)");
 
 				// If there are no dangling tags, then don't do anything
@@ -114,7 +114,7 @@ namespace FSpot.Database
 			});
 
 			// Update from version 2 to 3: ensure that Hidden is the only tag left which is a real tag (not category)
-			AddUpdate (new Version ("3"), delegate () {
+			AddUpdate (new Version (3, 0), delegate () {
 				Execute ("UPDATE tags SET is_category = 1 WHERE name != 'Hidden'");
 			});
 
@@ -715,6 +715,11 @@ namespace FSpot.Database
 				}
 
 				Execute ("CREATE INDEX idx_photo_versions_import_md5 ON photo_versions(import_md5)");
+
+			}, true);
+			// Update to version 18.1, align database with new jobs types
+			AddUpdate (new Version (18, 1), delegate () {
+				Execute ("UPDATE jobs SET job_type='FSpot.Database.Jobs.SyncMetadataJob' WHERE job_type='FSpot.Jobs.SyncMetadataJob'");
 
 			}, true);
 		}
