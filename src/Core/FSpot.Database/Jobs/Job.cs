@@ -47,8 +47,8 @@ namespace FSpot.Database.Jobs
 			Db = db;
 		}
 
-		public string JobOptions { get; set; }
-		internal JobPriority JobPriority { get; set; }
+		public string JobOptions { get; private set; }
+		internal JobPriority JobPriority { get; private set; }
 		//Not in use yet !
 		public DateTime RunAt { get; private set; }
 		public bool Persistent { get; private set; }
