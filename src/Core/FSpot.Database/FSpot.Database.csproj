@@ -100,6 +100,8 @@
     <Compile Include="PhotoEventArgs.cs" />
     <Compile Include="IUpdaterUI.cs" />
     <Compile Include="Jobs\CalculateHashJob.cs" />
+    <Compile Include="Jobs\Job.cs" />
+    <Compile Include="Jobs\JobData.cs" />
     <Compile Include="Jobs\SyncMetadataJob.cs" />
     <Compile Include="IDb.cs" />
   </ItemGroup>

@@ -1,13 +1,10 @@
 //
-// CalculateHashJob.cs
+// Job.cs
 //
 // Author:
-//   Thomas Van Machelen <thomasvm@src.gnome.org>
-//   Ruben Vermeersch <ruben@savanne.be>
+//   Daniel Köb <dkoeb@peony.at>
 //
-// Copyright (C) 2008-2010 Novell, Inc.
-// Copyright (C) 2008 Thomas Van Machelen
-// Copyright (C) 2008, 2010 Ruben Vermeersch
+// Copyright (C) 2018 Daniel Köb
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -31,40 +28,16 @@
 
 using System;
 using Banshee.Kernel;
-using Hyena;
 
 namespace FSpot.Database.Jobs
 {
-	public class CalculateHashJob : Job
+	public class JobData
 	{
-		public CalculateHashJob (IDb db, JobData jobData)
-			: base (db, jobData)
-		{
-		}
-
-		public static CalculateHashJob Create (JobStore job_store, uint photo_id)
-		{
-			return (CalculateHashJob)job_store.CreatePersistent (JobName, photo_id.ToString ());
-		}
-
-		public static string JobName => "CalculateHash";
-
-		protected override bool Execute ()
-		{
-			//this will add some more reactivity to the system
-			System.Threading.Thread.Sleep (200);
-
-			uint photo_id = Convert.ToUInt32 (JobOptions);
-			Log.DebugFormat ("Calculating Hash {0}...", photo_id);
-
-			try {
-				Photo photo = Db.Photos.Get (Convert.ToUInt32 (photo_id));
-				Db.Photos.CalculateMD5Sum (photo);
-				return true;
-			} catch (System.Exception e) {
-				Log.DebugFormat ("Error Calculating Hash for photo {0}: {1}", JobOptions, e.Message);
-			}
-			return false;
-		}
+		public IDb Db { get; set; }
+		public uint Id { get; set; }
+		public string JobOptions { get; set; }
+		public JobPriority JobPriority { get; set; }
+		public DateTime RunAt { get; set; }
+		public bool Persistent { get; set; }
 	}
 }
