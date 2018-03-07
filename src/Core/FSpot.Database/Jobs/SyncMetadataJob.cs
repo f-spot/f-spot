@@ -48,8 +48,10 @@ namespace FSpot.Database.Jobs
 		//Use THIS static method to create a job...
 		public static SyncMetadataJob Create (JobStore job_store, Photo photo)
 		{
-			return (SyncMetadataJob)job_store.CreatePersistent (typeof (SyncMetadataJob), photo.Id.ToString ());
+			return (SyncMetadataJob)job_store.CreatePersistent (JobName, photo.Id.ToString ());
 		}
+
+		public static string JobName => "SyncMetadata";
 
 		protected override bool Execute ()
 		{

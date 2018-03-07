@@ -33,6 +33,7 @@ using System;
 using Banshee.Kernel;
 using FSpot.Database.Jobs;
 using FSpot.Jobs;
+using FSpot.Utils;
 using Hyena;
 using Hyena.Data.Sqlite;
 
@@ -41,6 +42,7 @@ namespace FSpot.Database
 	public class JobStore : DbStore<Job>
 	{
 		private const string jobsTableName = "jobs";
+		private readonly TinyIoCContainer container;
 
 		internal static void CreateTable (FSpotDatabaseConnection database)
 		{
@@ -58,22 +60,29 @@ namespace FSpot.Database
 				")");
 		}
 
-		private Job CreateJob (Type type, uint id, string options, DateTime runAt, JobPriority priority)
+		private Job CreateJob (string type, uint id, string options, DateTime runAt, JobPriority priority)
 		{
-			return (Job)Activator.CreateInstance (type, Db, new JobData
-			{
-				Id = id,
-				JobOptions = options,
-				JobPriority = priority,
-				RunAt = runAt,
-				Persistent = true
-			});
+			using (var childContainer = container.GetChildContainer ()) {
+				childContainer.Register (new JobData
+				{
+					Id = id,
+					JobOptions = options,
+					JobPriority = priority,
+					RunAt = runAt,
+					Persistent = true
+				});
+				childContainer.TryResolve<Job> (type, out var job);
+				if (job == null) {
+					Log.Error ($"Unknown job type {type} ignored.");
+				}
+				return job;
+			}
 		}
 
 		private Job LoadItem (Hyena.Data.Sqlite.IDataReader reader)
 		{
 			return CreateJob (
-					Type.GetType (reader ["job_type"].ToString ()),
+					reader ["job_type"].ToString (),
 					Convert.ToUInt32 (reader ["id"]),
 					reader ["job_options"].ToString (),
 					DateTimeUtil.ToDateTime (Convert.ToInt32 (reader ["run_at"])),
@@ -87,21 +96,23 @@ namespace FSpot.Database
 			Scheduler.Suspend ();
 			while (reader.Read ()) {
 				Job job = LoadItem (reader);
-				AddToCache (job);
-				job.Finished += HandleRemoveJob;
-				Scheduler.Schedule (job, job.JobPriority);
-				job.Status = JobStatus.Scheduled;
+				if (job != null) {
+					AddToCache (job);
+					job.Finished += HandleRemoveJob;
+					Scheduler.Schedule (job, job.JobPriority);
+					job.Status = JobStatus.Scheduled;
+				}
 			}
 
 			reader.Dispose ();
 		}
 
-		public Job CreatePersistent (Type job_type, string job_options)
+		public Job CreatePersistent (string job_type, string job_options)
 		{
 			var run_at = DateTime.Now;
 			var job_priority = JobPriority.Lowest;
 			var id = Database.Execute (new HyenaSqliteCommand ($"INSERT INTO {jobsTableName} (job_type, job_options, run_at, job_priority) VALUES (?, ?, ?, ?)",
-				job_type.ToString (),
+				job_type,
 				job_options,
 				DateTimeUtil.FromDateTime (run_at),
 				Convert.ToInt32 (job_priority)));
@@ -159,6 +170,22 @@ namespace FSpot.Database
 
 		public JobStore (IDb db, bool is_new) : base (db, true)
 		{
+			// this should be replaced by a global registry as soon as
+			// extensions may provide job implementations
+			container = new TinyIoCContainer ();
+			container.Register (Db);
+			container.Register<Job, SyncMetadataJob> (SyncMetadataJob.JobName).AsMultiInstance ();
+			container.Register<Job, CalculateHashJob> (CalculateHashJob.JobName).AsMultiInstance ();
+
+			// Register legacy names of jobs as previous versions of f-spot saved the full job type
+			// name in the database which prevents refactoring of type names and namespaces.
+			// This also prevents us from intoducing a new database schema version including an
+			// upgrade.
+			container.Register<Job, SyncMetadataJob> ("FSpot.Database.Jobs.SyncMetadataJob").AsMultiInstance ();
+			container.Register<Job, SyncMetadataJob> ("FSpot.Jobs.SyncMetadataJob").AsMultiInstance ();
+			container.Register<Job, CalculateHashJob> ("FSpot.Database.Jobs.CalculateHashJob").AsMultiInstance ();
+			container.Register<Job, CalculateHashJob> ("FSpot.Jobs.CalculateHashJob").AsMultiInstance ();
+
 			if (is_new || !Database.TableExists (jobsTableName)) {
 				CreateTable (Database);
 			} else {

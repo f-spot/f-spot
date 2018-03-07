@@ -44,8 +44,10 @@ namespace FSpot.Database.Jobs
 
 		public static CalculateHashJob Create (JobStore job_store, uint photo_id)
 		{
-			return (CalculateHashJob)job_store.CreatePersistent (typeof (CalculateHashJob), photo_id.ToString ());
+			return (CalculateHashJob)job_store.CreatePersistent (JobName, photo_id.ToString ());
 		}
+
+		public static string JobName => "CalculateHash";
 
 		protected override bool Execute ()
 		{
