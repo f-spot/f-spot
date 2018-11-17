@@ -9,8 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>FSpot.Addins.Transitions</RootNamespace>
     <AssemblyName>FSpot.Transitions.Dissolve</AssemblyName>
-    <ReleaseVersion>0.9.0</ReleaseVersion>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>$(FSpotTargetFramework)</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
