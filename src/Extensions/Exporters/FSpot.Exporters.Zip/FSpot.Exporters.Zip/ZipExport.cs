@@ -31,8 +31,8 @@
 
 using System;
 using System.IO;
+using System.Linq;
 
-using FSpot;
 using FSpot.UI.Dialog;
 using FSpot.Core;
 using FSpot.Extensions;
@@ -44,9 +44,9 @@ using Hyena.Widgets;
 using Mono.Unix;
 
 using Gtk;
-using ICSharpCode.SharpZipLib.Checksums;
+
+using ICSharpCode.SharpZipLib.Checksum;
 using ICSharpCode.SharpZipLib.Zip;
-using System.Linq;
 
 namespace FSpot.Exporters.Zip
 {

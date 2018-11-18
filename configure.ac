@@ -323,7 +323,6 @@ src/Core/FSpot.Bling/Makefile
 src/Core/FSpot.Cms/Makefile
 src/Core/FSpot.Cms/FSpot.Cms.dll.config
 src/Core/FSpot.Core/Makefile
-src/Core/FSpot.Core/FSpot.Core.dll.config
 src/Core/FSpot.Settings/Defines.cs
 src/Core/FSpot.JobScheduler/Makefile
 src/Core/FSpot.Utils/Makefile
