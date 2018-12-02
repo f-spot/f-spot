@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -89,7 +89,7 @@
     <Compile Include="FSpot.Loaders\GdkImageLoader.cs" />
     <Compile Include="FSpot.Loaders\IImageLoader.cs" />
     <Compile Include="FSpot.Loaders\ImageLoader.cs" />
-    <Compile Include="FSpot\main.cs" />
+    <Compile Include="FSpot\Main.cs" />
     <Compile Include="FSpot\MainWindow.cs" />
     <Compile Include="FSpot\PhotoLoader.cs" />
     <Compile Include="FSpot\PhotoPopup.cs" />
@@ -197,6 +197,7 @@
     <Compile Include="FSpot.Editors\EditorNode.cs" />
     <Compile Include="FSpot.UI.Dialog\CreateTagDialog.cs" />
     <Compile Include="FSpot.UI.Dialog\VersionNameDialog.cs" />
+    <Compile Include="FSpot\GtkSynchronizationContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\icons\f-spot-not.png">

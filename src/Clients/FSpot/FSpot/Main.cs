@@ -1,5 +1,5 @@
 //
-// main.cs
+// Main.cs
 //
 // Author:
 //   Ruben Vermeersch <ruben@savanne.be>
@@ -34,13 +34,14 @@
 //
 
 using System;
-using System.Reflection;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
+using System.Threading;
 
-using Mono.Unix;
 using Mono.Addins;
 using Mono.Addins.Setup;
+using Mono.Unix;
 
 using FSpot.Settings;
 using FSpot.Utils;
@@ -180,6 +181,7 @@ namespace FSpot
 			ApplicationContext.TrySetProcessName (Defines.PACKAGE);
 
 			Paths.ApplicationName = "f-spot";
+            SynchronizationContext.SetSynchronizationContext (new GtkSynchronizationContext ());
 			ThreadAssist.InitializeMainThread ();
 			ThreadAssist.ProxyToMainHandler = RunIdle;
 
