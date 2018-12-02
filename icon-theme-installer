@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # icon-theme-installer
 # Copyright (C) 2006 Novell, Inc.
@@ -59,10 +59,10 @@
 # -i         : Install
 # -u         : Uninstall
 # -t <theme> : Theme name (hicolor)
-# -b <dir>   : Theme installation dest directory [x$(DESTDIR)] - Always prefix
+# -d <dir>   : Theme installation dest directory [x$(DESTDIR)] - Always prefix
 #              this argument with x; it will be stripped but will act as a
 #              placeholder for zero $DESTDIRs (only set by packagers)
-# -d <dir>   : Theme installation directory [$(hicolordir)]
+# -b <dir>   : Theme installation directory [$(hicolordir)]
 # -s <dir>   : Source directory [$(srcdir)]
 # -m <exec>  : Command to exec for directory creation [$(mkinstalldirs)]
 # -x <exec>  : Command to exec for single file installation [$(INSTALL_DATA)]
@@ -97,7 +97,7 @@ if test -z "$THEME_NAME"; then
 fi
 
 if test -z "$INSTALL_BASE_DIR"; then
-	echo "Base theme directory required [-d \$(hicolordir)]"
+	echo "Base theme directory required [-b \$(hicolordir)]"
 	exit 1
 fi
 
@@ -160,20 +160,17 @@ for icon in $@; do
 	fi
 done
 
-if test "x$INSTALL" = "xyes"; then
-	gtk_update_icon_cache_bin="$((which gtk-update-icon-cache || echo /opt/gnome/bin/gtk-update-icon-cache)2>/dev/null)"
-	gtk_update_icon_cache="$gtk_update_icon_cache_bin -f -t $INSTALL_BASE_DIR"
+gtk_update_icon_cache_bin="$((which gtk-update-icon-cache || echo /opt/gnome/bin/gtk-update-icon-cache)2>/dev/null)"
+gtk_update_icon_cache="$gtk_update_icon_cache_bin -f -t $INSTALL_BASE_DIR"
 
-	if test -z "$INSTALL_DEST_DIR"; then 
-		if test -x $gtk_update_icon_cache_bin; then 
-			echo "Updating GTK icon cache"
-			$gtk_update_icon_cache
-		else
-			echo "*** Icon cache not updated. Could not execute $gtk_update_icon_cache_bin"
-		fi
+if test -z "$INSTALL_DEST_DIR"; then
+	if test -x $gtk_update_icon_cache_bin; then
+		echo "Updating GTK icon cache"
+		$gtk_update_icon_cache
 	else
-		echo "*** Icon cache not updated. After install, run this:"
-		echo "***   $gtk_update_icon_cache"
+		echo "*** Icon cache not updated. Could not execute $gtk_update_icon_cache_bin"
 	fi
+else
+	echo "*** Icon cache not updated. After (un)install, run this:"
+	echo "***   $gtk_update_icon_cache"
 fi
-
