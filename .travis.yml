@@ -1,5 +1,5 @@
 sudo: required
-dist: trusty
+dist: xenial
 language: csharp
 mono:
   - latest
@@ -11,10 +11,9 @@ install:
   - sudo apt-get install -qq liblcms2-dev libjpeg-dev > /dev/null
   - sudo apt-get install -qq libunique-dev > /dev/null
   - sudo apt-get install -qq libglib2.0-cil-dev libglib2.0-dev libgconf2-dev libgconf2.0-cil-dev > /dev/null
-  - sudo apt-get install -qq libgtk2.0-cil-dev libgnome-keyring1.0-cil-dev > /dev/null
-  - sudo apt-get install -qq libgnomedesktop2.0-cil-dev libgnome-desktop-dev > /dev/null
+  - sudo apt-get install -qq libgtk2.0-cil-dev libgnome2.0-cil-dev libgnome-keyring1.0-cil-dev > /dev/null
   - sudo apt-get install -qq gtk-sharp2-gapi libgtk-sharp-beans2.0-cil-dev libgio2.0-cil-dev > /dev/null
-  - sudo apt-get install -qq gnome-icon-theme gnome-doc-utils > /dev/null
+  - sudo apt-get install -qq adwaita-icon-theme gnome-doc-utils > /dev/null
   - sudo apt-get install -qq libdbus2.0-cil-dev libdbus-glib2.0-cil-dev > /dev/null
 
 script:

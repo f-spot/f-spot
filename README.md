@@ -25,7 +25,7 @@ http://f-spot.org/
 
 	- hicolor-icon-theme 0.10 or later, https://www.freedesktop.org/wiki/Software/icon-theme
 
-	- gnome-icon-theme 3.10.0 or later, https://download.gnome.org/sources/gnome-icon-theme/3.10
+	- adwaita-icon-theme 3.18.0 or later, https://download.gnome.org/sources/adwaita-icon-theme/3.13
 
 	- taglib-sharp 2.0.3.7 or later, https://github.com/mono/taglib-sharp
 

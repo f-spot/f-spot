@@ -83,7 +83,7 @@ dnl --- Checks for gtk-sharp and glib-sharp
 FSPOT_CHECK_GTK_SHARP
 FSPOT_CHECK_DBUS_SHARP
 FSPOT_CHECK_GNOME_SHARP
-FSPOT_CHECK_GNOME_ICON_THEME
+FSPOT_CHECK_ADWAITA_ICON_THEME
 FSPOT_ENABLE_TESTS
 
 
@@ -239,8 +239,8 @@ AC_SUBST(LDFLAGS)
 
 AC_CONFIG_FILES([src/Clients/FSpot/f-spot],[chmod +x src/Clients/FSpot/f-spot])
 
-GNOME_ICON_THEME_PREFIX=`$PKG_CONFIG --variable=prefix gnome-icon-theme`
-AC_SUBST(GNOME_ICON_THEME_PREFIX)
+ADWAITA_ICON_THEME_PREFIX=`$PKG_CONFIG --variable=prefix adwaita-icon-theme`
+AC_SUBST(ADWAITA_ICON_THEME_PREFIX)
 
 # ---------------------------------- </Old build stuff>
 
