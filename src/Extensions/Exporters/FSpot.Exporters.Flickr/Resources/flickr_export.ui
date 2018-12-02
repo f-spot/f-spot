@@ -82,6 +82,18 @@
                               </packing>
                             </child>
                             <child>
+                              <object class="GtkEntry" id="oauth_verification_code">
+                                <property name="visible">False</property>
+                                <property name="sensitive">False</property>
+                                <property name="text" translatable="yes">Verification Code</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">False</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                            <child>
                               <object class="GtkButton" id="auth_flickr">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
@@ -126,7 +138,7 @@
                               <packing>
                                 <property name="expand">False</property>
                                 <property name="fill">False</property>
-                                <property name="position">1</property>
+                                <property name="position">2</property>
                               </packing>
                             </child>
                             <child>
@@ -151,7 +163,7 @@
                               <packing>
                                 <property name="expand">False</property>
                                 <property name="fill">False</property>
-                                <property name="position">3</property>
+                                <property name="position">4</property>
                               </packing>
                             </child>
                             <child>

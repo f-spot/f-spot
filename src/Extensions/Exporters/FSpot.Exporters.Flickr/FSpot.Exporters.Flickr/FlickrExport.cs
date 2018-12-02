@@ -40,6 +40,8 @@ using Mono.Unix;
 
 using FlickrNet;
 
+using Gtk;
+
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Filters;
@@ -67,6 +69,7 @@ namespace FSpot.Exporters.Flickr
 		[GtkBeans.Builder.Object] Gtk.CheckButton    open_check;
 		[GtkBeans.Builder.Object] Gtk.SpinButton     size_spin;
 		[GtkBeans.Builder.Object] Gtk.ScrolledWindow thumb_scrolledwindow;
+		[GtkBeans.Builder.Object] Entry              oauth_verification_code;
 		[GtkBeans.Builder.Object] Gtk.Button         auth_flickr;
 		[GtkBeans.Builder.Object] Gtk.ProgressBar    used_bandwidth;
 		[GtkBeans.Builder.Object] Gtk.Button         do_export_flickr;
@@ -100,11 +103,10 @@ namespace FSpot.Exporters.Flickr
 		bool is_friend;
 		bool is_family;
 
-		string token;
+		OAuthAccessToken token;
 
 		int photo_index;
 		int size;
-		Auth auth;
 
 		FlickrRemote fr;
 		FlickrRemote.Service current_service;
@@ -113,9 +115,13 @@ namespace FSpot.Exporters.Flickr
 		State state;
 
 		enum State {
+			// not connected to flickr at all
 			Disconnected,
+			// Got the request token, opened the browser, waiting for verification code from the end user
 			Connected,
+			// Trying to get access token
 			InAuth,
+			// logged to flickr with a valid access token
 			Authorized
 		}
 
@@ -126,6 +132,8 @@ namespace FSpot.Exporters.Flickr
 				case State.Disconnected:
 					auth_label.Text = auth_text;
 					auth_flickr.Sensitive = true;
+					oauth_verification_code.Visible = false;
+					oauth_verification_code.Sensitive = false;
 					do_export_flickr.Sensitive = false;
 					auth_flickr.Label = Catalog.GetString ("Authorize");
 					used_bandwidth.Visible = false;
@@ -133,12 +141,16 @@ namespace FSpot.Exporters.Flickr
 				case State.Connected:
 					auth_flickr.Sensitive = true;
 					do_export_flickr.Sensitive = false;
+					oauth_verification_code.Visible = true;
+					oauth_verification_code.Sensitive = true;
 					auth_label.Text = string.Format (Catalog.GetString ("Return to this window after you have finished the authorization process on {0} and click the \"Complete Authorization\" button below"), current_service.Name);
 					auth_flickr.Label = Catalog.GetString ("Complete Authorization");
 					used_bandwidth.Visible = false;
 					break;
 				case State.InAuth:
 					auth_flickr.Sensitive = false;
+					oauth_verification_code.Visible = true;
+					oauth_verification_code.Sensitive = false;
 					auth_label.Text = string.Format (Catalog.GetString ("Logging into {0}"), current_service.Name);
 					auth_flickr.Label = Catalog.GetString ("Checking credentials...");
 					do_export_flickr.Sensitive = false;
@@ -147,10 +159,12 @@ namespace FSpot.Exporters.Flickr
 				case State.Authorized:
 					do_export_flickr.Sensitive = true;
 					auth_flickr.Sensitive = true;
+					oauth_verification_code.Visible = false;
+					oauth_verification_code.Sensitive = false;
 					auth_label.Text = string.Format (Catalog.GetString ("Welcome, {0}. You are connected to {1}."),
-										auth.User.UserName,
+										token.Username,
 										current_service.Name);
-					auth_flickr.Label = string.Format (Catalog.GetString ("Sign in as a different user"), auth.User.UserName);
+					auth_flickr.Label = string.Format (Catalog.GetString ("Sign in as a different user"));
 					used_bandwidth.Visible = !fr.Connection.PeopleGetUploadStatus().IsPro &&
 									fr.Connection.PeopleGetUploadStatus().BandwidthMax > 0;
 					if (used_bandwidth.Visible) {
@@ -229,7 +243,7 @@ namespace FSpot.Exporters.Flickr
 
 			do_export_flickr.Sensitive = false;
 			fr = new FlickrRemote (token, current_service);
-			if (!string.IsNullOrEmpty (token)) {
+			if (token != null ) {
 				StartAuth ();
 			}
 		}
@@ -247,9 +261,8 @@ namespace FSpot.Exporters.Flickr
 		public void CheckAuthorization ()
 		{
 			var args = new AuthorizationEventArgs ();
-
 			try {
-				args.Auth = fr.CheckLogin ();
+				token = fr.CheckLogin (oauth_verification_code.Text);
 			} catch (FlickrException e) {
 				args.Exception = e;
 			} catch (Exception e) {
@@ -266,12 +279,13 @@ namespace FSpot.Exporters.Flickr
 			}
 
 			ThreadAssist.ProxyToMain (() => {
-				do_export_flickr.Sensitive = args.Auth != null;
-				if (args.Auth != null) {
-					token = args.Auth.Token;
-					auth = args.Auth;
+				do_export_flickr.Sensitive = token != null;
+				if (token != null) {
 					CurrentState = State.Authorized;
-					Preferences.Set (current_service.PreferencePath, token);
+					Preferences.Set (current_service.PreferencePath, token.Token);
+					Preferences.Set (current_service.PreferencePath + "secret", token.TokenSecret);
+					Preferences.Set (current_service.PreferencePath + "userId", token.UserId);
+					Preferences.Set (current_service.PreferencePath + "userName", token.Username);
 				} else {
 					CurrentState = State.Disconnected;
 				}
@@ -302,7 +316,6 @@ namespace FSpot.Exporters.Flickr
 		void Logout ()
 		{
 			token = null;
-			auth = null;
 			fr = new FlickrRemote (token, current_service);
 			Preferences.Set (current_service.PreferencePath, string.Empty);
 			CurrentState = State.Disconnected;
@@ -392,7 +405,7 @@ namespace FSpot.Exporters.Flickr
 						App.Instance.Database.Exports.Create ((photo as Photo).Id,
 									      (photo as Photo).DefaultVersionId,
 									      ExportStore.FlickrExportType,
-									      auth.User.UserId + ":" + auth.User.UserName + ":" + current_service.Name + ":" + id);
+									      token.UserId + ":" + token.Username + ":" + current_service.Name + ":" + id);
 
 				} catch (Exception e) {
 					progress_dialog.Message = string.Format (Catalog.GetString ("Error Uploading To {0}: {1}"),
@@ -415,7 +428,7 @@ namespace FSpot.Exporters.Flickr
 			if (open && ids.Count != 0) {
 				string view_url;
 				if (current_service.Name == "Zooomr.com")
-					view_url = string.Format ("http://www.{0}/photos/{1}/", current_service.Name, auth.User.UserName);
+					view_url = string.Format ("http://www.{0}/photos/{1}/", current_service.Name, token.Username);
 				else {
 					view_url = string.Format ("http://www.{0}/tools/uploader_edit.gne?ids", current_service.Name);
 					bool first = true;
@@ -432,15 +445,20 @@ namespace FSpot.Exporters.Flickr
 
 		void HandleClicked (object sender, EventArgs args)
 		{
+			Log.Debug("Current state: " + CurrentState);
+			Log.Debug("Current verification text: " + oauth_verification_code.Text);
 			switch (CurrentState) {
+			// not connected to flickr at all. Initiate OAuth login
 			case State.Disconnected:
 				Login ();
 				break;
+			// we were waiting for the verification code. Check that and attempt to complete the OAuth flow with it
 			case State.Connected:
 				StartAuth ();
 				break;
 			case State.InAuth:
 				break;
+			// we were logged in, so logout
 			case State.Authorized:
 				Logout ();
 				Login ();
@@ -475,7 +493,7 @@ namespace FSpot.Exporters.Flickr
 				return;
 			}
 
-			if (fr.CheckLogin() == null) {
+			if (fr.CheckLogin(oauth_verification_code.Text) == null) {
 				do_export_flickr.Sensitive = false;
 				var md =
 					new HigMessageDialog (Dialog,
@@ -518,7 +536,10 @@ namespace FSpot.Exporters.Flickr
 			Preferences.Set (FRIENDS_KEY, friend_check.Active);
 			Preferences.Set (TAG_HIERARCHY_KEY, hierarchy_check.Active);
 			Preferences.Set (IGNORE_TOP_LEVEL_KEY, ignore_top_level_check.Active);
-			Preferences.Set (current_service.PreferencePath, fr.Token);
+			Preferences.Set (current_service.PreferencePath, fr.Token.Token);
+			Preferences.Set (current_service.PreferencePath + "secret", fr.Token.TokenSecret);
+			Preferences.Set (current_service.PreferencePath + "userId", fr.Token.UserId);
+			Preferences.Set (current_service.PreferencePath + "userName", fr.Token.Username);
 		}
 
 		void LoadPreference (string key)
@@ -551,7 +572,11 @@ namespace FSpot.Exporters.Flickr
 			case FlickrRemote.TOKEN_FLICKR:
 			case FlickrRemote.TOKEN_23HQ:
 			case FlickrRemote.TOKEN_ZOOOMR:
-				token = Preferences.Get<string> (key);
+				token = new OAuthAccessToken();
+				token.Token = Preferences.Get<string> (key);
+				token.TokenSecret = Preferences.Get<string> (key + "secret");
+				token.UserId = Preferences.Get<string> (key + "userId");
+				token.Username = Preferences.Get<string> (key + "userName");
 				break;
 				
 			case PUBLIC_KEY:
