@@ -97,10 +97,6 @@
       <Name>FSpot.Cms</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\external\taglib-sharp\src\taglib-sharp.csproj">
-      <Project>{6B143A39-C7B2-4743-9917-92262C60E9A6}</Project>
-      <Name>taglib-sharp</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\lib\Hyena\Hyena\Hyena.csproj">
       <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
       <Name>Hyena</Name>
@@ -122,6 +118,10 @@
     <ProjectReference Include="..\FSpot.Settings\FSpot.Settings.csproj">
       <Project>{423B5DED-65C8-4C4A-9DBB-7D7BD440F78F}</Project>
       <Name>FSpot.Settings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\external\taglib-sharp\src\TaglibSharp\TaglibSharp.csproj">
+      <Project>{6B143A39-C7B2-4743-9917-92262C60E9A6}</Project>
+      <Name>TaglibSharp</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

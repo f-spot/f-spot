@@ -71,10 +71,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\external\taglib-sharp\src\taglib-sharp.csproj">
-      <Project>{6B143A39-C7B2-4743-9917-92262C60E9A6}</Project>
-      <Name>taglib-sharp</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\lib\Hyena\Hyena\Hyena.csproj">
       <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
       <Name>Hyena</Name>
@@ -86,6 +82,10 @@
     <ProjectReference Include="..\..\..\lib\gio-sharp\gio-sharp.csproj">
       <Project>{942B6AEF-0A90-4A7F-B8E4-F1A4327E408C}</Project>
       <Name>gio-sharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\external\taglib-sharp\src\TaglibSharp\TaglibSharp.csproj">
+      <Project>{6B143A39-C7B2-4743-9917-92262C60E9A6}</Project>
+      <Name>TaglibSharp</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

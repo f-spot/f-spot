@@ -133,7 +133,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Import.UnitTest", "sr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "External", "{A6C38ABC-9B2B-4693-A16C-0741E5561B32}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "taglib-sharp", "external\taglib-sharp\src\taglib-sharp.csproj", "{6B143A39-C7B2-4743-9917-92262C60E9A6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaglibSharp", "external\taglib-sharp\src\TaglibSharp\TaglibSharp.csproj", "{6B143A39-C7B2-4743-9917-92262C60E9A6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mono.Addins", "external\mono-addins\Mono.Addins\Mono.Addins.csproj", "{91DD5A2D-9FE3-4C3C-9253-876141874DAD}"
 EndProject
