@@ -1,47 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E55F73E0-576A-4FE2-9108-E76960820AA3}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>FSpot.Exporters.Gallery</RootNamespace>
-    <AssemblyName>FSpot.Exporters.Gallery</AssemblyName>
-    <TargetFrameworkVersion>$(FSpotTargetFramework)</TargetFrameworkVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>True</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>False</Optimize>
+    <TargetFramework>$(FSpotTargetFramework)</TargetFramework>
     <OutputPath>..\..\..\..\bin\Extensions</OutputPath>
-    <DefineConstants>DEBUG</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>False</ConsolePause>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
-    <Optimize>False</Optimize>
-    <OutputPath>..\..\..\..\bin\Extensions</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>False</ConsolePause>
-  </PropertyGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <Compile Include="FSpot.Exporters.Gallery\FormClient.cs" />
-    <Compile Include="FSpot.Exporters.Gallery\GalleryExport.cs" />
-    <Compile Include="FSpot.Exporters.Gallery\GalleryRemote.cs" />
-    <Compile Include="FSpot.Exporters.Gallery\GalleryAccount.cs" />
-    <Compile Include="FSpot.Exporters.Gallery\GalleryAccountManager.cs" />
-    <Compile Include="FSpot.Exporters.Gallery\AccountDialog.cs" />
-    <Compile Include="FSpot.Exporters.Gallery\GalleryAddAlbum.cs" />
-    <Compile Include="FSpot.Exporters.Gallery\GalleryExceptions.cs" />
-    <Compile Include="FSpot.Exporters.Gallery\Gallery.cs" />
-    <Compile Include="FSpot.Exporters.Gallery\Gallery1.cs" />
-    <Compile Include="FSpot.Exporters.Gallery\Gallery2.cs" />
-  </ItemGroup>
+
   <ItemGroup>
     <EmbeddedResource Include="Resources\GalleryExport.addin.xml">
       <LogicalName>GalleryExport.addin.xml</LogicalName>
@@ -56,77 +20,39 @@
       <LogicalName>gallery_export_dialog.ui</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
+
   <ItemGroup>
     <Reference Include="Mono.Posix" />
-    <Reference Include="System" />
-    <Reference Include="System.Xml" />
-    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>glib-sharp-2.0</Package>
-    </Reference>
-    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>gtk-sharp-2.0</Package>
-    </Reference>
-    <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>gtk-sharp-2.0</Package>
-    </Reference>
-    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>gtk-sharp-2.0</Package>
-    </Reference>
+    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
   </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\..\..\Core\FSpot.Core\FSpot.Core.csproj">
-      <Project>{57EDC3BC-E777-4400-B4E7-32A5D8F15A76}</Project>
-      <Name>FSpot.Core</Name>
       <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Core\FSpot.Utils\FSpot.Utils.csproj">
-      <Project>{CE160879-1BF0-4711-A18F-FDA2772900FA}</Project>
-      <Name>FSpot.Utils</Name>
       <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Clients\FSpot\FSpot.csproj">
-      <Project>{27EC05FB-0223-4B26-8157-E49AF81D0007}</Project>
-      <Name>FSpot</Name>
       <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Core\FSpot.Gui\FSpot.Gui.csproj">
-      <Project>{05A7FEC4-974A-40EB-AFB8-14E523EEEFFB}</Project>
-      <Name>FSpot.Gui</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\lib\unique-sharp\unique-sharp.csproj">
-      <Project>{5DBBB8C5-7BAF-46DA-B7D2-2486430141E2}</Project>
-      <Name>unique-sharp</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\lib\unique-sharp\unique-sharp.csproj" />
     <ProjectReference Include="..\..\..\..\lib\Hyena\Hyena\Hyena.csproj">
-      <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
-      <Name>Hyena</Name>
       <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\lib\Hyena\Hyena.Gui\Hyena.Gui.csproj">
-      <Project>{C856EFD8-E812-4E61-8B76-E3583D94C233}</Project>
-      <Name>Hyena.Gui</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\lib\gio-sharp\gio-sharp.csproj">
-      <Project>{942B6AEF-0A90-4A7F-B8E4-F1A4327E408C}</Project>
-      <Name>gio-sharp</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\lib\gtk-sharp-beans\gtk-sharp-beans.csproj">
-      <Project>{069D1797-427D-4CED-A754-233DE64FC5DD}</Project>
-      <Name>gtk-sharp-beans</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Core\FSpot.Settings\FSpot.Settings.csproj">
-      <Project>{423B5DED-65C8-4C4A-9DBB-7D7BD440F78F}</Project>
-      <Name>FSpot.Settings</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Core\FSpot.Database\FSpot.Database.csproj">
-      <Project>{16E9C7DC-54BD-4C93-9B2A-AE9CDCE1CEFD}</Project>
-      <Name>FSpot.Database</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\lib\gio-sharp\gio-sharp.csproj" />
+    <ProjectReference Include="..\..\..\..\lib\gtk-sharp-beans\gtk-sharp-beans.csproj" />
+    <ProjectReference Include="..\..\..\Core\FSpot.Settings\FSpot.Settings.csproj" />
+    <ProjectReference Include="..\..\..\Core\FSpot.Database\FSpot.Database.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-    <Folder Include="FSpot.Exporters.Gallery\" />
-  </ItemGroup>
+
 </Project>

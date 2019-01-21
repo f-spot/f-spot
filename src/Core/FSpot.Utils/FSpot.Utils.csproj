@@ -1,96 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CE160879-1BF0-4711-A18F-FDA2772900FA}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>FSpot.Utils</RootNamespace>
-    <AssemblyName>FSpot.Utils</AssemblyName>
-    <TargetFrameworkVersion>$(FSpotTargetFramework)</TargetFrameworkVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>True</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>False</Optimize>
+    <TargetFramework>$(FSpotTargetFramework)</TargetFramework>
     <OutputPath>..\..\..\bin</OutputPath>
-    <DefineConstants>DEBUG</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>False</ConsolePause>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
-    <Optimize>False</Optimize>
-    <OutputPath>..\..\..\bin</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>False</ConsolePause>
-    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-  </PropertyGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+
   <ItemGroup>
-    <Compile Include="Cache.cs" />
-    <Compile Include="CairoUtils.cs" />
-    <Compile Include="DelayedOperation.cs" />
-    <Compile Include="DisposableCache.cs" />
-    <Compile Include="FileExtensions.cs" />
-    <Compile Include="GdkUtils.cs" />
-    <Compile Include="GIOTagLibFileAbstraction.cs" />
-    <Compile Include="GtkUtil.cs" />
-    <Compile Include="HashUtils.cs" />
-    <Compile Include="Metadata.cs" />
-    <Compile Include="PixbufUtils.cs" />
-    <Compile Include="SafeUriExtensions.cs" />
-    <Compile Include="SidecarXmpExtensions.cs" />
-    <Compile Include="TargetListExtensionMethods.cs" />
-    <Compile Include="UriExtensions.cs" />
-    <Compile Include="UriList.cs" />
-    <Compile Include="UriUtils.cs" />
-    <Compile Include="Vector.cs" />
-    <Compile Include="BitConverter.cs" />
-    <Compile Include="TinyIoC.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>glib-sharp-2.0</Package>
-    </Reference>
+    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="Mono.Cairo" />
-    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>gtk-sharp-2.0</Package>
-    </Reference>
-    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>gtk-sharp-2.0</Package>
-    </Reference>
-    <Reference Include="System" />
+    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="Mono.Posix" />
-    <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>gtk-sharp-2.0</Package>
-    </Reference>
+    <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
   </ItemGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\..\..\lib\Hyena\Hyena\Hyena.csproj">
-      <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
-      <Name>Hyena</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\lib\gtk-sharp-beans\gtk-sharp-beans.csproj">
-      <Project>{069D1797-427D-4CED-A754-233DE64FC5DD}</Project>
-      <Name>gtk-sharp-beans</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\lib\gio-sharp\gio-sharp.csproj">
-      <Project>{942B6AEF-0A90-4A7F-B8E4-F1A4327E408C}</Project>
-      <Name>gio-sharp</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\external\taglib-sharp\src\TaglibSharp\TaglibSharp.csproj">
-      <Project>{6B143A39-C7B2-4743-9917-92262C60E9A6}</Project>
-      <Name>TaglibSharp</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\..\..\lib\Hyena\Hyena\Hyena.csproj" />
+    <ProjectReference Include="..\..\..\lib\gtk-sharp-beans\gtk-sharp-beans.csproj" />
+    <ProjectReference Include="..\..\..\lib\gio-sharp\gio-sharp.csproj" />
+    <ProjectReference Include="..\..\..\external\taglib-sharp\src\TaglibSharp\TaglibSharp.csproj" />
   </ItemGroup>
+
   <ItemGroup>
-    <None Include="FSpot.Utils.dll.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="FSpot.Utils.dll.config" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
+
 </Project>
