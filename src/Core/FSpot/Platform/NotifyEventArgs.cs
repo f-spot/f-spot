@@ -1,11 +1,13 @@
-//
-// Desktop.cs
+﻿//
+// PreferenceBackend.cs
 //
 // Author:
-//   Stephane Delcroix <stephane@delcroix.org>
+//   Stephane Delcroix <sdelcroix@novell.com>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
-// Copyright (C) 2008-2009 Novell, Inc.
-// Copyright (C) 2008-2009 Stephane Delcroix
+// Copyright (C) 2008 Novell, Inc.
+// Copyright (C) 2008 Stephane Delcroix
+// Copyright (C) 2019 Stephen Shaw
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -27,19 +29,19 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-namespace FSpot.Platform
+using System;
+
+namespace FSpot
 {
-	public static class Desktop
+	public class NotifyEventArgs : EventArgs
 	{
-		public static void SetBackgroundImage (string path)
+		public string Key { get; }
+		public object Value { get; }
+
+		public NotifyEventArgs (string key, object val)
 		{
-			GConf.Client client = new GConf.Client (); 
-			client.Set ("/desktop/gnome/background/color_shading_type", "solid");
-			client.Set ("/desktop/gnome/background/primary_color", "#000000");
-			client.Set ("/desktop/gnome/background/picture_options", "zoom");
-			client.Set ("/desktop/gnome/background/picture_opacity", 100);
-			client.Set ("/desktop/gnome/background/picture_filename", path);
-			client.Set ("/desktop/gnome/background/draw_background", true);
+			Key = key;
+			Value = val;
 		}
 	}
 }

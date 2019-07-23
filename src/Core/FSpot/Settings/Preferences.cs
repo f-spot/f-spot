@@ -2,11 +2,13 @@
 // Preferences.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Daniel Köb <daniel.koeb@peony.at>
 //   Ruben Vermeersch <ruben@savanne.be>
 //   Stephane Delcroix <stephane@delcroix.org>
 //   Larry Ewing <lewing@novell.com>
 //
+// Copyright (C) 2019 Stephen Shaw
 // Copyright (C) 2016 Daniel Köb
 // Copyright (C) 2005-2010 Novell, Inc.
 // Copyright (C) 2007, 2010 Ruben Vermeersch
@@ -128,9 +130,10 @@ namespace FSpot.Settings
 			get {
 				if (backend == null) {
 					backend = new PreferenceBackend ();
-					changed_handler = new EventHandler<NotifyEventArgs> (OnSettingChanged);
-					backend.AddNotify (APP_FSPOT, changed_handler);
-					backend.AddNotify (GNOME_MAILTO, changed_handler);
+					changed_handler = OnSettingChanged;
+					// FIXME, Bring this back?
+					//backend.AddNotify (APP_FSPOT, changed_handler);
+					//backend.AddNotify (GNOME_MAILTO, changed_handler);
 				}
 				return backend;
 			}
@@ -172,7 +175,7 @@ namespace FSpot.Settings
 				return true;
 
 			case TAG_ICON_SIZE:
-				return (int) IconSize.Medium;
+				return (int)IconSize.Medium;
 
 			case TAG_ICON_AUTOMATIC:
 				return true;
@@ -190,9 +193,9 @@ namespace FSpot.Settings
 			case SCREENSAVER_DELAY:
 				return 4.0;
 			case STORAGE_PATH:
-				return System.IO.Path.Combine (Global.HomeDirectory, Catalog.GetString("Photos"));
+				return System.IO.Path.Combine (Global.HomeDirectory, Catalog.GetString ("Photos"));
 			case EXPORT_EMAIL_SIZE:
-				return 3;	// medium size 640px
+				return 3;   // medium size 640px
 			case EXPORT_EMAIL_ROTATE:
 			case VIEWER_INTERPOLATION:
 				return true;
@@ -221,16 +224,16 @@ namespace FSpot.Settings
 		public static bool TryGet<T> (string key, out T value)
 		{
 			lock (cache) {
-				value = default (T);
-				object o;
-				if (cache.TryGetValue (key, out o)) {
+				value = default;
+				if (cache.TryGetValue (key, out var o)) {
 					value = (T)o;
 					return true;
 				}
 
 				try {
-					value = (T) Backend.Get (key);
-				} catch { //catching NoSuchKeyException
+					value = (T)Backend.Get (key);
+				} catch (NoSuchKeyException ex) {
+					Log.Exception ($"[Preferences] No key found: {key}", ex);
 					return false;
 				}
 
@@ -241,13 +244,13 @@ namespace FSpot.Settings
 
 		public static T Get<T> (string key)
 		{
-			T val;
-			if (TryGet (key, out val))
+			if (TryGet (key, out T val))
 				return val;
 			try {
-				return (T) GetDefault (key);
-			} catch { //catching InvalidCastException
-				return default (T);
+				return (T)GetDefault (key);
+			} catch (InvalidCastException ex) {
+				Log.Exception ($"[Preferences] Invalid cast: {key}", ex);
+				return default;
 			}
 		}
 
@@ -255,10 +258,10 @@ namespace FSpot.Settings
 		{
 			lock (cache) {
 				try {
-					cache [key] = value;
+					cache[key] = value;
 					Backend.Set (key, value);
-				} catch (Exception e){
-					Log.Exception ("Unable to set this :"+key, e);
+				} catch (Exception ex) {
+					Log.Exception ($"[Preferences] Unable to set this : {key}", ex);
 				}
 			}
 		}
@@ -269,13 +272,11 @@ namespace FSpot.Settings
 		{
 			lock (cache) {
 				if (cache.ContainsKey (args.Key)) {
-					cache [args.Key] = args.Value;
+					cache[args.Key] = args.Value;
 				}
 			}
 
-			if (SettingChanged != null)
-				SettingChanged (sender, args);
+			SettingChanged?.Invoke (sender, args);
 		}
-
 	}
 }

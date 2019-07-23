@@ -3,9 +3,11 @@
 //
 // Author:
 //   Stephane Delcroix <sdelcroix@novell.com>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
 // Copyright (C) 2008 Novell, Inc.
 // Copyright (C) 2008 Stephane Delcroix
+// Copyright (C) 2019 Stephen Shaw
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -28,74 +30,66 @@
 //
 
 using System;
-using System.Runtime.Serialization;
+using System.IO;
 
-namespace FSpot
-{
-	public class NotifyEventArgs : EventArgs
-	{
-		public string Key { get; private set; }
-		public object Value { get; private set; }
+using Newtonsoft.Json.Linq;
 
-		public NotifyEventArgs (string key, object val)
-		{
-			Key = key;
-			Value = val;
-		}
-	}
-}
+using FSpot.Settings;
 
 namespace FSpot.Platform
 {
-	[Serializable]
-	public class NoSuchKeyException : Exception
-	{
-		public NoSuchKeyException ()
-		{
-		}
-
-		public NoSuchKeyException (string key) : base (key)
-		{
-		}
-
-		public NoSuchKeyException (string key, Exception e) : base (key, e)
-		{
-		}
-
-		protected NoSuchKeyException (SerializationInfo info, StreamingContext context) : base (info, context)
-		{
-		}
-	}
-
 	public class PreferenceBackend
 	{
-		static object sync_handler = new object ();
+		const string SettingsRoot = "FSpotSettings";
 
-		static GConf.Client client;
-		GConf.Client Client {
+		static readonly object sync_handler = new object ();
+
+		static readonly JObject client;
+
+		public string SettingsFile { get; }
+
+		public PreferenceBackend ()
+		{
+			SettingsFile = Path.Combine (Global.BaseDirectory, Global.SettingsName);
+		}
+
+		JObject Client {
 			get {
 				lock (sync_handler) {
-					if (client == null)
-						client = new GConf.Client ();
-					return client;
+					return client ?? LoadSettings ();
 				}
 			}
+		}
+
+		JObject LoadSettings ()
+		{
+			if (!File.Exists (SettingsFile)) {
+				var empty = new JObject {
+					[SettingsRoot] = new JObject ()
+				};
+				File.WriteAllText (SettingsFile, empty.ToString ());
+			}
+
+			var settingsFile = File.ReadAllText (SettingsFile);
+			var o = JObject.Parse (settingsFile);
+			return (JObject)o[SettingsRoot];
 		}
 
 		public object Get (string key)
 		{
 			try {
-				return Client.Get (key);
-			} catch (GConf.NoSuchKeyException) {
+				var result = Client[key].ToString ();
+				return result;
+			} catch (Exception) {
 				throw new NoSuchKeyException (key);
 			}
 		}
 
 		internal T Get<T> (string key)
 		{
-			T value = default(T);
+			T value = default;
 			try {
-				value = (T) Get (key);
+				value = (T)Get (key);
 			} catch (NoSuchKeyException) {
 			} catch (InvalidCastException) {
 			}
@@ -104,14 +98,7 @@ namespace FSpot.Platform
 
 		public void Set (string key, object o)
 		{
-			Client.Set (key, o);
-		}
-
-		public void AddNotify (string key, EventHandler<NotifyEventArgs> handler)
-		{
-			// GConf doesn't like trailing slashes
-			key = key.TrimEnd('/');	
-			Client.AddNotify (key, (sender, args) => handler (sender, new NotifyEventArgs (args.Key, args.Value)));
+			Client[SettingsRoot][key] = (JObject)o;
 		}
 	}
 }

@@ -1,10 +1,13 @@
-//
-// AssemblyInfo.cs
+﻿//
+// PreferenceBackend.cs
 //
 // Author:
-//   Daniel Köb <daniel.koeb@peony.at>
+//   Stephane Delcroix <sdelcroix@novell.com>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
-// Copyright (C) 2017 Daniel Köb
+// Copyright (C) 2008 Novell, Inc.
+// Copyright (C) 2008 Stephane Delcroix
+// Copyright (C) 2019 Stephen Shaw
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -26,6 +29,28 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System.Runtime.CompilerServices;
+using System;
+using System.Runtime.Serialization;
 
-[assembly: InternalsVisibleTo ("FSpot.UnitTest")]
+namespace FSpot.Platform
+{
+	[Serializable]
+	public class NoSuchKeyException : Exception
+	{
+		public NoSuchKeyException ()
+		{
+		}
+
+		public NoSuchKeyException (string key) : base (key)
+		{
+		}
+
+		public NoSuchKeyException (string key, Exception e) : base (key, e)
+		{
+		}
+
+		protected NoSuchKeyException (SerializationInfo info, StreamingContext context) : base (info, context)
+		{
+		}
+	}
+}

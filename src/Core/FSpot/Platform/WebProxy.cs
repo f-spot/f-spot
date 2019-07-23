@@ -109,7 +109,7 @@ namespace FSpot.Platform
 				if (backend == null) {
 					backend = new PreferenceBackend ();
 					changed_handler = new EventHandler<NotifyEventArgs> (OnPreferenceChanged);
-					backend.AddNotify (PROXY, changed_handler);
+					//backend.AddNotify (PROXY, changed_handler);
 				}
 				return backend;
 			}

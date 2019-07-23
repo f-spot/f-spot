@@ -316,7 +316,7 @@ namespace FSpot {
 			if (current == null)
 				return;
 
-			Desktop.SetBackgroundImage (current.DefaultVersion.Uri.LocalPath);
+			throw new NotImplementedException ("HandlSetAsBackgroundCommand");
 		}
 
         void HandleViewToolbar(object sender, EventArgs args)

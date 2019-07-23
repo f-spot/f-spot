@@ -132,7 +132,7 @@ namespace FSpot.Tools.MergeDb
 
 		public static void Merge (string path, Db to_db)
 		{
-			Log.WarningFormat ("Will merge db {0} into main f-spot db {1}", path, FSpot.Settings.Global.BaseDirectory + "/photos.db" );
+			Log.WarningFormat ("Will merge db {0} into main f-spot db {1}", path, Path.Combine (FSpot.Settings.Global.BaseDirectory + FSpot.Settings.Global.DatabaseName));
 			Db from_db = new Db (App.Instance.Container.Resolve<IImageFileFactory> (), App.Instance.Container.Resolve<IThumbnailService> (), new UpdaterUI ());
 			from_db.Init (path, true);
 			//MergeDb mdb = new MergeDb (from_db, to_db);
