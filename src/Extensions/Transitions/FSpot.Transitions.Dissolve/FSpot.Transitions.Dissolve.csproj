@@ -29,10 +29,7 @@
     <ConsolePause>False</ConsolePause>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <Folder Include="FSpot.Addins.Transitions\" />
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Resources\DissolveTransition.addin.xml">
       <LogicalName>DissolveTransition.addin.xml</LogicalName>

@@ -59,7 +59,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="FlickrNet" Version="3.25.0" />
+    <PackageReference Include="FlickrNet" Version="3.26.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Clients\FSpot\FSpot.csproj">
@@ -108,8 +108,5 @@
       <Name>FSpot.Database</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-    <Folder Include="FSpot.Exporters.Flickr\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>

@@ -50,10 +50,7 @@
       <LogicalName>google_export_dialog.ui</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-    <Folder Include="FSpot.Exporters.PicasaWeb\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Mono.Posix" />

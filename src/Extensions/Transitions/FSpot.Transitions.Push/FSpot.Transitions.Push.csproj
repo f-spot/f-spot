@@ -56,9 +56,7 @@
       <LogicalName>PushTransition.addin.xml</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="FSpot.Addins.Transitions\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Compile Include="FSpot.Addins.Transitions\Push.cs" />
   </ItemGroup>

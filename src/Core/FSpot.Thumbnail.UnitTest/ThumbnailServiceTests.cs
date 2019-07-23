@@ -55,7 +55,7 @@ namespace FSpot.Thumbnail.UnitTest
 		Mock<IThumbnailer> thumbnailerMock  = new Mock<IThumbnailer> ();
 		byte[] thumbnail = PixbufMock.CreateThumbnail (fileUri, fileMTime);
 
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void TestFixtureSetup ()
 		{
 			var xdgDirectoryServiceMock = new Mock<IXdgDirectoryService> ();
