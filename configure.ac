@@ -1,7 +1,7 @@
 dnl Granularly define the version components
 dnl Remember to also update the Display Version
 m4_define([fspot_version_major], [0])
-m4_define([fspot_version_minor], [9])
+m4_define([fspot_version_minor], [10])
 m4_define([fspot_version_micro], [0])
 
 dnl set to 0 when doing an official release
@@ -23,7 +23,7 @@ m4_define([fspot_version],
 
 dnl this can sometimes differ manually
 m4_define([fspot_display_version],
-	["0.9.0"])
+	["0.10.0"])
 
 m4_define([fspot_api_version],
 	[fspot_version_major.fspot_version_minor])
@@ -237,7 +237,7 @@ AC_SUBST(CFLAGS)
 AC_SUBST(CPPFLAGS)
 AC_SUBST(LDFLAGS)
 
-AC_CONFIG_FILES([src/Clients/FSpot/f-spot],[chmod +x src/Clients/FSpot/f-spot])
+AC_CONFIG_FILES([src/Clients/FSpot.Gtk/f-spot],[chmod +x src/Clients/FSpot.Gtk/f-spot])
 
 ADWAITA_ICON_THEME_PREFIX=`$PKG_CONFIG --variable=prefix adwaita-icon-theme`
 AC_SUBST(ADWAITA_ICON_THEME_PREFIX)
@@ -283,10 +283,6 @@ AC_SUBST(BUILD_TIME)
 
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 
-dnl Optionally disable unit tests requiring nuget packages
-dnl substitution variable is sent in build/m4/shamrock/nunit.m4
-AC_CONFIG_FILES([after.F-Spot.sln.targets])
-
 dnl generated files
 AC_OUTPUT([
 Makefile
@@ -319,22 +315,13 @@ src/AssemblyInfo.cs
 
 src/Makefile
 src/Core/Makefile
-src/Core/FSpot.Bling/Makefile
-src/Core/FSpot.Cms/Makefile
-src/Core/FSpot.Cms/FSpot.Cms.dll.config
-src/Core/FSpot.Core/Makefile
-src/Core/FSpot.Settings/Defines.cs
-src/Core/FSpot.JobScheduler/Makefile
-src/Core/FSpot.Utils/Makefile
-src/Core/FSpot.Utils/FSpot.Utils.dll.config
-src/Core/FSpot.Query/Makefile
-src/Core/FSpot.Gui/Makefile
-src/Core/FSpot.Gui/FSpot.Gui.dll.config
-src/Core/FSpot.Platform/Makefile
+src/Core/FSpot/Makefile
+src/Core/FSpot/FSpot.dll.config
+src/Core/FSpot/Settings/Defines.cs
 
 src/Clients/Makefile
-src/Clients/FSpot/Makefile
-src/Clients/FSpot/f-spot.exe.config
+src/Clients/FSpot.Gtk/Makefile
+src/Clients/FSpot.Gtk/f-spot.exe.config
 
 src/Extensions/Makefile
 src/Extensions/Editors/Makefile

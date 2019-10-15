@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -46,14 +46,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\FSpot.Core\FSpot.Core.csproj">
-      <Project>{57EDC3BC-E777-4400-B4E7-32A5D8F15A76}</Project>
-      <Name>FSpot.Core</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Clients\FSpot\FSpot.csproj">
+    <ProjectReference Include="..\..\..\Clients\FSpot.Gtk\FSpot.Gtk.csproj">
       <Project>{27EC05FB-0223-4B26-8157-E49AF81D0007}</Project>
-      <Name>FSpot</Name>
+      <Name>FSpot.Gtk</Name>
       <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Core\FSpot.Query\FSpot.Query.csproj">
@@ -100,10 +95,6 @@
       <Project>{423B5DED-65C8-4C4A-9DBB-7D7BD440F78F}</Project>
       <Name>FSpot.Settings</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Core\FSpot.Database\FSpot.Database.csproj">
-      <Project>{16E9C7DC-54BD-4C93-9B2A-AE9CDCE1CEFD}</Project>
-      <Name>FSpot.Database</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Posix" />
@@ -120,7 +111,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="FSpot.Tools.MergeDb\" />
-    <Folder Include="Resources\" />
+    <None Include="app.config" />
   </ItemGroup>
 </Project>

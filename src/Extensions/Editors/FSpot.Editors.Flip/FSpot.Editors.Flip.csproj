@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -38,14 +38,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Clients\FSpot\FSpot.csproj">
+    <ProjectReference Include="..\..\..\Clients\FSpot.Gtk\FSpot.Gtk.csproj">
       <Project>{27EC05FB-0223-4B26-8157-E49AF81D0007}</Project>
-      <Name>FSpot</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Core\FSpot.Cms\FSpot.Cms.csproj">
-      <Project>{9D66BC1B-4390-4B8D-8468-19D5A862EC23}</Project>
-      <Name>FSpot.Cms</Name>
+      <Name>FSpot.Gtk</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
@@ -59,7 +54,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="FSpot.Addins.Editors\" />
-    <Folder Include="Resources\" />
+    <None Include="app.config" />
   </ItemGroup>
 </Project>

@@ -40,19 +40,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\FSpot.Core\FSpot.Core.csproj">
-      <Project>{57EDC3BC-E777-4400-B4E7-32A5D8F15A76}</Project>
-      <Name>FSpot.Core</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Clients\FSpot\FSpot.csproj">
+    <ProjectReference Include="..\..\..\Clients\FSpot.Gtk\FSpot.Gtk.csproj">
       <Project>{27EC05FB-0223-4B26-8157-E49AF81D0007}</Project>
-      <Name>FSpot</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Core\FSpot.Cms\FSpot.Cms.csproj">
-      <Project>{9D66BC1B-4390-4B8D-8468-19D5A862EC23}</Project>
-      <Name>FSpot.Cms</Name>
+      <Name>FSpot.Gtk</Name>
       <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\lib\Hyena\Hyena\Hyena.csproj">
@@ -78,7 +68,6 @@
     <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="FSpot.Addins.Editors\" />
-    <Folder Include="Resources\" />
+    <None Include="app.config" />
   </ItemGroup>
 </Project>
