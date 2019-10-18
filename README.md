@@ -29,10 +29,6 @@ http://f-spot.org/
 
 	- taglib-sharp 2.0.3.7 or later, https://github.com/mono/taglib-sharp
 
-	- dbus-sharp 0.8 or later, https://github.com/mono/dbus-sharp
-
-	- dbus-sharp-glib 0.6 or later, https://github.com/mono/dbus-sharp-glib
-
 	- NuGet 2.14, if you want to build and run unit tests
 
 The following requirements are automatically installed by make via

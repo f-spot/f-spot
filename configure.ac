@@ -81,7 +81,6 @@ SHAMROCK_CHECK_MONO_4_5_GAC_ASSEMBLIES([
 FSPOT_CHECK_LIBFSPOT
 dnl --- Checks for gtk-sharp and glib-sharp
 FSPOT_CHECK_GTK_SHARP
-FSPOT_CHECK_GNOME_SHARP
 FSPOT_CHECK_ADWAITA_ICON_THEME
 FSPOT_ENABLE_TESTS
 
@@ -145,23 +144,11 @@ AC_SUBST(GIO_CFLAGS)
 AC_SUBST(GIO_LIBS)
 
 CSC_DEFINES=""
-PKG_CHECK_MODULES(GNOME_SHARP, gnome-sharp-2.0 >= 2.8)
 
 PKG_CHECK_MODULES(GLIBSHARP, glib-sharp-2.0 >= 2.12)
 
 if pkg-config --atleast-version=2.13.0 gtk-sharp-2.0 && pkg-config --max-version=2.14 gtk-sharp-2.0; then
 	AC_MSG_ERROR([There is a svn version of gtk-sharp 2.13.x installed. Uninstall it.])
-fi
-
-dnl --- GConf
-AC_PATH_PROG(GCONFTOOL, gconftool-2)
-AM_GCONF_SOURCE_2
-PKG_CHECK_MODULES(GCONF_SHARP, gconf-sharp-2.0 >= $GTKSHARP_REQUIRED)
-if pkg-config --atleast-version=2.18 gconf-sharp-2.0; then
-	CSC_DEFINES="$CSC_DEFINES -d:GCONF_SHARP_2_18"
-fi
-if pkg-config --atleast-version=2.20.2 gconf-sharp-2.0; then
-	CSC_DEFINES="$CSC_DEFINES -d:GCONF_SHARP_2_20_2"
 fi
 
 AC_SUBST(CSC_DEFINES)
@@ -236,7 +223,7 @@ AC_SUBST(CFLAGS)
 AC_SUBST(CPPFLAGS)
 AC_SUBST(LDFLAGS)
 
-AC_CONFIG_FILES([src/Clients/FSpot.Gtk/f-spot],[chmod +x src/Clients/FSpot.Gtk/f-spot])
+AC_CONFIG_FILES([src/FSpot.Gtk/f-spot],[chmod +x src/FSpot.Gtk/f-spot])
 
 ADWAITA_ICON_THEME_PREFIX=`$PKG_CONFIG --variable=prefix adwaita-icon-theme`
 AC_SUBST(ADWAITA_ICON_THEME_PREFIX)
@@ -300,27 +287,14 @@ help/Makefile
 
 external/Makefile
 
-lib/Hyena/build/m4/Makefile
-lib/Hyena/build/Makefile
-lib/Hyena/build/pkg-config/Makefile
-lib/Hyena/Hyena.Data.Sqlite/Makefile
-lib/Hyena/Hyena.Gui/Makefile
-lib/Hyena/Hyena/Makefile
-lib/Hyena/Makefile
 lib/libfspot/Makefile
 lib/Makefile
 
-src/AssemblyInfo.cs
-
 src/Makefile
-src/Core/Makefile
-src/Core/FSpot/Makefile
-src/Core/FSpot/FSpot.dll.config
-src/Core/FSpot/Settings/Defines.cs
+src/FSpot/Makefile
+src/FSpot/Settings/Defines.cs
 
-src/Clients/Makefile
-src/Clients/FSpot.Gtk/Makefile
-src/Clients/FSpot.Gtk/f-spot.exe.config
+src/FSpot.Gtk/Makefile
 
 src/Extensions/Makefile
 src/Extensions/Editors/Makefile

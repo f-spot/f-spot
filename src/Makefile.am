@@ -1,9 +1,7 @@
 SUBDIRS = \
-	Core \
-	Clients \
+	FSpot \
+	FSpot.Gtk \
 	Extensions
-
-EXTRA_DIST = AssemblyInfo.cs.in
 
 run:
 	@pushd $(top_builddir); \

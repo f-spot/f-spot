@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <Project>
 
     <ItemGroup>
@@ -9,5 +10,15 @@
         <None Remove="*.custom" />
         <None Remove="*.metadata" />
     </ItemGroup>
+
+    <PropertyGroup>
+        <AssemblySearchPaths Condition=" Exists ('$(GtkReferenceAssemblyPath)') ">$(AssemblySearchPaths);$(GtkReferenceAssemblyPath)</AssemblySearchPaths>
+        <GeneratedStringResourcesPrefix>$(IntermediateOutputPath)</GeneratedStringResourcesPrefix>
+    </PropertyGroup>
+    <Target Name="RemoveGtkFromLocalCopy" AfterTargets="ResolveAssemblyReferences">
+        <ItemGroup>
+            <ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)" Condition="$([System.String]::new('%(ReferenceCopyLocalPaths.ResolvedFrom)').StartsWith ('$(GtkReferenceAssemblyPath)'))" />
+        </ItemGroup>
+    </Target>
 
 </Project>

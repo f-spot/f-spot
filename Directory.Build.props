@@ -1,7 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <Project>
+
     <PropertyGroup>
         <ReleaseVersion>0.9.0</ReleaseVersion>
-        <FSpotTargetFramework>v4.7.2</FSpotTargetFramework>
+        <FSpotTargetFramework>net472</FSpotTargetFramework>
         <LangVersion>latest</LangVersion>
     </PropertyGroup>
+
+    <PropertyGroup>
+        <!-- If we use an sdk style project then Gtk will fail to resolve unless we insert it into the AssemblySearchPaths property -->
+        <GtkReferenceAssemblyPath Condition="$(GTK_BASEPATH) != ''">$(GTK_BASEPATH)lib\gtk-sharp-2.0\</GtkReferenceAssemblyPath>
+        <GtkReferenceAssemblyPath Condition="$(GtkReferenceAssemblyPath) == ''">$(FrameworkSDKRoot)..\gtk-sharp-2.0\</GtkReferenceAssemblyPath>
+    </PropertyGroup>
+
 </Project>

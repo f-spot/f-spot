@@ -1,40 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{13D4FF63-5D83-42D7-AE4C-56BB512D5D89}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>FSpot.Exporters.Flickr</RootNamespace>
-    <AssemblyName>FSpot.Exporters.Flickr</AssemblyName>
-    <TargetFrameworkVersion>$(FSpotTargetFramework)</TargetFrameworkVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>True</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>False</Optimize>
+    <TargetFramework>$(FSpotTargetFramework)</TargetFramework>
     <OutputPath>..\..\..\..\bin\Extensions</OutputPath>
-    <DefineConstants>DEBUG</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>False</ConsolePause>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
-    <Optimize>False</Optimize>
-    <OutputPath>..\..\..\..\bin\Extensions</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>False</ConsolePause>
-  </PropertyGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <Compile Include="FSpot.Exporters.Flickr\FlickrRemote.cs" />
-    <Compile Include="FSpot.Exporters.Flickr\FlickrExport.cs" />
-    <Compile Include="FSpot.Exporters.Flickr\TwentyThreeHQExport.cs" />
-    <Compile Include="FSpot.Exporters.Flickr\ZooomrExport.cs" />
-  </ItemGroup>
+
   <ItemGroup>
     <EmbeddedResource Include="Resources\FlickrExport.addin.xml">
       <LogicalName>FlickrExport.addin.xml</LogicalName>
@@ -43,61 +13,9 @@
       <LogicalName>flickr_export.ui</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Mono.Posix" />
-    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>glib-sharp-2.0</Package>
-    </Reference>
-    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>gtk-sharp-2.0</Package>
-    </Reference>
-    <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>gtk-sharp-2.0</Package>
-    </Reference>
-    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>gtk-sharp-2.0</Package>
-    </Reference>
-  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="FlickrNet" Version="3.25.0" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Clients\FSpot.Gtk\FSpot.Gtk.csproj">
-      <Project>{27EC05FB-0223-4B26-8157-E49AF81D0007}</Project>
-      <Name>FSpot.Gtk</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Core\FSpot.Utils\FSpot.Utils.csproj">
-      <Project>{CE160879-1BF0-4711-A18F-FDA2772900FA}</Project>
-      <Name>FSpot.Utils</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\lib\Hyena\Hyena\Hyena.csproj">
-      <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
-      <Name>Hyena</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\lib\Hyena\Hyena.Gui\Hyena.Gui.csproj">
-      <Project>{C856EFD8-E812-4E61-8B76-E3583D94C233}</Project>
-      <Name>Hyena.Gui</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\lib\gtk-sharp-beans\gtk-sharp-beans.csproj">
-      <Project>{069D1797-427D-4CED-A754-233DE64FC5DD}</Project>
-      <Name>gtk-sharp-beans</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Core\FSpot.Gui\FSpot.Gui.csproj">
-      <Project>{05A7FEC4-974A-40EB-AFB8-14E523EEEFFB}</Project>
-      <Name>FSpot.Gui</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\lib\unique-sharp\unique-sharp.csproj">
-      <Project>{5DBBB8C5-7BAF-46DA-B7D2-2486430141E2}</Project>
-      <Name>unique-sharp</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Core\FSpot.Settings\FSpot.Settings.csproj">
-      <Project>{423B5DED-65C8-4C4A-9DBB-7D7BD440F78F}</Project>
-      <Name>FSpot.Settings</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup />
+
 </Project>

@@ -1,0 +1,112 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\icons\f-spot-not.png">
+      <LogicalName>f-spot-not.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\COPYING.txt">
+      <LogicalName>COPYING</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\icons\f-spot-128.png">
+      <LogicalName>f-spot-128.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\icons\flower.png">
+      <LogicalName>flower.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ui\import.ui">
+      <LogicalName>import.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ui\mail_dialog.ui">
+      <LogicalName>mail_dialog.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ui\main_window.ui">
+      <LogicalName>main_window.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ui\single_view.ui">
+      <LogicalName>single_view.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ui\viewer_preferences.ui">
+      <LogicalName>viewer_preferences.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ui\tag_selection_dialog.ui">
+      <LogicalName>tag_selection_dialog.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FSpot.UI.Dialog\ui\AdjustTimeDialog.ui">
+      <LogicalName>AdjustTimeDialog.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FSpot.UI.Dialog\ui\DateRangeDialog.ui">
+      <LogicalName>DateRangeDialog.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FSpot.UI.Dialog\ui\EditTagDialog.ui">
+      <LogicalName>EditTagDialog.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FSpot.UI.Dialog\ui\EditTagIconDialog.ui">
+      <LogicalName>EditTagIconDialog.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FSpot.UI.Dialog\ui\PreferenceDialog.ui">
+      <LogicalName>PreferenceDialog.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FSpot.UI.Dialog\ui\RatingFilterDialog.ui">
+      <LogicalName>RatingFilterDialog.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FSpot.UI.Dialog\ui\CreateTagDialog.ui">
+      <LogicalName>CreateTagDialog.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FSpot.UI.Dialog\ui\LastImportRollFilterDialog.ui">
+      <LogicalName>LastImportRollFilterDialog.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FSpot.UI.Dialog\ui\RepairDialog.ui">
+      <LogicalName>RepairDialog.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FSpot.addin.xml">
+      <LogicalName>FSpot.addin.xml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ui\color_editor_prefs_window.ui">
+      <LogicalName>color_editor_prefs_window.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FSpot.UI.Dialog\ui\SelectionRatioDialog.ui">
+      <LogicalName>SelectionRatioDialog.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FSpot.UI.Dialog\ui\VersionNameDialog.ui">
+      <LogicalName>VersionNameDialog.ui</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Include="f-spot.exe.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="TagLibSharp" Version="2.2.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FSpot\FSpot.csproj" />
+    <ProjectReference Include="..\..\lib\Hyena\Hyena.Data.Sqlite\Hyena.Data.Sqlite.csproj" />
+    <ProjectReference Include="..\..\lib\Hyena\Hyena\Hyena.csproj" />
+    <ProjectReference Include="..\..\lib\Hyena\Hyena.Gui\Hyena.Gui.csproj" />
+    <ProjectReference Include="..\..\lib\gtk-sharp-beans\gtk-sharp-beans.csproj" />
+    <ProjectReference Include="..\..\lib\gio-sharp\gio-sharp.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+  </ItemGroup>
+  <PropertyGroup>
+    <!-- .config is a workaround for xamarin bug #4811 -->
+    <AllowedReferenceRelatedFileExtensions>
+		  $(AllowedReferenceRelatedFileExtensions);
+		  .dll.config;
+		  .exe.config;
+		  .config
+	  </AllowedReferenceRelatedFileExtensions>
+  </PropertyGroup>
+
+</Project>
