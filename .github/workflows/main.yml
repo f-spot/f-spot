@@ -16,7 +16,9 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Install dependencies
-      run: mono --version
+      run: |
+        mono --version
+        sudo apt install -qq automake libtool intltool > /dev/null
     - name: Autogen
       run: ./autogen.sh --enable-tests
     - name: Make
