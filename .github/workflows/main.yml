@@ -17,3 +17,9 @@ jobs:
     - uses: actions/checkout@v1
     - name: Install dependencies
       run: mono --version
+    - name: Autogen
+      run: ./autogen.sh --enable-tests
+    - name: Make
+      run: make
+    - name: Make Tests
+      run: make test
