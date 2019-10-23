@@ -1,23 +1,17 @@
 GIT
 ---
 
-F-Spot's source repository is in GNOME GIT, in the module 'f-spot'.
-
-For information on GNOME GIT, see:
-http://live.gnome.org/Git
-
-If you are not familiar with GIT, please read this page:
-http://live.gnome.org/Git/Developers
+F-Spot's source repository is github.com/f-spot/f-spot
 
 Patches
 -------
 
 If you have a patch you'd like to submit, please open an issue describing your
-fix or feature on https://github.com/mono/f-spot, and submit a pull request.
+fix or feature on https://github.com/f-spot/f-spot, and submit a pull request.
 The selection below describes how to do so:
 
 1. Fork the f-spot git repository by clicking on the "Fork" button on
-https://github.com/mono/f-spot.
+https://github.com/f-spot/f-spot.
 2. Clone your fork of f-spot locally. (git clone git@github.com:yourusername/f-spot)
 3. Create a new branch for your bug fix or feature (git checkout -b new_branch_name)
 4. Commit your changes to that branch (git commit)

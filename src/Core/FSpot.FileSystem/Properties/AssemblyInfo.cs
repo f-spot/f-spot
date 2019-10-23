@@ -28,4 +28,4 @@
 
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo ("FSpot.FileSystem.UnitTest")]
+[assembly: InternalsVisibleTo ("FSpot.Core.UnitTest")]

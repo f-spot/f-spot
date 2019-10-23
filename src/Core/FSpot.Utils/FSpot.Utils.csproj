@@ -83,14 +83,15 @@
       <Project>{942B6AEF-0A90-4A7F-B8E4-F1A4327E408C}</Project>
       <Name>gio-sharp</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\external\taglib-sharp\src\TaglibSharp\TaglibSharp.csproj">
-      <Project>{6B143A39-C7B2-4743-9917-92262C60E9A6}</Project>
-      <Name>TaglibSharp</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="FSpot.Utils.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="TagLibSharp">
+      <Version>2.2.0</Version>
+    </PackageReference>
   </ItemGroup>
 </Project>

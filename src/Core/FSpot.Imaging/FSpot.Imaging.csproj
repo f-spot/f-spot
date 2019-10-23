@@ -88,14 +88,15 @@
       <Project>{F7821E0B-6861-47D7-9FCE-F853CDF2F838}</Project>
       <Name>FSpot.FileSystem</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\external\taglib-sharp\src\TaglibSharp\TaglibSharp.csproj">
-      <Project>{6B143A39-C7B2-4743-9917-92262C60E9A6}</Project>
-      <Name>TaglibSharp</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="FSpot.Imaging.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="TagLibSharp">
+      <Version>2.2.0</Version>
+    </PackageReference>
   </ItemGroup>
 </Project>

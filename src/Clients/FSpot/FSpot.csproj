@@ -203,7 +203,7 @@
     <EmbeddedResource Include="..\..\..\icons\f-spot-not.png">
       <LogicalName>f-spot-not.png</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\..\..\COPYING.txt">
+    <EmbeddedResource Include="..\..\..\COPYING.md">
       <LogicalName>COPYING</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="..\..\..\icons\f-spot-128.png">
@@ -390,15 +390,11 @@
       <Project>{02523C56-7715-4B6E-891B-6A1CBDE1B98C}</Project>
       <Name>FSpot.Import</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\external\taglib-sharp\src\TaglibSharp\TaglibSharp.csproj">
-      <Project>{6B143A39-C7B2-4743-9917-92262C60E9A6}</Project>
-      <Name>TaglibSharp</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="FSpot\" />
-    <Folder Include="FSpot.Widgets\" />
-    <Folder Include="Pinta\" />
+    <PackageReference Include="TagLibSharp">
+      <Version>2.2.0</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="f-spot.exe.config">
