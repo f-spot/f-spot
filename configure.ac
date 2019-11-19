@@ -318,19 +318,10 @@ src/AssemblyInfo.cs
 
 src/Makefile
 src/Core/Makefile
-src/Core/FSpot.Bling/Makefile
-src/Core/FSpot.Cms/Makefile
-src/Core/FSpot.Cms/FSpot.Cms.dll.config
-src/Core/FSpot.Core/Makefile
+src/Core/FSpot/Makefile
+src/Core/FSpot/FSpot.dll.config
+src/Core/FSpot/Settings/Defines.cs
 src/Core/FSpot.Core.UnitTest/Makefile
-src/Core/FSpot.Settings/Defines.cs
-src/Core/FSpot.JobScheduler/Makefile
-src/Core/FSpot.Utils/Makefile
-src/Core/FSpot.Utils/FSpot.Utils.dll.config
-src/Core/FSpot.Query/Makefile
-src/Core/FSpot.Gui/Makefile
-src/Core/FSpot.Gui/FSpot.Gui.dll.config
-src/Core/FSpot.Platform/Makefile
 
 src/Clients/Makefile
 src/Clients/FSpot.Gtk/Makefile
@@ -359,7 +350,6 @@ src/Extensions/Tools/FSpot.Tools.DevelopInUFraw/Makefile
 src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Makefile
 src/Extensions/Tools/FSpot.Tools.MergeDb/Makefile
 src/Extensions/Tools/FSpot.Tools.RetroactiveRoll/Makefile
-src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Makefile
 src/Extensions/Transitions/Makefile
 src/Extensions/Transitions/FSpot.Transitions.Cover/Makefile
 src/Extensions/Transitions/FSpot.Transitions.Dissolve/Makefile
