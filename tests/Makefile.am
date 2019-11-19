@@ -11,11 +11,11 @@ if ENABLE_TESTS
 TEST_ASSEMBLIES = *.UnitTest.dll
 
 # get NUnit console runner from nuget package
-NUNIT_CONSOLE = $$(echo ../packages/NUnit.Runners.*/tools/nunit-console.exe)
+NUNIT_CONSOLE = $$(echo ../packages/NUnit.ConsoleRunner.*/tools/nunit3-console.exe)
 
 test:
 	@chmod +x $(NUNIT_CONSOLE); \
-	$(NUNIT_CONSOLE) --labels $(TEST_ASSEMBLIES);
+	$(NUNIT_CONSOLE) --labels=ON $(TEST_ASSEMBLIES);
 
 endif
 

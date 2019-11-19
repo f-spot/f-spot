@@ -120,18 +120,18 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <None Include="Utils\TestData\taglib-sample-broken.jpg">
+    <None Include="TestData\taglib-sample-broken.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Utils\TestData\taglib-sample-broken.xmp">
+    <None Include="TestData\taglib-sample-broken.xmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Utils\TestData\taglib-sample.xmp">
+    <None Include="TestData\taglib-sample.xmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Utils\TestData\taglib-sample.jpg">
+    <None Include="TestData\taglib-sample.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
