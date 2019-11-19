@@ -21,30 +21,30 @@ msgstr ""
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#. ../src/Clients/FSpot/FSpot.addin.xml
-#: ../data/addin-xml-strings.cs:8 ../src/Clients/FSpot/FSpot.addin.xml.h:1
+#. ../src/Clients/FSpot.Gtk/FSpot.addin.xml
+#: ../data/addin-xml-strings.cs:8 ../src/Clients/FSpot.Gtk/FSpot.addin.xml.h:1
 msgid "Copy Photo"
 msgstr "写真をコピー"
 
-#: ../data/addin-xml-strings.cs:9 ../src/Clients/FSpot/FSpot.addin.xml.h:5
-#: ../src/Clients/FSpot/FSpot/SingleView.cs:457
-#: ../src/Clients/FSpot/ui/main_window.ui.h:16
+#: ../data/addin-xml-strings.cs:9 ../src/Clients/FSpot.Gtk/FSpot.addin.xml.h:5
+#: ../src/Clients/FSpot.Gtk/FSpot/SingleView.cs:457
+#: ../src/Clients/FSpot.Gtk/ui/main_window.ui.h:16
 msgid "Rotate _Left"
 msgstr "左へ回転(_L)"
 
-#: ../data/addin-xml-strings.cs:10 ../src/Clients/FSpot/FSpot.addin.xml.h:6
-#: ../src/Clients/FSpot/FSpot/SingleView.cs:458
-#: ../src/Clients/FSpot/ui/main_window.ui.h:17
+#: ../data/addin-xml-strings.cs:10 ../src/Clients/FSpot.Gtk/FSpot.addin.xml.h:6
+#: ../src/Clients/FSpot.Gtk/FSpot/SingleView.cs:458
+#: ../src/Clients/FSpot.Gtk/ui/main_window.ui.h:17
 msgid "Rotate _Right"
 msgstr "右へ回転(_R)"
 
-#: ../data/addin-xml-strings.cs:11 ../src/Clients/FSpot/FSpot.addin.xml.h:9
-#: ../src/Clients/FSpot/ui/main_window.ui.h:60
+#: ../data/addin-xml-strings.cs:11 ../src/Clients/FSpot.Gtk/FSpot.addin.xml.h:9
+#: ../src/Clients/FSpot.Gtk/ui/main_window.ui.h:60
 msgid "_Remove From Catalog"
 msgstr "カタログから削除(_R)"
 
-#: ../data/addin-xml-strings.cs:12 ../src/Clients/FSpot/FSpot.addin.xml.h:8
-#: ../src/Clients/FSpot/ui/main_window.ui.h:41
+#: ../data/addin-xml-strings.cs:12 ../src/Clients/FSpot.Gtk/FSpot.addin.xml.h:8
+#: ../src/Clients/FSpot.Gtk/ui/main_window.ui.h:41
 msgid "_Delete From Drive"
 msgstr "ドライブから削除(_D)"
 
@@ -294,7 +294,7 @@ msgstr ""
 #: ../data/addin-xml-strings.cs:122 ../data/addin-xml-strings.cs:128
 #: ../data/addin-xml-strings.cs:134 ../data/addin-xml-strings.cs:140
 #: ../data/addin-xml-strings.cs:146 ../data/addin-xml-strings.cs:152
-#: ../src/Clients/FSpot/FSpot.addin.xml.h:7
+#: ../src/Clients/FSpot.Gtk/FSpot.addin.xml.h:7
 msgid "Tools"
 msgstr "ツール"
 
@@ -735,25 +735,25 @@ msgstr "Tabblo にログイン中"
 msgid "Obtaining URL for upload"
 msgstr "アップロード用 URL を取得中"
 
-#: ../src/Clients/FSpot/FSpot.addin.xml.h:2
+#: ../src/Clients/FSpot.Gtk/FSpot.addin.xml.h:2
 msgid "Export to"
 msgstr "エクスポート"
 
-#: ../src/Clients/FSpot/FSpot.addin.xml.h:3
+#: ../src/Clients/FSpot.Gtk/FSpot.addin.xml.h:3
 msgid "Open _With"
 msgstr "別のアプリで開く(_W)"
 
-#: ../src/Clients/FSpot/FSpot.addin.xml.h:4
-#: ../src/Clients/FSpot/ui/main_window.ui.h:15
+#: ../src/Clients/FSpot.Gtk/FSpot.addin.xml.h:4
+#: ../src/Clients/FSpot.Gtk/ui/main_window.ui.h:15
 msgid "Rem_ove Tag"
 msgstr "タグの削除(_O)"
 
-#: ../src/Clients/FSpot/FSpot/App.cs:319
+#: ../src/Clients/FSpot.Gtk/FSpot/App.cs:319
 #, csharp-format
 msgid "No photos matching {0} found"
 msgstr "{0} にマッチする写真は見つかりませんでした"
 
-#: ../src/Clients/FSpot/FSpot/App.cs:320
+#: ../src/Clients/FSpot.Gtk/FSpot/App.cs:320
 #, csharp-format
 msgid ""
 "The tag \"{0}\" is not applied to any photos. Try adding\n"
@@ -764,11 +764,11 @@ msgstr ""
 "いずれかの写真に付与するか、F-Spot の設定ダイアログで別の\n"
 "タグを選択してください。"
 
-#: ../src/Clients/FSpot/FSpot/App.cs:324
+#: ../src/Clients/FSpot.Gtk/FSpot/App.cs:324
 msgid "Search returned no results"
 msgstr "検索しましたが、何も見つかりません"
 
-#: ../src/Clients/FSpot/FSpot/App.cs:325
+#: ../src/Clients/FSpot.Gtk/FSpot/App.cs:325
 msgid ""
 "The tag F-Spot is looking for does not exist. Try\n"
 "selecting a different tag in the F-Spot preference\n"
@@ -777,11 +777,11 @@ msgstr ""
 "F-Spot が検索に用いているこのタグは存在しません。\n"
 "F-Spot の設定ダイアログで別のタグを選択してください。"
 
-#: ../src/Clients/FSpot/FSpot.Database/Updater.cs:768
+#: ../src/Clients/FSpot.Gtk/FSpot.Database/Updater.cs:768
 msgid "Updating F-Spot Database"
 msgstr "F-Spot データベースを更新中"
 
-#: ../src/Clients/FSpot/FSpot.Database/Updater.cs:769
+#: ../src/Clients/FSpot.Gtk/FSpot.Database/Updater.cs:769
 msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
@@ -789,255 +789,255 @@ msgstr ""
 "F-Spot ギャラリーのデータベースが更新されるまでお待ちください。これにはしばら"
 "く時間がかかります。"
 
-#: ../src/Clients/FSpot/FSpot.Editors/AutoStretchEditor.cs:37
+#: ../src/Clients/FSpot.Gtk/FSpot.Editors/AutoStretchEditor.cs:37
 msgid "Auto Color"
 msgstr "色の自動調整"
 
-#: ../src/Clients/FSpot/FSpot.Editors/ColorEditor.cs:61
+#: ../src/Clients/FSpot.Gtk/FSpot.Editors/ColorEditor.cs:61
 msgid "Adjust Colors"
 msgstr "色の調整"
 
-#: ../src/Clients/FSpot/FSpot.Editors/ColorEditor.cs:64
+#: ../src/Clients/FSpot.Gtk/FSpot.Editors/ColorEditor.cs:64
 msgid "Adjust"
 msgstr "調整"
 
-#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:56
+#: ../src/Clients/FSpot.Gtk/FSpot.Editors/CropEditor.cs:56
 msgid "4 x 3 (Book)"
 msgstr "4 x 3 (ブック)"
 
-#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:57
+#: ../src/Clients/FSpot.Gtk/FSpot.Editors/CropEditor.cs:57
 msgid "4 x 6 (Postcard)"
 msgstr "4 x 6 (ポストカード)"
 
-#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:58
+#: ../src/Clients/FSpot.Gtk/FSpot.Editors/CropEditor.cs:58
 msgid "5 x 7 (L, 2L)"
 msgstr "5 x 7 (L, 2L)"
 
-#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:59
+#: ../src/Clients/FSpot.Gtk/FSpot.Editors/CropEditor.cs:59
 msgid "8 x 10"
 msgstr "8 x 10"
 
-#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:60
+#: ../src/Clients/FSpot.Gtk/FSpot.Editors/CropEditor.cs:60
 msgid "Square"
 msgstr "正方形"
 
-#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:63
+#: ../src/Clients/FSpot.Gtk/FSpot.Editors/CropEditor.cs:63
 msgid "Crop"
 msgstr "切り抜き"
 
-#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:94
+#: ../src/Clients/FSpot.Gtk/FSpot.Editors/CropEditor.cs:94
 msgid "Select the area that needs cropping."
 msgstr "切り抜く領域を選択してください。"
 
-#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:119
+#: ../src/Clients/FSpot.Gtk/FSpot.Editors/CropEditor.cs:119
 msgid "No Constraint"
 msgstr "自由に切り抜く"
 
-#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:120
+#: ../src/Clients/FSpot.Gtk/FSpot.Editors/CropEditor.cs:120
 msgid "Same as photo"
 msgstr "元の写真と同じアスペクト比"
 
-#: ../src/Clients/FSpot/FSpot.Editors/CropEditor.cs:125
+#: ../src/Clients/FSpot.Gtk/FSpot.Editors/CropEditor.cs:125
 msgid "Custom Ratios..."
 msgstr "アスペクト比のカスタマイズ..."
 
-#: ../src/Clients/FSpot/FSpot.Editors/DesaturateEditor.cs:37
+#: ../src/Clients/FSpot.Gtk/FSpot.Editors/DesaturateEditor.cs:37
 msgid "Desaturate"
 msgstr "脱色"
 
-#: ../src/Clients/FSpot/FSpot.Editors/RedEyeEditor.cs:41
+#: ../src/Clients/FSpot.Gtk/FSpot.Editors/RedEyeEditor.cs:41
 msgid "Red-eye Reduction"
 msgstr "赤目補正"
 
-#: ../src/Clients/FSpot/FSpot.Editors/RedEyeEditor.cs:44
+#: ../src/Clients/FSpot.Gtk/FSpot.Editors/RedEyeEditor.cs:44
 msgid "Fix!"
 msgstr "修正"
 
-#: ../src/Clients/FSpot/FSpot.Editors/RedEyeEditor.cs:48
+#: ../src/Clients/FSpot.Gtk/FSpot.Editors/RedEyeEditor.cs:48
 msgid "Select the eyes you wish to fix."
 msgstr "修正したい目を選択してください"
 
-#: ../src/Clients/FSpot/FSpot.Editors/SepiaEditor.cs:37
+#: ../src/Clients/FSpot.Gtk/FSpot.Editors/SepiaEditor.cs:37
 msgid "Sepia Tone"
 msgstr "セピア調"
 
-#: ../src/Clients/FSpot/FSpot.Editors/SoftFocusEditor.cs:50
+#: ../src/Clients/FSpot.Gtk/FSpot.Editors/SoftFocusEditor.cs:50
 msgid "Soft Focus"
 msgstr "ソフトフォーカス"
 
-#: ../src/Clients/FSpot/FSpot.Editors/TiltEditor.cs:51
+#: ../src/Clients/FSpot.Gtk/FSpot.Editors/TiltEditor.cs:51
 msgid "Straighten"
 msgstr "傾き補正"
 
-#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:82
+#: ../src/Clients/FSpot.Gtk/FSpot/FullScreenView.cs:82
 msgid "Hide"
 msgstr "非表示"
 
-#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:84
+#: ../src/Clients/FSpot.Gtk/FSpot/FullScreenView.cs:84
 msgid "Hide toolbar"
 msgstr "ツールバーの非表示"
 
-#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:90
+#: ../src/Clients/FSpot.Gtk/FSpot/FullScreenView.cs:90
 msgid "Info"
 msgstr "情報"
 
-#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:92
+#: ../src/Clients/FSpot.Gtk/FSpot/FullScreenView.cs:92
 msgid "Image information"
 msgstr "画像情報"
 
-#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:97
+#: ../src/Clients/FSpot.Gtk/FSpot/FullScreenView.cs:97
 msgid "Exit fullscreen"
 msgstr "フルスクリーン表示の解除"
 
-#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:105
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:341
-#: ../src/Clients/FSpot/FSpot/SingleView.cs:122
+#: ../src/Clients/FSpot.Gtk/FSpot/FullScreenView.cs:105
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:341
+#: ../src/Clients/FSpot.Gtk/FSpot/SingleView.cs:122
 msgid "Slideshow"
 msgstr "スライドショー"
 
-#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:106
+#: ../src/Clients/FSpot.Gtk/FSpot/FullScreenView.cs:106
 msgid "Start slideshow"
 msgstr "スライドショーの開始"
 
-#: ../src/Clients/FSpot/FSpot/FullScreenView.cs:152
+#: ../src/Clients/FSpot.Gtk/FSpot/FullScreenView.cs:152
 msgid "Slide transition:"
 msgstr "画面切り替え: "
 
-#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:90
-#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:91
+#: ../src/Clients/FSpot.Gtk/FSpot/GroupSelector.cs:90
+#: ../src/Clients/FSpot.Gtk/FSpot/GroupSelector.cs:91
 msgid "More dates"
 msgstr "他の日付"
 
-#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:93
-#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:94
+#: ../src/Clients/FSpot.Gtk/FSpot/GroupSelector.cs:93
+#: ../src/Clients/FSpot.Gtk/FSpot/GroupSelector.cs:94
 msgid "More"
 msgstr "その他"
 
-#: ../src/Clients/FSpot/FSpot/GroupSelector.cs:554
-#: ../src/Clients/FSpot/ui/main_window.ui.h:34
+#: ../src/Clients/FSpot.Gtk/FSpot/GroupSelector.cs:554
+#: ../src/Clients/FSpot.Gtk/ui/main_window.ui.h:34
 msgid "_Clear Date Range"
 msgstr "表示期間の解除(_C)"
 
-#: ../src/Clients/FSpot/FSpot.Import/ImportController.cs:510
-#: ../src/Clients/FSpot/FSpot.Import/ImportController.cs:512
-#: ../src/Clients/FSpot/FSpot.Import/MetadataImporter.cs:72
+#: ../src/Clients/FSpot.Gtk/FSpot.Import/ImportController.cs:510
+#: ../src/Clients/FSpot.Gtk/FSpot.Import/ImportController.cs:512
+#: ../src/Clients/FSpot.Gtk/FSpot.Import/MetadataImporter.cs:72
 msgid "Imported Tags"
 msgstr "インポートされたタグ"
 
-#: ../src/Clients/FSpot/FSpot/ItemAction.cs:102
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:308
-#: ../src/Clients/FSpot/FSpot/SingleView.cs:105
+#: ../src/Clients/FSpot.Gtk/FSpot/ItemAction.cs:102
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:308
+#: ../src/Clients/FSpot.Gtk/FSpot/SingleView.cs:105
 msgid "Rotate Left"
 msgstr "左へ回転"
 
-#: ../src/Clients/FSpot/FSpot/ItemAction.cs:103
+#: ../src/Clients/FSpot.Gtk/FSpot/ItemAction.cs:103
 msgid "Rotate picture left"
 msgstr "写真を左へ回転"
 
-#: ../src/Clients/FSpot/FSpot/ItemAction.cs:114
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:312
-#: ../src/Clients/FSpot/FSpot/SingleView.cs:110
+#: ../src/Clients/FSpot.Gtk/FSpot/ItemAction.cs:114
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:312
+#: ../src/Clients/FSpot.Gtk/FSpot/SingleView.cs:110
 msgid "Rotate Right"
 msgstr "右へ回転"
 
-#: ../src/Clients/FSpot/FSpot/ItemAction.cs:115
+#: ../src/Clients/FSpot.Gtk/FSpot/ItemAction.cs:115
 msgid "Rotate picture right"
 msgstr "写真を右へ回転"
 
-#: ../src/Clients/FSpot/FSpot/ItemAction.cs:125
+#: ../src/Clients/FSpot.Gtk/FSpot/ItemAction.cs:125
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:263
 msgid "Next"
 msgstr "次へ"
 
-#: ../src/Clients/FSpot/FSpot/ItemAction.cs:126
+#: ../src/Clients/FSpot.Gtk/FSpot/ItemAction.cs:126
 msgid "Next picture"
 msgstr "次の写真"
 
-#: ../src/Clients/FSpot/FSpot/ItemAction.cs:146
+#: ../src/Clients/FSpot.Gtk/FSpot/ItemAction.cs:146
 msgid "Previous"
 msgstr "前へ"
 
-#: ../src/Clients/FSpot/FSpot/ItemAction.cs:147
+#: ../src/Clients/FSpot.Gtk/FSpot/ItemAction.cs:147
 msgid "Previous picture"
 msgstr "前の写真"
 
-#: ../src/Clients/FSpot/FSpot/Literal.cs:225
-#: ../src/Clients/FSpot/FSpot/TagQueryWidget.cs:182
+#: ../src/Clients/FSpot.Gtk/FSpot/Literal.cs:225
+#: ../src/Clients/FSpot.Gtk/FSpot/TagQueryWidget.cs:182
 #, csharp-format
 msgid "Not {0}"
 msgstr "{0} ではない"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:301
-#: ../src/Clients/FSpot/FSpot.UI.Dialog/ImportDialog.cs:229
-#: ../src/Clients/FSpot/ui/import.ui.h:3
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:301
+#: ../src/Clients/FSpot.Gtk/FSpot.UI.Dialog/ImportDialog.cs:229
+#: ../src/Clients/FSpot.Gtk/ui/import.ui.h:3
 msgid "Import"
 msgstr "インポート"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:303
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:303
 msgid "Import new images"
 msgstr "新しい画像をインポートします"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:319
-#: ../src/Clients/FSpot/ui/main_window.ui.h:3
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:319
+#: ../src/Clients/FSpot.Gtk/ui/main_window.ui.h:3
 msgid "Browse"
 msgstr "参照"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:323
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:323
 msgid "Browse many photos simultaneously"
 msgstr "たくさんの写真を同時に閲覧します"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:327
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:327
 msgid "Edit Image"
 msgstr "画像の編集"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:331
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:331
 msgid "View and edit a photo"
 msgstr "写真を閲覧・編集します"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:336
-#: ../src/Clients/FSpot/FSpot/SingleView.cs:117
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:336
+#: ../src/Clients/FSpot.Gtk/FSpot/SingleView.cs:117
 msgid "Fullscreen"
 msgstr "フルスクリーン表示"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:338
-#: ../src/Clients/FSpot/FSpot/SingleView.cs:119
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:338
+#: ../src/Clients/FSpot.Gtk/FSpot/SingleView.cs:119
 msgid "View photos fullscreen"
 msgstr "写真をフルスクリーン表示します"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:343
-#: ../src/Clients/FSpot/FSpot/SingleView.cs:124
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:343
+#: ../src/Clients/FSpot.Gtk/FSpot/SingleView.cs:124
 msgid "View photos in a slideshow"
 msgstr "スライドショーで写真を閲覧します"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:358
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:358
 msgid "Previous photo"
 msgstr "前の写真"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:363
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:363
 msgid "Next photo"
 msgstr "次の写真"
 
 #. Don't care otherwise, Tags sounds reasonable
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:376
-#: ../src/Clients/FSpot/FSpot.Widgets/Sidebar.cs:75
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:376
+#: ../src/Clients/FSpot.Gtk/FSpot.Widgets/Sidebar.cs:75
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:260
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:432
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:472
 msgid "Tags"
 msgstr "タグ"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:440
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:440
 msgid "Show _Find Bar"
 msgstr "検索バーの表示(_F)"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:443
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:443
 msgid "Hide _Find Bar"
 msgstr "検索バーの非表示(_F)"
 
 #. Note for translators: This indicates the current photo is photo {0} of {1} out of photos
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:671
-#: ../src/Clients/FSpot/FSpot.UI.Dialog/AdjustTimeDialog.cs:154
-#: ../src/Clients/FSpot/FSpot.UI.Dialog/ProgressDialog.cs:111
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:671
+#: ../src/Clients/FSpot.Gtk/FSpot.UI.Dialog/AdjustTimeDialog.cs:154
+#: ../src/Clients/FSpot.Gtk/FSpot.UI.Dialog/ProgressDialog.cs:111
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:134
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:391
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:244
@@ -1047,84 +1047,84 @@ msgid "{0} of {1}"
 msgstr "{0} / {1}"
 
 #. Translators, The singular case will never happen here.
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1745
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:1745
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
 msgstr[0] "選択した {0} 個のタグをマージしますか?"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1772
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:1772
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
 msgstr "この操作は選択したすべてのタグおよび子タグをひとつにまとめます。"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1774
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:1774
 msgid "_Merge Tags"
 msgstr "タグのマージ(_M)"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1979
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:1979
 #, csharp-format
 msgid "{0} Photo out of {1}"
 msgid_plural "{0} Photos out of {1}"
 msgstr[0] "{1} 枚中 {0} 枚の写真"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1981
-#: ../src/Clients/FSpot/FSpot/SingleView.cs:499
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:1981
+#: ../src/Clients/FSpot.Gtk/FSpot/SingleView.cs:499
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
 msgstr[0] "{0} 枚の写真"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:1984
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:1984
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
 msgstr[0] " ({0} 枚を選択中)"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2065
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:2065
 msgid "_Ok"
 msgstr "OK (_O)"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2066
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:2066
 msgid "Error Deleting Picture"
 msgstr "写真の削除エラー"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2071
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:2071
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
 msgstr "このファイルを削除する権限がありません: {1}{0}"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2075
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:2075
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
 msgstr "ファイルの削除の際にタイプ {0} のエラーが発生しました: {2}{1}"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2107
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:2107
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "選択した {0} 枚の写真を完全に削除しますか?"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2111
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:2111
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
 msgstr[0] ""
 "これによりお使いのドライブから選択した写真のすべてのバージョンを削除します。"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2114
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:2114
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "写真の削除(_D)"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2150
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:2150
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "選択した写真 {0} 枚を F-Spot から削除しますか?"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2155
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:2155
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1133,43 +1133,43 @@ msgstr ""
 "カタログから写真を削除すると、すべてのタグ情報が失われます。お使いのコン"
 "ピューター上に残っている写真を再度 F-Spot にインポートすることは可能です。"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2156
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:2156
 msgid "_Remove from Catalog"
 msgstr "カタログから削除する(_R)"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2230
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:2230
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "タグ \"{0}\" を削除しますか?"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2232
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:2232
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "選択した {0} 個のタグを削除しますか?"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2237
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:2237
 msgid "photo"
 msgid_plural "photos"
 msgstr[0] "写真"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2239
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:2239
 #, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
 msgid_plural ""
 "If you delete these tags, the association with {0} {1} will be lost."
 msgstr[0] "タグを削除すると、{0} 枚の{1}の関連付けが失われます。"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2244
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:2244
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "タグを削除する(_D)"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2258
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:2258
 msgid "Tag is not empty"
 msgstr "タグは空ではありません"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2259
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:2259
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -1178,34 +1178,34 @@ msgstr ""
 "別のタグを含んでいるため、タグを削除できませんでした。まず \"{0}\" 以下にある"
 "タグを削除してください。"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2711
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:2711
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "選択した写真を左へ回転します"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2724
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:2724
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "選択した写真を右へ回転します"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2735
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:2735
 #, csharp-format
 msgid "Find _Selected Tag"
 msgid_plural "Find _Selected Tags"
 msgstr[0] "選択したタグを検索(_S)"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2739
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:2739
 #, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
 msgstr[0] "選択したタグでさらに検索(_W)"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2780
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:2780
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "新しいバージョンを作成しますか?"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2782
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:2782
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -1217,32 +1217,32 @@ msgstr[0] ""
 "オリジナルを維持するために、\"{1}\" 用に選択した写真の新しいバージョンを作成"
 "しますか?"
 
-#: ../src/Clients/FSpot/FSpot/MainWindow.cs:2804
+#: ../src/Clients/FSpot.Gtk/FSpot/MainWindow.cs:2804
 msgid "XCF version"
 msgstr "XCF バージョン"
 
 #. Note for translators: Reparented is a picture becoming a version of another one
-#: ../src/Clients/FSpot/FSpot/Photo.cs:430
+#: ../src/Clients/FSpot.Gtk/FSpot/Photo.cs:430
 msgid "Reparented"
 msgstr "再関連付け版"
 
-#: ../src/Clients/FSpot/FSpot/Photo.cs:448
+#: ../src/Clients/FSpot.Gtk/FSpot/Photo.cs:448
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
 msgstr[0] "修正版 ({0})"
 
-#: ../src/Clients/FSpot/FSpot/Photo.cs:471
+#: ../src/Clients/FSpot.Gtk/FSpot/Photo.cs:471
 #, csharp-format
 msgid "Modified in {1}"
 msgstr "{1} での修正版"
 
-#: ../src/Clients/FSpot/FSpot/Photo.cs:471
+#: ../src/Clients/FSpot.Gtk/FSpot/Photo.cs:471
 #, csharp-format
 msgid "Modified in {1} ({0})"
 msgstr "{1} での修正版 ({0})"
 
-#: ../src/Clients/FSpot/FSpot/PhotoStore.cs:202
+#: ../src/Clients/FSpot.Gtk/FSpot/PhotoStore.cs:202
 #: ../src/Clients/FSpot/ui/mail_dialog.ui.h:17
 msgid "Original"
 msgstr "オリジナル"

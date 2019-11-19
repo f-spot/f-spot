@@ -1,2 +1,2 @@
 SUBDIRS = \
-	FSpot
+	FSpot.Gtk
