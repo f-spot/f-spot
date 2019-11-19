@@ -7,13 +7,6 @@ turtledir=@TURTLEDIR@
 
 EXE_TO_RUN="$libdir/f-spot/f-spot.exe"
 
-if test "x$DBUS_SESSION_BUS_ADDRESS" == "x"; then
-    echo "** No session dbus found. Starting one **"
-    DBUSLAUNCH="dbus-launch"
-else
-    DBUSLAUNCH=""
-fi
-
 if test "x$turtledir" != "x"; then
     export MONO_PATH=$turtledir/lib:$turtledir/gui:$MONO_PATH
 fi
@@ -95,5 +88,5 @@ elif $run_valgrind; then
 elif $run_strace; then
 	strace -ttt -f -o /tmp/f-spot.strace mono $MONO_OPTIONS $EXE_TO_RUN "$@"
 else
-	exec -a @PACKAGE@ $DBUSLAUNCH mono $MONO_OPTIONS $EXE_TO_RUN "$@"
+	exec -a @PACKAGE@ mono $MONO_OPTIONS $EXE_TO_RUN "$@"
 fi

@@ -53,9 +53,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gtk-sharp-beans", "lib\gtk-
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{9D75644A-DEF1-4362-8553-4B5F09783DC9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot", "src\Clients\FSpot\FSpot.csproj", "{27EC05FB-0223-4B26-8157-E49AF81D0007}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Gtk", "src\Clients\FSpot.Gtk\FSpot.Gtk.csproj", "{27EC05FB-0223-4B26-8157-E49AF81D0007}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.UnitTest", "src\Clients\FSpot.UnitTest\FSpot.UnitTest.csproj", "{A2A7E62B-8AE1-44F3-BB1B-B8E2DE7916C4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Gtk.UnitTest", "src\Clients\FSpot.Gtk.UnitTest\FSpot.Gtk.UnitTest.csproj", "{A2A7E62B-8AE1-44F3-BB1B-B8E2DE7916C4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extensions", "Extensions", "{7D049DAA-F1B0-4697-9BCA-91FC0E1A2B9D}"
 EndProject
@@ -454,6 +454,6 @@ Global
 		$12.scope = application/xml
 		version = 0.9.0
 		outputpath = .
-		StartupItem = src\Clients\FSpot\FSpot.csproj
+		StartupItem = src\Clients\FSpot.Gtk\FSpot.Gtk.csproj
 	EndGlobalSection
 EndGlobal

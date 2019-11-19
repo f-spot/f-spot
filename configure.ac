@@ -81,7 +81,6 @@ SHAMROCK_CHECK_MONO_4_5_GAC_ASSEMBLIES([
 FSPOT_CHECK_LIBFSPOT
 dnl --- Checks for gtk-sharp and glib-sharp
 FSPOT_CHECK_GTK_SHARP
-FSPOT_CHECK_DBUS_SHARP
 FSPOT_CHECK_GNOME_SHARP
 FSPOT_CHECK_ADWAITA_ICON_THEME
 FSPOT_ENABLE_TESTS
@@ -237,7 +236,7 @@ AC_SUBST(CFLAGS)
 AC_SUBST(CPPFLAGS)
 AC_SUBST(LDFLAGS)
 
-AC_CONFIG_FILES([src/Clients/FSpot/f-spot],[chmod +x src/Clients/FSpot/f-spot])
+AC_CONFIG_FILES([src/Clients/FSpot.Gtk/f-spot],[chmod +x src/Clients/FSpot.Gtk/f-spot])
 
 ADWAITA_ICON_THEME_PREFIX=`$PKG_CONFIG --variable=prefix adwaita-icon-theme`
 AC_SUBST(ADWAITA_ICON_THEME_PREFIX)
@@ -334,8 +333,8 @@ src/Core/FSpot.Gui/FSpot.Gui.dll.config
 src/Core/FSpot.Platform/Makefile
 
 src/Clients/Makefile
-src/Clients/FSpot/Makefile
-src/Clients/FSpot/f-spot.exe.config
+src/Clients/FSpot.Gtk/Makefile
+src/Clients/FSpot.Gtk/f-spot.exe.config
 
 src/Extensions/Makefile
 src/Extensions/Editors/Makefile
