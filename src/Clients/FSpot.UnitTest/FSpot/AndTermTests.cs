@@ -13,14 +13,14 @@ namespace FSpot
 		//private AndTerm andTerm = null;
 		AndTerm andTerm = null;
 
-		[TestFixtureSetUp]
-		public void TestFixtureSetUp ()
+		[OneTimeSetUp]
+		public void OneTimeSetUp ()
 		{
 			andTerm = new AndTerm (null, null);
 		}
 
-		[TestFixtureTearDown]
-		public void TestFixtureTearDown()
+		[OneTimeTearDown]
+		public void OneTimeTearDown()
 		{
 			andTerm = null;
 		}

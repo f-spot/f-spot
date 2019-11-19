@@ -9,14 +9,14 @@ SUBDIRS = \
 		FSpot.Cms \
 		FSpot.Utils \
 		FSpot.Core \
+		FSpot.Core.UnitTest \
 		FSpot.JobScheduler \
 		FSpot.Query \
 		FSpot.Gui \
 		FSpot.Platform
 
 RESOURCES = \
-		FSpot.Utils.UnitTest/TestData/taglib-sample.xmp \
-		FSpot.Utils.UnitTest/TestData/taglib-sample-broken.xmp \
-		FSpot.Utils.UnitTest/TestData/taglib-sample.jpg \
-		FSpot.Utils.UnitTest/TestData/taglib-sample-broken.jpg
-		
+		FSpot.Core.UnitTest/TestData/taglib-sample.xmp \
+		FSpot.Core.UnitTest/TestData/taglib-sample-broken.xmp \
+		FSpot.Core.UnitTest/TestData/taglib-sample.jpg \
+		FSpot.Core.UnitTest/TestData/taglib-sample-broken.jpg
