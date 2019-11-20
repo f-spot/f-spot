@@ -5,15 +5,8 @@ include $(top_srcdir)/build/xbuild.include
 
 
 SUBDIRS = \
-		FSpot.Bling \
-		FSpot.Cms \
-		FSpot.Utils \
-		FSpot.Core \
-		FSpot.Core.UnitTest \
-		FSpot.JobScheduler \
-		FSpot.Query \
-		FSpot.Gui \
-		FSpot.Platform
+		FSpot \
+		FSpot.Core.UnitTest
 
 RESOURCES = \
 		FSpot.Core.UnitTest/TestData/taglib-sample.xmp \
