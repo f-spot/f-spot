@@ -15,9 +15,9 @@ http://f-spot.org/
 
 	- GNOME development libraries 2.4 or later, http://www.gnome.org
 
-	- Mono 3.8.2 or later, http://www.go-mono.net
+	- Mono 6.0.0 or later, http://www.mono-project.com
 
-	- gtk-sharp 2.12.2 or later, http://www.go-mono.net
+	- gtk-sharp 2.12.2 or later, http://www.mono-project.com
 
 	- Sqlite 2.8.6 or later
 
@@ -27,20 +27,18 @@ http://f-spot.org/
 
 	- adwaita-icon-theme 3.18.0 or later, https://download.gnome.org/sources/adwaita-icon-theme/3.13
 
-	- taglib-sharp 2.0.3.7 or later, https://github.com/mono/taglib-sharp
-
-	- dbus-sharp 0.8 or later, https://github.com/mono/dbus-sharp
-
-	- dbus-sharp-glib 0.6 or later, https://github.com/mono/dbus-sharp-glib
-
-	- NuGet 2.14, if you want to build and run unit tests
+	- NuGet, https://www.nuget.org/
 
 The following requirements are automatically installed by make via
-NuGet if you enable tests.
+NuGet
 
-	- NUnit 2.6.4
+	- TagLibSharp 2.2.0
 
-	- Moq 4.2
+	Tests
+
+	- NUnit 3.12.0
+
+	- Moq 4.13.1
 
 # Installing missing Certificates
 
@@ -80,7 +78,7 @@ To launch F-Spot, run `$(prefix)/bin/f-spot`.
 
 # With MonoDevelop
 
-If you want to use MonoDevelop to build and run F-Spot here are notes about that process.
+If you want to use <IDE> to build and run F-Spot here are notes about that process.
 
 There are a few steps you have to run before you can open MonoDevelop:
 
@@ -97,4 +95,4 @@ I like to do `~/staging`
 
 This will build a couple tools in ./build that are needed to build the projects in ./lib.
 
-Once these two directories are built you can now open monodevelop and build and run f-spot from there.
+Once these two directories are built you can now open <IDE> and build and run f-spot from there.
