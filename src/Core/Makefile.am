@@ -6,7 +6,8 @@ include $(top_srcdir)/build/xbuild.include
 
 SUBDIRS = \
 		FSpot \
-		FSpot.UnitTest
+		FSpot.Database \
+		FSpot.Core.UnitTest
 
 RESOURCES = \
 		FSpot.UnitTest/TestData/taglib-sample.xmp \
