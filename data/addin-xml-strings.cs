@@ -134,12 +134,6 @@ internal static class AddinXmlStringCatalog
         Catalog.GetString (@"Tools");
         Catalog.GetString (@"Reassign to new import roll");
 
-        // ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfig.addin.xml
-        Catalog.GetString (@"Screensaver Configuration");
-        Catalog.GetString (@"Screensaver options");
-        Catalog.GetString (@"Tools");
-        Catalog.GetString (@"Configure Screensaver");
-
         // ../src/Extensions/Tools/FSpot.Tools.SyncCatalog/SyncCatalog.addin.xml
         Catalog.GetString (@"SyncMetaData");
         Catalog.GetString (@"Sync MetaData information of all catalog with Photos");
