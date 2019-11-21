@@ -9,10 +9,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\lib\gio-sharp\gio-sharp.csproj" />
-    <ProjectReference Include="..\..\..\lib\Hyena\Hyena\Hyena.csproj" />
-    <ProjectReference Include="..\..\..\lib\Hyena\Hyena.Data.Sqlite\Hyena.Data.Sqlite.csproj" />
+    <ProjectReference Include="..\..\..\lib\Hyena\Hyena.csproj" />
     <ProjectReference Include="..\..\..\lib\gtk-sharp-beans\gtk-sharp-beans.csproj" />
-    <ProjectReference Include="..\..\..\lib\Hyena\Hyena.Gui\Hyena.Gui.csproj" />
+    <ProjectReference Include="..\..\..\lib\Hyena.Gui\Hyena.Gui.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,10 +29,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="FSpot.Core.addins">
+    <None Update="FSpot.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="FSpot.dll.config">
+    <None Update="FSpot.addins">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

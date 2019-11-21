@@ -14,5 +14,4 @@ install:
 script:
   - ./autogen.sh --enable-tests
   - make
-  - nuget restore .nuget/packages.config -PackagesDirectory packages
   - make test

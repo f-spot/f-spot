@@ -26,7 +26,5 @@ jobs:
       run: ./autogen.sh --enable-tests
     - name: Make
       run: make
-    - name: Restore NUnit.ConsoleRunner
-      run: nuget restore .nuget/packages.config -PackagesDirectory packages
     - name: Make Tests
       run: make test
