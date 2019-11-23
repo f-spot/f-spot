@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>$(FSpotNewTargetFramework)</TargetFramework>
     <OutputPath>..\..\tests</OutputPath>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
