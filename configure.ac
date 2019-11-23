@@ -261,8 +261,6 @@ fi
 AC_SUBST(MCS_FLAGS)
 AC_SUBST(PROFILE_NAME)
 
-AM_CONDITIONAL(HYENA_PKG_CONFIG, false)
-
 AC_ARG_WITH(vendor-build-id,
 	AC_HELP_STRING([--with-vendor-build-id=<vendor-build-id>],
 		[Set a vendor build ID, recommended for packagers]),
@@ -304,12 +302,7 @@ help/Makefile
 
 external/Makefile
 
-lib/Hyena/build/m4/Makefile
-lib/Hyena/build/Makefile
-lib/Hyena/build/pkg-config/Makefile
-lib/Hyena/Hyena.Data.Sqlite/Makefile
-lib/Hyena/Hyena.Gui/Makefile
-lib/Hyena/Hyena/Makefile
+lib/Hyena.Gui/Makefile
 lib/Hyena/Makefile
 lib/libfspot/Makefile
 lib/Makefile

@@ -14,6 +14,7 @@ TEST_ASSEMBLIES = *.UnitTest.dll
 NUNIT_CONSOLE = $$(echo ../packages/NUnit.ConsoleRunner.*/tools/nunit3-console.exe)
 
 test:
+	nuget restore ../.nuget/packages.config -PackagesDirectory ../packages
 	@chmod +x $(NUNIT_CONSOLE); \
 	$(NUNIT_CONSOLE) --labels=ON $(TEST_ASSEMBLIES);
 

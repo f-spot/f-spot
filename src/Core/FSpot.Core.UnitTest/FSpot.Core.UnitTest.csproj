@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>$(FSpotNewTargetFramework)</TargetFramework>
     <OutputPath>..\..\..\tests</OutputPath>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AssemblySearchPaths>$(AssemblySearchPaths);{GAC}</AssemblySearchPaths>
   </PropertyGroup>
 
@@ -14,8 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\lib\gio-sharp\gio-sharp.csproj" />
-    <ProjectReference Include="..\..\..\lib\Hyena\Hyena.Data.Sqlite\Hyena.Data.Sqlite.csproj" />
-    <ProjectReference Include="..\..\..\lib\Hyena\Hyena\Hyena.csproj"/>
+    <ProjectReference Include="..\..\..\lib\Hyena\Hyena.csproj" />
     <ProjectReference Include="..\FSpot\FSpot.csproj" />
   </ItemGroup>
 
