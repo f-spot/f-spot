@@ -29,3 +29,4 @@
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo ("FSpot.UnitTest")]
+[assembly: InternalsVisibleTo ("DynamicProxyGenAssembly2")]
