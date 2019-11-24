@@ -36,6 +36,9 @@ namespace FSpot.Utils
 {
 	public static class CairoUtils
 	{
+		public static void SetSourceColor (this Cairo.Context cr, Cairo.Color color)
+			=> cr?.SetSourceRGBA (color.R, color.G, color.B, color.A);
+
 		public static Surface CreateSurface (Gdk.Drawable d)
 		{
 			int width, height;
@@ -51,18 +54,19 @@ namespace FSpot.Utils
 		{
 			int width = source.Width;
 			int height = source.Height;
-			byte [] gdkPixels = new byte [width * height * 4];
+			byte[] gdkPixels = new byte[width * height * 4];
 
 			Format format = source.Format;
 
 			Surface surface = new ImageSurface (gdkPixels, format, width, height, 4 * width);
-			Context ctx = new Context (surface);
-			ctx.SetSourceSurface (source, 0, 0);
+			using (Context ctx = new Context (surface)) {
+				ctx.SetSourceSurface (source, 0, 0);
 
-			if (format == Format.ARGB32)
-				ctx.MaskSurface (source, 0, 0);
-			else
-				ctx.Paint ();
+				if (format == Format.ARGB32)
+					ctx.MaskSurface (source, 0, 0);
+				else
+					ctx.Paint ();
+			}
 
 			int j;
 			for (j = height; j > 0; j--) {
@@ -71,15 +75,15 @@ namespace FSpot.Utils
 				byte tmp;
 
 				while (p < end) {
-					tmp = gdkPixels [p + 0];
+					tmp = gdkPixels[p + 0];
 					if (System.BitConverter.IsLittleEndian) {
-						gdkPixels [p + 0] = gdkPixels [p + 2];
-						gdkPixels [p + 2] = tmp;
+						gdkPixels[p + 0] = gdkPixels[p + 2];
+						gdkPixels[p + 2] = tmp;
 					} else {
-						gdkPixels [p + 0] = gdkPixels [p + 1];
-						gdkPixels [p + 1] = gdkPixels [p + 2];
-						gdkPixels [p + 2] = gdkPixels [p + 3];
-						gdkPixels [p + 3] = tmp;
+						gdkPixels[p + 0] = gdkPixels[p + 1];
+						gdkPixels[p + 1] = gdkPixels[p + 2];
+						gdkPixels[p + 2] = gdkPixels[p + 3];
+						gdkPixels[p + 3] = tmp;
 					}
 					p += 4;
 				}
