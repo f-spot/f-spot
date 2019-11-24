@@ -35,6 +35,7 @@ using Cairo;
 using Gdk;
 
 using FSpot.Transitions;
+using FSpot.Utils;
 
 using Color = Cairo.Color;
 
