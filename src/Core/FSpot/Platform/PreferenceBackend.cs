@@ -48,9 +48,12 @@ namespace FSpot.Platform
 
 		public string SettingsFile { get; }
 
-		public PreferenceBackend ()
+		public PreferenceBackend (string location)// = null)
 		{
-			SettingsFile = Path.Combine (Global.BaseDirectory, Global.SettingsName);
+			if (string.IsNullOrWhiteSpace (location))
+				SettingsFile = Path.Combine (Global.BaseDirectory, Global.SettingsName);
+			else
+				SettingsFile = location;
 		}
 
 		JObject Client {

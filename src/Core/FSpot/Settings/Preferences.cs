@@ -124,12 +124,13 @@ namespace FSpot.Settings
 		public const string GSD_THUMBS_MAX_SIZE = "/desktop/gnome/thumbnail_cache/maximum_size";
 		// Analysis restore InconsistentNaming
 
+		internal static string PreferenceLocationOverride = null;
 		static PreferenceBackend backend;
 		static EventHandler<NotifyEventArgs> changed_handler;
 		static PreferenceBackend Backend {
 			get {
 				if (backend == null) {
-					backend = new PreferenceBackend ();
+					backend = new PreferenceBackend (PreferenceLocationOverride);
 					changed_handler = OnSettingChanged;
 					// FIXME, Bring this back?
 					//backend.AddNotify (APP_FSPOT, changed_handler);
