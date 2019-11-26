@@ -107,7 +107,7 @@ namespace FSpot.Platform
 		static PreferenceBackend Backend {
 			get {
 				if (backend == null) {
-					backend = new PreferenceBackend ();
+					backend = new PreferenceBackend (null);
 					changed_handler = new EventHandler<NotifyEventArgs> (OnPreferenceChanged);
 					//backend.AddNotify (PROXY, changed_handler);
 				}

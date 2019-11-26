@@ -1,4 +1,4 @@
-﻿//
+//
 // ThumbnailService.cs
 //
 // Author:
@@ -136,7 +136,7 @@ namespace FSpot.Thumbnail
 					// catch and ignore any errors on deleting thumbnails
 					// e.g., unauthorized access, read-only filesystem
 				}
-				Log.DebugFormat ("Failed to load thumbnail: {0}", thumbnailUri);
+				Log.Debug ($"Failed to load thumbnail: {thumbnailUri}");
 				Log.DebugException (e);
 				return null;
 			}

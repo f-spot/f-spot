@@ -1,6 +1,7 @@
 <Project>
     <ItemGroup>
         <None Remove="*.in" />
+        <None Remove="*.cs.in" />
         <None Remove="Makefile*" />
         <None Remove="*.txt" />
         <None Remove="*.sh" />

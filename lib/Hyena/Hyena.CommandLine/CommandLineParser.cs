@@ -50,6 +50,7 @@ namespace Hyena.CommandLine
         private int sorted_args_generation;
         private int offset;
         private string [] arguments;
+		public string[] AllArguments { get => arguments; }
         private KeyValuePair<string, Argument> [] sorted_args;
         private Dictionary<string, Argument> parsed_arguments = new Dictionary<string, Argument> ();
         private List<string> file_list = new List<string> ();
