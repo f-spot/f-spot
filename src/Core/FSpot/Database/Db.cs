@@ -70,8 +70,6 @@ namespace FSpot.Database
 
 		public FSpotDatabaseConnection Database { get; private set; }
 
-		#region ctors
-
 		public Db (IImageFileFactory imageFileFactory, IThumbnailService thumbnailService, IUpdaterUI updaterDialog)
 		{
 			this.imageFileFactory = imageFileFactory;
@@ -79,15 +77,13 @@ namespace FSpot.Database
 			this.updaterDialog = updaterDialog;
 		}
 
-		#endregion
-
 		public string Repair ()
 		{
 			string backup_path = path;
 			int i = 0;
 
 			while (File.Exists (backup_path)) {
-				backup_path = string.Format ("{0}-{1}-{2}{3}", Path.GetFileNameWithoutExtension (path), DateTime.Now.ToString ("yyyyMMdd"), i++, Path.GetExtension (path));
+				backup_path = $"{Path.GetFileNameWithoutExtension (path)}-{DateTime.Now.ToString ("yyyyMMdd")}-{i++}{Path.GetExtension (path)}";
 			}
 
 			File.Move (path, backup_path);

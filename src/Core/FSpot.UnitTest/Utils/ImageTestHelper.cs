@@ -31,15 +31,18 @@
 
 using System;
 using Hyena;
+using NUnit.Framework;
 
 namespace FSpot.Utils.Tests
 {
 	public static class ImageTestHelper
 	{
-		public static string TestDataLocation = "/TestData/";
+		public static string TestDir = TestContext.CurrentContext.TestDirectory;
+		public static string TestDataLocation = "TestData";
+
         public static SafeUri CreateTempFile (string name)
         {
-            var uri = new SafeUri (Environment.CurrentDirectory + TestDataLocation + name);
+            var uri = new SafeUri (Paths.Combine (TestDir, TestDataLocation, name));
             var file = GLib.FileFactory.NewForUri (uri);
 
             var tmp = System.IO.Path.GetTempFileName ()+".jpg"; // hack!
@@ -53,7 +56,7 @@ namespace FSpot.Utils.Tests
         {
             var target = uri.ReplaceExtension (".xmp");
 
-            var orig_uri = new SafeUri (Environment.CurrentDirectory + TestDataLocation + filename);
+            var orig_uri = new SafeUri (Paths.Combine (TestDir, TestDataLocation, filename));
             var file = GLib.FileFactory.NewForUri (orig_uri);
             var file2 = GLib.FileFactory.NewForUri (target);
             file.Copy (file2, GLib.FileCopyFlags.Overwrite, null, null);

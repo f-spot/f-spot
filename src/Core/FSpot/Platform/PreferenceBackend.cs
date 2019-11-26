@@ -3,9 +3,11 @@
 //
 // Author:
 //   Stephane Delcroix <sdelcroix@novell.com>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
 // Copyright (C) 2008 Novell, Inc.
 // Copyright (C) 2008 Stephane Delcroix
+// Copyright (C) 2019 Stephen Shaw
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -28,90 +30,88 @@
 //
 
 using System;
-using System.Runtime.Serialization;
+using System.IO;
 
-namespace FSpot
-{
-	public class NotifyEventArgs : EventArgs
-	{
-		public string Key { get; private set; }
-		public object Value { get; private set; }
+using Newtonsoft.Json.Linq;
 
-		public NotifyEventArgs (string key, object val)
-		{
-			Key = key;
-			Value = val;
-		}
-	}
-}
+using FSpot.Settings;
 
 namespace FSpot.Platform
 {
-	[Serializable]
-	public class NoSuchKeyException : Exception
+	class PreferenceBackend
 	{
-		public NoSuchKeyException ()
+		internal const string SettingsRoot = "FSpotSettings";
+		internal static string PreferenceLocationOverride = null;
+
+		static readonly object sync_handler = new object ();
+
+		static JObject client;
+
+		internal string SettingsFile { get; }
+
+		public PreferenceBackend ()
 		{
+			if (string.IsNullOrWhiteSpace (PreferenceLocationOverride))
+				SettingsFile = Path.Combine (Global.BaseDirectory, Global.SettingsName);
+			else
+				SettingsFile = PreferenceLocationOverride;
 		}
 
-		public NoSuchKeyException (string key) : base (key)
-		{
-		}
-
-		public NoSuchKeyException (string key, Exception e) : base (key, e)
-		{
-		}
-
-		protected NoSuchKeyException (SerializationInfo info, StreamingContext context) : base (info, context)
-		{
-		}
-	}
-
-	public class PreferenceBackend
-	{
-		static object sync_handler = new object ();
-
-		static GConf.Client client;
-		GConf.Client Client {
+		JObject Client {
 			get {
 				lock (sync_handler) {
-					if (client == null)
-						client = new GConf.Client ();
-					return client;
+					return client ?? LoadSettings ();
 				}
 			}
 		}
 
-		public object Get (string key)
+		JObject LoadSettings ()
 		{
-			try {
-				return Client.Get (key);
-			} catch (GConf.NoSuchKeyException) {
-				throw new NoSuchKeyException (key);
+			if (!File.Exists (SettingsFile) || new FileInfo (SettingsFile).Length == 0) {
+				var empty = new JObject {
+					[SettingsRoot] = new JObject ()
+				};
+				File.WriteAllText (SettingsFile, empty.ToString ());
 			}
+
+			var settingsFile = File.ReadAllText (SettingsFile);
+			var o = JObject.Parse (settingsFile);
+			client = (JObject)o[SettingsRoot];
+			return client;
+		}
+
+		internal void SaveSettings ()
+		{
+			var settings = Client.Root.ToString ();
+			File.WriteAllText (SettingsFile, settings);
 		}
 
 		internal T Get<T> (string key)
 		{
-			T value = default(T);
+			T result = default;
+
 			try {
-				value = (T) Get (key);
-			} catch (NoSuchKeyException) {
+				if (Client[key] == null)
+					throw new NoSuchKeyException (key);
+
+				result = Client[key].ToObject<T> ();
 			} catch (InvalidCastException) {
 			}
-			return value;
+
+			return result;
 		}
 
-		public void Set (string key, object o)
+		internal void Set (string key, object value)
 		{
-			Client.Set (key, o);
-		}
+			var v = new JValue (value);
 
-		public void AddNotify (string key, EventHandler<NotifyEventArgs> handler)
-		{
-			// GConf doesn't like trailing slashes
-			key = key.TrimEnd('/');	
-			Client.AddNotify (key, (sender, args) => handler (sender, new NotifyEventArgs (args.Key, args.Value)));
+			if (Client[key] != null)
+				Client[key].Replace (v);
+			else
+				Client.Add (key, v);
+
+			// This isn't ideal, but guarantees settings will be saved for now
+			SaveSettings ();
 		}
 	}
 }

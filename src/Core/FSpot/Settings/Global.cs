@@ -2,10 +2,12 @@
 // Global.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Stephane Delcroix <sdelcroix@novell.com>
 //   Ruben Vermeersch <ruben@savanne.be>
 //   Larry Ewing <lewing@novell.com>
 //
+// Copyright (C) 2019 Stephen Shaw
 // Copyright (C) 2004-2010 Novell, Inc.
 // Copyright (C) 2007-2008 Stephane Delcroix
 // Copyright (C) 2010 Ruben Vermeersch
@@ -32,7 +34,8 @@
 //
 
 using System;
-using FSpot.Settings;
+using System.IO;
+
 using Hyena;
 
 namespace FSpot.Settings
@@ -40,25 +43,22 @@ namespace FSpot.Settings
 	public static class Global
 	{
 		public static string HomeDirectory {
-			get { return System.IO.Path.Combine (Environment.GetEnvironmentVariable ("HOME"), string.Empty); }
+			get => Environment.GetFolderPath (Environment.SpecialFolder.UserProfile);
 		}
 
 		//$XDG_CONFIG_HOME/f-spot or $HOME/.config/f-spot
-		static string xdg_config_home = Environment.GetFolderPath (Environment.SpecialFolder.ApplicationData);
-		static string base_dir = System.IO.Path.Combine (xdg_config_home, "f-spot");
-		public static string BaseDirectory {
-			get { return base_dir; }
-			set { base_dir = value; }
-		}
+		static readonly string xdg_config_home =
+			Environment.GetFolderPath (Environment.SpecialFolder.ApplicationData);
+
+        public static string BaseDirectory { get; set; } = Path.Combine(xdg_config_home, "f-spot");
 
 		public static SafeUri PhotoUri { get; set; }
 
-		public static string HelpDirectory {
-			get {
-				// path is relative
-				return "f-spot";
-			}
-		}
+		public static string DatabaseName { get; } = "photos.db";
+
+		public static string SettingsName { get; } = "f-spot-settings.json";
+		// path is relative
+		public static string HelpDirectory { get; } = "f-spot";
 
 		public static Cms.Profile DisplayProfile { get; set; }
 
@@ -69,18 +69,16 @@ namespace FSpot.Settings
 			get {
 				if (icon_theme == null) {
 					icon_theme = Gtk.IconTheme.Default;
-					icon_theme.AppendSearchPath (System.IO.Path.Combine (Defines.APP_DATA_DIR, "icons"));
+					icon_theme.AppendSearchPath (Path.Combine (Defines.APP_DATA_DIR, "icons"));
 				}
 				return icon_theme;
 			}
 		}
 
 		static string [] default_rc_files;
-		public static string [] DefaultRcFiles {
+		public static string[] DefaultRcFiles {
 			get {
-				if (default_rc_files == null)
-					default_rc_files = Gtk.Rc.DefaultFiles;
-				return default_rc_files;
+				return default_rc_files ?? Gtk.Rc.DefaultFiles;
 			}
 			set { default_rc_files = value; }
 		}

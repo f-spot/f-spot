@@ -1,10 +1,13 @@
 //
-// AssemblyInfo.cs
+// NotifyEventArgs.cs
 //
 // Author:
-//   Daniel Köb <daniel.koeb@peony.at>
+//   Stephane Delcroix <sdelcroix@novell.com>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
-// Copyright (C) 2017 Daniel Köb
+// Copyright (C) 2008 Novell, Inc.
+// Copyright (C) 2008 Stephane Delcroix
+// Copyright (C) 2019 Stephen Shaw
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -26,7 +29,19 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System.Runtime.CompilerServices;
+using System;
 
-[assembly: InternalsVisibleTo ("FSpot.UnitTest")]
-[assembly: InternalsVisibleTo ("DynamicProxyGenAssembly2")]
+namespace FSpot
+{
+	public class NotifyEventArgs : EventArgs
+	{
+		public string Key { get; }
+		public object Value { get; }
+
+		public NotifyEventArgs (string key, object val)
+		{
+			Key = key;
+			Value = val;
+		}
+	}
+}

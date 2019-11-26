@@ -1,4 +1,4 @@
-﻿//
+//
 // XdgDirectoryServiceTests.cs
 //
 // Author:
@@ -26,6 +26,8 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System.IO;
+
 using FSpot.FileSystem;
 using Mocks;
 using Moq;
@@ -36,6 +38,8 @@ namespace FSpot.Thumbnail.UnitTest
 	[TestFixture]
 	public class XdgDirectoryServiceTests
 	{
+		string PathToCache = Path.Combine ("/", "path", "to", ".cache");
+		string HomeUserPath = Path.Combine ("/", "home", "user");
 		#region Tests
 
 		#region GetUserCacheDir tests
@@ -44,37 +48,37 @@ namespace FSpot.Thumbnail.UnitTest
 		// Analysis disable once InconsistentNaming
 		public void GetUserCacheDir_ReturnsXdgCacheHome_WhenXdgCacheHomeAndHomeAreSet ()
 		{
-			var environment = new EnvironmentMock ("XDG_CACHE_HOME", "/path/to/.cache");
-			environment.SetVariable ("HOME", "/home/user");
+			var environment = new EnvironmentMock ("XDG_CACHE_HOME", PathToCache);
+			environment.SetVariable ("HOME", HomeUserPath);
 			var xdg = new XdgDirectoryService (null, environment.Object);
 
 			var result = xdg.GetUserCacheDir ();
 
-			Assert.AreEqual ("/path/to/.cache", result);
+			Assert.AreEqual (PathToCache, result);
 		}
 
 		[Test]
 		// Analysis disable once InconsistentNaming
 		public void GetUserCacheDir_ReturnsXdgCacheHome_WhenXdgCacheHomeSet ()
 		{
-			var environment = new EnvironmentMock ("XDG_CACHE_HOME", "/path/to/.cache");
+			var environment = new EnvironmentMock ("XDG_CACHE_HOME", PathToCache);
 			var xdg = new XdgDirectoryService (null, environment.Object);
 
 			var result = xdg.GetUserCacheDir ();
 
-			Assert.AreEqual ("/path/to/.cache", result);
+			Assert.AreEqual (PathToCache, result);
 		}
 
 		[Test]
 		// Analysis disable once InconsistentNaming
 		public void GetUserCacheDir_ReturnsHome_WhenXdgCacheHomeNotSet ()
 		{
-			var environment = new EnvironmentMock ("HOME", "/home/user");
+			var environment = new EnvironmentMock ("HOME", HomeUserPath);
 			var xdg = new XdgDirectoryService (null, environment.Object);
 
 			var result = xdg.GetUserCacheDir ();
 
-			Assert.AreEqual ("/home/user/.cache", result);
+			Assert.AreEqual (Path.Combine (HomeUserPath, ".cache"), result);
 		}
 
 		[Test]
@@ -85,25 +89,28 @@ namespace FSpot.Thumbnail.UnitTest
 			var fileSystem = new Mock<IFileSystem> { DefaultValue = DefaultValue.Mock };
 			var path = fileSystem.Object.Path;
 			var pathMock = Mock.Get (path);
-			pathMock.Setup (p => p.GetTempPath ()).Returns ("/temp/path");
+			pathMock.Setup (p => p.GetTempPath ()).Returns (Path.Combine ("/", "temp", "path"));
 
 			var result = new XdgDirectoryService (fileSystem.Object, environment).GetUserCacheDir ();
 
-			Assert.AreEqual ("/temp/path/user/.cache", result);
+			Assert.AreEqual (Path.Combine ("/", "temp", "path", "user", ".cache"), result);
 		}
 
 		[Test]
 		// Analysis disable once InconsistentNaming
 		public void GetUserCacheDir_ReturnsCachedValue_WhenXdgCacheHomeIsChanged ()
 		{
-			var environment = new EnvironmentMock ("XDG_CACHE_HOME", "/first/path/.cache");
+			var fistPathCache = Path.Combine ("/", "first", "path", ".cache");
+			var secondPathCache = Path.Combine ("/", "second", "path", ".cache");
+
+			var environment = new EnvironmentMock ("XDG_CACHE_HOME", fistPathCache);
 			var xdg = new XdgDirectoryService (null, environment.Object);
 			xdg.GetUserCacheDir ();
-			environment.SetVariable ("XDG_CACHE_HOME", "/second/path/.cache");
+			environment.SetVariable ("XDG_CACHE_HOME", secondPathCache);
 
 			var result = xdg.GetUserCacheDir ();
 
-			Assert.AreEqual ("/first/path/.cache", result);
+			Assert.AreEqual (fistPathCache, result);
 		}
 
 		#endregion
@@ -114,24 +121,24 @@ namespace FSpot.Thumbnail.UnitTest
 		// Analysis disable once InconsistentNaming
 		public void GethThumbnailsDir_ReturnsFolderForLargeThumbnails ()
 		{
-			var environment = new EnvironmentMock ("XDG_CACHE_HOME", "/path/to/.cache");
+			var environment = new EnvironmentMock ("XDG_CACHE_HOME", PathToCache);
 			var xdg = new XdgDirectoryService (null, environment.Object);
 
 			var result = xdg.GetThumbnailsDir (ThumbnailSize.Large);
 
-			Assert.AreEqual ("/path/to/.cache/thumbnails/large", result);
+			Assert.AreEqual (Path.Combine (PathToCache, "thumbnails", "large"), result);
 		}
 
 		[Test]
 		// Analysis disable once InconsistentNaming
 		public void GethThumbnailsDir_ReturnsFolderForNormalThumbnails ()
 		{
-			var environment = new EnvironmentMock ("XDG_CACHE_HOME", "/path/to/.cache");
+			var environment = new EnvironmentMock ("XDG_CACHE_HOME", PathToCache);
 			var xdg = new XdgDirectoryService (null, environment.Object);
 
 			var result = xdg.GetThumbnailsDir (ThumbnailSize.Normal);
 
-			Assert.AreEqual ("/path/to/.cache/thumbnails/normal", result);
+			Assert.AreEqual (Path.Combine (PathToCache, "thumbnails", "normal"), result);
 		}
 
 		#endregion

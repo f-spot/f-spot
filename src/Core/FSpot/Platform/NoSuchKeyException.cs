@@ -1,11 +1,13 @@
 //
-// Desktop.cs
+// NoSuchKeyException.cs
 //
 // Author:
-//   Stephane Delcroix <stephane@delcroix.org>
+//   Stephane Delcroix <sdelcroix@novell.com>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
-// Copyright (C) 2008-2009 Novell, Inc.
-// Copyright (C) 2008-2009 Stephane Delcroix
+// Copyright (C) 2008 Novell, Inc.
+// Copyright (C) 2008 Stephane Delcroix
+// Copyright (C) 2019 Stephen Shaw
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -27,19 +29,28 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System;
+using System.Runtime.Serialization;
+
 namespace FSpot.Platform
 {
-	public static class Desktop
+	[Serializable]
+	public class NoSuchKeyException : Exception
 	{
-		public static void SetBackgroundImage (string path)
+		public NoSuchKeyException ()
 		{
-			GConf.Client client = new GConf.Client (); 
-			client.Set ("/desktop/gnome/background/color_shading_type", "solid");
-			client.Set ("/desktop/gnome/background/primary_color", "#000000");
-			client.Set ("/desktop/gnome/background/picture_options", "zoom");
-			client.Set ("/desktop/gnome/background/picture_opacity", 100);
-			client.Set ("/desktop/gnome/background/picture_filename", path);
-			client.Set ("/desktop/gnome/background/draw_background", true);
+		}
+
+		public NoSuchKeyException (string key) : base (key)
+		{
+		}
+
+		public NoSuchKeyException (string key, Exception e) : base (key, e)
+		{
+		}
+
+		protected NoSuchKeyException (SerializationInfo info, StreamingContext context) : base (info, context)
+		{
 		}
 	}
 }

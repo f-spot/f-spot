@@ -99,7 +99,7 @@ namespace FSpot.Imaging
 				}
 
 				if (!_imageTypes.Contains (test_key)) {
-					Log.InformationFormat ("Missing key for {0}", test_key);
+					Log.Information ($"Missing key for {test_key}");
 					missing = true;
 				}
 			}
@@ -116,10 +116,10 @@ namespace FSpot.Imaging
 			foreach (var key in _imageTypes) {
 				string type = key;
 				if (type.StartsWith ("."))
-					type = string.Format ("taglib/{0}", type.Substring (1));
+					type = $"taglib/{type.Substring (1)}";
 
 				if (!TagLib.FileTypes.AvailableTypes.ContainsKey (type)) {
-					Log.InformationFormat ("Missing type support in Taglib# for {0}", type);
+					Log.Information ($"Missing type support in Taglib# for {type}");
 					missingTypes.Add (type);
 					missing = true;
 				}
@@ -127,7 +127,7 @@ namespace FSpot.Imaging
 
 			Assert.That (missingTypes.Count == 6, string.Join (",", missingTypes));
 
-			Assert.IsTrue (missing, "There are {0} missing type support in Taglib#.", missingTypes.Count);
+			Assert.IsTrue (missing, $"There are {missingTypes.Count} missing type support in Taglib#.");
 		}
 	}
 }

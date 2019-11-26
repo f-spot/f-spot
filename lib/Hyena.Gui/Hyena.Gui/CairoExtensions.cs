@@ -48,6 +48,9 @@ namespace Hyena.Gui
 
     public static class CairoExtensions
     {
+		public static void SetSourceColor (this Cairo.Context cr, Cairo.Color color)
+			=> cr?.SetSourceRGBA (color.R, color.G, color.B, color.A);
+
         public static Pango.Layout CreateLayout (Gtk.Widget widget, Cairo.Context cairo_context)
         {
             Pango.Layout layout = PangoCairoHelper.CreateLayout (cairo_context);
