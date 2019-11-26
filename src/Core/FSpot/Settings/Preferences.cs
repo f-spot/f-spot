@@ -124,13 +124,12 @@ namespace FSpot.Settings
 		public const string GSD_THUMBS_MAX_SIZE = "/desktop/gnome/thumbnail_cache/maximum_size";
 		// Analysis restore InconsistentNaming
 
-		internal static string PreferenceLocationOverride = null;
 		static PreferenceBackend backend;
 		static EventHandler<NotifyEventArgs> changed_handler;
-		static PreferenceBackend Backend {
+		internal static PreferenceBackend Backend {
 			get {
 				if (backend == null) {
-					backend = new PreferenceBackend (PreferenceLocationOverride);
+					backend = new PreferenceBackend ();
 					changed_handler = OnSettingChanged;
 					// FIXME, Bring this back?
 					//backend.AddNotify (APP_FSPOT, changed_handler);
@@ -140,6 +139,7 @@ namespace FSpot.Settings
 			}
 		}
 
+		static readonly object sync_handler = new object ();
 		static readonly Dictionary<string, object> cache = new Dictionary<string, object> ();
 
 		static object GetDefault (string key)
@@ -224,7 +224,7 @@ namespace FSpot.Settings
 		//return true if the key exists in the backend
 		public static bool TryGet<T> (string key, out T value)
 		{
-			lock (cache) {
+			lock (sync_handler) {
 				value = default;
 				if (cache.TryGetValue (key, out var o)) {
 					value = (T)o;
@@ -232,7 +232,7 @@ namespace FSpot.Settings
 				}
 
 				try {
-					value = (T)Backend.Get (key);
+					value = Backend.Get<T> (key);
 				} catch (NoSuchKeyException ex) {
 					Log.Exception ($"[Preferences] No key found: {key}", ex);
 					return false;
@@ -257,7 +257,7 @@ namespace FSpot.Settings
 
 		public static void Set (string key, object value)
 		{
-			lock (cache) {
+			lock (sync_handler) {
 				try {
 					cache[key] = value;
 					Backend.Set (key, value);
@@ -271,7 +271,7 @@ namespace FSpot.Settings
 
 		static void OnSettingChanged (object sender, NotifyEventArgs args)
 		{
-			lock (cache) {
+			lock (sync_handler) {
 				if (cache.ContainsKey (args.Key)) {
 					cache[args.Key] = args.Value;
 				}

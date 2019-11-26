@@ -1,5 +1,5 @@
-﻿//
-// PreferenceBackend.cs
+//
+// NotifyEventArgs.cs
 //
 // Author:
 //   Stephane Delcroix <sdelcroix@novell.com>

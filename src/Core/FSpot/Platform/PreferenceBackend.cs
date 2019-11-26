@@ -38,22 +38,23 @@ using FSpot.Settings;
 
 namespace FSpot.Platform
 {
-	public class PreferenceBackend
+	class PreferenceBackend
 	{
-		const string SettingsRoot = "FSpotSettings";
+		internal const string SettingsRoot = "FSpotSettings";
+		internal static string PreferenceLocationOverride = null;
 
 		static readonly object sync_handler = new object ();
 
-		static readonly JObject client;
+		static JObject client;
 
-		public string SettingsFile { get; }
+		internal string SettingsFile { get; }
 
-		public PreferenceBackend (string location)// = null)
+		public PreferenceBackend ()
 		{
-			if (string.IsNullOrWhiteSpace (location))
+			if (string.IsNullOrWhiteSpace (PreferenceLocationOverride))
 				SettingsFile = Path.Combine (Global.BaseDirectory, Global.SettingsName);
 			else
-				SettingsFile = location;
+				SettingsFile = PreferenceLocationOverride;
 		}
 
 		JObject Client {
@@ -66,7 +67,7 @@ namespace FSpot.Platform
 
 		JObject LoadSettings ()
 		{
-			if (!File.Exists (SettingsFile)) {
+			if (!File.Exists (SettingsFile) || new FileInfo (SettingsFile).Length == 0) {
 				var empty = new JObject {
 					[SettingsRoot] = new JObject ()
 				};
@@ -75,33 +76,42 @@ namespace FSpot.Platform
 
 			var settingsFile = File.ReadAllText (SettingsFile);
 			var o = JObject.Parse (settingsFile);
-			return (JObject)o[SettingsRoot];
+			client = (JObject)o[SettingsRoot];
+			return client;
 		}
 
-		public object Get (string key)
+		internal void SaveSettings ()
 		{
-			try {
-				var result = Client[key].ToString ();
-				return result;
-			} catch (Exception) {
-				throw new NoSuchKeyException (key);
-			}
+			var settings = Client.Root.ToString ();
+			File.WriteAllText (SettingsFile, settings);
 		}
 
 		internal T Get<T> (string key)
 		{
-			T value = default;
+			T result = default;
+
 			try {
-				value = (T)Get (key);
-			} catch (NoSuchKeyException) {
+				if (Client[key] == null)
+					throw new NoSuchKeyException (key);
+
+				result = Client[key].ToObject<T> ();
 			} catch (InvalidCastException) {
 			}
-			return value;
+
+			return result;
 		}
 
-		public void Set (string key, object o)
+		internal void Set (string key, object value)
 		{
-			Client[SettingsRoot][key] = (JObject)o;
+			var v = new JValue (value);
+
+			if (Client[key] != null)
+				Client[key].Replace (v);
+			else
+				Client.Add (key, v);
+
+			// This isn't ideal, but guarantees settings will be saved for now
+			SaveSettings ();
 		}
 	}
 }

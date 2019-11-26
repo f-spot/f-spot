@@ -27,18 +27,110 @@
 //
 
 using System;
+using System.IO;
 
 using NUnit.Framework;
 
-using FSpot.Settings;
+using Newtonsoft.Json.Linq;
+
+using FSpot.Platform;
 
 namespace FSpot.Preferences.UnitTest
 {
 	[TestFixture]
 	public class PreferencesTests
 	{
-		//public const string APP_FSPOT_EXTENSION = Preferences.APP_FSPOT + "extension/";
+		string TestSettingsFile;
+		PreferenceBackend backend;
 
-//		Preferences.APP_FSPOT;
+		[OneTimeSetUp]
+		public void OneTimeSetup ()
+		{
+			var tmpFile = Path.GetTempFileName ();
+			var jsonfile = Path.ChangeExtension (tmpFile, "json");
+			File.Move (tmpFile, jsonfile);
+			PreferenceBackend.PreferenceLocationOverride = TestSettingsFile = jsonfile;
+			backend = new PreferenceBackend ();
+		}
+
+		[OneTimeTearDown]
+		public void OneTimeTearDown ()
+		{
+			if (File.Exists (TestSettingsFile))
+				File.Delete (TestSettingsFile);
+		}
+
+		[TestCase (Settings.Preferences.APP_FSPOT, "FSpotTest")]
+		[TestCase (Settings.Preferences.APP_FSPOT_EXPORT, true)]
+		[TestCase (Settings.Preferences.CUSTOM_CROP_RATIOS, 0.0)]
+		public void CanSetSetting (string key, object v)
+		{
+			backend.Set (key, v);
+			backend.SaveSettings ();
+			Assert.That (new FileInfo (TestSettingsFile).Length > 0);
+
+			var settings = LoadSettings (TestSettingsFile);
+			var result = settings[key].ToString ();
+
+			Assert.AreEqual (v.ToString (), result);
+		}
+
+		[TestCase (Settings.Preferences.APP_FSPOT, "FSpotTest")]
+		public void CanGetStringSettings (string key, string v)
+		{
+			backend.Set (key, v);
+			backend.SaveSettings ();
+			Assert.That (new FileInfo (TestSettingsFile).Length > 0);
+
+			var result = backend.Get<string> (key);
+
+			Assert.AreEqual (v, result);
+		}
+
+		[TestCase (Settings.Preferences.APP_FSPOT_EXPORT, true)]
+		public void CanGetBoolSettings (string key, bool v)
+		{
+			backend.Set (key, v);
+			backend.SaveSettings ();
+			Assert.That (new FileInfo (TestSettingsFile).Length > 0);
+
+			var result = backend.Get<bool> (key);
+
+			Assert.AreEqual (v, result);
+		}
+
+
+		[TestCase (Settings.Preferences.CUSTOM_CROP_RATIOS, 0.0)]
+		public void CanGetDoubleSettings (string key, double v)
+		{
+			backend.Set (key, v);
+			backend.SaveSettings ();
+			Assert.That (new FileInfo (TestSettingsFile).Length > 0);
+
+			var result = backend.Get<double> (key);
+
+			Assert.AreEqual (v, result);
+		}
+
+		[Test]
+		public void UnsetSettingThrowsNoSuchKeyException ()
+		{
+			Assert.Throws<NoSuchKeyException> (() => backend.Get<bool> (Settings.Preferences.TAG_ICON_AUTOMATIC));
+		}
+
+		// Preferences returns the default value instead of an exception
+		[Test]
+		public void PreferencesGetDefaultSetting ()
+		{
+			var result = Settings.Preferences.Get<bool> (Settings.Preferences.TAG_ICON_AUTOMATIC);
+			Assert.True (result);
+		}
+
+		JObject LoadSettings (string location)
+		{
+			var settingsFile = File.ReadAllText (location);
+			var o = JObject.Parse (settingsFile);
+			return (JObject)o[PreferenceBackend.SettingsRoot];
+		}
 	}
 }

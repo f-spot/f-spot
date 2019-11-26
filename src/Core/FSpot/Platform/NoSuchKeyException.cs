@@ -1,5 +1,5 @@
-﻿//
-// PreferenceBackend.cs
+//
+// NoSuchKeyException.cs
 //
 // Author:
 //   Stephane Delcroix <sdelcroix@novell.com>
