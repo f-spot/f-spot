@@ -33,7 +33,7 @@ m4_define([fspot_asm_version],
 
 AC_PREREQ(2.52)
 AC_INIT([f-spot], fspot_version,
-	[https://github.com/mono/f-spot/issues])
+	[https://github.com/f-spot/f-spot/issues])
 
 AM_INIT_AUTOMAKE([1.10 no-dist-gzip dist-bzip2 tar-ustar foreign])
 AM_MAINTAINER_MODE([enable])
@@ -75,13 +75,11 @@ SHAMROCK_CHECK_MONO_4_5_GAC_ASSEMBLIES([
 	System.Web.Services
 	System.Data
 	Mono.Cairo
-	ICSharpCode.SharpZipLib
 ])
 
 FSPOT_CHECK_LIBFSPOT
 dnl --- Checks for gtk-sharp and glib-sharp
 FSPOT_CHECK_GTK_SHARP
-FSPOT_CHECK_GNOME_SHARP
 FSPOT_CHECK_ADWAITA_ICON_THEME
 FSPOT_ENABLE_TESTS
 
@@ -96,26 +94,6 @@ AC_PATH_PROG(MCS, csc)
 CS="C#"
 if test ! -x "$MCS"; then
 	AC_MSG_ERROR([No $CS compiler found])
-fi
-
-dnl --- Check for gapi programs
-
-AC_PATH_PROG(GAPI2FIXUP, gapi2-fixup, no)
-
-if test ! -x "$GAPI2FIXUP"; then
-	AC_MSG_ERROR([No gapi post-processor found])
-fi
-
-AC_PATH_PROG(GAPI2PARSER, gapi2-parser, no)
-
-if test ! -x "$GAPI2PARSER"; then
-	AC_MSG_ERROR([No gapi parser found])
-fi
-
-AC_PATH_PROG(GAPI2CODEGEN, gapi2-codegen, no)
-
-if test ! -x "$GAPI2CODEGEN"; then
-	AC_MSG_ERROR([No gapi code generator found])
 fi
 
 dnl -- Check for mono pc file
@@ -145,8 +123,6 @@ AC_SUBST(GIO_CFLAGS)
 AC_SUBST(GIO_LIBS)
 
 CSC_DEFINES=""
-PKG_CHECK_MODULES(GNOME_SHARP, gnome-sharp-2.0 >= 2.8)
-
 PKG_CHECK_MODULES(GLIBSHARP, glib-sharp-2.0 >= 2.12)
 
 if pkg-config --atleast-version=2.13.0 gtk-sharp-2.0 && pkg-config --max-version=2.14 gtk-sharp-2.0; then
@@ -228,23 +204,6 @@ fi
 AC_SUBST(MCS_FLAGS)
 AC_SUBST(PROFILE_NAME)
 
-AC_ARG_WITH(vendor-build-id,
-	AC_HELP_STRING([--with-vendor-build-id=<vendor-build-id>],
-		[Set a vendor build ID, recommended for packagers]),
-	[vendor_build_id="$withval"], [
-		test -d .git \
-			&& vendor_build_id="git-checkout" \
-			|| vendor_build_id="source-tarball"
-	])
-BUILD_VENDOR_ID="$vendor_build_id"
-BUILD_HOST_OS="$host_os"
-BUILD_HOST_CPU="$host_cpu"
-BUILD_TIME=`date +"%F %T %Z"`
-AC_SUBST(BUILD_VENDOR_ID)
-AC_SUBST(BUILD_HOST_OS)
-AC_SUBST(BUILD_HOST_CPU)
-AC_SUBST(BUILD_TIME)
-
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 
 dnl Optionally disable unit tests requiring nuget packages
@@ -269,18 +228,19 @@ help/Makefile
 
 external/Makefile
 
-lib/Hyena.Gui/Makefile
 lib/Hyena/Makefile
+lib/Hyena.Gui/Makefile
+lib/Hyena.UnitTest/Makefile
+lib/gio-sharp/Makefile
+lib/gtk-sharp-beans/Makefile
+lib/unique-sharp/Makefile
 lib/libfspot/Makefile
 lib/Makefile
-
-src/AssemblyInfo.cs
 
 src/Makefile
 src/Core/Makefile
 src/Core/FSpot/Makefile
 src/Core/FSpot/FSpot.dll.config
-src/Core/FSpot/Settings/Defines.cs
 src/Core/FSpot.UnitTest/Makefile
 
 src/Clients/Makefile
@@ -298,10 +258,7 @@ src/Extensions/Exporters/Makefile
 src/Extensions/Exporters/FSpot.Exporters.CD/Makefile
 src/Extensions/Exporters/FSpot.Exporters.Flickr/Makefile
 src/Extensions/Exporters/FSpot.Exporters.Gallery/Makefile
-src/Extensions/Exporters/FSpot.Exporters.Facebook/Makefile
 src/Extensions/Exporters/FSpot.Exporters.Folder/Makefile
-src/Extensions/Exporters/FSpot.Exporters.SmugMug/Makefile
-src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Makefile
 src/Extensions/Exporters/FSpot.Exporters.Zip/Makefile
 src/Extensions/Tools/Makefile
 src/Extensions/Tools/FSpot.Tools.RawPlusJpeg/Makefile

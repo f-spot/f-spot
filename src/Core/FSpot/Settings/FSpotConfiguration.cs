@@ -1,5 +1,5 @@
 //
-// Global.cs
+// FSpotConfiguration.cs
 //
 // Author:
 //   Stephen Shaw <sshaw@decriptor.com>
@@ -35,13 +35,25 @@
 
 using System;
 using System.IO;
+using System.Reflection;
 
 using Hyena;
 
 namespace FSpot.Settings
 {
-	public static class Global
+	public static class FSpotConfiguration
 	{
+		public static string Package { get; } = "f-spot";
+
+		public static readonly Version version = Assembly.GetExecutingAssembly ().GetName ().Version;
+		public static string Version { get; } = $"{version.Major}.{version.Minor}.{version.Revision}";
+
+		// FIXME, for now we are going to hard code these
+		//			I think this stuff will be "installed"
+		//			next to the assembly in the future instead
+		public static string LocaleDir { get; } = "/usr/local/share/locale";
+		public static string AppDataDir { get; } = "/usr/local/share/f-spot";
+
 		public static string HomeDirectory {
 			get => Environment.GetFolderPath (Environment.SpecialFolder.UserProfile);
 		}
@@ -69,7 +81,7 @@ namespace FSpot.Settings
 			get {
 				if (icon_theme == null) {
 					icon_theme = Gtk.IconTheme.Default;
-					icon_theme.AppendSearchPath (Path.Combine (Defines.APP_DATA_DIR, "icons"));
+					icon_theme.AppendSearchPath (Path.Combine (AppDataDir, "icons"));
 				}
 				return icon_theme;
 			}

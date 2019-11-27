@@ -40,7 +40,7 @@ namespace FSpot
 {
 	public static class ColorManagement
 	{
-		static string [] search_dir = { "/usr/share/color/icc", Path.Combine (Global.HomeDirectory, ".color/icc"), "/usr/local/share/color/icc " };
+		static string [] search_dir = { "/usr/share/color/icc", Path.Combine (FSpotConfiguration.HomeDirectory, ".color/icc"), "/usr/local/share/color/icc " };
 
 		static Dictionary<string, Profile> profiles;
 		public static IDictionary<string, Profile> Profiles {

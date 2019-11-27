@@ -94,6 +94,10 @@ namespace Hyena
     {
         static Log ()
         {
+			// FIXME, What's going on here????
+			if (PlatformDetection.IsWindows)
+				return;
+
 			// On Windows, if running unit tests, output to STDOUT
 			if (PlatformDetection.IsWindows && ApplicationContext.CommandLine.AllArguments[0].Contains ("testhost"))
 				return;

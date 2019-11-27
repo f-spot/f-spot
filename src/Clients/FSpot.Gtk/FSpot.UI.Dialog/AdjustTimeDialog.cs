@@ -56,7 +56,7 @@ namespace FSpot.UI.Dialog
 		[GtkBeans.Builder.Object] Label name_label;
 		[GtkBeans.Builder.Object] Label old_label;
 		[GtkBeans.Builder.Object] Label count_label;
-		[GtkBeans.Builder.Object] Gnome.DateEdit date_edit;
+		//[GtkBeans.Builder.Object] Gnome.DateEdit date_edit;
 		[GtkBeans.Builder.Object] Frame tray_frame;
 		[GtkBeans.Builder.Object] Gtk.Entry offset_entry;
 		[GtkBeans.Builder.Object] Gtk.CheckButton difference_check;
@@ -83,13 +83,13 @@ namespace FSpot.UI.Dialog
 			item.Changed += HandleItemChanged;
 			item.MoveFirst ();
 
-            tray = new BrowseablePointerGridView (view.Item) {
-                MaxColumns = 1,
-                DisplayRatings = false,
-                DisplayTags = false,
-                DisplayDates = true
-            };
-            tray_scrolled.Add (tray);
+			tray = new BrowseablePointerGridView (view.Item) {
+				MaxColumns = 1,
+				DisplayRatings = false,
+				DisplayTags = false,
+				DisplayDates = true
+			};
+			tray_scrolled.Add (tray);
 
 			//forward_button.Clicked += HandleForwardClicked;
 			//back_button.Clicked += HandleBackClicked;
@@ -101,47 +101,45 @@ namespace FSpot.UI.Dialog
 			photo_spin.Adjustment.StepIncrement = 1.0;
 			photo_spin.Wrap = true;
 
-			date_edit.TimeChanged += HandleTimeChanged;
-			date_edit.DateChanged += HandleTimeChanged;
-			Gtk.Entry entry = (Gtk.Entry) date_edit.Children [0];
-			entry.Changed += HandleTimeChanged;
-			entry = (Gtk.Entry) date_edit.Children [2];
-			entry.Changed += HandleTimeChanged;
+			//date_edit.TimeChanged += HandleTimeChanged;
+			//date_edit.DateChanged += HandleTimeChanged;
+			//Gtk.Entry entry = (Gtk.Entry)date_edit.Children[0];
+			//entry.Changed += HandleTimeChanged;
+			//entry = (Gtk.Entry)date_edit.Children[2];
+			//entry.Changed += HandleTimeChanged;
 			offset_entry.Changed += HandleOffsetChanged;
 			ShowAll ();
 			HandleCollectionChanged (collection);
 
 			spacing_entry.Changed += HandleSpacingChanged;
-			spacing_entry.Sensitive = ! difference_check.Active;
+			spacing_entry.Sensitive = !difference_check.Active;
 
 			difference_check.Toggled += HandleActionToggled;
 		}
 
-		DateTime EditTime {
-			get { return date_edit.Time - gnome_dateedit_sucks; }
-		}
+		//DateTime EditTime {
+		//	get { return date_edit.Time - gnome_dateedit_sucks; }
+		//}
 
-		TimeSpan Offset
-		{
-			get {
-				Log.DebugFormat ("{0} - {1} = {2}", date_edit.Time, item.Current.Time, date_edit.Time - item.Current.Time);
-				return EditTime - item.Current.Time;
-			}
-			set {
-				date_edit.Time = item.Current.Time - gnome_dateedit_sucks + value;
-			}
-		}
+		//TimeSpan Offset {
+		//	get {
+		//		Log.Debug ($"{date_time.Time} - {item.Current.Time} = {date_edit.Time - item.Current.Time}");
+		//		return EditTime - item.Current.Time;
+		//	}
+		//	set {
+		//		date_edit.Time = item.Current.Time - gnome_dateedit_sucks + value;
+		//	}
+		//}
 
 		void HandleTimeChanged (object sender, EventArgs args)
 		{
-			TimeSpan span = Offset;
-			Log.DebugFormat ("time changed {0}", span);
-			if (! offset_entry.HasFocus)
-				offset_entry.Text = span.ToString ();
+			//TimeSpan span = Offset;
+			//Log.Debug ($"time changed {span}");
+			//if (!offset_entry.HasFocus)
+			//	offset_entry.Text = span.ToString ();
 
-			starting_label.Text = "min.";
-			difference_check.Label = string.Format (Catalog.GetString ("Shift all photos by {0}"),
-							      Offset);
+			//starting_label.Text = "min.";
+			//difference_check.Label = string.Format (Catalog.GetString ("Shift all photos by {0}"), Offset);
 		}
 
 		void HandleItemChanged (object sender, BrowsablePointerChangedEventArgs args)
@@ -149,64 +147,64 @@ namespace FSpot.UI.Dialog
 			//back_button.Sensitive = (Item.Index > 0 && collection.Count > 0);
 			//forward_button.Sensitive = (Item.Index < collection.Count - 1);
 
-			if (item.IsValid) {
-				IPhoto curr_item = item.Current;
+			//if (item.IsValid) {
+			//	IPhoto curr_item = item.Current;
 
-				name_label.Text = Uri.UnescapeDataString(curr_item.Name);
-				old_label.Text = (curr_item.Time).ToString ();
+			//	name_label.Text = Uri.UnescapeDataString (curr_item.Name);
+			//	old_label.Text = (curr_item.Time).ToString ();
 
-				int i = collection.Count > 0 ? item.Index + 1: 0;
-				// Note for translators: This indicates the current photo is photo {0} of {1} out of photos
-				count_label.Text = string.Format (Catalog.GetString ("{0} of {1}"), i, collection.Count);
+			//	int i = collection.Count > 0 ? item.Index + 1 : 0;
+			//	// Note for translators: This indicates the current photo is photo {0} of {1} out of photos
+			//	count_label.Text = string.Format (Catalog.GetString ("{0} of {1}"), i, collection.Count);
 
-				DateTime actual = curr_item.Time;
-				date_edit.Time = actual;
-				gnome_dateedit_sucks = date_edit.Time - actual;
-			}
+			//	DateTime actual = curr_item.Time;
+			//	date_edit.Time = actual;
+			//	gnome_dateedit_sucks = date_edit.Time - actual;
+			//}
 
-			HandleTimeChanged (this, EventArgs.Empty);
+			//HandleTimeChanged (this, EventArgs.Empty);
 
-			photo_spin.Value = item.Index + 1;
+			//photo_spin.Value = item.Index + 1;
 		}
 
 		void ShiftByDifference ()
 		{
-			TimeSpan span = Offset;
-			Photo [] photos = new Photo [collection.Count];
+			//TimeSpan span = Offset;
+			//Photo[] photos = new Photo[collection.Count];
 
-			for (int i = 0; i < collection.Count; i++) {
-				Photo p = (Photo) collection [i];
-				DateTime time = p.Time;
-				p.Time = time + span;
-				photos [i] = p;
-				Log.DebugFormat ("XXXXX old: {0} new: {1} span: {2}", time, p.Time, span);
-			}
+			//for (int i = 0; i < collection.Count; i++) {
+			//	Photo p = (Photo)collection[i];
+			//	DateTime time = p.Time;
+			//	p.Time = time + span;
+			//	photos[i] = p;
+			//	Log.Debug ($"XXXXX old: {time} new: {p.Time} span: {span}");
+			//}
 
-			db.Photos.Commit (photos);
+			//db.Photos.Commit (photos);
 		}
 
 		void SpaceByInterval ()
 		{
-			DateTime date = EditTime;
-		        long ticks = (long) (double.Parse (spacing_entry.Text) * TimeSpan.TicksPerMinute);
-			TimeSpan span = new TimeSpan (ticks);
-			Photo [] photos = new Photo [collection.Count];
+			//DateTime date = EditTime;
+			//long ticks = (long)(double.Parse (spacing_entry.Text) * TimeSpan.TicksPerMinute);
+			//TimeSpan span = new TimeSpan (ticks);
+			//Photo[] photos = new Photo[collection.Count];
 
-			for (int i = 0; i < collection.Count; i++) {
-				photos [i] = (Photo) collection [i];
-			}
+			//for (int i = 0; i < collection.Count; i++) {
+			//	photos[i] = (Photo)collection[i];
+			//}
 
-			TimeSpan accum = new TimeSpan (0);
-			for (int j = item.Index; j > 0; j--) {
-				date -= span;
-			}
+			//TimeSpan accum = new TimeSpan (0);
+			//for (int j = item.Index; j > 0; j--) {
+			//	date -= span;
+			//}
 
-			for (int i = 0; i < photos.Length; i++) {
-				photos [i].Time = date + accum;
-				accum += span;
-			}
+			//for (int i = 0; i < photos.Length; i++) {
+			//	photos[i].Time = date + accum;
+			//	accum += span;
+			//}
 
-			db.Photos.Commit (photos);
+			//db.Photos.Commit (photos);
 		}
 
 		void HandleSpinChanged (object sender, EventArgs args)
@@ -216,7 +214,7 @@ namespace FSpot.UI.Dialog
 
 		void HandleOkClicked (object sender, EventArgs args)
 		{
-			if (! item.IsValid)
+			if (!item.IsValid)
 				throw new ApplicationException ("invalid item selected");
 
 			Sensitive = false;
@@ -232,20 +230,20 @@ namespace FSpot.UI.Dialog
 
 		void HandleOffsetChanged (object sender, EventArgs args)
 		{
-			Log.DebugFormat ("offset = {0}", Offset);
-			TimeSpan current = Offset;
-			try {
-				TimeSpan span = TimeSpan.Parse (offset_entry.Text);
-				if (span != current)
-					Offset = span;
-			} catch (Exception) {
-				Log.WarningFormat ("unparsable span {0}", offset_entry.Text);
-			}
+			//Log.DebugFormat ("offset = {0}", Offset);
+			//TimeSpan current = Offset;
+			//try {
+			//	TimeSpan span = TimeSpan.Parse (offset_entry.Text);
+			//	if (span != current)
+			//		Offset = span;
+			//} catch (Exception) {
+			//	Log.Warning ($"unparsable span {offset_entry.Text}");
+			//}
 		}
 
 		void HandleSpacingChanged (object sender, EventArgs args)
 		{
-			if (! spacing_entry.Sensitive)
+			if (!spacing_entry.Sensitive)
 				return;
 
 			try {
@@ -258,7 +256,7 @@ namespace FSpot.UI.Dialog
 
 		void HandleActionToggled (object sender, EventArgs args)
 		{
-			spacing_entry.Sensitive = ! difference_check.Active;
+			spacing_entry.Sensitive = !difference_check.Active;
 			HandleSpacingChanged (sender, args);
 		}
 
@@ -286,7 +284,7 @@ namespace FSpot.UI.Dialog
 			count_label.Visible = multiple;
 			photo_spin.Visible = multiple;
 			action_frame.Visible = multiple;
-			photo_spin.SetRange (1.0, (double) collection.Count);
+			photo_spin.SetRange (1.0, (double)collection.Count);
 		}
 	}
 }

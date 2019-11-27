@@ -89,16 +89,16 @@ namespace FSpot
 			get {
 				lock (sync_handle) {
 					if (db == null) {
-						if (!File.Exists (Global.BaseDirectory))
-							Directory.CreateDirectory (Global.BaseDirectory);
+						if (!File.Exists (FSpotConfiguration.BaseDirectory))
+							Directory.CreateDirectory (FSpotConfiguration.BaseDirectory);
 
 						db = new Db (Container.Resolve<IImageFileFactory> (), Container.Resolve<IThumbnailService> (), new UpdaterUI ());
 
 						try {
-							db.Init (Path.Combine (Global.BaseDirectory, Global.DatabaseName), true);
+							db.Init (Path.Combine (FSpotConfiguration.BaseDirectory, FSpotConfiguration.DatabaseName), true);
 						} catch (Exception e) {
 							new FSpot.UI.Dialog.RepairDbDialog (e, db.Repair (), null);
-							db.Init (Path.Combine (Global.BaseDirectory, Global.DatabaseName), true);
+							db.Init (Path.Combine (FSpotConfiguration.BaseDirectory, FSpotConfiguration.DatabaseName), true);
 						}
 					}
 				}

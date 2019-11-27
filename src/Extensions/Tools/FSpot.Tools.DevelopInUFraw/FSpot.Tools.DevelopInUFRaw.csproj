@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>$(FSpotNewTargetFramework)</TargetFramework>
+    <TargetFramework>$(FSpotTargetFramework)</TargetFramework>
     <OutputPath>..\..\..\..\bin\Extensions</OutputPath>
     <AssemblySearchPaths>$(AssemblySearchPaths);{GAC}</AssemblySearchPaths>
     <RootNamespace>FSpot.Tools.DevelopInUFraw</RootNamespace>

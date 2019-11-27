@@ -47,6 +47,7 @@ using Gtk;
 
 using ICSharpCode.SharpZipLib.Checksum;
 using ICSharpCode.SharpZipLib.Zip;
+using FSpot.Settings;
 
 namespace FSpot.Exporters.Zip
 {
@@ -89,7 +90,7 @@ namespace FSpot.Exporters.Zip
 			uri_chooser = new Gtk.FileChooserButton (Catalog.GetString ("Select export folder"),
 								 Gtk.FileChooserAction.SelectFolder);
 			uri_chooser.LocalOnly = true;
-			uri_chooser.SetFilename (System.IO.Path.Combine (FSpot.Settings.Global.HomeDirectory, "Desktop"));
+			uri_chooser.SetFilename (System.IO.Path.Combine (FSpotConfiguration.HomeDirectory, "Desktop"));
 			dirchooser_hbox.PackStart (uri_chooser, false, false, 2);
 			filename.Text = "f-spot_export.zip";
 

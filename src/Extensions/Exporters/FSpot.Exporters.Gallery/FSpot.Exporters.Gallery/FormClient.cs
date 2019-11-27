@@ -262,7 +262,7 @@ namespace FSpot.Exporters.Gallery
 	
 			Request.Method = "POST";
 			Request.Headers["Accept-Charset"] = "utf-8;";
-			Request.UserAgent = string.Format("F-Spot {0} (http://www.f-spot.org)", Defines.VERSION);
+			Request.UserAgent = string.Format("F-Spot {0} (http://www.f-spot.org)", FSpotConfiguration.Version);
 	
 			if (multipart) {
 				GenerateBoundary ();

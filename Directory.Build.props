@@ -1,9 +1,16 @@
 <Project>
-    <PropertyGroup>
-        <ReleaseVersion>0.9.0</ReleaseVersion>
-        <FSpotTargetFramework>v4.7.2</FSpotTargetFramework>
-        <FSpotNewTargetFramework>net472</FSpotNewTargetFramework>
-        <LangVersion>latest</LangVersion>
-        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    </PropertyGroup>
+  <PropertyGroup>
+    <FSpotTargetFramework>net472</FSpotTargetFramework>
+    <LangVersion>latest</LangVersion>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <!-- Assembly Info -->
+  <PropertyGroup>
+    <Version>0.9.0</Version>
+    <AssemblyVersion>0.9.0.0</AssemblyVersion>
+    <Title>F-Spot</Title>
+    <Description>Personal photo management</Description>
+    <Copyright>Copyright (C) 2003-2019 Novell Inc. and others</Copyright>
+  </PropertyGroup>
 </Project>

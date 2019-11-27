@@ -89,7 +89,7 @@ namespace FSpot.Database.Jobs
 				tag.Comment = photo.Description ?? string.Empty;
 				tag.Keywords = names;
 				tag.Rating = photo.Rating;
-				tag.Software = Defines.PACKAGE + " version " + Defines.VERSION;
+				tag.Software = FSpotConfiguration.Package + " version " + FSpotConfiguration.Version;
 
 				var always_sidecar = Preferences.Get<bool> (Preferences.METADATA_ALWAYS_USE_SIDECAR);
 				metadata.SaveSafely (photo.DefaultVersion.Uri, always_sidecar);

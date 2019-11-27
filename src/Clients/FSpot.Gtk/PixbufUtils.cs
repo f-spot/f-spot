@@ -59,7 +59,7 @@ public static class PixbufUtils
 	public static Pixbuf ErrorPixbuf {
 		get {
 			if (error_pixbuf == null)
-				error_pixbuf = GtkUtil.TryLoadIcon (FSpot.Settings.Global.IconTheme, "f-spot-question-mark", 256, (Gtk.IconLookupFlags)0);
+				error_pixbuf = GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, "f-spot-question-mark", 256, (Gtk.IconLookupFlags)0);
 			return error_pixbuf;
 		}
 	}

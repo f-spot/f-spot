@@ -1,86 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{069D1797-427D-4CED-A754-233DE64FC5DD}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <TargetFramework>$(FSpotTargetFramework)</TargetFramework>
+    <AssemblySearchPaths>$(AssemblySearchPaths);{GAC}</AssemblySearchPaths>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <OutputPath>..\..\bin</OutputPath>
     <RootNamespace>gtksharpbeans</RootNamespace>
     <AssemblyName>gtk-sharp-beans</AssemblyName>
-    <TargetFrameworkVersion>$(FSpotTargetFramework)</TargetFrameworkVersion>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>True</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>False</Optimize>
-    <OutputPath>..\..\bin</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>False</ConsolePause>
-    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
-    <Optimize>True</Optimize>
-    <OutputPath>..\..\bin</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>False</ConsolePause>
-    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>glib-sharp-2.0</Package>
-    </Reference>
-    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>gtk-sharp-2.0</Package>
-    </Reference>
-    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>gtk-sharp-2.0</Package>
-    </Reference>
-    <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>gtk-sharp-2.0</Package>
-    </Reference>
+    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+
   <ItemGroup>
-    <Folder Include="gtk_generated\" />
+    <ProjectReference Include="..\gio-sharp\gio-sharp.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="gtk_generated\Builder.cs" />
-    <Compile Include="gtk_generated\BuilderConnectFunc.cs" />
-    <Compile Include="gtk_generated\BuilderError.cs" />
-    <Compile Include="gtk_generated\GtkBeansSharp.BuilderConnectFuncNative.cs" />
-    <Compile Include="gtk_generated\MountOperation.cs" />
-    <Compile Include="gtk_generated\ObjectManager.cs" />
-    <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Dialog.cs" />
-    <Compile Include="Drawable.cs" />
-    <Compile Include="Format.cs" />
-    <Compile Include="Global.cs" />
-    <Compile Include="Image.cs" />
-    <Compile Include="ImageMenuItem.cs" />
-    <Compile Include="PixbufFormat.cs" />
-    <Compile Include="PixbufLoader.cs" />
-    <Compile Include="Priority.cs" />
-    <Compile Include="Shell.cs" />
-    <Compile Include="Sources.cs" />
-    <Compile Include="Style.cs" />
-    <Compile Include="Timeout.cs" />
-    <Compile Include="Widget.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\gio-sharp\gio-sharp.csproj">
-      <Project>{942B6AEF-0A90-4A7F-B8E4-F1A4327E408C}</Project>
-      <Name>gio-sharp</Name>
-    </ProjectReference>
-  </ItemGroup>
+
   <ItemGroup>
     <None Include="gtk-sharp-beans.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+
 </Project>

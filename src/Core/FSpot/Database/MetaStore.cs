@@ -91,11 +91,11 @@ namespace FSpot.Database
     			"	data	TEXT\n" +
     			")");
     	}
-    
+
     	private void CreateDefaultItems (bool is_new)
     	{
-    		Create (version, Defines.VERSION);
-    		Create (db_version, (is_new) ? FSpot.Database.Updater.LatestVersion.ToString () : "0");
+			Create (version, FSpotConfiguration.Version);
+			Create (db_version, (is_new) ? FSpot.Database.Updater.LatestVersion.ToString () : "0");
     
     		// Get the hidden tag id, if it exists
 		string table = Database.Query<string> ("SELECT name FROM sqlite_master WHERE type='table' AND name='tags'");
@@ -122,12 +122,12 @@ namespace FSpot.Database
     
     			AddToCache (item);
     		}
+
+			reader.Dispose ();
     
-    		reader.Dispose ();
-    
-    		if (FSpotVersion.Value != Defines.VERSION) {
-    			FSpotVersion.Value = Defines.VERSION;
-    			Commit (FSpotVersion);
+			if (FSpotVersion.Value != FSpotConfiguration.Version) {
+				FSpotVersion.Value = FSpotConfiguration.Version;
+				Commit (FSpotVersion);
     		}
     	}
     

@@ -34,6 +34,7 @@ using System;
 using Mono.Unix;
 
 using Gtk;
+using FSpot.Settings;
 
 namespace FSpot.Widgets
 {
@@ -142,7 +143,7 @@ namespace FSpot.Widgets
 			Frame page_frame = new Frame (Catalog.GetString ("Page Setup"));
 			VBox page_box = new VBox ();
 			Label current_settings = new Label ();
-			if (FSpot.Settings.Global.PageSetup != null)
+			if (FSpotConfiguration.PageSetup != null)
 				current_settings.Text = string.Format (Catalog.GetString ("Paper Size: {0} x {1} mm"), 
 								Math.Round (print_operation.DefaultPageSetup.GetPaperWidth (Unit.Mm), 1), 
 								Math.Round (print_operation.DefaultPageSetup.GetPaperHeight (Unit.Mm), 1));
