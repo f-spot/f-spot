@@ -22,6 +22,8 @@ steps:
     restoreSolution: '$(solution)'
 
 - script: choco install gtksharp
+# FIXME, Temporary hack
+- script: cp src\Clients\FSpot.Gtk\f-spot.exe.config.in src\Clients\FSpot.Gtk\f-spot.exe.config
 
 - task: VSBuild@1
   inputs:
