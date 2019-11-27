@@ -84,6 +84,7 @@ namespace Hyena
 
         public static string FilenameToUri (string localPath)
         {
+			return $"file://////{localPath}";
             // TODO: replace with managed conversion to avoid marshalling
             IntPtr path_ptr = GLib.Marshaller.StringToPtrGStrdup (localPath);
 
