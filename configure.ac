@@ -274,8 +274,6 @@ lib/Hyena/Makefile
 lib/libfspot/Makefile
 lib/Makefile
 
-src/AssemblyInfo.cs
-
 src/Makefile
 src/Core/Makefile
 src/Core/FSpot/Makefile

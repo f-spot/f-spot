@@ -1,17 +1,6 @@
 UNIQUE_FILTER_PIPE = tr [:space:] \\n | sort | uniq
 BUILD_DATA_DIR = $(top_builddir)/bin/share/$(PACKAGE)
 
-# Since all other attempts failed, we currently go this way:
-# This code adds the file specified in ASSEMBLY_INFO_SOURCE to SOURCES_BUILD.
-# If no such file is specified, the default AssemblyInfo.cs is used.
-ASSEMBLY_INFO_SOURCE_REAL = \
-	$(shell if [ "$(ASSEMBLY_INFO_SOURCE)" ]; \
-	then \
-		echo "$(addprefix $(srcdir)/, $(ASSEMBLY_INFO_SOURCE))"; \
-	else \
-		echo "$(top_srcdir)/src/AssemblyInfo.cs"; \
-	fi)
-
 SOURCES_BUILD = $(addprefix $(srcdir)/, $(SOURCES))
 SOURCES_BUILD += $(ASSEMBLY_INFO_SOURCE_REAL)
 
@@ -50,7 +39,7 @@ module_SCRIPTS = $(OUTPUT_FILES)
 
 all-local: theme-icons
 
-run: 
+run:
 	@pushd $(top_builddir); \
 	make run; \
 	popd;
@@ -93,7 +82,7 @@ theme-icons: $(THEME_ICONS_SOURCE)
 
 install-data-local: $(THEME_ICONS_SOURCE)
 	@$(INSTALL_ICONS) -i "$(DESTDIR)$(pkgdatadir)" "$(srcdir)" $(THEME_ICONS_RELATIVE)
-	
+
 uninstall-local: $(THEME_ICONS_SOURCE)
 	@$(INSTALL_ICONS) -u "$(DESTDIR)$(pkgdatadir)" "$(srcdir)" $(THEME_ICONS_RELATIVE)
 
