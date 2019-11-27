@@ -3,8 +3,6 @@
 # Add steps that publish symbols, save build artifacts, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
 
-# Install deps, gtk-sharp, etc
-
 trigger:
 - master
 
@@ -22,6 +20,8 @@ steps:
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
+
+- script: choco install gtksharp
 
 - task: VSBuild@1
   inputs:
