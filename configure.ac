@@ -33,7 +33,7 @@ m4_define([fspot_asm_version],
 
 AC_PREREQ(2.52)
 AC_INIT([f-spot], fspot_version,
-	[https://github.com/mono/f-spot/issues])
+	[https://github.com/f-spot/f-spot/issues])
 
 AM_INIT_AUTOMAKE([1.10 no-dist-gzip dist-bzip2 tar-ustar foreign])
 AM_MAINTAINER_MODE([enable])

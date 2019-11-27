@@ -1,6 +1,7 @@
 <Project>
   <PropertyGroup>
     <FSpotNewTargetFramework>net472</FSpotNewTargetFramework>
+    <FSpotTargetFramework>v4.7.2</FSpotTargetFramework>
     <LangVersion>latest</LangVersion>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
@@ -9,7 +10,6 @@
   <PropertyGroup>
     <Version>0.9.0</Version>
     <AssemblyVersion>0.9.0.0</AssemblyVersion>
-    <FSpotTargetFramework>v4.7.2</FSpotTargetFramework>
     <Title>F-Spot</Title>
     <Description>Personal photo management</Description>
     <Copyright>Copyright (C) 2003-2019 Novell Inc. and others</Copyright>
