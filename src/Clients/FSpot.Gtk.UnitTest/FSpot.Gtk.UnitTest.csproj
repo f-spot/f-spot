@@ -1,67 +1,27 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A2A7E62B-8AE1-44F3-BB1B-B8E2DE7916C4}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>FSpot.UnitTest</RootNamespace>
-    <AssemblyName>FSpot.Gtk.UnitTest</AssemblyName>
-    <TargetFrameworkVersion>$(FSpotTargetFramework)</TargetFrameworkVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
-    <Optimize>False</Optimize>
+    <TargetFramework>$(FSpotNewTargetFramework)</TargetFramework>
     <OutputPath>..\..\..\tests</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>False</ConsolePause>
+    <AssemblySearchPaths>$(AssemblySearchPaths);{GAC}</AssemblySearchPaths>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>..\..\..\tests</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-  </PropertyGroup>
+
+
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>glib-sharp-2.0</Package>
-    </Reference>
+    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="Mono.Posix" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="FSpot\AndTermTests.cs" />
-    <Compile Include="FSpot\PhotoStoreTests.cs" />
-    <Compile Include="FSpot\Mocks\PhotoMock.cs" />
-    <Compile Include="FSpot.Widgets\FindBarTests.cs" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0" />
+    <PackageReference Include="Moq" Version="4.13.1" />
+    <PackageReference Include="NUnit" Version="3.12.0" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+
   <ItemGroup>
-    <PackageReference Include="Moq">
-      <Version>4.13.1</Version>
-    </PackageReference>
-    <PackageReference Include="NUnit">
-      <Version>3.12.0</Version>
-    </PackageReference>
+    <ProjectReference Include="..\FSpot.Gtk\FSpot.Gtk.csproj" />
+    <ProjectReference Include="..\..\..\lib\Hyena\Hyena.csproj" />
+    <ProjectReference Include="..\..\Core\FSpot\FSpot.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\FSpot.Gtk\FSpot.Gtk.csproj">
-      <Project>{27EC05FB-0223-4B26-8157-E49AF81D0007}</Project>
-      <Name>FSpot.Gtk</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\lib\Hyena\Hyena.csproj">
-      <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
-      <Name>Hyena</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Core\FSpot\FSpot.csproj">
-      <Project>{3C49031A-DC00-40A3-8639-84709BD136F7}</Project>
-      <Name>FSpot</Name>
-    </ProjectReference>
-  </ItemGroup>
+
 </Project>

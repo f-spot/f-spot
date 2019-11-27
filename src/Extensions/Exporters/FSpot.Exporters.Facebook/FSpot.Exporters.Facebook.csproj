@@ -1,60 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7004A4E6-12A5-46F1-BB1F-578FA9B63493}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <TargetFramework>$(FSpotNewTargetFramework)</TargetFramework>
+    <OutputPath>..\..\..\..\bin\Extensions</OutputPath>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <AssemblySearchPaths>$(AssemblySearchPaths);{GAC}</AssemblySearchPaths>
     <RootNamespace>FSpot.Exporters.Facebook</RootNamespace>
     <AssemblyName>FSpot.Exporters.Facebook</AssemblyName>
-    <TargetFrameworkVersion>$(FSpotTargetFramework)</TargetFrameworkVersion>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>True</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>False</Optimize>
-    <OutputPath>..\..\..\..\bin\Extensions</OutputPath>
-    <DefineConstants>DEBUG</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>False</ConsolePause>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
-    <Optimize>False</Optimize>
-    <OutputPath>..\..\..\..\bin\Extensions</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>False</ConsolePause>
-  </PropertyGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <Compile Include="FindNullableClashes.cs" />
-    <Compile Include="Mono.Facebook\facebook.cs" />
-    <Compile Include="Mono.Facebook\Album.cs" />
-    <Compile Include="Mono.Facebook\Error.cs" />
-    <Compile Include="Mono.Facebook\Event.cs" />
-    <Compile Include="Mono.Facebook\FacebookException.cs" />
-    <Compile Include="Mono.Facebook\FacebookParam.cs" />
-    <Compile Include="Mono.Facebook\FacebookSession.cs" />
-    <Compile Include="Mono.Facebook\Friend.cs" />
-    <Compile Include="Mono.Facebook\FriendInfo.cs" />
-    <Compile Include="Mono.Facebook\Group.cs" />
-    <Compile Include="Mono.Facebook\Location.cs" />
-    <Compile Include="Mono.Facebook\Notification.cs" />
-    <Compile Include="Mono.Facebook\PeopleList.cs" />
-    <Compile Include="Mono.Facebook\Photo.cs" />
-    <Compile Include="Mono.Facebook\Responses.cs" />
-    <Compile Include="Mono.Facebook\SessionInfo.cs" />
-    <Compile Include="Mono.Facebook\SessionWrapper.cs" />
-    <Compile Include="Mono.Facebook\Tag.cs" />
-    <Compile Include="Mono.Facebook\User.cs" />
-    <Compile Include="Mono.Facebook\Util.cs" />
-    <Compile Include="FSpot.Exporters.Facebook\FacebookExport.cs" />
-    <Compile Include="FSpot.Exporters.Facebook\FacebookExportDialog.cs" />
-    <Compile Include="FSpot.Exporters.Facebook\FacebookTagPopup.cs" />
-  </ItemGroup>
+
   <ItemGroup>
     <EmbeddedResource Include="Resources\FacebookExport.addin.xml">
       <LogicalName>FacebookExport.addin.xml</LogicalName>
@@ -63,59 +18,24 @@
       <LogicalName>FacebookExport.ui</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+
   <ItemGroup>
-    <Reference Include="System" />
     <Reference Include="Mono.Posix" />
-    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>gtk-sharp-2.0</Package>
-    </Reference>
-    <Reference Include="Gnome.Keyring, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1a73e1bde00c9b66">
-      <Package>gnome-keyring-sharp-1.0</Package>
-    </Reference>
-    <Reference Include="System.Xml" />
-    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>gtk-sharp-2.0</Package>
-    </Reference>
-    <Reference Include="System.Core" />
-    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>glib-sharp-2.0</Package>
-    </Reference>
-    <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>gtk-sharp-2.0</Package>
-    </Reference>
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="Gnome.Keyring, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1a73e1bde00c9b66" />
+    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
   </ItemGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Clients\FSpot.Gtk\FSpot.Gtk.csproj">
-      <Project>{27EC05FB-0223-4B26-8157-E49AF81D0007}</Project>
-      <Name>FSpot.Gtk</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\lib\Hyena\Hyena.csproj">
-      <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
-      <Name>Hyena</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\lib\Hyena.Gui\Hyena.Gui.csproj">
-      <Project>{C856EFD8-E812-4E61-8B76-E3583D94C233}</Project>
-      <Name>Hyena.Gui</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\lib\gtk-sharp-beans\gtk-sharp-beans.csproj">
-      <Project>{069D1797-427D-4CED-A754-233DE64FC5DD}</Project>
-      <Name>gtk-sharp-beans</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\lib\gio-sharp\gio-sharp.csproj">
-      <Project>{942B6AEF-0A90-4A7F-B8E4-F1A4327E408C}</Project>
-      <Name>gio-sharp</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\lib\unique-sharp\unique-sharp.csproj">
-      <Project>{5DBBB8C5-7BAF-46DA-B7D2-2486430141E2}</Project>
-      <Name>unique-sharp</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Core\FSpot\FSpot.csproj">
-      <Project>{3C49031A-DC00-40A3-8639-84709BD136F7}</Project>
-      <Name>FSpot</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\..\..\Clients\FSpot.Gtk\FSpot.Gtk.csproj" />
+    <ProjectReference Include="..\..\..\..\lib\Hyena\Hyena.csproj" />
+    <ProjectReference Include="..\..\..\..\lib\Hyena.Gui\Hyena.Gui.csproj" />
+    <ProjectReference Include="..\..\..\..\lib\gtk-sharp-beans\gtk-sharp-beans.csproj" />
+    <ProjectReference Include="..\..\..\..\lib\gio-sharp\gio-sharp.csproj" />
+    <ProjectReference Include="..\..\..\..\lib\unique-sharp\unique-sharp.csproj" />
+    <ProjectReference Include="..\..\..\Core\FSpot\FSpot.csproj" />
   </ItemGroup>
+
 </Project>

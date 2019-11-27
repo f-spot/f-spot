@@ -138,14 +138,8 @@ namespace FSpot.UI.Dialog
 				prefs.Add (sw.ToString ());
 			}
 
-#if !GCONF_SHARP_2_18
 			if (prefs.Count != 0)
-#endif
 				Preferences.Set (Preferences.CUSTOM_CROP_RATIOS, prefs.ToArray());
-#if !GCONF_SHARP_2_18
-			else
-				Preferences.Set (Preferences.CUSTOM_CROP_RATIOS, -1);
-#endif
 		}
 
 		public void HandleLabelEdited (object sender, EditedArgs args)

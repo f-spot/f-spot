@@ -153,17 +153,6 @@ if pkg-config --atleast-version=2.13.0 gtk-sharp-2.0 && pkg-config --max-version
 	AC_MSG_ERROR([There is a svn version of gtk-sharp 2.13.x installed. Uninstall it.])
 fi
 
-dnl --- GConf
-AC_PATH_PROG(GCONFTOOL, gconftool-2)
-AM_GCONF_SOURCE_2
-PKG_CHECK_MODULES(GCONF_SHARP, gconf-sharp-2.0 >= $GTKSHARP_REQUIRED)
-if pkg-config --atleast-version=2.18 gconf-sharp-2.0; then
-	CSC_DEFINES="$CSC_DEFINES -d:GCONF_SHARP_2_18"
-fi
-if pkg-config --atleast-version=2.20.2 gconf-sharp-2.0; then
-	CSC_DEFINES="$CSC_DEFINES -d:GCONF_SHARP_2_20_2"
-fi
-
 AC_SUBST(CSC_DEFINES)
 
 dnl --- libjpeg
@@ -193,28 +182,6 @@ if test "x$with_turtle" != "xno"; then
 	TURTLEDIR=$with_turtle
 	AC_SUBST(TURTLEDIR)
 fi
-
-AC_ARG_WITH(gnome-screensaver,
-	[ --with-gnome-screensaver=PREFIX  set gnome gnome-screensaver prefix],
-	gnome_screensaver_prefix=$with_gnome_screensaver,
-	gnome_screensaver_prefix=$prefix)
-
-AC_ARG_WITH(gnome-screensaver-privlibexecdir,
-	[ --with-gnome-screensaver-privlibexecdir=DIR  set gnome-screensaver privlibexecdir],
-	GNOME_SCREENSAVER_SAVERDIR=$with_gnome_screensaver_privlibexecdir,
-	if test -d $gnome_screensaver_prefix/lib/gnome-screensaver; then
-		GNOME_SCREENSAVER_SAVERDIR=$gnome_screensaver_prefix/lib/gnome-screensaver
-	else
-		GNOME_SCREENSAVER_SAVERDIR=$gnome_screensaver_prefix/libexec/gnome-screensaver
-	fi)
-
-AC_ARG_WITH(gnome-screensaver-themesdir,
-	[ --with-gnome-screensaver-themesdir=DIR  set gnome-screensaver themesdir],
-	GNOME_SCREENSAVER_THEMESDIR=$with_gnome_screensaver_themesdir,
-	GNOME_SCREENSAVER_THEMESDIR=$gnome_screensaver_prefix/share/applications/screensavers)
-
-AC_SUBST(GNOME_SCREENSAVER_SAVERDIR)
-AC_SUBST(GNOME_SCREENSAVER_THEMESDIR)
 
 ICONS_DIRECTORY=${datadir}/${PACKAGE}-${VERSION}
 

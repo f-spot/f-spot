@@ -369,7 +369,7 @@ namespace FSpot.Exporters.Folder
 
 			writer.AddAttribute ("href", "http://f-spot.org");
 			writer.RenderBeginTag ("a");
-			writer.Write (string.Format ("{0} {1}", Defines.PACKAGE, Defines.VERSION));
+			writer.Write ($"{Defines.PACKAGE} {Defines.VERSION}");
 			writer.RenderEndTag ();
 
 			writer.RenderEndTag ();

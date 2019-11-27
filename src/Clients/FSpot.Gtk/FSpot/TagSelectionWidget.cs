@@ -461,14 +461,7 @@ namespace FSpot
 				}
 			}
 
-	#if GCONF_SHARP_2_18
-			FSpot.Preferences.Set (	FSpot.Preferences.EXPANDED_TAGS, expanded_tags.ToArray ());
-	#else
-			if (expanded_tags.Count == 0)
-				expanded_tags.Add (-1);
-
 			Preferences.Set (Preferences.EXPANDED_TAGS, expanded_tags.ToArray ());
-	#endif
 		}
 
 		public void EditSelectedTagName ()
