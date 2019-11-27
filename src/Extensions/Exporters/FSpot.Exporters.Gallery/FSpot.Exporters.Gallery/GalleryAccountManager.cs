@@ -30,7 +30,7 @@
 
 using System.Collections.Generic;
 using System.IO;
-
+using FSpot.Settings;
 using Hyena;
 
 namespace FSpot.Exporters.Gallery
@@ -55,7 +55,7 @@ namespace FSpot.Exporters.Gallery
 		private GalleryAccountManager ()
 		{
 			// FIXME this xml file path should be be retrieved from a central location not hard coded there
-			this.xml_path = System.IO.Path.Combine (FSpot.Settings.Global.BaseDirectory, "Accounts.xml");
+			xml_path = Path.Combine (FSpotConfiguration.BaseDirectory, "Accounts.xml");
 
 			accounts = new List<GalleryAccount> ();
 			ReadAccounts ();

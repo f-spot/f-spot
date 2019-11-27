@@ -1435,7 +1435,7 @@ namespace FSpot
 		//
 		void HandlePageSetupActivated (object o, EventArgs e)
 		{
-			FSpot.Settings.Global.PageSetup = Print.RunPageSetupDialog (this.Window, FSpot.Settings.Global.PageSetup, null);
+			FSpotConfiguration.PageSetup = Print.RunPageSetupDialog (this.Window, FSpotConfiguration.PageSetup, null);
 		}
 
 		void HandlePrintCommand (object sender, EventArgs e)

@@ -1,4 +1,4 @@
-﻿//
+//
 // ImportController.cs
 //
 // Author:
@@ -89,7 +89,7 @@ namespace FSpot.Import
 
 			createdRoll = db.Rolls.Create ();
 
-			fileSystem.Directory.CreateDirectory (Global.PhotoUri);
+			fileSystem.Directory.CreateDirectory (FSpotConfiguration.PhotoUri);
 
 			try {
 				int i = 0;
@@ -135,7 +135,7 @@ namespace FSpot.Import
 			}
 
 			if (copyFiles) {
-				var destinationBase = FindImportDestination (item, Global.PhotoUri);
+				var destinationBase = FindImportDestination (item, FSpotConfiguration.PhotoUri);
 				fileSystem.Directory.CreateDirectory (destinationBase);
 				// Copy into photo folder.
 				photo_file_tracker.CopyIfNeeded (item, destinationBase);

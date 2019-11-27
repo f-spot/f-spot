@@ -44,6 +44,7 @@ using Mono.Unix;
 using Hyena;
 using Hyena.Widgets;
 using System.Linq;
+using FSpot.Settings;
 
 namespace FSpot.Widgets
 {
@@ -119,7 +120,7 @@ namespace FSpot.Widgets
 		{
 			Button button = new Button (editor.Label);
 			if (editor.IconName != null)
-				button.Image = new Image (GtkUtil.TryLoadIcon (FSpot.Settings.Global.IconTheme, editor.IconName, 22, (Gtk.IconLookupFlags)0));
+				button.Image = new Image (GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, editor.IconName, 22, (Gtk.IconLookupFlags)0));
 			button.Clicked += (o, e) => { ChooseEditor (editor); };
 			button.Show ();
 			buttons.Add (button);
@@ -275,7 +276,7 @@ namespace FSpot.Widgets
 			tool_buttons.Add (cancel);
 
 			Button apply = new Button (editor.ApplyLabel);
-			apply.Image = new Image (GtkUtil.TryLoadIcon (FSpot.Settings.Global.IconTheme, editor.IconName, 22, 0));
+			apply.Image = new Image (GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, editor.IconName, 22, 0));
 			apply.Clicked += (s, e) => { Apply (editor); };
 			tool_buttons.Add (apply);
 

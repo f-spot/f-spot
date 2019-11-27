@@ -52,7 +52,7 @@ namespace FSpot.Platform
 		public PreferenceBackend ()
 		{
 			if (string.IsNullOrWhiteSpace (PreferenceLocationOverride))
-				SettingsFile = Path.Combine (Global.BaseDirectory, Global.SettingsName);
+				SettingsFile = Path.Combine (FSpotConfiguration.BaseDirectory, FSpotConfiguration.SettingsName);
 			else
 				SettingsFile = PreferenceLocationOverride;
 		}

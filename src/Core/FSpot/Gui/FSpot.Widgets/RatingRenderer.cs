@@ -33,6 +33,7 @@ using Cairo;
 using Hyena.Gui;
 
 using FSpot.Utils;
+using FSpot.Settings;
 
 namespace FSpot.Widgets
 {
@@ -55,7 +56,7 @@ namespace FSpot.Widgets
             get {
                 if (icon_rated == null)
                     icon_rated =
-                        GtkUtil.TryLoadIcon (FSpot.Settings.Global.IconTheme,
+                        GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme,
                                              "rating-rated",
                                              REQUESTED_ICON_SIZE, (Gtk.IconLookupFlags)0);
 
@@ -67,7 +68,7 @@ namespace FSpot.Widgets
             get {
                 if (icon_blank == null)
                     icon_blank =
-                        GtkUtil.TryLoadIcon (FSpot.Settings.Global.IconTheme,
+                        GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme,
                                              "rating-blank",
                                              REQUESTED_ICON_SIZE, (Gtk.IconLookupFlags)0);
 
@@ -79,7 +80,7 @@ namespace FSpot.Widgets
             get {
                 if (icon_hover == null)
                     icon_hover =
-                        GtkUtil.TryLoadIcon (FSpot.Settings.Global.IconTheme,
+                        GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme,
                                              "rating-rated-gray",
                                              REQUESTED_ICON_SIZE, (Gtk.IconLookupFlags)0);
 

@@ -60,7 +60,7 @@ namespace FSpot
 	{
 		static void ShowVersion ()
 		{
-			Console.WriteLine ($"F-Spot {Defines.VERSION}");
+			Console.WriteLine ($"F-Spot {FSpotConfiguration.Version}");
 			Console.WriteLine ("http://f-spot.org");
 			Console.WriteLine ("\t(c)2003-2009, Novell Inc");
 			Console.WriteLine ("\t(c)2009 Stephane Delcroix");
@@ -187,7 +187,7 @@ namespace FSpot
 			args = FixArgs (args);
 
 			ApplicationContext.ApplicationName = "F-Spot";
-			ApplicationContext.TrySetProcessName (Defines.PACKAGE);
+			ApplicationContext.TrySetProcessName (FSpotConfiguration.Package);
 
 			Paths.ApplicationName = "f-spot";
 			SynchronizationContext.SetSynchronizationContext (new GtkSynchronizationContext ());
@@ -201,9 +201,9 @@ namespace FSpot
 			bool import = false;
 
 			GLib.GType.Init ();
-			Catalog.Init ("f-spot", Defines.LOCALE_DIR);
+			Catalog.Init ("f-spot", FSpotConfiguration.LocaleDir);
 
-			Global.PhotoUri = new SafeUri (Preferences.Get<string> (Preferences.STORAGE_PATH));
+			FSpotConfiguration.PhotoUri = new SafeUri (Preferences.Get<string> (Preferences.STORAGE_PATH));
 
 			ApplicationContext.CommandLine = new CommandLineParser (args, 0);
 
@@ -236,7 +236,7 @@ namespace FSpot
 				string dir = ApplicationContext.CommandLine["basedir"];
 
 				if (!string.IsNullOrEmpty (dir)) {
-					Global.BaseDirectory = dir;
+					FSpotConfiguration.BaseDirectory = dir;
 					Log.Information ($"BaseDirectory is now {dir}");
 				} else {
 					Log.Error ("f-spot: -basedir option takes one argument");
@@ -248,7 +248,7 @@ namespace FSpot
 				string dir = ApplicationContext.CommandLine["photodir"];
 
 				if (!string.IsNullOrEmpty (dir)) {
-					Global.PhotoUri = new SafeUri (dir);
+					FSpotConfiguration.PhotoUri = new SafeUri (dir);
 					Log.Information ($"PhotoDirectory is now {dir}");
 				} else {
 					Log.Error ("f-spot: -photodir option takes one argument");
@@ -291,7 +291,7 @@ namespace FSpot
 			InitializeAddins ();
 
 			// Gtk initialization
-			Gtk.Application.Init (Defines.PACKAGE, ref args);
+			Gtk.Application.Init (FSpotConfiguration.Package, ref args);
 			// Maybe we'll add this at a future date
 			//Xwt.Application.InitializeAsGuest (Xwt.ToolkitType.Gtk);
 
@@ -299,20 +299,20 @@ namespace FSpot
 			Platform.WebProxy.Init ();
 
 			if (File.Exists (Preferences.Get<string> (Preferences.GTK_RC))) {
-				if (File.Exists (Path.Combine (Global.BaseDirectory, "gtkrc")))
-					Gtk.Rc.AddDefaultFile (Path.Combine (Global.BaseDirectory, "gtkrc"));
+				if (File.Exists (Path.Combine (FSpotConfiguration.BaseDirectory, "gtkrc")))
+					Gtk.Rc.AddDefaultFile (Path.Combine (FSpotConfiguration.BaseDirectory, "gtkrc"));
 
-				Global.DefaultRcFiles = Gtk.Rc.DefaultFiles;
+				FSpotConfiguration.DefaultRcFiles = Gtk.Rc.DefaultFiles;
 				Gtk.Rc.AddDefaultFile (Preferences.Get<string> (Preferences.GTK_RC));
 				Gtk.Rc.ReparseAllForSettings (Gtk.Settings.Default, true);
 			}
 
 			try {
 				Gtk.Window.DefaultIconList = new Gdk.Pixbuf[] {
-					GtkUtil.TryLoadIcon (Global.IconTheme, "f-spot", 16, 0),
-					GtkUtil.TryLoadIcon (Global.IconTheme, "f-spot", 22, 0),
-					GtkUtil.TryLoadIcon (Global.IconTheme, "f-spot", 32, 0),
-					GtkUtil.TryLoadIcon (Global.IconTheme, "f-spot", 48, 0)
+					GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, "f-spot", 16, 0),
+					GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, "f-spot", 22, 0),
+					GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, "f-spot", 32, 0),
+					GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, "f-spot", 48, 0)
 				};
 			} catch (Exception ex) {
 				Log.Exception ("Loading default f-spot icons", ex);
@@ -359,14 +359,14 @@ namespace FSpot
 
 		static void UpdatePlugins ()
 		{
-			AddinManager.Initialize (Global.BaseDirectory);
+			AddinManager.Initialize (FSpotConfiguration.BaseDirectory);
 			AddinManager.Registry.Update (null);
 		}
 
 		static void ResetPluginDb ()
 		{
 			// Nuke addin-db
-			var directory = GLib.FileFactory.NewForUri (new SafeUri (Global.BaseDirectory));
+			var directory = GLib.FileFactory.NewForUri (new SafeUri (FSpotConfiguration.BaseDirectory));
 			using (var list = directory.EnumerateChildren ("standard::name", GLib.FileQueryInfoFlags.None, null)) {
 				foreach (GLib.FileInfo info in list) {
 					if (info.Name.StartsWith ("addin-db-")) {

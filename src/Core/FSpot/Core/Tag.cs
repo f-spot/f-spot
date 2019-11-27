@@ -69,7 +69,7 @@ namespace FSpot.Core
 			get {
 				if (icon == null && ThemeIconName != null) {
 					cached_icon_size = IconSize.Hidden;
-					icon = GtkUtil.TryLoadIcon (FSpot.Settings.Global.IconTheme, ThemeIconName, 48, (Gtk.IconLookupFlags)0);
+					icon = GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, ThemeIconName, 48, (Gtk.IconLookupFlags)0);
 				}
 				return icon;
 			}
@@ -103,7 +103,7 @@ namespace FSpot.Core
 					if (cached_icon != null)
 						cached_icon.Dispose ();
 					try {
-						cached_icon = GtkUtil.TryLoadIcon (FSpot.Settings.Global.IconTheme, ThemeIconName, (int)tag_icon_size, (Gtk.IconLookupFlags)0);
+						cached_icon = GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, ThemeIconName, (int)tag_icon_size, (Gtk.IconLookupFlags)0);
 
 						if (Math.Max (cached_icon.Width, cached_icon.Height) <= (int)tag_icon_size)
 							return cached_icon;

@@ -343,7 +343,7 @@ namespace FSpot
 			// if the directory we're dealing with is not in the
 			// F-Spot photos directory, don't delete anything,
 			// even if it is empty
-			string photo_uri = SafeUri.UriToFilename (Global.PhotoUri.ToString ());
+			string photo_uri = SafeUri.UriToFilename (FSpotConfiguration.PhotoUri.ToString ());
 			bool path_matched = directory.Path.IndexOf (photo_uri) > -1;
 
 			if (directory.Path.Equals (photo_uri) || !path_matched)

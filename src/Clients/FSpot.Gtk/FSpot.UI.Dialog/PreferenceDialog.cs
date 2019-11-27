@@ -64,12 +64,12 @@ namespace FSpot.UI.Dialog
 			TransientFor = parent;
 
 			//Photos Folder
-			photosdir_chooser.SetCurrentFolderUri (FSpot.Settings.Global.PhotoUri);
+			photosdir_chooser.SetCurrentFolderUri (FSpotConfiguration.PhotoUri);
 
 			SafeUri storage_path = new SafeUri (Preferences.Get<string> (Preferences.STORAGE_PATH));
 
 			//If the user has set a photo directory on the commandline then don't let it be changed in Preferences
-			if (storage_path.Equals(FSpot.Settings.Global.PhotoUri))
+			if (storage_path.Equals(FSpotConfiguration.PhotoUri))
 				photosdir_chooser.CurrentFolderChanged += HandlePhotosdirChanged;
 			else
 				photosdir_chooser.Sensitive = false;
@@ -123,7 +123,7 @@ namespace FSpot.UI.Dialog
 			themes.AppendValues (Catalog.GetString ("Standard theme"), null);
 			themes.AppendValues (null, null); //Separator
 			string gtkrc = System.IO.Path.Combine ("gtk-2.0", "gtkrc");
-			string [] search = {System.IO.Path.Combine (FSpot.Settings.Global.HomeDirectory, ".themes"), "/usr/share/themes"};
+			string [] search = {System.IO.Path.Combine (FSpotConfiguration.HomeDirectory, ".themes"), "/usr/share/themes"};
 
 			foreach (string path in search)
 				if (Directory.Exists (path))
@@ -240,7 +240,7 @@ namespace FSpot.UI.Dialog
 			photosdir_chooser.CurrentFolderChanged -= HandlePhotosdirChanged;
 			Preferences.Set (Preferences.STORAGE_PATH, photosdir_chooser.Filename);
 			photosdir_chooser.CurrentFolderChanged += HandlePhotosdirChanged;
-			FSpot.Settings.Global.PhotoUri = new SafeUri (photosdir_chooser.Uri, true);
+			FSpotConfiguration.PhotoUri = new SafeUri (photosdir_chooser.Uri, true);
 		}
 
 		void HandleWritemetadataGroupChanged (object sender, EventArgs args)
@@ -266,7 +266,7 @@ namespace FSpot.UI.Dialog
 				else
 					Preferences.Set (Preferences.GTK_RC, string.Empty);
 			}
-			Gtk.Rc.DefaultFiles = FSpot.Settings.Global.DefaultRcFiles;
+			Gtk.Rc.DefaultFiles = FSpotConfiguration.DefaultRcFiles;
 			Gtk.Rc.AddDefaultFile (Preferences.Get<string> (Preferences.GTK_RC));
 			Gtk.Rc.ReparseAllForSettings (Gtk.Settings.Default, true);
 		}

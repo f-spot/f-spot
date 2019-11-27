@@ -57,7 +57,7 @@ namespace FSpot
 			selected_photos = selectedPhotos;
 			CustomTabLabel = Catalog.GetString ("Image Settings");
 			NPages = selectedPhotos.Length;
-			DefaultPageSetup = Global.PageSetup;
+			DefaultPageSetup = FSpotConfiguration.PageSetup;
 		}
 
 		protected override Gtk.Widget OnCreateCustomWidget ()

@@ -50,6 +50,7 @@ using Mono.Unix;
 
 using Hyena;
 using Hyena.Widgets;
+using FSpot.Settings;
 
 namespace FSpot.Tools.MergeDb
 {
@@ -132,7 +133,7 @@ namespace FSpot.Tools.MergeDb
 
 		public static void Merge (string path, Db to_db)
 		{
-			Log.WarningFormat ("Will merge db {0} into main f-spot db {1}", path, Path.Combine (FSpot.Settings.Global.BaseDirectory + FSpot.Settings.Global.DatabaseName));
+			Log.Warning ($"Will merge db {path} into main f-spot db {Path.Combine (FSpotConfiguration.BaseDirectory, FSpotConfiguration.DatabaseName)}");
 			Db from_db = new Db (App.Instance.Container.Resolve<IImageFileFactory> (), App.Instance.Container.Resolve<IThumbnailService> (), new UpdaterUI ());
 			from_db.Init (path, true);
 			//MergeDb mdb = new MergeDb (from_db, to_db);
@@ -313,9 +314,9 @@ namespace FSpot.Tools.MergeDb
             // Find a new unique location inside the photo folder
             string name = uri.GetFilename ();
 
-            var dest_uri = FSpot.Settings.Global.PhotoUri.Append (time.Year.ToString ())
-                                          .Append (string.Format ("{0:D2}", time.Month))
-                                          .Append (string.Format ("{0:D2}", time.Day));
+            var dest_uri = FSpotConfiguration.PhotoUri.Append (time.Year.ToString ())
+			                                          .Append (string.Format ("{0:D2}", time.Month))
+			                                          .Append (string.Format ("{0:D2}", time.Day));
             EnsureDirectory (dest_uri);
 
             // If the destination we'd like to use is the file itself return that

@@ -150,7 +150,7 @@ namespace FSpot.UI.Dialog
             TranslatorCredits = Catalog.GetString ("translator-credits");
             if (string.Compare (TranslatorCredits, "translator-credits") == 0)
                 TranslatorCredits = null;
-            Version = Defines.VERSION;
+            Version = FSpotConfiguration.Version;
             Website = "http://f-spot.org";
             WebsiteLabel = Catalog.GetString ("F-Spot Website");
             WrapLicense = true;
