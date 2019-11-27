@@ -50,13 +50,17 @@ using Hyena;
 using Hyena.CommandLine;
 using Hyena.Gui;
 
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+
 namespace FSpot
 {
 	public static class Driver
 	{
 		static void ShowVersion ()
 		{
-			Console.WriteLine ("F-Spot {0}", Defines.VERSION);
+			Console.WriteLine ($"F-Spot {Defines.VERSION}");
 			Console.WriteLine ("http://f-spot.org");
 			Console.WriteLine ("\t(c)2003-2009, Novell Inc");
 			Console.WriteLine ("\t(c)2009 Stephane Delcroix");
@@ -68,11 +72,11 @@ namespace FSpot
 			ShowVersion ();
 			Console.WriteLine ();
 			Console.WriteLine ("Mono/.NET Version: " + Environment.Version);
-			Console.WriteLine (string.Format ("{0}Assembly Version Information:", Environment.NewLine));
+			Console.WriteLine ($"{Environment.NewLine}Assembly Version Information:");
 
 			foreach (Assembly asm in AppDomain.CurrentDomain.GetAssemblies ()) {
 				AssemblyName name = asm.GetName ();
-				Console.WriteLine ("\t" + name.Name + " (" + name.Version + ")");
+				Console.WriteLine ($"\t{name.Name} ({name.Version})");
 			}
 		}
 
@@ -103,7 +107,7 @@ namespace FSpot
 			}
 
 			List<string> errors = null;
-			foreach (KeyValuePair<string, string> argument in ApplicationContext.CommandLine.Arguments) {
+			foreach (var argument in ApplicationContext.CommandLine.Arguments) {
 				switch (argument.Key) {
 				case "help": Console.WriteLine (commands.ToString ("help")); break;
 				case "help-options": Console.WriteLine (commands.ToString ("options")); break;
@@ -115,19 +119,16 @@ namespace FSpot
 				}
 			}
 
-			if (errors != null) {
-				Console.WriteLine (commands.LayoutLine (string.Format (
-					"The following help arguments are invalid: {0}",
-					Hyena.Collections.CollectionExtensions.Join (errors, "--", null, ", "))));
-			}
+			if (errors != null)
+				Console.WriteLine (commands.LayoutLine ($"The following help arguments are invalid: {Hyena.Collections.CollectionExtensions.Join (errors, "--", null, ", ")}"));
 		}
 
-		static string [] FixArgs (string [] args)
+		static string[] FixArgs (string[] args)
 		{
 			// Makes sure command line arguments are parsed backwards compatible.
 			var outargs = new List<string> ();
 			for (int i = 0; i < args.Length; i++) {
-				switch (args [i]) {
+				switch (args[i]) {
 				case "-h":
 				case "-help":
 				case "-usage":
@@ -146,17 +147,17 @@ namespace FSpot
 				case "-b":
 				case "-basedir":
 				case "--basedir":
-					outargs.Add ("--basedir=" + (i + 1 == args.Length ? string.Empty : args [++i]));
+					outargs.Add ("--basedir=" + (i + 1 == args.Length ? string.Empty : args[++i]));
 					break;
 				case "-p":
 				case "-photodir":
 				case "--photodir":
-					outargs.Add ("--photodir=" + (i + 1 == args.Length ? string.Empty : args [++i]));
+					outargs.Add ("--photodir=" + (i + 1 == args.Length ? string.Empty : args[++i]));
 					break;
 				case "-i":
 				case "-import":
 				case "--import":
-					outargs.Add ("--import=" + (i + 1 == args.Length ? string.Empty : args [++i]));
+					outargs.Add ("--import=" + (i + 1 == args.Length ? string.Empty : args[++i]));
 					break;
 				case "-v":
 				case "-view":
@@ -166,22 +167,24 @@ namespace FSpot
 					outargs.Add ("--slideshow");
 					break;
 				default:
-					outargs.Add (args [i]);
+					outargs.Add (args[i]);
 					break;
 				}
 			}
 			return outargs.ToArray ();
 		}
 
-		static int Main (string [] args)
+		static int Main (string[] args)
 		{
+			AppCenter.Start ("35f103ca-3b59-4995-b7cf-18da0b45155f", typeof (Analytics), typeof (Crashes));
+
 			args = FixArgs (args);
 
 			ApplicationContext.ApplicationName = "F-Spot";
 			ApplicationContext.TrySetProcessName (Defines.PACKAGE);
 
 			Paths.ApplicationName = "f-spot";
-            SynchronizationContext.SetSynchronizationContext (new GtkSynchronizationContext ());
+			SynchronizationContext.SetSynchronizationContext (new GtkSynchronizationContext ());
 			ThreadAssist.InitializeMainThread ();
 			ThreadAssist.ProxyToMainHandler = RunIdle;
 
@@ -224,11 +227,11 @@ namespace FSpot
 			}
 
 			if (ApplicationContext.CommandLine.Contains ("basedir")) {
-				string dir = ApplicationContext.CommandLine ["basedir"];
+				string dir = ApplicationContext.CommandLine["basedir"];
 
 				if (!string.IsNullOrEmpty (dir)) {
 					Global.BaseDirectory = dir;
-					Log.InformationFormat ("BaseDirectory is now {0}", dir);
+					Log.Information ($"BaseDirectory is now {dir}");
 				} else {
 					Log.Error ("f-spot: -basedir option takes one argument");
 					return 1;
@@ -236,11 +239,11 @@ namespace FSpot
 			}
 
 			if (ApplicationContext.CommandLine.Contains ("photodir")) {
-				string dir = ApplicationContext.CommandLine ["photodir"];
+				string dir = ApplicationContext.CommandLine["photodir"];
 
 				if (!string.IsNullOrEmpty (dir)) {
 					Global.PhotoUri = new SafeUri (dir);
-					Log.InformationFormat ("PhotoDirectory is now {0}", dir);
+					Log.Information ($"PhotoDirectory is now {dir}");
 				} else {
 					Log.Error ("f-spot: -photodir option takes one argument");
 					return 1;
@@ -299,7 +302,7 @@ namespace FSpot
 			}
 
 			try {
-				Gtk.Window.DefaultIconList = new Gdk.Pixbuf [] {
+				Gtk.Window.DefaultIconList = new Gdk.Pixbuf[] {
 					GtkUtil.TryLoadIcon (Global.IconTheme, "f-spot", 16, 0),
 					GtkUtil.TryLoadIcon (Global.IconTheme, "f-spot", 22, 0),
 					GtkUtil.TryLoadIcon (Global.IconTheme, "f-spot", 32, 0),
@@ -309,15 +312,13 @@ namespace FSpot
 				Log.Exception ("Loading default f-spot icons", ex);
 			}
 
-			GLib.ExceptionManager.UnhandledException += exceptionArgs =>
-			{
+			GLib.ExceptionManager.UnhandledException += exceptionArgs => {
 				Console.WriteLine ("Unhandeled exception handler:");
 				var exception = exceptionArgs.ExceptionObject as Exception;
 				if (exception != null) {
 					Console.WriteLine ("Message: " + exception.Message);
 					Console.WriteLine ("Stack trace: " + exception.StackTrace);
-				}
-				else {
+				} else {
 					Console.WriteLine ("Unknown exception type: " + exceptionArgs.ExceptionObject.GetType ().ToString ());
 				}
 			};
@@ -343,7 +344,7 @@ namespace FSpot
 			var setupService = new SetupService (AddinManager.Registry);
 			foreach (AddinRepository repo in setupService.Repositories.GetRepositories ()) {
 				if (repo.Url.StartsWith ("http://addins.f-spot.org/")) {
-					Log.InformationFormat ("Unregistering {0}", repo.Url);
+					Log.Information ($"Unregistering {repo.Url}");
 					setupService.Repositories.RemoveRepository (repo.Url);
 				}
 			}
@@ -397,7 +398,7 @@ namespace FSpot
 
 				App.Instance.View (list);
 			} else if (ApplicationContext.CommandLine.Contains ("import")) {
-				string dir = ApplicationContext.CommandLine ["import"];
+				string dir = ApplicationContext.CommandLine["import"];
 
 				if (string.IsNullOrEmpty (dir)) {
 					Log.Error ("f-spot: -import option takes one argument");
