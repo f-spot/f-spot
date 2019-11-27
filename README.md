@@ -1,15 +1,23 @@
-F-Spot Photo Manager
+# F-Spot Photo Manager
 http://f-spot.org/
 
+# WARNING
+The code base is in heavy flux right now. It might be completely broken right now.
+Known issues:
+* Doesn't start
+* AdjustTimeDialog is completely broken due to removing Gnome.DateTime
+* Autotools stuff is likely doing the wrongs things due to heavy changes.
+
 # Chat
-* [![Join the chat at https://gitter.im/mono/f-spot](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mono/f-spot?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-* Also on #f-spot on gimpnet
+[![Join the chat at https://gitter.im/mono/f-spot](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mono/f-spot?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 # Build Status
 
 | Branch | Status |
 |--------|--------|
-| Master |[![Build Status](https://travis-ci.org/mono/f-spot.svg?branch=master)](https://travis-ci.org/mono/f-spot)|
+| Master (Linux) |[![Build Status](https://travis-ci.org/f-spot/f-spot.svg?branch=master)](https://travis-ci.org/f-spot/f-spot)|
+| Master (Linux) |[![Actions Status](https://github.com/f-spot/f-spot/workflows/Ubuntu/badge.svg)](https://github.com/f-spot/f-spot/actions) |
+
 
 # Requirements
 
