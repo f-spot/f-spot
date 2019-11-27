@@ -1,12 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>$(FSpotNewTargetFramework)</TargetFramework>
+    <TargetFramework>$(FSpotTargetFramework)</TargetFramework>
     <AssemblySearchPaths>$(AssemblySearchPaths);{GAC}</AssemblySearchPaths>
     <OutputPath>..\..\bin</OutputPath>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
-  
+
   <ItemGroup>
     <Reference Include="Mono.Cairo" />
     <Reference Include="Mono.Posix" />
@@ -20,11 +20,11 @@
   <ItemGroup>
     <ProjectReference Include="..\Hyena\Hyena.csproj" />
   </ItemGroup>
-  
+
   <ItemGroup>
     <PackageReference Include="SharpZipLib" Version="1.2.0" />
   </ItemGroup>
-  
+
   <ItemGroup>
     <None Update="Hyena.Gui.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

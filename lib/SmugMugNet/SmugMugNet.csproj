@@ -1,55 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-<Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FFC3D9B1-B19A-44D8-8AA2-96DDE911320E}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <TargetFramework>$(FSpotTargetFramework)</TargetFramework>
+    <AssemblySearchPaths>$(AssemblySearchPaths);{GAC}</AssemblySearchPaths>
+    <OutputPath>..\..\bin\Extensions</OutputPath>
     <RootNamespace>SmugMugNet</RootNamespace>
     <AssemblyName>SmugMugNet</AssemblyName>
-    <TargetFrameworkVersion>$(FSpotTargetFramework)</TargetFrameworkVersion>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>True</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>False</Optimize>
-    <OutputPath>..\..\bin\Extensions</OutputPath>
-    <DefineConstants>DEBUG</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>False</ConsolePause>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
-    <Optimize>False</Optimize>
-    <OutputPath>..\..\bin\Extensions</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>False</ConsolePause>
-  </PropertyGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+
   <ItemGroup>
-    <Compile Include="SmugMugNet\NoCheckCertificatePolicy.cs" />
-    <Compile Include="SmugMugNet\SmugMugApi.cs" />
-    <Compile Include="SmugMugNet\Credentials.cs" />
-    <Compile Include="SmugMugNet\Category.cs" />
-    <Compile Include="SmugMugNet\Album.cs" />
-    <Compile Include="SmugMugNet\SmugMugProxy.cs" />
-    <Compile Include="SmugMugNet\SmugMugException.cs" />
-    <Compile Include="SmugMugNet\SmugMugUploadException.cs" />
+    <ProjectReference Include="..\Hyena\Hyena.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="SmugMugNet\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Hyena\Hyena.csproj">
-      <Project>{290EB543-BB48-48D0-9747-4E6F3E92517E}</Project>
-      <Name>Hyena</Name>
-    </ProjectReference>
-  </ItemGroup>
+
 </Project>

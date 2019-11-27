@@ -1,67 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{40C7D4EA-FB93-49FE-B18F-700A28C3E670}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <TargetFramework>$(FSpotTargetFramework)</TargetFramework>
+    <AssemblySearchPaths>$(AssemblySearchPaths);{GAC}</AssemblySearchPaths>
+    <OutputPath>..\..\bin\Extensions</OutputPath>
     <RootNamespace>Mono.Google</RootNamespace>
     <AssemblyName>Mono.Google</AssemblyName>
-    <TargetFrameworkVersion>$(FSpotTargetFramework)</TargetFrameworkVersion>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>True</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>False</Optimize>
-    <OutputPath>..\..\bin\Extensions</OutputPath>
-    <DefineConstants>DEBUG</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>False</ConsolePause>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
-    <Optimize>False</Optimize>
-    <OutputPath>..\..\bin\Extensions</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>False</ConsolePause>
-  </PropertyGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+
   <ItemGroup>
-    <Compile Include="Mono.Google.Picasa\AlbumAccess.cs" />
-    <Compile Include="Mono.Google\Authentication.cs" />
-    <Compile Include="Mono.Google\CaptchaException.cs" />
-    <Compile Include="Mono.Google.Picasa\CreateAlbumException.cs" />
-    <Compile Include="Mono.Google.Picasa\DeleteAlbumException.cs" />
-    <Compile Include="Mono.Google.Picasa\GDataApi.cs" />
-    <Compile Include="Mono.Google\GoogleConnection.cs" />
-    <Compile Include="Mono.Google\GoogleService.cs" />
-    <Compile Include="Mono.Google\MultipartRequest.cs" />
-    <Compile Include="Mono.Google\NoCheckCertificatePolicy.cs" />
-    <Compile Include="Mono.Google.Picasa\PicasaAlbum.cs" />
-    <Compile Include="Mono.Google.Picasa\PicasaAlbumCollection.cs" />
-    <Compile Include="Mono.Google.Picasa\PicasaPicture.cs" />
-    <Compile Include="Mono.Google.Picasa\PicasaPictureCollection.cs" />
-    <Compile Include="Mono.Google.Picasa\PicasaWeb.cs" />
-    <Compile Include="Mono.Google.Picasa\UploadPictureException.cs" />
-    <Compile Include="Mono.Google.Picasa\UploadProgressEventArgs.cs" />
-    <Compile Include="Mono.Google.Picasa\UploadProgressEventHandler.cs" />
-    <Compile Include="Mono.Google.Picasa\XmlUtil.cs" />
+    <ProjectReference Include="..\Hyena\Hyena.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Mono.Google\" />
-    <Folder Include="Mono.Google.Picasa\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Hyena\Hyena.csproj">
-      <Project>{290EB543-BB48-48D0-9747-4E6F3E92517E}</Project>
-      <Name>Hyena</Name>
-    </ProjectReference>
-  </ItemGroup>
+
 </Project>
