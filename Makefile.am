@@ -11,11 +11,6 @@ SUBDIRS = \
 	src      \
 	tests
 
-schemadir = $(sysconfdir)/gconf/schemas
-schema_in_files = f-spot.schemas.in
-schema_DATA = $(schema_in_files:.schemas.in=.schemas)
-@INTLTOOL_SCHEMAS_RULE@
-
 CLEANFILES = \
 	$(schema_DATA)   \
 	intltool-extract \
@@ -31,8 +26,7 @@ EXTRA_DIST = \
 	Makefile.include     \
 	gnome-doc-utils.make \
 	icon-theme-installer \
-	F-Spot.sln           \
-	$(schema_in_files)
+	F-Spot.sln
 
 DISTCLEANFILES = \
 	intltool-extract        \
@@ -42,20 +36,13 @@ DISTCLEANFILES = \
 
 DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper
 
-if GCONF_SCHEMAS_INSTALL
-install-data-local: copy_bin
-	-GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(srcdir)/$(schema_DATA)
-else
-install-data-local: copy_bin
-endif
-
 all: sln_build
 
 csharp:
 	@pushd .; \
 	echo ""; \
 	echo "Starting csharp with Gtk#, Hyena, FSpot, etc referenced"; \
-	csharp -lib:bin/ -pkg:glib-sharp-2.0 -pkg:gtk-sharp-2.0 -pkg:gconf-sharp-2.0 -r:lib/unique-sharp/unique/unique-sharp.dll -reference:bin/f-spot.exe $(addprefix "-reference:", $(wildcard bin/*.dll)); \
+	csharp -lib:bin/ -pkg:glib-sharp-2.0 -pkg:gtk-sharp-2.0 -r:lib/unique-sharp/unique/unique-sharp.dll -reference:bin/f-spot.exe $(addprefix "-reference:", $(wildcard bin/*.dll)); \
 	popd;
 
 run:
