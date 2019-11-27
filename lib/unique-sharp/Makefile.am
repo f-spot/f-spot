@@ -1,6 +1,9 @@
-SUBDIRS =					\
-	generator				\
-	unique
+LINK =
+
+include $(top_srcdir)/build/build.mk
+
+include $(top_srcdir)/build/xbuild.include
+
 
 fetch:
 	rm -rf fetch

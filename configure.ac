@@ -228,8 +228,12 @@ help/Makefile
 
 external/Makefile
 
-lib/Hyena.Gui/Makefile
 lib/Hyena/Makefile
+lib/Hyena.Gui/Makefile
+lib/Hyena.UnitTest/Makefile
+lib/gio-sharp/Makefile
+lib/gtk-sharp-beans/Makefile
+lib/unique-sharp/Makefile
 lib/libfspot/Makefile
 lib/Makefile
 
@@ -254,10 +258,7 @@ src/Extensions/Exporters/Makefile
 src/Extensions/Exporters/FSpot.Exporters.CD/Makefile
 src/Extensions/Exporters/FSpot.Exporters.Flickr/Makefile
 src/Extensions/Exporters/FSpot.Exporters.Gallery/Makefile
-src/Extensions/Exporters/FSpot.Exporters.Facebook/Makefile
 src/Extensions/Exporters/FSpot.Exporters.Folder/Makefile
-src/Extensions/Exporters/FSpot.Exporters.SmugMug/Makefile
-src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Makefile
 src/Extensions/Exporters/FSpot.Exporters.Zip/Makefile
 src/Extensions/Tools/Makefile
 src/Extensions/Tools/FSpot.Tools.RawPlusJpeg/Makefile

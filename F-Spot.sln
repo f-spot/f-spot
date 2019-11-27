@@ -7,75 +7,65 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{6DC9A109-E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{6369E0D4-0A68-4D4E-A6A0-EF2EA793002F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mono.Google", "lib\Mono.Google\Mono.Google.csproj", "{40C7D4EA-FB93-49FE-B18F-700A28C3E670}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "unique-sharp", "lib\unique-sharp\unique-sharp.csproj", "{5DBBB8C5-7BAF-46DA-B7D2-2486430141E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmugMugNet", "lib\SmugMugNet\SmugMugNet.csproj", "{FFC3D9B1-B19A-44D8-8AA2-96DDE911320E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "gio-sharp", "lib\gio-sharp\gio-sharp.csproj", "{942B6AEF-0A90-4A7F-B8E4-F1A4327E408C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "unique-sharp", "lib\unique-sharp\unique-sharp.csproj", "{5DBBB8C5-7BAF-46DA-B7D2-2486430141E2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gio-sharp", "lib\gio-sharp\gio-sharp.csproj", "{942B6AEF-0A90-4A7F-B8E4-F1A4327E408C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gtk-sharp-beans", "lib\gtk-sharp-beans\gtk-sharp-beans.csproj", "{069D1797-427D-4CED-A754-233DE64FC5DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "gtk-sharp-beans", "lib\gtk-sharp-beans\gtk-sharp-beans.csproj", "{069D1797-427D-4CED-A754-233DE64FC5DD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{9D75644A-DEF1-4362-8553-4B5F09783DC9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Gtk", "src\Clients\FSpot.Gtk\FSpot.Gtk.csproj", "{27EC05FB-0223-4B26-8157-E49AF81D0007}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FSpot.Gtk", "src\Clients\FSpot.Gtk\FSpot.Gtk.csproj", "{27EC05FB-0223-4B26-8157-E49AF81D0007}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Gtk.UnitTest", "src\Clients\FSpot.Gtk.UnitTest\FSpot.Gtk.UnitTest.csproj", "{A2A7E62B-8AE1-44F3-BB1B-B8E2DE7916C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FSpot.Gtk.UnitTest", "src\Clients\FSpot.Gtk.UnitTest\FSpot.Gtk.UnitTest.csproj", "{A2A7E62B-8AE1-44F3-BB1B-B8E2DE7916C4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extensions", "Extensions", "{7D049DAA-F1B0-4697-9BCA-91FC0E1A2B9D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Editors", "Editors", "{416E19A2-9CD9-498F-BE75-20AB74535ACD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Editors.Blackout", "src\Extensions\Editors\FSpot.Editors.Blackout\FSpot.Editors.Blackout.csproj", "{7011154B-87B0-4C54-98DD-B5FF1E60B75F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FSpot.Editors.Blackout", "src\Extensions\Editors\FSpot.Editors.Blackout\FSpot.Editors.Blackout.csproj", "{7011154B-87B0-4C54-98DD-B5FF1E60B75F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Editors.BW", "src\Extensions\Editors\FSpot.Editors.BW\FSpot.Editors.BW.csproj", "{61DAD6B1-E866-485B-819E-A9E86B793F5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FSpot.Editors.BW", "src\Extensions\Editors\FSpot.Editors.BW\FSpot.Editors.BW.csproj", "{61DAD6B1-E866-485B-819E-A9E86B793F5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Editors.Flip", "src\Extensions\Editors\FSpot.Editors.Flip\FSpot.Editors.Flip.csproj", "{53DAC12F-0421-4F5E-A746-17A701D2BDDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FSpot.Editors.Flip", "src\Extensions\Editors\FSpot.Editors.Flip\FSpot.Editors.Flip.csproj", "{53DAC12F-0421-4F5E-A746-17A701D2BDDA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Editors.Pixelate", "src\Extensions\Editors\FSpot.Editors.Pixelate\FSpot.Editors.Pixelate.csproj", "{8EB3933F-A089-43A3-B662-617DC71A2173}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FSpot.Editors.Pixelate", "src\Extensions\Editors\FSpot.Editors.Pixelate\FSpot.Editors.Pixelate.csproj", "{8EB3933F-A089-43A3-B662-617DC71A2173}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Editors.Resize", "src\Extensions\Editors\FSpot.Editors.Resize\FSpot.Editors.Resize.csproj", "{1F610540-D2ED-4F58-87CE-9092A43DBD4A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FSpot.Editors.Resize", "src\Extensions\Editors\FSpot.Editors.Resize\FSpot.Editors.Resize.csproj", "{1F610540-D2ED-4F58-87CE-9092A43DBD4A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Transitions", "Transitions", "{E9BCB7B9-3D8C-4C5C-B6FA-0BBAC6611106}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Transitions.Cover", "src\Extensions\Transitions\FSpot.Transitions.Cover\FSpot.Transitions.Cover.csproj", "{7203A6ED-DA2E-4D56-B1AF-4C296A1C39D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FSpot.Transitions.Cover", "src\Extensions\Transitions\FSpot.Transitions.Cover\FSpot.Transitions.Cover.csproj", "{7203A6ED-DA2E-4D56-B1AF-4C296A1C39D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Transitions.Dissolve", "src\Extensions\Transitions\FSpot.Transitions.Dissolve\FSpot.Transitions.Dissolve.csproj", "{ECF8996A-DE63-4225-927F-84641E0EB794}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FSpot.Transitions.Dissolve", "src\Extensions\Transitions\FSpot.Transitions.Dissolve\FSpot.Transitions.Dissolve.csproj", "{ECF8996A-DE63-4225-927F-84641E0EB794}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Transitions.Push", "src\Extensions\Transitions\FSpot.Transitions.Push\FSpot.Transitions.Push.csproj", "{D6004A34-A123-415D-A79C-21FD3F96A1E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FSpot.Transitions.Push", "src\Extensions\Transitions\FSpot.Transitions.Push\FSpot.Transitions.Push.csproj", "{D6004A34-A123-415D-A79C-21FD3F96A1E5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{78EC5D8B-299B-4724-844D-6F3A8E8D1536}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Tools.ChangePhotoPath", "src\Extensions\Tools\FSpot.Tools.ChangePhotoPath\FSpot.Tools.ChangePhotoPath.csproj", "{4E372D8D-A822-40F2-8C64-25F2296DAC6F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FSpot.Tools.ChangePhotoPath", "src\Extensions\Tools\FSpot.Tools.ChangePhotoPath\FSpot.Tools.ChangePhotoPath.csproj", "{4E372D8D-A822-40F2-8C64-25F2296DAC6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Tools.DevelopInUFRaw", "src\Extensions\Tools\FSpot.Tools.DevelopInUFraw\FSpot.Tools.DevelopInUFRaw.csproj", "{FBA30EB0-05EB-446D-827D-D41EBF4B81E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FSpot.Tools.DevelopInUFRaw", "src\Extensions\Tools\FSpot.Tools.DevelopInUFraw\FSpot.Tools.DevelopInUFRaw.csproj", "{FBA30EB0-05EB-446D-827D-D41EBF4B81E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Tools.LiveWebGallery", "src\Extensions\Tools\FSpot.Tools.LiveWebGallery\FSpot.Tools.LiveWebGallery.csproj", "{B850C11B-69B7-45A4-AB1D-1BECA8C667C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FSpot.Tools.LiveWebGallery", "src\Extensions\Tools\FSpot.Tools.LiveWebGallery\FSpot.Tools.LiveWebGallery.csproj", "{B850C11B-69B7-45A4-AB1D-1BECA8C667C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Tools.MergeDb", "src\Extensions\Tools\FSpot.Tools.MergeDb\FSpot.Tools.MergeDb.csproj", "{08D1D5D9-22E6-40C8-802F-FD9BF5161481}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FSpot.Tools.MergeDb", "src\Extensions\Tools\FSpot.Tools.MergeDb\FSpot.Tools.MergeDb.csproj", "{08D1D5D9-22E6-40C8-802F-FD9BF5161481}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Tools.RawPlusJpeg", "src\Extensions\Tools\FSpot.Tools.RawPlusJpeg\FSpot.Tools.RawPlusJpeg.csproj", "{203D1EDB-3885-4CD7-BBA1-190393E4876A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FSpot.Tools.RawPlusJpeg", "src\Extensions\Tools\FSpot.Tools.RawPlusJpeg\FSpot.Tools.RawPlusJpeg.csproj", "{203D1EDB-3885-4CD7-BBA1-190393E4876A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Tools.RetroactiveRoll", "src\Extensions\Tools\FSpot.Tools.RetroactiveRoll\FSpot.Tools.RetroactiveRoll.csproj", "{55199016-6D69-4F52-AB82-06FC99408E78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FSpot.Tools.RetroactiveRoll", "src\Extensions\Tools\FSpot.Tools.RetroactiveRoll\FSpot.Tools.RetroactiveRoll.csproj", "{55199016-6D69-4F52-AB82-06FC99408E78}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Exporters", "Exporters", "{C9302C4A-B571-4F8E-8FFA-7B4C7DF8B3E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Exporters.CD", "src\Extensions\Exporters\FSpot.Exporters.CD\FSpot.Exporters.CD.csproj", "{3CBAA4AE-AC83-4043-BBB5-6EA7962EC983}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FSpot.Exporters.CD", "src\Extensions\Exporters\FSpot.Exporters.CD\FSpot.Exporters.CD.csproj", "{3CBAA4AE-AC83-4043-BBB5-6EA7962EC983}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Exporters.Facebook", "src\Extensions\Exporters\FSpot.Exporters.Facebook\FSpot.Exporters.Facebook.csproj", "{7004A4E6-12A5-46F1-BB1F-578FA9B63493}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FSpot.Exporters.Flickr", "src\Extensions\Exporters\FSpot.Exporters.Flickr\FSpot.Exporters.Flickr.csproj", "{13D4FF63-5D83-42D7-AE4C-56BB512D5D89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Exporters.Flickr", "src\Extensions\Exporters\FSpot.Exporters.Flickr\FSpot.Exporters.Flickr.csproj", "{13D4FF63-5D83-42D7-AE4C-56BB512D5D89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FSpot.Exporters.Folder", "src\Extensions\Exporters\FSpot.Exporters.Folder\FSpot.Exporters.Folder.csproj", "{7FBEAF56-65E5-4C07-B346-C6A0BC87B368}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Exporters.Folder", "src\Extensions\Exporters\FSpot.Exporters.Folder\FSpot.Exporters.Folder.csproj", "{7FBEAF56-65E5-4C07-B346-C6A0BC87B368}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FSpot.Exporters.Gallery", "src\Extensions\Exporters\FSpot.Exporters.Gallery\FSpot.Exporters.Gallery.csproj", "{E55F73E0-576A-4FE2-9108-E76960820AA3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Exporters.Gallery", "src\Extensions\Exporters\FSpot.Exporters.Gallery\FSpot.Exporters.Gallery.csproj", "{E55F73E0-576A-4FE2-9108-E76960820AA3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Exporters.PicasaWeb", "src\Extensions\Exporters\FSpot.Exporters.PicasaWeb\FSpot.Exporters.PicasaWeb.csproj", "{0735C3A2-17C1-4C8B-9653-3854AFD64D6D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Exporters.SmugMug", "src\Extensions\Exporters\FSpot.Exporters.SmugMug\FSpot.Exporters.SmugMug.csproj", "{BE981FC8-9B41-4336-815C-ECC365AE05D4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Exporters.Zip", "src\Extensions\Exporters\FSpot.Exporters.Zip\FSpot.Exporters.Zip.csproj", "{4C9355A7-1797-4708-A1F2-FBCDB782D04D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FSpot.Exporters.Zip", "src\Extensions\Exporters\FSpot.Exporters.Zip\FSpot.Exporters.Zip.csproj", "{4C9355A7-1797-4708-A1F2-FBCDB782D04D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "External", "{A6C38ABC-9B2B-4693-A16C-0741E5561B32}"
 EndProject
@@ -101,14 +91,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{40C7D4EA-FB93-49FE-B18F-700A28C3E670}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{40C7D4EA-FB93-49FE-B18F-700A28C3E670}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{40C7D4EA-FB93-49FE-B18F-700A28C3E670}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{40C7D4EA-FB93-49FE-B18F-700A28C3E670}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FFC3D9B1-B19A-44D8-8AA2-96DDE911320E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FFC3D9B1-B19A-44D8-8AA2-96DDE911320E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FFC3D9B1-B19A-44D8-8AA2-96DDE911320E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FFC3D9B1-B19A-44D8-8AA2-96DDE911320E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5DBBB8C5-7BAF-46DA-B7D2-2486430141E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5DBBB8C5-7BAF-46DA-B7D2-2486430141E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DBBB8C5-7BAF-46DA-B7D2-2486430141E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -189,10 +171,6 @@ Global
 		{3CBAA4AE-AC83-4043-BBB5-6EA7962EC983}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CBAA4AE-AC83-4043-BBB5-6EA7962EC983}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CBAA4AE-AC83-4043-BBB5-6EA7962EC983}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7004A4E6-12A5-46F1-BB1F-578FA9B63493}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7004A4E6-12A5-46F1-BB1F-578FA9B63493}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7004A4E6-12A5-46F1-BB1F-578FA9B63493}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7004A4E6-12A5-46F1-BB1F-578FA9B63493}.Release|Any CPU.Build.0 = Release|Any CPU
 		{13D4FF63-5D83-42D7-AE4C-56BB512D5D89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{13D4FF63-5D83-42D7-AE4C-56BB512D5D89}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13D4FF63-5D83-42D7-AE4C-56BB512D5D89}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -205,22 +183,10 @@ Global
 		{E55F73E0-576A-4FE2-9108-E76960820AA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E55F73E0-576A-4FE2-9108-E76960820AA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E55F73E0-576A-4FE2-9108-E76960820AA3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0735C3A2-17C1-4C8B-9653-3854AFD64D6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0735C3A2-17C1-4C8B-9653-3854AFD64D6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0735C3A2-17C1-4C8B-9653-3854AFD64D6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0735C3A2-17C1-4C8B-9653-3854AFD64D6D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BE981FC8-9B41-4336-815C-ECC365AE05D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BE981FC8-9B41-4336-815C-ECC365AE05D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BE981FC8-9B41-4336-815C-ECC365AE05D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BE981FC8-9B41-4336-815C-ECC365AE05D4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4C9355A7-1797-4708-A1F2-FBCDB782D04D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4C9355A7-1797-4708-A1F2-FBCDB782D04D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C9355A7-1797-4708-A1F2-FBCDB782D04D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C9355A7-1797-4708-A1F2-FBCDB782D04D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{618D3CB0-022C-4439-AD84-2CD120F159C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{618D3CB0-022C-4439-AD84-2CD120F159C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{618D3CB0-022C-4439-AD84-2CD120F159C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{618D3CB0-022C-4439-AD84-2CD120F159C7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{91DD5A2D-9FE3-4C3C-9253-876141874DAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{91DD5A2D-9FE3-4C3C-9253-876141874DAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91DD5A2D-9FE3-4C3C-9253-876141874DAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -237,6 +203,10 @@ Global
 		{3C49031A-DC00-40A3-8639-84709BD136F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C49031A-DC00-40A3-8639-84709BD136F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C49031A-DC00-40A3-8639-84709BD136F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{618D3CB0-022C-4439-AD84-2CD120F159C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{618D3CB0-022C-4439-AD84-2CD120F159C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{618D3CB0-022C-4439-AD84-2CD120F159C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{618D3CB0-022C-4439-AD84-2CD120F159C7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{290EB543-BB48-48D0-9747-4E6F3E92517E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{290EB543-BB48-48D0-9747-4E6F3E92517E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{290EB543-BB48-48D0-9747-4E6F3E92517E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -254,8 +224,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{40C7D4EA-FB93-49FE-B18F-700A28C3E670} = {6369E0D4-0A68-4D4E-A6A0-EF2EA793002F}
-		{FFC3D9B1-B19A-44D8-8AA2-96DDE911320E} = {6369E0D4-0A68-4D4E-A6A0-EF2EA793002F}
 		{5DBBB8C5-7BAF-46DA-B7D2-2486430141E2} = {6369E0D4-0A68-4D4E-A6A0-EF2EA793002F}
 		{942B6AEF-0A90-4A7F-B8E4-F1A4327E408C} = {6369E0D4-0A68-4D4E-A6A0-EF2EA793002F}
 		{069D1797-427D-4CED-A754-233DE64FC5DD} = {6369E0D4-0A68-4D4E-A6A0-EF2EA793002F}
@@ -280,18 +248,15 @@ Global
 		{55199016-6D69-4F52-AB82-06FC99408E78} = {78EC5D8B-299B-4724-844D-6F3A8E8D1536}
 		{C9302C4A-B571-4F8E-8FFA-7B4C7DF8B3E3} = {7D049DAA-F1B0-4697-9BCA-91FC0E1A2B9D}
 		{3CBAA4AE-AC83-4043-BBB5-6EA7962EC983} = {C9302C4A-B571-4F8E-8FFA-7B4C7DF8B3E3}
-		{7004A4E6-12A5-46F1-BB1F-578FA9B63493} = {C9302C4A-B571-4F8E-8FFA-7B4C7DF8B3E3}
 		{13D4FF63-5D83-42D7-AE4C-56BB512D5D89} = {C9302C4A-B571-4F8E-8FFA-7B4C7DF8B3E3}
 		{7FBEAF56-65E5-4C07-B346-C6A0BC87B368} = {C9302C4A-B571-4F8E-8FFA-7B4C7DF8B3E3}
 		{E55F73E0-576A-4FE2-9108-E76960820AA3} = {C9302C4A-B571-4F8E-8FFA-7B4C7DF8B3E3}
-		{0735C3A2-17C1-4C8B-9653-3854AFD64D6D} = {C9302C4A-B571-4F8E-8FFA-7B4C7DF8B3E3}
-		{BE981FC8-9B41-4336-815C-ECC365AE05D4} = {C9302C4A-B571-4F8E-8FFA-7B4C7DF8B3E3}
 		{4C9355A7-1797-4708-A1F2-FBCDB782D04D} = {C9302C4A-B571-4F8E-8FFA-7B4C7DF8B3E3}
-		{618D3CB0-022C-4439-AD84-2CD120F159C7} = {6DC9A109-EC89-4221-B8CD-9E88B589DBC1}
 		{91DD5A2D-9FE3-4C3C-9253-876141874DAD} = {A6C38ABC-9B2B-4693-A16C-0741E5561B32}
 		{A85C9721-C054-4BD8-A1F3-0227615F0A36} = {A6C38ABC-9B2B-4693-A16C-0741E5561B32}
 		{FEC19BDA-4904-4005-8C09-68E82E8BEF6A} = {A6C38ABC-9B2B-4693-A16C-0741E5561B32}
 		{3C49031A-DC00-40A3-8639-84709BD136F7} = {6DC9A109-EC89-4221-B8CD-9E88B589DBC1}
+		{618D3CB0-022C-4439-AD84-2CD120F159C7} = {6DC9A109-EC89-4221-B8CD-9E88B589DBC1}
 		{290EB543-BB48-48D0-9747-4E6F3E92517E} = {6369E0D4-0A68-4D4E-A6A0-EF2EA793002F}
 		{35EBCBC8-2E74-488F-8049-F1D0A998E5D1} = {6369E0D4-0A68-4D4E-A6A0-EF2EA793002F}
 		{8230AC23-BB8B-44B9-AAC3-F0794366970A} = {6369E0D4-0A68-4D4E-A6A0-EF2EA793002F}
