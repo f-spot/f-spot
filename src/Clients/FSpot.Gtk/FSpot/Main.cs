@@ -176,7 +176,8 @@ namespace FSpot
 
 		static int Main (string[] args)
 		{
-			AppCenter.Start ("35f103ca-3b59-4995-b7cf-18da0b45155f", typeof (Analytics), typeof (Crashes));
+			if (string.IsNullOrEmpty (Environment.GetEnvironmentVariable ("DISABLE_ANALYTICS")))
+				AppCenter.Start ("35f103ca-3b59-4995-b7cf-18da0b45155f", typeof (Analytics), typeof (Crashes));
 
 			args = FixArgs (args);
 
