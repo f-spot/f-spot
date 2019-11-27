@@ -33,5 +33,9 @@ steps:
 
 - task: VSTest@2
   inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    testSelector: 'testAssemblies'
+    testAssemblyVer2: |
+      *.UnitTest.dll
+      !**\obj\**
+    searchFolder: 'tests\'
+    diagnosticsEnabled: true
