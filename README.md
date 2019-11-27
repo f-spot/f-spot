@@ -17,6 +17,7 @@ Known issues:
 |--------|--------|
 | Master (Linux) |[![Build Status](https://travis-ci.org/f-spot/f-spot.svg?branch=master)](https://travis-ci.org/f-spot/f-spot)|
 | Master (Linux) |[![Actions Status](https://github.com/f-spot/f-spot/workflows/Ubuntu/badge.svg)](https://github.com/f-spot/f-spot/actions) |
+| Master (Windows) | [![Build Status](https://dev.azure.com/decriptor-oss/f-spot/_apis/build/status/Windows?branchName=master)](https://dev.azure.com/decriptor-oss/f-spot/_build/latest?definitionId=3&branchName=master) |
 
 
 # Requirements
