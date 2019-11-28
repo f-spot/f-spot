@@ -1,4 +1,4 @@
-﻿//
+//
 //  BrowsableCollectionMock.cs
 //
 // Author:
@@ -29,9 +29,9 @@ using System.Linq;
 
 namespace FSpot.Core.UnitTest.Mocks
 {
-	internal class BrowsableCollectionMock : IBrowsableCollection
+	class BrowsableCollectionMock : IBrowsableCollection
 	{
-		List<IPhoto> itemCollection;
+		readonly List<IPhoto> itemCollection;
 
 		public BrowsableCollectionMock (params IPhoto[] items)
 		{
@@ -41,8 +41,7 @@ namespace FSpot.Core.UnitTest.Mocks
 		public void RemoveAt (int index)
 		{
 			itemCollection.RemoveAt (index);
-			if (Changed != null)
-				Changed (this);
+			Changed?.Invoke (this);
 		}
 
 		#region IBrowsableCollection implementation
