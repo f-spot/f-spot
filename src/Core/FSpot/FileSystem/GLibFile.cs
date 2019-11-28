@@ -1,4 +1,4 @@
-﻿//
+//
 // GLibFile.cs
 //
 // Author:
@@ -26,77 +26,48 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System;
 using System.IO;
-using GLib;
+
 using Hyena;
 
 namespace FSpot.FileSystem
 {
 	class GLibFile : IFile
 	{
-		#region IFile implementation
-
 		public bool Exists (SafeUri uri)
-		{
-			var file = FileFactory.NewForUri (uri);
-			return file.Exists && file.QueryFileType (FileQueryInfoFlags.None, null) == FileType.Regular;
-		}
+			=> File.Exists (uri.AbsolutePath);
 
 		public bool IsSymlink (SafeUri uri)
 		{
-			var file = FileFactory.NewForUri (uri);
-			using (var root_info = file.QueryInfo ("standard::is-symlink", FileQueryInfoFlags.None, null)) {
+			var file = GLib.FileFactory.NewForUri (uri);
+			using (var root_info = file.QueryInfo ("standard::is-symlink", GLib.FileQueryInfoFlags.None, null)) {
 				return root_info.IsSymlink;
 			}
 		}
 
 		public void Copy (SafeUri source, SafeUri destination, bool overwrite)
-		{
-			var source_file = FileFactory.NewForUri (source);
-			var destination_file = FileFactory.NewForUri (destination);
-			var flags = FileCopyFlags.AllMetadata;
-			if (overwrite)
-				flags |= FileCopyFlags.Overwrite;
-			source_file.Copy (destination_file, flags, null, null);
-		}
+			=> File.Copy (source.AbsolutePath, destination.AbsolutePath, overwrite);
 
 		public void Delete (SafeUri uri)
-		{
-			var file = FileFactory.NewForUri (uri);
-			file.Delete ();
-		}
+			=> File.Delete (uri.AbsolutePath);
 
 		public string GetMimeType (SafeUri uri)
 		{
-			var file = FileFactory.NewForUri (uri);
-			using (var info = file.QueryInfo ("standard::content-type", FileQueryInfoFlags.None, null)) {
+			var file = GLib.FileFactory.NewForUri (uri);
+			using (var info = file.QueryInfo ("standard::content-type", GLib.FileQueryInfoFlags.None, null)) {
 				return info.ContentType;
 			}
 		}
 
-		public ulong GetMTime (SafeUri uri)
-		{
-			var file = FileFactory.NewForUri (uri);
-			using (var info = file.QueryInfo ("time::modified", FileQueryInfoFlags.None, null)) {
-				return info.GetAttributeULong ("time::modified");
-			}
-		}
+		public DateTime GetMTime (SafeUri uri)
+			=> File.GetLastWriteTime (uri.AbsolutePath);
 
 		public long GetSize (SafeUri uri)
-		{
-			var file = FileFactory.NewForUri (uri);
-			using (var info = file.QueryInfo ("standard::size", FileQueryInfoFlags.None, null)) {
-				return info.Size;
-			}
-		}
+			=> new FileInfo (uri.AbsolutePath).Length;
 
 		public Stream Read (SafeUri uri)
-		{
-			var file = FileFactory.NewForUri (uri);
-			return new GioStream (file.Read (null));
-		}
-
-		#endregion
+			=> new FileStream (uri.AbsolutePath, FileMode.Open, FileAccess.Read);
 	}
 }
 

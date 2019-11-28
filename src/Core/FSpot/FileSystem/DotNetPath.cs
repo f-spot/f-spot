@@ -1,5 +1,5 @@
-﻿//
-// GLibPath.cs
+//
+// DotNetPath.cs
 //
 // Author:
 //   Daniel Köb <daniel.koeb@peony.at>
@@ -26,15 +26,12 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System.IO;
+
 namespace FSpot.FileSystem
 {
-	class GLibPath : IPath
+	class DotNetPath : IPath
 	{
-		public string GetTempPath ()
-		{
-			// g_get_tmp_dir is not available in Glib, use implementation from System.IO.Path instead
-			// https://developer.gnome.org/glib/stable/glib-Miscellaneous-Utility-Functions.html#g-get-tmp-dir
-			return System.IO.Path.GetTempPath ();
-		}
+		public string GetTempPath () => Path.GetTempPath ();
 	}
 }

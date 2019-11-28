@@ -32,7 +32,7 @@ namespace FSpot.FileSystem
 	{
 		GLibFile file;
 		DotNetDirectory directory;
-		GLibPath path;
+		DotNetPath path;
 
 		public IFile File {
 			get =>file ??= new GLibFile ();
@@ -43,7 +43,7 @@ namespace FSpot.FileSystem
 		}
 
 		public IPath Path {
-			get => path ??= new GLibPath ();
+			get => path ??= new DotNetPath ();
 		}
 	}
 }
