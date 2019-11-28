@@ -29,23 +29,25 @@
 
 using System;
 
+using FSpot.Settings;
+
 using Hyena;
 
 namespace FSpot.Platform
 {
 	public class WebProxy
 	{
-		const string PROXY = "/system/http_proxy/";
-		const string PROXY_USE_PROXY = PROXY + "use_http_proxy";
-		const string PROXY_HOST = PROXY + "host";
-		const string PROXY_PORT = PROXY + "port";
-		const string PROXY_USER = PROXY + "authentication_user";
-		const string PROXY_PASSWORD = PROXY + "authentication_password";
-		const string PROXY_BYPASS_LIST = PROXY + "ignore_hosts";
+		const string ProxyKey = "/system/http_proxy/";
+		const string UseProxyKey = ProxyKey + "use_http_proxy";
+		const string HostKey = ProxyKey + "host";
+		const string PortKey = ProxyKey + "port";
+		const string ProxyUserKey = ProxyKey + "authentication_user";
+		const string ProxyPasswordKey = ProxyKey + "authentication_password";
+		const string ProxyIgnoreHostKey = ProxyKey + "ignore_hosts";
 
 		public static void Init ()
 		{
-			LoadPreference (PROXY_USE_PROXY);
+			LoadPreference (UseProxyKey);
 		}
 
 		static void OnPreferenceChanged (object sender, NotifyEventArgs args)
@@ -56,12 +58,12 @@ namespace FSpot.Platform
 		static void LoadPreference (string key)
 		{
 			switch (key) {
-			case PROXY_USE_PROXY :
-			case PROXY_HOST :
-			case PROXY_PORT :
-			case PROXY_USER :
-			case PROXY_PASSWORD :
-			case PROXY_BYPASS_LIST :
+			case UseProxyKey :
+			case HostKey :
+			case PortKey :
+			case ProxyUserKey :
+			case ProxyPasswordKey :
+			case ProxyIgnoreHostKey :
 				System.Net.WebRequest.DefaultWebProxy = GetWebProxy () ?? new System.Net.WebProxy ();
 				break;
 			}
@@ -71,26 +73,26 @@ namespace FSpot.Platform
 		{
 			System.Net.WebProxy proxy;
 
-			if (!Backend.Get<bool> (PROXY_USE_PROXY))
+			if (!Preferences.Get<bool> (UseProxyKey))
 				return null;
 
 			try {
-				string host = Backend.Get<string> (PROXY_HOST);
-				int port = Backend.Get<int> (PROXY_PORT);
+				string host = Preferences.Get<string> (HostKey);
+				int port = Preferences.Get<int> (PortKey);
 
-				string uri = "http://" + host + ":" + port;
+				string uri = $"http://{host}:{port}";
 				proxy = new System.Net.WebProxy (uri);
 
-				string [] bypass_list = Backend.Get<string[]> (PROXY_BYPASS_LIST);
+				string [] bypass_list = Preferences.Get<string[]> (ProxyIgnoreHostKey);
 				if (bypass_list != null) {
 					for (int i = 0; i < bypass_list.Length; i++) {
-						bypass_list [i] = "http://" + bypass_list [i];
+						bypass_list [i] = $"http://{bypass_list [i]}";
 					}
 					proxy.BypassList = bypass_list;
 				}
 
-				string username = Backend.Get<string> (PROXY_USER);
-				string password = Backend.Get<string> (PROXY_PASSWORD);
+				string username = Preferences.Get<string> (ProxyUserKey);
+				string password = Preferences.Get<string> (ProxyPasswordKey);
 
 				proxy.Credentials = new System.Net.NetworkCredential (username, password);
 			} catch (Exception e) {
@@ -102,18 +104,18 @@ namespace FSpot.Platform
 			return proxy;
 		}
 
-		static PreferenceBackend backend;
-		static EventHandler<NotifyEventArgs> changed_handler;
-		static PreferenceBackend Backend {
-			get {
-				if (backend == null) {
-					backend = new PreferenceBackend ();
-					changed_handler = new EventHandler<NotifyEventArgs> (OnPreferenceChanged);
-					//backend.AddNotify (PROXY, changed_handler);
-				}
-				return backend;
-			}
-		}
+		//static PreferenceBackend backend;
+		//static EventHandler<NotifyEventArgs> changed_handler;
+		//static PreferenceBackend Backend {
+		//	get {
+		//		if (backend == null) {
+		//			backend = new PreferenceBackend ();
+		//			changed_handler = new EventHandler<NotifyEventArgs> (OnPreferenceChanged);
+		//			//backend.AddNotify (PROXY, changed_handler);
+		//		}
+		//		return backend;
+		//	}
+		//}
 	}
 }
 
