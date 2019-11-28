@@ -22,7 +22,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Clients\FSpot.Gtk\FSpot.Gtk.csproj" />
-    <ProjectReference Include="..\..\..\..\lib\unique-sharp\unique-sharp.csproj" />
     <ProjectReference Include="..\..\..\..\lib\Hyena\Hyena.csproj" />
     <ProjectReference Include="..\..\..\..\lib\Hyena.Gui\Hyena.Gui.csproj" />
     <ProjectReference Include="..\..\..\Core\FSpot\FSpot.csproj" />
