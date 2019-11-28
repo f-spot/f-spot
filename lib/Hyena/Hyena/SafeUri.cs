@@ -31,187 +31,138 @@ using System.Runtime.InteropServices;
 
 namespace Hyena
 {
-    public class SafeUri
-    {
-        private enum LocalPathCheck {
-            NotPerformed,
-            Yes,
-            No
-        }
+	public class SafeUri
+	{
+		private enum LocalPathCheck
+		{
+			NotPerformed,
+			Yes,
+			No
+		}
 
-        private static int MAX_SCHEME_LENGTH = 8;
+		private static int MAX_SCHEME_LENGTH = 8;
 
-        private string uri;
-        private string local_path;
-        private string scheme;
-        private LocalPathCheck local_path_check = LocalPathCheck.NotPerformed;
+		private string uri;
+		private string local_path;
+		private string scheme;
+		private LocalPathCheck local_path_check = LocalPathCheck.NotPerformed;
 
-        public SafeUri (string uri)
-        {
-            if (String.IsNullOrEmpty (uri)) {
-                throw new ArgumentNullException ("uri");
-            }
+		public SafeUri (string uri)
+		{
+			if (string.IsNullOrEmpty (uri))
+				throw new ArgumentNullException (nameof (uri));
 
-            int scheme_delimit_index = uri.IndexOf ("://", StringComparison.InvariantCulture);
-            if (scheme_delimit_index > 0 && scheme_delimit_index <= MAX_SCHEME_LENGTH) {
-                this.uri = uri;
-            } else {
-                this.uri = FilenameToUri (uri);
-            }
-        }
+			int scheme_delimit_index = uri.IndexOf ("://", StringComparison.InvariantCulture);
+			if (scheme_delimit_index > 0 && scheme_delimit_index <= MAX_SCHEME_LENGTH) {
+				this.uri = uri;
+			} else {
+				this.uri = FilenameToUri (uri);
+			}
+		}
 
-        public SafeUri (string uriOrFilename, bool isUri)
-        {
-            if (String.IsNullOrEmpty (uriOrFilename)) {
-                throw new ArgumentNullException ("uriOrFilename");
-            }
+		public SafeUri (string uriOrFilename, bool isUri)
+		{
+			if (string.IsNullOrEmpty (uriOrFilename)) {
+				throw new ArgumentNullException (nameof (uriOrFilename));
+			}
 
-            if (isUri) {
-                this.uri = uriOrFilename;
-            } else {
-                this.uri = FilenameToUri (uriOrFilename);
-            }
-        }
+			if (isUri) {
+				this.uri = uriOrFilename;
+			} else {
+				this.uri = FilenameToUri (uriOrFilename);
+			}
+		}
 
-        public SafeUri (Uri uri)
-        {
-            if (uri == null) {
-                throw new ArgumentNullException ("uri");
-            }
+		public SafeUri (Uri uri)
+		{
+			if (uri == null)
+				throw new ArgumentNullException (nameof (uri));
 
-            this.uri = uri.AbsoluteUri;
-        }
+			this.uri = uri.AbsoluteUri;
+		}
 
-        public static string FilenameToUri (string localPath)
-        {
-            // TODO: replace with managed conversion to avoid marshalling
-            IntPtr path_ptr = GLib.Marshaller.StringToPtrGStrdup (localPath);
+		public static string FilenameToUri (string localPath)
+		{
+			return new Uri (new Uri ("file://"), localPath).ToString ();
+		}
 
-            IntPtr uri_ptr = PlatformDetection.IsWindows
-                ? g_filename_to_uri_utf8 (path_ptr, IntPtr.Zero, IntPtr.Zero)
-                : g_filename_to_uri (path_ptr, IntPtr.Zero, IntPtr.Zero);
+		public static string UriToFilename (string uri)
+		{
+			return new Uri (uri).LocalPath;
+		}
+		public static string UriToFilename (SafeUri uri)
+		{
+			return UriToFilename (uri.AbsoluteUri);
+		}
 
-            GLib.Marshaller.Free (path_ptr);
+		public override string ToString ()
+		{
+			return AbsoluteUri;
+		}
 
-            if (uri_ptr == IntPtr.Zero) {
-                throw new ApplicationException ("Filename path must be absolute");
-            }
+		public static implicit operator string (SafeUri s)
+		{
+			return s.ToString ();
+		}
 
-            string uri = GLib.Marshaller.Utf8PtrToString (uri_ptr);
-            GLib.Marshaller.Free (uri_ptr);
+		public override bool Equals (object o)
+		{
+			SafeUri s = o as SafeUri;
+			if (s != null) {
+				return s.AbsoluteUri == AbsoluteUri;
+			}
 
-            return uri;
-        }
+			return false;
+		}
 
-        public static string UriToFilename (string uri)
-        {
-            // TODO: replace with managed conversion to avoid marshalling
-            IntPtr uri_ptr = GLib.Marshaller.StringToPtrGStrdup (uri);
+		public override int GetHashCode ()
+		{
+			return AbsoluteUri.GetHashCode ();
+		}
 
-            IntPtr path_ptr = PlatformDetection.IsWindows
-                ? g_filename_from_uri_utf8 (uri_ptr, IntPtr.Zero, IntPtr.Zero)
-                : g_filename_from_uri (uri_ptr, IntPtr.Zero, IntPtr.Zero);
+		public string AbsoluteUri {
+			get { return uri; }
+		}
 
-            GLib.Marshaller.Free (uri_ptr);
+		public bool IsLocalPath {
+			get {
+				if (local_path_check == LocalPathCheck.NotPerformed) {
+					if (IsFile) {
+						local_path_check = LocalPathCheck.Yes;
+						return true;
+					} else {
+						local_path_check = LocalPathCheck.No;
+						return false;
+					}
+				}
 
-            if (path_ptr == IntPtr.Zero) {
-                throw new ApplicationException ("URI could not be converted to local file location");
-            }
+				return local_path_check == LocalPathCheck.Yes;
+			}
+		}
 
-            string path = GLib.Marshaller.Utf8PtrToString (path_ptr);
-            GLib.Marshaller.Free (path_ptr);
+		public string AbsolutePath {
+			get {
+				if (local_path == null && IsLocalPath)
+					local_path = UriToFilename (uri);
 
-            return path;
-        }
+				return local_path;
+			}
+		}
 
-        public static string UriToFilename (SafeUri uri)
-        {
-            return UriToFilename (uri.AbsoluteUri);
-        }
+		public string LocalPath {
+			get { return AbsolutePath; }
+		}
 
-        public override string ToString ()
-        {
-            return AbsoluteUri;
-        }
+		public string Scheme {
+			get {
+				if (scheme == null) {
+					scheme = uri.Substring (0, uri.IndexOf ("://", StringComparison.InvariantCulture));
+				}
 
-        public static implicit operator string (SafeUri s)
-        {
-            return s.ToString ();
-        }
+				return scheme;
+			}
+		}
 
-        public override bool Equals (object o)
-        {
-            SafeUri s = o as SafeUri;
-            if (s != null) {
-                return s.AbsoluteUri == AbsoluteUri;
-            }
-
-            return false;
-        }
-
-        public override int GetHashCode ()
-        {
-            return AbsoluteUri.GetHashCode ();
-        }
-
-        public string AbsoluteUri {
-            get { return uri; }
-        }
-
-        public bool IsLocalPath {
-            get {
-                if (local_path_check == LocalPathCheck.NotPerformed) {
-                    if (IsFile) {
-                        local_path_check = LocalPathCheck.Yes;
-                        return true;
-                    } else {
-                        local_path_check = LocalPathCheck.No;
-                        return false;
-                    }
-                }
-
-                return local_path_check == LocalPathCheck.Yes;
-            }
-        }
-
-        public string AbsolutePath {
-            get {
-                if (local_path == null && IsLocalPath) {
-                    local_path = UriToFilename (uri);
-                }
-
-                return local_path;
-            }
-        }
-
-        public string LocalPath {
-            get { return AbsolutePath; }
-        }
-
-        public string Scheme {
-            get {
-                if (scheme == null) {
-                    scheme = uri.Substring (0, uri.IndexOf ("://", StringComparison.InvariantCulture));
-                }
-
-                return scheme;
-            }
-        }
-
-        public bool IsFile {
-            get { return Scheme == System.Uri.UriSchemeFile; }
-        }
-
-        [DllImport ("libglib-2.0-0.dll")]
-        private static extern IntPtr g_filename_to_uri_utf8 (IntPtr filename, IntPtr hostname, IntPtr error);
-
-        [DllImport ("libglib-2.0-0.dll")]
-        private static extern IntPtr g_filename_from_uri_utf8 (IntPtr uri, IntPtr hostname, IntPtr error);
-
-        [DllImport ("libglib-2.0-0.dll")]
-        private static extern IntPtr g_filename_to_uri (IntPtr filename, IntPtr hostname, IntPtr error);
-
-        [DllImport ("libglib-2.0-0.dll")]
-        private static extern IntPtr g_filename_from_uri (IntPtr uri, IntPtr hostname, IntPtr error);
-    }
+		public bool IsFile => Scheme == Uri.UriSchemeFile;
+	}
 }
