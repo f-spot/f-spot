@@ -35,8 +35,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 
-using Unique;
-
 using Mono.Unix;
 
 using Hyena;
@@ -50,23 +48,64 @@ using FSpot.Utils;
 
 namespace FSpot
 {
-	public class App : Unique.App
+	public class App
 	{
+		public static App Instance { get; } = new App ();
 		static object sync_handle = new object ();
 
-#region public API
-		static App app;
-		public static App Instance {
-			get {
-				lock (sync_handle) {
-					if (app == null)
-						app = new App ();
-				}
-				return app;
-			}
+		static App () { }
+
+		App ()
+		{
+			toplevels = new List<Gtk.Window> ();
+			//if (IsRunning) {
+			//	Log.Information ("Found active FSpot process");
+			//} else {
+			//	MessageReceived += HandleMessageReceived;
+			//}
+
+			FSpot.FileSystem.ModuleController.RegisterTypes (Container);
+			FSpot.Imaging.ModuleController.RegisterTypes (Container);
+			FSpot.Import.ModuleController.RegisterTypes (Container);
+			FSpot.Thumbnail.ModuleController.RegisterTypes (Container);
 		}
 
 		Thread constructing_organizer = null;
+
+		enum Command
+		{
+			Invalid = 0,
+			Import,
+			View,
+			Organize,
+			Shutdown,
+			Version,
+			Slideshow,
+		}
+
+		List<Gtk.Window> toplevels;
+		MainWindow organizer;
+		Db db;
+
+		//App () : base ("org.gnome.FSpot.Core", null,
+		//		  "Import", Command.Import,
+		//		  "View", Command.View,
+		//		  "Organize", Command.Organize,
+		//		  "Shutdown", Command.Shutdown,
+		//		  "Slideshow", Command.Slideshow)
+		//{
+		//	toplevels = new List<Gtk.Window> ();
+		//	if (IsRunning) {
+		//		Log.Information ("Found active FSpot process");
+		//	} else {
+		//		MessageReceived += HandleMessageReceived;
+		//	}
+
+		//	FSpot.FileSystem.ModuleController.RegisterTypes (Container);
+		//	FSpot.Imaging.ModuleController.RegisterTypes (Container);
+		//	FSpot.Import.ModuleController.RegisterTypes (Container);
+		//	FSpot.Thumbnail.ModuleController.RegisterTypes (Container);
+		//}
 
 		public MainWindow Organizer {
 			get {
@@ -112,43 +151,43 @@ namespace FSpot
 
 		public void Import (string path)
 		{
-			if (IsRunning) {
-				var md = new MessageData ();
-				md.Text = path;
-				SendMessage (Command.Import, md);
-				return;
-			}
-			HandleImport (path);
+			//if (IsRunning) {
+			//	var md = new MessageData ();
+			//	md.Text = path;
+			//	SendMessage (Command.Import, md);
+			//	return;
+			//}
+			//HandleImport (path);
 		}
 
 		public void Organize ()
 		{
-			if (IsRunning) {
-				SendMessage (Command.Organize, null);
-				return;
-			}
-			HandleOrganize ();
+			//if (IsRunning) {
+			//	SendMessage (Command.Organize, null);
+			//	return;
+			//}
+			//HandleOrganize ();
 		}
 
 		public void Shutdown ()
 		{
-			if (IsRunning) {
-				SendMessage (Command.Shutdown, null);
-				return;
-			}
-			HandleShutdown ();
+			//if (IsRunning) {
+			//	SendMessage (Command.Shutdown, null);
+			//	return;
+			//}
+			//HandleShutdown ();
 		}
 
 		public void Slideshow (string tagname)
 		{
-			if (IsRunning) {
-				var md = new MessageData ();
-				md.Text = tagname ?? string.Empty;
-				SendMessage (Command.Slideshow, md);
+			//if (IsRunning) {
+			//	var md = new MessageData ();
+			//	md.Text = tagname ?? string.Empty;
+			//	SendMessage (Command.Slideshow, md);
 
-				return;
-			}
-			HandleSlideshow (tagname);
+			//	return;
+			//}
+			//HandleSlideshow (tagname);
 		}
 
 		public void View (SafeUri uri)
@@ -169,95 +208,56 @@ namespace FSpot
 
 		public void View (IEnumerable<string> uris)
 		{
-			if (IsRunning) {
-				var md = new MessageData ();
-				md.Uris = uris.ToArray ();
-				SendMessage (Command.View, md);
-				return;
-			}
-			HandleView (uris.ToArray());
-		}
-#endregion
-
-#region private ctor and stuffs
-		enum Command {
-			Invalid = 0,
-			Import,
-			View,
-			Organize,
-			Shutdown,
-			Version,
-			Slideshow,
+			//if (IsRunning) {
+			//	var md = new MessageData ();
+			//	md.Uris = uris.ToArray ();
+			//	SendMessage (Command.View, md);
+			//	return;
+			//}
+			//HandleView (uris.ToArray());
 		}
 
-		List<Gtk.Window> toplevels;
-		MainWindow organizer;
-		Db db;
+		//void SendMessage (Command command, MessageData md)
+		//{
+		//	SendMessage ((Unique.Command)command, md);
+		//}
 
-		App (): base ("org.gnome.FSpot.Core", null,
-				  "Import", Command.Import,
-				  "View", Command.View,
-				  "Organize", Command.Organize,
-				  "Shutdown", Command.Shutdown,
-				  "Slideshow", Command.Slideshow)
-		{
-			toplevels = new List<Gtk.Window> ();
-			if (IsRunning) {
-				Log.Information ("Found active FSpot process");
-			} else {
-				MessageReceived += HandleMessageReceived;
-			}
-
-			FSpot.FileSystem.ModuleController.RegisterTypes (Container);
-			FSpot.Imaging.ModuleController.RegisterTypes (Container);
-			FSpot.Import.ModuleController.RegisterTypes (Container);
-			FSpot.Thumbnail.ModuleController.RegisterTypes (Container);
-		}
-
-		void SendMessage (Command command, MessageData md)
-		{
-			SendMessage ((Unique.Command)command, md);
-		}
-#endregion
-
-#region Command Handlers
-
-		void HandleMessageReceived (object sender, MessageReceivedArgs e)
-		{
-			switch ((Command)e.Command) {
-			case Command.Import:
-				HandleImport (e.MessageData.Text);
-				e.RetVal = Response.Ok;
-				break;
-			case Command.Organize:
-				HandleOrganize ();
-				e.RetVal = Response.Ok;
-				break;
-			case Command.Shutdown:
-				HandleShutdown ();
-				e.RetVal = Response.Ok;
-				break;
-			case Command.Slideshow:
-				HandleSlideshow (e.MessageData.Text);
-				e.RetVal = Response.Ok;
-				break;
-			case Command.View:
-				HandleView (e.MessageData.Uris);
-				e.RetVal = Response.Ok;
-				break;
-			case Command.Invalid:
-			default:
-				Log.Debug ("Wrong command received");
-				break;
-			}
-		}
+		//void HandleMessageReceived (object sender, MessageReceivedArgs e)
+		//{
+		//	switch ((Command)e.Command) {
+		//	case Command.Import:
+		//		HandleImport (e.MessageData.Text);
+		//		e.RetVal = Response.Ok;
+		//		break;
+		//	case Command.Organize:
+		//		HandleOrganize ();
+		//		e.RetVal = Response.Ok;
+		//		break;
+		//	case Command.Shutdown:
+		//		HandleShutdown ();
+		//		e.RetVal = Response.Ok;
+		//		break;
+		//	case Command.Slideshow:
+		//		HandleSlideshow (e.MessageData.Text);
+		//		e.RetVal = Response.Ok;
+		//		break;
+		//	case Command.View:
+		//		HandleView (e.MessageData.Uris);
+		//		e.RetVal = Response.Ok;
+		//		break;
+		//	case Command.Invalid:
+		//	default:
+		//		Log.Debug ("Wrong command received");
+		//		break;
+		//	}
+		//}
 
         void HandleImport (string path)
         {
             // Some users get wonky URIs here, trying to work around below.
             // https://bugzilla.gnome.org/show_bug.cgi?id=629248
             if (path != null && path.StartsWith ("gphoto2:usb:")) {
-                path = string.Format ("gphoto2://[{0}]", path.Substring (8));
+                path = $"gphoto2://[{path.Substring (8)}]";
             }
 
             Hyena.Log.DebugFormat ("Importing from {0}", path);
@@ -344,7 +344,7 @@ namespace FSpot
 				hbox.PackStart (label, false, false, 0);
 
 				Gtk.Label long_label = new Gtk.Label (long_msg);
-				long_label.Markup  = string.Format ("<small>{0}</small>", long_msg);
+				long_label.Markup  = $"<small>{long_msg}</small>";
 
 				vbox.PackStart (long_label, false, false, 0);
 				vbox.PackStart (new Gtk.Label (string.Empty));
@@ -378,9 +378,6 @@ namespace FSpot
 			}
 		}
 
-#endregion
-
-#region Track toplevel windows
 		void Register (Gtk.Window window)
 		{
 			toplevels.Add (window);
@@ -400,6 +397,5 @@ namespace FSpot
 			if (organizer != null && organizer.Window == sender)
 				organizer = null;
 		}
-#endregion
 	}
 }

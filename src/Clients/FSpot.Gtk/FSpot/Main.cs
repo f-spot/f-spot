@@ -415,7 +415,7 @@ namespace FSpot
 			} else
 				App.Instance.Organize ();
 
-			if (!App.Instance.IsRunning)
+			//if (!App.Instance.IsRunning)
 				Gtk.Application.Run ();
 		}
 

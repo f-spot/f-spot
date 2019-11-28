@@ -5,5 +5,4 @@ SUBDIRS = \
 	Hyena			\
 	Hyena.Gui		\
 	Hyena.UnitTest	\
-	unique-sharp	\
 	libfspot
