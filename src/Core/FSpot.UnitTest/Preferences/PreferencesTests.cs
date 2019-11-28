@@ -60,9 +60,9 @@ namespace FSpot.Preferences.UnitTest
 				File.Delete (TestSettingsFile);
 		}
 
-		[TestCase (Settings.Preferences.APP_FSPOT, "FSpotTest")]
-		[TestCase (Settings.Preferences.APP_FSPOT_EXPORT, true)]
-		[TestCase (Settings.Preferences.CUSTOM_CROP_RATIOS, 0.0)]
+		[TestCase (Settings.Preferences.StoragePath, "StoragePathString")]
+		[TestCase (Settings.Preferences.ExportKey, true)]
+		[TestCase (Settings.Preferences.CustomCropRatios, 0.0)]
 		public void CanSetSetting (string key, object v)
 		{
 			backend.Set (key, v);
@@ -75,7 +75,7 @@ namespace FSpot.Preferences.UnitTest
 			Assert.AreEqual (v.ToString (), result);
 		}
 
-		[TestCase (Settings.Preferences.APP_FSPOT, "FSpotTest")]
+		[TestCase (Settings.Preferences.StoragePath, "StoragePathString")]
 		public void CanGetStringSettings (string key, string v)
 		{
 			backend.Set (key, v);
@@ -87,7 +87,7 @@ namespace FSpot.Preferences.UnitTest
 			Assert.AreEqual (v, result);
 		}
 
-		[TestCase (Settings.Preferences.APP_FSPOT_EXPORT, true)]
+		[TestCase (Settings.Preferences.ExportKey, true)]
 		public void CanGetBoolSettings (string key, bool v)
 		{
 			backend.Set (key, v);
@@ -100,7 +100,7 @@ namespace FSpot.Preferences.UnitTest
 		}
 
 
-		[TestCase (Settings.Preferences.CUSTOM_CROP_RATIOS, 0.0)]
+		[TestCase (Settings.Preferences.CustomCropRatios, 0.0)]
 		public void CanGetDoubleSettings (string key, double v)
 		{
 			backend.Set (key, v);
@@ -115,14 +115,14 @@ namespace FSpot.Preferences.UnitTest
 		[Test]
 		public void UnsetSettingThrowsNoSuchKeyException ()
 		{
-			Assert.Throws<NoSuchKeyException> (() => backend.Get<bool> (Settings.Preferences.TAG_ICON_AUTOMATIC));
+			Assert.Throws<NoSuchKeyException> (() => backend.Get<bool> ("RandomKey"));
 		}
 
 		// Preferences returns the default value instead of an exception
 		[Test]
 		public void PreferencesGetDefaultSetting ()
 		{
-			var result = Settings.Preferences.Get<bool> (Settings.Preferences.TAG_ICON_AUTOMATIC);
+			var result = Settings.Preferences.Get<bool> (Settings.Preferences.TagIconAutomatic);
 			Assert.True (result);
 		}
 

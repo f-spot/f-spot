@@ -93,15 +93,15 @@ namespace FSpot.Exporters.Folder
 #pragma warning restore 649
 
 		public const string EXPORT_SERVICE = "folder/";
-		public const string SCALE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "scale";
-		public const string SIZE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "size";
-		public const string OPEN_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "browser";
-		public const string EXPORT_TAGS_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "export_tags";
-		public const string EXPORT_TAG_ICONS_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "export_tag_icons";
-		public const string METHOD_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "method";
-		public const string URI_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "uri";
-		public const string SHARPEN_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "sharpen";
-		public const string INCLUDE_TARBALLS_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "include_tarballs";
+		public const string SCALE_KEY = Preferences.ExportKey + EXPORT_SERVICE + "scale";
+		public const string SIZE_KEY = Preferences.ExportKey + EXPORT_SERVICE + "size";
+		public const string OPEN_KEY = Preferences.ExportKey + EXPORT_SERVICE + "browser";
+		public const string EXPORT_TAGS_KEY = Preferences.ExportKey + EXPORT_SERVICE + "export_tags";
+		public const string EXPORT_TAG_ICONS_KEY = Preferences.ExportKey + EXPORT_SERVICE + "export_tag_icons";
+		public const string METHOD_KEY = Preferences.ExportKey + EXPORT_SERVICE + "method";
+		public const string URI_KEY = Preferences.ExportKey + EXPORT_SERVICE + "uri";
+		public const string SHARPEN_KEY = Preferences.ExportKey + EXPORT_SERVICE + "sharpen";
+		public const string INCLUDE_TARBALLS_KEY = Preferences.ExportKey + EXPORT_SERVICE + "include_tarballs";
 
 		private GtkBeans.Builder builder;
 		private string dialog_name = "folder_export_dialog";
@@ -354,8 +354,7 @@ namespace FSpot.Exporters.Folder
 				break;
 
 			case SIZE_KEY:
-				int size;
-				if (Preferences.TryGet<int> (key, out size))
+				if (Preferences.TryGet (key, out int size))
 					size_spin.Value = (double) size;
 				else
 					size_spin.Value = 400;

@@ -92,7 +92,7 @@ namespace FSpot
 				large_size.Sensitive = false;
 				x_large_size.Sensitive = false;
 			} else
-				switch (Preferences.Get<int> (Preferences.EXPORT_EMAIL_SIZE)) {
+				switch (Preferences.Get<int> (Preferences.ExportEmailSize)) {
 					case 0 :  original_size.Active = true; break;
 					case 1 :  tiny_size.Active = true; break;
 					case 2 :  small_size.Active = true; break;
@@ -183,7 +183,7 @@ namespace FSpot
 				size_number = 5;
 
 			if (!force_original)
-				Preferences.Set (Preferences.EXPORT_EMAIL_SIZE, size_number);
+				Preferences.Set (Preferences.ExportEmailSize, size_number);
 			return sizes [ size_number ];
 		}
 
@@ -239,7 +239,7 @@ namespace FSpot
 
 			// evaluate mailto command and define attachment args for cli
 			System.Text.StringBuilder attach_arg = new System.Text.StringBuilder ();
-			switch (Preferences.Get<string> (Preferences.GNOME_MAILTO_COMMAND)) {
+			switch (Preferences.Get<string> (Preferences.MailToCommand)) {
 			case "thunderbird %s":
 			case "mozilla-thunderbird %s":
 			case "seamonkey -mail -compose %s":
@@ -310,7 +310,7 @@ namespace FSpot
 
 		    // Send the mail :)
 		    string mail_subject = Catalog.GetString("My Photos");
-		    switch (Preferences.Get<string> (Preferences.GNOME_MAILTO_COMMAND)) {
+		    switch (Preferences.Get<string> (Preferences.MailToCommand)) {
 		            // openSuSE
 		        case "thunderbird %s":
 		            System.Diagnostics.Process.Start("thunderbird", " -compose \"subject=" + mail_subject + ",attachment='" + mail_attach + "'\"");

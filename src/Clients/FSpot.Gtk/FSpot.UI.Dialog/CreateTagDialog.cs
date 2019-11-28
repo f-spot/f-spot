@@ -188,7 +188,7 @@ namespace FSpot.UI.Dialog
 
 			Title = Catalog.GetString ("Create New Tag");
 			prompt_label.Text = Catalog.GetString ("Name of New Tag:");
-			auto_icon_checkbutton.Active = Preferences.Get<bool> (Preferences.TAG_ICON_AUTOMATIC);
+			auto_icon_checkbutton.Active = Preferences.Get<bool> (Preferences.TagIconAutomatic);
 
 			PopulateCategoryOptionMenu ();
 			Category = default_category;
@@ -201,7 +201,7 @@ namespace FSpot.UI.Dialog
 			Tag new_tag = null;
 			if (response == ResponseType.Ok) {
 				bool autoicon = this.auto_icon_checkbutton.Active;
-				Preferences.Set (Preferences.TAG_ICON_AUTOMATIC, autoicon);
+				Preferences.Set (Preferences.TagIconAutomatic, autoicon);
 				try {
 					Category parent_category = Category;
 

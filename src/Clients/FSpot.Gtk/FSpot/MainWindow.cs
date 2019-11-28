@@ -256,13 +256,13 @@ namespace FSpot
 			}
 			Gtk.Widget.DefaultColormap = colormap;
 
-			LoadPreference (Preferences.MAIN_WINDOW_WIDTH);
-			LoadPreference (Preferences.MAIN_WINDOW_X);
-			LoadPreference (Preferences.MAIN_WINDOW_MAXIMIZED);
+			LoadPreference (Preferences.MainWindowWidth);
+			LoadPreference (Preferences.MainWindowX);
+			LoadPreference (Preferences.MainWindowMaximized);
 			main_window.ShowAll ();
 
-			LoadPreference (Preferences.SIDEBAR_POSITION);
-			LoadPreference (Preferences.METADATA_EMBED_IN_IMAGE);
+			LoadPreference (Preferences.SidebarPosition);
+			LoadPreference (Preferences.MetadataEmbedInImage);
 
 			pagesetup_menu_item.Activated += HandlePageSetupActivated;
 
@@ -368,7 +368,7 @@ namespace FSpot
 			tag_selection_widget.PopupMenu += HandleTagSelectionPopupMenu;
 			tag_selection_widget.RowActivated += HandleTagSelectionRowActivated;
 
-			LoadPreference (Preferences.TAG_ICON_SIZE);
+			LoadPreference (Preferences.TagIconSize);
 
 			try {
 				query = new PhotoQuery (Database.Photos);
@@ -387,7 +387,7 @@ namespace FSpot
 			Database.Tags.ItemsRemoved += HandleTagsChanged;
 
 			group_selector = new GroupSelector ();
-			group_selector.Adaptor = new TimeAdaptor (query, Preferences.Get<bool> (Preferences.GROUP_ADAPTOR_ORDER_ASC));
+			group_selector.Adaptor = new TimeAdaptor (query, Preferences.Get<bool> (Preferences.GroupAdaptorOrderAsc));
 
 			group_selector.ShowAll ();
 
@@ -417,10 +417,10 @@ namespace FSpot
 
 			icon_view = new QueryView (query);
 			icon_view.ZoomChanged += HandleZoomChanged;
-			LoadPreference (Preferences.ZOOM);
-			LoadPreference (Preferences.SHOW_TAGS);
-			LoadPreference (Preferences.SHOW_DATES);
-			LoadPreference (Preferences.SHOW_RATINGS);
+			LoadPreference (Preferences.Zoom);
+			LoadPreference (Preferences.ShowTags);
+			LoadPreference (Preferences.ShowDates);
+			LoadPreference (Preferences.ShowRatings);
 			icon_view_scrolled.Add (icon_view);
 			icon_view.DoubleClicked += HandleDoubleClicked;
 			icon_view.Vadjustment.ValueChanged += HandleIconViewScroll;
@@ -484,8 +484,8 @@ namespace FSpot
 			view_notebook.SwitchPage += HandleViewNotebookSwitchPage;
 			group_selector.Adaptor.GlassSet += HandleAdaptorGlassSet;
 			group_selector.Adaptor.Changed += HandleAdaptorChanged;
-			LoadPreference (Preferences.GROUP_ADAPTOR_ORDER_ASC);
-			LoadPreference (Preferences.FILMSTRIP_ORIENTATION);
+			LoadPreference (Preferences.GroupAdaptorOrderAsc);
+			LoadPreference (Preferences.FilmstripOrientation);
 
 			Selection = new MainSelection (this);
 			Selection.Changed += HandleSelectionChanged;
@@ -505,12 +505,12 @@ namespace FSpot
 
 			UpdateFindByTagMenu ();
 
-			LoadPreference (Preferences.SHOW_TOOLBAR);
-			LoadPreference (Preferences.SHOW_SIDEBAR);
-			LoadPreference (Preferences.SHOW_TIMELINE);
-			LoadPreference (Preferences.SHOW_FILMSTRIP);
+			LoadPreference (Preferences.ShowToolbar);
+			LoadPreference (Preferences.ShowSidebar);
+			LoadPreference (Preferences.ShowTimeline);
+			LoadPreference (Preferences.ShowFilmstrip);
 
-			LoadPreference (Preferences.GNOME_MAILTO_ENABLED);
+			LoadPreference (Preferences.MailToEnabled);
 
 			Preferences.SettingChanged += OnPreferencesChanged;
 
@@ -1000,7 +1000,7 @@ namespace FSpot
 
 		void HandleIconViewReady (object sender, EventArgs args)
 		{
-			LoadPreference (Preferences.GLASS_POSITION);
+			LoadPreference (Preferences.GlassPosition);
 
 			// We only want to set the position the first time
 			// the icon_view is ready (eg on startup)
@@ -1038,7 +1038,7 @@ namespace FSpot
 					Pixbuf thumbnail = null;
 					if (entry != null) {
 						Cms.Profile screen_profile;
-						if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile)) {
+						if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out screen_profile)) {
 							thumbnail = entry.Pixbuf.Copy ();
 							FSpot.ColorManagement.ApplyProfile (thumbnail, screen_profile);
 						} else
@@ -1498,7 +1498,7 @@ namespace FSpot
 			if (old_size != TagsIconSize) {
 				tag_selection_widget.ColumnsAutosize ();
 				photo_view?.UpdateTagView ();
-				Preferences.Set (Preferences.TAG_ICON_SIZE, TagsIconSize);
+				Preferences.Set (Preferences.TagIconSize, TagsIconSize);
 			}
 		}
 
@@ -1556,28 +1556,28 @@ namespace FSpot
 			main_window.GetSize (out width, out height);
 
 			bool maximized = ((main_window.GdkWindow.State & Gdk.WindowState.Maximized) > 0);
-			Preferences.Set (Preferences.MAIN_WINDOW_MAXIMIZED, maximized);
+			Preferences.Set (Preferences.MainWindowMaximized, maximized);
 
 			if (!maximized) {
-				Preferences.Set (Preferences.MAIN_WINDOW_X, x);
-				Preferences.Set (Preferences.MAIN_WINDOW_Y, y);
-				Preferences.Set (Preferences.MAIN_WINDOW_WIDTH, width);
-				Preferences.Set (Preferences.MAIN_WINDOW_HEIGHT,	height);
+				Preferences.Set (Preferences.MainWindowX, x);
+				Preferences.Set (Preferences.MainWindowY, y);
+				Preferences.Set (Preferences.MainWindowWidth, width);
+				Preferences.Set (Preferences.MainWindowHeight,	height);
 			}
 
-			Preferences.Set (Preferences.SHOW_TOOLBAR, toolbar.Visible);
-			Preferences.Set (Preferences.SHOW_SIDEBAR, info_vbox.Visible);
-			Preferences.Set (Preferences.SHOW_TIMELINE, display_timeline.Active);
-			Preferences.Set (Preferences.SHOW_FILMSTRIP, display_filmstrip.Active);
-			Preferences.Set (Preferences.SHOW_TAGS, icon_view.DisplayTags);
-			Preferences.Set (Preferences.SHOW_DATES, icon_view.DisplayDates);
-			Preferences.Set (Preferences.SHOW_RATINGS, icon_view.DisplayRatings);
+			Preferences.Set (Preferences.ShowToolbar, toolbar.Visible);
+			Preferences.Set (Preferences.ShowSidebar, info_vbox.Visible);
+			Preferences.Set (Preferences.ShowTimeline, display_timeline.Active);
+			Preferences.Set (Preferences.ShowFilmstrip, display_filmstrip.Active);
+			Preferences.Set (Preferences.ShowTags, icon_view.DisplayTags);
+			Preferences.Set (Preferences.ShowDates, icon_view.DisplayDates);
+			Preferences.Set (Preferences.ShowRatings, icon_view.DisplayRatings);
 
-			Preferences.Set (Preferences.GROUP_ADAPTOR_ORDER_ASC, group_selector.Adaptor.OrderAscending);
-			Preferences.Set (Preferences.GLASS_POSITION, group_selector.GlassPosition);
+			Preferences.Set (Preferences.GroupAdaptorOrderAsc, group_selector.Adaptor.OrderAscending);
+			Preferences.Set (Preferences.GlassPosition, group_selector.GlassPosition);
 
-			Preferences.Set (Preferences.SIDEBAR_POSITION, main_hpaned.Position);
-			Preferences.Set (Preferences.ZOOM, icon_view.Zoom);
+			Preferences.Set (Preferences.SidebarPosition, main_hpaned.Position);
+			Preferences.Set (Preferences.Zoom, icon_view.Zoom);
 
 			tag_selection_widget.SaveExpandDefaults ();
 
@@ -2384,72 +2384,72 @@ namespace FSpot
 		void LoadPreference (string key)
 		{
 			switch (key) {
-			case Preferences.MAIN_WINDOW_MAXIMIZED:
+			case Preferences.MainWindowMaximized:
 				if (Preferences.Get<bool> (key))
 					main_window.Maximize ();
 				else
 					main_window.Unmaximize ();
 				break;
 
-			case Preferences.MAIN_WINDOW_X:
-			case Preferences.MAIN_WINDOW_Y:
-				main_window.Move (Preferences.Get<int> (Preferences.MAIN_WINDOW_X),
-					Preferences.Get<int> (Preferences.MAIN_WINDOW_Y));
+			case Preferences.MainWindowX:
+			case Preferences.MainWindowY:
+				main_window.Move (Preferences.Get<int> (Preferences.MainWindowX),
+					Preferences.Get<int> (Preferences.MainWindowY));
 				break;
 
-			case Preferences.MAIN_WINDOW_WIDTH:
-			case Preferences.MAIN_WINDOW_HEIGHT:
-				if (Preferences.Get<int> (Preferences.MAIN_WINDOW_WIDTH) > 0 &&
-				    Preferences.Get<int> (Preferences.MAIN_WINDOW_HEIGHT) > 0)
-					main_window.Resize (Preferences.Get<int> (Preferences.MAIN_WINDOW_WIDTH),
-						Preferences.Get<int> (Preferences.MAIN_WINDOW_HEIGHT));
+			case Preferences.MainWindowWidth:
+			case Preferences.MainWindowHeight:
+				if (Preferences.Get<int> (Preferences.MainWindowWidth) > 0 &&
+				    Preferences.Get<int> (Preferences.MainWindowHeight) > 0)
+					main_window.Resize (Preferences.Get<int> (Preferences.MainWindowWidth),
+						Preferences.Get<int> (Preferences.MainWindowHeight));
 
 				break;
 
-			case Preferences.SHOW_TOOLBAR:
+			case Preferences.ShowToolbar:
 				if (display_toolbar.Active != Preferences.Get<bool> (key))
 					display_toolbar.Active = Preferences.Get<bool> (key);
 				break;
 
-			case Preferences.SHOW_SIDEBAR:
+			case Preferences.ShowSidebar:
 				if (display_sidebar.Active != Preferences.Get<bool> (key))
 					display_sidebar.Active = Preferences.Get<bool> (key);
 				break;
 
-			case Preferences.SHOW_TIMELINE:
+			case Preferences.ShowTimeline:
 				if (display_timeline.Active != Preferences.Get<bool> (key))
 					display_timeline.Active = Preferences.Get<bool> (key);
 				break;
 
-			case Preferences.SHOW_FILMSTRIP:
+			case Preferences.ShowFilmstrip:
 				if (display_filmstrip.Active != Preferences.Get<bool> (key)) {
 					display_filmstrip.Active = Preferences.Get<bool> (key);
 				}
 				break;
 
-			case Preferences.SHOW_TAGS:
+			case Preferences.ShowTags:
 				if (display_tags_menu_item.Active != Preferences.Get<bool> (key))
 					display_tags_menu_item.Active = Preferences.Get<bool> (key);
 				break;
 
-			case Preferences.SHOW_DATES:
+			case Preferences.ShowDates:
 				if (display_dates_menu_item.Active != Preferences.Get<bool> (key))
 					display_dates_menu_item.Active = Preferences.Get<bool> (key);
 					//display_dates_menu_item.Toggle ();
 				break;
 
-			case Preferences.SHOW_RATINGS:
+			case Preferences.ShowRatings:
 				if (display_ratings_menu_item.Active != Preferences.Get<bool> (key))
 					display_ratings_menu_item.Active = Preferences.Get<bool> (key);
 				break;
 
-			case Preferences.GROUP_ADAPTOR_ORDER_ASC:
+			case Preferences.GroupAdaptorOrderAsc:
 				group_selector.Adaptor.OrderAscending = Preferences.Get<bool> (key);
 				reverse_order.Active = Preferences.Get<bool> (key);
 				query.TimeOrderAsc = group_selector.Adaptor.OrderAscending;
 				break;
 
-			case Preferences.GLASS_POSITION:
+			case Preferences.GlassPosition:
 				if (query.Count > 0) {
 					// If the database has changed since this pref was saved, this could cause
 					// an exception to be thrown.
@@ -2464,12 +2464,12 @@ namespace FSpot
 
 				icon_view.GrabFocus ();
 				break;
-			case Preferences.SIDEBAR_POSITION:
+			case Preferences.SidebarPosition:
 				if (main_hpaned.Position != Preferences.Get<int> (key))
 					main_hpaned.Position = Preferences.Get<int> (key);
 				break;
 
-			case Preferences.TAG_ICON_SIZE:
+			case Preferences.TagIconSize:
 				int s = Preferences.Get<int> (key);
 				tag_icon_hidden.Active = (s == (int)Settings.IconSize.Hidden);
 				tag_icon_small.Active = (s == (int)Settings.IconSize.Small);
@@ -2478,14 +2478,14 @@ namespace FSpot
 
 				break;
 
-			case Preferences.ZOOM:
+			case Preferences.Zoom:
 				icon_view.Zoom = Preferences.Get<double> (key);
 				break;
 
-			case Preferences.METADATA_EMBED_IN_IMAGE:
+			case Preferences.MetadataEmbedInImage:
 				write_metadata = Preferences.Get<bool> (key);
 				break;
-			case Preferences.GNOME_MAILTO_ENABLED:
+			case Preferences.MailToEnabled:
 				send_mail.Visible = Preferences.Get<bool> (key);
 				break;
 			}
@@ -2767,9 +2767,9 @@ namespace FSpot
 			//There's no need to convert the file to xcf file format, gimp will take care of this
 			if (support_xcf) {
 				CheckButton cb = new CheckButton (Catalog.GetString ("XCF version"));
-				cb.Active = Preferences.Get<bool> (Preferences.EDIT_CREATE_XCF_VERSION);
+				cb.Active = Preferences.Get<bool> (Preferences.EditCreateXcfVersion);
 				hmd.VBox.Add (cb);
-				cb.Toggled += (s, ea) => Preferences.Set (Preferences.EDIT_CREATE_XCF_VERSION, (s as CheckButton).Active);
+				cb.Toggled += (s, ea) => Preferences.Set (Preferences.EditCreateXcfVersion, (s as CheckButton).Active);
 				cb.Show ();
 			}
 
@@ -2783,7 +2783,7 @@ namespace FSpot
 
 			bool create_xcf = false;
 			if (support_xcf)
-				create_xcf = Preferences.Get<bool> (Preferences.EDIT_CREATE_XCF_VERSION);
+				create_xcf = Preferences.Get<bool> (Preferences.EditCreateXcfVersion);
 
 			Log.DebugFormat ("XCF ? {0}", create_xcf);
 

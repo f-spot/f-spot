@@ -110,11 +110,11 @@ namespace FSpot.Import
 			if (!persistPreferences)
 				return;
 
-			copyFiles = Preferences.Get<bool> (Preferences.IMPORT_COPY_FILES);
-			recurseSubdirectories = Preferences.Get<bool> (Preferences.IMPORT_INCLUDE_SUBFOLDERS);
-			duplicateDetect = Preferences.Get<bool> (Preferences.IMPORT_CHECK_DUPLICATES);
-			removeOriginals = Preferences.Get<bool> (Preferences.IMPORT_REMOVE_ORIGINALS);
-			mergeRawAndJpeg = Preferences.Get<bool> (Preferences.IMPORT_MERGE_RAW_AND_JPEG);
+			copyFiles = Preferences.Get<bool> (Preferences.ImportCopyFiles);
+			recurseSubdirectories = Preferences.Get<bool> (Preferences.ImportIncludeSubfolders);
+			duplicateDetect = Preferences.Get<bool> (Preferences.ImportCheckDuplicates);
+			removeOriginals = Preferences.Get<bool> (Preferences.ImportRemoveOriginals);
+			mergeRawAndJpeg = Preferences.Get<bool> (Preferences.ImportMergeRawAndJpeg);
 		}
 
 		void SavePreferences ()
@@ -122,11 +122,11 @@ namespace FSpot.Import
 			if (!persistPreferences)
 				return;
 
-			Preferences.Set(Preferences.IMPORT_COPY_FILES, copyFiles);
-			Preferences.Set(Preferences.IMPORT_INCLUDE_SUBFOLDERS, recurseSubdirectories);
-			Preferences.Set(Preferences.IMPORT_CHECK_DUPLICATES, duplicateDetect);
-			Preferences.Set(Preferences.IMPORT_REMOVE_ORIGINALS, removeOriginals);
-			Preferences.Set (Preferences.IMPORT_MERGE_RAW_AND_JPEG, mergeRawAndJpeg);
+			Preferences.Set(Preferences.ImportCopyFiles, copyFiles);
+			Preferences.Set(Preferences.ImportIncludeSubfolders, recurseSubdirectories);
+			Preferences.Set(Preferences.ImportCheckDuplicates, duplicateDetect);
+			Preferences.Set(Preferences.ImportRemoveOriginals, removeOriginals);
+			Preferences.Set (Preferences.ImportMergeRawAndJpeg, mergeRawAndJpeg);
 		}
 
 #endregion

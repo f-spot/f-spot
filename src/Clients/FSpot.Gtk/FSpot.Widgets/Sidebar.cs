@@ -54,19 +54,18 @@ namespace FSpot.Widgets
 	// for a given context is used.
 	public class MRUSidebarContextSwitchStrategy : ISidebarContextSwitchStrategy
 	{
-		public const string PREF_PREFIX = Preferences.APP_FSPOT + "ui/sidebar";
+		public const string PreferencePrefix = Preferences.UIKey + "Sidebar";
 
 		string PrefKeyForContext (ViewContext context)
 		{
-			return string.Format ("{0}/{1}", PREF_PREFIX, context);
+			return $"{PreferencePrefix}/{context}";
 		}
 
 		public string PageForContext (ViewContext context)
 		{
 			string name = Preferences.Get<string> (PrefKeyForContext (context));
-			if (name == null)
-				name = DefaultForContext (context);
-			return name;
+
+			return name ?? DefaultForContext (context);
 		}
 
 		public void SwitchedToPage (ViewContext context, string name)

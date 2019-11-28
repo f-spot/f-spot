@@ -50,7 +50,7 @@ namespace FSpot.Widgets
 
 		bool HideTags {
 			get {
-				return (Preferences.Get<int> (Preferences.TAG_ICON_SIZE) == (int)FSpot.Settings.IconSize.Hidden);
+				return (Preferences.Get<int> (Preferences.TagIconSize) == (int)FSpot.Settings.IconSize.Hidden);
 			}
 		}
 
@@ -136,7 +136,7 @@ namespace FSpot.Widgets
 					scaled_icon = icon.ScaleSimple (thumbnail_size, thumbnail_size, InterpType.Bilinear);
 				}
 				Cms.Profile screen_profile;
-				if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile))
+				if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out screen_profile))
 					FSpot.ColorManagement.ApplyProfile (scaled_icon, screen_profile);
 
 				scaled_icon.RenderToDrawable (GdkWindow, Style.WhiteGC,

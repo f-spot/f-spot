@@ -566,7 +566,7 @@ namespace FSpot.Widgets
 
 			//FIXME: we might end up leaking a pixbuf here
 			Cms.Profile screen_profile;
-			if (ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile)) {
+			if (ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out screen_profile)) {
 				Pixbuf t = current.Copy ();
 				current = t;
 				ColorManagement.ApplyProfile (current, screen_profile);

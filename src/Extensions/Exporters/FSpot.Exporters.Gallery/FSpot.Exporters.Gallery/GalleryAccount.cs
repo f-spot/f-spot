@@ -52,7 +52,7 @@ namespace FSpot.Exporters.Gallery
 		}
 
 		public const string EXPORT_SERVICE = "gallery/";
-		public const string LIGHTTPD_WORKAROUND_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "lighttpd_workaround";
+		public const string LIGHTTPD_WORKAROUND_KEY = Preferences.ExportKey + EXPORT_SERVICE + "lighttpd_workaround";
 
 		public Gallery Connect ()
 		{

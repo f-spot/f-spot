@@ -104,11 +104,11 @@ namespace FSpot.Exporters.Gallery
 		}
 
 		public const string EXPORT_SERVICE = "gallery/";
-		public const string SCALE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "scale";
-		public const string SIZE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "size";
-		public const string BROWSER_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "browser";
-		public const string META_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "meta";
-		public const string LIGHTTPD_WORKAROUND_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "lighttpd_workaround";
+		public const string SCALE_KEY = Preferences.ExportKey + EXPORT_SERVICE + "scale";
+		public const string SIZE_KEY = Preferences.ExportKey + EXPORT_SERVICE + "size";
+		public const string BROWSER_KEY = Preferences.ExportKey + EXPORT_SERVICE + "browser";
+		public const string META_KEY = Preferences.ExportKey + EXPORT_SERVICE + "meta";
+		public const string LIGHTTPD_WORKAROUND_KEY = Preferences.ExportKey + EXPORT_SERVICE + "lighttpd_workaround";
 		private bool scale;
 		private int size;
 		private bool browser;

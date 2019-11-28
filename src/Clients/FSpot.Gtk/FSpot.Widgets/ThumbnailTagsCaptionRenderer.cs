@@ -105,7 +105,7 @@ namespace FSpot.Widgets
 					}
 
 					Cms.Profile screen_profile;
-					if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile))
+					if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out screen_profile))
 						FSpot.ColorManagement.ApplyProfile (scaled_icon, screen_profile);
 
 					scaled_icon.RenderToDrawable (window, widget.Style.WhiteGC,
