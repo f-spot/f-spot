@@ -291,18 +291,18 @@ namespace FSpot
 			if (!string.IsNullOrEmpty (tagname))
 				tag = Database.Tags.GetTagByName (tagname);
 			else
-				tag = Database.Tags.GetTagById (Preferences.Get<int> (Preferences.SCREENSAVER_TAG));
+				tag = Database.Tags.GetTagById (Preferences.Get<int> (Preferences.ScreensaverTag));
 
 			IPhoto[] photos;
 			if (tag != null)
 				photos = ObsoletePhotoQueries.Query (new Tag[] {tag});
-			else if (Preferences.Get<int> (Preferences.SCREENSAVER_TAG) == 0)
+			else if (Preferences.Get<int> (Preferences.ScreensaverTag) == 0)
 				photos = ObsoletePhotoQueries.Query (new Tag [] {});
 			else
 				photos = new IPhoto [0];
 
 			// Minimum delay 1 second; default is 4s
-			var delay = Math.Max (1.0, Preferences.Get<double> (Preferences.SCREENSAVER_DELAY));
+			var delay = Math.Max (1.0, Preferences.Get<double> (Preferences.ScreensaverDelay));
 
 			var window = new XScreenSaverSlide ();
 			window.ModifyFg (Gtk.StateType.Normal, new Gdk.Color (127, 127, 127));

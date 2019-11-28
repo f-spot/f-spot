@@ -94,7 +94,7 @@ namespace FSpot
 						: FSpot.Utils.PixbufUtils.Rotate270 (tag.Orientation);
 
 					tag.Orientation = orientation;
-					var always_sidecar = Preferences.Get<bool> (Preferences.METADATA_ALWAYS_USE_SIDECAR);
+					var always_sidecar = Preferences.Get<bool> (Preferences.MetadataAlwaysUseSidecar);
 					metadata.SaveSafely (uri, always_sidecar);
 					App.Instance.Container.Resolve<IThumbnailService> ().DeleteThumbnails (uri);
 				}

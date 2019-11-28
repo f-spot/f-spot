@@ -67,9 +67,9 @@ namespace FSpot.Exporters.Flickr
         public bool ExportIgnoreTopLevel;
         public ProgressItem Progress;
 
-        public const string TOKEN_FLICKR = Preferences.APP_FSPOT_EXPORT_TOKENS + "flickr";
-        public const string TOKEN_23HQ = Preferences.APP_FSPOT_EXPORT_TOKENS + "23hq";
-        public const string TOKEN_ZOOOMR = Preferences.APP_FSPOT_EXPORT_TOKENS + "zooomr";
+        public const string TOKEN_FLICKR = Preferences.ExportTokens + "flickr";
+        public const string TOKEN_23HQ = Preferences.ExportTokens + "23hq";
+        public const string TOKEN_ZOOOMR = Preferences.ExportTokens + "zooomr";
 
         public FlickrRemote (OAuthAccessToken token, Service service)
         {

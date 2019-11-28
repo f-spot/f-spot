@@ -96,7 +96,7 @@ namespace FSpot.UI.Dialog
 			text_renderer.Edited += HandleRatioEdited;
 			content_treeview.AppendColumn (Catalog.GetString ("Ratio"), text_renderer, "text", 1);
 
-			LoadPreference (Preferences.CUSTOM_CROP_RATIOS);
+			LoadPreference (Preferences.CustomCropRatios);
 			Preferences.SettingChanged += OnPreferencesChanged;
 		}
 
@@ -105,7 +105,7 @@ namespace FSpot.UI.Dialog
 			constraints_store = new ListStore (typeof (string), typeof (double));
 			content_treeview.Model = constraints_store;
 			XmlSerializer serializer = new XmlSerializer (typeof(SelectionConstraint));
-			string [] vals = Preferences.Get<string []> (Preferences.CUSTOM_CROP_RATIOS);
+			string [] vals = Preferences.Get<string []> (Preferences.CustomCropRatios);
 			if (vals != null)
 				foreach (string xml in vals) {
 					SelectionConstraint constraint = (SelectionConstraint)serializer.Deserialize (new StringReader (xml));
@@ -121,7 +121,7 @@ namespace FSpot.UI.Dialog
 		void LoadPreference (string key)
 		{
 			switch (key) {
-			case Preferences.CUSTOM_CROP_RATIOS:
+			case Preferences.CustomCropRatios:
 				Populate ();
 				break;
 			}
@@ -139,7 +139,7 @@ namespace FSpot.UI.Dialog
 			}
 
 			if (prefs.Count != 0)
-				Preferences.Set (Preferences.CUSTOM_CROP_RATIOS, prefs.ToArray());
+				Preferences.Set (Preferences.CustomCropRatios, prefs.ToArray());
 		}
 
 		public void HandleLabelEdited (object sender, EditedArgs args)

@@ -91,7 +91,7 @@ namespace FSpot.Database.Jobs
 				tag.Rating = photo.Rating;
 				tag.Software = FSpotConfiguration.Package + " version " + FSpotConfiguration.Version;
 
-				var always_sidecar = Preferences.Get<bool> (Preferences.METADATA_ALWAYS_USE_SIDECAR);
+				var always_sidecar = Preferences.Get<bool> (Preferences.MetadataAlwaysUseSidecar);
 				metadata.SaveSafely (photo.DefaultVersion.Uri, always_sidecar);
 			}
 		}

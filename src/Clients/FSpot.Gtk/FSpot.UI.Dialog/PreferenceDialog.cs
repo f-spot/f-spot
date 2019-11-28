@@ -66,7 +66,7 @@ namespace FSpot.UI.Dialog
 			//Photos Folder
 			photosdir_chooser.SetCurrentFolderUri (FSpotConfiguration.PhotoUri);
 
-			SafeUri storage_path = new SafeUri (Preferences.Get<string> (Preferences.STORAGE_PATH));
+			SafeUri storage_path = new SafeUri (Preferences.Get<string> (Preferences.StoragePath));
 
 			//If the user has set a photo directory on the commandline then don't let it be changed in Preferences
 			if (storage_path.Equals(FSpotConfiguration.PhotoUri))
@@ -75,8 +75,8 @@ namespace FSpot.UI.Dialog
 				photosdir_chooser.Sensitive = false;
 
 			//Write Metadata
-			LoadPreference (Preferences.METADATA_EMBED_IN_IMAGE);
-			LoadPreference (Preferences.METADATA_ALWAYS_USE_SIDECAR);
+			LoadPreference (Preferences.MetadataEmbedInImage);
+			LoadPreference (Preferences.MetadataAlwaysUseSidecar);
 
 			//Screen profile
 			ListStore sprofiles = new ListStore (typeof (string), typeof (int));
@@ -99,7 +99,7 @@ namespace FSpot.UI.Dialog
 			screenprofile_combo.PackStart (profilecellrenderer, true);
 			screenprofile_combo.RowSeparatorFunc = ProfileSeparatorFunc;
 			screenprofile_combo.SetCellDataFunc (profilecellrenderer, ProfileCellFunc);
-			LoadPreference (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE);
+			LoadPreference (Preferences.ColorManagementDisplayProfile);
 
 			//Print profile
 			ListStore pprofiles = new ListStore (typeof (string), typeof (int));
@@ -116,7 +116,7 @@ namespace FSpot.UI.Dialog
 			printprofile_combo.PackStart (profilecellrenderer, true);
 			printprofile_combo.RowSeparatorFunc = ProfileSeparatorFunc;
 			printprofile_combo.SetCellDataFunc (profilecellrenderer, ProfileCellFunc);
-			LoadPreference (Preferences.COLOR_MANAGEMENT_OUTPUT_PROFILE);
+			LoadPreference (Preferences.ColorManagementDisplayOutputProfile);
 
 			//Theme chooser
 			ListStore themes = new ListStore (typeof (string), typeof (string));
@@ -136,7 +136,7 @@ namespace FSpot.UI.Dialog
 			theme_combo.PackStart (themecellrenderer, true);
 			theme_combo.RowSeparatorFunc = ThemeSeparatorFunc;
 			theme_combo.SetCellDataFunc (themecellrenderer, ThemeCellFunc);
-			LoadPreference (Preferences.GTK_RC);
+			LoadPreference (Preferences.GtkRc);
 
 			ConnectEvents ();
 		}
@@ -153,10 +153,10 @@ namespace FSpot.UI.Dialog
 			string pref;
 			int i;
 			switch (key) {
-			case Preferences.STORAGE_PATH:
+			case Preferences.StoragePath:
 				photosdir_chooser.SetCurrentFolder (Preferences.Get<string> (key));
 				break;
-			case Preferences.METADATA_EMBED_IN_IMAGE:
+			case Preferences.MetadataEmbedInImage:
 				bool embed_active = Preferences.Get<bool> (key);
 				if (writemetadata_radio.Active != embed_active) {
 					if (embed_active) {
@@ -167,11 +167,11 @@ namespace FSpot.UI.Dialog
 				}
 				always_sidecar_check.Sensitive = embed_active;
 				break;
-			case Preferences.METADATA_ALWAYS_USE_SIDECAR:
+			case Preferences.MetadataAlwaysUseSidecar:
 				bool always_use_sidecar = Preferences.Get<bool> (key);
 				always_sidecar_check.Active = always_use_sidecar;
 				break;
-			case Preferences.GTK_RC:
+			case Preferences.GtkRc:
 				pref = Preferences.Get<string> (key);
 				if (string.IsNullOrEmpty (pref)) {
 					theme_combo.Active = 0;
@@ -186,7 +186,7 @@ namespace FSpot.UI.Dialog
 					i++;
 				}
 				break;
-			case Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE:
+			case Preferences.ColorManagementDisplayProfile:
 				pref = Preferences.Get<string> (key);
 				if (string.IsNullOrEmpty (pref)) {
 					screenprofile_combo.Active = 0;
@@ -205,7 +205,7 @@ namespace FSpot.UI.Dialog
 					i++;
 				}
 				break;
-			case Preferences.COLOR_MANAGEMENT_OUTPUT_PROFILE:
+			case Preferences.ColorManagementDisplayOutputProfile:
 				pref = Preferences.Get<string> (key);
 				if (string.IsNullOrEmpty (pref)) {
 					printprofile_combo.Active = 0;
@@ -238,19 +238,19 @@ namespace FSpot.UI.Dialog
 		void HandlePhotosdirChanged (object sender, EventArgs args)
 		{
 			photosdir_chooser.CurrentFolderChanged -= HandlePhotosdirChanged;
-			Preferences.Set (Preferences.STORAGE_PATH, photosdir_chooser.Filename);
+			Preferences.Set (Preferences.StoragePath, photosdir_chooser.Filename);
 			photosdir_chooser.CurrentFolderChanged += HandlePhotosdirChanged;
 			FSpotConfiguration.PhotoUri = new SafeUri (photosdir_chooser.Uri, true);
 		}
 
 		void HandleWritemetadataGroupChanged (object sender, EventArgs args)
 		{
-			Preferences.Set (Preferences.METADATA_EMBED_IN_IMAGE, writemetadata_radio.Active);
+			Preferences.Set (Preferences.MetadataEmbedInImage, writemetadata_radio.Active);
 		}
 
 		void HandleAlwaysSidecareCheckToggled (object sender, EventArgs args)
 		{
-			Preferences.Set (Preferences.METADATA_ALWAYS_USE_SIDECAR, always_sidecar_check.Active);
+			Preferences.Set (Preferences.MetadataAlwaysUseSidecar, always_sidecar_check.Active);
 		}
 
 		void HandleThemeComboChanged (object sender, EventArgs e)
@@ -262,12 +262,12 @@ namespace FSpot.UI.Dialog
 			if (combo.GetActiveIter (out iter)) {
 				string gtkrc = (string)combo.Model.GetValue (iter, 1);
 				if (!string.IsNullOrEmpty (gtkrc))
-					Preferences.Set (Preferences.GTK_RC, gtkrc);
+					Preferences.Set (Preferences.GtkRc, gtkrc);
 				else
-					Preferences.Set (Preferences.GTK_RC, string.Empty);
+					Preferences.Set (Preferences.GtkRc, string.Empty);
 			}
 			Gtk.Rc.DefaultFiles = FSpotConfiguration.DefaultRcFiles;
-			Gtk.Rc.AddDefaultFile (Preferences.Get<string> (Preferences.GTK_RC));
+			Gtk.Rc.AddDefaultFile (Preferences.Get<string> (Preferences.GtkRc));
 			Gtk.Rc.ReparseAllForSettings (Gtk.Settings.Default, true);
 		}
 
@@ -280,13 +280,13 @@ namespace FSpot.UI.Dialog
 			if (combo.GetActiveIter (out iter)) {
 				switch ((int)combo.Model.GetValue (iter, 1)) {
 				case 0:
-					Preferences.Set (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE, string.Empty);
+					Preferences.Set (Preferences.ColorManagementDisplayProfile, string.Empty);
 					break;
 				case -1:
-					Preferences.Set (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE, "_x_profile_");
+					Preferences.Set (Preferences.ColorManagementDisplayProfile, "_x_profile_");
 					break;
 				case 1:
-					Preferences.Set (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE, (string)combo.Model.GetValue (iter, 0));
+					Preferences.Set (Preferences.ColorManagementDisplayProfile, (string)combo.Model.GetValue (iter, 0));
 					break;
 				}
 			}
@@ -301,10 +301,10 @@ namespace FSpot.UI.Dialog
 			if (combo.GetActiveIter (out iter)) {
 				switch ((int)combo.Model.GetValue (iter, 1)) {
 				case 0:
-					Preferences.Set (Preferences.COLOR_MANAGEMENT_OUTPUT_PROFILE, string.Empty);
+					Preferences.Set (Preferences.ColorManagementDisplayOutputProfile, string.Empty);
 					break;
 				case 1:
-					Preferences.Set (Preferences.COLOR_MANAGEMENT_OUTPUT_PROFILE, (string)combo.Model.GetValue (iter, 0));
+					Preferences.Set (Preferences.ColorManagementDisplayOutputProfile, (string)combo.Model.GetValue (iter, 0));
 					break;
 				}
 			}

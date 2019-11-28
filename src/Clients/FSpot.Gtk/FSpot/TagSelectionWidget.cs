@@ -199,7 +199,7 @@ namespace FSpot
 
 			if (tag.SizedIcon != null) {
 				Cms.Profile screen_profile;
-				if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile)) {
+				if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out screen_profile)) {
 					//FIXME, we're leaking a pixbuf here
 					using (Gdk.Pixbuf temp = tag.SizedIcon.Copy ()) {
 						FSpot.ColorManagement.ApplyProfile (temp, screen_profile);
@@ -385,7 +385,7 @@ namespace FSpot
 
 		void ExpandDefaults ()
 		{
-			int [] tags = Preferences.Get<int []> (Preferences.EXPANDED_TAGS);
+			int [] tags = Preferences.Get<int []> (Preferences.ExpandedTags);
 			if (tags == null) {
 				ExpandAll ();
 				return;
@@ -461,7 +461,7 @@ namespace FSpot
 				}
 			}
 
-			Preferences.Set (Preferences.EXPANDED_TAGS, expanded_tags.ToArray ());
+			Preferences.Set (Preferences.ExpandedTags, expanded_tags.ToArray ());
 		}
 
 		public void EditSelectedTagName ()

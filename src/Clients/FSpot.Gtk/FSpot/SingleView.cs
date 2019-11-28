@@ -100,8 +100,8 @@ namespace FSpot {
 			var builder = new GtkBeans.Builder ("single_view.ui");
 			builder.Autoconnect (this);
 
-			LoadPreference (Preferences.VIEWER_WIDTH);
-			LoadPreference (Preferences.VIEWER_MAXIMIZED);
+			LoadPreference (Preferences.ViewerWidth);
+			LoadPreference (Preferences.ViewerMaximized);
 
 			Gtk.Toolbar toolbar = new Gtk.Toolbar ();
 			toolbar_hbox.PackStart (toolbar);
@@ -175,14 +175,14 @@ namespace FSpot {
 
 			zoom_scale.ValueChanged += HandleZoomScaleValueChanged;
 
-			LoadPreference (Preferences.VIEWER_SHOW_TOOLBAR);
-			LoadPreference (Preferences.VIEWER_INTERPOLATION);
-			LoadPreference (Preferences.VIEWER_TRANSPARENCY);
-			LoadPreference (Preferences.VIEWER_TRANS_COLOR);
+			LoadPreference (Preferences.ViewerShowToolbar);
+			LoadPreference (Preferences.ViewerInterpolation);
+			LoadPreference (Preferences.ViewerTransparency);
+			LoadPreference (Preferences.ViewerTransColor);
 
 			ShowSidebar = collection.Count > 1;
 
-			LoadPreference (Preferences.VIEWER_SHOW_FILENAMES);
+			LoadPreference (Preferences.ViewerShawFilenames);
 
 			Preferences.SettingChanged += OnPreferencesChanged;
 			Window.DeleteEvent += HandleDeleteEvent;
@@ -514,15 +514,15 @@ namespace FSpot {
 			Window.GetSize (out width, out height);
 
 			bool maximized = ((Window.GdkWindow.State & Gdk.WindowState.Maximized) > 0);
-			Preferences.Set (Preferences.VIEWER_MAXIMIZED, maximized);
+			Preferences.Set (Preferences.ViewerMaximized, maximized);
 
 			if (!maximized) {
-				Preferences.Set (Preferences.VIEWER_WIDTH,	width);
-				Preferences.Set (Preferences.VIEWER_HEIGHT,	height);
+				Preferences.Set (Preferences.ViewerWidth,	width);
+				Preferences.Set (Preferences.ViewerHeight,	height);
 			}
 
-			Preferences.Set (Preferences.VIEWER_SHOW_TOOLBAR,	toolbar_hbox.Visible);
-			Preferences.Set (Preferences.VIEWER_SHOW_FILENAMES, filenames_item.Active);
+			Preferences.Set (Preferences.ViewerShowToolbar,	toolbar_hbox.Visible);
+			Preferences.Set (Preferences.ViewerShawFilenames, filenames_item.Active);
 		}
 
         void HandleFileOpen(object sender, EventArgs args)
@@ -550,18 +550,18 @@ namespace FSpot {
 		void LoadPreference (string key)
 		{
 			switch (key) {
-			case Preferences.VIEWER_MAXIMIZED:
+			case Preferences.ViewerMaximized:
 				if (Preferences.Get<bool> (key))
 					Window.Maximize ();
 				else
 					Window.Unmaximize ();
 				break;
 
-			case Preferences.VIEWER_WIDTH:
-			case Preferences.VIEWER_HEIGHT:
+			case Preferences.ViewerWidth:
+			case Preferences.ViewerHeight:
 				int width, height;
-				width = Preferences.Get<int> (Preferences.VIEWER_WIDTH);
-				height = Preferences.Get<int> (Preferences.VIEWER_HEIGHT);
+				width = Preferences.Get<int> (Preferences.ViewerWidth);
+				height = Preferences.Get<int> (Preferences.ViewerHeight);
 
 				if( width == 0 || height == 0 )
 					break;
@@ -571,36 +571,36 @@ namespace FSpot {
 				Window.ReshowWithInitialSize();
 				break;
 
-			case Preferences.VIEWER_SHOW_TOOLBAR:
+			case Preferences.ViewerShowToolbar:
 				if (toolbar_item.Active != Preferences.Get<bool> (key))
 					toolbar_item.Active = Preferences.Get<bool> (key);
 
 				toolbar_hbox.Visible = Preferences.Get<bool> (key);
 				break;
 
-			case Preferences.VIEWER_INTERPOLATION:
+			case Preferences.ViewerInterpolation:
 				if (Preferences.Get<bool> (key))
 					image_view.Interpolation = Gdk.InterpType.Bilinear;
 				else
 					image_view.Interpolation = Gdk.InterpType.Nearest;
 				break;
 
-			case Preferences.VIEWER_SHOW_FILENAMES:
+			case Preferences.ViewerShawFilenames:
 				if (filenames_item.Active != Preferences.Get<bool> (key))
 					filenames_item.Active = Preferences.Get<bool> (key);
 				break;
 
-			case Preferences.VIEWER_TRANSPARENCY:
+			case Preferences.ViewerTransparency:
 				if (Preferences.Get<string> (key) == "CHECK_PATTERN")
 					image_view.CheckPattern = CheckPattern.Dark;
 				else if (Preferences.Get<string> (key) == "COLOR")
-					image_view.CheckPattern = new CheckPattern (Preferences.Get<string> (Preferences.VIEWER_TRANS_COLOR));
+					image_view.CheckPattern = new CheckPattern (Preferences.Get<string> (Preferences.ViewerTransColor));
 				else // NONE
 					image_view.CheckPattern = new CheckPattern (image_view.Style.BaseColors [(int)Gtk.StateType.Normal]);
 				break;
 
-			case Preferences.VIEWER_TRANS_COLOR:
-				if (Preferences.Get<string> (Preferences.VIEWER_TRANSPARENCY) == "COLOR")
+			case Preferences.ViewerTransColor:
+				if (Preferences.Get<string> (Preferences.ViewerTransparency) == "COLOR")
 					image_view.CheckPattern = new CheckPattern (Preferences.Get<string> (key));
 				break;
 			}
@@ -618,21 +618,21 @@ namespace FSpot {
 
 			public PreferenceDialog () : base ("viewer_preferences.ui", "viewer_preferences")
 			{
-				LoadPreference (Preferences.VIEWER_INTERPOLATION);
-				LoadPreference (Preferences.VIEWER_TRANSPARENCY);
-				LoadPreference (Preferences.VIEWER_TRANS_COLOR);
+				LoadPreference (Preferences.ViewerInterpolation);
+				LoadPreference (Preferences.ViewerTransparency);
+				LoadPreference (Preferences.ViewerTransColor);
 				Preferences.SettingChanged += OnPreferencesChanged;
 				Destroyed += HandleDestroyed;
 			}
 
             void InterpolationToggled(object sender, EventArgs args)
 			{
-				Preferences.Set (Preferences.VIEWER_INTERPOLATION, interpolation_check.Active);
+				Preferences.Set (Preferences.ViewerInterpolation, interpolation_check.Active);
 			}
 
             void HandleTransparentColorSet(object sender, EventArgs args)
 			{
-				Preferences.Set (Preferences.VIEWER_TRANS_COLOR,
+				Preferences.Set (Preferences.ViewerTransColor,
 						"#" +
 						(color_button.Color.Red / 256 ).ToString("x").PadLeft (2, '0') +
 						(color_button.Color.Green / 256 ).ToString("x").PadLeft (2, '0') +
@@ -642,11 +642,11 @@ namespace FSpot {
             void HandleTransparencyToggled(object sender, EventArgs args)
 			{
 				if (as_background_radio.Active)
-					Preferences.Set (Preferences.VIEWER_TRANSPARENCY, "NONE");
+					Preferences.Set (Preferences.ViewerTransparency, "NONE");
 				else if (as_check_radio.Active)
-					Preferences.Set (Preferences.VIEWER_TRANSPARENCY, "CHECK_PATTERN");
+					Preferences.Set (Preferences.ViewerTransparency, "CHECK_PATTERN");
 				else if (as_color_radio.Active)
-					Preferences.Set (Preferences.VIEWER_TRANSPARENCY, "COLOR");
+					Preferences.Set (Preferences.ViewerTransparency, "COLOR");
 			}
 
 			static PreferenceDialog prefs;
@@ -677,10 +677,10 @@ namespace FSpot {
 			{
 
 				switch (key) {
-				case Preferences.VIEWER_INTERPOLATION:
+				case Preferences.ViewerInterpolation:
 					interpolation_check.Active = Preferences.Get<bool> (key);
 					break;
-				case Preferences.VIEWER_TRANSPARENCY:
+				case Preferences.ViewerTransparency:
 					switch (Preferences.Get<string> (key)) {
 					case "COLOR":
 						as_color_radio.Active = true;
@@ -693,7 +693,7 @@ namespace FSpot {
 						break;
 					}
 					break;
-				case Preferences.VIEWER_TRANS_COLOR:
+				case Preferences.ViewerTransColor:
 					color_button.Color = new Gdk.Color (
 						Byte.Parse (Preferences.Get<string> (key).Substring (1,2), System.Globalization.NumberStyles.AllowHexSpecifier),
 						Byte.Parse (Preferences.Get<string> (key).Substring (3,2), System.Globalization.NumberStyles.AllowHexSpecifier),

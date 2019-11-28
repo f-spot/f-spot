@@ -404,7 +404,7 @@ namespace FSpot.Widgets
 
                 if (region.Intersect (expose_area, out draw)) {
                     Cms.Profile screen_profile;
-                    if (ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile)) {
+                    if (ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out screen_profile)) {
                         Pixbuf t = temp_thumbnail.Copy ();
                         temp_thumbnail.Dispose ();
                         temp_thumbnail = t;

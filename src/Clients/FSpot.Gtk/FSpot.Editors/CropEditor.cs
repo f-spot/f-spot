@@ -84,7 +84,7 @@ namespace FSpot.Editors
 		void LoadPreference (string key)
 		{
 			switch (key) {
-			case Preferences.CUSTOM_CROP_RATIOS:
+			case Preferences.CustomCropRatios:
 				custom_constraints = new List<SelectionRatioDialog.SelectionConstraint> ();
 				if (Preferences.Get<string[]> (key) != null) {
 					XmlSerializer serializer = new XmlSerializer (typeof(SelectionRatioDialog.SelectionConstraint));
@@ -113,7 +113,7 @@ namespace FSpot.Editors
 
 			// FIXME: need tooltip Catalog.GetString ("Constrain the aspect ratio of the selection")
 
-			LoadPreference (Preferences.CUSTOM_CROP_RATIOS);
+			LoadPreference (Preferences.CustomCropRatios);
 
 			vbox.Add (info);
 			vbox.Add (constraints_combo);

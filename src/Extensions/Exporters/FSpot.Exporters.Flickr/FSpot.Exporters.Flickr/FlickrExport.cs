@@ -86,15 +86,15 @@ namespace FSpot.Exporters.Flickr
 		ProgressItem progress_item;
 
 		public const string EXPORT_SERVICE = "flickr/";
-		public const string SCALE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "scale";
-		public const string SIZE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "size";
-		public const string BROWSER_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "browser";
-		public const string TAGS_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "tags";
-		public const string PUBLIC_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "public";
-		public const string FAMILY_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "family";
-		public const string FRIENDS_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "friends";
-		public const string TAG_HIERARCHY_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "tag_hierarchy";
-		public const string IGNORE_TOP_LEVEL_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "ignore_top_level";
+		public const string SCALE_KEY = Preferences.ExportKey + EXPORT_SERVICE + "scale";
+		public const string SIZE_KEY = Preferences.ExportKey + EXPORT_SERVICE + "size";
+		public const string BROWSER_KEY = Preferences.ExportKey + EXPORT_SERVICE + "browser";
+		public const string TAGS_KEY = Preferences.ExportKey + EXPORT_SERVICE + "tags";
+		public const string PUBLIC_KEY = Preferences.ExportKey + EXPORT_SERVICE + "public";
+		public const string FAMILY_KEY = Preferences.ExportKey + EXPORT_SERVICE + "family";
+		public const string FRIENDS_KEY = Preferences.ExportKey + EXPORT_SERVICE + "friends";
+		public const string TAG_HIERARCHY_KEY = Preferences.ExportKey + EXPORT_SERVICE + "tag_hierarchy";
+		public const string IGNORE_TOP_LEVEL_KEY = Preferences.ExportKey + EXPORT_SERVICE + "ignore_top_level";
 
 		bool open;
 		bool scale;

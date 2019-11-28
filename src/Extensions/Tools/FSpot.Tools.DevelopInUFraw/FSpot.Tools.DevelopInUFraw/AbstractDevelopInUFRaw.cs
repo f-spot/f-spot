@@ -36,7 +36,6 @@ using Mono.Unix;
 
 using Hyena;
 
-using FSpot;
 using FSpot.Extensions;
 using FSpot.Imaging;
 using FSpot.Settings;
@@ -44,23 +43,22 @@ using FSpot.Utils;
 
 namespace FSpot.Tools.DevelopInUFraw
 {
-    // Abstract version, contains shared functionality
+	// Abstract version, contains shared functionality
 	public abstract class AbstractDevelopInUFRaw : ICommand
 	{
 		// The executable used for developing RAWs
-		private string executable;
+		string executable;
 
-		public const string APP_FSPOT_EXTENSION = Preferences.APP_FSPOT + "extension/";
-		public const string EXTENSION_DEVELOPINUFRAW = "developinufraw/";
-		public const string UFRAW_JPEG_QUALITY_KEY = APP_FSPOT_EXTENSION + EXTENSION_DEVELOPINUFRAW + "ufraw_jpeg_quality";
-		public const string UFRAW_ARGUMENTS_KEY = APP_FSPOT_EXTENSION + EXTENSION_DEVELOPINUFRAW + "ufraw_arguments";
-		public const string UFRAW_BATCH_ARGUMENTS_KEY = APP_FSPOT_EXTENSION + EXTENSION_DEVELOPINUFRAW + "ufraw_batch_arguments";
+		public const string DevelopInUfraw = Preferences.ExtensionKey + "DevelopInUfraw/";
+		public const string UfrawJpegQualityKey = DevelopInUfraw + "JpegQuality";
+		public const string UfrawArgumentsKey = DevelopInUfraw + "Arguments";
+		public const string UfrawBatchArgumentsKey = DevelopInUfraw + "BatchArguments";
 
 		int ufraw_jpeg_quality;
 		string ufraw_args;
 		string ufraw_batch_args;
 
-		public AbstractDevelopInUFRaw(string executable)
+		public AbstractDevelopInUFRaw (string executable)
 		{
 			this.executable = executable;
 		}
@@ -69,9 +67,9 @@ namespace FSpot.Tools.DevelopInUFraw
 
 		protected void DevelopPhoto (Photo p)
 		{
-			LoadPreference (UFRAW_JPEG_QUALITY_KEY);
-			LoadPreference (UFRAW_ARGUMENTS_KEY);
-			LoadPreference (UFRAW_BATCH_ARGUMENTS_KEY);
+			LoadPreference (UfrawJpegQualityKey);
+			LoadPreference (UfrawArgumentsKey);
+			LoadPreference (UfrawBatchArgumentsKey);
 
 			PhotoVersion raw = p.GetVersion (Photo.OriginalVersionId) as PhotoVersion;
 			if (!App.Instance.Container.Resolve<IImageFileFactory> ().IsRaw (raw.Uri)) {
@@ -91,23 +89,23 @@ namespace FSpot.Tools.DevelopInUFraw
 
 			string args = "";
 			switch (executable) {
-				case "ufraw":
-					args += ufraw_args;
-					if (GLib.FileFactory.NewForUri (Path.ChangeExtension (raw.Uri.ToString (), ".ufraw")).Exists) {
-						// We found an ID file, use that instead of the raw file
-						idfile = "--conf=" + GLib.Shell.Quote (Path.ChangeExtension (raw.Uri.LocalPath, ".ufraw"));
-					}
-					break;
-				case "ufraw-batch":
-					args += ufraw_batch_args;
-					if (GLib.FileFactory.NewForUri (Path.Combine (FSpotConfiguration.BaseDirectory, "batch.ufraw")).Exists) {
-						// We found an ID file, use that instead of the raw file
-						idfile = "--conf=" + GLib.Shell.Quote (Path.Combine (FSpotConfiguration.BaseDirectory, "batch.ufraw"));
-					}
-					break;
+			case "ufraw":
+				args += ufraw_args;
+				if (GLib.FileFactory.NewForUri (Path.ChangeExtension (raw.Uri.ToString (), ".ufraw")).Exists) {
+					// We found an ID file, use that instead of the raw file
+					idfile = "--conf=" + GLib.Shell.Quote (Path.ChangeExtension (raw.Uri.LocalPath, ".ufraw"));
+				}
+				break;
+			case "ufraw-batch":
+				args += ufraw_batch_args;
+				if (GLib.FileFactory.NewForUri (Path.Combine (FSpotConfiguration.BaseDirectory, "batch.ufraw")).Exists) {
+					// We found an ID file, use that instead of the raw file
+					idfile = "--conf=" + GLib.Shell.Quote (Path.Combine (FSpotConfiguration.BaseDirectory, "batch.ufraw"));
+				}
+				break;
 			}
 
-			args += string.Format(" --overwrite --create-id=also --compression={0} --out-type=jpeg {1} --output={2} {3}",
+			args += string.Format (" --overwrite --create-id=also --compression={0} --out-type=jpeg {1} --output={2} {3}",
 				ufraw_jpeg_quality,
 				idfile,
 				GLib.Shell.Quote (developed.LocalPath),
@@ -131,7 +129,7 @@ namespace FSpot.Tools.DevelopInUFraw
 				File.Move (Path.ChangeExtension (developed.LocalPath, ".ufraw"), Path.ChangeExtension (raw.Uri.LocalPath, ".ufraw"));
 			}
 
-			p.DefaultVersionId = p.AddVersion (new SafeUri (developed).GetBaseUri (),new SafeUri (developed).GetFilename (), name, true);
+			p.DefaultVersionId = p.AddVersion (new SafeUri (developed).GetBaseUri (), new SafeUri (developed).GetFilename (), name, true);
 			p.Changes.DataChanged = true;
 			App.Instance.Database.Photos.Commit (p);
 		}
@@ -152,9 +150,9 @@ namespace FSpot.Tools.DevelopInUFraw
 
 		private System.Uri GetUriForVersionName (Photo p, string version_name)
 		{
-			string name_without_ext = System.IO.Path.GetFileNameWithoutExtension (p.Name);
-			return new System.Uri (System.IO.Path.Combine (DirectoryPath (p),  name_without_ext
-					       + " (" + version_name + ")" + ".jpg"));
+			string name_without_ext = Path.GetFileNameWithoutExtension (p.Name);
+			return new System.Uri (Path.Combine (DirectoryPath (p), name_without_ext
+						   + " (" + version_name + ")" + ".jpg"));
 		}
 
 		private static string DirectoryPath (Photo p)
@@ -165,15 +163,15 @@ namespace FSpot.Tools.DevelopInUFraw
 		void LoadPreference (string key)
 		{
 			switch (key) {
-				case UFRAW_JPEG_QUALITY_KEY:
-					ufraw_jpeg_quality = Preferences.Get<int> (key);
-					break;
-				case UFRAW_ARGUMENTS_KEY:
-					ufraw_args = Preferences.Get<string> (key);
-					break;
-				case UFRAW_BATCH_ARGUMENTS_KEY:
-					ufraw_batch_args = Preferences.Get<string> (key);
-					break;
+			case UfrawJpegQualityKey:
+				ufraw_jpeg_quality = Preferences.Get<int> (key);
+				break;
+			case UfrawArgumentsKey:
+				ufraw_args = Preferences.Get<string> (key);
+				break;
+			case UfrawBatchArgumentsKey:
+				ufraw_batch_args = Preferences.Get<string> (key);
+				break;
 			}
 		}
 

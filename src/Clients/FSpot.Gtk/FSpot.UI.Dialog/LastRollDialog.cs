@@ -60,7 +60,7 @@ namespace FSpot.UI.Dialog
 		{
 			this.query = query;
 			this.rollstore = rollstore;
-			rolls = rollstore.GetRolls (Preferences.Get<int> (Preferences.IMPORT_GUI_ROLL_HISTORY));
+			rolls = rollstore.GetRolls (Preferences.Get<int> (Preferences.ImportGuiRollHistory));
 
 			TransientFor = parent;
 

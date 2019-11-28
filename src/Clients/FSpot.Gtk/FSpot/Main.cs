@@ -203,7 +203,7 @@ namespace FSpot
 			GLib.GType.Init ();
 			Catalog.Init ("f-spot", FSpotConfiguration.LocaleDir);
 
-			FSpotConfiguration.PhotoUri = new SafeUri (Preferences.Get<string> (Preferences.STORAGE_PATH));
+			FSpotConfiguration.PhotoUri = new SafeUri (Preferences.Get<string> (Preferences.StoragePath));
 
 			ApplicationContext.CommandLine = new CommandLineParser (args, 0);
 
@@ -298,12 +298,12 @@ namespace FSpot
 			// init web proxy globally
 			Platform.WebProxy.Init ();
 
-			if (File.Exists (Preferences.Get<string> (Preferences.GTK_RC))) {
+			if (File.Exists (Preferences.Get<string> (Preferences.GtkRc))) {
 				if (File.Exists (Path.Combine (FSpotConfiguration.BaseDirectory, "gtkrc")))
 					Gtk.Rc.AddDefaultFile (Path.Combine (FSpotConfiguration.BaseDirectory, "gtkrc"));
 
 				FSpotConfiguration.DefaultRcFiles = Gtk.Rc.DefaultFiles;
-				Gtk.Rc.AddDefaultFile (Preferences.Get<string> (Preferences.GTK_RC));
+				Gtk.Rc.AddDefaultFile (Preferences.Get<string> (Preferences.GtkRc));
 				Gtk.Rc.ReparseAllForSettings (Gtk.Settings.Default, true);
 			}
 

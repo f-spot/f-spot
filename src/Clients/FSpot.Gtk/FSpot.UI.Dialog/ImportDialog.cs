@@ -116,12 +116,12 @@ namespace FSpot.UI.Dialog
 
 		void LoadPreferences ()
 		{
-			if (Preferences.Get<int> (Preferences.IMPORT_WINDOW_WIDTH) > 0) {
-				Resize (Preferences.Get<int> (Preferences.IMPORT_WINDOW_WIDTH), Preferences.Get<int> (Preferences.IMPORT_WINDOW_HEIGHT));
+			if (Preferences.Get<int> (Preferences.ImportWindowWidth) > 0) {
+				Resize (Preferences.Get<int> (Preferences.ImportWindowWidth), Preferences.Get<int> (Preferences.ImportWindowHeight));
 			}
 
-			if (Preferences.Get<int> (Preferences.IMPORT_WINDOW_PANE_POSITION) > 0) {
-				import_hpaned.Position = Preferences.Get<int> (Preferences.IMPORT_WINDOW_PANE_POSITION);
+			if (Preferences.Get<int> (Preferences.ImportWindowPanePosition) > 0) {
+				import_hpaned.Position = Preferences.Get<int> (Preferences.ImportWindowPanePosition);
 			}
 
 			copy_check.Active = Controller.CopyFiles;
