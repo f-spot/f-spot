@@ -83,7 +83,7 @@ namespace FSpot
 			Slideshow,
 		}
 
-		List<Gtk.Window> toplevels;
+		readonly List<Gtk.Window> toplevels;
 		MainWindow organizer;
 		Db db;
 
@@ -166,7 +166,7 @@ namespace FSpot
 			//	SendMessage (Command.Organize, null);
 			//	return;
 			//}
-			//HandleOrganize ();
+			HandleOrganize ();
 		}
 
 		public void Shutdown ()
@@ -359,8 +359,7 @@ namespace FSpot
 
 			Register (window);
 			GLib.Idle.Add (delegate {
-				if (slideshow != null)
-					slideshow.Start ();
+				slideshow?.Start ();
 				return false;
 			});
 		}

@@ -320,12 +320,11 @@ namespace FSpot
 
 			GLib.ExceptionManager.UnhandledException += exceptionArgs => {
 				Console.WriteLine ("Unhandeled exception handler:");
-				var exception = exceptionArgs.ExceptionObject as Exception;
-				if (exception != null) {
-					Console.WriteLine ("Message: " + exception.Message);
-					Console.WriteLine ("Stack trace: " + exception.StackTrace);
+				if (exceptionArgs.ExceptionObject is Exception exception) {
+					Console.WriteLine ($"Message: {exception.Message}");
+					Console.WriteLine ($"Stack trace: {exception.StackTrace}");
 				} else {
-					Console.WriteLine ("Unknown exception type: " + exceptionArgs.ExceptionObject.GetType ().ToString ());
+					Console.WriteLine ($"Unknown exception type: {exceptionArgs.ExceptionObject.GetType ()}");
 				}
 			};
 
@@ -416,7 +415,11 @@ namespace FSpot
 				App.Instance.Organize ();
 
 			//if (!App.Instance.IsRunning)
+			try {
 				Gtk.Application.Run ();
+			} catch (Exception ex) {
+				Log.Exception (ex);
+			}
 		}
 
 		public static void RunIdle (InvokeHandler handler)
