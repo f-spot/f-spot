@@ -1,4 +1,4 @@
-﻿//
+//
 // GLibFileSystem.cs
 //
 // Author:
@@ -31,29 +31,19 @@ namespace FSpot.FileSystem
 	class GLibFileSystem : IFileSystem
 	{
 		GLibFile file;
-		GLibDirectory directory;
+		DotNetDirectory directory;
 		GLibPath path;
 
-		#region IFileSystem implementation
-
 		public IFile File {
-			get {
-				return file ?? (file = new GLibFile ());
-			}
+			get =>file ??= new GLibFile ();
 		}
 
 		public IDirectory Directory {
-			get {
-				return directory ?? (directory = new GLibDirectory ());
-			}
+			get => directory ??= new DotNetDirectory ();
 		}
 
 		public IPath Path {
-			get {
-				return path ?? (path = new GLibPath ());
-			}
+			get => path ??= new GLibPath ();
 		}
-
-		#endregion
 	}
 }

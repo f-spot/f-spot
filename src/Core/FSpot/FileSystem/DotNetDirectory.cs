@@ -1,9 +1,11 @@
-﻿//
-// GLibDirectory.cs
+//
+// DotNetDirectory.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Daniel Köb <daniel.koeb@peony.at>
 //
+// Copyright (C) 2019 Stephen Shaw
 // Copyright (C) 2016 Daniel Köb
 //
 // Permission is hereby granted, free of charge, to any person obtaining
@@ -27,59 +29,42 @@
 //
 
 using System.Collections.Generic;
+using System.IO;
+
 using FSpot.Utils;
-using GLib;
+
 using Hyena;
 
 namespace FSpot.FileSystem
 {
-	class GLibDirectory : IDirectory
+	class DotNetDirectory : IDirectory
 	{
 		public bool Exists (SafeUri uri)
 		{
-			var directory = FileFactory.NewForUri (uri);
-			return ExistsAndIsDirectory (directory);
+			return Directory.Exists (uri.AbsolutePath);
 		}
 
 		public void CreateDirectory (SafeUri uri)
 		{
-			var parts = uri.AbsolutePath.Split('/');
-			var current = new SafeUri (uri.Scheme + ":///", true);
-			for (int i = 0; i < parts.Length; i++) {
-				current = current.Append (parts [i]);
-				var file = FileFactory.NewForUri (current);
-				if (!file.Exists) {
-					file.MakeDirectory (null);
-				}
-			}
+			Directory.CreateDirectory (uri.AbsolutePath);
 		}
 
 		public void Delete (SafeUri uri)
 		{
-			var directory = FileFactory.NewForUri (uri);
-			if (!ExistsAndIsDirectory (directory)) {
+			if (!Exists (uri)) {
 				//FIXME to be consistent with System.IO.Directory.Delete we should throw an exception in this case
 				return;
 			}
-			directory.Delete (null);
+			Directory.Delete (uri.AbsolutePath);
 		}
 
 		public IEnumerable<SafeUri> Enumerate (SafeUri uri)
 		{
-			var directory = FileFactory.NewForUri (uri);
-			if (!ExistsAndIsDirectory (directory)) {
+			if (!Exists (uri))
 				yield break;
-			}
-			using (var fileEnumerator = directory.EnumerateChildren ("standard::name", FileQueryInfoFlags.None, null)) {
-				foreach (FileInfo fileInfo in fileEnumerator) {
-					yield return uri.Append (fileInfo.Name);
-					fileInfo.Dispose ();
-				}
-			}
-		}
 
-		bool ExistsAndIsDirectory (File directory) {
-			return directory.Exists && directory.QueryFileType (FileQueryInfoFlags.None, null) == FileType.Directory;
+			foreach (var file in Directory.EnumerateDirectories (uri.AbsolutePath))
+				yield return uri.Append (file);
 		}
 	}
 }
