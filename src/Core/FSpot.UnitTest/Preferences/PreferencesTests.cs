@@ -34,6 +34,7 @@ using NUnit.Framework;
 using Newtonsoft.Json.Linq;
 
 using FSpot.Platform;
+using Shouldly;
 
 namespace FSpot.Preferences.UnitTest
 {
@@ -42,6 +43,13 @@ namespace FSpot.Preferences.UnitTest
 	{
 		string TestSettingsFile;
 		PreferenceBackend backend;
+
+		JObject LoadSettings (string location)
+		{
+			var settingsFile = File.ReadAllText (location);
+			var o = JObject.Parse (settingsFile);
+			return (JObject)o[PreferenceBackend.SettingsRoot];
+		}
 
 		[OneTimeSetUp]
 		public void OneTimeSetup ()
@@ -126,11 +134,14 @@ namespace FSpot.Preferences.UnitTest
 			Assert.True (result);
 		}
 
-		JObject LoadSettings (string location)
+		[Test]
+		public void ResetIncorrectTypeInSettings ()
 		{
-			var settingsFile = File.ReadAllText (location);
-			var o = JObject.Parse (settingsFile);
-			return (JObject)o[PreferenceBackend.SettingsRoot];
+			Settings.Preferences.Set ("RandomKey", null);
+			var result = Settings.Preferences.TryGet ("RandomKey", out double randomValue);
+
+			result.ShouldBeTrue();
+			randomValue.ShouldBe (default);
 		}
 	}
 }

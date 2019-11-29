@@ -112,17 +112,16 @@ namespace FSpot.Widgets
 			return app_infos.ToArray ();
 		}
 
-		private void HandleItemActivated (object sender, EventArgs args)
+		void HandleItemActivated (object sender, EventArgs args)
 		{
 			AppMenuItem app = (sender as AppMenuItem);
 
-			if (ApplicationActivated != null)
-				ApplicationActivated (this, new ApplicationActivatedEventArgs (app.App));
+			ApplicationActivated?.Invoke (this, new ApplicationActivatedEventArgs (app.App));
 		}
 
-		private class AppMenuItem : ImageMenuItem
+		class AppMenuItem : ImageMenuItem
 		{
-			public AppInfo App { get; private set; }
+			public AppInfo App { get; }
 
 			public AppMenuItem (AppInfo app, bool show_icon) : base (app.Name)
 			{

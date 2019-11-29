@@ -40,8 +40,8 @@ namespace FSpot.FileSystem
 {
 	public class RecursiveFileEnumerator : IEnumerable<SafeUri>
 	{
-		SafeUri root;
-		IFileSystem fileSystem;
+		readonly SafeUri root;
+		readonly IFileSystem fileSystem;
 
 		public bool Recurse { get; set; }
 		public bool CatchErrors { get; set; }

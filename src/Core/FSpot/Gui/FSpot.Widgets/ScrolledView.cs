@@ -37,7 +37,7 @@ namespace FSpot.Widgets
 {
 	public class ScrolledView : Fixed
 	{
-		private DelayedOperation hide;
+		DelayedOperation hide;
 		public EventBox ControlBox { get; private set; }
 		public ScrolledWindow ScrolledWindow { get; private set; }
 
@@ -87,7 +87,7 @@ namespace FSpot.Widgets
 			ControlBox.Show ();
 		}
 
-		private void HandleDestroyed (object sender, System.EventArgs args)
+		void HandleDestroyed (object sender, System.EventArgs args)
 		{
 			hide.Stop ();
 		}

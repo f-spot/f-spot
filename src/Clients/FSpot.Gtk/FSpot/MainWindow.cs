@@ -237,7 +237,7 @@ namespace FSpot
 					service.Initialize ();
 					service.Start ();
 				} catch (Exception e) {
-					Log.WarningFormat ("Something went wrong while starting the {0} extension.", service.Id);
+					Log.Warning ($"Something went wrong while starting the {service.Id} extension.");
 					Log.DebugException (e);
 				}
 			}

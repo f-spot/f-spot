@@ -50,9 +50,9 @@ namespace FSpot.Settings
 	public static partial class Preferences
 	{
 		static readonly object sync_handler = new object ();
-		static readonly Dictionary<string, object> cache = new Dictionary<string, object> ();
+		//static readonly Dictionary<string, object> cache = new Dictionary<string, object> ();
 
-		static readonly Dictionary<string, object> defaults = new Dictionary<string, object> {
+		internal static readonly Dictionary<string, object> defaults = new Dictionary<string, object> {
 			{ MainWindowX, 0 },
 			{ MainWindowY, 0 },
 			{ MainWindowHeight, 0 },
@@ -66,7 +66,7 @@ namespace FSpot.Settings
 			{ MainWindowMaximized, false },
 			{ GroupAdaptorOrderAsc, false },
 			{ ImportRemoveOriginals, false },
-			{ GlassPosition, null },
+			{ GlassPosition, 0 },
 			{ ShowToolbar, true },
 			{ ShowSidebar, true },
 			{ ShowTimeline, true },
@@ -78,7 +78,7 @@ namespace FSpot.Settings
 			{ TagIconSize, (int)IconSize.Medium },
 			{ TagIconAutomatic, true },
 			{ SidebarPosition, 130 },
-			{ Zoom, null },
+			{ Zoom, 0.0 },
 			{ ImportGuiRollHistory, 10 },
 			{ ScreensaverTag, 1 },
 			{ ScreensaverDelay, 4.0 },
@@ -128,14 +128,21 @@ namespace FSpot.Settings
 			result = default;
 
 			// Check cache
-			if (cache.TryGetValue (key, out object cachedValue)) {
-				result = (T)cachedValue;
-				return true;
-			}
+			//try {
+			//	if (cache.TryGetValue (key, out object cachedValue)) {
+			//		result = (T)cachedValue;
+			//		return true;
+			//	} 
+			//} catch (InvalidCastException ex) {
+			//	Log.Exception ($"[Preferencs] InvalidCastException: key -> {key}, type -> {result.GetType ()}", ex);
+			//}
 
 			// Check preference backend, set default in backend
 			try {
 				result = Backend.Get<T> (key);
+			} catch (InvalidCastException ex) {
+				Log.Exception ($"[Preferences] Invalid cast: {key}", ex);
+				return false;
 			} catch (NoSuchKeyException ex) {
 				if (defaults.TryGetValue (key, out object defaultValue)) {
 					Backend.Set (key, defaultValue);
@@ -146,21 +153,16 @@ namespace FSpot.Settings
 			}
 
 			// Update cache
-			cache.Add (key, result);
+			//cache.Add (key, result);
 
-			try {
-				return true;
-			} catch (InvalidCastException ex) {
-				Log.Exception ($"[Preferences] Invalid cast: {key}", ex);
-				return false;
-			}
+			return true;
 		}
 
 		public static void Set (string key, object value)
 		{
 			lock (sync_handler) {
 				try {
-					cache[key] = value;
+					//cache[key] = value;
 					Backend.Set (key, value);
 				} catch (Exception ex) {
 					Log.Exception ($"[Preferences] Unable to set this : {key}", ex);
@@ -172,11 +174,11 @@ namespace FSpot.Settings
 
 		static void OnSettingChanged (object sender, NotifyEventArgs args)
 		{
-			lock (sync_handler) {
-				if (cache.ContainsKey (args.Key)) {
-					cache[args.Key] = args.Value;
-				}
-			}
+			//lock (sync_handler) {
+			//	if (cache.ContainsKey (args.Key)) {
+			//		cache[args.Key] = args.Value;
+			//	}
+			//}
 
 			SettingChanged?.Invoke (sender, args);
 		}

@@ -41,9 +41,8 @@ namespace FSpot.FileSystem
 		public bool IsSymlink (SafeUri uri)
 		{
 			var file = GLib.FileFactory.NewForUri (uri);
-			using (var root_info = file.QueryInfo ("standard::is-symlink", GLib.FileQueryInfoFlags.None, null)) {
-				return root_info.IsSymlink;
-			}
+			using var root_info = file.QueryInfo ("standard::is-symlink", GLib.FileQueryInfoFlags.None, null);
+			return root_info.IsSymlink;
 		}
 
 		public void Copy (SafeUri source, SafeUri destination, bool overwrite)
@@ -55,9 +54,8 @@ namespace FSpot.FileSystem
 		public string GetMimeType (SafeUri uri)
 		{
 			var file = GLib.FileFactory.NewForUri (uri);
-			using (var info = file.QueryInfo ("standard::content-type", GLib.FileQueryInfoFlags.None, null)) {
-				return info.ContentType;
-			}
+			using var info = file.QueryInfo ("standard::content-type", GLib.FileQueryInfoFlags.None, null);
+			return info.ContentType;
 		}
 
 		public DateTime GetMTime (SafeUri uri)

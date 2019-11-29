@@ -112,35 +112,35 @@ namespace FSpot.Widgets
         ///    layout is updated. The property <see cref="CellCount"/> is only used when
         ///    the layout is updated.
         /// </summary>
-        private int cell_count;
+        int cell_count;
 
         /// <summary>
         ///    Holds the number of rows which are displayed at once regarded to the current
         ///    size of the widget.
         /// </summary>
-        private int displayed_rows;
+        int displayed_rows;
 
         /// <summary>
         ///    The number of rows which are needed to display all cells.
         /// </summary>
-        private int total_rows;
+        int total_rows;
 
         /// <summary>
         ///    The border size the current layout is computed with.
         /// </summary>
-        private int border_size = 6;
+        int border_size = 6;
 
         /// <summary>
         ///    The maximal number of columns.
         /// </summary>
-        private int max_columns = -1;
+        int max_columns = -1;
 
         // preserve the scroll postion when possible
-        private bool scroll;
-        private double scroll_value;
+        bool scroll;
+        double scroll_value;
 
         // suppress scroll is currently not used. where do we need it?
-        private bool suppress_scroll = false;
+        bool suppress_scroll = false;
 
 #endregion
 
@@ -332,7 +332,7 @@ namespace FSpot.Widgets
 #region Event Handlers
 
         [GLib.ConnectBefore]
-        private void HandleAdjustmentValueChanged (object sender, EventArgs args)
+        void HandleAdjustmentValueChanged (object sender, EventArgs args)
         {
             Scroll ();
         }
@@ -367,12 +367,12 @@ namespace FSpot.Widgets
             return base.OnExposeEvent (args);
         }
 
-        private void UpdateLayout ()
+        void UpdateLayout ()
         {
             UpdateLayout (Allocation);
         }
 
-        private void UpdateLayout (Gdk.Rectangle allocation)
+        void UpdateLayout (Gdk.Rectangle allocation)
         {
             // get the basic values for the layout ...
             cell_width = MinCellWidth;
@@ -403,7 +403,7 @@ namespace FSpot.Widgets
             SetSize (x, y, (int) allocation.Width, (int) height);
         }
 
-        private void SetSize (int x, int y, int width, int height)
+        void SetSize (int x, int y, int width, int height)
         {
             Hadjustment.Upper = Math.Max (Allocation.Width, width);
             Vadjustment.Upper = Math.Max (Allocation.Height, height);
@@ -438,7 +438,7 @@ namespace FSpot.Widgets
             }
         }
 
-        private void DrawAllCells (Gdk.Rectangle area)
+        void DrawAllCells (Gdk.Rectangle area)
         {
             foreach (var cell_num in CellsInRect (area)) {
                 DrawCell (cell_num, CellBounds (cell_num), area);
@@ -448,9 +448,10 @@ namespace FSpot.Widgets
         // The first pixel line that is currently on the screen (i.e. in the current
         // scroll region).  Used to compute the area that went offscreen in the "changed"
         // signal handler for the vertical GtkAdjustment.
-        private int y_offset;
-        private int x_offset;
-        private void Scroll ()
+        int y_offset;
+        int x_offset;
+
+        void Scroll ()
         {
             int ystep = (int)(Vadjustment.Value - y_offset);
             int xstep = (int)(Hadjustment.Value - x_offset);
@@ -512,7 +513,7 @@ namespace FSpot.Widgets
             x_offset = (int) Hadjustment.Value;
         }
 
-        private void PreloadRegion (Gdk.Region region, int step)
+        void PreloadRegion (Gdk.Region region, int step)
         {
             Gdk.Rectangle [] rects = region.GetRectangles ();
 
@@ -524,7 +525,7 @@ namespace FSpot.Widgets
             }
         }
 
-        private void Preload (Gdk.Rectangle area, bool back)
+        void Preload (Gdk.Rectangle area, bool back)
         {
             if (cells_per_row ==0)
                 return;

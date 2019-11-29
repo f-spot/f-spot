@@ -37,13 +37,13 @@ namespace FSpot.Platform
 {
 	public class WebProxy
 	{
-		const string ProxyKey = "/system/http_proxy/";
-		const string UseProxyKey = ProxyKey + "use_http_proxy";
-		const string HostKey = ProxyKey + "host";
-		const string PortKey = ProxyKey + "port";
-		const string ProxyUserKey = ProxyKey + "authentication_user";
-		const string ProxyPasswordKey = ProxyKey + "authentication_password";
-		const string ProxyIgnoreHostKey = ProxyKey + "ignore_hosts";
+		const string ProxyKey = "HttpProxy/";
+		const string UseProxyKey = ProxyKey + "UseHttpProxy";
+		const string HostKey = ProxyKey + "Host";
+		const string PortKey = ProxyKey + "Port";
+		const string ProxyUserKey = ProxyKey + "AuthenticationUser";
+		const string ProxyPasswordKey = ProxyKey + "AuthenticationPassword";
+		const string ProxyIgnoreHostKey = ProxyKey + "IgnoreHosts";
 
 		public static void Init ()
 		{

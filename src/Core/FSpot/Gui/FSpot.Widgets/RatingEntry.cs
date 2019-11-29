@@ -27,6 +27,8 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System;
+
 namespace FSpot.Widgets
 {
     public class RatingEntry : Hyena.Widgets.RatingEntry
@@ -38,6 +40,10 @@ namespace FSpot.Widgets
         }
 
         public RatingEntry () : this (0)
+        {
+        }
+
+        public RatingEntry (IntPtr raw) : base (raw)
         {
         }
     }
