@@ -29,9 +29,8 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using Hyena;
 using NUnit.Framework;
+
 using TagLib;
 using TagLib.Xmp;
 
@@ -148,7 +147,7 @@ namespace FSpot.Utils.Tests
             var file = File.Create (res) as TagLib.Image.File;
             Assert.IsNotNull (file);
 
-            file.ImageTag.Keywords = new string [] { "Kirche Aarschot" };
+            file.ImageTag.Keywords = new [] { "Kirche Aarschot" };
 
             // Validate writing of the sidecar
             bool success = file.SaveXmpSidecar (sidecar_res);

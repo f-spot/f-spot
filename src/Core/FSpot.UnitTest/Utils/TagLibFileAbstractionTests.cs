@@ -1,5 +1,5 @@
 //
-// GIOTagLibFileAbstractionTests.cs
+// TagLibFileAbstractionTests.cs
 //
 // Author:
 //   Ruben Vermeersch <ruben@savanne.be>
@@ -27,8 +27,8 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Hyena;
 using NUnit.Framework;
+
 using TagLib;
 using TagLib.IFD;
 using TagLib.IFD.Entries;
@@ -39,13 +39,8 @@ namespace FSpot.Utils.Tests
 {
     // This is a trimmed down test case from Taglib# to test the file abstraction.
     [TestFixture]
-    public class GIOTagLibFileAbstractionTests
+    public class TagLibFileAbstractionTests
     {
-		[SetUp]
-        public void Initialize () {
-            GLib.GType.Init ();
-        }
-
         [Test]
         public void StraightIOTest ()
         {

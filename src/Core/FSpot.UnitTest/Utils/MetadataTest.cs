@@ -27,8 +27,8 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Hyena;
 using NUnit.Framework;
+
 using TagLib;
 using TagLib.Xmp;
 
@@ -37,11 +37,6 @@ namespace FSpot.Utils.Tests
     [TestFixture]
     public class MetadataTest
     {
-        [SetUp]
-        public void Initialize () {
-            GLib.GType.Init ();
-        }
-
         [Test]
         public void ValidateWithoutSidecar ()
         {
