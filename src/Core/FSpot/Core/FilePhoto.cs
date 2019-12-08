@@ -29,10 +29,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+
 using FSpot.Utils;
+
 using Hyena;
-using Mono.Unix.Native;
 
 namespace FSpot.Core
 {
@@ -44,8 +46,9 @@ namespace FSpot.Core
 
 		public FilePhoto (SafeUri uri, string name = null)
 		{
-			versions = new List<IPhotoVersion> ();
-			versions.Add (new FilePhotoVersion { Uri = uri, Name = name });
+			versions = new List<IPhotoVersion> {
+				new FilePhotoVersion {Uri = uri, Name = name}
+			};
 		}
 
 		public bool IsInvalid {
@@ -82,8 +85,8 @@ namespace FSpot.Core
 
 		DateTime CreateDate {
 			get {
-				var info = GLib.FileFactory.NewForUri (DefaultVersion.Uri).QueryInfo ("time::changed", GLib.FileQueryInfoFlags.None, null);
-				return NativeConvert.ToDateTime ((long)info.GetAttributeULong ("time::changed"));
+				var info = new FileInfo (DefaultVersion.Uri.AbsolutePath);
+				return info.CreationTime;
 			}
 		}
 
