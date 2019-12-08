@@ -35,7 +35,7 @@ using Hyena;
 namespace FSpot.Utils
 {
 	/// <summary>
-	///   Wraps GIO into a TagLib IFileAbstraction.
+	///   Wraps System.IO into a TagLib IFileAbstraction.
 	/// </summary>
 	/// <remarks>
 	///   Implements a safe writing pattern by first copying the file to a
@@ -59,7 +59,7 @@ namespace FSpot.Utils
 		public Stream ReadStream {
 			get {
 				if (stream == null)
-					stream = new FileStream (Uri.AbsolutePath, FileMode.Open, FileAccess.Read);
+					stream = new FileStream (Uri.AbsolutePath, FileMode.Open, FileAccess.ReadWrite);
 
 				if (!stream.CanRead)
 					throw new Exception ("Can't read from this resource");

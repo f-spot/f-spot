@@ -51,8 +51,8 @@ namespace FSpot.Preferences.UnitTest
 			return (JObject)o[PreferenceBackend.SettingsRoot];
 		}
 
-		[OneTimeSetUp]
-		public void OneTimeSetup ()
+		[SetUp]
+		public void Setup ()
 		{
 			var tmpFile = Path.GetTempFileName ();
 			var jsonfile = Path.ChangeExtension (tmpFile, "json");
@@ -61,8 +61,8 @@ namespace FSpot.Preferences.UnitTest
 			backend = new PreferenceBackend ();
 		}
 
-		[OneTimeTearDown]
-		public void OneTimeTearDown ()
+		[TearDown]
+		public void TearDown ()
 		{
 			if (File.Exists (TestSettingsFile))
 				File.Delete (TestSettingsFile);
@@ -123,7 +123,7 @@ namespace FSpot.Preferences.UnitTest
 		[Test]
 		public void UnsetSettingThrowsNoSuchKeyException ()
 		{
-			Assert.Throws<NoSuchKeyException> (() => backend.Get<bool> ("RandomKey"));
+			Assert.Throws<NoSuchKeyException> (() => backend.Get<bool> ("RandomKey123"));
 		}
 
 		// Preferences returns the default value instead of an exception

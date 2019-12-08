@@ -57,12 +57,12 @@ namespace FSpot.Utils.Tests
 
 		public static SafeUri CopySidecarToTest (SafeUri uri, string filename)
 		{
-			var target = uri.ReplaceExtension (".xmp");
+			var source = new SafeUri (Paths.Combine (TestDir, TestDataLocation, filename)).AbsolutePath;
+			var destination = uri.ReplaceExtension (".xmp");
 
-			var orig_uri = new SafeUri (Paths.Combine (TestDir, TestDataLocation, filename));
-			File.Copy (target.AbsolutePath, orig_uri.AbsolutePath, true);
+			File.Copy (source, destination.AbsolutePath, true);
 
-			return target;
+			return destination;
 		}
 
 		public static void DeleteTempFile (SafeUri uri)

@@ -30,31 +30,32 @@
 //
 
 using System;
-using Banshee.Kernel;
+
 using FSpot.Core;
 using FSpot.Settings;
 using FSpot.Utils;
+
 using Hyena;
 
 namespace FSpot.Database.Jobs
 {
 	public class SyncMetadataJob : Job
 	{
-		public SyncMetadataJob (IDb db, JobData jobData)
-			: base (db, jobData)
+		public SyncMetadataJob (IDb db, JobData jobData) : base (db, jobData)
 		{
 		}
 
 		//Use THIS static method to create a job...
-		public static SyncMetadataJob Create (JobStore job_store, Photo photo)
+		public static SyncMetadataJob Create (JobStore jobStore, Photo photo)
 		{
-			return (SyncMetadataJob)job_store.CreatePersistent (JobName, photo.Id.ToString ());
+			return (SyncMetadataJob)jobStore.CreatePersistent (JobName, photo.Id.ToString ());
 		}
 
 		public static string JobName => "SyncMetadata";
 
 		protected override bool Execute ()
 		{
+			// FIXME, Task.Delay?
 			//this will add some more reactivity to the system
 			System.Threading.Thread.Sleep (500);
 
@@ -63,7 +64,7 @@ namespace FSpot.Database.Jobs
 				if (photo == null)
 					return false;
 
-				Log.DebugFormat ("Syncing metadata to file ({0})...", photo.DefaultVersion.Uri);
+				Log.Debug ($"Syncing metadata to file ({photo.DefaultVersion.Uri})...");
 
 				WriteMetadataToImage (photo);
 				return true;
@@ -81,19 +82,19 @@ namespace FSpot.Database.Jobs
 			for (int i = 0; i < tags.Length; i++)
 				names [i] = tags [i].Name;
 
-			using (var metadata = Metadata.Parse (photo.DefaultVersion.Uri)) {
-				metadata.EnsureAvailableTags ();
+			using var metadata = MetadataUtils.Parse (photo.DefaultVersion.Uri);
 
-				var tag = metadata.ImageTag;
-				tag.DateTime = photo.Time;
-				tag.Comment = photo.Description ?? string.Empty;
-				tag.Keywords = names;
-				tag.Rating = photo.Rating;
-				tag.Software = FSpotConfiguration.Package + " version " + FSpotConfiguration.Version;
+			metadata.EnsureAvailableTags ();
 
-				var always_sidecar = Preferences.Get<bool> (Preferences.MetadataAlwaysUseSidecar);
-				metadata.SaveSafely (photo.DefaultVersion.Uri, always_sidecar);
-			}
+			var tag = metadata.ImageTag;
+			tag.DateTime = photo.Time;
+			tag.Comment = photo.Description ?? string.Empty;
+			tag.Keywords = names;
+			tag.Rating = photo.Rating;
+			tag.Software = FSpotConfiguration.Package + " version " + FSpotConfiguration.Version;
+
+			var always_sidecar = Preferences.Get<bool> (Preferences.MetadataAlwaysUseSidecar);
+			metadata.SaveSafely (photo.DefaultVersion.Uri, always_sidecar);
 		}
 	}
 }

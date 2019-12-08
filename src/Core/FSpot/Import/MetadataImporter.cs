@@ -38,15 +38,16 @@ namespace FSpot.Import
 {
 	class MetadataImporter
 	{
-		TagStore tag_store;
-		readonly Stack<Tag> tags_created;
+		TagStore tagStore;
+		readonly Stack<Tag> tagsCreated;
 
 		const string LastImportIcon = "gtk-new";
 
-		class TagInfo {
+		class TagInfo
+		{
 			// This class contains the Root tag name, and its Icon name (if any)
-			public string TagName { get; private set; }
-			public string IconName { get; private set; }
+			public string TagName { get; }
+			public string IconName { get; }
 
 			public bool HasIcon {
 				get { return IconName != null; }
@@ -63,44 +64,42 @@ namespace FSpot.Import
 				TagName = tagName;
 				IconName = null;
 			}
-		} // TagInfo
+		}
 
-		TagInfo li_root_tag; // This is the Last Import root tag
+		readonly TagInfo lastImportRootTag;
 
 		public MetadataImporter (TagStore tagStore)
 		{
-			tag_store = tagStore;
-			tags_created = new Stack<Tag> ();
+			this.tagStore = tagStore;
+			tagsCreated = new Stack<Tag> ();
 
-			li_root_tag = new TagInfo (Catalog.GetString ("Imported Tags"), LastImportIcon);
+			lastImportRootTag = new TagInfo (Catalog.GetString ("Imported Tags"), LastImportIcon);
 		}
 
 		Tag EnsureTag (TagInfo info, Category parent)
 		{
-			Tag tag = tag_store.GetTagByName (info.TagName);
+			Tag tag = tagStore.GetTagByName (info.TagName);
 
 			if (tag != null)
 				return tag;
 
-			tag = tag_store.CreateCategory (parent,
-					info.TagName,
-					false);
+			tag = tagStore.CreateCategory (parent, info.TagName, false);
 
 			if (info.HasIcon) {
 				tag.ThemeIconName = info.IconName;
-				tag_store.Commit(tag);
+				tagStore.Commit (tag);
 			}
 
-			tags_created.Push (tag);
+			tagsCreated.Push (tag);
 			return tag;
 		}
 
 		void AddTagToPhoto (Photo photo, string newTagName)
 		{
-			if (string.IsNullOrEmpty(newTagName))
+			if (string.IsNullOrEmpty (newTagName))
 				return;
 
-			Tag parent = EnsureTag (li_root_tag, tag_store.RootCategory);
+			Tag parent = EnsureTag (lastImportRootTag, tagStore.RootCategory);
 			Tag tag = EnsureTag (new TagInfo (newTagName), parent as Category);
 
 			// Now we have the tag for this place, add the photo to it
@@ -109,7 +108,7 @@ namespace FSpot.Import
 
 		public bool Import (Photo photo, IPhoto importingFrom)
 		{
-			using (var metadata = Metadata.Parse (importingFrom.DefaultVersion.Uri)) {
+			using (var metadata = MetadataUtils.Parse (importingFrom.DefaultVersion.Uri)) {
 				if (metadata == null)
 					return true;
 
@@ -130,21 +129,21 @@ namespace FSpot.Import
 			return true;
 		}
 
-		public void Cancel()
+		public void Cancel ()
 		{
 			// User have cancelled the import.
 			// Remove all created tags
-			while (tags_created.Count > 0)
-				tag_store.Remove (tags_created.Pop());
+			while (tagsCreated.Count > 0)
+				tagStore.Remove (tagsCreated.Pop ());
 
-			// Clear the tags_created array
-			tags_created.Clear();
+			// Clear the tagsCreated array
+			tagsCreated.Clear ();
 		}
 
-		public void Finish()
+		public void Finish ()
 		{
-			// Clear the tags_created array, since we do not need it anymore.
-			tags_created.Clear();
+			// Clear the tagsCreated array, since we do not need it anymore.
+			tagsCreated.Clear ();
 		}
 	}
-} // namespace
+}

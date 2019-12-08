@@ -52,7 +52,7 @@ namespace FSpot.Settings
 		static readonly object sync_handler = new object ();
 		//static readonly Dictionary<string, object> cache = new Dictionary<string, object> ();
 
-		internal static readonly Dictionary<string, object> defaults = new Dictionary<string, object> {
+		static readonly Dictionary<string, object> defaults = new Dictionary<string, object> {
 			{ MainWindowX, 0 },
 			{ MainWindowY, 0 },
 			{ MainWindowHeight, 0 },
@@ -145,6 +145,7 @@ namespace FSpot.Settings
 				return false;
 			} catch (NoSuchKeyException ex) {
 				if (defaults.TryGetValue (key, out object defaultValue)) {
+					// FIXME, analytics/log when key is first used
 					Backend.Set (key, defaultValue);
 					result = (T)defaultValue;
 				} else {

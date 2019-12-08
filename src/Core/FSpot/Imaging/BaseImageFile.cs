@@ -1,4 +1,4 @@
-﻿//
+//
 // BaseImageFile.cs
 //
 // Author:
@@ -32,8 +32,11 @@
 
 using System;
 using System.IO;
+
 using FSpot.Utils;
+
 using Hyena;
+
 using TagLib.Image;
 
 namespace FSpot.Imaging
@@ -42,7 +45,7 @@ namespace FSpot.Imaging
 	{
 		bool disposed;
 
-		public SafeUri Uri { get; private set; }
+		public SafeUri Uri { get; }
 
 		public ImageOrientation Orientation { get; private set; }
 
@@ -51,9 +54,8 @@ namespace FSpot.Imaging
 			Uri = uri;
 			Orientation = ImageOrientation.TopLeft;
 
-			using (var metadata_file = Metadata.Parse (uri)) {
-				ExtractMetadata (metadata_file);
-			}
+			using var metadata_file = MetadataUtils.Parse (uri);
+			ExtractMetadata (metadata_file);
 		}
 
 		protected virtual void ExtractMetadata (TagLib.Image.File metadata)
@@ -64,8 +66,8 @@ namespace FSpot.Imaging
 
 		public virtual Stream PixbufStream ()
 		{
-			Log.DebugFormat ("open uri = {0}", Uri);
-			return new GLib.GioStream (GLib.FileFactory.NewForUri (Uri).Read (null));
+			Log.Debug ($"open uri = {Uri}");
+			return new FileStream (Uri.AbsolutePath, FileMode.Open, FileAccess.Read);
 		}
 
 		protected Gdk.Pixbuf TransformAndDispose (Gdk.Pixbuf orig)
@@ -82,17 +84,17 @@ namespace FSpot.Imaging
 
 		public Gdk.Pixbuf Load ()
 		{
-			using (Stream stream = PixbufStream ()) {
-				var orig = new Gdk.Pixbuf (stream);
-				return TransformAndDispose (orig);
-			}
+			using Stream stream = PixbufStream ();
+
+			var orig = new Gdk.Pixbuf (stream);
+			return TransformAndDispose (orig);
 		}
 
 		public Gdk.Pixbuf Load (int maxWidth, int maxHeight)
 		{
-			using (var full = Load ()) {
-				return full.ScaleToMaxSize (maxWidth, maxHeight);
-			}
+			using var full = Load ();
+
+			return full.ScaleToMaxSize (maxWidth, maxHeight);
 		}
 
 		// FIXME this need to have an intent just like the loading stuff.

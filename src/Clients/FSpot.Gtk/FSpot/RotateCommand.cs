@@ -72,7 +72,7 @@ namespace FSpot
 	public class RotateOperation
 	{
 		readonly IPhoto item;
-		RotateDirection direction;
+		readonly RotateDirection direction;
 		bool done;
 
 		public RotateOperation (IPhoto item, RotateDirection direction)
@@ -86,18 +86,18 @@ namespace FSpot
 		{
 			try {
 				var uri = new SafeUri (original_path);
-				using (var metadata = Metadata.Parse (uri)) {
-					metadata.EnsureAvailableTags ();
-					var tag = metadata.ImageTag;
-					var orientation = direction == RotateDirection.Clockwise
-						? FSpot.Utils.PixbufUtils.Rotate90 (tag.Orientation)
-						: FSpot.Utils.PixbufUtils.Rotate270 (tag.Orientation);
+				using var metadata = MetadataUtils.Parse (uri);
 
-					tag.Orientation = orientation;
-					var always_sidecar = Preferences.Get<bool> (Preferences.MetadataAlwaysUseSidecar);
-					metadata.SaveSafely (uri, always_sidecar);
-					App.Instance.Container.Resolve<IThumbnailService> ().DeleteThumbnails (uri);
-				}
+				metadata.EnsureAvailableTags ();
+				var tag = metadata.ImageTag;
+				var orientation = direction == RotateDirection.Clockwise
+					? FSpot.Utils.PixbufUtils.Rotate90 (tag.Orientation)
+					: FSpot.Utils.PixbufUtils.Rotate270 (tag.Orientation);
+
+				tag.Orientation = orientation;
+				var always_sidecar = Preferences.Get<bool> (Preferences.MetadataAlwaysUseSidecar);
+				metadata.SaveSafely (uri, always_sidecar);
+				App.Instance.Container.Resolve<IThumbnailService> ().DeleteThumbnails (uri);
 			} catch (Exception e) {
 				Log.DebugException (e);
 				throw new RotateException (Catalog.GetString ("Unable to rotate this type of photo"), original_path);

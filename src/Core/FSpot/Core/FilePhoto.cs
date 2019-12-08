@@ -42,11 +42,7 @@ namespace FSpot.Core
 
 		readonly List<IPhotoVersion> versions;
 
-		public FilePhoto (SafeUri uri) : this (uri, null)
-		{
-		}
-
-		public FilePhoto (SafeUri uri, string name)
+		public FilePhoto (SafeUri uri, string name = null)
 		{
 			versions = new List<IPhotoVersion> ();
 			versions.Add (new FilePhotoVersion { Uri = uri, Name = name });
@@ -71,7 +67,7 @@ namespace FSpot.Core
 			if (metadata_parsed)
 				return;
 
-			using (var metadata = Metadata.Parse (DefaultVersion.Uri)) {
+			using (var metadata = MetadataUtils.Parse (DefaultVersion.Uri)) {
 				if (metadata != null) {
 					var date = metadata.ImageTag.DateTime;
 					time = date.HasValue ? date.Value : CreateDate;
@@ -156,7 +152,7 @@ namespace FSpot.Core
 			string import_md5 = string.Empty;
 			public string ImportMD5 {
 				get {
-					if (import_md5 == string.Empty)
+					if (string.IsNullOrEmpty (import_md5))
 						import_md5 = HashUtils.GenerateMD5 (Uri);
 					return import_md5;
 				}

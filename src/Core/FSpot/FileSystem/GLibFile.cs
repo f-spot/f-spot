@@ -28,12 +28,13 @@
 
 using System;
 using System.IO;
+using System.Web;
 
 using Hyena;
 
 namespace FSpot.FileSystem
 {
-	class GLibFile : IFile
+	public class GLibFile : IFile
 	{
 		public bool Exists (SafeUri uri)
 			=> File.Exists (uri.AbsolutePath);
@@ -52,11 +53,7 @@ namespace FSpot.FileSystem
 			=> File.Delete (uri.AbsolutePath);
 
 		public string GetMimeType (SafeUri uri)
-		{
-			var file = GLib.FileFactory.NewForUri (uri);
-			using var info = file.QueryInfo ("standard::content-type", GLib.FileQueryInfoFlags.None, null);
-			return info.ContentType;
-		}
+			=> MimeMapping.GetMimeMapping (uri.AbsolutePath);
 
 		public DateTime GetMTime (SafeUri uri)
 			=> File.GetLastWriteTime (uri.AbsolutePath);

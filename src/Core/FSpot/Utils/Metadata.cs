@@ -28,7 +28,7 @@
 //
 
 using System;
-using GLib;
+using FSpot.FileSystem;
 using Hyena;
 
 using TagLib;
@@ -36,20 +36,12 @@ using Log = Hyena.Log;
 
 namespace FSpot.Utils
 {
-	public static class Metadata
+	public static class MetadataUtils
 	{
 		public static TagLib.Image.File Parse (SafeUri uri)
 		{
 			// Detect mime-type
-			string mime;
-			try {
-				var gfile = FileFactory.NewForUri (uri);
-				var info = gfile.QueryInfo ("standard::content-type", FileQueryInfoFlags.None, null);
-				mime = info.ContentType;
-			} catch (Exception e) {
-				Hyena.Log.DebugException (e);
-				return null;
-			}
+			string mime = new GLibFile ().GetMimeType (uri);
 
 			if (mime.StartsWith ("application/x-extension-")) {
 				// Works around broken metadata detection - https://bugzilla.gnome.org/show_bug.cgi?id=624781
@@ -83,14 +75,14 @@ namespace FSpot.Utils
 			return file;
 		}
 
-		public static void SaveSafely (this TagLib.Image.File metadata, SafeUri photo_uri, bool always_sidecar)
+		public static void SaveSafely (this TagLib.Image.File metadata, SafeUri photoUri, bool alwaysSidecar)
 		{
-			if (always_sidecar || !metadata.Writeable || metadata.PossiblyCorrupt) {
-				if (!always_sidecar && metadata.PossiblyCorrupt) {
-					Log.Warning ($"Metadata of file {photo_uri} may be corrupt, refusing to write to it, falling back to XMP sidecar.");
+			if (alwaysSidecar || !metadata.Writeable || metadata.PossiblyCorrupt) {
+				if (!alwaysSidecar && metadata.PossiblyCorrupt) {
+					Log.Warning ($"Metadata of file {photoUri} may be corrupt, refusing to write to it, falling back to XMP sidecar.");
 				}
 
-				var sidecar_res = new TagLibFileAbstraction () { Uri = GetSidecarUri (photo_uri) };
+				var sidecar_res = new TagLibFileAbstraction () { Uri = GetSidecarUri (photoUri) };
 
 				metadata.SaveXmpSidecar (sidecar_res);
 			} else {
@@ -113,7 +105,6 @@ namespace FSpot.Utils
 					return name;
 				}
 			}
-
 
 			// Fall back to the default strategy.
 			return SidecarNameGenerators[0] (photoUri);
