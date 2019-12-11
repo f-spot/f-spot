@@ -41,7 +41,7 @@ namespace FSpot.Utils
 		public static TagLib.Image.File Parse (SafeUri uri)
 		{
 			// Detect mime-type
-			string mime = new GLibFile ().GetMimeType (uri);
+			string mime = new DotNetFile ().GetMimeType (uri);
 
 			if (mime.StartsWith ("application/x-extension-")) {
 				// Works around broken metadata detection - https://bugzilla.gnome.org/show_bug.cgi?id=624781

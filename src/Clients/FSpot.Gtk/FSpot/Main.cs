@@ -364,15 +364,12 @@ namespace FSpot
 
 		static void ResetPluginDb ()
 		{
+			// FIXME, test this.
 			// Nuke addin-db
-			var directory = GLib.FileFactory.NewForUri (new SafeUri (FSpotConfiguration.BaseDirectory));
-			using (var list = directory.EnumerateChildren ("standard::name", GLib.FileQueryInfoFlags.None, null)) {
-				foreach (GLib.FileInfo info in list) {
-					if (info.Name.StartsWith ("addin-db-")) {
-						var file = GLib.FileFactory.NewForPath (Path.Combine (directory.Path, info.Name));
-						file.DeleteRecursive ();
-					}
-				}
+			var directory = new DirectoryInfo (new SafeUri (FSpotConfiguration.BaseDirectory));
+			foreach (var item in directory.EnumerateDirectories ()) {
+				if (item.Name.StartsWith ("addin-db-"))
+					item.Delete (true);
 			}
 
 			// Try again

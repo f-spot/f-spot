@@ -5,10 +5,10 @@
     <OutputPath>..\..\..\bin</OutputPath>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <AssemblySearchPaths>$(AssemblySearchPaths);{GAC}</AssemblySearchPaths>
+    <ReleaseVersion>0.9.0</ReleaseVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\lib\gio-sharp\gio-sharp.csproj" />
     <ProjectReference Include="..\..\..\lib\Hyena\Hyena.csproj" />
     <ProjectReference Include="..\..\..\lib\gtk-sharp-beans\gtk-sharp-beans.csproj" />
     <ProjectReference Include="..\..\..\lib\Hyena.Gui\Hyena.Gui.csproj" />

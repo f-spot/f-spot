@@ -34,7 +34,7 @@ namespace FSpot.FileSystem
 	{
 		public static void RegisterTypes (TinyIoCContainer container)
 		{
-			container.Register<IFileSystem, GLibFileSystem> ().AsSingleton ();
+			container.Register<IFileSystem, DotNetFileSystem> ().AsSingleton ();
 			container.Register<IEnvironment, EnvironmentAdapter> ().AsSingleton ();
 		}
 	}

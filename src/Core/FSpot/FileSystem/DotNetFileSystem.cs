@@ -1,10 +1,12 @@
 //
-// GLibFileSystem.cs
+// DotNetFileSystem.cs
 //
 // Author:
 //   Daniel Köb <daniel.koeb@peony.at>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
 // Copyright (C) 2016 Daniel Köb
+// Copyright (C) 2019 Stephen Shaw
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -28,14 +30,14 @@
 
 namespace FSpot.FileSystem
 {
-	class GLibFileSystem : IFileSystem
+	class DotNetFileSystem : IFileSystem
 	{
-		GLibFile file;
+		DotNetFile file;
 		DotNetDirectory directory;
 		DotNetPath path;
 
 		public IFile File {
-			get =>file ??= new GLibFile ();
+			get =>file ??= new DotNetFile ();
 		}
 
 		public IDirectory Directory {

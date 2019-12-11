@@ -1,10 +1,12 @@
 //
-// GLibFile.cs
+// DotNetFile.cs
 //
 // Author:
 //   Daniel Köb <daniel.koeb@peony.at>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
 // Copyright (C) 2016 Daniel Köb
+// Copyright (C) 2019 Stephen Shaw
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -34,16 +36,16 @@ using Hyena;
 
 namespace FSpot.FileSystem
 {
-	public class GLibFile : IFile
+	public class DotNetFile : IFile
 	{
 		public bool Exists (SafeUri uri)
 			=> File.Exists (uri.AbsolutePath);
 
 		public bool IsSymlink (SafeUri uri)
 		{
-			var file = GLib.FileFactory.NewForUri (uri);
-			using var root_info = file.QueryInfo ("standard::is-symlink", GLib.FileQueryInfoFlags.None, null);
-			return root_info.IsSymlink;
+			// FIXME, this might return a false positive
+			var pathInfo = new FileInfo (uri.AbsolutePath);
+			return pathInfo.Attributes.HasFlag (FileAttributes.ReparsePoint);
 		}
 
 		public void Copy (SafeUri source, SafeUri destination, bool overwrite)
@@ -65,4 +67,3 @@ namespace FSpot.FileSystem
 			=> new FileStream (uri.AbsolutePath, FileMode.Open, FileAccess.Read);
 	}
 }
-

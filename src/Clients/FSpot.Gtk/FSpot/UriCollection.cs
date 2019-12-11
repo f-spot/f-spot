@@ -30,14 +30,14 @@
 //
 
 using System.Collections.Generic;
+using System.IO;
 using System.Xml;
 
 using Hyena;
 
-using GLib;
-
 using FSpot.Core;
 using FSpot.Imaging;
+using FSpot.FileSystem;
 
 namespace FSpot
 {
@@ -47,7 +47,7 @@ namespace FSpot
 		{
 		}
 
-		public UriCollection (System.IO.FileInfo [] files) : this ()
+		public UriCollection (FileInfo [] files) : this ()
 		{
 			LoadItems (files);
 		}
@@ -63,16 +63,16 @@ namespace FSpot
 				//Console.WriteLine ("using image loader {0}", uri.ToString ());
 				Add (new FilePhoto (uri));
 			} else {
-				var info = FileFactory.NewForUri (uri).QueryInfo ("standard::type,standard::content-type", FileQueryInfoFlags.None, null);
-
-				if (info.FileType == FileType.Directory)
+				var attrs = File.GetAttributes (uri.AbsolutePath);
+				if (attrs.HasFlag (FileAttributes.Directory))
 					new DirectoryLoader (this, uri);
 				else {
 					// FIXME ugh...
-					if (info.ContentType == "text/xml"
-					 || info.ContentType == "application/xml"
-					 || info.ContentType == "application/rss+xml"
-					 || info.ContentType == "text/plain") {
+					var contentType = new DotNetFile ().GetMimeType (uri);
+					if (contentType == "text/xml"
+					 || contentType == "application/xml"
+					 || contentType == "application/rss+xml"
+					 || contentType == "text/plain") {
 						new RssLoader (this, uri);
 					}
 				}
@@ -81,9 +81,8 @@ namespace FSpot
 
 		public void LoadItems (SafeUri [] uris)
 		{
-			foreach (SafeUri uri in uris) {
+			foreach (var uri in uris)
 				Add (uri);
-			}
 		}
 
 		class RssLoader
@@ -101,7 +100,7 @@ namespace FSpot
 				XmlNodeList list = doc.SelectNodes ("/rss/channel/item/media:content", ns);
 				foreach (XmlNode item in list) {
 					SafeUri image_uri = new SafeUri (item.Attributes ["url"].Value);
-					Hyena.Log.DebugFormat ("flickr uri = {0}", image_uri.ToString ());
+					Hyena.Log.Debug ($"flickr uri = {image_uri.ToString ()}");
 					items.Add (new FilePhoto (image_uri));
 				}
 
@@ -109,7 +108,7 @@ namespace FSpot
 					list = doc.SelectNodes ("/rss/channel/item/pheed:imgsrc", ns);
 					foreach (XmlNode item in list) {
 						SafeUri image_uri = new SafeUri (item.InnerText.Trim ());
-						Hyena.Log.DebugFormat ("pheed uri = {0}", uri);
+						Hyena.Log.Debug ($"pheed uri = {uri}");
 						items.Add (new FilePhoto (image_uri));
 					}
 				}
@@ -118,7 +117,7 @@ namespace FSpot
 					list = doc.SelectNodes ("/rss/channel/item/apple:image", ns);
 					foreach (XmlNode item in list) {
 						SafeUri image_uri = new SafeUri (item.InnerText.Trim ());
-						Hyena.Log.DebugFormat ("apple uri = {0}", uri);
+						Hyena.Log.Debug ($"apple uri = {uri}");
 						items.Add (new FilePhoto (image_uri));
 					}
 				}
@@ -126,42 +125,41 @@ namespace FSpot
 			}
 		}
 
+		// FIXME, Getting rid of GLib/gio for now
 		class DirectoryLoader
 		{
 			readonly UriCollection collection;
-			readonly GLib.File file;
+			//readonly GLib.File file;
 
 			public DirectoryLoader (UriCollection collection, SafeUri uri)
 			{
 				this.collection = collection;
-				file = FileFactory.NewForUri (uri);
-				file.EnumerateChildrenAsync ("standard::*",
-							     FileQueryInfoFlags.None,
-							     500,
-							     null,
-							     InfoLoaded);
-
+				//file = FileFactory.NewForUri (uri);
+				//file.EnumerateChildrenAsync ("standard::*", FileQueryInfoFlags.None, 500, null, InfoLoaded);
+				//var dir = new DirectoryInfo (uri.AbsolutePath);
 			}
 
-			void InfoLoaded (GLib.Object o, GLib.AsyncResult res)
-			{
-				var items = new List<FilePhoto> ();
-				foreach (GLib.FileInfo info in file.EnumerateChildrenFinish (res)) {
-					SafeUri i = new SafeUri (file.GetChild (info.Name).Uri);
-					Hyena.Log.DebugFormat ("testing uri = {0}", i);
-					if (App.Instance.Container.Resolve<IImageFileFactory> ().HasLoader (i))
-						items.Add (new FilePhoto (i));
-				}
-				ThreadAssist.ProxyToMain (() => collection.Add (items.ToArray ()));
-			}
+			//void InfoLoaded (GLib.Object o, GLib.AsyncResult res)
+			//{
+			//	var items = new List<FilePhoto> ();
+
+			//	foreach (GLib.FileInfo info in file.EnumerateChildrenFinish (res)) {
+			//		var i = new SafeUri (file.GetChild (info.Name).Uri);
+			//		Log.Debug ($"testing uri = {i}");
+			//		if (App.Instance.Container.Resolve<IImageFileFactory> ().HasLoader (i))
+			//			items.Add (new FilePhoto (i));
+			//	}
+
+			//	ThreadAssist.ProxyToMain (() => collection.Add (items.ToArray ()));
+			//}
 		}
 
-		protected void LoadItems (System.IO.FileInfo [] files)
+		protected void LoadItems (FileInfo [] files)
 		{
 			var items = new List<IPhoto> ();
 			foreach (var f in files) {
 				if (App.Instance.Container.Resolve<IImageFileFactory> ().HasLoader (new SafeUri (f.FullName))) {
-					Hyena.Log.Debug (f.FullName);
+					Log.Debug (f.FullName);
 					items.Add (new FilePhoto (new SafeUri (f.FullName)));
 				}
 			}

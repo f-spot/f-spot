@@ -506,21 +506,17 @@ public static class PixbufUtils
 		CreateDerivedVersion (source, destination, 95);
 	}
 
-	public static void CreateDerivedVersion (SafeUri source, SafeUri destination, uint jpeg_quality)
+	public static void CreateDerivedVersion (SafeUri source, SafeUri destination, uint jpegQuality)
 	{
 		if (source.GetExtension () == destination.GetExtension ()) {
-			// Simple copy will do!
-			var file_from = GLib.FileFactory.NewForUri (source);
-			var file_to = GLib.FileFactory.NewForUri (destination);
-			file_from.Copy (file_to, GLib.FileCopyFlags.AllMetadata | GLib.FileCopyFlags.Overwrite, null, null);
+			System.IO.File.Copy (source.AbsolutePath, destination.AbsolutePath, true);
 			return;
 		}
 
 		// Else make a derived copy with metadata copied
-		using (var img = App.Instance.Container.Resolve<IImageFileFactory> ().Create (source)) {
-			using (var pixbuf = img.Load ()) {
-				FSpot.Utils.PixbufUtils.CreateDerivedVersion (source, destination, jpeg_quality, pixbuf);
-			}
-		}
+		using var img = App.Instance.Container.Resolve<IImageFileFactory> ().Create (source);
+		using var pixbuf = img.Load ();
+
+		FSpot.Utils.PixbufUtils.CreateDerivedVersion (source, destination, jpegQuality, pixbuf);
 	}
 }

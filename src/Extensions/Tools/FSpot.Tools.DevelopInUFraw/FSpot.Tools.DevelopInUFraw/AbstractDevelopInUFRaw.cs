@@ -47,7 +47,7 @@ namespace FSpot.Tools.DevelopInUFraw
 	public abstract class AbstractDevelopInUFRaw : ICommand
 	{
 		// The executable used for developing RAWs
-		string executable;
+		readonly string executable;
 
 		public const string DevelopInUfraw = Preferences.ExtensionKey + "DevelopInUfraw/";
 		public const string UfrawJpegQualityKey = DevelopInUfraw + "JpegQuality";
@@ -71,7 +71,7 @@ namespace FSpot.Tools.DevelopInUFraw
 			LoadPreference (UfrawArgumentsKey);
 			LoadPreference (UfrawBatchArgumentsKey);
 
-			PhotoVersion raw = p.GetVersion (Photo.OriginalVersionId) as PhotoVersion;
+			var raw = p.GetVersion (Photo.OriginalVersionId) as PhotoVersion;
 			if (!App.Instance.Container.Resolve<IImageFileFactory> ().IsRaw (raw.Uri)) {
 				Log.Warning ("The original version of this image is not a (supported) RAW file");
 				return;
@@ -91,14 +91,14 @@ namespace FSpot.Tools.DevelopInUFraw
 			switch (executable) {
 			case "ufraw":
 				args += ufraw_args;
-				if (GLib.FileFactory.NewForUri (Path.ChangeExtension (raw.Uri.ToString (), ".ufraw")).Exists) {
+				if (File.Exists (Path.ChangeExtension (raw.Uri.ToString (), ".ufraw"))) {
 					// We found an ID file, use that instead of the raw file
 					idfile = "--conf=" + GLib.Shell.Quote (Path.ChangeExtension (raw.Uri.LocalPath, ".ufraw"));
 				}
 				break;
 			case "ufraw-batch":
 				args += ufraw_batch_args;
-				if (GLib.FileFactory.NewForUri (Path.Combine (FSpotConfiguration.BaseDirectory, "batch.ufraw")).Exists) {
+				if (File.Exists (Path.Combine (FSpotConfiguration.BaseDirectory, "batch.ufraw"))) {
 					// We found an ID file, use that instead of the raw file
 					idfile = "--conf=" + GLib.Shell.Quote (Path.Combine (FSpotConfiguration.BaseDirectory, "batch.ufraw"));
 				}
@@ -112,14 +112,14 @@ namespace FSpot.Tools.DevelopInUFraw
 				GLib.Shell.Quote (raw.Uri.LocalPath));
 			Log.Debug (executable + " " + args);
 
-			System.Diagnostics.Process ufraw = System.Diagnostics.Process.Start (executable, args);
+			var ufraw = System.Diagnostics.Process.Start (executable, args);
 			ufraw.WaitForExit ();
-			if (!(GLib.FileFactory.NewForUri (developed.ToString ())).Exists) {
+			if (!File.Exists (developed.ToString ())) {
 				Log.Warning ("UFRaw quit with an error. Check that you have UFRaw 0.13 or newer. Or did you simply clicked on Cancel?");
 				return;
 			}
 
-			if (GLib.FileFactory.NewForUri (Path.ChangeExtension (developed.ToString (), ".ufraw")).Exists) {
+			if (File.Exists (Path.ChangeExtension (developed.ToString (), ".ufraw"))) {
 				// We save our own copy of the last ufraw settings, as ufraw can overwrite it's own last used settings outside f-spot
 				File.Delete (Path.Combine (FSpotConfiguration.BaseDirectory, "batch.ufraw"));
 				File.Copy (Path.ChangeExtension (developed.LocalPath, ".ufraw"), Path.Combine (FSpotConfiguration.BaseDirectory, "batch.ufraw"));
@@ -134,12 +134,12 @@ namespace FSpot.Tools.DevelopInUFraw
 			App.Instance.Database.Photos.Commit (p);
 		}
 
-		private static string GetVersionName (Photo p)
+		static string GetVersionName (Photo p)
 		{
 			return GetVersionName (p, 1);
 		}
 
-		private static string GetVersionName (Photo p, int i)
+		static string GetVersionName (Photo p, int i)
 		{
 			string name = Catalog.GetPluralString ("Developed in UFRaw", "Developed in UFRaw ({0})", i);
 			name = string.Format (name, i);
@@ -148,14 +148,14 @@ namespace FSpot.Tools.DevelopInUFraw
 			return name;
 		}
 
-		private System.Uri GetUriForVersionName (Photo p, string version_name)
+		System.Uri GetUriForVersionName (Photo p, string version_name)
 		{
 			string name_without_ext = Path.GetFileNameWithoutExtension (p.Name);
 			return new System.Uri (Path.Combine (DirectoryPath (p), name_without_ext
 						   + " (" + version_name + ")" + ".jpg"));
 		}
 
-		private static string DirectoryPath (Photo p)
+		static string DirectoryPath (Photo p)
 		{
 			return p.VersionUri (Photo.OriginalVersionId).GetBaseUri ();
 		}
@@ -174,6 +174,5 @@ namespace FSpot.Tools.DevelopInUFraw
 				break;
 			}
 		}
-
 	}
 }

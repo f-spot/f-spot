@@ -33,6 +33,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 using Mono.Unix;
 
@@ -42,9 +43,7 @@ using FSpot.Settings;
 using FSpot.Utils;
 
 using Gtk;
-using GLib;
-using GFile = GLib.File;
-using GFileInfo = GLib.FileInfo;
+using FSpot.FileSystem;
 
 // FIXME TODO: We want to use something like EClippedLabel here throughout so it handles small sizes
 // gracefully using ellipsis.
@@ -68,7 +67,23 @@ namespace FSpot.Widgets
 			public Action<Widget, IPhoto[]> SetMultiple;
 		}
 
-		List<InfoEntry> entries = new List<InfoEntry> ();
+		public InfoBox () : base (false, 0)
+		{
+			ContextSwitchStrategy = new MRUInfoBoxContextSwitchStrategy ();
+			ContextChanged += HandleContextChanged;
+
+			SetupWidgets ();
+
+			update_delay = new DelayedOperation (Update);
+			update_delay.Start ();
+
+			histogram_delay = new DelayedOperation (DelayedUpdateHistogram);
+
+			BorderWidth = 2;
+			Hide ();
+		}
+
+		readonly List<InfoEntry> entries = new List<InfoEntry> ();
 
 		void AddEntry (string id, string name, string description, Widget info_widget, float label_y_align,
 							   bool default_visibility,
@@ -120,7 +135,7 @@ namespace FSpot.Widgets
 									Func<IPhoto, TagLib.Image.File, string> single_string,
 									Func<IPhoto[], string> multiple_string)
 		{
-			Action<Widget, IPhoto, TagLib.Image.File> set_single = (widget, photo, metadata) => {
+			Action<Widget, IPhoto, TagLib.Image.File> setSingle = (widget, photo, metadata) => {
 				if (metadata != null)
 					(widget as Label).Text = single_string (photo, metadata);
 				else
@@ -132,7 +147,7 @@ namespace FSpot.Widgets
 			};
 
 			AddEntry (id, name, description, CreateLeftAlignedLabel (string.Empty), default_visibility,
-					  single_string == null ? null : set_single,
+					  single_string == null ? null : setSingle,
 					  multiple_string == null ? null : set_multiple);
 		}
 
@@ -215,24 +230,26 @@ namespace FSpot.Widgets
 
 		Label CreateRightAlignedLabel (string text, float yalign)
 		{
-			var label = new Label ();
-			label.UseMarkup = true;
-			label.Markup = text;
-			label.Xalign = 1.0f;
-			label.Yalign = yalign;
+			var label = new Label {
+				UseMarkup = true,
+				Markup = text,
+				Xalign = 1.0f,
+				Yalign = yalign
+			};
 
 			return label;
 		}
 
 		Label CreateLeftAlignedLabel (string text)
 		{
-			var label = new Label ();
-			label.UseMarkup = true;
-			label.Markup = text;
-			label.Xalign = 0.0f;
-			label.Yalign = 0.0f;
-			label.Selectable = true;
-			label.Ellipsize = Pango.EllipsizeMode.End;
+			var label = new Label {
+				UseMarkup = true,
+				Markup = text,
+				Xalign = 0.0f,
+				Yalign = 0.0f,
+				Selectable = true,
+				Ellipsize = Pango.EllipsizeMode.End
+			};
 
 			return label;
 		}
@@ -271,7 +288,6 @@ namespace FSpot.Widgets
 		{
 			entry.InfoWidget.Visible = ContextSwitchStrategy.InfoEntryVisible (Context, entry) && def;
 			entry.LabelWidget.Visible = ContextSwitchStrategy.InfoEntryVisible (Context, entry) && def;
-
 		}
 
 		void UpdateEntries ()
@@ -371,10 +387,7 @@ namespace FSpot.Widgets
 
 			AddLabelEntry ("date", Catalog.GetString ("Date"), Catalog.GetString ("Show Date"),
 						   (photo, file) => {
-							   return string.Format ("{0}{2}{1}",
-													 photo.Time.ToShortDateString (),
-													 photo.Time.ToShortTimeString (),
-													 Environment.NewLine);
+							   return $"{photo.Time.ToShortDateString ()}{Environment.NewLine}{photo.Time.ToShortTimeString ()}";
 						   },
 						   photos => {
 							   IPhoto first = photos[photos.Length - 1];
@@ -470,10 +483,8 @@ namespace FSpot.Widgets
 			AddLabelEntry ("file_size", Catalog.GetString ("File Size"), Catalog.GetString ("Show File Size"), false,
 						   (photo, metadata) => {
 							   try {
-								   GFile file = FileFactory.NewForUri (photo.DefaultVersion.Uri);
-								   GFileInfo file_info = file.QueryInfo ("standard::size", FileQueryInfoFlags.None, null);
-								   return Format.SizeForDisplay (file_info.Size);
-							   } catch (GLib.GException e) {
+								   return new DotNetFile ().GetSize (photo.DefaultVersion.Uri).ToString ();
+							   } catch (Exception e) {
 								   Hyena.Log.DebugException (e);
 								   return Catalog.GetString ("(File read error)");
 							   }
@@ -545,13 +556,11 @@ namespace FSpot.Widgets
 
 		void OnVersionComboChanged (object o, EventArgs e)
 		{
-			ComboBox combo = o as ComboBox;
+			var combo = o as ComboBox;
 			if (combo == null)
 				return;
 
-			TreeIter iter;
-
-			if (combo.GetActiveIter (out iter))
+			if (combo.GetActiveIter (out var iter))
 				VersionChanged (this, (IPhotoVersion)version_list.GetValue (iter, 0));
 		}
 
@@ -591,10 +600,9 @@ namespace FSpot.Widgets
 				hint.Dispose ();
 			} catch (Exception e) {
 				Hyena.Log.Debug (e.StackTrace);
-				using (var empty = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, true, 8, 256, 256)) {
-					empty.Fill (0x0);
-					histogram_image.Pixbuf = histogram.Generate (empty, max);
-				}
+				using var empty = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, true, 8, 256, 256);
+				empty.Fill (0x0);
+				histogram_image.Pixbuf = histogram.Generate (empty, max);
 			}
 
 			return false;
@@ -673,24 +681,6 @@ namespace FSpot.Widgets
 		{
 
 		}
-
-		#region Constructor
-		public InfoBox () : base (false, 0)
-		{
-			ContextSwitchStrategy = new MRUInfoBoxContextSwitchStrategy ();
-			ContextChanged += HandleContextChanged;
-
-			SetupWidgets ();
-
-			update_delay = new DelayedOperation (Update);
-			update_delay.Start ();
-
-			histogram_delay = new DelayedOperation (DelayedUpdateHistogram);
-
-			BorderWidth = 2;
-			Hide ();
-		}
-		#endregion
 	}
 
 	// Decides whether infobox / histogram should be shown for each context. Implemented

@@ -105,7 +105,7 @@ namespace FSpot.Exporters.Folder
 
 		GtkBeans.Builder builder;
 		string dialog_name = "folder_export_dialog";
-		GLib.File dest;
+		DirectoryInfo dest;
 		Gtk.FileChooserButton uri_chooser;
 
 		bool open;
@@ -145,10 +145,9 @@ namespace FSpot.Exporters.Folder
 			if (!Directory.Exists (uri_path))
 				uri_path = FSpotConfiguration.HomeDirectory;
 
-			uri_chooser = new Gtk.FileChooserButton (Catalog.GetString ("Select Export Folder"),
-								 Gtk.FileChooserAction.SelectFolder);
-
-			uri_chooser.LocalOnly = false;
+			uri_chooser = new Gtk.FileChooserButton (Catalog.GetString ("Select Export Folder"), Gtk.FileChooserAction.SelectFolder) {
+				LocalOnly = false
+			};
 
 			if (!string.IsNullOrEmpty (Preferences.Get<string> (URI_KEY)))
 				uri_chooser.SetCurrentFolderUri (Preferences.Get<string> (URI_KEY));
@@ -190,12 +189,12 @@ namespace FSpot.Exporters.Folder
 
 			try {
 				ThreadAssist.ProxyToMain (Dialog.Hide);
+				// FIXME, guessing how this works
+				var source = new DirectoryInfo (Path.Combine (gallery_path, gallery_name));
+				var target = new DirectoryInfo (Path.Combine (dest.FullName, source.Name));
 
-				GLib.File source = GLib.FileFactory.NewForPath (Path.Combine (gallery_path, gallery_name));
-				GLib.File target = GLib.FileFactory.NewForPath (Path.Combine (dest.Path, source.Basename));
-
-				if (dest.IsNative)
-					gallery_path = dest.Path;
+				//if (dest.IsNative)
+				//	gallery_path = dest.Path;
 
 				progress_dialog.Message = Catalog.GetString ("Building Gallery");
 				progress_dialog.Fraction = 0.0;
@@ -261,14 +260,16 @@ namespace FSpot.Exporters.Folder
 						originalGallery.CreateZip ();
 				}
 
+				// FIXME, This is borken
 				// we've created the structure, now if the destination was local (native) we are done
 				// otherwise we xfer
-				if (!dest.IsNative) {
-					Log.Debug ($"Transferring \"{source.Path}\" to \"{target.Path}\"");
-					progress_dialog.Message = string.Format (Catalog.GetString ("Transferring to \"{0}\""), target.Path);
-					progress_dialog.ProgressText = Catalog.GetString ("Transferring...");
-					source.CopyRecursive (target, GLib.FileCopyFlags.Overwrite, new GLib.Cancellable (), Progress);
-				}
+				//if (!dest.IsNative) {
+				//	Log.Debug ($"Transferring \"{source.FullName}\" to \"{target.FullName}\"");
+				//	progress_dialog.Message = string.Format (Catalog.GetString ("Transferring to \"{0}\""), target.FullName);
+				//	progress_dialog.ProgressText = Catalog.GetString ("Transferring...");
+
+				//	source.CopyRecursive (target, GLib.FileCopyFlags.Overwrite, new GLib.Cancellable (), Progress);
+				//}
 
 				// No need to check result here as if result is not true, an Exception will be thrown before
 				progress_dialog.Message = Catalog.GetString ("Export Complete.");
@@ -277,8 +278,8 @@ namespace FSpot.Exporters.Folder
 				progress_dialog.ButtonLabel = Gtk.Stock.Ok;
 
 				if (open) {
-					Log.Debug ($"Open URI \"{target.Uri}\"");
-					ThreadAssist.ProxyToMain (() => { GtkBeans.Global.ShowUri (Dialog.Screen, target.Uri.ToString ()); });
+					Log.Debug ($"Open Path \"{target.FullName}\"");
+					ThreadAssist.ProxyToMain (() => { GtkBeans.Global.ShowUri (Dialog.Screen, target.FullName); });
 				}
 
 				// Save these settings for next time
@@ -296,8 +297,8 @@ namespace FSpot.Exporters.Folder
 			} finally {
 				// if the destination isn't local then we want to remove the temp directory we
 				// created.
-				if (!dest.IsNative)
-					Directory.Delete (gallery_path, true);
+				//if (!dest.IsNative)
+				//	Directory.Delete (gallery_path, true);
 
 				ThreadAssist.ProxyToMain (() => { Dialog.Destroy (); });
 			}
@@ -322,7 +323,7 @@ namespace FSpot.Exporters.Folder
 				return;
 			}
 
-			dest = GLib.FileFactory.NewForUri (uri_chooser.Uri);
+			dest = new DirectoryInfo (new SafeUri (uri_chooser.Uri).AbsolutePath);
 			open = open_check.Active;
 			scale = scale_check.Active;
 			exportTags = export_tags_check.Active;
@@ -336,8 +337,9 @@ namespace FSpot.Exporters.Folder
 			if (scale)
 				size = size_spin.ValueAsInt;
 
-			command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (Upload));
-			command_thread.Name = Catalog.GetString ("Exporting Photos");
+			command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (Upload)) {
+				Name = Catalog.GetString ("Exporting Photos")
+			};
 
 			progress_dialog = new ThreadProgressDialog (command_thread, 1);
 			progress_dialog.Start ();

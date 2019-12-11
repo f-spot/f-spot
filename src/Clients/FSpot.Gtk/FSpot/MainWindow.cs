@@ -55,6 +55,7 @@ using FSpot.UI.Dialog;
 using FSpot.Platform;
 using FSpot.Import;
 using FSpot.Settings;
+using FSpot.FileSystem;
 
 namespace FSpot
 {
@@ -2945,13 +2946,8 @@ namespace FSpot
 		{
 			var contents = new List<string> ();
 
-			foreach (Photo p in SelectedPhotos ()) {
-				string content;
-				try {
-					content = GLib.FileFactory.NewForUri (p.DefaultVersion.Uri).QueryInfo ("standard::content-type", GLib.FileQueryInfoFlags.None, null).ContentType;
-				} catch (GLib.GException) {
-					content = null;
-				}
+			foreach (var p in SelectedPhotos ()) {
+				string content = new DotNetFile ().GetMimeType (p.DefaultVersion.Uri);
 
 				if (!contents.Contains (content))
 					contents.Add (content);

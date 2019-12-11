@@ -29,17 +29,17 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Mono.Unix;
-
+using System;
+using System.IO;
 using FSpot.Core;
 using FSpot.Filters;
 using FSpot.UI.Dialog;
 
+using Gtk;
+
 using Hyena;
 
-using GLib;
-using Gtk;
-using System;
+using Mono.Unix;
 
 namespace FSpot.Exporters.CD
 {
@@ -48,7 +48,7 @@ namespace FSpot.Exporters.CD
 		IBrowsableCollection selection;
 		IDiscBurner burner;
 
-		System.Uri dest = new System.Uri ("burn:///");
+		Uri dest = new Uri ("burn:///");
 
 		int photo_index;
 		bool clean;
@@ -59,7 +59,7 @@ namespace FSpot.Exporters.CD
 
 		public CDExport ()
 		{
-			burner = new Brasero();
+			burner = new Brasero ();
 		}
 
 		public void Run (IBrowsableCollection selection)
@@ -74,8 +74,9 @@ namespace FSpot.Exporters.CD
 
 			clean = dialog.RemovePreviousPhotos;
 
-			command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (Transfer));
-			command_thread.Name = Catalog.GetString ("Transferring Pictures");
+			command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (Transfer)) {
+				Name = Catalog.GetString ("Transferring Pictures")
+			};
 
 			progress_dialog = new ThreadProgressDialog (command_thread, selection.Count);
 			progress_dialog.Start ();
@@ -84,38 +85,27 @@ namespace FSpot.Exporters.CD
 		}
 
 		//FIXME: rewrite this as a Filter
-	        public static GLib.File UniqueName (System.Uri path, string shortname)
-	        {
-	                int i = 1;
-			GLib.File dest = FileFactory.NewForUri (new System.Uri (path, shortname));
-	                while (dest.Exists) {
-	                        string numbered_name = string.Format ("{0}-{1}{2}",
-	                                                              System.IO.Path.GetFileNameWithoutExtension (shortname),
-	                                                              i++,
-	                                                              System.IO.Path.GetExtension (shortname));
-
-				dest = FileFactory.NewForUri (new System.Uri (path, numbered_name));
-	                }
-
-	                return dest;
-	        }
-
-		void Clean (System.Uri path)
+		public static FileInfo UniqueName (Uri path, string shortname)
 		{
-			GLib.File source = FileFactory.NewForUri (path);
-			using (var children = source.EnumerateChildren ("*", FileQueryInfoFlags.None, null)) {
-				foreach (GLib.FileInfo info in children) {
-					if (info.FileType == FileType.Directory)
-						Clean (new System.Uri (path, info.Name + "/"));
-					FileFactory.NewForUri (new System.Uri (path, info.Name)).Delete ();
-				}
+			int i = 1;
+			var dest = new FileInfo (new Uri (path, shortname).AbsolutePath);
+			while (dest.Exists) {
+				string numbered_name = $"{Path.GetFileNameWithoutExtension (shortname)}-{i++}{Path.GetExtension (shortname)}";
+
+				dest = new FileInfo (new Uri (path, numbered_name).AbsolutePath);
 			}
+
+			return dest;
 		}
 
+		void Clean (Uri path)
+			=> new DirectoryInfo (path.AbsolutePath).Delete (true);
+
+		// FIXME, fix progress reporting
 		public void Transfer ()
 		{
 			try {
-				bool result = true;
+				var result = true;
 
 				if (clean)
 					Clean (dest);
@@ -123,20 +113,19 @@ namespace FSpot.Exporters.CD
 				foreach (IPhoto photo in selection.Items) {
 
 					//FIXME need to implement the uniquename as a filter
-					using (FilterRequest request = new FilterRequest (photo.DefaultVersion.Uri)) {
-						GLib.File source = FileFactory.NewForUri (request.Current.ToString ());
-						GLib.File target = UniqueName (dest, photo.Name);
-						FileProgressCallback cb = Progress;
+					using (var request = new FilterRequest (photo.DefaultVersion.Uri)) {
+						var source = new FileInfo (request.Current.AbsolutePath);
+						var target = UniqueName (dest, photo.Name);
 
 						progress_dialog.Message = string.Format (Catalog.GetString ("Transferring picture \"{0}\" To CD"), photo.Name);
 						progress_dialog.Fraction = photo_index / (double)selection.Count;
-						progress_dialog.ProgressText = string.Format (Catalog.GetString ("{0} of {1}"),
-											     photo_index, selection.Count);
+						progress_dialog.ProgressText = string.Format (Catalog.GetString ("{0} of {1}"), photo_index, selection.Count);
 
-						result &= source.Copy (target,
-									FileCopyFlags.None,
-									null,
-									cb);
+						try {
+							source.CopyTo (target.ToString ());
+						} catch (Exception) {
+							result &= false;
+						}
 					}
 					photo_index++;
 				}
@@ -150,11 +139,7 @@ namespace FSpot.Exporters.CD
 					progress_dialog.Hide ();
 					burner.Run ();
 				} else
-					throw new Exception (string.Format ("{0}{3}{1}{3}{2}",
-											  progress_dialog.Message,
-											  Catalog.GetString ("Error While Transferring"),
-											  result.ToString (),
-											  Environment.NewLine));
+					throw new Exception ($"{progress_dialog.Message}{Environment.NewLine}{Catalog.GetString ("Error While Transferring")}{Environment.NewLine}{result.ToString ()}");
 
 			} catch (Exception e) {
 				Hyena.Log.DebugException (e);
@@ -167,14 +152,12 @@ namespace FSpot.Exporters.CD
 			});
 		}
 
-		private void Progress (long current_num_bytes, long total_num_bytes)
+		void Progress (long current_num_bytes, long total_num_bytes)
 		{
 			progress_dialog.ProgressText = Catalog.GetString ("copying...");
 
 			if (total_num_bytes > 0)
 				progress_dialog.Fraction = current_num_bytes / (double)total_num_bytes;
-
 		}
-
 	}
 }

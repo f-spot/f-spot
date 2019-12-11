@@ -114,10 +114,9 @@ namespace FSpot
 			if (done)
 				return false;
 
-			var info = GLib.FileFactory.NewForUri (item.DefaultVersion.Uri).QueryInfo ("access::can-write", GLib.FileQueryInfoFlags.None, null);
-			if (!info.GetAttributeBoolean ("access::can-write")) {
+			var attrs = File.GetAttributes (item.DefaultVersion.Uri.AbsolutePath);
+			if (!attrs.HasFlag (FileAttributes.ReadOnly))
 				throw new RotateException (Catalog.GetString ("Unable to rotate readonly file"), item.DefaultVersion.Uri, true);
-			}
 
 			Rotate (item.DefaultVersion.Uri, direction);
 
@@ -179,7 +178,7 @@ namespace FSpot
 									  ProgressDialog.CancelButtonType.Stop,
 									  items.Length, parent_window);
 
-			RotateMultiple op = new RotateMultiple (items, direction);
+			var op = new RotateMultiple (items, direction);
 			int readonly_count = 0;
 			bool done = false;
 			int index = 0;
@@ -229,12 +228,8 @@ namespace FSpot
 			notice = string.Format (notice, readonly_count);
 			desc = string.Format (desc, readonly_count);
 
-			var md = new HigMessageDialog (parent_window,
-									DialogFlags.DestroyWithParent,
-									MessageType.Error,
-									ButtonsType.Close,
-									notice,
-									desc);
+			var md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent, MessageType.Error, ButtonsType.Close,
+										   notice, desc);
 			md.Run ();
 			md.Destroy ();
 		}
@@ -249,7 +244,7 @@ namespace FSpot
 		void RunGenericError (Exception e, string path, string msg)
 		{
 			string longmsg = string.Format (Catalog.GetString ("Received error \"{0}\" while attempting to rotate {1}"),
-							msg, System.IO.Path.GetFileName (path));
+							msg, Path.GetFileName (path));
 
 			var md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent,
 									MessageType.Warning, ButtonsType.Ok,
