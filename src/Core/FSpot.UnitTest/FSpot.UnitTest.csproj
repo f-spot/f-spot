@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\lib\gio-sharp\gio-sharp.csproj" />
     <ProjectReference Include="..\..\..\lib\Hyena\Hyena.csproj" />
     <ProjectReference Include="..\FSpot\FSpot.csproj" />
   </ItemGroup>
@@ -25,6 +24,7 @@
     <PackageReference Include="NUnit3TestAdapter" Version="3.15.1" />
     <PackageReference Include="Shouldly" Version="3.0.2" />
     <PackageReference Include="TagLibSharp" Version="2.2.0" />
+    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.6.0-preview.18571.3" />
   </ItemGroup>
 
   <ItemGroup>

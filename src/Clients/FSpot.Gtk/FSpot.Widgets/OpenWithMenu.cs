@@ -31,9 +31,8 @@
 
 using System;
 using System.Collections.Generic;
-
-using Gtk;
 using GLib;
+using Gtk;
 using GtkBeans;
 
 using Mono.Unix;
@@ -96,8 +95,8 @@ namespace FSpot.Widgets
 
 		AppInfo[] ApplicationsFor (IEnumerable<string> types)
 		{
-			List<AppInfo> app_infos = new List<AppInfo> ();
-			List<string> existing_ids = new List<string> ();
+			var app_infos = new List<AppInfo> ();
+			var existing_ids = new List<string> ();
 			foreach (string type in types)
 				foreach (AppInfo appinfo in AppInfoAdapter.GetAllForType (type)) {
 					if (existing_ids.Contains (appinfo.Id))
@@ -112,17 +111,16 @@ namespace FSpot.Widgets
 			return app_infos.ToArray ();
 		}
 
-		private void HandleItemActivated (object sender, EventArgs args)
+		void HandleItemActivated (object sender, EventArgs args)
 		{
-			AppMenuItem app = (sender as AppMenuItem);
+			var app = (sender as AppMenuItem);
 
-			if (ApplicationActivated != null)
-				ApplicationActivated (this, new ApplicationActivatedEventArgs (app.App));
+			ApplicationActivated?.Invoke (this, new ApplicationActivatedEventArgs (app.App));
 		}
 
-		private class AppMenuItem : ImageMenuItem
+		class AppMenuItem : ImageMenuItem
 		{
-			public AppInfo App { get; private set; }
+			public AppInfo App { get; }
 
 			public AppMenuItem (AppInfo app, bool show_icon) : base (app.Name)
 			{

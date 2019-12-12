@@ -15,7 +15,6 @@ DIR_LIBFSPOT = $(top_builddir)/lib/libfspot
 DIR_SRC = $(top_builddir)/src
 DIR_GIOSHARP = $(top_builddir)/lib/gio-sharp/gio
 DIR_GTKSHARPBEANS = $(top_builddir)/lib/gtk-sharp-beans
-DIR_UNIQUESHARP = $(top_builddir)/lib/unique-sharp/unique
 DIR_BIN = $(top_builddir)/bin
 
 
@@ -42,11 +41,6 @@ REF_GTK_BEANS = $(LINK_GIO_DEPS)
 LINK_GTK_BEANS = -r:$(DIR_GTKSHARPBEANS)/gtk-sharp-beans.dll
 LINK_GTK_BEANS_DEPS = $(REF_GTK_BEANS) $(LINK_GTK_BEANS)
 
-# Uniqe
-REF_UNIQUE =
-LINK_UNIQUE = -r:$(DIR_UNIQUESHARP)/unique-sharp.dll
-LINK_UNIQUE_DEPS = $(REF_UNIQUE) $(LINK_UNIQUE)
-
 # Hyena
 REF_HYENA = $(LINK_SYSTEM) $(LINK_MONO_POSIX)
 LINK_HYENA = -r:$(DIR_BIN)/Hyena.dll
@@ -68,7 +62,7 @@ LINK_FSPOT_CORE = -r:$(DIR_BIN)/FSpot.Core.dll
 
 # FSpot (executable)
 REF_FSPOT_GTK = $(LINK_FSPOT_CORE_DEPS) \
-	$(LINK_GLIB) $(LINK_UNIQUE_DEPS) \
+	$(LINK_GLIB) \
 	$(LINK_MONODATA) \
 	$(LINK_ICSHARP_ZIP_LIB) \
 	$(LINK_HYENA_GUI_DEPS) $(LINK_TAGLIB)

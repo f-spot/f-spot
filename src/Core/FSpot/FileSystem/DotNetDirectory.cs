@@ -1,9 +1,11 @@
-﻿//
-// GLibPath.cs
+//
+// DotNetDirectory.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Daniel Köb <daniel.koeb@peony.at>
 //
+// Copyright (C) 2019 Stephen Shaw
 // Copyright (C) 2016 Daniel Köb
 //
 // Permission is hereby granted, free of charge, to any person obtaining
@@ -26,15 +28,43 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System.Collections.Generic;
+using System.IO;
+
+using FSpot.Utils;
+
+using Hyena;
+
 namespace FSpot.FileSystem
 {
-	class GLibPath : IPath
+	class DotNetDirectory : IDirectory
 	{
-		public string GetTempPath ()
+		public bool Exists (SafeUri uri)
 		{
-			// g_get_tmp_dir is not available in Glib, use implementation from System.IO.Path instead
-			// https://developer.gnome.org/glib/stable/glib-Miscellaneous-Utility-Functions.html#g-get-tmp-dir
-			return System.IO.Path.GetTempPath ();
+			return Directory.Exists (uri.AbsolutePath);
+		}
+
+		public void CreateDirectory (SafeUri uri)
+		{
+			Directory.CreateDirectory (uri.AbsolutePath);
+		}
+
+		public void Delete (SafeUri uri)
+		{
+			if (!Exists (uri)) {
+				//FIXME to be consistent with System.IO.Directory.Delete we should throw an exception in this case
+				return;
+			}
+			Directory.Delete (uri.AbsolutePath);
+		}
+
+		public IEnumerable<SafeUri> Enumerate (SafeUri uri)
+		{
+			if (!Exists (uri))
+				yield break;
+
+			foreach (var file in Directory.EnumerateDirectories (uri.AbsolutePath))
+				yield return uri.Append (file);
 		}
 	}
 }

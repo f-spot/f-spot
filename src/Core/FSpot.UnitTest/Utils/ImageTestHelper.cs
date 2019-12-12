@@ -2,9 +2,11 @@
 // ImageTestHelper.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Mike Gemünde <mike@gemuende.de>
 //   Ruben Vermeersch <ruben@savanne.be>
 //
+// Copyright (C) 2019 Stephen Shaw
 // Copyright (C) 2010 Novell, Inc.
 // Copyright (C) 2010 Mike Gemünde
 // Copyright (C) 2010 Ruben Vermeersch
@@ -29,44 +31,44 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
+using System.IO;
+
 using Hyena;
+
 using NUnit.Framework;
 
 namespace FSpot.Utils.Tests
 {
 	public static class ImageTestHelper
 	{
-		public static string TestDir = TestContext.CurrentContext.TestDirectory;
-		public static string TestDataLocation = "TestData";
+		static readonly string TestDir = TestContext.CurrentContext.TestDirectory;
+		static readonly string TestDataLocation = "TestData";
 
-        public static SafeUri CreateTempFile (string name)
-        {
-            var uri = new SafeUri (Paths.Combine (TestDir, TestDataLocation, name));
-            var file = GLib.FileFactory.NewForUri (uri);
+		public static SafeUri CreateTempFile (string name)
+		{
+			var uri = new SafeUri (Paths.Combine (TestDir, TestDataLocation, name));
 
-            var tmp = System.IO.Path.GetTempFileName ()+".jpg"; // hack!
-            var uri2 = new SafeUri (tmp);
-            var file2 = GLib.FileFactory.NewForUri (uri2);
-            file.Copy (file2, GLib.FileCopyFlags.Overwrite, null, null);
-            return uri2;
-        }
+			var tmp = Path.GetTempFileName () + ".jpg"; // hack!
+			var uri2 = new SafeUri (tmp);
 
-        public static SafeUri CopySidecarToTest (SafeUri uri, string filename)
-        {
-            var target = uri.ReplaceExtension (".xmp");
+			File.Copy (uri.AbsolutePath, uri2.AbsolutePath, true);
+			return uri2;
+		}
 
-            var orig_uri = new SafeUri (Paths.Combine (TestDir, TestDataLocation, filename));
-            var file = GLib.FileFactory.NewForUri (orig_uri);
-            var file2 = GLib.FileFactory.NewForUri (target);
-            file.Copy (file2, GLib.FileCopyFlags.Overwrite, null, null);
-            return target;
-        }
+		public static SafeUri CopySidecarToTest (SafeUri uri, string filename)
+		{
+			var source = new SafeUri (Paths.Combine (TestDir, TestDataLocation, filename)).AbsolutePath;
+			var destination = uri.ReplaceExtension (".xmp");
 
-        public static void DeleteTempFile (SafeUri uri)
-        {
-            var file = GLib.FileFactory.NewForUri (uri);
-            file.Delete ();
-        }
+			File.Copy (source, destination.AbsolutePath, true);
+
+			return destination;
+		}
+
+		public static void DeleteTempFile (SafeUri uri)
+		{
+			if (File.Exists (uri.AbsolutePath))
+				File.Delete (uri.AbsolutePath);
+		}
 	}
 }

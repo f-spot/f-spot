@@ -176,13 +176,13 @@ namespace FSpot
 
 		static int Main (string[] args)
 		{
-			//if (string.IsNullOrEmpty (Environment.GetEnvironmentVariable ("DISABLE_ANALYTICS"))) {
-			//	try {
-			//		AppCenter.Start ("35f103ca-3b59-4995-b7cf-18da0b45155f", typeof (Analytics), typeof (Crashes));
-			//	} catch (Exception ex) {
-			//		Console.WriteLine (ex.Message);
-			//	}
-			//}
+			if (string.IsNullOrEmpty (Environment.GetEnvironmentVariable ("DISABLE_ANALYTICS"))) {
+				try {
+					AppCenter.Start ("35f103ca-3b59-4995-b7cf-18da0b45155f", typeof (Analytics), typeof (Crashes));
+				} catch (Exception ex) {
+					Console.WriteLine (ex.Message);
+				}
+			}
 
 			args = FixArgs (args);
 
@@ -320,12 +320,11 @@ namespace FSpot
 
 			GLib.ExceptionManager.UnhandledException += exceptionArgs => {
 				Console.WriteLine ("Unhandeled exception handler:");
-				var exception = exceptionArgs.ExceptionObject as Exception;
-				if (exception != null) {
-					Console.WriteLine ("Message: " + exception.Message);
-					Console.WriteLine ("Stack trace: " + exception.StackTrace);
+				if (exceptionArgs.ExceptionObject is Exception exception) {
+					Console.WriteLine ($"Message: {exception.Message}");
+					Console.WriteLine ($"Stack trace: {exception.StackTrace}");
 				} else {
-					Console.WriteLine ("Unknown exception type: " + exceptionArgs.ExceptionObject.GetType ().ToString ());
+					Console.WriteLine ($"Unknown exception type: {exceptionArgs.ExceptionObject.GetType ()}");
 				}
 			};
 
@@ -365,15 +364,12 @@ namespace FSpot
 
 		static void ResetPluginDb ()
 		{
+			// FIXME, test this.
 			// Nuke addin-db
-			var directory = GLib.FileFactory.NewForUri (new SafeUri (FSpotConfiguration.BaseDirectory));
-			using (var list = directory.EnumerateChildren ("standard::name", GLib.FileQueryInfoFlags.None, null)) {
-				foreach (GLib.FileInfo info in list) {
-					if (info.Name.StartsWith ("addin-db-")) {
-						var file = GLib.FileFactory.NewForPath (Path.Combine (directory.Path, info.Name));
-						file.DeleteRecursive ();
-					}
-				}
+			var directory = new DirectoryInfo (new SafeUri (FSpotConfiguration.BaseDirectory));
+			foreach (var item in directory.EnumerateDirectories ()) {
+				if (item.Name.StartsWith ("addin-db-"))
+					item.Delete (true);
 			}
 
 			// Try again
@@ -415,8 +411,12 @@ namespace FSpot
 			} else
 				App.Instance.Organize ();
 
-			if (!App.Instance.IsRunning)
+			//if (!App.Instance.IsRunning)
+			try {
 				Gtk.Application.Run ();
+			} catch (Exception ex) {
+				Log.Exception (ex);
+			}
 		}
 
 		public static void RunIdle (InvokeHandler handler)

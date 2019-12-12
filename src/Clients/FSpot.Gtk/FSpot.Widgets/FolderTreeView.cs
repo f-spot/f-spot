@@ -32,7 +32,6 @@
 using System;
 
 using Gtk;
-using GLib;
 
 using FSpot.Utils;
 
@@ -45,16 +44,16 @@ namespace FSpot.Widgets
 	{
 		FolderTreeModel folder_tree_model;
 
-		protected FolderTreeView (IntPtr raw) : base (raw) {}
+		protected FolderTreeView (IntPtr raw) : base (raw) { }
 
-        static TargetList folderTreeSourceTargetList = new TargetList();
+		static TargetList folderTreeSourceTargetList = new TargetList ();
 
-        static FolderTreeView()
-        {
-            folderTreeSourceTargetList.AddTextTargets((uint)DragDropTargets.TargetType.PlainText);
-            folderTreeSourceTargetList.AddUriTargets((uint)DragDropTargets.TargetType.UriList);
-            folderTreeSourceTargetList.AddTargetEntry(DragDropTargets.UriQueryEntry);
-        }
+		static FolderTreeView ()
+		{
+			folderTreeSourceTargetList.AddTextTargets ((uint)DragDropTargets.TargetType.PlainText);
+			folderTreeSourceTargetList.AddUriTargets ((uint)DragDropTargets.TargetType.UriList);
+			folderTreeSourceTargetList.AddTargetEntry (DragDropTargets.UriQueryEntry);
+		}
 
 		public FolderTreeView () : this (new FolderTreeModel ())
 		{
@@ -79,7 +78,7 @@ namespace FSpot.Widgets
 			AppendColumn (column);
 
 			Drag.SourceSet (this, Gdk.ModifierType.Button1Mask | Gdk.ModifierType.Button3Mask,
-				    (TargetEntry[])folderTreeSourceTargetList, Gdk.DragAction.Copy | Gdk.DragAction.Move);
+					(TargetEntry[])folderTreeSourceTargetList, Gdk.DragAction.Copy | Gdk.DragAction.Move);
 		}
 
 		public UriList SelectedUris {
@@ -97,53 +96,52 @@ namespace FSpot.Widgets
 
 		void PixbufDataFunc (TreeViewColumn tree_column, CellRenderer cell, TreeModel tree_model, TreeIter iter)
 		{
-			var renderer = cell as CellRendererPixbuf;
-
-			string stock;
 			var uri = folder_tree_model.GetUriByIter (iter);
 			if (uri == null)
 				return;
-			File file = FileFactory.NewForUri (uri);
-			try {
-				FileInfo info =
-					file.QueryInfo ("standard::icon", FileQueryInfoFlags.None, null);
 
-				ThemedIcon themed_icon = info.Icon as ThemedIcon;
-				if (themed_icon != null && themed_icon.Names.Length > 0)
-					stock = themed_icon.Names[0];
-				else
-					stock = "gtk-directory";
+			var renderer = cell as CellRendererPixbuf;
 
-			} catch (Exception) {
-				stock = "gtk-directory";
-			}
+			string stock;
 
-			TreeIter tmp;
-			if (tree_model.IterParent (out tmp, iter)) {
-				renderer.IconName = stock;
-				renderer.CellBackground = null;
-			} else {
-				renderer.IconName = stock;
-				renderer.CellBackgroundGdk = Style.Background (StateType.Selected);
-			}
+			// FIXME, icon theme support
+			//File file = FileFactory.NewForUri (uri);
+			//try {
+			//	//FileInfo info = file.QueryInfo ("standard::icon", FileQueryInfoFlags.None, null);
+			//	var icon = System.Drawing.Icon.ExtractAssociatedIcon (uri.AbsolutePath);
+			//	if (icon != null && icon.Names.Length > 0)
+			//		stock = icon;
+			//	else
+			//		stock = "gtk-directory";
+
+			//} catch (Exception) {
+			//	stock = "gtk-directory";
+			//}
+
+			//if (tree_model.IterParent (out var tmp, iter)) {
+			//	renderer.IconName = stock;
+			//	renderer.CellBackground = null;
+			//} else {
+			//	renderer.IconName = stock;
+			//	renderer.CellBackgroundGdk = Style.Background (StateType.Selected);
+			//}
 		}
 
 		void FolderDataFunc (TreeViewColumn tree_column, CellRenderer cell, TreeModel tree_model, TreeIter iter)
 		{
-			CellRendererTextProgress renderer = cell as CellRendererTextProgress;
+			var renderer = cell as CellRendererTextProgress;
 
 			int progress_value = 0;
 			int count = (tree_model as FolderTreeModel).Count;
 
 			if (count != 0)
-				progress_value = (int) ((100.0 * folder_tree_model.GetPhotoCountByIter (iter)) / count);
+				progress_value = (int)((100.0 * folder_tree_model.GetPhotoCountByIter (iter)) / count);
 
 			renderer.Value = progress_value;
 
 			string text = folder_tree_model.GetFolderNameByIter (iter);
 
-			TreeIter tmp;
-			if (tree_model.IterParent (out tmp, iter)) {
+			if (tree_model.IterParent (out var tmp, iter)) {
 				renderer.UseMarkup = false;
 				renderer.Text = text;
 				renderer.CellBackground = null;
@@ -154,9 +152,9 @@ namespace FSpot.Widgets
 				 * possible.
 				 */
 				if (text == Uri.UriSchemeFile)
-					renderer.Text = string.Format ("<b>{0}</b>", Catalog.GetString ("Filesystem"));
+					renderer.Text = $"<b>{Catalog.GetString ("Filesystem")}</b>";
 				else
-					renderer.Text = string.Format ("<b>{0}</b>", text);
+					renderer.Text = $"<b>{text}</b>";
 
 				renderer.CellBackgroundGdk = Style.Background (StateType.Selected);
 			}
@@ -165,8 +163,8 @@ namespace FSpot.Widgets
 		protected override void OnDragDataGet (Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_)
 		{
 			if (info == DragDropTargets.UriQueryEntry.Info
-			    || info == (uint)DragDropTargets.TargetType.UriList
-			    || info == (uint)DragDropTargets.TargetType.PlainText) {
+				|| info == (uint)DragDropTargets.TargetType.UriList
+				|| info == (uint)DragDropTargets.TargetType.PlainText) {
 
 				selection_data.SetUriListData (SelectedUris, context.Targets[0]);
 				return;

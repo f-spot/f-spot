@@ -30,13 +30,14 @@
 //
 
 using System;
+using System.IO;
+using System.Linq;
 using System.Reflection;
 
 using FSpot.Core;
-using FSpot.Widgets;
 using FSpot.UI.Dialog;
+using FSpot.Widgets;
 
-using GLib;
 using Gtk;
 
 namespace FSpot.Exporters.CD
@@ -61,7 +62,7 @@ namespace FSpot.Exporters.CD
 			get { return remove_check.Active; }
 		}
 
-		public CDExportDialog (IBrowsableCollection collection, System.Uri dest) :
+		public CDExportDialog (IBrowsableCollection collection, Uri dest) :
 			base (Assembly.GetExecutingAssembly (), "CDExport.ui", "cd_export_dialog")
 		{
 			this.dest = dest;
@@ -69,43 +70,39 @@ namespace FSpot.Exporters.CD
 			// Calculate the total size
 			long total_size = 0;
 			string path;
-			System.IO.FileInfo file_info;
+			FileInfo file_info;
 
-			foreach (IPhoto item in collection.Items) {
+			foreach (var item in collection.Items) {
 				path = item.DefaultVersion.Uri.LocalPath;
-				if (System.IO.File.Exists (path)) {
-					file_info = new System.IO.FileInfo (path);
+				if (File.Exists (path)) {
+					file_info = new FileInfo (path);
 					total_size += file_info.Length;
 				}
 			}
 
-			var view = new TrayView (collection);
-			view.DisplayDates = false;
-			view.DisplayTags = false;
-			view.DisplayRatings = false;
+			var view = new TrayView (collection) {
+				DisplayDates = false,
+				DisplayTags = false,
+				DisplayRatings = false
+			};
 
-			this.Modal = false;
-			this.TransientFor = null;
+			Modal = false;
+			TransientFor = null;
 
-			size_label.Text = Format.SizeForDisplay (total_size);
+			// FIXME, pull in Humanizer?
+			size_label.Text = total_size.ToString ();
 
 			thumb_scrolledwindow.Add (view);
-			this.ShowAll ();
+			ShowAll ();
 
 			previous_frame.Visible = !IsDestEmpty (dest);
 
 			browse_button.Clicked += HandleBrowseExisting;
 		}
 
-		bool IsDestEmpty (System.Uri path)
+		bool IsDestEmpty (Uri path)
 		{
-			GLib.File f = FileFactory.NewForUri (path);
-			using (var children = f.EnumerateChildren ("*", FileQueryInfoFlags.None, null)) {
-				foreach (GLib.FileInfo info in children) {
-					return false;
-				}
-			}
-			return true;
+			return !Directory.EnumerateFileSystemEntries (path.AbsolutePath).Any ();
 		}
 
 		void HandleBrowseExisting (object sender, System.EventArgs args)
@@ -113,10 +110,11 @@ namespace FSpot.Exporters.CD
 			if (listwindow == null) {
 				listwindow = new Gtk.Window ("Pending files to write");
 				listwindow.SetDefaultSize (400, 200);
-				listwindow.DeleteEvent += delegate (object o, Gtk.DeleteEventArgs e) {(o as Gtk.Window).Destroy (); listwindow = null;};
-				Gtk.TextView view = new Gtk.TextView ();
-				Gtk.ScrolledWindow sw = new Gtk.ScrolledWindow ();
-				sw.Add (view);
+				listwindow.DeleteEvent += delegate (object o, Gtk.DeleteEventArgs e) { (o as Gtk.Window).Destroy (); listwindow = null; };
+				var view = new Gtk.TextView ();
+				var sw = new Gtk.ScrolledWindow {
+					view
+				};
 				listwindow.Add (sw);
 			} else {
 				((listwindow.Child as Gtk.ScrolledWindow).Child as Gtk.TextView).Buffer.Text = "";
@@ -125,23 +123,20 @@ namespace FSpot.Exporters.CD
 			listwindow.ShowAll ();
 		}
 
-		void ListAll (Gtk.TextBuffer t, System.Uri path)
+		void ListAll (Gtk.TextBuffer t, Uri path)
 		{
-			GLib.File f = FileFactory.NewForUri (path);
-			using (var children = f.EnumerateChildren ("*", FileQueryInfoFlags.None, null)) {
-				foreach (GLib.FileInfo info in children) {
-					t.Text += new System.Uri (path, info.Name).ToString () + Environment.NewLine;
-					if (info.FileType == FileType.Directory)
-						ListAll (t, new System.Uri (path, info.Name + "/"));
-				}
-			}
+			// FIXME, file IO work
+			//foreach (var info in Directory.EnumerateFileSystemEntries (path.AbsolutePath)) {
+			//	t.Text += new Uri (info.path, info.Name).ToString () + Environment.NewLine;
+			//	if (.FileType == FileType.Directory)
+			//		ListAll (t, new Uri (path, info.Name + "/"));
+			//}
 		}
-		
+
 		~CDExportDialog ()
 		{
 			if (listwindow != null)
 				listwindow.Destroy ();
 		}
-
 	}
 }

@@ -61,7 +61,8 @@ namespace FSpot.Widgets
 		PrintOperation print_operation;
 
 		public event ChangedHandler Changed;
-		private void TriggerChanged (object sender, EventArgs e)
+
+		void TriggerChanged (object sender, EventArgs e)
 		{
 			if (Changed != null)
 				Changed (this);

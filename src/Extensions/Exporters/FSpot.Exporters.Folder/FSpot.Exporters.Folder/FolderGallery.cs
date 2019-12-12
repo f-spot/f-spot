@@ -154,7 +154,6 @@ namespace FSpot.Exporters.Folder
 		public virtual void GenerateLayout ()
 		{
 			MakeDir (GalleryPath);
-
 		}
 
 		protected virtual string ImageName (int image_num)
@@ -165,12 +164,12 @@ namespace FSpot.Exporters.Folder
 			// Find an unused name
 			int i = 1;
 			var dest = dest_uri.Append (uri.GetFilename ());
-			var file = GLib.FileFactory.NewForUri (dest);
+			var file = new FileInfo (dest.AbsolutePath);
 			while (file.Exists) {
 				var filename = uri.GetFilenameWithoutExtension ();
 				var extension = uri.GetExtension ();
-				dest = dest_uri.Append (string.Format ("{0}-{1}{2}", filename, i++, extension));
-				file = GLib.FileFactory.NewForUri (dest);
+				dest = dest_uri.Append ($"{filename}-{i++}{extension}");
+				file = new FileInfo (dest.AbsolutePath);
 			}
 	
 			return dest.GetFilename ();

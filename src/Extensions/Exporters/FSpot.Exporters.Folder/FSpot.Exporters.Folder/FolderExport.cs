@@ -68,7 +68,7 @@ using FSpot.UI.Dialog;
 
 namespace FSpot.Exporters.Folder
 {
-	public class FolderExport : FSpot.Extensions.IExporter
+	public class FolderExport : Extensions.IExporter
 	{
 		IBrowsableCollection selection;
 
@@ -103,9 +103,9 @@ namespace FSpot.Exporters.Folder
 		public const string SHARPEN_KEY = Preferences.ExportKey + EXPORT_SERVICE + "sharpen";
 		public const string INCLUDE_TARBALLS_KEY = Preferences.ExportKey + EXPORT_SERVICE + "include_tarballs";
 
-		private GtkBeans.Builder builder;
-		private string dialog_name = "folder_export_dialog";
-		GLib.File dest;
+		GtkBeans.Builder builder;
+		string dialog_name = "folder_export_dialog";
+		DirectoryInfo dest;
 		Gtk.FileChooserButton uri_chooser;
 
 		bool open;
@@ -115,14 +115,14 @@ namespace FSpot.Exporters.Folder
 		int size;
 
 		string description;
-		string gallery_name = Catalog.GetString("Gallery");
+		string gallery_name = Catalog.GetString ("Gallery");
 		// FIXME: this needs to be a real temp directory
-		string gallery_path = Path.Combine (Path.GetTempPath (), "f-spot-original-" + System.DateTime.Now.Ticks.ToString ());
+		string gallery_path = Path.Combine (Path.GetTempPath (), "f-spot-original-" + DateTime.Now.Ticks.ToString ());
 
 		ThreadProgressDialog progress_dialog;
 		System.Threading.Thread command_thread;
 
-		public FolderExport () {}
+		public FolderExport () { }
 
 		public void Run (IBrowsableCollection selection)
 		{
@@ -141,14 +141,13 @@ namespace FSpot.Exporters.Folder
 			HandleSizeActive (null, null);
 			name_entry.Text = gallery_name;
 
-			string uri_path = System.IO.Path.Combine (FSpotConfiguration.HomeDirectory, "Desktop");
-			if (!System.IO.Directory.Exists (uri_path))
+			string uri_path = Path.Combine (FSpotConfiguration.HomeDirectory, "Desktop");
+			if (!Directory.Exists (uri_path))
 				uri_path = FSpotConfiguration.HomeDirectory;
 
-			uri_chooser = new Gtk.FileChooserButton (Catalog.GetString ("Select Export Folder"),
-								 Gtk.FileChooserAction.SelectFolder);
-
-			uri_chooser.LocalOnly = false;
+			uri_chooser = new Gtk.FileChooserButton (Catalog.GetString ("Select Export Folder"), Gtk.FileChooserAction.SelectFolder) {
+				LocalOnly = false
+			};
 
 			if (!string.IsNullOrEmpty (Preferences.Get<string> (URI_KEY)))
 				uri_chooser.SetCurrentFolderUri (Preferences.Get<string> (URI_KEY));
@@ -168,18 +167,18 @@ namespace FSpot.Exporters.Folder
 			LoadPreference (METHOD_KEY);
 		}
 
-		public void HandleSizeActive (object sender, System.EventArgs args)
+		public void HandleSizeActive (object sender, EventArgs args)
 		{
 			size_spin.Sensitive = scale_check.Active;
 		}
 
-		public void HandleStandaloneActive (object sender, System.EventArgs args)
+		public void HandleStandaloneActive (object sender, EventArgs args)
 		{
 			export_tags_check.Sensitive = static_radio.Active;
 			HandleExportTagsActive (sender, args);
 		}
 
-		public void HandleExportTagsActive (object sender, System.EventArgs args)
+		public void HandleExportTagsActive (object sender, EventArgs args)
 		{
 			export_tag_icons_check.Sensitive = export_tags_check.Active && static_radio.Active;
 		}
@@ -190,12 +189,12 @@ namespace FSpot.Exporters.Folder
 
 			try {
 				ThreadAssist.ProxyToMain (Dialog.Hide);
+				// FIXME, guessing how this works
+				var source = new DirectoryInfo (Path.Combine (gallery_path, gallery_name));
+				var target = new DirectoryInfo (Path.Combine (dest.FullName, source.Name));
 
-				GLib.File source = GLib.FileFactory.NewForPath (Path.Combine (gallery_path, gallery_name));
-				GLib.File target = GLib.FileFactory.NewForPath (Path.Combine (dest.Path, source.Basename));
-
-				if (dest.IsNative)
-					gallery_path = dest.Path;
+				//if (dest.IsNative)
+				//	gallery_path = dest.Path;
 
 				progress_dialog.Message = Catalog.GetString ("Building Gallery");
 				progress_dialog.Fraction = 0.0;
@@ -210,7 +209,7 @@ namespace FSpot.Exporters.Folder
 				}
 
 				if (scale) {
-					Log.DebugFormat ("Resize Photos to {0}.", size);
+					Log.Debug ($"Resize Photos to {size}.");
 					gallery.SetScale (size);
 				} else {
 					Log.Debug ("Exporting full size.");
@@ -224,22 +223,20 @@ namespace FSpot.Exporters.Folder
 
 				gallery.Description = description;
 				gallery.GenerateLayout ();
-				
-				FilterSet filter_set = new FilterSet ();
+
+				var filter_set = new FilterSet ();
 				if (scale)
-					filter_set.Add (new ResizeFilter ((uint) size));
+					filter_set.Add (new ResizeFilter ((uint)size));
 				filter_set.Add (new ChmodFilter ());
 				filter_set.Add (new UniqueNameFilter (new SafeUri (gallery_path)));
 
-				for (int photo_index = 0; photo_index < selection.Count; photo_index++)
-				{
+				for (int photo_index = 0; photo_index < selection.Count; photo_index++) {
 					try {
 						progress_dialog.Message = string.Format (Catalog.GetString ("Exporting \"{0}\"..."), selection[photo_index].Name);
-						progress_dialog.Fraction = photo_index / (double) selection.Count;
+						progress_dialog.Fraction = photo_index / (double)selection.Count;
 						gallery.ProcessImage (photo_index, filter_set);
 						progress_dialog.ProgressText = string.Format (Catalog.GetString ("{0} of {1}"), (photo_index + 1), selection.Count);
-					}
-					catch (Exception e) {
+					} catch (Exception e) {
 						Log.Error (e.ToString ());
 						progress_dialog.Message = string.Format (Catalog.GetString ("Error Copying \"{0}\" to Gallery:{2}{1}"),
 							selection[photo_index].Name, e.Message, Environment.NewLine);
@@ -251,27 +248,29 @@ namespace FSpot.Exporters.Folder
 				}
 
 				// create the zip tarballs for original
-				if (gallery is OriginalGallery) {
+				if (gallery is OriginalGallery originalGallery) {
 					bool include_tarballs;
 					try {
 						include_tarballs = Preferences.Get<bool> (INCLUDE_TARBALLS_KEY);
-					} catch (NullReferenceException){
+					} catch (NullReferenceException) {
 						include_tarballs = true;
 						Preferences.Set (INCLUDE_TARBALLS_KEY, true);
 					}
 					if (include_tarballs)
-						(gallery as OriginalGallery).CreateZip ();
+						originalGallery.CreateZip ();
 				}
 
+				// FIXME, This is borken
 				// we've created the structure, now if the destination was local (native) we are done
 				// otherwise we xfer
-				if (!dest.IsNative) {
-					Log.DebugFormat ("Transferring \"{0}\" to \"{1}\"", source.Path, target.Path);
-					progress_dialog.Message = string.Format (Catalog.GetString ("Transferring to \"{0}\""), target.Path);
-					progress_dialog.ProgressText = Catalog.GetString ("Transferring...");
-					source.CopyRecursive (target, GLib.FileCopyFlags.Overwrite, new GLib.Cancellable (), Progress);
-				}
-				
+				//if (!dest.IsNative) {
+				//	Log.Debug ($"Transferring \"{source.FullName}\" to \"{target.FullName}\"");
+				//	progress_dialog.Message = string.Format (Catalog.GetString ("Transferring to \"{0}\""), target.FullName);
+				//	progress_dialog.ProgressText = Catalog.GetString ("Transferring...");
+
+				//	source.CopyRecursive (target, GLib.FileCopyFlags.Overwrite, new GLib.Cancellable (), Progress);
+				//}
+
 				// No need to check result here as if result is not true, an Exception will be thrown before
 				progress_dialog.Message = Catalog.GetString ("Export Complete.");
 				progress_dialog.Fraction = 1.0;
@@ -279,8 +278,8 @@ namespace FSpot.Exporters.Folder
 				progress_dialog.ButtonLabel = Gtk.Stock.Ok;
 
 				if (open) {
-					Log.DebugFormat (string.Format ("Open URI \"{0}\"", target.Uri.ToString ()));
-					ThreadAssist.ProxyToMain (() => { GtkBeans.Global.ShowUri (Dialog.Screen, target.Uri.ToString () ); });
+					Log.Debug ($"Open Path \"{target.FullName}\"");
+					ThreadAssist.ProxyToMain (() => { GtkBeans.Global.ShowUri (Dialog.Screen, target.FullName); });
 				}
 
 				// Save these settings for next time
@@ -289,29 +288,29 @@ namespace FSpot.Exporters.Folder
 				Preferences.Set (OPEN_KEY, open);
 				Preferences.Set (EXPORT_TAGS_KEY, exportTags);
 				Preferences.Set (EXPORT_TAG_ICONS_KEY, exportTagIcons);
-				Preferences.Set (METHOD_KEY, static_radio.Active ? "static" : original_radio.Active ? "original" : "folder" );
+				Preferences.Set (METHOD_KEY, static_radio.Active ? "static" : original_radio.Active ? "original" : "folder");
 				Preferences.Set (URI_KEY, uri_chooser.Uri);
-			} catch (System.Exception e) {
+			} catch (Exception e) {
 				Log.Error (e.ToString ());
 				progress_dialog.Message = e.ToString ();
 				progress_dialog.ProgressText = Catalog.GetString ("Error Transferring");
 			} finally {
 				// if the destination isn't local then we want to remove the temp directory we
 				// created.
-				if (!dest.IsNative)
-					System.IO.Directory.Delete (gallery_path, true);
+				//if (!dest.IsNative)
+				//	Directory.Delete (gallery_path, true);
 
-				ThreadAssist.ProxyToMain (() => { Dialog.Destroy(); });
+				ThreadAssist.ProxyToMain (() => { Dialog.Destroy (); });
 			}
 		}
 
-		private void Progress (long current_num_bytes, long total_num_bytes)
+		void Progress (long current_num_bytes, long total_num_bytes)
 		{
 			if (total_num_bytes > 0)
 				progress_dialog.Fraction = current_num_bytes / (double)total_num_bytes;
 		}
 
-		private void HandleResponse (object sender, Gtk.ResponseArgs args)
+		void HandleResponse (object sender, Gtk.ResponseArgs args)
 		{
 			if (args.ResponseId != Gtk.ResponseType.Ok) {
 				// FIXME this is to work around a bug in gtk+ where
@@ -324,7 +323,7 @@ namespace FSpot.Exporters.Folder
 				return;
 			}
 
-			dest = GLib.FileFactory.NewForUri (uri_chooser.Uri);
+			dest = new DirectoryInfo (new SafeUri (uri_chooser.Uri).AbsolutePath);
 			open = open_check.Active;
 			scale = scale_check.Active;
 			exportTags = export_tags_check.Active;
@@ -338,8 +337,9 @@ namespace FSpot.Exporters.Folder
 			if (scale)
 				size = size_spin.ValueAsInt;
 
-			command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (Upload));
-			command_thread.Name = Catalog.GetString ("Exporting Photos");
+			command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (Upload)) {
+				Name = Catalog.GetString ("Exporting Photos")
+			};
 
 			progress_dialog = new ThreadProgressDialog (command_thread, 1);
 			progress_dialog.Start ();
@@ -355,7 +355,7 @@ namespace FSpot.Exporters.Folder
 
 			case SIZE_KEY:
 				if (Preferences.TryGet (key, out int size))
-					size_spin.Value = (double) size;
+					size_spin.Value = (double)size;
 				else
 					size_spin.Value = 400;
 				break;
@@ -383,13 +383,8 @@ namespace FSpot.Exporters.Folder
 			}
 		}
 
-		private Gtk.Dialog Dialog {
-			get {
-				if (dialog == null)
-					dialog = new Gtk.Dialog (builder.GetRawObject (dialog_name));
-
-				return dialog;
-			}
+		Gtk.Dialog Dialog {
+			get { return dialog ??= new Gtk.Dialog (builder.GetRawObject (dialog_name)); }
 		}
 	}
 }

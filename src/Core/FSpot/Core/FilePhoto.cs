@@ -29,10 +29,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+
 using FSpot.Utils;
+
 using Hyena;
-using Mono.Unix.Native;
 
 namespace FSpot.Core
 {
@@ -42,14 +44,11 @@ namespace FSpot.Core
 
 		readonly List<IPhotoVersion> versions;
 
-		public FilePhoto (SafeUri uri) : this (uri, null)
+		public FilePhoto (SafeUri uri, string name = null)
 		{
-		}
-
-		public FilePhoto (SafeUri uri, string name)
-		{
-			versions = new List<IPhotoVersion> ();
-			versions.Add (new FilePhotoVersion { Uri = uri, Name = name });
+			versions = new List<IPhotoVersion> {
+				new FilePhotoVersion {Uri = uri, Name = name}
+			};
 		}
 
 		public bool IsInvalid {
@@ -71,7 +70,7 @@ namespace FSpot.Core
 			if (metadata_parsed)
 				return;
 
-			using (var metadata = Metadata.Parse (DefaultVersion.Uri)) {
+			using (var metadata = MetadataUtils.Parse (DefaultVersion.Uri)) {
 				if (metadata != null) {
 					var date = metadata.ImageTag.DateTime;
 					time = date.HasValue ? date.Value : CreateDate;
@@ -86,8 +85,8 @@ namespace FSpot.Core
 
 		DateTime CreateDate {
 			get {
-				var info = GLib.FileFactory.NewForUri (DefaultVersion.Uri).QueryInfo ("time::changed", GLib.FileQueryInfoFlags.None, null);
-				return NativeConvert.ToDateTime ((long)info.GetAttributeULong ("time::changed"));
+				var info = new FileInfo (DefaultVersion.Uri.AbsolutePath);
+				return info.CreationTime;
 			}
 		}
 
@@ -156,7 +155,7 @@ namespace FSpot.Core
 			string import_md5 = string.Empty;
 			public string ImportMD5 {
 				get {
-					if (import_md5 == string.Empty)
+					if (string.IsNullOrEmpty (import_md5))
 						import_md5 = HashUtils.GenerateMD5 (Uri);
 					return import_md5;
 				}

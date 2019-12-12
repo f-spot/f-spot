@@ -3,8 +3,10 @@
 //
 // Author:
 //   Daniel Köb <daniel.koeb@peony.at>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
 // Copyright (C) 2016 Daniel Köb
+// Copyright (C) 2019 Stephen Shaw
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -26,26 +28,23 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System.IO;
+
 using FSpot.FileSystem;
 using FSpot.Imaging;
 using FSpot.Utils;
+
 using Hyena;
 
 namespace FSpot.Import
 {
 	public class ImportSource
 	{
-		#region props
-
 		public string Name { get; private set; }
 
 		public string IconName { get; private set; }
 
 		public SafeUri Root { get; private set; }
-
-		#endregion
-
-		#region ctors
 
 		public ImportSource (SafeUri root, string name, string iconName)
 		{
@@ -63,42 +62,21 @@ namespace FSpot.Import
 			}
 		}
 
-		#endregion
-
-		#region public API
-
 		public virtual IImportSource GetFileImportSource (IImageFileFactory factory, IFileSystem fileSystem)
 		{
 			return new FileImportSource (Root, factory, fileSystem);
 		}
 
-		#endregion
-
-		#region private
-
 		bool IsCamera {
-			get {
-				try {
-					var file = GLib.FileFactory.NewForUri (Root.Append ("DCIM"));
-					return file.Exists;
-				} catch {
-					return false;
-				}
-			}
+			get => File.Exists (Root.Append ("DCIM").AbsolutePath);
 		}
 
 		bool IsIPodPhoto {
 			get {
-				try {
-					var file = GLib.FileFactory.NewForUri (Root.Append ("Photos"));
-					var file2 = GLib.FileFactory.NewForUri (Root.Append ("iPod_Control"));
-					return file.Exists && file2.Exists;
-				} catch {
-					return false;
-				}
+				var file = File.Exists (Root.Append ("Photos").AbsolutePath);
+				var file2 = File.Exists (Root.Append ("iPod_Control").AbsolutePath);
+				return file && file2;
 			}
 		}
-
-		#endregion
 	}
 }

@@ -95,7 +95,11 @@ namespace FSpot.Platform
 					throw new NoSuchKeyException (key);
 
 				result = Client[key].ToObject<T> ();
+			} catch (ArgumentException ex) {
+				Hyena.Log.Exception (ex);
+				Set (key, result);
 			} catch (InvalidCastException) {
+
 			}
 
 			return result;

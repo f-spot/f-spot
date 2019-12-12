@@ -35,11 +35,33 @@ namespace FSpot.Extensions
 {
 	public class SidebarPage
 	{
-		// The widget shown on the sidebar page.
-		readonly Widget widget;
-		public Widget SidebarWidget {
-			get { return widget; }
+		public event EventHandler CanSelectChanged;
+
+		// The sidebar onto which this page is attached
+		Widget sidebar;
+		public Widget Sidebar {
+			get => sidebar;
+			set {
+				sidebar = value;
+				AddedToSidebar ();
+			}
 		}
+
+		/// The label of the sidebar page.
+		public string Label { get; }
+
+		/// The icon name, used for the selector
+		public string IconName { get; }
+
+		public SidebarPage (Widget widget, string label, string iconName)
+		{
+			SidebarWidget = widget;
+			Label = label;
+			IconName = iconName;
+		}
+
+		/// The widget shown on the sidebar page.
+		public Widget SidebarWidget { get; }
 
 		// Whether this page can be selected
 		bool can_select;
@@ -51,30 +73,6 @@ namespace FSpot.Extensions
 			get { return can_select; }
 		}
 
-		public event EventHandler CanSelectChanged;
-
-		// The label of the sidebar page.
-		readonly string label;
-		public string Label {
-			get { return label; }
-		}
-
-		// The icon name, used for the selector
-		readonly string icon_name;
-		public string IconName {
-			get { return icon_name; }
-		}
-
-		// The sidebar onto which this page is attached
-		Gtk.Widget sidebar;
-		public Gtk.Widget Sidebar {
-			get { return sidebar; }
-			set {
-				sidebar = value;
-				AddedToSidebar ();
-			}
-		}
-
 		// Can be overriden to get notified as soon as we're added to a sidebar.
 		protected virtual void AddedToSidebar () { }
 
@@ -82,12 +80,5 @@ namespace FSpot.Extensions
 //		public bool IsActive {
 //			get { return Sidebar.IsActive (this); }
 //		}
-
-		public SidebarPage (Widget widget, string label, string icon_name)
-		{
-			this.widget = widget;
-			this.label = label;
-			this.icon_name = icon_name;
-		}
 	}
 }

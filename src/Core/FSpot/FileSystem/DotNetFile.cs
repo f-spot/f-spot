@@ -1,10 +1,12 @@
-﻿//
-// GLibFileSystem.cs
+//
+// DotNetFile.cs
 //
 // Author:
 //   Daniel Köb <daniel.koeb@peony.at>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
 // Copyright (C) 2016 Daniel Köb
+// Copyright (C) 2019 Stephen Shaw
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -26,34 +28,42 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System;
+using System.IO;
+using System.Web;
+
+using Hyena;
+
 namespace FSpot.FileSystem
 {
-	class GLibFileSystem : IFileSystem
+	public class DotNetFile : IFile
 	{
-		GLibFile file;
-		GLibDirectory directory;
-		GLibPath path;
+		public bool Exists (SafeUri uri)
+			=> File.Exists (uri.AbsolutePath);
 
-		#region IFileSystem implementation
-
-		public IFile File {
-			get {
-				return file ?? (file = new GLibFile ());
-			}
+		public bool IsSymlink (SafeUri uri)
+		{
+			// FIXME, this might return a false positive
+			var pathInfo = new FileInfo (uri.AbsolutePath);
+			return pathInfo.Attributes.HasFlag (FileAttributes.ReparsePoint);
 		}
 
-		public IDirectory Directory {
-			get {
-				return directory ?? (directory = new GLibDirectory ());
-			}
-		}
+		public void Copy (SafeUri source, SafeUri destination, bool overwrite)
+			=> File.Copy (source.AbsolutePath, destination.AbsolutePath, overwrite);
 
-		public IPath Path {
-			get {
-				return path ?? (path = new GLibPath ());
-			}
-		}
+		public void Delete (SafeUri uri)
+			=> File.Delete (uri.AbsolutePath);
 
-		#endregion
+		public string GetMimeType (SafeUri uri)
+			=> MimeMapping.GetMimeMapping (uri.AbsolutePath);
+
+		public DateTime GetMTime (SafeUri uri)
+			=> File.GetLastWriteTime (uri.AbsolutePath);
+
+		public long GetSize (SafeUri uri)
+			=> new FileInfo (uri.AbsolutePath).Length;
+
+		public Stream Read (SafeUri uri)
+			=> new FileStream (uri.AbsolutePath, FileMode.Open, FileAccess.Read);
 	}
 }

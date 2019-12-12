@@ -1,18 +1,22 @@
 <configuration>
-	<dllmap dll="libXcomposite.dll" target="libXcomposite.so.1"/>
-	<dllmap dll="X11" target="libX11.so.6"/>
-	<dllmap dll="liblcms-2.0.0.dll" target="liblcms2.so.2"/>
-	<dllmap dll="libfspot" target="@expanded_libdir@/f-spot/libfspot.so.0"/>
+  <dllmap dll="libXcomposite.dll" target="libXcomposite.so.1"/>
+  <dllmap dll="X11" target="libX11.so.6"/>
+  <dllmap dll="liblcms-2.0.0.dll" target="liblcms2.so.2"/>
+  <dllmap dll="libfspot" target="@expanded_libdir@/f-spot/libfspot.so.0"/>
 
-	<dllmap os="!windows,osx" dll="libglib-2.0-0.dll" target="libglib-2.0.so.0"/>
-	<dllmap os="!windows,osx" dll="libgobject-2.0-0.dll" target="libgobject-2.0.so.0"/>
-	<dllmap os="!windows,osx" dll="libatk-1.0-0.dll" target="libatk-1.0.so.0"/>
-	<dllmap os="!windows,osx" dll="libgtk-win32-2.0-0.dll" target="libgtk-x11-2.0.so.0"/>
-	<dllmap os="!windows,osx" dll="libgdk-2.0-0.dll" target="libgdk-x11-2.0.so.0"/>
 
-	<dllmap os="osx" dll="libglib-2.0-0.dll" target="libglib-2.0.0.dylib"/>
-	<dllmap os="osx" dll="libgobject-2.0-0.dll" target="libgobject-2.0.0.dylib"/>
-	<dllmap os="osx" dll="libatk-1.0-0.dll" target="libatk-1.0.0.dylib"/>
-	<dllmap os="osx" dll="libgtk-win32-2.0-0.dll" target="libgtk-quartz-2.0.0.dylib"/>
-	<dllmap os="osx" dll="libgdk-2.0-0.dll" target="libgdk-quartz-2.0.0.dylib"/>
+  <dllmap os="!windows,osx" dll="libglib-2.0-0.dll" target="libglib-2.0.so.0"/>
+  <dllmap os="osx" dll="libglib-2.0-0.dll" target="libglib-2.0.0.dylib"/>
+
+  <dllmap dll="libgobject-2.0-0.dll" target="libgobject-2.0.so.0" os="!osx,windows" />
+  <dllmap dll="libgobject-2.0-0.dll" target="libgobject-2.0.dylib" os="osx" />
+
+  <dllmap os="!windows,osx" dll="libatk-1.0-0.dll" target="libatk-1.0.so.0"/>
+  <dllmap os="osx" dll="libatk-1.0-0.dll" target="libatk-1.0.0.dylib"/>
+
+  <dllmap dll="libgtk-win32-2.0-0.dll" target="libgtk-x11-2.0.so.0" os="!osx,windows"/>
+  <dllmap dll="libgtk-win32-2.0-0.dll" target="libgtk-quartz-2.0.dylib" os="osx"/>
+
+  <dllmap dll="libgdk-win32-2.0-0.dll" target="libgdk-x11-2.0.so.0" os="!osx,windows"/>
+  <dllmap dll="libgdk-win32-2.0-0.dll" target="libgdk-quartz-2.0.dylib" os="osx"/>
 </configuration>

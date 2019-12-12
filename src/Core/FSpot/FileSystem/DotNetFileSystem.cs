@@ -1,10 +1,12 @@
-﻿//
-// IFile.cs
+//
+// DotNetFileSystem.cs
 //
 // Author:
 //   Daniel Köb <daniel.koeb@peony.at>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
 // Copyright (C) 2016 Daniel Köb
+// Copyright (C) 2019 Stephen Shaw
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -26,22 +28,24 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using System.IO;
-
-using Hyena;
-
 namespace FSpot.FileSystem
 {
-	public interface IFile
+	class DotNetFileSystem : IFileSystem
 	{
-		bool Exists (SafeUri uri);
-		bool IsSymlink (SafeUri uri);
-		void Copy (SafeUri source, SafeUri destination, bool overwrite);
-		void Delete (SafeUri uri);
-		string GetMimeType (SafeUri uri);
-		DateTime GetMTime (SafeUri uri);
-		long GetSize (SafeUri uri);
-		Stream Read (SafeUri uri);
+		DotNetFile file;
+		DotNetDirectory directory;
+		DotNetPath path;
+
+		public IFile File {
+			get =>file ??= new DotNetFile ();
+		}
+
+		public IDirectory Directory {
+			get => directory ??= new DotNetDirectory ();
+		}
+
+		public IPath Path {
+			get => path ??= new DotNetPath ();
+		}
 	}
 }

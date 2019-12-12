@@ -35,7 +35,7 @@ namespace FSpot.Widgets
 {
 	public class HighlightedBox : EventBox
 	{
-		private bool changing_style = false;
+		bool changing_style = false;
 
 		protected HighlightedBox (IntPtr raw) : base (raw) {}
 

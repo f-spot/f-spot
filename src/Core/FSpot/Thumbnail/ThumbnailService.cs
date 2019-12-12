@@ -148,13 +148,11 @@ namespace FSpot.Thumbnail
 		// internal for unit testing with Moq
 		internal bool IsValid (SafeUri uri, Pixbuf pixbuf)
 		{
-			if (pixbuf == null) {
+			if (pixbuf == null)
 				return false;
-			}
 
-			if (pixbuf.GetOption (ThumbUriOpt) != uri.ToString ()) {
+			if (pixbuf.GetOption (ThumbUriOpt) != uri.ToString ())
 				return false;
-			}
 
 			if (!fileSystem.File.Exists (uri))
 				return false;

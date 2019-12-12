@@ -41,7 +41,7 @@ namespace FSpot.Thumbnail.UnitTest
 	{
 		static readonly SafeUri fileUri = new SafeUri ("file:///path/to/file");
 		const string fileHash = "d005f819e9ddaad2d09a23915aa68afe";
-		const ulong fileMTime = 123456;
+		static DateTime fileMTime = DateTime.MinValue;
 
 		const string largeThumbnailPath = "/path/to/.cache/thumbnails/large";
 		const string normalThumbnailPath = "/path/to/.cache/thumbnails/normal";
@@ -111,7 +111,7 @@ namespace FSpot.Thumbnail.UnitTest
 		{
 			var fileSystem = new FileSystemMock ();
 			fileSystem.SetFile (fileUri, fileMTime);
-			fileSystem.SetFile (largeThumbnailUri, 0, thumbnail);
+			fileSystem.SetFile (largeThumbnailUri, DateTime.MinValue, thumbnail);
 			var thumbnailService = new ThumbnailService (xdgDirectoryService, thumbnailerFactory, fileSystem);
 
 			var result = thumbnailService.GetThumbnail (fileUri, ThumbnailSize.Large);
@@ -127,7 +127,7 @@ namespace FSpot.Thumbnail.UnitTest
 			fileSystem.SetFile (fileUri, fileMTime);
 			thumbnailerMock.Setup (thumb => thumb.TryCreateThumbnail (largeThumbnailUri, ThumbnailSize.Large))
 				.Returns (true)
-				.Callback (() => fileSystem.SetFile (largeThumbnailUri, 0, thumbnail));
+				.Callback (() => fileSystem.SetFile (largeThumbnailUri, DateTime.MinValue, thumbnail));
 			var thumbnailService = new ThumbnailService (xdgDirectoryService, thumbnailerFactory, fileSystem);
 
 			var result = thumbnailService.GetThumbnail (fileUri, ThumbnailSize.Large);
@@ -233,7 +233,7 @@ namespace FSpot.Thumbnail.UnitTest
 		public void LoadThumbnail_ReturnsPixbuf_IfThumbnailExists ()
 		{
 			var fileSystem = new FileSystemMock ();
-			fileSystem.SetFile (largeThumbnailUri, 0, thumbnail);
+			fileSystem.SetFile (largeThumbnailUri, DateTime.MinValue, thumbnail);
 			var thumbnailService = new ThumbnailService (xdgDirectoryService, thumbnailerFactory, fileSystem);
 
 			var result = thumbnailService.LoadThumbnail (largeThumbnailUri);
@@ -246,7 +246,7 @@ namespace FSpot.Thumbnail.UnitTest
 		public void LoadThumbnail_DeletesThumbnail_IfLoadFails ()
 		{
 			var fileSystem = new FileSystemMock ();
-			fileSystem.SetFile (largeThumbnailUri, 0, thumbnail);
+			fileSystem.SetFile (largeThumbnailUri, DateTime.MinValue, thumbnail);
 			fileSystem.FileMock.Setup (m => m.Read (largeThumbnailUri)).Throws<Exception> ();
 			var thumbnailService = new ThumbnailService (xdgDirectoryService, thumbnailerFactory, fileSystem);
 
@@ -261,7 +261,7 @@ namespace FSpot.Thumbnail.UnitTest
 		public void LoadThumbnail_IgnoresExceptionsOnDeletingThumbnails ()
 		{
 			var fileSystem = new FileSystemMock ();
-			fileSystem.SetFile (largeThumbnailUri, 0, thumbnail);
+			fileSystem.SetFile (largeThumbnailUri, DateTime.MinValue, thumbnail);
 			fileSystem.FileMock.Setup (m => m.Read (largeThumbnailUri)).Throws<Exception> ();
 			fileSystem.FileMock.Setup (m => m.Delete (largeThumbnailUri)).Throws<Exception> ();
 			var thumbnailService = new ThumbnailService (xdgDirectoryService, thumbnailerFactory, fileSystem);
@@ -337,7 +337,7 @@ namespace FSpot.Thumbnail.UnitTest
 		{
 			var fileSystem = new FileSystemMock ();
 			fileSystem.SetFile (fileUri, fileMTime);
-			var pixbuf = PixbufMock.CreatePixbuf (fileUri, fileMTime + 1);
+			var pixbuf = PixbufMock.CreatePixbuf (fileUri, fileMTime.AddSeconds (1.0));
 			var thumbnailService = new ThumbnailService (xdgDirectoryService, thumbnailerFactory, fileSystem);
 
 			var result = thumbnailService.IsValid (fileUri, pixbuf);
@@ -350,7 +350,7 @@ namespace FSpot.Thumbnail.UnitTest
 		public void IsValid_ReturnsFalse_IfFileDoesNotExist ()
 		{
 			var fileSystem = new FileSystemMock ();
-			var pixbuf = PixbufMock.CreatePixbuf (fileUri, fileMTime + 1);
+			var pixbuf = PixbufMock.CreatePixbuf (fileUri, fileMTime.AddSeconds (1.0));
 			var thumbnailService = new ThumbnailService (xdgDirectoryService, thumbnailerFactory, fileSystem);
 
 			var result = thumbnailService.IsValid (fileUri, pixbuf);

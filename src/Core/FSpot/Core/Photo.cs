@@ -48,14 +48,9 @@ namespace FSpot
 {
 	public class Photo : DbItem, IComparable, IPhoto, IPhotoVersionable
 	{
-		#region fields
-
 		readonly IImageFileFactory imageFileFactory;
 		readonly IThumbnailService thumbnailService;
 
-		#endregion
-
-		#region Properties
 		PhotoChanges changes = new PhotoChanges ();
 		public PhotoChanges Changes {
 			get{ return changes; }
@@ -67,7 +62,7 @@ namespace FSpot
 		}
 
 		// The time is always in UTC.
-		private DateTime time;
+		DateTime time;
 		public DateTime Time {
 			get { return time; }
 			set {
@@ -82,14 +77,14 @@ namespace FSpot
 			get { return Uri.UnescapeDataString (System.IO.Path.GetFileName (VersionUri (OriginalVersionId).AbsolutePath)); }
 		}
 
-		private List<Tag> tags;
+		List<Tag> tags;
 		public Tag [] Tags {
 			get {
 				return tags.ToArray ();
 			}
 		}
 
-		private bool all_versions_loaded = false;
+		bool all_versions_loaded = false;
 		public bool AllVersionsLoaded {
 			get { return all_versions_loaded; }
 			set {
@@ -100,7 +95,7 @@ namespace FSpot
 			}
 		}
 
-		private string description;
+		string description;
 		public string Description {
 			get { return description; }
 			set {
@@ -111,7 +106,7 @@ namespace FSpot
 			}
 		}
 
-		private uint roll_id = 0;
+		uint roll_id = 0;
 		public uint RollId {
 			get { return roll_id; }
 			set {
@@ -122,7 +117,7 @@ namespace FSpot
 			}
 		}
 
-		private uint rating;
+		uint rating;
 		public uint Rating {
 			get { return rating; }
 			set {
@@ -132,12 +127,11 @@ namespace FSpot
 				changes.RatingChanged = true;
 			}
 		}
-		#endregion
 
 		#region Properties Version Management
 		public const int OriginalVersionId = 1;
-		private uint highest_version_id;
-		private Dictionary<uint, PhotoVersion> versions = new Dictionary<uint, PhotoVersion> ();
+		uint highest_version_id;
+		readonly Dictionary<uint, PhotoVersion> versions = new Dictionary<uint, PhotoVersion> ();
 
 		public IEnumerable<IPhotoVersion> Versions {
 			get {
@@ -150,7 +144,7 @@ namespace FSpot
 		public uint [] VersionIds {
 			get {
 				if (versions == null)
-					return new uint [0];
+					return Array.Empty<uint> ();
 
 				uint [] ids = new uint [versions.Count];
 				versions.Keys.CopyTo (ids, 0);
@@ -159,7 +153,7 @@ namespace FSpot
 			}
 		}
 
-		private uint default_version_id = OriginalVersionId;
+		uint default_version_id = OriginalVersionId;
 
 		public uint DefaultVersionId {
 			get { return default_version_id; }
@@ -173,12 +167,9 @@ namespace FSpot
 		#endregion
 
 		#region Photo Version Management
-		public PhotoVersion GetVersion (uint version_id)
+		public PhotoVersion GetVersion (uint versionId)
 		{
-			if (versions == null)
-				return null;
-
-			return versions [version_id];
+			return versions?[versionId];
 		}
 
 		// This doesn't check if a version of that name already exists,
@@ -200,6 +191,7 @@ namespace FSpot
 		{
 			if (VersionNameExists (name))
 				throw new ApplicationException ("A version with that name already exists");
+
 			highest_version_id ++;
 			string import_md5 = string.Empty; // Modified version
 
@@ -210,13 +202,12 @@ namespace FSpot
 		}
 
 		//FIXME: store versions next to originals. will crash on ro locations.
-		private string GetFilenameForVersionName (string version_name, string extension)
+		string GetFilenameForVersionName (string version_name, string extension)
 		{
-			string name_without_extension = System.IO.Path.GetFileNameWithoutExtension (Name);
+			string name_without_extension = Path.GetFileNameWithoutExtension (Name);
 
-			return name_without_extension + " (" +
-				UriUtils.EscapeString (version_name, true, true, true)
-				+ ")" + extension;
+			var escapeString = UriUtils.EscapeString (version_name, true, true, true);
+			return $"{name_without_extension} ({escapeString}){extension}";
 		}
 
 		public bool VersionNameExists (string version_name)
@@ -230,13 +221,14 @@ namespace FSpot
 				return null;
 
 			PhotoVersion v = versions [version_id];
-			return v != null ? v.Uri : null;
+			return v?.Uri;
 		}
 
 		public IPhotoVersion DefaultVersion {
 			get {
 				if (!versions.ContainsKey (DefaultVersionId))
 					throw new Exception ("Something is horribly wrong, this should never happen: no default version!");
+
 				return versions [DefaultVersionId];
 			}
 		}
@@ -271,7 +263,7 @@ namespace FSpot
 					FSpot.Utils.PixbufUtils.CreateDerivedVersion (DefaultVersion.Uri, versionUri, 95, buffer);
 					GetVersion (version).ImportMD5 = HashUtils.GenerateMD5 (VersionUri (version));
 					DefaultVersionId = version;
-				} catch (System.Exception e) {
+				} catch (Exception e) {
 					Log.Exception (e);
 					if (create_version)
 						DeleteVersion (version);
@@ -283,33 +275,23 @@ namespace FSpot
 			return version;
 		}
 
-		public void DeleteVersion (uint version_id)
+		public void DeleteVersion (uint versionId, bool removeOriginal)
 		{
-			DeleteVersion (version_id, false, false);
+			DeleteVersion (versionId, removeOriginal, false);
 		}
 
-		public void DeleteVersion (uint version_id, bool remove_original)
+		public void DeleteVersion (uint versionId, bool removeOriginal = false, bool keepFile = false)
 		{
-			DeleteVersion (version_id, remove_original, false);
-		}
-
-		public void DeleteVersion (uint version_id, bool remove_original, bool keep_file)
-		{
-			if (version_id == OriginalVersionId && !remove_original)
+			if (versionId == OriginalVersionId && !removeOriginal)
 				throw new Exception ("Cannot delete original version");
 
-			SafeUri uri = VersionUri (version_id);
+			SafeUri uri = VersionUri (versionId);
+			var fileInfo = new FileInfo (uri.AbsolutePath);
+			var dirInfo = new DirectoryInfo (uri.AbsolutePath);
 
-			if (!keep_file) {
-				GLib.File file = GLib.FileFactory.NewForUri (uri);
-				if (file.Exists) {
-					try {
-						file.Trash (null);
-					} catch (GLib.GException) {
-						Log.Debug ("Unable to Trash, trying to Delete");
-						file.Delete ();
-					}
-				}
+			if (!keepFile) {
+				if (fileInfo.Exists)
+					fileInfo.Delete ();
 
 				try {
 					thumbnailService.DeleteThumbnails (uri);
@@ -317,41 +299,34 @@ namespace FSpot
 					// ignore an error here we don't really care.
 				}
 
-				// do we really need to check if the parent is a directory?
-				// i.e. is file.Parent always a directory if the file instance is
-				// an actual file?
-				GLib.File directory = file.Parent;
-				GLib.FileType file_type = directory.QueryFileType (GLib.FileQueryInfoFlags.None, null);
-
-				if (directory.Exists && file_type == GLib.FileType.Directory)
-					DeleteEmptyDirectory (directory);
+				DeleteEmptyDirectory (dirInfo);
 			}
 
-			versions.Remove (version_id);
-			changes.RemoveVersion (version_id);
+			versions.Remove (versionId);
+			changes.RemoveVersion (versionId);
 
-			for (version_id = highest_version_id; version_id >= OriginalVersionId; version_id--) {
-				if (versions.ContainsKey (version_id)) {
-					DefaultVersionId = version_id;
+			for (versionId = highest_version_id; versionId >= OriginalVersionId; versionId--) {
+				if (versions.ContainsKey (versionId)) {
+					DefaultVersionId = versionId;
 					break;
 				}
 			}
 		}
 
-		private void DeleteEmptyDirectory (GLib.File directory)
+		void DeleteEmptyDirectory (DirectoryInfo directory)
 		{
 			// if the directory we're dealing with is not in the
 			// F-Spot photos directory, don't delete anything,
 			// even if it is empty
 			string photo_uri = SafeUri.UriToFilename (FSpotConfiguration.PhotoUri.ToString ());
-			bool path_matched = directory.Path.IndexOf (photo_uri) > -1;
+			bool path_matched = directory.FullName.IndexOf (photo_uri) > -1;
 
-			if (directory.Path.Equals (photo_uri) || !path_matched)
+			if (directory.Name.Equals (photo_uri) || !path_matched)
 				return;
 
 			if (DirectoryIsEmpty (directory)) {
 				try {
-					Log.DebugFormat ("Removing empty directory: {0}", directory.Path);
+					Log.Debug ($"Removing empty directory: {directory.FullName}");
 					directory.Delete ();
 				} catch (GLib.GException e) {
 					// silently log the exception, but don't re-throw it
@@ -363,30 +338,17 @@ namespace FSpot
 			}
 		}
 
-		private bool DirectoryIsEmpty (GLib.File directory)
+		bool DirectoryIsEmpty (DirectoryInfo directory)
+			=> !directory.EnumerateFileSystemInfos ().Any ();
+
+		public uint CreateVersion (string name, uint baseVersionId, bool create)
 		{
-			uint count = 0;
-			using (GLib.FileEnumerator list = directory.EnumerateChildren ("standard::name", GLib.FileQueryInfoFlags.None, null)) {
-				foreach (var item in list) {
-					count++;
-				}
-			}
-			return count == 0;
+			return CreateVersion (name, null, baseVersionId, create, false);
 		}
 
-		public uint CreateVersion (string name, uint base_version_id, bool create)
+		uint CreateVersion (string name, string extension, uint base_version_id, bool create, bool is_protected = false)
 		{
-			return CreateVersion (name, null, base_version_id, create, false);
-		}
-
-		private uint CreateVersion (string name, string extension, uint base_version_id, bool create)
-		{
-			return CreateVersion (name, extension, base_version_id, create, false);
-		}
-
-		private uint CreateVersion (string name, string extension, uint base_version_id, bool create, bool is_protected)
-		{
-			extension = extension ?? VersionUri (base_version_id).GetExtension ();
+			extension ??= VersionUri (base_version_id).GetExtension ();
 			SafeUri new_base_uri = DefaultVersion.BaseUri;
 			string filename = GetFilenameForVersionName (name, extension);
 			SafeUri original_uri = VersionUri (base_version_id);
@@ -397,14 +359,12 @@ namespace FSpot
 				throw new Exception ("This version name already exists");
 
 			if (create) {
-				GLib.File destination = GLib.FileFactory.NewForUri (new_uri);
-				if (destination.Exists)
-					throw new Exception (string.Format ("An object at this uri {0} already exists", new_uri));
+				if (File.Exists (new_uri.AbsolutePath))
+					throw new Exception ($"An object at this uri {new_uri} already exists");
 
-				//FIXME. or better, fix the copy api !
-				GLib.File source = GLib.FileFactory.NewForUri (original_uri);
-				source.Copy (destination, GLib.FileCopyFlags.None, null, null);
+				File.Copy (original_uri.AbsolutePath, new_uri.AbsolutePath);
 			}
+
 			highest_version_id ++;
 
 			versions [highest_version_id] = new PhotoVersion (this, highest_version_id, new_base_uri, filename, import_md5, name, is_protected);
@@ -432,9 +392,10 @@ namespace FSpot
 				// Note for translators: Reparented is a picture becoming a version of another one
 				string rep = name = Catalog.GetString ("Reparented");
 				for (int num = 1; VersionNameExists (name); num++) {
-					name = string.Format (rep + " ({0})", num);
+					name = $"rep +  ({num})";
 				}
 			}
+
 			highest_version_id ++;
 			versions [highest_version_id] = new PhotoVersion (this, highest_version_id, version.BaseUri, version.Filename, version.ImportMD5, name, is_protected);
 
@@ -443,59 +404,53 @@ namespace FSpot
 			return highest_version_id;
 		}
 
-		public uint CreateDefaultModifiedVersion (uint base_version_id, bool create_file)
+		public uint CreateDefaultModifiedVersion (uint baseVersionId, bool createFile)
 		{
 			int num = 1;
 
 			while (true) {
-				string name = Catalog.GetPluralString ("Modified",
-									 "Modified ({0})",
-									 num);
+				string name = Catalog.GetPluralString ("Modified", "Modified ({0})", num);
 				name = string.Format (name, num);
-				//SafeUri uri = GetUriForVersionName (name, System.IO.Path.GetExtension (VersionUri(base_version_id).GetFilename()));
-				string filename = GetFilenameForVersionName (name, System.IO.Path.GetExtension (versions [base_version_id].Filename));
+				//SafeUri uri = GetUriForVersionName (name, System.IO.Path.GetExtension (VersionUri(baseVersionId).GetFilename()));
+				string filename = GetFilenameForVersionName (name, System.IO.Path.GetExtension (versions [baseVersionId].Filename));
 				SafeUri uri = DefaultVersion.BaseUri.Append (filename);
-				GLib.File file = GLib.FileFactory.NewForUri (uri);
 
-				if (! VersionNameExists (name) && ! file.Exists)
-					return CreateVersion (name, base_version_id, create_file);
+				if (! VersionNameExists (name) && !File.Exists (uri.AbsolutePath))
+					return CreateVersion (name, baseVersionId, createFile);
 
 				num ++;
 			}
 		}
 
-		public uint CreateNamedVersion (string name, string extension, uint base_version_id, bool create_file)
+		public uint CreateNamedVersion (string name, string extension, uint baseVersionId, bool createFile)
 		{
 			int num = 1;
 
-			string final_name;
 			while (true) {
-				final_name = string.Format (
-						(num == 1) ? Catalog.GetString ("Modified in {1}") : Catalog.GetString ("Modified in {1} ({0})"),
-						num, name);
+				var final_name = string.Format (
+					(num == 1) ? Catalog.GetString ("Modified in {1}") : Catalog.GetString ("Modified in {1} ({0})"), num, name);
 
-				string filename = GetFilenameForVersionName (name, System.IO.Path.GetExtension (versions [base_version_id].Filename));
+				string filename = GetFilenameForVersionName (name, System.IO.Path.GetExtension (versions [baseVersionId].Filename));
 				SafeUri uri = DefaultVersion.BaseUri.Append (filename);
-				GLib.File file = GLib.FileFactory.NewForUri (uri);
 
-				if (! VersionNameExists (final_name) && ! file.Exists)
-					return CreateVersion (final_name, extension, base_version_id, create_file);
+				if (! VersionNameExists (final_name) && !File.Exists (uri.AbsolutePath))
+					return CreateVersion (final_name, extension, baseVersionId, createFile);
 
 				num ++;
 			}
 		}
 
-		public void RenameVersion (uint version_id, string new_name)
+		public void RenameVersion (uint versionId, string newName)
 		{
-			if (version_id == OriginalVersionId)
+			if (versionId == OriginalVersionId)
 				throw new Exception ("Cannot rename original version");
 
-			if (VersionNameExists (new_name))
+			if (VersionNameExists (newName))
 				throw new Exception ("This name already exists");
 
 
-			GetVersion (version_id).Name = new_name;
-			changes.ChangeVersion (version_id);
+			GetVersion (versionId).Name = newName;
+			changes.ChangeVersion (versionId);
 
 			//TODO: rename file too ???
 
@@ -565,9 +520,7 @@ namespace FSpot
 		public void RemoveCategory (IList<Tag> taglist)
 		{
 			foreach (Tag tag in taglist) {
-				Category cat = tag as Category;
-
-				if (cat != null)
+				if (tag is Category cat)
 					RemoveCategory (cat.Children);
 
 				RemoveTag (tag);
@@ -580,12 +533,11 @@ namespace FSpot
 			return tags.Contains (tag);
 		}
 
-		private static IDictionary<SafeUri, string> md5_cache = new Dictionary<SafeUri, string> ();
+		static readonly IDictionary<SafeUri, string> md5_cache = new Dictionary<SafeUri, string> ();
 
 		public static void ResetMD5Cache ()
 		{
-			if (md5_cache != null)
-				md5_cache.Clear ();
+			md5_cache?.Clear ();
 		}
 		#endregion
 

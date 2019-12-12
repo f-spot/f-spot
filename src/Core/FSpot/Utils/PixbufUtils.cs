@@ -273,15 +273,14 @@ namespace FSpot.Utils
 		{
 			SaveToSuitableFormat (destination, pixbuf, jpeg_quality);
 
-			using (var metadata_from = Metadata.Parse (source)) {
-				using (var metadata_to = Metadata.Parse (destination)) {
-					metadata_to.CopyFrom (metadata_from);
+			using var metadata_from = MetadataUtils.Parse (source);
+			using var metadata_to = MetadataUtils.Parse (destination);
 
-					// Reset orientation to make sure images appear upright.
-					metadata_to.ImageTag.Orientation = ImageOrientation.TopLeft;
-					metadata_to.Save ();
-				}
-			}
+			metadata_to.CopyFrom (metadata_from);
+
+			// Reset orientation to make sure images appear upright.
+			metadata_to.ImageTag.Orientation = ImageOrientation.TopLeft;
+			metadata_to.Save ();
 		}
 
 		static void SaveToSuitableFormat (SafeUri destination, Pixbuf pixbuf, uint jpeg_quality)

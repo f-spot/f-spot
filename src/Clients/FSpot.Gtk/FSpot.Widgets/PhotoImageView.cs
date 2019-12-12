@@ -301,7 +301,7 @@ namespace FSpot.Widgets
 			// update the db entry, but for now just set the error pixbuf
 			Pixbuf old = Pixbuf;
 			Pixbuf = new Pixbuf (PixbufUtils.ErrorPixbuf, 0, 0,
-						 PixbufUtils.ErrorPixbuf.Width,
+			          PixbufUtils.ErrorPixbuf.Width,
 						 PixbufUtils.ErrorPixbuf.Height);
 
 			if (old != null)

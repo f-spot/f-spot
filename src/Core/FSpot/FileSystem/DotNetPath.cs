@@ -1,5 +1,5 @@
-﻿//
-// IFile.cs
+//
+// DotNetPath.cs
 //
 // Author:
 //   Daniel Köb <daniel.koeb@peony.at>
@@ -26,22 +26,12 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
 using System.IO;
-
-using Hyena;
 
 namespace FSpot.FileSystem
 {
-	public interface IFile
+	class DotNetPath : IPath
 	{
-		bool Exists (SafeUri uri);
-		bool IsSymlink (SafeUri uri);
-		void Copy (SafeUri source, SafeUri destination, bool overwrite);
-		void Delete (SafeUri uri);
-		string GetMimeType (SafeUri uri);
-		DateTime GetMTime (SafeUri uri);
-		long GetSize (SafeUri uri);
-		Stream Read (SafeUri uri);
+		public string GetTempPath () => Path.GetTempPath ();
 	}
 }

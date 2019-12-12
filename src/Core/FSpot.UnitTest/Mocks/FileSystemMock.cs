@@ -26,10 +26,14 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using FSpot.FileSystem;
-using Hyena;
-using Moq;
+using System;
 using System.IO;
+
+using FSpot.FileSystem;
+
+using Hyena;
+
+using Moq;
 
 namespace Mocks
 {
@@ -60,15 +64,15 @@ namespace Mocks
 
 		public void SetFile (SafeUri file)
 		{
-			SetFile (file, 0);
+			SetFile (file, DateTime.MinValue);
 		}
 
-		public void SetFile (SafeUri file, ulong mTime)
+		public void SetFile (SafeUri file, DateTime mTime)
 		{
 			SetFile (file, mTime, new byte[]{ });
 		}
 
-		public void SetFile (SafeUri file, ulong mTime, byte[] contents)
+		public void SetFile (SafeUri file, DateTime mTime, byte[] contents)
 		{
 			file_mock.Setup (m => m.Exists (file)).Returns (true);
 			file_mock.Setup (m => m.GetMTime (file)).Returns (mTime);

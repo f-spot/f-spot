@@ -2,8 +2,10 @@
 // HashUtils.cs
 //
 // Author:
+//   Stephen Shaw <sshaw@decriptor.com>
 //   Ruben Vermeersch <ruben@savanne.be>
 //
+// Copyright (C) 2019 Stephen Shaw
 // Copyright (C) 2010 Novell, Inc.
 // Copyright (C) 2010 Ruben Vermeersch
 //
@@ -27,6 +29,8 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System.IO;
+
 using Hyena;
 
 namespace FSpot.Utils
@@ -36,8 +40,8 @@ namespace FSpot.Utils
 		public static string GenerateMD5 (SafeUri uri)
 		{
 			string hash = string.Empty;
-			var file = GLib.FileFactory.NewForUri (uri);
-			using (var stream = new GLib.GioStream (file.Read (null))) {
+
+			using (var stream = new FileStream (uri.AbsolutePath, FileMode.Open, FileAccess.Read)) {
 				hash = CryptoUtil.Md5EncodeStream (stream);
 			}
 

@@ -7,8 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{6DC9A109-E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{6369E0D4-0A68-4D4E-A6A0-EF2EA793002F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "unique-sharp", "lib\unique-sharp\unique-sharp.csproj", "{5DBBB8C5-7BAF-46DA-B7D2-2486430141E2}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "gio-sharp", "lib\gio-sharp\gio-sharp.csproj", "{942B6AEF-0A90-4A7F-B8E4-F1A4327E408C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "gtk-sharp-beans", "lib\gtk-sharp-beans\gtk-sharp-beans.csproj", "{069D1797-427D-4CED-A754-233DE64FC5DD}"
@@ -91,10 +89,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5DBBB8C5-7BAF-46DA-B7D2-2486430141E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5DBBB8C5-7BAF-46DA-B7D2-2486430141E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5DBBB8C5-7BAF-46DA-B7D2-2486430141E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5DBBB8C5-7BAF-46DA-B7D2-2486430141E2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{942B6AEF-0A90-4A7F-B8E4-F1A4327E408C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{942B6AEF-0A90-4A7F-B8E4-F1A4327E408C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{942B6AEF-0A90-4A7F-B8E4-F1A4327E408C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -224,7 +218,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{5DBBB8C5-7BAF-46DA-B7D2-2486430141E2} = {6369E0D4-0A68-4D4E-A6A0-EF2EA793002F}
 		{942B6AEF-0A90-4A7F-B8E4-F1A4327E408C} = {6369E0D4-0A68-4D4E-A6A0-EF2EA793002F}
 		{069D1797-427D-4CED-A754-233DE64FC5DD} = {6369E0D4-0A68-4D4E-A6A0-EF2EA793002F}
 		{27EC05FB-0223-4B26-8157-E49AF81D0007} = {9D75644A-DEF1-4362-8553-4B5F09783DC9}

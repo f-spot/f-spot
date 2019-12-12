@@ -123,14 +123,14 @@ namespace FSpot.Widgets
                 QueueResize ();
         }
 
-        private void OnRealizedChildren ()
+        void OnRealizedChildren ()
         {
             foreach (var child in children) {
                 child.Widget.ParentWindow = GdkWindow;
             }
         }
 
-        private void OnMappedChildren ()
+        void OnMappedChildren ()
         {
             foreach (var child in children) {
                 if (child.Widget.Visible && !child.Widget.IsMapped)
@@ -138,14 +138,14 @@ namespace FSpot.Widgets
             }
         }
 
-        private void OnSizeRequestedChildren ()
+        void OnSizeRequestedChildren ()
         {
             foreach (var child in children) {
                 child.Widget.SizeRequest ();
             }
         }
 
-        private void OnSizeAllocatedChildren ()
+        void OnSizeAllocatedChildren ()
         {
             foreach (var child in children) {
                 Gtk.Requisition req = child.Widget.ChildRequisition;
