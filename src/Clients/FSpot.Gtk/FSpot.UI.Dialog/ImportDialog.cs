@@ -110,7 +110,7 @@ namespace FSpot.UI.Dialog
 
 		void ResetPreview ()
 		{
-			photo_view.Pixbuf = GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, "f-spot", 128, 0);
+			photo_view.Pixbuf = GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, "FSpot", 128, 0);
 			photo_view.ZoomFit (false);
 		}
 

@@ -32,8 +32,8 @@ using Cairo;
 
 using Hyena.Gui;
 
-using FSpot.Utils;
 using FSpot.Settings;
+using FSpot.Utils;
 
 namespace FSpot.Widgets
 {

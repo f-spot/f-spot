@@ -30,6 +30,7 @@
 //
 
 using System;
+using FSpot.Resources;
 
 namespace FSpot.Utils
 {
@@ -127,7 +128,8 @@ namespace FSpot.Utils
 		public static Gdk.Pixbuf TryLoadIcon (Gtk.IconTheme theme, string icon_name, int size, Gtk.IconLookupFlags flags)
 		{
 			try {
-				return theme.LoadIcon (icon_name, size, flags);
+				return ResourceLoader.GetIcon (icon_name, size);
+				//return theme.LoadIcon (icon_name, size, flags);
 			} catch {
 				try {
 					return theme.LoadIcon ("gtk-missing-image", size, flags);

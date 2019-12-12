@@ -6,7 +6,7 @@
 //   Ruben Vermeersch <ruben@savanne.be>
 //   Stephane Delcroix <sdelcroix@novell.com>
 //
-// Copyright (C) 2013 Stephen Shaw
+// Copyright (C) 2013-2019 Stephen Shaw
 // Copyright (C) 2008-2010 Novell, Inc.
 // Copyright (C) 2010 Ruben Vermeersch
 // Copyright (C) 2008 Stephane Delcroix
@@ -83,11 +83,7 @@ namespace FSpot.Core
 			}
 		}
 
-		static IconSize tag_icon_size = IconSize.Large;
-		public static IconSize TagIconSize {
-			get { return tag_icon_size; }
-			set { tag_icon_size = value; }
-		}
+		public static IconSize TagIconSize { get; set; } = IconSize.Large;
 
 		Pixbuf cached_icon;
 		IconSize cached_icon_size = IconSize.Hidden;
@@ -95,31 +91,31 @@ namespace FSpot.Core
 		// We can use a SizedIcon everywhere we were using an Icon
 		public Pixbuf SizedIcon {
 			get {
-				if (tag_icon_size == IconSize.Hidden) //Hidden
+				if (TagIconSize == IconSize.Hidden) //Hidden
 					return null;
-				if (tag_icon_size == cached_icon_size)
+				if (TagIconSize == cached_icon_size)
 					return cached_icon;
 				if (ThemeIconName != null) { //Theme icon
 					if (cached_icon != null)
 						cached_icon.Dispose ();
 					try {
-						cached_icon = GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, ThemeIconName, (int)tag_icon_size, (Gtk.IconLookupFlags)0);
+						cached_icon = GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, ThemeIconName, (int)TagIconSize, (Gtk.IconLookupFlags)0);
 
-						if (Math.Max (cached_icon.Width, cached_icon.Height) <= (int)tag_icon_size)
+						if (Math.Max (cached_icon.Width, cached_icon.Height) <= (int)TagIconSize)
 							return cached_icon;
 					} catch (Exception) {
-						Console.WriteLine ("missing theme icon: {0}", ThemeIconName);
+						Console.WriteLine ($"missing theme icon: {ThemeIconName}");
 						return null;
 					}
 				}
 				if (Icon == null)
 					return null;
 
-				if (Math.Max (Icon.Width, Icon.Height) >= (int)tag_icon_size) { //Don't upscale
+				if (Math.Max (Icon.Width, Icon.Height) >= (int)TagIconSize) { //Don't upscale
 					if (cached_icon != null)
 						cached_icon.Dispose ();
-					cached_icon = Icon.ScaleSimple ((int)tag_icon_size, (int)tag_icon_size, InterpType.Bilinear);
-					cached_icon_size = tag_icon_size;
+					cached_icon = Icon.ScaleSimple ((int)TagIconSize, (int)TagIconSize, InterpType.Bilinear);
+					cached_icon_size = TagIconSize;
 					return cached_icon;
 				}
 				return Icon;
@@ -140,7 +136,7 @@ namespace FSpot.Core
 		public int CompareTo (Tag tag)
 		{
 			if (tag == null)
-				throw new ArgumentNullException ("tag");
+				throw new ArgumentNullException (nameof (tag));
 
 			if (Category == tag.Category) {
 				if (SortPriority == tag.SortPriority)
@@ -153,7 +149,7 @@ namespace FSpot.Core
 		public bool IsAncestorOf (Tag tag)
 		{
 			if (tag == null)
-				throw new ArgumentNullException ("tag");
+				throw new ArgumentNullException (nameof (tag));
 
 			for (Category parent = tag.Category; parent != null; parent = parent.Category) {
 				if (parent == this)
@@ -163,13 +159,13 @@ namespace FSpot.Core
 			return false;
 		}
 
-		public void Dispose()
+		public void Dispose ()
 		{
-			Dispose(true);
-			System.GC.SuppressFinalize(this);
+			Dispose (true);
+			System.GC.SuppressFinalize (this);
 		}
 
-		protected virtual void Dispose(bool disposing)
+		protected virtual void Dispose (bool disposing)
 		{
 			if (disposed)
 				return;

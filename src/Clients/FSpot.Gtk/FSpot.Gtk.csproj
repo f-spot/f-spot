@@ -111,6 +111,7 @@
     <ProjectReference Include="..\..\..\lib\gio-sharp\gio-sharp.csproj" />
     <ProjectReference Include="..\..\..\lib\gtk-sharp-beans\gtk-sharp-beans.csproj" />
     <ProjectReference Include="..\..\Core\FSpot\FSpot.csproj" />
+    <ProjectReference Include="..\..\Core\FSpot.Resources\FSpot.Resources.csproj" />
   </ItemGroup>
 
   <ItemGroup>
