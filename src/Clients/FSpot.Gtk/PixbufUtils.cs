@@ -41,6 +41,7 @@ using Gdk;
 using FSpot;
 using FSpot.Cms;
 using FSpot.Imaging;
+using FSpot.Resources;
 using FSpot.Settings;
 using FSpot.UI.Dialog;
 using FSpot.Utils;
@@ -59,12 +60,12 @@ public static class PixbufUtils
 	public static Pixbuf ErrorPixbuf {
 		get {
 			if (error_pixbuf == null)
-				error_pixbuf = GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, "f-spot-question-mark", 256, (Gtk.IconLookupFlags)0);
+				error_pixbuf = GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, "FSpotQuestionMark", 256, (Gtk.IconLookupFlags)0);
 			return error_pixbuf;
 		}
 	}
 
-	public static Pixbuf LoadingPixbuf = PixbufUtils.LoadFromAssembly ("f-spot-loading.png");
+	public static Pixbuf LoadingPixbuf = PixbufUtils.LoadFromAssembly ("FSpotLoading.png");
 
 	public static double Fit (Pixbuf pixbuf,
 				  int dest_width, int dest_height,

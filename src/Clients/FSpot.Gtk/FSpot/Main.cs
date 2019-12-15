@@ -43,6 +43,7 @@ using Mono.Addins;
 using Mono.Addins.Setup;
 using Mono.Unix;
 
+using FSpot.Resources;
 using FSpot.Settings;
 using FSpot.Utils;
 
@@ -309,10 +310,10 @@ namespace FSpot
 
 			try {
 				Gtk.Window.DefaultIconList = new Gdk.Pixbuf[] {
-					GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, "f-spot", 16, 0),
-					GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, "f-spot", 22, 0),
-					GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, "f-spot", 32, 0),
-					GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, "f-spot", 48, 0)
+					GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, "FSpot", 16, 0),
+					GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, "FSpot", 22, 0),
+					GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, "FSpot", 32, 0),
+					GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, "FSpot", 48, 0)
 				};
 			} catch (Exception ex) {
 				Log.Exception ("Loading default f-spot icons", ex);

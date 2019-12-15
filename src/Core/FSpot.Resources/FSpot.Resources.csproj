@@ -1,0 +1,423 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>$(FSpotTargetFramework)</TargetFramework>
+    <OutputPath>..\..\..\bin</OutputPath>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <AssemblySearchPaths>$(AssemblySearchPaths);{GAC}</AssemblySearchPaths>
+    <ReleaseVersion>0.9.0</ReleaseVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />    
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Resources\flower.png" />
+    <None Remove="Resources\f-spot-loading.png" />
+    <None Remove="Resources\f-spot-not.png" />
+    <None Remove="Resources\f-spot-question-mark.png" />
+    <None Remove="Resources\f-spot-view-restore.png" />
+    <None Remove="Resources\FSpot128.png" />
+    <None Remove="Resources\FSpot16.png" />
+    <None Remove="Resources\FSpot22.png" />
+    <None Remove="Resources\FSpot24.png" />
+    <None Remove="Resources\FSpot256.png" />
+    <None Remove="Resources\FSpot32.png" />
+    <None Remove="Resources\FSpot48.png" />
+    <None Remove="Resources\emblem-readonly-32.png" />
+    <None Remove="Resources\emblem-readonly-24.png" />
+    <None Remove="Resources\emblem-readonly-22.png" />
+    <None Remove="Resources\emblem-readonly-16.png" />
+    <None Remove="Resources\emblem-places-32.png" />
+    <None Remove="Resources\emblem-places-24.png" />
+    <None Remove="Resources\emblem-places-22.png" />
+    <None Remove="Resources\emblem-places-16.png" />
+    <None Remove="Resources\emblem-people-32.png" />
+    <None Remove="Resources\emblem-people-24.png" />
+    <None Remove="Resources\emblem-people-22.png" />
+    <None Remove="Resources\emblem-people-16.png" />
+    <None Remove="Resources\emblem-favorite-32.png" />
+    <None Remove="Resources\emblem-favorite-24.png" />
+    <None Remove="Resources\emblem-favorite-22.png" />
+    <None Remove="Resources\emblem-favorite-16.png" />
+    <None Remove="Resources\emblem-event-32.png" />
+    <None Remove="Resources\emblem-event-24.png" />
+    <None Remove="Resources\emblem-event-22.png" />
+    <None Remove="Resources\emblem-event-16.png" />
+    <None Remove="Resources\crop-22.png" />
+    <None Remove="Resources\crop-16.png" />
+    <None Remove="Resources\color-sepia-22.png" />
+    <None Remove="Resources\color-sepia-16.png" />
+    <None Remove="Resources\color-desaturate-24.png" />
+    <None Remove="Resources\color-desaturate-22.png" />
+    <None Remove="Resources\camera-photo-32.png" />
+    <None Remove="Resources\color-desaturate-16.png" />
+    <None Remove="Resources\camera-photo-24.png" />
+    <None Remove="Resources\camera-photo-22.png" />
+    <None Remove="Resources\camera-photo-16.png" />
+    <None Remove="Resources\autocolor-24.png" />
+    <None Remove="Resources\autocolor-22.png" />
+    <None Remove="Resources\autocolor-16.png" />
+    <None Remove="Resources\align-horizon-24.png" />
+    <None Remove="Resources\align-horizon-22.png" />
+    <None Remove="Resources\align-horizon-16.png" />
+    <None Remove="Resources\adjust-colors-24.png" />
+    <None Remove="Resources\adjust-colors-22.png" />
+    <None Remove="Resources\adjust-colors-16.png" />
+    <None Remove="Resources\filter-soft-focus-24.png" />
+    <None Remove="Resources\filter-soft-focus-22.png" />
+    <None Remove="Resources\filter-soft-focus-16.png" />
+    <None Remove="Resources\film-roll-24.png" />
+    <None Remove="Resources\film-roll-22.png" />
+    <None Remove="Resources\film-roll-16.png" />
+    <None Remove="Resources\view-restore-32.png" />
+    <None Remove="Resources\view-restore-24.png" />
+    <None Remove="Resources\view-restore-22.png" />
+    <None Remove="Resources\view-restore-16.png" />
+    <None Remove="Resources\view-near-24.png" />
+    <None Remove="Resources\view-near-22.png" />
+    <None Remove="Resources\view-near-16.png" />
+    <None Remove="Resources\view-fullscreen-32.png" />
+    <None Remove="Resources\view-fullscreen-24.png" />
+    <None Remove="Resources\view-fullscreen-22.png" />
+    <None Remove="Resources\view-fullscreen-16.png" />
+    <None Remove="Resources\view-far-24.png" />
+    <None Remove="Resources\view-far-22.png" />
+    <None Remove="Resources\view-far-16.png" />
+    <None Remove="Resources\tag-new-24.png" />
+    <None Remove="Resources\tag-new-22.png" />
+    <None Remove="Resources\tag-new-16.png" />
+    <None Remove="Resources\tag-22.png" />
+    <None Remove="Resources\tag-16.png" />
+    <None Remove="Resources\red-eye-remove-24.png" />
+    <None Remove="Resources\red-eye-remove-22.png" />
+    <None Remove="Resources\red-eye-remove-16.xcf" />
+    <None Remove="Resources\red-eye-remove-16.png" />
+    <None Remove="Resources\rating-rated-gray-16.png" />
+    <None Remove="Resources\rating-blank-16.png" />
+    <None Remove="Resources\rating-rated-16.png" />
+    <None Remove="Resources\object-rotate-right-24.png" />
+    <None Remove="Resources\object-rotate-right-32.png" />
+    <None Remove="Resources\object-rotate-right-22.png" />
+    <None Remove="Resources\object-rotate-right-16.png" />
+    <None Remove="Resources\object-rotate-left-32.png" />
+    <None Remove="Resources\object-rotate-left-24.png" />
+    <None Remove="Resources\object-rotate-left-22.png" />
+    <None Remove="Resources\object-rotate-left-16.png" />
+    <None Remove="Resources\mode-image-edit-32.png" />
+    <None Remove="Resources\mode-image-edit-24.png" />
+    <None Remove="Resources\mode-image-edit-22.png" />
+    <None Remove="Resources\mode-image-edit-16.png" />
+    <None Remove="Resources\mode-browse-32.png" />
+    <None Remove="Resources\mode-browse-24.png" />
+    <None Remove="Resources\mode-browse-22.png" />
+    <None Remove="Resources\mode-browse-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\flower.png">
+      <LogicalName>flower.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FSpotLoading.png">
+      <LogicalName>FSpotLoading.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FSpotNot.png">
+      <LogicalName>FSpotNot.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FSpotQuestionMark-256.png">
+      <LogicalName>FSpotQuestionMark-256.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FSpotViewRestore.png">
+      <LogicalName>FSpotViewRestore.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FSpot-128.png">
+      <LogicalName>FSpot-128.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FSpot-16.png">
+      <LogicalName>FSpot-16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FSpot-22.png">
+      <LogicalName>FSpot-22.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FSpot-24.png">
+      <LogicalName>FSpot-24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FSpot-256.png">
+      <LogicalName>FSpot-256.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FSpot-32.png">
+      <LogicalName>FSpot-32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FSpot-48.png">
+      <LogicalName>FSpot-48.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\emblem-readonly-32.png">
+      <LogicalName>emblem-readonly-32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\emblem-readonly-24.png">
+      <LogicalName>emblem-readonly-24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\emblem-readonly-22.png">
+      <LogicalName>emblem-readonly-22.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\emblem-readonly-16.png">
+      <LogicalName>emblem-readonly-16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\emblem-places-32.png">
+      <LogicalName>emblem-places-32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\emblem-places-24.png">
+      <LogicalName>emblem-places-24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\emblem-places-22.png">
+      <LogicalName>emblem-places-22.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\emblem-places-16.png">
+      <LogicalName>emblem-places-16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\emblem-people-32.png">
+      <LogicalName>emblem-people-32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\emblem-people-24.png">
+      <LogicalName>emblem-people-24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\emblem-people-22.png">
+      <LogicalName>emblem-people-22.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\emblem-people-16.png">
+      <LogicalName>emblem-people-16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\emblem-favorite-32.png">
+      <LogicalName>emblem-favorite-32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\emblem-favorite-24.png">
+      <LogicalName>emblem-favorite-24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\emblem-favorite-22.png">
+      <LogicalName>emblem-favorite-22.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\emblem-favorite-16.png">
+      <LogicalName>emblem-favorite-16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\emblem-event-32.png">
+      <LogicalName>emblem-event-32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\emblem-event-24.png">
+      <LogicalName>emblem-event-24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\emblem-event-22.png">
+      <LogicalName>emblem-event-22.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\emblem-event-16.png">
+      <LogicalName>emblem-event-16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\crop-22.png">
+      <LogicalName>crop-22.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\crop-16.png">
+      <LogicalName>crop-16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\color-sepia-22.png">
+      <LogicalName>color-sepia-22.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\color-sepia-16.png">
+      <LogicalName>color-sepia-16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\color-desaturate-24.png">
+      <LogicalName>color-desaturate-24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\color-desaturate-22.png">
+      <LogicalName>color-desaturate-22.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\camera-photo-32.png">
+      <LogicalName>camera-photo-32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\color-desaturate-16.png">
+      <LogicalName>color-desaturate-16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\camera-photo-24.png">
+      <LogicalName>camera-photo-24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\camera-photo-22.png">
+      <LogicalName>camera-photo-22.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\camera-photo-16.png">
+      <LogicalName>camera-photo-16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\autocolor-24.png">
+      <LogicalName>autocolor-24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\autocolor-22.png">
+      <LogicalName>autocolor-22.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\autocolor-16.png">
+      <LogicalName>autocolor-16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\align-horizon-24.png">
+      <LogicalName>align-horizon-24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\align-horizon-22.png">
+      <LogicalName>align-horizon-22.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\align-horizon-16.png">
+      <LogicalName>align-horizon-16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\adjust-colors-24.png">
+      <LogicalName>adjust-colors-24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\adjust-colors-22.png">
+      <LogicalName>adjust-colors-22.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\adjust-colors-16.png">
+      <LogicalName>adjust-colors-16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\filter-soft-focus-24.png">
+      <LogicalName>filter-soft-focus-24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\filter-soft-focus-22.png">
+      <LogicalName>filter-soft-focus-22.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\filter-soft-focus-16.png">
+      <LogicalName>filter-soft-focus-16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\film-roll-24.png">
+      <LogicalName>film-roll-24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\film-roll-22.png">
+      <LogicalName>film-roll-22.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\film-roll-16.png">
+      <LogicalName>film-roll-16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\view-restore-32.png">
+      <LogicalName>view-restore-32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\view-restore-24.png">
+      <LogicalName>view-restore-24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\view-restore-22.png">
+      <LogicalName>view-restore-22.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\view-restore-16.png">
+      <LogicalName>view-restore-16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\view-near-24.png">
+      <LogicalName>view-near-24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\view-near-22.png">
+      <LogicalName>view-near-22.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\view-near-16.png">
+      <LogicalName>view-near-16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\view-fullscreen-32.png">
+      <LogicalName>view-fullscreen-32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\view-fullscreen-24.png">
+      <LogicalName>view-fullscreen-24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\view-fullscreen-22.png">
+      <LogicalName>view-fullscreen-22.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\view-fullscreen-16.png">
+      <LogicalName>view-fullscreen-16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\view-far-24.png">
+      <LogicalName>view-far-24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\view-far-22.png">
+      <LogicalName>view-far-22.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\view-far-16.png">
+      <LogicalName>view-far-16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\tag-new-24.png">
+      <LogicalName>tag-new-24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\tag-new-22.png">
+      <LogicalName>tag-new-22.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\tag-new-16.png">
+      <LogicalName>tag-new-16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\tag-22.png">
+      <LogicalName>tag-22.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\tag-16.png">
+      <LogicalName>tag-16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\red-eye-remove-24.png">
+      <LogicalName>red-eye-remove-24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\red-eye-remove-22.png">
+      <LogicalName>red-eye-remove-22.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\red-eye-remove-16.xcf">
+      <LogicalName>red-eye-remove-16.xcf</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\red-eye-remove-16.png">
+      <LogicalName>red-eye-remove-16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\rating-rated-gray-16.png">
+      <LogicalName>rating-rated-gray-16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\rating-blank-16.png">
+      <LogicalName>rating-blank-16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\rating-rated-16.png">
+      <LogicalName>rating-rated-16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\object-rotate-right-24.png">
+      <LogicalName>object-rotate-right-24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\object-rotate-right-32.png">
+      <LogicalName>object-rotate-right-32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\object-rotate-right-22.png">
+      <LogicalName>object-rotate-right-22.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\object-rotate-right-16.png">
+      <LogicalName>object-rotate-right-16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\object-rotate-left-32.png">
+      <LogicalName>object-rotate-left-32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\object-rotate-left-24.png">
+      <LogicalName>object-rotate-left-24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\object-rotate-left-22.png">
+      <LogicalName>object-rotate-left-22.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\object-rotate-left-16.png">
+      <LogicalName>object-rotate-left-16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\mode-image-edit-32.png">
+      <LogicalName>mode-image-edit-32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\mode-image-edit-24.png">
+      <LogicalName>mode-image-edit-24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\mode-image-edit-22.png">
+      <LogicalName>mode-image-edit-22.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\mode-image-edit-16.png">
+      <LogicalName>mode-image-edit-16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\mode-browse-32.png">
+      <LogicalName>mode-browse-32.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\mode-browse-24.png">
+      <LogicalName>mode-browse-24.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\mode-browse-22.png">
+      <LogicalName>mode-browse-22.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\mode-browse-16.png">
+      <LogicalName>mode-browse-16.png</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

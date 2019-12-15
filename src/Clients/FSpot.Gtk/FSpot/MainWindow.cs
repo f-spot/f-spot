@@ -202,7 +202,7 @@ namespace FSpot
 			set { Tag.TagIconSize = (Settings.IconSize) value; }
 		}
 
-		static TargetEntry[] tag_target_table = {
+		static TargetEntry[] tagTargetTable = {
 				DragDropTargets.TagListEntry
 		};
 
@@ -287,18 +287,21 @@ namespace FSpot
 
 			toolbar.Insert (new SeparatorToolItem (), -1);
 
-			browse_button = new ToggleToolButton ();
-			browse_button.Label = Catalog.GetString ("Browsing");
-			browse_button.IconName = "mode-browse";
-			browse_button.IsImportant = true;
+			browse_button = new ToggleToolButton {
+				Label = Catalog.GetString ("Browsing"),
+				IconName = "mode-browse",
+				IsImportant = true
+			};
+
 			browse_button.Toggled += HandleToggleViewBrowse;
 			browse_button.TooltipText = Catalog.GetString ("Browse your photo library");
 			toolbar.Insert (browse_button, -1);
 
-			edit_button = new ToggleToolButton ();
-			edit_button.Label = Catalog.GetString ("Editing");
-			edit_button.IconName = "mode-image-edit";
-			edit_button.IsImportant = true;
+			edit_button = new ToggleToolButton {
+				Label = Catalog.GetString ("Editing"),
+				IconName = "mode-image-edit",
+				IsImportant = true
+			};
 			edit_button.Toggled += HandleToggleViewPhoto;
 			edit_button.TooltipText = Catalog.GetString ("Edit your photos");
 			toolbar.Insert (edit_button, -1);
@@ -315,9 +318,10 @@ namespace FSpot
 			ss_button.TooltipText = Catalog.GetString ("View photos in a slideshow");
 			toolbar.Insert (ss_button, -1);
 
-			SeparatorToolItem white_space = new SeparatorToolItem ();
-			white_space.Draw = false;
-			white_space.Expand = true;
+			var white_space = new SeparatorToolItem {
+				Draw = false,
+				Expand = true
+			};
 			toolbar.Insert (white_space, -1);
 
 			ToolItem label_item = new ToolItem ();
@@ -475,7 +479,7 @@ namespace FSpot
 			tag_entry.Activated += HandleTagEntryActivate;
 			tag_entry_container.Add (tag_entry);
 
-			Gtk.Drag.DestSet (photo_view, DestDefaults.All, tag_target_table,
+			Gtk.Drag.DestSet (photo_view, DestDefaults.All, tagTargetTable,
 				DragAction.Copy | DragAction.Move);
 
 			photo_view.DragMotion += HandlePhotoViewDragMotion;

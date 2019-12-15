@@ -10,23 +10,23 @@
 	</Runtime>
 
 	<ExtensionPoint path = "/FSpot/Editors">
-		<ExtensionNode type="FSpot.Gtk.Editors.EditorNode"/>
+		<ExtensionNode type="FSpot.Editors.EditorNode"/>
 	</ExtensionPoint>
 
 	<ExtensionPoint path = "/FSpot/Menus">
-		<ExtensionNode type="FSpot.Gtk.Extensions.SubmenuNode"/>
+		<ExtensionNode type="FSpot.Extensions.SubmenuNode"/>
 	</ExtensionPoint>
 
 	<ExtensionPoint path = "/FSpot/Sidebar">
-		<ExtensionNode name="SidebarPage" type="FSpot.Gtk.Extensions.SidebarPageNode"/>
+		<ExtensionNode name="SidebarPage" type="FSpot.Extensions.SidebarPageNode"/>
 	</ExtensionPoint>
 
 	<ExtensionPoint path = "/FSpot/Services">
-		<ExtensionNode name="Service" type="FSpot.Gtk.Extensions.ServiceNode"/>
+		<ExtensionNode name="Service" type="FSpot.Extensions.ServiceNode"/>
 	</ExtensionPoint>
 
 	<ExtensionPoint path = "/FSpot/SlideShow">
-		<ExtensionNode name="Transition" type="FSpot.Gtk.Extensions.TransitionNode"/>
+		<ExtensionNode name="Transition" type="FSpot.Extensions.TransitionNode"/>
 	</ExtensionPoint>
 
 	<Extension path = "/FSpot/Menus">
@@ -41,39 +41,39 @@
 		<Menu id = "PhotoPopup" />
 	</Extension>
 
-	<ConditionType id="PhotoSelection" type="FSpot.Gtk.Extensions.PhotoSelectionCondition" />
-	<ConditionType id="ViewMode" type="FSpot.Gtk.Extensions.ViewModeCondition" />
+	<ConditionType id="PhotoSelection" type="FSpot.Extensions.PhotoSelectionCondition" />
+	<ConditionType id="ViewMode" type="FSpot.Extensions.ViewModeCondition" />
 
 	<Extension path = "/FSpot/Menus/PhotoPopup">
-		<Command id = "Copy" _label = "Copy Photo" command_type = "FSpot.Gtk.Extensions.Copy" />
+		<Command id = "Copy" _label = "Copy Photo" command_type = "FSpot.Extensions.Copy" />
 		<MenuSeparator id = "Separator1" />
-		<Command id = "RLeft" _label = "Rotate _Left" icon = "object-rotate-left" command_type = "FSpot.Gtk.Extensions.Rotate270" />
-		<Command id = "RRight" _label = "Rotate _Right" icon = "object-rotate-right" command_type = "FSpot.Gtk.Extensions.Rotate90" />
+		<Command id = "RLeft" _label = "Rotate _Left" icon = "object-rotate-left" command_type = "FSpot.Extensions.Rotate270" />
+		<Command id = "RRight" _label = "Rotate _Right" icon = "object-rotate-right" command_type = "FSpot.Extensions.Rotate90" />
 		<MenuSeparator id = "Separator2" />
-		<MenuGenerator id = "OpenWith" _label = "Open _With" icon = "gtk-open" generator_type = "FSpot.Gtk.Extensions.OpenWith" />
-		<Command id = "Remove" _label = "_Remove From Catalog" command_type = "FSpot.Gtk.Extensions.Remove" />
-		<Command id = "Delete" _label = "_Delete From Drive" command_type = "FSpot.Gtk.Extensions.Delete" />
+		<MenuGenerator id = "OpenWith" _label = "Open _With" icon = "gtk-open" generator_type = "FSpot.Extensions.OpenWith" />
+		<Command id = "Remove" _label = "_Remove From Catalog" command_type = "FSpot.Extensions.Remove" />
+		<Command id = "Delete" _label = "_Delete From Drive" command_type = "FSpot.Extensions.Delete" />
 		<MenuSeparator id = "Separator3" />
-		<MenuGenerator id = "RemoveTag" _label = "Rem_ove Tag" icon = "gtk-remove" generator_type = "FSpot.Gtk.Extensions.RemoveTag" />
-		<ComplexMenuItem id = "Rate" widget_type = "FSpot.Gtk.Widgets.RatingMenuItem"  command_type = "FSpot.Gtk.Extensions.Rate"/>
+		<MenuGenerator id = "RemoveTag" _label = "Rem_ove Tag" icon = "gtk-remove" generator_type = "FSpot.Extensions.RemoveTag" />
+		<ComplexMenuItem id = "Rate" widget_type = "FSpot.Widgets.RatingMenuItem"  command_type = "FSpot.Extensions.Rate"/>
 	</Extension>
 
 	<Extension path = "/FSpot/Sidebar">
 <!-- FIXME: Disabled until ported		<SidebarPage sidebarPageType = "FSpot.Widgets.MetadataDisplayPage" /> -->
 		<Condition id="ViewMode" mode="library">
-			<SidebarPage sidebarPageType = "FSpot.Gtk.Widgets.EditorPage" />
-			<SidebarPage sidebarPageType = "FSpot.Gtk.Widgets.FolderTreePage" />
+			<SidebarPage sidebarPageType = "FSpot.Widgets.EditorPage" />
+			<SidebarPage sidebarPageType = "FSpot.Widgets.FolderTreePage" />
 		</Condition>
 	</Extension>
 
 	<Extension path = "/FSpot/Editors">
-		<Editor editor_type = "FSpot.Gtk.Editors.CropEditor"/>
-		<Editor editor_type = "FSpot.Gtk.Editors.RedEyeEditor"/>
-		<Editor editor_type = "FSpot.Gtk.Editors.DesaturateEditor"/>
-		<Editor editor_type = "FSpot.Gtk.Editors.SepiaEditor"/>
-		<Editor editor_type = "FSpot.Gtk.Editors.TiltEditor"/>
-		<Editor editor_type = "FSpot.Gtk.Editors.SoftFocusEditor"/>
-		<Editor editor_type = "FSpot.Gtk.Editors.AutoStretchEditor"/>
-		<Editor editor_type = "FSpot.Gtk.Editors.ColorEditor"/>
+		<Editor editor_type = "FSpot.Editors.CropEditor"/>
+		<Editor editor_type = "FSpot.Editors.RedEyeEditor"/>
+		<Editor editor_type = "FSpot.Editors.DesaturateEditor"/>
+		<Editor editor_type = "FSpot.Editors.SepiaEditor"/>
+		<Editor editor_type = "FSpot.Editors.TiltEditor"/>
+		<Editor editor_type = "FSpot.Editors.SoftFocusEditor"/>
+		<Editor editor_type = "FSpot.Editors.AutoStretchEditor"/>
+		<Editor editor_type = "FSpot.Editors.ColorEditor"/>
 	</Extension>
 </Addin>
