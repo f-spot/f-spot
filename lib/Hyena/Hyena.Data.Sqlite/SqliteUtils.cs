@@ -30,6 +30,7 @@ using System;
 using System.Reflection;
 using System.Text;
 using System.Collections.Generic;
+using System.Data.SQLite;
 
 namespace Hyena.Data.Sqlite
 {
@@ -163,71 +164,71 @@ namespace Hyena.Data.Sqlite
     }
 
     [SqliteFunction (Name = "HYENA_BINARY_FUNCTION", FuncType = FunctionType.Scalar, Arguments = 3)]
-    public sealed class BinaryFunction : SqliteFunction
+    public sealed class BinaryFunction : SQLiteFunction
     {
-        private static Dictionary<string, Func<object, object, object>> funcs = new Dictionary<string, Func<object, object, object>> ();
+        //private static Dictionary<string, Func<object, object, object>> funcs = new Dictionary<string, Func<object, object, object>> ();
 
-        public static void Add (string functionId, Func<object, object, object> func)
-        {
-            lock (funcs) {
-                if (funcs.ContainsKey (functionId)) {
-                    throw new ArgumentException (String.Format ("{0} is already taken", functionId), "functionId");
-                }
+        //public static void Add (string functionId, Func<object, object, object> func)
+        //{
+        //    lock (funcs) {
+        //        if (funcs.ContainsKey (functionId)) {
+        //            throw new ArgumentException (String.Format ("{0} is already taken", functionId), "functionId");
+        //        }
 
-                funcs[functionId] = func;
-            }
-        }
+        //        funcs[functionId] = func;
+        //    }
+        //}
 
-        public static void Remove (string functionId)
-        {
-            lock (funcs) {
-                if (!funcs.ContainsKey (functionId)) {
-                    throw new ArgumentException (String.Format ("{0} does not exist", functionId), "functionId");
-                }
+        //public static void Remove (string functionId)
+        //{
+        //    lock (funcs) {
+        //        if (!funcs.ContainsKey (functionId)) {
+        //            throw new ArgumentException (String.Format ("{0} does not exist", functionId), "functionId");
+        //        }
 
-                funcs.Remove (functionId);
-            }
-        }
+        //        funcs.Remove (functionId);
+        //    }
+        //}
 
-        public override object Invoke (object[] args)
-        {
-            Func<object, object, object> func;
-            if (!funcs.TryGetValue (args[0] as string, out func))
-                throw new ArgumentException (args[0] as string, "HYENA_BINARY_FUNCTION name (arg 0)");
+        //public override object Invoke (object[] args)
+        //{
+        //    Func<object, object, object> func;
+        //    if (!funcs.TryGetValue (args[0] as string, out func))
+        //        throw new ArgumentException (args[0] as string, "HYENA_BINARY_FUNCTION name (arg 0)");
 
-            return func (args[1], args[2]);
-        }
+        //    return func (args[1], args[2]);
+        //}
     }
 
     [SqliteFunction (Name = "HYENA_COLLATION_KEY", FuncType = FunctionType.Scalar, Arguments = 1)]
-    internal class CollationKeyFunction : SqliteFunction
+    internal class CollationKeyFunction : SQLiteFunction
     {
-        public override object Invoke (object[] args)
-        {
-            return Hyena.StringUtil.SortKey (args[0] as string);
-        }
+        //public override object Invoke (object[] args)
+        //{
+        //    return Hyena.StringUtil.SortKey (args[0] as string);
+        //}
     }
 
     [SqliteFunction (Name = "HYENA_SEARCH_KEY", FuncType = FunctionType.Scalar, Arguments = 1)]
-    internal class SearchKeyFunction : SqliteFunction
+    internal class SearchKeyFunction : SQLiteFunction
     {
-        public override object Invoke (object[] args)
-        {
-            return Hyena.StringUtil.SearchKey (args[0] as string);
-        }
+        //public override object Invoke (object[] args)
+        //{
+        //    return Hyena.StringUtil.SearchKey (args[0] as string);
+        //}
     }
 
     [SqliteFunction (Name = "HYENA_MD5", FuncType = FunctionType.Scalar, Arguments = -1)]
-    internal class Md5Function : SqliteFunction
+    internal class Md5Function : SQLiteFunction
     {
-        public override object Invoke (object[] args)
-        {
-            int n_args = (int)(long) args[0];
-            var sb = new StringBuilder ();
-            for (int i = 1; i <= n_args; i++) {
-                sb.Append (args[i]);
-            }
-            return Hyena.CryptoUtil.Md5Encode (sb.ToString (), System.Text.Encoding.UTF8);
-        }
+        //public override object Invoke (object[] args)
+        //{
+        //    int n_args = (int)(long) args[0];
+        //    var sb = new StringBuilder ();
+        //    for (int i = 1; i <= n_args; i++) {
+        //        sb.Append (args[i]);
+        //    }
+        //    return Hyena.CryptoUtil.Md5Encode (sb.ToString (), System.Text.Encoding.UTF8);
+        //}
     }
 }
