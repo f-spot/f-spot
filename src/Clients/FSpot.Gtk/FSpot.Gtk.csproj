@@ -15,22 +15,14 @@
     <EnvironmentVariables>
       <EnvironmentVariables>
         <Variable name="GTK_MODULES" value="" />
+        <Variable name="MONO_CAIRO_DEBUG_DISPOSE" value="1" />
       </EnvironmentVariables>
     </EnvironmentVariables>
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="..\..\..\icons\f-spot-not.png">
-      <LogicalName>f-spot-not.png</LogicalName>
-    </EmbeddedResource>
     <EmbeddedResource Include="..\..\..\COPYING.md">
       <LogicalName>COPYING</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="..\..\..\icons\f-spot-128.png">
-      <LogicalName>f-spot-128.png</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="..\..\..\icons\flower.png">
-      <LogicalName>flower.png</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="ui\import.ui">
       <LogicalName>import.ui</LogicalName>

@@ -6,6 +6,7 @@ include $(top_srcdir)/build/xbuild.include
 
 SUBDIRS = \
 		FSpot \
+		FSpot.Resources \
 		FSpot.UnitTest
 
 RESOURCES = \

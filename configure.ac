@@ -237,6 +237,7 @@ src/Makefile
 src/Core/Makefile
 src/Core/FSpot/Makefile
 src/Core/FSpot/FSpot.dll.config
+src/Core/FSpot.Resources/Makefile
 src/Core/FSpot.UnitTest/Makefile
 
 src/Clients/Makefile
