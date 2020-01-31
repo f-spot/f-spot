@@ -43,7 +43,7 @@ namespace FSpot.Core
         /// <summary>
         ///    The tags which are dedicated to this item.
         /// </summary>
-        Tag[] Tags { get; }
+        IEnumerable<Tag> Tags { get; }
 
         /// <summary>
         ///    The description of the item.

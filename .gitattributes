@@ -1,1 +1,8 @@
-*.sln -crlf
+*.sln text eol=crlf
+*.cs text
+*.targets text
+*.dll.config text
+*.exe.config text
+*.props text
+*.resx text
+*.sh text eol=lf

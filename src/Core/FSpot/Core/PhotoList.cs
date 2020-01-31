@@ -34,6 +34,9 @@ namespace FSpot.Core
 {
 	public class PhotoList : IBrowsableCollection
 	{
+		public event IBrowsableCollectionChangedHandler Changed;
+		public event IBrowsableCollectionItemsChangedHandler ItemsChanged;
+
 		protected List<IPhoto> list;
 
 		public PhotoList (IEnumerable<IPhoto> photos)
@@ -109,8 +112,5 @@ namespace FSpot.Core
 		}
 
 		public IEnumerable<IPhoto> Items => list.AsEnumerable ();
-
-		public event IBrowsableCollectionChangedHandler Changed;
-		public event IBrowsableCollectionItemsChangedHandler ItemsChanged;
 	}
 }
