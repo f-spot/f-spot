@@ -43,7 +43,7 @@ using Hyena;
 
 public class TagMenu : Menu
 {
-	TagStore tag_store;
+	TagStore tagStore;
 
 	public delegate void TagSelectedHandler (Tag t);
 	public event TagSelectedHandler TagSelected;
@@ -52,7 +52,7 @@ public class TagMenu : Menu
 
 	public class TagMenuItem : ImageMenuItem
 	{
-		public Tag Value;
+		public readonly Tag Value;
 
 		public TagMenuItem (Tag t) : this (t, t.Name) { }
 
@@ -89,7 +89,7 @@ public class TagMenu : Menu
 			item.Activated += HandlePopulate;
 		}
 
-		tag_store = store;
+		tagStore = store;
 	}
 
 	protected TagMenu (IntPtr raw) : base (raw) {}
@@ -100,8 +100,7 @@ public class TagMenu : Menu
 
 		int i = 0;
 		foreach (Widget w in Children) {
-			var item = w as TagMenuItem;
-			if (item != null) {
+			if (w is TagMenuItem item) {
 				if (t == item.Value)
 					return i;
 			}
@@ -114,9 +113,9 @@ public class TagMenu : Menu
 	public void Populate (bool flat = false)
 	{
 		if (flat)
-			PopulateFlat (tag_store.RootCategory, this);
+			PopulateFlat (tagStore.RootCategory, this);
 		else
-			Populate (tag_store.RootCategory, this);
+			Populate (tagStore.RootCategory, this);
 
 		if (NewTagHandler != null) {
 			GtkUtil.MakeMenuSeparator (this);
@@ -132,9 +131,8 @@ public class TagMenu : Menu
 			parent.Append (item);
 			item.ShowAll ();
 
-			var subcat = t as Category;
-			if (subcat != null && subcat.Children.Count != 0) {
-				PopulateFlat (t as Category, parent);
+			if (t is Category subcat && subcat.Children.Count != 0) {
+				PopulateFlat (subcat, parent);
 			} else {
 				item.Activated += HandleActivate;
 			}
@@ -180,12 +178,11 @@ public class TagMenu : Menu
 
 	void HandleActivate (object obj, EventArgs args)
 	{
-		if (TagSelected != null) {
-			TagMenuItem t = obj as TagMenuItem;
-			if (t != null)
-				TagSelected (t.Value);
-			else
-				Log.Debug ("TagMenu.HandleActivate: Item was not a TagMenuItem");
-		}
+		if (TagSelected == null) return;
+
+		if (obj is TagMenuItem t)
+			TagSelected (t.Value);
+		else
+			Log.Debug ("TagMenu.HandleActivate: Item was not a TagMenuItem");
 	}
 }

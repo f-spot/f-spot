@@ -1,4 +1,4 @@
-﻿//
+//
 // CreateTagDialog.cs
 //
 // Author:
@@ -68,12 +68,17 @@ namespace FSpot.UI.Dialog
 
 		List<Tag> categories;
 
-		void PopulateCategories (List<Tag> categories, Category parent)
+		public CreateTagDialog (TagStore tagStore) : base ("CreateTagDialog.ui", "create_tag_dialog")
+		{
+			tag_store = tagStore;
+		}
+
+		void PopulateCategories (ICollection<Tag> categories, Category parent)
 		{
 			foreach (Tag tag in parent.Children) {
-				if (tag is Category) {
-					categories.Add (tag);
-					PopulateCategories (categories, tag as Category);
+				if (tag is Category category) {
+					categories.Add (category);
+					PopulateCategories (categories, category);
 				}
 			}
 		}
@@ -81,28 +86,27 @@ namespace FSpot.UI.Dialog
 		string Indentation (Category category)
 		{
 			int indentations = 0;
-			for (Category parent = category.Category;
-				 parent != null && parent.Category != null;
-				 parent = parent.Category)
+			for (Category parent = category.Category; parent?.Category != null; parent = parent.Category)
 				indentations++;
 			return new string (' ', indentations * 2);
 		}
 
 		void PopulateCategoryOptionMenu ()
 		{
-			categories = new List<Tag> ();
-			categories.Add (tag_store.RootCategory);
+			categories = new List<Tag> {
+				tag_store.RootCategory
+			};
 			PopulateCategories (categories, tag_store.RootCategory);
 
-			ListStore category_store = new ListStore (typeof (Pixbuf), typeof (string));
+			var categoryStore = new ListStore (typeof (Pixbuf), typeof (string));
 
 			foreach (Category category in categories) {
-				category_store.AppendValues (category.SizedIcon, Indentation (category) + category.Name);
+				categoryStore.AppendValues (category.SizedIcon, Indentation (category) + category.Name);
 			}
 
 			category_option_menu.Sensitive = true;
 
-			category_option_menu.Model = category_store;
+			category_option_menu.Model = categoryStore;
 			var icon_renderer = new CellRendererPixbuf ();
 			icon_renderer.Width = (int)Tag.TagIconSize;
 			category_option_menu.PackStart (icon_renderer, true);
@@ -132,7 +136,7 @@ namespace FSpot.UI.Dialog
 
 		void Update ()
 		{
-			if (tag_name_entry.Text == string.Empty) {
+			if (string.IsNullOrEmpty (tag_name_entry.Text)) {
 				create_button.Sensitive = false;
 				already_in_use_label.Markup = string.Empty;
 			} else if (TagNameExistsInCategory (tag_name_entry.Text, tag_store.RootCategory)) {
@@ -174,14 +178,14 @@ namespace FSpot.UI.Dialog
 
 		public Tag Execute (TagType type, Tag [] selection)
 		{
-			Category default_category = null;
+			Category defaultCategory = null;
 			if (selection.Length > 0) {
 				if (selection [0] is Category)
-					default_category = (Category)selection [0];
+					defaultCategory = (Category)selection [0];
 				else
-					default_category = selection [0].Category;
+					defaultCategory = selection [0].Category;
 			} else {
-				default_category = tag_store.RootCategory;
+				defaultCategory = tag_store.RootCategory;
 			}
 
 			DefaultResponse = ResponseType.Ok;
@@ -191,14 +195,14 @@ namespace FSpot.UI.Dialog
 			auto_icon_checkbutton.Active = Preferences.Get<bool> (Preferences.TagIconAutomatic);
 
 			PopulateCategoryOptionMenu ();
-			Category = default_category;
+			Category = defaultCategory;
 			Update ();
 			tag_name_entry.GrabFocus ();
 
 			ResponseType response = (ResponseType)Run ();
 
 
-			Tag new_tag = null;
+			Tag newTag = null;
 			if (response == ResponseType.Ok) {
 				bool autoicon = this.auto_icon_checkbutton.Active;
 				Preferences.Set (Preferences.TagIconAutomatic, autoicon);
@@ -206,9 +210,9 @@ namespace FSpot.UI.Dialog
 					Category parent_category = Category;
 
 					if (type == TagType.Category)
-						new_tag = tag_store.CreateCategory (parent_category, tag_name_entry.Text, autoicon);
+						newTag = tag_store.CreateCategory (parent_category, tag_name_entry.Text, autoicon);
 					else
-						new_tag = tag_store.CreateTag (parent_category, tag_name_entry.Text, autoicon);
+						newTag = tag_store.CreateTag (parent_category, tag_name_entry.Text, autoicon);
 				} catch (Exception ex) {
 					// FIXME error dialog.
 					Log.Exception (ex);
@@ -216,12 +220,7 @@ namespace FSpot.UI.Dialog
 			}
 
 			Destroy ();
-			return new_tag;
-		}
-
-		public CreateTagDialog (TagStore tag_store) : base ("CreateTagDialog.ui", "create_tag_dialog")
-		{
-			this.tag_store = tag_store;
+			return newTag;
 		}
 	}
 }

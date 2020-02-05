@@ -32,10 +32,13 @@
 //
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
-using Gtk;
 using Gdk;
+using Gtk;
 
+using FSpot.Cms;
 using FSpot.Core;
 using FSpot.Settings;
 
@@ -43,10 +46,10 @@ namespace FSpot.Widgets
 {
 	public class TagView : EventBox
 	{
-		int thumbnail_size = 20;
+		readonly int thumbnailSize = 20;
 		IPhoto photo;
-		Tag [] tags;
-		static int TAG_ICON_VSPACING = 5;
+		IEnumerable<Tag> tags;
+		static readonly int TAG_ICON_VSPACING = 5;
 
 		bool HideTags {
 			get {
@@ -68,21 +71,21 @@ namespace FSpot.Widgets
 			set {
 				photo = value;
 
-				if (photo != null && photo.Tags != null && !HideTags) {
-					SetSizeRequest ((thumbnail_size + TAG_ICON_VSPACING) * photo.Tags.Length,
-							thumbnail_size);
+				if (photo?.Tags != null && !HideTags) {
+					SetSizeRequest ((thumbnailSize + TAG_ICON_VSPACING) * photo.Tags.Count(),
+							thumbnailSize);
 				} else {
-					SetSizeRequest (0, thumbnail_size);
+					SetSizeRequest (0, thumbnailSize);
 				}
 				QueueResize ();
 				QueueDraw ();
 			}
 		}
 
-		public Tag [] Tags {
+		public IEnumerable<Tag> Tags {
 			get { return tags; }
 			set {
-				tags = value;
+				tags = value.ToList ();
 				QueueDraw ();
 			}
 		}
@@ -93,7 +96,7 @@ namespace FSpot.Widgets
 				tags = photo.Tags;
 
 			if (tags == null || HideTags) {
-				SetSizeRequest (0, thumbnail_size);
+				SetSizeRequest (0, thumbnailSize);
 				return base.OnExposeEvent (args);
 			}
 
@@ -107,13 +110,12 @@ namespace FSpot.Widgets
 			if (tags == null)
 				return;
 
-			SetSizeRequest ((thumbnail_size + TAG_ICON_VSPACING) * tags.Length,
-					thumbnail_size);
+			SetSizeRequest ((thumbnailSize + TAG_ICON_VSPACING) * tags.Count (), thumbnailSize);
 
-			int tag_x = Allocation.X;
-			int tag_y = Allocation.Y + (Allocation.Height - thumbnail_size) / 2;
+			int tagX = Allocation.X;
+			int tagY = Allocation.Y + (Allocation.Height - thumbnailSize) / 2;
 
-			string [] names = new string [tags.Length];
+			string [] names = new string [tags.Count ()];
 			int i = 0;
 			foreach (Tag t in tags) {
 				names [i++] = t.Name;
@@ -129,20 +131,20 @@ namespace FSpot.Widgets
 				if (icon == null)
 					continue;
 
-				Pixbuf scaled_icon;
-				if (icon.Width == thumbnail_size) {
-					scaled_icon = icon;
+				Pixbuf scaledIcon;
+				if (icon.Width == thumbnailSize) {
+					scaledIcon = icon;
 				} else {
-					scaled_icon = icon.ScaleSimple (thumbnail_size, thumbnail_size, InterpType.Bilinear);
+					scaledIcon = icon.ScaleSimple (thumbnailSize, thumbnailSize, InterpType.Bilinear);
 				}
-				Cms.Profile screen_profile;
-				if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out screen_profile))
-					FSpot.ColorManagement.ApplyProfile (scaled_icon, screen_profile);
 
-				scaled_icon.RenderToDrawable (GdkWindow, Style.WhiteGC,
-								  0, 0, tag_x, tag_y, thumbnail_size, thumbnail_size,
-								  RgbDither.None, tag_x, tag_y);
-				tag_x += thumbnail_size + TAG_ICON_VSPACING;
+				if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screenProfile))
+					FSpot.ColorManagement.ApplyProfile (scaledIcon, screenProfile);
+
+				scaledIcon.RenderToDrawable (GdkWindow, Style.WhiteGC,
+								  0, 0, tagX, tagY, thumbnailSize, thumbnailSize,
+								  RgbDither.None, tagX, tagY);
+				tagX += thumbnailSize + TAG_ICON_VSPACING;
 			}
 
 			TooltipText = string.Join (", ", names);

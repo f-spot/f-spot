@@ -29,7 +29,7 @@
 
 using System;
 using System.Collections.Generic;
-
+using FSpot.Cms;
 using Mono.Unix;
 
 using Gtk;
@@ -119,7 +119,7 @@ namespace FSpot.UI.Dialog
 			return false;
 		}
 
-		void PopulateCategories (List<Tag> categories, Category parent)
+		void PopulateCategories (ICollection<Tag> categories, Category parent)
 		{
 			foreach (Tag tag in parent.Children) {
 				if (tag is Category && tag != this.tag && !this.tag.IsAncestorOf (tag)) {
@@ -131,9 +131,9 @@ namespace FSpot.UI.Dialog
 
 		void HandleIconButtonClicked (object sender, EventArgs args)
 		{
-			EditTagIconDialog dialog = new EditTagIconDialog (db, tag, this);
+			using var dialog = new EditTagIconDialog (db, tag, this);
 
-			ResponseType response = (ResponseType)dialog.Run ();
+			var response = (ResponseType)dialog.Run ();
 			if (response == ResponseType.Ok)
 				if (dialog.ThemeIconName != null) {
 					tag.ThemeIconName = dialog.ThemeIconName;
@@ -144,8 +144,7 @@ namespace FSpot.UI.Dialog
 				else if (response == (ResponseType)1)
 					tag.Icon = null;
 
-			Cms.Profile screen_profile;
-			if (tag.Icon != null && FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out screen_profile)) {
+			if (tag.Icon != null && FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screen_profile)) {
 				icon_image.Pixbuf = tag.Icon.Copy ();
 				FSpot.ColorManagement.ApplyProfile (icon_image.Pixbuf, screen_profile);
 			} else
