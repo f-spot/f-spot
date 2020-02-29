@@ -1,5 +1,5 @@
 # F-Spot Photo Manager
-http://f-spot.org/
+No website currently. PLEASE DO NOT VISIT THE OLD WEBSITE
 
 # WARNING
 The code base is in heavy flux right now. It might be completely broken right now.
