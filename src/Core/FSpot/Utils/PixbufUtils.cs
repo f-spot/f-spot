@@ -302,7 +302,7 @@ namespace FSpot.Utils
 		// Save which allows specifying the variable arguments (it's not
 		// possible with p/invoke).
 
-		[DllImport("libgdk_pixbuf-2.0-0.dll")]
+		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_pixbuf_save (IntPtr raw, IntPtr filename, IntPtr type, out IntPtr error, IntPtr optlabel1, IntPtr optvalue1, IntPtr dummy);
 
 		static bool Save (this Pixbuf pixbuf, string filename, string type, uint jpeg_quality)

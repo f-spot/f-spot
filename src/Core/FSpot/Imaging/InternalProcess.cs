@@ -65,7 +65,7 @@ namespace FSpot.Imaging
 			}
 		}
 
-		[DllImport("libglib-2.0-0.dll")]
+		[DllImport("libglib-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_spawn_async_with_pipes (
 			string workingDir,
 			string [] argv,

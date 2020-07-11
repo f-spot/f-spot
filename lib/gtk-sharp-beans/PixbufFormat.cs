@@ -20,12 +20,11 @@
 // Boston, MA 02111-1307, USA.
 
 using System;
-using System.Collections;
 using System.Runtime.InteropServices;
 
 namespace Gdk {
 	public static class PixbufFormatExtensions {
-		[DllImport("libgdk_pixbuf-2.0-0.dll")]
+		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gdk_pixbuf_format_set_disabled(IntPtr raw, bool disabled);
 
 		public static void SetDisabled (this PixbufFormat format, bool value) { 

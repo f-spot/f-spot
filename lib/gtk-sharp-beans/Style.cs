@@ -20,25 +20,28 @@
 // Boston, MA 02111-1307, USA.
 
 using System;
-using System.Collections;
 using System.Runtime.InteropServices;
+
 using Gtk;
 
-namespace GtkBeans {
-	public class Style {
-               [DllImport("libgtk-win32-2.0-0.dll")]
-                static extern void gtk_paint_flat_box(IntPtr style, IntPtr window, int state_type, int shadow_type, IntPtr area, IntPtr widget, IntPtr detail, int x, int y, int width, int height);
+namespace GtkBeans
+{
+	public class Style
+	{
+		[DllImport ("libgtk-win32-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		static extern void gtk_paint_flat_box (IntPtr style, IntPtr window, int state_type, int shadow_type, IntPtr area, IntPtr widget, IntPtr detail, int x, int y, int width, int height);
 
-                public static void PaintFlatBox(Gtk.Style style, Gdk.Drawable window, Gtk.StateType state_type, Gtk.ShadowType shadow_type, Gdk.Rectangle? area, Gtk.Widget widget, string detail, int x, int y, int width, int height) {
-                        IntPtr native_area = area == null ? IntPtr.Zero : GLib.Marshaller.StructureToPtrAlloc (area);
-                        IntPtr native_detail = GLib.Marshaller.StringToPtrGStrdup (detail);
-                        gtk_paint_flat_box(style == null ? IntPtr.Zero : style.Handle, window == null ? IntPtr.Zero : window.Handle, (int) state_type, (int) shadow_type, native_area, widget == null ? IntPtr.Zero : widget.Handle, native_detail, x, y, width, height);
-                        if (area != null) {
+		public static void PaintFlatBox (Gtk.Style style, Gdk.Drawable window, Gtk.StateType state_type, Gtk.ShadowType shadow_type, Gdk.Rectangle? area, Gtk.Widget widget, string detail, int x, int y, int width, int height)
+		{
+			IntPtr native_area = area == null ? IntPtr.Zero : GLib.Marshaller.StructureToPtrAlloc (area);
+			IntPtr native_detail = GLib.Marshaller.StringToPtrGStrdup (detail);
+			gtk_paint_flat_box (style == null ? IntPtr.Zero : style.Handle, window == null ? IntPtr.Zero : window.Handle, (int)state_type, (int)shadow_type, native_area, widget == null ? IntPtr.Zero : widget.Handle, native_detail, x, y, width, height);
+			if (area != null) {
 				area = Gdk.Rectangle.New (native_area);
-	                        Marshal.FreeHGlobal (native_area);
+				Marshal.FreeHGlobal (native_area);
 			}
-                        GLib.Marshaller.Free (native_detail);
-                }
+			GLib.Marshaller.Free (native_detail);
+		}
 	}
 }
-	
+

@@ -25,10 +25,10 @@ using GLib;
 
 namespace GLibBeans {
 	public class Sources {
-		[DllImport("libglib-2.0-0.dll")]
+		[DllImport("libglib-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_source_set_priority (IntPtr source, int priority);
 
-		[DllImport("libglib-2.0-0.dll")]
+		[DllImport("libglib-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_main_context_find_source_by_id (IntPtr context, uint source_id);
 
 		public static void SetPriority (uint source_id, Priority priority)

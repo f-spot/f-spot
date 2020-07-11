@@ -122,7 +122,7 @@ namespace GtkBeans {
 		[DllImport("libgtk-win32-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_builder_get_objects(IntPtr raw);
 
-		public GLib.SList Objects { 
+		public GLib.SList Objects {
 			get {
 				IntPtr raw_ret = gtk_builder_get_objects(Handle);
 				GLib.SList ret = new GLib.SList(raw_ret);
@@ -140,7 +140,7 @@ namespace GtkBeans {
 		[DllImport("libgtk-win32-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_builder_get_type();
 
-		public static new GLib.GType GType { 
+		public static new GLib.GType GType {
 			get {
 				IntPtr raw_ret = gtk_builder_get_type();
 				GLib.GType ret = new GLib.GType(raw_ret);
@@ -427,11 +427,11 @@ class SignalConnector
 	{
 		this.builder = builder;
 		this.handler = null;
-		this.handler_type = handler_type;		
+		this.handler_type = handler_type;
 	}
 
-	[DllImport("libgtk-win32-2.0-0.dll")]
-	static extern void gtk_builder_connect_signals_full(IntPtr raw, GtkBeansSharp.BuilderConnectFuncNative func, IntPtr user_data);
+	[DllImport ("libgtk-win32-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+	static extern void gtk_builder_connect_signals_full (IntPtr raw, GtkBeansSharp.BuilderConnectFuncNative func, IntPtr user_data);
 
 	public void ConnectSignals() {
 		GtkBeansSharp.BuilderConnectFuncWrapper func_wrapper = new GtkBeansSharp.BuilderConnectFuncWrapper (new GtkBeans.BuilderConnectFunc (ConnectFunc));

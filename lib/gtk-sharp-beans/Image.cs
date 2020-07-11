@@ -20,13 +20,12 @@
 // Boston, MA 02111-1307, USA.
 
 using System;
-using System.Collections;
 using System.Runtime.InteropServices;
 using Gtk;
 
 namespace GtkBeans {
 	public class Image {
-		[DllImport("libgtk-win32-2.0-0.dll")]
+		[DllImport("libgtk-win32-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_image_new_from_gicon(IntPtr icon, int size);
 
 		public static Gtk.Image NewFromIcon (GLib.Icon icon, Gtk.IconSize size)

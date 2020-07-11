@@ -69,20 +69,20 @@ namespace FSpot.Utils
 
 		class NativeMethods
 		{
-			[DllImport("libgdk-2.0-0.dll")]
+			[DllImport("libgdk-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 			public static extern uint gdk_x11_drawable_get_xid (IntPtr d);
 	
-			[DllImport("libgdk-2.0-0.dll")]
+			[DllImport("libgdk-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 			public static extern IntPtr gdk_x11_display_get_xdisplay (IntPtr d);
 	
-			[DllImport("libgdk-2.0-0.dll")]
+			[DllImport("libgdk-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 			public static extern IntPtr gdk_x11_visual_get_xvisual (IntPtr d);
 
 			// FIXME: get rid of this? (Make this cross platform)
-			[DllImport("X11")]
+			[DllImport("X11", CallingConvention = CallingConvention.Cdecl)]
 			public static extern uint XVisualIDFromVisual(IntPtr visual);
 	
-			[DllImport("libgdk-2.0-0.dll")]
+			[DllImport("libgdk-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 			public static extern IntPtr gdk_x11_screen_lookup_visual (IntPtr screen,
 									   uint   xvisualid);
 		}
