@@ -13,35 +13,13 @@
 // Copyright (C) 2010 Evan Briones
 // Copyright (C) 2006-2009 Stephane Delcroix
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Threading;
-
-using Mono.Addins;
-using Mono.Addins.Setup;
-using Mono.Unix;
 
 using FSpot.Resources;
 using FSpot.Settings;
@@ -54,6 +32,10 @@ using Hyena.Gui;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
+
+using Mono.Addins;
+using Mono.Addins.Setup;
+using Mono.Unix;
 
 namespace FSpot
 {
@@ -113,8 +95,8 @@ namespace FSpot
 				case "help": Console.WriteLine (commands.ToString ("help")); break;
 				case "help-options": Console.WriteLine (commands.ToString ("options")); break;
 				default:
-					if (argument.Key.StartsWith ("help")) {
-						(errors ?? (errors = new List<string> ())).Add (argument.Key);
+					if (argument.Key.StartsWith ("help", StringComparison.OrdinalIgnoreCase)) {
+						(errors ??= new List<string> ()).Add (argument.Key);
 					}
 					break;
 				}
@@ -124,11 +106,11 @@ namespace FSpot
 				Console.WriteLine (commands.LayoutLine ($"The following help arguments are invalid: {Hyena.Collections.CollectionExtensions.Join (errors, "--", null, ", ")}"));
 		}
 
-		static string[] FixArgs (string[] args)
+		static string[] FixArgs (IReadOnlyList<string> args)
 		{
 			// Makes sure command line arguments are parsed backwards compatible.
 			var outargs = new List<string> ();
-			for (int i = 0; i < args.Length; i++) {
+			for (int i = 0; i < args.Count; i++) {
 				switch (args[i]) {
 				case "-h":
 				case "-help":
@@ -148,17 +130,17 @@ namespace FSpot
 				case "-b":
 				case "-basedir":
 				case "--basedir":
-					outargs.Add ("--basedir=" + (i + 1 == args.Length ? string.Empty : args[++i]));
+					outargs.Add ("--basedir=" + (i + 1 == args.Count ? string.Empty : args[++i]));
 					break;
 				case "-p":
 				case "-photodir":
 				case "--photodir":
-					outargs.Add ("--photodir=" + (i + 1 == args.Length ? string.Empty : args[++i]));
+					outargs.Add ("--photodir=" + (i + 1 == args.Count ? string.Empty : args[++i]));
 					break;
 				case "-i":
 				case "-import":
 				case "--import":
-					outargs.Add ("--import=" + (i + 1 == args.Length ? string.Empty : args[++i]));
+					outargs.Add ("--import=" + (i + 1 == args.Count ? string.Empty : args[++i]));
 					break;
 				case "-v":
 				case "-view":
@@ -309,7 +291,7 @@ namespace FSpot
 			}
 
 			try {
-				Gtk.Window.DefaultIconList = new Gdk.Pixbuf[] {
+				Gtk.Window.DefaultIconList = new[] {
 					GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, "FSpot", 16, 0),
 					GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, "FSpot", 22, 0),
 					GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, "FSpot", 32, 0),
@@ -320,7 +302,7 @@ namespace FSpot
 			}
 
 			GLib.ExceptionManager.UnhandledException += exceptionArgs => {
-				Console.WriteLine ("Unhandeled exception handler:");
+				Console.WriteLine ("Unhandled exception handler:");
 				if (exceptionArgs.ExceptionObject is Exception exception) {
 					Console.WriteLine ($"Message: {exception.Message}");
 					Console.WriteLine ($"Stack trace: {exception.StackTrace}");
@@ -349,7 +331,7 @@ namespace FSpot
 
 			var setupService = new SetupService (AddinManager.Registry);
 			foreach (AddinRepository repo in setupService.Repositories.GetRepositories ()) {
-				if (repo.Url.StartsWith ("http://addins.f-spot.org/")) {
+				if (repo.Url.StartsWith ("http://addins.f-spot.org/", StringComparison.OrdinalIgnoreCase)) {
 					Log.Information ($"Unregistering {repo.Url}");
 					setupService.Repositories.RemoveRepository (repo.Url);
 				}
@@ -369,7 +351,7 @@ namespace FSpot
 			// Nuke addin-db
 			var directory = new DirectoryInfo (new SafeUri (FSpotConfiguration.BaseDirectory));
 			foreach (var item in directory.EnumerateDirectories ()) {
-				if (item.Name.StartsWith ("addin-db-"))
+				if (item.Name.StartsWith ("addin-db-", StringComparison.OrdinalIgnoreCase))
 					item.Delete (true);
 			}
 
