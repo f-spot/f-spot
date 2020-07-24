@@ -22,6 +22,7 @@ using System.Reflection;
 using System.Threading;
 
 using FSpot.Resources;
+using FSpot.Platform;
 using FSpot.Settings;
 using FSpot.Utils;
 
@@ -279,7 +280,8 @@ namespace FSpot
 			//Xwt.Application.InitializeAsGuest (Xwt.ToolkitType.Gtk);
 
 			// init web proxy globally
-			Platform.WebProxy.Init ();
+			// FIXME, Reenable this at some point?
+			//FSpotWebProxy.Init ();
 
 			if (File.Exists (Preferences.Get<string> (Preferences.GtkRc))) {
 				if (File.Exists (Path.Combine (FSpotConfiguration.BaseDirectory, "gtkrc")))
