@@ -42,13 +42,13 @@ namespace FSpot.Preferences.UnitTest
 	public class PreferencesTests
 	{
 		string TestSettingsFile;
-		PreferenceBackend backend;
+		PreferenceJsonBackend jsonBackend;
 
 		JObject LoadSettings (string location)
 		{
 			var settingsFile = File.ReadAllText (location);
 			var o = JObject.Parse (settingsFile);
-			return (JObject)o[PreferenceBackend.SettingsRoot];
+			return (JObject)o[PreferenceJsonBackend.SettingsRoot];
 		}
 
 		[SetUp]
@@ -57,8 +57,8 @@ namespace FSpot.Preferences.UnitTest
 			var tmpFile = Path.GetTempFileName ();
 			var jsonfile = Path.ChangeExtension (tmpFile, "json");
 			File.Move (tmpFile, jsonfile);
-			PreferenceBackend.PreferenceLocationOverride = TestSettingsFile = jsonfile;
-			backend = new PreferenceBackend ();
+			PreferenceJsonBackend.PreferenceLocationOverride = TestSettingsFile = jsonfile;
+			jsonBackend = new PreferenceJsonBackend ();
 		}
 
 		[TearDown]
@@ -73,8 +73,8 @@ namespace FSpot.Preferences.UnitTest
 		[TestCase (Settings.Preferences.CustomCropRatios, 0.0)]
 		public void CanSetSetting (string key, object v)
 		{
-			backend.Set (key, v);
-			backend.SaveSettings ();
+			jsonBackend.Set (key, v);
+			jsonBackend.SaveSettings ();
 			Assert.That (new FileInfo (TestSettingsFile).Length > 0);
 
 			var settings = LoadSettings (TestSettingsFile);
@@ -86,11 +86,11 @@ namespace FSpot.Preferences.UnitTest
 		[TestCase (Settings.Preferences.StoragePath, "StoragePathString")]
 		public void CanGetStringSettings (string key, string v)
 		{
-			backend.Set (key, v);
-			backend.SaveSettings ();
+			jsonBackend.Set (key, v);
+			jsonBackend.SaveSettings ();
 			Assert.That (new FileInfo (TestSettingsFile).Length > 0);
 
-			var result = backend.Get<string> (key);
+			var result = jsonBackend.Get<string> (key);
 
 			Assert.AreEqual (v, result);
 		}
@@ -98,11 +98,11 @@ namespace FSpot.Preferences.UnitTest
 		[TestCase (Settings.Preferences.ExportKey, true)]
 		public void CanGetBoolSettings (string key, bool v)
 		{
-			backend.Set (key, v);
-			backend.SaveSettings ();
+			jsonBackend.Set (key, v);
+			jsonBackend.SaveSettings ();
 			Assert.That (new FileInfo (TestSettingsFile).Length > 0);
 
-			var result = backend.Get<bool> (key);
+			var result = jsonBackend.Get<bool> (key);
 
 			Assert.AreEqual (v, result);
 		}
@@ -111,11 +111,11 @@ namespace FSpot.Preferences.UnitTest
 		[TestCase (Settings.Preferences.CustomCropRatios, 0.0)]
 		public void CanGetDoubleSettings (string key, double v)
 		{
-			backend.Set (key, v);
-			backend.SaveSettings ();
+			jsonBackend.Set (key, v);
+			jsonBackend.SaveSettings ();
 			Assert.That (new FileInfo (TestSettingsFile).Length > 0);
 
-			var result = backend.Get<double> (key);
+			var result = jsonBackend.Get<double> (key);
 
 			Assert.AreEqual (v, result);
 		}
@@ -123,7 +123,7 @@ namespace FSpot.Preferences.UnitTest
 		[Test]
 		public void UnsetSettingThrowsNoSuchKeyException ()
 		{
-			Assert.Throws<NoSuchKeyException> (() => backend.Get<bool> ("RandomKey123"));
+			Assert.Throws<NoSuchKeyException> (() => jsonBackend.Get<bool> ("RandomKey123"));
 		}
 
 		// Preferences returns the default value instead of an exception

@@ -87,16 +87,16 @@ namespace FSpot.Platform
 			return proxy;
 		}
 
-		//static PreferenceBackend backend;
+		//static PreferenceJsonBackend jsonBackend;
 		//static EventHandler<NotifyEventArgs> changed_handler;
-		//static PreferenceBackend Backend {
+		//static PreferenceJsonBackend JsonBackend {
 		//	get {
-		//		if (backend == null) {
-		//			backend = new PreferenceBackend ();
+		//		if (jsonBackend == null) {
+		//			jsonBackend = new PreferenceJsonBackend ();
 		//			changed_handler = new EventHandler<NotifyEventArgs> (OnPreferenceChanged);
-		//			//backend.AddNotify (PROXY, changed_handler);
+		//			//jsonBackend.AddNotify (PROXY, changed_handler);
 		//		}
-		//		return backend;
+		//		return jsonBackend;
 		//	}
 		//}
 	}
