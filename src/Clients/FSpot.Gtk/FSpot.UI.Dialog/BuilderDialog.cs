@@ -27,6 +27,8 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System.Reflection;
+
 using GtkBeans;
 
 namespace FSpot.UI.Dialog
@@ -37,7 +39,7 @@ namespace FSpot.UI.Dialog
 		{
 		}
 
-		protected BuilderDialog (System.Reflection.Assembly assembly, string resourceName, string dialogName) : this (new Builder (assembly, resourceName, null), dialogName)
+		protected BuilderDialog (Assembly assembly, string resourceName, string dialogName) : this (new Builder (assembly, resourceName, null), dialogName)
 		{
 		}
 
