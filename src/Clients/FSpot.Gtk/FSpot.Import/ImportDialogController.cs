@@ -9,151 +9,59 @@
 // Copyright (C) 2010 Novell, Inc.
 // Copyright (C) 2010 Ruben Vermeersch
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading;
+
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.FileSystem;
 using FSpot.Imaging;
-using FSpot.Settings;
+
 using Gtk;
+
 using Hyena;
+
 using Mono.Unix;
 
 namespace FSpot.Import
 {
 	public class ImportDialogController
 	{
+		public ImportPreferences Preferences { get; }
 		public PhotoList Photos { get; }
+		public int PhotosImported { get; private set; }
+		public List<SafeUri> FailedImports { get; }
+
+		List<ImportSource> sources;
+		public List<ImportSource> Sources {
+			get => sources ??= ScanSources ();
+		}
 
 		public ImportDialogController (bool persistPreferences)
 		{
-			// This flag determines whether or not the chosen options will be
-			// saved. You don't want to overwrite user preferences when running
-			// headless.
-			this.persistPreferences = persistPreferences;
+			Preferences = new ImportPreferences (persistPreferences);
 
 			Photos = new PhotoList ();
 			FailedImports = new List<SafeUri> ();
-			LoadPreferences ();
 		}
-
-#region Import Preferences
-
-		readonly bool persistPreferences;
-		bool copyFiles = true;
-		bool removeOriginals;
-		bool recurseSubdirectories = true;
-		bool duplicateDetect = true;
-		bool mergeRawAndJpeg = true;
-
-		public bool CopyFiles {
-			get { return copyFiles; }
-			set { copyFiles = value; SavePreferences (); }
-		}
-
-		public bool RemoveOriginals {
-			get { return removeOriginals; }
-			set { removeOriginals = value; SavePreferences (); }
-		}
-
-		public bool RecurseSubdirectories {
-			get { return recurseSubdirectories; }
-			set {
-				if (recurseSubdirectories == value)
-					return;
-				recurseSubdirectories = value;
-				SavePreferences ();
-				StartScan ();
-			}
-		}
-
-		public bool DuplicateDetect {
-			get { return duplicateDetect; }
-			set { duplicateDetect = value; SavePreferences (); }
-		}
-
-		public bool MergeRawAndJpeg {
-			get { return mergeRawAndJpeg; }
-			set {
-				if (mergeRawAndJpeg == value)
-					return;
-				mergeRawAndJpeg = value;
-				SavePreferences ();
-				StartScan ();
-			}
-		}
-
-		void LoadPreferences ()
-		{
-			if (!persistPreferences)
-				return;
-
-			copyFiles = Preferences.Get<bool> (Preferences.ImportCopyFiles);
-			recurseSubdirectories = Preferences.Get<bool> (Preferences.ImportIncludeSubfolders);
-			duplicateDetect = Preferences.Get<bool> (Preferences.ImportCheckDuplicates);
-			removeOriginals = Preferences.Get<bool> (Preferences.ImportRemoveOriginals);
-			mergeRawAndJpeg = Preferences.Get<bool> (Preferences.ImportMergeRawAndJpeg);
-		}
-
-		void SavePreferences ()
-		{
-			if (!persistPreferences)
-				return;
-
-			Preferences.Set(Preferences.ImportCopyFiles, copyFiles);
-			Preferences.Set(Preferences.ImportIncludeSubfolders, recurseSubdirectories);
-			Preferences.Set(Preferences.ImportCheckDuplicates, duplicateDetect);
-			Preferences.Set(Preferences.ImportRemoveOriginals, removeOriginals);
-			Preferences.Set (Preferences.ImportMergeRawAndJpeg, mergeRawAndJpeg);
-		}
-
-#endregion
-
-#region Source Scanning
-
-		List<ImportSource> sources;
-		public List<ImportSource> Sources => sources ?? (sources = ScanSources ());
 
 		static List<ImportSource> ScanSources ()
 		{
 			var monitor = GLib.VolumeMonitor.Default;
 			var sources = new List<ImportSource> ();
-			foreach (var mount in monitor.Mounts) {
-				var root = new SafeUri (mount.Root.Path);
 
-				var themedIcon = mount.Icon as GLib.ThemedIcon;
-				if (themedIcon != null && themedIcon.Names.Length > 0) {
-					sources.Add (new ImportSource (root, mount.Name, themedIcon.Names [0]));
-				} else {
-					sources.Add (new ImportSource (root, mount.Name, null));
-				}
+			foreach (var drive in DriveInfo.GetDrives ()) {
+				var root = new SafeUri (drive.RootDirectory.FullName);
+				var label = !string.IsNullOrEmpty (drive.VolumeLabel) ? drive.VolumeLabel : "Local Disk";
+				sources.Add (new ImportSource (root, $"{label} ({drive.Name})", null));
 			}
 			return sources;
 		}
 
-#endregion
 
 #region Status Reporting
 
@@ -165,9 +73,7 @@ namespace FSpot.Import
 
 		void FireEvent (ImportEvent evnt)
 		{
-			ThreadAssist.ProxyToMain (() => {
-				StatusEvent?.Invoke (evnt);
-			});
+			ThreadAssist.ProxyToMain (() => { StatusEvent?.Invoke (evnt); });
 		}
 
 		void ReportProgress (int current, int total)
@@ -175,8 +81,6 @@ namespace FSpot.Import
 			ProgressUpdated?.Invoke (current, total);
 		}
 
-		public int PhotosImported { get; private set; }
-		public List<SafeUri> FailedImports { get; }
 
 #endregion
 
@@ -205,15 +109,12 @@ namespace FSpot.Import
 
 		Thread scanThread;
 		CancellationTokenSource scanTokenSource;
-
 		void StartScan ()
 		{
-			if (scanThread != null) {
+			if (scanThread != null)
 				CancelScan ();
-			}
-			if (activeSource == null) {
+			if (activeSource == null)
 				return;
-			}
 
 			var source = activeSource.GetFileImportSource (
 				App.Instance.Container.Resolve<IImageFileFactory> (),
@@ -221,14 +122,15 @@ namespace FSpot.Import
 			Photos.Clear ();
 
 			scanTokenSource = new CancellationTokenSource ();
-			scanThread = ThreadAssist.Spawn (() => DoScan (source, recurseSubdirectories, mergeRawAndJpeg, scanTokenSource.Token));
+			scanThread = ThreadAssist.Spawn (() => DoScan (source, Preferences, scanTokenSource.Token));
 		}
 
 		void CancelScan ()
 		{
 			if (scanThread == null)
 				return;
-			scanTokenSource.Cancel ();
+
+			scanTokenSource?.Cancel ();
 			scanThread.Join ();
 			scanThread = null;
 			scanTokenSource = null;
@@ -242,11 +144,12 @@ namespace FSpot.Import
 			}
 		}
 
-		void DoScan (IImportSource source, bool recurse, bool merge, CancellationToken token)
+		void DoScan (IImportSource source, ImportPreferences preferences, CancellationToken token)
 		{
 			FireEvent (ImportEvent.PhotoScanStarted);
 
-			foreach (var info in source.ScanPhotos (recurse, merge)) {
+			var scanPhotos = source.ScanPhotos (preferences);
+			foreach (var info in scanPhotos) {
 				ThreadAssist.ProxyToMain (() => Photos.Add (info));
 				if (token.IsCancellationRequested)
 					break;
@@ -287,8 +190,7 @@ namespace FSpot.Import
 			FireEvent (ImportEvent.ImportStarted);
 
 			var importer = App.Instance.Container.Resolve<IImportController> ();
-			importer.DoImport (App.Instance.Database, Photos, attachTags, DuplicateDetect, CopyFiles,
-				RemoveOriginals, (current, total) => ThreadAssist.ProxyToMain (() => ReportProgress (current, total)),
+			importer.DoImport (App.Instance.Database, Photos, attachTags, Preferences, (current, total) => ThreadAssist.ProxyToMain (() => ReportProgress (current, total)),
 				token);
 
 			PhotosImported = importer.PhotosImported;

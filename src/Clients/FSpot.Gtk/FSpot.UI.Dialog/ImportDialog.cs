@@ -7,45 +7,32 @@
 // Copyright (C) 2010 Novell, Inc.
 // Copyright (C) 2010 Ruben Vermeersch
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+
 using FSpot.Import;
 using FSpot.Settings;
 using FSpot.Utils;
 using FSpot.Widgets;
+
 using Gtk;
+
 using Hyena;
+
 using Mono.Unix;
 
 namespace FSpot.UI.Dialog
 {
 	public class ImportDialog : BuilderDialog
 	{
-		static readonly string select_folder_label = Catalog.GetString ("Choose Folder...");
+		static readonly string SelectFolderLabel = Catalog.GetString ("Choose Folder...");
 		ImportDialogController Controller { get; set; }
 		TreeStore Sources { get; set; }
 
-		static Dictionary<string, ImportSource> history_sources = new Dictionary<string, ImportSource> ();
+		static readonly Dictionary<string, ImportSource> historySources = new Dictionary<string, ImportSource> ();
 
 #pragma warning disable 649
 		[GtkBeans.Builder.Object] Button cancel_button;
@@ -71,16 +58,17 @@ namespace FSpot.UI.Dialog
 		public ImportDialog (ImportDialogController controller, Window parent) : base ("import.ui", "import_dialog")
 		{
 			Controller = controller;
-			BuildUI (parent);
+			TransientFor = parent;
+			BuildDialog ();
+
 			ResetPreview ();
 			LoadPreferences ();
 			ScanSources ();
 			ConnectEvents ();
 		}
 
-		void BuildUI (Window parent)
+		void BuildDialog ()
 		{
-			TransientFor = parent;
 			WindowPosition = WindowPosition.CenterOnParent;
 
 			photo_view = new PhotoImageView (Controller.Photos);
@@ -91,7 +79,7 @@ namespace FSpot.UI.Dialog
 			GtkUtil.ModifyColors (photo_scrolled);
 			GtkUtil.ModifyColors (photo_view);
 
-			var tray = new BrowseablePointerGridView (photo_view.Item) {
+			using var tray = new BrowseablePointerGridView (photo_view.Item) {
 				DisplayTags = false
 			};
 			icon_scrolled.Add (tray);
@@ -124,101 +112,116 @@ namespace FSpot.UI.Dialog
 				import_hpaned.Position = Preferences.Get<int> (Preferences.ImportWindowPanePosition);
 			}
 
-			copy_check.Active = Controller.CopyFiles;
-			recurse_check.Active = Controller.RecurseSubdirectories;
-			duplicate_check.Active = Controller.DuplicateDetect;
-			remove_check.Active = Controller.RemoveOriginals;
+			var preferences = Controller.Preferences;
+			copy_check.Active = preferences.CopyFiles;
+			recurse_check.Active = preferences.RecurseSubdirectories;
+			duplicate_check.Active = preferences.DuplicateDetect;
+			remove_check.Active = preferences.RemoveOriginals;
 			remove_check.Sensitive = copy_check.Active;
 			remove_warning_button.Sensitive = copy_check.Active && remove_check.Active;
-			merge_raw_and_jpeg_check.Active = Controller.MergeRawAndJpeg;
+			merge_raw_and_jpeg_check.Active = preferences.MergeRawAndJpeg;
 		}
 
-		void ScanSources ()
+		async Task ScanSources ()
 		{
 			// Populates the source combo box
 			Sources = new TreeStore (typeof(ImportSource), typeof(string), typeof(string), typeof(bool));
 			sources_combo.Model = Sources;
 			sources_combo.RowSeparatorFunc = (m, i) => (m.GetValue (i, 1) as string) == string.Empty;
-			var render = new CellRendererPixbuf ();
+
+			using var render = new CellRendererPixbuf ();
 			sources_combo.PackStart (render, false);
 			sources_combo.SetAttributes (render, "icon-name", 2, "sensitive", 3);
-			var render2 = new CellRendererText ();
+
+			using var render2 = new CellRendererText ();
 			sources_combo.PackStart (render2, true);
 			sources_combo.SetAttributes (render2, "text", 1, "sensitive", 3);
 
-			GLib.Idle.Add (() => {
-				try {
-					PopulateSourceCombo (null);
-					QueueDraw ();
-				} catch (Exception e) {
-					// Swallow the exception if the import was cancelled / dialog was closed.
-					if (Controller != null)
-						throw e;
-				}
-				return false;
-			});
+			try {
+				await PopulateSourceCombo (null);
+				QueueDraw ();
+			} catch (Exception) {
+				// Swallow the exception if the import was cancelled / dialog was closed.
+				if (Controller != null)
+					throw;
+			}
 		}
 
-		void PopulateSourceCombo (ImportSource sourceToActivate)
+		async Task PopulateSourceCombo (ImportSource sourceToActivate)
 		{
-			int activate_index = 0;
+			int activateIndex = 0;
 			sources_combo.Changed -= OnSourceComboChanged;
 			Sources.Clear ();
 			Sources.AppendValues (null, Catalog.GetString ("Choose Import source..."), string.Empty, true);
-			Sources.AppendValues (null, select_folder_label, "folder", true);
+			Sources.AppendValues (null, SelectFolderLabel, "folder", true);
 			Sources.AppendValues (null, string.Empty, string.Empty);
-			bool mount_added = false;
+			bool mountAdded = false;
+
 			foreach (var source in Controller.Sources) {
-				if (source == sourceToActivate) {
-					activate_index = Sources.IterNChildren ();
-				}
+				if (source == sourceToActivate)
+					activateIndex = Sources.IterNChildren ();
+
 				Sources.AppendValues (source, source.Name, source.IconName, true);
-				mount_added = true;
-			}
-			if (!mount_added) {
-				Sources.AppendValues (null, Catalog.GetString ("(No Cameras Detected)"), string.Empty, false);
+				mountAdded = true;
 			}
 
-			if (history_sources.Count > 0) {
+			if (!mountAdded)
+				Sources.AppendValues (null, Catalog.GetString ("(No Cameras Detected)"), string.Empty, false);
+
+			if (historySources.Count > 0) {
 				Sources.AppendValues (null, string.Empty, string.Empty);
-				foreach (var source in history_sources.Values) {
-					if (source == sourceToActivate) {
-						activate_index = Sources.IterNChildren ();
-					}
+				foreach (var source in historySources.Values) {
+					if (source == sourceToActivate)
+						activateIndex = Sources.IterNChildren ();
+
 					Sources.AppendValues (source, source.Name, source.IconName, true);
 				}
 			}
 			sources_combo.Changed += OnSourceComboChanged;
-			sources_combo.Active = activate_index;
+			sources_combo.Active = activateIndex;
 		}
 
 		void ConnectEvents ()
 		{
+			var preferences = Controller.Preferences;
 			Controller.StatusEvent += OnControllerStatusEvent;
 			Controller.ProgressUpdated += OnControllerProgressUpdated;
+
 			copy_check.Toggled += (o, args) => {
-				Controller.CopyFiles = copy_check.Active;
+				preferences.CopyFiles = copy_check.Active;
 				remove_check.Sensitive = copy_check.Active;
 				remove_warning_button.Sensitive = copy_check.Active && remove_check.Active;
 			};
-			recurse_check.Toggled += (o, args) => { Controller.RecurseSubdirectories = recurse_check.Active; };
-			duplicate_check.Toggled += (o, args) => { Controller.DuplicateDetect = duplicate_check.Active; };
+
+			recurse_check.Toggled += (o, args) => {
+				preferences.RecurseSubdirectories = recurse_check.Active;
+			};
+
+			duplicate_check.Toggled += (o, args) => {
+				preferences.DuplicateDetect = duplicate_check.Active;
+			};
+
 			remove_check.Toggled += (o, args) => {
-				Controller.RemoveOriginals = remove_check.Active;
+				preferences.RemoveOriginals = remove_check.Active;
 				remove_warning_button.Sensitive = copy_check.Active && remove_check.Active;
 			};
+
 			import_button.Clicked += (o, args) => StartImport ();
 			cancel_button.Clicked += (o, args) => CancelImport ();
+
 			remove_warning_button.Clicked += (o, args) => {
-				var dialog = new MessageDialog (this, DialogFlags.Modal, MessageType.Warning, ButtonsType.Ok, true,
-						Catalog.GetString ("Checking this box will remove the imported photos from the camera after the import finished successfully.\n\nIt is generally recommended to backup your photos before removing them from the camera. <b>Use this option at your own risk!</b>"));
-				dialog.Title = Catalog.GetString ("Warning");
+				using var dialog = new MessageDialog (this, DialogFlags.Modal, MessageType.Warning, ButtonsType.Ok, true,
+						Catalog.GetString ("Checking this box will remove the imported photos from the camera after the import finished successfully.\n\nIt is generally recommended to backup your photos before removing them from the camera. <b>Use this option at your own risk!</b>")) {
+					Title = Catalog.GetString ("Warning")
+				};
 				dialog.Response += (s, arg) => dialog.Destroy ();
 				dialog.Run ();
 			};
+
 			merge_raw_and_jpeg_check.Toggled += (o, args) => {
-				Controller.MergeRawAndJpeg = merge_raw_and_jpeg_check.Active;
+				preferences.MergeRawAndJpeg = merge_raw_and_jpeg_check.Active;
 			};
+
 			Response += (o, args) => {
 				if (args.ResponseId == ResponseType.DeleteEvent) {
 					CancelImport ();
@@ -228,31 +231,29 @@ namespace FSpot.UI.Dialog
 
 		void ShowFolderSelector ()
 		{
-			var file_chooser = new FileChooserDialog (
-				Catalog.GetString ("Import"), this,
-				FileChooserAction.SelectFolder,
-				Stock.Cancel, ResponseType.Cancel,
-				Stock.Open, ResponseType.Ok);
+			using var fileChooser =
+				new FileChooserDialog (Catalog.GetString ("Import"), this,
+				FileChooserAction.SelectFolder, Stock.Cancel, ResponseType.Cancel,
+				Stock.Open, ResponseType.Ok) {
+				SelectMultiple = false,
+				LocalOnly = false
+			};
 
-			file_chooser.SelectMultiple = false;
-			file_chooser.LocalOnly = false;
-
-			int response = file_chooser.Run ();
-			if ((ResponseType) response == ResponseType.Ok) {
-				var uri = new SafeUri (file_chooser.Uri, true);
+			int response = fileChooser.Run ();
+			if ((ResponseType)response == ResponseType.Ok) {
+				var uri = new SafeUri (fileChooser.Uri, true);
 				SwitchToFolderSource (uri);
 			}
 
-			file_chooser.Destroy ();
+			fileChooser.Destroy ();
 		}
 
 		public void SwitchToFolderSource (SafeUri uri)
 		{
-			ImportSource source;
-			if (!history_sources.TryGetValue (uri, out source)) {
+			if (!historySources.TryGetValue (uri, out var source)) {
 				var name = uri.GetFilename ();
 				source = new ImportSource (uri, name, "folder");
-				history_sources[uri] = source;
+				historySources[uri] = source;
 			}
 
 			PopulateSourceCombo (source);
@@ -269,12 +270,10 @@ namespace FSpot.UI.Dialog
 			}
 			current_index = sources_combo.Active;
 
-			TreeIter iter;
-			sources_combo.GetActiveIter (out iter);
-			var source = Sources.GetValue (iter, 0) as ImportSource;
-			if (source == null) {
-				var label = (string) Sources.GetValue (iter, 1);
-				if (label == select_folder_label) {
+			sources_combo.GetActiveIter (out var iter);
+			if (!(Sources.GetValue (iter, 0) is ImportSource source)) {
+				var label = (string)Sources.GetValue (iter, 1);
+				if (label == SelectFolderLabel) {
 					ShowFolderSelector ();
 					return;
 				}
@@ -286,7 +285,7 @@ namespace FSpot.UI.Dialog
 
 		void OnControllerStatusEvent (ImportEvent evnt)
 		{
-			Log.DebugFormat ("Received controller event: {0}", evnt);
+			Log.Debug ($"Received controller event: {evnt}");
 
 			switch (evnt) {
 				case ImportEvent.SourceChanged:
@@ -324,14 +323,15 @@ namespace FSpot.UI.Dialog
 			if (Controller.FailedImports.Count == 0)
 				return;
 
-			new ImportFailureDialog (files).Show ();
+			using var dialog = new ImportFailureDialog (files);
+			dialog.Show ();
 		}
 
 		void OnControllerProgressUpdated (int current, int total)
 		{
-			var importing_label = Catalog.GetString ("Importing Photos: {0} of {1}...");
-			progress_bar.Text = string.Format (importing_label, current, total);
-			progress_bar.Fraction = (double) current / Math.Max (total, 1);
+			var importingLabel = Catalog.GetString ("Importing Photos: {0} of {1}...");
+			progress_bar.Text = string.Format (importingLabel, current, total);
+			progress_bar.Fraction = (double)current / Math.Max (total, 1);
 		}
 
 		void StartImport ()
