@@ -48,16 +48,13 @@ namespace FSpot.Widgets
 		public event TagsAttachedHandler TagsAttached;
 		public event TagsRemovedHandler TagsRemoved;
 
-		TagStore _tagStore;
+		readonly TagStore tagStore;
 
-		protected TagEntry (System.IntPtr raw)
-		{
-			Raw = raw;
-		}
+		protected TagEntry (System.IntPtr raw) : base(raw) { }
 
 		public TagEntry (TagStore tagStore, bool updateOnFocusOut = true)
 		{
-			_tagStore = tagStore;
+			this.tagStore = tagStore;
 			KeyPressEvent += HandleKeyPressEvent;
 			if (updateOnFocusOut)
 				FocusOutEvent += HandleFocusOutEvent;
@@ -218,7 +215,7 @@ namespace FSpot.Widgets
 				if (tag_completion_typed_so_far == null || tag_completion_typed_so_far.Length == 0)
 					return;
 
-				tag_completions = _tagStore.GetTagsByNameStart (tag_completion_typed_so_far);
+				tag_completions = tagStore.GetTagsByNameStart (tag_completion_typed_so_far);
 				if (tag_completions == null)
 					return;
 
@@ -272,7 +269,7 @@ namespace FSpot.Widgets
 				if (selected_photos_tagnames.Contains (tagnames [i]))
 					continue;
 
-				Tag t = _tagStore.GetTagByName (tagnames [i]);
+				Tag t = tagStore.GetTagByName (tagnames [i]);
 
 				if (t != null) // Correct for capitalization differences
 					tagnames [i] = t.Name;
@@ -288,7 +285,7 @@ namespace FSpot.Widgets
 			List<Tag> remove_tags = new List<Tag> ();
 			foreach (string tagname in selected_photos_tagnames) {
 				if (! IsTagInList (tagnames, tagname)) {
-					Tag tag = _tagStore.GetTagByName (tagname);
+					Tag tag = tagStore.GetTagByName (tagname);
 					remove_tags.Add (tag);
 				}
 			}
