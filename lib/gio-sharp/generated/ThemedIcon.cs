@@ -14,7 +14,7 @@ namespace GLib {
 		protected ThemedIcon(GLib.GType gtype) : base(gtype) {}
 		public ThemedIcon(IntPtr raw) : base(raw) {}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_themed_icon_new(IntPtr iconname);
 
 		public ThemedIcon (string iconname) : base (IntPtr.Zero)
@@ -27,7 +27,7 @@ namespace GLib {
 			GLib.Marshaller.Free (native_iconname);
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_themed_icon_new_from_names(IntPtr iconnames, int len);
 
 		public static ThemedIcon NewFromNames(string iconnames)
@@ -36,7 +36,7 @@ namespace GLib {
 			return result;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_themed_icon_new_with_default_fallbacks(IntPtr iconname);
 
 		public static ThemedIcon NewWithDefaultFallbacks(string iconname)
@@ -57,7 +57,7 @@ namespace GLib {
 			}
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_themed_icon_get_names(IntPtr raw);
 
 		[GLib.Property ("names")]
@@ -69,7 +69,7 @@ namespace GLib {
 			}
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_themed_icon_get_type();
 
 		public static new GLib.GType GType { 
@@ -80,7 +80,7 @@ namespace GLib {
 			}
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_themed_icon_prepend_name(IntPtr raw, IntPtr iconname);
 
 		public void PrependName(string iconname) {
@@ -89,7 +89,7 @@ namespace GLib {
 			GLib.Marshaller.Free (native_iconname);
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_themed_icon_append_name(IntPtr raw, IntPtr iconname);
 
 		public void AppendName(string iconname) {
@@ -98,7 +98,7 @@ namespace GLib {
 			GLib.Marshaller.Free (native_iconname);
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_icon_to_string(IntPtr raw);
 
 		public override string ToString() {
@@ -107,7 +107,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_icon_equal(IntPtr raw, IntPtr icon2);
 
 		public bool Equal(GLib.Icon icon2) {

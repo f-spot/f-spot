@@ -1618,7 +1618,7 @@ namespace GLib {
 			this.handle = handle;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_get_type();
 
 		private static GLib.GType _gtype = new GLib.GType (g_file_get_type ());
@@ -1662,7 +1662,7 @@ namespace GLib {
 			}
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_file_copy(IntPtr raw, IntPtr destination, int flags, IntPtr cancellable, GLibSharp.FileProgressCallbackNative progress_callback, IntPtr progress_callback_data, out IntPtr error);
 
 		public bool Copy(GLib.File destination, GLib.FileCopyFlags flags, GLib.Cancellable cancellable, GLib.FileProgressCallback progress_callback) {
@@ -1674,7 +1674,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_get_basename(IntPtr raw);
 
 		public string Basename { 
@@ -1685,7 +1685,7 @@ namespace GLib {
 			}
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_create(IntPtr raw, int flags, IntPtr cancellable, out IntPtr error);
 
 		public GLib.FileOutputStream Create(GLib.FileCreateFlags flags, GLib.Cancellable cancellable) {
@@ -1696,7 +1696,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_file_eject_mountable_with_operation(IntPtr raw, int flags, IntPtr mount_operation, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		public void EjectMountableWithOperation(GLib.MountUnmountFlags flags, GLib.MountOperation mount_operation, GLib.Cancellable cancellable, GLib.AsyncReadyCallback cb) {
@@ -1705,7 +1705,7 @@ namespace GLib {
 			g_file_eject_mountable_with_operation(Handle, (int) flags, mount_operation == null ? IntPtr.Zero : mount_operation.Handle, cancellable == null ? IntPtr.Zero : cancellable.Handle, cb_wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_file_load_contents_async(IntPtr raw, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		public void LoadContentsAsync(GLib.Cancellable cancellable, GLib.AsyncReadyCallback cb) {
@@ -1714,7 +1714,7 @@ namespace GLib {
 			g_file_load_contents_async(Handle, cancellable == null ? IntPtr.Zero : cancellable.Handle, cb_wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_open_readwrite_finish(IntPtr raw, IntPtr res, out IntPtr error);
 
 		public GLib.FileIOStream OpenReadwriteFinish(GLib.AsyncResult res) {
@@ -1725,7 +1725,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_set_display_name(IntPtr raw, IntPtr display_name, IntPtr cancellable, out IntPtr error);
 
 		public GLib.File SetDisplayName(string display_name, GLib.Cancellable cancellable) {
@@ -1738,7 +1738,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_query_writable_namespaces(IntPtr raw, IntPtr cancellable, out IntPtr error);
 
 		public GLib.FileAttributeInfoList QueryWritableNamespaces(GLib.Cancellable cancellable) {
@@ -1749,7 +1749,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_file_load_partial_contents_async(IntPtr raw, IntPtr cancellable, GLibSharp.FileReadMoreCallbackNative read_more_callback, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		public void LoadPartialContentsAsync(GLib.Cancellable cancellable, GLib.FileReadMoreCallback read_more_callback, GLib.AsyncReadyCallback cb) {
@@ -1759,7 +1759,7 @@ namespace GLib {
 			g_file_load_partial_contents_async(Handle, cancellable == null ? IntPtr.Zero : cancellable.Handle, read_more_callback_wrapper.NativeDelegate, cb_wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_file_read_async(IntPtr raw, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		public void ReadAsync(int io_priority, GLib.Cancellable cancellable, GLib.AsyncReadyCallback cb) {
@@ -1768,7 +1768,7 @@ namespace GLib {
 			g_file_read_async(Handle, io_priority, cancellable == null ? IntPtr.Zero : cancellable.Handle, cb_wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_file_set_attributes_async(IntPtr raw, IntPtr info, int flags, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		public void SetAttributesAsync(GLib.FileInfo info, GLib.FileQueryInfoFlags flags, int io_priority, GLib.Cancellable cancellable, GLib.AsyncReadyCallback cb) {
@@ -1777,7 +1777,7 @@ namespace GLib {
 			g_file_set_attributes_async(Handle, info == null ? IntPtr.Zero : info.Handle, (int) flags, io_priority, cancellable == null ? IntPtr.Zero : cancellable.Handle, cb_wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_create_readwrite_finish(IntPtr raw, IntPtr res, out IntPtr error);
 
 		public GLib.FileIOStream CreateReadwriteFinish(GLib.AsyncResult res) {
@@ -1788,7 +1788,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_file_eject_mountable_finish(IntPtr raw, IntPtr result, out IntPtr error);
 
 		[Obsolete]
@@ -1800,7 +1800,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_query_default_handler(IntPtr raw, IntPtr cancellable, out IntPtr error);
 
 		public GLib.AppInfo QueryDefaultHandler(GLib.Cancellable cancellable) {
@@ -1811,7 +1811,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_get_path(IntPtr raw);
 
 		public string Path { 
@@ -1822,7 +1822,7 @@ namespace GLib {
 			}
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_file_equal(IntPtr raw, IntPtr file2);
 
 		public bool Equal(GLib.File file2) {
@@ -1831,7 +1831,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_file_set_attributes_from_info(IntPtr raw, IntPtr info, int flags, IntPtr cancellable, out IntPtr error);
 
 		public bool SetAttributesFromInfo(GLib.FileInfo info, GLib.FileQueryInfoFlags flags, GLib.Cancellable cancellable) {
@@ -1842,7 +1842,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_file_has_prefix(IntPtr raw, IntPtr prefix);
 
 		public bool HasPrefix(GLib.File prefix) {
@@ -1851,7 +1851,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_query_info_finish(IntPtr raw, IntPtr res, out IntPtr error);
 
 		public GLib.FileInfo QueryInfoFinish(GLib.AsyncResult res) {
@@ -1862,7 +1862,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_set_display_name_finish(IntPtr raw, IntPtr res, out IntPtr error);
 
 		public GLib.File SetDisplayNameFinish(GLib.AsyncResult res) {
@@ -1873,7 +1873,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_file_make_directory(IntPtr raw, IntPtr cancellable, out IntPtr error);
 
 		public bool MakeDirectory(GLib.Cancellable cancellable) {
@@ -1884,7 +1884,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_append_to_finish(IntPtr raw, IntPtr res, out IntPtr error);
 
 		public GLib.FileOutputStream AppendToFinish(GLib.AsyncResult res) {
@@ -1895,7 +1895,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_file_load_contents(IntPtr raw, IntPtr cancellable, IntPtr contents, out UIntPtr length, IntPtr etag_out, out IntPtr error);
 
 		public bool LoadContents(GLib.Cancellable cancellable, string contents, out ulong length, string etag_out) {
@@ -1908,7 +1908,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_get_parent(IntPtr raw);
 
 		public GLib.File Parent { 
@@ -1919,7 +1919,7 @@ namespace GLib {
 			}
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_file_eject_mountable(IntPtr raw, int flags, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		[Obsolete]
@@ -1929,7 +1929,7 @@ namespace GLib {
 			g_file_eject_mountable(Handle, (int) flags, cancellable == null ? IntPtr.Zero : cancellable.Handle, cb_wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_file_delete(IntPtr raw, IntPtr cancellable, out IntPtr error);
 
 		public bool Delete(GLib.Cancellable cancellable) {
@@ -1940,7 +1940,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern uint g_file_hash(IntPtr file);
 
 		public static uint Hash(IntPtr file) {
@@ -1949,7 +1949,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_append_to(IntPtr raw, int flags, IntPtr cancellable, out IntPtr error);
 
 		public GLib.FileOutputStream AppendTo(GLib.FileCreateFlags flags, GLib.Cancellable cancellable) {
@@ -1960,7 +1960,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern int g_file_query_file_type(IntPtr raw, int flags, IntPtr cancellable);
 
 		public GLib.FileType QueryFileType(GLib.FileQueryInfoFlags flags, GLib.Cancellable cancellable) {
@@ -1969,7 +1969,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_file_eject_mountable_with_operation_finish(IntPtr raw, IntPtr result, out IntPtr error);
 
 		public bool EjectMountableWithOperationFinish(GLib.AsyncResult result) {
@@ -1980,7 +1980,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_get_relative_path(IntPtr raw, IntPtr descendant);
 
 		public string GetRelativePath(GLib.File descendant) {
@@ -1989,7 +1989,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_file_move(IntPtr raw, IntPtr destination, int flags, IntPtr cancellable, GLibSharp.FileProgressCallbackNative progress_callback, IntPtr progress_callback_data, out IntPtr error);
 
 		public bool Move(GLib.File destination, GLib.FileCopyFlags flags, GLib.Cancellable cancellable, GLib.FileProgressCallback progress_callback) {
@@ -2001,7 +2001,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_enumerate_children(IntPtr raw, IntPtr attributes, int flags, IntPtr cancellable, out IntPtr error);
 
 		public GLib.FileEnumerator EnumerateChildren(string attributes, GLib.FileQueryInfoFlags flags, GLib.Cancellable cancellable) {
@@ -2014,7 +2014,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_file_find_enclosing_mount_async(IntPtr raw, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		public void FindEnclosingMountAsync(int io_priority, GLib.Cancellable cancellable, GLib.AsyncReadyCallback cb) {
@@ -2023,7 +2023,7 @@ namespace GLib {
 			g_file_find_enclosing_mount_async(Handle, io_priority, cancellable == null ? IntPtr.Zero : cancellable.Handle, cb_wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_file_copy_finish(IntPtr raw, IntPtr res, out IntPtr error);
 
 		public bool CopyFinish(GLib.AsyncResult res) {
@@ -2034,7 +2034,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_query_info(IntPtr raw, IntPtr attributes, int flags, IntPtr cancellable, out IntPtr error);
 
 		public GLib.FileInfo QueryInfo(string attributes, GLib.FileQueryInfoFlags flags, GLib.Cancellable cancellable) {
@@ -2047,7 +2047,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_file_poll_mountable_finish(IntPtr raw, IntPtr result, out IntPtr error);
 
 		public bool PollMountableFinish(GLib.AsyncResult result) {
@@ -2058,7 +2058,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_file_set_display_name_async(IntPtr raw, IntPtr display_name, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		public void SetDisplayNameAsync(string display_name, int io_priority, GLib.Cancellable cancellable, GLib.AsyncReadyCallback cb) {
@@ -2069,7 +2069,7 @@ namespace GLib {
 			GLib.Marshaller.Free (native_display_name);
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_file_set_attribute_int64(IntPtr raw, IntPtr attribute, long value, int flags, IntPtr cancellable, out IntPtr error);
 
 		public bool SetAttributeInt64(string attribute, long value, GLib.FileQueryInfoFlags flags, GLib.Cancellable cancellable) {
@@ -2082,7 +2082,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_file_unmount_mountable_with_operation(IntPtr raw, int flags, IntPtr mount_operation, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		public void UnmountMountableWithOperation(GLib.MountUnmountFlags flags, GLib.MountOperation mount_operation, GLib.Cancellable cancellable, GLib.AsyncReadyCallback cb) {
@@ -2091,7 +2091,7 @@ namespace GLib {
 			g_file_unmount_mountable_with_operation(Handle, (int) flags, mount_operation == null ? IntPtr.Zero : mount_operation.Handle, cancellable == null ? IntPtr.Zero : cancellable.Handle, cb_wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_file_replace_readwrite_async(IntPtr raw, IntPtr etag, bool make_backup, int flags, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		public void ReplaceReadwriteAsync(string etag, bool make_backup, GLib.FileCreateFlags flags, int io_priority, GLib.Cancellable cancellable, GLib.AsyncReadyCallback cb) {
@@ -2102,7 +2102,7 @@ namespace GLib {
 			GLib.Marshaller.Free (native_etag);
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_get_child_for_display_name(IntPtr raw, IntPtr display_name, out IntPtr error);
 
 		public GLib.File GetChildForDisplayName(string display_name) {
@@ -2115,7 +2115,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_file_replace_contents_async(IntPtr raw, IntPtr contents, UIntPtr length, IntPtr etag, bool make_backup, int flags, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		public void ReplaceContentsAsync(string contents, string etag, bool make_backup, GLib.FileCreateFlags flags, GLib.Cancellable cancellable, GLib.AsyncReadyCallback cb) {
@@ -2128,7 +2128,7 @@ namespace GLib {
 			GLib.Marshaller.Free (native_etag);
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_file_stop_mountable(IntPtr raw, int flags, IntPtr mount_operation, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		public void StopMountable(GLib.MountUnmountFlags flags, GLib.MountOperation mount_operation, GLib.Cancellable cancellable, GLib.AsyncReadyCallback cb) {
@@ -2137,7 +2137,7 @@ namespace GLib {
 			g_file_stop_mountable(Handle, (int) flags, mount_operation == null ? IntPtr.Zero : mount_operation.Handle, cancellable == null ? IntPtr.Zero : cancellable.Handle, cb_wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_file_stop_mountable_finish(IntPtr raw, IntPtr result, out IntPtr error);
 
 		public bool StopMountableFinish(GLib.AsyncResult result) {
@@ -2148,7 +2148,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_file_create_async(IntPtr raw, int flags, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		public void CreateAsync(GLib.FileCreateFlags flags, int io_priority, GLib.Cancellable cancellable, GLib.AsyncReadyCallback cb) {
@@ -2157,7 +2157,7 @@ namespace GLib {
 			g_file_create_async(Handle, (int) flags, io_priority, cancellable == null ? IntPtr.Zero : cancellable.Handle, cb_wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_monitor(IntPtr raw, int flags, IntPtr cancellable, out IntPtr error);
 
 		public GLib.FileMonitor Monitor(GLib.FileMonitorFlags flags, GLib.Cancellable cancellable) {
@@ -2168,7 +2168,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_file_query_info_async(IntPtr raw, IntPtr attributes, int flags, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		public void QueryInfoAsync(string attributes, GLib.FileQueryInfoFlags flags, int io_priority, GLib.Cancellable cancellable, GLib.AsyncReadyCallback cb) {
@@ -2179,7 +2179,7 @@ namespace GLib {
 			GLib.Marshaller.Free (native_attributes);
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_file_is_native(IntPtr raw);
 
 		public bool IsNative { 
@@ -2190,7 +2190,7 @@ namespace GLib {
 			}
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_file_query_exists(IntPtr raw, IntPtr cancellable);
 
 		public bool QueryExists(GLib.Cancellable cancellable) {
@@ -2199,7 +2199,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_file_create_readwrite_async(IntPtr raw, int flags, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		public void CreateReadwriteAsync(GLib.FileCreateFlags flags, int io_priority, GLib.Cancellable cancellable, GLib.AsyncReadyCallback cb) {
@@ -2208,7 +2208,7 @@ namespace GLib {
 			g_file_create_readwrite_async(Handle, (int) flags, io_priority, cancellable == null ? IntPtr.Zero : cancellable.Handle, cb_wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_file_set_attribute(IntPtr raw, IntPtr attribute, int type, IntPtr value_p, int flags, IntPtr cancellable, out IntPtr error);
 
 		public bool SetAttribute(string attribute, GLib.FileAttributeType type, IntPtr value_p, GLib.FileQueryInfoFlags flags, GLib.Cancellable cancellable) {
@@ -2221,7 +2221,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_file_unmount_mountable_with_operation_finish(IntPtr raw, IntPtr result, out IntPtr error);
 
 		public bool UnmountMountableWithOperationFinish(GLib.AsyncResult result) {
@@ -2232,7 +2232,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_file_trash(IntPtr raw, IntPtr cancellable, out IntPtr error);
 
 		public bool Trash(GLib.Cancellable cancellable) {
@@ -2243,7 +2243,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_replace_readwrite_finish(IntPtr raw, IntPtr res, out IntPtr error);
 
 		public GLib.FileIOStream ReplaceReadwriteFinish(GLib.AsyncResult res) {
@@ -2254,7 +2254,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_get_child(IntPtr raw, IntPtr name);
 
 		public GLib.File GetChild(string name) {
@@ -2265,7 +2265,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_file_load_partial_contents_finish(IntPtr raw, IntPtr res, IntPtr contents, out UIntPtr length, IntPtr etag_out, out IntPtr error);
 
 		public bool LoadPartialContentsFinish(GLib.AsyncResult res, string contents, out ulong length, string etag_out) {
@@ -2278,7 +2278,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_file_make_directory_with_parents(IntPtr raw, IntPtr cancellable, out IntPtr error);
 
 		public bool MakeDirectoryWithParents(GLib.Cancellable cancellable) {
@@ -2289,7 +2289,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_dup(IntPtr raw);
 
 		public GLib.File Dup() {
@@ -2298,7 +2298,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_create_readwrite(IntPtr raw, int flags, IntPtr cancellable, out IntPtr error);
 
 		public GLib.FileIOStream CreateReadwrite(GLib.FileCreateFlags flags, GLib.Cancellable cancellable) {
@@ -2309,7 +2309,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_find_enclosing_mount_finish(IntPtr raw, IntPtr res, out IntPtr error);
 
 		public GLib.Mount FindEnclosingMountFinish(GLib.AsyncResult res) {
@@ -2320,7 +2320,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_read(IntPtr raw, IntPtr cancellable, out IntPtr error);
 
 		public GLib.FileInputStream Read(GLib.Cancellable cancellable) {
@@ -2331,7 +2331,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_file_load_contents_finish(IntPtr raw, IntPtr res, IntPtr contents, out UIntPtr length, IntPtr etag_out, out IntPtr error);
 
 		public bool LoadContentsFinish(GLib.AsyncResult res, string contents, out ulong length, string etag_out) {
@@ -2344,7 +2344,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_file_query_filesystem_info_async(IntPtr raw, IntPtr attributes, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		public void QueryFilesystemInfoAsync(string attributes, int io_priority, GLib.Cancellable cancellable, GLib.AsyncReadyCallback cb) {
@@ -2355,7 +2355,7 @@ namespace GLib {
 			GLib.Marshaller.Free (native_attributes);
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_resolve_relative_path(IntPtr raw, IntPtr relative_path);
 
 		public GLib.File ResolveRelativePath(string relative_path) {
@@ -2366,7 +2366,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_create_finish(IntPtr raw, IntPtr res, out IntPtr error);
 
 		public GLib.FileOutputStream CreateFinish(GLib.AsyncResult res) {
@@ -2377,7 +2377,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_file_mount_mountable(IntPtr raw, int flags, IntPtr mount_operation, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		public void MountMountable(GLib.MountMountFlags flags, GLib.MountOperation mount_operation, GLib.Cancellable cancellable, GLib.AsyncReadyCallback cb) {
@@ -2386,7 +2386,7 @@ namespace GLib {
 			g_file_mount_mountable(Handle, (int) flags, mount_operation == null ? IntPtr.Zero : mount_operation.Handle, cancellable == null ? IntPtr.Zero : cancellable.Handle, cb_wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_replace_finish(IntPtr raw, IntPtr res, out IntPtr error);
 
 		public GLib.FileOutputStream ReplaceFinish(GLib.AsyncResult res) {
@@ -2397,7 +2397,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_mount_mountable_finish(IntPtr raw, IntPtr result, out IntPtr error);
 
 		public GLib.File MountMountableFinish(GLib.AsyncResult result) {
@@ -2408,7 +2408,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_file_poll_mountable(IntPtr raw, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		public void PollMountable(GLib.Cancellable cancellable, GLib.AsyncReadyCallback cb) {
@@ -2417,7 +2417,7 @@ namespace GLib {
 			g_file_poll_mountable(Handle, cancellable == null ? IntPtr.Zero : cancellable.Handle, cb_wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_enumerate_children_finish(IntPtr raw, IntPtr res, out IntPtr error);
 
 		public GLib.FileEnumerator EnumerateChildrenFinish(GLib.AsyncResult res) {
@@ -2428,7 +2428,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_get_uri_scheme(IntPtr raw);
 
 		public string UriScheme { 
@@ -2439,7 +2439,7 @@ namespace GLib {
 			}
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_file_has_uri_scheme(IntPtr raw, IntPtr uri_scheme);
 
 		public bool HasUriScheme(string uri_scheme) {
@@ -2450,7 +2450,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_query_filesystem_info_finish(IntPtr raw, IntPtr res, out IntPtr error);
 
 		public GLib.FileInfo QueryFilesystemInfoFinish(GLib.AsyncResult res) {
@@ -2461,7 +2461,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_file_start_mountable_finish(IntPtr raw, IntPtr result, out IntPtr error);
 
 		public bool StartMountableFinish(GLib.AsyncResult result) {
@@ -2472,7 +2472,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_get_parse_name(IntPtr raw);
 
 		public string ParsedName { 
@@ -2483,7 +2483,7 @@ namespace GLib {
 			}
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_open_readwrite(IntPtr raw, IntPtr cancellable, out IntPtr error);
 
 		public GLib.FileIOStream OpenReadwrite(GLib.Cancellable cancellable) {
@@ -2494,7 +2494,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_file_open_readwrite_async(IntPtr raw, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		public void OpenReadwriteAsync(int io_priority, GLib.Cancellable cancellable, GLib.AsyncReadyCallback cb) {
@@ -2503,7 +2503,7 @@ namespace GLib {
 			g_file_open_readwrite_async(Handle, io_priority, cancellable == null ? IntPtr.Zero : cancellable.Handle, cb_wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_file_supports_thread_contexts(IntPtr raw);
 
 		public bool SupportsThreadContexts() {
@@ -2512,7 +2512,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_file_unmount_mountable_finish(IntPtr raw, IntPtr result, out IntPtr error);
 
 		[Obsolete]
@@ -2524,7 +2524,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_find_enclosing_mount(IntPtr raw, IntPtr cancellable, out IntPtr error);
 
 		public GLib.Mount FindEnclosingMount(GLib.Cancellable cancellable) {
@@ -2535,7 +2535,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_file_replace_async(IntPtr raw, IntPtr etag, bool make_backup, int flags, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		public void ReplaceAsync(string etag, bool make_backup, GLib.FileCreateFlags flags, int io_priority, GLib.Cancellable cancellable, GLib.AsyncReadyCallback cb) {
@@ -2546,7 +2546,7 @@ namespace GLib {
 			GLib.Marshaller.Free (native_etag);
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_file_start_mountable(IntPtr raw, int flags, IntPtr start_operation, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		public void StartMountable(GLib.DriveStartFlags flags, GLib.MountOperation start_operation, GLib.Cancellable cancellable, GLib.AsyncReadyCallback cb) {
@@ -2555,7 +2555,7 @@ namespace GLib {
 			g_file_start_mountable(Handle, (int) flags, start_operation == null ? IntPtr.Zero : start_operation.Handle, cancellable == null ? IntPtr.Zero : cancellable.Handle, cb_wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_file_copy_async(IntPtr raw, IntPtr destination, int flags, int io_priority, IntPtr cancellable, GLibSharp.FileProgressCallbackNative progress_callback, IntPtr progress_callback_data, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		public void CopyAsync(GLib.File destination, GLib.FileCopyFlags flags, int io_priority, GLib.Cancellable cancellable, GLib.FileProgressCallback progress_callback, GLib.AsyncReadyCallback cb) {
@@ -2565,7 +2565,7 @@ namespace GLib {
 			g_file_copy_async(Handle, destination == null ? IntPtr.Zero : destination.Handle, (int) flags, io_priority, cancellable == null ? IntPtr.Zero : cancellable.Handle, progress_callback_wrapper.NativeDelegate, IntPtr.Zero, cb_wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_query_settable_attributes(IntPtr raw, IntPtr cancellable, out IntPtr error);
 
 		public GLib.FileAttributeInfoList QuerySettableAttributes(GLib.Cancellable cancellable) {
@@ -2576,7 +2576,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_file_set_attributes_finish(IntPtr raw, IntPtr result, IntPtr info, out IntPtr error);
 
 		public bool SetAttributesFinish(GLib.AsyncResult result, GLib.FileInfo info) {
@@ -2587,7 +2587,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_file_mount_enclosing_volume(IntPtr raw, int flags, IntPtr mount_operation, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		public void MountEnclosingVolume(GLib.MountMountFlags flags, GLib.MountOperation mount_operation, GLib.Cancellable cancellable, GLib.AsyncReadyCallback cb) {
@@ -2596,7 +2596,7 @@ namespace GLib {
 			g_file_mount_enclosing_volume(Handle, (int) flags, mount_operation == null ? IntPtr.Zero : mount_operation.Handle, cancellable == null ? IntPtr.Zero : cancellable.Handle, cb_wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_file_replace_contents_finish(IntPtr raw, IntPtr res, IntPtr new_etag, out IntPtr error);
 
 		public bool ReplaceContentsFinish(GLib.AsyncResult res, string new_etag) {
@@ -2607,7 +2607,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_file_set_attribute_uint32(IntPtr raw, IntPtr attribute, uint value, int flags, IntPtr cancellable, out IntPtr error);
 
 		public bool SetAttributeUint32(string attribute, uint value, GLib.FileQueryInfoFlags flags, GLib.Cancellable cancellable) {
@@ -2620,7 +2620,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_file_append_to_async(IntPtr raw, int flags, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		public void AppendToAsync(GLib.FileCreateFlags flags, int io_priority, GLib.Cancellable cancellable, GLib.AsyncReadyCallback cb) {
@@ -2629,7 +2629,7 @@ namespace GLib {
 			g_file_append_to_async(Handle, (int) flags, io_priority, cancellable == null ? IntPtr.Zero : cancellable.Handle, cb_wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_file_set_attribute_int32(IntPtr raw, IntPtr attribute, int value, int flags, IntPtr cancellable, out IntPtr error);
 
 		public bool SetAttributeInt32(string attribute, int value, GLib.FileQueryInfoFlags flags, GLib.Cancellable cancellable) {
@@ -2642,7 +2642,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_file_mount_enclosing_volume_finish(IntPtr raw, IntPtr result, out IntPtr error);
 
 		public bool MountEnclosingVolumeFinish(GLib.AsyncResult result) {
@@ -2653,7 +2653,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_file_set_attribute_byte_string(IntPtr raw, IntPtr attribute, IntPtr value, int flags, IntPtr cancellable, out IntPtr error);
 
 		public bool SetAttributeByteString(string attribute, string value, GLib.FileQueryInfoFlags flags, GLib.Cancellable cancellable) {
@@ -2668,7 +2668,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_file_copy_attributes(IntPtr raw, IntPtr destination, int flags, IntPtr cancellable, out IntPtr error);
 
 		public bool CopyAttributes(GLib.File destination, GLib.FileCopyFlags flags, GLib.Cancellable cancellable) {
@@ -2679,7 +2679,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_file_set_attribute_string(IntPtr raw, IntPtr attribute, IntPtr value, int flags, IntPtr cancellable, out IntPtr error);
 
 		public bool SetAttributeString(string attribute, string value, GLib.FileQueryInfoFlags flags, GLib.Cancellable cancellable) {
@@ -2694,7 +2694,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_replace(IntPtr raw, IntPtr etag, bool make_backup, int flags, IntPtr cancellable, out IntPtr error);
 
 		public GLib.FileOutputStream Replace(string etag, bool make_backup, GLib.FileCreateFlags flags, GLib.Cancellable cancellable) {
@@ -2707,7 +2707,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_file_enumerate_children_async(IntPtr raw, IntPtr attributes, int flags, int io_priority, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		public void EnumerateChildrenAsync(string attributes, GLib.FileQueryInfoFlags flags, int io_priority, GLib.Cancellable cancellable, GLib.AsyncReadyCallback cb) {
@@ -2718,7 +2718,7 @@ namespace GLib {
 			GLib.Marshaller.Free (native_attributes);
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_file_set_attribute_uint64(IntPtr raw, IntPtr attribute, ulong value, int flags, IntPtr cancellable, out IntPtr error);
 
 		public bool SetAttributeUint64(string attribute, ulong value, GLib.FileQueryInfoFlags flags, GLib.Cancellable cancellable) {
@@ -2731,7 +2731,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_file_make_symbolic_link(IntPtr raw, IntPtr symlink_value, IntPtr cancellable, out IntPtr error);
 
 		public bool MakeSymbolicLink(string symlink_value, GLib.Cancellable cancellable) {
@@ -2744,7 +2744,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_file_replace_contents(IntPtr raw, IntPtr contents, UIntPtr length, IntPtr etag, bool make_backup, int flags, IntPtr new_etag, IntPtr cancellable, out IntPtr error);
 
 		public bool ReplaceContents(string contents, string etag, bool make_backup, GLib.FileCreateFlags flags, string new_etag, GLib.Cancellable cancellable) {
@@ -2759,7 +2759,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_file_unmount_mountable(IntPtr raw, int flags, IntPtr cancellable, GLibSharp.AsyncReadyCallbackNative cb, IntPtr user_data);
 
 		[Obsolete]
@@ -2769,7 +2769,7 @@ namespace GLib {
 			g_file_unmount_mountable(Handle, (int) flags, cancellable == null ? IntPtr.Zero : cancellable.Handle, cb_wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_query_filesystem_info(IntPtr raw, IntPtr attributes, IntPtr cancellable, out IntPtr error);
 
 		public GLib.FileInfo QueryFilesystemInfo(string attributes, GLib.Cancellable cancellable) {
@@ -2782,7 +2782,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_parse_name(IntPtr parse_name);
 
 		public static GLib.File ParseName(string parse_name) {
@@ -2793,7 +2793,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_read_finish(IntPtr raw, IntPtr res, out IntPtr error);
 
 		public GLib.FileInputStream ReadFinish(GLib.AsyncResult res) {
@@ -2804,7 +2804,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_file_replace_readwrite(IntPtr raw, IntPtr etag, bool make_backup, int flags, IntPtr cancellable, out IntPtr error);
 
 		public GLib.FileIOStream ReplaceReadwrite(string etag, bool make_backup, GLib.FileCreateFlags flags, GLib.Cancellable cancellable) {
@@ -2861,7 +2861,7 @@ public bool Delete ()
 	return Delete (null);
 }
 
-[DllImport("libgio-2.0-0.dll")]
+[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 static extern IntPtr g_file_get_uri(IntPtr raw);
 
 public System.Uri Uri {
