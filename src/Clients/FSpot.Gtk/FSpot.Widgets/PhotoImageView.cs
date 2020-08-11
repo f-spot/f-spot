@@ -81,7 +81,7 @@ namespace FSpot.Widgets
 			if (loader != null)
 				while (loader.Loading)
 					Gtk.Application.RunIteration ();
-			return this.Pixbuf;
+			return Pixbuf;
 		}
 
 		public void Reload ()
@@ -116,8 +116,7 @@ namespace FSpot.Widgets
 			bool handled = true;
 
 			// Scroll if image is zoomed in (scrollbars are visible)
-			Gtk.ScrolledWindow scrolled_w = this.Parent as Gtk.ScrolledWindow;
-			bool scrolled = scrolled_w != null && !this.Fit;
+			bool scrolled = Parent is Gtk.ScrolledWindow scrolled_w && !Fit;
 
 			// Go to the next/previous photo when not zoomed (no scrollbars)
 			switch (evnt.Key) {
@@ -199,8 +198,7 @@ namespace FSpot.Widgets
 		void Load (SafeUri uri)
 		{
 			timer = Log.DebugTimerStart ();
-			if (loader != null)
-				loader.Dispose ();
+			loader?.Dispose ();
 
 			loader = ImageLoader.Create (uri);
 			loader.AreaPrepared += HandlePixbufPrepared;
@@ -220,8 +218,7 @@ namespace FSpot.Widgets
 
 			Gdk.Pixbuf prev = this.Pixbuf;
 			this.Pixbuf = loader.Pixbuf;
-			if (prev != null)
-				prev.Dispose ();
+			prev?.Dispose ();
 
 			ZoomFit (args.ReducedResolution);
 		}
@@ -246,7 +243,7 @@ namespace FSpot.Widgets
 			if (loader != this.loader)
 				return;
 
-			Pixbuf prev = this.Pixbuf;
+			Pixbuf prev = Pixbuf;
 			if (Pixbuf != loader.Pixbuf)
 				Pixbuf = loader.Pixbuf;
 
@@ -278,8 +275,8 @@ namespace FSpot.Widgets
 
 			progressive_display = true;
 
-			if (prev != this.Pixbuf && prev != null)
-				prev.Dispose ();
+			if (prev != Pixbuf)
+				prev?.Dispose ();
 
 			PhotoLoaded?.Invoke (this, EventArgs.Empty);
 		}
@@ -304,8 +301,7 @@ namespace FSpot.Widgets
 			          PixbufUtils.ErrorPixbuf.Width,
 						 PixbufUtils.ErrorPixbuf.Height);
 
-			if (old != null)
-				old.Dispose ();
+			old?.Dispose ();
 
 			PixbufOrientation = ImageOrientation.TopLeft;
 			ZoomFit (false);
@@ -314,25 +310,19 @@ namespace FSpot.Widgets
 		void HandlePhotoItemChanged (object sender, BrowsablePointerChangedEventArgs args)
 		{
 			// If it is just the position that changed fall out
-			if (args != null &&
-				args.PreviousItem != null &&
-				Item.IsValid &&
+			if (args?.PreviousItem != null && Item.IsValid &&
 				(args.PreviousIndex != item.Index) &&
 				(Item.Current.DefaultVersion.Uri == args.PreviousItem.DefaultVersion.Uri))
 				return;
 
 			// Don't reload if the image didn't change at all.
-			if (args != null && args.Changes != null &&
-				!args.Changes.DataChanged &&
-				args.PreviousItem != null &&
-				Item.IsValid &&
+			if (args?.Changes != null && !args.Changes.DataChanged &&
+				args.PreviousItem != null && Item.IsValid &&
 				Item.Current.DefaultVersion.Uri == args.PreviousItem.DefaultVersion.Uri)
 				return;
 
 			// Same image, don't load it progressively
-			if (args != null &&
-				args.PreviousItem != null &&
-				Item.IsValid &&
+			if (args?.PreviousItem != null && Item.IsValid &&
 				Item.Current.DefaultVersion.Uri == args.PreviousItem.DefaultVersion.Uri)
 				progressive_display = false;
 

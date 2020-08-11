@@ -27,7 +27,7 @@ namespace GLib
 {
 	public class Shell
 	{
-		[DllImport ("libglib-2.0-0.dll")]
+		[DllImport ("libglib-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_shell_quote (IntPtr unquoted_string);
 
 		public static string Quote (string unquoted)

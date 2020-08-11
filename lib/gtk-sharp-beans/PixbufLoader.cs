@@ -20,12 +20,11 @@
 // Boston, MA 02111-1307, USA.
 
 using System;
-using System.Collections;
 using System.Runtime.InteropServices;
 
 namespace Gdk {
 	public static class PixbufLoaderExtensions {
-		[DllImport("libgdk_pixbuf-2.0-0.dll")]
+		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe bool gdk_pixbuf_loader_close(IntPtr raw, out IntPtr error);
 
 		public static unsafe bool Close(this PixbufLoader loader, bool force) {

@@ -20,12 +20,11 @@
 // Boston, MA 02111-1307, USA.
 
 using System;
-using System.Collections;
 using System.Runtime.InteropServices;
 
 namespace Gtk {
 	public static class WidgetExtensions {
-		[DllImport("libgtk-win32-2.0-0.dll")]
+		[DllImport("libgtk-win32-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_widget_get_snapshot(IntPtr raw, IntPtr clip_rect);
 
 		public static Gdk.Pixmap GetSnapshot(this Widget widget, Gdk.Rectangle clip_rect) {

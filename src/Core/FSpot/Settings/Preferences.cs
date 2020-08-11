@@ -52,7 +52,7 @@ namespace FSpot.Settings
 		static readonly object sync_handler = new object ();
 		//static readonly Dictionary<string, object> cache = new Dictionary<string, object> ();
 
-		static readonly Dictionary<string, object> defaults = new Dictionary<string, object> {
+		static readonly Dictionary<string, object> Defaults = new Dictionary<string, object> {
 			{ MainWindowX, 0 },
 			{ MainWindowY, 0 },
 			{ MainWindowHeight, 0 },
@@ -102,18 +102,18 @@ namespace FSpot.Settings
 			{ ThumbsMaxSize, -1 }
 		};
 
-		static PreferenceBackend backend;
+		static PreferenceJsonBackend _jsonBackend;
 		static EventHandler<NotifyEventArgs> changed_handler;
-		internal static PreferenceBackend Backend {
+		internal static PreferenceJsonBackend JsonBackend {
 			get {
-				if (backend == null) {
-					backend = new PreferenceBackend ();
+				if (_jsonBackend == null) {
+					_jsonBackend = new PreferenceJsonBackend ();
 					changed_handler = OnSettingChanged;
 					// FIXME, Bring this back?
-					//backend.AddNotify (APP_FSPOT, changed_handler);
-					//backend.AddNotify (GNOME_MAILTO, changed_handler);
+					//jsonBackend.AddNotify (APP_FSPOT, changed_handler);
+					//jsonBackend.AddNotify (GNOME_MAILTO, changed_handler);
 				}
-				return backend;
+				return _jsonBackend;
 			}
 		}
 
@@ -137,20 +137,21 @@ namespace FSpot.Settings
 			//	Log.Exception ($"[Preferencs] InvalidCastException: key -> {key}, type -> {result.GetType ()}", ex);
 			//}
 
-			// Check preference backend, set default in backend
+			// Check preference jsonBackend, set default in jsonBackend
 			try {
-				result = Backend.Get<T> (key);
+				result = JsonBackend.Get<T> (key);
+			} catch (NoSuchKeyException) {
+				if (Defaults.TryGetValue (key, out object defaultValue))
+					result = (T) defaultValue;
+
+				// FIXME, analytics/log when key is first used
+				JsonBackend.Set (key, result);
+			} catch (ArgumentException ex) {
+				Log.Exception ($"[Preferences] Wrong type: {key}", ex);
+				JsonBackend.Set (key, result);
 			} catch (InvalidCastException ex) {
 				Log.Exception ($"[Preferences] Invalid cast: {key}", ex);
 				return false;
-			} catch (NoSuchKeyException ex) {
-				if (defaults.TryGetValue (key, out object defaultValue)) {
-					// FIXME, analytics/log when key is first used
-					Backend.Set (key, defaultValue);
-					result = (T)defaultValue;
-				} else {
-					Log.Exception ($"[Preferences] No key found: {key}", ex);
-				}
 			}
 
 			// Update cache
@@ -164,7 +165,7 @@ namespace FSpot.Settings
 			lock (sync_handler) {
 				try {
 					//cache[key] = value;
-					Backend.Set (key, value);
+					JsonBackend.Set (key, value);
 				} catch (Exception ex) {
 					Log.Exception ($"[Preferences] Unable to set this : {key}", ex);
 				}

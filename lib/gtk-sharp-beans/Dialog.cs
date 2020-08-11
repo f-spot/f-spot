@@ -20,12 +20,11 @@
 // Boston, MA 02111-1307, USA.
 
 using System;
-using System.Collections;
 using System.Runtime.InteropServices;
 
 namespace Gtk {
 	public static class DialogExtensions {
-		[DllImport("libgtk-win32-2.0-0.dll")]
+		[DllImport("libgtk-win32-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_dialog_get_action_area (IntPtr raw);
 
 		public static HButtonBox GetActionArea (this Dialog dialog) {
@@ -34,7 +33,7 @@ namespace Gtk {
 			return ret;
 		}
 
-		[DllImport("libgtk-win32-2.0-0.dll")]
+		[DllImport("libgtk-win32-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_dialog_get_content_area (IntPtr raw);
 
 		public static Widget GetContentArea (this Dialog dialog) { 

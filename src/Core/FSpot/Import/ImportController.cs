@@ -9,36 +9,20 @@
 // Copyright (C) 2010 Novell, Inc.
 // Copyright (C) 2010 Ruben Vermeersch
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.FileSystem;
 using FSpot.Settings;
 using FSpot.Thumbnail;
 using FSpot.Utils;
+
 using Hyena;
 
 namespace FSpot.Import
@@ -78,8 +62,7 @@ namespace FSpot.Import
 
 		#region IImportConroller
 
-		public void DoImport (IDb db, IBrowsableCollection photos, IList<Tag> tagsToAttach, bool duplicateDetect,
-			bool copyFiles, bool removeOriginals, Action<int, int> reportProgress, CancellationToken token)
+		public void DoImport (IDb db, IBrowsableCollection photos, IList<Tag> tagsToAttach, ImportPreferences preferences, Action<int, int> reportProgress, CancellationToken token)
 		{
 			db.Sync = false;
 			created_directories = new Stack<SafeUri> ();
@@ -102,7 +85,7 @@ namespace FSpot.Import
 
 					reportProgress (i++, total);
 					try {
-						ImportPhoto (db, info, createdRoll, tagsToAttach, duplicateDetect, copyFiles);
+						ImportPhoto (db, info, createdRoll, tagsToAttach, preferences.DuplicateDetect, preferences.CopyFiles);
 					} catch (Exception e) {
 						Log.DebugFormat ("Failed to import {0}", info.DefaultVersion.Uri);
 						Log.DebugException (e);
@@ -110,7 +93,7 @@ namespace FSpot.Import
 					}
 				}
 
-				FinishImport (removeOriginals);
+				FinishImport (preferences.RemoveOriginals);
 			} catch (Exception e) {
 				RollbackImport (db);
 				throw e;

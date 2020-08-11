@@ -607,7 +607,7 @@ namespace GLib {
 			}
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_volume_monitor_get_mount_for_uuid(IntPtr raw, IntPtr uuid);
 
 		public GLib.Mount GetMountForUuid(string uuid) {
@@ -618,7 +618,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_volume_monitor_get();
 
 		public static GLib.VolumeMonitor Default { 
@@ -629,7 +629,7 @@ namespace GLib {
 			}
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_volume_monitor_get_type();
 
 		public static new GLib.GType GType { 
@@ -640,7 +640,7 @@ namespace GLib {
 			}
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_volume_monitor_adopt_orphan_mount(IntPtr mount);
 
 		[Obsolete]
@@ -650,7 +650,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_volume_monitor_get_mounts(IntPtr raw);
 
 		public GLib.Mount[] Mounts { 
@@ -661,7 +661,7 @@ namespace GLib {
 			}
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_volume_monitor_get_connected_drives(IntPtr raw);
 
 		public GLib.Drive[] ConnectedDrives { 
@@ -672,7 +672,7 @@ namespace GLib {
 			}
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_volume_monitor_get_volume_for_uuid(IntPtr raw, IntPtr uuid);
 
 		public GLib.Volume GetVolumeForUuid(string uuid) {
@@ -683,7 +683,7 @@ namespace GLib {
 			return ret;
 		}
 
-		[DllImport("libgio-2.0-0.dll")]
+		[DllImport("libgio-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_volume_monitor_get_volumes(IntPtr raw);
 
 		public GLib.Volume[] Volumes { 

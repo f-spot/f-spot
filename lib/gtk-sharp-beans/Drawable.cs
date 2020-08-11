@@ -20,12 +20,11 @@
 // Boston, MA 02111-1307, USA.
 
 using System;
-using System.Collections;
 using System.Runtime.InteropServices;
 
 namespace Gdk {
 	public static class DrawableExtensions {
-		[DllImport("libgdk-win32-2.0-0.dll")]
+		[DllImport("libgdk-win32-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
                 static unsafe extern void gdk_draw_rgb_image_dithalign(IntPtr raw, IntPtr gc, int x, int y, int width, int height, int dith, byte* rgb_buf, int rowstride, int xdith, int ydith);
 		 
 		public unsafe static void DrawRgbImageDithalign(this Drawable drawable, Gdk.GC gc, int x, int y, int width, int height, Gdk.RgbDither dith, byte* rgb_buf, int rowstride, int xdith, int ydith)

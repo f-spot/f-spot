@@ -29,7 +29,7 @@ using System.Runtime.InteropServices;
 
 namespace GtkBeans {
 	public static class ImageMenuItemExtensions {
-		[DllImport("libgtk-win32-2.0-0.dll")]
+		[DllImport("libgtk-win32-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void gtk_image_menu_item_set_always_show_image(IntPtr raw, bool always_show);
 
 		public static void SetAlwaysShowImage (this Gtk.ImageMenuItem item, bool always_show)
