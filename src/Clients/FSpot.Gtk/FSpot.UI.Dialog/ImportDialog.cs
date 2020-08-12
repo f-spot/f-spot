@@ -32,7 +32,7 @@ namespace FSpot.UI.Dialog
 		ImportDialogController Controller { get; set; }
 		TreeStore Sources { get; set; }
 
-		static readonly Dictionary<string, ImportSource> historySources = new Dictionary<string, ImportSource> ();
+		static readonly Dictionary<string, ImportSource> HistorySources = new Dictionary<string, ImportSource> ();
 
 #pragma warning disable 649
 		[GtkBeans.Builder.Object] Button cancel_button;
@@ -168,9 +168,9 @@ namespace FSpot.UI.Dialog
 			if (!mountAdded)
 				Sources.AppendValues (null, Catalog.GetString ("(No Cameras Detected)"), string.Empty, false);
 
-			if (historySources.Count > 0) {
+			if (HistorySources.Count > 0) {
 				Sources.AppendValues (null, string.Empty, string.Empty);
-				foreach (var source in historySources.Values) {
+				foreach (var source in HistorySources.Values) {
 					if (source == sourceToActivate)
 						activateIndex = Sources.IterNChildren ();
 
@@ -250,10 +250,10 @@ namespace FSpot.UI.Dialog
 
 		public void SwitchToFolderSource (SafeUri uri)
 		{
-			if (!historySources.TryGetValue (uri, out var source)) {
+			if (!HistorySources.TryGetValue (uri, out var source)) {
 				var name = uri.GetFilename ();
 				source = new ImportSource (uri, name, "folder");
-				historySources[uri] = source;
+				HistorySources[uri] = source;
 			}
 
 			PopulateSourceCombo (source);
