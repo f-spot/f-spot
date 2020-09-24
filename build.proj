@@ -1,0 +1,24 @@
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="fspot.props" />
+
+  <Target Name="Clean">
+    <MSBuild Projects="F-Spot.sln" Targets="Clean" />
+  </Target>
+
+  <Target Name="Rebuild">
+    <CallTaget Targets="Clean;Build" />
+  </Target>
+
+  <Target Name="Restore">
+    <MSBuild Projects="F-Spot.sln" Targets="Restore" />
+  </Target>
+
+  <Target Name="Build">
+    <Message Condition="'$(IsWindows)'" Text="Building On Windows" Importance="High" />
+    <Message Condition="'$(IsMac)'" Text="Building On Mac" Importance="High" />
+    <Message Condition="'$(IsLinux)'" Text="Building On Linux" Importance="High" />
+
+    <MSBuild Projects="F-Spot.sln" Targets="Build" />
+  </Target>
+
+</Project>
