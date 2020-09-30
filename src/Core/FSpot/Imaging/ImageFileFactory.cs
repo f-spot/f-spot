@@ -12,50 +12,29 @@
 // Copyright (C) 2007-2009 Stephane Delcroix
 // Copyright (C) 2010 Ruben Vermeersch
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using FSpot.FileSystem;
 using FSpot.Utils;
+
 using Gdk;
+
 using Hyena;
 
 namespace FSpot.Imaging
 {
 	class ImageFileFactory : IImageFileFactory
 	{
-		#region fields
-
 		readonly TinyIoCContainer container;
 		readonly List<string> imageTypes;
 		readonly List<string> jpegExtensions;
 		readonly List<string> rawExtensions;
 
 		readonly IFileSystem fileSystem;
-
-		#endregion
-
-		#region ctors
 
 		public ImageFileFactory (IFileSystem fileSystem)
 		{
@@ -69,11 +48,8 @@ namespace FSpot.Imaging
 			RegisterTypes ();
 		}
 
-		#endregion
-
-		#region private implementation
-
-		enum ImageType {
+		enum ImageType
+		{
 			Other,
 			Jpeg,
 			Raw
@@ -174,7 +150,7 @@ namespace FSpot.Imaging
 		{
 			foreach (var mimeType in mimeTypes) {
 				container.Register<IImageFile, T> (mimeType).AsMultiInstance ();
-		}
+			}
 			imageTypes.AddRange (mimeTypes);
 		}
 
@@ -233,29 +209,24 @@ namespace FSpot.Imaging
 			return container.CanResolve<IImageFile> (extension, param) ? extension : null;
 		}
 
-		static NamedParameterOverloads UriAsParameter (SafeUri uri) {
-			return new NamedParameterOverloads (new Dictionary<string, object> { {
-					"uri",
-					uri
-				}
+		static NamedParameterOverloads UriAsParameter (SafeUri uri)
+		{
+			return new NamedParameterOverloads (new Dictionary<string, object> {
+				{ "uri", uri }
 			});
 		}
-
-		#endregion
-
-		#region IImageFileFactory implementation
 
 		public IImageFile Create (SafeUri uri)
 		{
 			var name = GetLoaderType (uri);
 			if (name == null)
-				throw new Exception (string.Format ("Unsupported image: {0}", uri));
+				throw new Exception ($"Unsupported image: {uri}");
 
 			try {
 				return container.Resolve<IImageFile> (name, UriAsParameter (uri));
 			} catch (Exception e) {
 				Log.DebugException (e);
-				throw e;
+				throw;
 			}
 		}
 
@@ -271,14 +242,12 @@ namespace FSpot.Imaging
 			return jpegExtensions.Any (x => x == extension);
 		}
 
-		public bool IsJpegRawPair(SafeUri file1, SafeUri file2)
+		public bool IsJpegRawPair (SafeUri file1, SafeUri file2)
 		{
 			return file1.GetBaseUri ().ToString () == file2.GetBaseUri ().ToString () &&
 				file1.GetFilenameWithoutExtension () == file2.GetFilenameWithoutExtension () &&
 				((IsJpeg (file1) && IsRaw (file2)) ||
 					(IsRaw (file1) && IsJpeg (file2)));
 		}
-
-		#endregion
 	}
 }

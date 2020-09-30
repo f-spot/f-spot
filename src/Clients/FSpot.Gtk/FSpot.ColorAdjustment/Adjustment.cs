@@ -9,25 +9,7 @@
 // Copyright (C) 2008, 2010 Ruben Vermeersch
 // Copyright (C) 2007 Larry Ewing
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System.Collections.Generic;
 
@@ -67,13 +49,13 @@ namespace FSpot.ColorAdjustment
 			set { destination_profile = value; }
 		}
 
-		protected Adjustment (Pixbuf input, Cms.Profile input_profile)
+		protected Adjustment (Pixbuf input, Cms.Profile inputProfile)
 		{
 			Input = input;
-			InputProfile = input_profile;
+			InputProfile = inputProfile;
 		}
 
-		protected abstract List <Cms.Profile> GenerateAdjustments ();
+		protected abstract List<Cms.Profile> GenerateAdjustments ();
 
 		public Pixbuf Adjust ()
 		{
@@ -81,25 +63,25 @@ namespace FSpot.ColorAdjustment
 							   false, 8,
 							   Input.Width,
 							   Input.Height);
-			Cms.Profile [] list = GenerateAdjustments ().ToArray ();
+			Cms.Profile[] list = GenerateAdjustments ().ToArray ();
 
 			if (Input.HasAlpha) {
 				Gdk.Pixbuf input_copy = (Gdk.Pixbuf)Input.Clone ();
-				Pixbuf alpha = PixbufUtils.Flatten (Input);
-				Transform transform = new Transform (list,
-								     PixbufUtils.PixbufCmsFormat (alpha),
-								     PixbufUtils.PixbufCmsFormat (final),
-								     intent, 0x0000);
+				using var alpha = PixbufUtils.Flatten (Input);
+				using var transform = new Transform (list,
+									 PixbufUtils.PixbufCmsFormat (alpha),
+									 PixbufUtils.PixbufCmsFormat (final),
+									 intent, 0x0000);
 				PixbufUtils.ColorAdjust (alpha, final, transform);
 				PixbufUtils.ReplaceColor (final, input_copy);
 				alpha.Dispose ();
 				final.Dispose ();
 				final = input_copy;
 			} else {
-				Cms.Transform transform = new Cms.Transform (list,
-									     PixbufUtils.PixbufCmsFormat (Input),
-									     PixbufUtils.PixbufCmsFormat (final),
-									     intent, 0x0000);
+				using var transform = new Cms.Transform (list,
+										 PixbufUtils.PixbufCmsFormat (Input),
+										 PixbufUtils.PixbufCmsFormat (final),
+										 intent, 0x0000);
 
 				PixbufUtils.ColorAdjust (Input, final, transform);
 			}

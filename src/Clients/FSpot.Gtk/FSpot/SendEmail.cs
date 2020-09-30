@@ -13,25 +13,7 @@
 // Copyright (C) 2006 Bengt Thuree
 // Copyright (C) 2007-2009 Stephane Delcroix
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
 
@@ -76,10 +58,10 @@ namespace FSpot
 		bool force_original;
 		readonly IBrowsableCollection selection;
 
-		public SendEmail (IBrowsableCollection selection, Window parent_window) : base ("mail_dialog.ui", "mail_dialog")
+		public SendEmail (IBrowsableCollection selection, Window parentWindow) : base ("mail_dialog.ui", "mail_dialog")
 		{
 			this.selection = selection;
-			this.parent_window = parent_window;
+			this.parent_window = parentWindow;
 
 			foreach (var p in selection.Items) {
 				// FIXME, better centralize mimetype checking
@@ -230,9 +212,8 @@ namespace FSpot
 			if (args.ResponseId != Gtk.ResponseType.Ok) {
 				return;
 			}
-			ProgressDialog progress_dialog = null;
 
-			progress_dialog = new ProgressDialog (Catalog.GetString ("Preparing email"),
+			using var progress_dialog = new ProgressDialog (Catalog.GetString ("Preparing email"),
 												ProgressDialog.CancelButtonType.Stop,
 												selection.Count,
 												parent_window);
@@ -275,15 +256,14 @@ namespace FSpot
 				if ((photo != null) && (!UserCancelled)) {
 
 					if (progress_dialog != null)
-						UserCancelled = progress_dialog.Update (string.Format
-							(Catalog.GetString ("Exporting picture \"{0}\""), photo.Name));
+						UserCancelled = progress_dialog.Update (string.Format (Catalog.GetString ("Exporting picture \"{0}\""), photo.Name));
 
 					if (UserCancelled)
 						break;
 
 					try {
 						// Prepare a tmp_mail file name
-						FilterRequest request = new FilterRequest (photo.DefaultVersion.Uri);
+						using var request = new FilterRequest (photo.DefaultVersion.Uri);
 
 						filters.Convert (request);
 						request.Preserve (request.Current);
@@ -291,7 +271,7 @@ namespace FSpot
 						mail_attach.Append (((i == 0 && attach_arg.ToString () == ",") ? "" : attach_arg.ToString ()) + request.Current.ToString ());
 					} catch (Exception e) {
 						Hyena.Log.ErrorFormat ("Error preparing {0}: {1}", selection[i].Name, e.Message);
-						HigMessageDialog md = new HigMessageDialog (parent_window,
+						using var md = new HigMessageDialog (parent_window,
 												DialogFlags.DestroyWithParent,
 												MessageType.Error,
 												ButtonsType.Close,

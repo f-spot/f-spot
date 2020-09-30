@@ -11,25 +11,7 @@
 // Copyright (C) 2008 Stephane Delcroix
 // Copyright (C) 2006-2007 Larry Ewing
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
 using System.Runtime.InteropServices;
@@ -83,8 +65,7 @@ namespace FSpot.Utils
 			public static extern uint XVisualIDFromVisual(IntPtr visual);
 	
 			[DllImport("libgdk-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-			public static extern IntPtr gdk_x11_screen_lookup_visual (IntPtr screen,
-									   uint   xvisualid);
+			public static extern IntPtr gdk_x11_screen_lookup_visual (IntPtr screen, uint xvisualid);
 		}
 
 		public static uint GetXid (Drawable d)
@@ -115,7 +96,7 @@ namespace FSpot.Utils
 		public static Cursor CreateEmptyCursor (Display display) 
 		{
 			try {
-				Gdk.Pixbuf empty = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, true, 8, 1, 1);
+				using var empty = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, true, 8, 1, 1);
 				empty.Fill (0x00000000);
 				return new Gdk.Cursor (display, empty, 0, 0);
 			} catch (Exception e){

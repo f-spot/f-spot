@@ -9,25 +9,7 @@
 // Copyright (C) 2009 Mike Gemünde
 // Copyright (C) 2010 Ruben Vermeersch
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System.Text;
 using System.Collections.Generic;
@@ -42,8 +24,8 @@ namespace FSpot
 {
 	public class FolderQueryWidget : HBox
 	{
-        readonly PhotoQuery query;
-        FolderSet folder_set;
+		readonly PhotoQuery query;
+		FolderSet folder_set;
 
 		public FolderQueryWidget (PhotoQuery query)
 		{
@@ -53,8 +35,8 @@ namespace FSpot
 			query.SetCondition (folder_set);
 
 			Drag.DestSet (this, DestDefaults.All,
-			              folder_query_widget_source_table,
-			              Gdk.DragAction.Copy | Gdk.DragAction.Move);
+						  folder_query_widget_source_table,
+						  Gdk.DragAction.Copy | Gdk.DragAction.Move);
 		}
 
 		void UpdateGui ()
@@ -72,7 +54,7 @@ namespace FSpot
 			if (length < 4) {
 
 				foreach (var uri in folder_set.Folders) {
-					var image = new Image ("gtk-directory", IconSize.Button);
+					using var image = new Image ("gtk-directory", IconSize.Button);
 					image.TooltipText = uri.ToString ();
 					PackStart (image);
 				}
@@ -81,11 +63,12 @@ namespace FSpot
 
 			} else {
 
-				var label = new Label (string.Format ("<i>{0}x</i>", length));
-				label.UseMarkup = true;
-				PackStart (label);
+				using (var label = new Label ($"<i>{length}x</i>")) {
+					label.UseMarkup = true;
+					PackStart (label);
+				}
 
-				var image = new Image ("gtk-directory", IconSize.Button);
+				using var image = new Image ("gtk-directory", IconSize.Button);
 				PackStart (image);
 
 				var builder = new StringBuilder ();
@@ -115,10 +98,10 @@ namespace FSpot
 		}
 
 		public bool Empty {
-			get { return folder_set.Folders == null || !folder_set.Folders.Any(); }
+			get { return folder_set.Folders == null || !folder_set.Folders.Any (); }
 		}
 
-		static TargetEntry [] folder_query_widget_source_table = {
+		static TargetEntry[] folder_query_widget_source_table = {
 				DragDropTargets.UriQueryEntry
 		};
 

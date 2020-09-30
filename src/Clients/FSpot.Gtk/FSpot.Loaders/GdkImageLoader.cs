@@ -11,25 +11,8 @@
 // Copyright (C) 2009 Stephane Delcroix
 // Copyright (C) 2009-2010 Ruben Vermeersch
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
+
 using System;
 using System.Threading;
 
@@ -46,7 +29,7 @@ namespace FSpot.Loaders
 {
 	public class GdkImageLoader : Gdk.PixbufLoader, IImageLoader
 	{
-#region public api
+		#region public api
 
 		// FIXME: Probably really shouldn't be doing this?
 		~GdkImageLoader ()
@@ -78,7 +61,8 @@ namespace FSpot.Loaders
 			// the Read is CompletedAsynchronously, blocking the mainloop
 			image_stream.BeginRead (buffer, 0, count, delegate (IAsyncResult r) {
 				ThreadPool.QueueUserWorkItem (delegate {
-					HandleReadDone (r);});
+					HandleReadDone (r);
+				});
 			}, null);
 		}
 
@@ -97,11 +81,11 @@ namespace FSpot.Loaders
 			}
 		}
 
-		public bool Loading { get; private set; } = false;
+		public bool Loading { get; private set; }
 
 		bool notify_prepared;
 
-		public bool Prepared { get; private set; } = false;
+		public bool Prepared { get; private set; }
 
 		ImageOrientation pixbuf_orientation = ImageOrientation.TopLeft;
 
@@ -133,15 +117,14 @@ namespace FSpot.Loaders
 			lock (sync_handle) {
 				try {
 					return base.Close ();
-				}
-				catch (GLib.GException) {
+				} catch (GLib.GException) {
 					return false;
 				}
 			}
 		}
-#endregion
+		#endregion
 
-#region event handlers
+		#region event handlers
 		protected override void OnAreaPrepared ()
 		{
 			if (is_disposed)
@@ -170,12 +153,12 @@ namespace FSpot.Loaders
 			Completed?.Invoke (this, EventArgs.Empty);
 			Close ();
 		}
-#endregion
+		#endregion
 
-#region private stuffs
+		#region private stuffs
 		System.IO.Stream image_stream;
 		const int count = 1 << 16;
-		byte[] buffer = new byte [count];
+		byte[] buffer = new byte[count];
 		bool notify_completed;
 		Rectangle damage;
 		readonly object sync_handle = new object ();
@@ -230,6 +213,6 @@ namespace FSpot.Loaders
 				return false;
 			});
 		}
-#endregion
+		#endregion
 	}
 }

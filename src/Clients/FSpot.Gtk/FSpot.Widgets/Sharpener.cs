@@ -9,25 +9,7 @@
 // Copyright (C) 2009 Stephane Delcroix
 // Copyright (C) 2010 Ruben Vermeersch
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
 
@@ -58,17 +40,13 @@ namespace FSpot.Widgets
 		{
 			if (!okClicked) {
 				base.UpdateSample ();
-    
+
 				if (overlay != null)
 					overlay.Dispose ();
-    
+
 				overlay = null;
 				if (source != null)
-					overlay = PixbufUtils.UnsharpMask (source,
-    								   radius_spin.Value,
-    								   amount_spin.Value,
-    								   threshold_spin.Value,
-                                       null);
+					overlay = PixbufUtils.UnsharpMask (source, radius_spin.Value, amount_spin.Value, threshold_spin.Value, null);
 			}
 		}
 
@@ -91,11 +69,11 @@ namespace FSpot.Widgets
 
 			try {
 				Gdk.Pixbuf orig = view.Pixbuf;
-				Gdk.Pixbuf final = PixbufUtils.UnsharpMask (orig,
-                                        radius_spin.Value,
-                                        amount_spin.Value,
-                                        threshold_spin.Value,
-                                        progressDialog);
+				using Gdk.Pixbuf final = PixbufUtils.UnsharpMask (orig,
+										radius_spin.Value,
+										amount_spin.Value,
+										threshold_spin.Value,
+										progressDialog);
 
 				bool create_version = photo.DefaultVersion.IsProtected;
 
@@ -104,14 +82,13 @@ namespace FSpot.Widgets
 				App.Instance.Database.Photos.Commit (photo);
 			} catch (Exception e) {
 				string msg = Catalog.GetString ("Error saving sharpened photo");
-				string desc = string.Format (Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"),
-                                 e.Message, photo.Name);
+				string desc = string.Format (Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"), e.Message, photo.Name);
 
-				HigMessageDialog md = new HigMessageDialog (this, DialogFlags.DestroyWithParent,
-                                        Gtk.MessageType.Error,
-                                        ButtonsType.Ok,
-                                        msg,
-                                        desc);
+				using var md = new HigMessageDialog (this, DialogFlags.DestroyWithParent,
+										Gtk.MessageType.Error,
+										ButtonsType.Ok,
+										msg,
+										desc);
 				md.Run ();
 				md.Destroy ();
 			}
@@ -151,12 +128,11 @@ namespace FSpot.Widgets
 			base.BuildUI ();
 
 			string title = Catalog.GetString ("Sharpen");
-			dialog = new Gtk.Dialog (title, (Gtk.Window)this,
-						 DialogFlags.DestroyWithParent, new object [0]);
+			dialog = new Gtk.Dialog (title, (Gtk.Window)this, DialogFlags.DestroyWithParent, Array.Empty<object> ());
 			dialog.BorderWidth = 12;
 			dialog.VBox.Spacing = 6;
 
-			Gtk.Table table = new Gtk.Table (3, 2, false);
+			using Gtk.Table table = new Gtk.Table (3, 2, false);
 			table.ColumnSpacing = 6;
 			table.RowSpacing = 6;
 

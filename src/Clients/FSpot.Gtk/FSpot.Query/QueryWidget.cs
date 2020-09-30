@@ -13,25 +13,7 @@
 // Copyright (C) 2010 Ruben Vermeersch
 // Copyright (C) 2007-2008 Stephane Delcroix
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
 using System.Collections.Generic;
@@ -69,9 +51,9 @@ namespace FSpot.Query
 			get { return logic_widget; }
 		}
 
-		protected QueryWidget (IntPtr raw) : base (raw) {}
+		protected QueryWidget (IntPtr raw) : base (raw) { }
 
-		public QueryWidget (PhotoQuery query, Db db) : base(new HBox())
+		public QueryWidget (PhotoQuery query, Db db) : base (new HBox ())
 		{
 			box = Child as HBox;
 			box.Spacing = 6;
@@ -125,14 +107,14 @@ namespace FSpot.Query
 			clear_button.Add (new Gtk.Image ("gtk-close", Gtk.IconSize.Button));
 			clear_button.Clicked += HandleClearButtonClicked;
 			clear_button.Relief = Gtk.ReliefStyle.None;
-			clear_button.TooltipText = Catalog.GetString("Clear search");
+			clear_button.TooltipText = Catalog.GetString ("Clear search");
 			box.PackEnd (clear_button, false, false, 0);
 
 			refresh_button = new Gtk.Button ();
 			refresh_button.Add (new Gtk.Image ("gtk-refresh", Gtk.IconSize.Button));
 			refresh_button.Clicked += HandleRefreshButtonClicked;
 			refresh_button.Relief = Gtk.ReliefStyle.None;
-			refresh_button.TooltipText = Catalog.GetString("Refresh search");
+			refresh_button.TooltipText = Catalog.GetString ("Refresh search");
 			box.PackEnd (refresh_button, false, false, 0);
 
 			Gtk.Label warning = new Gtk.Label (Catalog.GetString ("No matching photos found"));
@@ -187,13 +169,13 @@ namespace FSpot.Query
 		public void HandleChanged (IBrowsableCollection collection)
 		{
 			if (query.TagTerm == null)
-				logic_widget.Clear();
+				logic_widget.Clear ();
 
-			if ( ! logic_widget.IsClear
-			    || query.Untagged
-			    || (query.RollSet != null)
-			    || (query.RatingRange != null)
-			    || ! folder_query_widget.Empty)
+			if (!logic_widget.IsClear
+				|| query.Untagged
+				|| (query.RollSet != null)
+				|| (query.RatingRange != null)
+				|| !folder_query_widget.Empty)
 				ShowBar ();
 			else
 				HideBar ();
@@ -204,7 +186,7 @@ namespace FSpot.Query
 			rollfilter.Visible = (query.RollSet != null);
 			comma1_label.Visible = (untagged.Visible && rated.Visible);
 			comma2_label.Visible = (!untagged.Visible && rated.Visible && rollfilter.Visible) ||
-					       (untagged.Visible && rollfilter.Visible);
+						   (untagged.Visible && rollfilter.Visible);
 
 		}
 
@@ -213,22 +195,22 @@ namespace FSpot.Query
 			logic_widget.PhotoTagsChanged (tags);
 		}
 
-		public void Include (Tag [] tags)
+		public void Include (Tag[] tags)
 		{
 			logic_widget.Include (tags);
 		}
 
-		public void UnInclude (Tag [] tags)
+		public void UnInclude (Tag[] tags)
 		{
 			logic_widget.UnInclude (tags);
 		}
 
-		public void Require (Tag [] tags)
+		public void Require (Tag[] tags)
 		{
 			logic_widget.Require (tags);
 		}
 
-		public void UnRequire (Tag [] tags)
+		public void UnRequire (Tag[] tags)
 		{
 			logic_widget.UnRequire (tags);
 		}

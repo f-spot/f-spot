@@ -78,7 +78,7 @@ namespace FSpot.Import
 			var filename = dest.GetFilenameWithoutExtension ();
 			var extension = dest.GetExtension ();
 			while (file_system.File.Exists (dest)) {
-				dest = base_uri.Append (string.Format ("{0}-{1}{2}", filename, i++, extension));
+				dest = base_uri.Append ($"{filename}-{i++}{extension}");
 			}
 
 			return dest;

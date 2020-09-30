@@ -78,16 +78,16 @@ namespace FSpot.Database
 
 				// Don't do anything if there are subtags
 				string tag_count = SelectSingleString (
-					string.Format ("SELECT COUNT(*) FROM tags WHERE category_id = {0}", other_id));
+					$"SELECT COUNT(*) FROM tags WHERE category_id = {other_id}");
 
-				if (tag_count == null || System.Int32.Parse (tag_count) != 0)
+				if (tag_count == null || int.Parse (tag_count) != 0)
 					return;
 
 				// Don't do anything if there are photos tagged with this
 				string photo_count = SelectSingleString (
-					string.Format ("SELECT COUNT(*) FROM photo_tags WHERE tag_id = {0}", other_id));
+					$"SELECT COUNT(*) FROM photo_tags WHERE tag_id = {other_id}");
 
-				if (photo_count == null || System.Int32.Parse (photo_count) != 0)
+				if (photo_count == null || int.Parse (photo_count) != 0)
 					return;
 
 				// Finally, we know that the Other tag exists and has no children, so remove it
@@ -99,7 +99,7 @@ namespace FSpot.Database
 				string tag_count = SelectSingleString ("SELECT COUNT(*) FROM tags WHERE category_id != 0 AND category_id NOT IN (SELECT id FROM tags)");
 
 				// If there are no dangling tags, then don't do anything
-				if (tag_count == null || System.Int32.Parse (tag_count) == 0)
+				if (tag_count == null || int.Parse (tag_count) == 0)
 					return;
 
 				int id = ExecuteScalar ("INSERT INTO tags (name, category_id, is_category, icon) VALUES ('Other', 0, 1, 'stock_icon:f-spot-other.png')");
@@ -143,7 +143,7 @@ namespace FSpot.Database
 					"       roll_id            INTEGER NOT NULL,		   " +
 					"       default_version_id INTEGER NOT NULL		   " +
 					")");
-				ExecuteScalar (string.Format ("INSERT INTO photos SELECT id, time, directory_path, name, description, 0, default_version_id FROM {0}", tmp_photos));
+				ExecuteScalar ($"INSERT INTO photos SELECT id, time, directory_path, name, description, 0, default_version_id FROM {tmp_photos}");
 
 				Log.Debug ("Will rename imports to rolls!");
 				string tmp_rolls = MoveTableToTemp ("imports");
@@ -152,7 +152,7 @@ namespace FSpot.Database
 					"	id                 INTEGER PRIMARY KEY NOT NULL,   " +
 					"       time               INTEGER NOT NULL	   	   " +
 					")");
-				ExecuteScalar (string.Format ("INSERT INTO rolls SELECT id, time FROM {0}", tmp_rolls));
+				ExecuteScalar ($"INSERT INTO rolls SELECT id, time FROM {tmp_rolls}");
 
 				Log.Debug ("Cleaning weird descriptions, fixes bug #324425.");
 				Execute ("UPDATE photos SET description = \"\" WHERE description LIKE \"Invalid size of entry%\"");
