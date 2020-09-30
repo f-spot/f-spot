@@ -9,25 +9,7 @@
 // Copyright (C) 2008, 2010 Ruben Vermeersch
 // Copyright (C) 2008-2010 Stephane Delcroix
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
 using System.Collections.Generic;
@@ -89,7 +71,8 @@ namespace FSpot.Widgets
 
 		ProgressDialog progress;
 
-		void OnProcessingStarted (string name, int count) {
+		void OnProcessingStarted (string name, int count)
+		{
 			progress = new ProgressDialog (name, ProgressDialog.CancelButtonType.None, count, App.Instance.Organizer.Window);
 		}
 
@@ -110,8 +93,7 @@ namespace FSpot.Widgets
 		internal void ChangeButtonVisibility ()
 		{
 			foreach (Editor editor in editors) {
-				Button button;
-				if (editor_buttons.TryGetValue (editor, out button))
+				if (editor_buttons.TryGetValue (editor, out var button))
 					button.Visible = Page.InPhotoView || editor.CanHandleMultiple;
 			}
 		}
@@ -145,11 +127,13 @@ namespace FSpot.Widgets
 			}
 
 			if (widgets == null) {
-				widgets = new VBox (false, 0);
-				widgets.NoShowAll = true;
+				widgets = new VBox (false, 0) {
+					NoShowAll = true
+				};
 				widgets.Show ();
-				Viewport widgets_port = new Viewport ();
-				widgets_port.Add (widgets);
+				using var widgets_port = new Viewport {
+					widgets
+				};
 				Add (widgets_port);
 				widgets_port.ShowAll ();
 			}
@@ -207,7 +191,7 @@ namespace FSpot.Widgets
 				string msg = Catalog.GetString ("No selection available");
 				string desc = Catalog.GetString ("This tool requires an active selection. Please select a region of the photo and try the operation again");
 
-				HigMessageDialog md = new HigMessageDialog (App.Instance.Organizer.Window,
+				using var md = new HigMessageDialog (App.Instance.Organizer.Window,
 										DialogFlags.DestroyWithParent,
 										Gtk.MessageType.Error, ButtonsType.Ok,
 										msg,
@@ -226,13 +210,13 @@ namespace FSpot.Widgets
 				string msg = Catalog.GetPluralString ("Error saving adjusted photo", "Error saving adjusted photos",
 									editor.State.Items.Length);
 				string desc = string.Format (Catalog.GetString ("Received exception \"{0}\". Note that you have to develop RAW files into JPEG before you can edit them."),
-							     e.Message);
+								 e.Message);
 
-				HigMessageDialog md = new HigMessageDialog (App.Instance.Organizer.Window,
-									    DialogFlags.DestroyWithParent,
-									    MessageType.Error, ButtonsType.Ok,
-									    msg,
-									    desc);
+				using var md = new HigMessageDialog (App.Instance.Organizer.Window,
+										DialogFlags.DestroyWithParent,
+										MessageType.Error, ButtonsType.Ok,
+										msg,
+										desc);
 				md.Run ();
 				md.Destroy ();
 			}
@@ -248,8 +232,9 @@ namespace FSpot.Widgets
 
 			// Top label
 			VBox vbox = new VBox (false, 4);
-			Label label = new Label ();
-			label.Markup = string.Format("<big><b>{0}</b></big>", editor.Label);
+			using var label = new Label {
+				Markup = $"<big><b>{editor.Label}</b></big>"
+			};
 			vbox.PackStart (label, false, false, 5);
 
 			// Optional config widget
@@ -265,18 +250,20 @@ namespace FSpot.Widgets
 			}
 
 			// Apply / Cancel buttons
-			HButtonBox tool_buttons = new HButtonBox ();
-			tool_buttons.LayoutStyle = ButtonBoxStyle.End;
-			tool_buttons.Spacing = 5;
-			tool_buttons.BorderWidth = 5;
-			tool_buttons.Homogeneous = false;
+			using var tool_buttons = new HButtonBox {
+				LayoutStyle = ButtonBoxStyle.End,
+				Spacing = 5,
+				BorderWidth = 5,
+				Homogeneous = false
+			};
 
-			Button cancel = new Button (Stock.Cancel);
+			using var cancel = new Button (Stock.Cancel);
 			cancel.Clicked += HandleCancel;
 			tool_buttons.Add (cancel);
 
-			Button apply = new Button (editor.ApplyLabel);
-			apply.Image = new Image (GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, editor.IconName, 22, 0));
+			using var apply = new Button (editor.ApplyLabel) {
+				Image = new Image (GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, editor.IconName, 22, 0))
+			};
 			apply.Clicked += (s, e) => { Apply (editor); };
 			tool_buttons.Add (apply);
 

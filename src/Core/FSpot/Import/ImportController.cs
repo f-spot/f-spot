@@ -38,7 +38,7 @@ namespace FSpot.Import
 		MetadataImporter metadata_importer;
 		Stack<SafeUri> created_directories;
 		List<uint> imported_photos;
-		List<SafeUri> failedImports = new List<SafeUri> ();
+		readonly List<SafeUri> failedImports = new List<SafeUri> ();
 		Roll createdRoll;
 
 		#endregion
@@ -204,8 +204,8 @@ namespace FSpot.Import
 			DateTime time = item.Time;
 			return baseUri
 				.Append (time.Year.ToString ())
-				.Append (string.Format ("{0:D2}", time.Month))
-				.Append (string.Format ("{0:D2}", time.Day));
+				.Append ($"{time.Month:D2}")
+				.Append ($"{time.Day:D2}");
 		}
 
 		#endregion

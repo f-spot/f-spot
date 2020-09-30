@@ -10,25 +10,8 @@
 // Copyright (C) 2010 Ruben Vermeersch
 // Copyright (C) 2008-2009 Stephane Delcroix
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
+
 using Hyena;
 
 using System;
@@ -53,7 +36,7 @@ namespace FSpot
 
 		PhotoChanges changes = new PhotoChanges ();
 		public PhotoChanges Changes {
-			get{ return changes; }
+			get => changes;
 			set {
 				if (value != null)
 					throw new ArgumentException ("The only valid value is null");
@@ -64,7 +47,7 @@ namespace FSpot
 		// The time is always in UTC.
 		DateTime time;
 		public DateTime Time {
-			get { return time; }
+			get => time;
 			set {
 				if (time == value)
 					return;
@@ -74,19 +57,19 @@ namespace FSpot
 		}
 
 		public string Name {
-			get { return Uri.UnescapeDataString (System.IO.Path.GetFileName (VersionUri (OriginalVersionId).AbsolutePath)); }
+			get { return Uri.UnescapeDataString (Path.GetFileName (VersionUri (OriginalVersionId).AbsolutePath)); }
 		}
 
 		List<Tag> tags;
-		public Tag [] Tags {
+		public Tag[] Tags {
 			get {
 				return tags.ToArray ();
 			}
 		}
 
-		bool all_versions_loaded = false;
+		bool all_versions_loaded;
 		public bool AllVersionsLoaded {
-			get { return all_versions_loaded; }
+			get => all_versions_loaded;
 			set {
 				if (value)
 					if (DefaultVersionId != OriginalVersionId && !versions.ContainsKey (DefaultVersionId))
@@ -97,7 +80,7 @@ namespace FSpot
 
 		string description;
 		public string Description {
-			get { return description; }
+			get => description;
 			set {
 				if (description == value)
 					return;
@@ -106,9 +89,9 @@ namespace FSpot
 			}
 		}
 
-		uint roll_id = 0;
+		uint roll_id;
 		public uint RollId {
-			get { return roll_id; }
+			get => roll_id;
 			set {
 				if (roll_id == value)
 					return;
@@ -119,7 +102,7 @@ namespace FSpot
 
 		uint rating;
 		public uint Rating {
-			get { return rating; }
+			get => rating;
 			set {
 				if (rating == value || value > 5)
 					return;
@@ -141,12 +124,12 @@ namespace FSpot
 			}
 		}
 
-		public uint [] VersionIds {
+		public uint[] VersionIds {
 			get {
 				if (versions == null)
 					return Array.Empty<uint> ();
 
-				uint [] ids = new uint [versions.Count];
+				uint[] ids = new uint[versions.Count];
 				versions.Keys.CopyTo (ids, 0);
 				Array.Sort (ids);
 				return ids;
@@ -156,7 +139,7 @@ namespace FSpot
 		uint default_version_id = OriginalVersionId;
 
 		public uint DefaultVersionId {
-			get { return default_version_id; }
+			get => default_version_id;
 			set {
 				if (default_version_id == value)
 					return;
@@ -176,7 +159,7 @@ namespace FSpot
 		// it's supposed to be used only within the Photo and PhotoStore classes.
 		public void AddVersionUnsafely (uint version_id, SafeUri base_uri, string filename, string import_md5, string name, bool is_protected)
 		{
-			versions [version_id] = new PhotoVersion (this, version_id, base_uri, filename, import_md5, name, is_protected);
+			versions[version_id] = new PhotoVersion (this, version_id, base_uri, filename, import_md5, name, is_protected);
 
 			highest_version_id = Math.Max (version_id, highest_version_id);
 			changes.AddVersion (version_id);
@@ -192,10 +175,10 @@ namespace FSpot
 			if (VersionNameExists (name))
 				throw new ApplicationException ("A version with that name already exists");
 
-			highest_version_id ++;
+			highest_version_id++;
 			string import_md5 = string.Empty; // Modified version
 
-			versions [highest_version_id] = new PhotoVersion (this, highest_version_id, base_uri, filename, import_md5, name, is_protected);
+			versions[highest_version_id] = new PhotoVersion (this, highest_version_id, base_uri, filename, import_md5, name, is_protected);
 
 			changes.AddVersion (highest_version_id);
 			return highest_version_id;
@@ -220,7 +203,7 @@ namespace FSpot
 			if (!versions.ContainsKey (version_id))
 				return null;
 
-			PhotoVersion v = versions [version_id];
+			PhotoVersion v = versions[version_id];
 			return v?.Uri;
 		}
 
@@ -229,14 +212,13 @@ namespace FSpot
 				if (!versions.ContainsKey (DefaultVersionId))
 					throw new Exception ("Something is horribly wrong, this should never happen: no default version!");
 
-				return versions [DefaultVersionId];
+				return versions[DefaultVersionId];
 			}
 		}
 
 		public void SetDefaultVersion (IPhotoVersion version)
 		{
-			PhotoVersion photo_version = version as PhotoVersion;
-			if (photo_version == null)
+			if (version is not PhotoVersion photo_version)
 				throw new ArgumentException ("Not a valid version for this photo");
 
 			DefaultVersionId = photo_version.VersionId;
@@ -268,7 +250,7 @@ namespace FSpot
 					if (create_version)
 						DeleteVersion (version);
 
-					throw e;
+					throw;
 				}
 			}
 
@@ -365,9 +347,9 @@ namespace FSpot
 				File.Copy (original_uri.AbsolutePath, new_uri.AbsolutePath);
 			}
 
-			highest_version_id ++;
+			highest_version_id++;
 
-			versions [highest_version_id] = new PhotoVersion (this, highest_version_id, new_base_uri, filename, import_md5, name, is_protected);
+			versions[highest_version_id] = new PhotoVersion (this, highest_version_id, new_base_uri, filename, import_md5, name, is_protected);
 
 			changes.AddVersion (highest_version_id);
 
@@ -386,7 +368,7 @@ namespace FSpot
 			string parent_filename = Path.GetFileNameWithoutExtension (Name);
 			string name = null;
 			if (filename.StartsWith (parent_filename))
-				name = filename.Substring (parent_filename.Length).Replace ("(", "").Replace (")", "").Replace ("_", " "). Trim ();
+				name = filename.Substring (parent_filename.Length).Replace ("(", "").Replace (")", "").Replace ("_", " ").Trim ();
 
 			if (string.IsNullOrEmpty (name)) {
 				// Note for translators: Reparented is a picture becoming a version of another one
@@ -396,8 +378,8 @@ namespace FSpot
 				}
 			}
 
-			highest_version_id ++;
-			versions [highest_version_id] = new PhotoVersion (this, highest_version_id, version.BaseUri, version.Filename, version.ImportMD5, name, is_protected);
+			highest_version_id++;
+			versions[highest_version_id] = new PhotoVersion (this, highest_version_id, version.BaseUri, version.Filename, version.ImportMD5, name, is_protected);
 
 			changes.AddVersion (highest_version_id);
 
@@ -412,13 +394,13 @@ namespace FSpot
 				string name = Catalog.GetPluralString ("Modified", "Modified ({0})", num);
 				name = string.Format (name, num);
 				//SafeUri uri = GetUriForVersionName (name, System.IO.Path.GetExtension (VersionUri(baseVersionId).GetFilename()));
-				string filename = GetFilenameForVersionName (name, System.IO.Path.GetExtension (versions [baseVersionId].Filename));
+				string filename = GetFilenameForVersionName (name, System.IO.Path.GetExtension (versions[baseVersionId].Filename));
 				SafeUri uri = DefaultVersion.BaseUri.Append (filename);
 
-				if (! VersionNameExists (name) && !File.Exists (uri.AbsolutePath))
+				if (!VersionNameExists (name) && !File.Exists (uri.AbsolutePath))
 					return CreateVersion (name, baseVersionId, createFile);
 
-				num ++;
+				num++;
 			}
 		}
 
@@ -430,13 +412,13 @@ namespace FSpot
 				var final_name = string.Format (
 					(num == 1) ? Catalog.GetString ("Modified in {1}") : Catalog.GetString ("Modified in {1} ({0})"), num, name);
 
-				string filename = GetFilenameForVersionName (name, System.IO.Path.GetExtension (versions [baseVersionId].Filename));
+				string filename = GetFilenameForVersionName (name, System.IO.Path.GetExtension (versions[baseVersionId].Filename));
 				SafeUri uri = DefaultVersion.BaseUri.Append (filename);
 
-				if (! VersionNameExists (final_name) && !File.Exists (uri.AbsolutePath))
+				if (!VersionNameExists (final_name) && !File.Exists (uri.AbsolutePath))
 					return CreateVersion (final_name, extension, baseVersionId, createFile);
 
-				num ++;
+				num++;
 			}
 		}
 
@@ -510,7 +492,7 @@ namespace FSpot
 			changes.RemoveTag (tag);
 		}
 
-		public void RemoveTag (Tag []taglist)
+		public void RemoveTag (Tag[] taglist)
 		{
 			foreach (Tag tag in taglist) {
 				RemoveTag (tag);
@@ -560,7 +542,7 @@ namespace FSpot
 		public int CompareTo (object obj)
 		{
 			if (GetType () == obj.GetType ())
-				return this.Compare((Photo)obj);
+				return this.Compare ((Photo)obj);
 
 			if (obj is DateTime)
 				return time.CompareTo ((DateTime)obj);

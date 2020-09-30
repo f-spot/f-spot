@@ -151,8 +151,7 @@ namespace FSpot.UI.Dialog
 			set {
 				icon_name = null;
 				preview_pixbuf = value;
-				Cms.Profile screen_profile;
-				if (value!= null && ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out screen_profile)) {
+				if (value != null && ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screen_profile)) {
 					preview_image.Pixbuf = value.Copy ();
 					ColorManagement.ApplyProfile (preview_image.Pixbuf, screen_profile);
 				} else
@@ -195,12 +194,7 @@ namespace FSpot.UI.Dialog
 				string caption = Catalog.GetString ("Unable to load image");
 				string message = string.Format (Catalog.GetString ("Unable to load \"{0}\" as icon for the tag"),
 					                 external_photo_chooser.Uri);
-				HigMessageDialog md = new HigMessageDialog (this,
-									    DialogFlags.DestroyWithParent,
-									    MessageType.Error,
-									    ButtonsType.Close,
-									    caption,
-									    message);
+				using var md = new HigMessageDialog (this, DialogFlags.DestroyWithParent, MessageType.Error, ButtonsType.Close, caption, message);
 				md.Run();
 				md.Destroy();
 			}
@@ -231,8 +225,7 @@ namespace FSpot.UI.Dialog
 		public void HandlePhotoChanged (object sender, EventArgs e)
 		{
 			int item = image_view.Item.Index;
-			photo_label.Text = string.Format (Catalog.GetString ("Photo {0} of {1}"),
-							  item + 1, query.Count);
+			photo_label.Text = string.Format (Catalog.GetString ("Photo {0} of {1}"), item + 1, query.Count);
 
 			photo_spin_button.Value = item + 1;
 			HandleSelectionChanged (null, null);

@@ -9,58 +9,42 @@
 // Copyright (C) 2009 Stephane Delcroix
 // Copyright (C) 2009-2010 Ruben Vermeersch
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
 using System.Runtime.InteropServices;
+
 using Gdk;
 
 using Hyena;
+
 using TagLib.Image;
 
 namespace FSpot.Utils
 {
 	public static class PixbufUtils
 	{
-	        public static ImageOrientation Rotate270 (ImageOrientation orientation)
-	        {
-	            if (orientation == ImageOrientation.None) {
-	                orientation = ImageOrientation.TopLeft;
-	            }
+		public static ImageOrientation Rotate270 (ImageOrientation orientation)
+		{
+			if (orientation == ImageOrientation.None) {
+				orientation = ImageOrientation.TopLeft;
+			}
 
-	            ImageOrientation [] rot = {
-	                ImageOrientation.LeftBottom,
-	                    ImageOrientation.LeftTop,
-	                    ImageOrientation.RightTop,
-	                    ImageOrientation.RightBottom,
-	                    ImageOrientation.BottomLeft,
-	                    ImageOrientation.TopLeft,
-	                    ImageOrientation.TopRight,
-	                    ImageOrientation.BottomRight
-	            };
+			ImageOrientation[] rot = {
+					ImageOrientation.LeftBottom,
+						ImageOrientation.LeftTop,
+						ImageOrientation.RightTop,
+						ImageOrientation.RightBottom,
+						ImageOrientation.BottomLeft,
+						ImageOrientation.TopLeft,
+						ImageOrientation.TopRight,
+						ImageOrientation.BottomRight
+				};
 
-	            orientation = rot [((int)orientation) -1];
-	            return orientation;
-	        }
-	
+			orientation = rot[((int)orientation) - 1];
+			return orientation;
+		}
+
 		public static ImageOrientation Rotate90 (ImageOrientation orientation)
 		{
 			orientation = Rotate270 (orientation);
@@ -73,11 +57,11 @@ namespace FSpot.Utils
 		{
 			return TransformOrientation (src.Width, src.Height, args, orientation);
 		}
-		
+
 		public static Rectangle TransformOrientation (int total_width, int total_height, Rectangle args, ImageOrientation orientation)
 		{
 			Rectangle area = args;
-			
+
 			switch (orientation) {
 			case ImageOrientation.BottomRight:
 				area.X = total_width - args.X - args.Width;
@@ -116,7 +100,7 @@ namespace FSpot.Utils
 			default:
 				break;
 			}
-			
+
 			return area;
 		}
 
@@ -160,22 +144,14 @@ namespace FSpot.Utils
 
 		public static ImageOrientation ReverseTransformation (ImageOrientation orientation)
 		{
-			switch (orientation) {
-			default:
-			case ImageOrientation.TopLeft:
-			case ImageOrientation.TopRight:
-			case ImageOrientation.BottomRight:
-			case ImageOrientation.BottomLeft:
-				return orientation;
-			case ImageOrientation.LeftTop:
-				return ImageOrientation.RightBottom;
-			case ImageOrientation.RightTop:
-				return ImageOrientation.LeftBottom;
-			case ImageOrientation.RightBottom:
-				return ImageOrientation.LeftTop;
-			case ImageOrientation.LeftBottom:
-				return ImageOrientation.RightTop;
-			}
+			return orientation switch
+			{
+				ImageOrientation.LeftTop => ImageOrientation.RightBottom,
+				ImageOrientation.RightTop => ImageOrientation.LeftBottom,
+				ImageOrientation.RightBottom => ImageOrientation.LeftTop,
+				ImageOrientation.LeftBottom => ImageOrientation.RightTop,
+				_ => orientation,
+			};
 		}
 
 		public static Pixbuf TransformOrientation (this Pixbuf src, ImageOrientation orientation)
@@ -213,7 +189,7 @@ namespace FSpot.Utils
 				dest = src.RotateSimple (PixbufRotation.Counterclockwise);
 				break;
 			}
-			
+
 			return dest;
 		}
 
@@ -228,9 +204,7 @@ namespace FSpot.Utils
 
 		public static Pixbuf ScaleToMaxSize (this Pixbuf pixbuf, int width, int height, bool upscale = true)
 		{
-			int scale_width = 0;
-			int scale_height = 0;
-			double scale = Fit (pixbuf, width, height, upscale, out scale_width, out scale_height);
+			double scale = Fit (pixbuf, width, height, upscale, out var scale_width, out var scale_height);
 
 			Gdk.Pixbuf result;
 			if (upscale || (scale < 1.0))
@@ -302,7 +276,7 @@ namespace FSpot.Utils
 		// Save which allows specifying the variable arguments (it's not
 		// possible with p/invoke).
 
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_pixbuf_save (IntPtr raw, IntPtr filename, IntPtr type, out IntPtr error, IntPtr optlabel1, IntPtr optvalue1, IntPtr dummy);
 
 		static bool Save (this Pixbuf pixbuf, string filename, string type, uint jpeg_quality)

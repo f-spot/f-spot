@@ -92,7 +92,7 @@ namespace FSpot.UI.Dialog
 		{
 			string name = tag_name_entry.Text;
 
-			if (name == string.Empty) {
+			if (string.IsNullOrEmpty (name)) {
 				ok_button.Sensitive = false;
 				already_in_use_label.Markup = string.Empty;
 			} else if (TagNameExistsInCategory (name, db.Tags.RootCategory)
@@ -131,7 +131,7 @@ namespace FSpot.UI.Dialog
 
 		void HandleIconButtonClicked (object sender, EventArgs args)
 		{
-			EditTagIconDialog dialog = new EditTagIconDialog (db, tag, this);
+			using var dialog = new EditTagIconDialog (db, tag, this);
 
 			ResponseType response = (ResponseType)dialog.Run ();
 			if (response == ResponseType.Ok)

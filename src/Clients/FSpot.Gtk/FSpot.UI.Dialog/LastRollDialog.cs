@@ -10,25 +10,7 @@
 // Copyright (C) 2010 Ruben Vermeersch
 // Copyright (C) 2007-2008 Stephane Delcroix
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
 using System.Collections.Generic;
@@ -79,7 +61,7 @@ namespace FSpot.UI.Dialog
 		protected void HandleResponse (object o, Gtk.ResponseArgs args)
 		{
 			if (args.ResponseId == ResponseType.Ok) {
-				Roll [] selected_rolls = SelectedRolls ();
+				Roll[] selected_rolls = SelectedRolls ();
 
 				if (selected_rolls != null && selected_rolls.Length > 0)
 					query.RollSet = new RollSet (selected_rolls);
@@ -102,7 +84,7 @@ namespace FSpot.UI.Dialog
 
 		void UpdateNumberOfPhotos ()
 		{
-			Roll [] selected_rolls = SelectedRolls ();
+			Roll[] selected_rolls = SelectedRolls ();
 			uint sum = 0;
 			if (selected_rolls != null)
 				foreach (Roll roll in selected_rolls) {
@@ -114,20 +96,18 @@ namespace FSpot.UI.Dialog
 		void PopulateCombos ()
 		{
 			for (uint k = 0; k < rolls.Length; k++) {
-				uint numphotos = rollstore.PhotosInRoll (rolls [k]);
+				uint numphotos = rollstore.PhotosInRoll (rolls[k]);
 				// Roll time is in UTC always
-				DateTime date = rolls [k].Time.ToLocalTime ();
+				DateTime date = rolls[k].Time.ToLocalTime ();
 
-				string header = string.Format ("{0} ({1})",
-					date.ToString ("%dd %MMM, %HH:%mm"),
-					numphotos);
+				string header = $"{date.ToString ("%dd %MMM, %HH:%mm")} ({numphotos})";
 
 				combo_roll_1.AppendText (header);
 				combo_roll_2.AppendText (header);
 			}
 		}
 
-		Roll [] SelectedRolls ()
+		Roll[] SelectedRolls ()
 		{
 			if ((combo_roll_1.Active < 0) || ((combo_filter.Active == 2) && (combo_roll_2.Active < 0)))
 				return null;
@@ -135,15 +115,15 @@ namespace FSpot.UI.Dialog
 			List<Roll> result = new List<Roll> ();
 
 			switch (combo_filter.Active) {
-			case 0 : // at - Return the roll the user selected
-				result.Add (rolls [combo_roll_1.Active]);
+			case 0: // at - Return the roll the user selected
+				result.Add (rolls[combo_roll_1.Active]);
 				break;
-			case 1 : // after - Return all rolls from latest to the one the user selected
+			case 1: // after - Return all rolls from latest to the one the user selected
 				for (uint k = 0; k <= combo_roll_1.Active; k++) {
-					result.Add (rolls [k]);
+					result.Add (rolls[k]);
 				}
 				break;
-			case 2 : // between - Return all rolls between the two import rolls the user selected
+			case 2: // between - Return all rolls between the two import rolls the user selected
 				uint k1 = (uint)combo_roll_1.Active;
 				uint k2 = (uint)combo_roll_2.Active;
 				if (k1 > k2) {
@@ -151,7 +131,7 @@ namespace FSpot.UI.Dialog
 					k2 = (uint)combo_roll_1.Active;
 				}
 				for (uint k = k1; k <= k2; k++) {
-					result.Add (rolls [k]);
+					result.Add (rolls[k]);
 				}
 				break;
 			}

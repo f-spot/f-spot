@@ -10,26 +10,7 @@
 // Copyright (C) 2006 Larry Ewing
 // Copyright (C) 2006-2007 Gabriel Burt
 //
-//  Permission is hereby granted, free of charge, to any person obtaining
-//  a copy of this software and associated documentation files (the
-//  "Software"), to deal in the Software without restriction, including
-//  without limitation the rights to use, copy, modify, merge, publish,
-//  distribute, sublicense, and/or sell copies of the Software, and to
-//  permit persons to whom the Software is furnished to do so, subject to
-//  the following conditions:
-//
-//  The above copyright notice and this permission notice shall be
-//  included in all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-//  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-//  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-//  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-//  LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-//  OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-//  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
 using System.Collections.Generic;
@@ -59,8 +40,7 @@ namespace FSpot.Query
 
 		public event EventHandler Changed;
 
-		public static Term Root
-		{
+		public static Term Root {
 			get {
 				return rootTerm;
 			}
@@ -72,7 +52,7 @@ namespace FSpot.Query
 		}
 
 		// Drag and Drop
-		static readonly TargetEntry [] tag_dest_target_table =
+		static readonly TargetEntry[] tag_dest_target_table =
 			{
 				DragDropTargets.TagListEntry,
 				DragDropTargets.TagQueryEntry
@@ -104,15 +84,15 @@ namespace FSpot.Query
 			rootAdd = new Gtk.EventBox ();
 			rootAdd.VisibleWindow = false;
 			rootAdd.CanFocus = true;
-			rootAdd.DragMotion  += HandleDragMotion;
+			rootAdd.DragMotion += HandleDragMotion;
 			rootAdd.DragDataReceived += HandleDragDataReceived;
-			rootAdd.DragLeave  += HandleDragLeave;
+			rootAdd.DragLeave += HandleDragLeave;
 
 			help = new Gtk.Label ("<i>" + Catalog.GetString ("Drag tags here to search for them") + "</i>");
 			help.UseMarkup = true;
 			help.Visible = true;
 
-			rootBox = new HBox();
+			rootBox = new HBox ();
 			rootBox.Add (help);
 			rootBox.Show ();
 
@@ -120,7 +100,7 @@ namespace FSpot.Query
 			rootAdd.Show ();
 
 			Gtk.Drag.DestSet (rootAdd, DestDefaults.All, tag_dest_target_table,
-					  DragAction.Copy | DragAction.Move );
+					  DragAction.Copy | DragAction.Move);
 
 			PackEnd (rootAdd, true, true, 0);
 
@@ -150,16 +130,16 @@ namespace FSpot.Query
 		void HandleTagChanged (object sender, DbItemEventArgs<Tag> args)
 		{
 			foreach (Tag t in args.Items)
-		                foreach (Literal term in rootTerm.FindByTag (t))
-		                    term.Update ();
+				foreach (Literal term in rootTerm.FindByTag (t))
+					term.Update ();
 		}
 
 		// If the user deletes a tag that is in use in the query, remove it from the query too.
 		void HandleTagDeleted (object sender, DbItemEventArgs<Tag> args)
 		{
 			foreach (Tag t in args.Items)
-		                foreach (Literal term in rootTerm.FindByTag (t))
-		                    term.RemoveSelf ();
+				foreach (Literal term in rootTerm.FindByTag (t))
+					term.RemoveSelf ();
 		}
 
 		void HandleDragMotion (object o, DragMotionArgs args)
@@ -192,7 +172,7 @@ namespace FSpot.Query
 				term.RemoveSelf ();
 
 				// Add it to where it was dropped
-				List<Literal> groups = InsertTerm (new [] {tag}, parent, after);
+				List<Literal> groups = InsertTerm (new[] { tag }, parent, after);
 
 				if (term.IsNegated)
 					foreach (Literal group in groups)
@@ -209,7 +189,7 @@ namespace FSpot.Query
 
 		void HandleAttachTag (Tag tag, Term parent, Literal after)
 		{
-			InsertTerm (new Tag [] {tag}, parent, after);
+			InsertTerm (new Tag[] { tag }, parent, after);
 		}
 
 		void HandleNegated (Literal group)
@@ -232,15 +212,12 @@ namespace FSpot.Query
 
 			// Find separators that only exist because of this term
 			if (term.Parent != null) {
-				if (term.Parent.Count > 1)
-				{
+				if (term.Parent.Count > 1) {
 					if (term == term.Parent.Last)
 						w.Add (Children[WidgetPosition (term.Widget) - 1]);
 					else
 						w.Add (Children[WidgetPosition (term.Widget) + 1]);
-				}
-				else if (term.Parent.Count == 1)
-				{
+				} else if (term.Parent.Count == 1) {
 					if (term.Parent.Parent != null) {
 						if (term.Parent.Parent.Count > 1) {
 							if (term.Parent == term.Parent.Parent.Last)
@@ -281,7 +258,7 @@ namespace FSpot.Query
 
 		/** Helper Functions **/
 
-		public void PhotoTagsChanged (Tag [] tags)
+		public void PhotoTagsChanged (Tag[] tags)
 		{
 			bool refresh_required = false;
 
@@ -297,7 +274,8 @@ namespace FSpot.Query
 		}
 
 		// Inserts a widget into a Box at a certain index
-		void InsertWidget (int index, Gtk.Widget widget) {
+		void InsertWidget (int index, Gtk.Widget widget)
+		{
 			widget.Visible = true;
 			PackStart (widget, false, false, 0);
 			ReorderChild (widget, index);
@@ -324,13 +302,13 @@ namespace FSpot.Query
 		}
 
 		// Add a tag or group of tags to the rootTerm, at the end of the Box
-		public void Include (Tag [] tags)
+		public void Include (Tag[] tags)
 		{
 			// Filter out any tags that are already included
 			// FIXME: Does this really need to be set to a length?
 			List<Tag> new_tags = new List<Tag> (tags.Length);
 			foreach (Tag tag in tags) {
-				if (! rootTerm.TagIncluded (tag))
+				if (!rootTerm.TagIncluded (tag))
 					new_tags.Add (tag);
 
 			}
@@ -343,7 +321,7 @@ namespace FSpot.Query
 			InsertTerm (tags, rootTerm, null);
 		}
 
-		public void UnInclude (Tag [] tags)
+		public void UnInclude (Tag[] tags)
 		{
 			var new_tags = new List<Tag> (tags.Length);
 			foreach (Tag tag in tags) {
@@ -376,7 +354,7 @@ namespace FSpot.Query
 		}
 
 		// AND this tag with all terms
-		public void Require (Tag [] tags)
+		public void Require (Tag[] tags)
 		{
 			// TODO it would be awesome if this was done by putting parentheses around
 			// OR terms and ANDing the result with this term (eg factored out)
@@ -384,7 +362,7 @@ namespace FSpot.Query
 			// Trim out tags that are already required
 			var new_tags = new List<Tag> (tags.Length);
 			foreach (Tag tag in tags) {
-				if (! rootTerm.TagRequired (tag))
+				if (!rootTerm.TagRequired (tag))
 					new_tags.Add (tag);
 			}
 
@@ -413,7 +391,7 @@ namespace FSpot.Query
 			UpdateQuery ();
 		}
 
-		public void UnRequire (Tag [] tags)
+		public void UnRequire (Tag[] tags)
 		{
 			// Trim out tags that are not required
 			var new_tags = new List<Tag> (tags.Length);
@@ -442,7 +420,7 @@ namespace FSpot.Query
 			UpdateQuery ();
 		}
 
-		public List<Literal> InsertTerm (Tag [] tags, Term parent, Literal after)
+		public List<Literal> InsertTerm (Tag[] tags, Term parent, Literal after)
 		{
 			int position;
 			if (after != null)
@@ -450,7 +428,7 @@ namespace FSpot.Query
 			else
 				position = Children.Length - 1;
 
-			var added = new List<Literal>();
+			var added = new List<Literal> ();
 
 			foreach (Tag tag in tags) {
 				//Console.WriteLine ("Adding tag {0}", tag.Name);
@@ -477,14 +455,14 @@ namespace FSpot.Query
 					after = null;
 				}
 
-				Literal term  = new Literal (parent, tag, after);
-				term.TagsAdded  += HandleTagsAdded;
+				Literal term = new Literal (parent, tag, after);
+				term.TagsAdded += HandleTagsAdded;
 				term.LiteralsMoved += HandleLiteralsMoved;
-				term.AttachTag  += HandleAttachTag;
+				term.AttachTag += HandleAttachTag;
 				term.NegatedToggled += HandleNegated;
-				term.Removing  += HandleRemoving;
-				term.Removed  += HandleRemoved;
-				term.RequireTag  += Require;
+				term.Removing += HandleRemoving;
+				term.Removed += HandleRemoved;
+				term.RequireTag += Require;
 				term.UnRequireTag += UnRequire;
 
 				added.Add (term);

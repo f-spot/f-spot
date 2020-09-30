@@ -59,7 +59,7 @@ namespace FSpot.Widgets
 				CurveTypeChanged?.Invoke (this, EventArgs.Empty);
 		}
 
-		float min_x = 0f;
+		float min_x;
 		public float MinX {
 			get { return min_x; }
 			set { SetRange (value, max_x, min_y, max_y); }
@@ -71,7 +71,7 @@ namespace FSpot.Widgets
 			set { SetRange (min_x, value, min_y, max_y); }
 		}
 
-		float min_y = 0f;
+		float min_y;
 		public float MinY {
 			get { return min_y; }
 			set { SetRange (min_x, max_x, value, max_y); }
@@ -259,7 +259,7 @@ namespace FSpot.Widgets
 		int y_offset = radius;
 		int width, height;		//the real graph
 
-		Pixmap pixmap = null;
+		Pixmap pixmap;
 
 		protected override bool OnConfigureEvent (EventConfigure evnt)
 		{
@@ -341,7 +341,7 @@ namespace FSpot.Widgets
 			requisition.Height = 128 + 2 * y_offset;
 		}
 
-		float? grab_point = null;
+		float? grab_point;
 		protected override bool OnButtonPressEvent (EventButton evnt)
 		{
 			int px = (int)evnt.X - x_offset;

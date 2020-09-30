@@ -9,25 +9,7 @@
 // Copyright (C) 2010 Ruben Vermeersch
 // Copyright (C) 2009 Stephane Delcroix
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
 
@@ -70,26 +52,26 @@ namespace FSpot.Widgets
 
 		public string GetFolderNameByIter (TreeIter iter)
 		{
-			if ( ! IterIsValid (iter))
+			if (!IterIsValid (iter))
 				return null;
 
-			return (string) GetValue (iter, 0);
+			return (string)GetValue (iter, 0);
 		}
 
 		public int GetPhotoCountByIter (TreeIter iter)
 		{
-			if ( ! IterIsValid (iter))
+			if (!IterIsValid (iter))
 				return -1;
 
-			return (int) GetValue (iter, 1);
+			return (int)GetValue (iter, 1);
 		}
 
 		public SafeUri GetUriByIter (TreeIter iter)
 		{
-			if ( ! IterIsValid (iter))
+			if (!IterIsValid (iter))
 				return null;
 
-			return (SafeUri) GetValue (iter, 2);
+			return (SafeUri)GetValue (iter, 2);
 		}
 
 		public SafeUri GetUriByPath (TreePath row)
@@ -120,7 +102,7 @@ namespace FSpot.Widgets
 			TreeIter iter = TreeIter.Zero;
 
 			/* stores the segments of the last inserted uri */
-			string[] last_segments = {};
+			string[] last_segments = Array.Empty<string> ();
 
 			int last_count = 0;
 
@@ -172,15 +154,15 @@ namespace FSpot.Widgets
 					if (IterIsValid (parent_iter)) {
 						iter =
 							AppendValues (parent_iter,
-							              Uri.UnescapeDataString (segments[i]),
-							              (segments.Length - 1 == i)? count : 0,
-							              (GetValue (parent_iter, 2) as SafeUri).Append (string.Format ("{0}/", segments[i]))
-							              );
+										  Uri.UnescapeDataString (segments[i]),
+										  (segments.Length - 1 == i) ? count : 0,
+										  (GetValue (parent_iter, 2) as SafeUri).Append ($"{segments[i]}/")
+										  );
 					} else {
 						iter =
 							AppendValues (Uri.UnescapeDataString (segments[i]),
-							              (segments.Length - 1 == i)? count : 0,
-							              new SafeUri (string.Format ("{0}:///", base_uri.Scheme), true));
+										  (segments.Length - 1 == i) ? count : 0,
+										  new SafeUri ($"{base_uri.Scheme}:///", true));
 					}
 
 					parent_iter = iter;

@@ -13,25 +13,7 @@
 // Copyright (C) 2003 Ettore Perazzoli
 // Copyright (C) 2010 Ruben Vermeersch
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
 
@@ -51,12 +33,11 @@ public class PhotoVersionCommands
 	// Creating a new version.
 	public class Create
 	{
-		public bool Execute (PhotoStore store, Photo photo, Gtk.Window parent_window)
+		public bool Execute (PhotoStore store, Photo photo, Gtk.Window parentWindow)
 		{
-			var request = new VersionNameDialog (VersionNameDialog.RequestType.Create, photo, parent_window);
+			using var request = new VersionNameDialog (VersionNameDialog.RequestType.Create, photo, parentWindow);
 
-			string name;
-			ResponseType response = request.Run (out name);
+			ResponseType response = request.Run (out var name);
 
 			if (response != ResponseType.Ok)
 				return false;
@@ -66,7 +47,7 @@ public class PhotoVersionCommands
 				store.Commit (photo);
 				return true;
 			} catch (Exception e) {
-				HandleException ("Could not create a new version", e, parent_window);
+				HandleException ("Could not create a new version", e, parentWindow);
 				return false;
 			}
 		}
@@ -82,7 +63,7 @@ public class PhotoVersionCommands
 			string msg = string.Format (Catalog.GetString ("Really delete version \"{0}\"?"), photo.DefaultVersion.Name);
 			string desc = Catalog.GetString ("This removes the version and deletes the corresponding file from disk.");
 			try {
-				if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation(parent_window, DialogFlags.DestroyWithParent,
+				if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation (parent_window, DialogFlags.DestroyWithParent,
 									   MessageType.Warning, msg, desc, ok_caption)) {
 					photo.DeleteVersion (photo.DefaultVersionId);
 					store.Commit (photo);
@@ -98,13 +79,11 @@ public class PhotoVersionCommands
 	// Renaming a version.
 	public class Rename
 	{
-		public bool Execute (PhotoStore store, Photo photo, Gtk.Window parent_window)
+		public bool Execute (PhotoStore store, Photo photo, Gtk.Window parentWindow)
 		{
-			VersionNameDialog request = new VersionNameDialog (VersionNameDialog.RequestType.Rename,
-									     photo, parent_window);
+			using var request = new VersionNameDialog (VersionNameDialog.RequestType.Rename, photo, parentWindow);
 
-			string new_name;
-			ResponseType response = request.Run (out new_name);
+			ResponseType response = request.Run (out var new_name);
 
 			if (response != ResponseType.Ok)
 				return false;
@@ -114,7 +93,7 @@ public class PhotoVersionCommands
 				store.Commit (photo);
 				return true;
 			} catch (Exception e) {
-				HandleException ("Could not rename a version", e, parent_window);
+				HandleException ("Could not rename a version", e, parentWindow);
 				return false;
 			}
 		}
@@ -126,15 +105,15 @@ public class PhotoVersionCommands
 		public bool Execute (PhotoStore store, Photo photo, Gtk.Window parent_window)
 		{
 			string ok_caption = Catalog.GetString ("De_tach");
-			string msg = string.Format (Catalog.GetString ("Really detach version \"{0}\" from \"{1}\"?"), photo.DefaultVersion.Name, photo.Name.Replace("_", "__"));
+			string msg = string.Format (Catalog.GetString ("Really detach version \"{0}\" from \"{1}\"?"), photo.DefaultVersion.Name, photo.Name.Replace ("_", "__"));
 			string desc = Catalog.GetString ("This makes the version appear as a separate photo in the library. To undo, drag the new photo back to its parent.");
 			try {
-				if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation(parent_window, DialogFlags.DestroyWithParent,
+				if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation (parent_window, DialogFlags.DestroyWithParent,
 									   MessageType.Warning, msg, desc, ok_caption)) {
 					Photo new_photo = store.CreateFrom (photo, true, photo.RollId);
 					new_photo.CopyAttributesFrom (photo);
 					photo.DeleteVersion (photo.DefaultVersionId, false, true);
-					store.Commit (new Photo[] {new_photo, photo});
+					store.Commit (new Photo[] { new_photo, photo });
 					return true;
 				}
 			} catch (Exception e) {
@@ -147,22 +126,22 @@ public class PhotoVersionCommands
 	// Reparenting a photo as version of another one
 	public class Reparent
 	{
-		public bool Execute (PhotoStore store, Photo [] photos, Photo new_parent, Gtk.Window parent_window)
+		public bool Execute (PhotoStore store, Photo[] photos, Photo new_parent, Gtk.Window parent_window)
 		{
 			string ok_caption = Catalog.GetString ("Re_parent");
 			string msg = string.Format (Catalog.GetPluralString ("Really reparent \"{0}\" as version of \"{1}\"?",
-			                                                     "Really reparent {2} photos as versions of \"{1}\"?", photos.Length),
-			                            new_parent.Name.Replace ("_", "__"), photos[0].Name.Replace ("_", "__"), photos.Length);
+																 "Really reparent {2} photos as versions of \"{1}\"?", photos.Length),
+										new_parent.Name.Replace ("_", "__"), photos[0].Name.Replace ("_", "__"), photos.Length);
 			string desc = Catalog.GetString ("This makes the photos appear as a single one in the library. The versions can be detached using the Photo menu.");
 
 			try {
-				if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation(parent_window, DialogFlags.DestroyWithParent,
+				if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation (parent_window, DialogFlags.DestroyWithParent,
 									   MessageType.Warning, msg, desc, ok_caption)) {
 					uint highest_rating = new_parent.Rating;
 					string new_description = new_parent.Description;
 					foreach (Photo photo in photos) {
-						highest_rating = Math.Max(photo.Rating, highest_rating);
-						if (string.IsNullOrEmpty(new_description))
+						highest_rating = Math.Max (photo.Rating, highest_rating);
+						if (string.IsNullOrEmpty (new_description))
 							new_description = photo.Description;
 						new_parent.AddTag (photo.Tags);
 
@@ -170,7 +149,7 @@ public class PhotoVersionCommands
 							new_parent.DefaultVersionId = new_parent.CreateReparentedVersion (photo.GetVersion (version_id) as PhotoVersion);
 							store.Commit (new_parent);
 						}
-						uint [] version_ids = photo.VersionIds;
+						uint[] version_ids = photo.VersionIds;
 						Array.Reverse (version_ids);
 						foreach (uint version_id in version_ids) {
 							photo.DeleteVersion (version_id, true, true);
@@ -182,8 +161,7 @@ public class PhotoVersionCommands
 					store.Commit (new_parent);
 					return true;
 				}
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				HandleException ("Could not reparent photos", e, parent_window);
 			}
 			return false;
@@ -195,7 +173,7 @@ public class PhotoVersionCommands
 		Log.DebugException (e);
 		msg = Catalog.GetString (msg);
 		string desc = string.Format (Catalog.GetString ("Received exception \"{0}\"."), e.Message);
-		HigMessageDialog md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent,
+		using var md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent,
 								Gtk.MessageType.Error, ButtonsType.Ok, msg, desc);
 		md.Run ();
 		md.Destroy ();

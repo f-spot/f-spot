@@ -7,25 +7,7 @@
 // Copyright (C) 2008-2010 Novell, Inc.
 // Copyright (C) 2008, 2010 Ruben Vermeersch
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
 using System.Collections.Generic;
@@ -51,7 +33,8 @@ namespace FSpot.Editors
 		TreeStore constraints_store;
 		ComboBox constraints_combo;
 
-		public enum ConstraintType {
+		public enum ConstraintType
+		{
 			Normal,
 			AddCustom,
 			SameAsPhoto
@@ -59,7 +42,7 @@ namespace FSpot.Editors
 
 		List<SelectionRatioDialog.SelectionConstraint> custom_constraints;
 
-		static SelectionRatioDialog.SelectionConstraint [] default_constraints = {
+		static SelectionRatioDialog.SelectionConstraint[] default_constraints = {
 			new SelectionRatioDialog.SelectionConstraint (Catalog.GetString ("4 x 3 (Book)"), 4.0 / 3.0),
 			new SelectionRatioDialog.SelectionConstraint (Catalog.GetString ("4 x 6 (Postcard)"), 6.0 / 4.0),
 			new SelectionRatioDialog.SelectionConstraint (Catalog.GetString ("5 x 7 (L, 2L)"), 7.0 / 5.0),
@@ -87,7 +70,7 @@ namespace FSpot.Editors
 			case Preferences.CustomCropRatios:
 				custom_constraints = new List<SelectionRatioDialog.SelectionConstraint> ();
 				if (Preferences.Get<string[]> (key) != null) {
-					XmlSerializer serializer = new XmlSerializer (typeof(SelectionRatioDialog.SelectionConstraint));
+					XmlSerializer serializer = new XmlSerializer (typeof (SelectionRatioDialog.SelectionConstraint));
 					foreach (string xml in Preferences.Get<string[]> (key))
 						custom_constraints.Add ((SelectionRatioDialog.SelectionConstraint)serializer.Deserialize (new StringReader (xml)));
 				}
@@ -100,7 +83,7 @@ namespace FSpot.Editors
 		{
 			VBox vbox = new VBox ();
 
-			Label info = new Label (Catalog.GetString ("Select the area that needs cropping."));
+			using var info = new Label (Catalog.GetString ("Select the area that needs cropping."));
 
 			constraints_combo = new ComboBox ();
 			CellRendererText constraint_name_cell = new CellRendererText ();
@@ -172,7 +155,7 @@ namespace FSpot.Editors
 					try {
 						Pixbuf pb = State.PhotoImageView.CompletePixbuf ();
 						State.PhotoImageView.SelectionXyRatio = (double)pb.Width / (double)pb.Height;
-					} catch (System.Exception ex) {
+					} catch (Exception ex) {
 						Log.WarningFormat ("Exception in selection ratio's: {0}", ex);
 						State.PhotoImageView.SelectionXyRatio = 0;
 					}
@@ -202,9 +185,9 @@ namespace FSpot.Editors
 		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile)
 		{
 			Rectangle selection = FSpot.Utils.PixbufUtils.TransformOrientation ((int)State.PhotoImageView.PixbufOrientation <= 4 ? input.Width : input.Height,
-											    (int)State.PhotoImageView.PixbufOrientation <= 4 ? input.Height : input.Width,
-											    State.Selection, State.PhotoImageView.PixbufOrientation);
-			Pixbuf edited = new Pixbuf (input.Colorspace,
+												(int)State.PhotoImageView.PixbufOrientation <= 4 ? input.Height : input.Width,
+												State.Selection, State.PhotoImageView.PixbufOrientation);
+			var edited = new Pixbuf (input.Colorspace,
 						 input.HasAlpha, input.BitsPerSample,
 						 selection.Width, selection.Height);
 

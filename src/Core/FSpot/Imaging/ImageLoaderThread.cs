@@ -11,32 +11,18 @@
 // Copyright (C) 2003-2006 Larry Ewing
 // Copyright (C) 2003 Ettore Perazzoli
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+
 using FSpot.Imaging;
+
 using Gdk;
+
 using Gtk;
+
 using Hyena;
 
 namespace FSpot.Imaging
@@ -158,7 +144,7 @@ namespace FSpot.Imaging
 		public void Cancel (SafeUri uri)
 		{
 			lock (queue) {
-				RequestItem r = requests_by_uri [uri];
+				RequestItem r = requests_by_uri[uri];
 				if (r != null) {
 					requests_by_uri.Remove (uri);
 					queue.Remove (r);
@@ -173,12 +159,11 @@ namespace FSpot.Imaging
 		{
 			Pixbuf orig_image;
 			try {
-				using (var img = imageFileFactory.Create (request.Uri)) {
-					if (request.Width > 0) {
-						orig_image = img.Load (request.Width, request.Height);
-					} else {
-						orig_image = img.Load ();
-					}
+				using var img = imageFileFactory.Create (request.Uri);
+				if (request.Width > 0) {
+					orig_image = img.Load (request.Width, request.Height);
+				} else {
+					orig_image = img.Load ();
 				}
 			} catch (GLib.GException e) {
 				Log.Exception (e);
@@ -239,7 +224,7 @@ namespace FSpot.Imaging
 						if (current_request != null) {
 							processed_requests.Enqueue (current_request);
 
-							if (! pending_notify_notified) {
+							if (!pending_notify_notified) {
 								pending_notify.WakeupMain ();
 								pending_notify_notified = true;
 							}
@@ -260,7 +245,7 @@ namespace FSpot.Imaging
 
 						int pos = queue.Count - 1;
 
-						current_request = queue [pos];
+						current_request = queue[pos];
 						queue.RemoveAt (pos);
 						requests_by_uri.Remove (current_request.Uri);
 					}
@@ -296,7 +281,7 @@ namespace FSpot.Imaging
 
 			EmitLoaded (results);
 
-			foreach (RequestItem request in results){
+			foreach (RequestItem request in results) {
 				request.Dispose ();
 			}
 		}

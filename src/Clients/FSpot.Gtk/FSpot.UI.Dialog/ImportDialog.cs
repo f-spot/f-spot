@@ -90,7 +90,7 @@ namespace FSpot.UI.Dialog
 			import_button.Sensitive = false;
 
 			tag_entry = new TagEntry (App.Instance.Database.Tags, false);
-			tag_entry.UpdateFromTagNames (new string []{});
+			tag_entry.UpdateFromTagNames (Array.Empty<string> ());
 			tagentry_box.Add (tag_entry);
 			tag_entry.Show ();
 			attachtags_label.MnemonicWidget = tag_entry;

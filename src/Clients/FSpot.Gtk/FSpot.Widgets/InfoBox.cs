@@ -11,29 +11,10 @@
 // Copyright (C) 2008 Stephane Delcroix
 // Copyright (C) 2010 Mike Gemuende
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
 using System.Collections.Generic;
-using System.IO;
 
 using Mono.Unix;
 
@@ -152,7 +133,7 @@ namespace FSpot.Widgets
 		}
 
 
-		IPhoto[] photos = new IPhoto[0];
+		IPhoto[] photos = Array.Empty<IPhoto> ();
 		public IPhoto[] Photos {
 			private get { return photos; }
 			set {
@@ -283,7 +264,6 @@ namespace FSpot.Widgets
 			}
 		}
 
-
 		void SetEntryWidgetVisibility (InfoEntry entry, bool def)
 		{
 			entry.InfoWidget.Visible = ContextSwitchStrategy.InfoEntryVisible (Context, entry) && def;
@@ -352,7 +332,7 @@ namespace FSpot.Widgets
 
 			version_list = new ListStore (typeof (IPhotoVersion), typeof (string), typeof (bool));
 			version_combo = new ComboBox ();
-			var version_name_cell = new CellRendererText {
+			using var version_name_cell = new CellRendererText {
 				Ellipsize = Pango.EllipsizeMode.End
 			};
 			version_combo.PackStart (version_name_cell, true);
@@ -379,8 +359,7 @@ namespace FSpot.Widgets
 						  } else {
 							  version_combo.Sensitive = true;
 							  version_combo.TooltipText =
-								  string.Format (Catalog.GetPluralString ("(One Edit)", "({0} Edits)", count - 1),
-												 count - 1);
+								  string.Format (Catalog.GetPluralString ("(One Edit)", "({0} Edits)", count - 1), count - 1);
 						  }
 						  version_combo.Changed += OnVersionComboChanged;
 					  }, null);
@@ -490,7 +469,7 @@ namespace FSpot.Widgets
 							   }
 						   }, null);
 
-			var rating_entry = new RatingEntry { HasFrame = false, AlwaysShowEmptyStars = true };
+			using var rating_entry = new RatingEntry { HasFrame = false, AlwaysShowEmptyStars = true };
 			rating_entry.Changed += HandleRatingChanged;
 			var rating_align = new Gtk.Alignment (0, 0, 0, 0);
 			rating_align.Add (rating_entry);

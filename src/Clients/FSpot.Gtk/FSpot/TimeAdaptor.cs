@@ -13,25 +13,7 @@
 // Copyright (C) 2004-2005 Larry Ewing
 // Copyright (C) 2006, 2008 Stephane Delcroix
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
 using System.Threading;
@@ -46,11 +28,11 @@ namespace FSpot
 {
 	public class TimeAdaptor : GroupAdaptor, ILimitable
 	{
-		Dictionary <int, int[]> years = new Dictionary<int, int[]> ();
+		Dictionary<int, int[]> years = new Dictionary<int, int[]> ();
 
 		public override event GlassSetHandler GlassSet;
 
-		public TimeAdaptor (PhotoQuery query, bool order_ascending) : base (query, order_ascending)
+		public TimeAdaptor (PhotoQuery query, bool orderAscending) : base (query, orderAscending)
 		{ }
 
 		public override void SetGlass (int min)
@@ -64,9 +46,9 @@ namespace FSpot
 		{
 			DateTime start = DateFromIndex (min);
 
-			DateTime end = DateFromIndex(max);
+			DateTime end = DateFromIndex (max);
 
-			end = order_ascending ? end.AddMonths (1) : end.AddMonths(-1);
+			end = order_ascending ? end.AddMonths (1) : end.AddMonths (-1);
 
 			SetLimits (start, end);
 		}
@@ -83,7 +65,7 @@ namespace FSpot
 
 		public override string GlassLabel (int item)
 		{
-			return string.Format ("{0} ({1})", DateFromIndex (item).ToString ("MMMM yyyy"), Value (item));
+			return $"{DateFromIndex (item).ToString ("MMMM yyyy")} ({Value (item)})";
 		}
 
 		public override string TickLabel (int item)
@@ -92,15 +74,15 @@ namespace FSpot
 
 			if ((start.Month == 12 && !order_ascending) || (start.Month == 1 && order_ascending))
 				return start.Year.ToString ();
-		    return null;
+			return null;
 		}
 
 		public override int Value (int item)
 		{
 			if (order_ascending)
-				return years [startyear + item/12][item % 12];
+				return years[startyear + item / 12][item % 12];
 
-			return years [endyear - item/12][11 - item % 12];
+			return years[endyear - item / 12][11 - item % 12];
 		}
 
 		public DateTime DateFromIndex (int item)
@@ -116,23 +98,23 @@ namespace FSpot
 
 		DateTime DateFromIndexAscending (int item)
 		{
-			int year = startyear + item/12;
+			int year = startyear + item / 12;
 			int month = 1 + (item % 12);
 
-			return new DateTime(year, month, 1);
+			return new DateTime (year, month, 1);
 		}
 
 		DateTime DateFromIndexDescending (int item)
 		{
-			int year = endyear - item/12;
+			int year = endyear - item / 12;
 			int month = 12 - (item % 12);
 
-			year = Math.Max(1, year);
-			year = Math.Min(year, 9999);
-			month = Math.Max(1, month);
-			month = Math.Min(month, 12);
-		
-			int daysInMonth = DateTime.DaysInMonth(year, month);
+			year = Math.Max (1, year);
+			year = Math.Min (year, 9999);
+			month = Math.Max (1, month);
+			month = Math.Min (month, 12);
+
+			int daysInMonth = DateTime.DaysInMonth (year, month);
 
 			return new DateTime (year, month, daysInMonth).AddDays (1.0).AddMilliseconds (-.1);
 		}
@@ -140,7 +122,7 @@ namespace FSpot
 		public override int IndexFromPhoto (IPhoto photo)
 		{
 			if (order_ascending)
-			       return IndexFromDateAscending (photo.Time);
+				return IndexFromDateAscending (photo.Time);
 
 			return IndexFromDateDescending (photo.Time);
 		}
@@ -148,12 +130,12 @@ namespace FSpot
 		public int IndexFromDate (DateTime date)
 		{
 			if (order_ascending)
-				return IndexFromDateAscending(date);
+				return IndexFromDateAscending (date);
 
-			return IndexFromDateDescending(date);
+			return IndexFromDateDescending (date);
 		}
 
-		int IndexFromDateAscending(DateTime date)
+		int IndexFromDateAscending (DateTime date)
 		{
 			int year = date.Year;
 			int min_year = startyear;
@@ -164,10 +146,10 @@ namespace FSpot
 				return 0;
 			}
 
-			return (year - startyear) * 12 + date.Month - 1 ;
+			return (year - startyear) * 12 + date.Month - 1;
 		}
 
-		int IndexFromDateDescending(DateTime date)
+		int IndexFromDateDescending (DateTime date)
 		{
 			int year = date.Year;
 			int min_year = startyear;
@@ -184,7 +166,7 @@ namespace FSpot
 		public override IPhoto PhotoFromIndex (int item)
 		{
 			DateTime start = DateFromIndex (item);
-			return query [query.LookupItem (start)];
+			return query[query.LookupItem (start)];
 
 		}
 
