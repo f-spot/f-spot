@@ -10,7 +10,7 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
-  solution: 'F-Spot.sln'
+  solution: 'build.proj'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
