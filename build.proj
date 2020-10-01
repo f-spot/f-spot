@@ -23,7 +23,7 @@
     <Message Condition="'$(IsMac)'" Text="Building On Mac" Importance="High" />
     <Message Condition="'$(IsLinux)'" Text="Building On Linux" Importance="High" />
 
-    <MSBuild Projects="F-Spot.sln" Targets="Build" />
+    <MSBuild Projects="F-Spot.sln" Targets="Restore;Build" />
   </Target>
 
 </Project>
