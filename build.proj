@@ -15,6 +15,11 @@
 
   <Target Name="Build">
     <Message Condition="'$(IsWindows)'" Text="Building On Windows" Importance="High" />
+    <!-- HACK: copy this file over for now -->
+    <Copy Condition="$(IsWindows) And !Exists('src\Clients\FSpot.Gtk\f-spot.exe.config')"
+      SourceFiles="src\Clients\FSpot.Gtk\f-spot.exe.config.in"
+      DestinationFiles="src\Clients\FSpot.Gtk\f-spot.exe.config" />
+
     <Message Condition="'$(IsMac)'" Text="Building On Mac" Importance="High" />
     <Message Condition="'$(IsLinux)'" Text="Building On Linux" Importance="High" />
 
