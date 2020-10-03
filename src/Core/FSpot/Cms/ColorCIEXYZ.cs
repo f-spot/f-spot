@@ -16,9 +16,9 @@ namespace FSpot.Cms
 {
 	public struct ColorCIEXYZ
 	{
-		public double x;
-		public double y;
-		public double z;
+		public double x { get; }
+		public double y { get; }
+		public double z { get; }
 		
 		public ColorCIEXYZ (double x, double y, double z)
 		{
@@ -45,6 +45,7 @@ namespace FSpot.Cms
 		{
 			if (ptr == IntPtr.Zero)
 				throw new ArgumentNullException (nameof (ptr), "lcms Color argument was null");
+
 			return (ColorCIEXYZ) Marshal.PtrToStructure (ptr, typeof (ColorCIEXYZ));
 		}
 
@@ -67,9 +68,9 @@ namespace FSpot.Cms
 	}
 
 	public struct ColorCIEXYZTriple {
-		public ColorCIEXYZ Red;
-		public ColorCIEXYZ Blue;
-		public ColorCIEXYZ Green;
+		public ColorCIEXYZ Red { get; }
+		public ColorCIEXYZ Blue { get; }
+		public ColorCIEXYZ Green { get; }
 
 		public ColorCIEXYZTriple (ColorCIEXYZ red, ColorCIEXYZ green, ColorCIEXYZ blue)
 		{

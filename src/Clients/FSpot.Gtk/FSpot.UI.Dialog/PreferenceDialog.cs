@@ -9,25 +9,7 @@
 // Copyright (C) 2006-2010 Stephane Delcroix
 // Copyright (C) 2010 Ruben Vermeersch
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
 using System.IO;
@@ -58,7 +40,7 @@ namespace FSpot.UI.Dialog
 		[GtkBeans.Builder.Object] ComboBox printprofile_combo;
 #pragma warning restore 649
 
-#region public API (ctor)
+		#region public API (ctor)
 		public PreferenceDialog (Window parent) : base ("PreferenceDialog.ui", "preference_dialog")
 		{
 			TransientFor = parent;
@@ -69,7 +51,7 @@ namespace FSpot.UI.Dialog
 			SafeUri storage_path = new SafeUri (Preferences.Get<string> (Preferences.StoragePath));
 
 			//If the user has set a photo directory on the commandline then don't let it be changed in Preferences
-			if (storage_path.Equals(FSpotConfiguration.PhotoUri))
+			if (storage_path.Equals (FSpotConfiguration.PhotoUri))
 				photosdir_chooser.CurrentFolderChanged += HandlePhotosdirChanged;
 			else
 				photosdir_chooser.Sensitive = false;
@@ -87,8 +69,8 @@ namespace FSpot.UI.Dialog
 
 			//Pick the display profiles from the full list, avoid _x_profile_
 			var dprofs = from profile in FSpot.ColorManagement.Profiles
-				where (profile.Value.DeviceClass == Cms.IccProfileClass.Display && profile.Key != "_x_profile_")
-				select profile;
+						 where (profile.Value.DeviceClass == Cms.IccProfileClass.Display && profile.Key != "_x_profile_")
+						 select profile;
 			foreach (var p in dprofs)
 				sprofiles.AppendValues (p.Key, 1);
 
@@ -107,8 +89,8 @@ namespace FSpot.UI.Dialog
 			pprofiles.AppendValues (null, 0);
 
 			var pprofs = from profile in FSpot.ColorManagement.Profiles
-				where (profile.Value.DeviceClass == Cms.IccProfileClass.Output && profile.Key != "_x_profile_")
-				select profile;
+						 where (profile.Value.DeviceClass == Cms.IccProfileClass.Output && profile.Key != "_x_profile_")
+						 select profile;
 			foreach (var p in pprofs)
 				pprofiles.AppendValues (p.Key, 1);
 
@@ -123,7 +105,7 @@ namespace FSpot.UI.Dialog
 			themes.AppendValues (Catalog.GetString ("Standard theme"), null);
 			themes.AppendValues (null, null); //Separator
 			string gtkrc = System.IO.Path.Combine ("gtk-2.0", "gtkrc");
-			string [] search = {System.IO.Path.Combine (FSpotConfiguration.HomeDirectory, ".themes"), "/usr/share/themes"};
+			string[] search = { System.IO.Path.Combine (FSpotConfiguration.HomeDirectory, ".themes"), "/usr/share/themes" };
 
 			foreach (string path in search)
 				if (Directory.Exists (path))
@@ -140,9 +122,9 @@ namespace FSpot.UI.Dialog
 
 			ConnectEvents ();
 		}
-#endregion
+		#endregion
 
-#region preferences
+		#region preferences
 		void OnPreferencesChanged (object sender, NotifyEventArgs args)
 		{
 			LoadPreference (args.Key);
@@ -178,8 +160,8 @@ namespace FSpot.UI.Dialog
 					break;
 				}
 				i = 0;
-				foreach (object [] row in theme_combo.Model as ListStore) {
-					if (pref == (string)row [1]) {
+				foreach (object[] row in theme_combo.Model as ListStore) {
+					if (pref == (string)row[1]) {
 						theme_combo.Active = i;
 						break;
 					}
@@ -197,8 +179,8 @@ namespace FSpot.UI.Dialog
 					break;
 				}
 				i = 0;
-				foreach (object [] row in screenprofile_combo.Model as ListStore) {
-					if (pref == (string)row [0]) {
+				foreach (object[] row in screenprofile_combo.Model as ListStore) {
+					if (pref == (string)row[0]) {
 						screenprofile_combo.Active = i;
 						break;
 					}
@@ -212,8 +194,8 @@ namespace FSpot.UI.Dialog
 					break;
 				}
 				i = 0;
-				foreach (object [] row in printprofile_combo.Model as ListStore) {
-					if (pref == (string)row [0]) {
+				foreach (object[] row in printprofile_combo.Model as ListStore) {
+					if (pref == (string)row[0]) {
 						printprofile_combo.Active = i;
 						break;
 					}
@@ -222,9 +204,9 @@ namespace FSpot.UI.Dialog
 				break;
 			}
 		}
-#endregion
+		#endregion
 
-#region event handlers
+		#region event handlers
 		void ConnectEvents ()
 		{
 			Preferences.SettingChanged += OnPreferencesChanged;
@@ -309,9 +291,9 @@ namespace FSpot.UI.Dialog
 				}
 			}
 		}
-#endregion
+		#endregion
 
-#region Gtk widgetry
+		#region Gtk widgetry
 		void ThemeCellFunc (CellLayout cell_layout, CellRenderer cell, TreeModel tree_model, TreeIter iter)
 		{
 			string name = (string)tree_model.GetValue (iter, 0);
@@ -333,6 +315,6 @@ namespace FSpot.UI.Dialog
 		{
 			return tree_model.GetValue (iter, 0) == null;
 		}
-#endregion
+		#endregion
 	}
 }

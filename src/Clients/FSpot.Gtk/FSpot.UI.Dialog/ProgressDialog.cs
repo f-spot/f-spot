@@ -9,25 +9,7 @@
 // Copyright (C) 2008 Stephane Delcroix
 // Copyright (C) 2010 Ruben Vermeersch
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using Gtk;
 
@@ -44,7 +26,8 @@ namespace FSpot.UI.Dialog
 			cancelled = true;
 		}
 
-		public enum CancelButtonType {
+		public enum CancelButtonType
+		{
 			Cancel,
 			Stop,
 			None
@@ -89,10 +72,10 @@ namespace FSpot.UI.Dialog
 
 			switch (cancel_button_type) {
 			case CancelButtonType.Cancel:
-				button = (Gtk.Button)AddButton (Gtk.Stock.Cancel, (int) ResponseType.Cancel);
+				button = (Gtk.Button)AddButton (Gtk.Stock.Cancel, (int)ResponseType.Cancel);
 				break;
 			case CancelButtonType.Stop:
-				button = (Gtk.Button)AddButton (Gtk.Stock.Stop, (int) ResponseType.Cancel);
+				button = (Gtk.Button)AddButton (Gtk.Stock.Stop, (int)ResponseType.Cancel);
 				break;
 			}
 
@@ -104,11 +87,11 @@ namespace FSpot.UI.Dialog
 		// Return true if the operation was cancelled by the user.
 		public bool Update (string message)
 		{
-			current_count ++;
+			current_count++;
 
 			message_label.Text = message;
 			progress_bar.Text = string.Format (Catalog.GetString ("{0} of {1}"), current_count, total_count);
-			progress_bar.Fraction = (double) current_count / total_count;
+			progress_bar.Fraction = (double)current_count / total_count;
 
 			ShowAll ();
 

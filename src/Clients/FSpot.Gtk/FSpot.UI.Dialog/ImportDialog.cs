@@ -125,7 +125,7 @@ namespace FSpot.UI.Dialog
 		async Task ScanSources ()
 		{
 			// Populates the source combo box
-			Sources = new TreeStore (typeof(ImportSource), typeof(string), typeof(string), typeof(bool));
+			Sources = new TreeStore (typeof (ImportSource), typeof (string), typeof (string), typeof (bool));
 			sources_combo.Model = Sources;
 			sources_combo.RowSeparatorFunc = (m, i) => (m.GetValue (i, 1) as string) == string.Empty;
 
@@ -235,9 +235,9 @@ namespace FSpot.UI.Dialog
 				new FileChooserDialog (Catalog.GetString ("Import"), this,
 				FileChooserAction.SelectFolder, Stock.Cancel, ResponseType.Cancel,
 				Stock.Open, ResponseType.Ok) {
-				SelectMultiple = false,
-				LocalOnly = false
-			};
+					SelectMultiple = false,
+					LocalOnly = false
+				};
 
 			int response = fileChooser.Run ();
 			if ((ResponseType)response == ResponseType.Ok) {
@@ -288,33 +288,33 @@ namespace FSpot.UI.Dialog
 			Log.Debug ($"Received controller event: {evnt}");
 
 			switch (evnt) {
-				case ImportEvent.SourceChanged:
-					HideScanSpinner ();
-					ResetPreview ();
-					import_button.Sensitive = true;
-					break;
+			case ImportEvent.SourceChanged:
+				HideScanSpinner ();
+				ResetPreview ();
+				import_button.Sensitive = true;
+				break;
 
-				case ImportEvent.PhotoScanStarted:
-					ShowScanSpinner ();
-					break;
+			case ImportEvent.PhotoScanStarted:
+				ShowScanSpinner ();
+				break;
 
-				case ImportEvent.PhotoScanFinished:
-					HideScanSpinner ();
-					break;
+			case ImportEvent.PhotoScanFinished:
+				HideScanSpinner ();
+				break;
 
-				case ImportEvent.ImportStarted:
-					ShowImportProgress ();
-					break;
+			case ImportEvent.ImportStarted:
+				ShowImportProgress ();
+				break;
 
-				case ImportEvent.ImportFinished:
-					ShowFailuresIfNeeded (Controller.FailedImports);
-					Controller = null;
-					Destroy ();
-					break;
+			case ImportEvent.ImportFinished:
+				ShowFailuresIfNeeded (Controller.FailedImports);
+				Controller = null;
+				Destroy ();
+				break;
 
-				case ImportEvent.ImportError:
-					//FIXME
-					break;
+			case ImportEvent.ImportError:
+				//FIXME
+				break;
 			}
 		}
 
@@ -371,8 +371,7 @@ namespace FSpot.UI.Dialog
 			progress_bar.Hide ();
 		}
 
-		public bool OptionsSensitive
-		{
+		public bool OptionsSensitive {
 			set {
 				sources_combo.Sensitive = value;
 				copy_check.Sensitive = value;

@@ -9,25 +9,7 @@
 // Copyright (C) 2007-2009 Stephane Delcroix
 // Copyright (C) 2007 Bengt Thuree
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
 
@@ -53,7 +35,7 @@ namespace FSpot.UI.Dialog
 
 		TreeStore rangestore;
 
-		static readonly string [] ranges = {
+		static readonly string[] ranges = {
 			"today",
 			"yesterday",
 			"last7days",
@@ -89,10 +71,10 @@ namespace FSpot.UI.Dialog
 			period_combobox.SetCellDataFunc (cell_renderer, new CellLayoutDataFunc (RangeCellFunc));
 
 			foreach (string range in ranges)
-				rangestore.AppendValues (GetString(range));
+				rangestore.AppendValues (GetString (range));
 
 			period_combobox.Changed += HandlePeriodComboboxChanged;
-			period_combobox.Active = System.Array.IndexOf(ranges, "last7days"); // Default to Last 7 days
+			period_combobox.Active = System.Array.IndexOf (ranges, "last7days"); // Default to Last 7 days
 
 			if (query_range != null) {
 				start_dateedit.DateTimeOffset = query_range.Start;
@@ -107,44 +89,44 @@ namespace FSpot.UI.Dialog
 			(cell as CellRendererText).Text = name;
 		}
 
-		string GetString(string rangename)
+		string GetString (string rangename)
 		{
 			DateTime today = DateTime.Today;
 			switch (rangename) {
 			case "today":
-				return Catalog.GetString("Today");
+				return Catalog.GetString ("Today");
 			case "yesterday":
-				return Catalog.GetString("Yesterday");
+				return Catalog.GetString ("Yesterday");
 			case "last7days":
-				return Catalog.GetString("Last 7 days");
+				return Catalog.GetString ("Last 7 days");
 			case "last30days":
-				return Catalog.GetString("Last 30 days");
+				return Catalog.GetString ("Last 30 days");
 			case "last90days":
-				return Catalog.GetString("Last 90 days");
+				return Catalog.GetString ("Last 90 days");
 			case "last360days":
-				return Catalog.GetString("Last 360 days");
+				return Catalog.GetString ("Last 360 days");
 			case "currentweek":
-				return Catalog.GetString("Current Week (Mon-Sun)");
+				return Catalog.GetString ("Current Week (Mon-Sun)");
 			case "previousweek":
-				return Catalog.GetString("Previous Week (Mon-Sun)");
+				return Catalog.GetString ("Previous Week (Mon-Sun)");
 			case "thismonth":
-				if (today.Year == (today.AddMonths(-1)).Year) // Same year for current and previous month. Present only MONTH
-					return today.ToString("MMMM");
+				if (today.Year == (today.AddMonths (-1)).Year) // Same year for current and previous month. Present only MONTH
+					return today.ToString ("MMMM");
 				else // Different year for current and previous month. Present both MONTH, and YEAR
-					return today.ToString("MMMM, yyyy");
+					return today.ToString ("MMMM, yyyy");
 			case "previousmonth":
-				if (today.Year == (today.AddMonths(-1)).Year) // Same year for current and previous month. Present only MONTH
-					return (today.AddMonths(-1)).ToString("MMMM");
+				if (today.Year == (today.AddMonths (-1)).Year) // Same year for current and previous month. Present only MONTH
+					return (today.AddMonths (-1)).ToString ("MMMM");
 				else // Different year for current and previous month. Present both MONTH, and YEAR
-					return (today.AddMonths(-1)).ToString("MMMM, yyyy");
+					return (today.AddMonths (-1)).ToString ("MMMM, yyyy");
 			case "thisyear":
-				return today.ToString("yyyy");
+				return today.ToString ("yyyy");
 			case "previousyear":
-				return today.AddYears(-1).ToString("yyyy");
+				return today.AddYears (-1).ToString ("yyyy");
 			case "alldates":
-				return Catalog.GetString("All Images");
+				return Catalog.GetString ("All Images");
 			case "customizedrange":
-				return Catalog.GetString("Customized Range");
+				return Catalog.GetString ("Customized Range");
 			default:
 				return rangename;
 			}
@@ -156,7 +138,7 @@ namespace FSpot.UI.Dialog
 
 		DateRange QueryRange (int index)
 		{
-			return QueryRange ( ranges [index]);
+			return QueryRange (ranges[index]);
 		}
 
 		DateRange QueryRange (string rangename)
@@ -200,24 +182,24 @@ namespace FSpot.UI.Dialog
 			case "previousweek":
 				startdate = today.AddDays (System.DayOfWeek.Sunday - today.DayOfWeek); // Gets to Sunday
 				startdate = startdate.AddDays (1); // Advance to Monday according to ISO 8601
-				startdate = startdate.AddDays(-7); // Back 7 days
+				startdate = startdate.AddDays (-7); // Back 7 days
 				enddate = startdate.AddDays (6);
 				break;
 			case "thismonth":
-				startdate = new System.DateTime(today.Year, today.Month, 1); // the first of the month
+				startdate = new System.DateTime (today.Year, today.Month, 1); // the first of the month
 				enddate = today; // we don't have pictures in the future
 				break;
 			case "previousmonth":
-				startdate = new System.DateTime((today.AddMonths(-1)).Year, (today.AddMonths(-1)).Month, 1);
-				enddate = new System.DateTime((today.AddMonths(-1)).Year, (today.AddMonths(-1)).Month, System.DateTime.DaysInMonth((today.AddMonths(-1)).Year,(today.AddMonths(-1)).Month));
+				startdate = new System.DateTime ((today.AddMonths (-1)).Year, (today.AddMonths (-1)).Month, 1);
+				enddate = new System.DateTime ((today.AddMonths (-1)).Year, (today.AddMonths (-1)).Month, System.DateTime.DaysInMonth ((today.AddMonths (-1)).Year, (today.AddMonths (-1)).Month));
 				break;
 			case "thisyear":
-				startdate = new System.DateTime(today.Year, 1, 1); // Jan 1st of this year
+				startdate = new System.DateTime (today.Year, 1, 1); // Jan 1st of this year
 				enddate = today;
 				break;
 			case "previousyear":
-				startdate = new System.DateTime((today.AddYears(-1)).Year, 1, 1); // Jan 1st of prev year
-				enddate = new System.DateTime((today.AddYears(-1)).Year, 12, 31); // Dec, 31 of prev year
+				startdate = new System.DateTime ((today.AddYears (-1)).Year, 1, 1); // Jan 1st of prev year
+				enddate = new System.DateTime ((today.AddYears (-1)).Year, 12, 31); // Dec, 31 of prev year
 				break;
 			case "alldates":
 				clear = true;
@@ -231,7 +213,7 @@ namespace FSpot.UI.Dialog
 				break;
 			}
 			if (!clear)
-				return new DateRange (startdate, enddate.Add (new System.TimeSpan(23,59,59)));
+				return new DateRange (startdate, enddate.Add (new System.TimeSpan (23, 59, 59)));
 
 			return null;
 		}
@@ -246,9 +228,9 @@ namespace FSpot.UI.Dialog
 		void HandlePeriodComboboxChanged (object o, EventArgs args)
 		{
 			start_dateedit.DateChanged -= HandleDateEditChanged;
-			(start_dateedit.Children [0] as Gtk.Entry).Changed -= HandleDateEditChanged;
+			(start_dateedit.Children[0] as Gtk.Entry).Changed -= HandleDateEditChanged;
 			end_dateedit.DateChanged -= HandleDateEditChanged;
-			(end_dateedit.Children [0] as Gtk.Entry).Changed -= HandleDateEditChanged;
+			(end_dateedit.Children[0] as Gtk.Entry).Changed -= HandleDateEditChanged;
 
 			ComboBox combo = o as ComboBox;
 			if (o == null)
@@ -264,9 +246,9 @@ namespace FSpot.UI.Dialog
 			}
 
 			start_dateedit.DateChanged += HandleDateEditChanged;
-			(start_dateedit.Children [0] as Gtk.Entry).Changed += HandleDateEditChanged;
+			(start_dateedit.Children[0] as Gtk.Entry).Changed += HandleDateEditChanged;
 			end_dateedit.DateChanged += HandleDateEditChanged;
-			(end_dateedit.Children [0] as Gtk.Entry).Changed += HandleDateEditChanged;
+			(end_dateedit.Children[0] as Gtk.Entry).Changed += HandleDateEditChanged;
 		}
 	}
 }

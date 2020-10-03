@@ -7,25 +7,7 @@
 // Copyright (C) 2009 Novell, Inc.
 // Copyright (C) 2009 Stephane Delcroix
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
 using System.Collections.Generic;
@@ -53,11 +35,11 @@ namespace FSpot.UI.Dialog
 		[GtkBeans.Builder.Object] Gtk.ComboBox category_option_menu;
 #pragma warning restore 649
 
-		public EditTagDialog (Db db, Tag t, Gtk.Window parent_window) : base ("EditTagDialog.ui", "edit_tag_dialog")
+		public EditTagDialog (Db db, Tag t, Gtk.Window parentWindow) : base ("EditTagDialog.ui", "edit_tag_dialog")
 		{
 			this.db = db;
 			tag = t;
-			TransientFor = parent_window;
+			TransientFor = parentWindow;
 
 			orig_name = last_valid_name = t.Name;
 			tag_name_entry.Text = t.Name;
@@ -83,7 +65,7 @@ namespace FSpot.UI.Dialog
 		}
 
 		public Category TagCategory {
-			get { return categories [category_option_menu.Active] as Category;}
+			get { return categories[category_option_menu.Active] as Category; }
 		}
 
 		List<Tag> categories;
@@ -141,8 +123,8 @@ namespace FSpot.UI.Dialog
 					tag.ThemeIconName = null;
 					tag.Icon = dialog.PreviewPixbuf;
 				}
-				else if (response == (ResponseType)1)
-					tag.Icon = null;
+			else if (response == (ResponseType)1)
+				tag.Icon = null;
 
 			Cms.Profile screen_profile;
 			if (tag.Icon != null && FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out screen_profile)) {
@@ -173,7 +155,7 @@ namespace FSpot.UI.Dialog
 			category_option_menu.PackStart (cell, true);
 			category_option_menu.AddAttribute (cell, "text", 1);
 
-			ListStore store = new ListStore (new[] {typeof(Gdk.Pixbuf), typeof(string)});
+			ListStore store = new ListStore (new[] { typeof (Gdk.Pixbuf), typeof (string) });
 			category_option_menu.Model = store;
 
 			foreach (Category category in categories) {

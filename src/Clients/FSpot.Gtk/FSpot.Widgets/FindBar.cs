@@ -216,7 +216,7 @@ namespace FSpot.Widgets
 			if (string.IsNullOrEmpty (txt))
 				return true;
 
-			string indent = string.Format ("{0," + depth * 2 + "}", " ");
+			string indent = string.Format ("{0," + (depth * 2) + "}", " ");
 
 			//Log.DebugFormat (indent + "Have text: {0}", txt);
 
@@ -235,7 +235,7 @@ namespace FSpot.Widgets
 			// that only a single operator is used for any given term unless it is made unambiguous
 			// by using parenthesis.
 			foreach (Capture capture in match.Groups["Ops"].Captures) {
-				if (op == string.Empty)
+				if (string.IsNullOrEmpty (op))
 					op = capture.Value;
 				else if (op != capture.Value) {
 					op_valid = false;

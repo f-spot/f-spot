@@ -9,25 +9,7 @@
 // Copyright (C) 2010 Mike Gemünde
 // Copyright (C) 2007-2008 Stephane Delcroix
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
 using Banshee.Kernel;
@@ -41,8 +23,8 @@ namespace FSpot.Database
 {
 	public class JobStore : DbStore<Job>
 	{
-		private const string jobsTableName = "jobs";
-		private readonly TinyIoCContainer container;
+		const string jobsTableName = "jobs";
+		readonly TinyIoCContainer container;
 
 		internal static void CreateTable (FSpotDatabaseConnection database)
 		{
@@ -60,26 +42,27 @@ namespace FSpot.Database
 				")");
 		}
 
-		private Job CreateJob (string type, uint id, string options, DateTime runAt, JobPriority priority)
+		Job CreateJob (string type, uint id, string options, DateTime runAt, JobPriority priority)
 		{
-			using (var childContainer = container.GetChildContainer ()) {
-				childContainer.Register (new JobData
-				{
-					Id = id,
-					JobOptions = options,
-					JobPriority = priority,
-					RunAt = runAt,
-					Persistent = true
-				});
-				childContainer.TryResolve<Job> (type, out var job);
-				if (job == null) {
-					Log.Error ($"Unknown job type {type} ignored.");
-				}
-				return job;
+			using var childContainer = container.GetChildContainer ();
+
+			childContainer.Register (new JobData {
+				Id = id,
+				JobOptions = options,
+				JobPriority = priority,
+				RunAt = runAt,
+				Persistent = true
+			});
+
+			childContainer.TryResolve<Job> (type, out var job);
+			if (job == null) {
+				Log.Error ($"Unknown job type {type} ignored.");
 			}
+
+			return job;
 		}
 
-		private Job LoadItem (Hyena.Data.Sqlite.IDataReader reader)
+		Job LoadItem (IDataReader reader)
 		{
 			return CreateJob (
 					reader ["job_type"].ToString (),
@@ -89,9 +72,9 @@ namespace FSpot.Database
 					(JobPriority)Convert.ToInt32 (reader ["job_priority"]));
 		}
 
-		private void LoadAllItems ()
+		void LoadAllItems ()
 		{
-			Hyena.Data.Sqlite.IDataReader reader = Database.Query ($"SELECT id, job_type, job_options, run_at, job_priority FROM {jobsTableName}");
+			IDataReader reader = Database.Query ($"SELECT id, job_type, job_options, run_at, job_priority FROM {jobsTableName}");
 
 			Scheduler.Suspend ();
 			while (reader.Read ()) {
@@ -107,17 +90,17 @@ namespace FSpot.Database
 			reader.Dispose ();
 		}
 
-		public Job CreatePersistent (string job_type, string job_options)
+		public Job CreatePersistent (string jobType, string jobOptions)
 		{
 			var run_at = DateTime.Now;
 			var job_priority = JobPriority.Lowest;
 			var id = Database.Execute (new HyenaSqliteCommand ($"INSERT INTO {jobsTableName} (job_type, job_options, run_at, job_priority) VALUES (?, ?, ?, ?)",
-				job_type,
-				job_options,
+				jobType,
+				jobOptions,
 				DateTimeUtil.FromDateTime (run_at),
 				Convert.ToInt32 (job_priority)));
 
-			Job job = CreateJob (job_type, (uint)id, job_options, run_at, job_priority);
+			Job job = CreateJob (jobType, (uint)id, jobOptions, run_at, job_priority);
 
 			AddToCache (job);
 			job.Finished += HandleRemoveJob;
@@ -163,12 +146,12 @@ namespace FSpot.Database
 			EmitRemoved (item);
 		}
 
-		public void HandleRemoveJob (Object o, EventArgs e)
+		public void HandleRemoveJob (object o, EventArgs e)
 		{
 			Remove (o as Job);
 		}
 
-		public JobStore (IDb db, bool is_new) : base (db, true)
+		public JobStore (IDb db, bool isNew) : base (db, true)
 		{
 			// this should be replaced by a global registry as soon as
 			// extensions may provide job implementations
@@ -186,7 +169,7 @@ namespace FSpot.Database
 			container.Register<Job, CalculateHashJob> ("FSpot.Database.Jobs.CalculateHashJob").AsMultiInstance ();
 			container.Register<Job, CalculateHashJob> ("FSpot.Jobs.CalculateHashJob").AsMultiInstance ();
 
-			if (is_new || !Database.TableExists (jobsTableName)) {
+			if (isNew || !Database.TableExists (jobsTableName)) {
 				CreateTable (Database);
 			} else {
 				LoadAllItems ();

@@ -9,28 +9,10 @@
 // Copyright (C) 2008 Thomas Van Machelen
 // Copyright (C) 2008, 2010 Ruben Vermeersch
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
-using Banshee.Kernel;
+
 using Hyena;
 
 namespace FSpot.Database.Jobs
@@ -42,9 +24,9 @@ namespace FSpot.Database.Jobs
 		{
 		}
 
-		public static CalculateHashJob Create (JobStore job_store, uint photo_id)
+		public static CalculateHashJob Create (JobStore jobStore, uint photoId)
 		{
-			return (CalculateHashJob)job_store.CreatePersistent (JobName, photo_id.ToString ());
+			return (CalculateHashJob)jobStore.CreatePersistent (JobName, photoId.ToString ());
 		}
 
 		public static string JobName => "CalculateHash";
@@ -54,15 +36,15 @@ namespace FSpot.Database.Jobs
 			//this will add some more reactivity to the system
 			System.Threading.Thread.Sleep (200);
 
-			uint photo_id = Convert.ToUInt32 (JobOptions);
-			Log.DebugFormat ("Calculating Hash {0}...", photo_id);
+			uint photoId = Convert.ToUInt32 (JobOptions);
+			Log.Debug ($"Calculating Hash {photoId}...");
 
 			try {
-				Photo photo = Db.Photos.Get (Convert.ToUInt32 (photo_id));
+				Photo photo = Db.Photos.Get (Convert.ToUInt32 (photoId));
 				Db.Photos.CalculateMD5Sum (photo);
 				return true;
-			} catch (System.Exception e) {
-				Log.DebugFormat ("Error Calculating Hash for photo {0}: {1}", JobOptions, e.Message);
+			} catch (Exception e) {
+				Log.Debug ($"Error Calculating Hash for photo {JobOptions}: {e.Message}");
 			}
 			return false;
 		}

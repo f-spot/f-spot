@@ -12,25 +12,7 @@
 // Copyright (C) 2003 Ettore Perazzoli
 // Copyright (C) 2007-2008 Stephane Delcroix
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
 using System.Collections.Generic;
@@ -44,9 +26,9 @@ namespace FSpot.Database
 {
 	public class RollStore : DbStore<Roll>
 	{
-		public RollStore (IDb db, bool is_new) : base (db, false)
+		public RollStore (IDb db, bool isNew) : base (db, false)
 		{
-			if (!is_new && Database.TableExists ("rolls"))
+			if (!isNew && Database.TableExists ("rolls"))
 				return;
 
 			Database.Execute (
@@ -56,9 +38,9 @@ namespace FSpot.Database
 			")");
 		}
 
-		public Roll Create (DateTime time_in_utc)
+		public Roll Create (DateTime timeInUtc)
 		{
-			long unix_time = DateTimeUtil.FromDateTime (time_in_utc);
+			long unix_time = DateTimeUtil.FromDateTime (timeInUtc);
 			uint id = (uint)Database.Execute (new HyenaSqliteCommand ("INSERT INTO rolls (time) VALUES (?)", unix_time));
 
 			Roll roll = new Roll (id, unix_time);
@@ -69,19 +51,19 @@ namespace FSpot.Database
 
 		public Roll Create ()
 		{
-			return Create (System.DateTime.UtcNow);
+			return Create (DateTime.UtcNow);
 		}
 
 		public override Roll Get (uint id)
 		{
-			Roll roll = LookupInCache (id) as Roll;
+			var roll = LookupInCache (id);
 			if (roll != null)
 				return roll;
 
 			Hyena.Data.Sqlite.IDataReader reader = Database.Query (new HyenaSqliteCommand ("SELECT time FROM rolls WHERE id = ?", id));
 
 			if (reader.Read ()) {
-				roll = new Roll (id, Convert.ToUInt32 (reader ["time"]));
+				roll = new Roll (id, Convert.ToUInt32 (reader["time"]));
 				AddToCache (roll);
 			}
 
@@ -104,35 +86,35 @@ namespace FSpot.Database
 		public uint PhotosInRoll (Roll roll)
 		{
 			uint number_of_photos = 0;
-			using (Hyena.Data.Sqlite.IDataReader reader = Database.Query (new HyenaSqliteCommand ("SELECT count(*) AS count FROM photos WHERE roll_id = ?", roll.Id))) {
+			using (IDataReader reader = Database.Query (new HyenaSqliteCommand ("SELECT count(*) AS count FROM photos WHERE roll_id = ?", roll.Id))) {
 				if (reader.Read ())
-					number_of_photos = Convert.ToUInt32 (reader ["count"]);
+					number_of_photos = Convert.ToUInt32 (reader["count"]);
 
 				reader.Dispose ();
 			}
 			return number_of_photos;
 		}
 
-		public Roll [] GetRolls ()
+		public Roll[] GetRolls ()
 		{
 			return GetRolls (-1);
 		}
 
-		public Roll [] GetRolls (int limit)
+		public Roll[] GetRolls (int limit)
 		{
-			List<Roll> rolls = new List<Roll> ();
+			var rolls = new List<Roll> ();
 
 			string query = "SELECT DISTINCT rolls.id AS roll_id, rolls.time AS roll_time FROM rolls, photos WHERE photos.roll_id = rolls.id ORDER BY rolls.time DESC";
 			if (limit >= 0)
 				query += " LIMIT " + limit;
 
-			using (Hyena.Data.Sqlite.IDataReader reader = Database.Query(query)) {
+			using (IDataReader reader = Database.Query (query)) {
 				while (reader.Read ()) {
-					uint id = Convert.ToUInt32 (reader ["roll_id"]);
+					uint id = Convert.ToUInt32 (reader["roll_id"]);
 
 					Roll roll = LookupInCache (id);
 					if (roll == null) {
-						roll = new Roll (id, Convert.ToUInt32 (reader ["roll_time"]));
+						roll = new Roll (id, Convert.ToUInt32 (reader["roll_time"]));
 						AddToCache (roll);
 					}
 					rolls.Add (roll);

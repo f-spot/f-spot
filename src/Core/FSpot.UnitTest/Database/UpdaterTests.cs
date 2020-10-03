@@ -44,7 +44,7 @@ namespace FSpot.Database.Tests
 		static bool initialized = false;
 		static void Initialize ()
 		{
-			Updater.silent = true;
+			Updater.Silent = true;
 			initialized = true;
 		}
 

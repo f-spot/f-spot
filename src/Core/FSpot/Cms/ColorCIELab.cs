@@ -15,9 +15,9 @@ namespace FSpot.Cms
 {
 	public struct ColorCIELab
 	{
-		public double L;
-		public double a;
-		public double b;
+		public double L { get; set; }
+		public double a { get; set; }
+		public double b { get; set; }
 
 		public ColorCIELCh ToLCh ()
 		{

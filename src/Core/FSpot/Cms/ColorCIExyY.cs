@@ -18,9 +18,9 @@ namespace FSpot.Cms
 {
 	public struct ColorCIExyY
 	{
-		public double x;
-		public double y;
-		public double Y;
+		public double x { get; }
+		public double y { get; }
+		public double Y { get; }
 		
 		public ColorCIExyY (double x, double y, double Y)
 		{
@@ -96,9 +96,9 @@ namespace FSpot.Cms
 	}
 
 	public struct ColorCIExyYTriple {
-		public ColorCIExyY Red;
-		public ColorCIExyY Green;
-		public ColorCIExyY Blue;
+		public ColorCIExyY Red { get; }
+		public ColorCIExyY Green { get; }
+		public ColorCIExyY Blue { get; }
 
 		public ColorCIExyYTriple (ColorCIExyY red, ColorCIExyY green, ColorCIExyY blue)
 		{

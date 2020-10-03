@@ -11,32 +11,19 @@
 // Copyright (C) 2010 Ruben Vermeersch
 // Copyright (C) 2007 Larry Ewing
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
+
 using Cairo;
+
 using FSpot.Imaging;
 using FSpot.Utils;
+
 using Gdk;
+
 using Gtk;
+
 using Hyena;
 
 namespace FSpot.Widgets
@@ -85,8 +72,8 @@ namespace FSpot.Widgets
 		public ImageInfo (ImageInfo info, Gdk.Rectangle allocation)
 		{
 			Surface = info.Surface.CreateSimilar (Content.Color,
-							      allocation.Width,
-							      allocation.Height);
+								  allocation.Width,
+								  allocation.Height);
 
 			var ctx = new Context (Surface);
 			Bounds = allocation;
@@ -101,7 +88,7 @@ namespace FSpot.Widgets
 
 		void SetPixbuf (Pixbuf pixbuf)
 		{
-			Surface = Hyena.Gui.PixbufImageSurface.Create(pixbuf);
+			Surface = Hyena.Gui.PixbufImageSurface.Create (pixbuf);
 			Bounds.Width = pixbuf.Width;
 			Bounds.Height = pixbuf.Height;
 		}
@@ -111,11 +98,11 @@ namespace FSpot.Widgets
 			var m = new Matrix ();
 			m.InitIdentity ();
 
-			double scale = Math.Max (viewport.Width / (double) Bounds.Width,
-						 viewport.Height / (double) Bounds.Height);
+			double scale = Math.Max (viewport.Width / (double)Bounds.Width,
+						 viewport.Height / (double)Bounds.Height);
 
-			double x_offset = Math.Round (((viewport.Width  - Bounds.Width * scale) / 2.0));
-			double y_offset = Math.Round (((viewport.Height  - Bounds.Height * scale) / 2.0));
+			double x_offset = Math.Round (((viewport.Width - Bounds.Width * scale) / 2.0));
+			double y_offset = Math.Round (((viewport.Height - Bounds.Height * scale) / 2.0));
 
 			m.Translate (x_offset, y_offset);
 			m.Scale (scale, scale);
@@ -154,8 +141,8 @@ namespace FSpot.Widgets
 
 			double scale = slen / orig_len;
 
-			double x_offset = (viewport.Width  - Bounds.Width * scale) / 2.0;
-			double y_offset = (viewport.Height  - Bounds.Height * scale) / 2.0;
+			double x_offset = (viewport.Width - Bounds.Width * scale) / 2.0;
+			double y_offset = (viewport.Height - Bounds.Height * scale) / 2.0;
 
 			m.Translate (x_offset, y_offset);
 			m.Scale (scale, scale);
@@ -172,11 +159,11 @@ namespace FSpot.Widgets
 			var m = new Matrix ();
 			m.InitIdentity ();
 
-			double scale = Math.Min (viewport.Width / (double) Bounds.Width,
-						 viewport.Height / (double) Bounds.Height);
+			double scale = Math.Min (viewport.Width / (double)Bounds.Width,
+						 viewport.Height / (double)Bounds.Height);
 
-			double x_offset = (viewport.Width  - Bounds.Width * scale) / 2.0;
-			double y_offset = (viewport.Height  - Bounds.Height * scale) / 2.0;
+			double x_offset = (viewport.Width - Bounds.Width * scale) / 2.0;
+			double y_offset = (viewport.Height - Bounds.Height * scale) / 2.0;
 
 			m.Translate (x_offset, y_offset);
 			m.Scale (scale, scale);

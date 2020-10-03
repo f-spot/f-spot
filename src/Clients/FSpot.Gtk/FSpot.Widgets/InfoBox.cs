@@ -25,6 +25,7 @@ using FSpot.Utils;
 
 using Gtk;
 using FSpot.FileSystem;
+using System.Linq;
 
 // FIXME TODO: We want to use something like EClippedLabel here throughout so it handles small sizes
 // gracefully using ellipsis.
@@ -37,15 +38,15 @@ namespace FSpot.Widgets
 
 		public struct InfoEntry
 		{
-			public bool TwoColumns;
-			public bool AlwaysVisible;
-			public bool DefaultVisibility;
-			public string Id;
-			public string Description;
-			public Widget LabelWidget;
-			public Widget InfoWidget;
-			public Action<Widget, IPhoto, TagLib.Image.File> SetSingle;
-			public Action<Widget, IPhoto[]> SetMultiple;
+			public bool TwoColumns { get; set; }
+			public bool AlwaysVisible { get; set; }
+			public bool DefaultVisibility { get; set; }
+			public string Id { get; set; }
+			public string Description { get; set; }
+			public Widget LabelWidget { get; set; }
+			public Widget InfoWidget { get; set; }
+			public Action<Widget, IPhoto, TagLib.Image.File> SetSingle { get; set; }
+			public Action<Widget, IEnumerable<IPhoto>> SetMultiple { get; set; }
 		}
 
 		public InfoBox () : base (false, 0)
@@ -69,7 +70,7 @@ namespace FSpot.Widgets
 		void AddEntry (string id, string name, string description, Widget info_widget, float label_y_align,
 							   bool default_visibility,
 							   Action<Widget, IPhoto, TagLib.Image.File> set_single,
-							   Action<Widget, IPhoto[]> set_multiple)
+							   Action<Widget, IEnumerable<IPhoto>> set_multiple)
 		{
 			entries.Add (new InfoEntry {
 				TwoColumns = (name == null),
@@ -86,35 +87,35 @@ namespace FSpot.Widgets
 
 		void AddEntry (string id, string name, string description, Widget info_widget, float label_y_align,
 							   Action<Widget, IPhoto, TagLib.Image.File> set_single,
-							   Action<Widget, IPhoto[]> set_multiple)
+							   Action<Widget, IEnumerable<IPhoto>> set_multiple)
 		{
 			AddEntry (id, name, description, info_widget, label_y_align, true, set_single, set_multiple);
 		}
 
 		void AddEntry (string id, string name, string description, Widget info_widget, bool default_visibility,
 							   Action<Widget, IPhoto, TagLib.Image.File> set_single,
-							   Action<Widget, IPhoto[]> set_multiple)
+							   Action<Widget, IEnumerable<IPhoto>> set_multiple)
 		{
 			AddEntry (id, name, description, info_widget, 0.0f, default_visibility, set_single, set_multiple);
 		}
 
 		void AddEntry (string id, string name, string description, Widget info_widget,
 							   Action<Widget, IPhoto, TagLib.Image.File> set_single,
-							   Action<Widget, IPhoto[]> set_multiple)
+							   Action<Widget, IEnumerable<IPhoto>> set_multiple)
 		{
 			AddEntry (id, name, description, info_widget, 0.0f, set_single, set_multiple);
 		}
 
 		void AddLabelEntry (string id, string name, string description,
 									Func<IPhoto, TagLib.Image.File, string> single_string,
-									Func<IPhoto[], string> multiple_string)
+									Func<IEnumerable<IPhoto>, string> multiple_string)
 		{
 			AddLabelEntry (id, name, description, true, single_string, multiple_string);
 		}
 
 		void AddLabelEntry (string id, string name, string description, bool default_visibility,
 									Func<IPhoto, TagLib.Image.File, string> single_string,
-									Func<IPhoto[], string> multiple_string)
+									Func<IEnumerable<IPhoto>, string> multiple_string)
 		{
 			Action<Widget, IPhoto, TagLib.Image.File> setSingle = (widget, photo, metadata) => {
 				if (metadata != null)
@@ -123,7 +124,7 @@ namespace FSpot.Widgets
 					(widget as Label).Text = Catalog.GetString ("(Unknown)");
 			};
 
-			Action<Widget, IPhoto[]> set_multiple = (widget, photos) => {
+			Action<Widget, IEnumerable<IPhoto>> set_multiple = (widget, photos) => {
 				(widget as Label).Text = multiple_string (photos);
 			};
 
@@ -133,9 +134,9 @@ namespace FSpot.Widgets
 		}
 
 
-		IPhoto[] photos = Array.Empty<IPhoto> ();
-		public IPhoto[] Photos {
-			private get { return photos; }
+		IEnumerable<IPhoto> photos = Array.Empty<IPhoto> ();
+		public IEnumerable<IPhoto> Photos {
+			get { return photos; }
 			set {
 				photos = value;
 				update_delay.Start ();
@@ -325,7 +326,7 @@ namespace FSpot.Widgets
 			info_table = new Table (head_rows, 2, false) { BorderWidth = 0 };
 
 			AddLabelEntry (null, null, null, null,
-						   photos => { return string.Format (Catalog.GetString ("{0} Photos"), photos.Length); });
+						   photos => { return string.Format (Catalog.GetString ("{0} Photos"), photos.Count ()); });
 
 			AddLabelEntry (null, Catalog.GetString ("Name"), null,
 						   (photo, file) => { return photo.Name ?? string.Empty; }, null);
@@ -369,7 +370,7 @@ namespace FSpot.Widgets
 							   return $"{photo.Time.ToShortDateString ()}{Environment.NewLine}{photo.Time.ToShortTimeString ()}";
 						   },
 						   photos => {
-							   IPhoto first = photos[photos.Length - 1];
+							   IPhoto first = photos[photos.Count () - 1];
 							   IPhoto last = photos[0];
 							   if (first.Time.Date == last.Time.Date) {
 								   //Note for translators: {0} is a date, {1} and {2} are times.
@@ -491,9 +492,9 @@ namespace FSpot.Widgets
 
 		public bool Update ()
 		{
-			if (Photos == null || Photos.Length == 0) {
+			if (Photos == null || !Photos.Any ()) {
 				Hide ();
-			} else if (Photos.Length == 1) {
+			} else if (Photos.Count () == 1) {
 				var photo = Photos[0];
 
 				histogram_expander.Visible = true;
@@ -510,7 +511,7 @@ namespace FSpot.Widgets
 					}
 				}
 				Show ();
-			} else if (Photos.Length > 1) {
+			} else if (Photos.Count () > 1) {
 				foreach (var entry in entries) {
 					bool is_multiple = (entry.SetMultiple != null);
 
@@ -559,7 +560,7 @@ namespace FSpot.Widgets
 
 		bool DelayedUpdateHistogram ()
 		{
-			if (Photos.Length == 0)
+			if (!Photos.Any ())
 				return false;
 
 			IPhoto photo = Photos[0];

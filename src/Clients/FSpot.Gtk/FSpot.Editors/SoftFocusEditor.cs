@@ -9,25 +9,7 @@
 // Copyright (C) 2009 Stephane Delcroix
 // Copyright (C) 2008, 2010 Ruben Vermeersch
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using Mono.Unix;
 
@@ -56,15 +38,16 @@ namespace FSpot.Editors
 
 		public override Widget ConfigurationWidget ()
 		{
-			scale = new HScale (0, 1, .01);
-			scale.Value = 0.5;
+			scale = new HScale (0, 1, .01) {
+				Value = 0.5
+			};
 			scale.ValueChanged += HandleValueChanged;
 			return scale;
 		}
 
-		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile)
+		protected override Pixbuf Process (Pixbuf input, Cms.Profile inputProfile)
 		{
-			return ProcessImpl (input, input_profile, false);
+			return ProcessImpl (input, inputProfile, false);
 		}
 
 		protected override Pixbuf ProcessFast (Pixbuf input, Cms.Profile input_profile)
@@ -73,25 +56,21 @@ namespace FSpot.Editors
 		}
 
 
-		Pixbuf ProcessImpl (Pixbuf input, Cms.Profile input_profile, bool fast)
+		Pixbuf ProcessImpl (Pixbuf input, Cms.Profile inputProfile, bool fast)
 		{
 			Pixbuf result;
-			using (ImageInfo info = new ImageInfo (input)) {
-				using (Widgets.SoftFocus soft = new Widgets.SoftFocus (info)) {
-					soft.Radius = radius;
+			using (var info = new ImageInfo (input)) {
+				using var soft = new SoftFocus (info) {
+					Radius = radius
+				};
 
-					using (ImageSurface surface = new ImageSurface (Format.Argb32,
-										   input.Width,
-										   input.Height)) {
-
-						using (Context ctx = new Context (surface)) {
-							soft.Apply (ctx, info.Bounds);
-						}
-
-                        result = surface.ToPixbuf();
-						surface.Flush ();
-					}
+				using var surface = new ImageSurface (Format.Argb32, input.Width, input.Height);
+				using (var ctx = new Context (surface)) {
+					soft.Apply (ctx, info.Bounds);
 				}
+
+				result = surface.ToPixbuf ();
+				surface.Flush ();
 			}
 			return result;
 		}
