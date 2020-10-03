@@ -11,25 +11,7 @@
 // Copyright (C) 2010 Daniel Köb
 // Copyright (C) 2007-2008 Stephane Delcroix
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using Mono.Unix;
 
@@ -58,12 +40,12 @@ namespace FSpot.Widgets
 
 				if (key == null || key.Length == 0 || pos < 0 || pos > key.Length - 1)
 					transformed_key = string.Empty;
-				else if (key [pos] == '(' || key [pos] == ')' || key [pos] == ',')
+				else if (key[pos] == '(' || key[pos] == ')' || key[pos] == ',')
 					transformed_key = string.Empty;
 				else {
 					start = 0;
 					for (int i = pos; i >= 0; i--) {
-						if (key [i] == ')' || key [i] == '(' ||
+						if (key[i] == ')' || key[i] == '(' ||
 						   (i >= and_op_len - 1 && string.Compare (key.Substring (i - and_op_len + 1, and_op_len), and_op, true) == 0) ||
 						   (i >= or_op_len - 1 && string.Compare (key.Substring (i - or_op_len + 1, or_op_len), or_op, true) == 0)) {
 							//Log.DebugFormat ("have start break char at {0}", i);
@@ -74,7 +56,7 @@ namespace FSpot.Widgets
 
 					int end = key.Length - 1;
 					for (int j = pos; j < key.Length; j++) {
-						if (key [j] == ')' || key [j] == '(' ||
+						if (key[j] == ')' || key[j] == '(' ||
 						   (key.Length >= j + and_op_len && string.Compare (key.Substring (j, and_op_len), and_op, true) == 0) ||
 						   (key.Length >= j + or_op_len && string.Compare (key.Substring (j, or_op_len), or_op, true) == 0)) {
 							end = j - 1;

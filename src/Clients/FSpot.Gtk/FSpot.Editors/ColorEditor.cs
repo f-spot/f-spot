@@ -9,31 +9,14 @@
 // Copyright (C) 2008 Ruben Vermeersch
 // Copyright (C) 2010 Paul Lange
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
 
 using FSpot.ColorAdjustment;
 
 using Gdk;
+
 using Gtk;
 
 using Mono.Unix;
@@ -105,16 +88,13 @@ namespace FSpot.Editors
 
 		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile)
 		{
-			Cms.ColorCIEXYZ src_wp;
-			Cms.ColorCIEXYZ dest_wp;
+			var src_wp = Cms.ColorCIExyY.WhitePointFromTemperature (5000).ToXYZ ();
+			var dest_wp = Cms.ColorCIExyY.WhitePointFromTemperature ((int)temp_scale.Value).ToXYZ ();
+			Cms.ColorCIELab destLab = dest_wp.ToLab (src_wp);
+			destLab.a += temptint_scale.Value;
+			dest_wp = destLab.ToXYZ (src_wp);
 
-			src_wp = Cms.ColorCIExyY.WhitePointFromTemperature (5000).ToXYZ ();
-			dest_wp = Cms.ColorCIExyY.WhitePointFromTemperature ((int)temp_scale.Value).ToXYZ ();
-			Cms.ColorCIELab dest_lab = dest_wp.ToLab (src_wp);
-			dest_lab.a += temptint_scale.Value;
-			dest_wp = dest_lab.ToXYZ (src_wp);
-
-			FullColorAdjustment adjust = new FullColorAdjustment (input, input_profile,
+			var adjust = new FullColorAdjustment (input, input_profile,
 					exposure_scale.Value, brightness_scale.Value, contrast_scale.Value,
 					hue_scale.Value, sat_scale.Value, src_wp, dest_wp);
 			return adjust.Adjust ();

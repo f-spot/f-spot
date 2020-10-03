@@ -39,7 +39,7 @@ namespace FSpot.Core
 				throw new ArgumentNullException (nameof (list));
 
 			foreach (Tag tag in children) {
-				if (! list.Contains (tag))
+				if (!list.Contains (tag))
 					list.Add (tag);
 
 				var cat = tag as Category;

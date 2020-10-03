@@ -7,25 +7,7 @@
 // Copyright (C) 2010 Novell, Inc.
 // Copyright (C) 2010 Ruben Vermeersch
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
 using System.Collections.Generic;
@@ -44,39 +26,39 @@ namespace FSpot.Database
 		public event EventHandler<DbItemEventArgs<T>> ItemsRemoved;
 		public event EventHandler<DbItemEventArgs<T>> ItemsChanged;
 
-		protected Dictionary<uint, object> item_cache;
-		bool cache_is_immortal;
+		protected Dictionary<uint, object> ItemCache { get; }
+		bool CacheIsImmortal { get; set; }
 
 		protected void AddToCache (T item)
 		{
-			if (item_cache.ContainsKey (item.Id)) {
-				item_cache.Remove (item.Id);
+			if (ItemCache.ContainsKey (item.Id)) {
+				ItemCache.Remove (item.Id);
 			}
-            
-			if (cache_is_immortal) {
-				item_cache.Add (item.Id, item);
+
+			if (CacheIsImmortal) {
+				ItemCache.Add (item.Id, item);
 			} else {
-				item_cache.Add (item.Id, new WeakReference (item));
+				ItemCache.Add (item.Id, new WeakReference (item));
 			}
 		}
 
 		protected T LookupInCache (uint id)
 		{
-			if (!item_cache.ContainsKey (id)) {
+			if (!ItemCache.ContainsKey (id)) {
 				return null;
 			}
-            
-			if (cache_is_immortal) {
-				return item_cache [id] as T;
+
+			if (CacheIsImmortal) {
+				return ItemCache[id] as T;
 			}
-            
-			WeakReference weakref = item_cache [id] as WeakReference;
+
+			var weakref = ItemCache[id] as WeakReference;
 			return (T)weakref.Target;
 		}
 
 		protected void RemoveFromCache (T item)
 		{
-			item_cache.Remove (item.Id);
+			ItemCache.Remove (item.Id);
 		}
 
 		protected void EmitAdded (T item)
@@ -120,13 +102,14 @@ namespace FSpot.Database
 				// No subscribers.
 				return;
 			}
-            
+
 			ThreadAssist.ProxyToMain (() => {
-				evnt (this, args); });
+				evnt (this, args);
+			});
 		}
 
 		public bool CacheEmpty {
-			get { return item_cache.Count == 0; }
+			get { return ItemCache.Count == 0; }
 		}
 
 		protected IDb Db { get; private set; }
@@ -134,12 +117,12 @@ namespace FSpot.Database
 
 		// Constructor.
 
-		public DbStore (IDb db, bool cache_is_immortal)
+		public DbStore (IDb db, bool cacheIsImmortal)
 		{
 			Db = db;
-			this.cache_is_immortal = cache_is_immortal;
+			CacheIsImmortal = cacheIsImmortal;
 
-			item_cache = new Dictionary<uint, object> ();
+			ItemCache = new Dictionary<uint, object> ();
 		}
 
 

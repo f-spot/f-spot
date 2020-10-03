@@ -9,25 +9,7 @@
 // Copyright (C) 2008-2009 Stephane Delcroix
 // Copyright (C) 2009 Vincent Pomey
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
 
@@ -42,7 +24,8 @@ namespace FSpot.Widgets
 	{
 		public delegate void ChangedHandler (Gtk.Widget widget);
 
-		public enum FitMode {
+		public enum FitMode
+		{
 			Zoom,
 			Scaled,
 			Fill,
@@ -57,15 +40,14 @@ namespace FSpot.Widgets
 		CheckButton repeat, white_border, crop_marks, print_tags,
 			print_filename, print_date, print_time, print_comments;
 		Entry custom_text;
-	
+
 		PrintOperation print_operation;
 
 		public event ChangedHandler Changed;
 
 		void TriggerChanged (object sender, EventArgs e)
 		{
-			if (Changed != null)
-				Changed (this);
+			Changed?.Invoke (this);
 		}
 
 		public bool CropMarks {
@@ -97,9 +79,9 @@ namespace FSpot.Widgets
 
 		public FitMode Fitmode {
 			get {
-				if (zoom.Active)	return FitMode.Zoom;
-				else if (fill.Active)	return FitMode.Fill;
-				else if (scaled.Active)	return FitMode.Scaled;
+				if (zoom.Active) return FitMode.Zoom;
+				else if (fill.Active) return FitMode.Fill;
+				else if (scaled.Active) return FitMode.Scaled;
 				else
 					throw new Exception ("Something is wrong on this GUI");
 			}
@@ -107,12 +89,12 @@ namespace FSpot.Widgets
 
 		public int PhotosPerPage {
 			get {
-				if (ppp1.Active)	return 1;
-				else if (ppp2.Active)	return 2;
-				else if (ppp4.Active)	return 4;
-				else if (ppp9.Active)	return 9;
-				else if (ppp20.Active)	return 20;
-				else if (ppp30.Active)	return 30;
+				if (ppp1.Active) return 1;
+				else if (ppp2.Active) return 2;
+				else if (ppp4.Active) return 4;
+				else if (ppp9.Active) return 9;
+				else if (ppp20.Active) return 20;
+				else if (ppp30.Active) return 30;
 				else
 					throw new Exception ("Something is wrong on this GUI");
 			}
@@ -145,8 +127,8 @@ namespace FSpot.Widgets
 			VBox page_box = new VBox ();
 			Label current_settings = new Label ();
 			if (FSpotConfiguration.PageSetup != null)
-				current_settings.Text = string.Format (Catalog.GetString ("Paper Size: {0} x {1} mm"), 
-								Math.Round (print_operation.DefaultPageSetup.GetPaperWidth (Unit.Mm), 1), 
+				current_settings.Text = string.Format (Catalog.GetString ("Paper Size: {0} x {1} mm"),
+								Math.Round (print_operation.DefaultPageSetup.GetPaperWidth (Unit.Mm), 1),
 								Math.Round (print_operation.DefaultPageSetup.GetPaperHeight (Unit.Mm), 1));
 			else
 				current_settings.Text = string.Format (Catalog.GetString ("Paper Size: {0} x {1} mm"), "...", "...");
@@ -154,9 +136,9 @@ namespace FSpot.Widgets
 			page_box.PackStart (current_settings, false, false, 0);
 			Button page_setup_btn = new Button (Catalog.GetString ("Set Page Size and Orientation"));
 			page_setup_btn.Clicked += delegate {
-				this.print_operation.DefaultPageSetup = Print.RunPageSetupDialog (null, print_operation.DefaultPageSetup, this.print_operation.PrintSettings); 
-				current_settings.Text = string.Format (Catalog.GetString ("Paper Size: {0} x {1} mm"), 
-								Math.Round (print_operation.DefaultPageSetup.GetPaperWidth (Unit.Mm), 1), 
+				this.print_operation.DefaultPageSetup = Print.RunPageSetupDialog (null, print_operation.DefaultPageSetup, this.print_operation.PrintSettings);
+				current_settings.Text = string.Format (Catalog.GetString ("Paper Size: {0} x {1} mm"),
+								Math.Round (print_operation.DefaultPageSetup.GetPaperWidth (Unit.Mm), 1),
 								Math.Round (print_operation.DefaultPageSetup.GetPaperHeight (Unit.Mm), 1));
 			};
 			page_box.PackStart (page_setup_btn, false, false, 0);
@@ -164,7 +146,7 @@ namespace FSpot.Widgets
 			Attach (page_frame, 1, 2, 3, 4);
 
 			Frame ppp_frame = new Frame (Catalog.GetString ("Photos per page"));
-			Table ppp_tbl = new Table(2, 7, false);
+			Table ppp_tbl = new Table (2, 7, false);
 
 			ppp_tbl.Attach (ppp1 = new RadioButton ("1"), 0, 1, 1, 2);
 			ppp_tbl.Attach (ppp2 = new RadioButton (ppp1, "2"), 0, 1, 2, 3);
@@ -175,13 +157,13 @@ namespace FSpot.Widgets
 
 			ppp_tbl.Attach (repeat = new CheckButton (Catalog.GetString ("Repeat")), 1, 2, 2, 3);
 			ppp_tbl.Attach (crop_marks = new CheckButton (Catalog.GetString ("Print cut marks")), 1, 2, 3, 4);
-//			crop_marks.Toggled += TriggerChanged;
+			//			crop_marks.Toggled += TriggerChanged;
 
 			ppp_frame.Child = ppp_tbl;
 			Attach (ppp_frame, 0, 1, 1, 2);
 
 			Frame layout_frame = new Frame (Catalog.GetString ("Photos layout"));
-			VBox layout_vbox = new VBox();
+			VBox layout_vbox = new VBox ();
 			layout_vbox.PackStart (fullpage = new CheckButton (Catalog.GetString ("Full Page (no margin)")), false, false, 0);
 			HBox hb = new HBox ();
 			// Note for translators: "Zoom" is a Fit Mode
@@ -203,7 +185,7 @@ namespace FSpot.Widgets
 			Attach (cmt_frame, 1, 2, 2, 3);
 
 			Frame detail_frame = new Frame (Catalog.GetString ("Photos infos"));
-			VBox detail_vbox = new VBox();
+			VBox detail_vbox = new VBox ();
 			detail_vbox.PackStart (print_filename = new CheckButton (Catalog.GetString ("Print file name")), false, false, 0);
 			detail_vbox.PackStart (print_date = new CheckButton (Catalog.GetString ("Print photo date")), false, false, 0);
 			detail_vbox.PackStart (print_time = new CheckButton (Catalog.GetString ("Print photo time")), false, false, 0);

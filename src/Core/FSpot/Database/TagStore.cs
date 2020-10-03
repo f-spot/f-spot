@@ -46,16 +46,8 @@ namespace FSpot.Database
 
 	// Sorts tags into an order that it will be safe to delete
 	// them in (eg children first).
-	public class TagRemoveComparer : IComparer
+	public class TagRemoveComparer : IComparer<Tag>
 	{
-		public int Compare (object obj1, object obj2)
-		{
-			Tag t1 = obj1 as Tag;
-			Tag t2 = obj2 as Tag;
-
-			return Compare (t1, t2);
-		}
-
 		public int Compare (Tag t1, Tag t2)
 		{
 			if (t1.IsAncestorOf (t2))
@@ -100,7 +92,7 @@ namespace FSpot.Database
 
 		public Tag GetTagByName (string name)
 		{
-			foreach (Tag t in item_cache.Values)
+			foreach (Tag t in ItemCache.Values)
 				if (t.Name.ToLower () == name.ToLower ())
 					return t;
 
@@ -109,7 +101,7 @@ namespace FSpot.Database
 
 		public Tag GetTagById (int id)
 		{
-			foreach (Tag t in item_cache.Values)
+			foreach (Tag t in ItemCache.Values)
 				if (t.Id == id)
 					return t;
 			return null;
@@ -118,7 +110,7 @@ namespace FSpot.Database
 		public Tag[] GetTagsByNameStart (string s)
 		{
 			List<Tag> l = new List<Tag> ();
-			foreach (Tag t in item_cache.Values) {
+			foreach (Tag t in ItemCache.Values) {
 				if (t.Name.ToLower ().StartsWith (s.ToLower ()))
 					l.Add (t);
 			}
@@ -262,7 +254,7 @@ namespace FSpot.Database
 		{
 
 			uint parent_category_id = parentCategory.Id;
-			String default_tag_icon_value = autoicon ? null : string.Empty;
+			var default_tag_icon_value = autoicon ? null : string.Empty;
 
 			long id = Database.Execute (new HyenaSqliteCommand ("INSERT INTO tags (name, category_id, is_category, sort_priority, icon)"
 				+ "VALUES (?, ?, ?, 0, ?)",
@@ -410,10 +402,10 @@ namespace FSpot.Database
 
 			if (disposing) {
 				// free managed resources
-				foreach (Tag tag in item_cache.Values) {
+				foreach (Tag tag in ItemCache.Values) {
 					tag.Dispose ();
 				}
-				item_cache.Clear ();
+				ItemCache.Clear ();
 				if (RootCategory != null) {
 					RootCategory.Dispose ();
 					RootCategory = null;

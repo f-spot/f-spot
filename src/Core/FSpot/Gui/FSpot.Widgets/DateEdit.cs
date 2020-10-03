@@ -7,25 +7,7 @@
 // Copyright (C) 2007-2009 Novell, Inc.
 // Copyright (C) 2007, 2009 Stephane Delcroix
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
 
@@ -40,7 +22,7 @@ namespace FSpot.Widgets
 		DateEditFlags dateEditFlags;
 		DateTimeOffset dateTimeOffset;
 
-#region public API
+		#region public API
 		public DateEdit () : this (DateTimeOffset.Now)
 		{
 		}
@@ -58,9 +40,9 @@ namespace FSpot.Widgets
 
 		public DateTimeOffset DateTimeOffset {
 			get { return dateTimeOffset; }
-			set { 
+			set {
 				DateTimeOffset old_dto = dateTimeOffset;
-				dateTimeOffset = value; 
+				dateTimeOffset = value;
 				if (dateTimeOffset.Date != old_dto.Date)
 					OnDateChanged ();
 				if (dateTimeOffset.Offset != old_dto.Offset)
@@ -73,7 +55,7 @@ namespace FSpot.Widgets
 
 		public DateEditFlags DateEditFlags {
 			get { return dateEditFlags; }
-			set { 
+			set {
 				dateEditFlags = value;
 				UpdateWidget ();
 			}
@@ -101,9 +83,9 @@ namespace FSpot.Widgets
 		bool ShowSeconds {
 			get { return (dateEditFlags & DateEditFlags.ShowSeconds) == DateEditFlags.ShowSeconds; }
 		}
-#endregion public API
+		#endregion public API
 
-#region Gtk Widgetry
+		#region Gtk Widgetry
 		Entry date_entry;
 		Button date_button;
 		Entry time_entry;
@@ -118,7 +100,7 @@ namespace FSpot.Widgets
 			Homogeneous = false;
 			Spacing = 1;
 
-			Add (date_entry = new Entry () {WidthChars = 10, IsEditable = true});
+			Add (date_entry = new Entry () { WidthChars = 10, IsEditable = true });
 			date_entry.Changed += HandleDateEntryChanged;
 			date_entry.Show ();
 			var bbox = new HBox ();
@@ -131,10 +113,10 @@ namespace FSpot.Widgets
 			Add (date_button = new Button (bbox));
 			date_button.Clicked += HandleCalendarButtonClicked;
 			date_button.Show ();
-			Add (time_entry = new Entry () {WidthChars = 12, IsEditable = true});
+			Add (time_entry = new Entry () { WidthChars = 12, IsEditable = true });
 			time_entry.Changed += HandleTimeEntryChanged;
 			time_entry.Show ();
-			Add (offset_entry = new Entry () {WidthChars = 6, IsEditable = true});
+			Add (offset_entry = new Entry () { WidthChars = 6, IsEditable = true });
 			offset_entry.Changed += HandleOffsetEntryChanged;
 			offset_entry.Show ();
 
@@ -144,7 +126,7 @@ namespace FSpot.Widgets
 			var frame = new Frame ();
 			frame.Add (calendar);
 			calendar.Show ();
-			calendar_popup = new Window (WindowType.Popup) {DestroyWithParent = true, Resizable = false};
+			calendar_popup = new Window (WindowType.Popup) { DestroyWithParent = true, Resizable = false };
 			calendar_popup.Add (frame);
 			calendar_popup.DeleteEvent += HandlePopupDeleted;
 			calendar_popup.KeyPressEvent += HandlePopupKeyPressed;
@@ -173,8 +155,8 @@ namespace FSpot.Widgets
 		bool GrabPointerAndKeyboard (Gdk.Window window, uint activate_time)
 		{
 			if (Gdk.Pointer.Grab (window, true,
-					      Gdk.EventMask.ButtonPressMask | Gdk.EventMask.ButtonReleaseMask | Gdk.EventMask.PointerMotionMask,
-					      null, null, activate_time) == Gdk.GrabStatus.Success) {
+						  Gdk.EventMask.ButtonPressMask | Gdk.EventMask.ButtonReleaseMask | Gdk.EventMask.PointerMotionMask,
+						  null, null, activate_time) == Gdk.GrabStatus.Success) {
 				if (Gdk.Keyboard.Grab (window, true, activate_time) == Gdk.GrabStatus.Success)
 					return true;
 				else {
@@ -225,7 +207,7 @@ namespace FSpot.Widgets
 			DateTimeOffset new_date;
 			if (DateTimeOffset.TryParseExact (date_entry.Text, "d", null, System.Globalization.DateTimeStyles.AssumeLocal | System.Globalization.DateTimeStyles.AllowWhiteSpaces, out new_date))
 				DateTimeOffset = new DateTimeOffset (new_date.Date + DateTimeOffset.TimeOfDay, DateTimeOffset.Offset);
-			else 
+			else
 				date_entry.ModifyBase (StateType.Normal, red);
 		}
 
@@ -295,9 +277,9 @@ namespace FSpot.Widgets
 			HidePopup ();
 			e.RetVal = true;
 		}
-#endregion
+		#endregion
 
-#region Test App
+		#region Test App
 #if DEBUGDATEEDIT
 		static void Main ()
 		{
@@ -312,6 +294,6 @@ namespace FSpot.Widgets
 
 		}
 #endif
-#endregion	
+		#endregion
 	}
 }

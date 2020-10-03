@@ -12,25 +12,7 @@
 // Copyright (C) 2009-2010 Ruben Vermeersch
 // Copyright (C) 2007 Larry Ewing
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
 using System.Collections.Generic;
@@ -52,12 +34,12 @@ namespace FSpot.Database
 
 		public string ExportToken { get; set; }
 
-		public ExportItem (uint id, uint image_id, uint image_version_id, string export_type, string export_token) : base (id)
+		public ExportItem (uint id, uint imageId, uint imageVersionId, string exportType, string exportToken) : base (id)
 		{
-			ImageId = image_id;
-			ImageVersionId = image_version_id;
-			ExportType = export_type;
-			ExportToken = export_token;
+			ImageId = imageId;
+			ImageVersionId = imageVersionId;
+			ExportType = exportType;
+			ExportToken = exportToken;
 		}
 	}
 
@@ -72,7 +54,7 @@ namespace FSpot.Database
 		public const string SmugMugExportType = "fspot:SmugMug";
 		public const string Gallery2ExportType = "fspot:Gallery2";
 
-		private void CreateTable ()
+		void CreateTable ()
 		{
 			Database.Execute (
 			"CREATE TABLE exports (\n" +
@@ -84,18 +66,18 @@ namespace FSpot.Database
 			")");
 		}
 
-		private ExportItem LoadItem (Hyena.Data.Sqlite.IDataReader reader)
+		ExportItem LoadItem (IDataReader reader)
 		{
-			return new ExportItem (Convert.ToUInt32 (reader ["id"]),
-				       Convert.ToUInt32 (reader ["image_id"]),
-				       Convert.ToUInt32 (reader ["image_version_id"]),
-				       reader ["export_type"].ToString (),
-				       reader ["export_token"].ToString ());
+			return new ExportItem (Convert.ToUInt32 (reader["id"]),
+					   Convert.ToUInt32 (reader["image_id"]),
+					   Convert.ToUInt32 (reader["image_version_id"]),
+					   reader["export_type"].ToString (),
+					   reader["export_token"].ToString ());
 		}
 
-		private void LoadAllItems ()
+		void LoadAllItems ()
 		{
-			Hyena.Data.Sqlite.IDataReader reader = Database.Query ("SELECT id, image_id, image_version_id, export_type, export_token FROM exports");
+			IDataReader reader = Database.Query ("SELECT id, image_id, image_version_id, export_type, export_token FROM exports");
 
 			while (reader.Read ()) {
 				AddToCache (LoadItem (reader));
@@ -104,13 +86,13 @@ namespace FSpot.Database
 			reader.Dispose ();
 		}
 
-		public ExportItem Create (uint image_id, uint image_version_id, string export_type, string export_token)
+		public ExportItem Create (uint imageId, uint imageVersionId, string exportType, string exportToken)
 		{
 			long id = Database.Execute (new HyenaSqliteCommand ("INSERT INTO exports (image_id, image_version_id, export_type, export_token) VALUES (?, ?, ?, ?)",
-		image_id, image_version_id, export_type, export_token));
+		imageId, imageVersionId, exportType, exportToken));
 
 			// The table in the database is setup to be an INTEGER.
-			ExportItem item = new ExportItem ((uint)id, image_id, image_version_id, export_type, export_token);
+			var item = new ExportItem ((uint)id, imageId, imageVersionId, exportType, exportToken);
 
 			AddToCache (item);
 			EmitAdded (item);
@@ -121,7 +103,7 @@ namespace FSpot.Database
 		public override void Commit (ExportItem item)
 		{
 			Database.Execute (new HyenaSqliteCommand ("UPDATE exports SET image_id = ?, image_version_id = ?, export_type = ? SET export_token = ? WHERE id = ?",
-                    item.ImageId, item.ImageVersionId, item.ExportType, item.ExportToken, item.Id));
+					item.ImageId, item.ImageVersionId, item.ExportType, item.ExportToken, item.Id));
 
 			EmitChanged (item);
 		}
@@ -132,13 +114,13 @@ namespace FSpot.Database
 			return null;
 		}
 
-		public List<ExportItem> GetByImageId (uint image_id, uint image_version_id)
+		public List<ExportItem> GetByImageId (uint imageId, uint imageVersionId)
 		{
 
-			Hyena.Data.Sqlite.IDataReader reader = Database.Query (new HyenaSqliteCommand ("SELECT id, image_id, image_version_id, export_type, export_token FROM exports WHERE image_id = ? AND image_version_id = ?",
-                    image_id, image_version_id));
+			IDataReader reader = Database.Query (new HyenaSqliteCommand ("SELECT id, image_id, image_version_id, export_type, export_token FROM exports WHERE image_id = ? AND image_version_id = ?",
+					imageId, imageVersionId));
 
-			List<ExportItem> export_items = new List<ExportItem> ();
+			var export_items = new List<ExportItem> ();
 			while (reader.Read ()) {
 				export_items.Add (LoadItem (reader));
 			}
@@ -156,14 +138,12 @@ namespace FSpot.Database
 			EmitRemoved (item);
 		}
 
-		#region Constructor
-		public ExportStore (IDb db, bool is_new) : base (db, true)
+		public ExportStore (IDb db, bool isNew) : base (db, true)
 		{
-			if (is_new || !Database.TableExists ("exports"))
+			if (isNew || !Database.TableExists ("exports"))
 				CreateTable ();
 			else
 				LoadAllItems ();
 		}
-		#endregion
 	}
 }

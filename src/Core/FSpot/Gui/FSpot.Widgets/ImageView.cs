@@ -90,11 +90,7 @@ namespace FSpot.Widgets
 			}
 		}
 
-		PointerMode pointer_mode = PointerMode.Select;
-		public PointerMode PointerMode {
-			get { return pointer_mode; }
-			set { pointer_mode = value; }
-		}
+		public PointerMode PointerMode { get; set; } = PointerMode.Select;
 
 		public Adjustment Hadjustment { get; private set; }
 		public Adjustment Vadjustment { get; private set; }

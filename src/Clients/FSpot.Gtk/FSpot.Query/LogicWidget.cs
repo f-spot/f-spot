@@ -99,8 +99,7 @@ namespace FSpot.Query
 			rootAdd.Child = rootBox;
 			rootAdd.Show ();
 
-			Gtk.Drag.DestSet (rootAdd, DestDefaults.All, tag_dest_target_table,
-					  DragAction.Copy | DragAction.Move);
+			Gtk.Drag.DestSet (rootAdd, DestDefaults.All, tag_dest_target_table, DragAction.Copy | DragAction.Move);
 
 			PackEnd (rootAdd, true, true, 0);
 

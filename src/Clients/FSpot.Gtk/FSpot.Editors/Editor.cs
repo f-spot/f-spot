@@ -19,6 +19,7 @@ using FSpot.Imaging;
 
 using Gdk;
 using Gtk;
+using System.Linq;
 
 namespace FSpot.Editors
 {
@@ -56,47 +57,46 @@ namespace FSpot.Editors
 		// A tool can be applied if it doesn't need a selection, or if it has one.
 		public bool CanBeApplied {
 			get {
-				Log.DebugFormat ("{0} can be applied? {1}", this, !NeedsSelection || (NeedsSelection && State.HasSelection));
+				Log.Debug ($"{this} can be applied? {!NeedsSelection || (NeedsSelection && State.HasSelection)}");
 				return !NeedsSelection || (NeedsSelection && State.HasSelection);
 			}
 		}
 
 		public bool CanHandleMultiple { get; protected set; }
 
-		protected void LoadPhoto (Photo photo, out Pixbuf photo_pixbuf, out Cms.Profile photo_profile)
+		protected void LoadPhoto (Photo photo, out Pixbuf photoPixbuf, out Cms.Profile photoProfile)
 		{
 			// FIXME: We might get this value from the PhotoImageView.
-			using (var img = App.Instance.Container.Resolve<IImageFileFactory> ().Create (photo.DefaultVersion.Uri)) {
-				photo_pixbuf = img.Load ();
-				photo_profile = img.GetProfile ();
-			}
+			using var img = App.Instance.Container.Resolve<IImageFileFactory> ().Create (photo.DefaultVersion.Uri);
+			photoPixbuf = img.Load ();
+			photoProfile = img.GetProfile ();
 		}
 
 		// The human readable name for this action.
 		public readonly string Label;
 
 		// The label on the apply button (usually shorter than the label).
-		string apply_label = "";
+		string applyLabel = "";
 		public string ApplyLabel {
-			get { return apply_label == "" ? Label : apply_label; }
-			protected set { apply_label = value; }
+			get { return string.IsNullOrEmpty (applyLabel) ? Label : applyLabel; }
+			protected set { applyLabel = value; }
 		}
 
 
 		// The icon name for this action (will be loaded from the theme).
 		public readonly string IconName;
 
-		protected Editor (string label, string icon_name)
+		protected Editor (string label, string iconName)
 		{
 			Label = label;
-			IconName = icon_name;
+			IconName = iconName;
 		}
 
 		// Apply the editor's action to a photo.
 		public void Apply ()
 		{
 			try {
-				ProcessingStarted?.Invoke (Label, State.Items.Length);
+				ProcessingStarted?.Invoke (Label, State.Items.Count ());
 				TryApply ();
 			} finally {
 				ProcessingFinished?.Invoke ();
@@ -147,7 +147,7 @@ namespace FSpot.Editors
 				throw new Exception ("Previews cannot be made in browse mode!");
 			}
 
-			if (State.Items.Length > 1) {
+			if (State.Items.Count () > 1) {
 				throw new Exception ("We should have one item selected when this happened, otherwise something is terribly wrong.");
 			}
 
@@ -157,8 +157,7 @@ namespace FSpot.Editors
 
 			Pixbuf old_preview = null;
 			if (preview == null) {
-				int width, height;
-				CalcPreviewSize (original, out width, out height);
+				CalcPreviewSize (original, out var width, out var height);
 				preview = original.ScaleSimple (width, height, InterpType.Nearest);
 			} else {
 				// We're updating a previous preview
