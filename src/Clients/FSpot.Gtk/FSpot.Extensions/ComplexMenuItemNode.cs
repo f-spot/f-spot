@@ -41,17 +41,17 @@ namespace FSpot.Extensions
 	public class ComplexMenuItemNode : MenuNode
 	{
 		[NodeAttribute]
-		protected string widget_type;
+		protected string WidgetType { get; set; }
 
 		[NodeAttribute]
-		protected string command_type;
+		protected string CommandType { get; set; }
 
 		ICommand cmd;
 
 		public override Gtk.MenuItem GetMenuItem (object parent)
 		{
-			ComplexMenuItem item = Activator.CreateInstance (Type.GetType (widget_type), parent) as ComplexMenuItem;
-			cmd = (ICommand) Addin.CreateInstance (command_type);
+			var item = Activator.CreateInstance (Type.GetType (WidgetType), parent) as ComplexMenuItem;
+			cmd = (ICommand)Addin.CreateInstance (CommandType);
 
             if (item != null)
                 item.Activated += OnActivated;

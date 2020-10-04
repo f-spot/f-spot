@@ -12,9 +12,9 @@
 		<Addin id="Core" version="0.9"/>
 	</Dependencies>
 	<Extension path = "/FSpot/Menus/PhotoPopup">
-		<Command id = "DevelopInUFRaw" _label = "Develop in UFRaw" command_type = "FSpot.Tools.DevelopInUFraw.DevelopInUFRaw" insertbefore="OpenWith"/>
+		<Command id = "DevelopInUFRaw" _label = "Develop in UFRaw" CommandType = "FSpot.Tools.DevelopInUFraw.DevelopInUFRaw" insertbefore="OpenWith"/>
 		<Condition id="PhotoSelection" selection="multiple">
-			<Command id = "DevelopInUFRawBatch" _label = "Batch Develop" command_type = "FSpot.Tools.DevelopInUFraw.DevelopInUFRawBatch" insertbefore="OpenWith"/>
+			<Command id = "DevelopInUFRawBatch" _label = "Batch Develop" CommandType = "FSpot.Tools.DevelopInUFraw.DevelopInUFRawBatch" insertbefore="OpenWith"/>
 		</Condition>
 	</Extension>
 </Addin>
