@@ -16,6 +16,7 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
+using System.Collections.Generic;
 
 using Gtk;
 
@@ -113,7 +114,7 @@ public class PhotoVersionCommands
 					Photo new_photo = store.CreateFrom (photo, true, photo.RollId);
 					new_photo.CopyAttributesFrom (photo);
 					photo.DeleteVersion (photo.DefaultVersionId, false, true);
-					store.Commit (new Photo[] { new_photo, photo });
+					store.Commit (new List<Photo> { new_photo, photo });
 					return true;
 				}
 			} catch (Exception e) {
@@ -126,12 +127,12 @@ public class PhotoVersionCommands
 	// Reparenting a photo as version of another one
 	public class Reparent
 	{
-		public bool Execute (PhotoStore store, Photo[] photos, Photo new_parent, Gtk.Window parent_window)
+		public bool Execute (PhotoStore store, List<Photo> photos, Photo new_parent, Gtk.Window parent_window)
 		{
 			string ok_caption = Catalog.GetString ("Re_parent");
 			string msg = string.Format (Catalog.GetPluralString ("Really reparent \"{0}\" as version of \"{1}\"?",
-																 "Really reparent {2} photos as versions of \"{1}\"?", photos.Length),
-										new_parent.Name.Replace ("_", "__"), photos[0].Name.Replace ("_", "__"), photos.Length);
+																 "Really reparent {2} photos as versions of \"{1}\"?", photos.Count),
+										new_parent.Name.Replace ("_", "__"), photos[0].Name.Replace ("_", "__"), photos.Count);
 			string desc = Catalog.GetString ("This makes the photos appear as a single one in the library. The versions can be detached using the Photo menu.");
 
 			try {

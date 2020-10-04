@@ -701,7 +701,7 @@ namespace FSpot
 				UriList list = args.SelectionData.GetUriListData ();
 
 				database.BeginTransaction ();
-				List<Photo> photos = new List<Photo> ();
+				var photos = new List<Photo> ();
 				foreach (var photo_uri in list) {
 					Photo photo = database.Photos.GetByUri (photo_uri);
 
@@ -713,7 +713,7 @@ namespace FSpot
 					photo.AddTag (new Tag[] {tag});
 					photos.Add (photo);
 				}
-				database.Photos.Commit (photos.ToArray ());
+				database.Photos.Commit (photos);
 				database.CommitTransaction ();
 
 				// FIXME: this need to be done

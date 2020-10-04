@@ -58,8 +58,8 @@ namespace FSpot.Tools.RawPlusJpeg
 				"Do it now"))
 				return;
 
-			Photo [] photos = ObsoletePhotoQueries.Query ((Tag [])null, null, null, null);
-			Array.Sort (photos, new IPhotoComparer.CompareDirectory ());
+			var photos = ObsoletePhotoQueries.Query ((Tag [])null, null, null, null);
+			photos.Sort (new IPhotoComparer.CompareDirectory ());
 
 			Photo raw = null;
 			Photo jpeg = null;
@@ -67,7 +67,7 @@ namespace FSpot.Tools.RawPlusJpeg
 			IList<MergeRequest> merge_requests = new List<MergeRequest> ();
 			var factory = App.Instance.Container.Resolve<IImageFileFactory> ();
 
-			for (int i = 0; i < photos.Length; i++) {
+			for (int i = 0; i < photos.Count; i++) {
 				Photo p = photos [i];
 
 				if (!factory.IsRaw (p.DefaultVersion.Uri) && !factory.IsJpeg (p.DefaultVersion.Uri))

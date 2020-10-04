@@ -833,9 +833,9 @@ namespace FSpot
 		// Selection Interface
 		//
 
-		Photo[] SelectedPhotos (int[] selected_ids)
+		List<Photo> SelectedPhotos (int[] selected_ids)
 		{
-			Photo[] photo_list = new Photo[selected_ids.Length];
+			var photo_list = new List<Photo> (selected_ids.Length);
 
 			int i = 0;
 			foreach (int num in selected_ids)
@@ -844,7 +844,7 @@ namespace FSpot
 			return photo_list;
 		}
 
-		public Photo[] SelectedPhotos ()
+		public List<Photo> SelectedPhotos ()
 		{
 			return SelectedPhotos (SelectedIds ());
 		}
@@ -1003,8 +1003,8 @@ namespace FSpot
 		{
 			var photos = SelectedPhotos ();
 
-			if (photos.Length > 0) {
-				int len = Math.Min (photos.Length, 4);
+			if (photos.Count > 0) {
+				int len = Math.Min (photos.Count, 4);
 				int size = 48;
 				int border = 2;
 				int csize = size / 2 + len * size / 2 + 2 * border;
@@ -1178,8 +1178,8 @@ namespace FSpot
 				if (p_item >= 0) {
 					if (icon_view.Selection.Contains (p_item)) //We don't want to reparent ourselves!
 						return;
-					PhotoVersionCommands.Reparent cmd = new PhotoVersionCommands.Reparent ();
-					Photo[] photos_to_reparent = SelectedPhotos ();
+					var cmd = new PhotoVersionCommands.Reparent ();
+					var photos_to_reparent = SelectedPhotos ();
 					// Give feedback to user that something happened, and leave the parent selected after reparenting
 					icon_view.Selection.Add (p_item);
 					cmd.Execute (Database.Photos, photos_to_reparent, query.Photos[p_item], GetToplevel (null));
@@ -1379,7 +1379,7 @@ namespace FSpot
 		{
 			MenuItem parent = sender as MenuItem ?? uimanager.GetWidget ("/ui/menubar1/edit2/remove_tag") as MenuItem;
 			if (parent != null && parent.Submenu is PhotoTagMenu) {
-				PhotoTagMenu menu = (PhotoTagMenu)parent.Submenu;
+				var menu = (PhotoTagMenu)parent.Submenu;
 				menu.Populate (SelectedPhotos ());
 			}
 		}
@@ -2044,15 +2044,15 @@ namespace FSpot
 				return;
 			}
 
-			Photo[] photos = SelectedPhotos ();
+			var photos = SelectedPhotos ();
 			string header = Catalog.GetPluralString ("Delete the selected photo permanently?",
 								"Delete the {0} selected photos permanently?",
-								photos.Length);
-			header = string.Format (header, photos.Length);
+								photos.Count);
+			header = string.Format (header, photos.Count);
 			string msg = Catalog.GetPluralString ("This deletes all versions of the selected photo from your drive.",
 							 "This deletes all versions of the selected photos from your drive.",
-							 photos.Length);
-			string ok_caption = Catalog.GetPluralString ("_Delete photo", "_Delete photos", photos.Length);
+							 photos.Count);
+			string ok_caption = Catalog.GetPluralString ("_Delete photo", "_Delete photos", photos.Count);
 
 			if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation (GetToplevel (sender),
 					DialogFlags.DestroyWithParent,
@@ -2084,15 +2084,15 @@ namespace FSpot
 				return;
 			}
 
-			Photo[] photos = SelectedPhotos ();
-			if (photos.Length == 0)
+			var photos = SelectedPhotos ();
+			if (photos.Count == 0)
 				return;
 
 			string header = Catalog.GetPluralString ("Remove the selected photo from F-Spot?",
 								"Remove the {0} selected photos from F-Spot?",
-								photos.Length);
+								photos.Count);
 
-			header = string.Format (header, photos.Length);
+			header = string.Format (header, photos.Count);
 			string msg = Catalog.GetString ("If you remove photos from the F-Spot catalog all tag information will be lost. The photos remain on your computer and can be imported into F-Spot again.");
 			string ok_caption = Catalog.GetString ("_Remove from Catalog");
 			if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation (GetToplevel (sender), DialogFlags.DestroyWithParent,
@@ -2213,7 +2213,7 @@ namespace FSpot
 
 		void HandleUpdateThumbnailCommand (object sender, EventArgs args)
 		{
-			ThumbnailCommand command = new ThumbnailCommand (main_window);
+			var command = new ThumbnailCommand (main_window);
 
 			int[] selected_ids = SelectedIds ();
 			if (command.Execute (SelectedPhotos (selected_ids)))
@@ -2716,19 +2716,19 @@ namespace FSpot
 		public void HandleOpenWith (object sender, ApplicationActivatedEventArgs e)
 		{
 			GLib.AppInfo application = e.AppInfo;
-			Photo[] selected = SelectedPhotos ();
+			var selected = SelectedPhotos ();
 
-			if (selected == null || selected.Length < 1)
+			if (selected == null || selected.Count < 1)
 				return;
 
-			string header = Catalog.GetPluralString ("Create New Version?", "Create New Versions?", selected.Length);
+			string header = Catalog.GetPluralString ("Create New Version?", "Create New Versions?", selected.Count);
 			string msg = string.Format (Catalog.GetPluralString (
 							 "Before launching {1}, should F-Spot create a new version of the selected photo to preserve the original?",
-							 "Before launching {1}, should F-Spot create new versions of the selected photos to preserve the originals?", selected.Length),
-							 selected.Length, application.Name);
+							 "Before launching {1}, should F-Spot create new versions of the selected photos to preserve the originals?", selected.Count),
+							 selected.Count, application.Name);
 
 			// FIXME add cancel button? add help button?
-			HigMessageDialog hmd = new HigMessageDialog (GetToplevel (sender), DialogFlags.DestroyWithParent,
+			using var hmd = new HigMessageDialog (GetToplevel (sender), DialogFlags.DestroyWithParent,
 									   MessageType.Question, Gtk.ButtonsType.None,
 									   header, msg);
 

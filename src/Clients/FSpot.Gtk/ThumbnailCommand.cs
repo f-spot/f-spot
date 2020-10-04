@@ -29,10 +29,14 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System.Collections.Generic;
+
 using FSpot;
 using FSpot.Core;
 using FSpot.Thumbnail;
 using FSpot.UI.Dialog;
+
+using GLib;
 
 public class ThumbnailCommand
 {
@@ -43,15 +47,15 @@ public class ThumbnailCommand
 		this.parent_window = parent_window;
 	}
 
-	public bool Execute (IPhoto [] photos)
+	public bool Execute (List<Photo> photos)
 	{
 		ProgressDialog progress_dialog = null;
 		var loader = App.Instance.Container.Resolve<IThumbnailLoader> ();
 		
-		if (photos.Length > 1) {
+		if (photos.Count > 1) {
 			progress_dialog = new ProgressDialog (Mono.Unix.Catalog.GetString ("Updating Thumbnails"),
 							      ProgressDialog.CancelButtonType.Stop,
-							      photos.Length, parent_window);
+							      photos.Count, parent_window);
 		}
 
 		int count = 0;

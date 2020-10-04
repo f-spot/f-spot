@@ -28,6 +28,7 @@
 //
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Reflection;
@@ -133,11 +134,11 @@ namespace FSpot.Tools.LiveWebGallery
 		
 		public override void Handle (string requested, Stream stream)
 		{
-			Photo[] photos = GetChosenPhotos ();
+			var photos = GetChosenPhotos ();
 			
 			StringBuilder s = new StringBuilder (4096);
 			s.Append (template);
-			int num_photos = limit_max_photos ? Math.Min (photos.Length, max_photos) : photos.Length;
+			int num_photos = limit_max_photos ? Math.Min (photos.Count, max_photos) : photos.Count;
 			s.Replace ("NUM_PHOTOS", string.Format(Catalog.GetPluralString("{0} photo", "{0} photos", num_photos), num_photos));
 			s.Replace ("QUERY_TYPE", QueryTypeToString ());
 			s.Replace ("EDITABLE_TAG_NAME", tagging_allowed ? Escape (editable_tag.Name) : "");
@@ -161,7 +162,7 @@ namespace FSpot.Tools.LiveWebGallery
 			stats.GalleryViews++;
 		}
 		
-		private Photo[] GetChosenPhotos () 
+		private List<Photo> GetChosenPhotos () 
 		{
 			switch (query_type) {
 			case QueryType.ByTag:

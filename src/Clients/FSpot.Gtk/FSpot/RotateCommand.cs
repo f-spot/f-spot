@@ -28,6 +28,7 @@ using Hyena;
 using Hyena.Widgets;
 
 using Mono.Unix;
+using System.Collections.Generic;
 
 namespace FSpot
 {
@@ -114,9 +115,9 @@ namespace FSpot
 
 		public int Index { get; private set; }
 
-		public IPhoto [] Items { get; private set; }
+		public List<Photo> Items { get; private set; }
 
-		public RotateMultiple (IPhoto [] items, RotateDirection direction)
+		public RotateMultiple (List<Photo> items, RotateDirection direction)
 		{
 			this.direction = direction;
 			Items = items;
@@ -125,7 +126,7 @@ namespace FSpot
 
 		public bool Step ()
 		{
-			if (Index >= Items.Length)
+			if (Index >= Items.Count)
 				return false;
 
 			if (op == null)
@@ -138,7 +139,7 @@ namespace FSpot
 				op = null;
 			}
 
-			return (Index < Items.Length);
+			return (Index < Items.Count);
 		}
 	}
 
@@ -151,14 +152,14 @@ namespace FSpot
 			this.parent_window = parent_window;
 		}
 
-		public bool Execute (RotateDirection direction, IPhoto [] items)
+		public bool Execute (RotateDirection direction, List<Photo> items)
 		{
 			ProgressDialog progress_dialog = null;
 
-			if (items.Length > 1)
+			if (items.Count > 1)
 				progress_dialog = new ProgressDialog (Catalog.GetString ("Rotating photos"),
 									  ProgressDialog.CancelButtonType.Stop,
-									  items.Length, parent_window);
+									  items.Count, parent_window);
 
 			var op = new RotateMultiple (items, direction);
 			int readonly_count = 0;
@@ -166,7 +167,7 @@ namespace FSpot
 			int index = 0;
 
 			while (!done) {
-				if (progress_dialog != null && op.Index != -1 && index < items.Length)
+				if (progress_dialog != null && op.Index != -1 && index < items.Count)
 					if (progress_dialog.Update (string.Format (Catalog.GetString ("Rotating photo \"{0}\""), op.Items [op.Index].Name)))
 						break;
 
