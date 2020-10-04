@@ -6,24 +6,44 @@
   </Target>
 
   <Target Name="Rebuild">
-    <CallTaget Targets="Clean;Build" />
+    <CallTaget Targets="Clean;Restore;Build" />
   </Target>
 
   <Target Name="Restore">
     <MSBuild Projects="F-Spot.sln" Targets="Restore" />
   </Target>
 
-  <Target Name="Build">
-    <Message Condition="'$(IsWindows)'" Text="Building On Windows" Importance="High" />
+  <PropertyGroup>
+    <TargetPlatform Condition="$(IsWindows)">x86</TargetPlatform>
+    <TargetPlatform Condition="!$(IsWindows)">Any CPU</TargetPlatform>
+  </PropertyGroup>
+
+  <Target Name="BuildWindows">
+    <Message Text="Building On Windows" Importance="High" />
     <!-- HACK: copy this file over for now -->
-    <Copy Condition="$(IsWindows) And !Exists('src\Clients\FSpot.Gtk\f-spot.exe.config')"
+    <Copy Condition="!Exists('src\Clients\FSpot.Gtk\f-spot.exe.config')"
       SourceFiles="src\Clients\FSpot.Gtk\f-spot.exe.config.in"
       DestinationFiles="src\Clients\FSpot.Gtk\f-spot.exe.config" />
+  </Target>
 
-    <Message Condition="'$(IsMac)'" Text="Building On Mac" Importance="High" />
-    <Message Condition="'$(IsLinux)'" Text="Building On Linux" Importance="High" />
+  <Target Name="BuildMac">
+    <Message Text="Building On Mac" Importance="High" />
+  </Target>
 
-    <MSBuild Projects="F-Spot.sln" Targets="Restore;Build" />
+  <Target Name="BuildLinux">
+    <Message Text="Building On Linux" Importance="High" />
+  </Target>
+
+  <PropertyGroup>
+    <BuildDependsOn>Restore;</BuildDependsOn>
+  </PropertyGroup>
+
+  <Target Name="Build" DependsOnTargets="$(BuildDependsOn)">
+    <CallTarget Condition="'$(IsWindows)'" Targets="BuildWindows" />
+    <CallTarget Condition="'$(IsMac)'" Targets="BuildMac" />
+    <CallTarget Condition="'$(IsLinux)'" Targets="BuildLinux" />
+
+    <MSBuild Projects="F-Spot.sln" Properties="Platform=$(TargetPlatform)" Targets="Build" />
   </Target>
 
 </Project>
