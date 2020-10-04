@@ -8,15 +8,14 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>FSpot</RootNamespace>
     <AssemblyName>f-spot</AssemblyName>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <Externalconsole>True</Externalconsole>
     <EnvironmentVariables>
-      <EnvironmentVariables>
-        <Variable name="GTK_MODULES" value="" />
-        <Variable name="MONO_CAIRO_DEBUG_DISPOSE" value="1" />
-      </EnvironmentVariables>
+      <Variable name="GTK_MODULES" value="" />
+      <Variable name="MONO_CAIRO_DEBUG_DISPOSE" value="1" />
     </EnvironmentVariables>
   </PropertyGroup>
 
