@@ -61,11 +61,11 @@ namespace FSpot.Widgets
 		}
 
 		List<string> selected_photos_tagnames;
-		public void UpdateFromSelection (IPhoto [] selection)
+		public void UpdateFromSelection (List<Photo> selection)
 		{
 			Dictionary<Tag,int> taghash = new Dictionary<Tag,int> ();
 
-			for (int i = 0; i < selection.Length; i++) {
+			for (int i = 0; i < selection.Count; i++) {
 				foreach (Tag tag in selection [i].Tags) {
 					int count = 1;
 
@@ -84,7 +84,7 @@ namespace FSpot.Widgets
 
 			selected_photos_tagnames = new List<string> ();
 			foreach (Tag tag in taghash.Keys)
-				if (taghash [tag] == selection.Length)
+				if (taghash [tag] == selection.Count)
 					selected_photos_tagnames.Add (tag.Name);
 
 			Update ();

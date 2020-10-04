@@ -30,6 +30,7 @@
 using Cairo;
 
 using System;
+using System.Collections.Generic;
 
 using Mono.Unix;
 
@@ -40,23 +41,24 @@ using FSpot.Imaging;
 using FSpot.Utils;
 
 using Hyena;
+using GLib;
 
 namespace FSpot
 {
 	public class PrintOperation : Gtk.PrintOperation
 	{
-		IPhoto [] selected_photos;
+		List<Photo> selected_photos;
 		int photos_per_page = 1;
 		CustomPrintWidget.FitMode fit = CustomPrintWidget.FitMode.Scaled;
 		bool repeat, white_borders, crop_marks;
 		string print_label_format;
 		string comment;
 
-		public PrintOperation (IPhoto [] selectedPhotos)
+		public PrintOperation (List<Photo> selectedPhotos)
 		{
 			selected_photos = selectedPhotos;
 			CustomTabLabel = Catalog.GetString ("Image Settings");
-			NPages = selectedPhotos.Length;
+			NPages = selectedPhotos.Count;
 			DefaultPageSetup = FSpotConfiguration.PageSetup;
 		}
 
@@ -75,7 +77,7 @@ namespace FSpot
 			UseFullPage = cpw.UseFullPage;
 			photos_per_page = cpw.PhotosPerPage;
 			repeat = cpw.Repeat;
-			NPages = repeat ? selected_photos.Length : (int)Math.Ceiling (1.0 * selected_photos.Length / photos_per_page);
+			NPages = repeat ? selected_photos.Count : (int)Math.Ceiling (1.0 * selected_photos.Count / photos_per_page);
 			fit = cpw.Fitmode;
 			white_borders = cpw.WhiteBorders;
 			crop_marks = cpw.CropMarks;
@@ -86,7 +88,7 @@ namespace FSpot
 		protected void OnCustomWidgetChanged (Gtk.Widget widget)
 		{
 			OnCustomWidgetApply (widget);
-			using (var surface = new ImageSurface (Format.ARGB32, 360, 254)) {
+			using (var surface = new ImageSurface (Cairo.Format.ARGB32, 360, 254)) {
 				using (var gr = new Context (surface)) {
 					gr.SetSourceColor (new Color (1, 1, 1));
 					gr.Rectangle (0, 0, 360, 254);
@@ -129,21 +131,21 @@ namespace FSpot
 					int p_index = repeat ? page_nr : page_nr * photos_per_page + y * ppx + x;
 					if (crop_marks)
 						DrawCropMarks (cr, x * w, y * h, w * .1);
-					if (x == ppx || y == ppy || p_index >= selected_photos.Length)
+					if (x == ppx || y == ppy || p_index >= selected_photos.Count)
 						continue;
 					using (var img = App.Instance.Container.Resolve<IImageFileFactory> ().Create (selected_photos [p_index].DefaultVersion.Uri)) {
 						Gdk.Pixbuf pixbuf;
 						try {
 							pixbuf = img.Load ((int)mx, (int)my);
 							if (pixbuf == null) {
-								Log.Error ("Not enough memory for printing " + selected_photos [p_index].DefaultVersion.Uri);
+								Hyena.Log.Error ("Not enough memory for printing " + selected_photos [p_index].DefaultVersion.Uri);
 								continue;
 							}
 							Cms.Profile printer_profile;
 							if (ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayOutputProfile), out printer_profile))
 								ColorManagement.ApplyProfile (pixbuf, img.GetProfile (), printer_profile);
 						} catch (Exception e) {
-							Log.Exception ("Unable to load image " + selected_photos [p_index].DefaultVersion.Uri + "\n", e);
+							Hyena.Log.Exception ("Unable to load image " + selected_photos [p_index].DefaultVersion.Uri + "\n", e);
 							// If the image is not found load error pixbuf
 							pixbuf = new Gdk.Pixbuf (PixbufUtils.ErrorPixbuf, 0, 0,
 											  PixbufUtils.ErrorPixbuf.Width,

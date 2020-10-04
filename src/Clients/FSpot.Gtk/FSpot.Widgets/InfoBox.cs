@@ -46,7 +46,7 @@ namespace FSpot.Widgets
 			public Widget LabelWidget { get; set; }
 			public Widget InfoWidget { get; set; }
 			public Action<Widget, IPhoto, TagLib.Image.File> SetSingle { get; set; }
-			public Action<Widget, IEnumerable<IPhoto>> SetMultiple { get; set; }
+			public Action<Widget, List<Photo>> SetMultiple { get; set; }
 		}
 
 		public InfoBox () : base (false, 0)
@@ -70,7 +70,7 @@ namespace FSpot.Widgets
 		void AddEntry (string id, string name, string description, Widget info_widget, float label_y_align,
 							   bool default_visibility,
 							   Action<Widget, IPhoto, TagLib.Image.File> set_single,
-							   Action<Widget, IEnumerable<IPhoto>> set_multiple)
+							   Action<Widget, List<Photo>> set_multiple)
 		{
 			entries.Add (new InfoEntry {
 				TwoColumns = (name == null),
@@ -87,35 +87,35 @@ namespace FSpot.Widgets
 
 		void AddEntry (string id, string name, string description, Widget info_widget, float label_y_align,
 							   Action<Widget, IPhoto, TagLib.Image.File> set_single,
-							   Action<Widget, IEnumerable<IPhoto>> set_multiple)
+							   Action<Widget, List<Photo>> set_multiple)
 		{
 			AddEntry (id, name, description, info_widget, label_y_align, true, set_single, set_multiple);
 		}
 
 		void AddEntry (string id, string name, string description, Widget info_widget, bool default_visibility,
 							   Action<Widget, IPhoto, TagLib.Image.File> set_single,
-							   Action<Widget, IEnumerable<IPhoto>> set_multiple)
+							   Action<Widget, List<Photo>> set_multiple)
 		{
 			AddEntry (id, name, description, info_widget, 0.0f, default_visibility, set_single, set_multiple);
 		}
 
 		void AddEntry (string id, string name, string description, Widget info_widget,
 							   Action<Widget, IPhoto, TagLib.Image.File> set_single,
-							   Action<Widget, IEnumerable<IPhoto>> set_multiple)
+							   Action<Widget, List<Photo>> set_multiple)
 		{
 			AddEntry (id, name, description, info_widget, 0.0f, set_single, set_multiple);
 		}
 
 		void AddLabelEntry (string id, string name, string description,
 									Func<IPhoto, TagLib.Image.File, string> single_string,
-									Func<IEnumerable<IPhoto>, string> multiple_string)
+									Func<List<Photo>, string> multiple_string)
 		{
 			AddLabelEntry (id, name, description, true, single_string, multiple_string);
 		}
 
 		void AddLabelEntry (string id, string name, string description, bool default_visibility,
 									Func<IPhoto, TagLib.Image.File, string> single_string,
-									Func<IEnumerable<IPhoto>, string> multiple_string)
+									Func<List<Photo>, string> multiple_string)
 		{
 			Action<Widget, IPhoto, TagLib.Image.File> setSingle = (widget, photo, metadata) => {
 				if (metadata != null)
@@ -124,7 +124,7 @@ namespace FSpot.Widgets
 					(widget as Label).Text = Catalog.GetString ("(Unknown)");
 			};
 
-			Action<Widget, IEnumerable<IPhoto>> set_multiple = (widget, photos) => {
+			Action<Widget, List<Photo>> set_multiple = (widget, photos) => {
 				(widget as Label).Text = multiple_string (photos);
 			};
 
@@ -134,8 +134,8 @@ namespace FSpot.Widgets
 		}
 
 
-		IEnumerable<IPhoto> photos = Array.Empty<IPhoto> ();
-		public IEnumerable<IPhoto> Photos {
+		List<Photo> photos = new List<Photo> ();
+		public List<Photo> Photos {
 			get { return photos; }
 			set {
 				photos = value;
@@ -146,7 +146,7 @@ namespace FSpot.Widgets
 		public IPhoto Photo {
 			set {
 				if (value != null) {
-					Photos = new IPhoto[] { value };
+					Photos = new List<Photo> { value as Photo };
 				}
 			}
 		}
@@ -494,7 +494,7 @@ namespace FSpot.Widgets
 		{
 			if (Photos == null || !Photos.Any ()) {
 				Hide ();
-			} else if (Photos.Count () == 1) {
+			} else if (Photos.Count == 1) {
 				var photo = Photos[0];
 
 				histogram_expander.Visible = true;
@@ -511,7 +511,7 @@ namespace FSpot.Widgets
 					}
 				}
 				Show ();
-			} else if (Photos.Count () > 1) {
+			} else if (Photos.Count > 1) {
 				foreach (var entry in entries) {
 					bool is_multiple = (entry.SetMultiple != null);
 

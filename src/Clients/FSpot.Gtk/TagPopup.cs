@@ -46,7 +46,7 @@ public class TagPopup
 {
 	public void Activate (Gdk.EventButton eb, Tag tag, Tag [] tags)
 	{
-		int photo_count = App.Instance.Organizer.SelectedPhotos ().Length;
+		int photo_count = App.Instance.Organizer.SelectedPhotos ().Count;
 		int tags_count = tags.Length;
 
 		Gtk.Menu popup_menu = new Gtk.Menu ();

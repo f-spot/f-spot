@@ -32,6 +32,7 @@
 //
 
 using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 
@@ -46,9 +47,9 @@ namespace FSpot
 {
 	public static class SelectionDataExtensions
 	{
-		public static void SetPhotosData (this SelectionData selection_data, Photo [] photos, Atom target)
+		public static void SetPhotosData (this SelectionData selection_data, List<Photo> photos, Atom target)
 		{
-			byte [] data = new byte [photos.Length * sizeof (uint)];
+			byte [] data = new byte [photos.Count * sizeof (uint)];
 
 			int i = 0;
 			foreach (Photo photo in photos) {

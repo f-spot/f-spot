@@ -53,7 +53,7 @@ namespace FSpot
 				get { return SIZE; }
 			}
 
-			readonly Dictionary<int, Photo []> cache;
+			readonly Dictionary<int, List<Photo>> cache;
 			readonly string temp_table;
 			readonly PhotoStore store;
 
@@ -61,15 +61,14 @@ namespace FSpot
 			{
 				this.temp_table = temp_table;
 				this.store = store;
-				cache = new Dictionary<int, Photo[]> ();
+				cache = new Dictionary<int, List<Photo>> ();
 			}
 
 			public bool TryGetPhoto (int index, out Photo photo)
 			{
 				photo = null;
-				Photo [] val;
 				int offset = index - index % SIZE;
-				if (!cache.TryGetValue (offset, out val))
+				if (!cache.TryGetValue (offset, out var val))
 					return false;
 				photo = val [index - offset];
 				return true;
@@ -77,9 +76,8 @@ namespace FSpot
 
 			public Photo Get (int index)
 			{
-				Photo [] val;
 				int offset = index - index % SIZE;
-				if (!cache.TryGetValue (offset, out val)) {
+				if (!cache.TryGetValue (offset, out List<Photo> val)) {
 					val = store.QueryFromTemp (temp_table, offset, SIZE);
 					cache [offset] = val;
 				}
@@ -137,7 +135,7 @@ namespace FSpot
 		}
 
 		[Obsolete ("DO NOT USE THIS, IT'S TOO SLOW")]
-		public Photo [] Photos {
+		public List<Photo> Photos {
 			get { return store.QueryFromTemp (temp_table); }
 		}
 
@@ -379,12 +377,12 @@ namespace FSpot
 
 		public void Commit (int [] indexes)
 		{
-			List<Photo> to_commit = new List<Photo>();
+			var to_commit = new List<Photo>();
 			foreach (int index in indexes) {
 				to_commit.Add (this [index] as Photo);
 				reverse_lookup [(this [index] as Photo).Id] = index;
 			}
-			store.Commit (to_commit.ToArray ());
+			store.Commit (to_commit);
 		}
 
 		void MarkChanged (object sender, DbItemEventArgs<Photo> args)

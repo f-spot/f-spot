@@ -359,7 +359,7 @@ namespace FSpot.Database
 
 		public void Remove (Tag[] tags)
 		{
-			Photo[] photos = Query (new OrOperator (tags.Select (t => new TagTerm (t)).ToArray ()));
+			var photos = Query (new OrOperator (tags.Select (t => new TagTerm (t)).ToArray ()));
 
 			foreach (Photo photo in photos)
 				photo.RemoveCategory (tags);
@@ -369,12 +369,12 @@ namespace FSpot.Database
 				Db.Tags.Remove (tag);
 		}
 
-		public void Remove (Photo[] items)
+		public void Remove (List<Photo> items)
 		{
-			EmitRemoved (items);
+			EmitRemoved (items.ToArray ());
 
-			var query_builder = new List<string> (items.Length);
-			for (int i = 0; i < items.Length; i++) {
+			var query_builder = new List<string> (items.Count);
+			for (int i = 0; i < items.Count; i++) {
 				query_builder.Add ($"{items[i].Id}");
 				RemoveFromCache (items[i]);
 			}
@@ -387,15 +387,15 @@ namespace FSpot.Database
 
 		public override void Remove (Photo item)
 		{
-			Remove (new[] { item });
+			Remove (new List<Photo> { item });
 		}
 
 		public override void Commit (Photo item)
 		{
-			Commit (new[] { item });
+			Commit (new List<Photo> { item });
 		}
 
-		public void Commit (Photo[] items)
+		public void Commit (List<Photo> items)
 		{
 			uint timer = Log.DebugTimerStart ();
 			// Only use a transaction for multiple saves. Avoids recursive transactions.
@@ -421,7 +421,7 @@ namespace FSpot.Database
 			if (use_transactions)
 				Database.CommitTransaction ();
 
-			EmitChanged (items, new PhotoEventArgs (items, changes));
+			EmitChanged (items.ToArray (), new PhotoEventArgs (items, changes));
 			Log.DebugTimerPrint (timer, "Commit took {0}");
 		}
 
@@ -688,7 +688,7 @@ namespace FSpot.Database
 			return query_builder.ToString ();
 		}
 
-		public Photo[] Query (params IQueryCondition[] conditions)
+		public List<Photo> Query (params IQueryCondition[] conditions)
 		{
 			return Query (BuildQuery (conditions));
 		}
@@ -711,22 +711,22 @@ namespace FSpot.Database
 			Log.DebugTimerPrint (timer, "QueryToTemp took {0} : " + query);
 		}
 
-		public Photo[] QueryFromTemp (string tempTable)
+		public List<Photo> QueryFromTemp (string tempTable)
 		{
 			return QueryFromTemp (tempTable, 0, -1);
 		}
 
-		public Photo[] QueryFromTemp (string tempTable, int offset, int limit)
+		public List<Photo> QueryFromTemp (string tempTable, int offset, int limit)
 		{
 			return Query ($"SELECT * FROM {tempTable} LIMIT {limit} OFFSET {offset}");
 		}
 
-		public Photo[] Query (string query)
+		public List<Photo> Query (string query)
 		{
 			return Query (new HyenaSqliteCommand (query));
 		}
 
-		Photo[] Query (HyenaSqliteCommand query)
+		List<Photo> Query (HyenaSqliteCommand query)
 		{
 			uint timer = Log.DebugTimerStart ();
 			var new_photos = new List<Photo> ();
@@ -771,10 +771,10 @@ namespace FSpot.Database
 				photo.Changes = null;
 
 			Log.DebugTimerPrint (timer, "Query took {0} : " + query.Text);
-			return query_result.ToArray ();
+			return query_result;
 		}
 
-		public Photo[] Query (SafeUri uri)
+		public List<Photo> Query (SafeUri uri)
 		{
 			string filename = uri.GetFilename ();
 

@@ -49,7 +49,7 @@ namespace FSpot.Tools.DevelopInUFraw
 		{
 			ProgressDialog pdialog = new ProgressDialog(Catalog.GetString ("Developing photos"),
 														ProgressDialog.CancelButtonType.Cancel,
-														App.Instance.Organizer.SelectedPhotos ().Length,
+														App.Instance.Organizer.SelectedPhotos ().Count,
 														App.Instance.Organizer.Window);
 			Log.Information ("Executing DevelopInUFRaw extension in batch mode");
 

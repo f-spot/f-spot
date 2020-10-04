@@ -29,18 +29,21 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System.Collections.Generic;
+
 using FSpot.Core;
 
 namespace FSpot.Database
 {
-	public class PhotoEventArgs : DbItemEventArgs<Photo> {
+	public class PhotoEventArgs : DbItemEventArgs<Photo>
+	{
 		public PhotosChanges Changes { get; private set; }
 
-		public PhotoEventArgs (Photo photo, PhotosChanges changes) : this (new[] {photo}, changes)
+		public PhotoEventArgs (Photo photo, PhotosChanges changes) : this (new List<Photo> { photo }, changes)
 		{
 		}
 
-		public PhotoEventArgs (Photo[] photos, PhotosChanges changes) : base (photos)
+		public PhotoEventArgs (List<Photo> photos, PhotosChanges changes) : base (photos.ToArray ())
 		{
 			Changes = changes;
 		}

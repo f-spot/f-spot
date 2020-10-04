@@ -272,15 +272,15 @@ namespace FSpot {
 
 		void HandleRotate90Command (object sender, EventArgs args)
 		{
-			RotateCommand command = new RotateCommand (this.Window);
-			if (command.Execute (RotateDirection.Clockwise, new IPhoto [] { image_view.Item.Current }))
+			RotateCommand command = new RotateCommand (Window);
+			if (command.Execute (RotateDirection.Clockwise, new List<Photo> { image_view.Item.Current as Photo }))
 				collection.MarkChanged (image_view.Item.Index, FullInvalidate.Instance);
 		}
 
 		void HandleRotate270Command (object sender, EventArgs args)
 		{
 			RotateCommand command = new RotateCommand (Window);
-			if (command.Execute (RotateDirection.Counterclockwise, new IPhoto [] { image_view.Item.Current }))
+			if (command.Execute (RotateDirection.Counterclockwise, new List<Photo> { image_view.Item.Current as Photo}))
 				collection.MarkChanged (image_view.Item.Index, FullInvalidate.Instance);
 		}
 

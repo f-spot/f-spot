@@ -46,9 +46,9 @@ namespace FSpot.Tools.RetroactiveRoll
 	{
 		public void Run (object o, EventArgs e)
 		{
-			Photo[] photos = App.Instance.Organizer.SelectedPhotos ();
+			var photos = App.Instance.Organizer.SelectedPhotos ();
 
-			if (photos.Length == 0) {
+			if (photos.Count == 0) {
 				Log.Debug ("no photos selected, returning");
 				return;
 			}
@@ -66,7 +66,7 @@ namespace FSpot.Tools.RetroactiveRoll
 				App.Instance.Database.Database.Execute (cmd);
 				p.RollId = roll.Id;
 			}
-			Log.Debug ("RetroactiveRoll done: " + photos.Length + " photos in roll " + roll.Id);
+			Log.Debug ("RetroactiveRoll done: " + photos.Count + " photos in roll " + roll.Id);
 		}
 	}
 }
