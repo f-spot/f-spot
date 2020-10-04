@@ -50,7 +50,7 @@ namespace FSpot.UI.Dialog
                     "\tLawrence Ewing",
                     "\tStephane Delcroix",
                     "\tRuben Vermeersch",
-                    "\tStephen  Shaw",
+                    "\tStephen Shaw",
                     "",
                     "Active Contributors to this release",
                     "\tAdemir Mendoza",
