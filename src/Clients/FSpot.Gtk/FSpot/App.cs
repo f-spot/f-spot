@@ -118,7 +118,7 @@ namespace FSpot
 						try {
 							db.Init (Path.Combine (FSpotConfiguration.BaseDirectory, FSpotConfiguration.DatabaseName), true);
 						} catch (Exception e) {
-							new FSpot.UI.Dialog.RepairDbDialog (e, db.Repair (), null);
+							using var _ = new FSpot.UI.Dialog.RepairDbDialog (e, db.Repair (), null);
 							db.Init (Path.Combine (FSpotConfiguration.BaseDirectory, FSpotConfiguration.DatabaseName), true);
 						}
 					}
