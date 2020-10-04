@@ -12,6 +12,6 @@
 		<Addin id="Core" version="0.9"/>
 	</Dependencies>
 	<Extension path = "/FSpot/Menus/Tools">
-		<Command id = "MergeDb" _label = "Merge Db" command_type = "FSpot.Tools.MergeDb.MergeDb" />
+		<Command id = "MergeDb" _label = "Merge Db" CommandType = "FSpot.Tools.MergeDb.MergeDb" />
 	</Extension>
 </Addin>

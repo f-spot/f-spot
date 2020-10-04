@@ -11,6 +11,6 @@
 		<Addin id="Core" version="0.9"/>
 	</Dependencies>
 	<Extension path = "/FSpot/Menus/PhotoPopup">
-		<Command id = "RetroactiveRoll" _label = "Reassign to new import roll" command_type = "FSpot.Tools.RetroactiveRoll.RetroactiveRoll"/>
+		<Command id = "RetroactiveRoll" _label = "Reassign to new import roll" CommandType = "FSpot.Tools.RetroactiveRoll.RetroactiveRoll"/>
 	</Extension>
 </Addin>
