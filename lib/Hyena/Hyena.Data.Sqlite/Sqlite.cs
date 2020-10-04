@@ -545,7 +545,7 @@ namespace Hyena.Data.Sqlite
 
     internal static class Native
     {
-	    const string SQLITE_DLL = "sqlite3";
+	    const string SQLITE_DLL = "e_sqlite3";
 
         // Connection functions
         [DllImport(SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
@@ -560,10 +560,10 @@ namespace Hyena.Data.Sqlite
         [DllImport(SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int sqlite3_busy_timeout(IntPtr db, int ms);
 
-        [DllImport(SQLITE_DLL, CharSet = CharSet.Unicode)]
+        [DllImport(SQLITE_DLL, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr sqlite3_errmsg16(IntPtr db);
 
-        [DllImport(SQLITE_DLL, CharSet = CharSet.Unicode)]
+        [DllImport(SQLITE_DLL, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int sqlite3_create_function16(IntPtr db, string strName, int nArgs, int eTextRep, IntPtr app, SqliteCallback func, SqliteCallback funcstep, SqliteFinalCallback funcfinal);
 
         [DllImport(SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
@@ -572,14 +572,14 @@ namespace Hyena.Data.Sqlite
         [DllImport(SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr sqlite3_aggregate_context(IntPtr context, int nBytes);
 
-        [DllImport(SQLITE_DLL, CharSet = CharSet.Unicode)]
+        [DllImport(SQLITE_DLL, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int sqlite3_create_collation16(IntPtr db, string strName, int eTextRep, IntPtr ctx, SqliteCollation fcompare);
 
         [DllImport(SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int sqlite3_extended_result_codes (IntPtr db, int onoff);
 
         // Statement functions
-        [DllImport(SQLITE_DLL, CharSet = CharSet.Unicode)]
+        [DllImport(SQLITE_DLL, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int sqlite3_prepare16_v2(IntPtr db, string pSql, int nBytes, out IntPtr stmt, out IntPtr ptrRemain);
 
         [DllImport(SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
@@ -639,7 +639,7 @@ namespace Hyena.Data.Sqlite
         [DllImport(SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int sqlite3_bind_null(IntPtr stmt, int param);
 
-        [DllImport(SQLITE_DLL, CharSet = CharSet.Unicode)]
+        [DllImport(SQLITE_DLL, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int sqlite3_bind_text16 (IntPtr stmt, int param, string val, int numBytes, IntPtr destructorType);
 
         //DllImport(SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
@@ -667,10 +667,10 @@ namespace Hyena.Data.Sqlite
         [DllImport(SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
         internal static extern void sqlite3_result_text(IntPtr context, byte[] value, int nLen, IntPtr pvReserved);
 
-        [DllImport(SQLITE_DLL, CharSet = CharSet.Unicode)]
+        [DllImport(SQLITE_DLL, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
         internal static extern void sqlite3_result_error16(IntPtr context, string strName, int nLen);
 
-        [DllImport(SQLITE_DLL, CharSet = CharSet.Unicode)]
+        [DllImport(SQLITE_DLL, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
         internal static extern void sqlite3_result_text16(IntPtr context, string strName, int nLen, IntPtr pvReserved);
 
         // Value methods
