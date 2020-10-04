@@ -59,14 +59,14 @@ namespace FSpot.Extensions
 	public class MenuGeneratorNode : MenuNode
 	{
 		[NodeAttribute ("generator_type", true)]
-		protected string command_type;
+		protected string CommandType;
 
 		IMenuGenerator menu_generator;
 
 		public override Gtk.MenuItem GetMenuItem (object parent)
 		{
 			Gtk.MenuItem item = base.GetMenuItem (parent);
-			menu_generator = (IMenuGenerator)Addin.CreateInstance (command_type);
+			menu_generator = (IMenuGenerator)Addin.CreateInstance (CommandType);
 			item.Submenu = menu_generator.GetMenu ();
 			item.Activated += menu_generator.OnActivated;
 			return item;

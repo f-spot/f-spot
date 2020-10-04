@@ -12,6 +12,6 @@
 		<Addin id="Core" version="0.9"/>
 	</Dependencies>
 	<Extension path = "/FSpot/Menus/Tools">
-		<Command id = "LiveWebGallery" _label = "Live Web Gallery" command_type = "FSpot.Tools.LiveWebGallery.LiveWebGallery" />
+		<Command id = "LiveWebGallery" _label = "Live Web Gallery" CommandType = "FSpot.Tools.LiveWebGallery.LiveWebGallery" />
 	</Extension>
 </Addin>

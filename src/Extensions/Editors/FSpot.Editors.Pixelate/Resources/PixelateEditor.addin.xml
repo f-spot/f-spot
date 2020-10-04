@@ -12,6 +12,6 @@
 		<Addin id="Core" version="0.9"/>
 	</Dependencies>
 	<Extension path = "/FSpot/Editors">
-		<Editor editor_type = "FSpot.Addins.Editors.PixelateEditor"/>
+		<Editor EditorType = "FSpot.Addins.Editors.PixelateEditor"/>
 	</Extension>
 </Addin>
