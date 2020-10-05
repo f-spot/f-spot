@@ -35,7 +35,7 @@ namespace FSpot.UI.Dialog
 					"\tLawrence Ewing",
 					"\tStephane Delcroix",
 					"\tRuben Vermeersch",
-					"\tStephen  Shaw",
+					"\tStephen Shaw",
 					"",
 					"Active Contributors to this release",
 					"\tAdemir Mendoza",
@@ -107,7 +107,7 @@ namespace FSpot.UI.Dialog
 					"In memory Of",
 					"\tEttore Perazzoli",
 			};
-			Comments = Catalog.GetString ("Photo management for GNOME");
+			Comments = Catalog.GetString ("Photo management for the Desktop");
 			Copyright = Catalog.GetString ("Copyright \x00a9 2003-2010 Novell Inc.");
 			Documenters = new string[] {
 					"Aaron Bockover",
@@ -118,25 +118,26 @@ namespace FSpot.UI.Dialog
 					"Miguel de Icaza",
 					"Stephane Delcroix",
 			};
+
 			//Read license from COPYING
 			try {
-				System.Reflection.Assembly assembly = System.Reflection.Assembly.GetCallingAssembly ();
-				using (Stream s = assembly.GetManifestResourceStream ("COPYING")) {
-					StreamReader reader = new StreamReader (s);
-					License = reader.ReadToEnd ();
-					s.Close ();
-				}
+				var assembly = System.Reflection.Assembly.GetCallingAssembly ();
+				using Stream s = assembly.GetManifestResourceStream ("COPYING");
+				using var reader = new StreamReader (s);
+				License = reader.ReadToEnd ();
 			} catch (Exception e) {
 				Log.DebugException (e);
-				License = "GPL v2";
+				License = "MIT";
 			}
-			Logo = new Gdk.Pixbuf (System.Reflection.Assembly.GetEntryAssembly (), "f-spot-128.png");
+
+			Logo = Utils.GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, "f-spot", 128, Gtk.IconLookupFlags.NoSvg);
 			ProgramName = "F-Spot";
 			TranslatorCredits = Catalog.GetString ("translator-credits");
 			if (string.Compare (TranslatorCredits, "translator-credits") == 0)
 				TranslatorCredits = null;
+
 			Version = FSpotConfiguration.Version;
-			Website = "http://f-spot.org";
+			Website = "http://f-spot.app";
 			WebsiteLabel = Catalog.GetString ("F-Spot Website");
 			WrapLicense = true;
 		}
