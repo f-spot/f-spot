@@ -833,15 +833,14 @@ namespace FSpot
 		// Selection Interface
 		//
 
-		List<Photo> SelectedPhotos (int[] selected_ids)
+		List<Photo> SelectedPhotos (int[] selectedIds)
 		{
-			var photo_list = new List<Photo> (selected_ids.Length);
+			var photos = new List<Photo> (selectedIds.Length);
 
-			int i = 0;
-			foreach (int num in selected_ids)
-				photo_list[i++] = query[num] as Photo;
+			foreach (var num in selectedIds)
+				photos.Add (query[num] as Photo);
 
-			return photo_list;
+			return photos;
 		}
 
 		public List<Photo> SelectedPhotos ()

@@ -13,25 +13,7 @@
 // Copyright (C) 2004-2005 Larry Ewing
 // Copyright (C) 2006-2009 Stephane Delcroix
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
 using System.Collections.Generic;
@@ -70,7 +52,7 @@ namespace FSpot
 				int offset = index - index % SIZE;
 				if (!cache.TryGetValue (offset, out var val))
 					return false;
-				photo = val [index - offset];
+				photo = val[index - offset];
 				return true;
 			}
 
@@ -79,9 +61,9 @@ namespace FSpot
 				int offset = index - index % SIZE;
 				if (!cache.TryGetValue (offset, out List<Photo> val)) {
 					val = store.QueryFromTemp (temp_table, offset, SIZE);
-					cache [offset] = val;
+					cache[offset] = val;
 				}
-				return val [index - offset];
+				return val[index - offset];
 			}
 		}
 
@@ -91,16 +73,16 @@ namespace FSpot
 
 		static int query_count = 0;
 		static int QueryCount {
-			get {return query_count ++;}
+			get { return query_count++; }
 		}
 
 		Dictionary<uint, int> reverse_lookup;
 
 		int count = -1;
 
-		string temp_table = string.Format ("photoquery_temp_{0}", QueryCount);
+		string temp_table = $"photoquery_temp_{QueryCount}";
 
-		public PhotoQuery (PhotoStore store, params IQueryCondition [] conditions)
+		public PhotoQuery (PhotoStore store, params IQueryCondition[] conditions)
 		{
 			this.store = store;
 			this.store.ItemsChanged += MarkChanged;
@@ -122,7 +104,8 @@ namespace FSpot
 			}
 		}
 
-		public bool Contains (IPhoto item) {
+		public bool Contains (IPhoto item)
+		{
 			return IndexOf (item) >= 0;
 		}
 
@@ -130,7 +113,7 @@ namespace FSpot
 		public event IBrowsableCollectionChangedHandler Changed;
 		public event IBrowsableCollectionItemsChangedHandler ItemsChanged;
 
-		public IPhoto this [int index] {
+		public IPhoto this[int index] {
 			get { return cache.Get (index); }
 		}
 
@@ -151,16 +134,16 @@ namespace FSpot
 		//Query Conditions
 		Dictionary<Type, IQueryCondition> conditions;
 		Dictionary<Type, IQueryCondition> Conditions {
-			get { return conditions ?? (conditions = new Dictionary<Type, IQueryCondition>()); }
+			get { return conditions ?? (conditions = new Dictionary<Type, IQueryCondition> ()); }
 		}
 
 		internal bool SetCondition (IQueryCondition condition)
 		{
 			if (condition == null)
 				throw new ArgumentNullException (nameof (condition));
-			if (Conditions.ContainsKey (condition.GetType ()) && Conditions [condition.GetType ()] == condition)
+			if (Conditions.ContainsKey (condition.GetType ()) && Conditions[condition.GetType ()] == condition)
 				return false;
-			Conditions [condition.GetType ()] = condition;
+			Conditions[condition.GetType ()] = condition;
 			return true;
 		}
 
@@ -173,9 +156,9 @@ namespace FSpot
 
 		internal bool UnSetCondition<T> ()
 		{
-			if (!Conditions.ContainsKey (typeof(T)))
+			if (!Conditions.ContainsKey (typeof (T)))
 				return false;
-			Conditions.Remove (typeof(T));
+			Conditions.Remove (typeof (T));
 			return true;
 		}
 
@@ -196,21 +179,21 @@ namespace FSpot
 			}
 		}
 
-		bool untagged = false;
+		bool untagged;
 		public bool Untagged {
 			get { return untagged; }
 			set {
-			    if (untagged == value)
-                    return;
+				if (untagged == value)
+					return;
 
-			    untagged = value;
+				untagged = value;
 
-			    if (untagged) {
-			        UnSetCondition<ConditionWrapper> ();
-			        UnSetCondition<HiddenTag> ();
-			    }
+				if (untagged) {
+					UnSetCondition<ConditionWrapper> ();
+					UnSetCondition<HiddenTag> ();
+				}
 
-			    RequestReload ();
+				RequestReload ();
 			}
 		}
 
@@ -225,7 +208,7 @@ namespace FSpot
 		public RatingRange RatingRange {
 			get { return GetCondition<RatingRange> (); }
 			set {
-				if (value == null && UnSetCondition<RatingRange>() || value != null && SetCondition (value))
+				if (value == null && UnSetCondition<RatingRange> () || value != null && SetCondition (value))
 					RequestReload ();
 			}
 		}
@@ -233,7 +216,7 @@ namespace FSpot
 		public HiddenTag HiddenTag {
 			get { return GetCondition<HiddenTag> (); }
 			set {
-				if (value == null && UnSetCondition<HiddenTag>() || value != null && SetCondition (value))
+				if (value == null && UnSetCondition<HiddenTag> () || value != null && SetCondition (value))
 					RequestReload ();
 			}
 		}
@@ -241,8 +224,8 @@ namespace FSpot
 		public ConditionWrapper TagTerm {
 			get { return GetCondition<ConditionWrapper> (); }
 			set {
-				if (value == null && UnSetCondition<ConditionWrapper>()
-				    || value != null && SetCondition (value)) {
+				if (value == null && UnSetCondition<ConditionWrapper> ()
+					|| value != null && SetCondition (value)) {
 
 					if (value != null) {
 						untagged = false;
@@ -284,7 +267,7 @@ namespace FSpot
 				i = 1;
 			} else {
 				condition_array = new IQueryCondition[conditions.Count + 2];
-		//		condition_array[0] = new ConditionWrapper (extra_condition);
+				//		condition_array[0] = new ConditionWrapper (extra_condition);
 				condition_array[1] = new ConditionWrapper (terms != null ? terms.SqlCondition () : null);
 				i = 2;
 			}
@@ -298,7 +281,7 @@ namespace FSpot
 
 			count = -1;
 			cache = new PhotoCache (store, temp_table);
-			reverse_lookup = new Dictionary<uint,int> ();
+			reverse_lookup = new Dictionary<uint, int> ();
 
 			if (Changed != null)
 				Changed (this);
@@ -313,7 +296,7 @@ namespace FSpot
 			return store.IndexOf (temp_table, photo as Photo);
 		}
 
-		int [] IndicesOf (DbItem [] dbitems)
+		int[] IndicesOf (DbItem[] dbitems)
 		{
 			uint timer = Log.DebugTimerStart ();
 			var indices = new List<int> ();
@@ -355,7 +338,7 @@ namespace FSpot
 					//lets reduce that number to 1
 					return store.IndexOf (temp_table, date, asc);
 
-				int comp = this [mid].Time.CompareTo (date);
+				int comp = this[mid].Time.CompareTo (date);
 				if (!asc && comp < 0 || asc && comp > 0)
 					high = mid - 1;
 				else if (!asc && comp > 0 || asc && comp < 0)
@@ -366,39 +349,39 @@ namespace FSpot
 			Log.DebugTimerPrint (timer, "LookupItem took {0}");
 			if (asc)
 				return this[mid].Time < date ? mid + 1 : mid;
-			
+
 			return this[mid].Time > date ? mid + 1 : mid;
 		}
 
 		public void Commit (int index)
 		{
-			Commit (new int [] {index});
+			Commit (new int[] { index });
 		}
 
-		public void Commit (int [] indexes)
+		public void Commit (int[] indexes)
 		{
-			var to_commit = new List<Photo>();
+			var to_commit = new List<Photo> ();
 			foreach (int index in indexes) {
-				to_commit.Add (this [index] as Photo);
-				reverse_lookup [(this [index] as Photo).Id] = index;
+				to_commit.Add (this[index] as Photo);
+				reverse_lookup[(this[index] as Photo).Id] = index;
 			}
 			store.Commit (to_commit);
 		}
 
 		void MarkChanged (object sender, DbItemEventArgs<Photo> args)
 		{
-			int [] indexes = IndicesOf (args.Items);
+			int[] indexes = IndicesOf (args.Items);
 
 			if (indexes.Length > 0 && ItemsChanged != null)
-				ItemsChanged (this, new BrowsableEventArgs(indexes, (args as PhotoEventArgs).Changes));
+				ItemsChanged (this, new BrowsableEventArgs (indexes, (args as PhotoEventArgs).Changes));
 		}
 
 		public void MarkChanged (int index, IBrowsableItemChanges changes)
 		{
-			MarkChanged (new int [] {index}, changes);
+			MarkChanged (new int[] { index }, changes);
 		}
 
-		public void MarkChanged (int [] indexes, IBrowsableItemChanges changes)
+		public void MarkChanged (int[] indexes, IBrowsableItemChanges changes)
 		{
 			ItemsChanged (this, new BrowsableEventArgs (indexes, changes));
 		}
