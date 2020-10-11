@@ -15,25 +15,7 @@
 // Copyright (C) 2006-2009 Stephane Delcroix
 // Copyright (C) 2005-2006 Larry Ewing
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
 using System.Collections.Generic;
@@ -72,6 +54,7 @@ namespace FSpot.Settings
 			{ ShowTimeline, true },
 			{ ShowFilmstrip, true },
 			{ ShowTags, true },
+			{ ExpandedTags, Array.Empty<int> () },
 			{ ShowDates, true },
 			{ ShowRatings, true },
 			{ ViewerShawFilenames, true },
@@ -142,13 +125,13 @@ namespace FSpot.Settings
 				result = JsonBackend.Get<T> (key);
 			} catch (NoSuchKeyException) {
 				if (Defaults.TryGetValue (key, out object defaultValue))
-					result = (T) defaultValue;
+					result = (T)defaultValue;
 
 				// FIXME, analytics/log when key is first used
-				JsonBackend.Set (key, result);
-			} catch (ArgumentException ex) {
+				JsonBackend.Set<T> (key, result);
+			} catch (FormatException ex) {
 				Log.Exception ($"[Preferences] Wrong type: {key}", ex);
-				JsonBackend.Set (key, result);
+				JsonBackend.Set<T> (key, result);
 			} catch (InvalidCastException ex) {
 				Log.Exception ($"[Preferences] Invalid cast: {key}", ex);
 				return false;
@@ -160,12 +143,12 @@ namespace FSpot.Settings
 			return true;
 		}
 
-		public static void Set (string key, object value)
+		public static void Set<T> (string key, T value)
 		{
 			lock (sync_handler) {
 				try {
 					//cache[key] = value;
-					JsonBackend.Set (key, value);
+					JsonBackend.Set<T> (key, value);
 				} catch (Exception ex) {
 					Log.Exception ($"[Preferences] Unable to set this : {key}", ex);
 				}

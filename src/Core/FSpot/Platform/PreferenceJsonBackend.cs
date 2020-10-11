@@ -17,13 +17,15 @@ using System.IO;
 using Newtonsoft.Json.Linq;
 
 using FSpot.Settings;
+using System.Collections.Generic;
+using System.Collections;
 
 namespace FSpot.Platform
 {
 	class PreferenceJsonBackend
 	{
 		internal const string SettingsRoot = "FSpotSettings";
-		internal static string PreferenceLocationOverride = null;
+		internal static string PreferenceLocationOverride;
 
 		static readonly object sync_handler = new object ();
 
@@ -76,14 +78,18 @@ namespace FSpot.Platform
 			throw new NoSuchKeyException (nameof(key));
 		}
 
-		internal void Set (string key, object value)
+		internal void Set<T> (string key, T value)
 		{
-			var v = new JValue (value);
+			JToken token;
+			if (value is IEnumerable && !(value is string))
+				token = new JArray (value);
+			else
+				token = new JValue (value);
 
 			if (Client[key] != null)
-				Client[key].Replace (v);
+				Client[key].Replace (token);
 			else
-				Client.Add (key, v);
+				Client.Add (key, token);
 
 			// This isn't ideal, but guarantees settings will be saved for now
 			SaveSettings ();
