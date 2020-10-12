@@ -290,9 +290,9 @@ namespace FSpot.Widgets
 			if (!cellArea.Intersect (exposeArea, out exposeArea))
 				return;
 
-			IPhoto photo = Collection[cellNum];
+			var photo = Collection[cellNum];
 
-			PixbufCache.CacheEntry entry = Cache.Lookup (photo.DefaultVersion.Uri);
+			var entry = Cache.Lookup (photo.DefaultVersion.Uri);
 			if (entry == null)
 				Cache.Request (photo.DefaultVersion.Uri, cellNum, ThumbnailWidth, ThumbnailHeight);
 			else
@@ -301,20 +301,13 @@ namespace FSpot.Widgets
 			StateType cellState = selected ? (HasFocus ? StateType.Selected : StateType.Active) : State;
 
 			if (cellState != State)
-				Style.PaintBox (Style, BinWindow, cellState,
-					ShadowType.Out, exposeArea, this, "IconView",
-					cellArea.X, cellArea.Y,
-					cellArea.Width - 1, cellArea.Height - 1);
+				Style.PaintBox (Style, BinWindow, cellState, ShadowType.Out, exposeArea, this, "IconView",
+					cellArea.X, cellArea.Y, cellArea.Width - 1, cellArea.Height - 1);
 
 			var focus = Rectangle.Inflate (cellArea, -3, -3);
 
-			if (HasFocus && focussed) {
-				Style.PaintFocus (Style, BinWindow,
-						cellState, exposeArea,
-						this, null,
-						focus.X, focus.Y,
-						focus.Width, focus.Height);
-			}
+			if (HasFocus && focussed)
+				Style.PaintFocus (Style, BinWindow, cellState, exposeArea, this, null, focus.X, focus.Y, focus.Width, focus.Height);
 
 			var region = Rectangle.Zero;
 			var imageBounds = Rectangle.Inflate (cellArea, -CellBorderWidth, -CellBorderWidth);
@@ -327,8 +320,7 @@ namespace FSpot.Widgets
 			var draw = Rectangle.Zero;
 			if (Rectangle.Inflate (imageBounds, expansion + 1, expansion + 1).Intersect (exposeArea, out imageBounds) && thumbnail != null) {
 
-				PixbufUtils.Fit (thumbnail, ThumbnailWidth, ThumbnailHeight,
-						true, out region.Width, out region.Height);
+				PixbufUtils.Fit (thumbnail, ThumbnailWidth, ThumbnailHeight, true, out region.Width, out region.Height);
 
 				region.X = cellArea.X + (cellArea.Width - region.Width) / 2;
 				region.Y = cellArea.Y + ThumbnailHeight - region.Height + CellBorderWidth;
@@ -344,11 +336,9 @@ namespace FSpot.Widgets
 				if (Math.Abs (region.Width - thumbnail.Width) > 1 && Math.Abs (region.Height - thumbnail.Height) > 1) {
 					if (region.Width < thumbnail.Width && region.Height < thumbnail.Height) {
 						/*
-                        temp_thumbnail = PixbufUtils.ScaleDown (thumbnail,
-                                region.Width, region.Height);
+                        temp_thumbnail = PixbufUtils.ScaleDown (thumbnail, region.Width, region.Height);
                         */
 						tempThumbnail = thumbnail.ScaleSimple (region.Width, region.Height, InterpType.Bilinear);
-
 
 						lock (entry) {
 							if (entry.Reload && expansion == 0 && !entry.IsDisposed) {
@@ -357,8 +347,7 @@ namespace FSpot.Widgets
 							}
 						}
 					} else {
-						tempThumbnail = thumbnail.ScaleSimple (region.Width, region.Height,
-								InterpType.Bilinear);
+						tempThumbnail = thumbnail.ScaleSimple (region.Width, region.Height, InterpType.Bilinear);
 					}
 				} else
 					tempThumbnail = thumbnail;
@@ -373,8 +362,7 @@ namespace FSpot.Widgets
 
 				if (!tempThumbnail.HasAlpha)
 					Style.PaintShadow (Style, BinWindow, cellState, ShadowType.Out, exposeArea, this, "IconView",
-						draw.X, draw.Y,
-						draw.Width, draw.Height);
+						draw.X, draw.Y, draw.Width, draw.Height);
 
 				if (region.Intersect (exposeArea, out draw)) {
 					if (ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screenProfile)) {
@@ -383,6 +371,7 @@ namespace FSpot.Widgets
 						tempThumbnail = t;
 						ColorManagement.ApplyProfile (tempThumbnail, screenProfile);
 					}
+
 					tempThumbnail.RenderToDrawable (BinWindow, Style.WhiteGC,
 							draw.X - region.X,
 							draw.Y - region.Y,
