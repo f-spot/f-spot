@@ -13,22 +13,23 @@
 
 using System;
 
-using Gtk;
-
 using FSpot.Utils;
 
+using Gtk;
+
 using Hyena;
+
 using Mono.Unix;
 
 namespace FSpot.Widgets
 {
 	public class FolderTreeView : SaneTreeView
 	{
-		FolderTreeModel folder_tree_model;
+		readonly FolderTreeModel folderTreeModel;
 
 		protected FolderTreeView (IntPtr raw) : base (raw) { }
 
-		static TargetList folderTreeSourceTargetList = new TargetList ();
+		static readonly TargetList folderTreeSourceTargetList = new TargetList ();
 
 		static FolderTreeView ()
 		{
@@ -41,21 +42,21 @@ namespace FSpot.Widgets
 		{
 		}
 
-		public FolderTreeView (FolderTreeModel tree_model) : base (tree_model)
+		public FolderTreeView (FolderTreeModel treeModel) : base (treeModel)
 		{
-			folder_tree_model = tree_model;
+			folderTreeModel = treeModel;
 
 			HeadersVisible = false;
 
-			var column = new TreeViewColumn ();
+			using var column = new TreeViewColumn ();
 
-			var pixbuf_renderer = new CellRendererPixbuf ();
-			column.PackStart (pixbuf_renderer, false);
-			column.SetCellDataFunc (pixbuf_renderer, PixbufDataFunc);
+			using var pixbufRenderer = new CellRendererPixbuf ();
+			column.PackStart (pixbufRenderer, false);
+			column.SetCellDataFunc (pixbufRenderer, PixbufDataFunc);
 
-			var folder_renderer = new CellRendererTextProgress ();
-			column.PackStart (folder_renderer, true);
-			column.SetCellDataFunc (folder_renderer, FolderDataFunc);
+			using var folderRenderer = new CellRendererTextProgress ();
+			column.PackStart (folderRenderer, true);
+			column.SetCellDataFunc (folderRenderer, FolderDataFunc);
 
 			AppendColumn (column);
 
@@ -67,18 +68,18 @@ namespace FSpot.Widgets
 			get {
 				var list = new UriList ();
 
-				var selected_rows = Selection.GetSelectedRows ();
+				var selectedRows = Selection.GetSelectedRows ();
 
-				foreach (TreePath row in selected_rows)
-					list.Add (new SafeUri (folder_tree_model.GetUriByPath (row)));
+				foreach (TreePath row in selectedRows)
+					list.Add (new SafeUri (folderTreeModel.GetUriByPath (row)));
 
 				return list;
 			}
 		}
 
-		void PixbufDataFunc (TreeViewColumn tree_column, CellRenderer cell, TreeModel tree_model, TreeIter iter)
+		void PixbufDataFunc (TreeViewColumn treeColumn, CellRenderer cell, TreeModel treeModel, TreeIter iter)
 		{
-			var uri = folder_tree_model.GetUriByIter (iter);
+			var uri = folderTreeModel.GetUriByIter (iter);
 			if (uri == null)
 				return;
 
@@ -109,21 +110,20 @@ namespace FSpot.Widgets
 			//}
 		}
 
-		void FolderDataFunc (TreeViewColumn tree_column, CellRenderer cell, TreeModel tree_model, TreeIter iter)
+		void FolderDataFunc (TreeViewColumn treeColumn, CellRenderer cell, TreeModel treeModel, TreeIter iter)
 		{
 			var renderer = cell as CellRendererTextProgress;
 
 			int progress_value = 0;
-			int count = (tree_model as FolderTreeModel).Count;
+			int count = (treeModel as FolderTreeModel).Count;
 
 			if (count != 0)
-				progress_value = (int)((100.0 * folder_tree_model.GetPhotoCountByIter (iter)) / count);
+				progress_value = (int)((100.0 * folderTreeModel.GetPhotoCountByIter (iter)) / count);
 
 			renderer.Value = progress_value;
 
-			string text = folder_tree_model.GetFolderNameByIter (iter);
-
-			if (tree_model.IterParent (out var tmp, iter)) {
+			string text = folderTreeModel.GetFolderNameByIter (iter);
+			if (treeModel.IterParent (out _, iter)) {
 				renderer.UseMarkup = false;
 				renderer.Text = text;
 				renderer.CellBackground = null;
@@ -142,18 +142,18 @@ namespace FSpot.Widgets
 			}
 		}
 
-		protected override void OnDragDataGet (Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_)
+		protected override void OnDragDataGet (Gdk.DragContext context, Gtk.SelectionData selectionData, uint info, uint time)
 		{
 			if (info == DragDropTargets.UriQueryEntry.Info
 				|| info == (uint)DragDropTargets.TargetType.UriList
 				|| info == (uint)DragDropTargets.TargetType.PlainText) {
 
-				selection_data.SetUriListData (SelectedUris, context.Targets[0]);
+				selectionData.SetUriListData (SelectedUris, context.Targets[0]);
 				return;
 			}
 		}
 
-		protected override bool OnDragDrop (Gdk.DragContext context, int x, int y, uint time_)
+		protected override bool OnDragDrop (Gdk.DragContext context, int x, int y, uint time)
 		{
 			return true;
 		}

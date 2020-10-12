@@ -21,14 +21,13 @@ namespace FSpot.Widgets
 {
 	public class FolderTreePage : SidebarPage
 	{
-		readonly FolderTreeView folder_tree_widget;
+		readonly FolderTreeView folderTreeWidget;
 
-		public FolderTreePage ()
-			: base (new ScrolledWindow (), Catalog.GetString ("Folders"), "gtk-directory")
+		public FolderTreePage () : base (new ScrolledWindow (), Catalog.GetString ("Folders"), "gtk-directory")
 		{
-			var scrolled_window = SidebarWidget as ScrolledWindow;
-			folder_tree_widget = new FolderTreeView ();
-			scrolled_window.Add (folder_tree_widget);
+			var scrolledWindow = SidebarWidget as ScrolledWindow;
+			folderTreeWidget = new FolderTreeView ();
+			scrolledWindow.Add (folderTreeWidget);
 		}
 	}
 }
