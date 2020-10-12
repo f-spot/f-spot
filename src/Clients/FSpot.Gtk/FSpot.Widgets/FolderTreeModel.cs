@@ -36,8 +36,7 @@ namespace FSpot.Widgets
 			"ORDER BY base_uri ASC";
 
 
-		public FolderTreeModel ()
-			: base (typeof (string), typeof (int), typeof (SafeUri))
+		public FolderTreeModel () : base (typeof (string), typeof (int), typeof (SafeUri))
 		{
 			database = App.Instance.Database;
 			database.Photos.ItemsChanged += HandlePhotoItemsChanged;
@@ -76,46 +75,44 @@ namespace FSpot.Widgets
 
 		public SafeUri GetUriByPath (TreePath row)
 		{
-			TreeIter iter;
-
-			GetIter (out iter, row);
+			GetIter (out var iter, row);
 
 			return GetUriByIter (iter);
 		}
 
-		int count_all;
+		int countAll;
 		public int Count {
-			get { return count_all; }
+			get => countAll;
 		}
 
 		/*
 		 * UpdateFolderTree queries for directories in database and updates
 		 * a possibly existing folder-tree to the queried structure
 		 */
-		private void UpdateFolderTree ()
+		void UpdateFolderTree ()
 		{
 			Clear ();
 
-			count_all = 0;
+			countAll = 0;
 
 			/* points at start of each iteration to the leaf of the last inserted uri */
 			TreeIter iter = TreeIter.Zero;
 
 			/* stores the segments of the last inserted uri */
-			string[] last_segments = Array.Empty<string> ();
+			var lastSegments = Array.Empty<string> ();
 
-			int last_count = 0;
+			int lastCount = 0;
 
 			Hyena.Data.Sqlite.IDataReader reader = database.Database.Query (query_string);
 
 			while (reader.Read ()) {
-				var base_uri = new SafeUri (reader["base_uri"].ToString (), true);
+				var baseUri = new SafeUri (reader["base_uri"].ToString (), true);
 
 				int count = Convert.ToInt32 (reader["count"]);
 
 				// FIXME: this is a workaround hack to stop things from crashing - https://bugzilla.gnome.org/show_bug.cgi?id=622318
-				int index = base_uri.ToString ().IndexOf ("://");
-				var hack = base_uri.ToString ().Substring (index + 3);
+				int index = baseUri.ToString ().IndexOf ("://");
+				var hack = baseUri.ToString ().Substring (index + 3);
 				hack = hack.IndexOf ('/') == 0 ? hack : "/" + hack;
 				string[] segments = hack.TrimEnd ('/').Split ('/');
 
@@ -123,65 +120,65 @@ namespace FSpot.Widgets
 				 * can overwrite the first segment for our needs and put the
 				 * scheme here.
 				 */
-				segments[0] = base_uri.Scheme;
+				segments[0] = baseUri.Scheme;
 
 				int i = 0;
 
 				/* find first difference of last inserted an current uri */
-				while (i < last_segments.Length && i < segments.Length) {
-					if (segments[i] != last_segments[i])
+				while (i < lastSegments.Length && i < segments.Length) {
+					if (segments[i] != lastSegments[i])
 						break;
 
 					i++;
 				}
 
 				/* points to the parent node of the current iter */
-				TreeIter parent_iter = iter;
+				TreeIter parentIter = iter;
 
 				/* step back to the level, where the difference occur */
-				for (int j = 0; j + i < last_segments.Length; j++) {
+				for (int j = 0; j + i < lastSegments.Length; j++) {
 
-					iter = parent_iter;
+					iter = parentIter;
 
-					if (IterParent (out parent_iter, iter)) {
-						last_count += (int)GetValue (parent_iter, 1);
-						SetValue (parent_iter, 1, last_count);
+					if (IterParent (out parentIter, iter)) {
+						lastCount += (int)GetValue (parentIter, 1);
+						SetValue (parentIter, 1, lastCount);
 					} else
-						count_all += (int)last_count;
+						countAll += (int)lastCount;
 				}
 
 				while (i < segments.Length) {
-					if (IterIsValid (parent_iter)) {
+					if (IterIsValid (parentIter)) {
 						iter =
-							AppendValues (parent_iter,
+							AppendValues (parentIter,
 										  Uri.UnescapeDataString (segments[i]),
 										  (segments.Length - 1 == i) ? count : 0,
-										  (GetValue (parent_iter, 2) as SafeUri).Append ($"{segments[i]}/")
+										  (GetValue (parentIter, 2) as SafeUri).Append ($"{segments[i]}/")
 										  );
 					} else {
 						iter =
 							AppendValues (Uri.UnescapeDataString (segments[i]),
 										  (segments.Length - 1 == i) ? count : 0,
-										  new SafeUri ($"{base_uri.Scheme}:///", true));
+										  new SafeUri ($"{baseUri.Scheme}:///", true));
 					}
 
-					parent_iter = iter;
+					parentIter = iter;
 
 					i++;
 				}
 
-				last_count = count;
-				last_segments = segments;
+				lastCount = count;
+				lastSegments = segments;
 
 			}
 
 			if (IterIsValid (iter)) {
 				/* and at least, step back and update photo count */
 				while (IterParent (out iter, iter)) {
-					last_count += (int)GetValue (iter, 1);
-					SetValue (iter, 1, last_count);
+					lastCount += (int)GetValue (iter, 1);
+					SetValue (iter, 1, lastCount);
 				}
-				count_all += last_count;
+				countAll += lastCount;
 			}
 		}
 	}

@@ -19,8 +19,10 @@ namespace FSpot.Extensions
 	{
 		public event EventHandler CanSelectChanged;
 
-		// The sidebar onto which this page is attached
 		Widget sidebar;
+		/// <summary>
+		/// The sidebar this page is attached
+		/// </summary>
 		public Widget Sidebar {
 			get => sidebar;
 			set {
@@ -29,10 +31,14 @@ namespace FSpot.Extensions
 			}
 		}
 
-		/// The label of the sidebar page.
+		/// <summary>
+		/// Label of the sidebar page.
+		/// </summary>
 		public string Label { get; }
 
-		/// The icon name, used for the selector
+		/// <summary>
+		/// Icone name used for the selector
+		/// </summary>
 		public string IconName { get; }
 
 		public SidebarPage (Widget widget, string label, string iconName)
@@ -42,20 +48,24 @@ namespace FSpot.Extensions
 			IconName = iconName;
 		}
 
+		/// <summary>
 		/// The widget shown on the sidebar page.
+		/// </summary>
 		public Widget SidebarWidget { get; }
 
 		// Whether this page can be selected
-		bool can_select;
+		bool canSelect;
 		public bool CanSelect {
 			protected set {
-				can_select = value;
+				canSelect = value;
 				CanSelectChanged?.Invoke (this, null);
 			}
-			get { return can_select; }
+			get { return canSelect; }
 		}
 
-		// Can be overriden to get notified as soon as we're added to a sidebar.
+		/// <summary>
+		/// Override to get notified once added to the sidebar.
+		/// </summary>
 		protected virtual void AddedToSidebar () { }
 
 //		// Whether this page is currently visible
