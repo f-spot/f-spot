@@ -98,7 +98,7 @@ namespace FSpot.Tools.RawPlusJpeg
 
 			public void Merge ()
 			{
-				Log.DebugFormat ("Merging {0} and {1}", raw.VersionUri (Photo.OriginalVersionId), jpeg.VersionUri (Photo.OriginalVersionId));
+				Log.Debug ($"Merging {raw.VersionUri (Photo.OriginalVersionId)} and {jpeg.VersionUri (Photo.OriginalVersionId)}");
 				foreach (uint version_id in jpeg.VersionIds) {
 					string name = jpeg.GetVersion (version_id).Name;
 					try {

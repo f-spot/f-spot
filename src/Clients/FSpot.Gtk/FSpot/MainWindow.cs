@@ -2284,7 +2284,7 @@ namespace FSpot
 					return;
 				}
 
-				Log.DebugFormat ("Unknown Selection Data Target (info: {0})", info);
+				Log.Debug ($"Unknown Selection Data Target (info: {info})");
 			}, delegate {
 			});
 
@@ -2759,11 +2759,11 @@ namespace FSpot
 				hmd.Destroy ();
 			}
 
-			bool create_xcf = false;
+			bool createXcf = false;
 			if (support_xcf)
-				create_xcf = Preferences.Get<bool> (Preferences.EditCreateXcfVersion);
+				createXcf = Preferences.Get<bool> (Preferences.EditCreateXcfVersion);
 
-			Log.DebugFormat ("XCF ? {0}", create_xcf);
+			Log.Debug ($"XCF ? {createXcf}");
 
 			if (response == Gtk.ResponseType.Cancel)
 				return;
@@ -2775,7 +2775,7 @@ namespace FSpot
 			foreach (Photo photo in selected) {
 				try {
 					if (create_new_versions) {
-						uint version = photo.CreateNamedVersion (application.Name, create_xcf ? ".xcf" : null, photo.DefaultVersionId, true);
+						uint version = photo.CreateNamedVersion (application.Name, createXcf ? ".xcf" : null, photo.DefaultVersionId, true);
 						photo.DefaultVersionId = version;
 					}
 				} catch (Exception ex) {
@@ -2787,7 +2787,7 @@ namespace FSpot
 
 			// FIXME need to clean up the error dialog here.
 			if (errors.Count > 0) {
-				Dialog md = new EditExceptionDialog (GetToplevel (sender), errors.ToArray ());
+				using Dialog md = new EditExceptionDialog (GetToplevel (sender), errors.ToArray ());
 				md.Run ();
 				md.Destroy ();
 			}
@@ -2798,7 +2798,7 @@ namespace FSpot
 			try {
 				application.LaunchUris (uri_list, null);
 			} catch (Exception) {
-				Log.ErrorFormat ("Failed to lauch {0}", application.Name);
+				Log.Error ($"Failed to lauch {application.Name}");
 			}
 		}
 

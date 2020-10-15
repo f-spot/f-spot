@@ -194,8 +194,7 @@ namespace FSpot.Imaging
 			if (requests_by_uri.TryGetValue (uri, out existing_request)) {
 				/* FIXME: At least for now, this shouldn't happen.  */
 				if (existing_request.Order != order) {
-					Log.WarningFormat ("BUG: Filing another request of order {0} (previously {1}) for `{2}'",
-						order, existing_request.Order, uri);
+					Log.Warning ($"BUG: Filing another request of order {order} (previously {existing_request.Order}) for `{uri}'");
 				}
 
 				queue.Remove (existing_request);

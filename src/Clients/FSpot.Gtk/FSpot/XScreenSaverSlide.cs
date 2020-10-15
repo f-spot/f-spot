@@ -62,7 +62,7 @@ namespace FSpot
 					Hyena.Log.Exception (e);
 				}
 			} else {
-				Hyena.Log.DebugFormat ("{0} not set, falling back to window", ScreenSaverEnviroment);
+				Hyena.Log.Debug ($"{ScreenSaverEnviroment} not set, falling back to window");
 			}
 
 			SetSizeRequest (640, 480);

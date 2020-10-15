@@ -60,14 +60,14 @@ namespace FSpot.Query
 
 		public override bool IsNegated {
 			get {
-				return is_negated;
+				return isNegated;
 			}
 
 			set {
-				if (is_negated == value)
+				if (isNegated == value)
 					return;
 
-				is_negated = value;
+				isNegated = value;
 
 				NormalIcon = null;
 				NegatedIcon = null;

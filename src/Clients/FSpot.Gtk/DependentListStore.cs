@@ -42,9 +42,9 @@ public class DependentListStore : ListStore
 		}
 	}
 
-	public DependentListStore (TreeModel tree_model)
+	public DependentListStore (TreeModel treeModel)
 	{
-		Parent = tree_model;
+		Parent = treeModel;
 	}
 
 	/* FIXME: triggering a recopy of the parent doesn't seem to be enough to
@@ -64,18 +64,18 @@ public class DependentListStore : ListStore
 		QueueUpdate ();
 	}
 
-	uint timeout_id;
+	uint timeoutId;
 	void QueueUpdate ()
 	{
-		if (timeout_id != 0)
-			GLib.Source.Remove (timeout_id);
+		if (timeoutId != 0)
+			GLib.Source.Remove (timeoutId);
 
-		timeout_id = GLib.Timeout.Add (1000, OnUpdateTimer);
+		timeoutId = GLib.Timeout.Add (1000, OnUpdateTimer);
 	}
 
 	bool OnUpdateTimer ()
 	{
-		timeout_id = 0;
+		timeoutId = 0;
 		Copy (Parent, this);
 		return false;
 	}
@@ -84,32 +84,31 @@ public class DependentListStore : ListStore
 	{
 		list.Clear ();
 
-		if (tree.IterChildren (out var tree_iter)) {
-			Copy (tree, tree_iter, list, true);
+		if (tree.IterChildren (out var treeIter)) {
+			Copy (tree, treeIter, list, true);
 		}
 	}
 
-	public static void Copy (TreeModel tree, TreeIter tree_iter, ListStore list, bool first)
+	public static void Copy (TreeModel tree, TreeIter treeIter, ListStore list, bool first)
 	{
 		// Copy this iter's values to the list
-		TreeIter list_iter = list.Append ();
+		TreeIter listIter = list.Append ();
 		for (int i = 0; i < list.NColumns; i++) {
-			list.SetValue (list_iter, i, tree.GetValue (tree_iter, i));
+			list.SetValue (listIter, i, tree.GetValue (treeIter, i));
 			if (i == 1) {
 				//Console.WriteLine("Copying {0}", list.GetValue(list_iter, i));
 			}
 		}
 
 		// Copy the first child, which will trigger the copy if its siblings (and their children)
-		TreeIter child_iter;
-		if (tree.IterChildren (out child_iter, tree_iter)) {
-			Copy (tree, child_iter, list, true);
+		if (tree.IterChildren (out var childIter, treeIter)) {
+			Copy (tree, childIter, list, true);
 		}
 
 		// Add siblings and their children if we are the first child, otherwise doing so would repeat
 		if (first) {
-			while (tree.IterNext (ref tree_iter)) {
-				Copy (tree, tree_iter, list, false);
+			while (tree.IterNext (ref treeIter)) {
+				Copy (tree, treeIter, list, false);
 			}
 		}
 	}

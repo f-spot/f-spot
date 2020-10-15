@@ -156,7 +156,7 @@ namespace FSpot.Editors
 						Pixbuf pb = State.PhotoImageView.CompletePixbuf ();
 						State.PhotoImageView.SelectionXyRatio = (double)pb.Width / (double)pb.Height;
 					} catch (Exception ex) {
-						Log.WarningFormat ("Exception in selection ratio's: {0}", ex);
+						Log.Warning ($"Exception in selection ratio's: {ex}");
 						State.PhotoImageView.SelectionXyRatio = 0;
 					}
 					break;

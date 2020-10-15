@@ -132,7 +132,7 @@ namespace FSpot.Database
 			// Look for a filename match.
 			using (var reader = Database.Query (new HyenaSqliteCommand ("SELECT photos.id, photos.time, pv.filename FROM photos LEFT JOIN photo_versions AS pv ON pv.photo_id = photos.id WHERE pv.filename = ?", name))) {
 				while (reader.Read ()) {
-					Log.DebugFormat ("Found one possible duplicate for {0}", reader["filename"]);
+					Log.Debug ($"Found one possible duplicate for {reader["filename"]}");
 					if (!time.HasValue) {
 						// Only read time when needed
 						time = item.Time;
@@ -701,7 +701,7 @@ namespace FSpot.Database
 		public void QueryToTemp (string tempTable, string query)
 		{
 			uint timer = Log.DebugTimerStart ();
-			Log.DebugFormat ("Query Started : {0}", query);
+			Log.Debug ($"Query Started : {query}");
 			Database.BeginTransaction ();
 			Database.Execute ($"DROP TABLE IF EXISTS {tempTable}");
 			Database.Execute ($"CREATE TEMPORARY TABLE {tempTable} AS {query}");

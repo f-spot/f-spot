@@ -242,7 +242,7 @@ namespace FSpot
                 path = $"gphoto2://[{path.Substring (8)}]";
             }
 
-            Hyena.Log.DebugFormat ("Importing from {0}", path);
+            Hyena.Log.Debug ($"Importing from {path}");
             Organizer.Window.Present ();
             Organizer.ImportFile (path == null ? null : new SafeUri(path));
         }

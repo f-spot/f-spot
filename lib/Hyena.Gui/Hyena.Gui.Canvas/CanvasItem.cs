@@ -285,7 +285,7 @@ namespace Hyena.Gui.Canvas
             if (root != null && root.Manager != null) {
                 root.Manager.QueueRender (this, area);
             } else {
-                Hyena.Log.WarningFormat ("Asked to invalidate {0} for {1} but no CanvasManager!", area, this);
+                Hyena.Log.Warning ($"Asked to invalidate {area} for {this} but no CanvasManager!");
             }
         }
 

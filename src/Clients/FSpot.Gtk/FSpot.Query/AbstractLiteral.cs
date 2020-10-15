@@ -26,7 +26,7 @@ namespace FSpot.Query
 
 		public override Term Invert (bool recurse)
 		{
-			is_negated = !is_negated;
+			isNegated = !isNegated;
 			return this;
 		}
 	}

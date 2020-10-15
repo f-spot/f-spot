@@ -307,7 +307,7 @@ namespace Hyena
             }
         }
 
-        public static void DebugFormat (string format, params object [] args)
+        internal static void DebugFormat (string format, params object [] args)
         {
             if (Debugging) {
                 Debug (String.Format (format, args));
@@ -338,7 +338,7 @@ namespace Hyena
             Information (message, null, showUser);
         }
 
-        public static void InformationFormat (string format, params object [] args)
+        internal static void InformationFormat (string format, params object [] args)
         {
             Information (String.Format (format, args));
         }
@@ -367,7 +367,7 @@ namespace Hyena
             Warning (message, null, showUser);
         }
 
-        public static void WarningFormat (string format, params object [] args)
+        internal static void WarningFormat (string format, params object [] args)
         {
             Warning (String.Format (format, args));
         }
@@ -396,7 +396,7 @@ namespace Hyena
             Error (message, null, showUser);
         }
 
-        public static void ErrorFormat (string format, params object [] args)
+        internal static void ErrorFormat (string format, params object [] args)
         {
             Error (String.Format (format, args));
         }

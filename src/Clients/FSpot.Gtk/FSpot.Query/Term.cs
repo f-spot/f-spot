@@ -16,7 +16,7 @@
 // This has to do with Finding photos based on tags
 // http://mail.gnome.org/archives/f-spot-list/2005-November/msg00053.html
 // http://bugzilla-attachments.gnome.org/attachment.cgi?id=54566
-using System;
+
 using System.Collections.Generic;
 using System.Text;
 
@@ -29,8 +29,8 @@ namespace FSpot.Query
 	public abstract class Term
 	{
 		Term parent;
-		protected bool is_negated;
-		protected Tag tag;
+		protected bool isNegated { get; set; }
+		protected Tag tag { get; set; }
 
 		protected Term (Term parent, Literal after)
 		{
@@ -45,7 +45,6 @@ namespace FSpot.Query
 				}
 		}
 
-		#region Properties
 		public bool HasMultiple {
 			get {
 				return (SubTerms.Count > 1);
@@ -89,17 +88,15 @@ namespace FSpot.Query
 		}
 
 		public virtual bool IsNegated {
-			get { return is_negated; }
+			get { return isNegated; }
 			set {
-				if (is_negated != value)
+				if (isNegated != value)
 					Invert (false);
 
-				is_negated = value;
+				isNegated = value;
 			}
 		}
-		#endregion
 
-		#region Methods
 		public void Add (Term term)
 		{
 			SubTerms.Add (term);
@@ -116,7 +113,7 @@ namespace FSpot.Query
 
 		public void CopyAndInvertSubTermsFrom (Term term, bool recurse)
 		{
-			is_negated = true;
+			isNegated = true;
 			var termsToMove = new List<Term> (term.SubTerms);
 
 			foreach (Term subterm in termsToMove) {
@@ -206,8 +203,7 @@ namespace FSpot.Query
 
 		public bool TagRequired (Tag t)
 		{
-			int count, grouped_with;
-			return TagRequired (t, out count, out grouped_with);
+			return TagRequired (t, out _, out _);
 		}
 
 		public bool TagRequired (Tag t, out int numTerms, out int groupedWith)
@@ -270,7 +266,7 @@ namespace FSpot.Query
 					condition.Append (SQLOperator ());
 			}
 
-			condition.Append (")");
+			condition.Append (')');
 
 			return condition.ToString ();
 		}
@@ -297,9 +293,8 @@ namespace FSpot.Query
 			if (OrTerm.Operators.Contains (op))
 				return new OrTerm (parent, after);
 
-			Log.DebugFormat ("Do not have Term for operator {0}", op);
+			Log.Debug ($"Do not have Term for operator {op}");
 			return null;
 		}
-		#endregion
 	}
 }

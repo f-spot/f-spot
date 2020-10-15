@@ -220,7 +220,7 @@ namespace FSpot.Exporters.Folder
 			try {
 				Directory.CreateDirectory (path);
 			} catch {
-				Log.ErrorFormat ("Error in creating directory \"{0}\"", path);
+				Log.Error ($"Error in creating directory \"{path}\"");
 			}
 			return path;
 		}

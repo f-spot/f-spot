@@ -66,7 +66,7 @@ namespace FSpot.Imaging
 
 		private delegate bool IOFunc (IntPtr sourceChannel, IOCondition cond, IntPtr data);
 
-		[DllImport("libglib-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("libglib-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IOFlags g_io_channel_get_flags (HandleRef channel);
 
 		public override bool CanRead {
@@ -112,10 +112,10 @@ namespace FSpot.Imaging
 			}
 		}
 
-		[DllImport("libglib-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("libglib-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_io_channel_unix_new (int fd);
 
-		[DllImport("libglib-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("libglib-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IOStatus g_io_channel_set_encoding (HandleRef handle, string encoding, out IntPtr error);
 
 		public IOChannel (int fd)
@@ -130,27 +130,24 @@ namespace FSpot.Imaging
 				throw new GLib.GException (error);
 		}
 
-		[DllImport("libglib-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("libglib-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IOStatus g_io_channel_flush (HandleRef channel, out IntPtr error);
 
 		public override void Flush ()
 		{
-			IOStatus status;
-			IntPtr error;
-
-			status = g_io_channel_flush (handle, out error);
+			IOStatus status = g_io_channel_flush (handle, out var error);
 
 			if (status != IOStatus.Normal && status != IOStatus.Eof)
-				Hyena.Log.DebugFormat ("IOChannel status = {0}", status);
+				Hyena.Log.Debug ($"IOChannel status = {status}");
 
 			if (error != IntPtr.Zero)
 				throw new GLib.GException (error);
 		}
 
-		[DllImport("libglib-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern unsafe IOStatus g_io_channel_write_chars (HandleRef channel, byte *data, int count, out int bytesWritten, out IntPtr error);
+		[DllImport ("libglib-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		static extern unsafe IOStatus g_io_channel_write_chars (HandleRef channel, byte* data, int count, out int bytesWritten, out IntPtr error);
 
-		public override void Write (byte [] buffer, int offset, int count)
+		public override void Write (byte[] buffer, int offset, int count)
 		{
 			IOStatus status = IOStatus.Again;
 			IntPtr error;
@@ -161,7 +158,7 @@ namespace FSpot.Imaging
 
 			unsafe {
 				while (status == IOStatus.Again && count > 0) {
-					fixed (byte *data = &buffer [offset]) {
+					fixed (byte* data = &buffer[offset]) {
 						status = g_io_channel_write_chars (handle, data, count, out written, out error);
 					}
 
@@ -174,23 +171,23 @@ namespace FSpot.Imaging
 			}
 		}
 
-		[DllImport("libglib-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static unsafe extern IOStatus g_io_channel_read_chars (HandleRef channel, byte *data, int count, out int bytesRead, out IntPtr error);
+		[DllImport ("libglib-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		static unsafe extern IOStatus g_io_channel_read_chars (HandleRef channel, byte* data, int count, out int bytesRead, out IntPtr error);
 
-		public override int Read (byte [] buffer, int offset, int count)
+		public override int Read (byte[] buffer, int offset, int count)
 		{
 			int read;
 			IOStatus status;
 			IntPtr error;
 
 			unsafe {
-				fixed (byte *data = &buffer[offset]) {
+				fixed (byte* data = &buffer[offset]) {
 					status = g_io_channel_read_chars (handle, data, count, out read, out error);
 				}
 			}
 
 			if (status != IOStatus.Normal && status != IOStatus.Eof)
-				Hyena.Log.DebugFormat ("IOChannel status = {0}", status);
+				Hyena.Log.Debug ($"IOChannel status = {status}");
 
 			if (error != IntPtr.Zero)
 				throw new GLib.GException (error);
@@ -198,7 +195,7 @@ namespace FSpot.Imaging
 			return read;
 		}
 
-		[DllImport("libglib-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("libglib-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern uint g_io_add_watch (HandleRef handle, IOCondition cond, IOFunc func, IntPtr data);
 
 		uint AddWatch (IOCondition ioCondition, IOFunc ioFunc)
@@ -238,7 +235,8 @@ namespace FSpot.Imaging
 			throw new NotSupportedException ();
 		}
 
-		enum SeekType {
+		enum SeekType
+		{
 			Current,
 			Set,
 			End
@@ -249,10 +247,10 @@ namespace FSpot.Imaging
 			throw new NotSupportedException ();
 		}
 
-		[DllImport("libglib-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("libglib-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IOStatus g_io_channel_shutdown (HandleRef handle, bool flush, out IntPtr error);
 
-		[DllImport("libglib-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("libglib-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern void g_io_channel_unref (HandleRef handle);
 
 		public override void Close ()

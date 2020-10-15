@@ -159,7 +159,7 @@ namespace FSpot.Exporters.Gallery
 						status = (ResultCode)int.Parse (data [1]);
 					else if (data [0].StartsWith ("status_text")) {
 						status_text = data [1];
-						Log.DebugFormat ("StatusText : {0}", data [1]);
+						Log.Debug ($"StatusText : {data[1]}");
 					} else if (data [0].StartsWith ("image.name")) {
 						current_image = new Image (album, data [1]);
 						album.Images.Add (current_image);
@@ -205,7 +205,7 @@ namespace FSpot.Exporters.Gallery
 					if (album.Images.Count != int.Parse (data [1]))
 						Log.Warning ("Parsed image count for " + album.Name + "(" + album.Images.Count + ") does not match image_count (" + data [1] + ").  Something is amiss");
 					else
-						Log.DebugFormat ("Unparsed Line in ParseFetchAlbumImages(): {0}={1}", data [0], data [1]);
+						Log.Debug ($"Unparsed Line in ParseFetchAlbumImages(): {data[0]}={data[1]}");
 				}
 				//Console.WriteLine ("Found: {0} cookies", response.Cookies.Count);
 				if (status != ResultCode.Success) {

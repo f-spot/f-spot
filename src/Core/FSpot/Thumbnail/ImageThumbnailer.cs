@@ -1,4 +1,4 @@
-﻿//
+//
 // ImageThumbnailer.cs
 //
 // Author:
@@ -12,24 +12,21 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
+
 using FSpot.FileSystem;
 using FSpot.Imaging;
+
 using Gdk;
+
 using Hyena;
 
 namespace FSpot.Thumbnail
 {
 	class ImageThumbnailer : IThumbnailer
 	{
-		#region fields
-
 		readonly SafeUri fileUri;
 		readonly IImageFileFactory factory;
 		readonly IFileSystem fileSystem;
-
-		#endregion
-
-		#region ctors
 
 		public ImageThumbnailer (SafeUri fileUri, IImageFileFactory factory, IFileSystem fileSystem)
 		{
@@ -38,24 +35,15 @@ namespace FSpot.Thumbnail
 			this.fileSystem = fileSystem;
 		}
 
-		#endregion
-
-		#region IThumbnailer implementation
-
 		public bool TryCreateThumbnail (SafeUri thumbnailUri, ThumbnailSize size)
 		{
 			try {
 				var imageFile = factory.Create (fileUri);
 				return CreateThumbnail (thumbnailUri, size, imageFile);
-			}
-			catch {
+			} catch {
 				return false;
 			}
 		}
-
-		#endregion
-
-		#region private implementation
 
 		bool CreateThumbnail (SafeUri thumbnailUri, ThumbnailSize size, IImageFile imageFile)
 		{
@@ -64,7 +52,7 @@ namespace FSpot.Thumbnail
 			try {
 				pixbuf = imageFile.Load ();
 			} catch (Exception e) {
-				Log.DebugFormat ("Failed loading image for thumbnailing: {0}", imageFile.Uri);
+				Log.Debug ($"Failed loading image for thumbnailing: {imageFile.Uri}");
 				Log.DebugException (e);
 				return false;
 			}
@@ -80,15 +68,13 @@ namespace FSpot.Thumbnail
 			var thumb_pixbuf = pixbuf.ScaleSimple (target_x, target_y, InterpType.Bilinear);
 			var mtime = fileSystem.File.GetMTime (imageFile.Uri).ToString ();
 			thumb_pixbuf.Savev (thumbnailUri.LocalPath, "png",
-				new string [] { ThumbnailService.ThumbUriOpt, ThumbnailService.ThumbMTimeOpt, null },
-				new string [] { imageFile.Uri, mtime });
+				new string[] { ThumbnailService.ThumbUriOpt, ThumbnailService.ThumbMTimeOpt, null },
+				new string[] { imageFile.Uri, mtime });
 
 			pixbuf.Dispose ();
 			thumb_pixbuf.Dispose ();
 
 			return true;
 		}
-
-		#endregion
 	}
 }

@@ -172,7 +172,7 @@ namespace Hyena.Data.Gui
 
         protected override Atk.Object OnCreateAccessible (GLib.Object obj)
         {
-            Log.InformationFormat ("Creating Accessible for {0}", obj);
+            Log.Information ($"Creating Accessible for {obj}");
             var accessible = new ListViewAccessible<T> (obj);
             (obj as ListView<T>).accessible = accessible;
             return accessible;

@@ -29,8 +29,6 @@ namespace FSpot.Import
 {
 	class ImportController : IImportController
 	{
-		#region fields
-
 		readonly IFileSystem fileSystem;
 		readonly IThumbnailLoader thumbnailLoader;
 
@@ -41,26 +39,14 @@ namespace FSpot.Import
 		readonly List<SafeUri> failedImports = new List<SafeUri> ();
 		Roll createdRoll;
 
-		#endregion
-
-		#region props
-
-		public IEnumerable<SafeUri> FailedImports { get { return failedImports.AsEnumerable(); } }
+		public IEnumerable<SafeUri> FailedImports { get { return failedImports.AsEnumerable (); } }
 		public int PhotosImported { get { return imported_photos.Count; } }
-
-		#endregion
-
-		#region ctors
 
 		public ImportController (IFileSystem fileSystem, IThumbnailLoader thumbnailLoader)
 		{
 			this.fileSystem = fileSystem;
 			this.thumbnailLoader = thumbnailLoader;
 		}
-
-		#endregion
-
-		#region IImportConroller
 
 		public void DoImport (IDb db, IBrowsableCollection photos, IList<Tag> tagsToAttach, ImportPreferences preferences, Action<int, int> reportProgress, CancellationToken token)
 		{
@@ -87,7 +73,7 @@ namespace FSpot.Import
 					try {
 						ImportPhoto (db, info, createdRoll, tagsToAttach, preferences.DuplicateDetect, preferences.CopyFiles);
 					} catch (Exception e) {
-						Log.DebugFormat ("Failed to import {0}", info.DefaultVersion.Uri);
+						Log.Debug ($"Failed to import {info.DefaultVersion.Uri}");
 						Log.DebugException (e);
 						failedImports.Add (info.DefaultVersion.Uri);
 					}
@@ -101,10 +87,6 @@ namespace FSpot.Import
 				Cleanup (db);
 			}
 		}
-
-		#endregion
-
-		#region private
 
 		void ImportPhoto (IDb db, IPhoto item, DbItem roll, IList<Tag> tagsToAttach, bool duplicateDetect, bool copyFiles)
 		{
@@ -165,7 +147,7 @@ namespace FSpot.Import
 				try {
 					fileSystem.Directory.Delete (uri);
 				} catch (Exception e) {
-					Log.WarningFormat ("Failed to clean up directory '{0}': {1}", uri, e.Message);
+					Log.Warning ($"Failed to clean up directory '{uri}': {e.Message}");
 				}
 			}
 
@@ -193,7 +175,7 @@ namespace FSpot.Import
 					try {
 						fileSystem.File.Delete (uri);
 					} catch (Exception e) {
-						Log.WarningFormat ("Failed to remove original file '{0}': {1}", uri, e.Message);
+						Log.Warning ($"Failed to remove original file '{uri}': {e.Message}");
 					}
 				}
 			}
@@ -207,7 +189,5 @@ namespace FSpot.Import
 				.Append ($"{time.Month:D2}")
 				.Append ($"{time.Day:D2}");
 		}
-
-		#endregion
 	}
 }

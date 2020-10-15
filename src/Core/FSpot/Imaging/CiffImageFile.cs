@@ -71,7 +71,7 @@ namespace FSpot.Imaging
 				for (int i = 0; i < Count; i++)
 				{
 					stream.Read (buf, 0, 10);
-					Log.DebugFormat ("reading {0} {1}", i, stream.Position);
+					Log.Debug ($"reading {i} {stream.Position}");
 					var entry = new Entry (buf, 0, little);
 					entry_list.Add (entry);
 				}

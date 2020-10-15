@@ -888,9 +888,7 @@ namespace FSpot.Database
 				code ();
 
 				if (!Silent) {
-					Log.DebugFormat ("Updated database from version {0} to {1}",
-							db_version.ToString (),
-							Version.ToString ());
+					Log.Debug ($"Updated database from version {db_version} to {Version}");
 				}
 
 				db_version = Version;
