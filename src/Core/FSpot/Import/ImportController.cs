@@ -32,15 +32,20 @@ namespace FSpot.Import
 		readonly IFileSystem fileSystem;
 		readonly IThumbnailLoader thumbnailLoader;
 
-		PhotoFileTracker photo_file_tracker;
-		MetadataImporter metadata_importer;
-		Stack<SafeUri> created_directories;
-		List<uint> imported_photos;
+		PhotoFileTracker photoFileTracker;
+		MetadataImporter metadataImporter;
+		Stack<SafeUri> createdDirectories;
+		List<uint> importedPhotos;
 		readonly List<SafeUri> failedImports = new List<SafeUri> ();
 		Roll createdRoll;
 
-		public IEnumerable<SafeUri> FailedImports { get { return failedImports.AsEnumerable (); } }
-		public int PhotosImported { get { return imported_photos.Count; } }
+		public IReadOnlyList<SafeUri> FailedImports {
+			get => failedImports;
+		}
+
+		public int PhotosImported {
+			get => importedPhotos.Count;
+		}
 
 		public ImportController (IFileSystem fileSystem, IThumbnailLoader thumbnailLoader)
 		{
@@ -51,10 +56,10 @@ namespace FSpot.Import
 		public void DoImport (IDb db, IBrowsableCollection photos, IList<Tag> tagsToAttach, ImportPreferences preferences, Action<int, int> reportProgress, CancellationToken token)
 		{
 			db.Sync = false;
-			created_directories = new Stack<SafeUri> ();
-			imported_photos = new List<uint> ();
-			photo_file_tracker = new PhotoFileTracker (fileSystem);
-			metadata_importer = new MetadataImporter (db.Tags);
+			createdDirectories = new Stack<SafeUri> ();
+			importedPhotos = new List<uint> ();
+			photoFileTracker = new PhotoFileTracker (fileSystem);
+			metadataImporter = new MetadataImporter (db.Tags);
 
 			createdRoll = db.Rolls.Create ();
 
@@ -80,9 +85,9 @@ namespace FSpot.Import
 				}
 
 				FinishImport (preferences.RemoveOriginals);
-			} catch (Exception e) {
+			} catch (Exception) {
 				RollbackImport (db);
-				throw e;
+				throw;
 			} finally {
 				Cleanup (db);
 			}
@@ -90,9 +95,8 @@ namespace FSpot.Import
 
 		void ImportPhoto (IDb db, IPhoto item, DbItem roll, IList<Tag> tagsToAttach, bool duplicateDetect, bool copyFiles)
 		{
-			if (item is IInvalidPhotoCheck && (item as IInvalidPhotoCheck).IsInvalid) {
+			if (item is IInvalidPhotoCheck && (item as IInvalidPhotoCheck).IsInvalid)
 				throw new Exception ("Failed to parse metadata, probably not a photo");
-			}
 
 			// Do duplicate detection
 			if (duplicateDetect && db.Photos.HasDuplicate (item)) {
@@ -103,47 +107,47 @@ namespace FSpot.Import
 				var destinationBase = FindImportDestination (item, FSpotConfiguration.PhotoUri);
 				fileSystem.Directory.CreateDirectory (destinationBase);
 				// Copy into photo folder.
-				photo_file_tracker.CopyIfNeeded (item, destinationBase);
+				photoFileTracker.CopyIfNeeded (item, destinationBase);
 			}
 
 			// Import photo
 			var photo = db.Photos.CreateFrom (item, false, roll.Id);
 
-			bool needs_commit = false;
+			bool needsCommit = false;
 
 			// Add tags
 			if (tagsToAttach.Count > 0) {
 				photo.AddTag (tagsToAttach);
-				needs_commit = true;
+				needsCommit = true;
 			}
 
 			// Import XMP metadata
-			needs_commit |= metadata_importer.Import (photo, item);
+			needsCommit |= metadataImporter.Import (photo, item);
 
-			if (needs_commit) {
+			if (needsCommit) {
 				db.Photos.Commit (photo);
 			}
 
 			// Prepare thumbnail (Import is I/O bound anyway)
 			thumbnailLoader.Request (item.DefaultVersion.Uri, ThumbnailSize.Large, 10);
 
-			imported_photos.Add (photo.Id);
+			importedPhotos.Add (photo.Id);
 		}
 
 		void RollbackImport (IDb db)
 		{
 			// Remove photos
-			foreach (var id in imported_photos) {
+			foreach (var id in importedPhotos) {
 				db.Photos.Remove (db.Photos.Get (id));
 			}
 
-			foreach (var uri in photo_file_tracker.CopiedFiles) {
+			foreach (var uri in photoFileTracker.CopiedFiles) {
 				fileSystem.File.Delete (uri);
 			}
 
 			// Clean up directories
-			while (created_directories.Count > 0) {
-				var uri = created_directories.Pop ();
+			while (createdDirectories.Count > 0) {
+				var uri = createdDirectories.Pop ();
 				try {
 					fileSystem.Directory.Delete (uri);
 				} catch (Exception e) {
@@ -152,7 +156,7 @@ namespace FSpot.Import
 			}
 
 			// Clean created tags
-			metadata_importer.Cancel ();
+			metadataImporter.Cancel ();
 
 			// Remove created roll
 			db.Rolls.Remove (createdRoll);
@@ -160,7 +164,7 @@ namespace FSpot.Import
 
 		void Cleanup (IDb db)
 		{
-			if (imported_photos != null && imported_photos.Count == 0)
+			if (importedPhotos != null && importedPhotos.Count == 0)
 				db.Rolls.Remove (createdRoll);
 			//FIXME: we are cleaning a cache that is never used, that smells...
 			Photo.ResetMD5Cache ();
@@ -171,7 +175,7 @@ namespace FSpot.Import
 		void FinishImport (bool removeOriginals)
 		{
 			if (removeOriginals) {
-				foreach (var uri in photo_file_tracker.OriginalFiles) {
+				foreach (var uri in photoFileTracker.OriginalFiles) {
 					try {
 						fileSystem.File.Delete (uri);
 					} catch (Exception e) {
@@ -185,7 +189,7 @@ namespace FSpot.Import
 		{
 			DateTime time = item.Time;
 			return baseUri
-				.Append (time.Year.ToString ())
+				.Append ($"{time.Year}")
 				.Append ($"{time.Month:D2}")
 				.Append ($"{time.Day:D2}");
 		}

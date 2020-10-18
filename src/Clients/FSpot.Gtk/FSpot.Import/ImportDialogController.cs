@@ -51,7 +51,6 @@ namespace FSpot.Import
 
 		static List<ImportSource> ScanSources ()
 		{
-			var monitor = GLib.VolumeMonitor.Default;
 			var sources = new List<ImportSource> ();
 
 			foreach (var drive in DriveInfo.GetDrives ()) {
@@ -81,7 +80,6 @@ namespace FSpot.Import
 			ProgressUpdated?.Invoke (current, total);
 		}
 
-
 		#endregion
 
 		#region Source Switching
@@ -91,6 +89,7 @@ namespace FSpot.Import
 			set {
 				if (value == activeSource)
 					return;
+
 				activeSource = value;
 
 				CancelScan ();
@@ -113,12 +112,14 @@ namespace FSpot.Import
 		{
 			if (scanThread != null)
 				CancelScan ();
+
 			if (activeSource == null)
 				return;
 
 			var source = activeSource.GetFileImportSource (
 				App.Instance.Container.Resolve<IImageFileFactory> (),
 				App.Instance.Container.Resolve<IFileSystem> ());
+
 			Photos.Clear ();
 
 			scanTokenSource = new CancellationTokenSource ();
@@ -214,6 +215,9 @@ namespace FSpot.Import
 		// Set the tags that will be added on import.
 		public void AttachTags (IEnumerable<string> tags)
 		{
+			if (tags == null)
+				throw new ArgumentNullException (nameof (tags));
+
 			App.Instance.Database.BeginTransaction ();
 			var importCategory = GetImportedTagsCategory ();
 			foreach (var tagname in tags) {

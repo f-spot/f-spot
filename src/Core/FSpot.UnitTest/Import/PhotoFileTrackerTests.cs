@@ -1,4 +1,4 @@
-﻿//
+//
 // PhotoFileTrackerTests.cs
 //
 // Author:
@@ -9,9 +9,13 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System.Linq;
+
 using Hyena;
+
 using Mocks;
+
 using Moq;
+
 using NUnit.Framework;
 
 namespace FSpot.Import
@@ -57,7 +61,7 @@ namespace FSpot.Import
 			Assert.AreEqual (0, tracker.OriginalFiles.Count ());
 			Assert.AreEqual (0, tracker.CopiedFiles.Count ());
 			Assert.AreEqual (targetUri, photo.DefaultVersion.Uri);
-			fileSystem.FileMock.Verify (f => f.Copy (It. IsAny<SafeUri> (), It.IsAny<SafeUri> (), It.IsAny<bool> ()), Times.Never);
+			fileSystem.FileMock.Verify (f => f.Copy (It.IsAny<SafeUri> (), It.IsAny<SafeUri> (), It.IsAny<bool> ()), Times.Never);
 		}
 
 		[Test]
@@ -69,8 +73,8 @@ namespace FSpot.Import
 
 			tracker.CopyIfNeeded (photo, targetBase);
 
-			CollectionAssert.AreEquivalent (new[]{ sourceUri }, tracker.OriginalFiles);
-			CollectionAssert.AreEquivalent (new[]{ targetUri }, tracker.CopiedFiles);
+			CollectionAssert.AreEquivalent (new[] { sourceUri }, tracker.OriginalFiles);
+			CollectionAssert.AreEquivalent (new[] { targetUri }, tracker.CopiedFiles);
 			Assert.AreEqual (targetUri, photo.DefaultVersion.Uri);
 			fileSystem.FileMock.Verify (f => f.Copy (sourceUri, targetUri, false), Times.Once);
 		}
@@ -84,8 +88,8 @@ namespace FSpot.Import
 
 			tracker.CopyIfNeeded (photo, targetBase);
 
-			CollectionAssert.AreEquivalent (new[]{ sourceUri, xmpSourceUri }, tracker.OriginalFiles);
-			CollectionAssert.AreEquivalent (new[]{ targetUri, xmpTargetUri }, tracker.CopiedFiles);
+			CollectionAssert.AreEquivalent (new[] { sourceUri, xmpSourceUri }, tracker.OriginalFiles);
+			CollectionAssert.AreEquivalent (new[] { targetUri, xmpTargetUri }, tracker.CopiedFiles);
 			Assert.AreEqual (targetUri, photo.DefaultVersion.Uri);
 			fileSystem.FileMock.Verify (f => f.Copy (sourceUri, targetUri, false), Times.Once);
 			fileSystem.FileMock.Verify (f => f.Copy (xmpSourceUri, xmpTargetUri, true), Times.Once);
@@ -100,8 +104,8 @@ namespace FSpot.Import
 
 			tracker.CopyIfNeeded (photo, targetBase);
 
-			CollectionAssert.AreEquivalent (new[]{ sourceUri }, tracker.OriginalFiles);
-			CollectionAssert.AreEquivalent (new[]{ targetUri1 }, tracker.CopiedFiles);
+			CollectionAssert.AreEquivalent (new[] { sourceUri }, tracker.OriginalFiles);
+			CollectionAssert.AreEquivalent (new[] { targetUri1 }, tracker.CopiedFiles);
 			Assert.AreEqual (targetUri1, photo.DefaultVersion.Uri);
 			fileSystem.FileMock.Verify (f => f.Copy (sourceUri, targetUri1, false), Times.Once);
 		}
@@ -115,8 +119,8 @@ namespace FSpot.Import
 
 			tracker.CopyIfNeeded (photo, targetBase);
 
-			CollectionAssert.AreEquivalent (new[]{ sourceUri, xmpSourceUri }, tracker.OriginalFiles);
-			CollectionAssert.AreEquivalent (new[]{ targetUri1, xmpTargetUri1 }, tracker.CopiedFiles);
+			CollectionAssert.AreEquivalent (new[] { sourceUri, xmpSourceUri }, tracker.OriginalFiles);
+			CollectionAssert.AreEquivalent (new[] { targetUri1, xmpTargetUri1 }, tracker.CopiedFiles);
 			Assert.AreEqual (targetUri1, photo.DefaultVersion.Uri);
 			fileSystem.FileMock.Verify (f => f.Copy (sourceUri, targetUri1, false), Times.Once);
 			fileSystem.FileMock.Verify (f => f.Copy (xmpSourceUri, xmpTargetUri1, true), Times.Once);
@@ -131,10 +135,10 @@ namespace FSpot.Import
 
 			tracker.CopyIfNeeded (photo, targetBase);
 
-			CollectionAssert.AreEquivalent (new[]{ sourceUri, rawUri, xmpSourceUri }, tracker.OriginalFiles);
-			CollectionAssert.AreEquivalent (new[]{ targetUri, targetRawUri, xmpTargetUri }, tracker.CopiedFiles);
+			CollectionAssert.AreEquivalent (new[] { sourceUri, rawUri, xmpSourceUri }, tracker.OriginalFiles);
+			CollectionAssert.AreEquivalent (new[] { targetUri, targetRawUri, xmpTargetUri }, tracker.CopiedFiles);
 			Assert.AreEqual (targetUri, photo.DefaultVersion.Uri);
-			Assert.AreEqual (targetRawUri, photo.Versions.ElementAt(1).Uri);
+			Assert.AreEqual (targetRawUri, photo.Versions.ElementAt (1).Uri);
 			fileSystem.FileMock.Verify (f => f.Copy (sourceUri, targetUri, false), Times.Once);
 			fileSystem.FileMock.Verify (f => f.Copy (rawUri, targetRawUri, false), Times.Once);
 			fileSystem.FileMock.Verify (f => f.Copy (xmpSourceUri, xmpTargetUri, true), Times.Once);
@@ -152,10 +156,10 @@ namespace FSpot.Import
 
 			tracker.CopyIfNeeded (photo, targetBase);
 
-			CollectionAssert.AreEquivalent (new[]{ sourceUri, rawUri, xmpSourceUri }, tracker.OriginalFiles);
-			CollectionAssert.AreEquivalent (new[]{ targetUri2, targetRawUri3, xmpTargetUri2 }, tracker.CopiedFiles);
+			CollectionAssert.AreEquivalent (new[] { sourceUri, rawUri, xmpSourceUri }, tracker.OriginalFiles);
+			CollectionAssert.AreEquivalent (new[] { targetUri2, targetRawUri3, xmpTargetUri2 }, tracker.CopiedFiles);
 			Assert.AreEqual (targetUri2, photo.DefaultVersion.Uri);
-			Assert.AreEqual (targetRawUri3, photo.Versions.ElementAt(1).Uri);
+			Assert.AreEqual (targetRawUri3, photo.Versions.ElementAt (1).Uri);
 			fileSystem.FileMock.Verify (f => f.Copy (sourceUri, targetUri2, false), Times.Once);
 			fileSystem.FileMock.Verify (f => f.Copy (rawUri, targetRawUri3, false), Times.Once);
 			fileSystem.FileMock.Verify (f => f.Copy (xmpSourceUri, xmpTargetUri2, true), Times.Once);

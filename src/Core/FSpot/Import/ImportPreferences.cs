@@ -62,6 +62,7 @@ namespace FSpot.Import
 					return;
 				mergeRawAndJpeg = value;
 				SavePreferences ();
+				// FIXME?
 				//StartScan ();
 			}
 		}
@@ -89,6 +90,5 @@ namespace FSpot.Import
 			Preferences.Set (Preferences.ImportRemoveOriginals, removeOriginals);
 			Preferences.Set (Preferences.ImportMergeRawAndJpeg, mergeRawAndJpeg);
 		}
-
 	}
 }

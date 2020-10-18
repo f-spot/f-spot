@@ -8,6 +8,8 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using System;
+
 using FSpot.Utils;
 
 namespace FSpot.Import
@@ -16,6 +18,8 @@ namespace FSpot.Import
 	{
 		public static void RegisterTypes (TinyIoCContainer container)
 		{
+			if (container == null)
+				throw new ArgumentNullException (nameof (container));
 			container.Register<IImportController, ImportController> ().AsMultiInstance ();
 		}
 	}

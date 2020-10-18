@@ -1,4 +1,4 @@
-﻿//
+//
 // IImportController.cs
 //
 // Author:
@@ -11,8 +11,10 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
+
 using FSpot.Core;
 using FSpot.Database;
+
 using Hyena;
 
 namespace FSpot.Import
@@ -21,6 +23,6 @@ namespace FSpot.Import
 	{
 		void DoImport (IDb db, IBrowsableCollection photos, IList<Tag> tagsToAttach, ImportPreferences preferences, Action<int, int> reportProgress, CancellationToken token);
 		int PhotosImported { get; }
-		IEnumerable<SafeUri> FailedImports { get; }
+		IReadOnlyList<SafeUri> FailedImports { get; }
 	}
 }

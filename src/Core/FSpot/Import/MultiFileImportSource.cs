@@ -27,8 +27,7 @@ namespace FSpot.Import
 	{
 		readonly IEnumerable<SafeUri> uris;
 
-		public MultiFileImportSource (IEnumerable<SafeUri> uris, IImageFileFactory factory, IFileSystem fileSystem)
-			: base (null, factory, fileSystem)
+		public MultiFileImportSource (IEnumerable<SafeUri> uris, IImageFileFactory factory, IFileSystem fileSystem) : base (null, factory, fileSystem)
 		{
 			this.uris = uris;
 		}

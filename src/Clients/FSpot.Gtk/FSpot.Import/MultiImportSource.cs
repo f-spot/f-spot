@@ -21,8 +21,7 @@ namespace FSpot.Import
 	{
 		readonly IEnumerable<SafeUri> uris;
 
-		public MultiImportSource (IEnumerable<SafeUri> uris)
-			: base (null, string.Empty, string.Empty)
+		public MultiImportSource (IEnumerable<SafeUri> uris) : base (null, string.Empty, string.Empty)
 		{
 			this.uris = uris;
 		}

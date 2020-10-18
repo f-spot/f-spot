@@ -11,16 +11,18 @@
 
 using System;
 using System.Collections.Generic;
+
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Utils;
+
 using Mono.Unix;
 
 namespace FSpot.Import
 {
 	class MetadataImporter
 	{
-		TagStore tagStore;
+		readonly TagStore tagStore;
 		readonly Stack<Tag> tagsCreated;
 
 		const string LastImportIcon = "gtk-new";
@@ -32,19 +34,13 @@ namespace FSpot.Import
 			public string IconName { get; }
 
 			public bool HasIcon {
-				get { return IconName != null; }
+				get => IconName != null;
 			}
 
-			public TagInfo (string tagName, string iconName)
+			public TagInfo (string tagName, string iconName = null)
 			{
 				TagName = tagName;
 				IconName = iconName;
-			}
-
-			public TagInfo (string tagName)
-			{
-				TagName = tagName;
-				IconName = null;
 			}
 		}
 
@@ -97,8 +93,8 @@ namespace FSpot.Import
 				// Copy Rating
 				var rating = metadata.ImageTag.Rating;
 				if (rating.HasValue) {
-					var rating_val = Math.Min (metadata.ImageTag.Rating.Value, 5);
-					photo.Rating = Math.Max (0, rating_val);
+					var ratingValue = Math.Min (metadata.ImageTag.Rating.Value, 5);
+					photo.Rating = Math.Max (0, ratingValue);
 				}
 
 				// Copy Keywords

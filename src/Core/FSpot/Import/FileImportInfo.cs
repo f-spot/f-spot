@@ -17,12 +17,12 @@ namespace FSpot.Import
 {
 	public class FileImportInfo : FilePhoto
 	{
-		public FileImportInfo (SafeUri original, string name) : base (original, name)
-		{
-		}
+		internal uint PhotoId { get; set; }
 
 		public SafeUri DestinationUri { get; set; }
 
-		internal uint PhotoId { get; set; }
+		public FileImportInfo (SafeUri original, string name) : base (original, name)
+		{
+		}
 	}
 }

@@ -1,4 +1,4 @@
-﻿//
+//
 // ImportControllerTests.cs
 //
 // Author:
@@ -9,10 +9,14 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
-using FSpot.Core;
+
 using Hyena;
+
 using Mocks;
+
 using NUnit.Framework;
+
+using Shouldly;
 
 namespace FSpot.Import
 {
@@ -30,7 +34,7 @@ namespace FSpot.Import
 
 			var result = ImportController.FindImportDestination (source, targetBaseUri);
 
-			Assert.AreEqual (targetUri, result);
+			targetUri.ShouldBe (result);
 		}
 	}
 }
