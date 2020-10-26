@@ -22,19 +22,21 @@ using Hyena;
 
 namespace FSpot.Import
 {
-	// Multi root version for drag and drop import.
+	/// <summary>
+	/// Multi root version for drag and drop import.
+	/// </summary>
 	public class MultiFileImportSource : FileImportSource
 	{
-		readonly IEnumerable<SafeUri> uris;
+		readonly IEnumerable<SafeUri> Uris;
 
 		public MultiFileImportSource (IEnumerable<SafeUri> uris, IImageFileFactory factory, IFileSystem fileSystem) : base (null, factory, fileSystem)
 		{
-			this.uris = uris;
+			Uris = uris;
 		}
 
 		public override IEnumerable<FileImportInfo> ScanPhotos (ImportPreferences preferences)
 		{
-			foreach (var uri in uris) {
+			foreach (var uri in Uris) {
 				Log.Debug ("Scanning " + uri);
 				foreach (var info in ScanPhotoDirectory (preferences, uri)) {
 					yield return info;

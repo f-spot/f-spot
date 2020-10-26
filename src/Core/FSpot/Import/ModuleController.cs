@@ -20,6 +20,7 @@ namespace FSpot.Import
 		{
 			if (container == null)
 				throw new ArgumentNullException (nameof (container));
+
 			container.Register<IImportController, ImportController> ().AsMultiInstance ();
 		}
 	}

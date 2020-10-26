@@ -28,12 +28,6 @@ namespace FSpot.UI.Dialog
 {
 	public class ImportDialog : BuilderDialog
 	{
-		static readonly string SelectFolderLabel = Catalog.GetString ("Choose Folder...");
-		ImportDialogController Controller { get; set; }
-		TreeStore Sources { get; set; }
-
-		static readonly Dictionary<string, ImportSource> HistorySources = new Dictionary<string, ImportSource> ();
-
 #pragma warning disable 649
 		[GtkBeans.Builder.Object] Button cancel_button;
 		[GtkBeans.Builder.Object] Button import_button;
@@ -52,8 +46,14 @@ namespace FSpot.UI.Dialog
 		[GtkBeans.Builder.Object] Label attachtags_label;
 #pragma warning restore 649
 
-		PhotoImageView photo_view;
-		TagEntry tag_entry;
+		static readonly string SelectFolderLabel = Catalog.GetString ("Choose Folder...");
+		ImportDialogController Controller { get; set; }
+		TreeStore Sources { get; set; }
+
+		static readonly Dictionary<string, ImportSource> HistorySources = new Dictionary<string, ImportSource> ();
+
+		PhotoImageView photoView;
+		TagEntry tagEntry;
 
 		public ImportDialog (ImportDialogController controller, Window parent) : base ("import.ui", "import_dialog")
 		{
@@ -71,15 +71,15 @@ namespace FSpot.UI.Dialog
 		{
 			WindowPosition = WindowPosition.CenterOnParent;
 
-			photo_view = new PhotoImageView (Controller.Photos);
-			photo_scrolled.Add (photo_view);
+			photoView = new PhotoImageView (Controller.Photos);
+			photo_scrolled.Add (photoView);
 			photo_scrolled.SetSizeRequest (200, 200);
-			photo_view.Show ();
+			photoView.Show ();
 
 			GtkUtil.ModifyColors (photo_scrolled);
-			GtkUtil.ModifyColors (photo_view);
+			GtkUtil.ModifyColors (photoView);
 
-			using var tray = new BrowseablePointerGridView (photo_view.Item) {
+			using var tray = new BrowseablePointerGridView (photoView.Item) {
 				DisplayTags = false
 			};
 			icon_scrolled.Add (tray);
@@ -89,17 +89,17 @@ namespace FSpot.UI.Dialog
 
 			import_button.Sensitive = false;
 
-			tag_entry = new TagEntry (App.Instance.Database.Tags, false);
-			tag_entry.UpdateFromTagNames (Array.Empty<string> ());
-			tagentry_box.Add (tag_entry);
-			tag_entry.Show ();
-			attachtags_label.MnemonicWidget = tag_entry;
+			tagEntry = new TagEntry (App.Instance.Database.Tags, false);
+			tagEntry.UpdateFromTagNames (Array.Empty<string> ());
+			tagentry_box.Add (tagEntry);
+			tagEntry.Show ();
+			attachtags_label.MnemonicWidget = tagEntry;
 		}
 
 		void ResetPreview ()
 		{
-			photo_view.Pixbuf = GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, "FSpot", 128, 0);
-			photo_view.ZoomFit (false);
+			photoView.Pixbuf = GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, "FSpot", 128, 0);
+			photoView.ZoomFit (false);
 		}
 
 		void LoadPreferences ()
@@ -127,7 +127,7 @@ namespace FSpot.UI.Dialog
 			// Populates the source combo box
 			Sources = new TreeStore (typeof (ImportSource), typeof (string), typeof (string), typeof (bool));
 			sources_combo.Model = Sources;
-			sources_combo.RowSeparatorFunc = (m, i) => (m.GetValue (i, 1) as string) == string.Empty;
+			sources_combo.RowSeparatorFunc = (m, i) => string.IsNullOrEmpty ((m.GetValue (i, 1) as string));
 
 			using var render = new CellRendererPixbuf ();
 			sources_combo.PackStart (render, false);
@@ -338,7 +338,7 @@ namespace FSpot.UI.Dialog
 
 		void StartImport ()
 		{
-			Controller.AttachTags (tag_entry.GetTypedTagNames ());
+			Controller.AttachTags (tagEntry.GetTypedTagNames ());
 			Controller.StartImport ();
 			import_button.Sensitive = false;
 			OptionsSensitive = false;

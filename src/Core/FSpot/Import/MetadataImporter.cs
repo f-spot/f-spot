@@ -104,6 +104,7 @@ namespace FSpot.Import
 
 				// XXX: We might want to copy more data.
 			}
+
 			return true;
 		}
 

@@ -11,12 +11,13 @@
 
 using System.Collections.Generic;
 
+using FSpot.Utils;
+
 using Gtk;
 
-using Mono.Unix;
-
 using Hyena;
-using FSpot.Utils;
+
+using Mono.Unix;
 
 namespace FSpot.UI.Dialog
 {

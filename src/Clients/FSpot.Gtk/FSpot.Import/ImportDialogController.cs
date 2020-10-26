@@ -58,6 +58,7 @@ namespace FSpot.Import
 				var label = !string.IsNullOrEmpty (drive.VolumeLabel) ? drive.VolumeLabel : "Local Disk";
 				sources.Add (new ImportSource (root, $"{label} ({drive.Name})", null));
 			}
+
 			return sources;
 		}
 
