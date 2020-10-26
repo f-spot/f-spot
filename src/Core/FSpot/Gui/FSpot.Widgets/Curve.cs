@@ -12,8 +12,9 @@
 using System;
 using System.Collections.Generic;
 
-using Gtk;
 using Gdk;
+
+using Gtk;
 
 namespace FSpot.Widgets
 {
@@ -41,46 +42,46 @@ namespace FSpot.Widgets
 				CurveTypeChanged?.Invoke (this, EventArgs.Empty);
 		}
 
-		float min_x;
+		float minX;
 		public float MinX {
-			get { return min_x; }
-			set { SetRange (value, max_x, min_y, max_y); }
+			get { return minX; }
+			set { SetRange (value, maxX, minY, maxY); }
 		}
 
-		float max_x = 1.0f;
+		float maxX = 1.0f;
 		public float MaxX {
-			get { return max_x; }
-			set { SetRange (min_x, value, min_y, max_y); }
+			get { return maxX; }
+			set { SetRange (minX, value, minY, maxY); }
 		}
 
-		float min_y;
+		float minY;
 		public float MinY {
-			get { return min_y; }
-			set { SetRange (min_x, max_x, value, max_y); }
+			get { return minY; }
+			set { SetRange (minX, maxX, value, maxY); }
 		}
 
-		float max_y = 1.0f;
+		float maxY = 1.0f;
 		public float MaxY {
-			get { return max_y; }
-			set { SetRange (min_x, max_x, min_y, value); }
+			get { return maxY; }
+			set { SetRange (minX, maxX, minY, value); }
 		}
 
-		public void SetRange (float min_x, float max_x, float min_y, float max_y)
+		public void SetRange (float minX, float maxX, float minY, float maxY)
 		{
-			this.min_x = min_x;
-			this.max_x = max_x;
-			this.min_y = min_y;
-			this.max_y = max_y;
+			this.minX = minX;
+			this.maxX = maxX;
+			this.minY = minY;
+			this.maxY = maxY;
 
 			ResetVector ();
 			QueueDraw ();
 		}
 
-		CurveType curve_type = CurveType.Spline;
+		CurveType curveType = CurveType.Spline;
 		public CurveType CurveType {
-			get { return curve_type; }
+			get { return curveType; }
 			set {
-				curve_type = value;
+				curveType = value;
 				QueueDraw ();
 			}
 		}
@@ -152,12 +153,13 @@ namespace FSpot.Widgets
 		SortedDictionary<float, float> points;
 		void ResetVector ()
 		{
-			points = new SortedDictionary<float, float> ();
-			points.Add (min_x, min_y);
-			points.Add (max_x, max_y);
-			points.Add (.2f, .1f);
-			points.Add (.5f, .5f);
-			points.Add (.8f, .9f);
+			points = new SortedDictionary<float, float> {
+				{ minX, minY },
+				{ maxX, maxY },
+				{ .2f, .1f },
+				{ .5f, .5f },
+				{ .8f, .9f }
+			};
 		}
 #endregion
 
@@ -236,9 +238,9 @@ namespace FSpot.Widgets
 
 #region Gtk widgetry
 		const int radius = 3;		//radius of the control points
-		const int min_distance = 8;	//min distance between control points
-		int x_offset = radius;
-		int y_offset = radius;
+		const int min_distance = 8; //min distance between control points
+		readonly int x_offset = radius;
+		readonly int y_offset = radius;
 		int width, height;		//the real graph
 
 		Pixmap pixmap;
@@ -335,7 +337,7 @@ namespace FSpot.Widgets
 			
 			//find the closest point
 			float closest_x = MinX - 1;
-			var distance = Int32.MaxValue;
+			var distance = int.MaxValue;
 			foreach (var point in points) {
 				int cx = Project (point.Key, MinX, MaxX, width);
 				if (Math.Abs (px - cx) < distance) {
@@ -384,7 +386,7 @@ namespace FSpot.Widgets
 			
 			//find the closest point
 			float closest_x = MinX - 1;
-			var distance = Int32.MaxValue;
+			var distance = int.MaxValue;
 			foreach (var point in points) {
 				int cx = Project (point.Key, MinX, MaxX, width);
 				if (Math.Abs (px - cx) < distance) {

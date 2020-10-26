@@ -13,7 +13,9 @@ using System;
 
 namespace FSpot.Core
 {
-	//used to aggregate PhotoChanges and notifying the various ui pieces
+	/// <summary>
+	/// Used to aggregrate PhotoChanges and notifying the various ui pieces
+	/// </summary>
 	public class PhotosChanges : IBrowsableItemChanges
 	{
 		[Flags ()]
@@ -32,11 +34,11 @@ namespace FSpot.Core
 		Changes changes;
 
 		public bool MetadataChanged {
-			get { return (changes & ~Changes.Data) != 0 || TagsChanged || VersionsChanged; }
+			get => (changes & ~Changes.Data) != 0 || TagsChanged || VersionsChanged;
 		}
 
 		public bool DataChanged {
-			get { return (changes & Changes.Data) == Changes.Data; }
+			get => (changes & Changes.Data) == Changes.Data;
 			set {
 				if (value)
 					changes |= Changes.Data;
@@ -45,7 +47,7 @@ namespace FSpot.Core
 			}
 		}
 		public bool DefaultVersionIdChanged {
-			get { return (changes & Changes.DefaultVersionId) == Changes.DefaultVersionId; }
+			get => (changes & Changes.DefaultVersionId) == Changes.DefaultVersionId;
 			set {
 				if (value) {
 					changes |= Changes.DefaultVersionId;
@@ -55,7 +57,7 @@ namespace FSpot.Core
 			}
 		}
 		public bool TimeChanged {
-			get { return (changes & Changes.Time) == Changes.Time; }
+			get => (changes & Changes.Time) == Changes.Time;
 			set {
 				if (value)
 					changes |= Changes.Time;
@@ -64,7 +66,7 @@ namespace FSpot.Core
 			}
 		}
 		public bool UriChanged {
-			get { return (changes & Changes.Uri) == Changes.Uri; }
+			get => (changes & Changes.Uri) == Changes.Uri;
 			set {
 				if (value)
 					changes |= Changes.Uri;
@@ -73,7 +75,7 @@ namespace FSpot.Core
 			}
 		}
 		public bool RatingChanged {
-			get { return (changes & Changes.Rating) == Changes.Rating; }
+			get => (changes & Changes.Rating) == Changes.Rating;
 			set {
 				if (value)
 					changes |= Changes.Rating;
@@ -82,7 +84,7 @@ namespace FSpot.Core
 			}
 		}
 		public bool DescriptionChanged {
-			get { return (changes & Changes.Description) == Changes.Description; }
+			get => (changes & Changes.Description) == Changes.Description;
 			set {
 				if (value)
 					changes |= Changes.Description;
@@ -91,20 +93,20 @@ namespace FSpot.Core
 			}
 		}
 
-		bool tags_changed;
+		bool tagsChanged;
 		public virtual bool TagsChanged {
-			get { return tags_changed; }
-			private set { tags_changed = value; }
+			get => tagsChanged;
+			private set { tagsChanged = value; }
 		}
 
-		bool versions_changed;
+		bool versionsChanged;
 		public virtual bool VersionsChanged {
-			get { return versions_changed; }
-			private set { versions_changed = value; }
+			get => versionsChanged;
+			private set { versionsChanged = value; }
 		}
 
 		public bool RollIdChanged {
-			get { return (changes & Changes.RollId) == Changes.RollId; }
+			get => (changes & Changes.RollId) == Changes.RollId;
 			set {
 				if (value)
 					changes |= Changes.RollId;
@@ -114,7 +116,7 @@ namespace FSpot.Core
 		}
 
 		public bool MD5SumChanged {
-			get { return (changes & Changes.MD5Sum) == Changes.MD5Sum; }
+			get => (changes & Changes.MD5Sum) == Changes.MD5Sum;
 			set {
 				if (value)
 					changes |= Changes.MD5Sum;
@@ -136,6 +138,7 @@ namespace FSpot.Core
 				VersionsChanged = c1.VersionsChanged || c2.VersionsChanged,
 				TagsChanged = c1.TagsChanged || c2.TagsChanged
 			};
+
 			return changes;
 		}
 	}

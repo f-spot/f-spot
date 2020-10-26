@@ -12,9 +12,11 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System.IO;
+
 using Hyena;
 
-namespace FSpot.Imaging {
+namespace FSpot.Imaging
+{
 	// This is reverse engineered from looking at the sample files I have
 	// from what I can tell the file is always BigEndian, although the embedded jpeg may not be
 	// and there is a start long offset at 0x54 (or possibly 0x56 if it is a short) that points to
@@ -26,7 +28,8 @@ namespace FSpot.Imaging {
 
 	// ALL the sample files I have begin with "FUJIFILMCCD-RAW "
 
-	class RafImageFile : BaseImageFile {
+	class RafImageFile : BaseImageFile
+	{
 
 		public RafImageFile (SafeUri uri) : base (uri)
 		{
@@ -34,33 +37,32 @@ namespace FSpot.Imaging {
 
 		public override Stream PixbufStream ()
 		{
-			byte [] data = GetEmbeddedJpeg ();
+			byte[] data = GetEmbeddedJpeg ();
 
 			return data != null ? new MemoryStream (data) : DCRawImageFile.RawPixbufStream (Uri);
 		}
 
-		byte [] GetEmbeddedJpeg ()
+		byte[] GetEmbeddedJpeg ()
 		{
-			using (Stream stream = base.PixbufStream ()) {
-				stream.Position = 0x54;
-				var data = new byte [24];
-				stream.Read (data, 0, data.Length);
-				uint jpeg_offset = BitConverter.ToUInt32 (data, 0, false);
-				uint jpeg_length = BitConverter.ToUInt32 (data, 4, false);
+			using Stream stream = base.PixbufStream ();
+			stream.Position = 0x54;
+			var data = new byte[24];
+			stream.Read (data, 0, data.Length);
+			uint jpeg_offset = BitConverter.ToUInt32 (data, 0, false);
+			uint jpeg_length = BitConverter.ToUInt32 (data, 4, false);
 
-				// FIXME implement wb parsing
-				//uint wb_offset = BitConverter.ToUInt32 (data, 8, false);
-				//uint wb_length = BitConverter.ToUInt32 (data, 12, false);
+			// FIXME implement wb parsing
+			//uint wb_offset = BitConverter.ToUInt32 (data, 8, false);
+			//uint wb_length = BitConverter.ToUInt32 (data, 12, false);
 
-				// FIXME implement decoding
-				//uint raw_offset = BitConverter.ToUInt32 (data, 16, false);
-				//uint raw_length = BitConverter.ToUInt32 (data, 20, false);
+			// FIXME implement decoding
+			//uint raw_offset = BitConverter.ToUInt32 (data, 16, false);
+			//uint raw_length = BitConverter.ToUInt32 (data, 20, false);
 
-				var image = new byte [jpeg_length];
-				stream.Position = jpeg_offset;
-				stream.Read (image, 0, image.Length);
-				return image;
-			}
+			var image = new byte[jpeg_length];
+			stream.Position = jpeg_offset;
+			stream.Read (image, 0, image.Length);
+			return image;
 		}
 	}
 }

@@ -1,4 +1,4 @@
-﻿//
+//
 // RequestItem.cs
 //
 // Author:
@@ -14,8 +14,11 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
+
 using FSpot.Utils;
+
 using Gdk;
+
 using Hyena;
 
 namespace FSpot
@@ -37,9 +40,7 @@ namespace FSpot
 		Pixbuf result;
 
 		public Pixbuf Result {
-			get {
-				return result == null ? null : result.ShallowCopy ();
-			}
+			get => result?.ShallowCopy ();
 			set { result = value; }
 		}
 
@@ -54,12 +55,10 @@ namespace FSpot
 			Order = order;
 			Width = width;
 			Height = height;
-			if ((width <= 0 && height > 0) || (height <= 0 && width > 0)) {
-				throw new Exception ("Invalid arguments");
-			}
-		}
 
-		#region IDisposable
+			if ((width <= 0 && height > 0) || (height <= 0 && width > 0))
+				throw new Exception ("Invalid arguments");
+		}
 
 		public void Dispose ()
 		{
@@ -75,7 +74,5 @@ namespace FSpot
 				}
 			}
 		}
-
-		#endregion
 	}
 }

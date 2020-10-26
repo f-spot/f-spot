@@ -16,7 +16,7 @@ namespace FSpot.Core
 {
 	public class PhotoList : IBrowsableCollection
 	{
-		protected List<IPhoto> list;
+		protected List<IPhoto> list { get; set; }
 
 		public PhotoList (IEnumerable<IPhoto> photos)
 		{

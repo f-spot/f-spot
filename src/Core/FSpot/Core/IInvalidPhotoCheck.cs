@@ -11,8 +11,8 @@
 
 namespace FSpot.Core
 {
-    public interface IInvalidPhotoCheck
-    {
-        bool IsInvalid { get; }
-    }
+	public interface IInvalidPhotoCheck
+	{
+		bool IsInvalid { get; }
+	}
 }

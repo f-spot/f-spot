@@ -19,36 +19,36 @@ namespace FSpot.Query
 {
 	public class FolderSet : IQueryCondition
 	{
-		HashSet<SafeUri> uri_list;
-		
+		HashSet<SafeUri> uriList;
+
 		public FolderSet ()
 		{
-			uri_list = new HashSet<SafeUri> ();
+			uriList = new HashSet<SafeUri> ();
 		}
-		
+
 		public IEnumerable<SafeUri> Folders {
-			get => uri_list;
-			set { uri_list = (value == null) ? new HashSet<SafeUri> () : new HashSet<SafeUri> (value); }
+			get => uriList;
+			set { uriList = (value == null) ? new HashSet<SafeUri> () : new HashSet<SafeUri> (value); }
 		}
 
 		protected static string EscapeQuotes (string v)
 		{
-			return v == null ? string.Empty : v.Replace("'", "''");
+			return v == null ? string.Empty : v.Replace ("'", "''");
 		}
-		
+
 		public string SqlClause ()
 		{
-			var items = new string [uri_list.Count];
-			
+			var items = new string[uriList.Count];
+
 			if (items.Length == 0)
 				return null;
-			
+
 			int i = 0;
-			foreach (var uri in uri_list) {
+			foreach (var uri in uriList) {
 				items[i] = $"id IN (SELECT id FROM photos WHERE base_uri LIKE '{EscapeQuotes (uri.ToString ())}%')";
 				i++;
 			}
-			
+
 			return string.Join (" OR ", items);
 		}
 	}

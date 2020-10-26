@@ -14,8 +14,10 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
+
 using FSpot.Imaging;
 using FSpot.Thumbnail;
+
 using Hyena;
 
 namespace FSpot.Thumbnail
@@ -24,8 +26,7 @@ namespace FSpot.Thumbnail
 	{
 		readonly IThumbnailService thumbnailService;
 
-		public ThumbnailLoader (IImageFileFactory imageFileFactory, IThumbnailService thumbnailService)
-			: base (imageFileFactory)
+		public ThumbnailLoader (IImageFileFactory imageFileFactory, IThumbnailService thumbnailService) : base (imageFileFactory)
 		{
 			this.thumbnailService = thumbnailService;
 		}

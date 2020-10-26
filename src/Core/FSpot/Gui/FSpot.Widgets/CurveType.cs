@@ -11,7 +11,8 @@
 
 namespace FSpot.Widgets
 {
-	public enum CurveType {
+	public enum CurveType
+	{
 		Linear,
 		Spline,
 		Free,

@@ -75,7 +75,7 @@ namespace FSpot.Platform
 			if (Client.ContainsKey (key))
 				return Client[key].ToObject<T> ();
 
-			throw new NoSuchKeyException (nameof(key));
+			throw new NoSuchKeyException (nameof (key));
 		}
 
 		internal void Set<T> (string key, T value)

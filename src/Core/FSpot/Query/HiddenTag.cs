@@ -21,38 +21,38 @@ namespace FSpot.Query
 {
 	public class HiddenTag : IQueryCondition
 	{
-		static HiddenTag show_hidden_tag;
-		static HiddenTag hide_hidden_tag;
-		readonly bool show_hidden;
+		static HiddenTag showHiddenTag;
+		static HiddenTag hideHiddenTag;
+		readonly bool showHidden;
 
-		public static Tag Tag { get; set;}
+		public static Tag Tag { get; set; }
 
 		public static HiddenTag ShowHiddenTag {
 			get {
-				if (show_hidden_tag == null)
-					show_hidden_tag = new HiddenTag (true);
+				if (showHiddenTag == null)
+					showHiddenTag = new HiddenTag (true);
 
-				return show_hidden_tag;
+				return showHiddenTag;
 			}
 		}
 
 		public static HiddenTag HideHiddenTag {
 			get {
-				if (hide_hidden_tag == null)
-					hide_hidden_tag = new HiddenTag (false);
+				if (hideHiddenTag == null)
+					hideHiddenTag = new HiddenTag (false);
 
-				return hide_hidden_tag;
+				return hideHiddenTag;
 			}
 		}
 
 		HiddenTag (bool showHidden)
 		{
-			show_hidden = showHidden;
+			this.showHidden = showHidden;
 		}
 
 		public string SqlClause ()
 		{
-			if (!show_hidden && Tag != null)
+			if (!showHidden && Tag != null)
 				return $" photos.id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {Tag.Id}) ";
 
 			return null;

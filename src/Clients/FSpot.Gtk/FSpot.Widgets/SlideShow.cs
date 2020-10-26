@@ -12,35 +12,41 @@
 using System;
 using System.Collections.Generic;
 
-using Gtk;
-using Gdk;
-
-using Mono.Addins;
-
-using FSpot.Core;
 using FSpot.Bling;
+using FSpot.Core;
 using FSpot.Extensions;
 using FSpot.Imaging;
 using FSpot.Settings;
 using FSpot.Transitions;
 using FSpot.Utils;
 
+using Gdk;
+
+using Gtk;
+
+using Mono.Addins;
+
 namespace FSpot.Widgets
 {
 	public class SlideShow : DrawingArea
 	{
+		readonly DoubleAnimation animation;
+		readonly DelayedOperation flip;
+
 		bool running;
-		BrowsablePointer item;
+		readonly BrowsablePointer item;
 		int loadRetries;
-#region Public API
+		Pixbuf prev, next;
+		readonly object sync_handle = new object ();
 
 		public SlideShow (BrowsablePointer item) : this (item, 6000, false)
 		{
 		}
 
-		public SlideShow (BrowsablePointer item, uint interval_ms, bool init)
+		public SlideShow (BrowsablePointer item, uint intervalMs, bool init)
 		{
-			this.item = item;
+			this.item = item ?? throw new ArgumentNullException (nameof (item));
+
 			DoubleBuffered = false;
 			AppPaintable = true;
 			CanFocus = true;
@@ -52,7 +58,7 @@ namespace FSpot.Widgets
 				transitions.Add (transition.Transition);
 			}
 
-			flip = new DelayedOperation (interval_ms, delegate {item.MoveNext (true); return true;});
+			flip = new DelayedOperation (intervalMs, delegate { item.MoveNext (true); return true; });
 			animation = new DoubleAnimation (0, 1, new TimeSpan (0, 0, 2), HandleProgressChanged, GLib.Priority.Default);
 
 			if (init) {
@@ -62,7 +68,7 @@ namespace FSpot.Widgets
 
 		SlideShowTransition transition;
 		public SlideShowTransition Transition {
-            get { return transition; }
+			get => transition;
 			set {
 				if (value == transition)
 					return;
@@ -71,13 +77,11 @@ namespace FSpot.Widgets
 			}
 		}
 
-		List<SlideShowTransition> transitions = new List<SlideShowTransition> ();
+		readonly List<SlideShowTransition> transitions = new List<SlideShowTransition> ();
 		public IEnumerable<SlideShowTransition> Transitions {
 			get { return transitions; }
 		}
 
-		DoubleAnimation animation;
-		DelayedOperation flip;
 		public void Start ()
 		{
 			running = true;
@@ -89,11 +93,7 @@ namespace FSpot.Widgets
 			running = false;
 			flip.Stop ();
 		}
-#endregion
 
-#region Event Handlers
-		Pixbuf prev, next;
-		object sync_handle = new object ();
 		void HandleItemChanged (object sender, EventArgs e)
 		{
 			flip.Stop ();
@@ -115,34 +115,33 @@ namespace FSpot.Widgets
 
 		void LoadNext ()
 		{
-			if (next != null) {
+			if (next != null)
 				next = null;
-			}
 
-			if (item == null || item.Current == null)
+			if (item?.Current == null)
 				return;
 
-			using (var img = App.Instance.Container.Resolve<IImageFileFactory> ().Create (item.Current.DefaultVersion.Uri)) {
-				try {
-					using (var pb =  img.Load ()) {
-						double scale = Math.Min ((double)Allocation.Width/(double)pb.Width, (double)Allocation.Height/(double)pb.Height);
-						int w = (int)(pb.Width * scale);
-						int h = (int)(pb.Height * scale);
+			using var img = App.Instance.Container.Resolve<IImageFileFactory> ().Create (item.Current.DefaultVersion.Uri);
+			try {
+				using (var pb = img.Load ()) {
+					double scale = Math.Min ((double)Allocation.Width / (double)pb.Width, (double)Allocation.Height / (double)pb.Height);
+					int w = (int)(pb.Width * scale);
+					int h = (int)(pb.Height * scale);
 
-						if (w > 0 && h > 0)
-							next = pb.ScaleSimple ((int)(pb.Width * scale), (int)(pb.Height * scale), InterpType.Bilinear);
-					}
-					Cms.Profile screen_profile;
-					if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out screen_profile))
-						FSpot.ColorManagement.ApplyProfile (next, screen_profile);
-					loadRetries = 0;
-				} catch (Exception) {
-					next = PixbufUtils.ErrorPixbuf;
-					if (++loadRetries < 10)
-						item.MoveNext (true);
-					else
-						loadRetries = 0;
+					if (w > 0 && h > 0)
+						next = pb.ScaleSimple ((int)(pb.Width * scale), (int)(pb.Height * scale), InterpType.Bilinear);
 				}
+
+				if (ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screenProfile))
+					ColorManagement.ApplyProfile (next, screenProfile);
+
+				loadRetries = 0;
+			} catch (Exception) {
+				next = PixbufUtils.ErrorPixbuf;
+				if (++loadRetries < 10)
+					item.MoveNext (true);
+				else
+					loadRetries = 0;
 			}
 		}
 
@@ -154,10 +153,8 @@ namespace FSpot.Widgets
 				QueueDraw ();
 			}
 		}
-#endregion
 
-#region Gtk Widgetry
-		protected override bool OnExposeEvent (Gdk.EventExpose args)
+		protected override bool OnExposeEvent (EventExpose args)
 		{
 			lock (sync_handle) {
 				transition.Draw (args.Window, prev, next, Allocation.Width, Allocation.Height, progress);
@@ -186,6 +183,5 @@ namespace FSpot.Widgets
 			flip.Stop ();
 			base.OnUnrealized ();
 		}
-#endregion
 	}
 }

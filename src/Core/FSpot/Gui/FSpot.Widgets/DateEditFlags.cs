@@ -12,10 +12,11 @@
 namespace FSpot.Widgets
 {
 	[System.Flags]
-	public enum DateEditFlags {
-		None 			= 0,
-		ShowTime 		= 1 << 0,
-		ShowSeconds		= 1 << 1,
-		ShowOffset		= 1 << 2,
+	public enum DateEditFlags
+	{
+		None = 0,
+		ShowTime = 1 << 0,
+		ShowSeconds = 1 << 1,
+		ShowOffset = 1 << 2,
 	}
 }

@@ -12,7 +12,9 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
+
 using Hyena;
+
 using TagLib;
 using TagLib.IFD;
 using TagLib.IFD.Entries;
@@ -127,9 +129,9 @@ namespace FSpot.Imaging
 				var tag = metadata.GetTag (TagTypes.TiffIFD) as IFDTag;
 				var structure = tag.Structure;
 				var sub_entries = (structure.GetEntry (0, (ushort)IFDEntryTag.SubIFDs) as SubIFDArrayEntry).Entries;
-				var subimage_structure = sub_entries [sub_entries.Length - 1];
+				var subimage_structure = sub_entries[sub_entries.Length - 1];
 				var entry = subimage_structure.GetEntry (0, (ushort)IFDEntryTag.StripOffsets);
-				offset = (entry as StripOffsetsIFDEntry).Values [0];
+				offset = (entry as StripOffsetsIFDEntry).Values[0];
 			} catch (Exception e) {
 				Log.DebugException (e);
 			}

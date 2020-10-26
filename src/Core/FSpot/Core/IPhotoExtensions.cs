@@ -23,7 +23,7 @@ namespace FSpot.Core
 
 		public static int CompareName (this IPhoto photo1, IPhoto photo2)
 		{
-			return string.Compare (photo1.Name, photo2.Name);
+			return string.Compare (photo1.Name, photo2.Name, StringComparison.Ordinal);
 		}
 
 		public static int Compare (this IPhoto photo1, IPhoto photo2)
@@ -43,7 +43,7 @@ namespace FSpot.Core
 		{
 			var photo1_uri = Path.Combine (photo1.DefaultVersion.BaseUri, photo1.DefaultVersion.Filename);
 			var photo2_uri = Path.Combine (photo2.DefaultVersion.BaseUri, photo2.DefaultVersion.Filename);
-			return string.Compare (photo1_uri, photo2_uri);
+			return string.Compare (photo1_uri, photo2_uri, StringComparison.Ordinal);
 		}
 	}
 }

@@ -50,7 +50,7 @@ namespace FSpot.Utils
 		{
 			lock (o) {
 				if (!mru.Contains (key))
-					return default(TValue);
+					return default;
 
 				mru.Remove (key);
 				mru.Insert (0, key);

@@ -48,12 +48,12 @@ namespace FSpot.Gui
 		{
 			try {
 				IntPtr raw_ret = gdk_screen_get_rgba_colormap (screen.Handle);
-				Gdk.Colormap ret = GLib.Object.GetObject (raw_ret) as Gdk.Colormap;
+				var ret = GLib.Object.GetObject (raw_ret) as Colormap;
 				return ret;
 			} catch {
-				Gdk.Visual visual = Gdk.Visual.GetBestWithDepth (32);
+				var visual = Gdk.Visual.GetBestWithDepth (32);
 				if (visual != null) {
-					Gdk.Colormap cmap = new Gdk.Colormap (visual, false);
+					var cmap = new Colormap (visual, false);
 					Log.Debug ("fallback");
 					return cmap;
 				}
@@ -84,7 +84,7 @@ namespace FSpot.Gui
 
 		public static bool SetRgbaColormap (Widget w)
 		{
-			Gdk.Colormap cmap = GetRgbaColormap (w.Screen);
+			Colormap cmap = GetRgbaColormap (w.Screen);
 
 			if (cmap != null) {
 				w.Colormap = cmap;
@@ -94,15 +94,14 @@ namespace FSpot.Gui
 			return false;
 		}
 
-
 		public static Visual GetRgbaVisual (Screen screen)
 		{
 			try {
 				IntPtr raw_ret = gdk_screen_get_rgba_visual (screen.Handle);
-				Gdk.Visual ret = GLib.Object.GetObject (raw_ret) as Gdk.Visual;
+				var ret = GLib.Object.GetObject (raw_ret) as Visual;
 				return ret;
 			} catch {
-				Gdk.Visual visual = Gdk.Visual.GetBestWithDepth (32);
+				var visual = Gdk.Visual.GetBestWithDepth (32);
 				if (visual != null) {
 					return visual;
 				}
@@ -117,7 +116,7 @@ namespace FSpot.Gui
 				composited = gdk_screen_is_composited (screen.Handle);
 			} catch (EntryPointNotFoundException) {
 				Log.Debug ("query composite manager locally");
-				Atom atom = Atom.Intern ($"_NET_WM_CM_S{screen.Number}", false);
+				var atom = Atom.Intern ($"_NET_WM_CM_S{screen.Number}", false);
 				composited = Gdk.Selection.OwnerGetForDisplay (screen.Display, atom) != null;
 			}
 

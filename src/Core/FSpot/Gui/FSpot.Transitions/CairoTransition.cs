@@ -10,9 +10,8 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using Cairo;
-using Gdk;
 
-using Color = Cairo.Color;
+using Gdk;
 
 namespace FSpot.Transitions
 {
@@ -24,9 +23,8 @@ namespace FSpot.Transitions
 
 		public override void Draw (Drawable d, Pixbuf prev, Pixbuf next, int width, int height, double progress)
 		{
-			using (Cairo.Context cr = Gdk.CairoHelper.Create (d)) {
-				Draw (cr, prev, next, width, height, progress);
-			}
+			using Context cr = CairoHelper.Create (d);
+			Draw (cr, prev, next, width, height, progress);
 		}
 
 		protected abstract void Draw (Context cr, Pixbuf prev, Pixbuf next, int width, int height, double progress);

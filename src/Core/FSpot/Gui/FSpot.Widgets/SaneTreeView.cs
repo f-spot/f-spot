@@ -29,7 +29,9 @@ namespace FSpot.Widgets
 {
 	public class SaneTreeView : TreeView
 	{
-		protected bool row_selected_on_button_down, ignore_button_release, drag_started;
+		protected bool RowSelectedOnButtonDown { get; set; }
+		protected bool IgnoreButtonRelease { get; set; }
+		protected bool DragStarted { get; set; }
 
 		protected SaneTreeView (IntPtr raw) : base (raw) { }
 
@@ -44,11 +46,11 @@ namespace FSpot.Widgets
 			return path_at_pointer;
 		}
 
-		protected override bool OnButtonPressEvent (Gdk.EventButton button)
+		protected override bool OnButtonPressEvent (EventButton button)
 		{
 			bool call_parent = true;
 			bool on_expander;
-			drag_started = ignore_button_release = false;
+			DragStarted = IgnoreButtonRelease = false;
 			GetPathAtPos ((int)button.X, (int)button.Y, out var path, out var column);
 
 			if (button.Window != BinWindow)
@@ -68,15 +70,15 @@ namespace FSpot.Widgets
 						// EXPANDER_EXTRA_PADDING from GtkTreeView
 						expander_size += 4;
 						on_expander = (button.X <= horizontal_separator / 2 + path.Depth * expander_size);
-						row_selected_on_button_down = Selection.PathIsSelected (path);
-						if (row_selected_on_button_down) {
+						RowSelectedOnButtonDown = Selection.PathIsSelected (path);
+						if (RowSelectedOnButtonDown) {
 							call_parent = on_expander;
-							ignore_button_release = call_parent;
+							IgnoreButtonRelease = call_parent;
 						} else if ((button.State & ModifierType.ControlMask) != 0) {
 							call_parent = false;
 							Selection.SelectPath (path);
 						} else {
-							ignore_button_release = on_expander;
+							IgnoreButtonRelease = on_expander;
 						}
 					}
 
@@ -93,30 +95,30 @@ namespace FSpot.Widgets
 			return false;
 		}
 
-		protected override bool OnButtonReleaseEvent (Gdk.EventButton button)
+		protected override bool OnButtonReleaseEvent (EventButton button)
 		{
-			if (!drag_started && !ignore_button_release)
+			if (!DragStarted && !IgnoreButtonRelease)
 				DidNotDrag (button);
 
 			base.OnButtonReleaseEvent (button);
 			return false;
 		}
 
-		protected override void OnDragBegin (Gdk.DragContext context)
+		protected override void OnDragBegin (DragContext context)
 		{
-			drag_started = true;
+			DragStarted = true;
 			base.OnDragBegin (context);
 		}
 
-		protected void DidNotDrag (Gdk.EventButton button)
+		protected void DidNotDrag (EventButton button)
 		{
-			TreePath path = PathAtPoint (button.X, button.Y);
+			using var path = PathAtPoint (button.X, button.Y);
 
 			if (path != null) {
 				if ((button.Button == 1 || button.Button == 2)
 					&& ((button.State & ModifierType.ControlMask) != 0 ||
 					(button.State & ModifierType.ShiftMask) == 0)
-					&& row_selected_on_button_down) {
+					&& RowSelectedOnButtonDown) {
 					if (!ButtonEventModifiesSelection (button)) {
 						Selection.UnselectAll ();
 						Selection.SelectPath (path);
@@ -126,7 +128,7 @@ namespace FSpot.Widgets
 			}
 		}
 
-		protected static bool ButtonEventModifiesSelection (Gdk.EventButton button)
+		protected static bool ButtonEventModifiesSelection (EventButton button)
 		{
 			return (button.State & (ModifierType.ControlMask | ModifierType.ShiftMask)) != 0;
 		}

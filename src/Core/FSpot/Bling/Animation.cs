@@ -29,14 +29,14 @@ namespace FSpot.Bling
 		TimeSpan pausedafter;
 
 		DateTimeOffset starttime;
-		Action<T> action;
+		readonly Action<T> action;
 		AnimationState state;
-		GLib.Priority priority = GLib.Priority.DefaultIdle;
+		readonly GLib.Priority priority = GLib.Priority.DefaultIdle;
 
 		protected Animation ()
 		{
-			From = default (T);
-			To = default (T);
+			From = default;
+			To = default;
 			Duration = TimeSpan.Zero;
 			action = null;
 			state = AnimationState.NotRunning;
@@ -138,13 +138,9 @@ namespace FSpot.Bling
 #pragma warning restore 67
 		public event EventHandler<ProgressChangedEventArgs> ProgressChanged;
 
-		public bool IsRunning {
-			get { return state == AnimationState.Running; }
-		}
+		public bool IsRunning => state == AnimationState.Running;
 
-		public bool IsPaused {
-			get { return state == AnimationState.Paused; }
-		}
+		public bool IsPaused => state == AnimationState.Paused;
 
 		public TimeSpan Duration { get; set; }
 

@@ -20,23 +20,24 @@ namespace FSpot.Core
 	{
 		public uint Id { get; private set; }
 
-		protected DbItem (uint id) {
+		protected DbItem (uint id)
+		{
 			Id = id;
 		}
 	}
 
 	public class DbItemEventArgs<T> : EventArgs where T : DbItem
 	{
-		public T [] Items { get; private set; }
+		public T[] Items { get; private set; }
 
-		public DbItemEventArgs (T [] items)
+		public DbItemEventArgs (T[] items)
 		{
 			Items = items;
 		}
 
 		public DbItemEventArgs (T item)
 		{
-			Items = new T [] { item };
+			Items = new T[] { item };
 		}
 	}
 }

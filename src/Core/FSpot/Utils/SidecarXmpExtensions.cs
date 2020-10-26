@@ -31,18 +31,16 @@ namespace FSpot.Utils
 			string xmp;
 
 			try {
-				using (var stream = resource.ReadStream) {
-					using (var reader = new StreamReader (stream)) {
-						xmp = reader.ReadToEnd ();
-					}
-				}
+				using var stream = resource.ReadStream;
+				using var reader = new StreamReader (stream);
+				xmp = reader.ReadToEnd ();
 			} catch (Exception e) {
 				Log.Debug ($"Sidecar cannot be read for file {file.Name}");
 				Log.DebugException (e);
 				return false;
 			}
 
-			XmpTag tag = null;
+			XmpTag tag;
 			try {
 				tag = new XmpTag (xmp, file);
 			} catch (Exception e) {
@@ -67,13 +65,12 @@ namespace FSpot.Utils
 			var xmp = xmp_tag.Render ();
 
 			try {
-				using (var stream = resource.WriteStream) {
-					stream.SetLength (0);
-					using (var writer = new StreamWriter (stream)) {
-						writer.Write (xmp);
-					}
-					resource.CloseStream (stream);
+				using var stream = resource.WriteStream;
+				stream.SetLength (0);
+				using (var writer = new StreamWriter (stream)) {
+					writer.Write (xmp);
 				}
+				resource.CloseStream (stream);
 			} catch (Exception e) {
 				Log.Debug ($"Sidecar cannot be saved: {resource.Name}");
 				Log.DebugException (e);

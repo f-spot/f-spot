@@ -124,8 +124,7 @@ namespace FSpot.Imaging
 
 			handle = new HandleRef (this, raw);
 
-			IntPtr error;
-			g_io_channel_set_encoding (handle, null, out error);
+			g_io_channel_set_encoding (handle, null, out var error);
 			if (error != IntPtr.Zero)
 				throw new GLib.GException (error);
 		}
@@ -224,8 +223,7 @@ namespace FSpot.Imaging
 		bool DataReadyHandler (IntPtr channel, IOCondition condition, IntPtr data)
 		{
 			var args = new DataReadEventArgs (condition);
-			if (data_ready != null)
-				data_ready (this, args);
+			data_ready?.Invoke (this, args);
 
 			return args.Continue;
 		}
@@ -255,13 +253,11 @@ namespace FSpot.Imaging
 
 		public override void Close ()
 		{
-			IntPtr error;
-
 			if (data_ready_source != 0)
 				GLib.Source.Remove (data_ready_source);
 			data_ready_source = 0;
 
-			g_io_channel_shutdown (handle, false, out error);
+			g_io_channel_shutdown (handle, false, out var error);
 
 			base.Close ();
 

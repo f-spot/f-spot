@@ -24,10 +24,8 @@ namespace FSpot.Core
 
 		public BrowsablePointer (IBrowsableCollection collection, int index)
 		{
-			if (collection == null)
-				throw new ArgumentNullException (nameof (collection));
+			this.collection = collection ?? throw new ArgumentNullException (nameof (collection));
 
-			this.collection = collection;
 			Index = index;
 			item = Current;
 

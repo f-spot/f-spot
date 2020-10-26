@@ -14,7 +14,9 @@
 
 using System;
 using System.IO;
+
 using Hyena;
+
 using TagLib.Image;
 
 namespace FSpot.Imaging

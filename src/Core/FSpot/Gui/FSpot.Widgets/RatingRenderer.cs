@@ -9,52 +9,48 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
-using Gdk;
-using Cairo;
-
-using Hyena.Gui;
-
 using FSpot.Settings;
 using FSpot.Utils;
+
+using Gdk;
+
+using Hyena.Gui;
 
 namespace FSpot.Widgets
 {
 	public class RatingRenderer : Hyena.Gui.RatingRenderer
 	{
-		static readonly int REQUESTED_ICON_SIZE = 16;
+		const int REQUESTED_ICON_SIZE = 16;
 
 		// cache the unscaled pixbufs for all instances
-		static Pixbuf icon_rated;
-		static Pixbuf icon_blank;
-		static Pixbuf icon_hover;
+		static Pixbuf iconRated;
+		static Pixbuf iconBlank;
+		static Pixbuf iconHover;
 
 		protected static Pixbuf IconRated {
 			get {
-				if (icon_rated == null)
-					icon_rated = GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, "rating-rated",
-													  REQUESTED_ICON_SIZE, (Gtk.IconLookupFlags)0);
+				if (iconRated == null)
+					iconRated = GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, "rating-rated", REQUESTED_ICON_SIZE, (Gtk.IconLookupFlags)0);
 
-				return icon_rated;
+				return iconRated;
 			}
 		}
 
 		protected static Pixbuf IconBlank {
 			get {
-				if (icon_blank == null)
-					icon_blank = GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, "rating-blank",
-													  REQUESTED_ICON_SIZE, (Gtk.IconLookupFlags)0);
+				if (iconBlank == null)
+					iconBlank = GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, "rating-blank", REQUESTED_ICON_SIZE, (Gtk.IconLookupFlags)0);
 
-				return icon_blank;
+				return iconBlank;
 			}
 		}
 
 		protected static Pixbuf IconHover {
 			get {
-				if (icon_hover == null)
-					icon_hover = GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, "rating-rated-gray",
-													  REQUESTED_ICON_SIZE, (Gtk.IconLookupFlags)0);
+				if (iconHover == null)
+					iconHover = GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, "rating-rated-gray", REQUESTED_ICON_SIZE, (Gtk.IconLookupFlags)0);
 
-				return icon_hover;
+				return iconHover;
 			}
 		}
 
@@ -163,7 +159,7 @@ namespace FSpot.Widgets
 		}
 
 		public Pixbuf RenderPixbuf (bool showEmptyStars, bool isHovering, int hoverValue, double fillOpacity,
-		                            double hoverFillOpacity, double strokeOpacity)
+									double hoverFillOpacity, double strokeOpacity)
 		{
 			var pixbuf = new Pixbuf (Colorspace.Rgb, true, 8, MaxRating * Size, Size);
 			pixbuf.Fill (0xffffff00);
@@ -194,9 +190,9 @@ namespace FSpot.Widgets
 			return pixbuf;
 		}
 
-		public override void Render (Cairo.Context cr, Gdk.Rectangle area, Cairo.Color color, bool showEmptyStars,
-		                             bool isHovering, int hoverValue, double fillOpacity, double hoverFillOpacity,
-		                             double strokeOpacity)
+		public override void Render (Cairo.Context cr, Rectangle area, Cairo.Color color, bool showEmptyStars,
+									 bool isHovering, int hoverValue, double fillOpacity, double hoverFillOpacity,
+									 double strokeOpacity)
 		{
 			if (Value == MinRating && !isHovering && !showEmptyStars)
 				return;

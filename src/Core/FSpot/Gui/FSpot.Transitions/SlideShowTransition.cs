@@ -11,20 +11,15 @@
 
 using Gdk;
 
-using Color = Cairo.Color;
-
 namespace FSpot.Transitions
 {
 	public abstract class SlideShowTransition
 	{
+		public string Name { get; }
+
 		protected SlideShowTransition (string name)
 		{
-			this.name = name;
-		}
-
-		readonly string name;
-		public string Name {
-			get { return name; }
+			Name = name;
 		}
 
 		public abstract void Draw (Drawable d, Pixbuf prev, Pixbuf next, int width, int height, double progress);

@@ -1,4 +1,4 @@
-﻿//
+//
 // XdgDirectoryService.cs
 //
 // Author:
@@ -9,6 +9,7 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System.IO;
+
 using FSpot.FileSystem;
 
 namespace FSpot.Thumbnail

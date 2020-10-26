@@ -44,7 +44,7 @@ namespace FSpot.Settings
 		static readonly string xdg_config_home =
 			Environment.GetFolderPath (Environment.SpecialFolder.ApplicationData);
 
-        public static string BaseDirectory { get; set; } = Path.Combine(xdg_config_home, "f-spot");
+		public static string BaseDirectory { get; set; } = Path.Combine (xdg_config_home, "f-spot");
 
 		public static SafeUri PhotoUri { get; set; }
 
@@ -69,7 +69,7 @@ namespace FSpot.Settings
 			}
 		}
 
-		static string [] default_rc_files;
+		static string[] default_rc_files;
 		public static string[] DefaultRcFiles {
 			get {
 				return default_rc_files ?? Gtk.Rc.DefaultFiles;

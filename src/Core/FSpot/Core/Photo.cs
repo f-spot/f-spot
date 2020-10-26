@@ -12,20 +12,20 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
-using Hyena;
-
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Collections.Generic;
-
-using Mono.Unix;
 
 using FSpot.Core;
 using FSpot.Imaging;
 using FSpot.Settings;
 using FSpot.Thumbnail;
 using FSpot.Utils;
+
+using Hyena;
+
+using Mono.Unix;
 
 namespace FSpot
 {
@@ -60,7 +60,7 @@ namespace FSpot
 			get { return Uri.UnescapeDataString (Path.GetFileName (VersionUri (OriginalVersionId).AbsolutePath)); }
 		}
 
-		List<Tag> tags;
+		readonly List<Tag> tags;
 		public Tag[] Tags {
 			get {
 				return tags.ToArray ();

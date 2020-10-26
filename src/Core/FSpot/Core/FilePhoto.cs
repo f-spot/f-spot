@@ -55,7 +55,7 @@ namespace FSpot.Core
 			using (var metadata = MetadataUtils.Parse (DefaultVersion.Uri)) {
 				if (metadata != null) {
 					var date = metadata.ImageTag.DateTime;
-					time = date.HasValue ? date.Value : CreateDate;
+					time = date ?? CreateDate;
 					description = metadata.ImageTag.Comment;
 				} else {
 					throw new Exception ("Corrupt File!");
@@ -134,12 +134,12 @@ namespace FSpot.Core
 			}
 			public SafeUri Uri { get; set; }
 
-			string import_md5 = string.Empty;
+			string importMd5 = string.Empty;
 			public string ImportMD5 {
 				get {
-					if (string.IsNullOrEmpty (import_md5))
-						import_md5 = HashUtils.GenerateMD5 (Uri);
-					return import_md5;
+					if (string.IsNullOrEmpty (importMd5))
+						importMd5 = HashUtils.GenerateMD5 (Uri);
+					return importMd5;
 				}
 			}
 		}

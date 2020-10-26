@@ -24,20 +24,20 @@ namespace FSpot.Utils
 {
 	public class GdkUtils
 	{
-		public static Pixbuf Deserialize (byte [] data)
+		public static Pixbuf Deserialize (byte[] data)
 		{
 			var pixdata = new Pixdata ();
-	
-			pixdata.Deserialize ((uint) data.Length, data);
-	
+
+			pixdata.Deserialize ((uint)data.Length, data);
+
 			return Pixbuf.FromPixdata (pixdata, true);
 		}
-	
-		public static byte [] Serialize (Pixbuf pixbuf)
+
+		public static byte[] Serialize (Pixbuf pixbuf)
 		{
 			var pixdata = new Pixdata ();
-	
-#if true 	//We should use_rle, but bgo#553374 prevents this
+
+#if true   //We should use_rle, but bgo#553374 prevents this
 			pixdata.FromPixbuf (pixbuf, false);
 			return pixdata.Serialize ();
 #else
@@ -51,20 +51,20 @@ namespace FSpot.Utils
 
 		class NativeMethods
 		{
-			[DllImport("libgdk-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+			[DllImport ("libgdk-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 			public static extern uint gdk_x11_drawable_get_xid (IntPtr d);
-	
-			[DllImport("libgdk-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+
+			[DllImport ("libgdk-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 			public static extern IntPtr gdk_x11_display_get_xdisplay (IntPtr d);
-	
-			[DllImport("libgdk-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+
+			[DllImport ("libgdk-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 			public static extern IntPtr gdk_x11_visual_get_xvisual (IntPtr d);
 
 			// FIXME: get rid of this? (Make this cross platform)
-			[DllImport("X11", CallingConvention = CallingConvention.Cdecl)]
-			public static extern uint XVisualIDFromVisual(IntPtr visual);
-	
-			[DllImport("libgdk-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+			[DllImport ("X11", CallingConvention = CallingConvention.Cdecl)]
+			public static extern uint XVisualIDFromVisual (IntPtr visual);
+
+			[DllImport ("libgdk-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 			public static extern IntPtr gdk_x11_screen_lookup_visual (IntPtr screen, uint xvisualid);
 		}
 
@@ -77,12 +77,12 @@ namespace FSpot.Utils
 		{
 			return NativeMethods.XVisualIDFromVisual (GetXVisual (visual));
 		}
-		
+
 		public static IntPtr GetXDisplay (Display display)
 		{
 			return NativeMethods.gdk_x11_display_get_xdisplay (display.Handle);
 		}
-		
+
 		public static IntPtr GetXVisual (Visual v)
 		{
 			return NativeMethods.gdk_x11_visual_get_xvisual (v.Handle);
@@ -90,16 +90,16 @@ namespace FSpot.Utils
 
 		public static Visual LookupVisual (Screen screen, uint visualid)
 		{
-			return (Gdk.Visual) GLib.Object.GetObject (NativeMethods.gdk_x11_screen_lookup_visual (screen.Handle, visualid));
+			return (Gdk.Visual)GLib.Object.GetObject (NativeMethods.gdk_x11_screen_lookup_visual (screen.Handle, visualid));
 		}
-		
-		public static Cursor CreateEmptyCursor (Display display) 
+
+		public static Cursor CreateEmptyCursor (Display display)
 		{
 			try {
 				using var empty = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, true, 8, 1, 1);
 				empty.Fill (0x00000000);
 				return new Gdk.Cursor (display, empty, 0, 0);
-			} catch (Exception e){
+			} catch (Exception e) {
 				Log.Exception (e);
 				return null;
 			}

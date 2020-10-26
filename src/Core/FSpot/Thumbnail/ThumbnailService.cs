@@ -14,23 +14,20 @@
 using System;
 using System.IO;
 using System.Linq;
+
 using FSpot.FileSystem;
+
 using Gdk;
+
 using Hyena;
 
 namespace FSpot.Thumbnail
 {
 	class ThumbnailService : IThumbnailService
 	{
-		#region fields
-
 		readonly IXdgDirectoryService xdgDirectoryService;
 		readonly IThumbnailerFactory thumbnailerFactory;
 		readonly IFileSystem fileSystem;
-
-		#endregion
-
-		#region ctors
 
 		public ThumbnailService (IXdgDirectoryService xdgDirectoryService, IThumbnailerFactory thumbnailerFactory, IFileSystem fileSystem)
 		{
@@ -38,18 +35,14 @@ namespace FSpot.Thumbnail
 			this.thumbnailerFactory = thumbnailerFactory;
 			this.fileSystem = fileSystem;
 
-			var large = new SafeUri(Path.Combine (xdgDirectoryService.GetThumbnailsDir (ThumbnailSize.Large)));
+			var large = new SafeUri (Path.Combine (xdgDirectoryService.GetThumbnailsDir (ThumbnailSize.Large)));
 			if (!fileSystem.Directory.Exists (large))
 				fileSystem.Directory.CreateDirectory (large);
 
-			var normal = new SafeUri(Path.Combine (xdgDirectoryService.GetThumbnailsDir (ThumbnailSize.Normal)));
+			var normal = new SafeUri (Path.Combine (xdgDirectoryService.GetThumbnailsDir (ThumbnailSize.Normal)));
 			if (!fileSystem.Directory.Exists (normal))
 				fileSystem.Directory.CreateDirectory (normal);
 		}
-
-		#endregion
-
-		#region public API
 
 		public Pixbuf GetThumbnail (SafeUri fileUri, ThumbnailSize size)
 		{
@@ -73,7 +66,7 @@ namespace FSpot.Thumbnail
 
 		public void DeleteThumbnails (SafeUri fileUri)
 		{
-			Enum.GetValues (typeof(ThumbnailSize))
+			Enum.GetValues (typeof (ThumbnailSize))
 				.OfType<ThumbnailSize> ()
 				.Select (size => GetThumbnailPath (fileUri, size))
 				.ToList ()
@@ -90,10 +83,6 @@ namespace FSpot.Thumbnail
 					}
 				});
 		}
-
-		#endregion
-
-		#region private implementation
 
 		// internal for unit testing with Moq
 		internal SafeUri GetThumbnailPath (SafeUri fileUri, ThumbnailSize size)
@@ -145,11 +134,8 @@ namespace FSpot.Thumbnail
 
 		Pixbuf LoadPng (SafeUri uri)
 		{
-			using (var stream = fileSystem.File.Read (uri)) {
-				return new Pixbuf (stream);
-			}
+			using var stream = fileSystem.File.Read (uri);
+			return new Pixbuf (stream);
 		}
-
-		#endregion
 	}
 }

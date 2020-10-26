@@ -29,8 +29,7 @@ namespace FSpot.Query
 			if (andTerm != null) {
 				foreach (LogicalTerm t in andTerm.Terms)
 					Add (t);
-			}
-			else
+			} else
 				terms.Add (term);
 		}
 

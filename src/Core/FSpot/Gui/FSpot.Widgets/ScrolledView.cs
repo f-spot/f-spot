@@ -19,24 +19,25 @@ namespace FSpot.Widgets
 {
 	public class ScrolledView : Fixed
 	{
-		DelayedOperation hide;
+		readonly DelayedOperation hide;
 		public EventBox ControlBox { get; private set; }
 		public ScrolledWindow ScrolledWindow { get; private set; }
 
-		public ScrolledView (IntPtr raw) : base (raw) {}
+		public ScrolledView (IntPtr raw) : base (raw) { }
 
-		public ScrolledView () : base () {
-			ScrolledWindow = new ScrolledWindow  (null, null);
-			this.Put (ScrolledWindow, 0, 0);
+		public ScrolledView () : base ()
+		{
+			ScrolledWindow = new ScrolledWindow (null, null);
+			Put (ScrolledWindow, 0, 0);
 			ScrolledWindow.Show ();
-			
+
 			//ebox = new BlendBox ();
 			ControlBox = new EventBox ();
-			this.Put (ControlBox, 0, 0);
+			Put (ControlBox, 0, 0);
 			ControlBox.ShowAll ();
-			
+
 			hide = new DelayedOperation (2000, new GLib.IdleHandler (HideControls));
-			this.Destroyed += HandleDestroyed;
+			Destroyed += HandleDestroyed;
 		}
 
 		public bool HideControls ()
@@ -46,11 +47,8 @@ namespace FSpot.Widgets
 
 		public bool HideControls (bool force)
 		{
-			int x, y;
-			Gdk.ModifierType type;
-
 			if (!force && IsRealized) {
-				ControlBox.GdkWindow.GetPointer (out x, out y, out type);
+				ControlBox.GdkWindow.GetPointer (out var x, out var y, out var _);
 				if (x < ControlBox.Allocation.Width && y < ControlBox.Allocation.Height) {
 					hide.Start ();
 					return true;
@@ -61,7 +59,7 @@ namespace FSpot.Widgets
 			ControlBox.Hide ();
 			return false;
 		}
-		
+
 		public void ShowControls ()
 		{
 			hide.Stop ();

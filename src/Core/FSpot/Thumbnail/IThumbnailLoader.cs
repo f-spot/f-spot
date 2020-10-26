@@ -1,4 +1,4 @@
-﻿//
+//
 // IThumbnailLoader.cs
 //
 // Author:
@@ -10,6 +10,7 @@
 
 using FSpot.Imaging;
 using FSpot.Thumbnail;
+
 using Hyena;
 
 namespace FSpot.Thumbnail

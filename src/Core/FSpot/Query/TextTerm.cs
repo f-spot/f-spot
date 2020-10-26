@@ -17,9 +17,9 @@ namespace FSpot.Query
 
 	public class TextTerm : LogicalTerm
 	{
-		public string Text { get; private set; }
+		public string Text { get; }
 
-		public string Field { get; private set; }
+		public string Field { get; }
 
 		public TextTerm (string text, string field)
 		{

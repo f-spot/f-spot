@@ -17,7 +17,7 @@ namespace FSpot.Gui
 {
 	public class WindowOpacityFader
 	{
-		Gtk.Window win;
+		readonly Gtk.Window win;
 		readonly DoubleAnimation fadin;
 
 		public WindowOpacityFader (Gtk.Window win, double target, double msec)

@@ -19,21 +19,21 @@ namespace FSpot.Core
 	public class Category : Tag
 	{
 		List<Tag> children;
-		bool children_need_sort;
-		public IList<Tag> Children {
+		bool childrenNeedSort;
+		public List<Tag> Children {
 			get {
-				if (children_need_sort)
+				if (childrenNeedSort)
 					children.Sort ();
-				return children.ToArray ();
+				return children;
 			}
 			set {
 				children = new List<Tag> (value);
-				children_need_sort = true;
+				childrenNeedSort = true;
 			}
 		}
 
 		// Appends all of this categories descendents to the list
-		public void AddDescendentsTo (IList<Tag> list)
+		public void AddDescendentsTo (List<Tag> list)
 		{
 			if (list == null)
 				throw new ArgumentNullException (nameof (list));
@@ -53,13 +53,13 @@ namespace FSpot.Core
 		public void AddChild (Tag child)
 		{
 			children.Add (child);
-			children_need_sort = true;
+			childrenNeedSort = true;
 		}
 
 		public void RemoveChild (Tag child)
 		{
 			children.Remove (child);
-			children_need_sort = true;
+			childrenNeedSort = true;
 		}
 
 		public Category (Category category, uint id, string name) : base (category, id, name)
@@ -67,7 +67,7 @@ namespace FSpot.Core
 			children = new List<Tag> ();
 		}
 
-		protected override void Dispose(bool disposing)
+		protected override void Dispose (bool disposing)
 		{
 			if (disposing) {
 				// free managed resources

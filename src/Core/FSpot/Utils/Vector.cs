@@ -27,8 +27,8 @@ namespace FSpot.Utils
 		public void Normalize ()
 		{
 			double len = Length;
-			X = X / len;
-			Y = Y / len;
+			X /= len;
+			Y /= len;
 		}
 
 		public double AngleBetween (Vector v)

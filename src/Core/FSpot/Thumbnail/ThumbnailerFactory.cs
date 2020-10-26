@@ -1,4 +1,4 @@
-﻿//
+//
 // ThumbnailerFactory.cs
 //
 // Author:
@@ -10,6 +10,7 @@
 
 using FSpot.FileSystem;
 using FSpot.Imaging;
+
 using Hyena;
 
 namespace FSpot.Thumbnail
@@ -19,22 +20,18 @@ namespace FSpot.Thumbnail
 		readonly IImageFileFactory factory;
 		readonly IFileSystem fileSystem;
 
-		public ThumbnailerFactory(IImageFileFactory factory, IFileSystem fileSystem)
+		public ThumbnailerFactory (IImageFileFactory factory, IFileSystem fileSystem)
 		{
 			this.factory = factory;
 			this.fileSystem = fileSystem;
 		}
 
-		#region IThumbnailerFactory implementation
-
 		public IThumbnailer GetThumbnailerForUri (SafeUri uri)
 		{
-			if (factory.HasLoader (uri)) {
+			if (factory.HasLoader (uri))
 				return new ImageThumbnailer (uri, factory, fileSystem);
-			}
+
 			return null;
 		}
-
-		#endregion
 	}
 }

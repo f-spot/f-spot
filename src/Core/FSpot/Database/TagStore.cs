@@ -16,10 +16,8 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
-using FSpot;
 using FSpot.Core;
 using FSpot.Database.Jobs;
 using FSpot.Query;
@@ -109,7 +107,7 @@ namespace FSpot.Database
 
 		public Tag[] GetTagsByNameStart (string s)
 		{
-			List<Tag> l = new List<Tag> ();
+			var l = new List<Tag> ();
 			foreach (Tag t in ItemCache.Values) {
 				if (t.Name.ToLower ().StartsWith (s.ToLower ()))
 					l.Add (t);
@@ -274,8 +272,9 @@ namespace FSpot.Database
 
 			uint id = InsertTagIntoTable (category, name, false, autoicon);
 
-			Tag tag = new Tag (category, id, name);
-			tag.IconWasCleared = !autoicon;
+			var tag = new Tag (category, id, name) {
+				IconWasCleared = !autoicon
+			};
 
 			AddToCache (tag);
 			EmitAdded (tag);
@@ -290,13 +289,14 @@ namespace FSpot.Database
 
 			uint id = InsertTagIntoTable (parentCategory, name, true, autoicon);
 
-			var new_category = new Category (parentCategory, id, name);
-			new_category.IconWasCleared = !autoicon;
+			var newCategory = new Category (parentCategory, id, name) {
+				IconWasCleared = !autoicon
+			};
 
-			AddToCache (new_category);
-			EmitAdded (new_category);
+			AddToCache (newCategory);
+			EmitAdded (newCategory);
 
-			return new_category;
+			return newCategory;
 		}
 
 		public override Tag Get (uint id)
@@ -307,9 +307,7 @@ namespace FSpot.Database
 		public override void Remove (Tag item)
 		{
 			var category = item as Category;
-			if (category != null &&
-				category.Children != null &&
-				category.Children.Count > 0)
+			if (category?.Children != null && category.Children.Count > 0)
 				throw new InvalidTagOperationException (category, "Cannot remove category that contains children");
 
 			RemoveFromCache (item);
@@ -325,6 +323,7 @@ namespace FSpot.Database
 		{
 			if (tag.ThemeIconName != null)
 				return STOCK_ICON_DB_PREFIX + tag.ThemeIconName;
+
 			if (tag.Icon == null) {
 				if (tag.IconWasCleared)
 					return string.Empty;

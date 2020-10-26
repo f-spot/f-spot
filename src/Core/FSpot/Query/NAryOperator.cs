@@ -17,12 +17,11 @@ namespace FSpot.Query
 {
 	public abstract class NAryOperator : LogicalTerm
 	{
-		protected List<LogicalTerm> terms;
-		public LogicalTerm[] Terms {
-			get { return terms.ToArray (); }
-		}
+		protected List<LogicalTerm> terms { get; set; }
 
-		protected string [] ToStringArray ()
+		public LogicalTerm[] Terms => terms.ToArray ();
+
+		protected string[] ToStringArray ()
 		{
 			var ls = new List<string> (terms.Count);
 			foreach (LogicalTerm term in terms)
@@ -33,7 +32,7 @@ namespace FSpot.Query
 		public static string SqlClause (string op, string[] items)
 		{
 			if (items.Length == 1)
-				return items [0];
+				return items[0];
 
 			return " (" + string.Join ($" {op} ", items) + ") ";
 		}

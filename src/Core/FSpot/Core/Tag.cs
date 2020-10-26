@@ -35,7 +35,7 @@ namespace FSpot.Core
 
 		Category category;
 		public Category Category {
-			get { return category; }
+			get => category;
 			set {
 				if (Category != null)
 					Category.RemoveChild (this);

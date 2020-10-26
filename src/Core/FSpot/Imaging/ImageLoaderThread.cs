@@ -27,6 +27,7 @@ using Hyena;
 
 namespace FSpot.Imaging
 {
+	// FIXME, This needs some love
 	public class ImageLoaderThread : IImageLoaderThread
 	{
 		#region Private members.

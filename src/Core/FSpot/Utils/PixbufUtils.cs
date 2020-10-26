@@ -144,8 +144,7 @@ namespace FSpot.Utils
 
 		public static ImageOrientation ReverseTransformation (ImageOrientation orientation)
 		{
-			return orientation switch
-			{
+			return orientation switch {
 				ImageOrientation.LeftTop => ImageOrientation.RightBottom,
 				ImageOrientation.RightTop => ImageOrientation.LeftBottom,
 				ImageOrientation.RightBottom => ImageOrientation.LeftTop,
@@ -281,12 +280,11 @@ namespace FSpot.Utils
 
 		static bool Save (this Pixbuf pixbuf, string filename, string type, uint jpeg_quality)
 		{
-			IntPtr error = IntPtr.Zero;
 			IntPtr nfilename = GLib.Marshaller.StringToPtrGStrdup (filename);
 			IntPtr ntype = GLib.Marshaller.StringToPtrGStrdup (type);
 			IntPtr optlabel1 = GLib.Marshaller.StringToPtrGStrdup ("quality");
 			IntPtr optvalue1 = GLib.Marshaller.StringToPtrGStrdup (jpeg_quality.ToString ());
-			bool ret = gdk_pixbuf_save (pixbuf.Handle, nfilename, ntype, out error, optlabel1, optvalue1, IntPtr.Zero);
+			bool ret = gdk_pixbuf_save (pixbuf.Handle, nfilename, ntype, out var error, optlabel1, optvalue1, IntPtr.Zero);
 			GLib.Marshaller.Free (nfilename);
 			GLib.Marshaller.Free (ntype);
 			GLib.Marshaller.Free (optlabel1);

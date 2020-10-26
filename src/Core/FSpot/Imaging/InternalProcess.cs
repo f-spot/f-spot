@@ -19,13 +19,13 @@ namespace FSpot.Imaging
 	[Flags]
 	enum InternalProcessFlags
 	{
-		LeaveDescriptorsOpen =       1 << 0,
-		DoNotReapChild =             1 << 1,
-		SearchPath =                 1 << 2,
-		StandardOutputToDevNull =    1 << 3,
-		StandardErrorToDevNull =     1 << 4,
+		LeaveDescriptorsOpen = 1 << 0,
+		DoNotReapChild = 1 << 1,
+		SearchPath = 1 << 2,
+		StandardOutputToDevNull = 1 << 3,
+		StandardErrorToDevNull = 1 << 4,
 		ChildInheritsStandardInput = 1 << 5,
-		FileAndArgvZero =            1 << 6
+		FileAndArgvZero = 1 << 6
 	}
 
 	class InternalProcess
@@ -47,11 +47,11 @@ namespace FSpot.Imaging
 			}
 		}
 
-		[DllImport("libglib-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("libglib-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool g_spawn_async_with_pipes (
 			string workingDir,
-			string [] argv,
-			string [] envp,
+			string[] argv,
+			string[] envp,
 			InternalProcessFlags flags,
 			IntPtr childSetup,
 			IntPtr childData,
@@ -62,12 +62,12 @@ namespace FSpot.Imaging
 			//ref int stderr,
 			out IntPtr error);
 
-		public InternalProcess (string path, string [] args)
+		public InternalProcess (string path, string[] args)
 		{
 			IntPtr error;
 
-			if (args[args.Length -1] != null) {
-				var nargs = new string [args.Length + 1];
+			if (args[args.Length - 1] != null) {
+				var nargs = new string[args.Length + 1];
 				Array.Copy (args, nargs, args.Length);
 				args = nargs;
 			}

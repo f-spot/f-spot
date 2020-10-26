@@ -57,6 +57,7 @@ namespace FSpot.Query
 				return null;
 			if (tagids.Count == 1)
 				return $" (photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id = {tagids[0]})) ";
+
 			return $" (photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id IN ({string.Join (", ", tagids)}))) ";
 		}
 	}

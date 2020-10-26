@@ -20,19 +20,13 @@ namespace FSpot.Core
 
 	public interface IBrowsableCollection
 	{
-		IEnumerable<IPhoto> Items {
-			get;
-		}
+		IEnumerable<IPhoto> Items { get; }
 
 		int IndexOf (IPhoto item);
 
-		IPhoto this [int index] {
-			get;
-		}
+		IPhoto this[int index] { get; }
 
-		int Count {
-			get;
-		}
+		int Count { get; }
 
 		bool Contains (IPhoto item);
 

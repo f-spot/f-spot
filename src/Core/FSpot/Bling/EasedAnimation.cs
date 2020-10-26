@@ -50,6 +50,5 @@ namespace FSpot.Bling
 				return base.Ease (normalizedTime);
 			return EasingFunction.Ease (normalizedTime);
 		}
-
 	}
 }
