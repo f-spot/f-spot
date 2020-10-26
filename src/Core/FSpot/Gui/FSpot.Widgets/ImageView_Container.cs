@@ -9,6 +9,7 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using System;
 using System.Collections.Generic;
 
 using Gtk;
@@ -17,17 +18,18 @@ namespace FSpot.Widgets
 {
 	public partial class ImageView : Container
 	{
-		List<LayoutChild> children = new List<LayoutChild> ();
+		readonly List<LayoutChild> children = new List<LayoutChild> ();
 
-		#region container
-
-		protected override void OnAdded (Gtk.Widget widget)
+		protected override void OnAdded (Widget widget)
 		{
 			Put (widget, 0, 0);
 		}
 
-		protected override void OnRemoved (Gtk.Widget widget)
+		protected override void OnRemoved (Widget widget)
 		{
+			if (widget == null)
+				throw new ArgumentNullException (nameof (widget));
+
 			LayoutChild child = null;
 			foreach (var c in children) {
 				if (child.Widget == widget) {
@@ -42,59 +44,57 @@ namespace FSpot.Widgets
 			}
 		}
 
-		protected override void ForAll (bool include_internals, Gtk.Callback callback)
+		protected override void ForAll (bool include_internals, Callback callback)
 		{
-			foreach (var child in children) {
+			if (callback == null)
+				throw new ArgumentNullException (nameof (callback));
+
+			foreach (var child in children)
 				callback (child.Widget);
-			}
 		}
-
-		#endregion
-
-
-		#region children
 
 		class LayoutChild
 		{
-			Gtk.Widget widget;
-			public Gtk.Widget Widget {
-				get { return widget; }
-			}
+			public Widget Widget { get; }
 
 			public int X { get; set; }
 			public int Y { get; set; }
 
-			public LayoutChild (Gtk.Widget widget, int x, int y)
+			public LayoutChild (Widget widget, int x, int y)
 			{
-				this.widget = widget;
+				Widget = widget;
 				X = x;
 				Y = y;
 			}
 		}
 
-		LayoutChild GetChild (Gtk.Widget widget)
+		LayoutChild GetChild (Widget widget)
 		{
 			foreach (var child in children) {
 				if (child.Widget == widget)
 					return child;
 			}
+
 			return null;
 		}
 
-		#endregion
-
-		#region Public API
-
-		public void Put (Gtk.Widget widget, int x, int y)
+		public void Put (Widget widget, int x, int y)
 		{
+			if (widget == null)
+				throw new ArgumentNullException (nameof (widget));
+
 			children.Add (new LayoutChild (widget, x, y));
 			if (IsRealized)
 				widget.ParentWindow = GdkWindow;
+
 			widget.Parent = this;
 		}
 
-		public void Move (Gtk.Widget widget, int x, int y)
+		public void Move (Widget widget, int x, int y)
 		{
+			if (widget == null)
+				throw new ArgumentNullException (nameof (widget));
+
 			LayoutChild child = GetChild (widget);
 			if (child == null)
 				return;
@@ -107,9 +107,8 @@ namespace FSpot.Widgets
 
 		void OnRealizedChildren ()
 		{
-			foreach (var child in children) {
+			foreach (var child in children)
 				child.Widget.ParentWindow = GdkWindow;
-			}
 		}
 
 		void OnMappedChildren ()
@@ -122,19 +121,16 @@ namespace FSpot.Widgets
 
 		void OnSizeRequestedChildren ()
 		{
-			foreach (var child in children) {
+			foreach (var child in children)
 				child.Widget.SizeRequest ();
-			}
 		}
 
 		void OnSizeAllocatedChildren ()
 		{
 			foreach (var child in children) {
-				Gtk.Requisition req = child.Widget.ChildRequisition;
+				var req = child.Widget.ChildRequisition;
 				child.Widget.SizeAllocate (new Gdk.Rectangle (child.X, child.Y, req.Width, req.Height));
 			}
 		}
-
-		#endregion
 	}
 }

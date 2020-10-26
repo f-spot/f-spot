@@ -41,28 +41,21 @@ namespace FSpot.Widgets
 		{
 			Preferences.SettingChanged += OnPreferencesChanged;
 
-			this.item = item;
+			Item = item ?? throw new ArgumentNullException (nameof (item));
 			item.Changed += HandlePhotoItemChanged;
 		}
 
-		public BrowsablePointer Item {
-			get { return item; }
-		}
-
 		public IBrowsableCollection Query {
-			get { return item.Collection; }
+			get => Item.Collection;
 		}
 
-		public Loupe Loupe {
-			get { return loupe; }
-		}
-
-		public Gdk.Pixbuf CompletePixbuf ()
+		public Pixbuf CompletePixbuf ()
 		{
 			//FIXME: this should be an async call
 			if (loader != null)
 				while (loader.Loading)
 					Gtk.Application.RunIteration ();
+
 			return Pixbuf;
 		}
 
@@ -76,8 +69,8 @@ namespace FSpot.Widgets
 
 		// Zoom scaled between 0.0 and 1.0
 		public double NormalizedZoom {
-			get { return (Zoom - MIN_ZOOM) / (MAX_ZOOM - MIN_ZOOM); }
-			set { Zoom = (value * (MAX_ZOOM - MIN_ZOOM)) + MIN_ZOOM; }
+			get => (Zoom - MinZoom) / (MaxZoom - MinZoom);
+			set { Zoom = (value * (MaxZoom - MinZoom)) + MinZoom; }
 		}
 
 		public event EventHandler PhotoChanged;
@@ -87,10 +80,10 @@ namespace FSpot.Widgets
 		#region Gtk widgetry
 		protected override void OnStyleSet (Gtk.Style previous)
 		{
-			CheckPattern = new CheckPattern (this.Style.Backgrounds [(int)Gtk.StateType.Normal]);
+			CheckPattern = new CheckPattern (Style.Backgrounds [(int)Gtk.StateType.Normal]);
 		}
 
-		protected override bool OnKeyPressEvent (Gdk.EventKey evnt)
+		protected override bool OnKeyPressEvent (EventKey evnt)
 		{
 			if ((evnt.State & (ModifierType.Mod1Mask | ModifierType.ControlMask)) != 0)
 				return base.OnKeyPressEvent (evnt);
@@ -98,61 +91,61 @@ namespace FSpot.Widgets
 			bool handled = true;
 
 			// Scroll if image is zoomed in (scrollbars are visible)
-			bool scrolled = Parent is Gtk.ScrolledWindow scrolled_w && !Fit;
+			bool scrolled = Parent is Gtk.ScrolledWindow && !Fit;
 
 			// Go to the next/previous photo when not zoomed (no scrollbars)
 			switch (evnt.Key) {
-			case Gdk.Key.Up:
-			case Gdk.Key.KP_Up:
-			case Gdk.Key.Left:
-			case Gdk.Key.KP_Left:
-			case Gdk.Key.h:
-			case Gdk.Key.H:
-			case Gdk.Key.k:
-			case Gdk.Key.K:
+			case Key.Up:
+			case Key.KP_Up:
+			case Key.Left:
+			case Key.KP_Left:
+			case Key.h:
+			case Key.H:
+			case Key.k:
+			case Key.K:
 				if (scrolled)
 					handled = false;
 				else
 					Item.MovePrevious ();
 				break;
-			case Gdk.Key.Page_Up:
-			case Gdk.Key.KP_Page_Up:
-			case Gdk.Key.BackSpace:
-			case Gdk.Key.b:
-			case Gdk.Key.B:
+			case Key.Page_Up:
+			case Key.KP_Page_Up:
+			case Key.BackSpace:
+			case Key.b:
+			case Key.B:
 				Item.MovePrevious ();
 				break;
-			case Gdk.Key.Down:
-			case Gdk.Key.KP_Down:
-			case Gdk.Key.Right:
-			case Gdk.Key.KP_Right:
-			case Gdk.Key.j:
-			case Gdk.Key.J:
-			case Gdk.Key.l:
-			case Gdk.Key.L:
+			case Key.Down:
+			case Key.KP_Down:
+			case Key.Right:
+			case Key.KP_Right:
+			case Key.j:
+			case Key.J:
+			case Key.l:
+			case Key.L:
 				if (scrolled)
 					handled = false;
 				else
 					Item.MoveNext ();
 				break;
-			case Gdk.Key.Page_Down:
-			case Gdk.Key.KP_Page_Down:
-			case Gdk.Key.space:
-			case Gdk.Key.KP_Space:
-			case Gdk.Key.n:
-			case Gdk.Key.N:
+			case Key.Page_Down:
+			case Key.KP_Page_Down:
+			case Key.space:
+			case Key.KP_Space:
+			case Key.n:
+			case Key.N:
 				Item.MoveNext ();
 				break;
-			case Gdk.Key.Home:
-			case Gdk.Key.KP_Home:
+			case Key.Home:
+			case Key.KP_Home:
 				Item.Index = 0;
 				break;
-			case Gdk.Key.r:
-			case Gdk.Key.R:
+			case Key.r:
+			case Key.R:
 				Item.Index = new Random ().Next (0, Query.Count - 1);
 				break;
-			case Gdk.Key.End:
-			case Gdk.Key.KP_End:
+			case Key.End:
+			case Key.KP_End:
 				Item.Index = Query.Count - 1;
 				break;
 			default:
@@ -198,8 +191,8 @@ namespace FSpot.Widgets
 			if (!ShowProgress)
 				return;
 
-			Gdk.Pixbuf prev = this.Pixbuf;
-			this.Pixbuf = loader.Pixbuf;
+			Pixbuf prev = Pixbuf;
+			Pixbuf = loader.Pixbuf;
 			prev?.Dispose ();
 
 			ZoomFit (args.ReducedResolution);
@@ -214,14 +207,14 @@ namespace FSpot.Widgets
 			if (!ShowProgress)
 				return;
 
-			Gdk.Rectangle area = ImageCoordsToWindow (args.Area);
+			Rectangle area = ImageCoordsToWindow (args.Area);
 			QueueDrawArea (area.X, area.Y, area.Width, area.Height);
 		}
 
 		void HandleDone (object sender, EventArgs args)
 		{
 			Log.DebugTimerPrint (timer, "Loading image took {0}");
-			IImageLoader loader = sender as IImageLoader;
+			var loader = sender as IImageLoader;
 			if (loader != this.loader)
 				return;
 
@@ -237,7 +230,7 @@ namespace FSpot.Widgets
 				// than try to load the image one last time.
 				try {
 					Log.Warning ("Falling back to file loader");
-					Pixbuf = PhotoLoader.Load (item.Collection, item.Index);
+					Pixbuf = PhotoLoader.Load (Item.Collection, Item.Index);
 				} catch (Exception e) {
 					LoadErrorImage (e);
 				}
@@ -255,7 +248,7 @@ namespace FSpot.Widgets
 			else
 				ZoomFit ();
 
-			progressive_display = true;
+			ShowProgress = true;
 
 			if (prev != Pixbuf)
 				prev?.Dispose ();
@@ -264,14 +257,11 @@ namespace FSpot.Widgets
 		}
 		#endregion
 
-		protected BrowsablePointer item;
-		protected Loupe loupe;
-		protected Loupe sharpener;
+		public BrowsablePointer Item { get; protected set; }
+		public Loupe Loupe { get; protected set; }
+		protected Loupe Sharpener { get; set; }
 
-		bool progressive_display = true;
-		bool ShowProgress {
-			get { return progressive_display; }
-		}
+		bool ShowProgress { get; set; } = true;
 
 		void LoadErrorImage (Exception e)
 		{
@@ -293,7 +283,7 @@ namespace FSpot.Widgets
 		{
 			// If it is just the position that changed fall out
 			if (args?.PreviousItem != null && Item.IsValid &&
-				(args.PreviousIndex != item.Index) &&
+				(args.PreviousIndex != Item.Index) &&
 				(Item.Current.DefaultVersion.Uri == args.PreviousItem.DefaultVersion.Uri))
 				return;
 
@@ -306,7 +296,7 @@ namespace FSpot.Widgets
 			// Same image, don't load it progressively
 			if (args?.PreviousItem != null && Item.IsValid &&
 				Item.Current.DefaultVersion.Uri == args.PreviousItem.DefaultVersion.Uri)
-				progressive_display = false;
+				ShowProgress = false;
 
 			try {
 				if (Item.IsValid)
@@ -318,40 +308,39 @@ namespace FSpot.Widgets
 				LoadErrorImage (e);
 			}
 
-			Selection = Gdk.Rectangle.Zero;
+			Selection = Rectangle.Zero;
 
 			PhotoChanged?.Invoke (this, EventArgs.Empty);
 		}
 
 		void HandleLoupeDestroy (object sender, EventArgs args)
 		{
-			if (sender == loupe)
-				loupe = null;
+			if (sender == Loupe)
+				Loupe = null;
 
-			if (sender == sharpener)
-				sharpener = null;
+			if (sender == Sharpener)
+				Sharpener = null;
 		}
 
 		public void ShowHideLoupe ()
 		{
-			if (loupe == null) {
-				loupe = new Loupe (this);
-				loupe.Destroyed += HandleLoupeDestroy;
-				loupe.Show ();
+			if (Loupe == null) {
+				Loupe = new Loupe (this);
+				Loupe.Destroyed += HandleLoupeDestroy;
+				Loupe.Show ();
 			} else {
-				loupe.Destroy ();
+				Loupe.Destroy ();
 			}
-
 		}
 
 		public void ShowSharpener ()
 		{
-			if (sharpener == null) {
-				sharpener = new Sharpener (this);
-				sharpener.Destroyed += HandleLoupeDestroy;
+			if (Sharpener == null) {
+				Sharpener = new Sharpener (this);
+				Sharpener.Destroyed += HandleLoupeDestroy;
 			}
 
-			sharpener.Show ();
+			Sharpener.Show ();
 		}
 
 		void OnPreferencesChanged (object sender, NotifyEventArgs args)
@@ -370,18 +359,17 @@ namespace FSpot.Widgets
 
 		protected override void ApplyColorTransform (Pixbuf pixbuf)
 		{
-			Cms.Profile screen_profile;
-			if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out screen_profile))
-				FSpot.ColorManagement.ApplyProfile (pixbuf, screen_profile);
+			if (ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screenProfile))
+				ColorManagement.ApplyProfile (pixbuf, screenProfile);
 		}
 
-		bool crop_helpers = true;
+		bool cropHelpers = true;
 		public bool CropHelpers {
-			get { return crop_helpers; }
+			get => cropHelpers;
 			set {
-				if (crop_helpers == value)
+				if (cropHelpers == value)
 					return;
-				crop_helpers = value;
+				cropHelpers = value;
 				QueueDraw ();
 			}
 		}

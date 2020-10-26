@@ -13,18 +13,21 @@
 
 using System;
 
-using Gtk;
+using FSpot.Utils;
+
 using Gdk;
 
-using FSpot.Utils;
-using TagLib.Image;
+using Gtk;
 
 using Hyena;
+
+using TagLib.Image;
 
 namespace FSpot.Widgets
 {
 	public partial class ImageView : Container
 	{
+
 		#region public API
 		protected ImageView (IntPtr raw) : base (raw) { }
 
@@ -48,13 +51,13 @@ namespace FSpot.Widgets
 
 		Pixbuf pixbuf;
 		public Pixbuf Pixbuf {
-			get { return pixbuf; }
+			get => pixbuf;
 			set {
 				if (pixbuf == value)
 					return;
 
 				pixbuf = value;
-				min_zoom = ComputeMinZoom (upscale);
+				MinZoom = ComputeMinZoom (upscale);
 
 				ComputeScaledSize ();
 				AdjustmentsChanged -= ScrollToAdjustments;
@@ -67,12 +70,12 @@ namespace FSpot.Widgets
 
 		ImageOrientation pixbuf_orientation;
 		public ImageOrientation PixbufOrientation {
-			get { return pixbuf_orientation; }
+			get => pixbuf_orientation;
 			set {
 				if (value == pixbuf_orientation)
 					return;
 				pixbuf_orientation = value;
-				min_zoom = ComputeMinZoom (upscale);
+				MinZoom = ComputeMinZoom (upscale);
 				ComputeScaledSize ();
 				QueueDraw ();
 			}
@@ -80,7 +83,7 @@ namespace FSpot.Widgets
 
 		CheckPattern check_pattern = CheckPattern.Dark;
 		public CheckPattern CheckPattern {
-			get { return check_pattern; }
+			get => check_pattern;
 			set {
 				if (check_pattern == value)
 					return;
@@ -97,7 +100,7 @@ namespace FSpot.Widgets
 
 		bool can_select;
 		public bool CanSelect {
-			get { return can_select; }
+			get => can_select;
 			set {
 				if (can_select == value)
 					return;
@@ -109,8 +112,8 @@ namespace FSpot.Widgets
 			}
 		}
 
-		Gdk.Rectangle selection = Rectangle.Zero;
-		public Gdk.Rectangle Selection {
+		Rectangle selection = Rectangle.Zero;
+		public Rectangle Selection {
 			get {
 				if (!can_select)
 					return Rectangle.Zero;
@@ -132,7 +135,7 @@ namespace FSpot.Widgets
 
 		double selection_xy_ratio;
 		public double SelectionXyRatio {
-			get { return selection_xy_ratio; }
+			get => selection_xy_ratio;
 			set {
 				if (selection_xy_ratio == value)
 					return;
@@ -149,8 +152,8 @@ namespace FSpot.Widgets
 		}
 
 		InterpType interpolation = InterpType.Bilinear;
-		public Gdk.InterpType Interpolation {
-			get { return interpolation; }
+		public InterpType Interpolation {
+			get => interpolation;
 			set {
 				if (interpolation == value)
 					return;
@@ -161,7 +164,7 @@ namespace FSpot.Widgets
 
 		double zoom = 1.0;
 		public double Zoom {
-			get { return zoom; }
+			get => zoom;
 			set {
 				// Zoom around the center of the image.
 				DoZoom (value, Allocation.Width / 2, Allocation.Height / 2);
@@ -170,12 +173,12 @@ namespace FSpot.Widgets
 
 		public void ZoomIn ()
 		{
-			Zoom *= ZOOM_FACTOR;
+			Zoom *= ZoomFactor;
 		}
 
 		public void ZoomOut ()
 		{
-			Zoom *= 1.0 / ZOOM_FACTOR;
+			Zoom *= 1.0 / ZoomFactor;
 		}
 
 		public void ZoomAboutPoint (double zoomIncrement, int x, int y)
@@ -187,20 +190,20 @@ namespace FSpot.Widgets
 
 		public void ZoomFit (bool upscale)
 		{
-			Gtk.ScrolledWindow scrolled = Parent as Gtk.ScrolledWindow;
+			var scrolled = Parent as ScrolledWindow;
 			if (scrolled != null)
-				scrolled.SetPolicy (Gtk.PolicyType.Never, Gtk.PolicyType.Never);
+				scrolled.SetPolicy (PolicyType.Never, PolicyType.Never);
 
-			min_zoom = ComputeMinZoom (upscale);
+			MinZoom = ComputeMinZoom (upscale);
 
 			this.upscale = upscale;
 
 			Fit = true;
-			DoZoom (MIN_ZOOM, Allocation.Width / 2, Allocation.Height / 2);
+			DoZoom (MinZoom, Allocation.Width / 2, Allocation.Height / 2);
 
 			if (scrolled != null) {
 				ThreadAssist.ProxyToMain (() => {
-					scrolled.SetPolicy (Gtk.PolicyType.Automatic, Gtk.PolicyType.Automatic);
+					scrolled.SetPolicy (PolicyType.Automatic, PolicyType.Automatic);
 				});
 			}
 		}
@@ -238,13 +241,13 @@ namespace FSpot.Widgets
 		public Rectangle ImageCoordsToWindow (Rectangle image)
 		{
 			if (Pixbuf == null)
-				return Gdk.Rectangle.Zero;
+				return Rectangle.Zero;
 
 			image = PixbufUtils.TransformOrientation (Pixbuf.Width, Pixbuf.Height, image, pixbuf_orientation);
 			int x_offset = scaled_width < Allocation.Width ? (int)(Allocation.Width - scaled_width) / 2 : -XOffset;
 			int y_offset = scaled_height < Allocation.Height ? (int)(Allocation.Height - scaled_height) / 2 : -YOffset;
 
-			Gdk.Rectangle win = Gdk.Rectangle.Zero;
+			Rectangle win = Rectangle.Zero;
 			win.X = (int)Math.Floor (image.X * (double)(scaled_width - 1) / (((int)pixbuf_orientation <= 4 ? Pixbuf.Width : Pixbuf.Height) - 1) + 0.5) + x_offset;
 			win.Y = (int)Math.Floor (image.Y * (double)(scaled_height - 1) / (((int)pixbuf_orientation <= 4 ? Pixbuf.Height : Pixbuf.Width) - 1) + 0.5) + y_offset;
 			win.Width = (int)Math.Floor ((image.X + image.Width) * (double)(scaled_width - 1) / (((int)pixbuf_orientation <= 4 ? Pixbuf.Width : Pixbuf.Height) - 1) + 0.5) - win.X + x_offset;
@@ -259,17 +262,10 @@ namespace FSpot.Widgets
 
 		#region protected API
 
-		protected static double ZOOM_FACTOR = 1.1;
+		protected static double ZoomFactor { get; } = 1.1;
 
-		protected double max_zoom = 10.0;
-		protected double MAX_ZOOM {
-			get { return max_zoom; }
-		}
-
-		protected double min_zoom = 0.1;
-		protected double MIN_ZOOM {
-			get { return min_zoom; }
-		}
+		protected double MaxZoom { get; } = 10.0;
+		protected double MinZoom { get; private set; } = 0.1;
 
 		bool upscale;
 		protected void ZoomFit ()
@@ -287,18 +283,18 @@ namespace FSpot.Widgets
 
 		protected override void OnRealized ()
 		{
-			SetFlag (Gtk.WidgetFlags.Realized);
+			SetFlag (WidgetFlags.Realized);
 			GdkWindow = new Gdk.Window (ParentWindow,
-					new Gdk.WindowAttr {
+					new WindowAttr {
 						WindowType = Gdk.WindowType.Child,
 						X = Allocation.X,
 						Y = Allocation.Y,
 						Width = Allocation.Width,
 						Height = Allocation.Height,
-						Wclass = Gdk.WindowClass.InputOutput,
+						Wclass = WindowClass.InputOutput,
 						Visual = ParentWindow.Visual,
 						Colormap = ParentWindow.Colormap,
-						Mask = this.Events
+						Mask = Events
 							| EventMask.ExposureMask
 							| EventMask.ButtonPressMask
 							| EventMask.ButtonReleaseMask
@@ -308,37 +304,38 @@ namespace FSpot.Widgets
 							| EventMask.KeyPressMask
 							| EventMask.LeaveNotifyMask
 					},
-					Gdk.WindowAttributesType.X | Gdk.WindowAttributesType.Y |
-					Gdk.WindowAttributesType.Visual | Gdk.WindowAttributesType.Colormap);
+					WindowAttributesType.X | WindowAttributesType.Y |
+					WindowAttributesType.Visual | WindowAttributesType.Colormap);
 
 			GdkWindow.SetBackPixmap (null, false);
 			GdkWindow.UserData = Handle;
 
 			Style.Attach (GdkWindow);
-			Style.SetBackground (GdkWindow, Gtk.StateType.Normal);
+			Style.SetBackground (GdkWindow, StateType.Normal);
 
 			OnRealizedChildren ();
 		}
 
 		protected override void OnMapped ()
 		{
-			SetFlag (Gtk.WidgetFlags.Mapped);
+			SetFlag (WidgetFlags.Mapped);
 			OnMappedChildren ();
 			GdkWindow.Show ();
 		}
 
-		protected override void OnSizeRequested (ref Gtk.Requisition requisition)
+		protected override void OnSizeRequested (ref Requisition requisition)
 		{
 			requisition.Width = requisition.Height = 0;
 			OnSizeRequestedChildren ();
 		}
 
-		protected override void OnSizeAllocated (Gdk.Rectangle allocation)
+		protected override void OnSizeAllocated (Rectangle allocation)
 		{
-			min_zoom = ComputeMinZoom (upscale);
+			MinZoom = ComputeMinZoom (upscale);
 
-			if (Fit || zoom < MIN_ZOOM)
-				zoom = MIN_ZOOM;
+			if (Fit || zoom < MinZoom)
+				zoom = MinZoom;
+
 			// Since this affects the zoom_scale we should alert it
 			ZoomChanged?.Invoke (this, EventArgs.Empty);
 
@@ -361,7 +358,7 @@ namespace FSpot.Widgets
 				ZoomFit (upscale);
 		}
 
-		protected override bool OnExposeEvent (Gdk.EventExpose evnt)
+		protected override bool OnExposeEvent (EventExpose evnt)
 		{
 			if (evnt.Window != GdkWindow)
 				return false;
@@ -388,29 +385,29 @@ namespace FSpot.Widgets
 			return true;
 		}
 
-		protected override void OnSetScrollAdjustments (Gtk.Adjustment hadjustment, Gtk.Adjustment vadjustment)
+		protected override void OnSetScrollAdjustments (Adjustment hadjustment, Adjustment vadjustment)
 		{
 			if (hadjustment == null)
-				hadjustment = new Gtk.Adjustment (0, 0, 0, 0, 0, 0);
+				hadjustment = new Adjustment (0, 0, 0, 0, 0, 0);
 			if (vadjustment == null)
-				vadjustment = new Gtk.Adjustment (0, 0, 0, 0, 0, 0);
+				vadjustment = new Adjustment (0, 0, 0, 0, 0, 0);
 
-			bool need_change = false;
+			bool needChange = false;
 
 			if (Hadjustment != hadjustment) {
 				Hadjustment = hadjustment;
 				Hadjustment.Upper = scaled_width;
 				Hadjustment.ValueChanged += HandleAdjustmentsValueChanged;
-				need_change = true;
+				needChange = true;
 			}
 			if (Vadjustment != vadjustment) {
 				Vadjustment = vadjustment;
 				Vadjustment.Upper = scaled_height;
 				Vadjustment.ValueChanged += HandleAdjustmentsValueChanged;
-				need_change = true;
+				needChange = true;
 			}
 
-			if (need_change)
+			if (needChange)
 				HandleAdjustmentsValueChanged (this, EventArgs.Empty);
 		}
 
@@ -454,13 +451,12 @@ namespace FSpot.Widgets
 				handled = handled || OnSelectionMotionNotifyEvent (evnt);
 
 			return handled || base.OnMotionNotifyEvent (evnt);
-
 		}
 
 		protected override bool OnScrollEvent (EventScroll evnt)
 		{
 			if ((evnt.State & ModifierType.ShiftMask) == 0) {//no shift, let's zoom
-				ZoomAboutPoint ((evnt.Direction == ScrollDirection.Up || evnt.Direction == ScrollDirection.Right) ? ZOOM_FACTOR : 1.0 / ZOOM_FACTOR,
+				ZoomAboutPoint ((evnt.Direction == ScrollDirection.Up || evnt.Direction == ScrollDirection.Right) ? ZoomFactor : 1.0 / ZoomFactor,
 					(int)evnt.X, (int)evnt.Y);
 				return true;
 			}
@@ -486,8 +482,6 @@ namespace FSpot.Widgets
 
 			bool handled = true;
 			int x, y;
-			Gdk.ModifierType type;
-
 			switch (evnt.Key) {
 			case Gdk.Key.Up:
 			case Gdk.Key.KP_Up:
@@ -528,12 +522,12 @@ namespace FSpot.Widgets
 				break;
 			case Gdk.Key.KP_1:
 			case Gdk.Key.Key_1:
-				GdkWindow.GetPointer (out x, out y, out type);
+				GdkWindow.GetPointer (out x, out y, out _);
 				DoZoom (1.0, x, y);
 				break;
 			case Gdk.Key.Key_2:
 			case Gdk.Key.KP_2:
-				GdkWindow.GetPointer (out x, out y, out type);
+				GdkWindow.GetPointer (out x, out y, out _);
 				DoZoom (2.0, x, y);
 				break;
 			default:
@@ -564,15 +558,15 @@ namespace FSpot.Widgets
 		/// </param>
 		void DoZoom (double zoom, int x, int y)
 		{
-			Fit = zoom == MIN_ZOOM;
+			Fit = zoom == MinZoom;
 
-			if (zoom == this.zoom || Math.Abs (this.zoom - zoom) < Double.Epsilon) {
+			if (zoom == this.zoom || Math.Abs (this.zoom - zoom) < double.Epsilon) {
 				// Don't recalculate if the zoom factor stays the same.
 				return;
 			}
 
 			// Clamp the zoom factor within the [ MIN_ZOOM , MAX_ZOOM ] interval.
-			zoom = Math.Max (Math.Min (zoom, MAX_ZOOM), MIN_ZOOM);
+			zoom = Math.Max (Math.Min (zoom, MaxZoom), MinZoom);
 
 			this.zoom = zoom;
 
@@ -647,32 +641,31 @@ namespace FSpot.Widgets
 												 area.Width,
 												 area.Height),
 										  PixbufUtils.ReverseTransformation (pixbuf_orientation));
-			using (Pixbuf temp_pixbuf = new Pixbuf (Colorspace.Rgb, false, 8, pixbuf_area.Width, pixbuf_area.Height)) {
-				if (Pixbuf.HasAlpha)
-					temp_pixbuf.Fill (0x00000000);
 
-				Pixbuf.CompositeColor (temp_pixbuf,
-							   0, 0,
-							   pixbuf_area.Width, pixbuf_area.Height,
-							   -pixbuf_area.X, -pixbuf_area.Y,
-							   zoom, zoom,
-							   zoom == 1.0 ? InterpType.Nearest : interpolation, 255,
-							   pixbuf_area.X, pixbuf_area.Y,
-							   CheckPattern.CheckSize, CheckPattern.Color1, CheckPattern.Color2);
+			using var temp_pixbuf = new Pixbuf (Colorspace.Rgb, false, 8, pixbuf_area.Width, pixbuf_area.Height);
+			if (Pixbuf.HasAlpha)
+				temp_pixbuf.Fill (0x00000000);
+
+			Pixbuf.CompositeColor (temp_pixbuf,
+						   0, 0,
+						   pixbuf_area.Width, pixbuf_area.Height,
+						   -pixbuf_area.X, -pixbuf_area.Y,
+						   zoom, zoom,
+						   zoom == 1.0 ? InterpType.Nearest : interpolation, 255,
+						   pixbuf_area.X, pixbuf_area.Y,
+						   CheckPattern.CheckSize, CheckPattern.Color1, CheckPattern.Color2);
 
 
-				ApplyColorTransform (temp_pixbuf);
+			ApplyColorTransform (temp_pixbuf);
 
-				using (var dest_pixbuf = PixbufUtils.TransformOrientation (temp_pixbuf, pixbuf_orientation)) {
-					GdkWindow.DrawPixbuf (Style.BlackGC,
-								  dest_pixbuf,
-								  0, 0,
-								  area.X, area.Y,
-								  area.Width, area.Height,
-								  RgbDither.Max,
-								  area.X - x_offset, area.Y - y_offset);
-				}
-			}
+			using var dest_pixbuf = PixbufUtils.TransformOrientation (temp_pixbuf, pixbuf_orientation);
+			GdkWindow.DrawPixbuf (Style.BlackGC,
+						  dest_pixbuf,
+						  0, 0,
+						  area.X, area.Y,
+						  area.Width, area.Height,
+						  RgbDither.Max,
+						  area.X - x_offset, area.Y - y_offset);
 		}
 
 		uint scaled_width, scaled_height;
@@ -784,16 +777,15 @@ namespace FSpot.Widgets
 
 			Rectangle win_selection = ImageCoordsToWindow (selection);
 			using (var evnt_region = evnt.Region.Copy ()) {
-				using (Region r = new Region ()) {
+				using (var r = new Region ()) {
 					r.UnionWithRect (win_selection);
 					evnt_region.Subtract (r);
 				}
 
-				using (Cairo.Context ctx = CairoHelper.Create (GdkWindow)) {
-					ctx.SetSourceRGBA (.5, .5, .5, .7);
-					CairoHelper.Region (ctx, evnt_region);
-					ctx.Fill ();
-				}
+				using Cairo.Context ctx = CairoHelper.Create (GdkWindow);
+				ctx.SetSourceRGBA (.5, .5, .5, .7);
+				CairoHelper.Region (ctx, evnt_region);
+				ctx.Fill ();
 			}
 			return true;
 		}
@@ -816,11 +808,11 @@ namespace FSpot.Widgets
 			return DragMode.None;
 		}
 
-		bool is_dragging_selection;
-		bool fixed_height;
-		bool fixed_width;
-		bool is_moving_selection;
-		Point selection_anchor = Point.Zero;
+		bool isDraggingSelection;
+		bool fixedHeight;
+		bool fixedWidth;
+		bool isMovingSelection;
+		Point selectionAnchor = Point.Zero;
 
 		bool OnSelectionButtonPressEvent (EventButton evnt)
 		{
@@ -828,56 +820,56 @@ namespace FSpot.Widgets
 				return false;
 
 			if (evnt.Type == EventType.TwoButtonPress) {
-				is_dragging_selection = false;
-				is_moving_selection = false;
+				isDraggingSelection = false;
+				isMovingSelection = false;
 				return false;
 			}
 
 			Point img = WindowCoordsToImage (new Point ((int)evnt.X, (int)evnt.Y));
 			switch (GetDragMode ((int)evnt.X, (int)evnt.Y)) {
 			case DragMode.None:
-				is_dragging_selection = true;
+				isDraggingSelection = true;
 				PointerMode = PointerMode.Select;
 				Selection = Rectangle.Zero;
-				selection_anchor = img;
+				selectionAnchor = img;
 				break;
 
 			case DragMode.Extend:
 				Rectangle win_sel = ImageCoordsToWindow (Selection);
-				is_dragging_selection = true;
+				isDraggingSelection = true;
 				if (Math.Abs (win_sel.X - evnt.X) < SELECTION_SNAP_DISTANCE &&
 					Math.Abs (win_sel.Y - evnt.Y) < SELECTION_SNAP_DISTANCE) {              //TopLeft
-					selection_anchor = new Point (Selection.X + Selection.Width, Selection.Y + Selection.Height);
+					selectionAnchor = new Point (Selection.X + Selection.Width, Selection.Y + Selection.Height);
 				} else if (Math.Abs (win_sel.X + win_sel.Width - evnt.X) < SELECTION_SNAP_DISTANCE &&
 					   Math.Abs (win_sel.Y - evnt.Y) < SELECTION_SNAP_DISTANCE) {           //TopRight
-					selection_anchor = new Point (Selection.X, Selection.Y + Selection.Height);
+					selectionAnchor = new Point (Selection.X, Selection.Y + Selection.Height);
 				} else if (Math.Abs (win_sel.X - evnt.X) < SELECTION_SNAP_DISTANCE &&
 					   Math.Abs (win_sel.Y + win_sel.Height - evnt.Y) < SELECTION_SNAP_DISTANCE) {  //BottomLeft
-					selection_anchor = new Point (Selection.X + Selection.Width, Selection.Y);
+					selectionAnchor = new Point (Selection.X + Selection.Width, Selection.Y);
 				} else if (Math.Abs (win_sel.X + win_sel.Width - evnt.X) < SELECTION_SNAP_DISTANCE &&
 					   Math.Abs (win_sel.Y + win_sel.Height - evnt.Y) < SELECTION_SNAP_DISTANCE) {  //BottomRight
-					selection_anchor = new Point (Selection.X, Selection.Y);
+					selectionAnchor = new Point (Selection.X, Selection.Y);
 				} else if (Math.Abs (win_sel.X - evnt.X) < SELECTION_SNAP_DISTANCE) {           //Left
-					selection_anchor = new Point (Selection.X + Selection.Width, Selection.Y);
-					fixed_height = true;
+					selectionAnchor = new Point (Selection.X + Selection.Width, Selection.Y);
+					fixedHeight = true;
 				} else if (Math.Abs (win_sel.X + win_sel.Width - evnt.X) < SELECTION_SNAP_DISTANCE) {   //Right
-					selection_anchor = new Point (Selection.X, Selection.Y);
-					fixed_height = true;
+					selectionAnchor = new Point (Selection.X, Selection.Y);
+					fixedHeight = true;
 				} else if (Math.Abs (win_sel.Y - evnt.Y) < SELECTION_SNAP_DISTANCE) {           //Top
-					selection_anchor = new Point (Selection.X, Selection.Y + Selection.Height);
-					fixed_width = true;
+					selectionAnchor = new Point (Selection.X, Selection.Y + Selection.Height);
+					fixedWidth = true;
 				} else if (Math.Abs (win_sel.Y + win_sel.Height - evnt.Y) < SELECTION_SNAP_DISTANCE) {  //Bottom
-					selection_anchor = new Point (Selection.X, Selection.Y);
-					fixed_width = true;
+					selectionAnchor = new Point (Selection.X, Selection.Y);
+					fixedWidth = true;
 				} else {
-					fixed_width = fixed_height = false;
-					is_dragging_selection = false;
+					fixedWidth = fixedHeight = false;
+					isDraggingSelection = false;
 				}
 				break;
 
 			case DragMode.Move:
-				is_moving_selection = true;
-				selection_anchor = img;
+				isMovingSelection = true;
+				selectionAnchor = img;
 				SelectionSetPointer ((int)evnt.X, (int)evnt.Y);
 				break;
 			}
@@ -890,9 +882,9 @@ namespace FSpot.Widgets
 			if (evnt.Button != 1)
 				return false;
 
-			is_dragging_selection = false;
-			is_moving_selection = false;
-			fixed_width = fixed_height = false;
+			isDraggingSelection = false;
+			isMovingSelection = false;
+			fixedWidth = fixedHeight = false;
 
 			SelectionSetPointer ((int)evnt.X, (int)evnt.Y);
 			return true;
@@ -900,7 +892,7 @@ namespace FSpot.Widgets
 
 		void SelectionSetPointer (int x, int y)
 		{
-			if (is_moving_selection)
+			if (isMovingSelection)
 				GdkWindow.Cursor = new Cursor (CursorType.Crosshair);
 			else {
 				switch (GetDragMode (x, y)) {
@@ -942,19 +934,16 @@ namespace FSpot.Widgets
 		bool OnSelectionMotionNotifyEvent (EventMotion evnt)
 		{
 			int x, y;
-			ModifierType mod;
-
 			if (evnt.IsHint)
-				GdkWindow.GetPointer (out x, out y, out mod);
+				GdkWindow.GetPointer (out x, out y, out _);
 			else {
 				x = (int)evnt.X;
 				y = (int)evnt.Y;
 			}
 
-
 			Point img = WindowCoordsToImage (new Point (x, y));
-			if (is_dragging_selection) {
-				Point win_anchor = ImageCoordsToWindow (selection_anchor);
+			if (isDraggingSelection) {
+				Point win_anchor = ImageCoordsToWindow (selectionAnchor);
 				if (Selection == Rectangle.Zero &&
 					Math.Abs (evnt.X - win_anchor.X) < SELECTION_THRESHOLD &&
 					Math.Abs (evnt.Y - win_anchor.Y) < SELECTION_THRESHOLD) {
@@ -964,27 +953,27 @@ namespace FSpot.Widgets
 
 
 				if (selection_xy_ratio == 0)
-					Selection = new Rectangle (fixed_width ? Selection.X : Math.Min (selection_anchor.X, img.X),
-								   fixed_height ? Selection.Y : Math.Min (selection_anchor.Y, img.Y),
-								   fixed_width ? Selection.Width : Math.Abs (selection_anchor.X - img.X),
-								   fixed_height ? Selection.Height : Math.Abs (selection_anchor.Y - img.Y));
+					Selection = new Rectangle (fixedWidth ? Selection.X : Math.Min (selectionAnchor.X, img.X),
+								   fixedHeight ? Selection.Y : Math.Min (selectionAnchor.Y, img.Y),
+								   fixedWidth ? Selection.Width : Math.Abs (selectionAnchor.X - img.X),
+								   fixedHeight ? Selection.Height : Math.Abs (selectionAnchor.Y - img.Y));
 
 				else
-					Selection = ConstrainSelection (new Rectangle (Math.Min (selection_anchor.X, img.X),
-											   Math.Min (selection_anchor.Y, img.Y),
-											   Math.Abs (selection_anchor.X - img.X),
-											   Math.Abs (selection_anchor.Y - img.Y)),
-									fixed_width, fixed_height);
+					Selection = ConstrainSelection (new Rectangle (Math.Min (selectionAnchor.X, img.X),
+											   Math.Min (selectionAnchor.Y, img.Y),
+											   Math.Abs (selectionAnchor.X - img.X),
+											   Math.Abs (selectionAnchor.Y - img.Y)),
+									fixedWidth, fixedHeight);
 
 				SelectionSetPointer (x, y);
 				return true;
 			}
 
-			if (is_moving_selection) {
-				Selection = new Rectangle (Clamp (Selection.X + img.X - selection_anchor.X, 0, Pixbuf.Width - Selection.Width),
-							   Clamp (Selection.Y + img.Y - selection_anchor.Y, 0, Pixbuf.Height - Selection.Height),
+			if (isMovingSelection) {
+				Selection = new Rectangle (Clamp (Selection.X + img.X - selectionAnchor.X, 0, Pixbuf.Width - Selection.Width),
+							   Clamp (Selection.Y + img.Y - selectionAnchor.Y, 0, Pixbuf.Height - Selection.Height),
 							   Selection.Width, Selection.Height);
-				selection_anchor = img;
+				selectionAnchor = img;
 				SelectionSetPointer (x, y);
 				return true;
 			}
@@ -993,7 +982,7 @@ namespace FSpot.Widgets
 			return true;
 		}
 
-		Rectangle ConstrainSelection (Rectangle sel, bool fixed_width, bool fixed_height)
+		Rectangle ConstrainSelection (Rectangle sel, bool fixedWidth, bool fixedHeight)
 		{
 			double constrain = selection_xy_ratio;
 			if ((double)sel.Width > (double)sel.Height && selection_xy_ratio < 1 ||
