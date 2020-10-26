@@ -21,7 +21,7 @@ namespace FSpot.Import
 {
 	public interface IImportController
 	{
-		void DoImport (IDb db, IBrowsableCollection photos, IList<Tag> tagsToAttach, ImportPreferences preferences, Action<int, int> reportProgress, CancellationToken token);
+		void DoImport (IDb db, IBrowsableCollection photos, IList<Tag> tagsToAttach, ImportPreferences preferences, IProgress<int> progress, CancellationToken token);
 		int PhotosImported { get; }
 		IReadOnlyList<SafeUri> FailedImports { get; }
 	}

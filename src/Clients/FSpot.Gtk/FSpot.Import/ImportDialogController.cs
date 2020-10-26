@@ -75,11 +75,6 @@ namespace FSpot.Import
 			ThreadAssist.ProxyToMain (() => { StatusEvent?.Invoke (evnt); });
 		}
 
-		void ReportProgress (int current, int total)
-		{
-			ProgressUpdated?.Invoke (current, total);
-		}
-
 		#endregion
 
 		#region Source Switching
@@ -191,16 +186,17 @@ namespace FSpot.Import
 			FireEvent (ImportEvent.ImportStarted);
 
 			var importer = App.Instance.Container.Resolve<IImportController> ();
-			importer.DoImport (App.Instance.Database, Photos, attachTags, Preferences, (current, total) => ThreadAssist.ProxyToMain (() => ReportProgress (current, total)),
-				token);
+			var progress = new Progress<int> (progress => {
+				ProgressUpdated?.Invoke (progress, Photos.Count);
+			});
+			importer.DoImport (App.Instance.Database, Photos, attachTags, Preferences, progress, token);
 
 			PhotosImported = importer.PhotosImported;
 			FailedImports.Clear ();
 			FailedImports.AddRange (importer.FailedImports);
 
-			if (!token.IsCancellationRequested) {
+			if (!token.IsCancellationRequested)
 				importThread = null;
-			}
 
 			FireEvent (ImportEvent.ImportFinished);
 		}

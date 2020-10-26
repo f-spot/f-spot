@@ -53,7 +53,7 @@ namespace FSpot.Import
 			this.thumbnailLoader = thumbnailLoader;
 		}
 
-		public void DoImport (IDb db, IBrowsableCollection photos, IList<Tag> tagsToAttach, ImportPreferences preferences, Action<int, int> reportProgress, CancellationToken token)
+		public void DoImport (IDb db, IBrowsableCollection photos, IList<Tag> tagsToAttach, ImportPreferences preferences, IProgress<int> progress, CancellationToken token)
 		{
 			db.Sync = false;
 			createdDirectories = new Stack<SafeUri> ();
@@ -67,14 +67,13 @@ namespace FSpot.Import
 
 			try {
 				int i = 0;
-				int total = photos.Count;
 				foreach (var info in photos.Items) {
 					if (token.IsCancellationRequested) {
 						RollbackImport (db);
 						return;
 					}
 
-					reportProgress (i++, total);
+					progress.Report (i++);
 					try {
 						ImportPhoto (db, info, createdRoll, tagsToAttach, preferences.DuplicateDetect, preferences.CopyFiles);
 					} catch (Exception e) {

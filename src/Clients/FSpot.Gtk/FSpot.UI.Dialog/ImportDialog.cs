@@ -330,8 +330,10 @@ namespace FSpot.UI.Dialog
 		void OnControllerProgressUpdated (int current, int total)
 		{
 			var importingLabel = Catalog.GetString ("Importing Photos: {0} of {1}...");
-			progress_bar.Text = string.Format (importingLabel, current, total);
-			progress_bar.Fraction = (double)current / Math.Max (total, 1);
+			ThreadAssist.ProxyToMain (() => {
+				progress_bar.Text = string.Format (importingLabel, current, total);
+				progress_bar.Fraction = (double)current / Math.Max (total, 1);
+			});
 		}
 
 		void StartImport ()
