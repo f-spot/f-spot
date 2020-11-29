@@ -18,10 +18,11 @@ using System;
 using FSpot.Core;
 using FSpot.Loaders;
 using FSpot.Settings;
-
-using Hyena;
+using FSpot.Utils;
 
 using Gdk;
+
+using Hyena;
 
 using TagLib.Image;
 

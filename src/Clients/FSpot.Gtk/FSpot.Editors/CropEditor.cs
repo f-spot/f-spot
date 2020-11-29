@@ -14,15 +14,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 
-using FSpot;
 using FSpot.Settings;
 using FSpot.UI.Dialog;
 using FSpot.Utils;
 
-using Hyena;
-
 using Gdk;
+
 using Gtk;
+
+using Hyena;
 
 using Mono.Unix;
 
@@ -184,7 +184,7 @@ namespace FSpot.Editors
 
 		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile)
 		{
-			Rectangle selection = FSpot.Utils.PixbufUtils.TransformOrientation ((int)State.PhotoImageView.PixbufOrientation <= 4 ? input.Width : input.Height,
+			Rectangle selection = PixbufUtils.TransformOrientation ((int)State.PhotoImageView.PixbufOrientation <= 4 ? input.Width : input.Height,
 												(int)State.PhotoImageView.PixbufOrientation <= 4 ? input.Height : input.Width,
 												State.Selection, State.PhotoImageView.PixbufOrientation);
 			var edited = new Pixbuf (input.Colorspace,

@@ -49,23 +49,46 @@ namespace FSpot.Utils
 #endif
 		}
 
-		class NativeMethods
+		public class NativeMethods
 		{
-			[DllImport ("libgdk-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+			const string LIBGTK = "libgtk-win32-2.0-0.dll";
+
+			[DllImport (LIBGTK, CallingConvention = CallingConvention.Cdecl)]
 			public static extern uint gdk_x11_drawable_get_xid (IntPtr d);
 
-			[DllImport ("libgdk-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+			[DllImport (LIBGTK, CallingConvention = CallingConvention.Cdecl)]
 			public static extern IntPtr gdk_x11_display_get_xdisplay (IntPtr d);
 
-			[DllImport ("libgdk-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+			[DllImport (LIBGTK, CallingConvention = CallingConvention.Cdecl)]
 			public static extern IntPtr gdk_x11_visual_get_xvisual (IntPtr d);
 
 			// FIXME: get rid of this? (Make this cross platform)
 			[DllImport ("X11", CallingConvention = CallingConvention.Cdecl)]
 			public static extern uint XVisualIDFromVisual (IntPtr visual);
 
-			[DllImport ("libgdk-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+			[DllImport (LIBGTK, CallingConvention = CallingConvention.Cdecl)]
 			public static extern IntPtr gdk_x11_screen_lookup_visual (IntPtr screen, uint xvisualid);
+
+			[DllImport (LIBGTK, CallingConvention = CallingConvention.Cdecl)]
+			public static extern bool gdk_screen_is_composited (IntPtr screen);
+
+			[DllImport (LIBGTK, CallingConvention = CallingConvention.Cdecl)]
+			public static extern bool gdk_x11_screen_supports_net_wm_hint (IntPtr screen, IntPtr property);
+
+			[DllImport (LIBGTK, CallingConvention = CallingConvention.Cdecl)]
+			public static extern IntPtr gdk_screen_get_rgba_colormap (IntPtr screen);
+
+			[DllImport (LIBGTK, CallingConvention = CallingConvention.Cdecl)]
+			public static extern IntPtr gdk_screen_get_rgba_visual (IntPtr screen);
+
+			[DllImport ("libgtk-win32-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+			public static extern void gtk_widget_input_shape_combine_mask (IntPtr raw, IntPtr shape_mask, int offset_x, int offset_y);
+
+			[DllImport (LIBGTK, CallingConvention = CallingConvention.Cdecl)]
+			public static extern void gdk_property_change (IntPtr window, IntPtr property, IntPtr type, int format, int mode, uint[] data, int nelements);
+
+			[DllImport (LIBGTK, CallingConvention = CallingConvention.Cdecl)]
+			public static extern void gdk_property_change (IntPtr window, IntPtr property, IntPtr type, int format, int mode, byte[] data, int nelements);
 		}
 
 		public static uint GetXid (Drawable d)

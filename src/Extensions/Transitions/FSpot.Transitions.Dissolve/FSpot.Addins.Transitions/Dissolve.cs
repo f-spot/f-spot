@@ -11,13 +11,15 @@
 
 using System;
 
-using Mono.Unix;
-
 using Cairo;
-using Gdk;
 
 using FSpot.Transitions;
-using FSpot.Utils;
+
+using Gdk;
+
+using Hyena.Gui;
+
+using Mono.Unix;
 
 using Color = Cairo.Color;
 

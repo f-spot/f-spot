@@ -14,6 +14,7 @@
 using System.Collections.Generic;
 
 using FSpot.Cms;
+using FSpot.Utils;
 
 using Gdk;
 

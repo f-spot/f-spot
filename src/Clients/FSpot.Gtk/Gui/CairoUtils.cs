@@ -12,27 +12,27 @@
 using System;
 
 using Cairo;
+
 using Gdk;
 
 namespace FSpot.Utils
 {
 	public static class CairoUtils
 	{
-		public static void SetSourceColor (this Cairo.Context cr, Cairo.Color color)
+		public static void SetSourceColor (this Context cr, Cairo.Color color)
 			=> cr?.SetSourceRGBA (color.R, color.G, color.B, color.A);
 
-		public static Surface CreateSurface (Gdk.Drawable d)
+		public static Surface CreateSurface (Drawable d)
 		{
-			int width, height;
-			d.GetSize (out width, out height);
-			XlibSurface surface = new XlibSurface (GdkUtils.GetXDisplay (d.Display),
+			d.GetSize (out var width, out var height);
+			var surface = new XlibSurface (GdkUtils.GetXDisplay (d.Display),
 								   (IntPtr)GdkUtils.GetXid (d),
 								   GdkUtils.GetXVisual (d.Visual),
 								   width, height);
 			return surface;
 		}
 
-		unsafe public static Pixbuf PixbufFromSurface (ImageSurface source)
+		public static unsafe Pixbuf PixbufFromSurface (ImageSurface source)
 		{
 			int width = source.Width;
 			int height = source.Height;
@@ -41,7 +41,7 @@ namespace FSpot.Utils
 			Format format = source.Format;
 
 			Surface surface = new ImageSurface (gdkPixels, format, width, height, 4 * width);
-			using (Context ctx = new Context (surface)) {
+			using (var ctx = new Context (surface)) {
 				ctx.SetSourceSurface (source, 0, 0);
 
 				if (format == Format.ARGB32)
@@ -72,7 +72,7 @@ namespace FSpot.Utils
 			}
 
 			surface.Dispose ();
-			Pixbuf pixbuf = new Pixbuf (gdkPixels, Colorspace.Rgb, true, 8, width, height, 4 * width);
+			var pixbuf = new Pixbuf (gdkPixels, Colorspace.Rgb, true, 8, width, height, 4 * width);
 			return pixbuf;
 		}
 	}

@@ -17,6 +17,7 @@ using System.IO;
 
 using FSpot.Cms;
 using FSpot.Settings;
+using FSpot.Utils;
 
 namespace FSpot
 {
@@ -115,10 +116,10 @@ namespace FSpot
 			if (pixbuf == null || pixbuf.HasAlpha)
 				return;
 
-			imageProfile = imageProfile ?? Profile.CreateStandardRgb ();
+			imageProfile ??= Profile.CreateStandardRgb ();
 
 			Profile[] list = { imageProfile, destinationProfile };
-			var transform = new Transform (list,
+			using var transform = new Transform (list,
 								 PixbufUtils.PixbufCmsFormat (pixbuf),
 								 PixbufUtils.PixbufCmsFormat (pixbuf),
 								 Intent.Perceptual,

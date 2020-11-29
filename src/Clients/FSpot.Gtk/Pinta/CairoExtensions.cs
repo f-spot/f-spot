@@ -34,15 +34,18 @@
 /////////////////////////////////////////////////////////////////////////////////
 
 using System;
+
 using Cairo;
+
+using FSpot.Utils;
 
 namespace Pinta.Core
 {
 	public static class CairoExtensions
 	{
-		public unsafe static Gdk.Pixbuf ToPixbuf (this Cairo.ImageSurface surfSource)
+		public static unsafe Gdk.Pixbuf ToPixbuf (this ImageSurface surfSource)
 		{
-			Cairo.ImageSurface surf = surfSource.Clone ();
+			ImageSurface surf = surfSource.Clone ();
 			surf.Flush ();
 
 			ColorBgra* dstPtr = (ColorBgra*)surf.DataPtr;

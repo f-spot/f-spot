@@ -12,6 +12,7 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using FSpot.Imaging;
+using FSpot.Utils;
 
 using Gdk;
 
@@ -43,7 +44,7 @@ namespace FSpot.Filters
 				}
 
 				using (Pixbuf pixbuf = img.Load ((int)Size, (int)Size)) {
-					FSpot.Utils.PixbufUtils.CreateDerivedVersion (req.Current, dest_uri, 95, pixbuf);
+					PixbufUtils.CreateDerivedVersion (req.Current, dest_uri, 95, pixbuf);
 				}
 			}
 

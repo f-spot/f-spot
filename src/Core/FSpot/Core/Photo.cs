@@ -29,7 +29,7 @@ using Mono.Unix;
 
 namespace FSpot
 {
-	public class Photo : DbItem, IComparable<Photo>, IPhoto, IPhotoVersionable
+	public class Photo : DbItem, IComparable<Photo>, IPhotoVersionable
 	{
 		readonly IImageFileFactory imageFileFactory;
 		readonly IThumbnailService thumbnailService;
@@ -230,11 +230,11 @@ namespace FSpot
 
 		public void SetDefaultVersion (IPhotoVersion version)
 		{
-			var photo_version = version as PhotoVersion;
-			if (photo_version == null)
+			var photoVersion = version as PhotoVersion;
+			if (photoVersion == null)
 				throw new ArgumentException ("Not a valid version for this photo");
 
-			DefaultVersionId = photo_version.VersionId;
+			DefaultVersionId = photoVersion.VersionId;
 		}
 
 
@@ -242,29 +242,28 @@ namespace FSpot
 		public uint SaveVersion (Gdk.Pixbuf buffer, bool createVersion)
 		{
 			uint version = DefaultVersionId;
-			using (var img = imageFileFactory.Create (DefaultVersion.Uri)) {
-				// Always create a version if the source is not a jpeg for now.
-				createVersion = createVersion || imageFileFactory.IsJpeg (DefaultVersion.Uri);
+			using var img = imageFileFactory.Create (DefaultVersion.Uri);
+			// Always create a version if the source is not a jpeg for now.
+			createVersion = createVersion || imageFileFactory.IsJpeg (DefaultVersion.Uri);
 
-				if (buffer == null)
-					throw new ApplicationException ("invalid (null) image");
+			if (buffer == null)
+				throw new ApplicationException ("invalid (null) image");
 
+			if (createVersion)
+				version = CreateDefaultModifiedVersion (DefaultVersionId, false);
+
+			try {
+				var versionUri = VersionUri (version);
+
+				PixbufExtensions.CreateDerivedVersion (DefaultVersion.Uri, versionUri, 95, buffer);
+				GetVersion (version).ImportMD5 = HashUtils.GenerateMD5 (VersionUri (version));
+				DefaultVersionId = version;
+			} catch (Exception e) {
+				Log.Exception (e);
 				if (createVersion)
-					version = CreateDefaultModifiedVersion (DefaultVersionId, false);
+					DeleteVersion (version);
 
-				try {
-					var versionUri = VersionUri (version);
-
-					FSpot.Utils.PixbufUtils.CreateDerivedVersion (DefaultVersion.Uri, versionUri, 95, buffer);
-					GetVersion (version).ImportMD5 = HashUtils.GenerateMD5 (VersionUri (version));
-					DefaultVersionId = version;
-				} catch (Exception e) {
-					Log.Exception (e);
-					if (createVersion)
-						DeleteVersion (version);
-
-					throw;
-				}
+				throw;
 			}
 
 			return version;
@@ -314,9 +313,9 @@ namespace FSpot
 			// F-Spot photos directory, don't delete anything,
 			// even if it is empty
 			string photoUri = SafeUri.UriToFilename (FSpotConfiguration.PhotoUri.ToString ());
-			bool path_matched = directory.FullName.IndexOf (photoUri) > -1;
+			bool pathMatched = directory.FullName.IndexOf (photoUri) > -1;
 
-			if (directory.Name.Equals (photoUri) || !path_matched)
+			if (directory.Name.Equals (photoUri) || !pathMatched)
 				return;
 
 			if (DirectoryIsEmpty (directory)) {
@@ -346,18 +345,18 @@ namespace FSpot
 			extension ??= VersionUri (baseVersionId).GetExtension ();
 			SafeUri newBaseUri = DefaultVersion.BaseUri;
 			string filename = GetFilenameForVersionName (name, extension);
-			SafeUri original_uri = VersionUri (baseVersionId);
-			SafeUri new_uri = newBaseUri.Append (filename);
+			SafeUri originalUri = VersionUri (baseVersionId);
+			SafeUri newUri = newBaseUri.Append (filename);
 			string importMd5 = DefaultVersion.ImportMD5;
 
 			if (VersionNameExists (name))
 				throw new Exception ("This version name already exists");
 
 			if (create) {
-				if (File.Exists (new_uri.AbsolutePath))
-					throw new Exception ($"An object at this uri {new_uri} already exists");
+				if (File.Exists (newUri.AbsolutePath))
+					throw new Exception ($"An object at this uri {newUri} already exists");
 
-				File.Copy (original_uri.AbsolutePath, new_uri.AbsolutePath);
+				File.Copy (originalUri.AbsolutePath, newUri.AbsolutePath);
 			}
 
 			highestVersionId++;

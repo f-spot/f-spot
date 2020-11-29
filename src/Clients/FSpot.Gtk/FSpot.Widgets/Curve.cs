@@ -35,10 +35,10 @@ namespace FSpot.Widgets
 
 		public void Reset ()
 		{
-			CurveType old_type = CurveType;
+			CurveType oldType = CurveType;
 			CurveType = CurveType.Spline;
 			ResetVector ();
-			if (old_type != CurveType.Spline)
+			if (oldType != CurveType.Spline)
 				CurveTypeChanged?.Invoke (this, EventArgs.Empty);
 		}
 

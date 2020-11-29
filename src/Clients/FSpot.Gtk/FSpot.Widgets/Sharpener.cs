@@ -13,13 +13,14 @@
 
 using System;
 
+using FSpot.UI.Dialog;
+using FSpot.Utils;
+
 using Gtk;
 
-using Mono.Unix;
-
-using FSpot.UI.Dialog;
-
 using Hyena.Widgets;
+
+using Mono.Unix;
 
 namespace FSpot.Widgets
 {

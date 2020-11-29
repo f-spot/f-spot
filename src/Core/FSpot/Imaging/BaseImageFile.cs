@@ -36,8 +36,8 @@ namespace FSpot.Imaging
 			Uri = uri;
 			Orientation = ImageOrientation.TopLeft;
 
-			using var metadata_file = MetadataUtils.Parse (uri);
-			ExtractMetadata (metadata_file);
+			using var metadataFile = MetadataUtils.Parse (uri);
+			ExtractMetadata (metadataFile);
 		}
 
 		protected virtual void ExtractMetadata (TagLib.Image.File metadata)

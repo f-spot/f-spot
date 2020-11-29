@@ -23,7 +23,7 @@ namespace FSpot.Widgets
 			set { label.Text = value; }
 		}
 
-		public new Image Image { get; private set; }
+		public new Image Image { get; }
 
 		public ArrowType ArrowType {
 			get => arrow.ArrowType;
@@ -47,7 +47,7 @@ namespace FSpot.Widgets
 		public MenuButton (string label, Menu menu, ArrowType arrowType) : base ()
 		{
 			using var hbox = new HBox ();
-			
+
 			Image = new Image ();
 			hbox.PackStart (Image, false, false, 1);
 			Image.Show ();
@@ -68,10 +68,7 @@ namespace FSpot.Widgets
 
 		protected override void OnPressed ()
 		{
-			if (Menu == null)
-				return;
-			
-			Menu.Popup (null, null, Position, 0, Gtk.Global.CurrentEventTime);
+			Menu?.Popup (null, null, Position, 0, Gtk.Global.CurrentEventTime);
 		}
 
 		void Position (Menu menu, out int x, out int y, out bool push_in)

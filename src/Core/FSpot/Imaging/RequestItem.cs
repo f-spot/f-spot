@@ -69,9 +69,7 @@ namespace FSpot
 		protected virtual void Dispose (bool disposing)
 		{
 			if (disposing) {
-				if (result != null) {
-					result.Dispose ();
-				}
+				result?.Dispose ();
 			}
 		}
 	}

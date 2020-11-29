@@ -33,15 +33,15 @@ namespace FSpot.Filters
 
 		public bool Convert (FilterRequest req)
 		{
-			var dest_uri = req.TempUri (req.Current.GetExtension ());
+			var destUri = req.TempUri (req.Current.GetExtension ());
 
 			using (var img = App.Instance.Container.Resolve<IImageFileFactory> ().Create (req.Current)) {
-				using Pixbuf in_pixbuf = img.Load ();
-				using Pixbuf out_pixbuf = PixbufUtils.UnsharpMask (in_pixbuf, radius, amount, threshold, null);
-				FSpot.Utils.PixbufUtils.CreateDerivedVersion (req.Current, dest_uri, 95, out_pixbuf);
+				using Pixbuf inPixbuf = img.Load ();
+				using Pixbuf outPixbuf = PixbufUtils.UnsharpMask (inPixbuf, radius, amount, threshold, null);
+				PixbufUtils.CreateDerivedVersion (req.Current, destUri, 95, outPixbuf);
 			}
 
-			req.Current = dest_uri;
+			req.Current = destUri;
 			return true;
 		}
 	}

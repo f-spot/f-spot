@@ -27,6 +27,13 @@ namespace FSpot.Widgets
 		IPhoto[] items;
 		IPhoto[] old;
 
+		public event IBrowsableCollectionChangedHandler Changed;
+		public event IBrowsableCollectionItemsChangedHandler ItemsChanged;
+
+		public delegate void DetailedCollectionChanged (IBrowsableCollection collection, int[] ids);
+
+		public event DetailedCollectionChanged DetailedChanged;
+
 		public SelectionCollection (IBrowsableCollection collection)
 		{
 			selectedCells = new Dictionary<IPhoto, int> ();
@@ -44,8 +51,8 @@ namespace FSpot.Widgets
 			ClearCached ();
 
 			if (old != null) {
-				for (int i = 0; i < local.Length; i++) {
-					int parentIndex = parent.IndexOf (local[i]);
+				foreach (var photo in local) {
+					int parentIndex = parent.IndexOf (photo);
 					if (parentIndex >= 0)
 						Add (parentIndex, false);
 				}
@@ -69,12 +76,12 @@ namespace FSpot.Widgets
 				return;
 
 			var localIds = new List<int> ();
-			foreach (int parent_index in args.Items) {
+			foreach (int parentIndex in args.Items) {
 				// If the item isn't part of the selection ignore it
-				if (!Contains (collection[parent_index]))
+				if (!Contains (collection[parentIndex]))
 					return;
 
-				int localIndex = IndexOf (parent_index);
+				int localIndex = IndexOf (parentIndex);
 				if (localIndex >= 0)
 					localIds.Add (localIndex);
 			}
@@ -83,7 +90,7 @@ namespace FSpot.Widgets
 				return;
 
 			int[] localIdsItems = localIds.ToArray ();
-			ItemsChanged (this, new BrowsableEventArgs (localIdsItems, args.Changes));
+			ItemsChanged?.Invoke (this, new BrowsableEventArgs (localIdsItems, args.Changes));
 		}
 
 		public BitArray ToBitArray ()
@@ -224,12 +231,12 @@ namespace FSpot.Widgets
 			if (item == null)
 				return;
 
-			int parent_index = selectedCells[item];
+			int parentIndex = selectedCells[item];
 			selectedCells.Remove (item);
-			bitArray.Set (parent_index, false);
+			bitArray.Set (parentIndex, false);
 
 			if (notify)
-				SignalChange (new[] { parent_index });
+				SignalChange (new[] { parentIndex });
 		}
 
 		// Remove a range, except the start entry
@@ -289,13 +296,6 @@ namespace FSpot.Widgets
 
 			SignalChange (changedCell);
 		}
-
-		public event IBrowsableCollectionChangedHandler Changed;
-		public event IBrowsableCollectionItemsChangedHandler ItemsChanged;
-
-		public delegate void DetailedCollectionChanged (IBrowsableCollection collection, int[] ids);
-
-		public event DetailedCollectionChanged DetailedChanged;
 
 		void ClearCached ()
 		{

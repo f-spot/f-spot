@@ -13,9 +13,9 @@ using Gtk;
 
 namespace FSpot.Widgets
 {
-	public class ToolTipWindow : Gtk.Window
+	public class ToolTipWindow : Window
 	{
-		public ToolTipWindow () : base (Gtk.WindowType.Popup)
+		public ToolTipWindow () : base (WindowType.Popup)
 		{
 			Name = "gtk-tooltips";
 			AppPaintable = true;
@@ -24,7 +24,7 @@ namespace FSpot.Widgets
 
 		protected override bool OnExposeEvent (Gdk.EventExpose args)
 		{
-			Gtk.Style.PaintFlatBox (Style, GdkWindow, State, ShadowType.Out, args.Area,
+			Style.PaintFlatBox (Style, GdkWindow, State, ShadowType.Out, args.Area,
 							this, "tooltip", Allocation.X, Allocation.Y, Allocation.Width,
 							Allocation.Height);
 
