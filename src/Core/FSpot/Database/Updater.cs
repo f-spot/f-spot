@@ -28,21 +28,18 @@ namespace FSpot.Database
 {
 	public static class Updater
 	{
-		static IUpdaterUI dialog;
-		static readonly Dictionary<Version, Update> updates = new Dictionary<Version, Update> ();
-		static Version db_version;
-		static FSpotDatabaseConnection db;
+		static IUpdaterUI _dialog;
+		static readonly Dictionary<Version, Update> Updates = new Dictionary<Version, Update> ();
+		static Version _dbVersion;
+		static FSpotDatabaseConnection _db;
 		public static bool Silent { get; set; }
 
 		public static Version LatestVersion {
 			get {
-				if (updates == null || updates.Count == 0)
+				if (Updates == null || Updates.Count == 0)
 					return new Version (0, 0);
 
-				var keys = new List<Version> ();
-				foreach (Version k in updates.Keys) {
-					keys.Add (k);
-				}
+				var keys = new List<Version> (Updates.Keys);
 				keys.Sort ();
 
 				return keys[keys.Count - 1];
@@ -52,22 +49,22 @@ namespace FSpot.Database
 		static Updater ()
 		{
 			// Update from version 0 to 1: Remove empty Other tags
-			AddUpdate (new Version ("1"), delegate () {
-				string other_id = SelectSingleString ("SELECT id FROM tags WHERE name = 'Other'");
+			AddUpdate (new Version ("1"), delegate {
+				string otherId = SelectSingleString ("SELECT id FROM tags WHERE name = 'Other'");
 
-				if (other_id == null)
+				if (otherId == null)
 					return;
 
 				// Don't do anything if there are subtags
 				string tagCount = SelectSingleString (
-					$"SELECT COUNT(*) FROM tags WHERE category_id = {other_id}");
+					$"SELECT COUNT(*) FROM tags WHERE category_id = {otherId}");
 
 				if (tagCount == null || int.Parse (tagCount) != 0)
 					return;
 
 				// Don't do anything if there are photos tagged with this
 				string photoCount = SelectSingleString (
-					$"SELECT COUNT(*) FROM photo_tags WHERE tag_id = {other_id}");
+					$"SELECT COUNT(*) FROM photo_tags WHERE tag_id = {otherId}");
 
 				if (photoCount == null || int.Parse (photoCount) != 0)
 					return;
@@ -77,7 +74,7 @@ namespace FSpot.Database
 			});
 
 			// Update from version 1 to 2: Restore Other tags that were removed leaving dangling child tags
-			AddUpdate (new Version ("2"), delegate () {
+			AddUpdate (new Version ("2"), delegate {
 				string tagCount = SelectSingleString ("SELECT COUNT(*) FROM tags WHERE category_id != 0 AND category_id NOT IN (SELECT id FROM tags)");
 
 				// If there are no dangling tags, then don't do anything
@@ -95,25 +92,25 @@ namespace FSpot.Database
 			});
 
 			// Update from version 2 to 3: ensure that Hidden is the only tag left which is a real tag (not category)
-			AddUpdate (new Version ("3"), delegate () {
+			AddUpdate (new Version ("3"), delegate {
 				Execute ("UPDATE tags SET is_category = 1 WHERE name != 'Hidden'");
 			});
 
 			//Version 3.1, clean old (and unused) items in Export
-			AddUpdate (new Version (3, 1), delegate () {
+			AddUpdate (new Version (3, 1), delegate {
 				if (TableExists ("exports"))
 					ExecuteScalar ("DELETE FROM exports WHERE export_type='fspot:Folder'");
 			});
 
 			//Version 4.0, bump the version number to a integer, for backward compatibility
-			AddUpdate (new Version (4, 0), delegate () { });
+			AddUpdate (new Version (4, 0), delegate { });
 
 
 			//Version 5.0, add a roll_id field to photos, rename table 'imports' to 'rolls'
 			//and fix bgo 324425.
-			AddUpdate (new Version (5, 0), delegate () {
+			AddUpdate (new Version (5, 0), delegate {
 				Log.Debug ("Will add a roll_id field to photos!");
-				string tmp_photos = MoveTableToTemp ("photos");
+				string tmpPhotos = MoveTableToTemp ("photos");
 				Execute (
 					"CREATE TABLE photos (                                     " +
 					"	id                 INTEGER PRIMARY KEY NOT NULL,   " +
@@ -124,16 +121,16 @@ namespace FSpot.Database
 					"       roll_id            INTEGER NOT NULL,		   " +
 					"       default_version_id INTEGER NOT NULL		   " +
 					")");
-				ExecuteScalar ($"INSERT INTO photos SELECT id, time, directory_path, name, description, 0, default_version_id FROM {tmp_photos}");
+				ExecuteScalar ($"INSERT INTO photos SELECT id, time, directory_path, name, description, 0, default_version_id FROM {tmpPhotos}");
 
 				Log.Debug ("Will rename imports to rolls!");
-				string tmp_rolls = MoveTableToTemp ("imports");
+				string tmpRolls = MoveTableToTemp ("imports");
 				Execute (
 					"CREATE TABLE rolls (                                     " +
 					"	id                 INTEGER PRIMARY KEY NOT NULL,   " +
 					"       time               INTEGER NOT NULL	   	   " +
 					")");
-				ExecuteScalar ($"INSERT INTO rolls SELECT id, time FROM {tmp_rolls}");
+				ExecuteScalar ($"INSERT INTO rolls SELECT id, time FROM {tmpRolls}");
 
 				Log.Debug ("Cleaning weird descriptions, fixes bug #324425.");
 				Execute ("UPDATE photos SET description = \"\" WHERE description LIKE \"Invalid size of entry%\"");
@@ -141,14 +138,14 @@ namespace FSpot.Database
 
 
 			//Version 6.0, change tag icon f-spot-tag-other to emblem-generic
-			AddUpdate (new Version (6, 0), delegate () {
+			AddUpdate (new Version (6, 0), delegate {
 				ExecuteScalar ("UPDATE tags SET icon = \"stock_icon:emblem-generic\" " +
 						" WHERE icon LIKE \"stock_icon:f-spot-other.png\"");
 			});
 
 			//Update to version 7.0, keep photo uri instead of path
-			AddUpdate (new Version (7, 0), delegate () {
-				string tmp_photos = MoveTableToTemp ("photos");
+			AddUpdate (new Version (7, 0), delegate {
+				string tmpPhotos = MoveTableToTemp ("photos");
 				Execute (
 					"CREATE TABLE photos (" +
 					"	id                 INTEGER PRIMARY KEY NOT NULL," +
@@ -158,15 +155,14 @@ namespace FSpot.Database
 					"       roll_id            INTEGER NOT NULL," +
 					"       default_version_id INTEGER NOT NULL" +
 					")");
-				Execute (string.Format (
-					"INSERT INTO photos (id, time, uri, description, roll_id, default_version_id)	" +
-					"SELECT id, time, 'file://' || directory_path || '/' || name, 		" +
-					"description, roll_id, default_version_id FROM {0}", tmp_photos));
+				Execute ("INSERT INTO photos (id, time, uri, description, roll_id, default_version_id)	" +
+				         "SELECT id, time, 'file://' || directory_path || '/' || name, 		" +
+				         $"description, roll_id, default_version_id FROM {tmpPhotos}");
 			}, true);
 
 			// Update to version 8.0, store full version uri
-			AddUpdate (new Version (8, 0), delegate () {
-				string tmp_versions = MoveTableToTemp ("photo_versions");
+			AddUpdate (new Version (8, 0), delegate {
+				string tmpVersions = MoveTableToTemp ("photo_versions");
 				Execute (
 					"CREATE TABLE photo_versions (          " +
 					"       photo_id        INTEGER,        " +
@@ -175,20 +171,19 @@ namespace FSpot.Database
 					"       uri             STRING NOT NULL " +
 					")");
 
-				Hyena.Data.Sqlite.IDataReader reader = ExecuteReader (string.Format (
-						"SELECT photo_id, version_id, name, uri " +
-						"FROM {0}, photos " +
-						"WHERE photo_id = id ", tmp_versions));
+				Hyena.Data.Sqlite.IDataReader reader = ExecuteReader ("SELECT photo_id, version_id, name, uri " +
+				                                                      $"FROM {tmpVersions}, photos " +
+				                                                      "WHERE photo_id = id ");
 
 				while (reader.Read ()) {
-					System.Uri photo_uri = new System.Uri (reader[3] as string);
-					string name_without_extension = System.IO.Path.GetFileNameWithoutExtension (photo_uri.AbsolutePath);
-					string extension = System.IO.Path.GetExtension (photo_uri.AbsolutePath);
+					System.Uri photoUri = new System.Uri (reader[3] as string);
+					string nameWithoutExtension = System.IO.Path.GetFileNameWithoutExtension (photoUri.AbsolutePath);
+					string extension = System.IO.Path.GetExtension (photoUri.AbsolutePath);
 
-					string uri = photo_uri.Scheme + "://" +
-						photo_uri.Host +
-						System.IO.Path.GetDirectoryName (photo_uri.AbsolutePath) + "/" +
-						name_without_extension + " (" + (reader[2]).ToString () + ")" + extension;
+					string uri = photoUri.Scheme + "://" +
+						photoUri.Host +
+						System.IO.Path.GetDirectoryName (photoUri.AbsolutePath) + "/" +
+						nameWithoutExtension + " (" + (reader[2]).ToString () + ")" + extension;
 
 					Execute (new HyenaSqliteCommand (
 						"INSERT INTO photo_versions (photo_id, version_id, name, uri) " +
@@ -202,8 +197,8 @@ namespace FSpot.Database
 			}, true);
 
 			// Update to version 9.0
-			AddUpdate (new Version (9, 0), delegate () {
-				string tmp_versions = MoveTableToTemp ("photo_versions");
+			AddUpdate (new Version (9, 0), delegate {
+				string tmpVersions = MoveTableToTemp ("photo_versions");
 				Execute (
 					"CREATE TABLE photo_versions (          " +
 					"       photo_id        INTEGER,        " +
@@ -212,15 +207,13 @@ namespace FSpot.Database
 					"       uri             STRING NOT NULL," +
 					"	protected	BOOLEAN		" +
 					")");
-				Execute (string.Format (
-					"INSERT INTO photo_versions (photo_id, version_id, name, uri, protected) " +
-					"SELECT photo_id, version_id, name, uri, 0 " +
-					"FROM {0} ", tmp_versions));
+				Execute ("INSERT INTO photo_versions (photo_id, version_id, name, uri, protected) " +
+				         "SELECT photo_id, version_id, name, uri, 0 " + $"FROM {tmpVersions} ");
 			});
 
 			// Update to version 10.0, make id autoincrement
-			AddUpdate (new Version (10, 0), delegate () {
-				string tmp_photos = MoveTableToTemp ("photos");
+			AddUpdate (new Version (10, 0), delegate {
+				string tmpPhotos = MoveTableToTemp ("photos");
 				Execute (
 					"CREATE TABLE photos (                                     " +
 					"	id                 INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
@@ -231,15 +224,13 @@ namespace FSpot.Database
 					"	default_version_id INTEGER NOT NULL		   " +
 					")");
 
-				Execute (string.Format (
-					"INSERT INTO photos (id, time, uri, description, roll_id, default_version_id) " +
-					"SELECT id, time, uri, description, roll_id, default_version_id  " +
-					"FROM  {0} ", tmp_photos));
+				Execute ("INSERT INTO photos (id, time, uri, description, roll_id, default_version_id) " +
+				         "SELECT id, time, uri, description, roll_id, default_version_id  " + $"FROM  {tmpPhotos} ");
 			}, false);
 
 			// Update to version 11.0, rating
-			AddUpdate (new Version (11, 0), delegate () {
-				string tmp_photos = MoveTableToTemp ("photos");
+			AddUpdate (new Version (11, 0), delegate {
+				string tmpPhotos = MoveTableToTemp ("photos");
 				Execute (
 					"CREATE TABLE photos (                                     " +
 					"	id                 INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
@@ -251,40 +242,38 @@ namespace FSpot.Database
 					"       rating             INTEGER NULL			   " +
 					")");
 
-				Execute (string.Format (
-					"INSERT INTO photos (id, time, uri, description, roll_id, default_version_id, rating) " +
-					"SELECT id, time, uri, description, roll_id, default_version_id, null  " +
-					"FROM  {0} ", tmp_photos));
+				Execute ("INSERT INTO photos (id, time, uri, description, roll_id, default_version_id, rating) " +
+				         "SELECT id, time, uri, description, roll_id, default_version_id, null  " +
+				         $"FROM  {tmpPhotos} ");
 			});
 
 			//Update to version 12.0, remove dead associations, bgo #507950, #488545
-			AddUpdate (new Version (12, 0), delegate () {
+			AddUpdate (new Version (12, 0), delegate {
 				Execute ("DELETE FROM photo_tags WHERE tag_id NOT IN (SELECT id FROM tags)");
 			});
 
 			// Update to version 13.0
-			AddUpdate (new Version (13, 0), delegate () {
+			AddUpdate (new Version (13, 0), delegate {
 				Execute ("UPDATE photos SET rating = 0 WHERE rating IS NULL");
 			});
 
 			// Update to version 14.0
-			AddUpdate (new Version (14, 0), delegate () {
+			AddUpdate (new Version (14, 0), delegate {
 				Execute ("UPDATE photos SET rating = 0 WHERE rating IS NULL");
 			});
 
 			// Update to version 15.0
-			AddUpdate (new Version (15, 0), delegate () {
-				string tmp_photo_tags = MoveTableToTemp ("photo_tags");
+			AddUpdate (new Version (15, 0), delegate {
+				string tmpPhotoTags = MoveTableToTemp ("photo_tags");
 				Execute (
 					"CREATE TABLE photo_tags (        " +
 					"	photo_id      INTEGER,    " +
 					"       tag_id        INTEGER,    " +
 					"       UNIQUE (photo_id, tag_id) " +
 					")");
-				Execute (string.Format (
-					"INSERT OR IGNORE INTO photo_tags (photo_id, tag_id) " +
-					"SELECT photo_id, tag_id FROM {0}", tmp_photo_tags));
-				string tmp_photo_versions = MoveTableToTemp ("photo_versions");
+				Execute ("INSERT OR IGNORE INTO photo_tags (photo_id, tag_id) " +
+				         $"SELECT photo_id, tag_id FROM {tmpPhotoTags}");
+				string tmpPhotoVersions = MoveTableToTemp ("photo_versions");
 				Execute (
 					"CREATE TABLE photo_versions (		" +
 					"	photo_id	INTEGER,	" +
@@ -294,15 +283,13 @@ namespace FSpot.Database
 					"	protected	BOOLEAN, 	" +
 					"	UNIQUE (photo_id, version_id)	" +
 					")");
-				Execute (string.Format (
-					"INSERT OR IGNORE INTO photo_versions 		" +
-					"(photo_id, version_id, name, uri, protected)	" +
-					"SELECT photo_id, version_id, name, uri, protected FROM {0}", tmp_photo_versions));
+				Execute ("INSERT OR IGNORE INTO photo_versions 		" + "(photo_id, version_id, name, uri, protected)	" +
+				         $"SELECT photo_id, version_id, name, uri, protected FROM {tmpPhotoVersions}");
 			});
 
 			// Update to version 16.0
-			AddUpdate (new Version (16, 0), delegate () {
-				string temp_table = MoveTableToTemp ("photos");
+			AddUpdate (new Version (16, 0), delegate {
+				string tempTable = MoveTableToTemp ("photos");
 
 				Execute ("CREATE TABLE photos ( " +
 					  "	id                 INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,   " +
@@ -316,17 +303,13 @@ namespace FSpot.Database
 					  ")"
 				 );
 
-				Execute (string.Format ("INSERT INTO photos (id, time, uri, description, roll_id, " +
-							 "default_version_id, rating, md5_sum) " +
-							 "SELECT id, time, uri, description, roll_id, " +
-							 "       default_version_id, rating, '' " +
-							 "FROM   {0} ",
-							 temp_table
-							)
-				 );
+				Execute ("INSERT INTO photos (id, time, uri, description, roll_id, " +
+				         "default_version_id, rating, md5_sum) " + "SELECT id, time, uri, description, roll_id, " +
+				         "       default_version_id, rating, '' " + $"FROM   {tempTable} "
+				);
 
 
-				string temp_versions_table = MoveTableToTemp ("photo_versions");
+				string tempVersionsTable = MoveTableToTemp ("photo_versions");
 
 				Execute ("CREATE TABLE photo_versions (    	" +
 					  "      photo_id        INTEGER,  	" +
@@ -337,14 +320,11 @@ namespace FSpot.Database
 					  "	protected	BOOLEAN		" +
 					  ")");
 
-				Execute (string.Format ("INSERT INTO photo_versions (photo_id, version_id, name, uri, md5_sum, protected) " +
-							 "SELECT photo_id, version_id, name, uri, '', protected " +
-							 "FROM   {0} ",
-							 temp_versions_table
-							)
-				 );
+				Execute ("INSERT INTO photo_versions (photo_id, version_id, name, uri, md5_sum, protected) " +
+				         "SELECT photo_id, version_id, name, uri, '', protected " + $"FROM   {tempVersionsTable} "
+				);
 
-				JobStore.CreateTable (db);
+				JobStore.CreateTable (_db);
 
 				// This is kind of hacky but should be a lot faster on
 				// large photo databases
@@ -359,23 +339,23 @@ namespace FSpot.Database
 			}, true);
 
 			// Update to version 16.1
-			AddUpdate (new Version (16, 1), delegate () {
+			AddUpdate (new Version (16, 1), delegate {
 				Execute ("CREATE INDEX idx_photo_versions_id ON photo_versions(photo_id)");
 			}, false);
 
 			// Update to version 16.2
-			AddUpdate (new Version (16, 2), delegate () {
+			AddUpdate (new Version (16, 2), delegate {
 				Execute ("CREATE INDEX idx_photos_roll_id ON photos(roll_id)");
 			}, false);
 
 			// Update to version 16.3
-			AddUpdate (new Version (16, 3), delegate () {
-				Execute (string.Format ("DELETE FROM jobs WHERE job_type = '{0}'", typeof (Jobs.CalculateHashJob).ToString ()));
+			AddUpdate (new Version (16, 3), delegate {
+				Execute ($"DELETE FROM jobs WHERE job_type = '{typeof(Jobs.CalculateHashJob).ToString ()}'");
 			}, false);
 
 			// Update to version 16.4
-			AddUpdate (new Version (16, 4), delegate () { //fix the tables schema EOL
-				string temp_table = MoveTableToTemp ("exports");
+			AddUpdate (new Version (16, 4), delegate { //fix the tables schema EOL
+				string tempTable = MoveTableToTemp ("exports");
 				Execute (
 					"CREATE TABLE exports (\n" +
 					"	id			INTEGER PRIMARY KEY NOT NULL, \n" +
@@ -384,12 +364,10 @@ namespace FSpot.Database
 					"	export_type		TEXT NOT NULL, \n" +
 					"	export_token		TEXT NOT NULL\n" +
 					")");
-				Execute (string.Format (
-					"INSERT INTO exports (id, image_id, image_version_id, export_type, export_token) " +
-					"SELECT id, image_id, image_version_id, export_type, export_token " +
-					"FROM {0}", temp_table));
+				Execute ("INSERT INTO exports (id, image_id, image_version_id, export_type, export_token) " +
+				         "SELECT id, image_id, image_version_id, export_type, export_token " + $"FROM {tempTable}");
 
-				temp_table = MoveTableToTemp ("jobs");
+				tempTable = MoveTableToTemp ("jobs");
 				Execute (
 					"CREATE TABLE jobs (\n" +
 					"	id		INTEGER PRIMARY KEY NOT NULL, \n" +
@@ -398,24 +376,19 @@ namespace FSpot.Database
 					"	run_at		INTEGER, \n" +
 					"	job_priority	INTEGER NOT NULL\n" +
 					")");
-				Execute (string.Format (
-					"INSERT INTO jobs (id, job_type, job_options, run_at, job_priority) " +
-					"SELECT id, job_type, job_options, run_at, job_priority " +
-					"FROM {0}", temp_table));
+				Execute ("INSERT INTO jobs (id, job_type, job_options, run_at, job_priority) " +
+				         "SELECT id, job_type, job_options, run_at, job_priority " + $"FROM {tempTable}");
 
-				temp_table = MoveTableToTemp ("meta");
+				tempTable = MoveTableToTemp ("meta");
 				Execute (
 					"CREATE TABLE meta (\n" +
 					"	id	INTEGER PRIMARY KEY NOT NULL, \n" +
 					"	name	TEXT UNIQUE NOT NULL, \n" +
 					"	data	TEXT\n" +
 					")");
-				Execute (string.Format (
-					"INSERT INTO meta (id, name, data) " +
-					"SELECT id, name, data " +
-					"FROM {0}", temp_table));
+				Execute ("INSERT INTO meta (id, name, data) " + "SELECT id, name, data " + $"FROM {tempTable}");
 
-				temp_table = MoveTableToTemp ("photos");
+				tempTable = MoveTableToTemp ("photos");
 				Execute (
 					"CREATE TABLE photos (\n" +
 					"	id			INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \n" +
@@ -427,24 +400,22 @@ namespace FSpot.Database
 					"	rating			INTEGER NULL, \n" +
 					"	md5_sum			TEXT NULL\n" +
 					")");
-				Execute (string.Format (
+				Execute (
 					"INSERT INTO photos (id, time, uri, description, roll_id, default_version_id, rating, md5_sum) " +
 					"SELECT id, time, uri, description, roll_id, default_version_id, rating, md5_sum " +
-					"FROM {0}", temp_table));
+					$"FROM {tempTable}");
 
-				temp_table = MoveTableToTemp ("photo_tags");
+				tempTable = MoveTableToTemp ("photo_tags");
 				Execute (
 					"CREATE TABLE photo_tags (\n" +
 					"	photo_id	INTEGER, \n" +
 					"       tag_id		INTEGER, \n" +
 					"       UNIQUE (photo_id, tag_id)\n" +
 					")");
-				Execute (string.Format (
-					"INSERT OR IGNORE INTO photo_tags (photo_id, tag_id) " +
-					"SELECT photo_id, tag_id " +
-					"FROM {0}", temp_table));
+				Execute ("INSERT OR IGNORE INTO photo_tags (photo_id, tag_id) " + "SELECT photo_id, tag_id " +
+				         $"FROM {tempTable}");
 
-				temp_table = MoveTableToTemp ("photo_versions");
+				tempTable = MoveTableToTemp ("photo_versions");
 				Execute (
 					"CREATE TABLE photo_versions (\n" +
 					"	photo_id	INTEGER, \n" +
@@ -455,26 +426,21 @@ namespace FSpot.Database
 					"	protected	BOOLEAN, \n" +
 					"	UNIQUE (photo_id, version_id)\n" +
 					")");
-				Execute (string.Format (
-					"INSERT OR IGNORE INTO photo_versions (photo_id, version_id, name, uri, md5_sum, protected) " +
-					"SELECT photo_id, version_id, name, uri, md5_sum, protected " +
-					"FROM {0}", temp_table));
+				Execute ("INSERT OR IGNORE INTO photo_versions (photo_id, version_id, name, uri, md5_sum, protected) " +
+				         "SELECT photo_id, version_id, name, uri, md5_sum, protected " + $"FROM {tempTable}");
 
 				Execute ("CREATE INDEX idx_photo_versions_id ON photo_versions(photo_id)");
 				Execute ("CREATE INDEX idx_photos_roll_id ON photos(roll_id)");
 
-				temp_table = MoveTableToTemp ("rolls");
+				tempTable = MoveTableToTemp ("rolls");
 				Execute (
 					"CREATE TABLE rolls (\n" +
 					"	id	INTEGER PRIMARY KEY NOT NULL, \n" +
 					"       time	INTEGER NOT NULL\n" +
 					")");
-				Execute (string.Format (
-					"INSERT INTO rolls (id, time) " +
-					"SELECT id, time " +
-					"FROM {0}", temp_table));
+				Execute ("INSERT INTO rolls (id, time) " + "SELECT id, time " + $"FROM {tempTable}");
 
-				temp_table = MoveTableToTemp ("tags");
+				tempTable = MoveTableToTemp ("tags");
 				Execute (
 					"CREATE TABLE tags (\n" +
 					"	id		INTEGER PRIMARY KEY NOT NULL, \n" +
@@ -484,15 +450,13 @@ namespace FSpot.Database
 					"	sort_priority	INTEGER, \n" +
 					"	icon		TEXT\n" +
 					")");
-				Execute (string.Format (
-					"INSERT INTO tags (id, name, category_id, is_category, sort_priority, icon) " +
-					"SELECT id, name, category_id, is_category, sort_priority, icon " +
-					"FROM {0}", temp_table));
+				Execute ("INSERT INTO tags (id, name, category_id, is_category, sort_priority, icon) " +
+				         "SELECT id, name, category_id, is_category, sort_priority, icon " + $"FROM {tempTable}");
 			});
 
 			// Update to version 16.5
-			AddUpdate (new Version (16, 5), delegate () { //fix md5 null in photos and photo_versions table
-				string temp_table = MoveTableToTemp ("photo_versions");
+			AddUpdate (new Version (16, 5), delegate { //fix md5 null in photos and photo_versions table
+				string tempTable = MoveTableToTemp ("photo_versions");
 				Execute (
 					"CREATE TABLE photo_versions (\n" +
 					"	photo_id	INTEGER, \n" +
@@ -503,10 +467,8 @@ namespace FSpot.Database
 					"	protected	BOOLEAN, \n" +
 					"	UNIQUE (photo_id, version_id)\n" +
 					")");
-				Execute (string.Format (
-					"INSERT OR IGNORE INTO photo_versions (photo_id, version_id, name, uri, md5_sum, protected) " +
-					"SELECT photo_id, version_id, name, uri, md5_sum, protected " +
-					"FROM {0}", temp_table));
+				Execute ("INSERT OR IGNORE INTO photo_versions (photo_id, version_id, name, uri, md5_sum, protected) " +
+				         "SELECT photo_id, version_id, name, uri, md5_sum, protected " + $"FROM {tempTable}");
 
 				Execute ("CREATE INDEX idx_photo_versions_id ON photo_versions(photo_id)");
 
@@ -515,9 +477,9 @@ namespace FSpot.Database
 			});
 
 			// Update to version 17.0, split uri and filename
-			AddUpdate (new Version (17, 0), delegate () {
-				string tmp_photos = MoveTableToTemp ("photos");
-				string tmp_versions = MoveTableToTemp ("photo_versions");
+			AddUpdate (new Version (17, 0), delegate {
+				string tmpPhotos = MoveTableToTemp ("photos");
+				string tmpVersions = MoveTableToTemp ("photo_versions");
 
 				Execute (
 					"CREATE TABLE photos (\n" +
@@ -544,15 +506,15 @@ namespace FSpot.Database
 					"	UNIQUE (photo_id, version_id)\n" +
 					")");
 
-				Hyena.Data.Sqlite.IDataReader reader = ExecuteReader (string.Format (
+				Hyena.Data.Sqlite.IDataReader reader = ExecuteReader (
 					"SELECT id, time, uri, description, roll_id, default_version_id, rating, md5_sum " +
-					"FROM {0} ", tmp_photos));
+					$"FROM {tmpPhotos} ");
 
 				while (reader.Read ()) {
-					System.Uri photo_uri = new System.Uri (reader["uri"] as string);
+					System.Uri photoUri = new System.Uri (reader["uri"] as string);
 
-					string filename = photo_uri.GetFilename ();
-					Uri base_uri = photo_uri.GetDirectoryUri ();
+					string filename = photoUri.GetFilename ();
+					Uri baseUri = photoUri.GetDirectoryUri ();
 
 					string md5 = reader["md5_sum"] != null ? reader["md5_sum"].ToString () : null;
 
@@ -561,7 +523,7 @@ namespace FSpot.Database
 						"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
 						Convert.ToUInt32 (reader["id"]),
 						reader["time"],
-						base_uri.ToString (),
+						baseUri.ToString (),
 						filename,
 						reader["description"].ToString (),
 						Convert.ToUInt32 (reader["roll_id"]),
@@ -572,15 +534,14 @@ namespace FSpot.Database
 
 				reader.Dispose ();
 
-				reader = ExecuteReader (string.Format (
-						"SELECT photo_id, version_id, name, uri, md5_sum, protected " +
-						"FROM {0} ", tmp_versions));
+				reader = ExecuteReader ("SELECT photo_id, version_id, name, uri, md5_sum, protected " +
+				                        $"FROM {tmpVersions} ");
 
 				while (reader.Read ()) {
-					System.Uri photo_uri = new System.Uri (reader["uri"] as string);
+					System.Uri photoUri = new System.Uri (reader["uri"] as string);
 
-					string filename = photo_uri.GetFilename ();
-					Uri base_uri = photo_uri.GetDirectoryUri ();
+					string filename = photoUri.GetFilename ();
+					Uri baseUri = photoUri.GetDirectoryUri ();
 
 					string md5 = reader["md5_sum"] != null ? reader["md5_sum"].ToString () : null;
 
@@ -590,7 +551,7 @@ namespace FSpot.Database
 						Convert.ToUInt32 (reader["photo_id"]),
 						Convert.ToUInt32 (reader["version_id"]),
 						reader["name"].ToString (),
-						base_uri.ToString (),
+						baseUri.ToString (),
 						filename,
 						Convert.ToBoolean (reader["protected"]),
 						string.IsNullOrEmpty (md5) ? null : md5));
@@ -603,17 +564,18 @@ namespace FSpot.Database
 			}, true);
 
 			// Update to version 17.1, Rename 'Import Tags' to 'Imported Tags'
-			AddUpdate (new Version (17, 1), delegate () {
+			AddUpdate (new Version (17, 1), delegate {
 				Execute ("UPDATE tags SET name = 'Imported Tags' WHERE name = 'Import Tags'");
 			});
 
 			// Update to version 17.2, Make sure every photo has an Original version in photo_versions
-			AddUpdate (new Version (17, 2), delegate () {
+			AddUpdate (new Version (17, 2), delegate {
 				// Find photos that have no original version;
-				var have_original_query = "SELECT id FROM photos LEFT JOIN photo_versions AS pv ON pv.photo_id = id WHERE pv.version_id = 1";
-				var no_original_query = string.Format ("SELECT id, base_uri, filename FROM photos WHERE id NOT IN ({0})", have_original_query);
+				var haveOriginalQuery = "SELECT id FROM photos LEFT JOIN photo_versions AS pv ON pv.photo_id = id WHERE pv.version_id = 1";
+				var noOriginalQuery =
+					$"SELECT id, base_uri, filename FROM photos WHERE id NOT IN ({haveOriginalQuery})";
 
-				var reader = ExecuteReader (no_original_query);
+				var reader = ExecuteReader (noOriginalQuery);
 
 				while (reader.Read ()) {
 					Execute (new HyenaSqliteCommand (
@@ -630,9 +592,9 @@ namespace FSpot.Database
 			}, true);
 
 			// Update to version 18.0, Import MD5 hashes
-			AddUpdate (new Version (18, 0), delegate () {
-				string tmp_photos = MoveTableToTemp ("photos");
-				string tmp_versions = MoveTableToTemp ("photo_versions");
+			AddUpdate (new Version (18, 0), delegate {
+				string tmpPhotos = MoveTableToTemp ("photos");
+				string tmpVersions = MoveTableToTemp ("photo_versions");
 
 				Execute (
 					"CREATE TABLE photos (\n" +
@@ -658,9 +620,9 @@ namespace FSpot.Database
 					"	UNIQUE (photo_id, version_id)\n" +
 					")");
 
-				var reader = ExecuteReader (string.Format (
+				var reader = ExecuteReader (
 					"SELECT id, time, base_uri, filename, description, roll_id, default_version_id, rating " +
-					"FROM {0} ", tmp_photos));
+					$"FROM {tmpPhotos} ");
 
 				while (reader.Read ()) {
 					Execute (new HyenaSqliteCommand (
@@ -678,9 +640,8 @@ namespace FSpot.Database
 
 				reader.Dispose ();
 
-				reader = ExecuteReader (string.Format (
-						"SELECT photo_id, version_id, name, base_uri, filename, protected " +
-						"FROM {0} ", tmp_versions));
+				reader = ExecuteReader ("SELECT photo_id, version_id, name, base_uri, filename, protected " +
+				                        $"FROM {tmpVersions} ");
 
 				while (reader.Read ()) {
 					Execute (new HyenaSqliteCommand (
@@ -700,31 +661,32 @@ namespace FSpot.Database
 			}, true);
 		}
 
-		const string meta_db_version_string = "F-Spot Database Version";
+		const string MetaDbVersionString = "F-Spot Database Version";
 
 		static Version GetDatabaseVersion ()
 		{
 			if (!TableExists ("meta"))
 				throw new Exception ("No meta table found!");
 
-			var query = string.Format ("SELECT data FROM meta WHERE name = '{0}'", meta_db_version_string);
-			var version_id = SelectSingleString (query);
-			return new Version (version_id);
+			var query = $"SELECT data FROM meta WHERE name = '{MetaDbVersionString}'";
+			var versionId = SelectSingleString (query);
+			return new Version (versionId);
 		}
 
 		public static void Run (FSpotDatabaseConnection database, IUpdaterUI updaterDialog)
 		{
-			db = database;
-			dialog = updaterDialog;
+			_db = database;
+			_dialog = updaterDialog;
 
-			db_version = GetDatabaseVersion ();
+			_dbVersion = GetDatabaseVersion ();
 
-			if (updates.Count == 0)
+			if (Updates.Count == 0)
 				return;
 
-			if (db_version == LatestVersion)
+			if (_dbVersion == LatestVersion)
 				return;
-			else if (db_version > LatestVersion) {
+
+			if (_dbVersion > LatestVersion) {
 				if (!Silent)
 					Log.Information ("The existing database version is more recent than this version of F-Spot expects.");
 				return;
@@ -737,66 +699,59 @@ namespace FSpot.Database
 			// Only create and show the dialog if one or more of the updates to be done is
 			// marked as being slow
 			bool slow = false;
-			foreach (Version version in updates.Keys) {
-				if (version > db_version && (updates[version] as Update).IsSlow)
+			foreach (Version version in Updates.Keys) {
+				if (version > _dbVersion && Updates[version].IsSlow)
 					slow = true;
 				break;
 			}
 
 			if (slow && !Silent) {
-				dialog.Show ();
+				_dialog.Show ();
 			}
 
-			db.BeginTransaction ();
+			_db.BeginTransaction ();
 			try {
-				List<Version> keys = new List<Version> ();
-				foreach (Version k in updates.Keys) {
-					keys.Add (k);
-				}
+				var keys = new List<Version> (Updates.Keys);
 				keys.Sort ();
+
 				foreach (Version version in keys) {
-					if (version <= db_version)
+					if (version <= _dbVersion)
 						continue;
-					dialog.Pulse ();
-					(updates[version] as Update).Execute (db, db_version);
+					_dialog.Pulse ();
+					Updates[version].Execute (_db, _dbVersion);
 				}
 
-				db.CommitTransaction ();
+				_db.CommitTransaction ();
 			} catch (Exception e) {
 				if (!Silent) {
 					Log.DebugException (e);
 					Log.Warning ("Rolling back database changes because of Exception");
 				}
 				// There was an error, roll back the database
-				db.RollbackTransaction ();
+				_db.RollbackTransaction ();
 
 				// Pass the exception on, this is fatal
-				throw e;
+				throw;
 			}
 
-			dialog.Destroy ();
+			_dialog.Destroy ();
 
-			if (db_version == LatestVersion && !Silent)
+			if (_dbVersion == LatestVersion && !Silent)
 				Log.InformationTimerPrint (timer, "Database updates completed successfully (in {0}).");
 		}
 
-		static void AddUpdate (Version version, UpdateCode code)
+		static void AddUpdate (Version version, UpdateCode code, bool isSlow = false)
 		{
-			AddUpdate (version, code, false);
-		}
-
-		static void AddUpdate (Version version, UpdateCode code, bool is_slow)
-		{
-			updates[version] = new Update (version, code, is_slow);
+			Updates[version] = new Update (version, code, isSlow);
 		}
 
 		static int Execute (string statement)
 		{
-			int result = -1;
+			int result;
 			try {
-				result = Convert.ToInt32 (db.Execute (statement));
+				result = Convert.ToInt32 (_db.Execute (statement));
 			} catch (OverflowException e) {
-				Log.Exception (string.Format ("Updater.Execute failed. ({0})", statement), e);
+				Log.Exception ($"Updater.Execute failed. ({statement})", e);
 				throw;
 			}
 			return result;
@@ -806,9 +761,9 @@ namespace FSpot.Database
 		{
 			int result = -1;
 			try {
-				result = Convert.ToInt32 (db.Execute (command));
+				result = Convert.ToInt32 (_db.Execute (command));
 			} catch (OverflowException e) {
-				Log.Exception (string.Format ("Updater.Execute failed. ({0})", command), e);
+				Log.Exception ($"Updater.Execute failed. ({command})", e);
 				throw;
 			}
 			return result;
@@ -819,14 +774,14 @@ namespace FSpot.Database
 			return Execute (statement);
 		}
 
-		static Hyena.Data.Sqlite.IDataReader ExecuteReader (string statement)
+		static IDataReader ExecuteReader (string statement)
 		{
-			return db.Query (statement);
+			return _db.Query (statement);
 		}
 
 		static bool TableExists (string table)
 		{
-			return db.TableExists (table);
+			return _db.TableExists (table);
 		}
 
 		static string SelectSingleString (string statement)
@@ -834,102 +789,96 @@ namespace FSpot.Database
 			string result = null;
 
 			try {
-				result = db.Query<string> (statement);
+				result = _db.Query<string> (statement);
 			} catch (Exception) {
 			}
 			return result;
 		}
 
-		static string MoveTableToTemp (string table_name)
+		static string MoveTableToTemp (string tableName)
 		{
-			string temp_name = table_name + "_temp";
+			string tempName = tableName + "_temp";
 
 			// Get the table definition for the table we are copying
-			string sql = SelectSingleString (string.Format ("SELECT sql FROM sqlite_master WHERE tbl_name = '{0}' AND type = 'table' ORDER BY type DESC", table_name));
+			string sql = SelectSingleString (
+				$"SELECT sql FROM sqlite_master WHERE tbl_name = '{tableName}' AND type = 'table' ORDER BY type DESC");
 
 			// Drop temp table if already exists
-			Execute ("DROP TABLE IF EXISTS " + temp_name);
+			Execute ("DROP TABLE IF EXISTS " + tempName);
 
 			// Change the SQL to create the temp table
-			Execute (sql.Replace ("CREATE TABLE " + table_name, "CREATE TEMPORARY TABLE " + temp_name));
+			Execute (sql.Replace ("CREATE TABLE " + tableName, "CREATE TEMPORARY TABLE " + tempName));
 
 			// Copy the data
-			ExecuteScalar (string.Format ("INSERT INTO {0} SELECT * FROM {1}", temp_name, table_name));
+			ExecuteScalar ($"INSERT INTO {tempName} SELECT * FROM {tableName}");
 
 			// Delete the original table
-			Execute ("DROP TABLE " + table_name);
+			Execute ("DROP TABLE " + tableName);
 
-			return temp_name;
+			return tempName;
 		}
 
 		delegate void UpdateCode ();
 
 		class Update
 		{
-			public Version Version;
-			UpdateCode code;
-			public bool IsSlow = false;
+			Version Version { get; }
 
-			public Update (Version to_version, UpdateCode code, bool slow)
+			readonly UpdateCode code;
+			public bool IsSlow { get; }
+
+			public Update (Version toVersion, UpdateCode code, bool slow)
 			{
-				this.Version = to_version;
+				Version = toVersion;
 				this.code = code;
 				IsSlow = slow;
 			}
 
-			public Update (Version to_version, UpdateCode code)
+			public Update (Version toVersion, UpdateCode code)
 			{
-				this.Version = to_version;
+				Version = toVersion;
 				this.code = code;
 			}
 
-			public void Execute (HyenaSqliteConnection db, Version db_version)
+			public void Execute (HyenaSqliteConnection db, Version dbVersion)
 			{
 				code ();
 
 				if (!Silent) {
-					Log.Debug ($"Updated database from version {db_version} to {Version}");
+					Log.Debug ($"Updated database from version {dbVersion} to {Version}");
 				}
 
-				db_version = Version;
-				db.Execute (new HyenaSqliteCommand ("UPDATE meta SET data = ? WHERE name = ?", db_version.ToString (), meta_db_version_string));
+				dbVersion = Version;
+				db.Execute (new HyenaSqliteCommand ("UPDATE meta SET data = ? WHERE name = ?", dbVersion.ToString (), MetaDbVersionString));
 			}
 		}
 
 		// TODO: Look into System.Version
-		public class Version : IComparable
+		public class Version : IComparable<Version>
 		{
-			int maj = 0;
-			int min = 0;
+			readonly int major;
+			readonly int minor;
 
-			public Version (int maj, int min)
+			public Version (int major, int minor)
 			{
-				this.maj = maj;
-				this.min = min;
+				this.major = major;
+				this.minor = minor;
 			}
 
 			public Version (string version)
 			{
-				string[] parts = version.Split (new char[] { '.' }, 2);
-				try {
-					this.maj = Convert.ToInt32 (parts[0]);
-				} catch (Exception) {
-					this.maj = 0;
+				if (string.IsNullOrEmpty (version)) {
+					major = minor = 0;
+					return;
 				}
-				try {
-					this.min = Convert.ToInt32 (parts[1]);
-				} catch (Exception) {
-					this.min = 0;
-				}
-			}
 
-			//IComparable
-			public int CompareTo (object obj)
-			{
-				if (this.GetType () == obj.GetType ())
-					return Compare (this, (Version)obj);
-				else
-					throw new Exception ("Object must be of type Version");
+				var parts = version.Split (new[] { '.' }, 2);
+
+				if (!int.TryParse (parts[0], out major))
+					major = 0;
+
+				if (parts.Length <= 1 || !int.TryParse (parts[1], out minor))
+					minor = 0;
 			}
 
 			public int CompareTo (Version version)
@@ -939,31 +888,26 @@ namespace FSpot.Database
 
 			public static int Compare (Version v1, Version v2)
 			{
-				if (v1.maj == v2.maj)
-					return v1.min.CompareTo (v2.min);
-				return v1.maj.CompareTo (v2.maj);
+				if (v1.major == v2.major)
+					return v1.minor.CompareTo (v2.minor);
+				return v1.major.CompareTo (v2.major);
 			}
 
 			public override string ToString ()
 			{
-				if (min == 0)
-					return maj.ToString ();
-				return maj + "." + min;
-			}
-
-			public override bool Equals (object obj)
-			{
-				return obj is Version && this == (Version)obj;
+				if (minor == 0)
+					return major.ToString ();
+				return $"{major}.{minor}";
 			}
 
 			public override int GetHashCode ()
 			{
-				return maj ^ min;
+				return major ^ minor;
 			}
 
 			public static bool operator == (Version v1, Version v2)
 			{
-				return v1.maj == v2.maj && v1.min == v2.min;
+				return v1.major == v2.major && v1.minor == v2.minor;
 			}
 
 			public static bool operator != (Version v1, Version v2)
