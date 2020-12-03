@@ -227,6 +227,7 @@ namespace FSpot
 			Database = db;
 
 			var builder = new GtkBeans.Builder ("main_window.ui");
+			// FIXME, exception in SignalConnector.ConnectFunc
 			builder.Autoconnect (this);
 
 			//Set the global DefaultColormap. Allows transparency according

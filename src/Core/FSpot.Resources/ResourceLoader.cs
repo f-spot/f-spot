@@ -22,12 +22,27 @@ namespace FSpot.Resources
 	{
 		static bool HasResource (Assembly asm, string name)
 		{
+			if (asm.IsDynamic)
+				return false;
+
 			string[] resources = asm.GetManifestResourceNames ();
 
 			if (Array.IndexOf (resources, name) > -1)
 				return true;
 			else
 				return false;
+		}
+
+		[MethodImpl (MethodImplOptions.NoInlining)]
+		public static Pixbuf GetIcon (string name)
+		{
+			var image = $"{name}.png";
+
+			Pixbuf result = null;
+			if (HasResource (Assembly.GetExecutingAssembly (), image)) //Assembly.GetCallingAssembly() is wrong here!
+				result = Pixbuf.LoadFromResource (image);
+
+			return result;
 		}
 
 		[MethodImpl (MethodImplOptions.NoInlining)]

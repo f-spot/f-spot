@@ -50,7 +50,7 @@ namespace FSpot.Utils
 			}
 		}
 
-		public static Pixbuf LoadingPixbuf { get; } = LoadFromAssembly ("FSpotLoading.png");
+		public static Pixbuf LoadingPixbuf { get; } = FSpot.Resources.ResourceLoader.GetIcon ("FSpotLoading");
 
 		public static double Fit (this Pixbuf pixbuf, int destWidth, int destHeight, bool upscaleSmaller, out int fitWidth, out int fitHeight)
 		{
