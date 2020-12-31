@@ -8,7 +8,6 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>FSpot</RootNamespace>
     <AssemblyName>f-spot</AssemblyName>
-    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">

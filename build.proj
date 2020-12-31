@@ -14,9 +14,8 @@
   </Target>
 
   <PropertyGroup>
-    <!-- <TargetPlatform Condition="$(IsWindows)">x86</TargetPlatform>
-    <TargetPlatform Condition="!$(IsWindows)">Any CPU</TargetPlatform> -->
-    <TargetPlatform>Any CPU</TargetPlatform>
+    <TargetPlatform Condition="$(IsWindows)">x86</TargetPlatform>
+    <TargetPlatform Condition="!$(IsWindows)">Any CPU</TargetPlatform>
   </PropertyGroup>
 
   <Target Name="BuildWindows">

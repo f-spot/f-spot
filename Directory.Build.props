@@ -1,10 +1,18 @@
 <Project>
+  <Import Project="fspot.props" />
 
   <PropertyGroup>
     <FSpotTargetFramework>net472</FSpotTargetFramework>
     <LangVersion>latest</LangVersion>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
+
+  <PropertyGroup>
+    <PlatformTarget Condition="$(IsWindows)">x86</PlatformTarget>
+    <PlatformTarget Condition="!$(IsWindows)">Any CPU</PlatformTarget>
+  </PropertyGroup>
+
+
 
   <!-- Assembly Info -->
   <PropertyGroup>
