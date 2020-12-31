@@ -115,7 +115,7 @@ namespace FSpot
 				return false;
 
 			var attrs = File.GetAttributes (item.DefaultVersion.Uri.AbsolutePath);
-			if (!attrs.HasFlag (FileAttributes.ReadOnly))
+			if (attrs.HasFlag (FileAttributes.ReadOnly))
 				throw new RotateException (Catalog.GetString ("Unable to rotate readonly file"), item.DefaultVersion.Uri, true);
 
 			Rotate (item.DefaultVersion.Uri, direction);
