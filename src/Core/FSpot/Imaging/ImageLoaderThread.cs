@@ -13,11 +13,8 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
-
-using FSpot.Imaging;
 
 using Gdk;
 
@@ -42,7 +39,7 @@ namespace FSpot.Imaging
 
 		/* A dict of all the requests; note that the current request
 		   isn't in the dict.  */
-		Dictionary<SafeUri, RequestItem> requests_by_uri;
+		readonly Dictionary<SafeUri, RequestItem> requests_by_uri;
 
 		/* Current request.  Request currently being handled by the
 		   auxiliary thread.  Should be modified only by the auxiliary
@@ -50,7 +47,7 @@ namespace FSpot.Imaging
 		RequestItem current_request;
 
 		/* The queue of processed requests.  */
-		readonly Queue processed_requests;
+		readonly Queue<RequestItem> processed_requests;
 
 		/* This is used by the helper thread to notify the main GLib
 		   thread that there are pending items in the
@@ -75,7 +72,7 @@ namespace FSpot.Imaging
 			queue = new List<RequestItem> ();
 			requests_by_uri = new Dictionary<SafeUri, RequestItem> ();
 			// requests_by_path = Hashtable.Synchronized (new Hashtable ());
-			processed_requests = new Queue ();
+			processed_requests = new Queue<RequestItem> ();
 
 			pending_notify = new ThreadNotify (new Gtk.ReadyEvent (HandleProcessedRequests));
 
@@ -84,9 +81,8 @@ namespace FSpot.Imaging
 
 		void StartWorker ()
 		{
-			if (worker_thread != null) {
+			if (worker_thread != null)
 				return;
-			}
 
 			should_cancel = false;
 			worker_thread = new Thread (new ThreadStart (WorkerThread));
@@ -123,9 +119,8 @@ namespace FSpot.Imaging
 
 		public static void CleanAll ()
 		{
-			foreach (var thread in instances) {
+			foreach (var thread in instances)
 				thread.Cleanup ();
-			}
 		}
 
 		public void Request (SafeUri uri, int order)
@@ -191,8 +186,7 @@ namespace FSpot.Imaging
 				}
 			}
 			/* Check if a request for this path has already been queued.  */
-			RequestItem existing_request;
-			if (requests_by_uri.TryGetValue (uri, out existing_request)) {
+			if (requests_by_uri.TryGetValue (uri, out var existing_request)) {
 				/* FIXME: At least for now, this shouldn't happen.  */
 				if (existing_request.Order != order) {
 					Log.Warning ($"BUG: Filing another request of order {order} (previously {existing_request.Order}) for `{uri}'");
@@ -257,7 +251,7 @@ namespace FSpot.Imaging
 			}
 		}
 
-		protected virtual void EmitLoaded (Queue results)
+		protected virtual void EmitLoaded (Queue<RequestItem> results)
 		{
 			if (OnPixbufLoaded != null) {
 				foreach (RequestItem r in results) {
@@ -268,12 +262,12 @@ namespace FSpot.Imaging
 
 		void HandleProcessedRequests ()
 		{
-			Queue results;
+			Queue<RequestItem> results;
 
 			lock (processed_requests) {
 				/* Copy the queued items out of the shared queue so we hold the lock for
 				   as little time as possible.  */
-				results = processed_requests.Clone () as Queue;
+				results = new Queue<RequestItem> (processed_requests);
 				processed_requests.Clear ();
 
 				pending_notify_notified = false;
@@ -281,7 +275,7 @@ namespace FSpot.Imaging
 
 			EmitLoaded (results);
 
-			foreach (RequestItem request in results) {
+			foreach (var request in results) {
 				request.Dispose ();
 			}
 		}
