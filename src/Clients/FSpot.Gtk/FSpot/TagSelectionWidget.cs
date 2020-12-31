@@ -428,7 +428,7 @@ namespace FSpot
 
 		public void SaveExpandDefaults ()
 		{
-			List<int> expanded_tags = new List<int> ();
+			var expanded_tags = new List<int> ();
 
 			TreeIter [] iters = ModelIters ();
 			if (iters == null)
@@ -437,13 +437,13 @@ namespace FSpot
 			foreach (TreeIter iter in iters)
 			{
 				if (GetRowExpanded (Model.GetPath (iter))) {
-					GLib.Value v = new GLib.Value ();
+					var v = new GLib.Value ();
 					Model.GetValue (iter, IdColumn, ref v);
 					expanded_tags.Add ((int)(uint) v);
 				}
 			}
 
-			Preferences.Set (Preferences.ExpandedTags, expanded_tags.ToArray ());
+			Preferences.Set (Preferences.ExpandedTags, expanded_tags);
 		}
 
 		public void EditSelectedTagName ()

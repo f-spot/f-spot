@@ -7,18 +7,16 @@
 //
 // Copyright (C) 2008 Novell, Inc.
 // Copyright (C) 2008 Stephane Delcroix
-// Copyright (C) 2019 Stephen Shaw
+// Copyright (C) 2019-2020 Stephen Shaw
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
-using System;
+using System.Collections.Generic;
 using System.IO;
 
-using Newtonsoft.Json.Linq;
-
 using FSpot.Settings;
-using System.Collections.Generic;
-using System.Collections;
+
+using Newtonsoft.Json.Linq;
 
 namespace FSpot.Platform
 {
@@ -81,7 +79,7 @@ namespace FSpot.Platform
 		internal void Set<T> (string key, T value)
 		{
 			JToken token;
-			if (value is IEnumerable && !(value is string))
+			if (value is System.Collections.IEnumerable && !(value is string))
 				token = new JArray (value);
 			else
 				token = new JValue (value);
