@@ -13,17 +13,19 @@
     <MSBuild Projects="F-Spot.sln" Targets="Restore" />
   </Target>
 
-  <PropertyGroup>
-    <TargetPlatform Condition="$(IsWindows)">x86</TargetPlatform>
-    <TargetPlatform Condition="!$(IsWindows)">Any CPU</TargetPlatform>
-  </PropertyGroup>
-
   <Target Name="BuildWindows">
     <Message Text="Building On Windows" Importance="High" />
+    <PropertyGroup>
+      <TargetPlatform>x86</TargetPlatform>
+    </PropertyGroup>
+
     <!-- HACK: copy this file over for now -->
     <Copy Condition="!Exists('src\Clients\FSpot.Gtk\f-spot.exe.config')"
-      SourceFiles="src\Clients\FSpot.Gtk\f-spot.exe.config.in"
-      DestinationFiles="src\Clients\FSpot.Gtk\f-spot.exe.config" />
+          SourceFiles="src\Clients\FSpot.Gtk\f-spot.exe.config.in"
+          DestinationFiles="src\Clients\FSpot.Gtk\f-spot.exe.config" />
+    <Copy Condition="!Exists('src\Core\FSpot\FSpot.dll.config')"
+          SourceFiles="src\Core\FSpot\FSpot.dll.config.in"
+          DestinationFiles="src\Core\FSpot\FSpot.dll.config" />
   </Target>
 
   <Target Name="BuildMac">
@@ -42,8 +44,19 @@
     <CallTarget Condition="'$(IsWindows)'" Targets="BuildWindows" />
     <CallTarget Condition="'$(IsMac)'" Targets="BuildMac" />
     <CallTarget Condition="'$(IsLinux)'" Targets="BuildLinux" />
+    <PropertyGroup>
+      <TargetPlatform Condition="'$(TargetPlatform)'==''">Any CPU</TargetPlatform>
+    </PropertyGroup>
 
     <MSBuild Projects="F-Spot.sln" Properties="Platform=$(TargetPlatform)" Targets="Build" />
+  </Target>
+
+  <Target Name="Run">
+    <PropertyGroup>
+      <MonoLauncher Condition="'!$(IsWindows)'">mono </MonoLauncher>
+    </PropertyGroup>
+
+    <Exec Command="$(MonoLauncher)bin\f-spot.exe" />
   </Target>
 
 </Project>
