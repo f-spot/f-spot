@@ -9,7 +9,7 @@
 
   <PropertyGroup>
     <GtkPlatformTarget Condition="$(IsWindows)">x86</GtkPlatformTarget>
-    <GtkPlatformTarget Condition="!$(IsWindows)">Any CPU</GtkPlatformTarget>
+    <GtkPlatformTarget Condition="!$(IsWindows)">AnyCpu</GtkPlatformTarget>
     <Platforms>$(GtkPlatformTarget)</Platforms>
   </PropertyGroup>
 
