@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>$(FSpotTargetFramework)</TargetFramework>
+    <PlatformTarget>$(GtkPlatformTarget)</PlatformTarget>
     <OutputPath>..\..\..\bin</OutputPath>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <AssemblySearchPaths>$(AssemblySearchPaths);{GAC}</AssemblySearchPaths>
@@ -10,13 +11,11 @@
     <AssemblyName>f-spot</AssemblyName>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <Externalconsole>True</Externalconsole>
     <EnvironmentVariables>
-      <EnvironmentVariables>
-        <Variable name="GTK_MODULES" value="" />
-        <Variable name="MONO_CAIRO_DEBUG_DISPOSE" value="1" />
-      </EnvironmentVariables>
+      <Variable name="GTK_MODULES" value="" />
+      <Variable name="MONO_CAIRO_DEBUG_DISPOSE" value="1" />
     </EnvironmentVariables>
   </PropertyGroup>
 
