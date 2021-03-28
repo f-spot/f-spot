@@ -83,7 +83,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hyena.Gui", "lib\Hyena.Gui\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hyena.UnitTest", "lib\Hyena.UnitTest\Hyena.UnitTest.csproj", "{8230AC23-BB8B-44B9-AAC3-F0794366970A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Resources", "src\Core\FSpot.Resources\FSpot.Resources.csproj", "{11FB6DE2-4317-4839-B19A-4E642029A0FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FSpot.Resources", "src\Core\FSpot.Resources\FSpot.Resources.csproj", "{11FB6DE2-4317-4839-B19A-4E642029A0FE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9A8E7101-7473-4B75-BAB8-82571F01AF90}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		azure-pipelines.yml = azure-pipelines.yml
+		build.proj = build.proj
+		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
+		fspot.props = fspot.props
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,8 +1,16 @@
 <Project>
+  <Import Project="fspot.props" />
+
   <PropertyGroup>
     <FSpotTargetFramework>net472</FSpotTargetFramework>
     <LangVersion>latest</LangVersion>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GtkPlatformTarget Condition="$(IsWindows)">x86</GtkPlatformTarget>
+    <GtkPlatformTarget Condition="!$(IsWindows)">AnyCpu</GtkPlatformTarget>
+    <Platforms>$(GtkPlatformTarget)</Platforms>
   </PropertyGroup>
 
   <!-- Assembly Info -->
@@ -11,6 +19,6 @@
     <AssemblyVersion>0.9.0.0</AssemblyVersion>
     <Title>F-Spot</Title>
     <Description>Personal photo management</Description>
-    <Copyright>Copyright (C) 2003-2019 Novell Inc. and others</Copyright>
+    <Copyright>Copyright (C) 2003-2012 Novell Inc. and others</Copyright>
   </PropertyGroup>
 </Project>
