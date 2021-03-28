@@ -51,9 +51,13 @@ po/stamp-it
 *.gmo
 *.page
 *.mo
+tests/EmptyFiles
 
 # GNOME
 gnome-doc-utils.make
+
+# msbuild
+*.binlog
 
 # CSharp
 [Bb]in/
