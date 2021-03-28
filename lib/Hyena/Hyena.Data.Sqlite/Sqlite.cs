@@ -545,7 +545,7 @@ namespace Hyena.Data.Sqlite
 
     internal static class Native
     {
-	    const string SQLITE_DLL = "e_sqlite3";
+	    const string SQLITE_DLL = "sqlite3";
 
         // Connection functions
         [DllImport(SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
