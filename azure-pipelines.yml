@@ -35,3 +35,10 @@ steps:
   inputs:
     solution: 'build.proj'
     msbuildArguments: /t:Test
+
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: NUnit
+    searchFolder: tests
+    testResultsFiles: 'TestResult.xml'
+  
