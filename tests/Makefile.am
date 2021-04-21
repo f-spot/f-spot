@@ -16,7 +16,7 @@ NUNIT_CONSOLE = $$(echo ../packages/NUnit.ConsoleRunner.*/tools/nunit3-console.e
 test:
 	nuget restore ../.nuget/packages.config -PackagesDirectory ../packages
 	@chmod +x $(NUNIT_CONSOLE); \
-	$(NUNIT_CONSOLE) --labels=ON $(TEST_ASSEMBLIES);
+	$(NUNIT_CONSOLE) --labels=OnOutputOnly $(TEST_ASSEMBLIES);
 
 endif
 
