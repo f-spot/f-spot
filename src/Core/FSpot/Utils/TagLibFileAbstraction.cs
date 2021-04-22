@@ -36,7 +36,7 @@ namespace FSpot.Utils
 			get => Uri.ToString ();
 		}
 
-		public SafeUri Uri { get; set; }
+		public SafeUri Uri { get; }
 
 		public Stream ReadStream {
 			get {
@@ -57,7 +57,7 @@ namespace FSpot.Utils
 					if (!File.Exists (file))
 						CopyToTmp ();
 
-					stream = new FileStream (file, FileMode.OpenOrCreate, FileAccess.Write);
+					stream = new FileStream (file, FileMode.OpenOrCreate, FileAccess.ReadWrite);
 				}
 
 				if (!stream.CanWrite)
@@ -65,6 +65,11 @@ namespace FSpot.Utils
 
 				return stream;
 			}
+		}
+
+		public TagLibFileAbstraction (SafeUri uri)
+		{
+			Uri = uri;
 		}
 
 		void CopyToTmp ()
@@ -95,7 +100,7 @@ namespace FSpot.Utils
 
 		public void CloseStream (Stream stream)
 		{
-			stream.Close ();
+			stream?.Close ();
 			if (stream == this.stream) {
 				if (stream.CanWrite)
 					CommitTmp ();

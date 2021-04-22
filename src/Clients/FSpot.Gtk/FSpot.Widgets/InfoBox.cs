@@ -33,17 +33,16 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
-
-using Mono.Unix;
 
 using FSpot.Core;
+using FSpot.FileSystem;
 using FSpot.Imaging;
 using FSpot.Settings;
 using FSpot.Utils;
 
 using Gtk;
-using FSpot.FileSystem;
+
+using Mono.Unix;
 
 // FIXME TODO: We want to use something like EClippedLabel here throughout so it handles small sizes
 // gracefully using ellipsis.
@@ -704,12 +703,12 @@ namespace FSpot.Widgets
 	{
 		string PrefKeyForContext (ViewContext context, string item)
 		{
-			return $"{Preferences.UIKey}/{item}_visible/{context}";
+			return $"{Preferences.UIKey}{item}_visible/{context}";
 		}
 
 		string PrefKeyForContext (ViewContext context, string parent, string item)
 		{
-			return $"{Preferences.UIKey}/{parent}_visible/{item}/{context}";
+			return $"{Preferences.UIKey}{parent}_visible/{item}/{context}";
 		}
 
 		bool VisibilityForContext (ViewContext context, string item, bool default_value)

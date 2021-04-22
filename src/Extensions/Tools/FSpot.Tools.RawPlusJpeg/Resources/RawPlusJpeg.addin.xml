@@ -12,6 +12,6 @@
 		<Addin id="Core" version="0.9"/>
 	</Dependencies>
 	<Extension path = "/FSpot/Menus/Tools">
-		<Command id = "MergeRawJpeg" _label = "Merge Raw" command_type = "FSpot.Tools.RawPlusJpeg.RawPlusJpeg" />
+		<Command id = "MergeRawJpeg" _label = "Merge Raw" CommandType = "FSpot.Tools.RawPlusJpeg.RawPlusJpeg" />
 	</Extension>
 </Addin>

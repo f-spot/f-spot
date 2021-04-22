@@ -17,6 +17,8 @@ variables:
 steps:
 - task: NuGetToolInstaller@1
 
+- pwsh: "nuget.exe restore .nuget/packages.config -PackagesDirectory packages"
+
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
@@ -29,11 +31,14 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-- task: VSTest@2
+- task: MSBuild@1
   inputs:
-    testSelector: 'testAssemblies'
-    testAssemblyVer2: |
-      *.UnitTest.dll
-      !**\obj\**
-    searchFolder: 'tests\'
-    diagnosticsEnabled: true
+    solution: 'build.proj'
+    msbuildArguments: /t:Test
+
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: NUnit
+    searchFolder: tests
+    testResultsFiles: 'TestResult.xml'
+  

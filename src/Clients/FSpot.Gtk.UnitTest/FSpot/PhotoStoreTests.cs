@@ -1,4 +1,4 @@
-﻿//
+//
 // PhotoStoreTests.cs
 //
 // Author:
@@ -51,7 +51,12 @@ namespace FSpot
 		readonly SafeUri modifiedUri = new SafeUri ("file:///2.jpg");
 		const string modifiedName = "Modified Name";
 
+		[SetUp]
+		public void Setup () => Cleanup ();
+
 		[TearDown]
+		public void TearDown () => Cleanup ();
+
 		public void Cleanup () {
 			if (File.Exists (database))
 				File.Delete (database);
@@ -74,6 +79,7 @@ namespace FSpot
 			Assert.AreEqual (1, photo.Versions.Count ());
 
 			Assert.AreEqual (1, store.TotalPhotos);
+			databaseConnection.Dispose ();
 		}
 
 		[Test]
@@ -93,6 +99,7 @@ namespace FSpot
 			Assert.AreEqual (1, photo.Versions.Count ());
 
 			Assert.AreEqual (1, store.TotalPhotos);
+			databaseConnection.Dispose ();
 		}
 
 		[Test]
@@ -114,6 +121,7 @@ namespace FSpot
 			Assert.AreEqual (uri, photo.GetVersion(1).BaseUri);
 
 			Assert.AreEqual (1, store.TotalPhotos);
+			databaseConnection.Dispose ();
 		}
 	}
 }

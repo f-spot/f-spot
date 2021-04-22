@@ -9,25 +9,7 @@
 // Copyright (C) 2010 Mike Gemünde
 // Copyright (C) 2010 Ruben Vermeersch
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using NUnit.Framework;
 
@@ -46,7 +28,7 @@ namespace FSpot.Utils.Tests
 		{
 			// Tests the file in its original state
 			var uri = ImageTestHelper.CreateTempFile ("taglib-sample.jpg");
-			var res = new TagLibFileAbstraction { Uri = uri };
+			var res = new TagLibFileAbstraction (uri);
 
 			var file = File.Create (res) as TagLib.Image.File;
 			Assert.IsNotNull (file);
@@ -72,9 +54,9 @@ namespace FSpot.Utils.Tests
 		{
 			// Tests the file with a sidecar
 			var uri = ImageTestHelper.CreateTempFile ("taglib-sample.jpg");
-			var res = new TagLibFileAbstraction { Uri = uri };
+			var res = new TagLibFileAbstraction (uri);
 			var sidecar_uri = ImageTestHelper.CopySidecarToTest (uri, "taglib-sample.xmp");
-			var sidecar_res = new TagLibFileAbstraction { Uri = sidecar_uri };
+			var sidecar_res = new TagLibFileAbstraction (sidecar_uri);
 
 			var file = File.Create (res) as TagLib.Image.File;
 			Assert.IsNotNull (file);
@@ -102,9 +84,9 @@ namespace FSpot.Utils.Tests
 		{
 			// Tests the file with a sidecar
 			var uri = ImageTestHelper.CreateTempFile ("taglib-sample.jpg");
-			var res = new TagLibFileAbstraction { Uri = uri };
+			var res = new TagLibFileAbstraction (uri);
 			var sidecar_uri = ImageTestHelper.CopySidecarToTest (uri, "taglib-sample-broken.xmp");
-			var sidecar_res = new TagLibFileAbstraction { Uri = sidecar_uri };
+			var sidecar_res = new TagLibFileAbstraction (sidecar_uri);
 
 			var file = File.Create (res) as TagLib.Image.File;
 			Assert.IsNotNull (file);
@@ -133,14 +115,14 @@ namespace FSpot.Utils.Tests
 		public void TestSidecarWrite ()
 		{
 			var uri = ImageTestHelper.CreateTempFile ("taglib-sample.jpg");
-			var res = new TagLibFileAbstraction { Uri = uri };
+			var res = new TagLibFileAbstraction (uri);
 			Assert.True (System.IO.File.Exists (uri.AbsolutePath));
 
 			var sidecar_uri = uri.ReplaceExtension (".xmp");
-			var sidecar_res = new TagLibFileAbstraction { Uri = sidecar_uri };
+			var sidecar_res = new TagLibFileAbstraction (sidecar_uri);
 			sidecar_uri.ToString ().ShouldEndWith (".xmp");
 			System.IO.File.Create (sidecar_uri.AbsolutePath).Dispose ();
-			Assert.True(System.IO.File.Exists (sidecar_uri.AbsolutePath));
+			Assert.True (System.IO.File.Exists (sidecar_uri.AbsolutePath));
 
 
 			var file = File.Create (res) as TagLib.Image.File;
@@ -170,7 +152,7 @@ namespace FSpot.Utils.Tests
 				+ "</rdf:RDF></x:xmpmeta>";
 
 			string written;
-			var read_res = new TagLibFileAbstraction { Uri = sidecar_uri };
+			var read_res = new TagLibFileAbstraction (sidecar_uri);
 			using (var stream = read_res.ReadStream) {
 				using var reader = new System.IO.StreamReader (stream);
 				written = reader.ReadToEnd ();
