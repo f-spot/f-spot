@@ -7,25 +7,7 @@
 // Copyright (C) 2008 Novell, Inc.
 // Copyright (C) 2008 Stephane Delcroix
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
 using System.IO;
@@ -49,15 +31,13 @@ namespace FSpot.Cms
 
 		public static ColorCIExyY WhitePointFromTemperature (int temp)
 		{
-			double x, y;
-			CctTable.GetXY (temp, out x, out y);
+			CctTable.GetXY (temp, out var x, out var y);
 			return new ColorCIExyY (x, y, 1.0);
 		}
 
 		public static ColorCIExyY WhitePointFromTemperatureCIE (int temp)
 		{
-			ColorCIExyY wp;
-			NativeMethods.CmsWhitePointFromTemp (temp, out wp);
+			NativeMethods.CmsWhitePointFromTemp (temp, out var wp);
 			return wp;
 		}
 
@@ -66,31 +46,29 @@ namespace FSpot.Cms
 			ColorCIExyY wp;
 			//const int line_size = 0x1e;
 
-			using (Stream stream = Assembly.GetExecutingAssembly ().GetManifestResourceStream (name)) {
-				var reader = new StreamReader (stream, System.Text.Encoding.ASCII);
-				string line = null;
-				for (int i = 0; i <= temp - 1000; i++) {
-					line = reader.ReadLine ();
-				}
-				
-				//System.Console.WriteLine (line);
-				string [] subs = line.Split ('\t');
-				int ptemp = int.Parse (subs [0]);
-				if (ptemp != temp)
-					throw new CmsException (string.Format ("{0} != {1}", ptemp, temp));
-				
-				double x = double.Parse (subs [1]);
-				double y = double.Parse (subs [2]);
-				wp = new ColorCIExyY (x, y, 1.0);
-				return wp;
-			}			
+			using var stream = Assembly.GetExecutingAssembly ().GetManifestResourceStream (name);
+			using var reader = new StreamReader (stream, System.Text.Encoding.ASCII);
+			string line = null;
+			for (int i = 0; i <= temp - 1000; i++) {
+				line = reader.ReadLine ();
+			}
+
+			//System.Console.WriteLine (line);
+			string[] subs = line.Split ('\t');
+			int ptemp = int.Parse (subs[0]);
+			if (ptemp != temp)
+				throw new CmsException ($"{ptemp} != {temp}");
+
+			double x = double.Parse (subs[1]);
+			double y = double.Parse (subs[2]);
+			wp = new ColorCIExyY (x, y, 1.0);
+			return wp;
 		}
 
 		public ColorCIEXYZ ToXYZ ()
 		{
-			ColorCIEXYZ dest;
-			NativeMethods.CmsxyY2XYZ (out dest, ref this);
-			
+			NativeMethods.CmsxyY2XYZ (out var dest, ref this);
+
 			return dest;
 		}
 
@@ -113,7 +91,7 @@ namespace FSpot.Cms
 
 		public override string ToString ()
 		{
-			return string.Format ("(x={0}, y={1}, Y={2})", x, y, Y);
+			return $"(x={x}, y={y}, Y={Y})";
 		}
 	}
 
