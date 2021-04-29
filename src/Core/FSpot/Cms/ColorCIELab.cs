@@ -19,23 +19,21 @@ namespace FSpot.Cms
 
 		public ColorCIELCh ToLCh ()
 		{
-			ColorCIELCh lch;
-			NativeMethods.CmsLab2LCh (out lch, ref this);
+			NativeMethods.CmsLab2LCh (out var lch, ref this);
 
 			return lch;
 		}
 
 		public ColorCIEXYZ ToXYZ (ColorCIEXYZ wp)
 		{
-			ColorCIEXYZ xyz;
-			NativeMethods.CmsLab2XYZ (ref wp, out xyz, ref this);
+			NativeMethods.CmsLab2XYZ (ref wp, out var xyz, ref this);
 
 			return xyz;
 		}
 
 		public override string ToString ()
 		{
-			return string.Format ("(L={0}, a={1}, b={2})", L, a, b);
+			return $"(L={L}, a={a}, b={b})";
 		}
 	}
 }

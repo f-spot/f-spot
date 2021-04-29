@@ -31,15 +31,13 @@ namespace FSpot.Cms
 
 		public static ColorCIExyY WhitePointFromTemperature (int temp)
 		{
-			double x, y;
-			CctTable.GetXY (temp, out x, out y);
+			CctTable.GetXY (temp, out var x, out var y);
 			return new ColorCIExyY (x, y, 1.0);
 		}
 
 		public static ColorCIExyY WhitePointFromTemperatureCIE (int temp)
 		{
-			ColorCIExyY wp;
-			NativeMethods.CmsWhitePointFromTemp (temp, out wp);
+			NativeMethods.CmsWhitePointFromTemp (temp, out var wp);
 			return wp;
 		}
 
@@ -48,31 +46,29 @@ namespace FSpot.Cms
 			ColorCIExyY wp;
 			//const int line_size = 0x1e;
 
-			using (Stream stream = Assembly.GetExecutingAssembly ().GetManifestResourceStream (name)) {
-				var reader = new StreamReader (stream, System.Text.Encoding.ASCII);
-				string line = null;
-				for (int i = 0; i <= temp - 1000; i++) {
-					line = reader.ReadLine ();
-				}
-				
-				//System.Console.WriteLine (line);
-				string [] subs = line.Split ('\t');
-				int ptemp = int.Parse (subs [0]);
-				if (ptemp != temp)
-					throw new CmsException (string.Format ("{0} != {1}", ptemp, temp));
-				
-				double x = double.Parse (subs [1]);
-				double y = double.Parse (subs [2]);
-				wp = new ColorCIExyY (x, y, 1.0);
-				return wp;
-			}			
+			using var stream = Assembly.GetExecutingAssembly ().GetManifestResourceStream (name);
+			using var reader = new StreamReader (stream, System.Text.Encoding.ASCII);
+			string line = null;
+			for (int i = 0; i <= temp - 1000; i++) {
+				line = reader.ReadLine ();
+			}
+
+			//System.Console.WriteLine (line);
+			string[] subs = line.Split ('\t');
+			int ptemp = int.Parse (subs[0]);
+			if (ptemp != temp)
+				throw new CmsException ($"{ptemp} != {temp}");
+
+			double x = double.Parse (subs[1]);
+			double y = double.Parse (subs[2]);
+			wp = new ColorCIExyY (x, y, 1.0);
+			return wp;
 		}
 
 		public ColorCIEXYZ ToXYZ ()
 		{
-			ColorCIEXYZ dest;
-			NativeMethods.CmsxyY2XYZ (out dest, ref this);
-			
+			NativeMethods.CmsxyY2XYZ (out var dest, ref this);
+
 			return dest;
 		}
 
@@ -95,7 +91,7 @@ namespace FSpot.Cms
 
 		public override string ToString ()
 		{
-			return string.Format ("(x={0}, y={1}, Y={2})", x, y, Y);
+			return $"(x={x}, y={y}, Y={Y})";
 		}
 	}
 

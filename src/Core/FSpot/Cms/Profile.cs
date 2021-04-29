@@ -17,7 +17,7 @@ namespace FSpot.Cms
 {
 	public class Profile : IDisposable
 	{
-		static Profile srgb = new Profile (NativeMethods.CmsCreateSRGBProfile());
+		static readonly Profile srgb = new Profile (NativeMethods.CmsCreateSRGBProfile ());
 
 		static Profile ()
 		{
@@ -33,29 +33,29 @@ namespace FSpot.Cms
 		{
 		}
 
-		public static Profile CreateSRgb () 
+		public static Profile CreateSRgb ()
 		{
 			return CreateStandardRgb ();
 		}
-		
 
-		public static Profile CreateStandardRgb () 
+
+		public static Profile CreateStandardRgb ()
 		{
 			return srgb;
 		}
-		
+
 		public static Profile CreateAlternateRgb ()
 		{
 			// FIXME I'm basing this off the values set in the camera
 			// exif data when the adobe profile is selected.  They could
 			// easily be off
-			ColorCIExyY wp = new ColorCIExyY (.3127, .329, 1.0);
-			ColorCIExyYTriple primaries = new ColorCIExyYTriple (
+			var wp = new ColorCIExyY (.3127, .329, 1.0);
+			var primaries = new ColorCIExyYTriple (
 				new ColorCIExyY (.64, .33, 1.0),
 				new ColorCIExyY (.21, .71, 1.0),
 				new ColorCIExyY (.15, .06, 1.0));
-			ToneCurve tc = new ToneCurve (2.2);
-			ToneCurve [] tcs = new ToneCurve [] { tc, tc, tc, tc};
+			var tc = new ToneCurve (2.2);
+			var tcs = new ToneCurve[] { tc, tc, tc, tc };
 
 			return new Profile (wp, primaries, tcs);
 		}
@@ -63,12 +63,12 @@ namespace FSpot.Cms
 		public static Profile CreateLab (ColorCIExyY wp)
 		{
 			return new Profile (NativeMethods.CmsCreateLabProfile (out wp));
-		}			
+		}
 
 		public static Profile CreateLab ()
 		{
 			return new Profile (NativeMethods.CmsCreateLabProfile (IntPtr.Zero));
-		}			
+		}
 
 		public static Profile CreateGray (ColorCIExyY whitePoint, ToneCurve transfer)
 		{
@@ -81,32 +81,32 @@ namespace FSpot.Cms
 		public static Profile GetScreenProfile (Gdk.Screen screen)
 		{
 			if (screen == null)
-				throw new ArgumentNullException ("screen");
+				throw new ArgumentNullException (nameof (screen));
 
 			IntPtr profile = NativeMethods.FScreenGetProfile (screen.Handle);
-			
+
 			if (profile == IntPtr.Zero)
 				return null;
-			
+
 			return new Profile (profile);
 		}
 
 		public static Profile CreateAbstract (int nLUTPoints,
-						      double Exposure,
-						      double Bright,
-						      double Contrast,
-						      double Hue,
-						      double Saturation,
-						      int TempSrc,
-						      int TempDest)
+							  double Exposure,
+							  double Bright,
+							  double Contrast,
+							  double Hue,
+							  double Saturation,
+							  int TempSrc,
+							  int TempDest)
 		{
 #if true
-			ToneCurve gamma = new ToneCurve (Math.Pow (10, -Bright/100));
-			ToneCurve line = new ToneCurve (1.0);
-			ToneCurve [] tables = new ToneCurve [] { gamma, line, line };
-			return CreateAbstract (nLUTPoints, Exposure, 0.0, Contrast, Hue, Saturation, tables, 
-					       ColorCIExyY.WhitePointFromTemperature (TempSrc), 
-					       ColorCIExyY.WhitePointFromTemperature (TempDest));
+			var gamma = new ToneCurve (Math.Pow (10, -Bright / 100));
+			var line = new ToneCurve (1.0);
+			var tables = new ToneCurve[] { gamma, line, line };
+			return CreateAbstract (nLUTPoints, Exposure, 0.0, Contrast, Hue, Saturation, tables,
+						   ColorCIExyY.WhitePointFromTemperature (TempSrc),
+						   ColorCIExyY.WhitePointFromTemperature (TempDest));
 #else
 			GammaTable [] tables = null;
 			return CreateAbstract (nLUTPoints, Exposure, Bright, Contrast, Hue, Saturation, tables, 
@@ -116,19 +116,19 @@ namespace FSpot.Cms
 		}
 
 		public static Profile CreateAbstract (int nLUTPoints,
-						      double Exposure,
-						      double Bright,
-						      double Contrast,
-						      double Hue,
-						      double Saturation,
-						      ToneCurve [] tables,
-						      ColorCIExyY srcWp,
-						      ColorCIExyY destWp)
+							  double Exposure,
+							  double Bright,
+							  double Contrast,
+							  double Hue,
+							  double Saturation,
+							  ToneCurve[] tables,
+							  ColorCIExyY srcWp,
+							  ColorCIExyY destWp)
 		{
 			if (tables == null) {
-				ToneCurve gamma = new ToneCurve (Math.Pow (10, -Bright/100));
-				ToneCurve line = new ToneCurve (1.0);
-				tables = new ToneCurve [] { gamma, line, line };
+				var gamma = new ToneCurve (Math.Pow (10, -Bright / 100));
+				var line = new ToneCurve (1.0);
+				tables = new ToneCurve[] { gamma, line, line };
 			}
 
 			/*
@@ -139,34 +139,34 @@ namespace FSpot.Cms
 			System.Console.WriteLine ("s {0} {1} {2}", Saturation, srcWp, destWp);
 			*/
 			return new Profile (NativeMethods.FCmsCreateBCHSWabstractProfile (nLUTPoints,
-									     Exposure,
-									     0.0, //Bright,
-									     Contrast,
-									     Hue,
-									     Saturation,
-									     ref srcWp,
-									     ref destWp,
-									     CopyHandles (tables)));
+										 Exposure,
+										 0.0, //Bright,
+										 Contrast,
+										 Hue,
+										 Saturation,
+										 ref srcWp,
+										 ref destWp,
+										 CopyHandles (tables)));
 		}
 
-		public Profile (IccColorSpace colorSpace, ToneCurve [] gamma)
+		public Profile (IccColorSpace colorSpace, ToneCurve[] gamma)
 		{
 			Handle = new HandleRef (this, NativeMethods.CmsCreateLinearizationDeviceLink (colorSpace, CopyHandles (gamma)));
 		}
 
-		static HandleRef [] CopyHandles (ToneCurve [] gamma)
+		static HandleRef[] CopyHandles (ToneCurve[] gamma)
 		{
 			if (gamma == null)
 				return null;
 
-			HandleRef [] gamma_handles = new HandleRef [gamma.Length];
+			var gamma_handles = new HandleRef[gamma.Length];
 			for (int i = 0; i < gamma_handles.Length; i++)
-				gamma_handles [i] = gamma [i].Handle;
-			
+				gamma_handles[i] = gamma[i].Handle;
+
 			return gamma_handles;
 		}
 
-		public Profile (ColorCIExyY whitepoint, ColorCIExyYTriple primaries, ToneCurve [] gamma)
+		public Profile (ColorCIExyY whitepoint, ColorCIExyYTriple primaries, ToneCurve[] gamma)
 		{
 			Handle = new HandleRef (this, NativeMethods.CmsCreateRGBProfile (out whitepoint, out primaries, CopyHandles (gamma)));
 		}
@@ -176,16 +176,16 @@ namespace FSpot.Cms
 			Handle = new HandleRef (this, NativeMethods.CmsOpenProfileFromFile (path, "r"));
 
 			if (Handle.Handle == IntPtr.Zero)
-				throw new CmsException ("Error opening ICC profile in file " + path);
+				throw new CmsException ($"Error opening ICC profile in file {path}");
 		}
 
-		public byte [] Save ()
+		public byte[] Save ()
 		{
 			unsafe {
 				uint length = 0;
 				if (NativeMethods.CmsSaveProfileToMem (Handle, null, ref length)) {
-					byte [] data = new byte [length];
-					fixed (byte * data_p = &data [0]) {
+					byte[] data = new byte[length];
+					fixed (byte* data_p = &data[0]) {
 						if (NativeMethods.CmsSaveProfileToMem (Handle, data_p, ref length)) {
 							return data;
 						}
@@ -195,28 +195,29 @@ namespace FSpot.Cms
 			throw new SaveException ("Error Saving Profile");
 		}
 
-		public Profile (byte [] data) : this (data, 0, data.Length) {
+		public Profile (byte[] data) : this (data, 0, data.Length)
+		{
 			if (data == null)
-				throw new ArgumentNullException ("data");	
+				throw new ArgumentNullException (nameof (data));
 		}
 
-		public Profile (byte [] data, int startOffset, int length)
+		public Profile (byte[] data, int startOffset, int length)
 		{
 			if (startOffset < 0)
-				throw new ArgumentOutOfRangeException ("startOffset", "startOffset < 0");
+				throw new ArgumentOutOfRangeException (nameof (startOffset), "startOffset < 0");
 
 			if (data == null)
-				throw new ArgumentNullException ("data");
+				throw new ArgumentNullException (nameof (data));
 
 			if (data.Length - startOffset < 0)
-				throw new ArgumentOutOfRangeException ("startOffset", "startOffset > data.Length");
+				throw new ArgumentOutOfRangeException (nameof (startOffset), "startOffset > data.Length");
 
 			if (data.Length - length - startOffset < 0)
-				throw new ArgumentOutOfRangeException ("length", "startOffset + length > data.Length");
+				throw new ArgumentOutOfRangeException (nameof (length), "startOffset + length > data.Length");
 
 			IntPtr profileh;
 			unsafe {
-				fixed (byte * start = & data [startOffset]) {
+				fixed (byte* start = &data[startOffset]) {
 					profileh = NativeMethods.CmsOpenProfileFromMem (start, (uint)length);
 				}
 			}
@@ -229,61 +230,61 @@ namespace FSpot.Cms
 
 		public ColorCIEXYZ MediaWhitePoint {
 			get {
-				IntPtr ptr = NativeMethods.CmsReadTag(Handle, NativeMethods.CmsTagSignature.MediaWhitePoint);
+				IntPtr ptr = NativeMethods.CmsReadTag (Handle, NativeMethods.CmsTagSignature.MediaWhitePoint);
 				if (ptr == IntPtr.Zero)
 					throw new CmsException ("unable to retrieve white point from profile");
-				return ColorCIEXYZ.FromPtr(ptr);
+				return ColorCIEXYZ.FromPtr (ptr);
 			}
 		}
 
 		public ColorCIEXYZ MediaBlackPoint {
 			get {
-				IntPtr ptr = NativeMethods.CmsReadTag(Handle, NativeMethods.CmsTagSignature.MediaBlackPoint);
+				IntPtr ptr = NativeMethods.CmsReadTag (Handle, NativeMethods.CmsTagSignature.MediaBlackPoint);
 				if (ptr == IntPtr.Zero)
 					throw new CmsException ("unable to retrieve white point from profile");
-				return ColorCIEXYZ.FromPtr(ptr);
+				return ColorCIEXYZ.FromPtr (ptr);
 			}
 		}
-		
+
 		public ColorCIEXYZTriple Colorants {
 			get {
-				IntPtr rPtr = NativeMethods.CmsReadTag(Handle, NativeMethods.CmsTagSignature.RedColorant);
+				IntPtr rPtr = NativeMethods.CmsReadTag (Handle, NativeMethods.CmsTagSignature.RedColorant);
 				if (rPtr == IntPtr.Zero)
 					throw new CmsException ("Unable to retrieve red profile colorant");
-				IntPtr gPtr = NativeMethods.CmsReadTag(Handle, NativeMethods.CmsTagSignature.GreenColorant);
+				IntPtr gPtr = NativeMethods.CmsReadTag (Handle, NativeMethods.CmsTagSignature.GreenColorant);
 				if (gPtr == IntPtr.Zero)
 					throw new CmsException ("Unable to retrieve green profile colorant");
-				IntPtr bPtr = NativeMethods.CmsReadTag(Handle, NativeMethods.CmsTagSignature.BlueColorant);
+				IntPtr bPtr = NativeMethods.CmsReadTag (Handle, NativeMethods.CmsTagSignature.BlueColorant);
 				if (bPtr == IntPtr.Zero)
 					throw new CmsException ("Unable to retrieve blue profile colorant");
-				return new ColorCIEXYZTriple(
-					ColorCIEXYZ.FromPtr(rPtr),
-					ColorCIEXYZ.FromPtr(gPtr),
-					ColorCIEXYZ.FromPtr(bPtr)
+				return new ColorCIEXYZTriple (
+					ColorCIEXYZ.FromPtr (rPtr),
+					ColorCIEXYZ.FromPtr (gPtr),
+					ColorCIEXYZ.FromPtr (bPtr)
 					);
-			}				
+			}
 		}
-		
+
 		public IccColorSpace ColorSpace {
-			get { return (IccColorSpace) NativeMethods.CmsGetColorSpace (Handle); }
+			get { return (IccColorSpace)NativeMethods.CmsGetColorSpace (Handle); }
 		}
 
 		public IccProfileClass DeviceClass {
-			get { return (IccProfileClass) NativeMethods.CmsGetDeviceClass (Handle); }
+			get { return (IccProfileClass)NativeMethods.CmsGetDeviceClass (Handle); }
 		}
-		
+
 		public string Model {
 			get {
 				lock (srgb) {
-					var ret = new StringBuilder(128);
-					NativeMethods.CmsGetProfileInfo (
+					var ret = new StringBuilder (128);
+					_ = NativeMethods.CmsGetProfileInfo (
 						Handle,
 						NativeMethods.CmsProfileInfo.Model,
 						"en", "US",
 						ret,
 						ret.Capacity
 						);
-					return ret.ToString();
+					return ret.ToString ();
 				}
 			}
 		}
@@ -291,15 +292,15 @@ namespace FSpot.Cms
 		public string ProductName {
 			get {
 				lock (srgb) {
-					var ret = new StringBuilder(128);
-					NativeMethods.CmsGetProfileInfo (
+					var ret = new StringBuilder (128);
+					_ = NativeMethods.CmsGetProfileInfo (
 						Handle,
 						NativeMethods.CmsProfileInfo.Manufacturer,
 						"en", "US",
 						ret,
 						ret.Capacity
 						);
-					return ret.ToString();
+					return ret.ToString ();
 				}
 			}
 		}
@@ -307,20 +308,21 @@ namespace FSpot.Cms
 		public string ProductDescription {
 			get {
 				lock (srgb) {
-					var ret = new StringBuilder(128);
-					NativeMethods.CmsGetProfileInfo (
+					var ret = new StringBuilder (128);
+					_ = NativeMethods.CmsGetProfileInfo (
 						Handle,
 						NativeMethods.CmsProfileInfo.Description,
 						"en", "US",
 						ret,
 						ret.Capacity
 						);
-					return ret.ToString();
+					return ret.ToString ();
 				}
 			}
 		}
 
-		enum ErrorAction {
+		enum ErrorAction
+		{
 			Abort,
 			Show,
 			Ignore
@@ -328,7 +330,7 @@ namespace FSpot.Cms
 
 		static void SetErrorAction (ErrorAction act)
 		{
-			NativeMethods.CmsErrorAction ((int) act);
+			NativeMethods.CmsErrorAction ((int)act);
 		}
 
 		public override string ToString ()
@@ -341,7 +343,7 @@ namespace FSpot.Cms
 			Handle = new HandleRef (this, handle);
 		}
 
-		public void Dispose () 
+		public void Dispose ()
 		{
 			Dispose (true);
 			GC.SuppressFinalize (this);
@@ -357,7 +359,7 @@ namespace FSpot.Cms
 				// free managed resources
 			}
 			// free unmanaged resources
-			NativeMethods.CmsCloseProfile (Handle);
+			_ = NativeMethods.CmsCloseProfile (Handle);
 		}
 
 		~Profile ()

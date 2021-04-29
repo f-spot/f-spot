@@ -26,9 +26,9 @@ namespace FSpot.Cms
 				  Intent intent, uint flags)
 		{
 			if (profiles == null)
-				throw new ArgumentNullException ("profiles");
+				throw new ArgumentNullException (nameof (profiles));
 
-			HandleRef [] Handles = new HandleRef [profiles.Length];
+			var Handles = new HandleRef [profiles.Length];
 			for (int i = 0; i < profiles.Length; i++) {
 				Handles [i] = profiles [i].Handle;
 			}
@@ -44,9 +44,9 @@ namespace FSpot.Cms
 				  Intent intent, uint flags)
 		{
 			if (input == null)
-				throw new ArgumentNullException ("input");
+				throw new ArgumentNullException (nameof (input));
 			if (output == null)
-				throw new ArgumentNullException ("output");
+				throw new ArgumentNullException (nameof (output));
 
 			Handle = new HandleRef (this, NativeMethods.CmsCreateTransform (input.Handle, inputFormat,
 									       output.Handle, outputFormat,

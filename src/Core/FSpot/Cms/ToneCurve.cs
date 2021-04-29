@@ -111,7 +111,7 @@ namespace FSpot.Cms
 						throw new CmsException ();
 					
 					if (index < 0 || index >= Count)
-						throw new ArgumentOutOfRangeException (string.Format ("index {0} outside of count {1} for {2}", index, Count, Handle.Handle));
+						throw new ArgumentOutOfRangeException ($"index {index} outside of count {Count} for {Handle.Handle}");
 
 					ushort *data = (ushort *)Values;
 					return data [index];
@@ -123,7 +123,7 @@ namespace FSpot.Cms
 						throw new CmsException ();
 					
 					if (index < 0 || index >= Count)
-						throw new ArgumentOutOfRangeException (string.Format ("index {0} outside of count {1} for handle {2}", index, Count, Handle.Handle));
+						throw new ArgumentOutOfRangeException ($"index {index} outside of count {Count} for handle {Handle.Handle}");
 
 					ushort *data = (ushort *)Values;
 					data [index] = value;
@@ -138,7 +138,7 @@ namespace FSpot.Cms
 		{
 #if true
 			if (values == null)
-				throw new ArgumentNullException ("values");
+				throw new ArgumentNullException (nameof (values));
 
 			if (startOffset != 0)
 				Array.Copy(values, startOffset, values, 0, length);
