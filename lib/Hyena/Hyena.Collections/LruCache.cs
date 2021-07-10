@@ -130,7 +130,7 @@ namespace Hyena.Collections
 
                 misses++;
                 EnsureMinimumHitRatio ();
-                value = default (TValue);
+                value = default;
                 return false;
             }
         }
@@ -171,7 +171,7 @@ namespace Hyena.Collections
         {
             lock (cache) {
                 DateTime oldest = DateTime.Now;
-                TKey oldest_key = default (TKey);
+                TKey oldest_key = default;
                 foreach (CacheEntry<TKey, TValue> item in this) {
                     if (item.LastUsed < oldest) {
                         oldest = item.LastUsed;

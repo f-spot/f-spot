@@ -82,7 +82,7 @@ namespace Hyena.Data
             get {
                 lock (list) {
                     if (list.Count <= index || index < 0) {
-                        return default (T);
+                        return default;
                     }
 
                     return list[index];

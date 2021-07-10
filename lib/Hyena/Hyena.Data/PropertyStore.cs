@@ -133,7 +133,7 @@ namespace Hyena.Data
         public void Set<T>(string name, T value)
         {
             bool added = false;
-            T old_value = default(T);
+            T old_value = default;
             lock(this) {
                 if(object_store == null) {
                     object_store = new Dictionary<string, object>();
@@ -159,7 +159,7 @@ namespace Hyena.Data
                     return (T)object_store[name];
                 }
 
-                return default(T);
+                return default;
             }
         }
 

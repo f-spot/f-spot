@@ -95,7 +95,7 @@ namespace Hyena.Data.Sqlite
         public static T FromDbFormat<T> (object value)
         {
             object o = FromDbFormat (typeof(T), value);
-            return o == null ? default(T) : (T)o;
+            return o == null ? default : (T)o;
         }
 
         public static object FromDbFormat (Type type, object value)

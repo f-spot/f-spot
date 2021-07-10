@@ -95,7 +95,7 @@ namespace Hyena.Data
         }
 
         public T FocusedItem {
-            get { return Selection.FocusedIndex == -1 ? default(T) : this[Selection.FocusedIndex]; }
+            get { return Selection.FocusedIndex == -1 ? default : this[Selection.FocusedIndex]; }
         }
 
         private bool can_reorder = false;

@@ -396,7 +396,7 @@ namespace Hyena.Data.Sqlite
             foreach (T item in FetchAllMatching (String.Format ("{0} LIMIT 1", condition), vals)) {
                 return item;
             }
-            return default(T);
+            return default;
         }
 
         public IEnumerable<T> FetchAllMatching (string condition, params object [] vals)
@@ -435,7 +435,7 @@ namespace Hyena.Data.Sqlite
                     return Load (reader);
                 }
             }
-            return default(T);
+            return default;
         }
 
         protected long PrimaryKeyFor (T item)
