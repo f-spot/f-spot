@@ -5,6 +5,8 @@
     <FSpotTargetFramework>net472</FSpotTargetFramework>
     <LangVersion>latest</LangVersion>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
   </PropertyGroup>
 
   <PropertyGroup>
