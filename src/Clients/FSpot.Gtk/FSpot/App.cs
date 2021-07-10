@@ -44,7 +44,8 @@ using FSpot.Database;
 using FSpot.Imaging;
 using FSpot.Settings;
 using FSpot.Thumbnail;
-using FSpot.Utils;
+
+using TinyIoC;
 
 namespace FSpot
 {

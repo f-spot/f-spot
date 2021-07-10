@@ -30,12 +30,16 @@
 //
 
 using System;
+
 using Banshee.Kernel;
+
 using FSpot.Database.Jobs;
 using FSpot.Jobs;
-using FSpot.Utils;
+
 using Hyena;
 using Hyena.Data.Sqlite;
+
+using TinyIoC;
 
 namespace FSpot.Database
 {

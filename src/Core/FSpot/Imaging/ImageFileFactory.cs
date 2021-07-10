@@ -35,10 +35,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using FSpot.FileSystem;
 using FSpot.Utils;
+
 using Gdk;
+
 using Hyena;
+
+using TinyIoC;
 
 namespace FSpot.Imaging
 {
