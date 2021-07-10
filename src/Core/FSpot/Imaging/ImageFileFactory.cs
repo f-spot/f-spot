@@ -255,7 +255,7 @@ namespace FSpot.Imaging
 				return container.Resolve<IImageFile> (name, UriAsParameter (uri));
 			} catch (Exception e) {
 				Log.DebugException (e);
-				throw e;
+				throw;
 			}
 		}
 

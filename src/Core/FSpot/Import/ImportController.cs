@@ -87,9 +87,9 @@ namespace FSpot.Import
 				}
 
 				FinishImport (preferences.RemoveOriginals);
-			} catch (Exception e) {
+			} catch (Exception) {
 				RollbackImport (db);
-				throw e;
+				throw;
 			} finally {
 				Cleanup (db);
 			}
