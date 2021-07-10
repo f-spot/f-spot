@@ -505,13 +505,13 @@ namespace System.Web {
 				return String.Empty;
 
 			if (bytes == null)
-				throw new ArgumentNullException ("bytes");
+				throw new ArgumentNullException (nameof (bytes));
 
 			if (offset < 0 || offset > bytes.Length)
-				throw new ArgumentOutOfRangeException ("offset");
+				throw new ArgumentOutOfRangeException (nameof (offset));
 
 			if (count < 0 || offset + count > bytes.Length)
-				throw new ArgumentOutOfRangeException ("count");
+				throw new ArgumentOutOfRangeException (nameof (count));
 
 			StringBuilder output = new StringBuilder ();
 			MemoryStream acc = new MemoryStream ();
@@ -577,7 +577,7 @@ namespace System.Web {
 				return null;
 
 			if (e == null)
-				throw new ArgumentNullException ("e");
+				throw new ArgumentNullException (nameof (e));
 
 			return UrlDecodeToBytes (e.GetBytes (str));
 		}
@@ -591,10 +591,10 @@ namespace System.Web {
 
 			int len = bytes.Length;
 			if (offset < 0 || offset >= len)
-				throw new ArgumentOutOfRangeException("offset");
+				throw new ArgumentOutOfRangeException(nameof (offset));
 
 			if (count < 0 || offset > len - count)
-				throw new ArgumentOutOfRangeException("count");
+				throw new ArgumentOutOfRangeException(nameof (count));
 
 			MemoryStream result = new MemoryStream ();
 			int end = offset + count;
@@ -768,10 +768,10 @@ namespace System.Web {
 				return new byte [0];
 
 			if (offset < 0 || offset >= len)
-				throw new ArgumentOutOfRangeException("offset");
+				throw new ArgumentOutOfRangeException(nameof (offset));
 
 			if (count < 0 || count > len - offset)
-				throw new ArgumentOutOfRangeException("count");
+				throw new ArgumentOutOfRangeException(nameof (count));
 
 			MemoryStream result = new MemoryStream (count);
 			int end = offset + count;
@@ -812,7 +812,7 @@ namespace System.Web {
 		public static string HtmlDecode (string s) 
 		{
 			if (s == null)
-				throw new ArgumentNullException ("s");
+				throw new ArgumentNullException (nameof (s));
 
 			if (s.IndexOf ('&') == -1)
 				return s;
@@ -1019,9 +1019,9 @@ namespace System.Web {
 		public static NameValueCollection ParseQueryString (string query, Encoding encoding)
 		{
 			if (query == null)
-				throw new ArgumentNullException ("query");
+				throw new ArgumentNullException (nameof (query));
 			if (encoding == null)
-				throw new ArgumentNullException ("encoding");
+				throw new ArgumentNullException (nameof (encoding));
 			if (query.Length == 0 || (query.Length == 1 && query[0] == '?'))
 				return new NameValueCollection ();
 			if (query[0] == '?')

@@ -65,7 +65,7 @@ namespace Hyena
         private static void SetColor (ConsoleColor color, bool isForeground)
         {
             if (color < ConsoleColor.Black || color > ConsoleColor.White) {
-                throw new ArgumentOutOfRangeException ("color", "Not a ConsoleColor value.");
+                throw new ArgumentOutOfRangeException (nameof (color), "Not a ConsoleColor value.");
             }
 
             if (XtermColors) {

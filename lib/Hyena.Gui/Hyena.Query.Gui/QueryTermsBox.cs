@@ -81,7 +81,7 @@ namespace Hyena.Query.Gui
                 box.QueryNode = node as QueryTermNode;
                 first_add_node = false;
             } else {
-                throw new ArgumentException ("Query is too complex for GUI query editor", "node");
+                throw new ArgumentException ("Query is too complex for GUI query editor", nameof (node));
             }
         }
 

@@ -99,7 +99,7 @@ namespace GLib {
 		public LoadableIconAdapter (LoadableIconImplementor implementor)
 		{
 			if (implementor == null)
-				throw new ArgumentNullException ("implementor");
+				throw new ArgumentNullException (nameof (implementor));
 			this.implementor = implementor;
 		}
 

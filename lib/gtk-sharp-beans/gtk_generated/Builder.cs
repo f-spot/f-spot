@@ -355,7 +355,7 @@ public Builder (System.IO.Stream s) : this (s, null)
 public Builder (System.IO.Stream s, string translation_domain)
 {
 	if (s == null)
-		throw new ArgumentNullException ("s");
+		throw new ArgumentNullException (nameof (s));
 
 	int size = (int) s.Length;
 	byte[] buffer = new byte[size];
@@ -386,7 +386,7 @@ public Builder (System.Reflection.Assembly assembly, string resource_name, strin
 	System.IO.Stream s = assembly.GetManifestResourceStream (resource_name);
 	if (s == null)
 		throw new ArgumentException ("Cannot get resource file '" + resource_name + "'",
-					     "resource_name");
+					     nameof (resource_name));
 
 	int size = (int) s.Length;
 	byte[] buffer = new byte[size];

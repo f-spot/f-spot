@@ -68,7 +68,7 @@ namespace Hyena.Jobs
             lock (jobs) {
                 lock (job) {
                     if (jobs.Contains (job) || job.HasScheduler) {
-                        throw new ArgumentException ("Job not schedulable", "job");
+                        throw new ArgumentException ("Job not schedulable", nameof (job));
                     }
 
                     job.HasScheduler = true;

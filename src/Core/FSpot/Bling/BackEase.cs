@@ -42,7 +42,7 @@ namespace FSpot.Bling
 		protected BackEase (double amplitude)
 		{
 			if (amplitude < 0)
-				throw new ArgumentOutOfRangeException ("amplitude");
+				throw new ArgumentOutOfRangeException (nameof (amplitude));
 			this.amplitude = amplitude;
 		}
 
@@ -53,7 +53,7 @@ namespace FSpot.Bling
 		protected BackEase (EasingMode easingMode, double amplitude) : base (easingMode)
 		{
 			if (amplitude < 0)
-				throw new ArgumentOutOfRangeException ("amplitude");
+				throw new ArgumentOutOfRangeException (nameof (amplitude));
 			this.amplitude = amplitude;
 		}
 
