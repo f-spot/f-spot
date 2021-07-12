@@ -49,12 +49,6 @@ namespace FSpot.Addins.Editors
 			ApplyLabel = Catalog.GetString ("Apply");
 		}
 
-/*		static bool enhanced_support = EnhancedSimdSupport ();
-		static bool EnhancedSimdSupport () { //require sse3
-			return SimdRuntime.IsMethodAccelerated (typeof (VectorOperations), "HorizontalAdd", new Type[] {typeof (Vector4f), typeof (Vector4f)})
-			       && SimdRuntime.IsMethodAccelerated (typeof (Vector4f), "op_Multiply");
-		}*/
-
 		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile)
 		{
 			uint timer = Log.DebugTimerStart ();
