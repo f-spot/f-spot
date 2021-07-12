@@ -7,6 +7,8 @@
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <!-- Lots of warning this'll be a long slow process -->
+    <!-- <Nullable>enable</Nullable> -->
   </PropertyGroup>
 
   <PropertyGroup>
