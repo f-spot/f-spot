@@ -52,7 +52,7 @@ namespace Hyena.Data
                 if (ContainsKey (index))
                     return this[index];
 
-                return default (T);
+                return default;
             }
         }
 

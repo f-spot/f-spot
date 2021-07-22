@@ -101,16 +101,16 @@ namespace FSpot.Exporters.Folder
 		internal FolderGallery (IBrowsableCollection selection, string path, string gallery_name)
 		{
 			if (null == selection)
-				throw new ArgumentNullException ("selection");
+				throw new ArgumentNullException (nameof (selection));
 
 			if (0 == selection.Count)
 				throw new ArgumentException ("selection can't be empty");
 
 			if (null == path)
-				throw new ArgumentNullException ("path");
+				throw new ArgumentNullException (nameof (path));
 
 			if (null == gallery_name)
-				throw new ArgumentNullException ("gallery_name");
+				throw new ArgumentNullException (nameof (gallery_name));
 
 			Collection = selection;
 			GalleryName = gallery_name;

@@ -53,8 +53,8 @@ namespace FSpot.Bling
 
 		protected Animation ()
 		{
-			From = default (T);
-			To = default (T);
+			From = default;
+			To = default;
 			Duration = TimeSpan.Zero;
 			action = null;
 			state = AnimationState.NotRunning;

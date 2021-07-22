@@ -323,7 +323,7 @@ namespace Hyena.Data.Sqlite
                     return item;
                 }
             }
-            return default(T);
+            return default;
         }
 
         private HyenaSqliteCommand last_reload_command;

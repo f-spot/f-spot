@@ -268,7 +268,7 @@ namespace FSpot
 					if (create_version)
 						DeleteVersion (version);
 
-					throw e;
+					throw;
 				}
 			}
 

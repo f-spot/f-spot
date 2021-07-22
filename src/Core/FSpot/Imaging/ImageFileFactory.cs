@@ -35,10 +35,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using FSpot.FileSystem;
 using FSpot.Utils;
+
 using Gdk;
+
 using Hyena;
+
+using TinyIoC;
 
 namespace FSpot.Imaging
 {
@@ -255,7 +260,7 @@ namespace FSpot.Imaging
 				return container.Resolve<IImageFile> (name, UriAsParameter (uri));
 			} catch (Exception e) {
 				Log.DebugException (e);
-				throw e;
+				throw;
 			}
 		}
 

@@ -790,7 +790,7 @@ namespace FSpot.Database
 				db.RollbackTransaction ();
 
 				// Pass the exception on, this is fatal
-				throw e;
+				throw;
 			}
 
 			dialog.Destroy ();

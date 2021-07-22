@@ -74,9 +74,9 @@ namespace Hyena
         public static string Combine (string first, params string [] components)
         {
             if (String.IsNullOrEmpty (first)) {
-                throw new ArgumentException ("First component must not be null or empty", "first");
+                throw new ArgumentException ("First component must not be null or empty", nameof (first));
             } else if (components == null || components.Length < 1) {
-                throw new ArgumentException ("One or more path components must be provided", "components");
+                throw new ArgumentException ("One or more path components must be provided", nameof (components));
             }
 
             string result = first;

@@ -71,7 +71,7 @@ namespace Hyena.Collections
         public virtual void Push (T item, int priority)
         {
             if (item == null) {
-                throw new ArgumentNullException ("item");
+                throw new ArgumentNullException (nameof (item));
             }
 
             if (count == heap.Length) {
@@ -92,11 +92,11 @@ namespace Hyena.Collections
         void ICollection.CopyTo (Array array, int index)
         {
             if (array == null) {
-                throw new ArgumentNullException ("array");
+                throw new ArgumentNullException (nameof (array));
             }
 
             if (index < 0) {
-                throw new ArgumentOutOfRangeException ("index");
+                throw new ArgumentOutOfRangeException (nameof (index));
             }
 
             Array.Copy (heap, 0, array, index, count);
@@ -105,11 +105,11 @@ namespace Hyena.Collections
         public virtual void CopyTo (T [] array, int index)
         {
             if (array == null) {
-                throw new ArgumentNullException ("array");
+                throw new ArgumentNullException (nameof (array));
             }
 
             if (index < 0) {
-                throw new ArgumentOutOfRangeException ("index");
+                throw new ArgumentOutOfRangeException (nameof (index));
             }
 
             Array.Copy (heap, 0, array, index, count);
@@ -118,7 +118,7 @@ namespace Hyena.Collections
         public virtual bool Contains (T item)
         {
             if (item == null) {
-                throw new ArgumentNullException ("item");
+                throw new ArgumentNullException (nameof (item));
             }
 
             return FindItemHeapIndex (item) >= 0;
@@ -127,7 +127,7 @@ namespace Hyena.Collections
         public virtual void Add (T item)
         {
             if (item == null) {
-                throw new ArgumentNullException ("item");
+                throw new ArgumentNullException (nameof (item));
             }
 
             Push (item, 0);
@@ -136,7 +136,7 @@ namespace Hyena.Collections
         public virtual bool Remove (T item)
         {
             if (item == null) {
-                throw new ArgumentNullException ("item");
+                throw new ArgumentNullException (nameof (item));
             }
 
             int index = FindItemHeapIndex (item);
@@ -171,7 +171,7 @@ namespace Hyena.Collections
         public static IntervalHeap<T> Synchronized (IntervalHeap<T> heap)
         {
             if (heap == null) {
-                throw new ArgumentNullException ("heap");
+                throw new ArgumentNullException (nameof (heap));
             }
 
             return new SyncIntervalHeap (heap);

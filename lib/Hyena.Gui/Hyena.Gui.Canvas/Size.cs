@@ -75,7 +75,7 @@ namespace Hyena.Gui.Canvas
             set {
                 if (value < 0) {
                     Log.Exception (String.Format ("Height value to set: {0}", value),
-                                   new ArgumentException ("Height setter should not receive negative values", "value"));
+                                   new ArgumentException ("Height setter should not receive negative values", nameof (value)));
                     value = 0;
                 }
 
@@ -88,7 +88,7 @@ namespace Hyena.Gui.Canvas
             set {
                 if (value < 0) {
                     Log.Exception (String.Format ("Width value to set: {0}", value),
-                                   new ArgumentException ("Width setter should not receive negative values", "value"));
+                                   new ArgumentException ("Width setter should not receive negative values", nameof (value)));
                     value = 0;
                 }
 

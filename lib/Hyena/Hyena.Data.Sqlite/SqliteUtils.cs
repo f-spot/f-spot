@@ -95,7 +95,7 @@ namespace Hyena.Data.Sqlite
         public static T FromDbFormat<T> (object value)
         {
             object o = FromDbFormat (typeof(T), value);
-            return o == null ? default(T) : (T)o;
+            return o == null ? default : (T)o;
         }
 
         public static object FromDbFormat (Type type, object value)
@@ -171,7 +171,7 @@ namespace Hyena.Data.Sqlite
         {
             lock (funcs) {
                 if (funcs.ContainsKey (functionId)) {
-                    throw new ArgumentException (String.Format ("{0} is already taken", functionId), "functionId");
+                    throw new ArgumentException (String.Format ("{0} is already taken", functionId), nameof (functionId));
                 }
 
                 funcs[functionId] = func;
@@ -182,7 +182,7 @@ namespace Hyena.Data.Sqlite
         {
             lock (funcs) {
                 if (!funcs.ContainsKey (functionId)) {
-                    throw new ArgumentException (String.Format ("{0} does not exist", functionId), "functionId");
+                    throw new ArgumentException (String.Format ("{0} does not exist", functionId), nameof (functionId));
                 }
 
                 funcs.Remove (functionId);

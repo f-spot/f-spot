@@ -86,7 +86,7 @@ namespace GLib {
 		public SeekableAdapter (SeekableImplementor implementor)
 		{
 			if (implementor == null)
-				throw new ArgumentNullException ("implementor");
+				throw new ArgumentNullException (nameof (implementor));
 			this.implementor = implementor;
 		}
 

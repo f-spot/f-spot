@@ -106,7 +106,7 @@ namespace Hyena.Query
             get {
                 if (!String.IsNullOrEmpty (alias) && map.ContainsKey (alias.ToLower ()))
                     return map[alias.ToLower ()];
-                return default(T);
+                return default;
             }
         }
     }

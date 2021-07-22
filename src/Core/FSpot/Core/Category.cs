@@ -54,7 +54,7 @@ namespace FSpot.Core
 		public void AddDescendentsTo (IList<Tag> list)
 		{
 			if (list == null)
-				throw new ArgumentNullException ("list");
+				throw new ArgumentNullException (nameof (list));
 
 			foreach (Tag tag in children) {
 				if (! list.Contains (tag))

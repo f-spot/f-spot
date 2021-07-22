@@ -29,14 +29,12 @@
 
 using System;
 
-using FSpot.Core;
 using FSpot.Editors;
 using FSpot.Imaging;
 
-using Gtk;
 using Gdk;
 
-using Hyena;
+using Gtk;
 
 using Mono.Unix;
 

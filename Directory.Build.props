@@ -5,6 +5,10 @@
     <FSpotTargetFramework>net472</FSpotTargetFramework>
     <LangVersion>latest</LangVersion>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <!-- Lots of warning this'll be a long slow process -->
+    <!-- <Nullable>enable</Nullable> -->
   </PropertyGroup>
 
   <PropertyGroup>
@@ -20,5 +24,19 @@
     <Title>F-Spot</Title>
     <Description>Personal photo management</Description>
     <Copyright>Copyright (C) 2003-2012 Novell Inc. and others</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="$(NetAnalyzersVersion)">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Threading" Version="$(VisualStudioThreadingVersion)" />
+  </ItemGroup>
+
+  <!-- Package versions -->
+  <PropertyGroup>
+    <NetAnalyzersVersion>5.0.3</NetAnalyzersVersion>
+    <VisualStudioThreadingVersion>16.10.56</VisualStudioThreadingVersion>
   </PropertyGroup>
 </Project>

@@ -786,7 +786,7 @@ namespace Hyena.Data.Gui
         protected override bool OnMotionNotifyEvent (Gdk.EventMotion evnt)
         {
             if (evnt == null) {
-                throw new ArgumentNullException ("evnt");
+                throw new ArgumentNullException (nameof (evnt));
             }
 
             int x = (int)evnt.X - header_interaction_alloc.X;
