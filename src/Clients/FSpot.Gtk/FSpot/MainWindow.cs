@@ -2740,94 +2740,95 @@ namespace FSpot
 			}
 		}
 
-		public void HandleOpenWith (object sender, ApplicationActivatedEventArgs e)
+		public void HandleOpenWith (object sender, EventArgs e)// ApplicationActivatedEventArgs e)
 		{
-			GLib.AppInfo application = e.AppInfo;
-			Photo[] selected = SelectedPhotos ();
+			return;
+			//var application = e.AppInfo;
+			//Photo[] selected = SelectedPhotos ();
 
-			if (selected == null || selected.Length < 1)
-				return;
+			//if (selected?.Length < 1)
+			//	return;
 
-			string header = Catalog.GetPluralString ("Create New Version?", "Create New Versions?", selected.Length);
-			string msg = string.Format (Catalog.GetPluralString (
-				             "Before launching {1}, should F-Spot create a new version of the selected photo to preserve the original?",
-				             "Before launching {1}, should F-Spot create new versions of the selected photos to preserve the originals?", selected.Length),
-				             selected.Length, application.Name);
+			//string header = Catalog.GetPluralString ("Create New Version?", "Create New Versions?", selected.Length);
+			//string msg = string.Format (Catalog.GetPluralString (
+			//	             "Before launching {1}, should F-Spot create a new version of the selected photo to preserve the original?",
+			//	             "Before launching {1}, should F-Spot create new versions of the selected photos to preserve the originals?", selected.Length),
+			//	             selected.Length, application.Name);
 
-			// FIXME add cancel button? add help button?
-			HigMessageDialog hmd = new HigMessageDialog (GetToplevel (sender), DialogFlags.DestroyWithParent,
-				                       MessageType.Question, Gtk.ButtonsType.None,
-				                       header, msg);
+			//// FIXME add cancel button? add help button?
+			//var hmd = new HigMessageDialog (GetToplevel (sender), DialogFlags.DestroyWithParent,
+			//	                       MessageType.Question, Gtk.ButtonsType.None,
+			//	                       header, msg);
 
-			hmd.AddButton (Gtk.Stock.No, Gtk.ResponseType.No, false);
-			//hmd.AddButton (Gtk.Stock.Cancel, Gtk.ResponseType.Cancel, false);
-			hmd.AddButton (Gtk.Stock.Yes, Gtk.ResponseType.Yes, true);
+			//hmd.AddButton (Gtk.Stock.No, Gtk.ResponseType.No, false);
+			////hmd.AddButton (Gtk.Stock.Cancel, Gtk.ResponseType.Cancel, false);
+			//hmd.AddButton (Gtk.Stock.Yes, Gtk.ResponseType.Yes, true);
 
-			bool support_xcf = false;
-			;
-			if (application.Id == "gimp.desktop")
-				foreach (PixbufFormat format in Gdk.Pixbuf.Formats.Where(format => format.Name == "xcf"))
-					support_xcf = true;
+			//bool support_xcf = false;
 
-			//This allows creating a version with a .xcf extension.
-			//There's no need to convert the file to xcf file format, gimp will take care of this
-			if (support_xcf) {
-				CheckButton cb = new CheckButton (Catalog.GetString ("XCF version"));
-				cb.Active = Preferences.Get<bool> (Preferences.EditCreateXcfVersion);
-				hmd.VBox.Add (cb);
-				cb.Toggled += (s, ea) => Preferences.Set (Preferences.EditCreateXcfVersion, (s as CheckButton).Active);
-				cb.Show ();
-			}
+			//if (application.Id == "gimp.desktop")
+			//	foreach (PixbufFormat format in Gdk.Pixbuf.Formats.Where(format => format.Name == "xcf"))
+			//		support_xcf = true;
 
-			Gtk.ResponseType response = Gtk.ResponseType.Cancel;
+			////This allows creating a version with a .xcf extension.
+			////There's no need to convert the file to xcf file format, gimp will take care of this
+			//if (support_xcf) {
+			//	var cb = new CheckButton (Catalog.GetString ("XCF version"));
+			//	cb.Active = Preferences.Get<bool> (Preferences.EditCreateXcfVersion);
+			//	hmd.VBox.Add (cb);
+			//	cb.Toggled += (s, ea) => Preferences.Set (Preferences.EditCreateXcfVersion, (s as CheckButton).Active);
+			//	cb.Show ();
+			//}
 
-			try {
-				response = (Gtk.ResponseType)hmd.Run ();
-			} finally {
-				hmd.Destroy ();
-			}
+			//Gtk.ResponseType response = Gtk.ResponseType.Cancel;
 
-			bool create_xcf = false;
-			if (support_xcf)
-				create_xcf = Preferences.Get<bool> (Preferences.EditCreateXcfVersion);
+			//try {
+			//	response = (Gtk.ResponseType)hmd.Run ();
+			//} finally {
+			//	hmd.Destroy ();
+			//}
 
-			Log.DebugFormat ("XCF ? {0}", create_xcf);
+			//bool create_xcf = false;
+			//if (support_xcf)
+			//	create_xcf = Preferences.Get<bool> (Preferences.EditCreateXcfVersion);
 
-			if (response == Gtk.ResponseType.Cancel)
-				return;
+			//Log.Debug ($"XCF ? {create_xcf}");
 
-			bool create_new_versions = (response == Gtk.ResponseType.Yes);
+			//if (response == Gtk.ResponseType.Cancel)
+			//	return;
 
-			List<EditException> errors = new List<EditException> ();
-			GLib.List uri_list = new GLib.List (typeof(string));
-			foreach (Photo photo in selected) {
-				try {
-					if (create_new_versions) {
-						uint version = photo.CreateNamedVersion (application.Name, create_xcf ? ".xcf" : null, photo.DefaultVersionId, true);
-						photo.DefaultVersionId = version;
-					}
-				} catch (Exception ex) {
-					errors.Add (new EditException (photo, ex));
-				}
+			//bool create_new_versions = (response == Gtk.ResponseType.Yes);
 
-				uri_list.Append (photo.DefaultVersion.Uri.ToString ());
-			}
+			//var errors = new List<EditException> ();
+			//var uri_list = new GLib.List (typeof(string));
+			//foreach (Photo photo in selected) {
+			//	try {
+			//		if (create_new_versions) {
+			//			uint version = photo.CreateNamedVersion (application.Name, create_xcf ? ".xcf" : null, photo.DefaultVersionId, true);
+			//			photo.DefaultVersionId = version;
+			//		}
+			//	} catch (Exception ex) {
+			//		errors.Add (new EditException (photo, ex));
+			//	}
 
-			// FIXME need to clean up the error dialog here.
-			if (errors.Count > 0) {
-				Dialog md = new EditExceptionDialog (GetToplevel (sender), errors.ToArray ());
-				md.Run ();
-				md.Destroy ();
-			}
+			//	uri_list.Append (photo.DefaultVersion.Uri.ToString ());
+			//}
 
-			if (create_new_versions)
-				Database.Photos.Commit (selected);
+			//// FIXME need to clean up the error dialog here.
+			//if (errors.Count > 0) {
+			//	Dialog md = new EditExceptionDialog (GetToplevel (sender), errors.ToArray ());
+			//	md.Run ();
+			//	md.Destroy ();
+			//}
 
-			try {
-				application.LaunchUris (uri_list, null);
-			} catch (Exception) {
-				Log.ErrorFormat ("Failed to lauch {0}", application.Name);
-			}
+			//if (create_new_versions)
+			//	Database.Photos.Commit (selected);
+
+			//try {
+			//	application.LaunchUris (uri_list, null);
+			//} catch (Exception) {
+			//	Log.Error ($"Failed to lauch {application.Name}");
+			//}
 		}
 
 		public void GetWidgetPosition (Widget widget, out int x, out int y)

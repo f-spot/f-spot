@@ -51,7 +51,7 @@ namespace FSpot.Import
 
 		static List<ImportSource> ScanSources ()
 		{
-			var monitor = GLib.VolumeMonitor.Default;
+			//var monitor = GLib.VolumeMonitor.Default;
 			var sources = new List<ImportSource> ();
 
 			foreach (var drive in DriveInfo.GetDrives ()) {

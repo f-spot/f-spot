@@ -13,7 +13,6 @@ DIR_EXTENSIONS = $(top_builddir)/extensions
 DIR_ICONS = $(top_builddir)/icons
 DIR_LIBFSPOT = $(top_builddir)/lib/libfspot
 DIR_SRC = $(top_builddir)/src
-DIR_GIOSHARP = $(top_builddir)/lib/gio-sharp/gio
 DIR_GTKSHARPBEANS = $(top_builddir)/lib/gtk-sharp-beans
 DIR_BIN = $(top_builddir)/bin
 
@@ -30,13 +29,7 @@ LINK_GLIB = $(GLIBSHARP_LIBS)
 LINK_GTK = $(GTKSHARP_LIBS)
 LINK_FLICKRNET = -pkg:flickrnet
 
-# GIO
-REF_GIO =
-LINK_GIO = -r:$(DIR_GIOSHARP)/gio-sharp.dll
-LINK_GIO_DEPS = $(REF_GIO) $(LINK_GIO)
-
 # Gtk Beans
-REF_GTK_BEANS = $(LINK_GIO_DEPS)
 LINK_GTK_BEANS = -r:$(DIR_GTKSHARPBEANS)/gtk-sharp-beans.dll
 LINK_GTK_BEANS_DEPS = $(REF_GTK_BEANS) $(LINK_GTK_BEANS)
 

@@ -3,14 +3,7 @@
 
 # Directories
 
-DIR_GIOSHARP = $(top_builddir)/lib/gio-sharp/gio
-
-
 ## Links
-
-LINK_GIOSHARP = -r:$(DIR_GIOSHARP)/gio-sharp.dll
-
-
 
 ## Build
 
@@ -22,4 +15,3 @@ CSC_LIB = $(MCS) $(CSC_FLAGS) -target:library
 
 MONO_DEBUGFLAGS = --debug
 RUNTIME = mono $(MONO_DEBUGFLAGS)
-

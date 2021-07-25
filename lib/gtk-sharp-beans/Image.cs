@@ -28,10 +28,10 @@ namespace GtkBeans {
 		[DllImport("libgtk-win32-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_image_new_from_gicon(IntPtr icon, int size);
 
-		public static Gtk.Image NewFromIcon (GLib.Icon icon, Gtk.IconSize size)
-		{
-			return new Gtk.Image (gtk_image_new_from_gicon(icon == null ? IntPtr.Zero : icon.Handle, (int) size));
-		}
+		//public static Gtk.Image NewFromIcon (GLib.Icon icon, Gtk.IconSize size)
+		//{
+		//	return new Gtk.Image (gtk_image_new_from_gicon(icon == null ? IntPtr.Zero : icon.Handle, (int) size));
+		//}
 	}
 }
 	
