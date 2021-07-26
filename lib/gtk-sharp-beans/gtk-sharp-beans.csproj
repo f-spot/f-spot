@@ -18,10 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\gio-sharp\gio-sharp.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="gtk-sharp-beans.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
