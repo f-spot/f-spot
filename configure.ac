@@ -106,7 +106,6 @@ fi
 
 dnl --- Required libraries
 
-GIO_REQUIRED=2.22.0
 GTKSHARPBEANS_REQUIRED=2.13.92
 GTK_REQUIRED=2.14
 MONO_CAIRO_REQUIRED=1.2.5
@@ -116,10 +115,6 @@ LCMS2_REQUIRED=2.4
 PKG_CHECK_MODULES(F, gtk+-2.0 >= $GTK_REQUIRED mono-cairo >= $MONO_CAIRO_REQUIRED cairo >= $CAIRO_REQUIRED)
 AC_SUBST(F_CFLAGS)
 AC_SUBST(F_LIBS)
-
-PKG_CHECK_MODULES(GIO, gio-2.0 >= $GIO_REQUIRED)
-AC_SUBST(GIO_CFLAGS)
-AC_SUBST(GIO_LIBS)
 
 CSC_DEFINES=""
 PKG_CHECK_MODULES(GLIBSHARP, glib-sharp-2.0 >= 2.12)
@@ -227,7 +222,6 @@ external/Makefile
 lib/Hyena/Makefile
 lib/Hyena.Gui/Makefile
 lib/Hyena.UnitTest/Makefile
-lib/gio-sharp/Makefile
 lib/gtk-sharp-beans/Makefile
 lib/libfspot/Makefile
 lib/Makefile
