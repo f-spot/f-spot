@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>$(FSpotTargetFramework)</TargetFramework>
     <PlatformTarget>$(GtkPlatformTarget)</PlatformTarget>
-    <OutputPath>..\..\..\bin</OutputPath>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <AssemblySearchPaths>$(AssemblySearchPaths);{GAC}</AssemblySearchPaths>
     <OutputType>Exe</OutputType>

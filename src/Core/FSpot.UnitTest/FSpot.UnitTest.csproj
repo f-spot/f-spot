@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>$(FSpotTargetFramework)</TargetFramework>
     <PlatformTarget>$(GtkPlatformTarget)</PlatformTarget>
-    <OutputPath>..\..\..\tests</OutputPath>
+    <OutputPath>$(TestsPath)</OutputPath>
     <AssemblySearchPaths>$(AssemblySearchPaths);{GAC}</AssemblySearchPaths>
   </PropertyGroup>
 

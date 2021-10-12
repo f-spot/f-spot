@@ -2,10 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>$(FSpotTargetFramework)</TargetFramework>
-    <OutputPath>..\..\..\..\bin\Extensions</OutputPath>
+    <OutputPath>$(OutputExtensionPath)</OutputPath>
     <AssemblySearchPaths>$(AssemblySearchPaths);{GAC}</AssemblySearchPaths>
-    <RootNamespace>FSpot.Tools.RawPlusJpeg</RootNamespace>
-    <AssemblyName>FSpot.Tools.RawPlusJpeg</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

@@ -269,14 +269,4 @@ Global
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EA05F7A3-D58F-4080-9C14-F45345CC56D6}
 	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		Policies = $0
-		$0.DotNetNamingPolicy = $1
-		$1.DirectoryNamespaceAssociation = Flat
-		$1.ResourceNamePolicy = FileName
-		$0.TextStylePolicy = $11
-		version = 0.9.0
-		outputpath = .
-		StartupItem = src\Clients\FSpot.Gtk\FSpot.Gtk.csproj
-	EndGlobalSection
 EndGlobal

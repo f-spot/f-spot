@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>$(FSpotTargetFramework)</TargetFramework>
-    <OutputPath>..\..\..\tests</OutputPath>
+    <OutputPath>$(TestsPath)</OutputPath>
     <AssemblySearchPaths>$(AssemblySearchPaths);{GAC}</AssemblySearchPaths>
   </PropertyGroup>
 

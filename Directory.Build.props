@@ -2,11 +2,18 @@
   <Import Project="fspot.props" />
 
   <PropertyGroup>
+    <RepoRoot>$(MSBuildThisFileDirectory)</RepoRoot>
+    <OutputPath>$(RepoRoot)\bin</OutputPath>
+    <OutputExtensionPath>$(RepoRoot)\bin\Extensions</OutputExtensionPath>
+    <TestsPath>$(RepoRoot)\tests</TestsPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <FSpotTargetFramework>net472</FSpotTargetFramework>
     <LangVersion>latest</LangVersion>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <Deterministic>true</Deterministic>
     <!-- Lots of warning this'll be a long slow process -->
     <!-- <Nullable>enable</Nullable> -->
   </PropertyGroup>
@@ -37,6 +44,6 @@
   <!-- Package versions -->
   <PropertyGroup>
     <NetAnalyzersVersion>5.0.3</NetAnalyzersVersion>
-    <VisualStudioThreadingVersion>16.10.56</VisualStudioThreadingVersion>
+    <VisualStudioThreadingVersion>17.0.63</VisualStudioThreadingVersion>
   </PropertyGroup>
 </Project>

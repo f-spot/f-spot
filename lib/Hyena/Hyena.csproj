@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>$(FSpotTargetFramework)</TargetFramework>
     <AssemblySearchPaths>$(AssemblySearchPaths);{GAC}</AssemblySearchPaths>
-    <OutputPath>..\..\bin</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>$(FSpotTargetFramework)</TargetFramework>
-    <OutputPath>..\..\..\..\bin\Extensions</OutputPath>
+    <OutputPath>$(OutputExtensionPath)</OutputPath>
     <AssemblySearchPaths>$(AssemblySearchPaths);{GAC}</AssemblySearchPaths>
     <RootNamespace>FSpot.Exporters.CDExport</RootNamespace>
     <AssemblyName>FSpot.Exporters.CD</AssemblyName>
