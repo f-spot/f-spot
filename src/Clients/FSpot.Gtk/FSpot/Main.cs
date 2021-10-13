@@ -156,6 +156,7 @@ namespace FSpot
 
 		static int Main (string[] args)
 		{
+			Logger.CreateLogger ();
 			if (Environment.Is64BitProcess)
 				throw new ApplicationException ("GtkSharp does not support running 64bit");
 
