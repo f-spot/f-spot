@@ -1,0 +1,42 @@
+
+jobs:
+
+  - job: windows
+    displayName: Windows
+    timeoutInMinutes: 60
+    pool:
+      vmImage: $(WindowsImage)
+    workspace:
+      clean: all
+
+
+    steps:
+
+      - checkout: self
+        submodules: true
+
+      - task: NuGetToolInstaller@1
+
+      - pwsh: "nuget.exe restore .nuget/packages.config -PackagesDirectory packages"
+
+      - task: NuGetCommand@2
+        inputs:
+          restoreSolution: $(SolutionName)
+
+      - script: choco install gtksharp
+
+      - task: MSBuild@1
+        inputs:
+          solution: $(SolutionName)
+          configuration: $(DefaultBuildConfiguration)
+
+      - task: MSBuild@1
+        inputs:
+          solution: $(SolutionName)
+          msbuildArguments: /t:Test
+
+      - task: PublishTestResults@2
+        inputs:
+          testResultsFormat: NUnit
+          searchFolder: $(System.DefaultWorkingDirectory)
+          testResultsFiles: TestResult.xml

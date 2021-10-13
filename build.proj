@@ -13,12 +13,23 @@
     <MSBuild Projects="F-Spot.sln" Targets="Restore" />
   </Target>
 
-  <Target Name="BuildWindows">
+  <Target Name="BuildWindows" DependsOnTargets="CopyConfigInFiles">
     <Message Text="Building On Windows" Importance="High" />
     <PropertyGroup>
       <TargetPlatform>x86</TargetPlatform>
     </PropertyGroup>
 
+  </Target>
+
+  <Target Name="BuildMac" DependsOnTargets="CopyConfigInFiles">
+    <Message Text="Building On Mac" Importance="High" />
+  </Target>
+
+  <Target Name="BuildLinux">
+    <Message Text="Building On Linux" Importance="High" />
+  </Target>
+
+  <Target Name="CopyConfigInFiles">
     <!-- HACK: copy this file over for now -->
     <Copy Condition="!Exists('src\Clients\FSpot.Gtk\f-spot.exe.config')"
           SourceFiles="src\Clients\FSpot.Gtk\f-spot.exe.config.in"
@@ -26,14 +37,6 @@
     <Copy Condition="!Exists('src\Core\FSpot\FSpot.dll.config')"
           SourceFiles="src\Core\FSpot\FSpot.dll.config.in"
           DestinationFiles="src\Core\FSpot\FSpot.dll.config" />
-  </Target>
-
-  <Target Name="BuildMac">
-    <Message Text="Building On Mac" Importance="High" />
-  </Target>
-
-  <Target Name="BuildLinux">
-    <Message Text="Building On Linux" Importance="High" />
   </Target>
 
   <PropertyGroup>

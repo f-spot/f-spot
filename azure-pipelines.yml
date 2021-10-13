@@ -1,44 +1,21 @@
-# .NET Desktop
-# Build and run tests for .NET Desktop or Windows classic desktop solutions.
-# Add steps that publish symbols, save build artifacts, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
+name: $(Build.SourceBranch)-$(Build.SourceVersion)-$(Rev:r)
 
-trigger:
-- master
-
-pool:
-  vmImage: 'windows-latest'
+resources:
+  repositories:
+  - repository: self
 
 variables:
-  solution: 'build.proj'
-  buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
+- template: .build/automation/variables.yml
 
-steps:
-- task: NuGetToolInstaller@1
+trigger:
+  batch: false
+  branches:
+    include:
+    - main
 
-- pwsh: "nuget.exe restore .nuget/packages.config -PackagesDirectory packages"
+pr:
+  - main
 
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: '$(solution)'
+stages:
 
-- script: choco install gtksharp
-
-- task: VSBuild@1
-  inputs:
-    solution: '$(solution)'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-
-- task: MSBuild@1
-  inputs:
-    solution: 'build.proj'
-    msbuildArguments: /t:Test
-
-- task: PublishTestResults@2
-  inputs:
-    testResultsFormat: NUnit
-    searchFolder: tests
-    testResultsFiles: 'TestResult.xml'
-  
+  - template: .build/automation/stages/validate.yml
