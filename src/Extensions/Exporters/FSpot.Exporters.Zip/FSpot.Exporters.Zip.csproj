@@ -2,10 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>$(FSpotTargetFramework)</TargetFramework>
-    <OutputPath>..\..\..\..\bin\Extensions</OutputPath>
+    <OutputPath>$(OutputExtensionPath)</OutputPath>
     <AssemblySearchPaths>$(AssemblySearchPaths);{GAC}</AssemblySearchPaths>
-    <RootNamespace>FSpot.Exporters.Zip</RootNamespace>
-    <AssemblyName>FSpot.Exporters.Zip</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -33,7 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SharpZipLib" Version="1.2.0" />
+    <PackageReference Include="SharpZipLib" Version="1.3.3" />
   </ItemGroup>
 
 </Project>

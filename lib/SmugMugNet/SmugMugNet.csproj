@@ -3,9 +3,7 @@
   <PropertyGroup>
     <TargetFramework>$(FSpotTargetFramework)</TargetFramework>
     <AssemblySearchPaths>$(AssemblySearchPaths);{GAC}</AssemblySearchPaths>
-    <OutputPath>..\..\bin\Extensions</OutputPath>
-    <RootNamespace>SmugMugNet</RootNamespace>
-    <AssemblyName>SmugMugNet</AssemblyName>
+    <OutputPath>$(OutputExtensionPath)</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>

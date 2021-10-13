@@ -4,7 +4,6 @@
     <TargetFramework>$(FSpotTargetFramework)</TargetFramework>
     <AssemblySearchPaths>$(AssemblySearchPaths);{GAC}</AssemblySearchPaths>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-    <OutputPath>..\..\bin</OutputPath>
     <RootNamespace>gtksharpbeans</RootNamespace>
     <AssemblyName>gtk-sharp-beans</AssemblyName>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>

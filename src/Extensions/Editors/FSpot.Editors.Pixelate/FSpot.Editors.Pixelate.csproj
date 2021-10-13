@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>$(FSpotTargetFramework)</TargetFramework>
-    <OutputPath>..\..\..\..\bin\Extensions</OutputPath>
+    <OutputPath>$(OutputExtensionPath)</OutputPath>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <AssemblySearchPaths>$(AssemblySearchPaths);{GAC}</AssemblySearchPaths>
     <RootNamespace>FSpot.Addins.Editors</RootNamespace>
