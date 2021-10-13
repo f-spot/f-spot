@@ -1,0 +1,13 @@
+stages:
+  - stage: validate
+    displayName: 'Validate'
+    dependsOn: []
+    condition: succeeded()
+
+    jobs:
+
+      - template: ../jobs/linux.yml
+
+      - template: ../jobs/windows.yml
+
+      - template: ../jobs/mac.yml

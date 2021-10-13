@@ -1,0 +1,49 @@
+
+jobs:
+
+  - job: Linux
+    displayName: Ubuntu
+    timeoutInMinutes: 60
+    pool:
+      vmImage: $(LinuxImage)
+    workspace:
+      clean: all
+
+    steps:
+
+      - checkout: self
+        submodules: true
+
+      - task: Bash@3
+        displayName: 'Update dependencies'
+        inputs:
+          targetType: inline
+          script: |
+            sudo apt update -qq > /dev/null
+            sudo apt install -qq automake libtool intltool nuget > /dev/null
+            sudo apt install -qq libgtk2.0-dev libglib2.0-dev liblcms2-dev libjpeg-dev > /dev/null
+            sudo apt install -qq adwaita-icon-theme > /dev/null
+            sudo apt install -qq libgtk2.0-cil-dev libglib2.0-cil-dev > /dev/null
+            sudo apt install -qq gtk-sharp2-gapi libgtk-sharp-beans2.0-cil-dev > /dev/null
+            mono --version
+
+      - task: Bash@3
+        displayName: 'Run Autogen'
+        inputs:
+          targetType: inline
+          script: >-
+            ./autogen.sh --enable-tests
+
+      - task: Bash@3
+        displayName: 'Run make'
+        inputs:
+          targetType: inline
+          script: >-
+            make
+
+      - task: Bash@3
+        displayName: 'Run make test'
+        inputs:
+          targetType: inline
+          script: >-
+            make test

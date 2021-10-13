@@ -1,0 +1,39 @@
+
+jobs:
+
+  - job: mac
+    displayName: macOS
+    timeoutInMinutes: 60
+    pool:
+      vmImage: $(MacImage)
+    workspace:
+      clean: all
+
+    steps:
+
+      - checkout: self
+        submodules: true
+
+      - task: NuGetToolInstaller@1
+
+      - script: "nuget restore .nuget/packages.config -PackagesDirectory packages"
+
+      - task: NuGetCommand@2
+        inputs:
+          restoreSolution: $(SolutionName)
+
+      - task: MSBuild@1
+        inputs:
+          solution: $(SolutionName)
+          configuration: $(DefaultBuildConfiguration)
+
+      - task: MSBuild@1
+        inputs:
+          solution: $(SolutionName)
+          msbuildArguments: /t:Test
+
+      - task: PublishTestResults@2
+        inputs:
+          testResultsFormat: NUnit
+          searchFolder: tests
+          testResultsFiles: TestResult.xml
