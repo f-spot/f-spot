@@ -35,11 +35,10 @@ namespace FSpot.Widgets
 {
 	public class HighlightedBox : EventBox
 	{
-		bool changing_style = false;
+		bool changingStyle;
 
 		protected HighlightedBox (IntPtr raw) : base (raw) {}
-
-		public HighlightedBox (Widget child) : base ()
+		public HighlightedBox (Widget child)
 		{
 			Child = child;
 			AppPaintable = true;
@@ -47,11 +46,12 @@ namespace FSpot.Widgets
 
 		protected override void OnStyleSet(Style style)
 		{
-			if (!changing_style) {
-				changing_style = true;
-				ModifyBg(StateType.Normal, Style.Background(StateType.Selected));
-				changing_style = false;
-			}
+			if (changingStyle)
+				return;
+
+			changingStyle = true;
+			ModifyBg(StateType.Normal, Style.Background(StateType.Selected));
+			changingStyle = false;
 		}
 
 		protected override bool OnExposeEvent(Gdk.EventExpose evnt)

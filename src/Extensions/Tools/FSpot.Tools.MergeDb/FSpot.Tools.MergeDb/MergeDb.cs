@@ -1,55 +1,30 @@
-//
-// MergeDb.cs
-//
-// Author:
-//   Daniel Köb <daniel.koeb@peony.at>
-//   Ruben Vermeersch <ruben@savanne.be>
-//   Stephane Delcroix <stephane@delcroix.org>
-//
 // Copyright (C) 2016 Daniel Köb
 // Copyright (C) 2008-2010 Novell, Inc.
 // Copyright (C) 2010 Ruben Vermeersch
 // Copyright (C) 2008-2009 Stephane Delcroix
+// Copyright (C) 2020 Stephen Shaw
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
 
-using Gtk;
-
-using FSpot.Core;
 using FSpot.Database;
 using FSpot.Extensions;
 using FSpot.Imaging;
+using FSpot.Models;
 using FSpot.Query;
+using FSpot.Settings;
 using FSpot.Thumbnail;
 using FSpot.Utils;
 
-using Mono.Unix;
+using Gtk;
 
 using Hyena;
 using Hyena.Widgets;
-using FSpot.Settings;
+
+using Mono.Unix;
 
 namespace FSpot.Tools.MergeDb
 {
@@ -57,11 +32,11 @@ namespace FSpot.Tools.MergeDb
 	{
 		Db from_db;
 		Db to_db;
-		Roll[] new_rolls;
+		List<Roll> new_rolls;
 		MergeDbDialog mdd;
 
-		Dictionary<uint, Tag> tag_map; //Key is a TagId from from_db, Value is a Tag from to_db
-		Dictionary<uint, uint> roll_map;
+		Dictionary<Guid, Tag> tag_map; //Key is a TagId from from_db, Value is a Tag from to_db
+		Dictionary<Guid, Guid> roll_map;
 
 		public void Run (object o, EventArgs e)
 		{
@@ -111,19 +86,18 @@ namespace FSpot.Tools.MergeDb
 		void FillRolls ()
 		{
 			var from_rolls = new List<Roll> (from_db.Rolls.GetRolls ());
-			Roll[] to_rolls = to_db.Rolls.GetRolls ();
+			var to_rolls = to_db.Rolls.GetRolls ();
 			foreach (Roll tr in to_rolls)
 				foreach (Roll fr in from_rolls.ToArray ())
-					if (tr.Time == fr.Time)
+					if (tr.UtcTime == fr.UtcTime)
 						from_rolls.Remove (fr);
-			new_rolls = from_rolls.ToArray ();
-
+			new_rolls = from_rolls;
 		}
 
 		void HandleResponse (object obj, ResponseArgs args)
 		{
 			if (args.ResponseId == ResponseType.Accept) {
-				PhotoQuery query = new PhotoQuery (from_db.Photos);
+				var query = new PhotoQuery (from_db.Photos);
 				query.RollSet = mdd.ActiveRolls == null ? null : new RollSet (mdd.ActiveRolls);
 				DoMerge (query, mdd.ActiveRolls, mdd.Copy);
 			}
@@ -133,17 +107,19 @@ namespace FSpot.Tools.MergeDb
 
 		public static void Merge (string path, Db to_db)
 		{
-			Log.Warning ($"Will merge db {path} into main f-spot db {Path.Combine (FSpotConfiguration.BaseDirectory, FSpotConfiguration.DatabaseName)}");
+			Log.Warning ($"Will merge db {path} into main f-spot db {Path.Combine (Configuration.BaseDirectory, Configuration.DatabaseName)}");
+
 			Db from_db = new Db (App.Instance.Container.Resolve<IImageFileFactory> (), App.Instance.Container.Resolve<IThumbnailService> (), new UpdaterUI ());
+
 			from_db.Init (path, true);
 			//MergeDb mdb = new MergeDb (from_db, to_db);
 
 		}
 
-		void DoMerge (PhotoQuery query, Roll[] rolls, bool copy)
+		void DoMerge (PhotoQuery query, IEnumerable<Roll> rolls, bool copy)
 		{
-			tag_map = new Dictionary<uint, Tag> ();
-			roll_map = new Dictionary<uint, uint> ();
+			tag_map = new Dictionary<Guid, Tag> ();
+			roll_map = new Dictionary<Guid, Guid> ();
 
 			Log.Warning ("Merging tags");
 			MergeTags (from_db.Tags.RootCategory);
@@ -179,7 +155,7 @@ namespace FSpot.Tools.MergeDb
 				MergeTags (t);
 		}
 
-		void CreateRolls (Roll[] rolls)
+		void CreateRolls (IEnumerable<Roll> rolls)
 		{
 			if (rolls == null)
 				rolls = from_db.Rolls.GetRolls ();
@@ -190,7 +166,7 @@ namespace FSpot.Tools.MergeDb
 			foreach (Roll roll in rolls) {
 				if (from_store.PhotosInRoll (roll) == 0)
 					continue;
-				roll_map[roll.Id] = to_store.Create (roll.Time).Id;
+				roll_map[roll.Id] = to_store.Create (roll.UtcTime).Id;
 			}
 		}
 
@@ -231,7 +207,7 @@ namespace FSpot.Tools.MergeDb
 					continue;
 				}
 
-				string[] parts = photoPath.Split (new char[] { '/' });
+				string[] parts = photoPath.Split ('/');
 				if (parts.Length > 6) {
 					string folder = string.Join ("/", parts, 0, parts.Length - 4);
 					var pfd = new PickFolderDialog (mdd.Dialog, folder);
@@ -254,7 +230,7 @@ namespace FSpot.Tools.MergeDb
 			Photo newp;
 
 			if (copy)
-				destination = FindImportDestination (new SafeUri (photoPath), photo.Time).AbsolutePath;
+				destination = FindImportDestination (new SafeUri (photoPath), photo.UtcTime).AbsolutePath;
 			else
 				destination = photoPath;
 
@@ -263,7 +239,7 @@ namespace FSpot.Tools.MergeDb
 			photo.DefaultVersionId = 1;
 			photo.DefaultVersion.Uri = dest_uri;
 
-			if (photo.DefaultVersion.ImportMD5 == string.Empty) {
+			if (string.IsNullOrEmpty (photo.DefaultVersion.ImportMD5)) {
 				(photo.DefaultVersion as PhotoVersion).ImportMD5 = HashUtils.GenerateMD5 (photo.DefaultVersion.Uri);
 			}
 
@@ -303,7 +279,7 @@ namespace FSpot.Tools.MergeDb
 			}
 
 			//FIXME Import extra info (time, description, rating)
-			newp.Time = photo.Time;
+			newp.UtcTime = photo.UtcTime;
 			newp.Description = photo.Description;
 			newp.Rating = photo.Rating;
 

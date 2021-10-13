@@ -41,34 +41,35 @@ using Mono.Unix;
 
 using Gtk;
 
-using FSpot.Core;
+using FSpot.Models;
 
 namespace FSpot.Query
 {
 	public class OrTerm : Term
 	{
-		public static List<string> Operators { get; private set; }
+		public static List<string> Operators { get; }
 
 		static OrTerm ()
 		{
-			Operators = new List<string> ();
-			Operators.Add (Catalog.GetString (" or "));
+			Operators = new List<string> {
+				Catalog.GetString (" or ")
+			};
 		}
 
 		public OrTerm (Term parent, Literal after) : base (parent, after)
 		{
 		}
 
-		public static OrTerm FromTags (Tag [] fromTags)
+		public static OrTerm FromTags (IEnumerable<Tag> fromTags)
 		{
-			if (fromTags == null || fromTags.Length == 0)
+			if (fromTags == null || !fromTags.Any())
 				return null;
 
 			var or = new OrTerm (null, null);
-			foreach (Literal l in fromTags.Select(t => new Literal (t)))
-			{
-			    l.Parent = or;
+			foreach (Literal l in fromTags.Select (t => new Literal (t))) {
+				l.Parent = or;
 			}
+
 			return or;
 		}
 

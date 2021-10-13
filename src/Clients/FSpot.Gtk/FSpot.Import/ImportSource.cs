@@ -1,4 +1,4 @@
-﻿//
+//
 // ImportSource.cs
 //
 // Author:
@@ -22,25 +22,26 @@ namespace FSpot.Import
 {
 	public class ImportSource
 	{
-		public string Name { get; private set; }
+		public string Name { get; }
 
-		public string IconName { get; private set; }
+		public string IconName { get; }
 
-		public SafeUri Root { get; private set; }
+		public SafeUri Root { get; }
 
 		public ImportSource (SafeUri root, string name, string iconName)
 		{
 			Name = name;
 			Root = root;
 
-			if (root != null) {
-				if (IsIPodPhoto) {
-					IconName = "multimedia-player";
-				} else if (IsCamera) {
-					IconName = "media-flash";
-				} else {
-					IconName = iconName;
-				}
+			if (root == null)
+				return;
+
+			if (IsIPodPhoto) {
+				IconName = "multimedia-player";
+			} else if (IsCamera) {
+				IconName = "media-flash";
+			} else {
+				IconName = iconName;
 			}
 		}
 

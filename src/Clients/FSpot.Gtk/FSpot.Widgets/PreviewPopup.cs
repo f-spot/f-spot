@@ -157,7 +157,7 @@ namespace FSpot.Widgets
 			if (!string.IsNullOrEmpty (item.Description))
 				desc = item.Description + Environment.NewLine;
 
-			desc += item.Time + "   " + item.Name;
+			desc += item.UtcTime + "   " + item.Name;
 			label.Text = desc;
 		}
 

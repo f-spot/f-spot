@@ -27,20 +27,22 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using FSpot.Core;
+using System.Collections.Generic;
+
+using FSpot.Models;
 
 namespace FSpot.Query
 {
 	public class RollSet : IQueryCondition
 	{
-		private Roll [] rolls;
+		readonly List<Roll> rolls;
 
-		public RollSet (Roll [] rolls)
+		public RollSet (List<Roll> rolls)
 		{
 			this.rolls = rolls;
 		}
 
-		public RollSet (Roll roll) : this (new Roll[] {roll})
+		public RollSet (Roll roll) : this (new List<Roll> {roll})
 		{
 		}
 
@@ -48,9 +50,9 @@ namespace FSpot.Query
 		{
 			//Building something like " photos.roll_id IN (3, 4, 7) " 
 			System.Text.StringBuilder sb = new System.Text.StringBuilder (" photos.roll_id IN (");
-			for (int i = 0; i < rolls.Length; i++) {
+			for (int i = 0; i < rolls.Count; i++) {
 				sb.Append (rolls [i].Id);
-				if (i != rolls.Length - 1)
+				if (i != rolls.Count - 1)
 					sb.Append (", ");
 			}
 			sb.Append (") ");

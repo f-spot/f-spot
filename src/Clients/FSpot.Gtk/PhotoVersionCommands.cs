@@ -41,10 +41,12 @@ using Mono.Unix;
 
 using FSpot;
 using FSpot.Database;
+using FSpot.Models;
 using FSpot.UI.Dialog;
 
 using Hyena;
 using Hyena.Widgets;
+using FSpot.Services;
 
 public class PhotoVersionCommands
 {
@@ -158,19 +160,21 @@ public class PhotoVersionCommands
 			try {
 				if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation(parent_window, DialogFlags.DestroyWithParent,
 									   MessageType.Warning, msg, desc, ok_caption)) {
-					uint highest_rating = new_parent.Rating;
+					uint highest_rating = (uint)new_parent.Rating;
 					string new_description = new_parent.Description;
 					foreach (Photo photo in photos) {
-						highest_rating = Math.Max(photo.Rating, highest_rating);
+						highest_rating = (uint)Math.Max(photo.Rating, highest_rating);
 						if (string.IsNullOrEmpty(new_description))
 							new_description = photo.Description;
-						new_parent.AddTag (photo.Tags);
+
+						TagService.Instance.Add (new_parent, photo.Tags);
 
 						foreach (uint version_id in photo.VersionIds) {
 							new_parent.DefaultVersionId = new_parent.CreateReparentedVersion (photo.GetVersion (version_id) as PhotoVersion);
 							store.Commit (new_parent);
 						}
-						uint [] version_ids = photo.VersionIds;
+
+						var version_ids = photo.VersionIds;
 						Array.Reverse (version_ids);
 						foreach (uint version_id in version_ids) {
 							photo.DeleteVersion (version_id, true, true);

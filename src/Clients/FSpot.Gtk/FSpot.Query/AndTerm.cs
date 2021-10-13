@@ -42,6 +42,7 @@ using Mono.Unix;
 using Gtk;
 
 using FSpot.Core;
+using FSpot.Models;
 
 namespace FSpot.Query
 {

@@ -54,7 +54,7 @@ namespace FSpot.Settings
 			{ ShowTimeline, true },
 			{ ShowFilmstrip, true },
 			{ ShowTags, true },
-			{ ExpandedTags, Array.Empty<int> () },
+			{ ExpandedTags, Array.Empty<string> () },
 			{ ShowDates, true },
 			{ ShowRatings, true },
 			{ ViewerShawFilenames, true },

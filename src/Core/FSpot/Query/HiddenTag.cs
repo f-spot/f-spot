@@ -33,8 +33,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using FSpot.Core;
+using FSpot.Models;
 
 namespace FSpot.Query
 {
@@ -72,8 +71,7 @@ namespace FSpot.Query
 		public string SqlClause ()
 		{
 			if (!show_hidden && Tag != null)
-				return string.Format (" photos.id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {0}) ",
-					Tag.Id);
+				return $" photos.id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {Tag.Id} ";
 			return null;
 		}
 	}

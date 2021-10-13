@@ -46,7 +46,9 @@ namespace FSpot.Widgets
 {
 	public class SaneTreeView : TreeView
 	{
-		protected bool row_selected_on_button_down, ignore_button_release, drag_started;
+		protected bool RowSelectedOnButtonDown { get; set; }
+		protected bool IgnoreButtonRelease { get; set; }
+		protected bool DragStarted { get; set; }
 		
 		protected SaneTreeView (IntPtr raw) : base (raw) { }
 
@@ -57,19 +59,15 @@ namespace FSpot.Widgets
 		
 		public TreePath PathAtPoint (double x, double y)
 		{
-			TreePath path_at_pointer = null;
-			GetPathAtPos ((int) x, (int) y, out path_at_pointer);
-			return path_at_pointer;
+			GetPathAtPos ((int) x, (int) y, out var pathAtPointer);
+			return pathAtPointer;
 		}
 		
 		protected override bool OnButtonPressEvent (Gdk.EventButton button)
 		{
-			bool call_parent = true;
-			bool on_expander;
-			drag_started = ignore_button_release = false;
-			TreePath path;
-			TreeViewColumn column;
-			GetPathAtPos ((int)button.X, (int)button.Y, out path, out column);
+			bool callParent = true;
+			DragStarted = IgnoreButtonRelease = false;
+			_ = GetPathAtPos ((int)button.X, (int)button.Y, out var path, out var column);
 			
 			if (button.Window != BinWindow)
 				return false;
@@ -80,27 +78,27 @@ namespace FSpot.Widgets
 					base.OnButtonPressEvent (button);
 				} else {
 					if (button.Button == 3 && Selection.PathIsSelected (path))
-						call_parent = false;
+						callParent = false;
 					else if ((button.Button == 1 || button.Button == 2) &&
 						((button.State & ModifierType.ControlMask) != 0 || (button.State & ModifierType.ShiftMask) == 0)) {
-						int expander_size = (int) StyleGetProperty("expander-size");
-						int horizontal_separator = (int) StyleGetProperty("horizontal-separator");
+						int expanderSize = (int) StyleGetProperty("expander-size");
+						int horizontalSeparator = (int) StyleGetProperty("horizontal-separator");
 						// EXPANDER_EXTRA_PADDING from GtkTreeView
-						expander_size += 4;
-						on_expander = (button.X <= horizontal_separator / 2 + path.Depth * expander_size);
-						row_selected_on_button_down = Selection.PathIsSelected (path);
-						if (row_selected_on_button_down) {
-							call_parent = on_expander;
-							ignore_button_release = call_parent;
+						expanderSize += 4;
+						var onExpander = (button.X <= horizontalSeparator / 2 + path.Depth * expanderSize);
+						RowSelectedOnButtonDown = Selection.PathIsSelected (path);
+						if (RowSelectedOnButtonDown) {
+							callParent = onExpander;
+							IgnoreButtonRelease = callParent;
 						} else if ((button.State & ModifierType.ControlMask) != 0) {
-							call_parent = false;
+							callParent = false;
 							Selection.SelectPath (path);
 						} else {
-							ignore_button_release = on_expander;
+							IgnoreButtonRelease = onExpander;
 						}
 					}
 					
-					if (call_parent)
+					if (callParent)
 						base.OnButtonPressEvent (button);
 					else if (Selection.PathIsSelected (path))
 						GrabFocus ();
@@ -115,7 +113,7 @@ namespace FSpot.Widgets
 		
 		protected override bool OnButtonReleaseEvent (Gdk.EventButton button)
 		{
-			if (!drag_started && !ignore_button_release)
+			if (!DragStarted && !IgnoreButtonRelease)
 				DidNotDrag (button);
 			
 			base.OnButtonReleaseEvent (button);
@@ -124,25 +122,26 @@ namespace FSpot.Widgets
 		
 		protected override void OnDragBegin (Gdk.DragContext context)
 		{
-			drag_started = true;
+			DragStarted = true;
 			base.OnDragBegin (context);
 		}
 		
 		protected void DidNotDrag (Gdk.EventButton button)
 		{
-			TreePath path = PathAtPoint (button.X, button.Y);
-			
-			if (path != null) {
-				if ((button.Button == 1 || button.Button == 2)
-					&& ((button.State & ModifierType.ControlMask) != 0 ||
-					(button.State & ModifierType.ShiftMask) == 0)
-					&& row_selected_on_button_down) {
-					if (!ButtonEventModifiesSelection (button)) {
-						Selection.UnselectAll ();
-						Selection.SelectPath (path);
-					} else
-						Selection.UnselectPath (path);
-				}
+			using TreePath path = PathAtPoint (button.X, button.Y);
+
+			if (path == null)
+				return;
+
+			if ((button.Button == 1 || button.Button == 2)
+			    && ((button.State & ModifierType.ControlMask) != 0 ||
+			        (button.State & ModifierType.ShiftMask) == 0)
+			    && RowSelectedOnButtonDown) {
+				if (!ButtonEventModifiesSelection (button)) {
+					Selection.UnselectAll ();
+					Selection.SelectPath (path);
+				} else
+					Selection.UnselectPath (path);
 			}
 		}
 		

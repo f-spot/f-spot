@@ -1,31 +1,8 @@
-//
-// FilePhoto.cs
-//
-// Author:
-//   Ruben Vermeersch <ruben@savanne.be>
-//
 // Copyright (C) 2010 Novell, Inc.
 // Copyright (C) 2010 Ruben Vermeersch
+// Copyright (C) 2020 Stephen Shaw
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
 using System.Collections.Generic;
@@ -33,6 +10,7 @@ using System.IO;
 using System.Linq;
 
 using FSpot.Utils;
+using FSpot.Models;
 
 using Hyena;
 
@@ -73,7 +51,7 @@ namespace FSpot.Core
 			using (var metadata = MetadataUtils.Parse (DefaultVersion.Uri)) {
 				if (metadata != null) {
 					var date = metadata.ImageTag.DateTime;
-					time = date.HasValue ? date.Value : CreateDate;
+					time = date ?? CreateDate;
 					description = metadata.ImageTag.Comment;
 				} else {
 					throw new Exception ("Corrupt File!");
@@ -90,12 +68,12 @@ namespace FSpot.Core
 			}
 		}
 
-		public Tag[] Tags {
+		public List<Tag> Tags {
 			get { return null; }
 		}
 
 		DateTime time;
-		public DateTime Time {
+		public DateTime UtcTime {
 			get {
 				EnsureMetadataParsed ();
 				return time;
@@ -108,7 +86,7 @@ namespace FSpot.Core
 			}
 		}
 
-		public IEnumerable<IPhotoVersion> Versions {
+		public List<IPhotoVersion> Versions {
 			get {
 				return versions;
 			}
@@ -126,7 +104,7 @@ namespace FSpot.Core
 			get { return DefaultVersion.Uri.GetFilename (); }
 		}
 
-		public uint Rating {
+		public long Rating {
 			//FIXME ndMaxxer: correct?
 			get { return 0; }
 		}
@@ -140,11 +118,11 @@ namespace FSpot.Core
 		{
 			public string Name { get; set; }
 
-			public bool IsProtected {
+			public bool Protected {
 				get { return true; }
 			}
 
-			public SafeUri BaseUri {
+			public string BaseUri {
 				get { return Uri.GetBaseUri (); }
 			}
 			public string Filename {
@@ -153,7 +131,7 @@ namespace FSpot.Core
 			public SafeUri Uri { get; set; }
 
 			string import_md5 = string.Empty;
-			public string ImportMD5 {
+			public string ImportMd5 {
 				get {
 					if (string.IsNullOrEmpty (import_md5))
 						import_md5 = HashUtils.GenerateMD5 (Uri);

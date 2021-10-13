@@ -30,13 +30,13 @@
 using System;
 using System.Collections.Generic;
 
-using Mono.Unix;
+using FSpot.Database;
+using FSpot.Models;
+using FSpot.Settings;
 
 using Gtk;
 
-using FSpot.Core;
-using FSpot.Database;
-using FSpot.Settings;
+using Mono.Unix;
 
 namespace FSpot.UI.Dialog
 {
@@ -59,15 +59,16 @@ namespace FSpot.UI.Dialog
 			tag = t;
 			TransientFor = parent_window;
 
-			orig_name = last_valid_name = t.Name;
+			originalName = lastValidName = t.Name;
 			tag_name_entry.Text = t.Name;
 
-			icon_image.Pixbuf = t.Icon;
-			Cms.Profile screen_profile;
-			if (icon_image.Pixbuf != null && FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out screen_profile)) {
+			/* FIXME, Tag icon support
+			icon_image.Pixbuf = t.TagIcon.Icon;
+			if (icon_image.Pixbuf != null && ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screen_profile)) {
 				icon_image.Pixbuf = icon_image.Pixbuf.Copy ();
-				FSpot.ColorManagement.ApplyProfile (icon_image.Pixbuf, screen_profile);
+				ColorManagement.ApplyProfile (icon_image.Pixbuf, screen_profile);
 			}
+			*/
 			PopulateCategoryOptionMenu (t);
 
 			tag_name_entry.GrabFocus ();
@@ -75,15 +76,15 @@ namespace FSpot.UI.Dialog
 			category_option_menu.Changed += HandleTagNameEntryChanged;
 		}
 
-		string orig_name;
-		string last_valid_name;
+		readonly string originalName;
+		string lastValidName;
 
 		public string TagName {
-			get { return last_valid_name; }
+			get { return lastValidName; }
 		}
 
-		public Category TagCategory {
-			get { return categories [category_option_menu.Active] as Category;}
+		public Tag TagCategory {
+			get { return categories[category_option_menu.Active]; }
 		}
 
 		List<Tag> categories;
@@ -92,46 +93,46 @@ namespace FSpot.UI.Dialog
 		{
 			string name = tag_name_entry.Text;
 
-			if (name == string.Empty) {
+			if (string.IsNullOrEmpty (name)) {
 				ok_button.Sensitive = false;
 				already_in_use_label.Markup = string.Empty;
 			} else if (TagNameExistsInCategory (name, db.Tags.RootCategory)
-				   && string.Compare (name, orig_name, true) != 0) {
+				   && string.Compare (name, originalName, StringComparison.OrdinalIgnoreCase) != 0) {
 				ok_button.Sensitive = false;
 				already_in_use_label.Markup = "<small>" + Catalog.GetString ("This name is already in use") + "</small>";
 			} else {
 				ok_button.Sensitive = true;
 				already_in_use_label.Markup = string.Empty;
-				last_valid_name = tag_name_entry.Text;
+				lastValidName = tag_name_entry.Text;
 			}
 		}
 
-		bool TagNameExistsInCategory (string name, Category category)
+		bool TagNameExistsInCategory (string name, Tag category)
 		{
 			foreach (Tag tag in category.Children) {
-				if (string.Compare (tag.Name, name, true) == 0)
+				if (string.Compare (tag.Name, name, StringComparison.OrdinalIgnoreCase) == 0)
 					return true;
 
-				if (tag is Category && TagNameExistsInCategory (name, tag as Category))
+				if (tag.IsCategory && TagNameExistsInCategory (name, tag))
 					return true;
 			}
 
 			return false;
 		}
 
-		void PopulateCategories (List<Tag> categories, Category parent)
+		void PopulateCategories (List<Tag> categories, Tag parent)
 		{
 			foreach (Tag tag in parent.Children) {
-				if (tag is Category && tag != this.tag && !this.tag.IsAncestorOf (tag)) {
+				if (tag.IsCategory && tag != this.tag && !this.tag.IsAncestorOf (tag)) {
 					categories.Add (tag);
-					PopulateCategories (categories, tag as Category);
+					PopulateCategories (categories, tag);
 				}
 			}
 		}
 
 		void HandleIconButtonClicked (object sender, EventArgs args)
 		{
-			EditTagIconDialog dialog = new EditTagIconDialog (db, tag, this);
+			var dialog = new EditTagIconDialog (db, tag, this);
 
 			ResponseType response = (ResponseType)dialog.Run ();
 			if (response == ResponseType.Ok)
@@ -139,17 +140,16 @@ namespace FSpot.UI.Dialog
 					tag.ThemeIconName = dialog.ThemeIconName;
 				} else {
 					tag.ThemeIconName = null;
-					tag.Icon = dialog.PreviewPixbuf;
+					tag.TagIcon.Icon = dialog.PreviewPixbuf;
 				}
-				else if (response == (ResponseType)1)
-					tag.Icon = null;
+			else if (response == (ResponseType)1)
+				tag.Icon = null;
 
-			Cms.Profile screen_profile;
-			if (tag.Icon != null && FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out screen_profile)) {
-				icon_image.Pixbuf = tag.Icon.Copy ();
-				FSpot.ColorManagement.ApplyProfile (icon_image.Pixbuf, screen_profile);
+			if (tag.Icon != null && ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screen_profile)) {
+				icon_image.Pixbuf = tag.TagIcon.Icon.Copy ();
+				ColorManagement.ApplyProfile (icon_image.Pixbuf, screen_profile);
 			} else
-				icon_image.Pixbuf = tag.Icon;
+				icon_image.Pixbuf = tag.TagIcon.Icon;
 
 			dialog.Destroy ();
 		}
@@ -159,35 +159,32 @@ namespace FSpot.UI.Dialog
 			int history = 0;
 			int i = 0;
 			categories = new List<Tag> ();
-			Category root = db.Tags.RootCategory;
+			var root = db.Tags.RootCategory;
 			categories.Add (root);
 			PopulateCategories (categories, root);
 
 			category_option_menu.Clear ();
 
-			CellRendererPixbuf cell2 = new CellRendererPixbuf ();
+			using CellRendererPixbuf cell2 = new CellRendererPixbuf ();
 			category_option_menu.PackStart (cell2, false);
 			category_option_menu.AddAttribute (cell2, "pixbuf", 0);
 
-			CellRendererText cell = new CellRendererText ();
+			using CellRendererText cell = new CellRendererText ();
 			category_option_menu.PackStart (cell, true);
 			category_option_menu.AddAttribute (cell, "text", 1);
 
-			ListStore store = new ListStore (new[] {typeof(Gdk.Pixbuf), typeof(string)});
+			var store = new ListStore (typeof (Gdk.Pixbuf), typeof (string));
 			category_option_menu.Model = store;
 
-			foreach (Category category in categories) {
+			foreach (var category in categories) {
 				if (t.Category == category)
 					history = i;
 
 				i++;
 				string categoryName = category.Name;
-				Gdk.Pixbuf categoryImage = category.Icon;
+				Gdk.Pixbuf categoryImage = category.TagIcon.Icon;
 
-				store.AppendValues (new object[] {
-					categoryImage,
-					categoryName
-				});
+				store.AppendValues (categoryImage, categoryName);
 			}
 
 			category_option_menu.Sensitive = true;

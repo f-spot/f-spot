@@ -27,16 +27,17 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System;
 using System.IO;
 
-using FSpot;
 using FSpot.Filters;
+using FSpot.Models;
 using FSpot.Thumbnail;
 
 using Hyena;
 
 namespace FSpot.Tools.LiveWebGallery
-{	
+{
 	public class PhotoRequestHandler : RequestHandler
 	{	
 		private LiveWebGalleryStats stats;
@@ -45,15 +46,15 @@ namespace FSpot.Tools.LiveWebGallery
 		{
 			this.stats = stats;
 		}
-		
+
 		public override void Handle (string requested, Stream stream)
 		{
-			uint photo_id = uint.Parse (requested);
+			var photo_id = Guid.Parse (requested);
 			Photo photo = App.Instance.Database.Photos.Get (photo_id);
-			
+
 			SendImage (photo, stream);
-					}
-		
+		}
+
 		protected virtual void SendImage (Photo photo, Stream stream) 
 		{
 			string path = photo.DefaultVersion.Uri.LocalPath;
@@ -76,14 +77,14 @@ namespace FSpot.Tools.LiveWebGallery
 			if (stats != null)
 				stats.PhotoViews++;
 		}
-		
+
 		protected void SendFile (FileInfo file, Photo photo, Stream dest)
 		{
 			stats.BytesSent += (int)file.Length;			
 			Log.DebugFormat ("Sending {0}, {1} kb", file.FullName, file.Length / 1024);
 			SendHeadersAndStartContent(dest, "Content-Type: " + MimeTypeForExt (file.Extension),
 											 "Content-Length: " + file.Length,
-								 "Last-Modified: " + photo.Time.ToString ("r"));
+								 "Last-Modified: " + photo.UtcTime.ToString ("r"));
 			using (Stream src = file.OpenRead ()) {
 				byte[] buf = new byte[10240];
 				int read;
@@ -105,7 +106,7 @@ namespace FSpot.Tools.LiveWebGallery
 			byte[] buf = thumb.SaveToBuffer ("png");
 			SendHeadersAndStartContent(dest, "Content-Type: " + MimeTypeForExt (".png"),
 											 "Content-Length: " + buf.Length,
-								 "Last-Modified: " + photo.Time.ToString ("r"));
+								 "Last-Modified: " + photo.UtcTime.ToString ("r"));
 			dest.Write (buf, 0, buf.Length);
 		}
 	}

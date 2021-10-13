@@ -238,7 +238,7 @@ namespace FSpot
 			if (ApplicationContext.CommandLine.Contains ("view"))
 				view = true;
 
-			if (ApplicationContext.CommandLine.Contains ("debug")) {
+			//if (ApplicationContext.CommandLine.Contains ("debug")) {
 				Log.Debugging = true;
 				// Debug GdkPixbuf critical warnings
 				var logFunc = new GLib.LogFunc (GLib.Log.PrintTraceLogFunction);
@@ -254,7 +254,7 @@ namespace FSpot
 				GLib.Log.SetLogHandler ("GLib-GObject", GLib.LogLevelFlags.Critical, logFunc);
 
 				GLib.Log.SetLogHandler ("GLib-GIO", GLib.LogLevelFlags.Critical, logFunc);
-			}
+			//}
 
 			// Validate command line options
 			if ((import && (view || shutdown || slideshow)) ||
@@ -268,8 +268,6 @@ namespace FSpot
 
 			// Gtk initialization
 			Gtk.Application.Init (FSpotConfiguration.Package, ref args);
-			// Maybe we'll add this at a future date
-			//Xwt.Application.InitializeAsGuest (Xwt.ToolkitType.Gtk);
 
 			// init web proxy globally
 			// FIXME, Reenable this at some point?

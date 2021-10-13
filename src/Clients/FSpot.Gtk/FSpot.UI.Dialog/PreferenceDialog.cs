@@ -58,7 +58,7 @@ namespace FSpot.UI.Dialog
 		[GtkBeans.Builder.Object] ComboBox printprofile_combo;
 #pragma warning restore 649
 
-#region public API (ctor)
+		#region public API (ctor)
 		public PreferenceDialog (Window parent) : base ("PreferenceDialog.ui", "preference_dialog")
 		{
 			TransientFor = parent;
@@ -87,8 +87,8 @@ namespace FSpot.UI.Dialog
 
 			//Pick the display profiles from the full list, avoid _x_profile_
 			var dprofs = from profile in FSpot.ColorManagement.Profiles
-				where (profile.Value.DeviceClass == Cms.IccProfileClass.Display && profile.Key != "_x_profile_")
-				select profile;
+						 where (profile.Value.DeviceClass == Cms.IccProfileClass.Display && profile.Key != "_x_profile_")
+						 select profile;
 			foreach (var p in dprofs)
 				sprofiles.AppendValues (p.Key, 1);
 
@@ -107,8 +107,8 @@ namespace FSpot.UI.Dialog
 			pprofiles.AppendValues (null, 0);
 
 			var pprofs = from profile in FSpot.ColorManagement.Profiles
-				where (profile.Value.DeviceClass == Cms.IccProfileClass.Output && profile.Key != "_x_profile_")
-				select profile;
+						 where (profile.Value.DeviceClass == Cms.IccProfileClass.Output && profile.Key != "_x_profile_")
+						 select profile;
 			foreach (var p in pprofs)
 				pprofiles.AppendValues (p.Key, 1);
 
@@ -140,9 +140,9 @@ namespace FSpot.UI.Dialog
 
 			ConnectEvents ();
 		}
-#endregion
+		#endregion
 
-#region preferences
+		#region preferences
 		void OnPreferencesChanged (object sender, NotifyEventArgs args)
 		{
 			LoadPreference (args.Key);
@@ -222,9 +222,9 @@ namespace FSpot.UI.Dialog
 				break;
 			}
 		}
-#endregion
+		#endregion
 
-#region event handlers
+		#region event handlers
 		void ConnectEvents ()
 		{
 			Preferences.SettingChanged += OnPreferencesChanged;
@@ -255,11 +255,9 @@ namespace FSpot.UI.Dialog
 
 		void HandleThemeComboChanged (object sender, EventArgs e)
 		{
-			ComboBox combo = sender as ComboBox;
-			if (combo == null)
+			if (!(sender is ComboBox combo))
 				return;
-			TreeIter iter;
-			if (combo.GetActiveIter (out iter)) {
+			if (combo.GetActiveIter (out var iter)) {
 				string gtkrc = (string)combo.Model.GetValue (iter, 1);
 				if (!string.IsNullOrEmpty (gtkrc))
 					Preferences.Set (Preferences.GtkRc, gtkrc);
@@ -273,11 +271,10 @@ namespace FSpot.UI.Dialog
 
 		void HandleScreenProfileComboChanged (object sender, EventArgs e)
 		{
-			ComboBox combo = sender as ComboBox;
-			if (combo == null)
+			if (!(sender is ComboBox combo))
 				return;
-			TreeIter iter;
-			if (combo.GetActiveIter (out iter)) {
+
+			if (combo.GetActiveIter (out var iter)) {
 				switch ((int)combo.Model.GetValue (iter, 1)) {
 				case 0:
 					Preferences.Set (Preferences.ColorManagementDisplayProfile, string.Empty);
@@ -294,11 +291,9 @@ namespace FSpot.UI.Dialog
 
 		void HandlePrintProfileComboChanged (object sender, EventArgs e)
 		{
-			ComboBox combo = sender as ComboBox;
-			if (combo == null)
+			if (!(sender is ComboBox combo))
 				return;
-			TreeIter iter;
-			if (combo.GetActiveIter (out iter)) {
+			if (combo.GetActiveIter (out var iter)) {
 				switch ((int)combo.Model.GetValue (iter, 1)) {
 				case 0:
 					Preferences.Set (Preferences.ColorManagementDisplayOutputProfile, string.Empty);
@@ -309,9 +304,9 @@ namespace FSpot.UI.Dialog
 				}
 			}
 		}
-#endregion
+		#endregion
 
-#region Gtk widgetry
+		#region Gtk widgetry
 		void ThemeCellFunc (CellLayout cell_layout, CellRenderer cell, TreeModel tree_model, TreeIter iter)
 		{
 			string name = (string)tree_model.GetValue (iter, 0);
@@ -333,6 +328,6 @@ namespace FSpot.UI.Dialog
 		{
 			return tree_model.GetValue (iter, 0) == null;
 		}
-#endregion
+		#endregion
 	}
 }

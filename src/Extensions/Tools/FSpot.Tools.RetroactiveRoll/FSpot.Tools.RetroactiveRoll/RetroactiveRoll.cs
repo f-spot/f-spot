@@ -30,15 +30,13 @@
 //
 
 using System;
+using System.Linq;
 
-using FSpot;
-using FSpot.Core;
 using FSpot.Database;
 using FSpot.Extensions;
+using FSpot.Models;
 
 using Hyena;
-
-using Hyena.Data.Sqlite;
 
 namespace FSpot.Tools.RetroactiveRoll
 {
@@ -53,19 +51,23 @@ namespace FSpot.Tools.RetroactiveRoll
 				return;
 			}
 
-			DateTime import_time = photos[0].Time;
+			DateTime import_time = photos[0].UtcTime;
 			foreach (Photo p in photos)
-				if (p.Time > import_time)
-					import_time = p.Time;
+				if (p.UtcTime > import_time)
+					import_time = p.UtcTime;
 
 			RollStore rolls = App.Instance.Database.Rolls;
-			Roll roll = rolls.Create(import_time);
+			Roll roll = rolls.Create (import_time);
+
+			var context = new FSpotContext ();
 			foreach (Photo p in photos) {
-				HyenaSqliteCommand cmd = new HyenaSqliteCommand ("UPDATE photos SET roll_id = ? " +
-							       "WHERE id = ? ", roll.Id, p.Id);
-				App.Instance.Database.Database.Execute (cmd);
+				var photo = context.Photos.First (x => x.Id == p.Id);
+				photo.RollId = roll.Id;
+				context.Photos.Update (photo);
 				p.RollId = roll.Id;
 			}
+			context.SaveChanges ();
+
 			Log.Debug ("RetroactiveRoll done: " + photos.Length + " photos in roll " + roll.Id);
 		}
 	}

@@ -30,14 +30,16 @@
 //
 
 using System;
+using System.Threading;
+
+using FSpot.Models;
+using FSpot.UI.Dialog;
 
 using Gtk;
 
-using Mono.Unix;
-
-using FSpot.UI.Dialog;
-
 using Hyena.Widgets;
+
+using Mono.Unix;
 
 namespace FSpot.Widgets
 {
@@ -65,10 +67,10 @@ namespace FSpot.Widgets
 				overlay = null;
 				if (source != null)
 					overlay = PixbufUtils.UnsharpMask (source,
-    								   radius_spin.Value,
-    								   amount_spin.Value,
-    								   threshold_spin.Value,
-                                       null);
+									   radius_spin.Value,
+									   amount_spin.Value,
+									   threshold_spin.Value,
+									   null);
 			}
 		}
 
@@ -84,34 +86,29 @@ namespace FSpot.Widgets
 			progressDialog.Message = "Photo is being sharpened";
 
 			okClicked = true;
-			Photo photo = view.Item.Current as Photo;
 
-			if (photo == null)
+			if (!(view.Item.Current is Photo photo))
 				return;
 
 			try {
 				Gdk.Pixbuf orig = view.Pixbuf;
 				Gdk.Pixbuf final = PixbufUtils.UnsharpMask (orig,
-                                        radius_spin.Value,
-                                        amount_spin.Value,
-                                        threshold_spin.Value,
-                                        progressDialog);
+										radius_spin.Value,
+										amount_spin.Value,
+										threshold_spin.Value,
+										progressDialog);
 
-				bool create_version = photo.DefaultVersion.IsProtected;
+				bool create_version = photo.DefaultVersion.Protected;
 
 				photo.SaveVersion (final, create_version);
 				photo.Changes.DataChanged = true;
 				App.Instance.Database.Photos.Commit (photo);
 			} catch (Exception e) {
 				string msg = Catalog.GetString ("Error saving sharpened photo");
-				string desc = string.Format (Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"),
-                                 e.Message, photo.Name);
+				string desc = string.Format (Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"), e.Message, photo.Name);
 
-				HigMessageDialog md = new HigMessageDialog (this, DialogFlags.DestroyWithParent,
-                                        Gtk.MessageType.Error,
-                                        ButtonsType.Ok,
-                                        msg,
-                                        desc);
+				var md = new HigMessageDialog (this, DialogFlags.DestroyWithParent,
+											   Gtk.MessageType.Error, ButtonsType.Ok, msg, desc);
 				md.Run ();
 				md.Destroy ();
 			}
@@ -129,10 +126,9 @@ namespace FSpot.Widgets
 			Hide ();
 			dialog.Hide ();
 
-			System.Threading.Thread command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (doSharpening));
-			command_thread.Name = "Sharpening";
+			var commandThread = new Thread (doSharpening) { Name = "Sharpening" };
 
-			progressDialog = new ThreadProgressDialog (command_thread, 1);
+			progressDialog = new ThreadProgressDialog (commandThread, 1);
 			progressDialog.Start ();
 		}
 
@@ -152,13 +148,14 @@ namespace FSpot.Widgets
 
 			string title = Catalog.GetString ("Sharpen");
 			dialog = new Gtk.Dialog (title, (Gtk.Window)this,
-						 DialogFlags.DestroyWithParent, new object [0]);
+						 DialogFlags.DestroyWithParent, Array.Empty<object> ());
 			dialog.BorderWidth = 12;
 			dialog.VBox.Spacing = 6;
 
-			Gtk.Table table = new Gtk.Table (3, 2, false);
-			table.ColumnSpacing = 6;
-			table.RowSpacing = 6;
+			Gtk.Table table = new Gtk.Table (3, 2, false) {
+				ColumnSpacing = 6,
+				RowSpacing = 6
+			};
 
 			table.Attach (SetFancyStyle (new Gtk.Label (Catalog.GetString ("Amount:"))), 0, 1, 0, 1);
 			table.Attach (SetFancyStyle (new Gtk.Label (Catalog.GetString ("Radius:"))), 0, 1, 1, 2);
@@ -179,11 +176,11 @@ namespace FSpot.Widgets
 			table.Attach (radius_spin, 1, 2, 1, 2);
 			table.Attach (threshold_spin, 1, 2, 2, 3);
 
-			Gtk.Button cancel_button = new Gtk.Button (Gtk.Stock.Cancel);
+			Gtk.Button cancel_button = new Button (Stock.Cancel);
 			cancel_button.Clicked += HandleCancelClicked;
 			dialog.AddActionWidget (cancel_button, Gtk.ResponseType.Cancel);
 
-			Gtk.Button ok_button = new Gtk.Button (Gtk.Stock.Ok);
+			Gtk.Button ok_button = new Button (Stock.Ok);
 			ok_button.Clicked += HandleOkClicked;
 			dialog.AddActionWidget (ok_button, Gtk.ResponseType.Cancel);
 

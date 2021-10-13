@@ -31,16 +31,16 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using FSpot.Core;
+
+using FSpot.Models;
 
 namespace FSpot.Query
 {
 	public class TagTerm : LogicalTerm
 	{
-		public Tag Tag { get; private set; }
+		public Tag Tag { get; }
 
 		public TagTerm (Tag tag)
 		{
@@ -62,9 +62,8 @@ namespace FSpot.Query
 			var tagList = new List<Tag> ();
 			foreach (var tag in tags) {
 				tagList.Add (tag);
-				var category = tag as Category;
-				if (category != null) {
-					category.AddDescendentsTo (tagList);
+				if (tag.IsCategory) {
+					tag.AddDescendentsTo (tagList);
 				}
 			}
 			return tagList.Select (t => t.Id.ToString ()).ToList ();
@@ -74,9 +73,11 @@ namespace FSpot.Query
 		{
 			if (tagids.Count == 0)
 				return null;
+
 			if (tagids.Count == 1)
-				return string.Format (" (photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id = {0})) ", tagids [0]);
-			return string.Format (" (photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id IN ({0}))) ", string.Join (", ", tagids));
+				return $" (photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id = {tagids[0]})) ";
+
+			return $" (photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id IN ({string.Join (", ", tagids)}))) ";
 		}
 	}
 }

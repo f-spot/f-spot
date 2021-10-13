@@ -1,4 +1,4 @@
-﻿//
+//
 // PhotoMock.cs
 //
 // Author:
@@ -27,9 +27,13 @@
 //
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
+
 using FSpot.Core;
+
 using Hyena;
+
 using Moq;
 
 namespace Mocks
@@ -54,11 +58,11 @@ namespace Mocks
 				return mock.Object;
 			}).ToList ();
 
-			var allVersions = new[]{ defaultVersion }.Concat (versions);
+			var allVersions = new List<IPhotoVersion> { defaultVersion }.Concat (versions).ToList ();
 
 			var photo = new Mock<IPhoto> ();
 			photo.Setup (p => p.DefaultVersion).Returns (defaultVersion);
-			photo.Setup (p => p.Time).Returns (time);
+			photo.Setup (p => p.UtcTime).Returns (time);
 			photo.Setup (p => p.Versions).Returns (allVersions);
 			return photo.Object;
 		}

@@ -15,17 +15,21 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
 
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.FileSystem;
 using FSpot.Imaging;
+using FSpot.Models;
 
 using Gtk;
 
 using Hyena;
 
 using Mono.Unix;
+
+using Thread = System.Threading.Thread;
 
 namespace FSpot.Import
 {
@@ -59,9 +63,9 @@ namespace FSpot.Import
 				var label = !string.IsNullOrEmpty (drive.VolumeLabel) ? drive.VolumeLabel : "Local Disk";
 				sources.Add (new ImportSource (root, $"{label} ({drive.Name})", null));
 			}
+
 			return sources;
 		}
-
 
 #region Status Reporting
 
@@ -77,8 +81,6 @@ namespace FSpot.Import
 		}
 
 #endregion
-
-#region Source Switching
 
 		ImportSource activeSource;
 		public ImportSource ActiveSource {
@@ -97,16 +99,15 @@ namespace FSpot.Import
 			}
 		}
 
-#endregion
-
 #region Photo Scanning
 
-		Thread scanThread;
+		//Thread scanThread;
 		CancellationTokenSource scanTokenSource;
+		Task scan;
 		void StartScan ()
 		{
-			if (scanThread != null)
-				CancelScan ();
+			//if (scanThread != null)
+			//	CancelScan ();
 			if (activeSource == null)
 				return;
 
@@ -116,18 +117,20 @@ namespace FSpot.Import
 			Photos.Clear ();
 
 			scanTokenSource = new CancellationTokenSource ();
-			scanThread = ThreadAssist.Spawn (() => DoScan (source, Preferences, scanTokenSource.Token));
+			//scanThread = ThreadAssist.Spawn (() => DoScan (source, recurseSubdirectories, mergeRawAndJpeg, scanTokenSource.Token));
+			scan = Task.Run (() =>
+				DoScan (source, Preferences, scanTokenSource.Token), scanTokenSource.Token);
 		}
 
 		void CancelScan ()
 		{
-			if (scanThread == null)
-				return;
+			////if (scanThread == null)
+			//	return;
 
 			scanTokenSource?.Cancel ();
-			scanThread.Join ();
-			scanThread = null;
-			scanTokenSource = null;
+			//scanThread.Join ();
+			//scanThread = null;
+			//scanTokenSource = null;
 
 			// Make sure all photos are added. This is needed to prevent
 			// a race condition where a source is deactivated, yet photos
@@ -179,7 +182,7 @@ namespace FSpot.Import
 
 		void DoImport (CancellationToken token)
 		{
-			scanThread?.Join ();
+			//scanThread?.Join ();
 
 			FireEvent (ImportEvent.ImportStarted);
 
@@ -204,29 +207,27 @@ namespace FSpot.Import
 #region Tagging
 
 		readonly List<Tag> attachTags = new List<Tag> ();
-		readonly TagStore tagStore = App.Instance.Database.Tags;
+		readonly TagStore tagStore = new TagStore ();
 
 		// Set the tags that will be added on import.
 		public void AttachTags (IEnumerable<string> tags)
 		{
-			App.Instance.Database.BeginTransaction ();
 			var importCategory = GetImportedTagsCategory ();
 			foreach (var tagname in tags) {
 				var tag = tagStore.GetTagByName (tagname);
 				if (tag == null) {
-					tag = tagStore.CreateCategory (importCategory, tagname, false);
+					tag = tagStore.CreateTag (importCategory, tagname, false, true);
 					tagStore.Commit (tag);
 				}
 				attachTags.Add (tag);
 			}
-			App.Instance.Database.CommitTransaction ();
 		}
 
-		Category GetImportedTagsCategory ()
+		Tag GetImportedTagsCategory ()
 		{
-			var defaultCategory = tagStore.GetTagByName (Catalog.GetString ("Imported Tags")) as Category;
+			var defaultCategory = tagStore.GetTagByName (Catalog.GetString ("Imported Tags"));
 			if (defaultCategory == null) {
-				defaultCategory = tagStore.CreateCategory (null, Catalog.GetString ("Imported Tags"), false);
+				defaultCategory = tagStore.CreateTag (null, Catalog.GetString ("Imported Tags"), false, true);
 				defaultCategory.ThemeIconName = "gtk-new";
 			}
 			return defaultCategory;

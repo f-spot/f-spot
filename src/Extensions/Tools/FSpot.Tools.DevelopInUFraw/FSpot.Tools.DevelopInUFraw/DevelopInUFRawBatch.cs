@@ -29,16 +29,16 @@
 
 using System;
 
-using Mono.Unix;
+using FSpot.Models;
+using FSpot.UI.Dialog;
 
 using Hyena;
 
-using FSpot;
-using FSpot.UI.Dialog;
+using Mono.Unix;
 
 namespace FSpot.Tools.DevelopInUFraw
 {
-    // Batch Version
+	// Batch Version
 	public class DevelopInUFRawBatch : AbstractDevelopInUFRaw
 	{
 		public DevelopInUFRawBatch() : base("ufraw-batch")

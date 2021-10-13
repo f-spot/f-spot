@@ -39,6 +39,7 @@ using Gtk;
 using Mono.Unix;
 
 using Hyena;
+using FSpot.Models;
 
 namespace FSpot.Tools.LiveWebGallery
 {
@@ -79,19 +80,19 @@ namespace FSpot.Tools.LiveWebGallery
 			limit_spin.Sensitive = options.LimitMaxPhotos;
 			limit_spin.Value = options.MaxPhotos;
 			UpdateQueryRadios ();
-			HandleQueryTagSelected (options.QueryTag != null ? options.QueryTag : App.Instance.Database.Tags.GetTagById(1));
+			HandleQueryTagSelected (options.QueryTag ?? App.Instance.Database.Tags.GetTagByName (Catalog.GetString ("Favorites")));
 			allow_tagging_checkbox.Active = options.TaggingAllowed;
-			tag_edit_button.Sensitive = options.TaggingAllowed;			
-			HandleEditableTagSelected (options.EditableTag != null ? options.EditableTag : App.Instance.Database.Tags.GetTagById(3));
+			tag_edit_button.Sensitive = options.TaggingAllowed;
+			HandleEditableTagSelected (options.EditableTag ?? App.Instance.Database.Tags.GetTagByName ((Catalog.GetString ("People"))));
 			HandleStatsChanged (null, null);
-						
+
 			activate_button.Toggled += HandleActivated;
-			copy_button.Clicked +=HandleCopyClicked; 
+			copy_button.Clicked += HandleCopyClicked;
 			current_view_radio.Toggled += HandleRadioChanged;
 			tagged_radio.Toggled += HandleRadioChanged;
 			selected_radio.Toggled += HandleRadioChanged;
 			tag_button.Clicked += HandleQueryTagClicked;
-			limit_checkbox.Toggled += HandleLimitToggled; 
+			limit_checkbox.Toggled += HandleLimitToggled;
 			limit_spin.ValueChanged += HandleLimitValueChanged;
 			allow_tagging_checkbox.Toggled += HandleAllowTaggingToggled;
 			tag_edit_button.Clicked += HandleTagForEditClicked;
@@ -160,18 +161,18 @@ namespace FSpot.Tools.LiveWebGallery
 			}
 			HandleRadioChanged (null, null);
 		}
-		
+
 		void HandleActivated (object o, EventArgs e)
 		{
 			if (activate_button.Active)
 				server.Start ();
 			else
 				server.Stop ();
-			
+
 			UpdateGalleryURL ();
 		}
-		
-		void UpdateGalleryURL () 
+
+		void UpdateGalleryURL ()
 		{
 			url_button.Sensitive = server.Active;
 			copy_button.Sensitive = server.Active;
@@ -182,8 +183,8 @@ namespace FSpot.Tools.LiveWebGallery
 				url_button.Label = Catalog.GetString ("Gallery is inactive");
 			}
 		}
-		
-		void ShowTagMenuFor (Widget widget, TagMenu.TagSelectedHandler handler) 
+
+		void ShowTagMenuFor (Widget widget, TagMenu.TagSelectedHandler handler)
 		{
 			TagMenu tag_menu = new TagMenu (null, App.Instance.Database.Tags);
 			tag_menu.TagSelected += handler;
@@ -203,7 +204,7 @@ namespace FSpot.Tools.LiveWebGallery
 		{
 			options.QueryTag = tag;
 			tag_button.Label = tag.Name;
-			tag_button.Image = tag.Icon != null ? new Gtk.Image (tag.Icon.ScaleSimple (16, 16, Gdk.InterpType.Bilinear)) : null;
+			tag_button.Image = tag.Icon != null ? new Gtk.Image (tag.TagIcon.Icon.ScaleSimple (16, 16, Gdk.InterpType.Bilinear)) : null;
 		}
 		
 		void HandleAllowTaggingToggled (object sender, EventArgs e)
@@ -211,17 +212,17 @@ namespace FSpot.Tools.LiveWebGallery
 			tag_edit_button.Sensitive = allow_tagging_checkbox.Active;
 			options.TaggingAllowed = allow_tagging_checkbox.Active;
 		}
-		
+
 		void HandleTagForEditClicked (object sender, EventArgs e)
 		{
 			ShowTagMenuFor (tag_edit_button, HandleEditableTagSelected);
 		}
-		
+
 		void HandleEditableTagSelected (Tag tag)
 		{
 			options.EditableTag = tag;
 			tag_edit_button.Label = tag.Name;
-			tag_edit_button.Image = tag.Icon != null ? new Gtk.Image (tag.Icon.ScaleSimple (16, 16, Gdk.InterpType.Bilinear)) : null;
+			tag_edit_button.Image = tag.Icon != null ? new Gtk.Image (tag.TagIcon.Icon.ScaleSimple (16, 16, Gdk.InterpType.Bilinear)) : null;
 		}
 	}
 }

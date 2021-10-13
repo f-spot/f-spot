@@ -61,6 +61,7 @@ using Mono.Unix;
 using FSpot.Core;
 using FSpot.Settings;
 using System.Linq;
+using FSpot.Models;
 
 namespace FSpot.Exporters.Folder
 {
@@ -557,7 +558,7 @@ namespace FSpot.Exporters.Folder
 			writer.RenderEndTag (); //a
 
 			writer.RenderEndTag (); //navipage
-			// end link to all photos
+									// end link to all photos
 
 			// link to all tags
 			writer.AddAttribute ("class", "navipage");
@@ -569,7 +570,7 @@ namespace FSpot.Exporters.Folder
 			writer.RenderEndTag (); //a
 
 			writer.RenderEndTag (); //navipage
-			// end link to all tags
+									// end link to all tags
 
 			writer.AddAttribute ("class", "navilabel");
 			writer.RenderBeginTag ("div");
@@ -636,30 +637,31 @@ namespace FSpot.Exporters.Folder
 				SaveTagIcon (tag);
 		}
 
-		public void SaveTagIcon (Tag tag) {
-			Gdk.Pixbuf icon = tag.Icon;
+		public void SaveTagIcon (Tag tag)
+		{
+			Gdk.Pixbuf icon = tag.TagIcon.Icon;
 			Gdk.Pixbuf scaled = null;
 			if (icon.Height != 52 || icon.Width != 52) {
-				scaled=icon.ScaleSimple(52,52,Gdk.InterpType.Bilinear);
+				scaled = icon.ScaleSimple (52, 52, Gdk.InterpType.Bilinear);
 			} else
-				scaled=icon.Copy ();
-			scaled.Save (SubdirPath("tags",TagName(tag)), "png");
+				scaled = icon.Copy ();
+			scaled.Save (SubdirPath ("tags", TagName (tag)), "png");
 			scaled.Dispose ();
 		}
 
 		public string TagPath (Tag tag)
 		{
-			return System.IO.Path.Combine("tags",TagName(tag));
+			return Path.Combine ("tags", TagName (tag));
 		}
 
 		public string TagName (Tag tag)
 		{
-			return "tag_"+ ((DbItem)tag).Id+".png";
+			return $"tag_{tag.Id}.png";
 		}
 
 		public void SaveHtmlIndex (int page_num)
 		{
-			System.IO.StreamWriter stream = System.IO.File.CreateText (SubdirPath (IndexPath (page_num)));
+			StreamWriter stream = File.CreateText (SubdirPath (IndexPath (page_num)));
 			System.Web.UI.HtmlTextWriter writer = new System.Web.UI.HtmlTextWriter (stream);
 
 			//writer.Indent = 4;
@@ -701,7 +703,7 @@ namespace FSpot.Exporters.Folder
 				writer.RenderEndTag (); //a
 
 				writer.RenderEndTag (); //navipage
-				// end link to all tags
+										// end link to all tags
 			}
 
 			writer.AddAttribute ("class", "navilabel");

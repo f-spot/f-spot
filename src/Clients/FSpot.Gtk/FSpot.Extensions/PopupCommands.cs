@@ -31,6 +31,8 @@
 
 using System;
 
+using FSpot.Widgets;
+
 namespace FSpot.Extensions
 {
 	public class Copy : ICommand

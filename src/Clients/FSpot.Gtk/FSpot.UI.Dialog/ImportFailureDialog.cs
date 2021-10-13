@@ -46,7 +46,7 @@ namespace FSpot.UI.Dialog
 
 		public ImportFailureDialog (IEnumerable<SafeUri> files)
 		{
-			BuildUI ();
+			BuildDialog ();
 
 			ListView.Model = new ListStore (typeof (string), typeof (string));
 			ListView.AppendColumn ("Filename", new CellRendererText (), "text", 0);
@@ -63,7 +63,7 @@ namespace FSpot.UI.Dialog
 			}
 		}
 
-		void BuildUI ()
+		void BuildDialog ()
 		{
 			// The BorderWidth situation here is a bit nuts b/c the
 			// ActionArea's is set to 5.  So we work everything else out

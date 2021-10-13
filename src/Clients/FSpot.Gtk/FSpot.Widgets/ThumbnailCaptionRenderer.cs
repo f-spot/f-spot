@@ -44,9 +44,9 @@ namespace FSpot.Widgets
 
         public abstract void Render (Drawable window,
                                      Widget widget,
-                                     Rectangle cell_area,
-                                     Rectangle expose_area,
-                                     StateType cell_state,
+                                     Rectangle cellArea,
+                                     Rectangle exposeArea,
+                                     StateType cellState,
                                      IPhoto photo);
 
     }

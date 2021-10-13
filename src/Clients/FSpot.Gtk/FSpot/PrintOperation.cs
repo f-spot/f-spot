@@ -1,58 +1,37 @@
-//
-// PrintOperation.cs
-//
-// Author:
-//   Stephane Delcroix <stephane@delcroix.org>
-//
 // Copyright (C) 2008-2009 Novell, Inc.
 // Copyright (C) 2008-2009 Stephane Delcroix
+// Copyright (C) 2020 Stephen Shaw
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
-
-using Cairo;
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
 
-using Mono.Unix;
-
+using Cairo;
+using FSpot.Cms;
 using FSpot.Core;
-using FSpot.Settings;
-using FSpot.Widgets;
 using FSpot.Imaging;
+using FSpot.Models;
+using FSpot.Settings;
 using FSpot.Utils;
+using FSpot.Widgets;
 
 using Hyena;
+
+using Mono.Unix;
+using Format = Cairo.Format;
 
 namespace FSpot
 {
 	public class PrintOperation : Gtk.PrintOperation
 	{
-		IPhoto [] selected_photos;
+		readonly IPhoto[] selected_photos;
 		int photos_per_page = 1;
 		CustomPrintWidget.FitMode fit = CustomPrintWidget.FitMode.Scaled;
 		bool repeat, white_borders, crop_marks;
 		string print_label_format;
 		string comment;
 
-		public PrintOperation (IPhoto [] selectedPhotos)
+		public PrintOperation (IPhoto[] selectedPhotos)
 		{
 			selected_photos = selectedPhotos;
 			CustomTabLabel = Catalog.GetString ("Image Settings");
@@ -64,7 +43,7 @@ namespace FSpot
 		{
 			Gtk.Widget widget = new CustomPrintWidget (this);
 			widget.ShowAll ();
-			(widget as CustomPrintWidget).Changed += OnCustomWidgetChanged;
+			((CustomPrintWidget)widget).Changed += OnCustomWidgetChanged;
 			OnCustomWidgetChanged (widget);
 			return widget;
 		}
@@ -86,17 +65,15 @@ namespace FSpot
 		protected void OnCustomWidgetChanged (Gtk.Widget widget)
 		{
 			OnCustomWidgetApply (widget);
-			using (var surface = new ImageSurface (Format.ARGB32, 360, 254)) {
-				using (var gr = new Context (surface)) {
-					gr.SetSourceColor (new Color (1, 1, 1));
-					gr.Rectangle (0, 0, 360, 254);
-					gr.Fill ();
-					using (Gdk.Pixbuf pixbuf = Gdk.Pixbuf.LoadFromResource ("flower.png")) {
-						DrawImage (gr, pixbuf, 0, 0, 360, 254);
-					}
-				}
-				(widget as CustomPrintWidget).PreviewImage.Pixbuf = CreatePixbuf (surface);
+			using var surface = new ImageSurface (Format.ARGB32, 360, 254);
+			using (var gr = new Context (surface)) {
+				gr.SetSourceColor (new Color (1, 1, 1));
+				gr.Rectangle (0, 0, 360, 254);
+				gr.Fill ();
+				using var pixbuf = Gdk.Pixbuf.LoadFromResource ("flower.png");
+				DrawImage (gr, pixbuf, 0, 0, 360, 254);
 			}
+			(widget as CustomPrintWidget).PreviewImage.Pixbuf = CreatePixbuf (surface);
 		}
 
 		protected override void OnDrawPage (Gtk.PrintContext context, int page_nr)
@@ -131,52 +108,52 @@ namespace FSpot
 						DrawCropMarks (cr, x * w, y * h, w * .1);
 					if (x == ppx || y == ppy || p_index >= selected_photos.Length)
 						continue;
-					using (var img = App.Instance.Container.Resolve<IImageFileFactory> ().Create (selected_photos [p_index].DefaultVersion.Uri)) {
-						Gdk.Pixbuf pixbuf;
-						try {
-							pixbuf = img.Load ((int)mx, (int)my);
-							if (pixbuf == null) {
-								Log.Error ("Not enough memory for printing " + selected_photos [p_index].DefaultVersion.Uri);
-								continue;
-							}
-							Cms.Profile printer_profile;
-							if (ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayOutputProfile), out printer_profile))
-								ColorManagement.ApplyProfile (pixbuf, img.GetProfile (), printer_profile);
-						} catch (Exception e) {
-							Log.Exception ("Unable to load image " + selected_photos [p_index].DefaultVersion.Uri + "\n", e);
-							// If the image is not found load error pixbuf
-							pixbuf = new Gdk.Pixbuf (PixbufUtils.ErrorPixbuf, 0, 0,
-											  PixbufUtils.ErrorPixbuf.Width,
-											  PixbufUtils.ErrorPixbuf.Height);
+
+					using var img = App.Instance.Container.Resolve<IImageFileFactory> ().Create (selected_photos[p_index].DefaultVersion.Uri);
+					Gdk.Pixbuf pixbuf;
+					try {
+						pixbuf = img.Load ((int)mx, (int)my);
+						if (pixbuf == null) {
+							Log.Error ("Not enough memory for printing " + selected_photos[p_index].DefaultVersion.Uri);
+							continue;
 						}
 
-						bool rotated = false;
-						if (Math.Sign ((double)pixbuf.Width / pixbuf.Height - 1.0) != Math.Sign (w / h - 1.0)) {
-							Gdk.Pixbuf d_pixbuf = pixbuf.RotateSimple (Gdk.PixbufRotation.Counterclockwise);
-							pixbuf.Dispose ();
-							pixbuf = d_pixbuf;
-							rotated = true;
-						}
-
-						DrawImage (cr, pixbuf, x * w, y * h, w, h);
-
-						string tag_string = "";
-						foreach (Tag t in selected_photos [p_index].Tags)
-							tag_string = string.Concat (tag_string, t.Name);
-
-						// FIXME: Convert this to StringBuilder?
-						var label = string.Format (print_label_format,
-										  comment,
-										  selected_photos [p_index].Name,
-										  selected_photos [p_index].Time.ToLocalTime ().ToShortDateString (),
-										  selected_photos [p_index].Time.ToLocalTime ().ToShortTimeString (),
-										  tag_string,
-										  selected_photos [p_index].Description);
-
-						DrawComment (context, (x + 1) * w, (rotated ? y : y + 1) * h, (rotated ? w : h) * .025, label, rotated);
-
-						pixbuf.Dispose ();
+						if (ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayOutputProfile), out var printer_profile))
+							ColorManagement.ApplyProfile (pixbuf, img.GetProfile (), printer_profile);
+					} catch (Exception e) {
+						Log.Exception ("Unable to load image " + selected_photos[p_index].DefaultVersion.Uri + "\n", e);
+						// If the image is not found load error pixbuf
+						pixbuf = new Gdk.Pixbuf (PixbufUtils.ErrorPixbuf, 0, 0,
+							PixbufUtils.ErrorPixbuf.Width,
+							PixbufUtils.ErrorPixbuf.Height);
 					}
+
+					bool rotated = false;
+					if (Math.Sign ((double)pixbuf.Width / pixbuf.Height - 1.0) != Math.Sign (w / h - 1.0)) {
+						Gdk.Pixbuf d_pixbuf = pixbuf.RotateSimple (Gdk.PixbufRotation.Counterclockwise);
+						pixbuf.Dispose ();
+						pixbuf = d_pixbuf;
+						rotated = true;
+					}
+
+					DrawImage (cr, pixbuf, x * w, y * h, w, h);
+
+					string tag_string = "";
+					foreach (Tag t in selected_photos[p_index].Tags)
+						tag_string = string.Concat (tag_string, t.Name);
+
+					// FIXME: Convert this to StringBuilder?
+					var label = string.Format (print_label_format,
+						comment,
+						selected_photos[p_index].Name,
+						selected_photos[p_index].UtcTime.ToLocalTime ().ToShortDateString (),
+						selected_photos[p_index].UtcTime.ToLocalTime ().ToShortTimeString (),
+						tag_string,
+						selected_photos[p_index].Description);
+
+					DrawComment (context, (x + 1) * w, (rotated ? y : y + 1) * h, (rotated ? w : h) * .025, label, rotated);
+
+					pixbuf.Dispose ();
 				}
 			}
 
@@ -197,7 +174,7 @@ namespace FSpot
 			cr.MoveTo (x, y - length / 2);
 			cr.LineTo (x, y + length / 2);
 			cr.LineWidth = .2;
-			cr.SetDash (new [] { length * .4, length * .2 }, 0);
+			cr.SetDash (new[] { length * .4, length * .2 }, 0);
 			cr.Stroke ();
 			cr.Restore ();
 		}

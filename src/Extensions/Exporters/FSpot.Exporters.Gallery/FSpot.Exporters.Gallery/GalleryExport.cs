@@ -46,6 +46,7 @@ using FSpot.Extensions;
 
 using Hyena;
 using System.Linq;
+using FSpot.Models;
 
 namespace FSpot.Exporters.Gallery
 {

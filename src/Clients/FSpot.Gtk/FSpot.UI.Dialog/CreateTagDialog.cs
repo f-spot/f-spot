@@ -1,4 +1,4 @@
-﻿//
+//
 // CreateTagDialog.cs
 //
 // Author:
@@ -33,30 +33,24 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
-using Gtk;
-using Gdk;
-
-using Mono.Unix;
-
-using FSpot.Core;
 using FSpot.Database;
+using FSpot.Models;
 using FSpot.Settings;
 
+using Gdk;
+
+using Gtk;
+
 using Hyena;
+
+using Mono.Unix;
 
 namespace FSpot.UI.Dialog
 {
 	public class CreateTagDialog : BuilderDialog
 	{
-		public enum TagType
-		{
-			Tag,
-			Category
-		}
-
-		readonly TagStore tag_store;
-
 #pragma warning disable 649
 		[GtkBeans.Builder.Object] Button create_button;
 		[GtkBeans.Builder.Object] Entry tag_name_entry;
@@ -66,64 +60,65 @@ namespace FSpot.UI.Dialog
 		[GtkBeans.Builder.Object] CheckButton auto_icon_checkbutton;
 #pragma warning restore 649
 
+		readonly TagStore tag_store;
 		List<Tag> categories;
 
-		void PopulateCategories (List<Tag> categories, Category parent)
+		public CreateTagDialog (TagStore tag_store) : base ("CreateTagDialog.ui", "create_tag_dialog")
 		{
-			foreach (Tag tag in parent.Children) {
-				if (tag is Category) {
-					categories.Add (tag);
-					PopulateCategories (categories, tag as Category);
-				}
+			this.tag_store = tag_store;
+		}
+
+		void PopulateCategories (ICollection<Tag> categories, Tag parent)
+		{
+			foreach (Tag tag in parent.Children.Where (x => x.IsCategory)) {
+				categories.Add (tag);
+				PopulateCategories (categories, tag);
 			}
 		}
 
-		string Indentation (Category category)
+		string Indentation (Tag category)
 		{
 			int indentations = 0;
-			for (Category parent = category.Category;
-				 parent != null && parent.Category != null;
-				 parent = parent.Category)
+			for (var parent = category.Category; parent?.Category != null; parent = parent.Category)
 				indentations++;
+
 			return new string (' ', indentations * 2);
 		}
 
 		void PopulateCategoryOptionMenu ()
 		{
-			categories = new List<Tag> ();
-			categories.Add (tag_store.RootCategory);
+			categories = new List<Tag> { tag_store.RootCategory };
 			PopulateCategories (categories, tag_store.RootCategory);
 
-			ListStore category_store = new ListStore (typeof (Pixbuf), typeof (string));
+			var categoryStore = new ListStore (typeof (Pixbuf), typeof (string));
 
-			foreach (Category category in categories) {
-				category_store.AppendValues (category.SizedIcon, Indentation (category) + category.Name);
+			foreach (var category in categories) {
+				categoryStore.AppendValues (category?.TagIcon?.SizedIcon, $"{Indentation (category)}{category.Name}");
 			}
 
 			category_option_menu.Sensitive = true;
 
-			category_option_menu.Model = category_store;
-			var icon_renderer = new CellRendererPixbuf ();
-			icon_renderer.Width = (int)Tag.TagIconSize;
-			category_option_menu.PackStart (icon_renderer, true);
+			category_option_menu.Model = categoryStore;
+			using var iconRenderer = new CellRendererPixbuf { Width = (int)Tag.TagIconSize };
+			category_option_menu.PackStart (iconRenderer, true);
 
-			var text_renderer = new CellRendererText ();
-			text_renderer.Alignment = Pango.Alignment.Left;
-			text_renderer.Width = 150;
-			category_option_menu.PackStart (text_renderer, true);
+			using var textRenderer = new CellRendererText {
+				Alignment = Pango.Alignment.Left, Width = 150
+			};
 
-			category_option_menu.AddAttribute (icon_renderer, "pixbuf", 0);
-			category_option_menu.AddAttribute (text_renderer, "text", 1);
+			category_option_menu.PackStart (textRenderer, true);
+			category_option_menu.AddAttribute (iconRenderer, "pixbuf", 0);
+			category_option_menu.AddAttribute (textRenderer, "text", 1);
 			category_option_menu.ShowAll ();
 		}
 
-		bool TagNameExistsInCategory (string name, Category category)
+		bool TagNameExistsInCategory (string name, Tag category)
 		{
 			foreach (Tag tag in category.Children) {
 				if (string.Compare (tag.Name, name, true) == 0)
 					return true;
 
-				if (tag is Category && TagNameExistsInCategory (name, tag as Category))
+				if (tag.IsCategory && TagNameExistsInCategory (name, tag))
 					return true;
 			}
 
@@ -149,17 +144,17 @@ namespace FSpot.UI.Dialog
 			Update ();
 		}
 
-		Category Category {
+		Tag Category {
 			get {
 				if (categories.Count == 0)
 					return tag_store.RootCategory;
-				return categories [category_option_menu.Active] as Category;
+				return categories[category_option_menu.Active];
 			}
 			set {
 				if ((value != null) && (categories.Count > 0)) {
 					//System.Console.WriteLine("TagCreateCommand.set_Category(" + value.Name + ")");
 					for (int i = 0; i < categories.Count; i++) {
-						Category category = (Category)categories [i];
+						var category = categories[i];
 						// should there be an equals type method?
 						if (value.Id == category.Id) {
 							category_option_menu.Active = i;
@@ -172,16 +167,16 @@ namespace FSpot.UI.Dialog
 			}
 		}
 
-		public Tag Execute (TagType type, Tag [] selection)
+		public Tag Execute (IEnumerable<Tag> selection)
 		{
-			Category default_category = null;
-			if (selection.Length > 0) {
-				if (selection [0] is Category)
-					default_category = (Category)selection [0];
+			Tag defaultCategory;
+			if (selection.Any ()) {
+				if (selection.First ().IsCategory)
+					defaultCategory = selection.First ();
 				else
-					default_category = selection [0].Category;
+					defaultCategory = selection.First ().Category;
 			} else {
-				default_category = tag_store.RootCategory;
+				defaultCategory = tag_store.RootCategory;
 			}
 
 			DefaultResponse = ResponseType.Ok;
@@ -191,24 +186,20 @@ namespace FSpot.UI.Dialog
 			auto_icon_checkbutton.Active = Preferences.Get<bool> (Preferences.TagIconAutomatic);
 
 			PopulateCategoryOptionMenu ();
-			Category = default_category;
+			Category = defaultCategory;
 			Update ();
 			tag_name_entry.GrabFocus ();
 
-			ResponseType response = (ResponseType)Run ();
+			var response = (ResponseType)Run ();
 
-
-			Tag new_tag = null;
+			Tag newTag = null;
 			if (response == ResponseType.Ok) {
-				bool autoicon = this.auto_icon_checkbutton.Active;
+				bool autoicon = auto_icon_checkbutton.Active;
 				Preferences.Set (Preferences.TagIconAutomatic, autoicon);
 				try {
-					Category parent_category = Category;
+					var parentCategory = Category;
 
-					if (type == TagType.Category)
-						new_tag = tag_store.CreateCategory (parent_category, tag_name_entry.Text, autoicon);
-					else
-						new_tag = tag_store.CreateTag (parent_category, tag_name_entry.Text, autoicon);
+					newTag = tag_store.CreateTag (parentCategory, tag_name_entry.Text, autoicon, true);
 				} catch (Exception ex) {
 					// FIXME error dialog.
 					Log.Exception (ex);
@@ -216,12 +207,7 @@ namespace FSpot.UI.Dialog
 			}
 
 			Destroy ();
-			return new_tag;
-		}
-
-		public CreateTagDialog (TagStore tag_store) : base ("CreateTagDialog.ui", "create_tag_dialog")
-		{
-			this.tag_store = tag_store;
+			return newTag;
 		}
 	}
 }

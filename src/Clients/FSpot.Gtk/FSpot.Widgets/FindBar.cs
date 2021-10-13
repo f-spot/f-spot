@@ -42,36 +42,30 @@ using FSpot.Core;
 using FSpot.Query;
 
 using Hyena;
+using FSpot.Models;
 
 namespace FSpot.Widgets
 {
 	public class FindBar : HighlightedBox
 	{
-		Entry entry;
 		string last_entry_text = string.Empty;
 		int open_parens;
 		int close_parens;
 		PhotoQuery query;
-		Term root_term;
 		HBox box;
 		readonly object lockObject = new object ();
 
-		#region Properties
 		public bool Completing {
 			get {
-				return (entry.Completion as LogicEntryCompletion).Completing;
+				return (Entry.Completion as LogicEntryCompletion).Completing;
 			}
 		}
 
-		public Entry Entry {
-			get { return entry; }
-		}
+		public Entry Entry { get; }
 
-		public Term RootTerm  {
-			get { return root_term; }
-		}
+		public Term RootTerm { get; private set; }
 
-		public FindBar (PhotoQuery query, TreeModel model) : base(new HBox())
+		public FindBar (PhotoQuery query, TreeModel model) : base (new HBox ())
 		{
 			this.query = query;
 			box = Child as HBox;
@@ -81,24 +75,20 @@ namespace FSpot.Widgets
 
 			box.PackStart (new Label (Catalog.GetString ("Find:")), false, false, 0);
 
-			entry = new Entry ();
-			entry.Completion = new LogicEntryCompletion (entry, model);
+			Entry = new Entry ();
+			Entry.Completion = new LogicEntryCompletion (Entry, model);
 
-			entry.TextInserted  += HandleEntryTextInserted;
-			entry.TextDeleted   += HandleEntryTextDeleted;
-			entry.KeyPressEvent += HandleEntryKeyPress;
+			Entry.TextInserted += HandleEntryTextInserted;
+			Entry.TextDeleted += HandleEntryTextDeleted;
+			Entry.KeyPressEvent += HandleEntryKeyPress;
 
-			box.PackStart (entry, true, true, 0);
+			box.PackStart (Entry, true, true, 0);
 
-			var clear_button = new Button ();
-			clear_button.Add (new Image ("gtk-close", IconSize.Button));
-			clear_button.Clicked += HandleCloseButtonClicked;
-			clear_button.Relief = ReliefStyle.None;
-			box.PackStart (clear_button, false, false, 0);
+			using var clearButton = new Button { new Image ("gtk-close", IconSize.Button) };
+			clearButton.Clicked += HandleCloseButtonClicked;
+			clearButton.Relief = ReliefStyle.None;
+			box.PackStart (clearButton, false, false, 0);
 		}
-		#endregion
-
-		#region Event Handlers
 
 		void HandleCloseButtonClicked (object sender, EventArgs args)
 		{
@@ -111,25 +101,25 @@ namespace FSpot.Widgets
 
 			//int start = args.Position - args.Length;
 
-			for (int i = 0; i < args.Text.Length; i++) {
-				char c = args.Text [i];
+			foreach (var c in args.Text)
+			{
 				if (c == '(')
 					open_parens++;
 				else if (c == ')')
 					close_parens++;
 			}
 
-			int pos = entry.Position + 1;
-			int close_parens_needed = open_parens - close_parens;
-			for (int i = 0; i < close_parens_needed; i++) {
-				entry.TextInserted -= HandleEntryTextInserted;
-				entry.InsertText (")", ref pos);
+			int pos = Entry.Position + 1;
+			int closeParensNeeded = open_parens - close_parens;
+			for (int i = 0; i < closeParensNeeded; i++) {
+				Entry.TextInserted -= HandleEntryTextInserted;
+				Entry.InsertText (")", ref pos);
 				close_parens++;
-				entry.TextInserted += HandleEntryTextInserted;
+				Entry.TextInserted += HandleEntryTextInserted;
 				pos++;
 			}
 			//Log.DebugFormat ("done w/ insert, {0}, ( = {1}  ) = {2}", args.Text, open_parens, close_parens);
-			last_entry_text = entry.Text;
+			last_entry_text = Entry.Text;
 
 			QueueUpdate ();
 		}
@@ -140,14 +130,14 @@ namespace FSpot.Widgets
 			//Log.DebugFormat ("start {0} end {1} len {2} last {3}", args.StartPos, args.EndPos, length, last_entry_text);
 			string txt = length < 0 ? last_entry_text : last_entry_text.Substring (args.StartPos, length);
 
-			for (int i = 0; i < txt.Length; i++) {
-				if (txt [i] == '(')
+			foreach (var t in txt) {
+				if (t == '(')
 					open_parens--;
-				else if (txt [i] == ')')
+				else if (t == ')')
 					close_parens--;
 			}
 
-			last_entry_text = entry.Text;
+			last_entry_text = Entry.Text;
 
 			QueueUpdate ();
 		}
@@ -164,17 +154,17 @@ namespace FSpot.Widgets
 
 			case (Gdk.Key.Tab):
 				// If we are at the end of the entry box, let the normal Tab handler do its job
-				if (entry.Position == entry.Text.Length) {
+				if (Entry.Position == Entry.Text.Length) {
 					args.RetVal = false;
 					return;
 				}
 
 				// Go until the current character is an open paren
-				while (entry.Position < entry.Text.Length && entry.Text [entry.Position] != '(')
-					entry.Position++;
+				while (Entry.Position < Entry.Text.Length && Entry.Text[Entry.Position] != '(')
+					Entry.Position++;
 
 				// Put the cursor right after the open paren
-				entry.Position++;
+				Entry.Position++;
 
 				args.RetVal = true;
 				break;
@@ -184,41 +174,37 @@ namespace FSpot.Widgets
 				break;
 			}
 		}
-		#endregion
-
-		/*
-		 * Helper methods.
-		 */
 
 		void Clear ()
 		{
-			entry.Text = string.Empty;
+			Entry.Text = string.Empty;
 			Hide ();
 		}
 
 		// OPS The operators we support, case insensitive
 		//private static string op_str = "(?'Ops' or | and |, | \\s+ )";
-		static string op_str = "(?'Ops' "+ Catalog.GetString ("or") + " | "+ Catalog.GetString ("and")  + " |, )";
+		static readonly string OpStr = "(?'Ops' " + Catalog.GetString ("or") + " | " + Catalog.GetString ("and") + " |, )";
 
 		// Match literals, eg tags or other text to search on
-		static string literal_str = "[^{0}{1}]+?";
+		static readonly string LiteralStr = "[^{0}{1}]+?";
 		//private static string not_literal_str = "not\\s*\\((?'NotTag'[^{0}{1}]+)\\)";
 
 		// Match a group surrounded by parenthesis and one or more terms separated by operators
-		static string term_str = "(((?'Open'{0})(?'Pre'[^{0}{1}]*?))+((?'Close-Open'{1})(?'Post'[^{0}{1}]*?))+)*?(?(Open)(?!))";
+		static readonly string TermStr = "(((?'Open'{0})(?'Pre'[^{0}{1}]*?))+((?'Close-Open'{1})(?'Post'[^{0}{1}]*?))+)*?(?(Open)(?!))";
 
 		// Match a group surrounded by parenthesis and one or more terms separated by operators, surrounded by not()
 		//private static string not_term_str = string.Format("not\\s*(?'NotTerm'{0})", term_str);
 
 		// Match a simple term or a group term or a not(group term)
 		//private static string comb_term_str = string.Format ("(?'Term'{0}|{2}|{1})", simple_term_str, term_str, not_term_str);
-		static string comb_term_str = string.Format ("(?'Term'{0}|{1})|not\\s*\\((?'NotTerm'{0})\\)|not\\s*(?'NotTerm'{1})", literal_str, term_str);
+		static readonly string CombTermStr =
+			$"(?'Term'{LiteralStr}|{TermStr})|not\\s*\\((?'NotTerm'{LiteralStr})\\)|not\\s*(?'NotTerm'{TermStr})";
 
 		// Match a single term or a set of terms separated by operators
-		static string regex_str = string.Format ("^((?'Terms'{0}){1})*(?'Terms'{0})$", comb_term_str, op_str);
+		static readonly string RegexStr = $"^((?'Terms'{CombTermStr}){OpStr})*(?'Terms'{CombTermStr})$";
 
-		static Regex term_regex = new Regex (
-						  string.Format (regex_str, "\\(", "\\)"),
+		static readonly Regex TermRegex = new Regex (
+						  string.Format (RegexStr, "\\(", "\\)"),
 						  RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
 		// Breaking the query the user typed into something useful involves running
@@ -226,20 +212,20 @@ namespace FSpot.Widgets
 		// into literals and operators that we can use to generate SQL queries.
 		bool ConstructQuery (Term parent, int depth, string txt)
 		{
-			return ConstructQuery(parent, depth, txt, false);
+			return ConstructQuery (parent, depth, txt, false);
 		}
 
 		bool ConstructQuery (Term parent, int depth, string txt, bool negated)
 		{
-			if (string.IsNullOrEmpty(txt))
+			if (string.IsNullOrEmpty (txt))
 				return true;
 
-			string indent = string.Format ("{0," + depth*2 + "}", " ");
+			string indent = string.Format ("{0," + depth * 2 + "}", " ");
 
 			//Log.DebugFormat (indent + "Have text: {0}", txt);
 
 			// Match the query the user typed against our regular expression
-			Match match = term_regex.Match (txt);
+			Match match = TermRegex.Match (txt);
 
 			if (!match.Success) {
 				//Log.Debug (indent + "Failed to match.");
@@ -252,8 +238,8 @@ namespace FSpot.Widgets
 			// For the moment at least we don't support operator precedence, so we require
 			// that only a single operator is used for any given term unless it is made unambiguous
 			// by using parenthesis.
-			foreach (Capture capture in match.Groups ["Ops"].Captures) {
-				if (op == string.Empty)
+			foreach (Capture capture in match.Groups["Ops"].Captures) {
+				if (string.IsNullOrEmpty (op))
 					op = capture.Value;
 				else if (op != capture.Value) {
 					op_valid = false;
@@ -266,26 +252,26 @@ namespace FSpot.Widgets
 				return false;
 			}
 
-			if (match.Groups ["Terms"].Captures.Count == 1 && match.Groups["NotTerm"].Captures.Count != 1) {
+			if (match.Groups["Terms"].Captures.Count == 1 && match.Groups["NotTerm"].Captures.Count != 1) {
 				//Log.DebugFormat (indent + "Unbreakable term: {0}", match.Groups ["Terms"].Captures [0]);
 				string literal;
-				bool is_negated = false;
+				bool isNegated = false;
 				Tag tag = null;
 
 
-				if (match.Groups ["NotTag"].Captures.Count == 1) {
-					literal = match.Groups ["NotTag"].Captures [0].Value;
-					is_negated = true;
+				if (match.Groups["NotTag"].Captures.Count == 1) {
+					literal = match.Groups["NotTag"].Captures[0].Value;
+					isNegated = true;
 				} else {
-					literal = match.Groups ["Terms"].Captures [0].Value;
+					literal = match.Groups["Terms"].Captures[0].Value;
 				}
 
-				is_negated = is_negated || negated;
+				isNegated = isNegated || negated;
 
 				tag = App.Instance.Database.Tags.GetTagByName (literal);
 
 				// New OR term so we can match against both tag and text search
-				parent = new OrTerm(parent, null);
+				parent = new OrTerm (parent, null);
 
 				// If the literal is the name of a tag, include it in the OR
 				//AbstractLiteral term = null;
@@ -297,30 +283,30 @@ namespace FSpot.Widgets
 				new TextLiteral (parent, literal);
 
 				// If the term was negated, negate the OR parent term
-				if (is_negated) {
-					parent = parent.Invert(true);
+				if (isNegated) {
+					parent = parent.Invert (true);
 				}
 
 				if (RootTerm == null)
-					root_term = parent;
+					RootTerm = parent;
 
 				return true;
 			} else {
 				Term us = null;
-				if (op != null && op != string.Empty) {
+				if (!string.IsNullOrEmpty (op)) {
 					us = Term.TermFromOperator (op, parent, null);
 					if (RootTerm == null)
-						root_term = us;
+						RootTerm = us;
 				}
 
-				foreach (Capture capture in match.Groups ["Term"].Captures) {
+				foreach (Capture capture in match.Groups["Term"].Captures) {
 					string subterm = capture.Value.Trim ();
 
 					if (string.IsNullOrEmpty (subterm))
 						continue;
 
 					// Strip leading/trailing parens
-					if (subterm [0] == '(' && subterm [subterm.Length - 1] == ')') {
+					if (subterm[0] == '(' && subterm[subterm.Length - 1] == ')') {
 						subterm = subterm.Remove (subterm.Length - 1, 1);
 						subterm = subterm.Remove (0, 1);
 					}
@@ -331,14 +317,14 @@ namespace FSpot.Widgets
 						return false;
 				}
 
-				foreach (Capture capture in match.Groups ["NotTerm"].Captures) {
+				foreach (Capture capture in match.Groups["NotTerm"].Captures) {
 					string subterm = capture.Value.Trim ();
 
 					if (string.IsNullOrEmpty (subterm))
 						continue;
 
 					// Strip leading/trailing parens
-					if (subterm [0] == '(' && subterm [subterm.Length - 1] == ')') {
+					if (subterm[0] == '(' && subterm[subterm.Length - 1] == ')') {
 						subterm = subterm.Remove (subterm.Length - 1, 1);
 						subterm = subterm.Remove (0, 1);
 					}
@@ -351,9 +337,9 @@ namespace FSpot.Widgets
 
 				if (negated && us != null) {
 					if (us == RootTerm)
-						root_term = us.Invert(false);
+						RootTerm = us.Invert (false);
 					else
-						us.Invert(false);
+						us.Invert (false);
 				}
 
 				return true;
@@ -365,7 +351,7 @@ namespace FSpot.Widgets
 		void QueueUpdate ()
 		{
 			if (updating || update_timeout_id != 0) {
-				lock(lockObject) {
+				lock (lockObject) {
 					// If there is a timer set and we are not yet handling its timeout, then remove the timer
 					// so we delay its trigger for another 500ms.
 					if (!updating && update_timeout_id != 0)
@@ -373,24 +359,24 @@ namespace FSpot.Widgets
 
 					// Assuming we're not currently handling a timeout, add a new timer
 					if (!updating)
-						update_timeout_id = GLib.Timeout.Add(500, OnUpdateTimer);
+						update_timeout_id = GLib.Timeout.Add (500, OnUpdateTimer);
 				}
 			} else {
 				// If we are not updating and there isn't a timer already set, then there is
 				// no risk of race condition with the  timeout handler.
-				update_timeout_id = GLib.Timeout.Add(500, OnUpdateTimer);
+				update_timeout_id = GLib.Timeout.Add (500, OnUpdateTimer);
 			}
 		}
 
 		bool OnUpdateTimer ()
 		{
-			lock(lockObject) {
+			lock (lockObject) {
 				updating = true;
 			}
 
-			Update();
+			Update ();
 
-			lock(lockObject) {
+			lock (lockObject) {
 				updating = false;
 				update_timeout_id = 0;
 			}
@@ -401,26 +387,26 @@ namespace FSpot.Widgets
 		void Update ()
 		{
 			// Clear the last root term
-			root_term = null;
+			RootTerm = null;
 
-			if (ParensValid () && ConstructQuery (null, 0, entry.Text)) {
+			if (ParensValid () && ConstructQuery (null, 0, Entry.Text)) {
 				if (RootTerm != null) {
 					//Log.DebugFormat("rootTerm = {0}", RootTerm);
 					if (!(RootTerm is AndTerm)) {
 						// A little hacky, here to make sure the root term is a AndTerm which will
 						// ensure we handle the Hidden tag properly
-						var root_parent = new AndTerm(null, null);
+						var root_parent = new AndTerm (null, null);
 						RootTerm.Parent = root_parent;
-						root_term = root_parent;
+						RootTerm = root_parent;
 					}
 
 					//Log.DebugFormat("rootTerm = {0}", RootTerm);
 					if (!(RootTerm is AndTerm)) {
 						// A little hacky, here to make sure the root term is a AndTerm which will
 						// ensure we handle the Hidden tag properly
-						var root_parent = new AndTerm(null, null);
+						var root_parent = new AndTerm (null, null);
 						RootTerm.Parent = root_parent;
-						root_term = root_parent;
+						RootTerm = root_parent;
 					}
 					//Log.DebugFormat ("condition = {0}", RootTerm.SqlCondition ());
 					query.TagTerm = new ConditionWrapper (RootTerm.SqlCondition ());
@@ -433,10 +419,9 @@ namespace FSpot.Widgets
 
 		bool ParensValid ()
 		{
-			for (int i = 0; i < entry.Text.Length; i++)
-			{
-				if (entry.Text [i] == '(' || entry.Text [i] == ')') {
-					int pair_pos = ParenPairPosition (entry.Text, i);
+			for (int i = 0; i < Entry.Text.Length; i++) {
+				if (Entry.Text[i] == '(' || Entry.Text[i] == ')') {
+					int pair_pos = ParenPairPosition (Entry.Text, i);
 
 					if (pair_pos == -1)
 						return false;
@@ -451,12 +436,12 @@ namespace FSpot.Widgets
 		 */
 		static int ParenPairPosition (string txt, int pos)
 		{
-			char one = txt [pos];
+			char one = txt[pos];
 			bool open = (one == '(');
 			char two = (open) ? ')' : '(';
 
 			//int level = 0;
-			int num = (open) ? txt.Length - pos - 1: pos;
+			int num = (open) ? txt.Length - pos - 1 : pos;
 
 			int sames = 0;
 			for (int i = 0; i < num; i++) {
@@ -468,9 +453,9 @@ namespace FSpot.Widgets
 				if (pos < 0 || pos > txt.Length - 1)
 					return -1;
 
-				if (txt [pos] == one)
+				if (txt[pos] == one)
 					sames++;
-				else if (txt [pos] == two) {
+				else if (txt[pos] == two) {
 					if (sames == 0)
 						return pos;
 					sames--;

@@ -9,6 +9,7 @@
 // Copyright (C) 2007-2010 Novell, Inc.
 // Copyright (C) 2010 Ruben Vermeersch
 // Copyright (C) 2007-2008 Stephane Delcroix
+// Copyright (C) 2020 Stephen Shaw
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -32,21 +33,22 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
-using Gtk;
-
-using FSpot.Core;
 using FSpot.Database;
+using FSpot.Models;
 using FSpot.Query;
 using FSpot.Settings;
+
+using Gtk;
 
 namespace FSpot.UI.Dialog
 {
 	public class LastRolls : BuilderDialog
 	{
-		FSpot.PhotoQuery query;
-		RollStore rollstore;
-		Roll[] rolls;
+		readonly FSpot.PhotoQuery query;
+		readonly RollStore rollStore;
+		readonly List<Roll> rolls;
 
 #pragma warning disable 649
 		[GtkBeans.Builder.Object] ComboBox combo_filter; // at, after, or between
@@ -56,11 +58,11 @@ namespace FSpot.UI.Dialog
 		[GtkBeans.Builder.Object] Label photos_in_selected_rolls;
 #pragma warning restore 649
 
-		public LastRolls (FSpot.PhotoQuery query, RollStore rollstore, Window parent) : base ("LastImportRollFilterDialog.ui", "last_import_rolls_filter")
+		public LastRolls (FSpot.PhotoQuery query, RollStore rollStore, Window parent) : base ("LastImportRollFilterDialog.ui", "last_import_rolls_filter")
 		{
 			this.query = query;
-			this.rollstore = rollstore;
-			rolls = rollstore.GetRolls (Preferences.Get<int> (Preferences.ImportGuiRollHistory));
+			this.rollStore = rollStore;
+			rolls = rollStore.GetRolls (Preferences.Get<int> (Preferences.ImportGuiRollHistory));
 
 			TransientFor = parent;
 
@@ -79,17 +81,17 @@ namespace FSpot.UI.Dialog
 		protected void HandleResponse (object o, Gtk.ResponseArgs args)
 		{
 			if (args.ResponseId == ResponseType.Ok) {
-				Roll [] selected_rolls = SelectedRolls ();
+				var selectedRolls = SelectedRolls ();
 
-				if (selected_rolls != null && selected_rolls.Length > 0)
-					query.RollSet = new RollSet (selected_rolls);
+				if (selectedRolls != null && selectedRolls.Count > 0)
+					query.RollSet = new RollSet (selectedRolls);
 			}
 			Destroy ();
 		}
 
 		void HandleComboFilterChanged (object o, EventArgs args)
 		{
-			combo_roll_2.Visible = (combo_filter.Active == 2);
+			combo_roll_2.Visible = combo_filter.Active == 2;
 			and_label.Visible = combo_roll_2.Visible;
 
 			UpdateNumberOfPhotos ();
@@ -102,60 +104,57 @@ namespace FSpot.UI.Dialog
 
 		void UpdateNumberOfPhotos ()
 		{
-			Roll [] selected_rolls = SelectedRolls ();
-			uint sum = 0;
-			if (selected_rolls != null)
-				foreach (Roll roll in selected_rolls) {
-					sum = sum + rollstore.PhotosInRoll (roll);
-				}
+			var selectedRolls = SelectedRolls ();
+			int sum = selectedRolls.Sum (roll => rollStore.PhotosInRoll (roll));
+
 			photos_in_selected_rolls.Text = sum.ToString ();
 		}
 
 		void PopulateCombos ()
 		{
-			for (uint k = 0; k < rolls.Length; k++) {
-				uint numphotos = rollstore.PhotosInRoll (rolls [k]);
+			foreach (var roll in rolls)
+			{
+				int numphotos = rollStore.PhotosInRoll (roll);
 				// Roll time is in UTC always
-				DateTime date = rolls [k].Time.ToLocalTime ();
+				DateTime date = roll.UtcTime;
 
-				string header = string.Format ("{0} ({1})",
-					date.ToString ("%dd %MMM, %HH:%mm"),
-					numphotos);
+				string header = $"{date:%dd %MMM, %HH:%mm} ({numphotos})";
 
 				combo_roll_1.AppendText (header);
 				combo_roll_2.AppendText (header);
 			}
 		}
 
-		Roll [] SelectedRolls ()
+		List<Roll> SelectedRolls ()
 		{
 			if ((combo_roll_1.Active < 0) || ((combo_filter.Active == 2) && (combo_roll_2.Active < 0)))
 				return null;
 
-			List<Roll> result = new List<Roll> ();
+			var result = new List<Roll> ();
 
 			switch (combo_filter.Active) {
-			case 0 : // at - Return the roll the user selected
-				result.Add (rolls [combo_roll_1.Active]);
+			case 0: // at - Return the roll the user selected
+				result.Add (rolls[combo_roll_1.Active]);
 				break;
-			case 1 : // after - Return all rolls from latest to the one the user selected
-				for (uint k = 0; k <= combo_roll_1.Active; k++) {
-					result.Add (rolls [k]);
+			case 1: // after - Return all rolls from latest to the one the user selected
+				for (int k = 0; k <= combo_roll_1.Active; k++) {
+					result.Add (rolls[k]);
 				}
 				break;
-			case 2 : // between - Return all rolls between the two import rolls the user selected
-				uint k1 = (uint)combo_roll_1.Active;
-				uint k2 = (uint)combo_roll_2.Active;
+			case 2: // between - Return all rolls between the two import rolls the user selected
+				int k1 = combo_roll_1.Active;
+				int k2 = combo_roll_2.Active;
 				if (k1 > k2) {
-					k1 = (uint)combo_roll_2.Active;
-					k2 = (uint)combo_roll_1.Active;
+					k1 = combo_roll_2.Active;
+					k2 = combo_roll_1.Active;
 				}
-				for (uint k = k1; k <= k2; k++) {
-					result.Add (rolls [k]);
+				for (int k = k1; k <= k2; k++) {
+					result.Add (rolls[k]);
 				}
 				break;
 			}
-			return result.ToArray ();
+
+			return result;
 		}
 	}
 }

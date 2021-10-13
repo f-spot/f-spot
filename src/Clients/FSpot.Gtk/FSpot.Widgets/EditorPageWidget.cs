@@ -145,20 +145,23 @@ namespace FSpot.Widgets
 			}
 
 			if (widgets == null) {
-				widgets = new VBox (false, 0);
-				widgets.NoShowAll = true;
+				widgets = new VBox (false, 0) {
+					NoShowAll = true
+				};
 				widgets.Show ();
-				Viewport widgets_port = new Viewport ();
-				widgets_port.Add (widgets);
+				Viewport widgets_port = new Viewport {
+					widgets
+				};
 				Add (widgets_port);
 				widgets_port.ShowAll ();
 			}
 
 			// Build the widget (first time we call this method).
-			buttons = new VButtonBox ();
-			buttons.BorderWidth = 5;
-			buttons.Spacing = 5;
-			buttons.LayoutStyle = ButtonBoxStyle.Start;
+			buttons = new VButtonBox {
+				BorderWidth = 5,
+				Spacing = 5,
+				LayoutStyle = ButtonBoxStyle.Start
+			};
 
 			foreach (Editor editor in editors)
 				PackButton (editor);
@@ -232,7 +235,7 @@ namespace FSpot.Widgets
 									    DialogFlags.DestroyWithParent,
 									    MessageType.Error, ButtonsType.Ok,
 									    msg,
-									    desc);
+										desc);
 				md.Run ();
 				md.Destroy ();
 			}

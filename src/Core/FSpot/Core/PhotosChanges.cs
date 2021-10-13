@@ -34,16 +34,16 @@ namespace FSpot.Core
 	//used to aggregate PhotoChanges and notifying the various ui pieces
 	public class PhotosChanges : IBrowsableItemChanges
 	{
-		[Flags ()]
+		[Flags]
 		enum Changes {
-			DefaultVersionId 	= 0x1,
-			Time			= 0x2,
-			Uri			= 0x4,
-			Rating			= 0x8,
-			Description		= 0x10,
-			RollId			= 0x20,
-			Data			= 0x40,
-			MD5Sum			= 0x80
+			DefaultVersionId = 0x1,
+			Time             = 0x2,
+			Uri              = 0x4,
+			Rating           = 0x8,
+			Description      = 0x10,
+			RollId           = 0x20,
+			Data             = 0x40,
+			MD5Sum           = 0x80
 		}
 
 		Changes changes = 0;
@@ -107,16 +107,11 @@ namespace FSpot.Core
 					changes &= ~ Changes.Description;
 			}
 		}
-		bool tags_changed = false;
-		public virtual bool TagsChanged {
-			get { return tags_changed; }
-			private set { tags_changed = value; }
-		}
-		bool versions_changed = false;
-		public virtual bool VersionsChanged {
-			get { return versions_changed; }
-			private set { versions_changed = value; }
-		}
+
+		public virtual bool TagsChanged { get; private set; }
+
+		public virtual bool VersionsChanged { get; private set; }
+
 		public bool RollIdChanged {
 			get { return (changes & Changes.RollId) == Changes.RollId; }
 			set {
@@ -138,17 +133,19 @@ namespace FSpot.Core
 
 		}
 
-		public static PhotosChanges operator | (PhotosChanges c1, PhotosChanges c2)
+		public static PhotosChanges operator | (PhotosChanges photoChanges1, PhotosChanges photoChanges2)
 		{
-			if (c1 == null)
-				throw new ArgumentNullException (nameof (c1));
-			if (c2 == null)
-				throw new ArgumentNullException (nameof (c2));
+			if (photoChanges1 == null)
+				throw new ArgumentNullException (nameof(photoChanges1));
+			if (photoChanges2 == null)
+				throw new ArgumentNullException (nameof(photoChanges2));
 
-			PhotosChanges changes = new PhotosChanges ();
-			changes.changes = c1.changes | c2.changes;
-			changes.VersionsChanged = c1.VersionsChanged || c2.VersionsChanged;
-			changes.TagsChanged = c1.TagsChanged || c2.TagsChanged;
+			var changes = new PhotosChanges {
+				changes = photoChanges1.changes | photoChanges2.changes,
+				VersionsChanged = photoChanges1.VersionsChanged || photoChanges2.VersionsChanged,
+				TagsChanged = photoChanges1.TagsChanged || photoChanges2.TagsChanged
+			};
+
 			return changes;
 		}
 	}

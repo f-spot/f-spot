@@ -32,14 +32,15 @@
 using System;
 using System.IO;
 
-using Mono.Unix;
+using FSpot.Extensions;
+using FSpot.Imaging;
+using FSpot.Models;
+using FSpot.Settings;
+using FSpot.Utils;
 
 using Hyena;
 
-using FSpot.Extensions;
-using FSpot.Imaging;
-using FSpot.Settings;
-using FSpot.Utils;
+using Mono.Unix;
 
 namespace FSpot.Tools.DevelopInUFraw
 {

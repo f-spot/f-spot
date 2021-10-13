@@ -1,45 +1,23 @@
-//
-// PhotoView.cs
-//
-// Author:
-//   Stephen Shaw <sshaw@decriptor.com>
-//   Ruben Vermeersch <ruben@savanne.be>
-//   Lorenzo Milesi <maxxer@yetopen.it>
-//   Stephane Delcroix <stephane@delcroix.org>
-//
-// Copyright (C) 2013 Stephen Shaw
+// Copyright (C) 2013-2020 Stephen Shaw
 // Copyright (C) 2008-2010 Novell, Inc.
 // Copyright (C) 2010 Ruben Vermeersch
 // Copyright (C) 2009 Lorenzo Milesi
 // Copyright (C) 2008-2009 Stephane Delcroix
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
+
 using FSpot.Core;
+using FSpot.Models;
 using FSpot.Settings;
 using FSpot.Utils;
 using FSpot.Widgets;
+
 using Gdk;
+
 using Gtk;
+
 using Mono.Unix;
 
 namespace FSpot
@@ -62,8 +40,6 @@ namespace FSpot
 		Entry description_entry;
 		RatingEntry rating;
 
-		// Public events.
-
 		public delegate void PhotoChangedHandler (PhotoView me);
 		public event PhotoChangedHandler PhotoChanged;
 
@@ -83,7 +59,7 @@ namespace FSpot
 		public PhotoImageView View { get; private set; }
 
 		public BrowsablePointer Item {
-                        get { return View.Item; }
+			get { return View.Item; }
 		}
 
 		public IBrowsableCollection Query { get; set; }
@@ -137,14 +113,12 @@ namespace FSpot
 
 		void Update ()
 		{
-			if (UpdateStarted != null)
-				UpdateStarted (this);
+			UpdateStarted?.Invoke (this);
 
 			UpdateDescriptionEntry ();
 			UpdateRating ();
 
-			if (UpdateFinished != null)
-				UpdateFinished (this);
+			UpdateFinished?.Invoke (this);
 		}
 
 		public void ZoomIn ()
@@ -157,13 +131,12 @@ namespace FSpot
 			View.ZoomOut ();
 		}
 
-		// Event handlers.
 		void HandleButtonPressEvent (object sender, ButtonPressEventArgs args)
 		{
-			if (args.Event.Type == EventType.TwoButtonPress && args.Event.Button == 1 && DoubleClicked != null)
-				    DoubleClicked (this, null);
+			if (args.Event.Type == EventType.TwoButtonPress && args.Event.Button == 1)
+				DoubleClicked?.Invoke (this, null);
 			if (args.Event.Type == EventType.ButtonPress
-			    && args.Event.Button == 3) {
+				&& args.Event.Button == 3) {
 				var popup = new PhotoPopup ();
 				popup.Activate (Toplevel, args.Event);
 			}
@@ -212,7 +185,7 @@ namespace FSpot
 
 			if (commit_delay.IsPending)
 				if (changed_photo == Item.Index)
-					commit_delay.Stop();
+					commit_delay.Stop ();
 				else
 					CommitPendingChanges ();
 			changed_photo = Item.Index;
@@ -234,8 +207,7 @@ namespace FSpot
 			tag_view.Current = Item.Current;
 			Update ();
 
-			if (PhotoChanged != null)
-				PhotoChanged (this);
+			PhotoChanged?.Invoke (this);
 		}
 
 		void HandleDestroy (object sender, EventArgs args)
@@ -252,7 +224,7 @@ namespace FSpot
 		{
 			switch (key) {
 			case Preferences.FilmstripOrientation:
-				PlaceFilmstrip ((Orientation) Preferences.Get<int> (key));
+				PlaceFilmstrip ((Orientation)Preferences.Get<int> (key));
 				break;
 			}
 		}
@@ -290,7 +262,7 @@ namespace FSpot
 				inner_hbox.PackEnd (filmstrip, false, false, 0);
 				break;
 			}
-			Preferences.Set (Preferences.FilmstripOrientation, (int) pos);
+			Preferences.Set (Preferences.FilmstripOrientation, (int)pos);
 		}
 
 		public bool FilmStripVisibility {
@@ -316,8 +288,8 @@ namespace FSpot
 			frame.ShadowType = ShadowType.In;
 			vbox.PackStart (background, true, true, 0);
 
-			inner_vbox = new VBox (false , 2);
-			inner_hbox = new HBox (false , 2);
+			inner_vbox = new VBox (false, 2);
+			inner_hbox = new HBox (false, 2);
 
 			frame.Add (inner_hbox);
 
@@ -328,7 +300,7 @@ namespace FSpot
 			filmstrip.ThumbOffset = 1;
 			filmstrip.Spacing = 4;
 			filmstrip.ThumbSize = 75;
-			PlaceFilmstrip ((Orientation) Preferences.Get <int> (Preferences.FilmstripOrientation), true);
+			PlaceFilmstrip ((Orientation)Preferences.Get<int> (Preferences.FilmstripOrientation), true);
 
 			View.PhotoChanged += HandlePhotoChanged;
 
@@ -338,7 +310,7 @@ namespace FSpot
 			photo_view_scrolled.ShadowType = ShadowType.None;
 			photo_view_scrolled.Add (View);
 			photo_view_scrolled.Child.ButtonPressEvent += HandleButtonPressEvent;
-			View.AddEvents ((int) EventMask.KeyPressMask);
+			View.AddEvents ((int)EventMask.KeyPressMask);
 			inner_vbox.PackStart (photo_view_scrolled, true, true, 0);
 			inner_hbox.PackStart (inner_vbox, true, true, 0);
 
@@ -367,7 +339,7 @@ namespace FSpot
 
 			vbox.ShowAll ();
 
-			Realized += (o, e) => SetColors();
+			Realized += (o, e) => SetColors ();
 			Preferences.SettingChanged += OnPreferencesChanged;
 		}
 
@@ -386,11 +358,11 @@ namespace FSpot
 			if (disposing) {
 				Preferences.SettingChanged -= OnPreferencesChanged;
 				// free managed resources
-				if (rating != null){
+				if (rating != null) {
 					rating.Dispose ();
 					rating = null;
 				}
-				if (description_entry != null){
+				if (description_entry != null) {
 					description_entry.Dispose ();
 					description_entry = null;
 				}

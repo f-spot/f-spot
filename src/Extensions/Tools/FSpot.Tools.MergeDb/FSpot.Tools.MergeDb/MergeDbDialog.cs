@@ -78,29 +78,29 @@ namespace FSpot.Tools.MergeDb
 			get { return db_filechooser; }
 		}
 
-		Roll [] rolls;
-		public Roll [] Rolls {
+		List<Roll> rolls;
+		public List<Roll> Rolls {
 			get { return rolls; }
 			set {
 				rolls = value;
 				foreach (Roll r in rolls) {
 					uint numphotos = parent.FromDb.Rolls.PhotosInRoll (r);
 					// Roll time is in UTC always
-					DateTime date = r.Time.ToLocalTime ();
-					rolls_combo.AppendText (string.Format ("{0} ({1})", date.ToString("%dd %MMM, %HH:%mm"), numphotos));
+					DateTime date = r.UtcTime;
+					rolls_combo.AppendText ($"{date:%dd %MMM, %HH:%mm} ({numphotos})");
 					rolls_combo.Active = 0;
 				}
 			}
 		}
 
-		public Roll [] ActiveRolls {
+		public List<Roll> ActiveRolls {
 			get {
 				if (allrolls_radio.Active)
 					return null;
 				if (newrolls_radio.Active)
 					return rolls;
-				else
-					return new Roll [] {rolls [rolls_combo.Active]};
+
+				return new List<Roll> { rolls[rolls_combo.Active] };
 			}
 		}
 

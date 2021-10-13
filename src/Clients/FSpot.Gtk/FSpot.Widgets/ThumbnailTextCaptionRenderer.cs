@@ -50,9 +50,9 @@ namespace FSpot.Widgets
 
         public override void Render (Drawable window,
                                      Widget widget,
-                                     Rectangle cell_area,
-                                     Rectangle expose_area,
-                                     StateType cell_state,
+                                     Rectangle cellArea,
+                                     Rectangle exposeArea,
+                                     StateType cellState,
                                      IPhoto photo)
         {
             string text = GetRenderText (photo);
@@ -63,12 +63,12 @@ namespace FSpot.Widgets
             Rectangle layout_bounds;
             layout.GetPixelSize (out layout_bounds.Width, out layout_bounds.Height);
 
-            layout_bounds.Y = cell_area.Y;
-            layout_bounds.X = cell_area.X + (cell_area.Width - layout_bounds.Width) / 2;
+            layout_bounds.Y = cellArea.Y;
+            layout_bounds.X = cellArea.X + (cellArea.Width - layout_bounds.Width) / 2;
 
-            if (layout_bounds.IntersectsWith (expose_area)) {
-                Style.PaintLayout (widget.Style, window, cell_state,
-                                   true, expose_area, widget, "IconView",
+            if (layout_bounds.IntersectsWith (exposeArea)) {
+                Style.PaintLayout (widget.Style, window, cellState,
+                                   true, exposeArea, widget, "IconView",
                                    layout_bounds.X, layout_bounds.Y,
                                    layout);
             }

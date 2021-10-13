@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using FSpot.Database;
 using FSpot.Import;
 using FSpot.Settings;
 using FSpot.Utils;
@@ -89,8 +90,8 @@ namespace FSpot.UI.Dialog
 
 			import_button.Sensitive = false;
 
-			tag_entry = new TagEntry (App.Instance.Database.Tags, false);
-			tag_entry.UpdateFromTagNames (new string []{});
+			tag_entry = new TagEntry (new TagStore (), false);
+			tag_entry.UpdateFromTagNames (Array.Empty<string> ());
 			tagentry_box.Add (tag_entry);
 			tag_entry.Show ();
 			attachtags_label.MnemonicWidget = tag_entry;
@@ -318,7 +319,7 @@ namespace FSpot.UI.Dialog
 			}
 		}
 
-		void ShowFailuresIfNeeded (List<SafeUri> files)
+		void ShowFailuresIfNeeded (IEnumerable<SafeUri> files)
 		{
 			if (Controller.FailedImports.Count == 0)
 				return;

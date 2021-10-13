@@ -31,20 +31,21 @@
 
 using System;
 
-using Mono.Unix;
-
-using Gtk;
-
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Imaging;
+using FSpot.Models;
 using FSpot.Query;
 using FSpot.Settings;
 using FSpot.Utils;
 using FSpot.Widgets;
 
+using Gtk;
+
 using Hyena;
 using Hyena.Widgets;
+
+using Mono.Unix;
 
 namespace FSpot.UI.Dialog
 {
@@ -72,32 +73,29 @@ namespace FSpot.UI.Dialog
 			TransientFor = parent_window;
 			Title = string.Format (Catalog.GetString ("Edit Icon for Tag {0}"), t.Name);
 
-			preview_pixbuf = t.Icon;
-			Cms.Profile screen_profile;
-			if (preview_pixbuf != null && ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out screen_profile)) {
+			preview_pixbuf = t.TagIcon.Icon;
+			if (preview_pixbuf != null && ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screenProfile)) {
 				preview_image.Pixbuf = preview_pixbuf.Copy ();
-				ColorManagement.ApplyProfile (preview_image.Pixbuf, screen_profile);
+				ColorManagement.ApplyProfile (preview_image.Pixbuf, screenProfile);
 			} else
 				preview_image.Pixbuf = preview_pixbuf;
 
 			query = new PhotoQuery (db.Photos);
 
 			if (db.Tags.Hidden != null)
-				query.Terms = OrTerm.FromTags (new [] {t});
+				query.Terms = OrTerm.FromTags (new[] { t });
 			else
 				query.Terms = new Literal (t);
 
-			image_view = new PhotoImageView (query) {CropHelpers = false};
-			image_view.SelectionXyRatio = 1.0;
+			image_view = new PhotoImageView (query) { CropHelpers = false, SelectionXyRatio = 1.0 };
 			image_view.SelectionChanged += HandleSelectionChanged;
 			image_view.PhotoChanged += HandlePhotoChanged;
 
-			external_photo_chooser = new Gtk.FileChooserButton (Catalog.GetString ("Select Photo from file"),
-					Gtk.FileChooserAction.Open);
-
-			external_photo_chooser.Filter = new FileFilter();
-			external_photo_chooser.Filter.AddPixbufFormats();
-                        external_photo_chooser.LocalOnly = false;
+			external_photo_chooser = new Gtk.FileChooserButton (Catalog.GetString ("Select Photo from file"), Gtk.FileChooserAction.Open) {
+				Filter = new FileFilter ()
+			};
+			external_photo_chooser.Filter.AddPixbufFormats ();
+			external_photo_chooser.LocalOnly = false;
 			external_photo_chooser_hbox.PackStart (external_photo_chooser);
 			external_photo_chooser.Show ();
 			external_photo_chooser.SelectionChanged += HandleExternalFileSelectionChanged;
@@ -126,14 +124,12 @@ namespace FSpot.UI.Dialog
 
 			icon_store = new ListStore (typeof (string), typeof (Gdk.Pixbuf));
 
-			icon_view = new Gtk.IconView (icon_store);
-			icon_view.PixbufColumn = 1;
-			icon_view.SelectionMode = SelectionMode.Single;
+			icon_view = new Gtk.IconView (icon_store) { PixbufColumn = 1, SelectionMode = SelectionMode.Single };
 			icon_view.SelectionChanged += HandleIconSelectionChanged;
 
 			icon_scrolled_window.Add (icon_view);
 
-			icon_view.Show();
+			icon_view.Show ();
 
 			image_view.Show ();
 
@@ -151,13 +147,11 @@ namespace FSpot.UI.Dialog
 			set {
 				icon_name = null;
 				preview_pixbuf = value;
-				Cms.Profile screen_profile;
-				if (value!= null && ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out screen_profile)) {
+				if (value != null && ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screen_profile)) {
 					preview_image.Pixbuf = value.Copy ();
 					ColorManagement.ApplyProfile (preview_image.Pixbuf, screen_profile);
 				} else
 					preview_image.Pixbuf = value;
-
 			}
 
 		}

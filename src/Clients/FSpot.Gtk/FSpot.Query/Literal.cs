@@ -34,16 +34,18 @@
 // This has to do with Finding photos based on tags
 // http://mail.gnome.org/archives/f-spot-list/2005-November/msg00053.html
 // http://bugzilla-attachments.gnome.org/attachment.cgi?id=54566
+
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-using Mono.Unix;
+using FSpot.Models;
 
-using Gtk;
 using Gdk;
 
-using FSpot.Core;
+using Gtk;
+
+using Mono.Unix;
 
 namespace FSpot.Query
 {
@@ -188,10 +190,10 @@ namespace FSpot.Query
 					return normal_icon;
 
 				Pixbuf scaled = null;
-				scaled = Tag.Icon;
+				scaled = Tag.TagIcon.Icon;
 
-				for (Category category = Tag.Category; category != null && scaled == null; category = category.Category) {
-					scaled = category.Icon;
+				for (var category = Tag.Category; category != null && scaled == null; category = category.Category) {
+					scaled = category.TagIcon.Icon;
 				}
 
 				if (scaled == null)
@@ -250,34 +252,27 @@ namespace FSpot.Query
 
 		public void RemoveSelf ()
 		{
-			if (Removing != null)
-				Removing (this);
+			Removing?.Invoke (this);
 
-			if (Parent != null)
-				Parent.Remove (this);
+			Parent?.Remove (this);
 
-			if (Removed != null)
-				Removed (this);
+			Removed?.Invoke (this);
 		}
 
 		public override string SqlCondition ()
 		{
 			var ids = new StringBuilder (Tag.Id.ToString ());
 
-			var category = Tag as Category;
-			if (category != null) {
+			if (Tag.IsCategory) {
 				var tags = new List<Tag> ();
-				category.AddDescendentsTo (tags);
+				tag.AddDescendentsTo (tags);
 
-                foreach (var t in tags)
-				{
-				    ids.Append (", " + t.Id);
+				foreach (var t in tags) {
+					ids.Append (", " + t.Id);
 				}
 			}
 
-			return string.Format (
-				"id {0}IN (SELECT photo_id FROM photo_tags WHERE tag_id IN ({1}))",
-				(IsNegated ? "NOT " : string.Empty), ids);
+			return $"id {(IsNegated ? "NOT " : string.Empty)}IN (SELECT photo_id FROM photo_tags WHERE tag_id IN ({ids}))";
 		}
 
 		public override Gtk.Widget SeparatorWidget ()
@@ -459,15 +454,15 @@ namespace FSpot.Query
 
 		void HandleDragMotion (object o, DragMotionArgs args)
 		{
-		    if (preview)
-                return;
+			if (preview)
+				return;
 
-		    if (preview_widget == null) {
-		        preview_widget = new Gtk.Label (" | ");
-		        box.Add (preview_widget);
-		    }
+			if (preview_widget == null) {
+				preview_widget = new Gtk.Label (" | ");
+				box.Add (preview_widget);
+			}
 
-		    preview_widget.Show ();
+			preview_widget.Show ();
 		}
 
 		void HandleDragLeave (object o, EventArgs args)

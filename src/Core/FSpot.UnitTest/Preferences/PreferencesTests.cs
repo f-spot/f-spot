@@ -11,11 +11,12 @@
 using System.Collections.Generic;
 using System.IO;
 
-using NUnit.Framework;
+using FSpot.Platform;
 
 using Newtonsoft.Json.Linq;
 
-using FSpot.Platform;
+using NUnit.Framework;
+
 using Shouldly;
 
 namespace FSpot.Preferences.UnitTest

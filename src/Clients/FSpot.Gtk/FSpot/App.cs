@@ -1,51 +1,29 @@
-//
-// App.cs
-//
-// Author:
-//   Ruben Vermeersch <ruben@savanne.be>
-//   Stephane Delcroix <stephane@delcroix.org>
-//
 // Copyright (C) 2009-2010 Novell, Inc.
 // Copyright (C) 2010 Ruben Vermeersch
 // Copyright (C) 2009-2010 Stephane Delcroix
+// Copyright (C) 2020 Stephen Shaw
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
-using System.IO;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading;
-
-using Mono.Unix;
-
-using Hyena;
 
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Imaging;
+using FSpot.Models;
 using FSpot.Settings;
 using FSpot.Thumbnail;
 
 using TinyIoC;
+
+using Hyena;
+
+using Mono.Unix;
 
 namespace FSpot
 {
@@ -112,9 +90,8 @@ namespace FSpot
 			get {
 				lock (sync_handle) {
 					if (organizer == null) {
-						if (constructing_organizer == Thread.CurrentThread) {
+						if (constructing_organizer == Thread.CurrentThread)
 							throw new Exception ("Recursively tried to acquire App.Organizer!");
-						}
 
 						constructing_organizer = Thread.CurrentThread;
 						organizer = new MainWindow (Database);
@@ -125,6 +102,7 @@ namespace FSpot
 			}
 		}
 
+		// FIXME
 		public Db Database {
 			get {
 				lock (sync_handle) {
@@ -132,13 +110,15 @@ namespace FSpot
 						if (!File.Exists (FSpotConfiguration.BaseDirectory))
 							Directory.CreateDirectory (FSpotConfiguration.BaseDirectory);
 
-						db = new Db (Container.Resolve<IImageFileFactory> (), Container.Resolve<IThumbnailService> (), new UpdaterUI ());
+						db = new Db ();//Container.Resolve<IImageFileFactory> (), Container.Resolve<IThumbnailService> (), new UpdaterUI ());
 
 						try {
-							db.Init (Path.Combine (FSpotConfiguration.BaseDirectory, FSpotConfiguration.DatabaseName), true);
+							db.Init (Path.Combine (FSpotConfiguration.BaseDirectory, FSpotConfiguration.DatabaseName));
 						} catch (Exception e) {
-							new FSpot.UI.Dialog.RepairDbDialog (e, db.Repair (), null);
-							db.Init (Path.Combine (FSpotConfiguration.BaseDirectory, FSpotConfiguration.DatabaseName), true);
+							//new FSpot.UI.Dialog.RepairDbDialog (e, db.Repair (), null);
+							//db.Init (Path.Combine (Configuration.BaseDirectory, Configuration.DatabaseName), true);
+							Console.WriteLine (e.Message);
+							Environment.Exit (-1);
 						}
 					}
 				}
@@ -193,7 +173,7 @@ namespace FSpot
 
 		public void View (SafeUri uri)
 		{
-			View (new[] {uri});
+			View (new[] { uri });
 		}
 
 		public void View (IEnumerable<SafeUri> uris)
@@ -204,7 +184,7 @@ namespace FSpot
 
 		public void View (string uri)
 		{
-			View (new[] {uri});
+			View (new[] { uri });
 		}
 
 		public void View (IEnumerable<string> uris)
@@ -253,18 +233,18 @@ namespace FSpot
 		//	}
 		//}
 
-        void HandleImport (string path)
-        {
-            // Some users get wonky URIs here, trying to work around below.
-            // https://bugzilla.gnome.org/show_bug.cgi?id=629248
-            if (path != null && path.StartsWith ("gphoto2:usb:")) {
-                path = $"gphoto2://[{path.Substring (8)}]";
-            }
+		void HandleImport (string path)
+		{
+			// Some users get wonky URIs here, trying to work around below.
+			// https://bugzilla.gnome.org/show_bug.cgi?id=629248
+			if (path != null && path.StartsWith ("gphoto2:usb:")) {
+				path = $"gphoto2://[{path.Substring (8)}]";
+			}
 
-            Hyena.Log.DebugFormat ("Importing from {0}", path);
-            Organizer.Window.Present ();
-            Organizer.ImportFile (path == null ? null : new SafeUri(path));
-        }
+			Log.Debug ($"Importing from {path}");
+			Organizer.Window.Present ();
+			Organizer.ImportFile (path == null ? null : new SafeUri (path));
+		}
 
 		void HandleOrganize ()
 		{
@@ -292,15 +272,15 @@ namespace FSpot
 			if (!string.IsNullOrEmpty (tagname))
 				tag = Database.Tags.GetTagByName (tagname);
 			else
-				tag = Database.Tags.GetTagById (Preferences.Get<int> (Preferences.ScreensaverTag));
+				tag = Database.Tags.GetTagById (Preferences.Get<Guid> (Preferences.ScreensaverTag));
 
 			IPhoto[] photos;
 			if (tag != null)
-				photos = ObsoletePhotoQueries.Query (new Tag[] {tag});
+				photos = ObsoletePhotoQueries.Query (new [] { tag });
 			else if (Preferences.Get<int> (Preferences.ScreensaverTag) == 0)
-				photos = ObsoletePhotoQueries.Query (new Tag [] {});
+				photos = ObsoletePhotoQueries.Query (new Tag[] { });
 			else
-				photos = new IPhoto [0];
+				photos = Array.Empty<IPhoto> ();
 
 			// Minimum delay 1 second; default is 4s
 			var delay = Math.Max (1.0, Preferences.Get<double> (Preferences.ScreensaverDelay));
@@ -332,20 +312,19 @@ namespace FSpot
 				if (tag != null) {
 					msg = string.Format (Catalog.GetString ("No photos matching {0} found"), tag.Name);
 					long_msg = string.Format (Catalog.GetString ("The tag \"{0}\" is not applied to any photos. Try adding\n" +
-										     "the tag to some photos or selecting a different tag in the\n" +
-										     "F-Spot preference dialog."), tag.Name);
+											 "the tag to some photos or selecting a different tag in the\n" +
+											 "F-Spot preference dialog."), tag.Name);
 				} else {
 					msg = Catalog.GetString ("Search returned no results");
 					long_msg = Catalog.GetString ("The tag F-Spot is looking for does not exist. Try\n" +
-								      "selecting a different tag in the F-Spot preference\n" +
-								      "dialog.");
+									  "selecting a different tag in the F-Spot preference\n" +
+									  "dialog.");
 				}
 
 				Gtk.Label label = new Gtk.Label (msg);
 				hbox.PackStart (label, false, false, 0);
 
-				Gtk.Label long_label = new Gtk.Label (long_msg);
-				long_label.Markup  = $"<small>{long_msg}</small>";
+				Gtk.Label long_label = new Gtk.Label (long_msg) {Markup = $"<small>{long_msg}</small>"};
 
 				vbox.PackStart (long_label, false, false, 0);
 				vbox.PackStart (new Gtk.Label (string.Empty));
@@ -390,7 +369,7 @@ namespace FSpot
 			if (toplevels.Count == 0) {
 				Log.Information ("Exiting...");
 				Banshee.Kernel.Scheduler.Dispose ();
-				Database.Dispose ();
+				//Database.Dispose ();
 				ImageLoaderThread.CleanAll ();
 				Gtk.Application.Quit ();
 			}

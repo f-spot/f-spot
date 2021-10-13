@@ -1,4 +1,4 @@
-﻿//
+//
 // PhotoMock.cs
 //
 // Author:
@@ -26,9 +26,13 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System.Collections.Generic;
 using System.IO;
+
 using FSpot.Core;
+
 using Hyena;
+
 using Moq;
 
 namespace FSpot.Mocks
@@ -62,7 +66,7 @@ namespace FSpot.Mocks
 			versionMock.Setup (v => v.BaseUri).Returns (versionUri);
 			versionMock.Setup (v => v.Filename).Returns (Path.GetFileName (versionUri));
 
-			var versions = new[] { photoMock.Object.DefaultVersion, versionMock.Object };
+			var versions = new List<IPhotoVersion> { photoMock.Object.DefaultVersion, versionMock.Object };
 
 			photoMock.Setup (p => p.Versions).Returns (versions);
 			return photoMock.Object;

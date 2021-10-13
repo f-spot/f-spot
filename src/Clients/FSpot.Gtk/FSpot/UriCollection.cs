@@ -29,6 +29,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
@@ -43,7 +44,7 @@ namespace FSpot
 {
 	public class UriCollection : PhotoList
 	{
-		public UriCollection () : base (new IPhoto [0])
+		public UriCollection () : base (Array.Empty<IPhoto> ())
 		{
 		}
 
@@ -81,6 +82,9 @@ namespace FSpot
 
 		public void LoadItems (SafeUri [] uris)
 		{
+			if (uris == null || uris.Length == 0)
+				return;
+			
 			foreach (var uri in uris)
 				Add (uri);
 		}

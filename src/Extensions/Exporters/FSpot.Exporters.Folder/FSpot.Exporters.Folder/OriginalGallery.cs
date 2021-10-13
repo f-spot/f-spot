@@ -94,7 +94,7 @@ namespace FSpot.Exporters.Folder
 				for (int i = 0; i < Collection.Count; i++)
 					CreateComments (Collection [i].DefaultVersion.Uri.LocalPath, i);
 
-				Directory.SetLastWriteTimeUtc(GalleryPath, Collection [0].Time);
+				Directory.SetLastWriteTimeUtc(GalleryPath, Collection [0].UtcTime);
 			} catch (System.Exception e) {
 				Log.Error (e.ToString ());
 			}
@@ -174,7 +174,7 @@ namespace FSpot.Exporters.Folder
 		{
 			StreamWriter info = File.CreateText(Path.Combine (GalleryPath, "info.txt"));
 			info.WriteLine("name|" + GalleryName);
-			info.WriteLine("date|" + Collection [0].Time.Date.ToString ("dd.MM.yyyy"));
+			info.WriteLine("date|" + Collection [0].UtcTime.Date.ToString ("dd.MM.yyyy"));
 			info.WriteLine("description|" + Description);
 			info.Close();
 		}

@@ -141,48 +141,48 @@ namespace FSpot.Widgets
 			preview_image = new Gtk.Image ();
 			Attach (preview_image, 0, 2, 0, 1);
 
-			Frame page_frame = new Frame (Catalog.GetString ("Page Setup"));
-			VBox page_box = new VBox ();
-			Label current_settings = new Label ();
+			Frame pageFrame = new Frame (Catalog.GetString ("Page Setup"));
+			VBox pageBox = new VBox ();
+			Label currentSettings = new Label ();
 			if (FSpotConfiguration.PageSetup != null)
-				current_settings.Text = string.Format (Catalog.GetString ("Paper Size: {0} x {1} mm"), 
+				currentSettings.Text = string.Format (Catalog.GetString ("Paper Size: {0} x {1} mm"), 
 								Math.Round (print_operation.DefaultPageSetup.GetPaperWidth (Unit.Mm), 1), 
 								Math.Round (print_operation.DefaultPageSetup.GetPaperHeight (Unit.Mm), 1));
 			else
-				current_settings.Text = string.Format (Catalog.GetString ("Paper Size: {0} x {1} mm"), "...", "...");
+				currentSettings.Text = string.Format (Catalog.GetString ("Paper Size: {0} x {1} mm"), "...", "...");
 
-			page_box.PackStart (current_settings, false, false, 0);
+			pageBox.PackStart (currentSettings, false, false, 0);
 			Button page_setup_btn = new Button (Catalog.GetString ("Set Page Size and Orientation"));
 			page_setup_btn.Clicked += delegate {
 				this.print_operation.DefaultPageSetup = Print.RunPageSetupDialog (null, print_operation.DefaultPageSetup, this.print_operation.PrintSettings); 
-				current_settings.Text = string.Format (Catalog.GetString ("Paper Size: {0} x {1} mm"), 
+				currentSettings.Text = string.Format (Catalog.GetString ("Paper Size: {0} x {1} mm"), 
 								Math.Round (print_operation.DefaultPageSetup.GetPaperWidth (Unit.Mm), 1), 
 								Math.Round (print_operation.DefaultPageSetup.GetPaperHeight (Unit.Mm), 1));
 			};
-			page_box.PackStart (page_setup_btn, false, false, 0);
-			page_frame.Add (page_box);
-			Attach (page_frame, 1, 2, 3, 4);
+			pageBox.PackStart (page_setup_btn, false, false, 0);
+			pageFrame.Add (pageBox);
+			Attach (pageFrame, 1, 2, 3, 4);
 
-			Frame ppp_frame = new Frame (Catalog.GetString ("Photos per page"));
-			Table ppp_tbl = new Table(2, 7, false);
+			Frame pppFrame = new Frame (Catalog.GetString ("Photos per page"));
+			Table pppTbl = new Table(2, 7, false);
 
-			ppp_tbl.Attach (ppp1 = new RadioButton ("1"), 0, 1, 1, 2);
-			ppp_tbl.Attach (ppp2 = new RadioButton (ppp1, "2"), 0, 1, 2, 3);
-			ppp_tbl.Attach (ppp4 = new RadioButton (ppp1, "2 x 2"), 0, 1, 3, 4);
-			ppp_tbl.Attach (ppp9 = new RadioButton (ppp1, "3 x 3"), 0, 1, 4, 5);
-			ppp_tbl.Attach (ppp20 = new RadioButton (ppp1, "4 x 5"), 0, 1, 5, 6);
-			ppp_tbl.Attach (ppp30 = new RadioButton (ppp1, "5 x 6"), 0, 1, 6, 7);
+			pppTbl.Attach (ppp1 = new RadioButton ("1"), 0, 1, 1, 2);
+			pppTbl.Attach (ppp2 = new RadioButton (ppp1, "2"), 0, 1, 2, 3);
+			pppTbl.Attach (ppp4 = new RadioButton (ppp1, "2 x 2"), 0, 1, 3, 4);
+			pppTbl.Attach (ppp9 = new RadioButton (ppp1, "3 x 3"), 0, 1, 4, 5);
+			pppTbl.Attach (ppp20 = new RadioButton (ppp1, "4 x 5"), 0, 1, 5, 6);
+			pppTbl.Attach (ppp30 = new RadioButton (ppp1, "5 x 6"), 0, 1, 6, 7);
 
-			ppp_tbl.Attach (repeat = new CheckButton (Catalog.GetString ("Repeat")), 1, 2, 2, 3);
-			ppp_tbl.Attach (crop_marks = new CheckButton (Catalog.GetString ("Print cut marks")), 1, 2, 3, 4);
+			pppTbl.Attach (repeat = new CheckButton (Catalog.GetString ("Repeat")), 1, 2, 2, 3);
+			pppTbl.Attach (crop_marks = new CheckButton (Catalog.GetString ("Print cut marks")), 1, 2, 3, 4);
 //			crop_marks.Toggled += TriggerChanged;
 
-			ppp_frame.Child = ppp_tbl;
-			Attach (ppp_frame, 0, 1, 1, 2);
+			pppFrame.Child = pppTbl;
+			Attach (pppFrame, 0, 1, 1, 2);
 
-			Frame layout_frame = new Frame (Catalog.GetString ("Photos layout"));
-			VBox layout_vbox = new VBox();
-			layout_vbox.PackStart (fullpage = new CheckButton (Catalog.GetString ("Full Page (no margin)")), false, false, 0);
+			Frame layoutFrame = new Frame (Catalog.GetString ("Photos layout"));
+			VBox layoutVbox = new VBox();
+			layoutVbox.PackStart (fullpage = new CheckButton (Catalog.GetString ("Full Page (no margin)")), false, false, 0);
 			HBox hb = new HBox ();
 			// Note for translators: "Zoom" is a Fit Mode
 			hb.PackStart (zoom = new RadioButton (Catalog.GetString ("Zoom")), false, false, 0);
@@ -191,12 +191,12 @@ namespace FSpot.Widgets
 			zoom.Toggled += TriggerChanged;
 			fill.Toggled += TriggerChanged;
 			scaled.Toggled += TriggerChanged;
-			layout_vbox.PackStart (hb, false, false, 0);
-			layout_vbox.PackStart (white_border = new CheckButton (Catalog.GetString ("White borders")), false, false, 0);
+			layoutVbox.PackStart (hb, false, false, 0);
+			layoutVbox.PackStart (white_border = new CheckButton (Catalog.GetString ("White borders")), false, false, 0);
 			white_border.Toggled += TriggerChanged;
 
-			layout_frame.Child = layout_vbox;
-			Attach (layout_frame, 1, 2, 1, 2);
+			layoutFrame.Child = layoutVbox;
+			Attach (layoutFrame, 1, 2, 1, 2);
 
 			Frame cmt_frame = new Frame (Catalog.GetString ("Custom Text"));
 			cmt_frame.Child = custom_text = new Entry ();

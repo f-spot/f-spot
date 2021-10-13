@@ -1,43 +1,21 @@
-//
-// TagView.cs
-//
-// Author:
-//   Larry Ewing <lewing@novell.com>
-//   Ruben Vermeersch <ruben@savanne.be>
-//   Iain Churcher <iain.linux.coding@googlemail.com>
-//
 // Copyright (C) 2004-2010 Novell, Inc.
 // Copyright (C) 2004-2006 Larry Ewing
 // Copyright (C) 2010 Ruben Vermeersch
 // Copyright (C) 2010 Iain Churcher
+// Copyright (C) 2020 Stephen Shaw
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
-
-using Gtk;
-using Gdk;
+using System.Collections.Generic;
 
 using FSpot.Core;
+using FSpot.Models;
 using FSpot.Settings;
+
+using Gdk;
+
+using Gtk;
 
 namespace FSpot.Widgets
 {
@@ -45,7 +23,7 @@ namespace FSpot.Widgets
 	{
 		int thumbnail_size = 20;
 		IPhoto photo;
-		Tag [] tags;
+		List<Tag> tags;
 		static int TAG_ICON_VSPACING = 5;
 
 		bool HideTags {
@@ -68,8 +46,8 @@ namespace FSpot.Widgets
 			set {
 				photo = value;
 
-				if (photo != null && photo.Tags != null && !HideTags) {
-					SetSizeRequest ((thumbnail_size + TAG_ICON_VSPACING) * photo.Tags.Length,
+				if (photo?.Tags != null && !HideTags) {
+					SetSizeRequest ((thumbnail_size + TAG_ICON_VSPACING) * photo.Tags.Count,
 							thumbnail_size);
 				} else {
 					SetSizeRequest (0, thumbnail_size);
@@ -79,7 +57,7 @@ namespace FSpot.Widgets
 			}
 		}
 
-		public Tag [] Tags {
+		public List<Tag> Tags {
 			get { return tags; }
 			set {
 				tags = value;
@@ -107,22 +85,22 @@ namespace FSpot.Widgets
 			if (tags == null)
 				return;
 
-			SetSizeRequest ((thumbnail_size + TAG_ICON_VSPACING) * tags.Length,
+			SetSizeRequest ((thumbnail_size + TAG_ICON_VSPACING) * tags.Count,
 					thumbnail_size);
 
 			int tag_x = Allocation.X;
 			int tag_y = Allocation.Y + (Allocation.Height - thumbnail_size) / 2;
 
-			string [] names = new string [tags.Length];
+			string [] names = new string [tags.Count];
 			int i = 0;
 			foreach (Tag t in tags) {
 				names [i++] = t.Name;
 
-				Pixbuf icon = t.Icon;
+				Pixbuf icon = t.TagIcon.Icon;
 
-				Category category = t.Category;
+				var category = t.Category;
 				while (icon == null && category != null) {
-					icon = category.Icon;
+					icon = category.TagIcon.Icon;
 					category = category.Category;
 				}
 
@@ -135,8 +113,8 @@ namespace FSpot.Widgets
 				} else {
 					scaled_icon = icon.ScaleSimple (thumbnail_size, thumbnail_size, InterpType.Bilinear);
 				}
-				Cms.Profile screen_profile;
-				if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out screen_profile))
+
+				if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screen_profile))
 					FSpot.ColorManagement.ApplyProfile (scaled_icon, screen_profile);
 
 				scaled_icon.RenderToDrawable (GdkWindow, Style.WhiteGC,

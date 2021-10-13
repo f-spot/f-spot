@@ -33,151 +33,26 @@ using System;
 
 using Banshee.Kernel;
 
-using FSpot.Database.Jobs;
-using FSpot.Jobs;
+//using Banshee.Kernel;
 
 using Hyena;
-using Hyena.Data.Sqlite;
+
+using FSpot.Jobs;
+using FSpot.Utils;
 
 using TinyIoC;
 
 namespace FSpot.Database
 {
-	public class JobStore : DbStore<Job>
+	public class JobStore : DbStore<Models.Job>
 	{
-		private const string jobsTableName = "jobs";
-		private readonly TinyIoCContainer container;
+		readonly TinyIoCContainer container;
 
-		internal static void CreateTable (FSpotDatabaseConnection database)
-		{
-			if (database.TableExists (jobsTableName)) {
-				return;
-			}
-
-			database.Execute (
-				$"CREATE TABLE {jobsTableName} (\n" +
-				"  id           INTEGER PRIMARY KEY NOT NULL, \n" +
-				"  job_type     TEXT NOT NULL, \n" +
-				"  job_options  TEXT NOT NULL, \n" +
-				"  run_at       INTEGER, \n" +
-				"  job_priority INTEGER NOT NULL\n" +
-				")");
-		}
-
-		private Job CreateJob (string type, uint id, string options, DateTime runAt, JobPriority priority)
-		{
-			using (var childContainer = container.GetChildContainer ()) {
-				childContainer.Register (new JobData
-				{
-					Id = id,
-					JobOptions = options,
-					JobPriority = priority,
-					RunAt = runAt,
-					Persistent = true
-				});
-				childContainer.TryResolve<Job> (type, out var job);
-				if (job == null) {
-					Log.Error ($"Unknown job type {type} ignored.");
-				}
-				return job;
-			}
-		}
-
-		private Job LoadItem (Hyena.Data.Sqlite.IDataReader reader)
-		{
-			return CreateJob (
-					reader ["job_type"].ToString (),
-					Convert.ToUInt32 (reader ["id"]),
-					reader ["job_options"].ToString (),
-					DateTimeUtil.ToDateTime (Convert.ToInt32 (reader ["run_at"])),
-					(JobPriority)Convert.ToInt32 (reader ["job_priority"]));
-		}
-
-		private void LoadAllItems ()
-		{
-			Hyena.Data.Sqlite.IDataReader reader = Database.Query ($"SELECT id, job_type, job_options, run_at, job_priority FROM {jobsTableName}");
-
-			Scheduler.Suspend ();
-			while (reader.Read ()) {
-				Job job = LoadItem (reader);
-				if (job != null) {
-					AddToCache (job);
-					job.Finished += HandleRemoveJob;
-					Scheduler.Schedule (job, job.JobPriority);
-					job.Status = JobStatus.Scheduled;
-				}
-			}
-
-			reader.Dispose ();
-		}
-
-		public Job CreatePersistent (string job_type, string job_options)
-		{
-			var run_at = DateTime.Now;
-			var job_priority = JobPriority.Lowest;
-			var id = Database.Execute (new HyenaSqliteCommand ($"INSERT INTO {jobsTableName} (job_type, job_options, run_at, job_priority) VALUES (?, ?, ?, ?)",
-				job_type,
-				job_options,
-				DateTimeUtil.FromDateTime (run_at),
-				Convert.ToInt32 (job_priority)));
-
-			Job job = CreateJob (job_type, (uint)id, job_options, run_at, job_priority);
-
-			AddToCache (job);
-			job.Finished += HandleRemoveJob;
-			Scheduler.Schedule (job, job.JobPriority);
-			job.Status = JobStatus.Scheduled;
-			EmitAdded (job);
-
-			return job;
-		}
-
-		public override void Commit (Job item)
-		{
-			if (item.Persistent)
-				Database.Execute (new HyenaSqliteCommand (
-					$"UPDATE {jobsTableName} " +
-					"  SET job_type = ? " +
-					"  SET job_options = ? " +
-					"  SET run_at = ? " +
-					"  SET job_priority = ? " +
-					"  WHERE id = ?",
-					"Empty", //FIXME
-					item.JobOptions,
-					DateTimeUtil.FromDateTime (item.RunAt),
-					item.JobPriority,
-					item.Id));
-
-			EmitChanged (item);
-		}
-
-		public override Job Get (uint id)
-		{
-			// we never use this
-			return null;
-		}
-
-		public override void Remove (Job item)
-		{
-			RemoveFromCache (item);
-
-			if (item.Persistent)
-				Database.Execute (new HyenaSqliteCommand ($"DELETE FROM {jobsTableName} WHERE id = ?", item.Id));
-
-			EmitRemoved (item);
-		}
-
-		public void HandleRemoveJob (Object o, EventArgs e)
-		{
-			Remove (o as Job);
-		}
-
-		public JobStore (IDb db, bool is_new) : base (db, true)
+		public JobStore ()
 		{
 			// this should be replaced by a global registry as soon as
 			// extensions may provide job implementations
 			container = new TinyIoCContainer ();
-			container.Register (Db);
 			container.Register<Job, SyncMetadataJob> (SyncMetadataJob.JobName).AsMultiInstance ();
 			container.Register<Job, CalculateHashJob> (CalculateHashJob.JobName).AsMultiInstance ();
 
@@ -190,11 +65,106 @@ namespace FSpot.Database
 			container.Register<Job, CalculateHashJob> ("FSpot.Database.Jobs.CalculateHashJob").AsMultiInstance ();
 			container.Register<Job, CalculateHashJob> ("FSpot.Jobs.CalculateHashJob").AsMultiInstance ();
 
-			if (is_new || !Database.TableExists (jobsTableName)) {
-				CreateTable (Database);
-			} else {
-				LoadAllItems ();
+			LoadAllItems ();
+		}
+
+		Job CreateJob (string type, string options, DateTime runAt, JobPriority priority)
+		{
+			using var childContainer = container.GetChildContainer ();
+
+			childContainer.Register (new JobData {
+				JobOptions = options,
+				JobPriority = priority,
+				RunAt = runAt,
+				Persistent = true
+			});
+
+			childContainer.TryResolve<Job> (type, out var job);
+			if (job == null) {
+				Log.Error ($"Unknown job type {type} ignored.");
 			}
+			return job;
+		}
+
+		void LoadAllItems ()
+		{
+			var jobs = Context.Jobs;
+
+			Scheduler.Suspend ();
+			//foreach (var job in jobs) {
+			//	job.Finished += HandleRemoveJob;
+			//	Scheduler.Schedule (job, job.JobPriority);
+			//	job.Status = JobStatus.Scheduled;
+			//}
+		}
+
+		public Models.Job CreatePersistent (string jobType, string jobOptions)
+		{
+			var job = new Models.Job {
+				JobType = jobType,
+				JobOptions = jobOptions,
+				RunAt = DateTime.Now,
+				JobPriority = (long)JobPriority.Lowest
+			};
+			Context.Jobs.Add (job);
+			Context.SaveChanges ();
+
+			//AddToCache (job);
+			//job.Finished += HandleRemoveJob;
+			//Scheduler.Schedule (job, job.JobPriority);
+			//job.Status = JobStatus.Scheduled;
+			EmitAdded (job);
+
+			return job;
+		}
+
+		public override void Commit (Models.Job item)
+		{
+			//if (item.Persistent)
+			//Database.Execute (new HyenaSqliteCommand (
+			//	$"UPDATE {jobsTableName} " +
+			//	"  SET job_type = ? " +
+			//	"  SET job_options = ? " +
+			//	"  SET run_at = ? " +
+			//	"  SET job_priority = ? " +
+			//	"  WHERE id = ?",
+			//	"Empty", //FIXME
+			//	item.JobOptions,
+			//	DateTimeUtil.FromDateTime (item.RunAt),
+			//	item.JobPriority,
+			//	item.Id));
+
+			if (item == null)
+				throw new NullReferenceException(nameof(item));
+
+			if (item.Persistent)
+				Context.Jobs.Update (item);
+
+			EmitChanged (item);
+		}
+
+		public override Models.Job Get (Guid id)
+		{
+			// we never use this
+			return Context.Jobs.Find (id);
+		}
+
+		public override void Remove (Models.Job item)
+		{
+			if (item == null)
+				throw new NullReferenceException(nameof(item));
+
+			if (item.Persistent) {
+				Context.Remove (item);
+				Context.SaveChanges ();
+			}
+
+			EmitRemoved (item);
+		}
+
+		void HandleRemoveJob (object o, EventArgs e)
+		{
+			Remove (o as Job);
 		}
 	}
 }

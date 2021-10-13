@@ -29,16 +29,16 @@
 
 using System;
 using System.IO;
-using System.Text;
 using System.Reflection;
+using System.Text;
 
-using FSpot;
-using FSpot.Core;
+using FSpot.Models;
+using FSpot.Services;
 
 using Mono.Unix;
 
-namespace FSpot.Tools.LiveWebGallery	
-{	
+namespace FSpot.Tools.LiveWebGallery
+{
 	public abstract class PhotoAwareRequestHandler : RequestHandler
 	{
 		protected string TagsToString (Photo photo) 
@@ -135,21 +135,21 @@ namespace FSpot.Tools.LiveWebGallery
 		{
 			Photo[] photos = GetChosenPhotos ();
 			
-			StringBuilder s = new StringBuilder (4096);
+			var s = new StringBuilder (4096);
 			s.Append (template);
-			int num_photos = limit_max_photos ? Math.Min (photos.Length, max_photos) : photos.Length;
+			int num_photos = LimitMaxPhotos ? Math.Min (photos.Length, MaxPhotos) : photos.Length;
 			s.Replace ("NUM_PHOTOS", string.Format(Catalog.GetPluralString("{0} photo", "{0} photos", num_photos), num_photos));
 			s.Replace ("QUERY_TYPE", QueryTypeToString ());
-			s.Replace ("EDITABLE_TAG_NAME", tagging_allowed ? Escape (editable_tag.Name) : "");
+			s.Replace ("EDITABLE_TAG_NAME", TaggingAllowed ? Escape (EditableTag.Name) : "");
 			
 			string photo_template = GetSubTemplate (s, "BEGIN_PHOTO", "END_PHOTO");
-			StringBuilder photos_s = new StringBuilder (4096);
+			var photos_s = new StringBuilder (4096);
 			
 			num_photos = 0;
 			foreach (Photo photo in photos) {
 				photos_s.Append (PreparePhoto (photo_template, photo));
 				
-				if (++num_photos >= max_photos && limit_max_photos)
+				if (++num_photos >= MaxPhotos && LimitMaxPhotos)
 					break;
 			}
 			s.Replace ("END_PHOTO", photos_s.ToString ());
@@ -160,12 +160,12 @@ namespace FSpot.Tools.LiveWebGallery
 			stats.BytesSent += s.Length;
 			stats.GalleryViews++;
 		}
-		
-		private Photo[] GetChosenPhotos () 
+
+		Photo[] GetChosenPhotos () 
 		{
-			switch (query_type) {
+			switch (QueryType) {
 			case QueryType.ByTag:
-				return ObsoletePhotoQueries.Query (new Tag[] {query_tag});
+				return ObsoletePhotoQueries.Query (new [] {QueryTag});
 			case QueryType.CurrentView:
 				return App.Instance.Organizer.Query.Photos;
 			case QueryType.Selected:
@@ -173,21 +173,18 @@ namespace FSpot.Tools.LiveWebGallery
 				return App.Instance.Organizer.SelectedPhotos ();
 			}
 		}
-		
-		private string QueryTypeToString ()
+
+		string QueryTypeToString ()
 		{
-			switch (query_type) {
-			case QueryType.ByTag:
-				return query_tag.Name;
-			case QueryType.CurrentView:
-				return Catalog.GetString ("Current View");
-			case QueryType.Selected:
-			default:
-				return Catalog.GetString ("Selected");
-			}
+			return QueryType switch
+			{
+				QueryType.ByTag => QueryTag.Name,
+				QueryType.CurrentView => Catalog.GetString ("Current View"),
+				_ => Catalog.GetString ("Selected"),
+			};
 		}
-				
-		private string PreparePhoto (string template, Photo photo) 
+
+		string PreparePhoto (string template, Photo photo) 
 		{
 			string photo_s = template.Replace ("PHOTO_ID", photo.Id.ToString ())
 									 .Replace ("PHOTO_NAME", Escape (photo.Name))
@@ -227,7 +224,7 @@ namespace FSpot.Tools.LiveWebGallery
 			int slash_pos = requested.IndexOf ('/');
 			requested = requested.Substring (slash_pos + 1);
 			slash_pos = requested.IndexOf ('/');
-			uint photo_id = uint.Parse (requested.Substring (0, slash_pos));
+			var photo_id = Guid.Parse (requested.Substring (0, slash_pos));
 			string tag_name = requested.Substring (slash_pos + 1);
 			
 			if (!options.TaggingAllowed || !options.EditableTag.Name.Equals (tag_name)) {
@@ -237,9 +234,9 @@ namespace FSpot.Tools.LiveWebGallery
 			
 			Photo photo = App.Instance.Database.Photos.Get (photo_id);
 			if (addTag)
-				photo.AddTag (options.EditableTag);
+				TagService.Instance.Add (photo, options.EditableTag);
 			else
-				photo.RemoveTag (options.EditableTag);
+				TagService.Instance.Remove (photo, options.EditableTag);
 			App.Instance.Database.Photos.Commit (photo);
 			
 			SendHeadersAndStartContent (stream, "Content-type: text/plain;charset=UTF-8");

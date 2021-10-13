@@ -1,61 +1,39 @@
-//
-// MainWindow.cs
-//
-// Author:
-//   Stephen Shaw <sshaw@decriptor.com>
-//   Ruben Vermeersch <ruben@savanne.be>
-//   Stephane Delcroix <stephane@delcroix.org>
-//
 // Copyright (C) 2013 Stephen Shaw
 // Copyright (C) 2006-2010 Novell, Inc.
 // Copyright (C) 2008, 2010 Ruben Vermeersch
 // Copyright (C) 2006-2010 Stephane Delcroix
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
+
 
 using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
+
+using FSpot.Core;
+using FSpot.Database;
+using FSpot.Extensions;
+using FSpot.FileSystem;
+using FSpot.Import;
+using FSpot.Jobs;
+using FSpot.Models;
+using FSpot.Query;
+using FSpot.Services;
+using FSpot.Settings;
+using FSpot.Tagging;
+using FSpot.UI.Dialog;
+using FSpot.Utils;
+using FSpot.Widgets;
 
 using Gdk;
-using Gtk;
 
-using Mono.Addins;
-using Mono.Unix;
+using Gtk;
 
 using Hyena;
 using Hyena.Widgets;
 
-using FSpot.Core;
-using FSpot.Database;
-using FSpot.Database.Jobs;
-using FSpot.Extensions;
-using FSpot.Query;
-using FSpot.Widgets;
-using FSpot.Utils;
-using FSpot.UI.Dialog;
-using FSpot.Platform;
-using FSpot.Import;
-using FSpot.Settings;
-using FSpot.FileSystem;
+using Mono.Addins;
+using Mono.Unix;
 
 namespace FSpot
 {
@@ -196,10 +174,9 @@ namespace FSpot
 		Gdk.Cursor watch = new Gdk.Cursor (Gdk.CursorType.Watch);
 
 		// Tag Icon Sizes
-		public int TagsIconSize
-		{
-			get { return (int) Tag.TagIconSize; }
-			set { Tag.TagIconSize = (Settings.IconSize) value; }
+		public int TagsIconSize {
+			get { return (int)Tag.TagIconSize; }
+			set { Tag.TagIconSize = (Settings.IconSize)value; }
 		}
 
 		static TargetEntry[] tagTargetTable = {
@@ -208,13 +185,13 @@ namespace FSpot
 
 		const int PHOTO_IDX_NONE = -1;
 
-		public Db Database { get; set; }
+		public Db Database { get; }
 
 		public ModeType ViewMode { get; set; }
 
-		public MainSelection Selection { get; set; }
+		public MainSelection Selection { get;}
 
-		public InfoBox InfoBox { get; set; }
+		public InfoBox InfoBox { get;}
 
 		static TargetList iconSourceTargetList = new TargetList ();
 		static TargetList iconDestTargetList = new TargetList ();
@@ -245,7 +222,7 @@ namespace FSpot
 
 			Database = db;
 
-			var builder = new GtkBeans.Builder ("main_window.ui");
+			using var builder = new GtkBeans.Builder ("main_window.ui");
 			builder.Autoconnect (this);
 
 			//Set the global DefaultColormap. Allows transparency according
@@ -270,10 +247,10 @@ namespace FSpot
 			toolbar = new Gtk.Toolbar ();
 			toolbar_vbox.PackStart (toolbar);
 
-			ToolButton import_button = GtkUtil.ToolButtonFromTheme ("gtk-add", Catalog.GetString ("Import Photos…"), true);
-			import_button.Clicked += (o, args) => StartImport (null);
-			import_button.TooltipText = Catalog.GetString ("Import new photos");
-			toolbar.Insert (import_button, -1);
+			ToolButton importButton = GtkUtil.ToolButtonFromTheme ("gtk-add", Catalog.GetString ("Import Photos…"), true);
+			importButton.Clicked += (o, args) => StartImport (null);
+			importButton.TooltipText = Catalog.GetString ("Import new photos");
+			toolbar.Insert (importButton, -1);
 
 			toolbar.Insert (new SeparatorToolItem (), -1);
 
@@ -318,13 +295,13 @@ namespace FSpot
 			ss_button.TooltipText = Catalog.GetString ("View photos in a slideshow");
 			toolbar.Insert (ss_button, -1);
 
-			var white_space = new SeparatorToolItem {
+			using var white_space = new SeparatorToolItem {
 				Draw = false,
 				Expand = true
 			};
 			toolbar.Insert (white_space, -1);
 
-			ToolItem label_item = new ToolItem ();
+			var label_item = new ToolItem ();
 			count_label = new Label (string.Empty);
 			label_item.Child = count_label;
 			toolbar.Insert (label_item, -1);
@@ -343,8 +320,7 @@ namespace FSpot
 			ViewModeChanged += Sidebar.HandleMainWindowViewModeChanged;
 			sidebar_vbox.Add (Sidebar);
 
-			tag_selection_scrolled = new Gtk.ScrolledWindow ();
-			tag_selection_scrolled.ShadowType = ShadowType.In;
+			tag_selection_scrolled = new Gtk.ScrolledWindow { ShadowType = ShadowType.In };
 
 			tag_selection_widget = new TagSelectionWidget (Database.Tags);
 			tag_selection_scrolled.Add (tag_selection_widget);
@@ -379,7 +355,7 @@ namespace FSpot
 				query = new PhotoQuery (Database.Photos);
 			} catch (Exception e) {
 				//FIXME assume any exception here is due to a corrupt db and handle that.
-				new RepairDbDialog (e, Database.Repair (), main_window);
+				//new RepairDbDialog (e, Database.Repair (), main_window);
 				query = new PhotoQuery (Database.Photos);
 			}
 
@@ -393,7 +369,6 @@ namespace FSpot
 
 			group_selector = new GroupSelector ();
 			group_selector.Adaptor = new TimeAdaptor (query, Preferences.Get<bool> (Preferences.GroupAdaptorOrderAsc));
-
 			group_selector.ShowAll ();
 
 			if (zoom_scale != null)
@@ -553,7 +528,7 @@ namespace FSpot
 			get {
 				int active = ActiveIndex ();
 				if (active >= 0)
-					return query [active] as Photo;
+					return query[active] as Photo;
 
 				return null;
 			}
@@ -562,7 +537,7 @@ namespace FSpot
 		// Index into the PhotoQuery.  If -1, no photo is selected or multiple photos are selected.
 		int ActiveIndex ()
 		{
-			return Selection.Count == 1 ? SelectedIds () [0] : PHOTO_IDX_NONE;
+			return Selection.Count == 1 ? SelectedIds ()[0] : PHOTO_IDX_NONE;
 		}
 
 		// Switching mode.
@@ -610,8 +585,7 @@ namespace FSpot
 			}
 			Selection.MarkChanged ();
 			UpdateToolbar ();
-			if (ViewModeChanged != null)
-				ViewModeChanged (this, null);
+			ViewModeChanged?.Invoke (this, null);
 		}
 
 		void UpdateToolbar ()
@@ -659,9 +633,9 @@ namespace FSpot
 			ExportMenuItemNode.SelectedImages = () => new PhotoList (SelectedPhotos ());
 		}
 
-		void HandleDbItemsChanged (object sender, DbItemEventArgs<Photo> args)
+		void HandleDbItemsChanged (object sender, DbItemEventArgs<Models.Photo> args)
 		{
-			foreach (Photo p in args.Items.Where(p => p != null).Where(p => write_metadata)) {
+			foreach (var p in args.Items.Where (p => p != null).Where (p => write_metadata)) {
 				SyncMetadataJob.Create (Database.Jobs, p);
 			}
 
@@ -687,12 +661,12 @@ namespace FSpot
 			}
 		}
 
-		int [] SelectedIds ()
+		int[] SelectedIds ()
 		{
-			int[] ids = new int [0];
+			int[] ids = Array.Empty<int> ();
 
 			if (fsview != null && fsview.View.Item.IsValid)
-				ids = new int [] { fsview.View.Item.Index };
+				ids = new[] { fsview.View.Item.Index };
 			else {
 				switch (ViewMode) {
 				case ModeType.IconView:
@@ -701,7 +675,7 @@ namespace FSpot
 				default:
 				case ModeType.PhotoView:
 					if (photo_view.Item.IsValid)
-						ids = new [] { photo_view.Item.Index };
+						ids = new[] { photo_view.Item.Index };
 					break;
 				}
 			}
@@ -766,7 +740,7 @@ namespace FSpot
 				throw new NotImplementedException ("I didn't think you'd find me");
 			}
 
-			public IPhoto this [int index] {
+			public IPhoto this[int index] {
 				get {
 					switch (win.ViewMode) {
 					case ModeType.PhotoView:
@@ -774,7 +748,7 @@ namespace FSpot
 							return win.photo_view.Item.Current;
 						break;
 					case ModeType.IconView:
-						return win.icon_view.Selection [index];
+						return win.icon_view.Selection[index];
 					}
 					throw new ArgumentOutOfRangeException ();
 				}
@@ -785,13 +759,13 @@ namespace FSpot
 					switch (win.ViewMode) {
 					case ModeType.PhotoView:
 						if (win.photo_view.Item.IsValid)
-							return new IPhoto [] { win.photo_view.Item.Current };
+							return new IPhoto[] { win.photo_view.Item.Current };
 
 						break;
 					case ModeType.IconView:
 						return win.icon_view.Selection.Items;
 					}
-					return new IPhoto [0];
+					return Array.Empty<IPhoto> ();
 				}
 			}
 
@@ -803,7 +777,7 @@ namespace FSpot
 				if (win.ViewMode != ModeType.PhotoView || ItemsChanged == null)
 					return;
 
-				foreach (int item in args.Items.Where(item => win.photo_view.Item.Index == item)) {
+				foreach (int item in args.Items.Where (item => win.photo_view.Item.Index == item)) {
 					ItemsChanged (this, new BrowsableEventArgs (item, args.Changes));
 					break;
 				}
@@ -856,20 +830,19 @@ namespace FSpot
 		// Selection Interface
 		//
 
-		Photo [] SelectedPhotos (int[] selected_ids)
+		List<Models.Photo> SelectedPhotos (int[] selected_ids)
 		{
-			Photo[] photo_list = new Photo [selected_ids.Length];
+			var photoList = new List<Models.Photo> (selected_ids.Length);
 
-			int i = 0;
 			foreach (int num in selected_ids)
-				photo_list [i++] = query [num] as Photo;
+				photoList.Add (query[num] as Models.Photo);
 
-			return photo_list;
+			return photoList;
 		}
 
-		public Photo [] SelectedPhotos ()
+		public Models.Photo[] SelectedPhotos ()
 		{
-			return SelectedPhotos (SelectedIds ());
+			return SelectedPhotos (SelectedIds ()).ToArray ();
 		}
 
 		public PhotoQuery Query => query;
@@ -883,7 +856,7 @@ namespace FSpot
 			RotateCommand command = new RotateCommand (parent);
 
 			int[] selected_ids = SelectedIds ();
-			if (command.Execute (direction, SelectedPhotos (selected_ids)))
+			if (command.Execute (direction, SelectedPhotos (selected_ids).ToArray ()))
 				query.MarkChanged (selected_ids, InvalidateData.Instance);
 		}
 
@@ -891,26 +864,27 @@ namespace FSpot
 		// Tag Selection Drag Handlers
 		//
 
-		public void AddTagExtended (int[] nums, Tag[] tags)
+		public void AddTagExtended (int[] nums, IEnumerable<Tag> tags)
 		{
 			foreach (int num in nums)
-				(query [num] as Photo).AddTag (tags);
+				TagService.Instance.Add (query[num] as Photo, tags);
+
 			query.Commit (nums);
 
 			foreach (Tag t in tags) {
 				if (t.Icon != null || t.IconWasCleared)
 					continue;
 				// FIXME this needs a lot more work.
-				Pixbuf icon = null;
+				Pixbuf icon;
 				try {
-					var tmp = PhotoLoader.LoadAtMaxSize (query [nums [0]], 128, 128);
+					var tmp = PhotoLoader.LoadAtMaxSize (query[nums[0]], 128, 128);
 					icon = PixbufUtils.TagIconFromPixbuf (tmp);
 					tmp.Dispose ();
 				} catch {
 					icon = null;
 				}
 
-				t.Icon = icon;
+				t.TagIcon.Icon = icon;
 				Database.Tags.Commit (t);
 			}
 		}
@@ -921,10 +895,11 @@ namespace FSpot
 			query_widget.SetFolders (uriList);
 		}
 
-		public void RemoveTags (int[] nums, Tag[] tags)
+		public void RemoveTags (int[] nums, IEnumerable<Tag> tags)
 		{
 			foreach (int num in nums)
-				(query [num] as Photo).RemoveTag (tags);
+				TagService.Instance.Remove (query[num] as Photo, tags);
+
 			query.Commit (nums);
 		}
 
@@ -948,7 +923,7 @@ namespace FSpot
 		void HandleTagSelectionRowActivated (object sender, RowActivatedArgs args)
 		{
 			ShowQueryWidget ();
-			query_widget.Include (new Tag [] { tag_selection_widget.TagByPath (args.Path) });
+			query_widget.Include (new Tag[] { tag_selection_widget.TagByPath (args.Path) });
 		}
 
 		void JumpTo (int index)
@@ -987,7 +962,7 @@ namespace FSpot
 			if (cell_num == -1 /*|| cell_num == lastTopLeftCell*/)
 				return;
 
-			IPhoto photo = icon_view.Collection [cell_num];
+			IPhoto photo = icon_view.Collection[cell_num];
 			/*
 			 * FIXME this is a lame hack to get around a delegate chain.  This should
 			 * actually operate directly on the adaptor not on the selector but I don't have
@@ -1032,18 +1007,17 @@ namespace FSpot
 				int border = 2;
 				int csize = size / 2 + len * size / 2 + 2 * border;
 
-				Pixbuf container = new Pixbuf (Gdk.Colorspace.Rgb, true, 8, csize, csize);
+				using Pixbuf container = new Pixbuf (Gdk.Colorspace.Rgb, true, 8, csize, csize);
 				container.Fill (0x00000000);
 
 				bool use_icon = false;
 
 				while (len-- > 0) {
-					FSpot.PixbufCache.CacheEntry entry = icon_view.Cache.Lookup (photos [len].DefaultVersion.Uri);
+					FSpot.PixbufCache.CacheEntry entry = icon_view.Cache.Lookup (photos[len].DefaultVersion.Uri);
 
 					Pixbuf thumbnail = null;
 					if (entry != null) {
-						Cms.Profile screen_profile;
-						if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out screen_profile)) {
+						if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screen_profile)) {
 							thumbnail = entry.Pixbuf.Copy ();
 							FSpot.ColorManagement.ApplyProfile (thumbnail, screen_profile);
 						} else
@@ -1055,8 +1029,7 @@ namespace FSpot
 
 						int x = border + len * (size / 2) + (size - small.Width) / 2;
 						int y = border + len * (size / 2) + (size - small.Height) / 2;
-						Pixbuf box = new Pixbuf (container, x - border, y - border,
-							             small.Width + 2 * border, small.Height + 2 * border);
+						var box = new Pixbuf (container, x - border, y - border, small.Width + (2 * border), small.Height + 2 * border);
 
 						box.Fill (0x000000ff);
 						small.CopyArea (0, 0, small.Width, small.Height, container, x, y);
@@ -1079,14 +1052,13 @@ namespace FSpot
 		void HandleIconViewDragDataGet (object sender, DragDataGetArgs args)
 		{
 			if (args.Info == (uint)DragDropTargets.TargetType.UriList) {
-				var uris = from p in SelectedPhotos ()
-				                       select p.DefaultVersion.Uri;
-				args.SelectionData.SetUriListData (new UriList (uris), args.Context.Targets [0]);
+				var uris = from p in SelectedPhotos () select p.DefaultVersion.Uri;
+				args.SelectionData.SetUriListData (new UriList (uris), args.Context.Targets[0]);
 				return;
 			}
 
 			if (args.Info == DragDropTargets.PhotoListEntry.Info) {
-				args.SelectionData.SetPhotosData (SelectedPhotos (), args.Context.Targets [0]);
+				args.SelectionData.SetPhotosData (SelectedPhotos (), args.Context.Targets[0]);
 				return;
 			}
 
@@ -1166,15 +1138,14 @@ namespace FSpot
 				// Translate the event args from viewport space to window space,
 				// drag events use the viewport.  Owen sends his regrets.
 				//
-				int item = icon_view.CellAtPosition (args.X + (int)icon_view.Hadjustment.Value,
-					           args.Y + (int)icon_view.Vadjustment.Value);
+				int item = icon_view.CellAtPosition (args.X + (int)icon_view.Hadjustment.Value, args.Y + (int)icon_view.Vadjustment.Value);
 
 				//Console.WriteLine ("Drop cell = {0} ({1},{2})", item, args.X, args.Y);
 				if (item >= 0) {
 					if (icon_view.Selection.Contains (item))
 						AttachTags (tag_selection_widget.TagHighlight, SelectedIds ());
 					else
-						AttachTags (tag_selection_widget.TagHighlight, new int [] { item });
+						AttachTags (tag_selection_widget.TagHighlight, new[] { item });
 				}
 
 				Gtk.Drag.Finish (args.Context, true, false, args.Time);
@@ -1198,16 +1169,16 @@ namespace FSpot
 
 			if (args.Info == DragDropTargets.PhotoListEntry.Info) {
 				int p_item = icon_view.CellAtPosition (args.X + (int)icon_view.Hadjustment.Value,
-					             args.Y + (int)icon_view.Vadjustment.Value);
+								 args.Y + (int)icon_view.Vadjustment.Value);
 
 				if (p_item >= 0) {
 					if (icon_view.Selection.Contains (p_item)) //We don't want to reparent ourselves!
 						return;
 					PhotoVersionCommands.Reparent cmd = new PhotoVersionCommands.Reparent ();
-					Photo[] photos_to_reparent = SelectedPhotos ();
+					var photos_to_reparent = SelectedPhotos ();
 					// Give feedback to user that something happened, and leave the parent selected after reparenting
 					icon_view.Selection.Add (p_item);
-					cmd.Execute (Database.Photos, photos_to_reparent, query.Photos [p_item], GetToplevel (null));
+					cmd.Execute (Database.Photos, photos_to_reparent, query.Photos[p_item], GetToplevel (null));
 					UpdateQuery ();
 				}
 				Gtk.Drag.Finish (args.Context, true, false, args.Time);
@@ -1220,13 +1191,12 @@ namespace FSpot
 		//
 		void HandleDoubleClicked (object sender, BrowsableEventArgs args)
 		{
-			var widget = sender as Widget;
-			if (widget == null)
+			if (!(sender is Widget))
 				return;
 
 			switch (ViewMode) {
 			case ModeType.IconView:
-				icon_view.FocusCell = args.Items [0];
+				icon_view.FocusCell = args.Items[0];
 				SetViewMode (ModeType.PhotoView);
 				break;
 			case ModeType.PhotoView:
@@ -1387,14 +1357,12 @@ namespace FSpot
 				photo_view.UpdateRating (r);
 
 			Photo p;
-			Database.BeginTransaction ();
 			int[] selected_photos = SelectedIds ();
 			foreach (int num in selected_photos) {
-				p = query [num] as Photo;
+				p = query[num] as Photo;
 				p.Rating = (uint)r;
 			}
 			query.Commit (selected_photos);
-			Database.CommitTransaction ();
 		}
 
 		//
@@ -1403,17 +1371,14 @@ namespace FSpot
 		public void HandleTagMenuActivate (object sender, EventArgs args)
 		{
 			MenuItem parent = sender as MenuItem ?? uimanager.GetWidget ("/ui/menubar1/edit2/remove_tag") as MenuItem;
-			if (parent != null && parent.Submenu is PhotoTagMenu) {
-				PhotoTagMenu menu = (PhotoTagMenu)parent.Submenu;
+			if (parent?.Submenu is PhotoTagMenu menu) {
 				menu.Populate (SelectedPhotos ());
 			}
 		}
 
 		public void HandleAttachTagMenuSelected (Tag t)
 		{
-			Database.BeginTransaction ();
-			AddTagExtended (SelectedIds (), new Tag [] { t });
-			Database.CommitTransaction ();
+			AddTagExtended (SelectedIds (), new Tag[] { t });
 			query_widget.PhotoTagsChanged (new Tag[] { t });
 		}
 
@@ -1430,9 +1395,7 @@ namespace FSpot
 
 		public void HandleRemoveTagMenuSelected (Tag t)
 		{
-			Database.BeginTransaction ();
 			RemoveTags (SelectedIds (), new[] { t });
-			Database.CommitTransaction ();
 			query_widget.PhotoTagsChanged (new[] { t });
 		}
 
@@ -1557,9 +1520,8 @@ namespace FSpot
 
 		public void Close ()
 		{
-			int x, y, width, height;
-			main_window.GetPosition (out x, out y);
-			main_window.GetSize (out width, out height);
+			main_window.GetPosition (out var x, out var y);
+			main_window.GetSize (out var width, out var height);
 
 			bool maximized = ((main_window.GdkWindow.State & Gdk.WindowState.Maximized) > 0);
 			Preferences.Set (Preferences.MainWindowMaximized, maximized);
@@ -1568,7 +1530,7 @@ namespace FSpot
 				Preferences.Set (Preferences.MainWindowX, x);
 				Preferences.Set (Preferences.MainWindowY, y);
 				Preferences.Set (Preferences.MainWindowWidth, width);
-				Preferences.Set (Preferences.MainWindowHeight,	height);
+				Preferences.Set (Preferences.MainWindowHeight, height);
 			}
 
 			Preferences.Set (Preferences.ShowToolbar, toolbar.Visible);
@@ -1632,14 +1594,14 @@ namespace FSpot
 
 			if (new_tag != null) {
 				tag_selection_widget.ScrollTo (new_tag);
-				tag_selection_widget.TagHighlight = new Tag [] { new_tag };
+				tag_selection_widget.TagHighlight = new[] { new_tag };
 			}
 		}
 
-		public Tag CreateTag (object sender, EventArgs args)
+		Tag CreateTag (object sender, EventArgs args)
 		{
-			CreateTagDialog dialog = new CreateTagDialog (Database.Tags);
-			return dialog.Execute (CreateTagDialog.TagType.Category, tag_selection_widget.TagHighlight);
+			using var dialog = new CreateTagDialog (Database.Tags);
+			return dialog.Execute (tag_selection_widget.TagHighlight);
 		}
 
 		public void HandleAttachTagCommand (object obj, EventArgs args)
@@ -1647,31 +1609,27 @@ namespace FSpot
 			AttachTags (tag_selection_widget.TagHighlight, SelectedIds ());
 		}
 
-		void AttachTags (Tag[] tags, int[] ids)
+		void AttachTags (IEnumerable<Tag> tags, int[] ids)
 		{
-			Database.BeginTransaction ();
 			AddTagExtended (ids, tags);
-			Database.CommitTransaction ();
 			query_widget.PhotoTagsChanged (tags);
 		}
 
 		public void HandleRemoveTagCommand (object obj, EventArgs args)
 		{
-			Tag[] tags = this.tag_selection_widget.TagHighlight;
+			var tags = tag_selection_widget.TagHighlight;
 
-			Database.BeginTransaction ();
 			RemoveTags (SelectedIds (), tags);
-			Database.CommitTransaction ();
 			query_widget.PhotoTagsChanged (tags);
 		}
 
 		public void HandleEditSelectedTag (object sender, EventArgs ea)
 		{
-			Tag[] tags = this.tag_selection_widget.TagHighlight;
-			if (tags.Length != 1)
+			var tags = tag_selection_widget.TagHighlight;
+			if (tags.Count () != 1)
 				return;
 
-			HandleEditSelectedTagWithTag (tags [0]);
+			HandleEditSelectedTagWithTag (tags.First ());
 		}
 
 		public void HandleEditSelectedTagWithTag (Tag tag)
@@ -1679,7 +1637,7 @@ namespace FSpot
 			if (tag == null)
 				return;
 
-			EditTagDialog dialog = new EditTagDialog (Database, tag, main_window);
+			using var dialog = new EditTagDialog (Database, tag, main_window);
 			if ((ResponseType)dialog.Run () == ResponseType.Ok) {
 				bool name_changed = false;
 				try {
@@ -1699,68 +1657,57 @@ namespace FSpot
 
 		public void HandleMergeTagsCommand (object obj, EventArgs args)
 		{
-			Tag[] tags = tag_selection_widget.TagHighlight;
-			if (tags.Length < 2)
+			var tags = tag_selection_widget.TagHighlight;
+			if (tags.Count () < 2)
 				return;
 
 			// Translators, The singular case will never happen here.
-			string header = Catalog.GetPluralString ("Merge the selected tag",
-				                "Merge the {0} selected tags?", tags.Length);
-			header = string.Format (header, tags.Length);
+			string header = Catalog.GetPluralString ("Merge the selected tag", "Merge the {0} selected tags?", tags.Count ());
+			header = string.Format (header, tags.Count ());
 
 			// If a tag with children tags is selected for merging, we
 			// should also merge its children..
-			List<Tag> all_tags = new List<Tag> (tags.Length);
+			var all_tags = new List<Tag> (tags.Count ());
 			foreach (Tag tag in tags) {
 				if (!all_tags.Contains (tag))
 					all_tags.Add (tag);
 				else
 					continue;
 
-				if (!(tag is Category))
-					continue;
-
-				(tag as Category).AddDescendentsTo (all_tags);
+				(tag)?.AddDescendentsTo (all_tags);
 			}
 
 			// debug..
 			tags = all_tags.ToArray ();
-			System.Array.Sort (tags, new TagRemoveComparer ());
+			tags.ToList ().Sort(new TagRemoveComparer ());
 
 			foreach (Tag tag in tags) {
-				Log.Debug ("tag: {0}", tag.Name);
+				Log.Debug ($"tag: {tag.Name}");
 			}
 
 			string msg = Catalog.GetString ("This operation will merge the selected tags and any sub-tags into a single tag.");
 
 			string ok_caption = Catalog.GetString ("_Merge Tags");
 
-			if (ResponseType.Ok != HigMessageDialog.RunHigConfirmation (main_window,
-				    DialogFlags.DestroyWithParent,
-				    MessageType.Warning,
-				    header,
-				    msg,
-				    ok_caption))
+			if (ResponseType.Ok != HigMessageDialog.RunHigConfirmation (main_window, DialogFlags.DestroyWithParent, MessageType.Warning, header, msg, ok_caption))
 				return;
 
 			// The surviving tag is the last tag, as it is definitely not a child of any other the
 			// other tags.  removetags will contain the tags to be merged.
-			Tag survivor = tags [tags.Length - 1];
+			Tag survivor = tags.Last ();
 
-			var removetags = new Tag [tags.Length - 1];
-			Array.Copy (tags, 0, removetags, 0, tags.Length - 1);
+			var removetags = new Tag[tags.Count () - 1];
+			//Array.Copy (sourceArray, srcIndex, dstArray, dstIndex, length);
+			Array.Copy (tags.ToArray (), 0, removetags, 0, tags.Count () - 1);
 
 			// Add the surviving tag to all the photos with the other tags
 			var photos = ObsoletePhotoQueries.Query (removetags);
-			foreach (Photo p in photos) {
-				p.AddTag (survivor);
-			}
+			foreach (var p in photos)
+				TagService.Instance.Add (p, survivor);
 
 			// Remove the defunct tags, which removes them from the photos, commits
 			// the photos, and removes the tags from the TagStore
-			Database.BeginTransaction ();
 			Database.Photos.Remove (removetags);
-			Database.CommitTransaction ();
 
 			HandleEditSelectedTagWithTag (survivor);
 		}
@@ -1887,7 +1834,7 @@ namespace FSpot
 
 		void HandleViewFullscreen (object sender, EventArgs args)
 		{
-			int active = (Selection.Count > 0 ? SelectedIds () [0] : 0);
+			int active = (Selection.Count > 0 ? SelectedIds ()[0] : 0);
 			if (fsview == null) {
 				fsview = new FSpot.FullScreenView (query, main_window);
 				fsview.Destroyed += HandleFullScreenViewDestroy;
@@ -2035,17 +1982,12 @@ namespace FSpot
 			string msg;
 
 			if (e is UnauthorizedAccessException)
-				msg = string.Format (
-					Catalog.GetString ("No permission to delete the file:{1}{0}"),
-					fname, Environment.NewLine).Replace ("_", "__");
+				msg = string.Format (Catalog.GetString ("No permission to delete the file:{1}{0}"), fname, Environment.NewLine).Replace ("_", "__");
 			else
-				msg = string.Format (
-					Catalog.GetString ("An error of type {0} occurred while deleting the file:{2}{1}"),
+				msg = string.Format (Catalog.GetString ("An error of type {0} occurred while deleting the file:{2}{1}"),
 					e.GetType (), fname.Replace ("_", "__"), Environment.NewLine);
 
-			HigMessageDialog.RunHigConfirmation (
-				main_window, DialogFlags.DestroyWithParent, MessageType.Error,
-				error, msg, ok_caption);
+			HigMessageDialog.RunHigConfirmation (main_window, DialogFlags.DestroyWithParent, MessageType.Error, error, msg, ok_caption);
 		}
 
 		public Gtk.Window GetToplevel (object sender)
@@ -2071,23 +2013,21 @@ namespace FSpot
 				return;
 			}
 
-			Photo[] photos = SelectedPhotos ();
-			string header = Catalog.GetPluralString ("Delete the selected photo permanently?",
-				                "Delete the {0} selected photos permanently?",
-				                photos.Length);
+			var photos = SelectedPhotos ();
+			string header = Catalog.GetPluralString ("Delete the selected photo permanently?", "Delete the {0} selected photos permanently?", photos.Length);
 			header = string.Format (header, photos.Length);
 			string msg = Catalog.GetPluralString ("This deletes all versions of the selected photo from your drive.",
-				             "This deletes all versions of the selected photos from your drive.",
-				             photos.Length);
+							 "This deletes all versions of the selected photos from your drive.",
+							 photos.Length);
 			string ok_caption = Catalog.GetPluralString ("_Delete photo", "_Delete photos", photos.Length);
 
 			if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation (GetToplevel (sender),
-				    DialogFlags.DestroyWithParent,
-				    MessageType.Warning,
-				    header, msg, ok_caption)) {
+					DialogFlags.DestroyWithParent,
+					MessageType.Warning,
+					header, msg, ok_caption)) {
 
 				uint timer = Log.DebugTimerStart ();
-				foreach (Photo photo in photos) {
+				foreach (var photo in photos) {
 					foreach (uint id in photo.VersionIds) {
 						try {
 							photo.DeleteVersion (id, true);
@@ -2111,19 +2051,16 @@ namespace FSpot
 				return;
 			}
 
-			Photo[] photos = SelectedPhotos ();
+			var photos = SelectedPhotos ();
 			if (photos.Length == 0)
 				return;
 
-			string header = Catalog.GetPluralString ("Remove the selected photo from F-Spot?",
-				                "Remove the {0} selected photos from F-Spot?",
-				                photos.Length);
-
+			string header = Catalog.GetPluralString ("Remove the selected photo from F-Spot?", "Remove the {0} selected photos from F-Spot?", photos.Length);
 			header = string.Format (header, photos.Length);
 			string msg = Catalog.GetString ("If you remove photos from the F-Spot catalog all tag information will be lost. The photos remain on your computer and can be imported into F-Spot again.");
 			string ok_caption = Catalog.GetString ("_Remove from Catalog");
-			if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation (GetToplevel (sender), DialogFlags.DestroyWithParent,
-				    MessageType.Warning, header, msg, ok_caption)) {
+
+			if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation (GetToplevel (sender), DialogFlags.DestroyWithParent, MessageType.Warning, header, msg, ok_caption)) {
 				Database.Photos.Remove (photos);
 				UpdateQuery ();
 			}
@@ -2183,55 +2120,55 @@ namespace FSpot
 
 		public void HandleDeleteSelectedTagCommand (object sender, EventArgs args)
 		{
-			Tag[] tags = this.tag_selection_widget.TagHighlight;
+			var tags = tag_selection_widget.TagHighlight;
 
-			Array.Sort (tags, new TagRemoveComparer ());
+			tags.ToList ().Sort(new TagRemoveComparer ());
 
 			//How many pictures are associated to these tags?
-			Db db = App.Instance.Database;
-			FSpot.PhotoQuery count_query = new FSpot.PhotoQuery (db.Photos);
+			var photoStore = new PhotoStore ();
+			FSpot.PhotoQuery count_query = new FSpot.PhotoQuery (photoStore);
 			count_query.Terms = OrTerm.FromTags (tags);
 			int associated_photos = count_query.Count;
 
 			string header;
-			if (tags.Length == 1)
-				header = string.Format (Catalog.GetString ("Delete tag \"{0}\"?"), tags [0].Name.Replace ("_", "__"));
+			if (tags.Count () == 1)
+				header = string.Format (Catalog.GetString ("Delete tag \"{0}\"?"), tags.First ().Name.Replace ("_", "__"));
 			else
-				header = string.Format (Catalog.GetString ("Delete the {0} selected tags?"), tags.Length);
+				header = string.Format (Catalog.GetString ("Delete the {0} selected tags?"), tags.Count ());
 
-			header = string.Format (header, tags.Length);
+			header = string.Format (header, tags.Count ());
 			string msg = string.Empty;
 			if (associated_photos > 0) {
 				string photodesc = Catalog.GetPluralString ("photo", "photos", associated_photos);
 				msg = string.Format (
 					Catalog.GetPluralString ("If you delete this tag, the association with {0} {1} will be lost.",
 						"If you delete these tags, the association with {0} {1} will be lost.",
-						tags.Length),
+						tags.Count ()),
 					associated_photos, photodesc);
 			}
-			string ok_caption = Catalog.GetPluralString ("_Delete tag", "_Delete tags", tags.Length);
+			string ok_caption = Catalog.GetPluralString ("_Delete tag", "_Delete tags", tags.Count ());
 
 			if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation (main_window,
-				    DialogFlags.DestroyWithParent,
-				    MessageType.Warning,
-				    header,
-				    msg,
-				    ok_caption)) {
+					DialogFlags.DestroyWithParent,
+					MessageType.Warning,
+					header,
+					msg,
+					ok_caption)) {
 				try {
-					db.Photos.Remove (tags);
+					photoStore.Remove (tags);
 				} catch (InvalidTagOperationException e) {
 					Log.Debug ("this is something or another");
 
 					// A Category is not empty. Can not delete it.
 					string error_msg = Catalog.GetString ("Tag is not empty");
 					string error_desc = string.Format (Catalog.GetString ("Can not delete tags that have tags within them.  " +
-					                    "Please delete tags under \"{0}\" first"),
-						                    e.Tag.Name.Replace ("_", "__"));
+										"Please delete tags under \"{0}\" first"),
+											e.Tag.Name.Replace ("_", "__"));
 
 					HigMessageDialog md = new HigMessageDialog (main_window, DialogFlags.DestroyWithParent,
-						                      Gtk.MessageType.Error, ButtonsType.Ok,
-						                      error_msg,
-						                      error_desc);
+											  Gtk.MessageType.Error, ButtonsType.Ok,
+											  error_msg,
+											  error_desc);
 					md.Run ();
 					md.Destroy ();
 				}
@@ -2240,10 +2177,10 @@ namespace FSpot
 
 		void HandleUpdateThumbnailCommand (object sender, EventArgs args)
 		{
-			ThumbnailCommand command = new ThumbnailCommand (main_window);
+			var command = new ThumbnailCommand (main_window);
 
 			int[] selected_ids = SelectedIds ();
-			if (command.Execute (SelectedPhotos (selected_ids)))
+			if (command.Execute (SelectedPhotos (selected_ids).ToArray ()))
 				query.MarkChanged (selected_ids, InvalidateData.Instance);
 		}
 
@@ -2289,11 +2226,11 @@ namespace FSpot
 
 			// use eager evaluation, because we want to copy the photos which are currently selected ...
 			var uris = new UriList (from p in SelectedPhotos ()
-			                                 select p.DefaultVersion.Uri);
+									select p.DefaultVersion.Uri);
 			var paths = string.Join (" ",
-				                     (from p in SelectedPhotos ()
-				                                  select p.DefaultVersion.Uri.LocalPath).ToArray ()
-			                     );
+									 (from p in SelectedPhotos ()
+									  select p.DefaultVersion.Uri.LocalPath).ToArray ()
+								 );
 
 			clipboard.SetWithData ((TargetEntry[])targetList, delegate (Clipboard clip, SelectionData data, uint info) {
 
@@ -2406,7 +2343,7 @@ namespace FSpot
 			case Preferences.MainWindowWidth:
 			case Preferences.MainWindowHeight:
 				if (Preferences.Get<int> (Preferences.MainWindowWidth) > 0 &&
-				    Preferences.Get<int> (Preferences.MainWindowHeight) > 0)
+					Preferences.Get<int> (Preferences.MainWindowHeight) > 0)
 					main_window.Resize (Preferences.Get<int> (Preferences.MainWindowWidth),
 						Preferences.Get<int> (Preferences.MainWindowHeight));
 
@@ -2441,7 +2378,7 @@ namespace FSpot
 			case Preferences.ShowDates:
 				if (display_dates_menu_item.Active != Preferences.Get<bool> (key))
 					display_dates_menu_item.Active = Preferences.Get<bool> (key);
-					//display_dates_menu_item.Toggle ();
+				//display_dates_menu_item.Toggle ();
 				break;
 
 			case Preferences.ShowRatings:
@@ -2585,7 +2522,7 @@ namespace FSpot
 			// account for All and separator menu items
 			item_pos -= 2;
 
-			Term parent_term = LogicWidget.Root.SubTerms [item_pos];
+			Term parent_term = LogicWidget.Root.SubTerms[item_pos];
 
 			if (LogicWidget.Box != null) {
 				Literal after = parent_term.Last as Literal;
@@ -2681,7 +2618,7 @@ namespace FSpot
 					rl_button.Sensitive = true;
 
 					string msg = Catalog.GetPluralString ("Rotate selected photo left",
-						             "Rotate selected photos left", Selection.Count);
+									 "Rotate selected photos left", Selection.Count);
 					rl_button.TooltipText = string.Format (msg, Selection.Count);
 				}
 			}
@@ -2694,7 +2631,7 @@ namespace FSpot
 					rr_button.Sensitive = true;
 
 					string msg = Catalog.GetPluralString ("Rotate selected photo right",
-						             "Rotate selected photos right", Selection.Count);
+									 "Rotate selected photos right", Selection.Count);
 					rr_button.TooltipText = string.Format (msg, Selection.Count);
 				}
 			}
@@ -2845,6 +2782,7 @@ namespace FSpot
 		{
 			if (!tagbar.Visible)
 				return;
+
 			tag_entry.UpdateFromSelection (SelectedPhotos ());
 		}
 
@@ -2879,27 +2817,25 @@ namespace FSpot
 			if (selected_photos == null || new_tags == null || new_tags.Length == 0)
 				return;
 
-			Category default_category = null;
-			Tag[] selection = tag_selection_widget.TagHighlight;
-			if (selection.Length > 0) {
-				if (selection [0] is Category)
-					default_category = (Category)selection [0];
+			Tag default_category = null;
+			var selection = tag_selection_widget.TagHighlight;
+			if (selection.Any()) {
+				if (selection.First ().IsCategory)
+					default_category = selection.First ();
 				else
-					default_category = selection [0].Category;
+					default_category = selection.First ().Category;
 			}
-			Tag[] tags = new Tag [new_tags.Length];
+			var tags = new Tag[new_tags.Length];
 			int i = 0;
-			Database.BeginTransaction ();
 			foreach (string tagname in new_tags) {
 				Tag t = Database.Tags.GetTagByName (tagname);
 				if (t == null) {
-					t = Database.Tags.CreateCategory (default_category, tagname, true);
+					t = Database.Tags.CreateTag (default_category, tagname, true, true);
 					Database.Tags.Commit (t);
 				}
-				tags [i++] = t;
+				tags[i++] = t;
 			}
 			AddTagExtended (selected_photos, tags);
-			Database.CommitTransaction ();
 		}
 
 		void HandleTagEntryRemoveTags (object o, Tag[] remove_tags)
@@ -2908,9 +2844,7 @@ namespace FSpot
 			if (selected_photos == null || remove_tags == null || remove_tags.Length == 0)
 				return;
 
-			Database.BeginTransaction ();
 			RemoveTags (selected_photos, remove_tags);
-			Database.CommitTransaction ();
 		}
 
 		void HideTagbar ()

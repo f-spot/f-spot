@@ -32,6 +32,8 @@
 using System;
 using System.Collections.Generic;
 
+using FSpot.Models;
+
 namespace FSpot.Core
 {
 	public class Category : Tag
@@ -48,6 +50,11 @@ namespace FSpot.Core
 				children = new List<Tag> (value);
 				children_need_sort = true;
 			}
+		}
+
+		public Category (Category category, Guid id, string name) : base (category, id, name)
+		{
+			children = new List<Tag> ();
 		}
 
 		// Appends all of this categories descendents to the list
@@ -80,23 +87,5 @@ namespace FSpot.Core
 			children_need_sort = true;
 		}
 
-		public Category (Category category, uint id, string name)
-			: base (category, id, name)
-		{
-			children = new List<Tag> ();
-		}
-
-		protected override void Dispose(bool disposing)
-		{
-			if (disposing) {
-				// free managed resources
-				foreach (Tag tag in children) {
-					tag.Dispose ();
-				}
-			}
-			// free unmanaged resources
-
-			base.Dispose (disposing);
-		}
 	}
 }

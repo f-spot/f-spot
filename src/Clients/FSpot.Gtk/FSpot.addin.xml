@@ -7,6 +7,7 @@
 	<Runtime>
 		<Import assembly="f-spot.exe" />
 		<Import assembly="FSpot.dll" />
+		<Import assembly="FSpot.Cms.dll" />
 	</Runtime>
 
 	<ExtensionPoint path = "/FSpot/Editors">
@@ -61,8 +62,8 @@
 	<Extension path = "/FSpot/Sidebar">
 <!-- FIXME: Disabled until ported		<SidebarPage sidebarPageType = "FSpot.Widgets.MetadataDisplayPage" /> -->
 		<Condition id="ViewMode" mode="library">
-			<SidebarPage sidebarPageType = "FSpot.Widgets.EditorPage" />
-			<SidebarPage sidebarPageType = "FSpot.Widgets.FolderTreePage" />
+			<SidebarPage SidebarPageType = "FSpot.Widgets.EditorPage" />
+			<SidebarPage SidebarPageType = "FSpot.Widgets.FolderTreePage" />
 		</Condition>
 	</Extension>
 

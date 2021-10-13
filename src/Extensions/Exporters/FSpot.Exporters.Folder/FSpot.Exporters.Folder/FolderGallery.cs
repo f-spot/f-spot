@@ -63,6 +63,7 @@ using FSpot.Database;
 using FSpot.Filters;
 using FSpot.Settings;
 using FSpot.Utils;
+using FSpot.Models;
 
 namespace FSpot.Exporters.Folder
 {

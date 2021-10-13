@@ -19,6 +19,8 @@ using System.Threading;
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.FileSystem;
+using FSpot.Models;
+using FSpot.Services;
 using FSpot.Settings;
 using FSpot.Thumbnail;
 using FSpot.Utils;
@@ -27,28 +29,20 @@ using Hyena;
 
 namespace FSpot.Import
 {
-	class ImportController : IImportController
+	internal class ImportController : IImportController
 	{
-		#region fields
-
 		readonly IFileSystem fileSystem;
 		readonly IThumbnailLoader thumbnailLoader;
 
 		PhotoFileTracker photo_file_tracker;
 		MetadataImporter metadata_importer;
 		Stack<SafeUri> created_directories;
-		List<uint> imported_photos;
-		List<SafeUri> failedImports = new List<SafeUri> ();
+		List<Guid> imported_photos;
+		readonly List<SafeUri> failedImports = new List<SafeUri> ();
 		Roll createdRoll;
-
-		#endregion
-
-		#region props
 
 		public IEnumerable<SafeUri> FailedImports { get { return failedImports.AsEnumerable(); } }
 		public int PhotosImported { get { return imported_photos.Count; } }
-
-		#endregion
 
 		public ImportController (IFileSystem fileSystem, IThumbnailLoader thumbnailLoader)
 		{
@@ -58,13 +52,13 @@ namespace FSpot.Import
 
 		public void DoImport (IDb db, IBrowsableCollection photos, IList<Tag> tagsToAttach, ImportPreferences preferences, IProgress<int> progress, CancellationToken token)
 		{
-			db.Sync = false;
+			//db.Sync = false;
 			created_directories = new Stack<SafeUri> ();
-			imported_photos = new List<uint> ();
+			imported_photos = new List<Guid> ();
 			photo_file_tracker = new PhotoFileTracker (fileSystem);
 			metadata_importer = new MetadataImporter (db.Tags);
 
-			createdRoll = db.Rolls.Create ();
+			createdRoll = new RollStore ().Create ();
 
 			fileSystem.Directory.CreateDirectory (FSpotConfiguration.PhotoUri);
 
@@ -80,7 +74,7 @@ namespace FSpot.Import
 					try {
 						ImportPhoto (db, info, createdRoll, tagsToAttach, preferences.DuplicateDetect, preferences.CopyFiles);
 					} catch (Exception e) {
-						Log.DebugFormat ("Failed to import {0}", info.DefaultVersion.Uri);
+						Log.Debug ($"Failed to import {info.DefaultVersion.Uri}");
 						Log.DebugException (e);
 						failedImports.Add (info.DefaultVersion.Uri);
 					}
@@ -97,9 +91,9 @@ namespace FSpot.Import
 
 		#region private
 
-		void ImportPhoto (IDb db, IPhoto item, DbItem roll, IList<Tag> tagsToAttach, bool duplicateDetect, bool copyFiles)
+		void ImportPhoto (IDb db, IPhoto item, Roll roll, IList<Tag> tagsToAttach, bool duplicateDetect, bool copyFiles)
 		{
-			if (item is IInvalidPhotoCheck && (item as IInvalidPhotoCheck).IsInvalid) {
+			if (item is IInvalidPhotoCheck check && check.IsInvalid) {
 				throw new Exception ("Failed to parse metadata, probably not a photo");
 			}
 
@@ -118,18 +112,18 @@ namespace FSpot.Import
 			// Import photo
 			var photo = db.Photos.CreateFrom (item, false, roll.Id);
 
-			bool needs_commit = false;
+			bool needsCommit = false;
 
 			// Add tags
 			if (tagsToAttach.Count > 0) {
-				photo.AddTag (tagsToAttach);
-				needs_commit = true;
+				TagService.Instance.Add (photo, tagsToAttach);
+				needsCommit = true;
 			}
 
 			// Import XMP metadata
-			needs_commit |= metadata_importer.Import (photo, item);
+			needsCommit |= metadata_importer.Import (photo, item);
 
-			if (needs_commit) {
+			if (needsCommit) {
 				db.Photos.Commit (photo);
 			}
 
@@ -156,7 +150,7 @@ namespace FSpot.Import
 				try {
 					fileSystem.Directory.Delete (uri);
 				} catch (Exception e) {
-					Log.WarningFormat ("Failed to clean up directory '{0}': {1}", uri, e.Message);
+					Log.Warning ($"Failed to clean up directory '{uri}': {e.Message}");
 				}
 			}
 
@@ -171,32 +165,32 @@ namespace FSpot.Import
 		{
 			if (imported_photos != null && imported_photos.Count == 0)
 				db.Rolls.Remove (createdRoll);
+
 			//FIXME: we are cleaning a cache that is never used, that smells...
-			Photo.ResetMD5Cache ();
+			//Photo.ResetMD5Cache ();
 			GC.Collect ();
-			db.Sync = true;
 		}
 
 		void FinishImport (bool removeOriginals)
 		{
-			if (removeOriginals) {
+			if (!removeOriginals) return;
+
 				foreach (var uri in photo_file_tracker.OriginalFiles) {
 					try {
 						fileSystem.File.Delete (uri);
 					} catch (Exception e) {
-						Log.WarningFormat ("Failed to remove original file '{0}': {1}", uri, e.Message);
-					}
+					Log.Warning ($"Failed to remove original file '{uri}': {e.Message}");
 				}
 			}
 		}
 
 		internal static SafeUri FindImportDestination (IPhoto item, SafeUri baseUri)
 		{
-			DateTime time = item.Time;
+			DateTime time = item.UtcTime;
 			return baseUri
 				.Append (time.Year.ToString ())
-				.Append (string.Format ("{0:D2}", time.Month))
-				.Append (string.Format ("{0:D2}", time.Day));
+				.Append ($"{time.Month:D2}")
+				.Append ($"{time.Day:D2}");
 		}
 
 		#endregion

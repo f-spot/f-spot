@@ -34,11 +34,11 @@ namespace FSpot.Extensions
 	public class SidebarPageNode : ExtensionNode
 	{
 		[NodeAttribute (Required=true)]
-		protected string sidebarPageType;
+		protected string SidebarPageType;
 
 		public SidebarPage GetPage ()
 		{
-			return (SidebarPage) Addin.CreateInstance (sidebarPageType);
+			return (SidebarPage) Addin.CreateInstance (SidebarPageType);
 		}
 	}
 }
