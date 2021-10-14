@@ -6,8 +6,6 @@
 
 using Hyena;
 
-//using Hyena;
-
 //using FSpot.Imaging;
 //using FSpot.Thumbnail;
 

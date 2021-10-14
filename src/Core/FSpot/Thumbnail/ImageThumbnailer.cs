@@ -1,4 +1,4 @@
-﻿//
+//
 // ImageThumbnailer.cs
 //
 // Author:
@@ -30,24 +30,21 @@
 //
 
 using System;
+
 using FSpot.FileSystem;
 using FSpot.Imaging;
+
 using Gdk;
+
 using Hyena;
 
 namespace FSpot.Thumbnail
 {
 	class ImageThumbnailer : IThumbnailer
 	{
-		#region fields
-
 		readonly SafeUri fileUri;
 		readonly IImageFileFactory factory;
 		readonly IFileSystem fileSystem;
-
-		#endregion
-
-		#region ctors
 
 		public ImageThumbnailer (SafeUri fileUri, IImageFileFactory factory, IFileSystem fileSystem)
 		{
@@ -55,10 +52,6 @@ namespace FSpot.Thumbnail
 			this.factory = factory;
 			this.fileSystem = fileSystem;
 		}
-
-		#endregion
-
-		#region IThumbnailer implementation
 
 		public bool TryCreateThumbnail (SafeUri thumbnailUri, ThumbnailSize size)
 		{
@@ -71,10 +64,6 @@ namespace FSpot.Thumbnail
 			}
 		}
 
-		#endregion
-
-		#region private implementation
-
 		bool CreateThumbnail (SafeUri thumbnailUri, ThumbnailSize size, IImageFile imageFile)
 		{
 			var pixels = size == ThumbnailSize.Normal ? 128 : 256;
@@ -82,8 +71,7 @@ namespace FSpot.Thumbnail
 			try {
 				pixbuf = imageFile.Load ();
 			} catch (Exception e) {
-				Log.DebugFormat ("Failed loading image for thumbnailing: {0}", imageFile.Uri);
-				Log.DebugException (e);
+				Logger.Log.Debug (e, $"Failed loading image for thumbnailing: {imageFile.Uri}");
 				return false;
 			}
 
@@ -106,7 +94,5 @@ namespace FSpot.Thumbnail
 
 			return true;
 		}
-
-		#endregion
 	}
 }
