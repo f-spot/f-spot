@@ -105,3 +105,6 @@ I like to do `~/staging`
 This will build a couple tools in ./build that are needed to build the projects in ./lib.
 
 Once these two directories are built you can now open <IDE> and build and run f-spot from there.
+	
+![Alt](https://repobeats.axiom.co/api/embed/fade091fb5fad392ab9b7997918d611c788fabee.svg "Repobeats analytics image")
+
