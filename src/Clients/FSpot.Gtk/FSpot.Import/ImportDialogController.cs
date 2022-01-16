@@ -14,6 +14,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading;
 
 using FSpot.Core;
@@ -54,7 +55,7 @@ namespace FSpot.Import
 			//var monitor = GLib.VolumeMonitor.Default;
 			var sources = new List<ImportSource> ();
 
-			foreach (var drive in DriveInfo.GetDrives ()) {
+			foreach (var drive in DriveInfo.GetDrives ().Where (x => x.IsReady)) {
 				var root = new SafeUri (drive.RootDirectory.FullName);
 				var label = !string.IsNullOrEmpty (drive.VolumeLabel) ? drive.VolumeLabel : "Local Disk";
 				sources.Add (new ImportSource (root, $"{label} ({drive.Name})", null));
