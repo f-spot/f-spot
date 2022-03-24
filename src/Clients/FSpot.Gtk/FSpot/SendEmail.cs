@@ -34,6 +34,7 @@
 //
 
 using System;
+using System.Web;
 
 using FSpot.Core;
 using FSpot.FileSystem;
@@ -333,7 +334,7 @@ namespace FSpot
 				GtkBeans.Global.ShowUri (Screen, "mailto:?subject=" + mail_subject + mail_attach);
 				break;
 			default:
-				GtkBeans.Global.ShowUri (Screen, "mailto:?subject=" + System.Web.HttpUtility.UrlEncode (mail_subject) + mail_attach);
+				GtkBeans.Global.ShowUri (Screen, "mailto:?subject=" + HttpUtility.UrlEncode (mail_subject) + mail_attach);
 				break;
 			}
 		}
