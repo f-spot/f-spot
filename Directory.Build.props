@@ -17,6 +17,7 @@
     <Deterministic>true</Deterministic>
     <!-- Lots of warning this'll be a long slow process -->
     <!-- <Nullable>enable</Nullable> -->
+    <NoWarn>NU1507</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup>
