@@ -10,12 +10,18 @@
 
   <PropertyGroup>
     <FSpotTargetFramework>net472</FSpotTargetFramework>
+    <NetStandard>netstandard2.0</NetStandard>
     <LangVersion>latest</LangVersion>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <Deterministic>true</Deterministic>
     <!-- Lots of warning this'll be a long slow process -->
     <!-- <Nullable>enable</Nullable> -->
+    <NoWarn>NU1507</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -33,17 +39,10 @@
     <Copyright>Copyright (C) 2003-2012 Novell Inc. and others</Copyright>
   </PropertyGroup>
 
+  <!-- Common nugets -->
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="$(NetAnalyzersVersion)">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Threading" Version="$(VisualStudioThreadingVersion)" />
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" />
+    <PackageReference Include="Microsoft.VisualStudio.Threading" />
   </ItemGroup>
 
-  <!-- Package versions -->
-  <PropertyGroup>
-    <NetAnalyzersVersion>5.0.3</NetAnalyzersVersion>
-    <VisualStudioThreadingVersion>17.0.63</VisualStudioThreadingVersion>
-  </PropertyGroup>
 </Project>
