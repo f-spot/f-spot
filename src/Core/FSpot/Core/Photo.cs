@@ -36,10 +36,9 @@ using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 
-using Mono.Unix;
-
 using FSpot.Core;
 using FSpot.Imaging;
+using FSpot.Resources.Lang;
 using FSpot.Settings;
 using FSpot.Thumbnail;
 using FSpot.Utils;
@@ -390,8 +389,7 @@ namespace FSpot
 				name = filename.Substring (parent_filename.Length).Replace ("(", "").Replace (")", "").Replace ("_", " "). Trim ();
 
 			if (string.IsNullOrEmpty (name)) {
-				// Note for translators: Reparented is a picture becoming a version of another one
-				string rep = name = Catalog.GetString ("Reparented");
+				string rep = name = Strings.Reparented;
 				for (int num = 1; VersionNameExists (name); num++) {
 					name = $"rep +  ({num})";
 				}
@@ -410,7 +408,7 @@ namespace FSpot
 			int num = 1;
 
 			while (true) {
-				string name = Catalog.GetPluralString ("Modified", "Modified ({0})", num);
+				string name = num <= 1 ? Strings.Modified : Strings.ModifiedX;
 				name = string.Format (name, num);
 				//SafeUri uri = GetUriForVersionName (name, System.IO.Path.GetExtension (VersionUri(baseVersionId).GetFilename()));
 				string filename = GetFilenameForVersionName (name, System.IO.Path.GetExtension (versions [baseVersionId].Filename));
@@ -428,8 +426,7 @@ namespace FSpot
 			int num = 1;
 
 			while (true) {
-				var final_name = string.Format (
-					(num == 1) ? Catalog.GetString ("Modified in {1}") : Catalog.GetString ("Modified in {1} ({0})"), num, name);
+				var final_name = string.Format ((num == 1) ? Strings.ModifiedInY : Strings.ModifiedInYX, num, name);
 
 				string filename = GetFilenameForVersionName (name, System.IO.Path.GetExtension (versions [baseVersionId].Filename));
 				SafeUri uri = DefaultVersion.BaseUri.Append (filename);

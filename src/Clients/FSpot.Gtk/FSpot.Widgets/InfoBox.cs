@@ -37,14 +37,11 @@ using System.Collections.Generic;
 using FSpot.Core;
 using FSpot.FileSystem;
 using FSpot.Imaging;
+using FSpot.Resources.Lang;
 using FSpot.Settings;
 using FSpot.Utils;
 
 using Gtk;
-
-using Mono.Unix;
-
-
 
 // FIXME TODO: We want to use something like EClippedLabel here throughout so it handles small sizes
 // gracefully using ellipsis.
@@ -140,7 +137,7 @@ namespace FSpot.Widgets
 				if (metadata != null)
 					(widget as Label).Text = single_string (photo, metadata);
 				else
-					(widget as Label).Text = Catalog.GetString ("(Unknown)");
+					(widget as Label).Text = Strings.ParenUnknownParen;
 			};
 
 			Action<Widget, IPhoto[]> set_multiple = (widget, photos) => {
@@ -317,7 +314,7 @@ namespace FSpot.Widgets
 
 		void SetupWidgets ()
 		{
-			histogram_expander = new Expander (Catalog.GetString ("Histogram"));
+			histogram_expander = new Expander (Strings.Histogram);
 			histogram_expander.Activated += (s, e) => {
 				ContextSwitchStrategy.SetHistogramVisible (Context, histogram_expander.Expanded);
 				UpdateHistogram ();
@@ -338,7 +335,7 @@ namespace FSpot.Widgets
 
 			Add (histogram_expander);
 
-			info_expander = new Expander (Catalog.GetString ("Image Information"));
+			info_expander = new Expander (Strings.ImageInformation);
 			info_expander.Activated += (s, e) => {
 				ContextSwitchStrategy.SetInfoBoxVisible (Context, info_expander.Expanded);
 			};
@@ -346,9 +343,9 @@ namespace FSpot.Widgets
 			info_table = new Table (head_rows, 2, false) { BorderWidth = 0 };
 
 			AddLabelEntry (null, null, null, null,
-						   photos => { return string.Format (Catalog.GetString ("{0} Photos"), photos.Length); });
+						   photos => { return string.Format (Strings.XPhotos, photos.Length); });
 
-			AddLabelEntry (null, Catalog.GetString ("Name"), null,
+			AddLabelEntry (null, Strings.Name, null,
 						   (photo, file) => { return photo.Name ?? string.Empty; }, null);
 
 			version_list = new ListStore (typeof (IPhotoVersion), typeof (string), typeof (bool));
@@ -361,7 +358,7 @@ namespace FSpot.Widgets
 			version_combo.Model = version_list;
 			version_combo.Changed += OnVersionComboChanged;
 
-			AddEntry (null, Catalog.GetString ("Version"), null, version_combo, 0.5f,
+			AddEntry (null, Strings.Version, null, version_combo, 0.5f,
 					  (widget, photo, file) => {
 						  version_list.Clear ();
 						  version_combo.Changed -= OnVersionComboChanged;
@@ -376,17 +373,16 @@ namespace FSpot.Widgets
 
 						  if (count <= 1) {
 							  version_combo.Sensitive = false;
-							  version_combo.TooltipText = Catalog.GetString ("(No Edits)");
+							  version_combo.TooltipText = Strings.ParenNoEditsParen;
 						  } else {
 							  version_combo.Sensitive = true;
 							  version_combo.TooltipText =
-								  string.Format (Catalog.GetPluralString ("(One Edit)", "({0} Edits)", count - 1),
-												 count - 1);
+								  string.Format (count - 1 <= 1 ? Strings.ParenOneEditParen : Strings.ParenXEditsParen, count - 1);
 						  }
 						  version_combo.Changed += OnVersionComboChanged;
 					  }, null);
 
-			AddLabelEntry ("date", Catalog.GetString ("Date"), Catalog.GetString ("Show Date"),
+			AddLabelEntry ("date", Strings.Date, Strings.ShowDate,
 						   (photo, file) => {
 							   return $"{photo.Time.ToShortDateString ()}{Environment.NewLine}{photo.Time.ToShortTimeString ()}";
 						   },
@@ -395,18 +391,18 @@ namespace FSpot.Widgets
 							   IPhoto last = photos[0];
 							   if (first.Time.Date == last.Time.Date) {
 								   //Note for translators: {0} is a date, {1} and {2} are times.
-								   return string.Format (Catalog.GetString ("On {0} between \n{1} and {2}"),
+								   return string.Format (Strings.OnXBetweenYAndZ,
 														 first.Time.ToShortDateString (),
 														 first.Time.ToShortTimeString (),
 														 last.Time.ToShortTimeString ());
 							   } else {
-								   return string.Format (Catalog.GetString ("Between {0} \nand {1}"),
+								   return string.Format (Strings.BetweenXAndY,
 														 first.Time.ToShortDateString (),
 														 last.Time.ToShortDateString ());
 							   }
 						   });
 
-			AddLabelEntry ("size", Catalog.GetString ("Size"), Catalog.GetString ("Show Size"),
+			AddLabelEntry ("size", Strings.Size, Strings.ShowSize,
 						   (photo, metadata) => {
 							   int width = 0;
 							   int height = 0;
@@ -418,10 +414,10 @@ namespace FSpot.Widgets
 							   if (width != 0 && height != 0)
 								   return $"{width}x{height}";
 
-							   return Catalog.GetString ("(Unknown)");
+							   return Strings.ParenUnknownParen;
 						   }, null);
 
-			AddLabelEntry ("exposure", Catalog.GetString ("Exposure"), Catalog.GetString ("Show Exposure"),
+			AddLabelEntry ("exposure", Strings.Exposure, Strings.ShowExposure,
 						   (photo, metadata) => {
 							   var fnumber = metadata.ImageTag.FNumber;
 							   var exposure_time = metadata.ImageTag.ExposureTime;
@@ -451,43 +447,43 @@ namespace FSpot.Widgets
 
 								   if (flash.HasValue) {
 									   if ((flash.Value & 0x01) == 0x01)
-										   info += $", {Catalog.GetString ("flash fired")}";
+										   info += $", {Strings.Flashfired}";
 									   else
-										   info += $", {Catalog.GetString ("flash didn't fire")}";
+										   info += $", {Strings.FlashDidntFire}";
 								   }
 							   }
 
 							   if (string.IsNullOrEmpty (info))
-								   return Catalog.GetString ("(None)");
+								   return Strings.ParenNoneParen;
 
 							   return info;
 						   }, null);
 
-			AddLabelEntry ("focal_length", Catalog.GetString ("Focal Length"), Catalog.GetString ("Show Focal Length"),
+			AddLabelEntry ("focal_length", Strings.FocalLength, Strings.ShowFocalLength,
 						   false, (photo, metadata) => {
 							   var focal_length = metadata.ImageTag.FocalLength;
 
 							   if (focal_length == null)
-								   return Catalog.GetString ("(Unknown)");
+								   return Strings.ParenUnknownParen;
 
 							   return $"{focal_length.Value} mm";
 						   }, null);
 
-			AddLabelEntry ("camera", Catalog.GetString ("Camera"), Catalog.GetString ("Show Camera"), false,
-						   (photo, metadata) => { return metadata.ImageTag.Model ?? Catalog.GetString ("(Unknown)"); },
+			AddLabelEntry ("camera", Strings.Camera, Strings.ShowCamera, false,
+						   (photo, metadata) => { return metadata.ImageTag.Model ?? Strings.ParenUnknownParen; },
 						   null);
 
-			AddLabelEntry ("creator", Catalog.GetString ("Creator"), Catalog.GetString ("Show Creator"),
-						   (photo, metadata) => { return metadata.ImageTag.Creator ?? Catalog.GetString ("(Unknown)"); },
+			AddLabelEntry ("creator", Strings.Creator, Strings.ShowCreator,
+						   (photo, metadata) => { return metadata.ImageTag.Creator ?? Strings.ParenUnknownParen; },
 						   null);
 
-			AddLabelEntry ("file_size", Catalog.GetString ("File Size"), Catalog.GetString ("Show File Size"), false,
+			AddLabelEntry ("file_size", Strings.FileSize, Strings.ShowFileSize, false,
 						   (photo, metadata) => {
 							   try {
 								   return new DotNetFile ().GetSize (photo.DefaultVersion.Uri).ToString ();
 							   } catch (Exception e) {
 								  Logger.Log.Debug (e, "");
-								   return Catalog.GetString ("(File read error)");
+								   return Strings.ParenFileReadErrorParen;
 							   }
 						   }, null);
 
@@ -495,11 +491,11 @@ namespace FSpot.Widgets
 			rating_entry.Changed += HandleRatingChanged;
 			var rating_align = new Gtk.Alignment (0, 0, 0, 0);
 			rating_align.Add (rating_entry);
-			AddEntry ("rating", Catalog.GetString ("Rating"), Catalog.GetString ("Show Rating"), rating_align, false,
+			AddEntry ("rating", Strings.Rating, Strings.ShowRating, rating_align, false,
 					  (widget, photo, metadata) => { ((widget as Alignment).Child as RatingEntry).Value = (int)photo.Rating; },
 					  null);
 
-			AddEntry ("tag", null, Catalog.GetString ("Show Tags"), new TagView (), false,
+			AddEntry ("tag", null, Strings.ShowTags, new TagView (), false,
 					  (widget, photo, metadata) => { (widget as TagView).Current = photo; }, null);
 
 			UpdateTable ();

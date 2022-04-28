@@ -26,12 +26,10 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-
 namespace Hyena.Query
 {
-    // A query value that requires the string match exactly
-    public class ExactStringQueryValue : StringQueryValue
+	// A query value that requires the string match exactly
+	public class ExactStringQueryValue : StringQueryValue
     {
         public override string ToSql (Operator op)
         {

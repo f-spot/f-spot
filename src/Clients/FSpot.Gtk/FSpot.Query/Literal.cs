@@ -38,12 +38,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-using Mono.Unix;
-
 using Gtk;
 using Gdk;
 
 using FSpot.Core;
+using FSpot.Resources.Lang;
 
 namespace FSpot.Query
 {
@@ -218,7 +217,7 @@ namespace FSpot.Query
 			normal_icon = null;
 			negated_icon = null;
 			if (IsNegated) {
-				widget.TooltipText = string.Format (Catalog.GetString ("Not {0}"), Tag.Name);
+				widget.TooltipText = string.Format (Strings.NotSpaceX, Tag.Name);
 				label.Text = "<s>" + System.Web.HttpUtility.HtmlEncode (Tag.Name) + "</s>";
 				image.Pixbuf = NegatedIcon;
 			} else {

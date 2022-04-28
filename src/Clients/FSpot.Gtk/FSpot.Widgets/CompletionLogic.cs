@@ -31,9 +31,8 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using FSpot.Resources.Lang;
 using FSpot.Utils;
-
-using Mono.Unix;
 
 namespace FSpot.Widgets
 {
@@ -43,8 +42,8 @@ namespace FSpot.Widgets
 		string transformed_key = string.Empty;
 		int start = 0;
 
-		static string or_op = " " + Catalog.GetString ("or") + " ";
-		static string and_op = " " + Catalog.GetString ("and") + " ";
+		static string or_op = $" {Strings.Or} ";
+		static string and_op = $" {Strings.And} ";
 
 		static int or_op_len = or_op.Length;
 		static int and_op_len = and_op.Length;

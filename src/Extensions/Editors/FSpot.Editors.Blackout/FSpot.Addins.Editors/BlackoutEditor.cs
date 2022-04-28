@@ -28,17 +28,16 @@
 //
 
 using FSpot.Editors;
+using FSpot.Resources.Lang;
 
 using Gdk;
 using Gtk;
-
-using Mono.Unix;
 
 namespace FSpot.Addins.Editors
 {
 	class BlackoutEditor : Editor
 	{
-		public BlackoutEditor () : base (Catalog.GetString ("Blackout"), null) {
+		public BlackoutEditor () : base (Strings.Blackout, null) {
 			CanHandleMultiple = false;
 			NeedsSelection = true;
 		}
@@ -46,7 +45,7 @@ namespace FSpot.Addins.Editors
 		public override Widget ConfigurationWidget () {
 			VBox vbox = new VBox ();
 
-			Label info = new Label (Catalog.GetString ("Select the area that you want blacked out."));
+			Label info = new Label (Strings.SelectTheAreaThatYouWantBlackedOut);
 
 			vbox.Add (info);
 

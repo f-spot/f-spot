@@ -31,9 +31,8 @@
 
 using Gtk;
 
-using Mono.Unix;
-
 using FSpot.Extensions;
+using FSpot.Resources.Lang;
 
 namespace FSpot.Widgets
 {
@@ -42,7 +41,7 @@ namespace FSpot.Widgets
 		readonly FolderTreeView folder_tree_widget;
 
 		public FolderTreePage ()
-			: base (new ScrolledWindow (), Catalog.GetString ("Folders"), "gtk-directory")
+			: base (new ScrolledWindow (), Strings.Folders, "gtk-directory")
 		{
 			var scrolled_window = SidebarWidget as ScrolledWindow;
 			folder_tree_widget = new FolderTreeView ();

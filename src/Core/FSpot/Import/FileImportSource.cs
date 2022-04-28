@@ -16,10 +16,9 @@ using System.Collections.Generic;
 
 using FSpot.FileSystem;
 using FSpot.Imaging;
+using FSpot.Resources.Lang;
 
 using Hyena;
-
-using Mono.Unix;
 
 namespace FSpot.Import
 {
@@ -83,10 +82,10 @@ namespace FSpot.Import
 
 				FileImportInfo info;
 				if (version == null) {
-					info = new FileImportInfo (original, Catalog.GetString ("Original"));
+					info = new FileImportInfo (original, Strings.Original);
 				} else {
-					info = new FileImportInfo (original, Catalog.GetString ("Original RAW"));
-					info.AddVersion (version, Catalog.GetString ("Original JPEG"));
+					info = new FileImportInfo (original, Strings.OriginalRaw);
+					info.AddVersion (version, Strings.OriginalJpeg);
 				}
 
 				yield return info;

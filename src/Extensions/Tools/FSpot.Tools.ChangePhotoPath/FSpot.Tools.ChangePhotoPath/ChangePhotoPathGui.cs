@@ -40,7 +40,6 @@ using System;
 
 using FSpot.Extensions;
 using FSpot.UI.Dialog;
-//using Gnome.Vfs;
 
 using Hyena.Widgets;
 

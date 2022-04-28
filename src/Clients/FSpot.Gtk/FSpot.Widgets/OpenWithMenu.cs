@@ -32,9 +32,9 @@
 using System;
 using System.Collections.Generic;
 
-using Gtk;
+using FSpot.Resources.Lang;
 
-using Mono.Unix;
+using Gtk;
 
 namespace FSpot.Widgets
 {
@@ -80,7 +80,7 @@ namespace FSpot.Widgets
 			//}
 
 			if (Children.Length == 0) {
-				var none = new Gtk.MenuItem (Catalog.GetString ("No applications available"));
+				var none = new Gtk.MenuItem (Strings.NoApplicationsAvailable);
 				none.Sensitive = false;
 				Append (none);
 			}

@@ -28,14 +28,15 @@
 //
 
 using FSpot.ColorAdjustment;
+using FSpot.Resources.Lang;
 
 using Gdk;
 
-using Mono.Unix;
-
-namespace FSpot.Editors {
-    class DesaturateEditor : Editor {
-        public DesaturateEditor () : base (Catalog.GetString ("Desaturate"), "color-desaturate") {
+namespace FSpot.Editors
+{
+    class DesaturateEditor : Editor
+	{
+        public DesaturateEditor () : base (Strings.Desaturate, "color-desaturate") {
 			// FIXME: need tooltip Catalog.GetString ("Convert the photo to black and white")
 			CanHandleMultiple = true;
         }

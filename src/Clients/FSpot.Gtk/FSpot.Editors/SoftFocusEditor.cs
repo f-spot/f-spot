@@ -29,8 +29,6 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Mono.Unix;
-
 using Cairo;
 
 using Gdk;
@@ -39,6 +37,7 @@ using Gtk;
 using FSpot.Widgets;
 
 using Pinta.Core;
+using FSpot.Resources.Lang;
 
 namespace FSpot.Editors
 {
@@ -48,7 +47,7 @@ namespace FSpot.Editors
 		double radius;
 		Scale scale;
 
-		public SoftFocusEditor () : base (Catalog.GetString ("Soft Focus"), "filter-soft-focus")
+		public SoftFocusEditor () : base (Strings.SoftFocus, "filter-soft-focus")
 		{
 			// FIXME: need tooltip Catalog.GetString ("Create a soft focus visual effect")
 			HasSettings = true;

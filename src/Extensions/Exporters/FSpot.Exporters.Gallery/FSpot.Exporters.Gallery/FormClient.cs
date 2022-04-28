@@ -38,9 +38,9 @@ using System.Net;
 using System.Text;
 using System.Web;
 
+using FSpot.Resources.Lang;
 using FSpot.Settings;
 
-using Mono.Unix;
 
 namespace FSpot.Exporters.Gallery
 {
@@ -318,7 +318,7 @@ namespace FSpot.Exporters.Gallery
 					return Submit (uri, progress_item);
 				}
 				
-				throw new WebException (Catalog.GetString ("Unhandled exception"), e);
+				throw new WebException (Strings.UnhandledException, e);
 			}
 	
 			return response;

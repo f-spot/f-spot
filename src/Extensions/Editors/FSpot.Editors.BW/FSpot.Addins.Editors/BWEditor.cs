@@ -31,11 +31,11 @@ using System;
 using System.Numerics;
 
 using FSpot.Editors;
+using FSpot.Resources.Lang;
 
-using Gtk;
 using Gdk;
 
-using Mono.Unix;
+using Gtk;
 
 using SerilogTimings;
 
@@ -43,10 +43,10 @@ namespace FSpot.Addins.Editors
 {
 	class BWEditor : Editor
 	{
-		public BWEditor () : base (Catalog.GetString ("Convert to B/W"), null) {
+		public BWEditor () : base (Strings.ConvertToBW, null) {
 			CanHandleMultiple = false;
 			HasSettings = true;
-			ApplyLabel = Catalog.GetString ("Apply");
+			ApplyLabel = Strings.Apply;
 		}
 
 		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile)

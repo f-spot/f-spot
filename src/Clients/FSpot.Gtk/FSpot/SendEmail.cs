@@ -39,6 +39,7 @@ using System.Web;
 using FSpot.Core;
 using FSpot.FileSystem;
 using FSpot.Filters;
+using FSpot.Resources.Lang;
 using FSpot.Settings;
 using FSpot.UI.Dialog;
 using FSpot.Widgets;
@@ -47,10 +48,6 @@ using Gtk;
 
 using Hyena;
 using Hyena.Widgets;
-
-using Mono.Unix;
-
-
 
 namespace FSpot
 {
@@ -235,7 +232,7 @@ namespace FSpot
 			}
 			ProgressDialog progress_dialog = null;
 
-			progress_dialog = new ProgressDialog (Catalog.GetString ("Preparing email"),
+			progress_dialog = new ProgressDialog (Strings.PreparingEmail,
 												ProgressDialog.CancelButtonType.Stop,
 												selection.Count,
 												parent_window);
@@ -278,8 +275,7 @@ namespace FSpot
 				if ((photo != null) && (!UserCancelled)) {
 
 					if (progress_dialog != null)
-						UserCancelled = progress_dialog.Update (string.Format
-							(Catalog.GetString ("Exporting picture \"{0}\""), photo.Name));
+						UserCancelled = progress_dialog.Update (string.Format (Strings.ExportingPhotoX, photo.Name));
 
 					if (UserCancelled)
 						break;
@@ -298,8 +294,8 @@ namespace FSpot
 												DialogFlags.DestroyWithParent,
 												MessageType.Error,
 												ButtonsType.Close,
-												Catalog.GetString ("Error processing image"),
-												string.Format (Catalog.GetString ("An error occurred while processing \"{0}\": {1}"), selection[i].Name, e.Message));
+												Strings.ErrorProcessingImage,
+												string.Format (Strings.AnErrorOccurredWhileProcessingXMessage, selection[i].Name, e.Message));
 						md.Run ();
 						md.Destroy ();
 						UserCancelled = true;
@@ -314,7 +310,7 @@ namespace FSpot
 				return;
 
 			// Send the mail :)
-			string mail_subject = Catalog.GetString ("My Photos");
+			string mail_subject = Strings.MyPhotos;
 			switch (Preferences.Get<string> (Preferences.MailToCommand)) {
 			// openSuSE
 			case "thunderbird %s":

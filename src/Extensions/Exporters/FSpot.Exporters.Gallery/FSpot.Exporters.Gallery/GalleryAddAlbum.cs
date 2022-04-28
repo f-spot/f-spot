@@ -29,7 +29,7 @@
 
 using System;
 
-using Mono.Unix;
+using FSpot.Resources.Lang;
 
 using Hyena.Widgets;
 
@@ -82,7 +82,7 @@ namespace FSpot.Exporters.Gallery
 		{
 			Gtk.Menu menu = new Gtk.Menu ();
 			if (gallery.Version == GalleryVersion.Version1) {
-				Gtk.MenuItem top_item = new Gtk.MenuItem (Catalog.GetString ("(TopLevel)"));
+				Gtk.MenuItem top_item = new Gtk.MenuItem (Strings.ParenTopLevelParen);
 				menu.Append (top_item);
 			}
 
@@ -134,8 +134,8 @@ namespace FSpot.Exporters.Gallery
 								      Gtk.DialogFlags.Modal |
 								      Gtk.DialogFlags.DestroyWithParent,
 								      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
-								      Catalog.GetString ("Invalid Gallery name"),
-								      Catalog.GetString ("The gallery name contains invalid characters.\nOnly letters, numbers, - and _ are allowed"));
+									  Strings.InvalidGalleryName,
+									  Strings.TheGalleryNameContainsInvalidCharactersOnlyLettersNumbersUnderscoreAllowed);
 					md.Run ();
 					md.Destroy ();
 					return;

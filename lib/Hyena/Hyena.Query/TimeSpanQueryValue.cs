@@ -31,7 +31,7 @@ using System.Globalization;
 using System.Xml;
 using System.Text.RegularExpressions;
 
-using Mono.Unix;
+using FSpot.Resources.Lang;
 
 namespace Hyena.Query
 {
@@ -171,14 +171,14 @@ namespace Hyena.Query
             int plural_count = StringUtil.DoubleToPluralInt (count);
             if (translate) {
                 switch (factor) {
-                    case TimeFactor.Second: result = Catalog.GetPluralString ("{0} second", "{0} seconds", plural_count); break;
-                    case TimeFactor.Minute: result = Catalog.GetPluralString ("{0} minute", "{0} minutes", plural_count); break;
-                    case TimeFactor.Hour:   result = Catalog.GetPluralString ("{0} hour",   "{0} hours", plural_count); break;
-                    case TimeFactor.Day:    result = Catalog.GetPluralString ("{0} day",    "{0} days", plural_count); break;
-                    case TimeFactor.Week:   result = Catalog.GetPluralString ("{0} week",   "{0} weeks", plural_count); break;
-                    case TimeFactor.Month:  result = Catalog.GetPluralString ("{0} month",  "{0} months", plural_count); break;
-                    case TimeFactor.Year:   result = Catalog.GetPluralString ("{0} year",   "{0} years", plural_count); break;
-                    default: return null;
+                    case TimeFactor.Second: result = plural_count == 1 ? Strings.XSecond : Strings.XSeconds; break;
+                    case TimeFactor.Minute: result = plural_count == 1 ? Strings.XMinute : Strings.XMinutes; break;
+                    case TimeFactor.Hour:   result = plural_count == 1 ? Strings.XHour   : Strings.XHours; break;
+                    case TimeFactor.Day:    result = plural_count == 1 ? Strings.XDay    : Strings.XDays; break;
+                    case TimeFactor.Week:   result = plural_count == 1 ? Strings.XWeek   : Strings.XWeeks; break;
+                    case TimeFactor.Month:  result = plural_count == 1 ? Strings.XMonth  : Strings.XMonths; break;
+                    case TimeFactor.Year:   result = plural_count == 1 ? Strings.XYear   : Strings.XYears; break;
+				default: return null;
                 }
             } else {
                 switch (factor) {

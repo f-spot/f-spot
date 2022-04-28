@@ -34,19 +34,17 @@
 using System;
 using System.IO;
 
-using Gtk;
-
 using FSpot.Core;
+using FSpot.Resources.Lang;
 using FSpot.Settings;
 using FSpot.Thumbnail;
 using FSpot.UI.Dialog;
 using FSpot.Utils;
 
+using Gtk;
+
 using Hyena;
 using Hyena.Widgets;
-
-using Mono.Unix;
-
 
 namespace FSpot
 {
@@ -101,7 +99,7 @@ namespace FSpot
 				App.Instance.Container.Resolve<IThumbnailService> ().DeleteThumbnails (uri);
 			} catch (Exception e) {
 				Logger.Log.Debug (e, "");
-				throw new RotateException (Catalog.GetString ("Unable to rotate this type of photo"), original_path);
+				throw new RotateException (Strings.UnableToRotateThisTypeOfPhoto, original_path);
 			}
 		}
 
@@ -117,7 +115,7 @@ namespace FSpot
 
 			var attrs = File.GetAttributes (item.DefaultVersion.Uri.AbsolutePath);
 			if (attrs.HasFlag (FileAttributes.ReadOnly))
-				throw new RotateException (Catalog.GetString ("Unable to rotate readonly file"), item.DefaultVersion.Uri, true);
+				throw new RotateException (Strings.UnableToRotateReadonlyFile, item.DefaultVersion.Uri, true);
 
 			Rotate (item.DefaultVersion.Uri, direction);
 
@@ -175,7 +173,7 @@ namespace FSpot
 			ProgressDialog progress_dialog = null;
 
 			if (items.Length > 1)
-				progress_dialog = new ProgressDialog (Catalog.GetString ("Rotating photos"),
+				progress_dialog = new ProgressDialog (Strings.RotatingPhotos,
 									  ProgressDialog.CancelButtonType.Stop,
 									  items.Length, parent_window);
 
@@ -186,7 +184,7 @@ namespace FSpot
 
 			while (!done) {
 				if (progress_dialog != null && op.Index != -1 && index < items.Length)
-					if (progress_dialog.Update (string.Format (Catalog.GetString ("Rotating photo \"{0}\""), op.Items [op.Index].Name)))
+					if (progress_dialog.Update (string.Format (Strings.RotatingPhotoX, op.Items [op.Index].Name)))
 						break;
 
 				try {
@@ -199,9 +197,9 @@ namespace FSpot
 				} catch (GLib.GException) {
 					readonly_count++;
 				} catch (DirectoryNotFoundException e) {
-					RunGenericError (e, op.Items [op.Index].DefaultVersion.Uri.LocalPath, Catalog.GetString ("Directory not found"));
+					RunGenericError (e, op.Items [op.Index].DefaultVersion.Uri.LocalPath, Strings.DirectoryNotFound);
 				} catch (FileNotFoundException e) {
-					RunGenericError (e, op.Items [op.Index].DefaultVersion.Uri.LocalPath, Catalog.GetString ("File not found"));
+					RunGenericError (e, op.Items [op.Index].DefaultVersion.Uri.LocalPath, Strings.FileNotFonud);
 				} catch (Exception e) {
 					RunGenericError (e, op.Items [op.Index].DefaultVersion.Uri.LocalPath);
 				}
@@ -219,12 +217,8 @@ namespace FSpot
 
 		void RunReadonlyError (int readonly_count)
 		{
-			string notice = Catalog.GetPluralString ("Unable to rotate photo", "Unable to rotate {0} photos", readonly_count);
-			string desc = Catalog.GetPluralString (
-				"The photo could not be rotated because it is on a read only file system or media such as a CD-ROM.  Please check the permissions and try again.",
-				"{0} photos could not be rotated because they are on a read only file system or media such as a CD-ROM.  Please check the permissions and try again.",
-				readonly_count
-			);
+			string notice = readonly_count <= 1 ? Strings.UnableToRotatePhoto : Strings.UnableToRotateXPhotos;
+			string desc = readonly_count <= 1 ? Strings.ThePhotoCouldNotBeRotatedReadonlyOrMedia : Strings.XPhotoCouldNotBeRotatedReadonlyOrMedia;
 
 			notice = string.Format (notice, readonly_count);
 			desc = string.Format (desc, readonly_count);
@@ -244,12 +238,12 @@ namespace FSpot
 
 		void RunGenericError (Exception e, string path, string msg)
 		{
-			string longmsg = string.Format (Catalog.GetString ("Received error \"{0}\" while attempting to rotate {1}"),
+			string longmsg = string.Format (Strings.ReceivedErrorXWhileAttemptingToRotateY,
 							msg, Path.GetFileName (path));
 
 			var md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent,
 									MessageType.Warning, ButtonsType.Ok,
-									Catalog.GetString ("Error while rotating photo."),
+									Strings.ErrorWhileRotatingPhoto,
 									longmsg);
 			md.Run ();
 			md.Destroy ();

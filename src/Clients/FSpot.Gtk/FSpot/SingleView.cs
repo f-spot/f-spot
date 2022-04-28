@@ -31,24 +31,25 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Gtk;
-using Gdk;
-
 using System;
 using System.Collections.Generic;
 
-using Mono.Addins;
-using Mono.Unix;
+using FSpot.Core;
+using FSpot.Extensions;
+using FSpot.Resources.Lang;
+using FSpot.Settings;
+using FSpot.Thumbnail;
+using FSpot.UI.Dialog;
+using FSpot.Utils;
+using FSpot.Widgets;
+
+using Gdk;
+
+using Gtk;
 
 using Hyena;
 
-using FSpot.Extensions;
-using FSpot.Utils;
-using FSpot.UI.Dialog;
-using FSpot.Widgets;
-using FSpot.Core;
-using FSpot.Settings;
-using FSpot.Thumbnail;
+using Mono.Addins;
 
 
 namespace FSpot
@@ -107,26 +108,26 @@ namespace FSpot
 			Gtk.Toolbar toolbar = new Gtk.Toolbar ();
 			toolbar_hbox.PackStart (toolbar);
 
-			rl_button = GtkUtil.ToolButtonFromTheme ("object-rotate-left", Catalog.GetString ("Rotate Left"), true);
+			rl_button = GtkUtil.ToolButtonFromTheme ("object-rotate-left", Strings.RotateLeft, true);
 			rl_button.Clicked += HandleRotate270Command;
-			rl_button.TooltipText = Catalog.GetString ("Rotate photo left");
+			rl_button.TooltipText = Strings.RotatePhotoLeft;
 			toolbar.Insert (rl_button, -1);
 
-			rr_button = GtkUtil.ToolButtonFromTheme ("object-rotate-right", Catalog.GetString ("Rotate Right"), true);
+			rr_button = GtkUtil.ToolButtonFromTheme ("object-rotate-right", Strings.RotateRight, true);
 			rr_button.Clicked += HandleRotate90Command;
-			rr_button.TooltipText = Catalog.GetString ("Rotate photo right");
+			rr_button.TooltipText = Strings.RotatePhotoRight;
 			toolbar.Insert (rr_button, -1);
 
 			toolbar.Insert (new SeparatorToolItem (), -1);
 
-			ToolButton fs_button = GtkUtil.ToolButtonFromTheme ("view-fullscreen", Catalog.GetString ("Fullscreen"), true);
+			ToolButton fs_button = GtkUtil.ToolButtonFromTheme ("view-fullscreen", Strings.Fullscreen, true);
 			fs_button.Clicked += HandleViewFullscreen;
-			fs_button.TooltipText = Catalog.GetString ("View photos fullscreen");
+			fs_button.TooltipText = Strings.ViewPhotosFullscreen;
 			toolbar.Insert (fs_button, -1);
 
-			ToolButton ss_button = GtkUtil.ToolButtonFromTheme ("media-playback-start", Catalog.GetString ("Slideshow"), true);
+			ToolButton ss_button = GtkUtil.ToolButtonFromTheme ("media-playback-start", Strings.Slideshow, true);
 			ss_button.Clicked += HandleViewSlideshow;
-			ss_button.TooltipText = Catalog.GetString ("View photos in a slideshow");
+			ss_button.TooltipText = Strings.ViewPhotosInASlideshow;
 			toolbar.Insert (ss_button, -1);
 
 			collection = new UriCollection (uris);
@@ -150,7 +151,7 @@ namespace FSpot
 			sidebar = new Sidebar ();
 
 			info_vbox.Add (sidebar);
-			sidebar.AppendPage (directory_scrolled, Catalog.GetString ("Folder"), "gtk-directory");
+			sidebar.AppendPage (directory_scrolled, Strings.Folder, "gtk-directory");
 
 			AddinManager.AddExtensionNodeHandler ("/FSpot/Sidebar", OnSidebarExtensionChanged);
 
@@ -375,14 +376,12 @@ namespace FSpot
 
 		void Open (FileChooserAction action)
 		{
-			string title = Catalog.GetString ("Open");
+			string title = Strings.Open;
 
 			if (action == FileChooserAction.SelectFolder)
-				title = Catalog.GetString ("Select Folder");
+				title = Strings.SelectFolder;
 
-			FileChooserDialog chooser = new FileChooserDialog (title,
-									   Window,
-									   action);
+			var chooser = new FileChooserDialog (title, Window, action);
 
 			chooser.AddButton (Stock.Cancel, ResponseType.Cancel);
 			chooser.AddButton (Stock.Open, ResponseType.Ok);
@@ -459,10 +458,10 @@ namespace FSpot
 			var popup_menu = new Gtk.Menu ();
 			bool has_item = image_view.Item.Current != null;
 
-			GtkUtil.MakeMenuItem (popup_menu, Catalog.GetString ("Rotate _Left"), "object-rotate-left", delegate { HandleRotate270Command(Window, null); }, has_item);
-			GtkUtil.MakeMenuItem (popup_menu, Catalog.GetString ("Rotate _Right"), "object-rotate-right", delegate { HandleRotate90Command (Window, null); }, has_item);
+			GtkUtil.MakeMenuItem (popup_menu, Strings.RotateLeftMnemonic, "object-rotate-left", delegate { HandleRotate270Command(Window, null); }, has_item);
+			GtkUtil.MakeMenuItem (popup_menu, Strings.RotateRightMnemonic, "object-rotate-right", delegate { HandleRotate90Command (Window, null); }, has_item);
 			GtkUtil.MakeMenuSeparator (popup_menu);
-			GtkUtil.MakeMenuItem (popup_menu, Catalog.GetString ("Set as Background"), HandleSetAsBackgroundCommand, has_item);
+			GtkUtil.MakeMenuItem (popup_menu, Strings.SetAsBackground, HandleSetAsBackgroundCommand, has_item);
 
 			popup_menu.Popup (null, null, null, 0, Gtk.Global.CurrentEventTime);
 		}
@@ -499,7 +498,8 @@ namespace FSpot
 			if (filenames_item.Active && item != null)
 				sb.Append (System.IO.Path.GetFileName (item.DefaultVersion.Uri.LocalPath) + "  -  ");
 
-			sb.AppendFormat (Catalog.GetPluralString ("{0} Photo", "{0} Photos", collection.Count), collection.Count);
+			var statusLabel = collection.Count <= 1 ? Strings.XPhoto : Strings.XPhotos;
+			sb.AppendFormat (statusLabel, collection.Count);
 			status_label.Text = sb.ToString ();
 		}
 

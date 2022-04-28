@@ -32,6 +32,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 
+using FSpot.Resources.Lang;
 using FSpot.Settings;
 using FSpot.UI.Dialog;
 using FSpot.Utils;
@@ -39,9 +40,6 @@ using FSpot.Utils;
 using Gdk;
 
 using Gtk;
-
-using Mono.Unix;
-
 
 namespace FSpot.Editors
 {
@@ -59,14 +57,14 @@ namespace FSpot.Editors
 		List<SelectionRatioDialog.SelectionConstraint> custom_constraints;
 
 		static SelectionRatioDialog.SelectionConstraint [] default_constraints = {
-			new SelectionRatioDialog.SelectionConstraint (Catalog.GetString ("4 x 3 (Book)"), 4.0 / 3.0),
-			new SelectionRatioDialog.SelectionConstraint (Catalog.GetString ("4 x 6 (Postcard)"), 6.0 / 4.0),
-			new SelectionRatioDialog.SelectionConstraint (Catalog.GetString ("5 x 7 (L, 2L)"), 7.0 / 5.0),
-			new SelectionRatioDialog.SelectionConstraint (Catalog.GetString ("8 x 10"), 10.0 / 8.0),
-			new SelectionRatioDialog.SelectionConstraint (Catalog.GetString ("Square"), 1.0)
+			new SelectionRatioDialog.SelectionConstraint (Strings.FourByThreeBook, 4.0 / 3.0),
+			new SelectionRatioDialog.SelectionConstraint (Strings.FourBySixPostcard, 6.0 / 4.0),
+			new SelectionRatioDialog.SelectionConstraint (Strings.FiveBySevenL2L, 7.0 / 5.0),
+			new SelectionRatioDialog.SelectionConstraint (Strings.EightByTen, 10.0 / 8.0),
+			new SelectionRatioDialog.SelectionConstraint (Strings.Square, 1.0)
 		};
 
-		public CropEditor () : base (Catalog.GetString ("Crop"), "crop")
+		public CropEditor () : base (Strings.Crop, "crop")
 		{
 			NeedsSelection = true;
 
@@ -99,7 +97,7 @@ namespace FSpot.Editors
 		{
 			VBox vbox = new VBox ();
 
-			Label info = new Label (Catalog.GetString ("Select the area that needs cropping."));
+			Label info = new Label (Strings.SelectTheAreaThatNeedsCropping);
 
 			constraints_combo = new ComboBox ();
 			CellRendererText constraint_name_cell = new CellRendererText ();
@@ -110,7 +108,7 @@ namespace FSpot.Editors
 			constraints_combo.SetCellDataFunc (constraint_pix_cell, new CellLayoutDataFunc (ConstraintPixCellFunc));
 			constraints_combo.Changed += HandleConstraintsComboChanged;
 
-			// FIXME: need tooltip Catalog.GetString ("Constrain the aspect ratio of the selection")
+			// FIXME: need tooltip Strings.ConstrainTheAspectRatioOfTheSelection
 
 			LoadPreference (Preferences.CustomCropRatios);
 
@@ -124,13 +122,13 @@ namespace FSpot.Editors
 		{
 			constraints_store = new TreeStore (typeof (string), typeof (string), typeof (double), typeof (ConstraintType));
 			constraints_combo.Model = constraints_store;
-			constraints_store.AppendValues (null, Catalog.GetString ("No Constraint"), 0.0, ConstraintType.Normal);
-			constraints_store.AppendValues (null, Catalog.GetString ("Same as photo"), 0.0, ConstraintType.SameAsPhoto);
+			constraints_store.AppendValues (null, Strings.NoConstraint, 0.0, ConstraintType.Normal);
+			constraints_store.AppendValues (null, Strings.SameAsPhoto, 0.0, ConstraintType.SameAsPhoto);
 			foreach (SelectionRatioDialog.SelectionConstraint constraint in custom_constraints)
 				constraints_store.AppendValues (null, constraint.Label, constraint.XyRatio, ConstraintType.Normal);
 			foreach (SelectionRatioDialog.SelectionConstraint constraint in default_constraints)
 				constraints_store.AppendValues (null, constraint.Label, constraint.XyRatio, ConstraintType.Normal);
-			constraints_store.AppendValues (Stock.Edit, Catalog.GetString ("Custom Ratios..."), 0.0, ConstraintType.AddCustom);
+			constraints_store.AppendValues (Stock.Edit, Strings.CustomRatios, 0.0, ConstraintType.AddCustom);
 			constraints_combo.Active = 0;
 		}
 

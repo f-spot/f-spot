@@ -28,16 +28,15 @@
 //
 
 using FSpot.Editors;
+using FSpot.Resources.Lang;
 
 using Gdk;
-
-using Mono.Unix;
 
 namespace FSpot.Addins.Editors
 {
     class FlipEditor : Editor
     {
-        public FlipEditor () : base (Catalog.GetString ("Flip"), "object-flip-horizontal") {
+        public FlipEditor () : base (Strings.Flip, "object-flip-horizontal") {
 			CanHandleMultiple = true;
         }
 

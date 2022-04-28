@@ -29,7 +29,7 @@
 using System;
 using System.Xml;
 
-using Mono.Unix;
+using FSpot.Resources.Lang;
 
 namespace Hyena.Query
 {
@@ -39,8 +39,8 @@ namespace Hyena.Query
         //public static readonly Operator NotEqual           = new Operator ("notEqual", "!= {0}", true, "!=", "!:");
         //public static readonly Operator LessThanEqual      = new Operator ("lessThanEquals", "<= {0}", "<=");
         //public static readonly Operator GreaterThanEqual   = new Operator ("greaterThanEquals", ">= {0}", ">=");
-        public static readonly Operator LessThan           = new Operator ("lessThan", Catalog.GetString ("before"), "< {0}", true, "<");
-        public static readonly Operator GreaterThan        = new Operator ("greaterThan", Catalog.GetString ("after"), ">= {0}", ">");
+        public static readonly Operator LessThan           = new Operator ("lessThan", Strings.Before, "< {0}", true, "<");
+        public static readonly Operator GreaterThan        = new Operator ("greaterThan", Strings.After, ">= {0}", ">");
 
         protected DateTime value = DateTime.Now;
 

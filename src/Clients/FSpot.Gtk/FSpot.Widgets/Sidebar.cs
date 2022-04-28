@@ -32,11 +32,10 @@ using System.Collections.Generic;
 
 using FSpot.Core;
 using FSpot.Extensions;
+using FSpot.Resources.Lang;
 using FSpot.Settings;
 
 using Gtk;
-
-using Mono.Unix;
 
 namespace FSpot.Widgets
 {
@@ -76,9 +75,9 @@ namespace FSpot.Widgets
 		string DefaultForContext (ViewContext context)
 		{
 			if (context == ViewContext.Edit)
-				return Catalog.GetString ("Edit");
+				return Strings.Edit;
 			// Don't care otherwise, Tags sounds reasonable
-			return Catalog.GetString ("Tags");
+			return Strings.Tags;
 		}
 	}
 

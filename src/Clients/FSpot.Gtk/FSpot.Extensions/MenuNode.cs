@@ -30,7 +30,6 @@
 using System;
 
 using Mono.Addins;
-using Mono.Unix;
 
 namespace FSpot.Extensions
 {
@@ -117,6 +116,7 @@ namespace FSpot.Extensions
 
 	public abstract class MenuNode : ExtensionNode
 	{
+		// TODO: Review this. Gettext (_label)
 		[NodeAttribute (Localizable=true)]
 		protected string _label;
 
@@ -127,9 +127,9 @@ namespace FSpot.Extensions
 		{
 			Gtk.MenuItem item;
 			if (icon == null)
-				item = new Gtk.MenuItem (_label != null ? Catalog.GetString (_label) : Id);
+				item = new Gtk.MenuItem (_label != null ? _label : Id);
 			else {
-				item = new Gtk.ImageMenuItem (_label != null ? Catalog.GetString (_label) : Id);
+				item = new Gtk.ImageMenuItem (_label != null ? _label : Id);
 				(item as Gtk.ImageMenuItem).Image = Gtk.Image.NewFromIconName (icon, Gtk.IconSize.Menu);
 			}
 			return item;

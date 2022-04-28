@@ -27,7 +27,7 @@
 
 using System;
 
-using Mono.Unix;
+using FSpot.Resources.Lang;
 
 namespace Hyena.Downloader
 {
@@ -61,21 +61,10 @@ namespace Hyena.Downloader
 
                 var human_speed = new Hyena.Query.FileSizeQueryValue ((long)Math.Round (speed)).ToUserQuery ();
                 if (manager.PendingDownloadCount == 0) {
-                    Status = string.Format (
-                        Catalog.GetPluralString (
-                            "{0} download at {1}/s",
-                            "{0} downloads at {1}/s",
-                            count),
-                        count, human_speed
-                    );
+                    Status = string.Format (count <= 1 ? Strings.DownloadXAtYSeconds : Strings.DownloadsXAtYSeconds, count, human_speed);
                 } else {
-                    Status = string.Format (
-                        Catalog.GetPluralString (
-                            "{0} download at {1}/s ({2} pending)",
-                            "{0} downloads at {1}/s ({2} pending)",
-                            count),
-                        count, human_speed, manager.PendingDownloadCount
-                    );
+                    Status = string.Format ( count <= 1 ? Strings.DownloadXAtYSecondsZPending : Strings.DownloadsXAtYSecondsZPending,
+                        count, human_speed, manager.PendingDownloadCount);
                 }
             }
 

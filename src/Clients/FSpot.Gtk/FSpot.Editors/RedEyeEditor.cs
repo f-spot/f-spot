@@ -29,27 +29,26 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using FSpot.Resources.Lang;
 using FSpot.Settings;
 
 using Gdk;
 using Gtk;
 
-using Mono.Unix;
-
 namespace FSpot.Editors
 {
 	class RedEyeEditor : Editor
 	{
-		public RedEyeEditor () : base (Catalog.GetString ("Red-eye Reduction"), "red-eye-remove")
+		public RedEyeEditor () : base (Strings.RedEyeReduction, "red-eye-remove")
 		{
-			// FIXME: ??? need tooltip Catalog.GetString ("Remove red-eye form the photo")
+			// FIXME: ??? need tooltip Strings.RemoveRedEyeFromThePhoto;
 			NeedsSelection = true;
-			ApplyLabel = Catalog.GetString ("Fix!");
+			ApplyLabel = Strings.FixExclamation;
 		}
 
 		public override Widget ConfigurationWidget ()
 		{
-			return new Label(Catalog.GetString ("Select the eyes you wish to fix."));
+			return new Label(Strings.SelectTheEyesYouWishToFix);
 		}
 
 		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile)

@@ -31,15 +31,14 @@
 
 using System;
 using System.Linq;
-using Gtk;
 
 using FSpot.Core;
-using FSpot.Widgets;
 using FSpot.Gui;
+using FSpot.Resources.Lang;
 using FSpot.Utils;
+using FSpot.Widgets;
 
-using Mono.Unix;
-
+using Gtk;
 
 namespace FSpot
 {
@@ -83,33 +82,17 @@ namespace FSpot
 				actions = new ActionGroup ("joe");
 
 				actions.Add (new[] {
-					new ActionEntry (HideToolbar, Stock.Close,
-							 Catalog.GetString ("Hide"),
-							 null,
-							 Catalog.GetString ("Hide toolbar"),
-							 HideToolbarAction)});
+					new ActionEntry (HideToolbar, Stock.Close, Strings.Hide, null, Strings.HideToolbar, HideToolbarAction)});
 
 				actions.Add (new[] {
-					new ToggleActionEntry (Info,
-							       Stock.Info,
-							       Catalog.GetString ("Info"),
-							       null,
-							       Catalog.GetString ("Image information"),
-							       InfoAction,
-							       false)});
+					new ToggleActionEntry (Info, Stock.Info, Strings.Info, null, Strings.ImageInformation, InfoAction, false)});
 
-				Gtk.Action exit_full_screen = new Gtk.Action (ExitFullScreen,
-					Catalog.GetString ("Exit fullscreen"),
-					null,
-					null);
+				var exit_full_screen = new Gtk.Action (ExitFullScreen, Strings.ExitFullscreen, null, null);
 				exit_full_screen.IconName = "view-restore";
 				exit_full_screen.Activated += ExitAction;
 				actions.Add (exit_full_screen);
 
-				Gtk.Action slide_show = new Gtk.Action (SlideShow,
-					Catalog.GetString ("Slideshow"),
-					Catalog.GetString ("Start slideshow"),
-					null);
+				var slide_show = new Gtk.Action (SlideShow, Strings.Slideshow, Strings.StartSlideshow, null);
 				slide_show.IconName = "media-playback-start";
 				slide_show.Activated += SlideShowAction;
 				actions.Add (slide_show);
@@ -154,7 +137,7 @@ namespace FSpot
 				tbar.Insert (action.CreateToolItem () as ToolItem, -1);
 
 				t_item = new ToolItem ();
-				t_item.Child = new Label (Catalog.GetString ("Slide transition:"));
+				t_item.Child = new Label (Strings.SlideTransition);
 				tbar.Insert (t_item, -1);
 
 				display = new SlideShow (view.Item);

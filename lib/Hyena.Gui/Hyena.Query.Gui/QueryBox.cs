@@ -30,7 +30,7 @@
 using System;
 using System.Collections.Generic;
 
-using Mono.Unix;
+using FSpot.Resources.Lang;
 
 using Gtk;
 
@@ -80,7 +80,7 @@ namespace Hyena.Query.Gui
 
             terms_entry_box = new HBox ();
             terms_entry_box.Spacing = 8;
-            terms_entry_box.PackStart (new Label (Catalog.GetString ("Condition:")), false, false, 0);
+            terms_entry_box.PackStart (new Label (Strings.ConditionColon), false, false, 0);
             terms_entry = new Entry ();
             terms_entry_box.PackStart (terms_entry, true, true, 0);
 
@@ -98,20 +98,20 @@ namespace Hyena.Query.Gui
             HBox header = new HBox ();
             header.Show ();
 
-            terms_enabled_checkbox = new CheckButton (Catalog.GetString ("_Match"));
+            terms_enabled_checkbox = new CheckButton (Strings.MatchMnemonic);
             terms_enabled_checkbox.Show ();
             terms_enabled_checkbox.Active = true;
             terms_enabled_checkbox.Toggled += OnMatchCheckBoxToggled;
             header.PackStart (terms_enabled_checkbox, false, false, 0);
 
             terms_logic_combo = ComboBox.NewText ();
-            terms_logic_combo.AppendText (Catalog.GetString ("all"));
-            terms_logic_combo.AppendText (Catalog.GetString ("any"));
+            terms_logic_combo.AppendText (Strings.All);
+            terms_logic_combo.AppendText (Strings.Any);
             terms_logic_combo.Show ();
             terms_logic_combo.Active = 0;
             header.PackStart (terms_logic_combo, false, false, 0);
 
-            terms_label = new Label (Catalog.GetString ("of the following:"));
+            terms_label = new Label (Strings.OfTheFollowingColon);
             terms_label.Show ();
             terms_label.Xalign = 0.0f;
             header.PackStart (terms_label, true, true, 0);

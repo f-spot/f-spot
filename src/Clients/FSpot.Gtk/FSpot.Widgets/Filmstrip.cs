@@ -44,6 +44,7 @@ using System.Collections.Generic;
 using FSpot.Bling;
 using FSpot.Core;
 using FSpot.Imaging;
+using FSpot.Resources.Lang;
 using FSpot.Settings;
 using FSpot.Thumbnail;
 using FSpot.Utils;
@@ -495,12 +496,10 @@ namespace FSpot.Widgets
 		bool DrawOrientationMenu (EventButton args)
 		{
 			Menu placement_menu = new Menu ();
-			GtkUtil.MakeCheckMenuItem (placement_menu,
-							Mono.Unix.Catalog.GetString ("_Horizontal"),
+			GtkUtil.MakeCheckMenuItem (placement_menu, Strings.HorizontalMnemonic,
 							App.Instance.Organizer.HandleFilmstripHorizontal,
 							true, Orientation == Orientation.Horizontal, true);
-			GtkUtil.MakeCheckMenuItem (placement_menu,
-							Mono.Unix.Catalog.GetString ("_Vertical"),
+			GtkUtil.MakeCheckMenuItem (placement_menu, Strings.VerticalMnemonic,
 							App.Instance.Organizer.HandleFilmstripVertical,
 							true, Orientation == Orientation.Vertical, true);
 

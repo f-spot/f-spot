@@ -28,11 +28,15 @@
 
 using System.IO;
 using System.Linq;
+
 using FSpot.Database;
 using FSpot.Mocks;
+using FSpot.Resources.Lang;
+
 using Hyena;
-using Mono.Unix;
+
 using Moq;
+
 using NUnit.Framework;
 
 namespace FSpot
@@ -74,7 +78,7 @@ namespace FSpot
 			var photo = store.CreateFrom (photoMock, true, 1);
 
 			// default version name is ignored on import
-			Assert.AreEqual (Catalog.GetString ("Original"), photo.DefaultVersion.Name);
+			Assert.AreEqual (Strings.Original, photo.DefaultVersion.Name);
 			Assert.AreEqual (uri, photo.DefaultVersion.BaseUri);
 			Assert.AreEqual (1, photo.Versions.Count ());
 
@@ -93,7 +97,7 @@ namespace FSpot
 
 			var photo = store.CreateFrom (photoMock, true, 1);
 
-			Assert.AreEqual (Catalog.GetString ("Original"), photo.DefaultVersion.Name);
+			Assert.AreEqual (Strings.Original, photo.DefaultVersion.Name);
 			Assert.AreEqual (uri, photo.DefaultVersion.BaseUri);
 			// CreateFrom ignores any versions except the default version
 			Assert.AreEqual (1, photo.Versions.Count ());

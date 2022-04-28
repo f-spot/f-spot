@@ -36,8 +36,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 
-using Mono.Unix;
-
 using FlickrNet;
 
 using Gtk;
@@ -52,7 +50,7 @@ using FSpot.UI.Dialog;
 using Hyena;
 using Hyena.Widgets;
 using System.Linq;
-
+using FSpot.Resources.Lang;
 
 namespace FSpot.Exporters.Flickr
 {
@@ -135,7 +133,7 @@ namespace FSpot.Exporters.Flickr
 					oauth_verification_code.Visible = false;
 					oauth_verification_code.Sensitive = false;
 					do_export_flickr.Sensitive = false;
-					auth_flickr.Label = Catalog.GetString ("Authorize");
+					auth_flickr.Label = Strings.Authorize;
 					used_bandwidth.Visible = false;
 					break;
 				case State.Connected:
@@ -143,16 +141,16 @@ namespace FSpot.Exporters.Flickr
 					do_export_flickr.Sensitive = false;
 					oauth_verification_code.Visible = true;
 					oauth_verification_code.Sensitive = true;
-					auth_label.Text = string.Format (Catalog.GetString ("Return to this window after you have finished the authorization process on {0} and click the \"Complete Authorization\" button below"), current_service.Name);
-					auth_flickr.Label = Catalog.GetString ("Complete Authorization");
+					auth_label.Text = string.Format (Strings.ReturnToThisWindowAfterYouHaveFinishedAuthProcessOnXClickCompleteAuthorizationButton, current_service.Name);
+					auth_flickr.Label = Strings.CompleteAuthorization;
 					used_bandwidth.Visible = false;
 					break;
 				case State.InAuth:
 					auth_flickr.Sensitive = false;
 					oauth_verification_code.Visible = true;
 					oauth_verification_code.Sensitive = false;
-					auth_label.Text = string.Format (Catalog.GetString ("Logging into {0}"), current_service.Name);
-					auth_flickr.Label = Catalog.GetString ("Checking credentials...");
+					auth_label.Text = string.Format (Strings.LoggingIntoX, current_service.Name);
+					auth_flickr.Label = Strings.CheckingCredentials;
 					do_export_flickr.Sensitive = false;
 					used_bandwidth.Visible = false;
 					break;
@@ -161,15 +159,15 @@ namespace FSpot.Exporters.Flickr
 					auth_flickr.Sensitive = true;
 					oauth_verification_code.Visible = false;
 					oauth_verification_code.Sensitive = false;
-					auth_label.Text = string.Format (Catalog.GetString ("Welcome, {0}. You are connected to {1}."),
+					auth_label.Text = string.Format (Strings.WelcomeXYouAreConnectedToY,
 										token.Username,
 										current_service.Name);
-					auth_flickr.Label = string.Format (Catalog.GetString ("Sign in as a different user"));
+					auth_flickr.Label = string.Format (Strings.SignInAsADifferentUser);
 					used_bandwidth.Visible = !fr.Connection.PeopleGetUploadStatus().IsPro &&
 									fr.Connection.PeopleGetUploadStatus().BandwidthMax > 0;
 					if (used_bandwidth.Visible) {
 						used_bandwidth.Fraction = fr.Connection.PeopleGetUploadStatus().PercentageUsed;
-						used_bandwidth.Text = string.Format (Catalog.GetString("Used {0} of your allowed {1} monthly quota"),
+						used_bandwidth.Text = string.Format (Strings.UsedXOfYourAllowedYMonthlyQuota,
 									GLib.Format.SizeForDisplay (fr.Connection.PeopleGetUploadStatus().BandwidthUsed),
 									GLib.Format.SizeForDisplay (fr.Connection.PeopleGetUploadStatus().BandwidthMax));
 					}
@@ -271,7 +269,7 @@ namespace FSpot.Exporters.Flickr
 							      Gtk.DialogFlags.Modal |
 							      Gtk.DialogFlags.DestroyWithParent,
 							      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
-							      Catalog.GetString ("Unable to log on"), e.Message);
+							      Strings.UnableToLogOn, e.Message);
 
 				md.Run ();
 				md.Destroy ();
@@ -337,7 +335,7 @@ namespace FSpot.Exporters.Flickr
 								      Gtk.DialogFlags.Modal |
 								      Gtk.DialogFlags.DestroyWithParent,
 								      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
-								      Catalog.GetString ("Unable to log on"), e.Message);
+								      Strings.UnableToLogOn, e.Message);
 
 					md.Run ();
 					md.Destroy ();
@@ -357,7 +355,7 @@ namespace FSpot.Exporters.Flickr
 		{
 			if (args.UploadComplete) {
 				progress_dialog.Fraction = photo_index / (double) selection.Count;
-				progress_dialog.ProgressText = string.Format (Catalog.GetString ("Waiting for response {0} of {1}"),
+				progress_dialog.ProgressText = string.Format (Strings.WaitingForResponseXOfY,
 									      photo_index, selection.Count);
 			}
             progress_dialog.Fraction = (photo_index - 1.0 + (args.BytesSent / (double) info.Length)) / (double) selection.Count;
@@ -384,14 +382,11 @@ namespace FSpot.Exporters.Flickr
 			for (int index = 0; index < photos.Length; index++) {
 				try {
 					IPhoto photo = photos [index];
-					progress_dialog.Message = string.Format (
-                                                Catalog.GetString ("Uploading picture \"{0}\""), photo.Name);
+					progress_dialog.Message = string.Format (Strings.UploadingPictureX, photo.Name);
 
 					progress_dialog.Fraction = photo_index / (double)selection.Count;
 					photo_index++;
-					progress_dialog.ProgressText = string.Format (
-						Catalog.GetString ("{0} of {1}"), photo_index,
-						selection.Count);
+					progress_dialog.ProgressText = string.Format (Strings.XOfY, photo_index, selection.Count);
 
 					info = new FileInfo (photo.DefaultVersion.Uri.LocalPath);
 					var stack = new FilterSet ();
@@ -408,10 +403,10 @@ namespace FSpot.Exporters.Flickr
 									      token.UserId + ":" + token.Username + ":" + current_service.Name + ":" + id);
 
 				} catch (Exception e) {
-					progress_dialog.Message = string.Format (Catalog.GetString ("Error Uploading To {0}: {1}"),
+					progress_dialog.Message = string.Format (Strings.ErrorUploadingToXColonY,
 										 current_service.Name,
 										 e.Message);
-					progress_dialog.ProgressText = Catalog.GetString ("Error");
+					progress_dialog.ProgressText = Strings.Error;
 					Logger.Log.Error (e, "");
 
 					if (progress_dialog.PerformRetrySkip ()) {
@@ -420,17 +415,17 @@ namespace FSpot.Exporters.Flickr
 					}
 				}
 			}
-			progress_dialog.Message = Catalog.GetString ("Done Sending Photos");
+			progress_dialog.Message = Strings.DoneSendingPhotos;
 			progress_dialog.Fraction = 1.0;
-			progress_dialog.ProgressText = Catalog.GetString ("Upload Complete");
+			progress_dialog.ProgressText = Strings.UploadComplete;
 			progress_dialog.ButtonLabel = Gtk.Stock.Ok;
 
 			if (open && ids.Count != 0) {
 				string view_url;
 				if (current_service.Name == "Zooomr.com")
-					view_url = string.Format ("http://www.{0}/photos/{1}/", current_service.Name, token.Username);
+					view_url = $"http://www.{current_service.Name}/photos/{token.Username}/";
 				else {
-					view_url = string.Format ("http://www.{0}/tools/uploader_edit.gne?ids", current_service.Name);
+					view_url = $"http://www.{current_service.Name}/tools/uploader_edit.gne?ids";
 					bool first = true;
 
 					foreach (string id in ids) {
@@ -500,9 +495,8 @@ namespace FSpot.Exporters.Flickr
 							      Gtk.DialogFlags.Modal |
 							      Gtk.DialogFlags.DestroyWithParent,
 							      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
-							      Catalog.GetString ("Unable to log on."),
-							      string.Format (Catalog.GetString ("F-Spot was unable to log on to {0}.  Make sure you have given the authentication using {0} web browser interface."),
-									     current_service.Name));
+								  Strings.UnableToLogOn,
+							      string.Format (Strings.FSpotWasUnableToLogOnToXMakeSureYouHaveGivenTheAuthUsingXWebBrowser, current_service.Name));
 				md.Run ();
 				md.Destroy ();
 				return;
@@ -520,7 +514,7 @@ namespace FSpot.Exporters.Flickr
 				size = size_spin.ValueAsInt;
 
 			command_thread = new Thread (new ThreadStart (Upload));
-			command_thread.Name = Catalog.GetString ("Uploading Pictures");
+			command_thread.Name = Strings.UploadingPictures;
 
 			Dialog.Destroy ();
 			progress_dialog = new ThreadProgressDialog (command_thread, selection.Count);

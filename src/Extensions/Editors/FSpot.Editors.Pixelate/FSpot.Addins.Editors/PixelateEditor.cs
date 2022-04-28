@@ -30,17 +30,16 @@
 //
 
 using FSpot.Editors;
+using FSpot.Resources.Lang;
 
 using Gdk;
 using Gtk;
-
-using Mono.Unix;
 
 namespace FSpot.Addins.Editors
 {
 	class PixelateEditor : Editor
 	{
-		public PixelateEditor () : base (Catalog.GetString ("Pixelate"), null) {
+		public PixelateEditor () : base (Strings.Pixelate, null) {
 			CanHandleMultiple = false;
 			NeedsSelection = true;
 		}
@@ -48,7 +47,7 @@ namespace FSpot.Addins.Editors
 		public override Widget ConfigurationWidget () {
 			VBox vbox = new VBox ();
 
-			Label info = new Label (Catalog.GetString ("Select the area that you want pixelated."));
+			Label info = new Label (Strings.SelectTheAreaThatYouWantPixelated);
 
 			vbox.Add (info);
 

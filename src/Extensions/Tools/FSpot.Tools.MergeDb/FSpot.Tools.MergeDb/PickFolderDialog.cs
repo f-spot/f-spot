@@ -29,8 +29,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Mono.Unix;
+using System;
 
+using FSpot.Resources.Lang;
 
 namespace FSpot.Tools.MergeDb
 {
@@ -53,7 +54,7 @@ namespace FSpot.Tools.MergeDb
 
 			pickfolder_chooser.LocalOnly = false;
 
-			pickfolder_label.Text = string.Format (Catalog.GetString ("<big>The database refers to files contained in the <b>{0}</b> folder.\n Please select that folder so I can do the mapping.</big>"), folder);
+			pickfolder_label.Text = string.Format (Strings.DatabaseRefersToFilesContainedInXFolderPleaseSelectThatFolderSoICanDoTheMapping, folder);
 			pickfolder_label.UseMarkup = true;
 		}
 

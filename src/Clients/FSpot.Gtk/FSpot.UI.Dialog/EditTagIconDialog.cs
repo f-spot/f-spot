@@ -31,8 +31,6 @@
 
 using System;
 
-using Mono.Unix;
-
 using Gtk;
 
 using FSpot.Core;
@@ -45,6 +43,7 @@ using FSpot.Widgets;
 
 using Hyena;
 using Hyena.Widgets;
+using FSpot.Resources.Lang;
 
 namespace FSpot.UI.Dialog
 {
@@ -70,7 +69,7 @@ namespace FSpot.UI.Dialog
 		public EditTagIconDialog (Db db, Tag t, Gtk.Window parent_window) : base ("EditTagIconDialog.ui", "edit_tag_icon_dialog")
 		{
 			TransientFor = parent_window;
-			Title = string.Format (Catalog.GetString ("Edit Icon for Tag {0}"), t.Name);
+			Title = string.Format (Strings.EditIconForTagX, t.Name);
 
 			preview_pixbuf = t.Icon;
 			Cms.Profile screen_profile;
@@ -92,7 +91,7 @@ namespace FSpot.UI.Dialog
 			image_view.SelectionChanged += HandleSelectionChanged;
 			image_view.PhotoChanged += HandlePhotoChanged;
 
-			external_photo_chooser = new Gtk.FileChooserButton (Catalog.GetString ("Select Photo from file"),
+			external_photo_chooser = new Gtk.FileChooserButton (Strings.SelectPhotoFromFile,
 					Gtk.FileChooserAction.Open);
 
 			external_photo_chooser.Filter = new FileFilter();
@@ -113,12 +112,7 @@ namespace FSpot.UI.Dialog
 
 				image_view.Item.Index = 0;
 			} else {
-				from_photo_label.Markup = string.Format (Catalog.GetString (
-					"\n<b>From Photo</b>\n" +
-					" You can use one of your library photos as an icon for this tag.\n" +
-					" However, first you must have at least one photo associated\n" +
-					" with this tag. Please tag a photo as '{0}' and return here\n" +
-					" to use it as an icon."), t.Name);
+				from_photo_label.Markup = string.Format (Strings.HowToAddImageToTagFromPhotoX, t.Name);
 				photo_scrolled_window.Visible = false;
 				photo_label.Visible = false;
 				photo_spin_button.Visible = false;
@@ -192,8 +186,8 @@ namespace FSpot.UI.Dialog
 					}
 				}
 			} catch (Exception) {
-				string caption = Catalog.GetString ("Unable to load image");
-				string message = string.Format (Catalog.GetString ("Unable to load \"{0}\" as icon for the tag"),
+				string caption = Strings.UnableToLoadImage;
+				string message = string.Format (Strings.UnableToLoadXAsIconForTheTag,
 					                 external_photo_chooser.Uri);
 				HigMessageDialog md = new HigMessageDialog (this,
 									    DialogFlags.DestroyWithParent,
@@ -231,8 +225,7 @@ namespace FSpot.UI.Dialog
 		public void HandlePhotoChanged (object sender, EventArgs e)
 		{
 			int item = image_view.Item.Index;
-			photo_label.Text = string.Format (Catalog.GetString ("Photo {0} of {1}"),
-							  item + 1, query.Count);
+			photo_label.Text = string.Format (Strings.PhotoXOfY, item + 1, query.Count);
 
 			photo_spin_button.Value = item + 1;
 			HandleSelectionChanged (null, null);

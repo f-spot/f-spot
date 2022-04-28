@@ -27,18 +27,16 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Cairo;
-
 using System;
 
-using Mono.Unix;
+using Cairo;
 
 using FSpot.Core;
-using FSpot.Settings;
-using FSpot.Widgets;
 using FSpot.Imaging;
+using FSpot.Resources.Lang;
+using FSpot.Settings;
 using FSpot.Utils;
-
+using FSpot.Widgets;
 
 namespace FSpot
 {
@@ -54,7 +52,7 @@ namespace FSpot
 		public PrintOperation (IPhoto [] selectedPhotos)
 		{
 			selected_photos = selectedPhotos;
-			CustomTabLabel = Catalog.GetString ("Image Settings");
+			CustomTabLabel = Strings.ImageSettings;
 			NPages = selectedPhotos.Length;
 			DefaultPageSetup = FSpotConfiguration.PageSetup;
 		}

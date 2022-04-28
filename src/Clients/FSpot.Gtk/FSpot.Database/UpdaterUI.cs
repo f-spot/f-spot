@@ -1,4 +1,4 @@
-﻿//
+//
 // UpdaterUI.cs
 //
 // Author:
@@ -36,7 +36,8 @@
 
 using FSpot.UI.Dialog;
 using Gtk;
-using Mono.Unix;
+
+using FSpot.Resources.Lang;
 
 namespace FSpot.Database
 {
@@ -46,8 +47,8 @@ namespace FSpot.Database
 
 		public void Show ()
 		{
-			dialog = new ProgressDialog (Catalog.GetString ("Updating F-Spot Database"), ProgressDialog.CancelButtonType.None, 0, null);
-			dialog.Message.Text = Catalog.GetString ("Please wait while your F-Spot gallery's database is updated. This may take some time.");
+			dialog = new ProgressDialog (Strings.UpdatingFSpotDatabase, ProgressDialog.CancelButtonType.None, 0, null);
+			dialog.Message.Text = Strings.PleaseWaitFSpotGalleryDBUpdating;
 			dialog.Bar.Fraction = 0.0;
 			dialog.Modal = false;
 			dialog.SkipTaskbarHint = true;

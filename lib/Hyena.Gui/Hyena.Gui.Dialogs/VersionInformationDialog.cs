@@ -28,12 +28,14 @@
 
 using System;
 using System.Reflection;
+
+using FSpot.Resources.Lang;
+
 using Gtk;
-using Mono.Unix;
 
 namespace Hyena.Gui.Dialogs
 {
-    public class VersionInformationDialog : Dialog
+	public class VersionInformationDialog : Dialog
     {
         Label path_label;
         TreeView version_tree;
@@ -55,16 +57,14 @@ namespace Hyena.Gui.Dialogs
 
             AddActionWidget(button, ResponseType.Close);
 
-            Title = Catalog.GetString("Assembly Version Information");
+            Title = Strings.AssemblyVersionInformation;
             BorderWidth = 10;
 
             version_tree = new TreeView();
 
             version_tree.RulesHint = true;
-            version_tree.AppendColumn(Catalog.GetString("Assembly Name"),
-                new CellRendererText(), "text", 0);
-            version_tree.AppendColumn(Catalog.GetString("Version"),
-                new CellRendererText(), "text", 1);
+            version_tree.AppendColumn(Strings.AssemblyName, new CellRendererText(), "text", 0);
+            version_tree.AppendColumn(Strings.Version, new CellRendererText(), "text", 1);
 
             version_tree.Model = FillStore();
             version_tree.CursorChanged += OnCursorChanged;

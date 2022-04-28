@@ -33,11 +33,10 @@ using System;
 using System.IO;
 using System.Linq;
 
+using FSpot.Resources.Lang;
 using FSpot.Settings;
 
 using Gtk;
-
-using Mono.Unix;
 
 using Hyena;
 
@@ -80,9 +79,9 @@ namespace FSpot.UI.Dialog
 
 			//Screen profile
 			ListStore sprofiles = new ListStore (typeof (string), typeof (int));
-			sprofiles.AppendValues (Catalog.GetString ("None"), 0);
+			sprofiles.AppendValues (Strings.None, 0);
 			if (FSpot.ColorManagement.XProfile != null)
-				sprofiles.AppendValues (Catalog.GetString ("System profile"), -1);
+				sprofiles.AppendValues (Strings.SystemProfile, -1);
 			sprofiles.AppendValues (null, 0);
 
 			//Pick the display profiles from the full list, avoid _x_profile_
@@ -103,7 +102,7 @@ namespace FSpot.UI.Dialog
 
 			//Print profile
 			ListStore pprofiles = new ListStore (typeof (string), typeof (int));
-			pprofiles.AppendValues (Catalog.GetString ("None"), 0);
+			pprofiles.AppendValues (Strings.None, 0);
 			pprofiles.AppendValues (null, 0);
 
 			var pprofs = from profile in FSpot.ColorManagement.Profiles
@@ -120,7 +119,7 @@ namespace FSpot.UI.Dialog
 
 			//Theme chooser
 			ListStore themes = new ListStore (typeof (string), typeof (string));
-			themes.AppendValues (Catalog.GetString ("Standard theme"), null);
+			themes.AppendValues (Strings.StandardTheme, null);
 			themes.AppendValues (null, null); //Separator
 			string gtkrc = System.IO.Path.Combine ("gtk-2.0", "gtkrc");
 			string [] search = {System.IO.Path.Combine (FSpotConfiguration.HomeDirectory, ".themes"), "/usr/share/themes"};

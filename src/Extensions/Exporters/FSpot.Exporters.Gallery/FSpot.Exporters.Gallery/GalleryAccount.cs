@@ -27,8 +27,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Mono.Unix;
-
+using FSpot.Resources.Lang;
 using FSpot.Settings;
 
 
@@ -66,7 +65,7 @@ namespace FSpot.Exporters.Gallery
 			else if (Version == GalleryVersion.Version2)
 				gal = new Gallery2 (url, url);
 			else
-				throw new GalleryException (Catalog.GetString("Cannot connect to a Gallery for which the version is unknown.\nPlease check that you have Remote plugin 1.0.8 or later"));
+				throw new GalleryException (Strings.CannotConnectToGalleryUnknownVersionCheckRemotePlugin);
 
 			Logger.Log.Debug ("Gallery created: " + gal);
 

@@ -34,9 +34,8 @@
 using System;
 using System.Collections.Generic;
 
-using Mono.Unix;
-
 using FSpot.Core;
+using FSpot.Resources.Lang;
 using FSpot.Utils;
 
 namespace FSpot.Query
@@ -45,7 +44,7 @@ namespace FSpot.Query
 	{
 		public static void Create (Tag [] tags, Gtk.Menu menu)
 		{
-			var findWithString = Catalog.GetPluralString ("Find _With", "Find _With", tags.Length);
+			var findWithString = Strings.FindWithMnemonic;
 			var item = new Gtk.MenuItem (string.Format (findWithString, tags.Length));
 
 			Gtk.Menu submenu = GetSubmenu (tags);
@@ -70,7 +69,7 @@ namespace FSpot.Query
 
 			var m = new Gtk.Menu ();
 
-			Gtk.MenuItem all_item = GtkUtil.MakeMenuItem (m, Catalog.GetString ("All"), new EventHandler (App.Instance.Organizer.HandleRequireTag));
+			Gtk.MenuItem all_item = GtkUtil.MakeMenuItem (m, Strings.All, new EventHandler (App.Instance.Organizer.HandleRequireTag));
 			GtkUtil.MakeMenuSeparator (m);
 
 			int sensitive_items = 0;
@@ -104,7 +103,7 @@ namespace FSpot.Query
 						tag_matches = true;
 
 					if (literal.IsNegated)
-						parts.Add (string.Format (Catalog.GetString ("Not {0}"), literal.Tag.Name));
+						parts.Add (string.Format (Strings.NotSpaceX, literal.Tag.Name));
 					else
 						parts.Add (literal.Tag.Name);
 				} else {

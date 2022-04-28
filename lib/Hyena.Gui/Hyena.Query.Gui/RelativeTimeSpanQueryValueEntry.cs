@@ -28,7 +28,8 @@
 
 using System;
 
-using Mono.Unix;
+using FSpot.Resources.Lang;
+
 using Gtk;
 
 namespace Hyena.Query.Gui
@@ -37,7 +38,7 @@ namespace Hyena.Query.Gui
     {
         public RelativeTimeSpanQueryValueEntry () : base ()
         {
-            Add (new Label (Catalog.GetString ("ago")));
+            Add (new Label (Strings.Ago));
         }
 
         protected override void HandleValueChanged (object o, EventArgs args)

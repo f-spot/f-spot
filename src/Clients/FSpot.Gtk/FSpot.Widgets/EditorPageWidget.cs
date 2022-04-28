@@ -31,19 +31,19 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using FSpot.Editors;
+using FSpot.Resources.Lang;
+using FSpot.Settings;
 using FSpot.UI.Dialog;
 using FSpot.Utils;
 
 using Gtk;
 
-using Mono.Addins;
-using Mono.Unix;
 using Hyena.Widgets;
-using System.Linq;
-using FSpot.Settings;
 
+using Mono.Addins;
 
 namespace FSpot.Widgets
 {
@@ -203,8 +203,8 @@ namespace FSpot.Widgets
 				return;
 
 			if (!editor.CanBeApplied) {
-				string msg = Catalog.GetString ("No selection available");
-				string desc = Catalog.GetString ("This tool requires an active selection. Please select a region of the photo and try the operation again");
+				string msg = Strings.NoSelectionAvailable;
+				string desc = Strings.ThisToolRequiresAnActiveSelectionPleaseSelectARegion;
 
 				HigMessageDialog md = new HigMessageDialog (App.Instance.Organizer.Window,
 										DialogFlags.DestroyWithParent,
@@ -222,10 +222,8 @@ namespace FSpot.Widgets
 				editor.Apply ();
 			} catch (Exception e) {
 				Logger.Log.Debug (e, "");
-				string msg = Catalog.GetPluralString ("Error saving adjusted photo", "Error saving adjusted photos",
-									editor.State.Items.Length);
-				string desc = string.Format (Catalog.GetString ("Received exception \"{0}\". Note that you have to develop RAW files into JPEG before you can edit them."),
-							     e.Message);
+				string msg = editor.State.Items.Length <= 1 ? Strings.ErrorSavingAdjustedPhoto : Strings.ErrorSavingAdjustedPhotos;
+				string desc = string.Format (Strings.ReceivedExceptionXNoteThatYouHaveToDevelopRaw, e.Message);
 
 				HigMessageDialog md = new HigMessageDialog (App.Instance.Organizer.Window,
 									    DialogFlags.DestroyWithParent,

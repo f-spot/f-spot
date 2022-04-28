@@ -31,7 +31,6 @@
 
 using System;
 using System.Linq;
-using Mono.Unix;
 
 using Gtk;
 using Gdk;
@@ -39,6 +38,7 @@ using Gdk;
 using FSpot.Utils;
 using FSpot.Widgets;
 using Layout = Pango.Layout;
+using FSpot.Resources.Lang;
 
 namespace FSpot
 {
@@ -89,11 +89,11 @@ namespace FSpot
 				}
 
 				if (adaptor is TimeAdaptor) {
-					left.TooltipText = Catalog.GetString ("More dates");
-					right.TooltipText = Catalog.GetString ("More dates");
+					left.TooltipText = Strings.MoreDates;
+					right.TooltipText = Strings.MoreDates;
 				} else {
-					left.TooltipText = Catalog.GetString ("More");
-					right.TooltipText = Catalog.GetString ("More");
+					left.TooltipText = Strings.More;
+					right.TooltipText = Strings.More;
 				}
 
 				adaptor.Changed += HandleAdaptorChanged;
@@ -567,7 +567,7 @@ namespace FSpot
 
 			order_menu.Append (App.Instance.Organizer.ReverseOrderAction.CreateMenuItem ());
 
-			GtkUtil.MakeMenuItem (order_menu, Catalog.GetString ("_Clear Date Range"),
+			GtkUtil.MakeMenuItem (order_menu, Strings.ClearDateRangeMnemonic,
 						App.Instance.Organizer.HandleClearDateRange);
 
 			if (args != null)

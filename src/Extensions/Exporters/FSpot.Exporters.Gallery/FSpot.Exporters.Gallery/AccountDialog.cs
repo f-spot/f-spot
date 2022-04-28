@@ -29,7 +29,8 @@
 
 using System;
 
-using Mono.Unix;
+using FSpot.Resources.Lang;
+
 using Hyena.Widgets;
 
 
@@ -115,22 +116,22 @@ namespace FSpot.Exporters.Gallery
 				} catch (System.UriFormatException) {
 					HigMessageDialog md =
 						new HigMessageDialog (add_dialog,
-								      Gtk.DialogFlags.Modal |
-								      Gtk.DialogFlags.DestroyWithParent,
-								      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
-								      Catalog.GetString ("Invalid URL"),
-								      Catalog.GetString ("The gallery URL entry does not appear to be a valid URL"));
+									  Gtk.DialogFlags.Modal |
+									  Gtk.DialogFlags.DestroyWithParent,
+									  Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
+									  Strings.InvalidUrl,
+									  Strings.TheGalleryUrlEntryDoesNotAppearToBeValid);
 					md.Run ();
 					md.Destroy ();
 					return;
 				} catch (GalleryException e) {
 					HigMessageDialog md =
 						new HigMessageDialog (add_dialog,
-								      Gtk.DialogFlags.Modal |
-								      Gtk.DialogFlags.DestroyWithParent,
-								      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
-								      Catalog.GetString ("Error while connecting to Gallery"),
-								      string.Format (Catalog.GetString ("The following error was encountered while attempting to log in: {0}"), e.Message));
+									  Gtk.DialogFlags.Modal |
+									  Gtk.DialogFlags.DestroyWithParent,
+									  Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
+									  Strings.ErrorWhileConnectingToGallery,
+								      string.Format (Strings.FollowingErrorWasEncounteredAttemptingToLogInX, e.Message));
 					if (e.ResponseText != null) {
 						Logger.Log.Debug (e.Message);
 						Logger.Log.Debug (e.ResponseText);
@@ -144,8 +145,8 @@ namespace FSpot.Exporters.Gallery
 								      Gtk.DialogFlags.Modal |
 								      Gtk.DialogFlags.DestroyWithParent,
 								      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
-								      Catalog.GetString ("A Gallery with this name already exists"),
-								      string.Format (Catalog.GetString ("There is already a Gallery with the same name in your registered Galleries. Please choose a unique name.")));
+									  Strings.GalleryWithThisNameAlreadyExists,
+								      string.Format (Strings.ThereAlreadyGallerySameNameInYourRegisteredGalleriesPleaseChooseUniqueName));
 					Logger.Log.Error (ae, "");
 					md.Run ();
 					md.Destroy ();
@@ -156,19 +157,19 @@ namespace FSpot.Exporters.Gallery
 								      Gtk.DialogFlags.Modal |
 								      Gtk.DialogFlags.DestroyWithParent,
 								      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
-								      Catalog.GetString ("Error while connecting to Gallery"),
-								      string.Format (Catalog.GetString ("The following error was encountered while attempting to log in: {0}"), we.Message));
+									  Strings.ErrorWhileConnectingToGallery,
+								      string.Format (Strings.FollowingErrorWasEncounteredAttemptingToLogInX, we.Message));
 					md.Run ();
 					md.Destroy ();
 					return;
-				} catch (System.Exception se) {
+				} catch (Exception se) {
 					HigMessageDialog md =
 						new HigMessageDialog (add_dialog,
 								      Gtk.DialogFlags.Modal |
 								      Gtk.DialogFlags.DestroyWithParent,
 								      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
-								      Catalog.GetString ("Error while connecting to Gallery"),
-								      string.Format (Catalog.GetString ("The following error was encountered while attempting to log in: {0}"), se.Message));
+									  Strings.ErrorWhileConnectingToGallery,
+								      string.Format (Strings.FollowingErrorWasEncounteredAttemptingToLogInX, se.Message));
 					Logger.Log.Error (se, "");
 					md.Run ();
 					md.Destroy ();

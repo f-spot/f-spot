@@ -37,12 +37,10 @@ using System.Collections.Generic;
 using Gtk;
 using Gdk;
 
-using Mono.Unix;
-
 using FSpot.Core;
 using FSpot.Database;
+using FSpot.Resources.Lang;
 using FSpot.Settings;
-
 
 namespace FSpot.UI.Dialog
 {
@@ -136,7 +134,7 @@ namespace FSpot.UI.Dialog
 				already_in_use_label.Markup = string.Empty;
 			} else if (TagNameExistsInCategory (tag_name_entry.Text, tag_store.RootCategory)) {
 				create_button.Sensitive = false;
-				already_in_use_label.Markup = "<small>" + Catalog.GetString ("This name is already in use") + "</small>";
+				already_in_use_label.Markup = $"<small>{Strings.ThisNameIsAlreadyInUse}</small>";
 			} else {
 				create_button.Sensitive = true;
 				already_in_use_label.Markup = string.Empty;
@@ -185,8 +183,8 @@ namespace FSpot.UI.Dialog
 
 			DefaultResponse = ResponseType.Ok;
 
-			Title = Catalog.GetString ("Create New Tag");
-			prompt_label.Text = Catalog.GetString ("Name of New Tag:");
+			Title = Strings.CreateNewTag;
+			prompt_label.Text = Strings.NameOfNewTagColon;
 			auto_icon_checkbutton.Active = Preferences.Get<bool> (Preferences.TagIconAutomatic);
 
 			PopulateCategoryOptionMenu ();

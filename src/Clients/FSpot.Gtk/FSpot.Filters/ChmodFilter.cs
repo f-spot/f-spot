@@ -29,8 +29,6 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Mono.Unix.Native;
-
 namespace FSpot.Filters
 {
 	public class ChmodFilter : IFilter

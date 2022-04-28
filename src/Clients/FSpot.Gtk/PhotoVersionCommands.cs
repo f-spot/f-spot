@@ -37,12 +37,11 @@ using System;
 
 using Gtk;
 
-using Mono.Unix;
-
 using FSpot;
 using FSpot.Database;
 using FSpot.UI.Dialog;
 using Hyena.Widgets;
+using FSpot.Resources.Lang;
 
 
 public class PhotoVersionCommands
@@ -77,9 +76,9 @@ public class PhotoVersionCommands
 	{
 		public bool Execute (PhotoStore store, Photo photo, Gtk.Window parent_window)
 		{
-			string ok_caption = Catalog.GetString ("Delete");
-			string msg = string.Format (Catalog.GetString ("Really delete version \"{0}\"?"), photo.DefaultVersion.Name);
-			string desc = Catalog.GetString ("This removes the version and deletes the corresponding file from disk.");
+			string ok_caption = Strings.Delete;
+			string msg = string.Format (Strings.ReallyDeleteVersionXQuestion, photo.DefaultVersion.Name);
+			string desc = Strings.ThisRemovesTheVersionAndDeletesTheFileFromDisk;
 			try {
 				if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation(parent_window, DialogFlags.DestroyWithParent,
 									   MessageType.Warning, msg, desc, ok_caption)) {
@@ -124,9 +123,9 @@ public class PhotoVersionCommands
 	{
 		public bool Execute (PhotoStore store, Photo photo, Gtk.Window parent_window)
 		{
-			string ok_caption = Catalog.GetString ("De_tach");
-			string msg = string.Format (Catalog.GetString ("Really detach version \"{0}\" from \"{1}\"?"), photo.DefaultVersion.Name, photo.Name.Replace("_", "__"));
-			string desc = Catalog.GetString ("This makes the version appear as a separate photo in the library. To undo, drag the new photo back to its parent.");
+			string ok_caption = Strings.DetachMnemonic;
+			string msg = string.Format (Strings.ReallyDetachVersionXFromY, photo.DefaultVersion.Name, photo.Name.Replace("_", "__"));
+			string desc = Strings.ThisMakesTheVersionAppearAsASeparatePhotoInLibraryToUndoDragNewPhotoBackToParent;
 			try {
 				if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation(parent_window, DialogFlags.DestroyWithParent,
 									   MessageType.Warning, msg, desc, ok_caption)) {
@@ -148,11 +147,10 @@ public class PhotoVersionCommands
 	{
 		public bool Execute (PhotoStore store, Photo [] photos, Photo new_parent, Gtk.Window parent_window)
 		{
-			string ok_caption = Catalog.GetString ("Re_parent");
-			string msg = string.Format (Catalog.GetPluralString ("Really reparent \"{0}\" as version of \"{1}\"?",
-			                                                     "Really reparent {2} photos as versions of \"{1}\"?", photos.Length),
+			string ok_caption = Strings.ReparentMnemonic;
+			string msg = string.Format (photos.Length <= 1 ? Strings.ReallyReparentXAsVersionOfY : Strings.ReallyReparentZPhotosAsVersionsOfY,
 			                            new_parent.Name.Replace ("_", "__"), photos[0].Name.Replace ("_", "__"), photos.Length);
-			string desc = Catalog.GetString ("This makes the photos appear as a single one in the library. The versions can be detached using the Photo menu.");
+			string desc = Strings.ThisMakesThePhotosAppearAsASingleOneInLibraryTheVersionsCanBeDetachedUsingThePhotoMenu;
 
 			try {
 				if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation(parent_window, DialogFlags.DestroyWithParent,
@@ -192,8 +190,7 @@ public class PhotoVersionCommands
 	static void HandleException (string msg, Exception e, Gtk.Window parent_window)
 	{
 		Logger.Log.Debug (e, "");
-		msg = Catalog.GetString (msg);
-		string desc = string.Format (Catalog.GetString ("Received exception \"{0}\"."), e.Message);
+		string desc = string.Format (Strings.ReceivedExceptionX, e.Message);
 		HigMessageDialog md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent,
 								Gtk.MessageType.Error, ButtonsType.Ok, msg, desc);
 		md.Run ();

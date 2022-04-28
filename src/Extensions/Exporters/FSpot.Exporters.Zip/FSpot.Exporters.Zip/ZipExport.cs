@@ -39,13 +39,12 @@ using FSpot.Extensions;
 using FSpot.Filters;
 using Hyena.Widgets;
 
-using Mono.Unix;
-
 using Gtk;
 
 using ICSharpCode.SharpZipLib.Checksum;
 using ICSharpCode.SharpZipLib.Zip;
 using FSpot.Settings;
+using FSpot.Resources.Lang;
 
 
 namespace FSpot.Exporters.Zip
@@ -69,8 +68,8 @@ namespace FSpot.Exporters.Zip
 			if (p.Count == 0) {
 				HigMessageDialog md = new HigMessageDialog (App.Instance.Organizer.Window, DialogFlags.DestroyWithParent,
 							  Gtk.MessageType.Error, ButtonsType.Ok,
-							  Catalog.GetString ("No selection available"),
-							  Catalog.GetString ("This tool requires an active selection. Please select one or more pictures and try again"));
+							  Strings.NoSelectionAvailable,
+							  Strings.ThisToolRequiresAnActiveSelection_PleaseSelectOneOrMore);
 
 				md.Run ();
 				md.Destroy ();
@@ -86,7 +85,7 @@ namespace FSpot.Exporters.Zip
 			zipdiag.Modal = false;
 			zipdiag.TransientFor = null;
 
-			uri_chooser = new Gtk.FileChooserButton (Catalog.GetString ("Select export folder"),
+			uri_chooser = new Gtk.FileChooserButton (Strings.SelectExportFolder,
 								 Gtk.FileChooserAction.SelectFolder);
 			uri_chooser.LocalOnly = true;
 			uri_chooser.SetFilename (System.IO.Path.Combine (FSpotConfiguration.HomeDirectory, "Desktop"));
@@ -124,13 +123,13 @@ namespace FSpot.Exporters.Zip
 			if (scale_check.Active)
 				Logger.Log.Debug ($"Scaling to {scale_size.ValueAsInt}");
 
-			ProgressDialog progress_dialog = new ProgressDialog (Catalog.GetString ("Exporting files"),
+			ProgressDialog progress_dialog = new ProgressDialog (Strings.ExportingFiles,
 							      ProgressDialog.CancelButtonType.Stop,
 							      photos.Length, zipdiag);
 
 			//Pack up
 			for (int i = 0; i < photos.Length; i ++) {
-				if (progress_dialog.Update (string.Format (Catalog.GetString ("Preparing photo \"{0}\""), photos[i].Name))) {
+				if (progress_dialog.Update (string.Format (Strings.PreparingPhotoX, photos[i].Name))) {
 					progress_dialog.Destroy ();
 					return;
 				}

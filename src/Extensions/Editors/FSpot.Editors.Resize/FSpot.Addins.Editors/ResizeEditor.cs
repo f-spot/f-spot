@@ -31,12 +31,11 @@ using System;
 
 using FSpot.Editors;
 using FSpot.Imaging;
+using FSpot.Resources.Lang;
 
 using Gdk;
 
 using Gtk;
-
-using Mono.Unix;
 
 namespace FSpot.Addins.Editors
 {
@@ -44,7 +43,7 @@ namespace FSpot.Addins.Editors
 	{
 		SpinButton size;
 
-		public ResizeEditor () : base (Catalog.GetString ("Resize"), null) {
+		public ResizeEditor () : base (Strings.Resize, null) {
 			CanHandleMultiple = false;
 			HasSettings = true;
 		}

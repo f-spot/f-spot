@@ -33,11 +33,10 @@ using System;
 
 using Gtk;
 
-using Mono.Unix;
-
 using FSpot.UI.Dialog;
 
 using Hyena.Widgets;
+using FSpot.Resources.Lang;
 
 namespace FSpot.Widgets
 {
@@ -103,9 +102,8 @@ namespace FSpot.Widgets
 				photo.Changes.DataChanged = true;
 				App.Instance.Database.Photos.Commit (photo);
 			} catch (Exception e) {
-				string msg = Catalog.GetString ("Error saving sharpened photo");
-				string desc = string.Format (Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"),
-                                 e.Message, photo.Name);
+				string msg = Strings.ErrorSavingSharpenedPhoto;
+				string desc = string.Format (Strings.ReceivedExceptionXUnableToSavePhotoY, e.Message, photo.Name);
 
 				HigMessageDialog md = new HigMessageDialog (this, DialogFlags.DestroyWithParent,
                                         Gtk.MessageType.Error,
@@ -150,7 +148,7 @@ namespace FSpot.Widgets
 		{
 			base.BuildUI ();
 
-			string title = Catalog.GetString ("Sharpen");
+			string title = Strings.Sharpen;
 			dialog = new Gtk.Dialog (title, (Gtk.Window)this,
 						 DialogFlags.DestroyWithParent, new object [0]);
 			dialog.BorderWidth = 12;
@@ -160,9 +158,9 @@ namespace FSpot.Widgets
 			table.ColumnSpacing = 6;
 			table.RowSpacing = 6;
 
-			table.Attach (SetFancyStyle (new Gtk.Label (Catalog.GetString ("Amount:"))), 0, 1, 0, 1);
-			table.Attach (SetFancyStyle (new Gtk.Label (Catalog.GetString ("Radius:"))), 0, 1, 1, 2);
-			table.Attach (SetFancyStyle (new Gtk.Label (Catalog.GetString ("Threshold:"))), 0, 1, 2, 3);
+			table.Attach (SetFancyStyle (new Gtk.Label (Strings.AmountColon)), 0, 1, 0, 1);
+			table.Attach (SetFancyStyle (new Gtk.Label (Strings.RadiusColon)), 0, 1, 1, 2);
+			table.Attach (SetFancyStyle (new Gtk.Label (Strings.ThresholdColon)), 0, 1, 2, 3);
 
 			SetFancyStyle (amount_spin = new Gtk.SpinButton (0.00, 100.0, .01));
 			SetFancyStyle (radius_spin = new Gtk.SpinButton (1.0, 50.0, .01));

@@ -36,7 +36,9 @@ using System.IO;
 using System.Net;
 using System.Text;
 
-using Mono.Unix;
+using FSpot.Resources.Lang;
+
+using Hyena;
 using Hyena.Widgets;
 
 
@@ -135,7 +137,7 @@ namespace FSpot.Exporters.Gallery
 		{
 			StreamReader reader = new StreamReader (response.GetResponseStream (), Encoding.UTF8);
 			if (reader == null)
-				throw new GalleryException (Catalog.GetString ("Error reading server response"));
+				throw new GalleryException (Strings.ErrorReadingServerResponse);
 
 			string line;
 			string full_response = null;
@@ -147,7 +149,7 @@ namespace FSpot.Exporters.Gallery
 
 			if (line == null)
 				// failed to find the response
-				throw new GalleryException (Catalog.GetString ("Server returned response without Gallery content"), full_response);
+				throw new GalleryException (Strings.ServerReturnedResponseWithoutGalleryContent, full_response);
 			return reader;
 		}
 
@@ -460,8 +462,8 @@ namespace FSpot.Exporters.Gallery
 						      Gtk.DialogFlags.Modal |
 					Gtk.DialogFlags.DestroyWithParent,
 						      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
-						      Catalog.GetString ("Error while creating new album"),
-						      string.Format (Catalog.GetString ("The following error was encountered while attempting to perform the requested operation:\n{0} ({1})"), e.Message, e.Status));
+							  Strings.ErrorWhileCreatingNewAlbum,
+						      string.Format (Strings.FollowingErrorEncounteredAttemptingToPerformRequestedOperation, e.Message, e.Status));
 			md.Run ();
 			md.Destroy ();
 		}

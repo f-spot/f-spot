@@ -31,14 +31,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 
-using Mono.Unix;
+using FSpot.Resources.Lang;
 
 namespace Hyena.Query
 {
 	public abstract class EnumQueryValue : QueryValue
     {
-        public static readonly Operator Equal    = new Operator ("equals", Catalog.GetString ("is"), "= {0}", "=", "==", ":");
-        public static readonly Operator NotEqual = new Operator ("notEqual", Catalog.GetString ("is not"), "!= {0}", true, "!=", "!:");
+        public static readonly Operator Equal    = new Operator ("equals", Strings.Is, "= {0}", "=", "==", ":");
+        public static readonly Operator NotEqual = new Operator ("notEqual", Strings.IsNot, "!= {0}", true, "!=", "!:");
 
         protected int value;
 

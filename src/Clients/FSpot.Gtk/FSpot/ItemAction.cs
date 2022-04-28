@@ -35,9 +35,8 @@ using System;
 
 using Gtk;
 
-using Mono.Unix;
-
 using FSpot.Core;
+using FSpot.Resources.Lang;
 using FSpot.UI.Dialog;
 
 namespace FSpot
@@ -93,8 +92,8 @@ namespace FSpot
 		    : base (p,
 			RotateDirection.Counterclockwise,
 			"RotateItemLeft",
-			Catalog.GetString ("Rotate Left"),
-			Catalog.GetString ("Rotate picture left"),
+			Strings.RotateLeft,
+			Strings.RotatePictureLeft,
 			"object-rotate-left")
 		{
 		}
@@ -106,8 +105,8 @@ namespace FSpot
 		    : base (p,
 			RotateDirection.Clockwise,
 			"RotateItemRight",
-			Catalog.GetString ("Rotate Right"),
-			Catalog.GetString ("Rotate picture right"),
+			Strings.RotateRight,
+			Strings.RotatePictureRight,
 			"object-rotate-right")
 		{
 		}
@@ -118,8 +117,8 @@ namespace FSpot
 		public NextPictureAction (BrowsablePointer p)
 		    : base (p,
 			"NextPicture",
-			Catalog.GetString ("Next"),
-			Catalog.GetString ("Next picture"),
+			Strings.Next,
+			Strings.NextPicture,
 			"gtk-go-forward-ltr")
 		{
 		}
@@ -139,8 +138,8 @@ namespace FSpot
 	{
 		public PreviousPictureAction (BrowsablePointer p) : base (p,
 			"PreviousPicture",
-			Catalog.GetString ("Previous"),
-			Catalog.GetString ("Previous picture"),
+			Strings.Previous,
+			Strings.PreviousPicture,
 			"gtk-go-back-ltr")
 		{
 		}

@@ -27,13 +27,12 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
 using System.IO;
 using System.Text;
 
 namespace Hyena.Query
 {
-    public class UserQueryParser : QueryParser
+	public class UserQueryParser : QueryParser
     {
         QueryListNode current_parent;
 

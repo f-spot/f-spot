@@ -28,16 +28,15 @@
 //
 
 using FSpot.ColorAdjustment;
+using FSpot.Resources.Lang;
 
 using Gdk;
-
-using Mono.Unix;
 
 namespace FSpot.Editors
 {
     class SepiaEditor : Editor
 	{
-        public SepiaEditor () : base (Catalog.GetString ("Sepia Tone"), "color-sepia")
+        public SepiaEditor () : base (Strings.SepiaTone, "color-sepia")
 		{
 			// FIXME: need tooltip Catalog.GetString ("Convert the photo to sepia tones")
 			CanHandleMultiple = true;

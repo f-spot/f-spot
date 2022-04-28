@@ -33,8 +33,7 @@
 
 using System;
 
-using Mono.Unix;
-
+using FSpot.Resources.Lang;
 using FSpot.Utils;
 
 namespace FSpot.Query
@@ -56,17 +55,17 @@ namespace FSpot.Query
 
 			if (literal.IsNegated) {
 				GtkUtil.MakeMenuItem (popupMenu,
-						      string.Format (Catalog.GetString ("Include Photos Tagged \"{0}\""), literal.Tag.Name),
+						      string.Format (Strings.IncludePhotoTaggedX, literal.Tag.Name),
 						      new EventHandler (literal.HandleToggleNegatedCommand),
 						      true);
 			} else {
 				GtkUtil.MakeMenuItem (popupMenu,
-						      string.Format (Catalog.GetString ("Exclude Photos Tagged \"{0}\""), literal.Tag.Name),
+						      string.Format (Strings.ExcludePhotosTaggedX, literal.Tag.Name),
 						      new EventHandler (literal.HandleToggleNegatedCommand),
 						      true);
 			}
 
-			GtkUtil.MakeMenuItem (popupMenu, Catalog.GetString ("Remove From Search"),
+			GtkUtil.MakeMenuItem (popupMenu, Strings.RemoveFromSearch,
 					      "gtk-remove",
 					      new EventHandler (literal.HandleRemoveCommand),
 					      true);
