@@ -67,7 +67,7 @@ namespace Hyena.Data.Sqlite
                 throw new Exception(string.Format(
                     "{0}.{1}: {2}", member_info.DeclaringType, member_info.Name, e.Message));
             }
-            this.name = attribute.ColumnName ?? member_info.Name;
+            name = attribute.ColumnName ?? member_info.Name;
             this.type = type;
         }
 

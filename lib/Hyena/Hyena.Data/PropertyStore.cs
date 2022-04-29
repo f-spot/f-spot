@@ -43,11 +43,11 @@ namespace Hyena.Data
 
         public PropertyChangeEventArgs(string propertyName, bool added, bool removed, object oldValue, object newValue)
         {
-            this.property_name = propertyName;
+            property_name = propertyName;
             this.added = added;
             this.removed = removed;
-            this.old_value = oldValue;
-            this.new_value = newValue;
+            old_value = oldValue;
+            new_value = newValue;
         }
 
         public string PropertyName {

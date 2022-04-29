@@ -71,7 +71,7 @@ namespace Hyena.Query
             this.name = name;
             this.label = label;
             this.sql_format = sql_format;
-            this.aliases = userOps;
+            aliases = userOps;
             this.is_not = is_not;
         }
     }

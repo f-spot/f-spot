@@ -51,7 +51,7 @@ namespace Hyena.Data
         {
             this.property = property;
             this.title = title;
-            this.long_title = title;
+            long_title = title;
             Width = width;
             Visible = visible;
             initialized = true;

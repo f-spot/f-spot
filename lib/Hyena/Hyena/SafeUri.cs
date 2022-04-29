@@ -66,9 +66,9 @@ namespace Hyena
 			}
 
 			if (isUri) {
-				this.uri = uriOrFilename;
+				uri = uriOrFilename;
 			} else {
-				this.uri = FilenameToUri (uriOrFilename);
+				uri = FilenameToUri (uriOrFilename);
 			}
 		}
 

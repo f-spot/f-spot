@@ -99,7 +99,7 @@ namespace Hyena.Data.Sqlite
         public SqliteModelProvider (HyenaSqliteConnection connection, string table_name, bool checkTable) : this (connection)
         {
             this.table_name = table_name;
-            this.check_table = checkTable;
+            check_table = checkTable;
             Init ();
         }
 

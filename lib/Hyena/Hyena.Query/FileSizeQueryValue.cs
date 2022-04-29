@@ -93,7 +93,7 @@ namespace Hyena.Query
         {
             base.ParseUserQuery (node.InnerText);
             if (node.HasAttribute ("factor")) {
-                this.factor = (FileSizeFactor) Enum.Parse (typeof(FileSizeFactor), node.GetAttribute ("factor"));
+                factor = (FileSizeFactor) Enum.Parse (typeof(FileSizeFactor), node.GetAttribute ("factor"));
             } else {
                 DetermineFactor ();
             }

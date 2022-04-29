@@ -69,7 +69,7 @@ namespace Hyena
             this.type = type;
             this.message = message;
             this.details = details;
-            this.timestamp = DateTime.Now;
+            timestamp = DateTime.Now;
         }
 
         public LogEntryType Type {

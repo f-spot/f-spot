@@ -147,7 +147,7 @@ namespace Hyena.Query
             try {
                 LoadString (node.InnerText);
                 if (node.HasAttribute ("factor")) {
-                    this.factor = (TimeFactor) Enum.Parse (typeof(TimeFactor), node.GetAttribute ("factor"));
+                    factor = (TimeFactor) Enum.Parse (typeof(TimeFactor), node.GetAttribute ("factor"));
                 }
             } catch {
                 IsEmpty = true;

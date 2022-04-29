@@ -109,15 +109,15 @@ namespace Hyena.Query
         public QueryField (string name, string propertyName, string label, string column, Type [] valueTypes, bool isDefault, params string [] aliases)
         {
             this.name = name;
-            this.property_name = propertyName;
+            property_name = propertyName;
             this.label = label;
             this.column = column;
-            this.value_types = valueTypes;
-            this.is_default = isDefault;
+            value_types = valueTypes;
+            is_default = isDefault;
             this.aliases = aliases;
 
-            this.no_custom_format = (Column.IndexOf ("{0}") == -1 && Column.IndexOf ("{1}") == -1);
-            this.column_lowered = (Column.IndexOf ("Lowered") != -1);
+            no_custom_format = (Column.IndexOf ("{0}") == -1 && Column.IndexOf ("{1}") == -1);
+            column_lowered = (Column.IndexOf ("Lowered") != -1);
 
             if (!no_custom_format) {
                 // Ensure we have parens around any custom 'columns' that may be an OR of two columns
