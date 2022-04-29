@@ -31,7 +31,7 @@ using System.Runtime.InteropServices;
 
 namespace Hyena
 {
-    public static class PlatformDetection
+    static class PlatformDetection
     {
         public static readonly bool IsMac;
         public static readonly bool IsWindows;

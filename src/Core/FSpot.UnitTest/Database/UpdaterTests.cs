@@ -78,7 +78,7 @@ namespace FSpot.Database.Tests
 				Initialize ();
 
 			// Looks like a sqlite missing issue. These tests will be going away soon anyways
-			if (PlatformDetection.IsWindows)
+			if (Utils.Platform.IsWindows)
 				return;
 
 			var testDir = TestContext.CurrentContext.TestDirectory;
