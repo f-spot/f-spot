@@ -167,7 +167,7 @@ namespace Hyena.Gui
             }
         }
 
-        private static double Modula(double number, double divisor)
+        static double Modula(double number, double divisor)
         {
             return ((int)number % divisor) + (number - (int)number);
         }
@@ -325,7 +325,7 @@ namespace Hyena.Gui
             ((IDisposable)cr).Dispose ();
         }
 
-        private struct CairoInteropCall
+        struct CairoInteropCall
         {
             public string Name;
             public MethodInfo ManagedMethod;
@@ -339,7 +339,7 @@ namespace Hyena.Gui
             }
         }
 
-        private static bool CallCairoMethod (Cairo.Context cr, ref CairoInteropCall call)
+        static bool CallCairoMethod (Cairo.Context cr, ref CairoInteropCall call)
         {
             if (call.ManagedMethod == null && !call.CallNative) {
                 MemberInfo [] members = typeof (Cairo.Context).GetMember (call.Name, MemberTypes.Method,
@@ -360,11 +360,11 @@ namespace Hyena.Gui
             return false;
         }
 
-        private static bool native_push_pop_exists = true;
+        static bool native_push_pop_exists = true;
 
         [DllImport ("libcairo-2.dll")]
-        private static extern void cairo_push_group (IntPtr ptr);
-        private static CairoInteropCall cairo_push_group_call = new CairoInteropCall ("PushGroup");
+static extern void cairo_push_group (IntPtr ptr);
+        static CairoInteropCall cairo_push_group_call = new CairoInteropCall ("PushGroup");
 
         public static void PushGroup (Cairo.Context cr)
         {
@@ -382,8 +382,8 @@ namespace Hyena.Gui
         }
 
         [DllImport ("libcairo-2.dll")]
-        private static extern void cairo_pop_group_to_source (IntPtr ptr);
-        private static CairoInteropCall cairo_pop_group_to_source_call = new CairoInteropCall ("PopGroupToSource");
+static extern void cairo_pop_group_to_source (IntPtr ptr);
+        static CairoInteropCall cairo_pop_group_to_source_call = new CairoInteropCall ("PopGroupToSource");
 
         public static void PopGroupToSource (Cairo.Context cr)
         {

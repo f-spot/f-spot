@@ -32,7 +32,7 @@ namespace Hyena.Widgets
 {
 	public class GenericToolItem<T> : ToolItem where T : Widget
     {
-        private T widget;
+        T widget;
 
         public GenericToolItem (T widget)
         {

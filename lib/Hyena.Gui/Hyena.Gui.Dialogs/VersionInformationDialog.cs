@@ -35,9 +35,9 @@ namespace Hyena.Gui.Dialogs
 {
     public class VersionInformationDialog : Dialog
     {
-        private Label path_label;
-        private TreeView version_tree;
-        private TreeStore version_store;
+        Label path_label;
+        TreeView version_tree;
+        TreeStore version_store;
 
         public VersionInformationDialog() : base()
         {
@@ -87,7 +87,7 @@ namespace Hyena.Gui.Dialogs
             scroll.ShowAll();
         }
 
-        private void OnCursorChanged(object o, EventArgs args)
+        void OnCursorChanged(object o, EventArgs args)
         {
             TreeIter iter;
 
@@ -107,7 +107,7 @@ namespace Hyena.Gui.Dialogs
             path_label.Show();
         }
 
-        private TreeStore FillStore()
+        TreeStore FillStore()
         {
             version_store = new TreeStore(typeof(string),
                 typeof(string), typeof(string));

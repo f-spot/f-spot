@@ -35,12 +35,12 @@ namespace Hyena.Gui.Theatrics
     {
         public delegate bool ActorStepHandler (Actor<T> actor);
 
-        private Dictionary<T, Actor<T>> actors = new Dictionary<T, Actor<T>> ();
-        private uint timeout_id;
+        Dictionary<T, Actor<T>> actors = new Dictionary<T, Actor<T>> ();
+        uint timeout_id;
 
-        private uint update_frequency = 30;
-        private uint default_duration = 1000;
-        private bool playing = true;
+        uint update_frequency = 30;
+        uint default_duration = 1000;
+        bool playing = true;
 
         public event ActorStepHandler ActorStep;
 
@@ -110,7 +110,7 @@ namespace Hyena.Gui.Theatrics
             }
         }
 
-        private Actor<T> AddOrResetCore (T target, uint? duration)
+        Actor<T> AddOrResetCore (T target, uint? duration)
         {
             lock (this) {
                 if (Contains (target)) {
@@ -145,7 +145,7 @@ namespace Hyena.Gui.Theatrics
             }
         }
 
-        private void ResetCore (T target, uint? duration)
+        void ResetCore (T target, uint? duration)
         {
             lock (this) {
                 if (!Contains (target)) {
@@ -162,7 +162,7 @@ namespace Hyena.Gui.Theatrics
             }
         }
 
-        private void CheckTimeout ()
+        void CheckTimeout ()
         {
             if ((!Playing || actors.Count == 0) && timeout_id > 0) {
                 GLib.Source.Remove (timeout_id);
@@ -174,7 +174,7 @@ namespace Hyena.Gui.Theatrics
             }
         }
 
-        private bool OnTimeout ()
+        bool OnTimeout ()
         {
             if (!Playing || this.actors.Count == 0) {
                 timeout_id = 0;

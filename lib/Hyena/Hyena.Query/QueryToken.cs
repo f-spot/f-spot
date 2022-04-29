@@ -41,10 +41,10 @@ namespace Hyena.Query
 
     public class QueryToken
     {
-        private TokenID id;
-        private int line;
-        private int column;
-        private string term;
+        TokenID id;
+        int line;
+        int column;
+        string term;
 
         public QueryToken()
         {

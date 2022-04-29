@@ -34,8 +34,8 @@ namespace Hyena.Data.Gui
 
     public class RowActivatedArgs<T> : EventArgs
     {
-        private int row;
-        private T row_value;
+        int row;
+        T row_value;
 
         public RowActivatedArgs (int row, T rowValue)
         {

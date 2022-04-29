@@ -33,8 +33,8 @@ namespace Hyena.Downloader
 {
 	public class DownloadManagerJob : Hyena.Jobs.Job
     {
-        private DownloadManager manager;
-        private int finished_count = 0;
+        DownloadManager manager;
+        int finished_count = 0;
 
         public DownloadManagerJob (DownloadManager manager)
         {
@@ -43,7 +43,7 @@ namespace Hyena.Downloader
             manager.Finished += OnDownloaderFinished;
         }
 
-        private void OnDownloaderProgress (HttpDownloader downloader)
+        void OnDownloaderProgress (HttpDownloader downloader)
         {
             FreezeUpdate ();
 
@@ -82,7 +82,7 @@ namespace Hyena.Downloader
             ThawUpdate (true);
         }
 
-        private void OnDownloaderFinished (HttpDownloader downloader)
+        void OnDownloaderFinished (HttpDownloader downloader)
         {
             lock (manager.SyncRoot) {
                 finished_count++;

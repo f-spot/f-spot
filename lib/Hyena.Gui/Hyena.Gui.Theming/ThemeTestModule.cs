@@ -68,9 +68,9 @@ namespace Hyena.Gui.Theming
             });
         }
 
-        private class ThemeTestWidget : DrawingArea
+        class ThemeTestWidget : DrawingArea
         {
-            private Theme theme;
+            Theme theme;
 
             protected override void OnStyleSet (Style previous_style)
             {

@@ -36,15 +36,15 @@ namespace Hyena.Widgets
 {
 	public class AnimatedImage : Image
     {
-        private Gdk.Pixbuf pixbuf;
-        private Gdk.Pixbuf inactive_pixbuf;
-        private Gdk.Pixbuf [] frames;
-        private int frame_width;
-        private int frame_height;
-        private int max_frames;
-        private bool active_frozen;
+        Gdk.Pixbuf pixbuf;
+        Gdk.Pixbuf inactive_pixbuf;
+        Gdk.Pixbuf [] frames;
+        int frame_width;
+        int frame_height;
+        int max_frames;
+        bool active_frozen;
 
-        private SingleActorStage stage = new SingleActorStage ();
+        SingleActorStage stage = new SingleActorStage ();
 
         public AnimatedImage ()
         {
@@ -89,7 +89,7 @@ namespace Hyena.Widgets
             base.Pixbuf = frames[0];
         }
 
-        private void OnIteration (object o, EventArgs args)
+        void OnIteration (object o, EventArgs args)
         {
             if (!Visible) {
                 return;
@@ -109,7 +109,7 @@ namespace Hyena.Widgets
             }
         }
 
-        private void ExtractFrames ()
+        void ExtractFrames ()
         {
             if (pixbuf == null) {
                 throw new ApplicationException ("No source pixbuf specified");

@@ -32,8 +32,8 @@ namespace Hyena.Gui.Canvas
 {
     public struct Size
     {
-        private double width;
-        private double height;
+        double width;
+        double height;
 
         public Size (double width, double height) : this ()
         {

@@ -43,7 +43,7 @@ namespace Hyena.Query
 
     public class FileSizeQueryValue : IntegerQueryValue
     {
-        private FileSizeFactor factor = FileSizeFactor.None;
+        FileSizeFactor factor = FileSizeFactor.None;
         public FileSizeFactor Factor {
             get { return factor; }
         }

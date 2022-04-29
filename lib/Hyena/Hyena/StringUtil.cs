@@ -38,7 +38,7 @@ namespace Hyena
 {
     public static class StringUtil
     {
-        private static CompareOptions compare_options =
+        static CompareOptions compare_options =
             CompareOptions.IgnoreCase | CompareOptions.IgnoreNonSpace |
             CompareOptions.IgnoreKanaType | CompareOptions.IgnoreWidth;
 
@@ -69,7 +69,7 @@ namespace Hyena
             return CamelCaseToUnderCase (s, '_');
         }
 
-        private static Regex camelcase = new Regex ("([A-Z]{1}[a-z]+)", RegexOptions.Compiled);
+        static Regex camelcase = new Regex ("([A-Z]{1}[a-z]+)", RegexOptions.Compiled);
         public static string CamelCaseToUnderCase (string s, char underscore)
         {
             if (string.IsNullOrEmpty (s)) {
@@ -130,7 +130,7 @@ namespace Hyena
             return null;
         }
 
-        private static Regex tags = new Regex ("<[^>]+>", RegexOptions.Compiled | RegexOptions.Multiline);
+        static Regex tags = new Regex ("<[^>]+>", RegexOptions.Compiled | RegexOptions.Multiline);
         public static string RemoveHtml (string input)
         {
             if (input == null) {
@@ -167,14 +167,14 @@ namespace Hyena
 
         // A mapping of non-Latin characters to be considered the same as
         // a Latin equivalent.
-        private static Dictionary<char, char> BuildSpecialCases ()
+        static Dictionary<char, char> BuildSpecialCases ()
         {
             Dictionary<char, char> dict = new Dictionary<char, char> ();
             dict['\u00f8'] = 'o';
             dict['\u0142'] = 'l';
             return dict;
         }
-        private static Dictionary<char, char> searchkey_special_cases = BuildSpecialCases ();
+        static Dictionary<char, char> searchkey_special_cases = BuildSpecialCases ();
 
         //  Removes accents from Latin characters, and some kinds of punctuation.
         public static string SearchKey (string val)
@@ -231,9 +231,9 @@ namespace Hyena
             return result;
         }
 
-        private static Regex invalid_path_regex = BuildInvalidPathRegex ();
+        static Regex invalid_path_regex = BuildInvalidPathRegex ();
 
-        private static Regex BuildInvalidPathRegex ()
+        static Regex BuildInvalidPathRegex ()
         {
             char [] invalid_path_characters = new char [] {
                 // Control characters: there's no reason to ever have one of these in a track name anyway,
@@ -258,14 +258,14 @@ namespace Hyena
             return new Regex (regex_str, RegexOptions.Compiled);
         }
 
-        private static CompareInfo culture_compare_info = ApplicationContext.CurrentCulture.CompareInfo;
+        static CompareInfo culture_compare_info = ApplicationContext.CurrentCulture.CompareInfo;
         public static byte[] SortKey (string orig)
         {
             if (orig == null) { return null; }
             return culture_compare_info.GetSortKey (orig, CompareOptions.IgnoreCase).KeyData;
         }
 
-        private static readonly char[] escape_path_trim_chars = new char[] {'.', '\x20'};
+        static readonly char[] escape_path_trim_chars = new char[] {'.', '\x20'};
         public static string EscapeFilename (string input)
         {
             if (input == null)
@@ -345,7 +345,7 @@ namespace Hyena
             }
         }
 
-        private static readonly char[] escaped_like_chars = new char[] {'\\', '%', '_'};
+        static readonly char[] escaped_like_chars = new char[] {'\\', '%', '_'};
         public static string EscapeLike (string s)
         {
             if (s.IndexOfAny (escaped_like_chars) != -1) {

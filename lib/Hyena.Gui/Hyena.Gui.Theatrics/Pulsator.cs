@@ -32,7 +32,7 @@ namespace Hyena.Gui.Theatrics
 {
     public class Pulsator<T> where T : class
     {
-        private Stage<T> stage;
+        Stage<T> stage;
         public Stage<T> Stage {
             get { return stage; }
             set {
@@ -52,7 +52,7 @@ namespace Hyena.Gui.Theatrics
             }
         }
 
-        private T target;
+        T target;
         public T Target {
             get { return target; }
             set { target = value; }
@@ -100,7 +100,7 @@ namespace Hyena.Gui.Theatrics
             }
         }
 
-        private bool OnActorStep (Actor<T> actor)
+        bool OnActorStep (Actor<T> actor)
         {
             if (actor.Target == target) {
                 OnPulse ();

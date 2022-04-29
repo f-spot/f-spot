@@ -91,7 +91,7 @@ namespace Hyena.Data.Gui
             }
         }
 
-        private void RefreshViewForModel (double? vpos)
+        void RefreshViewForModel (double? vpos)
         {
             if (Model == null) {
                 UpdateAdjustments ();
@@ -119,12 +119,12 @@ namespace Hyena.Data.Gui
             }
         }
 
-        private void OnModelClearedHandler (object o, EventArgs args)
+        void OnModelClearedHandler (object o, EventArgs args)
         {
             OnModelCleared ();
         }
 
-        private void OnModelReloadedHandler (object o, EventArgs args)
+        void OnModelReloadedHandler (object o, EventArgs args)
         {
             OnModelReloaded ();
 
@@ -134,7 +134,7 @@ namespace Hyena.Data.Gui
             }
         }
 
-        private void OnColumnControllerUpdatedHandler (object o, EventArgs args)
+        void OnColumnControllerUpdatedHandler (object o, EventArgs args)
         {
             OnColumnControllerUpdated ();
         }
@@ -149,13 +149,13 @@ namespace Hyena.Data.Gui
             RefreshViewForModel (null);
         }
 
-        private IListModel<T> model;
+        IListModel<T> model;
         public virtual IListModel<T> Model {
             get { return model; }
         }
 
-        private string row_opaque_property_name = "Sensitive";
-        private PropertyInfo row_opaque_property_info;
+        string row_opaque_property_name = "Sensitive";
+        PropertyInfo row_opaque_property_info;
         bool row_opaque_property_invalid = false;
 
         public string RowOpaquePropertyName {
@@ -173,7 +173,7 @@ namespace Hyena.Data.Gui
             }
         }
 
-        private bool IsRowOpaque (object item)
+        bool IsRowOpaque (object item)
         {
             if (item == null || row_opaque_property_invalid) {
                 return true;
@@ -191,8 +191,8 @@ namespace Hyena.Data.Gui
             return (bool)row_opaque_property_info.GetValue (item, null);
         }
 
-        private string row_bold_property_name = "IsBold";
-        private PropertyInfo row_bold_property_info;
+        string row_bold_property_name = "IsBold";
+        PropertyInfo row_bold_property_info;
         bool row_bold_property_invalid = false;
 
         public string RowBoldPropertyName {
@@ -210,7 +210,7 @@ namespace Hyena.Data.Gui
             }
         }
 
-        private bool IsRowBold (object item)
+        bool IsRowBold (object item)
         {
             if (item == null || row_bold_property_invalid) {
                 return false;

@@ -34,7 +34,7 @@ namespace Hyena.CommandLine
 {
     public class CommandLineParser
     {
-        private struct Argument
+        struct Argument
         {
             public int Order;
             public string Value;
@@ -46,14 +46,14 @@ namespace Hyena.CommandLine
             }
         }
 
-        private int generation;
-        private int sorted_args_generation;
-        private int offset;
-        private string [] arguments;
+        int generation;
+        int sorted_args_generation;
+        int offset;
+        string [] arguments;
 		public string[] AllArguments { get => arguments; }
-        private KeyValuePair<string, Argument> [] sorted_args;
-        private Dictionary<string, Argument> parsed_arguments = new Dictionary<string, Argument> ();
-        private List<string> file_list = new List<string> ();
+        KeyValuePair<string, Argument> [] sorted_args;
+        Dictionary<string, Argument> parsed_arguments = new Dictionary<string, Argument> ();
+        List<string> file_list = new List<string> ();
 
         public CommandLineParser () : this (Environment.GetCommandLineArgs (), 1)
         {
@@ -67,7 +67,7 @@ namespace Hyena.CommandLine
             Parse ();
         }
 
-        private void Parse ()
+        void Parse ()
         {
             for (int i = offset; i < arguments.Length; i++) {
                 if (!IsOption (arguments[i])) {
@@ -92,12 +92,12 @@ namespace Hyena.CommandLine
             }
         }
 
-        private bool IsOption (string argument)
+        bool IsOption (string argument)
         {
             return argument.Length > 2 && argument.Substring (0, 2) == "--";
         }
 
-        private string OptionName (string argument)
+        string OptionName (string argument)
         {
             return argument.Substring (2);
         }

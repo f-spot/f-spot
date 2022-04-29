@@ -37,7 +37,7 @@ namespace Hyena
 
     public class LogNotifyArgs : EventArgs
     {
-        private LogEntry entry;
+        LogEntry entry;
 
         public LogNotifyArgs (LogEntry entry)
         {
@@ -59,10 +59,10 @@ namespace Hyena
 
     public class LogEntry
     {
-        private LogEntryType type;
-        private string message;
-        private string details;
-        private DateTime timestamp;
+        LogEntryType type;
+        string message;
+        string details;
+        DateTime timestamp;
 
         internal LogEntry (LogEntryType type, string message, string details)
         {
@@ -120,10 +120,10 @@ namespace Hyena
 
         public static event LogNotifyHandler Notify;
 
-        private static Dictionary<uint, DateTime> timers = new Dictionary<uint, DateTime> ();
-        private static uint next_timer_id = 1;
+        static Dictionary<uint, DateTime> timers = new Dictionary<uint, DateTime> ();
+        static uint next_timer_id = 1;
 
-        private static bool debugging = false;
+        static bool debugging = false;
         public static bool Debugging {
             get { return debugging; }
             set { debugging = value; }
@@ -166,7 +166,7 @@ namespace Hyena
             }
         }
 
-        private static string TypeString (LogEntryType type)
+        static string TypeString (LogEntryType type)
         {
             switch (type) {
                 case LogEntryType.Debug:         return "Debug";
@@ -177,7 +177,7 @@ namespace Hyena
             return null;
         }
 
-        private static void OnNotify (LogEntry entry)
+        static void OnNotify (LogEntry entry)
         {
             LogNotifyHandler handler = Notify;
             if (handler != null) {
@@ -197,7 +197,7 @@ namespace Hyena
             return TimerStart (message, true);
         }
 
-        private static uint TimerStart (string message, bool isInfo)
+        static uint TimerStart (string message, bool isInfo)
         {
             if (!Debugging && !isInfo) {
                 return 0;
@@ -222,7 +222,7 @@ namespace Hyena
             return TimerStart (true);
         }
 
-        private static uint TimerStart (bool isInfo)
+        static uint TimerStart (bool isInfo)
         {
             if (!Debugging && !isInfo) {
                 return 0;
@@ -261,7 +261,7 @@ namespace Hyena
             TimerPrint (id, message, true);
         }
 
-        private static void TimerPrint (uint id, string message, bool isInfo)
+        static void TimerPrint (uint id, string message, bool isInfo)
         {
             if (!Debugging && !isInfo) {
                 return;

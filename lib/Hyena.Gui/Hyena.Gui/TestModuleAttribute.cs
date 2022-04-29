@@ -30,9 +30,9 @@ using System;
 
 namespace Hyena.Gui
 {
-    internal class TestModuleAttribute : Attribute
+    class TestModuleAttribute : Attribute
     {
-        private string name;
+        string name;
         public string Name {
             get { return name; }
             set { name = value; }

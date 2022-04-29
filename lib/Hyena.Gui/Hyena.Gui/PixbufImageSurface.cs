@@ -35,13 +35,13 @@ namespace Hyena.Gui
 {
     public class PixbufImageSurface : ImageSurface, IDisposable
     {
-        private delegate void cairo_destroy_func_t (IntPtr userdata);
+        delegate void cairo_destroy_func_t (IntPtr userdata);
 
-        private static bool is_le = BitConverter.IsLittleEndian;
-        private static int user_data_key = 0;
-        private static cairo_destroy_func_t destroy_func;
+        static bool is_le = BitConverter.IsLittleEndian;
+        static int user_data_key = 0;
+        static cairo_destroy_func_t destroy_func;
 
-        private static void DestroyPixelData (IntPtr data)
+        static void DestroyPixelData (IntPtr data)
         {
             Marshal.FreeHGlobal (data);
         }
@@ -91,7 +91,7 @@ namespace Hyena.Gui
             }
         }
 
-        private IntPtr data;
+        IntPtr data;
 
         public PixbufImageSurface (Gdk.Pixbuf pixbuf) : this (pixbuf, false)
         {
@@ -103,12 +103,12 @@ namespace Hyena.Gui
         }
 
         // This ctor is to avoid multiple queries against the GdkPixbuf for width/height
-        private PixbufImageSurface (Gdk.Pixbuf pixbuf, int width, int height, int channels, int rowstride, IntPtr pixels)
+        PixbufImageSurface (Gdk.Pixbuf pixbuf, int width, int height, int channels, int rowstride, IntPtr pixels)
             : this (pixbuf, Marshal.AllocHGlobal (width * height * 4), width, height, channels, rowstride, pixels)
         {
         }
 
-        private PixbufImageSurface (Gdk.Pixbuf pixbuf, IntPtr data, int width, int height, int channels, int rowstride, IntPtr pixels)
+        PixbufImageSurface (Gdk.Pixbuf pixbuf, IntPtr data, int width, int height, int channels, int rowstride, IntPtr pixels)
             : base (data, channels == 3 ? Format.Rgb24 : Format.Argb32, width, height, width * 4)
         {
             this.data = data;
@@ -121,7 +121,7 @@ namespace Hyena.Gui
             }
         }
 
-        private unsafe void CreateSurface (int width, int height, int channels, int gdk_rowstride, IntPtr pixels)
+        unsafe void CreateSurface (int width, int height, int channels, int gdk_rowstride, IntPtr pixels)
         {
             byte *gdk_pixels = (byte *)pixels;
             byte *cairo_pixels = (byte *)data;
@@ -171,17 +171,17 @@ namespace Hyena.Gui
             }
         }
 
-        private static byte Mult (byte c, byte a)
+        static byte Mult (byte c, byte a)
         {
             int t = c * a + 0x7f;
             return (byte)(((t >> 8) + t) >> 8);
         }
 
         [DllImport ("libcairo-2.dll")]
-        private static extern Cairo.Status cairo_surface_set_user_data (IntPtr surface,
+static extern Cairo.Status cairo_surface_set_user_data (IntPtr surface,
             ref int key, IntPtr userdata, cairo_destroy_func_t destroy);
 
-        private void SetDestroyFunc ()
+        void SetDestroyFunc ()
         {
             try {
                 Status status = cairo_surface_set_user_data (Handle, ref user_data_key, data, destroy_func);

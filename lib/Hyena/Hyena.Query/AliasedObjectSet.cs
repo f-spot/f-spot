@@ -65,7 +65,7 @@ namespace Hyena.Query
             aliases.Sort (SortByLongest);
         }
 
-        private int SortByLongest (string a, string b)
+        int SortByLongest (string a, string b)
         {
             return b.Length.CompareTo (a.Length);
         }

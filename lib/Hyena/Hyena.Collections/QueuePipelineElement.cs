@@ -32,7 +32,7 @@ using System.Collections.Generic;
 
 namespace Hyena.Collections
 {
-    internal class ElementProcessCanceledException : ApplicationException
+    class ElementProcessCanceledException : ApplicationException
     {
     }
 
@@ -44,19 +44,19 @@ namespace Hyena.Collections
         public event EventHandler ProcessedItem;
         #pragma warning restore 0067
 
-        private Queue<T> queue = new Queue<T> ();
-        private object monitor = new object ();
-        private AutoResetEvent thread_wait;
-        private bool processing = false;
-        private bool threaded = true;
-        private bool canceled = false;
+        Queue<T> queue = new Queue<T> ();
+        object monitor = new object ();
+        AutoResetEvent thread_wait;
+        bool processing = false;
+        bool threaded = true;
+        bool canceled = false;
 
-        private int processed_count;
+        int processed_count;
         public int ProcessedCount {
             get { return processed_count; }
         }
 
-        private int total_count;
+        int total_count;
         public int TotalCount {
             get { return total_count; }
         }
@@ -129,7 +129,7 @@ namespace Hyena.Collections
             }
         }
 
-        private void Processor (object state)
+        void Processor (object state)
         {
             lock (monitor) {
                 if (threaded) {
@@ -211,7 +211,7 @@ namespace Hyena.Collections
             get { return queue; }
         }
 
-        private QueuePipelineElement<T> next_element;
+        QueuePipelineElement<T> next_element;
         internal QueuePipelineElement<T> NextElement {
             get { return next_element; }
             set { next_element = value; }

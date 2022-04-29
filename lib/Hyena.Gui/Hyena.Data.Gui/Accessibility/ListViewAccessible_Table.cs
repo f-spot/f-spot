@@ -121,7 +121,7 @@ namespace Hyena.Data.Gui.Accessibility
         }
 
 // Ensure https://bugzilla.novell.com/show_bug.cgi?id=512477 is fixed
-        private static readonly int [] empty_int_array = new int[0];
+        static readonly int [] empty_int_array = new int[0];
         public int [] SelectedColumns {
             get { return empty_int_array; }
         }

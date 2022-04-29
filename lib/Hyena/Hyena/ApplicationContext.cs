@@ -46,7 +46,7 @@ namespace Hyena
             Log.Debugging = Debugging;
         }
 
-        private static CommandLineParser command_line = new CommandLineParser ();
+        static CommandLineParser command_line = new CommandLineParser ();
         public static CommandLineParser CommandLine {
             set { command_line = value; }
             get { return command_line; }
@@ -54,13 +54,13 @@ namespace Hyena
 
         public static string ApplicationName { get; set; }
 
-        private static Layout command_line_layout;
+        static Layout command_line_layout;
         public static Layout CommandLineLayout {
             get { return command_line_layout; }
             set { command_line_layout = value; }
         }
 
-        private static bool? debugging = null;
+        static bool? debugging = null;
         public static bool Debugging {
             get {
                 if (debugging == null) {
@@ -82,7 +82,7 @@ namespace Hyena
             return !string.IsNullOrEmpty (Environment.GetEnvironmentVariable (env));
         }
 
-        private static CultureInfo current_culture = CultureInfo.CurrentCulture;
+        static CultureInfo current_culture = CultureInfo.CurrentCulture;
         public static CultureInfo CurrentCulture {
             get { return current_culture; }
         }
@@ -92,12 +92,12 @@ namespace Hyena
         }
 
         [DllImport ("libc")] // Linux
-        private static extern int prctl (int option, byte [] arg2, IntPtr arg3, IntPtr arg4, IntPtr arg5);
+static extern int prctl (int option, byte [] arg2, IntPtr arg3, IntPtr arg4, IntPtr arg5);
 
         [DllImport ("libc")] // BSD
-        private static extern void setproctitle (byte [] fmt, byte [] str_arg);
+static extern void setproctitle (byte [] fmt, byte [] str_arg);
 
-        private static void SetProcessName (string name)
+        static void SetProcessName (string name)
         {
             if (Environment.OSVersion.Platform != PlatformID.Unix) {
                 return;

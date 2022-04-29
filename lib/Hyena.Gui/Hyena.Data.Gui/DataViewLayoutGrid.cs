@@ -152,7 +152,7 @@ namespace Hyena.Data.Gui
             return child;
         }
 
-        private void ResizeChildCollection (int newChildCount)
+        void ResizeChildCollection (int newChildCount)
         {
             int difference = Children.Count - newChildCount;
             if (difference > 0) {

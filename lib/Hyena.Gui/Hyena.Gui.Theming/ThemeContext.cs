@@ -32,43 +32,43 @@ namespace Hyena.Gui.Theming
     {
         public bool ToplevelBorderCollapse { get; set; }
 
-        private double radius = 0.0;
+        double radius = 0.0;
         public double Radius {
             get { return radius; }
             set { radius = value; }
         }
 
-        private double fill_alpha = 1.0;
+        double fill_alpha = 1.0;
         public double FillAlpha {
             get { return fill_alpha; }
             set { fill_alpha = Theme.Clamp (0.0, 1.0, value); }
         }
 
-        private double line_width = 1.0;
+        double line_width = 1.0;
         public double LineWidth {
             get { return line_width; }
             set { line_width = value; }
         }
 
-        private bool show_stroke = true;
+        bool show_stroke = true;
         public bool ShowStroke {
             get { return show_stroke; }
             set { show_stroke = value; }
         }
 
-        private double x;
+        double x;
         public double X {
             get { return x; }
             set { x = value; }
         }
 
-        private double y;
+        double y;
         public double Y {
             get { return y; }
             set { y = value; }
         }
 
-        private Cairo.Context cairo;
+        Cairo.Context cairo;
         public Cairo.Context Cairo {
             get { return cairo; }
             set { cairo = value; }

@@ -31,7 +31,7 @@ namespace Hyena.Downloader
 {
     public class HttpStringDownloader : HttpDownloader
     {
-        private Encoding detected_encoding;
+        Encoding detected_encoding;
 
         public string Content { get; private set; }
         public Encoding Encoding { get; set; }

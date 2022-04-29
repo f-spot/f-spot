@@ -33,10 +33,10 @@ namespace Hyena
 {
     public class UndoManager
     {
-        private Stack<IUndoAction> undo_stack = new Stack<IUndoAction>();
-        private Stack<IUndoAction> redo_stack = new Stack<IUndoAction>();
-        private int frozen_count;
-        private bool try_merge;
+        Stack<IUndoAction> undo_stack = new Stack<IUndoAction>();
+        Stack<IUndoAction> redo_stack = new Stack<IUndoAction>();
+        int frozen_count;
+        bool try_merge;
 
         public event EventHandler UndoChanged;
 
@@ -97,7 +97,7 @@ namespace Hyena
             }
         }
 
-        private void UndoRedo(Stack<IUndoAction> pop_from, Stack<IUndoAction> push_to, bool is_undo)
+        void UndoRedo(Stack<IUndoAction> pop_from, Stack<IUndoAction> push_to, bool is_undo)
         {
             if(pop_from.Count == 0) {
                 return;

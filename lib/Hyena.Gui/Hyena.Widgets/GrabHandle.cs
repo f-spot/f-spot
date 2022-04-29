@@ -70,21 +70,21 @@ namespace Hyena.Widgets
 
         public Gtk.Orientation Orientation { get; set; }
 
-        private bool inside, dragging;
-        private bool Inside {
+        bool inside, dragging;
+        bool Inside {
             set {
                 inside = value;
                 GdkWindow.Cursor = dragging || inside ? resize_cursor : null;
             }
         }
 
-        private bool Dragging {
+        bool Dragging {
             set {
                 dragging = value;
                 GdkWindow.Cursor = dragging || inside ? resize_cursor : null;
             }
         }
 
-        private static Gdk.Cursor resize_cursor = new Gdk.Cursor (Gdk.CursorType.SbHDoubleArrow);
+        static Gdk.Cursor resize_cursor = new Gdk.Cursor (Gdk.CursorType.SbHDoubleArrow);
     }
 }

@@ -34,7 +34,7 @@ namespace Hyena.Gui
 {
 	public class RatingRenderer
     {
-        private static double [,] star_plot = new double[,] {
+        static double [,] star_plot = new double[,] {
             { 0, 0.425 },
             { 0.375, 0.375 },
             { 0.5, 0.05 },
@@ -125,7 +125,7 @@ namespace Hyena.Gui
             return x <= r_x ? 0 : Clamp (MinRating, MaxRating, (int)Math.Ceiling ((x - r_x) / Size) + MinRating);
         }
 
-        private static int Clamp (int min, int max, int value)
+        static int Clamp (int min, int max, int value)
         {
             return Math.Max (min, Math.Min (max, value));
         }
@@ -135,25 +135,25 @@ namespace Hyena.Gui
             return Clamp (MinRating, MaxRating, value);
         }
 
-        private int value;
+        int value;
         public int Value {
             get { return ClampValue (this.value); }
             set { this.value = ClampValue (value); }
         }
 
-        private int size = 14;
+        int size = 14;
         public int Size {
             get { return size; }
             set { size = value; }
         }
 
-        private int min_rating = 0;
+        int min_rating = 0;
         public int MinRating {
             get { return min_rating; }
             set { min_rating = value; }
         }
 
-        private int max_rating = 5;
+        int max_rating = 5;
         public int MaxRating {
             get { return max_rating; }
             set { max_rating = value; }
@@ -163,7 +163,7 @@ namespace Hyena.Gui
             get { return MaxRating - MinRating + 1; }
         }
 
-        private int xpad = 2;
+        int xpad = 2;
         public int Xpad {
             get { return xpad; }
             set { xpad = value; }

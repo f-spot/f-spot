@@ -32,7 +32,7 @@ namespace Hyena.Gui
 {
 	public class ShadingTestWindow : Window
     {
-        private int steps = 16;
+        int steps = 16;
 
         public ShadingTestWindow () : base ("Shading Test")
         {

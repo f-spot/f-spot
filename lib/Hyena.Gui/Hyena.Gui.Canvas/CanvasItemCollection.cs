@@ -30,8 +30,8 @@ namespace Hyena.Gui.Canvas
 {
 	public class CanvasItemCollection : IEnumerable<CanvasItem>
     {
-        private CanvasItem parent;
-        private List<CanvasItem> children = new List<CanvasItem> ();
+        CanvasItem parent;
+        List<CanvasItem> children = new List<CanvasItem> ();
 
         public CanvasItemCollection (CanvasItem parent)
         {
@@ -47,7 +47,7 @@ namespace Hyena.Gui.Canvas
             }
         }
 
-        private void Unparent (CanvasItem child)
+        void Unparent (CanvasItem child)
         {
             child.Parent = null;
         }

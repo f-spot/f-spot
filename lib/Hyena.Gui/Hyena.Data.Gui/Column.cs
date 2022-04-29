@@ -34,11 +34,11 @@ namespace Hyena.Data.Gui
 {
 	public class Column : ColumnDescription, IEnumerable<ColumnCell>
     {
-        private ColumnCell header_cell;
-        private List<ColumnCell> cells = new List<ColumnCell> ();
+        ColumnCell header_cell;
+        List<ColumnCell> cells = new List<ColumnCell> ();
 
-        private int min_width = 0;
-        private int max_width = Int32.MaxValue;
+        int min_width = 0;
+        int max_width = Int32.MaxValue;
 
         public Column (ColumnDescription description) :
             this (description, new ColumnCellText (description.Property, true))
@@ -86,7 +86,7 @@ namespace Hyena.Data.Gui
             PackStart (cell);
         }
 
-        private Column HeaderCellDataHandler ()
+        Column HeaderCellDataHandler ()
         {
             return this;
         }
@@ -187,7 +187,7 @@ namespace Hyena.Data.Gui
             }
         }
 
-        private string id;
+        string id;
         public string Id {
             get {
                 if (id == null) {

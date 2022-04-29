@@ -33,7 +33,7 @@ namespace Hyena.Jobs
 {
 	public abstract class SimpleAsyncJob : Job
     {
-        private Thread thread;
+        Thread thread;
 
         public SimpleAsyncJob ()
         {
@@ -61,7 +61,7 @@ namespace Hyena.Jobs
             }
         }
 
-        private void InnerStart ()
+        void InnerStart ()
         {
             try {
                 Run ();

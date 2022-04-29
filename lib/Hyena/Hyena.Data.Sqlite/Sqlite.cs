@@ -341,7 +341,7 @@ namespace Hyena.Data.Sqlite
             connection.CheckError (code, CommandText);
         }
 
-        private void Reset ()
+        void Reset ()
         {
             CheckDisposed ();
             if (Reading) {
@@ -509,7 +509,7 @@ namespace Hyena.Data.Sqlite
             return Get<T> (GetColumnIndex (columnName));
         }
 
-        private Dictionary<string, int> Columns {
+        Dictionary<string, int> Columns {
             get {
                 if (columns == null) {
                     columns = new Dictionary<string, int> ();
@@ -521,7 +521,7 @@ namespace Hyena.Data.Sqlite
             }
         }
 
-        private int GetColumnIndex (string columnName)
+        int GetColumnIndex (string columnName)
         {
             Statement.CheckReading ();
 
@@ -541,7 +541,7 @@ namespace Hyena.Data.Sqlite
         const int DONE = 101;
     }
 
-    internal static class Native
+    static class Native
     {
 	    const string SQLITE_DLL = "e_sqlite3";
 

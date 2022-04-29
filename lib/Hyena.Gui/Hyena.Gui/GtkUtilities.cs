@@ -35,7 +35,7 @@ namespace Hyena.Gui
 
     public static class GtkUtilities
     {
-        private static Gdk.ModifierType [] important_modifiers = new Gdk.ModifierType [] {
+        static Gdk.ModifierType [] important_modifiers = new Gdk.ModifierType [] {
             Gdk.ModifierType.ControlMask,
             Gdk.ModifierType.ShiftMask
         };
@@ -181,7 +181,7 @@ namespace Hyena.Gui
         }
 
         [System.Runtime.InteropServices.DllImport ("libgtk-win32-2.0-0.dll")]
-        private static extern unsafe bool gtk_show_uri (IntPtr screen, IntPtr uri, uint timestamp, out IntPtr error);
+static unsafe extern bool gtk_show_uri (IntPtr screen, IntPtr uri, uint timestamp, out IntPtr error);
 
         public static bool ShowUri (Gdk.Screen screen, string uri, uint timestamp)
         {

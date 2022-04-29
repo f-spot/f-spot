@@ -32,7 +32,7 @@ namespace Hyena.Gui.Canvas
 {
     public struct Rect
     {
-        private double x, y, w, h;
+        double x, y, w, h;
 
         public Rect (double x, double y, double width, double height) : this ()
         {

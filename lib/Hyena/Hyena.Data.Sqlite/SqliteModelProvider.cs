@@ -35,30 +35,30 @@ namespace Hyena.Data.Sqlite
 {
     public class SqliteModelProvider<T> where T : new ()
     {
-        private readonly List<DatabaseColumn> columns = new List<DatabaseColumn> ();
-        private readonly List<DatabaseColumn> select_columns = new List<DatabaseColumn> ();
-        private readonly List<VirtualDatabaseColumn> virtual_columns = new List<VirtualDatabaseColumn> ();
+        readonly List<DatabaseColumn> columns = new List<DatabaseColumn> ();
+        readonly List<DatabaseColumn> select_columns = new List<DatabaseColumn> ();
+        readonly List<VirtualDatabaseColumn> virtual_columns = new List<VirtualDatabaseColumn> ();
 
-        private DatabaseColumn key;
-        private int key_select_column_index;
-        private HyenaSqliteConnection connection;
-        private bool check_table = true;
+        DatabaseColumn key;
+        int key_select_column_index;
+        HyenaSqliteConnection connection;
+        bool check_table = true;
 
-        private HyenaSqliteCommand create_command;
-        private HyenaSqliteCommand insert_command;
-        private HyenaSqliteCommand update_command;
-        private HyenaSqliteCommand delete_command;
-        private HyenaSqliteCommand select_command;
-        private HyenaSqliteCommand select_range_command;
-        private HyenaSqliteCommand select_single_command;
+        HyenaSqliteCommand create_command;
+        HyenaSqliteCommand insert_command;
+        HyenaSqliteCommand update_command;
+        HyenaSqliteCommand delete_command;
+        HyenaSqliteCommand select_command;
+        HyenaSqliteCommand select_range_command;
+        HyenaSqliteCommand select_single_command;
 
-        private string table_name;
-        private string primary_key;
-        private string select;
-        private string from;
-        private string where;
+        string table_name;
+        string primary_key;
+        string select;
+        string from;
+        string where;
 
-        private const string HYENA_DATABASE_NAME = "hyena_database_master";
+        const string HYENA_DATABASE_NAME = "hyena_database_master";
 
         public virtual string TableName { get { return table_name; } }
 
@@ -171,21 +171,21 @@ namespace Hyena.Data.Sqlite
             }
         }
 
-        private string SelectVersionSql (string name)
+        string SelectVersionSql (string name)
         {
             return string.Format (
                 "SELECT version FROM {0} WHERE name='{1}'",
                 HyenaTableName, name);
         }
 
-        private void UpdateVersion (string name, int version)
+        void UpdateVersion (string name, int version)
         {
             connection.Execute (string.Format (
                 "UPDATE {0} SET version={1} WHERE name='{2}'",
                 HyenaTableName, version, name));
         }
 
-        private void InsertVersion (string name, int version)
+        void InsertVersion (string name, int version)
         {
             connection.Execute (string.Format (
                 "INSERT INTO {0} (name, version) VALUES ('{1}', {2})",
@@ -213,7 +213,7 @@ namespace Hyena.Data.Sqlite
             }
         }
 
-        private void AddColumn (MemberInfo member, Attribute attribute)
+        void AddColumn (MemberInfo member, Attribute attribute)
         {
             DatabaseColumnAttribute column = attribute as DatabaseColumnAttribute;
             if (column != null) {
@@ -682,7 +682,7 @@ namespace Hyena.Data.Sqlite
             protected set { primary_key = value; }
         }
 
-        private void BuildQuerySql ()
+        void BuildQuerySql ()
         {
             StringBuilder select_builder = new StringBuilder ();
             bool first = true;
@@ -776,7 +776,7 @@ namespace Hyena.Data.Sqlite
             }
         }
 
-        private void CheckProperty (Type type, DbColumn column)
+        void CheckProperty (Type type, DbColumn column)
         {
             if (!connection.ColumnExists (TableName, column.Name)) {
                 AddColumnToTable (SqliteUtils.BuildColumnSchema (
@@ -785,7 +785,7 @@ namespace Hyena.Data.Sqlite
             }
         }
 
-        private void AddColumnToTable (string column_schema)
+        void AddColumnToTable (string column_schema)
         {
             connection.Execute (string.Format (
                 "ALTER TABLE {0} ADD {1}",

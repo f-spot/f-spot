@@ -40,8 +40,8 @@ namespace Hyena.Data.Sqlite
 
     public abstract class AbstractDatabaseColumnAttribute : Attribute
     {
-        private string column_name;
-        private bool select = true;
+        string column_name;
+        bool select = true;
 
         public AbstractDatabaseColumnAttribute ()
         {
@@ -65,9 +65,9 @@ namespace Hyena.Data.Sqlite
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
     public sealed class DatabaseColumnAttribute : AbstractDatabaseColumnAttribute
     {
-        private DatabaseColumnConstraints contraints;
-        private string default_value;
-        private string index;
+        DatabaseColumnConstraints contraints;
+        string default_value;
+        string index;
 
         public DatabaseColumnAttribute ()
         {
@@ -96,9 +96,9 @@ namespace Hyena.Data.Sqlite
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
     public sealed class VirtualDatabaseColumnAttribute : AbstractDatabaseColumnAttribute
     {
-        private string target_table;
-        private string local_key;
-        private string foreign_key;
+        string target_table;
+        string local_key;
+        string foreign_key;
 
         public VirtualDatabaseColumnAttribute (string column_name, string target_table, string local_key, string foreign_key)
             : base (column_name)

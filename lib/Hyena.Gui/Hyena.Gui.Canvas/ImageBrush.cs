@@ -30,7 +30,7 @@ namespace Hyena.Gui.Canvas
 {
 	public class ImageBrush : Brush
     {
-        private ImageSurface surface;
+        ImageSurface surface;
         //private bool surface_owner;
 
         public ImageBrush ()

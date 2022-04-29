@@ -30,7 +30,7 @@ namespace Hyena.Gui.Canvas
 {
     public class Brush
     {
-        private Cairo.Color color;
+        Cairo.Color color;
 
         public Brush ()
         {

@@ -35,8 +35,8 @@ namespace Hyena.Data.Sqlite
 {
     public class HyenaDataReader : IDisposable
     {
-        private IDataReader reader;
-        private bool read = false;
+        IDataReader reader;
+        bool read = false;
 
         public IDataReader Reader {
             get { return reader; }
@@ -76,8 +76,8 @@ namespace Hyena.Data.Sqlite
 
     public class HyenaSqliteConnection : IDisposable
     {
-        private Hyena.Data.Sqlite.Connection connection;
-        private string dbpath;
+        Hyena.Data.Sqlite.Connection connection;
+        string dbpath;
 
         protected string DbPath { get { return dbpath; } }
 
@@ -86,20 +86,20 @@ namespace Hyena.Data.Sqlite
         // The 1st contains the command object itself, and the 2nd and 3rd contain the
         // arguments to be applied to that command (filled in for any ? placeholder in the command).
         // The 3rd exists as an optimization to avoid making an object [] for a single arg.
-        private Queue<HyenaSqliteCommand> command_queue = new Queue<HyenaSqliteCommand>();
-        private Queue<object[]> args_queue = new Queue<object[]>();
-        private Queue<object> arg_queue = new Queue<object>();
+        Queue<HyenaSqliteCommand> command_queue = new Queue<HyenaSqliteCommand>();
+        Queue<object[]> args_queue = new Queue<object[]>();
+        Queue<object> arg_queue = new Queue<object>();
 
-        private Thread queue_thread;
-        private volatile bool dispose_requested = false;
-        private volatile int results_ready = 0;
-        private AutoResetEvent queue_signal = new AutoResetEvent (false);
+        Thread queue_thread;
+        volatile bool dispose_requested = false;
+        volatile int results_ready = 0;
+        AutoResetEvent queue_signal = new AutoResetEvent (false);
         internal ManualResetEvent ResultReadySignal = new ManualResetEvent (false);
 
-        private volatile Thread transaction_thread = null;
-        private ManualResetEvent transaction_signal = new ManualResetEvent (true);
+        volatile Thread transaction_thread = null;
+        ManualResetEvent transaction_signal = new ManualResetEvent (true);
 
-        private Thread warn_if_called_from_thread;
+        Thread warn_if_called_from_thread;
         public Thread WarnIfCalledFromThread {
             get { return warn_if_called_from_thread; }
             set { warn_if_called_from_thread = value; }
@@ -307,12 +307,12 @@ namespace Hyena.Data.Sqlite
             return Exists ("index", indexName);
         }
 
-        private bool Exists (string type, string name)
+        bool Exists (string type, string name)
         {
             return Exists (type, name, "sqlite_master") || Exists (type, name, "sqlite_temp_master");
         }
 
-        private bool Exists (string type, string name, string master)
+        bool Exists (string type, string name, string master)
         {
             return Query<int> (string.Format (
                 "SELECT COUNT(*) FROM {0} WHERE Type='{1}' AND Name='{2}'",
@@ -320,9 +320,9 @@ namespace Hyena.Data.Sqlite
             ) > 0;
         }
 
-        private delegate void SchemaHandler (string column);
+        delegate void SchemaHandler (string column);
 
-        private void SchemaClosure (string table_name, SchemaHandler code)
+        void SchemaClosure (string table_name, SchemaHandler code)
         {
             string sql = Query<string> (string.Format (
                 "SELECT sql FROM sqlite_master WHERE Name='{0}'", table_name));
@@ -349,7 +349,7 @@ namespace Hyena.Data.Sqlite
             return value;
         }
 
-        private static readonly char [] ws_chars = new char [] { ' ', '\t', '\n', '\r' };
+        static readonly char [] ws_chars = new char [] { ' ', '\t', '\n', '\r' };
         public IDictionary<string, string> GetSchema (string table_name)
         {
             Dictionary<string, string> schema = new Dictionary<string,string> ();
@@ -363,7 +363,7 @@ namespace Hyena.Data.Sqlite
 
 #region Private Queue Methods
 
-        private void QueueCommand(HyenaSqliteCommand command, object [] args)
+        void QueueCommand(HyenaSqliteCommand command, object [] args)
         {
             QueueCommand (command, null, args);
         }
@@ -374,12 +374,12 @@ namespace Hyena.Data.Sqlite
             QueueCommand (command, arg, null);
         }*/
 
-        private void QueueCommand(HyenaSqliteCommand command)
+        void QueueCommand(HyenaSqliteCommand command)
         {
             QueueCommand (command, null, null);
         }
 
-        private void QueueCommand(HyenaSqliteCommand command, object arg, object [] args)
+        void QueueCommand(HyenaSqliteCommand command, object arg, object [] args)
         {
             if (warn_if_called_from_thread != null && Thread.CurrentThread == warn_if_called_from_thread) {
                 Hyena.Log.Warning ("HyenaSqliteConnection command issued from the main thread");
@@ -414,7 +414,7 @@ namespace Hyena.Data.Sqlite
             }
         }
 
-        private void ProcessQueue()
+        void ProcessQueue()
         {
             if (connection == null) {
                 connection = new Hyena.Data.Sqlite.Connection (dbpath);

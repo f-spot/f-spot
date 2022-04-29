@@ -35,7 +35,7 @@ namespace Hyena.Query.Gui
 {
 	public abstract class QueryValueEntry : HBox
     {
-        private static Dictionary<Type, Type> types = new Dictionary<Type, Type> ();
+        static Dictionary<Type, Type> types = new Dictionary<Type, Type> ();
 
         protected int DefaultWidth {
             get { return 170; }

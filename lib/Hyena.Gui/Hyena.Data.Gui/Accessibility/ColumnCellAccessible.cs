@@ -32,7 +32,7 @@ namespace Hyena.Data.Gui.Accessibility
     {
         protected ColumnCell cell;
         protected object bound_object;
-        private ICellAccessibleParent cell_parent;
+        ICellAccessibleParent cell_parent;
 
         public ColumnCellAccessible (object bound_object, ColumnCell cell, ICellAccessibleParent parent)
         {

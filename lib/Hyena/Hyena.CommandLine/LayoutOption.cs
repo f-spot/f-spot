@@ -30,8 +30,8 @@ namespace Hyena.CommandLine
 {
     public class LayoutOption
     {
-        private string name;
-        private string description;
+        string name;
+        string description;
 
         public LayoutOption (string name, string description)
         {

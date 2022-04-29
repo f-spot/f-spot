@@ -31,7 +31,7 @@ using System.Collections.Generic;
 
 namespace Hyena.Data.Sqlite
 {
-	internal class ArrayDataReader : IDataReader
+	class ArrayDataReader : IDataReader
     {
         string sql;
         int rows;
@@ -105,7 +105,7 @@ namespace Hyena.Data.Sqlite
             return Get<T> (GetColumnIndex (columnName));
         }
 
-        private int GetColumnIndex (string columnName)
+        int GetColumnIndex (string columnName)
         {
             return Array.IndexOf (FieldNames, columnName);
         }

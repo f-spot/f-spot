@@ -32,12 +32,12 @@ namespace Hyena.Gui.Canvas
 {
 	public class CanvasItem
     {
-        private CanvasManager manager;
-        private Hyena.Data.IDataBinder binder;
-        private Theme theme;
+        CanvasManager manager;
+        Hyena.Data.IDataBinder binder;
+        Theme theme;
 
-        private bool prelight_in;
-        private double prelight_opacity;
+        bool prelight_in;
+        double prelight_opacity;
 
         #region Public API
 
@@ -198,7 +198,7 @@ namespace Hyena.Gui.Canvas
         // FIXME need this?
         public Rect VirtualAllocation { get; set; }
 
-        private double min_width, max_width;
+        double min_width, max_width;
         public double MinWidth {
             get { return min_width; }
             set {
@@ -222,7 +222,7 @@ namespace Hyena.Gui.Canvas
         public double Width { get; set; }
         public double Height { get; set; }
 
-        private Thickness margin;
+        Thickness margin;
         public Thickness Margin {
             get { return margin; }
             set {
@@ -232,7 +232,7 @@ namespace Hyena.Gui.Canvas
             }
         }
 
-        private Rect allocation;
+        Rect allocation;
         public Rect Allocation {
             get { return allocation; }
             set {
@@ -278,7 +278,7 @@ namespace Hyena.Gui.Canvas
             }
         }
 
-        private void OnInvalidate (Rect area)
+        void OnInvalidate (Rect area)
         {
             CanvasItem root = RootAncestor;
             if (root != null && root.Manager != null) {
@@ -293,7 +293,7 @@ namespace Hyena.Gui.Canvas
             set { Binder.BoundObject = value; }
         }
 
-        private Rect TopLevelAllocation {
+        Rect TopLevelAllocation {
             get {
                 var alloc = ContentAllocation;
                 var top = this;
@@ -340,7 +340,7 @@ namespace Hyena.Gui.Canvas
 
         //public event EventHandler<EventArgs> Clicked;
 
-        private bool pointer_grabbed;
+        bool pointer_grabbed;
         public virtual bool IsPointerGrabbed {
             get { return pointer_grabbed; }
         }
@@ -390,7 +390,7 @@ namespace Hyena.Gui.Canvas
             return false;
         }
 
-        private static Hyena.Gui.Theatrics.Stage<CanvasItem> prelight_stage = new Hyena.Gui.Theatrics.Stage<CanvasItem> (250);
+        static Hyena.Gui.Theatrics.Stage<CanvasItem> prelight_stage = new Hyena.Gui.Theatrics.Stage<CanvasItem> (250);
         static CanvasItem ()
         {
             prelight_stage.ActorStep += actor => {
@@ -414,7 +414,7 @@ namespace Hyena.Gui.Canvas
 
 #endregion
 
-        private class MemoryDataBinder : Hyena.Data.IDataBinder
+        class MemoryDataBinder : Hyena.Data.IDataBinder
         {
             public void Bind (object o)
             {

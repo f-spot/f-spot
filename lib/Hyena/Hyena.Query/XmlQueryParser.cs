@@ -33,8 +33,8 @@ namespace Hyena.Query
 {
 	public class XmlQueryParser : QueryParser
     {
-        private string str;
-        private QueryFieldSet field_set;
+        string str;
+        QueryFieldSet field_set;
 
         public static QueryNode Parse (string input, QueryFieldSet fieldSet)
         {
@@ -69,7 +69,7 @@ namespace Hyena.Query
             return null;
         }
 
-        private QueryNode Parse (XmlElement node, QueryListNode parent)
+        QueryNode Parse (XmlElement node, QueryListNode parent)
         {
             if (node == null)
                 return null;

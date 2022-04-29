@@ -31,7 +31,7 @@ namespace Hyena.Gui.Canvas
 {
     public class Panel : CanvasItem
     {
-        private CanvasItemCollection children;
+        CanvasItemCollection children;
 
         public Panel ()
         {
@@ -142,7 +142,7 @@ namespace Hyena.Gui.Canvas
             return child == null ? false : child.CursorMotionEvent (ChildCoord (child, cursor));
         }
 
-        private Point ChildCoord (CanvasItem item, Point pt)
+        Point ChildCoord (CanvasItem item, Point pt)
         {
             return new Point (pt.X - item.Allocation.X, pt.Y - item.Allocation.Y);
         }

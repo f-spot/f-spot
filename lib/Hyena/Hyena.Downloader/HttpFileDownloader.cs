@@ -31,7 +31,7 @@ namespace Hyena.Downloader
 {
     public class HttpFileDownloader : HttpDownloader
     {
-        private FileStream file_stream;
+        FileStream file_stream;
 
         public string TempPathRoot { get; set; }
         public string FileExtension { get; set; }

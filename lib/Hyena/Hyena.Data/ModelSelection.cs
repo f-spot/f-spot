@@ -36,8 +36,8 @@ namespace Hyena.Data
 	//public class ModelSelection<T> : IList<T>
 	public class ModelSelection<T> : IEnumerable<T>
     {
-        private IListModel<T> model;
-        private Selection selection;
+        IListModel<T> model;
+        Selection selection;
 
 #region Properties
 

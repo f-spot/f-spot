@@ -32,10 +32,10 @@ namespace Hyena.Widgets
 {
     public class HigMessageDialog : Gtk.Dialog
     {
-        private Gtk.Image image;
-        private Gtk.VBox inner_vbox;
-        private Gtk.VBox label_vbox;
-        private Gtk.Label message_label;
+        Gtk.Image image;
+        Gtk.VBox inner_vbox;
+        Gtk.VBox label_vbox;
+        Gtk.Label message_label;
 
         public HigMessageDialog(Gtk.Window parent,
                      Gtk.DialogFlags flags,
@@ -172,7 +172,7 @@ namespace Hyena.Widgets
             AddButton (button, response, isDefault);
         }
 
-        private void AddButton (Gtk.Button button, Gtk.ResponseType response, bool isDefault)
+        void AddButton (Gtk.Button button, Gtk.ResponseType response, bool isDefault)
         {
             AddActionWidget (button, response);
 

@@ -33,26 +33,26 @@ namespace Hyena.Data.Sqlite
 {
 	public class SqliteModelCache<T> : DictionaryModelCache<T> where T : ICacheableItem, new ()
     {
-        private HyenaSqliteConnection connection;
-        private ICacheableDatabaseModel model;
-        private SqliteModelProvider<T> provider;
-        private HyenaSqliteCommand select_range_command;
-        private HyenaSqliteCommand select_single_command;
-        private HyenaSqliteCommand select_first_command;
-        private HyenaSqliteCommand count_command;
-        private HyenaSqliteCommand delete_selection_command;
-        private HyenaSqliteCommand save_selection_command;
-        private HyenaSqliteCommand get_selection_command;
-        private HyenaSqliteCommand indexof_command;
+        HyenaSqliteConnection connection;
+        ICacheableDatabaseModel model;
+        SqliteModelProvider<T> provider;
+        HyenaSqliteCommand select_range_command;
+        HyenaSqliteCommand select_single_command;
+        HyenaSqliteCommand select_first_command;
+        HyenaSqliteCommand count_command;
+        HyenaSqliteCommand delete_selection_command;
+        HyenaSqliteCommand save_selection_command;
+        HyenaSqliteCommand get_selection_command;
+        HyenaSqliteCommand indexof_command;
 
-        private string select_str;
-        private string reload_sql;
-        private string last_indexof_where_fragment;
-        private long uid;
-        private long selection_uid;
-        private long rows;
+        string select_str;
+        string reload_sql;
+        string last_indexof_where_fragment;
+        long uid;
+        long selection_uid;
+        long rows;
         // private bool warm;
-        private long first_order_id;
+        long first_order_id;
 
         public event Action<IDataReader> AggregatesUpdated;
 
@@ -193,7 +193,7 @@ namespace Hyena.Data.Sqlite
             }
         }
 
-        private bool has_select_all_item = false;
+        bool has_select_all_item = false;
         public bool HasSelectAllItem {
             get { return has_select_all_item; }
             set { has_select_all_item = value; }
@@ -222,7 +222,7 @@ namespace Hyena.Data.Sqlite
             get { return "HyenaCache"; }
         }
 
-        private long FirstOrderId {
+        long FirstOrderId {
             get {
                 lock (this) {
                     if (first_order_id == -1) {
@@ -294,8 +294,8 @@ namespace Hyena.Data.Sqlite
             return GetSingle (null, null, conditionOrderFragment, args);
         }
 
-        private HyenaSqliteCommand get_single_command;
-        private string last_get_single_select_fragment, last_get_single_condition_fragment, last_get_single_from_fragment;
+        HyenaSqliteCommand get_single_command;
+        string last_get_single_select_fragment, last_get_single_condition_fragment, last_get_single_from_fragment;
         public T GetSingle (string selectFragment, string fromFragment, string conditionOrderFragment, params object [] args)
         {
             if (selectFragment != last_get_single_select_fragment
@@ -322,8 +322,8 @@ namespace Hyena.Data.Sqlite
             return default;
         }
 
-        private HyenaSqliteCommand last_reload_command;
-        private string last_reload_fragment;
+        HyenaSqliteCommand last_reload_command;
+        string last_reload_fragment;
 
         public override void Reload ()
         {
@@ -347,8 +347,8 @@ namespace Hyena.Data.Sqlite
             }
         }
 
-        private bool saved_selection = false;
-        private ICacheableItem saved_focus_item = null;
+        bool saved_selection = false;
+        ICacheableItem saved_focus_item = null;
         public void SaveSelection ()
         {
             if (model.Selection != null && model.Selection.Count > 0 &&
@@ -443,7 +443,7 @@ namespace Hyena.Data.Sqlite
             UpdateAggregates (handler, selection_uid);
         }
 
-        private long UpdateAggregates (Action<IDataReader> handler, long model_id)
+        long UpdateAggregates (Action<IDataReader> handler, long model_id)
         {
             long aggregate_rows = 0;
             using (IDataReader reader = connection.Query (count_command, model_id)) {
@@ -460,7 +460,7 @@ namespace Hyena.Data.Sqlite
         }
 
 
-        private long FindOrCreateCacheModelId (string id)
+        long FindOrCreateCacheModelId (string id)
         {
             long model_id = connection.Query<long> (string.Format (
                 "SELECT CacheID FROM {0} WHERE ModelID = '{1}'",
@@ -483,8 +483,8 @@ namespace Hyena.Data.Sqlite
             return model_id;
         }
 
-        private static string checked_cache_table;
-        private void CheckCacheTable ()
+        static string checked_cache_table;
+        void CheckCacheTable ()
         {
             if (CacheTableName == checked_cache_table) {
                 return;

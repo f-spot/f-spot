@@ -30,7 +30,7 @@ namespace Hyena.Gui.Theatrics
 {
 	public class SingleActorStage : Stage<object>
     {
-        private object target = new object ();
+        object target = new object ();
 
         public SingleActorStage () : base ()
         {

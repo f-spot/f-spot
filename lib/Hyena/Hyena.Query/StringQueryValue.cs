@@ -35,7 +35,7 @@ namespace Hyena.Query
 {
 	public class StringQueryValue : QueryValue
     {
-        private const string ESCAPE_CLAUSE = " ESCAPE '\\'";
+        const string ESCAPE_CLAUSE = " ESCAPE '\\'";
 
         public static readonly Operator Contains       = new Operator ("contains", Catalog.GetString ("contains"), "LIKE '%{0}%'" + ESCAPE_CLAUSE, ":");
         public static readonly Operator DoesNotContain = new Operator ("doesNotContain", Catalog.GetString ("doesn't contain"), "NOT LIKE '%{0}%'" + ESCAPE_CLAUSE, true, "!:");

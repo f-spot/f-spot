@@ -141,7 +141,7 @@ namespace Hyena.Data.Gui
             OnColumnLeftClicked (col);
         }
 
-        private void AccessibleCellRedrawn (int column, int row)
+        void AccessibleCellRedrawn (int column, int row)
         {
             if (accessible != null) {
                 accessible.CellRedrawn (column, row);
@@ -150,7 +150,7 @@ namespace Hyena.Data.Gui
 
     }
 
-    internal class ListViewAccessibleFactory<T> : Atk.ObjectFactory
+    class ListViewAccessibleFactory<T> : Atk.ObjectFactory
     {
         public static void Init ()
         {

@@ -35,7 +35,7 @@ using Hyena.Gui.Theatrics;
 
 namespace Hyena.Widgets
 {
-    internal enum AnimationState
+    enum AnimationState
     {
         Coming,
         Idle,
@@ -43,7 +43,7 @@ namespace Hyena.Widgets
         Going
     }
 
-    internal class AnimatedWidget : Container
+    class AnimatedWidget : Container
     {
         public event EventHandler WidgetDestroyed;
 
@@ -59,10 +59,10 @@ namespace Hyena.Widgets
         public int EndPadding;
         public LinkedListNode <AnimatedWidget> Node;
 
-        private readonly bool horizontal;
-        private double percent;
-        private Rectangle widget_alloc;
-        private Pixmap canvas;
+        readonly bool horizontal;
+        double percent;
+        Rectangle widget_alloc;
+        Pixmap canvas;
 
         public AnimatedWidget (Widget widget, uint duration, Easing easing, Blocking blocking, bool horizontal)
         {
@@ -90,7 +90,7 @@ namespace Hyena.Widgets
             }
         }
 
-        private void OnWidgetDestroyed (object sender, EventArgs args)
+        void OnWidgetDestroyed (object sender, EventArgs args)
         {
             if (!IsRealized) {
                 return;

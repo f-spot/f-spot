@@ -48,7 +48,7 @@ namespace Hyena
             return ToTimeT (time);
         }
 
-        private static long super_ugly_min_hack = -15768000000; // 500 yrs before epoch...ewww
+        static long super_ugly_min_hack = -15768000000; // 500 yrs before epoch...ewww
         public static DateTime FromTimeT (long time)
         {
             return (time <= super_ugly_min_hack) ? DateTime.MinValue : LocalUnixEpoch.AddSeconds (time);

@@ -45,9 +45,9 @@ namespace Hyena.Gui.Theming
 
     public class GtkColors
     {
-        private Cairo.Color [] gtk_colors;
-        private Widget widget;
-        private bool refreshing = false;
+        Cairo.Color [] gtk_colors;
+        Widget widget;
+        bool refreshing = false;
 
         public event EventHandler Refreshed;
 
@@ -76,12 +76,12 @@ namespace Hyena.Gui.Theming
         {
         }
 
-        private void OnWidgetRealized (object o, EventArgs args)
+        void OnWidgetRealized (object o, EventArgs args)
         {
             RefreshColors ();
         }
 
-        private void OnWidgetStyleSet (object o, StyleSetArgs args)
+        void OnWidgetStyleSet (object o, StyleSetArgs args)
         {
             RefreshColors ();
         }

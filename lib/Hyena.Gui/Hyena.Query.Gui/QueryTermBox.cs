@@ -36,37 +36,37 @@ namespace Hyena.Query.Gui
 {
 	public class QueryTermBox
     {
-        private Button add_button;
-        private Button remove_button;
+        Button add_button;
+        Button remove_button;
 
         public event EventHandler AddRequest;
         public event EventHandler RemoveRequest;
 
-        private QueryField field;
-        private List<QueryValueEntry> value_entries = new List<QueryValueEntry> ();
-        private List<Operator> operators = new List<Operator> ();
-        private Dictionary<Operator, QueryValueEntry> operator_entries = new Dictionary<Operator, QueryValueEntry> ();
-        private QueryValueEntry current_value_entry;
-        private Operator op;
+        QueryField field;
+        List<QueryValueEntry> value_entries = new List<QueryValueEntry> ();
+        List<Operator> operators = new List<Operator> ();
+        Dictionary<Operator, QueryValueEntry> operator_entries = new Dictionary<Operator, QueryValueEntry> ();
+        QueryValueEntry current_value_entry;
+        Operator op;
 
-        private QueryField [] sorted_fields;
+        QueryField [] sorted_fields;
 
-        private ComboBox field_chooser;
+        ComboBox field_chooser;
         public ComboBox FieldChooser {
             get { return field_chooser; }
         }
 
-        private ComboBox op_chooser;
+        ComboBox op_chooser;
         public ComboBox OpChooser {
             get { return op_chooser; }
         }
 
-        private HBox value_box;
+        HBox value_box;
         public HBox ValueEntry {
             get { return value_box; }
         }
 
-        private HBox button_box;
+        HBox button_box;
         public HBox Buttons {
             get { return button_box; }
         }
@@ -77,7 +77,7 @@ namespace Hyena.Query.Gui
             BuildInterface ();
         }
 
-        private void BuildInterface ()
+        void BuildInterface ()
         {
             field_chooser = ComboBox.NewText ();
             field_chooser.Changed += HandleFieldChanged;
@@ -108,7 +108,7 @@ namespace Hyena.Query.Gui
             field_chooser.Active = 0;
         }
 
-        private bool IsRowSeparator (TreeModel model, TreeIter iter)
+        bool IsRowSeparator (TreeModel model, TreeIter iter)
         {
             return String.IsNullOrEmpty (model.GetValue (iter, 0) as string);
         }
@@ -121,8 +121,8 @@ namespace Hyena.Query.Gui
             button_box.ShowAll ();
         }
 
-        private bool first = true;
-        private void SetValueEntry (QueryValueEntry entry)
+        bool first = true;
+        void SetValueEntry (QueryValueEntry entry)
         {
             if (first) {
                 first = false;
@@ -135,7 +135,7 @@ namespace Hyena.Query.Gui
             current_value_entry.ShowAll ();
         }
 
-        private void HandleFieldChanged (object o, EventArgs args)
+        void HandleFieldChanged (object o, EventArgs args)
         {
             if (field_chooser.Active < 0 || field_chooser.Active >= sorted_fields.Length)
                 return;
@@ -185,7 +185,7 @@ namespace Hyena.Query.Gui
             op_chooser.Active = 0;
         }
 
-        private void HandleOperatorChanged (object o, EventArgs args)
+        void HandleOperatorChanged (object o, EventArgs args)
         {
             if (op_chooser.Active < 0 || op_chooser.Active >= operators.Count) {
                 return;
@@ -199,14 +199,14 @@ namespace Hyena.Query.Gui
             //value_entry = new QueryValueEntry <field.ValueType> ();
         }
 
-        private void OnButtonAddClicked (object o, EventArgs args)
+        void OnButtonAddClicked (object o, EventArgs args)
         {
             EventHandler handler = AddRequest;
             if (handler != null)
                 handler (this, new EventArgs ());
         }
 
-        private void OnButtonRemoveClicked (object o, EventArgs args)
+        void OnButtonRemoveClicked (object o, EventArgs args)
         {
             EventHandler handler = RemoveRequest;
             if (handler != null)

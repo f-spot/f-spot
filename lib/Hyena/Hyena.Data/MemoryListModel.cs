@@ -34,7 +34,7 @@ namespace Hyena.Data
 {
 	public class MemoryListModel<T> : BaseListModel<T>
     {
-        private List<T> list;
+        List<T> list;
 
         public MemoryListModel ()
         {

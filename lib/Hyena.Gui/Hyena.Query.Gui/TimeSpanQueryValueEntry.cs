@@ -38,7 +38,7 @@ namespace Hyena.Query.Gui
         protected SpinButton spin_button;
         protected ComboBox combo;
         protected TimeSpanQueryValue query_value;
-        private int set_combo = 1;
+        int set_combo = 1;
 
         protected static readonly TimeFactor [] factors = new TimeFactor [] {
             TimeFactor.Second, TimeFactor.Minute, TimeFactor.Hour, TimeFactor.Day,

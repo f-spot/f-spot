@@ -39,11 +39,11 @@ namespace Hyena.Query.Gui
 	[TestModule ("Query Debugger")]
     public class QueryDebugger : Window
     {
-        private TextView input;
-        private TextView sql;
-        private TextView xml;
+        TextView input;
+        TextView sql;
+        TextView xml;
 
-        private QueryFieldSet query_field_set;
+        QueryFieldSet query_field_set;
 
         public QueryDebugger () : base ("Hyena.Query Debugger")
         {
@@ -101,7 +101,7 @@ namespace Hyena.Query.Gui
             LoadQueryFieldSet ();
         }
 
-        private void LoadQueryFieldSet ()
+        void LoadQueryFieldSet ()
         {
             Assembly asm = Assembly.LoadFile ("Banshee.Services.dll");
             Type t = asm.GetType ("Banshee.Query.BansheeQuery");
@@ -109,12 +109,12 @@ namespace Hyena.Query.Gui
             query_field_set = (QueryFieldSet)f.GetValue (null);
         }
 
-        private StreamReader StringToStream (string s)
+        StreamReader StringToStream (string s)
         {
             return new StreamReader (new MemoryStream (System.Text.Encoding.UTF8.GetBytes (s)));
         }
 
-        private void OnParseUserQuery (object o, EventArgs args)
+        void OnParseUserQuery (object o, EventArgs args)
         {
             UserQueryParser parser = new UserQueryParser ();
             parser.InputReader = StringToStream (input.Buffer.Text);

@@ -64,8 +64,8 @@ namespace Hyena.Data.Gui
                 context.Clip, context.Widget, "cellcheck", x, y, Size, Size);
         }
 
-        private object last_pressed_bound;
-        private object last_hover_bound;
+        object last_pressed_bound;
+        object last_hover_bound;
 
         public override bool ButtonEvent (Point press, bool pressed, uint button)
         {
@@ -113,24 +113,24 @@ namespace Hyena.Data.Gui
             min = max = 2 * Xpad + Size;
         }
 
-        private bool restrict_size = true;
+        bool restrict_size = true;
         public bool RestrictSize {
             get { return restrict_size; }
             set { restrict_size = value; }
         }
 
-        private bool Value {
+        bool Value {
             get { return (bool)BoundObject; }
             set { BoundObject = value; }
         }
 
-        private int size = 13;
+        int size = 13;
         public int Size {
             get { return size; }
             set { size = value; }
         }
 
-        private int xpad = 2;
+        int xpad = 2;
         public int Xpad {
             get { return xpad; }
             set { xpad = value; }

@@ -78,7 +78,7 @@ namespace Hyena.Data.Gui.Accessibility
             return true;
         }
 
-        private void OnSelectionChanged (object o, EventArgs a)
+        void OnSelectionChanged (object o, EventArgs a)
         {
             GLib.Signal.Emit (this, "selection_changed");
         }

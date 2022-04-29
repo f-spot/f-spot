@@ -36,12 +36,12 @@ namespace Hyena.Data.Gui
 {
     public partial class ListView<T> : ListViewBase
     {
-        private Rectangle list_rendering_alloc;
-        private Rectangle header_rendering_alloc;
-        private Rectangle list_interaction_alloc;
-        private Rectangle header_interaction_alloc;
+        Rectangle list_rendering_alloc;
+        Rectangle header_rendering_alloc;
+        Rectangle list_interaction_alloc;
+        Rectangle header_interaction_alloc;
 
-        private Gdk.Window event_window;
+        Gdk.Window event_window;
 
         protected Rectangle ListAllocation {
             get { return list_rendering_alloc; }
@@ -114,7 +114,7 @@ namespace Hyena.Data.Gui
             return y - list_interaction_alloc.Y;
         }
 
-        private void MoveResize (Rectangle allocation)
+        void MoveResize (Rectangle allocation)
         {
             if (Theme == null) {
                 return;
@@ -204,7 +204,7 @@ namespace Hyena.Data.Gui
             }
         }
 
-        private DataViewLayout view_layout;
+        DataViewLayout view_layout;
         protected DataViewLayout ViewLayout {
             get { return view_layout; }
             set {

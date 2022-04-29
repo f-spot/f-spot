@@ -34,10 +34,10 @@ namespace Hyena.Gui.Canvas
 {
 	public class TextBlock : CanvasItem
     {
-        private Pango.Layout layout;
-        private Pango.FontDescription font_desc;
-        private Rect text_alloc = Rect.Empty;
-        private Rect invalidation_rect = Rect.Empty;
+        Pango.Layout layout;
+        Pango.FontDescription font_desc;
+        Rect text_alloc = Rect.Empty;
+        Rect invalidation_rect = Rect.Empty;
 
         public TextBlock ()
         {
@@ -46,7 +46,7 @@ namespace Hyena.Gui.Canvas
             EllipsizeMode = Pango.EllipsizeMode.End;
         }
 
-        private bool EnsureLayout ()
+        bool EnsureLayout ()
         {
             layout = Manager.Host.PangoLayout;
             font_desc = Manager.Host.FontDescription;
@@ -87,7 +87,7 @@ namespace Hyena.Gui.Canvas
             return size;
         }
 
-        private void UpdateLayout (string text, double width, double? height, bool forceWidth)
+        void UpdateLayout (string text, double width, double? height, bool forceWidth)
         {
             if (text != last_text) {
                 last_formatted_text = GetFormattedText (text) ?? "";
@@ -115,7 +115,7 @@ namespace Hyena.Gui.Canvas
             }
         }
 
-        private string GetText ()
+        string GetText ()
         {
             if (TextGenerator != null) {
                 return TextGenerator (BoundObject);
@@ -125,7 +125,7 @@ namespace Hyena.Gui.Canvas
             }
         }
 
-        private string GetFormattedText (string text)
+        string GetFormattedText (string text)
         {
             if (String.IsNullOrEmpty (TextFormat)) {
                 return text;
@@ -222,7 +222,7 @@ namespace Hyena.Gui.Canvas
             cr.ResetClip ();
         }
 
-        private Pango.Weight GetPangoFontWeight (FontWeight weight)
+        Pango.Weight GetPangoFontWeight (FontWeight weight)
         {
             switch (weight) {
                 case FontWeight.Bold: return Pango.Weight.Bold;
@@ -230,7 +230,7 @@ namespace Hyena.Gui.Canvas
             }
         }
 
-        private Pango.WrapMode GetPangoWrapMode (TextWrap wrap)
+        Pango.WrapMode GetPangoWrapMode (TextWrap wrap)
         {
             switch (wrap) {
                 case TextWrap.Char: return Pango.WrapMode.Char;
@@ -264,8 +264,8 @@ namespace Hyena.Gui.Canvas
         public double HorizontalAlignment { get; set; }
         public double VerticalAlignment { get; set; }
 
-        private static char[] lfcr = new char[] {'\n', '\r'};
-        private string last_text;
-        private string last_formatted_text = "";
+        static char[] lfcr = new char[] {'\n', '\r'};
+        string last_text;
+        string last_formatted_text = "";
     }
 }

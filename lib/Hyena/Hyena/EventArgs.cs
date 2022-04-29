@@ -32,7 +32,7 @@ namespace Hyena
 {
     public class EventArgs<T> : EventArgs
     {
-        private readonly T value;
+        readonly T value;
 
         public EventArgs (T value)
         {

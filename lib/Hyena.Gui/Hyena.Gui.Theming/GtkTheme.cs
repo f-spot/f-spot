@@ -34,8 +34,8 @@ namespace Hyena.Gui.Theming
 {
     public class GtkTheme : Theme
     {
-        private Cairo.Color rule_color;
-        private Cairo.Color border_color;
+        Cairo.Color rule_color;
+        Cairo.Color border_color;
 
         public GtkTheme (Widget widget) : base (widget)
         {

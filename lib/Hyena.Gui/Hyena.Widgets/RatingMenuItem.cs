@@ -36,9 +36,9 @@ namespace Hyena.Widgets
 {
 	public class RatingMenuItem : ComplexMenuItem
     {
-        private RatingEntry entry;
-        private bool can_activate = true;
-        private Box box;
+        RatingEntry entry;
+        bool can_activate = true;
+        Box box;
 
         protected RatingMenuItem (RatingEntry entry) : base ()
         {
@@ -70,7 +70,7 @@ namespace Hyena.Widgets
         {
         }
 
-        private int TransformX (double inx)
+        int TransformX (double inx)
         {
             int x = (int)inx - entry.Allocation.X;
 
@@ -112,7 +112,7 @@ namespace Hyena.Widgets
             return entry.HandleKeyPress (evnt);
         }
 
-        private void OnEntryChanged (object o, EventArgs args)
+        void OnEntryChanged (object o, EventArgs args)
         {
             if (can_activate) {
                 Activate ();

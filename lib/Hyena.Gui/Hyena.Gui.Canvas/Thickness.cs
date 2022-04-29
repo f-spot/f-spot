@@ -32,10 +32,10 @@ namespace Hyena.Gui.Canvas
 {
     public struct Thickness
     {
-        private double left;
-        private double top;
-        private double right;
-        private double bottom;
+        double left;
+        double top;
+        double right;
+        double bottom;
 
         public static readonly Thickness Zero = new Thickness (0);
 

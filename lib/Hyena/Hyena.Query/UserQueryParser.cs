@@ -35,17 +35,17 @@ namespace Hyena.Query
 {
     public class UserQueryParser : QueryParser
     {
-        private QueryListNode current_parent;
+        QueryListNode current_parent;
 
-        private char peek;
-        private int current_column;
-        private int current_line;
-        private int token_start_column;
-        private int token_start_line;
-        private bool eos_consumed;
+        char peek;
+        int current_column;
+        int current_line;
+        int token_start_column;
+        int token_start_line;
+        bool eos_consumed;
 
-        private QueryListNode root;
-        private QueryFieldSet field_set;
+        QueryListNode root;
+        QueryFieldSet field_set;
 
         public static QueryNode Parse (string input, QueryFieldSet fieldSet)
         {
@@ -85,19 +85,19 @@ namespace Hyena.Query
             return root.Trim ();
         }
 
-        private void DepthPush ()
+        void DepthPush ()
         {
             current_parent = new QueryListNode (Keyword.And, current_parent);
         }
 
-        private void DepthPop ()
+        void DepthPop ()
         {
             // Avoid trying to pop more than is possible
             if (current_parent.Parent != null)
                 current_parent = current_parent.Parent;
         }
 
-        private void NodePush (QueryNode node)
+        void NodePush (QueryNode node)
         {
             if (current_parent == null && node is QueryListNode) {
                 root = current_parent = node as QueryListNode;
@@ -116,7 +116,7 @@ namespace Hyena.Query
             }
         }
 
-        private void ParseToken (QueryToken token)
+        void ParseToken (QueryToken token)
         {
             switch (token.ID) {
                 case TokenID.OpenParen:
@@ -161,7 +161,7 @@ namespace Hyena.Query
             }
         }
 
-        private QueryToken Scan ()
+        QueryToken Scan ()
         {
             if (reader.EndOfStream) {
                 if (eos_consumed)
@@ -216,12 +216,12 @@ namespace Hyena.Query
 
         // TODO: Allow white space before/after term operators
 
-        private bool IsStringTerminationChar (char ch)
+        bool IsStringTerminationChar (char ch)
         {
             return char.IsWhiteSpace (ch) || ch == '(' || ch == ')' || ch == '|' || ch == ',';
         }
 
-        private string ScanString ()
+        string ScanString ()
         {
             StringBuilder buffer = new StringBuilder ();
             bool in_string = false;
@@ -261,7 +261,7 @@ namespace Hyena.Query
             token_start_line = 0;
         }
 
-        private void ReadChar ()
+        void ReadChar ()
         {
             if (peek == char.MinValue) {
                 return;

@@ -44,7 +44,7 @@ namespace Hyena.Data.Gui
 
     public partial class ListView<T> : ListViewBase
     {
-        private static TargetEntry [] drag_drop_dest_entries = new TargetEntry [] {
+        static TargetEntry [] drag_drop_dest_entries = new TargetEntry [] {
             ListViewDragDropTarget.ModelSelection
         };
 
@@ -56,7 +56,7 @@ namespace Hyena.Data.Gui
             get { return drag_drop_dest_entries; }
         }
 
-        private bool is_reorderable = false;
+        bool is_reorderable = false;
         public bool IsReorderable {
             get { return is_reorderable && IsEverReorderable; }
             set {
@@ -66,7 +66,7 @@ namespace Hyena.Data.Gui
             }
         }
 
-        private bool is_ever_reorderable = false;
+        bool is_ever_reorderable = false;
         public bool IsEverReorderable {
             get { return is_ever_reorderable; }
             set {
@@ -76,7 +76,7 @@ namespace Hyena.Data.Gui
             }
         }
 
-        private bool force_drag_source_set = false;
+        bool force_drag_source_set = false;
         protected bool ForceDragSourceSet {
             get { return force_drag_source_set; }
             set {
@@ -85,7 +85,7 @@ namespace Hyena.Data.Gui
             }
         }
 
-        private bool force_drag_dest_set = false;
+        bool force_drag_dest_set = false;
         protected bool ForceDragDestSet {
             get { return force_drag_dest_set; }
             set {
@@ -113,14 +113,14 @@ namespace Hyena.Data.Gui
             }
         }
 
-        private uint drag_scroll_timeout_id;
-        private uint drag_scroll_timeout_duration = 50;
-        private double drag_scroll_velocity;
-        private double drag_scroll_velocity_max = 100.0;
-        private int drag_reorder_row_index = -1;
-        private int drag_reorder_motion_y = -1;
+        uint drag_scroll_timeout_id;
+        uint drag_scroll_timeout_duration = 50;
+        double drag_scroll_velocity;
+        double drag_scroll_velocity_max = 100.0;
+        int drag_reorder_row_index = -1;
+        int drag_reorder_motion_y = -1;
 
-        private void StopDragScroll ()
+        void StopDragScroll ()
         {
             drag_scroll_velocity = 0.0;
 
@@ -130,7 +130,7 @@ namespace Hyena.Data.Gui
             }
         }
 
-        private void OnDragScroll (GLib.TimeoutHandler handler, double threshold, int total, int position)
+        void OnDragScroll (GLib.TimeoutHandler handler, double threshold, int total, int position)
         {
             if (position < threshold) {
                 drag_scroll_velocity = -1.0 + (position / threshold);
@@ -177,14 +177,14 @@ namespace Hyena.Data.Gui
             InvalidateList ();
         }
 
-        private bool OnDragVScrollTimeout ()
+        bool OnDragVScrollTimeout ()
         {
             ScrollToY (VadjustmentValue + (drag_scroll_velocity * drag_scroll_velocity_max));
             DragReorderUpdateRow ();
             return true;
         }
 
-        private void DragReorderUpdateRow ()
+        void DragReorderUpdateRow ()
         {
             int row = GetDragRow (drag_reorder_motion_y);
             if (row != drag_reorder_row_index) {

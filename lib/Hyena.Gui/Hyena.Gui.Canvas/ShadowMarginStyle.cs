@@ -32,9 +32,9 @@ namespace Hyena.Gui.Canvas
 {
     public class ShadowMarginStyle : MarginStyle
     {
-        private int shadow_size;
-        private double shadow_opacity = 0.75;
-        private Brush fill;
+        int shadow_size;
+        double shadow_opacity = 0.75;
+        Brush fill;
 
         public ShadowMarginStyle ()
         {

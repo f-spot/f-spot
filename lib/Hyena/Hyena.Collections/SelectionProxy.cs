@@ -32,7 +32,7 @@ namespace Hyena.Collections
 {
     public class SelectionProxy
     {
-        private Selection selection;
+        Selection selection;
 
         public event EventHandler Changed;
         public event EventHandler SelectionChanged;
@@ -84,12 +84,12 @@ namespace Hyena.Collections
             }
         }
 
-        private void HandleSelectionChanged (object o, EventArgs args)
+        void HandleSelectionChanged (object o, EventArgs args)
         {
             OnChanged ();
         }
 
-        private void HandleSelectionFocusChanged (object o, EventArgs args)
+        void HandleSelectionFocusChanged (object o, EventArgs args)
         {
             OnFocusChanged ();
         }

@@ -105,7 +105,7 @@ namespace Hyena
             return null;
         }
 
-        private static string [] GetExecPaths ()
+        static string [] GetExecPaths ()
         {
             string path = Environment.GetEnvironmentVariable ("PATH");
             if (string.IsNullOrEmpty (path)) {
@@ -152,7 +152,7 @@ namespace Hyena
             return BuildRelativePath (path, to);
         }
 
-        private static string BuildRelativePath (string path, string to)
+        static string BuildRelativePath (string path, string to)
         {
             var toParts = to.Split (Path.DirectorySeparatorChar);
             var pathParts = path.Split (Path.DirectorySeparatorChar);
@@ -198,7 +198,7 @@ namespace Hyena
             get; private set;
         }
 
-        private static string application_name = null;
+        static string application_name = null;
 
         public static string ApplicationName {
             get {
@@ -210,7 +210,7 @@ namespace Hyena
             set { application_name = value; InitializePaths (); }
         }
 
-        private static string user_application_name = null;
+        static string user_application_name = null;
         public static string UserApplicationName {
             get {
                 var application_name = user_application_name ?? ApplicationName;
@@ -223,7 +223,7 @@ namespace Hyena
         }
 
         // This can only happen after ApplicationName is set.
-        private static void InitializePaths ()
+        static void InitializePaths ()
         {
             ApplicationCache = Path.Combine (XdgBaseDirectorySpec.GetUserDirectory (
                 "XDG_CACHE_HOME", ".cache"), UserApplicationName);
@@ -257,7 +257,7 @@ namespace Hyena
             }
         }
 
-        private static string installed_application_prefix = null;
+        static string installed_application_prefix = null;
         public static string InstalledApplicationPrefix {
             get {
                 if (installed_application_prefix == null) {

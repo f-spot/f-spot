@@ -35,10 +35,10 @@ namespace Hyena.Gui
 {
     public static class TooltipSetter
     {
-        private static Type host_type;
-        private static MethodInfo host_set_tip_method;
-        private static PropertyInfo tooltip_text_property;
-        private static bool reflected;
+        static Type host_type;
+        static MethodInfo host_set_tip_method;
+        static PropertyInfo tooltip_text_property;
+        static bool reflected;
 
         public static object CreateHost ()
         {

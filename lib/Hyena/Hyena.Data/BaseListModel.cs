@@ -35,7 +35,7 @@ namespace Hyena.Data
 {
     public abstract class BaseListModel<T> : IListModel<T>
     {
-        private Selection selection;
+        Selection selection;
 
         public event EventHandler Cleared;
         public event EventHandler Reloaded;
@@ -98,7 +98,7 @@ namespace Hyena.Data
             get { return Selection.FocusedIndex == -1 ? default : this[Selection.FocusedIndex]; }
         }
 
-        private bool can_reorder = false;
+        bool can_reorder = false;
         public bool CanReorder {
             get { return can_reorder; }
             set { can_reorder = value; }

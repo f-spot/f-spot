@@ -28,7 +28,7 @@ namespace Hyena.Gui.Canvas
 {
 	public class CanvasManager
     {
-        private ICanvasHost host;
+        ICanvasHost host;
 
         public CanvasManager (ICanvasHost host)
         {

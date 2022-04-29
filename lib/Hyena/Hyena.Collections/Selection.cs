@@ -40,12 +40,12 @@ namespace Hyena.Collections
     class Selection : IEnumerable<int>
     {
         RangeCollection ranges = new RangeCollection ();
-        private int max_index;
-        private int first_selected_index;
+        int max_index;
+        int first_selected_index;
 
         public event EventHandler Changed;
         public event EventHandler FocusChanged;
-        private int focused_index = -1;
+        int focused_index = -1;
 
         public Selection ()
         {

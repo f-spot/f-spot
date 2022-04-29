@@ -84,7 +84,7 @@ namespace Hyena.Query
         }
 
         // FIXME replace period in following with culture-dependent character
-        private static Regex number_regex = new Regex ("\\d+(\\.\\d+)?", RegexOptions.Compiled);
+        static Regex number_regex = new Regex ("\\d+(\\.\\d+)?", RegexOptions.Compiled);
         public override void ParseUserQuery (string input)
         {
             Match match = number_regex.Match (input);

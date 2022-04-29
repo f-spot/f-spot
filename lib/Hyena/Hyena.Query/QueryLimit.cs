@@ -32,28 +32,28 @@ namespace Hyena.Query
 {
 	public class QueryLimit
     {
-        private string name;
+        string name;
         public string Name {
             get { return name; }
         }
 
-        private string label;
+        string label;
         public string Label {
             get { return label; }
             set { label = value; }
         }
 
-        private bool row_based;
+        bool row_based;
         public bool RowBased {
             get { return row_based; }
         }
 
-        private int factor = 1;
+        int factor = 1;
         public int Factor {
             get { return factor; }
         }
 
-        private string column;
+        string column;
         public string Column {
             get { return column; }
         }

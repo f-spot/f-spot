@@ -35,39 +35,39 @@ namespace Hyena.Query
 {
     public class QueryField : IAliasedObject
     {
-        private bool no_custom_format;
-        private bool column_lowered;
+        bool no_custom_format;
+        bool column_lowered;
 
-        private Type [] value_types;
+        Type [] value_types;
         public Type [] ValueTypes {
             get { return value_types; }
         }
 
-        private string name;
+        string name;
         public string Name {
             get { return name; }
             set { name = value; }
         }
 
-        private string property_name;
+        string property_name;
         public string PropertyName {
             get { return property_name; }
             set { property_name = value; }
         }
 
-        private string label;
+        string label;
         public string Label {
             get { return label; }
             set { label = value; }
         }
 
-        private string short_label;
+        string short_label;
         public string ShortLabel {
             get { return short_label ?? label; }
             set { short_label = value; }
         }
 
-        private string [] aliases;
+        string [] aliases;
         public string [] Aliases {
             get { return aliases; }
         }
@@ -76,12 +76,12 @@ namespace Hyena.Query
             get { return aliases[0]; }
         }
 
-        private string column;
+        string column;
         public string Column {
             get { return column; }
         }
 
-        private bool is_default;
+        bool is_default;
         public bool IsDefault {
             get { return is_default; }
         }

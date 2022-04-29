@@ -52,7 +52,7 @@ namespace Hyena.Query
             get { return operators; }
         }
 
-        private NullQueryValue ()
+        NullQueryValue ()
         {
             IsEmpty = false;
         }

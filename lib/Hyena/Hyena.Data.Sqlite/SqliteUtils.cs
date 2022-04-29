@@ -164,7 +164,7 @@ namespace Hyena.Data.Sqlite
     [SqliteFunction (Name = "HYENA_BINARY_FUNCTION", FuncType = FunctionType.Scalar, Arguments = 3)]
     public sealed class BinaryFunction : SqliteFunction
     {
-        private static Dictionary<string, Func<object, object, object>> funcs = new Dictionary<string, Func<object, object, object>> ();
+        static Dictionary<string, Func<object, object, object>> funcs = new Dictionary<string, Func<object, object, object>> ();
 
         public static void Add (string functionId, Func<object, object, object> func)
         {
@@ -199,7 +199,7 @@ namespace Hyena.Data.Sqlite
     }
 
     [SqliteFunction (Name = "HYENA_COLLATION_KEY", FuncType = FunctionType.Scalar, Arguments = 1)]
-    internal class CollationKeyFunction : SqliteFunction
+class CollationKeyFunction : SqliteFunction
     {
         public override object Invoke (object[] args)
         {
@@ -208,7 +208,7 @@ namespace Hyena.Data.Sqlite
     }
 
     [SqliteFunction (Name = "HYENA_SEARCH_KEY", FuncType = FunctionType.Scalar, Arguments = 1)]
-    internal class SearchKeyFunction : SqliteFunction
+class SearchKeyFunction : SqliteFunction
     {
         public override object Invoke (object[] args)
         {
@@ -217,7 +217,7 @@ namespace Hyena.Data.Sqlite
     }
 
     [SqliteFunction (Name = "HYENA_MD5", FuncType = FunctionType.Scalar, Arguments = -1)]
-    internal class Md5Function : SqliteFunction
+class Md5Function : SqliteFunction
     {
         public override object Invoke (object[] args)
         {

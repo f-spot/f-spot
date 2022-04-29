@@ -30,7 +30,7 @@ namespace Hyena.Gui.Canvas
 {
     public class StackPanel : Panel
     {
-        private Orientation orientation;
+        Orientation orientation;
         public double spacing;
 
         public StackPanel ()

@@ -37,8 +37,8 @@ namespace Hyena.Gui
 {
 	public class ActionManager
     {
-        private UIManager ui_manager;
-        private Dictionary<string, ActionGroup> action_groups = new Dictionary<string, ActionGroup> ();
+        UIManager ui_manager;
+        Dictionary<string, ActionGroup> action_groups = new Dictionary<string, ActionGroup> ();
 
         public ActionManager ()
         {
@@ -49,7 +49,7 @@ namespace Hyena.Gui
         {
         }
 
-        private void InnerAddActionGroup (ActionGroup group)
+        void InnerAddActionGroup (ActionGroup group)
         {
             action_groups.Add (group.Name, group);
             ui_manager.InsertActionGroup (group, 0);
@@ -144,7 +144,7 @@ namespace Hyena.Gui
             }
         }
 
-        private void SetItemSize (Gtk.Widget widget, Gtk.IconSize size)
+        void SetItemSize (Gtk.Widget widget, Gtk.IconSize size)
         {
             var container = widget as Container;
             if (container != null) {

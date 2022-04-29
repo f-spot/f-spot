@@ -31,13 +31,13 @@ namespace Hyena.Downloader
 {
     public class DownloadManager
     {
-        private object sync_root = new object ();
+        object sync_root = new object ();
         internal object SyncRoot {
             get { return sync_root; }
         }
 
-        private Queue<HttpDownloader> pending_downloaders = new Queue<HttpDownloader> ();
-        private List<HttpDownloader> active_downloaders = new List<HttpDownloader> ();
+        Queue<HttpDownloader> pending_downloaders = new Queue<HttpDownloader> ();
+        List<HttpDownloader> active_downloaders = new List<HttpDownloader> ();
 
         protected Queue<HttpDownloader> PendingDownloaders {
             get { return pending_downloaders; }
@@ -84,7 +84,7 @@ namespace Hyena.Downloader
             while (TotalDownloadCount > 0);
         }
 
-        private void Update ()
+        void Update ()
         {
             lock (SyncRoot) {
                 while (pending_downloaders.Count > 0 && active_downloaders.Count < MaxConcurrentDownloaders) {

@@ -32,13 +32,13 @@ namespace Hyena.Data
 {
     public class ColumnDescription
     {
-        private string title;
-        private string long_title;
-        private double width;
-        private bool visible;
-        private string property;
+        string title;
+        string long_title;
+        double width;
+        bool visible;
+        string property;
 
-        private bool initialized;
+        bool initialized;
 
         public event EventHandler VisibilityChanged;
         public event EventHandler WidthChanged;

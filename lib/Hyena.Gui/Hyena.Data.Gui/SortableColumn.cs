@@ -30,9 +30,9 @@ namespace Hyena.Data.Gui
 {
 	public class SortableColumn : Column, ISortableColumn
     {
-        private string sort_key;
-        private SortType sort_type = SortType.Ascending;
-        private Hyena.Query.QueryField field;
+        string sort_key;
+        SortType sort_type = SortType.Ascending;
+        Hyena.Query.QueryField field;
 
         public SortableColumn(string title, ColumnCell cell, double width, string sort_key, bool visible) :
             base(title, cell, width, visible)

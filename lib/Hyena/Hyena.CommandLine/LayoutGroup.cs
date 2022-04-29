@@ -32,9 +32,9 @@ namespace Hyena.CommandLine
 {
 	public class LayoutGroup : IEnumerable<LayoutOption>
     {
-        private List<LayoutOption> options;
-        private string id;
-        private string title;
+        List<LayoutOption> options;
+        string id;
+        string title;
 
         public LayoutGroup (string id, string title, List<LayoutOption> options)
         {
@@ -81,7 +81,7 @@ namespace Hyena.CommandLine
             }
         }
 
-        private LayoutOption FindOption (string name)
+        LayoutOption FindOption (string name)
         {
             foreach (LayoutOption option in options) {
                 if (option.Name == name) {

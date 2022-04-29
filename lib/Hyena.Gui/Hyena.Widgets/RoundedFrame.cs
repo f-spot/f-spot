@@ -38,7 +38,7 @@ namespace Hyena.Widgets
 {
     public class RoundedFrame : Bin
     {
-        private Theme theme;
+        Theme theme;
         protected Theme Theme {
             get { 
                 if (theme == null) {
@@ -48,18 +48,18 @@ namespace Hyena.Widgets
             }
         }
 
-        private void InitTheme () {
+        void InitTheme () {
             theme = Hyena.Gui.Theming.ThemeEngine.CreateTheme (this);
             frame_width = (int)theme.Context.Radius + 1;
         }
 
-        private Widget child;
-        private Gdk.Rectangle child_allocation;
-        private bool fill_color_set;
-        private Cairo.Color fill_color;
-        private bool draw_border = true;
-        private Pattern fill_pattern;
-        private int frame_width;
+        Widget child;
+        Gdk.Rectangle child_allocation;
+        bool fill_color_set;
+        Cairo.Color fill_color;
+        bool draw_border = true;
+        Pattern fill_pattern;
+        int frame_width;
 
         // Ugh, this is to avoid the GLib.MissingIntPtrCtorException seen by some; BGO #552169
         protected RoundedFrame (IntPtr ptr) : base (ptr)
@@ -169,7 +169,7 @@ namespace Hyena.Widgets
             }
         }
 
-        private void DrawFrame (Cairo.Context cr, Gdk.Rectangle clip)
+        void DrawFrame (Cairo.Context cr, Gdk.Rectangle clip)
         {
             int x = child_allocation.X - frame_width;
             int y = child_allocation.Y - frame_width;

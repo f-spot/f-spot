@@ -34,11 +34,11 @@ namespace Hyena.Widgets
 {
     public class SimpleTable<T> : Table
     {
-        private bool added_any;
+        bool added_any;
 
-        private List<T> items = new List<T> ();
-        private Dictionary<T, Widget []> item_widgets = new Dictionary<T, Widget []> ();
-        private AttachOptions default_options = AttachOptions.Fill | AttachOptions.Expand;
+        List<T> items = new List<T> ();
+        Dictionary<T, Widget []> item_widgets = new Dictionary<T, Widget []> ();
+        AttachOptions default_options = AttachOptions.Fill | AttachOptions.Expand;
 
         public SimpleTable () : this (2) {}
 
