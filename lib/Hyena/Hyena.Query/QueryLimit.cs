@@ -73,7 +73,7 @@ namespace Hyena.Query
 
         public string ToSql (IntegerQueryValue limit_value)
         {
-            return RowBased ? String.Format ("LIMIT {0}", limit_value.ToSql ()) : null;
+            return RowBased ? string.Format ("LIMIT {0}", limit_value.ToSql ()) : null;
         }
     }
 }

@@ -126,7 +126,7 @@ namespace Hyena.Data.Sqlite
                 }
             }
             if (key == null) {
-                throw new Exception (String.Format ("The {0} table does not have a primary key", TableName));
+                throw new Exception (string.Format ("The {0} table does not have a primary key", TableName));
             }
 
             key_select_column_index = select_columns.IndexOf (key);
@@ -158,7 +158,7 @@ namespace Hyena.Data.Sqlite
                 }
             }
             else {
-                connection.Execute (String.Format (
+                connection.Execute (string.Format (
                     @"CREATE TABLE {0} (
                         id INTEGER PRIMARY KEY,
                         name TEXT UNIQUE,
@@ -173,21 +173,21 @@ namespace Hyena.Data.Sqlite
 
         private string SelectVersionSql (string name)
         {
-            return String.Format (
+            return string.Format (
                 "SELECT version FROM {0} WHERE name='{1}'",
                 HyenaTableName, name);
         }
 
         private void UpdateVersion (string name, int version)
         {
-            connection.Execute (String.Format (
+            connection.Execute (string.Format (
                 "UPDATE {0} SET version={1} WHERE name='{2}'",
                 HyenaTableName, version, name));
         }
 
         private void InsertVersion (string name, int version)
         {
-            connection.Execute (String.Format (
+            connection.Execute (string.Format (
                 "INSERT INTO {0} (name, version) VALUES ('{1}', {2})",
                 HyenaTableName, name, version));
         }
@@ -202,7 +202,7 @@ namespace Hyena.Data.Sqlite
                         AddColumnToTable (column.Schema);
                     }
                     if (column.Index != null && !connection.IndexExists (column.Index)) {
-                        connection.Execute (String.Format (
+                        connection.Execute (string.Format (
                             "CREATE INDEX {0} ON {1}({2})",
                             column.Index, TableName, column.Name)
                         );
@@ -237,13 +237,13 @@ namespace Hyena.Data.Sqlite
         {
             foreach (DatabaseColumn col in columns) {
                 if (col.Name == c.Name) {
-                    throw new Exception (String.Format (
+                    throw new Exception (string.Format (
                         "{0} has multiple columns named {1}",
                          TableName, c.Name)
                     );
                 }
                 if (col.Index != null && col.Index == c.Index) {
-                    throw new Exception (String.Format (
+                    throw new Exception (string.Format (
                         "{0} has multiple indecies named {1}",
                         TableName, c.Name)
                     );
@@ -258,12 +258,12 @@ namespace Hyena.Data.Sqlite
 
             if ((c.Constraints & DatabaseColumnConstraints.PrimaryKey) > 0) {
                 if (key != null) {
-                    throw new Exception (String.Format (
+                    throw new Exception (string.Format (
                         "Multiple primary keys in the {0} table", TableName)
                     );
                 }
                 if (!c.ValueType.IsAssignableFrom (typeof (long))) {
-                    throw new Exception (String.Format (
+                    throw new Exception (string.Format (
                         "Primary key {0} in the {1} class must be of type 'long'", c.Name, typeof(T))
                     );
                 }
@@ -276,7 +276,7 @@ namespace Hyena.Data.Sqlite
             connection.Execute (CreateCommand);
             foreach (DatabaseColumn column in columns) {
                 if (column.Index != null) {
-                    connection.Execute (String.Format (
+                    connection.Execute (string.Format (
                         "CREATE INDEX {0} ON {1}({2})",
                         column.Index, TableName, column.Name)
                     );
@@ -286,7 +286,7 @@ namespace Hyena.Data.Sqlite
 
         protected void CreateIndex (string name, string columns)
         {
-            Connection.Execute (String.Format (
+            Connection.Execute (string.Format (
                 "CREATE INDEX {0} ON {1} ({2})",
                 name, TableName, columns
             ));
@@ -376,7 +376,7 @@ namespace Hyena.Data.Sqlite
                 }
             } catch (Exception e) {
                 Log.Debug (
-                    String.Format ("Caught exception trying to load database column {0}", bad_column == null ? "[unknown]" : bad_column.Name),
+					string.Format ("Caught exception trying to load database column {0}", bad_column == null ? "[unknown]" : bad_column.Name),
                     e.ToString ()
                 );
             }
@@ -393,7 +393,7 @@ namespace Hyena.Data.Sqlite
 
         public T FetchFirstMatching (string condition, params object [] vals)
         {
-            foreach (T item in FetchAllMatching (String.Format ("{0} LIMIT 1", condition), vals)) {
+            foreach (T item in FetchAllMatching (string.Format ("{0} LIMIT 1", condition), vals)) {
                 return item;
             }
             return default;
@@ -411,7 +411,7 @@ namespace Hyena.Data.Sqlite
 
         public HyenaSqliteCommand CreateFetchCommand (string condition)
         {
-            return new HyenaSqliteCommand (String.Format ("{0} AND {1}", SelectCommand.Text, condition));
+            return new HyenaSqliteCommand (string.Format ("{0} AND {1}", SelectCommand.Text, condition));
         }
 
         public IEnumerable<T> FetchRange (int offset, int limit)
@@ -461,7 +461,7 @@ namespace Hyena.Data.Sqlite
 
         public void Delete (string condition, params object [] vals)
         {
-            connection.Execute (String.Format ("DELETE FROM {0} WHERE {1}", TableName, condition), vals);
+            connection.Execute (string.Format ("DELETE FROM {0} WHERE {1}", TableName, condition), vals);
         }
 
         public virtual void Delete (IEnumerable<T> items)
@@ -551,7 +551,7 @@ namespace Hyena.Data.Sqlite
                         }
                     }
 
-                    insert_command = new HyenaSqliteCommand (String.Format (
+                    insert_command = new HyenaSqliteCommand (string.Format (
                         "INSERT INTO {0} ({1}) VALUES ({2})",
                         TableName, cols.ToString (), vals.ToString ())
                     );
@@ -592,9 +592,9 @@ namespace Hyena.Data.Sqlite
             get {
                 if (select_command == null) {
                     select_command = new HyenaSqliteCommand (
-                        String.Format (
+						string.Format (
                             "SELECT {0} FROM {1} WHERE {2}",
-                            Select, From, String.IsNullOrEmpty (Where) ? "1=1" : Where
+                            Select, From, string.IsNullOrEmpty (Where) ? "1=1" : Where
                         )
                     );
                 }
@@ -606,10 +606,10 @@ namespace Hyena.Data.Sqlite
             get {
                 if (select_range_command == null) {
                     select_range_command = new HyenaSqliteCommand (
-                        String.Format (
+						string.Format (
                             "SELECT {0} FROM {1}{2}{3} LIMIT ?, ?",
                             Select, From,
-                            (String.IsNullOrEmpty (Where) ? String.Empty : " WHERE "),
+                            (string.IsNullOrEmpty (Where) ? string.Empty : " WHERE "),
                             Where
                         )
                     );
@@ -622,10 +622,10 @@ namespace Hyena.Data.Sqlite
             get {
                 if (select_single_command == null) {
                     select_single_command = new HyenaSqliteCommand (
-                        String.Format (
+						string.Format (
                             "SELECT {0} FROM {1} WHERE {2}{3}{4} = ?",
                             Select, From, Where,
-                            (String.IsNullOrEmpty (Where) ? String.Empty : " AND "),
+                            (string.IsNullOrEmpty (Where) ? string.Empty : " AND "),
                             PrimaryKey
                         )
                     );
@@ -637,7 +637,7 @@ namespace Hyena.Data.Sqlite
         protected virtual HyenaSqliteCommand DeleteCommand {
             get {
                 if (delete_command == null) {
-                    delete_command = new HyenaSqliteCommand (String.Format (
+                    delete_command = new HyenaSqliteCommand (string.Format (
                         "DELETE FROM {0} WHERE {1} IN (?)", TableName, PrimaryKey
                     ));
                 }
@@ -675,7 +675,7 @@ namespace Hyena.Data.Sqlite
         public string PrimaryKey {
             get {
                 if (primary_key == null) {
-                    primary_key = String.Format ("{0}.{1}", TableName, key.Name);
+                    primary_key = string.Format ("{0}.{1}", TableName, key.Name);
                 }
                 return primary_key;
             }
@@ -747,7 +747,7 @@ namespace Hyena.Data.Sqlite
         {
             CheckProperty (typeof (U), column);
 
-            return connection.Query<U> (String.Format (
+            return connection.Query<U> (string.Format (
                 "SELECT {0} FROM {1} WHERE {2}={3}",
                 column.Name, TableName, key.Name, key.GetValue (item)));
         }
@@ -756,7 +756,7 @@ namespace Hyena.Data.Sqlite
         {
             CheckProperty (typeof (U), column);
 
-            connection.Execute (String.Format (
+            connection.Execute (string.Format (
                 "UPDATE {0} SET {1}='{2}' WHERE {3}={4}",
                 TableName, column.Name,
                 SqliteUtils.ToDbFormat (typeof (U), value),
@@ -787,7 +787,7 @@ namespace Hyena.Data.Sqlite
 
         private void AddColumnToTable (string column_schema)
         {
-            connection.Execute (String.Format (
+            connection.Execute (string.Format (
                 "ALTER TABLE {0} ADD {1}",
                 TableName, column_schema)
             );

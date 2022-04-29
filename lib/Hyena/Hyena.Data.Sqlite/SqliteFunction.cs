@@ -241,7 +241,7 @@ namespace Hyena.Data.Sqlite
                 parms[n] = null;
                 break;
             default:
-                throw new Exception (String.Format ("Value is of unknown type {0}", type));
+                throw new Exception (string.Format ("Value is of unknown type {0}", type));
         }
       }
       return parms;

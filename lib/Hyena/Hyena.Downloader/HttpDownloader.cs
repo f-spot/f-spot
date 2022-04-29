@@ -174,7 +174,7 @@ namespace Hyena.Downloader
                         if (!accepted) {
                             throw new WebException ("Invalid content type: " +
                                 response.ContentType + "; expected one of: " +
-                                String.Join (", ", AcceptContentTypes));
+								string.Join (", ", AcceptContentTypes));
                         }
                     }
 
@@ -274,7 +274,7 @@ namespace Hyena.Downloader
                 try {
                     handler (this);
                 } catch (Exception e) {
-                    Log.Exception (String.Format ("HttpDownloader.Finished handler ({0})", Uri), e);
+                    Log.Exception (string.Format ("HttpDownloader.Finished handler ({0})", Uri), e);
                 }
             } 
 

@@ -64,7 +64,7 @@ namespace Hyena
 
             do {
                 string guid = Guid.NewGuid ().ToString ();
-                string file = extension == null ? guid : String.Format ("{0}.{1}", guid, extension);
+                string file = extension == null ? guid : $"{guid}.{extension}";
                 path = Path.Combine (dir.FullName, file);
             } while (File.Exists (path));
 
@@ -73,7 +73,7 @@ namespace Hyena
 
         public static string Combine (string first, params string [] components)
         {
-            if (String.IsNullOrEmpty (first)) {
+            if (string.IsNullOrEmpty (first)) {
                 throw new ArgumentException ("First component must not be null or empty", nameof (first));
             } else if (components == null || components.Length < 1) {
                 throw new ArgumentException ("One or more path components must be provided", nameof (components));
@@ -108,7 +108,7 @@ namespace Hyena
         private static string [] GetExecPaths ()
         {
             string path = Environment.GetEnvironmentVariable ("PATH");
-            if (String.IsNullOrEmpty (path)) {
+            if (string.IsNullOrEmpty (path)) {
                 return new string [] { "/bin", "/usr/bin", "/usr/local/bin" };
             }
 
@@ -126,7 +126,7 @@ namespace Hyena
 
         public static string MakePathRelative (string path, string to)
         {
-            if (String.IsNullOrEmpty (path) || String.IsNullOrEmpty (to)) {
+            if (string.IsNullOrEmpty (path) || string.IsNullOrEmpty (to)) {
                 return null;
             }
 
@@ -137,11 +137,11 @@ namespace Hyena
             }
 
             if (path == to) {
-                return String.Empty;
+                return string.Empty;
             }
 
             if (to[to.Length - 1] != Path.DirectorySeparatorChar) {
-                to = to + Path.DirectorySeparatorChar;
+                to += Path.DirectorySeparatorChar;
             }
 
             if (path.StartsWith (to))
@@ -172,7 +172,7 @@ namespace Hyena
             for (int j = i; j < pathParts.Length; j++) {
                 required [j - i] = pathParts [j];
             }
-            relativePath.Append (String.Join (Path.DirectorySeparatorChar.ToString (), required));
+            relativePath.Append (string.Join (Path.DirectorySeparatorChar.ToString (), required));
 
             return relativePath.ToString ();
         }
@@ -234,7 +234,6 @@ namespace Hyena
                 Directory.CreateDirectory (ApplicationData);
             }
         }
-
 
         public static string ExtensionCacheRoot {
             get { return Path.Combine (ApplicationCache, "extensions"); }

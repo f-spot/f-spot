@@ -48,7 +48,7 @@ namespace Hyena.Jobs
         {
             if (thread == null) {
                 thread = new Thread (InnerStart);
-                thread.Name = String.Format ("Hyena.Jobs.JobRunner ({0})", Title);
+                thread.Name = string.Format ("Hyena.Jobs.JobRunner ({0})", Title);
                 thread.Priority = this.Has (PriorityHints.SpeedSensitive) ? ThreadPriority.Normal : ThreadPriority.Lowest;
                 thread.Start ();
             }

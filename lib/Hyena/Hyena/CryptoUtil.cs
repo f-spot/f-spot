@@ -52,8 +52,8 @@ namespace Hyena
 
         public static string Md5Encode (string text, Encoding encoding)
         {
-            if (String.IsNullOrEmpty (text)) {
-                return String.Empty;
+            if (string.IsNullOrEmpty (text)) {
+                return string.Empty;
             }
 
             byte [] hash;

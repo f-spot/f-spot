@@ -50,7 +50,7 @@ namespace Hyena.Query
 
         public string ToSql ()
         {
-            return String.Format ("ORDER BY {0}", OrderSql);
+            return string.Format ("ORDER BY {0}", OrderSql);
         }
     }
 }

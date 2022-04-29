@@ -61,7 +61,7 @@ namespace Hyena.Downloader
 
                 var human_speed = new Hyena.Query.FileSizeQueryValue ((long)Math.Round (speed)).ToUserQuery ();
                 if (manager.PendingDownloadCount == 0) {
-                    Status = String.Format (
+                    Status = string.Format (
                         Catalog.GetPluralString (
                             "{0} download at {1}/s",
                             "{0} downloads at {1}/s",
@@ -69,7 +69,7 @@ namespace Hyena.Downloader
                         count, human_speed
                     );
                 } else {
-                    Status = String.Format (
+                    Status = string.Format (
                         Catalog.GetPluralString (
                             "{0} download at {1}/s ({2} pending)",
                             "{0} downloads at {1}/s ({2} pending)",

@@ -86,7 +86,7 @@ namespace Hyena.Data
         public double Width {
             get { return width; }
             set {
-                if (Double.IsNaN (value)) {
+                if (double.IsNaN (value)) {
                     return;
                 }
 

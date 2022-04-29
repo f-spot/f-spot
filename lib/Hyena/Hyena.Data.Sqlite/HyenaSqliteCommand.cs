@@ -186,7 +186,7 @@ namespace Hyena.Data.Sqlite
             }
 
             if (param_values.Length != parameter_count) {
-                throw new ArgumentException (String.Format (
+                throw new ArgumentException (string.Format (
                     "Command {2} has {0} parameters, but {1} values given.", parameter_count, param_values.Length, command
                 ));
             }
@@ -204,7 +204,7 @@ namespace Hyena.Data.Sqlite
         public static object SqlifyObject (object o)
         {
             if (o is string) {
-                return String.Format ("'{0}'", (o as string).Replace ("'", "''"));
+                return string.Format ("'{0}'", (o as string).Replace ("'", "''"));
             } else if (o is DateTime) {
                 return DateTimeUtil.FromDateTime ((DateTime) o);
             } else if (o is bool) {
@@ -213,7 +213,7 @@ namespace Hyena.Data.Sqlite
                 return "NULL";
             } else if (o is byte[]) {
                 string hex = BitConverter.ToString (o as byte[]).Replace ("-", "");
-                return String.Format ("X'{0}'", hex);
+                return string.Format ("X'{0}'", hex);
             } else if (o is Array) {
                 StringBuilder sb = new StringBuilder ();
                 bool first = true;
@@ -238,7 +238,7 @@ namespace Hyena.Data.Sqlite
                 }
 
                 if (command_formatted == null) {
-                    command_formatted = String.Format (System.Globalization.CultureInfo.InvariantCulture, command_format, current_values);
+                    command_formatted = string.Format (System.Globalization.CultureInfo.InvariantCulture, command_format, current_values);
                 }
 
                 return command_formatted;

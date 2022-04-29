@@ -49,7 +49,7 @@ namespace Hyena.Data.Sqlite
             this (attribute, property_info, property_info.PropertyType)
         {
             if (!property_info.CanRead || (attribute.Select && !property_info.CanWrite)) {
-                throw new Exception (String.Format (
+                throw new Exception (string.Format (
                     "{0}: The property {1} must have both a get and a set " +
                     "block in order to be bound to a database column.",
                     property_info.DeclaringType,

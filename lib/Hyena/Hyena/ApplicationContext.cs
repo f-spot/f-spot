@@ -79,7 +79,7 @@ namespace Hyena
 
         public static bool EnvironmentIsSet (string env)
         {
-            return !String.IsNullOrEmpty (Environment.GetEnvironmentVariable (env));
+            return !string.IsNullOrEmpty (Environment.GetEnvironmentVariable (env));
         }
 
         private static CultureInfo current_culture = CultureInfo.CurrentCulture;

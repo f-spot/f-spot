@@ -59,7 +59,7 @@ namespace Hyena.Query
 
         protected void PrintIndent(int depth)
         {
-            Console.Write(String.Empty.PadLeft(depth * 2, ' '));
+            Console.Write(string.Empty.PadLeft(depth * 2, ' '));
         }
 
         public void Dump()

@@ -50,7 +50,7 @@ namespace Hyena.Query
 
         public override void ParseUserQuery (string input)
         {
-            IsEmpty = !Int64.TryParse (input, out value);
+            IsEmpty = !long.TryParse (input, out value);
         }
 
         public override void LoadString (string input)
@@ -92,11 +92,11 @@ namespace Hyena.Query
         }
 
         public virtual long MinValue {
-            get { return Int64.MinValue; }
+            get { return long.MinValue; }
         }
 
         public virtual long MaxValue {
-            get { return Int64.MaxValue; }
+            get { return long.MaxValue; }
         }
 
         public override string ToSql (Operator op)

@@ -121,7 +121,7 @@ namespace Hyena.Query
 
             if (!no_custom_format) {
                 // Ensure we have parens around any custom 'columns' that may be an OR of two columns
-                this.column = String.Format ("({0})", this.column);
+                this.column = string.Format ("({0})", this.column);
             }
 
             foreach (Type value_type in valueTypes) {
@@ -143,7 +143,7 @@ namespace Hyena.Query
 
         public string ToSql (Operator op, QueryValue qv)
         {
-            string value = qv.ToSql (op) ?? String.Empty;
+            string value = qv.ToSql (op) ?? string.Empty;
 
             if (op == null) op = qv.OperatorSet.First;
 
@@ -152,18 +152,18 @@ namespace Hyena.Query
             if (no_custom_format) {
                 string column_with_key = Column;
                 if (qv is StringQueryValue && !(column_lowered || qv is ExactStringQueryValue)) {
-                    column_with_key = String.Format ("HYENA_SEARCH_KEY({0})", Column);
+                    column_with_key = string.Format ("HYENA_SEARCH_KEY({0})", Column);
                 }
-                sb.AppendFormat ("{0} {1}", column_with_key, String.Format (op.SqlFormat, value));
+                sb.AppendFormat ("{0} {1}", column_with_key, string.Format (op.SqlFormat, value));
 
                 if (op.IsNot) {
-                    return String.Format ("({0} IS NULL OR {1})", Column, sb.ToString ());
+                    return string.Format ("({0} IS NULL OR {1})", Column, sb.ToString ());
                 } else {
-                    return String.Format ("({0} IS NOT NULL AND {1})", Column, sb.ToString ());
+                    return string.Format ("({0} IS NOT NULL AND {1})", Column, sb.ToString ());
                 }
             } else {
                 sb.AppendFormat (
-                    Column, String.Format (op.SqlFormat, value),
+                    Column, string.Format (op.SqlFormat, value),
                     value, op.IsNot ? "NOT" : null
                 );
             }
@@ -173,17 +173,17 @@ namespace Hyena.Query
 
         public static string ToTermString (string alias, string op, string value)
         {
-            if (!String.IsNullOrEmpty (value)) {
-                value = String.Format (
+            if (!string.IsNullOrEmpty (value)) {
+                value = string.Format (
                     "{1}{0}{1}",
-                    value, value.IndexOf (" ") == -1 ? String.Empty : "\""
+                    value, value.IndexOf (" ") == -1 ? string.Empty : "\""
                 );
             } else {
-                value = String.Empty;
+                value = string.Empty;
             }
-            return String.IsNullOrEmpty (alias)
+            return string.IsNullOrEmpty (alias)
                 ? value
-                : String.Format ("{0}{1}{2}", alias, op, value);
+                : string.Format ("{0}{1}{2}", alias, op, value);
         }
     }
 }

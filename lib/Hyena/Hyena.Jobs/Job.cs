@@ -52,7 +52,7 @@ namespace Hyena.Jobs
         private ManualResetEvent pause_event;
         private DateTime created_at = DateTime.Now;
         private TimeSpan run_time = TimeSpan.Zero;
-        private Object sync = new Object ();
+        private object sync = new object ();
 
         public bool IsCancelRequested { get; private set; }
 

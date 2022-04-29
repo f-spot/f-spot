@@ -49,7 +49,7 @@ namespace Hyena.Collections
 
             public override string ToString ()
             {
-                return String.Format ("{0}-{1} ({2})", Start, End, Count);
+                return string.Format ("{0}-{1} ({2})", Start, End, Count);
             }
 
             public int Start {

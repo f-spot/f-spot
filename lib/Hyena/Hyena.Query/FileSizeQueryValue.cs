@@ -70,10 +70,10 @@ namespace Hyena.Query
             }
 
             double double_value;
-            IsEmpty = !Double.TryParse (input, out double_value);
+            IsEmpty = !double.TryParse (input, out double_value);
 
             if (IsEmpty && input.Length > 1) {
-                IsEmpty = !Double.TryParse (input.Substring (0, input.Length - 1), out double_value);
+                IsEmpty = !double.TryParse (input.Substring (0, input.Length - 1), out double_value);
             }
 
             if (!IsEmpty) {
@@ -131,7 +131,7 @@ namespace Hyena.Query
         public string ToUserQuery (bool always_decimal)
         {
             if (factor != FileSizeFactor.None) {
-                return String.Format ("{0} {1}",
+                return string.Format ("{0} {1}",
                     IntValue == 0
                         ? "0"
                         : StringUtil.DoubleToTenthsPrecision (((double)IntValue / (double)factor), always_decimal),

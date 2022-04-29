@@ -48,7 +48,7 @@ namespace Hyena.Downloader
         {
             Directory.CreateDirectory (TempPathRoot);
             LocalPath = Path.Combine (TempPathRoot, CryptoUtil.Md5Encode (Uri.AbsoluteUri));
-            if (!String.IsNullOrEmpty (FileExtension)) {
+            if (!string.IsNullOrEmpty (FileExtension)) {
                 LocalPath += "." + FileExtension;
             }
             base.OnStarted ();
@@ -71,7 +71,7 @@ namespace Hyena.Downloader
                     file_stream = null;
                     OnFileFinished ();
                 } catch (Exception e) {
-                    Log.Exception (String.Format ("HttpFileDownloader.OnFinished ({0})", Uri), e);
+                    Log.Exception (string.Format ("HttpFileDownloader.OnFinished ({0})", Uri), e);
                 }
             }
 

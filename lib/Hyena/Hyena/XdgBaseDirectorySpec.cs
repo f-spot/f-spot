@@ -39,7 +39,7 @@ namespace Hyena
             string config_dir = Environment.GetFolderPath (Environment.SpecialFolder.ApplicationData);
 
             string env_path = Environment.GetEnvironmentVariable (key);
-            if (!String.IsNullOrEmpty (env_path)) {
+            if (!string.IsNullOrEmpty (env_path)) {
                 return env_path;
             }
 

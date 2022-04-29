@@ -76,7 +76,7 @@ namespace Hyena.CommandLine
                 }
 
                 string name = OptionName (arguments[i]);
-                string value = String.Empty;
+                string value = string.Empty;
 
                 int eq_offset = name.IndexOf ('=');
                 if (eq_offset > 1) {
@@ -118,7 +118,7 @@ namespace Hyena.CommandLine
         }
 
         public string this[string name] {
-            get { return Contains (name) ? parsed_arguments[name].Value : String.Empty; }
+            get { return Contains (name) ? parsed_arguments[name].Value : string.Empty; }
             set {
                 Argument arg = parsed_arguments[name];
                 arg.Value = value;

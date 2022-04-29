@@ -71,7 +71,7 @@ namespace Hyena.Query
 
         public override void AppendXml (XmlElement node)
         {
-            node.InnerText = String.Empty;
+            node.InnerText = string.Empty;
         }
 
         public void SetValue (string str)

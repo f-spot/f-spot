@@ -70,7 +70,7 @@ namespace Hyena.Data
             if (prop == null || prop.ReflectedType != obj.GetType ()) {
                 prop = obj.GetType ().GetProperty (name);
                 if (prop == null) {
-                    throw new Exception (String.Format (
+                    throw new Exception (string.Format (
                         "In {0}, type {1} does not have property {2}",
                         this, obj.GetType (), name));
                 }

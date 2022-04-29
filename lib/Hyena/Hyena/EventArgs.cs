@@ -30,7 +30,7 @@ using System;
 
 namespace Hyena
 {
-    public class EventArgs<T> : System.EventArgs
+    public class EventArgs<T> : EventArgs
     {
         private readonly T value;
 

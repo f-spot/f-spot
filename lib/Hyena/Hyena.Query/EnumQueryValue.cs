@@ -76,7 +76,7 @@ namespace Hyena.Query
 
         public override void ParseXml (XmlElement node)
         {
-            IsEmpty = !Int32.TryParse (node.InnerText, out value);
+            IsEmpty = !int.TryParse (node.InnerText, out value);
         }
 
         public override void LoadString (string str)

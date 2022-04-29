@@ -111,7 +111,7 @@ namespace Hyena.Data.Sqlite
         {
             this.dbpath = dbpath;
             queue_thread = new Thread(ProcessQueue);
-            queue_thread.Name = String.Format ("HyenaSqliteConnection ({0})", dbpath);
+            queue_thread.Name = string.Format ("HyenaSqliteConnection ({0})", dbpath);
             queue_thread.IsBackground = true;
             queue_thread.Start();
         }
@@ -314,7 +314,7 @@ namespace Hyena.Data.Sqlite
 
         private bool Exists (string type, string name, string master)
         {
-            return Query<int> (String.Format (
+            return Query<int> (string.Format (
                 "SELECT COUNT(*) FROM {0} WHERE Type='{1}' AND Name='{2}'",
                 master, type, name)
             ) > 0;
@@ -324,9 +324,9 @@ namespace Hyena.Data.Sqlite
 
         private void SchemaClosure (string table_name, SchemaHandler code)
         {
-            string sql = Query<string> (String.Format (
+            string sql = Query<string> (string.Format (
                 "SELECT sql FROM sqlite_master WHERE Name='{0}'", table_name));
-            if (String.IsNullOrEmpty (sql)) {
+            if (string.IsNullOrEmpty (sql)) {
                 return;
             }
             sql = sql.Substring (sql.IndexOf ('(') + 1);

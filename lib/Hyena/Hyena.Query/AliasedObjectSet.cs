@@ -51,7 +51,7 @@ namespace Hyena.Query
             foreach (T obj in objects) {
                 map [obj.Name.ToLower ()] = obj;
                 foreach (string alias in obj.Aliases) {
-                    if (!String.IsNullOrEmpty (alias) && alias.IndexOf (" ") == -1) {
+                    if (!string.IsNullOrEmpty (alias) && alias.IndexOf (" ") == -1) {
                         foreach (string sub_alias in alias.Split(',')) {
                             string lower_alias = sub_alias.ToLower ();
                             map [lower_alias] = obj;
@@ -103,7 +103,7 @@ namespace Hyena.Query
 
         public T this [string alias] {
             get {
-                if (!String.IsNullOrEmpty (alias) && map.ContainsKey (alias.ToLower ()))
+                if (!string.IsNullOrEmpty (alias) && map.ContainsKey (alias.ToLower ()))
                     return map[alias.ToLower ()];
                 return default;
             }

@@ -143,10 +143,10 @@ namespace Hyena
                     case LogEntryType.Debug: ConsoleCrayon.ForegroundColor = ConsoleColor.Blue; break;
                 }
 
-                var thread_name = String.Empty;
+                var thread_name = string.Empty;
                 if (Debugging) {
                     var thread = Thread.CurrentThread;
-                    thread_name = String.Format ("{0} ", thread.ManagedThreadId);
+                    thread_name = string.Format ("{0} ", thread.ManagedThreadId);
                 }
 
                 Console.Write ("[{5}{0} {1:00}:{2:00}:{3:00}.{4:000}]", TypeString (type), DateTime.Now.Hour,
@@ -309,7 +309,7 @@ namespace Hyena
         public static void DebugFormat (string format, params object [] args)
         {
             if (Debugging) {
-                Debug (String.Format (format, args));
+                Debug (string.Format (format, args));
             }
         }
 
@@ -339,7 +339,7 @@ namespace Hyena
 
         public static void InformationFormat (string format, params object [] args)
         {
-            Information (String.Format (format, args));
+            Information (string.Format (format, args));
         }
 
         #endregion
@@ -368,7 +368,7 @@ namespace Hyena
 
         public static void WarningFormat (string format, params object [] args)
         {
-            Warning (String.Format (format, args));
+            Warning (string.Format (format, args));
         }
 
         #endregion
@@ -397,7 +397,7 @@ namespace Hyena
 
         public static void ErrorFormat (string format, params object [] args)
         {
-            Error (String.Format (format, args));
+            Error (string.Format (format, args));
         }
 
         #endregion

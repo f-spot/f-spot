@@ -193,7 +193,7 @@ namespace Hyena.Query
                 }
             }
 
-            return String.Format (result, StringUtil.DoubleToTenthsPrecision (
+            return string.Format (result, StringUtil.DoubleToTenthsPrecision (
                 count, false, translate ? NumberFormatInfo.CurrentInfo : NumberFormatInfo.InvariantInfo));
         }
     }

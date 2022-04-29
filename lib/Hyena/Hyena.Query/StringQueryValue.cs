@@ -62,13 +62,13 @@ namespace Hyena.Query
         public override void ParseUserQuery (string input)
         {
             value = input;
-            IsEmpty = String.IsNullOrEmpty (value);
+            IsEmpty = string.IsNullOrEmpty (value);
         }
 
         public override void ParseXml (XmlElement node)
         {
             value = node.InnerText;
-            IsEmpty = String.IsNullOrEmpty (value);
+            IsEmpty = string.IsNullOrEmpty (value);
         }
 
         public override void LoadString (string str)
@@ -78,7 +78,7 @@ namespace Hyena.Query
 
         public override string ToSql (Operator op)
         {
-            return String.IsNullOrEmpty (value) ? null : EscapeString (op, Hyena.StringUtil.SearchKey (value));
+            return string.IsNullOrEmpty (value) ? null : EscapeString (op, Hyena.StringUtil.SearchKey (value));
         }
 
         protected static string EscapeString (Operator op, string orig)

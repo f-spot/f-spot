@@ -81,7 +81,7 @@ namespace Hyena.Query
         protected override string FactorString (TimeFactor factor, double count, bool translate)
         {
             string result = base.FactorString (factor, count, translate);
-            return (result == null) ? null : String.Format (
+            return (result == null) ? null : string.Format (
                 translate ? Catalog.GetString ("{0} ago") : "{0} ago", result);
         }
     }

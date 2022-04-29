@@ -99,7 +99,7 @@ namespace Hyena.CommandLine
                     builder.AppendFormat ("  --{0}{2}{1}", group[i].Name,
                         WrapAlign (group[i].Description, max_description_length,
                             description_alignment, i == n - 1),
-                        String.Empty.PadRight (spacing));
+						string.Empty.PadRight (spacing));
                     builder.AppendLine ();
                 }
 
@@ -128,7 +128,7 @@ namespace Hyena.CommandLine
 
                     if (b + word_length >= width) {
                         builder.AppendLine ();
-                        builder.Append (String.Empty.PadRight (align));
+                        builder.Append (string.Empty.PadRight (align));
                         b = 0;
                         did_wrap = true;
                         continue;

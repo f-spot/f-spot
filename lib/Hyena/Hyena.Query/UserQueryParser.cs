@@ -171,7 +171,7 @@ namespace Hyena.Query
             }
 
             for (; ; ReadChar ()) {
-                if (Char.IsWhiteSpace (peek) && peek != '\n') {
+                if (char.IsWhiteSpace (peek) && peek != '\n') {
                     continue;
                 } else if (peek == '\n') {
                     current_line++;
@@ -218,7 +218,7 @@ namespace Hyena.Query
 
         private bool IsStringTerminationChar (char ch)
         {
-            return Char.IsWhiteSpace (ch) || ch == '(' || ch == ')' || ch == '|' || ch == ',';
+            return char.IsWhiteSpace (ch) || ch == '(' || ch == ')' || ch == '|' || ch == ',';
         }
 
         private string ScanString ()
@@ -263,7 +263,7 @@ namespace Hyena.Query
 
         private void ReadChar ()
         {
-            if (peek == Char.MinValue) {
+            if (peek == char.MinValue) {
                 return;
             }
 

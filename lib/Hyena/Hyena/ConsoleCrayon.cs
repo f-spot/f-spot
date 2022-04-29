@@ -120,7 +120,7 @@ namespace Hyena
             // lighter bg colours are 100 -> 107 rather than 40 -> 47
             bool light;
             int code = TranslateColor (color, out light) + (isForeground ? 30 : 40) + (light ? 60 : 0);
-            return String.Format ("\x001b[{0}m", code);
+            return string.Format ("\x001b[{0}m", code);
         }
 
         private static string GetAnsiResetControlCode ()

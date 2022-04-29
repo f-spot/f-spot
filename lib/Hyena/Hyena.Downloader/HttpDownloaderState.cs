@@ -46,9 +46,9 @@ namespace Hyena.Downloader
         public override string ToString ()
         {
             if (Working) {
-                return String.Format ("HttpDownloaderState: working ({0}% complete)", PercentComplete * 100.0);
+                return string.Format ("HttpDownloaderState: working ({0}% complete)", PercentComplete * 100.0);
             } else {
-                return String.Format ("HttpDownloaderState: finished, {0}", Success ? "successful" : "error: " + FailureException.Message);
+                return string.Format ("HttpDownloaderState: finished, {0}", Success ? "successful" : "error: " + FailureException.Message);
             }
         }
     }
