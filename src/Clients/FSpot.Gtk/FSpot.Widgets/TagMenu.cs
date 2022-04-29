@@ -35,11 +35,10 @@ using System;
 
 using Gtk;
 
+using FSpot;
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Utils;
-
-using Hyena;
 
 public class TagMenu : Menu
 {
@@ -185,7 +184,7 @@ public class TagMenu : Menu
 			if (t != null)
 				TagSelected (t.Value);
 			else
-				Log.Debug ("TagMenu.HandleActivate: Item was not a TagMenuItem");
+				Logger.Log.Debug ("TagMenu.HandleActivate: Item was not a TagMenuItem");
 		}
 	}
 }

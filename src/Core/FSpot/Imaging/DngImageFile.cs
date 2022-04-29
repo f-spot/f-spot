@@ -31,6 +31,9 @@
 
 using System;
 using Hyena;
+
+
+
 using TagLib;
 using TagLib.IFD;
 using TagLib.IFD.Entries;
@@ -53,7 +56,7 @@ namespace FSpot.Imaging
 					try {
 						return new Cms.Profile (e.RawData);
 					} catch (System.Exception ex) {
-						Log.Exception (ex);
+						Logger.Log.Exception (ex);
 					}
 					break;
 				case TagId.ColorSpace:
@@ -63,7 +66,7 @@ namespace FSpot.Imaging
 					case ColorSpace.AdobeRGB:
 						return Cms.Profile.CreateAlternateRgb ();
 					case ColorSpace.Uncalibrated:
-						Log.Debug ("Uncalibrated colorspace");
+						Logger.Log.Debug ("Uncalibrated colorspace");
 						break;
 					}
 					break;
@@ -91,7 +94,7 @@ namespace FSpot.Imaging
 					ushort [] trns = e.ShortValue;
 					ushort gamma_count = (ushort) (1 << bits_per_sample);
 					Cms.GammaTable [] tables = new Cms.GammaTable [3];
-					Log.DebugFormat ("Parsing transfer function: count = {0}", trns.Length);
+					Logger.Log.DebugFormat ("Parsing transfer function: count = {0}", trns.Length);
 
 					// FIXME we should use the TransferRange here
 					// FIXME we should use bits per sample here
@@ -149,7 +152,7 @@ namespace FSpot.Imaging
 				var entry = subimage_structure.GetEntry (0, (ushort)IFDEntryTag.StripOffsets);
 				offset = (entry as StripOffsetsIFDEntry).Values [0];
 			} catch (Exception e) {
-				Log.DebugException (e);
+				Logger.Log.Debug (e, "");
 			}
 		}
 

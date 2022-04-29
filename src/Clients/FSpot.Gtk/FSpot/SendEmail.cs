@@ -50,6 +50,8 @@ using Hyena.Widgets;
 
 using Mono.Unix;
 
+
+
 namespace FSpot
 {
 	public class SendEmail : BuilderDialog
@@ -291,7 +293,7 @@ namespace FSpot
 
 						mail_attach.Append (((i == 0 && attach_arg.ToString () == ",") ? "" : attach_arg.ToString ()) + request.Current.ToString ());
 					} catch (Exception e) {
-						Hyena.Log.ErrorFormat ("Error preparing {0}: {1}", selection[i].Name, e.Message);
+						Logger.Log.Error ($"Error preparing {selection[i].Name}: {e.Message}");
 						HigMessageDialog md = new HigMessageDialog (parent_window,
 												DialogFlags.DestroyWithParent,
 												MessageType.Error,

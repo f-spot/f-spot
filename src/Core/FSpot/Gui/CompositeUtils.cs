@@ -37,6 +37,7 @@ using FSpot.Utils;
 
 using Hyena;
 
+
 namespace FSpot.Gui
 {
 	public class CompositeUtils
@@ -73,7 +74,7 @@ namespace FSpot.Gui
 				Gdk.Visual visual = Gdk.Visual.GetBestWithDepth (32);
 				if (visual != null) {
 					Gdk.Colormap cmap = new Gdk.Colormap (visual, false);
-					Log.Debug ("fallback");
+					Logger.Log.Debug ("fallback");
 					return cmap;
 				}
 			}
@@ -134,7 +135,7 @@ namespace FSpot.Gui
 			try {
 				composited = gdk_screen_is_composited (screen.Handle);
 			} catch (EntryPointNotFoundException) {
-				Log.Debug ("query composite manager locally");
+				Logger.Log.Debug ("query composite manager locally");
 				Atom atom = Atom.Intern (string.Format ("_NET_WM_CM_S{0}", screen.Number), false);
 				composited = Gdk.Selection.OwnerGetForDisplay (screen.Display, atom) != null;
 			}
@@ -163,7 +164,7 @@ namespace FSpot.Gui
 		public static void RedirectDrawable (Drawable d)
 		{
 			uint xid = GdkUtils.GetXid (d);
-			Log.DebugFormat ("xid = {0} d.handle = {1}, d.Display.Handle = {2}", xid, d.Handle, d.Display.Handle);
+			Logger.Log.Debug ($"xid = {xid} d.handle = {d.Handle}, d.Display.Handle = {d.Display.Handle}");
 			XCompositeRedirectWindow (GdkUtils.GetXDisplay (d.Display), GdkUtils.GetXid (d), CompositeRedirect.Manual);
 		}
 

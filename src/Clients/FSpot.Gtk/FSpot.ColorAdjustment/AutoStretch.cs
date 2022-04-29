@@ -36,6 +36,8 @@ using Gdk;
 
 using Hyena;
 
+
+
 namespace FSpot.ColorAdjustment
 {
 	public class AutoStretch : Adjustment
@@ -53,7 +55,7 @@ namespace FSpot.ColorAdjustment
 			for (int channel = 0; channel < tables.Length; channel++) {
 				int high, low;
 				hist.GetHighLow (channel, out high, out low);
-				Log.DebugFormat ("high = {0}, low = {1}", high, low);
+				Logger.Log.Debug ($"high = {high}, low = {low}");
 				tables [channel] = StretchChannel (255, low / 255.0, high / 255.0);
 			}
 			profiles.Add (new Profile (IccColorSpace.Rgb, tables));

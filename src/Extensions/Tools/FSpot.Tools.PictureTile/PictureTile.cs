@@ -64,7 +64,7 @@ namespace PictureTileExtension {
 		Tag [] photo_tags;
 
 		public void Run (object o, EventArgs e) {
-			Log.Information ("Executing PictureTile extension");
+			Logger.Log.Information ("Executing PictureTile extension");
 			if (App.Instance.Organizer.SelectedPhotos ().Length == 0) {
 				InfoDialog (Catalog.GetString ("No selection available"),
 					    Catalog.GetString ("This tool requires an active selection. Please select one or more pictures and try again"),
@@ -148,7 +148,7 @@ namespace PictureTileExtension {
 
 				//FIXME should switch to retry/skip
 				if (!GLib.FileFactory.NewForUri (p.DefaultVersion.Uri).Exists) {
-					Log.WarningFormat ("Couldn't access photo {0} while creating mosaics", p.DefaultVersion.Uri.LocalPath);
+					Logger.Log.WarningFormat ("Couldn't access photo {0} while creating mosaics", p.DefaultVersion.Uri.LocalPath);
 					continue;
 				}
 
@@ -192,7 +192,7 @@ namespace PictureTileExtension {
 								pages.Text,
 								uniform,
 								destfile_tmp);
-			Log.Debug ("Executing: picturetile.pl " + picturetile_command);
+			Logger.Log.Debug ("Executing: picturetile.pl " + picturetile_command);
 			System.Diagnostics.Process pt_exe = System.Diagnostics.Process.Start ("picturetile.pl", picturetile_command);
 			pt_exe.WaitForExit ();
 

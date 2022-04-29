@@ -44,6 +44,8 @@ using Gtk;
 
 using Mono.Unix;
 
+
+
 // FIXME TODO: We want to use something like EClippedLabel here throughout so it handles small sizes
 // gracefully using ellipsis.
 
@@ -484,7 +486,7 @@ namespace FSpot.Widgets
 							   try {
 								   return new DotNetFile ().GetSize (photo.DefaultVersion.Uri).ToString ();
 							   } catch (Exception e) {
-								   Hyena.Log.DebugException (e);
+								  Logger.Log.Debug (e, "");
 								   return Catalog.GetString ("(File read error)");
 							   }
 						   }, null);
@@ -598,7 +600,7 @@ namespace FSpot.Widgets
 
 				hint.Dispose ();
 			} catch (Exception e) {
-				Hyena.Log.Debug (e.StackTrace);
+				Logger.Log.Debug (e, "");
 				using var empty = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, true, 8, 256, 256);
 				empty.Fill (0x0);
 				histogram_image.Pixbuf = histogram.Generate (empty, max);
@@ -769,7 +771,7 @@ namespace FSpot.Widgets
 
 		public override void SetInfoEntryVisible (ViewContext context, InfoBox.InfoEntry entry, bool visible)
 		{
-			Hyena.Log.Debug ($"Set Visibility for Entry {entry.Id} to {visible}");
+			Logger.Log.Debug ($"Set Visibility for Entry {entry.Id} to {visible}");
 			if (entry.AlwaysVisible)
 				throw new Exception ("entry visibility cannot be set");
 

@@ -35,8 +35,9 @@ using Gtk;
 
 using Mono.Unix;
 
-using Hyena;
 using Hyena.Widgets;
+
+
 
 namespace FSpot.UI.Dialog
 {
@@ -48,7 +49,7 @@ namespace FSpot.UI.Dialog
 				string.Format (Catalog.GetString ("F-Spot encountered an error while loading the photo database. " +
 						"The old database has been moved to {0} and a new database has been created."), backup_path))
 		{
-			Log.Exception (e);
+			Logger.Log.Error (e, "");
 			Run ();
 			Destroy ();
 		}

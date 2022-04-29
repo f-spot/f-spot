@@ -24,6 +24,8 @@ using Hyena;
 
 using Mono.Unix;
 
+
+
 namespace FSpot.UI.Dialog
 {
 	public class ImportDialog : BuilderDialog
@@ -265,7 +267,7 @@ namespace FSpot.UI.Dialog
 		{
 			// Prevent double firing.
 			if (sources_combo.Active == current_index) {
-				Log.Debug ("Skipping double fire!");
+				Logger.Log.Debug ("Skipping double fire!");
 				return;
 			}
 			current_index = sources_combo.Active;
@@ -285,7 +287,7 @@ namespace FSpot.UI.Dialog
 
 		void OnControllerStatusEvent (ImportEvent evnt)
 		{
-			Log.Debug ($"Received controller event: {evnt}");
+			Logger.Log.Debug ($"Received controller event: {evnt}");
 
 			switch (evnt) {
 				case ImportEvent.SourceChanged:

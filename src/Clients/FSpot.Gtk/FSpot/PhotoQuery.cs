@@ -42,6 +42,10 @@ using FSpot.Query;
 
 using Hyena;
 
+
+
+using SerilogTimings;
+
 namespace FSpot
 {
 	public class PhotoQuery : IBrowsableCollection
@@ -276,7 +280,8 @@ namespace FSpot
 
 		public void RequestReload ()
 		{
-			uint timer = Log.DebugTimerStart ();
+			using var op = Operation.Begin ($"PhotoQuery.RequestReload");
+
 			IQueryCondition[] condition_array;
 
 			int i = 0;
@@ -305,7 +310,7 @@ namespace FSpot
 			if (Changed != null)
 				Changed (this);
 
-			Log.DebugTimerPrint (timer, "Reloading the query took {0}");
+			op.Complete ();
 		}
 
 		public int IndexOf (IPhoto photo)
@@ -317,7 +322,7 @@ namespace FSpot
 
 		int [] IndicesOf (DbItem [] dbitems)
 		{
-			uint timer = Log.DebugTimerStart ();
+			using var op = Operation.Begin ($"PhotoQuery.IndicesOf");
 			var indices = new List<int> ();
 			var items_to_search = new List<uint> ();
 			int cur;
@@ -330,7 +335,8 @@ namespace FSpot
 
 			if (items_to_search.Count > 0)
 				indices.AddRange (store.IndicesOf (temp_table, items_to_search.ToArray ()));
-			Log.DebugTimerPrint (timer, "IndicesOf took {0}");
+
+			op.Complete ();
 			return indices.ToArray ();
 		}
 
@@ -344,7 +350,8 @@ namespace FSpot
 			if (Count == 0)
 				return -1;
 
-			uint timer = Log.DebugTimerStart ();
+			using var op = Operation.Begin ($"PhotoOuery.LookupItem");
+
 			int low = 0;
 			int high = Count - 1;
 			int mid = (low + high) / 2;
@@ -365,10 +372,11 @@ namespace FSpot
 				else
 					return mid;
 			}
-			Log.DebugTimerPrint (timer, "LookupItem took {0}");
+
+			op.Complete ();
 			if (asc)
 				return this[mid].Time < date ? mid + 1 : mid;
-			
+
 			return this[mid].Time > date ? mid + 1 : mid;
 		}
 

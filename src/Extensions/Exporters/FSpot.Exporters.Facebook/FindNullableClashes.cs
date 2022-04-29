@@ -46,8 +46,8 @@ public class FindNullableClashes {
                         var ftype = field.FieldType;
                         bool is_nullable = ftype.IsGenericType && ftype.GetGenericTypeDefinition() == typeof(Nullable<>);
                         if (xattr.IsNullable && ftype.IsValueType && field.DeclaringType == type && !is_nullable) {
-                            Log.DebugFormat ("Possible clash for {0}/{1}", type.FullName, field.Name);
-                            Log.DebugFormat ("   Type: {0}", field.FieldType.FullName);
+                            Logger.Log.DebugFormat ("Possible clash for {0}/{1}", type.FullName, field.Name);
+                            Logger.Log.DebugFormat ("   Type: {0}", field.FieldType.FullName);
                         }
                     }
                 }

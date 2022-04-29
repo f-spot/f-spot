@@ -35,6 +35,7 @@ using Mono.Unix;
 
 using Hyena;
 
+
 namespace FSpot.Tools.MergeDb
 {
 	internal class PickFolderDialog
@@ -50,7 +51,7 @@ namespace FSpot.Tools.MergeDb
 			var builder = new GtkBeans.Builder (null, "pickfolder_dialog.ui", null);
 			builder.Autoconnect (this);
 
-			Log.Debug ("new pickfolder");
+			Logger.Log.Debug ("new pickfolder");
 			pickfolder_dialog.Modal = false;
 			pickfolder_dialog.TransientFor = parent;
 

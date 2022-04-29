@@ -31,6 +31,8 @@ using System;
 using System.IO;
 using System.Runtime.InteropServices;
 
+
+
 namespace FSpot.Imaging
 {
 	[Flags]
@@ -159,7 +161,7 @@ namespace FSpot.Imaging
 			status = g_io_channel_flush (handle, out error);
 
 			if (status != IOStatus.Normal && status != IOStatus.Eof)
-				Hyena.Log.DebugFormat ("IOChannel status = {0}", status);
+				Logger.Log.Debug ($"IOChannel status = {status}");
 
 			if (error != IntPtr.Zero)
 				throw new GLib.GException (error);
@@ -208,7 +210,7 @@ namespace FSpot.Imaging
 			}
 
 			if (status != IOStatus.Normal && status != IOStatus.Eof)
-				Hyena.Log.DebugFormat ("IOChannel status = {0}", status);
+				Logger.Log.Debug ($"IOChannel status = {status}");
 
 			if (error != IntPtr.Zero)
 				throw new GLib.GException (error);

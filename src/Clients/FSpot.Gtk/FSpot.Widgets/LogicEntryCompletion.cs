@@ -67,7 +67,7 @@ namespace FSpot.Widgets
 		void HandleMatchSelected (object sender, MatchSelectedArgs args)
 		{
 			string name = args.Model.GetValue (args.Iter, TextColumn) as string;
-			//Log.DebugFormat ("match selected..{0}", name);
+			//Logger.Log.DebugFormat ("match selected..{0}", name);
 
 			int pos = entry.Position;
 			string updated_text = completion_logic.ReplaceKey (entry.Text, name, ref pos);
@@ -78,7 +78,7 @@ namespace FSpot.Widgets
 			Completing = false;
 
 			args.RetVal = true;
-			//Log.Debug ("done w/ match selected");
+			//Logger.Log.Debug ("done w/ match selected");
 		}
 
 		readonly CompletionLogic completion_logic = new CompletionLogic ();

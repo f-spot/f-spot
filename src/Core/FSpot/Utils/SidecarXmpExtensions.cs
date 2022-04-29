@@ -34,6 +34,8 @@ using System.IO;
 
 using Hyena;
 
+
+
 using TagLib.Xmp;
 
 namespace FSpot.Utils
@@ -55,8 +57,8 @@ namespace FSpot.Utils
 					}
 				}
 			} catch (Exception e) {
-				Log.Debug ($"Sidecar cannot be read for file {file.Name}");
-				Log.DebugException (e);
+				Logger.Log.Debug ($"Sidecar cannot be read for file {file.Name}");
+				Logger.Log.Debug (e, "");
 				return false;
 			}
 
@@ -64,8 +66,8 @@ namespace FSpot.Utils
 			try {
 				tag = new XmpTag (xmp, file);
 			} catch (Exception e) {
-				Log.Debug ($"Metadata of Sidecar cannot be parsed for file {file.Name}");
-				Log.DebugException (e);
+				Logger.Log.Debug ($"Metadata of Sidecar cannot be parsed for file {file.Name}");
+				Logger.Log.Debug (e, "");
 				return false;
 			}
 
@@ -93,8 +95,8 @@ namespace FSpot.Utils
 					resource.CloseStream (stream);
 				}
 			} catch (Exception e) {
-				Log.Debug ($"Sidecar cannot be saved: {resource.Name}");
-				Log.DebugException (e);
+				Logger.Log.Debug ($"Sidecar cannot be saved: {resource.Name}");
+				Logger.Log.Debug (e, "");
 				return false;
 			}
 

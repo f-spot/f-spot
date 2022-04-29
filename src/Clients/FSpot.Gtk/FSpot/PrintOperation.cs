@@ -41,6 +41,7 @@ using FSpot.Utils;
 
 using Hyena;
 
+
 namespace FSpot
 {
 	public class PrintOperation : Gtk.PrintOperation
@@ -136,14 +137,14 @@ namespace FSpot
 						try {
 							pixbuf = img.Load ((int)mx, (int)my);
 							if (pixbuf == null) {
-								Log.Error ("Not enough memory for printing " + selected_photos [p_index].DefaultVersion.Uri);
+								Logger.Log.Error ("Not enough memory for printing " + selected_photos [p_index].DefaultVersion.Uri);
 								continue;
 							}
 							Cms.Profile printer_profile;
 							if (ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayOutputProfile), out printer_profile))
 								ColorManagement.ApplyProfile (pixbuf, img.GetProfile (), printer_profile);
 						} catch (Exception e) {
-							Log.Exception ("Unable to load image " + selected_photos [p_index].DefaultVersion.Uri + "\n", e);
+							Logger.Log.Error (e, $"Unable to load image {selected_photos [p_index].DefaultVersion.Uri}");
 							// If the image is not found load error pixbuf
 							pixbuf = new Gdk.Pixbuf (PixbufUtils.ErrorPixbuf, 0, 0,
 											  PixbufUtils.ErrorPixbuf.Width,

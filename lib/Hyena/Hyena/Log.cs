@@ -90,7 +90,7 @@ namespace Hyena
         }
     }
 
-    public static class Log
+    static class Log
     {
         static Log ()
         {

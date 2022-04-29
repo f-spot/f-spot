@@ -108,7 +108,7 @@ namespace FSpot.Exporters.PicasaWeb
 					Ring.DeleteItem(keyring, result.ItemID);
 				}
 			} catch (Exception e) {
-				Log.DebugException (e);
+				Logger.Log.DebugException (e);
 			}
 			accounts.Remove (account);
 			MarkChanged ();
@@ -158,7 +158,7 @@ namespace FSpot.Exporters.PicasaWeb
 
 				}
 			} catch (Exception e) {
-				Log.DebugException (e);
+				Logger.Log.DebugException (e);
 			}
 
 			MarkChanged ();

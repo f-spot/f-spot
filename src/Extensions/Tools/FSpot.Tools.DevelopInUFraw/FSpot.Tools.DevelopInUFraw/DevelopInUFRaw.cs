@@ -33,6 +33,7 @@ using Hyena;
 
 using FSpot;
 
+
 namespace FSpot.Tools.DevelopInUFraw
 {
 	// GUI Version
@@ -44,7 +45,7 @@ namespace FSpot.Tools.DevelopInUFraw
 
 		public override void Run (object o, EventArgs e)
 		{
-			Log.Information ("Executing DevelopInUFRaw extension");
+			Logger.Log.Information ("Executing DevelopInUFRaw extension");
 
 			foreach (Photo p in App.Instance.Organizer.SelectedPhotos ()) {
 				DevelopPhoto (p);

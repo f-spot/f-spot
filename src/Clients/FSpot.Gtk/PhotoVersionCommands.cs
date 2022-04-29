@@ -46,6 +46,7 @@ using FSpot.UI.Dialog;
 using Hyena;
 using Hyena.Widgets;
 
+
 public class PhotoVersionCommands
 {
 	// Creating a new version.
@@ -192,7 +193,7 @@ public class PhotoVersionCommands
 
 	static void HandleException (string msg, Exception e, Gtk.Window parent_window)
 	{
-		Log.DebugException (e);
+		Logger.Log.Debug (e, "");
 		msg = Catalog.GetString (msg);
 		string desc = string.Format (Catalog.GetString ("Received exception \"{0}\"."), e.Message);
 		HigMessageDialog md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent,

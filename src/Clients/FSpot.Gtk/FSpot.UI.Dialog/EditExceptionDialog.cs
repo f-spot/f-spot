@@ -40,6 +40,7 @@ using Hyena.Widgets;
 
 using FSpot.Core;
 
+
 namespace FSpot.UI.Dialog
 {
 	public class EditException : Exception
@@ -64,7 +65,7 @@ namespace FSpot.UI.Dialog
 											    GenerateMessage (errors))
 		{
 			foreach (Exception e in errors)
-				Log.Exception (e);
+				Logger.Log.Error (e, "");
 		}
 
 		public EditExceptionDialog (Gtk.Window parent, Exception e, IPhoto item) : this (parent, new EditException (item, e))

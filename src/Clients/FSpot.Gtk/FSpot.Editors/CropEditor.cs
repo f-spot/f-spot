@@ -44,6 +44,7 @@ using Gtk;
 
 using Mono.Unix;
 
+
 namespace FSpot.Editors
 {
 	class CropEditor : Editor
@@ -152,7 +153,7 @@ namespace FSpot.Editors
 		void HandleConstraintsComboChanged (object o, EventArgs e)
 		{
 			if (State.PhotoImageView == null) {
-				Log.Debug ("PhotoImageView is null");
+				Logger.Log.Debug ("PhotoImageView is null");
 				return;
 			}
 
@@ -172,8 +173,8 @@ namespace FSpot.Editors
 					try {
 						Pixbuf pb = State.PhotoImageView.CompletePixbuf ();
 						State.PhotoImageView.SelectionXyRatio = (double)pb.Width / (double)pb.Height;
-					} catch (System.Exception ex) {
-						Log.WarningFormat ("Exception in selection ratio's: {0}", ex);
+					} catch (Exception ex) {
+						Logger.Log.Warning ($"Exception in selection ratio's: {ex}");
 						State.PhotoImageView.SelectionXyRatio = 0;
 					}
 					break;

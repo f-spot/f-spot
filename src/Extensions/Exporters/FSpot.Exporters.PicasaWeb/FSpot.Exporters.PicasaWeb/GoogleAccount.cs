@@ -61,7 +61,7 @@ namespace FSpot.Exporters.PicasaWeb
 
 		public Mono.Google.Picasa.PicasaWeb Connect ()
 		{
-			Log.Debug ("GoogleAccount.Connect()");
+			Logger.Log.Debug ("GoogleAccount.Connect()");
 			GoogleConnection conn = new GoogleConnection (GoogleService.Picasa);
 			ServicePointManager.CertificatePolicy = new NoCheckCertificatePolicy ();
 			if (unlock_captcha == null || token == null)

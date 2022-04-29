@@ -77,7 +77,7 @@ namespace FSpot.Database
 				});
 				childContainer.TryResolve<Job> (type, out var job);
 				if (job == null) {
-					Log.Error ($"Unknown job type {type} ignored.");
+					Logger.Log.Error ($"Unknown job type {type} ignored.");
 				}
 				return job;
 			}

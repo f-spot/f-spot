@@ -36,6 +36,8 @@ using System.Collections.Generic;
 
 using Hyena;
 
+
+
 namespace FSpot.Filters
 {
 	public class FilterRequest : IDisposable
@@ -73,7 +75,7 @@ namespace FSpot.Filters
 				try {
 					System.IO.File.Delete (uri.LocalPath);
 				} catch (System.IO.IOException e) {
-					Log.Exception (e);
+					Logger.Log.Error (e, "");
 				}
 			}
 			temp_uris.Clear ();

@@ -38,6 +38,7 @@ using FSpot.Core;
 
 using Hyena;
 
+
 /* These classes are based off the documentation at
  *
  * http://codex.gallery2.org/index.php/Gallery_Remote:Protocol
@@ -116,7 +117,7 @@ namespace FSpot.Exporters.Gallery
 		public int Add (IPhoto item, string path)
 		{
 			if (item == null)
-				Log.Warning ("NO PHOTO");
+				Logger.Log.Warning ("NO PHOTO");
 
 			return Gallery.AddItem (this,
 					 path,

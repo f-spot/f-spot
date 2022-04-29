@@ -51,6 +51,7 @@ using Hyena;
 using Hyena.Widgets;
 using FSpot.Settings;
 
+
 namespace FSpot.Tools.MergeDb
 {
 	public class MergeDb : ICommand
@@ -104,7 +105,7 @@ namespace FSpot.Tools.MergeDb
 				md.Run ();
 				md.Destroy ();
 
-				Log.Exception (ex);
+				Logger.Log.Error (ex, "");
 			}
 		}
 
@@ -133,7 +134,7 @@ namespace FSpot.Tools.MergeDb
 
 		public static void Merge (string path, Db to_db)
 		{
-			Log.Warning ($"Will merge db {path} into main f-spot db {Path.Combine (FSpotConfiguration.BaseDirectory, FSpotConfiguration.DatabaseName)}");
+			Logger.Log.Warning ($"Will merge db {path} into main f-spot db {Path.Combine (FSpotConfiguration.BaseDirectory, FSpotConfiguration.DatabaseName)}");
 			Db from_db = new Db (App.Instance.Container.Resolve<IImageFileFactory> (), App.Instance.Container.Resolve<IThumbnailService> (), new UpdaterUI ());
 			from_db.Init (path, true);
 			//MergeDb mdb = new MergeDb (from_db, to_db);
@@ -145,13 +146,13 @@ namespace FSpot.Tools.MergeDb
 			tag_map = new Dictionary<uint, Tag> ();
 			roll_map = new Dictionary<uint, uint> ();
 
-			Log.Warning ("Merging tags");
+			Logger.Log.Warning ("Merging tags");
 			MergeTags (from_db.Tags.RootCategory);
 
-			Log.Warning ("Creating the rolls");
+			Logger.Log.Warning ("Creating the rolls");
 			CreateRolls (rolls);
 
-			Log.Warning ("Importing photos");
+			Logger.Log.Warning ("Importing photos");
 			ImportPhotos (query, copy);
 		}
 
@@ -209,17 +210,17 @@ namespace FSpot.Tools.MergeDb
 
 		void ImportPhoto (Photo photo, bool copy)
 		{
-			Log.Warning ($"Importing {photo.Name}");
+			Logger.Log.Warning ($"Importing {photo.Name}");
 			PhotoStore to_store = to_db.Photos;
 
 			string photoPath = photo.VersionUri (Photo.OriginalVersionId).AbsolutePath;
 
 			while (!File.Exists (photoPath)) {
-				Log.Debug ("Not found, trying the mappings...");
+				Logger.Log.Debug ("Not found, trying the mappings...");
 				foreach (string key in PathMap.Keys) {
 					string path = photoPath;
 					path = path.Replace (key, PathMap[key]);
-					Log.Debug ($"Replaced path {path}");
+					Logger.Log.Debug ($"Replaced path {path}");
 					if (File.Exists (path)) {
 						photoPath = path;
 						break; ;
@@ -227,7 +228,7 @@ namespace FSpot.Tools.MergeDb
 				}
 
 				if (File.Exists (photoPath)) {
-					Log.Debug ("Exists!!!");
+					Logger.Log.Debug ("Exists!!!");
 					continue;
 				}
 
@@ -240,14 +241,14 @@ namespace FSpot.Tools.MergeDb
 					if (new_folder == null) //Skip
 						return;
 
-					Log.Debug ($"{folder} maps to {new_folder}");
+					Logger.Log.Debug ($"{folder} maps to {new_folder}");
 
 					PathMap[folder] = new_folder;
 
 				} else
-					Log.Debug ("point me to the file");
+					Logger.Log.Debug ("point me to the file");
 
-				Log.Debug ($"FNF: {photoPath}");
+				Logger.Log.Debug ($"FNF: {photoPath}");
 			}
 
 			string destination;
@@ -289,7 +290,7 @@ namespace FSpot.Tools.MergeDb
 				return;
 
 			foreach (Tag t in photo.Tags) {
-				Log.Warning ($"Tagging with {t.Name}");
+				Logger.Log.Warning ($"Tagging with {t.Name}");
 				newp.AddTag (tag_map[t.Id]);
 			}
 

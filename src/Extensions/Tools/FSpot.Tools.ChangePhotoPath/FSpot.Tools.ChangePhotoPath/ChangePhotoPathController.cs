@@ -49,6 +49,7 @@ using FSpot.Utils;
 using Hyena;
 using FSpot.Settings;
 
+
 /*
 	Need to
 		1) Find old base path, assuming starting /YYYY/MM/DD so look for /YY (/19 or /20)
@@ -236,11 +237,11 @@ namespace FSpot.Tools.ChangePhotoPath
 				}
 
 				UpdateThisUri (k, old_path_array[k], ref photo);
-				Log.DebugFormat ("R : {0} - {1}", k, old_path_array[k]);
+				Logger.Log.Debug ($"R : {k} - {old_path_array[k]}");
 			}
 			if (photo != null)
 				photo_store.Commit (photo);
-			Log.Debug ("Changing path failed due to above error. Have reverted any modification that took place.");
+			Logger.Log.Debug ("Changing path failed due to above error. Have reverted any modification that took place.");
 		}
 
 		public ProcessResult ChangeAllUris ( ref int  last_index)
@@ -253,7 +254,7 @@ namespace FSpot.Tools.ChangePhotoPath
 				for (last_index = 0; last_index < photo_id_array.Count; last_index++) {
 
 					if (gui_controller.UpdateProgressBar ("Changing photos base path", "Changing photo", photo_id_array.Count)) {
-						Log.Debug("User aborted the change of paths...");
+						Logger.Log.Debug("User aborted the change of paths...");
 						return ProcessResult.Cancelled;
 					}
 
@@ -263,7 +264,7 @@ namespace FSpot.Tools.ChangePhotoPath
 					}
 
 					UpdateThisUri (last_index, new_path_array[last_index], ref photo);
-					Log.DebugFormat ("U : {0} - {1}", last_index, new_path_array[last_index]);
+					Logger.Log.Debug ($"U : {last_index} - {new_path_array[last_index]}");
 
 					// DEBUG ONLY
 					// Cause an TEST exception on 6'th URI to be changed.
@@ -272,7 +273,7 @@ namespace FSpot.Tools.ChangePhotoPath
 				if (photo != null)
 					photo_store.Commit (photo);
 			} catch (Exception e) {
-				Log.Exception(e);
+				Logger.Log.Error(e, "");
 				return ProcessResult.Error;
 			}
 			return ProcessResult.Ok;
@@ -295,9 +296,9 @@ namespace FSpot.Tools.ChangePhotoPath
 			Photo photo = photo_store.Get ( (uint) photo_id_array[test_index]) as Photo;
 			PhotoVersion version = photo.GetVersion ( (uint) version_id_array[test_index]) as PhotoVersion;
 			if (version.Uri.AbsolutePath.ToString() == path_array[ test_index ])
-				Log.DebugFormat ("Test URI ({0}) matches --- Should be finished", test_index);
+				Logger.Log.DebugFormat ("Test URI ({0}) matches --- Should be finished", test_index);
 			else
-				Log.DebugFormat ("Test URI ({0}) DO NOT match --- Should NOT BE finished", test_index);
+				Logger.Log.DebugFormat ("Test URI ({0}) DO NOT match --- Should NOT BE finished", test_index);
 		}
 */
 

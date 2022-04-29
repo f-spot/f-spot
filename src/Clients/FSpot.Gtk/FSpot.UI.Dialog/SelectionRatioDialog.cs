@@ -39,6 +39,7 @@ using Gtk;
 using Mono.Unix;
 using Hyena;
 
+
 namespace FSpot.UI.Dialog
 {
 	public class SelectionRatioDialog : BuilderDialog
@@ -166,7 +167,7 @@ namespace FSpot.UI.Dialog
 			try {
 				ratio = ParseRatio (args.NewText);
 			} catch (FormatException fe) {
-				Log.Exception (fe);
+				Logger.Log.Error (fe, "");
 				return;
 			}
 			if (ratio < 1.0)

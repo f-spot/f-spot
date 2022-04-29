@@ -32,6 +32,8 @@ using System.Collections.Generic;
 
 using Hyena;
 
+
+
 namespace FSpot.Widgets
 {
 	public class Layout : Gtk.Container
@@ -112,7 +114,7 @@ namespace FSpot.Widgets
 		{
 			Hadjustment.Upper = this.width = width;
 			Vadjustment.Upper = this.height = height;
-			
+
 			if (IsRealized) {
 				bin_window.Resize ((int)Math.Max (width, Allocation.Width), (int)Math.Max (height, Allocation.Height));
 			}
@@ -125,7 +127,7 @@ namespace FSpot.Widgets
 					return child;
 			return null;
 		}
-		
+
 #region widgetry
 		protected override void OnRealized ()
 		{
@@ -141,14 +143,14 @@ namespace FSpot.Widgets
 							     Visual = this.Visual,
 							     Colormap = this.Colormap,
 							     Mask = Gdk.EventMask.VisibilityNotifyMask };
-			GdkWindow = new Gdk.Window (ParentWindow, attributes, 
+			GdkWindow = new Gdk.Window (ParentWindow, attributes,
 						    Gdk.WindowAttributesType.X | Gdk.WindowAttributesType.Y | Gdk.WindowAttributesType.Visual | Gdk.WindowAttributesType.Colormap);
 
 			GdkWindow.SetBackPixmap (null, false);
 			GdkWindow.UserData = Handle;
 
 			attributes = new Gdk.WindowAttr {
-							     WindowType = Gdk.WindowType.Child, 
+							     WindowType = Gdk.WindowType.Child,
 							     X = (int)-Hadjustment.Value,
 							     Y = (int)-Vadjustment.Value,
 							     Width = (int)Math.Max (width, Allocation.Width),
@@ -157,7 +159,7 @@ namespace FSpot.Widgets
 							     Visual = this.Visual,
 							     Colormap = this.Colormap,
 							     Mask = Gdk.EventMask.ExposureMask | Gdk.EventMask.ScrollMask | this.Events };
-			bin_window = new Gdk.Window (GdkWindow, attributes, 
+			bin_window = new Gdk.Window (GdkWindow, attributes,
 						     Gdk.WindowAttributesType.X | Gdk.WindowAttributesType.Y | Gdk.WindowAttributesType.Visual | Gdk.WindowAttributesType.Colormap);
 			bin_window.UserData = Handle;
 
@@ -240,7 +242,7 @@ namespace FSpot.Widgets
 
 		protected override void OnSetScrollAdjustments (Gtk.Adjustment hadjustment, Gtk.Adjustment vadjustment)
 		{
-			Log.Debug ("\n\nLayout.OnSetScrollAdjustments");
+			Logger.Log.Debug ("\n\nLayout.OnSetScrollAdjustments");
 			if (hadjustment == null)
 				hadjustment = new Gtk.Adjustment (0, 0, 0, 0, 0, 0);
 			if (vadjustment == null)

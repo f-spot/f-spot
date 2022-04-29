@@ -37,6 +37,8 @@ using Hyena;
 using FSpot.Imaging;
 using FSpot.Thumbnail;
 
+using SerilogTimings;
+
 // A Store maps to a SQL table.  We have separate stores (i.e. SQL tables) for tags, photos and imports.
 
 namespace FSpot.Database
@@ -94,12 +96,13 @@ namespace FSpot.Database
 
 		public void Init (string path, bool createIfMissing)
 		{
-			uint timer = Log.DebugTimerStart ();
+			using var op = Operation.Begin ("Db Initialization");
+
 			bool new_db = !File.Exists (path);
 			this.path = path;
 
 			if (new_db && !createIfMissing)
-				throw new Exception (path + ": File not found");
+				throw new Exception ($"{path}: File not found");
 
 			Database = new FSpotDatabaseConnection (path);
 
@@ -120,7 +123,7 @@ namespace FSpot.Database
 			Database.CommitTransaction ();
 
 			Empty = new_db;
-			Log.DebugTimerPrint (timer, "Db Initialization took {0}");
+			op.Complete ();
 		}
 
 		public void Dispose ()

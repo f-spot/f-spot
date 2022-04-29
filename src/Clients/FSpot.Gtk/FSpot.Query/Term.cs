@@ -42,6 +42,8 @@ using FSpot.Core;
 
 using Hyena;
 
+
+
 namespace FSpot.Query
 {
 	public abstract class Term
@@ -316,7 +318,7 @@ namespace FSpot.Query
 			if (OrTerm.Operators.Contains (op))
 				return new OrTerm (parent, after);
 
-			Log.DebugFormat ("Do not have Term for operator {0}", op);
+			Logger.Log.Debug ($"Do not have Term for operator {op}");
 			return null;
 		}
 		#endregion

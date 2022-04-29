@@ -53,6 +53,7 @@ using TagLib.Image;
 using Pinta.Core;
 using Pinta.Effects;
 
+
 public static class PixbufUtils
 {
 	static Pixbuf error_pixbuf = null;
@@ -169,7 +170,7 @@ public static class PixbufUtils
 					return Load (fs, orientation);
 				}
 			} catch (Exception) {
-				Log.ErrorFormat ("Error loading photo {0}", path);
+				Logger.Log.Error ($"Error loading photo {path}");
 				return null;
 			}
 		}
@@ -352,7 +353,7 @@ public static class PixbufUtils
 			g.SetSource (surf);
 			g.Paint ();
 		}
-        
+
 		return newsurf;
 	}
 

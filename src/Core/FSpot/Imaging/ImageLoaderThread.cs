@@ -39,6 +39,8 @@ using Gdk;
 using Gtk;
 using Hyena;
 
+
+
 namespace FSpot.Imaging
 {
 	public class ImageLoaderThread : IImageLoaderThread
@@ -181,7 +183,7 @@ namespace FSpot.Imaging
 					}
 				}
 			} catch (GLib.GException e) {
-				Log.Exception (e);
+				Logger.Log.Error (e, "");
 				return;
 			}
 
@@ -209,8 +211,7 @@ namespace FSpot.Imaging
 			if (requests_by_uri.TryGetValue (uri, out existing_request)) {
 				/* FIXME: At least for now, this shouldn't happen.  */
 				if (existing_request.Order != order) {
-					Log.WarningFormat ("BUG: Filing another request of order {0} (previously {1}) for `{2}'",
-						order, existing_request.Order, uri);
+					Logger.Log.Warning ($"BUG: Filing another request of order {order} (previously {existing_request.Order}) for `{uri}'");
 				}
 
 				queue.Remove (existing_request);
@@ -232,7 +233,7 @@ namespace FSpot.Imaging
 		/* The worker thread's main function.  */
 		void WorkerThread ()
 		{
-			Log.Debug (ToString (), "Worker starting");
+			Logger.Log.Debug (ToString (), "Worker starting");
 			try {
 				while (!should_cancel) {
 					lock (processed_requests) {

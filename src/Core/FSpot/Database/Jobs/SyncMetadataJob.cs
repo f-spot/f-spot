@@ -37,6 +37,8 @@ using FSpot.Utils;
 
 using Hyena;
 
+
+
 namespace FSpot.Database.Jobs
 {
 	public class SyncMetadataJob : Job
@@ -64,12 +66,12 @@ namespace FSpot.Database.Jobs
 				if (photo == null)
 					return false;
 
-				Log.Debug ($"Syncing metadata to file ({photo.DefaultVersion.Uri})...");
+				Logger.Log.Debug ($"Syncing metadata to file ({photo.DefaultVersion.Uri})...");
 
 				WriteMetadataToImage (photo);
 				return true;
-			} catch (System.Exception e) {
-				Log.ErrorFormat ("Error syncing metadata to file\n{0}", e);
+			} catch (Exception e) {
+				Logger.Log.Error (e, $"Error syncing metadata to file");
 			}
 			return false;
 		}

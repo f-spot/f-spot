@@ -33,6 +33,8 @@ using FSpot.Settings;
 using Hyena;
 using Mono.Unix;
 
+
+
 namespace FSpot.UI.Dialog
 {
     public class AboutDialog : Gtk.AboutDialog
@@ -142,7 +144,7 @@ namespace FSpot.UI.Dialog
                     s.Close ();
                 }
             } catch (Exception e) {
-                Log.DebugException (e);
+               Logger.Log.Debug (e, "");
                 License = "GPL v2";
             }
             Logo = new Gdk.Pixbuf (System.Reflection.Assembly.GetEntryAssembly (), "f-spot-128.png");

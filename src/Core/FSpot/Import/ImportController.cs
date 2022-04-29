@@ -25,6 +25,8 @@ using FSpot.Utils;
 
 using Hyena;
 
+
+
 namespace FSpot.Import
 {
 	class ImportController : IImportController
@@ -80,8 +82,8 @@ namespace FSpot.Import
 					try {
 						ImportPhoto (db, info, createdRoll, tagsToAttach, preferences.DuplicateDetect, preferences.CopyFiles);
 					} catch (Exception e) {
-						Log.DebugFormat ("Failed to import {0}", info.DefaultVersion.Uri);
-						Log.DebugException (e);
+						Logger.Log.Debug ($"Failed to import {info.DefaultVersion.Uri}");
+						Logger.Log.Debug (e, "");
 						failedImports.Add (info.DefaultVersion.Uri);
 					}
 				}
@@ -156,7 +158,7 @@ namespace FSpot.Import
 				try {
 					fileSystem.Directory.Delete (uri);
 				} catch (Exception e) {
-					Log.WarningFormat ("Failed to clean up directory '{0}': {1}", uri, e.Message);
+					Logger.Log.Warning ($"Failed to clean up directory '{uri}': {e.Message}");
 				}
 			}
 
@@ -184,7 +186,7 @@ namespace FSpot.Import
 					try {
 						fileSystem.File.Delete (uri);
 					} catch (Exception e) {
-						Log.WarningFormat ("Failed to remove original file '{0}': {1}", uri, e.Message);
+						Logger.Log.Warning ($"Failed to remove original file '{uri}': {e.Message}");
 					}
 				}
 			}

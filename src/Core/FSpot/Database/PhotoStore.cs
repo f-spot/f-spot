@@ -51,6 +51,10 @@ using Hyena;
 using Hyena.Data.Sqlite;
 using Mono.Unix;
 
+
+
+using SerilogTimings;
+
 namespace FSpot.Database
 {
 	public class PhotoStore : DbStore<Photo> {
@@ -151,14 +155,14 @@ namespace FSpot.Database
 			// Look for a filename match.
 			using (var reader = Database.Query (new HyenaSqliteCommand ("SELECT photos.id, photos.time, pv.filename FROM photos LEFT JOIN photo_versions AS pv ON pv.photo_id = photos.id WHERE pv.filename = ?", name))) {
 				while (reader.Read ()) {
-					Log.DebugFormat ("Found one possible duplicate for {0}", reader ["filename"]);
+					Logger.Log.Debug ("Found one possible duplicate for {0}", reader ["filename"]);
 					if (!time.HasValue) {
 						// Only read time when needed
 						time = item.Time;
 					}
 
 					if (reader ["time"].ToString () == DateTimeUtil.FromDateTime (time.Value).ToString ()) {
-						Log.Debug ("Skipping duplicate", uri);
+						Logger.Log.Debug ("Skipping duplicate", uri);
 
 						// Schedule a hash calculation job on the existing file.
 						CalculateHashJob.Create (Db.Jobs, Convert.ToUInt32 (reader ["id"]));
@@ -416,7 +420,8 @@ namespace FSpot.Database
 
  		public void Commit (Photo [] items)
 		{
-			uint timer = Log.DebugTimerStart ();
+			using var op = Operation.Begin ("PhotoStore.Commit");
+
 			// Only use a transaction for multiple saves. Avoids recursive transactions.
 
 			// TODO.
@@ -441,7 +446,8 @@ namespace FSpot.Database
 				Database.CommitTransaction ();
 
 			EmitChanged (items, new PhotoEventArgs (items, changes));
-			Log.DebugTimerPrint (timer, "Commit took {0}");
+
+			op.Complete ();
 		}
 
 		PhotoChanges Update (Photo photo)
@@ -587,33 +593,31 @@ namespace FSpot.Database
 
 		int IndexOf (string query)
 		{
-			uint timer = Log.DebugTimerStart ();
-			using (var reader = Database.Query (query)) {
-				int index = - 1;
-				if (reader.Read ())
-					index = Convert.ToInt32 (reader ["row_id"]);
-				Log.DebugTimerPrint (timer, "IndexOf took {0} : " + query);
-				return index - 1; //ROWID starts counting at 1
-			}
+			using var op = Operation.Begin ($"PhotoStore.IndexOf {query}");
+			using var reader = Database.Query (query);
+			int index = -1;
+			if (reader.Read ())
+				index = Convert.ToInt32 (reader["row_id"]);
+			op.Complete ();
+			return index - 1; //ROWID starts counting at 1
 		}
 
 		int [] IndicesOf (string query)
 		{
-			uint timer = Log.DebugTimerStart ();
+			using var op = Operation.Begin ($"PhotoStore.IndicesOf {query}");
 			var list = new List<int> ();
-			using (var reader = Database.Query (query)) {
-				while (reader.Read ())
-					list.Add (Convert.ToInt32 (reader ["row_id"]) - 1);
-				Log.DebugTimerPrint (timer, "IndicesOf took {0} : " + query);
-				return list.ToArray ();
-			}
+			using var reader = Database.Query (query);
+			while (reader.Read ())
+				list.Add (Convert.ToInt32 (reader["row_id"]) - 1);
+			op.Complete ();
+			return list.ToArray ();
 		}
 
 		static object populationTableLock = new object ();
 		public Dictionary<int, int []> PhotosPerMonth (params IQueryCondition [] conditions)
 		{
 			lock (populationTableLock) {
-				uint timer = Log.DebugTimerStart ();
+				using var op = Operation.Begin ($"PhotosPerMonth");
 				var val = new Dictionary<int, int []> ();
 
 				//Sqlite is way more efficient querying to a temp then grouping than grouping at once
@@ -653,7 +657,7 @@ namespace FSpot.Database
 					if (!val.ContainsKey (i))
 						val.Add (i, new int [12]);
 
-				Log.DebugTimerPrint (timer, "PhotosPerMonth took {0}");
+				op.Complete ();
 				return val;
 			}
 		}
@@ -726,15 +730,15 @@ namespace FSpot.Database
 
 		public void QueryToTemp(string tempTable, string query)
 		{
-			uint timer = Log.DebugTimerStart ();
-			Log.DebugFormat ("Query Started : {0}", query);
+			using var op = Operation.Begin ($"QueryToTemp");
+			Logger.Log.Debug ($"Query Started : {query}");
 			Database.BeginTransaction ();
 			Database.Execute (string.Format ("DROP TABLE IF EXISTS {0}", tempTable));
 			Database.Execute (string.Format ("CREATE TEMPORARY TABLE {0} AS {1}", tempTable, query));
 			// For Hyena.Data.Sqlite, we need to call Execute. Calling Query here does fail.
 			//Database.Query (string.Format ("CREATE TEMPORARY TABLE {0} AS {1}", temp_table, query)).Close ();
 			Database.CommitTransaction ();
-			Log.DebugTimerPrint (timer, "QueryToTemp took {0} : " + query);
+			op.Complete ();
 		}
 
 		public Photo [] QueryFromTemp (string tempTable)
@@ -754,7 +758,7 @@ namespace FSpot.Database
 
 		Photo [] Query (HyenaSqliteCommand query)
 		{
-			uint timer = Log.DebugTimerStart ();
+			using var op = Operation.Begin ($"PhotoStore.Query {query}");
 			var new_photos = new List<Photo> ();
 			var query_result = new List<Photo> ();
 
@@ -796,7 +800,7 @@ namespace FSpot.Database
 			foreach (Photo photo in new_photos)
 				photo.Changes = null;
 
-			Log.DebugTimerPrint (timer, "Query took {0} : " + query.Text);
+			op.Complete ();
 			return query_result.ToArray ();
 		}
 

@@ -55,7 +55,7 @@ namespace MetaPixelExtension {
 		string minidir_tmp;
 
 		public void Run (object o, EventArgs e) {
-			Log.Information ("Executing MetaPixel extension");
+			Logger.Log.Information ("Executing MetaPixel extension");
 			if (App.Instance.Organizer.SelectedPhotos ().Length == 0) {
 				InfoDialog (Catalog.GetString ("No selection available"),
 					    Catalog.GetString ("This tool requires an active selection. Please select one or more pictures and try again"),
@@ -159,7 +159,7 @@ namespace MetaPixelExtension {
 				}
 				//FIXME should switch to retry/skip
 				if (!GLib.FileFactory.NewForUri (p.DefaultVersion.Uri).Exists) {
-					Log.WarningFormat (String.Format ("Couldn't access photo {0} while creating miniatures", p.DefaultVersion.Uri.LocalPath));
+					Logger.Log.WarningFormat (String.Format ("Couldn't access photo {0} while creating miniatures", p.DefaultVersion.Uri.LocalPath));
 					continue;
 				}
 				//FIXME Check if the picture's format is supproted (jpg, gif)
@@ -177,12 +177,12 @@ namespace MetaPixelExtension {
 									GLib.Shell.Quote (freq.Current.LocalPath), //Source image
 									GLib.Shell.Quote (minifile),  //Dest image
 									minidir_tmp);  //Table file
-				Log.Debug ("Executing: metapixel " + prepare_command);
+				Logger.Log.Debug ("Executing: metapixel " + prepare_command);
 
 				System.Diagnostics.Process mp_prep = System.Diagnostics.Process.Start ("metapixel", prepare_command);
 				mp_prep.WaitForExit ();
 				if (!System.IO.File.Exists (minifile)) {
-					Log.DebugFormat ("No mini? No party! {0}", minifile);
+					Logger.Log.DebugFormat ("No mini? No party! {0}", minifile);
 					continue;
 				}
 
@@ -205,7 +205,7 @@ namespace MetaPixelExtension {
 				}
 				//FIXME should switch to retry/skip
 				if (!GLib.FileFactory.NewForUri (p.DefaultVersion.Uri).Exists) {
-					Log.WarningFormat (String.Format ("Couldn't access photo {0} while creating mosaics", p.DefaultVersion.Uri.LocalPath));
+					Logger.Log.WarningFormat (String.Format ("Couldn't access photo {0} while creating mosaics", p.DefaultVersion.Uri.LocalPath));
 					error_count ++;
 					continue;
 				}
@@ -224,11 +224,11 @@ namespace MetaPixelExtension {
 									minidir_tmp,
 									GLib.Shell.Quote (freq.Current.LocalPath),
 									GLib.Shell.Quote (mosaic.LocalPath));
-				Log.Debug ("Executing: metapixel " + mosaic_command);
+				Logger.Log.Debug ("Executing: metapixel " + mosaic_command);
 				System.Diagnostics.Process mp_exe = System.Diagnostics.Process.Start ("metapixel", mosaic_command);
 				mp_exe.WaitForExit ();
 				if (!GLib.FileFactory.NewForUri (mosaic).Exists) {
-					Log.Warning ("Error in processing image " + p.Name);
+					Logger.Log.Warning ("Error in processing image " + p.Name);
 					error_count ++;
 					continue;
 				}

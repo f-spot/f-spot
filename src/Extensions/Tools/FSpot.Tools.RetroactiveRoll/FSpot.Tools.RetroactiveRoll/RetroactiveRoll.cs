@@ -31,14 +31,13 @@
 
 using System;
 
-using FSpot;
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Extensions;
 
-using Hyena;
-
 using Hyena.Data.Sqlite;
+
+
 
 namespace FSpot.Tools.RetroactiveRoll
 {
@@ -49,7 +48,7 @@ namespace FSpot.Tools.RetroactiveRoll
 			Photo[] photos = App.Instance.Organizer.SelectedPhotos ();
 
 			if (photos.Length == 0) {
-				Log.Debug ("no photos selected, returning");
+				Logger.Log.Debug ("no photos selected, returning");
 				return;
 			}
 
@@ -66,7 +65,7 @@ namespace FSpot.Tools.RetroactiveRoll
 				App.Instance.Database.Database.Execute (cmd);
 				p.RollId = roll.Id;
 			}
-			Log.Debug ("RetroactiveRoll done: " + photos.Length + " photos in roll " + roll.Id);
+			Logger.Log.Debug ("RetroactiveRoll done: " + photos.Length + " photos in roll " + roll.Id);
 		}
 	}
 }

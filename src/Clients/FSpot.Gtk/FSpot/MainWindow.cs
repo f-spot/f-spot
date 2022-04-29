@@ -57,6 +57,8 @@ using FSpot.Import;
 using FSpot.Settings;
 using FSpot.FileSystem;
 
+using SerilogTimings;
+
 namespace FSpot
 {
 	public class MainWindow
@@ -238,8 +240,8 @@ namespace FSpot
 					service.Initialize ();
 					service.Start ();
 				} catch (Exception e) {
-					Log.Warning ($"Something went wrong while starting the {service.Id} extension.");
-					Log.DebugException (e);
+					Logger.Log.Warning ($"Something went wrong while starting the {service.Id} extension.");
+					Logger.Log.Debug (e, "");
 				}
 			}
 
@@ -252,7 +254,7 @@ namespace FSpot
 			//to the theme (work on murrine engine)
 			Gdk.Colormap colormap = ((Widget)main_window).Screen.RgbaColormap;
 			if (colormap == null) {
-				Log.Debug ("Your screen doesn't support alpha channels!");
+				Logger.Log.Debug ("Your screen doesn't support alpha channels!");
 				colormap = ((Widget)main_window).Screen.RgbColormap;
 			}
 			Gtk.Widget.DefaultColormap = colormap;
@@ -1690,7 +1692,7 @@ namespace FSpot
 					tag.Category = dialog.TagCategory;
 					Database.Tags.Commit (tag, name_changed);
 				} catch (Exception ex) {
-					Log.Exception (ex);
+					Logger.Log.Error (ex, "");
 				}
 			}
 
@@ -1728,7 +1730,7 @@ namespace FSpot
 			System.Array.Sort (tags, new TagRemoveComparer ());
 
 			foreach (Tag tag in tags) {
-				Log.Debug ("tag: {0}", tag.Name);
+				Logger.Log.Debug ("tag: {0}", tag.Name);
 			}
 
 			string msg = Catalog.GetString ("This operation will merge the selected tags and any sub-tags into a single tag.");
@@ -2086,7 +2088,7 @@ namespace FSpot
 				    MessageType.Warning,
 				    header, msg, ok_caption)) {
 
-				uint timer = Log.DebugTimerStart ();
+				using var op = Operation.Begin ($"PhotosPerMonth");
 				foreach (Photo photo in photos) {
 					foreach (uint id in photo.VersionIds) {
 						try {
@@ -2099,7 +2101,7 @@ namespace FSpot
 				Database.Photos.Remove (photos);
 
 				UpdateQuery ();
-				Log.DebugTimerPrint (timer, "HandleDeleteCommand took {0}");
+				op.Complete ();
 			}
 		}
 
@@ -2220,7 +2222,7 @@ namespace FSpot
 				try {
 					db.Photos.Remove (tags);
 				} catch (InvalidTagOperationException e) {
-					Log.Debug ("this is something or another");
+					Logger.Log.Debug ("this is something or another");
 
 					// A Category is not empty. Can not delete it.
 					string error_msg = Catalog.GetString ("Tag is not empty");
@@ -2312,7 +2314,7 @@ namespace FSpot
 					return;
 				}
 
-				Log.DebugFormat ("Unknown Selection Data Target (info: {0})", info);
+				Logger.Log.Debug ($"Unknown Selection Data Target (info: {info})");
 			}, delegate {
 			});
 
@@ -2735,7 +2737,7 @@ namespace FSpot
 
 				tools.Visible = (toolsmenu.Submenu as Menu).Children.Length > 0;
 			} catch {
-				Log.Warning ("There's (maybe) something wrong with some of the installed extensions. You can try removing the directory addin-db-000 from ~/.config/f-spot/");
+				Logger.Log.Warning ("There's (maybe) something wrong with some of the installed extensions. You can try removing the directory addin-db-000 from ~/.config/f-spot/");
 				toolsmenu.Visible = false;
 			}
 		}
@@ -2792,7 +2794,7 @@ namespace FSpot
 			//if (support_xcf)
 			//	create_xcf = Preferences.Get<bool> (Preferences.EditCreateXcfVersion);
 
-			//Log.Debug ($"XCF ? {create_xcf}");
+			//Logger.Log.Debug ($"XCF ? {create_xcf}");
 
 			//if (response == Gtk.ResponseType.Cancel)
 			//	return;
@@ -2827,7 +2829,7 @@ namespace FSpot
 			//try {
 			//	application.LaunchUris (uri_list, null);
 			//} catch (Exception) {
-			//	Log.Error ($"Failed to lauch {application.Name}");
+			//	Logger.Log.Error ($"Failed to lauch {application.Name}");
 			//}
 		}
 

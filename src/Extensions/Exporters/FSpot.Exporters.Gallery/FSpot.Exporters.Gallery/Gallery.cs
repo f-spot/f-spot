@@ -1,10 +1,10 @@
 //  Gallery.cs
-// 
+//
 //  Author:
 //       Stephen Shaw <sshaw@decriptor.com>
-// 
+//
 //  Copyright (c) 2012 SUSE LINUX Products GmbH, Nuernberg, Germany.
-// 
+//
 //  Permission is hereby granted, free of charge, to any person obtaining
 //  a copy of this software and associated documentation files (the
 //  "Software"), to deal in the Software without restriction, including
@@ -12,10 +12,10 @@
 //  distribute, sublicense, and/or sell copies of the Software, and to
 //  permit persons to whom the Software is furnished to do so, subject to
 //  the following conditions:
-// 
+//
 //  The above copyright notice and this permission notice shall be
 //  included in all copies or substantial portions of the Software.
-// 
+//
 //  THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
 //  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 //  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -23,7 +23,7 @@
 //  LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 //  OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 //  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//  
+//
 
 /* These classes are based off the documentation at
  *
@@ -40,6 +40,7 @@ using Mono.Unix;
 
 using Hyena;
 using Hyena.Widgets;
+
 
 namespace FSpot.Exporters.Gallery
 {
@@ -77,7 +78,7 @@ namespace FSpot.Exporters.Gallery
 		public static GalleryVersion DetectGalleryVersion (string url)
 		{
 			//Figure out if the url is for G1 or G2
-			Log.Debug ("Detecting Gallery version");
+			Logger.Log.Debug ("Detecting Gallery version");
 
 			GalleryVersion version;
 
@@ -105,7 +106,7 @@ namespace FSpot.Exporters.Gallery
 				}
 			}
 
-			Log.Debug ("Detected: " + version.ToString ());
+			Logger.Log.Debug ("Detected: " + version.ToString ());
 			return version;
 		}
 
@@ -191,18 +192,18 @@ namespace FSpot.Exporters.Gallery
 						status = (ResultCode)int.Parse (data [1]);
 					else if (data [0].StartsWith ("status_text")) {
 						status_text = data [1];
-						Log.DebugFormat ("StatusText : {0}", data [1]);
+						Logger.Log.Debug ($"StatusText : {data[1]}");
 					} else if (data [0].StartsWith ("server_version")) {
 						//FIXME we should use the to determine what capabilities the server has
 					} else if (data [0].StartsWith ("auth_token"))
 						AuthToken = data [1];
 					else
-						Log.DebugFormat ("Unparsed Line in ParseLogin(): {0}={1}", data [0], data [1]);
+						Logger.Log.Debug ($"Unparsed Line in ParseLogin(): {data[0]}={data[1]}");
 				}
 
 				//Console.WriteLine ("Found: {0} cookies", response.Cookies.Count);
 				if (status != ResultCode.Success) {
-					Log.Debug (status_text);
+					Logger.Log.Debug (status_text);
 					throw new GalleryCommandException (status_text, status);
 				}
 				return true;
@@ -231,7 +232,7 @@ namespace FSpot.Exporters.Gallery
 						status = (ResultCode)int.Parse (data [1]);
 					else if (data [0].StartsWith ("status_text")) {
 						status_text = data [1];
-						Log.DebugFormat ("StatusText : {0}", data [1]);
+						Logger.Log.Debug ($"StatusText : {data[1]}");
 					} else if (data [0].StartsWith ("album.name")) {
 						//this is the URL name
 						int ref_num = -1;
@@ -275,16 +276,16 @@ namespace FSpot.Exporters.Gallery
 						current_album.Perms |= AlbumPermission.CreateSubAlbum;
 					else if (data [0].StartsWith ("album_count"))
 					if (Albums.Count != int.Parse (data [1]))
-						Log.Warning ("Parsed album count does not match album_count.  Something is amiss");
+						Logger.Log.Warning ("Parsed album count does not match album_count.  Something is amiss");
 					else if (data [0].StartsWith ("auth_token"))
 						AuthToken = data [1];
 					else
-						Log.DebugFormat ("Unparsed Line in ParseFetchAlbums(): {0}={1}", data [0], data [1]);
+						Logger.Log.Debug ($"Unparsed Line in ParseFetchAlbums(): {data[0]}={data[1]}");
 
 				}
 				//Console.WriteLine ("Found: {0} cookies", response.Cookies.Count);
 				if (status != ResultCode.Success) {
-					Log.Debug (status_text);
+					Logger.Log.Debug (status_text);
 					throw new GalleryCommandException (status_text, status);
 				}
 
@@ -311,17 +312,17 @@ namespace FSpot.Exporters.Gallery
 						status = (ResultCode)int.Parse (data [1]);
 					else if (data [0].StartsWith ("status_text")) {
 						status_text = data [1];
-						Log.DebugFormat ("StatusText : {0}", data [1]);
+						Logger.Log.Debug ($"StatusText : {data[1]}");
 					} else if (data [0].StartsWith ("auth_token"))
 						AuthToken = data [1];
 					else if (data [0].StartsWith ("item_name"))
 						item_id = int.Parse (data [1]);
 					else
-						Log.DebugFormat ("Unparsed Line in ParseAddItem(): {0}={1}", data [0], data [1]);
+						Logger.Log.Debug ($"Unparsed Line in ParseAddItem(): {data[0]}={data[1]}");
 				}
 				//Console.WriteLine ("Found: {0} cookies", response.Cookies.Count);
 				if (status != ResultCode.Success) {
-					Log.Debug (status_text);
+					Logger.Log.Debug (status_text);
 					throw new GalleryCommandException (status_text, status);
 				}
 
@@ -358,16 +359,16 @@ namespace FSpot.Exporters.Gallery
 						status = (ResultCode) int.Parse (data [1]);
 					} else if (data[0].StartsWith ("status_text")) {
 						status_text = data[1];
-						Log.Debug ("StatusText : {0}", data[1]);
+						Logger.Log.Debug ("StatusText : {0}", data[1]);
 					} else if (data[0].StartsWith ("auto-resize")) {
 						//ignore
 					} else {
-						Log.Debug ("Unparsed Line in ParseBasic(): {0}={1}", data[0], data[1]);
+						Logger.Log.Debug ("Unparsed Line in ParseBasic(): {0}={1}", data[0], data[1]);
 					}
 				}
 				//Console.WriteLine ("Found: {0} cookies", response.Cookies.Count);
 				if (status != ResultCode.Success) {
-					Log.Debug (status_text);
+					Logger.Log.Debug (status_text);
 					throw new GalleryCommandException (status_text, status);
 				}
 
@@ -394,15 +395,15 @@ namespace FSpot.Exporters.Gallery
 						status = (ResultCode)int.Parse (data [1]);
 					else if (data [0].StartsWith ("status_text")) {
 						status_text = data [1];
-						Log.DebugFormat ("StatusText : {0}", data [1]);
+						Logger.Log.Debug ($"StatusText : {data[1]}");
 					} else if (data [0].StartsWith ("auth_token"))
 						AuthToken = data [1];
 					else
-						Log.DebugFormat ("Unparsed Line in ParseBasic(): {0}={1}", data [0], data [1]);
+						Logger.Log.Debug ($"Unparsed Line in ParseBasic(): {data[0]}={data[1]}");
 				}
 				//Console.WriteLine ("Found: {0} cookies", response.Cookies.Count);
 				if (status != ResultCode.Success) {
-					Log.Debug (status_text + " Status: " + status);
+					Logger.Log.Debug (status_text + " Status: " + status);
 					throw new GalleryCommandException (status_text, status);
 				}
 
@@ -455,7 +456,7 @@ namespace FSpot.Exporters.Gallery
 
 		public void PopupException (GalleryCommandException e, Gtk.Dialog d)
 		{
-			Log.DebugFormat ("{0} : {1} ({2})", e.Message, e.ResponseText, e.Status);
+			Logger.Log.Debug ($"{e.Message} : {e.ResponseText} ({e.Status})");
 			HigMessageDialog md =
 				new HigMessageDialog (d,
 						      Gtk.DialogFlags.Modal |

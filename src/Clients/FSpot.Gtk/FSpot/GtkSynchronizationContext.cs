@@ -15,6 +15,8 @@ using System.Threading;
 
 using Hyena;
 
+
+
 namespace FSpot
 {
 	class GtkSynchronizationContext : SynchronizationContext
@@ -78,8 +80,8 @@ namespace FSpot
 				// hit a lot of times.
 
 				const string exceptionMessage = "Unexpected null delegate sent to synchronization context";
-				Hyena.Log.Exception (exceptionMessage,
-					new ExceptionWithStackTraceWithoutThrowing (exceptionMessage));
+				Logger.Log.Error (exceptionMessage, "");
+				Logger.Log.Error (new ExceptionWithStackTraceWithoutThrowing (exceptionMessage), "");
 
 				// Return here without queueing the UI operation. Async calls which await on the given callback
 				// will continue immediately, but at least we won't crash.

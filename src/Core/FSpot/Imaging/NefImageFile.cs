@@ -1,4 +1,4 @@
-﻿//
+//
 // NefImageFile.cs
 //
 // Author:
@@ -32,6 +32,9 @@
 using System;
 using System.IO;
 using Hyena;
+
+
+
 using TagLib;
 using TagLib.IFD;
 using TagLib.IFD.Entries;
@@ -61,7 +64,7 @@ namespace FSpot.Imaging
 				var entry = SubImage1_structure.GetEntry (0, (ushort)IFDEntryTag.JPEGInterchangeFormat);
 				jpeg_data = (entry as ThumbnailDataIFDEntry).Data.Data;
 			} catch (Exception e) {
-				Log.DebugException (e);
+				Logger.Log.Debug (e, "");
 				jpeg_data = null;
 			}
 		}

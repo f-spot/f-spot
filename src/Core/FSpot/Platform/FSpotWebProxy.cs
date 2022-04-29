@@ -16,6 +16,8 @@ using FSpot.Settings;
 
 using Hyena;
 
+
+
 namespace FSpot.Platform
 {
 	public static class FSpotWebProxy
@@ -79,8 +81,8 @@ namespace FSpot.Platform
 
 				proxy.Credentials = new NetworkCredential (username, password);
 			} catch (Exception e) {
-				Log.Warning ("Failed to set the web proxy settings");
-				Log.DebugException (e);
+				Logger.Log.Warning ("Failed to set the web proxy settings");
+				Logger.Log.Debug (e, "");
 				return null;
 			}
 

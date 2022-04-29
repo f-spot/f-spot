@@ -43,6 +43,8 @@ using Gdk;
 
 using TagLib.Image;
 
+using SerilogTimings;
+
 namespace FSpot.Widgets
 {
 	public class PhotoImageView : ImageView
@@ -193,11 +195,11 @@ namespace FSpot.Widgets
 		#endregion
 
 		#region loader
-		uint timer;
+		Operation op;
 		IImageLoader loader;
 		void Load (SafeUri uri)
 		{
-			timer = Log.DebugTimerStart ();
+			op = Operation.Begin ($"Loading image");
 			loader?.Dispose ();
 
 			loader = ImageLoader.Create (uri);
@@ -238,7 +240,9 @@ namespace FSpot.Widgets
 
 		void HandleDone (object sender, EventArgs args)
 		{
-			Log.DebugTimerPrint (timer, "Loading image took {0}");
+			op.Complete ();
+			op.Dispose ();
+
 			IImageLoader loader = sender as IImageLoader;
 			if (loader != this.loader)
 				return;
@@ -254,7 +258,7 @@ namespace FSpot.Widgets
 				// pixbuf loader without properly loading... I'm not sure what to do about this other
 				// than try to load the image one last time.
 				try {
-					Log.Warning ("Falling back to file loader");
+					Logger.Log.Warning ("Falling back to file loader");
 					Pixbuf = PhotoLoader.Load (item.Collection, item.Index);
 				} catch (Exception e) {
 					LoadErrorImage (e);
@@ -332,7 +336,7 @@ namespace FSpot.Widgets
 				else
 					LoadErrorImage (null);
 			} catch (Exception e) {
-				Log.DebugException (e);
+				Logger.Log.Debug (e, "");
 				LoadErrorImage (e);
 			}
 

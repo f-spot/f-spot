@@ -46,6 +46,8 @@ using Hyena;
 using Hyena.Data.Sqlite;
 using Mono.Unix;
 
+
+
 namespace FSpot.Database
 {
 	public class InvalidTagOperationException : InvalidOperationException {
@@ -170,7 +172,7 @@ namespace FSpot.Database
 					try {
 						SetIconFromString (tag, reader ["icon"].ToString ());
 					} catch (Exception ex) {
-						Log.Exception ("Unable to load icon for tag " + name, ex);
+						Logger.Log.Error (ex, $"Unable to load icon for tag {name}");
 					}
 
 				tag.SortPriority = Convert.ToInt32 (reader["sort_priority"]);
@@ -194,7 +196,7 @@ namespace FSpot.Database
 				else {
 					tag.Category = Get (category_id) as Category;
 					if (tag.Category == null)
-						Log.Warning ("Tag Without category found");
+						Logger.Log.Warning ("Tag Without category found");
 				}
 
 			}
@@ -274,10 +276,10 @@ namespace FSpot.Database
 
 		uint InsertTagIntoTable (Category parentCategory, string name, bool isCategory, bool autoicon)
 		{
-	
+
 			uint parent_category_id = parentCategory.Id;
 			String default_tag_icon_value = autoicon ? null : string.Empty;
-	
+
 			long id = Database.Execute (new HyenaSqliteCommand ("INSERT INTO tags (name, category_id, is_category, sort_priority, icon)"
 				+ "VALUES (?, ?, ?, 0, ?)",
 				name,
@@ -395,7 +397,7 @@ namespace FSpot.Database
 								  tag.SortPriority,
 								  GetIconString (tag),
 								  tag.Id));
-	
+
 				if (updateXmp && Preferences.Get<bool> (Preferences.MetadataEmbedInImage)) {
 					Photo [] photos = Db.Photos.Query (new TagTerm (tag));
 					foreach (Photo p in photos)

@@ -145,7 +145,7 @@ namespace FSpot.Exporters.Facebook
 
 		string[] captions;
 		public string [] Captions {
-			get {return captions; } 
+			get {return captions; }
 		}
 
 		List<Mono.Facebook.Tag>[] tags;
@@ -170,7 +170,7 @@ namespace FSpot.Exporters.Facebook
 		public string AlbumDescription {
 			get { return album_description_entry.Text; }
 		}
-		
+
 		public Album ActiveAlbum {
 			get { return ((AlbumStore) existing_album_combobox.Model).Albums [existing_album_combobox.Active]; }
 		}
@@ -180,7 +180,7 @@ namespace FSpot.Exporters.Facebook
 			// Check for empty text box
 			if (current_item == -1)
 				return;
-			
+
 			// Store the caption
 			captions [current_item] = caption_textview.Buffer.Text;
 		}
@@ -189,7 +189,7 @@ namespace FSpot.Exporters.Facebook
 		{
 			// Store caption before switching
 			StoreCaption ();
-			
+
 			int old_item = current_item;
 			current_item = tray_view.CellAtPosition ((int) args.Event.X, (int) args.Event.Y);
 
@@ -256,7 +256,7 @@ namespace FSpot.Exporters.Facebook
 				log_buttons_hbox.Sensitive = false;
 				dialog_action_area.Sensitive = false;
 				LoginProgress (0.0, Catalog.GetString ("Authorizing Session"));
-				ThreadPool.QueueUserWorkItem (delegate {	
+				ThreadPool.QueueUserWorkItem (delegate {
 					try {
 						bool perm_offline = account.HasPermission("offline_access");
 						bool perm_upload = photo_perm_check.Active = account.HasPermission("photo_upload");
@@ -266,19 +266,19 @@ namespace FSpot.Exporters.Facebook
 							photo_perm_check.Active = perm_upload;
 							LoginProgress (0.2, Catalog.GetString ("Session established, fetching user info..."));
 						});
-	
+
 						User me = account.Facebook.GetLoggedInUser ().GetUserInfo ();
-	
+
 						ThreadAssist.ProxyToMain (() => {
 							LoginProgress (0.4, Catalog.GetString ("Session established, fetching friend list..."));
 						});
 
 						Friend[] friend_list = account.Facebook.GetFriends ();
 						long[] uids = new long [friend_list.Length];
-	
+
 						for (int i = 0; i < friend_list.Length; i++)
 							uids [i] = friend_list [i].UId;
-	
+
 						ThreadAssist.ProxyToMain (() => {
 							LoginProgress (0.6, Catalog.GetString ("Session established, fetching friend details..."));
 						});
@@ -308,7 +308,7 @@ namespace FSpot.Exporters.Facebook
 							existing_album_combobox.Active = 0;
 						});
 					} catch (Exception e) {
-						Log.DebugException (e);
+						Logger.Log.DebugException (e);
 						ThreadAssist.ProxyToMain (() => {
 							HigMessageDialog error = new HigMessageDialog (this, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal,
 									Gtk.MessageType.Error, Gtk.ButtonsType.Ok, Catalog.GetString ("Facebook Connection Error"),
@@ -316,7 +316,7 @@ namespace FSpot.Exporters.Facebook
 							error.Run ();
 							error.Destroy ();
 						});
-	
+
 						account.Deauthenticate ();
 						DoLogout ();
 					} finally {
@@ -370,16 +370,16 @@ namespace FSpot.Exporters.Facebook
 			bool actual = account.HasPermission (permission);
 			if (desired != actual) {
 				if (desired) {
-					Log.DebugFormat ("Granting {0}", permission);
+					Logger.Log.DebugFormat ("Granting {0}", permission);
 					account.GrantPermission (permission, this);
 				} else {
-					Log.DebugFormat ("Revoking {0}", permission);
+					Logger.Log.DebugFormat ("Revoking {0}", permission);
 					account.RevokePermission (permission);
 				}
 				/* Double-check that things work... */
 				actual = account.HasPermission (permission);
 				if (actual != desired) {
-					Log.Warning("Failed to alter permissions");
+					Logger.Log.Warning("Failed to alter permissions");
 				}
 				origin.Active = account.HasPermission (permission);
 			}
@@ -439,7 +439,7 @@ namespace FSpot.Exporters.Facebook
 		{
 			login_progress.Fraction = percentage;
 			login_progress.Text = message;
-			Log.Debug (message);
+			Logger.Log.Debug (message);
 		}
 	}
 

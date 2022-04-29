@@ -43,6 +43,8 @@ using Gdk;
 
 using Hyena;
 
+
+
 using TinyIoC;
 
 namespace FSpot.Imaging
@@ -254,12 +256,12 @@ namespace FSpot.Imaging
 		{
 			var name = GetLoaderType (uri);
 			if (name == null)
-				throw new Exception (string.Format ("Unsupported image: {0}", uri));
+				throw new Exception ($"Unsupported image: {uri}");
 
 			try {
 				return container.Resolve<IImageFile> (name, UriAsParameter (uri));
 			} catch (Exception e) {
-				Log.DebugException (e);
+				Logger.Log.Debug (e, "");
 				throw;
 			}
 		}

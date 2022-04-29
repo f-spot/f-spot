@@ -31,9 +31,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Mono.Unix;
+using FSpot.Utils;
 
-using Hyena;
+using Mono.Unix;
 
 namespace FSpot.Widgets
 {
@@ -66,7 +66,7 @@ namespace FSpot.Widgets
 						if (key [i] == ')' || key [i] == '(' ||
 						   (i >= and_op_len - 1 && string.Compare (key.Substring (i - and_op_len + 1, and_op_len), and_op, true) == 0) ||
 						   (i >= or_op_len - 1 && string.Compare (key.Substring (i - or_op_len + 1, or_op_len), or_op, true) == 0)) {
-							//Log.DebugFormat ("have start break char at {0}", i);
+							//Logger.Log.Debug ($"have start break char at {i}");
 							start = i + 1;
 							break;
 						}
@@ -82,7 +82,7 @@ namespace FSpot.Widgets
 						}
 					}
 
-					//Log.DebugFormat ("start = {0} end = {1}", start, end);
+					//Logger.Log.Debug ($"start = {start} end = {end}");
 
 					int len = end - start + 1;
 					if (len > 0 && start < last_key.Length)
@@ -90,7 +90,7 @@ namespace FSpot.Widgets
 					else
 						transformed_key = string.Empty;
 				}
-				//Log.DebugFormat ("transformed key {0} into {1}", key, transformed_key);
+				//Logger.Log.Debug ($"transformed key {key} into {transformed_key}");
 			}
 
 			if (transformed_key == string.Empty)
@@ -100,16 +100,16 @@ namespace FSpot.Widgets
 			if (name == null || name.Length <= transformed_key.Length)
 				return false;
 
-			//Log.DebugFormat ("entered = {0} compared to {1}", transformed_key, name);
+			//Logger.Log.Debug ($"entered = {transformed_key} compared to {name}");
 
 			// Try to match key and name case insensitive
 			if (string.Compare (transformed_key, name.Substring (0, transformed_key.Length), true) == 0) {
 				return true;
 			}
 
-			// Try to match with diacritics removed from name
-			string simplified_name = StringUtil.SearchKey (name.Substring (0, transformed_key.Length));
-			//Log.DebugFormat ("entered = {0} compared to {1}", transformed_key, simplified_name);
+			// Try to match with diacritics removed from namee
+			string simplified_name = StringsUtils.Simplify (name.Substring (0, transformed_key.Length));
+			//Logger.Log.Debug ($"entered =eo {transformed_key} compared to {simplified_name}");
 			return (string.Compare (transformed_key, simplified_name, true) == 0);
 		}
 
@@ -117,7 +117,7 @@ namespace FSpot.Widgets
 		{
 			// do some sanity checks first
 			if (start > query.Length) {
-				Log.Error ("ReplaceKey: start > query.length");
+				Logger.Log.Error ("ReplaceKey: start > query.length");
 				return query;
 			}
 			// move caret after inserted name, even if it was not

@@ -37,7 +37,7 @@ using Gdk;
 
 using Mono.Unix;
 
-using Hyena;
+using SerilogTimings;
 
 namespace FSpot.Addins.Editors
 {
@@ -51,9 +51,10 @@ namespace FSpot.Addins.Editors
 
 		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile)
 		{
-			uint timer = Log.DebugTimerStart ();
+			using var op = Operation.Begin ($"BWEditor.Process");
+
 			if (input.BitsPerSample != 8) {
-				Log.Warning ("unsupported pixbuf format");
+				Logger.Log.Warning ("unsupported pixbuf format");
 				return (Pixbuf)input.Clone ();
 			}
 			Pixbuf output = new Pixbuf (input.Colorspace, input.HasAlpha, input.BitsPerSample, input.Width, input.Height);
@@ -87,7 +88,8 @@ namespace FSpot.Addins.Editors
 							pix_out[i*rowstride_out + j*chan + 3] = pix_in[i*rowstride_in + j*chan + 3];
 					}
 			}
-			Log.DebugTimerPrint (timer, "Processing took {0}");
+
+			op.Complete ();
 			return output;
 		}
 

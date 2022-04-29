@@ -34,32 +34,30 @@
  *  Written by Aaron Bockover <aaron@abock.org>
  ****************************************************************************/
 
-/*  THIS FILE IS LICENSED UNDER THE MIT LICENSE AS OUTLINED IMMEDIATELY BELOW: 
+/*  THIS FILE IS LICENSED UNDER THE MIT LICENSE AS OUTLINED IMMEDIATELY BELOW:
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
- *  copy of this software and associated documentation files (the "Software"),  
- *  to deal in the Software without restriction, including without limitation  
- *  the rights to use, copy, modify, merge, publish, distribute, sublicense,  
- *  and/or sell copies of the Software, and to permit persons to whom the  
+ *  copy of this software and associated documentation files (the "Software"),
+ *  to deal in the Software without restriction, including without limitation
+ *  the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ *  and/or sell copies of the Software, and to permit persons to whom the
  *  Software is furnished to do so, subject to the following conditions:
  *
- *  The above copyright notice and this permission notice shall be included in 
+ *  The above copyright notice and this permission notice shall be included in
  *  all copies or substantial portions of the Software.
  *
- *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
- *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
- *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
- *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
- *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING 
- *  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ *  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  *  DEALINGS IN THE SOFTWARE.
  */
- 
+
 using System;
 using System.Threading;
 using System.Collections.Generic;
-
-using Hyena;
 
 namespace Banshee.Kernel
 {
@@ -73,24 +71,24 @@ namespace Banshee.Kernel
         private static bool disposed;
         private static IJob current_running_job;
         private static int suspend_count;
-        
+
         public static event JobEventHandler JobStarted;
         public static event JobEventHandler JobFinished;
         public static event JobEventHandler JobScheduled;
         public static event JobEventHandler JobUnscheduled;
-        
+
         public static void Schedule(IJob job)
         {
             Schedule(job, JobPriority.Normal);
         }
-        
+
         public static void Schedule(IJob job, JobPriority priority)
         {
             lock(this_mutex) {
                 if(IsDisposed()) {
                     return;
                 }
-                
+
                 heap.Push(job, (int)priority);
                 Debug("Job scheduled ({0}, {1})", job, priority);
                 OnJobScheduled(job);
@@ -104,7 +102,7 @@ namespace Banshee.Kernel
                 if(IsDisposed()) {
                     return;
                 }
-                
+
                 if(heap.Remove(job)) {
                     Debug("Job unscheduled ({0}), job", job);
                     OnJobUnscheduled(job);
@@ -113,95 +111,95 @@ namespace Banshee.Kernel
                 }
             }
         }
-        
+
         public static void Unschedule(Type type)
         {
             lock(this_mutex) {
                 Queue<IJob> to_remove = new Queue<IJob>();
-                
+
                 foreach(IJob job in ScheduledJobs) {
                     Type job_type = job.GetType();
-                    
+
                     if((type.IsInterface && job_type.GetInterface(type.Name) != null) ||
                         job_type == type || job_type.IsSubclassOf(job_type)) {
                         to_remove.Enqueue(job);
                     }
                 }
-                
+
                 while(to_remove.Count > 0) {
                     Unschedule(to_remove.Dequeue());
                 }
             }
         }
-        
+
         public static void Suspend()
         {
             lock(this_mutex) {
                 Interlocked.Increment(ref suspend_count);
             }
         }
-        
+
         public static void Resume()
         {
             lock(this_mutex) {
                 Interlocked.Decrement(ref suspend_count);
             }
         }
-        
+
         public static bool IsScheduled(IJob job)
         {
             lock(this_mutex) {
                 if(IsDisposed()) {
                     return false;
                 }
-                
+
                 return heap.Contains(job);
             }
         }
-        
+
         public static bool IsScheduled(Type type)
         {
             lock(this_mutex) {
                 if(IsDisposed()) {
                     return false;
                 }
-                
+
                 foreach(IJob job in heap) {
                     if(job.GetType() == type) {
                         return true;
                     }
                 }
-                
+
                 return false;
             }
         }
-        
+
         public static bool IsInstanceCriticalJobScheduled {
             get {
                 lock(this_mutex) {
                     if(IsDisposed()) {
                         return false;
                     }
-                    
+
                     foreach(IJob job in heap) {
                         if(job is IInstanceCriticalJob) {
                             return true;
                         }
                     }
-                    
+
                     return false;
                 }
             }
         }
-        
+
         public static IEnumerable<IJob> ScheduledJobs {
             get { lock(this_mutex) { return heap; } }
         }
-       
+
         public static int ScheduledJobsCount {
             get { lock(this_mutex) { return heap.Count; } }
         }
-        
+
         public static void Dispose()
         {
             lock(this_mutex) {
@@ -215,10 +213,10 @@ namespace Banshee.Kernel
                 Debug("Job not unscheduled; disposing scheduler");
                 return true;
             }
-            
+
             return false;
         }
-        
+
         private static void CheckRun()
         {
             if(heap.Count <= 0) {
@@ -229,25 +227,25 @@ namespace Banshee.Kernel
                 job_thread.Priority = ThreadPriority.BelowNormal;
                 job_thread.IsBackground = true;
                 job_thread.Start();
-            }   
+            }
         }
-        
+
         private static void ProcessJobThread()
         {
             while(true) {
                 current_running_job = null;
-                
+
                 if(suspend_count > 0) {
                     Thread.Sleep(10);
                     continue;
                 }
-                    
+
                 lock(this_mutex) {
                     if(disposed) {
-                        Log.Debug ("execution thread destroyed, dispose requested");
+                         FSpot.Logger.Log.Debug ("execution thread destroyed, dispose requested");
                         return;
                     }
-                
+
                     try {
                         current_running_job = heap.Pop();
                     } catch(InvalidOperationException) {
@@ -256,7 +254,7 @@ namespace Banshee.Kernel
                         return;
                     }
                 }
-                
+
                 try {
                     Debug("Job started ({0})", current_running_job);
                     OnJobStarted(current_running_job);
@@ -268,31 +266,31 @@ namespace Banshee.Kernel
                 }
             }
         }
-        
+
         public static IJob CurrentJob {
             get { return current_running_job; }
         }
-        
+
         static void OnJobStarted(IJob job)
         {
 			JobStarted?.Invoke (job);
         }
-        
+
         static void OnJobFinished(IJob job)
         {
 			JobFinished?.Invoke (job);
         }
-        
+
         static void OnJobScheduled(IJob job)
         {
 			JobScheduled?.Invoke (job);
         }
-        
+
         static void OnJobUnscheduled(IJob job)
         {
 			JobUnscheduled?.Invoke (job);
         }
-        
+
         static void Debug(string message, params object [] args)
         {
             if(Banshee.Base.Globals.Debugging) {

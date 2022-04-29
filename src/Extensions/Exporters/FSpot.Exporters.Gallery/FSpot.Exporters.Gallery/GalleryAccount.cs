@@ -33,6 +33,7 @@ using FSpot.Settings;
 
 using Hyena;
 
+
 namespace FSpot.Exporters.Gallery
 {
 	public class GalleryAccount
@@ -69,7 +70,7 @@ namespace FSpot.Exporters.Gallery
 			else
 				throw new GalleryException (Catalog.GetString("Cannot connect to a Gallery for which the version is unknown.\nPlease check that you have Remote plugin 1.0.8 or later"));
 
-			Log.Debug ("Gallery created: " + gal);
+			Logger.Log.Debug ("Gallery created: " + gal);
 
 			gal.Login (username, password);
 
@@ -93,7 +94,7 @@ namespace FSpot.Exporters.Gallery
 					retVal = Gallery.IsConnected ();
 				}
 				if (connected != retVal) {
-					Log.Warning ("Connected and retVal for IsConnected() don't agree");
+					Logger.Log.Warning ("Connected and retVal for IsConnected() don't agree");
 				}
 				return retVal;
 			}
