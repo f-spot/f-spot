@@ -37,8 +37,6 @@ using System.Threading;
 
 using FSpot.Extensions;
 
-using Hyena;
-
 
 namespace FSpot.Tools.LiveWebGallery
 {

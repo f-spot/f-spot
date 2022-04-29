@@ -29,14 +29,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Gtk;
-
-using Hyena;
-using Hyena.Data;
 
 namespace Hyena.Data.Gui
 {
-    public class Column : ColumnDescription, IEnumerable<ColumnCell>
+	public class Column : ColumnDescription, IEnumerable<ColumnCell>
     {
         private ColumnCell header_cell;
         private List<ColumnCell> cells = new List<ColumnCell> ();

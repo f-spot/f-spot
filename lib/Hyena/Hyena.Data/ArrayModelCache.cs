@@ -26,11 +26,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-
 namespace Hyena.Data
 {
-    public abstract class ArrayModelCache<T> : ModelCache<T> where T : ICacheableItem, new ()
+	public abstract class ArrayModelCache<T> : ModelCache<T> where T : ICacheableItem, new ()
     {
         protected T [] cache;
         protected long offset = -1;

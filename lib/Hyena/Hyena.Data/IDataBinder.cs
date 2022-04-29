@@ -26,11 +26,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Hyena.Data;
-
 namespace Hyena.Data
 {
-    public interface IDataBinder
+	public interface IDataBinder
     {
         void Bind (object o);
         object BoundObject { get; set; }

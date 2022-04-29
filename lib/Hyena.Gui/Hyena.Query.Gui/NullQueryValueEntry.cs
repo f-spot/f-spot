@@ -26,14 +26,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-
-using Hyena.Query;
-using Gtk;
-
 namespace Hyena.Query.Gui
 {
-    public class NullQueryValueEntry : QueryValueEntry
+	public class NullQueryValueEntry : QueryValueEntry
     {
         protected NullQueryValue query_value;
 

@@ -27,12 +27,12 @@
 //
 
 using System;
-using Cairo;
+
 using Gtk;
 
 namespace Hyena.Gui.Theming
 {
-    public enum GtkColorClass
+	public enum GtkColorClass
     {
         Light,
         Mid,

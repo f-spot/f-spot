@@ -27,14 +27,11 @@
 //
 
 using System;
-using System.Linq;
 using System.Threading;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace Hyena.Jobs
 {
-    public enum JobState {
+	public enum JobState {
         None,
         Scheduled,
         Running,

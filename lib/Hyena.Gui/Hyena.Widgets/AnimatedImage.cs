@@ -27,14 +27,14 @@
 //
 
 using System;
+
 using Gtk;
 
-using Hyena.Gui;
 using Hyena.Gui.Theatrics;
 
 namespace Hyena.Widgets
 {
-    public class AnimatedImage : Image
+	public class AnimatedImage : Image
     {
         private Gdk.Pixbuf pixbuf;
         private Gdk.Pixbuf inactive_pixbuf;

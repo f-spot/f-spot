@@ -32,11 +32,9 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 
-using Hyena.Data.Gui;
-
 namespace Hyena.Data.Gui.Accessibility
 {
-    public partial class ListViewAccessible<T> : Hyena.Gui.BaseWidgetAccessible, ICellAccessibleParent
+	public partial class ListViewAccessible<T> : Hyena.Gui.BaseWidgetAccessible, ICellAccessibleParent
     {
         private ListView<T> list_view;
         private Dictionary<int, ColumnCellAccessible> cell_cache;

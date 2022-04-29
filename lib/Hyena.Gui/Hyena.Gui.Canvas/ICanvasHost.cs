@@ -24,15 +24,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using System;
-using Gtk;
-using Gdk;
-
-using Hyena.Gui.Theming;
-
 namespace Hyena.Gui.Canvas
 {
-    public interface ICanvasHost
+	public interface ICanvasHost
     {
         void QueueRender (CanvasItem item, Rect rect);
         Pango.Layout PangoLayout { get; }

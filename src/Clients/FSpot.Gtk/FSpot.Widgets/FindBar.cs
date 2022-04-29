@@ -41,8 +41,6 @@ using Mono.Unix;
 using FSpot.Core;
 using FSpot.Query;
 
-using Hyena;
-
 
 namespace FSpot.Widgets
 {

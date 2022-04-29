@@ -36,8 +36,6 @@ using System.Collections.Generic;
 
 using FSpot.Core;
 
-using Hyena;
-
 
 /* These classes are based off the documentation at
  *

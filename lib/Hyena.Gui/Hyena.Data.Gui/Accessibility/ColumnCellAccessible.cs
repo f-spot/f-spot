@@ -26,11 +26,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-
 namespace Hyena.Data.Gui.Accessibility
 {
-    public class ColumnCellAccessible: Atk.Object, Atk.ComponentImplementor
+	public class ColumnCellAccessible: Atk.Object, Atk.ComponentImplementor
     {
         protected ColumnCell cell;
         protected object bound_object;

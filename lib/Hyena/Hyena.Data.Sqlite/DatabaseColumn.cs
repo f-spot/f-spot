@@ -28,11 +28,10 @@
 
 using System;
 using System.Reflection;
-using System.Text;
 
 namespace Hyena.Data.Sqlite
 {
-    public abstract class AbstractDatabaseColumn
+	public abstract class AbstractDatabaseColumn
     {
         private readonly FieldInfo field_info;
         private readonly PropertyInfo property_info;

@@ -40,8 +40,6 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-
-using FSpot;
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Utils;

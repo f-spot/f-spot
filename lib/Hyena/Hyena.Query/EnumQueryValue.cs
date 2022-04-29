@@ -30,15 +30,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
-using System.Text;
 
 using Mono.Unix;
 
-using Hyena;
-
 namespace Hyena.Query
 {
-    public abstract class EnumQueryValue : QueryValue
+	public abstract class EnumQueryValue : QueryValue
     {
         public static readonly Operator Equal    = new Operator ("equals", Catalog.GetString ("is"), "= {0}", "=", "==", ":");
         public static readonly Operator NotEqual = new Operator ("notEqual", Catalog.GetString ("is not"), "!= {0}", true, "!=", "!:");

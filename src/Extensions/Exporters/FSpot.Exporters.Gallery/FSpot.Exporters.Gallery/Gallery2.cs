@@ -35,8 +35,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 
-using Hyena;
-
 
 
 namespace FSpot.Exporters.Gallery

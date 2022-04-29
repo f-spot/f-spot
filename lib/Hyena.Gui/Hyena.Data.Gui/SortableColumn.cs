@@ -26,14 +26,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Gtk;
-
 namespace Hyena.Data.Gui
 {
-    public class SortableColumn : Column, ISortableColumn
+	public class SortableColumn : Column, ISortableColumn
     {
         private string sort_key;
         private SortType sort_type = SortType.Ascending;

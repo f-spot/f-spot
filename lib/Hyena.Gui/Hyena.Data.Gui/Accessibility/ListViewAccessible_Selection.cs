@@ -29,14 +29,10 @@
 //
 
 using System;
-using System.Linq;
-using System.Collections.Generic;
-
-using Hyena.Data.Gui;
 
 namespace Hyena.Data.Gui.Accessibility
 {
-    public partial class ListViewAccessible<T> : Atk.SelectionImplementor
+	public partial class ListViewAccessible<T> : Atk.SelectionImplementor
     {
         public void ListViewAccessible_Selection ()
         {

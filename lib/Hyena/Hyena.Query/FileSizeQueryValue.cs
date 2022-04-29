@@ -29,13 +29,10 @@
 
 using System;
 using System.Xml;
-using System.Text;
-
-using Hyena;
 
 namespace Hyena.Query
 {
-    public enum FileSizeFactor : long {
+	public enum FileSizeFactor : long {
         None = 1,
         KB = 1024,
         MB = 1048576,

@@ -43,8 +43,6 @@ using FSpot.Settings;
 using FSpot.Widgets;
 using FSpot.UI.Dialog;
 using FSpot.Extensions;
-
-using Hyena;
 using System.Linq;
 
 

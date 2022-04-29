@@ -28,13 +28,12 @@
 //
 
 using System;
-using System.Text;
 using System.Collections;
 using System.Collections.Generic;
 
 namespace Hyena.Query
 {
-    public interface IAliasedObject
+	public interface IAliasedObject
     {
         string Name { get; }
         string [] Aliases { get; }

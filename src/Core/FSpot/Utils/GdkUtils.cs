@@ -36,8 +36,6 @@ using System.Runtime.InteropServices;
 
 using Gdk;
 
-using Hyena;
-
 
 
 namespace FSpot.Utils

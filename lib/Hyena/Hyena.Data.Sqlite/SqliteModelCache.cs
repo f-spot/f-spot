@@ -28,14 +28,10 @@
 //
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-
-using Hyena.Query;
 
 namespace Hyena.Data.Sqlite
 {
-    public class SqliteModelCache<T> : DictionaryModelCache<T> where T : ICacheableItem, new ()
+	public class SqliteModelCache<T> : DictionaryModelCache<T> where T : ICacheableItem, new ()
     {
         private HyenaSqliteConnection connection;
         private ICacheableDatabaseModel model;

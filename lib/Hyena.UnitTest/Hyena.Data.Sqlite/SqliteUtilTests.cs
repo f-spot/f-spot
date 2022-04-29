@@ -25,11 +25,10 @@
 //
 
 using NUnit.Framework;
-using Hyena.Data.Sqlite;
 
 namespace Hyena.Data.Sqlite.Tests
 {
-    [TestFixture]
+	[TestFixture]
     public class CollationKeyTests
     {
         protected void CollationKeyTest (object before, object after)

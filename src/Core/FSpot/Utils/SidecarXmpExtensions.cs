@@ -32,8 +32,6 @@
 using System;
 using System.IO;
 
-using Hyena;
-
 
 
 using TagLib.Xmp;

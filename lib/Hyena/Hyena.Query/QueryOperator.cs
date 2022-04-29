@@ -27,14 +27,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using System.Xml;
-using System.Text;
-using System.Collections.Generic;
-
 namespace Hyena.Query
 {
-    public class Operator : IAliasedObject
+	public class Operator : IAliasedObject
     {
         public string name;
         public string Name {

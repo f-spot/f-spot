@@ -27,11 +27,13 @@
 //
 
 using System;
-using FSpot.Thumbnail;
-using Gdk;
+
 using Hyena;
+
 using Mocks;
+
 using Moq;
+
 using NUnit.Framework;
 
 namespace FSpot.Thumbnail.UnitTest

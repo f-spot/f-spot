@@ -42,16 +42,14 @@
  ********************************************************/
 namespace Hyena.Data.Sqlite
 {
-  using System;
-  using System.Collections;
-  using System.Collections.Generic;
-  using System.Runtime.InteropServices;
-  using System.Globalization;
+	using System;
+	using System.Collections.Generic;
+	using System.Runtime.InteropServices;
 
-  /// <summary>
-  /// The type of user-defined function to declare
-  /// </summary>
-  public enum FunctionType
+	/// <summary>
+	/// The type of user-defined function to declare
+	/// </summary>
+	public enum FunctionType
   {
     /// <summary>
     /// Scalar functions are designed to be called and return a result immediately.  Examples include ABS(), Upper(), Lower(), etc.

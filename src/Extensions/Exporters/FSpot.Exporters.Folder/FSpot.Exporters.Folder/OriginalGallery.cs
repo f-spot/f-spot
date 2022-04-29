@@ -55,8 +55,6 @@
 using System;
 using System.IO;
 
-using Hyena;
-
 using ICSharpCode.SharpZipLib.Checksum;
 using ICSharpCode.SharpZipLib.Zip;
 

@@ -26,12 +26,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using Cairo;
-
 namespace Hyena.Gui.Theming
 {
-    public class ThemeContext
+	public class ThemeContext
     {
         public bool ToplevelBorderCollapse { get; set; }
 

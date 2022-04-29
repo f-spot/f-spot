@@ -28,17 +28,13 @@
 //
 
 using System;
-using System.Text;
 
 using Mono.Unix;
 using Gtk;
 
-using Hyena;
-using Hyena.Query;
-
 namespace Hyena.Query.Gui
 {
-    public class QueryLimitBox : HBox
+	public class QueryLimitBox : HBox
     {
         private CheckButton enabled_checkbox;
         private SpinButton count_spin;

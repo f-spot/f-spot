@@ -27,14 +27,12 @@
 //
 
 using System;
-using System.Reflection;
-using NUnit.Framework;
 
-using Hyena.Query;
+using NUnit.Framework;
 
 namespace Hyena.Query.Tests
 {
-    [TestFixture]
+	[TestFixture]
     public class QueryTests : Hyena.Tests.TestBase
     {
         private static QueryField ArtistField = new QueryField (

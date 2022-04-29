@@ -27,18 +27,13 @@
 //
 
 using System;
-using System.Collections.Generic;
 using System.Xml;
-using System.Text;
-using System.Text.RegularExpressions;
 
 using Mono.Unix;
 
-using Hyena;
-
 namespace Hyena.Query
 {
-    public class RelativeTimeSpanQueryValue : TimeSpanQueryValue
+	public class RelativeTimeSpanQueryValue : TimeSpanQueryValue
     {
         // The SQL operators in these Operators are reversed from normal on purpose
         public static new readonly Operator GreaterThan        = new Operator ("greaterThan", Catalog.GetString ("more than"), "< {0}", true, ">");

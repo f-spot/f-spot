@@ -30,8 +30,6 @@
 //
 
 using System;
-using Banshee.Kernel;
-using Hyena;
 
 
 

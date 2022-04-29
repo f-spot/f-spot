@@ -28,15 +28,12 @@
 
 using System;
 using System.Linq;
-using System.Threading;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-using Hyena;
-
 namespace Hyena.Jobs
 {
-    public class Scheduler
+	public class Scheduler
     {
         private List<Job> jobs;
 

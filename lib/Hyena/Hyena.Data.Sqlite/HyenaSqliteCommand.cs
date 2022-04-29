@@ -28,13 +28,12 @@
 //
 
 using System;
-using System.IO;
 using System.Text;
 using System.Threading;
 
 namespace Hyena.Data.Sqlite
 {
-    public class CommandExecutedArgs : EventArgs
+	public class CommandExecutedArgs : EventArgs
     {
         public CommandExecutedArgs (string sql, int ms)
         {

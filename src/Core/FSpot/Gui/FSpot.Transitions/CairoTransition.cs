@@ -28,9 +28,8 @@
 //
 
 using Cairo;
-using Gdk;
 
-using Color = Cairo.Color;
+using Gdk;
 
 namespace FSpot.Transitions
 {

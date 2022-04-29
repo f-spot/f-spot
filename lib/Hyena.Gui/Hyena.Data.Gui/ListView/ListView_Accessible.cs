@@ -30,15 +30,12 @@
 
 using System;
 using System.Linq;
-using System.Collections.Generic;
-
-using Gtk;
 
 using Hyena.Data.Gui.Accessibility;
 
 namespace Hyena.Data.Gui
 {
-    public partial class ListView<T> : ListViewBase
+	public partial class ListView<T> : ListViewBase
     {
         internal ListViewAccessible<T> accessible;
 

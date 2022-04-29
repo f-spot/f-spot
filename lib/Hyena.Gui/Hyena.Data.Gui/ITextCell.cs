@@ -26,12 +26,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-
-using System;
-
 namespace Hyena.Data.Gui
 {
-    public interface ITextCell
+	public interface ITextCell
     {
         Pango.Weight FontWeight { get; set; }
     }

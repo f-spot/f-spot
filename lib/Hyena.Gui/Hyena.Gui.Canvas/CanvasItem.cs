@@ -25,13 +25,12 @@
 // THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 
 using Hyena.Gui.Theming;
 
 namespace Hyena.Gui.Canvas
 {
-    public class CanvasItem
+	public class CanvasItem
     {
         private CanvasManager manager;
         private Hyena.Data.IDataBinder binder;

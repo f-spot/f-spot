@@ -30,17 +30,14 @@
 //
 
 using System;
-using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 
 using Gtk;
-using Hyena;
-using Hyena.Query;
 
 namespace Hyena.Query.Gui
 {
-    public class QueryTermsBox : Table
+	public class QueryTermsBox : Table
     {
         private QueryField [] sorted_fields;
         private List<QueryTermBox> terms = new List<QueryTermBox> ();

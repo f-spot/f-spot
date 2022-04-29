@@ -27,11 +27,10 @@
 using System;
 
 using Cairo;
-using Hyena.Gui;
 
 namespace Hyena.Gui.Canvas
 {
-    public class TestTile : CanvasItem
+	public class TestTile : CanvasItem
     {
         private static Random rand = new Random ();
         private Color color;

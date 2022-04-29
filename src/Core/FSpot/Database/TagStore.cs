@@ -36,14 +36,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using FSpot;
+
 using FSpot.Core;
 using FSpot.Database.Jobs;
 using FSpot.Query;
 using FSpot.Settings;
 using FSpot.Utils;
-using Hyena;
+
 using Hyena.Data.Sqlite;
+
 using Mono.Unix;
 
 

@@ -30,16 +30,12 @@
 using System;
 
 using Mono.Unix;
-
-using Hyena;
-
-using FSpot;
 using FSpot.UI.Dialog;
 
 
 namespace FSpot.Tools.DevelopInUFraw
 {
-    // Batch Version
+	// Batch Version
 	public class DevelopInUFRawBatch : AbstractDevelopInUFRaw
 	{
 		public DevelopInUFRawBatch() : base("ufraw-batch")

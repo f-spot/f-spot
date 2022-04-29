@@ -28,19 +28,17 @@
 
 using System;
 using System.Collections.Generic;
+
 using Gtk;
 
-using Hyena.Data;
-using Hyena.Collections;
 using Hyena.Gui;
 using Hyena.Gui.Canvas;
-using Hyena.Data.Gui;
 
 using Selection = Hyena.Collections.Selection;
 
 namespace Hyena.Data.Gui.Tests
 {
-    [TestModule ("List View")]
+	[TestModule ("List View")]
     public class ListViewTestModule : Window
     {
         private View view;

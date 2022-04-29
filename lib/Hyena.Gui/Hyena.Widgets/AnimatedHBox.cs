@@ -27,12 +27,10 @@
 //
 
 using System;
-using Gdk;
-using Gtk;
 
 namespace Hyena.Widgets
 {
-    public class AnimatedHBox : AnimatedBox
+	public class AnimatedHBox : AnimatedBox
     {
         public AnimatedHBox () : base (true)
         {

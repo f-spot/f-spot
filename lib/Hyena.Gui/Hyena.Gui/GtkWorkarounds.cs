@@ -26,12 +26,11 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
 using System.Reflection;
 
 namespace Hyena.Gui
 {
-    public static class GtkWorkarounds
+	public static class GtkWorkarounds
     {
         private static bool toggle_ref_supported;
         private static MethodInfo g_object_ref;

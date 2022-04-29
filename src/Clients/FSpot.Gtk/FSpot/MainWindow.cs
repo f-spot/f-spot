@@ -52,7 +52,6 @@ using FSpot.Query;
 using FSpot.Widgets;
 using FSpot.Utils;
 using FSpot.UI.Dialog;
-using FSpot.Platform;
 using FSpot.Import;
 using FSpot.Settings;
 using FSpot.FileSystem;

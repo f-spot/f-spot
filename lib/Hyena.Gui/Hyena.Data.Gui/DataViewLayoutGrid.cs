@@ -27,13 +27,12 @@
 //
 
 using System;
-using System.Collections.Generic;
 
 using Hyena.Gui.Canvas;
 
 namespace Hyena.Data.Gui
 {
-    public class DataViewLayoutGrid : DataViewLayout
+	public class DataViewLayoutGrid : DataViewLayout
     {
         public int Rows { get; private set; }
         public int Columns { get; private set; }

@@ -35,8 +35,6 @@ using FSpot.Core;
 using FSpot.Settings;
 using FSpot.Utils;
 
-using Hyena;
-
 
 
 namespace FSpot.Database.Jobs

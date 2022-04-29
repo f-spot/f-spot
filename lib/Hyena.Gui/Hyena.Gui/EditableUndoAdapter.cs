@@ -28,13 +28,12 @@
 
 using System;
 using System.Reflection;
-using Gtk;
 
-using Hyena;
+using Gtk;
 
 namespace Hyena.Gui
 {
-    public class EditableUndoAdapter<T> where T : Widget, Editable
+	public class EditableUndoAdapter<T> where T : Widget, Editable
     {
         private T editable;
         private UndoManager undo_manager = new UndoManager ();

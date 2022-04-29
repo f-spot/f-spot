@@ -35,13 +35,9 @@ using System;
 
 using Gtk;
 
-using Mono.Unix;
-
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Widgets;
-
-using Hyena;
 
 namespace FSpot.UI.Dialog
 {

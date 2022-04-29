@@ -28,15 +28,11 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
 using System.Linq;
-using System.Collections.Generic;
-
-using Hyena.Data.Gui;
 
 namespace Hyena.Data.Gui.Accessibility
 {
-    public partial class ListViewAccessible<T> : Atk.TableImplementor
+	public partial class ListViewAccessible<T> : Atk.TableImplementor
     {
         public void ListViewAccessible_Table ()
         {

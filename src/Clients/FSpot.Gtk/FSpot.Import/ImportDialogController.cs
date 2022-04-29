@@ -16,7 +16,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 
 using FSpot.Core;
 using FSpot.Database;
@@ -28,8 +27,6 @@ using Gtk;
 using Hyena;
 
 using Mono.Unix;
-
-using Microsoft.VisualStudio.Threading;
 
 namespace FSpot.Import
 {

@@ -27,13 +27,11 @@
 //
 
 using System;
-using System.IO;
-using System.Text;
 using System.Xml;
 
 namespace Hyena.Query
 {
-    public class XmlQueryParser : QueryParser
+	public class XmlQueryParser : QueryParser
     {
         private string str;
         private QueryFieldSet field_set;

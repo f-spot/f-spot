@@ -23,8 +23,6 @@ using System.IO;
 
 using FSpot.Platform;
 
-using Hyena;
-
 using Mono.Unix;
 
 

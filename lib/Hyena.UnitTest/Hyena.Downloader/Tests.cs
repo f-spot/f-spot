@@ -27,14 +27,12 @@
 //
 
 using System;
-using System.IO;
-using System.Linq;
+
 using NUnit.Framework;
-using Hyena;
 
 namespace Hyena.Downloader.Tests
 {
-    [TestFixture]
+	[TestFixture]
     public class Tests
     {
         [Test]

@@ -27,10 +27,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
 namespace FSpot
 {
-    public class MainSelection
+	public class MainSelection
     {
         public MainSelection ()
         {

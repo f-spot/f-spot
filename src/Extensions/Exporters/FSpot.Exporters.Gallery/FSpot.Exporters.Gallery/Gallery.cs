@@ -37,8 +37,6 @@ using System.Net;
 using System.Text;
 
 using Mono.Unix;
-
-using Hyena;
 using Hyena.Widgets;
 
 

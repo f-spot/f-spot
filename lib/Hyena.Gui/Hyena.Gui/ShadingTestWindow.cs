@@ -26,12 +26,11 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
 using Gtk;
 
 namespace Hyena.Gui
 {
-    public class ShadingTestWindow : Window
+	public class ShadingTestWindow : Window
     {
         private int steps = 16;
 

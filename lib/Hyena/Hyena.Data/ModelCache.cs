@@ -26,12 +26,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using System.Collections.Generic;
-
 namespace Hyena.Data
 {
-    public abstract class ModelCache<T> where T : ICacheableItem, new ()
+	public abstract class ModelCache<T> where T : ICacheableItem, new ()
     {
         private ICacheableModel model;
         protected ICacheableModel Model { get { return model; } }

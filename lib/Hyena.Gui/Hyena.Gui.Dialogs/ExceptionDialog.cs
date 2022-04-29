@@ -28,7 +28,6 @@
 
 using System;
 using System.Reflection;
-using System.Resources;
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.IO;
@@ -37,7 +36,7 @@ using Gtk;
 
 namespace Hyena.Gui.Dialogs
 {
-    public class ExceptionDialog : Dialog
+	public class ExceptionDialog : Dialog
     {
         private AccelGroup accel_group;
         private string debugInfo;

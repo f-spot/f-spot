@@ -27,14 +27,14 @@
 //
 
 using System;
-using Gtk;
-using Mono.Unix;
 
-using Hyena.Gui;
+using Gtk;
+
+using Mono.Unix;
 
 namespace Hyena.Widgets
 {
-    public class RatingMenuItem : ComplexMenuItem
+	public class RatingMenuItem : ComplexMenuItem
     {
         private RatingEntry entry;
         private bool can_activate = true;

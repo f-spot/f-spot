@@ -31,14 +31,12 @@ using System;
 using System.IO;
 using System.Text;
 using System.Reflection;
-
-using FSpot;
 using FSpot.Core;
 
 using Mono.Unix;
 
-namespace FSpot.Tools.LiveWebGallery	
-{	
+namespace FSpot.Tools.LiveWebGallery
+{
 	public abstract class PhotoAwareRequestHandler : RequestHandler
 	{
 		protected string TagsToString (Photo photo) 

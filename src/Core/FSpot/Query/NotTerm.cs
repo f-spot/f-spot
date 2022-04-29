@@ -29,8 +29,6 @@
 //
 //
 
-using System;
-
 namespace FSpot.Query
 {
 	public class NotTerm : LogicalTerm

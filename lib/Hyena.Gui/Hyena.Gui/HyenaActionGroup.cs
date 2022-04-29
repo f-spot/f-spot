@@ -26,14 +26,13 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
 using System.Collections.Generic;
 
 using Gtk;
 
 namespace Hyena.Gui
 {
-    public class HyenaActionGroup : ActionGroup
+	public class HyenaActionGroup : ActionGroup
     {
         private List<uint> ui_merge_ids = new List<uint> ();
         private ActionManager action_manager;

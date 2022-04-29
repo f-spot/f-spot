@@ -30,15 +30,12 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Reflection;
-using System.Threading;
 
 using NUnit.Framework;
 
-using Hyena;
-
 namespace Hyena.Tests
 {
-    public struct TransformPair<F, T>
+	public struct TransformPair<F, T>
     {
         public F From;
         public T To;

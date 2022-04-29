@@ -32,14 +32,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 
-using FSpot;
 using FSpot.Settings;
 using FSpot.UI.Dialog;
 using FSpot.Utils;
 
-using Hyena;
-
 using Gdk;
+
 using Gtk;
 
 using Mono.Unix;

@@ -27,19 +27,15 @@
 //
 
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Xml;
-using System.Text;
 using System.Text.RegularExpressions;
 
 using Mono.Unix;
 
-using Hyena;
-
 namespace Hyena.Query
 {
-    public enum TimeFactor {
+	public enum TimeFactor {
         Second = 1,
         Minute = 60,
         Hour   = 3600,

@@ -42,8 +42,6 @@ using Mono.Unix;
 using FSpot;
 using FSpot.Database;
 using FSpot.UI.Dialog;
-
-using Hyena;
 using Hyena.Widgets;
 
 

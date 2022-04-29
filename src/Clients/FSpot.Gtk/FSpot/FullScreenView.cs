@@ -38,8 +38,6 @@ using FSpot.Widgets;
 using FSpot.Gui;
 using FSpot.Utils;
 
-using Hyena;
-
 using Mono.Unix;
 
 

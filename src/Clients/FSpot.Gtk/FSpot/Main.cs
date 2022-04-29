@@ -21,9 +21,6 @@ using System.IO;
 using System.Reflection;
 using System.Threading;
 
-using FSpot;
-using FSpot.Resources;
-using FSpot.Platform;
 using FSpot.Settings;
 using FSpot.Utils;
 

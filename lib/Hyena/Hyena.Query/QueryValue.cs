@@ -29,13 +29,10 @@
 using System;
 using System.Collections.Generic;
 using System.Xml;
-using System.Text;
-
-using Hyena;
 
 namespace Hyena.Query
 {
-    public abstract class QueryValue
+	public abstract class QueryValue
     {
         private static List<Type> subtypes = new List<Type> ();
         public static void AddValueType (Type type)

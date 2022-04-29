@@ -29,8 +29,6 @@
 
 using Gdk;
 
-using Color = Cairo.Color;
-
 namespace FSpot.Transitions
 {
 	public abstract class SlideShowTransition

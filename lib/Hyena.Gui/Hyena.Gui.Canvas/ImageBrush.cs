@@ -24,14 +24,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using System;
-
 using Cairo;
-using Hyena.Gui;
 
 namespace Hyena.Gui.Canvas
 {
-    public class ImageBrush : Brush
+	public class ImageBrush : Brush
     {
         private ImageSurface surface;
         //private bool surface_owner;

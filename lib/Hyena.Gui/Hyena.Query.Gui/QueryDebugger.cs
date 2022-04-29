@@ -33,11 +33,10 @@ using System.Reflection;
 using Gtk;
 
 using Hyena.Gui;
-using Hyena.Query;
 
 namespace Hyena.Query.Gui
 {
-    [TestModule ("Query Debugger")]
+	[TestModule ("Query Debugger")]
     public class QueryDebugger : Window
     {
         private TextView input;

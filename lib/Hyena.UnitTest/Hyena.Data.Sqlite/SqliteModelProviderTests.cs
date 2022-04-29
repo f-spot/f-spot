@@ -28,12 +28,12 @@
 
 using System;
 using System.IO;
+
 using NUnit.Framework;
-using Hyena.Data.Sqlite;
 
 namespace Hyena.Data.Sqlite.Tests
 {
-    [TestFixture]
+	[TestFixture]
     public class SqliteModelProviderTests
     {
         private HyenaSqliteConnection connection;

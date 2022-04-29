@@ -31,8 +31,6 @@ using Mono.Unix;
 
 using FSpot.Settings;
 
-using Hyena;
-
 
 namespace FSpot.Exporters.Gallery
 {

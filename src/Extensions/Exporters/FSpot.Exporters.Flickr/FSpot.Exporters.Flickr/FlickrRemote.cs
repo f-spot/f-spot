@@ -50,12 +50,10 @@ using FSpot.Core;
 using FSpot.Filters;
 using FSpot.Settings;
 
-using Hyena;
-
 
 namespace FSpot.Exporters.Flickr
 {
-    public class FlickrRemote
+	public class FlickrRemote
     {
         public static LicenseCollection licenses;
         FlickrNet.Flickr flickr;

@@ -29,12 +29,11 @@
 using System;
 using System.Collections.Generic;
 
-using Hyena.Query;
 using Gtk;
 
 namespace Hyena.Query.Gui
 {
-    public abstract class QueryValueEntry : HBox
+	public abstract class QueryValueEntry : HBox
     {
         private static Dictionary<Type, Type> types = new Dictionary<Type, Type> ();
 

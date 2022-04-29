@@ -26,14 +26,13 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
 using System.Collections.Generic;
 
 using Hyena.Collections;
 
 namespace Hyena.Data
 {
-    public class MemoryListModel<T> : BaseListModel<T>
+	public class MemoryListModel<T> : BaseListModel<T>
     {
         private List<T> list;
 

@@ -33,11 +33,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-using Hyena;
-
 namespace Hyena.Data.Sqlite
 {
-    public class Connection : IDisposable
+	public class Connection : IDisposable
     {
         IntPtr ptr;
         internal IntPtr Ptr { get { return ptr; } }

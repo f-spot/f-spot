@@ -28,14 +28,11 @@
 
 using System;
 
-using Mono.Unix;
-
-using Hyena.Query;
 using Gtk;
 
 namespace Hyena.Query.Gui
 {
-    public class DateQueryValueEntry : QueryValueEntry
+	public class DateQueryValueEntry : QueryValueEntry
     {
         protected DateQueryValue query_value;
 

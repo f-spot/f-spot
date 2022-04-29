@@ -25,15 +25,14 @@
 // THE SOFTWARE.
 
 using System;
-using System.Linq;
 
 using Cairo;
-using Hyena.Gui;
+
 using Hyena.Gui.Theming;
 
 namespace Hyena.Gui.Canvas
 {
-    public class TextBlock : CanvasItem
+	public class TextBlock : CanvasItem
     {
         private Pango.Layout layout;
         private Pango.FontDescription font_desc;

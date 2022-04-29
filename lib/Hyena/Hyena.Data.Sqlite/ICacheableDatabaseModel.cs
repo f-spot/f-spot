@@ -26,11 +26,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Hyena.Data;
-
 namespace Hyena.Data.Sqlite
 {
-    public interface ICacheableDatabaseModel : ICacheableModel
+	public interface ICacheableDatabaseModel : ICacheableModel
     {
         string ReloadFragment { get; }
         string SelectAggregates { get; }

@@ -28,15 +28,12 @@
 
 using System;
 using System.Collections.Generic;
-using Gtk;
-using Gdk;
-using Cairo;
 
-using Hyena.Gui;
+using Gtk;
 
 namespace Hyena.Gui.Theming
 {
-    public abstract class Theme
+	public abstract class Theme
     {
         private static Cairo.Color black = new Cairo.Color (0, 0, 0);
         private Stack<ThemeContext> contexts = new Stack<ThemeContext> ();

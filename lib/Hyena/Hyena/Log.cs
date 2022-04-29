@@ -28,13 +28,12 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading;
 
 namespace Hyena
 {
-    public delegate void LogNotifyHandler (LogNotifyArgs args);
+	public delegate void LogNotifyHandler (LogNotifyArgs args);
 
     public class LogNotifyArgs : EventArgs
     {

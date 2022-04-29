@@ -28,12 +28,10 @@
 //
 
 using System;
-using System.Text;
-using System.Collections.Generic;
 
 namespace Hyena.Query
 {
-    public class QueryOrder
+	public class QueryOrder
     {
         public string Name { get; private set; }
         public string Label { get; private set; }

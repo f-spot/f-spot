@@ -29,11 +29,8 @@
 
 using System.IO;
 
-using FSpot;
 using FSpot.Filters;
 using FSpot.Thumbnail;
-
-using Hyena;
 
 
 

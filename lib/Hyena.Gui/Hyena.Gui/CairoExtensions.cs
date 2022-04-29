@@ -30,12 +30,11 @@ using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-using Gdk;
 using Cairo;
 
 namespace Hyena.Gui
 {
-    [Flags]
+	[Flags]
     public enum CairoCorners
     {
         None = 0,

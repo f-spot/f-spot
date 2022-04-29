@@ -24,12 +24,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using System;
 using System.Collections.Generic;
 
 namespace Hyena.Gui.Canvas
 {
-    public class CanvasItemCollection : IEnumerable<CanvasItem>
+	public class CanvasItemCollection : IEnumerable<CanvasItem>
     {
         private CanvasItem parent;
         private List<CanvasItem> children = new List<CanvasItem> ();

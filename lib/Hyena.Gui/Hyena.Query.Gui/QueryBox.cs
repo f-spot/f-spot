@@ -29,17 +29,14 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 using Mono.Unix;
 
 using Gtk;
-using Hyena;
-using Hyena.Query;
 
 namespace Hyena.Query.Gui
 {
-    public class QueryBox : VBox
+	public class QueryBox : VBox
     {
         private QueryTermsBox terms_box;
         private bool complex_query = false;

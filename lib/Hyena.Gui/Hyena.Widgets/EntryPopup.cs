@@ -26,13 +26,12 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 using System;
-using System.Timers;
-using Gdk;
+
 using Gtk;
 
 namespace Hyena.Widgets
 {
-    public class EntryPopup : Gtk.Window
+	public class EntryPopup : Gtk.Window
     {
         private Entry text_entry;
         private HBox hbox;

@@ -13,8 +13,6 @@
 using System.Collections.Generic;
 using System.IO;
 
-using FSpot.Utils;
-
 using Hyena;
 
 namespace FSpot.FileSystem

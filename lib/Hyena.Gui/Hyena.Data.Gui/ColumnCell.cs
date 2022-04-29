@@ -26,17 +26,14 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using System.Reflection;
 using Gtk;
-using Cairo;
 
 using Hyena.Gui.Canvas;
 using Hyena.Data.Gui.Accessibility;
 
 namespace Hyena.Data.Gui
 {
-    public abstract class ColumnCell : CanvasItem
+	public abstract class ColumnCell : CanvasItem
     {
         public virtual Atk.Object GetAccessible (ICellAccessibleParent parent)
         {

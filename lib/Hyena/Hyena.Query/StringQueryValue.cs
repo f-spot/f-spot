@@ -28,15 +28,12 @@
 
 using System;
 using System.Xml;
-using System.Text;
 
 using Mono.Unix;
 
-using Hyena;
-
 namespace Hyena.Query
 {
-    public class StringQueryValue : QueryValue
+	public class StringQueryValue : QueryValue
     {
         private const string ESCAPE_CLAUSE = " ESCAPE '\\'";
 

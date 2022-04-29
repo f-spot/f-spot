@@ -41,7 +41,6 @@ using Gdk;
 using FSpot;
 using FSpot.Cms;
 using FSpot.Imaging;
-using FSpot.Resources;
 using FSpot.Settings;
 using FSpot.UI.Dialog;
 using FSpot.Utils;

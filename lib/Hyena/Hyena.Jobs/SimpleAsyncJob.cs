@@ -27,14 +27,11 @@
 //
 
 using System;
-using System.Linq;
 using System.Threading;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace Hyena.Jobs
 {
-    public abstract class SimpleAsyncJob : Job
+	public abstract class SimpleAsyncJob : Job
     {
         private Thread thread;
 

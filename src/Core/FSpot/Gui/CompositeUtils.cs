@@ -35,8 +35,6 @@ using Gtk;
 
 using FSpot.Utils;
 
-using Hyena;
-
 
 namespace FSpot.Gui
 {

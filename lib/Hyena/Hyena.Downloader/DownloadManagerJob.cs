@@ -26,17 +26,12 @@
 // THE SOFTWARE.
 
 using System;
-using System.IO;
-using System.Linq;
-using System.Collections.Generic;
 
 using Mono.Unix;
 
-using Hyena;
-
 namespace Hyena.Downloader
 {
-    public class DownloadManagerJob : Hyena.Jobs.Job
+	public class DownloadManagerJob : Hyena.Jobs.Job
     {
         private DownloadManager manager;
         private int finished_count = 0;

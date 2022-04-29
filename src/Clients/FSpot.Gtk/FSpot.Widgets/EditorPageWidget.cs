@@ -40,8 +40,6 @@ using Gtk;
 
 using Mono.Addins;
 using Mono.Unix;
-
-using Hyena;
 using Hyena.Widgets;
 using System.Linq;
 using FSpot.Settings;

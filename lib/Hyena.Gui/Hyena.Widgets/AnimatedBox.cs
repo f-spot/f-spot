@@ -27,16 +27,17 @@
 //
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
+
 using Gdk;
+
 using Gtk;
 
 using Hyena.Gui.Theatrics;
 
 namespace Hyena.Widgets
 {
-    public abstract class AnimatedBox : Container
+	public abstract class AnimatedBox : Container
     {
         private readonly Stage<AnimatedWidget> stage = new Stage<AnimatedWidget> ();
         private readonly LinkedList<AnimatedWidget> children = new LinkedList<AnimatedWidget> ();

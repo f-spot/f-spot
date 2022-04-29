@@ -27,13 +27,10 @@
 //
 
 using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Text;
 
 namespace Hyena.Data.Sqlite
 {
-    [Flags]
+	[Flags]
     public enum DatabaseColumnConstraints
     {
         NotNull = 1,

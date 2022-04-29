@@ -27,12 +27,12 @@
 //
 
 using System;
-using Gtk;
+
 using Cairo;
 
 namespace Hyena.Gui
 {
-    public class RatingRenderer
+	public class RatingRenderer
     {
         private static double [,] star_plot = new double[,] {
             { 0, 0.425 },

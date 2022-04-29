@@ -27,13 +27,11 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-
 using Hyena;
 
 namespace FSpot.Utils
 {
-    public static class SafeUriExtensions
+	public static class SafeUriExtensions
     {
         public static SafeUri Append (this SafeUri base_uri, string filename)
         {

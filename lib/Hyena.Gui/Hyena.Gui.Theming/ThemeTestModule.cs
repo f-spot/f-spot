@@ -25,13 +25,12 @@
 // THE SOFTWARE.
 
 using System;
-using Gtk;
 
-using Hyena.Gui;
+using Gtk;
 
 namespace Hyena.Gui.Theming
 {
-    [TestModule ("Theme")]
+	[TestModule ("Theme")]
     public class ThemeTestModule : Window
     {
         public ThemeTestModule () : base ("Theme")

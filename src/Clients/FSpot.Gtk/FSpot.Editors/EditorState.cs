@@ -26,20 +26,13 @@
 //
 //
 
-using System;
-
-using Hyena;
-
 using FSpot.Core;
 using FSpot.Widgets;
-using FSpot.Imaging;
 
 using Gdk;
-using Gtk;
 
-using Mono.Addins;
-
-namespace FSpot.Editors {
+namespace FSpot.Editors
+{
 
 	// TODO: Move EditorNode to FSpot.Extionsions?
 

@@ -34,8 +34,6 @@ using FSpot.Cms;
 
 using Gdk;
 
-using Hyena;
-
 
 
 namespace FSpot.ColorAdjustment

@@ -26,12 +26,11 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
 using System.Collections.Generic;
 
 namespace Hyena.CommandLine
 {
-    public class LayoutGroup : IEnumerable<LayoutOption>
+	public class LayoutGroup : IEnumerable<LayoutOption>
     {
         private List<LayoutOption> options;
         private string id;

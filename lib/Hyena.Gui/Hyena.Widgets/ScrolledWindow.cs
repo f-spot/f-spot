@@ -30,15 +30,10 @@ using System;
 using System.Reflection;
 
 using Gtk;
-using Gdk;
-using Cairo;
-
-using Hyena.Gui;
-using Hyena.Data.Gui;
 
 namespace Hyena.Widgets
 {
-    public class ScrolledWindow : Gtk.ScrolledWindow
+	public class ScrolledWindow : Gtk.ScrolledWindow
     {
         private Widget adjustable;
         private RoundedFrame rounded_frame;

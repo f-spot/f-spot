@@ -34,9 +34,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
-using FSpot.Imaging;
+
 using Gdk;
+
 using Gtk;
+
 using Hyena;
 
 

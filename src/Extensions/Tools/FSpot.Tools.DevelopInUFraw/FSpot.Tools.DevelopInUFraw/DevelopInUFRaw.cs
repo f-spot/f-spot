@@ -29,10 +29,6 @@
 
 using System;
 
-using Hyena;
-
-using FSpot;
-
 
 namespace FSpot.Tools.DevelopInUFraw
 {

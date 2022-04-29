@@ -25,14 +25,10 @@
 // THE SOFTWARE.
 
 using System;
-using Gtk;
-using Gdk;
-
-using Hyena.Gui.Theming;
 
 namespace Hyena.Gui.Canvas
 {
-    public class FpsCalculator
+	public class FpsCalculator
     {
         private DateTime last_update;
         private TimeSpan update_interval;

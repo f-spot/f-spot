@@ -26,12 +26,11 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
 using Gtk;
 
 namespace Hyena.Data.Gui
 {
-    public static class ListViewDragDropTarget
+	public static class ListViewDragDropTarget
     {
         public enum TargetType
         {

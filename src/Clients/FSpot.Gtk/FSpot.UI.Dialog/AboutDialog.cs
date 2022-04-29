@@ -29,15 +29,16 @@
 
 using System;
 using System.IO;
+
 using FSpot.Settings;
-using Hyena;
+
 using Mono.Unix;
 
 
 
 namespace FSpot.UI.Dialog
 {
-    public class AboutDialog : Gtk.AboutDialog
+	public class AboutDialog : Gtk.AboutDialog
     {
         static AboutDialog about;
 

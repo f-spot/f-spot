@@ -43,8 +43,6 @@ using FSpot.Core;
 using FSpot.Database;
 using FSpot.Settings;
 
-using Hyena;
-
 
 namespace FSpot.UI.Dialog
 {

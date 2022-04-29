@@ -22,14 +22,12 @@
 //
 
 using System;
-using Gdk;
-using Gtk;
 
-using Hyena.Gui.Theatrics;
+using Gdk;
 
 namespace Hyena.Widgets
 {
-    public class SmoothScrolledWindow : Hyena.Widgets.ScrolledWindow
+	public class SmoothScrolledWindow : Hyena.Widgets.ScrolledWindow
     {
         private bool ignore_value_changed;
         private uint timeout;

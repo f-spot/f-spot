@@ -26,15 +26,13 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
 using System.Collections.Generic;
 
-using Hyena.Data;
 using Hyena.Gui.Canvas;
 
 namespace Hyena.Data.Gui
 {
-    public abstract class DataViewLayout
+	public abstract class DataViewLayout
     {
         private List<CanvasItem> children = new List<CanvasItem> ();
         protected List<CanvasItem> Children {

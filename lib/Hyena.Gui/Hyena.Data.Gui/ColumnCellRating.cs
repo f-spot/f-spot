@@ -26,16 +26,13 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using Gtk;
-
 using Hyena.Gui;
 using Hyena.Gui.Canvas;
 using Hyena.Gui.Theming;
 
 namespace Hyena.Data.Gui
 {
-    public class ColumnCellRating : ColumnCell, IInteractiveCell, ISizeRequestCell
+	public class ColumnCellRating : ColumnCell, IInteractiveCell, ISizeRequestCell
     {
         private object last_pressed_bound;
         private object hover_bound;

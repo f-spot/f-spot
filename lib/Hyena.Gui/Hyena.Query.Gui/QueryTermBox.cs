@@ -28,16 +28,13 @@
 //
 
 using System;
-using System.Text;
 using System.Collections.Generic;
 
 using Gtk;
-using Hyena;
-using Hyena.Query;
 
 namespace Hyena.Query.Gui
 {
-    public class QueryTermBox
+	public class QueryTermBox
     {
         private Button add_button;
         private Button remove_button;

@@ -28,15 +28,12 @@
 
 using System;
 using System.Xml;
-using System.Text;
 
 using Mono.Unix;
 
-using Hyena;
-
 namespace Hyena.Query
 {
-    public class NullQueryValue : QueryValue
+	public class NullQueryValue : QueryValue
     {
         public static readonly Operator IsNullOrEmpty  = new Operator ("empty", Catalog.GetString ("empty"), "IN (NULL, '', 0)", true, "!");
 

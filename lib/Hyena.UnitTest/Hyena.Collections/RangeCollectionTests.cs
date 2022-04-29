@@ -28,12 +28,12 @@
 
 using System;
 using System.Collections.Generic;
+
 using NUnit.Framework;
-using Hyena.Collections;
 
 namespace Hyena.Collections.Tests
 {
-    [TestFixture]
+	[TestFixture]
     public class RangeCollectionTests
     {
         [Test]

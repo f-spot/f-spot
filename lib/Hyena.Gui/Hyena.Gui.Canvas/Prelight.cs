@@ -24,15 +24,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using System;
-
 using Hyena.Gui.Theming;
-using Hyena.Gui.Theatrics;
-using Hyena.Gui.Canvas;
 
 namespace Hyena.Gui.Canvas
 {
-    public static class Prelight
+	public static class Prelight
     {
         public static void Gradient (Cairo.Context cr, Theme theme, Rect rect, double opacity)
         {

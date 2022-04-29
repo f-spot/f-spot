@@ -25,14 +25,14 @@
 // THE SOFTWARE.
 
 using System;
+
 using Cairo;
 
-using Hyena.Gui;
 using Hyena.Gui.Theming;
 
 namespace Hyena.Gui.Canvas
 {
-    public class Slider : CanvasItem
+	public class Slider : CanvasItem
     {
         private uint value_changed_inhibit_ref = 0;
 

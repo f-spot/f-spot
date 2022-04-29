@@ -28,7 +28,6 @@
 
 using System;
 using Gtk;
-using Cairo;
 
 using Hyena.Gui;
 using Hyena.Gui.Canvas;
@@ -37,7 +36,7 @@ using Hyena.Data.Gui.Accessibility;
 
 namespace Hyena.Data.Gui
 {
-    public class ColumnCellText : ColumnCell, ISizeRequestCell, ITextCell, ITooltipCell
+	public class ColumnCellText : ColumnCell, ISizeRequestCell, ITextCell, ITooltipCell
     {
         public delegate string DataHandler ();
 

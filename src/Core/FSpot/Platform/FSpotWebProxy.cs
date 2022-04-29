@@ -14,8 +14,6 @@ using System.Net;
 
 using FSpot.Settings;
 
-using Hyena;
-
 
 
 namespace FSpot.Platform

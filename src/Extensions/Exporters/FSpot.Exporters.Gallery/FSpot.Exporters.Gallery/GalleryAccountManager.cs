@@ -30,8 +30,8 @@
 
 using System.Collections.Generic;
 using System.IO;
+
 using FSpot.Settings;
-using Hyena;
 
 
 

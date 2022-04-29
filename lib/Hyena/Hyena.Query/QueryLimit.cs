@@ -27,12 +27,10 @@
 //
 
 using System;
-using System.Text;
-using System.Collections.Generic;
 
 namespace Hyena.Query
 {
-    public class QueryLimit
+	public class QueryLimit
     {
         private string name;
         public string Name {

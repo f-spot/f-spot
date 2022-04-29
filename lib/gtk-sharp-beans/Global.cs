@@ -20,10 +20,10 @@
 // Boston, MA 02111-1307, USA.
 
 using System;
-using System.Collections;
 using System.Runtime.InteropServices;
 
-namespace GtkBeans {
+namespace GtkBeans
+{
 	public static class Global {
 		[DllImport("libgtk-win32-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern unsafe bool gtk_show_uri(IntPtr screen, IntPtr uri, uint timestamp, out IntPtr error);

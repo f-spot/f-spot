@@ -27,13 +27,12 @@
 //
 
 using System;
-using System.Reflection;
 using System.Text;
 using System.Collections.Generic;
 
 namespace Hyena.Data.Sqlite
 {
-    public static class SqliteUtils
+	public static class SqliteUtils
     {
         internal static string GetType (Type type)
         {

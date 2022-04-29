@@ -32,13 +32,10 @@ using System.Reflection;
 using System.Collections.Generic;
 
 using Gtk;
-using Action = Gtk.Action;
-
-using Hyena;
 
 namespace Hyena.Gui
 {
-    public class ActionManager
+	public class ActionManager
     {
         private UIManager ui_manager;
         private Dictionary<string, ActionGroup> action_groups = new Dictionary<string, ActionGroup> ();

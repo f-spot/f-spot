@@ -37,8 +37,6 @@ using FSpot.Core;
 using FSpot.Utils;
 using FSpot.Gui;
 
-using Hyena;
-
 
 namespace FSpot.Widgets
 {
