@@ -30,7 +30,7 @@ using System;
 
 namespace Hyena
 {
-    public static class ConsoleCrayon
+    static class ConsoleCrayon
     {
 
 #region Public API

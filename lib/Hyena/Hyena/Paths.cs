@@ -33,7 +33,7 @@ using System.Text;
 
 namespace Hyena
 {
-    public static class Paths
+    static class Paths
     {
         public const char UnixSeparator = ':';
         public const char DosSeparator = ';';

@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 namespace Hyena
 {
 	// Copied from FSpot.Utils (for now)
-	public static class PlatformDetection
+	static class PlatformDetection
 	{
 		public static bool IsWindows
 			=> RuntimeInformation.IsOSPlatform (OSPlatform.Windows);

@@ -82,7 +82,7 @@ namespace FSpot.Database.Tests
 				return;
 
 			var testDir = TestContext.CurrentContext.TestDirectory;
-			var databaseLocation = Paths.Combine (testDir, "data", $"f-spot-{version}.db");
+			var databaseLocation = Path.Combine (testDir, "data", $"f-spot-{version}.db");
 			Assert.IsTrue (File.Exists (databaseLocation), $"Test database for version {version} not found");
 
 			var tmp = Path.GetTempFileName ();
