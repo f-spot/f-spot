@@ -12,7 +12,7 @@ namespace FSpot
 {
 	public static class Logger
 	{
-		static LoggingLevelSwitch logLevel;
+		static LoggingLevelSwitch logLevel = new LoggingLevelSwitch();
 
 		public static ILogger Log { get; private set; }
 
