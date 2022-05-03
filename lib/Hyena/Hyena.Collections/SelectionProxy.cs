@@ -62,27 +62,18 @@ namespace Hyena.Collections
 
         protected virtual void OnChanged ()
         {
-            EventHandler handler = Changed;
-            if (handler != null) {
-                handler (selection, EventArgs.Empty);
-            }
-        }
+			Changed?.Invoke (selection, EventArgs.Empty);
+		}
 
         protected virtual void OnFocusChanged ()
         {
-            EventHandler handler = FocusChanged;
-            if (handler != null) {
-                handler (selection, EventArgs.Empty);
-            }
-        }
+			FocusChanged?.Invoke (selection, EventArgs.Empty);
+		}
 
         protected virtual void OnSelectionChanged ()
         {
-            EventHandler handler = SelectionChanged;
-            if (handler != null) {
-                handler (selection, EventArgs.Empty);
-            }
-        }
+			SelectionChanged?.Invoke (selection, EventArgs.Empty);
+		}
 
         void HandleSelectionChanged (object o, EventArgs args)
         {

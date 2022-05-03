@@ -245,27 +245,18 @@ namespace Hyena.Downloader
 
         protected virtual void OnStarted ()
         {
-            var handler = Started;
-            if (handler != null) {
-                handler (this);
-            }
-        }
+			Started?.Invoke (this);
+		}
 
         protected virtual void OnBufferUpdated ()
         {
-            var handler = BufferUpdated;
-            if (handler != null) {
-                handler (this);
-            }
-        }
+			BufferUpdated?.Invoke (this);
+		}
 
         protected virtual void OnProgress ()
         {
-            var handler = Progress;
-            if (handler != null) {
-                handler (this);
-            }
-        }
+			Progress?.Invoke (this);
+		}
 
         protected virtual void OnFinished ()
         {

@@ -55,11 +55,8 @@ namespace Hyena.Collections
             get { return focused_index; }
             set {
                 focused_index = value;
-                var handler = FocusChanged;
-                if (handler != null) {
-                    handler (this, EventArgs.Empty);
-                }
-            }
+				FocusChanged?.Invoke (this, EventArgs.Empty);
+			}
         }
 
         public void Notify ()
@@ -69,11 +66,8 @@ namespace Hyena.Collections
 
         protected virtual void OnChanged ()
         {
-            EventHandler handler = Changed;
-            if (handler != null) {
-                handler (this, EventArgs.Empty);
-            }
-        }
+			Changed?.Invoke (this, EventArgs.Empty);
+		}
 
         public void ToggleSelect (int index)
         {

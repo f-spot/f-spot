@@ -80,10 +80,7 @@ namespace Hyena.Downloader
 
         protected virtual void OnFileFinished ()
         {
-            var handler = FileFinished;
-            if (handler != null) {
-                handler (this);
-            }
-        }
+			FileFinished?.Invoke (this);
+		}
     }
 }

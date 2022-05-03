@@ -48,21 +48,15 @@ namespace Hyena.Data
         {
             Selection.MaxIndex = Count - 1;
 
-            EventHandler handler = Cleared;
-            if(handler != null) {
-                handler(this, EventArgs.Empty);
-            }
-        }
+			Cleared?.Invoke (this, EventArgs.Empty);
+		}
 
         protected virtual void OnReloaded ()
         {
             Selection.MaxIndex = Count - 1;
 
-            EventHandler handler = Reloaded;
-            if(handler != null) {
-                handler(this, EventArgs.Empty);
-            }
-        }
+			Reloaded?.Invoke (this, EventArgs.Empty);
+		}
 
         public void RaiseReloaded ()
         {

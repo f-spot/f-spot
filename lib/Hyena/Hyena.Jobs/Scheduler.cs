@@ -80,11 +80,8 @@ namespace Hyena.Jobs
                 }
             }
 
-            Action<Job> handler = JobAdded;
-            if (handler != null) {
-                handler (job);
-            }
-        }
+			JobAdded?.Invoke (job);
+		}
 
         public void Cancel (Job job)
         {
@@ -137,12 +134,9 @@ namespace Hyena.Jobs
                 jobs.Remove (job);
             }
 
-            Action<Job> handler = JobRemoved;
-            if (handler != null) {
-                handler (job);
-            }
+			JobRemoved?.Invoke (job);
 
-            Schedule ();
+			Schedule ();
         }
 
         void Schedule ()

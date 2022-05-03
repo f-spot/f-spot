@@ -108,10 +108,7 @@ namespace Hyena.Collections
 
         protected virtual void OnFinished ()
         {
-            EventHandler handler = Finished;
-            if (handler != null) {
-                handler (this, EventArgs.Empty);
-            }
-        }
+			Finished?.Invoke (this, EventArgs.Empty);
+		}
     }
 }

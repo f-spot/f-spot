@@ -91,11 +91,8 @@ namespace Hyena
 
         protected virtual void OnUndoChanged()
         {
-            EventHandler handler = UndoChanged;
-            if(handler != null) {
-                handler(this, EventArgs.Empty);
-            }
-        }
+			UndoChanged?.Invoke (this, EventArgs.Empty);
+		}
 
         void UndoRedo(Stack<IUndoAction> pop_from, Stack<IUndoAction> push_to, bool is_undo)
         {

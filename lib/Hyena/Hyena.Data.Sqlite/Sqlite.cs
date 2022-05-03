@@ -278,11 +278,8 @@ namespace Hyena.Data.Sqlite
                     Connection.Statements.Remove (this);
                 }
 
-                var h = Disposed;
-                if (h != null) {
-                    h (this, EventArgs.Empty);
-                }
-            }
+				Disposed?.Invoke (this, EventArgs.Empty);
+			}
         }
 
         ~Statement ()

@@ -74,19 +74,13 @@ namespace Hyena.Collections
                 processed_count = 0;
             }
 
-            EventHandler handler = Finished;
-            if (handler != null) {
-                handler (this, EventArgs.Empty);
-            }
-        }
+			Finished?.Invoke (this, EventArgs.Empty);
+		}
 
         protected void OnProcessedItem ()
         {
-            EventHandler handler = ProcessedItem;
-            if (handler != null) {
-                handler (this, EventArgs.Empty);
-            }
-        }
+			ProcessedItem?.Invoke (this, EventArgs.Empty);
+		}
 
         protected virtual void OnCanceled ()
         {

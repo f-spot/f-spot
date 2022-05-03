@@ -115,11 +115,8 @@ namespace Hyena.Jobs
                 if (!IsFinished) {
                     IsCancelRequested = true;
                     State = JobState.Cancelled;
-                    EventHandler handler = CancelRequested;
-                    if (handler != null) {
-                        handler (this, EventArgs.Empty);
-                    }
-                }
+					CancelRequested?.Invoke (this, EventArgs.Empty);
+				}
             }
             Log.Debug ("Canceled", Title);
         }
@@ -273,11 +270,8 @@ namespace Hyena.Jobs
                 return;
             }
 
-            EventHandler handler = Updated;
-            if (handler != null) {
-                handler (this, EventArgs.Empty);
-            }
-        }
+			Updated?.Invoke (this, EventArgs.Empty);
+		}
 
         public void YieldToScheduler ()
         {
@@ -299,11 +293,8 @@ namespace Hyena.Jobs
                 State = JobState.Completed;
             }
 
-            EventHandler handler = Finished;
-            if (handler != null) {
-                handler (this, EventArgs.Empty);
-            }
-        }
+			Finished?.Invoke (this, EventArgs.Empty);
+		}
 
 #endregion
 

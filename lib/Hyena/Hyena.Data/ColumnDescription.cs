@@ -59,19 +59,13 @@ namespace Hyena.Data
 
         protected virtual void OnVisibilityChanged ()
         {
-            EventHandler handler = VisibilityChanged;
-            if (handler != null) {
-                handler (this, EventArgs.Empty);
-            }
-        }
+			VisibilityChanged?.Invoke (this, EventArgs.Empty);
+		}
 
         protected virtual void OnWidthChanged ()
         {
-            EventHandler handler = WidthChanged;
-            if (handler != null) {
-                handler (this, EventArgs.Empty);
-            }
-        }
+			WidthChanged?.Invoke (this, EventArgs.Empty);
+		}
 
         public string Title {
             get { return title; }

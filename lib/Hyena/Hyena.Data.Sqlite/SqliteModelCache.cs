@@ -450,10 +450,8 @@ namespace Hyena.Data.Sqlite
                 if (reader.Read ()) {
                     aggregate_rows = Convert.ToInt64 (reader[0]);
 
-                    if (handler != null) {
-                        handler (reader);
-                    }
-                }
+					handler?.Invoke (reader);
+				}
             }
 
             return aggregate_rows;

@@ -179,11 +179,8 @@ namespace Hyena
 
         static void OnNotify (LogEntry entry)
         {
-            LogNotifyHandler handler = Notify;
-            if (handler != null) {
-                handler (new LogNotifyArgs (entry));
-            }
-        }
+			Notify?.Invoke (new LogNotifyArgs (entry));
+		}
 
         #region Timer Methods
 
