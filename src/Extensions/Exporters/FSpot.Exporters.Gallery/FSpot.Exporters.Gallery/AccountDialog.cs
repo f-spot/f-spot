@@ -30,9 +30,8 @@
 using System;
 
 using Mono.Unix;
-
-using Hyena;
 using Hyena.Widgets;
+
 
 namespace FSpot.Exporters.Gallery
 {
@@ -133,8 +132,8 @@ namespace FSpot.Exporters.Gallery
 								      Catalog.GetString ("Error while connecting to Gallery"),
 								      string.Format (Catalog.GetString ("The following error was encountered while attempting to log in: {0}"), e.Message));
 					if (e.ResponseText != null) {
-						Log.Debug (e.Message);
-						Log.Debug (e.ResponseText);
+						Logger.Log.Debug (e.Message);
+						Logger.Log.Debug (e.ResponseText);
 					}
 					md.Run ();
 					md.Destroy ();
@@ -147,7 +146,7 @@ namespace FSpot.Exporters.Gallery
 								      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
 								      Catalog.GetString ("A Gallery with this name already exists"),
 								      string.Format (Catalog.GetString ("There is already a Gallery with the same name in your registered Galleries. Please choose a unique name.")));
-					Log.Exception (ae);
+					Logger.Log.Error (ae, "");
 					md.Run ();
 					md.Destroy ();
 					return;
@@ -170,7 +169,7 @@ namespace FSpot.Exporters.Gallery
 								      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
 								      Catalog.GetString ("Error while connecting to Gallery"),
 								      string.Format (Catalog.GetString ("The following error was encountered while attempting to log in: {0}"), se.Message));
-					Log.Exception (se);
+					Logger.Log.Error (se, "");
 					md.Run ();
 					md.Destroy ();
 					return;

@@ -26,28 +26,26 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
 using System.Collections.Generic;
 
-using Hyena.Data;
 using Hyena.Gui.Canvas;
 
 namespace Hyena.Data.Gui
 {
-    public abstract class DataViewLayout
+	public abstract class DataViewLayout
     {
-        private List<CanvasItem> children = new List<CanvasItem> ();
+        List<CanvasItem> children = new List<CanvasItem> ();
         protected List<CanvasItem> Children {
             get { return children; }
         }
 
-        private Dictionary<CanvasItem, int> model_indices = new Dictionary<CanvasItem, int> ();
+        Dictionary<CanvasItem, int> model_indices = new Dictionary<CanvasItem, int> ();
 
         public IListModel Model { get; set; }
 
         protected CanvasManager CanvasManager;
 
-        private ListViewBase view;
+        ListViewBase view;
         public ListViewBase View {
             get { return view; }
             set {

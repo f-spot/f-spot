@@ -30,15 +30,12 @@
 using System;
 
 using Mono.Unix;
-
-using Hyena;
-
-using FSpot;
 using FSpot.UI.Dialog;
+
 
 namespace FSpot.Tools.DevelopInUFraw
 {
-    // Batch Version
+	// Batch Version
 	public class DevelopInUFRawBatch : AbstractDevelopInUFRaw
 	{
 		public DevelopInUFRawBatch() : base("ufraw-batch")
@@ -51,7 +48,7 @@ namespace FSpot.Tools.DevelopInUFraw
 														ProgressDialog.CancelButtonType.Cancel,
 														App.Instance.Organizer.SelectedPhotos ().Length,
 														App.Instance.Organizer.Window);
-			Log.Information ("Executing DevelopInUFRaw extension in batch mode");
+			Logger.Log.Information ("Executing DevelopInUFRaw extension in batch mode");
 
 			foreach (Photo p in App.Instance.Organizer.SelectedPhotos ()) {
 				bool cancelled = pdialog.Update(string.Format(Catalog.GetString ("Developing {0}"), p.Name));

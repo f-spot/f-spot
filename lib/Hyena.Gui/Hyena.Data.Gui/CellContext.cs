@@ -26,13 +26,11 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-
 using Hyena.Gui.Theming;
 
 namespace Hyena.Data.Gui
 {
-    public class CellContext
+	public class CellContext
     {
         public CellContext ()
         {

@@ -263,7 +263,7 @@ namespace FSpot.Widgets
 			// Pixbuf option iformation to verify the thumbnail validity later
 			PixbufUtils.Fit (result, ThumbnailWidth, ThumbnailHeight, false, out var width, out var height);
 			if (result.Width > width && result.Height > height) {
-				//  Log.Debug ("scaling");
+				//  Logger.Logger.Log.Debug ("scaling");
 				Pixbuf temp = result.ScaleSimple (width, height, InterpType.Nearest);
 				result.Dispose ();
 				result = temp;

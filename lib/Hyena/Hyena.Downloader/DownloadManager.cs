@@ -31,13 +31,13 @@ namespace Hyena.Downloader
 {
     public class DownloadManager
     {
-        private object sync_root = new object ();
+        object sync_root = new object ();
         internal object SyncRoot {
             get { return sync_root; }
         }
 
-        private Queue<HttpDownloader> pending_downloaders = new Queue<HttpDownloader> ();
-        private List<HttpDownloader> active_downloaders = new List<HttpDownloader> ();
+        Queue<HttpDownloader> pending_downloaders = new Queue<HttpDownloader> ();
+        List<HttpDownloader> active_downloaders = new List<HttpDownloader> ();
 
         protected Queue<HttpDownloader> PendingDownloaders {
             get { return pending_downloaders; }
@@ -84,7 +84,7 @@ namespace Hyena.Downloader
             while (TotalDownloadCount > 0);
         }
 
-        private void Update ()
+        void Update ()
         {
             lock (SyncRoot) {
                 while (pending_downloaders.Count > 0 && active_downloaders.Count < MaxConcurrentDownloaders) {
@@ -102,11 +102,8 @@ namespace Hyena.Downloader
 
         protected virtual void OnDownloaderStarted (HttpDownloader downloader)
         {
-            var handler = Started;
-            if (handler != null) {
-                handler (downloader);
-            }
-        }
+			Started?.Invoke (downloader);
+		}
 
         protected virtual void OnDownloaderFinished (HttpDownloader downloader)
         {
@@ -115,26 +112,17 @@ namespace Hyena.Downloader
                 Update ();
             }
 
-            var handler = Finished;
-            if (handler != null) {
-                handler (downloader);
-            }
-        }
+			Finished?.Invoke (downloader);
+		}
 
         protected virtual void OnDownloaderProgress (HttpDownloader downloader)
         {
-            var handler = Progress;
-            if (handler != null) {
-                handler (downloader);
-            }
-        }
+			Progress?.Invoke (downloader);
+		}
 
         protected virtual void OnDownloaderBufferUpdated (HttpDownloader downloader)
         {
-            var handler = BufferUpdated;
-            if (handler != null) {
-                handler (downloader);
-            }
-        }
+			BufferUpdated?.Invoke (downloader);
+		}
     }
 }

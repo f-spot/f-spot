@@ -28,15 +28,12 @@
 
 using System;
 using System.Linq;
-using System.Threading;
 
 using NUnit.Framework;
 
-using Hyena;
-
 namespace Hyena.Jobs
 {
-    [TestFixture]
+	[TestFixture]
     public class SchedulerTests
     {
         private Scheduler scheduler;

@@ -49,7 +49,7 @@ namespace FSpot.Exporters.SmugMug
 
 		public SmugMugApi Connect ()
 		{
-			Log.Debug ("SmugMug.Connect() " + username);
+			Logger.Log.Debug ("SmugMug.Connect() " + username);
 			SmugMugApi proxy = new SmugMugApi (username, password);
 			ServicePointManager.CertificatePolicy = new NoCheckCertificatePolicy ();
 			proxy.Login ();

@@ -26,11 +26,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Hyena.Data;
-
 namespace Hyena.Data
 {
-    public interface ICacheableItem
+	public interface ICacheableItem
     {
         object CacheEntryId { get; set; }
         long CacheModelId { get; set; }

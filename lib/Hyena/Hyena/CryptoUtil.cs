@@ -37,8 +37,8 @@ namespace Hyena
     public static class CryptoUtil
     {
         // A-Z is ignored on purpose
-        private static Regex md5_regex = new Regex ("^[a-f0-9]{32}$", RegexOptions.Compiled);
-        private static MD5 md5 = MD5.Create ();
+        static Regex md5_regex = new Regex ("^[a-f0-9]{32}$", RegexOptions.Compiled);
+        static MD5 md5 = MD5.Create ();
 
         public static bool IsMd5Encoded (string text)
         {
@@ -52,8 +52,8 @@ namespace Hyena
 
         public static string Md5Encode (string text, Encoding encoding)
         {
-            if (String.IsNullOrEmpty (text)) {
-                return String.Empty;
+            if (string.IsNullOrEmpty (text)) {
+                return string.Empty;
             }
 
             byte [] hash;
@@ -74,7 +74,7 @@ namespace Hyena
             return ToHex (hash);
         }
 
-        private static string ToHex (byte [] hash)
+        static string ToHex (byte [] hash)
         {
             StringBuilder shash = new StringBuilder ();
             for (int i = 0; i < hash.Length; i++) {

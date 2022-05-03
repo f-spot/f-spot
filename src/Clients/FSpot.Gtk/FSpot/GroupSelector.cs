@@ -35,7 +35,6 @@ using Mono.Unix;
 
 using Gtk;
 using Gdk;
-using GLib;
 
 using FSpot.Utils;
 using FSpot.Widgets;

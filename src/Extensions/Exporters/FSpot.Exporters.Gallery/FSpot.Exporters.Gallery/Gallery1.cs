@@ -1,10 +1,10 @@
 //  Gallery1.cs
-// 
+//
 //  Author:
 //       Stephen Shaw <sshaw@decriptor.com>
-// 
+//
 //  Copyright (c) 2012 SUSE LINUX Products GmbH, Nuernberg, Germany.
-// 
+//
 //  Permission is hereby granted, free of charge, to any person obtaining
 //  a copy of this software and associated documentation files (the
 //  "Software"), to deal in the Software without restriction, including
@@ -12,10 +12,10 @@
 //  distribute, sublicense, and/or sell copies of the Software, and to
 //  permit persons to whom the Software is furnished to do so, subject to
 //  the following conditions:
-// 
+//
 //  The above copyright notice and this permission notice shall be
 //  included in all copies or substantial portions of the Software.
-// 
+//
 //  THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
 //  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 //  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -35,7 +35,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 
-using Hyena;
+
 
 namespace FSpot.Exporters.Gallery
 {
@@ -177,7 +177,7 @@ namespace FSpot.Exporters.Gallery
 						status = (ResultCode)int.Parse (data [1]);
 					else if (data [0].StartsWith ("status_text")) {
 						status_text = data [1];
-						Log.DebugFormat ("StatusText : {0}", data [1]);
+						Logger.Log.Debug ($"StatusText : {data[1]}");
 					} else if (data [0].StartsWith ("image.name")) {
 						current_image = new Image (album, data [1]);
 						album.Images.Add (current_image);
@@ -221,13 +221,13 @@ namespace FSpot.Exporters.Gallery
 						album.BaseURL = data [1];
 					else if (data [0].StartsWith ("image_count"))
 					if (album.Images.Count != int.Parse (data [1]))
-						Log.Warning ("Parsed image count for " + album.Name + "(" + album.Images.Count + ") does not match image_count (" + data [1] + ").  Something is amiss");
+						Logger.Log.Warning ("Parsed image count for " + album.Name + "(" + album.Images.Count + ") does not match image_count (" + data [1] + ").  Something is amiss");
 					else
-						Log.DebugFormat ("Unparsed Line in ParseFetchAlbumImages(): {0}={1}", data [0], data [1]);
+						Logger.Log.Debug ($"Unparsed Line in ParseFetchAlbumImages(): {data[0]}={data[1]}");
 				}
 				//Console.WriteLine ("Found: {0} cookies", response.Cookies.Count);
 				if (status != ResultCode.Success) {
-					Log.Debug (status_text);
+					Logger.Log.Debug (status_text);
 					throw new GalleryCommandException (status_text, status);
 				}
 

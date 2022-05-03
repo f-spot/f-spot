@@ -29,7 +29,6 @@
 //
 //
 
-using System;
 using System.Collections.Generic;
 
 namespace FSpot.Query

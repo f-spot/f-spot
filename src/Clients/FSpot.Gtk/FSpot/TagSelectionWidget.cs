@@ -763,10 +763,10 @@ namespace FSpot
 
 			private void OnSelectionChanged ()
 			{
-				Log.Debug ("Selection changed:");
+				Logger.Log.Debug ("Selection changed:");
 
 				foreach (Tag t in selection_widget.TagSelection)
-					Log.DebugFormat ("\t{0}", t.Name);
+					Logger.Log.DebugFormat ("\t{0}", t.Name);
 			}
 
 			private Test ()

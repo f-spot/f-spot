@@ -37,16 +37,15 @@ using System.Threading;
 
 using FSpot.Extensions;
 
-using Hyena;
 
 namespace FSpot.Tools.LiveWebGallery
-{		
+{
 	public class SimpleWebServer : IService
 	{
 		private Thread server_thread;
 		private TcpListener listener;
 		private Dictionary<string, RequestHandler> handlers = new Dictionary<string, RequestHandler> ();
-		
+
 		private IWebStats stats;
 		public IWebStats Stats {
 			set { stats = value; }
@@ -55,7 +54,7 @@ namespace FSpot.Tools.LiveWebGallery
 		public bool Active {
 			get { return server_thread != null && server_thread.IsAlive; }
 		}
-		
+
 		public string HostPort {
 			get {
 				string host = Dns.GetHostName ();
@@ -68,7 +67,7 @@ namespace FSpot.Tools.LiveWebGallery
 				return host + ":" + (listener.LocalEndpoint as IPEndPoint).Port;
 			}
 		}
-		
+
 		public void RegisterHandler (string request_prefix, RequestHandler handler) {
 			handlers.Add (request_prefix, handler);
 		}
@@ -77,7 +76,7 @@ namespace FSpot.Tools.LiveWebGallery
 			try {
 				listener = new TcpListener (IPAddress.Any, 8080);
 				listener.Start ();
-			}			
+			}
 			catch (SocketException) {
 				// address already in use? choose a random port then
 				listener = new TcpListener (IPAddress.Any, 0);
@@ -87,7 +86,7 @@ namespace FSpot.Tools.LiveWebGallery
 			server_thread.Start ();
 			return true;
 		}
-		
+
 		public bool Stop () {
 			server_thread.Abort ();
 			server_thread.Join ();
@@ -95,10 +94,10 @@ namespace FSpot.Tools.LiveWebGallery
 			return true;
 		}
 
-		public void ServerLoop () 
+		public void ServerLoop ()
 		{
-			Log.Information ("Listening on " + listener.LocalEndpoint);
-			
+			Logger.Log.Information ($"Listening on {listener.LocalEndpoint}");
+
 			while (true) {
 				TcpClient client = listener.AcceptTcpClient ();
 				if (client.Connected) {
@@ -109,55 +108,55 @@ namespace FSpot.Tools.LiveWebGallery
 					new Thread (new ThreadStart (parser.Process)).Start ();
 				}
 			}
-		}		
-	
+		}
+
 		class RequestProcessor
 		{
 			private TcpClient client;
 			private Dictionary<string, RequestHandler> handlers;
-			
+
 			public RequestProcessor (TcpClient client, Dictionary<string, RequestHandler> handlers) {
-				this.client = client;						
+				this.client = client;
 				this.handlers = handlers;
 			}
-			
-			public void Process () {			
+
+			public void Process () {
 				using (client)  {
 					NetworkStream stream = client.GetStream ();
 					TextReader reader = new StreamReader (stream, Encoding.UTF8);
-					
+
 					string line = reader.ReadLine ();
 					if (line == null)
 						return;
-					
-					Log.Debug ("Incoming request from " + (client.Client.RemoteEndPoint as IPEndPoint).Address + ": " + line);
+
+					Logger.Log.Debug ("Incoming request from " + (client.Client.RemoteEndPoint as IPEndPoint).Address + ": " + line);
 
 					string request_method = null, request_string = null;
 					int space_pos = line.IndexOf (' ');
 					if (space_pos > 0) {
 						request_method = line.Substring (0, space_pos);
-						request_string = line.Substring (space_pos + 1, line.LastIndexOf (' ') - space_pos - 1);				
+						request_string = line.Substring (space_pos + 1, line.LastIndexOf (' ') - space_pos - 1);
 					}
 					while (!string.IsNullOrEmpty(line = reader.ReadLine ())) {
 						// process other request headers here if needed
 					}
-					
-					using (stream) {						
-						if (!"GET".Equals (request_method)) { 
+
+					using (stream) {
+						if (!"GET".Equals (request_method)) {
 							RequestHandler.SendError (stream, "400 Bad Request");
 							return;
 						}
-						
+
 						if (request_string.StartsWith ("/"))
 							request_string = request_string.Substring (1);
-						
+
 						string request_prefix = request_string;
 						int slash_pos = request_string.IndexOf ("/");
-						if (slash_pos >= 0) 
-							request_prefix = request_string.Substring (0, slash_pos);						
-					
+						if (slash_pos >= 0)
+							request_prefix = request_string.Substring (0, slash_pos);
+
 						if (!handlers.ContainsKey (request_prefix)) {
-							RequestHandler.SendError (stream, "404 No handler for \"" + request_string + "\"");
+							RequestHandler.SendError (stream, $"404 No handler for \"{request_string}\"");
 							return;
 						}
 
@@ -165,9 +164,9 @@ namespace FSpot.Tools.LiveWebGallery
 							handlers[request_prefix].Handle (request_string.Substring (slash_pos+1), stream);
 						}
 						catch (Exception e) {
-							Log.Exception (e);
+							Logger.Log.Error (e, "");
 							try {
-								RequestHandler.SendError (stream, "500 " + e.Message);
+								RequestHandler.SendError (stream, $"500 {e.Message}");
 							}
 							catch (IOException) {
 								// ignore already closed connections
@@ -178,16 +177,16 @@ namespace FSpot.Tools.LiveWebGallery
 			}
 		}
 	}
-	
+
 	public abstract class RequestHandler
-	{		
+	{
 		public abstract void Handle (string requested, Stream stream);
 
 		public static void SendLine (Stream stream, string header) {
 			byte[] buf = Encoding.UTF8.GetBytes (header + "\r\n");
-			stream.Write (buf, 0, buf.Length);				
+			stream.Write (buf, 0, buf.Length);
 		}
-		
+
 		public static void SendStatus (Stream stream, string status) {
 			SendLine (stream, "HTTP/1.0 " + status + "\r\nServer: F-Spot");
 		}
@@ -195,14 +194,14 @@ namespace FSpot.Tools.LiveWebGallery
 		public static void SendError (Stream stream, string error) {
 			SendStatus (stream, error);
 			StartContent (stream);
-			SendLine (stream, error);  
+			SendLine (stream, error);
 		}
 
 		public static void StartContent (Stream stream) {
 			// sends the last empty newline after headers
 			SendLine (stream, "");
 		}
-		
+
 		public static void SendHeadersAndStartContent (Stream stream, params string[] headers) {
 			SendStatus (stream, "200 OK");
 			foreach (string header in headers) {
@@ -210,7 +209,7 @@ namespace FSpot.Tools.LiveWebGallery
 			}
 			StartContent (stream);
 		}
-		
+
 		public string MimeTypeForExt (string ext)
 		{
 			switch (ext.ToLower ()) {
@@ -231,7 +230,7 @@ namespace FSpot.Tools.LiveWebGallery
 		}
 
 	}
-	
+
 	public interface IWebStats
 	{
 		void IncomingRequest (IPAddress addr);

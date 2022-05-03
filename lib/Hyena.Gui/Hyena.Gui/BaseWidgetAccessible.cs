@@ -27,18 +27,17 @@
 //
 
 using System;
-using System.Linq;
 using System.Collections.Generic;
 
 using Atk;
 
 namespace Hyena.Gui
 {
-    public class BaseWidgetAccessible : Gtk.Accessible, Atk.ComponentImplementor
+	public class BaseWidgetAccessible : Gtk.Accessible, Atk.ComponentImplementor
     {
-        private Gtk.Widget widget;
-        private uint focus_id = 0;
-        private Dictionary<uint, Atk.FocusHandler> focus_handlers = new Dictionary<uint, Atk.FocusHandler> ();
+        Gtk.Widget widget;
+        uint focus_id = 0;
+        Dictionary<uint, Atk.FocusHandler> focus_handlers = new Dictionary<uint, Atk.FocusHandler> ();
 
         public BaseWidgetAccessible (Gtk.Widget widget)
         {
@@ -75,14 +74,14 @@ namespace Hyena.Gui
             return s;
         }
 
-        private static void AddStateIf (StateSet s, bool condition, StateType t)
+        static void AddStateIf (StateSet s, bool condition, StateType t)
         {
             if (condition) {
                 s.AddState (t);
             }
         }
 
-        private void OnFocus (object o, EventArgs args)
+        void OnFocus (object o, EventArgs args)
         {
             NotifyStateChange (StateType.Focused, widget.HasFocus);
             var handler = FocusChanged;
@@ -91,12 +90,12 @@ namespace Hyena.Gui
             }
         }
 
-        private void OnMap (object o, EventArgs args)
+        void OnMap (object o, EventArgs args)
         {
             NotifyStateChange (StateType.Showing, widget.Visible && widget.IsMapped);
         }
 
-        private void OnAllocated (object o, EventArgs args)
+        void OnAllocated (object o, EventArgs args)
         {
             var a = widget.Allocation;
             var bounds = new Atk.Rectangle () { X = a.X, Y = a.Y, Width = a.Width, Height = a.Height };
@@ -107,7 +106,7 @@ namespace Hyena.Gui
             }*/
         }
 
-        private event FocusHandler FocusChanged;
+        event FocusHandler FocusChanged;
 
         #region Atk.Component
 
@@ -216,7 +215,7 @@ namespace Hyena.Gui
             return SetSizeAndPosition (x, y, 0, 0, coordType, false);
         }
 
-        private bool SetSizeAndPosition (int x, int y, int w, int h, Atk.CoordType coordType, bool setSize)
+        bool SetSizeAndPosition (int x, int y, int w, int h, Atk.CoordType coordType, bool setSize)
         {
             if (!widget.IsTopLevel) {
                 return false;

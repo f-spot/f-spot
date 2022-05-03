@@ -33,7 +33,7 @@ using System.Text;
 
 namespace Hyena
 {
-    public static class Paths
+    static class Paths
     {
         public const char UnixSeparator = ':';
         public const char DosSeparator = ';';
@@ -64,7 +64,7 @@ namespace Hyena
 
             do {
                 string guid = Guid.NewGuid ().ToString ();
-                string file = extension == null ? guid : String.Format ("{0}.{1}", guid, extension);
+                string file = extension == null ? guid : $"{guid}.{extension}";
                 path = Path.Combine (dir.FullName, file);
             } while (File.Exists (path));
 
@@ -73,7 +73,7 @@ namespace Hyena
 
         public static string Combine (string first, params string [] components)
         {
-            if (String.IsNullOrEmpty (first)) {
+            if (string.IsNullOrEmpty (first)) {
                 throw new ArgumentException ("First component must not be null or empty", nameof (first));
             } else if (components == null || components.Length < 1) {
                 throw new ArgumentException ("One or more path components must be provided", nameof (components));
@@ -105,10 +105,10 @@ namespace Hyena
             return null;
         }
 
-        private static string [] GetExecPaths ()
+        static string [] GetExecPaths ()
         {
             string path = Environment.GetEnvironmentVariable ("PATH");
-            if (String.IsNullOrEmpty (path)) {
+            if (string.IsNullOrEmpty (path)) {
                 return new string [] { "/bin", "/usr/bin", "/usr/local/bin" };
             }
 
@@ -126,7 +126,7 @@ namespace Hyena
 
         public static string MakePathRelative (string path, string to)
         {
-            if (String.IsNullOrEmpty (path) || String.IsNullOrEmpty (to)) {
+            if (string.IsNullOrEmpty (path) || string.IsNullOrEmpty (to)) {
                 return null;
             }
 
@@ -137,11 +137,11 @@ namespace Hyena
             }
 
             if (path == to) {
-                return String.Empty;
+                return string.Empty;
             }
 
             if (to[to.Length - 1] != Path.DirectorySeparatorChar) {
-                to = to + Path.DirectorySeparatorChar;
+                to += Path.DirectorySeparatorChar;
             }
 
             if (path.StartsWith (to))
@@ -152,7 +152,7 @@ namespace Hyena
             return BuildRelativePath (path, to);
         }
 
-        private static string BuildRelativePath (string path, string to)
+        static string BuildRelativePath (string path, string to)
         {
             var toParts = to.Split (Path.DirectorySeparatorChar);
             var pathParts = path.Split (Path.DirectorySeparatorChar);
@@ -172,7 +172,7 @@ namespace Hyena
             for (int j = i; j < pathParts.Length; j++) {
                 required [j - i] = pathParts [j];
             }
-            relativePath.Append (String.Join (Path.DirectorySeparatorChar.ToString (), required));
+            relativePath.Append (string.Join (Path.DirectorySeparatorChar.ToString (), required));
 
             return relativePath.ToString ();
         }
@@ -198,7 +198,7 @@ namespace Hyena
             get; private set;
         }
 
-        private static string application_name = null;
+        static string application_name = null;
 
         public static string ApplicationName {
             get {
@@ -210,7 +210,7 @@ namespace Hyena
             set { application_name = value; InitializePaths (); }
         }
 
-        private static string user_application_name = null;
+        static string user_application_name = null;
         public static string UserApplicationName {
             get {
                 var application_name = user_application_name ?? ApplicationName;
@@ -223,7 +223,7 @@ namespace Hyena
         }
 
         // This can only happen after ApplicationName is set.
-        private static void InitializePaths ()
+        static void InitializePaths ()
         {
             ApplicationCache = Path.Combine (XdgBaseDirectorySpec.GetUserDirectory (
                 "XDG_CACHE_HOME", ".cache"), UserApplicationName);
@@ -234,7 +234,6 @@ namespace Hyena
                 Directory.CreateDirectory (ApplicationData);
             }
         }
-
 
         public static string ExtensionCacheRoot {
             get { return Path.Combine (ApplicationCache, "extensions"); }
@@ -258,7 +257,7 @@ namespace Hyena
             }
         }
 
-        private static string installed_application_prefix = null;
+        static string installed_application_prefix = null;
         public static string InstalledApplicationPrefix {
             get {
                 if (installed_application_prefix == null) {

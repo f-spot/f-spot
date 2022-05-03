@@ -27,13 +27,12 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
 using System.IO;
 using System.Text;
 
 namespace Hyena.Query
 {
-    public abstract class QueryParser
+	public abstract class QueryParser
     {
         protected StreamReader reader;
 

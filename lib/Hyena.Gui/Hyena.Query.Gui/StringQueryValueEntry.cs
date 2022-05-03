@@ -28,12 +28,11 @@
 
 using System;
 
-using Hyena.Query;
 using Gtk;
 
 namespace Hyena.Query.Gui
 {
-    public class StringQueryValueEntry : QueryValueEntry
+	public class StringQueryValueEntry : QueryValueEntry
     {
         protected Gtk.Entry entry;
         protected StringQueryValue query_value;

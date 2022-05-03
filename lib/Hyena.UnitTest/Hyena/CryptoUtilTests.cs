@@ -26,14 +26,13 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
 using System.IO;
+
 using NUnit.Framework;
-using Hyena;
 
 namespace Hyena.Tests
 {
-    [TestFixture]
+	[TestFixture]
     public class CryptoUtilTests
     {
         [Test]

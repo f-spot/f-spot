@@ -30,11 +30,10 @@ using System;
 using System.Linq;
 
 using NUnit.Framework;
-using Hyena.Data.Sqlite;
 
 namespace Hyena.Data.Sqlite
 {
-    [TestFixture]
+	[TestFixture]
     public class SqliteTests
     {
         Connection con;

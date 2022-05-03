@@ -42,10 +42,10 @@ namespace Hyena.Widgets
 
         public class Segment
         {
-            private string title;
-            private double percent;
-            private Cairo.Color color;
-            private bool show_in_bar;
+            string title;
+            double percent;
+            Cairo.Color color;
+            bool show_in_bar;
 
             public Segment (string title, double percent, Cairo.Color color)
                 : this (title, percent, color, true)
@@ -85,24 +85,24 @@ namespace Hyena.Widgets
         }
 
         // State
-        private List<Segment> segments = new List<Segment> ();
-        private int layout_width;
-        private int layout_height;
+        List<Segment> segments = new List<Segment> ();
+        int layout_width;
+        int layout_height;
 
         // Properties
-        private int bar_height = 26;
-        private int bar_label_spacing = 8;
-        private int segment_label_spacing = 16;
-        private int segment_box_size = 12;
-        private int segment_box_spacing = 6;
-        private int h_padding = 0;
+        int bar_height = 26;
+        int bar_label_spacing = 8;
+        int segment_label_spacing = 16;
+        int segment_box_size = 12;
+        int segment_box_spacing = 6;
+        int h_padding = 0;
 
-        private bool show_labels = true;
-        private bool reflect = true;
+        bool show_labels = true;
+        bool reflect = true;
 
-        private Color remainder_color = CairoExtensions.RgbToColor (0xeeeeee);
+        Color remainder_color = CairoExtensions.RgbToColor (0xeeeeee);
 
-        private BarValueFormatHandler format_handler;
+        BarValueFormatHandler format_handler;
 
         public SegmentedBar ()
         {
@@ -139,7 +139,7 @@ namespace Hyena.Widgets
             base.OnSizeAllocated (allocation);
         }
 
-        private void ComputeLayoutSize ()
+        void ComputeLayoutSize ()
         {
             if (segments.Count == 0) {
                 return;
@@ -379,7 +379,7 @@ namespace Hyena.Widgets
             return true;
         }
 
-        private Pattern RenderBar (int w, int h)
+        Pattern RenderBar (int w, int h)
         {
             ImageSurface s = new ImageSurface (Format.Argb32, w, h);
             Context cr = new Context (s);
@@ -393,13 +393,13 @@ namespace Hyena.Widgets
             return pattern;
         }
 
-        private void RenderBar (Context cr, int w, int h, int r)
+        void RenderBar (Context cr, int w, int h, int r)
         {
             RenderBarSegments (cr, w, h, r);
             RenderBarStrokes (cr, w, h, r);
         }
 
-        private void RenderBarSegments (Context cr, int w, int h, int r)
+        void RenderBarSegments (Context cr, int w, int h, int r)
         {
             LinearGradient grad = new LinearGradient (0, 0, w, 0);
             double last = 0.0;
@@ -426,7 +426,7 @@ namespace Hyena.Widgets
 	    cr.GetSource ().Dispose ();
         }
 
-        private void RenderBarStrokes (Context cr, int w, int h, int r)
+        void RenderBarStrokes (Context cr, int w, int h, int r)
         {
             LinearGradient stroke = MakeSegmentGradient (h, CairoExtensions.RgbaToColor (0x00000040));
             LinearGradient seg_sep_light = MakeSegmentGradient (h, CairoExtensions.RgbaToColor (0xffffff20));
@@ -460,12 +460,12 @@ namespace Hyena.Widgets
 	    seg_sep_dark.Dispose ();
         }
 
-        private LinearGradient MakeSegmentGradient (int h, Color color)
+        LinearGradient MakeSegmentGradient (int h, Color color)
         {
             return MakeSegmentGradient (h, color, false);
         }
 
-        private LinearGradient MakeSegmentGradient (int h, Color color, bool diag)
+        LinearGradient MakeSegmentGradient (int h, Color color, bool diag)
         {
             LinearGradient grad = new LinearGradient (0, 0, 0, h);
             grad.AddColorStop (0, CairoExtensions.ColorShade (color, 1.1));
@@ -474,7 +474,7 @@ namespace Hyena.Widgets
             return grad;
         }
 
-        private void RenderLabels (Context cr)
+        void RenderLabels (Context cr)
         {
             if (segments.Count == 0) {
                 return;
@@ -528,9 +528,9 @@ namespace Hyena.Widgets
 
 #region Utilities
 
-        private int pango_size_normal;
+        int pango_size_normal;
 
-        private Pango.Layout CreateAdaptLayout (Pango.Layout layout, bool small, bool bold)
+        Pango.Layout CreateAdaptLayout (Pango.Layout layout, bool small, bool bold)
         {
             if (layout == null) {
                 Pango.Context context = CreatePangoContext ();
@@ -551,12 +551,12 @@ namespace Hyena.Widgets
         }
 
 
-        private string FormatSegmentText (Segment segment)
+        string FormatSegmentText (Segment segment)
         {
             return segment.Title;
         }
 
-        private string FormatSegmentValue (Segment segment)
+        string FormatSegmentValue (Segment segment)
         {
             return format_handler == null
                 ? String.Format ("{0}%", segment.Percent * 100.0)
@@ -570,10 +570,10 @@ namespace Hyena.Widgets
 #region Test Module
 
     [TestModule ("Segmented Bar")]
-    internal class SegmentedBarTestModule : Window
+class SegmentedBarTestModule : Window
     {
-        private SegmentedBar bar;
-        private VBox box;
+        SegmentedBar bar;
+        VBox box;
         public SegmentedBarTestModule () : base ("Segmented Bar")
         {
             BorderWidth = 10;

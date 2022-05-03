@@ -28,19 +28,18 @@
 
 using System;
 using System.Reflection;
-using Gtk;
 
-using Hyena;
+using Gtk;
 
 namespace Hyena.Gui
 {
-    public class EditableUndoAdapter<T> where T : Widget, Editable
+	public class EditableUndoAdapter<T> where T : Widget, Editable
     {
-        private T editable;
-        private UndoManager undo_manager = new UndoManager ();
-        private AccelGroup accel_group = new AccelGroup ();
-        private EventInfo popup_event_info;
-        private Delegate populate_popup_handler;
+        T editable;
+        UndoManager undo_manager = new UndoManager ();
+        AccelGroup accel_group = new AccelGroup ();
+        EventInfo popup_event_info;
+        Delegate populate_popup_handler;
 
         public EditableUndoAdapter (T editable)
         {
@@ -67,7 +66,7 @@ namespace Hyena.Gui
             TogglePopupConnection (false);
         }
 
-        private void TogglePopupConnection (bool connect)
+        void TogglePopupConnection (bool connect)
         {
             // Ugh, stupid Gtk+/Gtk# and lack of interfaces
             if (popup_event_info != null && populate_popup_handler != null) {
@@ -79,7 +78,7 @@ namespace Hyena.Gui
             }
         }
 
-        private void OnKeyPressEvent (object o, KeyPressEventArgs args)
+        void OnKeyPressEvent (object o, KeyPressEventArgs args)
         {
             if ((args.Event.State & Gdk.ModifierType.ControlMask) != 0) {
                 switch (args.Event.Key) {
@@ -99,7 +98,7 @@ namespace Hyena.Gui
         }
 
         [GLib.ConnectBefore]
-        private void OnTextDeleted (object o, TextDeletedArgs args)
+void OnTextDeleted (object o, TextDeletedArgs args)
         {
             if (args.StartPos != args.EndPos) {
                 undo_manager.AddUndoAction (new EditableEraseAction (editable, args.StartPos, args.EndPos));
@@ -107,12 +106,12 @@ namespace Hyena.Gui
         }
 
         [GLib.ConnectBefore]
-        private void OnTextInserted (object o, TextInsertedArgs args)
+void OnTextInserted (object o, TextInsertedArgs args)
         {
             undo_manager.AddUndoAction (new EditableInsertAction (editable, args.Position, args.Text, args.Length));
         }
 
-        private void OnPopulatePopup (object o, PopulatePopupArgs args)
+        void OnPopulatePopup (object o, PopulatePopupArgs args)
         {
             Menu menu = args.Menu;
             MenuItem item;

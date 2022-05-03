@@ -31,15 +31,13 @@ using System;
 using System.Collections.Generic;
 
 using Gtk;
-
-using FSpot;
 using FSpot.Core;
 using FSpot.Extensions;
 using FSpot.Imaging;
 using FSpot.Utils;
 
-using Hyena;
 using Hyena.Widgets;
+
 
 namespace FSpot.Tools.RawPlusJpeg
 {
@@ -47,7 +45,7 @@ namespace FSpot.Tools.RawPlusJpeg
 	{
 		public void Run (object o, EventArgs e)
 		{
-			Log.Debug ("EXECUTING RAW PLUS JPEG EXTENSION");
+			Logger.Log.Debug ("EXECUTING RAW PLUS JPEG EXTENSION");
 
 			if (ResponseType.Ok != HigMessageDialog.RunHigConfirmation (
 				App.Instance.Organizer.Window,
@@ -116,7 +114,7 @@ namespace FSpot.Tools.RawPlusJpeg
 
 			public void Merge ()
 			{
-				Log.DebugFormat ("Merging {0} and {1}", raw.VersionUri (Photo.OriginalVersionId), jpeg.VersionUri (Photo.OriginalVersionId));
+				Logger.Log.Debug ($"Merging {raw.VersionUri (Photo.OriginalVersionId)} and {jpeg.VersionUri (Photo.OriginalVersionId)}");
 				foreach (uint version_id in jpeg.VersionIds) {
 					string name = jpeg.GetVersion (version_id).Name;
 					try {
@@ -126,7 +124,7 @@ namespace FSpot.Tools.RawPlusJpeg
 						else
 							raw.RenameVersion (raw.DefaultVersionId, name);
 					} catch (Exception e) {
-						Log.Exception (e);
+						Logger.Log.Error (e, "");
 					}
 				}
 				raw.AddTag (jpeg.Tags);
@@ -136,7 +134,7 @@ namespace FSpot.Tools.RawPlusJpeg
 					try {
 						jpeg.DeleteVersion (version_id, true, true);
 					} catch (Exception e) {
-						Log.Exception (e);
+						Logger.Log.Error (e, "");
 					}
 				}
 				raw.Changes.DataChanged = true;

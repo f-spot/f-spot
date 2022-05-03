@@ -36,7 +36,7 @@ namespace Hyena.Widgets
 {
     public class PulsingButton : Button
     {
-        private static Stage<PulsingButton> default_stage;
+        static Stage<PulsingButton> default_stage;
         public static Stage<PulsingButton> DefaultStage {
             get {
                 if (default_stage == null) {
@@ -48,7 +48,7 @@ namespace Hyena.Widgets
             }
         }
 
-        private Pulsator<PulsingButton> pulsator = new Pulsator<PulsingButton> ();
+        Pulsator<PulsingButton> pulsator = new Pulsator<PulsingButton> ();
 
         public Stage<PulsingButton> Stage {
             get { return pulsator.Stage; }
@@ -75,7 +75,7 @@ namespace Hyena.Widgets
             Setup ();
         }
 
-        private void Setup ()
+        void Setup ()
         {
             Stage = DefaultStage;
             pulsator.Target = this;

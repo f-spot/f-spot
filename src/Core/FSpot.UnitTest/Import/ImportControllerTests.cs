@@ -27,9 +27,11 @@
 //
 
 using System;
-using FSpot.Core;
+
 using Hyena;
+
 using Mocks;
+
 using NUnit.Framework;
 
 namespace FSpot.Import

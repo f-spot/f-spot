@@ -46,12 +46,13 @@ using FSpot.Extensions;
 using FSpot.Utils;
 using FSpot.UI.Dialog;
 using FSpot.Widgets;
-using FSpot.Platform;
 using FSpot.Core;
 using FSpot.Settings;
 using FSpot.Thumbnail;
 
-namespace FSpot {
+
+namespace FSpot
+{
 	public class SingleView {
 		ToolButton rr_button, rl_button;
 		Sidebar sidebar;
@@ -95,7 +96,7 @@ namespace FSpot {
 		public SingleView (SafeUri [] uris)
 		{
 			uri = uris [0];
-			Log.Debug ("uri: " + uri);
+			Logger.Log.Debug ($"uri: {uri}");
 
 			var builder = new GtkBeans.Builder ("single_view.ui");
 			builder.Autoconnect (this);
@@ -224,7 +225,7 @@ namespace FSpot {
 		public void HandleCollectionChanged (IBrowsableCollection collection)
 		{
 			if (collection.Count > 0 && directory_view.Selection.Count == 0) {
-				Log.Debug ("Added selection");
+				Logger.Log.Debug ("Added selection");
 				directory_view.Selection.Add (0);
 			}
 

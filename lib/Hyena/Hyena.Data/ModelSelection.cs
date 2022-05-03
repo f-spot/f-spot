@@ -26,7 +26,6 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -34,11 +33,11 @@ using Hyena.Collections;
 
 namespace Hyena.Data
 {
-    //public class ModelSelection<T> : IList<T>
-    public class ModelSelection<T> : IEnumerable<T>
+	//public class ModelSelection<T> : IList<T>
+	public class ModelSelection<T> : IEnumerable<T>
     {
-        private IListModel<T> model;
-        private Selection selection;
+        IListModel<T> model;
+        Selection selection;
 
 #region Properties
 

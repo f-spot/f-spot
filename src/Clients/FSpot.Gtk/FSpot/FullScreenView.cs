@@ -38,9 +38,8 @@ using FSpot.Widgets;
 using FSpot.Gui;
 using FSpot.Utils;
 
-using Hyena;
-
 using Mono.Unix;
+
 
 namespace FSpot
 {
@@ -208,7 +207,7 @@ namespace FSpot
 
 				notebook.CurrentPage = 0;
 			} catch (Exception e) {
-				Log.Exception (e);
+				Logger.Log.Error (e, "");
 			}
 		}
 

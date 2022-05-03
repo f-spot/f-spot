@@ -80,7 +80,7 @@ namespace Hyena.Gui
          *
          * Add new entries to the end of this list.
          */
-        private static readonly float[,] color_regions = {
+        static readonly float[,] color_regions = {
             {40.0f,  60.0f, -100.0f, -80.0f,  -10.0f,  20.0f}, /* Aqua */
             { 0.0f,  30.0f,    0.0f,   0.0f,    0.0f,   0.0f}, /* Black */
             {25.0f,  35.0f, -100.0f,   0.0f, -100.0f, -50.0f}, /* Blue */
@@ -110,7 +110,7 @@ namespace Hyena.Gui
          * in sRGB, but avoids numerical problems.
          */
 
-        private static float srgb_to_xyz_g (float K)
+        static float srgb_to_xyz_g (float K)
         {
             const float a     = 0.055f;
             const float gamma = 2.4f;
@@ -122,7 +122,7 @@ namespace Hyena.Gui
                 return K / 12.92f;
         }
 
-        private static float xyz_to_lab_f(float t)
+        static float xyz_to_lab_f(float t)
         {
             if (t > 0.008856f)
                 return (float) Math.Pow(t, 1.0f/3.0f);
@@ -130,7 +130,7 @@ namespace Hyena.Gui
                 return 7.787f*t + 16.0f/116.0f;
         }
 
-        private static void rgb_to_lab(ushort R, ushort G, ushort B, out float L, out float a, out float b)
+        static void rgb_to_lab(ushort R, ushort G, ushort B, out float L, out float a, out float b)
         {
             float x, y, z, gr, gg, gb, fy;
 
@@ -157,7 +157,7 @@ namespace Hyena.Gui
             b = 200.0f * (fy - xyz_to_lab_f(z / Zn));
         }
 
-        private static float xyz_to_srgb_C(float K)
+        static float xyz_to_srgb_C(float K)
         {
             const float a     = 0.055f;
             const float gamma = 2.4f;
@@ -169,7 +169,7 @@ namespace Hyena.Gui
                 return K * 12.92f;
         }
 
-        private static void lab_to_rgb(float L, float a, float b, out ushort R, out ushort G, out ushort B)
+        static void lab_to_rgb(float L, float a, float b, out ushort R, out ushort G, out ushort B)
         {
             float x, y, z, fy, fx, fz, delta, delta2, rs, gs, bs;
 
@@ -230,7 +230,7 @@ namespace Hyena.Gui
                 B = (ushort) tmp;
         }
 
-        private static float lab_distance(float La, float aa, float ba, float Lb, float ab, float bb)
+        static float lab_distance(float La, float aa, float ba, float Lb, float ab, float bb)
         {
             float dL, da, db;
 

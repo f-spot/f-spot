@@ -28,12 +28,12 @@
 
 using System;
 using System.Reflection;
+
 using NUnit.Framework;
-using Hyena.Data.Sqlite;
 
 namespace Hyena.Data.Sqlite.Tests
 {
-    [TestFixture]
+	[TestFixture]
     public class SqliteCommandTests
     {
         [Test]

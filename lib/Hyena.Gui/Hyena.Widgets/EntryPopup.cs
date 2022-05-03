@@ -26,17 +26,16 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 using System;
-using System.Timers;
-using Gdk;
+
 using Gtk;
 
 namespace Hyena.Widgets
 {
-    public class EntryPopup : Gtk.Window
+	public class EntryPopup : Gtk.Window
     {
-        private Entry text_entry;
-        private HBox hbox;
-        private uint timeout_id = 0;
+        Entry text_entry;
+        HBox hbox;
+        uint timeout_id = 0;
 
         public event EventHandler<EventArgs> Changed;
         public event EventHandler<KeyPressEventArgs> KeyPressed;
@@ -108,25 +107,25 @@ namespace Hyena.Widgets
         public Entry Entry { get { return text_entry; } }
         public HBox Box { get { return hbox; } }
 
-        private bool hide_after_timeout = true;
+        bool hide_after_timeout = true;
         public bool HideAfterTimeout {
             get { return hide_after_timeout; }
             set { hide_after_timeout = value; }
         }
 
-        private uint timeout = 5000;
+        uint timeout = 5000;
         public uint Timeout {
             get { return timeout; }
             set { timeout = value; }
         }
 
-        private bool hide_when_focus_lost = true;
+        bool hide_when_focus_lost = true;
         public bool HideOnFocusOut {
             get { return hide_when_focus_lost; }
             set { hide_when_focus_lost = value; }
         }
 
-        private bool reset_when_hiding = true;
+        bool reset_when_hiding = true;
         public bool ResetOnHide {
             get { return reset_when_hiding; }
             set { reset_when_hiding = value; }
@@ -180,7 +179,7 @@ namespace Hyena.Widgets
             Move (x, y);
         }
 
-        private void ResetDelayedHide ()
+        void ResetDelayedHide ()
         {
             if (timeout_id > 0) {
                 GLib.Source.Remove (timeout_id);
@@ -188,7 +187,7 @@ namespace Hyena.Widgets
             }
         }
 
-        private void InitializeDelayedHide ()
+        void InitializeDelayedHide ()
         {
             ResetDelayedHide ();
             timeout_id = GLib.Timeout.Add (timeout, delegate {
@@ -197,7 +196,7 @@ namespace Hyena.Widgets
                         });
         }
 
-        private void HidePopup ()
+        void HidePopup ()
         {
             ResetDelayedHide ();
             Hide ();

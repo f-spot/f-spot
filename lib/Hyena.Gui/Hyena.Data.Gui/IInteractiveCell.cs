@@ -26,11 +26,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-
 namespace Hyena.Data.Gui
 {
-    public interface IInteractiveCell
+	public interface IInteractiveCell
     {
         bool ButtonEvent (Hyena.Gui.Canvas.Point cursor,  bool pressed, uint button);
         bool CursorMotionEvent (Hyena.Gui.Canvas.Point cursor);

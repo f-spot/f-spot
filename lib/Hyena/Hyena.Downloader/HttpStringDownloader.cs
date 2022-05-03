@@ -31,7 +31,7 @@ namespace Hyena.Downloader
 {
     public class HttpStringDownloader : HttpDownloader
     {
-        private Encoding detected_encoding;
+        Encoding detected_encoding;
 
         public string Content { get; private set; }
         public Encoding Encoding { get; set; }
@@ -41,7 +41,7 @@ namespace Hyena.Downloader
         {
             var default_encoding = Encoding.UTF8;
 
-            if (detected_encoding == null && !String.IsNullOrEmpty (State.CharacterSet)) {
+            if (detected_encoding == null && !string.IsNullOrEmpty (State.CharacterSet)) {
                 try {
                     detected_encoding = Encoding.GetEncoding (State.CharacterSet);
                 } catch {
@@ -62,7 +62,7 @@ namespace Hyena.Downloader
                 try {
                     handler (this);
                 } catch (Exception e) {
-                    Log.Exception (String.Format ("HttpStringDownloader.Finished handler ({0})", Uri), e);
+                    Log.Exception (string.Format ("HttpStringDownloader.Finished handler ({0})", Uri), e);
                 }
             }
 

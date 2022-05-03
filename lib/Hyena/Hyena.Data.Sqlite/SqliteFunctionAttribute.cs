@@ -40,15 +40,14 @@
  ********************************************************/
 
 using System;
-using System.Runtime.InteropServices;
 
 namespace Hyena.Data.Sqlite
 {
-    /// <summary>
-    /// A simple custom attribute to enable us to easily find user-defined functions in
-    /// the loaded assemblies and initialize them in Sqlite as connections are made.
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = true)]
+	/// <summary>
+	/// A simple custom attribute to enable us to easily find user-defined functions in
+	/// the loaded assemblies and initialize them in Sqlite as connections are made.
+	/// </summary>
+	[AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = true)]
     public class SqliteFunctionAttribute : Attribute
     {
         internal Type        _instanceType;

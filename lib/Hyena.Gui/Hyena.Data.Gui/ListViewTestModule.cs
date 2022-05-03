@@ -28,23 +28,21 @@
 
 using System;
 using System.Collections.Generic;
+
 using Gtk;
 
-using Hyena.Data;
-using Hyena.Collections;
 using Hyena.Gui;
 using Hyena.Gui.Canvas;
-using Hyena.Data.Gui;
 
 using Selection = Hyena.Collections.Selection;
 
 namespace Hyena.Data.Gui.Tests
 {
-    [TestModule ("List View")]
+	[TestModule ("List View")]
     public class ListViewTestModule : Window
     {
-        private View view;
-        private Model model;
+        View view;
+        Model model;
 
         public ListViewTestModule () : base ("ListView")
         {
@@ -65,7 +63,7 @@ namespace Hyena.Data.Gui.Tests
             view.SetModel (model);
         }
 
-        private class View : ListView<ModelItem>
+        class View : ListView<ModelItem>
         {
             public View ()
             {
@@ -86,8 +84,8 @@ namespace Hyena.Data.Gui.Tests
     [TestModule ("Grid View")]
     public class GridViewTestModule : Window
     {
-        private View view;
-        private Model model;
+        View view;
+        Model model;
 
         public GridViewTestModule () : base ("GridView")
         {
@@ -125,7 +123,7 @@ namespace Hyena.Data.Gui.Tests
             view.SetModel (model);
         }
 
-        private class View : ListView<ModelItem>
+        class View : ListView<ModelItem>
         {
             public View ()
             {
@@ -158,10 +156,10 @@ namespace Hyena.Data.Gui.Tests
         }
     }
 
-    internal class Model : IListModel<ModelItem>
+    class Model : IListModel<ModelItem>
     {
-        private List<ModelItem> store = new List<ModelItem> ();
-        private Selection selection = new Selection ();
+        List<ModelItem> store = new List<ModelItem> ();
+        Selection selection = new Selection ();
 
         public event EventHandler Cleared;
         public event EventHandler Reloaded;
@@ -204,7 +202,7 @@ namespace Hyena.Data.Gui.Tests
         }
     }
 
-    internal class ModelItem
+    class ModelItem
     {
         public ModelItem (int i, Random rand)
         {
@@ -226,10 +224,10 @@ namespace Hyena.Data.Gui.Tests
         int g; public int G { get { return g; } set { g = value; } }
     }
 
-    internal class ColumnCellDoodle : ColumnCell, IInteractiveCell
+    class ColumnCellDoodle : ColumnCell, IInteractiveCell
     {
-        private Random random = new Random ();
-        private bool red = false;
+        Random random = new Random ();
+        bool red = false;
 
         public ColumnCellDoodle (string property, bool expand) : base (property, expand)
         {
@@ -257,7 +255,7 @@ namespace Hyena.Data.Gui.Tests
             cr.Stroke ();
         }
 
-        private object last_pressed_bound;
+        object last_pressed_bound;
 
         public bool ButtonEvent (int x, int y, bool pressed, Gdk.EventButton evnt)
         {
@@ -287,7 +285,7 @@ namespace Hyena.Data.Gui.Tests
             return true;
         }
 
-        private List<Gdk.Point> Points {
+        List<Gdk.Point> Points {
             get { return (List<Gdk.Point>)BoundObject; }
         }
     }

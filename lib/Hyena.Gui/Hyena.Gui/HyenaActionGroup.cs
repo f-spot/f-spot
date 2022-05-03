@@ -26,19 +26,18 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
 using System.Collections.Generic;
 
 using Gtk;
 
 namespace Hyena.Gui
 {
-    public class HyenaActionGroup : ActionGroup
+	public class HyenaActionGroup : ActionGroup
     {
-        private List<uint> ui_merge_ids = new List<uint> ();
-        private ActionManager action_manager;
+        List<uint> ui_merge_ids = new List<uint> ();
+        ActionManager action_manager;
 
-        private bool important_by_default = true;
+        bool important_by_default = true;
         protected bool ImportantByDefault {
             get { return important_by_default; }
             set { important_by_default = value; }

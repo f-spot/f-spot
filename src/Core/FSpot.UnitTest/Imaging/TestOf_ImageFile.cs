@@ -36,6 +36,7 @@ using NUnit.Framework;
 
 using Hyena;
 
+
 namespace FSpot.Imaging
 {
 	[TestFixture]
@@ -99,7 +100,7 @@ namespace FSpot.Imaging
 				}
 
 				if (!_imageTypes.Contains (test_key)) {
-					Log.Information ($"Missing key for {test_key}");
+					Logger.Log.Information ($"Missing key for {test_key}");
 					missing = true;
 				}
 			}
@@ -119,7 +120,7 @@ namespace FSpot.Imaging
 					type = $"taglib/{type.Substring (1)}";
 
 				if (!TagLib.FileTypes.AvailableTypes.ContainsKey (type)) {
-					Log.Information ($"Missing type support in Taglib# for {type}");
+					Logger.Log.Information ($"Missing type support in Taglib# for {type}");
 					missingTypes.Add (type);
 					missing = true;
 				}

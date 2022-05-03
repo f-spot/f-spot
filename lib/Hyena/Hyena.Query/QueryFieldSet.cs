@@ -27,13 +27,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using System.Text;
-using System.Collections.Generic;
-
 namespace Hyena.Query
 {
-    public class QueryFieldSet : AliasedObjectSet<QueryField>
+	public class QueryFieldSet : AliasedObjectSet<QueryField>
     {
         public QueryFieldSet (params QueryField [] fields) : base (fields)
         {

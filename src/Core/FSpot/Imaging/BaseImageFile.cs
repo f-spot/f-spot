@@ -37,6 +37,8 @@ using FSpot.Utils;
 
 using Hyena;
 
+
+
 using TagLib.Image;
 
 namespace FSpot.Imaging
@@ -66,7 +68,7 @@ namespace FSpot.Imaging
 
 		public virtual Stream PixbufStream ()
 		{
-			Log.Debug ($"open uri = {Uri}");
+			Logger.Log.Debug ($"open uri = {Uri}");
 			return new FileStream (Uri.AbsolutePath, FileMode.Open, FileAccess.Read);
 		}
 

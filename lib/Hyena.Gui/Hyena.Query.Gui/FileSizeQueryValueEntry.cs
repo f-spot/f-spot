@@ -29,13 +29,11 @@
 using System;
 
 using Mono.Unix;
-
-using Hyena.Query;
 using Gtk;
 
 namespace Hyena.Query.Gui
 {
-    public class FileSizeQueryValueEntry : QueryValueEntry
+	public class FileSizeQueryValueEntry : QueryValueEntry
     {
         protected SpinButton spin_button;
         protected ComboBox combo;

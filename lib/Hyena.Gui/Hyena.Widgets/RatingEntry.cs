@@ -37,12 +37,12 @@ namespace Hyena.Widgets
 {
     public class RatingEntry : Widget
     {
-        private RatingRenderer renderer;
-        private Gdk.Rectangle event_alloc;
-        private int hover_value = -1;
-        private bool interior_focus;
-        private int focus_width;
-        private Gdk.Window event_window;
+        RatingRenderer renderer;
+        Gdk.Rectangle event_alloc;
+        int hover_value = -1;
+        bool interior_focus;
+        int focus_width;
+        Gdk.Window event_window;
 
         public event EventHandler Changing;
         public event EventHandler Changed;
@@ -98,19 +98,19 @@ namespace Hyena.Widgets
 
 #region Public Properties
 
-        private bool always_show_empty_stars = false;
+        bool always_show_empty_stars = false;
         public bool AlwaysShowEmptyStars {
             get { return always_show_empty_stars; }
             set { always_show_empty_stars = value; }
         }
 
-        private bool preview_on_hover = true;
+        bool preview_on_hover = true;
         public bool PreviewOnHover {
             get { return preview_on_hover; }
             set { preview_on_hover = value; }
         }
 
-        private bool has_frame = true;
+        bool has_frame = true;
         public bool HasFrame {
             get { return has_frame; }
             set { has_frame = value; QueueResize (); }
@@ -141,7 +141,7 @@ namespace Hyena.Widgets
             get { return renderer.RatingLevels; }
         }
 
-        private object rated_object;
+        object rated_object;
         public object RatedObject {
             get { return rated_object; }
             set { rated_object = value; }
@@ -209,7 +209,7 @@ namespace Hyena.Widgets
             event_window.Hide ();
         }
 
-        private bool changing_style;
+        bool changing_style;
         protected override void OnStyleSet (Style previous_style)
         {
             if (changing_style) {
@@ -395,7 +395,7 @@ namespace Hyena.Widgets
 
     public class RatingAccessible : Atk.Object, Atk.Value, Atk.ValueImplementor
     {
-        private RatingEntry rating;
+        RatingEntry rating;
 
         public RatingAccessible (IntPtr raw) : base (raw)
         {
@@ -442,7 +442,7 @@ namespace Hyena.Widgets
         }
     }
 
-    internal class RatingAccessibleFactory : Atk.ObjectFactory
+    class RatingAccessibleFactory : Atk.ObjectFactory
     {
         public static void Init ()
         {
@@ -462,7 +462,7 @@ namespace Hyena.Widgets
     }
 
     [Hyena.Gui.TestModule ("Rating Entry")]
-    internal class RatingEntryTestModule : Gtk.Window
+class RatingEntryTestModule : Gtk.Window
     {
         public RatingEntryTestModule () : base ("Rating Entry")
         {

@@ -27,11 +27,10 @@
 //
 
 using System;
-using Hyena.Data.Sqlite;
 
 namespace Hyena.Data.Sqlite.Tests
 {
-    internal enum IntEnum : int
+	internal enum IntEnum : int
     {
         Zero,
         One,

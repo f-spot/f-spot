@@ -27,15 +27,12 @@
 //
 
 using System;
-using System.Text;
-using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using Gtk;
 
 namespace Hyena.Gui
 {
-    public class DragDropList<T> : List<T>
+	public class DragDropList<T> : List<T>
     {
         public DragDropList() : base()
         {

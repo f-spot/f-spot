@@ -27,11 +27,10 @@
 //
 
 using System;
-using Hyena.Widgets;
 
 namespace Hyena.Widgets
 {
-    public enum Blocking
+	public enum Blocking
     {
         Upstage,
         Downstage
@@ -40,7 +39,7 @@ namespace Hyena.Widgets
 
 namespace Hyena.Gui.Theatrics
 {
-    public enum Easing
+	public enum Easing
     {
         Linear,
         QuadraticIn,

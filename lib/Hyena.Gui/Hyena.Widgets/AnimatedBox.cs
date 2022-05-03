@@ -27,37 +27,38 @@
 //
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
+
 using Gdk;
+
 using Gtk;
 
 using Hyena.Gui.Theatrics;
 
 namespace Hyena.Widgets
 {
-    public abstract class AnimatedBox : Container
+	public abstract class AnimatedBox : Container
     {
-        private readonly Stage<AnimatedWidget> stage = new Stage<AnimatedWidget> ();
-        private readonly LinkedList<AnimatedWidget> children = new LinkedList<AnimatedWidget> ();
-        private readonly SingleActorStage border_stage = new Hyena.Gui.Theatrics.SingleActorStage ();
-        private readonly bool horizontal;
+        readonly Stage<AnimatedWidget> stage = new Stage<AnimatedWidget> ();
+        readonly LinkedList<AnimatedWidget> children = new LinkedList<AnimatedWidget> ();
+        readonly SingleActorStage border_stage = new Hyena.Gui.Theatrics.SingleActorStage ();
+        readonly bool horizontal;
 
-        private uint duration = 500;
-        private Easing easing = Easing.Linear;
-        private Blocking blocking = Blocking.Upstage;
-        private int start_padding;
-        private int end_padding;
-        private int spacing;
-        private int start_spacing;
-        private int end_spacing;
-        private int active_count;
+        uint duration = 500;
+        Easing easing = Easing.Linear;
+        Blocking blocking = Blocking.Upstage;
+        int start_padding;
+        int end_padding;
+        int spacing;
+        int start_spacing;
+        int end_spacing;
+        int active_count;
 
-        private int start_border;
-        private int end_border;
-        private double border_bias;
-        private Easing border_easing;
-        private AnimationState border_state;
+        int start_border;
+        int end_border;
+        double border_bias;
+        Easing border_easing;
+        AnimationState border_state;
 
         protected AnimatedBox (bool horizontal)
         {
@@ -73,11 +74,11 @@ namespace Hyena.Widgets
 
 #region Private
 
-        private double Percent {
+        double Percent {
             get { return border_stage.Actor.Percent * border_bias + (1.0 - border_bias); }
         }
 
-        private bool OnActorStep (Actor<AnimatedWidget> actor)
+        bool OnActorStep (Actor<AnimatedWidget> actor)
         {
             switch (actor.Target.AnimationState) {
             case AnimationState.Coming:
@@ -106,7 +107,7 @@ namespace Hyena.Widgets
             return true;
         }
 
-        private void OnBorderIteration (object sender, EventArgs args)
+        void OnBorderIteration (object sender, EventArgs args)
         {
             if (border_stage.Actor == null) {
                 if (border_state == AnimationState.Coming) {
@@ -124,12 +125,12 @@ namespace Hyena.Widgets
             QueueResizeNoRedraw ();
         }
 
-        private void OnWidgetDestroyed (object sender, EventArgs args)
+        void OnWidgetDestroyed (object sender, EventArgs args)
         {
             RemoveCore ((AnimatedWidget)sender);
         }
 
-        private void RecalculateSpacings ()
+        void RecalculateSpacings ()
         {
             int skip_count = 0;
 
@@ -376,7 +377,7 @@ namespace Hyena.Widgets
             Pack (widget, duration, easing, blocking, true);
         }
 
-        private void Pack (Widget widget, uint duration, Easing easing, Blocking blocking, bool end)
+        void Pack (Widget widget, uint duration, Easing easing, Blocking blocking, bool end)
         {
             if (widget == null) {
                 throw new ArgumentNullException (nameof (widget));
@@ -448,7 +449,7 @@ namespace Hyena.Widgets
             RemoveCore (widget, duration, easing, blocking, true, true);
         }
 
-        private void RemoveCore (Widget widget, uint duration, Easing easing, Blocking blocking, bool use_easing, bool use_blocking)
+        void RemoveCore (Widget widget, uint duration, Easing easing, Blocking blocking, bool use_easing, bool use_blocking)
         {
             if (widget == null) {
                 throw new ArgumentNullException (nameof (widget));
@@ -470,12 +471,12 @@ namespace Hyena.Widgets
             RecalculateSpacings ();
         }
 
-        private void RemoveCore (AnimatedWidget widget)
+        void RemoveCore (AnimatedWidget widget)
         {
             RemoveCore (widget, widget.Duration, 0, 0, false, false);
         }
 
-        private void RemoveCore (AnimatedWidget widget, uint duration, Easing easing, Blocking blocking, bool use_easing, bool use_blocking)
+        void RemoveCore (AnimatedWidget widget, uint duration, Easing easing, Blocking blocking, bool use_easing, bool use_blocking)
         {
             if (duration > 0) {
                 widget.Duration = duration;

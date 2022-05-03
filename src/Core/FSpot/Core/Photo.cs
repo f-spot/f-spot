@@ -44,6 +44,7 @@ using FSpot.Settings;
 using FSpot.Thumbnail;
 using FSpot.Utils;
 
+
 namespace FSpot
 {
 	public class Photo : DbItem, IComparable, IPhoto, IPhotoVersionable
@@ -264,7 +265,7 @@ namespace FSpot
 					GetVersion (version).ImportMD5 = HashUtils.GenerateMD5 (VersionUri (version));
 					DefaultVersionId = version;
 				} catch (Exception e) {
-					Log.Exception (e);
+					Logger.Log.Error (e, "");
 					if (create_version)
 						DeleteVersion (version);
 
@@ -326,12 +327,12 @@ namespace FSpot
 
 			if (DirectoryIsEmpty (directory)) {
 				try {
-					Log.Debug ($"Removing empty directory: {directory.FullName}");
+					Logger.Log.Debug ($"Removing empty directory: {directory.FullName}");
 					directory.Delete ();
 				} catch (GLib.GException e) {
 					// silently log the exception, but don't re-throw it
 					// as to not annoy the user
-					Log.Exception (e);
+					Logger.Log.Error (e, "");
 				}
 				// check to see if the parent is empty
 				DeleteEmptyDirectory (directory.Parent);

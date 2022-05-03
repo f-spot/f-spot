@@ -141,7 +141,7 @@ namespace FSpot.Exporters.Facebook
 			try {
 				keyring = Ring.GetDefaultKeyring();
 			} catch (KeyringException e) {
-				Log.DebugException (e);
+				Logger.Log.DebugException (e);
 				return false;
 			}
 
@@ -153,7 +153,7 @@ namespace FSpot.Exporters.Facebook
 			try {
 				Ring.CreateItem (keyring, ItemType.GenericSecret, keyring_item_name, attribs, info.secret, true);
 			} catch (KeyringException e) {
-				Log.DebugException (e);
+				Logger.Log.DebugException (e);
 				return false;
 			}
 
@@ -182,7 +182,7 @@ namespace FSpot.Exporters.Facebook
 					break;
 				}
 			} catch (KeyringException e) {
-				Log.DebugException (e);
+				Logger.Log.DebugException (e);
 			}
 
 			return info;
@@ -196,7 +196,7 @@ namespace FSpot.Exporters.Facebook
 			try {
 				keyring = Ring.GetDefaultKeyring();
 			} catch (KeyringException e) {
-				Log.DebugException (e);
+				Logger.Log.DebugException (e);
 				return false;
 			}
 
@@ -209,7 +209,7 @@ namespace FSpot.Exporters.Facebook
 					success = true;
 				}
 			} catch (KeyringException e) {
-				Log.DebugException (e);
+				Logger.Log.DebugException (e);
 			}
 
 			return success;
@@ -223,15 +223,15 @@ namespace FSpot.Exporters.Facebook
 				SessionInfo info = facebookSession.GetSession();
 				connected = true;
 				if (SaveSessionInfo (info))
-					Log.Information ("Saved session information to keyring");
+					Logger.Log.Information ("Saved session information to keyring");
 				else
-					Log.Warning ("Could not save session information to keyring");
+					Logger.Log.Warning ("Could not save session information to keyring");
 			} catch (KeyringException e) {
 				connected = false;
-				Log.DebugException (e);
+				Logger.Log.DebugException (e);
 			} catch (FacebookException fe) {
 				connected = false;
-				Log.DebugException (fe);
+				Logger.Log.DebugException (fe);
 			}
 			return connected;
 		}
@@ -367,7 +367,7 @@ namespace FSpot.Exporters.Facebook
 					IPhoto item = items [i];
 
 					FileInfo file_info;
-					Log.DebugFormat ("uploading {0}", i);
+					Logger.Log.DebugFormat ("uploading {0}", i);
 
 					progress_dialog.Message = string.Format (Catalog.GetString ("Uploading picture \"{0}\" ({1} of {2})"), item.Name, i + 1, items.Length);
 					progress_dialog.ProgressText = string.Empty;
@@ -385,7 +385,7 @@ namespace FSpot.Exporters.Facebook
 				catch (Exception e) {
 					progress_dialog.Message = string.Format (Catalog.GetString ("Error Uploading To Facebook: {0}"), e.Message);
 					progress_dialog.ProgressText = Catalog.GetString ("Error");
-					Log.DebugException (e);
+					Logger.Log.DebugException (e);
 
 					if (progress_dialog.PerformRetrySkip ())
 						i--;

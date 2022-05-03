@@ -22,27 +22,25 @@
 //
 
 using System;
-using Gdk;
-using Gtk;
 
-using Hyena.Gui.Theatrics;
+using Gdk;
 
 namespace Hyena.Widgets
 {
-    public class SmoothScrolledWindow : Hyena.Widgets.ScrolledWindow
+	public class SmoothScrolledWindow : Hyena.Widgets.ScrolledWindow
     {
-        private bool ignore_value_changed;
-        private uint timeout;
-        private double value;
-        private double target_value;
-        private double velocity = 0;
+        bool ignore_value_changed;
+        uint timeout;
+        double value;
+        double target_value;
+        double velocity = 0;
 
-        private double Accelerate (double velocity)
+        double Accelerate (double velocity)
         {
             return AccelerateCore (velocity);
         }
 
-        private double Decelerate (double velocity)
+        double Decelerate (double velocity)
         {
             return Math.Max (DecelerateCore (velocity), 0);
         }
@@ -57,7 +55,7 @@ namespace Hyena.Widgets
             return velocity - Math.Max (3, 0.2 * velocity);
         }
 
-        private double TargetValue {
+        double TargetValue {
             get { return target_value; }
             set {
                 if (value == target_value) {
@@ -72,7 +70,7 @@ namespace Hyena.Widgets
         }
 
         // Smoothly get us to the target value
-        private bool OnTimeout ()
+        bool OnTimeout ()
         {
             double delta = target_value - value;
             if (delta == 0) {
@@ -133,7 +131,7 @@ namespace Hyena.Widgets
             base.OnUnrealized ();
         }
 
-        private void OnValueChanged (object o, EventArgs args)
+        void OnValueChanged (object o, EventArgs args)
         {
             if (!ignore_value_changed) {
                 value = target_value = Vadjustment.Value;

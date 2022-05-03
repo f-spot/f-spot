@@ -34,7 +34,7 @@ namespace Hyena.Widgets
 {
     public class ComplexMenuItem : MenuItem
     {
-        private bool is_selected = false;
+        bool is_selected = false;
 
         public ComplexMenuItem() : base()
         {
@@ -46,7 +46,7 @@ namespace Hyena.Widgets
 
         // Override OnAdded and OnRemoved so we can work with Gtk.Action/Gtk.UIManager
         // which otherwise would try to replace our child with a Label.
-        private bool first_add = true;
+        bool first_add = true;
         protected override void OnAdded (Widget widget)
         {
             if (first_add) {
@@ -65,7 +65,7 @@ namespace Hyena.Widgets
         }
 
         [GLib.ConnectBefore]
-        private void OnChildExposeEvent(object o, ExposeEventArgs args)
+void OnChildExposeEvent(object o, ExposeEventArgs args)
         {
             // NOTE: This is a little insane, but it allows packing of EventBox based widgets
             // into a GtkMenuItem without breaking the theme (leaving an unstyled void in the item).
@@ -129,7 +129,7 @@ namespace Hyena.Widgets
         }
 
         [GLib.ConnectBefore]
-        private void OnKeyPressEventProxy(object o, KeyPressEventArgs args)
+void OnKeyPressEventProxy(object o, KeyPressEventArgs args)
         {
             if(!IsSelected) {
                 return;

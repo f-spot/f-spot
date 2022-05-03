@@ -34,7 +34,7 @@ namespace Hyena.CommandLine
 {
     public class Layout
     {
-        private List<LayoutGroup> groups;
+        List<LayoutGroup> groups;
 
         public Layout (List<LayoutGroup> groups)
         {
@@ -45,7 +45,7 @@ namespace Hyena.CommandLine
         {
         }
 
-        private int TerminalWidth {
+        int TerminalWidth {
             get { return Console.WindowWidth <= 0 ? 80 : Console.WindowWidth; }
         }
 
@@ -99,7 +99,7 @@ namespace Hyena.CommandLine
                     builder.AppendFormat ("  --{0}{2}{1}", group[i].Name,
                         WrapAlign (group[i].Description, max_description_length,
                             description_alignment, i == n - 1),
-                        String.Empty.PadRight (spacing));
+						string.Empty.PadRight (spacing));
                     builder.AppendLine ();
                 }
 
@@ -116,7 +116,7 @@ namespace Hyena.CommandLine
             return WrapAlign (str, TerminalWidth, 0, true);
         }
 
-        private static string WrapAlign (string str, int width, int align, bool last)
+        static string WrapAlign (string str, int width, int align, bool last)
         {
             StringBuilder builder = new StringBuilder ();
             bool did_wrap = false;
@@ -128,7 +128,7 @@ namespace Hyena.CommandLine
 
                     if (b + word_length >= width) {
                         builder.AppendLine ();
-                        builder.Append (String.Empty.PadRight (align));
+                        builder.Append (string.Empty.PadRight (align));
                         b = 0;
                         did_wrap = true;
                         continue;
@@ -163,7 +163,7 @@ namespace Hyena.CommandLine
             }
         }
 
-        private LayoutGroup FindGroup (string id)
+        LayoutGroup FindGroup (string id)
         {
             foreach (LayoutGroup group in groups) {
                 if (group.Id == id) {
@@ -174,7 +174,7 @@ namespace Hyena.CommandLine
             return null;
         }
 
-        private IEnumerable<LayoutGroup> GroupIdsToGroups (string [] groupIds)
+        IEnumerable<LayoutGroup> GroupIdsToGroups (string [] groupIds)
         {
             foreach (string group_id in groupIds) {
                 LayoutGroup group = FindGroup (group_id);

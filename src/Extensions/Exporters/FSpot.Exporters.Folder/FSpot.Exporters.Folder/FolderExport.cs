@@ -63,8 +63,8 @@ using FSpot.Core;
 using FSpot.Filters;
 using FSpot.Settings;
 using FSpot.Widgets;
-using FSpot.Utils;
 using FSpot.UI.Dialog;
+
 
 namespace FSpot.Exporters.Folder
 {
@@ -209,10 +209,10 @@ namespace FSpot.Exporters.Folder
 				}
 
 				if (scale) {
-					Log.Debug ($"Resize Photos to {size}.");
+					Logger.Log.Debug ($"Resize Photos to {size}.");
 					gallery.SetScale (size);
 				} else {
-					Log.Debug ("Exporting full size.");
+					Logger.Log.Debug ("Exporting full size.");
 				}
 
 				if (exportTags)
@@ -237,7 +237,7 @@ namespace FSpot.Exporters.Folder
 						gallery.ProcessImage (photo_index, filter_set);
 						progress_dialog.ProgressText = string.Format (Catalog.GetString ("{0} of {1}"), (photo_index + 1), selection.Count);
 					} catch (Exception e) {
-						Log.Error (e.ToString ());
+						Logger.Log.Error (e.ToString ());
 						progress_dialog.Message = string.Format (Catalog.GetString ("Error Copying \"{0}\" to Gallery:{2}{1}"),
 							selection[photo_index].Name, e.Message, Environment.NewLine);
 						progress_dialog.ProgressText = Catalog.GetString ("Error");
@@ -264,7 +264,7 @@ namespace FSpot.Exporters.Folder
 				// we've created the structure, now if the destination was local (native) we are done
 				// otherwise we xfer
 				//if (!dest.IsNative) {
-				//	Log.Debug ($"Transferring \"{source.FullName}\" to \"{target.FullName}\"");
+				//	Logger.Log.Debug ($"Transferring \"{source.FullName}\" to \"{target.FullName}\"");
 				//	progress_dialog.Message = string.Format (Catalog.GetString ("Transferring to \"{0}\""), target.FullName);
 				//	progress_dialog.ProgressText = Catalog.GetString ("Transferring...");
 
@@ -278,7 +278,7 @@ namespace FSpot.Exporters.Folder
 				progress_dialog.ButtonLabel = Gtk.Stock.Ok;
 
 				if (open) {
-					Log.Debug ($"Open Path \"{target.FullName}\"");
+					Logger.Log.Debug ($"Open Path \"{target.FullName}\"");
 					ThreadAssist.ProxyToMain (() => { GtkBeans.Global.ShowUri (Dialog.Screen, target.FullName); });
 				}
 
@@ -291,7 +291,7 @@ namespace FSpot.Exporters.Folder
 				Preferences.Set (METHOD_KEY, static_radio.Active ? "static" : original_radio.Active ? "original" : "folder");
 				Preferences.Set (URI_KEY, uri_chooser.Uri);
 			} catch (Exception e) {
-				Log.Error (e.ToString ());
+				Logger.Log.Error (e.ToString ());
 				progress_dialog.Message = e.ToString ();
 				progress_dialog.ProgressText = Catalog.GetString ("Error Transferring");
 			} finally {

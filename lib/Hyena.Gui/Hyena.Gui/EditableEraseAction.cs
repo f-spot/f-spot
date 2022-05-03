@@ -27,20 +27,19 @@
 //
 
 using System;
-using Gtk;
 
-using Hyena;
+using Gtk;
 
 namespace Hyena.Gui
 {
-    internal class EditableEraseAction : IUndoAction
+	class EditableEraseAction : IUndoAction
     {
-        private Editable editable;
-        private string text;
-        private int start;
-        private int end;
-        private bool is_forward;
-        private bool is_cut;
+        Editable editable;
+        string text;
+        int start;
+        int end;
+        bool is_forward;
+        bool is_cut;
 
         public EditableEraseAction (Editable editable, int start, int end)
         {

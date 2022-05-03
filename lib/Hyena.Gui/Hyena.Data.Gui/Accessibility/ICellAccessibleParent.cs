@@ -26,11 +26,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-
 namespace Hyena.Data.Gui.Accessibility
 {
-    public interface ICellAccessibleParent
+	public interface ICellAccessibleParent
     {
         Gdk.Rectangle GetCellExtents (ColumnCellAccessible cell, Atk.CoordType coord_type);
         int GetCellIndex (ColumnCellAccessible cell);

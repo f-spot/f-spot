@@ -34,6 +34,7 @@ using System.Collections.Generic;
 using Hyena;
 using System.IO;
 
+
 namespace FSpot.Imaging
 {
 	class CiffImageFile : BaseImageFile
@@ -89,7 +90,7 @@ namespace FSpot.Imaging
 				for (int i = 0; i < Count; i++)
 				{
 					stream.Read (buf, 0, 10);
-					Log.DebugFormat ("reading {0} {1}", i, stream.Position);
+					Logger.Log.Debug ($"reading {i} {stream.Position}");
 					var entry = new Entry (buf, 0, little);
 					entry_list.Add (entry);
 				}

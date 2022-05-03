@@ -29,13 +29,11 @@
 using System;
 
 using Mono.Unix;
-
-using Hyena.Query;
 using Gtk;
 
 namespace Hyena.Query.Gui
 {
-    public class RelativeTimeSpanQueryValueEntry : TimeSpanQueryValueEntry
+	public class RelativeTimeSpanQueryValueEntry : TimeSpanQueryValueEntry
     {
         public RelativeTimeSpanQueryValueEntry () : base ()
         {

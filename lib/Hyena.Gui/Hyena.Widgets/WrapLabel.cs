@@ -33,17 +33,17 @@ namespace Hyena.Widgets
 {
     public class WrapLabel : Widget
     {
-        private string text;
-        private bool use_markup = false;
-        private bool wrap = true;
-        private Pango.Layout layout;
+        string text;
+        bool use_markup = false;
+        bool wrap = true;
+        Pango.Layout layout;
 
         public WrapLabel ()
         {
             WidgetFlags |= WidgetFlags.NoWindow;
         }
 
-        private void CreateLayout ()
+        void CreateLayout ()
         {
             if (layout != null) {
                 layout.Dispose ();
@@ -53,7 +53,7 @@ namespace Hyena.Widgets
             layout.Wrap = Pango.WrapMode.Word;
         }
 
-        private void UpdateLayout ()
+        void UpdateLayout ()
         {
             if (layout == null) {
                 CreateLayout ();

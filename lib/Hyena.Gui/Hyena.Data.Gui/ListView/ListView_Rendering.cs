@@ -43,9 +43,9 @@ namespace Hyena.Data.Gui
 
     public partial class ListView<T> : ListViewBase
     {
-        private Cairo.Context cairo_context;
-        private CellContext cell_context;
-        private Pango.Layout pango_layout;
+        Cairo.Context cairo_context;
+        CellContext cell_context;
+        Pango.Layout pango_layout;
 
         public override Pango.Layout PangoLayout {
             get {
@@ -64,21 +64,21 @@ namespace Hyena.Data.Gui
             get { return cell_context.FontDescription; }
         }
 
-        private List<int> selected_rows = new List<int> ();
+        List<int> selected_rows = new List<int> ();
 
-        private Theme theme;
+        Theme theme;
         protected Theme Theme {
             get { return theme; }
         }
 
         // Using an auto-property here makes the build fail with mono 1.9.1 (bnc#396633)
-        private bool do_not_render_null_model;
+        bool do_not_render_null_model;
         public bool DoNotRenderNullModel {
             get { return do_not_render_null_model; }
             set { do_not_render_null_model = value; }
         }
 
-        private bool changing_style = false;
+        bool changing_style = false;
 
         protected override void OnStyleSet (Style old_style)
         {
@@ -117,7 +117,7 @@ namespace Hyena.Data.Gui
             SetDirection ();
         }
 
-        private void SetDirection ()
+        void SetDirection ()
         {
             var dir = Direction;
             if (dir == Gtk.TextDirection.None) {
@@ -179,7 +179,7 @@ namespace Hyena.Data.Gui
 
 #region Header Rendering
 
-        private void PaintHeader (Rectangle clip)
+        void PaintHeader (Rectangle clip)
         {
             Rectangle rect = header_rendering_alloc;
             rect.Height += Theme.BorderWidth;
@@ -218,7 +218,7 @@ namespace Hyena.Data.Gui
             cairo_context.ResetClip ();
         }
 
-        private void PaintHeaderCell (Rectangle area, int ci, bool dragging, ref bool have_drawn_separator)
+        void PaintHeaderCell (Rectangle area, int ci, bool dragging, ref bool have_drawn_separator)
         {
             if (ci < 0 || column_cache.Length <= ci)
                 return;
@@ -279,7 +279,7 @@ namespace Hyena.Data.Gui
                                list_rendering_alloc.Height + Theme.InnerBorderWidth * 2);
         }
 
-        private void PaintList (Rectangle clip)
+        void PaintList (Rectangle clip)
         {
             if (ChildSize.Height <= 0) {
                 return;
@@ -390,7 +390,7 @@ namespace Hyena.Data.Gui
             cairo_context.ResetClip ();
         }
 
-        private void PaintReorderLine (int row_index, Rectangle single_list_alloc)
+        void PaintReorderLine (int row_index, Rectangle single_list_alloc)
         {
             if (row_index == drag_reorder_row_index && IsReorderable) {
                 cairo_context.Save ();
@@ -404,7 +404,7 @@ namespace Hyena.Data.Gui
             }
         }
 
-        private void PaintRow (int row_index, Rectangle area, StateType state)
+        void PaintRow (int row_index, Rectangle area, StateType state)
         {
             if (column_cache == null) {
                 return;
@@ -440,7 +440,7 @@ namespace Hyena.Data.Gui
             }
         }
 
-        private void PaintCell (object item, int column_index, int row_index, Rectangle area, bool opaque, bool bold,
+        void PaintCell (object item, int column_index, int row_index, Rectangle area, bool opaque, bool bold,
             StateType state, bool dragging)
         {
             ColumnCell cell = column_cache[column_index].Column.GetCell (0);
@@ -472,7 +472,7 @@ namespace Hyena.Data.Gui
             AccessibleCellRedrawn (column_index, row_index);
         }
 
-        private void PaintDraggingColumn (Rectangle clip)
+        void PaintDraggingColumn (Rectangle clip)
         {
             if (!pressed_column_is_dragging || pressed_column_index < 0) {
                 return;
@@ -508,7 +508,7 @@ namespace Hyena.Data.Gui
 
 #region View Layout Rendering
 
-        private void PaintView (Rect clip)
+        void PaintView (Rect clip)
         {
             clip.Intersect ((Rect)list_rendering_alloc);
             cairo_context.Rectangle ((Cairo.Rectangle)clip);
@@ -565,7 +565,7 @@ namespace Hyena.Data.Gui
             }
         }
 
-        private void InvalidateHeader ()
+        void InvalidateHeader ()
         {
             if (IsRealized) {
                 QueueDirtyRegion (header_rendering_alloc);
@@ -581,7 +581,7 @@ namespace Hyena.Data.Gui
         {
         }
 
-        private bool rules_hint = false;
+        bool rules_hint = false;
         public bool RulesHint {
             get { return rules_hint; }
             set {
@@ -593,7 +593,7 @@ namespace Hyena.Data.Gui
 // FIXME: Obsolete all this measure stuff on the view since it's in the layout
 #region Measuring
 
-        private Gdk.Size child_size = Gdk.Size.Empty;
+        Gdk.Size child_size = Gdk.Size.Empty;
         public Gdk.Size ChildSize {
             get {
                 return ViewLayout != null
@@ -602,7 +602,7 @@ namespace Hyena.Data.Gui
             }
         }
 
-        private bool measure_pending;
+        bool measure_pending;
 
         protected virtual void OnInvalidateMeasure ()
         {
@@ -619,7 +619,7 @@ namespace Hyena.Data.Gui
                 : new Gdk.Size (0, ColumnCellText.ComputeRowHeight (this));
         }
 
-        private void OnMeasure ()
+        void OnMeasure ()
         {
             if (!measure_pending) {
                 return;

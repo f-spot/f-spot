@@ -31,6 +31,7 @@
 
 using System;
 using System.IO;
+
 using FSpot.Core;
 using FSpot.Filters;
 using FSpot.UI.Dialog;
@@ -40,6 +41,8 @@ using Gtk;
 using Hyena;
 
 using Mono.Unix;
+
+
 
 namespace FSpot.Exporters.CD
 {
@@ -142,7 +145,7 @@ namespace FSpot.Exporters.CD
 					throw new Exception ($"{progress_dialog.Message}{Environment.NewLine}{Catalog.GetString ("Error While Transferring")}{Environment.NewLine}{result.ToString ()}");
 
 			} catch (Exception e) {
-				Hyena.Log.DebugException (e);
+				Logger.Log.Debug (e, "");
 				progress_dialog.Message = e.ToString ();
 				progress_dialog.ProgressText = Catalog.GetString ("Error Transferring");
 				return;

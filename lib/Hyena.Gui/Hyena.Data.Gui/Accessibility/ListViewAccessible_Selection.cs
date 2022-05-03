@@ -29,14 +29,10 @@
 //
 
 using System;
-using System.Linq;
-using System.Collections.Generic;
-
-using Hyena.Data.Gui;
 
 namespace Hyena.Data.Gui.Accessibility
 {
-    public partial class ListViewAccessible<T> : Atk.SelectionImplementor
+	public partial class ListViewAccessible<T> : Atk.SelectionImplementor
     {
         public void ListViewAccessible_Selection ()
         {
@@ -82,7 +78,7 @@ namespace Hyena.Data.Gui.Accessibility
             return true;
         }
 
-        private void OnSelectionChanged (object o, EventArgs a)
+        void OnSelectionChanged (object o, EventArgs a)
         {
             GLib.Signal.Emit (this, "selection_changed");
         }

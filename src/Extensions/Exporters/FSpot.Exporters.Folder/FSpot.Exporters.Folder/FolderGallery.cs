@@ -56,13 +56,12 @@ using System;
 using System.IO;
 
 using Hyena;
-
-using FSpot;
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Filters;
 using FSpot.Settings;
 using FSpot.Utils;
+
 
 namespace FSpot.Exporters.Folder
 {
@@ -160,7 +159,7 @@ namespace FSpot.Exporters.Folder
 		{
 			var uri = Collection [image_num].DefaultVersion.Uri;
 			var dest_uri = new SafeUri (GalleryPath);
-	
+
 			// Find an unused name
 			int i = 1;
 			var dest = dest_uri.Append (uri.GetFilename ());
@@ -171,7 +170,7 @@ namespace FSpot.Exporters.Folder
 				dest = dest_uri.Append ($"{filename}-{i++}{extension}");
 				file = new FileInfo (dest.AbsolutePath);
 			}
-	
+
 			return dest.GetFilename ();
 		}
 
@@ -238,7 +237,7 @@ namespace FSpot.Exporters.Folder
 			try {
 				Directory.CreateDirectory (path);
 			} catch {
-				Log.ErrorFormat ("Error in creating directory \"{0}\"", path);
+				Logger.Log.Error ($"Error in creating directory \"{path}\"");
 			}
 			return path;
 		}

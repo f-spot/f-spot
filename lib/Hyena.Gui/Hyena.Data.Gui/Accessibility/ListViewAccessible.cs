@@ -32,14 +32,12 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 
-using Hyena.Data.Gui;
-
 namespace Hyena.Data.Gui.Accessibility
 {
-    public partial class ListViewAccessible<T> : Hyena.Gui.BaseWidgetAccessible, ICellAccessibleParent
+	public partial class ListViewAccessible<T> : Hyena.Gui.BaseWidgetAccessible, ICellAccessibleParent
     {
-        private ListView<T> list_view;
-        private Dictionary<int, ColumnCellAccessible> cell_cache;
+        ListView<T> list_view;
+        Dictionary<int, ColumnCellAccessible> cell_cache;
 
         public ListViewAccessible (GLib.Object widget) : base (widget as Gtk.Widget)
         {
@@ -132,12 +130,12 @@ namespace Hyena.Data.Gui.Accessibility
         }
 
 
-        private void OnModelChanged (object o, EventArgs a)
+        void OnModelChanged (object o, EventArgs a)
         {
             ThreadAssist.ProxyToMain (EmitModelChanged);
         }
 
-        private void EmitModelChanged ()
+        void EmitModelChanged ()
         {
             GLib.Signal.Emit (this, "model_changed");
             cell_cache.Clear ();
@@ -147,12 +145,12 @@ namespace Hyena.Data.Gui.Accessibility
             }*/
         }
 
-        private void OnSelectionFocusChanged (object o, EventArgs a)
+        void OnSelectionFocusChanged (object o, EventArgs a)
         {
             ThreadAssist.ProxyToMain (EmitDescendantChanged);
         }
 
-        private void EmitDescendantChanged ()
+        void EmitDescendantChanged ()
         {
             var cell = ActiveCell;
             if (cell != null) {
@@ -160,7 +158,7 @@ namespace Hyena.Data.Gui.Accessibility
             }
         }
 
-        private Atk.Object ActiveCell {
+        Atk.Object ActiveCell {
             get {
                 if (list_view.HeaderFocused) {
                     return OnRefChild (list_view.ActiveColumn);
@@ -174,7 +172,7 @@ namespace Hyena.Data.Gui.Accessibility
             }
         }
 
-        private int n_columns {
+        int n_columns {
             get {
                 return list_view.ColumnController != null
                     ? list_view.ColumnController.Count (c => c.Visible)
@@ -182,7 +180,7 @@ namespace Hyena.Data.Gui.Accessibility
             }
         }
 
-        private int n_rows {
+        int n_rows {
             get { return list_view.Model.Count; }
         }
 

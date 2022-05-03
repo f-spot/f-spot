@@ -27,18 +27,17 @@
 //
 
 using System;
-using Gtk;
 
-using Hyena;
+using Gtk;
 
 namespace Hyena.Gui
 {
-    internal class EditableInsertAction : IUndoAction
+	class EditableInsertAction : IUndoAction
     {
-        private Editable editable;
-        private string text;
-        private int index;
-        private bool is_paste;
+        Editable editable;
+        string text;
+        int index;
+        bool is_paste;
 
         public EditableInsertAction (Editable editable, int start, string text, int length)
         {

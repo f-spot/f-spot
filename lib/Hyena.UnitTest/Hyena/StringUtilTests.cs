@@ -30,12 +30,12 @@
 using System;
 using System.IO;
 using System.Linq;
+
 using NUnit.Framework;
-using Hyena;
 
 namespace Hyena.Tests
 {
-    [TestFixture]
+	[TestFixture]
     public class StringUtilTests
     {
         private class Map

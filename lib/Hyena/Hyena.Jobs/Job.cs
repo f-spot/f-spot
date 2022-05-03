@@ -27,14 +27,11 @@
 //
 
 using System;
-using System.Linq;
 using System.Threading;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace Hyena.Jobs
 {
-    public enum JobState {
+	public enum JobState {
         None,
         Scheduled,
         Running,
@@ -49,13 +46,13 @@ namespace Hyena.Jobs
         public event EventHandler Finished;
         public event EventHandler CancelRequested;
 
-        private int update_freeze_ref;
-        private JobState state = JobState.None;
+        int update_freeze_ref;
+        JobState state = JobState.None;
 
-        private ManualResetEvent pause_event;
-        private DateTime created_at = DateTime.Now;
-        private TimeSpan run_time = TimeSpan.Zero;
-        private Object sync = new Object ();
+        ManualResetEvent pause_event;
+        DateTime created_at = DateTime.Now;
+        TimeSpan run_time = TimeSpan.Zero;
+        object sync = new object ();
 
         public bool IsCancelRequested { get; private set; }
 
@@ -118,11 +115,8 @@ namespace Hyena.Jobs
                 if (!IsFinished) {
                     IsCancelRequested = true;
                     State = JobState.Cancelled;
-                    EventHandler handler = CancelRequested;
-                    if (handler != null) {
-                        handler (this, EventArgs.Empty);
-                    }
-                }
+					CancelRequested?.Invoke (this, EventArgs.Empty);
+				}
             }
             Log.Debug ("Canceled", Title);
         }
@@ -139,7 +133,7 @@ namespace Hyena.Jobs
             return Pause (true);
         }
 
-        private bool Pause (bool unschedule)
+        bool Pause (bool unschedule)
         {
             lock (sync) {
                 if (IsFinished) {
@@ -158,10 +152,10 @@ namespace Hyena.Jobs
 
 #endregion
 
-        private string title;
-        private string status;
-        private string [] icon_names;
-        private double progress;
+        string title;
+        string status;
+        string [] icon_names;
+        double progress;
 
 #region Public Properties
 
@@ -276,11 +270,8 @@ namespace Hyena.Jobs
                 return;
             }
 
-            EventHandler handler = Updated;
-            if (handler != null) {
-                handler (this, EventArgs.Empty);
-            }
-        }
+			Updated?.Invoke (this, EventArgs.Empty);
+		}
 
         public void YieldToScheduler ()
         {
@@ -302,11 +293,8 @@ namespace Hyena.Jobs
                 State = JobState.Completed;
             }
 
-            EventHandler handler = Finished;
-            if (handler != null) {
-                handler (this, EventArgs.Empty);
-            }
-        }
+			Finished?.Invoke (this, EventArgs.Empty);
+		}
 
 #endregion
 

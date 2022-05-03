@@ -25,12 +25,12 @@
 // THE SOFTWARE.
 
 using System;
+
 using NUnit.Framework;
-using Hyena;
 
 namespace Hyena.Tests
 {
-    [TestFixture]
+	[TestFixture]
     public class DateTimeUtilTests
     {
         [Test]

@@ -42,8 +42,8 @@ namespace Hyena.Query
 
     public class QueryListNode : QueryNode
     {
-        private List<QueryNode> children = new List<QueryNode>();
-        private Keyword keyword;
+        List<QueryNode> children = new List<QueryNode>();
+        Keyword keyword;
 
         public QueryListNode(Keyword keyword) : base()
         {

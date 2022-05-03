@@ -34,9 +34,9 @@ namespace Hyena.Data.Gui
 {
     public class ColumnController : IEnumerable<Column>
     {
-        private List<Column> columns = new List<Column> ();
-        private ISortableColumn default_sort_column;
-        private ISortableColumn sort_column;
+        List<Column> columns = new List<Column> ();
+        ISortableColumn default_sort_column;
+        ISortableColumn sort_column;
 
         protected List<Column> Columns {
             get { return columns; }
@@ -165,12 +165,12 @@ namespace Hyena.Data.Gui
             return columns.ToArray ();
         }
 
-        private void OnColumnVisibilityChanged (object o, EventArgs args)
+        void OnColumnVisibilityChanged (object o, EventArgs args)
         {
             OnVisibilitiesChanged ();
         }
 
-        private void OnColumnWidthChanged (object o, EventArgs args)
+        void OnColumnWidthChanged (object o, EventArgs args)
         {
             OnWidthsChanged ();
         }

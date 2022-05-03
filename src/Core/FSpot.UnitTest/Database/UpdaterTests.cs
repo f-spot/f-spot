@@ -78,11 +78,11 @@ namespace FSpot.Database.Tests
 				Initialize ();
 
 			// Looks like a sqlite missing issue. These tests will be going away soon anyways
-			if (PlatformDetection.IsWindows)
+			if (Utils.Platform.IsWindows)
 				return;
 
 			var testDir = TestContext.CurrentContext.TestDirectory;
-			var databaseLocation = Paths.Combine (testDir, "data", $"f-spot-{version}.db");
+			var databaseLocation = Path.Combine (testDir, "data", $"f-spot-{version}.db");
 			Assert.IsTrue (File.Exists (databaseLocation), $"Test database for version {version} not found");
 
 			var tmp = Path.GetTempFileName ();

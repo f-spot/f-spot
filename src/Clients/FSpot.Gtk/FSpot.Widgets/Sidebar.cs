@@ -103,7 +103,7 @@ namespace FSpot.Widgets
 
 		public event EventHandler ContextChanged;
 		public event EventHandler PageSwitched;
-		
+
 		ViewContext view_context = ViewContext.Unknown;
 		public ViewContext Context {
 			get { return view_context; }
@@ -165,7 +165,7 @@ namespace FSpot.Widgets
 
 		void HandleCanSelectChanged (object sender, EventArgs args)
 		{
-			//Log.Debug ("Can select changed for {0} to {1}", sender, (sender as SidebarPage).CanSelect);
+			//Logger.Log.Debug ("Can select changed for {0} to {1}", sender, (sender as SidebarPage).CanSelect);
 		}
 
 		public void AppendPage (Widget widget, string label, string icon_name)

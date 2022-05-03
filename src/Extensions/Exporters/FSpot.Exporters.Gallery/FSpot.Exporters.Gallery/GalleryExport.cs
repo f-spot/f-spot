@@ -43,9 +43,8 @@ using FSpot.Settings;
 using FSpot.Widgets;
 using FSpot.UI.Dialog;
 using FSpot.Extensions;
-
-using Hyena;
 using System.Linq;
+
 
 namespace FSpot.Exporters.Gallery
 {
@@ -192,7 +191,7 @@ namespace FSpot.Exporters.Gallery
 			account.Gallery.Progress = new ProgressItem ();
 			account.Gallery.Progress.Changed += HandleProgressChanged;
 
-			Log.Debug ("Starting upload");
+			Logger.Log.Debug ("Starting upload");
 
 			FilterSet filters = new FilterSet ();
 			if (account.Version == GalleryVersion.Version1)
@@ -203,7 +202,7 @@ namespace FSpot.Exporters.Gallery
 			while (photo_index < items.Length) {
 				IPhoto item = items [photo_index];
 
-				Log.DebugFormat ("uploading {0}", photo_index);
+				Logger.Log.Debug ($"uploading {photo_index}");
 
 				progress_dialog.Message = string.Format (Catalog.GetString ("Uploading picture \"{0}\""), item.Name);
 				progress_dialog.Fraction = photo_index / (double)items.Length;
@@ -220,12 +219,11 @@ namespace FSpot.Exporters.Gallery
 
 					if (item != null && item is Photo && App.Instance.Database != null && id != 0)
 							App.Instance.Database.Exports.Create ((item as Photo).Id, (item as Photo).DefaultVersionId,
-										      ExportStore.Gallery2ExportType,
-										      string.Format("{0}:{1}",album.Gallery.Uri, id.ToString ()));
+										      ExportStore.Gallery2ExportType, $"{album.Gallery.Uri}:{id}");
 				} catch (Exception e) {
 					progress_dialog.Message = string.Format (Catalog.GetString ("Error uploading picture \"{0}\" to Gallery: {1}"), item.Name, e.Message);
 					progress_dialog.ProgressText = Catalog.GetString ("Error");
-					Log.Exception (e);
+					Logger.Log.Error (e, "");
 
 					if (progress_dialog.PerformRetrySkip ())
 							photo_index--;
@@ -290,7 +288,7 @@ namespace FSpot.Exporters.Gallery
 				if (selected != null)
 					account = selected;
 
-				Log.Exception (ex);
+				Logger.Log.Error (ex, "");
 				PopulateAlbumOptionMenu (account.Gallery);
 				album_button.Sensitive = false;
 

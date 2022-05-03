@@ -27,18 +27,13 @@
 //
 
 using System;
-using System.Collections.Generic;
 using System.Xml;
-using System.Text;
-using System.Text.RegularExpressions;
 
 using Mono.Unix;
 
-using Hyena;
-
 namespace Hyena.Query
 {
-    public class RelativeTimeSpanQueryValue : TimeSpanQueryValue
+	public class RelativeTimeSpanQueryValue : TimeSpanQueryValue
     {
         // The SQL operators in these Operators are reversed from normal on purpose
         public static new readonly Operator GreaterThan        = new Operator ("greaterThan", Catalog.GetString ("more than"), "< {0}", true, ">");
@@ -86,7 +81,7 @@ namespace Hyena.Query
         protected override string FactorString (TimeFactor factor, double count, bool translate)
         {
             string result = base.FactorString (factor, count, translate);
-            return (result == null) ? null : String.Format (
+            return (result == null) ? null : string.Format (
                 translate ? Catalog.GetString ("{0} ago") : "{0} ago", result);
         }
     }

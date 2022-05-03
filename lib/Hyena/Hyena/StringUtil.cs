@@ -38,7 +38,7 @@ namespace Hyena
 {
     public static class StringUtil
     {
-        private static CompareOptions compare_options =
+        static CompareOptions compare_options =
             CompareOptions.IgnoreCase | CompareOptions.IgnoreNonSpace |
             CompareOptions.IgnoreKanaType | CompareOptions.IgnoreWidth;
 
@@ -69,10 +69,10 @@ namespace Hyena
             return CamelCaseToUnderCase (s, '_');
         }
 
-        private static Regex camelcase = new Regex ("([A-Z]{1}[a-z]+)", RegexOptions.Compiled);
+        static Regex camelcase = new Regex ("([A-Z]{1}[a-z]+)", RegexOptions.Compiled);
         public static string CamelCaseToUnderCase (string s, char underscore)
         {
-            if (String.IsNullOrEmpty (s)) {
+            if (string.IsNullOrEmpty (s)) {
                 return null;
             }
 
@@ -80,7 +80,7 @@ namespace Hyena
             string [] tokens = camelcase.Split (s);
 
             for (int i = 0; i < tokens.Length; i++) {
-                if (tokens[i] == String.Empty) {
+                if (tokens[i] == string.Empty) {
                     continue;
                 }
 
@@ -95,7 +95,7 @@ namespace Hyena
 
         public static string UnderCaseToCamelCase (string s)
         {
-            if (String.IsNullOrEmpty (s)) {
+            if (string.IsNullOrEmpty (s)) {
                 return null;
             }
 
@@ -103,18 +103,18 @@ namespace Hyena
 
             for (int i = 0, n = s.Length, b = -1; i < n; i++) {
                 if (b < 0 && s[i] != '_') {
-                    builder.Append (Char.ToUpper (s[i]));
+                    builder.Append (char.ToUpper (s[i]));
                     b = i;
                 } else if (s[i] == '_' && i + 1 < n && s[i + 1] != '_') {
-                    if (builder.Length > 0 && Char.IsUpper (builder[builder.Length - 1])) {
-                        builder.Append (Char.ToLower (s[i + 1]));
+                    if (builder.Length > 0 && char.IsUpper (builder[builder.Length - 1])) {
+                        builder.Append (char.ToLower (s[i + 1]));
                     } else {
-                        builder.Append (Char.ToUpper (s[i + 1]));
+                        builder.Append (char.ToUpper (s[i + 1]));
                     }
                     i++;
                     b = i;
                 } else if (s[i] != '_') {
-                    builder.Append (Char.ToLower (s[i]));
+                    builder.Append (char.ToLower (s[i]));
                     b = i;
                 }
             }
@@ -125,19 +125,19 @@ namespace Hyena
         public static string RemoveNewlines (string input)
         {
             if (input != null) {
-                return input.Replace ("\r\n", String.Empty).Replace ("\n", String.Empty);
+                return input.Replace ("\r\n", string.Empty).Replace ("\n", string.Empty);
             }
             return null;
         }
 
-        private static Regex tags = new Regex ("<[^>]+>", RegexOptions.Compiled | RegexOptions.Multiline);
+        static Regex tags = new Regex ("<[^>]+>", RegexOptions.Compiled | RegexOptions.Multiline);
         public static string RemoveHtml (string input)
         {
             if (input == null) {
                 return input;
             }
 
-            return tags.Replace (input, String.Empty);
+            return tags.Replace (input, string.Empty);
         }
 
         public static string DoubleToTenthsPrecision (double num)
@@ -153,7 +153,7 @@ namespace Hyena
         public static string DoubleToTenthsPrecision (double num, bool always_decimal, IFormatProvider provider)
         {
             num = Math.Round (num, 1, MidpointRounding.ToEven);
-            return String.Format (provider, !always_decimal && num == (int)num ? "{0:N0}" : "{0:N1}", num);
+            return string.Format (provider, !always_decimal && num == (int)num ? "{0:N0}" : "{0:N1}", num);
         }
 
         // This method helps us pluralize doubles. Probably a horrible i18n idea.
@@ -167,19 +167,19 @@ namespace Hyena
 
         // A mapping of non-Latin characters to be considered the same as
         // a Latin equivalent.
-        private static Dictionary<char, char> BuildSpecialCases ()
+        static Dictionary<char, char> BuildSpecialCases ()
         {
             Dictionary<char, char> dict = new Dictionary<char, char> ();
             dict['\u00f8'] = 'o';
             dict['\u0142'] = 'l';
             return dict;
         }
-        private static Dictionary<char, char> searchkey_special_cases = BuildSpecialCases ();
+        static Dictionary<char, char> searchkey_special_cases = BuildSpecialCases ();
 
         //  Removes accents from Latin characters, and some kinds of punctuation.
         public static string SearchKey (string val)
         {
-            if (String.IsNullOrEmpty (val)) {
+            if (string.IsNullOrEmpty (val)) {
                 return val;
             }
 
@@ -206,7 +206,7 @@ namespace Hyena
                     continue;
                 }
 
-                category = Char.GetUnicodeCategory (c);
+                category = char.GetUnicodeCategory (c);
                 if (category == UnicodeCategory.OtherPunctuation) {
                     // Skip punctuation
                 } else if (!(previous_was_letter && category == UnicodeCategory.NonSpacingMark)) {
@@ -218,7 +218,7 @@ namespace Hyena
                 }
 
                 // Can ignore A-Z because we've already lowercased the char
-                previous_was_letter = Char.IsLetter (c);
+                previous_was_letter = char.IsLetter (c);
             }
 
             string result = sb.ToString ();
@@ -231,9 +231,9 @@ namespace Hyena
             return result;
         }
 
-        private static Regex invalid_path_regex = BuildInvalidPathRegex ();
+        static Regex invalid_path_regex = BuildInvalidPathRegex ();
 
-        private static Regex BuildInvalidPathRegex ()
+        static Regex BuildInvalidPathRegex ()
         {
             char [] invalid_path_characters = new char [] {
                 // Control characters: there's no reason to ever have one of these in a track name anyway,
@@ -258,14 +258,14 @@ namespace Hyena
             return new Regex (regex_str, RegexOptions.Compiled);
         }
 
-        private static CompareInfo culture_compare_info = ApplicationContext.CurrentCulture.CompareInfo;
+        static CompareInfo culture_compare_info = ApplicationContext.CurrentCulture.CompareInfo;
         public static byte[] SortKey (string orig)
         {
             if (orig == null) { return null; }
             return culture_compare_info.GetSortKey (orig, CompareOptions.IgnoreCase).KeyData;
         }
 
-        private static readonly char[] escape_path_trim_chars = new char[] {'.', '\x20'};
+        static readonly char[] escape_path_trim_chars = new char[] {'.', '\x20'};
         public static string EscapeFilename (string input)
         {
             if (input == null)
@@ -309,12 +309,12 @@ namespace Hyena
         public static string MaybeFallback (string input, string fallback)
         {
             string trimmed = input == null ? null : input.Trim ();
-            return String.IsNullOrEmpty (trimmed) ? fallback : trimmed;
+            return string.IsNullOrEmpty (trimmed) ? fallback : trimmed;
         }
 
         public static uint SubstringCount (string haystack, string needle)
         {
-            if (String.IsNullOrEmpty (haystack) || String.IsNullOrEmpty (needle)) {
+            if (string.IsNullOrEmpty (haystack) || string.IsNullOrEmpty (needle)) {
                 return 0;
             }
 
@@ -345,7 +345,7 @@ namespace Hyena
             }
         }
 
-        private static readonly char[] escaped_like_chars = new char[] {'\\', '%', '_'};
+        static readonly char[] escaped_like_chars = new char[] {'\\', '%', '_'};
         public static string EscapeLike (string s)
         {
             if (s.IndexOfAny (escaped_like_chars) != -1) {

@@ -1,4 +1,4 @@
-﻿//
+//
 // Cr2ImageFile.cs
 //
 // Author:
@@ -31,6 +31,9 @@
 
 using System;
 using Hyena;
+
+
+
 using TagLib;
 using TagLib.IFD;
 using TagLib.IFD.Entries;
@@ -59,7 +62,7 @@ namespace FSpot.Imaging
 				var entry = structure.GetEntry (0, (ushort)IFDEntryTag.StripOffsets);
 				offset = (entry as StripOffsetsIFDEntry).Values [0];
 			} catch (Exception e) {
-				Log.DebugException (e);
+				Logger.Log.Debug (e, "");
 			}
 		}
 

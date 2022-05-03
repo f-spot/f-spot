@@ -27,17 +27,16 @@
 using System;
 
 using Cairo;
-using Hyena.Gui;
 
 namespace Hyena.Gui.Canvas
 {
-    public class TestTile : CanvasItem
+	public class TestTile : CanvasItem
     {
-        private static Random rand = new Random ();
-        private Color color;
-        private bool color_set;
+        static Random rand = new Random ();
+        Color color;
+        bool color_set;
 
-        private bool change_on_render = true;
+        bool change_on_render = true;
         public bool ChangeOnRender {
             get { return change_on_render; }
             set { change_on_render = value; }

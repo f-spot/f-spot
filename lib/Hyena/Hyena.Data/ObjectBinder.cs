@@ -34,8 +34,8 @@ namespace Hyena.Data
 {
     public class ObjectBinder : IDataBinder
     {
-        private PropertyInfo property_info;
-        private PropertyInfo sub_property_info;
+        PropertyInfo property_info;
+        PropertyInfo sub_property_info;
 
         public void Bind (object item)
         {
@@ -65,12 +65,12 @@ namespace Hyena.Data
             }
         }
 
-        private void EnsurePropertyInfo (string name, ref PropertyInfo prop, object obj)
+        void EnsurePropertyInfo (string name, ref PropertyInfo prop, object obj)
         {
             if (prop == null || prop.ReflectedType != obj.GetType ()) {
                 prop = obj.GetType ().GetProperty (name);
                 if (prop == null) {
-                    throw new Exception (String.Format (
+                    throw new Exception (string.Format (
                         "In {0}, type {1} does not have property {2}",
                         this, obj.GetType (), name));
                 }
@@ -81,7 +81,7 @@ namespace Hyena.Data
             get { return bound_object.GetType (); }
         }
 
-        private object bound_object;
+        object bound_object;
         public object BoundObject {
             get { return bound_object; }
             set {
@@ -94,7 +94,7 @@ namespace Hyena.Data
 
         public object BoundObjectParent { get; private set; }
 
-        private string property;
+        string property;
         public string Property {
             get { return property; }
             set {

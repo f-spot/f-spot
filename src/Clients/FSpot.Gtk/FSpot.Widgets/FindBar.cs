@@ -41,7 +41,6 @@ using Mono.Unix;
 using FSpot.Core;
 using FSpot.Query;
 
-using Hyena;
 
 namespace FSpot.Widgets
 {
@@ -107,7 +106,7 @@ namespace FSpot.Widgets
 
 		void HandleEntryTextInserted (object sender, TextInsertedArgs args)
 		{
-			//Log.DebugFormat ("inserting {0}, ( = {1}  ) = {2}", args.Text, open_parens, close_parens);
+			//Logger.Log.DebugFormat ("inserting {0}, ( = {1}  ) = {2}", args.Text, open_parens, close_parens);
 
 			//int start = args.Position - args.Length;
 
@@ -128,7 +127,7 @@ namespace FSpot.Widgets
 				entry.TextInserted += HandleEntryTextInserted;
 				pos++;
 			}
-			//Log.DebugFormat ("done w/ insert, {0}, ( = {1}  ) = {2}", args.Text, open_parens, close_parens);
+			//Logger.Log.DebugFormat ("done w/ insert, {0}, ( = {1}  ) = {2}", args.Text, open_parens, close_parens);
 			last_entry_text = entry.Text;
 
 			QueueUpdate ();
@@ -137,7 +136,7 @@ namespace FSpot.Widgets
 		void HandleEntryTextDeleted (object sender, TextDeletedArgs args)
 		{
 			int length = args.EndPos - args.StartPos;
-			//Log.DebugFormat ("start {0} end {1} len {2} last {3}", args.StartPos, args.EndPos, length, last_entry_text);
+			//Logger.Log.DebugFormat ("start {0} end {1} len {2} last {3}", args.StartPos, args.EndPos, length, last_entry_text);
 			string txt = length < 0 ? last_entry_text : last_entry_text.Substring (args.StartPos, length);
 
 			for (int i = 0; i < txt.Length; i++) {
@@ -236,13 +235,13 @@ namespace FSpot.Widgets
 
 			string indent = string.Format ("{0," + depth*2 + "}", " ");
 
-			//Log.DebugFormat (indent + "Have text: {0}", txt);
+			//Logger.Log.DebugFormat (indent + "Have text: {0}", txt);
 
 			// Match the query the user typed against our regular expression
 			Match match = term_regex.Match (txt);
 
 			if (!match.Success) {
-				//Log.Debug (indent + "Failed to match.");
+				//Logger.Log.Debug (indent + "Failed to match.");
 				return false;
 			}
 
@@ -262,12 +261,12 @@ namespace FSpot.Widgets
 			}
 
 			if (!op_valid) {
-				Log.Information (indent + "Ambiguous operator sequence.  Use parenthesis to explicitly define evaluation order.");
+				Logger.Log.Information (indent + "Ambiguous operator sequence.  Use parenthesis to explicitly define evaluation order.");
 				return false;
 			}
 
 			if (match.Groups ["Terms"].Captures.Count == 1 && match.Groups["NotTerm"].Captures.Count != 1) {
-				//Log.DebugFormat (indent + "Unbreakable term: {0}", match.Groups ["Terms"].Captures [0]);
+				//Logger.Log.Debug ($"{indent}Unbreakable term: {match.Groups["Terms"].Captures[0]}");
 				string literal;
 				bool is_negated = false;
 				Tag tag = null;
@@ -325,7 +324,7 @@ namespace FSpot.Widgets
 						subterm = subterm.Remove (0, 1);
 					}
 
-					//Log.DebugFormat (indent + "Breaking subterm apart: {0}", subterm);
+					//Logger.Log.DebugFormat (indent + "Breaking subterm apart: {0}", subterm);
 
 					if (!ConstructQuery (us, depth + 1, subterm, negated))
 						return false;
@@ -343,7 +342,7 @@ namespace FSpot.Widgets
 						subterm = subterm.Remove (0, 1);
 					}
 
-					//Log.DebugFormat (indent + "Breaking not subterm apart: {0}", subterm);
+					//Logger.Log.DebugFormat (indent + "Breaking not subterm apart: {0}", subterm);
 
 					if (!ConstructQuery (us, depth + 1, subterm, true))
 						return false;
@@ -405,7 +404,7 @@ namespace FSpot.Widgets
 
 			if (ParensValid () && ConstructQuery (null, 0, entry.Text)) {
 				if (RootTerm != null) {
-					//Log.DebugFormat("rootTerm = {0}", RootTerm);
+					//Logger.Log.DebugFormat("rootTerm = {0}", RootTerm);
 					if (!(RootTerm is AndTerm)) {
 						// A little hacky, here to make sure the root term is a AndTerm which will
 						// ensure we handle the Hidden tag properly
@@ -414,7 +413,7 @@ namespace FSpot.Widgets
 						root_term = root_parent;
 					}
 
-					//Log.DebugFormat("rootTerm = {0}", RootTerm);
+					//Logger.Log.DebugFormat("rootTerm = {0}", RootTerm);
 					if (!(RootTerm is AndTerm)) {
 						// A little hacky, here to make sure the root term is a AndTerm which will
 						// ensure we handle the Hidden tag properly
@@ -422,11 +421,11 @@ namespace FSpot.Widgets
 						RootTerm.Parent = root_parent;
 						root_term = root_parent;
 					}
-					//Log.DebugFormat ("condition = {0}", RootTerm.SqlCondition ());
+					//Logger.Log.DebugFormat ("condition = {0}", RootTerm.SqlCondition ());
 					query.TagTerm = new ConditionWrapper (RootTerm.SqlCondition ());
 				} else {
 					query.TagTerm = null;
-					//Log.Debug ("root term is null");
+					//Logger.Log.Debug ("root term is null");
 				}
 			}
 		}

@@ -30,18 +30,13 @@ using System;
 using System.Reflection;
 
 using Gtk;
-using Gdk;
-using Cairo;
-
-using Hyena.Gui;
-using Hyena.Data.Gui;
 
 namespace Hyena.Widgets
 {
-    public class ScrolledWindow : Gtk.ScrolledWindow
+	public class ScrolledWindow : Gtk.ScrolledWindow
     {
-        private Widget adjustable;
-        private RoundedFrame rounded_frame;
+        Widget adjustable;
+        RoundedFrame rounded_frame;
 
         public ScrolledWindow ()
         {
@@ -79,14 +74,14 @@ namespace Hyena.Widgets
             base.OnRemoved (widget);
         }
 
-        private void OnFrameWidgetAdded (object o, AddedArgs args)
+        void OnFrameWidgetAdded (object o, AddedArgs args)
         {
             if (rounded_frame != null) {
                 ProbeAdjustable (args.Widget);
             }
         }
 
-        private void OnFrameWidgetRemoved (object o, RemovedArgs args)
+        void OnFrameWidgetRemoved (object o, RemovedArgs args)
         {
             if (adjustable != null && adjustable == args.Widget) {
                 Hadjustment = null;
@@ -95,7 +90,7 @@ namespace Hyena.Widgets
             }
         }
 
-        private void ProbeAdjustable (Widget widget)
+        void ProbeAdjustable (Widget widget)
         {
             Type type = widget.GetType ();
 

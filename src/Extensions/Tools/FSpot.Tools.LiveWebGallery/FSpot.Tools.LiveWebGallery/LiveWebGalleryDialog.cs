@@ -30,8 +30,6 @@
 using System;
 using System.Net;
 using System.Reflection;
-
-using FSpot;
 using FSpot.Core;
 
 using Gtk;

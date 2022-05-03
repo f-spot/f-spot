@@ -44,7 +44,7 @@ namespace Hyena.Gui
             Application.Run ();
         }
 
-        private TreeStore store;
+        TreeStore store;
 
         public TestModuleRunner () : base ("Hyena.Gui Module Tester")
         {
@@ -55,7 +55,7 @@ namespace Hyena.Gui
             BuildView ();
         }
 
-        private void BuildModuleList ()
+        void BuildModuleList ()
         {
             store = new TreeStore (typeof (string), typeof (Type));
 
@@ -66,7 +66,7 @@ namespace Hyena.Gui
             }
         }
 
-        private void BuildView ()
+        void BuildView ()
         {
             VBox box = new VBox ();
             Add (box);

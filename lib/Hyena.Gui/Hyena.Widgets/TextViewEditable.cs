@@ -44,7 +44,7 @@ namespace Hyena.Widgets
         public event TextDeletedHandler TextDeleted;
         public event TextInsertedHandler TextInserted;
 
-        private void OnBufferChanged (object o, EventArgs args)
+        void OnBufferChanged (object o, EventArgs args)
         {
             EventHandler handler = Changed;
             if (handler != null) {
@@ -52,7 +52,7 @@ namespace Hyena.Widgets
             }
         }
 
-        private void OnBufferInsertText (object o, InsertTextArgs args)
+        void OnBufferInsertText (object o, InsertTextArgs args)
         {
             TextInsertedHandler handler = TextInserted;
             if (handler != null) {
@@ -66,7 +66,7 @@ namespace Hyena.Widgets
             }
         }
 
-        private void OnBufferDeleteRange (object o, DeleteRangeArgs args)
+        void OnBufferDeleteRange (object o, DeleteRangeArgs args)
         {
             TextDeletedHandler handler = TextDeleted;
             if (handler != null) {

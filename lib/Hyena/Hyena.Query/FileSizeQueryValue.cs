@@ -29,13 +29,10 @@
 
 using System;
 using System.Xml;
-using System.Text;
-
-using Hyena;
 
 namespace Hyena.Query
 {
-    public enum FileSizeFactor : long {
+	public enum FileSizeFactor : long {
         None = 1,
         KB = 1024,
         MB = 1048576,
@@ -46,7 +43,7 @@ namespace Hyena.Query
 
     public class FileSizeQueryValue : IntegerQueryValue
     {
-        private FileSizeFactor factor = FileSizeFactor.None;
+        FileSizeFactor factor = FileSizeFactor.None;
         public FileSizeFactor Factor {
             get { return factor; }
         }
@@ -73,10 +70,10 @@ namespace Hyena.Query
             }
 
             double double_value;
-            IsEmpty = !Double.TryParse (input, out double_value);
+            IsEmpty = !double.TryParse (input, out double_value);
 
             if (IsEmpty && input.Length > 1) {
-                IsEmpty = !Double.TryParse (input.Substring (0, input.Length - 1), out double_value);
+                IsEmpty = !double.TryParse (input.Substring (0, input.Length - 1), out double_value);
             }
 
             if (!IsEmpty) {
@@ -96,7 +93,7 @@ namespace Hyena.Query
         {
             base.ParseUserQuery (node.InnerText);
             if (node.HasAttribute ("factor")) {
-                this.factor = (FileSizeFactor) Enum.Parse (typeof(FileSizeFactor), node.GetAttribute ("factor"));
+                factor = (FileSizeFactor) Enum.Parse (typeof(FileSizeFactor), node.GetAttribute ("factor"));
             } else {
                 DetermineFactor ();
             }
@@ -134,7 +131,7 @@ namespace Hyena.Query
         public string ToUserQuery (bool always_decimal)
         {
             if (factor != FileSizeFactor.None) {
-                return String.Format ("{0} {1}",
+                return string.Format ("{0} {1}",
                     IntValue == 0
                         ? "0"
                         : StringUtil.DoubleToTenthsPrecision (((double)IntValue / (double)factor), always_decimal),

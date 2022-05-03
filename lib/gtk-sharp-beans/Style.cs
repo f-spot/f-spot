@@ -22,8 +22,6 @@
 using System;
 using System.Runtime.InteropServices;
 
-using Gtk;
-
 namespace GtkBeans
 {
 	public class Style

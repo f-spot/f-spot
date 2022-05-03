@@ -35,39 +35,39 @@ namespace Hyena.Query
 {
     public class QueryField : IAliasedObject
     {
-        private bool no_custom_format;
-        private bool column_lowered;
+        bool no_custom_format;
+        bool column_lowered;
 
-        private Type [] value_types;
+        Type [] value_types;
         public Type [] ValueTypes {
             get { return value_types; }
         }
 
-        private string name;
+        string name;
         public string Name {
             get { return name; }
             set { name = value; }
         }
 
-        private string property_name;
+        string property_name;
         public string PropertyName {
             get { return property_name; }
             set { property_name = value; }
         }
 
-        private string label;
+        string label;
         public string Label {
             get { return label; }
             set { label = value; }
         }
 
-        private string short_label;
+        string short_label;
         public string ShortLabel {
             get { return short_label ?? label; }
             set { short_label = value; }
         }
 
-        private string [] aliases;
+        string [] aliases;
         public string [] Aliases {
             get { return aliases; }
         }
@@ -76,12 +76,12 @@ namespace Hyena.Query
             get { return aliases[0]; }
         }
 
-        private string column;
+        string column;
         public string Column {
             get { return column; }
         }
 
-        private bool is_default;
+        bool is_default;
         public bool IsDefault {
             get { return is_default; }
         }
@@ -109,19 +109,19 @@ namespace Hyena.Query
         public QueryField (string name, string propertyName, string label, string column, Type [] valueTypes, bool isDefault, params string [] aliases)
         {
             this.name = name;
-            this.property_name = propertyName;
+            property_name = propertyName;
             this.label = label;
             this.column = column;
-            this.value_types = valueTypes;
-            this.is_default = isDefault;
+            value_types = valueTypes;
+            is_default = isDefault;
             this.aliases = aliases;
 
-            this.no_custom_format = (Column.IndexOf ("{0}") == -1 && Column.IndexOf ("{1}") == -1);
-            this.column_lowered = (Column.IndexOf ("Lowered") != -1);
+            no_custom_format = (Column.IndexOf ("{0}") == -1 && Column.IndexOf ("{1}") == -1);
+            column_lowered = (Column.IndexOf ("Lowered") != -1);
 
             if (!no_custom_format) {
                 // Ensure we have parens around any custom 'columns' that may be an OR of two columns
-                this.column = String.Format ("({0})", this.column);
+                this.column = string.Format ("({0})", this.column);
             }
 
             foreach (Type value_type in valueTypes) {
@@ -143,7 +143,7 @@ namespace Hyena.Query
 
         public string ToSql (Operator op, QueryValue qv)
         {
-            string value = qv.ToSql (op) ?? String.Empty;
+            string value = qv.ToSql (op) ?? string.Empty;
 
             if (op == null) op = qv.OperatorSet.First;
 
@@ -152,18 +152,18 @@ namespace Hyena.Query
             if (no_custom_format) {
                 string column_with_key = Column;
                 if (qv is StringQueryValue && !(column_lowered || qv is ExactStringQueryValue)) {
-                    column_with_key = String.Format ("HYENA_SEARCH_KEY({0})", Column);
+                    column_with_key = string.Format ("HYENA_SEARCH_KEY({0})", Column);
                 }
-                sb.AppendFormat ("{0} {1}", column_with_key, String.Format (op.SqlFormat, value));
+                sb.AppendFormat ("{0} {1}", column_with_key, string.Format (op.SqlFormat, value));
 
                 if (op.IsNot) {
-                    return String.Format ("({0} IS NULL OR {1})", Column, sb.ToString ());
+                    return string.Format ("({0} IS NULL OR {1})", Column, sb.ToString ());
                 } else {
-                    return String.Format ("({0} IS NOT NULL AND {1})", Column, sb.ToString ());
+                    return string.Format ("({0} IS NOT NULL AND {1})", Column, sb.ToString ());
                 }
             } else {
                 sb.AppendFormat (
-                    Column, String.Format (op.SqlFormat, value),
+                    Column, string.Format (op.SqlFormat, value),
                     value, op.IsNot ? "NOT" : null
                 );
             }
@@ -173,17 +173,17 @@ namespace Hyena.Query
 
         public static string ToTermString (string alias, string op, string value)
         {
-            if (!String.IsNullOrEmpty (value)) {
-                value = String.Format (
+            if (!string.IsNullOrEmpty (value)) {
+                value = string.Format (
                     "{1}{0}{1}",
-                    value, value.IndexOf (" ") == -1 ? String.Empty : "\""
+                    value, value.IndexOf (" ") == -1 ? string.Empty : "\""
                 );
             } else {
-                value = String.Empty;
+                value = string.Empty;
             }
-            return String.IsNullOrEmpty (alias)
+            return string.IsNullOrEmpty (alias)
                 ? value
-                : String.Format ("{0}{1}{2}", alias, op, value);
+                : string.Format ("{0}{1}{2}", alias, op, value);
         }
     }
 }

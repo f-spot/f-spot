@@ -26,16 +26,15 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
 using Gtk;
 
 namespace Hyena.Widgets
 {
-    public class ImageButton : Button
+	public class ImageButton : Button
     {
-        private Image image;
-        private Label label;
-        private HBox hbox;
+        Image image;
+        Label label;
+        HBox hbox;
 
         public Image ImageWidget { get { return image; } }
         public Label LabelWidget { get { return label; } }

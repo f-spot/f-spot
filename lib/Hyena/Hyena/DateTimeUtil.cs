@@ -48,7 +48,7 @@ namespace Hyena
             return ToTimeT (time);
         }
 
-        private static long super_ugly_min_hack = -15768000000; // 500 yrs before epoch...ewww
+        static long super_ugly_min_hack = -15768000000; // 500 yrs before epoch...ewww
         public static DateTime FromTimeT (long time)
         {
             return (time <= super_ugly_min_hack) ? DateTime.MinValue : LocalUnixEpoch.AddSeconds (time);
@@ -69,8 +69,8 @@ namespace Hyena
 
         public static string FormatDuration (int hours, int minutes, int seconds) {
             return (hours > 0 ?
-                    String.Format ("{0}:{1:00}:{2:00}", hours, minutes, seconds) :
-                    String.Format ("{0}:{1:00}", minutes, seconds));
+                    string.Format ("{0}:{1:00}:{2:00}", hours, minutes, seconds) :
+                    string.Format ("{0}:{1:00}", minutes, seconds));
         }
 
         const string INVARIANT_FMT = "yyyy-MM-dd HH:mm:ss.fff zzz";

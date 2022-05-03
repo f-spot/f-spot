@@ -27,18 +27,13 @@
 //
 
 using System;
-using System.Collections.Generic;
 using System.Xml;
-using System.Text;
-using System.Text.RegularExpressions;
 
 using Mono.Unix;
 
-using Hyena;
-
 namespace Hyena.Query
 {
-    public class DateQueryValue : QueryValue
+	public class DateQueryValue : QueryValue
     {
         //public static readonly Operator Equal              = new Operator ("equals", "= {0}", "==", "=", ":");
         //public static readonly Operator NotEqual           = new Operator ("notEqual", "!= {0}", true, "!=", "!:");

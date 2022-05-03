@@ -30,8 +30,8 @@
 //
 
 using System;
-using Banshee.Kernel;
-using Hyena;
+
+
 
 namespace FSpot.Database.Jobs
 {
@@ -55,14 +55,14 @@ namespace FSpot.Database.Jobs
 			System.Threading.Thread.Sleep (200);
 
 			uint photo_id = Convert.ToUInt32 (JobOptions);
-			Log.DebugFormat ("Calculating Hash {0}...", photo_id);
+			Logger.Log.Debug ($"Calculating Hash {photo_id}...");
 
 			try {
 				Photo photo = Db.Photos.Get (Convert.ToUInt32 (photo_id));
 				Db.Photos.CalculateMD5Sum (photo);
 				return true;
-			} catch (System.Exception e) {
-				Log.DebugFormat ("Error Calculating Hash for photo {0}: {1}", JobOptions, e.Message);
+			} catch (Exception e) {
+				Logger.Log.Debug ($"Error Calculating Hash for photo {JobOptions}: {e.Message}");
 			}
 			return false;
 		}

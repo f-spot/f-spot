@@ -1,4 +1,4 @@
-﻿//
+//
 // CreateTagDialog.cs
 //
 // Author:
@@ -43,7 +43,6 @@ using FSpot.Core;
 using FSpot.Database;
 using FSpot.Settings;
 
-using Hyena;
 
 namespace FSpot.UI.Dialog
 {
@@ -211,7 +210,7 @@ namespace FSpot.UI.Dialog
 						new_tag = tag_store.CreateTag (parent_category, tag_name_entry.Text, autoicon);
 				} catch (Exception ex) {
 					// FIXME error dialog.
-					Log.Exception (ex);
+					Logger.Log.Error (ex, "");
 				}
 			}
 

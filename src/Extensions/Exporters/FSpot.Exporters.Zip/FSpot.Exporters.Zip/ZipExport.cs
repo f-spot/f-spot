@@ -37,8 +37,6 @@ using FSpot.UI.Dialog;
 using FSpot.Core;
 using FSpot.Extensions;
 using FSpot.Filters;
-
-using Hyena;
 using Hyena.Widgets;
 
 using Mono.Unix;
@@ -48,6 +46,7 @@ using Gtk;
 using ICSharpCode.SharpZipLib.Checksum;
 using ICSharpCode.SharpZipLib.Zip;
 using FSpot.Settings;
+
 
 namespace FSpot.Exporters.Zip
 {
@@ -66,7 +65,7 @@ namespace FSpot.Exporters.Zip
 		Gtk.FileChooserButton uri_chooser;
 
 		public void Run (IBrowsableCollection p) {
-			Log.Information ("Executing ZipExport extension");
+			Logger.Log.Information ("Executing ZipExport extension");
 			if (p.Count == 0) {
 				HigMessageDialog md = new HigMessageDialog (App.Instance.Organizer.Window, DialogFlags.DestroyWithParent,
 							  Gtk.MessageType.Error, ButtonsType.Ok,
@@ -120,10 +119,10 @@ namespace FSpot.Exporters.Zip
 			System.Uri dest = new System.Uri (uri_chooser.Uri);
 			Crc32 crc = new Crc32 ();
 			string filedest = dest.LocalPath + "/" + filename.Text;
-			Log.DebugFormat ("Creating zip file {0}", filedest);
+			Logger.Log.Debug ($"Creating zip file {filedest}");
 			ZipOutputStream s = new ZipOutputStream (File.Create(filedest));
 			if (scale_check.Active)
-				Log.DebugFormat ("Scaling to {0}", scale_size.ValueAsInt);
+				Logger.Log.Debug ($"Scaling to {scale_size.ValueAsInt}");
 
 			ProgressDialog progress_dialog = new ProgressDialog (Catalog.GetString ("Exporting files"),
 							      ProgressDialog.CancelButtonType.Stop,

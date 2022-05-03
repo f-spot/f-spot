@@ -36,6 +36,8 @@ using FSpot.FileSystem;
 using Gdk;
 using Hyena;
 
+
+
 namespace FSpot.Thumbnail
 {
 	class ThumbnailService : IThumbnailService
@@ -136,8 +138,8 @@ namespace FSpot.Thumbnail
 					// catch and ignore any errors on deleting thumbnails
 					// e.g., unauthorized access, read-only filesystem
 				}
-				Log.Debug ($"Failed to load thumbnail: {thumbnailUri}");
-				Log.DebugException (e);
+				Logger.Log.Debug ($"Failed to load thumbnail: {thumbnailUri}");
+				Logger.Log.Debug (e, "");
 				return null;
 			}
 		}

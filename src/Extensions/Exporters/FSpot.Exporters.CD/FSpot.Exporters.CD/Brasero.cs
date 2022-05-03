@@ -31,18 +31,20 @@
 using System.IO;
 using System.Diagnostics;
 
-using Hyena;
+using FSpot.Utils;
 
 namespace FSpot.Exporters.CD
 {
 	public class Brasero : IDiscBurner
 	{
-		private string brasero_exec;
+		public string CommandName { get; } = "brasero";
+		public string CommandFullPath { get; }
+
 		public Brasero ()
 		{
-			brasero_exec = Paths.FindProgramInPath ("brasero");
-			if (null == brasero_exec)
-				throw new FileNotFoundException ("brasero");
+			CommandFullPath = CommandName.FindInEnvironmentPath ();
+			if (string.IsNullOrEmpty (CommandFullPath))
+				throw new FileNotFoundException (nameof(CommandName));
 		}
 
 		/// <summary>
@@ -55,7 +57,7 @@ namespace FSpot.Exporters.CD
 			// It seems like in past version --immediately was part of -n
 			// Unfortunately, brasero (3.2) doesn't seem to clean up burn://
 			// after a successful burn.
-			ProcessStartInfo psi = new ProcessStartInfo (brasero_exec, "-n --immediately");
+			var psi = new ProcessStartInfo (CommandFullPath, "-n --immediately");
 			Process.Start (psi);
 		}
 	}

@@ -29,15 +29,12 @@
 using System;
 using System.Collections.Generic;
 using System.Xml;
-using System.Text;
-
-using Hyena;
 
 namespace Hyena.Query
 {
-    public abstract class QueryValue
+	public abstract class QueryValue
     {
-        private static List<Type> subtypes = new List<Type> ();
+        static List<Type> subtypes = new List<Type> ();
         public static void AddValueType (Type type)
         {
             if (!subtypes.Contains (type)) {
@@ -101,7 +98,7 @@ namespace Hyena.Query
             return null;
         }
 
-        private static bool CreateFromXml (QueryValue val, XmlElement parent)
+        static bool CreateFromXml (QueryValue val, XmlElement parent)
         {
             XmlElement val_node = parent[val.XmlElementName];
             if (val_node != null) {
@@ -111,7 +108,7 @@ namespace Hyena.Query
             return false;
         }
 
-        private bool is_empty = true;
+        bool is_empty = true;
         public bool IsEmpty {
             get { return is_empty; }
             protected set { is_empty = value; }

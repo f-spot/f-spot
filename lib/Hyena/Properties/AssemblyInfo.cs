@@ -1,4 +1,4 @@
-﻿//
+//
 // AssemblyInfo.cs
 //
 // Author:
@@ -28,4 +28,6 @@
 
 using System.Runtime.CompilerServices;
 
+// Temporary until Hyena is removed
+[assembly: InternalsVisibleTo ("Hyena.Gui")]
 [assembly: InternalsVisibleTo ("Hyena.UnitTest")]

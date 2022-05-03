@@ -28,12 +28,11 @@
 
 using System;
 
-using Hyena.Query;
 using Gtk;
 
 namespace Hyena.Query.Gui
 {
-    public class IntegerQueryValueEntry : QueryValueEntry
+	public class IntegerQueryValueEntry : QueryValueEntry
     {
         protected SpinButton spin_button;
         protected IntegerQueryValue query_value;

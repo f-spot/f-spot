@@ -78,7 +78,7 @@ namespace FSpot.Exporters.PicasaWeb
 			(album_button.Parent as Gtk.HBox).PackStart (album_optionmenu);
 			(edit_button.Parent as Gtk.HBox).ReorderChild (gallery_optionmenu, 1);
 			(album_button.Parent as Gtk.HBox).ReorderChild (album_optionmenu, 1);
-		
+
 			gallery_optionmenu.Show ();
 			album_optionmenu.Show ();
 
@@ -230,7 +230,7 @@ namespace FSpot.Exporters.PicasaWeb
 			sent_bytes = 0;
 			approx_size = 0;
 
-			Log.Debug ("Starting Upload to Picasa");
+			Logger.Log.Debug ("Starting Upload to Picasa");
 
 			FilterSet filters = new FilterSet ();
 			filters.Add (new JpegFilter ());
@@ -245,7 +245,7 @@ namespace FSpot.Exporters.PicasaWeb
 					IPhoto item = items [photo_index];
 
 					FileInfo file_info;
-					Log.Debug ("Picasa uploading " + photo_index);
+					Logger.Log.Debug ("Picasa uploading " + photo_index);
 
 					progress_dialog.Message = string.Format (Catalog.GetString ("Uploading picture \"{0}\" ({1} of {2})"),
 										 item.Name, photo_index + 1, items.Length);
@@ -276,13 +276,13 @@ namespace FSpot.Exporters.PicasaWeb
 							picture.AddTag (tag.Name);
 						}
 				} catch (System.Threading.ThreadAbortException te) {
-					Log.Exception (te);
+					Logger.Log.Exception (te);
 					System.Threading.Thread.ResetAbort ();
 				} catch (System.Exception e) {
 					progress_dialog.Message = string.Format (Catalog.GetString ("Error Uploading To Gallery: {0}"),
 										 e.Message);
 					progress_dialog.ProgressText = Catalog.GetString ("Error");
-					Log.DebugException (e);
+					Logger.Log.DebugException (e);
 
 					if (progress_dialog.PerformRetrySkip ()) {
 						photo_index--;
@@ -310,11 +310,11 @@ namespace FSpot.Exporters.PicasaWeb
 			if (accounts == null || accounts.Count == 0) {
 
 				if (accounts == null)
-					Log.Debug ("accounts == null");
+					Logger.Log.Debug ("accounts == null");
 				else
-					Log.Debug ("accounts != null");
+					Logger.Log.Debug ("accounts != null");
 
-				Log.DebugFormat ("accounts.Count = {0}", accounts.Count);
+				Logger.Log.DebugFormat ("accounts.Count = {0}", accounts.Count);
 
 				gallery_optionmenu.AppendText (Catalog.GetString ("(No Gallery)"));
 				gallery_optionmenu.Sensitive = false;
@@ -335,7 +335,7 @@ namespace FSpot.Exporters.PicasaWeb
 				edit_button.Sensitive = true;
 			}
 
-			Log.DebugFormat ("Setting gallery_optionmenu.Active = {0}", pos);
+			Logger.Log.DebugFormat ("Setting gallery_optionmenu.Active = {0}", pos);
 			gallery_optionmenu.Active = pos;
 		}
 
@@ -378,7 +378,7 @@ namespace FSpot.Exporters.PicasaWeb
 					album_button.Sensitive = true;
 				}
 			} catch (CaptchaException exc) {
-				Log.Debug ("Your Google account is locked");
+				Logger.Log.Debug ("Your Google account is locked");
 				if (selected != null)
 					account = selected;
 
@@ -387,10 +387,10 @@ namespace FSpot.Exporters.PicasaWeb
 
 				new GoogleAccountDialog (this.Dialog, account, false, exc);
 
-				Log.Warning ("Your Google account is locked, you can unlock it by visiting: {0}", CaptchaException.UnlockCaptchaURL);
+				Logger.Log.Warning ("Your Google account is locked, you can unlock it by visiting: {0}", CaptchaException.UnlockCaptchaURL);
 
 			} catch (System.Exception) {
-				Log.Warning ("Can not connect to Picasa. Bad username? password? network connection?");
+				Logger.Log.Warning ("Can not connect to Picasa. Bad username? password? network connection?");
 				if (selected != null)
 					account = selected;
 
@@ -427,7 +427,7 @@ namespace FSpot.Exporters.PicasaWeb
 				try {
 					albums = picasa.GetAlbums();
 				} catch {
-					Log.Warning ("Picasa: can't get the albums");
+					Logger.Log.Warning ("Picasa: can't get the albums");
 					albums = null;
 					picasa = null;
 				}

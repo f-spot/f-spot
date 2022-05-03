@@ -26,17 +26,16 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
 using Mono.Unix;
 
 namespace Hyena.Data.Gui.Accessibility
 {
-    class ColumnHeaderCellTextAccessible: ColumnCellTextAccessible, Atk.ActionImplementor
+	class ColumnHeaderCellTextAccessible: ColumnCellTextAccessible, Atk.ActionImplementor
     {
-        private static string [] action_descriptions  = new string[] {"", Catalog.GetString ("open context menu")};
-        private static string [] action_names_localized = new string[] {Catalog.GetString ("click"), Catalog.GetString ("menu")};
+        static string [] action_descriptions  = new string[] {"", Catalog.GetString ("open context menu")};
+        static string [] action_names_localized = new string[] {Catalog.GetString ("click"), Catalog.GetString ("menu")};
 
-        private enum Actions {
+        enum Actions {
             Click,
             Menu,
             Last

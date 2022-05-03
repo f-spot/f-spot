@@ -35,13 +35,9 @@ using System;
 
 using Gtk;
 
-using Mono.Unix;
-
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Widgets;
-
-using Hyena;
 
 namespace FSpot.UI.Dialog
 {
@@ -123,7 +119,7 @@ namespace FSpot.UI.Dialog
 
 		//TimeSpan Offset {
 		//	get {
-		//		Log.Debug ($"{date_time.Time} - {item.Current.Time} = {date_edit.Time - item.Current.Time}");
+		//		Logger.Log.Debug ($"{date_time.Time} - {item.Current.Time} = {date_edit.Time - item.Current.Time}");
 		//		return EditTime - item.Current.Time;
 		//	}
 		//	set {
@@ -134,7 +130,7 @@ namespace FSpot.UI.Dialog
 		void HandleTimeChanged (object sender, EventArgs args)
 		{
 			//TimeSpan span = Offset;
-			//Log.Debug ($"time changed {span}");
+			//Logger.Log.Debug ($"time changed {span}");
 			//if (!offset_entry.HasFocus)
 			//	offset_entry.Text = span.ToString ();
 
@@ -177,7 +173,7 @@ namespace FSpot.UI.Dialog
 			//	DateTime time = p.Time;
 			//	p.Time = time + span;
 			//	photos[i] = p;
-			//	Log.Debug ($"XXXXX old: {time} new: {p.Time} span: {span}");
+			//	Logger.Log.Debug ($"XXXXX old: {time} new: {p.Time} span: {span}");
 			//}
 
 			//db.Photos.Commit (photos);
@@ -230,14 +226,14 @@ namespace FSpot.UI.Dialog
 
 		void HandleOffsetChanged (object sender, EventArgs args)
 		{
-			//Log.DebugFormat ("offset = {0}", Offset);
+			//Logger.Log.DebugFormat ("offset = {0}", Offset);
 			//TimeSpan current = Offset;
 			//try {
 			//	TimeSpan span = TimeSpan.Parse (offset_entry.Text);
 			//	if (span != current)
 			//		Offset = span;
 			//} catch (Exception) {
-			//	Log.Warning ($"unparsable span {offset_entry.Text}");
+			//	Logger.Log.Warning ($"unparsable span {offset_entry.Text}");
 			//}
 		}
 

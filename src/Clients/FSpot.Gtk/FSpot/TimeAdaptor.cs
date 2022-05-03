@@ -42,6 +42,8 @@ using FSpot.Query;
 
 using Hyena;
 
+using SerilogTimings;
+
 namespace FSpot
 {
 	public class TimeAdaptor : GroupAdaptor, ILimitable
@@ -131,7 +133,7 @@ namespace FSpot
 			year = Math.Min(year, 9999);
 			month = Math.Max(1, month);
 			month = Math.Min(month, 12);
-		
+
 			int daysInMonth = DateTime.DaysInMonth(year, month);
 
 			return new DateTime (year, month, daysInMonth).AddDays (1.0).AddMilliseconds (-.1);
@@ -160,7 +162,7 @@ namespace FSpot
 			int max_year = endyear;
 
 			if (year < min_year || year > max_year) {
-				Log.DebugFormat ("TimeAdaptor.IndexFromDate year out of range[{1},{2}]: {0}", year, min_year, max_year);
+				Logger.Log.Debug ($"TimeAdaptor.IndexFromDate year out of range[{min_year},{max_year}]: {year}");
 				return 0;
 			}
 
@@ -174,7 +176,7 @@ namespace FSpot
 			int max_year = endyear;
 
 			if (year < min_year || year > max_year) {
-				Log.DebugFormat ("TimeAdaptor.IndexFromPhoto year out of range[{1},{2}]: {0}", year, min_year, max_year);
+				Logger.Log.Debug ($"TimeAdaptor.IndexFromPhoto year out of range[{min_year},{max_year}]: {year}");
 				return 0;
 			}
 
@@ -190,10 +192,10 @@ namespace FSpot
 
 		public override event ChangedHandler Changed;
 
-		uint timer;
+		Operation op;
 		protected override void Reload ()
 		{
-			timer = Log.DebugTimerStart ();
+			op = Operation.Begin ($"TimeAdaptor REAL Reload");
 			Thread reload = new Thread (new ThreadStart (DoReload));
 			reload.IsBackground = true;
 			reload.Priority = ThreadPriority.Lowest;
@@ -221,7 +223,8 @@ namespace FSpot
 				Changed?.Invoke (this);
 			});
 
-			Log.DebugTimerPrint (timer, "TimeAdaptor REAL Reload took {0}");
+			op.Complete ();
+			op.Dispose ();
 		}
 	}
 }

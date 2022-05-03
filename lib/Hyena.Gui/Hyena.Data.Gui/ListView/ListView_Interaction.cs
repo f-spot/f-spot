@@ -42,12 +42,12 @@ namespace Hyena.Data.Gui
 {
     public partial class ListView<T> : ListViewBase
     {
-        private enum KeyDirection {
+        enum KeyDirection {
             Press,
             Release
         }
 
-        private bool header_focused = false;
+        bool header_focused = false;
         public bool HeaderFocused {
             get { return header_focused; }
             set {
@@ -61,7 +61,7 @@ namespace Hyena.Data.Gui
         public event EventHandler ActiveColumnChanged;
         #pragma warning restore 0067
 
-        private int active_column = 0;
+        int active_column = 0;
         public int ActiveColumn {
             get { return active_column; }
             set {
@@ -73,17 +73,17 @@ namespace Hyena.Data.Gui
             }
         }
 
-        private Adjustment vadjustment;
+        Adjustment vadjustment;
         public Adjustment Vadjustment {
             get { return vadjustment; }
         }
 
-        private Adjustment hadjustment;
+        Adjustment hadjustment;
         public Adjustment Hadjustment {
             get { return hadjustment; }
         }
 
-        private SelectionProxy selection_proxy = new SelectionProxy ();
+        SelectionProxy selection_proxy = new SelectionProxy ();
         public SelectionProxy SelectionProxy {
             get { return selection_proxy; }
         }
@@ -92,11 +92,11 @@ namespace Hyena.Data.Gui
             get { return model == null ? null : model.Selection; }
         }
 
-        private int HadjustmentValue {
+        int HadjustmentValue {
             get { return hadjustment == null ? 0 : (int)hadjustment.Value; }
         }
 
-        private int VadjustmentValue {
+        int VadjustmentValue {
             get { return vadjustment == null ? 0 : (int)vadjustment.Value; }
         }
 
@@ -104,7 +104,7 @@ namespace Hyena.Data.Gui
 
 #region Row/Selection, Keyboard/Mouse Interaction
 
-        private bool KeyboardScroll (Gdk.ModifierType modifier, int relative_row, bool align_y)
+        bool KeyboardScroll (Gdk.ModifierType modifier, int relative_row, bool align_y)
         {
             if (Model == null) {
                 return true;
@@ -170,7 +170,7 @@ namespace Hyena.Data.Gui
             return true;
         }
 
-        private bool UpdateSelectionForKeyboardScroll (Gdk.ModifierType modifier, int relative_row)
+        bool UpdateSelectionForKeyboardScroll (Gdk.ModifierType modifier, int relative_row)
         {
             if (Selection != null) {
                 if ((modifier & Gdk.ModifierType.ControlMask) != 0) {
@@ -245,7 +245,7 @@ namespace Hyena.Data.Gui
             return handled ? true : base.OnKeyPressEvent (press);
         }
 
-        private bool HandleKeyboardScrollKey (Gdk.EventKey press, KeyDirection direction)
+        bool HandleKeyboardScrollKey (Gdk.EventKey press, KeyDirection direction)
         {
             bool handled = false;
             // FIXME: hard-coded grid logic here...
@@ -374,9 +374,9 @@ namespace Hyena.Data.Gui
 
 #region DataViewLayout Interaction Events
 
-        private CanvasItem last_layout_child;
+        CanvasItem last_layout_child;
 
-        private bool LayoutChildHandlesEvent (Gdk.Event evnt, bool press)
+        bool LayoutChildHandlesEvent (Gdk.Event evnt, bool press)
         {
             if (ViewLayout == null) {
                 return false;
@@ -422,7 +422,7 @@ namespace Hyena.Data.Gui
             return handled;
         }
 
-        private CanvasItem GetLayoutChildAt (Point point)
+        CanvasItem GetLayoutChildAt (Point point)
         {
             point.Offset (-list_interaction_alloc.X, -list_interaction_alloc.Y);
             return ViewLayout.FindChildAtPoint (point);
@@ -432,10 +432,10 @@ namespace Hyena.Data.Gui
 
 #region Cell Event Proxy (FIXME: THIS ENTIRE SECTION IS OBSOLETE YAY YAY YAY!)
 
-        private IInteractiveCell last_icell;
-        private Gdk.Rectangle last_icell_area = Gdk.Rectangle.Zero;
+        IInteractiveCell last_icell;
+        Gdk.Rectangle last_icell_area = Gdk.Rectangle.Zero;
 
-        private void InvalidateLastIcell ()
+        void InvalidateLastIcell ()
         {
             if (last_icell != null && last_icell.CursorLeaveEvent ()) {
                 QueueDirtyRegion (last_icell_area);
@@ -444,7 +444,7 @@ namespace Hyena.Data.Gui
             }
         }
 
-        private void ProxyEventToCell (Gdk.Event evnt, bool press)
+        void ProxyEventToCell (Gdk.Event evnt, bool press)
         {
             IInteractiveCell icell;
             Gdk.Rectangle icell_area;
@@ -476,7 +476,7 @@ namespace Hyena.Data.Gui
             }
         }
 
-        private bool ProxyEventToCell (Gdk.Event evnt, bool press,
+        bool ProxyEventToCell (Gdk.Event evnt, bool press,
             out IInteractiveCell icell, out Gdk.Rectangle icell_area)
         {
             icell = null;
@@ -531,7 +531,7 @@ namespace Hyena.Data.Gui
 
         #pragma warning disable 0169
 
-        private bool GetEventCell<G> (int x, int y, out G icell, out Column column, out int row_index) where G : class
+        bool GetEventCell<G> (int x, int y, out G icell, out Column column, out int row_index) where G : class
         {
             icell = null;
             column = null;
@@ -584,7 +584,7 @@ namespace Hyena.Data.Gui
             return true;
         }
 
-        private bool OnHeaderButtonPressEvent (Gdk.EventButton evnt)
+        bool OnHeaderButtonPressEvent (Gdk.EventButton evnt)
         {
             int x = (int)evnt.X - header_interaction_alloc.X;
             int y = (int)evnt.Y - header_interaction_alloc.Y;
@@ -618,7 +618,7 @@ namespace Hyena.Data.Gui
             return true;
         }
 
-        private bool OnListButtonPressEvent (Gdk.EventButton evnt)
+        bool OnListButtonPressEvent (Gdk.EventButton evnt)
         {
             if (Model == null) {
                 return true;
@@ -731,7 +731,7 @@ namespace Hyena.Data.Gui
             return true;
         }
 
-        private bool OnHeaderButtonRelease (Gdk.EventButton evnt)
+        bool OnHeaderButtonRelease (Gdk.EventButton evnt)
         {
             if (pressed_column_index >= 0 && pressed_column_index < column_cache.Length) {
                 Column column = column_cache[pressed_column_index].Column;
@@ -746,7 +746,7 @@ namespace Hyena.Data.Gui
             }
         }
 
-        private bool OnListButtonRelease (Gdk.EventButton evnt)
+        bool OnListButtonRelease (Gdk.EventButton evnt)
         {
             if (Model == null) {
                 return true;
@@ -823,7 +823,7 @@ namespace Hyena.Data.Gui
             return true;
         }
 
-        private bool OnMotionNotifyEvent (int x)
+        bool OnMotionNotifyEvent (int x)
         {
             if (!pressed_column_is_dragging) {
                 return false;
@@ -865,7 +865,7 @@ namespace Hyena.Data.Gui
             return true;
         }
 
-        private bool OnDragHScrollTimeout ()
+        bool OnDragHScrollTimeout ()
         {
             ScrollToY (hadjustment, HadjustmentValue + (drag_scroll_velocity * drag_scroll_velocity_max));
             OnMotionNotifyEvent (pressed_column_x);
@@ -918,7 +918,7 @@ namespace Hyena.Data.Gui
             }
         }
 
-        private bool CancelColumnDrag ()
+        bool CancelColumnDrag ()
         {
             if (pressed_column_index >= 0 && pressed_column_is_dragging) {
                 pressed_column_is_dragging = false;
@@ -963,7 +963,7 @@ namespace Hyena.Data.Gui
             }
         }
 
-        private void FocusModelRow (int index)
+        void FocusModelRow (int index)
         {
             Selection.FocusedIndex = index;
         }
@@ -972,12 +972,12 @@ namespace Hyena.Data.Gui
 
 #region Adjustments & Scrolling
 
-        private void UpdateAdjustments ()
+        void UpdateAdjustments ()
         {
             UpdateAdjustments (null, null);
         }
 
-        private void UpdateAdjustments (Adjustment hadj, Adjustment vadj)
+        void UpdateAdjustments (Adjustment hadj, Adjustment vadj)
         {
             if (hadj != null) {
                 hadjustment = hadj;
@@ -1025,7 +1025,7 @@ namespace Hyena.Data.Gui
             }
         }
 
-        private void OnHadjustmentChanged (object o, EventArgs args)
+        void OnHadjustmentChanged (object o, EventArgs args)
         {
             InvalidateLastIcell ();
             InvalidateHeader ();
@@ -1036,7 +1036,7 @@ namespace Hyena.Data.Gui
             }
         }
 
-        private void OnVadjustmentChanged (object o, EventArgs args)
+        void OnVadjustmentChanged (object o, EventArgs args)
         {
             InvalidateLastIcell ();
             InvalidateList ();
@@ -1051,7 +1051,7 @@ namespace Hyena.Data.Gui
             ScrollToY (vadjustment, val);
         }
 
-        private void ScrollToY (Adjustment adjustment, double val)
+        void ScrollToY (Adjustment adjustment, double val)
         {
             if (adjustment != null) {
                 adjustment.Value = Math.Max (0.0, Math.Min (val, adjustment.Upper - adjustment.PageSize));

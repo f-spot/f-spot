@@ -27,25 +27,24 @@
  */
 
 using System;
-using System.Runtime.InteropServices;
 
 namespace Hyena
 {
 	public class SafeUri
 	{
-		private enum LocalPathCheck
+		enum LocalPathCheck
 		{
 			NotPerformed,
 			Yes,
 			No
 		}
 
-		private static int MAX_SCHEME_LENGTH = 8;
+		static int MAX_SCHEME_LENGTH = 8;
 
-		private string uri;
-		private string local_path;
-		private string scheme;
-		private LocalPathCheck local_path_check = LocalPathCheck.NotPerformed;
+		string uri;
+		string local_path;
+		string scheme;
+		LocalPathCheck local_path_check = LocalPathCheck.NotPerformed;
 
 		public SafeUri (string uri)
 		{
@@ -67,9 +66,9 @@ namespace Hyena
 			}
 
 			if (isUri) {
-				this.uri = uriOrFilename;
+				uri = uriOrFilename;
 			} else {
-				this.uri = FilenameToUri (uriOrFilename);
+				uri = FilenameToUri (uriOrFilename);
 			}
 		}
 

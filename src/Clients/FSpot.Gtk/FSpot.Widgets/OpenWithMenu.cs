@@ -32,11 +32,7 @@
 using System;
 using System.Collections.Generic;
 
-using GLib;
-
 using Gtk;
-
-using GtkBeans;
 
 using Mono.Unix;
 

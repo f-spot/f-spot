@@ -27,14 +27,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using System.Xml;
-using System.Text;
-using System.Collections.Generic;
-
 namespace Hyena.Query
 {
-    public class Operator : IAliasedObject
+	public class Operator : IAliasedObject
     {
         public string name;
         public string Name {
@@ -47,7 +42,7 @@ namespace Hyena.Query
             set { label = value; }
         }
 
-        private string [] aliases;
+        string [] aliases;
         public string [] Aliases {
             get { return aliases; }
         }
@@ -56,13 +51,13 @@ namespace Hyena.Query
             get { return aliases [0]; }
         }
 
-        private string sql_format;
+        string sql_format;
         public string SqlFormat {
             get { return sql_format; }
         }
 
         // FIXME get rid of this
-        private bool is_not;
+        bool is_not;
         public bool IsNot {
             get { return is_not; }
         }
@@ -76,7 +71,7 @@ namespace Hyena.Query
             this.name = name;
             this.label = label;
             this.sql_format = sql_format;
-            this.aliases = userOps;
+            aliases = userOps;
             this.is_not = is_not;
         }
     }

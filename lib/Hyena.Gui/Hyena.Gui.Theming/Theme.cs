@@ -28,27 +28,24 @@
 
 using System;
 using System.Collections.Generic;
-using Gtk;
-using Gdk;
-using Cairo;
 
-using Hyena.Gui;
+using Gtk;
 
 namespace Hyena.Gui.Theming
 {
-    public abstract class Theme
+	public abstract class Theme
     {
-        private static Cairo.Color black = new Cairo.Color (0, 0, 0);
-        private Stack<ThemeContext> contexts = new Stack<ThemeContext> ();
-        private GtkColors colors;
+        static Cairo.Color black = new Cairo.Color (0, 0, 0);
+        Stack<ThemeContext> contexts = new Stack<ThemeContext> ();
+        GtkColors colors;
 
-        private Cairo.Color selection_fill;
-        private Cairo.Color selection_stroke;
+        Cairo.Color selection_fill;
+        Cairo.Color selection_stroke;
 
-        private Cairo.Color view_fill;
-        private Cairo.Color view_fill_transparent;
+        Cairo.Color view_fill;
+        Cairo.Color view_fill_transparent;
 
-        private Cairo.Color text_mid;
+        Cairo.Color text_mid;
 
         public GtkColors Colors {
             get { return colors; }

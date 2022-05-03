@@ -33,13 +33,13 @@ namespace Hyena.Widgets
 {
     public class MenuButton : Container
     {
-        private ToggleButton toggle_button = new ToggleButton ();
-        private HBox box = new HBox ();
-        private Alignment alignment;
-        private Arrow arrow;
-        private Widget button_widget;
-        private Menu menu;
-        private Widget size_widget;
+        ToggleButton toggle_button = new ToggleButton ();
+        HBox box = new HBox ();
+        Alignment alignment;
+        Arrow arrow;
+        Widget button_widget;
+        Menu menu;
+        Widget size_widget;
 
         protected MenuButton (IntPtr ptr) : base (ptr) {}
 
@@ -103,7 +103,7 @@ namespace Hyena.Widgets
             }
         }
 
-        private void OnMenuDeactivated (object o, EventArgs args)
+        void OnMenuDeactivated (object o, EventArgs args)
         {
             toggle_button.Active = false;
         }
@@ -152,7 +152,7 @@ namespace Hyena.Widgets
             menu.Popup (null, null, PositionMenu, 1, Gtk.Global.CurrentEventTime);
         }
 
-        private void PositionMenu (Menu menu, out int x, out int y, out bool push_in)
+        void PositionMenu (Menu menu, out int x, out int y, out bool push_in)
         {
             Gtk.Requisition menu_req = menu.SizeRequest ();
             int monitor_num = Screen.GetMonitorAtWindow (GdkWindow);

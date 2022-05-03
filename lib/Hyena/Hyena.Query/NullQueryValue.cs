@@ -28,15 +28,12 @@
 
 using System;
 using System.Xml;
-using System.Text;
 
 using Mono.Unix;
 
-using Hyena;
-
 namespace Hyena.Query
 {
-    public class NullQueryValue : QueryValue
+	public class NullQueryValue : QueryValue
     {
         public static readonly Operator IsNullOrEmpty  = new Operator ("empty", Catalog.GetString ("empty"), "IN (NULL, '', 0)", true, "!");
 
@@ -55,7 +52,7 @@ namespace Hyena.Query
             get { return operators; }
         }
 
-        private NullQueryValue ()
+        NullQueryValue ()
         {
             IsEmpty = false;
         }
@@ -74,7 +71,7 @@ namespace Hyena.Query
 
         public override void AppendXml (XmlElement node)
         {
-            node.InnerText = String.Empty;
+            node.InnerText = string.Empty;
         }
 
         public void SetValue (string str)

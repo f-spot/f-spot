@@ -26,11 +26,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-
 namespace Hyena.Query
 {
-    public enum TokenID {
+	public enum TokenID {
         Unknown,
         OpenParen,
         CloseParen,
@@ -43,10 +41,10 @@ namespace Hyena.Query
 
     public class QueryToken
     {
-        private TokenID id;
-        private int line;
-        private int column;
-        private string term;
+        TokenID id;
+        int line;
+        int column;
+        string term;
 
         public QueryToken()
         {
@@ -54,7 +52,7 @@ namespace Hyena.Query
 
         public QueryToken(string term)
         {
-            this.id = TokenID.Term;
+            id = TokenID.Term;
             this.term = term;
         }
 

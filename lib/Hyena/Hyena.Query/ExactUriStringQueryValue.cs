@@ -34,7 +34,7 @@ namespace Hyena.Query
     {
         public override string ToSql (Operator op)
         {
-            if (String.IsNullOrEmpty (value)) {
+            if (string.IsNullOrEmpty (value)) {
                 return null;
             }
 

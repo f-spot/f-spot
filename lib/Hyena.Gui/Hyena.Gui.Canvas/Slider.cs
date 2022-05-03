@@ -25,16 +25,16 @@
 // THE SOFTWARE.
 
 using System;
+
 using Cairo;
 
-using Hyena.Gui;
 using Hyena.Gui.Theming;
 
 namespace Hyena.Gui.Canvas
 {
-    public class Slider : CanvasItem
+	public class Slider : CanvasItem
     {
-        private uint value_changed_inhibit_ref = 0;
+        uint value_changed_inhibit_ref = 0;
 
         public event EventHandler<EventArgs> ValueChanged;
         public event EventHandler<EventArgs> PendingValueChanged;
@@ -78,7 +78,7 @@ namespace Hyena.Gui.Canvas
             value_changed_inhibit_ref--;
         }
 
-        private void SetPendingValueFromX (double x)
+        void SetPendingValueFromX (double x)
         {
             IsValueUpdatePending = true;
             PendingValue = Math.Max (0, Math.Min ((x - ThrobberSize / 2) / RenderSize.Width, 1));
@@ -184,19 +184,19 @@ namespace Hyena.Gui.Canvas
                 Height + Margin.Top + Margin.Bottom);
         }
 
-        private double bar_size = 3;
+        double bar_size = 3;
         public virtual double BarSize {
             get { return bar_size; }
             set { bar_size = value; }
         }
 
-        private double throbber_size = 7;
+        double throbber_size = 7;
         public virtual double ThrobberSize {
             get { return throbber_size; }
             set { throbber_size = value; }
         }
 
-        private double value;
+        double value;
         public virtual double Value {
             get { return this.value; }
             set {
@@ -212,13 +212,13 @@ namespace Hyena.Gui.Canvas
             }
         }
 
-        private bool is_value_update_pending;
+        bool is_value_update_pending;
         public virtual bool IsValueUpdatePending {
             get { return is_value_update_pending; }
             set { is_value_update_pending = value; }
         }
 
-        private double pending_value;
+        double pending_value;
         public virtual double PendingValue {
             get { return pending_value; }
             set {

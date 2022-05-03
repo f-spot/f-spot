@@ -37,9 +37,9 @@ namespace Hyena.Collections
         public event EventHandler Finished;
         #pragma warning restore 0067
 
-        private object sync = new object ();
+        object sync = new object ();
 
-        private QueuePipelineElement<T> first_element;
+        QueuePipelineElement<T> first_element;
         internal QueuePipelineElement<T> FirstElement {
             get { return first_element; }
         }
@@ -86,7 +86,7 @@ namespace Hyena.Collections
             }
         }
 
-        private void OnElementFinished (object o, EventArgs args)
+        void OnElementFinished (object o, EventArgs args)
         {
             bool any_processing = false;
 
@@ -108,10 +108,7 @@ namespace Hyena.Collections
 
         protected virtual void OnFinished ()
         {
-            EventHandler handler = Finished;
-            if (handler != null) {
-                handler (this, EventArgs.Empty);
-            }
-        }
+			Finished?.Invoke (this, EventArgs.Empty);
+		}
     }
 }

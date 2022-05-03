@@ -52,27 +52,27 @@ namespace Hyena.Data.Gui
             public double ElasticPercent;
         }
 
-        private static Gdk.Cursor resize_x_cursor = new Gdk.Cursor (Gdk.CursorType.SbHDoubleArrow);
-        private static Gdk.Cursor drag_cursor = new Gdk.Cursor (Gdk.CursorType.Fleur);
+        static Gdk.Cursor resize_x_cursor = new Gdk.Cursor (Gdk.CursorType.SbHDoubleArrow);
+        static Gdk.Cursor drag_cursor = new Gdk.Cursor (Gdk.CursorType.Fleur);
 
-        private bool resizable;
-        private int header_width;
-        private double list_width, max_width;
-        private int sort_column_index = -1;
-        private int resizing_column_index = -1;
-        private int pressed_column_index = -1;
-        private int pressed_column_x = -1;
-        private int pressed_column_x_start = -1;
-        private int pressed_column_x_offset = -1;
-        private int pressed_column_x_drag = -1;
-        private int pressed_column_x_start_hadjustment = -1;
-        private bool pressed_column_is_dragging = false;
-        private bool pressed_column_drag_started = false;
+        bool resizable;
+        int header_width;
+        double list_width, max_width;
+        int sort_column_index = -1;
+        int resizing_column_index = -1;
+        int pressed_column_index = -1;
+        int pressed_column_x = -1;
+        int pressed_column_x_start = -1;
+        int pressed_column_x_offset = -1;
+        int pressed_column_x_drag = -1;
+        int pressed_column_x_start_hadjustment = -1;
+        bool pressed_column_is_dragging = false;
+        bool pressed_column_drag_started = false;
 
-        private Pango.Layout column_layout;
+        Pango.Layout column_layout;
 
-        private CachedColumn [] column_cache;
-        private List<int> elastic_columns;
+        CachedColumn [] column_cache;
+        List<int> elastic_columns;
 
         public int Width {
             get { return (int)list_width; }
@@ -84,12 +84,12 @@ namespace Hyena.Data.Gui
 
 #region Columns
 
-        private void InvalidateColumnCache ()
+        void InvalidateColumnCache ()
         {
             column_cache = null;
         }
 
-        private void GenerateColumnCache ()
+        void GenerateColumnCache ()
         {
             column_cache = new CachedColumn[column_controller.Count];
 
@@ -126,7 +126,7 @@ namespace Hyena.Data.Gui
             RecalculateColumnSizes ();
         }
 
-        private void RegenerateColumnCache ()
+        void RegenerateColumnCache ()
         {
             if (column_controller == null) {
                 return;
@@ -153,7 +153,7 @@ namespace Hyena.Data.Gui
             }
         }
 
-        private void RecalculateColumnSizes ()
+        void RecalculateColumnSizes ()
         {
             if (column_cache == null) {
                 return;
@@ -227,7 +227,7 @@ namespace Hyena.Data.Gui
             max_width = tmp_max;
         }
 
-        private double RecalculateColumnSizes (double total_width, double total_elastic_width)
+        double RecalculateColumnSizes (double total_width, double total_elastic_width)
         {
             double remaining_width = total_width;
 
@@ -361,7 +361,7 @@ namespace Hyena.Data.Gui
             }, 3, Gtk.Global.CurrentEventTime);
         }
 
-        private void ResizeColumn (double x)
+        void ResizeColumn (double x)
         {
             CachedColumn resizing_column = column_cache[resizing_column_index];
             double resize_delta = x - resizing_column.ResizeX2;
@@ -420,7 +420,7 @@ namespace Hyena.Data.Gui
             QueueDraw ();
         }
 
-        private Column GetColumnForResizeHandle (int x)
+        Column GetColumnForResizeHandle (int x)
         {
             if (column_cache == null || !resizable) {
                 return null;
@@ -446,7 +446,7 @@ namespace Hyena.Data.Gui
             return cached_column.Width;
         }
 
-        private bool CanResizeColumn (int column_index)
+        bool CanResizeColumn (int column_index)
         {
             // At least one column to the left (including the one being resized) should be resizable.
             bool found = false;
@@ -471,7 +471,7 @@ namespace Hyena.Data.Gui
             return false;
         }
 
-        private Column GetColumnAt (int x)
+        Column GetColumnAt (int x)
         {
             if (column_cache == null) {
                 return null;
@@ -488,7 +488,7 @@ namespace Hyena.Data.Gui
             return null;
         }
 
-        private CachedColumn GetCachedColumnForColumn (Column col)
+        CachedColumn GetCachedColumnForColumn (Column col)
         {
             foreach (CachedColumn ca_col in column_cache) {
                 if (ca_col.Column == col) {
@@ -499,7 +499,7 @@ namespace Hyena.Data.Gui
             return CachedColumn.Zero;
         }
 
-        private ColumnController column_controller;
+        ColumnController column_controller;
         public ColumnController ColumnController {
             get { return column_controller; }
             set {
@@ -525,8 +525,8 @@ namespace Hyena.Data.Gui
 
 #region Header
 
-        private int header_height = 0;
-        private int HeaderHeight {
+        int header_height = 0;
+        int HeaderHeight {
             get {
                 // FIXME: ViewLayout should have the header info and never be null
                 if (!header_visible || ViewLayout != null) {
@@ -546,7 +546,7 @@ namespace Hyena.Data.Gui
             }
         }
 
-        private bool header_visible = true;
+        bool header_visible = true;
         public bool HeaderVisible {
             get { return header_visible; }
             set {
@@ -559,11 +559,11 @@ namespace Hyena.Data.Gui
 
 #region Gtk.MenuItem Wrappers for the column context menu
 
-        private class ColumnToggleMenuItem : CheckMenuItem
+        class ColumnToggleMenuItem : CheckMenuItem
         {
-            private Column column;
-            private bool ready = false;
-            private Label label;
+            Column column;
+            bool ready = false;
+            Label label;
 
             public ColumnToggleMenuItem (Column column) : base ()
             {
@@ -597,10 +597,10 @@ namespace Hyena.Data.Gui
             }
         }
 
-        private class ColumnHideMenuItem : ImageMenuItem
+        class ColumnHideMenuItem : ImageMenuItem
         {
-            private Column column;
-            private Label label;
+            Column column;
+            Label label;
 
             public ColumnHideMenuItem (Column column) : base ()
             {

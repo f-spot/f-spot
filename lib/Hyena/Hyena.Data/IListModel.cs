@@ -28,11 +28,9 @@
 
 using System;
 
-using Hyena.Collections;
-
 namespace Hyena.Data
 {
-    public interface IListModel : ISelectable
+	public interface IListModel : ISelectable
     {
         event EventHandler Cleared;
         event EventHandler Reloaded;

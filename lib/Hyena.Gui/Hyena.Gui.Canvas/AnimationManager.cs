@@ -98,12 +98,12 @@ namespace Hyena.Gui.Canvas
 
     public class AnimationManager
     {
-        private static AnimationManager instance;
+        static AnimationManager instance;
         public static AnimationManager Instance {
             get { return instance ?? (instance = new AnimationManager ()); }
         }
 
-        private Stage<Animation> stage = new Stage<Animation> ();
+        Stage<Animation> stage = new Stage<Animation> ();
 
         public AnimationManager ()
         {

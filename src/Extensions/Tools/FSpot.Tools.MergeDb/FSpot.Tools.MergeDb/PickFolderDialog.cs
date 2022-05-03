@@ -29,11 +29,8 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-
 using Mono.Unix;
 
-using Hyena;
 
 namespace FSpot.Tools.MergeDb
 {
@@ -50,7 +47,7 @@ namespace FSpot.Tools.MergeDb
 			var builder = new GtkBeans.Builder (null, "pickfolder_dialog.ui", null);
 			builder.Autoconnect (this);
 
-			Log.Debug ("new pickfolder");
+			Logger.Log.Debug ("new pickfolder");
 			pickfolder_dialog.Modal = false;
 			pickfolder_dialog.TransientFor = parent;
 

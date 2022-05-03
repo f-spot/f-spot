@@ -30,12 +30,12 @@ using System;
 
 namespace Hyena
 {
-    public static class ConsoleCrayon
+    static class ConsoleCrayon
     {
 
 #region Public API
 
-        private static ConsoleColor foreground_color;
+        static ConsoleColor foreground_color;
         public static ConsoleColor ForegroundColor {
             get { return foreground_color; }
             set {
@@ -44,7 +44,7 @@ namespace Hyena
             }
         }
 
-        private static ConsoleColor background_color;
+        static ConsoleColor background_color;
         public static ConsoleColor BackgroundColor {
             get { return background_color; }
             set {
@@ -62,7 +62,7 @@ namespace Hyena
             }
         }
 
-        private static void SetColor (ConsoleColor color, bool isForeground)
+        static void SetColor (ConsoleColor color, bool isForeground)
         {
             if (color < ConsoleColor.Black || color > ConsoleColor.White) {
                 throw new ArgumentOutOfRangeException (nameof (color), "Not a ConsoleColor value.");
@@ -88,7 +88,7 @@ namespace Hyena
         // Authors: Gonzalo Paniagua Javier <gonzalo@ximian.com>
         // (C) 2005-2006 Novell, Inc <http://www.novell.com>
 
-        private static int TranslateColor (ConsoleColor desired, out bool light)
+        static int TranslateColor (ConsoleColor desired, out bool light)
         {
             light = false;
             switch (desired) {
@@ -114,16 +114,16 @@ namespace Hyena
             }
         }
 
-        private static string GetAnsiColorControlCode (ConsoleColor color, bool isForeground)
+        static string GetAnsiColorControlCode (ConsoleColor color, bool isForeground)
         {
             // lighter fg colours are 90 -> 97 rather than 30 -> 37
             // lighter bg colours are 100 -> 107 rather than 40 -> 47
             bool light;
             int code = TranslateColor (color, out light) + (isForeground ? 30 : 40) + (light ? 60 : 0);
-            return String.Format ("\x001b[{0}m", code);
+            return string.Format ("\x001b[{0}m", code);
         }
 
-        private static string GetAnsiResetControlCode ()
+        static string GetAnsiResetControlCode ()
         {
             return "\x001b[0m";
         }
@@ -132,7 +132,7 @@ namespace Hyena
 
 #region xterm Detection
 
-        private static bool? xterm_colors = null;
+        static bool? xterm_colors = null;
         public static bool XtermColors {
             get {
                 if (xterm_colors == null) {
@@ -144,9 +144,9 @@ namespace Hyena
         }
 
         [System.Runtime.InteropServices.DllImport ("libc", EntryPoint="isatty")]
-        private extern static int _isatty (int fd);
+static extern int _isatty (int fd);
 
-        private static bool isatty (int fd)
+        static bool isatty (int fd)
         {
             try {
                 return _isatty (fd) == 1;
@@ -155,7 +155,7 @@ namespace Hyena
             }
         }
 
-        private static void DetectXtermColors ()
+        static void DetectXtermColors ()
         {
             bool _xterm_colors = false;
 
@@ -179,7 +179,7 @@ namespace Hyena
 
 #region Runtime Detection
 
-        private static bool? runtime_is_mono;
+        static bool? runtime_is_mono;
         public static bool RuntimeIsMono {
             get {
                 if (runtime_is_mono == null) {
@@ -203,7 +203,7 @@ namespace Hyena
             TestRuntime ();
         }
 
-        private static void TestSelf ()
+        static void TestSelf ()
         {
             Console.WriteLine ("==SELF TEST==");
             foreach (ConsoleColor color in Enum.GetValues (typeof (ConsoleColor))) {
@@ -218,7 +218,7 @@ namespace Hyena
             }
         }
 
-        private static void TestAnsi ()
+        static void TestAnsi ()
         {
             Console.WriteLine ("==ANSI TEST==");
             foreach (ConsoleColor color in Enum.GetValues (typeof (ConsoleColor))) {
@@ -230,7 +230,7 @@ namespace Hyena
             }
         }
 
-        private static void TestRuntime ()
+        static void TestRuntime ()
         {
             Console.WriteLine ("==RUNTIME TEST==");
             foreach (ConsoleColor color in Enum.GetValues (typeof (ConsoleColor))) {

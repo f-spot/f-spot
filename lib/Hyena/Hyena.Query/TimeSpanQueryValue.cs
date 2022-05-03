@@ -27,19 +27,15 @@
 //
 
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Xml;
-using System.Text;
 using System.Text.RegularExpressions;
 
 using Mono.Unix;
 
-using Hyena;
-
 namespace Hyena.Query
 {
-    public enum TimeFactor {
+	public enum TimeFactor {
         Second = 1,
         Minute = 60,
         Hour   = 3600,
@@ -88,7 +84,7 @@ namespace Hyena.Query
         }
 
         // FIXME replace period in following with culture-dependent character
-        private static Regex number_regex = new Regex ("\\d+(\\.\\d+)?", RegexOptions.Compiled);
+        static Regex number_regex = new Regex ("\\d+(\\.\\d+)?", RegexOptions.Compiled);
         public override void ParseUserQuery (string input)
         {
             Match match = number_regex.Match (input);
@@ -151,7 +147,7 @@ namespace Hyena.Query
             try {
                 LoadString (node.InnerText);
                 if (node.HasAttribute ("factor")) {
-                    this.factor = (TimeFactor) Enum.Parse (typeof(TimeFactor), node.GetAttribute ("factor"));
+                    factor = (TimeFactor) Enum.Parse (typeof(TimeFactor), node.GetAttribute ("factor"));
                 }
             } catch {
                 IsEmpty = true;
@@ -197,7 +193,7 @@ namespace Hyena.Query
                 }
             }
 
-            return String.Format (result, StringUtil.DoubleToTenthsPrecision (
+            return string.Format (result, StringUtil.DoubleToTenthsPrecision (
                 count, false, translate ? NumberFormatInfo.CurrentInfo : NumberFormatInfo.InvariantInfo));
         }
     }

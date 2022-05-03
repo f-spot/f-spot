@@ -34,52 +34,48 @@ namespace Hyena
 {
     public static class ThreadAssist
     {
-        private static Thread main_thread;
-
-        public static Thread MainThread {
-            get { return main_thread; }
-        }
+        public static Thread MainThread { get; private set; }
 
         public static Action<InvokeHandler> ProxyToMainHandler { get; set; }
 
         public static void InitializeMainThread ()
         {
-            main_thread = Thread.CurrentThread;
+			MainThread = Thread.CurrentThread;
             try {
-                main_thread.Name = "Main Thread";
+				MainThread.Name = "Main Thread";
             } catch {
-                Log.DebugFormat ("Main thread set to {0}", main_thread.Name);
+                Log.Debug ($"Main thread set to {MainThread.Name}");
             }
         }
 
         public static bool InMainThread {
             get {
-                if (main_thread == null) {
+                if (MainThread == null) {
                     throw new ApplicationException ("ThreadAssist.InitializeMainThread must be called first");
                 }
 
-                return main_thread.Equals (Thread.CurrentThread);
+                return MainThread.Equals (Thread.CurrentThread);
             }
         }
 
         public static void AssertNotInMainThread ()
         {
             if (ApplicationContext.Debugging && InMainThread) {
-                Hyena.Log.Warning ("In GUI thread, will probably block it", System.Environment.StackTrace);
+				Log.Warning ("In GUI thread, will probably block it", Environment.StackTrace);
             }
         }
 
         public static void AssertInMainThread ()
         {
             if (ApplicationContext.Debugging && !InMainThread) {
-                Hyena.Log.Warning ("Not in main thread!", System.Environment.StackTrace);
+				Log.Warning ("Not in main thread!", Environment.StackTrace);
             }
         }
 
         public static void BlockingProxyToMain (InvokeHandler handler)
         {
             if (!InMainThread) {
-                var reset_event = new System.Threading.ManualResetEvent (false);
+                var reset_event = new ManualResetEvent (false);
 
                 ProxyToMainHandler (delegate {
                     try {
@@ -115,8 +111,8 @@ namespace Hyena
 
         public static Thread Spawn (ThreadStart threadedMethod, bool autoStart)
         {
-            Thread thread = new Thread (threadedMethod);
-            thread.Name = String.Format ("Spawned: {0}", threadedMethod);
+            var thread = new Thread (threadedMethod);
+            thread.Name = $"Spawned: {threadedMethod}";
             thread.IsBackground = true;
             if (autoStart) {
                 thread.Start ();

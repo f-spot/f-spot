@@ -36,15 +36,15 @@ namespace Hyena.Widgets
 {
     public class MessageBar : Alignment
     {
-        private HBox box;
-        private HBox button_box;
-        private AnimatedImage image;
-        private WrapLabel label;
-        private Button close_button;
+        HBox box;
+        HBox button_box;
+        AnimatedImage image;
+        WrapLabel label;
+        Button close_button;
 
-        private Window win;
+        Window win;
 
-        private Theme theme;
+        Theme theme;
 
         public event EventHandler CloseClicked {
             add { close_button.Clicked += value; }
@@ -149,7 +149,7 @@ namespace Hyena.Widgets
             }
         }
 
-        private bool changing_style = false;
+        bool changing_style = false;
         protected override void OnStyleSet (Gtk.Style previousStyle)
         {
             if (changing_style) {

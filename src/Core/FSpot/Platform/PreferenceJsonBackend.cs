@@ -11,13 +11,11 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
-using System;
 using System.IO;
 
 using Newtonsoft.Json.Linq;
 
 using FSpot.Settings;
-using System.Collections.Generic;
 using System.Collections;
 
 namespace FSpot.Platform

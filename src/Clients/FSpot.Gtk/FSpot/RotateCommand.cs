@@ -47,6 +47,7 @@ using Hyena.Widgets;
 
 using Mono.Unix;
 
+
 namespace FSpot
 {
 	public class RotateException : ApplicationException
@@ -99,7 +100,7 @@ namespace FSpot
 				metadata.SaveSafely (uri, always_sidecar);
 				App.Instance.Container.Resolve<IThumbnailService> ().DeleteThumbnails (uri);
 			} catch (Exception e) {
-				Log.DebugException (e);
+				Logger.Log.Debug (e, "");
 				throw new RotateException (Catalog.GetString ("Unable to rotate this type of photo"), original_path);
 			}
 		}

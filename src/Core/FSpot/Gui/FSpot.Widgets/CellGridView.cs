@@ -470,7 +470,7 @@ namespace FSpot.Widgets
 
             Gdk.Region offscreen = new Gdk.Region ();
             /*
-            Log.Debug ("step ({0}, {1}) allocation ({2},{3},{4},{5})",
+            Logger.Log.Debug ("step ({0}, {1}) allocation ({2},{3},{4},{5})",
                     xstep, ystep, Hadjustment.Value, Vadjustment.Value,
                     Allocation.Width, Allocation.Height);
             */

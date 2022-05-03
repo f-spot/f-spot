@@ -37,6 +37,8 @@ using FSpot.Thumbnail;
 using FSpot.Utils;
 using Hyena;
 
+
+
 namespace FSpot
 {
 	public class PixbufCache
@@ -190,7 +192,7 @@ namespace FSpot
 					ProcessRequest (current);
 					QueueLast (current);
 				} catch (Exception e) {
-					Log.Exception (e);
+					Logger.Log.Error (e, "");
 					current = null;
 				}
 			}

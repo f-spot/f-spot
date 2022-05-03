@@ -28,25 +28,21 @@
 //
 
 using System;
-using System.Text;
 
 using Mono.Unix;
 using Gtk;
 
-using Hyena;
-using Hyena.Query;
-
 namespace Hyena.Query.Gui
 {
-    public class QueryLimitBox : HBox
+	public class QueryLimitBox : HBox
     {
-        private CheckButton enabled_checkbox;
-        private SpinButton count_spin;
-        private ComboBox limit_combo;
-        private ComboBox order_combo;
+        CheckButton enabled_checkbox;
+        SpinButton count_spin;
+        ComboBox limit_combo;
+        ComboBox order_combo;
 
-        private QueryOrder [] orders;
-        private QueryLimit [] limits;
+        QueryOrder [] orders;
+        QueryLimit [] limits;
 
         public QueryLimitBox (QueryOrder [] orders, QueryLimit [] limits) : base ()
         {
@@ -94,7 +90,7 @@ namespace Hyena.Query.Gui
             ShowAll ();
         }
 
-        private bool IsRowSeparator (TreeModel model, TreeIter iter)
+        bool IsRowSeparator (TreeModel model, TreeIter iter)
         {
             return String.IsNullOrEmpty (model.GetValue (iter, 0) as string);
         }
@@ -132,7 +128,7 @@ namespace Hyena.Query.Gui
             }
         }
 
-        private void OnEnabledToggled (object o, EventArgs args)
+        void OnEnabledToggled (object o, EventArgs args)
         {
             count_spin.Sensitive = enabled_checkbox.Active;
             limit_combo.Sensitive = enabled_checkbox.Active;

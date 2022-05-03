@@ -28,7 +28,6 @@
 
 using System;
 using System.Reflection;
-using System.Resources;
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.IO;
@@ -37,10 +36,10 @@ using Gtk;
 
 namespace Hyena.Gui.Dialogs
 {
-    public class ExceptionDialog : Dialog
+	public class ExceptionDialog : Dialog
     {
-        private AccelGroup accel_group;
-        private string debugInfo;
+        AccelGroup accel_group;
+        string debugInfo;
 
         public ExceptionDialog(Exception e) : base()
         {
@@ -114,7 +113,7 @@ namespace Hyena.Gui.Dialogs
             AddButton(Stock.Close, ResponseType.Close, true);
         }
 
-        private void AddButton(string stock_id, Gtk.ResponseType response, bool is_default)
+        void AddButton(string stock_id, Gtk.ResponseType response, bool is_default)
         {
             Button button = new Button(stock_id);
             button.CanDefault = true;
@@ -129,7 +128,7 @@ namespace Hyena.Gui.Dialogs
             }
         }
 
-        private string BuildExceptionMessage(Exception e)
+        string BuildExceptionMessage(Exception e)
         {
             System.Text.StringBuilder msg = new System.Text.StringBuilder();
 
@@ -178,7 +177,7 @@ namespace Hyena.Gui.Dialogs
             return msg.ToString();
         }
 
-        private string BuildPlatformString()
+        string BuildPlatformString()
         {
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.Arguments = "-sirom";
@@ -201,15 +200,15 @@ namespace Hyena.Gui.Dialogs
             return null;
         }
 
-        private class LsbVersionInfo
+        class LsbVersionInfo
         {
-            private string [] filesToCheck = {
+            string [] filesToCheck = {
                 "*-release",
                 "slackware-version",
                 "debian_version"
             };
 
-            private Dictionary<string, string> harvest = new Dictionary<string, string>();
+            Dictionary<string, string> harvest = new Dictionary<string, string>();
 
             public LsbVersionInfo()
             {

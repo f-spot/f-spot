@@ -27,16 +27,13 @@
 //
 
 using System;
-using System.Linq;
 using System.Threading;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace Hyena.Jobs
 {
-    public abstract class SimpleAsyncJob : Job
+	public abstract class SimpleAsyncJob : Job
     {
-        private Thread thread;
+        Thread thread;
 
         public SimpleAsyncJob ()
         {
@@ -51,7 +48,7 @@ namespace Hyena.Jobs
         {
             if (thread == null) {
                 thread = new Thread (InnerStart);
-                thread.Name = String.Format ("Hyena.Jobs.JobRunner ({0})", Title);
+                thread.Name = string.Format ("Hyena.Jobs.JobRunner ({0})", Title);
                 thread.Priority = this.Has (PriorityHints.SpeedSensitive) ? ThreadPriority.Normal : ThreadPriority.Lowest;
                 thread.Start ();
             }
@@ -64,7 +61,7 @@ namespace Hyena.Jobs
             }
         }
 
-        private void InnerStart ()
+        void InnerStart ()
         {
             try {
                 Run ();

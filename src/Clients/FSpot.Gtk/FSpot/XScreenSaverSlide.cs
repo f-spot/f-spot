@@ -34,6 +34,7 @@ using Gdk;
 
 using System;
 
+
 namespace FSpot
 {
 	public class XScreenSaverSlide : Gtk.Window
@@ -77,10 +78,10 @@ namespace FSpot
 					Resize (geom.Width, geom.Height);
 					return;
 				} catch (Exception e) {
-					Hyena.Log.Exception (e);
+					Logger.Log.Error (e, "");
 				}
 			} else {
-				Hyena.Log.DebugFormat ("{0} not set, falling back to window", ScreenSaverEnviroment);
+				Logger.Log.Debug ($"{ScreenSaverEnviroment} not set, falling back to window");
 			}
 
 			SetSizeRequest (640, 480);

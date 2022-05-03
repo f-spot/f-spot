@@ -26,11 +26,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-
 namespace Hyena.Data.Gui
 {
-    public class ObjectListView : ListView<object>
+	public class ObjectListView : ListView<object>
     {
         public ObjectListView () : base ()
         {

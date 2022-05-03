@@ -28,12 +28,10 @@
 //
 
 using System;
-using System.Text;
-using System.Collections.Generic;
 
 namespace Hyena.Query
 {
-    public class QueryOrder
+	public class QueryOrder
     {
         public string Name { get; private set; }
         public string Label { get; private set; }
@@ -52,7 +50,7 @@ namespace Hyena.Query
 
         public string ToSql ()
         {
-            return String.Format ("ORDER BY {0}", OrderSql);
+            return string.Format ("ORDER BY {0}", OrderSql);
         }
     }
 }

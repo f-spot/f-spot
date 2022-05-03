@@ -26,13 +26,11 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-
 namespace Hyena.Query
 {
-    public abstract class IntegerKeyedObjectQueryValue<T> : IntegerQueryValue where T : class
+	public abstract class IntegerKeyedObjectQueryValue<T> : IntegerQueryValue where T : class
     {
-        private T object_value;
+        T object_value;
 
         public override void SetValue (long value)
         {

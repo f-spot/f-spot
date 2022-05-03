@@ -27,18 +27,16 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
 using System.Xml;
 using System.Text;
-using System.Collections.Generic;
 
 namespace Hyena.Query
 {
-    public class QueryTermNode : QueryNode
+	public class QueryTermNode : QueryNode
     {
-        private QueryField field;
-        private Operator op;
-        private QueryValue qvalue;
+        QueryField field;
+        Operator op;
+        QueryValue qvalue;
 
         public static QueryTermNode ParseUserQuery (QueryFieldSet field_set, string token)
         {
@@ -132,7 +130,7 @@ namespace Hyena.Query
             }
         }
 
-        private bool EmitTermMatch (StringBuilder sb, QueryField field, bool emit_or)
+        bool EmitTermMatch (StringBuilder sb, QueryField field, bool emit_or)
         {
             if (Value.IsEmpty) {
                 return false;

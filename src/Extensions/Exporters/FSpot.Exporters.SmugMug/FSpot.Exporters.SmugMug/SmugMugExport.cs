@@ -201,7 +201,7 @@ namespace FSpot.Exporters.SmugMug
 
 			System.Uri album_uri = null;
 
-			Log.Debug ("Starting Upload to Smugmug, album " + album.Title + " - " + album.AlbumID);
+			Logger.Log.Debug ("Starting Upload to Smugmug, album " + album.Title + " - " + album.AlbumID);
 
 			FilterSet filters = new FilterSet ();
 			filters.Add (new JpegFilter ());
@@ -214,7 +214,7 @@ namespace FSpot.Exporters.SmugMug
 					IPhoto item = items[photo_index];
 
 					FileInfo file_info;
-					Log.Debug ("uploading " + photo_index);
+					Logger.Log.Debug ("uploading " + photo_index);
 
 					progress_dialog.Message = string.Format (Catalog.GetString ("Uploading picture \"{0}\" ({1} of {2})"),
 										 item.Name, photo_index+1, items.Length);
@@ -248,7 +248,7 @@ namespace FSpot.Exporters.SmugMug
 					progress_dialog.Message = string.Format (Mono.Unix.Catalog.GetString ("Error Uploading To Gallery: {0}"),
 										 e.Message);
 					progress_dialog.ProgressText = Mono.Unix.Catalog.GetString ("Error");
-					Log.DebugException (e);
+					Logger.Log.DebugException (e);
 
 					if (progress_dialog.PerformRetrySkip ()) {
 						photo_index--;
@@ -321,7 +321,7 @@ namespace FSpot.Exporters.SmugMug
 					PopulateAlbumOptionMenu (account.SmugMug);
 				}
 			} catch (System.Exception) {
-				Log.Warning ("Can not connect to SmugMug. Bad username? Password? Network connection?");
+				Logger.Log.Warning ("Can not connect to SmugMug. Bad username? Password? Network connection?");
 				if (selected != null)
 					account = selected;
 
@@ -358,7 +358,7 @@ namespace FSpot.Exporters.SmugMug
 				try {
 					albums = smugmug.GetAlbums();
 				} catch (Exception) {
-					Log.Debug ("Can't get the albums");
+					Logger.Log.Debug ("Can't get the albums");
 					smugmug = null;
 				}
 			}

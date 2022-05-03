@@ -26,22 +26,19 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using Gtk;
-
 using Hyena.Gui;
 using Hyena.Gui.Canvas;
 using Hyena.Gui.Theming;
 
 namespace Hyena.Data.Gui
 {
-    public class ColumnCellRating : ColumnCell, IInteractiveCell, ISizeRequestCell
+	public class ColumnCellRating : ColumnCell, IInteractiveCell, ISizeRequestCell
     {
-        private object last_pressed_bound;
-        private object hover_bound;
-        private int hover_value;
-        private Gdk.Rectangle actual_area_hack;
-        private RatingRenderer renderer = new RatingRenderer ();
+        object last_pressed_bound;
+        object hover_bound;
+        int hover_value;
+        Gdk.Rectangle actual_area_hack;
+        RatingRenderer renderer = new RatingRenderer ();
 
         public ColumnCellRating (string property, bool expand) : base (property, expand)
         {
@@ -124,18 +121,18 @@ namespace Hyena.Data.Gui
             min = max = renderer.Width;
         }
 
-        private int RatingFromPosition (double x)
+        int RatingFromPosition (double x)
         {
             return renderer.RatingFromPosition (actual_area_hack, x);
         }
 
-        private bool restrict_size = true;
+        bool restrict_size = true;
         public bool RestrictSize {
             get { return restrict_size; }
             set { restrict_size = value; }
         }
 
-        private int Value {
+        int Value {
             get { return BoundObject == null ? MinRating : renderer.ClampValue ((int)BoundObject); }
             set { BoundObject = renderer.ClampValue (value); }
         }

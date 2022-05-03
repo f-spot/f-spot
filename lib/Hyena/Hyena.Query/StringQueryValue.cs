@@ -28,17 +28,14 @@
 
 using System;
 using System.Xml;
-using System.Text;
 
 using Mono.Unix;
 
-using Hyena;
-
 namespace Hyena.Query
 {
-    public class StringQueryValue : QueryValue
+	public class StringQueryValue : QueryValue
     {
-        private const string ESCAPE_CLAUSE = " ESCAPE '\\'";
+        const string ESCAPE_CLAUSE = " ESCAPE '\\'";
 
         public static readonly Operator Contains       = new Operator ("contains", Catalog.GetString ("contains"), "LIKE '%{0}%'" + ESCAPE_CLAUSE, ":");
         public static readonly Operator DoesNotContain = new Operator ("doesNotContain", Catalog.GetString ("doesn't contain"), "NOT LIKE '%{0}%'" + ESCAPE_CLAUSE, true, "!:");
@@ -65,13 +62,13 @@ namespace Hyena.Query
         public override void ParseUserQuery (string input)
         {
             value = input;
-            IsEmpty = String.IsNullOrEmpty (value);
+            IsEmpty = string.IsNullOrEmpty (value);
         }
 
         public override void ParseXml (XmlElement node)
         {
             value = node.InnerText;
-            IsEmpty = String.IsNullOrEmpty (value);
+            IsEmpty = string.IsNullOrEmpty (value);
         }
 
         public override void LoadString (string str)
@@ -81,7 +78,7 @@ namespace Hyena.Query
 
         public override string ToSql (Operator op)
         {
-            return String.IsNullOrEmpty (value) ? null : EscapeString (op, Hyena.StringUtil.SearchKey (value));
+            return string.IsNullOrEmpty (value) ? null : EscapeString (op, Hyena.StringUtil.SearchKey (value));
         }
 
         protected static string EscapeString (Operator op, string orig)

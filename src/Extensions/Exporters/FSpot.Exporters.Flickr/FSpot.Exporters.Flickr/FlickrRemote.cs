@@ -50,11 +50,10 @@ using FSpot.Core;
 using FSpot.Filters;
 using FSpot.Settings;
 
-using Hyena;
 
 namespace FSpot.Exporters.Flickr
 {
-    public class FlickrRemote
+	public class FlickrRemote
     {
         public static LicenseCollection licenses;
         FlickrNet.Flickr flickr;
@@ -106,7 +105,7 @@ namespace FSpot.Exporters.Flickr
                 try {
                     licenses = flickr.PhotosLicensesGetInfo ();
                 } catch (FlickrNet.FlickrApiException e) {
-                    Log.Error (e.Code + ": " + e.OriginalMessage);
+                    Logger.Log.Error (e.Code + ": " + e.OriginalMessage);
                     return null;
                 }
             }
@@ -153,14 +152,14 @@ namespace FSpot.Exporters.Flickr
                 if (flickr.AuthOAuthCheckToken() == null) {
                     requestToken = flickr.OAuthGetRequestToken ("oob");
                     if (requestToken == null) {
-                        Log.Error ("ERROR: Unable to Obtain OAuth Request token");
+                        Logger.Log.Error ("ERROR: Unable to Obtain OAuth Request token");
                         return null;
                     } else {
-                        Log.Debug("Victory! got a Requet Token: " + requestToken.Token);
+                        Logger.Log.Debug("Victory! got a Requet Token: " + requestToken.Token);
                     }
                 }
             } catch (Exception e) {
-                Log.Error ("Error logging in: " + e.Message);
+                Logger.Log.Error ("Error logging in: " + e.Message);
                 return null;
             }
 
@@ -170,13 +169,13 @@ namespace FSpot.Exporters.Flickr
 
             if (accessToken == null) {
                 try {
-                    Log.Debug("No token available, trying to obtain access token with requestToken={" + requestToken.Token + "},verificationCode={" + oauth_verification_code + "}");
+                    Logger.Log.Debug("No token available, trying to obtain access token with requestToken={" + requestToken.Token + "},verificationCode={" + oauth_verification_code + "}");
                     accessToken = flickr.OAuthGetAccessToken(requestToken, oauth_verification_code);
-                    Log.Debug("Obtained access token:" + accessToken.Token);
+                    Logger.Log.Debug("Obtained access token:" + accessToken.Token);
                     flickr.OAuthAccessToken = accessToken.Token;
                     flickr.OAuthAccessTokenSecret = accessToken.TokenSecret;
                 } catch (FlickrApiException ex) {
-                    Log.Error ("Problems logging in to Flickr - " + ex.OriginalMessage);
+                    Logger.Log.Error ("Problems logging in to Flickr - " + ex.OriginalMessage);
                     return null;
                 }
             }
@@ -236,7 +235,7 @@ namespace FSpot.Exporters.Flickr
                             flickr.UploadPicture (path, photo.Name, photo.Description, tags, is_public, is_family, is_friend);
                         return photoid;
                     } catch (FlickrException ex) {
-                        Log.Error ("Problems uploading picture: " + ex.Message);
+                        Logger.Log.Error ("Problems uploading picture: " + ex.Message);
                         error_verbose = ex.ToString ();
                     }
                 } catch (Exception e) {
@@ -254,7 +253,7 @@ namespace FSpot.Exporters.Flickr
             requestToken = flickr.OAuthGetRequestToken("oob");
             // Then we calculate the OAuth Authorization URL
             string login_url = flickr.OAuthCalculateAuthorizationUrl(requestToken.Token, AuthLevel.Write);
-            Log.Debug("FlickrRemote: Opening browser to ask user permissions at {0}",login_url);
+            Logger.Log.Debug("FlickrRemote: Opening browser to ask user permissions at {0}",login_url);
             // Redirection time. Now we can ask permission.
             GtkBeans.Global.ShowUri (null, login_url);
         }

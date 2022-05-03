@@ -33,17 +33,17 @@ namespace Hyena.Downloader
 {
     public class HttpDownloader
     {
-        private object sync_root = new object ();
+        object sync_root = new object ();
         protected object SyncRoot {
             get { return sync_root; }
         }
 
-        private HttpWebRequest request;
-        private HttpWebResponse response;
-        private Stream response_stream;
-        private DateTime last_raised_percent_complete;
-        private IAsyncResult async_begin_result;
-        private ManualResetEvent sync_event;
+        HttpWebRequest request;
+        HttpWebResponse response;
+        Stream response_stream;
+        DateTime last_raised_percent_complete;
+        IAsyncResult async_begin_result;
+        ManualResetEvent sync_event;
 
         public string UserAgent { get; set; }
         public Uri Uri { get; set; }
@@ -51,7 +51,7 @@ namespace Hyena.Downloader
         public HttpDownloaderState State { get; private set; }
         public string [] AcceptContentTypes { get; set; }
 
-        private int buffer_size = 8192;
+        int buffer_size = 8192;
         public int BufferSize {
             get { return buffer_size; }
             set {
@@ -62,7 +62,7 @@ namespace Hyena.Downloader
             }
         }
 
-        private string name;
+        string name;
         public string Name {
             get { return name ?? Path.GetFileName (Uri.UnescapeDataString (Uri.LocalPath)); }
             set { name = value; }
@@ -116,7 +116,7 @@ namespace Hyena.Downloader
             }
         }
 
-        private void Close ()
+        void Close ()
         {
             lock (SyncRoot) {
                 State.FinishTime = DateTime.Now;
@@ -146,7 +146,7 @@ namespace Hyena.Downloader
             return request;
         }
 
-        private void OnRequestResponse (IAsyncResult asyncResult)
+        void OnRequestResponse (IAsyncResult asyncResult)
         {
             lock (SyncRoot) {
                 async_begin_result = null;
@@ -174,7 +174,7 @@ namespace Hyena.Downloader
                         if (!accepted) {
                             throw new WebException ("Invalid content type: " +
                                 response.ContentType + "; expected one of: " +
-                                String.Join (", ", AcceptContentTypes));
+								string.Join (", ", AcceptContentTypes));
                         }
                     }
 
@@ -199,7 +199,7 @@ namespace Hyena.Downloader
             }
         }
 
-        private void OnResponseRead (IAsyncResult asyncResult)
+        void OnResponseRead (IAsyncResult asyncResult)
         {
             lock (SyncRoot) {
                 async_begin_result = null;
@@ -245,27 +245,18 @@ namespace Hyena.Downloader
 
         protected virtual void OnStarted ()
         {
-            var handler = Started;
-            if (handler != null) {
-                handler (this);
-            }
-        }
+			Started?.Invoke (this);
+		}
 
         protected virtual void OnBufferUpdated ()
         {
-            var handler = BufferUpdated;
-            if (handler != null) {
-                handler (this);
-            }
-        }
+			BufferUpdated?.Invoke (this);
+		}
 
         protected virtual void OnProgress ()
         {
-            var handler = Progress;
-            if (handler != null) {
-                handler (this);
-            }
-        }
+			Progress?.Invoke (this);
+		}
 
         protected virtual void OnFinished ()
         {
@@ -274,7 +265,7 @@ namespace Hyena.Downloader
                 try {
                     handler (this);
                 } catch (Exception e) {
-                    Log.Exception (String.Format ("HttpDownloader.Finished handler ({0})", Uri), e);
+                    Log.Exception (string.Format ("HttpDownloader.Finished handler ({0})", Uri), e);
                 }
             } 
 

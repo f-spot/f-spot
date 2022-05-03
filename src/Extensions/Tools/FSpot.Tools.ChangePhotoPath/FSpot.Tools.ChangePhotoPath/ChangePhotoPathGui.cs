@@ -42,8 +42,9 @@ using FSpot.Extensions;
 using FSpot.UI.Dialog;
 //using Gnome.Vfs;
 
-using Hyena;
 using Hyena.Widgets;
+
+
 
 namespace FSpot.Tools.ChangePhotoPath
 {
@@ -67,7 +68,7 @@ namespace FSpot.Tools.ChangePhotoPath
 			try {
 				contr = new ChangePathController ( this );
 			} catch (Exception e) {
-				Log.Exception(e);
+				Logger.Log.Error(e, "");
 				return false;
 			}
 			return true;
@@ -180,7 +181,7 @@ namespace FSpot.Tools.ChangePhotoPath
 										break;
 				case ProcessResult.NoPhotosFound 	: 	DisplayNoPhotosFoundMsg();
 										break;
-				case ProcessResult.Processing 		: 	Log.Debug ("processing");
+				case ProcessResult.Processing 		: 	Logger.Log.Debug ("processing");
 										break;
 				}
 			} else
@@ -229,7 +230,7 @@ namespace FSpot.Tools.ChangePhotoPath
 			try {
 				LaunchDialog( );
 			} catch (Exception e) {
-				Log.Exception(e);
+				Logger.Log.Error(e, "");
 			}
 		}
 	}

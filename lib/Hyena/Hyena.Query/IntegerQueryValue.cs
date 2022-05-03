@@ -28,15 +28,12 @@
 
 using System;
 using System.Xml;
-using System.Text;
 
 using Mono.Unix;
 
-using Hyena;
-
 namespace Hyena.Query
 {
-    public class IntegerQueryValue : QueryValue
+	public class IntegerQueryValue : QueryValue
     {
         public static readonly Operator Equal              = new Operator ("equals", Catalog.GetString ("is"), "= {0}", "=", "==", ":");
         public static readonly Operator NotEqual           = new Operator ("notEqual", Catalog.GetString ("is not"), "!= {0}", true, "!=", "!:");
@@ -53,7 +50,7 @@ namespace Hyena.Query
 
         public override void ParseUserQuery (string input)
         {
-            IsEmpty = !Int64.TryParse (input, out value);
+            IsEmpty = !long.TryParse (input, out value);
         }
 
         public override void LoadString (string input)
@@ -95,11 +92,11 @@ namespace Hyena.Query
         }
 
         public virtual long MinValue {
-            get { return Int64.MinValue; }
+            get { return long.MinValue; }
         }
 
         public virtual long MaxValue {
-            get { return Int64.MaxValue; }
+            get { return long.MaxValue; }
         }
 
         public override string ToSql (Operator op)

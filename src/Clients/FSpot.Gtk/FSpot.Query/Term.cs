@@ -34,13 +34,12 @@
 // This has to do with Finding photos based on tags
 // http://mail.gnome.org/archives/f-spot-list/2005-November/msg00053.html
 // http://bugzilla-attachments.gnome.org/attachment.cgi?id=54566
-using System;
 using System.Collections.Generic;
 using System.Text;
 
 using FSpot.Core;
 
-using Hyena;
+
 
 namespace FSpot.Query
 {
@@ -316,7 +315,7 @@ namespace FSpot.Query
 			if (OrTerm.Operators.Contains (op))
 				return new OrTerm (parent, after);
 
-			Log.DebugFormat ("Do not have Term for operator {0}", op);
+			Logger.Log.Debug ($"Do not have Term for operator {op}");
 			return null;
 		}
 		#endregion

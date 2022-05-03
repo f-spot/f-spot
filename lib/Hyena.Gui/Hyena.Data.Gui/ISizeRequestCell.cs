@@ -26,12 +26,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-
-using System;
-
 namespace Hyena.Data.Gui
 {
-    public interface ISizeRequestCell
+	public interface ISizeRequestCell
     {
         bool RestrictSize { get; set; }
         void GetWidthRange (Pango.Layout layout, out int min_width, out int max_width);

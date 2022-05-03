@@ -33,11 +33,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-using Hyena;
-
 namespace Hyena.Data.Sqlite
 {
-    public class Connection : IDisposable
+	public class Connection : IDisposable
     {
         IntPtr ptr;
         internal IntPtr Ptr { get { return ptr; } }
@@ -101,7 +99,7 @@ namespace Hyena.Data.Sqlite
 
             string errmsg = Native.sqlite3_errmsg16 (Ptr).PtrToString ();
             if (sql != null) {
-                errmsg = String.Format ("{0} (SQL: {1})", errmsg, sql);
+                errmsg = string.Format ("{0} (SQL: {1})", errmsg, sql);
             }
 
             throw new SqliteException (errorCode, errmsg);
@@ -188,7 +186,7 @@ namespace Hyena.Data.Sqlite
     {
         public int ErrorCode { get; private set; }
 
-        public SqliteException (int errorCode, string message) : base (String.Format ("Sqlite error {0}: {1}", errorCode, message))
+        public SqliteException (int errorCode, string message) : base (string.Format ("Sqlite error {0}: {1}", errorCode, message))
         {
             ErrorCode = errorCode;
         }
@@ -241,7 +239,7 @@ namespace Hyena.Data.Sqlite
 
             if (pzTail != IntPtr.Zero && Marshal.ReadByte (pzTail) != 0) {
                 Dispose ();
-                throw new ArgumentException ("sql", String.Format ("This sqlite binding does not support multiple commands in one statement:\n  {0}", sql));
+                throw new ArgumentException ("sql", string.Format ("This sqlite binding does not support multiple commands in one statement:\n  {0}", sql));
             }
 
             ParameterCount = Native.sqlite3_bind_parameter_count (ptr);
@@ -280,11 +278,8 @@ namespace Hyena.Data.Sqlite
                     Connection.Statements.Remove (this);
                 }
 
-                var h = Disposed;
-                if (h != null) {
-                    h (this, EventArgs.Empty);
-                }
-            }
+				Disposed?.Invoke (this, EventArgs.Empty);
+			}
         }
 
         ~Statement ()
@@ -301,7 +296,7 @@ namespace Hyena.Data.Sqlite
                 vals = null_val;
 
             if (vals == null || vals.Length != ParameterCount || ParameterCount == 0)
-                throw new ArgumentException ("vals", String.Format ("Statement has {0} parameters", ParameterCount));
+                throw new ArgumentException ("vals", string.Format ("Statement has {0} parameters", ParameterCount));
 
             for (int i = 1; i <= vals.Length; i++) {
                 int code = 0;
@@ -343,7 +338,7 @@ namespace Hyena.Data.Sqlite
             connection.CheckError (code, CommandText);
         }
 
-        private void Reset ()
+        void Reset ()
         {
             CheckDisposed ();
             if (Reading) {
@@ -465,7 +460,7 @@ namespace Hyena.Data.Sqlite
                     case SQLITE_NULL:
                         return null;
                     default:
-                        throw new Exception (String.Format ("Column is of unknown type {0}", type));
+                        throw new Exception (string.Format ("Column is of unknown type {0}", type));
                 }
             }
         }
@@ -511,7 +506,7 @@ namespace Hyena.Data.Sqlite
             return Get<T> (GetColumnIndex (columnName));
         }
 
-        private Dictionary<string, int> Columns {
+        Dictionary<string, int> Columns {
             get {
                 if (columns == null) {
                     columns = new Dictionary<string, int> ();
@@ -523,7 +518,7 @@ namespace Hyena.Data.Sqlite
             }
         }
 
-        private int GetColumnIndex (string columnName)
+        int GetColumnIndex (string columnName)
         {
             Statement.CheckReading ();
 
@@ -543,7 +538,7 @@ namespace Hyena.Data.Sqlite
         const int DONE = 101;
     }
 
-    internal static class Native
+    static class Native
     {
 	    const string SQLITE_DLL = "e_sqlite3";
 
@@ -659,7 +654,7 @@ namespace Hyena.Data.Sqlite
         internal static extern void sqlite3_result_int(IntPtr context, int value);
 
         [DllImport(SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-        internal static extern void sqlite3_result_int64(IntPtr context, Int64 value);
+        internal static extern void sqlite3_result_int64(IntPtr context, long value);
 
         [DllImport(SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
         internal static extern void sqlite3_result_null(IntPtr context);
@@ -687,7 +682,7 @@ namespace Hyena.Data.Sqlite
         internal static extern int sqlite3_value_int(IntPtr p);
 
         [DllImport(SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-        internal static extern Int64 sqlite3_value_int64(IntPtr p);
+        internal static extern long sqlite3_value_int64 (IntPtr p);
 
         [DllImport(SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int sqlite3_value_type(IntPtr p);

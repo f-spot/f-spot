@@ -28,7 +28,6 @@
 //
 
 using Gdk;
-using Cairo;
 
 using Hyena.Gui;
 

@@ -28,17 +28,16 @@
 
 using System;
 using System.Reflection;
-using System.Text;
 
 namespace Hyena.Data.Sqlite
 {
-    public abstract class AbstractDatabaseColumn
+	public abstract class AbstractDatabaseColumn
     {
-        private readonly FieldInfo field_info;
-        private readonly PropertyInfo property_info;
-        private readonly Type type;
-        private readonly string column_type;
-        private readonly string name;
+        readonly FieldInfo field_info;
+        readonly PropertyInfo property_info;
+        readonly Type type;
+        readonly string column_type;
+        readonly string name;
 
         protected AbstractDatabaseColumn (FieldInfo field_info, AbstractDatabaseColumnAttribute attribute)
             : this (attribute, field_info, field_info.FieldType)
@@ -50,7 +49,7 @@ namespace Hyena.Data.Sqlite
             this (attribute, property_info, property_info.PropertyType)
         {
             if (!property_info.CanRead || (attribute.Select && !property_info.CanWrite)) {
-                throw new Exception (String.Format (
+                throw new Exception (string.Format (
                     "{0}: The property {1} must have both a get and a set " +
                     "block in order to be bound to a database column.",
                     property_info.DeclaringType,
@@ -60,7 +59,7 @@ namespace Hyena.Data.Sqlite
             this.property_info = property_info;
         }
 
-        private AbstractDatabaseColumn (AbstractDatabaseColumnAttribute attribute, MemberInfo member_info, Type type)
+        AbstractDatabaseColumn (AbstractDatabaseColumnAttribute attribute, MemberInfo member_info, Type type)
         {
             try {
                 column_type = SqliteUtils.GetType (type);
@@ -68,7 +67,7 @@ namespace Hyena.Data.Sqlite
                 throw new Exception(string.Format(
                     "{0}.{1}: {2}", member_info.DeclaringType, member_info.Name, e.Message));
             }
-            this.name = attribute.ColumnName ?? member_info.Name;
+            name = attribute.ColumnName ?? member_info.Name;
             this.type = type;
         }
 
@@ -99,7 +98,7 @@ namespace Hyena.Data.Sqlite
 
     public sealed class DatabaseColumn : AbstractDatabaseColumn
     {
-        private DatabaseColumnAttribute attribute;
+        DatabaseColumnAttribute attribute;
 
         public DatabaseColumn (FieldInfo field_info, DatabaseColumnAttribute attribute)
             : base (field_info, attribute)
@@ -143,9 +142,9 @@ namespace Hyena.Data.Sqlite
         }
     }
 
-    internal sealed class VirtualDatabaseColumn : AbstractDatabaseColumn
+    sealed class VirtualDatabaseColumn : AbstractDatabaseColumn
     {
-        private VirtualDatabaseColumnAttribute attribute;
+        VirtualDatabaseColumnAttribute attribute;
 
         public VirtualDatabaseColumn (FieldInfo field_info, VirtualDatabaseColumnAttribute attribute)
             : base (field_info, attribute)

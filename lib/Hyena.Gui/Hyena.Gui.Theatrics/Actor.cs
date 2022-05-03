@@ -32,8 +32,8 @@ namespace Hyena.Gui.Theatrics
 {
     public class Actor<T>
     {
-        private DateTime start_time;
-        private DateTime last_step_time;
+        DateTime start_time;
+        DateTime last_step_time;
 
         public Actor (T target, double duration)
         {
@@ -70,7 +70,7 @@ namespace Hyena.Gui.Theatrics
             Frames++;
         }
 
-        private static double PClamp (double value)
+        static double PClamp (double value)
         {
             return Math.Max (0.1, Math.Min (1.0, value));
         }

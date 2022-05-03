@@ -28,13 +28,12 @@
 //
 
 using System;
-using System.Text;
 using System.Collections;
 using System.Collections.Generic;
 
 namespace Hyena.Query
 {
-    public interface IAliasedObject
+	public interface IAliasedObject
     {
         string Name { get; }
         string [] Aliases { get; }
@@ -52,7 +51,7 @@ namespace Hyena.Query
             foreach (T obj in objects) {
                 map [obj.Name.ToLower ()] = obj;
                 foreach (string alias in obj.Aliases) {
-                    if (!String.IsNullOrEmpty (alias) && alias.IndexOf (" ") == -1) {
+                    if (!string.IsNullOrEmpty (alias) && alias.IndexOf (" ") == -1) {
                         foreach (string sub_alias in alias.Split(',')) {
                             string lower_alias = sub_alias.ToLower ();
                             map [lower_alias] = obj;
@@ -66,7 +65,7 @@ namespace Hyena.Query
             aliases.Sort (SortByLongest);
         }
 
-        private int SortByLongest (string a, string b)
+        int SortByLongest (string a, string b)
         {
             return b.Length.CompareTo (a.Length);
         }
@@ -104,7 +103,7 @@ namespace Hyena.Query
 
         public T this [string alias] {
             get {
-                if (!String.IsNullOrEmpty (alias) && map.ContainsKey (alias.ToLower ()))
+                if (!string.IsNullOrEmpty (alias) && map.ContainsKey (alias.ToLower ()))
                     return map[alias.ToLower ()];
                 return default;
             }

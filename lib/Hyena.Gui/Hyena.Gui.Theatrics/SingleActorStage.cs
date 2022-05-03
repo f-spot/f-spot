@@ -26,13 +26,11 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-
 namespace Hyena.Gui.Theatrics
 {
-    public class SingleActorStage : Stage<object>
+	public class SingleActorStage : Stage<object>
     {
-        private object target = new object ();
+        object target = new object ();
 
         public SingleActorStage () : base ()
         {

@@ -35,19 +35,19 @@ namespace Hyena.Data
 
     public class PropertyChangeEventArgs : EventArgs
     {
-        private string property_name;
-        private bool added;
-        private bool removed;
-        private object old_value;
-        private object new_value;
+        string property_name;
+        bool added;
+        bool removed;
+        object old_value;
+        object new_value;
 
         public PropertyChangeEventArgs(string propertyName, bool added, bool removed, object oldValue, object newValue)
         {
-            this.property_name = propertyName;
+            property_name = propertyName;
             this.added = added;
             this.removed = removed;
-            this.old_value = oldValue;
-            this.new_value = newValue;
+            old_value = oldValue;
+            new_value = newValue;
         }
 
         public string PropertyName {
@@ -73,7 +73,7 @@ namespace Hyena.Data
 
     public class PropertyStore
     {
-        private Dictionary<string, object> object_store;
+        Dictionary<string, object> object_store;
 
         public event PropertyChangeEventHandler PropertyChanged;
 

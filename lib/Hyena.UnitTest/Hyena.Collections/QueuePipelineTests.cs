@@ -26,16 +26,13 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using System.Threading;
 using System.Collections.Generic;
-using NUnit.Framework;
 
-using Hyena.Collections;
+using NUnit.Framework;
 
 namespace Hyena.Collections.Tests
 {
-    [TestFixture]
+	[TestFixture]
     public class QueuePipelineTests
     {
         private class FakeElement : QueuePipelineElement<object>

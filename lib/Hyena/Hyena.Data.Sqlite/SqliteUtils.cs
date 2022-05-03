@@ -27,13 +27,12 @@
 //
 
 using System;
-using System.Reflection;
 using System.Text;
 using System.Collections.Generic;
 
 namespace Hyena.Data.Sqlite
 {
-    public static class SqliteUtils
+	public static class SqliteUtils
     {
         internal static string GetType (Type type)
         {
@@ -52,7 +51,7 @@ namespace Hyena.Data.Sqlite
              } else if (type == typeof (double?)) {
                 return "REAL NULL";
             } else {
-                throw new Exception (String.Format (
+                throw new Exception (string.Format (
                     "The type {0} cannot be bound to a database column.", type.Name));
             }
         }
@@ -69,7 +68,7 @@ namespace Hyena.Data.Sqlite
         {
             if (type == typeof (string)) {
                 // Treat blank strings or strings with only whitespace as null
-                return value == null || String.IsNullOrEmpty (((string)value).Trim ())
+                return value == null || string.IsNullOrEmpty (((string)value).Trim ())
                     ? null
                     : value;
             } else if (type == typeof (DateTime)) {
@@ -127,7 +126,7 @@ namespace Hyena.Data.Sqlite
                 if (value == null)
                     return null;
 
-                double double_value = ((Single?) value).Value;
+                double double_value = ((float?) value).Value;
                 return (double?) double_value;
             } else if (type.IsEnum) {
                 return Enum.ToObject (type, value);
@@ -165,13 +164,13 @@ namespace Hyena.Data.Sqlite
     [SqliteFunction (Name = "HYENA_BINARY_FUNCTION", FuncType = FunctionType.Scalar, Arguments = 3)]
     public sealed class BinaryFunction : SqliteFunction
     {
-        private static Dictionary<string, Func<object, object, object>> funcs = new Dictionary<string, Func<object, object, object>> ();
+        static Dictionary<string, Func<object, object, object>> funcs = new Dictionary<string, Func<object, object, object>> ();
 
         public static void Add (string functionId, Func<object, object, object> func)
         {
             lock (funcs) {
                 if (funcs.ContainsKey (functionId)) {
-                    throw new ArgumentException (String.Format ("{0} is already taken", functionId), nameof (functionId));
+                    throw new ArgumentException (string.Format ("{0} is already taken", functionId), nameof (functionId));
                 }
 
                 funcs[functionId] = func;
@@ -182,7 +181,7 @@ namespace Hyena.Data.Sqlite
         {
             lock (funcs) {
                 if (!funcs.ContainsKey (functionId)) {
-                    throw new ArgumentException (String.Format ("{0} does not exist", functionId), nameof (functionId));
+                    throw new ArgumentException (string.Format ("{0} does not exist", functionId), nameof (functionId));
                 }
 
                 funcs.Remove (functionId);
@@ -200,7 +199,7 @@ namespace Hyena.Data.Sqlite
     }
 
     [SqliteFunction (Name = "HYENA_COLLATION_KEY", FuncType = FunctionType.Scalar, Arguments = 1)]
-    internal class CollationKeyFunction : SqliteFunction
+class CollationKeyFunction : SqliteFunction
     {
         public override object Invoke (object[] args)
         {
@@ -209,7 +208,7 @@ namespace Hyena.Data.Sqlite
     }
 
     [SqliteFunction (Name = "HYENA_SEARCH_KEY", FuncType = FunctionType.Scalar, Arguments = 1)]
-    internal class SearchKeyFunction : SqliteFunction
+class SearchKeyFunction : SqliteFunction
     {
         public override object Invoke (object[] args)
         {
@@ -218,7 +217,7 @@ namespace Hyena.Data.Sqlite
     }
 
     [SqliteFunction (Name = "HYENA_MD5", FuncType = FunctionType.Scalar, Arguments = -1)]
-    internal class Md5Function : SqliteFunction
+class Md5Function : SqliteFunction
     {
         public override object Invoke (object[] args)
         {

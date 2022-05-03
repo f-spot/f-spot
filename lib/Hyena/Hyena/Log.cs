@@ -28,17 +28,16 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading;
 
 namespace Hyena
 {
-    public delegate void LogNotifyHandler (LogNotifyArgs args);
+	public delegate void LogNotifyHandler (LogNotifyArgs args);
 
     public class LogNotifyArgs : EventArgs
     {
-        private LogEntry entry;
+        LogEntry entry;
 
         public LogNotifyArgs (LogEntry entry)
         {
@@ -60,17 +59,17 @@ namespace Hyena
 
     public class LogEntry
     {
-        private LogEntryType type;
-        private string message;
-        private string details;
-        private DateTime timestamp;
+        LogEntryType type;
+        string message;
+        string details;
+        DateTime timestamp;
 
         internal LogEntry (LogEntryType type, string message, string details)
         {
             this.type = type;
             this.message = message;
             this.details = details;
-            this.timestamp = DateTime.Now;
+            timestamp = DateTime.Now;
         }
 
         public LogEntryType Type {
@@ -90,7 +89,7 @@ namespace Hyena
         }
     }
 
-    public static class Log
+    static class Log
     {
         static Log ()
         {
@@ -121,10 +120,10 @@ namespace Hyena
 
         public static event LogNotifyHandler Notify;
 
-        private static Dictionary<uint, DateTime> timers = new Dictionary<uint, DateTime> ();
-        private static uint next_timer_id = 1;
+        static Dictionary<uint, DateTime> timers = new Dictionary<uint, DateTime> ();
+        static uint next_timer_id = 1;
 
-        private static bool debugging = false;
+        static bool debugging = false;
         public static bool Debugging {
             get { return debugging; }
             set { debugging = value; }
@@ -144,10 +143,10 @@ namespace Hyena
                     case LogEntryType.Debug: ConsoleCrayon.ForegroundColor = ConsoleColor.Blue; break;
                 }
 
-                var thread_name = String.Empty;
+                var thread_name = string.Empty;
                 if (Debugging) {
                     var thread = Thread.CurrentThread;
-                    thread_name = String.Format ("{0} ", thread.ManagedThreadId);
+                    thread_name = string.Format ("{0} ", thread.ManagedThreadId);
                 }
 
                 Console.Write ("[{5}{0} {1:00}:{2:00}:{3:00}.{4:000}]", TypeString (type), DateTime.Now.Hour,
@@ -167,7 +166,7 @@ namespace Hyena
             }
         }
 
-        private static string TypeString (LogEntryType type)
+        static string TypeString (LogEntryType type)
         {
             switch (type) {
                 case LogEntryType.Debug:         return "Debug";
@@ -178,13 +177,10 @@ namespace Hyena
             return null;
         }
 
-        private static void OnNotify (LogEntry entry)
+        static void OnNotify (LogEntry entry)
         {
-            LogNotifyHandler handler = Notify;
-            if (handler != null) {
-                handler (new LogNotifyArgs (entry));
-            }
-        }
+			Notify?.Invoke (new LogNotifyArgs (entry));
+		}
 
         #region Timer Methods
 
@@ -198,7 +194,7 @@ namespace Hyena
             return TimerStart (message, true);
         }
 
-        private static uint TimerStart (string message, bool isInfo)
+        static uint TimerStart (string message, bool isInfo)
         {
             if (!Debugging && !isInfo) {
                 return 0;
@@ -223,7 +219,7 @@ namespace Hyena
             return TimerStart (true);
         }
 
-        private static uint TimerStart (bool isInfo)
+        static uint TimerStart (bool isInfo)
         {
             if (!Debugging && !isInfo) {
                 return 0;
@@ -262,7 +258,7 @@ namespace Hyena
             TimerPrint (id, message, true);
         }
 
-        private static void TimerPrint (uint id, string message, bool isInfo)
+        static void TimerPrint (uint id, string message, bool isInfo)
         {
             if (!Debugging && !isInfo) {
                 return;
@@ -310,7 +306,7 @@ namespace Hyena
         public static void DebugFormat (string format, params object [] args)
         {
             if (Debugging) {
-                Debug (String.Format (format, args));
+                Debug (string.Format (format, args));
             }
         }
 
@@ -340,7 +336,7 @@ namespace Hyena
 
         public static void InformationFormat (string format, params object [] args)
         {
-            Information (String.Format (format, args));
+            Information (string.Format (format, args));
         }
 
         #endregion
@@ -369,7 +365,7 @@ namespace Hyena
 
         public static void WarningFormat (string format, params object [] args)
         {
-            Warning (String.Format (format, args));
+            Warning (string.Format (format, args));
         }
 
         #endregion
@@ -398,7 +394,7 @@ namespace Hyena
 
         public static void ErrorFormat (string format, params object [] args)
         {
-            Error (String.Format (format, args));
+            Error (string.Format (format, args));
         }
 
         #endregion

@@ -103,7 +103,7 @@ namespace FSpot.Exporters.SmugMug
 					Ring.DeleteItem(keyring, result.ItemID);
 				}
 			} catch (Exception e) {
-				Log.Exception (e);
+				Logger.Log.Exception (e);
 			}
 			accounts.Remove (account);
 			MarkChanged ();
@@ -144,7 +144,7 @@ namespace FSpot.Exporters.SmugMug
 
 				}
 			} catch (Exception e) {
-				Log.Exception (e);
+				Logger.Log.Exception (e);
 			}
 
 			MarkChanged ();

@@ -26,20 +26,16 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using Gtk;
-using Cairo;
-
 using Hyena.Data.Gui.Accessibility;
 
 namespace Hyena.Data.Gui
 {
-    public class ColumnHeaderCellText : ColumnCellText, IHeaderCell
+	public class ColumnHeaderCellText : ColumnCellText, IHeaderCell
     {
         public new delegate Column DataHandler ();
 
-        private DataHandler data_handler;
-        private bool has_sort;
+        DataHandler data_handler;
+        bool has_sort;
 
         public ColumnHeaderCellText (DataHandler data_handler) : base (null, true)
         {

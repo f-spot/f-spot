@@ -34,13 +34,13 @@ namespace Hyena.Gui.Canvas
 {
     public class CanvasHost : Widget, ICanvasHost
     {
-        private Gdk.Window event_window;
-        private CanvasItem canvas_child;
-        private Theme theme;
-        private CanvasManager manager;
-        private bool debug = false;
-        private FpsCalculator fps = new FpsCalculator ();
-        private Hyena.Data.Gui.CellContext context = new Hyena.Data.Gui.CellContext ();
+        Gdk.Window event_window;
+        CanvasItem canvas_child;
+        Theme theme;
+        CanvasManager manager;
+        bool debug = false;
+        FpsCalculator fps = new FpsCalculator ();
+        Hyena.Data.Gui.CellContext context = new Hyena.Data.Gui.CellContext ();
 
         public CanvasHost ()
         {
@@ -129,7 +129,7 @@ namespace Hyena.Gui.Canvas
             }
         }
 
-        private Random rand;
+        Random rand;
 
         protected override bool OnExposeEvent (Gdk.EventExpose evnt)
         {
@@ -168,7 +168,7 @@ namespace Hyena.Gui.Canvas
             return true;
         }
 
-        private void AllocateChild ()
+        void AllocateChild ()
         {
             if (canvas_child != null) {
                 canvas_child.Allocation = new Rect (0, 0, Allocation.Width, Allocation.Height);
@@ -207,7 +207,7 @@ namespace Hyena.Gui.Canvas
             );
         }
 
-        private bool changing_style = false;
+        bool changing_style = false;
 
         protected override void OnStyleSet (Style old_style)
         {
@@ -270,12 +270,12 @@ namespace Hyena.Gui.Canvas
             Child = null;
         }
 
-        private void OnCanvasChildLayoutUpdated (object o, EventArgs args)
+        void OnCanvasChildLayoutUpdated (object o, EventArgs args)
         {
             QueueDraw ();
         }
 
-        private void OnCanvasChildSizeChanged (object o, EventArgs args)
+        void OnCanvasChildSizeChanged (object o, EventArgs args)
         {
             QueueResize ();
         }

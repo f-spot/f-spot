@@ -27,35 +27,33 @@
 //
 
 using System;
-using System.Text;
-using System.Collections.Generic;
 
 namespace Hyena.Query
 {
-    public class QueryLimit
+	public class QueryLimit
     {
-        private string name;
+        string name;
         public string Name {
             get { return name; }
         }
 
-        private string label;
+        string label;
         public string Label {
             get { return label; }
             set { label = value; }
         }
 
-        private bool row_based;
+        bool row_based;
         public bool RowBased {
             get { return row_based; }
         }
 
-        private int factor = 1;
+        int factor = 1;
         public int Factor {
             get { return factor; }
         }
 
-        private string column;
+        string column;
         public string Column {
             get { return column; }
         }
@@ -75,7 +73,7 @@ namespace Hyena.Query
 
         public string ToSql (IntegerQueryValue limit_value)
         {
-            return RowBased ? String.Format ("LIMIT {0}", limit_value.ToSql ()) : null;
+            return RowBased ? string.Format ("LIMIT {0}", limit_value.ToSql ()) : null;
         }
     }
 }

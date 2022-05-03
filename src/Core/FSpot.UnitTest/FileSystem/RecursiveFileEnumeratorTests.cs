@@ -8,6 +8,7 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using System.IO;
 using System.Linq;
 
 using FSpot.FileSystem;
@@ -27,7 +28,7 @@ namespace FSpot.UnitTest.FileSystem
 
 		public static SafeUri GetTestDataDir ()
 		{
-			var uri = new SafeUri (Paths.Combine (TestDir, TestDataLocation));
+			var uri = new SafeUri (Path.Combine (TestDir, TestDataLocation));
 			return uri;
 		}
 

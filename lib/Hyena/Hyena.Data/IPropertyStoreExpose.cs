@@ -26,11 +26,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-
 namespace Hyena.Data
 {
-    public interface IPropertyStoreExpose
+	public interface IPropertyStoreExpose
     {
         PropertyStore PropertyStore { get; }
     }

@@ -20,6 +20,8 @@ using FSpot.Imaging;
 
 using Hyena;
 
+
+
 namespace FSpot.Import
 {
 	// Multi root version for drag and drop import.
@@ -36,7 +38,7 @@ namespace FSpot.Import
 		public override IEnumerable<FileImportInfo> ScanPhotos (ImportPreferences preferences)
 		{
 			foreach (var uri in uris) {
-				Log.Debug ("Scanning " + uri);
+				Logger.Log.Debug ($"Scanning {uri}");
 				foreach (var info in ScanPhotoDirectory (preferences, uri)) {
 					yield return info;
 				}

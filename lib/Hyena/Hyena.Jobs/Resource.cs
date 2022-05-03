@@ -26,11 +26,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-
 namespace Hyena.Jobs
 {
-    public class Resource
+	public class Resource
     {
         // Convenience Resources for programs to use
         public static readonly Resource Cpu = new Resource { Id = "cpu", Name = "CPU" };

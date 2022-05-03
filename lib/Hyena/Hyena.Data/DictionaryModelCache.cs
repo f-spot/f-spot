@@ -26,12 +26,11 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
 using System.Collections.Generic;
 
 namespace Hyena.Data
 {
-    public abstract class DictionaryModelCache<T> : ModelCache<T> where T : ICacheableItem, new ()
+	public abstract class DictionaryModelCache<T> : ModelCache<T> where T : ICacheableItem, new ()
     {
         protected Dictionary<long, T> cache;
 

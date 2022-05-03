@@ -38,8 +38,8 @@ namespace Hyena.Collections
     {
         public struct Range
         {
-            private int start;
-            private int end;
+            int start;
+            int end;
 
             public Range (int start, int end)
             {
@@ -49,7 +49,7 @@ namespace Hyena.Collections
 
             public override string ToString ()
             {
-                return String.Format ("{0}-{1} ({2})", Start, End, Count);
+                return string.Format ("{0}-{1} ({2})", Start, End, Count);
             }
 
             public int Start {
@@ -67,10 +67,10 @@ namespace Hyena.Collections
             }
         }
 
-        private const int MIN_CAPACITY = 16;
-        private Range [] ranges;
-        private int range_count;
-        private int index_count;
+        const int MIN_CAPACITY = 16;
+        Range [] ranges;
+        int range_count;
+        int index_count;
 
         public RangeCollection ()
         {
@@ -79,7 +79,7 @@ namespace Hyena.Collections
 
 #region Private Array Logic
 
-        private void Shift (int start, int delta)
+        void Shift (int start, int delta)
         {
             if (delta < 0) {
                 start -= delta;
@@ -92,7 +92,7 @@ namespace Hyena.Collections
             range_count += delta;
         }
 
-        private void EnsureCapacity (int growBy)
+        void EnsureCapacity (int growBy)
         {
             int new_capacity = ranges.Length == 0 ? 1 : ranges.Length;
             int min_capacity = ranges.Length == 0 ? MIN_CAPACITY : ranges.Length + growBy;
@@ -104,7 +104,7 @@ namespace Hyena.Collections
             Array.Resize (ref ranges, new_capacity);
         }
 
-        private void Insert (int position, Range range)
+        void Insert (int position, Range range)
         {
             if (range_count == ranges.Length) {
                 EnsureCapacity (1);
@@ -114,7 +114,7 @@ namespace Hyena.Collections
             ranges[position] = range;
         }
 
-        private void RemoveAt (int position)
+        void RemoveAt (int position)
         {
             Shift (position, -1);
             Array.Clear (ranges, range_count, 1);
@@ -124,7 +124,7 @@ namespace Hyena.Collections
 
 #region Private Range Logic
 
-        private bool RemoveIndexFromRange (int index)
+        bool RemoveIndexFromRange (int index)
         {
             int range_index = FindRangeIndexForValue (index);
             if (range_index < 0) {
@@ -148,7 +148,7 @@ namespace Hyena.Collections
             return true;
         }
 
-        private void InsertRange (Range range)
+        void InsertRange (Range range)
         {
             int position = FindInsertionPosition (range);
             bool merged_left = MergeLeft (range, position);
@@ -162,7 +162,7 @@ namespace Hyena.Collections
             }
         }
 
-        private bool MergeLeft (Range range, int position)
+        bool MergeLeft (Range range, int position)
         {
             int left = position - 1;
             if (left >= 0 && ranges[left].End + 1 == range.Start) {
@@ -173,7 +173,7 @@ namespace Hyena.Collections
             return false;
         }
 
-        private bool MergeRight (Range range, int position)
+        bool MergeRight (Range range, int position)
         {
             if (position < range_count && ranges[position].Start - 1 == range.End) {
                 ranges[position].Start = range.End;
@@ -183,12 +183,12 @@ namespace Hyena.Collections
             return false;
         }
 
-        private static int CompareRanges (Range a, Range b)
+        static int CompareRanges (Range a, Range b)
         {
             return (a.Start + (a.End - a.Start)).CompareTo (b.Start + (b.End - b.Start));
         }
 
-        private int FindInsertionPosition (Range range)
+        int FindInsertionPosition (Range range)
         {
             int min = 0;
             int max = range_count - 1;

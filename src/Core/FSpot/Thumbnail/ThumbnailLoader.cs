@@ -31,9 +31,8 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
 using FSpot.Imaging;
-using FSpot.Thumbnail;
+
 using Hyena;
 
 namespace FSpot.Thumbnail

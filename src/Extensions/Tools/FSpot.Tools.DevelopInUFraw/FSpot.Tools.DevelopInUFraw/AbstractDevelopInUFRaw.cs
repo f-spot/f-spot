@@ -41,6 +41,7 @@ using FSpot.Imaging;
 using FSpot.Settings;
 using FSpot.Utils;
 
+
 namespace FSpot.Tools.DevelopInUFraw
 {
 	// Abstract version, contains shared functionality
@@ -73,7 +74,7 @@ namespace FSpot.Tools.DevelopInUFraw
 
 			var raw = p.GetVersion (Photo.OriginalVersionId) as PhotoVersion;
 			if (!App.Instance.Container.Resolve<IImageFileFactory> ().IsRaw (raw.Uri)) {
-				Log.Warning ("The original version of this image is not a (supported) RAW file");
+				Logger.Log.Warning ("The original version of this image is not a (supported) RAW file");
 				return;
 			}
 
@@ -83,7 +84,7 @@ namespace FSpot.Tools.DevelopInUFraw
 
 
 			if (ufraw_jpeg_quality < 1 || ufraw_jpeg_quality > 100) {
-				Log.Debug ("Invalid JPEG quality specified, defaulting to quality 98");
+				Logger.Log.Debug ("Invalid JPEG quality specified, defaulting to quality 98");
 				ufraw_jpeg_quality = 98;
 			}
 
@@ -110,12 +111,12 @@ namespace FSpot.Tools.DevelopInUFraw
 				idfile,
 				GLib.Shell.Quote (developed.LocalPath),
 				GLib.Shell.Quote (raw.Uri.LocalPath));
-			Log.Debug (executable + " " + args);
+			Logger.Log.Debug (executable + " " + args);
 
 			var ufraw = System.Diagnostics.Process.Start (executable, args);
 			ufraw.WaitForExit ();
 			if (!File.Exists (developed.ToString ())) {
-				Log.Warning ("UFRaw quit with an error. Check that you have UFRaw 0.13 or newer. Or did you simply clicked on Cancel?");
+				Logger.Log.Warning ("UFRaw quit with an error. Check that you have UFRaw 0.13 or newer. Or did you simply clicked on Cancel?");
 				return;
 			}
 

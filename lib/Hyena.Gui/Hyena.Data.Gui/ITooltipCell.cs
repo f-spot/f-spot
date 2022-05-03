@@ -26,12 +26,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using Gdk;
-
 namespace Hyena.Data.Gui
 {
-    public interface ITooltipCell
+	public interface ITooltipCell
     {
         string GetTooltipMarkup (CellContext cellContext, double columnWidth);
     }

@@ -31,7 +31,7 @@ namespace Hyena.Downloader
 {
     public class HttpFileDownloader : HttpDownloader
     {
-        private FileStream file_stream;
+        FileStream file_stream;
 
         public string TempPathRoot { get; set; }
         public string FileExtension { get; set; }
@@ -48,7 +48,7 @@ namespace Hyena.Downloader
         {
             Directory.CreateDirectory (TempPathRoot);
             LocalPath = Path.Combine (TempPathRoot, CryptoUtil.Md5Encode (Uri.AbsoluteUri));
-            if (!String.IsNullOrEmpty (FileExtension)) {
+            if (!string.IsNullOrEmpty (FileExtension)) {
                 LocalPath += "." + FileExtension;
             }
             base.OnStarted ();
@@ -71,7 +71,7 @@ namespace Hyena.Downloader
                     file_stream = null;
                     OnFileFinished ();
                 } catch (Exception e) {
-                    Log.Exception (String.Format ("HttpFileDownloader.OnFinished ({0})", Uri), e);
+                    Log.Exception (string.Format ("HttpFileDownloader.OnFinished ({0})", Uri), e);
                 }
             }
 
@@ -80,10 +80,7 @@ namespace Hyena.Downloader
 
         protected virtual void OnFileFinished ()
         {
-            var handler = FileFinished;
-            if (handler != null) {
-                handler (this);
-            }
-        }
+			FileFinished?.Invoke (this);
+		}
     }
 }

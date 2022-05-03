@@ -39,6 +39,7 @@ using FSpot.Core;
 using FSpot.Imaging;
 using FSpot.FileSystem;
 
+
 namespace FSpot
 {
 	public class UriCollection : PhotoList
@@ -100,7 +101,7 @@ namespace FSpot
 				XmlNodeList list = doc.SelectNodes ("/rss/channel/item/media:content", ns);
 				foreach (XmlNode item in list) {
 					SafeUri image_uri = new SafeUri (item.Attributes ["url"].Value);
-					Hyena.Log.Debug ($"flickr uri = {image_uri.ToString ()}");
+					Logger.Log.Debug ($"flickr uri = {image_uri}");
 					items.Add (new FilePhoto (image_uri));
 				}
 
@@ -108,7 +109,7 @@ namespace FSpot
 					list = doc.SelectNodes ("/rss/channel/item/pheed:imgsrc", ns);
 					foreach (XmlNode item in list) {
 						SafeUri image_uri = new SafeUri (item.InnerText.Trim ());
-						Hyena.Log.Debug ($"pheed uri = {uri}");
+						Logger.Log.Debug ($"pheed uri = {uri}");
 						items.Add (new FilePhoto (image_uri));
 					}
 				}
@@ -117,7 +118,7 @@ namespace FSpot
 					list = doc.SelectNodes ("/rss/channel/item/apple:image", ns);
 					foreach (XmlNode item in list) {
 						SafeUri image_uri = new SafeUri (item.InnerText.Trim ());
-						Hyena.Log.Debug ($"apple uri = {uri}");
+						Logger.Log.Debug ($"apple uri = {uri}");
 						items.Add (new FilePhoto (image_uri));
 					}
 				}
@@ -145,7 +146,7 @@ namespace FSpot
 
 			//	foreach (GLib.FileInfo info in file.EnumerateChildrenFinish (res)) {
 			//		var i = new SafeUri (file.GetChild (info.Name).Uri);
-			//		Log.Debug ($"testing uri = {i}");
+			//		Logger.Log.Debug ($"testing uri = {i}");
 			//		if (App.Instance.Container.Resolve<IImageFileFactory> ().HasLoader (i))
 			//			items.Add (new FilePhoto (i));
 			//	}
@@ -159,7 +160,7 @@ namespace FSpot
 			var items = new List<IPhoto> ();
 			foreach (var f in files) {
 				if (App.Instance.Container.Resolve<IImageFileFactory> ().HasLoader (new SafeUri (f.FullName))) {
-					Log.Debug (f.FullName);
+					Logger.Log.Debug (f.FullName);
 					items.Add (new FilePhoto (new SafeUri (f.FullName)));
 				}
 			}

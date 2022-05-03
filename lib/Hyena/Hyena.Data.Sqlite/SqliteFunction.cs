@@ -42,16 +42,14 @@
  ********************************************************/
 namespace Hyena.Data.Sqlite
 {
-  using System;
-  using System.Collections;
-  using System.Collections.Generic;
-  using System.Runtime.InteropServices;
-  using System.Globalization;
+	using System;
+	using System.Collections.Generic;
+	using System.Runtime.InteropServices;
 
-  /// <summary>
-  /// The type of user-defined function to declare
-  /// </summary>
-  public enum FunctionType
+	/// <summary>
+	/// The type of user-defined function to declare
+	/// </summary>
+	public enum FunctionType
   {
     /// <summary>
     /// Scalar functions are designed to be called and return a result immediately.  Examples include ABS(), Upper(), Lower(), etc.
@@ -76,12 +74,12 @@ namespace Hyena.Data.Sqlite
   /// <param name="context">Raw context pointer for the user function</param>
   /// <param name="nArgs">Count of arguments to the function</param>
   /// <param name="argsptr">A pointer to the array of argument pointers</param>
-  internal delegate void SqliteCallback(IntPtr context, int nArgs, IntPtr argsptr);
+  delegate void SqliteCallback(IntPtr context, int nArgs, IntPtr argsptr);
   /// <summary>
   /// An internal callback delegate declaration.
   /// </summary>
   /// <param name="context">Raw context pointer for the user function</param>
-  internal delegate void SqliteFinalCallback(IntPtr context);
+  delegate void SqliteFinalCallback(IntPtr context);
   /// <summary>
   /// Internal callback delegate for implementing collation sequences
   /// </summary>
@@ -91,7 +89,7 @@ namespace Hyena.Data.Sqlite
   /// <param name="pv2">Pointer to the second string to compare</param>
   /// <returns>Returns -1 if the first string is less than the second.  0 if they are equal, or 1 if the first string is greater
   /// than the second.</returns>
-  internal delegate int SqliteCollation(int len1, IntPtr pv1, int len2, IntPtr pv2);
+  delegate int SqliteCollation(int len1, IntPtr pv1, int len2, IntPtr pv2);
 
   /// <summary>
   /// This abstract class is designed to handle user-defined functions easily.  An instance of the derived class is made for each
@@ -117,7 +115,7 @@ namespace Hyena.Data.Sqlite
     /// <summary>
     /// Internal array used to keep track of aggregate function context data
     /// </summary>
-    private Dictionary<long, object> _contextDataList;
+    Dictionary<long, object> _contextDataList;
 
     /// <summary>
     /// Holds a reference to the callback function for user functions
@@ -243,7 +241,7 @@ namespace Hyena.Data.Sqlite
                 parms[n] = null;
                 break;
             default:
-                throw new Exception (String.Format ("Value is of unknown type {0}", type));
+                throw new Exception (string.Format ("Value is of unknown type {0}", type));
         }
       }
       return parms;

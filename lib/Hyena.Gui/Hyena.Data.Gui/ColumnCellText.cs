@@ -28,7 +28,6 @@
 
 using System;
 using Gtk;
-using Cairo;
 
 using Hyena.Gui;
 using Hyena.Gui.Canvas;
@@ -37,19 +36,19 @@ using Hyena.Data.Gui.Accessibility;
 
 namespace Hyena.Data.Gui
 {
-    public class ColumnCellText : ColumnCell, ISizeRequestCell, ITextCell, ITooltipCell
+	public class ColumnCellText : ColumnCell, ISizeRequestCell, ITextCell, ITooltipCell
     {
         public delegate string DataHandler ();
 
-        private Pango.Weight font_weight = Pango.Weight.Normal;
-        private Pango.EllipsizeMode ellipsize_mode = Pango.EllipsizeMode.End;
-        private Pango.Alignment alignment = Pango.Alignment.Left;
-        private int text_width;
-        private int text_height;
-        private string text_format = null;
+        Pango.Weight font_weight = Pango.Weight.Normal;
+        Pango.EllipsizeMode ellipsize_mode = Pango.EllipsizeMode.End;
+        Pango.Alignment alignment = Pango.Alignment.Left;
+        int text_width;
+        int text_height;
+        string text_format = null;
         protected string MinString, MaxString;
-        private string last_text = null;
-        private bool use_markup;
+        string last_text = null;
+        bool use_markup;
 
         public ColumnCellText (string property, bool expand) : base (property, expand)
         {
@@ -140,8 +139,8 @@ namespace Hyena.Data.Gui
             is_ellipsized = layout.IsEllipsized;
         }
 
-        private static char[] lfcr = new char[] {'\n', '\r'};
-        private void UpdateLayout (Pango.Layout layout, string text)
+        static char[] lfcr = new char[] {'\n', '\r'};
+        void UpdateLayout (Pango.Layout layout, string text)
         {
             string final_text = GetFormattedText (text);
             if (SingleParagraphMode && final_text.IndexOfAny (lfcr) >= 0) {
@@ -171,7 +170,7 @@ namespace Hyena.Data.Gui
             }
         }
 
-        private string GetFormattedText (string text)
+        string GetFormattedText (string text)
         {
             if (text_format == null) {
                 return text;
@@ -179,7 +178,7 @@ namespace Hyena.Data.Gui
             return String.Format (text_format, UseMarkup ? GLib.Markup.EscapeText (text) : text);
         }
 
-        private bool is_ellipsized = false;
+        bool is_ellipsized = false;
         public bool IsEllipsized {
             get { return is_ellipsized; }
         }
@@ -250,7 +249,7 @@ namespace Hyena.Data.Gui
             }
         }
 
-        private bool restrict_size = false;
+        bool restrict_size = false;
         public bool RestrictSize {
             get { return restrict_size; }
             set { restrict_size = value; }

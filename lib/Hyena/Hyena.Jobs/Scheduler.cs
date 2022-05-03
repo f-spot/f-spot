@@ -28,17 +28,14 @@
 
 using System;
 using System.Linq;
-using System.Threading;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-using Hyena;
-
 namespace Hyena.Jobs
 {
-    public class Scheduler
+	public class Scheduler
     {
-        private List<Job> jobs;
+        List<Job> jobs;
 
         public event Action<Job> JobAdded;
         public event Action<Job> JobRemoved;
@@ -83,11 +80,8 @@ namespace Hyena.Jobs
                 }
             }
 
-            Action<Job> handler = JobAdded;
-            if (handler != null) {
-                handler (job);
-            }
-        }
+			JobAdded?.Invoke (job);
+		}
 
         public void Cancel (Job job)
         {
@@ -132,7 +126,7 @@ namespace Hyena.Jobs
             }
         }
 
-        private void OnJobFinished (object o, EventArgs args)
+        void OnJobFinished (object o, EventArgs args)
         {
             Job job = o as Job;
 
@@ -140,15 +134,12 @@ namespace Hyena.Jobs
                 jobs.Remove (job);
             }
 
-            Action<Job> handler = JobRemoved;
-            if (handler != null) {
-                handler (job);
-            }
+			JobRemoved?.Invoke (job);
 
-            Schedule ();
+			Schedule ();
         }
 
-        private void Schedule ()
+        void Schedule ()
         {
             lock (jobs) {
                 // First try to start any non-LongRunning jobs
@@ -165,17 +156,17 @@ namespace Hyena.Jobs
 
 #region Job Query helpers
 
-        private bool IsRunning (Job job)
+        bool IsRunning (Job job)
         {
             return job.IsRunning;
         }
 
-        private bool CanStart (Job job)
+        bool CanStart (Job job)
         {
             return CanStartJob (job, false);
         }
 
-        private bool CanStartJob (Job job, bool pausedJob)
+        bool CanStartJob (Job job, bool pausedJob)
         {
             if (!job.IsScheduled && !(pausedJob && job.IsPaused))
                 return false;
@@ -196,18 +187,18 @@ namespace Hyena.Jobs
                        .Any () == false;
         }
 
-        private void StartJob (Job job)
+        void StartJob (Job job)
         {
             ConflictingJobs (job).ForEach (PreemptJob);
             job.Start ();
         }
 
-        private void PreemptJob (Job job)
+        void PreemptJob (Job job)
         {
             job.Preempt ();
         }
 
-        private IEnumerable<Job> ConflictingJobs (Job job)
+        IEnumerable<Job> ConflictingJobs (Job job)
         {
             if (job.Has (PriorityHints.SpeedSensitive)) {
                 // Preempt non-SpeedSensitive jobs that use the same Resource(s)

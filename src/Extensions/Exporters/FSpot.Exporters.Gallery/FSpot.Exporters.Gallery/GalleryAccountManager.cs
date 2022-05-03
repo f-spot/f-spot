@@ -30,8 +30,10 @@
 
 using System.Collections.Generic;
 using System.IO;
+
 using FSpot.Settings;
-using Hyena;
+
+
 
 namespace FSpot.Exporters.Gallery
 {
@@ -142,7 +144,7 @@ namespace FSpot.Exporters.Gallery
 					else if (versionString == "Version2")
 						version = GalleryVersion.Version2;
 					else
-						Log.Error ("Unexpected versions string: " + versionString);
+						Logger.Log.Error ("Unexpected versions string: " + versionString);
 				}
 			}
 			return new GalleryAccount (name, url, username, password, version);
@@ -173,7 +175,7 @@ namespace FSpot.Exporters.Gallery
 				}
 			} catch (System.Exception e) {
 				// FIXME do something
-				Log.Exception ("Exception loading gallery accounts", e);
+				Logger.Log.Error (e, "Exception loading gallery accounts");
 			}
 
 			MarkChanged ();

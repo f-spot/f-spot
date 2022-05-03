@@ -33,7 +33,7 @@ namespace Hyena.Gui
 {
     public static class CairoDamageDebugger
     {
-        private static Random rand = new Random ();
+        static Random rand = new Random ();
 
         public static void RenderDamage (this Context cr, Gdk.Rectangle damage)
         {

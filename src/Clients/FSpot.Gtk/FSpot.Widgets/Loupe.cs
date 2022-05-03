@@ -37,7 +37,6 @@ using FSpot.Core;
 using FSpot.Utils;
 using FSpot.Gui;
 
-using Hyena;
 
 namespace FSpot.Widgets
 {
@@ -227,7 +226,7 @@ namespace FSpot.Widgets
 				try {
 					CompositeUtils.InputShapeCombineMask (this, bitmap, 0,0);
 				} catch (EntryPointNotFoundException) {
-					Log.Warning ("gtk+ version doesn't support input shapping");
+					Logger.Log.Warning ("gtk+ version doesn't support input shapping");
 				}
 			}
 			bitmap.Dispose ();

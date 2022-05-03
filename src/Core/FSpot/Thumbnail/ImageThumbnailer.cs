@@ -1,4 +1,4 @@
-﻿//
+//
 // ImageThumbnailer.cs
 //
 // Author:
@@ -34,6 +34,8 @@ using FSpot.FileSystem;
 using FSpot.Imaging;
 using Gdk;
 using Hyena;
+
+
 
 namespace FSpot.Thumbnail
 {
@@ -82,8 +84,8 @@ namespace FSpot.Thumbnail
 			try {
 				pixbuf = imageFile.Load ();
 			} catch (Exception e) {
-				Log.DebugFormat ("Failed loading image for thumbnailing: {0}", imageFile.Uri);
-				Log.DebugException (e);
+				Logger.Log.Debug ($"Failed loading image for thumbnailing: {imageFile.Uri}");
+				Logger.Log.Debug (e, "");
 				return false;
 			}
 

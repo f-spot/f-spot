@@ -26,14 +26,13 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
 using Gtk;
 
 namespace Hyena.Widgets
 {
-    public class GenericToolItem<T> : ToolItem where T : Widget
+	public class GenericToolItem<T> : ToolItem where T : Widget
     {
-        private T widget;
+        T widget;
 
         public GenericToolItem (T widget)
         {

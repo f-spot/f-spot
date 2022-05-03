@@ -13,8 +13,9 @@ using System;
 using FSpot.FileSystem;
 using Hyena;
 
+
+
 using TagLib;
-using Log = Hyena.Log;
 
 namespace FSpot.Utils
 {
@@ -39,13 +40,13 @@ namespace FSpot.Utils
 			try {
 				file = TagLib.File.Create (res, mime, ReadStyle.Average) as TagLib.Image.File;
 			} catch (Exception) {
-				Log.Debug ($"Loading of metadata failed for file: {uri}, trying extension fallback");
+				Logger.Log.Debug ($"Loading of metadata failed for file: {uri}, trying extension fallback");
 
 				try {
 					file = TagLib.File.Create (res, ReadStyle.Average) as TagLib.Image.File;
 				} catch (Exception e) {
-					Log.Debug ($"Loading of metadata failed for file: {uri}");
-					Log.DebugException (e);
+					Logger.Log.Debug ($"Loading of metadata failed for file: {uri}");
+					Logger.Log.Debug (e, "");
 					return null;
 				}
 			}
@@ -61,7 +62,7 @@ namespace FSpot.Utils
 		{
 			if (alwaysSidecar || !metadata.Writeable || metadata.PossiblyCorrupt) {
 				if (!alwaysSidecar && metadata.PossiblyCorrupt) {
-					Log.Warning ($"Metadata of file {photoUri} may be corrupt, refusing to write to it, falling back to XMP sidecar.");
+					Logger.Log.Warning ($"Metadata of file {photoUri} may be corrupt, refusing to write to it, falling back to XMP sidecar.");
 				}
 
 				var sidecar_res = new TagLibFileAbstraction (GetSidecarUri (photoUri));

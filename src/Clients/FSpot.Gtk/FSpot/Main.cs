@@ -21,8 +21,6 @@ using System.IO;
 using System.Reflection;
 using System.Threading;
 
-using FSpot.Resources;
-using FSpot.Platform;
 using FSpot.Settings;
 using FSpot.Utils;
 
@@ -33,6 +31,8 @@ using Hyena.Gui;
 using Mono.Addins;
 using Mono.Addins.Setup;
 using Mono.Unix;
+
+using SerilogTimings;
 
 namespace FSpot
 {
@@ -157,6 +157,7 @@ namespace FSpot
 		static int Main (string[] args)
 		{
 			Logger.CreateLogger ();
+
 			if (Environment.Is64BitProcess)
 				throw new ApplicationException ("GtkSharp does not support running 64bit");
 
@@ -165,7 +166,6 @@ namespace FSpot
 			ApplicationContext.ApplicationName = "F-Spot";
 			ApplicationContext.TrySetProcessName (FSpotConfiguration.Package);
 
-			Paths.ApplicationName = "f-spot";
 			SynchronizationContext.SetSynchronizationContext (new GtkSynchronizationContext ());
 			ThreadAssist.InitializeMainThread ();
 			ThreadAssist.ProxyToMainHandler = RunIdle;
@@ -199,12 +199,12 @@ namespace FSpot
 			}
 
 			if (ApplicationContext.CommandLine.Contains ("shutdown")) {
-				Log.Information ("Shutting down existing F-Spot server...");
+				Logger.Log.Information ("Shutting down existing F-Spot server...");
 				shutdown = true;
 			}
 
 			if (ApplicationContext.CommandLine.Contains ("slideshow")) {
-				Log.Information ("Running F-Spot in slideshow mode.");
+				Logger.Log.Information ("Running F-Spot in slideshow mode.");
 				slideshow = true;
 			}
 
@@ -213,9 +213,9 @@ namespace FSpot
 
 				if (!string.IsNullOrEmpty (dir)) {
 					FSpotConfiguration.BaseDirectory = dir;
-					Log.Information ($"BaseDirectory is now {dir}");
+					Logger.Log.Information ($"BaseDirectory is now {dir}");
 				} else {
-					Log.Error ("f-spot: -basedir option takes one argument");
+					Logger.Log.Error ("f-spot: -basedir option takes one argument");
 					return 1;
 				}
 			}
@@ -225,9 +225,9 @@ namespace FSpot
 
 				if (!string.IsNullOrEmpty (dir)) {
 					FSpotConfiguration.PhotoUri = new SafeUri (dir);
-					Log.Information ($"PhotoDirectory is now {dir}");
+					Logger.Log.Information ($"PhotoDirectory is now {dir}");
 				} else {
-					Log.Error ("f-spot: -photodir option takes one argument");
+					Logger.Log.Error ("f-spot: -photodir option takes one argument");
 					return 1;
 				}
 			}
@@ -239,7 +239,7 @@ namespace FSpot
 				view = true;
 
 			if (ApplicationContext.CommandLine.Contains ("debug")) {
-				Log.Debugging = true;
+				Logger.SetLevel (Serilog.Events.LogEventLevel.Debug);
 				// Debug GdkPixbuf critical warnings
 				var logFunc = new GLib.LogFunc (GLib.Log.PrintTraceLogFunction);
 				GLib.Log.SetLogHandler ("GdkPixbuf", GLib.LogLevelFlags.Critical, logFunc);
@@ -260,7 +260,7 @@ namespace FSpot
 			if ((import && (view || shutdown || slideshow)) ||
 				(view && (shutdown || slideshow)) ||
 				(shutdown && slideshow)) {
-				Log.Error ("Can't mix -import, -view, -shutdown or -slideshow");
+				Logger.Log.Error ("Can't mix -import, -view, -shutdown or -slideshow");
 				return 1;
 			}
 
@@ -292,7 +292,7 @@ namespace FSpot
 					GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, "FSpot", 48, 0)
 				};
 			} catch (Exception ex) {
-				Log.Exception ("Loading default f-spot icons", ex);
+				Logger.Log.Error (ex, "Loading default f-spot icons");
 			}
 
 			GLib.ExceptionManager.UnhandledException += exceptionArgs => {
@@ -315,22 +315,23 @@ namespace FSpot
 
 		static void InitializeAddins ()
 		{
-			uint timer = Log.InformationTimerStart ("Initializing Mono.Addins");
+			using var op = Operation.Begin ($"Mono.Addins Initialization");
 			try {
 				UpdatePlugins ();
 			} catch (Exception) {
-				Log.Debug ("Failed to initialize plugins, will remove addin-db and try again.");
+				Logger.Log.Debug ("Failed to initialize plugins, will remove addin-db and try again.");
 				ResetPluginDb ();
 			}
 
 			var setupService = new SetupService (AddinManager.Registry);
 			foreach (AddinRepository repo in setupService.Repositories.GetRepositories ()) {
 				if (repo.Url.StartsWith ("http://addins.f-spot.org/", StringComparison.OrdinalIgnoreCase)) {
-					Log.Information ($"Unregistering {repo.Url}");
+					Logger.Log.Information ($"Unregistering {repo.Url}");
 					setupService.Repositories.RemoveRepository (repo.Url);
 				}
 			}
-			Log.DebugTimerPrint (timer, "Mono.Addins Initialization took {0}");
+
+			op.Complete ();
 		}
 
 		static void UpdatePlugins ()
@@ -361,7 +362,7 @@ namespace FSpot
 				App.Instance.Shutdown ();
 			else if (ApplicationContext.CommandLine.Contains ("view")) {
 				if (ApplicationContext.CommandLine.Files.Count == 0) {
-					Log.Error ("f-spot: -view option takes at least one argument");
+					Logger.Log.Error ("f-spot: -view option takes at least one argument");
 					Environment.Exit (1);
 				}
 
@@ -380,7 +381,7 @@ namespace FSpot
 				string dir = ApplicationContext.CommandLine["import"];
 
 				if (string.IsNullOrEmpty (dir)) {
-					Log.Error ("f-spot: -import option takes one argument");
+					Logger.Log.Error ("f-spot: -import option takes one argument");
 					Environment.Exit (1);
 				}
 
@@ -392,7 +393,7 @@ namespace FSpot
 			try {
 				Gtk.Application.Run ();
 			} catch (Exception ex) {
-				Log.Exception (ex);
+				Logger.Log.Error (ex, "");
 			}
 		}
 

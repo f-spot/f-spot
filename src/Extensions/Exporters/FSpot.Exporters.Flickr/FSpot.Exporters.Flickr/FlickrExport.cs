@@ -412,7 +412,7 @@ namespace FSpot.Exporters.Flickr
 										 current_service.Name,
 										 e.Message);
 					progress_dialog.ProgressText = Catalog.GetString ("Error");
-					Log.Exception (e);
+					Logger.Log.Error (e, "");
 
 					if (progress_dialog.PerformRetrySkip ()) {
 						index--;
@@ -445,8 +445,8 @@ namespace FSpot.Exporters.Flickr
 
 		void HandleClicked (object sender, EventArgs args)
 		{
-			Log.Debug("Current state: " + CurrentState);
-			Log.Debug("Current verification text: " + oauth_verification_code.Text);
+			Logger.Log.Debug("Current state: " + CurrentState);
+			Logger.Log.Debug("Current verification text: " + oauth_verification_code.Text);
 			switch (CurrentState) {
 			// not connected to flickr at all. Initiate OAuth login
 			case State.Disconnected:
@@ -548,23 +548,23 @@ namespace FSpot.Exporters.Flickr
 			case SCALE_KEY:
                 scale_check.Active = Preferences.Get<bool> (key);
                 break;
-				
+
 			case SIZE_KEY:
 				size_spin.Value = (double) Preferences.Get<int> (key);
 				break;
-				
+
 			case BROWSER_KEY:
                 open_check.Active = Preferences.Get<bool> (key);
                 break;
-				
+
 			case TAGS_KEY:
                 tag_check.Active = Preferences.Get<bool> (key);
                 break;
-				
+
 			case TAG_HIERARCHY_KEY:
                 hierarchy_check.Active = Preferences.Get<bool> (key);
                 break;
-				
+
 			case IGNORE_TOP_LEVEL_KEY:
                 ignore_top_level_check.Active = Preferences.Get<bool> (key);
                 break;
@@ -578,15 +578,15 @@ namespace FSpot.Exporters.Flickr
 				token.UserId = Preferences.Get<string> (key + "userId");
 				token.Username = Preferences.Get<string> (key + "userName");
 				break;
-				
+
 			case PUBLIC_KEY:
                 public_radio.Active = Preferences.Get<bool> (key);
                 break;
-				
+
 			case FAMILY_KEY:
                 family_check.Active = Preferences.Get<bool> (key);
                 break;
-				
+
 			case FRIENDS_KEY:
                 friend_check.Active = Preferences.Get<bool> (key);
                 break;

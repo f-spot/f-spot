@@ -36,7 +36,6 @@ using System.Collections.Generic;
 
 using FSpot.Core;
 
-using Hyena;
 
 /* These classes are based off the documentation at
  *
@@ -116,7 +115,7 @@ namespace FSpot.Exporters.Gallery
 		public int Add (IPhoto item, string path)
 		{
 			if (item == null)
-				Log.Warning ("NO PHOTO");
+				Logger.Log.Warning ("NO PHOTO");
 
 			return Gallery.AddItem (this,
 					 path,

@@ -26,20 +26,15 @@
 // THE SOFTWARE.
 
 using System;
-using System.IO;
-using System.Linq;
-using System.Collections.Generic;
 
 using Mono.Unix;
 
-using Hyena;
-
 namespace Hyena.Downloader
 {
-    public class DownloadManagerJob : Hyena.Jobs.Job
+	public class DownloadManagerJob : Hyena.Jobs.Job
     {
-        private DownloadManager manager;
-        private int finished_count = 0;
+        DownloadManager manager;
+        int finished_count = 0;
 
         public DownloadManagerJob (DownloadManager manager)
         {
@@ -48,7 +43,7 @@ namespace Hyena.Downloader
             manager.Finished += OnDownloaderFinished;
         }
 
-        private void OnDownloaderProgress (HttpDownloader downloader)
+        void OnDownloaderProgress (HttpDownloader downloader)
         {
             FreezeUpdate ();
 
@@ -66,7 +61,7 @@ namespace Hyena.Downloader
 
                 var human_speed = new Hyena.Query.FileSizeQueryValue ((long)Math.Round (speed)).ToUserQuery ();
                 if (manager.PendingDownloadCount == 0) {
-                    Status = String.Format (
+                    Status = string.Format (
                         Catalog.GetPluralString (
                             "{0} download at {1}/s",
                             "{0} downloads at {1}/s",
@@ -74,7 +69,7 @@ namespace Hyena.Downloader
                         count, human_speed
                     );
                 } else {
-                    Status = String.Format (
+                    Status = string.Format (
                         Catalog.GetPluralString (
                             "{0} download at {1}/s ({2} pending)",
                             "{0} downloads at {1}/s ({2} pending)",
@@ -87,7 +82,7 @@ namespace Hyena.Downloader
             ThawUpdate (true);
         }
 
-        private void OnDownloaderFinished (HttpDownloader downloader)
+        void OnDownloaderFinished (HttpDownloader downloader)
         {
             lock (manager.SyncRoot) {
                 finished_count++;

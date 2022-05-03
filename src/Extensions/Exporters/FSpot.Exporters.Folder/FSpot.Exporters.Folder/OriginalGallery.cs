@@ -55,12 +55,11 @@
 using System;
 using System.IO;
 
-using Hyena;
-
 using ICSharpCode.SharpZipLib.Checksum;
 using ICSharpCode.SharpZipLib.Zip;
 
 using FSpot.Core;
+
 
 namespace FSpot.Exporters.Folder
 {
@@ -95,8 +94,8 @@ namespace FSpot.Exporters.Folder
 					CreateComments (Collection [i].DefaultVersion.Uri.LocalPath, i);
 
 				Directory.SetLastWriteTimeUtc(GalleryPath, Collection [0].Time);
-			} catch (System.Exception e) {
-				Log.Error (e.ToString ());
+			} catch (Exception e) {
+				Logger.Log.Error (e, "");
 			}
 		}
 
@@ -111,7 +110,7 @@ namespace FSpot.Exporters.Folder
 				    CreateZipFile("hq");
 
 			} catch (System.Exception e) {
-				Log.Error (e.ToString ());
+				Logger.Log.Error (e.ToString ());
 			}
 		}
 

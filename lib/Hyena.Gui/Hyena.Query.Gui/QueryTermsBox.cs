@@ -30,20 +30,17 @@
 //
 
 using System;
-using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 
 using Gtk;
-using Hyena;
-using Hyena.Query;
 
 namespace Hyena.Query.Gui
 {
-    public class QueryTermsBox : Table
+	public class QueryTermsBox : Table
     {
-        private QueryField [] sorted_fields;
-        private List<QueryTermBox> terms = new List<QueryTermBox> ();
+        QueryField [] sorted_fields;
+        List<QueryTermBox> terms = new List<QueryTermBox> ();
 
         public QueryTermBox FirstRow {
             get { return terms.Count > 0 ? terms[0] : null; }
@@ -73,7 +70,7 @@ namespace Hyena.Query.Gui
             }
         }
 
-        private bool first_add_node;
+        bool first_add_node;
         protected void AddNode (QueryNode node)
         {
             if (node is QueryTermNode) {
@@ -129,14 +126,14 @@ namespace Hyena.Query.Gui
             RemoveRow (terms.IndexOf (o as QueryTermBox));
         }
 
-        private void ClearRows ()
+        void ClearRows ()
         {
             for (int index = terms.Count - 1; index > 0; index--) {
                 RemoveRow (index);
             }
         }
 
-        private void RemoveRow (int index)
+        void RemoveRow (int index)
         {
             FreezeChildNotify ();
 
@@ -170,7 +167,7 @@ namespace Hyena.Query.Gui
             }
         }
 
-        private new void Attach (Widget widget, uint left_attach, uint right_attach, uint top_attach, uint bottom_attach)
+        new void Attach (Widget widget, uint left_attach, uint right_attach, uint top_attach, uint bottom_attach)
         {
             Attach (widget, left_attach, right_attach, top_attach, bottom_attach,
                 AttachOptions.Expand | AttachOptions.Fill, AttachOptions.Shrink, 0, 0);

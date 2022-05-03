@@ -47,6 +47,7 @@ using FSpot.Thumbnail;
 
 using TinyIoC;
 
+
 namespace FSpot
 {
 	public class App
@@ -60,7 +61,7 @@ namespace FSpot
 		{
 			toplevels = new List<Gtk.Window> ();
 			//if (IsRunning) {
-			//	Log.Information ("Found active FSpot process");
+			//	Logger.Log.Information ("Found active FSpot process");
 			//} else {
 			//	MessageReceived += HandleMessageReceived;
 			//}
@@ -97,7 +98,7 @@ namespace FSpot
 		//{
 		//	toplevels = new List<Gtk.Window> ();
 		//	if (IsRunning) {
-		//		Log.Information ("Found active FSpot process");
+		//		Logger.Log.Information ("Found active FSpot process");
 		//	} else {
 		//		MessageReceived += HandleMessageReceived;
 		//	}
@@ -248,7 +249,7 @@ namespace FSpot
 		//		break;
 		//	case Command.Invalid:
 		//	default:
-		//		Log.Debug ("Wrong command received");
+		//		Logger.Log.Debug ("Wrong command received");
 		//		break;
 		//	}
 		//}
@@ -261,7 +262,7 @@ namespace FSpot
                 path = $"gphoto2://[{path.Substring (8)}]";
             }
 
-            Hyena.Log.DebugFormat ("Importing from {0}", path);
+           Logger.Log.Debug ($"Importing from {path}");
             Organizer.Window.Present ();
             Organizer.ImportFile (path == null ? null : new SafeUri(path));
         }
@@ -373,8 +374,8 @@ namespace FSpot
 			try {
 				Register (new FSpot.SingleView (ul.ToArray ()).Window);
 			} catch (Exception e) {
-				Log.Exception (e);
-				Log.Debug ("no real valid path to view from");
+				Logger.Log.Error (e, "");
+				Logger.Log.Debug ("no real valid path to view from");
 			}
 		}
 
@@ -388,7 +389,7 @@ namespace FSpot
 		{
 			toplevels.Remove (sender as Gtk.Window);
 			if (toplevels.Count == 0) {
-				Log.Information ("Exiting...");
+				Logger.Log.Information ("Exiting...");
 				Banshee.Kernel.Scheduler.Dispose ();
 				Database.Dispose ();
 				ImageLoaderThread.CleanAll ();

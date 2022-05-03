@@ -29,34 +29,31 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 using Mono.Unix;
 
 using Gtk;
-using Hyena;
-using Hyena.Query;
 
 namespace Hyena.Query.Gui
 {
-    public class QueryBox : VBox
+	public class QueryBox : VBox
     {
-        private QueryTermsBox terms_box;
-        private bool complex_query = false;
+        QueryTermsBox terms_box;
+        bool complex_query = false;
 
-        private HBox terms_entry_box;
-        private Entry terms_entry;
+        HBox terms_entry_box;
+        Entry terms_entry;
 
-        private QueryLimitBox limit_box;
+        QueryLimitBox limit_box;
         public QueryLimitBox LimitBox {
             get { return limit_box; }
         }
 
-        private ComboBox terms_logic_combo;
-        private CheckButton terms_enabled_checkbox;
-        private Label terms_label;
-        private QueryFieldSet field_set;
-        private Frame matchesFrame;
+        ComboBox terms_logic_combo;
+        CheckButton terms_enabled_checkbox;
+        Label terms_label;
+        QueryFieldSet field_set;
+        Frame matchesFrame;
 
         public QueryBox (QueryFieldSet fieldSet, QueryOrder [] orders, QueryLimit [] limits) : base ()
         {
@@ -68,7 +65,7 @@ namespace Hyena.Query.Gui
             BuildInterface ();
         }
 
-        private void BuildInterface ()
+        void BuildInterface ()
         {
             NoShowAll = true;
 
@@ -96,7 +93,7 @@ namespace Hyena.Query.Gui
             //ShowAll ();
         }
 
-        private HBox BuildMatchHeader ()
+        HBox BuildMatchHeader ()
         {
             HBox header = new HBox ();
             header.Show ();
@@ -124,7 +121,7 @@ namespace Hyena.Query.Gui
             return header;
         }
 
-        private void OnMatchCheckBoxToggled   (object o, EventArgs args)
+        void OnMatchCheckBoxToggled   (object o, EventArgs args)
         {
             terms_box.Sensitive = terms_enabled_checkbox.Active;
             terms_logic_combo.Sensitive = terms_enabled_checkbox.Active;

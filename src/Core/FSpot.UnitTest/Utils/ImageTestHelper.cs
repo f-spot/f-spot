@@ -28,7 +28,7 @@ namespace FSpot.Utils.Tests
 
 		public static SafeUri CreateTempFile (string name)
 		{
-			var uri = new SafeUri (Paths.Combine (TestDir, TestDataLocation, name));
+			var uri = new SafeUri (Path.Combine (TestDir, TestDataLocation, name));
 
 			var tmp = Path.GetTempFileName () + ".jpg"; // hack!
 			var uri2 = new SafeUri (tmp);
@@ -39,7 +39,7 @@ namespace FSpot.Utils.Tests
 
 		public static SafeUri CopySidecarToTest (SafeUri uri, string filename)
 		{
-			var source = new SafeUri (Paths.Combine (TestDir, TestDataLocation, filename)).AbsolutePath;
+			var source = new SafeUri (Path.Combine (TestDir, TestDataLocation, filename)).AbsolutePath;
 			var destination = uri.ReplaceExtension (".xmp");
 
 			File.Copy (source, destination.AbsolutePath, true);

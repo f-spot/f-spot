@@ -23,9 +23,9 @@ using System.IO;
 
 using FSpot.Platform;
 
-using Hyena;
-
 using Mono.Unix;
+
+
 
 namespace FSpot.Settings
 {
@@ -115,9 +115,9 @@ namespace FSpot.Settings
 			//	if (cache.TryGetValue (key, out object cachedValue)) {
 			//		result = (T)cachedValue;
 			//		return true;
-			//	} 
+			//	}
 			//} catch (InvalidCastException ex) {
-			//	Log.Exception ($"[Preferencs] InvalidCastException: key -> {key}, type -> {result.GetType ()}", ex);
+			//	Logger.Log.Exception ($"[Preferencs] InvalidCastException: key -> {key}, type -> {result.GetType ()}", ex);
 			//}
 
 			// Check preference jsonBackend, set default in jsonBackend
@@ -130,10 +130,10 @@ namespace FSpot.Settings
 				// FIXME, analytics/log when key is first used
 				JsonBackend.Set<T> (key, result);
 			} catch (FormatException ex) {
-				Log.Exception ($"[Preferences] Wrong type: {key}", ex);
+				Logger.Log.Error ($"[Preferences] Wrong type: {key}", ex);
 				JsonBackend.Set<T> (key, result);
 			} catch (InvalidCastException ex) {
-				Log.Exception ($"[Preferences] Invalid cast: {key}", ex);
+				Logger.Log.Error ($"[Preferences] Invalid cast: {key}", ex);
 				return false;
 			}
 
@@ -150,7 +150,7 @@ namespace FSpot.Settings
 					//cache[key] = value;
 					JsonBackend.Set<T> (key, value);
 				} catch (Exception ex) {
-					Log.Exception ($"[Preferences] Unable to set this : {key}", ex);
+					Logger.Log.Error (ex, $"[Preferences] Unable to set this : {key}");
 				}
 			}
 		}

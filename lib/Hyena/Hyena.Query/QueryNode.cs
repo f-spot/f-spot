@@ -43,9 +43,9 @@ namespace Hyena.Query
 
     public abstract class QueryNode
     {
-        private QueryListNode parent;
-        private int source_column;
-        private int source_line;
+        QueryListNode parent;
+        int source_column;
+        int source_line;
 
         public QueryNode()
         {
@@ -59,7 +59,7 @@ namespace Hyena.Query
 
         protected void PrintIndent(int depth)
         {
-            Console.Write(String.Empty.PadLeft(depth * 2, ' '));
+            Console.Write(string.Empty.PadLeft(depth * 2, ' '));
         }
 
         public void Dump()
@@ -130,7 +130,7 @@ namespace Hyena.Query
             }
         }
 
-        private static IEnumerable<T> SearchForValuesByDepth<T> (QueryNode node) where T : QueryValue
+        static IEnumerable<T> SearchForValuesByDepth<T> (QueryNode node) where T : QueryValue
         {
             QueryListNode list = node as QueryListNode;
             if (list != null) {
@@ -150,7 +150,7 @@ namespace Hyena.Query
             }
         }
 
-        private IEnumerable<T> SearchForValuesByBreadth<T> () where T : QueryValue
+        IEnumerable<T> SearchForValuesByBreadth<T> () where T : QueryValue
         {
             Queue<QueryNode> queue = new Queue<QueryNode> ();
             queue.Enqueue (this);

@@ -30,7 +30,7 @@ namespace Hyena.Gui.Theming
 {
     public static class ThemeEngine
     {
-        private static Type theme_type;
+        static Type theme_type;
 
         public static void SetCurrentTheme<T> () where T : Theme
         {

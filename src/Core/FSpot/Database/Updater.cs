@@ -42,6 +42,10 @@ using FSpot.Utils;
 using Hyena;
 using Hyena.Data.Sqlite;
 
+
+
+using SerilogTimings;
+
 namespace FSpot.Database
 {
 	public static class Updater
@@ -110,7 +114,7 @@ namespace FSpot.Database
 					"NOT IN (SELECT id FROM tags))",
 					id));
 
-				Log.Debug ("Other tag restored.  Sorry about that!");
+				Logger.Log.Debug ("Other tag restored.  Sorry about that!");
 			});
 
 			// Update from version 2 to 3: ensure that Hidden is the only tag left which is a real tag (not category)
@@ -131,7 +135,7 @@ namespace FSpot.Database
 			//Version 5.0, add a roll_id field to photos, rename table 'imports' to 'rolls'
 			//and fix bgo 324425.
 			AddUpdate (new Version (5, 0), delegate () {
-				Log.Debug ("Will add a roll_id field to photos!");
+				Logger.Log.Debug ("Will add a roll_id field to photos!");
 				string tmp_photos = MoveTableToTemp ("photos");
 				Execute (
 					"CREATE TABLE photos (                                     " +
@@ -145,7 +149,7 @@ namespace FSpot.Database
 					")");
 				ExecuteScalar (string.Format ("INSERT INTO photos SELECT id, time, directory_path, name, description, 0, default_version_id FROM {0}", tmp_photos));
 
-				Log.Debug ("Will rename imports to rolls!");
+				Logger.Log.Debug ("Will rename imports to rolls!");
 				string tmp_rolls = MoveTableToTemp ("imports");
 				Execute (
 					"CREATE TABLE rolls (                                     " +
@@ -154,7 +158,7 @@ namespace FSpot.Database
 					")");
 				ExecuteScalar (string.Format ("INSERT INTO rolls SELECT id, time FROM {0}", tmp_rolls));
 
-				Log.Debug ("Cleaning weird descriptions, fixes bug #324425.");
+				Logger.Log.Debug ("Cleaning weird descriptions, fixes bug #324425.");
 				Execute ("UPDATE photos SET description = \"\" WHERE description LIKE \"Invalid size of entry%\"");
 			});
 
@@ -745,13 +749,13 @@ namespace FSpot.Database
 				return;
 			else if (db_version > LatestVersion) {
 				if (!silent)
-					Log.Information ("The existing database version is more recent than this version of F-Spot expects.");
+					Logger.Log.Information ("The existing database version is more recent than this version of F-Spot expects.");
 				return;
 			}
 
-			uint timer = 0;
+			Operation op = null;
 			if (!silent)
-				timer = Log.InformationTimerStart ("Updating F-Spot Database");
+				op = Operation.Begin ($"Updating F-Spot Database");
 
 			// Only create and show the dialog if one or more of the updates to be done is
 			// marked as being slow
@@ -783,8 +787,8 @@ namespace FSpot.Database
 				db.CommitTransaction ();
 			} catch (Exception e) {
 				if (!silent) {
-					Log.DebugException (e);
-					Log.Warning ("Rolling back database changes because of Exception");
+					Logger.Log.Debug (e, "");
+					Logger.Log.Warning ("Rolling back database changes because of Exception");
 				}
 				// There was an error, roll back the database
 				db.RollbackTransaction ();
@@ -795,8 +799,10 @@ namespace FSpot.Database
 
 			dialog.Destroy ();
 
-			if (db_version == LatestVersion && !silent)
-				Log.InformationTimerPrint (timer, "Database updates completed successfully (in {0}).");
+			if (db_version == LatestVersion && !silent) {
+				op.Complete ();
+				op.Dispose ();
+			}
 		}
 
 		private static void AddUpdate (Version version, UpdateCode code)
@@ -817,7 +823,7 @@ namespace FSpot.Database
 			}
 			catch (OverflowException e)
 			{
-				Log.Exception (string.Format ("Updater.Execute failed. ({0})", statement), e);
+				Logger.Log.Error (e, $"Updater.Execute failed. ({statement})");
 				throw;
 			}
 			return result;
@@ -831,7 +837,7 @@ namespace FSpot.Database
 			}
 			catch (OverflowException e)
 			{
-				Log.Exception (string.Format ("Updater.Execute failed. ({0})", command), e);
+				Logger.Log.Error (e, $"Updater.Execute failed. ({command})");
 				throw;
 			}
 			return result;
@@ -911,9 +917,7 @@ namespace FSpot.Database
 				code ();
 
 				if (!silent) {
-					Log.DebugFormat ("Updated database from version {0} to {1}",
-							db_version.ToString (),
-							Version.ToString ());
+					Logger.Log.Debug ($"Updated database from version {db_version} to {Version}");
 				}
 
 				db_version = Version;

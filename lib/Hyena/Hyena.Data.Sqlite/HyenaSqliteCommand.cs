@@ -28,13 +28,12 @@
 //
 
 using System;
-using System.IO;
 using System.Text;
 using System.Threading;
 
 namespace Hyena.Data.Sqlite
 {
-    public class CommandExecutedArgs : EventArgs
+	public class CommandExecutedArgs : EventArgs
     {
         public CommandExecutedArgs (string sql, int ms)
         {
@@ -48,17 +47,17 @@ namespace Hyena.Data.Sqlite
 
     public class HyenaSqliteCommand
     {
-        private object result = null;
-        private Exception execution_exception = null;
-        private bool finished = false;
+        object result = null;
+        Exception execution_exception = null;
+        bool finished = false;
 
-        private ManualResetEvent finished_event = new ManualResetEvent (true);
-        private string command;
-        private string command_format = null;
-        private string command_formatted = null;
-        private int parameter_count = 0;
-        private object [] current_values;
-        private int ticks;
+        ManualResetEvent finished_event = new ManualResetEvent (true);
+        string command;
+        string command_format = null;
+        string command_formatted = null;
+        int parameter_count = 0;
+        object [] current_values;
+        int ticks;
 
         public string Text {
             get { return command; }
@@ -187,7 +186,7 @@ namespace Hyena.Data.Sqlite
             }
 
             if (param_values.Length != parameter_count) {
-                throw new ArgumentException (String.Format (
+                throw new ArgumentException (string.Format (
                     "Command {2} has {0} parameters, but {1} values given.", parameter_count, param_values.Length, command
                 ));
             }
@@ -205,7 +204,7 @@ namespace Hyena.Data.Sqlite
         public static object SqlifyObject (object o)
         {
             if (o is string) {
-                return String.Format ("'{0}'", (o as string).Replace ("'", "''"));
+                return string.Format ("'{0}'", (o as string).Replace ("'", "''"));
             } else if (o is DateTime) {
                 return DateTimeUtil.FromDateTime ((DateTime) o);
             } else if (o is bool) {
@@ -214,7 +213,7 @@ namespace Hyena.Data.Sqlite
                 return "NULL";
             } else if (o is byte[]) {
                 string hex = BitConverter.ToString (o as byte[]).Replace ("-", "");
-                return String.Format ("X'{0}'", hex);
+                return string.Format ("X'{0}'", hex);
             } else if (o is Array) {
                 StringBuilder sb = new StringBuilder ();
                 bool first = true;
@@ -232,21 +231,21 @@ namespace Hyena.Data.Sqlite
             }
         }
 
-        private string CurrentSqlText {
+        string CurrentSqlText {
             get {
                 if (command_format == null) {
                     return command;
                 }
 
                 if (command_formatted == null) {
-                    command_formatted = String.Format (System.Globalization.CultureInfo.InvariantCulture, command_format, current_values);
+                    command_formatted = string.Format (System.Globalization.CultureInfo.InvariantCulture, command_format, current_values);
                 }
 
                 return command_formatted;
             }
         }
 
-        private void CreateParameters ()
+        void CreateParameters ()
         {
             StringBuilder sb = new StringBuilder ();
             foreach (char c in command) {
@@ -263,7 +262,7 @@ namespace Hyena.Data.Sqlite
 
         #region Static Debugging Facilities
 
-        private static bool log_all = false;
+        static bool log_all = false;
         public static bool LogAll {
             get { return log_all; }
             set { log_all = value; }
@@ -272,13 +271,13 @@ namespace Hyena.Data.Sqlite
         public delegate void CommandExecutedHandler (object o, CommandExecutedArgs args);
         public static event CommandExecutedHandler CommandExecuted;
 
-        private static bool raise_command_executed = false;
+        static bool raise_command_executed = false;
         public static bool RaiseCommandExecuted {
             get { return raise_command_executed; }
             set { raise_command_executed = value; }
         }
 
-        private static int raise_command_executed_threshold_ms = 400;
+        static int raise_command_executed_threshold_ms = 400;
         public static int RaiseCommandExecutedThresholdMs {
             get { return raise_command_executed_threshold_ms; }
             set { raise_command_executed_threshold_ms = value; }
