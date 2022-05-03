@@ -226,7 +226,6 @@ namespace FSpot.Exporters.Folder
 				var filter_set = new FilterSet ();
 				if (scale)
 					filter_set.Add (new ResizeFilter ((uint)size));
-				filter_set.Add (new ChmodFilter ());
 				filter_set.Add (new UniqueNameFilter (new SafeUri (gallery_path)));
 
 				for (int photo_index = 0; photo_index < selection.Count; photo_index++) {
