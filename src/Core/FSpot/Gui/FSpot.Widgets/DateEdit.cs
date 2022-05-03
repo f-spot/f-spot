@@ -29,7 +29,7 @@
 
 using System;
 
-using Mono.Unix;
+using FSpot.Resources.Lang;
 
 using Gtk;
 
@@ -123,7 +123,7 @@ namespace FSpot.Widgets
 			date_entry.Show ();
 			var bbox = new HBox ();
 			Widget w;
-			bbox.Add (w = calendar_label = new Label (Catalog.GetString ("Calendar")));
+			bbox.Add (w = calendar_label = new Label (Strings.Calendar));
 			w.Show ();
 			bbox.Add (w = new Arrow (ArrowType.Down, ShadowType.Out));
 			w.Show ();

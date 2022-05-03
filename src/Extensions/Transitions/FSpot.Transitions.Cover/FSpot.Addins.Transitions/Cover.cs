@@ -29,13 +29,13 @@
 
 using System;
 
-using Mono.Unix;
-
 using Cairo;
-using Gdk;
 
+using FSpot.Resources.Lang;
 using FSpot.Transitions;
 using FSpot.Utils;
+
+using Gdk;
 
 using Color = Cairo.Color;
 
@@ -43,7 +43,7 @@ namespace FSpot.Addins.Transitions
 {
 	public class Cover : CairoTransition
 	{
-		public Cover () : base (Catalog.GetString ("Cover"))
+		public Cover () : base (Strings.Cover)
 		{
 		}
 

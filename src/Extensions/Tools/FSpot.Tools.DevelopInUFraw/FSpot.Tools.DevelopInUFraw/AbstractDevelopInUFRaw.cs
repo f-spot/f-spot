@@ -32,12 +32,11 @@
 using System;
 using System.IO;
 
-using Mono.Unix;
-
 using Hyena;
 
 using FSpot.Extensions;
 using FSpot.Imaging;
+using FSpot.Resources.Lang;
 using FSpot.Settings;
 using FSpot.Utils;
 
@@ -142,7 +141,7 @@ namespace FSpot.Tools.DevelopInUFraw
 
 		static string GetVersionName (Photo p, int i)
 		{
-			string name = Catalog.GetPluralString ("Developed in UFRaw", "Developed in UFRaw ({0})", i);
+			string name = i <= 1 ? Strings.DevelopedInUFRaw : Strings.DevelopedInUFRawX;
 			name = string.Format (name, i);
 			if (p.VersionNameExists (name))
 				return GetVersionName (p, i + 1);

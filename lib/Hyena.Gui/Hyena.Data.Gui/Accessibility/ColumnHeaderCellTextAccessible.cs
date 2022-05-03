@@ -26,14 +26,14 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Mono.Unix;
+using FSpot.Resources.Lang;
 
 namespace Hyena.Data.Gui.Accessibility
 {
 	class ColumnHeaderCellTextAccessible: ColumnCellTextAccessible, Atk.ActionImplementor
     {
-        static string [] action_descriptions  = new string[] {"", Catalog.GetString ("open context menu")};
-        static string [] action_names_localized = new string[] {Catalog.GetString ("click"), Catalog.GetString ("menu")};
+        static string [] action_descriptions  = new string[] { "", Strings.OpenContextMenu };
+        static string [] action_names_localized = new string[] { Strings.Click, Strings.Menu };
 
         enum Actions {
             Click,

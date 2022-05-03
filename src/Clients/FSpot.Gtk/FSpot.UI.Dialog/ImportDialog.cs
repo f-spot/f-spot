@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using FSpot.Import;
+using FSpot.Resources.Lang;
 using FSpot.Settings;
 using FSpot.Utils;
 using FSpot.Widgets;
@@ -22,15 +23,11 @@ using Gtk;
 
 using Hyena;
 
-using Mono.Unix;
-
-
-
 namespace FSpot.UI.Dialog
 {
 	public class ImportDialog : BuilderDialog
 	{
-		static readonly string SelectFolderLabel = Catalog.GetString ("Choose Folder...");
+		static readonly string SelectFolderLabel = Strings.ChooseFolder;
 		ImportDialogController Controller { get; set; }
 		TreeStore Sources { get; set; }
 
@@ -154,7 +151,7 @@ namespace FSpot.UI.Dialog
 			int activateIndex = 0;
 			sources_combo.Changed -= OnSourceComboChanged;
 			Sources.Clear ();
-			Sources.AppendValues (null, Catalog.GetString ("Choose Import source..."), string.Empty, true);
+			Sources.AppendValues (null, Strings.ChooseImportSource, string.Empty, true);
 			Sources.AppendValues (null, SelectFolderLabel, "folder", true);
 			Sources.AppendValues (null, string.Empty, string.Empty);
 			bool mountAdded = false;
@@ -168,7 +165,7 @@ namespace FSpot.UI.Dialog
 			}
 
 			if (!mountAdded)
-				Sources.AppendValues (null, Catalog.GetString ("(No Cameras Detected)"), string.Empty, false);
+				Sources.AppendValues (null, Strings.NoCamerasDetected, string.Empty, false);
 
 			if (historySources.Count > 0) {
 				Sources.AppendValues (null, string.Empty, string.Empty);
@@ -213,8 +210,8 @@ namespace FSpot.UI.Dialog
 
 			remove_warning_button.Clicked += (o, args) => {
 				using var dialog = new MessageDialog (this, DialogFlags.Modal, MessageType.Warning, ButtonsType.Ok, true,
-						Catalog.GetString ("Checking this box will remove the imported photos from the camera after the import finished successfully.\n\nIt is generally recommended to backup your photos before removing them from the camera. <b>Use this option at your own risk!</b>")) {
-					Title = Catalog.GetString ("Warning")
+						Strings.CheckBoxToRemoveImportedPhotosFromCameraAndWarning) {
+					Title = Strings.Warning
 				};
 				dialog.Response += (s, arg) => dialog.Destroy ();
 				dialog.Run ();
@@ -234,7 +231,7 @@ namespace FSpot.UI.Dialog
 		void ShowFolderSelector ()
 		{
 			using var fileChooser =
-				new FileChooserDialog (Catalog.GetString ("Import"), this,
+				new FileChooserDialog (Strings.Import, this,
 				FileChooserAction.SelectFolder, Stock.Cancel, ResponseType.Cancel,
 				Stock.Open, ResponseType.Ok) {
 				SelectMultiple = false,
@@ -331,7 +328,7 @@ namespace FSpot.UI.Dialog
 
 		void OnControllerProgressUpdated (int current, int total)
 		{
-			var importingLabel = Catalog.GetString ("Importing Photos: {0} of {1}...");
+			var importingLabel = Strings.ImportPhotosXOfY;
 			ThreadAssist.ProxyToMain (() => {
 				progress_bar.Text = string.Format (importingLabel, current, total);
 				progress_bar.Fraction = (double)current / Math.Max (total, 1);
@@ -355,14 +352,14 @@ namespace FSpot.UI.Dialog
 		System.Threading.Timer progressBarTimer;
 		void ShowImportProgress ()
 		{
-			progress_bar.Text = Catalog.GetString ("Importing photos...");
+			progress_bar.Text = Strings.ImportingPhotos;
 			progress_bar.Show ();
 		}
 
 		void ShowScanSpinner ()
 		{
 			//FIXME Using a GtkSpinner would be nicer here.
-			progress_bar.Text = Catalog.GetString ("Searching for photos... (You can already click Import to continue)");
+			progress_bar.Text = Strings.SearchingForPhotosYouCanAlreadyClickImportToContinue;
 			progress_bar.Show ();
 			progressBarTimer = new System.Threading.Timer ((s) => {
 				progress_bar.Pulse ();

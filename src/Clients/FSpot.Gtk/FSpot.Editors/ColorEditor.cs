@@ -32,11 +32,10 @@
 using System;
 
 using FSpot.ColorAdjustment;
+using FSpot.Resources.Lang;
 
 using Gdk;
 using Gtk;
-
-using Mono.Unix;
 
 namespace FSpot.Editors
 {
@@ -62,11 +61,11 @@ namespace FSpot.Editors
 		[GtkBeans.Builder.Object] Gtk.SpinButton sat_spinbutton;
 #pragma warning restore 649
 
-		public ColorEditor () : base (Catalog.GetString ("Adjust Colors"), "adjust-colors")
+		public ColorEditor () : base (Strings.AdjustColors, "adjust-colors")
 		{
 			// FIXME: need tooltip Catalog.GetString ("Adjust the photo colors")
 			HasSettings = true;
-			ApplyLabel = Catalog.GetString ("Adjust");
+			ApplyLabel = Strings.Adjust;
 		}
 
 		public override Widget ConfigurationWidget ()

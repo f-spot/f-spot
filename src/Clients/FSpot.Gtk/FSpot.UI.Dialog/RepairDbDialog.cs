@@ -31,9 +31,9 @@
 
 using System;
 
-using Gtk;
+using FSpot.Resources.Lang;
 
-using Mono.Unix;
+using Gtk;
 
 using Hyena.Widgets;
 
@@ -45,9 +45,8 @@ namespace FSpot.UI.Dialog
 	{
 		public RepairDbDialog (Exception e, string backup_path, Window parent) :
 				base (parent, DialogFlags.DestroyWithParent, MessageType.Error, ButtonsType.Ok,
-				Catalog.GetString ("Error loading database."),
-				string.Format (Catalog.GetString ("F-Spot encountered an error while loading the photo database. " +
-						"The old database has been moved to {0} and a new database has been created."), backup_path))
+				Strings.ErrorLoadingDatabase,
+				string.Format (Strings.FSpotEncounteredAnErrorWhileLoadingPhotoDatabaseMovedToX, backup_path))
 		{
 			Logger.Log.Error (e, "");
 			Run ();

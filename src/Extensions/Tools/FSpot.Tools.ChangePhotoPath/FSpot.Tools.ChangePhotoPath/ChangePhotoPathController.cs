@@ -37,15 +37,16 @@
 //
 
 using System;
-using System.IO;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.IO;
+
 using FSpot.Core;
 using FSpot.Database;
+using FSpot.Settings;
 using FSpot.Utils;
 
 using Hyena;
-using FSpot.Settings;
 
 
 /*

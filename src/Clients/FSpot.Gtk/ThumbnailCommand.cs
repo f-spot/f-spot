@@ -31,6 +31,7 @@
 
 using FSpot;
 using FSpot.Core;
+using FSpot.Resources.Lang;
 using FSpot.Thumbnail;
 using FSpot.UI.Dialog;
 
@@ -49,7 +50,7 @@ public class ThumbnailCommand
 		var loader = App.Instance.Container.Resolve<IThumbnailLoader> ();
 		
 		if (photos.Length > 1) {
-			progress_dialog = new ProgressDialog (Mono.Unix.Catalog.GetString ("Updating Thumbnails"),
+			progress_dialog = new ProgressDialog (Strings.UpdatingThumbnails,
 							      ProgressDialog.CancelButtonType.Stop,
 							      photos.Length, parent_window);
 		}
@@ -57,7 +58,7 @@ public class ThumbnailCommand
 		int count = 0;
 		foreach (IPhoto photo in photos) {
 			if (progress_dialog != null
-			    && progress_dialog.Update (string.Format (Mono.Unix.Catalog.GetString ("Updating picture \"{0}\""), photo.Name)))
+			    && progress_dialog.Update (string.Format (Strings.UpdatingPictureX, photo.Name)))
 				break;
 
 			foreach (IPhotoVersion version in photo.Versions) {

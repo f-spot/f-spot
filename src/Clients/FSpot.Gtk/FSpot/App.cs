@@ -35,13 +35,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 
-using Mono.Unix;
-
 using Hyena;
 
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Imaging;
+using FSpot.Resources.Lang;
 using FSpot.Settings;
 using FSpot.Thumbnail;
 
@@ -331,15 +330,11 @@ namespace FSpot
 				string long_msg;
 
 				if (tag != null) {
-					msg = string.Format (Catalog.GetString ("No photos matching {0} found"), tag.Name);
-					long_msg = string.Format (Catalog.GetString ("The tag \"{0}\" is not applied to any photos. Try adding\n" +
-										     "the tag to some photos or selecting a different tag in the\n" +
-										     "F-Spot preference dialog."), tag.Name);
+					msg = string.Format (Strings.NoPhotosMatchingFound, tag.Name);
+					long_msg = string.Format (Strings.NoTagAppliedToAppliedTryAddingorSelectingDifferentTagInPreferenceDialog, tag.Name);
 				} else {
-					msg = Catalog.GetString ("Search returned no results");
-					long_msg = Catalog.GetString ("The tag F-Spot is looking for does not exist. Try\n" +
-								      "selecting a different tag in the F-Spot preference\n" +
-								      "dialog.");
+					msg = Strings.SearchReturnedNoResults;
+					long_msg = Strings.TagDoesntExistTrySelectingDifferentTagInPerferenceDialog;
 				}
 
 				Gtk.Label label = new Gtk.Label (msg);

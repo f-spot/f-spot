@@ -37,11 +37,10 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using Mono.Unix;
-
 using Gtk;
 
 using FSpot.Core;
+using FSpot.Resources.Lang;
 
 namespace FSpot.Query
 {
@@ -52,7 +51,7 @@ namespace FSpot.Query
 		static OrTerm ()
 		{
 			Operators = new List<string> ();
-			Operators.Add (Catalog.GetString (" or "));
+			Operators.Add (Strings.LiteralOr);
 		}
 
 		public OrTerm (Term parent, Literal after) : base (parent, after)
@@ -72,7 +71,7 @@ namespace FSpot.Query
 			return or;
 		}
 
-		static readonly string OR = Catalog.GetString ("or");
+		static readonly string OR = Strings.Or;
 
 		public override Term Invert (bool recurse)
 		{

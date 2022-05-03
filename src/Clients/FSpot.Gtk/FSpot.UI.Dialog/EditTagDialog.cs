@@ -30,13 +30,12 @@
 using System;
 using System.Collections.Generic;
 
-using Mono.Unix;
-
 using Gtk;
 
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Settings;
+using FSpot.Resources.Lang;
 
 namespace FSpot.UI.Dialog
 {
@@ -98,7 +97,7 @@ namespace FSpot.UI.Dialog
 			} else if (TagNameExistsInCategory (name, db.Tags.RootCategory)
 				   && string.Compare (name, orig_name, true) != 0) {
 				ok_button.Sensitive = false;
-				already_in_use_label.Markup = "<small>" + Catalog.GetString ("This name is already in use") + "</small>";
+				already_in_use_label.Markup = $"<small>{Strings.ThisNameIsAlreadyInUse}</small>";
 			} else {
 				ok_button.Sensitive = true;
 				already_in_use_label.Markup = string.Empty;

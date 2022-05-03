@@ -32,17 +32,8 @@
 //
 
 using System;
-using System.Linq;
 using System.Collections.Generic;
-
-using Gdk;
-using Gtk;
-
-using Mono.Addins;
-using Mono.Unix;
-
-using Hyena;
-using Hyena.Widgets;
+using System.Linq;
 
 using FSpot.Core;
 using FSpot.Database;
@@ -52,9 +43,19 @@ using FSpot.Query;
 using FSpot.Widgets;
 using FSpot.Utils;
 using FSpot.UI.Dialog;
-using FSpot.Import;
-using FSpot.Settings;
 using FSpot.FileSystem;
+using FSpot.Import;
+using FSpot.Resources.Lang;
+using FSpot.Settings;
+
+using Gdk;
+
+using Gtk;
+
+using Hyena;
+using Hyena.Widgets;
+
+using Mono.Addins;
 
 using SerilogTimings;
 
@@ -271,52 +272,52 @@ namespace FSpot
 			toolbar = new Gtk.Toolbar ();
 			toolbar_vbox.PackStart (toolbar);
 
-			ToolButton import_button = GtkUtil.ToolButtonFromTheme ("gtk-add", Catalog.GetString ("Import Photos…"), true);
+			ToolButton import_button = GtkUtil.ToolButtonFromTheme ("gtk-add", Strings.ImportPhotos, true);
 			import_button.Clicked += (o, args) => StartImport (null);
-			import_button.TooltipText = Catalog.GetString ("Import new photos");
+			import_button.TooltipText = Strings.ImportNewPhotos;
 			toolbar.Insert (import_button, -1);
 
 			toolbar.Insert (new SeparatorToolItem (), -1);
 
-			rl_button = GtkUtil.ToolButtonFromTheme ("object-rotate-left", Catalog.GetString ("Rotate Left"), false);
+			rl_button = GtkUtil.ToolButtonFromTheme ("object-rotate-left", Strings.RotateLeft, false);
 			rl_button.Clicked += HandleRotate270Command;
 			toolbar.Insert (rl_button, -1);
 
-			rr_button = GtkUtil.ToolButtonFromTheme ("object-rotate-right", Catalog.GetString ("Rotate Right"), false);
+			rr_button = GtkUtil.ToolButtonFromTheme ("object-rotate-right", Strings.RotateRight, false);
 			rr_button.Clicked += HandleRotate90Command;
 			toolbar.Insert (rr_button, -1);
 
 			toolbar.Insert (new SeparatorToolItem (), -1);
 
 			browse_button = new ToggleToolButton {
-				Label = Catalog.GetString ("Browsing"),
+				Label = Strings.Browsing,
 				IconName = "mode-browse",
 				IsImportant = true
 			};
 
 			browse_button.Toggled += HandleToggleViewBrowse;
-			browse_button.TooltipText = Catalog.GetString ("Browse your photo library");
+			browse_button.TooltipText = Strings.BrowseYourPhotoLibrary;
 			toolbar.Insert (browse_button, -1);
 
 			edit_button = new ToggleToolButton {
-				Label = Catalog.GetString ("Editing"),
+				Label = Strings.Editing,
 				IconName = "mode-image-edit",
 				IsImportant = true
 			};
 			edit_button.Toggled += HandleToggleViewPhoto;
-			edit_button.TooltipText = Catalog.GetString ("Edit your photos");
+			edit_button.TooltipText = Strings.EditYourPhotos;
 			toolbar.Insert (edit_button, -1);
 
 			toolbar.Insert (new SeparatorToolItem (), -1);
 
-			ToolButton fs_button = GtkUtil.ToolButtonFromTheme ("view-fullscreen", Catalog.GetString ("Fullscreen"), false);
+			ToolButton fs_button = GtkUtil.ToolButtonFromTheme ("view-fullscreen", Strings.Fullscreen, false);
 			fs_button.Clicked += HandleViewFullscreen;
-			fs_button.TooltipText = Catalog.GetString ("View photos fullscreen");
+			fs_button.TooltipText = Strings.ViewPhotosFullscreen;
 			toolbar.Insert (fs_button, -1);
 
-			ToolButton ss_button = GtkUtil.ToolButtonFromTheme ("media-playback-start", Catalog.GetString ("Slideshow"), false);
+			ToolButton ss_button = GtkUtil.ToolButtonFromTheme ("media-playback-start", Strings.Slideshow, false);
 			ss_button.Clicked += HandleViewSlideShow;
-			ss_button.TooltipText = Catalog.GetString ("View photos in a slideshow");
+			ss_button.TooltipText = Strings.ViewPhotosInASlideshow;
 			toolbar.Insert (ss_button, -1);
 
 			var white_space = new SeparatorToolItem {
@@ -332,12 +333,12 @@ namespace FSpot
 
 			display_previous_button = new ToolButton (Stock.GoBack);
 			toolbar.Insert (display_previous_button, -1);
-			display_previous_button.TooltipText = Catalog.GetString ("Previous photo");
+			display_previous_button.TooltipText = Strings.PreviousPhoto;
 			display_previous_button.Clicked += HandleDisplayPreviousButtonClicked;
 
 			display_next_button = new ToolButton (Stock.GoForward);
 			toolbar.Insert (display_next_button, -1);
-			display_next_button.TooltipText = Catalog.GetString ("Next photo");
+			display_next_button.TooltipText = Strings.NextPhoto;
 			display_next_button.Clicked += HandleDisplayNextButtonClicked;
 
 			Sidebar = new Sidebar ();
@@ -350,7 +351,7 @@ namespace FSpot
 			tag_selection_widget = new TagSelectionWidget (Database.Tags);
 			tag_selection_scrolled.Add (tag_selection_widget);
 
-			Sidebar.AppendPage (tag_selection_scrolled, Catalog.GetString ("Tags"), "tag");
+			Sidebar.AppendPage (tag_selection_scrolled, Strings.Tags, "tag");
 
 			AddinManager.AddExtensionNodeHandler ("/FSpot/Sidebar", OnSidebarExtensionChanged);
 
@@ -413,12 +414,12 @@ namespace FSpot
 			view_vbox.PackStart (query_widget, false, false, 0);
 			view_vbox.ReorderChild (query_widget, 2);
 
-			MenuItem findByTag = uimanager.GetWidget ("/ui/menubar1/find/find_by_tag") as MenuItem;
+			var findByTag = uimanager.GetWidget ("/ui/menubar1/find/find_by_tag") as MenuItem;
 			query_widget.Hidden += (s, e) => {
-				((Gtk.Label)findByTag.Child).TextWithMnemonic = Catalog.GetString ("Show _Find Bar");
+				((Gtk.Label)findByTag.Child).TextWithMnemonic = Strings.ShowFindBarMnemonic;
 			};
 			query_widget.Shown += (s, e) => {
-				((Gtk.Label)findByTag.Child).TextWithMnemonic = Catalog.GetString ("Hide _Find Bar");
+				((Gtk.Label)findByTag.Child).TextWithMnemonic = Strings.HideFindBarMnemonic;
 			};
 
 			icon_view = new QueryView (query);
@@ -647,7 +648,7 @@ namespace FSpot
 					count_label.Text = string.Empty;
 				else
 					// Note for translators: This indicates the current photo is photo {0} of {1} out of photos
-					count_label.Text = string.Format (Catalog.GetString ("{0} of {1}"), Query.Count == 0 ? 0 : photo_view.View.Item.Index + 1, Query.Count == 0 ? 0 : Query.Count);
+					count_label.Text = string.Format (Strings.PhotoOutOfPhotos, Query.Count == 0 ? 0 : photo_view.View.Item.Index + 1, Query.Count == 0 ? 0 : Query.Count);
 			} else {
 				display_previous_button.Visible = false;
 				display_next_button.Visible = false;
@@ -1700,18 +1701,15 @@ namespace FSpot
 
 		public void HandleMergeTagsCommand (object obj, EventArgs args)
 		{
-			Tag[] tags = tag_selection_widget.TagHighlight;
+			var tags = tag_selection_widget.TagHighlight;
 			if (tags.Length < 2)
 				return;
 
-			// Translators, The singular case will never happen here.
-			string header = Catalog.GetPluralString ("Merge the selected tag",
-				                "Merge the {0} selected tags?", tags.Length);
-			header = string.Format (header, tags.Length);
+			string header = string.Format(Strings.MergeTheSelectedTags, tags.Length);
 
 			// If a tag with children tags is selected for merging, we
 			// should also merge its children..
-			List<Tag> all_tags = new List<Tag> (tags.Length);
+			var all_tags = new List<Tag> (tags.Length);
 			foreach (Tag tag in tags) {
 				if (!all_tags.Contains (tag))
 					all_tags.Add (tag);
@@ -1726,22 +1724,18 @@ namespace FSpot
 
 			// debug..
 			tags = all_tags.ToArray ();
-			System.Array.Sort (tags, new TagRemoveComparer ());
+			Array.Sort (tags, new TagRemoveComparer ());
 
 			foreach (Tag tag in tags) {
-				Logger.Log.Debug ("tag: {0}", tag.Name);
+				Logger.Log.Debug ($"tag: {tag.Name}");
 			}
-
-			string msg = Catalog.GetString ("This operation will merge the selected tags and any sub-tags into a single tag.");
-
-			string ok_caption = Catalog.GetString ("_Merge Tags");
 
 			if (ResponseType.Ok != HigMessageDialog.RunHigConfirmation (main_window,
 				    DialogFlags.DestroyWithParent,
 				    MessageType.Warning,
 				    header,
-				    msg,
-				    ok_caption))
+				    Strings.ThisWillMergeSelectedTagsAndSubTagsIntoSingleTag,
+				    Strings.MergeTagsMnemonic))
 				return;
 
 			// The surviving tag is the last tag, as it is definitely not a child of any other the
@@ -1944,13 +1938,26 @@ namespace FSpot
 		{
 			update_status_label = false;
 			int total_photos = Database.Photos.TotalPhotos;
-			if (total_photos != query.Count)
-				status_label.Text = string.Format (Catalog.GetPluralString ("{0} photo out of {1}", "{0} photos out of {1}", query.Count), query.Count, total_photos);
-			else
-				status_label.Text = string.Format (Catalog.GetPluralString ("{0} photo", "{0} photos", query.Count), query.Count);
+			if (total_photos != query.Count) {
+				string labelString;
+				if (query.Count <= 1)
+					labelString = Strings.XPhotoOutOfY;
+				else
+					labelString = Strings.XPhotosOutOfY;
+
+				status_label.Text = string.Format (labelString, query.Count, total_photos);
+			} else {
+				string labelString;
+				if (query.Count <= 1)
+					labelString = Strings.XPhoto;
+				else
+					labelString = Strings.XPhotos;
+
+				status_label.Text = string.Format (labelString, query.Count);
+			}
 
 			if ((Selection != null) && (Selection.Count > 0))
-				status_label.Text += string.Format (Catalog.GetPluralString (" ({0} selected)", " ({0} selected)", Selection.Count), Selection.Count);
+				status_label.Text += string.Format (Strings.XSelected, Selection.Count);
 			status_label.UseMarkup = true;
 			return update_status_label;
 		}
@@ -2031,17 +2038,15 @@ namespace FSpot
 
 		public void DeleteException (Exception e, string fname)
 		{
-			string ok_caption = Catalog.GetString ("_Ok");
-			string error = Catalog.GetString ("Error Deleting Picture");
+			string ok_caption = Strings.OkMnemonic;
+			string error = Strings.ErrorDeletingPicture;
 			string msg;
 
 			if (e is UnauthorizedAccessException)
-				msg = string.Format (
-					Catalog.GetString ("No permission to delete the file:{1}{0}"),
+				msg = string.Format (Strings.NoPermissionToDeleteTheFile,
 					fname, Environment.NewLine).Replace ("_", "__");
 			else
-				msg = string.Format (
-					Catalog.GetString ("An error of type {0} occurred while deleting the file:{2}{1}"),
+				msg = string.Format (Strings.AnErrorOfTypeXOccurredWhileDeletingTheFile,
 					e.GetType (), fname.Replace ("_", "__"), Environment.NewLine);
 
 			HigMessageDialog.RunHigConfirmation (
@@ -2073,14 +2078,19 @@ namespace FSpot
 			}
 
 			Photo[] photos = SelectedPhotos ();
-			string header = Catalog.GetPluralString ("Delete the selected photo permanently?",
-				                "Delete the {0} selected photos permanently?",
-				                photos.Length);
-			header = string.Format (header, photos.Length);
-			string msg = Catalog.GetPluralString ("This deletes all versions of the selected photo from your drive.",
-				             "This deletes all versions of the selected photos from your drive.",
-				             photos.Length);
-			string ok_caption = Catalog.GetPluralString ("_Delete photo", "_Delete photos", photos.Length);
+			string header;
+			string msg;
+			string ok_caption;
+			if (photos.Length <= 1) {
+				header = Strings.DeleteTheSelectedPhotoPermanently;
+				msg = Strings.ThisDeletesAllVersionsOfTheSelectedPhotoFromYourDrive;
+				ok_caption = Strings.DeletePhotoMnemonic;
+			} else {
+				header = Strings.DeleteTheXSelectedPhotosPermanently;
+				header = string.Format (header, photos.Length);
+				msg = Strings.ThisDeletesAllVersionsOfTheSelectedPhotosFromYourDrive;
+				ok_caption = Strings.DeletePhotosMnemonic;
+			}
 
 			if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation (GetToplevel (sender),
 				    DialogFlags.DestroyWithParent,
@@ -2112,17 +2122,20 @@ namespace FSpot
 				return;
 			}
 
-			Photo[] photos = SelectedPhotos ();
+			var
+					photos = SelectedPhotos ();
 			if (photos.Length == 0)
 				return;
 
-			string header = Catalog.GetPluralString ("Remove the selected photo from F-Spot?",
-				                "Remove the {0} selected photos from F-Spot?",
-				                photos.Length);
+			string header;
+			if (photos.Length <= 1)
+				header = Strings.RemoveTheSelectedPhotoFromFSpot;
+			else
+				header = Strings.RemoveTheXSelectedPhotosFromFSpot;
 
 			header = string.Format (header, photos.Length);
-			string msg = Catalog.GetString ("If you remove photos from the F-Spot catalog all tag information will be lost. The photos remain on your computer and can be imported into F-Spot again.");
-			string ok_caption = Catalog.GetString ("_Remove from Catalog");
+			string msg = Strings.IfYouRemovePhotosFromFSpotCatalogAllTagInfoLost;
+			string ok_caption = Strings.RemoveFromCatalogMnemonic;
 			if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation (GetToplevel (sender), DialogFlags.DestroyWithParent,
 				    MessageType.Warning, header, msg, ok_caption)) {
 				Database.Photos.Remove (photos);
@@ -2196,21 +2209,21 @@ namespace FSpot
 
 			string header;
 			if (tags.Length == 1)
-				header = string.Format (Catalog.GetString ("Delete tag \"{0}\"?"), tags [0].Name.Replace ("_", "__"));
+				header = string.Format (Strings.DeleteTagXQuestion, tags [0].Name.Replace ("_", "__"));
 			else
-				header = string.Format (Catalog.GetString ("Delete the {0} selected tags?"), tags.Length);
+				header = string.Format (Strings.DeleteTheXSelectedTagsQuestion, tags.Length);
 
 			header = string.Format (header, tags.Length);
 			string msg = string.Empty;
 			if (associated_photos > 0) {
-				string photodesc = Catalog.GetPluralString ("photo", "photos", associated_photos);
-				msg = string.Format (
-					Catalog.GetPluralString ("If you delete this tag, the association with {0} {1} will be lost.",
-						"If you delete these tags, the association with {0} {1} will be lost.",
-						tags.Length),
-					associated_photos, photodesc);
+				string photodesc = (associated_photos <= 1) ? Strings.Photo : Strings.Photos;
+				if (tags.Length <= 1)
+					msg = Strings.IfYouDeleteThisTagTheAssociationWithXYWillBeLost;
+				else
+					msg = Strings.IfYouDeleteThisTagsTheAssociationWithXYWillBeLost;
+				msg = string.Format (msg, associated_photos, photodesc);
 			}
-			string ok_caption = Catalog.GetPluralString ("_Delete tag", "_Delete tags", tags.Length);
+			string ok_caption = (tags.Length <= 1) ? Strings.DeleteTagMnemonic : Strings.DeleteTagsMnemonic;
 
 			if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation (main_window,
 				    DialogFlags.DestroyWithParent,
@@ -2224,9 +2237,8 @@ namespace FSpot
 					Logger.Log.Debug ("this is something or another");
 
 					// A Category is not empty. Can not delete it.
-					string error_msg = Catalog.GetString ("Tag is not empty");
-					string error_desc = string.Format (Catalog.GetString ("Can not delete tags that have tags within them.  " +
-					                    "Please delete tags under \"{0}\" first"),
+					string error_msg = Strings.TagIsNotEmpty;
+					string error_desc = string.Format (Strings.CanNotDeleteTagsThatHaveTagsWihinThem_PleaseDeleteTagUnderXFirst,
 						                    e.Tag.Name.Replace ("_", "__"));
 
 					HigMessageDialog md = new HigMessageDialog (main_window, DialogFlags.DestroyWithParent,
@@ -2681,8 +2693,7 @@ namespace FSpot
 				} else {
 					rl_button.Sensitive = true;
 
-					string msg = Catalog.GetPluralString ("Rotate selected photo left",
-						             "Rotate selected photos left", Selection.Count);
+					string msg = (Selection.Count <= 1) ? Strings.RotateSelectedPhotoLeft : Strings.RotateSelectedPhotosLeft;
 					rl_button.TooltipText = string.Format (msg, Selection.Count);
 				}
 			}
@@ -2694,8 +2705,7 @@ namespace FSpot
 				} else {
 					rr_button.Sensitive = true;
 
-					string msg = Catalog.GetPluralString ("Rotate selected photo right",
-						             "Rotate selected photos right", Selection.Count);
+					string msg = Selection.Count <= 1 ? Strings.RotateSelectedPhotoRight : Strings.RotateSelectedPhotosRight;
 					rr_button.TooltipText = string.Format (msg, Selection.Count);
 				}
 			}
@@ -2704,13 +2714,11 @@ namespace FSpot
 			MenuItem find_add_tag = uimanager.GetWidget ("/ui/menubar1/find/find_add_tag") as MenuItem;
 			MenuItem find_add_tag_with = uimanager.GetWidget ("/ui/menubar1/find/find_add_tag_with") as MenuItem;
 
-			((Gtk.Label)find_add_tag.Child).TextWithMnemonic = string.Format (
-				Catalog.GetPluralString ("Find _Selected Tag", "Find _Selected Tags", tags_selected), tags_selected
-			);
+			((Gtk.Label)find_add_tag.Child).TextWithMnemonic =
+				string.Format (tags_selected <= 1 ? Strings.FindSelectedTagMnemonic : Strings.FindSelectedTagsMnemonic, tags_selected);
 
-			((Gtk.Label)find_add_tag_with.Child).TextWithMnemonic = string.Format (
-				Catalog.GetPluralString ("Find Selected Tag _With", "Find Selected Tags _With", tags_selected), tags_selected
-			);
+			((Gtk.Label)find_add_tag_with.Child).TextWithMnemonic =
+				string.Format (tags_selected <= 1 ? Strings.FindSelectedTagWithMnemonic : Strings.FindSelectedTagsWithMnemonic, tags_selected);
 
 			find_add_tag.Sensitive = tag_sensitive;
 			find_add_tag_with.Sensitive = tag_sensitive && find_add_tag_with.Submenu != null;

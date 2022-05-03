@@ -29,9 +29,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Gtk;
+using FSpot.Resources.Lang;
 
-using Mono.Unix;
+using Gtk;
 
 namespace FSpot.UI.Dialog
 {
@@ -107,7 +107,7 @@ namespace FSpot.UI.Dialog
 			current_count ++;
 
 			message_label.Text = message;
-			progress_bar.Text = string.Format (Catalog.GetString ("{0} of {1}"), current_count, total_count);
+			progress_bar.Text = string.Format (Strings.XOfY, current_count, total_count);;
 			progress_bar.Fraction = (double) current_count / total_count;
 
 			ShowAll ();

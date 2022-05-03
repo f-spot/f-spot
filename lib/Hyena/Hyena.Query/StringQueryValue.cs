@@ -26,10 +26,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
 using System.Xml;
 
-using Mono.Unix;
+using FSpot.Resources.Lang;
 
 namespace Hyena.Query
 {
@@ -37,12 +36,12 @@ namespace Hyena.Query
     {
         const string ESCAPE_CLAUSE = " ESCAPE '\\'";
 
-        public static readonly Operator Contains       = new Operator ("contains", Catalog.GetString ("contains"), "LIKE '%{0}%'" + ESCAPE_CLAUSE, ":");
-        public static readonly Operator DoesNotContain = new Operator ("doesNotContain", Catalog.GetString ("doesn't contain"), "NOT LIKE '%{0}%'" + ESCAPE_CLAUSE, true, "!:");
-        public static readonly Operator Equal          = new Operator ("equals", Catalog.GetString ("is"), "= '{0}'", "==");
-        public static readonly Operator NotEqual       = new Operator ("notEqual", Catalog.GetString ("is not"), "!= '{0}'", true, "!=");
-        public static readonly Operator StartsWith     = new Operator ("startsWith", Catalog.GetString ("starts with"), "LIKE '{0}%'" + ESCAPE_CLAUSE, "=");
-        public static readonly Operator EndsWith       = new Operator ("endsWith", Catalog.GetString ("ends with"), "LIKE '%{0}'" + ESCAPE_CLAUSE, ":=");
+        public static readonly Operator Contains       = new Operator ("contains", Strings.Contains, "LIKE '%{0}%'" + ESCAPE_CLAUSE, ":");
+        public static readonly Operator DoesNotContain = new Operator ("doesNotContain", Strings.DoesntContain, "NOT LIKE '%{0}%'" + ESCAPE_CLAUSE, true, "!:");
+        public static readonly Operator Equal          = new Operator ("equals", Strings.Is, "= '{0}'", "==");
+        public static readonly Operator NotEqual       = new Operator ("notEqual", Strings.IsNot, "!= '{0}'", true, "!=");
+        public static readonly Operator StartsWith     = new Operator ("startsWith", Strings.StartsWith, "LIKE '{0}%'" + ESCAPE_CLAUSE, "=");
+        public static readonly Operator EndsWith       = new Operator ("endsWith", Strings.EndsWith, "LIKE '%{0}'" + ESCAPE_CLAUSE, ":=");
 
         protected string value;
 

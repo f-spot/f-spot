@@ -29,9 +29,8 @@
 
 using System;
 
-using Mono.Unix;
 using FSpot.UI.Dialog;
-
+using FSpot.Resources.Lang;
 
 namespace FSpot.Tools.DevelopInUFraw
 {
@@ -44,14 +43,14 @@ namespace FSpot.Tools.DevelopInUFraw
 
 		public override void Run (object o, EventArgs e)
 		{
-			ProgressDialog pdialog = new ProgressDialog(Catalog.GetString ("Developing photos"),
+			ProgressDialog pdialog = new ProgressDialog(Strings.DevelopingPhotos,
 														ProgressDialog.CancelButtonType.Cancel,
 														App.Instance.Organizer.SelectedPhotos ().Length,
 														App.Instance.Organizer.Window);
 			Logger.Log.Information ("Executing DevelopInUFRaw extension in batch mode");
 
 			foreach (Photo p in App.Instance.Organizer.SelectedPhotos ()) {
-				bool cancelled = pdialog.Update(string.Format(Catalog.GetString ("Developing {0}"), p.Name));
+				bool cancelled = pdialog.Update(string.Format(Strings.DevelopingX, p.Name));
 				if (cancelled) {
 					break;
 				}

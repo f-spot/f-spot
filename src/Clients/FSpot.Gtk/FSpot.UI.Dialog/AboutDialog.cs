@@ -30,11 +30,8 @@
 using System;
 using System.IO;
 
+using FSpot.Resources.Lang;
 using FSpot.Settings;
-
-using Mono.Unix;
-
-
 
 namespace FSpot.UI.Dialog
 {
@@ -125,8 +122,8 @@ namespace FSpot.UI.Dialog
                     "In memory Of",
                     "\tEttore Perazzoli",
             };
-            Comments = Catalog.GetString ("Photo management for GNOME");
-            Copyright = Catalog.GetString ("Copyright \x00a9 2003-2010 Novell Inc.");
+			Comments = Strings.PhotoManagementForGNOME;
+			Copyright = Strings.CopyrightNovell;
             Documenters = new string[] {
                     "Aaron Bockover",
                     "Alexandre Prokoudine",
@@ -150,12 +147,12 @@ namespace FSpot.UI.Dialog
             }
             Logo = new Gdk.Pixbuf (System.Reflection.Assembly.GetEntryAssembly (), "f-spot-128.png");
             ProgramName = "F-Spot";
-            TranslatorCredits = Catalog.GetString ("translator-credits");
+			TranslatorCredits = Strings.TranslatorCredits;
             if (string.Compare (TranslatorCredits, "translator-credits") == 0)
                 TranslatorCredits = null;
             Version = FSpotConfiguration.Version;
-            Website = "http://f-spot.org";
-            WebsiteLabel = Catalog.GetString ("F-Spot Website");
+            Website = "http://f-spot.app";
+            WebsiteLabel = Strings.FSpotWebsite;
             WrapLicense = true;
         }
 

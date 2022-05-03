@@ -30,7 +30,6 @@ using Hyena.Gui;
 
 using Mono.Addins;
 using Mono.Addins.Setup;
-using Mono.Unix;
 
 using SerilogTimings;
 
@@ -177,7 +176,6 @@ namespace FSpot
 			bool import = false;
 
 			GLib.GType.Init ();
-			Catalog.Init ("f-spot", FSpotConfiguration.LocaleDir);
 
 			FSpotConfiguration.PhotoUri = new SafeUri (Preferences.Get<string> (Preferences.StoragePath));
 

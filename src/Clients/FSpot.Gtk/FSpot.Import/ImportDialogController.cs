@@ -21,12 +21,11 @@ using FSpot.Core;
 using FSpot.Database;
 using FSpot.FileSystem;
 using FSpot.Imaging;
+using FSpot.Resources.Lang;
 
 using Gtk;
 
 using Hyena;
-
-using Mono.Unix;
 
 namespace FSpot.Import
 {
@@ -225,9 +224,9 @@ namespace FSpot.Import
 
 		Category GetImportedTagsCategory ()
 		{
-			var defaultCategory = tagStore.GetTagByName (Catalog.GetString ("Imported Tags")) as Category;
+			var defaultCategory = tagStore.GetTagByName (Strings.ImportedTags) as Category;
 			if (defaultCategory == null) {
-				defaultCategory = tagStore.CreateCategory (null, Catalog.GetString ("Imported Tags"), false);
+				defaultCategory = tagStore.CreateCategory (null, Strings.ImportedTags, false);
 				defaultCategory.ThemeIconName = "gtk-new";
 			}
 			return defaultCategory;

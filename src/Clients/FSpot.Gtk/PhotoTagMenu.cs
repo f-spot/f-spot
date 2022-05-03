@@ -35,6 +35,7 @@ using Gtk;
 
 using FSpot;
 using FSpot.Core;
+using FSpot.Resources.Lang;
 
 public class PhotoTagMenu : Menu
 {
@@ -66,7 +67,7 @@ public class PhotoTagMenu : Menu
 		if (dict.Count == 0) {
 			/* Fixme this should really set parent menu
 			   items insensitve */
-			MenuItem item = new MenuItem (Mono.Unix.Catalog.GetString ("(No Tags)"));
+			MenuItem item = new MenuItem (Strings.ParenNoTagsParen);
 			this.Append (item);
 			item.Sensitive = false;
 			item.ShowAll ();

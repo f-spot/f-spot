@@ -28,9 +28,9 @@
 
 using System;
 
-using Gtk;
+using FSpot.Resources.Lang;
 
-using Mono.Unix;
+using Gtk;
 
 namespace Hyena.Widgets
 {
@@ -46,8 +46,7 @@ namespace Hyena.Widgets
             box.Spacing = 5;
 
             Label label = new Label ();
-            label.Markup = String.Format ("<i>{0}</i>",
-                GLib.Markup.EscapeText (Catalog.GetString ("Rating:")));
+            label.Markup = $"<i>{GLib.Markup.EscapeText (Strings.RatingColon)}</i>";
             box.PackStart (label, false, false, 0);
             label.Show ();
 

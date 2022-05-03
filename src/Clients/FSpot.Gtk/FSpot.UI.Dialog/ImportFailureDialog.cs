@@ -13,10 +13,9 @@ using System.Collections.Generic;
 
 using Gtk;
 
-using Mono.Unix;
-
 using Hyena;
 using FSpot.Utils;
+using FSpot.Resources.Lang;
 
 namespace FSpot.UI.Dialog
 {
@@ -53,10 +52,9 @@ namespace FSpot.UI.Dialog
 			ListView.AppendColumn ("Path", new CellRendererText (), "text", 1);
 			ListView.HeadersVisible = false;
 
-			Title = Catalog.GetString ("Import failures");
-			Header = Catalog.GetString ("Some files failed to import");
-			Message = Catalog.GetString ("Some files could not be imported, they might be corrupt "
-					+ "or there might be something wrong with the storage on which they reside.");
+			Title = Strings.ImportFailures;
+			Header = Strings.SomeFilesFailedToImport;
+			Message = Strings.SomeFilesCouldNotBeImported;
 
 			foreach (SafeUri uri in files) {
 				(ListView.Model as ListStore).AppendValues (uri.GetFilename (), uri.GetBaseUri ().ToString ());
@@ -119,7 +117,7 @@ namespace FSpot.UI.Dialog
 			};
 			scrolledWindow.Add (ListView);
 
-			table.Attach (details_expander = new Expander (Catalog.GetString ("Details")),
+			table.Attach (details_expander = new Expander (Strings.Details),
 				1, 2, 2, 3,
 				AttachOptions.Fill | AttachOptions.Expand,
 				AttachOptions.Fill | AttachOptions.Expand,

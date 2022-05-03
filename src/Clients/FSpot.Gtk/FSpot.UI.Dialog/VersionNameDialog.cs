@@ -1,4 +1,4 @@
-﻿//
+//
 // VersionNameDialog.cs
 //
 // Author:
@@ -34,8 +34,10 @@
 //
 
 using System;
+
+using FSpot.Resources.Lang;
+
 using Gtk;
-using Mono.Unix;
 
 namespace FSpot.UI.Dialog
 {
@@ -90,13 +92,13 @@ namespace FSpot.UI.Dialog
 
 			switch (request_type) {
 			case RequestType.Create:
-				Title = Catalog.GetString ("Create New Version");
-				prompt_label.Text = Catalog.GetString ("Name:");
+				Title = Strings.CreateNewVersion;
+				prompt_label.Text = Strings.NameColon;
 				break;
 
 			case RequestType.Rename:
-				Title = Catalog.GetString ("Rename Version");
-				prompt_label.Text = Catalog.GetString ("New name:");
+				Title = Strings.RenameVersion;
+				prompt_label.Text = Strings.NewNameColon;
 				version_name_entry.Text = photo.GetVersion (photo.DefaultVersionId).Name;
 				version_name_entry.SelectRegion (0, -1);
 				break;

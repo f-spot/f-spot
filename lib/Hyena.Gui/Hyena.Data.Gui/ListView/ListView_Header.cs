@@ -28,12 +28,14 @@
 
 using System;
 using System.Collections.Generic;
-using Mono.Unix;
+
+using FSpot.Resources.Lang;
+
 using Gtk;
 
 namespace Hyena.Data.Gui
 {
-    public partial class ListView<T> : ListViewBase
+	public partial class ListView<T> : ListViewBase
     {
         internal struct CachedColumn
         {
@@ -609,8 +611,7 @@ namespace Hyena.Data.Gui
 
                 label = new Label ();
                 label.Xalign = 0.0f;
-                label.Markup = String.Format (Catalog.GetString ("Hide <i>{0}</i>"),
-                    GLib.Markup.EscapeText (column.LongTitle));
+                label.Markup = string.Format (Strings.HideItalicColumnLongTitleItalic, GLib.Markup.EscapeText (column.LongTitle));
                 label.Show ();
 
                 Add (label);

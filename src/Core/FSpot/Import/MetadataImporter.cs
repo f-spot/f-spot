@@ -29,10 +29,11 @@
 
 using System;
 using System.Collections.Generic;
+
 using FSpot.Core;
 using FSpot.Database;
+using FSpot.Resources.Lang;
 using FSpot.Utils;
-using Mono.Unix;
 
 namespace FSpot.Import
 {
@@ -73,7 +74,7 @@ namespace FSpot.Import
 			this.tagStore = tagStore;
 			tagsCreated = new Stack<Tag> ();
 
-			lastImportRootTag = new TagInfo (Catalog.GetString ("Imported Tags"), LastImportIcon);
+			lastImportRootTag = new TagInfo (Strings.ImportedTags, LastImportIcon);
 		}
 
 		Tag EnsureTag (TagInfo info, Category parent)

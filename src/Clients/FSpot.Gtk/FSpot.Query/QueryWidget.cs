@@ -38,13 +38,12 @@ using System.Collections.Generic;
 
 using FSpot.Core;
 using FSpot.Database;
+using FSpot.Resources.Lang;
 using FSpot.Widgets;
 
 using Gtk;
 
 using Hyena;
-
-using Mono.Unix;
 
 namespace FSpot.Query
 {
@@ -80,12 +79,12 @@ namespace FSpot.Query
 			this.query = query;
 			query.Changed += HandleChanged;
 
-			label = new Gtk.Label (Catalog.GetString ("Find: "));
+			label = new Gtk.Label (Strings.FindColon);
 			label.Show ();
 			label.Ypad = 9;
 			box.PackStart (label, false, false, 0);
 
-			untagged = new Gtk.Label (Catalog.GetString ("Untagged photos"));
+			untagged = new Gtk.Label (Strings.UntaggedPhotos);
 			untagged.Visible = false;
 			box.PackStart (untagged, false, false, 0);
 
@@ -93,7 +92,7 @@ namespace FSpot.Query
 			comma1_label.Visible = false;
 			box.PackStart (comma1_label, false, false, 0);
 
-			rated = new Gtk.Label (Catalog.GetString ("Rated photos"));
+			rated = new Gtk.Label (Strings.RatedPhotos);
 			rated.Visible = false;
 			box.PackStart (rated, false, false, 0);
 
@@ -102,7 +101,7 @@ namespace FSpot.Query
 			box.PackStart (comma2_label, false, false, 0);
 
 			// Note for translators: 'Import roll' is no command, it means 'Roll that has been imported'
-			rollfilter = new Gtk.Label (Catalog.GetString ("Import roll"));
+			rollfilter = new Gtk.Label (Strings.ImportRoll);
 			rollfilter.Visible = false;
 			box.PackStart (rollfilter, false, false, 0);
 
@@ -125,17 +124,17 @@ namespace FSpot.Query
 			clear_button.Add (new Gtk.Image ("gtk-close", Gtk.IconSize.Button));
 			clear_button.Clicked += HandleClearButtonClicked;
 			clear_button.Relief = Gtk.ReliefStyle.None;
-			clear_button.TooltipText = Catalog.GetString("Clear search");
+			clear_button.TooltipText = Strings.ClearSearch;
 			box.PackEnd (clear_button, false, false, 0);
 
 			refresh_button = new Gtk.Button ();
 			refresh_button.Add (new Gtk.Image ("gtk-refresh", Gtk.IconSize.Button));
 			refresh_button.Clicked += HandleRefreshButtonClicked;
 			refresh_button.Relief = Gtk.ReliefStyle.None;
-			refresh_button.TooltipText = Catalog.GetString("Refresh search");
+			refresh_button.TooltipText = Strings.RefreshSearch;
 			box.PackEnd (refresh_button, false, false, 0);
 
-			Gtk.Label warning = new Gtk.Label (Catalog.GetString ("No matching photos found"));
+			Gtk.Label warning = new Gtk.Label (Strings.NoMatchingPhotosFound);
 			warning_box.PackStart (warning, false, false, 0);
 			warning_box.ShowAll ();
 			warning_box.Spacing = 6;

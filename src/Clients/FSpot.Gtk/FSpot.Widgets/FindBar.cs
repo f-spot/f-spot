@@ -36,11 +36,9 @@ using System.Text.RegularExpressions;
 
 using Gtk;
 
-using Mono.Unix;
-
 using FSpot.Core;
 using FSpot.Query;
-
+using FSpot.Resources.Lang;
 
 namespace FSpot.Widgets
 {
@@ -78,7 +76,7 @@ namespace FSpot.Widgets
 			box.Spacing = 6;
 			box.BorderWidth = 2;
 
-			box.PackStart (new Label (Catalog.GetString ("Find:")), false, false, 0);
+			box.PackStart (new Label (Strings.FindColon), false, false, 0);
 
 			entry = new Entry ();
 			entry.Completion = new LogicEntryCompletion (entry, model);
@@ -197,7 +195,7 @@ namespace FSpot.Widgets
 
 		// OPS The operators we support, case insensitive
 		//private static string op_str = "(?'Ops' or | and |, | \\s+ )";
-		static string op_str = "(?'Ops' "+ Catalog.GetString ("or") + " | "+ Catalog.GetString ("and")  + " |, )";
+		static string op_str = $"(?'Ops' {Strings.Or} | {Strings.And} |, )";
 
 		// Match literals, eg tags or other text to search on
 		static string literal_str = "[^{0}{1}]+?";

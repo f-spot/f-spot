@@ -32,24 +32,23 @@
 //
 
 using System;
-using System.IO;
 using System.Collections.Generic;
-
-using Gtk;
+using System.IO;
 
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Extensions;
 using FSpot.Imaging;
 using FSpot.Query;
+using FSpot.Resources.Lang;
+using FSpot.Settings;
 using FSpot.Thumbnail;
 using FSpot.Utils;
 
-using Mono.Unix;
+using Gtk;
 
 using Hyena;
 using Hyena.Widgets;
-using FSpot.Settings;
 
 
 namespace FSpot.Tools.MergeDb
@@ -94,8 +93,8 @@ namespace FSpot.Tools.MergeDb
 				mdd.SetSensitive ();
 
 			} catch (Exception ex) {
-				string msg = Catalog.GetString ("Error opening the selected file");
-				string desc = string.Format (Catalog.GetString ("The file you selected is not a valid or supported database.\n\nReceived exception \"{0}\"."), ex.Message);
+				string msg = Strings.ErrorOpeningTheSelectedFile;
+				string desc = string.Format (Strings.TheFileSelectedNotValidOrSupportedDataaseReceivedExceptionX, ex.Message);
 
 				var md = new HigMessageDialog (mdd.Dialog, DialogFlags.DestroyWithParent,
 										Gtk.MessageType.Error,

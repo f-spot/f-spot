@@ -35,12 +35,12 @@
 
 using System;
 using FSpot.Core;
+using FSpot.Resources.Lang;
 using FSpot.Settings;
 using FSpot.Utils;
 using FSpot.Widgets;
 using Gdk;
 using Gtk;
-using Mono.Unix;
 
 namespace FSpot
 {
@@ -348,7 +348,7 @@ namespace FSpot
 			tag_view = new TagView ();
 			lower_hbox.PackStart (tag_view, false, true, 0);
 
-			Label comment = new Label (Catalog.GetString ("Description:"));
+			Label comment = new Label (Strings.Description);
 			lower_hbox.PackStart (comment, false, false, 0);
 			description_entry = new Entry ();
 			lower_hbox.PackStart (description_entry, true, true, 0);

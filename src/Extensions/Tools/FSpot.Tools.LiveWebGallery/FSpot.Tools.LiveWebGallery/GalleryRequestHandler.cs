@@ -29,11 +29,11 @@
 
 using System;
 using System.IO;
-using System.Text;
 using System.Reflection;
-using FSpot.Core;
+using System.Text;
 
-using Mono.Unix;
+using FSpot.Core;
+using FSpot.Resources.Lang;
 
 namespace FSpot.Tools.LiveWebGallery
 {
@@ -124,9 +124,9 @@ namespace FSpot.Tools.LiveWebGallery
 			: base ("gallery.html") 
 		{
 			this.stats = stats;
-			template = template.Replace ("TITLE", Catalog.GetString("F-Spot Gallery"));
-			template = template.Replace ("OFFLINE_MESSAGE", Catalog.GetString("The web gallery seems to be offline now"));
-			template = template.Replace ("SHOW_ALL", Catalog.GetString("Show All"));
+			template = template.Replace ("TITLE", Strings.FSpotGallery);
+			template = template.Replace ("OFFLINE_MESSAGE", Strings.TheWebGallerySeemsToBeOfflineNow);
+			template = template.Replace ("SHOW_ALL", Strings.ShowAll);
 		}
 		
 		public override void Handle (string requested, Stream stream)
@@ -136,7 +136,8 @@ namespace FSpot.Tools.LiveWebGallery
 			StringBuilder s = new StringBuilder (4096);
 			s.Append (template);
 			int num_photos = limit_max_photos ? Math.Min (photos.Length, max_photos) : photos.Length;
-			s.Replace ("NUM_PHOTOS", string.Format(Catalog.GetPluralString("{0} photo", "{0} photos", num_photos), num_photos));
+			var num_photos_string = num_photos <= 1 ? Strings.XPhoto : Strings.XPhotos;
+			s.Replace ("NUM_PHOTOS", string.Format(num_photos_string, num_photos));
 			s.Replace ("QUERY_TYPE", QueryTypeToString ());
 			s.Replace ("EDITABLE_TAG_NAME", tagging_allowed ? Escape (editable_tag.Name) : "");
 			
@@ -178,10 +179,10 @@ namespace FSpot.Tools.LiveWebGallery
 			case QueryType.ByTag:
 				return query_tag.Name;
 			case QueryType.CurrentView:
-				return Catalog.GetString ("Current View");
+				return Strings.CurrentView;
 			case QueryType.Selected:
 			default:
-				return Catalog.GetString ("Selected");
+				return Strings.Selected;
 			}
 		}
 				

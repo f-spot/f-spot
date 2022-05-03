@@ -31,8 +31,6 @@
 
 using System;
 
-using Mono.Unix;
-
 using Gdk;
 using Gtk;
 using Cairo;
@@ -40,6 +38,7 @@ using Cairo;
 using FSpot.Widgets;
 
 using Pinta.Core;
+using FSpot.Resources.Lang;
 
 namespace FSpot.Editors
 {
@@ -49,7 +48,7 @@ namespace FSpot.Editors
 		double angle;
 		Scale scale;
 
-		public TiltEditor () : base (Catalog.GetString ("Straighten"), "align-horizon")
+		public TiltEditor () : base (Strings.Straighten, "align-horizon")
 		{
 			// FIXME: need tooltip Catalog.GetString ("Adjust the angle of the image to straighten the horizon")
 			HasSettings = true;

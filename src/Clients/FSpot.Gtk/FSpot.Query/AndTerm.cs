@@ -37,11 +37,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-using Mono.Unix;
-
 using Gtk;
 
 using FSpot.Core;
+using FSpot.Resources.Lang;
 
 namespace FSpot.Query
 {
@@ -52,8 +51,8 @@ namespace FSpot.Query
 		static AndTerm ()
 		{
 			Operators = new List<string> ();
-			Operators.Add (Catalog.GetString (" and "));
-			Operators.Add (Catalog.GetString (", "));
+			Operators.Add (Strings.LiteralAnd);
+			Operators.Add (Strings.CommaSpace);
 		}
 
 		public AndTerm (Term parent, Literal after) : base (parent, after)

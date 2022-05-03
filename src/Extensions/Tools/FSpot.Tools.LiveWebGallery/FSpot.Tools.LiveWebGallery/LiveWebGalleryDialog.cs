@@ -30,11 +30,11 @@
 using System;
 using System.Net;
 using System.Reflection;
+
 using FSpot.Core;
+using FSpot.Resources.Lang;
 
 using Gtk;
-
-using Mono.Unix;
 
 using Hyena;
 
@@ -110,10 +110,10 @@ namespace FSpot.Tools.LiveWebGallery
 						last_client = Dns.GetHostEntry (last_ip).HostName;
 					}
 					catch (Exception) {
-						last_client = last_ip != null ? last_ip.ToString () : Catalog.GetString ("none");
+						last_client = last_ip != null ? last_ip.ToString () : Strings.None;
 					}
 				}
-				stats_label.Text = string.Format(Catalog.GetString (" Gallery: {0},  Photos: {1},  Last client: {3}"), 
+				stats_label.Text = string.Format(Strings.GalleryXPhotosYLastClientZ, 
 				                                 stats.GalleryViews, stats.PhotoViews, stats.BytesSent / 1024, last_client);
 			});
 		}
@@ -177,7 +177,7 @@ namespace FSpot.Tools.LiveWebGallery
 				url_button.Uri = "http://" + server.HostPort;
 				url_button.Label = url_button.Uri;
 			} else {
-				url_button.Label = Catalog.GetString ("Gallery is inactive");
+				url_button.Label = Strings.GalleryIsInactive;
 			}
 		}
 		

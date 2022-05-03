@@ -29,7 +29,8 @@
 
 using System;
 
-using Mono.Unix;
+using FSpot.Resources.Lang;
+
 using Gtk;
 
 namespace Hyena.Query.Gui
@@ -51,7 +52,7 @@ namespace Hyena.Query.Gui
 
             Spacing = 5;
 
-            enabled_checkbox = new CheckButton (Catalog.GetString ("_Limit to"));
+            enabled_checkbox = new CheckButton (Strings.LimitToMnemonic);
             enabled_checkbox.Toggled += OnEnabledToggled;
 
             count_spin = new SpinButton (0, Double.MaxValue, 1);
@@ -78,7 +79,7 @@ namespace Hyena.Query.Gui
             PackStart (enabled_checkbox, false, false, 0);
             PackStart (count_spin, false, false, 0);
             PackStart (limit_combo, false, false, 0);
-            PackStart (new Label (Catalog.GetString ("selected by")), false, false, 0);
+            PackStart (new Label (Strings.SelectedBy), false, false, 0);
             PackStart (order_combo, false, false, 0);
 
             enabled_checkbox.Active = false;

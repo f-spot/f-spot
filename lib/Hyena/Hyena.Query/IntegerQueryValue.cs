@@ -29,18 +29,18 @@
 using System;
 using System.Xml;
 
-using Mono.Unix;
+using FSpot.Resources.Lang;
 
 namespace Hyena.Query
 {
 	public class IntegerQueryValue : QueryValue
     {
-        public static readonly Operator Equal              = new Operator ("equals", Catalog.GetString ("is"), "= {0}", "=", "==", ":");
-        public static readonly Operator NotEqual           = new Operator ("notEqual", Catalog.GetString ("is not"), "!= {0}", true, "!=", "!:");
-        public static readonly Operator LessThanEqual      = new Operator ("lessThanEquals", Catalog.GetString ("at most"), "<= {0}", "<=");
-        public static readonly Operator GreaterThanEqual   = new Operator ("greaterThanEquals", Catalog.GetString ("at least"), ">= {0}", ">=");
-        public static readonly Operator LessThan           = new Operator ("lessThan", Catalog.GetString ("less than"), "< {0}", "<");
-        public static readonly Operator GreaterThan        = new Operator ("greaterThan", Catalog.GetString ("more than"), "> {0}", ">");
+        public static readonly Operator Equal              = new Operator ("equals", Strings.Is, "= {0}", "=", "==", ":");
+        public static readonly Operator NotEqual           = new Operator ("notEqual", Strings.IsNot, "!= {0}", true, "!=", "!:");
+        public static readonly Operator LessThanEqual      = new Operator ("lessThanEquals", Strings.AtMost, "<= {0}", "<=");
+        public static readonly Operator GreaterThanEqual   = new Operator ("greaterThanEquals", Strings.AtLeast, ">= {0}", ">=");
+        public static readonly Operator LessThan           = new Operator ("lessThan", Strings.LessThan, "< {0}", "<");
+        public static readonly Operator GreaterThan        = new Operator ("greaterThan", Strings.MoreThan, "> {0}", ">");
 
         protected long value;
 

@@ -31,7 +31,9 @@ using System.Reflection;
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.IO;
-using Mono.Unix;
+
+using FSpot.Resources.Lang;
+
 using Gtk;
 
 namespace Hyena.Gui.Dialogs
@@ -49,8 +51,7 @@ namespace Hyena.Gui.Dialogs
             BorderWidth = 5;
             Resizable = false;
             //Translators: {0} is substituted with the application name
-            Title = String.Format(Catalog.GetString("{0} Encountered a Fatal Error"),
-                                  ApplicationContext.ApplicationName);
+            Title = string.Format(Strings.XEncounteredAFatalError, ApplicationContext.ApplicationName);
 
             VBox.Spacing = 12;
             ActionArea.Layout = ButtonBoxStyle.End;
@@ -87,8 +88,7 @@ namespace Hyena.Gui.Dialogs
             label.SetAlignment(0.0f, 0.5f);
             label_vbox.PackStart(label, false, false, 0);
 
-            Label details_label = new Label(String.Format("<b>{0}</b>",
-                GLib.Markup.EscapeText(Catalog.GetString("Error Details"))));
+            Label details_label = new Label($"<b>{GLib.Markup.EscapeText (Strings.ErrorDetails)}</b>");
             details_label.UseMarkup = true;
             Expander details_expander = new Expander("Details");
             details_expander.LabelWidget = details_label;
@@ -130,9 +130,9 @@ namespace Hyena.Gui.Dialogs
 
         string BuildExceptionMessage(Exception e)
         {
-            System.Text.StringBuilder msg = new System.Text.StringBuilder();
+            var msg = new System.Text.StringBuilder();
 
-            msg.Append(Catalog.GetString("An unhandled exception was thrown: "));
+            msg.Append(Strings.AnUnhandledExceptionWasThrown);
 
             Stack<Exception> exception_chain = new Stack<Exception> ();
 

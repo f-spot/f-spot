@@ -55,15 +55,14 @@
 using System;
 using System.IO;
 
-using Hyena;
-
-using Mono.Unix;
-
 using FSpot.Core;
 using FSpot.Filters;
+using FSpot.Resources.Lang;
 using FSpot.Settings;
-using FSpot.Widgets;
 using FSpot.UI.Dialog;
+using FSpot.Widgets;
+
+using Hyena;
 
 
 namespace FSpot.Exporters.Folder
@@ -115,7 +114,7 @@ namespace FSpot.Exporters.Folder
 		int size;
 
 		string description;
-		string gallery_name = Catalog.GetString ("Gallery");
+		string gallery_name = Strings.Gallery;
 		// FIXME: this needs to be a real temp directory
 		string gallery_path = Path.Combine (Path.GetTempPath (), "f-spot-original-" + DateTime.Now.Ticks.ToString ());
 
@@ -145,7 +144,7 @@ namespace FSpot.Exporters.Folder
 			if (!Directory.Exists (uri_path))
 				uri_path = FSpotConfiguration.HomeDirectory;
 
-			uri_chooser = new Gtk.FileChooserButton (Catalog.GetString ("Select Export Folder"), Gtk.FileChooserAction.SelectFolder) {
+			uri_chooser = new Gtk.FileChooserButton (Strings.SelectExportFolder, Gtk.FileChooserAction.SelectFolder) {
 				LocalOnly = false
 			};
 
@@ -196,7 +195,7 @@ namespace FSpot.Exporters.Folder
 				//if (dest.IsNative)
 				//	gallery_path = dest.Path;
 
-				progress_dialog.Message = Catalog.GetString ("Building Gallery");
+				progress_dialog.Message = Strings.BuildingGallery;
 				progress_dialog.Fraction = 0.0;
 
 				FolderGallery gallery;
@@ -227,20 +226,19 @@ namespace FSpot.Exporters.Folder
 				var filter_set = new FilterSet ();
 				if (scale)
 					filter_set.Add (new ResizeFilter ((uint)size));
-				filter_set.Add (new ChmodFilter ());
 				filter_set.Add (new UniqueNameFilter (new SafeUri (gallery_path)));
 
 				for (int photo_index = 0; photo_index < selection.Count; photo_index++) {
 					try {
-						progress_dialog.Message = string.Format (Catalog.GetString ("Exporting \"{0}\"..."), selection[photo_index].Name);
+						progress_dialog.Message = string.Format (Strings.ExportingX, selection[photo_index].Name);
 						progress_dialog.Fraction = photo_index / (double)selection.Count;
 						gallery.ProcessImage (photo_index, filter_set);
-						progress_dialog.ProgressText = string.Format (Catalog.GetString ("{0} of {1}"), (photo_index + 1), selection.Count);
+						progress_dialog.ProgressText = string.Format (Strings.XOfY, (photo_index + 1), selection.Count);
 					} catch (Exception e) {
-						Logger.Log.Error (e.ToString ());
-						progress_dialog.Message = string.Format (Catalog.GetString ("Error Copying \"{0}\" to Gallery:{2}{1}"),
+						Logger.Log.Error (e, "");
+						progress_dialog.Message = string.Format (Strings.ErrorCopyingXToGalleryZY,
 							selection[photo_index].Name, e.Message, Environment.NewLine);
-						progress_dialog.ProgressText = Catalog.GetString ("Error");
+						progress_dialog.ProgressText = Strings.Error;
 
 						if (progress_dialog.PerformRetrySkip ())
 							photo_index--;
@@ -272,9 +270,9 @@ namespace FSpot.Exporters.Folder
 				//}
 
 				// No need to check result here as if result is not true, an Exception will be thrown before
-				progress_dialog.Message = Catalog.GetString ("Export Complete.");
+				progress_dialog.Message = Strings.ExportComplete;
 				progress_dialog.Fraction = 1.0;
-				progress_dialog.ProgressText = Catalog.GetString ("Exporting Photos Completed.");
+				progress_dialog.ProgressText = Strings.ExportingPhotosCompleted;
 				progress_dialog.ButtonLabel = Gtk.Stock.Ok;
 
 				if (open) {
@@ -293,7 +291,7 @@ namespace FSpot.Exporters.Folder
 			} catch (Exception e) {
 				Logger.Log.Error (e.ToString ());
 				progress_dialog.Message = e.ToString ();
-				progress_dialog.ProgressText = Catalog.GetString ("Error Transferring");
+				progress_dialog.ProgressText = Strings.ErrorTransferring;
 			} finally {
 				// if the destination isn't local then we want to remove the temp directory we
 				// created.
@@ -338,7 +336,7 @@ namespace FSpot.Exporters.Folder
 				size = size_spin.ValueAsInt;
 
 			command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (Upload)) {
-				Name = Catalog.GetString ("Exporting Photos")
+				Name = Strings.ExportingPhotos
 			};
 
 			progress_dialog = new ThreadProgressDialog (command_thread, 1);

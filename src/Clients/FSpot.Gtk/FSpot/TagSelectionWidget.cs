@@ -29,24 +29,21 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
+
+using FSpot.Core;
+using FSpot.Database;
+using FSpot.Resources.Lang;
+using FSpot.Settings;
+using FSpot.Utils;
+using FSpot.Widgets;
 
 using Gdk;
 
 using Gtk;
 
-using Mono.Unix;
-
-using FSpot.Core;
-using FSpot.Database;
-using FSpot.Settings;
-using FSpot.Utils;
-using FSpot.Widgets;
-
 using Hyena.Widgets;
-
-
 
 namespace FSpot
 {
@@ -501,8 +498,8 @@ namespace FSpot
 				HigMessageDialog md = new HigMessageDialog (App.Instance.Organizer.Window,
 					DialogFlags.DestroyWithParent,
 					MessageType.Warning, ButtonsType.Ok,
-					Catalog.GetString ("Error renaming tag"),
-					Catalog.GetString ("This name is already in use"));
+					Strings.ErrorRenamingTag,
+					Strings.ThisNameIsAlreadyInUse);
 
 				md.Run ();
 				md.Destroy ();

@@ -106,8 +106,7 @@ static extern void setproctitle (byte [] fmt, byte [] str_arg);
             try {
                 if (prctl (15 /* PR_SET_NAME */, Encoding.ASCII.GetBytes (name + "\0"),
                     IntPtr.Zero, IntPtr.Zero, IntPtr.Zero) != 0) {
-                    throw new ApplicationException ("Error setting process name: " +
-                        Mono.Unix.Native.Stdlib.GetLastError ());
+					throw new ApplicationException ($"Error setting process name {name}");
                 }
             } catch (EntryPointNotFoundException) {
                 setproctitle (Encoding.ASCII.GetBytes ("%s\0"),

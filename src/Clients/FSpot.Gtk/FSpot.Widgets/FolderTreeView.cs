@@ -36,7 +36,7 @@ using Gtk;
 using FSpot.Utils;
 
 using Hyena;
-using Mono.Unix;
+using FSpot.Resources.Lang;
 
 namespace FSpot.Widgets
 {
@@ -152,7 +152,7 @@ namespace FSpot.Widgets
 				 * possible.
 				 */
 				if (text == Uri.UriSchemeFile)
-					renderer.Text = $"<b>{Catalog.GetString ("Filesystem")}</b>";
+					renderer.Text = $"<b>{Strings.Filesystem}</b>";
 				else
 					renderer.Text = $"<b>{text}</b>";
 

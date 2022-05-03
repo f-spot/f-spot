@@ -41,15 +41,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
 using FSpot.Core;
 using FSpot.Database.Jobs;
 using FSpot.Imaging;
+using FSpot.Resources.Lang;
 using FSpot.Query;
 using FSpot.Thumbnail;
 using FSpot.Utils;
+
 using Hyena;
 using Hyena.Data.Sqlite;
-using Mono.Unix;
 
 
 
@@ -201,7 +203,7 @@ namespace FSpot.Database
 			foreach (IPhotoVersion version in versions) {
 				// rename original version to "Original" if we import default version only
 				// this applies when a version is detached from another photo
-				string name = defaultVersionOnly && versionId == Photo.OriginalVersionId ? Catalog.GetString ("Original") : version.Name;
+				string name = defaultVersionOnly && versionId == Photo.OriginalVersionId ? Strings.Original : version.Name;
 				photo.AddVersionUnsafely (versionId++, version.BaseUri, version.Filename, version.ImportMD5, name, true);
 				InsertVersion (photo, photo.Versions.Last () as PhotoVersion);
 			}

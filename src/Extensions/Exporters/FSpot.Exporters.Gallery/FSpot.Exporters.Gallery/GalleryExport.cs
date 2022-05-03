@@ -33,18 +33,16 @@
 
 using System;
 using System.Collections.Generic;
-
-using Mono.Unix;
+using System.Linq;
 
 using FSpot.Core;
 using FSpot.Database;
-using FSpot.Filters;
-using FSpot.Settings;
-using FSpot.Widgets;
-using FSpot.UI.Dialog;
 using FSpot.Extensions;
-using System.Linq;
-
+using FSpot.Filters;
+using FSpot.Resources.Lang;
+using FSpot.Settings;
+using FSpot.UI.Dialog;
+using FSpot.Widgets;
 
 namespace FSpot.Exporters.Gallery
 {
@@ -162,7 +160,7 @@ namespace FSpot.Exporters.Gallery
 				export_dialog.Destroy ();
 
 				command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (this.Upload));
-				command_thread.Name = Catalog.GetString ("Uploading Pictures");
+				command_thread.Name = Strings.UploadingPictures;
 
 				progress_dialog = new ThreadProgressDialog (command_thread, items.Length);
 				progress_dialog.Start ();
@@ -204,11 +202,11 @@ namespace FSpot.Exporters.Gallery
 
 				Logger.Log.Debug ($"uploading {photo_index}");
 
-				progress_dialog.Message = string.Format (Catalog.GetString ("Uploading picture \"{0}\""), item.Name);
+				progress_dialog.Message = string.Format (Strings.UploadingPictureX, item.Name);
 				progress_dialog.Fraction = photo_index / (double)items.Length;
 				photo_index++;
 
-				progress_dialog.ProgressText = string.Format (Catalog.GetString ("{0} of {1}"), photo_index, items.Length);
+				progress_dialog.ProgressText = string.Format (Strings.XOfY, photo_index, items.Length);
 
 
 				FilterRequest req = new FilterRequest (item.DefaultVersion.Uri);
@@ -221,18 +219,17 @@ namespace FSpot.Exporters.Gallery
 							App.Instance.Database.Exports.Create ((item as Photo).Id, (item as Photo).DefaultVersionId,
 										      ExportStore.Gallery2ExportType, $"{album.Gallery.Uri}:{id}");
 				} catch (Exception e) {
-					progress_dialog.Message = string.Format (Catalog.GetString ("Error uploading picture \"{0}\" to Gallery: {1}"), item.Name, e.Message);
-					progress_dialog.ProgressText = Catalog.GetString ("Error");
+					progress_dialog.Message = string.Format (Strings.ErrorUploadingPictureXToGalleryColonY, item.Name, e.Message);
+					progress_dialog.ProgressText = Strings.Error;
 					Logger.Log.Error (e, "");
-
 					if (progress_dialog.PerformRetrySkip ())
 							photo_index--;
 				}
 			}
 
-			progress_dialog.Message = Catalog.GetString ("Done Sending Photos");
+			progress_dialog.Message = Strings.DoneSendingPhotos;
 			progress_dialog.Fraction = 1.0;
-			progress_dialog.ProgressText = Catalog.GetString ("Upload Complete");
+			progress_dialog.ProgressText = Strings.UploadComplete;
 			progress_dialog.ButtonLabel = Gtk.Stock.Ok;
 
 			if (browser)
@@ -246,7 +243,7 @@ namespace FSpot.Exporters.Gallery
 
 			accounts = manager.GetAccounts ();
 			if (accounts == null || accounts.Count == 0) {
-				gallery_optionmenu.AppendText (Catalog.GetString ("(No Gallery)"));
+				gallery_optionmenu.AppendText (Strings.ParenNoGalleryParen);
 
 				gallery_optionmenu.Sensitive = false;
 				edit_button.Sensitive = false;
@@ -330,8 +327,7 @@ namespace FSpot.Exporters.Gallery
 			bool disconnected = gallery == null || !account.Connected || albums == null;
 
 			if (disconnected || albums.Count == 0) {
-				string msg = disconnected ? Catalog.GetString ("(Not Connected)")
-					: Catalog.GetString ("(No Albums)");
+				string msg = disconnected ? Strings.ParenNotConnectedParen : Strings.ParenNoAlbumsParen;
 
 				album_optionmenu.AppendText (msg);
 
@@ -369,10 +365,10 @@ namespace FSpot.Exporters.Gallery
 			new AccountDialog (export_dialog, account, false);
 		}
 
-		public void HandleAddAlbum (object sender, System.EventArgs args)
+		public void HandleAddAlbum (object sender, EventArgs args)
 		{
 			if (account == null)
-				throw new GalleryException (Catalog.GetString ("No account selected"));
+				throw new GalleryException (Strings.NoAccountSelected);
 
 			new GalleryAddAlbum (this, account.Gallery);
 		}

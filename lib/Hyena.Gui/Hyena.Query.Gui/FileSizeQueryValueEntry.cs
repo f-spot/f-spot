@@ -28,7 +28,8 @@
 
 using System;
 
-using Mono.Unix;
+using FSpot.Resources.Lang;
+
 using Gtk;
 
 namespace Hyena.Query.Gui
@@ -52,14 +53,14 @@ namespace Hyena.Query.Gui
             spin_button = new SpinButton (0.0, 1.0, 1.0);
             spin_button.Digits = 1;
             spin_button.WidthChars = 4;
-            spin_button.SetRange (0.0, Double.MaxValue);
+            spin_button.SetRange (0.0, double.MaxValue);
             Add (spin_button);
 
             combo = ComboBox.NewText ();
-            combo.AppendText (Catalog.GetString ("bytes"));
-            combo.AppendText (Catalog.GetString ("KB"));
-            combo.AppendText (Catalog.GetString ("MB"));
-            combo.AppendText (Catalog.GetString ("GB"));
+            combo.AppendText (Strings.Bytes);
+            combo.AppendText (Strings.KB);
+            combo.AppendText (Strings.MB);
+			combo.AppendText (Strings.GB);
             combo.Realized += delegate { if (!combo_set) { combo.Active = 2; } };
             Add (combo);
 

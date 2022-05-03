@@ -33,10 +33,9 @@ using System;
 
 using Gtk;
 
-using Mono.Unix;
-
 using FSpot.Query;
 using FSpot.Widgets;
+using FSpot.Resources.Lang;
 
 namespace FSpot.UI.Dialog
 {
@@ -112,21 +111,21 @@ namespace FSpot.UI.Dialog
 			DateTime today = DateTime.Today;
 			switch (rangename) {
 			case "today":
-				return Catalog.GetString("Today");
+				return Strings.Today;
 			case "yesterday":
-				return Catalog.GetString("Yesterday");
+				return Strings.Yesterday;
 			case "last7days":
-				return Catalog.GetString("Last 7 days");
+				return Strings.LastSevenDays;
 			case "last30days":
-				return Catalog.GetString("Last 30 days");
+				return Strings.LastThirtyDays;
 			case "last90days":
-				return Catalog.GetString("Last 90 days");
+				return Strings.LastNintyDays;
 			case "last360days":
-				return Catalog.GetString("Last 360 days");
+				return Strings.LastThreeHundredSixtyDays;
 			case "currentweek":
-				return Catalog.GetString("Current Week (Mon-Sun)");
+				return Strings.CurrentWeekMonSun;
 			case "previousweek":
-				return Catalog.GetString("Previous Week (Mon-Sun)");
+				return Strings.PreviousWeekMonSun;
 			case "thismonth":
 				if (today.Year == (today.AddMonths(-1)).Year) // Same year for current and previous month. Present only MONTH
 					return today.ToString("MMMM");
@@ -142,9 +141,9 @@ namespace FSpot.UI.Dialog
 			case "previousyear":
 				return today.AddYears(-1).ToString("yyyy");
 			case "alldates":
-				return Catalog.GetString("All Images");
+				return Strings.AllImages;
 			case "customizedrange":
-				return Catalog.GetString("Customized Range");
+				return Strings.CustomizedRange;
 			default:
 				return rangename;
 			}

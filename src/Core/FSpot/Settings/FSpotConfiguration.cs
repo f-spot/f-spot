@@ -51,7 +51,6 @@ namespace FSpot.Settings
 		// FIXME, for now we are going to hard code these
 		//			I think this stuff will be "installed"
 		//			next to the assembly in the future instead
-		public static string LocaleDir { get; } = "/usr/local/share/locale";
 		public static string AppDataDir { get; } = "/usr/local/share/f-spot";
 
 		public static string HomeDirectory {

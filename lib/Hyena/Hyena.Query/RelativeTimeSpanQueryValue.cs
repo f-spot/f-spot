@@ -29,17 +29,17 @@
 using System;
 using System.Xml;
 
-using Mono.Unix;
+using FSpot.Resources.Lang;
 
 namespace Hyena.Query
 {
 	public class RelativeTimeSpanQueryValue : TimeSpanQueryValue
     {
         // The SQL operators in these Operators are reversed from normal on purpose
-        public static new readonly Operator GreaterThan        = new Operator ("greaterThan", Catalog.GetString ("more than"), "< {0}", true, ">");
-        public static new readonly Operator LessThan           = new Operator ("lessThan", Catalog.GetString ("less than"), "> {0}", "<");
-        public static new readonly Operator GreaterThanEqual   = new Operator ("greaterThanEquals", Catalog.GetString ("at least"), "<= {0}", true, ">=");
-        public static new readonly Operator LessThanEqual      = new Operator ("lessThanEquals", Catalog.GetString ("at most"), ">= {0}", "<=");
+        public static new readonly Operator GreaterThan        = new Operator ("greaterThan", Strings.MoreThan, "< {0}", true, ">");
+        public static new readonly Operator LessThan           = new Operator ("lessThan", Strings.LessThan, "> {0}", "<");
+        public static new readonly Operator GreaterThanEqual   = new Operator ("greaterThanEquals", Strings.AtLeast, "<= {0}", true, ">=");
+        public static new readonly Operator LessThanEqual      = new Operator ("lessThanEquals", Strings.AtMost, ">= {0}", "<=");
 
         protected static new AliasedObjectSet<Operator> operators = new AliasedObjectSet<Operator> (GreaterThan, LessThan, GreaterThanEqual, LessThanEqual);
         public override AliasedObjectSet<Operator> OperatorSet {
@@ -81,8 +81,7 @@ namespace Hyena.Query
         protected override string FactorString (TimeFactor factor, double count, bool translate)
         {
             string result = base.FactorString (factor, count, translate);
-            return (result == null) ? null : string.Format (
-                translate ? Catalog.GetString ("{0} ago") : "{0} ago", result);
+            return (result == null) ? null : string.Format (translate ? Strings.XAgo : "{0} ago", result);
         }
     }
 }

@@ -35,6 +35,7 @@ using System.Collections.Generic;
 using Gtk;
 
 using FSpot.Core;
+using FSpot.Resources.Lang;
 
 public class PhotoVersionMenu : Menu
 {
@@ -69,7 +70,7 @@ public class PhotoVersionMenu : Menu
 
 			if (version == photo.DefaultVersion) {
 				child.UseMarkup = true;
-				child.Markup = string.Format ("<b>{0}</b>", version.Name);
+				child.Markup = $"<b>{version.Name}</b>";
 			}
 
 			version_mapping.Add (menu_item, version);
@@ -78,7 +79,7 @@ public class PhotoVersionMenu : Menu
 		}
 
 		if (version_mapping.Count == 1) {
-			MenuItem no_edits_menu_item = new MenuItem (Mono.Unix.Catalog.GetString ("(No Edits)"));
+			MenuItem no_edits_menu_item = new MenuItem (Strings.ParenNoEditsParen);
 			no_edits_menu_item.Show ();
 			no_edits_menu_item.Sensitive = false;
 			Append (no_edits_menu_item);

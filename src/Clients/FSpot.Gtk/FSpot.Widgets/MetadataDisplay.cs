@@ -34,17 +34,16 @@ using System.Collections.Generic;
 
 using Gtk;
 
-using Mono.Unix;
-
 using FSpot.Core;
 using FSpot.Utils;
 using FSpot.Extensions;
+using FSpot.Resources.Lang;
 
 namespace FSpot.Widgets
 {
 	public class MetadataDisplayPage : SidebarPage
 	{
-		public MetadataDisplayPage () : base (new MetadataDisplayWidget (), Catalog.GetString ("Metadata"), "gtk-info")
+		public MetadataDisplayPage () : base (new MetadataDisplayWidget (), Strings.Metadata, "gtk-info")
 		{
 			(SidebarWidget as MetadataDisplayWidget).Page = this;
 		}
@@ -123,7 +122,7 @@ namespace FSpot.Widgets
 			extended_metadata = new ListStore (typeof(string));
 			tree_view.Model = extended_metadata;
 
-			var expander = new Expander (string.Format ("<span weight=\"bold\"><small>{0}</small></span>", Catalog.GetString ("Extended Metadata")));
+			var expander = new Expander ($"<span weight=\"bold\"><small>{Strings.ExtendedMetadata}</small></span>");
 			expander.UseMarkup = true;
 			expander.Add (tree_view);
 			expander.Expanded = true;
@@ -378,18 +377,18 @@ namespace FSpot.Widgets
 			if (empty) {
 				string msg;
 				if (photo == null) {
-					msg = Catalog.GetString ("No active photo");
+					msg = Strings.NoActivePhoto;
 				} else if (missing) {
-					msg = string.Format (Catalog.GetString ("The photo \"{0}\" does not exist"), photo.DefaultVersion.Uri);
+					msg = string.Format (Strings.ThePhotoXDoesNotExist, photo.DefaultVersion.Uri);
 				} else {
-					msg = Catalog.GetString ("No metadata available");
+					msg = Strings.NoMetadataAvailable;
 
 					if (error != null) {
-						msg = string.Format ("<i>{0}</i>", error);
+						msg = $"<i>{error}</i>";
 					}
 				}
 
-				metadata_message.Markup = "<span weight=\"bold\">" + msg + "</span>";
+				metadata_message.Markup = $"<span weight=\"bold\">{msg}</span>";
 
 				if (display == DisplayState.metadata) {
 					// Child is a Viewport, (AddWithViewport in ctor)

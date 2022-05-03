@@ -1,0 +1,1487 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Adjust" xml:space="preserve">
+    <value>Adjust</value>
+  </data>
+  <data name="AdjustColors" xml:space="preserve">
+    <value>Adjust Colors</value>
+  </data>
+  <data name="After" xml:space="preserve">
+    <value>after</value>
+  </data>
+  <data name="Ago" xml:space="preserve">
+    <value>ago</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="AllImages" xml:space="preserve">
+    <value>All Images</value>
+  </data>
+  <data name="AmountColon" xml:space="preserve">
+    <value>Amount:</value>
+  </data>
+  <data name="And" xml:space="preserve">
+    <value>and</value>
+  </data>
+  <data name="AnErrorOccurredWhileProcessingXMessage" xml:space="preserve">
+    <value>An error occurred while processing "{0}": {1}</value>
+  </data>
+  <data name="AnErrorOfTypeXOccurredWhileDeletingTheFile" xml:space="preserve">
+    <value>An error of type {0} occurred while deleting the file:{2}{1}</value>
+  </data>
+  <data name="AnUnhandledExceptionWasThrown" xml:space="preserve">
+    <value>An unhandled exception was thrown: </value>
+  </data>
+  <data name="Any" xml:space="preserve">
+    <value>any</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="AssemblyName" xml:space="preserve">
+    <value>Assembly Name</value>
+  </data>
+  <data name="AssemblyVersionInformation" xml:space="preserve">
+    <value>Assembly Version Information</value>
+  </data>
+  <data name="AtLeast" xml:space="preserve">
+    <value>at least</value>
+  </data>
+  <data name="AtMost" xml:space="preserve">
+    <value>at most</value>
+  </data>
+  <data name="AttachTagToSelection" xml:space="preserve">
+    <value>Attach Tag to Selection</value>
+  </data>
+  <data name="Authorize" xml:space="preserve">
+    <value>Authorize</value>
+  </data>
+  <data name="AutoColor" xml:space="preserve">
+    <value>Auto Color</value>
+  </data>
+  <data name="Before" xml:space="preserve">
+    <value>before</value>
+  </data>
+  <data name="BetweenXAndY" xml:space="preserve">
+    <value>Between {0} \nand {1}</value>
+  </data>
+  <data name="Blackout" xml:space="preserve">
+    <value>Blackout</value>
+  </data>
+  <data name="BrowseYourPhotoLibrary" xml:space="preserve">
+    <value>Browse your photo library</value>
+  </data>
+  <data name="Browsing" xml:space="preserve">
+    <value>Browsing</value>
+  </data>
+  <data name="BuildingGallery" xml:space="preserve">
+    <value>Building Gallery</value>
+  </data>
+  <data name="Bytes" xml:space="preserve">
+    <value>bytes</value>
+  </data>
+  <data name="Calendar" xml:space="preserve">
+    <value>Calendar</value>
+  </data>
+  <data name="Camera" xml:space="preserve">
+    <value>Camera</value>
+  </data>
+  <data name="CannotConnectToGalleryUnknownVersionCheckRemotePlugin" xml:space="preserve">
+    <value>Cannot connect to a Gallery for which the version is unknown.\nPlease check that you have Remote plugin 1.0.8 or later</value>
+  </data>
+  <data name="CanNotDeleteTagsThatHaveTagsWihinThem.PleaseDeleteTagUnderXFirst" xml:space="preserve">
+    <value>Can not delete tags that have tags within them.  Please delete tags under \"{0}\" first</value>
+  </data>
+  <data name="CheckBoxToRemoveImportedPhotosFromCameraAndWarning" xml:space="preserve">
+    <value>Checking this box will remove the imported photos from the camera after the import finished successfully.\n\nIt is generally recommended to backup your photos before removing them from the camera. &lt;b&gt;Use this option at your own risk!&lt;/b&gt;</value>
+  </data>
+  <data name="CheckingCredentials" xml:space="preserve">
+    <value>Checking credentials...</value>
+  </data>
+  <data name="ChooseFolder" xml:space="preserve">
+    <value>Choose Folder...</value>
+  </data>
+  <data name="ChooseImportSource" xml:space="preserve">
+    <value>Choose Import source...</value>
+  </data>
+  <data name="ClearDateRangeMnemonic" xml:space="preserve">
+    <value>_Clear Date Range</value>
+  </data>
+  <data name="ClearSearch" xml:space="preserve">
+    <value>Clear search</value>
+  </data>
+  <data name="Click" xml:space="preserve">
+    <value>click</value>
+  </data>
+  <data name="CommaSpace" xml:space="preserve">
+    <value>, </value>
+  </data>
+  <data name="CompleteAuthorization" xml:space="preserve">
+    <value>Complete Authorization</value>
+  </data>
+  <data name="ConditionColon" xml:space="preserve">
+    <value>Condition:</value>
+  </data>
+  <data name="ConstrainTheAspectRatioOfTheSelection" xml:space="preserve">
+    <value>Constrain the aspect ratio of the selection</value>
+  </data>
+  <data name="Contains" xml:space="preserve">
+    <value>contains</value>
+  </data>
+  <data name="ConvertToBW" xml:space="preserve">
+    <value>Convert to B/W</value>
+  </data>
+  <data name="Copying" xml:space="preserve">
+    <value>Copying...</value>
+  </data>
+  <data name="CopyrightNovell" xml:space="preserve">
+    <value>Copyright \x00a9 2003-2010 Novell Inc.</value>
+  </data>
+  <data name="Cover" xml:space="preserve">
+    <value>Cover</value>
+  </data>
+  <data name="CreateNewTag" xml:space="preserve">
+    <value>Create New Tag</value>
+  </data>
+  <data name="CreateNewVersion" xml:space="preserve">
+    <value>Create New Version</value>
+  </data>
+  <data name="Creator" xml:space="preserve">
+    <value>Creator</value>
+  </data>
+  <data name="Crop" xml:space="preserve">
+    <value>Crop</value>
+  </data>
+  <data name="CurrentView" xml:space="preserve">
+    <value>Current View</value>
+  </data>
+  <data name="CurrentWeekMonSun" xml:space="preserve">
+    <value>Current Week (Mon-Sun)</value>
+  </data>
+  <data name="CustomizedRange" xml:space="preserve">
+    <value>Customized Range</value>
+  </data>
+  <data name="CustomRatios" xml:space="preserve">
+    <value>Custom Ratios...</value>
+    <comment>FIXME, use real ...</comment>
+  </data>
+  <data name="CustomText" xml:space="preserve">
+    <value>Custom Text</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="DatabaseRefersToFilesContainedInXFolderPleaseSelectThatFolderSoICanDoTheMapping" xml:space="preserve">
+    <value>&lt;big&gt;The database refers to files contained in the &lt;b&gt;{0}&lt;/b&gt; folder.\n Please select that folder so I can do the mapping.&lt;/big&gt;</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>days</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeletePhotoMnemonic" xml:space="preserve">
+    <value>_Delete photo</value>
+  </data>
+  <data name="DeletePhotosMnemonic" xml:space="preserve">
+    <value>_Delete photos</value>
+  </data>
+  <data name="DeleteTag" xml:space="preserve">
+    <value>Delete Tag</value>
+  </data>
+  <data name="DeleteTagMnemonic" xml:space="preserve">
+    <value>_Delete tag</value>
+  </data>
+  <data name="DeleteTagsMnemonic" xml:space="preserve">
+    <value>_Delete tags</value>
+  </data>
+  <data name="DeleteTagXQuestion" xml:space="preserve">
+    <value>Delete tag "{0}"?</value>
+  </data>
+  <data name="DeleteTheSelectedPhotoPermanently" xml:space="preserve">
+    <value>Delete the selected photo permanently?</value>
+  </data>
+  <data name="DeleteTheXSelectedPhotosPermanently" xml:space="preserve">
+    <value>Delete the {0} selected photos permanently?</value>
+  </data>
+  <data name="DeleteTheXSelectedTagsQuestion" xml:space="preserve">
+    <value>Delete the {0} selected tags?</value>
+  </data>
+  <data name="Desaturate" xml:space="preserve">
+    <value>Desaturate</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description:</value>
+  </data>
+  <data name="DetachMnemonic" xml:space="preserve">
+    <value>De_tach</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="DevelopedInUFRaw" xml:space="preserve">
+    <value>Developed in UFRaw</value>
+  </data>
+  <data name="DevelopedInUFRawX" xml:space="preserve">
+    <value>Developed in UFRaw ({0})</value>
+  </data>
+  <data name="DevelopingPhotos" xml:space="preserve">
+    <value>Developing photos</value>
+  </data>
+  <data name="DevelopingX" xml:space="preserve">
+    <value>Developing {0}</value>
+  </data>
+  <data name="DirectoryNotFound" xml:space="preserve">
+    <value>Directory not found</value>
+  </data>
+  <data name="Dissolve" xml:space="preserve">
+    <value>Dissolve</value>
+  </data>
+  <data name="DoesntContain" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DoneSendingPhotos" xml:space="preserve">
+    <value>Done Sending Photos</value>
+  </data>
+  <data name="DownloadsXAtYSeconds" xml:space="preserve">
+    <value>{0} downloads at {1}/s</value>
+  </data>
+  <data name="DownloadsXAtYSecondsZPending" xml:space="preserve">
+    <value>{0} downloads at {1}/s ({2} pending)</value>
+  </data>
+  <data name="DownloadXAtYSeconds" xml:space="preserve">
+    <value>{0} download at {1}/s</value>
+  </data>
+  <data name="DownloadXAtYSecondsZPending" xml:space="preserve">
+    <value>{0} download at {1}/s ({2} pending)</value>
+  </data>
+  <data name="DragTagsHereToSearchForThem" xml:space="preserve">
+    <value>Drag tags here to search for them</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="EditIconForTagX" xml:space="preserve">
+    <value>Edit Icon for Tag {0}</value>
+  </data>
+  <data name="Editing" xml:space="preserve">
+    <value>Editing</value>
+  </data>
+  <data name="EditTag" xml:space="preserve">
+    <value>Edit Tag...</value>
+  </data>
+  <data name="EditYourPhotos" xml:space="preserve">
+    <value>Edit your photos</value>
+  </data>
+  <data name="EightByTen" xml:space="preserve">
+    <value>8 x 10</value>
+  </data>
+  <data name="Empty" xml:space="preserve">
+    <value>empty</value>
+  </data>
+  <data name="EndsWith" xml:space="preserve">
+    <value>ends with</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ErrorCopyingXToGalleryZY" xml:space="preserve">
+    <value>Error Copying "{0}" to Gallery:{2}{1}</value>
+  </data>
+  <data name="ErrorDeletingPicture" xml:space="preserve">
+    <value>Error Deleting Picture</value>
+  </data>
+  <data name="ErrorDetails" xml:space="preserve">
+    <value>Error Details</value>
+  </data>
+  <data name="ErrorEditingPhoto" xml:space="preserve">
+    <value>Error editing photo</value>
+  </data>
+  <data name="ErrorLoadingDatabase" xml:space="preserve">
+    <value>Error loading database.</value>
+  </data>
+  <data name="ErrorOpeningTheSelectedFile" xml:space="preserve">
+    <value>Error opening the selected file</value>
+  </data>
+  <data name="ErrorProcessingImage" xml:space="preserve">
+    <value>Error processing image</value>
+  </data>
+  <data name="ErrorReadingServerResponse" xml:space="preserve">
+    <value>Error reading server response</value>
+  </data>
+  <data name="ErrorRenamingTag" xml:space="preserve">
+    <value>Error renaming tag</value>
+  </data>
+  <data name="ErrorSavingAdjustedPhoto" xml:space="preserve">
+    <value>Error saving adjusted photo</value>
+  </data>
+  <data name="ErrorSavingAdjustedPhotos" xml:space="preserve">
+    <value>Error saving adjusted photos</value>
+  </data>
+  <data name="ErrorSavingSharpenedPhoto" xml:space="preserve">
+    <value>Error saving sharpened photo</value>
+  </data>
+  <data name="ErrorTransferring" xml:space="preserve">
+    <value>Error Transferring</value>
+  </data>
+  <data name="ErrorUploadingPictureXToGalleryColonY" xml:space="preserve">
+    <value>Error uploading picture "{0}" to Gallery: {1}</value>
+  </data>
+  <data name="ErrorUploadingToXColonY" xml:space="preserve">
+    <value>Error Uploading To {0}: {1}</value>
+  </data>
+  <data name="ErrorWhileConnectingToGallery" xml:space="preserve">
+    <value>Error while connecting to Gallery</value>
+  </data>
+  <data name="ErrorWhileCreatingNewAlbum" xml:space="preserve">
+    <value>Error while creating new album</value>
+  </data>
+  <data name="ErrorWhileRotatingPhoto" xml:space="preserve">
+    <value>Error while rotating photo.</value>
+  </data>
+  <data name="ErrorWhileTransferring" xml:space="preserve">
+    <value>Error While Transferring</value>
+  </data>
+  <data name="Events" xml:space="preserve">
+    <value>Events</value>
+  </data>
+  <data name="ExcludePhotosTaggedX" xml:space="preserve">
+    <value>Exclude Photos Tagged "{0}"</value>
+  </data>
+  <data name="ExitFullscreen" xml:space="preserve">
+    <value>Exit fullscreen</value>
+  </data>
+  <data name="ExportComplete" xml:space="preserve">
+    <value>Export Complete.</value>
+  </data>
+  <data name="ExportingFiles" xml:space="preserve">
+    <value>Exporting files</value>
+  </data>
+  <data name="ExportingPhotos" xml:space="preserve">
+    <value>Exporting Photos</value>
+  </data>
+  <data name="ExportingPhotosCompleted" xml:space="preserve">
+    <value>Export Photos Completed.</value>
+  </data>
+  <data name="ExportingPhotoX" xml:space="preserve">
+    <value>Exporting picture "{0}"</value>
+  </data>
+  <data name="ExportingX" xml:space="preserve">
+    <value>Exporting "{0}"...</value>
+  </data>
+  <data name="Exposure" xml:space="preserve">
+    <value>Exposure</value>
+  </data>
+  <data name="ExtendedMetadata" xml:space="preserve">
+    <value>Extended Metadata</value>
+  </data>
+  <data name="Favorites" xml:space="preserve">
+    <value>Favorites</value>
+  </data>
+  <data name="FileNotFonud" xml:space="preserve">
+    <value>File not found</value>
+  </data>
+  <data name="FileSize" xml:space="preserve">
+    <value>File Size</value>
+  </data>
+  <data name="Filesystem" xml:space="preserve">
+    <value>Filesystem</value>
+  </data>
+  <data name="Fill" xml:space="preserve">
+    <value>Fill</value>
+  </data>
+  <data name="Find" xml:space="preserve">
+    <value>Find</value>
+  </data>
+  <data name="FindColon" xml:space="preserve">
+    <value>Find: </value>
+  </data>
+  <data name="FindSelectedTagMnemonic" xml:space="preserve">
+    <value>Find _Selected Tag</value>
+  </data>
+  <data name="FindSelectedTagsMnemonic" xml:space="preserve">
+    <value>Find _Selected Tags</value>
+  </data>
+  <data name="FindSelectedTagsWithMnemonic" xml:space="preserve">
+    <value>Find Selected Tags _With</value>
+  </data>
+  <data name="FindSelectedTagWithMnemonic" xml:space="preserve">
+    <value>Find Selected Tag _With</value>
+  </data>
+  <data name="FindWithMnemonic" xml:space="preserve">
+    <value>Find _With</value>
+  </data>
+  <data name="FiveBySevenL2L" xml:space="preserve">
+    <value>5 x 7 (L, 2L)</value>
+  </data>
+  <data name="FixExclamation" xml:space="preserve">
+    <value>Fix!</value>
+  </data>
+  <data name="FlashDidntFire" xml:space="preserve">
+    <value>flash didn't fire</value>
+  </data>
+  <data name="Flashfired" xml:space="preserve">
+    <value>flash fired</value>
+  </data>
+  <data name="Flip" xml:space="preserve">
+    <value>Flip</value>
+  </data>
+  <data name="FocalLength" xml:space="preserve">
+    <value>Focal Length</value>
+  </data>
+  <data name="Folder" xml:space="preserve">
+    <value>Folder</value>
+  </data>
+  <data name="Folders" xml:space="preserve">
+    <value>Folders</value>
+  </data>
+  <data name="FollowingErrorEncounteredAttemptingToPerformRequestedOperation" xml:space="preserve">
+    <value>The following error was encountered while attempting to perform the requested operation:\n{0} ({1})</value>
+  </data>
+  <data name="FollowingErrorWasEncounteredAttemptingToLogInX" xml:space="preserve">
+    <value>The following error was encountered while attempting to log in: {0}</value>
+  </data>
+  <data name="FourBySixPostcard" xml:space="preserve">
+    <value>4 x 6 (Postcard)</value>
+  </data>
+  <data name="FourByThreeBook" xml:space="preserve">
+    <value>4 x 3 (Book)</value>
+  </data>
+  <data name="FSpotEncounteredAnErrorWhileLoadingPhotoDatabaseMovedToX" xml:space="preserve">
+    <value>F-Spot encountered an error while loading the photo database. The old database has been moved to {0} and a new database has been created.</value>
+  </data>
+  <data name="FSpotGallery" xml:space="preserve">
+    <value>F-Spot Gallery</value>
+  </data>
+  <data name="FSpotWasUnableToLogOnToXMakeSureYouHaveGivenTheAuthUsingXWebBrowser" xml:space="preserve">
+    <value>F-Spot was unable to log on to {0}.  Make sure you have given the authentication using {0} web browser interface.</value>
+  </data>
+  <data name="FSpotWebsite" xml:space="preserve">
+    <value>F-Spot Website</value>
+  </data>
+  <data name="FullPageNomargin" xml:space="preserve">
+    <value>Full Page (no margin)</value>
+  </data>
+  <data name="Fullscreen" xml:space="preserve">
+    <value>Fullscreen</value>
+  </data>
+  <data name="Gallery" xml:space="preserve">
+    <value>Gallery</value>
+  </data>
+  <data name="GalleryGeneratedBy" xml:space="preserve">
+    <value>Gallery generated by</value>
+  </data>
+  <data name="GalleryIsInactive" xml:space="preserve">
+    <value>Gallery is inactive</value>
+  </data>
+  <data name="GalleryWithThisNameAlreadyExists" xml:space="preserve">
+    <value>A Gallery with this name already exists</value>
+  </data>
+  <data name="GalleryXPhotosYLastClientZ" xml:space="preserve">
+    <value>Gallery: {0},  Photos: {1},  Last client: {3}</value>
+  </data>
+  <data name="GB" xml:space="preserve">
+    <value>GB</value>
+  </data>
+  <data name="Hidden" xml:space="preserve">
+    <value>Hidden</value>
+  </data>
+  <data name="Hide" xml:space="preserve">
+    <value>Hide</value>
+  </data>
+  <data name="HideFindBarMnemonic" xml:space="preserve">
+    <value>Hide _Find Bar</value>
+  </data>
+  <data name="HideItalicColumnLongTitleItalic" xml:space="preserve">
+    <value>Hide &lt;i&gt;{0}&lt;/i&gt;</value>
+  </data>
+  <data name="HideStyles" xml:space="preserve">
+    <value>Hide Styles</value>
+  </data>
+  <data name="HideToolbar" xml:space="preserve">
+    <value>Hide toolbar</value>
+  </data>
+  <data name="Histogram" xml:space="preserve">
+    <value>Histogram</value>
+  </data>
+  <data name="HorizontalMnemonic" xml:space="preserve">
+    <value>_Horizontal</value>
+  </data>
+  <data name="Hours" xml:space="preserve">
+    <value>hours</value>
+  </data>
+  <data name="HowToAddImageToTagFromPhotoX" xml:space="preserve">
+    <value>\n&lt;b&gt;From Photo&lt;/b&gt;\n You can use one of your library photos as an icon for this tag.\n However, first you must have at least one photo associated\n with this tag. Please tag a photo as '{0}' and return here\n to use it as an icon."</value>
+  </data>
+  <data name="IfYouDeleteThisTagsTheAssociationWithXYWillBeLost" xml:space="preserve">
+    <value>If you delete these tags, the association with {0} {1} will be lost.</value>
+  </data>
+  <data name="IfYouDeleteThisTagTheAssociationWithXYWillBeLost" xml:space="preserve">
+    <value>If you delete this tag, the association with {0} {1} will be lost.</value>
+  </data>
+  <data name="IfYouRemovePhotosFromFSpotCatalogAllTagInfoLost" xml:space="preserve">
+    <value>If you remove photos from the F-Spot catalog all tag information will be lost. The photos remain on your computer and can be imported into F-Spot again.</value>
+  </data>
+  <data name="ImageInformation" xml:space="preserve">
+    <value>Image information</value>
+  </data>
+  <data name="ImageSettings" xml:space="preserve">
+    <value>Image Settings</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="ImportedTags" xml:space="preserve">
+    <value>Imported Tags</value>
+  </data>
+  <data name="ImportFailures" xml:space="preserve">
+    <value>Import Failures</value>
+  </data>
+  <data name="ImportingPhotos" xml:space="preserve">
+    <value>Importing photos...</value>
+  </data>
+  <data name="ImportNewPhotos" xml:space="preserve">
+    <value>Import new photos</value>
+  </data>
+  <data name="ImportPhotos" xml:space="preserve">
+    <value>Import Photos…</value>
+  </data>
+  <data name="ImportPhotosXOfY" xml:space="preserve">
+    <value>Importing Photos: {0} of {1}...</value>
+  </data>
+  <data name="ImportRoll" xml:space="preserve">
+    <value>Import roll</value>
+  </data>
+  <data name="IncludePhotoTaggedX" xml:space="preserve">
+    <value>Include Photos Tagged "{0}"</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>Index</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="InvalidGalleryName" xml:space="preserve">
+    <value>Invalid Gallery name</value>
+  </data>
+  <data name="InvalidUrl" xml:space="preserve">
+    <value>Invalid URL</value>
+  </data>
+  <data name="Is" xml:space="preserve">
+    <value>is</value>
+  </data>
+  <data name="IsNot" xml:space="preserve">
+    <value>is not</value>
+  </data>
+  <data name="KB" xml:space="preserve">
+    <value>KB</value>
+  </data>
+  <data name="Label" xml:space="preserve">
+    <value>Label</value>
+  </data>
+  <data name="LastNintyDays" xml:space="preserve">
+    <value>Last 90 days</value>
+  </data>
+  <data name="LastSevenDays" xml:space="preserve">
+    <value>Last 7 days</value>
+  </data>
+  <data name="LastThirtyDays" xml:space="preserve">
+    <value>Last 30 days</value>
+  </data>
+  <data name="LastThreeHundredSixtyDays" xml:space="preserve">
+    <value>Last 360 days</value>
+  </data>
+  <data name="LessThan" xml:space="preserve">
+    <value>less than</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="LimitToMnemonic" xml:space="preserve">
+    <value>_Limit to</value>
+  </data>
+  <data name="LiteralAnd" xml:space="preserve">
+    <value> and </value>
+  </data>
+  <data name="LiteralOr" xml:space="preserve">
+    <value> or </value>
+  </data>
+  <data name="LoggingIntoX" xml:space="preserve">
+    <value>Logging into {0}</value>
+  </data>
+  <data name="MatchMnemonic" xml:space="preserve">
+    <value>_Match</value>
+  </data>
+  <data name="MB" xml:space="preserve">
+    <value>MB</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>menu</value>
+  </data>
+  <data name="MergeTags" xml:space="preserve">
+    <value>Merge Tags</value>
+  </data>
+  <data name="MergeTagsMnemonic" xml:space="preserve">
+    <value>_Merge Tags</value>
+  </data>
+  <data name="MergeTheSelectedTags" xml:space="preserve">
+    <value>Merge the {0} selected tags?</value>
+  </data>
+  <data name="Metadata" xml:space="preserve">
+    <value>Metadata</value>
+  </data>
+  <data name="Minutes" xml:space="preserve">
+    <value>minutes</value>
+  </data>
+  <data name="Modified" xml:space="preserve">
+    <value>Modified</value>
+  </data>
+  <data name="ModifiedInY" xml:space="preserve">
+    <value>Modified in {1}</value>
+  </data>
+  <data name="ModifiedInYX" xml:space="preserve">
+    <value>Modified in {1} ({0})</value>
+  </data>
+  <data name="ModifiedX" xml:space="preserve">
+    <value>Modified ({0})</value>
+  </data>
+  <data name="Months" xml:space="preserve">
+    <value>months</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>More</value>
+  </data>
+  <data name="MoreDates" xml:space="preserve">
+    <value>More dates</value>
+  </data>
+  <data name="MoreThan" xml:space="preserve">
+    <value>more than</value>
+  </data>
+  <data name="MyPhotos" xml:space="preserve">
+    <value>My Photos</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="NameColon" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="NameOfNewTagColon" xml:space="preserve">
+    <value>Name of New Tag:</value>
+  </data>
+  <data name="NewNameColon" xml:space="preserve">
+    <value>New name:</value>
+  </data>
+  <data name="NewSelection" xml:space="preserve">
+    <value>New Selection</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="NextPhoto" xml:space="preserve">
+    <value>Next photo</value>
+  </data>
+  <data name="NextPicture" xml:space="preserve">
+    <value>Next picture</value>
+  </data>
+  <data name="NoAccountSelected" xml:space="preserve">
+    <value>No account selected</value>
+  </data>
+  <data name="NoActivePhoto" xml:space="preserve">
+    <value>No active photo</value>
+  </data>
+  <data name="NoApplicationsAvailable" xml:space="preserve">
+    <value>No applications available</value>
+  </data>
+  <data name="NoCamerasDetected" xml:space="preserve">
+    <value>(No Cameras Detected)</value>
+  </data>
+  <data name="NoConstraint" xml:space="preserve">
+    <value>No Constraint</value>
+  </data>
+  <data name="NoMatchingPhotosFound" xml:space="preserve">
+    <value>No matching photos found</value>
+  </data>
+  <data name="NoMetadataAvailable" xml:space="preserve">
+    <value>No metadata available</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="NoPermissionToDeleteTheFile" xml:space="preserve">
+    <value>No permission to delete the file:{1}{0}</value>
+  </data>
+  <data name="NoPhotosMatchingFound" xml:space="preserve">
+    <value>No photos matching {0} found</value>
+  </data>
+  <data name="NoSelectionAvailable" xml:space="preserve">
+    <value>No selection available</value>
+  </data>
+  <data name="NoTagAppliedToAppliedTryAddingorSelectingDifferentTagInPreferenceDialog" xml:space="preserve">
+    <value>The tag "{0}" is not applied to any photos. Try adding\nthe tag to some photos or selecting a different tag in the\nF-Spot preference dialog.</value>
+  </data>
+  <data name="NotSpaceX" xml:space="preserve">
+    <value>Not {0}</value>
+  </data>
+  <data name="OfTheFollowingColon" xml:space="preserve">
+    <value>of the following:</value>
+  </data>
+  <data name="OkMnemonic" xml:space="preserve">
+    <value>_Ok</value>
+  </data>
+  <data name="OnXBetweenYAndZ" xml:space="preserve">
+    <value>On {0} between \n{1} and {2}</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="OpenContextMenu" xml:space="preserve">
+    <value>open context menu</value>
+  </data>
+  <data name="Or" xml:space="preserve">
+    <value>or</value>
+  </data>
+  <data name="Original" xml:space="preserve">
+    <value>Original</value>
+  </data>
+  <data name="OriginalJpeg" xml:space="preserve">
+    <value>Original JPEG</value>
+  </data>
+  <data name="OriginalRaw" xml:space="preserve">
+    <value>Original RAW</value>
+  </data>
+  <data name="PageColon" xml:space="preserve">
+    <value>Page:</value>
+  </data>
+  <data name="PageSetup" xml:space="preserve">
+    <value>Page Setup</value>
+  </data>
+  <data name="PaperSizeXxYmm" xml:space="preserve">
+    <value>Paper Size: {0} x {1} mm</value>
+  </data>
+  <data name="ParenFileReadErrorParen" xml:space="preserve">
+    <value>(File read error)</value>
+  </data>
+  <data name="ParenNoAlbumsParen" xml:space="preserve">
+    <value>(No Albums)</value>
+  </data>
+  <data name="ParenNoEditsParen" xml:space="preserve">
+    <value>(No Edits)</value>
+  </data>
+  <data name="ParenNoGalleryParen" xml:space="preserve">
+    <value>(No Gallery)</value>
+  </data>
+  <data name="ParenNoneParen" xml:space="preserve">
+    <value>(None)</value>
+  </data>
+  <data name="ParenNoTagsParen" xml:space="preserve">
+    <value>(No Tags)</value>
+  </data>
+  <data name="ParenNotConnectedParen" xml:space="preserve">
+    <value>(Not Connected)</value>
+  </data>
+  <data name="ParenOneEditParen" xml:space="preserve">
+    <value>(One Edit)</value>
+  </data>
+  <data name="ParenTopLevelParen" xml:space="preserve">
+    <value>(TopLevel)</value>
+  </data>
+  <data name="ParenUnknownParen" xml:space="preserve">
+    <value>(Unknown)</value>
+  </data>
+  <data name="ParenXEditsParen" xml:space="preserve">
+    <value>({0} Edits)</value>
+  </data>
+  <data name="People" xml:space="preserve">
+    <value>People</value>
+  </data>
+  <data name="Photo" xml:space="preserve">
+    <value>Photo</value>
+  </data>
+  <data name="PhotoManagementForGNOME" xml:space="preserve">
+    <value>Photo management for GNOME</value>
+  </data>
+  <data name="PhotoOutOfPhotos" xml:space="preserve">
+    <value>{0} of {1}</value>
+  </data>
+  <data name="Photos" xml:space="preserve">
+    <value>Photos</value>
+  </data>
+  <data name="PhotosInfos" xml:space="preserve">
+    <value>Photos infos</value>
+  </data>
+  <data name="PhotosLayout" xml:space="preserve">
+    <value>Photos layout</value>
+  </data>
+  <data name="PhotosPerPage" xml:space="preserve">
+    <value>Photos per page</value>
+  </data>
+  <data name="PhotoXOfY" xml:space="preserve">
+    <value>Photo {0} of {1}</value>
+  </data>
+  <data name="Pixelate" xml:space="preserve">
+    <value>Pixelate</value>
+  </data>
+  <data name="Places" xml:space="preserve">
+    <value>Places</value>
+  </data>
+  <data name="PleaseWaitFSpotGalleryDBUpdating" xml:space="preserve">
+    <value>Please wait while your F-Spot gallery's database is updated. This may take some time.</value>
+  </data>
+  <data name="PreparingEmail" xml:space="preserve">
+    <value>Preparing email</value>
+  </data>
+  <data name="PreparingPhotoX" xml:space="preserve">
+    <value>Preparing photo "{0}"</value>
+  </data>
+  <data name="Prev" xml:space="preserve">
+    <value>Prev</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="PreviousPhoto" xml:space="preserve">
+    <value>Previous photo</value>
+  </data>
+  <data name="PreviousPicture" xml:space="preserve">
+    <value>Previous picture</value>
+  </data>
+  <data name="PreviousWeekMonSun" xml:space="preserve">
+    <value>Previous Week (Mon-Sun)</value>
+  </data>
+  <data name="PrintCutMarks" xml:space="preserve">
+    <value>Print cut marks</value>
+  </data>
+  <data name="PrintFileName" xml:space="preserve">
+    <value>Print file name</value>
+  </data>
+  <data name="PrintPhotoComment" xml:space="preserve">
+    <value>Print photo comment</value>
+  </data>
+  <data name="PrintPhotoDate" xml:space="preserve">
+    <value>Print photo date</value>
+  </data>
+  <data name="PrintPhotoTags" xml:space="preserve">
+    <value>Print photo tags</value>
+  </data>
+  <data name="PrintPhotoTime" xml:space="preserve">
+    <value>Print photo time</value>
+  </data>
+  <data name="Push" xml:space="preserve">
+    <value>Push</value>
+  </data>
+  <data name="RadiusColon" xml:space="preserve">
+    <value>Radius:</value>
+  </data>
+  <data name="RatedPhotos" xml:space="preserve">
+    <value>Rated photos</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Rating</value>
+  </data>
+  <data name="RatingColon" xml:space="preserve">
+    <value>Rating:</value>
+  </data>
+  <data name="Ratio" xml:space="preserve">
+    <value>Ratio</value>
+  </data>
+  <data name="ReallyDeleteVersionXQuestion" xml:space="preserve">
+    <value>Really delete version "{0}"?</value>
+  </data>
+  <data name="ReallyDetachVersionXFromY" xml:space="preserve">
+    <value>Really detach version "{0}" from "{1}"?</value>
+  </data>
+  <data name="ReallyReparentXAsVersionOfY" xml:space="preserve">
+    <value>Really reparent "{0}" as version of "{1}"?</value>
+  </data>
+  <data name="ReallyReparentZPhotosAsVersionsOfY" xml:space="preserve">
+    <value>Really reparent {2} photos as versions of "{1}"?</value>
+  </data>
+  <data name="ReceivedErrorXWhileAttemptingToRotateY" xml:space="preserve">
+    <value>Received error "{0}" while attempting to rotate {1}</value>
+  </data>
+  <data name="ReceivedExceptionX" xml:space="preserve">
+    <value>Received exception "{0}".</value>
+  </data>
+  <data name="ReceivedExceptionXNoteThatYouHaveToDevelopRaw" xml:space="preserve">
+    <value>Received exception "{0}". Note that you have to develop RAW files into JPEG before you can edit them.</value>
+  </data>
+  <data name="ReceivedExceptionXUnableToSavePhotoY" xml:space="preserve">
+    <value>Received exception "{0}". Unable to save photo {1}</value>
+  </data>
+  <data name="RedEyeReduction" xml:space="preserve">
+    <value>Red-eye Reduction</value>
+  </data>
+  <data name="RefreshSearch" xml:space="preserve">
+    <value>Refresh search</value>
+  </data>
+  <data name="RemoveFromCatalogMnemonic" xml:space="preserve">
+    <value>_Remove from Catalog</value>
+  </data>
+  <data name="RemoveFromSearch" xml:space="preserve">
+    <value>Remove From Search</value>
+  </data>
+  <data name="RemoveRedEyeFromThePhoto" xml:space="preserve">
+    <value>Remove red-eye from the photo</value>
+  </data>
+  <data name="RemoveTagFromSelection" xml:space="preserve">
+    <value>Remove Tags From Selection</value>
+  </data>
+  <data name="RemoveTheSelectedPhotoFromFSpot" xml:space="preserve">
+    <value>Remove the selected photo from F-Spot?</value>
+  </data>
+  <data name="RemoveTheXSelectedPhotosFromFSpot" xml:space="preserve">
+    <value>Remove the {0} selected photos from F-Spot?</value>
+  </data>
+  <data name="RenameVersion" xml:space="preserve">
+    <value>Rename Version</value>
+  </data>
+  <data name="Reparented" xml:space="preserve">
+    <value>Reparented</value>
+    <comment>Reparented is a picture becoming a version of another one</comment>
+  </data>
+  <data name="ReparentMnemonic" xml:space="preserve">
+    <value>Re_parent</value>
+  </data>
+  <data name="Repeat" xml:space="preserve">
+    <value>Repeat</value>
+  </data>
+  <data name="Resize" xml:space="preserve">
+    <value>Resize</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Retry</value>
+  </data>
+  <data name="ReturnToThisWindowAfterYouHaveFinishedAuthProcessOnXClickCompleteAuthorizationButton" xml:space="preserve">
+    <value>Return to this window after you have finished the authorization process on {0} and click the "Complete Authorization" button below</value>
+  </data>
+  <data name="RotateLeft" xml:space="preserve">
+    <value>Rotate Left</value>
+  </data>
+  <data name="RotateLeftMnemonic" xml:space="preserve">
+    <value>Rotate _Left</value>
+  </data>
+  <data name="RotatePhotoLeft" xml:space="preserve">
+    <value>Rotate photo left</value>
+  </data>
+  <data name="RotatePhotoRight" xml:space="preserve">
+    <value>Rotate photo right</value>
+  </data>
+  <data name="RotatePictureLeft" xml:space="preserve">
+    <value>Rotate picture left</value>
+  </data>
+  <data name="RotatePictureRight" xml:space="preserve">
+    <value>Rotate picture right</value>
+  </data>
+  <data name="RotateRight" xml:space="preserve">
+    <value>Rotate Right</value>
+  </data>
+  <data name="RotateRightMnemonic" xml:space="preserve">
+    <value>Rotate _Right</value>
+  </data>
+  <data name="RotateSelectedPhotoLeft" xml:space="preserve">
+    <value>Rotate selected photo left</value>
+  </data>
+  <data name="RotateSelectedPhotoRight" xml:space="preserve">
+    <value>Rotate selected photo right</value>
+  </data>
+  <data name="RotateSelectedPhotosLeft" xml:space="preserve">
+    <value>Rotate selected photos left</value>
+  </data>
+  <data name="RotateSelectedPhotosRight" xml:space="preserve">
+    <value>Rotate selected photos right</value>
+  </data>
+  <data name="RotatingPhotos" xml:space="preserve">
+    <value>Rotating photos</value>
+  </data>
+  <data name="RotatingPhotoX" xml:space="preserve">
+    <value>Rotating photo "{0}"</value>
+  </data>
+  <data name="SameAsPhoto" xml:space="preserve">
+    <value>Same as photo</value>
+  </data>
+  <data name="Scaled" xml:space="preserve">
+    <value>Scaled</value>
+  </data>
+  <data name="SearchingForPhotosYouCanAlreadyClickImportToContinue" xml:space="preserve">
+    <value>Searching for photos... (You can already click Import to continue)</value>
+  </data>
+  <data name="SearchReturnedNoResults" xml:space="preserve">
+    <value>Search returned no results</value>
+  </data>
+  <data name="Seconds" xml:space="preserve">
+    <value>seconds</value>
+  </data>
+  <data name="Selected" xml:space="preserve">
+    <value>Selected</value>
+  </data>
+  <data name="SelectedBy" xml:space="preserve">
+    <value>selected by</value>
+  </data>
+  <data name="SelectExportFolder" xml:space="preserve">
+    <value>Select Export Folder</value>
+  </data>
+  <data name="SelectFolder" xml:space="preserve">
+    <value>Select Folder</value>
+  </data>
+  <data name="SelectPhotoFromFile" xml:space="preserve">
+    <value>Select Photo from file</value>
+  </data>
+  <data name="SelectTheAreaThatNeedsCropping" xml:space="preserve">
+    <value>Select the area that needs cropping.</value>
+  </data>
+  <data name="SelectTheAreaThatYouWantBlackedOut" xml:space="preserve">
+    <value>Select the area that you want blacked out.</value>
+  </data>
+  <data name="SelectTheAreaThatYouWantPixelated" xml:space="preserve">
+    <value>Select the area that you want pixelated.</value>
+  </data>
+  <data name="SelectTheEyesYouWishToFix" xml:space="preserve">
+    <value>Select the eyes you wish to fix.</value>
+  </data>
+  <data name="SepiaTone" xml:space="preserve">
+    <value>Sephia Tone</value>
+  </data>
+  <data name="ServerReturnedResponseWithoutGalleryContent" xml:space="preserve">
+    <value>Server returned response without Gallery content</value>
+  </data>
+  <data name="SetAsBackground" xml:space="preserve">
+    <value>Set as Background</value>
+  </data>
+  <data name="SetPageSizeAndOrientation" xml:space="preserve">
+    <value>Set Page Size and Orientation</value>
+  </data>
+  <data name="Sharpen" xml:space="preserve">
+    <value>Sharpen</value>
+  </data>
+  <data name="ShowAll" xml:space="preserve">
+    <value>Show All</value>
+  </data>
+  <data name="ShowCamera" xml:space="preserve">
+    <value>Show Camera</value>
+  </data>
+  <data name="ShowCreator" xml:space="preserve">
+    <value>Show Creator</value>
+  </data>
+  <data name="ShowDate" xml:space="preserve">
+    <value>Show Date</value>
+  </data>
+  <data name="ShowExposure" xml:space="preserve">
+    <value>Show Exposure</value>
+  </data>
+  <data name="ShowFileSize" xml:space="preserve">
+    <value>Show File Size</value>
+  </data>
+  <data name="ShowFindBarMnemonic" xml:space="preserve">
+    <value>Show _Find Bar</value>
+  </data>
+  <data name="ShowFocalLength" xml:space="preserve">
+    <value>Show Focal Length</value>
+  </data>
+  <data name="ShowRating" xml:space="preserve">
+    <value>Show Rating</value>
+  </data>
+  <data name="ShowSize" xml:space="preserve">
+    <value>Show Size</value>
+  </data>
+  <data name="ShowStyles" xml:space="preserve">
+    <value>Show Styles</value>
+  </data>
+  <data name="ShowTags" xml:space="preserve">
+    <value>Show Tags</value>
+  </data>
+  <data name="SignInAsADifferentUser" xml:space="preserve">
+    <value>Sign in as a different user</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Size</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>Skip</value>
+  </data>
+  <data name="Slideshow" xml:space="preserve">
+    <value>Slideshow</value>
+  </data>
+  <data name="SlideTransition" xml:space="preserve">
+    <value>Slide transition:</value>
+  </data>
+  <data name="SoftFocus" xml:space="preserve">
+    <value>Soft Focus</value>
+  </data>
+  <data name="SomeFilesCouldNotBeImported" xml:space="preserve">
+    <value>Some files could not be imported, they might be corrupt or there might be something wrong with the storage on which they reside.</value>
+  </data>
+  <data name="SomeFilesFailedToImport" xml:space="preserve">
+    <value>Some files failed to import</value>
+  </data>
+  <data name="Square" xml:space="preserve">
+    <value>Square</value>
+  </data>
+  <data name="StandardTheme" xml:space="preserve">
+    <value>Standard theme</value>
+  </data>
+  <data name="StartSlideshow" xml:space="preserve">
+    <value>Start slideshow</value>
+  </data>
+  <data name="StartsWith" xml:space="preserve">
+    <value>starts with</value>
+  </data>
+  <data name="Straighten" xml:space="preserve">
+    <value>Straighten</value>
+  </data>
+  <data name="SystemProfile" xml:space="preserve">
+    <value>System profile</value>
+  </data>
+  <data name="TagDoesntExistTrySelectingDifferentTagInPerferenceDialog" xml:space="preserve">
+    <value>The tag F-Spot is looking for does not exist. Try\nselecting a different tag in the F-Spot preference\ndialog.</value>
+  </data>
+  <data name="TagIsNotEmpty" xml:space="preserve">
+    <value>Tag is not empty</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Tags</value>
+  </data>
+  <data name="TagsColon" xml:space="preserve">
+    <value>Tags: </value>
+  </data>
+  <data name="TheFileSelectedNotValidOrSupportedDataaseReceivedExceptionX" xml:space="preserve">
+    <value>The file you selected is not a valid or supported database.\n\nReceived exception "{0}".</value>
+  </data>
+  <data name="TheGalleryNameContainsInvalidCharactersOnlyLettersNumbersUnderscoreAllowed" xml:space="preserve">
+    <value>The gallery name contains invalid characters.\nOnly letters, numbers, - and _ are allowed</value>
+  </data>
+  <data name="TheGalleryUrlEntryDoesNotAppearToBeValid" xml:space="preserve">
+    <value>The gallery URL entry does not appear to be a valid URL</value>
+  </data>
+  <data name="ThePhotoCouldNotBeRotatedReadonlyOrMedia" xml:space="preserve">
+    <value>The photo could not be rotated because it is on a read only file system or media such as a CD-ROM.  Please check the permissions and try again.</value>
+  </data>
+  <data name="ThePhotoXDoesNotExist" xml:space="preserve">
+    <value>The photo "{0}" does not exist</value>
+  </data>
+  <data name="ThereAlreadyGallerySameNameInYourRegisteredGalleriesPleaseChooseUniqueName" xml:space="preserve">
+    <value>There is already a Gallery with the same name in your registered Galleries. Please choose a unique name.</value>
+  </data>
+  <data name="TheWebGallerySeemsToBeOfflineNow" xml:space="preserve">
+    <value>The web gallery seems to be offline now</value>
+  </data>
+  <data name="ThisDeletesAllVersionsOfTheSelectedPhotoFromYourDrive" xml:space="preserve">
+    <value>This deletes all versions of the selected photo from your drive.</value>
+  </data>
+  <data name="ThisDeletesAllVersionsOfTheSelectedPhotosFromYourDrive" xml:space="preserve">
+    <value>This deletes all versions of the selected photos from your drive.</value>
+  </data>
+  <data name="ThisMakesThePhotosAppearAsASingleOneInLibraryTheVersionsCanBeDetachedUsingThePhotoMenu" xml:space="preserve">
+    <value>This makes the photos appear as a single one in the library. The versions can be detached using the Photo menu.</value>
+  </data>
+  <data name="ThisMakesTheVersionAppearAsASeparatePhotoInLibraryToUndoDragNewPhotoBackToParent" xml:space="preserve">
+    <value>This makes the version appear as a separate photo in the library. To undo, drag the new photo back to its parent.</value>
+  </data>
+  <data name="ThisNameIsAlreadyInUse" xml:space="preserve">
+    <value>This name is already in use</value>
+  </data>
+  <data name="ThisRemovesTheVersionAndDeletesTheFileFromDisk" xml:space="preserve">
+    <value>This removes the version and deletes the corresponding file from disk.</value>
+  </data>
+  <data name="ThisToolRequiresAnActiveSelection.PleaseSelectOneOrMore" xml:space="preserve">
+    <value>This tool requires an active selection. Please select one or more pictures and try again</value>
+  </data>
+  <data name="ThisToolRequiresAnActiveSelectionPleaseSelectARegion" xml:space="preserve">
+    <value>This tool requires an active selection. Please select a region of the photo and try the operation again</value>
+  </data>
+  <data name="ThisWillMergeSelectedTagsAndSubTagsIntoSingleTag" xml:space="preserve">
+    <value>This operation will merge the selected tags and any sub-tags into a single tag.</value>
+  </data>
+  <data name="ThresholdColon" xml:space="preserve">
+    <value>Threshold:</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="TransferComplete" xml:space="preserve">
+    <value>Transfer Complete</value>
+  </data>
+  <data name="TransferringPictures" xml:space="preserve">
+    <value>Transferring Pictures</value>
+  </data>
+  <data name="TransferringPictureXToCD" xml:space="preserve">
+    <value>Transferring picture "{0}" To CD</value>
+  </data>
+  <data name="TranslatorCredits" xml:space="preserve">
+    <value>translator-credits</value>
+  </data>
+  <data name="UnableToLoadImage" xml:space="preserve">
+    <value>Unable to load image</value>
+  </data>
+  <data name="UnableToLoadXAsIconForTheTag" xml:space="preserve">
+    <value>Unable to load "{0}" as icon for the tag</value>
+  </data>
+  <data name="UnableToLogOn" xml:space="preserve">
+    <value>Unable to log on</value>
+  </data>
+  <data name="UnableToRotatePhoto" xml:space="preserve">
+    <value>Unable to rotate photo</value>
+  </data>
+  <data name="UnableToRotateReadonlyFile" xml:space="preserve">
+    <value>Unable to rotate readonly file</value>
+  </data>
+  <data name="UnableToRotateThisTypeOfPhoto" xml:space="preserve">
+    <value>Unable to rotate this type of photo</value>
+  </data>
+  <data name="UnableToRotateXPhotos" xml:space="preserve">
+    <value>Unable to rotate {0} photos</value>
+  </data>
+  <data name="UnhandledException" xml:space="preserve">
+    <value>Unhandled exception</value>
+  </data>
+  <data name="UntaggedPhotos" xml:space="preserve">
+    <value>Untagged photos</value>
+  </data>
+  <data name="UpdatingFSpotDatabase" xml:space="preserve">
+    <value>Updating F-Spot Database</value>
+  </data>
+  <data name="UpdatingPictureX" xml:space="preserve">
+    <value>Updating picture "{0}"</value>
+  </data>
+  <data name="UpdatingThumbnails" xml:space="preserve">
+    <value>Updating Thumbnails</value>
+  </data>
+  <data name="UploadComplete" xml:space="preserve">
+    <value>Upload Complete</value>
+  </data>
+  <data name="UploadingPictures" xml:space="preserve">
+    <value>Uploading Pictures</value>
+  </data>
+  <data name="UploadingPictureX" xml:space="preserve">
+    <value>Uploading picture "{0}"</value>
+  </data>
+  <data name="UsedXOfYourAllowedYMonthlyQuota" xml:space="preserve">
+    <value>Used {0} of your allowed {1} monthly quota</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="VerticalMnemonic" xml:space="preserve">
+    <value>_Vertical</value>
+  </data>
+  <data name="ViewPhotosFullscreen" xml:space="preserve">
+    <value>View photos fullscreen</value>
+  </data>
+  <data name="ViewPhotosInASlideshow" xml:space="preserve">
+    <value>View photos in a slideshow</value>
+  </data>
+  <data name="WaitingForResponseXOfY" xml:space="preserve">
+    <value>Waiting for response {0} of {1}</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="Weeks" xml:space="preserve">
+    <value>weeks</value>
+  </data>
+  <data name="WelcomeXYouAreConnectedToY" xml:space="preserve">
+    <value>Welcome, {0}. You are connected to {1}</value>
+  </data>
+  <data name="WhiteBorders" xml:space="preserve">
+    <value>White borders</value>
+  </data>
+  <data name="XAgo" xml:space="preserve">
+    <value>{0} ago</value>
+  </data>
+  <data name="XDay" xml:space="preserve">
+    <value>{0} Day</value>
+  </data>
+  <data name="XDays" xml:space="preserve">
+    <value>{0} Days</value>
+  </data>
+  <data name="XEncounteredAFatalError" xml:space="preserve">
+    <value>{0} Encountered a Fatal Error</value>
+  </data>
+  <data name="XHour" xml:space="preserve">
+    <value>{0} Hour</value>
+  </data>
+  <data name="XHours" xml:space="preserve">
+    <value>{0} Hours</value>
+  </data>
+  <data name="XMinute" xml:space="preserve">
+    <value>{0} Minute</value>
+  </data>
+  <data name="XMinutes" xml:space="preserve">
+    <value>{0} Minutes</value>
+  </data>
+  <data name="XMonth" xml:space="preserve">
+    <value>{0} Month</value>
+  </data>
+  <data name="XMonths" xml:space="preserve">
+    <value>{0} Months</value>
+  </data>
+  <data name="XOfY" xml:space="preserve">
+    <value>{0} of {1}</value>
+  </data>
+  <data name="XPhoto" xml:space="preserve">
+    <value>{0} photo</value>
+  </data>
+  <data name="XPhotoCouldNotBeRotatedReadonlyOrMedia" xml:space="preserve">
+    <value>{0} photos could not be rotated because they are on a read only file system or media such as a CD-ROM.  Please check the permissions and try again.</value>
+  </data>
+  <data name="XPhotoOutOfY" xml:space="preserve">
+    <value>{0} photo out of {1}</value>
+  </data>
+  <data name="XPhotos" xml:space="preserve">
+    <value>{0} photos</value>
+  </data>
+  <data name="XPhotosOutOfY" xml:space="preserve">
+    <value>{0} photos out of {1}</value>
+  </data>
+  <data name="XSecond" xml:space="preserve">
+    <value>{0} Second</value>
+  </data>
+  <data name="XSeconds" xml:space="preserve">
+    <value>{0} Seconds</value>
+  </data>
+  <data name="XSelected" xml:space="preserve">
+    <value>({0} selected)</value>
+  </data>
+  <data name="XWeek" xml:space="preserve">
+    <value>{0} Week</value>
+  </data>
+  <data name="XWeeks" xml:space="preserve">
+    <value>{0} Weeks</value>
+  </data>
+  <data name="XYear" xml:space="preserve">
+    <value>{0} Year</value>
+  </data>
+  <data name="XYears" xml:space="preserve">
+    <value>{0} Years</value>
+  </data>
+  <data name="Years" xml:space="preserve">
+    <value>years</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>Yesterday</value>
+  </data>
+  <data name="Zoom" xml:space="preserve">
+    <value>Zoom</value>
+  </data>
+</root>

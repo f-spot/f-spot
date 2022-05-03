@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="Mono.Posix" />
+    <ProjectReference Include="..\..\src\Core\FSpot.Resources\FSpot.Resources.csproj" />
   </ItemGroup>
 
 </Project>

@@ -38,6 +38,7 @@ using System.Collections.Generic;
 using Gtk;
 
 using FSpot.Utils;
+using FSpot.Resources.Lang;
 
 namespace FSpot.UI.Dialog
 {
@@ -78,9 +79,9 @@ namespace FSpot.UI.Dialog
 			progress_bar = new Gtk.ProgressBar ();
 			VBox.PackStart (progress_bar, true, true, 6);
 
-			retry_button = new Gtk.Button (Mono.Unix.Catalog.GetString ("Retry"));
+			retry_button = new Gtk.Button (Strings.Retry);
 			retry_button.Clicked += HandleRetryClicked;
-			skip_button = new Gtk.Button (Mono.Unix.Catalog.GetString ("Skip"));
+			skip_button = new Gtk.Button (Strings.Skip);
 			skip_button.Clicked += HandleSkipClicked;
 
 			ActionArea.Add (retry_button);

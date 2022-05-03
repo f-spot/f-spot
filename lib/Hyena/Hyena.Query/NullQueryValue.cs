@@ -26,16 +26,15 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
 using System.Xml;
 
-using Mono.Unix;
+using FSpot.Resources.Lang;
 
 namespace Hyena.Query
 {
 	public class NullQueryValue : QueryValue
     {
-        public static readonly Operator IsNullOrEmpty  = new Operator ("empty", Catalog.GetString ("empty"), "IN (NULL, '', 0)", true, "!");
+        public static readonly Operator IsNullOrEmpty  = new Operator ("empty", Strings.Empty, "IN (NULL, '', 0)", true, "!");
 
         public static readonly NullQueryValue Instance = new NullQueryValue ();
 

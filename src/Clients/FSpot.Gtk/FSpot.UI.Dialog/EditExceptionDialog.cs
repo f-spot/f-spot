@@ -31,12 +31,11 @@
 
 using System;
 
-using Mono.Unix;
-
 using Gtk;
 using Hyena.Widgets;
 
 using FSpot.Core;
+using FSpot.Resources.Lang;
 
 
 namespace FSpot.UI.Dialog
@@ -46,7 +45,7 @@ namespace FSpot.UI.Dialog
 		public IPhoto Item { get; private set; }
 
 		public EditException (IPhoto item, Exception e) : base (
-                        string.Format (Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"),
+                        string.Format (Strings.ReceivedExceptionXUnableToSavePhotoY,
 				       e.Message, item.Name), e)
 		{
 			Item = item;
@@ -59,7 +58,7 @@ namespace FSpot.UI.Dialog
 
 		public EditExceptionDialog (Gtk.Window parent, Exception [] errors) : base (parent, DialogFlags.DestroyWithParent,
 											    Gtk.MessageType.Error, ButtonsType.Ok,
-											    Catalog.GetString ("Error editing photo"),
+											    Strings.ErrorEditingPhoto,
 											    GenerateMessage (errors))
 		{
 			foreach (Exception e in errors)

@@ -26,7 +26,6 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -34,7 +33,7 @@ using System.Security.Cryptography;
 
 namespace Hyena
 {
-    public static class CryptoUtil
+	public static class CryptoUtil
     {
         // A-Z is ignored on purpose
         static Regex md5_regex = new Regex ("^[a-f0-9]{32}$", RegexOptions.Compiled);

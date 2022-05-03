@@ -34,13 +34,12 @@
 using System;
 using System.Collections.Generic;
 
-using Mono.Unix;
-
 using Gtk;
 using Gdk;
 
 using FSpot.Core;
 using FSpot.Database;
+using FSpot.Resources.Lang;
 
 namespace FSpot.Query
 {
@@ -108,7 +107,7 @@ namespace FSpot.Query
 			rootAdd.DragDataReceived += HandleDragDataReceived;
 			rootAdd.DragLeave  += HandleDragLeave;
 
-			help = new Gtk.Label ("<i>" + Catalog.GetString ("Drag tags here to search for them") + "</i>");
+			help = new Gtk.Label ($"<i>{Strings.DragTagsHereToSearchForThem}</i>");
 			help.UseMarkup = true;
 			help.Visible = true;
 

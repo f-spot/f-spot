@@ -32,8 +32,6 @@ using System.IO;
 
 using NUnit.Framework;
 
-using Hyena;
-
 using Moq;
 
 namespace FSpot.Database.Tests

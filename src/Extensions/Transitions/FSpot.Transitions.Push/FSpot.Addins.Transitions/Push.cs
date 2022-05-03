@@ -29,11 +29,10 @@
 
 using System;
 
-using Mono.Unix;
-
 using Cairo;
 using Gdk;
 
+using FSpot.Resources.Lang;
 using FSpot.Transitions;
 using FSpot.Utils;
 
@@ -43,7 +42,7 @@ namespace FSpot.Addins.Transitions
 {
 	public class Push : CairoTransition
 	{
-		public Push () : base (Catalog.GetString ("Push"))
+		public Push () : base (Strings.Push)
 		{
 		}
 

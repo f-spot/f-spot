@@ -28,16 +28,15 @@
 //
 
 using FSpot.ColorAdjustment;
+using FSpot.Resources.Lang;
 
 using Gdk;
-
-using Mono.Unix;
 
 namespace FSpot.Editors
 {
     class AutoStretchEditor : Editor
 	{
-        public AutoStretchEditor () : base (Catalog.GetString ("Auto Color"), "autocolor")
+        public AutoStretchEditor () : base (Strings.AutoColor, "autocolor")
 		{
 			// FIXME: need tooltip Catalog.GetString ("Automatically adjust the colors")
 			CanHandleMultiple = true;

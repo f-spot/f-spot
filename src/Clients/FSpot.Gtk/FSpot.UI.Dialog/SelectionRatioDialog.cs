@@ -36,8 +36,7 @@ using FSpot.Settings;
 
 using Gtk;
 
-using Mono.Unix;
-
+using FSpot.Resources.Lang;
 
 namespace FSpot.UI.Dialog
 {
@@ -83,18 +82,18 @@ namespace FSpot.UI.Dialog
 				Destroy ();
 			};
 
-			add_button.Clicked += (o, e) => {constraints_store.AppendValues (Catalog.GetString("New Selection"), 1.0); };
+			add_button.Clicked += (o, e) => {constraints_store.AppendValues (Strings.NewSelection, 1.0); };
 			delete_button.Clicked += DeleteSelectedRows;
 			up_button.Clicked += MoveUp;
 			down_button.Clicked += MoveDown;
 			var text_renderer = new CellRendererText ();
 			text_renderer.Editable = true;
 			text_renderer.Edited += HandleLabelEdited;
-			content_treeview.AppendColumn (Catalog.GetString ("Label"), text_renderer, "text", 0);
+			content_treeview.AppendColumn (Strings.Label, text_renderer, "text", 0);
 			text_renderer = new CellRendererText ();
 			text_renderer.Editable = true;
 			text_renderer.Edited += HandleRatioEdited;
-			content_treeview.AppendColumn (Catalog.GetString ("Ratio"), text_renderer, "text", 1);
+			content_treeview.AppendColumn (Strings.Ratio, text_renderer, "text", 1);
 
 			LoadPreference (Preferences.CustomCropRatios);
 			Preferences.SettingChanged += OnPreferencesChanged;

@@ -34,15 +34,12 @@ using System.IO;
 
 using FSpot.Core;
 using FSpot.Filters;
+using FSpot.Resources.Lang;
 using FSpot.UI.Dialog;
 
 using Gtk;
 
 using Hyena;
-
-using Mono.Unix;
-
-
 
 namespace FSpot.Exporters.CD
 {
@@ -78,7 +75,7 @@ namespace FSpot.Exporters.CD
 			clean = dialog.RemovePreviousPhotos;
 
 			command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (Transfer)) {
-				Name = Catalog.GetString ("Transferring Pictures")
+				Name = Strings.TransferringPictures
 			};
 
 			progress_dialog = new ThreadProgressDialog (command_thread, selection.Count);
@@ -120,9 +117,9 @@ namespace FSpot.Exporters.CD
 						var source = new FileInfo (request.Current.AbsolutePath);
 						var target = UniqueName (dest, photo.Name);
 
-						progress_dialog.Message = string.Format (Catalog.GetString ("Transferring picture \"{0}\" To CD"), photo.Name);
+						progress_dialog.Message = string.Format (Strings.TransferringPictureXToCD, photo.Name);
 						progress_dialog.Fraction = photo_index / (double)selection.Count;
-						progress_dialog.ProgressText = string.Format (Catalog.GetString ("{0} of {1}"), photo_index, selection.Count);
+						progress_dialog.ProgressText = string.Format (Strings.XOfY, photo_index, selection.Count);
 
 						try {
 							source.CopyTo (target.ToString ());
@@ -135,19 +132,19 @@ namespace FSpot.Exporters.CD
 
 				// FIXME the error dialog here is ugly and needs improvement when strings are not frozen.
 				if (result) {
-					progress_dialog.Message = Catalog.GetString ("Done Sending Photos");
+					progress_dialog.Message = Strings.DoneSendingPhotos;
 					progress_dialog.Fraction = 1.0;
-					progress_dialog.ProgressText = Catalog.GetString ("Transfer Complete");
+					progress_dialog.ProgressText = Strings.TransferComplete;
 					progress_dialog.ButtonLabel = Gtk.Stock.Ok;
 					progress_dialog.Hide ();
 					burner.Run ();
 				} else
-					throw new Exception ($"{progress_dialog.Message}{Environment.NewLine}{Catalog.GetString ("Error While Transferring")}{Environment.NewLine}{result.ToString ()}");
+					throw new Exception ($"{progress_dialog.Message}{Environment.NewLine}{Strings.ErrorWhileTransferring}{Environment.NewLine}{result}");
 
 			} catch (Exception e) {
 				Logger.Log.Debug (e, "");
 				progress_dialog.Message = e.ToString ();
-				progress_dialog.ProgressText = Catalog.GetString ("Error Transferring");
+				progress_dialog.ProgressText = Strings.ErrorTransferring;
 				return;
 			}
 			ThreadAssist.ProxyToMain (() => {
@@ -157,7 +154,7 @@ namespace FSpot.Exporters.CD
 
 		void Progress (long current_num_bytes, long total_num_bytes)
 		{
-			progress_dialog.ProgressText = Catalog.GetString ("copying...");
+			progress_dialog.ProgressText = Strings.Copying;
 
 			if (total_num_bytes > 0)
 				progress_dialog.Fraction = current_num_bytes / (double)total_num_bytes;

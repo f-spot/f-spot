@@ -38,6 +38,7 @@ using Gtk;
 using FSpot;
 using FSpot.Core;
 using FSpot.Database;
+using FSpot.Resources.Lang;
 using FSpot.Utils;
 
 public class TagMenu : Menu
@@ -119,8 +120,7 @@ public class TagMenu : Menu
 
 		if (NewTagHandler != null) {
 			GtkUtil.MakeMenuSeparator (this);
-			GtkUtil.MakeMenuItem (this, Mono.Unix.Catalog.GetString ("Create New Tag..."),
-					"tag-new", NewTagHandler, true);
+			GtkUtil.MakeMenuItem (this, Strings.CreateNewTag, "tag-new", NewTagHandler, true);
 		}
 	}
 

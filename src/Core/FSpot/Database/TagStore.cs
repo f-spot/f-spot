@@ -40,14 +40,11 @@ using System.Collections.Generic;
 using FSpot.Core;
 using FSpot.Database.Jobs;
 using FSpot.Query;
+using FSpot.Resources.Lang;
 using FSpot.Settings;
 using FSpot.Utils;
 
 using Hyena.Data.Sqlite;
-
-using Mono.Unix;
-
-
 
 namespace FSpot.Database
 {
@@ -231,12 +228,12 @@ namespace FSpot.Database
 
 		void CreateDefaultTags ()
 		{
-			Category favorites_category = CreateCategory (RootCategory, Catalog.GetString ("Favorites"), false);
+			Category favorites_category = CreateCategory (RootCategory, Strings.Favorites, false);
 			favorites_category.ThemeIconName = "emblem-favorite";
 			favorites_category.SortPriority = -10;
 			Commit (favorites_category);
 
-			Tag hidden_tag = CreateTag (RootCategory, Catalog.GetString ("Hidden"), false);
+			Tag hidden_tag = CreateTag (RootCategory, Strings.Hidden, false);
 			hidden_tag.ThemeIconName = "emblem-readonly";
 			hidden_tag.SortPriority = -9;
 			Hidden = hidden_tag;
@@ -244,17 +241,17 @@ namespace FSpot.Database
 			Db.Meta.HiddenTagId.ValueAsInt = (int) hidden_tag.Id;
 			Db.Meta.Commit (Db.Meta.HiddenTagId);
 
-			Tag people_category = CreateCategory (RootCategory, Catalog.GetString ("People"), false);
+			Tag people_category = CreateCategory (RootCategory, Strings.People, false);
 			people_category.ThemeIconName = "emblem-people";
 			people_category.SortPriority = -8;
 			Commit (people_category);
 
-			Tag places_category = CreateCategory (RootCategory, Catalog.GetString ("Places"), false);
+			Tag places_category = CreateCategory (RootCategory, Strings.Places, false);
 			places_category.ThemeIconName = "emblem-places";
 			places_category.SortPriority = -8;
 			Commit (places_category);
 
-			Tag events_category = CreateCategory (RootCategory, Catalog.GetString ("Events"), false);
+			Tag events_category = CreateCategory (RootCategory, Strings.Events, false);
 			events_category.ThemeIconName = "emblem-event";
 			events_category.SortPriority = -7;
 			Commit (events_category);
@@ -265,7 +262,7 @@ namespace FSpot.Database
 			: base (db, true)
 		{
 			// The label for the root category is used in new and edit tag dialogs
-			RootCategory = new Category (null, 0, Catalog.GetString ("(None)"));
+			RootCategory = new Category (null, 0, Strings.ParenNoneParen);
 
 			if (! isNew) {
 				LoadAllTags ();
