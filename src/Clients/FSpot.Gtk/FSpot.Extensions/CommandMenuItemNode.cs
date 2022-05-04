@@ -13,18 +13,17 @@ using System;
 
 using Mono.Addins;
 
-
 namespace FSpot.Extensions
 {
 	[ExtensionNode ("Command")]
 	public class CommandMenuItemNode : MenuItemNode
 	{
 		[NodeAttribute ("command_type", true)]
-		protected string command_type;
+		protected string commandType;
 
 		protected override void OnActivated (object o, EventArgs e)
 		{
-			var cmd = (ICommand)Addin.CreateInstance (command_type);
+			var cmd = (ICommand)Addin.CreateInstance (commandType);
 			cmd.Run (o, e);
 		}
 	}

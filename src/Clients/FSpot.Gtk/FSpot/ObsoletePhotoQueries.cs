@@ -33,19 +33,19 @@ namespace FSpot
 	public static class ObsoletePhotoQueries
 	{
 		[Obsolete ("drop this, use IQueryCondition correctly instead")]
-		public static Photo[] Query (Tag[] tags)
+		public static Photo[] Query (List<Tag> tags)
 		{
 			return Query (tags, null, null, null, null);
 		}
 
 		[Obsolete ("drop this, use IQueryCondition correctly instead")]
-		public static Photo[] Query (Tag[] tags, string extraCondition, DateRange range, RollSet importidrange)
+		public static Photo[] Query (List<Tag> tags, string extraCondition, DateRange range, RollSet importidrange)
 		{
 			return Query (OrTerm.FromTags (tags), extraCondition, range, importidrange, null);
 		}
 
 		[Obsolete ("drop this, use IQueryCondition correctly instead")]
-		public static Photo[] Query (Tag[] tags, string extraCondition, DateRange range, RollSet importidrange, RatingRange ratingrange)
+		public static Photo[] Query (List<Tag> tags, string extraCondition, DateRange range, RollSet importidrange, RatingRange ratingrange)
 		{
 			return Query (OrTerm.FromTags (tags), extraCondition, range, importidrange, ratingrange);
 		}

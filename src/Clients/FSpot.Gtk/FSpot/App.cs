@@ -278,9 +278,9 @@ namespace FSpot
 
 			IPhoto[] photos;
 			if (tag != null)
-				photos = ObsoletePhotoQueries.Query (new Tag[] { tag });
+				photos = ObsoletePhotoQueries.Query (new List<Tag> { tag });
 			else if (Preferences.Get<int> (Preferences.ScreensaverTag) == 0)
-				photos = ObsoletePhotoQueries.Query (Array.Empty<Tag> ());
+				photos = ObsoletePhotoQueries.Query (new List<Tag> ());
 			else
 				photos = Array.Empty<IPhoto> ();
 

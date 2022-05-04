@@ -14,19 +14,18 @@ using Gdk;
 
 namespace FSpot.Editors
 {
-
 	// TODO: Move EditorNode to FSpot.Extionsions?
 
 	public class EditorState
 	{
 		// The area selected by the user.
-		public Rectangle Selection;
+		public Rectangle Selection { get; set; }
 
 		// The images selected by the user.
-		public IPhoto[] Items;
+		public IPhoto[] Items { get; set; }
 
 		// The view, into which images are shown (null if we are in the browse view).
-		public PhotoImageView PhotoImageView;
+		public PhotoImageView PhotoImageView { get; set; }
 
 		// Has a portion of the image been selected?
 		public bool HasSelection {
@@ -40,5 +39,4 @@ namespace FSpot.Editors
 	}
 
 	// This is the base class from which all editors inherit.
-
 }

@@ -13,6 +13,8 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using System.Collections.Generic;
+
 using FSpot.Core;
 using FSpot.Database;
 
@@ -35,7 +37,7 @@ namespace FSpot.UI.Dialog
 			tag_selection_widget.Show ();
 		}
 
-		public new Tag[] Run ()
+		public new List<Tag> Run ()
 		{
 			int response = base.Run ();
 			if ((ResponseType)response == ResponseType.Ok)

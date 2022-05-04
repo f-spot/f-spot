@@ -14,6 +14,7 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -24,6 +25,8 @@ using FSpot.Utils;
 using Gdk;
 
 using Gtk;
+
+using TagLib.Riff;
 
 namespace FSpot
 {
@@ -63,13 +66,13 @@ namespace FSpot
 			return photos;
 		}
 
-		public static void SetTagsData (this SelectionData selection_data, Tag[] tags, Atom target)
+		public static void SetTagsData (this SelectionData selection_data, List<Tag> tags, Atom target)
 		{
-			byte[] data = new byte[tags.Length * sizeof (uint)];
+			var data = new byte[tags.Count * sizeof (uint)];
 
 			int i = 0;
 			foreach (Tag tag in tags) {
-				byte[] bytes = System.BitConverter.GetBytes (tag.Id);
+				var bytes = System.BitConverter.GetBytes (tag.Id);
 
 				foreach (byte b in bytes) {
 					data[i] = b;
@@ -80,14 +83,14 @@ namespace FSpot
 			selection_data.Set (target, 8, data, data.Length);
 		}
 
-		public static Tag[] GetTagsData (this SelectionData selection_data)
+		public static List<Tag> GetTagsData (this SelectionData selection_data)
 		{
 			int size = sizeof (uint);
 			int length = selection_data.Length / size;
 
 			TagStore tag_store = App.Instance.Database.Tags;
 
-			var tags = new Tag[length];
+			var tags = new List<Tag> (length);
 
 			for (int i = 0; i < length; i++) {
 				uint id = System.BitConverter.ToUInt32 (selection_data.Data, i * size);

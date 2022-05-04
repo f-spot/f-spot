@@ -16,6 +16,7 @@
 // This has to do with Finding photos based on tags
 // http://mail.gnome.org/archives/f-spot-list/2005-November/msg00053.html
 // http://bugzilla-attachments.gnome.org/attachment.cgi?id=54566
+
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -32,6 +33,8 @@ namespace FSpot.Query
 	// TODO rename to TagLiteral?
 	public class Literal : AbstractLiteral
 	{
+		public static List<Literal> FocusedLiterals { get; set; } = new List<Literal>();
+
 		public Literal (Tag tag) : this (null, tag, null)
 		{
 		}
@@ -40,14 +43,6 @@ namespace FSpot.Query
 		{
 			this.tag = tag;
 		}
-
-		static Literal ()
-		{
-			FocusedLiterals = new List<Literal> ();
-		}
-
-		#region Properties
-		public static List<Literal> FocusedLiterals { get; set; }
 
 		public Tag Tag {
 			get {
@@ -190,9 +185,7 @@ namespace FSpot.Query
 				normal_icon = null;
 			}
 		}
-		#endregion
 
-		#region Methods
 		public void Update ()
 		{
 			// Clear out the old icons
@@ -283,9 +276,7 @@ namespace FSpot.Query
 			foreach (var literal in focusedLiterals)
 				literal.RemoveSelf ();
 		}
-		#endregion
 
-		#region Handlers
 		void KeyHandler (object o, KeyPressEventArgs args)
 		{
 			args.RetVal = false;
@@ -471,12 +462,12 @@ namespace FSpot.Query
 
 		public void HandleRequireTag (object sender, EventArgs args)
 		{
-			RequireTag?.Invoke (new[] { Tag });
+			RequireTag?.Invoke (new List<Tag> { Tag });
 		}
 
 		public void HandleUnRequireTag (object sender, EventArgs args)
 		{
-			UnRequireTag?.Invoke (new[] { Tag });
+			UnRequireTag?.Invoke (new List<Tag> { Tag });
 		}
 
 		const int ICON_SIZE = 24;
@@ -514,7 +505,7 @@ namespace FSpot.Query
 
 		public event RemovedHandler Removed;
 
-		public delegate void TagsAddedHandler (Tag[] tags, Term parent, Literal after);
+		public delegate void TagsAddedHandler (List<Tag> tags, Term parent, Literal after);
 
 		public event TagsAddedHandler TagsAdded;
 
@@ -522,17 +513,16 @@ namespace FSpot.Query
 
 		public event AttachTagHandler AttachTag;
 
-		public delegate void TagRequiredHandler (Tag[] tags);
+		public delegate void TagRequiredHandler (List<Tag> tags);
 
 		public event TagRequiredHandler RequireTag;
 
-		public delegate void TagUnRequiredHandler (Tag[] tags);
+		public delegate void TagUnRequiredHandler (List<Tag> tags);
 
 		public event TagUnRequiredHandler UnRequireTag;
 
 		public delegate void LiteralsMovedHandler (List<Literal> literals, Term parent, Literal after);
 
 		public event LiteralsMovedHandler LiteralsMoved;
-		#endregion
 	}
 }

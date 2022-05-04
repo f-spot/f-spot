@@ -12,6 +12,7 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
+using System.Collections.Generic;
 
 using FSpot.Core;
 using FSpot.Database;
@@ -63,7 +64,7 @@ namespace FSpot.UI.Dialog
 			query = new PhotoQuery (db.Photos);
 
 			if (db.Tags.Hidden != null)
-				query.Terms = OrTerm.FromTags (new[] { t });
+				query.Terms = OrTerm.FromTags (new List<Tag> { t });
 			else
 				query.Terms = new Literal (t);
 

@@ -873,7 +873,7 @@ namespace FSpot
 		// Tag Selection Drag Handlers
 		//
 
-		public void AddTagExtended (int[] nums, Tag[] tags)
+		public void AddTagExtended (int[] nums, List<Tag> tags)
 		{
 			foreach (int num in nums)
 				(query[num] as Photo).AddTag (tags);
@@ -903,7 +903,7 @@ namespace FSpot
 			query_widget.SetFolders (uriList);
 		}
 
-		public void RemoveTags (int[] nums, Tag[] tags)
+		public void RemoveTags (int[] nums, List<Tag> tags)
 		{
 			foreach (int num in nums)
 				(query[num] as Photo).RemoveTag (tags);
@@ -930,7 +930,7 @@ namespace FSpot
 		void HandleTagSelectionRowActivated (object sender, RowActivatedArgs args)
 		{
 			ShowQueryWidget ();
-			query_widget.Include (new Tag[] { tag_selection_widget.TagByPath (args.Path) });
+			query_widget.Include (new List<Tag> { tag_selection_widget.TagByPath (args.Path) });
 		}
 
 		void JumpTo (int index)
@@ -1393,9 +1393,9 @@ namespace FSpot
 		public void HandleAttachTagMenuSelected (Tag t)
 		{
 			Database.BeginTransaction ();
-			AddTagExtended (SelectedIds (), new Tag[] { t });
+			AddTagExtended (SelectedIds (), new List<Tag> { t });
 			Database.CommitTransaction ();
-			query_widget.PhotoTagsChanged (new Tag[] { t });
+			query_widget.PhotoTagsChanged (new List<Tag> { t });
 		}
 
 		public void HandleRequireTag (object sender, EventArgs args)
@@ -1412,9 +1412,9 @@ namespace FSpot
 		public void HandleRemoveTagMenuSelected (Tag t)
 		{
 			Database.BeginTransaction ();
-			RemoveTags (SelectedIds (), new[] { t });
+			RemoveTags (SelectedIds (), new List<Tag> { t });
 			Database.CommitTransaction ();
-			query_widget.PhotoTagsChanged (new[] { t });
+			query_widget.PhotoTagsChanged (new List<Tag> { t });
 		}
 
 		//
@@ -1612,7 +1612,7 @@ namespace FSpot
 
 			if (new_tag != null) {
 				tag_selection_widget.ScrollTo (new_tag);
-				tag_selection_widget.TagHighlight = new Tag[] { new_tag };
+				tag_selection_widget.TagHighlight = new List<Tag> { new_tag };
 			}
 		}
 
@@ -1627,7 +1627,7 @@ namespace FSpot
 			AttachTags (tag_selection_widget.TagHighlight, SelectedIds ());
 		}
 
-		void AttachTags (Tag[] tags, int[] ids)
+		void AttachTags (List<Tag> tags, int[] ids)
 		{
 			Database.BeginTransaction ();
 			AddTagExtended (ids, tags);
@@ -1637,7 +1637,7 @@ namespace FSpot
 
 		public void HandleRemoveTagCommand (object obj, EventArgs args)
 		{
-			Tag[] tags = tag_selection_widget.TagHighlight;
+			var tags = tag_selection_widget.TagHighlight;
 
 			Database.BeginTransaction ();
 			RemoveTags (SelectedIds (), tags);
@@ -1647,8 +1647,8 @@ namespace FSpot
 
 		public void HandleEditSelectedTag (object sender, EventArgs ea)
 		{
-			Tag[] tags = tag_selection_widget.TagHighlight;
-			if (tags.Length != 1)
+			var tags = tag_selection_widget.TagHighlight;
+			if (tags.Count != 1)
 				return;
 
 			HandleEditSelectedTagWithTag (tags[0]);
@@ -1680,14 +1680,14 @@ namespace FSpot
 		public void HandleMergeTagsCommand (object obj, EventArgs args)
 		{
 			var tags = tag_selection_widget.TagHighlight;
-			if (tags.Length < 2)
+			if (tags.Count < 2)
 				return;
 
-			string header = string.Format (Strings.MergeTheSelectedTags, tags.Length);
+			string header = string.Format (Strings.MergeTheSelectedTags, tags.Count);
 
 			// If a tag with children tags is selected for merging, we
 			// should also merge its children..
-			var all_tags = new List<Tag> (tags.Length);
+			var all_tags = new List<Tag> (tags.Count);
 			foreach (Tag tag in tags) {
 				if (!all_tags.Contains (tag))
 					all_tags.Add (tag);
@@ -1701,8 +1701,8 @@ namespace FSpot
 			}
 
 			// debug..
-			tags = all_tags.ToArray ();
-			Array.Sort (tags, new TagRemoveComparer ());
+			tags = all_tags;
+			tags.Sort (new TagRemoveComparer ());
 
 			foreach (Tag tag in tags) {
 				Logger.Log.Debug ($"tag: {tag.Name}");
@@ -1718,10 +1718,11 @@ namespace FSpot
 
 			// The surviving tag is the last tag, as it is definitely not a child of any other the
 			// other tags.  removetags will contain the tags to be merged.
-			Tag survivor = tags[tags.Length - 1];
+			Tag survivor = tags[tags.Count - 1];
 
-			var removetags = new Tag[tags.Length - 1];
-			Array.Copy (tags, 0, removetags, 0, tags.Length - 1);
+			var removetags = new List<Tag> (tags.Count - 1);
+			foreach (var tag in tags)
+				removetags.Add (tag);
 
 			// Add the surviving tag to all the photos with the other tags
 			var photos = ObsoletePhotoQueries.Query (removetags);
@@ -2175,9 +2176,9 @@ namespace FSpot
 
 		public void HandleDeleteSelectedTagCommand (object sender, EventArgs args)
 		{
-			Tag[] tags = tag_selection_widget.TagHighlight;
+			var tags = tag_selection_widget.TagHighlight;
 
-			Array.Sort (tags, new TagRemoveComparer ());
+			tags.Sort (new TagRemoveComparer ());
 
 			//How many pictures are associated to these tags?
 			Db db = App.Instance.Database;
@@ -2186,22 +2187,22 @@ namespace FSpot
 			int associated_photos = count_query.Count;
 
 			string header;
-			if (tags.Length == 1)
+			if (tags.Count == 1)
 				header = string.Format (Strings.DeleteTagXQuestion, tags[0].Name.Replace ("_", "__"));
 			else
-				header = string.Format (Strings.DeleteTheXSelectedTagsQuestion, tags.Length);
+				header = string.Format (Strings.DeleteTheXSelectedTagsQuestion, tags.Count);
 
-			header = string.Format (header, tags.Length);
+			header = string.Format (header, tags.Count);
 			string msg = string.Empty;
 			if (associated_photos > 0) {
 				string photodesc = (associated_photos <= 1) ? Strings.Photo : Strings.Photos;
-				if (tags.Length <= 1)
+				if (tags.Count <= 1)
 					msg = Strings.IfYouDeleteThisTagTheAssociationWithXYWillBeLost;
 				else
 					msg = Strings.IfYouDeleteThisTagsTheAssociationWithXYWillBeLost;
 				msg = string.Format (msg, associated_photos, photodesc);
 			}
-			string ok_caption = (tags.Length <= 1) ? Strings.DeleteTagMnemonic : Strings.DeleteTagsMnemonic;
+			string ok_caption = (tags.Count <= 1) ? Strings.DeleteTagMnemonic : Strings.DeleteTagsMnemonic;
 
 			if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation (main_window,
 					DialogFlags.DestroyWithParent,
@@ -2283,8 +2284,7 @@ namespace FSpot
 									select p.DefaultVersion.Uri);
 			var paths = string.Join (" ",
 									 (from p in SelectedPhotos ()
-									  select p.DefaultVersion.Uri.LocalPath).ToArray ()
-								 );
+									  select p.DefaultVersion.Uri.LocalPath).ToArray ());
 
 			clipboard.SetWithData ((TargetEntry[])targetList, delegate (Clipboard clip, SelectionData data, uint info) {
 
@@ -2860,21 +2860,21 @@ namespace FSpot
 			}
 		}
 
-		void HandleTagEntryTagsAttached (object o, string[] new_tags)
+		void HandleTagEntryTagsAttached (object o, List<string> new_tags)
 		{
 			int[] selected_photos = SelectedIds ();
-			if (selected_photos == null || new_tags == null || new_tags.Length == 0)
+			if (selected_photos == null || new_tags == null || new_tags.Count == 0)
 				return;
 
 			Category default_category = null;
-			Tag[] selection = tag_selection_widget.TagHighlight;
-			if (selection.Length > 0) {
+			var selection = tag_selection_widget.TagHighlight;
+			if (selection.Count > 0) {
 				if (selection[0] is Category)
 					default_category = (Category)selection[0];
 				else
 					default_category = selection[0].Category;
 			}
-			var tags = new Tag[new_tags.Length];
+			var tags = new List<Tag> (new_tags.Count);
 			int i = 0;
 			Database.BeginTransaction ();
 			foreach (string tagname in new_tags) {
@@ -2889,10 +2889,10 @@ namespace FSpot
 			Database.CommitTransaction ();
 		}
 
-		void HandleTagEntryRemoveTags (object o, Tag[] remove_tags)
+		void HandleTagEntryRemoveTags (object o, List<Tag> remove_tags)
 		{
 			int[] selected_photos = SelectedIds ();
-			if (selected_photos == null || remove_tags == null || remove_tags.Length == 0)
+			if (selected_photos == null || remove_tags == null || remove_tags.Count == 0)
 				return;
 
 			Database.BeginTransaction ();

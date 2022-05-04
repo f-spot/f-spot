@@ -22,8 +22,8 @@ using FSpot.Database;
 
 namespace FSpot.Widgets
 {
-	public delegate void TagsAttachedHandler (object sender, string[] tags);
-	public delegate void TagsRemovedHandler (object sender, Tag[] tags);
+	public delegate void TagsAttachedHandler (object sender, List<string> tags);
+	public delegate void TagsRemovedHandler (object sender, List<Tag> tags);
 
 	public class TagEntry : Gtk.Entry
 	{
@@ -261,7 +261,7 @@ namespace FSpot.Widgets
 
 			//Send event
 			if (new_tags.Count != 0 && TagsAttached != null)
-				TagsAttached (this, new_tags.ToArray ());
+				TagsAttached (this, new_tags);
 
 			// Remove any removed tags from the selected photos
 			var remove_tags = new List<Tag> ();
@@ -274,7 +274,7 @@ namespace FSpot.Widgets
 
 			//Send event
 			if (remove_tags.Count != 0 && TagsRemoved != null)
-				TagsRemoved (this, remove_tags.ToArray ());
+				TagsRemoved (this, remove_tags);
 		}
 
 		static bool IsTagInList (string[] tags, string tag)

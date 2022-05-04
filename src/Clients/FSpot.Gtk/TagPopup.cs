@@ -16,6 +16,7 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
+using System.Collections.Generic;
 
 using FSpot.Core;
 using FSpot.Query;
@@ -26,10 +27,10 @@ namespace FSpot
 {
 	public class TagPopup
 	{
-		public void Activate (Gdk.EventButton eb, Tag tag, Tag[] tags)
+		public void Activate (Gdk.EventButton eb, Tag tag, List<Tag> tags)
 		{
 			var photo_count = App.Instance.Organizer.SelectedPhotos ().Length;
-			var tags_count = tags.Length;
+			var tags_count = tags.Count;
 
 			var popup_menu = new Gtk.Menu ();
 

@@ -31,9 +31,10 @@ namespace FSpot.Query
 
 		static AndTerm ()
 		{
-			Operators = new List<string> ();
-			Operators.Add (Strings.LiteralAnd);
-			Operators.Add (Strings.CommaSpace);
+			Operators = new List<string> {
+				Strings.LiteralAnd,
+				Strings.CommaSpace
+			};
 		}
 
 		public AndTerm (Term parent, Literal after) : base (parent, after)
@@ -66,9 +67,7 @@ namespace FSpot.Query
 			Tag hidden = App.Instance.Database.Tags.Hidden;
 			if (hidden != null)
 				if (FindByTag (hidden, true).Count == 0) {
-					condition.Append (string.Format (
-								" AND id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {0})", hidden.Id
-								));
+					condition.Append ($" AND id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {hidden.Id})");
 				}
 
 			condition.Append (')');

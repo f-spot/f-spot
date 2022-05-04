@@ -99,12 +99,11 @@ namespace FSpot
 			ScrollToCell (path, null, false, 0, 0);
 		}
 
-		public Tag[] TagHighlight {
+		public List<Tag> TagHighlight {
 			get {
+				var rows = Selection.GetSelectedRows (out var model);
 
-				TreePath[] rows = Selection.GetSelectedRows (out var model);
-
-				var tags = new Tag[rows.Length];
+				var tags = new List<Tag> (rows.Length);
 				int i = 0;
 
 				foreach (TreePath path in rows) {
@@ -564,8 +563,8 @@ namespace FSpot
 
 		void HandleDragBegin (object sender, DragBeginArgs args)
 		{
-			Tag[] tags = TagHighlight;
-			int len = tags.Length;
+			var tags = TagHighlight;
+			int len = tags.Count;
 			int size = 32;
 			int csize = size / 2 + len * size / 2 + 2;
 
@@ -690,13 +689,13 @@ namespace FSpot
 					parent = tag as Category;
 				}
 
-				if (parent == null || TagHighlight.Length < 1) {
+				if (parent == null || TagHighlight.Count < 1) {
 					args.RetVal = false;
 					return;
 				}
 
 				int moved_count = 0;
-				Tag[] highlighted_tags = TagHighlight;
+				var highlighted_tags = TagHighlight;
 				foreach (Tag child in TagHighlight) {
 					// FIXME with this reparenting via dnd, you cannot move a tag to root.
 					if (child != parent && child.Category != parent && !child.IsAncestorOf (parent)) {

@@ -10,6 +10,7 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -147,7 +148,7 @@ namespace FSpot.Tools.LiveWebGallery
 		{
 			switch (query_type) {
 			case QueryType.ByTag:
-				return ObsoletePhotoQueries.Query (new Tag[] { query_tag });
+				return ObsoletePhotoQueries.Query (new List<Tag> { query_tag });
 			case QueryType.CurrentView:
 				return App.Instance.Organizer.Query.Photos;
 			case QueryType.Selected:

@@ -47,7 +47,6 @@ namespace FSpot.Editors
 			get { return state != null; }
 		}
 
-
 		// Whether the user needs to select a part of the image before it can be applied.
 		public bool NeedsSelection = false;
 
@@ -60,12 +59,7 @@ namespace FSpot.Editors
 			}
 		}
 
-		bool can_handle_multiple = false;
-		public bool CanHandleMultiple {
-			get { return can_handle_multiple; }
-			protected set { can_handle_multiple = value; }
-		}
-
+		public bool CanHandleMultiple { get; protected set; } = false;
 
 		protected void LoadPhoto (Photo photo, out Pixbuf photo_pixbuf, out Cms.Profile photo_profile)
 		{
@@ -85,7 +79,6 @@ namespace FSpot.Editors
 			get { return apply_label == "" ? Label : apply_label; }
 			protected set { apply_label = value; }
 		}
-
 
 		// The icon name for this action (will be loaded from the theme).
 		public readonly string IconName;
@@ -139,11 +132,7 @@ namespace FSpot.Editors
 			return Process (input, input_profile);
 		}
 
-		bool has_settings;
-		public bool HasSettings {
-			get { return has_settings; }
-			protected set { has_settings = value; }
-		}
+		public bool HasSettings { get; protected set; }
 
 		Pixbuf original;
 		Pixbuf preview;
@@ -175,9 +164,7 @@ namespace FSpot.Editors
 			State.PhotoImageView.ZoomFit (false);
 			App.Instance.Organizer.InfoBox.UpdateHistogram (previewed);
 
-			if (old_preview != null) {
-				old_preview.Dispose ();
-			}
+			old_preview?.Dispose ();
 		}
 
 		void CalcPreviewSize (Pixbuf input, out int width, out int height)
@@ -229,7 +216,6 @@ namespace FSpot.Editors
 		{
 			return null;
 		}
-
 
 		public virtual EditorState CreateState ()
 		{

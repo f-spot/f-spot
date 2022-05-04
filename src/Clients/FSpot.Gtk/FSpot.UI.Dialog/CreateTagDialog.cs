@@ -152,10 +152,10 @@ namespace FSpot.UI.Dialog
 			}
 		}
 
-		public Tag Execute (TagType type, Tag[] selection)
+		public Tag Execute (TagType type, List<Tag> selection)
 		{
 			Category default_category = null;
-			if (selection.Length > 0) {
+			if (selection.Count > 0) {
 				if (selection[0] is Category)
 					default_category = (Category)selection[0];
 				else
