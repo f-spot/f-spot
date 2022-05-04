@@ -288,7 +288,7 @@ namespace FSpot
 			} else {
 				condition_array = new IQueryCondition[conditions.Count + 2];
 				//		condition_array[0] = new ConditionWrapper (extra_condition);
-				condition_array[1] = new ConditionWrapper (terms != null ? terms.SqlCondition () : null);
+				condition_array[1] = new ConditionWrapper (terms?.SqlCondition ());
 				i = 2;
 			}
 

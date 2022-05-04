@@ -577,7 +577,7 @@ namespace FSpot.Database
 					string filename = photo_uri.GetFilename ();
 					Uri base_uri = photo_uri.GetDirectoryUri ();
 
-					string md5 = reader["md5_sum"] != null ? reader["md5_sum"].ToString () : null;
+					string md5 = reader["md5_sum"]?.ToString ();
 
 					Execute (new HyenaSqliteCommand (
 						"INSERT INTO photos (id, time, base_uri, filename, description, roll_id, default_version_id, rating, md5_sum) " +
@@ -605,7 +605,7 @@ namespace FSpot.Database
 					string filename = photo_uri.GetFilename ();
 					Uri base_uri = photo_uri.GetDirectoryUri ();
 
-					string md5 = reader["md5_sum"] != null ? reader["md5_sum"].ToString () : null;
+					string md5 = reader["md5_sum"]?.ToString ();
 
 					Execute (new HyenaSqliteCommand (
 						"INSERT INTO photo_versions (photo_id, version_id, name, base_uri, filename, protected, md5_sum) " +

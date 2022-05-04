@@ -77,7 +77,7 @@ namespace Hyena.Data.Gui.Accessibility
 		public string GetColumnDescription (int column)
 		{
 			var col = list_view.ColumnController.Where (c => c.Visible).ElementAtOrDefault (column);
-			return col == null ? null : col.LongTitle;
+			return col?.LongTitle;
 		}
 
 		public int GetColumnExtentAt (int row, int column)

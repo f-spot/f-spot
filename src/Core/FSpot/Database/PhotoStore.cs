@@ -240,7 +240,7 @@ namespace FSpot.Database
 					string name = reader["name"].ToString ();
 					var base_uri = new SafeUri (reader["base_uri"].ToString (), true);
 					var filename = reader["filename"].ToString ();
-					string import_md5 = reader["import_md5"] != null ? reader["import_md5"].ToString () : null;
+					string import_md5 = reader["import_md5"]?.ToString ();
 					bool is_protected = Convert.ToBoolean (reader["protected"]);
 
 					photo.AddVersionUnsafely (version_id, base_uri, filename, import_md5, name, is_protected);
@@ -277,7 +277,7 @@ namespace FSpot.Database
 						string name = reader["name"].ToString ();
 						var base_uri = new SafeUri (reader["base_uri"].ToString (), true);
 						var filename = reader["filename"].ToString ();
-						string import_md5 = reader["import_md5"] != null ? reader["import_md5"].ToString () : null;
+						string import_md5 = reader["import_md5"]?.ToString ();
 						bool is_protected = Convert.ToBoolean (reader["protected"]);
 
 						photo.AddVersionUnsafely (version_id, base_uri, filename, import_md5, name, is_protected);

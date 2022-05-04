@@ -63,7 +63,7 @@ namespace Hyena.Query
 					throw new Exception ("Invalid query");
 
 				QueryNode node = Parse (query.FirstChild as XmlElement, null);
-				return (node != null) ? node.Trim () : null;
+				return node?.Trim ();
 			} catch (Exception) {
 			}
 			return null;

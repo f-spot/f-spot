@@ -59,7 +59,7 @@ namespace FSpot
 
 		public Pixbuf Result {
 			get {
-				return result == null ? null : result.ShallowCopy ();
+				return result?.ShallowCopy ();
 			}
 			set { result = value; }
 		}

@@ -174,7 +174,7 @@ namespace Hyena.Gui.Canvas
 		public CanvasItem Parent { get; set; }
 
 		public Theme Theme {
-			get { return theme ?? (Parent != null ? Parent.Theme : null); }
+			get { return theme ?? (Parent?.Theme); }
 			set { theme = value; }
 		}
 
@@ -332,7 +332,7 @@ namespace Hyena.Gui.Canvas
 		}
 
 		internal CanvasManager Manager {
-			get { return manager ?? (Parent != null ? Parent.Manager : null); }
+			get { return manager ?? (Parent?.Manager); }
 			set { manager = value; }
 		}
 

@@ -87,7 +87,7 @@ namespace FSpot.Widgets
 			if (Completing)
 				return false;
 
-			key = key == null ? null : key.Normalize (NormalizationForm.FormC);
+			key = key?.Normalize (NormalizationForm.FormC);
 			string name = completion.Model.GetValue (iter, completion.TextColumn) as string;
 			int pos = entry.Position - 1;
 			return completion_logic.MatchFunc (name, key, pos);

@@ -102,7 +102,7 @@ namespace Hyena.Data.Gui
 			theme = Hyena.Gui.Theming.ThemeEngine.CreateTheme (this);
 
 			// Save the drawable so we can reuse it
-			Gdk.Drawable drawable = cell_context != null ? cell_context.Drawable : null;
+			Gdk.Drawable drawable = cell_context?.Drawable;
 
 			if (pango_layout != null) {
 				cell_context.FontDescription.Dispose ();

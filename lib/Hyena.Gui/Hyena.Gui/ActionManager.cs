@@ -116,7 +116,7 @@ namespace Hyena.Gui
 			string action_name = parts[1];
 
 			ActionGroup group = FindActionGroup (group_name);
-			return group == null ? null : group.GetAction (action_name);
+			return group?.GetAction (action_name);
 		}
 
 		public void PopulateToolbarPlaceholder (Toolbar toolbar, string path, Widget item)

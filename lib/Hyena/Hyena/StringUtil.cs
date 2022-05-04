@@ -307,7 +307,7 @@ namespace Hyena
 
 		public static string MaybeFallback (string input, string fallback)
 		{
-			string trimmed = input == null ? null : input.Trim ();
+			string trimmed = input?.Trim ();
 			return string.IsNullOrEmpty (trimmed) ? fallback : trimmed;
 		}
 
