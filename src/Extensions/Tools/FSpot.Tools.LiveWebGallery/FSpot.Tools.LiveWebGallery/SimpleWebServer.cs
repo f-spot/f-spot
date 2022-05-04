@@ -42,11 +42,11 @@ namespace FSpot.Tools.LiveWebGallery
 {
 	public class SimpleWebServer : IService
 	{
-		private Thread server_thread;
-		private TcpListener listener;
-		private Dictionary<string, RequestHandler> handlers = new Dictionary<string, RequestHandler> ();
+		Thread server_thread;
+		TcpListener listener;
+		Dictionary<string, RequestHandler> handlers = new Dictionary<string, RequestHandler> ();
 
-		private IWebStats stats;
+		IWebStats stats;
 		public IWebStats Stats {
 			set { stats = value; }
 		}
@@ -114,8 +114,8 @@ namespace FSpot.Tools.LiveWebGallery
 
 		class RequestProcessor
 		{
-			private TcpClient client;
-			private Dictionary<string, RequestHandler> handlers;
+			TcpClient client;
+			Dictionary<string, RequestHandler> handlers;
 
 			public RequestProcessor (TcpClient client, Dictionary<string, RequestHandler> handlers)
 			{

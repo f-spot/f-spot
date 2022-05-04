@@ -45,8 +45,8 @@ namespace FSpot.Database
 {
 	public class JobStore : DbStore<Job>
 	{
-		private const string jobsTableName = "jobs";
-		private readonly TinyIoCContainer container;
+		const string jobsTableName = "jobs";
+		readonly TinyIoCContainer container;
 
 		internal static void CreateTable (FSpotDatabaseConnection database)
 		{
@@ -64,7 +64,7 @@ namespace FSpot.Database
 				")");
 		}
 
-		private Job CreateJob (string type, uint id, string options, DateTime runAt, JobPriority priority)
+		Job CreateJob (string type, uint id, string options, DateTime runAt, JobPriority priority)
 		{
 			using (var childContainer = container.GetChildContainer ()) {
 				childContainer.Register (new JobData {
@@ -82,7 +82,7 @@ namespace FSpot.Database
 			}
 		}
 
-		private Job LoadItem (Hyena.Data.Sqlite.IDataReader reader)
+		Job LoadItem (Hyena.Data.Sqlite.IDataReader reader)
 		{
 			return CreateJob (
 					reader["job_type"].ToString (),
@@ -92,7 +92,7 @@ namespace FSpot.Database
 					(JobPriority)Convert.ToInt32 (reader["job_priority"]));
 		}
 
-		private void LoadAllItems ()
+		void LoadAllItems ()
 		{
 			Hyena.Data.Sqlite.IDataReader reader = Database.Query ($"SELECT id, job_type, job_options, run_at, job_priority FROM {jobsTableName}");
 

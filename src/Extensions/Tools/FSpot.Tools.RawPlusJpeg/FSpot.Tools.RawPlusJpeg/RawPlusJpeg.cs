@@ -89,14 +89,14 @@ namespace FSpot.Tools.RawPlusJpeg
 			App.Instance.Organizer.UpdateQuery ();
 		}
 
-		private static bool SamePlaceAndName (Photo p1, Photo p2)
+		static bool SamePlaceAndName (Photo p1, Photo p2)
 		{
 			return DirectoryPath (p1) == DirectoryPath (p2) &&
 				System.IO.Path.GetFileNameWithoutExtension (p1.Name) == System.IO.Path.GetFileNameWithoutExtension (p2.Name);
 		}
 
 
-		private static string DirectoryPath (Photo p)
+		static string DirectoryPath (Photo p)
 		{
 			return p.VersionUri (Photo.OriginalVersionId).GetBaseUri ();
 		}

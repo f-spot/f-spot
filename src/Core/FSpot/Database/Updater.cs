@@ -50,10 +50,10 @@ namespace FSpot.Database
 {
 	public static class Updater
 	{
-		private static IUpdaterUI dialog;
-		private static Dictionary<Version, Update> updates = new Dictionary<Version, Update> ();
-		private static Version db_version;
-		private static FSpotDatabaseConnection db;
+		static IUpdaterUI dialog;
+		static Dictionary<Version, Update> updates = new Dictionary<Version, Update> ();
+		static Version db_version;
+		static FSpotDatabaseConnection db;
 		public static bool silent = false;
 
 		public static Version LatestVersion {
@@ -723,9 +723,9 @@ namespace FSpot.Database
 			}, true);
 		}
 
-		private const string meta_db_version_string = "F-Spot Database Version";
+		const string meta_db_version_string = "F-Spot Database Version";
 
-		private static Version GetDatabaseVersion ()
+		static Version GetDatabaseVersion ()
 		{
 			if (!TableExists ("meta"))
 				throw new Exception ("No meta table found!");
@@ -805,17 +805,17 @@ namespace FSpot.Database
 			}
 		}
 
-		private static void AddUpdate (Version version, UpdateCode code)
+		static void AddUpdate (Version version, UpdateCode code)
 		{
 			AddUpdate (version, code, false);
 		}
 
-		private static void AddUpdate (Version version, UpdateCode code, bool is_slow)
+		static void AddUpdate (Version version, UpdateCode code, bool is_slow)
 		{
 			updates[version] = new Update (version, code, is_slow);
 		}
 
-		private static int Execute (string statement)
+		static int Execute (string statement)
 		{
 			int result = -1;
 			try {
@@ -827,7 +827,7 @@ namespace FSpot.Database
 			return result;
 		}
 
-		private static int Execute (HyenaSqliteCommand command)
+		static int Execute (HyenaSqliteCommand command)
 		{
 			int result = -1;
 			try {
@@ -839,22 +839,22 @@ namespace FSpot.Database
 			return result;
 		}
 
-		private static int ExecuteScalar (string statement)
+		static int ExecuteScalar (string statement)
 		{
 			return Execute (statement);
 		}
 
-		private static Hyena.Data.Sqlite.IDataReader ExecuteReader (string statement)
+		static Hyena.Data.Sqlite.IDataReader ExecuteReader (string statement)
 		{
 			return db.Query (statement);
 		}
 
-		private static bool TableExists (string table)
+		static bool TableExists (string table)
 		{
 			return db.TableExists (table);
 		}
 
-		private static string SelectSingleString (string statement)
+		static string SelectSingleString (string statement)
 		{
 			string result = null;
 
@@ -865,7 +865,7 @@ namespace FSpot.Database
 			return result;
 		}
 
-		private static string MoveTableToTemp (string table_name)
+		static string MoveTableToTemp (string table_name)
 		{
 			string temp_name = table_name + "_temp";
 
@@ -887,12 +887,12 @@ namespace FSpot.Database
 			return temp_name;
 		}
 
-		private delegate void UpdateCode ();
+		delegate void UpdateCode ();
 
-		private class Update
+		class Update
 		{
 			public Version Version;
-			private UpdateCode code;
+			UpdateCode code;
 			public bool IsSlow = false;
 
 			public Update (Version to_version, UpdateCode code, bool slow)

@@ -49,20 +49,20 @@ namespace FSpot.Tools.ChangePhotoPath
 {
 	public class Dump : Gtk.Dialog, ICommand, IChangePhotoPathGui
 	{
-		private string dialog_name = "ChangePhotoPath";
-		private GtkBeans.Builder builder;
-		private Gtk.Dialog dialog;
-		private ChangePathController contr;
+		string dialog_name = "ChangePhotoPath";
+		GtkBeans.Builder builder;
+		Gtk.Dialog dialog;
+		ChangePathController contr;
 
-		private ProgressDialog progress_dialog;
-		private int progress_dialog_total = 0;
+		ProgressDialog progress_dialog;
+		int progress_dialog_total = 0;
 
 #pragma warning disable 649
 		[GtkBeans.Builder.Object] Gtk.Entry old_common_uri;
 		[GtkBeans.Builder.Object] Gtk.Label new_common_uri;
 #pragma warning restore 649
 
-		private bool LaunchController ()
+		bool LaunchController ()
 		{
 			try {
 				contr = new ChangePathController (this);
@@ -97,13 +97,13 @@ namespace FSpot.Tools.ChangePhotoPath
 			}
 		}
 
-		private void CreateDialog ()
+		void CreateDialog ()
 		{
 			builder = new GtkBeans.Builder (null, "ChangePhotoPath.ui", null);
 			builder.Autoconnect (this);
 		}
 
-		private Gtk.Dialog Dialog {
+		Gtk.Dialog Dialog {
 			get {
 				if (dialog == null)
 					dialog = new Gtk.Dialog (builder.GetRawObject (dialog_name));
@@ -111,7 +111,7 @@ namespace FSpot.Tools.ChangePhotoPath
 			}
 		}
 
-		private void DisplayMsg (Gtk.MessageType MessageType, string msg)
+		void DisplayMsg (Gtk.MessageType MessageType, string msg)
 		{
 
 			HigMessageDialog.RunHigMessageDialog (null,
@@ -122,45 +122,45 @@ namespace FSpot.Tools.ChangePhotoPath
 								null);
 		}
 
-		private void DisplayDoNotStopFSpotMsg ()
+		void DisplayDoNotStopFSpotMsg ()
 		{
 			DisplayMsg (Gtk.MessageType.Info, "It will take a long time for SqLite to update the database if you have many photos." +
 							  "\nWe recommend you to let F-Spot be running during the night to ensure everything is written to disk." +
 							  "\nChanging path on 23000 photos took 2 hours until sqlite had updated all photos in the database.");
 		}
 
-		private void DisplayOrigBasePathNotFoundMsg ()
+		void DisplayOrigBasePathNotFoundMsg ()
 		{
 			DisplayMsg (Gtk.MessageType.Error, "Could not find an old base path. /YYYY/MM/DD need to start with /20, /19 or /18.");
 		}
 
-		private void DisplayCancelledMsg ()
+		void DisplayCancelledMsg ()
 		{
 			DisplayMsg (Gtk.MessageType.Warning, "Operation aborted. Database has not been modified.");
 		}
 
-		private void DisplaySamePathMsg ()
+		void DisplaySamePathMsg ()
 		{
 			DisplayMsg (Gtk.MessageType.Warning, "New and Old base path are the same.");
 		}
 
-		private void DisplayNoPhotosFoundMsg ()
+		void DisplayNoPhotosFoundMsg ()
 		{
 			DisplayMsg (Gtk.MessageType.Warning, "Did not find any photos with the old base path.");
 		}
 
-		private void DisplayExecutionOkMsg ()
+		void DisplayExecutionOkMsg ()
 		{
 			DisplayMsg (Gtk.MessageType.Info, "Completed successfully. Please ensure you wait 1-2 hour before you exit f-spot. This to ensure the database cache is written to disk.");
 		}
 
-		private void DisplayExecutionNotOkMsg ()
+		void DisplayExecutionNotOkMsg ()
 		{
 			DisplayMsg (Gtk.MessageType.Error, "An error occurred. Reverted all changes to the database.");
 		}
 
 
-		private void HandleResponse (object sender, Gtk.ResponseArgs args)
+		void HandleResponse (object sender, Gtk.ResponseArgs args)
 		{
 			bool destroy_dialog = false;
 			ChangePhotoPath.ProcessResult tmp_res;

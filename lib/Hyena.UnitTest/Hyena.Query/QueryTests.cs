@@ -35,37 +35,37 @@ namespace Hyena.Query.Tests
 	[TestFixture]
 	public class QueryTests : Hyena.Tests.TestBase
 	{
-		private static QueryField ArtistField = new QueryField (
+		static QueryField ArtistField = new QueryField (
 			"artist", "ArtistName", "Artist", "CoreArtists.NameLowered", true,
 			"by", "artist", "artists"
 		);
 
-		private static QueryField AlbumField = new QueryField (
+		static QueryField AlbumField = new QueryField (
 			"album", "AlbumTitle", "Album", "CoreAlbums.TitleLowered", true,
 			"on", "album", "from", "albumtitle"
 		);
 
-		private static QueryField PlayCountField = new QueryField (
+		static QueryField PlayCountField = new QueryField (
 			"playcount", "PlayCount", "Play Count", "CoreTracks.PlayCount", typeof (IntegerQueryValue),
 			"plays", "playcount", "numberofplays", "listens"
 		);
 
-		private static QueryField DurationField = new QueryField (
+		static QueryField DurationField = new QueryField (
 			"duration", "Duration", "Duration", "CoreTracks.Duration", typeof (TimeSpanQueryValue),
 			"duration", "length", "time"
 		);
 
-		private static QueryField MimeTypeField = new QueryField (
+		static QueryField MimeTypeField = new QueryField (
 			"mimetype", "MimeType", "Mime Type", "CoreTracks.MimeType {0} OR CoreTracks.Uri {0}", typeof (ExactStringQueryValue),
 			"type", "mimetype", "format", "ext", "mime"
 		);
 
-		private static QueryField UriField = new QueryField (
+		static QueryField UriField = new QueryField (
 			"uri", "Uri", "File Location", "CoreTracks.Uri", typeof (ExactUriStringQueryValue),
 			"uri", "path", "file", "location"
 		);
 
-		private static QueryFieldSet FieldSet = new QueryFieldSet (
+		static QueryFieldSet FieldSet = new QueryFieldSet (
 			ArtistField, AlbumField, PlayCountField, MimeTypeField, DurationField
 		);
 
@@ -253,7 +253,7 @@ namespace Hyena.Query.Tests
 			Assert.AreEqual ("by==\"foo (disc 2)\"", query_tree.ToUserQuery ());
 		}
 
-		private static void UserQueryParsesAndGenerates (string query)
+		static void UserQueryParsesAndGenerates (string query)
 		{
 			QueryNode node = UserQueryParser.Parse (query, FieldSet);
 			if (query == null || query.Trim () == String.Empty) {

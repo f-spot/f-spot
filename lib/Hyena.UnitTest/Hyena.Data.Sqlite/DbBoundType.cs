@@ -30,7 +30,7 @@ using System;
 
 namespace Hyena.Data.Sqlite.Tests
 {
-	internal enum IntEnum : int
+	enum IntEnum : int
 	{
 		Zero,
 		One,
@@ -38,7 +38,7 @@ namespace Hyena.Data.Sqlite.Tests
 		Three
 	}
 
-	internal enum LongEnum : long
+	enum LongEnum : long
 	{
 		Cero,
 		Uno,
@@ -46,7 +46,7 @@ namespace Hyena.Data.Sqlite.Tests
 		Tres
 	}
 
-	internal class ModelProvider : SqliteModelProvider<DbBoundType>
+	class ModelProvider : SqliteModelProvider<DbBoundType>
 	{
 		public ModelProvider (HyenaSqliteConnection connection) : base (connection)
 		{
@@ -75,7 +75,7 @@ namespace Hyena.Data.Sqlite.Tests
 		}
 	}
 
-	internal class DbBoundType
+	class DbBoundType
 	{
 		[DatabaseColumn ("PrimaryKey", Constraints = DatabaseColumnConstraints.PrimaryKey)]
 		public long PrimaryKey;
@@ -95,43 +95,43 @@ namespace Hyena.Data.Sqlite.Tests
 		[DatabaseColumn ("PublicLongEnumField")]
 		public LongEnum PublicLongEnumField;
 
-		private int public_int_property_field;
+		int public_int_property_field;
 		[DatabaseColumn ("PublicIntProperty")]
 		public int PublicIntProperty {
 			get { return public_int_property_field; }
 			set { public_int_property_field = value; }
 		}
-		private long public_long_property_field;
+		long public_long_property_field;
 		[DatabaseColumn ("PublicLongProperty")]
 		public long PublicLongProperty {
 			get { return public_long_property_field; }
 			set { public_long_property_field = value; }
 		}
-		private string public_string_property_field;
+		string public_string_property_field;
 		[DatabaseColumn ("PublicStringProperty")]
 		public string PublicStringProperty {
 			get { return public_string_property_field; }
 			set { public_string_property_field = value; }
 		}
-		private DateTime public_date_time_proprety_field;
+		DateTime public_date_time_proprety_field;
 		[DatabaseColumn ("PublicDateTimeProperty")]
 		public DateTime PublicDateTimeProperty {
 			get { return public_date_time_proprety_field; }
 			set { public_date_time_proprety_field = value; }
 		}
-		private TimeSpan public_time_span_property_field;
+		TimeSpan public_time_span_property_field;
 		[DatabaseColumn ("PublicTimeSpanProperty")]
 		public TimeSpan PublicTimeSpanProperty {
 			get { return public_time_span_property_field; }
 			set { public_time_span_property_field = value; }
 		}
-		private IntEnum public_int_enum_property_field;
+		IntEnum public_int_enum_property_field;
 		[DatabaseColumn ("PublicIntEnumProperty")]
 		public IntEnum PublicIntEnumProperty {
 			get { return public_int_enum_property_field; }
 			set { public_int_enum_property_field = value; }
 		}
-		private LongEnum public_long_enum_property_field;
+		LongEnum public_long_enum_property_field;
 		[DatabaseColumn ("PublicLongEnumProperty")]
 		public LongEnum PublicLongEnumProperty {
 			get { return public_long_enum_property_field; }
@@ -139,19 +139,19 @@ namespace Hyena.Data.Sqlite.Tests
 		}
 
 		[DatabaseColumn ("PrivateIntField")]
-		private int private_int_field;
+int private_int_field;
 		[DatabaseColumn ("PrivateLongField")]
-		private long private_long_field;
+long private_long_field;
 		[DatabaseColumn ("PrivateStringField")]
-		private string private_string_field;
+string private_string_field;
 		[DatabaseColumn ("PrivateDateTimeField")]
-		private DateTime private_date_time_field;
+DateTime private_date_time_field;
 		[DatabaseColumn ("PrivateTimeSpanField")]
-		private TimeSpan private_time_span_field;
+TimeSpan private_time_span_field;
 		[DatabaseColumn ("PrivateIntEnumField")]
-		private IntEnum private_int_enum_field;
+IntEnum private_int_enum_field;
 		[DatabaseColumn ("PrivateLongEnumField")]
-		private LongEnum private_long_enum_field;
+LongEnum private_long_enum_field;
 
 		public int GetPrivateIntField ()
 		{
@@ -210,45 +210,45 @@ namespace Hyena.Data.Sqlite.Tests
 			private_long_enum_field = value;
 		}
 
-		private int private_int_property_field;
+		int private_int_property_field;
 		[DatabaseColumn ("PrivateIntProperty")]
-		private int private_int_property {
+int private_int_property {
 			get { return private_int_property_field; }
 			set { private_int_property_field = value; }
 		}
-		private long private_long_property_field;
+		long private_long_property_field;
 		[DatabaseColumn ("PrivateLongProperty")]
-		private long private_long_property {
+long private_long_property {
 			get { return private_long_property_field; }
 			set { private_long_property_field = value; }
 		}
-		private string private_string_property_field;
+		string private_string_property_field;
 		[DatabaseColumn ("PrivateStringProperty")]
-		private string private_string_property {
+string private_string_property {
 			get { return private_string_property_field; }
 			set { private_string_property_field = value; }
 		}
-		private DateTime private_date_time_property_field;
+		DateTime private_date_time_property_field;
 		[DatabaseColumn ("PrivateDateTimeProperty")]
-		private DateTime private_date_time_property {
+DateTime private_date_time_property {
 			get { return private_date_time_property_field; }
 			set { private_date_time_property_field = value; }
 		}
-		private TimeSpan private_time_span_property_field;
+		TimeSpan private_time_span_property_field;
 		[DatabaseColumn ("PrivateTimeSpanProperty")]
-		private TimeSpan private_time_span_property {
+TimeSpan private_time_span_property {
 			get { return private_time_span_property_field; }
 			set { private_time_span_property_field = value; }
 		}
-		private IntEnum private_int_enum_property_field;
+		IntEnum private_int_enum_property_field;
 		[DatabaseColumn ("PrivateIntEnumProperty")]
-		private IntEnum private_int_enum_property {
+IntEnum private_int_enum_property {
 			get { return private_int_enum_property_field; }
 			set { private_int_enum_property_field = value; }
 		}
-		private LongEnum private_long_enum_property_field;
+		LongEnum private_long_enum_property_field;
 		[DatabaseColumn ("PrivateLongEnumProperty")]
-		private LongEnum private_long_enum_property {
+LongEnum private_long_enum_property {
 			get { return private_long_enum_property_field; }
 			set { private_long_enum_property_field = value; }
 		}

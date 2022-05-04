@@ -72,7 +72,7 @@ namespace FSpot.Database
 		public const string SmugMugExportType = "fspot:SmugMug";
 		public const string Gallery2ExportType = "fspot:Gallery2";
 
-		private void CreateTable ()
+		void CreateTable ()
 		{
 			Database.Execute (
 			"CREATE TABLE exports (\n" +
@@ -84,7 +84,7 @@ namespace FSpot.Database
 			")");
 		}
 
-		private ExportItem LoadItem (Hyena.Data.Sqlite.IDataReader reader)
+		ExportItem LoadItem (Hyena.Data.Sqlite.IDataReader reader)
 		{
 			return new ExportItem (Convert.ToUInt32 (reader["id"]),
 					   Convert.ToUInt32 (reader["image_id"]),
@@ -93,7 +93,7 @@ namespace FSpot.Database
 					   reader["export_token"].ToString ());
 		}
 
-		private void LoadAllItems ()
+		void LoadAllItems ()
 		{
 			Hyena.Data.Sqlite.IDataReader reader = Database.Query ("SELECT id, image_id, image_version_id, export_type, export_token FROM exports");
 

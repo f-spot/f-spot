@@ -83,7 +83,7 @@ namespace FSpot.Exporters.Gallery
 		public Gallery Gallery { get; private set; }
 		public string Name { get; set; }
 
-		private bool connected;
+		bool connected;
 		public bool Connected {
 			get {
 				bool retVal = false;

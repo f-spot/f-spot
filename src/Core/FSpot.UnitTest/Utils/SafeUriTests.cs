@@ -107,7 +107,7 @@ namespace FSpot.Utils.Tests
 		}
 	}
 
-	internal class SafeUriTest
+	class SafeUriTest
 	{
 		public string Uri { get; set; }
 		public bool IsURI { get; set; }

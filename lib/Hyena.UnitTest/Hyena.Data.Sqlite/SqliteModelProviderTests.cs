@@ -36,8 +36,8 @@ namespace Hyena.Data.Sqlite.Tests
 	[TestFixture]
 	public class SqliteModelProviderTests
 	{
-		private HyenaSqliteConnection connection;
-		private ModelProvider provider;
+		HyenaSqliteConnection connection;
+		ModelProvider provider;
 
 		[OneTimeSetUp]
 		public void Init ()
@@ -144,7 +144,7 @@ namespace Hyena.Data.Sqlite.Tests
 		}
 
 		// Some fidelity is lost in the conversion from DT to DB time format
-		private void AssertArePrettyClose (DateTime time1, DateTime time2)
+		void AssertArePrettyClose (DateTime time1, DateTime time2)
 		{
 			Assert.AreEqual (time1.Year, time2.Year);
 			Assert.AreEqual (time1.Month, time2.Month);

@@ -130,7 +130,7 @@ namespace Hyena.Collections.Tests
 			Assert.AreEqual (n, i);
 		}
 
-		private static void _TestRanges (RangeCollection range, int[] indexes)
+		static void _TestRanges (RangeCollection range, int[] indexes)
 		{
 			foreach (int index in indexes) {
 				range.Add (index);
@@ -225,7 +225,7 @@ namespace Hyena.Collections.Tests
 			Assert.AreEqual (15, range.Ranges[4].End);
 		}
 
-		private static RangeCollection _SetupTestRemoveMerges ()
+		static RangeCollection _SetupTestRemoveMerges ()
 		{
 			RangeCollection range = new RangeCollection ();
 			int[] indexes = new int[] {
@@ -442,7 +442,7 @@ namespace Hyena.Collections.Tests
 			Assert.IsFalse (ranges.Contains (GetAddress ("127.0.0.51")));
 		}
 
-		private static int GetAddress (string addressStr)
+		static int GetAddress (string addressStr)
 		{
 			System.Net.IPAddress address = System.Net.IPAddress.Parse (addressStr);
 			return (int)(System.Net.IPAddress.NetworkToHostOrder (

@@ -35,7 +35,7 @@ namespace Hyena.Collections.Tests
 	[TestFixture]
 	public class QueuePipelineTests
 	{
-		private class FakeElement : QueuePipelineElement<object>
+		class FakeElement : QueuePipelineElement<object>
 		{
 			protected override object ProcessItem (object item)
 			{
@@ -53,7 +53,7 @@ namespace Hyena.Collections.Tests
 			BuildPipeline (1000);
 		}
 
-		private void BuildPipeline (int count)
+		void BuildPipeline (int count)
 		{
 			List<FakeElement> elements = new List<FakeElement> ();
 			for (int i = 0; i < count; i++) {

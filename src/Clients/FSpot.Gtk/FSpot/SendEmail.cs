@@ -246,7 +246,7 @@ namespace FSpot
 			case "mozilla-thunderbird %s":
 			case "seamonkey -mail -compose %s":
 			case "icedove %s":
-				attach_arg.Append (",");
+				attach_arg.Append (',');
 				break;
 			case "kmail %s":
 				attach_arg.Append (" --attach ");

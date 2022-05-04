@@ -65,12 +65,12 @@ namespace Hyena.Tests
 
 	public abstract class TestBase
 	{
-		private static string bin_dir;
+		static string bin_dir;
 		public static string BinDir {
 			get { return bin_dir ?? (bin_dir = Path.GetDirectoryName (Assembly.GetExecutingAssembly ().Location)); }
 		}
 
-		private static string tests_dir;
+		static string tests_dir;
 		public static string TestsDir {
 			get { return tests_dir ?? (tests_dir = Path.Combine (Path.GetDirectoryName (BinDir), "tests")); }
 		}

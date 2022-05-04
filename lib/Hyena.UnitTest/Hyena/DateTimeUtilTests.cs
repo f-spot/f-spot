@@ -42,7 +42,7 @@ namespace Hyena.Tests
 			TestInv ("2010-10-18 02:01:00.000 -05:00", new DateTime (2010, 10, 18, 2, 1, 0, 0));
 		}
 
-		private void TestInv (string inv_string, DateTime dt)
+		void TestInv (string inv_string, DateTime dt)
 		{
 			// Make sure we can generate the given string from the DateTime
 			Assert.AreEqual (inv_string, DateTimeUtil.ToInvariantString (dt));

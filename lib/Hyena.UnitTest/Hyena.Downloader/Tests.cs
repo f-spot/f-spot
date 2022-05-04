@@ -64,14 +64,14 @@ namespace Hyena.Downloader.Tests
 		{
 		}
 
-		private void StartServer ()
+		void StartServer ()
 		{
 			server.Stop ();
 			new System.Threading.Thread (server.Run).Start ();
 			while (!server.IsServing) { }
 		}
 
-		private HttpTestServer server;
+		HttpTestServer server;
 
 		[OneTimeSetUp]
 		public void Setup ()

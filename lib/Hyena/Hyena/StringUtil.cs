@@ -211,7 +211,7 @@ namespace Hyena
 					// Skip punctuation
 				} else if (!(previous_was_letter && category == UnicodeCategory.NonSpacingMark)) {
 					if (got_space) {
-						sb.Append (" ");
+						sb.Append (' ');
 						got_space = false;
 					}
 					sb.Append (c);

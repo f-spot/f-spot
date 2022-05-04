@@ -33,21 +33,21 @@ using System.Text;
 
 namespace Hyena.Downloader.Tests
 {
-	internal class HttpTestServer : IDisposable
+	class HttpTestServer : IDisposable
 	{
-		private class Resource
+		class Resource
 		{
 			public string Path;
 			public string Checksum;
 			public long Length;
 		}
 
-		private List<Resource> resources = new List<Resource> ();
-		private bool stop_requested;
-		private bool running;
-		private bool serving;
+		List<Resource> resources = new List<Resource> ();
+		bool stop_requested;
+		bool running;
+		bool serving;
 
-		private HttpListener listener;
+		HttpListener listener;
 		public int ResourceCount { get; set; }
 		public int MinResourceSize { get; set; }
 		public int MaxResourceSize { get; set; }
@@ -95,7 +95,7 @@ namespace Hyena.Downloader.Tests
 			}
 		}
 
-		private void ServeStaticContent ()
+		void ServeStaticContent ()
 		{
 			if (Debug) Console.WriteLine ();
 			if (Debug) Console.WriteLine ("Serving static content...");
@@ -161,7 +161,7 @@ namespace Hyena.Downloader.Tests
 			}
 		}
 
-		private void ServeString (HttpListenerResponse response, string content)
+		void ServeString (HttpListenerResponse response, string content)
 		{
 			var buffer = Encoding.UTF8.GetBytes (content);
 			response.ContentType = "text/plain";
@@ -171,7 +171,7 @@ namespace Hyena.Downloader.Tests
 			}
 		}
 
-		private void GenerateStaticContent ()
+		void GenerateStaticContent ()
 		{
 			resources.Clear ();
 			var random = new Random ();

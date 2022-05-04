@@ -78,7 +78,7 @@ namespace FSpot.Exporters.Gallery
 			HandleChanged (null, null);
 		}
 
-		private void HandleChanged (object sender, System.EventArgs args)
+		void HandleChanged (object sender, System.EventArgs args)
 		{
 			name = gallery_entry.Text;
 			url = url_entry.Text;
@@ -195,11 +195,11 @@ namespace FSpot.Exporters.Gallery
 			add_dialog.Destroy ();
 		}
 
-		private GalleryAccount account;
-		private string name;
-		private string url;
-		private string password;
-		private string username;
+		GalleryAccount account;
+		string name;
+		string url;
+		string password;
+		string username;
 
 #pragma warning disable 649
 		// widgets

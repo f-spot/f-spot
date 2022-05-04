@@ -36,7 +36,7 @@ namespace Hyena.Jobs
 	[TestFixture]
 	public class SchedulerTests
 	{
-		private Scheduler scheduler;
+		Scheduler scheduler;
 
 		[SetUp]
 		public void Setup ()
@@ -164,12 +164,12 @@ namespace Hyena.Jobs
             }
         }*/
 
-		private void AssertJobsRunning (int count)
+		void AssertJobsRunning (int count)
 		{
 			Assert.AreEqual (count, scheduler.Jobs.Count (j => j.IsRunning));
 		}
 
-		private class TestJob : SimpleAsyncJob
+		class TestJob : SimpleAsyncJob
 		{
 			internal static int job_count;
 			int iteration;

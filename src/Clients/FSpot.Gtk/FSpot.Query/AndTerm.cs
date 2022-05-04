@@ -90,7 +90,7 @@ namespace FSpot.Query
 								));
 				}
 
-			condition.Append (")");
+			condition.Append (')');
 
 			return condition.ToString ();
 		}

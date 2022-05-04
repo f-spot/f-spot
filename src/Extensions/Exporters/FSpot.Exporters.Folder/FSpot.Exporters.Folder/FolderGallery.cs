@@ -66,7 +66,7 @@ using Hyena;
 
 namespace FSpot.Exporters.Folder
 {
-	internal class FolderGallery
+	class FolderGallery
 	{
 		protected struct ScaleRequest
 		{

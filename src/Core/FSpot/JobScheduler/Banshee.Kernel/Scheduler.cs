@@ -65,12 +65,12 @@ namespace Banshee.Kernel
 
 	public static class Scheduler
 	{
-		private static object this_mutex = new object ();
-		private static IntervalHeap<IJob> heap = new IntervalHeap<IJob> ();
-		private static Thread job_thread;
-		private static bool disposed;
-		private static IJob current_running_job;
-		private static int suspend_count;
+		static object this_mutex = new object ();
+		static IntervalHeap<IJob> heap = new IntervalHeap<IJob> ();
+		static Thread job_thread;
+		static bool disposed;
+		static IJob current_running_job;
+		static int suspend_count;
 
 		public static event JobEventHandler JobStarted;
 		public static event JobEventHandler JobFinished;
@@ -207,7 +207,7 @@ namespace Banshee.Kernel
 			}
 		}
 
-		private static bool IsDisposed ()
+		static bool IsDisposed ()
 		{
 			if (disposed) {
 				Debug ("Job not unscheduled; disposing scheduler");
@@ -217,7 +217,7 @@ namespace Banshee.Kernel
 			return false;
 		}
 
-		private static void CheckRun ()
+		static void CheckRun ()
 		{
 			if (heap.Count <= 0) {
 				return;
@@ -230,7 +230,7 @@ namespace Banshee.Kernel
 			}
 		}
 
-		private static void ProcessJobThread ()
+		static void ProcessJobThread ()
 		{
 			while (true) {
 				current_running_job = null;

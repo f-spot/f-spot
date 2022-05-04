@@ -253,7 +253,7 @@ namespace Hyena.Collections
 			foreach (RangeCollection.Range range in Ranges) {
 				sb.AppendFormat (" ({0}, {1})", range.Start, range.End);
 			}
-			sb.Append (">");
+			sb.Append ('>');
 			return sb.ToString ();
 		}
 	}

@@ -80,14 +80,14 @@ namespace FSpot.Tools.ChangePhotoPath
 		int total_photos;
 		string orig_base_path;
 
-		private const string BASE2000 = "/20";
-		private const string BASE1900 = "/19";
-		private const string BASE1800 = "/18";
+		const string BASE2000 = "/20";
+		const string BASE1900 = "/19";
+		const string BASE1800 = "/18";
 
-		private IChangePhotoPathGui gui_controller;
+		IChangePhotoPathGui gui_controller;
 
 
-		private bool user_cancelled;
+		bool user_cancelled;
 		public bool UserCancelled {
 			get { return user_cancelled; }
 			set { user_cancelled = value; }
@@ -103,7 +103,7 @@ namespace FSpot.Tools.ChangePhotoPath
 			user_cancelled = false;
 		}
 
-		private string EnsureEndsWithOneDirectorySeparator (string tmp_str)
+		string EnsureEndsWithOneDirectorySeparator (string tmp_str)
 		{
 			if ((tmp_str == null) || (tmp_str.Length == 0))
 				return string.Format ("{0}", Path.DirectorySeparatorChar);
@@ -119,7 +119,7 @@ namespace FSpot.Tools.ChangePhotoPath
 			return (orig_base_path != null);
 		}
 
-		private string IsThisPhotoOnOrigBasePath (string check_this_path)
+		string IsThisPhotoOnOrigBasePath (string check_this_path)
 		{
 			int i;
 			i = check_this_path.IndexOf (BASE2000);
@@ -134,7 +134,7 @@ namespace FSpot.Tools.ChangePhotoPath
 			return null;
 		}
 
-		private string FindOrigBasePath ()
+		string FindOrigBasePath ()
 		{
 			string res_path = null;
 
@@ -147,7 +147,7 @@ namespace FSpot.Tools.ChangePhotoPath
 			return res_path;
 		}
 
-		private void InitializeArrays ()
+		void InitializeArrays ()
 		{
 			photo_id_array = new List<uint> ();
 			version_id_array = new List<uint> ();
@@ -155,7 +155,7 @@ namespace FSpot.Tools.ChangePhotoPath
 			new_path_array = new StringCollection ();
 		}
 
-		private void AddVersionToArrays (uint photo_id, uint version_id, string old_path, string new_path)
+		void AddVersionToArrays (uint photo_id, uint version_id, string old_path, string new_path)
 		{
 			photo_id_array.Add (photo_id);
 			version_id_array.Add (version_id);
@@ -163,19 +163,19 @@ namespace FSpot.Tools.ChangePhotoPath
 			new_path_array.Add (new_path);
 		}
 
-		private string CreateNewPath (string old_base, string new_base, PhotoVersion version)
+		string CreateNewPath (string old_base, string new_base, PhotoVersion version)
 		{
 			return string.Format ("{0}{1}", new_base, version.Uri.AbsolutePath.Substring (old_base.Length));
 		}
 
-		private bool ChangeThisVersionUri (PhotoVersion version, string old_base, string new_base)
+		bool ChangeThisVersionUri (PhotoVersion version, string old_base, string new_base)
 		{
 			// Change to path from URI, since easier to compare with old_base which is not in URI format.
 			string tmp_path = System.IO.Path.GetDirectoryName (version.Uri.AbsolutePath);
 			return (tmp_path.StartsWith (old_base));
 		}
 
-		private void SearchVersionUriToChange (Photo photo, string old_base, string new_base)
+		void SearchVersionUriToChange (Photo photo, string old_base, string new_base)
 		{
 			foreach (uint version_id in photo.VersionIds) {
 

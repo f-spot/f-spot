@@ -38,7 +38,7 @@ namespace FSpot.Tools.LiveWebGallery
 {
 	public class PhotoRequestHandler : RequestHandler
 	{
-		private LiveWebGalleryStats stats;
+		LiveWebGalleryStats stats;
 
 		public PhotoRequestHandler (LiveWebGalleryStats stats)
 		{

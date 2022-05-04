@@ -115,7 +115,7 @@ namespace Hyena.Query
 		public override void AppendSql (StringBuilder sb, QueryFieldSet fieldSet)
 		{
 			if (Field == null) {
-				sb.Append ("(");
+				sb.Append ('(');
 				int emitted = 0;
 
 				foreach (QueryField field in fieldSet.Fields) {
@@ -124,7 +124,7 @@ namespace Hyena.Query
 							emitted++;
 				}
 
-				sb.Append (")");
+				sb.Append (')');
 			} else {
 				EmitTermMatch (sb, Field, false);
 			}

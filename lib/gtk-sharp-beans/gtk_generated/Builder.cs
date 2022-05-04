@@ -325,8 +325,8 @@ namespace GtkBeans
 		[AttributeUsage (AttributeTargets.Field)]
 		public class ObjectAttribute : Attribute
 		{
-			private string name;
-			private bool specified;
+			string name;
+			bool specified;
 
 			public ObjectAttribute (string name)
 			{

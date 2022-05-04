@@ -84,7 +84,7 @@ namespace FSpot.Imaging
 	{
 		HandleRef handle;
 
-		private delegate bool IOFunc (IntPtr sourceChannel, IOCondition cond, IntPtr data);
+		delegate bool IOFunc (IntPtr sourceChannel, IOCondition cond, IntPtr data);
 
 		[DllImport ("libglib-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IOFlags g_io_channel_get_flags (HandleRef channel);

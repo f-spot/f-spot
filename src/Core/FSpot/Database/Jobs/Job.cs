@@ -58,7 +58,7 @@ namespace FSpot.Database.Jobs
 
 		public event EventHandler Finished;
 
-		private JobStatus status;
+		JobStatus status;
 		public JobStatus Status {
 			get { return status; }
 			set {

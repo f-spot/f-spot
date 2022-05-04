@@ -106,17 +106,17 @@ namespace FSpot.Exporters.Gallery
 		public const string BROWSER_KEY = Preferences.ExportKey + EXPORT_SERVICE + "browser";
 		public const string META_KEY = Preferences.ExportKey + EXPORT_SERVICE + "meta";
 		public const string LIGHTTPD_WORKAROUND_KEY = Preferences.ExportKey + EXPORT_SERVICE + "lighttpd_workaround";
-		private bool scale;
-		private int size;
-		private bool browser;
-		private bool meta;
-		private bool connect = false;
+		bool scale;
+		int size;
+		bool browser;
+		bool meta;
+		bool connect = false;
 		IPhoto[] items;
 		int photo_index;
 		ThreadProgressDialog progress_dialog;
 		List<GalleryAccount> accounts;
-		private GalleryAccount account;
-		private Album album;
+		GalleryAccount account;
+		Album album;
 
 		// Widgets
 		[GtkBeans.Builder.Object] Gtk.Dialog export_dialog;
@@ -136,7 +136,7 @@ namespace FSpot.Exporters.Gallery
 
 		System.Threading.Thread command_thread;
 
-		private void HandleResponse (object sender, Gtk.ResponseArgs args)
+		void HandleResponse (object sender, Gtk.ResponseArgs args)
 		{
 			if (args.ResponseId != Gtk.ResponseType.Ok) {
 				export_dialog.Destroy ();
@@ -173,7 +173,7 @@ namespace FSpot.Exporters.Gallery
 			}
 		}
 
-		private void HandleProgressChanged (ProgressItem item)
+		void HandleProgressChanged (ProgressItem item)
 		{
 			//System.Console.WriteLine ("Changed value = {0}", item.Value);
 			progress_dialog.Fraction = (photo_index - 1.0 + item.Value) / (double)items.Length;
@@ -184,7 +184,7 @@ namespace FSpot.Exporters.Gallery
 			size_spin.Sensitive = scale_check.Active;
 		}
 
-		private void Upload ()
+		void Upload ()
 		{
 			account.Gallery.Progress = new ProgressItem ();
 			account.Gallery.Progress.Changed += HandleProgressChanged;
@@ -236,7 +236,7 @@ namespace FSpot.Exporters.Gallery
 				GtkBeans.Global.ShowUri (export_dialog.Screen, album.GetUrl ());
 		}
 
-		private void PopulateGalleryOptionMenu (GalleryAccountManager manager, GalleryAccount changed_account)
+		void PopulateGalleryOptionMenu (GalleryAccountManager manager, GalleryAccount changed_account)
 		{
 			this.account = changed_account;
 			int pos = -1;
@@ -263,7 +263,7 @@ namespace FSpot.Exporters.Gallery
 			gallery_optionmenu.Active = pos;
 		}
 
-		private void Connect (GalleryAccount selected = null)
+		void Connect (GalleryAccount selected = null)
 		{
 			try {
 				if (accounts.Count != 0 && connect) {
@@ -293,7 +293,7 @@ namespace FSpot.Exporters.Gallery
 			}
 		}
 
-		private void HandleAccountSelected (object sender, System.EventArgs args)
+		void HandleAccountSelected (object sender, System.EventArgs args)
 		{
 			Connect ();
 		}
@@ -311,7 +311,7 @@ namespace FSpot.Exporters.Gallery
 			}
 		}
 
-		private void PopulateAlbumOptionMenu (Gallery gallery)
+		void PopulateAlbumOptionMenu (Gallery gallery)
 		{
 			List<Album> albums = null;
 			if (gallery != null)

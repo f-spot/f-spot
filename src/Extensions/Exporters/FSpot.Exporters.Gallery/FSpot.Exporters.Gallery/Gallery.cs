@@ -170,7 +170,7 @@ namespace FSpot.Exporters.Gallery
 			return array;
 		}
 
-		private bool LineIgnored (string[] line)
+		bool LineIgnored (string[] line)
 		{
 			if (line[0].StartsWith ("debug") || line[0].StartsWith ("can_create_root"))
 				return true;
@@ -381,7 +381,7 @@ namespace FSpot.Exporters.Gallery
 		}
 		*/
 
-		private bool ParseBasic (HttpWebResponse response)
+		bool ParseBasic (HttpWebResponse response)
 		{
 			string[] data;
 			StreamReader reader = null;

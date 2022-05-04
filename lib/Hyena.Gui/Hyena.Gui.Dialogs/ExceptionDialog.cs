@@ -146,7 +146,7 @@ namespace Hyena.Gui.Dialogs
 				msg.AppendFormat ("{0}\n\n{1}\n", e.Message, e.StackTrace);
 			};
 
-			msg.Append ("\n");
+			msg.Append ('\n');
 			msg.AppendFormat (".NET Version: {0}\n", Environment.Version);
 			msg.AppendFormat ("OS Version: {0}\n", Environment.OSVersion);
 			msg.Append ("\nAssembly Version Information:\n\n");

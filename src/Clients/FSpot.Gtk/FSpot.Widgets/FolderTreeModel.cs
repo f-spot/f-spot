@@ -109,7 +109,7 @@ namespace FSpot.Widgets
 		 * UpdateFolderTree queries for directories in database and updates
 		 * a possibly existing folder-tree to the queried structure
 		 */
-		private void UpdateFolderTree ()
+		void UpdateFolderTree ()
 		{
 			Clear ();
 

@@ -33,7 +33,7 @@ namespace FSpot.Query
 {
 	public class RollSet : IQueryCondition
 	{
-		private Roll[] rolls;
+		Roll[] rolls;
 
 		public RollSet (Roll[] rolls)
 		{

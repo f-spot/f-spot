@@ -219,7 +219,7 @@ namespace Hyena.Data.Sqlite
 				bool first = true;
 				foreach (object i in (o as Array)) {
 					if (!first)
-						sb.Append (",");
+						sb.Append (',');
 					else
 						first = false;
 

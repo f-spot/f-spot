@@ -35,7 +35,7 @@ using FSpot.Core;
 
 namespace FSpot.Tools.MergeDb
 {
-	internal class MergeDbDialog
+	class MergeDbDialog
 	{
 #pragma warning disable 649
 		[GtkBeans.Builder.Object] Gtk.Dialog mergedb_dialog;

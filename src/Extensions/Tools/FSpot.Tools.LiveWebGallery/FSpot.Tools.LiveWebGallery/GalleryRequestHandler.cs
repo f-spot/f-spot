@@ -83,43 +83,43 @@ namespace FSpot.Tools.LiveWebGallery
 
 	public class GalleryRequestHandler : TemplateRequestHandler, ILiveWebGalleryOptions
 	{
-		private QueryType query_type = QueryType.ByTag;
+		QueryType query_type = QueryType.ByTag;
 		public QueryType QueryType {
 			get { return query_type; }
 			set { query_type = value; }
 		}
 
-		private Tag query_tag;
+		Tag query_tag;
 		public Tag QueryTag {
 			get { return query_tag; }
 			set { query_tag = value; }
 		}
 
-		private bool limit_max_photos = true;
+		bool limit_max_photos = true;
 		public bool LimitMaxPhotos {
 			get { return limit_max_photos; }
 			set { limit_max_photos = value; }
 		}
 
-		private int max_photos = 1000;
+		int max_photos = 1000;
 		public int MaxPhotos {
 			get { return max_photos; }
 			set { max_photos = value; }
 		}
 
-		private bool tagging_allowed = false;
+		bool tagging_allowed = false;
 		public bool TaggingAllowed {
 			get { return tagging_allowed; }
 			set { tagging_allowed = value; }
 		}
 
-		private Tag editable_tag;
+		Tag editable_tag;
 		public Tag EditableTag {
 			get { return editable_tag; }
 			set { editable_tag = value; }
 		}
 
-		private LiveWebGalleryStats stats;
+		LiveWebGalleryStats stats;
 
 		public GalleryRequestHandler (LiveWebGalleryStats stats)
 			: base ("gallery.html")
@@ -161,7 +161,7 @@ namespace FSpot.Tools.LiveWebGallery
 			stats.GalleryViews++;
 		}
 
-		private Photo[] GetChosenPhotos ()
+		Photo[] GetChosenPhotos ()
 		{
 			switch (query_type) {
 			case QueryType.ByTag:
@@ -174,7 +174,7 @@ namespace FSpot.Tools.LiveWebGallery
 			}
 		}
 
-		private string QueryTypeToString ()
+		string QueryTypeToString ()
 		{
 			switch (query_type) {
 			case QueryType.ByTag:
@@ -187,7 +187,7 @@ namespace FSpot.Tools.LiveWebGallery
 			}
 		}
 
-		private string PreparePhoto (string template, Photo photo)
+		string PreparePhoto (string template, Photo photo)
 		{
 			string photo_s = template.Replace ("PHOTO_ID", photo.Id.ToString ())
 									 .Replace ("PHOTO_NAME", Escape (photo.Name))
@@ -210,7 +210,7 @@ namespace FSpot.Tools.LiveWebGallery
 
 	public class TagAddRemoveRequestHandler : PhotoAwareRequestHandler
 	{
-		private ILiveWebGalleryOptions options;
+		ILiveWebGalleryOptions options;
 
 		public TagAddRemoveRequestHandler (ILiveWebGalleryOptions options)
 		{

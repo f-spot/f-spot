@@ -94,12 +94,12 @@ namespace Hyena.Data.Sqlite.Tests
 		}
 
 		static PropertyInfo tf = typeof (HyenaSqliteCommand).GetProperty ("CurrentSqlText", BindingFlags.Instance | BindingFlags.NonPublic);
-		private static string GetGeneratedSql (HyenaSqliteCommand cmd, params object[] p)
+		static string GetGeneratedSql (HyenaSqliteCommand cmd, params object[] p)
 		{
 			return tf.GetValue ((new HyenaSqliteCommand (cmd.Text, p)), null) as string;
 		}
 
-		private static string GetGeneratedSql (HyenaSqliteCommand cmd)
+		static string GetGeneratedSql (HyenaSqliteCommand cmd)
 		{
 			return tf.GetValue (cmd, null) as string;
 		}

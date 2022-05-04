@@ -166,7 +166,7 @@ namespace FSpot.Exporters.Gallery
 			return a;
 		}
 
-		private void AddG2Specific (FormClient client)
+		void AddG2Specific (FormClient client)
 		{
 			if (AuthToken != null && AuthToken != string.Empty)
 				client.Add ("g2_authToken", AuthToken);

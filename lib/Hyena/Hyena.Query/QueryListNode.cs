@@ -179,7 +179,7 @@ namespace Hyena.Query
 
 			if (Keyword != Keyword.Not) {
 				if (ChildCount > 1 && Parent != null)
-					sb.Append ("(");
+					sb.Append ('(');
 				bool first = true;
 				foreach (QueryNode child in Children) {
 					if (!first) {
@@ -187,7 +187,7 @@ namespace Hyena.Query
 							// FIXME translate
 							sb.Append (" or ");
 						} else {
-							sb.Append (" ");
+							sb.Append (' ');
 						}
 					} else {
 						first = false;
@@ -195,9 +195,9 @@ namespace Hyena.Query
 					child.AppendUserQuery (sb);
 				}
 				if (ChildCount > 1 && Parent != null)
-					sb.Append (")");
+					sb.Append (')');
 			} else {
-				sb.Append ("-");
+				sb.Append ('-');
 				Children[0].AppendUserQuery (sb);
 			}
 		}
@@ -208,7 +208,7 @@ namespace Hyena.Query
 				return;
 
 			if (Keyword != Keyword.Not) {
-				sb.Append ("(");
+				sb.Append ('(');
 				bool first = true;
 				foreach (QueryNode child in Children) {
 					if (!first) {
@@ -218,11 +218,11 @@ namespace Hyena.Query
 					}
 					child.AppendSql (sb, fieldSet);
 				}
-				sb.Append (")");
+				sb.Append (')');
 			} else {
 				sb.Append ("NOT(");
 				Children[0].AppendSql (sb, fieldSet);
-				sb.Append (")");
+				sb.Append (')');
 			}
 		}
 

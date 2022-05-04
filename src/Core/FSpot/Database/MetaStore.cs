@@ -58,9 +58,9 @@ namespace FSpot.Database
 
 	public class MetaStore : DbStore<MetaItem>
 	{
-		private const string version = "F-Spot Version";
-		private const string db_version = "F-Spot Database Version";
-		private const string hidden = "Hidden Tag Id";
+		const string version = "F-Spot Version";
+		const string db_version = "F-Spot Database Version";
+		const string hidden = "Hidden Tag Id";
 
 		public MetaItem FSpotVersion {
 			get { return GetByName (version); }
@@ -74,7 +74,7 @@ namespace FSpot.Database
 			get { return GetByName (hidden); }
 		}
 
-		private MetaItem GetByName (string name)
+		MetaItem GetByName (string name)
 		{
 			foreach (MetaItem i in item_cache.Values)
 				if (i.Name == name)
@@ -84,7 +84,7 @@ namespace FSpot.Database
 			return Create (name, null);
 		}
 
-		private void CreateTable ()
+		void CreateTable ()
 		{
 			Database.Execute (
 				"CREATE TABLE meta (\n" +
@@ -94,7 +94,7 @@ namespace FSpot.Database
 				")");
 		}
 
-		private void CreateDefaultItems (bool is_new)
+		void CreateDefaultItems (bool is_new)
 		{
 			Create (version, FSpotConfiguration.Version);
 			Create (db_version, (is_new) ? FSpot.Database.Updater.LatestVersion.ToString () : "0");
@@ -107,7 +107,7 @@ namespace FSpot.Database
 			}
 		}
 
-		private void LoadAllItems ()
+		void LoadAllItems ()
 		{
 			Hyena.Data.Sqlite.IDataReader reader = Database.Query ("SELECT id, name, data FROM meta");
 
@@ -133,7 +133,7 @@ namespace FSpot.Database
 			}
 		}
 
-		private MetaItem Create (string name, string data)
+		MetaItem Create (string name, string data)
 		{
 
 			uint id = (uint)Database.Execute (new HyenaSqliteCommand ("INSERT INTO meta (name, data) VALUES (?, ?)", name, data ?? "NULL"));

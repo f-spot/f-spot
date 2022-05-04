@@ -40,7 +40,7 @@ using Hyena;
 
 namespace FSpot.Tools.LiveWebGallery
 {
-	internal class LiveWebGalleryDialog : FSpot.UI.Dialog.BuilderDialog
+	class LiveWebGalleryDialog : FSpot.UI.Dialog.BuilderDialog
 	{
 #pragma warning disable 649
 		[GtkBeans.Builder.Object] Gtk.LinkButton url_button;
@@ -57,11 +57,11 @@ namespace FSpot.Tools.LiveWebGallery
 		[GtkBeans.Builder.Object] Gtk.Button tag_edit_button;
 #pragma warning restore 649
 
-		private SimpleWebServer server;
-		private ILiveWebGalleryOptions options;
-		private LiveWebGalleryStats stats;
-		private IPAddress last_ip;
-		private string last_client;
+		SimpleWebServer server;
+		ILiveWebGalleryOptions options;
+		LiveWebGalleryStats stats;
+		IPAddress last_ip;
+		string last_client;
 
 		public LiveWebGalleryDialog (SimpleWebServer server, ILiveWebGalleryOptions options, LiveWebGalleryStats stats)
 			: base (Assembly.GetExecutingAssembly (), "LiveWebGallery.ui", "live_web_gallery_dialog")

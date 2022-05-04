@@ -286,7 +286,7 @@ namespace FSpot.Query
 					condition.Append (SQLOperator ());
 			}
 
-			condition.Append (")");
+			condition.Append (')');
 
 			return condition.ToString ();
 		}

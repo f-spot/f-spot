@@ -103,7 +103,7 @@ namespace FSpot.Exporters.Zip
 			zipdiag.ShowAll ();
 		}
 
-		private void on_dialog_response (object sender, ResponseArgs args)
+		void on_dialog_response (object sender, ResponseArgs args)
 		{
 			if (args.ResponseId != Gtk.ResponseType.Ok) {
 				// FIXME this is to work around a bug in gtk+ where
@@ -177,12 +177,12 @@ namespace FSpot.Exporters.Zip
 
 		}
 
-		private void on_filename_change (object sender, System.EventArgs args)
+		void on_filename_change (object sender, System.EventArgs args)
 		{
 			create_button.Sensitive = System.Text.RegularExpressions.Regex.IsMatch (filename.Text, "[.]zip$");
 		}
 
-		private void on_scalecheck_change (object sender, System.EventArgs args)
+		void on_scalecheck_change (object sender, System.EventArgs args)
 		{
 			scale_size.Sensitive = scale_check.Active;
 		}

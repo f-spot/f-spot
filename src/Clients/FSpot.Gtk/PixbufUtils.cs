@@ -120,16 +120,14 @@ public static class PixbufUtils
 			loader.SizePrepared += HandleSizePrepared;
 		}
 
-		private void HandleSizePrepared (object obj, SizePreparedArgs args)
+		void HandleSizePrepared (object obj, SizePreparedArgs args)
 		{
 			switch (orientation) {
 			case ImageOrientation.LeftTop:
 			case ImageOrientation.LeftBottom:
 			case ImageOrientation.RightTop:
 			case ImageOrientation.RightBottom:
-				int tmp = max_width;
-				max_width = max_height;
-				max_height = tmp;
+				(max_height, max_width) = (max_width, max_height);
 				break;
 			default:
 				break;
