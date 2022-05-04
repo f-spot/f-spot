@@ -107,7 +107,7 @@ namespace FSpot
 				scroll.ScrolledWindow.SetPolicy (PolicyType.Never, PolicyType.Never);
 				view = new PhotoImageView (collection);
 				// FIXME this should be handled by the new style setting code
-				view.ModifyBg (Gtk.StateType.Normal, this.Style.Black);
+				view.ModifyBg (Gtk.StateType.Normal, Style.Black);
 				Add (notebook);
 				view.Show ();
 				view.MotionNotifyEvent += HandleViewMotion;
@@ -115,13 +115,13 @@ namespace FSpot
 
 				scroll.ScrolledWindow.Add (view);
 
-				Toolbar tbar = new Toolbar ();
+				var tbar = new Toolbar ();
 				tbar.ToolbarStyle = Gtk.ToolbarStyle.BothHoriz;
 
 				tbar.ShowArrow = false;
 				tbar.BorderWidth = 15;
 
-				ToolItem t_item = (actions[ExitFullScreen]).CreateToolItem () as ToolItem;
+				var t_item = (actions[ExitFullScreen]).CreateToolItem () as ToolItem;
 				t_item.IsImportant = true;
 				tbar.Insert (t_item, -1);
 
@@ -147,7 +147,7 @@ namespace FSpot
 				display.Show ();
 
 				t_item = new ToolItem ();
-				ComboBox combo = ComboBox.NewText ();
+				var combo = ComboBox.NewText ();
 				foreach (var transition in display.Transitions)
 					combo.AppendText (transition.Name);
 				combo.Active = 0;
@@ -204,7 +204,7 @@ namespace FSpot
 			if (empty_cursor == null)
 				empty_cursor = GdkUtils.CreateEmptyCursor (GdkWindow.Display);
 
-			this.GdkWindow.Cursor = empty_cursor;
+			GdkWindow.Cursor = empty_cursor;
 			view.GdkWindow.Cursor = empty_cursor;
 			return false;
 		}
@@ -212,7 +212,7 @@ namespace FSpot
 		void ShowCursor ()
 		{
 			view.PointerMode = PointerMode.Scroll;
-			this.GdkWindow.Cursor = null;
+			GdkWindow.Cursor = null;
 		}
 
 		void HandleItemChanged (object sender, BrowsablePointerChangedEventArgs args)
@@ -223,11 +223,10 @@ namespace FSpot
 
 		void HandleTransitionChanged (object sender, EventArgs e)
 		{
-			ComboBox combo = sender as ComboBox;
+			var combo = sender as ComboBox;
 			if (combo == null)
 				return;
-			TreeIter iter;
-			if (combo.GetActiveIter (out iter)) {
+			if (combo.GetActiveIter (out var iter)) {
 				string name = combo.Model.GetValue (iter, 0) as string;
 				foreach (var transition in display.Transitions.Where (transition => transition.Name == name))
 					display.Transition = transition;
@@ -282,9 +281,7 @@ namespace FSpot
 			ShowCursor ();
 			hide_cursor_delay.Restart ();
 
-			int x, y;
-			Gdk.ModifierType type;
-			((Gtk.Widget)sender).GdkWindow.GetPointer (out x, out y, out type);
+			((Gtk.Widget)sender).GdkWindow.GetPointer (out var x, out var y, out var type);
 
 			if (y > (Allocation.Height * 0.75)) {
 				controls.Visibility = ControlOverlay.VisibilityType.Partial;
@@ -302,8 +299,8 @@ namespace FSpot
 		{
 			if (args.Event.Type == Gdk.EventType.ButtonPress
 				&& args.Event.Button == 3) {
-				PhotoPopup popup = new PhotoPopup (this);
-				popup.Activate (this.Toplevel, args.Event);
+				var popup = new PhotoPopup (this);
+				popup.Activate (Toplevel, args.Event);
 			}
 		}
 

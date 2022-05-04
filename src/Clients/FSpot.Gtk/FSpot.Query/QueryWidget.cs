@@ -116,7 +116,7 @@ namespace FSpot.Query
 			warning_box = new Gtk.HBox ();
 			warning_box.PackStart (new Gtk.Label (string.Empty));
 
-			Gtk.Image warning_image = new Gtk.Image ("gtk-info", Gtk.IconSize.Button);
+			var warning_image = new Gtk.Image ("gtk-info", Gtk.IconSize.Button);
 			warning_image.Show ();
 			warning_box.PackStart (warning_image, false, false, 0);
 
@@ -134,7 +134,7 @@ namespace FSpot.Query
 			refresh_button.TooltipText = Strings.RefreshSearch;
 			box.PackEnd (refresh_button, false, false, 0);
 
-			Gtk.Label warning = new Gtk.Label (Strings.NoMatchingPhotosFound);
+			var warning = new Gtk.Label (Strings.NoMatchingPhotosFound);
 			warning_box.PackStart (warning, false, false, 0);
 			warning_box.ShowAll ();
 			warning_box.Spacing = 6;

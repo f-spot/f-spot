@@ -72,7 +72,7 @@ namespace FSpot
 		protected override void OnActivated ()
 		{
 			try {
-				RotateOperation op = new RotateOperation (item.Current, direction);
+				var op = new RotateOperation (item.Current, direction);
 
 				while (op.Step ()) { }
 

@@ -50,10 +50,10 @@ namespace FSpot.Database
 {
 	public static class Updater
 	{
-		private static IUpdaterUI dialog;
-		private static Dictionary<Version, Update> updates = new Dictionary<Version, Update> ();
-		private static Version db_version;
-		private static FSpotDatabaseConnection db;
+		static IUpdaterUI dialog;
+		static Dictionary<Version, Update> updates = new Dictionary<Version, Update> ();
+		static Version db_version;
+		static FSpotDatabaseConnection db;
 		public static bool silent = false;
 
 		public static Version LatestVersion {
@@ -61,7 +61,7 @@ namespace FSpot.Database
 				if (updates == null || updates.Count == 0)
 					return new Version (0, 0);
 
-				List<Version> keys = new List<Version> ();
+				var keys = new List<Version> ();
 				foreach (Version k in updates.Keys) {
 					keys.Add (k);
 				}
@@ -84,14 +84,14 @@ namespace FSpot.Database
 				string tag_count = SelectSingleString (
 					string.Format ("SELECT COUNT(*) FROM tags WHERE category_id = {0}", other_id));
 
-				if (tag_count == null || System.Int32.Parse (tag_count) != 0)
+				if (tag_count == null || int.Parse (tag_count) != 0)
 					return;
 
 				// Don't do anything if there are photos tagged with this
 				string photo_count = SelectSingleString (
 					string.Format ("SELECT COUNT(*) FROM photo_tags WHERE tag_id = {0}", other_id));
 
-				if (photo_count == null || System.Int32.Parse (photo_count) != 0)
+				if (photo_count == null || int.Parse (photo_count) != 0)
 					return;
 
 				// Finally, we know that the Other tag exists and has no children, so remove it
@@ -103,7 +103,7 @@ namespace FSpot.Database
 				string tag_count = SelectSingleString ("SELECT COUNT(*) FROM tags WHERE category_id != 0 AND category_id NOT IN (SELECT id FROM tags)");
 
 				// If there are no dangling tags, then don't do anything
-				if (tag_count == null || System.Int32.Parse (tag_count) == 0)
+				if (tag_count == null || int.Parse (tag_count) == 0)
 					return;
 
 				int id = ExecuteScalar ("INSERT INTO tags (name, category_id, is_category, icon) VALUES ('Other', 0, 1, 'stock_icon:f-spot-other.png')");
@@ -204,7 +204,7 @@ namespace FSpot.Database
 						"WHERE photo_id = id ", tmp_versions));
 
 				while (reader.Read ()) {
-					System.Uri photo_uri = new System.Uri (reader[3] as string);
+					var photo_uri = new System.Uri (reader[3] as string);
 					string name_without_extension = System.IO.Path.GetFileNameWithoutExtension (photo_uri.AbsolutePath);
 					string extension = System.IO.Path.GetExtension (photo_uri.AbsolutePath);
 
@@ -572,12 +572,12 @@ namespace FSpot.Database
 					"FROM {0} ", tmp_photos));
 
 				while (reader.Read ()) {
-					System.Uri photo_uri = new System.Uri (reader["uri"] as string);
+					var photo_uri = new System.Uri (reader["uri"] as string);
 
 					string filename = photo_uri.GetFilename ();
 					Uri base_uri = photo_uri.GetDirectoryUri ();
 
-					string md5 = reader["md5_sum"] != null ? reader["md5_sum"].ToString () : null;
+					string md5 = reader["md5_sum"]?.ToString ();
 
 					Execute (new HyenaSqliteCommand (
 						"INSERT INTO photos (id, time, base_uri, filename, description, roll_id, default_version_id, rating, md5_sum) " +
@@ -600,12 +600,12 @@ namespace FSpot.Database
 						"FROM {0} ", tmp_versions));
 
 				while (reader.Read ()) {
-					System.Uri photo_uri = new System.Uri (reader["uri"] as string);
+					var photo_uri = new System.Uri (reader["uri"] as string);
 
 					string filename = photo_uri.GetFilename ();
 					Uri base_uri = photo_uri.GetDirectoryUri ();
 
-					string md5 = reader["md5_sum"] != null ? reader["md5_sum"].ToString () : null;
+					string md5 = reader["md5_sum"]?.ToString ();
 
 					Execute (new HyenaSqliteCommand (
 						"INSERT INTO photo_versions (photo_id, version_id, name, base_uri, filename, protected, md5_sum) " +
@@ -723,9 +723,9 @@ namespace FSpot.Database
 			}, true);
 		}
 
-		private const string meta_db_version_string = "F-Spot Database Version";
+		const string meta_db_version_string = "F-Spot Database Version";
 
-		private static Version GetDatabaseVersion ()
+		static Version GetDatabaseVersion ()
 		{
 			if (!TableExists ("meta"))
 				throw new Exception ("No meta table found!");
@@ -772,7 +772,7 @@ namespace FSpot.Database
 
 			db.BeginTransaction ();
 			try {
-				List<Version> keys = new List<Version> ();
+				var keys = new List<Version> ();
 				foreach (Version k in updates.Keys) {
 					keys.Add (k);
 				}
@@ -805,17 +805,17 @@ namespace FSpot.Database
 			}
 		}
 
-		private static void AddUpdate (Version version, UpdateCode code)
+		static void AddUpdate (Version version, UpdateCode code)
 		{
 			AddUpdate (version, code, false);
 		}
 
-		private static void AddUpdate (Version version, UpdateCode code, bool is_slow)
+		static void AddUpdate (Version version, UpdateCode code, bool is_slow)
 		{
 			updates[version] = new Update (version, code, is_slow);
 		}
 
-		private static int Execute (string statement)
+		static int Execute (string statement)
 		{
 			int result = -1;
 			try {
@@ -827,7 +827,7 @@ namespace FSpot.Database
 			return result;
 		}
 
-		private static int Execute (HyenaSqliteCommand command)
+		static int Execute (HyenaSqliteCommand command)
 		{
 			int result = -1;
 			try {
@@ -839,22 +839,22 @@ namespace FSpot.Database
 			return result;
 		}
 
-		private static int ExecuteScalar (string statement)
+		static int ExecuteScalar (string statement)
 		{
 			return Execute (statement);
 		}
 
-		private static Hyena.Data.Sqlite.IDataReader ExecuteReader (string statement)
+		static Hyena.Data.Sqlite.IDataReader ExecuteReader (string statement)
 		{
 			return db.Query (statement);
 		}
 
-		private static bool TableExists (string table)
+		static bool TableExists (string table)
 		{
 			return db.TableExists (table);
 		}
 
-		private static string SelectSingleString (string statement)
+		static string SelectSingleString (string statement)
 		{
 			string result = null;
 
@@ -865,7 +865,7 @@ namespace FSpot.Database
 			return result;
 		}
 
-		private static string MoveTableToTemp (string table_name)
+		static string MoveTableToTemp (string table_name)
 		{
 			string temp_name = table_name + "_temp";
 
@@ -887,24 +887,24 @@ namespace FSpot.Database
 			return temp_name;
 		}
 
-		private delegate void UpdateCode ();
+		delegate void UpdateCode ();
 
-		private class Update
+		class Update
 		{
 			public Version Version;
-			private UpdateCode code;
+			UpdateCode code;
 			public bool IsSlow = false;
 
 			public Update (Version to_version, UpdateCode code, bool slow)
 			{
-				this.Version = to_version;
+				Version = to_version;
 				this.code = code;
 				IsSlow = slow;
 			}
 
 			public Update (Version to_version, UpdateCode code)
 			{
-				this.Version = to_version;
+				Version = to_version;
 				this.code = code;
 			}
 
@@ -937,21 +937,21 @@ namespace FSpot.Database
 			{
 				string[] parts = version.Split (new char[] { '.' }, 2);
 				try {
-					this.maj = Convert.ToInt32 (parts[0]);
+					maj = Convert.ToInt32 (parts[0]);
 				} catch (Exception) {
-					this.maj = 0;
+					maj = 0;
 				}
 				try {
-					this.min = Convert.ToInt32 (parts[1]);
+					min = Convert.ToInt32 (parts[1]);
 				} catch (Exception) {
-					this.min = 0;
+					min = 0;
 				}
 			}
 
 			//IComparable
 			public int CompareTo (object obj)
 			{
-				if (this.GetType () == obj.GetType ())
+				if (GetType () == obj.GetType ())
 					return Compare (this, (Version)obj);
 				else
 					throw new Exception ("Object must be of type Version");

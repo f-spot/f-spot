@@ -52,7 +52,7 @@ namespace Hyena.Widgets
 			TypeHint = Gdk.WindowTypeHint.Utility;
 			Modal = true;
 
-			Frame frame = new Frame ();
+			var frame = new Frame ();
 			frame.Shadow = ShadowType.EtchedIn;
 			Add (frame);
 
@@ -64,7 +64,7 @@ namespace Hyena.Widgets
 			frame.Add (hbox);
 			frame.ShowAll ();
 
-			text_entry.Text = String.Empty;
+			text_entry.Text = string.Empty;
 			text_entry.CanFocus = true;
 
 			//TODO figure out why this event does not get raised
@@ -145,8 +145,6 @@ namespace Hyena.Widgets
 		public void Position (Gdk.Window eventWindow)
 		{
 			int x, y;
-			int widget_x, widget_y;
-			int widget_height, widget_width;
 
 			Realize ();
 
@@ -155,8 +153,8 @@ namespace Hyena.Widgets
 
 			Gtk.Requisition popup_req;
 
-			widget_window.GetOrigin (out widget_x, out widget_y);
-			widget_window.GetSize (out widget_width, out widget_height);
+			widget_window.GetOrigin (out var widget_x, out var widget_y);
+			widget_window.GetSize (out var widget_width, out var widget_height);
 
 			popup_req = Requisition;
 
@@ -202,7 +200,7 @@ namespace Hyena.Widgets
 			Hide ();
 
 			if (reset_when_hiding) {
-				text_entry.Text = String.Empty;
+				text_entry.Text = string.Empty;
 			}
 		}
 

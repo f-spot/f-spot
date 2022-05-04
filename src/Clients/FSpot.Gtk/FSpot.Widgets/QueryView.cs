@@ -56,14 +56,14 @@ namespace FSpot.Widgets
 
 		protected override bool OnPopupMenu ()
 		{
-			PhotoPopup popup = new PhotoPopup ();
+			var popup = new PhotoPopup ();
 			popup.Activate ();
 			return true;
 		}
 
 		protected override void ContextMenu (EventButton evnt, int cell_num)
 		{
-			PhotoPopup popup = new PhotoPopup ();
+			var popup = new PhotoPopup ();
 			popup.Activate (Toplevel, evnt);
 		}
 

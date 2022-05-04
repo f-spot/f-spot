@@ -56,7 +56,7 @@ namespace FSpot.Exporters.Gallery
 		public override void Login (string username, string passwd)
 		{
 			Logger.Log.Debug ("Gallery2: Attempting to login");
-			FormClient client = new FormClient (cookies);
+			var client = new FormClient (cookies);
 
 			client.Add ("g2_form[cmd]", "login");
 			client.Add ("g2_form[protocol_version]", "2.10");
@@ -75,7 +75,7 @@ namespace FSpot.Exporters.Gallery
 
 		public override bool MoveAlbum (Album album, string end_name)
 		{
-			FormClient client = new FormClient (cookies);
+			var client = new FormClient (cookies);
 
 			client.Add ("g2_form[cmd]", "move-album");
 			client.Add ("g2_form[protocol_version]", "2.10");
@@ -93,7 +93,7 @@ namespace FSpot.Exporters.Gallery
 					 string description,
 					 bool autorotate)
 		{
-			FormClient client = new FormClient (cookies);
+			var client = new FormClient (cookies);
 
 			client.Add ("g2_form[cmd]", "add-item");
 			client.Add ("g2_form[protocol_version]", "2.10");
@@ -127,7 +127,7 @@ namespace FSpot.Exporters.Gallery
 					  string title,
 					  string description)
 		{
-			FormClient client = new FormClient (cookies);
+			var client = new FormClient (cookies);
 			client.Multipart = true;
 			client.Add ("g2_form[cmd]", "new-album");
 			client.Add ("g2_form[protocol_version]", "2.10");
@@ -142,7 +142,7 @@ namespace FSpot.Exporters.Gallery
 
 		public override List<Image> FetchAlbumImages (Album album, bool include_ablums)
 		{
-			FormClient client = new FormClient (cookies);
+			var client = new FormClient (cookies);
 			client.Add ("g2_form[cmd]", "fetch-album-images");
 			client.Add ("g2_form[protocol_version]", "2.10");
 			client.Add ("g2_form[set_albumName]", album.Name);
@@ -155,7 +155,7 @@ namespace FSpot.Exporters.Gallery
 
 		public override List<Album> FetchAlbumsPrune ()
 		{
-			FormClient client = new FormClient (cookies);
+			var client = new FormClient (cookies);
 			client.Add ("g2_form[cmd]", "fetch-albums-prune");
 			client.Add ("g2_form[protocol_version]", "2.10");
 			client.Add ("g2_form[check_writable]", "no");
@@ -166,7 +166,7 @@ namespace FSpot.Exporters.Gallery
 			return a;
 		}
 
-		private void AddG2Specific (FormClient client)
+		void AddG2Specific (FormClient client)
 		{
 			if (AuthToken != null && AuthToken != string.Empty)
 				client.Add ("g2_authToken", AuthToken);

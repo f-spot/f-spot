@@ -215,7 +215,7 @@ namespace Hyena.Jobs
 
 		public void SetResources (params Resource[] resources)
 		{
-			Resources = resources ?? new Resource[0];
+			Resources = resources ?? Array.Empty<Resource> ();
 		}
 
 		#endregion

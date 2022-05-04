@@ -356,7 +356,7 @@ namespace FSpot
 				lock (locker) {
 					if (IsDisposed)
 						return null;
-					return pixbuf == null ? null : pixbuf.ShallowCopy ();
+					return pixbuf?.ShallowCopy ();
 				}
 			}
 

@@ -114,7 +114,7 @@ namespace FSpot.Editors
 			dest_lab.a += temptint_scale.Value;
 			dest_wp = dest_lab.ToXYZ (src_wp);
 
-			FullColorAdjustment adjust = new FullColorAdjustment (input, input_profile,
+			var adjust = new FullColorAdjustment (input, input_profile,
 					exposure_scale.Value, brightness_scale.Value, contrast_scale.Value,
 					hue_scale.Value, sat_scale.Value, src_wp, dest_wp);
 			return adjust.Adjust ();

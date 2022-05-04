@@ -131,14 +131,12 @@ namespace FSpot
 
 		public bool HideControls ()
 		{
-			int x, y;
-			Gdk.ModifierType type;
 
 			if (!AutoHide)
 				return false;
 
 			if (IsRealized) {
-				GdkWindow.GetPointer (out x, out y, out type);
+				GdkWindow.GetPointer (out var x, out var y, out var type);
 				if (Allocation.Contains (x, y)) {
 					hide.Start ();
 					return true;
@@ -218,7 +216,7 @@ namespace FSpot
 			if (composited)
 				return;
 
-			Gdk.Pixmap bitmap = new Gdk.Pixmap (GdkWindow,
+			var bitmap = new Gdk.Pixmap (GdkWindow,
 								Allocation.Width,
 								Allocation.Height, 1);
 
@@ -272,11 +270,10 @@ namespace FSpot
 
 		void Relocate ()
 		{
-			int x, y;
 			if (!IsRealized || !host_toplevel.IsRealized)
 				return;
 
-			host.GdkWindow.GetOrigin (out x, out y);
+			host.GdkWindow.GetOrigin (out var x, out var y);
 
 			int xOrigin = x;
 			int yOrigin = y;

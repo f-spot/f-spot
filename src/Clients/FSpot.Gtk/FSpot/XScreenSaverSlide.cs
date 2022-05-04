@@ -57,7 +57,7 @@ namespace FSpot
 					if (env.StartsWith ("0x"))
 						env = env.Substring (2);
 
-					uint xid = UInt32.Parse (env, System.Globalization.NumberStyles.HexNumber);
+					uint xid = uint.Parse (env, System.Globalization.NumberStyles.HexNumber);
 
 					GdkWindow = Gdk.Window.ForeignNew (xid);
 					Style.Attach (GdkWindow);
@@ -69,12 +69,11 @@ namespace FSpot
 
 					Style.SetBackground (GdkWindow, Gtk.StateType.Normal);
 					GdkWindow.SetDecorations (0);
-					GdkWindow.UserData = this.Handle;
+					GdkWindow.UserData = Handle;
 					SetFlag (WidgetFlags.Realized);
 					SizeRequest ();
 					Gdk.Rectangle geom;
-					int depth;
-					GdkWindow.GetGeometry (out geom.X, out geom.Y, out geom.Width, out geom.Height, out depth);
+					GdkWindow.GetGeometry (out geom.X, out geom.Y, out geom.Width, out geom.Height, out var depth);
 					SizeAllocate (new Gdk.Rectangle (geom.X, geom.Y, geom.Width, geom.Height));
 					Resize (geom.Width, geom.Height);
 					return;

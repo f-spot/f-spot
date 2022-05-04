@@ -58,7 +58,7 @@ namespace Hyena.Widgets
 				this.title = title;
 				this.percent = percent;
 				this.color = color;
-				this.show_in_bar = showInBar;
+				show_in_bar = showInBar;
 			}
 
 			public string Title {
@@ -151,15 +151,14 @@ namespace Hyena.Widgets
 			layout_width = layout_height = 0;
 
 			for (int i = 0, n = segments.Count; i < n; i++) {
-				int aw, ah, bw, bh;
 
 				layout = CreateAdaptLayout (layout, false, true);
 				layout.SetText (FormatSegmentText (segments[i]));
-				layout.GetPixelSize (out aw, out ah);
+				layout.GetPixelSize (out var aw, out var ah);
 
 				layout = CreateAdaptLayout (layout, true, false);
 				layout.SetText (FormatSegmentValue (segments[i]));
-				layout.GetPixelSize (out bw, out bh);
+				layout.GetPixelSize (out var bw, out var bh);
 
 				int w = Math.Max (aw, bw);
 				int h = ah + bh;
@@ -344,14 +343,14 @@ namespace Hyena.Widgets
 				cr.Rectangle (0, bar_height, Allocation.Width - h_padding, bar_height);
 				cr.Clip ();
 
-				Matrix matrix = new Matrix ();
+				var matrix = new Matrix ();
 				matrix.InitScale (1, -1);
 				matrix.Translate (0, -(2 * bar_height) + 1);
 				cr.Transform (matrix);
 
 				cr.SetSource (bar);
 
-				LinearGradient mask = new LinearGradient (0, 0, 0, bar_height);
+				var mask = new LinearGradient (0, 0, 0, bar_height);
 
 				mask.AddColorStop (0.25, new Color (0, 0, 0, 0));
 				mask.AddColorStop (0.5, new Color (0, 0, 0, 0.125));
@@ -382,12 +381,12 @@ namespace Hyena.Widgets
 
 		Pattern RenderBar (int w, int h)
 		{
-			ImageSurface s = new ImageSurface (Format.Argb32, w, h);
-			Context cr = new Context (s);
+			var s = new ImageSurface (Format.Argb32, w, h);
+			var cr = new Context (s);
 			RenderBar (cr, w, h, h / 2);
 			// TODO Implement the new ctor - see http://bugzilla.gnome.org/show_bug.cgi?id=561394
 #pragma warning disable 0618
-			Pattern pattern = new Pattern (s);
+			var pattern = new Pattern (s);
 #pragma warning restore 0618
 			s.Dispose ();
 			((IDisposable)cr).Dispose ();
@@ -402,7 +401,7 @@ namespace Hyena.Widgets
 
 		void RenderBarSegments (Context cr, int w, int h, int r)
 		{
-			LinearGradient grad = new LinearGradient (0, 0, w, 0);
+			var grad = new LinearGradient (0, 0, w, 0);
 			double last = 0.0;
 
 			foreach (Segment segment in segments) {
@@ -468,7 +467,7 @@ namespace Hyena.Widgets
 
 		LinearGradient MakeSegmentGradient (int h, Color color, bool diag)
 		{
-			LinearGradient grad = new LinearGradient (0, 0, 0, h);
+			var grad = new LinearGradient (0, 0, 0, h);
 			grad.AddColorStop (0, CairoExtensions.ColorShade (color, 1.1));
 			grad.AddColorStop (0.35, CairoExtensions.ColorShade (color, 1.2));
 			grad.AddColorStop (1, CairoExtensions.ColorShade (color, 0.8));
@@ -483,7 +482,7 @@ namespace Hyena.Widgets
 
 			Pango.Layout layout = null;
 			Color text_color = CairoExtensions.GdkColorToCairoColor (Style.Foreground (State));
-			Color box_stroke_color = new Color (0, 0, 0, 0.6);
+			var box_stroke_color = new Color (0, 0, 0, 0.6);
 
 			int x = 0;
 
@@ -499,10 +498,9 @@ namespace Hyena.Widgets
 
 				x += segment_box_size + segment_box_spacing;
 
-				int lw, lh;
 				layout = CreateAdaptLayout (layout, false, true);
 				layout.SetText (FormatSegmentText (segment));
-				layout.GetPixelSize (out lw, out lh);
+				layout.GetPixelSize (out var lw, out var lh);
 
 				cr.MoveTo (x, 0);
 				text_color.A = 0.9;
@@ -560,7 +558,7 @@ namespace Hyena.Widgets
 		string FormatSegmentValue (Segment segment)
 		{
 			return format_handler == null
-				? String.Format ("{0}%", segment.Percent * 100.0)
+				? string.Format ("{0}%", segment.Percent * 100.0)
 				: format_handler (segment);
 		}
 
@@ -593,26 +591,26 @@ namespace Hyena.Widgets
 			bar.AddSegment ("Free Space", 0.867561266964516, bar.RemainderColor, false);
 
 			bar.ValueFormatter = delegate (SegmentedBar.Segment segment) {
-				return String.Format ("{0} GB", space * segment.Percent);
+				return string.Format ("{0} GB", space * segment.Percent);
 			};
 
-			HBox controls = new HBox ();
+			var controls = new HBox ();
 			controls.Spacing = 5;
 
-			Label label = new Label ("Height:");
+			var label = new Label ("Height:");
 			controls.PackStart (label, false, false, 0);
 
-			SpinButton height = new SpinButton (new Adjustment (bar.BarHeight, 5, 100, 1, 1, 1), 1, 0);
+			var height = new SpinButton (new Adjustment (bar.BarHeight, 5, 100, 1, 1, 1), 1, 0);
 			height.Activated += delegate { bar.BarHeight = height.ValueAsInt; };
 			height.Changed += delegate { bar.BarHeight = height.ValueAsInt; bar.HorizontalPadding = bar.BarHeight / 2; };
 			controls.PackStart (height, false, false, 0);
 
-			CheckButton reflect = new CheckButton ("Reflection");
+			var reflect = new CheckButton ("Reflection");
 			reflect.Active = bar.ShowReflection;
 			reflect.Toggled += delegate { bar.ShowReflection = reflect.Active; };
 			controls.PackStart (reflect, false, false, 0);
 
-			CheckButton labels = new CheckButton ("Labels");
+			var labels = new CheckButton ("Labels");
 			labels.Active = bar.ShowLabels;
 			labels.Toggled += delegate { bar.ShowLabels = labels.Active; };
 			controls.PackStart (labels, false, false, 0);
@@ -624,7 +622,7 @@ namespace Hyena.Widgets
 
 			SetSizeRequest (350, -1);
 
-			Gdk.Geometry limits = new Gdk.Geometry ();
+			var limits = new Gdk.Geometry ();
 			limits.MinWidth = SizeRequest ().Width;
 			limits.MaxWidth = Gdk.Screen.Default.Width;
 			limits.MinHeight = -1;

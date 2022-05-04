@@ -163,7 +163,7 @@ namespace Hyena.Gui.Canvas
 			fill_color.A = 1.0;
 			light_fill_color.A = 1.0;
 
-			LinearGradient fill = new LinearGradient (0, 0, 0, RenderSize.Height);
+			var fill = new LinearGradient (0, 0, 0, RenderSize.Height);
 			fill.AddColorStop (0, light_fill_color);
 			fill.AddColorStop (0.5, fill_color);
 			fill.AddColorStop (1, light_fill_color);
@@ -198,7 +198,7 @@ namespace Hyena.Gui.Canvas
 
 		double value;
 		public virtual double Value {
-			get { return this.value; }
+			get { return value; }
 			set {
 				if (value < 0.0 || value > 1.0) {
 					throw new ArgumentOutOfRangeException ("Value", "Must be between 0.0 and 1.0 inclusive");

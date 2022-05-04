@@ -51,7 +51,7 @@ namespace FSpot.Extensions
 	public class ViewModeCondition : ConditionType
 	{
 		delegate void ViewModeChangedHandler ();
-		private static event ViewModeChangedHandler ViewModeChanged;
+		static event ViewModeChangedHandler ViewModeChanged;
 
 		static ViewMode mode = ViewMode.Unknown;
 		public static ViewMode Mode {

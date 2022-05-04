@@ -66,7 +66,7 @@ namespace FSpot.Utils
 
 		public static Gtk.MenuItem MakeMenuItem (Gtk.Menu menu, string label, string image_name, EventHandler e, bool enabled)
 		{
-			Gtk.ImageMenuItem i = new Gtk.ImageMenuItem (label);
+			var i = new Gtk.ImageMenuItem (label);
 			i.Activated += e;
 			i.Sensitive = enabled;
 			i.Image = Gtk.Image.NewFromIconName (image_name, Gtk.IconSize.Menu);
@@ -79,7 +79,7 @@ namespace FSpot.Utils
 
 		public static Gtk.MenuItem MakeCheckMenuItem (Gtk.Menu menu, string label, EventHandler e, bool enabled, bool active, bool as_radio)
 		{
-			Gtk.CheckMenuItem i = new Gtk.CheckMenuItem (label) {
+			var i = new Gtk.CheckMenuItem (label) {
 				Sensitive = enabled,
 				DrawAsRadio = as_radio,
 				Active = active

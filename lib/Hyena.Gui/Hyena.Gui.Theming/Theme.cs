@@ -59,7 +59,7 @@ namespace Hyena.Gui.Theming
 
 		public Theme (Widget widget, GtkColors colors)
 		{
-			this.Widget = widget;
+			Widget = widget;
 			this.colors = colors;
 			this.colors.Refreshed += delegate { OnColorsRefreshed (); };
 			this.colors.Widget = widget;
@@ -143,7 +143,7 @@ namespace Hyena.Gui.Theming
 
 		public void DrawColumnHighlight (Cairo.Context cr, double cellWidth, double cellHeight)
 		{
-			Gdk.Rectangle alloc = new Gdk.Rectangle ();
+			var alloc = new Gdk.Rectangle ();
 			alloc.Width = (int)cellWidth;
 			alloc.Height = (int)cellHeight;
 			DrawColumnHighlight (cr, alloc);

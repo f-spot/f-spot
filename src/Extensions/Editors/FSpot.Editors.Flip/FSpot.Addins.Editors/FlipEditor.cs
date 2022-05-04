@@ -43,7 +43,7 @@ namespace FSpot.Addins.Editors
 
 		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile)
 		{
-			Pixbuf output = (Pixbuf)input.Clone ();
+			var output = (Pixbuf)input.Clone ();
 			return output.Flip (true);
 		}
 	}

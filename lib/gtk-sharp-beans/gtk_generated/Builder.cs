@@ -22,7 +22,7 @@ namespace GtkBeans
 		public Builder () : base (IntPtr.Zero)
 		{
 			if (GetType () != typeof (Builder)) {
-				CreateNativeObject (new string[0], new GLib.Value[0]);
+				CreateNativeObject (Array.Empty<string> (), Array.Empty<GLib.Value> ());
 				return;
 			}
 			Raw = gtk_builder_new ();
@@ -55,7 +55,7 @@ namespace GtkBeans
 		{
 			IntPtr native_name = GLib.Marshaller.StringToPtrGStrdup (name);
 			IntPtr raw_ret = gtk_builder_get_object (Handle, native_name);
-			GLib.Object ret = GLib.Object.GetObject (raw_ret);
+			var ret = GLib.Object.GetObject (raw_ret);
 			GLib.Marshaller.Free (native_name);
 			return ret;
 		}
@@ -96,7 +96,7 @@ namespace GtkBeans
 
 		public void ConnectSignalsFull (GtkBeans.BuilderConnectFunc func)
 		{
-			GtkBeansSharp.BuilderConnectFuncWrapper func_wrapper = new GtkBeansSharp.BuilderConnectFuncWrapper (func);
+			var func_wrapper = new GtkBeansSharp.BuilderConnectFuncWrapper (func);
 			gtk_builder_connect_signals_full (Handle, func_wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
@@ -133,7 +133,7 @@ namespace GtkBeans
 		public GLib.SList Objects {
 			get {
 				IntPtr raw_ret = gtk_builder_get_objects (Handle);
-				GLib.SList ret = new GLib.SList (raw_ret);
+				var ret = new GLib.SList (raw_ret);
 				return ret;
 			}
 		}
@@ -152,7 +152,7 @@ namespace GtkBeans
 		public static new GLib.GType GType {
 			get {
 				IntPtr raw_ret = gtk_builder_get_type ();
-				GLib.GType ret = new GLib.GType (raw_ret);
+				var ret = new GLib.GType (raw_ret);
 				return ret;
 			}
 		}
@@ -192,7 +192,7 @@ namespace GtkBeans
 		{
 			IntPtr native_type_name = GLib.Marshaller.StringToPtrGStrdup (type_name);
 			IntPtr raw_ret = gtk_builder_get_type_from_name (Handle, native_type_name);
-			GLib.GType ret = new GLib.GType (raw_ret);
+			var ret = new GLib.GType (raw_ret);
 			GLib.Marshaller.Free (native_type_name);
 			return ret;
 		}
@@ -269,7 +269,7 @@ namespace GtkBeans
 
 			public HandlerNotFoundException (string message, string handler_name, string signal_name,
 							 System.Reflection.EventInfo evnt, Type delegate_type)
-				: base ((message != null) ? message : "No handler " + handler_name + " found for signal " + signal_name,
+				: base (message ?? "No handler " + handler_name + " found for signal " + signal_name,
 					null)
 			{
 				this.handler_name = handler_name;
@@ -325,8 +325,8 @@ namespace GtkBeans
 		[AttributeUsage (AttributeTargets.Field)]
 		public class ObjectAttribute : Attribute
 		{
-			private string name;
-			private bool specified;
+			string name;
+			bool specified;
 
 			public ObjectAttribute (string name)
 			{
@@ -434,7 +434,7 @@ namespace GtkBeans
 			public SignalConnector (Builder builder, Type handler_type)
 			{
 				this.builder = builder;
-				this.handler = null;
+				handler = null;
 				this.handler_type = handler_type;
 			}
 
@@ -443,7 +443,7 @@ namespace GtkBeans
 
 			public void ConnectSignals ()
 			{
-				GtkBeansSharp.BuilderConnectFuncWrapper func_wrapper = new GtkBeansSharp.BuilderConnectFuncWrapper (new GtkBeans.BuilderConnectFunc (ConnectFunc));
+				var func_wrapper = new GtkBeansSharp.BuilderConnectFuncWrapper (new GtkBeans.BuilderConnectFunc (ConnectFunc));
 				gtk_builder_connect_signals_full (builder.Handle, func_wrapper.NativeDelegate, IntPtr.Zero);
 			}
 
@@ -467,7 +467,7 @@ namespace GtkBeans
 						/* look for an instance method */
 						if (connect_object != null || handler != null)
 							try {
-								Delegate d = Delegate.CreateDelegate (delegate_type, connect_object != null ? connect_object : handler, handler_name);
+								var d = Delegate.CreateDelegate (delegate_type, connect_object ?? handler, handler_name);
 								add.Invoke (objekt, new object[] { d });
 								connected = true;
 							} catch (ArgumentException) { /* ignore if there is not such instance method */
@@ -476,7 +476,7 @@ namespace GtkBeans
 						/* look for a static method if no instance method has been found */
 						if (!connected && handler_type != null)
 							try {
-								Delegate d = Delegate.CreateDelegate (delegate_type, handler_type, handler_name);
+								var d = Delegate.CreateDelegate (delegate_type, handler_type, handler_name);
 								add.Invoke (objekt, new object[] { d });
 								connected = true;
 							} catch (ArgumentException) { /* ignore if there is not such static method */
@@ -516,7 +516,7 @@ namespace GtkBeans
 					return null;
 
 				System.Reflection.ParameterInfo[] parameters = method.GetParameters ();
-				System.Text.StringBuilder sb = new System.Text.StringBuilder ();
+				var sb = new System.Text.StringBuilder ();
 				sb.Append ('(');
 				foreach (System.Reflection.ParameterInfo info in parameters) {
 					sb.Append (info.ParameterType.ToString ());
@@ -556,7 +556,7 @@ namespace GtkBeans
 				if (deleg == null || klass == null || method == null)
 					return null;
 
-				System.Text.StringBuilder sb = new System.Text.StringBuilder ();
+				var sb = new System.Text.StringBuilder ();
 				string expected = GetSignature (deleg);
 				string actual = GetSignature (klass, method);
 				if (actual == null)
@@ -599,7 +599,7 @@ namespace GtkBeans
 						continue;
 					// The widget to field binding must be 1:1, so only check
 					// the first attribute.
-					ObjectAttribute attr = (ObjectAttribute)attrs[0];
+					var attr = (ObjectAttribute)attrs[0];
 					GLib.Object gobject;
 					if (attr.Specified)
 						gobject = GetObject (attr.Name);
@@ -609,9 +609,9 @@ namespace GtkBeans
 					if (gobject != null)
 						try {
 							field.SetValue (target, gobject, flags, null, null);
-						} catch (Exception e) {
+						} catch (Exception) {
 							Console.WriteLine ("Unable to set value for field " + field.Name);
-							throw e;
+							throw;
 						}
 				}
 				type = type.BaseType;

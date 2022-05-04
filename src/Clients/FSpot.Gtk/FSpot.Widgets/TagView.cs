@@ -136,8 +136,7 @@ namespace FSpot.Widgets
 				} else {
 					scaled_icon = icon.ScaleSimple (thumbnail_size, thumbnail_size, InterpType.Bilinear);
 				}
-				Cms.Profile screen_profile;
-				if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out screen_profile))
+				if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screen_profile))
 					FSpot.ColorManagement.ApplyProfile (scaled_icon, screen_profile);
 
 				scaled_icon.RenderToDrawable (GdkWindow, Style.WhiteGC,

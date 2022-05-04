@@ -39,7 +39,7 @@ namespace Hyena.Gui.Canvas
 
 		public override Size Measure (Size available)
 		{
-			Size result = new Size (0, 0);
+			var result = new Size (0, 0);
 
 			int visible_children = 0;
 			foreach (var child in Children) {
@@ -60,11 +60,11 @@ namespace Hyena.Gui.Canvas
 				visible_children++;
 			}
 
-			if (!Double.IsNaN (Width)) {
+			if (!double.IsNaN (Width)) {
 				result.Width = Width;
 			}
 
-			if (!Double.IsNaN (Height)) {
+			if (!double.IsNaN (Height)) {
 				result.Height = Height;
 			}
 
@@ -103,11 +103,11 @@ namespace Hyena.Gui.Canvas
 				visible_child_count++;
 
 				if (Orientation == Orientation.Vertical) {
-					static_space += Double.IsNaN (child.Height) ? 0 : child.DesiredSize.Height;
-					flex_count += Double.IsNaN (child.Height) ? 1 : 0;
+					static_space += double.IsNaN (child.Height) ? 0 : child.DesiredSize.Height;
+					flex_count += double.IsNaN (child.Height) ? 1 : 0;
 				} else {
-					static_space += Double.IsNaN (child.Width) ? 0 : child.DesiredSize.Width;
-					flex_count += Double.IsNaN (child.Width) ? 1 : 0;
+					static_space += double.IsNaN (child.Width) ? 0 : child.DesiredSize.Width;
+					flex_count += double.IsNaN (child.Width) ? 1 : 0;
 				}
 			}
 
@@ -124,8 +124,8 @@ namespace Hyena.Gui.Canvas
 
 				double variable_size = 0;
 
-				if ((Orientation == Orientation.Vertical && Double.IsNaN (child.Height)) ||
-					(Orientation == Orientation.Horizontal && Double.IsNaN (child.Width))) {
+				if ((Orientation == Orientation.Vertical && double.IsNaN (child.Height)) ||
+					(Orientation == Orientation.Horizontal && double.IsNaN (child.Width))) {
 					variable_size = flex_space / flex_count--;
 					flex_space -= variable_size;
 					if (flex_count == 0) {

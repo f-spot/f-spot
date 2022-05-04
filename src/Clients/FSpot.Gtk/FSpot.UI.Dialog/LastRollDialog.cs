@@ -132,7 +132,7 @@ namespace FSpot.UI.Dialog
 			if ((combo_roll_1.Active < 0) || ((combo_filter.Active == 2) && (combo_roll_2.Active < 0)))
 				return null;
 
-			List<Roll> result = new List<Roll> ();
+			var result = new List<Roll> ();
 
 			switch (combo_filter.Active) {
 			case 0: // at - Return the roll the user selected

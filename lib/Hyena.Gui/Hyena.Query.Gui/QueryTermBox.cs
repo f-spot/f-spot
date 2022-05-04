@@ -110,7 +110,7 @@ namespace Hyena.Query.Gui
 
 		bool IsRowSeparator (TreeModel model, TreeIter iter)
 		{
-			return String.IsNullOrEmpty (model.GetValue (iter, 0) as string);
+			return string.IsNullOrEmpty (model.GetValue (iter, 0) as string);
 		}
 
 		public void Show ()
@@ -163,11 +163,11 @@ namespace Hyena.Query.Gui
 			operators.Clear ();
 			operator_entries.Clear ();
 			foreach (QueryValue val in this.field.CreateQueryValues ()) {
-				QueryValueEntry entry = QueryValueEntry.Create (val);
+				var entry = QueryValueEntry.Create (val);
 				value_entries.Add (entry);
 
 				if (val_count++ > 0) {
-					op_chooser.AppendText (String.Empty);
+					op_chooser.AppendText (string.Empty);
 					operators.Add (null);
 				}
 
@@ -191,9 +191,9 @@ namespace Hyena.Query.Gui
 				return;
 			}
 
-			this.op = operators[op_chooser.Active];
-			if (operator_entries[this.op] != current_value_entry) {
-				SetValueEntry (operator_entries[this.op]);
+			op = operators[op_chooser.Active];
+			if (operator_entries[op] != current_value_entry) {
+				SetValueEntry (operator_entries[op]);
 			}
 
 			//value_entry = new QueryValueEntry <field.ValueType> ();
@@ -220,7 +220,7 @@ namespace Hyena.Query.Gui
 
 		public QueryTermNode QueryNode {
 			get {
-				QueryTermNode node = new QueryTermNode ();
+				var node = new QueryTermNode ();
 				node.Field = field;
 				node.Operator = op;
 				node.Value = current_value_entry.QueryValue;

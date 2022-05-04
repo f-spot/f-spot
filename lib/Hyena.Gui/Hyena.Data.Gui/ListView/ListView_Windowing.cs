@@ -60,7 +60,7 @@ namespace Hyena.Data.Gui
 			GdkWindow = Parent.GdkWindow;
 			cell_context.Drawable = GdkWindow;
 
-			WindowAttr attributes = new WindowAttr ();
+			var attributes = new WindowAttr ();
 			attributes.WindowType = Gdk.WindowType.Child;
 			attributes.X = Allocation.X;
 			attributes.Y = Allocation.Y;
@@ -177,7 +177,7 @@ namespace Hyena.Data.Gui
 				UpdateAdjustments ();
 			}
 
-			ICareAboutView model = Model as ICareAboutView;
+			var model = Model as ICareAboutView;
 			if (model != null) {
 				model.RowsInView = RowsInView;
 			}

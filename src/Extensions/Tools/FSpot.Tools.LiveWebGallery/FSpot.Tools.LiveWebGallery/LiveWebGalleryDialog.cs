@@ -33,6 +33,7 @@ using System.Reflection;
 
 using FSpot.Core;
 using FSpot.Resources.Lang;
+using FSpot.Widgets;
 
 using Gtk;
 
@@ -40,7 +41,7 @@ using Hyena;
 
 namespace FSpot.Tools.LiveWebGallery
 {
-	internal class LiveWebGalleryDialog : FSpot.UI.Dialog.BuilderDialog
+	class LiveWebGalleryDialog : FSpot.UI.Dialog.BuilderDialog
 	{
 #pragma warning disable 649
 		[GtkBeans.Builder.Object] Gtk.LinkButton url_button;
@@ -57,11 +58,11 @@ namespace FSpot.Tools.LiveWebGallery
 		[GtkBeans.Builder.Object] Gtk.Button tag_edit_button;
 #pragma warning restore 649
 
-		private SimpleWebServer server;
-		private ILiveWebGalleryOptions options;
-		private LiveWebGalleryStats stats;
-		private IPAddress last_ip;
-		private string last_client;
+		SimpleWebServer server;
+		ILiveWebGalleryOptions options;
+		LiveWebGalleryStats stats;
+		IPAddress last_ip;
+		string last_client;
 
 		public LiveWebGalleryDialog (SimpleWebServer server, ILiveWebGalleryOptions options, LiveWebGalleryStats stats)
 			: base (Assembly.GetExecutingAssembly (), "LiveWebGallery.ui", "live_web_gallery_dialog")
@@ -77,10 +78,10 @@ namespace FSpot.Tools.LiveWebGallery
 			limit_spin.Sensitive = options.LimitMaxPhotos;
 			limit_spin.Value = options.MaxPhotos;
 			UpdateQueryRadios ();
-			HandleQueryTagSelected (options.QueryTag != null ? options.QueryTag : App.Instance.Database.Tags.GetTagById (1));
+			HandleQueryTagSelected (options.QueryTag ?? App.Instance.Database.Tags.GetTagById (1));
 			allow_tagging_checkbox.Active = options.TaggingAllowed;
 			tag_edit_button.Sensitive = options.TaggingAllowed;
-			HandleEditableTagSelected (options.EditableTag != null ? options.EditableTag : App.Instance.Database.Tags.GetTagById (3));
+			HandleEditableTagSelected (options.EditableTag ?? App.Instance.Database.Tags.GetTagById (3));
 			HandleStatsChanged (null, null);
 
 			activate_button.Toggled += HandleActivated;
@@ -181,11 +182,10 @@ namespace FSpot.Tools.LiveWebGallery
 
 		void ShowTagMenuFor (Widget widget, TagMenu.TagSelectedHandler handler)
 		{
-			TagMenu tag_menu = new TagMenu (null, App.Instance.Database.Tags);
+			var tag_menu = new TagMenu (null, App.Instance.Database.Tags);
 			tag_menu.TagSelected += handler;
 			tag_menu.Populate ();
-			int x, y;
-			GetPosition (out x, out y);
+			GetPosition (out var x, out var y);
 			x += widget.Allocation.X; y += widget.Allocation.Y;
 			tag_menu.Popup (null, null, delegate (Menu menu, out int x_, out int y_, out bool push_in) { x_ = x; y_ = y; push_in = true; }, 0, 0);
 		}

@@ -66,7 +66,7 @@ namespace Hyena.Widgets
 			if (!added_any) {
 				added_any = true;
 			} else if (NColumns != cols.Length) {
-				throw new ArgumentException ("cols", String.Format ("Expected {0} column widgets, same as previous calls to Add", NColumns));
+				throw new ArgumentException ("cols", string.Format ("Expected {0} column widgets, same as previous calls to Add", NColumns));
 			}
 
 			Resize ((uint)items.Count + 1, (uint)cols.Length);

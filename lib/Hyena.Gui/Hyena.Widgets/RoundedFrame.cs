@@ -179,7 +179,7 @@ namespace Hyena.Widgets
 			int width = child_allocation.Width + 2 * frame_width;
 			int height = child_allocation.Height + 2 * frame_width;
 
-			Gdk.Rectangle rect = new Gdk.Rectangle (x, y, width, height);
+			var rect = new Gdk.Rectangle (x, y, width, height);
 
 			Theme.Context.ShowStroke = draw_border;
 

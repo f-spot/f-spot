@@ -95,7 +95,7 @@ namespace FSpot.Extensions
 	{
 		public Gtk.Menu GetMenu ()
 		{
-			PhotoTagMenu tag_menu = new PhotoTagMenu ();
+			var tag_menu = new PhotoTagMenu ();
 			tag_menu.TagSelected += App.Instance.Organizer.HandleRemoveTagMenuSelected;
 			return tag_menu;
 		}

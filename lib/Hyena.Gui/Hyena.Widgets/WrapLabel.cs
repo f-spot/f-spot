@@ -90,10 +90,9 @@ namespace Hyena.Widgets
 
 		protected override void OnSizeAllocated (Gdk.Rectangle allocation)
 		{
-			int lw, lh;
 
 			layout.Width = (int)(allocation.Width * Pango.Scale.PangoScale);
-			layout.GetPixelSize (out lw, out lh);
+			layout.GetPixelSize (out var lw, out var lh);
 
 			TooltipText = layout.IsEllipsized ? text : null;
 			HeightRequest = lh;
@@ -105,8 +104,7 @@ namespace Hyena.Widgets
 		{
 			if (evnt.Window == GdkWindow) {
 				// Center the text vertically
-				int lw, lh;
-				layout.GetPixelSize (out lw, out lh);
+				layout.GetPixelSize (out var lw, out var lh);
 				int y = Allocation.Y + (Allocation.Height - lh) / 2;
 
 				Gtk.Style.PaintLayout (Style, GdkWindow, State, false,
@@ -129,7 +127,7 @@ namespace Hyena.Widgets
 				}
 			}
 
-			Markup = String.Format (format, args);
+			Markup = string.Format (format, args);
 		}
 
 		public bool Wrap {

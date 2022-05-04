@@ -48,8 +48,8 @@ namespace Hyena.Gui.Canvas
 		{
 			Visible = true;
 			Opacity = 1.0;
-			Width = Double.NaN;
-			Height = Double.NaN;
+			Width = double.NaN;
+			Height = double.NaN;
 			Margin = new Thickness (0);
 			Padding = new Thickness (0);
 			Foreground = Brush.Black;
@@ -108,8 +108,8 @@ namespace Hyena.Gui.Canvas
 			double a_h = available.Height - m_y;
 
 			return DesiredSize = new Size (
-				Math.Max (0, Math.Min (a_w, Double.IsNaN (Width) ? a_w : Width + m_x)),
-				Math.Max (0, Math.Min (a_h, Double.IsNaN (Height) ? a_h : Height + m_y))
+				Math.Max (0, Math.Min (a_w, double.IsNaN (Width) ? a_w : Width + m_x)),
+				Math.Max (0, Math.Min (a_h, double.IsNaN (Height) ? a_h : Height + m_y))
 			);
 		}
 
@@ -174,7 +174,7 @@ namespace Hyena.Gui.Canvas
 		public CanvasItem Parent { get; set; }
 
 		public Theme Theme {
-			get { return theme ?? (Parent != null ? Parent.Theme : null); }
+			get { return theme ?? (Parent?.Theme); }
 			set { theme = value; }
 		}
 
@@ -332,7 +332,7 @@ namespace Hyena.Gui.Canvas
 		}
 
 		internal CanvasManager Manager {
-			get { return manager ?? (Parent != null ? Parent.Manager : null); }
+			get { return manager ?? (Parent?.Manager); }
 			set { manager = value; }
 		}
 

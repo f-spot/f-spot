@@ -65,7 +65,7 @@ namespace Hyena.Gui
 
 		public static string FormatEscaped (this string format, params object[] args)
 		{
-			return String.Format (format, args.Select (a => a == null ? "" : GLib.Markup.EscapeText (a.ToString ())).ToArray ());
+			return string.Format (format, args.Select (a => a == null ? "" : GLib.Markup.EscapeText (a.ToString ())).ToArray ());
 		}
 	}
 }

@@ -46,7 +46,7 @@ namespace FSpot.Utils.Tests
 			var file = MetadataUtils.Parse (uri);
 			Assert.IsNotNull (file);
 
-			XmpTag xmp = file.GetTag (TagTypes.XMP) as XmpTag;
+			var xmp = file.GetTag (TagTypes.XMP) as XmpTag;
 			// Xmp.MicrosoftPhoto_1_.DateAcquired (XmpText/20) "2009-08-04T20:42:36Z"
 			{
 				var node = xmp.NodeTree;
@@ -72,7 +72,7 @@ namespace FSpot.Utils.Tests
 			var file = MetadataUtils.Parse (uri);
 			Assert.IsNotNull (file);
 
-			XmpTag xmp = file.GetTag (TagTypes.XMP) as XmpTag;
+			var xmp = file.GetTag (TagTypes.XMP) as XmpTag;
 			// Xmp.MicrosoftPhoto_1_.DateAcquired (XmpText/20) "2009-08-04T20:42:36Z"
 			{
 				var node = xmp.NodeTree;
@@ -96,7 +96,7 @@ namespace FSpot.Utils.Tests
 			var file = MetadataUtils.Parse (uri);
 			Assert.IsNotNull (file);
 
-			XmpTag xmp = file.GetTag (TagTypes.XMP) as XmpTag;
+			var xmp = file.GetTag (TagTypes.XMP) as XmpTag;
 			// Xmp.MicrosoftPhoto_1_.DateAcquired (XmpText/20) "2009-08-04T20:42:36Z"
 			{
 				var node = xmp.NodeTree;

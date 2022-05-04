@@ -69,7 +69,7 @@ namespace Hyena.Data.Gui
 				ViewLayout.Model = Model;
 			}
 
-			ISortable sortable = model as ISortable;
+			var sortable = model as ISortable;
 			if (sortable != null && ColumnController != null) {
 				ISortableColumn sort_column = ColumnController.SortColumn ?? ColumnController.DefaultSortColumn;
 				if (sort_column != null) {

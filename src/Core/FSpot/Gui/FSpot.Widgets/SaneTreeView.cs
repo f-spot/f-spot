@@ -58,8 +58,7 @@ namespace FSpot.Widgets
 
 		public TreePath PathAtPoint (double x, double y)
 		{
-			TreePath path_at_pointer = null;
-			GetPathAtPos ((int)x, (int)y, out path_at_pointer);
+			GetPathAtPos ((int)x, (int)y, out var path_at_pointer);
 			return path_at_pointer;
 		}
 
@@ -68,9 +67,7 @@ namespace FSpot.Widgets
 			bool call_parent = true;
 			bool on_expander;
 			drag_started = ignore_button_release = false;
-			TreePath path;
-			TreeViewColumn column;
-			GetPathAtPos ((int)button.X, (int)button.Y, out path, out column);
+			GetPathAtPos ((int)button.X, (int)button.Y, out var path, out var column);
 
 			if (button.Window != BinWindow)
 				return false;

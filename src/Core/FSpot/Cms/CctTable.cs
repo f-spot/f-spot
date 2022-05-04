@@ -19,7 +19,7 @@ namespace FSpot.Cms
 			y = XY[temp - 1000, 1];
 		}
 
-		private static readonly double[,] XY = {
+		static readonly double[,] XY = {
 			{0.652756059, 0.344456906}, // 1000K
 			{0.652614831, 0.344582115}, // 1001K
 			{0.652473628, 0.344707233}, // 1002K

@@ -51,7 +51,7 @@ namespace FSpot.Addins.Editors
 
 		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile)
 		{
-			Pixbuf output = (Pixbuf)input.Clone ();
+			var output = (Pixbuf)input.Clone ();
 			double ratio = (double)size.Value / Math.Max (output.Width, output.Height);
 			return output.ScaleSimple ((int)(output.Width * ratio), (int)(output.Height * ratio), InterpType.Bilinear);
 		}

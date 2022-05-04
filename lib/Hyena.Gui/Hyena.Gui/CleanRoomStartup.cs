@@ -57,7 +57,7 @@ namespace Hyena.Gui
 				Console.WriteLine (e);
 
 				Gtk.Application.Init ();
-				Hyena.Gui.Dialogs.ExceptionDialog dialog = new Hyena.Gui.Dialogs.ExceptionDialog (e);
+				var dialog = new Hyena.Gui.Dialogs.ExceptionDialog (e);
 				dialog.Run ();
 				dialog.Destroy ();
 				System.Environment.Exit (1);

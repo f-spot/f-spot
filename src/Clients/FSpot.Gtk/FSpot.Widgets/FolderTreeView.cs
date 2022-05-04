@@ -102,7 +102,7 @@ namespace FSpot.Widgets
 
 			var renderer = cell as CellRendererPixbuf;
 
-			string stock;
+			//string stock;
 
 			// FIXME, icon theme support
 			//File file = FileFactory.NewForUri (uri);

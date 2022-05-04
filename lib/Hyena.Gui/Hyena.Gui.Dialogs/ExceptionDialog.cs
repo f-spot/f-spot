@@ -59,19 +59,19 @@ namespace Hyena.Gui.Dialogs
 			accel_group = new AccelGroup ();
 			AddAccelGroup (accel_group);
 
-			HBox hbox = new HBox (false, 12);
+			var hbox = new HBox (false, 12);
 			hbox.BorderWidth = 5;
 			VBox.PackStart (hbox, false, false, 0);
 
-			Image image = new Image (Stock.DialogError, IconSize.Dialog);
+			var image = new Image (Stock.DialogError, IconSize.Dialog);
 			image.Yalign = 0.0f;
 			hbox.PackStart (image, true, true, 0);
 
-			VBox label_vbox = new VBox (false, 0);
+			var label_vbox = new VBox (false, 0);
 			label_vbox.Spacing = 12;
 			hbox.PackStart (label_vbox, false, false, 0);
 
-			Label label = new Label (String.Format ("<b><big>{0}</big></b>", GLib.Markup.EscapeText (Title)));
+			var label = new Label (string.Format ("<b><big>{0}</big></b>", GLib.Markup.EscapeText (Title)));
 			label.UseMarkup = true;
 			label.Justify = Justification.Left;
 			label.LineWrap = true;
@@ -88,14 +88,14 @@ namespace Hyena.Gui.Dialogs
 			label.SetAlignment (0.0f, 0.5f);
 			label_vbox.PackStart (label, false, false, 0);
 
-			Label details_label = new Label ($"<b>{GLib.Markup.EscapeText (Strings.ErrorDetails)}</b>");
+			var details_label = new Label ($"<b>{GLib.Markup.EscapeText (Strings.ErrorDetails)}</b>");
 			details_label.UseMarkup = true;
-			Expander details_expander = new Expander ("Details");
+			var details_expander = new Expander ("Details");
 			details_expander.LabelWidget = details_label;
 			label_vbox.PackStart (details_expander, true, true, 0);
 
-			ScrolledWindow scroll = new ScrolledWindow ();
-			TextView view = new TextView ();
+			var scroll = new ScrolledWindow ();
+			var view = new TextView ();
 
 			scroll.HscrollbarPolicy = PolicyType.Automatic;
 			scroll.VscrollbarPolicy = PolicyType.Automatic;
@@ -115,7 +115,7 @@ namespace Hyena.Gui.Dialogs
 
 		void AddButton (string stock_id, Gtk.ResponseType response, bool is_default)
 		{
-			Button button = new Button (stock_id);
+			var button = new Button (stock_id);
 			button.CanDefault = true;
 			button.Show ();
 
@@ -134,7 +134,7 @@ namespace Hyena.Gui.Dialogs
 
 			msg.Append (Strings.AnUnhandledExceptionWasThrown);
 
-			Stack<Exception> exception_chain = new Stack<Exception> ();
+			var exception_chain = new Stack<Exception> ();
 
 			while (e != null) {
 				exception_chain.Push (e);
@@ -146,7 +146,7 @@ namespace Hyena.Gui.Dialogs
 				msg.AppendFormat ("{0}\n\n{1}\n", e.Message, e.StackTrace);
 			};
 
-			msg.Append ("\n");
+			msg.Append ('\n');
 			msg.AppendFormat (".NET Version: {0}\n", Environment.Version);
 			msg.AppendFormat ("OS Version: {0}\n", Environment.OSVersion);
 			msg.Append ("\nAssembly Version Information:\n\n");
@@ -179,7 +179,7 @@ namespace Hyena.Gui.Dialogs
 
 		string BuildPlatformString ()
 		{
-			ProcessStartInfo startInfo = new ProcessStartInfo ();
+			var startInfo = new ProcessStartInfo ();
 			startInfo.Arguments = "-sirom";
 			startInfo.RedirectStandardOutput = true;
 			startInfo.RedirectStandardError = true;
@@ -190,7 +190,7 @@ namespace Hyena.Gui.Dialogs
 				"/sbin/uname", "/usr/sbin/uname", "/usr/local/sbin/uname"}) {
 				try {
 					startInfo.FileName = unameprog;
-					Process uname = Process.Start (startInfo);
+					var uname = Process.Start (startInfo);
 					return uname.StandardOutput.ReadLine ().Trim ();
 				} catch (Exception) {
 					continue;

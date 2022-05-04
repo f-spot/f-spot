@@ -132,9 +132,8 @@ namespace FSpot.Widgets
 			if (text_layout == null)
 				UpdateLayout (widget);
 
-			int text_width, text_height;
 
-			text_layout.GetPixelSize (out text_width, out text_height);
+			text_layout.GetPixelSize (out var text_width, out var text_height);
 
 			width = (int)(2 * Xpad + Math.Max (progress_width, text_width));
 			height = (int)(3 * Ypad + progress_height + text_height);
@@ -150,10 +149,10 @@ namespace FSpot.Widgets
 			if (text_layout == null)
 				UpdateLayout (widget);
 
-			int x, y, width, height, text_width, text_height;
+			int x, y, width, height;
 
 			/* first render the text */
-			text_layout.GetPixelSize (out text_width, out text_height);
+			text_layout.GetPixelSize (out var text_width, out var text_height);
 
 			x = (int)(cell_area.X + Xpad + Math.Max ((int)(Xalign * (cell_area.Width - 2 * Xpad - text_width)), 0));
 			y = (int)(cell_area.Y + Ypad);

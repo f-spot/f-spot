@@ -86,7 +86,7 @@ namespace Hyena.Data
 		{
 			PropertyChangeEventHandler handler = PropertyChanged;
 			if (handler != null) {
-				PropertyChangeEventArgs args = new PropertyChangeEventArgs (propertyName,
+				var args = new PropertyChangeEventArgs (propertyName,
 					added, removed, oldValue, newValue);
 				handler (this, args);
 			}

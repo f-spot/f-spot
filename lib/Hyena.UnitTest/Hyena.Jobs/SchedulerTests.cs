@@ -36,7 +36,7 @@ namespace Hyena.Jobs
 	[TestFixture]
 	public class SchedulerTests
 	{
-		private Scheduler scheduler;
+		Scheduler scheduler;
 
 		[SetUp]
 		public void Setup ()
@@ -88,9 +88,9 @@ namespace Hyena.Jobs
 		public void TestSpeedJobPreemptsNonSpeedJobs ()
 		{
 			scheduler = new Scheduler ();
-			TestJob a = new TestJob (200, PriorityHints.None, Resource.Cpu);
-			TestJob b = new TestJob (200, PriorityHints.None, Resource.Disk);
-			TestJob c = new TestJob (200, PriorityHints.LongRunning, Resource.Database);
+			var a = new TestJob (200, PriorityHints.None, Resource.Cpu);
+			var b = new TestJob (200, PriorityHints.None, Resource.Disk);
+			var c = new TestJob (200, PriorityHints.LongRunning, Resource.Database);
 			scheduler.Add (a);
 			scheduler.Add (b);
 			scheduler.Add (c);
@@ -164,19 +164,19 @@ namespace Hyena.Jobs
             }
         }*/
 
-		private void AssertJobsRunning (int count)
+		void AssertJobsRunning (int count)
 		{
 			Assert.AreEqual (count, scheduler.Jobs.Count (j => j.IsRunning));
 		}
 
-		private class TestJob : SimpleAsyncJob
+		class TestJob : SimpleAsyncJob
 		{
 			internal static int job_count;
 			int iteration;
 			int sleep_time;
 
 			public TestJob (int sleep_time, PriorityHints hints, params Resource[] resources)
-				: base (String.Format ("{0} ( {1}, {2})", job_count++, hints, resources.Aggregate ("", (a, b) => a += b.Id + " ")),
+				: base (string.Format ("{0} ( {1}, {2})", job_count++, hints, resources.Aggregate ("", (a, b) => a += b.Id + " ")),
 						hints,
 						resources)
 			{

@@ -156,7 +156,7 @@ namespace Hyena.CommandLine
 
 		public override string ToString ()
 		{
-			System.Text.StringBuilder builder = new System.Text.StringBuilder ();
+			var builder = new System.Text.StringBuilder ();
 
 			builder.Append ("Parsed Arguments\n");
 			foreach (KeyValuePair<string, Argument> argument in parsed_arguments) {

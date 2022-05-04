@@ -33,7 +33,7 @@ namespace Gtk
 		{
 			IntPtr native_clip_rect = GLib.Marshaller.StructureToPtrAlloc (clip_rect);
 			IntPtr raw_ret = gtk_widget_get_snapshot (widget.Handle, native_clip_rect);
-			Gdk.Pixmap ret = GLib.Object.GetObject (raw_ret) as Gdk.Pixmap;
+			var ret = GLib.Object.GetObject (raw_ret) as Gdk.Pixmap;
 			clip_rect = Gdk.Rectangle.New (native_clip_rect);
 			Marshal.FreeHGlobal (native_clip_rect);
 			return ret;

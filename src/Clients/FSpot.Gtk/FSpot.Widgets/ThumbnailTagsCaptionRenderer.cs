@@ -94,8 +94,7 @@ namespace FSpot.Widgets
 				if (icon == null)
 					continue;
 
-				Rectangle region;
-				if (tag_bounds.Intersect (expose_area, out region)) {
+				if (tag_bounds.Intersect (expose_area, out var region)) {
 					Pixbuf scaled_icon;
 					if (icon.Width == tag_bounds.Width) {
 						scaled_icon = icon;
@@ -105,8 +104,7 @@ namespace FSpot.Widgets
 								InterpType.Bilinear);
 					}
 
-					Cms.Profile screen_profile;
-					if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out screen_profile))
+					if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screen_profile))
 						FSpot.ColorManagement.ApplyProfile (scaled_icon, screen_profile);
 
 					scaled_icon.RenderToDrawable (window, widget.Style.WhiteGC,

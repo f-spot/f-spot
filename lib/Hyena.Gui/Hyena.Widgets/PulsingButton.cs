@@ -97,7 +97,7 @@ namespace Hyena.Widgets
 			double alpha = Choreographer.Compose (pulsator.Percent, Easing.Sine);
 
 			Cairo.Color color = CairoExtensions.GdkColorToCairoColor (Style.Background (StateType.Selected));
-			Cairo.RadialGradient fill = new Cairo.RadialGradient (x, y, 0, x, y, r);
+			var fill = new Cairo.RadialGradient (x, y, 0, x, y, r);
 			color.A = alpha;
 			fill.AddColorStop (0, color);
 			fill.AddColorStop (0.5, color);

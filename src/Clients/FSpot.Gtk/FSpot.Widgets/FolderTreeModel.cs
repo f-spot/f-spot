@@ -94,9 +94,8 @@ namespace FSpot.Widgets
 
 		public SafeUri GetUriByPath (TreePath row)
 		{
-			TreeIter iter;
 
-			GetIter (out iter, row);
+			GetIter (out var iter, row);
 
 			return GetUriByIter (iter);
 		}
@@ -110,7 +109,7 @@ namespace FSpot.Widgets
 		 * UpdateFolderTree queries for directories in database and updates
 		 * a possibly existing folder-tree to the queried structure
 		 */
-		private void UpdateFolderTree ()
+		void UpdateFolderTree ()
 		{
 			Clear ();
 
@@ -120,7 +119,7 @@ namespace FSpot.Widgets
 			TreeIter iter = TreeIter.Zero;
 
 			/* stores the segments of the last inserted uri */
-			string[] last_segments = { };
+			string[] last_segments = Array.Empty<string> ();
 
 			int last_count = 0;
 

@@ -50,7 +50,7 @@ namespace Hyena
 			}
 
 			try {
-				using (StreamReader reader = new StreamReader (user_dirs_path)) {
+				using (var reader = new StreamReader (user_dirs_path)) {
 					string line;
 					while ((line = reader.ReadLine ()) != null) {
 						line = line.Trim ();

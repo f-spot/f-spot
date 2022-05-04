@@ -209,8 +209,7 @@ namespace FSpot.Imaging
 				}
 			}
 			/* Check if a request for this path has already been queued.  */
-			RequestItem existing_request;
-			if (requests_by_uri.TryGetValue (uri, out existing_request)) {
+			if (requests_by_uri.TryGetValue (uri, out var existing_request)) {
 				/* FIXME: At least for now, this shouldn't happen.  */
 				if (existing_request.Order != order) {
 					Logger.Log.Warning ($"BUG: Filing another request of order {order} (previously {existing_request.Order}) for `{uri}'");
@@ -222,7 +221,7 @@ namespace FSpot.Imaging
 			}
 
 			/* New request, just put it on the queue with the right order.  */
-			RequestItem new_request = new RequestItem (uri, order, width, height);
+			var new_request = new RequestItem (uri, order, width, height);
 
 			queue.Add (new_request);
 

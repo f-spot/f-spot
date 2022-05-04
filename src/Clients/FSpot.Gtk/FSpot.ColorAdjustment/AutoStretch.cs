@@ -51,8 +51,7 @@ namespace FSpot.ColorAdjustment
 			tables = new ToneCurve[3];
 
 			for (int channel = 0; channel < tables.Length; channel++) {
-				int high, low;
-				hist.GetHighLow (channel, out high, out low);
+				hist.GetHighLow (channel, out var high, out var low);
 				Logger.Log.Debug ($"high = {high}, low = {low}");
 				tables[channel] = StretchChannel (255, low / 255.0, high / 255.0);
 			}

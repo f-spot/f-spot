@@ -415,8 +415,8 @@ namespace Hyena
 
 		public static void Exception (string message, Exception e)
 		{
-			Stack<Exception> exception_chain = new Stack<Exception> ();
-			StringBuilder builder = new StringBuilder ();
+			var exception_chain = new Stack<Exception> ();
+			var builder = new StringBuilder ();
 
 			while (e != null) {
 				exception_chain.Push (e);

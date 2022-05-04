@@ -38,7 +38,7 @@ namespace Hyena.Data.Gui
 		List<ColumnCell> cells = new List<ColumnCell> ();
 
 		int min_width = 0;
-		int max_width = Int32.MaxValue;
+		int max_width = int.MaxValue;
 
 		public Column (ColumnDescription description) :
 			this (description, new ColumnCellText (description.Property, true))
@@ -66,7 +66,7 @@ namespace Hyena.Data.Gui
 		}
 
 		public Column (ColumnCell headerCell, string title, ColumnCell cell, double width, bool visible)
-			: this (headerCell, title, cell, width, visible, 0, Int32.MaxValue)
+			: this (headerCell, title, cell, width, visible, 0, int.MaxValue)
 		{
 		}
 
@@ -77,8 +77,8 @@ namespace Hyena.Data.Gui
 			max_width = maxWidth;
 			header_cell = headerCell ?? new ColumnHeaderCellText (HeaderCellDataHandler);
 
-			ColumnCellText header_text = header_cell as ColumnCellText;
-			ColumnCellText cell_text = cell as ColumnCellText;
+			var header_text = header_cell as ColumnCellText;
+			var cell_text = cell as ColumnCellText;
 			if (header_text != null && cell_text != null) {
 				header_text.Alignment = cell_text.Alignment;
 			}
@@ -135,20 +135,18 @@ namespace Hyena.Data.Gui
 		{
 			bool min_was_zero = MinWidth == 0;
 			bool was_size_req = false;
-			ISizeRequestCell sr_cell = cells[0] as ISizeRequestCell;
+			var sr_cell = cells[0] as ISizeRequestCell;
 			if (sr_cell != null && sr_cell.RestrictSize) {
-				int min_w, max_w;
-				sr_cell.GetWidthRange (layout, out min_w, out max_w);
+				sr_cell.GetWidthRange (layout, out var min_w, out var max_w);
 				MinWidth = min_w == -1 ? MinWidth : min_w;
 				MaxWidth = max_w == -1 ? MaxWidth : max_w;
 				was_size_req = true;
 			}
 
-			if (headerVisible && (min_was_zero || was_size_req) && !String.IsNullOrEmpty (Title)) {
-				int w, h;
+			if (headerVisible && (min_was_zero || was_size_req) && !string.IsNullOrEmpty (Title)) {
 				layout.SetText (Title);
 				//column_layout.SetText ("\u2026"); // ellipsis char
-				layout.GetPixelSize (out w, out h);
+				layout.GetPixelSize (out var w, out var h);
 
 				// Pretty sure the 3* is needed here only b/c of the " - 8" in ColumnCellText;
 				// See TODO there

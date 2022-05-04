@@ -54,7 +54,7 @@ namespace Hyena.Data.Gui
 
 		public override void Render (CellContext context, double cellWidth, double cellHeight)
 		{
-			Gdk.Rectangle area = new Gdk.Rectangle (0, 0, (int)cellWidth, (int)cellHeight);
+			var area = new Gdk.Rectangle (0, 0, (int)cellWidth, (int)cellHeight);
 
 			// FIXME: Compute font height and set to renderer.Size
 

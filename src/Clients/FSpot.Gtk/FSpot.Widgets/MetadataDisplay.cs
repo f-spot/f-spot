@@ -181,11 +181,11 @@ namespace FSpot.Widgets
 
 		ListStore AddExpander (string name, int pos)
 		{
-			TreeView tree_view = new TreeView ();
+			var tree_view = new TreeView ();
 			tree_view.HeadersVisible = false;
 			tree_view.RulesHint = true;
 
-			TreeViewColumn col = new TreeViewColumn ();
+			var col = new TreeViewColumn ();
 			col.Sizing = TreeViewColumnSizing.Autosize;
 			CellRenderer colr = new CellRendererText ();
 			col.PackStart (colr, false);
@@ -194,10 +194,10 @@ namespace FSpot.Widgets
 
 			tree_view.AppendColumn (col);
 
-			ListStore model = new ListStore (typeof (string));
+			var model = new ListStore (typeof (string));
 			tree_view.Model = model;
 
-			Expander expander = new Expander (string.Format ("<span weight=\"bold\"><small>{0}</small></span>", name));
+			var expander = new Expander (string.Format ("<span weight=\"bold\"><small>{0}</small></span>", name));
 			expander.UseMarkup = true;
 			expander.Add (tree_view);
 			expander.Expanded = true;
@@ -217,7 +217,7 @@ namespace FSpot.Widgets
 
 		public void HandleExpanderActivated (object sender, EventArgs e)
 		{
-			Expander expander = (Expander)sender;
+			var expander = (Expander)sender;
 			if (expander.Expanded)
 				open_list.Add (expander.Label);
 			else

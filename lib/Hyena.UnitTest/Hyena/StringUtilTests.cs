@@ -38,7 +38,7 @@ namespace Hyena.Tests
 	[TestFixture]
 	public class StringUtilTests
 	{
-		private class Map
+		class Map
 		{
 			public Map (string camel, string under)
 			{
@@ -50,7 +50,7 @@ namespace Hyena.Tests
 			public string Under;
 		}
 
-		private Map[] u_to_c_maps = new Map[] {
+		Map[] u_to_c_maps = new Map[] {
 			new Map ("Hello", "hello"),
 			new Map ("HelloWorld", "hello_world"),
 			new Map ("HelloWorld", "hello__world"),
@@ -72,7 +72,7 @@ namespace Hyena.Tests
 			}
 		}
 
-		private Map[] c_to_u_maps = new Map[] {
+		Map[] c_to_u_maps = new Map[] {
 			new Map ("Hello", "hello"),
 			new Map ("HelloWorld", "hello_world"),
 			new Map ("HiWorldHowAreYouDoingToday", "hi_world_how_are_you_doing_today"),
@@ -152,7 +152,7 @@ href=http://lkjdflkjdflkjj>baz foo< /a> bar"));
 			Assert.AreEqual ("foo, bar", s.Join (", "));
 			Assert.AreEqual ("foobar", s.Join (""));
 			Assert.AreEqual ("foobar", s.Join (null));
-			Assert.AreEqual ("", new string[] { }.Join (", "));
+			Assert.AreEqual ("", Array.Empty<string> ().Join (", "));
 
 			s = new string[] { "foo", "bar", "baz" };
 			Assert.AreEqual ("foo -- bar -- baz", s.Join (" -- "));
@@ -184,7 +184,7 @@ href=http://lkjdflkjdflkjj>baz foo< /a> bar"));
 	[TestFixture]
 	public class SearchKeyTests
 	{
-		private void AssertSearchKey (string before, string after)
+		void AssertSearchKey (string before, string after)
 		{
 			Assert.AreEqual (after, StringUtil.SearchKey (before));
 		}
@@ -284,12 +284,12 @@ href=http://lkjdflkjdflkjj>baz foo< /a> bar"));
 	[TestFixture]
 	public class EscapeFilenameTests
 	{
-		private void AssertProduces (string input, string output)
+		void AssertProduces (string input, string output)
 		{
 			Assert.AreEqual (output, StringUtil.EscapeFilename (input));
 		}
 
-		private void AssertProducesSame (string input)
+		void AssertProducesSame (string input)
 		{
 			AssertProduces (input, input);
 		}
@@ -327,7 +327,7 @@ href=http://lkjdflkjdflkjj>baz foo< /a> bar"));
 	[TestFixture]
 	public class SortKeyTests
 	{
-		private void AssertSortKey (string before, object after)
+		void AssertSortKey (string before, object after)
 		{
 			Assert.AreEqual (after, StringUtil.SortKey (before));
 		}
@@ -356,14 +356,14 @@ href=http://lkjdflkjdflkjj>baz foo< /a> bar"));
 	[TestFixture]
 	public class EscapePathTests
 	{
-		private readonly char dir_sep = Path.DirectorySeparatorChar;
+		readonly char dir_sep = Path.DirectorySeparatorChar;
 
-		private void AssertProduces (string input, string output)
+		void AssertProduces (string input, string output)
 		{
 			Assert.AreEqual (output, StringUtil.EscapePath (input));
 		}
 
-		private void AssertProducesSame (string input)
+		void AssertProducesSame (string input)
 		{
 			AssertProduces (input, input);
 		}
@@ -387,33 +387,33 @@ href=http://lkjdflkjdflkjj>baz foo< /a> bar"));
 			AssertProducesSame ("превед");
 			AssertProducesSame ("nǐ hǎo");
 
-			AssertProducesSame (String.Format ("a{0}b.ogg", dir_sep));
-			AssertProducesSame (String.Format ("foo{0}bar{0}01. baz.ogg", dir_sep));
-			AssertProducesSame (String.Format ("{0}foo*?:", dir_sep)); // rooted, shouldn't change
+			AssertProducesSame (string.Format ("a{0}b.ogg", dir_sep));
+			AssertProducesSame (string.Format ("foo{0}bar{0}01. baz.ogg", dir_sep));
+			AssertProducesSame (string.Format ("{0}foo*?:", dir_sep)); // rooted, shouldn't change
 		}
 
 		[Test]
 		public void TestStripped ()
 		{
 			AssertProduces (
-				String.Format ("foo*bar{0}ham:spam.ogg", dir_sep),
-				String.Format ("foo_bar{0}ham_spam.ogg", dir_sep));
+				string.Format ("foo*bar{0}ham:spam.ogg", dir_sep),
+				string.Format ("foo_bar{0}ham_spam.ogg", dir_sep));
 			AssertProduces (
-				String.Format ("..lots..{0}o.f.{0}.dots.ogg.", dir_sep),
-				String.Format ("lots{0}o.f{0}dots.ogg", dir_sep));
+				string.Format ("..lots..{0}o.f.{0}.dots.ogg.", dir_sep),
+				string.Format ("lots{0}o.f{0}dots.ogg", dir_sep));
 			AssertProduces (
-				String.Format ("foo{0}..{0}bar.ogg", dir_sep),
-				String.Format ("foo{0}bar.ogg", dir_sep));
+				string.Format ("foo{0}..{0}bar.ogg", dir_sep),
+				string.Format ("foo{0}bar.ogg", dir_sep));
 			AssertProduces (
-				String.Format (". foo{0}01. bar.ogg. ", dir_sep),
-				String.Format ("foo{0}01. bar.ogg", dir_sep));
+				string.Format (". foo{0}01. bar.ogg. ", dir_sep),
+				string.Format ("foo{0}01. bar.ogg", dir_sep));
 		}
 	}
 
 	[TestFixture]
 	public class SubstringCountTests
 	{
-		private void AssertCount (string haystack, string needle, uint expected)
+		void AssertCount (string haystack, string needle, uint expected)
 		{
 			Assert.AreEqual (expected, StringUtil.SubstringCount (haystack, needle));
 		}

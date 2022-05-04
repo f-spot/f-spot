@@ -43,8 +43,8 @@ namespace Hyena.Gui
 		{
 			this.editable = editable;
 			this.text = text;
-			this.index = start;
-			this.is_paste = length > 1;
+			index = start;
+			is_paste = length > 1;
 		}
 
 		public void Undo ()
@@ -67,8 +67,8 @@ namespace Hyena.Gui
 
 		public bool CanMerge (IUndoAction action)
 		{
-			EditableInsertAction insert = action as EditableInsertAction;
-			if (insert == null || String.IsNullOrEmpty (text)) {
+			var insert = action as EditableInsertAction;
+			if (insert == null || string.IsNullOrEmpty (text)) {
 				return false;
 			}
 
@@ -82,7 +82,7 @@ namespace Hyena.Gui
 
 		public override string ToString ()
 		{
-			return String.Format ("Inserted: [{0}] ({1})", text, index);
+			return string.Format ("Inserted: [{0}] ({1})", text, index);
 		}
 	}
 }

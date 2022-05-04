@@ -151,8 +151,7 @@ namespace FSpot.Widgets
 						if (w > 0 && h > 0)
 							next = pb.ScaleSimple ((int)(pb.Width * scale), (int)(pb.Height * scale), InterpType.Bilinear);
 					}
-					Cms.Profile screen_profile;
-					if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out screen_profile))
+					if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screen_profile))
 						FSpot.ColorManagement.ApplyProfile (next, screen_profile);
 					loadRetries = 0;
 				} catch (Exception) {

@@ -118,8 +118,7 @@ namespace Hyena
 		{
 			// lighter fg colours are 90 -> 97 rather than 30 -> 37
 			// lighter bg colours are 100 -> 107 rather than 40 -> 47
-			bool light;
-			int code = TranslateColor (color, out light) + (isForeground ? 30 : 40) + (light ? 60 : 0);
+			int code = TranslateColor (color, out var light) + (isForeground ? 30 : 40) + (light ? 60 : 0);
 			return string.Format ("\x001b[{0}m", code);
 		}
 

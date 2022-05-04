@@ -63,12 +63,12 @@ namespace Banshee.Kernel
 {
 	public class IntervalHeap<T> : ICollection<T>, ICollection, IEnumerable<T>, IEnumerable
 	{
-		private const int MIN_CAPACITY = 16;
+		const int MIN_CAPACITY = 16;
 
-		private int count;
-		private int generation;
+		int count;
+		int generation;
 
-		private Interval[] heap;
+		Interval[] heap;
 
 		public IntervalHeap ()
 		{
@@ -205,7 +205,7 @@ namespace Banshee.Kernel
 			return new SyncIntervalHeap (heap);
 		}
 
-		private int FindItemHeapIndex (T item)
+		int FindItemHeapIndex (T item)
 		{
 			for (int i = 0; i < count; i++) {
 				if (item.Equals (heap[i].Item)) {
@@ -216,18 +216,18 @@ namespace Banshee.Kernel
 			return -1;
 		}
 
-		private static int GetLeftChildIndex (int index)
+		static int GetLeftChildIndex (int index)
 		{
 			return index * 2 + 1;
 		}
 
-		private static int GetParentIndex (int index)
+		static int GetParentIndex (int index)
 		{
 			return (index - 1) / 2;
 		}
 
 		// grow array to nearest minimum power of two
-		private static void OptimalArrayResize (ref Interval[] array, int grow)
+		static void OptimalArrayResize (ref Interval[] array, int grow)
 		{
 			int new_capacity = array.Length == 0 ? 1 : array.Length;
 			int min_capacity = array.Length == 0 ? MIN_CAPACITY : array.Length + grow;
@@ -239,7 +239,7 @@ namespace Banshee.Kernel
 			Array.Resize (ref array, new_capacity);
 		}
 
-		private void MoveUp (int index, Interval node)
+		void MoveUp (int index, Interval node)
 		{
 			int parent_index = GetParentIndex (index);
 
@@ -252,7 +252,7 @@ namespace Banshee.Kernel
 			heap[index] = node;
 		}
 
-		private void MoveDown (int index, Interval node)
+		void MoveDown (int index, Interval node)
 		{
 			int child_index = GetLeftChildIndex (index);
 
@@ -286,10 +286,10 @@ namespace Banshee.Kernel
 			get { return false; }
 		}
 
-		private struct Interval
+		struct Interval
 		{
-			private T item;
-			private int priority;
+			T item;
+			int priority;
 
 			public Interval (T item, int priority)
 			{
@@ -311,9 +311,9 @@ namespace Banshee.Kernel
 			}
 		}
 
-		private sealed class SyncIntervalHeap : IntervalHeap<T>
+		sealed class SyncIntervalHeap : IntervalHeap<T>
 		{
-			private IntervalHeap<T> heap;
+			IntervalHeap<T> heap;
 
 			internal SyncIntervalHeap (IntervalHeap<T> heap)
 			{
@@ -383,11 +383,11 @@ namespace Banshee.Kernel
 			}
 		}
 
-		private sealed class IntervalHeapEnumerator : IEnumerator<T>, IEnumerator
+		sealed class IntervalHeapEnumerator : IEnumerator<T>, IEnumerator
 		{
-			private IntervalHeap<T> heap;
-			private int index;
-			private int generation;
+			IntervalHeap<T> heap;
+			int index;
+			int generation;
 
 			public IntervalHeapEnumerator (IntervalHeap<T> heap)
 			{

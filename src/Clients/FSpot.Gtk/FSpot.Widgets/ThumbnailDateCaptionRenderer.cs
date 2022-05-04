@@ -72,8 +72,7 @@ namespace FSpot.Widgets
 				date_text = photo.Time.ToShortDateString ();
 			}
 
-			Pango.Layout layout = null;
-			if (!cache.TryGetValue (date_text, out layout)) {
+			if (!cache.TryGetValue (date_text, out var layout)) {
 				layout = new Pango.Layout (widget.PangoContext);
 				layout.SetText (date_text);
 

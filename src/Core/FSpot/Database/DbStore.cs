@@ -70,7 +70,7 @@ namespace FSpot.Database
 				return item_cache[id] as T;
 			}
 
-			WeakReference weakref = item_cache[id] as WeakReference;
+			var weakref = item_cache[id] as WeakReference;
 			return (T)weakref.Target;
 		}
 

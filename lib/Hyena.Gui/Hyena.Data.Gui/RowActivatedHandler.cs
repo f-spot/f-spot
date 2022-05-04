@@ -40,7 +40,7 @@ namespace Hyena.Data.Gui
 		public RowActivatedArgs (int row, T rowValue)
 		{
 			this.row = row;
-			this.row_value = rowValue;
+			row_value = rowValue;
 		}
 
 		public int Row {

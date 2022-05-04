@@ -107,7 +107,7 @@ namespace FSpot.Widgets
 		#region Gtk widgetry
 		protected override void OnStyleSet (Gtk.Style previous)
 		{
-			CheckPattern = new CheckPattern (this.Style.Backgrounds[(int)Gtk.StateType.Normal]);
+			CheckPattern = new CheckPattern (Style.Backgrounds[(int)Gtk.StateType.Normal]);
 		}
 
 		protected override bool OnKeyPressEvent (Gdk.EventKey evnt)
@@ -218,8 +218,8 @@ namespace FSpot.Widgets
 			if (!ShowProgress)
 				return;
 
-			Gdk.Pixbuf prev = this.Pixbuf;
-			this.Pixbuf = loader.Pixbuf;
+			Gdk.Pixbuf prev = Pixbuf;
+			Pixbuf = loader.Pixbuf;
 			prev?.Dispose ();
 
 			ZoomFit (args.ReducedResolution);
@@ -243,7 +243,7 @@ namespace FSpot.Widgets
 			op.Complete ();
 			op.Dispose ();
 
-			IImageLoader loader = sender as IImageLoader;
+			var loader = sender as IImageLoader;
 			if (loader != this.loader)
 				return;
 
@@ -392,8 +392,7 @@ namespace FSpot.Widgets
 
 		protected override void ApplyColorTransform (Pixbuf pixbuf)
 		{
-			Cms.Profile screen_profile;
-			if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out screen_profile))
+			if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screen_profile))
 				FSpot.ColorManagement.ApplyProfile (pixbuf, screen_profile);
 		}
 

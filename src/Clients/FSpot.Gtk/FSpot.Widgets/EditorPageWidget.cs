@@ -110,15 +110,14 @@ namespace FSpot.Widgets
 		internal void ChangeButtonVisibility ()
 		{
 			foreach (Editor editor in editors) {
-				Button button;
-				if (editor_buttons.TryGetValue (editor, out button))
+				if (editor_buttons.TryGetValue (editor, out var button))
 					button.Visible = Page.InPhotoView || editor.CanHandleMultiple;
 			}
 		}
 
 		void PackButton (Editor editor)
 		{
-			Button button = new Button (editor.Label);
+			var button = new Button (editor.Label);
 			if (editor.IconName != null)
 				button.Image = new Image (GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, editor.IconName, 22, (Gtk.IconLookupFlags)0));
 			button.Clicked += (o, e) => { ChooseEditor (editor); };
@@ -148,7 +147,7 @@ namespace FSpot.Widgets
 				widgets = new VBox (false, 0);
 				widgets.NoShowAll = true;
 				widgets.Show ();
-				Viewport widgets_port = new Viewport ();
+				var widgets_port = new Viewport ();
 				widgets_port.Add (widgets);
 				Add (widgets_port);
 				widgets_port.ShowAll ();
@@ -207,7 +206,7 @@ namespace FSpot.Widgets
 				string msg = Strings.NoSelectionAvailable;
 				string desc = Strings.ThisToolRequiresAnActiveSelectionPleaseSelectARegion;
 
-				HigMessageDialog md = new HigMessageDialog (App.Instance.Organizer.Window,
+				var md = new HigMessageDialog (App.Instance.Organizer.Window,
 										DialogFlags.DestroyWithParent,
 										Gtk.MessageType.Error, ButtonsType.Ok,
 										msg,
@@ -226,7 +225,7 @@ namespace FSpot.Widgets
 				string msg = editor.State.Items.Length <= 1 ? Strings.ErrorSavingAdjustedPhoto : Strings.ErrorSavingAdjustedPhotos;
 				string desc = string.Format (Strings.ReceivedExceptionXNoteThatYouHaveToDevelopRaw, e.Message);
 
-				HigMessageDialog md = new HigMessageDialog (App.Instance.Organizer.Window,
+				var md = new HigMessageDialog (App.Instance.Organizer.Window,
 										DialogFlags.DestroyWithParent,
 										MessageType.Error, ButtonsType.Ok,
 										msg,
@@ -245,8 +244,8 @@ namespace FSpot.Widgets
 			buttons.Hide ();
 
 			// Top label
-			VBox vbox = new VBox (false, 4);
-			Label label = new Label ();
+			var vbox = new VBox (false, 4);
+			var label = new Label ();
 			label.Markup = string.Format ("<big><b>{0}</b></big>", editor.Label);
 			vbox.PackStart (label, false, false, 5);
 
@@ -263,17 +262,17 @@ namespace FSpot.Widgets
 			}
 
 			// Apply / Cancel buttons
-			HButtonBox tool_buttons = new HButtonBox ();
+			var tool_buttons = new HButtonBox ();
 			tool_buttons.LayoutStyle = ButtonBoxStyle.End;
 			tool_buttons.Spacing = 5;
 			tool_buttons.BorderWidth = 5;
 			tool_buttons.Homogeneous = false;
 
-			Button cancel = new Button (Stock.Cancel);
+			var cancel = new Button (Stock.Cancel);
 			cancel.Clicked += HandleCancel;
 			tool_buttons.Add (cancel);
 
-			Button apply = new Button (editor.ApplyLabel);
+			var apply = new Button (editor.ApplyLabel);
 			apply.Image = new Image (GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, editor.IconName, 22, 0));
 			apply.Clicked += (s, e) => { Apply (editor); };
 			tool_buttons.Add (apply);

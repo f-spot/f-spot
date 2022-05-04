@@ -61,7 +61,7 @@ namespace Hyena.CommandLine
 
 		public string ToString (IEnumerable<LayoutGroup> groups)
 		{
-			StringBuilder builder = new StringBuilder ();
+			var builder = new StringBuilder ();
 
 			int min_spacing = 6;
 
@@ -118,7 +118,7 @@ namespace Hyena.CommandLine
 
 		static string WrapAlign (string str, int width, int align, bool last)
 		{
-			StringBuilder builder = new StringBuilder ();
+			var builder = new StringBuilder ();
 			bool did_wrap = false;
 
 			for (int i = 0, b = 0; i < str.Length; i++, b++) {

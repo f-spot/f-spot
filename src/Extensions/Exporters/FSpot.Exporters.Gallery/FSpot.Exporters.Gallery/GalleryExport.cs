@@ -68,8 +68,8 @@ namespace FSpot.Exporters.Gallery
 			(edit_button.Parent as Gtk.HBox).ReorderChild (gallery_optionmenu, 1);
 			gallery_optionmenu.Show ();
 
-			this.items = selection.Items.ToArray ();
-			Array.Sort<IPhoto> (this.items, new IPhotoComparer.CompareDateName ());
+			items = selection.Items.ToArray ();
+			Array.Sort<IPhoto> (items, new IPhotoComparer.CompareDateName ());
 			album_button.Sensitive = false;
 			var view = new TrayView (selection);
 			view.DisplayDates = false;
@@ -82,7 +82,7 @@ namespace FSpot.Exporters.Gallery
 			view.Show ();
 			export_dialog.Show ();
 
-			GalleryAccountManager manager = GalleryAccountManager.GetInstance ();
+			var manager = GalleryAccountManager.GetInstance ();
 			manager.AccountListChanged += PopulateGalleryOptionMenu;
 			PopulateGalleryOptionMenu (manager, null);
 
@@ -106,17 +106,17 @@ namespace FSpot.Exporters.Gallery
 		public const string BROWSER_KEY = Preferences.ExportKey + EXPORT_SERVICE + "browser";
 		public const string META_KEY = Preferences.ExportKey + EXPORT_SERVICE + "meta";
 		public const string LIGHTTPD_WORKAROUND_KEY = Preferences.ExportKey + EXPORT_SERVICE + "lighttpd_workaround";
-		private bool scale;
-		private int size;
-		private bool browser;
-		private bool meta;
-		private bool connect = false;
+		bool scale;
+		int size;
+		bool browser;
+		bool meta;
+		bool connect = false;
 		IPhoto[] items;
 		int photo_index;
 		ThreadProgressDialog progress_dialog;
 		List<GalleryAccount> accounts;
-		private GalleryAccount account;
-		private Album album;
+		GalleryAccount account;
+		Album album;
 
 		// Widgets
 		[GtkBeans.Builder.Object] Gtk.Dialog export_dialog;
@@ -136,7 +136,7 @@ namespace FSpot.Exporters.Gallery
 
 		System.Threading.Thread command_thread;
 
-		private void HandleResponse (object sender, Gtk.ResponseArgs args)
+		void HandleResponse (object sender, Gtk.ResponseArgs args)
 		{
 			if (args.ResponseId != Gtk.ResponseType.Ok) {
 				export_dialog.Destroy ();
@@ -159,7 +159,7 @@ namespace FSpot.Exporters.Gallery
 
 				export_dialog.Destroy ();
 
-				command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (this.Upload));
+				command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (Upload));
 				command_thread.Name = Strings.UploadingPictures;
 
 				progress_dialog = new ThreadProgressDialog (command_thread, items.Length);
@@ -173,7 +173,7 @@ namespace FSpot.Exporters.Gallery
 			}
 		}
 
-		private void HandleProgressChanged (ProgressItem item)
+		void HandleProgressChanged (ProgressItem item)
 		{
 			//System.Console.WriteLine ("Changed value = {0}", item.Value);
 			progress_dialog.Fraction = (photo_index - 1.0 + item.Value) / (double)items.Length;
@@ -184,14 +184,14 @@ namespace FSpot.Exporters.Gallery
 			size_spin.Sensitive = scale_check.Active;
 		}
 
-		private void Upload ()
+		void Upload ()
 		{
 			account.Gallery.Progress = new ProgressItem ();
 			account.Gallery.Progress.Changed += HandleProgressChanged;
 
 			Logger.Log.Debug ("Starting upload");
 
-			FilterSet filters = new FilterSet ();
+			var filters = new FilterSet ();
 			if (account.Version == GalleryVersion.Version1)
 				filters.Add (new WhiteListFilter (new string[] { ".jpg", ".jpeg", ".png", ".gif" }));
 			if (scale)
@@ -209,7 +209,7 @@ namespace FSpot.Exporters.Gallery
 				progress_dialog.ProgressText = string.Format (Strings.XOfY, photo_index, items.Length);
 
 
-				FilterRequest req = new FilterRequest (item.DefaultVersion.Uri);
+				var req = new FilterRequest (item.DefaultVersion.Uri);
 
 				filters.Convert (req);
 				try {
@@ -236,9 +236,9 @@ namespace FSpot.Exporters.Gallery
 				GtkBeans.Global.ShowUri (export_dialog.Screen, album.GetUrl ());
 		}
 
-		private void PopulateGalleryOptionMenu (GalleryAccountManager manager, GalleryAccount changed_account)
+		void PopulateGalleryOptionMenu (GalleryAccountManager manager, GalleryAccount changed_account)
 		{
-			this.account = changed_account;
+			account = changed_account;
 			int pos = -1;
 
 			accounts = manager.GetAccounts ();
@@ -263,7 +263,7 @@ namespace FSpot.Exporters.Gallery
 			gallery_optionmenu.Active = pos;
 		}
 
-		private void Connect (GalleryAccount selected = null)
+		void Connect (GalleryAccount selected = null)
 		{
 			try {
 				if (accounts.Count != 0 && connect) {
@@ -293,7 +293,7 @@ namespace FSpot.Exporters.Gallery
 			}
 		}
 
-		private void HandleAccountSelected (object sender, System.EventArgs args)
+		void HandleAccountSelected (object sender, System.EventArgs args)
 		{
 			Connect ();
 		}
@@ -311,7 +311,7 @@ namespace FSpot.Exporters.Gallery
 			}
 		}
 
-		private void PopulateAlbumOptionMenu (Gallery gallery)
+		void PopulateAlbumOptionMenu (Gallery gallery)
 		{
 			List<Album> albums = null;
 			if (gallery != null)
@@ -339,7 +339,7 @@ namespace FSpot.Exporters.Gallery
 					album_button.Sensitive = false;
 			} else {
 				foreach (Album album in albums) {
-					System.Text.StringBuilder label_builder = new System.Text.StringBuilder ();
+					var label_builder = new System.Text.StringBuilder ();
 
 					for (int i = 0; i < album.Parents.Count; i++) {
 						label_builder.Append ("  ");

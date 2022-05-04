@@ -45,7 +45,7 @@ namespace Hyena.Widgets
 			box = new HBox ();
 			box.Spacing = 5;
 
-			Label label = new Label ();
+			var label = new Label ();
 			label.Markup = $"<i>{GLib.Markup.EscapeText (Strings.RatingColon)}</i>";
 			box.PackStart (label, false, false, 0);
 			label.Show ();

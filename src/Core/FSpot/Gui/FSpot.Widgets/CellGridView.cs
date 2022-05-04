@@ -294,10 +294,8 @@ namespace FSpot.Widgets
 				return;
 
 			Adjustment adjustment = Vadjustment;
-			int x;
-			int y;
 
-			CellPosition (cell_num, out x, out y);
+			CellPosition (cell_num, out var x, out var y);
 
 			if (center)
 				y += cell_height / 2 - Allocation.Height / 2;
@@ -318,13 +316,12 @@ namespace FSpot.Widgets
 			cell_area.Width -= 1;
 			cell_area.Height -= 1;
 
-			Gdk.Rectangle visible =
+			var visible =
 				new Gdk.Rectangle ((int)Hadjustment.Value,
 								   (int)Vadjustment.Value,
 								   Allocation.Width,
 								   Allocation.Height);
-			Gdk.Rectangle intersection;
-			if (BinWindow != null && cell_area.Intersect (visible, out intersection))
+			if (BinWindow != null && cell_area.Intersect (visible, out var intersection))
 				BinWindow.InvalidateRect (intersection, false);
 		}
 
@@ -425,7 +422,7 @@ namespace FSpot.Widgets
 				Hadjustment.Value = x;
 			}
 
-			if (this.Width != Allocation.Width || this.Height != Allocation.Height)
+			if (Width != Allocation.Width || Height != Allocation.Height)
 				SetSize ((uint)Allocation.Width, (uint)height);
 
 			if (xchange || ychange) {
@@ -469,7 +466,7 @@ namespace FSpot.Widgets
 
 			Gdk.Rectangle area;
 
-			Gdk.Region offscreen = new Gdk.Region ();
+			var offscreen = new Gdk.Region ();
 			/*
             Logger.Log.Debug ("step ({0}, {1}) allocation ({2},{3},{4},{5})",
                     xstep, ystep, Hadjustment.Value, Vadjustment.Value,
@@ -504,7 +501,7 @@ namespace FSpot.Widgets
 
 			// always load the onscreen area last to make sure it
 			// is first in the loading
-			Gdk.Region onscreen = Gdk.Region.Rectangle (area);
+			var onscreen = Gdk.Region.Rectangle (area);
 			offscreen.Subtract (onscreen);
 
 			PreloadRegion (offscreen, ystep);

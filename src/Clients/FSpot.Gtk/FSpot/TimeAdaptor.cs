@@ -196,19 +196,19 @@ namespace FSpot
 		protected override void Reload ()
 		{
 			op = Operation.Begin ($"TimeAdaptor REAL Reload");
-			Thread reload = new Thread (new ThreadStart (DoReload));
+			var reload = new Thread (new ThreadStart (DoReload));
 			reload.IsBackground = true;
 			reload.Priority = ThreadPriority.Lowest;
 			reload.Start ();
 		}
 
-		int startyear = Int32.MaxValue, endyear = Int32.MinValue;
+		int startyear = int.MaxValue, endyear = int.MinValue;
 		void DoReload ()
 		{
 			Thread.Sleep (200);
 			var years_tmp = query.Store.PhotosPerMonth ();
-			int startyear_tmp = Int32.MaxValue;
-			int endyear_tmp = Int32.MinValue;
+			int startyear_tmp = int.MaxValue;
+			int endyear_tmp = int.MinValue;
 
 			foreach (int year in years_tmp.Keys) {
 				startyear_tmp = Math.Min (year, startyear_tmp);

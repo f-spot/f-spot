@@ -500,7 +500,7 @@ namespace FSpot.Widgets
 
 		bool DrawOrientationMenu (EventButton args)
 		{
-			Menu placement_menu = new Menu ();
+			var placement_menu = new Menu ();
 			GtkUtil.MakeCheckMenuItem (placement_menu, Strings.HorizontalMnemonic,
 							App.Instance.Organizer.HandleFilmstripHorizontal,
 							true, Orientation == Orientation.Horizontal, true);
@@ -569,8 +569,7 @@ namespace FSpot.Widgets
 			}
 
 			//FIXME: we might end up leaking a pixbuf here
-			Cms.Profile screen_profile;
-			if (ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out screen_profile)) {
+			if (ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screen_profile)) {
 				Pixbuf t = current.Copy ();
 				current = t;
 				ColorManagement.ApplyProfile (current, screen_profile);
@@ -578,7 +577,7 @@ namespace FSpot.Widgets
 
 			// Add a four pixel white border around the thumbnail
 			// for some reason we cannot use "using" here, it looks like the pixbuf copy is not done properly
-			Pixbuf whiteBorder = new Pixbuf (Colorspace.Rgb, true, 8, current.Width, current.Height);
+			var whiteBorder = new Pixbuf (Colorspace.Rgb, true, 8, current.Width, current.Height);
 			whiteBorder.Fill (0);
 			current.CopyArea (1, 1, current.Width - 8, current.Height - 8, whiteBorder, 4, 4);
 			current = whiteBorder;
@@ -586,7 +585,7 @@ namespace FSpot.Widgets
 			if (!highlighted)
 				return current;
 
-			Pixbuf highlight = new Pixbuf (Colorspace.Rgb, true, 8, current.Width, current.Height);
+			var highlight = new Pixbuf (Colorspace.Rgb, true, 8, current.Width, current.Height);
 
 			highlight.Fill (ColorToInt (Style.Light (StateType.Selected)));
 

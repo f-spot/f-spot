@@ -75,7 +75,7 @@ namespace Hyena
 
 		static string ToHex (byte[] hash)
 		{
-			StringBuilder shash = new StringBuilder ();
+			var shash = new StringBuilder ();
 			for (int i = 0; i < hash.Length; i++) {
 				shash.Append (hash[i].ToString ("x2"));
 			}

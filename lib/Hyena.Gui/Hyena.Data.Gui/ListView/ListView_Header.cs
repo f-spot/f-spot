@@ -161,14 +161,14 @@ namespace Hyena.Data.Gui
 				return;
 			}
 
-			ISortable sortable = Model as ISortable;
+			var sortable = Model as ISortable;
 			sort_column_index = -1;
 			int min_header_width = 0;
 			for (int i = 0; i < column_cache.Length; i++) {
 				if (sortable != null) {
-					ColumnHeaderCellText column_cell = column_cache[i].Column.HeaderCell as ColumnHeaderCellText;
+					var column_cell = column_cache[i].Column.HeaderCell as ColumnHeaderCellText;
 					if (column_cell != null) {
-						ISortableColumn sort_column = column_cache[i].Column as ISortableColumn;
+						var sort_column = column_cache[i].Column as ISortableColumn;
 						column_cell.HasSort = sort_column != null && sortable.SortColumn == sort_column;
 						if (column_cell.HasSort) {
 							sort_column_index = i;
@@ -223,7 +223,7 @@ namespace Hyena.Data.Gui
 			double tmp_max = 0.0;
 			foreach (var col in column_cache) {
 				tmp_width += col.ElasticWidth;
-				tmp_max += col.MaxWidth == Int32.MaxValue ? col.MinWidth : col.MaxWidth;
+				tmp_max += col.MaxWidth == int.MaxValue ? col.MinWidth : col.MaxWidth;
 			}
 			list_width = tmp_width;
 			max_width = tmp_max;
@@ -254,7 +254,7 @@ namespace Hyena.Data.Gui
 				column_cache[i].ElasticWidth += delta;
 			}
 
-			if (Math.Abs (total_width - remaining_width) < 1.0 || remaining_width == Double.NaN) {
+			if (Math.Abs (total_width - remaining_width) < 1.0 || remaining_width == double.NaN) {
 				Hyena.Log.Warning ("Forcefully breaking out of RCS loop b/c change in total_width less than 1.0");
 				return 0;
 			}
@@ -273,8 +273,8 @@ namespace Hyena.Data.Gui
 		protected virtual void OnColumnLeftClicked (Column clickedColumn)
 		{
 			if (Model is ISortable && clickedColumn is ISortableColumn) {
-				ISortableColumn sort_column = clickedColumn as ISortableColumn;
-				ISortable sortable = Model as ISortable;
+				var sort_column = clickedColumn as ISortableColumn;
+				var sortable = Model as ISortable;
 
 				// Change the sort-type with every click
 				if (sort_column == ColumnController.SortColumn) {
@@ -307,7 +307,7 @@ namespace Hyena.Data.Gui
 			Column[] columns = ColumnController.ToArray ();
 			Array.Sort (columns, delegate (Column a, Column b) {
 				// Fully qualified type name to avoid Mono 1.2.4 bug
-				return System.String.Compare (a.Title, b.Title);
+				return string.Compare (a.Title, b.Title);
 			});
 
 			uint items = 0;
@@ -327,7 +327,7 @@ namespace Hyena.Data.Gui
 
 			uint column_count = (uint)Math.Ceiling (items / (double)max_items_per_column);
 
-			Menu menu = new Menu ();
+			var menu = new Menu ();
 			uint row_offset = 2;
 
 			if (clickedColumn.Id != null) { // FIXME: Also restrict if the column vis can't be changed
@@ -354,8 +354,7 @@ namespace Hyena.Data.Gui
 
 			menu.ShowAll ();
 			menu.Popup (null, null, delegate (Menu popup, out int pos_x, out int pos_y, out bool push_in) {
-				int win_x, win_y;
-				GdkWindow.GetOrigin (out win_x, out win_y);
+				GdkWindow.GetOrigin (out var win_x, out var win_y);
 
 				pos_x = win_x + x;
 				pos_y = win_y + y;
@@ -536,10 +535,8 @@ namespace Hyena.Data.Gui
 				}
 
 				if (header_height == 0) {
-					int w;
-					int h;
 					column_layout.SetText ("W");
-					column_layout.GetPixelSize (out w, out h);
+					column_layout.GetPixelSize (out var w, out var h);
 					header_height = h;
 					header_height += 10;
 				}
@@ -575,7 +572,7 @@ namespace Hyena.Data.Gui
 
 				label = new Label ();
 				label.Xalign = 0.0f;
-				label.Text = column.LongTitle ?? String.Empty;
+				label.Text = column.LongTitle ?? string.Empty;
 				label.Show ();
 
 				Add (label);
@@ -607,7 +604,7 @@ namespace Hyena.Data.Gui
 			public ColumnHideMenuItem (Column column) : base ()
 			{
 				this.column = column;
-				this.Image = new Image (Stock.Remove, IconSize.Menu);
+				Image = new Image (Stock.Remove, IconSize.Menu);
 
 				label = new Label ();
 				label.Xalign = 0.0f;

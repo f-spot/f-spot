@@ -61,7 +61,7 @@ namespace FSpot.Database
 			long unix_time = DateTimeUtil.FromDateTime (time_in_utc);
 			uint id = (uint)Database.Execute (new HyenaSqliteCommand ("INSERT INTO rolls (time) VALUES (?)", unix_time));
 
-			Roll roll = new Roll (id, unix_time);
+			var roll = new Roll (id, unix_time);
 			AddToCache (roll);
 
 			return roll;
@@ -74,7 +74,7 @@ namespace FSpot.Database
 
 		public override Roll Get (uint id)
 		{
-			Roll roll = LookupInCache (id) as Roll;
+			var roll = LookupInCache (id) as Roll;
 			if (roll != null)
 				return roll;
 
@@ -120,7 +120,7 @@ namespace FSpot.Database
 
 		public Roll[] GetRolls (int limit)
 		{
-			List<Roll> rolls = new List<Roll> ();
+			var rolls = new List<Roll> ();
 
 			string query = "SELECT DISTINCT rolls.id AS roll_id, rolls.time AS roll_time FROM rolls, photos WHERE photos.roll_id = rolls.id ORDER BY rolls.time DESC";
 			if (limit >= 0)

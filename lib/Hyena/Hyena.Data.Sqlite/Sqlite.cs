@@ -522,8 +522,7 @@ namespace Hyena.Data.Sqlite
 		{
 			Statement.CheckReading ();
 
-			int col = 0;
-			if (!Columns.TryGetValue (columnName, out col))
+			if (!Columns.TryGetValue (columnName, out var col))
 				throw new ArgumentException ("columnName");
 			return col;
 		}

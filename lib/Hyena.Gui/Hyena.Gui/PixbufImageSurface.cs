@@ -75,8 +75,8 @@ namespace Hyena.Gui
 				// implemented. One day we can come back and optimize this by finding
 				// out what's causing the PixbufImageSurface to result in access
 				// violations when the object is disposed.
-				ImageSurface target = new ImageSurface (Format.ARGB32, pixbuf.Width, pixbuf.Height);
-				Context context = new Context (target);
+				var target = new ImageSurface (Format.ARGB32, pixbuf.Width, pixbuf.Height);
+				var context = new Context (target);
 				try {
 					Gdk.CairoHelper.SetSourcePixbuf (context, pixbuf, 0, 0);
 					context.Paint ();
@@ -186,7 +186,7 @@ namespace Hyena.Gui
 			try {
 				Status status = cairo_surface_set_user_data (Handle, ref user_data_key, data, destroy_func);
 				if (status != Status.Success) {
-					throw new ApplicationException (String.Format (
+					throw new ApplicationException (string.Format (
 						"cairo_surface_set_user_data returned {0}", status));
 				}
 			} catch (Exception e) {

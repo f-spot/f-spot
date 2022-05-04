@@ -74,7 +74,7 @@ namespace Hyena.Widgets
 			// is filled in with the proper style.
 
 			int x, y, width, height;
-			Widget widget = (Widget)o;
+			var widget = (Widget)o;
 
 			if (IsSelected) {
 				x = Allocation.X - widget.Allocation.X;
@@ -82,7 +82,7 @@ namespace Hyena.Widgets
 				width = Allocation.Width;
 				height = Allocation.Height;
 
-				ShadowType shadow_type = (ShadowType)StyleGetProperty ("selected-shadow-type");
+				var shadow_type = (ShadowType)StyleGetProperty ("selected-shadow-type");
 				Gtk.Style.PaintBox (Style, widget.GdkWindow, StateType.Prelight, shadow_type,
 					args.Event.Area, widget, "menuitem", x, y, width, height);
 			} else {

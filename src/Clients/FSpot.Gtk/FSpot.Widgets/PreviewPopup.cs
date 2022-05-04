@@ -165,13 +165,12 @@ namespace FSpot.Widgets
 
 		void UpdatePosition ()
 		{
-			int x, y;
 			Gdk.Rectangle bounds = view.CellBounds (Item);
 
 			Gtk.Requisition requisition = SizeRequest ();
 			Resize (requisition.Width, requisition.Height);
 
-			view.GdkWindow.GetOrigin (out x, out y);
+			view.GdkWindow.GetOrigin (out var x, out var y);
 
 			// Acount for scrolling
 			bounds.X -= (int)view.Hadjustment.Value;
@@ -205,8 +204,7 @@ namespace FSpot.Widgets
 
 		void UpdateItem ()
 		{
-			int x, y;
-			view.GetPointer (out x, out y);
+			view.GetPointer (out var x, out var y);
 			x += (int)view.Hadjustment.Value;
 			y += (int)view.Vadjustment.Value;
 			UpdateItem (x, y);

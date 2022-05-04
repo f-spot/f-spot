@@ -63,7 +63,7 @@ namespace Hyena.Collections
 
 		public static string Join<T> (IList<T> list, string front, string back, string separator)
 		{
-			StringBuilder builder = new StringBuilder ();
+			var builder = new StringBuilder ();
 
 			for (int i = 0, n = list.Count; i < n; i++) {
 				if (front != null) {

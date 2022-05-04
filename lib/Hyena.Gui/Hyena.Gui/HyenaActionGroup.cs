@@ -62,14 +62,14 @@ namespace Hyena.Gui
 
 		public void Register ()
 		{
-			if (ActionManager.FindActionGroup (this.Name) == null) {
+			if (ActionManager.FindActionGroup (Name) == null) {
 				ActionManager.AddActionGroup (this);
 			}
 		}
 
 		public void UnRegister ()
 		{
-			if (ActionManager.FindActionGroup (this.Name) != null) {
+			if (ActionManager.FindActionGroup (Name) != null) {
 				ActionManager.RemoveActionGroup (this);
 			}
 		}
@@ -155,7 +155,7 @@ namespace Hyena.Gui
 
 		protected void ShowContextMenu (string menu_name)
 		{
-			Gtk.Menu menu = ActionManager.UIManager.GetWidget (menu_name) as Menu;
+			var menu = ActionManager.UIManager.GetWidget (menu_name) as Menu;
 			if (menu == null || menu.Children.Length == 0) {
 				return;
 			}

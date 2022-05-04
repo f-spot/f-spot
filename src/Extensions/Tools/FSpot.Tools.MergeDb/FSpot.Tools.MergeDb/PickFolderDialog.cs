@@ -33,7 +33,7 @@ using FSpot.Resources.Lang;
 
 namespace FSpot.Tools.MergeDb
 {
-	internal class PickFolderDialog
+	class PickFolderDialog
 	{
 #pragma warning disable 649
 		[GtkBeans.Builder.Object] Gtk.Dialog pickfolder_dialog;

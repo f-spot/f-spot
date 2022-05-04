@@ -142,9 +142,9 @@ namespace FSpot.Widgets
 			preview_image = new Gtk.Image ();
 			Attach (preview_image, 0, 2, 0, 1);
 
-			Frame page_frame = new Frame (Strings.PageSetup);
-			VBox page_box = new VBox ();
-			Label current_settings = new Label ();
+			var page_frame = new Frame (Strings.PageSetup);
+			var page_box = new VBox ();
+			var current_settings = new Label ();
 			if (FSpotConfiguration.PageSetup != null)
 				current_settings.Text = string.Format (Strings.PaperSizeXxYmm,
 								Math.Round (print_operation.DefaultPageSetup.GetPaperWidth (Unit.Mm), 1),
@@ -153,7 +153,7 @@ namespace FSpot.Widgets
 				current_settings.Text = string.Format (Strings.PaperSizeXxYmm, "...", "...");
 
 			page_box.PackStart (current_settings, false, false, 0);
-			Button page_setup_btn = new Button (Strings.SetPageSizeAndOrientation);
+			var page_setup_btn = new Button (Strings.SetPageSizeAndOrientation);
 			page_setup_btn.Clicked += delegate {
 				this.print_operation.DefaultPageSetup = Print.RunPageSetupDialog (null, print_operation.DefaultPageSetup, this.print_operation.PrintSettings);
 				current_settings.Text = string.Format (Strings.PaperSizeXxYmm,
@@ -164,8 +164,8 @@ namespace FSpot.Widgets
 			page_frame.Add (page_box);
 			Attach (page_frame, 1, 2, 3, 4);
 
-			Frame ppp_frame = new Frame (Strings.PhotosPerPage);
-			Table ppp_tbl = new Table (2, 7, false);
+			var ppp_frame = new Frame (Strings.PhotosPerPage);
+			var ppp_tbl = new Table (2, 7, false);
 
 			ppp_tbl.Attach (ppp1 = new RadioButton ("1"), 0, 1, 1, 2);
 			ppp_tbl.Attach (ppp2 = new RadioButton (ppp1, "2"), 0, 1, 2, 3);
@@ -181,10 +181,10 @@ namespace FSpot.Widgets
 			ppp_frame.Child = ppp_tbl;
 			Attach (ppp_frame, 0, 1, 1, 2);
 
-			Frame layout_frame = new Frame (Strings.PhotosLayout);
-			VBox layout_vbox = new VBox ();
+			var layout_frame = new Frame (Strings.PhotosLayout);
+			var layout_vbox = new VBox ();
 			layout_vbox.PackStart (fullpage = new CheckButton (Strings.FullPageNomargin), false, false, 0);
-			HBox hb = new HBox ();
+			var hb = new HBox ();
 			// Note for translators: "Zoom" is a Fit Mode
 			hb.PackStart (zoom = new RadioButton (Strings.Zoom), false, false, 0);
 			hb.PackStart (fill = new RadioButton (zoom, Strings.Fill), false, false, 0);
@@ -199,12 +199,12 @@ namespace FSpot.Widgets
 			layout_frame.Child = layout_vbox;
 			Attach (layout_frame, 1, 2, 1, 2);
 
-			Frame cmt_frame = new Frame (Strings.CustomText);
+			var cmt_frame = new Frame (Strings.CustomText);
 			cmt_frame.Child = custom_text = new Entry ();
 			Attach (cmt_frame, 1, 2, 2, 3);
 
-			Frame detail_frame = new Frame (Strings.PhotosInfos);
-			VBox detail_vbox = new VBox ();
+			var detail_frame = new Frame (Strings.PhotosInfos);
+			var detail_vbox = new VBox ();
 			detail_vbox.PackStart (print_filename = new CheckButton (Strings.PrintFileName), false, false, 0);
 			detail_vbox.PackStart (print_date = new CheckButton (Strings.PrintPhotoDate), false, false, 0);
 			detail_vbox.PackStart (print_time = new CheckButton (Strings.PrintPhotoTime), false, false, 0);

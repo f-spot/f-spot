@@ -126,8 +126,7 @@ namespace Hyena.Data.Gui
 
 		public int GetModelIndex (CanvasItem item)
 		{
-			int i;
-			return model_indices.TryGetValue (item, out i) ? i : -1;
+			return model_indices.TryGetValue (item, out var i) ? i : -1;
 		}
 
 		protected Rect GetChildVirtualAllocation (Rect childAllocation)

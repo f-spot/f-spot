@@ -102,11 +102,11 @@ namespace FSpot.UI.Dialog
 		{
 			constraints_store = new ListStore (typeof (string), typeof (double));
 			content_treeview.Model = constraints_store;
-			XmlSerializer serializer = new XmlSerializer (typeof (SelectionConstraint));
+			var serializer = new XmlSerializer (typeof (SelectionConstraint));
 			string[] vals = Preferences.Get<string[]> (Preferences.CustomCropRatios);
 			if (vals != null)
 				foreach (string xml in vals) {
-					SelectionConstraint constraint = (SelectionConstraint)serializer.Deserialize (new StringReader (xml));
+					var constraint = (SelectionConstraint)serializer.Deserialize (new StringReader (xml));
 					constraints_store.AppendValues (constraint.Label, constraint.XyRatio);
 				}
 		}
@@ -130,7 +130,7 @@ namespace FSpot.UI.Dialog
 			var prefs = new List<string> ();
 			var serializer = new XmlSerializer (typeof (SelectionConstraint));
 			foreach (object[] row in constraints_store) {
-				StringWriter sw = new StringWriter ();
+				var sw = new StringWriter ();
 				serializer.Serialize (sw, new SelectionConstraint ((string)row[0], (double)row[1]));
 				sw.Close ();
 				prefs.Add (sw.ToString ());
@@ -143,11 +143,10 @@ namespace FSpot.UI.Dialog
 		public void HandleLabelEdited (object sender, EditedArgs args)
 		{
 			args.RetVal = false;
-			TreeIter iter;
-			if (!constraints_store.GetIterFromString (out iter, args.Path))
+			if (!constraints_store.GetIterFromString (out var iter, args.Path))
 				return;
 
-			using (GLib.Value val = new GLib.Value (args.NewText))
+			using (var val = new GLib.Value (args.NewText))
 				constraints_store.SetValue (iter, 0, val);
 
 			args.RetVal = true;
@@ -156,8 +155,7 @@ namespace FSpot.UI.Dialog
 		public void HandleRatioEdited (object sender, EditedArgs args)
 		{
 			args.RetVal = false;
-			TreeIter iter;
-			if (!constraints_store.GetIterFromString (out iter, args.Path))
+			if (!constraints_store.GetIterFromString (out var iter, args.Path))
 				return;
 
 			double ratio;
@@ -170,7 +168,7 @@ namespace FSpot.UI.Dialog
 			if (ratio < 1.0)
 				ratio = 1.0 / ratio;
 
-			using (GLib.Value val = new GLib.Value (ratio))
+			using (var val = new GLib.Value (ratio))
 				constraints_store.SetValue (iter, 1, val);
 
 			args.RetVal = true;
@@ -195,31 +193,24 @@ namespace FSpot.UI.Dialog
 
 		void DeleteSelectedRows (object o, EventArgs e)
 		{
-			TreeIter iter;
-			TreeModel model;
-			if (content_treeview.Selection.GetSelected (out model, out iter))
+			if (content_treeview.Selection.GetSelected (out var model, out var iter))
 				(model as ListStore).Remove (ref iter);
 		}
 
 		void MoveUp (object o, EventArgs e)
 		{
-			TreeIter selected;
-			TreeModel model;
-			if (content_treeview.Selection.GetSelected (out model, out selected)) {
+			if (content_treeview.Selection.GetSelected (out var model, out var selected)) {
 				//no IterPrev :(
-				TreeIter prev;
 				TreePath path = model.GetPath (selected);
 				if (path.Prev ())
-					if (model.GetIter (out prev, path))
+					if (model.GetIter (out var prev, path))
 						(model as ListStore).Swap (prev, selected);
 			}
 		}
 
 		void MoveDown (object o, EventArgs e)
 		{
-			TreeIter current;
-			TreeModel model;
-			if (content_treeview.Selection.GetSelected (out model, out current)) {
+			if (content_treeview.Selection.GetSelected (out var model, out var current)) {
 				TreeIter next = current;
 				if ((model as ListStore).IterNext (ref next))
 					(model as ListStore).Swap (current, next);

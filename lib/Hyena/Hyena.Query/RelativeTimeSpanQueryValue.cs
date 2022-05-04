@@ -48,7 +48,7 @@ namespace Hyena.Query
 
 		public static RelativeTimeSpanQueryValue RelativeToNow (DateTime since)
 		{
-			RelativeTimeSpanQueryValue qv = new RelativeTimeSpanQueryValue ();
+			var qv = new RelativeTimeSpanQueryValue ();
 			qv.SetRelativeValue ((since - DateTime.Now).TotalSeconds, TimeFactor.Second);
 			qv.DetermineFactor ();
 			return qv;

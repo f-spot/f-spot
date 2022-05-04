@@ -61,7 +61,7 @@ namespace Hyena.Widgets
 				Style = win.Style;
 			};
 
-			HBox shell_box = new HBox ();
+			var shell_box = new HBox ();
 			shell_box.Spacing = 10;
 
 			box = new HBox ();

@@ -72,7 +72,7 @@ namespace FSpot.Database
 		public const string SmugMugExportType = "fspot:SmugMug";
 		public const string Gallery2ExportType = "fspot:Gallery2";
 
-		private void CreateTable ()
+		void CreateTable ()
 		{
 			Database.Execute (
 			"CREATE TABLE exports (\n" +
@@ -84,7 +84,7 @@ namespace FSpot.Database
 			")");
 		}
 
-		private ExportItem LoadItem (Hyena.Data.Sqlite.IDataReader reader)
+		ExportItem LoadItem (Hyena.Data.Sqlite.IDataReader reader)
 		{
 			return new ExportItem (Convert.ToUInt32 (reader["id"]),
 					   Convert.ToUInt32 (reader["image_id"]),
@@ -93,7 +93,7 @@ namespace FSpot.Database
 					   reader["export_token"].ToString ());
 		}
 
-		private void LoadAllItems ()
+		void LoadAllItems ()
 		{
 			Hyena.Data.Sqlite.IDataReader reader = Database.Query ("SELECT id, image_id, image_version_id, export_type, export_token FROM exports");
 
@@ -110,7 +110,7 @@ namespace FSpot.Database
 		image_id, image_version_id, export_type, export_token));
 
 			// The table in the database is setup to be an INTEGER.
-			ExportItem item = new ExportItem ((uint)id, image_id, image_version_id, export_type, export_token);
+			var item = new ExportItem ((uint)id, image_id, image_version_id, export_type, export_token);
 
 			AddToCache (item);
 			EmitAdded (item);
@@ -138,7 +138,7 @@ namespace FSpot.Database
 			Hyena.Data.Sqlite.IDataReader reader = Database.Query (new HyenaSqliteCommand ("SELECT id, image_id, image_version_id, export_type, export_token FROM exports WHERE image_id = ? AND image_version_id = ?",
 					image_id, image_version_id));
 
-			List<ExportItem> export_items = new List<ExportItem> ();
+			var export_items = new List<ExportItem> ();
 			while (reader.Read ()) {
 				export_items.Add (LoadItem (reader));
 			}

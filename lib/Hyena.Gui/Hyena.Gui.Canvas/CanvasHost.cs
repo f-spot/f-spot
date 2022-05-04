@@ -58,7 +58,7 @@ namespace Hyena.Gui.Canvas
 		{
 			base.OnRealized ();
 
-			WindowAttr attributes = new WindowAttr ();
+			var attributes = new WindowAttr ();
 			attributes.WindowType = Gdk.WindowType.Child;
 			attributes.X = Allocation.X;
 			attributes.Y = Allocation.Y;

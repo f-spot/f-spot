@@ -188,8 +188,7 @@ namespace FSpot.Widgets
 		void PositionPopup ()
 		{
 			var requisition = calendar_popup.SizeRequest ();
-			int x, y;
-			date_button.GdkWindow.GetOrigin (out x, out y);
+			date_button.GdkWindow.GetOrigin (out var x, out var y);
 			x += date_button.Allocation.X;
 			y += date_button.Allocation.Y;
 			x += date_button.Allocation.Width - requisition.Width;
@@ -222,8 +221,7 @@ namespace FSpot.Widgets
 
 		void HandleDateEntryChanged (object sender, EventArgs e)
 		{
-			DateTimeOffset new_date;
-			if (DateTimeOffset.TryParseExact (date_entry.Text, "d", null, System.Globalization.DateTimeStyles.AssumeLocal | System.Globalization.DateTimeStyles.AllowWhiteSpaces, out new_date))
+			if (DateTimeOffset.TryParseExact (date_entry.Text, "d", null, System.Globalization.DateTimeStyles.AssumeLocal | System.Globalization.DateTimeStyles.AllowWhiteSpaces, out var new_date))
 				DateTimeOffset = new DateTimeOffset (new_date.Date + DateTimeOffset.TimeOfDay, DateTimeOffset.Offset);
 			else
 				date_entry.ModifyBase (StateType.Normal, red);
@@ -231,8 +229,7 @@ namespace FSpot.Widgets
 
 		void HandleTimeEntryChanged (object sender, EventArgs e)
 		{
-			DateTimeOffset new_date;
-			if (DateTimeOffset.TryParseExact (string.Format ("{0} {1}", DateTimeOffset.ToString ("d"), time_entry.Text), ShowSeconds ? "G" : "g", null, System.Globalization.DateTimeStyles.AssumeLocal | System.Globalization.DateTimeStyles.AllowWhiteSpaces, out new_date)) {
+			if (DateTimeOffset.TryParseExact (string.Format ("{0} {1}", DateTimeOffset.ToString ("d"), time_entry.Text), ShowSeconds ? "G" : "g", null, System.Globalization.DateTimeStyles.AssumeLocal | System.Globalization.DateTimeStyles.AllowWhiteSpaces, out var new_date)) {
 				DateTimeOffset = DateTimeOffset.AddHours (new_date.Hour - DateTimeOffset.Hour).AddMinutes (new_date.Minute - DateTimeOffset.Minute).AddSeconds (new_date.Second - DateTimeOffset.Second);
 			} else
 				time_entry.ModifyBase (StateType.Normal, red);
@@ -241,8 +238,7 @@ namespace FSpot.Widgets
 
 		void HandleOffsetEntryChanged (object sender, EventArgs e)
 		{
-			TimeSpan new_offset;
-			if (TimeSpan.TryParse (offset_entry.Text.Trim ('+'), out new_offset))
+			if (TimeSpan.TryParse (offset_entry.Text.Trim ('+'), out var new_offset))
 				DateTimeOffset = new DateTimeOffset (dateTimeOffset.DateTime, new_offset);
 			else
 				offset_entry.ModifyBase (StateType.Normal, red);

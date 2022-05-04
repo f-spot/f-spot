@@ -157,7 +157,7 @@ namespace Hyena.Widgets
 			WidgetFlags |= WidgetFlags.Realized | WidgetFlags.NoWindow;
 			GdkWindow = Parent.GdkWindow;
 
-			Gdk.WindowAttr attributes = new Gdk.WindowAttr ();
+			var attributes = new Gdk.WindowAttr ();
 			attributes.WindowType = Gdk.WindowType.Child;
 			attributes.X = Allocation.X;
 			attributes.Y = Allocation.Y;
@@ -350,7 +350,7 @@ namespace Hyena.Widgets
 
 		internal bool HandleKeyPress (Gdk.EventKey evnt)
 		{
-			return this.OnKeyPressEvent (evnt);
+			return OnKeyPressEvent (evnt);
 		}
 
 		internal bool HandleScroll (Gdk.EventScroll args)
@@ -467,12 +467,12 @@ namespace Hyena.Widgets
 	{
 		public RatingEntryTestModule () : base ("Rating Entry")
 		{
-			VBox pbox = new VBox ();
+			var pbox = new VBox ();
 			Add (pbox);
 
-			Menu m = new Menu ();
-			MenuBar b = new MenuBar ();
-			MenuItem item = new MenuItem ("Rate Me!");
+			var m = new Menu ();
+			var b = new MenuBar ();
+			var item = new MenuItem ("Rate Me!");
 			item.Submenu = m;
 			b.Append (item);
 			m.Append (new MenuItem ("Apples"));
@@ -482,20 +482,20 @@ namespace Hyena.Widgets
 			m.ShowAll ();
 			pbox.PackStart (b, false, false, 0);
 
-			VBox box = new VBox ();
+			var box = new VBox ();
 			box.BorderWidth = 10;
 			box.Spacing = 10;
 			pbox.PackStart (box, true, true, 0);
 
-			RatingEntry entry1 = new RatingEntry ();
+			var entry1 = new RatingEntry ();
 			box.PackStart (entry1, true, true, 0);
 
-			RatingEntry entry2 = new RatingEntry ();
+			var entry2 = new RatingEntry ();
 			box.PackStart (entry2, false, false, 0);
 
 			box.PackStart (new Entry ("Normal GtkEntry"), false, false, 0);
 
-			RatingEntry entry3 = new RatingEntry ();
+			var entry3 = new RatingEntry ();
 			Pango.FontDescription fd = entry3.PangoContext.FontDescription.Copy ();
 			fd.Size = (int)(fd.Size * Pango.Scale.XXLarge);
 			entry3.ModifyFont (fd);

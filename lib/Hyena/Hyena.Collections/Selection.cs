@@ -248,12 +248,12 @@ namespace Hyena.Collections
 
 		public override string ToString ()
 		{
-			System.Text.StringBuilder sb = new System.Text.StringBuilder ();
+			var sb = new System.Text.StringBuilder ();
 			sb.AppendFormat ("<Selection Count={0}", Count);
 			foreach (RangeCollection.Range range in Ranges) {
 				sb.AppendFormat (" ({0}, {1})", range.Start, range.End);
 			}
-			sb.Append (">");
+			sb.Append ('>');
 			return sb.ToString ();
 		}
 	}

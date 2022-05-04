@@ -31,67 +31,70 @@
 using System;
 using System.Collections.Generic;
 
-using FSpot;
 using FSpot.Core;
 using FSpot.Resources.Lang;
+using FSpot.Widgets;
 
 using Gtk;
 
-public class PhotoTagMenu : Menu
+namespace FSpot
 {
-	public delegate void TagSelectedHandler (Tag t);
-	public event TagSelectedHandler TagSelected;
-
-	public PhotoTagMenu ()
+	public class PhotoTagMenu : Menu
 	{
-	}
+		public delegate void TagSelectedHandler (Tag t);
+		public event TagSelectedHandler TagSelected;
 
-	protected PhotoTagMenu (IntPtr raw) : base (raw) { }
+		public PhotoTagMenu ()
+		{
+		}
 
-	public void Populate (IPhoto[] photos)
-	{
-		Dictionary<uint, Tag> dict = new Dictionary<uint, Tag> ();
-		if (photos != null) {
-			foreach (IPhoto p in photos) {
-				foreach (Tag t in p.Tags) {
-					if (!dict.ContainsKey (t.Id)) {
-						dict.Add (t.Id, t);
+		protected PhotoTagMenu (IntPtr raw) : base (raw) { }
+
+		public void Populate (IPhoto[] photos)
+		{
+			var dict = new Dictionary<uint, Tag> ();
+			if (photos != null) {
+				foreach (var p in photos) {
+					foreach (var t in p.Tags) {
+						if (!dict.ContainsKey (t.Id)) {
+							dict.Add (t.Id, t);
+						}
 					}
 				}
 			}
+
+			foreach (var w in Children) {
+				w.Destroy ();
+			}
+
+			if (dict.Count == 0) {
+				/* Fixme this should really set parent menu
+				   items insensitve */
+				var item = new MenuItem (Strings.ParenNoTagsParen);
+				Append (item);
+				item.Sensitive = false;
+				item.ShowAll ();
+				return;
+			}
+
+			foreach (var t in dict.Values) {
+				MenuItem item = new TagMenu.TagMenuItem (t);
+				Append (item);
+				item.ShowAll ();
+				item.Activated += HandleActivate;
+			}
+
 		}
 
-		foreach (Widget w in Children) {
-			w.Destroy ();
-		}
-
-		if (dict.Count == 0) {
-			/* Fixme this should really set parent menu
-			   items insensitve */
-			MenuItem item = new MenuItem (Strings.ParenNoTagsParen);
-			this.Append (item);
-			item.Sensitive = false;
-			item.ShowAll ();
-			return;
-		}
-
-		foreach (Tag t in dict.Values) {
-			MenuItem item = new TagMenu.TagMenuItem (t);
-			Append (item);
-			item.ShowAll ();
-			item.Activated += HandleActivate;
-		}
-
-	}
-
-	void HandleActivate (object obj, EventArgs args)
-	{
-		if (TagSelected != null) {
-			TagMenu.TagMenuItem t = obj as TagMenu.TagMenuItem;
-			if (t != null)
-				TagSelected (t.Value);
-			else
-				Logger.Log.Debug ("Item was not a TagMenuItem");
+		void HandleActivate (object obj, EventArgs args)
+		{
+			if (TagSelected != null) {
+				var t = obj as TagMenu.TagMenuItem;
+				if (t != null)
+					TagSelected (t.Value);
+				else
+					Logger.Log.Debug ("Item was not a TagMenuItem");
+			}
 		}
 	}
 }

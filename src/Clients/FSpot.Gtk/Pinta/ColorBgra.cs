@@ -50,7 +50,7 @@ namespace Pinta.Core
 		/// </summary>
 		public static ColorBgra FromBgra (byte b, byte g, byte r, byte a)
 		{
-			ColorBgra color = new ColorBgra ();
+			var color = new ColorBgra ();
 			color.Bgra = BgraToUInt32 (b, g, r, a);
 			return color;
 		}
@@ -58,7 +58,7 @@ namespace Pinta.Core
 		/// <summary>
 		/// Packs color and alpha values into a 32-bit integer.
 		/// </summary>
-		public static UInt32 BgraToUInt32 (byte b, byte g, byte r, byte a)
+		public static uint BgraToUInt32 (byte b, byte g, byte r, byte a)
 		{
 			return (uint)b + ((uint)g << 8) + ((uint)r << 16) + ((uint)a << 24);
 		}
@@ -66,7 +66,7 @@ namespace Pinta.Core
 		/// <summary>
 		/// Packs color and alpha values into a 32-bit integer.
 		/// </summary>
-		public static UInt32 BgraToUInt32 (int b, int g, int r, int a)
+		public static uint BgraToUInt32 (int b, int g, int r, int a)
 		{
 			return (uint)b + ((uint)g << 8) + ((uint)r << 16) + ((uint)a << 24);
 		}

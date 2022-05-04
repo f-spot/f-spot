@@ -88,7 +88,7 @@ namespace FSpot
 					gr.SetSourceColor (new Color (1, 1, 1));
 					gr.Rectangle (0, 0, 360, 254);
 					gr.Fill ();
-					using (Gdk.Pixbuf pixbuf = Gdk.Pixbuf.LoadFromResource ("flower.png")) {
+					using (var pixbuf = Gdk.Pixbuf.LoadFromResource ("flower.png")) {
 						DrawImage (gr, pixbuf, 0, 0, 360, 254);
 					}
 				}
@@ -136,8 +136,7 @@ namespace FSpot
 								Logger.Log.Error ("Not enough memory for printing " + selected_photos[p_index].DefaultVersion.Uri);
 								continue;
 							}
-							Cms.Profile printer_profile;
-							if (ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayOutputProfile), out printer_profile))
+							if (ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayOutputProfile), out var printer_profile))
 								ColorManagement.ApplyProfile (pixbuf, img.GetProfile (), printer_profile);
 						} catch (Exception e) {
 							Logger.Log.Error (e, $"Unable to load image {selected_photos[p_index].DefaultVersion.Uri}");
@@ -207,11 +206,10 @@ namespace FSpot
 			Context cr = context.CairoContext;
 			cr.Save ();
 			Pango.Layout layout = context.CreatePangoLayout ();
-			Pango.FontDescription desc = Pango.FontDescription.FromString ("sans 14");
+			var desc = Pango.FontDescription.FromString ("sans 14");
 			layout.FontDescription = desc;
 			layout.SetText (comment);
-			int lay_w, lay_h;
-			layout.GetPixelSize (out lay_w, out lay_h);
+			layout.GetPixelSize (out var lay_w, out var lay_h);
 			double scale = h / lay_h;
 			if (rotated) {
 				cr.Translate (x - h, y + lay_w * scale);

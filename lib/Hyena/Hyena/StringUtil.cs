@@ -76,7 +76,7 @@ namespace Hyena
 				return null;
 			}
 
-			StringBuilder undercase = new StringBuilder ();
+			var undercase = new StringBuilder ();
 			string[] tokens = camelcase.Split (s);
 
 			for (int i = 0; i < tokens.Length; i++) {
@@ -99,7 +99,7 @@ namespace Hyena
 				return null;
 			}
 
-			StringBuilder builder = new StringBuilder ();
+			var builder = new StringBuilder ();
 
 			for (int i = 0, n = s.Length, b = -1; i < n; i++) {
 				if (b < 0 && s[i] != '_') {
@@ -169,7 +169,7 @@ namespace Hyena
 		// a Latin equivalent.
 		static Dictionary<char, char> BuildSpecialCases ()
 		{
-			Dictionary<char, char> dict = new Dictionary<char, char> ();
+			var dict = new Dictionary<char, char> ();
 			dict['\u00f8'] = 'o';
 			dict['\u0142'] = 'l';
 			return dict;
@@ -184,7 +184,7 @@ namespace Hyena
 			}
 
 			val = val.ToLower ();
-			StringBuilder sb = new StringBuilder ();
+			var sb = new StringBuilder ();
 			UnicodeCategory category;
 			bool previous_was_letter = false;
 			bool got_space = false;
@@ -211,7 +211,7 @@ namespace Hyena
 					// Skip punctuation
 				} else if (!(previous_was_letter && category == UnicodeCategory.NonSpacingMark)) {
 					if (got_space) {
-						sb.Append (" ");
+						sb.Append (' ');
 						got_space = false;
 					}
 					sb.Append (c);
@@ -286,7 +286,7 @@ namespace Hyena
 				return input;
 			}
 
-			StringBuilder builder = new StringBuilder ();
+			var builder = new StringBuilder ();
 			foreach (string name in input.Split (Path.DirectorySeparatorChar)) {
 				// Escape the directory or the file name.
 				string escaped = EscapeFilename (name);
@@ -307,7 +307,7 @@ namespace Hyena
 
 		public static string MaybeFallback (string input, string fallback)
 		{
-			string trimmed = input == null ? null : input.Trim ();
+			string trimmed = input?.Trim ();
 			return string.IsNullOrEmpty (trimmed) ? fallback : trimmed;
 		}
 

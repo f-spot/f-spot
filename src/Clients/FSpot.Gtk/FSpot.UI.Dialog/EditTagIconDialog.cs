@@ -72,8 +72,7 @@ namespace FSpot.UI.Dialog
 			Title = string.Format (Strings.EditIconForTagX, t.Name);
 
 			preview_pixbuf = t.Icon;
-			Cms.Profile screen_profile;
-			if (preview_pixbuf != null && ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out screen_profile)) {
+			if (preview_pixbuf != null && ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screen_profile)) {
 				preview_image.Pixbuf = preview_pixbuf.Copy ();
 				ColorManagement.ApplyProfile (preview_image.Pixbuf, screen_profile);
 			} else
@@ -131,7 +130,7 @@ namespace FSpot.UI.Dialog
 
 			image_view.Show ();
 
-			DelayedOperation fill_delay = new DelayedOperation (FillIconView);
+			var fill_delay = new DelayedOperation (FillIconView);
 			fill_delay.Start ();
 		}
 
@@ -145,8 +144,7 @@ namespace FSpot.UI.Dialog
 			set {
 				icon_name = null;
 				preview_pixbuf = value;
-				Cms.Profile screen_profile;
-				if (value != null && ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out screen_profile)) {
+				if (value != null && ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screen_profile)) {
 					preview_image.Pixbuf = value.Copy ();
 					ColorManagement.ApplyProfile (preview_image.Pixbuf, screen_profile);
 				} else
@@ -189,7 +187,7 @@ namespace FSpot.UI.Dialog
 				string caption = Strings.UnableToLoadImage;
 				string message = string.Format (Strings.UnableToLoadXAsIconForTheTag,
 									 external_photo_chooser.Uri);
-				HigMessageDialog md = new HigMessageDialog (this,
+				var md = new HigMessageDialog (this,
 										DialogFlags.DestroyWithParent,
 										MessageType.Error,
 										ButtonsType.Close,
@@ -236,8 +234,7 @@ namespace FSpot.UI.Dialog
 			if (icon_view.SelectedItems.Length == 0)
 				return;
 
-			TreeIter iter;
-			icon_store.GetIter (out iter, icon_view.SelectedItems[0]);
+			icon_store.GetIter (out var iter, icon_view.SelectedItems[0]);
 			ThemeIconName = (string)icon_store.GetValue (iter, 0);
 		}
 

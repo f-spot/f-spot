@@ -44,7 +44,7 @@ namespace Hyena.Gui.Canvas
 		{
 			int steps = ShadowSize;
 			double opacity_step = ShadowOpacity / ShadowSize;
-			Color color = new Color (0, 0, 0);
+			var color = new Color (0, 0, 0);
 
 			double width = Math.Round (item.Allocation.Width);
 			double height = Math.Round (item.Allocation.Height);

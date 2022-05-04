@@ -91,7 +91,7 @@ namespace Hyena.Data.Gui.Accessibility
 
 		public bool DoAction (int action)
 		{
-			ICellAccessibleParent parent = (ICellAccessibleParent)Parent;
+			var parent = (ICellAccessibleParent)Parent;
 			switch ((Actions)action) {
 			case Actions.Menu: parent.InvokeColumnHeaderMenu (this); break;
 			case Actions.Click: parent.ClickColumnHeader (this); break;

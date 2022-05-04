@@ -240,7 +240,7 @@ namespace FSpot.Database
 					string name = reader["name"].ToString ();
 					var base_uri = new SafeUri (reader["base_uri"].ToString (), true);
 					var filename = reader["filename"].ToString ();
-					string import_md5 = reader["import_md5"] != null ? reader["import_md5"].ToString () : null;
+					string import_md5 = reader["import_md5"]?.ToString ();
 					bool is_protected = Convert.ToBoolean (reader["protected"]);
 
 					photo.AddVersionUnsafely (version_id, base_uri, filename, import_md5, name, is_protected);
@@ -277,7 +277,7 @@ namespace FSpot.Database
 						string name = reader["name"].ToString ();
 						var base_uri = new SafeUri (reader["base_uri"].ToString (), true);
 						var filename = reader["filename"].ToString ();
-						string import_md5 = reader["import_md5"] != null ? reader["import_md5"].ToString () : null;
+						string import_md5 = reader["import_md5"]?.ToString ();
 						bool is_protected = Convert.ToBoolean (reader["protected"]);
 
 						photo.AddVersionUnsafely (version_id, base_uri, filename, import_md5, name, is_protected);
@@ -403,7 +403,7 @@ namespace FSpot.Database
 				RemoveFromCache (items[i]);
 			}
 
-			String id_list = string.Join ("','", query_builder.ToArray ());
+			string id_list = string.Join ("','", query_builder.ToArray ());
 			Database.Execute (string.Format ("DELETE FROM photos WHERE id IN ('{0}')", id_list));
 			Database.Execute (string.Format ("DELETE FROM photo_tags WHERE photo_id IN ('{0}')", id_list));
 			Database.Execute (string.Format ("DELETE FROM photo_versions WHERE photo_id IN ('{0}')", id_list));
@@ -636,8 +636,8 @@ namespace FSpot.Database
 				}
 				Database.Execute (query_builder.ToString ());
 
-				int minyear = Int32.MaxValue;
-				int maxyear = Int32.MinValue;
+				int minyear = int.MaxValue;
+				int maxyear = int.MinValue;
 
 				using (var reader = Database.Query ("SELECT COUNT (*) as count, month from population GROUP BY month")) {
 					while (reader.Read ()) {

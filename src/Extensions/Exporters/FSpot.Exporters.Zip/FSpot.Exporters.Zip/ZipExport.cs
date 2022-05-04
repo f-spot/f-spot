@@ -68,7 +68,7 @@ namespace FSpot.Exporters.Zip
 		{
 			Logger.Log.Information ("Executing ZipExport extension");
 			if (p.Count == 0) {
-				HigMessageDialog md = new HigMessageDialog (App.Instance.Organizer.Window, DialogFlags.DestroyWithParent,
+				var md = new HigMessageDialog (App.Instance.Organizer.Window, DialogFlags.DestroyWithParent,
 							  Gtk.MessageType.Error, ButtonsType.Ok,
 							  Strings.NoSelectionAvailable,
 							  Strings.ThisToolRequiresAnActiveSelection_PleaseSelectOneOrMore);
@@ -103,7 +103,7 @@ namespace FSpot.Exporters.Zip
 			zipdiag.ShowAll ();
 		}
 
-		private void on_dialog_response (object sender, ResponseArgs args)
+		void on_dialog_response (object sender, ResponseArgs args)
 		{
 			if (args.ResponseId != Gtk.ResponseType.Ok) {
 				// FIXME this is to work around a bug in gtk+ where
@@ -120,15 +120,15 @@ namespace FSpot.Exporters.Zip
 
 		void zip ()
 		{
-			System.Uri dest = new System.Uri (uri_chooser.Uri);
-			Crc32 crc = new Crc32 ();
+			var dest = new System.Uri (uri_chooser.Uri);
+			var crc = new Crc32 ();
 			string filedest = dest.LocalPath + "/" + filename.Text;
 			Logger.Log.Debug ($"Creating zip file {filedest}");
-			ZipOutputStream s = new ZipOutputStream (File.Create (filedest));
+			var s = new ZipOutputStream (File.Create (filedest));
 			if (scale_check.Active)
 				Logger.Log.Debug ($"Scaling to {scale_size.ValueAsInt}");
 
-			ProgressDialog progress_dialog = new ProgressDialog (Strings.ExportingFiles,
+			var progress_dialog = new ProgressDialog (Strings.ExportingFiles,
 								  ProgressDialog.CancelButtonType.Stop,
 								  photos.Length, zipdiag);
 
@@ -141,10 +141,10 @@ namespace FSpot.Exporters.Zip
 				string f = null;
 				// FIXME: embed in a try/catch
 				if (scale_check.Active) {
-					FilterSet filters = new FilterSet ();
+					var filters = new FilterSet ();
 					filters.Add (new JpegFilter ());
 					filters.Add (new ResizeFilter ((uint)scale_size.ValueAsInt));
-					FilterRequest freq = new FilterRequest (photos[i].DefaultVersion.Uri);
+					var freq = new FilterRequest (photos[i].DefaultVersion.Uri);
 					filters.Convert (freq);
 					f = freq.Current.LocalPath;
 				} else {
@@ -154,7 +154,7 @@ namespace FSpot.Exporters.Zip
 
 				byte[] buffer = new byte[fs.Length];
 				fs.Read (buffer, 0, buffer.Length);
-				ZipEntry entry = new ZipEntry (System.IO.Path.GetFileName (photos[i].DefaultVersion.Uri.LocalPath));
+				var entry = new ZipEntry (System.IO.Path.GetFileName (photos[i].DefaultVersion.Uri.LocalPath));
 
 				entry.DateTime = DateTime.Now;
 
@@ -177,12 +177,12 @@ namespace FSpot.Exporters.Zip
 
 		}
 
-		private void on_filename_change (object sender, System.EventArgs args)
+		void on_filename_change (object sender, System.EventArgs args)
 		{
 			create_button.Sensitive = System.Text.RegularExpressions.Regex.IsMatch (filename.Text, "[.]zip$");
 		}
 
-		private void on_scalecheck_change (object sender, System.EventArgs args)
+		void on_scalecheck_change (object sender, System.EventArgs args)
 		{
 			scale_size.Sensitive = scale_check.Active;
 		}

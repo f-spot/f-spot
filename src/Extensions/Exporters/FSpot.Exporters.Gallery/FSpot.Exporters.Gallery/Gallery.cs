@@ -87,7 +87,7 @@ namespace FSpot.Exporters.Gallery
 				version = GalleryVersion.Version2;
 			else {
 				//check what script is available on the server
-				FormClient client = new FormClient ();
+				var client = new FormClient ();
 
 				try {
 					client.Submit (new Uri (Gallery.FixUrl (url, Gallery1.script_name)));
@@ -134,7 +134,7 @@ namespace FSpot.Exporters.Gallery
 		/// </param>
 		protected StreamReader findResponse (HttpWebResponse response)
 		{
-			StreamReader reader = new StreamReader (response.GetResponseStream (), Encoding.UTF8);
+			var reader = new StreamReader (response.GetResponseStream (), Encoding.UTF8);
 			if (reader == null)
 				throw new GalleryException (Strings.ErrorReadingServerResponse);
 
@@ -170,7 +170,7 @@ namespace FSpot.Exporters.Gallery
 			return array;
 		}
 
-		private bool LineIgnored (string[] line)
+		bool LineIgnored (string[] line)
 		{
 			if (line[0].StartsWith ("debug") || line[0].StartsWith ("can_create_root"))
 				return true;
@@ -235,7 +235,7 @@ namespace FSpot.Exporters.Gallery
 					} else if (data[0].StartsWith ("album.name")) {
 						//this is the URL name
 						int ref_num = -1;
-						if (this.Version == GalleryVersion.Version1) {
+						if (Version == GalleryVersion.Version1) {
 							string[] segments = data[0].Split (new char[1] { '.' });
 							ref_num = int.Parse (segments[segments.Length - 1]);
 						} else
@@ -381,7 +381,7 @@ namespace FSpot.Exporters.Gallery
 		}
 		*/
 
-		private bool ParseBasic (HttpWebResponse response)
+		bool ParseBasic (HttpWebResponse response)
 		{
 			string[] data;
 			StreamReader reader = null;
@@ -456,7 +456,7 @@ namespace FSpot.Exporters.Gallery
 		public void PopupException (GalleryCommandException e, Gtk.Dialog d)
 		{
 			Logger.Log.Debug ($"{e.Message} : {e.ResponseText} ({e.Status})");
-			HigMessageDialog md =
+			var md =
 				new HigMessageDialog (d,
 							  Gtk.DialogFlags.Modal |
 					Gtk.DialogFlags.DestroyWithParent,

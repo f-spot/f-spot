@@ -78,12 +78,11 @@ namespace FSpot.Widgets
 		public void HandleToplevelConfigure (object o, ConfigureEventArgs args)
 		{
 			int x, y;
-			int loupe_x, loupe_y;
 
 			x = args.Event.X - old_win_pos.X;
 			y = args.Event.Y - old_win_pos.Y;
 
-			GetPosition (out loupe_x, out loupe_y);
+			GetPosition (out var loupe_x, out var loupe_y);
 			Move (loupe_x + x, loupe_y + y);
 
 			old_win_pos.X = args.Event.X;
@@ -127,8 +126,7 @@ namespace FSpot.Widgets
 				Layout ();
 				Gdk.Point now = hotspot;
 				//System.Console.WriteLine ("{0} now {1}", then, now);
-				int x, y;
-				GdkWindow.GetOrigin (out x, out y);
+				GdkWindow.GetOrigin (out var x, out var y);
 				//GdkWindow.MoveResize (x + then.X - now.X, y + then.Y - now.Y, Bounds.Width, Bounds.Height);
 				ShapeWindow ();
 				Move (x + then.X - now.X, y + then.Y - now.Y);

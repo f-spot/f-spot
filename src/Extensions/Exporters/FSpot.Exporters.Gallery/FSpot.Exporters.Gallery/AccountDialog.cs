@@ -78,7 +78,7 @@ namespace FSpot.Exporters.Gallery
 			HandleChanged (null, null);
 		}
 
-		private void HandleChanged (object sender, System.EventArgs args)
+		void HandleChanged (object sender, System.EventArgs args)
 		{
 			name = gallery_entry.Text;
 			url = url_entry.Text;
@@ -97,7 +97,7 @@ namespace FSpot.Exporters.Gallery
 		{
 			if (args.ResponseId == Gtk.ResponseType.Ok) {
 				try {
-					Uri uri = new Uri (url);
+					var uri = new Uri (url);
 					if (uri.Scheme != Uri.UriSchemeHttp &&
 						uri.Scheme != Uri.UriSchemeHttps)
 						throw new System.UriFormatException ();
@@ -106,7 +106,7 @@ namespace FSpot.Exporters.Gallery
 					foreach (GalleryAccount acc in GalleryAccountManager.GetInstance ().GetAccounts ())
 						if (acc.Name == name)
 							throw new ArgumentException ("name");
-					GalleryAccount created = new GalleryAccount (name,
+					var created = new GalleryAccount (name,
 											 url,
 											 username,
 											 password);
@@ -115,7 +115,7 @@ namespace FSpot.Exporters.Gallery
 					GalleryAccountManager.GetInstance ().AddAccount (created);
 					account = created;
 				} catch (System.UriFormatException) {
-					HigMessageDialog md =
+					var md =
 						new HigMessageDialog (add_dialog,
 									  Gtk.DialogFlags.Modal |
 									  Gtk.DialogFlags.DestroyWithParent,
@@ -126,7 +126,7 @@ namespace FSpot.Exporters.Gallery
 					md.Destroy ();
 					return;
 				} catch (GalleryException e) {
-					HigMessageDialog md =
+					var md =
 						new HigMessageDialog (add_dialog,
 									  Gtk.DialogFlags.Modal |
 									  Gtk.DialogFlags.DestroyWithParent,
@@ -141,7 +141,7 @@ namespace FSpot.Exporters.Gallery
 					md.Destroy ();
 					return;
 				} catch (ArgumentException ae) {
-					HigMessageDialog md =
+					var md =
 						new HigMessageDialog (add_dialog,
 									  Gtk.DialogFlags.Modal |
 									  Gtk.DialogFlags.DestroyWithParent,
@@ -153,7 +153,7 @@ namespace FSpot.Exporters.Gallery
 					md.Destroy ();
 					return;
 				} catch (System.Net.WebException we) {
-					HigMessageDialog md =
+					var md =
 						new HigMessageDialog (add_dialog,
 									  Gtk.DialogFlags.Modal |
 									  Gtk.DialogFlags.DestroyWithParent,
@@ -164,7 +164,7 @@ namespace FSpot.Exporters.Gallery
 					md.Destroy ();
 					return;
 				} catch (Exception se) {
-					HigMessageDialog md =
+					var md =
 						new HigMessageDialog (add_dialog,
 									  Gtk.DialogFlags.Modal |
 									  Gtk.DialogFlags.DestroyWithParent,
@@ -195,11 +195,11 @@ namespace FSpot.Exporters.Gallery
 			add_dialog.Destroy ();
 		}
 
-		private GalleryAccount account;
-		private string name;
-		private string url;
-		private string password;
-		private string username;
+		GalleryAccount account;
+		string name;
+		string url;
+		string password;
+		string username;
 
 #pragma warning disable 649
 		// widgets

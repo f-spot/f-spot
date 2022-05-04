@@ -106,7 +106,7 @@ namespace Hyena
 
 		public override bool Equals (object o)
 		{
-			SafeUri s = o as SafeUri;
+			var s = o as SafeUri;
 			if (s != null) {
 				return s.AbsoluteUri == AbsoluteUri;
 			}

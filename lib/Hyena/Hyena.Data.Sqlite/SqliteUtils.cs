@@ -138,7 +138,7 @@ namespace Hyena.Data.Sqlite
 		internal static string BuildColumnSchema (string type, string name, string default_value,
 			DatabaseColumnConstraints constraints)
 		{
-			StringBuilder builder = new StringBuilder ();
+			var builder = new StringBuilder ();
 			builder.Append (name);
 			builder.Append (' ');
 			builder.Append (type);
@@ -190,8 +190,7 @@ namespace Hyena.Data.Sqlite
 
 		public override object Invoke (object[] args)
 		{
-			Func<object, object, object> func;
-			if (!funcs.TryGetValue (args[0] as string, out func))
+			if (!funcs.TryGetValue (args[0] as string, out var func))
 				throw new ArgumentException (args[0] as string, "HYENA_BINARY_FUNCTION name (arg 0)");
 
 			return func (args[1], args[2]);

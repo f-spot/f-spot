@@ -40,7 +40,7 @@ namespace Hyena.Query
 
 		public static QueryTermNode ParseUserQuery (QueryFieldSet field_set, string token)
 		{
-			QueryTermNode term = new QueryTermNode ();
+			var term = new QueryTermNode ();
 
 			// See if the query specifies a field, and if so, pull out the operator as well
 			string field_alias = field_set.FindAlias (token);
@@ -115,7 +115,7 @@ namespace Hyena.Query
 		public override void AppendSql (StringBuilder sb, QueryFieldSet fieldSet)
 		{
 			if (Field == null) {
-				sb.Append ("(");
+				sb.Append ('(');
 				int emitted = 0;
 
 				foreach (QueryField field in fieldSet.Fields) {
@@ -124,7 +124,7 @@ namespace Hyena.Query
 							emitted++;
 				}
 
-				sb.Append (")");
+				sb.Append (')');
 			} else {
 				EmitTermMatch (sb, Field, false);
 			}

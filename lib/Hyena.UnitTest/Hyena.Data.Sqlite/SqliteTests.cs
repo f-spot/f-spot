@@ -201,7 +201,7 @@ namespace Hyena.Data.Sqlite
 			}
 		}
 
-		private void CreateUsers (Connection con)
+		void CreateUsers (Connection con)
 		{
 			using (var stmt = con.CreateStatement ("DROP TABLE IF EXISTS Users")) {
 				stmt.Execute ();
@@ -450,12 +450,12 @@ namespace Hyena.Data.Sqlite
 			//AssertRoundTrip<TimeSpan> (TimeSpan.MaxValue);
 		}
 
-		private void AssertRoundTrip<T> (T val)
+		void AssertRoundTrip<T> (T val)
 		{
 			AssertRoundTrip (val, null);
 		}
 
-		private void AssertRoundTrip<T> (T val, Func<T, T, bool> func)
+		void AssertRoundTrip<T> (T val, Func<T, T, bool> func)
 		{
 			var o = select_literal.Bind (val).Query<T> ();
 			if (func == null) {
@@ -465,7 +465,7 @@ namespace Hyena.Data.Sqlite
 			}
 		}
 
-		private void AssertGetNull<T> (T val)
+		void AssertGetNull<T> (T val)
 		{
 			Assert.AreEqual (val, select_literal.Bind (null).Query<T> ());
 		}

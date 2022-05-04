@@ -135,7 +135,7 @@ namespace FSpot.Exporters.Folder
 			}
 
 			MakeDir (SubdirPath ("style"));
-			System.Reflection.Assembly assembly = System.Reflection.Assembly.GetCallingAssembly ();
+			var assembly = System.Reflection.Assembly.GetCallingAssembly ();
 			using (Stream s = assembly.GetManifestResourceStream (stylesheet)) {
 				using (Stream fs = System.IO.File.Open (SubdirPath ("style", stylesheet), System.IO.FileMode.Create)) {
 
@@ -221,14 +221,14 @@ namespace FSpot.Exporters.Folder
 		public void SavePhotoHtmlIndex (int i)
 		{
 			System.IO.StreamWriter stream = System.IO.File.CreateText (SubdirPath (PhotoIndexPath (i)));
-			System.Web.UI.HtmlTextWriter writer = new System.Web.UI.HtmlTextWriter (stream);
+			var writer = new System.Web.UI.HtmlTextWriter (stream);
 
 			//writer.Indent = 4;
 
 			//writer.Write ("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 			writer.WriteLine ("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">");
 			writer.AddAttribute ("xmlns", "http://www.w3.org/1999/xhtml");
-			writer.AddAttribute ("xml:lang", this.Language);
+			writer.AddAttribute ("xml:lang", Language);
 			writer.RenderBeginTag ("html");
 
 			WriteHeader (writer);
@@ -412,7 +412,7 @@ namespace FSpot.Exporters.Folder
 
 		public void WriteTagsLinks (System.Web.UI.HtmlTextWriter writer, Tag[] tags)
 		{
-			List<Tag> tagsList = new List<Tag> (tags.Length);
+			var tagsList = new List<Tag> (tags.Length);
 			foreach (var tag in tags) {
 				tagsList.Add (tag);
 			}
@@ -463,11 +463,11 @@ namespace FSpot.Exporters.Folder
 		public void SaveTagsPage ()
 		{
 			System.IO.StreamWriter stream = System.IO.File.CreateText (SubdirPath (TagsIndexPath ()));
-			System.Web.UI.HtmlTextWriter writer = new System.Web.UI.HtmlTextWriter (stream);
+			var writer = new System.Web.UI.HtmlTextWriter (stream);
 
 			writer.WriteLine ("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">");
 			writer.AddAttribute ("xmlns", "http://www.w3.org/1999/xhtml");
-			writer.AddAttribute ("xml:lang", this.Language);
+			writer.AddAttribute ("xml:lang", Language);
 			writer.RenderBeginTag ("html");
 			string titleExtension = " " + Strings.Tags;
 			WriteHeader (writer, titleExtension);
@@ -520,11 +520,11 @@ namespace FSpot.Exporters.Folder
 		public void SaveTagIndex (string tag, int page_num)
 		{
 			System.IO.StreamWriter stream = System.IO.File.CreateText (SubdirPath (TagIndexPath (tag, page_num)));
-			System.Web.UI.HtmlTextWriter writer = new System.Web.UI.HtmlTextWriter (stream);
+			var writer = new System.Web.UI.HtmlTextWriter (stream);
 
 			writer.WriteLine ("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">");
 			writer.AddAttribute ("xmlns", "http://www.w3.org/1999/xhtml");
-			writer.AddAttribute ("xml:lang", this.Language);
+			writer.AddAttribute ("xml:lang", Language);
 			writer.RenderBeginTag ("html");
 			string titleExtension = ": " + tag;
 			WriteHeader (writer, titleExtension);
@@ -660,14 +660,14 @@ namespace FSpot.Exporters.Folder
 		public void SaveHtmlIndex (int page_num)
 		{
 			System.IO.StreamWriter stream = System.IO.File.CreateText (SubdirPath (IndexPath (page_num)));
-			System.Web.UI.HtmlTextWriter writer = new System.Web.UI.HtmlTextWriter (stream);
+			var writer = new System.Web.UI.HtmlTextWriter (stream);
 
 			//writer.Indent = 4;
 
 			//writer.Write ("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 			writer.WriteLine ("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">");
 			writer.AddAttribute ("xmlns", "http://www.w3.org/1999/xhtml");
-			writer.AddAttribute ("xml:lang", this.Language);
+			writer.AddAttribute ("xml:lang", Language);
 			writer.RenderBeginTag ("html");
 			WriteHeader (writer);
 

@@ -98,7 +98,7 @@ namespace FSpot.Exporters.Gallery
 		{
 			Name = name;
 			Gallery = gallery;
-			this.RefNum = ref_num;
+			RefNum = ref_num;
 			Images = new List<Image> ();
 		}
 
@@ -130,11 +130,11 @@ namespace FSpot.Exporters.Gallery
 			return Gallery.GetAlbumUrl (this);
 		}
 
-		public int CompareTo (Object obj)
+		public int CompareTo (object obj)
 		{
-			Album other = obj as Album;
+			var other = obj as Album;
 
-			int numThis = this.Parents.Count;
+			int numThis = Parents.Count;
 			int numOther = other.Parents.Count;
 			int thisVal = -1, otherVal = -1;
 
@@ -142,7 +142,7 @@ namespace FSpot.Exporters.Gallery
 			int maxIters = Math.Min (numThis, numOther);
 			int i = 0;
 			while (i < maxIters) {
-				thisVal = (int)this.Parents[i];
+				thisVal = (int)Parents[i];
 				otherVal = (int)other.Parents[i];
 				if (thisVal != otherVal) {
 					break;
@@ -157,7 +157,7 @@ namespace FSpot.Exporters.Gallery
 
 			} else if (i < numThis) {
 				//other shorter
-				thisVal = (int)this.Parents[i];
+				thisVal = (int)Parents[i];
 				retVal = thisVal.CompareTo (other.RefNum);
 
 				//if equal, we want to make the shorter one come first
@@ -167,7 +167,7 @@ namespace FSpot.Exporters.Gallery
 			} else if (i < numOther) {
 				//this shorter
 				otherVal = (int)other.Parents[i];
-				retVal = this.RefNum.CompareTo (otherVal);
+				retVal = RefNum.CompareTo (otherVal);
 
 				//if equal, we want to make the shorter one come first
 				if (retVal == 0)
@@ -175,7 +175,7 @@ namespace FSpot.Exporters.Gallery
 
 			} else {
 				//children of the same parent
-				retVal = this.RefNum.CompareTo (other.RefNum);
+				retVal = RefNum.CompareTo (other.RefNum);
 			}
 			return retVal;
 		}

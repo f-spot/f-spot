@@ -121,7 +121,7 @@ namespace Hyena.Widgets
 		{
 			WidgetFlags |= WidgetFlags.Realized;
 
-			Gdk.WindowAttr attributes = new Gdk.WindowAttr ();
+			var attributes = new Gdk.WindowAttr ();
 			attributes.WindowType = Gdk.WindowType.Child;
 			attributes.Wclass = Gdk.WindowClass.InputOutput;
 			attributes.EventMask = (int)Gdk.EventMask.ExposureMask;

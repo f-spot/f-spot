@@ -62,8 +62,7 @@ namespace FSpot.UI.Dialog
 			tag_name_entry.Text = t.Name;
 
 			icon_image.Pixbuf = t.Icon;
-			Cms.Profile screen_profile;
-			if (icon_image.Pixbuf != null && FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out screen_profile)) {
+			if (icon_image.Pixbuf != null && FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screen_profile)) {
 				icon_image.Pixbuf = icon_image.Pixbuf.Copy ();
 				FSpot.ColorManagement.ApplyProfile (icon_image.Pixbuf, screen_profile);
 			}
@@ -130,9 +129,9 @@ namespace FSpot.UI.Dialog
 
 		void HandleIconButtonClicked (object sender, EventArgs args)
 		{
-			EditTagIconDialog dialog = new EditTagIconDialog (db, tag, this);
+			var dialog = new EditTagIconDialog (db, tag, this);
 
-			ResponseType response = (ResponseType)dialog.Run ();
+			var response = (ResponseType)dialog.Run ();
 			if (response == ResponseType.Ok)
 				if (dialog.ThemeIconName != null) {
 					tag.ThemeIconName = dialog.ThemeIconName;
@@ -143,8 +142,7 @@ namespace FSpot.UI.Dialog
 			else if (response == (ResponseType)1)
 				tag.Icon = null;
 
-			Cms.Profile screen_profile;
-			if (tag.Icon != null && FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out screen_profile)) {
+			if (tag.Icon != null && FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screen_profile)) {
 				icon_image.Pixbuf = tag.Icon.Copy ();
 				FSpot.ColorManagement.ApplyProfile (icon_image.Pixbuf, screen_profile);
 			} else
@@ -164,15 +162,15 @@ namespace FSpot.UI.Dialog
 
 			category_option_menu.Clear ();
 
-			CellRendererPixbuf cell2 = new CellRendererPixbuf ();
+			var cell2 = new CellRendererPixbuf ();
 			category_option_menu.PackStart (cell2, false);
 			category_option_menu.AddAttribute (cell2, "pixbuf", 0);
 
-			CellRendererText cell = new CellRendererText ();
+			var cell = new CellRendererText ();
 			category_option_menu.PackStart (cell, true);
 			category_option_menu.AddAttribute (cell, "text", 1);
 
-			ListStore store = new ListStore (new[] { typeof (Gdk.Pixbuf), typeof (string) });
+			var store = new ListStore (new[] { typeof (Gdk.Pixbuf), typeof (string) });
 			category_option_menu.Model = store;
 
 			foreach (Category category in categories) {

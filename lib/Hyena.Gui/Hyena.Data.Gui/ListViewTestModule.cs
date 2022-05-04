@@ -49,7 +49,7 @@ namespace Hyena.Data.Gui.Tests
 			WindowPosition = WindowPosition.Center;
 			SetDefaultSize (800, 600);
 
-			ScrolledWindow scroll = new ScrolledWindow ();
+			var scroll = new ScrolledWindow ();
 			scroll.HscrollbarPolicy = PolicyType.Automatic;
 			scroll.VscrollbarPolicy = PolicyType.Automatic;
 
@@ -69,7 +69,7 @@ namespace Hyena.Data.Gui.Tests
 			{
 				ColumnController = new ColumnController ();
 				ColumnController.AddRange (
-					new Column (String.Empty, new ColumnCellCheckBox ("F", true), 1),
+					new Column (string.Empty, new ColumnCellCheckBox ("F", true), 1),
 					new Column ("Apples", new ColumnCellText ("B", true), 1),
 					new Column ("Pears", new ColumnCellText ("C", true), 1),
 					new Column ("How Hot", new ColumnCellRating ("G", true), 1),
@@ -166,7 +166,7 @@ namespace Hyena.Data.Gui.Tests
 
 		public Model ()
 		{
-			Random random = new Random (0);
+			var random = new Random (0);
 			for (int i = 0; i < 1000; i++) {
 				store.Add (new ModelItem (i, random));
 			}
@@ -209,7 +209,7 @@ namespace Hyena.Data.Gui.Tests
 			a = Guid.NewGuid ().ToString ();
 			b = rand.Next (0, 255);
 			c = rand.NextDouble ();
-			d = String.Format ("Item {0}", i);
+			d = string.Format ("Item {0}", i);
 			e = new List<Gdk.Point> ();
 			f = rand.Next (0, 1) == 1;
 			g = rand.Next (0, 5);

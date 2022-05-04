@@ -46,7 +46,7 @@ namespace FSpot.Exporters.Gallery
 {
 	public class FormClient
 	{
-		private struct FormItem
+		struct FormItem
 		{
 			public string Name;
 			public object Value;
@@ -58,19 +58,19 @@ namespace FSpot.Exporters.Gallery
 			}
 		}
 
-		private StreamWriter stream_writer;
-		private List<FormItem> Items;
+		StreamWriter stream_writer;
+		List<FormItem> Items;
 
-		private string boundary;
-		private string start_boundary;
-		private string end_boundary;
+		string boundary;
+		string start_boundary;
+		string end_boundary;
 
-		private bool multipart = false;
+		bool multipart = false;
 		public bool Multipart {
 			set { multipart = value; }
 		}
 
-		private bool first_item;
+		bool first_item;
 
 		public bool Buffer = false;
 		public bool SuppressCookiePath = false;
@@ -84,19 +84,19 @@ namespace FSpot.Exporters.Gallery
 
 		public FormClient (CookieContainer cookies)
 		{
-			this.Cookies = cookies;
-			this.Items = new List<FormItem> ();
+			Cookies = cookies;
+			Items = new List<FormItem> ();
 		}
 
 		public FormClient ()
 		{
-			this.Items = new List<FormItem> ();
-			this.Cookies = new CookieContainer ();
+			Items = new List<FormItem> ();
+			Cookies = new CookieContainer ();
 		}
 
-		private void GenerateBoundary ()
+		void GenerateBoundary ()
 		{
-			Guid guid = Guid.NewGuid ();
+			var guid = Guid.NewGuid ();
 			boundary = "--------" + guid.ToString () + "-----";
 			start_boundary = "--" + boundary;
 			end_boundary = start_boundary + "--";
@@ -113,7 +113,7 @@ namespace FSpot.Exporters.Gallery
 			Items.Add (new FormItem (name, fileinfo));
 		}
 
-		private void Write (FormItem item)
+		void Write (FormItem item)
 		{
 			// The types we check here need to match the
 			// types we allow in .Add
@@ -129,7 +129,7 @@ namespace FSpot.Exporters.Gallery
 			}
 		}
 
-		private long MultipartLength (FormItem item)
+		long MultipartLength (FormItem item)
 		{
 			// The types we check here need to match the
 			// types we allow in .Add
@@ -145,21 +145,21 @@ namespace FSpot.Exporters.Gallery
 			}
 		}
 
-		private string MultipartHeader (string name, string value)
+		string MultipartHeader (string name, string value)
 		{
 			return string.Format ("{0}\r\n" +
 						  "Content-Disposition: form-data; name=\"{1}\"\r\n" +
 						  "\r\n", start_boundary, name);
 		}
 
-		private long MultipartLength (string name, string value)
+		long MultipartLength (string name, string value)
 		{
 			long length = MultipartHeader (name, value).Length;
 			length += Encoding.Default.GetBytes (value).Length + 2;
 			return length;
 		}
 
-		private void Write (string name, string value)
+		void Write (string name, string value)
 		{
 			string cmd;
 
@@ -181,7 +181,7 @@ namespace FSpot.Exporters.Gallery
 			stream_writer.Write (cmd);
 		}
 
-		private string MultipartHeader (string name, FileInfo file)
+		string MultipartHeader (string name, FileInfo file)
 		{
 			string cmd = string.Format ("{0}\r\n"
 							+ "Content-Disposition: form-data; name=\"{1}\"; filename=\"{2}\"\r\n"
@@ -191,14 +191,14 @@ namespace FSpot.Exporters.Gallery
 			return cmd;
 		}
 
-		private long MultipartLength (string name, FileInfo file)
+		long MultipartLength (string name, FileInfo file)
 		{
 			long length = MultipartHeader (name, file).Length;
 			length += file.Length + 2;
 			return length;
 		}
 
-		private void Write (string name, FileInfo file)
+		void Write (string name, FileInfo file)
 		{
 			if (multipart) {
 				stream_writer.Write (MultipartHeader (name, file));
@@ -239,14 +239,14 @@ namespace FSpot.Exporters.Gallery
 
 		public HttpWebResponse Submit (Uri uri, FSpot.ProgressItem progress_item = null)
 		{
-			this.Progress = progress_item;
+			Progress = progress_item;
 			Request = (HttpWebRequest)WebRequest.Create (uri);
 			CookieCollection cookie_collection = Cookies.GetCookies (uri);
 
 			if (uri.UserInfo != null && uri.UserInfo != string.Empty) {
-				NetworkCredential cred = new NetworkCredential ();
+				var cred = new NetworkCredential ();
 				cred.GetCredential (uri, "basic");
-				CredentialCache credcache = new CredentialCache ();
+				var credcache = new CredentialCache ();
 				credcache.Add (uri, "basic", cred);
 
 				Request.PreAuthenticate = true;

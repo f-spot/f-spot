@@ -39,10 +39,10 @@ namespace FSpot.Tools.LiveWebGallery
 {
 	public class LiveWebGallery : ICommand
 	{
-		private static SimpleWebServer web_server;
-		private static ILiveWebGalleryOptions options;
-		private static LiveWebGalleryStats stats;
-		private LiveWebGalleryDialog dialog;
+		static SimpleWebServer web_server;
+		static ILiveWebGalleryOptions options;
+		static LiveWebGalleryStats stats;
+		LiveWebGalleryDialog dialog;
 
 		public LiveWebGallery ()
 		{
@@ -93,19 +93,19 @@ namespace FSpot.Tools.LiveWebGallery
 	{
 		public event EventHandler StatsChanged;
 
-		private int gallery_views;
+		int gallery_views;
 		public int GalleryViews {
 			get { return gallery_views; }
 			set { gallery_views = value; StatsChanged (this, null); }
 		}
 
-		private int photo_views;
+		int photo_views;
 		public int PhotoViews {
 			get { return photo_views; }
 			set { photo_views = value; StatsChanged (this, null); }
 		}
 
-		private IPAddress last_ip;
+		IPAddress last_ip;
 		public IPAddress LastIP {
 			get { return last_ip; }
 			set { last_ip = value; StatsChanged (this, null); }

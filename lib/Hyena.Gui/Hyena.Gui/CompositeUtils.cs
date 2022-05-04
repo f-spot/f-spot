@@ -51,12 +51,12 @@ namespace Hyena.Gui
 		{
 			try {
 				IntPtr raw_ret = gdk_screen_get_rgba_colormap (screen.Handle);
-				Gdk.Colormap ret = GLib.Object.GetObject (raw_ret) as Gdk.Colormap;
+				var ret = GLib.Object.GetObject (raw_ret) as Gdk.Colormap;
 				return ret;
 			} catch {
-				Gdk.Visual visual = Gdk.Visual.GetBestWithDepth (32);
+				var visual = Gdk.Visual.GetBestWithDepth (32);
 				if (visual != null) {
-					Gdk.Colormap cmap = new Gdk.Colormap (visual, false);
+					var cmap = new Gdk.Colormap (visual, false);
 					return cmap;
 				}
 			}
@@ -80,10 +80,10 @@ namespace Hyena.Gui
 		{
 			try {
 				IntPtr raw_ret = gdk_screen_get_rgba_visual (screen.Handle);
-				Gdk.Visual ret = GLib.Object.GetObject (raw_ret) as Gdk.Visual;
+				var ret = GLib.Object.GetObject (raw_ret) as Gdk.Visual;
 				return ret;
 			} catch {
-				Gdk.Visual visual = Gdk.Visual.GetBestWithDepth (32);
+				var visual = Gdk.Visual.GetBestWithDepth (32);
 				if (visual != null) {
 					return visual;
 				}
@@ -115,7 +115,7 @@ namespace Hyena.Gui
 		public static bool SupportsHint (Screen screen, string name)
 		{
 			try {
-				Atom atom = Atom.Intern (name, false);
+				var atom = Atom.Intern (name, false);
 				return gdk_x11_screen_supports_net_wm_hint (screen.Handle, atom.Handle);
 			} catch {
 				return false;
@@ -131,7 +131,7 @@ namespace Hyena.Gui
 			try {
 				composited = gdk_screen_is_composited (screen.Handle);
 			} catch (EntryPointNotFoundException) {
-				Atom atom = Atom.Intern (String.Format ("_NET_WM_CM_S{0}", screen.Number), false);
+				var atom = Atom.Intern (string.Format ("_NET_WM_CM_S{0}", screen.Number), false);
 				composited = Gdk.Selection.OwnerGetForDisplay (screen.Display, atom) != null;
 			}
 

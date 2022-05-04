@@ -65,7 +65,7 @@ namespace FSpot.UI.Dialog
 			//Photos Folder
 			photosdir_chooser.SetCurrentFolderUri (FSpotConfiguration.PhotoUri);
 
-			SafeUri storage_path = new SafeUri (Preferences.Get<string> (Preferences.StoragePath));
+			var storage_path = new SafeUri (Preferences.Get<string> (Preferences.StoragePath));
 
 			//If the user has set a photo directory on the commandline then don't let it be changed in Preferences
 			if (storage_path.Equals (FSpotConfiguration.PhotoUri))
@@ -78,7 +78,7 @@ namespace FSpot.UI.Dialog
 			LoadPreference (Preferences.MetadataAlwaysUseSidecar);
 
 			//Screen profile
-			ListStore sprofiles = new ListStore (typeof (string), typeof (int));
+			var sprofiles = new ListStore (typeof (string), typeof (int));
 			sprofiles.AppendValues (Strings.None, 0);
 			if (FSpot.ColorManagement.XProfile != null)
 				sprofiles.AppendValues (Strings.SystemProfile, -1);
@@ -91,7 +91,7 @@ namespace FSpot.UI.Dialog
 			foreach (var p in dprofs)
 				sprofiles.AppendValues (p.Key, 1);
 
-			CellRendererText profilecellrenderer = new CellRendererText ();
+			var profilecellrenderer = new CellRendererText ();
 			profilecellrenderer.Ellipsize = Pango.EllipsizeMode.End;
 
 			screenprofile_combo.Model = sprofiles;
@@ -101,7 +101,7 @@ namespace FSpot.UI.Dialog
 			LoadPreference (Preferences.ColorManagementDisplayProfile);
 
 			//Print profile
-			ListStore pprofiles = new ListStore (typeof (string), typeof (int));
+			var pprofiles = new ListStore (typeof (string), typeof (int));
 			pprofiles.AppendValues (Strings.None, 0);
 			pprofiles.AppendValues (null, 0);
 
@@ -118,7 +118,7 @@ namespace FSpot.UI.Dialog
 			LoadPreference (Preferences.ColorManagementDisplayOutputProfile);
 
 			//Theme chooser
-			ListStore themes = new ListStore (typeof (string), typeof (string));
+			var themes = new ListStore (typeof (string), typeof (string));
 			themes.AppendValues (Strings.StandardTheme, null);
 			themes.AppendValues (null, null); //Separator
 			string gtkrc = System.IO.Path.Combine ("gtk-2.0", "gtkrc");
@@ -254,11 +254,10 @@ namespace FSpot.UI.Dialog
 
 		void HandleThemeComboChanged (object sender, EventArgs e)
 		{
-			ComboBox combo = sender as ComboBox;
+			var combo = sender as ComboBox;
 			if (combo == null)
 				return;
-			TreeIter iter;
-			if (combo.GetActiveIter (out iter)) {
+			if (combo.GetActiveIter (out var iter)) {
 				string gtkrc = (string)combo.Model.GetValue (iter, 1);
 				if (!string.IsNullOrEmpty (gtkrc))
 					Preferences.Set (Preferences.GtkRc, gtkrc);
@@ -272,11 +271,10 @@ namespace FSpot.UI.Dialog
 
 		void HandleScreenProfileComboChanged (object sender, EventArgs e)
 		{
-			ComboBox combo = sender as ComboBox;
+			var combo = sender as ComboBox;
 			if (combo == null)
 				return;
-			TreeIter iter;
-			if (combo.GetActiveIter (out iter)) {
+			if (combo.GetActiveIter (out var iter)) {
 				switch ((int)combo.Model.GetValue (iter, 1)) {
 				case 0:
 					Preferences.Set (Preferences.ColorManagementDisplayProfile, string.Empty);
@@ -293,11 +291,10 @@ namespace FSpot.UI.Dialog
 
 		void HandlePrintProfileComboChanged (object sender, EventArgs e)
 		{
-			ComboBox combo = sender as ComboBox;
+			var combo = sender as ComboBox;
 			if (combo == null)
 				return;
-			TreeIter iter;
-			if (combo.GetActiveIter (out iter)) {
+			if (combo.GetActiveIter (out var iter)) {
 				switch ((int)combo.Model.GetValue (iter, 1)) {
 				case 0:
 					Preferences.Set (Preferences.ColorManagementDisplayOutputProfile, string.Empty);

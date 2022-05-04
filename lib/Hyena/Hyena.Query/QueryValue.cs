@@ -89,7 +89,7 @@ namespace Hyena.Query
 				return null;
 			} else {
 				foreach (Type subtype in subtypes) {
-					QueryValue val = Activator.CreateInstance (subtype) as QueryValue;
+					var val = Activator.CreateInstance (subtype) as QueryValue;
 					if (CreateFromXml (val, parent)) {
 						return val;
 					}

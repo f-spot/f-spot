@@ -63,7 +63,7 @@ namespace FSpot.Extensions
 
 		public Gtk.Menu GetSubmenu (object parent)
 		{
-			Gtk.Menu submenu = new Gtk.Menu ();
+			var submenu = new Gtk.Menu ();
 
 			foreach (MenuNode node in ChildNodes)
 				submenu.Insert (node.GetMenuItem (parent), -1);
@@ -127,9 +127,9 @@ namespace FSpot.Extensions
 		{
 			Gtk.MenuItem item;
 			if (icon == null)
-				item = new Gtk.MenuItem (_label != null ? _label : Id);
+				item = new Gtk.MenuItem (_label ?? Id);
 			else {
-				item = new Gtk.ImageMenuItem (_label != null ? _label : Id);
+				item = new Gtk.ImageMenuItem (_label ?? Id);
 				(item as Gtk.ImageMenuItem).Image = Gtk.Image.NewFromIconName (icon, Gtk.IconSize.Menu);
 			}
 			return item;

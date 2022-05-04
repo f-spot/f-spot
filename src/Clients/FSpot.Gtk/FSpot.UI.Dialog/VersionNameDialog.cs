@@ -115,7 +115,7 @@ namespace FSpot.UI.Dialog
 
 		public ResponseType Run (out string name)
 		{
-			ResponseType response = (ResponseType)Run ();
+			var response = (ResponseType)Run ();
 
 			name = version_name_entry.Text;
 			if (request_type == RequestType.Rename && name == photo.GetVersion (photo.DefaultVersionId).Name)

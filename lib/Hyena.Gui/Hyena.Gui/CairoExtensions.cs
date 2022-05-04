@@ -70,7 +70,7 @@ namespace Hyena.Gui
 		public static Surface CreateSurfaceForPixbuf (Cairo.Context cr, Gdk.Pixbuf pixbuf)
 		{
 			Surface surface = cr.GetTarget ().CreateSimilar (cr.GetTarget ().Content, pixbuf.Width, pixbuf.Height);
-			Cairo.Context surface_cr = new Context (surface);
+			var surface_cr = new Context (surface);
 			Gdk.CairoHelper.SetSourcePixbuf (surface_cr, pixbuf, 0, 0);
 			surface_cr.Paint ();
 			((IDisposable)surface_cr).Dispose ();
@@ -115,8 +115,7 @@ namespace Hyena.Gui
 
 		public static bool ColorIsDark (Cairo.Color color)
 		{
-			double h, s, b;
-			HsbFromColor (color, out h, out s, out b);
+			HsbFromColor (color, out var h, out var s, out var b);
 			return b < 0.5;
 		}
 
@@ -218,9 +217,8 @@ namespace Hyena.Gui
 
 		public static Cairo.Color ColorShade (Cairo.Color @base, double ratio)
 		{
-			double h, s, b;
 
-			HsbFromColor (@base, out h, out s, out b);
+			HsbFromColor (@base, out var h, out var s, out var b);
 
 			b = Math.Max (Math.Min (b * ratio, 1), 0);
 			s = Math.Max (Math.Min (s * ratio, 1), 0);
@@ -232,8 +230,7 @@ namespace Hyena.Gui
 
 		public static Cairo.Color ColorAdjustBrightness (Cairo.Color @base, double br)
 		{
-			double h, s, b;
-			HsbFromColor (@base, out h, out s, out b);
+			HsbFromColor (@base, out var h, out var s, out var b);
 			b = Math.Max (Math.Min (br, 1), 0);
 			return ColorFromHsb (h, s, b);
 		}
@@ -241,10 +238,10 @@ namespace Hyena.Gui
 		public static string ColorGetHex (Cairo.Color color, bool withAlpha)
 		{
 			if (withAlpha) {
-				return String.Format ("#{0:x2}{1:x2}{2:x2}{3:x2}", (byte)(color.R * 255), (byte)(color.G * 255),
+				return string.Format ("#{0:x2}{1:x2}{2:x2}{3:x2}", (byte)(color.R * 255), (byte)(color.G * 255),
 					(byte)(color.B * 255), (byte)(color.A * 255));
 			} else {
-				return String.Format ("#{0:x2}{1:x2}{2:x2}", (byte)(color.R * 255), (byte)(color.G * 255),
+				return string.Format ("#{0:x2}{1:x2}{2:x2}", (byte)(color.R * 255), (byte)(color.G * 255),
 					(byte)(color.B * 255));
 			}
 		}

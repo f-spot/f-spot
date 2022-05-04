@@ -44,11 +44,11 @@ namespace Hyena.Gui
 		public EditableEraseAction (Editable editable, int start, int end)
 		{
 			this.editable = editable;
-			this.text = editable.GetChars (start, end);
+			text = editable.GetChars (start, end);
 			this.start = start;
 			this.end = end;
-			this.is_cut = end - start > 1;
-			this.is_forward = editable.Position < start;
+			is_cut = end - start > 1;
+			is_forward = editable.Position < start;
 		}
 
 		public void Undo ()
@@ -66,7 +66,7 @@ namespace Hyena.Gui
 
 		public void Merge (IUndoAction action)
 		{
-			EditableEraseAction erase = (EditableEraseAction)action;
+			var erase = (EditableEraseAction)action;
 			if (start == erase.start) {
 				text += erase.text;
 				end += erase.end - erase.start;
@@ -78,7 +78,7 @@ namespace Hyena.Gui
 
 		public bool CanMerge (IUndoAction action)
 		{
-			EditableEraseAction erase = action as EditableEraseAction;
+			var erase = action as EditableEraseAction;
 			if (erase == null) {
 				return false;
 			}
@@ -94,7 +94,7 @@ namespace Hyena.Gui
 
 		public override string ToString ()
 		{
-			return String.Format ("Erased: [{0}] ({1},{2})", text, start, end);
+			return string.Format ("Erased: [{0}] ({1},{2})", text, start, end);
 		}
 	}
 }

@@ -132,7 +132,7 @@ namespace Hyena.Data.Sqlite
 
 		public override bool Equals (object o)
 		{
-			DatabaseColumn column = o as DatabaseColumn;
+			var column = o as DatabaseColumn;
 			return o != null && column.Name.Equals (Name);
 		}
 

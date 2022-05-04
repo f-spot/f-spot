@@ -77,7 +77,7 @@ namespace Hyena.Data.Gui.Accessibility
 		public string GetColumnDescription (int column)
 		{
 			var col = list_view.ColumnController.Where (c => c.Visible).ElementAtOrDefault (column);
-			return col == null ? null : col.LongTitle;
+			return col?.LongTitle;
 		}
 
 		public int GetColumnExtentAt (int row, int column)
@@ -121,7 +121,7 @@ namespace Hyena.Data.Gui.Accessibility
 		}
 
 		// Ensure https://bugzilla.novell.com/show_bug.cgi?id=512477 is fixed
-		static readonly int[] empty_int_array = new int[0];
+		static readonly int[] empty_int_array = System.Array.Empty<int> ();
 		public int[] SelectedColumns {
 			get { return empty_int_array; }
 		}

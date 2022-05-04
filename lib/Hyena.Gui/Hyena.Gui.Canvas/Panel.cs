@@ -40,7 +40,7 @@ namespace Hyena.Gui.Canvas
 
 		public override Size Measure (Size available)
 		{
-			Size result = new Size (0, 0);
+			var result = new Size (0, 0);
 
 			foreach (var child in Children) {
 				if (child.Visible) {
@@ -50,11 +50,11 @@ namespace Hyena.Gui.Canvas
 				}
 			}
 
-			if (!Double.IsNaN (Width)) {
+			if (!double.IsNaN (Width)) {
 				result.Width = Width;
 			}
 
-			if (!Double.IsNaN (Height)) {
+			if (!double.IsNaN (Height)) {
 				result.Height = Height;
 			}
 

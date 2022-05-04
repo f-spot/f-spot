@@ -235,7 +235,7 @@ namespace FSpot
 
 		public void SetDefaultVersion (IPhotoVersion version)
 		{
-			PhotoVersion photo_version = version as PhotoVersion;
+			var photo_version = version as PhotoVersion;
 			if (photo_version == null)
 				throw new ArgumentException ("Not a valid version for this photo");
 
@@ -543,7 +543,7 @@ namespace FSpot
 		public Photo (IImageFileFactory imageFactory, IThumbnailService thumbnailService, uint id, long unix_time)
 			: base (id)
 		{
-			this.imageFileFactory = imageFactory;
+			imageFileFactory = imageFactory;
 			this.thumbnailService = thumbnailService;
 
 			time = DateTimeUtil.ToDateTime (unix_time);

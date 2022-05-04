@@ -63,7 +63,7 @@ namespace FSpot.Widgets
 		List<string> selected_photos_tagnames;
 		public void UpdateFromSelection (IPhoto[] selection)
 		{
-			Dictionary<Tag, int> taghash = new Dictionary<Tag, int> ();
+			var taghash = new Dictionary<Tag, int> ();
 
 			for (int i = 0; i < selection.Length; i++) {
 				foreach (Tag tag in selection[i].Tags) {
@@ -103,7 +103,7 @@ namespace FSpot.Widgets
 		{
 			selected_photos_tagnames.Sort ();
 
-			StringBuilder sb = new StringBuilder ();
+			var sb = new StringBuilder ();
 			foreach (string tagname in selected_photos_tagnames) {
 				if (sb.Length > 0)
 					sb.Append (", ");
@@ -128,7 +128,7 @@ namespace FSpot.Widgets
 		{
 			string[] tagnames = Text.Split (new char[] { ',' });
 
-			List<string> list = new List<string> ();
+			var list = new List<string> ();
 			for (int i = 0; i < tagnames.Length; i++) {
 				string s = tagnames[i].Trim ();
 
@@ -239,9 +239,9 @@ namespace FSpot.Widgets
 			if (tag_completion_index == -1)
 				return;
 
-			int sel_start, sel_end, pos;
+			int pos;
 			pos = Position;
-			if (GetSelectionBounds (out sel_start, out sel_end)) {
+			if (GetSelectionBounds (out var sel_start, out var sel_end)) {
 				pos = sel_end;
 				SelectRegion (-1, -1);
 			}
@@ -261,7 +261,7 @@ namespace FSpot.Widgets
 				return;
 
 			// Add any new tags to the selected photos
-			List<string> new_tags = new List<string> ();
+			var new_tags = new List<string> ();
 			for (int i = 0; i < tagnames.Length; i++) {
 				if (tagnames[i].Length == 0)
 					continue;
@@ -282,7 +282,7 @@ namespace FSpot.Widgets
 				TagsAttached (this, new_tags.ToArray ());
 
 			// Remove any removed tags from the selected photos
-			List<Tag> remove_tags = new List<Tag> ();
+			var remove_tags = new List<Tag> ();
 			foreach (string tagname in selected_photos_tagnames) {
 				if (!IsTagInList (tagnames, tagname)) {
 					Tag tag = tagStore.GetTagByName (tagname);

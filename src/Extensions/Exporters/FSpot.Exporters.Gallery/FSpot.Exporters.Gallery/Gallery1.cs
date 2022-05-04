@@ -56,7 +56,7 @@ namespace FSpot.Exporters.Gallery
 		public override void Login (string username, string passwd)
 		{
 			//Console.WriteLine ("Gallery1: Attempting to login");
-			FormClient client = new FormClient (cookies);
+			var client = new FormClient (cookies);
 
 			client.Add ("cmd", "login");
 			client.Add ("protocol_version", "2.3");
@@ -68,7 +68,7 @@ namespace FSpot.Exporters.Gallery
 
 		public override List<Album> FetchAlbums ()
 		{
-			FormClient client = new FormClient (cookies);
+			var client = new FormClient (cookies);
 
 			client.Add ("cmd", "fetch-albums");
 			client.Add ("protocol_version", "2.3");
@@ -78,7 +78,7 @@ namespace FSpot.Exporters.Gallery
 
 		public override bool MoveAlbum (Album album, string end_name)
 		{
-			FormClient client = new FormClient (cookies);
+			var client = new FormClient (cookies);
 
 			client.Add ("cmd", "move-album");
 			client.Add ("protocol_version", "2.7");
@@ -95,7 +95,7 @@ namespace FSpot.Exporters.Gallery
 					 string description,
 					 bool autorotate)
 		{
-			FormClient client = new FormClient (cookies);
+			var client = new FormClient (cookies);
 
 			client.Add ("cmd", "add-item");
 			client.Add ("protocol_version", "2.9");
@@ -128,7 +128,7 @@ namespace FSpot.Exporters.Gallery
 					  string title,
 					  string description)
 		{
-			FormClient client = new FormClient (cookies);
+			var client = new FormClient (cookies);
 			client.Multipart = true;
 			client.Add ("cmd", "new-album");
 			client.Add ("protocol_version", "2.8");
@@ -142,7 +142,7 @@ namespace FSpot.Exporters.Gallery
 
 		public override List<Image> FetchAlbumImages (Album album, bool include_ablums)
 		{
-			FormClient client = new FormClient (cookies);
+			var client = new FormClient (cookies);
 			client.Add ("cmd", "fetch-album-images");
 			client.Add ("protocol_version", "2.3");
 			client.Add ("set_albumName", album.Name);
@@ -154,7 +154,7 @@ namespace FSpot.Exporters.Gallery
 
 		public override List<Album> FetchAlbumsPrune ()
 		{
-			FormClient client = new FormClient (cookies);
+			var client = new FormClient (cookies);
 			client.Add ("cmd", "fetch-albums-prune");
 			client.Add ("protocol_version", "2.3");
 			client.Add ("check_writable", "no");

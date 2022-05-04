@@ -37,7 +37,7 @@ namespace FSpot.Query
 		public RatingRange (uint min_rating)
 		{
 			MinRating = min_rating;
-			MaxRating = System.UInt32.MaxValue;
+			MaxRating = uint.MaxValue;
 		}
 
 		public RatingRange (uint min_rating, uint max_rating)

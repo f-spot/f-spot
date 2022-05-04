@@ -150,7 +150,7 @@ namespace FSpot.Widgets
 		}
 
 
-		IPhoto[] photos = new IPhoto[0];
+		IPhoto[] photos = Array.Empty<IPhoto> ();
 		public IPhoto[] Photos {
 			private get { return photos; }
 			set {

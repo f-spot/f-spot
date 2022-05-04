@@ -60,7 +60,7 @@ namespace Pinta.Effects
 			// Cache these for a massive performance boost
 			int src_width = src.Width;
 			int src_height = src.Height;
-			ColorBgra* src_data_ptr = (ColorBgra*)src.DataPtr;
+			var src_data_ptr = (ColorBgra*)src.DataPtr;
 
 			foreach (Gdk.Rectangle rect in rois) {
 				if (rect.Height >= 1 && rect.Width >= 1) {

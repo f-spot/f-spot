@@ -84,7 +84,7 @@ namespace Hyena.Query.Gui
 
 		protected QueryTermBox CreateRow (bool canDelete)
 		{
-			QueryTermBox row = new QueryTermBox (sorted_fields);
+			var row = new QueryTermBox (sorted_fields);
 
 			row.ValueEntry.HeightRequest = 31;
 			row.Buttons.HeightRequest = 31;

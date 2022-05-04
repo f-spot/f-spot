@@ -53,7 +53,7 @@ namespace Hyena.Gui.Theming
 		public static Gdk.Color GetGdkTextMidColor (Widget widget)
 		{
 			Cairo.Color color = GetCairoTextMidColor (widget);
-			Gdk.Color gdk_color = new Gdk.Color ((byte)(color.R * 255), (byte)(color.G * 255), (byte)(color.B * 255));
+			var gdk_color = new Gdk.Color ((byte)(color.R * 255), (byte)(color.G * 255), (byte)(color.B * 255));
 			Gdk.Colormap.System.AllocColor (ref gdk_color, true, true);
 			return gdk_color;
 		}
@@ -89,7 +89,7 @@ namespace Hyena.Gui.Theming
 			Color color_a = Colors.GetWidgetColor (GtkColorClass.Background, StateType.Selected);
 			Color color_b = CairoExtensions.ColorShade (color_a, 1.4);
 
-			RadialGradient fill = new RadialGradient (Context.X, Context.Y, 0,
+			var fill = new RadialGradient (Context.X, Context.Y, 0,
 				Context.X, Context.Y, 2.0 * Context.Radius);
 			fill.AddColorStop (0, color_a);
 			fill.AddColorStop (1, color_b);
@@ -219,7 +219,7 @@ namespace Hyena.Gui.Theming
 			Cairo.Color light_color = CairoExtensions.ColorShade (color, 1.6);
 			Cairo.Color dark_color = CairoExtensions.ColorShade (color, 1.3);
 
-			LinearGradient grad = new LinearGradient (alloc.X, alloc.Y, alloc.X, alloc.Bottom - 1);
+			var grad = new LinearGradient (alloc.X, alloc.Y, alloc.X, alloc.Bottom - 1);
 			grad.AddColorStop (0, light_color);
 			grad.AddColorStop (1, dark_color);
 
@@ -237,7 +237,7 @@ namespace Hyena.Gui.Theming
 
 			CairoCorners corners = CairoCorners.TopLeft | CairoCorners.TopRight;
 
-			LinearGradient grad = new LinearGradient (alloc.X, alloc.Y, alloc.X, alloc.Bottom);
+			var grad = new LinearGradient (alloc.X, alloc.Y, alloc.X, alloc.Bottom);
 			grad.AddColorStop (0, light_color);
 			grad.AddColorStop (0.75, dark_color);
 			grad.AddColorStop (0, light_color);

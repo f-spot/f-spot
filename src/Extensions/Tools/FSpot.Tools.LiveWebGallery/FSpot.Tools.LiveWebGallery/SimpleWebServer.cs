@@ -42,11 +42,11 @@ namespace FSpot.Tools.LiveWebGallery
 {
 	public class SimpleWebServer : IService
 	{
-		private Thread server_thread;
-		private TcpListener listener;
-		private Dictionary<string, RequestHandler> handlers = new Dictionary<string, RequestHandler> ();
+		Thread server_thread;
+		TcpListener listener;
+		Dictionary<string, RequestHandler> handlers = new Dictionary<string, RequestHandler> ();
 
-		private IWebStats stats;
+		IWebStats stats;
 		public IWebStats Stats {
 			set { stats = value; }
 		}
@@ -106,7 +106,7 @@ namespace FSpot.Tools.LiveWebGallery
 					if (stats != null)
 						stats.IncomingRequest ((client.Client.RemoteEndPoint as IPEndPoint).Address);
 
-					RequestProcessor parser = new RequestProcessor (client, handlers);
+					var parser = new RequestProcessor (client, handlers);
 					new Thread (new ThreadStart (parser.Process)).Start ();
 				}
 			}
@@ -114,8 +114,8 @@ namespace FSpot.Tools.LiveWebGallery
 
 		class RequestProcessor
 		{
-			private TcpClient client;
-			private Dictionary<string, RequestHandler> handlers;
+			TcpClient client;
+			Dictionary<string, RequestHandler> handlers;
 
 			public RequestProcessor (TcpClient client, Dictionary<string, RequestHandler> handlers)
 			{

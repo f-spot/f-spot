@@ -69,9 +69,8 @@ namespace FSpot
 			public bool TryGetPhoto (int index, out Photo photo)
 			{
 				photo = null;
-				Photo[] val;
 				int offset = index - index % SIZE;
-				if (!cache.TryGetValue (offset, out val))
+				if (!cache.TryGetValue (offset, out var val))
 					return false;
 				photo = val[index - offset];
 				return true;
@@ -79,9 +78,8 @@ namespace FSpot
 
 			public Photo Get (int index)
 			{
-				Photo[] val;
 				int offset = index - index % SIZE;
-				if (!cache.TryGetValue (offset, out val)) {
+				if (!cache.TryGetValue (offset, out var val)) {
 					val = store.QueryFromTemp (temp_table, offset, SIZE);
 					cache[offset] = val;
 				}
@@ -171,8 +169,7 @@ namespace FSpot
 
 		internal T GetCondition<T> () where T : IQueryCondition
 		{
-			IQueryCondition val;
-			Conditions.TryGetValue (typeof (T), out val);
+			Conditions.TryGetValue (typeof (T), out var val);
 			return (T)val;
 		}
 
@@ -291,7 +288,7 @@ namespace FSpot
 			} else {
 				condition_array = new IQueryCondition[conditions.Count + 2];
 				//		condition_array[0] = new ConditionWrapper (extra_condition);
-				condition_array[1] = new ConditionWrapper (terms != null ? terms.SqlCondition () : null);
+				condition_array[1] = new ConditionWrapper (terms?.SqlCondition ());
 				i = 2;
 			}
 
@@ -324,9 +321,8 @@ namespace FSpot
 			using var op = Operation.Begin ($"PhotoQuery.IndicesOf");
 			var indices = new List<int> ();
 			var items_to_search = new List<uint> ();
-			int cur;
 			foreach (DbItem dbitem in dbitems) {
-				if (reverse_lookup.TryGetValue (dbitem.Id, out cur))
+				if (reverse_lookup.TryGetValue (dbitem.Id, out var cur))
 					indices.Add (cur);
 				else
 					items_to_search.Add (dbitem.Id);
@@ -354,10 +350,9 @@ namespace FSpot
 			int low = 0;
 			int high = Count - 1;
 			int mid = (low + high) / 2;
-			Photo current;
 			while (low <= high) {
 				mid = (low + high) / 2;
-				if (!cache.TryGetPhoto (mid, out current))
+				if (!cache.TryGetPhoto (mid, out var current))
 					//the item we're looking for is not in the cache
 					//a binary search could take up to ln2 (N/cache.SIZE) request
 					//lets reduce that number to 1
@@ -386,7 +381,7 @@ namespace FSpot
 
 		public void Commit (int[] indexes)
 		{
-			List<Photo> to_commit = new List<Photo> ();
+			var to_commit = new List<Photo> ();
 			foreach (int index in indexes) {
 				to_commit.Add (this[index] as Photo);
 				reverse_lookup[(this[index] as Photo).Id] = index;

@@ -36,7 +36,7 @@ namespace Hyena.Query.Gui
 	{
 		protected DateQueryValue query_value;
 
-		protected SpinButton year_entry = new SpinButton (Double.MinValue, Double.MaxValue, 1.0);
+		protected SpinButton year_entry = new SpinButton (double.MinValue, double.MaxValue, 1.0);
 		protected SpinButton month_entry = new SpinButton (0.0, 12.0, 1.0);
 		protected SpinButton day_entry = new SpinButton (0.0, 31.0, 1.0);
 
@@ -84,7 +84,7 @@ namespace Hyena.Query.Gui
 		protected void HandleValueChanged (object o, EventArgs args)
 		{
 			try {
-				DateTime dt = new DateTime (year_entry.ValueAsInt, month_entry.ValueAsInt, day_entry.ValueAsInt);
+				var dt = new DateTime (year_entry.ValueAsInt, month_entry.ValueAsInt, day_entry.ValueAsInt);
 				query_value.SetValue (dt);
 			} catch {
 				Log.Debug ("Caught exception raised because of invalid date");

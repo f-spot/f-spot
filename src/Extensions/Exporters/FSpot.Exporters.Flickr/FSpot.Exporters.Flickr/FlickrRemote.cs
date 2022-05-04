@@ -76,10 +76,10 @@ namespace FSpot.Exporters.Flickr
 		{
 			if (token == null) {
 				flickr = new FlickrNet.Flickr (service.ApiKey, service.Secret);
-				this.accessToken = null;
+				accessToken = null;
 			} else {
 				flickr = new FlickrNet.Flickr (service.ApiKey, service.Secret, token.Token);
-				this.accessToken = token;
+				accessToken = token;
 				flickr.OAuthAccessToken = token.Token;
 				flickr.OAuthAccessTokenSecret = token.TokenSecret;
 			}
@@ -193,7 +193,7 @@ namespace FSpot.Exporters.Flickr
 			// FIXME flickr needs rotation
 			string error_verbose;
 
-			using (FilterRequest request = new FilterRequest (photo.DefaultVersion.Uri)) {
+			using (var request = new FilterRequest (photo.DefaultVersion.Uri)) {
 
 				try {
 					string tags = null;
@@ -208,7 +208,7 @@ namespace FSpot.Exporters.Flickr
 
 						for (int i = 0; i < t.Length; i++) {
 							if (i > 0)
-								taglist.Append (",");
+								taglist.Append (',');
 
 							taglist.Append (string.Format ("\"{0}\"", t[i].Name));
 
@@ -222,7 +222,7 @@ namespace FSpot.Exporters.Flickr
 									}
 
 									// FIXME Look if the tag is already there!
-									taglist.Append (",");
+									taglist.Append (',');
 									taglist.Append (string.Format ("\"{0}\"", tag_iter.Name));
 									tag_iter = tag_iter.Category;
 								}

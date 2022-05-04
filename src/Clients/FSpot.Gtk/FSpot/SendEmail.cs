@@ -240,13 +240,13 @@ namespace FSpot
 			size = GetScaleSize (); // Which size should we scale to. 0 --> Original
 
 			// evaluate mailto command and define attachment args for cli
-			System.Text.StringBuilder attach_arg = new System.Text.StringBuilder ();
+			var attach_arg = new System.Text.StringBuilder ();
 			switch (Preferences.Get<string> (Preferences.MailToCommand)) {
 			case "thunderbird %s":
 			case "mozilla-thunderbird %s":
 			case "seamonkey -mail -compose %s":
 			case "icedove %s":
-				attach_arg.Append (",");
+				attach_arg.Append (',');
 				break;
 			case "kmail %s":
 				attach_arg.Append (" --attach ");
@@ -261,9 +261,9 @@ namespace FSpot
 			System.IO.File.Delete (tmp_mail_dir);           // Delete above tmp file
 			System.IO.Directory.CreateDirectory (tmp_mail_dir); // Create a directory with above tmp name
 
-			System.Text.StringBuilder mail_attach = new System.Text.StringBuilder ();
+			var mail_attach = new System.Text.StringBuilder ();
 
-			FilterSet filters = new FilterSet ();
+			var filters = new FilterSet ();
 
 			if (size != 0)
 				filters.Add (new ResizeFilter ((uint)size));
@@ -282,7 +282,7 @@ namespace FSpot
 
 					try {
 						// Prepare a tmp_mail file name
-						FilterRequest request = new FilterRequest (photo.DefaultVersion.Uri);
+						var request = new FilterRequest (photo.DefaultVersion.Uri);
 
 						filters.Convert (request);
 						request.Preserve (request.Current);
@@ -290,7 +290,7 @@ namespace FSpot
 						mail_attach.Append (((i == 0 && attach_arg.ToString () == ",") ? "" : attach_arg.ToString ()) + request.Current.ToString ());
 					} catch (Exception e) {
 						Logger.Log.Error ($"Error preparing {selection[i].Name}: {e.Message}");
-						HigMessageDialog md = new HigMessageDialog (parent_window,
+						var md = new HigMessageDialog (parent_window,
 												DialogFlags.DestroyWithParent,
 												MessageType.Error,
 												ButtonsType.Close,

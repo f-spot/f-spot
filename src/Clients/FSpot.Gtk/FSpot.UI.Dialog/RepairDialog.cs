@@ -53,7 +53,7 @@ namespace FSpot.UI.Dialog
 			missing = new PhotoList ();
 
 			FindMissing ();
-			TrayView view = new TrayView (missing);
+			var view = new TrayView (missing);
 			view_scrolled.Add (view);
 
 			ShowAll ();

@@ -87,7 +87,7 @@ namespace FSpot.Exporters.Folder
 			return string.Format ("img-{0}.jpg", photo_index + 1);
 		}
 
-		private void SetTime ()
+		void SetTime ()
 		{
 			try {
 				for (int i = 0; i < Collection.Count; i++)
@@ -114,7 +114,7 @@ namespace FSpot.Exporters.Folder
 			}
 		}
 
-		private void CreateComments (string photo_path, int photo_index)
+		void CreateComments (string photo_path, int photo_index)
 		{
 			StreamWriter comment = File.CreateText (SubdirPath ("comments", photo_index + 1 + ".txt"));
 			comment.Write ("<span>photo " + (photo_index + 1) + "</span> ");
@@ -122,11 +122,11 @@ namespace FSpot.Exporters.Folder
 			comment.Close ();
 		}
 
-		private void CreateZipFile (string img_quality)
+		void CreateZipFile (string img_quality)
 		{
 			string[] filenames = Directory.GetFiles (SubdirPath (img_quality));
-			Crc32 crc = new Crc32 ();
-			ZipOutputStream s = new ZipOutputStream (File.Create (SubdirPath ("zip", img_quality + ".zip")));
+			var crc = new Crc32 ();
+			var s = new ZipOutputStream (File.Create (SubdirPath ("zip", img_quality + ".zip")));
 
 			s.SetLevel (0);
 			foreach (string file in filenames) {
@@ -134,7 +134,7 @@ namespace FSpot.Exporters.Folder
 
 				byte[] buffer = new byte[fs.Length];
 				fs.Read (buffer, 0, buffer.Length);
-				ZipEntry entry = new ZipEntry (Path.GetFileName (file));
+				var entry = new ZipEntry (Path.GetFileName (file));
 
 				entry.DateTime = DateTime.Now;
 
@@ -162,14 +162,14 @@ namespace FSpot.Exporters.Folder
 			s.Close ();
 		}
 
-		private void CreateHtaccess ()
+		void CreateHtaccess ()
 		{
 			StreamWriter htaccess = File.CreateText (Path.Combine (GalleryPath, ".htaccess"));
 			htaccess.Write ("<Files info.txt>" + Environment.NewLine + "\tdeny from all" + Environment.NewLine + "</Files>" + Environment.NewLine);
 			htaccess.Close ();
 		}
 
-		private void CreateInfo ()
+		void CreateInfo ()
 		{
 			StreamWriter info = File.CreateText (Path.Combine (GalleryPath, "info.txt"));
 			info.WriteLine ("name|" + GalleryName);

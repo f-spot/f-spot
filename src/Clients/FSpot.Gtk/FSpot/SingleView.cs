@@ -106,7 +106,7 @@ namespace FSpot
 			LoadPreference (Preferences.ViewerWidth);
 			LoadPreference (Preferences.ViewerMaximized);
 
-			Gtk.Toolbar toolbar = new Gtk.Toolbar ();
+			var toolbar = new Gtk.Toolbar ();
 			toolbar_hbox.PackStart (toolbar);
 
 			rl_button = GtkUtil.ToolButtonFromTheme ("object-rotate-left", Strings.RotateLeft, true);
@@ -133,7 +133,7 @@ namespace FSpot
 
 			collection = new UriCollection (uris);
 
-			TargetList targetList = new TargetList ();
+			var targetList = new TargetList ();
 			targetList.AddTextTargets ((uint)DragDropTargets.TargetType.PlainText);
 			targetList.AddUriTargets ((uint)DragDropTargets.TargetType.UriList);
 
@@ -194,7 +194,7 @@ namespace FSpot
 
 			// wrap the methods to fit to the delegate
 			image_view.Item.Changed += delegate (object sender, BrowsablePointerChangedEventArgs old) {
-				BrowsablePointer pointer = sender as BrowsablePointer;
+				var pointer = sender as BrowsablePointer;
 				if (pointer == null)
 					return;
 				IPhoto[] item = { pointer.Current };
@@ -275,14 +275,14 @@ namespace FSpot
 
 		void HandleRotate90Command (object sender, EventArgs args)
 		{
-			RotateCommand command = new RotateCommand (this.Window);
+			var command = new RotateCommand (Window);
 			if (command.Execute (RotateDirection.Clockwise, new IPhoto[] { image_view.Item.Current }))
 				collection.MarkChanged (image_view.Item.Index, FullInvalidate.Instance);
 		}
 
 		void HandleRotate270Command (object sender, EventArgs args)
 		{
-			RotateCommand command = new RotateCommand (Window);
+			var command = new RotateCommand (Window);
 			if (command.Execute (RotateDirection.Counterclockwise, new IPhoto[] { image_view.Item.Current }))
 				collection.MarkChanged (image_view.Item.Index, FullInvalidate.Instance);
 		}
@@ -300,7 +300,7 @@ namespace FSpot
 
 		void HandleItemChanged (object sender, BrowsablePointerChangedEventArgs old)
 		{
-			BrowsablePointer pointer = sender as BrowsablePointer;
+			var pointer = sender as BrowsablePointer;
 			if (pointer == null)
 				return;
 
@@ -512,8 +512,7 @@ namespace FSpot
 
 		void SavePreferences ()
 		{
-			int width, height;
-			Window.GetSize (out width, out height);
+			Window.GetSize (out var width, out var height);
 
 			bool maximized = ((Window.GdkWindow.State & Gdk.WindowState.Maximized) > 0);
 			Preferences.Set (Preferences.ViewerMaximized, maximized);
@@ -697,9 +696,9 @@ namespace FSpot
 					break;
 				case Preferences.ViewerTransColor:
 					color_button.Color = new Gdk.Color (
-						Byte.Parse (Preferences.Get<string> (key).Substring (1, 2), System.Globalization.NumberStyles.AllowHexSpecifier),
-						Byte.Parse (Preferences.Get<string> (key).Substring (3, 2), System.Globalization.NumberStyles.AllowHexSpecifier),
-						Byte.Parse (Preferences.Get<string> (key).Substring (5, 2), System.Globalization.NumberStyles.AllowHexSpecifier));
+						byte.Parse (Preferences.Get<string> (key).Substring (1, 2), System.Globalization.NumberStyles.AllowHexSpecifier),
+						byte.Parse (Preferences.Get<string> (key).Substring (3, 2), System.Globalization.NumberStyles.AllowHexSpecifier),
+						byte.Parse (Preferences.Get<string> (key).Substring (5, 2), System.Globalization.NumberStyles.AllowHexSpecifier));
 					break;
 				}
 			}

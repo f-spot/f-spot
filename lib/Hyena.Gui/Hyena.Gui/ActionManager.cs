@@ -116,7 +116,7 @@ namespace Hyena.Gui
 			string action_name = parts[1];
 
 			ActionGroup group = FindActionGroup (group_name);
-			return group == null ? null : group.GetAction (action_name);
+			return group?.GetAction (action_name);
 		}
 
 		public void PopulateToolbarPlaceholder (Toolbar toolbar, string path, Widget item)
@@ -126,7 +126,7 @@ namespace Hyena.Gui
 
 		public void PopulateToolbarPlaceholder (Toolbar toolbar, string path, Widget item, bool expand)
 		{
-			ToolItem placeholder = (ToolItem)UIManager.GetWidget (path);
+			var placeholder = (ToolItem)UIManager.GetWidget (path);
 			int position = toolbar.GetItemIndex (placeholder);
 			toolbar.Remove (placeholder);
 
@@ -167,7 +167,7 @@ namespace Hyena.Gui
 		public uint AddUiFromFile (string ui_file, Assembly assembly)
 		{
 			if (ui_file != null) {
-				using (StreamReader reader = new StreamReader (assembly.GetManifestResourceStream (ui_file))) {
+				using (var reader = new StreamReader (assembly.GetManifestResourceStream (ui_file))) {
 					return ui_manager.AddUiFromString (reader.ReadToEnd ());
 				}
 			}

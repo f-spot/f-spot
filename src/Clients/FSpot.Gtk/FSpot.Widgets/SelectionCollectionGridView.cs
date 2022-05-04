@@ -72,7 +72,7 @@ namespace FSpot.Widgets
 		{
 			Selection = new SelectionCollection (Collection);
 
-			Selection.DetailedChanged += delegate (IBrowsableCollection sender, Int32[] ids) {
+			Selection.DetailedChanged += delegate (IBrowsableCollection sender, int[] ids) {
 				if (ids == null)
 					QueueDraw ();
 				else
@@ -122,8 +122,7 @@ namespace FSpot.Widgets
 			if (!isRectSelection)
 				return;
 
-			Rectangle region;
-			if (!exposeArea.Intersect (rect_select, out region))
+			if (!exposeArea.Intersect (rect_select, out var region))
 				return;
 
 			// draw selection
@@ -254,8 +253,7 @@ namespace FSpot.Widgets
 
 		protected Point GetPointer ()
 		{
-			int x, y;
-			GetPointer (out x, out y);
+			GetPointer (out var x, out var y);
 
 			return new Point (x + (int)Hadjustment.Value, y + (int)Vadjustment.Value);
 		}
@@ -322,15 +320,14 @@ namespace FSpot.Widgets
 
 		bool HandleMotionTimeout ()
 		{
-			int new_x, new_y;
 
 			// do scroll
 			double newVadj = Vadjustment.Value;
 			if (deltaVscroll < 130)
 				deltaVscroll += 15;
 
-			ModifierType new_mod;
-			Display.GetPointer (out new_x, out new_y, out new_mod);
+			Display.GetPointer (out var new_x, out var new_y, out
+			ModifierType new_mod);
 			GetPointer (out new_x, out new_y);
 
 			if (new_y <= 0) {
@@ -361,10 +358,9 @@ namespace FSpot.Widgets
 
 			if (isRectSelection) {
 				// scroll if out of window
-				double d_x, d_y;
 				deltaVscroll = 30;
 
-				if (EventHelper.GetCoords (evnt, out d_x, out d_y)) {
+				if (EventHelper.GetCoords (evnt, out var d_x, out var d_y)) {
 					int new_y = (int)d_y;
 					if ((new_y <= 0) || (new_y >= Allocation.Height)) {
 						if (scroll_timeout == 0)

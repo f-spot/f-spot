@@ -325,7 +325,7 @@ namespace FSpot.Query
 		{
 			// Filter out any tags that are already included
 			// FIXME: Does this really need to be set to a length?
-			List<Tag> new_tags = new List<Tag> (tags.Length);
+			var new_tags = new List<Tag> (tags.Length);
 			foreach (Tag tag in tags) {
 				if (!rootTerm.TagIncluded (tag))
 					new_tags.Add (tag);
@@ -474,7 +474,7 @@ namespace FSpot.Query
 					after = null;
 				}
 
-				Literal term = new Literal (parent, tag, after);
+				var term = new Literal (parent, tag, after);
 				term.TagsAdded += HandleTagsAdded;
 				term.LiteralsMoved += HandleLiteralsMoved;
 				term.AttachTag += HandleAttachTag;

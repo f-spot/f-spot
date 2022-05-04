@@ -36,8 +36,8 @@ namespace Hyena.Data.Sqlite.Tests
 	[TestFixture]
 	public class SqliteModelProviderTests
 	{
-		private HyenaSqliteConnection connection;
-		private ModelProvider provider;
+		HyenaSqliteConnection connection;
+		ModelProvider provider;
 
 		[OneTimeSetUp]
 		public void Init ()
@@ -56,7 +56,7 @@ namespace Hyena.Data.Sqlite.Tests
 		[Test]
 		public void IntMembers ()
 		{
-			DbBoundType newed_item = new DbBoundType ();
+			var newed_item = new DbBoundType ();
 			newed_item.PublicIntField = 3141592;
 			newed_item.PublicIntProperty = 13;
 			newed_item.SetPrivateIntField (128);
@@ -74,7 +74,7 @@ namespace Hyena.Data.Sqlite.Tests
 		[Test]
 		public void LongMembers ()
 		{
-			DbBoundType newed_item = new DbBoundType ();
+			var newed_item = new DbBoundType ();
 			newed_item.PublicLongField = 4926227057;
 			newed_item.PublicLongProperty = -932;
 			newed_item.SetPrivateLongField (3243);
@@ -92,7 +92,7 @@ namespace Hyena.Data.Sqlite.Tests
 		[Test]
 		public void StringMembers ()
 		{
-			DbBoundType newed_item = new DbBoundType ();
+			var newed_item = new DbBoundType ();
 			newed_item.PublicStringField = "Surely you're joking, Mr. Feynman.";
 			newed_item.PublicStringProperty = "Even as a splitted bark, so sunder we: This way fall I to death.";
 			newed_item.SetPrivateStringField ("Who is John Galt?");
@@ -110,7 +110,7 @@ namespace Hyena.Data.Sqlite.Tests
 		[Test]
 		public void BlankStringMembers ()
 		{
-			DbBoundType newed_item = new DbBoundType ();
+			var newed_item = new DbBoundType ();
 			newed_item.PublicStringField = "";
 			newed_item.PublicStringProperty = null;
 			newed_item.SetPrivateStringField (" \t ");
@@ -128,7 +128,7 @@ namespace Hyena.Data.Sqlite.Tests
 		[Test]
 		public void NullStringMembers ()
 		{
-			DbBoundType newed_item = new DbBoundType ();
+			var newed_item = new DbBoundType ();
 			newed_item.PublicStringField = null;
 			newed_item.PublicStringProperty = null;
 			newed_item.SetPrivateStringField (null);
@@ -144,7 +144,7 @@ namespace Hyena.Data.Sqlite.Tests
 		}
 
 		// Some fidelity is lost in the conversion from DT to DB time format
-		private void AssertArePrettyClose (DateTime time1, DateTime time2)
+		void AssertArePrettyClose (DateTime time1, DateTime time2)
 		{
 			Assert.AreEqual (time1.Year, time2.Year);
 			Assert.AreEqual (time1.Month, time2.Month);
@@ -157,7 +157,7 @@ namespace Hyena.Data.Sqlite.Tests
 		[Test]
 		public void DateTimeMembers ()
 		{
-			DbBoundType newed_item = new DbBoundType ();
+			var newed_item = new DbBoundType ();
 			newed_item.PublicDateTimeField = DateTime.Now;
 			newed_item.PublicDateTimeProperty = new DateTime (1986, 4, 23);
 			newed_item.SetPrivateDateTimeField (DateTime.MinValue);
@@ -165,7 +165,7 @@ namespace Hyena.Data.Sqlite.Tests
 
 			provider.Save (newed_item);
 
-			string command = String.Format ("SELECT PrivateDateTimeField FROM {0} WHERE PrimaryKey = {1}", provider.TableName, newed_item.PrimaryKey);
+			string command = string.Format ("SELECT PrivateDateTimeField FROM {0} WHERE PrimaryKey = {1}", provider.TableName, newed_item.PrimaryKey);
 
 			using (IDataReader reader = connection.Query (command)) {
 				reader.Read ();
@@ -182,7 +182,7 @@ namespace Hyena.Data.Sqlite.Tests
 		[Test]
 		public void TimeSpanMembers ()
 		{
-			DbBoundType newed_item = new DbBoundType ();
+			var newed_item = new DbBoundType ();
 			newed_item.PublicTimeSpanField = new TimeSpan (0, 0, 1);
 			newed_item.PublicTimeSpanProperty = new TimeSpan (1, 0, 0);
 			newed_item.SetPrivateTimeSpanField (new TimeSpan (1, 39, 12));
@@ -190,7 +190,7 @@ namespace Hyena.Data.Sqlite.Tests
 
 			provider.Save (newed_item);
 
-			string command = String.Format ("SELECT PrivateTimeSpanProperty FROM {0} WHERE PrimaryKey = {1}", provider.TableName, newed_item.PrimaryKey);
+			string command = string.Format ("SELECT PrivateTimeSpanProperty FROM {0} WHERE PrimaryKey = {1}", provider.TableName, newed_item.PrimaryKey);
 			using (IDataReader reader = connection.Query (command)) {
 				reader.Read ();
 				Assert.IsTrue (reader[0] == null);
@@ -207,7 +207,7 @@ namespace Hyena.Data.Sqlite.Tests
 		[Test]
 		public void IntEnumMembers ()
 		{
-			DbBoundType newed_item = new DbBoundType ();
+			var newed_item = new DbBoundType ();
 			newed_item.PublicIntEnumField = IntEnum.Zero;
 			newed_item.PublicIntEnumProperty = IntEnum.One;
 			newed_item.SetPrivateIntEnumField (IntEnum.Two);
@@ -225,7 +225,7 @@ namespace Hyena.Data.Sqlite.Tests
 		[Test]
 		public void LongEnumMembers ()
 		{
-			DbBoundType newed_item = new DbBoundType ();
+			var newed_item = new DbBoundType ();
 			newed_item.PublicLongEnumField = LongEnum.Cero;
 			newed_item.PublicLongEnumProperty = LongEnum.Uno;
 			newed_item.SetPrivateLongEnumField (LongEnum.Dos);
