@@ -110,7 +110,7 @@ namespace Hyena.Query.Gui
 
 		bool IsRowSeparator (TreeModel model, TreeIter iter)
 		{
-			return String.IsNullOrEmpty (model.GetValue (iter, 0) as string);
+			return string.IsNullOrEmpty (model.GetValue (iter, 0) as string);
 		}
 
 		public void Show ()
@@ -167,7 +167,7 @@ namespace Hyena.Query.Gui
 				value_entries.Add (entry);
 
 				if (val_count++ > 0) {
-					op_chooser.AppendText (String.Empty);
+					op_chooser.AppendText (string.Empty);
 					operators.Add (null);
 				}
 

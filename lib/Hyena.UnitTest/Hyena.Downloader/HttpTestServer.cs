@@ -128,7 +128,7 @@ namespace Hyena.Downloader.Tests
 							}
 						}
 
-						var resource = resources[Int32.Parse (path.Substring (1))];
+						var resource = resources[int.Parse (path.Substring (1))];
 						response.ContentType = "application/octet-stream";
 						response.ContentLength64 = resource.Length;
 						response.AppendHeader ("X-Content-MD5-Sum", resource.Checksum);
@@ -215,7 +215,7 @@ namespace Hyena.Downloader.Tests
 					}
 
 					md5.TransformFinalBlock (buffer, 0, 0);
-					resource.Checksum = BitConverter.ToString (md5.Hash).Replace ("-", String.Empty).ToLower ();
+					resource.Checksum = BitConverter.ToString (md5.Hash).Replace ("-", string.Empty).ToLower ();
 				}
 
 				resources.Add (resource);

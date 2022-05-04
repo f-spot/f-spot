@@ -68,7 +68,7 @@ namespace Hyena.Gui
 		public bool CanMerge (IUndoAction action)
 		{
 			EditableInsertAction insert = action as EditableInsertAction;
-			if (insert == null || String.IsNullOrEmpty (text)) {
+			if (insert == null || string.IsNullOrEmpty (text)) {
 				return false;
 			}
 
@@ -82,7 +82,7 @@ namespace Hyena.Gui
 
 		public override string ToString ()
 		{
-			return String.Format ("Inserted: [{0}] ({1})", text, index);
+			return string.Format ("Inserted: [{0}] ({1})", text, index);
 		}
 	}
 }

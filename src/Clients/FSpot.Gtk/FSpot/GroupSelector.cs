@@ -437,7 +437,7 @@ namespace FSpot
 			base.OnUnrealized ();
 		}
 
-		Double BoxWidth {
+		double BoxWidth {
 			get {
 				switch (mode) {
 				case RangeType.All:

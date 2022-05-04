@@ -558,7 +558,7 @@ namespace Hyena.Widgets
 		string FormatSegmentValue (Segment segment)
 		{
 			return format_handler == null
-				? String.Format ("{0}%", segment.Percent * 100.0)
+				? string.Format ("{0}%", segment.Percent * 100.0)
 				: format_handler (segment);
 		}
 
@@ -591,7 +591,7 @@ namespace Hyena.Widgets
 			bar.AddSegment ("Free Space", 0.867561266964516, bar.RemainderColor, false);
 
 			bar.ValueFormatter = delegate (SegmentedBar.Segment segment) {
-				return String.Format ("{0} GB", space * segment.Percent);
+				return string.Format ("{0} GB", space * segment.Percent);
 			};
 
 			HBox controls = new HBox ();

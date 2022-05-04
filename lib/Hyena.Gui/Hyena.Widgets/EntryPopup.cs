@@ -64,7 +64,7 @@ namespace Hyena.Widgets
 			frame.Add (hbox);
 			frame.ShowAll ();
 
-			text_entry.Text = String.Empty;
+			text_entry.Text = string.Empty;
 			text_entry.CanFocus = true;
 
 			//TODO figure out why this event does not get raised
@@ -200,7 +200,7 @@ namespace Hyena.Widgets
 			Hide ();
 
 			if (reset_when_hiding) {
-				text_entry.Text = String.Empty;
+				text_entry.Text = string.Empty;
 			}
 		}
 

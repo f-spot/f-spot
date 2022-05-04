@@ -51,7 +51,7 @@ namespace Hyena.Query.Gui
 			spin_button = new SpinButton (0.0, 1.0, 1.0);
 			spin_button.Digits = 1;
 			spin_button.WidthChars = 4;
-			spin_button.SetRange (0.0, Double.MaxValue);
+			spin_button.SetRange (0.0, double.MaxValue);
 			Add (spin_button);
 
 			combo = ComboBox.NewText ();

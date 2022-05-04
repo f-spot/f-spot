@@ -102,7 +102,7 @@ namespace Hyena.Data.Gui
 		public override void Render (CellContext context, double cellWidth, double cellHeight)
 		{
 			UpdateText (context, cellWidth);
-			if (String.IsNullOrEmpty (last_text)) {
+			if (string.IsNullOrEmpty (last_text)) {
 				return;
 			}
 
@@ -126,7 +126,7 @@ namespace Hyena.Data.Gui
 
 		public void UpdateText (Pango.Layout layout, double cellWidth, string text)
 		{
-			if (String.IsNullOrEmpty (text)) {
+			if (string.IsNullOrEmpty (text)) {
 				return;
 			}
 
@@ -167,7 +167,7 @@ namespace Hyena.Data.Gui
 			if (TextGenerator != null) {
 				return TextGenerator (obj);
 			} else {
-				return obj == null ? String.Empty : obj.ToString ();
+				return obj == null ? string.Empty : obj.ToString ();
 			}
 		}
 
@@ -176,7 +176,7 @@ namespace Hyena.Data.Gui
 			if (text_format == null) {
 				return text;
 			}
-			return String.Format (text_format, UseMarkup ? GLib.Markup.EscapeText (text) : text);
+			return string.Format (text_format, UseMarkup ? GLib.Markup.EscapeText (text) : text);
 		}
 
 		bool is_ellipsized = false;
@@ -234,14 +234,14 @@ namespace Hyena.Data.Gui
 			int height;
 			min = max = -1;
 
-			if (!String.IsNullOrEmpty (MinString)) {
+			if (!string.IsNullOrEmpty (MinString)) {
 				UpdateLayout (layout, MinString);
 				layout.GetPixelSize (out min, out height);
 				min += (int)Padding.X;
 				//Console.WriteLine ("for {0} got min {1} for {2}", this, min, MinString);
 			}
 
-			if (!String.IsNullOrEmpty (MaxString)) {
+			if (!string.IsNullOrEmpty (MaxString)) {
 				UpdateLayout (layout, MaxString);
 				layout.GetPixelSize (out max, out height);
 				max += (int)Padding.X;

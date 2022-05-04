@@ -51,7 +51,7 @@ namespace Hyena.Tests
 			if (DateTimeUtil.TryParseInvariant (inv_string, out var parsed_dt))
 				Assert.AreEqual (dt, parsed_dt);
 			else
-				Assert.Fail (String.Format ("TryParseInvariant failed on {0}", inv_string));
+				Assert.Fail (string.Format ("TryParseInvariant failed on {0}", inv_string));
 		}
 
 		[Test]

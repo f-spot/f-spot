@@ -176,7 +176,7 @@ namespace Hyena.Jobs
 			int sleep_time;
 
 			public TestJob (int sleep_time, PriorityHints hints, params Resource[] resources)
-				: base (String.Format ("{0} ( {1}, {2})", job_count++, hints, resources.Aggregate ("", (a, b) => a += b.Id + " ")),
+				: base (string.Format ("{0} ( {1}, {2})", job_count++, hints, resources.Aggregate ("", (a, b) => a += b.Id + " ")),
 						hints,
 						resources)
 			{

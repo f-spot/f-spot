@@ -354,7 +354,7 @@ namespace FSpot.Widgets
 
 			//find the closest point
 			float closest_x = MinX - 1;
-			var distance = Int32.MaxValue;
+			var distance = int.MaxValue;
 			foreach (var point in points) {
 				int cx = Project (point.Key, MinX, MaxX, width);
 				if (Math.Abs (px - cx) < distance) {
@@ -403,7 +403,7 @@ namespace FSpot.Widgets
 
 			//find the closest point
 			float closest_x = MinX - 1;
-			var distance = Int32.MaxValue;
+			var distance = int.MaxValue;
 			foreach (var point in points) {
 				int cx = Project (point.Key, MinX, MaxX, width);
 				if (Math.Abs (px - cx) < distance) {

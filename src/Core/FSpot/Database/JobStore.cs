@@ -166,7 +166,7 @@ namespace FSpot.Database
 			EmitRemoved (item);
 		}
 
-		public void HandleRemoveJob (Object o, EventArgs e)
+		public void HandleRemoveJob (object o, EventArgs e)
 		{
 			Remove (o as Job);
 		}

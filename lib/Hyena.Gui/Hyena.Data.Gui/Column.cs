@@ -38,7 +38,7 @@ namespace Hyena.Data.Gui
 		List<ColumnCell> cells = new List<ColumnCell> ();
 
 		int min_width = 0;
-		int max_width = Int32.MaxValue;
+		int max_width = int.MaxValue;
 
 		public Column (ColumnDescription description) :
 			this (description, new ColumnCellText (description.Property, true))
@@ -66,7 +66,7 @@ namespace Hyena.Data.Gui
 		}
 
 		public Column (ColumnCell headerCell, string title, ColumnCell cell, double width, bool visible)
-			: this (headerCell, title, cell, width, visible, 0, Int32.MaxValue)
+			: this (headerCell, title, cell, width, visible, 0, int.MaxValue)
 		{
 		}
 
@@ -143,7 +143,7 @@ namespace Hyena.Data.Gui
 				was_size_req = true;
 			}
 
-			if (headerVisible && (min_was_zero || was_size_req) && !String.IsNullOrEmpty (Title)) {
+			if (headerVisible && (min_was_zero || was_size_req) && !string.IsNullOrEmpty (Title)) {
 				layout.SetText (Title);
 				//column_layout.SetText ("\u2026"); // ellipsis char
 				layout.GetPixelSize (out var w, out var h);

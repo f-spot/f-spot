@@ -223,7 +223,7 @@ namespace Hyena.Data.Gui
 			double tmp_max = 0.0;
 			foreach (var col in column_cache) {
 				tmp_width += col.ElasticWidth;
-				tmp_max += col.MaxWidth == Int32.MaxValue ? col.MinWidth : col.MaxWidth;
+				tmp_max += col.MaxWidth == int.MaxValue ? col.MinWidth : col.MaxWidth;
 			}
 			list_width = tmp_width;
 			max_width = tmp_max;
@@ -254,7 +254,7 @@ namespace Hyena.Data.Gui
 				column_cache[i].ElasticWidth += delta;
 			}
 
-			if (Math.Abs (total_width - remaining_width) < 1.0 || remaining_width == Double.NaN) {
+			if (Math.Abs (total_width - remaining_width) < 1.0 || remaining_width == double.NaN) {
 				Hyena.Log.Warning ("Forcefully breaking out of RCS loop b/c change in total_width less than 1.0");
 				return 0;
 			}
@@ -307,7 +307,7 @@ namespace Hyena.Data.Gui
 			Column[] columns = ColumnController.ToArray ();
 			Array.Sort (columns, delegate (Column a, Column b) {
 				// Fully qualified type name to avoid Mono 1.2.4 bug
-				return System.String.Compare (a.Title, b.Title);
+				return string.Compare (a.Title, b.Title);
 			});
 
 			uint items = 0;
@@ -572,7 +572,7 @@ namespace Hyena.Data.Gui
 
 				label = new Label ();
 				label.Xalign = 0.0f;
-				label.Text = column.LongTitle ?? String.Empty;
+				label.Text = column.LongTitle ?? string.Empty;
 				label.Show ();
 
 				Add (label);

@@ -57,7 +57,7 @@ namespace FSpot
 					if (env.StartsWith ("0x"))
 						env = env.Substring (2);
 
-					uint xid = UInt32.Parse (env, System.Globalization.NumberStyles.HexNumber);
+					uint xid = uint.Parse (env, System.Globalization.NumberStyles.HexNumber);
 
 					GdkWindow = Gdk.Window.ForeignNew (xid);
 					Style.Attach (GdkWindow);

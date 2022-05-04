@@ -72,7 +72,7 @@ namespace FSpot.Widgets
 		{
 			Selection = new SelectionCollection (Collection);
 
-			Selection.DetailedChanged += delegate (IBrowsableCollection sender, Int32[] ids) {
+			Selection.DetailedChanged += delegate (IBrowsableCollection sender, int[] ids) {
 				if (ids == null)
 					QueueDraw ();
 				else

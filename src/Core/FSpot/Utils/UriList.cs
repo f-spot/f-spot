@@ -58,7 +58,7 @@ namespace FSpot.Utils
 			foreach (string i in items) {
 				if (!i.StartsWith ("#")) {
 					SafeUri uri;
-					String s = i;
+					string s = i;
 
 					if (i.EndsWith ("\r")) {
 						s = i.Substring (0, i.Length - 1);

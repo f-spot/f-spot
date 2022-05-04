@@ -129,7 +129,7 @@ namespace FSpot
 
 		public static void SetUriListData (this SelectionData selection_data, UriList uri_list, Atom target)
 		{
-			Byte[] data = Encoding.UTF8.GetBytes (uri_list.ToString ());
+			byte[] data = Encoding.UTF8.GetBytes (uri_list.ToString ());
 
 			selection_data.Set (target, 8, data, data.Length);
 		}

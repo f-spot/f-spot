@@ -41,11 +41,11 @@ namespace Hyena.Gui.Canvas
 				return;
 			}
 
-			double x = Double.IsNaN (brush.Width)
+			double x = double.IsNaN (brush.Width)
 				? 0
 				: (RenderSize.Width - brush.Width) * XAlign;
 
-			double y = Double.IsNaN (brush.Height)
+			double y = double.IsNaN (brush.Height)
 				? 0
 				: (RenderSize.Height - brush.Height) * YAlign;
 

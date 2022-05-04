@@ -94,7 +94,7 @@ namespace Hyena.Gui
 
 		public override string ToString ()
 		{
-			return String.Format ("Erased: [{0}] ({1},{2})", text, start, end);
+			return string.Format ("Erased: [{0}] ({1},{2})", text, start, end);
 		}
 	}
 }

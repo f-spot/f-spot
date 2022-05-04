@@ -185,7 +185,7 @@ namespace FSpot.Gui
 						  Atom.Intern ("_ICC_PROFILE", false),
 						  Atom.Intern ("CARDINAL", false),
 						  0,
-						  Int32.MaxValue,
+						  int.MaxValue,
 						  0, // FIXME in gtk# should be a bool
 						  out var atype,
 						  out var aformat,

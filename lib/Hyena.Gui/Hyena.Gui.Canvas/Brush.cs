@@ -71,11 +71,11 @@ namespace Hyena.Gui.Canvas
 		public static readonly Brush White = new Brush (1.0, 1.0, 1.0);
 
 		public virtual double Width {
-			get { return Double.NaN; }
+			get { return double.NaN; }
 		}
 
 		public virtual double Height {
-			get { return Double.NaN; }
+			get { return double.NaN; }
 		}
 	}
 }

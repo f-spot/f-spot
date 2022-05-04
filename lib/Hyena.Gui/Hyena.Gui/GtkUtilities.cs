@@ -72,8 +72,8 @@ namespace Hyena.Gui
 			FileFilter filter = new FileFilter ();
 			filter.Name = name;
 			foreach (string extension in extensions) {
-				filter.AddPattern (String.Format ("*.{0}", extension.ToLower ()));
-				filter.AddPattern (String.Format ("*.{0}", extension.ToUpper ()));
+				filter.AddPattern (string.Format ("*.{0}", extension.ToLower ()));
+				filter.AddPattern (string.Format ("*.{0}", extension.ToUpper ()));
 			}
 			return filter;
 		}
@@ -124,7 +124,7 @@ namespace Hyena.Gui
 		public static void AdaptGtkRcStyle (Widget adaptee, Type adapter)
 		{
 			GLib.GType type = (GLib.GType)adapter;
-			string path = String.Format ("*.{0}", type);
+			string path = string.Format ("*.{0}", type);
 			AdaptGtkRcStyle (adaptee, type, path, path);
 		}
 

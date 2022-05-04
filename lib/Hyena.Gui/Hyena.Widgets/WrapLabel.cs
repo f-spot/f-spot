@@ -127,7 +127,7 @@ namespace Hyena.Widgets
 				}
 			}
 
-			Markup = String.Format (format, args);
+			Markup = string.Format (format, args);
 		}
 
 		public bool Wrap {

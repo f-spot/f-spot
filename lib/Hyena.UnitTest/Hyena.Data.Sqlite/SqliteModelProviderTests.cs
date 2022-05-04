@@ -165,7 +165,7 @@ namespace Hyena.Data.Sqlite.Tests
 
 			provider.Save (newed_item);
 
-			string command = String.Format ("SELECT PrivateDateTimeField FROM {0} WHERE PrimaryKey = {1}", provider.TableName, newed_item.PrimaryKey);
+			string command = string.Format ("SELECT PrivateDateTimeField FROM {0} WHERE PrimaryKey = {1}", provider.TableName, newed_item.PrimaryKey);
 
 			using (IDataReader reader = connection.Query (command)) {
 				reader.Read ();
@@ -190,7 +190,7 @@ namespace Hyena.Data.Sqlite.Tests
 
 			provider.Save (newed_item);
 
-			string command = String.Format ("SELECT PrivateTimeSpanProperty FROM {0} WHERE PrimaryKey = {1}", provider.TableName, newed_item.PrimaryKey);
+			string command = string.Format ("SELECT PrivateTimeSpanProperty FROM {0} WHERE PrimaryKey = {1}", provider.TableName, newed_item.PrimaryKey);
 			using (IDataReader reader = connection.Query (command)) {
 				reader.Read ();
 				Assert.IsTrue (reader[0] == null);

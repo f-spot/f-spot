@@ -58,7 +58,7 @@ namespace Hyena.Gui
 
 			if (host_set_tip_method == null && !reflected) {
 				reflected = true;
-				host_type = Type.GetType (String.Format ("Gtk.Tooltips, {0}", type.Assembly.FullName));
+				host_type = Type.GetType (string.Format ("Gtk.Tooltips, {0}", type.Assembly.FullName));
 				if (type == null) {
 					return null;
 				}

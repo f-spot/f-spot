@@ -278,7 +278,7 @@ namespace FSpot.Database
 		{
 
 			uint parent_category_id = parentCategory.Id;
-			String default_tag_icon_value = autoicon ? null : string.Empty;
+			string default_tag_icon_value = autoicon ? null : string.Empty;
 
 			long id = Database.Execute (new HyenaSqliteCommand ("INSERT INTO tags (name, category_id, is_category, sort_priority, icon)"
 				+ "VALUES (?, ?, ?, 0, ?)",

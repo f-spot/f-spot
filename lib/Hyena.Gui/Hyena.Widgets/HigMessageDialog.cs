@@ -88,7 +88,7 @@ namespace Hyena.Widgets
 			label_vbox.Show ();
 			inner_vbox.PackStart (label_vbox, true, true, 0);
 
-			string title = String.Format ("<span weight='bold' size='larger'>{0}" +
+			string title = string.Format ("<span weight='bold' size='larger'>{0}" +
 							  "</span>\n",
 							  GLib.Markup.EscapeText (header));
 

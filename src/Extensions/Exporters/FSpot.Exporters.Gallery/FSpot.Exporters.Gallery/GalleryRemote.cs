@@ -130,7 +130,7 @@ namespace FSpot.Exporters.Gallery
 			return Gallery.GetAlbumUrl (this);
 		}
 
-		public int CompareTo (Object obj)
+		public int CompareTo (object obj)
 		{
 			Album other = obj as Album;
 

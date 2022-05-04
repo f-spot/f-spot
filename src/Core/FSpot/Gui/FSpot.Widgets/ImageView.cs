@@ -590,7 +590,7 @@ namespace FSpot.Widgets
 		{
 			Fit = zoom == MIN_ZOOM;
 
-			if (zoom == this.zoom || Math.Abs (this.zoom - zoom) < Double.Epsilon) {
+			if (zoom == this.zoom || Math.Abs (this.zoom - zoom) < double.Epsilon) {
 				// Don't recalculate if the zoom factor stays the same.
 				return;
 			}

@@ -71,7 +71,7 @@ namespace Hyena.Gui.Dialogs
 			label_vbox.Spacing = 12;
 			hbox.PackStart (label_vbox, false, false, 0);
 
-			Label label = new Label (String.Format ("<b><big>{0}</big></b>", GLib.Markup.EscapeText (Title)));
+			Label label = new Label (string.Format ("<b><big>{0}</big></b>", GLib.Markup.EscapeText (Title)));
 			label.UseMarkup = true;
 			label.Justify = Justification.Left;
 			label.LineWrap = true;

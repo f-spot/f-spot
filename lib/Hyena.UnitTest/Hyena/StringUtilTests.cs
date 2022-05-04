@@ -387,26 +387,26 @@ href=http://lkjdflkjdflkjj>baz foo< /a> bar"));
 			AssertProducesSame ("превед");
 			AssertProducesSame ("nǐ hǎo");
 
-			AssertProducesSame (String.Format ("a{0}b.ogg", dir_sep));
-			AssertProducesSame (String.Format ("foo{0}bar{0}01. baz.ogg", dir_sep));
-			AssertProducesSame (String.Format ("{0}foo*?:", dir_sep)); // rooted, shouldn't change
+			AssertProducesSame (string.Format ("a{0}b.ogg", dir_sep));
+			AssertProducesSame (string.Format ("foo{0}bar{0}01. baz.ogg", dir_sep));
+			AssertProducesSame (string.Format ("{0}foo*?:", dir_sep)); // rooted, shouldn't change
 		}
 
 		[Test]
 		public void TestStripped ()
 		{
 			AssertProduces (
-				String.Format ("foo*bar{0}ham:spam.ogg", dir_sep),
-				String.Format ("foo_bar{0}ham_spam.ogg", dir_sep));
+				string.Format ("foo*bar{0}ham:spam.ogg", dir_sep),
+				string.Format ("foo_bar{0}ham_spam.ogg", dir_sep));
 			AssertProduces (
-				String.Format ("..lots..{0}o.f.{0}.dots.ogg.", dir_sep),
-				String.Format ("lots{0}o.f{0}dots.ogg", dir_sep));
+				string.Format ("..lots..{0}o.f.{0}.dots.ogg.", dir_sep),
+				string.Format ("lots{0}o.f{0}dots.ogg", dir_sep));
 			AssertProduces (
-				String.Format ("foo{0}..{0}bar.ogg", dir_sep),
-				String.Format ("foo{0}bar.ogg", dir_sep));
+				string.Format ("foo{0}..{0}bar.ogg", dir_sep),
+				string.Format ("foo{0}bar.ogg", dir_sep));
 			AssertProduces (
-				String.Format (". foo{0}01. bar.ogg. ", dir_sep),
-				String.Format ("foo{0}01. bar.ogg", dir_sep));
+				string.Format (". foo{0}01. bar.ogg. ", dir_sep),
+				string.Format ("foo{0}01. bar.ogg", dir_sep));
 		}
 	}
 

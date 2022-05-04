@@ -45,7 +45,7 @@ namespace FSpot.Database
 		public string Value { get; set; }
 
 		public int ValueAsInt {
-			get { return System.Int32.Parse (Value); }
+			get { return int.Parse (Value); }
 			set { Value = value.ToString (); }
 		}
 

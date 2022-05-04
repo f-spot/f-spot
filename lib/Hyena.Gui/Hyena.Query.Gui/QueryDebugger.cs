@@ -121,7 +121,7 @@ namespace Hyena.Query.Gui
 			parser.InputReader = StringToStream (input.Buffer.Text);
 			QueryNode node = parser.BuildTree (query_field_set);
 
-			sql.Buffer.Text = node.ToSql (query_field_set) ?? String.Empty;
+			sql.Buffer.Text = node.ToSql (query_field_set) ?? string.Empty;
 
 			XmlDocument doc = new XmlDocument ();
 			doc.LoadXml (node.ToXml (query_field_set));

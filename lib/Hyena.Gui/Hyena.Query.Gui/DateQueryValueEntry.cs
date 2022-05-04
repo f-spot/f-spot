@@ -36,7 +36,7 @@ namespace Hyena.Query.Gui
 	{
 		protected DateQueryValue query_value;
 
-		protected SpinButton year_entry = new SpinButton (Double.MinValue, Double.MaxValue, 1.0);
+		protected SpinButton year_entry = new SpinButton (double.MinValue, double.MaxValue, 1.0);
 		protected SpinButton month_entry = new SpinButton (0.0, 12.0, 1.0);
 		protected SpinButton day_entry = new SpinButton (0.0, 31.0, 1.0);
 

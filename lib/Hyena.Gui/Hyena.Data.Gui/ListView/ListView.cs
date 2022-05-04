@@ -77,7 +77,7 @@ namespace Hyena.Data.Gui
 						CachedColumn cached_column = GetCachedColumnForColumn (column);
 
 						string markup = cell.GetTooltipMarkup (cell_context, cached_column.Width);
-						if (!String.IsNullOrEmpty (markup)) {
+						if (!string.IsNullOrEmpty (markup)) {
 							Gdk.Rectangle rect = new Gdk.Rectangle ();
 							rect.X = list_interaction_alloc.X + cached_column.X1;
 

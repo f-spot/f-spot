@@ -696,9 +696,9 @@ namespace FSpot
 					break;
 				case Preferences.ViewerTransColor:
 					color_button.Color = new Gdk.Color (
-						Byte.Parse (Preferences.Get<string> (key).Substring (1, 2), System.Globalization.NumberStyles.AllowHexSpecifier),
-						Byte.Parse (Preferences.Get<string> (key).Substring (3, 2), System.Globalization.NumberStyles.AllowHexSpecifier),
-						Byte.Parse (Preferences.Get<string> (key).Substring (5, 2), System.Globalization.NumberStyles.AllowHexSpecifier));
+						byte.Parse (Preferences.Get<string> (key).Substring (1, 2), System.Globalization.NumberStyles.AllowHexSpecifier),
+						byte.Parse (Preferences.Get<string> (key).Substring (3, 2), System.Globalization.NumberStyles.AllowHexSpecifier),
+						byte.Parse (Preferences.Get<string> (key).Substring (5, 2), System.Globalization.NumberStyles.AllowHexSpecifier));
 					break;
 				}
 			}

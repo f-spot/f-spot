@@ -198,7 +198,7 @@ namespace Hyena.Data.Gui.Accessibility
 		public Gdk.Rectangle GetCellExtents (ColumnCellAccessible cell, Atk.CoordType coord_type)
 		{
 			int cache_index = GetCellIndex (cell);
-			int minval = Int32.MinValue;
+			int minval = int.MinValue;
 			if (cache_index == -1)
 				return new Gdk.Rectangle (minval, minval, minval, minval);
 
@@ -215,7 +215,7 @@ namespace Hyena.Data.Gui.Accessibility
 		{
 			Gdk.Rectangle cell_extents = GetCellExtents (cell, Atk.CoordType.Window);
 
-			if (cell_extents.X == Int32.MinValue && cell_extents.Y == Int32.MinValue)
+			if (cell_extents.X == int.MinValue && cell_extents.Y == int.MinValue)
 				return false;
 
 			return true;

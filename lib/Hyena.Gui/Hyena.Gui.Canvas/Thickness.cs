@@ -59,10 +59,10 @@ namespace Hyena.Gui.Canvas
 
 		public override string ToString ()
 		{
-			return string.Format ("{0},{1},{2},{3}", Double.IsNaN (left) ? "Auto" : left.ToString (),
-				Double.IsNaN (top) ? "Auto" : top.ToString (),
-				Double.IsNaN (right) ? "Auto" : right.ToString (),
-				Double.IsNaN (bottom) ? "Auto" : bottom.ToString ());
+			return string.Format ("{0},{1},{2},{3}", double.IsNaN (left) ? "Auto" : left.ToString (),
+				double.IsNaN (top) ? "Auto" : top.ToString (),
+				double.IsNaN (right) ? "Auto" : right.ToString (),
+				double.IsNaN (bottom) ? "Auto" : bottom.ToString ());
 		}
 
 		public override bool Equals (object o)

@@ -68,7 +68,7 @@ namespace Hyena.Data.Gui
 			Gdk.Rectangle rectangle = new Gdk.Rectangle (x, y, width, height);
 
 			if (clip && !ListAllocation.Contains (rectangle))
-				return new Gdk.Rectangle (Int32.MinValue, Int32.MinValue, Int32.MinValue, Int32.MinValue);
+				return new Gdk.Rectangle (int.MinValue, int.MinValue, int.MinValue, int.MinValue);
 
 			if (coord_type == Atk.CoordType.Window)
 				return rectangle;
@@ -84,7 +84,7 @@ namespace Hyena.Data.Gui
 		public Gdk.Rectangle GetColumnHeaderCellExtents (int column, bool clip, Atk.CoordType coord_type)
 		{
 			if (!HeaderVisible)
-				return new Gdk.Rectangle (Int32.MinValue, Int32.MinValue, Int32.MinValue, Int32.MinValue);
+				return new Gdk.Rectangle (int.MinValue, int.MinValue, int.MinValue, int.MinValue);
 			int width = GetColumnWidth (column);
 			int height = HeaderHeight;
 

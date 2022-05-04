@@ -50,11 +50,11 @@ namespace Hyena.Gui.Canvas
 				}
 			}
 
-			if (!Double.IsNaN (Width)) {
+			if (!double.IsNaN (Width)) {
 				result.Width = Width;
 			}
 
-			if (!Double.IsNaN (Height)) {
+			if (!double.IsNaN (Height)) {
 				result.Height = Height;
 			}
 

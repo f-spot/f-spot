@@ -186,7 +186,7 @@ namespace Hyena.Gui
 			try {
 				Status status = cairo_surface_set_user_data (Handle, ref user_data_key, data, destroy_func);
 				if (status != Status.Success) {
-					throw new ApplicationException (String.Format (
+					throw new ApplicationException (string.Format (
 						"cairo_surface_set_user_data returned {0}", status));
 				}
 			} catch (Exception e) {

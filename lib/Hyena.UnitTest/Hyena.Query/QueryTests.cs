@@ -256,7 +256,7 @@ namespace Hyena.Query.Tests
 		static void UserQueryParsesAndGenerates (string query)
 		{
 			QueryNode node = UserQueryParser.Parse (query, FieldSet);
-			if (query == null || query.Trim () == String.Empty) {
+			if (query == null || query.Trim () == string.Empty) {
 				Assert.AreEqual (node, null);
 				return;
 			}

@@ -238,10 +238,10 @@ namespace Hyena.Gui
 		public static string ColorGetHex (Cairo.Color color, bool withAlpha)
 		{
 			if (withAlpha) {
-				return String.Format ("#{0:x2}{1:x2}{2:x2}{3:x2}", (byte)(color.R * 255), (byte)(color.G * 255),
+				return string.Format ("#{0:x2}{1:x2}{2:x2}{3:x2}", (byte)(color.R * 255), (byte)(color.G * 255),
 					(byte)(color.B * 255), (byte)(color.A * 255));
 			} else {
-				return String.Format ("#{0:x2}{1:x2}{2:x2}", (byte)(color.R * 255), (byte)(color.G * 255),
+				return string.Format ("#{0:x2}{1:x2}{2:x2}", (byte)(color.R * 255), (byte)(color.G * 255),
 					(byte)(color.B * 255));
 			}
 		}

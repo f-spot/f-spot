@@ -74,7 +74,7 @@ namespace Hyena.Gui.Canvas
 			get { return height; }
 			set {
 				if (value < 0) {
-					Log.Exception (String.Format ("Height value to set: {0}", value),
+					Log.Exception (string.Format ("Height value to set: {0}", value),
 								   new ArgumentException ("Height setter should not receive negative values", nameof (value)));
 					value = 0;
 				}
@@ -87,7 +87,7 @@ namespace Hyena.Gui.Canvas
 			get { return width; }
 			set {
 				if (value < 0) {
-					Log.Exception (String.Format ("Width value to set: {0}", value),
+					Log.Exception (string.Format ("Width value to set: {0}", value),
 								   new ArgumentException ("Width setter should not receive negative values", nameof (value)));
 					value = 0;
 				}
@@ -97,14 +97,14 @@ namespace Hyena.Gui.Canvas
 		}
 
 		public bool IsEmpty {
-			get { return width == Double.NegativeInfinity && height == Double.NegativeInfinity; }
+			get { return width == double.NegativeInfinity && height == double.NegativeInfinity; }
 		}
 
 		public static Size Empty {
 			get {
 				Size size = new Size ();
-				size.width = Double.NegativeInfinity;
-				size.height = Double.NegativeInfinity;
+				size.width = double.NegativeInfinity;
+				size.height = double.NegativeInfinity;
 				return size;
 			}
 		}
@@ -115,7 +115,7 @@ namespace Hyena.Gui.Canvas
 				return "Empty";
 			}
 
-			return String.Format ("{0}x{1}", width, height);
+			return string.Format ("{0}x{1}", width, height);
 		}
 	}
 }

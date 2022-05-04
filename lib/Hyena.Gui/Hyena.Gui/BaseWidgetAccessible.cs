@@ -145,7 +145,7 @@ namespace Hyena.Gui
 			Gdk.Window window = null;
 
 			if (!widget.IsDrawable) {
-				x = y = Int32.MinValue;
+				x = y = int.MinValue;
 				return;
 			}
 

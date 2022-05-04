@@ -391,7 +391,7 @@ namespace FSpot.Query
 			if (args.Info == DragDropTargets.TagListEntry.Info || args.Info == DragDropTargets.TagQueryEntry.Info) {
 
 				// FIXME: do really write data
-				Byte[] data = Encoding.UTF8.GetBytes (string.Empty);
+				byte[] data = Encoding.UTF8.GetBytes (string.Empty);
 				Atom[] targets = args.Context.Targets;
 
 				args.SelectionData.Set (targets[0], 8, data, data.Length);

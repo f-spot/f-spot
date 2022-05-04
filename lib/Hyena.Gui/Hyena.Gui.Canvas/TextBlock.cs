@@ -126,10 +126,10 @@ namespace Hyena.Gui.Canvas
 
 		string GetFormattedText (string text)
 		{
-			if (String.IsNullOrEmpty (TextFormat)) {
+			if (string.IsNullOrEmpty (TextFormat)) {
 				return text;
 			}
-			return String.Format (TextFormat, UseMarkup ? GLib.Markup.EscapeText (text) : text);
+			return string.Format (TextFormat, UseMarkup ? GLib.Markup.EscapeText (text) : text);
 		}
 
 		public override void Arrange ()
@@ -246,7 +246,7 @@ namespace Hyena.Gui.Canvas
 
 		public override string ToString ()
 		{
-			return String.Format ("<TextBlock Text='{0}' Allocation={1}>", last_formatted_text, Allocation);
+			return string.Format ("<TextBlock Text='{0}' Allocation={1}>", last_formatted_text, Allocation);
 		}
 
 		public string Text { get; set; }

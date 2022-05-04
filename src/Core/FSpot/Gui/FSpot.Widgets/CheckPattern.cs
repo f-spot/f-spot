@@ -111,9 +111,9 @@ namespace FSpot.Widgets
 
 		static uint s_to_h (string color)
 		{
-			return (uint)(Byte.Parse (color.Substring (1, 2), System.Globalization.NumberStyles.AllowHexSpecifier) << 16) +
-				   (uint)(Byte.Parse (color.Substring (3, 2), System.Globalization.NumberStyles.AllowHexSpecifier) << 8) +
-				   (uint)(Byte.Parse (color.Substring (5, 2), System.Globalization.NumberStyles.AllowHexSpecifier));
+			return (uint)(byte.Parse (color.Substring (1, 2), System.Globalization.NumberStyles.AllowHexSpecifier) << 16) +
+				   (uint)(byte.Parse (color.Substring (3, 2), System.Globalization.NumberStyles.AllowHexSpecifier) << 8) +
+				   (uint)(byte.Parse (color.Substring (5, 2), System.Globalization.NumberStyles.AllowHexSpecifier));
 		}
 
 		static uint c_to_h (Color color)

@@ -55,7 +55,7 @@ namespace Hyena.Query.Gui
 			enabled_checkbox = new CheckButton (Strings.LimitToMnemonic);
 			enabled_checkbox.Toggled += OnEnabledToggled;
 
-			count_spin = new SpinButton (0, Double.MaxValue, 1);
+			count_spin = new SpinButton (0, double.MaxValue, 1);
 			count_spin.Numeric = true;
 			count_spin.Digits = 0;
 			count_spin.Value = 25;
@@ -70,7 +70,7 @@ namespace Hyena.Query.Gui
 			order_combo.RowSeparatorFunc = IsRowSeparator;
 			foreach (QueryOrder order in orders) {
 				if (order == null) {
-					order_combo.AppendText (String.Empty);
+					order_combo.AppendText (string.Empty);
 				} else {
 					order_combo.AppendText (order.Label);
 				}
@@ -93,7 +93,7 @@ namespace Hyena.Query.Gui
 
 		bool IsRowSeparator (TreeModel model, TreeIter iter)
 		{
-			return String.IsNullOrEmpty (model.GetValue (iter, 0) as string);
+			return string.IsNullOrEmpty (model.GetValue (iter, 0) as string);
 		}
 
 		public QueryLimit Limit {

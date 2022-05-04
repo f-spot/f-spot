@@ -50,7 +50,7 @@ namespace Hyena.Query.Gui
 			set {
 				entry.Changed -= HandleChanged;
 				query_value = value as StringQueryValue;
-				entry.Text = (query_value.Value as string) ?? String.Empty;
+				entry.Text = (query_value.Value as string) ?? string.Empty;
 				entry.Changed += HandleChanged;
 			}
 		}
