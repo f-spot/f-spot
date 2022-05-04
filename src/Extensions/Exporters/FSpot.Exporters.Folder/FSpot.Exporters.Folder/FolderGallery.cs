@@ -79,7 +79,7 @@ namespace FSpot.Exporters.Folder
 
 			public ScaleRequest (string name, int width, int height, bool skip, bool exif = false)
 			{
-				this.Name = name != null ? name : string.Empty;
+				this.Name = name ?? string.Empty;
 				this.Width = width;
 				this.Height = height;
 				this.Skip = skip;

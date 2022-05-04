@@ -77,10 +77,10 @@ namespace FSpot.Tools.LiveWebGallery
 			limit_spin.Sensitive = options.LimitMaxPhotos;
 			limit_spin.Value = options.MaxPhotos;
 			UpdateQueryRadios ();
-			HandleQueryTagSelected (options.QueryTag != null ? options.QueryTag : App.Instance.Database.Tags.GetTagById (1));
+			HandleQueryTagSelected (options.QueryTag ?? App.Instance.Database.Tags.GetTagById (1));
 			allow_tagging_checkbox.Active = options.TaggingAllowed;
 			tag_edit_button.Sensitive = options.TaggingAllowed;
-			HandleEditableTagSelected (options.EditableTag != null ? options.EditableTag : App.Instance.Database.Tags.GetTagById (3));
+			HandleEditableTagSelected (options.EditableTag ?? App.Instance.Database.Tags.GetTagById (3));
 			HandleStatsChanged (null, null);
 
 			activate_button.Toggled += HandleActivated;

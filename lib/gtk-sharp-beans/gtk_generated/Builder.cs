@@ -269,7 +269,7 @@ namespace GtkBeans
 
 			public HandlerNotFoundException (string message, string handler_name, string signal_name,
 							 System.Reflection.EventInfo evnt, Type delegate_type)
-				: base ((message != null) ? message : "No handler " + handler_name + " found for signal " + signal_name,
+				: base (message ?? "No handler " + handler_name + " found for signal " + signal_name,
 					null)
 			{
 				this.handler_name = handler_name;
@@ -467,7 +467,7 @@ namespace GtkBeans
 						/* look for an instance method */
 						if (connect_object != null || handler != null)
 							try {
-								var d = Delegate.CreateDelegate (delegate_type, connect_object != null ? connect_object : handler, handler_name);
+								var d = Delegate.CreateDelegate (delegate_type, connect_object ?? handler, handler_name);
 								add.Invoke (objekt, new object[] { d });
 								connected = true;
 							} catch (ArgumentException) { /* ignore if there is not such instance method */

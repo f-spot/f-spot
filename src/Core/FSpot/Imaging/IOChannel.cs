@@ -175,7 +175,7 @@ namespace FSpot.Imaging
 			int written;
 
 			if (buffer == null)
-				throw new ArgumentNullException ();
+				throw new ArgumentNullException (nameof(buffer));
 
 			unsafe {
 				while (status == IOStatus.Again && count > 0) {
