@@ -88,7 +88,7 @@ namespace FSpot.Widgets
 			}
 		}
 
-		List<LayoutChild> children;
+		readonly List<LayoutChild> children;
 		public void Put (Gtk.Widget widget, int x, int y)
 		{
 			children.Add (new LayoutChild (widget, x, y));

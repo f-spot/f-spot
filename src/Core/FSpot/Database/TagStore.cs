@@ -34,7 +34,6 @@
 //
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 using FSpot.Core;
@@ -61,16 +60,8 @@ namespace FSpot.Database
 
 	// Sorts tags into an order that it will be safe to delete
 	// them in (eg children first).
-	public class TagRemoveComparer : IComparer
+	public class TagRemoveComparer : IComparer<Tag>
 	{
-		public int Compare (object obj1, object obj2)
-		{
-			var t1 = obj1 as Tag;
-			var t2 = obj2 as Tag;
-
-			return Compare (t1, t2);
-		}
-
 		public int Compare (Tag t1, Tag t2)
 		{
 			if (t1.IsAncestorOf (t2))
@@ -96,6 +87,7 @@ namespace FSpot.Database
 				HiddenTag.Tag = value;
 			}
 		}
+
 		const string STOCK_ICON_DB_PREFIX = "stock_icon:";
 
 		static void SetIconFromString (Tag tag, string iconString)
@@ -115,8 +107,9 @@ namespace FSpot.Database
 
 		public Tag GetTagByName (string name)
 		{
-			foreach (Tag t in item_cache.Values)
-				if (t.Name.ToLower () == name.ToLower ())
+			var nameToLower = name.ToLower ();
+			foreach (Tag t in itemCache.Values)
+				if (t.Name.ToLower () == nameToLower)
 					return t;
 
 			return null;
@@ -124,7 +117,7 @@ namespace FSpot.Database
 
 		public Tag GetTagById (int id)
 		{
-			foreach (Tag t in item_cache.Values)
+			foreach (Tag t in itemCache.Values)
 				if (t.Id == id)
 					return t;
 			return null;
@@ -133,7 +126,7 @@ namespace FSpot.Database
 		public Tag[] GetTagsByNameStart (string s)
 		{
 			var l = new List<Tag> ();
-			foreach (Tag t in item_cache.Values) {
+			foreach (Tag t in itemCache.Values) {
 				if (t.Name.ToLower ().StartsWith (s.ToLower ()))
 					l.Add (t);
 			}
@@ -152,10 +145,9 @@ namespace FSpot.Database
 		// base class.
 		void LoadAllTags ()
 		{
-
 			// Pass 1, get all the tags.
 
-			IDataReader reader = Database.Query ("SELECT id, name, is_category, sort_priority, icon FROM tags");
+			var reader = Database.Query ("SELECT id, name, is_category, sort_priority, icon FROM tags");
 
 			while (reader.Read ()) {
 				uint id = Convert.ToUInt32 (reader["id"]);
@@ -260,8 +252,7 @@ namespace FSpot.Database
 		}
 
 		// Constructor
-		public TagStore (IDb db, bool isNew)
-			: base (db, true)
+		public TagStore (IDb db, bool isNew) : base (db, true)
 		{
 			// The label for the root category is used in new and edit tag dialogs
 			RootCategory = new Category (null, 0, Strings.ParenNoneParen);
@@ -298,8 +289,9 @@ namespace FSpot.Database
 
 			uint id = InsertTagIntoTable (category, name, false, autoicon);
 
-			var tag = new Tag (category, id, name);
-			tag.IconWasCleared = !autoicon;
+			var tag = new Tag (category, id, name) {
+				IconWasCleared = !autoicon
+			};
 
 			AddToCache (tag);
 			EmitAdded (tag);
@@ -314,8 +306,9 @@ namespace FSpot.Database
 
 			uint id = InsertTagIntoTable (parentCategory, name, true, autoicon);
 
-			var new_category = new Category (parentCategory, id, name);
-			new_category.IconWasCleared = !autoicon;
+			var new_category = new Category (parentCategory, id, name) {
+				IconWasCleared = !autoicon
+			};
 
 			AddToCache (new_category);
 			EmitAdded (new_category);
@@ -355,7 +348,7 @@ namespace FSpot.Database
 				return null;
 			}
 
-			byte[] data = GdkUtils.Serialize (tag.Icon);
+			var data = GdkUtils.Serialize (tag.Icon);
 			return Convert.ToBase64String (data);
 		}
 
@@ -426,10 +419,10 @@ namespace FSpot.Database
 
 			if (disposing) {
 				// free managed resources
-				foreach (Tag tag in item_cache.Values) {
+				foreach (Tag tag in itemCache.Values) {
 					tag.Dispose ();
 				}
-				item_cache.Clear ();
+				itemCache.Clear ();
 				if (RootCategory != null) {
 					RootCategory.Dispose ();
 					RootCategory = null;

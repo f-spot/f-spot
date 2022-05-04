@@ -65,8 +65,8 @@ namespace Banshee.Kernel
 
 	public static class Scheduler
 	{
-		static object this_mutex = new object ();
-		static IntervalHeap<IJob> heap = new IntervalHeap<IJob> ();
+		static readonly object this_mutex = new object ();
+		static readonly IntervalHeap<IJob> heap = new IntervalHeap<IJob> ();
 		static Thread job_thread;
 		static bool disposed;
 		static IJob current_running_job;
@@ -294,7 +294,7 @@ namespace Banshee.Kernel
 		static void Debug (string message, params object[] args)
 		{
 			if (Banshee.Base.Globals.Debugging) {
-				Console.Error.WriteLine (string.Format ("** Scheduler: {0}", message), args);
+				Console.Error.WriteLine ($"** Scheduler: {message}", args);
 			}
 		}
 	}

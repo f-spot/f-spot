@@ -51,7 +51,7 @@ namespace FSpot.Database
 	public static class Updater
 	{
 		static IUpdaterUI dialog;
-		static Dictionary<Version, Update> updates = new Dictionary<Version, Update> ();
+		static readonly Dictionary<Version, Update> updates = new Dictionary<Version, Update> ();
 		static Version db_version;
 		static FSpotDatabaseConnection db;
 		public static bool silent = false;

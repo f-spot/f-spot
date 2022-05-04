@@ -31,14 +31,11 @@
 
 using System;
 
-
-
 namespace FSpot.Database.Jobs
 {
 	public class CalculateHashJob : Job
 	{
-		public CalculateHashJob (IDb db, JobData jobData)
-			: base (db, jobData)
+		public CalculateHashJob (IDb db, JobData jobData) : base (db, jobData)
 		{
 		}
 
@@ -58,12 +55,13 @@ namespace FSpot.Database.Jobs
 			Logger.Log.Debug ($"Calculating Hash {photo_id}...");
 
 			try {
-				Photo photo = Db.Photos.Get (Convert.ToUInt32 (photo_id));
+				var photo = Db.Photos.Get (Convert.ToUInt32 (photo_id));
 				Db.Photos.CalculateMD5Sum (photo);
 				return true;
 			} catch (Exception e) {
 				Logger.Log.Debug ($"Error Calculating Hash for photo {JobOptions}: {e.Message}");
 			}
+
 			return false;
 		}
 	}

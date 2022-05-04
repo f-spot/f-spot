@@ -76,8 +76,7 @@ namespace FSpot.Database
 		#endregion
 
 		// Constructor
-		public PhotoStore (IImageFileFactory imageFileFactory, IThumbnailService thumbnailService, IDb db, bool isNew)
-			: base (db, false)
+		public PhotoStore (IImageFileFactory imageFileFactory, IThumbnailService thumbnailService, IDb db, bool isNew) : base (db, false)
 		{
 			this.imageFileFactory = imageFileFactory;
 			this.thumbnailService = thumbnailService;
@@ -198,7 +197,7 @@ namespace FSpot.Database
 			photo = new Photo (imageFileFactory, thumbnailService, id, unix_time);
 
 			uint versionId = Photo.OriginalVersionId;
-			IEnumerable<IPhotoVersion> versions = defaultVersionOnly ? new[] { item.DefaultVersion } : item.Versions;
+			var versions = defaultVersionOnly ? new List<IPhotoVersion> { item.DefaultVersion } : item.Versions;
 			foreach (IPhotoVersion version in versions) {
 				// rename original version to "Original" if we import default version only
 				// this applies when a version is detached from another photo
@@ -383,7 +382,7 @@ namespace FSpot.Database
 
 		public void Remove (Tag[] tags)
 		{
-			Photo[] photos = Query (new OrOperator (tags.Select (t => new TagTerm (t)).ToArray ()));
+			var photos = Query (new OrOperator (tags.Select (t => new TagTerm (t)).ToArray ()));
 
 			foreach (Photo photo in photos)
 				photo.RemoveCategory (tags);
@@ -399,14 +398,14 @@ namespace FSpot.Database
 
 			var query_builder = new List<string> (items.Length);
 			for (int i = 0; i < items.Length; i++) {
-				query_builder.Add (string.Format ("{0}", items[i].Id));
+				query_builder.Add ($"{items[i].Id}");
 				RemoveFromCache (items[i]);
 			}
 
-			string id_list = string.Join ("','", query_builder.ToArray ());
-			Database.Execute (string.Format ("DELETE FROM photos WHERE id IN ('{0}')", id_list));
-			Database.Execute (string.Format ("DELETE FROM photo_tags WHERE photo_id IN ('{0}')", id_list));
-			Database.Execute (string.Format ("DELETE FROM photo_versions WHERE photo_id IN ('{0}')", id_list));
+			string id_list = string.Join ("','", query_builder);
+			Database.Execute ($"DELETE FROM photos WHERE id IN ('{id_list}')");
+			Database.Execute ($"DELETE FROM photo_tags WHERE photo_id IN ('{id_list}')");
+			Database.Execute ($"DELETE FROM photo_versions WHERE photo_id IN ('{id_list}')");
 		}
 
 		public override void Remove (Photo item)
@@ -471,7 +470,7 @@ namespace FSpot.Database
 						DateTimeUtil.FromDateTime (photo.Time),
 						photo.VersionUri (Photo.OriginalVersionId).GetBaseUri ().ToString (),
 						photo.VersionUri (Photo.OriginalVersionId).GetFilename (),
-						string.Format ("{0}", photo.Rating),
+						$"{photo.Rating}",
 						photo.Id
 					)
 				);
@@ -734,8 +733,8 @@ namespace FSpot.Database
 			using var op = Operation.Begin ($"QueryToTemp");
 			Logger.Log.Debug ($"Query Started : {query}");
 			Database.BeginTransaction ();
-			Database.Execute (string.Format ("DROP TABLE IF EXISTS {0}", tempTable));
-			Database.Execute (string.Format ("CREATE TEMPORARY TABLE {0} AS {1}", tempTable, query));
+			Database.Execute ($"DROP TABLE IF EXISTS {tempTable}");
+			Database.Execute ($"CREATE TEMPORARY TABLE {tempTable} AS {query}");
 			// For Hyena.Data.Sqlite, we need to call Execute. Calling Query here does fail.
 			//Database.Query (string.Format ("CREATE TEMPORARY TABLE {0} AS {1}", temp_table, query)).Close ();
 			Database.CommitTransaction ();
@@ -749,7 +748,7 @@ namespace FSpot.Database
 
 		public Photo[] QueryFromTemp (string tempTable, int offset, int limit)
 		{
-			return Query (string.Format ("SELECT * FROM {0} LIMIT {1} OFFSET {2}", tempTable, limit, offset));
+			return Query ($"SELECT * FROM {tempTable} LIMIT {limit} OFFSET {offset}");
 		}
 
 		public Photo[] Query (string query)

@@ -82,7 +82,7 @@ namespace FSpot.Database
 			}
 		}
 
-		Job LoadItem (Hyena.Data.Sqlite.IDataReader reader)
+		Job LoadItem (IDataReader reader)
 		{
 			return CreateJob (
 					reader["job_type"].ToString (),
@@ -94,7 +94,7 @@ namespace FSpot.Database
 
 		void LoadAllItems ()
 		{
-			Hyena.Data.Sqlite.IDataReader reader = Database.Query ($"SELECT id, job_type, job_options, run_at, job_priority FROM {jobsTableName}");
+			var reader = Database.Query ($"SELECT id, job_type, job_options, run_at, job_priority FROM {jobsTableName}");
 
 			Scheduler.Suspend ();
 			while (reader.Read ()) {
@@ -120,7 +120,7 @@ namespace FSpot.Database
 				DateTimeUtil.FromDateTime (run_at),
 				Convert.ToInt32 (job_priority)));
 
-			Job job = CreateJob (job_type, (uint)id, job_options, run_at, job_priority);
+			var job = CreateJob (job_type, (uint)id, job_options, run_at, job_priority);
 
 			AddToCache (job);
 			job.Finished += HandleRemoveJob;

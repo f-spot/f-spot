@@ -76,7 +76,7 @@ namespace FSpot.Database
 
 		MetaItem GetByName (string name)
 		{
-			foreach (MetaItem i in item_cache.Values)
+			foreach (MetaItem i in itemCache.Values)
 				if (i.Name == name)
 					return i;
 
@@ -109,7 +109,7 @@ namespace FSpot.Database
 
 		void LoadAllItems ()
 		{
-			Hyena.Data.Sqlite.IDataReader reader = Database.Query ("SELECT id, name, data FROM meta");
+			var reader = Database.Query ("SELECT id, name, data FROM meta");
 
 			while (reader.Read ()) {
 				uint id = Convert.ToUInt32 (reader["id"]);
@@ -144,7 +144,6 @@ namespace FSpot.Database
 
 			var item = new MetaItem (id, name, data);
 
-
 			AddToCache (item);
 			EmitAdded (item);
 
@@ -174,8 +173,7 @@ namespace FSpot.Database
 
 		// Constructor
 
-		public MetaStore (IDb db, bool is_new)
-			: base (db, true)
+		public MetaStore (IDb db, bool is_new) : base (db, true)
 		{
 			if (is_new || !Database.TableExists ("meta")) {
 				CreateTable ();

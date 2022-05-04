@@ -41,7 +41,7 @@ namespace FSpot.Database
 			//Execute ("PRAGMA count_changes = OFF");
 
 			if (ApplicationContext.CommandLine.Contains ("debug-sql")) {
-				Hyena.Data.Sqlite.HyenaSqliteCommand.LogAll = true;
+				HyenaSqliteCommand.LogAll = true;
 			}
 		}
 	}

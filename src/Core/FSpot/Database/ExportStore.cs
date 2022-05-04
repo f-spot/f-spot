@@ -43,7 +43,6 @@ namespace FSpot.Database
 {
 	public class ExportItem : DbItem
 	{
-
 		public uint ImageId { get; set; }
 
 		public uint ImageVersionId { get; set; }
@@ -63,7 +62,6 @@ namespace FSpot.Database
 
 	public class ExportStore : DbStore<ExportItem>
 	{
-
 		public const string FlickrExportType = "fspot:Flickr";
 		// TODO: This is obsolete and meant to be remove once db reach rev4
 		public const string OldFolderExportType = "fspot:Folder";
@@ -84,7 +82,7 @@ namespace FSpot.Database
 			")");
 		}
 
-		ExportItem LoadItem (Hyena.Data.Sqlite.IDataReader reader)
+		ExportItem LoadItem (IDataReader reader)
 		{
 			return new ExportItem (Convert.ToUInt32 (reader["id"]),
 					   Convert.ToUInt32 (reader["image_id"]),
@@ -95,7 +93,7 @@ namespace FSpot.Database
 
 		void LoadAllItems ()
 		{
-			Hyena.Data.Sqlite.IDataReader reader = Database.Query ("SELECT id, image_id, image_version_id, export_type, export_token FROM exports");
+			var reader = Database.Query ("SELECT id, image_id, image_version_id, export_type, export_token FROM exports");
 
 			while (reader.Read ()) {
 				AddToCache (LoadItem (reader));
@@ -135,7 +133,7 @@ namespace FSpot.Database
 		public List<ExportItem> GetByImageId (uint image_id, uint image_version_id)
 		{
 
-			Hyena.Data.Sqlite.IDataReader reader = Database.Query (new HyenaSqliteCommand ("SELECT id, image_id, image_version_id, export_type, export_token FROM exports WHERE image_id = ? AND image_version_id = ?",
+			var reader = Database.Query (new HyenaSqliteCommand ("SELECT id, image_id, image_version_id, export_type, export_token FROM exports WHERE image_id = ? AND image_version_id = ?",
 					image_id, image_version_id));
 
 			var export_items = new List<ExportItem> ();

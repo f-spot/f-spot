@@ -34,32 +34,25 @@ namespace FSpot.Core
 	public interface IBrowsableItemChanges
 	{
 		bool DataChanged { get; }
+
 		bool MetadataChanged { get; }
 	}
 
 	public class FullInvalidate : IBrowsableItemChanges
 	{
-		static FullInvalidate instance = new FullInvalidate ();
-		public static FullInvalidate Instance {
-			get { return instance; }
-		}
+		public static FullInvalidate Instance { get; } = new FullInvalidate ();
 
-		public bool DataChanged {
-			get { return true; }
-		}
-		public bool MetadataChanged {
-			get { return true; }
-		}
+		public bool DataChanged { get; } = true;
+
+		public bool MetadataChanged { get; } = true;
 	}
 
 	public class InvalidateData : IBrowsableItemChanges
 	{
-		static InvalidateData instance = new InvalidateData ();
-		public static InvalidateData Instance {
-			get { return instance; }
-		}
+		public static InvalidateData Instance { get; } = new InvalidateData ();
 
-		public bool DataChanged { get { return true; } }
-		public bool MetadataChanged { get { return false; } }
+		public bool DataChanged { get; } = true;
+
+		public bool MetadataChanged { get; } = false;
 	}
 }

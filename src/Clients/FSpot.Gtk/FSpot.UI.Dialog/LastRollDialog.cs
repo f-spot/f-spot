@@ -44,9 +44,9 @@ namespace FSpot.UI.Dialog
 {
 	public class LastRolls : BuilderDialog
 	{
-		FSpot.PhotoQuery query;
-		RollStore rollstore;
-		Roll[] rolls;
+		readonly PhotoQuery query;
+		readonly RollStore rollstore;
+		readonly List<Roll> rolls;
 
 #pragma warning disable 649
 		[GtkBeans.Builder.Object] ComboBox combo_filter; // at, after, or between
@@ -56,7 +56,7 @@ namespace FSpot.UI.Dialog
 		[GtkBeans.Builder.Object] Label photos_in_selected_rolls;
 #pragma warning restore 649
 
-		public LastRolls (FSpot.PhotoQuery query, RollStore rollstore, Window parent) : base ("LastImportRollFilterDialog.ui", "last_import_rolls_filter")
+		public LastRolls (PhotoQuery query, RollStore rollstore, Window parent) : base ("LastImportRollFilterDialog.ui", "last_import_rolls_filter")
 		{
 			this.query = query;
 			this.rollstore = rollstore;
@@ -79,9 +79,9 @@ namespace FSpot.UI.Dialog
 		protected void HandleResponse (object o, Gtk.ResponseArgs args)
 		{
 			if (args.ResponseId == ResponseType.Ok) {
-				Roll[] selected_rolls = SelectedRolls ();
+				var selected_rolls = SelectedRolls ();
 
-				if (selected_rolls != null && selected_rolls.Length > 0)
+				if (selected_rolls != null && selected_rolls.Count > 0)
 					query.RollSet = new RollSet (selected_rolls);
 			}
 			Destroy ();
@@ -102,32 +102,30 @@ namespace FSpot.UI.Dialog
 
 		void UpdateNumberOfPhotos ()
 		{
-			Roll[] selected_rolls = SelectedRolls ();
+			var selected_rolls = SelectedRolls ();
 			uint sum = 0;
 			if (selected_rolls != null)
 				foreach (Roll roll in selected_rolls) {
-					sum = sum + rollstore.PhotosInRoll (roll);
+					sum += rollstore.PhotosInRoll (roll);
 				}
 			photos_in_selected_rolls.Text = sum.ToString ();
 		}
 
 		void PopulateCombos ()
 		{
-			for (uint k = 0; k < rolls.Length; k++) {
+			for (var k = 0; k < rolls.Count; k++) {
 				uint numphotos = rollstore.PhotosInRoll (rolls[k]);
 				// Roll time is in UTC always
 				DateTime date = rolls[k].Time.ToLocalTime ();
 
-				string header = string.Format ("{0} ({1})",
-					date.ToString ("%dd %MMM, %HH:%mm"),
-					numphotos);
+				string header = $"{date:%dd %MMM, %HH:%mm} ({numphotos})";
 
 				combo_roll_1.AppendText (header);
 				combo_roll_2.AppendText (header);
 			}
 		}
 
-		Roll[] SelectedRolls ()
+		List<Roll> SelectedRolls ()
 		{
 			if ((combo_roll_1.Active < 0) || ((combo_filter.Active == 2) && (combo_roll_2.Active < 0)))
 				return null;
@@ -139,23 +137,23 @@ namespace FSpot.UI.Dialog
 				result.Add (rolls[combo_roll_1.Active]);
 				break;
 			case 1: // after - Return all rolls from latest to the one the user selected
-				for (uint k = 0; k <= combo_roll_1.Active; k++) {
+				for (var k = 0; k <= combo_roll_1.Active; k++) {
 					result.Add (rolls[k]);
 				}
 				break;
 			case 2: // between - Return all rolls between the two import rolls the user selected
-				uint k1 = (uint)combo_roll_1.Active;
-				uint k2 = (uint)combo_roll_2.Active;
+				var k1 = combo_roll_1.Active;
+				var k2 = combo_roll_2.Active;
 				if (k1 > k2) {
-					k1 = (uint)combo_roll_2.Active;
-					k2 = (uint)combo_roll_1.Active;
+					k1 = combo_roll_2.Active;
+					k2 = combo_roll_1.Active;
 				}
-				for (uint k = k1; k <= k2; k++) {
+				for (var k = k1; k <= k2; k++) {
 					result.Add (rolls[k]);
 				}
 				break;
 			}
-			return result.ToArray ();
+			return result;
 		}
 	}
 }
