@@ -298,9 +298,9 @@ namespace FSpot
 			if (tag != null)
 				photos = ObsoletePhotoQueries.Query (new Tag[] { tag });
 			else if (Preferences.Get<int> (Preferences.ScreensaverTag) == 0)
-				photos = ObsoletePhotoQueries.Query (new Tag[] { });
+				photos = ObsoletePhotoQueries.Query (Array.Empty<Tag> ());
 			else
-				photos = new IPhoto[0];
+				photos = Array.Empty<IPhoto> ();
 
 			// Minimum delay 1 second; default is 4s
 			var delay = Math.Max (1.0, Preferences.Get<double> (Preferences.ScreensaverDelay));

@@ -119,7 +119,7 @@ namespace FSpot.Widgets
 			TreeIter iter = TreeIter.Zero;
 
 			/* stores the segments of the last inserted uri */
-			string[] last_segments = { };
+			string[] last_segments = Array.Empty<string> ();
 
 			int last_count = 0;
 

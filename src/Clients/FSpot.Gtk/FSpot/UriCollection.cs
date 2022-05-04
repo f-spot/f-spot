@@ -44,7 +44,7 @@ namespace FSpot
 {
 	public class UriCollection : PhotoList
 	{
-		public UriCollection () : base (new IPhoto[0])
+		public UriCollection () : base (System.Array.Empty<IPhoto> ())
 		{
 		}
 

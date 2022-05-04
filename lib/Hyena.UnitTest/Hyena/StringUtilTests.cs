@@ -152,7 +152,7 @@ href=http://lkjdflkjdflkjj>baz foo< /a> bar"));
 			Assert.AreEqual ("foo, bar", s.Join (", "));
 			Assert.AreEqual ("foobar", s.Join (""));
 			Assert.AreEqual ("foobar", s.Join (null));
-			Assert.AreEqual ("", new string[] { }.Join (", "));
+			Assert.AreEqual ("", Array.Empty<string> ().Join (", "));
 
 			s = new string[] { "foo", "bar", "baz" };
 			Assert.AreEqual ("foo -- bar -- baz", s.Join (" -- "));

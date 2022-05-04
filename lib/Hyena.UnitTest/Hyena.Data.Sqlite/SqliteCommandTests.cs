@@ -138,14 +138,14 @@ namespace Hyena.Data.Sqlite.Tests
 		public void TestByteArray ()
 		{
 			// BLOB notation
-			AssertToSql (new byte[] { }, "X''");
+			AssertToSql (Array.Empty<byte> (), "X''");
 			AssertToSql (new byte[] { 0x10, 0x20, 0x30 }, "X'102030'");
 		}
 
 		[Test]
 		public void TestOtherArray ()
 		{
-			AssertToSql (new object[] { }, "");
+			AssertToSql (Array.Empty<object> (), "");
 			AssertToSql (new object[] { "a" }, "'a'");
 			AssertToSql (new object[] { "a", "b" }, "'a','b'");
 		}

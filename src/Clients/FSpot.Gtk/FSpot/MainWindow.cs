@@ -690,7 +690,7 @@ namespace FSpot
 
 		int[] SelectedIds ()
 		{
-			int[] ids = new int[0];
+			int[] ids = Array.Empty<int> ();
 
 			if (fsview != null && fsview.View.Item.IsValid)
 				ids = new int[] { fsview.View.Item.Index };
@@ -792,7 +792,7 @@ namespace FSpot
 					case ModeType.IconView:
 						return win.icon_view.Selection.Items;
 					}
-					return new IPhoto[0];
+					return Array.Empty<IPhoto> ();
 				}
 			}
 

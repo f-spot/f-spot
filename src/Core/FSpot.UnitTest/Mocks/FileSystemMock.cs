@@ -69,7 +69,7 @@ namespace Mocks
 
 		public void SetFile (SafeUri file, DateTime mTime)
 		{
-			SetFile (file, mTime, new byte[] { });
+			SetFile (file, mTime, Array.Empty<byte> ());
 		}
 
 		public void SetFile (SafeUri file, DateTime mTime, byte[] contents)

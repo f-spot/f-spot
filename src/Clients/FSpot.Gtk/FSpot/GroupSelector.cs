@@ -67,7 +67,7 @@ namespace FSpot
 		public Gdk.Rectangle action_area;
 
 		Pango.Layout[] tick_layouts;
-		int[] box_counts = new int[0];
+		int[] box_counts = Array.Empty<int> ();
 		int box_count_max;
 		int min_filled;
 		int max_filled;
@@ -172,7 +172,7 @@ namespace FSpot
 				if (value != null)
 					box_counts = value;
 				else
-					value = new int[0];
+					value = Array.Empty<int> ();
 
 				for (int i = 0; i < box_counts.Length; i++) {
 					int count = box_counts[i];

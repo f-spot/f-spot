@@ -22,7 +22,7 @@ namespace GtkBeans
 		public Builder () : base (IntPtr.Zero)
 		{
 			if (GetType () != typeof (Builder)) {
-				CreateNativeObject (new string[0], new GLib.Value[0]);
+				CreateNativeObject (Array.Empty<string> (), Array.Empty<GLib.Value> ());
 				return;
 			}
 			Raw = gtk_builder_new ();

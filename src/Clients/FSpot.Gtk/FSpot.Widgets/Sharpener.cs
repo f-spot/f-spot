@@ -150,7 +150,7 @@ namespace FSpot.Widgets
 
 			string title = Strings.Sharpen;
 			dialog = new Gtk.Dialog (title, (Gtk.Window)this,
-						 DialogFlags.DestroyWithParent, new object[0]);
+						 DialogFlags.DestroyWithParent, Array.Empty<object> ());
 			dialog.BorderWidth = 12;
 			dialog.VBox.Spacing = 6;
 
