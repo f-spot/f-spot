@@ -33,6 +33,7 @@ using System.Collections.Generic;
 
 using FSpot.Core;
 using FSpot.Resources.Lang;
+using FSpot.Widgets;
 
 using Gtk;
 
