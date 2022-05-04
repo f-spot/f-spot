@@ -102,8 +102,7 @@ public class DependentListStore : ListStore
 	{
 		list.Clear ();
 
-		TreeIter tree_iter;
-		if (tree.IterChildren (out tree_iter)) {
+		if (tree.IterChildren (out var tree_iter)) {
 			Copy (tree, tree_iter, list, true);
 		}
 	}
@@ -120,8 +119,7 @@ public class DependentListStore : ListStore
 		}
 
 		// Copy the first child, which will trigger the copy if its siblings (and their children)
-		TreeIter child_iter;
-		if (tree.IterChildren (out child_iter, tree_iter)) {
+		if (tree.IterChildren (out var child_iter, tree_iter)) {
 			Copy (tree, child_iter, list, true);
 		}
 

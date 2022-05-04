@@ -151,15 +151,14 @@ namespace Hyena.Widgets
 			layout_width = layout_height = 0;
 
 			for (int i = 0, n = segments.Count; i < n; i++) {
-				int aw, ah, bw, bh;
 
 				layout = CreateAdaptLayout (layout, false, true);
 				layout.SetText (FormatSegmentText (segments[i]));
-				layout.GetPixelSize (out aw, out ah);
+				layout.GetPixelSize (out var aw, out var ah);
 
 				layout = CreateAdaptLayout (layout, true, false);
 				layout.SetText (FormatSegmentValue (segments[i]));
-				layout.GetPixelSize (out bw, out bh);
+				layout.GetPixelSize (out var bw, out var bh);
 
 				int w = Math.Max (aw, bw);
 				int h = ah + bh;
@@ -499,10 +498,9 @@ namespace Hyena.Widgets
 
 				x += segment_box_size + segment_box_spacing;
 
-				int lw, lh;
 				layout = CreateAdaptLayout (layout, false, true);
 				layout.SetText (FormatSegmentText (segment));
-				layout.GetPixelSize (out lw, out lh);
+				layout.GetPixelSize (out var lw, out var lh);
 
 				cr.MoveTo (x, 0);
 				text_color.A = 0.9;

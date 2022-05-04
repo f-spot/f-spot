@@ -230,9 +230,7 @@ namespace FSpot.Utils
 
 		public static Pixbuf ScaleToMaxSize (this Pixbuf pixbuf, int width, int height, bool upscale = true)
 		{
-			int scale_width = 0;
-			int scale_height = 0;
-			double scale = Fit (pixbuf, width, height, upscale, out scale_width, out scale_height);
+			double scale = Fit (pixbuf, width, height, upscale, out var scale_width, out var scale_height);
 
 			Gdk.Pixbuf result;
 			if (upscale || (scale < 1.0))

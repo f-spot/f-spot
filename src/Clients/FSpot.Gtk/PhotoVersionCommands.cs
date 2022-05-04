@@ -54,8 +54,7 @@ public class PhotoVersionCommands
 		{
 			var request = new VersionNameDialog (VersionNameDialog.RequestType.Create, photo, parent_window);
 
-			string name;
-			ResponseType response = request.Run (out name);
+			ResponseType response = request.Run (out var name);
 
 			if (response != ResponseType.Ok)
 				return false;
@@ -102,8 +101,7 @@ public class PhotoVersionCommands
 			VersionNameDialog request = new VersionNameDialog (VersionNameDialog.RequestType.Rename,
 										 photo, parent_window);
 
-			string new_name;
-			ResponseType response = request.Run (out new_name);
+			ResponseType response = request.Run (out var new_name);
 
 			if (response != ResponseType.Ok)
 				return false;

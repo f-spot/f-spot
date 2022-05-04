@@ -392,8 +392,7 @@ namespace FSpot.Widgets
 
 		protected override void ApplyColorTransform (Pixbuf pixbuf)
 		{
-			Cms.Profile screen_profile;
-			if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out screen_profile))
+			if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screen_profile))
 				FSpot.ColorManagement.ApplyProfile (pixbuf, screen_profile);
 		}
 

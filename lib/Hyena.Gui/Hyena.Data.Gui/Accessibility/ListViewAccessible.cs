@@ -124,8 +124,7 @@ namespace Hyena.Data.Gui.Accessibility
 
 		public override Atk.Object RefAccessibleAtPoint (int x, int y, Atk.CoordType coordType)
 		{
-			int row, col;
-			list_view.GetCellAtPoint (x, y, coordType, out row, out col);
+			list_view.GetCellAtPoint (x, y, coordType, out var row, out var col);
 			return RefAt (row, col);
 		}
 

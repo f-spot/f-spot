@@ -137,9 +137,7 @@ namespace FSpot.Editors
 
 			int done = 0;
 			foreach (Photo photo in State.Items) {
-				Pixbuf input;
-				Cms.Profile input_profile;
-				LoadPhoto (photo, out input, out input_profile);
+				LoadPhoto (photo, out var input, out var input_profile);
 
 				Pixbuf edited = Process (input, input_profile);
 				input.Dispose ();
@@ -189,8 +187,7 @@ namespace FSpot.Editors
 
 			Pixbuf old_preview = null;
 			if (preview == null) {
-				int width, height;
-				CalcPreviewSize (original, out width, out height);
+				CalcPreviewSize (original, out var width, out var height);
 				preview = original.ScaleSimple (width, height, InterpType.Nearest);
 			} else {
 				// We're updating a previous preview

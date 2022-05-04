@@ -248,7 +248,6 @@ namespace Hyena.Gui
 
 		public static Color RenderForegroundColor (Color background, ContrastPaletteColor color)
 		{
-			float L, a, b;
 			int max_color;
 			float max_dist;
 			float[,] points = new float[8, 3];
@@ -256,7 +255,7 @@ namespace Hyena.Gui
 			int i;
 
 			rgb_to_lab ((ushort)(background.R * 255), (ushort)(background.G * 255),
-				(ushort)(background.B * 255), out L, out a, out b);
+				(ushort)(background.B * 255), out var L, out var a, out var b);
 
 			points[0, 0] = color_regions[(int)color, 0];
 			points[0, 1] = color_regions[(int)color, 2];
@@ -322,9 +321,8 @@ namespace Hyena.Gui
 				points[max_color, 2] = b + (db * 1.5f);
 			}
 
-			ushort red, green, blue;
 
-			lab_to_rgb (points[max_color, 0], points[max_color, 1], points[max_color, 2], out red, out green, out blue);
+			lab_to_rgb (points[max_color, 0], points[max_color, 1], points[max_color, 2], out var red, out var green, out var blue);
 
 			return new Color (red / 255.0, green / 255.0, blue / 255.0);
 		}

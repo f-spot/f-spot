@@ -94,9 +94,8 @@ namespace FSpot.Widgets
 
 		public SafeUri GetUriByPath (TreePath row)
 		{
-			TreeIter iter;
 
-			GetIter (out iter, row);
+			GetIter (out var iter, row);
 
 			return GetUriByIter (iter);
 		}

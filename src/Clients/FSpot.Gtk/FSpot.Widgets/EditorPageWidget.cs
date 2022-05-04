@@ -110,8 +110,7 @@ namespace FSpot.Widgets
 		internal void ChangeButtonVisibility ()
 		{
 			foreach (Editor editor in editors) {
-				Button button;
-				if (editor_buttons.TryGetValue (editor, out button))
+				if (editor_buttons.TryGetValue (editor, out var button))
 					button.Visible = Page.InPhotoView || editor.CanHandleMultiple;
 			}
 		}

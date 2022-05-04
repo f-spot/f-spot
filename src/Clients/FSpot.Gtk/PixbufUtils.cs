@@ -135,10 +135,8 @@ public static class PixbufUtils
 				break;
 			}
 
-			int scale_width = 0;
-			int scale_height = 0;
 
-			double scale = Fit (args.Width, args.Height, max_width, max_height, true, out scale_width, out scale_height);
+			double scale = Fit (args.Width, args.Height, max_width, max_height, true, out var scale_width, out var scale_height);
 
 			if (scale < 1.0)
 				loader.SetSize (scale_width, scale_height);

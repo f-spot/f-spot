@@ -223,8 +223,7 @@ namespace FSpot.Query
 
 		public bool TagRequired (Tag t)
 		{
-			int count, grouped_with;
-			return TagRequired (t, out count, out grouped_with);
+			return TagRequired (t, out var count, out var grouped_with);
 		}
 
 		public bool TagRequired (Tag t, out int numTerms, out int groupedWith)

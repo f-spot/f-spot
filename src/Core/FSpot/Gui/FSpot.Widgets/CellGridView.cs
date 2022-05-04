@@ -294,10 +294,8 @@ namespace FSpot.Widgets
 				return;
 
 			Adjustment adjustment = Vadjustment;
-			int x;
-			int y;
 
-			CellPosition (cell_num, out x, out y);
+			CellPosition (cell_num, out var x, out var y);
 
 			if (center)
 				y += cell_height / 2 - Allocation.Height / 2;
@@ -323,8 +321,7 @@ namespace FSpot.Widgets
 								   (int)Vadjustment.Value,
 								   Allocation.Width,
 								   Allocation.Height);
-			Gdk.Rectangle intersection;
-			if (BinWindow != null && cell_area.Intersect (visible, out intersection))
+			if (BinWindow != null && cell_area.Intersect (visible, out var intersection))
 				BinWindow.InvalidateRect (intersection, false);
 		}
 

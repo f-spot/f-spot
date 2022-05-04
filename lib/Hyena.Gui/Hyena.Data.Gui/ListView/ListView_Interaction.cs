@@ -449,9 +449,7 @@ namespace Hyena.Data.Gui
 
 		void ProxyEventToCell (Gdk.Event evnt, bool press)
 		{
-			IInteractiveCell icell;
-			Gdk.Rectangle icell_area;
-			bool redraw = ProxyEventToCell (evnt, press, out icell, out icell_area);
+			bool redraw = ProxyEventToCell (evnt, press, out var icell, out var icell_area);
 
 			int xoffset = HadjustmentValue;
 			int yoffset = VadjustmentValue;
@@ -504,8 +502,7 @@ namespace Hyena.Data.Gui
 				return false;
 			}
 
-			Column column;
-			if (!GetEventCell<IInteractiveCell> (evnt_x, evnt_y, out icell, out column, out row_index)) {
+			if (!GetEventCell<IInteractiveCell> (evnt_x, evnt_y, out icell, out var column, out row_index)) {
 				return false;
 			}
 

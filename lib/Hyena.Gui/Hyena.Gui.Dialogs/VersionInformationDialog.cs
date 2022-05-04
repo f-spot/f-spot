@@ -89,9 +89,8 @@ namespace Hyena.Gui.Dialogs
 
 		void OnCursorChanged (object o, EventArgs args)
 		{
-			TreeIter iter;
 
-			if (!version_tree.Selection.GetSelected (out iter)) {
+			if (!version_tree.Selection.GetSelected (out var iter)) {
 				path_label.Hide ();
 				return;
 			}

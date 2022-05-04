@@ -140,8 +140,7 @@ namespace FSpot.Editors
 				return;
 
 			//constraints_combo.Active = 0;
-			TreeIter iter;
-			if (constraints_combo.GetActiveIter (out iter)) {
+			if (constraints_combo.GetActiveIter (out var iter)) {
 				if (((ConstraintType)constraints_store.GetValue (iter, 3)) == ConstraintType.SameAsPhoto)
 					constraints_combo.Active = 0;
 			}
@@ -154,8 +153,7 @@ namespace FSpot.Editors
 				return;
 			}
 
-			TreeIter iter;
-			if (constraints_combo.GetActiveIter (out iter)) {
+			if (constraints_combo.GetActiveIter (out var iter)) {
 				double ratio = ((double)constraints_store.GetValue (iter, 2));
 				ConstraintType type = ((ConstraintType)constraints_store.GetValue (iter, 3));
 				switch (type) {

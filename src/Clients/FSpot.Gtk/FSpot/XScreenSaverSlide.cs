@@ -73,8 +73,7 @@ namespace FSpot
 					SetFlag (WidgetFlags.Realized);
 					SizeRequest ();
 					Gdk.Rectangle geom;
-					int depth;
-					GdkWindow.GetGeometry (out geom.X, out geom.Y, out geom.Width, out geom.Height, out depth);
+					GdkWindow.GetGeometry (out geom.X, out geom.Y, out geom.Width, out geom.Height, out var depth);
 					SizeAllocate (new Gdk.Rectangle (geom.X, geom.Y, geom.Width, geom.Height));
 					Resize (geom.Width, geom.Height);
 					return;

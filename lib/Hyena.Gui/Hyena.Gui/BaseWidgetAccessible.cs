@@ -122,8 +122,7 @@ namespace Hyena.Gui
 
 		public bool Contains (int x, int y, Atk.CoordType coordType)
 		{
-			int x_extents, y_extents, w, h;
-			GetExtents (out x_extents, out y_extents, out w, out h, coordType);
+			GetExtents (out var x_extents, out var y_extents, out var w, out var h, coordType);
 			Gdk.Rectangle extents = new Gdk.Rectangle (x_extents, y_extents, w, h);
 			return extents.Contains (x, y);
 		}
@@ -160,15 +159,13 @@ namespace Hyena.Gui
 				window = widget.GdkWindow;
 			}
 
-			int x_window, y_window;
-			window.GetOrigin (out x_window, out y_window);
+			window.GetOrigin (out var x_window, out var y_window);
 			x += x_window;
 			y += y_window;
 
 			if (coordType == Atk.CoordType.Window) {
 				window = widget.GdkWindow.Toplevel;
-				int x_toplevel, y_toplevel;
-				window.GetOrigin (out x_toplevel, out y_toplevel);
+				window.GetOrigin (out var x_toplevel, out var y_toplevel);
 
 				x -= x_toplevel;
 				y -= y_toplevel;
@@ -222,8 +219,7 @@ namespace Hyena.Gui
 			}
 
 			if (coordType == CoordType.Window) {
-				int x_off, y_off;
-				widget.GdkWindow.GetOrigin (out x_off, out y_off);
+				widget.GdkWindow.GetOrigin (out var x_off, out var y_off);
 				x += x_off;
 				y += y_off;
 

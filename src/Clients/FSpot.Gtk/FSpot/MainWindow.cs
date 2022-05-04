@@ -1043,8 +1043,7 @@ namespace FSpot
 
 					Pixbuf thumbnail = null;
 					if (entry != null) {
-						Cms.Profile screen_profile;
-						if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out screen_profile)) {
+						if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screen_profile)) {
 							thumbnail = entry.Pixbuf.Copy ();
 							FSpot.ColorManagement.ApplyProfile (thumbnail, screen_profile);
 						} else
@@ -1558,9 +1557,8 @@ namespace FSpot
 
 		public void Close ()
 		{
-			int x, y, width, height;
-			main_window.GetPosition (out x, out y);
-			main_window.GetSize (out width, out height);
+			main_window.GetPosition (out var x, out var y);
+			main_window.GetSize (out var width, out var height);
 
 			bool maximized = ((main_window.GdkWindow.State & Gdk.WindowState.Maximized) > 0);
 			Preferences.Set (Preferences.MainWindowMaximized, maximized);

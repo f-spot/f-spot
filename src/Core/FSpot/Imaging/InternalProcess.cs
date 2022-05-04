@@ -82,7 +82,6 @@ namespace FSpot.Imaging
 
 		public InternalProcess (string path, string[] args)
 		{
-			IntPtr error;
 
 			if (args[args.Length - 1] != null) {
 				var nargs = new string[args.Length + 1];
@@ -92,7 +91,7 @@ namespace FSpot.Imaging
 
 			g_spawn_async_with_pipes (path, args, null, InternalProcessFlags.SearchPath,
 				IntPtr.Zero, IntPtr.Zero, IntPtr.Zero,
-				ref stdin, ref stdout, IntPtr.Zero, out error);
+				ref stdin, ref stdout, IntPtr.Zero, out var error);
 
 			if (error != IntPtr.Zero)
 				throw new GException (error);

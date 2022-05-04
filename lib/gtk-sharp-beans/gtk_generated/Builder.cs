@@ -609,9 +609,9 @@ namespace GtkBeans
 					if (gobject != null)
 						try {
 							field.SetValue (target, gobject, flags, null, null);
-						} catch (Exception e) {
+						} catch (Exception) {
 							Console.WriteLine ("Unable to set value for field " + field.Name);
-							throw e;
+							throw;
 						}
 				}
 				type = type.BaseType;

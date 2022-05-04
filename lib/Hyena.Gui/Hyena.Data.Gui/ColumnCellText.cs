@@ -220,10 +220,9 @@ namespace Hyena.Data.Gui
 
 		internal static int ComputeRowHeight (Widget widget)
 		{
-			int w_width, row_height;
 			Pango.Layout layout = new Pango.Layout (widget.PangoContext);
 			layout.SetText ("W");
-			layout.GetPixelSize (out w_width, out row_height);
+			layout.GetPixelSize (out var w_width, out var row_height);
 			layout.Dispose ();
 			return row_height + 8;
 		}

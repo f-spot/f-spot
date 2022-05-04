@@ -42,8 +42,7 @@ namespace FSpot.Utils
 
 		public static Surface CreateSurface (Gdk.Drawable d)
 		{
-			int width, height;
-			d.GetSize (out width, out height);
+			d.GetSize (out var width, out var height);
 			XlibSurface surface = new XlibSurface (GdkUtils.GetXDisplay (d.Display),
 								   (IntPtr)GdkUtils.GetXid (d),
 								   GdkUtils.GetXVisual (d.Visual),

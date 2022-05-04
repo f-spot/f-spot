@@ -126,11 +126,10 @@ namespace Hyena.Widgets
 
 		public bool GetSelectionBounds (out int start, out int end)
 		{
-			TextIter start_iter, end_iter;
 			start = 0;
 			end = 0;
 
-			if (Buffer.GetSelectionBounds (out start_iter, out end_iter)) {
+			if (Buffer.GetSelectionBounds (out var start_iter, out var end_iter)) {
 				start = start_iter.Offset + 1;
 				end = end_iter.Offset + 1;
 				return true;
@@ -141,8 +140,7 @@ namespace Hyena.Widgets
 
 		public void DeleteSelection ()
 		{
-			TextIter start, end;
-			if (Buffer.GetSelectionBounds (out start, out end)) {
+			if (Buffer.GetSelectionBounds (out var start, out var end)) {
 				Buffer.Delete (ref start, ref end);
 			}
 		}

@@ -257,8 +257,7 @@ namespace FSpot.UI.Dialog
 			ComboBox combo = sender as ComboBox;
 			if (combo == null)
 				return;
-			TreeIter iter;
-			if (combo.GetActiveIter (out iter)) {
+			if (combo.GetActiveIter (out var iter)) {
 				string gtkrc = (string)combo.Model.GetValue (iter, 1);
 				if (!string.IsNullOrEmpty (gtkrc))
 					Preferences.Set (Preferences.GtkRc, gtkrc);
@@ -275,8 +274,7 @@ namespace FSpot.UI.Dialog
 			ComboBox combo = sender as ComboBox;
 			if (combo == null)
 				return;
-			TreeIter iter;
-			if (combo.GetActiveIter (out iter)) {
+			if (combo.GetActiveIter (out var iter)) {
 				switch ((int)combo.Model.GetValue (iter, 1)) {
 				case 0:
 					Preferences.Set (Preferences.ColorManagementDisplayProfile, string.Empty);
@@ -296,8 +294,7 @@ namespace FSpot.UI.Dialog
 			ComboBox combo = sender as ComboBox;
 			if (combo == null)
 				return;
-			TreeIter iter;
-			if (combo.GetActiveIter (out iter)) {
+			if (combo.GetActiveIter (out var iter)) {
 				switch ((int)combo.Model.GetValue (iter, 1)) {
 				case 0:
 					Preferences.Set (Preferences.ColorManagementDisplayOutputProfile, string.Empty);

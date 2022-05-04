@@ -354,8 +354,7 @@ namespace Hyena.Data.Gui
 
 			menu.ShowAll ();
 			menu.Popup (null, null, delegate (Menu popup, out int pos_x, out int pos_y, out bool push_in) {
-				int win_x, win_y;
-				GdkWindow.GetOrigin (out win_x, out win_y);
+				GdkWindow.GetOrigin (out var win_x, out var win_y);
 
 				pos_x = win_x + x;
 				pos_y = win_y + y;
@@ -536,10 +535,8 @@ namespace Hyena.Data.Gui
 				}
 
 				if (header_height == 0) {
-					int w;
-					int h;
 					column_layout.SetText ("W");
-					column_layout.GetPixelSize (out w, out h);
+					column_layout.GetPixelSize (out var w, out var h);
 					header_height = h;
 					header_height += 10;
 				}

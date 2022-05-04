@@ -145,8 +145,6 @@ namespace Hyena.Widgets
 		public void Position (Gdk.Window eventWindow)
 		{
 			int x, y;
-			int widget_x, widget_y;
-			int widget_height, widget_width;
 
 			Realize ();
 
@@ -155,8 +153,8 @@ namespace Hyena.Widgets
 
 			Gtk.Requisition popup_req;
 
-			widget_window.GetOrigin (out widget_x, out widget_y);
-			widget_window.GetSize (out widget_width, out widget_height);
+			widget_window.GetOrigin (out var widget_x, out var widget_y);
+			widget_window.GetSize (out var widget_width, out var widget_height);
 
 			popup_req = Requisition;
 

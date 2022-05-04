@@ -77,8 +77,7 @@ namespace Hyena.Gui
 
 			TreeView view = new TreeView ();
 			view.RowActivated += delegate (object o, RowActivatedArgs args) {
-				TreeIter iter;
-				if (store.GetIter (out iter, args.Path)) {
+				if (store.GetIter (out var iter, args.Path)) {
 					Type type = (Type)store.GetValue (iter, 1);
 					Window window = (Window)Activator.CreateInstance (type);
 					window.WindowPosition = WindowPosition.Center;

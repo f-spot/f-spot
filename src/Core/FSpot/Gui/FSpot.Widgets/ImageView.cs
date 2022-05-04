@@ -966,10 +966,9 @@ namespace FSpot.Widgets
 		bool OnSelectionMotionNotifyEvent (EventMotion evnt)
 		{
 			int x, y;
-			ModifierType mod;
 
 			if (evnt.IsHint)
-				GdkWindow.GetPointer (out x, out y, out mod);
+				GdkWindow.GetPointer (out x, out y, out var mod);
 			else {
 				x = (int)evnt.X;
 				y = (int)evnt.Y;

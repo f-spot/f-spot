@@ -115,8 +115,7 @@ namespace Hyena.Gui
 
 		public static bool ColorIsDark (Cairo.Color color)
 		{
-			double h, s, b;
-			HsbFromColor (color, out h, out s, out b);
+			HsbFromColor (color, out var h, out var s, out var b);
 			return b < 0.5;
 		}
 
@@ -218,9 +217,8 @@ namespace Hyena.Gui
 
 		public static Cairo.Color ColorShade (Cairo.Color @base, double ratio)
 		{
-			double h, s, b;
 
-			HsbFromColor (@base, out h, out s, out b);
+			HsbFromColor (@base, out var h, out var s, out var b);
 
 			b = Math.Max (Math.Min (b * ratio, 1), 0);
 			s = Math.Max (Math.Min (s * ratio, 1), 0);
@@ -232,8 +230,7 @@ namespace Hyena.Gui
 
 		public static Cairo.Color ColorAdjustBrightness (Cairo.Color @base, double br)
 		{
-			double h, s, b;
-			HsbFromColor (@base, out h, out s, out b);
+			HsbFromColor (@base, out var h, out var s, out var b);
 			b = Math.Max (Math.Min (br, 1), 0);
 			return ColorFromHsb (h, s, b);
 		}

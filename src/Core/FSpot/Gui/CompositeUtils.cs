@@ -180,10 +180,6 @@ namespace FSpot.Gui
 
 		public static Cms.Profile GetScreenProfile (Screen screen)
 		{
-			Atom atype;
-			int aformat;
-			int alength;
-			byte[] data;
 
 			if (Gdk.Property.Get (screen.RootWindow,
 						  Atom.Intern ("_ICC_PROFILE", false),
@@ -191,10 +187,10 @@ namespace FSpot.Gui
 						  0,
 						  Int32.MaxValue,
 						  0, // FIXME in gtk# should be a bool
-						  out atype,
-						  out aformat,
-						  out alength,
-						  out data)) {
+						  out var atype,
+						  out var aformat,
+						  out var alength,
+						  out var data)) {
 				return new Cms.Profile (data);
 			}
 

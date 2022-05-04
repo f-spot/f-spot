@@ -226,8 +226,7 @@ namespace FSpot
 			ComboBox combo = sender as ComboBox;
 			if (combo == null)
 				return;
-			TreeIter iter;
-			if (combo.GetActiveIter (out iter)) {
+			if (combo.GetActiveIter (out var iter)) {
 				string name = combo.Model.GetValue (iter, 0) as string;
 				foreach (var transition in display.Transitions.Where (transition => transition.Name == name))
 					display.Transition = transition;
@@ -282,9 +281,7 @@ namespace FSpot
 			ShowCursor ();
 			hide_cursor_delay.Restart ();
 
-			int x, y;
-			Gdk.ModifierType type;
-			((Gtk.Widget)sender).GdkWindow.GetPointer (out x, out y, out type);
+			((Gtk.Widget)sender).GdkWindow.GetPointer (out var x, out var y, out var type);
 
 			if (y > (Allocation.Height * 0.75)) {
 				controls.Visibility = ControlOverlay.VisibilityType.Partial;

@@ -239,9 +239,9 @@ namespace FSpot.Widgets
 			if (tag_completion_index == -1)
 				return;
 
-			int sel_start, sel_end, pos;
+			int pos;
 			pos = Position;
-			if (GetSelectionBounds (out sel_start, out sel_end)) {
+			if (GetSelectionBounds (out var sel_start, out var sel_end)) {
 				pos = sel_end;
 				SelectRegion (-1, -1);
 			}

@@ -59,10 +59,8 @@ namespace Hyena.Data.Gui
 					var pt = new Point (args.X - list_interaction_alloc.X, args.Y - list_interaction_alloc.Y);
 					var child = ViewLayout.FindChildAtPoint (pt);
 					if (child != null) {
-						string markup;
-						Rect area;
 						pt.Offset (ViewLayout.ActualAllocation.Point);
-						if (child.GetTooltipMarkupAt (pt, out markup, out area)) {
+						if (child.GetTooltipMarkupAt (pt, out var markup, out var area)) {
 							area.Offset (-ViewLayout.ActualAllocation.X, -ViewLayout.ActualAllocation.Y);
 							area.Offset (list_interaction_alloc.X, list_interaction_alloc.Y);
 							args.Tooltip.Markup = markup;
@@ -74,11 +72,8 @@ namespace Hyena.Data.Gui
 						}
 					}
 				} else if (cell_context != null && cell_context.Layout != null) {
-					ITooltipCell cell;
-					Column column;
-					int row_index;
 
-					if (GetEventCell<ITooltipCell> (args.X, args.Y, out cell, out column, out row_index)) {
+					if (GetEventCell<ITooltipCell> (args.X, args.Y, out var cell, out var column, out var row_index)) {
 						CachedColumn cached_column = GetCachedColumnForColumn (column);
 
 						string markup = cell.GetTooltipMarkup (cell_context, cached_column.Width);

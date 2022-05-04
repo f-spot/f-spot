@@ -184,8 +184,7 @@ namespace FSpot.Tools.LiveWebGallery
 			TagMenu tag_menu = new TagMenu (null, App.Instance.Database.Tags);
 			tag_menu.TagSelected += handler;
 			tag_menu.Populate ();
-			int x, y;
-			GetPosition (out x, out y);
+			GetPosition (out var x, out var y);
 			x += widget.Allocation.X; y += widget.Allocation.Y;
 			tag_menu.Popup (null, null, delegate (Menu menu, out int x_, out int y_, out bool push_in) { x_ = x; y_ = y; push_in = true; }, 0, 0);
 		}

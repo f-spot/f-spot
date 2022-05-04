@@ -143,8 +143,7 @@ namespace FSpot.UI.Dialog
 		public void HandleLabelEdited (object sender, EditedArgs args)
 		{
 			args.RetVal = false;
-			TreeIter iter;
-			if (!constraints_store.GetIterFromString (out iter, args.Path))
+			if (!constraints_store.GetIterFromString (out var iter, args.Path))
 				return;
 
 			using (GLib.Value val = new GLib.Value (args.NewText))
@@ -156,8 +155,7 @@ namespace FSpot.UI.Dialog
 		public void HandleRatioEdited (object sender, EditedArgs args)
 		{
 			args.RetVal = false;
-			TreeIter iter;
-			if (!constraints_store.GetIterFromString (out iter, args.Path))
+			if (!constraints_store.GetIterFromString (out var iter, args.Path))
 				return;
 
 			double ratio;
@@ -195,31 +193,24 @@ namespace FSpot.UI.Dialog
 
 		void DeleteSelectedRows (object o, EventArgs e)
 		{
-			TreeIter iter;
-			TreeModel model;
-			if (content_treeview.Selection.GetSelected (out model, out iter))
+			if (content_treeview.Selection.GetSelected (out var model, out var iter))
 				(model as ListStore).Remove (ref iter);
 		}
 
 		void MoveUp (object o, EventArgs e)
 		{
-			TreeIter selected;
-			TreeModel model;
-			if (content_treeview.Selection.GetSelected (out model, out selected)) {
+			if (content_treeview.Selection.GetSelected (out var model, out var selected)) {
 				//no IterPrev :(
-				TreeIter prev;
 				TreePath path = model.GetPath (selected);
 				if (path.Prev ())
-					if (model.GetIter (out prev, path))
+					if (model.GetIter (out var prev, path))
 						(model as ListStore).Swap (prev, selected);
 			}
 		}
 
 		void MoveDown (object o, EventArgs e)
 		{
-			TreeIter current;
-			TreeModel model;
-			if (content_treeview.Selection.GetSelected (out model, out current)) {
+			if (content_treeview.Selection.GetSelected (out var model, out var current)) {
 				TreeIter next = current;
 				if ((model as ListStore).IterNext (ref next))
 					(model as ListStore).Swap (current, next);

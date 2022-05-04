@@ -137,18 +137,16 @@ namespace Hyena.Data.Gui
 			bool was_size_req = false;
 			ISizeRequestCell sr_cell = cells[0] as ISizeRequestCell;
 			if (sr_cell != null && sr_cell.RestrictSize) {
-				int min_w, max_w;
-				sr_cell.GetWidthRange (layout, out min_w, out max_w);
+				sr_cell.GetWidthRange (layout, out var min_w, out var max_w);
 				MinWidth = min_w == -1 ? MinWidth : min_w;
 				MaxWidth = max_w == -1 ? MaxWidth : max_w;
 				was_size_req = true;
 			}
 
 			if (headerVisible && (min_was_zero || was_size_req) && !String.IsNullOrEmpty (Title)) {
-				int w, h;
 				layout.SetText (Title);
 				//column_layout.SetText ("\u2026"); // ellipsis char
-				layout.GetPixelSize (out w, out h);
+				layout.GetPixelSize (out var w, out var h);
 
 				// Pretty sure the 3* is needed here only b/c of the " - 8" in ColumnCellText;
 				// See TODO there

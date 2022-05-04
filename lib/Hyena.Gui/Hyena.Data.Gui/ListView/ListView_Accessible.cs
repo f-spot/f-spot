@@ -73,8 +73,7 @@ namespace Hyena.Data.Gui
 			if (coord_type == Atk.CoordType.Window)
 				return rectangle;
 
-			int origin_x, origin_y;
-			GdkWindow.GetPosition (out origin_x, out origin_y);
+			GdkWindow.GetPosition (out var origin_x, out var origin_y);
 
 			rectangle.X += origin_x;
 			rectangle.Y += origin_y;
@@ -102,8 +101,7 @@ namespace Hyena.Data.Gui
 			if (coord_type == Atk.CoordType.Window)
 				return rectangle;
 
-			int origin_x, origin_y;
-			GdkWindow.GetPosition (out origin_x, out origin_y);
+			GdkWindow.GetPosition (out var origin_x, out var origin_y);
 
 			rectangle.X += origin_x;
 			rectangle.Y += origin_y;

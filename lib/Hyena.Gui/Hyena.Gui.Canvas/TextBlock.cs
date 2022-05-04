@@ -61,12 +61,11 @@ namespace Hyena.Gui.Canvas
 
 			available = base.Measure (available);
 
-			int text_w, text_h;
 
 			// Update layout
 			UpdateLayout (GetText (), available.Width - Margin.X, null, false);
 
-			layout.GetPixelSize (out text_w, out text_h);
+			layout.GetPixelSize (out var text_w, out var text_h);
 
 			double width = text_w;
 			if (!available.IsEmpty && available.Width > 0) {
@@ -141,9 +140,8 @@ namespace Hyena.Gui.Canvas
 
 			UpdateLayout (GetText (), RenderSize.Width, RenderSize.Height, true);
 
-			int text_width, text_height;
 
-			layout.GetPixelSize (out text_width, out text_height);
+			layout.GetPixelSize (out var text_width, out var text_height);
 
 			Rect new_alloc = new Rect (
 				Math.Round ((RenderSize.Width - text_width) * HorizontalAlignment),

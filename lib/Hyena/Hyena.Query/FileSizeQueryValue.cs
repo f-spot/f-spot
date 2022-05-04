@@ -70,8 +70,7 @@ namespace Hyena.Query
 				input = input.Substring (0, input.Length - 1);
 			}
 
-			double double_value;
-			IsEmpty = !double.TryParse (input, out double_value);
+			IsEmpty = !double.TryParse (input, out var double_value);
 
 			if (IsEmpty && input.Length > 1) {
 				IsEmpty = !double.TryParse (input.Substring (0, input.Length - 1), out double_value);

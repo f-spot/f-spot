@@ -343,8 +343,7 @@ namespace FSpot
 			} else if (has_limits && max_limit.Contains (x, y)) {
 				max_limit.StartDrag (x, y, args.Time);
 			} else {
-				int position;
-				if (BoxHit (x, y, out position)) {
+				if (BoxHit (x, y, out var position)) {
 					BoxXHitFilled (x, out position);
 					glass.UpdateGlass = true;
 					glass.SetPosition (position);
@@ -541,8 +540,7 @@ namespace FSpot
 				layout = tick_layouts[item];
 
 				if (layout != null) {
-					int width, height;
-					layout.GetPixelSize (out width, out height);
+					layout.GetPixelSize (out var width, out var height);
 
 					Style.PaintLayout (Style, GdkWindow, State, true, area, this,
 						   "GroupSelector:Tick", tick.X + 3, tick.Y + tick.Height, layout);
@@ -626,8 +624,7 @@ namespace FSpot
 
 			bool DragTimeout ()
 			{
-				int x, y;
-				selector.GetPointer (out x, out y);
+				selector.GetPointer (out var x, out var y);
 				x += selector.Allocation.X;
 				y += selector.Allocation.Y;
 				UpdateDrag ((double)x, (double)y);
@@ -677,10 +674,9 @@ namespace FSpot
 				Rectangle box = Bounds ();
 				double middle = box.X + (box.Width / 2.0);
 
-				int position;
 				DragOffset = 0;
 				Dragging = false;
-				if (selector.BoxXHit (middle, out position)) {
+				if (selector.BoxXHit (middle, out var position)) {
 					this.SetPosition (position);
 					State = StateType.Prelight;
 				} else {
@@ -762,11 +758,10 @@ namespace FSpot
 
 			void UpdatePopupPosition ()
 			{
-				int x = 0, y = 0;
 				Rectangle bounds = Bounds ();
 				Requisition requisition = popup_window.SizeRequest ();
 				popup_window.Resize (requisition.Width, requisition.Height);
-				selector.GdkWindow.GetOrigin (out x, out y);
+				selector.GdkWindow.GetOrigin (out var x, out var y);
 				x += bounds.X + (bounds.Width - requisition.Width) / 2;
 				y += bounds.Y - requisition.Height;
 				x = Math.Max (x, 0);
@@ -778,9 +773,8 @@ namespace FSpot
 			{
 				Rectangle box = Bounds ();
 				double middle = box.X + (box.Width / 2.0);
-				int current_position;
 
-				if (selector.BoxXHit (middle, out current_position)) {
+				if (selector.BoxXHit (middle, out var current_position)) {
 					if (current_position != drag_position)
 						popup_label.Text = selector.Adaptor.GlassLabel (current_position);
 					drag_position = current_position;
@@ -814,11 +808,10 @@ namespace FSpot
 				Rectangle box = Bounds ();
 				double middle = box.X + (box.Width / 2.0);
 
-				int position;
 				DragOffset = 0;
 				Dragging = false;
 
-				selector.BoxXHitFilled (middle, out position);
+				selector.BoxXHitFilled (middle, out var position);
 				UpdateGlass = true;
 				this.SetPosition (position);
 				UpdateGlass = false;
@@ -977,10 +970,9 @@ namespace FSpot
 
 		protected override bool OnExposeEvent (Gdk.EventExpose args)
 		{
-			Rectangle area;
 			//Console.WriteLine ("expose {0}", args.Area);
 			foreach (Rectangle sub in args.Region.GetRectangles ()) {
-				if (sub.Intersect (background, out area)) {
+				if (sub.Intersect (background, out var area)) {
 					Rectangle active = background;
 					int min_x = BoxX (min_limit.Position);
 					int max_x = BoxX (max_limit.Position + 1);
@@ -992,10 +984,8 @@ namespace FSpot
 						GdkWindow.DrawRectangle (Style.BaseGC (State), true, active);
 
 					// draw bars indicating photo counts
-					int i;
-					BoxXHit (area.X, out i);
-					int end;
-					BoxXHit (area.X + area.Width, out end);
+					BoxXHit (area.X, out var i);
+					BoxXHit (area.X + area.Width, out var end);
 					while (i <= end)
 						DrawBox (area, i++);
 				}
@@ -1059,9 +1049,8 @@ namespace FSpot
 
 			foreach (Pango.Layout l in tick_layouts) {
 				if (l != null) {
-					int width, height;
 
-					l.GetPixelSize (out width, out height);
+					l.GetPixelSize (out var width, out var height);
 					max_height = Math.Max (height, max_height);
 				}
 			}

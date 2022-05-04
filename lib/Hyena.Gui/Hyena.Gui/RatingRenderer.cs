@@ -68,8 +68,7 @@ namespace Hyena.Gui
 			Cairo.Color hover_fill_color = fill_color;
 			hover_fill_color.A = hoverFillOpacity;
 
-			double x, y;
-			ComputePosition (area, out x, out y);
+			ComputePosition (area, out var x, out var y);
 
 			cr.LineWidth = 1.0;
 			cr.Translate (0.5, 0.5);
@@ -120,8 +119,7 @@ namespace Hyena.Gui
 
 		public int RatingFromPosition (Gdk.Rectangle area, double x)
 		{
-			double r_x, r_y;
-			ComputePosition (area, out r_x, out r_y);
+			ComputePosition (area, out var r_x, out var r_y);
 			return x <= r_x ? 0 : Clamp (MinRating, MaxRating, (int)Math.Ceiling ((x - r_x) / Size) + MinRating);
 		}
 

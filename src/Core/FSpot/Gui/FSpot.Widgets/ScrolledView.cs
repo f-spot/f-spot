@@ -65,11 +65,9 @@ namespace FSpot.Widgets
 
 		public bool HideControls (bool force)
 		{
-			int x, y;
-			Gdk.ModifierType type;
 
 			if (!force && IsRealized) {
-				ControlBox.GdkWindow.GetPointer (out x, out y, out type);
+				ControlBox.GdkWindow.GetPointer (out var x, out var y, out var type);
 				if (x < ControlBox.Allocation.Width && y < ControlBox.Allocation.Height) {
 					hide.Start ();
 					return true;

@@ -62,8 +62,7 @@ namespace FSpot.UI.Dialog
 			tag_name_entry.Text = t.Name;
 
 			icon_image.Pixbuf = t.Icon;
-			Cms.Profile screen_profile;
-			if (icon_image.Pixbuf != null && FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out screen_profile)) {
+			if (icon_image.Pixbuf != null && FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screen_profile)) {
 				icon_image.Pixbuf = icon_image.Pixbuf.Copy ();
 				FSpot.ColorManagement.ApplyProfile (icon_image.Pixbuf, screen_profile);
 			}
@@ -143,8 +142,7 @@ namespace FSpot.UI.Dialog
 			else if (response == (ResponseType)1)
 				tag.Icon = null;
 
-			Cms.Profile screen_profile;
-			if (tag.Icon != null && FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out screen_profile)) {
+			if (tag.Icon != null && FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screen_profile)) {
 				icon_image.Pixbuf = tag.Icon.Copy ();
 				FSpot.ColorManagement.ApplyProfile (icon_image.Pixbuf, screen_profile);
 			} else

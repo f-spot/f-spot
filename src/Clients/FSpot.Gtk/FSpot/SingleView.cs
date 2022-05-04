@@ -512,8 +512,7 @@ namespace FSpot
 
 		void SavePreferences ()
 		{
-			int width, height;
-			Window.GetSize (out width, out height);
+			Window.GetSize (out var width, out var height);
 
 			bool maximized = ((Window.GdkWindow.State & Gdk.WindowState.Maximized) > 0);
 			Preferences.Set (Preferences.ViewerMaximized, maximized);

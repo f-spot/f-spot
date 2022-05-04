@@ -89,7 +89,7 @@ namespace FSpot.UI.Dialog
 			import_button.Sensitive = false;
 
 			tag_entry = new TagEntry (App.Instance.Database.Tags, false);
-			tag_entry.UpdateFromTagNames (new string[] { });
+			tag_entry.UpdateFromTagNames (Array.Empty<string> ());
 			tagentry_box.Add (tag_entry);
 			tag_entry.Show ();
 			attachtags_label.MnemonicWidget = tag_entry;
@@ -121,7 +121,7 @@ namespace FSpot.UI.Dialog
 			merge_raw_and_jpeg_check.Active = preferences.MergeRawAndJpeg;
 		}
 
-		async Task ScanSources ()
+		void ScanSources ()
 		{
 			// Populates the source combo box
 			Sources = new TreeStore (typeof (ImportSource), typeof (string), typeof (string), typeof (bool));
@@ -137,7 +137,7 @@ namespace FSpot.UI.Dialog
 			sources_combo.SetAttributes (render2, "text", 1, "sensitive", 3);
 
 			try {
-				await PopulateSourceCombo (null);
+				PopulateSourceCombo (null);
 				QueueDraw ();
 			} catch (Exception) {
 				// Swallow the exception if the import was cancelled / dialog was closed.
@@ -146,7 +146,7 @@ namespace FSpot.UI.Dialog
 			}
 		}
 
-		async Task PopulateSourceCombo (ImportSource sourceToActivate)
+		void PopulateSourceCombo (ImportSource sourceToActivate)
 		{
 			int activateIndex = 0;
 			sources_combo.Changed -= OnSourceComboChanged;
