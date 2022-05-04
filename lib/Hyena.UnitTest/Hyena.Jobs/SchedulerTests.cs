@@ -88,9 +88,9 @@ namespace Hyena.Jobs
 		public void TestSpeedJobPreemptsNonSpeedJobs ()
 		{
 			scheduler = new Scheduler ();
-			TestJob a = new TestJob (200, PriorityHints.None, Resource.Cpu);
-			TestJob b = new TestJob (200, PriorityHints.None, Resource.Disk);
-			TestJob c = new TestJob (200, PriorityHints.LongRunning, Resource.Database);
+			var a = new TestJob (200, PriorityHints.None, Resource.Cpu);
+			var b = new TestJob (200, PriorityHints.None, Resource.Disk);
+			var c = new TestJob (200, PriorityHints.LongRunning, Resource.Database);
 			scheduler.Add (a);
 			scheduler.Add (b);
 			scheduler.Add (c);

@@ -48,9 +48,9 @@ namespace FSpot.Addins.Editors
 
 		public override Widget ConfigurationWidget ()
 		{
-			VBox vbox = new VBox ();
+			var vbox = new VBox ();
 
-			Label info = new Label (Strings.SelectTheAreaThatYouWantPixelated);
+			var info = new Label (Strings.SelectTheAreaThatYouWantPixelated);
 
 			vbox.Add (info);
 
@@ -61,7 +61,7 @@ namespace FSpot.Addins.Editors
 		{
 			Pixbuf output = input.Copy ();
 
-			Pixbuf sub = new Pixbuf (output, State.Selection.X, State.Selection.Y,
+			var sub = new Pixbuf (output, State.Selection.X, State.Selection.Y,
 					State.Selection.Width, State.Selection.Height);
 			/* lazy man's pixelate: scale down and then back up */
 			Pixbuf down = sub.ScaleSimple (State.Selection.Width / 75, State.Selection.Height / 75,

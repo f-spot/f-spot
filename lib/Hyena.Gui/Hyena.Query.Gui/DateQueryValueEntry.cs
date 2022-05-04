@@ -84,7 +84,7 @@ namespace Hyena.Query.Gui
 		protected void HandleValueChanged (object o, EventArgs args)
 		{
 			try {
-				DateTime dt = new DateTime (year_entry.ValueAsInt, month_entry.ValueAsInt, day_entry.ValueAsInt);
+				var dt = new DateTime (year_entry.ValueAsInt, month_entry.ValueAsInt, day_entry.ValueAsInt);
 				query_value.SetValue (dt);
 			} catch {
 				Log.Debug ("Caught exception raised because of invalid date");

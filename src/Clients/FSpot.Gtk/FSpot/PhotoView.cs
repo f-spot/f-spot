@@ -313,7 +313,7 @@ namespace FSpot
 			Add (vbox);
 
 			background = new EventBox ();
-			Frame frame = new Frame ();
+			var frame = new Frame ();
 			background.Add (frame);
 
 			frame.ShadowType = ShadowType.In;
@@ -324,7 +324,7 @@ namespace FSpot
 
 			frame.Add (inner_hbox);
 
-			BrowsablePointer bp = new BrowsablePointer (query, -1);
+			var bp = new BrowsablePointer (query, -1);
 			View = new PhotoImageView (bp);
 
 			filmstrip = new Filmstrip (bp);
@@ -345,13 +345,13 @@ namespace FSpot
 			inner_vbox.PackStart (photo_view_scrolled, true, true, 0);
 			inner_hbox.PackStart (inner_vbox, true, true, 0);
 
-			HBox lower_hbox = new HBox (false, 2);
+			var lower_hbox = new HBox (false, 2);
 			//inner_hbox.BorderWidth = 6;
 
 			tag_view = new TagView ();
 			lower_hbox.PackStart (tag_view, false, true, 0);
 
-			Label comment = new Label (Strings.Description);
+			var comment = new Label (Strings.Description);
 			lower_hbox.PackStart (comment, false, false, 0);
 			description_entry = new Entry ();
 			lower_hbox.PackStart (description_entry, true, true, 0);

@@ -32,7 +32,7 @@ namespace Gtk
 		public static HButtonBox GetActionArea (this Dialog dialog)
 		{
 			IntPtr raw_ret = gtk_dialog_get_action_area (dialog.Handle);
-			Gtk.HButtonBox ret = GLib.Object.GetObject (raw_ret) as Gtk.HButtonBox;
+			var ret = GLib.Object.GetObject (raw_ret) as Gtk.HButtonBox;
 			return ret;
 		}
 
@@ -42,7 +42,7 @@ namespace Gtk
 		public static Widget GetContentArea (this Dialog dialog)
 		{
 			IntPtr raw_ret = gtk_dialog_get_content_area (dialog.Handle);
-			Gtk.Widget ret = GLib.Object.GetObject (raw_ret) as Gtk.Widget;
+			var ret = GLib.Object.GetObject (raw_ret) as Gtk.Widget;
 			return ret;
 		}
 	}

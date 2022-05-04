@@ -109,7 +109,7 @@ namespace Hyena.Query.Gui
 				if (!Enabled)
 					return null;
 
-				IntegerQueryValue val = new IntegerQueryValue ();
+				var val = new IntegerQueryValue ();
 				val.SetValue (count_spin.ValueAsInt);
 				return val;
 			}

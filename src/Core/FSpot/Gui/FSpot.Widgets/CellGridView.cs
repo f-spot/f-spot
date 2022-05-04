@@ -316,7 +316,7 @@ namespace FSpot.Widgets
 			cell_area.Width -= 1;
 			cell_area.Height -= 1;
 
-			Gdk.Rectangle visible =
+			var visible =
 				new Gdk.Rectangle ((int)Hadjustment.Value,
 								   (int)Vadjustment.Value,
 								   Allocation.Width,
@@ -466,7 +466,7 @@ namespace FSpot.Widgets
 
 			Gdk.Rectangle area;
 
-			Gdk.Region offscreen = new Gdk.Region ();
+			var offscreen = new Gdk.Region ();
 			/*
             Logger.Log.Debug ("step ({0}, {1}) allocation ({2},{3},{4},{5})",
                     xstep, ystep, Hadjustment.Value, Vadjustment.Value,
@@ -501,7 +501,7 @@ namespace FSpot.Widgets
 
 			// always load the onscreen area last to make sure it
 			// is first in the loading
-			Gdk.Region onscreen = Gdk.Region.Rectangle (area);
+			var onscreen = Gdk.Region.Rectangle (area);
 			offscreen.Subtract (onscreen);
 
 			PreloadRegion (offscreen, ystep);

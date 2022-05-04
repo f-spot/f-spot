@@ -143,7 +143,7 @@ namespace Hyena.Gui.Canvas
 
 			layout.GetPixelSize (out var text_width, out var text_height);
 
-			Rect new_alloc = new Rect (
+			var new_alloc = new Rect (
 				Math.Round ((RenderSize.Width - text_width) * HorizontalAlignment),
 				Math.Round ((RenderSize.Height - text_height) * VerticalAlignment),
 				text_width,
@@ -208,7 +208,7 @@ namespace Hyena.Gui.Canvas
 			TooltipMarkup = layout.IsEllipsized ? last_formatted_text : null;
 
 			if (fade) {
-				LinearGradient mask = new LinearGradient (RenderSize.Width - 20, 0, RenderSize.Width, 0);
+				var mask = new LinearGradient (RenderSize.Width - 20, 0, RenderSize.Width, 0);
 				mask.AddColorStop (0, new Color (0, 0, 0, 1));
 				mask.AddColorStop (1, new Color (0, 0, 0, 0));
 

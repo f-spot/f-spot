@@ -48,7 +48,7 @@ public class TagPopup
 		int photo_count = App.Instance.Organizer.SelectedPhotos ().Length;
 		int tags_count = tags.Length;
 
-		Gtk.Menu popup_menu = new Gtk.Menu ();
+		var popup_menu = new Gtk.Menu ();
 
 		GtkUtil.MakeMenuItem (popup_menu,
 				Strings.Find,

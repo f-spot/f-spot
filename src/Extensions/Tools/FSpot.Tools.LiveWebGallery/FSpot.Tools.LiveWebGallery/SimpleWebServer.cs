@@ -106,7 +106,7 @@ namespace FSpot.Tools.LiveWebGallery
 					if (stats != null)
 						stats.IncomingRequest ((client.Client.RemoteEndPoint as IPEndPoint).Address);
 
-					RequestProcessor parser = new RequestProcessor (client, handlers);
+					var parser = new RequestProcessor (client, handlers);
 					new Thread (new ThreadStart (parser.Process)).Start ();
 				}
 			}

@@ -67,7 +67,7 @@ namespace Hyena.Gui
 
 		public bool CanMerge (IUndoAction action)
 		{
-			EditableInsertAction insert = action as EditableInsertAction;
+			var insert = action as EditableInsertAction;
 			if (insert == null || string.IsNullOrEmpty (text)) {
 				return false;
 			}

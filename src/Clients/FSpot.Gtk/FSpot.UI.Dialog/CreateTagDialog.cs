@@ -92,7 +92,7 @@ namespace FSpot.UI.Dialog
 			categories.Add (tag_store.RootCategory);
 			PopulateCategories (categories, tag_store.RootCategory);
 
-			ListStore category_store = new ListStore (typeof (Pixbuf), typeof (string));
+			var category_store = new ListStore (typeof (Pixbuf), typeof (string));
 
 			foreach (Category category in categories) {
 				category_store.AppendValues (category.SizedIcon, Indentation (category) + category.Name);
@@ -157,7 +157,7 @@ namespace FSpot.UI.Dialog
 				if ((value != null) && (categories.Count > 0)) {
 					//System.Console.WriteLine("TagCreateCommand.set_Category(" + value.Name + ")");
 					for (int i = 0; i < categories.Count; i++) {
-						Category category = (Category)categories[i];
+						var category = (Category)categories[i];
 						// should there be an equals type method?
 						if (value.Id == category.Id) {
 							category_option_menu.Active = i;
@@ -193,7 +193,7 @@ namespace FSpot.UI.Dialog
 			Update ();
 			tag_name_entry.GrabFocus ();
 
-			ResponseType response = (ResponseType)Run ();
+			var response = (ResponseType)Run ();
 
 
 			Tag new_tag = null;

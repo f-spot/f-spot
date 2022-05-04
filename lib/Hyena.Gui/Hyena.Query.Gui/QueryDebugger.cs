@@ -50,9 +50,9 @@ namespace Hyena.Query.Gui
 		{
 			SetDefaultSize (800, 600);
 
-			VBox input_box = new VBox ();
+			var input_box = new VBox ();
 			input_box.Spacing = 8;
-			ScrolledWindow sw = new ScrolledWindow ();
+			var sw = new ScrolledWindow ();
 			sw.ShadowType = ShadowType.In;
 			sw.HscrollbarPolicy = PolicyType.Never;
 			input = new TextView ();
@@ -66,13 +66,13 @@ namespace Hyena.Query.Gui
 			input.WrapMode = WrapMode.Word;
 			sw.Add (input);
 			input_box.PackStart (sw, true, true, 0);
-			HBox button_box = new HBox ();
-			Button parse = new Button ("Parse as User Query");
+			var button_box = new HBox ();
+			var parse = new Button ("Parse as User Query");
 			parse.Clicked += OnParseUserQuery;
 			button_box.PackStart (parse, false, false, 0);
 			input_box.PackStart (button_box, false, false, 0);
 
-			HBox output_box = new HBox ();
+			var output_box = new HBox ();
 			output_box.Spacing = 8;
 			sw = new ScrolledWindow ();
 			sw.ShadowType = ShadowType.In;
@@ -89,7 +89,7 @@ namespace Hyena.Query.Gui
 			sw.Add (xml);
 			output_box.PackStart (sw, true, true, 0);
 
-			VPaned pane = new VPaned ();
+			var pane = new VPaned ();
 			pane.Add1 (input_box);
 			pane.Add2 (output_box);
 			pane.Position = 100;
@@ -104,7 +104,7 @@ namespace Hyena.Query.Gui
 
 		void LoadQueryFieldSet ()
 		{
-			Assembly asm = Assembly.LoadFile ("Banshee.Services.dll");
+			var asm = Assembly.LoadFile ("Banshee.Services.dll");
 			Type t = asm.GetType ("Banshee.Query.BansheeQuery");
 			FieldInfo f = t.GetField ("FieldSet", BindingFlags.Public | BindingFlags.Static);
 			query_field_set = (QueryFieldSet)f.GetValue (null);
@@ -117,17 +117,17 @@ namespace Hyena.Query.Gui
 
 		void OnParseUserQuery (object o, EventArgs args)
 		{
-			UserQueryParser parser = new UserQueryParser ();
+			var parser = new UserQueryParser ();
 			parser.InputReader = StringToStream (input.Buffer.Text);
 			QueryNode node = parser.BuildTree (query_field_set);
 
 			sql.Buffer.Text = node.ToSql (query_field_set) ?? string.Empty;
 
-			XmlDocument doc = new XmlDocument ();
+			var doc = new XmlDocument ();
 			doc.LoadXml (node.ToXml (query_field_set));
 
-			MemoryStream s = new MemoryStream ();
-			XmlTextWriter w = new XmlTextWriter (s, System.Text.Encoding.UTF8);
+			var s = new MemoryStream ();
+			var w = new XmlTextWriter (s, System.Text.Encoding.UTF8);
 			w.Formatting = Formatting.Indented;
 			doc.WriteContentTo (w);
 			w.Flush ();

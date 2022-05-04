@@ -147,7 +147,7 @@ namespace Hyena.Query
 
 			if (op == null) op = qv.OperatorSet.First;
 
-			StringBuilder sb = new StringBuilder ();
+			var sb = new StringBuilder ();
 
 			if (no_custom_format) {
 				string column_with_key = Column;

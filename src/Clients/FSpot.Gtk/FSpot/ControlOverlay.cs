@@ -216,7 +216,7 @@ namespace FSpot
 			if (composited)
 				return;
 
-			Gdk.Pixmap bitmap = new Gdk.Pixmap (GdkWindow,
+			var bitmap = new Gdk.Pixmap (GdkWindow,
 								Allocation.Width,
 								Allocation.Height, 1);
 

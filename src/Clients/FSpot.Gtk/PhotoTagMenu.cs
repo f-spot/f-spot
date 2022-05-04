@@ -50,7 +50,7 @@ public class PhotoTagMenu : Menu
 
 	public void Populate (IPhoto[] photos)
 	{
-		Dictionary<uint, Tag> dict = new Dictionary<uint, Tag> ();
+		var dict = new Dictionary<uint, Tag> ();
 		if (photos != null) {
 			foreach (IPhoto p in photos) {
 				foreach (Tag t in p.Tags) {
@@ -68,7 +68,7 @@ public class PhotoTagMenu : Menu
 		if (dict.Count == 0) {
 			/* Fixme this should really set parent menu
 			   items insensitve */
-			MenuItem item = new MenuItem (Strings.ParenNoTagsParen);
+			var item = new MenuItem (Strings.ParenNoTagsParen);
 			this.Append (item);
 			item.Sensitive = false;
 			item.ShowAll ();
@@ -87,7 +87,7 @@ public class PhotoTagMenu : Menu
 	void HandleActivate (object obj, EventArgs args)
 	{
 		if (TagSelected != null) {
-			TagMenu.TagMenuItem t = obj as TagMenu.TagMenuItem;
+			var t = obj as TagMenu.TagMenuItem;
 			if (t != null)
 				TagSelected (t.Value);
 			else

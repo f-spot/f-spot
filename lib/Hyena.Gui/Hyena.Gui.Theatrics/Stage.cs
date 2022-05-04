@@ -87,7 +87,7 @@ namespace Hyena.Gui.Theatrics
 					throw new InvalidOperationException ("Stage already contains this actor");
 				}
 
-				Actor<T> actor = new Actor<T> (target, duration);
+				var actor = new Actor<T> (target, duration);
 				actors.Add (target, actor);
 
 				CheckTimeout ();
@@ -181,7 +181,7 @@ namespace Hyena.Gui.Theatrics
 				return false;
 			}
 
-			Queue<Actor<T>> actors = new Queue<Actor<T>> (this.actors.Values);
+			var actors = new Queue<Actor<T>> (this.actors.Values);
 			while (actors.Count > 0) {
 				Actor<T> actor = actors.Dequeue ();
 				actor.Step ();

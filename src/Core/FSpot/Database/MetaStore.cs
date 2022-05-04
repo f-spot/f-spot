@@ -120,7 +120,7 @@ namespace FSpot.Database
 				if (reader["data"] != null)
 					data = reader["data"].ToString ();
 
-				MetaItem item = new MetaItem (id, name, data);
+				var item = new MetaItem (id, name, data);
 
 				AddToCache (item);
 			}
@@ -142,7 +142,7 @@ namespace FSpot.Database
 			//Command.executeNonQuery. It smells of a bug, but there might
 			//have been a reason for this
 
-			MetaItem item = new MetaItem (id, name, data);
+			var item = new MetaItem (id, name, data);
 
 
 			AddToCache (item);

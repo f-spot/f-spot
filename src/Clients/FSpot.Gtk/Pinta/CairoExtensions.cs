@@ -46,7 +46,7 @@ namespace Pinta.Core
 			Cairo.ImageSurface surf = surfSource.Clone ();
 			surf.Flush ();
 
-			ColorBgra* dstPtr = (ColorBgra*)surf.DataPtr;
+			var dstPtr = (ColorBgra*)surf.DataPtr;
 			int len = surf.Data.Length / 4;
 
 			for (int i = 0; i < len; i++) {
@@ -55,14 +55,14 @@ namespace Pinta.Core
 				dstPtr++;
 			}
 
-			Gdk.Pixbuf pb = new Gdk.Pixbuf (surf.Data, true, 8, surf.Width, surf.Height, surf.Stride);
+			var pb = new Gdk.Pixbuf (surf.Data, true, 8, surf.Width, surf.Height, surf.Stride);
 			(surf as IDisposable).Dispose ();
 			return pb;
 		}
 
 		public static unsafe ColorBgra* GetPointAddressUnchecked (this ImageSurface surf, int x, int y)
 		{
-			ColorBgra* dstPtr = (ColorBgra*)surf.DataPtr;
+			var dstPtr = (ColorBgra*)surf.DataPtr;
 
 			dstPtr += (x) + (y * surf.Width);
 

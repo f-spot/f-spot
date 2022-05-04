@@ -186,7 +186,7 @@ namespace FSpot.Exporters.Folder
 			MakeDir (SubdirPath (req.Name));
 			path = SubdirPath (req.Name, ImageName (image_num));
 
-			using (FilterRequest request = new FilterRequest (photo.DefaultVersion.Uri)) {
+			using (var request = new FilterRequest (photo.DefaultVersion.Uri)) {
 				filter_set.Convert (request);
 				if (request.Current.LocalPath == path)
 					request.Preserve (request.Current);
@@ -206,7 +206,7 @@ namespace FSpot.Exporters.Folder
 					if (scale && req.AvoidScale (Size))
 						continue;
 
-					FilterSet req_set = new FilterSet ();
+					var req_set = new FilterSet ();
 					req_set.Add (new ResizeFilter ((uint)Math.Max (req.Width, req.Height)));
 
 					bool sharpen;
@@ -223,7 +223,7 @@ namespace FSpot.Exporters.Folder
 						if (req.Name == "thumbs")
 							req_set.Add (new SharpFilter (0.1, 2, 5));
 					}
-					using (FilterRequest tmp_req = new FilterRequest (photo.DefaultVersion.Uri)) {
+					using (var tmp_req = new FilterRequest (photo.DefaultVersion.Uri)) {
 						req_set.Convert (tmp_req);
 						MakeDir (SubdirPath (req.Name));
 						path = SubdirPath (req.Name, ImageName (image_num));

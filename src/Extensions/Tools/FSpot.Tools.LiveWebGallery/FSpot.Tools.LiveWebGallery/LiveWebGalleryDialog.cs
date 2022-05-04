@@ -181,7 +181,7 @@ namespace FSpot.Tools.LiveWebGallery
 
 		void ShowTagMenuFor (Widget widget, TagMenu.TagSelectedHandler handler)
 		{
-			TagMenu tag_menu = new TagMenu (null, App.Instance.Database.Tags);
+			var tag_menu = new TagMenu (null, App.Instance.Database.Tags);
 			tag_menu.TagSelected += handler;
 			tag_menu.Populate ();
 			GetPosition (out var x, out var y);

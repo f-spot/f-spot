@@ -312,7 +312,7 @@ namespace FSpot
 		bool BoxHit (double x, double y, out int position)
 		{
 			if (BoxXHit (x, out position)) {
-				Box box = new Box (this, position);
+				var box = new Box (this, position);
 
 				if (box.Bounds.Contains ((int)x, (int)y))
 					return true;
@@ -503,7 +503,7 @@ namespace FSpot
 		/// <param name='item'>index of a tick</param>
 		void DrawBox (Rectangle area, int item)
 		{
-			Box box = new Box (this, item);
+			var box = new Box (this, item);
 			Rectangle bar = box.Bar;
 
 			if (bar.Intersect (area, out area)) {
@@ -563,7 +563,7 @@ namespace FSpot
 
 		bool DrawOrderMenu (Gdk.EventButton args)
 		{
-			Gtk.Menu order_menu = new Gtk.Menu ();
+			var order_menu = new Gtk.Menu ();
 
 			order_menu.Append (App.Instance.Organizer.ReverseOrderAction.CreateMenuItem ());
 
@@ -912,7 +912,7 @@ namespace FSpot
 			{
 				int limit_offset = limit_type == LimitType.Max ? 1 : 0;
 
-				Rectangle bounds = new Rectangle (0, 0, width, selector.background.Height + handle_height);
+				var bounds = new Rectangle (0, 0, width, selector.background.Height + handle_height);
 
 				if (Dragging) {
 					bounds.X = DragStart.X + DragOffset;
@@ -926,12 +926,12 @@ namespace FSpot
 			public override void Draw (Rectangle area)
 			{
 				Rectangle bounds = Bounds ();
-				Rectangle top = new Rectangle (bounds.X,
+				var top = new Rectangle (bounds.X,
 											   bounds.Y,
 											   bounds.Width,
 											   handle_height);
 
-				Rectangle bottom = new Rectangle (bounds.X,
+				var bottom = new Rectangle (bounds.X,
 												  bounds.Y + bounds.Height - handle_height,
 												  bounds.Width,
 												  handle_height);
@@ -1113,7 +1113,7 @@ namespace FSpot
 			base.OnSizeAllocated (alloc);
 			int legend_height = LegendHeight ();
 
-			Gdk.Rectangle bar = new Rectangle (alloc.X + border, alloc.Y + border,
+			var bar = new Rectangle (alloc.X + border, alloc.Y + border,
 							   alloc.Width - 2 * border,
 							   alloc.Height - 2 * border - glass.handle_height);
 

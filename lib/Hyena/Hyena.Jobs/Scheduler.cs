@@ -117,7 +117,7 @@ namespace Hyena.Jobs
 		public void CancelAll (bool evenDataLossJobs)
 		{
 			lock (jobs) {
-				List<Job> jobs_copy = new List<Job> (jobs);
+				var jobs_copy = new List<Job> (jobs);
 				foreach (var job in jobs_copy) {
 					if (evenDataLossJobs || !job.Has (PriorityHints.DataLossIfStopped)) {
 						job.Cancel ();
@@ -128,7 +128,7 @@ namespace Hyena.Jobs
 
 		void OnJobFinished (object o, EventArgs args)
 		{
-			Job job = o as Job;
+			var job = o as Job;
 
 			lock (jobs) {
 				jobs.Remove (job);

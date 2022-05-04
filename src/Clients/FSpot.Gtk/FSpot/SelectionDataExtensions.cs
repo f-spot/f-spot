@@ -71,7 +71,7 @@ namespace FSpot
 
 			PhotoStore photo_store = App.Instance.Database.Photos;
 
-			Photo[] photos = new Photo[length];
+			var photos = new Photo[length];
 
 			for (int i = 0; i < length; i++) {
 				uint id = System.BitConverter.ToUInt32 (selection_data.Data, i * size);
@@ -105,7 +105,7 @@ namespace FSpot
 
 			TagStore tag_store = App.Instance.Database.Tags;
 
-			Tag[] tags = new Tag[length];
+			var tags = new Tag[length];
 
 			for (int i = 0; i < length; i++) {
 				uint id = System.BitConverter.ToUInt32 (selection_data.Data, i * size);

@@ -146,7 +146,7 @@ namespace FSpot.Core
 			if (c2 == null)
 				throw new ArgumentNullException (nameof (c2));
 
-			PhotosChanges changes = new PhotosChanges ();
+			var changes = new PhotosChanges ();
 			changes.changes = c1.changes | c2.changes;
 			changes.VersionsChanged = c1.VersionsChanged || c2.VersionsChanged;
 			changes.TagsChanged = c1.TagsChanged || c2.TagsChanged;

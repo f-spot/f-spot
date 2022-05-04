@@ -98,7 +98,7 @@ public class PhotoVersionCommands
 	{
 		public bool Execute (PhotoStore store, Photo photo, Gtk.Window parent_window)
 		{
-			VersionNameDialog request = new VersionNameDialog (VersionNameDialog.RequestType.Rename,
+			var request = new VersionNameDialog (VersionNameDialog.RequestType.Rename,
 										 photo, parent_window);
 
 			ResponseType response = request.Run (out var new_name);
@@ -189,7 +189,7 @@ public class PhotoVersionCommands
 	{
 		Logger.Log.Debug (e, "");
 		string desc = string.Format (Strings.ReceivedExceptionX, e.Message);
-		HigMessageDialog md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent,
+		var md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent,
 								Gtk.MessageType.Error, ButtonsType.Ok, msg, desc);
 		md.Run ();
 		md.Destroy ();

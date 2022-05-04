@@ -66,7 +66,7 @@ namespace Hyena.Gui
 
 		public void Merge (IUndoAction action)
 		{
-			EditableEraseAction erase = (EditableEraseAction)action;
+			var erase = (EditableEraseAction)action;
 			if (start == erase.start) {
 				text += erase.text;
 				end += erase.end - erase.start;
@@ -78,7 +78,7 @@ namespace Hyena.Gui
 
 		public bool CanMerge (IUndoAction action)
 		{
-			EditableEraseAction erase = action as EditableEraseAction;
+			var erase = action as EditableEraseAction;
 			if (erase == null) {
 				return false;
 			}

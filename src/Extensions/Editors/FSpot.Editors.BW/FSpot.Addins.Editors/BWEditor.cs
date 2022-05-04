@@ -58,8 +58,8 @@ namespace FSpot.Addins.Editors
 				Logger.Log.Warning ("unsupported pixbuf format");
 				return (Pixbuf)input.Clone ();
 			}
-			Pixbuf output = new Pixbuf (input.Colorspace, input.HasAlpha, input.BitsPerSample, input.Width, input.Height);
-			Vector4 multiply = new Vector4 ((float)(r.Value / 100.0), (float)(g.Value / 100.0), (float)(b.Value / 100.0), 0);
+			var output = new Pixbuf (input.Colorspace, input.HasAlpha, input.BitsPerSample, input.Width, input.Height);
+			var multiply = new Vector4 ((float)(r.Value / 100.0), (float)(g.Value / 100.0), (float)(b.Value / 100.0), 0);
 			Normalize (ref multiply);
 
 			bool has_alpha = input.HasAlpha;
@@ -111,7 +111,7 @@ namespace FSpot.Addins.Editors
 
 		public override Widget ConfigurationWidget ()
 		{
-			VBox h = new VBox ();
+			var h = new VBox ();
 			r = new HScale (0, 100, 1);
 			r.ModifyBg (StateType.Selected, new Color (0xff, 0, 0));
 			r.Value = 80;
@@ -131,7 +131,7 @@ namespace FSpot.Addins.Editors
 			c.CurveType = CurveType.Spline;
 			c.SetRange (0, 255, 0, 255);
 			h.Add (c);
-			Button btn = new Button (Gtk.Stock.Refresh);
+			var btn = new Button (Gtk.Stock.Refresh);
 			btn.Clicked += delegate { UpdatePreview (); };
 			h.Add (btn);
 			return h;

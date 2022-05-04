@@ -39,7 +39,7 @@ namespace Hyena.Gui
 		{
 			Application.Init ();
 			Hyena.ThreadAssist.InitializeMainThread ();
-			TestModuleRunner runner = new TestModuleRunner ();
+			var runner = new TestModuleRunner ();
 			runner.DeleteEvent += delegate { Application.Quit (); };
 			runner.ShowAll ();
 			Application.Run ();
@@ -69,17 +69,17 @@ namespace Hyena.Gui
 
 		void BuildView ()
 		{
-			VBox box = new VBox ();
+			var box = new VBox ();
 			Add (box);
 
-			ScrolledWindow sw = new ScrolledWindow ();
+			var sw = new ScrolledWindow ();
 			sw.HscrollbarPolicy = PolicyType.Never;
 
-			TreeView view = new TreeView ();
+			var view = new TreeView ();
 			view.RowActivated += delegate (object o, RowActivatedArgs args) {
 				if (store.GetIter (out var iter, args.Path)) {
-					Type type = (Type)store.GetValue (iter, 1);
-					Window window = (Window)Activator.CreateInstance (type);
+					var type = (Type)store.GetValue (iter, 1);
+					var window = (Window)Activator.CreateInstance (type);
 					window.WindowPosition = WindowPosition.Center;
 					window.DeleteEvent += delegate { window.Destroy (); };
 					window.Show ();
@@ -92,7 +92,7 @@ namespace Hyena.Gui
 			box.PackStart (sw, true, true, 0);
 			sw.ShowAll ();
 
-			Button button = new Button (Stock.Quit);
+			var button = new Button (Stock.Quit);
 			button.Clicked += delegate { Destroy (); Application.Quit (); };
 			box.PackStart (button, false, false, 0);
 

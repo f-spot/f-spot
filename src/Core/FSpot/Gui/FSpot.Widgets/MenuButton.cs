@@ -68,7 +68,7 @@ namespace FSpot.Widgets
 
 		public MenuButton (string label, Menu menu, ArrowType arrow_type) : base ()
 		{
-			HBox hbox = new HBox ();
+			var hbox = new HBox ();
 
 			Image = new Image ();
 			hbox.PackStart (Image, false, false, 1);

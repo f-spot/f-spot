@@ -57,7 +57,7 @@ namespace Hyena.Gui
 
 		public static implicit operator byte[] (DragDropList<T> transferrable)
 		{
-			IntPtr handle = (IntPtr)GCHandle.Alloc (transferrable);
+			var handle = (IntPtr)GCHandle.Alloc (transferrable);
 			return System.Text.Encoding.ASCII.GetBytes (Convert.ToString (handle));
 		}
 
@@ -65,9 +65,9 @@ namespace Hyena.Gui
 		{
 			try {
 				string str_handle = System.Text.Encoding.ASCII.GetString (transferrable);
-				IntPtr handle_ptr = (IntPtr)Convert.ToInt64 (str_handle);
-				GCHandle handle = (GCHandle)handle_ptr;
-				DragDropList<T> o = (DragDropList<T>)handle.Target;
+				var handle_ptr = (IntPtr)Convert.ToInt64 (str_handle);
+				var handle = (GCHandle)handle_ptr;
+				var o = (DragDropList<T>)handle.Target;
 				handle.Free ();
 				return o;
 			} catch {

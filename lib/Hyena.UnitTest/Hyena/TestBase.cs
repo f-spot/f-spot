@@ -48,7 +48,7 @@ namespace Hyena.Tests
 
 		public static TransformPair<F, T>[] GetFrom (params object[] objects)
 		{
-			TransformPair<F, T>[] pairs = new TransformPair<F, T>[objects.Length / 2];
+			var pairs = new TransformPair<F, T>[objects.Length / 2];
 			for (int i = 0; i < objects.Length; i += 2) {
 				pairs[i / 2] = new TransformPair<F, T> ((F)objects[i], (T)objects[i + 1]);
 			}
@@ -77,7 +77,7 @@ namespace Hyena.Tests
 
 		public static void AssertForEach<T> (IEnumerable<T> objects, Action<T> runner)
 		{
-			System.Text.StringBuilder sb = new System.Text.StringBuilder ();
+			var sb = new System.Text.StringBuilder ();
 			foreach (T o in objects) {
 				try { runner (o); } catch (AssertionException e) { sb.AppendFormat ("Failed assertion on {0}: {1}\n", o, e.Message); } catch (Exception e) { sb.AppendFormat ("\nCaught exception on {0}: {1}\n", o, e.ToString ()); }
 			}

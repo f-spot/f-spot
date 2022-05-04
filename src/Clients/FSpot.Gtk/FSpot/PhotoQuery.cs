@@ -381,7 +381,7 @@ namespace FSpot
 
 		public void Commit (int[] indexes)
 		{
-			List<Photo> to_commit = new List<Photo> ();
+			var to_commit = new List<Photo> ();
 			foreach (int index in indexes) {
 				to_commit.Add (this[index] as Photo);
 				reverse_lookup[(this[index] as Photo).Id] = index;

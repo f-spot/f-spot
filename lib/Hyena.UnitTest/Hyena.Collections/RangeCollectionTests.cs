@@ -45,7 +45,7 @@ namespace Hyena.Collections.Tests
 		[Test]
 		public void MergedRanges ()
 		{
-			RangeCollection range = new RangeCollection ();
+			var range = new RangeCollection ();
 			int[] indexes = new int[] { 0, 7, 5, 9, 1, 6, 8, 2, 10, 12 };
 
 			_TestRanges (range, indexes);
@@ -76,7 +76,7 @@ namespace Hyena.Collections.Tests
 		[Test]
 		public void LargeSequentialContains ()
 		{
-			RangeCollection range = new RangeCollection ();
+			var range = new RangeCollection ();
 			int i, n = 1000000;
 
 			for (i = 0; i < n; i++) {
@@ -91,7 +91,7 @@ namespace Hyena.Collections.Tests
 		[Test]
 		public void LargeSequential ()
 		{
-			RangeCollection range = new RangeCollection ();
+			var range = new RangeCollection ();
 			int i, n = 1000000;
 
 			for (i = 0; i < n; i++) {
@@ -112,7 +112,7 @@ namespace Hyena.Collections.Tests
 		[Test]
 		public void LargeNonAdjacent ()
 		{
-			RangeCollection range = new RangeCollection ();
+			var range = new RangeCollection ();
 			int i, n = 1000000;
 
 			for (i = 0; i < n; i += 2) {
@@ -149,7 +149,7 @@ namespace Hyena.Collections.Tests
 		[Test]
 		public void RemoveSingles ()
 		{
-			RangeCollection range = new RangeCollection ();
+			var range = new RangeCollection ();
 			int[] indexes = new int[] { 0, 2, 4, 6, 8, 10, 12, 14 };
 			foreach (int index in indexes) {
 				range.Add (index);
@@ -227,7 +227,7 @@ namespace Hyena.Collections.Tests
 
 		static RangeCollection _SetupTestRemoveMerges ()
 		{
-			RangeCollection range = new RangeCollection ();
+			var range = new RangeCollection ();
 			int[] indexes = new int[] {
 				0,
 				2, 3, 4, 5,
@@ -275,7 +275,7 @@ namespace Hyena.Collections.Tests
 		[Test]
 		public void IndexOf ()
 		{
-			RangeCollection range = new RangeCollection ();
+			var range = new RangeCollection ();
 
 			range.Add (0);
 			range.Add (2);
@@ -304,7 +304,7 @@ namespace Hyena.Collections.Tests
 		[Test]
 		public void IndexerForGoodIndexes ()
 		{
-			RangeCollection range = new RangeCollection ();
+			var range = new RangeCollection ();
 
 			/*
             Range  Idx  Value
@@ -345,9 +345,9 @@ namespace Hyena.Collections.Tests
 		[Test]
 		public void StressForGoodIndexes ()
 		{
-			Random random = new Random (0xbeef);
-			RangeCollection ranges = new RangeCollection ();
-			List<int> indexes = new List<int> ();
+			var random = new Random (0xbeef);
+			var ranges = new RangeCollection ();
+			var indexes = new List<int> ();
 
 			for (int i = 0, n = 75000; i < n; i++) {
 				int value = random.Next (n);
@@ -402,7 +402,7 @@ namespace Hyena.Collections.Tests
 		[Test]
 		public void NegativeIndices ()
 		{
-			RangeCollection c = new RangeCollection ();
+			var c = new RangeCollection ();
 			c.Add (-10);
 			c.Add (-5);
 			c.Add (5);
@@ -428,7 +428,7 @@ namespace Hyena.Collections.Tests
 		[Test]
 		public void IPAddressRanges ()
 		{
-			RangeCollection ranges = new RangeCollection ();
+			var ranges = new RangeCollection ();
 
 			int start = GetAddress ("127.0.0.1");
 			int end = GetAddress ("127.0.0.50");
@@ -444,7 +444,7 @@ namespace Hyena.Collections.Tests
 
 		static int GetAddress (string addressStr)
 		{
-			System.Net.IPAddress address = System.Net.IPAddress.Parse (addressStr);
+			var address = System.Net.IPAddress.Parse (addressStr);
 			return (int)(System.Net.IPAddress.NetworkToHostOrder (
 				BitConverter.ToInt32 (address.GetAddressBytes (), 0)) >> 32);
 		}

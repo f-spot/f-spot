@@ -196,7 +196,7 @@ namespace FSpot
 		protected override void Reload ()
 		{
 			op = Operation.Begin ($"TimeAdaptor REAL Reload");
-			Thread reload = new Thread (new ThreadStart (DoReload));
+			var reload = new Thread (new ThreadStart (DoReload));
 			reload.IsBackground = true;
 			reload.Priority = ThreadPriority.Lowest;
 			reload.Start ();

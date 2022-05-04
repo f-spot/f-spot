@@ -71,7 +71,7 @@ namespace Hyena.Query.Gui
 			}
 
 			if (entry_type != null) {
-				QueryValueEntry entry = Activator.CreateInstance (entry_type) as QueryValueEntry;
+				var entry = Activator.CreateInstance (entry_type) as QueryValueEntry;
 				entry.QueryValue = qv;
 				return entry;
 			}

@@ -59,21 +59,21 @@ namespace Hyena.Data.Sqlite.Tests
 		[Test]
 		public void Constructor ()
 		{
-			HyenaSqliteCommand cmd = new HyenaSqliteCommand ("select foo from bar where baz = ?, bbz = ?, this = ?", "a", 32, "22");
+			var cmd = new HyenaSqliteCommand ("select foo from bar where baz = ?, bbz = ?, this = ?", "a", 32, "22");
 			Assert.AreEqual ("select foo from bar where baz = 'a', bbz = 32, this = '22'", GetGeneratedSql (cmd));
 		}
 
 		[Test]
 		public void CultureInvariant ()
 		{
-			HyenaSqliteCommand cmd = new HyenaSqliteCommand ("select foo from bar where baz = ?", 32.2);
+			var cmd = new HyenaSqliteCommand ("select foo from bar where baz = ?", 32.2);
 			Assert.AreEqual ("select foo from bar where baz = 32.2", GetGeneratedSql (cmd));
 		}
 
 		[Test]
 		public void ParameterSerialization ()
 		{
-			HyenaSqliteCommand cmd = new HyenaSqliteCommand ("select foo from bar where baz = ?");
+			var cmd = new HyenaSqliteCommand ("select foo from bar where baz = ?");
 
 			Assert.AreEqual ("select foo from bar where baz = NULL", GetGeneratedSql (cmd, null));
 			Assert.AreEqual ("select foo from bar where baz = 'It''s complicated, \"but\" ''''why not''''?'", GetGeneratedSql (cmd, "It's complicated, \"but\" ''why not''?"));
@@ -85,10 +85,10 @@ namespace Hyena.Data.Sqlite.Tests
 			Assert.AreEqual ("select foo from bar where baz = 1", GetGeneratedSql (cmd, true));
 			Assert.AreEqual ("select foo from bar where baz = 0", GetGeneratedSql (cmd, false));
 
-			HyenaSqliteCommand cmd2 = new HyenaSqliteCommand ("select foo from bar where baz = ?, bar = ?, boo = ?");
+			var cmd2 = new HyenaSqliteCommand ("select foo from bar where baz = ?, bar = ?, boo = ?");
 			Assert.AreEqual ("select foo from bar where baz = NULL, bar = NULL, boo = 22", GetGeneratedSql (cmd2, null, null, 22));
 
-			HyenaSqliteCommand cmd3 = new HyenaSqliteCommand ("select foo from bar where id in (?) and foo not in (?)");
+			var cmd3 = new HyenaSqliteCommand ("select foo from bar where id in (?) and foo not in (?)");
 			Assert.AreEqual ("select foo from bar where id in (1,2,4) and foo not in ('foo','baz')",
 					GetGeneratedSql (cmd3, new int[] { 1, 2, 4 }, new string[] { "foo", "baz" }));
 		}

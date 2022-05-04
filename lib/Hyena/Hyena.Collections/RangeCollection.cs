@@ -139,7 +139,7 @@ namespace Hyena.Collections
 			} else if (range.End == index) {
 				ranges[range_index].End--;
 			} else {
-				Range split_range = new Range (index + 1, range.End);
+				var split_range = new Range (index + 1, range.End);
 				ranges[range_index].End = index - 1;
 				Insert (range_index + 1, split_range);
 			}
@@ -239,7 +239,7 @@ namespace Hyena.Collections
 
 		public Range[] Ranges {
 			get {
-				Range[] ranges_copy = new Range[range_count];
+				var ranges_copy = new Range[range_count];
 				Array.Copy (ranges, ranges_copy, range_count);
 				return ranges_copy;
 			}

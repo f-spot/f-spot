@@ -52,7 +52,7 @@ namespace Hyena.Widgets
 			TypeHint = Gdk.WindowTypeHint.Utility;
 			Modal = true;
 
-			Frame frame = new Frame ();
+			var frame = new Frame ();
 			frame.Shadow = ShadowType.EtchedIn;
 			Add (frame);
 

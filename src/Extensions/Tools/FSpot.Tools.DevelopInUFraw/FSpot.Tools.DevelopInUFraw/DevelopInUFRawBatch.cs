@@ -43,7 +43,7 @@ namespace FSpot.Tools.DevelopInUFraw
 
 		public override void Run (object o, EventArgs e)
 		{
-			ProgressDialog pdialog = new ProgressDialog (Strings.DevelopingPhotos,
+			var pdialog = new ProgressDialog (Strings.DevelopingPhotos,
 														ProgressDialog.CancelButtonType.Cancel,
 														App.Instance.Organizer.SelectedPhotos ().Length,
 														App.Instance.Organizer.Window);

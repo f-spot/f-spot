@@ -102,7 +102,7 @@ namespace Hyena.Gui.Canvas
 
 		public static Size Empty {
 			get {
-				Size size = new Size ();
+				var size = new Size ();
 				size.width = double.NegativeInfinity;
 				size.height = double.NegativeInfinity;
 				return size;

@@ -44,7 +44,7 @@ namespace FSpot.Editors
 
 		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile)
 		{
-			AutoStretch autostretch = new AutoStretch (input, input_profile);
+			var autostretch = new AutoStretch (input, input_profile);
 			return autostretch.Adjust ();
 		}
 	}

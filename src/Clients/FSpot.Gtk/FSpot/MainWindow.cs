@@ -325,7 +325,7 @@ namespace FSpot
 			};
 			toolbar.Insert (white_space, -1);
 
-			ToolItem label_item = new ToolItem ();
+			var label_item = new ToolItem ();
 			count_label = new Label (string.Empty);
 			label_item.Child = count_label;
 			toolbar.Insert (label_item, -1);
@@ -442,7 +442,7 @@ namespace FSpot
 			// StartDrag is fired by IconView
 			icon_view.StartDrag += HandleIconViewStartDrag;
 
-			TagMenu tag_menu = new TagMenu (null, Database.Tags);
+			var tag_menu = new TagMenu (null, Database.Tags);
 			tag_menu.NewTagHandler += (s, e) => {
 				HandleCreateTagAndAttach (this, null);
 			};
@@ -450,7 +450,7 @@ namespace FSpot
 			tag_menu.Populate ();
 			(uimanager.GetWidget ("/ui/menubar1/edit2/attach_tag") as MenuItem).Submenu = tag_menu;
 
-			PhotoTagMenu pmenu = new PhotoTagMenu ();
+			var pmenu = new PhotoTagMenu ();
 			pmenu.TagSelected += HandleRemoveTagMenuSelected;
 			(uimanager.GetWidget ("/ui/menubar1/edit2/remove_tag") as MenuItem).Submenu = pmenu;
 
@@ -859,7 +859,7 @@ namespace FSpot
 
 		Photo[] SelectedPhotos (int[] selected_ids)
 		{
-			Photo[] photo_list = new Photo[selected_ids.Length];
+			var photo_list = new Photo[selected_ids.Length];
 
 			int i = 0;
 			foreach (int num in selected_ids)
@@ -881,7 +881,7 @@ namespace FSpot
 
 		void RotateSelectedPictures (Gtk.Window parent, RotateDirection direction)
 		{
-			RotateCommand command = new RotateCommand (parent);
+			var command = new RotateCommand (parent);
 
 			int[] selected_ids = SelectedIds ();
 			if (command.Execute (direction, SelectedPhotos (selected_ids)))
@@ -1033,7 +1033,7 @@ namespace FSpot
 				int border = 2;
 				int csize = size / 2 + len * size / 2 + 2 * border;
 
-				Pixbuf container = new Pixbuf (Gdk.Colorspace.Rgb, true, 8, csize, csize);
+				var container = new Pixbuf (Gdk.Colorspace.Rgb, true, 8, csize, csize);
 				container.Fill (0x00000000);
 
 				bool use_icon = false;
@@ -1055,7 +1055,7 @@ namespace FSpot
 
 						int x = border + len * (size / 2) + (size - small.Width) / 2;
 						int y = border + len * (size / 2) + (size - small.Height) / 2;
-						Pixbuf box = new Pixbuf (container, x - border, y - border,
+						var box = new Pixbuf (container, x - border, y - border,
 										 small.Width + 2 * border, small.Height + 2 * border);
 
 						box.Fill (0x000000ff);
@@ -1203,7 +1203,7 @@ namespace FSpot
 				if (p_item >= 0) {
 					if (icon_view.Selection.Contains (p_item)) //We don't want to reparent ourselves!
 						return;
-					PhotoVersionCommands.Reparent cmd = new PhotoVersionCommands.Reparent ();
+					var cmd = new PhotoVersionCommands.Reparent ();
 					Photo[] photos_to_reparent = SelectedPhotos ();
 					// Give feedback to user that something happened, and leave the parent selected after reparenting
 					icon_view.Selection.Add (p_item);
@@ -1404,7 +1404,7 @@ namespace FSpot
 		{
 			MenuItem parent = sender as MenuItem ?? uimanager.GetWidget ("/ui/menubar1/edit2/remove_tag") as MenuItem;
 			if (parent != null && parent.Submenu is PhotoTagMenu) {
-				PhotoTagMenu menu = (PhotoTagMenu)parent.Submenu;
+				var menu = (PhotoTagMenu)parent.Submenu;
 				menu.Populate (SelectedPhotos ());
 			}
 		}
@@ -1446,7 +1446,7 @@ namespace FSpot
 
 		void HandlePrintCommand (object sender, EventArgs e)
 		{
-			FSpot.PrintOperation print = new FSpot.PrintOperation (SelectedPhotos ());
+			var print = new FSpot.PrintOperation (SelectedPhotos ());
 			print.Run (PrintOperationAction.PrintDialog, null);
 		}
 
@@ -1480,7 +1480,7 @@ namespace FSpot
 
 		void HandleTagSizeChange (object sender, EventArgs args)
 		{
-			RadioAction choice = sender as RadioAction;
+			var choice = sender as RadioAction;
 
 			//Get this callback twice. Once for the active going menuitem,
 			//once for the inactive leaving one. Ignore the inactive.
@@ -1594,26 +1594,26 @@ namespace FSpot
 
 		void HandleCreateVersionCommand (object obj, EventArgs args)
 		{
-			PhotoVersionCommands.Create cmd = new PhotoVersionCommands.Create ();
+			var cmd = new PhotoVersionCommands.Create ();
 			cmd.Execute (Database.Photos, CurrentPhoto, GetToplevel (null));
 		}
 
 		void HandleDeleteVersionCommand (object obj, EventArgs args)
 		{
-			PhotoVersionCommands.Delete cmd = new PhotoVersionCommands.Delete ();
+			var cmd = new PhotoVersionCommands.Delete ();
 			cmd.Execute (Database.Photos, CurrentPhoto, GetToplevel (null));
 		}
 
 		void HandleDetachVersionCommand (object obj, EventArgs args)
 		{
-			PhotoVersionCommands.Detach cmd = new PhotoVersionCommands.Detach ();
+			var cmd = new PhotoVersionCommands.Detach ();
 			cmd.Execute (Database.Photos, CurrentPhoto, GetToplevel (null));
 			UpdateQuery ();
 		}
 
 		void HandleRenameVersionCommand (object obj, EventArgs args)
 		{
-			PhotoVersionCommands.Rename cmd = new PhotoVersionCommands.Rename ();
+			var cmd = new PhotoVersionCommands.Rename ();
 			cmd.Execute (Database.Photos, CurrentPhoto, main_window);
 		}
 
@@ -1637,7 +1637,7 @@ namespace FSpot
 
 		public Tag CreateTag (object sender, EventArgs args)
 		{
-			CreateTagDialog dialog = new CreateTagDialog (Database.Tags);
+			var dialog = new CreateTagDialog (Database.Tags);
 			return dialog.Execute (CreateTagDialog.TagType.Category, tag_selection_widget.TagHighlight);
 		}
 
@@ -1678,7 +1678,7 @@ namespace FSpot
 			if (tag == null)
 				return;
 
-			EditTagDialog dialog = new EditTagDialog (Database, tag, main_window);
+			var dialog = new EditTagDialog (Database, tag, main_window);
 			if ((ResponseType)dialog.Run () == ResponseType.Ok) {
 				bool name_changed = false;
 				try {
@@ -2053,7 +2053,7 @@ namespace FSpot
 
 		public Gtk.Window GetToplevel (object sender)
 		{
-			Widget wsender = sender as Widget;
+			var wsender = sender as Widget;
 			Gtk.Window toplevel = null;
 
 			if (wsender != null && !(wsender is MenuItem))
@@ -2200,7 +2200,7 @@ namespace FSpot
 
 			//How many pictures are associated to these tags?
 			Db db = App.Instance.Database;
-			FSpot.PhotoQuery count_query = new FSpot.PhotoQuery (db.Photos);
+			var count_query = new FSpot.PhotoQuery (db.Photos);
 			count_query.Terms = OrTerm.FromTags (tags);
 			int associated_photos = count_query.Count;
 
@@ -2238,7 +2238,7 @@ namespace FSpot
 					string error_desc = string.Format (Strings.CanNotDeleteTagsThatHaveTagsWihinThem_PleaseDeleteTagUnderXFirst,
 											e.Tag.Name.Replace ("_", "__"));
 
-					HigMessageDialog md = new HigMessageDialog (main_window, DialogFlags.DestroyWithParent,
+					var md = new HigMessageDialog (main_window, DialogFlags.DestroyWithParent,
 											  Gtk.MessageType.Error, ButtonsType.Ok,
 											  error_msg,
 											  error_desc);
@@ -2250,7 +2250,7 @@ namespace FSpot
 
 		void HandleUpdateThumbnailCommand (object sender, EventArgs args)
 		{
-			ThumbnailCommand command = new ThumbnailCommand (main_window);
+			var command = new ThumbnailCommand (main_window);
 
 			int[] selected_ids = SelectedIds ();
 			if (command.Execute (SelectedPhotos (selected_ids)))
@@ -2281,15 +2281,15 @@ namespace FSpot
 
 		public void HandleCopy (object sender, EventArgs args)
 		{
-			Clipboard primary = Clipboard.Get (Atom.Intern ("PRIMARY", false));
-			Clipboard clipboard = Clipboard.Get (Atom.Intern ("CLIPBOARD", false));
+			var primary = Clipboard.Get (Atom.Intern ("PRIMARY", false));
+			var clipboard = Clipboard.Get (Atom.Intern ("CLIPBOARD", false));
 
 			if (Window.Focus is Editable) {
 				(Window.Focus as Editable).CopyClipboard ();
 				return;
 			}
 
-			TargetList targetList = new TargetList ();
+			var targetList = new TargetList ();
 			targetList.AddTextTargets ((uint)DragDropTargets.TargetType.PlainText);
 			targetList.AddUriTargets ((uint)DragDropTargets.TargetType.UriList);
 			targetList.Add (
@@ -2574,7 +2574,7 @@ namespace FSpot
 
 		void HandleFindAddTagWith (object sender, EventArgs args)
 		{
-			MenuItem find_add_tag_with = uimanager.GetWidget ("/ui/menubar1/find/find_add_tag_with") as MenuItem;
+			var find_add_tag_with = uimanager.GetWidget ("/ui/menubar1/find/find_add_tag_with") as MenuItem;
 			if (find_add_tag_with.Submenu != null)
 				find_add_tag_with.Submenu.Dispose ();
 
@@ -2586,7 +2586,7 @@ namespace FSpot
 
 		public void HandleAddTagToTerm (object sender, EventArgs args)
 		{
-			MenuItem item = sender as MenuItem;
+			var item = sender as MenuItem;
 
 			if (item == null)
 				return;
@@ -2598,7 +2598,7 @@ namespace FSpot
 			Term parent_term = LogicWidget.Root.SubTerms[item_pos];
 
 			if (LogicWidget.Box != null) {
-				Literal after = parent_term.Last as Literal;
+				var after = parent_term.Last as Literal;
 				LogicWidget.Box.InsertTerm (tag_selection_widget.TagHighlight, parent_term, after);
 			}
 		}
@@ -2611,7 +2611,7 @@ namespace FSpot
 			bool tag_sensitive = tags_selected > 0;
 			bool active_selection = Selection.Count > 0;
 			bool single_active = CurrentPhoto != null;
-			MenuItem version_menu_item = uimanager.GetWidget ("/ui/menubar1/file1/version_menu_item") as MenuItem;
+			var version_menu_item = uimanager.GetWidget ("/ui/menubar1/file1/version_menu_item") as MenuItem;
 
 			if (!single_active) {
 				version_menu_item.Sensitive = false;
@@ -2676,7 +2676,7 @@ namespace FSpot
 
 			export.Sensitive = active_selection;
 
-			MenuItem toolsmenu = uimanager.GetWidget ("/ui/menubar1/tools") as MenuItem;
+			var toolsmenu = uimanager.GetWidget ("/ui/menubar1/tools") as MenuItem;
 			try {
 				tools.Visible = (toolsmenu.Submenu as Menu).Children.Length > 0;
 			} catch {
@@ -2708,8 +2708,8 @@ namespace FSpot
 			}
 
 			//if (last_tags_selected_count != tags_selected) {
-			MenuItem find_add_tag = uimanager.GetWidget ("/ui/menubar1/find/find_add_tag") as MenuItem;
-			MenuItem find_add_tag_with = uimanager.GetWidget ("/ui/menubar1/find/find_add_tag_with") as MenuItem;
+			var find_add_tag = uimanager.GetWidget ("/ui/menubar1/find/find_add_tag") as MenuItem;
+			var find_add_tag_with = uimanager.GetWidget ("/ui/menubar1/find/find_add_tag_with") as MenuItem;
 
 			((Gtk.Label)find_add_tag.Child).TextWithMnemonic =
 				string.Format (tags_selected <= 1 ? Strings.FindSelectedTagMnemonic : Strings.FindSelectedTagsMnemonic, tags_selected);
@@ -2893,7 +2893,7 @@ namespace FSpot
 				else
 					default_category = selection[0].Category;
 			}
-			Tag[] tags = new Tag[new_tags.Length];
+			var tags = new Tag[new_tags.Length];
 			int i = 0;
 			Database.BeginTransaction ();
 			foreach (string tagname in new_tags) {

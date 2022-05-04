@@ -211,7 +211,7 @@ namespace FSpot.Widgets
 
 		public void ZoomFit (bool upscale)
 		{
-			Gtk.ScrolledWindow scrolled = Parent as Gtk.ScrolledWindow;
+			var scrolled = Parent as Gtk.ScrolledWindow;
 			if (scrolled != null)
 				scrolled.SetPolicy (Gtk.PolicyType.Never, Gtk.PolicyType.Never);
 
@@ -671,7 +671,7 @@ namespace FSpot.Widgets
 												 area.Width,
 												 area.Height),
 										  PixbufUtils.ReverseTransformation (pixbuf_orientation));
-			using (Pixbuf temp_pixbuf = new Pixbuf (Colorspace.Rgb, false, 8, pixbuf_area.Width, pixbuf_area.Height)) {
+			using (var temp_pixbuf = new Pixbuf (Colorspace.Rgb, false, 8, pixbuf_area.Width, pixbuf_area.Height)) {
 				if (Pixbuf.HasAlpha)
 					temp_pixbuf.Fill (0x00000000);
 
@@ -808,7 +808,7 @@ namespace FSpot.Widgets
 
 			Rectangle win_selection = ImageCoordsToWindow (selection);
 			using (var evnt_region = evnt.Region.Copy ()) {
-				using (Region r = new Region ()) {
+				using (var r = new Region ()) {
 					r.UnionWithRect (win_selection);
 					evnt_region.Subtract (r);
 				}

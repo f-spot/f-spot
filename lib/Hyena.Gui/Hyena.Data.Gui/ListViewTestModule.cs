@@ -49,7 +49,7 @@ namespace Hyena.Data.Gui.Tests
 			WindowPosition = WindowPosition.Center;
 			SetDefaultSize (800, 600);
 
-			ScrolledWindow scroll = new ScrolledWindow ();
+			var scroll = new ScrolledWindow ();
 			scroll.HscrollbarPolicy = PolicyType.Automatic;
 			scroll.VscrollbarPolicy = PolicyType.Automatic;
 
@@ -166,7 +166,7 @@ namespace Hyena.Data.Gui.Tests
 
 		public Model ()
 		{
-			Random random = new Random (0);
+			var random = new Random (0);
 			for (int i = 0; i < 1000; i++) {
 				store.Add (new ModelItem (i, random));
 			}

@@ -76,15 +76,15 @@ namespace FSpot.Editors
 		Pixbuf ProcessImpl (Pixbuf input, Cms.Profile input_profile, bool fast)
 		{
 			Pixbuf result;
-			using (ImageInfo info = new ImageInfo (input)) {
-				using (Widgets.SoftFocus soft = new Widgets.SoftFocus (info)) {
+			using (var info = new ImageInfo (input)) {
+				using (var soft = new Widgets.SoftFocus (info)) {
 					soft.Radius = radius;
 
-					using (ImageSurface surface = new ImageSurface (Format.Argb32,
+					using (var surface = new ImageSurface (Format.Argb32,
 										   input.Width,
 										   input.Height)) {
 
-						using (Context ctx = new Context (surface)) {
+						using (var ctx = new Context (surface)) {
 							soft.Apply (ctx, info.Bounds);
 						}
 

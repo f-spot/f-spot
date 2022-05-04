@@ -63,7 +63,7 @@ namespace FSpot.Extensions
 
 		public Gtk.Menu GetSubmenu (object parent)
 		{
-			Gtk.Menu submenu = new Gtk.Menu ();
+			var submenu = new Gtk.Menu ();
 
 			foreach (MenuNode node in ChildNodes)
 				submenu.Insert (node.GetMenuItem (parent), -1);

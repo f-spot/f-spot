@@ -155,7 +155,7 @@ namespace Hyena.Gui
 
 		protected void ShowContextMenu (string menu_name)
 		{
-			Gtk.Menu menu = ActionManager.UIManager.GetWidget (menu_name) as Menu;
+			var menu = ActionManager.UIManager.GetWidget (menu_name) as Menu;
 			if (menu == null || menu.Children.Length == 0) {
 				return;
 			}

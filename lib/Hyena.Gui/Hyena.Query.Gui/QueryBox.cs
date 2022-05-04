@@ -69,7 +69,7 @@ namespace Hyena.Query.Gui
 		{
 			NoShowAll = true;
 
-			Alignment matchesAlignment = new Alignment (0.0f, 0.0f, 1.0f, 1.0f);
+			var matchesAlignment = new Alignment (0.0f, 0.0f, 1.0f, 1.0f);
 			matchesAlignment.SetPadding (5, 5, 5, 5);
 			matchesAlignment.Add (terms_box);
 
@@ -95,7 +95,7 @@ namespace Hyena.Query.Gui
 
 		HBox BuildMatchHeader ()
 		{
-			HBox header = new HBox ();
+			var header = new HBox ();
 			header.Show ();
 
 			terms_enabled_checkbox = new CheckButton (Strings.MatchMnemonic);
@@ -138,7 +138,7 @@ namespace Hyena.Query.Gui
 					return UserQueryParser.Parse (terms_entry.Text, field_set);
 				}
 
-				QueryListNode node = new QueryListNode (terms_logic_combo.Active == 0 ? Keyword.And : Keyword.Or);
+				var node = new QueryListNode (terms_logic_combo.Active == 0 ? Keyword.And : Keyword.Or);
 				foreach (QueryNode child in terms_box.QueryNodes) {
 					node.AddChild (child);
 				}
@@ -154,7 +154,7 @@ namespace Hyena.Query.Gui
 							terms_logic_combo.Active = ((value as QueryListNode).Keyword == Keyword.And) ? 0 : 1;
 							terms_box.QueryNodes = (value as QueryListNode).Children;
 						} else {
-							List<QueryNode> nodes = new List<QueryNode> ();
+							var nodes = new List<QueryNode> ();
 							nodes.Add (value);
 							terms_box.QueryNodes = nodes;
 						}

@@ -40,7 +40,7 @@ namespace FSpot.Utils
 			if (str == null)
 				return string.Empty;
 
-			StringBuilder s = new StringBuilder ();
+			var s = new StringBuilder ();
 			int len = str.Length;
 			for (int i = 0; i < len; i++) {
 				// mark        = "-" | "_" | "." | "!" | "~" | "*" | "'" | "(" | ")"

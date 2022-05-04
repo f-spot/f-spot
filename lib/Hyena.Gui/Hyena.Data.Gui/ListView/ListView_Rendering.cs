@@ -191,7 +191,7 @@ namespace Hyena.Data.Gui
 
 			Theme.DrawHeaderBackground (cairo_context, header_rendering_alloc);
 
-			Rectangle cell_area = new Rectangle ();
+			var cell_area = new Rectangle ();
 			cell_area.Y = header_rendering_alloc.Y;
 			cell_area.Height = header_rendering_alloc.Height;
 
@@ -304,7 +304,7 @@ namespace Hyena.Data.Gui
 			int offset = list_rendering_alloc.Y - vadjustment_value % ChildSize.Height;
 
 			Rectangle selected_focus_alloc = Rectangle.Zero;
-			Rectangle single_list_alloc = new Rectangle ();
+			var single_list_alloc = new Rectangle ();
 
 			single_list_alloc.X = list_rendering_alloc.X - HadjustmentValue;
 			single_list_alloc.Y = offset;
@@ -416,7 +416,7 @@ namespace Hyena.Data.Gui
 			bool opaque = IsRowOpaque (item);
 			bool bold = IsRowBold (item);
 
-			Rectangle cell_area = new Rectangle ();
+			var cell_area = new Rectangle ();
 			cell_area.Height = ChildSize.Height;
 			cell_area.Y = area.Y;
 
@@ -450,7 +450,7 @@ namespace Hyena.Data.Gui
 			cell.Manager = manager;
 			ColumnCellDataProvider (cell, item);
 
-			ITextCell text_cell = cell as ITextCell;
+			var text_cell = cell as ITextCell;
 			if (text_cell != null) {
 				text_cell.FontWeight = bold ? Pango.Weight.Bold : Pango.Weight.Normal;
 			}

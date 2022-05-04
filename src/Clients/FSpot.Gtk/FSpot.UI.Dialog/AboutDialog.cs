@@ -135,9 +135,9 @@ namespace FSpot.UI.Dialog
 			};
 			//Read license from COPYING
 			try {
-				System.Reflection.Assembly assembly = System.Reflection.Assembly.GetCallingAssembly ();
+				var assembly = System.Reflection.Assembly.GetCallingAssembly ();
 				using (Stream s = assembly.GetManifestResourceStream ("COPYING")) {
-					StreamReader reader = new StreamReader (s);
+					var reader = new StreamReader (s);
 					License = reader.ReadToEnd ();
 					s.Close ();
 				}

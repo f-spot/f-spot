@@ -87,7 +87,7 @@ namespace FSpot.Exporters.Gallery
 				version = GalleryVersion.Version2;
 			else {
 				//check what script is available on the server
-				FormClient client = new FormClient ();
+				var client = new FormClient ();
 
 				try {
 					client.Submit (new Uri (Gallery.FixUrl (url, Gallery1.script_name)));
@@ -134,7 +134,7 @@ namespace FSpot.Exporters.Gallery
 		/// </param>
 		protected StreamReader findResponse (HttpWebResponse response)
 		{
-			StreamReader reader = new StreamReader (response.GetResponseStream (), Encoding.UTF8);
+			var reader = new StreamReader (response.GetResponseStream (), Encoding.UTF8);
 			if (reader == null)
 				throw new GalleryException (Strings.ErrorReadingServerResponse);
 
@@ -456,7 +456,7 @@ namespace FSpot.Exporters.Gallery
 		public void PopupException (GalleryCommandException e, Gtk.Dialog d)
 		{
 			Logger.Log.Debug ($"{e.Message} : {e.ResponseText} ({e.Status})");
-			HigMessageDialog md =
+			var md =
 				new HigMessageDialog (d,
 							  Gtk.DialogFlags.Modal |
 					Gtk.DialogFlags.DestroyWithParent,

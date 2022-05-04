@@ -100,7 +100,7 @@ namespace FSpot
 				var items = new List<FilePhoto> ();
 				XmlNodeList list = doc.SelectNodes ("/rss/channel/item/media:content", ns);
 				foreach (XmlNode item in list) {
-					SafeUri image_uri = new SafeUri (item.Attributes["url"].Value);
+					var image_uri = new SafeUri (item.Attributes["url"].Value);
 					Logger.Log.Debug ($"flickr uri = {image_uri}");
 					items.Add (new FilePhoto (image_uri));
 				}
@@ -108,7 +108,7 @@ namespace FSpot
 				if (list.Count < 1) {
 					list = doc.SelectNodes ("/rss/channel/item/pheed:imgsrc", ns);
 					foreach (XmlNode item in list) {
-						SafeUri image_uri = new SafeUri (item.InnerText.Trim ());
+						var image_uri = new SafeUri (item.InnerText.Trim ());
 						Logger.Log.Debug ($"pheed uri = {uri}");
 						items.Add (new FilePhoto (image_uri));
 					}
@@ -117,7 +117,7 @@ namespace FSpot
 				if (list.Count < 1) {
 					list = doc.SelectNodes ("/rss/channel/item/apple:image", ns);
 					foreach (XmlNode item in list) {
-						SafeUri image_uri = new SafeUri (item.InnerText.Trim ());
+						var image_uri = new SafeUri (item.InnerText.Trim ());
 						Logger.Log.Debug ($"apple uri = {uri}");
 						items.Add (new FilePhoto (image_uri));
 					}

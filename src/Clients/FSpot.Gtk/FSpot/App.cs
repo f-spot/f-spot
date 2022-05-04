@@ -314,9 +314,9 @@ namespace FSpot
 				slideshow = new FSpot.Widgets.SlideShow (new BrowsablePointer (new PhotoList (photos), 0), (uint)(delay * 1000), true);
 				window.Add (slideshow);
 			} else {
-				Gtk.HBox outer = new Gtk.HBox ();
-				Gtk.HBox hbox = new Gtk.HBox ();
-				Gtk.VBox vbox = new Gtk.VBox ();
+				var outer = new Gtk.HBox ();
+				var hbox = new Gtk.HBox ();
+				var vbox = new Gtk.VBox ();
 
 				outer.PackStart (new Gtk.Label (string.Empty));
 				outer.PackStart (vbox, false, false, 0);
@@ -337,10 +337,10 @@ namespace FSpot
 					long_msg = Strings.TagDoesntExistTrySelectingDifferentTagInPerferenceDialog;
 				}
 
-				Gtk.Label label = new Gtk.Label (msg);
+				var label = new Gtk.Label (msg);
 				hbox.PackStart (label, false, false, 0);
 
-				Gtk.Label long_label = new Gtk.Label (long_msg);
+				var long_label = new Gtk.Label (long_msg);
 				long_label.Markup = $"<small>{long_msg}</small>";
 
 				vbox.PackStart (long_label, false, false, 0);

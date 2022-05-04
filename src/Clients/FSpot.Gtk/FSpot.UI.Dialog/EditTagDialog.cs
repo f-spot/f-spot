@@ -129,9 +129,9 @@ namespace FSpot.UI.Dialog
 
 		void HandleIconButtonClicked (object sender, EventArgs args)
 		{
-			EditTagIconDialog dialog = new EditTagIconDialog (db, tag, this);
+			var dialog = new EditTagIconDialog (db, tag, this);
 
-			ResponseType response = (ResponseType)dialog.Run ();
+			var response = (ResponseType)dialog.Run ();
 			if (response == ResponseType.Ok)
 				if (dialog.ThemeIconName != null) {
 					tag.ThemeIconName = dialog.ThemeIconName;
@@ -162,15 +162,15 @@ namespace FSpot.UI.Dialog
 
 			category_option_menu.Clear ();
 
-			CellRendererPixbuf cell2 = new CellRendererPixbuf ();
+			var cell2 = new CellRendererPixbuf ();
 			category_option_menu.PackStart (cell2, false);
 			category_option_menu.AddAttribute (cell2, "pixbuf", 0);
 
-			CellRendererText cell = new CellRendererText ();
+			var cell = new CellRendererText ();
 			category_option_menu.PackStart (cell, true);
 			category_option_menu.AddAttribute (cell, "text", 1);
 
-			ListStore store = new ListStore (new[] { typeof (Gdk.Pixbuf), typeof (string) });
+			var store = new ListStore (new[] { typeof (Gdk.Pixbuf), typeof (string) });
 			category_option_menu.Model = store;
 
 			foreach (Category category in categories) {

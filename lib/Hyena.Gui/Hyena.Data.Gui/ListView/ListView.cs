@@ -78,7 +78,7 @@ namespace Hyena.Data.Gui
 
 						string markup = cell.GetTooltipMarkup (cell_context, cached_column.Width);
 						if (!string.IsNullOrEmpty (markup)) {
-							Gdk.Rectangle rect = new Gdk.Rectangle ();
+							var rect = new Gdk.Rectangle ();
 							rect.X = list_interaction_alloc.X + cached_column.X1;
 
 							// get the y of the event in list coords

@@ -163,7 +163,7 @@ namespace Hyena.Query.Gui
 			operators.Clear ();
 			operator_entries.Clear ();
 			foreach (QueryValue val in this.field.CreateQueryValues ()) {
-				QueryValueEntry entry = QueryValueEntry.Create (val);
+				var entry = QueryValueEntry.Create (val);
 				value_entries.Add (entry);
 
 				if (val_count++ > 0) {
@@ -220,7 +220,7 @@ namespace Hyena.Query.Gui
 
 		public QueryTermNode QueryNode {
 			get {
-				QueryTermNode node = new QueryTermNode ();
+				var node = new QueryTermNode ();
 				node.Field = field;
 				node.Operator = op;
 				node.Value = current_value_entry.QueryValue;

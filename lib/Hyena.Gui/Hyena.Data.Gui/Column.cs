@@ -77,8 +77,8 @@ namespace Hyena.Data.Gui
 			max_width = maxWidth;
 			header_cell = headerCell ?? new ColumnHeaderCellText (HeaderCellDataHandler);
 
-			ColumnCellText header_text = header_cell as ColumnCellText;
-			ColumnCellText cell_text = cell as ColumnCellText;
+			var header_text = header_cell as ColumnCellText;
+			var cell_text = cell as ColumnCellText;
 			if (header_text != null && cell_text != null) {
 				header_text.Alignment = cell_text.Alignment;
 			}
@@ -135,7 +135,7 @@ namespace Hyena.Data.Gui
 		{
 			bool min_was_zero = MinWidth == 0;
 			bool was_size_req = false;
-			ISizeRequestCell sr_cell = cells[0] as ISizeRequestCell;
+			var sr_cell = cells[0] as ISizeRequestCell;
 			if (sr_cell != null && sr_cell.RestrictSize) {
 				sr_cell.GetWidthRange (layout, out var min_w, out var max_w);
 				MinWidth = min_w == -1 ? MinWidth : min_w;

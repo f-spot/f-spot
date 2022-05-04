@@ -57,7 +57,7 @@ namespace Hyena.Widgets
 		{
 			TextInsertedHandler handler = TextInserted;
 			if (handler != null) {
-				TextInsertedArgs raise_args = new TextInsertedArgs ();
+				var raise_args = new TextInsertedArgs ();
 				raise_args.Args = new object[] {
 					args.Text,
 					args.Length,
@@ -71,7 +71,7 @@ namespace Hyena.Widgets
 		{
 			TextDeletedHandler handler = TextDeleted;
 			if (handler != null) {
-				TextDeletedArgs raise_args = new TextDeletedArgs ();
+				var raise_args = new TextDeletedArgs ();
 				raise_args.Args = new object[] {
 					args.Start.Offset,
 					args.End.Offset

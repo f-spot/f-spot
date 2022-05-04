@@ -243,7 +243,7 @@ namespace FSpot.Widgets
 			op.Complete ();
 			op.Dispose ();
 
-			IImageLoader loader = sender as IImageLoader;
+			var loader = sender as IImageLoader;
 			if (loader != this.loader)
 				return;
 

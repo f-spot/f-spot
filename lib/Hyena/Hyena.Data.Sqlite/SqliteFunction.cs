@@ -218,11 +218,11 @@ namespace Hyena.Data.Sqlite
 		internal object[] ConvertParams (int nArgs, IntPtr argsptr)
 		{
 			object[] parms = new object[nArgs];
-			IntPtr[] argint = new IntPtr[nArgs];
+			var argint = new IntPtr[nArgs];
 			Marshal.Copy (argsptr, argint, 0, nArgs);
 
 			for (int n = 0; n < nArgs; n++) {
-				IntPtr valPtr = (IntPtr)argint[n];
+				var valPtr = (IntPtr)argint[n];
 				int type = Native.sqlite3_value_type (valPtr);
 				switch (type) {
 				case SQLITE_INTEGER:
@@ -342,7 +342,7 @@ namespace Hyena.Data.Sqlite
 
 			SetReturnValue (context, Final (obj));
 
-			IDisposable disp = obj as IDisposable;
+			var disp = obj as IDisposable;
 			if (disp != null) disp.Dispose ();
 		}
 

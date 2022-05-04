@@ -102,11 +102,11 @@ namespace FSpot.UI.Dialog
 		{
 			constraints_store = new ListStore (typeof (string), typeof (double));
 			content_treeview.Model = constraints_store;
-			XmlSerializer serializer = new XmlSerializer (typeof (SelectionConstraint));
+			var serializer = new XmlSerializer (typeof (SelectionConstraint));
 			string[] vals = Preferences.Get<string[]> (Preferences.CustomCropRatios);
 			if (vals != null)
 				foreach (string xml in vals) {
-					SelectionConstraint constraint = (SelectionConstraint)serializer.Deserialize (new StringReader (xml));
+					var constraint = (SelectionConstraint)serializer.Deserialize (new StringReader (xml));
 					constraints_store.AppendValues (constraint.Label, constraint.XyRatio);
 				}
 		}
@@ -130,7 +130,7 @@ namespace FSpot.UI.Dialog
 			var prefs = new List<string> ();
 			var serializer = new XmlSerializer (typeof (SelectionConstraint));
 			foreach (object[] row in constraints_store) {
-				StringWriter sw = new StringWriter ();
+				var sw = new StringWriter ();
 				serializer.Serialize (sw, new SelectionConstraint ((string)row[0], (double)row[1]));
 				sw.Close ();
 				prefs.Add (sw.ToString ());
@@ -146,7 +146,7 @@ namespace FSpot.UI.Dialog
 			if (!constraints_store.GetIterFromString (out var iter, args.Path))
 				return;
 
-			using (GLib.Value val = new GLib.Value (args.NewText))
+			using (var val = new GLib.Value (args.NewText))
 				constraints_store.SetValue (iter, 0, val);
 
 			args.RetVal = true;
@@ -168,7 +168,7 @@ namespace FSpot.UI.Dialog
 			if (ratio < 1.0)
 				ratio = 1.0 / ratio;
 
-			using (GLib.Value val = new GLib.Value (ratio))
+			using (var val = new GLib.Value (ratio))
 				constraints_store.SetValue (iter, 1, val);
 
 			args.RetVal = true;

@@ -287,7 +287,7 @@ namespace FSpot.Query
 		static Pixbuf NegatedOverlay {
 			get {
 				if (negated_overlay == null) {
-					System.Reflection.Assembly assembly = System.Reflection.Assembly.GetCallingAssembly ();
+					var assembly = System.Reflection.Assembly.GetCallingAssembly ();
 					negated_overlay = new Pixbuf (assembly.GetManifestResourceStream ("f-spot-not.png"));
 					negated_overlay = negated_overlay.ScaleSimple (overlay_size, overlay_size, InterpType.Bilinear);
 				}

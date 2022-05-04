@@ -44,7 +44,7 @@ namespace Hyena.Widgets
 
 		public void AddWithFrame (Widget widget)
 		{
-			RoundedFrame frame = new RoundedFrame ();
+			var frame = new RoundedFrame ();
 			frame.Add (widget);
 			frame.Show ();
 

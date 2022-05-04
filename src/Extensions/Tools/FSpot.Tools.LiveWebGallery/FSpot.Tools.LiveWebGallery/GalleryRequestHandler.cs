@@ -134,7 +134,7 @@ namespace FSpot.Tools.LiveWebGallery
 		{
 			Photo[] photos = GetChosenPhotos ();
 
-			StringBuilder s = new StringBuilder (4096);
+			var s = new StringBuilder (4096);
 			s.Append (template);
 			int num_photos = limit_max_photos ? Math.Min (photos.Length, max_photos) : photos.Length;
 			var num_photos_string = num_photos <= 1 ? Strings.XPhoto : Strings.XPhotos;
@@ -143,7 +143,7 @@ namespace FSpot.Tools.LiveWebGallery
 			s.Replace ("EDITABLE_TAG_NAME", tagging_allowed ? Escape (editable_tag.Name) : "");
 
 			string photo_template = GetSubTemplate (s, "BEGIN_PHOTO", "END_PHOTO");
-			StringBuilder photos_s = new StringBuilder (4096);
+			var photos_s = new StringBuilder (4096);
 
 			num_photos = 0;
 			foreach (Photo photo in photos) {

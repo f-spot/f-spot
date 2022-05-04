@@ -39,25 +39,25 @@ namespace FSpot.Query.Tests
 		[Test]
 		public void SomeTests ()
 		{
-			Category c10 = new Category (null, 10, "tag10");
-			Category c11 = new Category (null, 11, "tag11");
-			Category c12 = new Category (c11, 12, "tag12");
+			var c10 = new Category (null, 10, "tag10");
+			var c11 = new Category (null, 11, "tag11");
+			var c12 = new Category (c11, 12, "tag12");
 
-			Tag t1 = new Tag (null, 1, "tag1");
-			Tag t2 = new Tag (null, 2, "tag2");
-			Tag t3 = new Tag (c10, 3, "tag3");
-			Tag t4 = new Tag (c11, 4, "tag4");
-			Tag t5 = new Tag (c12, 5, "tag5");
+			var t1 = new Tag (null, 1, "tag1");
+			var t2 = new Tag (null, 2, "tag2");
+			var t3 = new Tag (c10, 3, "tag3");
+			var t4 = new Tag (c11, 4, "tag4");
+			var t5 = new Tag (c12, 5, "tag5");
 
-			TagTerm tt10 = new TagTerm (c10);
-			TagTerm tt11 = new TagTerm (c11);
-			TagTerm tt12 = new TagTerm (c12);
+			var tt10 = new TagTerm (c10);
+			var tt11 = new TagTerm (c11);
+			var tt12 = new TagTerm (c12);
 
-			TagTerm tt1 = new TagTerm (t1);
-			TagTerm tt2 = new TagTerm (t2);
-			TagTerm tt3 = new TagTerm (t3);
-			TagTerm tt4 = new TagTerm (t4);
-			TagTerm tt5 = new TagTerm (t5);
+			var tt1 = new TagTerm (t1);
+			var tt2 = new TagTerm (t2);
+			var tt3 = new TagTerm (t3);
+			var tt4 = new TagTerm (t4);
+			var tt5 = new TagTerm (t5);
 
 			object[] tests = {
 				" (photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id = 1)) ", tt1,

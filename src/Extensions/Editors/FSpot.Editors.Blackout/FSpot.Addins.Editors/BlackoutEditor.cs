@@ -46,9 +46,9 @@ namespace FSpot.Addins.Editors
 
 		public override Widget ConfigurationWidget ()
 		{
-			VBox vbox = new VBox ();
+			var vbox = new VBox ();
 
-			Label info = new Label (Strings.SelectTheAreaThatYouWantBlackedOut);
+			var info = new Label (Strings.SelectTheAreaThatYouWantBlackedOut);
 
 			vbox.Add (info);
 
@@ -59,7 +59,7 @@ namespace FSpot.Addins.Editors
 		{
 			Pixbuf output = input.Copy ();
 
-			Pixbuf sub = new Pixbuf (output, State.Selection.X, State.Selection.Y,
+			var sub = new Pixbuf (output, State.Selection.X, State.Selection.Y,
 					State.Selection.Width, State.Selection.Height);
 			sub.Fill (0x00000000);
 			return output;

@@ -235,7 +235,7 @@ namespace FSpot
 
 		public void SetDefaultVersion (IPhotoVersion version)
 		{
-			PhotoVersion photo_version = version as PhotoVersion;
+			var photo_version = version as PhotoVersion;
 			if (photo_version == null)
 				throw new ArgumentException ("Not a valid version for this photo");
 

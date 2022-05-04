@@ -44,7 +44,7 @@ namespace FSpot.Editors
 
 		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile)
 		{
-			SepiaTone sepia = new SepiaTone (input, input_profile);
+			var sepia = new SepiaTone (input, input_profile);
 			return sepia.Adjust ();
 		}
 	}

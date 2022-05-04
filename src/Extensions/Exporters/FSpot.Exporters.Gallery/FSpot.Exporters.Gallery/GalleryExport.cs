@@ -82,7 +82,7 @@ namespace FSpot.Exporters.Gallery
 			view.Show ();
 			export_dialog.Show ();
 
-			GalleryAccountManager manager = GalleryAccountManager.GetInstance ();
+			var manager = GalleryAccountManager.GetInstance ();
 			manager.AccountListChanged += PopulateGalleryOptionMenu;
 			PopulateGalleryOptionMenu (manager, null);
 
@@ -191,7 +191,7 @@ namespace FSpot.Exporters.Gallery
 
 			Logger.Log.Debug ("Starting upload");
 
-			FilterSet filters = new FilterSet ();
+			var filters = new FilterSet ();
 			if (account.Version == GalleryVersion.Version1)
 				filters.Add (new WhiteListFilter (new string[] { ".jpg", ".jpeg", ".png", ".gif" }));
 			if (scale)
@@ -209,7 +209,7 @@ namespace FSpot.Exporters.Gallery
 				progress_dialog.ProgressText = string.Format (Strings.XOfY, photo_index, items.Length);
 
 
-				FilterRequest req = new FilterRequest (item.DefaultVersion.Uri);
+				var req = new FilterRequest (item.DefaultVersion.Uri);
 
 				filters.Convert (req);
 				try {
@@ -339,7 +339,7 @@ namespace FSpot.Exporters.Gallery
 					album_button.Sensitive = false;
 			} else {
 				foreach (Album album in albums) {
-					System.Text.StringBuilder label_builder = new System.Text.StringBuilder ();
+					var label_builder = new System.Text.StringBuilder ();
 
 					for (int i = 0; i < album.Parents.Count; i++) {
 						label_builder.Append ("  ");

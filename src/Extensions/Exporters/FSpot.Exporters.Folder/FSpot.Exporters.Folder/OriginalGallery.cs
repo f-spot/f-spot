@@ -125,8 +125,8 @@ namespace FSpot.Exporters.Folder
 		void CreateZipFile (string img_quality)
 		{
 			string[] filenames = Directory.GetFiles (SubdirPath (img_quality));
-			Crc32 crc = new Crc32 ();
-			ZipOutputStream s = new ZipOutputStream (File.Create (SubdirPath ("zip", img_quality + ".zip")));
+			var crc = new Crc32 ();
+			var s = new ZipOutputStream (File.Create (SubdirPath ("zip", img_quality + ".zip")));
 
 			s.SetLevel (0);
 			foreach (string file in filenames) {
@@ -134,7 +134,7 @@ namespace FSpot.Exporters.Folder
 
 				byte[] buffer = new byte[fs.Length];
 				fs.Read (buffer, 0, buffer.Length);
-				ZipEntry entry = new ZipEntry (Path.GetFileName (file));
+				var entry = new ZipEntry (Path.GetFileName (file));
 
 				entry.DateTime = DateTime.Now;
 

@@ -96,7 +96,7 @@ namespace FSpot.Exporters.Gallery
 
 		void GenerateBoundary ()
 		{
-			Guid guid = Guid.NewGuid ();
+			var guid = Guid.NewGuid ();
 			boundary = "--------" + guid.ToString () + "-----";
 			start_boundary = "--" + boundary;
 			end_boundary = start_boundary + "--";
@@ -244,9 +244,9 @@ namespace FSpot.Exporters.Gallery
 			CookieCollection cookie_collection = Cookies.GetCookies (uri);
 
 			if (uri.UserInfo != null && uri.UserInfo != string.Empty) {
-				NetworkCredential cred = new NetworkCredential ();
+				var cred = new NetworkCredential ();
 				cred.GetCredential (uri, "basic");
-				CredentialCache credcache = new CredentialCache ();
+				var credcache = new CredentialCache ();
 				credcache.Add (uri, "basic", cred);
 
 				Request.PreAuthenticate = true;

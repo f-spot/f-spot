@@ -83,7 +83,7 @@ namespace FSpot.Widgets
 			progressDialog.Message = "Photo is being sharpened";
 
 			okClicked = true;
-			Photo photo = view.Item.Current as Photo;
+			var photo = view.Item.Current as Photo;
 
 			if (photo == null)
 				return;
@@ -105,7 +105,7 @@ namespace FSpot.Widgets
 				string msg = Strings.ErrorSavingSharpenedPhoto;
 				string desc = string.Format (Strings.ReceivedExceptionXUnableToSavePhotoY, e.Message, photo.Name);
 
-				HigMessageDialog md = new HigMessageDialog (this, DialogFlags.DestroyWithParent,
+				var md = new HigMessageDialog (this, DialogFlags.DestroyWithParent,
 										Gtk.MessageType.Error,
 										ButtonsType.Ok,
 										msg,
@@ -127,7 +127,7 @@ namespace FSpot.Widgets
 			Hide ();
 			dialog.Hide ();
 
-			System.Threading.Thread command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (doSharpening));
+			var command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (doSharpening));
 			command_thread.Name = "Sharpening";
 
 			progressDialog = new ThreadProgressDialog (command_thread, 1);
@@ -154,7 +154,7 @@ namespace FSpot.Widgets
 			dialog.BorderWidth = 12;
 			dialog.VBox.Spacing = 6;
 
-			Gtk.Table table = new Gtk.Table (3, 2, false);
+			var table = new Gtk.Table (3, 2, false);
 			table.ColumnSpacing = 6;
 			table.RowSpacing = 6;
 
@@ -177,11 +177,11 @@ namespace FSpot.Widgets
 			table.Attach (radius_spin, 1, 2, 1, 2);
 			table.Attach (threshold_spin, 1, 2, 2, 3);
 
-			Gtk.Button cancel_button = new Gtk.Button (Gtk.Stock.Cancel);
+			var cancel_button = new Gtk.Button (Gtk.Stock.Cancel);
 			cancel_button.Clicked += HandleCancelClicked;
 			dialog.AddActionWidget (cancel_button, Gtk.ResponseType.Cancel);
 
-			Gtk.Button ok_button = new Gtk.Button (Gtk.Stock.Ok);
+			var ok_button = new Gtk.Button (Gtk.Stock.Ok);
 			ok_button.Clicked += HandleOkClicked;
 			dialog.AddActionWidget (ok_button, Gtk.ResponseType.Cancel);
 

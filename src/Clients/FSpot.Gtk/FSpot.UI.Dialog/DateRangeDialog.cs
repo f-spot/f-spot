@@ -249,7 +249,7 @@ namespace FSpot.UI.Dialog
 			end_dateedit.DateChanged -= HandleDateEditChanged;
 			(end_dateedit.Children[0] as Gtk.Entry).Changed -= HandleDateEditChanged;
 
-			ComboBox combo = o as ComboBox;
+			var combo = o as ComboBox;
 			if (o == null)
 				return;
 

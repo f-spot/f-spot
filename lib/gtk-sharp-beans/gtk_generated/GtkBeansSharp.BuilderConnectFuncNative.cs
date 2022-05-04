@@ -89,7 +89,7 @@ delegate void BuilderConnectFuncNative (IntPtr builder, IntPtr objekt, IntPtr si
 		{
 			if (native == null)
 				return null;
-			BuilderConnectFuncWrapper wrapper = (BuilderConnectFuncWrapper)native.Target;
+			var wrapper = (BuilderConnectFuncWrapper)native.Target;
 			if (wrapper == null)
 				return null;
 			return wrapper.managed;

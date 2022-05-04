@@ -214,7 +214,7 @@ namespace Hyena.Data.Sqlite
 
 		void AddColumn (MemberInfo member, Attribute attribute)
 		{
-			DatabaseColumnAttribute column = attribute as DatabaseColumnAttribute;
+			var column = attribute as DatabaseColumnAttribute;
 			if (column != null) {
 				DatabaseColumn c = member is FieldInfo
 					? new DatabaseColumn ((FieldInfo)member, column)
@@ -222,7 +222,7 @@ namespace Hyena.Data.Sqlite
 
 				AddColumn (c, column.Select);
 			}
-			VirtualDatabaseColumnAttribute virtual_column = attribute as VirtualDatabaseColumnAttribute;
+			var virtual_column = attribute as VirtualDatabaseColumnAttribute;
 			if (virtual_column != null) {
 				if (member is FieldInfo) {
 					virtual_columns.Add (new VirtualDatabaseColumn ((FieldInfo)member, virtual_column));
@@ -465,7 +465,7 @@ namespace Hyena.Data.Sqlite
 
 		public virtual void Delete (IEnumerable<T> items)
 		{
-			List<long> ids = new List<long> ();
+			var ids = new List<long> ();
 			long id;
 			foreach (T item in items) {
 				id = PrimaryKeyFor (item);
@@ -510,7 +510,7 @@ namespace Hyena.Data.Sqlite
 		protected virtual HyenaSqliteCommand CreateCommand {
 			get {
 				if (create_command == null) {
-					StringBuilder builder = new StringBuilder ();
+					var builder = new StringBuilder ();
 					builder.Append ("CREATE TABLE ");
 					builder.Append (TableName);
 					builder.Append ('(');
@@ -534,8 +534,8 @@ namespace Hyena.Data.Sqlite
 			get {
 				// FIXME can this string building be done more nicely?
 				if (insert_command == null) {
-					StringBuilder cols = new StringBuilder ();
-					StringBuilder vals = new StringBuilder ();
+					var cols = new StringBuilder ();
+					var vals = new StringBuilder ();
 					bool first = true;
 					foreach (DatabaseColumn column in columns) {
 						if (column != key) {
@@ -562,7 +562,7 @@ namespace Hyena.Data.Sqlite
 		protected virtual HyenaSqliteCommand UpdateCommand {
 			get {
 				if (update_command == null) {
-					StringBuilder builder = new StringBuilder ();
+					var builder = new StringBuilder ();
 					builder.Append ("UPDATE ");
 					builder.Append (TableName);
 					builder.Append (" SET ");
@@ -683,7 +683,7 @@ namespace Hyena.Data.Sqlite
 
 		void BuildQuerySql ()
 		{
-			StringBuilder select_builder = new StringBuilder ();
+			var select_builder = new StringBuilder ();
 			bool first = true;
 			foreach (DatabaseColumn column in select_columns) {
 				if (first) {
@@ -696,8 +696,8 @@ namespace Hyena.Data.Sqlite
 				select_builder.Append (column.Name);
 			}
 
-			StringBuilder where_builder = new StringBuilder ();
-			Dictionary<string, string> tables = new Dictionary<string, string> (virtual_columns.Count + 1);
+			var where_builder = new StringBuilder ();
+			var tables = new Dictionary<string, string> (virtual_columns.Count + 1);
 			bool first_virtual = true;
 			foreach (VirtualDatabaseColumn column in virtual_columns) {
 				if (first) {
@@ -730,7 +730,7 @@ namespace Hyena.Data.Sqlite
 				}
 			}
 
-			StringBuilder from_builder = new StringBuilder ();
+			var from_builder = new StringBuilder ();
 			from_builder.Append (TableName);
 			foreach (KeyValuePair<string, string> pair in tables) {
 				from_builder.Append (',');

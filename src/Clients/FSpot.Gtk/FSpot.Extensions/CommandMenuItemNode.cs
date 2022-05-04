@@ -42,7 +42,7 @@ namespace FSpot.Extensions
 
 		protected override void OnActivated (object o, EventArgs e)
 		{
-			ICommand cmd = (ICommand)Addin.CreateInstance (command_type);
+			var cmd = (ICommand)Addin.CreateInstance (command_type);
 			cmd.Run (o, e);
 		}
 	}

@@ -161,14 +161,14 @@ namespace Hyena.Data.Gui
 				return;
 			}
 
-			ISortable sortable = Model as ISortable;
+			var sortable = Model as ISortable;
 			sort_column_index = -1;
 			int min_header_width = 0;
 			for (int i = 0; i < column_cache.Length; i++) {
 				if (sortable != null) {
-					ColumnHeaderCellText column_cell = column_cache[i].Column.HeaderCell as ColumnHeaderCellText;
+					var column_cell = column_cache[i].Column.HeaderCell as ColumnHeaderCellText;
 					if (column_cell != null) {
-						ISortableColumn sort_column = column_cache[i].Column as ISortableColumn;
+						var sort_column = column_cache[i].Column as ISortableColumn;
 						column_cell.HasSort = sort_column != null && sortable.SortColumn == sort_column;
 						if (column_cell.HasSort) {
 							sort_column_index = i;
@@ -273,8 +273,8 @@ namespace Hyena.Data.Gui
 		protected virtual void OnColumnLeftClicked (Column clickedColumn)
 		{
 			if (Model is ISortable && clickedColumn is ISortableColumn) {
-				ISortableColumn sort_column = clickedColumn as ISortableColumn;
-				ISortable sortable = Model as ISortable;
+				var sort_column = clickedColumn as ISortableColumn;
+				var sortable = Model as ISortable;
 
 				// Change the sort-type with every click
 				if (sort_column == ColumnController.SortColumn) {
@@ -327,7 +327,7 @@ namespace Hyena.Data.Gui
 
 			uint column_count = (uint)Math.Ceiling (items / (double)max_items_per_column);
 
-			Menu menu = new Menu ();
+			var menu = new Menu ();
 			uint row_offset = 2;
 
 			if (clickedColumn.Id != null) { // FIXME: Also restrict if the column vis can't be changed

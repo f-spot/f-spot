@@ -61,7 +61,7 @@ namespace FSpot.Database
 				if (updates == null || updates.Count == 0)
 					return new Version (0, 0);
 
-				List<Version> keys = new List<Version> ();
+				var keys = new List<Version> ();
 				foreach (Version k in updates.Keys) {
 					keys.Add (k);
 				}
@@ -204,7 +204,7 @@ namespace FSpot.Database
 						"WHERE photo_id = id ", tmp_versions));
 
 				while (reader.Read ()) {
-					System.Uri photo_uri = new System.Uri (reader[3] as string);
+					var photo_uri = new System.Uri (reader[3] as string);
 					string name_without_extension = System.IO.Path.GetFileNameWithoutExtension (photo_uri.AbsolutePath);
 					string extension = System.IO.Path.GetExtension (photo_uri.AbsolutePath);
 
@@ -572,7 +572,7 @@ namespace FSpot.Database
 					"FROM {0} ", tmp_photos));
 
 				while (reader.Read ()) {
-					System.Uri photo_uri = new System.Uri (reader["uri"] as string);
+					var photo_uri = new System.Uri (reader["uri"] as string);
 
 					string filename = photo_uri.GetFilename ();
 					Uri base_uri = photo_uri.GetDirectoryUri ();
@@ -600,7 +600,7 @@ namespace FSpot.Database
 						"FROM {0} ", tmp_versions));
 
 				while (reader.Read ()) {
-					System.Uri photo_uri = new System.Uri (reader["uri"] as string);
+					var photo_uri = new System.Uri (reader["uri"] as string);
 
 					string filename = photo_uri.GetFilename ();
 					Uri base_uri = photo_uri.GetDirectoryUri ();
@@ -772,7 +772,7 @@ namespace FSpot.Database
 
 			db.BeginTransaction ();
 			try {
-				List<Version> keys = new List<Version> ();
+				var keys = new List<Version> ();
 				foreach (Version k in updates.Keys) {
 					keys.Add (k);
 				}

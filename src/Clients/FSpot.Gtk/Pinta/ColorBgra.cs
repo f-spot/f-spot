@@ -50,7 +50,7 @@ namespace Pinta.Core
 		/// </summary>
 		public static ColorBgra FromBgra (byte b, byte g, byte r, byte a)
 		{
-			ColorBgra color = new ColorBgra ();
+			var color = new ColorBgra ();
 			color.Bgra = BgraToUInt32 (b, g, r, a);
 			return color;
 		}

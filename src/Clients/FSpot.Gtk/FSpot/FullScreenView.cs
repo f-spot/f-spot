@@ -115,13 +115,13 @@ namespace FSpot
 
 				scroll.ScrolledWindow.Add (view);
 
-				Toolbar tbar = new Toolbar ();
+				var tbar = new Toolbar ();
 				tbar.ToolbarStyle = Gtk.ToolbarStyle.BothHoriz;
 
 				tbar.ShowArrow = false;
 				tbar.BorderWidth = 15;
 
-				ToolItem t_item = (actions[ExitFullScreen]).CreateToolItem () as ToolItem;
+				var t_item = (actions[ExitFullScreen]).CreateToolItem () as ToolItem;
 				t_item.IsImportant = true;
 				tbar.Insert (t_item, -1);
 
@@ -147,7 +147,7 @@ namespace FSpot
 				display.Show ();
 
 				t_item = new ToolItem ();
-				ComboBox combo = ComboBox.NewText ();
+				var combo = ComboBox.NewText ();
 				foreach (var transition in display.Transitions)
 					combo.AppendText (transition.Name);
 				combo.Active = 0;
@@ -223,7 +223,7 @@ namespace FSpot
 
 		void HandleTransitionChanged (object sender, EventArgs e)
 		{
-			ComboBox combo = sender as ComboBox;
+			var combo = sender as ComboBox;
 			if (combo == null)
 				return;
 			if (combo.GetActiveIter (out var iter)) {
@@ -299,7 +299,7 @@ namespace FSpot
 		{
 			if (args.Event.Type == Gdk.EventType.ButtonPress
 				&& args.Event.Button == 3) {
-				PhotoPopup popup = new PhotoPopup (this);
+				var popup = new PhotoPopup (this);
 				popup.Activate (this.Toplevel, args.Event);
 			}
 		}

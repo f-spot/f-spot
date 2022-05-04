@@ -40,7 +40,7 @@ namespace Hyena.Query
 
 		public static QueryTermNode ParseUserQuery (QueryFieldSet field_set, string token)
 		{
-			QueryTermNode term = new QueryTermNode ();
+			var term = new QueryTermNode ();
 
 			// See if the query specifies a field, and if so, pull out the operator as well
 			string field_alias = field_set.FindAlias (token);

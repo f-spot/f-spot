@@ -93,7 +93,7 @@ namespace Hyena
 			foreach (string path in GetExecPaths ()) {
 				string full_path = Path.Combine (path, command);
 				try {
-					FileInfo info = new FileInfo (full_path);
+					var info = new FileInfo (full_path);
 					// FIXME: System.IO is super lame, should check for 0755
 					if (info.Exists) {
 						return full_path;
@@ -272,7 +272,7 @@ namespace Hyena
 						return installed_application_prefix = new DirectoryInfo (installed_application_prefix).Parent.FullName;
 					}
 
-					DirectoryInfo entry_directory = new DirectoryInfo (installed_application_prefix);
+					var entry_directory = new DirectoryInfo (installed_application_prefix);
 
 					if (entry_directory != null && entry_directory.Parent != null && entry_directory.Parent.Parent != null) {
 						installed_application_prefix = entry_directory.Parent.Parent.FullName;

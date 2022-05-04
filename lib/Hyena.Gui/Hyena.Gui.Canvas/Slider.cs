@@ -163,7 +163,7 @@ namespace Hyena.Gui.Canvas
 			fill_color.A = 1.0;
 			light_fill_color.A = 1.0;
 
-			LinearGradient fill = new LinearGradient (0, 0, 0, RenderSize.Height);
+			var fill = new LinearGradient (0, 0, 0, RenderSize.Height);
 			fill.AddColorStop (0, light_fill_color);
 			fill.AddColorStop (0.5, fill_color);
 			fill.AddColorStop (1, light_fill_color);

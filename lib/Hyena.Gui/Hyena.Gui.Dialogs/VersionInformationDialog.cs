@@ -43,11 +43,11 @@ namespace Hyena.Gui.Dialogs
 
 		public VersionInformationDialog () : base ()
 		{
-			AccelGroup accel_group = new AccelGroup ();
+			var accel_group = new AccelGroup ();
 			AddAccelGroup (accel_group);
 			Modal = true;
 
-			Button button = new Button ("gtk-close");
+			var button = new Button ("gtk-close");
 			button.CanDefault = true;
 			button.UseStock = true;
 			button.Show ();
@@ -69,7 +69,7 @@ namespace Hyena.Gui.Dialogs
 			version_tree.Model = FillStore ();
 			version_tree.CursorChanged += OnCursorChanged;
 
-			ScrolledWindow scroll = new ScrolledWindow ();
+			var scroll = new ScrolledWindow ();
 			scroll.Add (version_tree);
 			scroll.ShadowType = ShadowType.In;
 			scroll.SetSizeRequest (420, 200);

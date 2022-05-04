@@ -91,7 +91,7 @@ namespace FSpot.Exporters.Gallery
 
 		public void WriteAccounts ()
 		{
-			System.Xml.XmlTextWriter writer = new System.Xml.XmlTextWriter (xml_path, System.Text.Encoding.Default);
+			var writer = new System.Xml.XmlTextWriter (xml_path, System.Text.Encoding.Default);
 
 			writer.Formatting = System.Xml.Formatting.Indented;
 			writer.Indentation = 2;
@@ -160,7 +160,7 @@ namespace FSpot.Exporters.Gallery
 
 			try {
 				string query = "//GalleryRemote/Account";
-				System.Xml.XmlDocument doc = new System.Xml.XmlDocument ();
+				var doc = new System.Xml.XmlDocument ();
 
 				//System.Console.WriteLine ("xml_path: " + xml_path);
 				doc.Load (xml_path);

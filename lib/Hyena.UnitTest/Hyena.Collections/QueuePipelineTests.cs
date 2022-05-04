@@ -55,12 +55,12 @@ namespace Hyena.Collections.Tests
 
 		void BuildPipeline (int count)
 		{
-			List<FakeElement> elements = new List<FakeElement> ();
+			var elements = new List<FakeElement> ();
 			for (int i = 0; i < count; i++) {
 				elements.Add (new FakeElement ());
 			}
 
-			QueuePipeline<object> qp = new QueuePipeline<object> ();
+			var qp = new QueuePipeline<object> ();
 			foreach (FakeElement s in elements) {
 				qp.AddElement (s);
 			}
@@ -68,7 +68,7 @@ namespace Hyena.Collections.Tests
 			Assert.AreEqual (elements[0], qp.FirstElement);
 
 			int index = 0;
-			FakeElement element = (FakeElement)qp.FirstElement;
+			var element = (FakeElement)qp.FirstElement;
 			while (element != null) {
 				Assert.AreEqual (elements[index++], element);
 				element = (FakeElement)element.NextElement;

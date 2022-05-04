@@ -48,7 +48,7 @@ public class PhotoVersionMenu : Menu
 
 	void HandleMenuItemActivated (object sender, EventArgs args)
 	{
-		MenuItem item = sender as MenuItem;
+		var item = sender as MenuItem;
 
 		if (item != null && version_mapping.ContainsKey (item)) {
 			Version = version_mapping[item];
@@ -63,10 +63,10 @@ public class PhotoVersionMenu : Menu
 		version_mapping = new Dictionary<MenuItem, IPhotoVersion> ();
 
 		foreach (IPhotoVersion version in photo.Versions) {
-			MenuItem menu_item = new MenuItem (version.Name);
+			var menu_item = new MenuItem (version.Name);
 			menu_item.Show ();
 			menu_item.Sensitive = true;
-			Gtk.Label child = ((Gtk.Label)menu_item.Child);
+			var child = ((Gtk.Label)menu_item.Child);
 
 			if (version == photo.DefaultVersion) {
 				child.UseMarkup = true;
@@ -79,7 +79,7 @@ public class PhotoVersionMenu : Menu
 		}
 
 		if (version_mapping.Count == 1) {
-			MenuItem no_edits_menu_item = new MenuItem (Strings.ParenNoEditsParen);
+			var no_edits_menu_item = new MenuItem (Strings.ParenNoEditsParen);
 			no_edits_menu_item.Show ();
 			no_edits_menu_item.Sensitive = false;
 			Append (no_edits_menu_item);

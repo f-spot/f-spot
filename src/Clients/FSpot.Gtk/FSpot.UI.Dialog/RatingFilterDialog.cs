@@ -73,7 +73,7 @@ namespace FSpot.UI.Dialog
 			minrating.Changed += HandleMinratingChanged;
 			maxrating.Changed += HandleMaxratingChanged;
 
-			ResponseType response = (ResponseType)Run ();
+			var response = (ResponseType)Run ();
 
 			if (response == ResponseType.Ok) {
 				query.RatingRange = new RatingRange ((uint)minrating.Value, (uint)maxrating.Value);

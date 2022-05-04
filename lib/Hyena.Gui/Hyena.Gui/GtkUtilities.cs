@@ -69,7 +69,7 @@ namespace Hyena.Gui
 
 		public static FileFilter GetFileFilter (string name, System.Collections.Generic.IEnumerable<string> extensions)
 		{
-			FileFilter filter = new FileFilter ();
+			var filter = new FileFilter ();
 			filter.Name = name;
 			foreach (string extension in extensions) {
 				filter.AddPattern (string.Format ("*.{0}", extension.ToLower ()));
@@ -116,14 +116,14 @@ namespace Hyena.Gui
 			double blG = mG * blendRatio;
 			double blB = mB * blendRatio;
 
-			Gdk.Color color = new Gdk.Color ((byte)blR, (byte)blG, (byte)blB);
+			var color = new Gdk.Color ((byte)blR, (byte)blG, (byte)blB);
 			Gdk.Colormap.System.AllocColor (ref color, true, true);
 			return color;
 		}
 
 		public static void AdaptGtkRcStyle (Widget adaptee, Type adapter)
 		{
-			GLib.GType type = (GLib.GType)adapter;
+			var type = (GLib.GType)adapter;
 			string path = string.Format ("*.{0}", type);
 			AdaptGtkRcStyle (adaptee, type, path, path);
 		}
@@ -159,11 +159,11 @@ namespace Hyena.Gui
 			}
 
 			foreach (Widget child in container.Children) {
-				T widget = child as T;
+				var widget = child as T;
 				if (widget != null) {
 					action (widget);
 				} else {
-					Container child_container = child as Container;
+					var child_container = child as Container;
 					if (child_container != null) {
 						ForeachWidget<T> (child_container, action);
 					}

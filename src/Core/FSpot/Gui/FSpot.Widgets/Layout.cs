@@ -132,7 +132,7 @@ namespace FSpot.Widgets
 		{
 			SetFlag (Gtk.WidgetFlags.Realized);
 
-			Gdk.WindowAttr attributes = new Gdk.WindowAttr {
+			var attributes = new Gdk.WindowAttr {
 				WindowType = Gdk.WindowType.Child,
 				X = Allocation.X,
 				Y = Allocation.Y,

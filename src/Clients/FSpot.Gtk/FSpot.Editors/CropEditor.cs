@@ -85,7 +85,7 @@ namespace FSpot.Editors
 			case Preferences.CustomCropRatios:
 				custom_constraints = new List<SelectionRatioDialog.SelectionConstraint> ();
 				if (Preferences.Get<string[]> (key) != null) {
-					XmlSerializer serializer = new XmlSerializer (typeof (SelectionRatioDialog.SelectionConstraint));
+					var serializer = new XmlSerializer (typeof (SelectionRatioDialog.SelectionConstraint));
 					foreach (string xml in Preferences.Get<string[]> (key))
 						custom_constraints.Add ((SelectionRatioDialog.SelectionConstraint)serializer.Deserialize (new StringReader (xml)));
 				}
@@ -96,13 +96,13 @@ namespace FSpot.Editors
 
 		public override Widget ConfigurationWidget ()
 		{
-			VBox vbox = new VBox ();
+			var vbox = new VBox ();
 
-			Label info = new Label (Strings.SelectTheAreaThatNeedsCropping);
+			var info = new Label (Strings.SelectTheAreaThatNeedsCropping);
 
 			constraints_combo = new ComboBox ();
-			CellRendererText constraint_name_cell = new CellRendererText ();
-			CellRendererPixbuf constraint_pix_cell = new CellRendererPixbuf ();
+			var constraint_name_cell = new CellRendererText ();
+			var constraint_pix_cell = new CellRendererPixbuf ();
 			constraints_combo.PackStart (constraint_name_cell, true);
 			constraints_combo.PackStart (constraint_pix_cell, false);
 			constraints_combo.SetCellDataFunc (constraint_name_cell, new CellLayoutDataFunc (ConstraintNameCellFunc));
@@ -155,13 +155,13 @@ namespace FSpot.Editors
 
 			if (constraints_combo.GetActiveIter (out var iter)) {
 				double ratio = ((double)constraints_store.GetValue (iter, 2));
-				ConstraintType type = ((ConstraintType)constraints_store.GetValue (iter, 3));
+				var type = ((ConstraintType)constraints_store.GetValue (iter, 3));
 				switch (type) {
 				case ConstraintType.Normal:
 					State.PhotoImageView.SelectionXyRatio = ratio;
 					break;
 				case ConstraintType.AddCustom:
-					SelectionRatioDialog dialog = new SelectionRatioDialog ();
+					var dialog = new SelectionRatioDialog ();
 					dialog.Run ();
 					break;
 				case ConstraintType.SameAsPhoto:
@@ -200,7 +200,7 @@ namespace FSpot.Editors
 			Rectangle selection = FSpot.Utils.PixbufUtils.TransformOrientation ((int)State.PhotoImageView.PixbufOrientation <= 4 ? input.Width : input.Height,
 												(int)State.PhotoImageView.PixbufOrientation <= 4 ? input.Height : input.Width,
 												State.Selection, State.PhotoImageView.PixbufOrientation);
-			Pixbuf edited = new Pixbuf (input.Colorspace,
+			var edited = new Pixbuf (input.Colorspace,
 						 input.HasAlpha, input.BitsPerSample,
 						 selection.Width, selection.Height);
 

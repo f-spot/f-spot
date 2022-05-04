@@ -88,7 +88,7 @@ namespace FSpot
 					gr.SetSourceColor (new Color (1, 1, 1));
 					gr.Rectangle (0, 0, 360, 254);
 					gr.Fill ();
-					using (Gdk.Pixbuf pixbuf = Gdk.Pixbuf.LoadFromResource ("flower.png")) {
+					using (var pixbuf = Gdk.Pixbuf.LoadFromResource ("flower.png")) {
 						DrawImage (gr, pixbuf, 0, 0, 360, 254);
 					}
 				}
@@ -206,7 +206,7 @@ namespace FSpot
 			Context cr = context.CairoContext;
 			cr.Save ();
 			Pango.Layout layout = context.CreatePangoLayout ();
-			Pango.FontDescription desc = Pango.FontDescription.FromString ("sans 14");
+			var desc = Pango.FontDescription.FromString ("sans 14");
 			layout.FontDescription = desc;
 			layout.SetText (comment);
 			layout.GetPixelSize (out var lay_w, out var lay_h);

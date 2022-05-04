@@ -77,16 +77,16 @@ namespace FSpot.ColorAdjustment
 
 		public Pixbuf Adjust ()
 		{
-			Gdk.Pixbuf final = new Gdk.Pixbuf (Gdk.Colorspace.Rgb,
+			var final = new Gdk.Pixbuf (Gdk.Colorspace.Rgb,
 							   false, 8,
 							   Input.Width,
 							   Input.Height);
 			Cms.Profile[] list = GenerateAdjustments ().ToArray ();
 
 			if (Input.HasAlpha) {
-				Gdk.Pixbuf input_copy = (Gdk.Pixbuf)Input.Clone ();
+				var input_copy = (Gdk.Pixbuf)Input.Clone ();
 				Pixbuf alpha = PixbufUtils.Flatten (Input);
-				Transform transform = new Transform (list,
+				var transform = new Transform (list,
 									 PixbufUtils.PixbufCmsFormat (alpha),
 									 PixbufUtils.PixbufCmsFormat (final),
 									 intent, 0x0000);
@@ -96,7 +96,7 @@ namespace FSpot.ColorAdjustment
 				final.Dispose ();
 				final = input_copy;
 			} else {
-				Cms.Transform transform = new Cms.Transform (list,
+				var transform = new Cms.Transform (list,
 										 PixbufUtils.PixbufCmsFormat (Input),
 										 PixbufUtils.PixbufCmsFormat (final),
 										 intent, 0x0000);

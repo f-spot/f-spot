@@ -151,7 +151,7 @@ public class TagMenu : Menu
 			parent.Append (item);
 			item.ShowAll ();
 
-			Category subcat = t as Category;
+			var subcat = t as Category;
 			if (subcat != null && subcat.Children.Count != 0) {
 				var submenu = new Menu ();
 				Populate (t as Category, submenu);
@@ -180,7 +180,7 @@ public class TagMenu : Menu
 	void HandleActivate (object obj, EventArgs args)
 	{
 		if (TagSelected != null) {
-			TagMenuItem t = obj as TagMenuItem;
+			var t = obj as TagMenuItem;
 			if (t != null)
 				TagSelected (t.Value);
 			else

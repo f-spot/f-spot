@@ -65,7 +65,7 @@ namespace Hyena.Data.Gui
 			for (int index = 0; index < column; index++)
 				x += GetColumnWidth (index);
 
-			Gdk.Rectangle rectangle = new Gdk.Rectangle (x, y, width, height);
+			var rectangle = new Gdk.Rectangle (x, y, width, height);
 
 			if (clip && !ListAllocation.Contains (rectangle))
 				return new Gdk.Rectangle (int.MinValue, int.MinValue, int.MinValue, int.MinValue);
@@ -96,7 +96,7 @@ namespace Hyena.Data.Gui
 
 			int y = Theme.BorderWidth + header_rendering_alloc.Y;
 
-			Gdk.Rectangle rectangle = new Gdk.Rectangle (x, y, width, height);
+			var rectangle = new Gdk.Rectangle (x, y, width, height);
 
 			if (coord_type == Atk.CoordType.Window)
 				return rectangle;

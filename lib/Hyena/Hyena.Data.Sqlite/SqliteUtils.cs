@@ -138,7 +138,7 @@ namespace Hyena.Data.Sqlite
 		internal static string BuildColumnSchema (string type, string name, string default_value,
 			DatabaseColumnConstraints constraints)
 		{
-			StringBuilder builder = new StringBuilder ();
+			var builder = new StringBuilder ();
 			builder.Append (name);
 			builder.Append (' ');
 			builder.Append (type);

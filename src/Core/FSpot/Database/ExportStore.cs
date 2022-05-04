@@ -110,7 +110,7 @@ namespace FSpot.Database
 		image_id, image_version_id, export_type, export_token));
 
 			// The table in the database is setup to be an INTEGER.
-			ExportItem item = new ExportItem ((uint)id, image_id, image_version_id, export_type, export_token);
+			var item = new ExportItem ((uint)id, image_id, image_version_id, export_type, export_token);
 
 			AddToCache (item);
 			EmitAdded (item);
@@ -138,7 +138,7 @@ namespace FSpot.Database
 			Hyena.Data.Sqlite.IDataReader reader = Database.Query (new HyenaSqliteCommand ("SELECT id, image_id, image_version_id, export_type, export_token FROM exports WHERE image_id = ? AND image_version_id = ?",
 					image_id, image_version_id));
 
-			List<ExportItem> export_items = new List<ExportItem> ();
+			var export_items = new List<ExportItem> ();
 			while (reader.Read ()) {
 				export_items.Add (LoadItem (reader));
 			}

@@ -60,7 +60,7 @@ namespace Hyena.Gui
 					cr.SetSourceColor (CairoExtensions.ColorFromHsb (h, s, bg_b));
 					cr.Fill ();
 
-					Pango.Layout layout = new Pango.Layout (PangoContext);
+					var layout = new Pango.Layout (PangoContext);
 					layout.SetText (((int)(bg_b * 255.0)).ToString ());
 					layout.GetPixelSize (out var tw, out var th);
 

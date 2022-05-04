@@ -65,8 +65,8 @@ namespace FSpot.Database
 	{
 		public int Compare (object obj1, object obj2)
 		{
-			Tag t1 = obj1 as Tag;
-			Tag t2 = obj2 as Tag;
+			var t1 = obj1 as Tag;
+			var t2 = obj2 as Tag;
 
 			return Compare (t1, t2);
 		}
@@ -132,7 +132,7 @@ namespace FSpot.Database
 
 		public Tag[] GetTagsByNameStart (string s)
 		{
-			List<Tag> l = new List<Tag> ();
+			var l = new List<Tag> ();
 			foreach (Tag t in item_cache.Values) {
 				if (t.Name.ToLower ().StartsWith (s.ToLower ()))
 					l.Add (t);
@@ -298,7 +298,7 @@ namespace FSpot.Database
 
 			uint id = InsertTagIntoTable (category, name, false, autoicon);
 
-			Tag tag = new Tag (category, id, name);
+			var tag = new Tag (category, id, name);
 			tag.IconWasCleared = !autoicon;
 
 			AddToCache (tag);
@@ -314,7 +314,7 @@ namespace FSpot.Database
 
 			uint id = InsertTagIntoTable (parentCategory, name, true, autoicon);
 
-			Category new_category = new Category (parentCategory, id, name);
+			var new_category = new Category (parentCategory, id, name);
 			new_category.IconWasCleared = !autoicon;
 
 			AddToCache (new_category);
@@ -330,7 +330,7 @@ namespace FSpot.Database
 
 		public override void Remove (Tag item)
 		{
-			Category category = item as Category;
+			var category = item as Category;
 			if (category != null &&
 				category.Children != null &&
 				category.Children.Count > 0)

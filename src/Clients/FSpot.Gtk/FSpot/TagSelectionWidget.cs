@@ -87,7 +87,7 @@ namespace FSpot
 
 		public Tag TagByIter (TreeIter iter)
 		{
-			GLib.Value val = new GLib.Value ();
+			var val = new GLib.Value ();
 
 			Model.GetValue (iter, IdColumn, ref val);
 			uint tag_id = (uint)val;
@@ -122,11 +122,11 @@ namespace FSpot
 
 				TreePath[] rows = Selection.GetSelectedRows (out var model);
 
-				Tag[] tags = new Tag[rows.Length];
+				var tags = new Tag[rows.Length];
 				int i = 0;
 
 				foreach (TreePath path in rows) {
-					GLib.Value value = new GLib.Value ();
+					var value = new GLib.Value ();
 					Model.GetIter (out var iter, path);
 					Model.GetValue (iter, IdColumn, ref value);
 					uint tag_id = (uint)value;
@@ -178,7 +178,7 @@ namespace FSpot
 
 		void IconDataFunc (TreeViewColumn column, CellRenderer renderer, TreeModel model, TreeIter iter)
 		{
-			GLib.Value value = new GLib.Value ();
+			var value = new GLib.Value ();
 			Model.GetValue (iter, IdColumn, ref value);
 			uint tag_id = (uint)value;
 			Tag tag = tag_store.Get (tag_id);
@@ -207,7 +207,7 @@ namespace FSpot
 			if (model == null)
 				return;
 
-			GLib.Value value = new GLib.Value ();
+			var value = new GLib.Value ();
 			Model.GetValue (iter, IdColumn, ref value);
 			uint tag_id = (uint)value;
 
@@ -247,7 +247,7 @@ namespace FSpot
 				valid = Model.IterNext (ref iter);
 			}
 
-			GLib.Value value = new GLib.Value ();
+			var value = new GLib.Value ();
 			Model.GetValue (parent, IdColumn, ref value);
 			iter = parent;
 
@@ -262,8 +262,8 @@ namespace FSpot
 		void CopyBranch (TreeIter src, TreeIter dest, bool is_root, bool is_parent)
 		{
 			TreeIter copy;
-			GLib.Value value = new GLib.Value ();
-			TreeStore store = Model as TreeStore;
+			var value = new GLib.Value ();
+			var store = Model as TreeStore;
 			bool valid;
 
 			store.GetValue (src, IdColumn, ref value);
@@ -286,7 +286,7 @@ namespace FSpot
 		// insert tag into the correct place in the tree, with parent. return the new TagIter in iter.
 		TreeIter InsertInOrder (TreeIter parent, bool is_root, Tag tag)
 		{
-			TreeStore store = Model as TreeStore;
+			var store = Model as TreeStore;
 			TreeIter iter;
 			Tag compare;
 			bool valid;
@@ -298,7 +298,7 @@ namespace FSpot
 
 			while (valid) {
 				//I have no desire to figure out a more performant sort over this...
-				GLib.Value value = new GLib.Value ();
+				var value = new GLib.Value ();
 				store.GetValue (iter, IdColumn, ref value);
 				compare = tag_store.Get ((uint)value);
 
@@ -351,7 +351,7 @@ namespace FSpot
 
 		void HandleTagsChanged (object sender, DbItemEventArgs<Tag> args)
 		{
-			TreeStore store = Model as TreeStore;
+			var store = Model as TreeStore;
 
 			foreach (Tag tag in args.Items) {
 				TreeIterForTag (tag, out var iter);
@@ -384,7 +384,7 @@ namespace FSpot
 				return;
 
 			foreach (TreeIter iter in iters) {
-				GLib.Value v = new GLib.Value ();
+				var v = new GLib.Value ();
 				Model.GetValue (iter, IdColumn, ref v);
 				int tag_id = (int)(uint)v;
 				if (Array.IndexOf (tags, tag_id) > -1) {
@@ -411,7 +411,7 @@ namespace FSpot
 		// descended from it
 		List<TreeIter> ModelIters (TreeIter root, bool first)
 		{
-			List<TreeIter> model_iters = new List<TreeIter> (Model.IterNChildren ());
+			var model_iters = new List<TreeIter> (Model.IterNChildren ());
 			model_iters.Add (root);
 
 			// Append any children
@@ -430,7 +430,7 @@ namespace FSpot
 
 		public void SaveExpandDefaults ()
 		{
-			List<int> expanded_tags = new List<int> ();
+			var expanded_tags = new List<int> ();
 
 			TreeIter[] iters = ModelIters ();
 			if (iters == null)
@@ -438,7 +438,7 @@ namespace FSpot
 
 			foreach (TreeIter iter in iters) {
 				if (GetRowExpanded (Model.GetPath (iter))) {
-					GLib.Value v = new GLib.Value ();
+					var v = new GLib.Value ();
 					Model.GetValue (iter, IdColumn, ref v);
 					expanded_tags.Add ((int)(uint)v);
 				}
@@ -468,7 +468,7 @@ namespace FSpot
 			if (!Model.GetIterFromString (out var iter, args.Path))
 				return;
 
-			GLib.Value value = new GLib.Value ();
+			var value = new GLib.Value ();
 			Model.GetValue (iter, IdColumn, ref value);
 			uint tag_id = (uint)value;
 			Tag tag = tag_store.Get (tag_id);
@@ -480,7 +480,7 @@ namespace FSpot
 			// Check that the tag doesn't already exist
 			if (string.Compare (args.NewText, tag.Name, true) != 0 &&
 				tag_store.GetTagByName (args.NewText) != null) {
-				HigMessageDialog md = new HigMessageDialog (App.Instance.Organizer.Window,
+				var md = new HigMessageDialog (App.Instance.Organizer.Window,
 					DialogFlags.DestroyWithParent,
 					MessageType.Warning, ButtonsType.Ok,
 					Strings.ErrorRenamingTag,
@@ -587,7 +587,7 @@ namespace FSpot
 			int size = 32;
 			int csize = size / 2 + len * size / 2 + 2;
 
-			Pixbuf container = new Pixbuf (Gdk.Colorspace.Rgb, true, 8, csize, csize);
+			var container = new Pixbuf (Gdk.Colorspace.Rgb, true, 8, csize, csize);
 			container.Fill (0x00000000);
 
 			bool use_icon = false; ;
@@ -680,7 +680,7 @@ namespace FSpot
 				UriList list = args.SelectionData.GetUriListData ();
 
 				database.BeginTransaction ();
-				List<Photo> photos = new List<Photo> ();
+				var photos = new List<Photo> ();
 				foreach (var photo_uri in list) {
 					Photo photo = database.Photos.GetByUri (photo_uri);
 

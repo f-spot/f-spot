@@ -115,7 +115,7 @@ namespace FSpot.Utils
 		public static Cursor CreateEmptyCursor (Display display)
 		{
 			try {
-				Gdk.Pixbuf empty = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, true, 8, 1, 1);
+				var empty = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, true, 8, 1, 1);
 				empty.Fill (0x00000000);
 				return new Gdk.Cursor (display, empty, 0, 0);
 			} catch (Exception e) {

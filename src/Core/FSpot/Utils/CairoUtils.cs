@@ -43,7 +43,7 @@ namespace FSpot.Utils
 		public static Surface CreateSurface (Gdk.Drawable d)
 		{
 			d.GetSize (out var width, out var height);
-			XlibSurface surface = new XlibSurface (GdkUtils.GetXDisplay (d.Display),
+			var surface = new XlibSurface (GdkUtils.GetXDisplay (d.Display),
 								   (IntPtr)GdkUtils.GetXid (d),
 								   GdkUtils.GetXVisual (d.Visual),
 								   width, height);
@@ -59,7 +59,7 @@ namespace FSpot.Utils
 			Format format = source.Format;
 
 			Surface surface = new ImageSurface (gdkPixels, format, width, height, 4 * width);
-			using (Context ctx = new Context (surface)) {
+			using (var ctx = new Context (surface)) {
 				ctx.SetSourceSurface (source, 0, 0);
 
 				if (format == Format.ARGB32)
@@ -90,7 +90,7 @@ namespace FSpot.Utils
 			}
 
 			surface.Dispose ();
-			Pixbuf pixbuf = new Pixbuf (gdkPixels, Colorspace.Rgb, true, 8, width, height, 4 * width);
+			var pixbuf = new Pixbuf (gdkPixels, Colorspace.Rgb, true, 8, width, height, 4 * width);
 			return pixbuf;
 		}
 	}

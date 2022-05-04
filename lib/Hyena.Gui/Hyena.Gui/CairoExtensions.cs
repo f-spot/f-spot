@@ -70,7 +70,7 @@ namespace Hyena.Gui
 		public static Surface CreateSurfaceForPixbuf (Cairo.Context cr, Gdk.Pixbuf pixbuf)
 		{
 			Surface surface = cr.GetTarget ().CreateSimilar (cr.GetTarget ().Content, pixbuf.Width, pixbuf.Height);
-			Cairo.Context surface_cr = new Context (surface);
+			var surface_cr = new Context (surface);
 			Gdk.CairoHelper.SetSourcePixbuf (surface_cr, pixbuf, 0, 0);
 			surface_cr.Paint ();
 			((IDisposable)surface_cr).Dispose ();

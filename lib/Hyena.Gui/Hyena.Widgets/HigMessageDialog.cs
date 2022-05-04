@@ -54,7 +54,7 @@ namespace Hyena.Widgets
 			VBox.Spacing = 12;
 			ActionArea.Layout = Gtk.ButtonBoxStyle.End;
 
-			Gtk.HBox hbox = new Gtk.HBox (false, 12);
+			var hbox = new Gtk.HBox (false, 12);
 			hbox.BorderWidth = 5;
 			hbox.Show ();
 			VBox.PackStart (hbox, false, false, 0);
@@ -156,7 +156,7 @@ namespace Hyena.Widgets
 
 		public Gtk.Button AddCustomButton (string message, Gtk.ResponseType response, bool isDefault)
 		{
-			Gtk.Button button = new Gtk.Button ();
+			var button = new Gtk.Button ();
 			button.Label = message;
 			button.CanDefault = true;
 			button.Show ();
@@ -166,7 +166,7 @@ namespace Hyena.Widgets
 
 		public void AddButton (string stock_id, Gtk.ResponseType response, bool isDefault)
 		{
-			Gtk.Button button = new Gtk.Button (stock_id);
+			var button = new Gtk.Button (stock_id);
 			button.CanDefault = true;
 			button.Show ();
 			AddButton (button, response, isDefault);
@@ -191,7 +191,7 @@ namespace Hyena.Widgets
 					 string header,
 					 string msg)
 		{
-			HigMessageDialog hmd = new HigMessageDialog (parent, flags, type, buttons, header, msg);
+			var hmd = new HigMessageDialog (parent, flags, type, buttons, header, msg);
 			try {
 				return (Gtk.ResponseType)hmd.Run ();
 			} finally {
@@ -207,7 +207,7 @@ namespace Hyena.Widgets
 					 string msg,
 					 string ok_caption)
 		{
-			HigMessageDialog hmd = new HigMessageDialog (parent, flags, type, header, msg, ok_caption);
+			var hmd = new HigMessageDialog (parent, flags, type, header, msg, ok_caption);
 			try {
 				return (Gtk.ResponseType)hmd.Run ();
 			} finally {

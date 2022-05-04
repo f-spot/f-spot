@@ -132,7 +132,7 @@ namespace FSpot.Exporters.Gallery
 
 		public int CompareTo (object obj)
 		{
-			Album other = obj as Album;
+			var other = obj as Album;
 
 			int numThis = this.Parents.Count;
 			int numOther = other.Parents.Count;

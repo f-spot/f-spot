@@ -383,7 +383,7 @@ namespace Hyena.Widgets
 				throw new ArgumentNullException (nameof (widget));
 			}
 
-			AnimatedWidget animated_widget = new AnimatedWidget (widget, duration, easing, blocking, horizontal);
+			var animated_widget = new AnimatedWidget (widget, duration, easing, blocking, horizontal);
 			animated_widget.Parent = this;
 			animated_widget.WidgetDestroyed += OnWidgetDestroyed;
 			stage.Add (animated_widget, duration);

@@ -174,7 +174,7 @@ public static class PixbufUtils
 
 	static public Pixbuf LoadAtMaxSize (string path, int max_width, int max_height)
 	{
-		PixbufUtils.AspectLoader loader = new AspectLoader (max_width, max_height);
+		var loader = new AspectLoader (max_width, max_height);
 		return loader.LoadFromFile (path);
 	}
 
@@ -220,7 +220,7 @@ public static class PixbufUtils
 		pos.X = (width - pos.Width) / 2;
 		pos.Y = (height - pos.Height) / 2;
 
-		Pixbuf scaled = new Pixbuf (Colorspace.Rgb, false, 8, width, height);
+		var scaled = new Pixbuf (Colorspace.Rgb, false, 8, width, height);
 		scaled.Fill (0x000000);
 
 		orig.Composite (scaled, pos.X, pos.Y,
@@ -237,7 +237,7 @@ public static class PixbufUtils
 		if (!pixbuf.HasAlpha)
 			return null;
 
-		Pixbuf flattened = new Pixbuf (Colorspace.Rgb, false, 8, pixbuf.Width, pixbuf.Height);
+		var flattened = new Pixbuf (Colorspace.Rgb, false, 8, pixbuf.Width, pixbuf.Height);
 		pixbuf.CompositeColor (flattened, 0, 0,
 					   pixbuf.Width, pixbuf.Height,
 					   0, 0, 1, 1,
@@ -324,7 +324,7 @@ public static class PixbufUtils
 	public static Pixbuf Blur (Pixbuf src, int radius, ThreadProgressDialog dialog)
 	{
 		ImageSurface sourceSurface = Hyena.Gui.PixbufImageSurface.Create (src);
-		ImageSurface destinationSurface = new ImageSurface (Cairo.Format.Rgb24, src.Width, src.Height);
+		var destinationSurface = new ImageSurface (Cairo.Format.Rgb24, src.Width, src.Height);
 
 		// If we do it as a bunch of single lines (rectangles of one pixel) then we can give the progress
 		// here instead of going deeper to provide the feedback
@@ -343,9 +343,9 @@ public static class PixbufUtils
 
 	public static ImageSurface Clone (this ImageSurface surf)
 	{
-		ImageSurface newsurf = new ImageSurface (surf.Format, surf.Width, surf.Height);
+		var newsurf = new ImageSurface (surf.Format, surf.Width, surf.Height);
 
-		using (Context g = new Context (newsurf)) {
+		using (var g = new Context (newsurf)) {
 			g.SetSource (surf);
 			g.Paint ();
 		}
@@ -362,7 +362,7 @@ public static class PixbufUtils
 	public unsafe static Gdk.Pixbuf RemoveRedeye (Gdk.Pixbuf src, Gdk.Rectangle area, int threshold)
 	{
 		Gdk.Pixbuf copy = src.Copy ();
-		Gdk.Pixbuf selection = new Gdk.Pixbuf (copy, area.X, area.Y, area.Width, area.Height);
+		var selection = new Gdk.Pixbuf (copy, area.X, area.Y, area.Width, area.Height);
 		byte* spix = (byte*)selection.Pixels;
 		int h = selection.Height;
 		int w = selection.Width;
@@ -393,7 +393,7 @@ public static class PixbufUtils
 	public static unsafe Pixbuf ColorAdjust (Pixbuf src, double brightness, double contrast,
 					  double hue, double saturation, int src_color, int dest_color)
 	{
-		Pixbuf adjusted = new Pixbuf (Colorspace.Rgb, src.HasAlpha, 8, src.Width, src.Height);
+		var adjusted = new Pixbuf (Colorspace.Rgb, src.HasAlpha, 8, src.Width, src.Height);
 		PixbufUtils.ColorAdjust (src, adjusted, brightness, contrast, hue, saturation, src_color, dest_color);
 		return adjusted;
 	}

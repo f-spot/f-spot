@@ -200,7 +200,7 @@ namespace FSpot
 		{
 			FillValues (input);
 			int height = 128;
-			Gdk.Pixbuf pixbuf = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, true, 8, values.GetLength (0), height);
+			var pixbuf = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, true, 8, values.GetLength (0), height);
 			Draw (pixbuf);
 			return pixbuf;
 		}

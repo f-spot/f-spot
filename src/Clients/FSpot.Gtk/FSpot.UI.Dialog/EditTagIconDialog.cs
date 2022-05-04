@@ -130,7 +130,7 @@ namespace FSpot.UI.Dialog
 
 			image_view.Show ();
 
-			DelayedOperation fill_delay = new DelayedOperation (FillIconView);
+			var fill_delay = new DelayedOperation (FillIconView);
 			fill_delay.Start ();
 		}
 
@@ -187,7 +187,7 @@ namespace FSpot.UI.Dialog
 				string caption = Strings.UnableToLoadImage;
 				string message = string.Format (Strings.UnableToLoadXAsIconForTheTag,
 									 external_photo_chooser.Uri);
-				HigMessageDialog md = new HigMessageDialog (this,
+				var md = new HigMessageDialog (this,
 										DialogFlags.DestroyWithParent,
 										MessageType.Error,
 										ButtonsType.Close,

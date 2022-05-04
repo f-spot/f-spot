@@ -56,17 +56,17 @@ namespace FSpot.Tools.LiveWebGallery
 		protected virtual void SendImage (Photo photo, Stream stream)
 		{
 			string path = photo.DefaultVersion.Uri.LocalPath;
-			FileInfo file_info = new FileInfo (path);
+			var file_info = new FileInfo (path);
 			if (!file_info.Exists) {
 				SendError (stream, "404 The file is not on the disk");
 				return;
 			}
 
-			FilterSet filters = new FilterSet ();
+			var filters = new FilterSet ();
 			filters.Add (new JpegFilter ());
 			filters.Add (new ResizeFilter (1600));
 
-			using (FilterRequest request = new FilterRequest (photo.DefaultVersion.Uri)) {
+			using (var request = new FilterRequest (photo.DefaultVersion.Uri)) {
 				filters.Convert (request);
 				file_info = new FileInfo (request.Current.LocalPath);
 				SendFile (file_info, photo, stream);

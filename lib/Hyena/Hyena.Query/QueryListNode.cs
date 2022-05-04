@@ -133,7 +133,7 @@ namespace Hyena.Query
 		public override QueryNode Trim ()
 		{
 			// Trim depth first
-			List<QueryNode> copy = new List<QueryNode> (Children);
+			var copy = new List<QueryNode> (Children);
 			foreach (QueryNode child in copy)
 				child.Trim ();
 

@@ -47,7 +47,7 @@ namespace FSpot.Query
 		public string SqlClause ()
 		{
 			//Building something like " photos.roll_id IN (3, 4, 7) " 
-			System.Text.StringBuilder sb = new System.Text.StringBuilder (" photos.roll_id IN (");
+			var sb = new System.Text.StringBuilder (" photos.roll_id IN (");
 			for (int i = 0; i < rolls.Length; i++) {
 				sb.Append (rolls[i].Id);
 				if (i != rolls.Length - 1)

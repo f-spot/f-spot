@@ -123,7 +123,7 @@ namespace Hyena.Gui
 		public bool Contains (int x, int y, Atk.CoordType coordType)
 		{
 			GetExtents (out var x_extents, out var y_extents, out var w, out var h, coordType);
-			Gdk.Rectangle extents = new Gdk.Rectangle (x_extents, y_extents, w, h);
+			var extents = new Gdk.Rectangle (x_extents, y_extents, w, h);
 			return extents.Contains (x, y);
 		}
 

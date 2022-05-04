@@ -157,7 +157,7 @@ namespace FSpot.Loaders
 			if (is_disposed)
 				return;
 
-			Rectangle area = new Rectangle (x, y, width, height);
+			var area = new Rectangle (x, y, width, height);
 			damage = damage == Rectangle.Zero ? area : damage.Union (area);
 			base.OnAreaUpdated (x, y, width, height);
 		}

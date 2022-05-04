@@ -44,7 +44,7 @@ namespace FSpot.Editors
 
 		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile)
 		{
-			Desaturate desaturate = new Desaturate (input, input_profile);
+			var desaturate = new Desaturate (input, input_profile);
 			return desaturate.Adjust ();
 		}
 	}

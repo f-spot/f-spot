@@ -215,7 +215,7 @@ namespace Hyena.Data.Sqlite
 				string hex = BitConverter.ToString (o as byte[]).Replace ("-", "");
 				return string.Format ("X'{0}'", hex);
 			} else if (o is Array) {
-				StringBuilder sb = new StringBuilder ();
+				var sb = new StringBuilder ();
 				bool first = true;
 				foreach (object i in (o as Array)) {
 					if (!first)
@@ -247,7 +247,7 @@ namespace Hyena.Data.Sqlite
 
 		void CreateParameters ()
 		{
-			StringBuilder sb = new StringBuilder ();
+			var sb = new StringBuilder ();
 			foreach (char c in command) {
 				if (c == '?') {
 					sb.Append ('{');

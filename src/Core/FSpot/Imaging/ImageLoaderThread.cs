@@ -221,7 +221,7 @@ namespace FSpot.Imaging
 			}
 
 			/* New request, just put it on the queue with the right order.  */
-			RequestItem new_request = new RequestItem (uri, order, width, height);
+			var new_request = new RequestItem (uri, order, width, height);
 
 			queue.Add (new_request);
 

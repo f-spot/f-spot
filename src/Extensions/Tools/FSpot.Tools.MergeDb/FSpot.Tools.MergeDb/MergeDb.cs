@@ -123,7 +123,7 @@ namespace FSpot.Tools.MergeDb
 		void HandleResponse (object obj, ResponseArgs args)
 		{
 			if (args.ResponseId == ResponseType.Accept) {
-				PhotoQuery query = new PhotoQuery (from_db.Photos);
+				var query = new PhotoQuery (from_db.Photos);
 				query.RollSet = mdd.ActiveRolls == null ? null : new RollSet (mdd.ActiveRolls);
 				DoMerge (query, mdd.ActiveRolls, mdd.Copy);
 			}
@@ -134,7 +134,7 @@ namespace FSpot.Tools.MergeDb
 		public static void Merge (string path, Db to_db)
 		{
 			Logger.Log.Warning ($"Will merge db {path} into main f-spot db {Path.Combine (FSpotConfiguration.BaseDirectory, FSpotConfiguration.DatabaseName)}");
-			Db from_db = new Db (App.Instance.Container.Resolve<IImageFileFactory> (), App.Instance.Container.Resolve<IThumbnailService> (), new UpdaterUI ());
+			var from_db = new Db (App.Instance.Container.Resolve<IImageFileFactory> (), App.Instance.Container.Resolve<IThumbnailService> (), new UpdaterUI ());
 			from_db.Init (path, true);
 			//MergeDb mdb = new MergeDb (from_db, to_db);
 

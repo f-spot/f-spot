@@ -80,14 +80,14 @@ namespace FSpot.Exporters.Gallery
 
 		void PopulateAlbums ()
 		{
-			Gtk.Menu menu = new Gtk.Menu ();
+			var menu = new Gtk.Menu ();
 			if (gallery.Version == GalleryVersion.Version1) {
-				Gtk.MenuItem top_item = new Gtk.MenuItem (Strings.ParenTopLevelParen);
+				var top_item = new Gtk.MenuItem (Strings.ParenTopLevelParen);
 				menu.Append (top_item);
 			}
 
 			foreach (Album album in gallery.Albums) {
-				System.Text.StringBuilder label_builder = new System.Text.StringBuilder ();
+				var label_builder = new System.Text.StringBuilder ();
 
 				for (int i = 0; i < album.Parents.Count; i++) {
 					label_builder.Append ("  ");
@@ -129,7 +129,7 @@ namespace FSpot.Exporters.Gallery
 		{
 			if (args.ResponseId == Gtk.ResponseType.Ok) {
 				if (!System.Text.RegularExpressions.Regex.IsMatch (name, "^[A-Za-z0-9_-]+$")) {
-					HigMessageDialog md =
+					var md =
 						new HigMessageDialog (add_album_dialog,
 									  Gtk.DialogFlags.Modal |
 									  Gtk.DialogFlags.DestroyWithParent,

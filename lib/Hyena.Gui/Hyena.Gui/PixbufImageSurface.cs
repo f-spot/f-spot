@@ -75,8 +75,8 @@ namespace Hyena.Gui
 				// implemented. One day we can come back and optimize this by finding
 				// out what's causing the PixbufImageSurface to result in access
 				// violations when the object is disposed.
-				ImageSurface target = new ImageSurface (Format.ARGB32, pixbuf.Width, pixbuf.Height);
-				Context context = new Context (target);
+				var target = new ImageSurface (Format.ARGB32, pixbuf.Width, pixbuf.Height);
+				var context = new Context (target);
 				try {
 					Gdk.CairoHelper.SetSourcePixbuf (context, pixbuf, 0, 0);
 					context.Paint ();

@@ -36,7 +36,7 @@ namespace FSpot.Utils
 	{
 		public static Uri GetDirectoryUri (this Uri uri)
 		{
-			UriBuilder builder = new UriBuilder (uri) {
+			var builder = new UriBuilder (uri) {
 				Path = string.Format ($"{Path.GetDirectoryName (uri.AbsolutePath)}/")
 			};
 

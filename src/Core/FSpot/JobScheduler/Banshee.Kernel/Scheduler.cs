@@ -115,7 +115,7 @@ namespace Banshee.Kernel
 		public static void Unschedule (Type type)
 		{
 			lock (this_mutex) {
-				Queue<IJob> to_remove = new Queue<IJob> ();
+				var to_remove = new Queue<IJob> ();
 
 				foreach (IJob job in ScheduledJobs) {
 					Type job_type = job.GetType ();
