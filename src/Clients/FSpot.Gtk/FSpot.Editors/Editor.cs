@@ -7,25 +7,7 @@
 // Copyright (C) 2008-2010 Novell, Inc.
 // Copyright (C) 2008, 2010 Ruben Vermeersch
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
 
@@ -65,7 +47,6 @@ namespace FSpot.Editors
 			get { return state != null; }
 		}
 
-
 		// Whether the user needs to select a part of the image before it can be applied.
 		public bool NeedsSelection = false;
 
@@ -78,12 +59,7 @@ namespace FSpot.Editors
 			}
 		}
 
-		bool can_handle_multiple = false;
-		public bool CanHandleMultiple {
-			get { return can_handle_multiple; }
-			protected set { can_handle_multiple = value; }
-		}
-
+		public bool CanHandleMultiple { get; protected set; } = false;
 
 		protected void LoadPhoto (Photo photo, out Pixbuf photo_pixbuf, out Cms.Profile photo_profile)
 		{
@@ -103,7 +79,6 @@ namespace FSpot.Editors
 			get { return apply_label == "" ? Label : apply_label; }
 			protected set { apply_label = value; }
 		}
-
 
 		// The icon name for this action (will be loaded from the theme).
 		public readonly string IconName;
@@ -157,11 +132,7 @@ namespace FSpot.Editors
 			return Process (input, input_profile);
 		}
 
-		bool has_settings;
-		public bool HasSettings {
-			get { return has_settings; }
-			protected set { has_settings = value; }
-		}
+		public bool HasSettings { get; protected set; }
 
 		Pixbuf original;
 		Pixbuf preview;
@@ -193,9 +164,7 @@ namespace FSpot.Editors
 			State.PhotoImageView.ZoomFit (false);
 			App.Instance.Organizer.InfoBox.UpdateHistogram (previewed);
 
-			if (old_preview != null) {
-				old_preview.Dispose ();
-			}
+			old_preview?.Dispose ();
 		}
 
 		void CalcPreviewSize (Pixbuf input, out int width, out int height)
@@ -247,7 +216,6 @@ namespace FSpot.Editors
 		{
 			return null;
 		}
-
 
 		public virtual EditorState CreateState ()
 		{

@@ -11,27 +11,10 @@
 // Copyright (C) 2010 Ruben Vermeersch
 // Copyright (C) 2009 Mike Gemuende
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -42,6 +25,8 @@ using FSpot.Utils;
 using Gdk;
 
 using Gtk;
+
+using TagLib.Riff;
 
 namespace FSpot
 {
@@ -81,13 +66,13 @@ namespace FSpot
 			return photos;
 		}
 
-		public static void SetTagsData (this SelectionData selection_data, Tag[] tags, Atom target)
+		public static void SetTagsData (this SelectionData selection_data, List<Tag> tags, Atom target)
 		{
-			byte[] data = new byte[tags.Length * sizeof (uint)];
+			var data = new byte[tags.Count * sizeof (uint)];
 
 			int i = 0;
 			foreach (Tag tag in tags) {
-				byte[] bytes = System.BitConverter.GetBytes (tag.Id);
+				var bytes = System.BitConverter.GetBytes (tag.Id);
 
 				foreach (byte b in bytes) {
 					data[i] = b;
@@ -98,14 +83,14 @@ namespace FSpot
 			selection_data.Set (target, 8, data, data.Length);
 		}
 
-		public static Tag[] GetTagsData (this SelectionData selection_data)
+		public static List<Tag> GetTagsData (this SelectionData selection_data)
 		{
 			int size = sizeof (uint);
 			int length = selection_data.Length / size;
 
 			TagStore tag_store = App.Instance.Database.Tags;
 
-			var tags = new Tag[length];
+			var tags = new List<Tag> (length);
 
 			for (int i = 0; i < length; i++) {
 				uint id = System.BitConverter.ToUInt32 (selection_data.Data, i * size);

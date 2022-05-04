@@ -13,25 +13,7 @@
 // Copyright (C) 2010 Ruben Vermeersch
 // Copyright (C) 2007-2008 Stephane Delcroix
 //
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
 using System.Collections.Generic;
@@ -207,27 +189,27 @@ namespace FSpot.Query
 
 		}
 
-		public void PhotoTagsChanged (Tag[] tags)
+		public void PhotoTagsChanged (List<Tag> tags)
 		{
 			logic_widget.PhotoTagsChanged (tags);
 		}
 
-		public void Include (Tag[] tags)
+		public void Include (List<Tag> tags)
 		{
 			logic_widget.Include (tags);
 		}
 
-		public void UnInclude (Tag[] tags)
+		public void UnInclude (List<Tag> tags)
 		{
 			logic_widget.UnInclude (tags);
 		}
 
-		public void Require (Tag[] tags)
+		public void Require (List<Tag> tags)
 		{
 			logic_widget.Require (tags);
 		}
 
-		public void UnRequire (Tag[] tags)
+		public void UnRequire (List<Tag> tags)
 		{
 			logic_widget.UnRequire (tags);
 		}

@@ -10,26 +10,7 @@
 // Copyright (C) 2006 Larry Ewing
 // Copyright (C) 2006-2007 Gabriel Burt
 //
-//  Permission is hereby granted, free of charge, to any person obtaining
-//  a copy of this software and associated documentation files (the
-//  "Software"), to deal in the Software without restriction, including
-//  without limitation the rights to use, copy, modify, merge, publish,
-//  distribute, sublicense, and/or sell copies of the Software, and to
-//  permit persons to whom the Software is furnished to do so, subject to
-//  the following conditions:
-//
-//  The above copyright notice and this permission notice shall be
-//  included in all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
-//  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-//  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-//  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-//  LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-//  OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-//  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
-//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
 using System.Collections.Generic;
@@ -42,13 +23,13 @@ using Gdk;
 
 using Gtk;
 
+using TagLib.Riff;
+
 namespace FSpot.Query
 {
 	public class LogicWidget : HBox
 	{
 		readonly PhotoQuery query;
-
-		static Term rootTerm;
 		EventBox rootAdd;
 		HBox rootBox;
 		Label help;
@@ -59,11 +40,7 @@ namespace FSpot.Query
 
 		public event EventHandler Changed;
 
-		public static Term Root {
-			get {
-				return rootTerm;
-			}
-		}
+		public static Term Root { get; private set; }
 
 		static LogicWidget logic_widget;
 		public static LogicWidget Box {
@@ -123,14 +100,14 @@ namespace FSpot.Query
 
 			PackEnd (rootAdd, true, true, 0);
 
-			rootTerm = new OrTerm (null, null);
+			Root = new OrTerm (null, null);
 		}
 
 		void Preview ()
 		{
 			if (sepBox == null) {
 				sepBox = new HBox ();
-				Widget sep = rootTerm.SeparatorWidget ();
+				Widget sep = Root.SeparatorWidget ();
 				if (sep != null) {
 					sep.Show ();
 					sepBox.PackStart (sep, false, false, 0);
@@ -149,7 +126,7 @@ namespace FSpot.Query
 		void HandleTagChanged (object sender, DbItemEventArgs<Tag> args)
 		{
 			foreach (Tag t in args.Items)
-				foreach (Literal term in rootTerm.FindByTag (t))
+				foreach (Literal term in Root.FindByTag (t))
 					term.Update ();
 		}
 
@@ -157,13 +134,13 @@ namespace FSpot.Query
 		void HandleTagDeleted (object sender, DbItemEventArgs<Tag> args)
 		{
 			foreach (Tag t in args.Items)
-				foreach (Literal term in rootTerm.FindByTag (t))
+				foreach (Literal term in Root.FindByTag (t))
 					term.RemoveSelf ();
 		}
 
 		void HandleDragMotion (object o, DragMotionArgs args)
 		{
-			if (!preview && rootTerm.Count > 0 && (Literal.FocusedLiterals.Count == 0 || Children.Length > 2)) {
+			if (!preview && Root.Count > 0 && (Literal.FocusedLiterals.Count == 0 || Children.Length > 2)) {
 				Preview ();
 				preview = true;
 			}
@@ -191,7 +168,7 @@ namespace FSpot.Query
 				term.RemoveSelf ();
 
 				// Add it to where it was dropped
-				List<Literal> groups = InsertTerm (new[] { tag }, parent, after);
+				List<Literal> groups = InsertTerm (new List<Tag> { tag }, parent, after);
 
 				if (term.IsNegated)
 					foreach (Literal group in groups)
@@ -201,14 +178,14 @@ namespace FSpot.Query
 			UpdateQuery ();
 		}
 
-		void HandleTagsAdded (Tag[] tags, Term parent, Literal after)
+		void HandleTagsAdded (List<Tag> tags, Term parent, Literal after)
 		{
 			InsertTerm (tags, parent, after);
 		}
 
 		void HandleAttachTag (Tag tag, Term parent, Literal after)
 		{
-			InsertTerm (new Tag[] { tag }, parent, after);
+			InsertTerm (new List<Tag> { tag }, parent, after);
 		}
 
 		void HandleNegated (Literal group)
@@ -261,14 +238,14 @@ namespace FSpot.Query
 
 			if (args.Info == DragDropTargets.TagListEntry.Info) {
 
-				InsertTerm (args.SelectionData.GetTagsData (), rootTerm, null);
+				InsertTerm (args.SelectionData.GetTagsData (), Root, null);
 				return;
 			}
 
 			if (args.Info == DragDropTargets.TagQueryEntry.Info) {
 
 				// FIXME: use drag data
-				HandleLiteralsMoved (Literal.FocusedLiterals, rootTerm, null);
+				HandleLiteralsMoved (Literal.FocusedLiterals, Root, null);
 
 				// Prevent them from being removed again
 				Literal.FocusedLiterals = new List<Literal> ();
@@ -277,12 +254,12 @@ namespace FSpot.Query
 
 		/** Helper Functions **/
 
-		public void PhotoTagsChanged (Tag[] tags)
+		public void PhotoTagsChanged (List<Tag> tags)
 		{
 			bool refresh_required = false;
 
 			foreach (Tag tag in tags) {
-				if ((rootTerm.FindByTag (tag)).Count > 0) {
+				if ((Root.FindByTag (tag)).Count > 0) {
 					refresh_required = true;
 					break;
 				}
@@ -312,22 +289,22 @@ namespace FSpot.Query
 
 		public bool TagIncluded (Tag tag)
 		{
-			return rootTerm.TagIncluded (tag);
+			return Root.TagIncluded (tag);
 		}
 
 		public bool TagRequired (Tag tag)
 		{
-			return rootTerm.TagRequired (tag);
+			return Root.TagRequired (tag);
 		}
 
 		// Add a tag or group of tags to the rootTerm, at the end of the Box
-		public void Include (Tag[] tags)
+		public void Include (List<Tag> tags)
 		{
 			// Filter out any tags that are already included
 			// FIXME: Does this really need to be set to a length?
-			var new_tags = new List<Tag> (tags.Length);
+			var new_tags = new List<Tag> (tags.Count);
 			foreach (Tag tag in tags) {
-				if (!rootTerm.TagIncluded (tag))
+				if (!Root.TagIncluded (tag))
 					new_tags.Add (tag);
 
 			}
@@ -335,27 +312,27 @@ namespace FSpot.Query
 			if (new_tags.Count == 0)
 				return;
 
-			tags = new_tags.ToArray ();
+			tags = new_tags;
 
-			InsertTerm (tags, rootTerm, null);
+			InsertTerm (tags, Root, null);
 		}
 
-		public void UnInclude (Tag[] tags)
+		public void UnInclude (List<Tag> tags)
 		{
-			var new_tags = new List<Tag> (tags.Length);
+			var new_tags = new List<Tag> (tags.Count);
 			foreach (Tag tag in tags) {
-				if (rootTerm.TagIncluded (tag))
+				if (Root.TagIncluded (tag))
 					new_tags.Add (tag);
 			}
 
 			if (new_tags.Count == 0)
 				return;
 
-			tags = new_tags.ToArray ();
+			tags = new_tags;
 
 			bool needsUpdate = false;
 			preventUpdate = true;
-			foreach (Term parent in rootTerm.LiteralParents ()) {
+			foreach (Term parent in Root.LiteralParents ()) {
 				if (parent.Count == 1) {
 					foreach (Tag tag in tags) {
 						if ((parent.Last as Literal).Tag == tag) {
@@ -373,26 +350,26 @@ namespace FSpot.Query
 		}
 
 		// AND this tag with all terms
-		public void Require (Tag[] tags)
+		public void Require (List<Tag> tags)
 		{
 			// TODO it would be awesome if this was done by putting parentheses around
 			// OR terms and ANDing the result with this term (eg factored out)
 
 			// Trim out tags that are already required
-			var new_tags = new List<Tag> (tags.Length);
+			var new_tags = new List<Tag> (tags.Count);
 			foreach (Tag tag in tags) {
-				if (!rootTerm.TagRequired (tag))
+				if (!Root.TagRequired (tag))
 					new_tags.Add (tag);
 			}
 
 			if (new_tags.Count == 0)
 				return;
 
-			tags = new_tags.ToArray ();
+			tags = new_tags;
 
 			bool added = false;
 			preventUpdate = true;
-			foreach (Term parent in rootTerm.LiteralParents ()) {
+			foreach (Term parent in Root.LiteralParents ()) {
 				// TODO logic could be broken if a term's SubTerms are a mixture
 				// of Literals and non-Literals
 				InsertTerm (tags, parent, parent.Last as Literal);
@@ -403,29 +380,29 @@ namespace FSpot.Query
 			// TODO should add the first tag in the array,
 			// then add the others to the first's parent (so they will be ANDed together)
 			if (!added)
-				InsertTerm (tags, rootTerm, null);
+				InsertTerm (tags, Root, null);
 
 			preventUpdate = false;
 
 			UpdateQuery ();
 		}
 
-		public void UnRequire (Tag[] tags)
+		public void UnRequire (List<Tag> tags)
 		{
 			// Trim out tags that are not required
-			var new_tags = new List<Tag> (tags.Length);
+			var new_tags = new List<Tag> (tags.Count);
 			foreach (Tag tag in tags) {
-				if (rootTerm.TagRequired (tag))
+				if (Root.TagRequired (tag))
 					new_tags.Add (tag);
 			}
 
 			if (new_tags.Count == 0)
 				return;
 
-			tags = new_tags.ToArray ();
+			tags = new_tags;
 
 			preventUpdate = true;
-			foreach (Term parent in rootTerm.LiteralParents ()) {
+			foreach (Term parent in Root.LiteralParents ()) {
 				// Don't remove if this tag is the only child of a term
 				if (parent.Count > 1) {
 					foreach (Tag tag in tags) {
@@ -439,7 +416,7 @@ namespace FSpot.Query
 			UpdateQuery ();
 		}
 
-		public List<Literal> InsertTerm (Tag[] tags, Term parent, Literal after)
+		public List<Literal> InsertTerm (List<Tag> tags, Term parent, Literal after)
 		{
 			int position;
 			if (after != null)
@@ -469,8 +446,8 @@ namespace FSpot.Query
 				// TODO should really see what type of term the parent is, and
 				// encapsulate this term in a term of the opposite type. This will
 				// allow the query system to be expanded to work for multiple levels much easier.
-				if (parent == rootTerm) {
-					parent = new AndTerm (rootTerm, after);
+				if (parent == Root) {
+					parent = new AndTerm (Root, after);
 					after = null;
 				}
 
@@ -504,18 +481,18 @@ namespace FSpot.Query
 			if (sepBox != null)
 				sepBox.Hide ();
 
-			if (rootTerm.Count == 0) {
+			if (Root.Count == 0) {
 				help.Show ();
 				query.TagTerm = null;
 			} else {
 				help.Hide ();
-				query.TagTerm = new ConditionWrapper (rootTerm.SqlCondition ());
+				query.TagTerm = new ConditionWrapper (Root.SqlCondition ());
 			}
 
 			Changed?.Invoke (this, new EventArgs ());
 		}
 
-		public bool IsClear => rootTerm.Count == 0;
+		public bool IsClear => Root.Count == 0;
 
 		public void Clear ()
 		{
