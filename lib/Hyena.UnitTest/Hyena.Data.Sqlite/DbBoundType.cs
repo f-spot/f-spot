@@ -139,19 +139,19 @@ namespace Hyena.Data.Sqlite.Tests
 		}
 
 		[DatabaseColumn ("PrivateIntField")]
-int private_int_field;
+		int private_int_field;
 		[DatabaseColumn ("PrivateLongField")]
-long private_long_field;
+		long private_long_field;
 		[DatabaseColumn ("PrivateStringField")]
-string private_string_field;
+		string private_string_field;
 		[DatabaseColumn ("PrivateDateTimeField")]
-DateTime private_date_time_field;
+		DateTime private_date_time_field;
 		[DatabaseColumn ("PrivateTimeSpanField")]
-TimeSpan private_time_span_field;
+		TimeSpan private_time_span_field;
 		[DatabaseColumn ("PrivateIntEnumField")]
-IntEnum private_int_enum_field;
+		IntEnum private_int_enum_field;
 		[DatabaseColumn ("PrivateLongEnumField")]
-LongEnum private_long_enum_field;
+		LongEnum private_long_enum_field;
 
 		public int GetPrivateIntField ()
 		{
@@ -212,43 +212,43 @@ LongEnum private_long_enum_field;
 
 		int private_int_property_field;
 		[DatabaseColumn ("PrivateIntProperty")]
-int private_int_property {
+		int private_int_property {
 			get { return private_int_property_field; }
 			set { private_int_property_field = value; }
 		}
 		long private_long_property_field;
 		[DatabaseColumn ("PrivateLongProperty")]
-long private_long_property {
+		long private_long_property {
 			get { return private_long_property_field; }
 			set { private_long_property_field = value; }
 		}
 		string private_string_property_field;
 		[DatabaseColumn ("PrivateStringProperty")]
-string private_string_property {
+		string private_string_property {
 			get { return private_string_property_field; }
 			set { private_string_property_field = value; }
 		}
 		DateTime private_date_time_property_field;
 		[DatabaseColumn ("PrivateDateTimeProperty")]
-DateTime private_date_time_property {
+		DateTime private_date_time_property {
 			get { return private_date_time_property_field; }
 			set { private_date_time_property_field = value; }
 		}
 		TimeSpan private_time_span_property_field;
 		[DatabaseColumn ("PrivateTimeSpanProperty")]
-TimeSpan private_time_span_property {
+		TimeSpan private_time_span_property {
 			get { return private_time_span_property_field; }
 			set { private_time_span_property_field = value; }
 		}
 		IntEnum private_int_enum_property_field;
 		[DatabaseColumn ("PrivateIntEnumProperty")]
-IntEnum private_int_enum_property {
+		IntEnum private_int_enum_property {
 			get { return private_int_enum_property_field; }
 			set { private_int_enum_property_field = value; }
 		}
 		LongEnum private_long_enum_property_field;
 		[DatabaseColumn ("PrivateLongEnumProperty")]
-LongEnum private_long_enum_property {
+		LongEnum private_long_enum_property {
 			get { return private_long_enum_property_field; }
 			set { private_long_enum_property_field = value; }
 		}
