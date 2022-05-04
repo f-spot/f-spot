@@ -107,7 +107,7 @@ namespace FSpot.Exporters.Gallery
 				writer.WriteElementString ("Url", account.Url);
 				writer.WriteElementString ("Username", account.Username);
 				writer.WriteElementString ("Password", account.Password);
-				writer.WriteElementString ("Version", account.Version.ToString());
+				writer.WriteElementString ("Version", account.Version.ToString ());
 				writer.WriteEndElement (); //Account
 			}
 			writer.WriteEndElement ();
@@ -129,16 +129,16 @@ namespace FSpot.Exporters.Gallery
 
 			foreach (System.Xml.XmlNode child in node.ChildNodes) {
 				if (child.Name == "Name") {
-					name = child.ChildNodes [0].Value;
+					name = child.ChildNodes[0].Value;
 
 				} else if (child.Name == "Url") {
-					url = child.ChildNodes [0].Value;
+					url = child.ChildNodes[0].Value;
 				} else if (child.Name == "Password") {
-					password = child.ChildNodes [0].Value;
+					password = child.ChildNodes[0].Value;
 				} else if (child.Name == "Username") {
-					username = child.ChildNodes [0].Value;
+					username = child.ChildNodes[0].Value;
 				} else if (child.Name == "Version") {
-					string versionString = child.ChildNodes [0].Value;
+					string versionString = child.ChildNodes[0].Value;
 					if (versionString == "Version1")
 						version = GalleryVersion.Version1;
 					else if (versionString == "Version2")
@@ -153,7 +153,7 @@ namespace FSpot.Exporters.Gallery
 		private void ReadAccounts ()
 		{
 
-			if (! File.Exists (xml_path)) {
+			if (!File.Exists (xml_path)) {
 				MarkChanged ();
 				return;
 			}

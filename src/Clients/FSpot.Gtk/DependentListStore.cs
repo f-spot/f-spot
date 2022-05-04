@@ -44,9 +44,9 @@ public class DependentListStore : ListStore
 
 			parent = value;
 
-			GLib.GType [] types = new GLib.GType [parent.NColumns];
+			GLib.GType[] types = new GLib.GType[parent.NColumns];
 			for (int i = 0; i < parent.NColumns; i++) {
-				types [i] = parent.GetColumnType (i);
+				types[i] = parent.GetColumnType (i);
 			}
 
 			this.ColumnTypes = types;

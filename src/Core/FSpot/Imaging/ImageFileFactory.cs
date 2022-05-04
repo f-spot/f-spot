@@ -80,7 +80,8 @@ namespace FSpot.Imaging
 
 		#region private implementation
 
-		enum ImageType {
+		enum ImageType
+		{
 			Other,
 			Jpeg,
 			Raw
@@ -181,7 +182,7 @@ namespace FSpot.Imaging
 		{
 			foreach (var mimeType in mimeTypes) {
 				container.Register<IImageFile, T> (mimeType).AsMultiInstance ();
-		}
+			}
 			imageTypes.AddRange (mimeTypes);
 		}
 
@@ -240,7 +241,8 @@ namespace FSpot.Imaging
 			return container.CanResolve<IImageFile> (extension, param) ? extension : null;
 		}
 
-		static NamedParameterOverloads UriAsParameter (SafeUri uri) {
+		static NamedParameterOverloads UriAsParameter (SafeUri uri)
+		{
 			return new NamedParameterOverloads (new Dictionary<string, object> { {
 					"uri",
 					uri
@@ -278,7 +280,7 @@ namespace FSpot.Imaging
 			return jpegExtensions.Any (x => x == extension);
 		}
 
-		public bool IsJpegRawPair(SafeUri file1, SafeUri file2)
+		public bool IsJpegRawPair (SafeUri file1, SafeUri file2)
 		{
 			return file1.GetBaseUri ().ToString () == file2.GetBaseUri ().ToString () &&
 				file1.GetFilenameWithoutExtension () == file2.GetFilenameWithoutExtension () &&

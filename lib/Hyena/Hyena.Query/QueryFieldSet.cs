@@ -30,13 +30,13 @@
 namespace Hyena.Query
 {
 	public class QueryFieldSet : AliasedObjectSet<QueryField>
-    {
-        public QueryFieldSet (params QueryField [] fields) : base (fields)
-        {
-        }
+	{
+		public QueryFieldSet (params QueryField[] fields) : base (fields)
+		{
+		}
 
-        public QueryField [] Fields {
-            get { return Objects; }
-        }
-    }
+		public QueryField[] Fields {
+			get { return Objects; }
+		}
+	}
 }

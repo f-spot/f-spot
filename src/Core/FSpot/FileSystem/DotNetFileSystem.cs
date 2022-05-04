@@ -37,7 +37,7 @@ namespace FSpot.FileSystem
 		DotNetPath path;
 
 		public IFile File {
-			get =>file ??= new DotNetFile ();
+			get => file ??= new DotNetFile ();
 		}
 
 		public IDirectory Directory {

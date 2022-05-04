@@ -37,10 +37,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-using Gtk;
-
 using FSpot.Core;
 using FSpot.Resources.Lang;
+
+using Gtk;
 
 namespace FSpot.Query
 {

@@ -33,69 +33,69 @@ using Hyena.Collections;
 
 namespace Hyena.Data
 {
-    public abstract class BaseListModel<T> : IListModel<T>
-    {
-        Selection selection;
+	public abstract class BaseListModel<T> : IListModel<T>
+	{
+		Selection selection;
 
-        public event EventHandler Cleared;
-        public event EventHandler Reloaded;
+		public event EventHandler Cleared;
+		public event EventHandler Reloaded;
 
-        public BaseListModel () : base ()
-        {
-        }
+		public BaseListModel () : base ()
+		{
+		}
 
-        protected virtual void OnCleared ()
-        {
-            Selection.MaxIndex = Count - 1;
+		protected virtual void OnCleared ()
+		{
+			Selection.MaxIndex = Count - 1;
 
 			Cleared?.Invoke (this, EventArgs.Empty);
 		}
 
-        protected virtual void OnReloaded ()
-        {
-            Selection.MaxIndex = Count - 1;
+		protected virtual void OnReloaded ()
+		{
+			Selection.MaxIndex = Count - 1;
 
 			Reloaded?.Invoke (this, EventArgs.Empty);
 		}
 
-        public void RaiseReloaded ()
-        {
-            OnReloaded ();
-        }
+		public void RaiseReloaded ()
+		{
+			OnReloaded ();
+		}
 
-        public abstract void Clear();
+		public abstract void Clear ();
 
-        public abstract void Reload();
+		public abstract void Reload ();
 
-        public abstract T this[int index] { get; }
+		public abstract T this[int index] { get; }
 
-        public abstract int Count { get; }
+		public abstract int Count { get; }
 
-        public virtual object GetItem (int index)
-        {
-            return this[index];
-        }
+		public virtual object GetItem (int index)
+		{
+			return this[index];
+		}
 
-        public virtual Selection Selection {
-            get { return selection; }
-            protected set { selection = value; }
-        }
+		public virtual Selection Selection {
+			get { return selection; }
+			protected set { selection = value; }
+		}
 
-        protected ModelSelection<T> model_selection;
-        public virtual ModelSelection<T> SelectedItems {
-            get {
-                return model_selection ?? (model_selection = new ModelSelection<T> (this, Selection));
-            }
-        }
+		protected ModelSelection<T> model_selection;
+		public virtual ModelSelection<T> SelectedItems {
+			get {
+				return model_selection ?? (model_selection = new ModelSelection<T> (this, Selection));
+			}
+		}
 
-        public T FocusedItem {
-            get { return Selection.FocusedIndex == -1 ? default : this[Selection.FocusedIndex]; }
-        }
+		public T FocusedItem {
+			get { return Selection.FocusedIndex == -1 ? default : this[Selection.FocusedIndex]; }
+		}
 
-        bool can_reorder = false;
-        public bool CanReorder {
-            get { return can_reorder; }
-            set { can_reorder = value; }
-        }
-    }
+		bool can_reorder = false;
+		public bool CanReorder {
+			get { return can_reorder; }
+			set { can_reorder = value; }
+		}
+	}
 }

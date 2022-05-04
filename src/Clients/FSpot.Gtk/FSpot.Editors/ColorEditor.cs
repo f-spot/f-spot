@@ -35,6 +35,7 @@ using FSpot.ColorAdjustment;
 using FSpot.Resources.Lang;
 
 using Gdk;
+
 using Gtk;
 
 namespace FSpot.Editors

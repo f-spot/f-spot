@@ -60,9 +60,9 @@ namespace FSpot.ColorAdjustment
 			this.dest_wp = dest_wp;
 		}
 
-		protected override List <Cms.Profile> GenerateAdjustments ()
+		protected override List<Cms.Profile> GenerateAdjustments ()
 		{
-			var profiles = new List <Cms.Profile> ();
+			var profiles = new List<Cms.Profile> ();
 			profiles.Add (InputProfile);
 			profiles.Add (Cms.Profile.CreateAbstract (nsteps,
 						Math.Pow (Math.Sqrt (2.0), exposure),

@@ -29,9 +29,9 @@
 
 using System;
 
-using Mono.Addins;
-
 using FSpot.Core;
+
+using Mono.Addins;
 
 namespace FSpot.Extensions
 {
@@ -48,7 +48,7 @@ namespace FSpot.Extensions
 
 		protected override void OnActivated (object o, EventArgs e)
 		{
-			var exporter = (IExporter) Addin.CreateInstance (class_name);
+			var exporter = (IExporter)Addin.CreateInstance (class_name);
 			exporter.Run (SelectedImages ());
 		}
 	}

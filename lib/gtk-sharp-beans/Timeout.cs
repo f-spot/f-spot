@@ -21,7 +21,8 @@
 
 namespace GLib
 {
-	static class TimeoutExtensions {
+	static class TimeoutExtensions
+	{
 
 		public static uint AddSeconds (this Timeout timeout, uint interval, TimeoutHandler hndlr)
 		{

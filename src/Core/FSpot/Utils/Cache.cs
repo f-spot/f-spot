@@ -55,12 +55,12 @@ namespace FSpot.Utils
 					mru.Remove (key);
 
 				mru.Insert (0, key);
-				Hash [key] = value;
-				
+				Hash[key] = value;
+
 				while (mru.Count >= MaxCount) {
-					Hash.Remove (mru [MaxCount - 1]);
+					Hash.Remove (mru[MaxCount - 1]);
 					mru.RemoveAt (MaxCount - 1);
-				}	
+				}
 			}
 		}
 
@@ -73,7 +73,7 @@ namespace FSpot.Utils
 				mru.Remove (key);
 				mru.Insert (0, key);
 
-				return Hash [key];
+				return Hash[key];
 			}
 		}
 
@@ -105,8 +105,7 @@ namespace FSpot.Utils
 
 		public bool Contains (TKey key)
 		{
-			lock (o)
-			{
+			lock (o) {
 				return mru.Contains (key);
 			}
 		}

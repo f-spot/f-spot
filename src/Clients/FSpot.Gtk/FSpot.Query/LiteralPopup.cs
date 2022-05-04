@@ -55,20 +55,20 @@ namespace FSpot.Query
 
 			if (literal.IsNegated) {
 				GtkUtil.MakeMenuItem (popupMenu,
-						      string.Format (Strings.IncludePhotoTaggedX, literal.Tag.Name),
-						      new EventHandler (literal.HandleToggleNegatedCommand),
-						      true);
+							  string.Format (Strings.IncludePhotoTaggedX, literal.Tag.Name),
+							  new EventHandler (literal.HandleToggleNegatedCommand),
+							  true);
 			} else {
 				GtkUtil.MakeMenuItem (popupMenu,
-						      string.Format (Strings.ExcludePhotosTaggedX, literal.Tag.Name),
-						      new EventHandler (literal.HandleToggleNegatedCommand),
-						      true);
+							  string.Format (Strings.ExcludePhotosTaggedX, literal.Tag.Name),
+							  new EventHandler (literal.HandleToggleNegatedCommand),
+							  true);
 			}
 
 			GtkUtil.MakeMenuItem (popupMenu, Strings.RemoveFromSearch,
-					      "gtk-remove",
-					      new EventHandler (literal.HandleRemoveCommand),
-					      true);
+						  "gtk-remove",
+						  new EventHandler (literal.HandleRemoveCommand),
+						  true);
 
 			if (isPopup) {
 				if (eb != null)

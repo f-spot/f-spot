@@ -33,8 +33,8 @@ namespace FSpot.Core
 {
 	public interface IBrowsableItemChanges
 	{
-		bool DataChanged {get;}
-		bool MetadataChanged {get;}
+		bool DataChanged { get; }
+		bool MetadataChanged { get; }
 	}
 
 	public class FullInvalidate : IBrowsableItemChanges

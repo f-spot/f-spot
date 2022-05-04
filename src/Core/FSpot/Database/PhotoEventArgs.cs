@@ -33,10 +33,11 @@ using FSpot.Core;
 
 namespace FSpot.Database
 {
-	public class PhotoEventArgs : DbItemEventArgs<Photo> {
+	public class PhotoEventArgs : DbItemEventArgs<Photo>
+	{
 		public PhotosChanges Changes { get; private set; }
 
-		public PhotoEventArgs (Photo photo, PhotosChanges changes) : this (new[] {photo}, changes)
+		public PhotoEventArgs (Photo photo, PhotosChanges changes) : this (new[] { photo }, changes)
 		{
 		}
 

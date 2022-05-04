@@ -31,11 +31,11 @@
 
 using System;
 
-using Gtk;
-
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Utils;
+
+using Gtk;
 
 using Hyena;
 
@@ -70,26 +70,26 @@ namespace FSpot.Widgets
 
 		public string GetFolderNameByIter (TreeIter iter)
 		{
-			if ( ! IterIsValid (iter))
+			if (!IterIsValid (iter))
 				return null;
 
-			return (string) GetValue (iter, 0);
+			return (string)GetValue (iter, 0);
 		}
 
 		public int GetPhotoCountByIter (TreeIter iter)
 		{
-			if ( ! IterIsValid (iter))
+			if (!IterIsValid (iter))
 				return -1;
 
-			return (int) GetValue (iter, 1);
+			return (int)GetValue (iter, 1);
 		}
 
 		public SafeUri GetUriByIter (TreeIter iter)
 		{
-			if ( ! IterIsValid (iter))
+			if (!IterIsValid (iter))
 				return null;
 
-			return (SafeUri) GetValue (iter, 2);
+			return (SafeUri)GetValue (iter, 2);
 		}
 
 		public SafeUri GetUriByPath (TreePath row)
@@ -120,7 +120,7 @@ namespace FSpot.Widgets
 			TreeIter iter = TreeIter.Zero;
 
 			/* stores the segments of the last inserted uri */
-			string[] last_segments = {};
+			string[] last_segments = { };
 
 			int last_count = 0;
 
@@ -172,15 +172,15 @@ namespace FSpot.Widgets
 					if (IterIsValid (parent_iter)) {
 						iter =
 							AppendValues (parent_iter,
-							              Uri.UnescapeDataString (segments[i]),
-							              (segments.Length - 1 == i)? count : 0,
-							              (GetValue (parent_iter, 2) as SafeUri).Append (string.Format ("{0}/", segments[i]))
-							              );
+										  Uri.UnescapeDataString (segments[i]),
+										  (segments.Length - 1 == i) ? count : 0,
+										  (GetValue (parent_iter, 2) as SafeUri).Append (string.Format ("{0}/", segments[i]))
+										  );
 					} else {
 						iter =
 							AppendValues (Uri.UnescapeDataString (segments[i]),
-							              (segments.Length - 1 == i)? count : 0,
-							              new SafeUri (string.Format ("{0}:///", base_uri.Scheme), true));
+										  (segments.Length - 1 == i) ? count : 0,
+										  new SafeUri (string.Format ("{0}:///", base_uri.Scheme), true));
 					}
 
 					parent_iter = iter;

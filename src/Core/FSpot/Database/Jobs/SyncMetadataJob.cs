@@ -76,11 +76,11 @@ namespace FSpot.Database.Jobs
 
 		void WriteMetadataToImage (Photo photo)
 		{
-			Tag [] tags = photo.Tags;
-			string [] names = new string [tags.Length];
+			Tag[] tags = photo.Tags;
+			string[] names = new string[tags.Length];
 
 			for (int i = 0; i < tags.Length; i++)
-				names [i] = tags [i].Name;
+				names[i] = tags[i].Name;
 
 			using var metadata = MetadataUtils.Parse (photo.DefaultVersion.Uri);
 

@@ -48,7 +48,8 @@ namespace FSpot.Editors
 		TreeStore constraints_store;
 		ComboBox constraints_combo;
 
-		public enum ConstraintType {
+		public enum ConstraintType
+		{
 			Normal,
 			AddCustom,
 			SameAsPhoto
@@ -56,7 +57,7 @@ namespace FSpot.Editors
 
 		List<SelectionRatioDialog.SelectionConstraint> custom_constraints;
 
-		static SelectionRatioDialog.SelectionConstraint [] default_constraints = {
+		static SelectionRatioDialog.SelectionConstraint[] default_constraints = {
 			new SelectionRatioDialog.SelectionConstraint (Strings.FourByThreeBook, 4.0 / 3.0),
 			new SelectionRatioDialog.SelectionConstraint (Strings.FourBySixPostcard, 6.0 / 4.0),
 			new SelectionRatioDialog.SelectionConstraint (Strings.FiveBySevenL2L, 7.0 / 5.0),
@@ -84,7 +85,7 @@ namespace FSpot.Editors
 			case Preferences.CustomCropRatios:
 				custom_constraints = new List<SelectionRatioDialog.SelectionConstraint> ();
 				if (Preferences.Get<string[]> (key) != null) {
-					XmlSerializer serializer = new XmlSerializer (typeof(SelectionRatioDialog.SelectionConstraint));
+					XmlSerializer serializer = new XmlSerializer (typeof (SelectionRatioDialog.SelectionConstraint));
 					foreach (string xml in Preferences.Get<string[]> (key))
 						custom_constraints.Add ((SelectionRatioDialog.SelectionConstraint)serializer.Deserialize (new StringReader (xml)));
 				}
@@ -199,8 +200,8 @@ namespace FSpot.Editors
 		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile)
 		{
 			Rectangle selection = FSpot.Utils.PixbufUtils.TransformOrientation ((int)State.PhotoImageView.PixbufOrientation <= 4 ? input.Width : input.Height,
-											    (int)State.PhotoImageView.PixbufOrientation <= 4 ? input.Height : input.Width,
-											    State.Selection, State.PhotoImageView.PixbufOrientation);
+												(int)State.PhotoImageView.PixbufOrientation <= 4 ? input.Height : input.Width,
+												State.Selection, State.PhotoImageView.PixbufOrientation);
 			Pixbuf edited = new Pixbuf (input.Colorspace,
 						 input.HasAlpha, input.BitsPerSample,
 						 selection.Width, selection.Height);

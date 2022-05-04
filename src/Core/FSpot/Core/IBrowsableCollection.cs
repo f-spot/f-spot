@@ -44,7 +44,7 @@ namespace FSpot.Core
 
 		int IndexOf (IPhoto item);
 
-		IPhoto this [int index] {
+		IPhoto this[int index] {
 			get;
 		}
 

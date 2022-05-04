@@ -67,8 +67,7 @@ namespace FSpot.Database
 		private Job CreateJob (string type, uint id, string options, DateTime runAt, JobPriority priority)
 		{
 			using (var childContainer = container.GetChildContainer ()) {
-				childContainer.Register (new JobData
-				{
+				childContainer.Register (new JobData {
 					Id = id,
 					JobOptions = options,
 					JobPriority = priority,
@@ -86,11 +85,11 @@ namespace FSpot.Database
 		private Job LoadItem (Hyena.Data.Sqlite.IDataReader reader)
 		{
 			return CreateJob (
-					reader ["job_type"].ToString (),
-					Convert.ToUInt32 (reader ["id"]),
-					reader ["job_options"].ToString (),
-					DateTimeUtil.ToDateTime (Convert.ToInt32 (reader ["run_at"])),
-					(JobPriority)Convert.ToInt32 (reader ["job_priority"]));
+					reader["job_type"].ToString (),
+					Convert.ToUInt32 (reader["id"]),
+					reader["job_options"].ToString (),
+					DateTimeUtil.ToDateTime (Convert.ToInt32 (reader["run_at"])),
+					(JobPriority)Convert.ToInt32 (reader["job_priority"]));
 		}
 
 		private void LoadAllItems ()

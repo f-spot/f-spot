@@ -32,169 +32,169 @@ using System.Collections.Generic;
 
 namespace Hyena.Data.Gui
 {
-    public class ColumnController : IEnumerable<Column>
-    {
-        List<Column> columns = new List<Column> ();
-        ISortableColumn default_sort_column;
-        ISortableColumn sort_column;
+	public class ColumnController : IEnumerable<Column>
+	{
+		List<Column> columns = new List<Column> ();
+		ISortableColumn default_sort_column;
+		ISortableColumn sort_column;
 
-        protected List<Column> Columns {
-            get { return columns; }
-        }
+		protected List<Column> Columns {
+			get { return columns; }
+		}
 
-        public event EventHandler Updated;
+		public event EventHandler Updated;
 
-        protected virtual void OnVisibilitiesChanged ()
-        {
-            OnUpdated ();
-        }
+		protected virtual void OnVisibilitiesChanged ()
+		{
+			OnUpdated ();
+		}
 
-        protected virtual void OnWidthsChanged ()
-        {
-        }
+		protected virtual void OnWidthsChanged ()
+		{
+		}
 
-        protected void OnUpdated ()
-        {
-            EventHandler handler = Updated;
-            if (handler != null) {
-                handler (this, EventArgs.Empty);
-            }
-        }
+		protected void OnUpdated ()
+		{
+			EventHandler handler = Updated;
+			if (handler != null) {
+				handler (this, EventArgs.Empty);
+			}
+		}
 
-        public void Clear ()
-        {
-            lock (this) {
-                foreach (Column column in columns) {
-                    column.VisibilityChanged -= OnColumnVisibilityChanged;
-                    column.WidthChanged -= OnColumnWidthChanged;
-                }
-                columns.Clear ();
-            }
+		public void Clear ()
+		{
+			lock (this) {
+				foreach (Column column in columns) {
+					column.VisibilityChanged -= OnColumnVisibilityChanged;
+					column.WidthChanged -= OnColumnWidthChanged;
+				}
+				columns.Clear ();
+			}
 
-            OnUpdated ();
-        }
+			OnUpdated ();
+		}
 
-        public void AddRange (params Column [] range)
-        {
-            lock (this) {
-                foreach (Column column in range) {
-                    column.VisibilityChanged += OnColumnVisibilityChanged;
-                    column.WidthChanged += OnColumnWidthChanged;
-                }
-                columns.AddRange (range);
-            }
+		public void AddRange (params Column[] range)
+		{
+			lock (this) {
+				foreach (Column column in range) {
+					column.VisibilityChanged += OnColumnVisibilityChanged;
+					column.WidthChanged += OnColumnWidthChanged;
+				}
+				columns.AddRange (range);
+			}
 
-            OnUpdated ();
-        }
+			OnUpdated ();
+		}
 
-        public void Add (Column column)
-        {
-            lock (this) {
-                column.VisibilityChanged += OnColumnVisibilityChanged;
-                column.WidthChanged += OnColumnWidthChanged;
-                columns.Add (column);
-            }
+		public void Add (Column column)
+		{
+			lock (this) {
+				column.VisibilityChanged += OnColumnVisibilityChanged;
+				column.WidthChanged += OnColumnWidthChanged;
+				columns.Add (column);
+			}
 
-            OnUpdated ();
-        }
+			OnUpdated ();
+		}
 
-        public void Insert (Column column, int index)
-        {
-            lock (this) {
-                column.VisibilityChanged += OnColumnVisibilityChanged;
-                column.WidthChanged += OnColumnWidthChanged;
-                columns.Insert (index, column);
-            }
+		public void Insert (Column column, int index)
+		{
+			lock (this) {
+				column.VisibilityChanged += OnColumnVisibilityChanged;
+				column.WidthChanged += OnColumnWidthChanged;
+				columns.Insert (index, column);
+			}
 
-            OnUpdated ();
-        }
+			OnUpdated ();
+		}
 
-        public void Remove (Column column)
-        {
-            lock (this) {
-                column.VisibilityChanged -= OnColumnVisibilityChanged;
-                column.WidthChanged -= OnColumnWidthChanged;
-                columns.Remove (column);
-            }
+		public void Remove (Column column)
+		{
+			lock (this) {
+				column.VisibilityChanged -= OnColumnVisibilityChanged;
+				column.WidthChanged -= OnColumnWidthChanged;
+				columns.Remove (column);
+			}
 
-            OnUpdated ();
-        }
+			OnUpdated ();
+		}
 
-        public void Remove (int index)
-        {
-            lock (this) {
-                Column column = columns[index];
-                column.VisibilityChanged -= OnColumnVisibilityChanged;
-                column.WidthChanged -= OnColumnWidthChanged;
-                columns.RemoveAt (index);
-            }
+		public void Remove (int index)
+		{
+			lock (this) {
+				Column column = columns[index];
+				column.VisibilityChanged -= OnColumnVisibilityChanged;
+				column.WidthChanged -= OnColumnWidthChanged;
+				columns.RemoveAt (index);
+			}
 
-            OnUpdated ();
-        }
+			OnUpdated ();
+		}
 
-        public void Reorder (int index, int newIndex)
-        {
-            lock (this) {
-                Column column = columns[index];
-                columns.RemoveAt (index);
-                columns.Insert (newIndex, column);
-            }
+		public void Reorder (int index, int newIndex)
+		{
+			lock (this) {
+				Column column = columns[index];
+				columns.RemoveAt (index);
+				columns.Insert (newIndex, column);
+			}
 
-            OnUpdated ();
-        }
+			OnUpdated ();
+		}
 
-        IEnumerator IEnumerable.GetEnumerator ()
-        {
-            return columns.GetEnumerator ();
-        }
+		IEnumerator IEnumerable.GetEnumerator ()
+		{
+			return columns.GetEnumerator ();
+		}
 
-        IEnumerator<Column> IEnumerable<Column>.GetEnumerator ()
-        {
-            return columns.GetEnumerator ();
-        }
+		IEnumerator<Column> IEnumerable<Column>.GetEnumerator ()
+		{
+			return columns.GetEnumerator ();
+		}
 
-        public int IndexOf (Column column)
-        {
-            lock (this) {
-                return columns.IndexOf (column);
-            }
-        }
+		public int IndexOf (Column column)
+		{
+			lock (this) {
+				return columns.IndexOf (column);
+			}
+		}
 
-        public Column [] ToArray ()
-        {
-            return columns.ToArray ();
-        }
+		public Column[] ToArray ()
+		{
+			return columns.ToArray ();
+		}
 
-        void OnColumnVisibilityChanged (object o, EventArgs args)
-        {
-            OnVisibilitiesChanged ();
-        }
+		void OnColumnVisibilityChanged (object o, EventArgs args)
+		{
+			OnVisibilitiesChanged ();
+		}
 
-        void OnColumnWidthChanged (object o, EventArgs args)
-        {
-            OnWidthsChanged ();
-        }
+		void OnColumnWidthChanged (object o, EventArgs args)
+		{
+			OnWidthsChanged ();
+		}
 
-        public Column this[int index] {
-            get { return columns[index]; }
-        }
+		public Column this[int index] {
+			get { return columns[index]; }
+		}
 
-        public ISortableColumn DefaultSortColumn {
-            get { return default_sort_column; }
-            set { default_sort_column = value; }
-        }
+		public ISortableColumn DefaultSortColumn {
+			get { return default_sort_column; }
+			set { default_sort_column = value; }
+		}
 
-        public virtual ISortableColumn SortColumn {
-            get { return sort_column; }
-            set { sort_column = value;}
-        }
+		public virtual ISortableColumn SortColumn {
+			get { return sort_column; }
+			set { sort_column = value; }
+		}
 
-        public int Count {
-            get { return columns.Count; }
-        }
+		public int Count {
+			get { return columns.Count; }
+		}
 
-        public virtual bool EnableColumnMenu {
-            get { return false; }
-        }
-    }
+		public virtual bool EnableColumnMenu {
+			get { return false; }
+		}
+	}
 }

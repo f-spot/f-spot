@@ -30,10 +30,10 @@ namespace Hyena.Query
 {
 	// A query value that requires the string match exactly
 	public class ExactStringQueryValue : StringQueryValue
-    {
-        public override string ToSql (Operator op)
-        {
-            return string.IsNullOrEmpty (value) ? null : EscapeString (op, value.ToLower ());
-        }
-    }
+	{
+		public override string ToSql (Operator op)
+		{
+			return string.IsNullOrEmpty (value) ? null : EscapeString (op, value.ToLower ());
+		}
+	}
 }

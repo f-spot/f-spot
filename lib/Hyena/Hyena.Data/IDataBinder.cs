@@ -29,8 +29,8 @@
 namespace Hyena.Data
 {
 	public interface IDataBinder
-    {
-        void Bind (object o);
-        object BoundObject { get; set; }
-    }
+	{
+		void Bind (object o);
+		object BoundObject { get; set; }
+	}
 }

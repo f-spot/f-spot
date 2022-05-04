@@ -32,10 +32,10 @@
 using System;
 using System.Collections.Generic;
 
-using Gtk;
-
 using FSpot.Core;
 using FSpot.Resources.Lang;
+
+using Gtk;
 
 public class PhotoVersionMenu : Menu
 {
@@ -51,7 +51,7 @@ public class PhotoVersionMenu : Menu
 		MenuItem item = sender as MenuItem;
 
 		if (item != null && version_mapping.ContainsKey (item)) {
-			Version = version_mapping [item];
+			Version = version_mapping[item];
 			VersionChanged (this);
 		}
 	}

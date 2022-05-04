@@ -29,10 +29,11 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Gtk;
+using System;
+
 using Gdk;
 
-using System;
+using Gtk;
 
 
 namespace FSpot

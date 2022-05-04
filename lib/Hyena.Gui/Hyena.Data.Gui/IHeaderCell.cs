@@ -29,6 +29,6 @@
 namespace Hyena.Data.Gui
 {
 	public interface IHeaderCell
-    {
-    }
+	{
+	}
 }

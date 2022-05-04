@@ -39,63 +39,63 @@ using Selection = Hyena.Collections.Selection;
 namespace Hyena.Data.Gui.Tests
 {
 	[TestModule ("List View")]
-    public class ListViewTestModule : Window
-    {
-        View view;
-        Model model;
+	public class ListViewTestModule : Window
+	{
+		View view;
+		Model model;
 
-        public ListViewTestModule () : base ("ListView")
-        {
-            WindowPosition = WindowPosition.Center;
-            SetDefaultSize (800, 600);
+		public ListViewTestModule () : base ("ListView")
+		{
+			WindowPosition = WindowPosition.Center;
+			SetDefaultSize (800, 600);
 
-            ScrolledWindow scroll = new ScrolledWindow ();
-            scroll.HscrollbarPolicy = PolicyType.Automatic;
-            scroll.VscrollbarPolicy = PolicyType.Automatic;
+			ScrolledWindow scroll = new ScrolledWindow ();
+			scroll.HscrollbarPolicy = PolicyType.Automatic;
+			scroll.VscrollbarPolicy = PolicyType.Automatic;
 
-            view = new View ();
-            model = new Model ();
+			view = new View ();
+			model = new Model ();
 
-            scroll.Add (view);
-            Add (scroll);
-            ShowAll ();
+			scroll.Add (view);
+			Add (scroll);
+			ShowAll ();
 
-            view.SetModel (model);
-        }
+			view.SetModel (model);
+		}
 
-        class View : ListView<ModelItem>
-        {
-            public View ()
-            {
-                ColumnController = new ColumnController ();
-                ColumnController.AddRange (
-                    new Column (String.Empty, new ColumnCellCheckBox ("F", true), 1),
-                    new Column ("Apples", new ColumnCellText ("B", true), 1),
-                    new Column ("Pears", new ColumnCellText ("C", true), 1),
-                    new Column ("How Hot", new ColumnCellRating ("G", true), 1),
-                    new Column ("Peaches", new ColumnCellText ("D", true), 1),
-                    new Column ("Doodle", new ColumnCellDoodle ("E", true), 1),
-                    new Column ("GUIDs!OMG", new ColumnCellText ("A", true), 1)
-                );
-            }
-        }
-    }
+		class View : ListView<ModelItem>
+		{
+			public View ()
+			{
+				ColumnController = new ColumnController ();
+				ColumnController.AddRange (
+					new Column (String.Empty, new ColumnCellCheckBox ("F", true), 1),
+					new Column ("Apples", new ColumnCellText ("B", true), 1),
+					new Column ("Pears", new ColumnCellText ("C", true), 1),
+					new Column ("How Hot", new ColumnCellRating ("G", true), 1),
+					new Column ("Peaches", new ColumnCellText ("D", true), 1),
+					new Column ("Doodle", new ColumnCellDoodle ("E", true), 1),
+					new Column ("GUIDs!OMG", new ColumnCellText ("A", true), 1)
+				);
+			}
+		}
+	}
 
-    [TestModule ("Grid View")]
-    public class GridViewTestModule : Window
-    {
-        View view;
-        Model model;
+	[TestModule ("Grid View")]
+	public class GridViewTestModule : Window
+	{
+		View view;
+		Model model;
 
-        public GridViewTestModule () : base ("GridView")
-        {
-            WindowPosition = WindowPosition.Center;
-            SetDefaultSize (800, 600);
+		public GridViewTestModule () : base ("GridView")
+		{
+			WindowPosition = WindowPosition.Center;
+			SetDefaultSize (800, 600);
 
-            view = new View ();
-            model = new Model ();
+			view = new View ();
+			model = new Model ();
 
-            /*var hbox = new HBox () { Spacing = 6 };
+			/*var hbox = new HBox () { Spacing = 6 };
 
             var add_margin_control = new System.Action<string, Func<double>, System.Action<double>> ((type, get, set) => {
                 var spin = new SpinButton (0, 20, 1);
@@ -107,39 +107,39 @@ namespace Hyena.Data.Gui.Tests
 
             add_margin_control ("", () => view.Box.Margin.Left, v => view.Box.Margin = new Thickness (v));*/
 
-            var scroll = new ScrolledWindow () {
-                HscrollbarPolicy = PolicyType.Automatic,
-                VscrollbarPolicy = PolicyType.Automatic
-            };
-            scroll.Add (view);
+			var scroll = new ScrolledWindow () {
+				HscrollbarPolicy = PolicyType.Automatic,
+				VscrollbarPolicy = PolicyType.Automatic
+			};
+			scroll.Add (view);
 
-            var vbox = new VBox () { Spacing = 12 };
-            //vbox.PackStart (hbox, true, true, 0);
-            vbox.PackStart (scroll, true, true, 0);
+			var vbox = new VBox () { Spacing = 12 };
+			//vbox.PackStart (hbox, true, true, 0);
+			vbox.PackStart (scroll, true, true, 0);
 
-            Add (vbox);
-            ShowAll ();
+			Add (vbox);
+			ShowAll ();
 
-            view.SetModel (model);
-        }
+			view.SetModel (model);
+		}
 
-        class View : ListView<ModelItem>
-        {
-            public View ()
-            {
-                ViewLayout = new DataViewLayoutGrid () {
-                    ChildAllocator = () => {
-                        return new StackPanel () {
-                            Orientation = Hyena.Gui.Canvas.Orientation.Vertical,
-                            Width = 400,
-                            Spacing = 15,
-                            //Margin = new Thickness (10),
-                            Theme = Theme,
-                            Children = {
-                                new Slider (),
-                                new ColumnCellCheckBox ("F", true),
-                                new TextBlock () { Binder = new ObjectBinder () { Property = "A" } },
-                                new TextBlock () { Binder = new ObjectBinder () { Property = "B" } },
+		class View : ListView<ModelItem>
+		{
+			public View ()
+			{
+				ViewLayout = new DataViewLayoutGrid () {
+					ChildAllocator = () => {
+						return new StackPanel () {
+							Orientation = Hyena.Gui.Canvas.Orientation.Vertical,
+							Width = 400,
+							Spacing = 15,
+							//Margin = new Thickness (10),
+							Theme = Theme,
+							Children = {
+								new Slider (),
+								new ColumnCellCheckBox ("F", true),
+								new TextBlock () { Binder = new ObjectBinder () { Property = "A" } },
+								new TextBlock () { Binder = new ObjectBinder () { Property = "B" } },
                                 //new ColumnCellText ("B", true),
                                 //new ColumnCellText ("C", true),
                                 new ColumnCellRating ("G", true),
@@ -147,146 +147,146 @@ namespace Hyena.Data.Gui.Tests
                                 new ColumnCellDoodle ("E", true),
                                 //new ColumnCellText ("A", true)
                             }
-                        };
-                        //return new ColumnCellRating ("G", true);
-                    },
-                    View = this
-                };
-            }
-        }
-    }
+						};
+						//return new ColumnCellRating ("G", true);
+					},
+					View = this
+				};
+			}
+		}
+	}
 
-    class Model : IListModel<ModelItem>
-    {
-        List<ModelItem> store = new List<ModelItem> ();
-        Selection selection = new Selection ();
+	class Model : IListModel<ModelItem>
+	{
+		List<ModelItem> store = new List<ModelItem> ();
+		Selection selection = new Selection ();
 
-        public event EventHandler Cleared;
-        public event EventHandler Reloaded;
+		public event EventHandler Cleared;
+		public event EventHandler Reloaded;
 
-        public Model ()
-        {
-            Random random = new Random (0);
-            for (int i = 0; i < 1000; i++) {
-                store.Add (new ModelItem (i, random));
-            }
-        }
+		public Model ()
+		{
+			Random random = new Random (0);
+			for (int i = 0; i < 1000; i++) {
+				store.Add (new ModelItem (i, random));
+			}
+		}
 
-        public void Clear ()
-        {
-        }
+		public void Clear ()
+		{
+		}
 
-        public void Reload ()
-        {
-        }
+		public void Reload ()
+		{
+		}
 
-        public object GetItem (int index)
-        {
-            return this[index];
-        }
+		public object GetItem (int index)
+		{
+			return this[index];
+		}
 
-        public int Count {
-            get { return store.Count; }
-        }
+		public int Count {
+			get { return store.Count; }
+		}
 
-        public bool CanReorder {
-            get { return false; }
-        }
+		public bool CanReorder {
+			get { return false; }
+		}
 
-        public ModelItem this[int index] {
-            get { return store[index]; }
-        }
+		public ModelItem this[int index] {
+			get { return store[index]; }
+		}
 
-        public Selection Selection {
-            get { return selection; }
-        }
-    }
+		public Selection Selection {
+			get { return selection; }
+		}
+	}
 
-    class ModelItem
-    {
-        public ModelItem (int i, Random rand)
-        {
-            a = Guid.NewGuid ().ToString ();
-            b = rand.Next (0, 255);
-            c = rand.NextDouble ();
-            d = String.Format ("Item {0}", i);
-            e = new List<Gdk.Point> ();
-            f = rand.Next (0, 1) == 1;
-            g = rand.Next (0, 5);
-        }
+	class ModelItem
+	{
+		public ModelItem (int i, Random rand)
+		{
+			a = Guid.NewGuid ().ToString ();
+			b = rand.Next (0, 255);
+			c = rand.NextDouble ();
+			d = String.Format ("Item {0}", i);
+			e = new List<Gdk.Point> ();
+			f = rand.Next (0, 1) == 1;
+			g = rand.Next (0, 5);
+		}
 
-        string a; public string A { get { return a; } }
-        int b;    public int    B { get { return b; } }
-        double c; public double C { get { return c; } }
-        string d; public string D { get { return d; } }
-        List<Gdk.Point> e; public List<Gdk.Point> E { get { return e; } }
-        bool f; public bool F { get { return f; } set { f = value; } }
-        int g; public int G { get { return g; } set { g = value; } }
-    }
+		string a; public string A { get { return a; } }
+		int b; public int B { get { return b; } }
+		double c; public double C { get { return c; } }
+		string d; public string D { get { return d; } }
+		List<Gdk.Point> e; public List<Gdk.Point> E { get { return e; } }
+		bool f; public bool F { get { return f; } set { f = value; } }
+		int g; public int G { get { return g; } set { g = value; } }
+	}
 
-    class ColumnCellDoodle : ColumnCell, IInteractiveCell
-    {
-        Random random = new Random ();
-        bool red = false;
+	class ColumnCellDoodle : ColumnCell, IInteractiveCell
+	{
+		Random random = new Random ();
+		bool red = false;
 
-        public ColumnCellDoodle (string property, bool expand) : base (property, expand)
-        {
-        }
+		public ColumnCellDoodle (string property, bool expand) : base (property, expand)
+		{
+		}
 
-        public override void Render (CellContext context, double cellWidth, double cellHeight)
-        {
-            red = !red;
-            Cairo.Context cr = context.Context;
-            cr.Rectangle (0, 0, cellWidth, cellHeight);
-		    cr.SetSourceColor (CairoExtensions.RgbaToColor (red ? 0xff000099 : 0x00000099));
-            cr.Fill ();
+		public override void Render (CellContext context, double cellWidth, double cellHeight)
+		{
+			red = !red;
+			Cairo.Context cr = context.Context;
+			cr.Rectangle (0, 0, cellWidth, cellHeight);
+			cr.SetSourceColor (CairoExtensions.RgbaToColor (red ? 0xff000099 : 0x00000099));
+			cr.Fill ();
 
-            List<Gdk.Point> points = Points;
-            for (int i = 0, n = points.Count; i < n; i++) {
-                if (i == 0) {
-                    cr.MoveTo (points[i].X, points[i].Y);
-                } else {
-                    cr.LineTo (points[i].X, points[i].Y);
-                }
-            }
+			List<Gdk.Point> points = Points;
+			for (int i = 0, n = points.Count; i < n; i++) {
+				if (i == 0) {
+					cr.MoveTo (points[i].X, points[i].Y);
+				} else {
+					cr.LineTo (points[i].X, points[i].Y);
+				}
+			}
 
-		    cr.SetSourceColor (CairoExtensions.RgbToColor ((uint)random.Next (0xffffff)));
-            cr.LineWidth = 1;
-            cr.Stroke ();
-        }
+			cr.SetSourceColor (CairoExtensions.RgbToColor ((uint)random.Next (0xffffff)));
+			cr.LineWidth = 1;
+			cr.Stroke ();
+		}
 
-        object last_pressed_bound;
+		object last_pressed_bound;
 
-        public bool ButtonEvent (int x, int y, bool pressed, Gdk.EventButton evnt)
-        {
-            if (!pressed) {
-                last_pressed_bound = null;
-                return false;
-            }
+		public bool ButtonEvent (int x, int y, bool pressed, Gdk.EventButton evnt)
+		{
+			if (!pressed) {
+				last_pressed_bound = null;
+				return false;
+			}
 
-            last_pressed_bound = BoundObject;
-            Points.Add (new Gdk.Point (x, y));
-            return true;
-        }
+			last_pressed_bound = BoundObject;
+			Points.Add (new Gdk.Point (x, y));
+			return true;
+		}
 
-        public bool MotionEvent (int x, int y, Gdk.EventMotion evnt)
-        {
-            if (last_pressed_bound == BoundObject) {
-                Points.Add (new Gdk.Point (x, y));
-                return true;
-            }
+		public bool MotionEvent (int x, int y, Gdk.EventMotion evnt)
+		{
+			if (last_pressed_bound == BoundObject) {
+				Points.Add (new Gdk.Point (x, y));
+				return true;
+			}
 
-            return false;
-        }
+			return false;
+		}
 
-        public bool PointerLeaveEvent ()
-        {
-            last_pressed_bound = null;
-            return true;
-        }
+		public bool PointerLeaveEvent ()
+		{
+			last_pressed_bound = null;
+			return true;
+		}
 
-        List<Gdk.Point> Points {
-            get { return (List<Gdk.Point>)BoundObject; }
-        }
-    }
+		List<Gdk.Point> Points {
+			get { return (List<Gdk.Point>)BoundObject; }
+		}
+	}
 }

@@ -44,21 +44,21 @@ public class ThumbnailCommand
 		this.parent_window = parent_window;
 	}
 
-	public bool Execute (IPhoto [] photos)
+	public bool Execute (IPhoto[] photos)
 	{
 		ProgressDialog progress_dialog = null;
 		var loader = App.Instance.Container.Resolve<IThumbnailLoader> ();
-		
+
 		if (photos.Length > 1) {
 			progress_dialog = new ProgressDialog (Strings.UpdatingThumbnails,
-							      ProgressDialog.CancelButtonType.Stop,
-							      photos.Length, parent_window);
+								  ProgressDialog.CancelButtonType.Stop,
+								  photos.Length, parent_window);
 		}
 
 		int count = 0;
 		foreach (IPhoto photo in photos) {
 			if (progress_dialog != null
-			    && progress_dialog.Update (string.Format (Strings.UpdatingPictureX, photo.Name)))
+				&& progress_dialog.Update (string.Format (Strings.UpdatingPictureX, photo.Name)))
 				break;
 
 			foreach (IPhotoVersion version in photo.Versions) {

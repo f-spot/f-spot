@@ -53,7 +53,8 @@ namespace FSpot.Tools.MergeDb
 
 		public event EventHandler FileSet;
 
-		public MergeDbDialog (MergeDb parent) {
+		public MergeDbDialog (MergeDb parent)
+		{
 			this.parent = parent;
 
 			var builder = new GtkBeans.Builder (null, "mergedb_dialog.ui", null);
@@ -78,8 +79,8 @@ namespace FSpot.Tools.MergeDb
 			get { return db_filechooser; }
 		}
 
-		Roll [] rolls;
-		public Roll [] Rolls {
+		Roll[] rolls;
+		public Roll[] Rolls {
 			get { return rolls; }
 			set {
 				rolls = value;
@@ -87,20 +88,20 @@ namespace FSpot.Tools.MergeDb
 					uint numphotos = parent.FromDb.Rolls.PhotosInRoll (r);
 					// Roll time is in UTC always
 					DateTime date = r.Time.ToLocalTime ();
-					rolls_combo.AppendText (string.Format ("{0} ({1})", date.ToString("%dd %MMM, %HH:%mm"), numphotos));
+					rolls_combo.AppendText (string.Format ("{0} ({1})", date.ToString ("%dd %MMM, %HH:%mm"), numphotos));
 					rolls_combo.Active = 0;
 				}
 			}
 		}
 
-		public Roll [] ActiveRolls {
+		public Roll[] ActiveRolls {
 			get {
 				if (allrolls_radio.Active)
 					return null;
 				if (newrolls_radio.Active)
 					return rolls;
 				else
-					return new Roll [] {rolls [rolls_combo.Active]};
+					return new Roll[] { rolls[rolls_combo.Active] };
 			}
 		}
 

@@ -30,7 +30,9 @@
 //
 
 using System;
+
 using Cairo;
+
 using Pinta.Core;
 
 namespace FSpot.Widgets
@@ -89,15 +91,15 @@ namespace FSpot.Widgets
 		ImageInfo CreateBlur (ImageInfo source)
 		{
 			double scale = Math.Max (256 / (double)source.Bounds.Width,
-				               256 / (double)source.Bounds.Height);
+							   256 / (double)source.Bounds.Height);
 
 			var small = new Gdk.Rectangle (0, 0,
-				                      (int)Math.Ceiling (source.Bounds.Width * scale),
-				                      (int)Math.Ceiling (source.Bounds.Height * scale));
+									  (int)Math.Ceiling (source.Bounds.Width * scale),
+									  (int)Math.Ceiling (source.Bounds.Height * scale));
 
 			var image = new ImageSurface (Format.Argb32,
-				                     small.Width,
-				                     small.Height);
+									 small.Width,
+									 small.Height);
 
 			var ctx = new Context (image);
 
@@ -111,10 +113,8 @@ namespace FSpot.Widgets
 			ctx.Dispose ();
 
 			ImageInfo overlay;
-			using (var normal = image.ToPixbuf ())
-			{
-				using (var pixbufBlur = PixbufUtils.Blur (normal, 3, null))
-				{
+			using (var normal = image.ToPixbuf ()) {
+				using (var pixbufBlur = PixbufUtils.Blur (normal, 3, null)) {
 					overlay = new ImageInfo (pixbufBlur);
 				}
 			}

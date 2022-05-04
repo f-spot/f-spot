@@ -46,9 +46,9 @@ namespace FSpot.Core.UnitTest.Mocks
 
 		#region IBrowsableCollection implementation
 		public event IBrowsableCollectionChangedHandler Changed;
-		#pragma warning disable 67 // ItemsChanged event unused in mock
+#pragma warning disable 67 // ItemsChanged event unused in mock
 		public event IBrowsableCollectionItemsChangedHandler ItemsChanged;
-		#pragma warning restore 67
+#pragma warning restore 67
 		public int IndexOf (IPhoto item)
 		{
 			return itemCollection.IndexOf (item);
@@ -66,7 +66,7 @@ namespace FSpot.Core.UnitTest.Mocks
 				return itemCollection.AsEnumerable ();
 			}
 		}
-		public IPhoto this [int index] {
+		public IPhoto this[int index] {
 			get {
 				return itemCollection[index];
 			}

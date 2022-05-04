@@ -78,9 +78,8 @@ namespace FSpot.Query
 		/// last Literal in term, else null
 		/// </value>
 		public Term Last {
-			get
-			{
-			    return SubTerms.Count > 0 ? SubTerms [SubTerms.Count - 1] : null;
+			get {
+				return SubTerms.Count > 0 ? SubTerms[SubTerms.Count - 1] : null;
 			}
 		}
 
@@ -281,7 +280,7 @@ namespace FSpot.Query
 			var condition = new StringBuilder ("(");
 
 			for (int i = 0; i < SubTerms.Count; i++) {
-				Term term = SubTerms [i];
+				Term term = SubTerms[i];
 				condition.Append (term.SqlCondition ());
 
 				if (i != SubTerms.Count - 1)

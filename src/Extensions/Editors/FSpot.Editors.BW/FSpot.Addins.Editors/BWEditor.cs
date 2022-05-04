@@ -43,7 +43,8 @@ namespace FSpot.Addins.Editors
 {
 	class BWEditor : Editor
 	{
-		public BWEditor () : base (Strings.ConvertToBW, null) {
+		public BWEditor () : base (Strings.ConvertToBW, null)
+		{
 			CanHandleMultiple = false;
 			HasSettings = true;
 			ApplyLabel = Strings.Apply;
@@ -58,7 +59,7 @@ namespace FSpot.Addins.Editors
 				return (Pixbuf)input.Clone ();
 			}
 			Pixbuf output = new Pixbuf (input.Colorspace, input.HasAlpha, input.BitsPerSample, input.Width, input.Height);
-			Vector4 multiply = new Vector4 ((float)(r.Value/100.0), (float)(g.Value/100.0), (float)(b.Value/100.0), 0);
+			Vector4 multiply = new Vector4 ((float)(r.Value / 100.0), (float)(g.Value / 100.0), (float)(b.Value / 100.0), 0);
 			Normalize (ref multiply);
 
 			bool has_alpha = input.HasAlpha;
@@ -66,26 +67,26 @@ namespace FSpot.Addins.Editors
 			int rowstride_in = input.Rowstride;
 			int rowstride_out = output.Rowstride;
 			Vector4 v_in;
-			float[] fcurve = new float [256];
+			float[] fcurve = new float[256];
 			c.GetVector (fcurve.Length, fcurve);
-			byte[] curve = new byte [fcurve.Length];
+			byte[] curve = new byte[fcurve.Length];
 			for (int i = 0; i < fcurve.Length; i++)
 				curve[i] = (byte)fcurve[i];
 			unsafe {
-				byte *pix_in = (byte *)input.Pixels;
-				byte *pix_out = (byte *)output.Pixels;
-				for (int i=0; i < input.Height; i++)
-					for (int j=0; j<input.Width; j++) {
-						v_in = new Vector4 (pix_in[i*rowstride_in + j*chan],
-								     pix_in[i*rowstride_in + j*chan + 1],
-								     pix_in[i*rowstride_in + j*chan + 2],
-								     0);
+				byte* pix_in = (byte*)input.Pixels;
+				byte* pix_out = (byte*)output.Pixels;
+				for (int i = 0; i < input.Height; i++)
+					for (int j = 0; j < input.Width; j++) {
+						v_in = new Vector4 (pix_in[i * rowstride_in + j * chan],
+									 pix_in[i * rowstride_in + j * chan + 1],
+									 pix_in[i * rowstride_in + j * chan + 2],
+									 0);
 						float val = Desaturate (ref v_in, ref multiply);
-						pix_out[i*rowstride_out + j*chan] = curve [unchecked ((byte)val)];
-						pix_out[i*rowstride_out + j*chan + 1] = curve [unchecked ((byte)val)];
-						pix_out[i*rowstride_out + j*chan + 2] = curve [unchecked ((byte)val)];
+						pix_out[i * rowstride_out + j * chan] = curve[unchecked((byte)val)];
+						pix_out[i * rowstride_out + j * chan + 1] = curve[unchecked((byte)val)];
+						pix_out[i * rowstride_out + j * chan + 2] = curve[unchecked((byte)val)];
 						if (has_alpha)
-							pix_out[i*rowstride_out + j*chan + 3] = pix_in[i*rowstride_in + j*chan + 3];
+							pix_out[i * rowstride_out + j * chan + 3] = pix_in[i * rowstride_in + j * chan + 3];
 					}
 			}
 
@@ -95,7 +96,7 @@ namespace FSpot.Addins.Editors
 
 		static float Desaturate (ref Vector4 input, ref Vector4 chan_multiplier)
 		{
-			Vector4 temp = input * chan_multiplier;	//(r1,g1,b1,0) = (r,g,b,a) * (rx, gx, bx, 0)
+			Vector4 temp = input * chan_multiplier; //(r1,g1,b1,0) = (r,g,b,a) * (rx, gx, bx, 0)
 			return temp.X + temp.Y + temp.Z;
 		}
 
@@ -131,7 +132,7 @@ namespace FSpot.Addins.Editors
 			c.SetRange (0, 255, 0, 255);
 			h.Add (c);
 			Button btn = new Button (Gtk.Stock.Refresh);
-			btn.Clicked += delegate {UpdatePreview ();};
+			btn.Clicked += delegate { UpdatePreview (); };
 			h.Add (btn);
 			return h;
 		}

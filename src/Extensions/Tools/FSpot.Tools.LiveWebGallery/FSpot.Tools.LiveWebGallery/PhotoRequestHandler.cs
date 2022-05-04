@@ -51,12 +51,12 @@ namespace FSpot.Tools.LiveWebGallery
 			Photo photo = App.Instance.Database.Photos.Get (photo_id);
 
 			SendImage (photo, stream);
-					}
+		}
 
 		protected virtual void SendImage (Photo photo, Stream stream)
 		{
 			string path = photo.DefaultVersion.Uri.LocalPath;
-			FileInfo file_info = new FileInfo(path);
+			FileInfo file_info = new FileInfo (path);
 			if (!file_info.Exists) {
 				SendError (stream, "404 The file is not on the disk");
 				return;
@@ -80,13 +80,13 @@ namespace FSpot.Tools.LiveWebGallery
 		{
 			stats.BytesSent += (int)file.Length;
 			Logger.Log.Debug ($"Sending {file.FullName}, {file.Length / 1024} kb");
-			SendHeadersAndStartContent(dest, "Content-Type: " + MimeTypeForExt (file.Extension),
+			SendHeadersAndStartContent (dest, "Content-Type: " + MimeTypeForExt (file.Extension),
 											 "Content-Length: " + file.Length,
 								 "Last-Modified: " + photo.Time.ToString ("r"));
 			using (Stream src = file.OpenRead ()) {
 				byte[] buf = new byte[10240];
 				int read;
-				while((read = src.Read(buf, 0, buf.Length)) != 0) {
+				while ((read = src.Read (buf, 0, buf.Length)) != 0) {
 					dest.Write (buf, 0, read);
 				}
 			}
@@ -96,13 +96,13 @@ namespace FSpot.Tools.LiveWebGallery
 	public class ThumbnailRequestHandler : PhotoRequestHandler
 	{
 		public ThumbnailRequestHandler (LiveWebGalleryStats stats)
-			: base (stats) {}
+			: base (stats) { }
 
 		protected override void SendImage (Photo photo, Stream dest)
 		{
 			Gdk.Pixbuf thumb = App.Instance.Container.Resolve<IThumbnailService> ().GetThumbnail (photo.DefaultVersion.Uri, ThumbnailSize.Large);
 			byte[] buf = thumb.SaveToBuffer ("png");
-			SendHeadersAndStartContent(dest, "Content-Type: " + MimeTypeForExt (".png"),
+			SendHeadersAndStartContent (dest, "Content-Type: " + MimeTypeForExt (".png"),
 											 "Content-Length: " + buf.Length,
 								 "Last-Modified: " + photo.Time.ToString ("r"));
 			dest.Write (buf, 0, buf.Length);

@@ -28,8 +28,8 @@
 
 namespace Hyena.Data
 {
-    public interface ICareAboutView
-    {
-        int RowsInView { set; }
-    }
+	public interface ICareAboutView
+	{
+		int RowsInView { set; }
+	}
 }

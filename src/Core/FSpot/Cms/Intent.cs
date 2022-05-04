@@ -11,10 +11,11 @@
 
 namespace FSpot.Cms
 {
-	public enum Intent {
-		Perceptual           = 0,
+	public enum Intent
+	{
+		Perceptual = 0,
 		RelativeColorimetric = 1,
-		Saturation           = 2,
+		Saturation = 2,
 		AbsoluteColorimetric = 3
 	}
 }

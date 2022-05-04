@@ -89,12 +89,12 @@ namespace FSpot.Exporters.Gallery
 			foreach (Album album in gallery.Albums) {
 				System.Text.StringBuilder label_builder = new System.Text.StringBuilder ();
 
-				for (int i=0; i < album.Parents.Count; i++) {
+				for (int i = 0; i < album.Parents.Count; i++) {
 					label_builder.Append ("  ");
 				}
 
 				label_builder.Append (album.Title);
-				album_optionmenu.AppendText(label_builder.ToString());
+				album_optionmenu.AppendText (label_builder.ToString ());
 			}
 
 			album_optionmenu.Sensitive = true;
@@ -107,12 +107,12 @@ namespace FSpot.Exporters.Gallery
 				if (gallery.Albums.Count == 0 || album_optionmenu.Active <= 0)
 					parent = string.Empty;
 				else
-					parent = ((Album) gallery.Albums [album_optionmenu.Active-1]).Name;
+					parent = ((Album)gallery.Albums[album_optionmenu.Active - 1]).Name;
 			else
 				if (gallery.Albums.Count == 0 || album_optionmenu.Active < 0)
-					parent = string.Empty;
-				else
-					parent = ((Album) gallery.Albums [album_optionmenu.Active]).Name;
+				parent = string.Empty;
+			else
+				parent = ((Album)gallery.Albums[album_optionmenu.Active]).Name;
 
 			name = name_entry.Text;
 			description = description_entry.Text;
@@ -131,9 +131,9 @@ namespace FSpot.Exporters.Gallery
 				if (!System.Text.RegularExpressions.Regex.IsMatch (name, "^[A-Za-z0-9_-]+$")) {
 					HigMessageDialog md =
 						new HigMessageDialog (add_album_dialog,
-								      Gtk.DialogFlags.Modal |
-								      Gtk.DialogFlags.DestroyWithParent,
-								      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
+									  Gtk.DialogFlags.Modal |
+									  Gtk.DialogFlags.DestroyWithParent,
+									  Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
 									  Strings.InvalidGalleryName,
 									  Strings.TheGalleryNameContainsInvalidCharactersOnlyLettersNumbersUnderscoreAllowed);
 					md.Run ();
@@ -144,7 +144,7 @@ namespace FSpot.Exporters.Gallery
 					gallery.NewAlbum (parent, name, title, description);
 					export.HandleAlbumAdded (title);
 				} catch (GalleryCommandException e) {
-					gallery.PopupException(e, add_album_dialog);
+					gallery.PopupException (e, add_album_dialog);
 					return;
 				}
 			}

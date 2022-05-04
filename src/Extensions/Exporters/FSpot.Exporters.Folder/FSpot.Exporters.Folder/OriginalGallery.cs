@@ -55,10 +55,10 @@
 using System;
 using System.IO;
 
+using FSpot.Core;
+
 using ICSharpCode.SharpZipLib.Checksum;
 using ICSharpCode.SharpZipLib.Zip;
-
-using FSpot.Core;
 
 
 namespace FSpot.Exporters.Folder
@@ -67,7 +67,7 @@ namespace FSpot.Exporters.Folder
 	{
 		public OriginalGallery (IBrowsableCollection selection, string path, string name) : base (selection, path, name)
 		{
-			requests = new ScaleRequest [] { new ScaleRequest ("hq", 0, 0, false),
+			requests = new ScaleRequest[] { new ScaleRequest ("hq", 0, 0, false),
 							 new ScaleRequest ("mq", 800, 600, true),
 							 new ScaleRequest ("lq", 640, 480, false, true),
 							 new ScaleRequest ("thumbs", 120, 120, false) };
@@ -77,8 +77,8 @@ namespace FSpot.Exporters.Folder
 		{
 			base.GenerateLayout ();
 			MakeDir (SubdirPath ("comments"));
-			CreateHtaccess();
-			CreateInfo();
+			CreateHtaccess ();
+			CreateInfo ();
 			SetTime ();
 		}
 
@@ -91,9 +91,9 @@ namespace FSpot.Exporters.Folder
 		{
 			try {
 				for (int i = 0; i < Collection.Count; i++)
-					CreateComments (Collection [i].DefaultVersion.Uri.LocalPath, i);
+					CreateComments (Collection[i].DefaultVersion.Uri.LocalPath, i);
 
-				Directory.SetLastWriteTimeUtc(GalleryPath, Collection [0].Time);
+				Directory.SetLastWriteTimeUtc (GalleryPath, Collection[0].Time);
 			} catch (Exception e) {
 				Logger.Log.Error (e, "");
 			}
@@ -104,37 +104,37 @@ namespace FSpot.Exporters.Folder
 			MakeDir (SubdirPath ("zip"));
 			try {
 				if (System.IO.Directory.Exists (SubdirPath ("mq")))
-				    CreateZipFile("mq");
+					CreateZipFile ("mq");
 
 				if (System.IO.Directory.Exists (SubdirPath ("hq")))
-				    CreateZipFile("hq");
+					CreateZipFile ("hq");
 
 			} catch (System.Exception e) {
 				Logger.Log.Error (e.ToString ());
 			}
 		}
 
-		private void CreateComments(string photo_path, int photo_index)
+		private void CreateComments (string photo_path, int photo_index)
 		{
-			StreamWriter comment = File.CreateText(SubdirPath  ("comments", photo_index + 1 + ".txt"));
-			comment.Write("<span>photo " + (photo_index + 1) + "</span> ");
-			comment.Write (Collection [photo_index].Description + Environment.NewLine);
-			comment.Close();
+			StreamWriter comment = File.CreateText (SubdirPath ("comments", photo_index + 1 + ".txt"));
+			comment.Write ("<span>photo " + (photo_index + 1) + "</span> ");
+			comment.Write (Collection[photo_index].Description + Environment.NewLine);
+			comment.Close ();
 		}
 
-		private void CreateZipFile(string img_quality)
+		private void CreateZipFile (string img_quality)
 		{
-			string[] filenames = Directory.GetFiles(SubdirPath (img_quality));
-			Crc32 crc = new Crc32();
-			ZipOutputStream s = new ZipOutputStream(File.Create(SubdirPath ("zip", img_quality + ".zip")));
+			string[] filenames = Directory.GetFiles (SubdirPath (img_quality));
+			Crc32 crc = new Crc32 ();
+			ZipOutputStream s = new ZipOutputStream (File.Create (SubdirPath ("zip", img_quality + ".zip")));
 
-			s.SetLevel(0);
+			s.SetLevel (0);
 			foreach (string file in filenames) {
-				FileStream fs = File.OpenRead(file);
+				FileStream fs = File.OpenRead (file);
 
 				byte[] buffer = new byte[fs.Length];
-				fs.Read(buffer, 0, buffer.Length);
-				ZipEntry entry = new ZipEntry(Path.GetFileName(file));
+				fs.Read (buffer, 0, buffer.Length);
+				ZipEntry entry = new ZipEntry (Path.GetFileName (file));
 
 				entry.DateTime = DateTime.Now;
 
@@ -145,37 +145,37 @@ namespace FSpot.Exporters.Folder
 				// Some ZIP programs have problems with zip files that don't store
 				// the size and crc in the header.
 				entry.Size = fs.Length;
-				fs.Close();
+				fs.Close ();
 
-				crc.Reset();
-				crc.Update(buffer);
+				crc.Reset ();
+				crc.Update (buffer);
 
-				entry.Crc  = crc.Value;
+				entry.Crc = crc.Value;
 
-				s.PutNextEntry(entry);
+				s.PutNextEntry (entry);
 
-				s.Write(buffer, 0, buffer.Length);
+				s.Write (buffer, 0, buffer.Length);
 
 			}
 
-			s.Finish();
-			s.Close();
+			s.Finish ();
+			s.Close ();
 		}
 
-		private void CreateHtaccess()
+		private void CreateHtaccess ()
 		{
-			StreamWriter htaccess = File.CreateText(Path.Combine (GalleryPath,".htaccess"));
-			htaccess.Write("<Files info.txt>" + Environment.NewLine + "\tdeny from all" + Environment.NewLine+ "</Files>" + Environment.NewLine);
-			htaccess.Close();
+			StreamWriter htaccess = File.CreateText (Path.Combine (GalleryPath, ".htaccess"));
+			htaccess.Write ("<Files info.txt>" + Environment.NewLine + "\tdeny from all" + Environment.NewLine + "</Files>" + Environment.NewLine);
+			htaccess.Close ();
 		}
 
-		private void CreateInfo()
+		private void CreateInfo ()
 		{
-			StreamWriter info = File.CreateText(Path.Combine (GalleryPath, "info.txt"));
-			info.WriteLine("name|" + GalleryName);
-			info.WriteLine("date|" + Collection [0].Time.Date.ToString ("dd.MM.yyyy"));
-			info.WriteLine("description|" + Description);
-			info.Close();
+			StreamWriter info = File.CreateText (Path.Combine (GalleryPath, "info.txt"));
+			info.WriteLine ("name|" + GalleryName);
+			info.WriteLine ("date|" + Collection[0].Time.Date.ToString ("dd.MM.yyyy"));
+			info.WriteLine ("description|" + Description);
+			info.Close ();
 		}
 	}
 }

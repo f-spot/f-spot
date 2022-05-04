@@ -29,8 +29,8 @@
 namespace Hyena.Data.Gui
 {
 	public interface ISizeRequestCell
-    {
-        bool RestrictSize { get; set; }
-        void GetWidthRange (Pango.Layout layout, out int min_width, out int max_width);
-    }
+	{
+		bool RestrictSize { get; set; }
+		void GetWidthRange (Pango.Layout layout, out int min_width, out int max_width);
+	}
 }

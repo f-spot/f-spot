@@ -32,11 +32,12 @@
 using System;
 
 using Cairo;
-using Gdk;
 
 using FSpot.Core;
-using FSpot.Utils;
 using FSpot.Gui;
+using FSpot.Utils;
+
+using Gdk;
 
 namespace FSpot.Widgets
 {
@@ -113,7 +114,7 @@ namespace FSpot.Widgets
 			g.SetSource (new SolidPattern (new Cairo.Color (0, 0, 0, .7)));
 			g.MoveTo (round, 0);
 			//g.LineTo (Allocation.Width - round, 0);
-			g.Arc (Allocation.Width - round, round, round, - Math.PI * 0.5, 0);
+			g.Arc (Allocation.Width - round, round, round, -Math.PI * 0.5, 0);
 			//g.LineTo (Allocation.Width, Allocation.Height - round);
 			g.Arc (Allocation.Width - round, Allocation.Height - round, round, 0, Math.PI * 0.5);
 			//g.LineTo (round, Allocation.Height);
@@ -127,14 +128,14 @@ namespace FSpot.Widgets
 
 		void UpdateImage ()
 		{
-			IPhoto item = view.Collection [Item];
+			IPhoto item = view.Collection[Item];
 
 			string orig_path = item.DefaultVersion.Uri.LocalPath;
 
 			Pixbuf pixbuf = FSpot.Utils.PixbufUtils.ShallowCopy (preview_cache.Get (orig_path + show_histogram));
 			if (pixbuf == null) {
 				// A bizarre pixbuf = hack to try to deal with cinematic displays, etc.
-				int preview_size = ((Screen.Width + Screen.Height)/2)/3;
+				int preview_size = ((Screen.Width + Screen.Height) / 2) / 3;
 				try {
 					pixbuf = PhotoLoader.LoadAtMaxSize (item, preview_size, preview_size);
 				} catch (Exception) {
@@ -202,12 +203,12 @@ namespace FSpot.Widgets
 			}
 		}
 
-	        void UpdateItem ()
+		void UpdateItem ()
 		{
 			int x, y;
 			view.GetPointer (out x, out y);
-			x += (int) view.Hadjustment.Value;
-			y += (int) view.Vadjustment.Value;
+			x += (int)view.Hadjustment.Value;
+			y += (int)view.Vadjustment.Value;
 			UpdateItem (x, y);
 
 		}
@@ -217,8 +218,8 @@ namespace FSpot.Widgets
 			if (!Visible)
 				return;
 
-			int x = (int) args.Event.X;
-			int y = (int) args.Event.Y;
+			int x = (int)args.Event.X;
+			int y = (int)args.Event.Y;
 			view.GrabFocus ();
 			UpdateItem (x, y);
 		}
@@ -277,9 +278,9 @@ namespace FSpot.Widgets
 		{
 			var vbox = new Gtk.VBox ();
 			Add (vbox);
-			AddEvents ((int) (EventMask.PointerMotionMask |
-					       EventMask.KeyReleaseMask |
-					       EventMask.ButtonPressMask));
+			AddEvents ((int)(EventMask.PointerMotionMask |
+						   EventMask.KeyReleaseMask |
+						   EventMask.ButtonPressMask));
 
 			Decorated = false;
 			SkipTaskbarHint = true;
@@ -321,13 +322,13 @@ namespace FSpot.Widgets
 			vbox.ShowAll ();
 		}
 
-		public override void Dispose()
+		public override void Dispose ()
 		{
-			Dispose(true);
+			Dispose (true);
 			base.Dispose (); // SuppressFinalize is called by base class
 		}
 
-		protected virtual void Dispose(bool disposing)
+		protected virtual void Dispose (bool disposing)
 		{
 			if (disposing) {
 				// free managed resources

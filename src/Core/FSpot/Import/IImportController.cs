@@ -1,4 +1,4 @@
-﻿//
+//
 // IImportController.cs
 //
 // Author:
@@ -11,8 +11,10 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
+
 using FSpot.Core;
 using FSpot.Database;
+
 using Hyena;
 
 namespace FSpot.Import

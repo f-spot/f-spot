@@ -89,11 +89,11 @@ namespace FSpot.Exporters.Gallery
 		}
 
 		public override int AddItem (Album album,
-				     string path,
-				     string filename,
-				     string caption,
-				     string description,
-				     bool autorotate)
+					 string path,
+					 string filename,
+					 string caption,
+					 string description,
+					 bool autorotate)
 		{
 			FormClient client = new FormClient (cookies);
 
@@ -124,9 +124,9 @@ namespace FSpot.Exporters.Gallery
 		*/
 
 		public override bool NewAlbum (string parent_name,
-				      string name,
-				      string title,
-				      string description)
+					  string name,
+					  string title,
+					  string description)
 		{
 			FormClient client = new FormClient (cookies);
 			client.Multipart = true;
@@ -165,7 +165,7 @@ namespace FSpot.Exporters.Gallery
 
 		public List<Image> ParseFetchAlbumImages (HttpWebResponse response, Album album)
 		{
-			string [] data;
+			string[] data;
 			StreamReader reader = null;
 			ResultCode status = ResultCode.UnknownResponse;
 			string status_text = "Error: Unable to parse server response";
@@ -173,57 +173,57 @@ namespace FSpot.Exporters.Gallery
 				Image current_image = null;
 				reader = findResponse (response);
 				while ((data = GetNextLine (reader)) != null) {
-					if (data [0] == "status")
-						status = (ResultCode)int.Parse (data [1]);
-					else if (data [0].StartsWith ("status_text")) {
-						status_text = data [1];
+					if (data[0] == "status")
+						status = (ResultCode)int.Parse (data[1]);
+					else if (data[0].StartsWith ("status_text")) {
+						status_text = data[1];
 						Logger.Log.Debug ($"StatusText : {data[1]}");
-					} else if (data [0].StartsWith ("image.name")) {
-						current_image = new Image (album, data [1]);
+					} else if (data[0].StartsWith ("image.name")) {
+						current_image = new Image (album, data[1]);
 						album.Images.Add (current_image);
-					} else if (data [0].StartsWith ("image.raw_width"))
-						current_image.RawWidth = int.Parse (data [1]);
-					else if (data [0].StartsWith ("image.raw_height"))
-						current_image.RawHeight = int.Parse (data [1]);
-					else if (data [0].StartsWith ("image.raw_height"))
-						current_image.RawHeight = int.Parse (data [1]);
-					else if (data [0].StartsWith ("image.raw_filesize")) {
-					} else if (data [0].StartsWith ("image.capturedate.year")) {
-					} else if (data [0].StartsWith ("image.capturedate.mon")) {
-					} else if (data [0].StartsWith ("image.capturedate.mday")) {
-					} else if (data [0].StartsWith ("image.capturedate.hours")) {
-					} else if (data [0].StartsWith ("image.capturedate.minutes")) {
-					} else if (data [0].StartsWith ("image.capturedate.seconds")) {
-					} else if (data [0].StartsWith ("image.hidden")) {
-					} else if (data [0].StartsWith ("image.resizedName"))
-						current_image.ResizedName = data [1];
-					else if (data [0].StartsWith ("image.resized_width"))
-						current_image.ResizedWidth = int.Parse (data [1]);
-					else if (data [0].StartsWith ("image.resized_height"))
-						current_image.ResizedHeight = int.Parse (data [1]);
-					else if (data [0].StartsWith ("image.thumbName"))
-						current_image.ThumbName = data [1];
-					else if (data [0].StartsWith ("image.thumb_width"))
-						current_image.ThumbWidth = int.Parse (data [1]);
-					else if (data [0].StartsWith ("image.thumb_height"))
-						current_image.ThumbHeight = int.Parse (data [1]);
-					else if (data [0].StartsWith ("image.caption"))
-						current_image.Caption = data [1];
-					else if (data [0].StartsWith ("image.extrafield.Description"))
-						current_image.Description = data [1];
-					else if (data [0].StartsWith ("image.clicks"))
+					} else if (data[0].StartsWith ("image.raw_width"))
+						current_image.RawWidth = int.Parse (data[1]);
+					else if (data[0].StartsWith ("image.raw_height"))
+						current_image.RawHeight = int.Parse (data[1]);
+					else if (data[0].StartsWith ("image.raw_height"))
+						current_image.RawHeight = int.Parse (data[1]);
+					else if (data[0].StartsWith ("image.raw_filesize")) {
+					} else if (data[0].StartsWith ("image.capturedate.year")) {
+					} else if (data[0].StartsWith ("image.capturedate.mon")) {
+					} else if (data[0].StartsWith ("image.capturedate.mday")) {
+					} else if (data[0].StartsWith ("image.capturedate.hours")) {
+					} else if (data[0].StartsWith ("image.capturedate.minutes")) {
+					} else if (data[0].StartsWith ("image.capturedate.seconds")) {
+					} else if (data[0].StartsWith ("image.hidden")) {
+					} else if (data[0].StartsWith ("image.resizedName"))
+						current_image.ResizedName = data[1];
+					else if (data[0].StartsWith ("image.resized_width"))
+						current_image.ResizedWidth = int.Parse (data[1]);
+					else if (data[0].StartsWith ("image.resized_height"))
+						current_image.ResizedHeight = int.Parse (data[1]);
+					else if (data[0].StartsWith ("image.thumbName"))
+						current_image.ThumbName = data[1];
+					else if (data[0].StartsWith ("image.thumb_width"))
+						current_image.ThumbWidth = int.Parse (data[1]);
+					else if (data[0].StartsWith ("image.thumb_height"))
+						current_image.ThumbHeight = int.Parse (data[1]);
+					else if (data[0].StartsWith ("image.caption"))
+						current_image.Caption = data[1];
+					else if (data[0].StartsWith ("image.extrafield.Description"))
+						current_image.Description = data[1];
+					else if (data[0].StartsWith ("image.clicks"))
 						try {
-							current_image.Clicks = int.Parse (data [1]);
+							current_image.Clicks = int.Parse (data[1]);
 						} catch (System.FormatException) {
 							current_image.Clicks = 0;
 						}
-					else if (data [0].StartsWith ("baseurl"))
-						album.BaseURL = data [1];
-					else if (data [0].StartsWith ("image_count"))
-					if (album.Images.Count != int.Parse (data [1]))
-						Logger.Log.Warning ("Parsed image count for " + album.Name + "(" + album.Images.Count + ") does not match image_count (" + data [1] + ").  Something is amiss");
-					else
-						Logger.Log.Debug ($"Unparsed Line in ParseFetchAlbumImages(): {data[0]}={data[1]}");
+					else if (data[0].StartsWith ("baseurl"))
+						album.BaseURL = data[1];
+					else if (data[0].StartsWith ("image_count"))
+						if (album.Images.Count != int.Parse (data[1]))
+							Logger.Log.Warning ("Parsed image count for " + album.Name + "(" + album.Images.Count + ") does not match image_count (" + data[1] + ").  Something is amiss");
+						else
+							Logger.Log.Debug ($"Unparsed Line in ParseFetchAlbumImages(): {data[0]}={data[1]}");
 				}
 				//Console.WriteLine ("Found: {0} cookies", response.Cookies.Count);
 				if (status != ResultCode.Success) {

@@ -34,10 +34,10 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using FSpot.UI.Dialog;
-using Gtk;
-
 using FSpot.Resources.Lang;
+using FSpot.UI.Dialog;
+
+using Gtk;
 
 namespace FSpot.Database
 {

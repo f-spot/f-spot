@@ -13,7 +13,9 @@ using System.Linq;
 using FSpot.FileSystem;
 
 using Hyena;
+
 using Moq;
+
 using NUnit.Framework;
 
 namespace FSpot.UnitTest.FileSystem
@@ -49,12 +51,12 @@ namespace FSpot.UnitTest.FileSystem
 			AddFile (fileSystem, file2);
 
 			// 1-2
-			var result1 = new SortedFileEnumerator (new [] { file1, file2 }, fileSystem).ToArray ();
+			var result1 = new SortedFileEnumerator (new[] { file1, file2 }, fileSystem).ToArray ();
 			// 2-1
-			var result2 = new SortedFileEnumerator (new [] { file2, file1 }, fileSystem).ToArray ();
+			var result2 = new SortedFileEnumerator (new[] { file2, file1 }, fileSystem).ToArray ();
 
-			CollectionAssert.AreEqual (new [] { file1, file2 }, result1);
-			CollectionAssert.AreEqual (new [] { file1, file2 }, result2);
+			CollectionAssert.AreEqual (new[] { file1, file2 }, result1);
+			CollectionAssert.AreEqual (new[] { file1, file2 }, result2);
 		}
 
 		[Test]
@@ -68,12 +70,12 @@ namespace FSpot.UnitTest.FileSystem
 			AddDirectory (fileSystem, dir2);
 
 			// 1-2
-			var result1 = new SortedFileEnumerator (new [] { dir1, dir2 }, fileSystem).ToArray ();
+			var result1 = new SortedFileEnumerator (new[] { dir1, dir2 }, fileSystem).ToArray ();
 			// 2-1
-			var result2 = new SortedFileEnumerator (new [] { dir2, dir1 }, fileSystem).ToArray ();
+			var result2 = new SortedFileEnumerator (new[] { dir2, dir1 }, fileSystem).ToArray ();
 
-			CollectionAssert.AreEqual (new [] { dir1, dir2 }, result1);
-			CollectionAssert.AreEqual (new [] { dir1, dir2 }, result2);
+			CollectionAssert.AreEqual (new[] { dir1, dir2 }, result1);
+			CollectionAssert.AreEqual (new[] { dir1, dir2 }, result2);
 		}
 
 		[Test]
@@ -87,12 +89,12 @@ namespace FSpot.UnitTest.FileSystem
 			AddDirectory (fileSystem, dir);
 
 			// file, dir
-			var result1 = new SortedFileEnumerator (new [] { file, dir }, fileSystem).ToArray ();
+			var result1 = new SortedFileEnumerator (new[] { file, dir }, fileSystem).ToArray ();
 			// dir, file
-			var result2 = new SortedFileEnumerator (new [] { dir, file }, fileSystem).ToArray ();
+			var result2 = new SortedFileEnumerator (new[] { dir, file }, fileSystem).ToArray ();
 
-			CollectionAssert.AreEqual (new [] { dir, file }, result1);
-			CollectionAssert.AreEqual (new [] { dir, file }, result2);
+			CollectionAssert.AreEqual (new[] { dir, file }, result1);
+			CollectionAssert.AreEqual (new[] { dir, file }, result2);
 		}
 	}
 }

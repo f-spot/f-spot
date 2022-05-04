@@ -27,15 +27,15 @@
 namespace Hyena.Gui.Canvas
 {
 	public class MarginStyle
-    {
-        public MarginStyle ()
-        {
-        }
+	{
+		public MarginStyle ()
+		{
+		}
 
-        public virtual void Apply (CanvasItem item, Cairo.Context cr)
-        {
-        }
+		public virtual void Apply (CanvasItem item, Cairo.Context cr)
+		{
+		}
 
-        public static readonly MarginStyle None = new MarginStyle ();
-    }
+		public static readonly MarginStyle None = new MarginStyle ();
+	}
 }

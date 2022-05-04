@@ -27,8 +27,8 @@
 namespace Hyena.Gui.Canvas
 {
 	public enum Orientation
-    {
-        Horizontal,
-        Vertical
-    }
+	{
+		Horizontal,
+		Vertical
+	}
 }

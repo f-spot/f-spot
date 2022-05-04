@@ -34,8 +34,8 @@
 //
 
 using System;
-using System.Threading;
 using System.Collections.Generic;
+using System.Threading;
 
 using FSpot.Core;
 using FSpot.Query;
@@ -48,7 +48,7 @@ namespace FSpot
 {
 	public class TimeAdaptor : GroupAdaptor, ILimitable
 	{
-		Dictionary <int, int[]> years = new Dictionary<int, int[]> ();
+		Dictionary<int, int[]> years = new Dictionary<int, int[]> ();
 
 		public override event GlassSetHandler GlassSet;
 
@@ -66,9 +66,9 @@ namespace FSpot
 		{
 			DateTime start = DateFromIndex (min);
 
-			DateTime end = DateFromIndex(max);
+			DateTime end = DateFromIndex (max);
 
-			end = order_ascending ? end.AddMonths (1) : end.AddMonths(-1);
+			end = order_ascending ? end.AddMonths (1) : end.AddMonths (-1);
 
 			SetLimits (start, end);
 		}
@@ -94,15 +94,15 @@ namespace FSpot
 
 			if ((start.Month == 12 && !order_ascending) || (start.Month == 1 && order_ascending))
 				return start.Year.ToString ();
-		    return null;
+			return null;
 		}
 
 		public override int Value (int item)
 		{
 			if (order_ascending)
-				return years [startyear + item/12][item % 12];
+				return years[startyear + item / 12][item % 12];
 
-			return years [endyear - item/12][11 - item % 12];
+			return years[endyear - item / 12][11 - item % 12];
 		}
 
 		public DateTime DateFromIndex (int item)
@@ -118,23 +118,23 @@ namespace FSpot
 
 		DateTime DateFromIndexAscending (int item)
 		{
-			int year = startyear + item/12;
+			int year = startyear + item / 12;
 			int month = 1 + (item % 12);
 
-			return new DateTime(year, month, 1);
+			return new DateTime (year, month, 1);
 		}
 
 		DateTime DateFromIndexDescending (int item)
 		{
-			int year = endyear - item/12;
+			int year = endyear - item / 12;
 			int month = 12 - (item % 12);
 
-			year = Math.Max(1, year);
-			year = Math.Min(year, 9999);
-			month = Math.Max(1, month);
-			month = Math.Min(month, 12);
+			year = Math.Max (1, year);
+			year = Math.Min (year, 9999);
+			month = Math.Max (1, month);
+			month = Math.Min (month, 12);
 
-			int daysInMonth = DateTime.DaysInMonth(year, month);
+			int daysInMonth = DateTime.DaysInMonth (year, month);
 
 			return new DateTime (year, month, daysInMonth).AddDays (1.0).AddMilliseconds (-.1);
 		}
@@ -142,7 +142,7 @@ namespace FSpot
 		public override int IndexFromPhoto (IPhoto photo)
 		{
 			if (order_ascending)
-			       return IndexFromDateAscending (photo.Time);
+				return IndexFromDateAscending (photo.Time);
 
 			return IndexFromDateDescending (photo.Time);
 		}
@@ -150,12 +150,12 @@ namespace FSpot
 		public int IndexFromDate (DateTime date)
 		{
 			if (order_ascending)
-				return IndexFromDateAscending(date);
+				return IndexFromDateAscending (date);
 
-			return IndexFromDateDescending(date);
+			return IndexFromDateDescending (date);
 		}
 
-		int IndexFromDateAscending(DateTime date)
+		int IndexFromDateAscending (DateTime date)
 		{
 			int year = date.Year;
 			int min_year = startyear;
@@ -166,10 +166,10 @@ namespace FSpot
 				return 0;
 			}
 
-			return (year - startyear) * 12 + date.Month - 1 ;
+			return (year - startyear) * 12 + date.Month - 1;
 		}
 
-		int IndexFromDateDescending(DateTime date)
+		int IndexFromDateDescending (DateTime date)
 		{
 			int year = date.Year;
 			int min_year = startyear;
@@ -186,7 +186,7 @@ namespace FSpot
 		public override IPhoto PhotoFromIndex (int item)
 		{
 			DateTime start = DateFromIndex (item);
-			return query [query.LookupItem (start)];
+			return query[query.LookupItem (start)];
 
 		}
 

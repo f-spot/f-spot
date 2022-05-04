@@ -2,8 +2,9 @@
 //  Author:
 //       Stephen Shaw <sshaw@decriptor.com>
 //  Copyright (c) 2011 sshaw
-using NUnit.Framework;
 using FSpot.Query;
+
+using NUnit.Framework;
 
 namespace FSpot
 {
@@ -20,7 +21,7 @@ namespace FSpot
 		}
 
 		[OneTimeTearDown]
-		public void OneTimeTearDown()
+		public void OneTimeTearDown ()
 		{
 			andTerm = null;
 		}

@@ -31,7 +31,7 @@ using System;
 
 namespace FSpot.Bling
 {
-	public abstract class EasedAnimation<T>: Animation<T>
+	public abstract class EasedAnimation<T> : Animation<T>
 	{
 		protected EasedAnimation () : this (null)
 		{

@@ -57,7 +57,7 @@ namespace FSpot.Core
 				throw new ArgumentNullException (nameof (list));
 
 			foreach (Tag tag in children) {
-				if (! list.Contains (tag))
+				if (!list.Contains (tag))
 					list.Add (tag);
 
 				var cat = tag as Category;
@@ -86,7 +86,7 @@ namespace FSpot.Core
 			children = new List<Tag> ();
 		}
 
-		protected override void Dispose(bool disposing)
+		protected override void Dispose (bool disposing)
 		{
 			if (disposing) {
 				// free managed resources

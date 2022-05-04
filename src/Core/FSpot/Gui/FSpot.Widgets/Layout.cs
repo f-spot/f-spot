@@ -73,7 +73,8 @@ namespace FSpot.Widgets
 			get { return height; }
 		}
 
-		class LayoutChild {
+		class LayoutChild
+		{
 			public Gtk.Widget Widget { get; private set; }
 
 			public int X { get; set; }
@@ -126,39 +127,41 @@ namespace FSpot.Widgets
 			return null;
 		}
 
-#region widgetry
+		#region widgetry
 		protected override void OnRealized ()
 		{
 			SetFlag (Gtk.WidgetFlags.Realized);
 
 			Gdk.WindowAttr attributes = new Gdk.WindowAttr {
-							     WindowType = Gdk.WindowType.Child,
-							     X = Allocation.X,
-							     Y = Allocation.Y,
-							     Width = Allocation.Width,
-							     Height = Allocation.Height,
-							     Wclass = Gdk.WindowClass.InputOutput,
-							     Visual = this.Visual,
-							     Colormap = this.Colormap,
-							     Mask = Gdk.EventMask.VisibilityNotifyMask };
+				WindowType = Gdk.WindowType.Child,
+				X = Allocation.X,
+				Y = Allocation.Y,
+				Width = Allocation.Width,
+				Height = Allocation.Height,
+				Wclass = Gdk.WindowClass.InputOutput,
+				Visual = this.Visual,
+				Colormap = this.Colormap,
+				Mask = Gdk.EventMask.VisibilityNotifyMask
+			};
 			GdkWindow = new Gdk.Window (ParentWindow, attributes,
-						    Gdk.WindowAttributesType.X | Gdk.WindowAttributesType.Y | Gdk.WindowAttributesType.Visual | Gdk.WindowAttributesType.Colormap);
+							Gdk.WindowAttributesType.X | Gdk.WindowAttributesType.Y | Gdk.WindowAttributesType.Visual | Gdk.WindowAttributesType.Colormap);
 
 			GdkWindow.SetBackPixmap (null, false);
 			GdkWindow.UserData = Handle;
 
 			attributes = new Gdk.WindowAttr {
-							     WindowType = Gdk.WindowType.Child,
-							     X = (int)-Hadjustment.Value,
-							     Y = (int)-Vadjustment.Value,
-							     Width = (int)Math.Max (width, Allocation.Width),
-							     Height = (int)Math.Max (height, Allocation.Height),
-							     Wclass = Gdk.WindowClass.InputOutput,
-							     Visual = this.Visual,
-							     Colormap = this.Colormap,
-							     Mask = Gdk.EventMask.ExposureMask | Gdk.EventMask.ScrollMask | this.Events };
+				WindowType = Gdk.WindowType.Child,
+				X = (int)-Hadjustment.Value,
+				Y = (int)-Vadjustment.Value,
+				Width = (int)Math.Max (width, Allocation.Width),
+				Height = (int)Math.Max (height, Allocation.Height),
+				Wclass = Gdk.WindowClass.InputOutput,
+				Visual = this.Visual,
+				Colormap = this.Colormap,
+				Mask = Gdk.EventMask.ExposureMask | Gdk.EventMask.ScrollMask | this.Events
+			};
 			bin_window = new Gdk.Window (GdkWindow, attributes,
-						     Gdk.WindowAttributesType.X | Gdk.WindowAttributesType.Y | Gdk.WindowAttributesType.Visual | Gdk.WindowAttributesType.Colormap);
+							 Gdk.WindowAttributesType.X | Gdk.WindowAttributesType.Y | Gdk.WindowAttributesType.Visual | Gdk.WindowAttributesType.Colormap);
 			bin_window.UserData = Handle;
 
 			Style.Attach (GdkWindow);
@@ -268,9 +271,9 @@ namespace FSpot.Widgets
 			if (IsRealized)
 				bin_window.Move (-(int)Hadjustment.Value, -(int)Vadjustment.Value);
 		}
-#endregion widgetry
+		#endregion widgetry
 
-#region container stuffs
+		#region container stuffs
 		protected override void OnAdded (Gtk.Widget widget)
 		{
 			Put (widget, 0, 0);
@@ -298,6 +301,6 @@ namespace FSpot.Widgets
 				callback (child.Widget);
 			}
 		}
-#endregion
+		#endregion
 	}
 }

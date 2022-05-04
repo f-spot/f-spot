@@ -31,12 +31,12 @@
 
 using System;
 
-using Gtk;
-
+using FSpot.Resources.Lang;
 using FSpot.Utils;
 
+using Gtk;
+
 using Hyena;
-using FSpot.Resources.Lang;
 
 namespace FSpot.Widgets
 {

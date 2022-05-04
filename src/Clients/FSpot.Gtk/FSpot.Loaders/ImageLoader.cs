@@ -32,8 +32,10 @@
 //
 
 using System;
+
 using FSpot.Imaging;
 using FSpot.Utils;
+
 using Hyena;
 
 namespace FSpot.Loaders
@@ -43,7 +45,7 @@ namespace FSpot.Loaders
 		public static IImageLoader Create (SafeUri uri)
 		{
 			if (!App.Instance.Container.Resolve<IImageFileFactory> ().HasLoader (uri))
-				throw new Exception ("Loader requested for unknown file type: " + uri.GetExtension());
+				throw new Exception ("Loader requested for unknown file type: " + uri.GetExtension ());
 
 			return new GdkImageLoader ();
 		}

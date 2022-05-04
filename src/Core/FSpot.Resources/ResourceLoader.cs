@@ -1,4 +1,4 @@
-﻿// 
+// 
 // ResourceLoader.
 //  https://github.com/PintaProject/Pinta/blob/dd226b9a3f0f82d44db0c202dacecab375efcf92/Pinta.Resources/ResourceManager.cs
 //  
@@ -123,8 +123,7 @@ namespace FSpot.Resources
 
 		static Gtk.IconSize GetIconSize (int size)
 		{
-			return size switch
-			{
+			return size switch {
 				16 => Gtk.IconSize.SmallToolbar,
 				32 => Gtk.IconSize.Dnd,
 				_ => Gtk.IconSize.Invalid,

@@ -55,7 +55,7 @@ namespace FSpot
 				get { return SIZE; }
 			}
 
-			readonly Dictionary<int, Photo []> cache;
+			readonly Dictionary<int, Photo[]> cache;
 			readonly string temp_table;
 			readonly PhotoStore store;
 
@@ -69,23 +69,23 @@ namespace FSpot
 			public bool TryGetPhoto (int index, out Photo photo)
 			{
 				photo = null;
-				Photo [] val;
+				Photo[] val;
 				int offset = index - index % SIZE;
 				if (!cache.TryGetValue (offset, out val))
 					return false;
-				photo = val [index - offset];
+				photo = val[index - offset];
 				return true;
 			}
 
 			public Photo Get (int index)
 			{
-				Photo [] val;
+				Photo[] val;
 				int offset = index - index % SIZE;
 				if (!cache.TryGetValue (offset, out val)) {
 					val = store.QueryFromTemp (temp_table, offset, SIZE);
-					cache [offset] = val;
+					cache[offset] = val;
 				}
-				return val [index - offset];
+				return val[index - offset];
 			}
 		}
 
@@ -95,7 +95,7 @@ namespace FSpot
 
 		static int query_count = 0;
 		static int QueryCount {
-			get {return query_count ++;}
+			get { return query_count++; }
 		}
 
 		Dictionary<uint, int> reverse_lookup;
@@ -104,7 +104,7 @@ namespace FSpot
 
 		string temp_table = string.Format ("photoquery_temp_{0}", QueryCount);
 
-		public PhotoQuery (PhotoStore store, params IQueryCondition [] conditions)
+		public PhotoQuery (PhotoStore store, params IQueryCondition[] conditions)
 		{
 			this.store = store;
 			this.store.ItemsChanged += MarkChanged;
@@ -126,7 +126,8 @@ namespace FSpot
 			}
 		}
 
-		public bool Contains (IPhoto item) {
+		public bool Contains (IPhoto item)
+		{
 			return IndexOf (item) >= 0;
 		}
 
@@ -134,12 +135,12 @@ namespace FSpot
 		public event IBrowsableCollectionChangedHandler Changed;
 		public event IBrowsableCollectionItemsChangedHandler ItemsChanged;
 
-		public IPhoto this [int index] {
+		public IPhoto this[int index] {
 			get { return cache.Get (index); }
 		}
 
 		[Obsolete ("DO NOT USE THIS, IT'S TOO SLOW")]
-		public Photo [] Photos {
+		public Photo[] Photos {
 			get { return store.QueryFromTemp (temp_table); }
 		}
 
@@ -155,16 +156,16 @@ namespace FSpot
 		//Query Conditions
 		Dictionary<Type, IQueryCondition> conditions;
 		Dictionary<Type, IQueryCondition> Conditions {
-			get { return conditions ?? (conditions = new Dictionary<Type, IQueryCondition>()); }
+			get { return conditions ?? (conditions = new Dictionary<Type, IQueryCondition> ()); }
 		}
 
 		internal bool SetCondition (IQueryCondition condition)
 		{
 			if (condition == null)
 				throw new ArgumentNullException (nameof (condition));
-			if (Conditions.ContainsKey (condition.GetType ()) && Conditions [condition.GetType ()] == condition)
+			if (Conditions.ContainsKey (condition.GetType ()) && Conditions[condition.GetType ()] == condition)
 				return false;
-			Conditions [condition.GetType ()] = condition;
+			Conditions[condition.GetType ()] = condition;
 			return true;
 		}
 
@@ -177,9 +178,9 @@ namespace FSpot
 
 		internal bool UnSetCondition<T> ()
 		{
-			if (!Conditions.ContainsKey (typeof(T)))
+			if (!Conditions.ContainsKey (typeof (T)))
 				return false;
-			Conditions.Remove (typeof(T));
+			Conditions.Remove (typeof (T));
 			return true;
 		}
 
@@ -204,17 +205,17 @@ namespace FSpot
 		public bool Untagged {
 			get { return untagged; }
 			set {
-			    if (untagged == value)
-                    return;
+				if (untagged == value)
+					return;
 
-			    untagged = value;
+				untagged = value;
 
-			    if (untagged) {
-			        UnSetCondition<ConditionWrapper> ();
-			        UnSetCondition<HiddenTag> ();
-			    }
+				if (untagged) {
+					UnSetCondition<ConditionWrapper> ();
+					UnSetCondition<HiddenTag> ();
+				}
 
-			    RequestReload ();
+				RequestReload ();
 			}
 		}
 
@@ -229,7 +230,7 @@ namespace FSpot
 		public RatingRange RatingRange {
 			get { return GetCondition<RatingRange> (); }
 			set {
-				if (value == null && UnSetCondition<RatingRange>() || value != null && SetCondition (value))
+				if (value == null && UnSetCondition<RatingRange> () || value != null && SetCondition (value))
 					RequestReload ();
 			}
 		}
@@ -237,7 +238,7 @@ namespace FSpot
 		public HiddenTag HiddenTag {
 			get { return GetCondition<HiddenTag> (); }
 			set {
-				if (value == null && UnSetCondition<HiddenTag>() || value != null && SetCondition (value))
+				if (value == null && UnSetCondition<HiddenTag> () || value != null && SetCondition (value))
 					RequestReload ();
 			}
 		}
@@ -245,8 +246,8 @@ namespace FSpot
 		public ConditionWrapper TagTerm {
 			get { return GetCondition<ConditionWrapper> (); }
 			set {
-				if (value == null && UnSetCondition<ConditionWrapper>()
-				    || value != null && SetCondition (value)) {
+				if (value == null && UnSetCondition<ConditionWrapper> ()
+					|| value != null && SetCondition (value)) {
 
 					if (value != null) {
 						untagged = false;
@@ -289,7 +290,7 @@ namespace FSpot
 				i = 1;
 			} else {
 				condition_array = new IQueryCondition[conditions.Count + 2];
-		//		condition_array[0] = new ConditionWrapper (extra_condition);
+				//		condition_array[0] = new ConditionWrapper (extra_condition);
 				condition_array[1] = new ConditionWrapper (terms != null ? terms.SqlCondition () : null);
 				i = 2;
 			}
@@ -303,7 +304,7 @@ namespace FSpot
 
 			count = -1;
 			cache = new PhotoCache (store, temp_table);
-			reverse_lookup = new Dictionary<uint,int> ();
+			reverse_lookup = new Dictionary<uint, int> ();
 
 			if (Changed != null)
 				Changed (this);
@@ -318,7 +319,7 @@ namespace FSpot
 			return store.IndexOf (temp_table, photo as Photo);
 		}
 
-		int [] IndicesOf (DbItem [] dbitems)
+		int[] IndicesOf (DbItem[] dbitems)
 		{
 			using var op = Operation.Begin ($"PhotoQuery.IndicesOf");
 			var indices = new List<int> ();
@@ -362,7 +363,7 @@ namespace FSpot
 					//lets reduce that number to 1
 					return store.IndexOf (temp_table, date, asc);
 
-				int comp = this [mid].Time.CompareTo (date);
+				int comp = this[mid].Time.CompareTo (date);
 				if (!asc && comp < 0 || asc && comp > 0)
 					high = mid - 1;
 				else if (!asc && comp > 0 || asc && comp < 0)
@@ -380,33 +381,33 @@ namespace FSpot
 
 		public void Commit (int index)
 		{
-			Commit (new int [] {index});
+			Commit (new int[] { index });
 		}
 
-		public void Commit (int [] indexes)
+		public void Commit (int[] indexes)
 		{
-			List<Photo> to_commit = new List<Photo>();
+			List<Photo> to_commit = new List<Photo> ();
 			foreach (int index in indexes) {
-				to_commit.Add (this [index] as Photo);
-				reverse_lookup [(this [index] as Photo).Id] = index;
+				to_commit.Add (this[index] as Photo);
+				reverse_lookup[(this[index] as Photo).Id] = index;
 			}
 			store.Commit (to_commit.ToArray ());
 		}
 
 		void MarkChanged (object sender, DbItemEventArgs<Photo> args)
 		{
-			int [] indexes = IndicesOf (args.Items);
+			int[] indexes = IndicesOf (args.Items);
 
 			if (indexes.Length > 0 && ItemsChanged != null)
-				ItemsChanged (this, new BrowsableEventArgs(indexes, (args as PhotoEventArgs).Changes));
+				ItemsChanged (this, new BrowsableEventArgs (indexes, (args as PhotoEventArgs).Changes));
 		}
 
 		public void MarkChanged (int index, IBrowsableItemChanges changes)
 		{
-			MarkChanged (new int [] {index}, changes);
+			MarkChanged (new int[] { index }, changes);
 		}
 
-		public void MarkChanged (int [] indexes, IBrowsableItemChanges changes)
+		public void MarkChanged (int[] indexes, IBrowsableItemChanges changes)
 		{
 			ItemsChanged (this, new BrowsableEventArgs (indexes, changes));
 		}

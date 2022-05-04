@@ -32,13 +32,13 @@
 using System;
 using System.IO;
 
-using Hyena;
-
 using FSpot.Extensions;
 using FSpot.Imaging;
 using FSpot.Resources.Lang;
 using FSpot.Settings;
 using FSpot.Utils;
+
+using Hyena;
 
 
 namespace FSpot.Tools.DevelopInUFraw

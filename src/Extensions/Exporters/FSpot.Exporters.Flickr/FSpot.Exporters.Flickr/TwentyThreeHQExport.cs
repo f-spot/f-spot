@@ -32,7 +32,7 @@ using FSpot.Core;
 
 namespace FSpot.Exporters.Flickr
 {
-    public class TwentyThreeHQExport : FlickrExport
+	public class TwentyThreeHQExport : FlickrExport
 	{
 		public override void Run (IBrowsableCollection selection)
 		{

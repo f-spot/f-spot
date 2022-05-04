@@ -1,4 +1,4 @@
-﻿//
+//
 // IconSize.cs
 //
 // Author:
@@ -28,7 +28,8 @@
 
 namespace FSpot.Settings
 {
-	public enum IconSize {
+	public enum IconSize
+	{
 		Hidden = 0,
 		Small = 16,
 		Medium = 24,

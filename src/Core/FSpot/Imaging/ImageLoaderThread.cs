@@ -162,7 +162,7 @@ namespace FSpot.Imaging
 		public void Cancel (SafeUri uri)
 		{
 			lock (queue) {
-				RequestItem r = requests_by_uri [uri];
+				RequestItem r = requests_by_uri[uri];
 				if (r != null) {
 					requests_by_uri.Remove (uri);
 					queue.Remove (r);
@@ -242,7 +242,7 @@ namespace FSpot.Imaging
 						if (current_request != null) {
 							processed_requests.Enqueue (current_request);
 
-							if (! pending_notify_notified) {
+							if (!pending_notify_notified) {
 								pending_notify.WakeupMain ();
 								pending_notify_notified = true;
 							}
@@ -263,7 +263,7 @@ namespace FSpot.Imaging
 
 						int pos = queue.Count - 1;
 
-						current_request = queue [pos];
+						current_request = queue[pos];
 						queue.RemoveAt (pos);
 						requests_by_uri.Remove (current_request.Uri);
 					}
@@ -299,7 +299,7 @@ namespace FSpot.Imaging
 
 			EmitLoaded (results);
 
-			foreach (RequestItem request in results){
+			foreach (RequestItem request in results) {
 				request.Dispose ();
 			}
 		}

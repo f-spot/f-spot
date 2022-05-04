@@ -32,9 +32,9 @@
 using System;
 using System.Collections.Generic;
 
-using NUnit.Framework;
-
 using Hyena;
+
+using NUnit.Framework;
 
 
 namespace FSpot.Imaging
@@ -44,41 +44,42 @@ namespace FSpot.Imaging
 	{
 		List<string> _imageTypes;
 		[SetUp]
-		public void Initialize () {
+		public void Initialize ()
+		{
 			GLib.GType.Init ();
 			var factory = new ImageFileFactory (null);
-			_imageTypes = factory.UnitTestImageFileTypes();
+			_imageTypes = factory.UnitTestImageFileTypes ();
 		}
 
-		[TestCase("file.arw")]
-		[TestCase("file.crw")]
-		[TestCase("file.cr2")]
-		[TestCase("file.dng")]
-		[TestCase("file.mrw")]
-		[TestCase("file.nef")]
-		[TestCase("file.orf")]
-		[TestCase("file.pef")]
-		[TestCase("file.raw")]
-		[TestCase("file.raf")]
-		[TestCase("file.rw2")]
+		[TestCase ("file.arw")]
+		[TestCase ("file.crw")]
+		[TestCase ("file.cr2")]
+		[TestCase ("file.dng")]
+		[TestCase ("file.mrw")]
+		[TestCase ("file.nef")]
+		[TestCase ("file.orf")]
+		[TestCase ("file.pef")]
+		[TestCase ("file.raw")]
+		[TestCase ("file.raf")]
+		[TestCase ("file.rw2")]
 		public void TestIfUriIsRaw (string uri)
 		{
 			var factory = new ImageFileFactory (null);
-			var result = factory.IsRaw(new SafeUri(uri, true));
-			Assert.That(result);
+			var result = factory.IsRaw (new SafeUri (uri, true));
+			Assert.That (result);
 		}
 
-		[TestCase("file.jpg")]
-		[TestCase("file.jpeg")]
-		[TestCase("file.jpe")]
-		[TestCase("file.jfi")]
-		[TestCase("file.jfif")]
-		[TestCase("file.jif")]
+		[TestCase ("file.jpg")]
+		[TestCase ("file.jpeg")]
+		[TestCase ("file.jpe")]
+		[TestCase ("file.jfi")]
+		[TestCase ("file.jfif")]
+		[TestCase ("file.jif")]
 		public void TestIfUriJpeg (string uri)
 		{
 			var factory = new ImageFileFactory (null);
-			var result = factory.IsJpeg(new SafeUri(uri, true));
-			Assert.That(result);
+			var result = factory.IsJpeg (new SafeUri (uri, true));
+			Assert.That (result);
 		}
 
 		[Test]
@@ -87,9 +88,8 @@ namespace FSpot.Imaging
 			bool missing = false;
 
 			// Test that we have loaders defined for all Taglib# parseable types.
-			foreach (var key in TagLib.FileTypes.AvailableTypes.Keys)
-			{
-				Type type = TagLib.FileTypes.AvailableTypes [key];
+			foreach (var key in TagLib.FileTypes.AvailableTypes.Keys) {
+				Type type = TagLib.FileTypes.AvailableTypes[key];
 				if (!type.IsSubclassOf (typeof (TagLib.Image.File))) {
 					continue;
 				}

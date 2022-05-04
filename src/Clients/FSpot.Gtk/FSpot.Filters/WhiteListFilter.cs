@@ -37,7 +37,7 @@ namespace FSpot.Filters
 	{
 		readonly List<string> valid_extensions;
 
-		public WhiteListFilter (string [] valid_extensions)
+		public WhiteListFilter (string[] valid_extensions)
 		{
 			this.valid_extensions = new List<string> ();
 			foreach (string extension in valid_extensions)
@@ -51,7 +51,7 @@ namespace FSpot.Filters
 
 			// FIXME:  Should we add the other jpeg extensions?
 			if (!valid_extensions.Contains (".jpg") &&
-			    !valid_extensions.Contains (".jpeg"))
+				!valid_extensions.Contains (".jpeg"))
 				throw new System.NotImplementedException ("can only save jpeg :(");
 
 			return (new JpegFilter ()).Convert (req);

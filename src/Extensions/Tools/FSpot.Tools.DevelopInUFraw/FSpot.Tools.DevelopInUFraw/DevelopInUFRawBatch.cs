@@ -29,35 +29,35 @@
 
 using System;
 
-using FSpot.UI.Dialog;
 using FSpot.Resources.Lang;
+using FSpot.UI.Dialog;
 
 namespace FSpot.Tools.DevelopInUFraw
 {
 	// Batch Version
 	public class DevelopInUFRawBatch : AbstractDevelopInUFRaw
 	{
-		public DevelopInUFRawBatch() : base("ufraw-batch")
+		public DevelopInUFRawBatch () : base ("ufraw-batch")
 		{
 		}
 
 		public override void Run (object o, EventArgs e)
 		{
-			ProgressDialog pdialog = new ProgressDialog(Strings.DevelopingPhotos,
+			ProgressDialog pdialog = new ProgressDialog (Strings.DevelopingPhotos,
 														ProgressDialog.CancelButtonType.Cancel,
 														App.Instance.Organizer.SelectedPhotos ().Length,
 														App.Instance.Organizer.Window);
 			Logger.Log.Information ("Executing DevelopInUFRaw extension in batch mode");
 
 			foreach (Photo p in App.Instance.Organizer.SelectedPhotos ()) {
-				bool cancelled = pdialog.Update(string.Format(Strings.DevelopingX, p.Name));
+				bool cancelled = pdialog.Update (string.Format (Strings.DevelopingX, p.Name));
 				if (cancelled) {
 					break;
 				}
 
 				DevelopPhoto (p);
 			}
-			pdialog.Destroy();
+			pdialog.Destroy ();
 		}
 	}
 }

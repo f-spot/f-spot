@@ -30,10 +30,10 @@
 using System;
 using System.Net;
 
-using Gtk;
-
 using FSpot.Core;
 using FSpot.Extensions;
+
+using Gtk;
 
 namespace FSpot.Tools.LiveWebGallery
 {
@@ -43,8 +43,8 @@ namespace FSpot.Tools.LiveWebGallery
 		private static ILiveWebGalleryOptions options;
 		private static LiveWebGalleryStats stats;
 		private LiveWebGalleryDialog dialog;
-		
-		public LiveWebGallery () 
+
+		public LiveWebGallery ()
 		{
 		}
 
@@ -54,7 +54,7 @@ namespace FSpot.Tools.LiveWebGallery
 				stats = new LiveWebGalleryStats ();
 				RequestHandler gallery = new GalleryRequestHandler (stats);
 				options = gallery as ILiveWebGalleryOptions;
-				
+
 				web_server = new SimpleWebServer ();
 				web_server.Stats = stats;
 				web_server.RegisterHandler ("", gallery);
@@ -71,46 +71,46 @@ namespace FSpot.Tools.LiveWebGallery
 			dialog.ShowAll ();
 		}
 
-		void HandleResponse (object obj, ResponseArgs args) 
+		void HandleResponse (object obj, ResponseArgs args)
 		{
 			dialog.Destroy ();
 		}
 	}
-	
-	public enum QueryType {ByTag, CurrentView, Selected}
+
+	public enum QueryType { ByTag, CurrentView, Selected }
 
 	public interface ILiveWebGalleryOptions
 	{
-		QueryType QueryType {get; set;}
-		Tag QueryTag {get; set;}
-		bool LimitMaxPhotos {get; set;}
-		int MaxPhotos {get; set;}
-		bool TaggingAllowed {get; set;}
-		Tag EditableTag {get; set;}
+		QueryType QueryType { get; set; }
+		Tag QueryTag { get; set; }
+		bool LimitMaxPhotos { get; set; }
+		int MaxPhotos { get; set; }
+		bool TaggingAllowed { get; set; }
+		Tag EditableTag { get; set; }
 	}
-	
+
 	public class LiveWebGalleryStats : IWebStats
 	{
 		public event EventHandler StatsChanged;
-		
+
 		private int gallery_views;
 		public int GalleryViews {
 			get { return gallery_views; }
-			set { gallery_views = value; StatsChanged(this, null); }
+			set { gallery_views = value; StatsChanged (this, null); }
 		}
-		
+
 		private int photo_views;
 		public int PhotoViews {
 			get { return photo_views; }
-			set { photo_views = value; StatsChanged(this, null); }
+			set { photo_views = value; StatsChanged (this, null); }
 		}
-		
+
 		private IPAddress last_ip;
 		public IPAddress LastIP {
 			get { return last_ip; }
-			set { last_ip = value; StatsChanged(this, null); }
+			set { last_ip = value; StatsChanged (this, null); }
 		}
-		
+
 		public int BytesSent;
 
 		public void IncomingRequest (IPAddress ip)

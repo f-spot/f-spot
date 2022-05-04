@@ -21,7 +21,7 @@ namespace FSpot.Cms
 		public double x;
 		public double y;
 		public double Y;
-		
+
 		public ColorCIExyY (double x, double y, double Y)
 		{
 			this.x = x;
@@ -75,7 +75,7 @@ namespace FSpot.Cms
 		public static ColorCIExyY D50 {
 			get {
 				IntPtr ptr = NativeMethods.CmsD50xyY ();
-				return (ColorCIExyY) Marshal.PtrToStructure (ptr, typeof (ColorCIExyY));
+				return (ColorCIExyY)Marshal.PtrToStructure (ptr, typeof (ColorCIExyY));
 			}
 		}
 
@@ -95,7 +95,8 @@ namespace FSpot.Cms
 		}
 	}
 
-	public struct ColorCIExyYTriple {
+	public struct ColorCIExyYTriple
+	{
 		public ColorCIExyY Red;
 		public ColorCIExyY Green;
 		public ColorCIExyY Blue;

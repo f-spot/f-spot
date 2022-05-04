@@ -57,12 +57,12 @@ namespace FSpot.Widgets
 
 				if (key == null || key.Length == 0 || pos < 0 || pos > key.Length - 1)
 					transformed_key = string.Empty;
-				else if (key [pos] == '(' || key [pos] == ')' || key [pos] == ',')
+				else if (key[pos] == '(' || key[pos] == ')' || key[pos] == ',')
 					transformed_key = string.Empty;
 				else {
 					start = 0;
 					for (int i = pos; i >= 0; i--) {
-						if (key [i] == ')' || key [i] == '(' ||
+						if (key[i] == ')' || key[i] == '(' ||
 						   (i >= and_op_len - 1 && string.Compare (key.Substring (i - and_op_len + 1, and_op_len), and_op, true) == 0) ||
 						   (i >= or_op_len - 1 && string.Compare (key.Substring (i - or_op_len + 1, or_op_len), or_op, true) == 0)) {
 							//Logger.Log.Debug ($"have start break char at {i}");
@@ -73,7 +73,7 @@ namespace FSpot.Widgets
 
 					int end = key.Length - 1;
 					for (int j = pos; j < key.Length; j++) {
-						if (key [j] == ')' || key [j] == '(' ||
+						if (key[j] == ')' || key[j] == '(' ||
 						   (key.Length >= j + and_op_len && string.Compare (key.Substring (j, and_op_len), and_op, true) == 0) ||
 						   (key.Length >= j + or_op_len && string.Compare (key.Substring (j, or_op_len), or_op, true) == 0)) {
 							end = j - 1;

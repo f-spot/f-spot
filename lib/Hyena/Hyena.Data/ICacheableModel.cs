@@ -29,7 +29,7 @@
 namespace Hyena.Data
 {
 	public interface ICacheableModel : ISelectable
-    {
-        int FetchCount { get; }
-    }
+	{
+		int FetchCount { get; }
+	}
 }

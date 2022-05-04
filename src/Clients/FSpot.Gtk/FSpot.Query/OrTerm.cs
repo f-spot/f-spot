@@ -37,10 +37,10 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using Gtk;
-
 using FSpot.Core;
 using FSpot.Resources.Lang;
+
+using Gtk;
 
 namespace FSpot.Query
 {
@@ -58,15 +58,14 @@ namespace FSpot.Query
 		{
 		}
 
-		public static OrTerm FromTags (Tag [] fromTags)
+		public static OrTerm FromTags (Tag[] fromTags)
 		{
 			if (fromTags == null || fromTags.Length == 0)
 				return null;
 
 			var or = new OrTerm (null, null);
-			foreach (Literal l in fromTags.Select(t => new Literal (t)))
-			{
-			    l.Parent = or;
+			foreach (Literal l in fromTags.Select (t => new Literal (t))) {
+				l.Parent = or;
 			}
 			return or;
 		}

@@ -33,33 +33,33 @@ using System.Text;
 namespace Hyena.Query
 {
 	public abstract class QueryParser
-    {
-        protected StreamReader reader;
+	{
+		protected StreamReader reader;
 
-        public QueryParser()
-        {
-            Reset ();
-        }
+		public QueryParser ()
+		{
+			Reset ();
+		}
 
-        public QueryParser(string inputQuery) : this(new MemoryStream(Encoding.UTF8.GetBytes(inputQuery)))
-        {
-        }
+		public QueryParser (string inputQuery) : this (new MemoryStream (Encoding.UTF8.GetBytes (inputQuery)))
+		{
+		}
 
-        public QueryParser(Stream stream) : this(new StreamReader(stream))
-        {
-        }
+		public QueryParser (Stream stream) : this (new StreamReader (stream))
+		{
+		}
 
-        public QueryParser(StreamReader reader) : this()
-        {
-            InputReader = reader;
-        }
+		public QueryParser (StreamReader reader) : this ()
+		{
+			InputReader = reader;
+		}
 
-        public abstract QueryNode BuildTree (QueryFieldSet fieldSet);
-        public abstract void Reset ();
+		public abstract QueryNode BuildTree (QueryFieldSet fieldSet);
+		public abstract void Reset ();
 
-        public StreamReader InputReader {
-            get { return reader; }
-            set { reader = value; }
-        }
-    }
+		public StreamReader InputReader {
+			get { return reader; }
+			set { reader = value; }
+		}
+	}
 }

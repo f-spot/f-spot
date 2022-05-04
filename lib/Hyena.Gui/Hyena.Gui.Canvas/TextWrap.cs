@@ -27,10 +27,10 @@
 namespace Hyena.Gui.Canvas
 {
 	public enum TextWrap
-    {
-        None,
-        Word,
-        Char,
-        WordChar
-    }
+	{
+		None,
+		Word,
+		Char,
+		WordChar
+	}
 }

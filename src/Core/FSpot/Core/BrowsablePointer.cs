@@ -60,7 +60,7 @@ namespace FSpot.Core
 				if (!IsValid)
 					return null;
 
-				return collection [index];
+				return collection[index];
 			}
 		}
 
@@ -148,7 +148,7 @@ namespace FSpot.Core
 			int next_location = browsableCollection.IndexOf (item);
 
 			if (old_location == next_location) {
-				if (! Valid (next_location))
+				if (!Valid (next_location))
 					SetIndex (0, null);
 
 				return;

@@ -41,7 +41,8 @@ namespace FSpot.Widgets
 		internal bool InPhotoView;
 		readonly EditorPageWidget EditorPageWidget;
 
-		public EditorPage () : base (new EditorPageWidget (), Strings.Edit, "mode-image-edit") {
+		public EditorPage () : base (new EditorPageWidget (), Strings.Edit, "mode-image-edit")
+		{
 			// TODO: Somebody might need to change the icon to something more suitable.
 			// FIXME: The icon isn't shown in the menu, are we missing a size?
 			EditorPageWidget = SidebarWidget as EditorPageWidget;

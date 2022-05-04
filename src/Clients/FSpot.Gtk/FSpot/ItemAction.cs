@@ -33,11 +33,11 @@
 
 using System;
 
-using Gtk;
-
 using FSpot.Core;
 using FSpot.Resources.Lang;
 using FSpot.UI.Dialog;
+
+using Gtk;
 
 namespace FSpot
 {
@@ -64,7 +64,7 @@ namespace FSpot
 		protected RotateDirection direction;
 
 		public RotateAction (BrowsablePointer pointer, RotateDirection direction, string name, string label, string tooltip, string stock_id)
-		    : base (pointer, name, label, tooltip, stock_id)
+			: base (pointer, name, label, tooltip, stock_id)
 		{
 			this.direction = direction;
 		}
@@ -89,7 +89,7 @@ namespace FSpot
 	public class RotateLeftAction : RotateAction
 	{
 		public RotateLeftAction (BrowsablePointer p)
-		    : base (p,
+			: base (p,
 			RotateDirection.Counterclockwise,
 			"RotateItemLeft",
 			Strings.RotateLeft,
@@ -102,7 +102,7 @@ namespace FSpot
 	public class RotateRightAction : RotateAction
 	{
 		public RotateRightAction (BrowsablePointer p)
-		    : base (p,
+			: base (p,
 			RotateDirection.Clockwise,
 			"RotateItemRight",
 			Strings.RotateRight,
@@ -115,7 +115,7 @@ namespace FSpot
 	public class NextPictureAction : ItemAction
 	{
 		public NextPictureAction (BrowsablePointer p)
-		    : base (p,
+			: base (p,
 			"NextPicture",
 			Strings.Next,
 			Strings.NextPicture,

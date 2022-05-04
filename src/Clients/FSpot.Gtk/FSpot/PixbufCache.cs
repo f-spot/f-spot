@@ -32,9 +32,11 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
+
 using FSpot.Imaging;
 using FSpot.Thumbnail;
 using FSpot.Utils;
+
 using Hyena;
 
 
@@ -43,7 +45,7 @@ namespace FSpot
 {
 	public class PixbufCache
 	{
-		readonly Dictionary<SafeUri,CacheEntry> items;
+		readonly Dictionary<SafeUri, CacheEntry> items;
 		List<CacheEntry> items_mru;
 		int total_size;
 		const int max_size = 256 * 256 * 4 * 30;
@@ -73,12 +75,12 @@ namespace FSpot
 		{
 			lock (items) {
 				CacheEntry entry = null;
-				if (items.ContainsKey(uri))
+				if (items.ContainsKey (uri))
 					entry = items[uri];
 
 				if (entry == null) {
 					entry = new CacheEntry (this, uri, closure, width, height);
-					items [uri] = entry;
+					items[uri] = entry;
 					items_mru.Add (entry);
 				} else {
 					MoveForward (entry);
@@ -113,8 +115,8 @@ namespace FSpot
 			CacheEntry entry;
 
 			lock (items) {
-				if (items.ContainsKey(uri)){
-					entry = items [uri];
+				if (items.ContainsKey (uri)) {
+					entry = items[uri];
 					lock (entry) {
 						entry.Reload = true;
 					}
@@ -134,7 +136,7 @@ namespace FSpot
 				return null;
 			}
 			while (i-- > 0) {
-				entry = items_mru [i];
+				entry = items_mru[i];
 				lock (entry) {
 					if (entry.Reload) {
 						entry.Reload = false;
@@ -160,7 +162,7 @@ namespace FSpot
 		{
 			int num = 0;
 			while ((items_mru.Count - num) > 10 && total_size > max_size) {
-				CacheEntry entry = items_mru [num++];
+				CacheEntry entry = items_mru[num++];
 				items.Remove (entry.Uri);
 				entry.Dispose ();
 			}
@@ -182,7 +184,7 @@ namespace FSpot
 					lock (items) {
 						/* find the next item */
 						while ((current = FindNext ()) == null) {
-							if (!ShrinkIfNeeded ()){
+							if (!ShrinkIfNeeded ()) {
 								//ThumbnailGenerator.Default.PopBlock ();
 								Monitor.Wait (items);
 								//ThumbnailGenerator.Default.PushBlock ();
@@ -204,7 +206,7 @@ namespace FSpot
 			try {
 				loaded = App.Instance.Container.Resolve<IThumbnailService> ().GetThumbnail (entry.Uri, ThumbnailSize.Large);
 				Update (entry, loaded);
-			} catch (GLib.GException){
+			} catch (GLib.GException) {
 				if (loaded != null)
 					loaded.Dispose ();
 			}
@@ -225,8 +227,8 @@ namespace FSpot
 			CacheEntry tmp1 = entry;
 			CacheEntry tmp2;
 			while (i-- > 0) {
-				tmp2 = items_mru [i];
-				items_mru [i] = tmp1;
+				tmp2 = items_mru[i];
+				items_mru[i] = tmp1;
 				tmp1 = tmp2;
 				if (tmp2 == entry)
 					return;
@@ -242,8 +244,8 @@ namespace FSpot
 		CacheEntry ULookup (SafeUri uri)
 		{
 			CacheEntry entry = null;
-			if(items.ContainsKey(uri)) {
-				entry = items [uri];
+			if (items.ContainsKey (uri)) {
+				entry = items[uri];
 				MoveForward (entry);
 			}
 			return entry;
@@ -274,7 +276,8 @@ namespace FSpot
 			}
 		}
 
-		public class CacheEntry : IDisposable {
+		public class CacheEntry : IDisposable
+		{
 			Gdk.Pixbuf pixbuf;
 			object data;
 			PixbufCache cache;
@@ -318,8 +321,7 @@ namespace FSpot
 			public void SetPixbufExtended (Gdk.Pixbuf value, bool ignoreUndead)
 			{
 				lock (locker) {
-					if (IsDisposed)
-					{
+					if (IsDisposed) {
 						if (ignoreUndead) {
 							return;
 						}
@@ -364,7 +366,7 @@ namespace FSpot
 				GC.SuppressFinalize (this);
 			}
 
-			protected virtual void Dispose(bool disposing)
+			protected virtual void Dispose (bool disposing)
 			{
 				lock (locker) {
 					if (disposed)

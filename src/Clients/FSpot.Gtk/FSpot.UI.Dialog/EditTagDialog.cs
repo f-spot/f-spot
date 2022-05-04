@@ -30,12 +30,12 @@
 using System;
 using System.Collections.Generic;
 
-using Gtk;
-
 using FSpot.Core;
 using FSpot.Database;
-using FSpot.Settings;
 using FSpot.Resources.Lang;
+using FSpot.Settings;
+
+using Gtk;
 
 namespace FSpot.UI.Dialog
 {
@@ -82,7 +82,7 @@ namespace FSpot.UI.Dialog
 		}
 
 		public Category TagCategory {
-			get { return categories [category_option_menu.Active] as Category;}
+			get { return categories[category_option_menu.Active] as Category; }
 		}
 
 		List<Tag> categories;
@@ -140,8 +140,8 @@ namespace FSpot.UI.Dialog
 					tag.ThemeIconName = null;
 					tag.Icon = dialog.PreviewPixbuf;
 				}
-				else if (response == (ResponseType)1)
-					tag.Icon = null;
+			else if (response == (ResponseType)1)
+				tag.Icon = null;
 
 			Cms.Profile screen_profile;
 			if (tag.Icon != null && FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out screen_profile)) {
@@ -172,7 +172,7 @@ namespace FSpot.UI.Dialog
 			category_option_menu.PackStart (cell, true);
 			category_option_menu.AddAttribute (cell, "text", 1);
 
-			ListStore store = new ListStore (new[] {typeof(Gdk.Pixbuf), typeof(string)});
+			ListStore store = new ListStore (new[] { typeof (Gdk.Pixbuf), typeof (string) });
 			category_option_menu.Model = store;
 
 			foreach (Category category in categories) {

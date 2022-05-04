@@ -43,7 +43,7 @@ using FSpot.Utils;
 
 public class TagPopup
 {
-	public void Activate (Gdk.EventButton eb, Tag tag, Tag [] tags)
+	public void Activate (Gdk.EventButton eb, Tag tag, Tag[] tags)
 	{
 		int photo_count = App.Instance.Organizer.SelectedPhotos ().Length;
 		int tags_count = tags.Length;
@@ -51,24 +51,25 @@ public class TagPopup
 		Gtk.Menu popup_menu = new Gtk.Menu ();
 
 		GtkUtil.MakeMenuItem (popup_menu,
-                Strings.Find,
-                "gtk-add",
-                new EventHandler (App.Instance.Organizer.HandleIncludeTag),
-                true
-        );
+				Strings.Find,
+				"gtk-add",
+				new EventHandler (App.Instance.Organizer.HandleIncludeTag),
+				true
+		);
 
 		TermMenuItem.Create (tags, popup_menu);
 
 		GtkUtil.MakeMenuSeparator (popup_menu);
 
 		GtkUtil.MakeMenuItem (popup_menu, Strings.CreateNewTag, "tag-new",
-				      App.Instance.Organizer.HandleCreateNewCategoryCommand, true);
+					  App.Instance.Organizer.HandleCreateNewCategoryCommand, true);
 
 		GtkUtil.MakeMenuSeparator (popup_menu);
 
 		GtkUtil.MakeMenuItem (popup_menu, Strings.EditTag, "gtk-edit",
 			delegate {
-			App.Instance.Organizer.HandleEditSelectedTagWithTag (tag); }, tag != null && tags_count == 1);
+				App.Instance.Organizer.HandleEditSelectedTagWithTag (tag);
+			}, tag != null && tags_count == 1);
 
 		GtkUtil.MakeMenuItem (popup_menu, Strings.DeleteTag, "gtk-delete",
 			new EventHandler (App.Instance.Organizer.HandleDeleteSelectedTagCommand), tag != null);
@@ -76,16 +77,16 @@ public class TagPopup
 		GtkUtil.MakeMenuSeparator (popup_menu);
 
 		GtkUtil.MakeMenuItem (popup_menu, Strings.AttachTagToSelection, "gtk-add",
-				      new EventHandler (App.Instance.Organizer.HandleAttachTagCommand), tag != null && photo_count > 0);
+					  new EventHandler (App.Instance.Organizer.HandleAttachTagCommand), tag != null && photo_count > 0);
 
 		GtkUtil.MakeMenuItem (popup_menu, Strings.RemoveTagFromSelection, "gtk-remove",
-				      new EventHandler (App.Instance.Organizer.HandleRemoveTagCommand), tag != null && photo_count > 0);
+					  new EventHandler (App.Instance.Organizer.HandleRemoveTagCommand), tag != null && photo_count > 0);
 
 		if (tags_count > 1 && tag != null) {
 			GtkUtil.MakeMenuSeparator (popup_menu);
 
 			GtkUtil.MakeMenuItem (popup_menu, Strings.MergeTags,
-					      new EventHandler (App.Instance.Organizer.HandleMergeTagsCommand), true);
+						  new EventHandler (App.Instance.Organizer.HandleMergeTagsCommand), true);
 
 		}
 

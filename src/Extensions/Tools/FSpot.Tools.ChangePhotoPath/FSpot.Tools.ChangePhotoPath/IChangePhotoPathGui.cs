@@ -40,7 +40,7 @@ namespace FSpot.Tools.ChangePhotoPath
 {
 	public interface IChangePhotoPathGui
 	{
-		void remove_progress_dialog();
+		void remove_progress_dialog ();
 		bool UpdateProgressBar (string hdr_txt, string text, int total_photos);
 		void DisplayDefaultPaths (string oldpath, string newpath);
 	}

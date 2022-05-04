@@ -1,4 +1,4 @@
-﻿//
+//
 // RequestItem.cs
 //
 // Author:
@@ -32,8 +32,11 @@
 //
 
 using System;
+
 using FSpot.Utils;
+
 using Gdk;
+
 using Hyena;
 
 namespace FSpot

@@ -29,34 +29,34 @@
 namespace Hyena.Gui.Theatrics
 {
 	public class SingleActorStage : Stage<object>
-    {
-        object target = new object ();
+	{
+		object target = new object ();
 
-        public SingleActorStage () : base ()
-        {
-        }
+		public SingleActorStage () : base ()
+		{
+		}
 
-        public SingleActorStage (uint actorDuration) : base (actorDuration)
-        {
-        }
+		public SingleActorStage (uint actorDuration) : base (actorDuration)
+		{
+		}
 
-        protected override bool OnActorStep (Actor<object> actor)
-        {
-            return true;
-        }
+		protected override bool OnActorStep (Actor<object> actor)
+		{
+			return true;
+		}
 
-        public void Reset ()
-        {
-            AddOrReset (target);
-        }
+		public void Reset ()
+		{
+			AddOrReset (target);
+		}
 
-        public void Reset (uint duration)
-        {
-            AddOrReset (target, duration);
-        }
+		public void Reset (uint duration)
+		{
+			AddOrReset (target, duration);
+		}
 
-        public Actor<object> Actor {
-            get { return this[target]; }
-        }
-    }
+		public Actor<object> Actor {
+			get { return this[target]; }
+		}
+	}
 }

@@ -30,38 +30,38 @@ using System;
 
 namespace Hyena.Gui
 {
-    public static class CleanRoomStartup
-    {
-        public delegate void StartupInvocationHandler();
+	public static class CleanRoomStartup
+	{
+		public delegate void StartupInvocationHandler ();
 
-        public static void Startup(StartupInvocationHandler startup)
-        {
-            bool disable_clean_room = false;
+		public static void Startup (StartupInvocationHandler startup)
+		{
+			bool disable_clean_room = false;
 
-            foreach(string arg in Environment.GetCommandLineArgs ()) {
-                if(arg == "--disable-clean-room") {
-                    disable_clean_room = true;
-                    break;
-                }
-            }
+			foreach (string arg in Environment.GetCommandLineArgs ()) {
+				if (arg == "--disable-clean-room") {
+					disable_clean_room = true;
+					break;
+				}
+			}
 
-            if(disable_clean_room) {
-                startup();
-                return;
-            }
+			if (disable_clean_room) {
+				startup ();
+				return;
+			}
 
-            try {
-                startup();
-            } catch(Exception e) {
-                Console.WriteLine(e.Message);
-                Console.WriteLine(e);
+			try {
+				startup ();
+			} catch (Exception e) {
+				Console.WriteLine (e.Message);
+				Console.WriteLine (e);
 
-                Gtk.Application.Init();
-                Hyena.Gui.Dialogs.ExceptionDialog dialog = new Hyena.Gui.Dialogs.ExceptionDialog(e);
-                dialog.Run();
-                dialog.Destroy();
-                System.Environment.Exit(1);
-            }
-        }
-    }
+				Gtk.Application.Init ();
+				Hyena.Gui.Dialogs.ExceptionDialog dialog = new Hyena.Gui.Dialogs.ExceptionDialog (e);
+				dialog.Run ();
+				dialog.Destroy ();
+				System.Environment.Exit (1);
+			}
+		}
+	}
 }

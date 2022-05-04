@@ -31,7 +31,7 @@ using Hyena.Collections;
 namespace Hyena.Data
 {
 	public interface ISelectable
-    {
-        Selection Selection { get; }
-    }
+	{
+		Selection Selection { get; }
+	}
 }

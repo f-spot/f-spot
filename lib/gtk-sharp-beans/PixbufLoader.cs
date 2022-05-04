@@ -22,14 +22,17 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace Gdk {
-	public static class PixbufLoaderExtensions {
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern unsafe bool gdk_pixbuf_loader_close(IntPtr raw, out IntPtr error);
+namespace Gdk
+{
+	public static class PixbufLoaderExtensions
+	{
+		[DllImport ("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		static extern unsafe bool gdk_pixbuf_loader_close (IntPtr raw, out IntPtr error);
 
-		public static unsafe bool Close(this PixbufLoader loader, bool force) {
+		public static unsafe bool Close (this PixbufLoader loader, bool force)
+		{
 			IntPtr error = IntPtr.Zero;
-			bool raw_ret = gdk_pixbuf_loader_close(loader.Handle, out error);
+			bool raw_ret = gdk_pixbuf_loader_close (loader.Handle, out error);
 			bool ret = raw_ret;
 			if (!force && error != IntPtr.Zero) throw new GLib.GException (error);
 			return ret;

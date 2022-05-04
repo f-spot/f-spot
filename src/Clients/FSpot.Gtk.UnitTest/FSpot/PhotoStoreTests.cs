@@ -61,13 +61,14 @@ namespace FSpot
 		[TearDown]
 		public void TearDown () => Cleanup ();
 
-		public void Cleanup () {
+		public void Cleanup ()
+		{
 			if (File.Exists (database))
 				File.Delete (database);
 		}
 
 		[Test]
-		public void CreateFrom()
+		public void CreateFrom ()
 		{
 			var databaseConnection = new FSpotDatabaseConnection (database);
 			var dbMock = new Mock<IDb> ();
@@ -87,7 +88,7 @@ namespace FSpot
 		}
 
 		[Test]
-		public void CreateFromWithVersionIgnored()
+		public void CreateFromWithVersionIgnored ()
 		{
 			var databaseConnection = new FSpotDatabaseConnection (database);
 			var dbMock = new Mock<IDb> ();
@@ -107,7 +108,7 @@ namespace FSpot
 		}
 
 		[Test]
-		public void CreateFromWithVersionAdded()
+		public void CreateFromWithVersionAdded ()
 		{
 			var databaseConnection = new FSpotDatabaseConnection (database);
 			var dbMock = new Mock<IDb> ();
@@ -121,8 +122,8 @@ namespace FSpot
 			Assert.AreEqual (modifiedUri, photo.DefaultVersion.BaseUri);
 			Assert.AreEqual (2, photo.Versions.Count ());
 			// version id 1 is the first photo added - the original photo
-			Assert.AreEqual (originalName, photo.GetVersion(1).Name);
-			Assert.AreEqual (uri, photo.GetVersion(1).BaseUri);
+			Assert.AreEqual (originalName, photo.GetVersion (1).Name);
+			Assert.AreEqual (uri, photo.GetVersion (1).BaseUri);
 
 			Assert.AreEqual (1, store.TotalPhotos);
 			databaseConnection.Dispose ();

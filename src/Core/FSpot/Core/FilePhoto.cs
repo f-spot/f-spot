@@ -131,7 +131,7 @@ namespace FSpot.Core
 			get { return 0; }
 		}
 
-		public void AddVersion(SafeUri uri, string name)
+		public void AddVersion (SafeUri uri, string name)
 		{
 			versions.Add (new FilePhotoVersion { Uri = uri, Name = name });
 		}

@@ -47,34 +47,34 @@ namespace Hyena.Data.Sqlite
 	/// A simple custom attribute to enable us to easily find user-defined functions in
 	/// the loaded assemblies and initialize them in Sqlite as connections are made.
 	/// </summary>
-	[AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = true)]
-    public class SqliteFunctionAttribute : Attribute
-    {
-        internal Type        _instanceType;
+	[AttributeUsage (AttributeTargets.Class, Inherited = false, AllowMultiple = true)]
+	public class SqliteFunctionAttribute : Attribute
+	{
+		internal Type _instanceType;
 
-        /// <summary>
-        /// Default constructor, initializes the internal variables for the function.
-        /// </summary>
-        public SqliteFunctionAttribute()
-        {
-            Name = "";
-            Arguments = -1;
-            FuncType = FunctionType.Scalar;
-            }
+		/// <summary>
+		/// Default constructor, initializes the internal variables for the function.
+		/// </summary>
+		public SqliteFunctionAttribute ()
+		{
+			Name = "";
+			Arguments = -1;
+			FuncType = FunctionType.Scalar;
+		}
 
-        /// <summary>
-        /// The function's name as it will be used in Sqlite command text.
-        /// </summary>
-        public string Name { get; set; }
+		/// <summary>
+		/// The function's name as it will be used in Sqlite command text.
+		/// </summary>
+		public string Name { get; set; }
 
-        /// <summary>
-        /// The number of arguments this function expects.  -1 if the number of arguments is variable.
-        /// </summary>
-        public int Arguments { get; set; }
+		/// <summary>
+		/// The number of arguments this function expects.  -1 if the number of arguments is variable.
+		/// </summary>
+		public int Arguments { get; set; }
 
-        /// <summary>
-        /// The type of function this implementation will be.
-        /// </summary>
-        public FunctionType FuncType { get; set; }
-    }
+		/// <summary>
+		/// The type of function this implementation will be.
+		/// </summary>
+		public FunctionType FuncType { get; set; }
+	}
 }

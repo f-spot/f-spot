@@ -136,11 +136,11 @@ namespace FSpot.Widgets
 
 			text_layout.GetPixelSize (out text_width, out text_height);
 
-			width = (int) (2 * Xpad + Math.Max (progress_width, text_width));
-			height = (int) (3 * Ypad + progress_height + text_height);
+			width = (int)(2 * Xpad + Math.Max (progress_width, text_width));
+			height = (int)(3 * Ypad + progress_height + text_height);
 
-			x_offset = Math.Max ((int) (Xalign * (cell_area.Width - width)), 0);
-			y_offset = Math.Max ((int) (Yalign * (cell_area.Height - height)), 0);
+			x_offset = Math.Max ((int)(Xalign * (cell_area.Width - width)), 0);
+			y_offset = Math.Max ((int)(Yalign * (cell_area.Height - height)), 0);
 		}
 
 		protected override void Render (Gdk.Drawable window, Gtk.Widget widget, Gdk.Rectangle background_area, Gdk.Rectangle cell_area, Gdk.Rectangle expose_area, Gtk.CellRendererState flags)
@@ -155,21 +155,21 @@ namespace FSpot.Widgets
 			/* first render the text */
 			text_layout.GetPixelSize (out text_width, out text_height);
 
-			x  = (int) (cell_area.X + Xpad + Math.Max ((int) (Xalign * (cell_area.Width - 2 * Xpad - text_width)), 0));
-			y  = (int) (cell_area.Y + Ypad);
+			x = (int)(cell_area.X + Xpad + Math.Max ((int)(Xalign * (cell_area.Width - 2 * Xpad - text_width)), 0));
+			y = (int)(cell_area.Y + Ypad);
 
 			Style.PaintLayout (widget.Style,
-			                   window,
-			                   StateType.Normal,
-			                   true,
-			                   cell_area,
-			                   widget,
-			                   "cellrenderertextprogress",
-			                   x, y,
-			                   text_layout);
+							   window,
+							   StateType.Normal,
+							   true,
+							   cell_area,
+							   widget,
+							   "cellrenderertextprogress",
+							   x, y,
+							   text_layout);
 
-			y += (int) (text_height + Ypad);
-			x  = (int) (cell_area.X + Xpad + Math.Max ((int) (Xalign * (cell_area.Width - 2 * Xpad - progress_width)), 0));
+			y += (int)(text_height + Ypad);
+			x = (int)(cell_area.X + Xpad + Math.Max ((int)(Xalign * (cell_area.Width - 2 * Xpad - progress_width)), 0));
 
 
 			/* second render the progress bar */
@@ -184,7 +184,7 @@ namespace FSpot.Widgets
 
 				x += widget.Style.XThickness;
 				y += widget.Style.XThickness;
-				width -= 2* widget.Style.XThickness;
+				width -= 2 * widget.Style.XThickness;
 				height -= 2 * widget.Style.Ythickness;
 
 				cairo_context.Rectangle (x, y, width, height);
@@ -193,8 +193,8 @@ namespace FSpot.Widgets
 
 				/* scale the value and ensure, that at least one pixel is drawn, if the value is greater than zero */
 				int scaled_width =
-					(int) Math.Max (((progress_value * width) / 100.0),
-					                (progress_value == 0)? 0 : 1);
+					(int)Math.Max (((progress_value * width) / 100.0),
+									(progress_value == 0) ? 0 : 1);
 
 				cairo_context.Rectangle (x, y, scaled_width, height);
 				Gdk.CairoHelper.SetSourceColor (cairo_context, GetValueColor ());

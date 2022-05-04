@@ -27,8 +27,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using NUnit.Framework;
 using FSpot.Core;
+
+using NUnit.Framework;
 
 namespace FSpot.Query.Tests
 {
@@ -58,7 +59,7 @@ namespace FSpot.Query.Tests
 			TagTerm tt4 = new TagTerm (t4);
 			TagTerm tt5 = new TagTerm (t5);
 
-			object [] tests = {
+			object[] tests = {
 				" (photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id = 1)) ", tt1,
 				" (photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id IN (2, 3))) ", new OrOperator (tt2, tt3),
 				" (photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id IN (3, 4, 5))) ", new OrOperator (tt3, tt4, tt5),
@@ -66,11 +67,11 @@ namespace FSpot.Query.Tests
 				" (photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id IN (10, 3, 3))) ", new OrOperator (tt10, tt3),
 				" (photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id IN (11, 12, 5, 4))) ", new OrOperator (tt11),
 			};
-	
-			for (int i=0; i < tests.Length; i+=2) {
+
+			for (int i = 0; i < tests.Length; i += 2) {
 				//System.Console.WriteLine ((tests[i+1] as LogicalTerm).SqlClause ());
 				//System.Console.WriteLine (tests[i]);
-				Assert.AreEqual (tests[i] as string, (tests[i+1] as LogicalTerm).SqlClause ());
+				Assert.AreEqual (tests[i] as string, (tests[i + 1] as LogicalTerm).SqlClause ());
 			}
 		}
 	}

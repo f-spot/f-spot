@@ -30,6 +30,7 @@
 using System;
 
 using Cairo;
+
 using Gdk;
 
 namespace FSpot.Utils

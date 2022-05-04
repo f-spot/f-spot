@@ -482,7 +482,7 @@ namespace FSpot.Widgets
 							   try {
 								   return new DotNetFile ().GetSize (photo.DefaultVersion.Uri).ToString ();
 							   } catch (Exception e) {
-								  Logger.Log.Debug (e, "");
+								   Logger.Log.Debug (e, "");
 								   return Strings.ParenFileReadErrorParen;
 							   }
 						   }, null);

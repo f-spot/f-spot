@@ -25,7 +25,9 @@
 //
 
 using FSpot.Core.UnitTest.Mocks;
+
 using Hyena;
+
 using NUnit.Framework;
 
 namespace FSpot.Core.UnitTest

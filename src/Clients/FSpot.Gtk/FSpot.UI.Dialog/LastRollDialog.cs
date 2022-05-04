@@ -33,12 +33,12 @@
 using System;
 using System.Collections.Generic;
 
-using Gtk;
-
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Query;
 using FSpot.Settings;
+
+using Gtk;
 
 namespace FSpot.UI.Dialog
 {
@@ -79,7 +79,7 @@ namespace FSpot.UI.Dialog
 		protected void HandleResponse (object o, Gtk.ResponseArgs args)
 		{
 			if (args.ResponseId == ResponseType.Ok) {
-				Roll [] selected_rolls = SelectedRolls ();
+				Roll[] selected_rolls = SelectedRolls ();
 
 				if (selected_rolls != null && selected_rolls.Length > 0)
 					query.RollSet = new RollSet (selected_rolls);
@@ -102,7 +102,7 @@ namespace FSpot.UI.Dialog
 
 		void UpdateNumberOfPhotos ()
 		{
-			Roll [] selected_rolls = SelectedRolls ();
+			Roll[] selected_rolls = SelectedRolls ();
 			uint sum = 0;
 			if (selected_rolls != null)
 				foreach (Roll roll in selected_rolls) {
@@ -114,9 +114,9 @@ namespace FSpot.UI.Dialog
 		void PopulateCombos ()
 		{
 			for (uint k = 0; k < rolls.Length; k++) {
-				uint numphotos = rollstore.PhotosInRoll (rolls [k]);
+				uint numphotos = rollstore.PhotosInRoll (rolls[k]);
 				// Roll time is in UTC always
-				DateTime date = rolls [k].Time.ToLocalTime ();
+				DateTime date = rolls[k].Time.ToLocalTime ();
 
 				string header = string.Format ("{0} ({1})",
 					date.ToString ("%dd %MMM, %HH:%mm"),
@@ -127,7 +127,7 @@ namespace FSpot.UI.Dialog
 			}
 		}
 
-		Roll [] SelectedRolls ()
+		Roll[] SelectedRolls ()
 		{
 			if ((combo_roll_1.Active < 0) || ((combo_filter.Active == 2) && (combo_roll_2.Active < 0)))
 				return null;
@@ -135,15 +135,15 @@ namespace FSpot.UI.Dialog
 			List<Roll> result = new List<Roll> ();
 
 			switch (combo_filter.Active) {
-			case 0 : // at - Return the roll the user selected
-				result.Add (rolls [combo_roll_1.Active]);
+			case 0: // at - Return the roll the user selected
+				result.Add (rolls[combo_roll_1.Active]);
 				break;
-			case 1 : // after - Return all rolls from latest to the one the user selected
+			case 1: // after - Return all rolls from latest to the one the user selected
 				for (uint k = 0; k <= combo_roll_1.Active; k++) {
-					result.Add (rolls [k]);
+					result.Add (rolls[k]);
 				}
 				break;
-			case 2 : // between - Return all rolls between the two import rolls the user selected
+			case 2: // between - Return all rolls between the two import rolls the user selected
 				uint k1 = (uint)combo_roll_1.Active;
 				uint k2 = (uint)combo_roll_2.Active;
 				if (k1 > k2) {
@@ -151,7 +151,7 @@ namespace FSpot.UI.Dialog
 					k2 = (uint)combo_roll_1.Active;
 				}
 				for (uint k = k1; k <= k2; k++) {
-					result.Add (rolls [k]);
+					result.Add (rolls[k]);
 				}
 				break;
 			}

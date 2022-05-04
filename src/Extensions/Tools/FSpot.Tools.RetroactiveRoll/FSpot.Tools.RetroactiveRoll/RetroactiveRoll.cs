@@ -41,7 +41,7 @@ using Hyena.Data.Sqlite;
 
 namespace FSpot.Tools.RetroactiveRoll
 {
-	public class RetroactiveRoll: ICommand
+	public class RetroactiveRoll : ICommand
 	{
 		public void Run (object o, EventArgs e)
 		{
@@ -58,10 +58,10 @@ namespace FSpot.Tools.RetroactiveRoll
 					import_time = p.Time;
 
 			RollStore rolls = App.Instance.Database.Rolls;
-			Roll roll = rolls.Create(import_time);
+			Roll roll = rolls.Create (import_time);
 			foreach (Photo p in photos) {
 				HyenaSqliteCommand cmd = new HyenaSqliteCommand ("UPDATE photos SET roll_id = ? " +
-							       "WHERE id = ? ", roll.Id, p.Id);
+								   "WHERE id = ? ", roll.Id, p.Id);
 				App.Instance.Database.Database.Execute (cmd);
 				p.RollId = roll.Id;
 			}

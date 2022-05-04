@@ -28,9 +28,9 @@
 
 namespace Hyena.Data
 {
-    public interface IFilterable
-    {
-        string UserQuery { get; set; }
-        int UnfilteredCount { get; }
-    }
+	public interface IFilterable
+	{
+		string UserQuery { get; set; }
+		int UnfilteredCount { get; }
+	}
 }

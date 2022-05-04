@@ -30,9 +30,9 @@
 using System;
 using System.Collections.Generic;
 
-using Hyena;
-
 using FSpot.Core;
+
+using Hyena;
 
 namespace FSpot.Database
 {
@@ -52,7 +52,7 @@ namespace FSpot.Database
 			if (item_cache.ContainsKey (item.Id)) {
 				item_cache.Remove (item.Id);
 			}
-            
+
 			if (cache_is_immortal) {
 				item_cache.Add (item.Id, item);
 			} else {
@@ -65,12 +65,12 @@ namespace FSpot.Database
 			if (!item_cache.ContainsKey (id)) {
 				return null;
 			}
-            
+
 			if (cache_is_immortal) {
-				return item_cache [id] as T;
+				return item_cache[id] as T;
 			}
-            
-			WeakReference weakref = item_cache [id] as WeakReference;
+
+			WeakReference weakref = item_cache[id] as WeakReference;
 			return (T)weakref.Target;
 		}
 
@@ -120,9 +120,10 @@ namespace FSpot.Database
 				// No subscribers.
 				return;
 			}
-            
+
 			ThreadAssist.ProxyToMain (() => {
-				evnt (this, args); });
+				evnt (this, args);
+			});
 		}
 
 		public bool CacheEmpty {

@@ -28,10 +28,10 @@
 
 namespace Hyena.Data
 {
-    public enum SortType
-    {
-        None,
-        Ascending,
-        Descending
-    }
+	public enum SortType
+	{
+		None,
+		Ascending,
+		Descending
+	}
 }

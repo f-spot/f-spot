@@ -28,7 +28,8 @@
 
 namespace FSpot.Database
 {
-	public interface IUpdaterUI {
+	public interface IUpdaterUI
+	{
 		void Show ();
 		void Pulse ();
 		void Destroy ();

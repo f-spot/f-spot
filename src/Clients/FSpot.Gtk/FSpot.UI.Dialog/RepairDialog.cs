@@ -31,12 +31,12 @@
 
 using System.IO;
 
+using FSpot.Core;
+using FSpot.Widgets;
+
 using Gtk;
 
-using FSpot.Widgets;
-using FSpot.Core;
-
-namespace FSpot. UI.Dialog
+namespace FSpot.UI.Dialog
 {
 	public class RepairDialog : BuilderDialog
 	{
@@ -65,9 +65,9 @@ namespace FSpot. UI.Dialog
 			missing.Clear ();
 
 			for (i = 0; i < source.Count; i++) {
-				IPhoto item = source [i];
+				IPhoto item = source[i];
 				string path = item.DefaultVersion.Uri.LocalPath;
-				if (! File.Exists (path) || (new FileInfo (path).Length == 0))
+				if (!File.Exists (path) || (new FileInfo (path).Length == 0))
 					missing.Add (item);
 			}
 		}

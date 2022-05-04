@@ -28,11 +28,11 @@
 
 namespace Hyena
 {
-    public interface IUndoAction
-    {
-        void Undo ();
-        void Redo ();
-        void Merge (IUndoAction action);
-        bool CanMerge (IUndoAction action);
-    }
+	public interface IUndoAction
+	{
+		void Undo ();
+		void Redo ();
+		void Merge (IUndoAction action);
+		bool CanMerge (IUndoAction action);
+	}
 }

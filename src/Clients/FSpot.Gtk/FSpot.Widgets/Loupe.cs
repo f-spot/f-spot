@@ -30,12 +30,14 @@
 using System;
 
 using Cairo;
-using Gtk;
-using Gdk;
 
 using FSpot.Core;
-using FSpot.Utils;
 using FSpot.Gui;
+using FSpot.Utils;
+
+using Gdk;
+
+using Gtk;
 
 
 namespace FSpot.Widgets
@@ -60,7 +62,7 @@ namespace FSpot.Widgets
 			this.view = view;
 			Decorated = false;
 
-			var win = (Gtk.Window) view.Toplevel;
+			var win = (Gtk.Window)view.Toplevel;
 
 			win.GetPosition (out old_win_pos.X, out old_win_pos.Y);
 			win.ConfigureEvent += HandleToplevelConfigure;
@@ -144,7 +146,7 @@ namespace FSpot.Widgets
 
 		protected override void OnRealized ()
 		{
-			use_shape_ext = ! (CompositeUtils.IsComposited (Screen) && CompositeUtils.SetRgbaColormap (this));
+			use_shape_ext = !(CompositeUtils.IsComposited (Screen) && CompositeUtils.SetRgbaColormap (this));
 
 			base.OnRealized ();
 			ShapeWindow ();
@@ -158,8 +160,8 @@ namespace FSpot.Widgets
 			region.Height = 2 * radius;
 
 			if (view.Pixbuf != null) {
-				region.Offset (- Math.Min (region.X, Math.Max (region.Right - view.Pixbuf.Width, radius)),
-					       - Math.Min (region.Y, Math.Max (region.Bottom - view.Pixbuf.Height, radius)));
+				region.Offset (-Math.Min (region.X, Math.Max (region.Right - view.Pixbuf.Width, radius)),
+						   -Math.Min (region.Y, Math.Max (region.Bottom - view.Pixbuf.Height, radius)));
 
 				region.Intersect (new Gdk.Rectangle (0, 0, view.Pixbuf.Width, view.Pixbuf.Height));
 			}
@@ -176,7 +178,7 @@ namespace FSpot.Widgets
 			if (view.Pixbuf == null)
 				return;
 
-			int small = (int) (radius * view.Zoom);
+			int small = (int)(radius * view.Zoom);
 			if (small != inner) {
 				inner = small;
 				QueueResize ();
@@ -200,7 +202,7 @@ namespace FSpot.Widgets
 		void HandleImageViewMotion (object sender, MotionNotifyEventArgs args)
 		{
 			Gdk.Point coords;
-			coords = new Gdk.Point ((int) args.Event.X, (int) args.Event.Y);
+			coords = new Gdk.Point ((int)args.Event.X, (int)args.Event.Y);
 
 			SetSamplePoint (view.WindowCoordsToImage (coords));
 		}
@@ -209,8 +211,8 @@ namespace FSpot.Widgets
 		{
 			Layout ();
 			var bitmap = new Pixmap (GdkWindow,
-							    Allocation.Width,
-							    Allocation.Height, 1);
+								Allocation.Width,
+								Allocation.Height, 1);
 
 			Context g = CairoHelper.Create (bitmap);
 			DrawShape (g, Allocation.Width, Allocation.Height);
@@ -224,7 +226,7 @@ namespace FSpot.Widgets
 				DrawShape (rgba, Allocation.Width, Allocation.Height);
 				rgba.Dispose ();
 				try {
-					CompositeUtils.InputShapeCombineMask (this, bitmap, 0,0);
+					CompositeUtils.InputShapeCombineMask (this, bitmap, 0, 0);
 				} catch (EntryPointNotFoundException) {
 					Logger.Log.Warning ("gtk+ version doesn't support input shapping");
 				}
@@ -242,14 +244,14 @@ namespace FSpot.Widgets
 			double x_proj = (a + b - border) * Math.Cos (angle);
 			double y_proj = (a + b - border) * Math.Sin (angle);
 
-			Center.X = (int) Math.Ceiling (Math.Max (-x_proj + b, a));
-			Center.Y = (int) Math.Ceiling (Math.Max (-y_proj + b, a));
+			Center.X = (int)Math.Ceiling (Math.Max (-x_proj + b, a));
+			Center.Y = (int)Math.Ceiling (Math.Max (-y_proj + b, a));
 
-			Bounds.Width = (int) Math.Ceiling (Math.Max (Math.Abs (x_proj) + b, a) + b + a);
-			Bounds.Height = (int) Math.Ceiling (Math.Max (Math.Abs (y_proj) + b, a) + b + a);
+			Bounds.Width = (int)Math.Ceiling (Math.Max (Math.Abs (x_proj) + b, a) + b + a);
+			Bounds.Height = (int)Math.Ceiling (Math.Max (Math.Abs (y_proj) + b, a) + b + a);
 
-			hotspot.X = (int) Math.Ceiling (Center.X + x_proj);
-			hotspot.Y = (int) Math.Ceiling (Center.Y + y_proj);
+			hotspot.X = (int)Math.Ceiling (Center.X + x_proj);
+			hotspot.Y = (int)Math.Ceiling (Center.Y + y_proj);
 		}
 
 		void DrawShape (Context g, int width, int height)
@@ -259,7 +261,7 @@ namespace FSpot.Widgets
 			int cy = Center.Y;
 
 			g.Operator = Operator.Source;
-			g.SetSource (new SolidPattern (new Cairo.Color (0,0,0,0)));
+			g.SetSource (new SolidPattern (new Cairo.Color (0, 0, 0, 0)));
 			g.Rectangle (0, 0, width, height);
 			g.Paint ();
 
@@ -269,7 +271,7 @@ namespace FSpot.Widgets
 
 			g.SetSource (new SolidPattern (new Cairo.Color (0.2, 0.2, 0.2, .6)));
 			g.Operator = Operator.Over;
-			g.Rectangle (0, - (border + inner), inner_x, 2 * (border + inner));
+			g.Rectangle (0, -(border + inner), inner_x, 2 * (border + inner));
 			g.Arc (inner_x, 0, inner + border, 0, 2 * Math.PI);
 			g.Arc (0, 0, radius + border, 0, 2 * Math.PI);
 			g.Fill ();
@@ -333,11 +335,11 @@ namespace FSpot.Widgets
 
 		void HandleMotionNotifyEvent (object sender, MotionNotifyEventArgs args)
 		{
-			pos.X = (int) args.Event.XRoot - start.X;
-			pos.Y = (int) args.Event.YRoot - start.Y;
+			pos.X = (int)args.Event.XRoot - start.X;
+			pos.Y = (int)args.Event.YRoot - start.Y;
 
-			root_pos.X = (int) args.Event.XRoot;
-			root_pos.Y = (int) args.Event.YRoot;
+			root_pos.X = (int)args.Event.XRoot;
+			root_pos.Y = (int)args.Event.YRoot;
 
 			if (dragging)
 				drag.Start ();
@@ -387,11 +389,11 @@ namespace FSpot.Widgets
 			Move (pos.X, pos.Y);
 
 			pos.Offset (hotspot.X, hotspot.Y);
-			var toplevel = (Gtk.Window) view.Toplevel;
+			var toplevel = (Gtk.Window)view.Toplevel;
 			toplevel.GdkWindow.GetOrigin (out top.X, out top.Y);
 			toplevel.TranslateCoordinates (view,
-						       pos.X - top.X,  pos.Y - top.Y,
-						       out view_coords.X, out view_coords.Y);
+							   pos.X - top.X, pos.Y - top.Y,
+							   out view_coords.X, out view_coords.Y);
 
 			SetSamplePoint (view.WindowCoordsToImage (view_coords));
 
@@ -421,7 +423,7 @@ namespace FSpot.Widgets
 					rotate = (args.Event.State & ModifierType.ShiftMask) > 0;
 					start_angle = Angle;
 				} else {
-					Angle += Math.PI /8;
+					Angle += Math.PI / 8;
 				}
 				break;
 			case EventType.TwoButtonPress:
@@ -485,7 +487,7 @@ namespace FSpot.Widgets
 		{
 			SetFancyStyle (this);
 
-			TransientFor = (Gtk.Window) view.Toplevel;
+			TransientFor = (Gtk.Window)view.Toplevel;
 			SkipPagerHint = true;
 			SkipTaskbarHint = true;
 
@@ -495,7 +497,7 @@ namespace FSpot.Widgets
 
 			SetSamplePoint (Gdk.Point.Zero);
 
-			AddEvents ((int) (EventMask.PointerMotionMask
+			AddEvents ((int)(EventMask.PointerMotionMask
 					  | EventMask.ButtonPressMask
 					  | EventMask.ButtonReleaseMask));
 

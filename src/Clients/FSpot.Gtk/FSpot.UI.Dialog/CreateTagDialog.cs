@@ -34,13 +34,14 @@
 using System;
 using System.Collections.Generic;
 
-using Gtk;
-using Gdk;
-
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Resources.Lang;
 using FSpot.Settings;
+
+using Gdk;
+
+using Gtk;
 
 namespace FSpot.UI.Dialog
 {
@@ -150,13 +151,13 @@ namespace FSpot.UI.Dialog
 			get {
 				if (categories.Count == 0)
 					return tag_store.RootCategory;
-				return categories [category_option_menu.Active] as Category;
+				return categories[category_option_menu.Active] as Category;
 			}
 			set {
 				if ((value != null) && (categories.Count > 0)) {
 					//System.Console.WriteLine("TagCreateCommand.set_Category(" + value.Name + ")");
 					for (int i = 0; i < categories.Count; i++) {
-						Category category = (Category)categories [i];
+						Category category = (Category)categories[i];
 						// should there be an equals type method?
 						if (value.Id == category.Id) {
 							category_option_menu.Active = i;
@@ -169,14 +170,14 @@ namespace FSpot.UI.Dialog
 			}
 		}
 
-		public Tag Execute (TagType type, Tag [] selection)
+		public Tag Execute (TagType type, Tag[] selection)
 		{
 			Category default_category = null;
 			if (selection.Length > 0) {
-				if (selection [0] is Category)
-					default_category = (Category)selection [0];
+				if (selection[0] is Category)
+					default_category = (Category)selection[0];
 				else
-					default_category = selection [0].Category;
+					default_category = selection[0].Category;
 			} else {
 				default_category = tag_store.RootCategory;
 			}

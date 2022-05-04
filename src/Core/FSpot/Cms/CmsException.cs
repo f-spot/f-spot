@@ -15,7 +15,7 @@ using System.Runtime.Serialization;
 namespace FSpot.Cms
 {
 	[Serializable]
-	public class CmsException : Exception 
+	public class CmsException : Exception
 	{
 		public CmsException (string message) : base (message)
 		{

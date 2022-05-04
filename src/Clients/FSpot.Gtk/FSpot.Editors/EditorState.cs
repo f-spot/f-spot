@@ -42,7 +42,7 @@ namespace FSpot.Editors
 		public Rectangle Selection;
 
 		// The images selected by the user.
-		public IPhoto [] Items;
+		public IPhoto[] Items;
 
 		// The view, into which images are shown (null if we are in the browse view).
 		public PhotoImageView PhotoImageView;
@@ -59,5 +59,5 @@ namespace FSpot.Editors
 	}
 
 	// This is the base class from which all editors inherit.
-	
+
 }

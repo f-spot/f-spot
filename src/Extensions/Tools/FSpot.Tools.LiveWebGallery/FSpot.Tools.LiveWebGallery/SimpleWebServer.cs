@@ -28,10 +28,10 @@
 //
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
-using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 
@@ -59,7 +59,7 @@ namespace FSpot.Tools.LiveWebGallery
 			get {
 				string host = Dns.GetHostName ();
 				// TODO: add support for .local hostnames
-				foreach (IPAddress addr in Dns.GetHostAddresses(host)) {
+				foreach (IPAddress addr in Dns.GetHostAddresses (host)) {
 					if (!IPAddress.IsLoopback (addr)) {
 						host = addr.ToString ();
 					}
@@ -68,26 +68,28 @@ namespace FSpot.Tools.LiveWebGallery
 			}
 		}
 
-		public void RegisterHandler (string request_prefix, RequestHandler handler) {
+		public void RegisterHandler (string request_prefix, RequestHandler handler)
+		{
 			handlers.Add (request_prefix, handler);
 		}
 
-		public bool Start () {
+		public bool Start ()
+		{
 			try {
 				listener = new TcpListener (IPAddress.Any, 8080);
 				listener.Start ();
-			}
-			catch (SocketException) {
+			} catch (SocketException) {
 				// address already in use? choose a random port then
 				listener = new TcpListener (IPAddress.Any, 0);
 				listener.Start ();
 			}
-			server_thread = new Thread (new ThreadStart(ServerLoop));
+			server_thread = new Thread (new ThreadStart (ServerLoop));
 			server_thread.Start ();
 			return true;
 		}
 
-		public bool Stop () {
+		public bool Stop ()
+		{
 			server_thread.Abort ();
 			server_thread.Join ();
 			listener.Stop ();
@@ -115,13 +117,15 @@ namespace FSpot.Tools.LiveWebGallery
 			private TcpClient client;
 			private Dictionary<string, RequestHandler> handlers;
 
-			public RequestProcessor (TcpClient client, Dictionary<string, RequestHandler> handlers) {
+			public RequestProcessor (TcpClient client, Dictionary<string, RequestHandler> handlers)
+			{
 				this.client = client;
 				this.handlers = handlers;
 			}
 
-			public void Process () {
-				using (client)  {
+			public void Process ()
+			{
+				using (client) {
 					NetworkStream stream = client.GetStream ();
 					TextReader reader = new StreamReader (stream, Encoding.UTF8);
 
@@ -137,7 +141,7 @@ namespace FSpot.Tools.LiveWebGallery
 						request_method = line.Substring (0, space_pos);
 						request_string = line.Substring (space_pos + 1, line.LastIndexOf (' ') - space_pos - 1);
 					}
-					while (!string.IsNullOrEmpty(line = reader.ReadLine ())) {
+					while (!string.IsNullOrEmpty (line = reader.ReadLine ())) {
 						// process other request headers here if needed
 					}
 
@@ -161,14 +165,12 @@ namespace FSpot.Tools.LiveWebGallery
 						}
 
 						try {
-							handlers[request_prefix].Handle (request_string.Substring (slash_pos+1), stream);
-						}
-						catch (Exception e) {
+							handlers[request_prefix].Handle (request_string.Substring (slash_pos + 1), stream);
+						} catch (Exception e) {
 							Logger.Log.Error (e, "");
 							try {
 								RequestHandler.SendError (stream, $"500 {e.Message}");
-							}
-							catch (IOException) {
+							} catch (IOException) {
 								// ignore already closed connections
 							}
 						}
@@ -182,27 +184,32 @@ namespace FSpot.Tools.LiveWebGallery
 	{
 		public abstract void Handle (string requested, Stream stream);
 
-		public static void SendLine (Stream stream, string header) {
+		public static void SendLine (Stream stream, string header)
+		{
 			byte[] buf = Encoding.UTF8.GetBytes (header + "\r\n");
 			stream.Write (buf, 0, buf.Length);
 		}
 
-		public static void SendStatus (Stream stream, string status) {
+		public static void SendStatus (Stream stream, string status)
+		{
 			SendLine (stream, "HTTP/1.0 " + status + "\r\nServer: F-Spot");
 		}
 
-		public static void SendError (Stream stream, string error) {
+		public static void SendError (Stream stream, string error)
+		{
 			SendStatus (stream, error);
 			StartContent (stream);
 			SendLine (stream, error);
 		}
 
-		public static void StartContent (Stream stream) {
+		public static void StartContent (Stream stream)
+		{
 			// sends the last empty newline after headers
 			SendLine (stream, "");
 		}
 
-		public static void SendHeadersAndStartContent (Stream stream, params string[] headers) {
+		public static void SendHeadersAndStartContent (Stream stream, params string[] headers)
+		{
 			SendStatus (stream, "200 OK");
 			foreach (string header in headers) {
 				SendLine (stream, header);

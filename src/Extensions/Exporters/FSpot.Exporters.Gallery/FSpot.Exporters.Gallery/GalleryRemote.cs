@@ -31,8 +31,8 @@
 //
 
 using System;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
 
 using FSpot.Core;
 
@@ -83,7 +83,7 @@ namespace FSpot.Exporters.Gallery
 					return parents;
 
 				if (Parent == null) {
-				       parents = new List<int> ();
+					parents = new List<int> ();
 				} else {
 					parents = Parent.Parents;
 					parents.Add (Parent.RefNum);
@@ -127,7 +127,7 @@ namespace FSpot.Exporters.Gallery
 
 		public string GetUrl ()
 		{
-			return Gallery.GetAlbumUrl(this);
+			return Gallery.GetAlbumUrl (this);
 		}
 
 		public int CompareTo (Object obj)
@@ -199,13 +199,15 @@ namespace FSpot.Exporters.Gallery
 		public Album Owner;
 		public string Url;
 
-		public Image (Album album, string name) {
+		public Image (Album album, string name)
+		{
 			Name = name;
 			Owner = album;
 		}
 	}
 
-	public enum ResultCode {
+	public enum ResultCode
+	{
 		Success = 0,
 		MajorVersionInvalid = 101,
 		MajorMinorVersionInvalid = 102,

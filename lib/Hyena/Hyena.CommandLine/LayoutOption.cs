@@ -28,23 +28,23 @@
 
 namespace Hyena.CommandLine
 {
-    public class LayoutOption
-    {
-        string name;
-        string description;
+	public class LayoutOption
+	{
+		string name;
+		string description;
 
-        public LayoutOption (string name, string description)
-        {
-            this.name = name;
-            this.description = description;
-        }
+		public LayoutOption (string name, string description)
+		{
+			this.name = name;
+			this.description = description;
+		}
 
-        public string Name {
-            get { return name; }
-        }
+		public string Name {
+			get { return name; }
+		}
 
-        public string Description {
-            get { return description; }
-        }
-    }
+		public string Description {
+			get { return description; }
+		}
+	}
 }

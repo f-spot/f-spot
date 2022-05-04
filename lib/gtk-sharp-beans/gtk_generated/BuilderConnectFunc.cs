@@ -3,6 +3,6 @@
 
 namespace GtkBeans
 {
-	public delegate void BuilderConnectFunc(GtkBeans.Builder builder, GLib.Object objekt, string signal_name, string handler_name, GLib.Object connect_object, GLib.ConnectFlags flags);
+	public delegate void BuilderConnectFunc (GtkBeans.Builder builder, GLib.Object objekt, string signal_name, string handler_name, GLib.Object connect_object, GLib.ConnectFlags flags);
 
 }

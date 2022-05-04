@@ -32,27 +32,27 @@ using System;
 
 namespace FSpot.Widgets
 {
-    public class RatingMenuItem : Hyena.Widgets.RatingMenuItem
-    {
-        RatingEntry entry;
+	public class RatingMenuItem : Hyena.Widgets.RatingMenuItem
+	{
+		RatingEntry entry;
 
-        public RatingMenuItem () : base (new RatingEntry ())
-        {
-            entry = RatingEntry as RatingEntry;
-        }
+		public RatingMenuItem () : base (new RatingEntry ())
+		{
+			entry = RatingEntry as RatingEntry;
+		}
 
-        public RatingMenuItem (object parent) : this ()
-        {
-            if (parent is FullScreenView) {
-                entry.Value = (int)(parent as FullScreenView).View.Item.Current.Rating;
+		public RatingMenuItem (object parent) : this ()
+		{
+			if (parent is FullScreenView) {
+				entry.Value = (int)(parent as FullScreenView).View.Item.Current.Rating;
 
-            } else if (App.Instance.Organizer.Selection.Count == 1) {
-                entry.Value = (int)App.Instance.Organizer.Selection[0].Rating;
-            }
-        }
+			} else if (App.Instance.Organizer.Selection.Count == 1) {
+				entry.Value = (int)App.Instance.Organizer.Selection[0].Rating;
+			}
+		}
 
-        protected RatingMenuItem (IntPtr raw) : base (raw)
-        {
-        }
-    }
+		protected RatingMenuItem (IntPtr raw) : base (raw)
+		{
+		}
+	}
 }

@@ -29,9 +29,9 @@
 
 using System;
 
-using Gtk;
-
 using FSpot.Utils;
+
+using Gtk;
 
 namespace FSpot.Widgets
 {
@@ -41,18 +41,19 @@ namespace FSpot.Widgets
 		public EventBox ControlBox { get; private set; }
 		public ScrolledWindow ScrolledWindow { get; private set; }
 
-		public ScrolledView (IntPtr raw) : base (raw) {}
+		public ScrolledView (IntPtr raw) : base (raw) { }
 
-		public ScrolledView () : base () {
-			ScrolledWindow = new ScrolledWindow  (null, null);
+		public ScrolledView () : base ()
+		{
+			ScrolledWindow = new ScrolledWindow (null, null);
 			this.Put (ScrolledWindow, 0, 0);
 			ScrolledWindow.Show ();
-			
+
 			//ebox = new BlendBox ();
 			ControlBox = new EventBox ();
 			this.Put (ControlBox, 0, 0);
 			ControlBox.ShowAll ();
-			
+
 			hide = new DelayedOperation (2000, new GLib.IdleHandler (HideControls));
 			this.Destroyed += HandleDestroyed;
 		}
@@ -79,7 +80,7 @@ namespace FSpot.Widgets
 			ControlBox.Hide ();
 			return false;
 		}
-		
+
 		public void ShowControls ()
 		{
 			hide.Stop ();

@@ -1,4 +1,4 @@
-﻿//
+//
 // EnvironmentMock.cs
 //
 // Author:
@@ -27,6 +27,7 @@
 //
 
 using FSpot.FileSystem;
+
 using Moq;
 
 namespace Mocks

@@ -27,9 +27,9 @@
 namespace Hyena.Gui.Canvas
 {
 	public class FixedPanel : Panel
-    {
-        public FixedPanel ()
-        {
-        }
-    }
+	{
+		public FixedPanel ()
+		{
+		}
+	}
 }

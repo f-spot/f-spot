@@ -33,11 +33,11 @@ namespace FSpot.Core
 {
 	public class BrowsableEventArgs : System.EventArgs
 	{
-		public int [] Items { get; }
+		public int[] Items { get; }
 
 		public IBrowsableItemChanges Changes { get; }
 
-		public BrowsableEventArgs (int item, IBrowsableItemChanges changes) : this (new [] { item }, changes)
+		public BrowsableEventArgs (int item, IBrowsableItemChanges changes) : this (new[] { item }, changes)
 		{
 		}
 

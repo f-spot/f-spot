@@ -33,84 +33,84 @@ using Hyena.Gui.Theming;
 namespace Hyena.Gui.Canvas
 {
 	public class Slider : CanvasItem
-    {
-        uint value_changed_inhibit_ref = 0;
+	{
+		uint value_changed_inhibit_ref = 0;
 
-        public event EventHandler<EventArgs> ValueChanged;
-        public event EventHandler<EventArgs> PendingValueChanged;
+		public event EventHandler<EventArgs> ValueChanged;
+		public event EventHandler<EventArgs> PendingValueChanged;
 
-        public Slider ()
-        {
-            Margin = new Thickness (3);
-            MarginStyle = new ShadowMarginStyle {
-                ShadowSize = 3,
-                ShadowOpacity = 0.25
-            };
-        }
+		public Slider ()
+		{
+			Margin = new Thickness (3);
+			MarginStyle = new ShadowMarginStyle {
+				ShadowSize = 3,
+				ShadowOpacity = 0.25
+			};
+		}
 
-        protected virtual void OnValueChanged ()
-        {
-            if (value_changed_inhibit_ref != 0) {
-                return;
-            }
+		protected virtual void OnValueChanged ()
+		{
+			if (value_changed_inhibit_ref != 0) {
+				return;
+			}
 
-            var handler = ValueChanged;
-            if (handler != null) {
-                handler (this, EventArgs.Empty);
-            }
-        }
+			var handler = ValueChanged;
+			if (handler != null) {
+				handler (this, EventArgs.Empty);
+			}
+		}
 
-        protected virtual void OnPendingValueChanged ()
-        {
-            var handler = PendingValueChanged;
-            if (handler != null) {
-                handler (this, EventArgs.Empty);
-            }
-        }
+		protected virtual void OnPendingValueChanged ()
+		{
+			var handler = PendingValueChanged;
+			if (handler != null) {
+				handler (this, EventArgs.Empty);
+			}
+		}
 
-        public void InhibitValueChangeEvent ()
-        {
-            value_changed_inhibit_ref++;
-        }
+		public void InhibitValueChangeEvent ()
+		{
+			value_changed_inhibit_ref++;
+		}
 
-        public void UninhibitValueChangeEvent ()
-        {
-            value_changed_inhibit_ref--;
-        }
+		public void UninhibitValueChangeEvent ()
+		{
+			value_changed_inhibit_ref--;
+		}
 
-        void SetPendingValueFromX (double x)
-        {
-            IsValueUpdatePending = true;
-            PendingValue = Math.Max (0, Math.Min ((x - ThrobberSize / 2) / RenderSize.Width, 1));
-        }
+		void SetPendingValueFromX (double x)
+		{
+			IsValueUpdatePending = true;
+			PendingValue = Math.Max (0, Math.Min ((x - ThrobberSize / 2) / RenderSize.Width, 1));
+		}
 
-        public override bool ButtonEvent (Point cursor, bool pressed, uint button)
-        {
-            if (pressed && button == 1) {
-                GrabPointer ();
-                SetPendingValueFromX (cursor.X);
-                return true;
-            } else if (!pressed && IsPointerGrabbed) {
-                ReleasePointer ();
-                Value = PendingValue;
-                IsValueUpdatePending = false;
-                return true;
-            }
-            return false;
-        }
+		public override bool ButtonEvent (Point cursor, bool pressed, uint button)
+		{
+			if (pressed && button == 1) {
+				GrabPointer ();
+				SetPendingValueFromX (cursor.X);
+				return true;
+			} else if (!pressed && IsPointerGrabbed) {
+				ReleasePointer ();
+				Value = PendingValue;
+				IsValueUpdatePending = false;
+				return true;
+			}
+			return false;
+		}
 
-        public override bool CursorMotionEvent (Point cursor)
-        {
-            if (IsPointerGrabbed) {
-                SetPendingValueFromX (cursor.X);
-                return true;
-            }
-            return false;
-        }
+		public override bool CursorMotionEvent (Point cursor)
+		{
+			if (IsPointerGrabbed) {
+				SetPendingValueFromX (cursor.X);
+				return true;
+			}
+			return false;
+		}
 
-        //private double last_invalidate_value = -1;
+		//private double last_invalidate_value = -1;
 
-        /*private void Invalidate ()
+		/*private void Invalidate ()
         {
             double current_value = (IsValueUpdatePending ? PendingValue : Value);
 
@@ -137,7 +137,7 @@ namespace Hyena.Gui.Canvas
             InvalidateRender (region);
         }*/
 
-        /*protected override Rect InvalidationRect {
+		/*protected override Rect InvalidationRect {
             get { return new Rect (
                 -Margin.Left - ThrobberSize / 2,
                 -Margin.Top,
@@ -146,92 +146,92 @@ namespace Hyena.Gui.Canvas
             }
         }*/
 
-        protected override void ClippedRender (Cairo.Context cr)
-        {
-            double throbber_r = ThrobberSize / 2.0;
-            double throbber_x = Math.Round (RenderSize.Width * (IsValueUpdatePending ? PendingValue : Value));
-            double throbber_y = (Allocation.Height - ThrobberSize) / 2.0 - Margin.Top + throbber_r;
-            double bar_w = RenderSize.Width * Value;
+		protected override void ClippedRender (Cairo.Context cr)
+		{
+			double throbber_r = ThrobberSize / 2.0;
+			double throbber_x = Math.Round (RenderSize.Width * (IsValueUpdatePending ? PendingValue : Value));
+			double throbber_y = (Allocation.Height - ThrobberSize) / 2.0 - Margin.Top + throbber_r;
+			double bar_w = RenderSize.Width * Value;
 
-	    cr.SetSourceColor (Theme.Colors.GetWidgetColor (GtkColorClass.Base, Gtk.StateType.Normal));
-            cr.Rectangle (0, 0, RenderSize.Width, RenderSize.Height);
-            cr.Fill ();
+			cr.SetSourceColor (Theme.Colors.GetWidgetColor (GtkColorClass.Base, Gtk.StateType.Normal));
+			cr.Rectangle (0, 0, RenderSize.Width, RenderSize.Height);
+			cr.Fill ();
 
-            Color color = Theme.Colors.GetWidgetColor (GtkColorClass.Dark, Gtk.StateType.Active);
-            Color fill_color = CairoExtensions.ColorShade (color, 0.4);
-            Color light_fill_color = CairoExtensions.ColorShade (color, 0.3);
-            fill_color.A = 1.0;
-            light_fill_color.A = 1.0;
+			Color color = Theme.Colors.GetWidgetColor (GtkColorClass.Dark, Gtk.StateType.Active);
+			Color fill_color = CairoExtensions.ColorShade (color, 0.4);
+			Color light_fill_color = CairoExtensions.ColorShade (color, 0.3);
+			fill_color.A = 1.0;
+			light_fill_color.A = 1.0;
 
-            LinearGradient fill = new LinearGradient (0, 0, 0, RenderSize.Height);
-            fill.AddColorStop (0, light_fill_color);
-            fill.AddColorStop (0.5, fill_color);
-            fill.AddColorStop (1, light_fill_color);
+			LinearGradient fill = new LinearGradient (0, 0, 0, RenderSize.Height);
+			fill.AddColorStop (0, light_fill_color);
+			fill.AddColorStop (0.5, fill_color);
+			fill.AddColorStop (1, light_fill_color);
 
-            cr.Rectangle (0, 0, bar_w, RenderSize.Height);
-	    cr.SetSource (fill);
-            cr.Fill ();
+			cr.Rectangle (0, 0, bar_w, RenderSize.Height);
+			cr.SetSource (fill);
+			cr.Fill ();
 
-	    cr.SetSourceColor (fill_color);
-            cr.Arc (throbber_x, throbber_y, throbber_r, 0, Math.PI * 2);
-            cr.Fill ();
-        }
+			cr.SetSourceColor (fill_color);
+			cr.Arc (throbber_x, throbber_y, throbber_r, 0, Math.PI * 2);
+			cr.Fill ();
+		}
 
-        public override Size Measure (Size available)
-        {
-            Height = BarSize;
-            return DesiredSize = new Size (base.Measure (available).Width,
-                Height + Margin.Top + Margin.Bottom);
-        }
+		public override Size Measure (Size available)
+		{
+			Height = BarSize;
+			return DesiredSize = new Size (base.Measure (available).Width,
+				Height + Margin.Top + Margin.Bottom);
+		}
 
-        double bar_size = 3;
-        public virtual double BarSize {
-            get { return bar_size; }
-            set { bar_size = value; }
-        }
+		double bar_size = 3;
+		public virtual double BarSize {
+			get { return bar_size; }
+			set { bar_size = value; }
+		}
 
-        double throbber_size = 7;
-        public virtual double ThrobberSize {
-            get { return throbber_size; }
-            set { throbber_size = value; }
-        }
+		double throbber_size = 7;
+		public virtual double ThrobberSize {
+			get { return throbber_size; }
+			set { throbber_size = value; }
+		}
 
-        double value;
-        public virtual double Value {
-            get { return this.value; }
-            set {
-                if (value < 0.0 || value > 1.0) {
-                    throw new ArgumentOutOfRangeException ("Value", "Must be between 0.0 and 1.0 inclusive");
-                } else if (this.value == value) {
-                    return;
-                }
+		double value;
+		public virtual double Value {
+			get { return this.value; }
+			set {
+				if (value < 0.0 || value > 1.0) {
+					throw new ArgumentOutOfRangeException ("Value", "Must be between 0.0 and 1.0 inclusive");
+				} else if (this.value == value) {
+					return;
+				}
 
-                this.value = value;
-                Invalidate ();
-                OnValueChanged ();
-            }
-        }
+				this.value = value;
+				Invalidate ();
+				OnValueChanged ();
+			}
+		}
 
-        bool is_value_update_pending;
-        public virtual bool IsValueUpdatePending {
-            get { return is_value_update_pending; }
-            set { is_value_update_pending = value; }
-        }
+		bool is_value_update_pending;
+		public virtual bool IsValueUpdatePending {
+			get { return is_value_update_pending; }
+			set { is_value_update_pending = value; }
+		}
 
-        double pending_value;
-        public virtual double PendingValue {
-            get { return pending_value; }
-            set {
-                if (value < 0.0 || value > 1.0) {
-                    throw new ArgumentOutOfRangeException ("Value", "Must be between 0.0 and 1.0 inclusive");
-                } else if (pending_value == value) {
-                    return;
-                }
+		double pending_value;
+		public virtual double PendingValue {
+			get { return pending_value; }
+			set {
+				if (value < 0.0 || value > 1.0) {
+					throw new ArgumentOutOfRangeException ("Value", "Must be between 0.0 and 1.0 inclusive");
+				} else if (pending_value == value) {
+					return;
+				}
 
-                pending_value = value;
-                Invalidate ();
-                OnPendingValueChanged ();
-            }
-        }
-    }
+				pending_value = value;
+				Invalidate ();
+				OnPendingValueChanged ();
+			}
+		}
+	}
 }

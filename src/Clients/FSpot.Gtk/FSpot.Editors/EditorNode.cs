@@ -1,4 +1,4 @@
-﻿//  EditorNode.cs
+//  EditorNode.cs
 //
 //  Author:
 //       Stephen Shaw <sshaw@decriptor.com>
@@ -34,12 +34,12 @@ namespace FSpot.Editors
 	[ExtensionNode ("Editor")]
 	public class EditorNode : ExtensionNode
 	{
-		[NodeAttribute (Required=true)]
+		[NodeAttribute (Required = true)]
 		protected string editor_type;
 
 		public Editor GetEditor ()
 		{
-			return (Editor) Addin.CreateInstance (editor_type);
+			return (Editor)Addin.CreateInstance (editor_type);
 		}
 	}
 }

@@ -55,12 +55,13 @@
 using System;
 using System.IO;
 
-using Hyena;
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Filters;
 using FSpot.Settings;
 using FSpot.Utils;
+
+using Hyena;
 
 
 namespace FSpot.Exporters.Folder
@@ -114,7 +115,7 @@ namespace FSpot.Exporters.Folder
 			Collection = selection;
 			GalleryName = gallery_name;
 			GalleryPath = Path.Combine (path, GalleryName);
-			this.requests = new ScaleRequest [] { ScaleRequest.Default };
+			this.requests = new ScaleRequest[] { ScaleRequest.Default };
 		}
 		#endregion
 
@@ -157,7 +158,7 @@ namespace FSpot.Exporters.Folder
 
 		protected virtual string ImageName (int image_num)
 		{
-			var uri = Collection [image_num].DefaultVersion.Uri;
+			var uri = Collection[image_num].DefaultVersion.Uri;
 			var dest_uri = new SafeUri (GalleryPath);
 
 			// Find an unused name
@@ -176,11 +177,11 @@ namespace FSpot.Exporters.Folder
 
 		public void ProcessImage (int image_num, FilterSet filter_set)
 		{
-			IPhoto photo = Collection [image_num];
+			IPhoto photo = Collection[image_num];
 			string path;
 			ScaleRequest req;
 
-			req = requests [0];
+			req = requests[0];
 
 			MakeDir (SubdirPath (req.Name));
 			path = SubdirPath (req.Name, ImageName (image_num));
@@ -194,14 +195,14 @@ namespace FSpot.Exporters.Folder
 
 				if (photo != null && photo is Photo && App.Instance.Database != null)
 					App.Instance.Database.Exports.Create ((photo as Photo).Id, (photo as Photo).DefaultVersionId,
-								      ExportStore.FolderExportType,
-								      // FIXME this is wrong, the final path is the one
-								      // after the Xfer.
-								      new SafeUri (path).ToString ());
+									  ExportStore.FolderExportType,
+									  // FIXME this is wrong, the final path is the one
+									  // after the Xfer.
+									  new SafeUri (path).ToString ());
 
 				for (int i = 1; i < requests.Length; i++) {
 
-					req = requests [i];
+					req = requests[i];
 					if (scale && req.AvoidScale (Size))
 						continue;
 
@@ -255,8 +256,8 @@ namespace FSpot.Exporters.Folder
 		{
 			this.scale = true;
 			Size = size;
-			requests [0].Width = size;
-			requests [0].Height = size;
+			requests[0].Width = size;
+			requests[0].Height = size;
 		}
 		#endregion
 	}

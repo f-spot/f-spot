@@ -47,7 +47,7 @@ namespace FSpot.Import
 
 		#region props
 
-		public IEnumerable<SafeUri> FailedImports { get { return failedImports.AsEnumerable(); } }
+		public IEnumerable<SafeUri> FailedImports { get { return failedImports.AsEnumerable (); } }
 		public int PhotosImported { get { return imported_photos.Count; } }
 
 		#endregion

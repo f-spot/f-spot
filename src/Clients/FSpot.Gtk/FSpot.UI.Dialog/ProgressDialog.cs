@@ -44,7 +44,8 @@ namespace FSpot.UI.Dialog
 			cancelled = true;
 		}
 
-		public enum CancelButtonType {
+		public enum CancelButtonType
+		{
 			Cancel,
 			Stop,
 			None
@@ -89,10 +90,10 @@ namespace FSpot.UI.Dialog
 
 			switch (cancel_button_type) {
 			case CancelButtonType.Cancel:
-				button = (Gtk.Button)AddButton (Gtk.Stock.Cancel, (int) ResponseType.Cancel);
+				button = (Gtk.Button)AddButton (Gtk.Stock.Cancel, (int)ResponseType.Cancel);
 				break;
 			case CancelButtonType.Stop:
-				button = (Gtk.Button)AddButton (Gtk.Stock.Stop, (int) ResponseType.Cancel);
+				button = (Gtk.Button)AddButton (Gtk.Stock.Stop, (int)ResponseType.Cancel);
 				break;
 			}
 
@@ -104,11 +105,11 @@ namespace FSpot.UI.Dialog
 		// Return true if the operation was cancelled by the user.
 		public bool Update (string message)
 		{
-			current_count ++;
+			current_count++;
 
 			message_label.Text = message;
-			progress_bar.Text = string.Format (Strings.XOfY, current_count, total_count);;
-			progress_bar.Fraction = (double) current_count / total_count;
+			progress_bar.Text = string.Format (Strings.XOfY, current_count, total_count); ;
+			progress_bar.Fraction = (double)current_count / total_count;
 
 			ShowAll ();
 

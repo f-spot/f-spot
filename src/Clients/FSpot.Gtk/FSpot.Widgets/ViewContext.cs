@@ -27,11 +27,13 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-namespace FSpot.Widgets {
+namespace FSpot.Widgets
+{
 	// This nasty enum serves to differentiate between the different view
 	// modes. As we have both SingleView and normal F-Spot, there is no
 	// uniform way of naming these contexts.
-	public enum ViewContext {
+	public enum ViewContext
+	{
 		Unknown,
 		Single,
 		Library,

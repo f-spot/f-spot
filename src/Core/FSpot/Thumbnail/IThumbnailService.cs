@@ -27,6 +27,7 @@
 //
 
 using Gdk;
+
 using Hyena;
 
 namespace FSpot.Thumbnail

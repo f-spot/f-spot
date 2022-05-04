@@ -31,16 +31,17 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Gtk;
 using FSpot.Core;
+
+using Gtk;
 
 namespace FSpot
 {
 	public class InfoOverlay : ControlOverlay
-    {
-        readonly InfoItem box;
+	{
+		readonly InfoItem box;
 
-        public InfoOverlay (Widget w, BrowsablePointer item) : base (w)
+		public InfoOverlay (Widget w, BrowsablePointer item) : base (w)
 		{
 			XAlign = 1.0;
 			YAlign = 0.1;

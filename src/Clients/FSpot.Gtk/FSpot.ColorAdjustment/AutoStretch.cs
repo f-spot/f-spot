@@ -44,17 +44,17 @@ namespace FSpot.ColorAdjustment
 		{
 		}
 
-		protected override List <Profile> GenerateAdjustments ()
+		protected override List<Profile> GenerateAdjustments ()
 		{
-			var profiles = new List <Profile> ();
+			var profiles = new List<Profile> ();
 			var hist = new Histogram (Input);
-			tables = new ToneCurve [3];
+			tables = new ToneCurve[3];
 
 			for (int channel = 0; channel < tables.Length; channel++) {
 				int high, low;
 				hist.GetHighLow (channel, out high, out low);
 				Logger.Log.Debug ($"high = {high}, low = {low}");
-				tables [channel] = StretchChannel (255, low / 255.0, high / 255.0);
+				tables[channel] = StretchChannel (255, low / 255.0, high / 255.0);
 			}
 			profiles.Add (new Profile (IccColorSpace.Rgb, tables));
 			return profiles;
@@ -62,7 +62,7 @@ namespace FSpot.ColorAdjustment
 
 		ToneCurve StretchChannel (int count, double low, double high)
 		{
-			var entries = new ushort [count];
+			var entries = new ushort[count];
 			for (int i = 0; i < entries.Length; i++) {
 				double val = i / (double)entries.Length;
 
@@ -72,12 +72,12 @@ namespace FSpot.ColorAdjustment
 					val = Math.Max ((val - low), 0);
 				}
 
-				entries [i] = (ushort) Math.Min (Math.Round (ushort.MaxValue * val), ushort.MaxValue);
+				entries[i] = (ushort)Math.Min (Math.Round (ushort.MaxValue * val), ushort.MaxValue);
 				//System.Console.WriteLine ("val {0}, result {1}", Math.Round (val * ushort.MaxValue), entries [i]);
 			}
 			return new ToneCurve (entries);
 		}
 
-		ToneCurve [] tables;
+		ToneCurve[] tables;
 	}
 }

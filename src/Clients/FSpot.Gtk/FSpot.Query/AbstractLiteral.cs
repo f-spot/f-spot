@@ -39,7 +39,7 @@ namespace FSpot.Query
 {
 	public abstract class AbstractLiteral : Term
 	{
-	    protected AbstractLiteral (Term parent, Literal after) : base (parent, after)
+		protected AbstractLiteral (Term parent, Literal after) : base (parent, after)
 		{
 		}
 

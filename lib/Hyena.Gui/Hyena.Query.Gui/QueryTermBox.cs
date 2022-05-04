@@ -35,210 +35,210 @@ using Gtk;
 namespace Hyena.Query.Gui
 {
 	public class QueryTermBox
-    {
-        Button add_button;
-        Button remove_button;
+	{
+		Button add_button;
+		Button remove_button;
 
-        public event EventHandler AddRequest;
-        public event EventHandler RemoveRequest;
+		public event EventHandler AddRequest;
+		public event EventHandler RemoveRequest;
 
-        QueryField field;
-        List<QueryValueEntry> value_entries = new List<QueryValueEntry> ();
-        List<Operator> operators = new List<Operator> ();
-        Dictionary<Operator, QueryValueEntry> operator_entries = new Dictionary<Operator, QueryValueEntry> ();
-        QueryValueEntry current_value_entry;
-        Operator op;
+		QueryField field;
+		List<QueryValueEntry> value_entries = new List<QueryValueEntry> ();
+		List<Operator> operators = new List<Operator> ();
+		Dictionary<Operator, QueryValueEntry> operator_entries = new Dictionary<Operator, QueryValueEntry> ();
+		QueryValueEntry current_value_entry;
+		Operator op;
 
-        QueryField [] sorted_fields;
+		QueryField[] sorted_fields;
 
-        ComboBox field_chooser;
-        public ComboBox FieldChooser {
-            get { return field_chooser; }
-        }
+		ComboBox field_chooser;
+		public ComboBox FieldChooser {
+			get { return field_chooser; }
+		}
 
-        ComboBox op_chooser;
-        public ComboBox OpChooser {
-            get { return op_chooser; }
-        }
+		ComboBox op_chooser;
+		public ComboBox OpChooser {
+			get { return op_chooser; }
+		}
 
-        HBox value_box;
-        public HBox ValueEntry {
-            get { return value_box; }
-        }
+		HBox value_box;
+		public HBox ValueEntry {
+			get { return value_box; }
+		}
 
-        HBox button_box;
-        public HBox Buttons {
-            get { return button_box; }
-        }
+		HBox button_box;
+		public HBox Buttons {
+			get { return button_box; }
+		}
 
-        public QueryTermBox (QueryField [] sorted_fields) : base ()
-        {
-            this.sorted_fields = sorted_fields;
-            BuildInterface ();
-        }
+		public QueryTermBox (QueryField[] sorted_fields) : base ()
+		{
+			this.sorted_fields = sorted_fields;
+			BuildInterface ();
+		}
 
-        void BuildInterface ()
-        {
-            field_chooser = ComboBox.NewText ();
-            field_chooser.Changed += HandleFieldChanged;
+		void BuildInterface ()
+		{
+			field_chooser = ComboBox.NewText ();
+			field_chooser.Changed += HandleFieldChanged;
 
-            op_chooser = ComboBox.NewText ();
-            op_chooser.RowSeparatorFunc = IsRowSeparator;
-            op_chooser.Changed += HandleOperatorChanged;
+			op_chooser = ComboBox.NewText ();
+			op_chooser.RowSeparatorFunc = IsRowSeparator;
+			op_chooser.Changed += HandleOperatorChanged;
 
-            value_box = new HBox ();
+			value_box = new HBox ();
 
-            remove_button = new Button (new Image ("gtk-remove", IconSize.Button));
-            remove_button.Relief = ReliefStyle.None;
-            remove_button.Clicked += OnButtonRemoveClicked;
+			remove_button = new Button (new Image ("gtk-remove", IconSize.Button));
+			remove_button.Relief = ReliefStyle.None;
+			remove_button.Clicked += OnButtonRemoveClicked;
 
-            add_button = new Button (new Image ("gtk-add", IconSize.Button));
-            add_button.Relief = ReliefStyle.None;
-            add_button.Clicked += OnButtonAddClicked;
+			add_button = new Button (new Image ("gtk-add", IconSize.Button));
+			add_button.Relief = ReliefStyle.None;
+			add_button.Clicked += OnButtonAddClicked;
 
-            button_box = new HBox ();
-            button_box.PackStart (remove_button, false, false, 0);
-            button_box.PackStart (add_button, false, false, 0);
+			button_box = new HBox ();
+			button_box.PackStart (remove_button, false, false, 0);
+			button_box.PackStart (add_button, false, false, 0);
 
-            foreach (QueryField field in sorted_fields) {
-                field_chooser.AppendText (field.Label);
-            }
+			foreach (QueryField field in sorted_fields) {
+				field_chooser.AppendText (field.Label);
+			}
 
-            Show ();
-            field_chooser.Active = 0;
-        }
+			Show ();
+			field_chooser.Active = 0;
+		}
 
-        bool IsRowSeparator (TreeModel model, TreeIter iter)
-        {
-            return String.IsNullOrEmpty (model.GetValue (iter, 0) as string);
-        }
+		bool IsRowSeparator (TreeModel model, TreeIter iter)
+		{
+			return String.IsNullOrEmpty (model.GetValue (iter, 0) as string);
+		}
 
-        public void Show ()
-        {
-            field_chooser.ShowAll ();
-            op_chooser.ShowAll ();
-            value_box.ShowAll ();
-            button_box.ShowAll ();
-        }
+		public void Show ()
+		{
+			field_chooser.ShowAll ();
+			op_chooser.ShowAll ();
+			value_box.ShowAll ();
+			button_box.ShowAll ();
+		}
 
-        bool first = true;
-        void SetValueEntry (QueryValueEntry entry)
-        {
-            if (first) {
-                first = false;
-            } else {
-                value_box.Remove (value_box.Children [0]);
-            }
+		bool first = true;
+		void SetValueEntry (QueryValueEntry entry)
+		{
+			if (first) {
+				first = false;
+			} else {
+				value_box.Remove (value_box.Children[0]);
+			}
 
-            current_value_entry = entry;
-            value_box.PackStart (current_value_entry, false, true, 0);
-            current_value_entry.ShowAll ();
-        }
+			current_value_entry = entry;
+			value_box.PackStart (current_value_entry, false, true, 0);
+			current_value_entry.ShowAll ();
+		}
 
-        void HandleFieldChanged (object o, EventArgs args)
-        {
-            if (field_chooser.Active < 0 || field_chooser.Active >= sorted_fields.Length)
-                return;
+		void HandleFieldChanged (object o, EventArgs args)
+		{
+			if (field_chooser.Active < 0 || field_chooser.Active >= sorted_fields.Length)
+				return;
 
-            QueryField field = sorted_fields [field_chooser.Active];
+			QueryField field = sorted_fields[field_chooser.Active];
 
-            // Leave everything as is unless the new field is a different type
-            if (this.field != null && (field.ValueTypes.Length == 1 && this.field.ValueTypes.Length == 1 && field.ValueTypes[0] == this.field.ValueTypes[0])) {
-                this.field = field;
-                return;
-            }
+			// Leave everything as is unless the new field is a different type
+			if (this.field != null && (field.ValueTypes.Length == 1 && this.field.ValueTypes.Length == 1 && field.ValueTypes[0] == this.field.ValueTypes[0])) {
+				this.field = field;
+				return;
+			}
 
-            op_chooser.Changed -= HandleOperatorChanged;
+			op_chooser.Changed -= HandleOperatorChanged;
 
-            this.field = field;
+			this.field = field;
 
-            // Remove old type's operators
-            while (op_chooser.Model.IterNChildren () > 0) {
-                op_chooser.RemoveText (0);
-            }
+			// Remove old type's operators
+			while (op_chooser.Model.IterNChildren () > 0) {
+				op_chooser.RemoveText (0);
+			}
 
-            // Add new field's operators
-            int val_count = 0;
-            value_entries.Clear ();
-            operators.Clear ();
-            operator_entries.Clear ();
-            foreach (QueryValue val in this.field.CreateQueryValues ()) {
-                QueryValueEntry entry = QueryValueEntry.Create (val);
-                value_entries.Add (entry);
+			// Add new field's operators
+			int val_count = 0;
+			value_entries.Clear ();
+			operators.Clear ();
+			operator_entries.Clear ();
+			foreach (QueryValue val in this.field.CreateQueryValues ()) {
+				QueryValueEntry entry = QueryValueEntry.Create (val);
+				value_entries.Add (entry);
 
-                if (val_count++ > 0) {
-                    op_chooser.AppendText (String.Empty);
-                    operators.Add (null);
-                }
+				if (val_count++ > 0) {
+					op_chooser.AppendText (String.Empty);
+					operators.Add (null);
+				}
 
-                foreach (Operator op in val.OperatorSet) {
-                    op_chooser.AppendText (op.Label);
-                    operators.Add (op);
-                    operator_entries [op] = entry;
-                }
-            }
+				foreach (Operator op in val.OperatorSet) {
+					op_chooser.AppendText (op.Label);
+					operators.Add (op);
+					operator_entries[op] = entry;
+				}
+			}
 
-            SetValueEntry (value_entries[0]);
+			SetValueEntry (value_entries[0]);
 
-            // TODO: If we have the same operator that was previously selected, select it
-            op_chooser.Changed += HandleOperatorChanged;
-            op_chooser.Active = 0;
-        }
+			// TODO: If we have the same operator that was previously selected, select it
+			op_chooser.Changed += HandleOperatorChanged;
+			op_chooser.Active = 0;
+		}
 
-        void HandleOperatorChanged (object o, EventArgs args)
-        {
-            if (op_chooser.Active < 0 || op_chooser.Active >= operators.Count) {
-                return;
-            }
+		void HandleOperatorChanged (object o, EventArgs args)
+		{
+			if (op_chooser.Active < 0 || op_chooser.Active >= operators.Count) {
+				return;
+			}
 
-            this.op = operators [op_chooser.Active];
-            if (operator_entries [this.op] != current_value_entry) {
-                SetValueEntry (operator_entries [this.op]);
-            }
+			this.op = operators[op_chooser.Active];
+			if (operator_entries[this.op] != current_value_entry) {
+				SetValueEntry (operator_entries[this.op]);
+			}
 
-            //value_entry = new QueryValueEntry <field.ValueType> ();
-        }
+			//value_entry = new QueryValueEntry <field.ValueType> ();
+		}
 
-        void OnButtonAddClicked (object o, EventArgs args)
-        {
-            EventHandler handler = AddRequest;
-            if (handler != null)
-                handler (this, new EventArgs ());
-        }
+		void OnButtonAddClicked (object o, EventArgs args)
+		{
+			EventHandler handler = AddRequest;
+			if (handler != null)
+				handler (this, new EventArgs ());
+		}
 
-        void OnButtonRemoveClicked (object o, EventArgs args)
-        {
-            EventHandler handler = RemoveRequest;
-            if (handler != null)
-                handler (this, new EventArgs ());
-        }
+		void OnButtonRemoveClicked (object o, EventArgs args)
+		{
+			EventHandler handler = RemoveRequest;
+			if (handler != null)
+				handler (this, new EventArgs ());
+		}
 
-        public bool CanDelete {
-            get { return remove_button.Sensitive; }
-            set { remove_button.Sensitive = value; }
-        }
+		public bool CanDelete {
+			get { return remove_button.Sensitive; }
+			set { remove_button.Sensitive = value; }
+		}
 
-        public QueryTermNode QueryNode {
-            get {
-                QueryTermNode node = new QueryTermNode ();
-                node.Field = field;
-                node.Operator = op;
-                node.Value = current_value_entry.QueryValue;
-                return node;
-            }
+		public QueryTermNode QueryNode {
+			get {
+				QueryTermNode node = new QueryTermNode ();
+				node.Field = field;
+				node.Operator = op;
+				node.Value = current_value_entry.QueryValue;
+				return node;
+			}
 
-            set {
-                QueryTermNode node = value;
-                if (node == null) {
-                    return;
-                }
+			set {
+				QueryTermNode node = value;
+				if (node == null) {
+					return;
+				}
 
-                field_chooser.Active = Array.IndexOf (sorted_fields, node.Field);
+				field_chooser.Active = Array.IndexOf (sorted_fields, node.Field);
 
-                op_chooser.Active = operators.IndexOf (node.Operator);
+				op_chooser.Active = operators.IndexOf (node.Operator);
 
-                current_value_entry.QueryValue = node.Value;
-                /*foreach (QueryValueEntry entry in value_entries) {
+				current_value_entry.QueryValue = node.Value;
+				/*foreach (QueryValueEntry entry in value_entries) {
                     if (QueryValueEntry.GetValueType (entry) == node.Value.GetType ()) {
                         Console.WriteLine ("In QueryTermBox, setting QueryNode, got matching value types, value is {0}, empty? {1}", node.Value.ToString (), node.Value.IsEmpty);
                         entry.QueryValue = node.Value;
@@ -247,7 +247,7 @@ namespace Hyena.Query.Gui
                     }
                 }*/
 
-            }
-        }
-    }
+			}
+		}
+	}
 }

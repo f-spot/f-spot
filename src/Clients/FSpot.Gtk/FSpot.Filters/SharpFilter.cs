@@ -29,25 +29,25 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Gdk;
-
 using FSpot.Imaging;
 using FSpot.Utils;
 
+using Gdk;
+
 namespace FSpot.Filters
 {
-    public class SharpFilter : IFilter
-    {
+	public class SharpFilter : IFilter
+	{
 		readonly double threshold;
 		readonly double amount;
 		readonly double radius;
 
 		public SharpFilter (double radius, double amount, double threshold)
-        {
-            this.radius = radius;
-            this.amount = amount;
-            this.threshold = threshold;
-        }
+		{
+			this.radius = radius;
+			this.amount = amount;
+			this.threshold = threshold;
+		}
 
 		public bool Convert (FilterRequest req)
 		{

@@ -33,53 +33,53 @@ using FSpot.Resources.Lang;
 namespace Hyena.Query
 {
 	public class NullQueryValue : QueryValue
-    {
-        public static readonly Operator IsNullOrEmpty  = new Operator ("empty", Strings.Empty, "IN (NULL, '', 0)", true, "!");
+	{
+		public static readonly Operator IsNullOrEmpty = new Operator ("empty", Strings.Empty, "IN (NULL, '', 0)", true, "!");
 
-        public static readonly NullQueryValue Instance = new NullQueryValue ();
+		public static readonly NullQueryValue Instance = new NullQueryValue ();
 
-        public override string XmlElementName {
-            get { return "empty"; }
-        }
+		public override string XmlElementName {
+			get { return "empty"; }
+		}
 
-        public override object Value {
-            get { return null; }
-        }
+		public override object Value {
+			get { return null; }
+		}
 
-        protected static AliasedObjectSet<Operator> operators = new AliasedObjectSet<Operator> (IsNullOrEmpty);
-        public override AliasedObjectSet<Operator> OperatorSet {
-            get { return operators; }
-        }
+		protected static AliasedObjectSet<Operator> operators = new AliasedObjectSet<Operator> (IsNullOrEmpty);
+		public override AliasedObjectSet<Operator> OperatorSet {
+			get { return operators; }
+		}
 
-        NullQueryValue ()
-        {
-            IsEmpty = false;
-        }
+		NullQueryValue ()
+		{
+			IsEmpty = false;
+		}
 
-        public override void ParseUserQuery (string input)
-        {
-        }
+		public override void ParseUserQuery (string input)
+		{
+		}
 
-        public override void LoadString (string input)
-        {
-        }
+		public override void LoadString (string input)
+		{
+		}
 
-        public override void ParseXml (XmlElement node)
-        {
-        }
+		public override void ParseXml (XmlElement node)
+		{
+		}
 
-        public override void AppendXml (XmlElement node)
-        {
-            node.InnerText = string.Empty;
-        }
+		public override void AppendXml (XmlElement node)
+		{
+			node.InnerText = string.Empty;
+		}
 
-        public void SetValue (string str)
-        {
-        }
+		public void SetValue (string str)
+		{
+		}
 
-        public override string ToSql (Operator op)
-        {
-            return null;
-        }
-    }
+		public override string ToSql (Operator op)
+		{
+			return null;
+		}
+	}
 }

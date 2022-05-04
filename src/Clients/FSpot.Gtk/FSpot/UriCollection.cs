@@ -33,27 +33,27 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 
-using Hyena;
-
 using FSpot.Core;
-using FSpot.Imaging;
 using FSpot.FileSystem;
+using FSpot.Imaging;
+
+using Hyena;
 
 
 namespace FSpot
 {
 	public class UriCollection : PhotoList
 	{
-		public UriCollection () : base (new IPhoto [0])
+		public UriCollection () : base (new IPhoto[0])
 		{
 		}
 
-		public UriCollection (FileInfo [] files) : this ()
+		public UriCollection (FileInfo[] files) : this ()
 		{
 			LoadItems (files);
 		}
 
-		public UriCollection (SafeUri [] uri) : this ()
+		public UriCollection (SafeUri[] uri) : this ()
 		{
 			LoadItems (uri);
 		}
@@ -80,7 +80,7 @@ namespace FSpot
 			}
 		}
 
-		public void LoadItems (SafeUri [] uris)
+		public void LoadItems (SafeUri[] uris)
 		{
 			foreach (var uri in uris)
 				Add (uri);
@@ -100,7 +100,7 @@ namespace FSpot
 				var items = new List<FilePhoto> ();
 				XmlNodeList list = doc.SelectNodes ("/rss/channel/item/media:content", ns);
 				foreach (XmlNode item in list) {
-					SafeUri image_uri = new SafeUri (item.Attributes ["url"].Value);
+					SafeUri image_uri = new SafeUri (item.Attributes["url"].Value);
 					Logger.Log.Debug ($"flickr uri = {image_uri}");
 					items.Add (new FilePhoto (image_uri));
 				}
@@ -155,7 +155,7 @@ namespace FSpot
 			//}
 		}
 
-		protected void LoadItems (FileInfo [] files)
+		protected void LoadItems (FileInfo[] files)
 		{
 			var items = new List<IPhoto> ();
 			foreach (var f in files) {

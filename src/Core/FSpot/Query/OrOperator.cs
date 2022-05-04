@@ -49,8 +49,7 @@ namespace FSpot.Query
 			if (orTerm != null) {
 				foreach (LogicalTerm t in orTerm.terms)
 					Add (t);
-			}
-			else
+			} else
 				terms.Add (term);
 		}
 
@@ -71,5 +70,5 @@ namespace FSpot.Query
 			return SqlClause ("OR", otherterms.ToArray ());
 		}
 	}
-	
+
 }

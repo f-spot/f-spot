@@ -50,7 +50,7 @@ namespace FSpot
 
 		static public Gdk.Pixbuf Load (IBrowsableCollection collection, int index)
 		{
-			IPhoto item = collection [index];
+			IPhoto item = collection[index];
 			return Load (item);
 		}
 

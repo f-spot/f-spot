@@ -1,4 +1,4 @@
-﻿//
+//
 // IImageLoaderThread.cs
 //
 // Author:

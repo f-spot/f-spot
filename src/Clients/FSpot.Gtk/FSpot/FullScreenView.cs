@@ -42,23 +42,23 @@ using Gtk;
 
 namespace FSpot
 {
-	[Binding(Gdk.Key.Escape, "Quit")]
+	[Binding (Gdk.Key.Escape, "Quit")]
 	public class FullScreenView : Window
-    {
-        const string ExitFullScreen = "ExitFullScreen";
-        const string HideToolbar = "HideToolbar";
-        const string SlideShow = "SlideShow";
-        const string Info = "Info";
+	{
+		const string ExitFullScreen = "ExitFullScreen";
+		const string HideToolbar = "HideToolbar";
+		const string SlideShow = "SlideShow";
+		const string Info = "Info";
 
 		readonly PhotoImageView view;
 		readonly ToggleToolButton info_button;
 
-        ScrolledView scroll;
-        Notebook notebook;
-        ControlOverlay controls;
-        SlideShow display;
-        ToolButton play_pause_button;
-        DelayedOperation hide_cursor_delay;
+		ScrolledView scroll;
+		Notebook notebook;
+		ControlOverlay controls;
+		SlideShow display;
+		ToolButton play_pause_button;
+		DelayedOperation hide_cursor_delay;
 		ActionGroup actions;
 
 		public FullScreenView (IBrowsableCollection collection, Window parent) : base ("Full Screen Mode")
@@ -121,7 +121,7 @@ namespace FSpot
 				tbar.ShowArrow = false;
 				tbar.BorderWidth = 15;
 
-				ToolItem t_item = (actions [ExitFullScreen]).CreateToolItem () as ToolItem;
+				ToolItem t_item = (actions[ExitFullScreen]).CreateToolItem () as ToolItem;
 				t_item.IsImportant = true;
 				tbar.Insert (t_item, -1);
 
@@ -129,7 +129,7 @@ namespace FSpot
 				actions.Add (action);
 				tbar.Insert (action.CreateToolItem () as ToolItem, -1);
 
-				play_pause_button = (actions [SlideShow]).CreateToolItem () as ToolButton;
+				play_pause_button = (actions[SlideShow]).CreateToolItem () as ToolButton;
 				tbar.Insert (play_pause_button, -1);
 
 				action = new NextPictureAction (view.Item);
@@ -141,7 +141,7 @@ namespace FSpot
 				tbar.Insert (t_item, -1);
 
 				display = new SlideShow (view.Item);
-				display.AddEvents ((int) (Gdk.EventMask.PointerMotionMask));
+				display.AddEvents ((int)(Gdk.EventMask.PointerMotionMask));
 				display.ModifyBg (Gtk.StateType.Normal, Style.Black);
 				display.MotionNotifyEvent += HandleViewMotion;
 				display.Show ();
@@ -163,10 +163,10 @@ namespace FSpot
 				actions.Add (action);
 				tbar.Insert (action.CreateToolItem () as ToolItem, -1);
 
-				info_button = (ToggleToolButton) ((actions [Info]).CreateToolItem () as ToolItem);
+				info_button = (ToggleToolButton)((actions[Info]).CreateToolItem () as ToolItem);
 				tbar.Insert (info_button, -1);
 
-				tbar.Insert ((actions [HideToolbar]).CreateToolItem () as ToolItem, -1);
+				tbar.Insert ((actions[HideToolbar]).CreateToolItem () as ToolItem, -1);
 
 				notebook.AppendPage (scroll, null);
 				notebook.AppendPage (display, null);
@@ -227,11 +227,10 @@ namespace FSpot
 			if (combo == null)
 				return;
 			TreeIter iter;
-			if (combo.GetActiveIter (out iter))
-			{
-			    string name = combo.Model.GetValue (iter, 0) as string;
-			    foreach (var transition in display.Transitions.Where(transition => transition.Name == name))
-			        display.Transition = transition;
+			if (combo.GetActiveIter (out iter)) {
+				string name = combo.Model.GetValue (iter, 0) as string;
+				foreach (var transition in display.Transitions.Where (transition => transition.Name == name))
+					display.Transition = transition;
 			}
 		}
 
@@ -259,12 +258,12 @@ namespace FSpot
 			PlayPause ();
 		}
 
-        InfoOverlay infoOverlay;
+		InfoOverlay infoOverlay;
 		void InfoAction (object sender, EventArgs args)
 		{
 			bool active = false;
 			if (sender is ToggleToolButton) {
-				(sender as ToggleToolButton).Active = ! (sender as ToggleToolButton).Active;
+				(sender as ToggleToolButton).Active = !(sender as ToggleToolButton).Active;
 				active = (sender as ToggleToolButton).Active;
 			} else
 				active = (sender as ToggleAction).Active;
@@ -302,7 +301,7 @@ namespace FSpot
 		void HandleButtonPressEvent (object sender, Gtk.ButtonPressEventArgs args)
 		{
 			if (args.Event.Type == Gdk.EventType.ButtonPress
-			    && args.Event.Button == 3) {
+				&& args.Event.Button == 3) {
 				PhotoPopup popup = new PhotoPopup (this);
 				popup.Activate (this.Toplevel, args.Event);
 			}

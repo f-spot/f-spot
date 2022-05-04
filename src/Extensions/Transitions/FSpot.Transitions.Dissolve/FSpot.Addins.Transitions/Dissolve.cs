@@ -30,11 +30,12 @@
 using System;
 
 using Cairo;
-using Gdk;
 
 using FSpot.Resources.Lang;
 using FSpot.Transitions;
 using FSpot.Utils;
+
+using Gdk;
 
 using Color = Cairo.Color;
 
@@ -50,24 +51,24 @@ namespace FSpot.Addins.Transitions
 		{
 			cr.SetSourceColor (new Color (0, 0, 0, progress));
 			if (next != null) {
-				double scale = Math.Min ((double)width/(double)next.Width, (double)height/(double)next.Height);
+				double scale = Math.Min ((double)width / (double)next.Width, (double)height / (double)next.Height);
 				cr.Save ();
 
-				cr.Rectangle (0, 0, width, .5 * (height - scale*next.Height));
+				cr.Rectangle (0, 0, width, .5 * (height - scale * next.Height));
 				cr.Fill ();
 
-				cr.Rectangle (0, height - .5 * (height - scale*next.Height), width, .5 * (height - scale*next.Height));
+				cr.Rectangle (0, height - .5 * (height - scale * next.Height), width, .5 * (height - scale * next.Height));
 				cr.Fill ();
 
-				cr.Rectangle (0, 0, .5 * (width - scale*next.Width), height);
+				cr.Rectangle (0, 0, .5 * (width - scale * next.Width), height);
 				cr.Fill ();
 
-				cr.Rectangle (width - .5 * (width - scale*next.Width), 0, .5 * (width - scale*next.Width), height);
+				cr.Rectangle (width - .5 * (width - scale * next.Width), 0, .5 * (width - scale * next.Width), height);
 				cr.Fill ();
 
 				cr.Rectangle (0, 0, width, height);
 				cr.Scale (scale, scale);
-				CairoHelper.SetSourcePixbuf (cr, next, .5 * ((double)width/scale - next.Width), .5 * ((double)height/scale - next.Height));
+				CairoHelper.SetSourcePixbuf (cr, next, .5 * ((double)width / scale - next.Width), .5 * ((double)height / scale - next.Height));
 				cr.PaintWithAlpha (progress);
 				cr.Restore ();
 			}

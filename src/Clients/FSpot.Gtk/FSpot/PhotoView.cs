@@ -34,12 +34,15 @@
 //
 
 using System;
+
 using FSpot.Core;
 using FSpot.Resources.Lang;
 using FSpot.Settings;
 using FSpot.Utils;
 using FSpot.Widgets;
+
 using Gdk;
+
 using Gtk;
 
 namespace FSpot
@@ -83,7 +86,7 @@ namespace FSpot
 		public PhotoImageView View { get; private set; }
 
 		public BrowsablePointer Item {
-                        get { return View.Item; }
+			get { return View.Item; }
 		}
 
 		public IBrowsableCollection Query { get; set; }
@@ -161,9 +164,9 @@ namespace FSpot
 		void HandleButtonPressEvent (object sender, ButtonPressEventArgs args)
 		{
 			if (args.Event.Type == EventType.TwoButtonPress && args.Event.Button == 1 && DoubleClicked != null)
-				    DoubleClicked (this, null);
+				DoubleClicked (this, null);
 			if (args.Event.Type == EventType.ButtonPress
-			    && args.Event.Button == 3) {
+				&& args.Event.Button == 3) {
 				var popup = new PhotoPopup ();
 				popup.Activate (Toplevel, args.Event);
 			}
@@ -212,7 +215,7 @@ namespace FSpot
 
 			if (commit_delay.IsPending)
 				if (changed_photo == Item.Index)
-					commit_delay.Stop();
+					commit_delay.Stop ();
 				else
 					CommitPendingChanges ();
 			changed_photo = Item.Index;
@@ -252,7 +255,7 @@ namespace FSpot
 		{
 			switch (key) {
 			case Preferences.FilmstripOrientation:
-				PlaceFilmstrip ((Orientation) Preferences.Get<int> (key));
+				PlaceFilmstrip ((Orientation)Preferences.Get<int> (key));
 				break;
 			}
 		}
@@ -290,7 +293,7 @@ namespace FSpot
 				inner_hbox.PackEnd (filmstrip, false, false, 0);
 				break;
 			}
-			Preferences.Set (Preferences.FilmstripOrientation, (int) pos);
+			Preferences.Set (Preferences.FilmstripOrientation, (int)pos);
 		}
 
 		public bool FilmStripVisibility {
@@ -316,8 +319,8 @@ namespace FSpot
 			frame.ShadowType = ShadowType.In;
 			vbox.PackStart (background, true, true, 0);
 
-			inner_vbox = new VBox (false , 2);
-			inner_hbox = new HBox (false , 2);
+			inner_vbox = new VBox (false, 2);
+			inner_hbox = new HBox (false, 2);
 
 			frame.Add (inner_hbox);
 
@@ -328,7 +331,7 @@ namespace FSpot
 			filmstrip.ThumbOffset = 1;
 			filmstrip.Spacing = 4;
 			filmstrip.ThumbSize = 75;
-			PlaceFilmstrip ((Orientation) Preferences.Get <int> (Preferences.FilmstripOrientation), true);
+			PlaceFilmstrip ((Orientation)Preferences.Get<int> (Preferences.FilmstripOrientation), true);
 
 			View.PhotoChanged += HandlePhotoChanged;
 
@@ -338,7 +341,7 @@ namespace FSpot
 			photo_view_scrolled.ShadowType = ShadowType.None;
 			photo_view_scrolled.Add (View);
 			photo_view_scrolled.Child.ButtonPressEvent += HandleButtonPressEvent;
-			View.AddEvents ((int) EventMask.KeyPressMask);
+			View.AddEvents ((int)EventMask.KeyPressMask);
 			inner_vbox.PackStart (photo_view_scrolled, true, true, 0);
 			inner_hbox.PackStart (inner_vbox, true, true, 0);
 
@@ -367,7 +370,7 @@ namespace FSpot
 
 			vbox.ShowAll ();
 
-			Realized += (o, e) => SetColors();
+			Realized += (o, e) => SetColors ();
 			Preferences.SettingChanged += OnPreferencesChanged;
 		}
 
@@ -386,11 +389,11 @@ namespace FSpot
 			if (disposing) {
 				Preferences.SettingChanged -= OnPreferencesChanged;
 				// free managed resources
-				if (rating != null){
+				if (rating != null) {
 					rating.Dispose ();
 					rating = null;
 				}
-				if (description_entry != null){
+				if (description_entry != null) {
 					description_entry.Dispose ();
 					description_entry = null;
 				}

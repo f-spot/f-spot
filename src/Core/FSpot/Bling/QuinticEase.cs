@@ -28,13 +28,13 @@
 //
 
 namespace FSpot.Bling
-{	
+{
 	public abstract class QuinticEase : EasingFunction
 	{
 		protected QuinticEase ()
 		{
 		}
-		
+
 		protected QuinticEase (EasingMode easingMode) : base (easingMode)
 		{
 		}

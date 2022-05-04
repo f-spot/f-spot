@@ -34,15 +34,17 @@ using Gdk;
 
 namespace FSpot.Addins.Editors
 {
-    class FlipEditor : Editor
-    {
-        public FlipEditor () : base (Strings.Flip, "object-flip-horizontal") {
+	class FlipEditor : Editor
+	{
+		public FlipEditor () : base (Strings.Flip, "object-flip-horizontal")
+		{
 			CanHandleMultiple = true;
-        }
+		}
 
-        protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile) {
-			Pixbuf output = (Pixbuf) input.Clone ();
+		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile)
+		{
+			Pixbuf output = (Pixbuf)input.Clone ();
 			return output.Flip (true);
-        }
-    }
+		}
+	}
 }

@@ -40,7 +40,7 @@ namespace FSpot.Extensions
 	//   - multiple: Multiple photos are selected
 	public class PhotoSelectionCondition : ConditionType
 	{
-		public PhotoSelectionCondition()
+		public PhotoSelectionCondition ()
 		{
 			App.Instance.Organizer.Selection.Changed += (collection) => { NotifyChanged (); };
 		}
@@ -50,7 +50,7 @@ namespace FSpot.Extensions
 			int count = App.Instance.Organizer.Selection.Count;
 			string val = conditionNode.GetAttribute ("selection");
 			if (val.Length > 0) {
-				foreach (string selection in val.Split(',')) {
+				foreach (string selection in val.Split (',')) {
 					if (selection == "multiple" && count > 1) {
 						return true;
 					}

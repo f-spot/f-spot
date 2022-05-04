@@ -33,10 +33,10 @@
 using System;
 using System.Threading;
 
-using Gdk;
-
 using FSpot.Imaging;
 using FSpot.Thumbnail;
+
+using Gdk;
 
 using Hyena;
 
@@ -46,7 +46,7 @@ namespace FSpot.Loaders
 {
 	public class GdkImageLoader : Gdk.PixbufLoader, IImageLoader
 	{
-#region public api
+		#region public api
 
 		// FIXME: Probably really shouldn't be doing this?
 		~GdkImageLoader ()
@@ -78,7 +78,8 @@ namespace FSpot.Loaders
 			// the Read is CompletedAsynchronously, blocking the mainloop
 			image_stream.BeginRead (buffer, 0, count, delegate (IAsyncResult r) {
 				ThreadPool.QueueUserWorkItem (delegate {
-					HandleReadDone (r);});
+					HandleReadDone (r);
+				});
 			}, null);
 		}
 
@@ -133,15 +134,14 @@ namespace FSpot.Loaders
 			lock (sync_handle) {
 				try {
 					return base.Close ();
-				}
-				catch (GLib.GException) {
+				} catch (GLib.GException) {
 					return false;
 				}
 			}
 		}
-#endregion
+		#endregion
 
-#region event handlers
+		#region event handlers
 		protected override void OnAreaPrepared ()
 		{
 			if (is_disposed)
@@ -170,12 +170,12 @@ namespace FSpot.Loaders
 			Completed?.Invoke (this, EventArgs.Empty);
 			Close ();
 		}
-#endregion
+		#endregion
 
-#region private stuffs
+		#region private stuffs
 		System.IO.Stream image_stream;
 		const int count = 1 << 16;
-		byte[] buffer = new byte [count];
+		byte[] buffer = new byte[count];
 		bool notify_completed;
 		Rectangle damage;
 		readonly object sync_handle = new object ();
@@ -230,6 +230,6 @@ namespace FSpot.Loaders
 				return false;
 			});
 		}
-#endregion
+		#endregion
 	}
 }

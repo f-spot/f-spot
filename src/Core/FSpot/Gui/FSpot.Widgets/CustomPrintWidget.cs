@@ -31,9 +31,10 @@
 
 using System;
 
-using Gtk;
-using FSpot.Settings;
 using FSpot.Resources.Lang;
+using FSpot.Settings;
+
+using Gtk;
 
 namespace FSpot.Widgets
 {
@@ -41,7 +42,8 @@ namespace FSpot.Widgets
 	{
 		public delegate void ChangedHandler (Gtk.Widget widget);
 
-		public enum FitMode {
+		public enum FitMode
+		{
 			Zoom,
 			Scaled,
 			Fill,
@@ -56,7 +58,7 @@ namespace FSpot.Widgets
 		CheckButton repeat, white_border, crop_marks, print_tags,
 			print_filename, print_date, print_time, print_comments;
 		Entry custom_text;
-	
+
 		PrintOperation print_operation;
 
 		public event ChangedHandler Changed;
@@ -96,9 +98,9 @@ namespace FSpot.Widgets
 
 		public FitMode Fitmode {
 			get {
-				if (zoom.Active)	return FitMode.Zoom;
-				else if (fill.Active)	return FitMode.Fill;
-				else if (scaled.Active)	return FitMode.Scaled;
+				if (zoom.Active) return FitMode.Zoom;
+				else if (fill.Active) return FitMode.Fill;
+				else if (scaled.Active) return FitMode.Scaled;
 				else
 					throw new Exception ("Something is wrong on this GUI");
 			}
@@ -106,12 +108,12 @@ namespace FSpot.Widgets
 
 		public int PhotosPerPage {
 			get {
-				if (ppp1.Active)	return 1;
-				else if (ppp2.Active)	return 2;
-				else if (ppp4.Active)	return 4;
-				else if (ppp9.Active)	return 9;
-				else if (ppp20.Active)	return 20;
-				else if (ppp30.Active)	return 30;
+				if (ppp1.Active) return 1;
+				else if (ppp2.Active) return 2;
+				else if (ppp4.Active) return 4;
+				else if (ppp9.Active) return 9;
+				else if (ppp20.Active) return 20;
+				else if (ppp30.Active) return 30;
 				else
 					throw new Exception ("Something is wrong on this GUI");
 			}
@@ -144,8 +146,8 @@ namespace FSpot.Widgets
 			VBox page_box = new VBox ();
 			Label current_settings = new Label ();
 			if (FSpotConfiguration.PageSetup != null)
-				current_settings.Text = string.Format (Strings.PaperSizeXxYmm, 
-								Math.Round (print_operation.DefaultPageSetup.GetPaperWidth (Unit.Mm), 1), 
+				current_settings.Text = string.Format (Strings.PaperSizeXxYmm,
+								Math.Round (print_operation.DefaultPageSetup.GetPaperWidth (Unit.Mm), 1),
 								Math.Round (print_operation.DefaultPageSetup.GetPaperHeight (Unit.Mm), 1));
 			else
 				current_settings.Text = string.Format (Strings.PaperSizeXxYmm, "...", "...");
@@ -153,9 +155,9 @@ namespace FSpot.Widgets
 			page_box.PackStart (current_settings, false, false, 0);
 			Button page_setup_btn = new Button (Strings.SetPageSizeAndOrientation);
 			page_setup_btn.Clicked += delegate {
-				this.print_operation.DefaultPageSetup = Print.RunPageSetupDialog (null, print_operation.DefaultPageSetup, this.print_operation.PrintSettings); 
-				current_settings.Text = string.Format (Strings.PaperSizeXxYmm, 
-								Math.Round (print_operation.DefaultPageSetup.GetPaperWidth (Unit.Mm), 1), 
+				this.print_operation.DefaultPageSetup = Print.RunPageSetupDialog (null, print_operation.DefaultPageSetup, this.print_operation.PrintSettings);
+				current_settings.Text = string.Format (Strings.PaperSizeXxYmm,
+								Math.Round (print_operation.DefaultPageSetup.GetPaperWidth (Unit.Mm), 1),
 								Math.Round (print_operation.DefaultPageSetup.GetPaperHeight (Unit.Mm), 1));
 			};
 			page_box.PackStart (page_setup_btn, false, false, 0);
@@ -163,7 +165,7 @@ namespace FSpot.Widgets
 			Attach (page_frame, 1, 2, 3, 4);
 
 			Frame ppp_frame = new Frame (Strings.PhotosPerPage);
-			Table ppp_tbl = new Table(2, 7, false);
+			Table ppp_tbl = new Table (2, 7, false);
 
 			ppp_tbl.Attach (ppp1 = new RadioButton ("1"), 0, 1, 1, 2);
 			ppp_tbl.Attach (ppp2 = new RadioButton (ppp1, "2"), 0, 1, 2, 3);
@@ -174,13 +176,13 @@ namespace FSpot.Widgets
 
 			ppp_tbl.Attach (repeat = new CheckButton (Strings.Repeat), 1, 2, 2, 3);
 			ppp_tbl.Attach (crop_marks = new CheckButton (Strings.PrintCutMarks), 1, 2, 3, 4);
-//			crop_marks.Toggled += TriggerChanged;
+			//			crop_marks.Toggled += TriggerChanged;
 
 			ppp_frame.Child = ppp_tbl;
 			Attach (ppp_frame, 0, 1, 1, 2);
 
 			Frame layout_frame = new Frame (Strings.PhotosLayout);
-			VBox layout_vbox = new VBox();
+			VBox layout_vbox = new VBox ();
 			layout_vbox.PackStart (fullpage = new CheckButton (Strings.FullPageNomargin), false, false, 0);
 			HBox hb = new HBox ();
 			// Note for translators: "Zoom" is a Fit Mode
@@ -202,7 +204,7 @@ namespace FSpot.Widgets
 			Attach (cmt_frame, 1, 2, 2, 3);
 
 			Frame detail_frame = new Frame (Strings.PhotosInfos);
-			VBox detail_vbox = new VBox();
+			VBox detail_vbox = new VBox ();
 			detail_vbox.PackStart (print_filename = new CheckButton (Strings.PrintFileName), false, false, 0);
 			detail_vbox.PackStart (print_date = new CheckButton (Strings.PrintPhotoDate), false, false, 0);
 			detail_vbox.PackStart (print_time = new CheckButton (Strings.PrintPhotoTime), false, false, 0);

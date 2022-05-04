@@ -41,12 +41,12 @@ namespace FSpot.Platform
 		static void LoadPreference (string key)
 		{
 			switch (key) {
-			case UseProxyKey :
-			case HostKey :
-			case PortKey :
-			case ProxyUserKey :
-			case ProxyPasswordKey :
-			case ProxyIgnoreHostKey :
+			case UseProxyKey:
+			case HostKey:
+			case PortKey:
+			case ProxyUserKey:
+			case ProxyPasswordKey:
+			case ProxyIgnoreHostKey:
 				WebRequest.DefaultWebProxy = GetWebProxy () ?? new WebProxy ();
 				break;
 			}
@@ -66,10 +66,10 @@ namespace FSpot.Platform
 				string uri = $"http://{host}:{port}";
 				proxy = new WebProxy (uri);
 
-				string [] bypassList = Preferences.Get<string[]> (ProxyIgnoreHostKey);
+				string[] bypassList = Preferences.Get<string[]> (ProxyIgnoreHostKey);
 				if (bypassList != null) {
 					for (int i = 0; i < bypassList.Length; i++) {
-						bypassList [i] = $"http://{bypassList [i]}";
+						bypassList[i] = $"http://{bypassList[i]}";
 					}
 					proxy.BypassList = bypassList;
 				}

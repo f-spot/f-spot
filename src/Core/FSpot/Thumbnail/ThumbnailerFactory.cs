@@ -1,4 +1,4 @@
-﻿//
+//
 // ThumbnailerFactory.cs
 //
 // Author:
@@ -28,6 +28,7 @@
 
 using FSpot.FileSystem;
 using FSpot.Imaging;
+
 using Hyena;
 
 namespace FSpot.Thumbnail
@@ -37,7 +38,7 @@ namespace FSpot.Thumbnail
 		readonly IImageFileFactory factory;
 		readonly IFileSystem fileSystem;
 
-		public ThumbnailerFactory(IImageFileFactory factory, IFileSystem fileSystem)
+		public ThumbnailerFactory (IImageFileFactory factory, IFileSystem fileSystem)
 		{
 			this.factory = factory;
 			this.fileSystem = fileSystem;

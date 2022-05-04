@@ -30,9 +30,9 @@
 using System;
 using System.IO;
 
-using NUnit.Framework;
-
 using Moq;
+
+using NUnit.Framework;
 
 namespace FSpot.Database.Tests
 {

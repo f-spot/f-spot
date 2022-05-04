@@ -34,80 +34,80 @@ using NUnit.Framework;
 namespace Hyena.Jobs
 {
 	[TestFixture]
-    public class SchedulerTests
-    {
-        private Scheduler scheduler;
+	public class SchedulerTests
+	{
+		private Scheduler scheduler;
 
-        [SetUp]
-        public void Setup ()
-        {
-            //Log.Debugging = true;
-            TestJob.job_count = 0;
-            Log.Debug ("New job scheduler test");
-        }
+		[SetUp]
+		public void Setup ()
+		{
+			//Log.Debugging = true;
+			TestJob.job_count = 0;
+			Log.Debug ("New job scheduler test");
+		}
 
-        [TearDown]
-        public void TearDown ()
-        {
-            if (scheduler != null) {
-                // Ensure the scheduler's jobs are all finished, otherwise
-                // their job threads will be killed, throwing an exception
-                while (scheduler.JobCount > 0);
-            }
+		[TearDown]
+		public void TearDown ()
+		{
+			if (scheduler != null) {
+				// Ensure the scheduler's jobs are all finished, otherwise
+				// their job threads will be killed, throwing an exception
+				while (scheduler.JobCount > 0) ;
+			}
 
-            //Log.Debugging = false;
-        }
+			//Log.Debugging = false;
+		}
 
-        [Test]
-        public void TestSimultaneousSpeedJobs ()
-        {
-            scheduler = new Scheduler ();
-            scheduler.Add (new TestJob (200, PriorityHints.SpeedSensitive, Resource.Cpu, Resource.Disk));
-            scheduler.Add (new TestJob (200, PriorityHints.SpeedSensitive, Resource.Cpu, Resource.Disk));
-            scheduler.Add (new TestJob (200, PriorityHints.None, Resource.Cpu, Resource.Disk));
+		[Test]
+		public void TestSimultaneousSpeedJobs ()
+		{
+			scheduler = new Scheduler ();
+			scheduler.Add (new TestJob (200, PriorityHints.SpeedSensitive, Resource.Cpu, Resource.Disk));
+			scheduler.Add (new TestJob (200, PriorityHints.SpeedSensitive, Resource.Cpu, Resource.Disk));
+			scheduler.Add (new TestJob (200, PriorityHints.None, Resource.Cpu, Resource.Disk));
 
-            // Test that two SpeedSensitive jobs with the same Resources will run simultaneously
-            AssertJobsRunning (2);
+			// Test that two SpeedSensitive jobs with the same Resources will run simultaneously
+			AssertJobsRunning (2);
 
-            // but that the third that isn't SpeedSensitive won't run until they are both done
-            while (scheduler.JobCount > 1);
-            Assert.AreEqual (PriorityHints.None, scheduler.Jobs.First ().PriorityHints);
-        }
+			// but that the third that isn't SpeedSensitive won't run until they are both done
+			while (scheduler.JobCount > 1) ;
+			Assert.AreEqual (PriorityHints.None, scheduler.Jobs.First ().PriorityHints);
+		}
 
-        [Test]
-        public void TestOneNonSpeedJobPerResource ()
-        {
-            // Test that two SpeedSensitive jobs with the same Resources will run simultaneously
-            scheduler = new Scheduler ();
-            scheduler.Add (new TestJob (200, PriorityHints.None, Resource.Cpu, Resource.Disk));
-            scheduler.Add (new TestJob (200, PriorityHints.None, Resource.Cpu, Resource.Disk));
-            AssertJobsRunning (1);
-        }
+		[Test]
+		public void TestOneNonSpeedJobPerResource ()
+		{
+			// Test that two SpeedSensitive jobs with the same Resources will run simultaneously
+			scheduler = new Scheduler ();
+			scheduler.Add (new TestJob (200, PriorityHints.None, Resource.Cpu, Resource.Disk));
+			scheduler.Add (new TestJob (200, PriorityHints.None, Resource.Cpu, Resource.Disk));
+			AssertJobsRunning (1);
+		}
 
-        [Test]
-        public void TestSpeedJobPreemptsNonSpeedJobs ()
-        {
-            scheduler = new Scheduler ();
-            TestJob a = new TestJob (200, PriorityHints.None, Resource.Cpu);
-            TestJob b = new TestJob (200, PriorityHints.None, Resource.Disk);
-            TestJob c = new TestJob (200, PriorityHints.LongRunning, Resource.Database);
-            scheduler.Add (a);
-            scheduler.Add (b);
-            scheduler.Add (c);
+		[Test]
+		public void TestSpeedJobPreemptsNonSpeedJobs ()
+		{
+			scheduler = new Scheduler ();
+			TestJob a = new TestJob (200, PriorityHints.None, Resource.Cpu);
+			TestJob b = new TestJob (200, PriorityHints.None, Resource.Disk);
+			TestJob c = new TestJob (200, PriorityHints.LongRunning, Resource.Database);
+			scheduler.Add (a);
+			scheduler.Add (b);
+			scheduler.Add (c);
 
-            // Test that three jobs got started
-            AssertJobsRunning (3);
+			// Test that three jobs got started
+			AssertJobsRunning (3);
 
-            scheduler.Add (new TestJob (200, PriorityHints.SpeedSensitive, Resource.Cpu, Resource.Disk));
+			scheduler.Add (new TestJob (200, PriorityHints.SpeedSensitive, Resource.Cpu, Resource.Disk));
 
-            // Make sure the SpeedSensitive jobs has caused the Cpu and Disk jobs to be paused
-            AssertJobsRunning (2);
-            Assert.AreEqual (true, a.IsScheduled);
-            Assert.AreEqual (true, b.IsScheduled);
-            Assert.AreEqual (true, c.IsRunning);
-        }
+			// Make sure the SpeedSensitive jobs has caused the Cpu and Disk jobs to be paused
+			AssertJobsRunning (2);
+			Assert.AreEqual (true, a.IsScheduled);
+			Assert.AreEqual (true, b.IsScheduled);
+			Assert.AreEqual (true, c.IsRunning);
+		}
 
-        /*[Test]
+		/*[Test]
         public void TestManyJobs ()
         {
             var timer = System.Diagnostics.Stopwatch.StartNew ();
@@ -133,7 +133,7 @@ namespace Hyena.Jobs
             //scheduler.StopAll ();
         }*/
 
-        /*[Test]
+		/*[Test]
         public void TestCannotDisposeWhileDatalossJobsScheduled ()
         {
             scheduler = new Scheduler ();
@@ -164,35 +164,35 @@ namespace Hyena.Jobs
             }
         }*/
 
-        private void AssertJobsRunning (int count)
-        {
-            Assert.AreEqual (count, scheduler.Jobs.Count (j => j.IsRunning));
-        }
+		private void AssertJobsRunning (int count)
+		{
+			Assert.AreEqual (count, scheduler.Jobs.Count (j => j.IsRunning));
+		}
 
-        private class TestJob : SimpleAsyncJob
-        {
-            internal static int job_count;
-            int iteration;
-            int sleep_time;
+		private class TestJob : SimpleAsyncJob
+		{
+			internal static int job_count;
+			int iteration;
+			int sleep_time;
 
-            public TestJob (int sleep_time, PriorityHints hints, params Resource [] resources)
-                : base (String.Format ("{0} ( {1}, {2})", job_count++, hints, resources.Aggregate ("", (a, b) => a += b.Id + " ")),
-                        hints,
-                        resources)
-            {
-                this.sleep_time = sleep_time;
-            }
+			public TestJob (int sleep_time, PriorityHints hints, params Resource[] resources)
+				: base (String.Format ("{0} ( {1}, {2})", job_count++, hints, resources.Aggregate ("", (a, b) => a += b.Id + " ")),
+						hints,
+						resources)
+			{
+				this.sleep_time = sleep_time;
+			}
 
-            protected override void Run ()
-            {
-                for (int i = 0; !IsCancelRequested && i < 2; i++) {
-                    YieldToScheduler ();
-                    Hyena.Log.DebugFormat ("{0} iteration {1}", Title, iteration++);
-                    System.Threading.Thread.Sleep (sleep_time);
-                }
+			protected override void Run ()
+			{
+				for (int i = 0; !IsCancelRequested && i < 2; i++) {
+					YieldToScheduler ();
+					Hyena.Log.DebugFormat ("{0} iteration {1}", Title, iteration++);
+					System.Threading.Thread.Sleep (sleep_time);
+				}
 
-                OnFinished ();
-            }
-        }
-    }
+				OnFinished ();
+			}
+		}
+	}
 }

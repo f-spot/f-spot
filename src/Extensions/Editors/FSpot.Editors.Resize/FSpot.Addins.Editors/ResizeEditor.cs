@@ -43,14 +43,15 @@ namespace FSpot.Addins.Editors
 	{
 		SpinButton size;
 
-		public ResizeEditor () : base (Strings.Resize, null) {
+		public ResizeEditor () : base (Strings.Resize, null)
+		{
 			CanHandleMultiple = false;
 			HasSettings = true;
 		}
 
 		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile)
 		{
-			Pixbuf output = (Pixbuf) input.Clone ();
+			Pixbuf output = (Pixbuf)input.Clone ();
 			double ratio = (double)size.Value / Math.Max (output.Width, output.Height);
 			return output.ScaleSimple ((int)(output.Width * ratio), (int)(output.Height * ratio), InterpType.Bilinear);
 		}
@@ -59,8 +60,8 @@ namespace FSpot.Addins.Editors
 		{
 			int max;
 			using (var img = App.Instance.Container.Resolve<IImageFileFactory> ().Create (State.Items[0].DefaultVersion.Uri))
-				using (Pixbuf p = img.Load ())
-					max = Math.Max (p.Width, p.Height);
+			using (Pixbuf p = img.Load ())
+				max = Math.Max (p.Width, p.Height);
 
 			size = new SpinButton (128, max, 10);
 			size.Value = max;

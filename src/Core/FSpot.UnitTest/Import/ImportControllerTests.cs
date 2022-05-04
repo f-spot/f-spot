@@ -1,4 +1,4 @@
-﻿//
+//
 // ImportControllerTests.cs
 //
 // Author:
@@ -43,7 +43,7 @@ namespace FSpot.Import
 		public void FindImportDestinationTest ()
 		{
 			var fileUri = new SafeUri ("/path/to/photo.jpg");
-			var targetBaseUri = new  SafeUri ("/photo/store");
+			var targetBaseUri = new SafeUri ("/photo/store");
 			var targetUri = new SafeUri ("/photo/store/2016/02/06");
 			var date = new DateTime (2016, 2, 6);
 			var source = PhotoMock.Create (fileUri, date);

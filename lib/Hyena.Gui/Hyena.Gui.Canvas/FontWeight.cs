@@ -27,8 +27,8 @@
 namespace Hyena.Gui.Canvas
 {
 	public enum FontWeight
-    {
-        Normal,
-        Bold
-    }
+	{
+		Normal,
+		Bold
+	}
 }

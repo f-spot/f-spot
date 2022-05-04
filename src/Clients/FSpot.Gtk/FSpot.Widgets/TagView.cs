@@ -33,11 +33,12 @@
 
 using System;
 
-using Gtk;
-using Gdk;
-
 using FSpot.Core;
 using FSpot.Settings;
+
+using Gdk;
+
+using Gtk;
 
 namespace FSpot.Widgets
 {
@@ -45,7 +46,7 @@ namespace FSpot.Widgets
 	{
 		int thumbnail_size = 20;
 		IPhoto photo;
-		Tag [] tags;
+		Tag[] tags;
 		static int TAG_ICON_VSPACING = 5;
 
 		bool HideTags {
@@ -79,7 +80,7 @@ namespace FSpot.Widgets
 			}
 		}
 
-		public Tag [] Tags {
+		public Tag[] Tags {
 			get { return tags; }
 			set {
 				tags = value;
@@ -113,10 +114,10 @@ namespace FSpot.Widgets
 			int tag_x = Allocation.X;
 			int tag_y = Allocation.Y + (Allocation.Height - thumbnail_size) / 2;
 
-			string [] names = new string [tags.Length];
+			string[] names = new string[tags.Length];
 			int i = 0;
 			foreach (Tag t in tags) {
-				names [i++] = t.Name;
+				names[i++] = t.Name;
 
 				Pixbuf icon = t.Icon;
 

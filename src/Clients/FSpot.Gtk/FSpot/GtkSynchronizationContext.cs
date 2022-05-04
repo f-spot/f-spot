@@ -21,8 +21,8 @@ namespace FSpot
 {
 	class GtkSynchronizationContext : SynchronizationContext
 	{
-		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		internal delegate bool GSourceFuncInternal(IntPtr ptr);
+		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
+		internal delegate bool GSourceFuncInternal (IntPtr ptr);
 
 		internal class TimeoutProxy
 		{
@@ -30,11 +30,11 @@ namespace FSpot
 			object state;
 			ManualResetEventSlim resetEvent;
 
-			public TimeoutProxy(SendOrPostCallback d, object state) : this(d, state, null)
+			public TimeoutProxy (SendOrPostCallback d, object state) : this (d, state, null)
 			{
 			}
 
-			public TimeoutProxy(SendOrPostCallback d, object state, ManualResetEventSlim lockObject)
+			public TimeoutProxy (SendOrPostCallback d, object state, ManualResetEventSlim lockObject)
 			{
 				this.d = d;
 				this.state = state;
@@ -43,16 +43,16 @@ namespace FSpot
 
 			internal static readonly GSourceFuncInternal SourceHandler = HandlerInternal;
 
-			static bool HandlerInternal(IntPtr data)
+			static bool HandlerInternal (IntPtr data)
 			{
 				var proxy = (TimeoutProxy)((GCHandle)data).Target;
 
 				try {
-					proxy.d(proxy.state);
+					proxy.d (proxy.state);
 				} catch (Exception e) {
-					GLib.ExceptionManager.RaiseUnhandledException(e, false);
+					GLib.ExceptionManager.RaiseUnhandledException (e, false);
 				} finally {
-					proxy.resetEvent?.Set();
+					proxy.resetEvent?.Set ();
 				}
 				return false;
 			}
@@ -60,8 +60,8 @@ namespace FSpot
 
 		const int defaultPriority = 0;
 
-		[DllImport("libglib-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern uint g_timeout_add_full(int priority, uint interval, GSourceFuncInternal d, IntPtr data, GLib.DestroyNotify notify);
+		[DllImport ("libglib-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		static extern uint g_timeout_add_full (int priority, uint interval, GSourceFuncInternal d, IntPtr data, GLib.DestroyNotify notify);
 
 		class ExceptionWithStackTraceWithoutThrowing : Exception
 		{
@@ -73,7 +73,7 @@ namespace FSpot
 			public override string StackTrace { get; }
 		}
 
-		static void AddTimeout(TimeoutProxy proxy)
+		static void AddTimeout (TimeoutProxy proxy)
 		{
 			if (proxy.d == null) {
 				// Create an exception without throwing it, as throwing is expensive and these exceptions can be
@@ -94,30 +94,29 @@ namespace FSpot
 			g_timeout_add_full (defaultPriority, 0, TimeoutProxy.SourceHandler, (IntPtr)gch, GLib.DestroyHelper.NotifyHandler);
 		}
 
-		public override void Post(SendOrPostCallback d, object state)
+		public override void Post (SendOrPostCallback d, object state)
 		{
-			var proxy = new TimeoutProxy(d, state);
-			AddTimeout(proxy);
+			var proxy = new TimeoutProxy (d, state);
+			AddTimeout (proxy);
 		}
 
-		public override void Send(SendOrPostCallback d, object state)
+		public override void Send (SendOrPostCallback d, object state)
 		{
-			if (ThreadAssist.InMainThread)
-			{
-				d(state);
+			if (ThreadAssist.InMainThread) {
+				d (state);
 				return;
 			}
 
-			using var ob = new ManualResetEventSlim(false);
-			var proxy = new TimeoutProxy(d, state, ob);
+			using var ob = new ManualResetEventSlim (false);
+			var proxy = new TimeoutProxy (d, state, ob);
 
-			AddTimeout(proxy);
-			ob.Wait();
+			AddTimeout (proxy);
+			ob.Wait ();
 		}
 
-		public override SynchronizationContext CreateCopy()
+		public override SynchronizationContext CreateCopy ()
 		{
-			return new GtkSynchronizationContext();
+			return new GtkSynchronizationContext ();
 		}
 	}
 }

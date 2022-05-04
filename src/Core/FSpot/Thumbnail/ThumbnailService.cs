@@ -32,8 +32,11 @@
 using System;
 using System.IO;
 using System.Linq;
+
 using FSpot.FileSystem;
+
 using Gdk;
+
 using Hyena;
 
 
@@ -58,11 +61,11 @@ namespace FSpot.Thumbnail
 			this.thumbnailerFactory = thumbnailerFactory;
 			this.fileSystem = fileSystem;
 
-			var large = new SafeUri(Path.Combine (xdgDirectoryService.GetThumbnailsDir (ThumbnailSize.Large)));
+			var large = new SafeUri (Path.Combine (xdgDirectoryService.GetThumbnailsDir (ThumbnailSize.Large)));
 			if (!fileSystem.Directory.Exists (large))
 				fileSystem.Directory.CreateDirectory (large);
 
-			var normal = new SafeUri(Path.Combine (xdgDirectoryService.GetThumbnailsDir (ThumbnailSize.Normal)));
+			var normal = new SafeUri (Path.Combine (xdgDirectoryService.GetThumbnailsDir (ThumbnailSize.Normal)));
 			if (!fileSystem.Directory.Exists (normal))
 				fileSystem.Directory.CreateDirectory (normal);
 		}
@@ -93,7 +96,7 @@ namespace FSpot.Thumbnail
 
 		public void DeleteThumbnails (SafeUri fileUri)
 		{
-			Enum.GetValues (typeof(ThumbnailSize))
+			Enum.GetValues (typeof (ThumbnailSize))
 				.OfType<ThumbnailSize> ()
 				.Select (size => GetThumbnailPath (fileUri, size))
 				.ToList ()

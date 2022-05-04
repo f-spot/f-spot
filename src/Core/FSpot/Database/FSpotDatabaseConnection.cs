@@ -34,7 +34,7 @@ namespace FSpot.Database
 {
 	public class FSpotDatabaseConnection : HyenaSqliteConnection
 	{
-		public FSpotDatabaseConnection (string dbpath) : base(dbpath)
+		public FSpotDatabaseConnection (string dbpath) : base (dbpath)
 		{
 			//Execute ("PRAGMA synchronous = OFF");
 			//Execute ("PRAGMA temp_store = MEMORY");

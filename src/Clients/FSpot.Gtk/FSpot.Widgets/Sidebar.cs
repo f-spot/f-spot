@@ -81,7 +81,8 @@ namespace FSpot.Widgets
 		}
 	}
 
-	public class Sidebar : VBox  {
+	public class Sidebar : VBox
+	{
 
 		HBox button_box;
 		public Notebook Notebook { get; private set; }
@@ -172,7 +173,7 @@ namespace FSpot.Widgets
 			AppendPage (new SidebarPage (widget, label, icon_name));
 		}
 
-        public void AppendPage (SidebarPage page)
+		public void AppendPage (SidebarPage page)
 		{
 			page.Sidebar = this;
 			page.CanSelectChanged += HandleCanSelectChanged;
@@ -232,14 +233,13 @@ namespace FSpot.Widgets
 			}
 
 			Notebook.CurrentPage = n;
-			choose_button.Label = menu_list [n];
-			choose_button.Image.IconName = image_list [n];
+			choose_button.Label = menu_list[n];
+			choose_button.Image.IconName = image_list[n];
 
 			PageSwitched?.Invoke (this, EventArgs.Empty);
 		}
 
-		public int CurrentPage
-		{
+		public int CurrentPage {
 			get { return Notebook.CurrentPage; }
 		}
 
@@ -254,7 +254,8 @@ namespace FSpot.Widgets
 			return (Notebook.GetNthPage (Notebook.CurrentPage) == page.SidebarWidget);
 		}
 
-		public void HandleSelectionChanged (IBrowsableCollection collection) {
+		public void HandleSelectionChanged (IBrowsableCollection collection)
+		{
 			Selection = collection;
 			// Proxy selection change to the subscribed sidebar pages.
 			if (SelectionChanged != null)
@@ -262,7 +263,8 @@ namespace FSpot.Widgets
 		}
 
 		// Proxy selection item changes to the subscribed sidebar pages.
-		public void HandleSelectionItemsChanged (IBrowsableCollection collection, BrowsableEventArgs args) {
+		public void HandleSelectionItemsChanged (IBrowsableCollection collection, BrowsableEventArgs args)
+		{
 			if (SelectionItemsChanged != null)
 				SelectionItemsChanged (collection, args);
 		}

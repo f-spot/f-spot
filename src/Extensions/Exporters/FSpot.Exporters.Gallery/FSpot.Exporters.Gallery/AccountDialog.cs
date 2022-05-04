@@ -38,7 +38,8 @@ namespace FSpot.Exporters.Gallery
 {
 	public class AccountDialog
 	{
-		public AccountDialog (Gtk.Window parent) : this (parent, null, false) {
+		public AccountDialog (Gtk.Window parent) : this (parent, null, false)
+		{
 			add_dialog.Response += HandleAddResponse;
 			add_button.Sensitive = false;
 		}
@@ -98,7 +99,7 @@ namespace FSpot.Exporters.Gallery
 				try {
 					Uri uri = new Uri (url);
 					if (uri.Scheme != Uri.UriSchemeHttp &&
-					    uri.Scheme != Uri.UriSchemeHttps)
+						uri.Scheme != Uri.UriSchemeHttps)
 						throw new System.UriFormatException ();
 
 					//Check for name uniqueness
@@ -106,9 +107,9 @@ namespace FSpot.Exporters.Gallery
 						if (acc.Name == name)
 							throw new ArgumentException ("name");
 					GalleryAccount created = new GalleryAccount (name,
-										     url,
-										     username,
-										     password);
+											 url,
+											 username,
+											 password);
 
 					created.Connect ();
 					GalleryAccountManager.GetInstance ().AddAccount (created);
@@ -131,7 +132,7 @@ namespace FSpot.Exporters.Gallery
 									  Gtk.DialogFlags.DestroyWithParent,
 									  Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
 									  Strings.ErrorWhileConnectingToGallery,
-								      string.Format (Strings.FollowingErrorWasEncounteredAttemptingToLogInX, e.Message));
+									  string.Format (Strings.FollowingErrorWasEncounteredAttemptingToLogInX, e.Message));
 					if (e.ResponseText != null) {
 						Logger.Log.Debug (e.Message);
 						Logger.Log.Debug (e.ResponseText);
@@ -142,11 +143,11 @@ namespace FSpot.Exporters.Gallery
 				} catch (ArgumentException ae) {
 					HigMessageDialog md =
 						new HigMessageDialog (add_dialog,
-								      Gtk.DialogFlags.Modal |
-								      Gtk.DialogFlags.DestroyWithParent,
-								      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
+									  Gtk.DialogFlags.Modal |
+									  Gtk.DialogFlags.DestroyWithParent,
+									  Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
 									  Strings.GalleryWithThisNameAlreadyExists,
-								      string.Format (Strings.ThereAlreadyGallerySameNameInYourRegisteredGalleriesPleaseChooseUniqueName));
+									  string.Format (Strings.ThereAlreadyGallerySameNameInYourRegisteredGalleriesPleaseChooseUniqueName));
 					Logger.Log.Error (ae, "");
 					md.Run ();
 					md.Destroy ();
@@ -154,22 +155,22 @@ namespace FSpot.Exporters.Gallery
 				} catch (System.Net.WebException we) {
 					HigMessageDialog md =
 						new HigMessageDialog (add_dialog,
-								      Gtk.DialogFlags.Modal |
-								      Gtk.DialogFlags.DestroyWithParent,
-								      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
+									  Gtk.DialogFlags.Modal |
+									  Gtk.DialogFlags.DestroyWithParent,
+									  Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
 									  Strings.ErrorWhileConnectingToGallery,
-								      string.Format (Strings.FollowingErrorWasEncounteredAttemptingToLogInX, we.Message));
+									  string.Format (Strings.FollowingErrorWasEncounteredAttemptingToLogInX, we.Message));
 					md.Run ();
 					md.Destroy ();
 					return;
 				} catch (Exception se) {
 					HigMessageDialog md =
 						new HigMessageDialog (add_dialog,
-								      Gtk.DialogFlags.Modal |
-								      Gtk.DialogFlags.DestroyWithParent,
-								      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
+									  Gtk.DialogFlags.Modal |
+									  Gtk.DialogFlags.DestroyWithParent,
+									  Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
 									  Strings.ErrorWhileConnectingToGallery,
-								      string.Format (Strings.FollowingErrorWasEncounteredAttemptingToLogInX, se.Message));
+									  string.Format (Strings.FollowingErrorWasEncounteredAttemptingToLogInX, se.Message));
 					Logger.Log.Error (se, "");
 					md.Run ();
 					md.Destroy ();

@@ -35,13 +35,13 @@ namespace Hyena.Data
 {
 	//public class ModelSelection<T> : IList<T>
 	public class ModelSelection<T> : IEnumerable<T>
-    {
-        IListModel<T> model;
-        Selection selection;
+	{
+		IListModel<T> model;
+		Selection selection;
 
-#region Properties
+		#region Properties
 
-        /*public T this [int index] {
+		/*public T this [int index] {
             get {
                 if (index >= selection.Count)
                     throw new ArgumentOutOfRangeException ("index");
@@ -50,39 +50,39 @@ namespace Hyena.Data
             }
         }*/
 
-        public int Count {
-            get { return selection.Count; }
-        }
+		public int Count {
+			get { return selection.Count; }
+		}
 
-#endregion
+		#endregion
 
-        public ModelSelection (IListModel<T> model, Selection selection)
-        {
-            this.model = model;
-            this.selection = selection;
-        }
+		public ModelSelection (IListModel<T> model, Selection selection)
+		{
+			this.model = model;
+			this.selection = selection;
+		}
 
-#region Methods
+		#region Methods
 
-        /*public int IndexOf (T value)
+		/*public int IndexOf (T value)
         {
             //selection.IndexOf (model.IndexOf (value));
             return -1;
         }*/
 
-        public IEnumerator<T> GetEnumerator ()
-        {
-            foreach (int i in selection) {
-                yield return model [i];
-            }
-        }
+		public IEnumerator<T> GetEnumerator ()
+		{
+			foreach (int i in selection) {
+				yield return model[i];
+			}
+		}
 
-        IEnumerator IEnumerable.GetEnumerator ()
-        {
-            return GetEnumerator ();
-        }
+		IEnumerator IEnumerable.GetEnumerator ()
+		{
+			return GetEnumerator ();
+		}
 
-#endregion
+		#endregion
 
-    }
+	}
 }

@@ -27,12 +27,12 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using FSpot.Settings;
+using FSpot.Utils;
+
 using Gdk;
 
 using Hyena.Gui;
-
-using FSpot.Settings;
-using FSpot.Utils;
 
 namespace FSpot.Widgets
 {
@@ -180,7 +180,7 @@ namespace FSpot.Widgets
 		}
 
 		public Pixbuf RenderPixbuf (bool showEmptyStars, bool isHovering, int hoverValue, double fillOpacity,
-		                            double hoverFillOpacity, double strokeOpacity)
+									double hoverFillOpacity, double strokeOpacity)
 		{
 			var pixbuf = new Pixbuf (Colorspace.Rgb, true, 8, MaxRating * Size, Size);
 			pixbuf.Fill (0xffffff00);
@@ -212,8 +212,8 @@ namespace FSpot.Widgets
 		}
 
 		public override void Render (Cairo.Context cr, Gdk.Rectangle area, Cairo.Color color, bool showEmptyStars,
-		                             bool isHovering, int hoverValue, double fillOpacity, double hoverFillOpacity,
-		                             double strokeOpacity)
+									 bool isHovering, int hoverValue, double fillOpacity, double hoverFillOpacity,
+									 double strokeOpacity)
 		{
 			if (Value == MinRating && !isHovering && !showEmptyStars)
 				return;

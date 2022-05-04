@@ -1,4 +1,4 @@
-﻿//
+//
 // PhotoMock.cs
 //
 // Author:
@@ -27,8 +27,11 @@
 //
 
 using System.IO;
+
 using FSpot.Core;
+
 using Hyena;
+
 using Moq;
 
 namespace FSpot.Mocks
@@ -50,7 +53,7 @@ namespace FSpot.Mocks
 
 		public static IPhoto Create (SafeUri uri, string name)
 		{
-			return CreateMock(uri, name).Object;
+			return CreateMock (uri, name).Object;
 		}
 
 		public static IPhoto CreateWithVersion (SafeUri originalUri, string originalName, SafeUri versionUri, string versionName)

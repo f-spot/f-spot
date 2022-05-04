@@ -30,12 +30,12 @@
 using System;
 using System.Collections.Generic;
 
-using Gtk;
-
 using FSpot.Core;
 using FSpot.Extensions;
 using FSpot.Imaging;
 using FSpot.Utils;
+
+using Gtk;
 
 using Hyena.Widgets;
 
@@ -56,7 +56,7 @@ namespace FSpot.Tools.RawPlusJpeg
 				"Do it now"))
 				return;
 
-			Photo [] photos = ObsoletePhotoQueries.Query ((Tag [])null, null, null, null);
+			Photo[] photos = ObsoletePhotoQueries.Query ((Tag[])null, null, null, null);
 			Array.Sort (photos, new IPhotoComparer.CompareDirectory ());
 
 			Photo raw = null;
@@ -66,7 +66,7 @@ namespace FSpot.Tools.RawPlusJpeg
 			var factory = App.Instance.Container.Resolve<IImageFileFactory> ();
 
 			for (int i = 0; i < photos.Length; i++) {
-				Photo p = photos [i];
+				Photo p = photos[i];
 
 				if (!factory.IsRaw (p.DefaultVersion.Uri) && !factory.IsJpeg (p.DefaultVersion.Uri))
 					continue;
@@ -128,7 +128,7 @@ namespace FSpot.Tools.RawPlusJpeg
 					}
 				}
 				raw.AddTag (jpeg.Tags);
-				uint [] version_ids = jpeg.VersionIds;
+				uint[] version_ids = jpeg.VersionIds;
 				Array.Reverse (version_ids);
 				foreach (uint version_id in version_ids) {
 					try {

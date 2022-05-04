@@ -63,7 +63,7 @@ namespace FSpot
 
 		public Tag TagAtPosition (double x, double y)
 		{
-			return TagAtPosition((int) x, (int) y);
+			return TagAtPosition ((int)x, (int)y);
 		}
 
 		public Tag TagAtPosition (int x, int y)
@@ -92,7 +92,7 @@ namespace FSpot
 			GLib.Value val = new GLib.Value ();
 
 			Model.GetValue (iter, IdColumn, ref val);
-			uint tag_id = (uint) val;
+			uint tag_id = (uint)val;
 
 			return tag_store.Get (tag_id);
 		}
@@ -112,7 +112,7 @@ namespace FSpot
 		public void ScrollTo (Tag tag)
 		{
 			TreeIter iter;
-			if (! TreeIterForTag (tag, out iter))
+			if (!TreeIterForTag (tag, out iter))
 				return;
 
 			TreePath path = Model.GetPath (iter);
@@ -120,21 +120,21 @@ namespace FSpot
 			ScrollToCell (path, null, false, 0, 0);
 		}
 
-		public Tag [] TagHighlight {
+		public Tag[] TagHighlight {
 			get {
 				TreeModel model;
 				TreeIter iter;
 
-				TreePath [] rows = Selection.GetSelectedRows(out model);
+				TreePath[] rows = Selection.GetSelectedRows (out model);
 
-				Tag [] tags = new Tag [rows.Length];
+				Tag[] tags = new Tag[rows.Length];
 				int i = 0;
 
 				foreach (TreePath path in rows) {
 					GLib.Value value = new GLib.Value ();
 					Model.GetIter (out iter, path);
 					Model.GetValue (iter, IdColumn, ref value);
-					uint tag_id = (uint) value;
+					uint tag_id = (uint)value;
 					tags[i] = tag_store.Get (tag_id);
 					i++;
 				}
@@ -186,7 +186,7 @@ namespace FSpot
 		{
 			GLib.Value value = new GLib.Value ();
 			Model.GetValue (iter, IdColumn, ref value);
-			uint tag_id = (uint) value;
+			uint tag_id = (uint)value;
 			Tag tag = tag_store.Get (tag_id);
 
 			if (tag == null)
@@ -216,7 +216,7 @@ namespace FSpot
 
 			GLib.Value value = new GLib.Value ();
 			Model.GetValue (iter, IdColumn, ref value);
-			uint tag_id = (uint) value;
+			uint tag_id = (uint)value;
 
 			Tag tag = tag_store.Get (tag_id);
 			if (tag == null)
@@ -227,7 +227,7 @@ namespace FSpot
 			(renderer as CellRendererText).Text = tag.Name;
 		}
 
-		bool TreeIterForTag(Tag tag, out TreeIter iter)
+		bool TreeIterForTag (Tag tag, out TreeIter iter)
 		{
 			TreeIter root = TreeIter.Zero;
 			iter = TreeIter.Zero;
@@ -258,7 +258,7 @@ namespace FSpot
 			Model.GetValue (parent, IdColumn, ref value);
 			iter = parent;
 
-			if (tag.Id == (uint) value)
+			if (tag.Id == (uint)value)
 				return true;
 
 			return false;
@@ -277,7 +277,7 @@ namespace FSpot
 			Tag tag = tag_store.Get ((uint)value);
 			if (is_parent) {
 				// we need to figure out where to insert it in the correct order
-				copy = InsertInOrder(dest, is_root, tag);
+				copy = InsertInOrder (dest, is_root, tag);
 			} else {
 				copy = store.AppendValues (dest, (uint)value, tag.Name);
 			}
@@ -306,8 +306,8 @@ namespace FSpot
 			while (valid) {
 				//I have no desire to figure out a more performant sort over this...
 				GLib.Value value = new GLib.Value ();
-				store.GetValue(iter, IdColumn, ref value);
-				compare = tag_store.Get ((uint) value);
+				store.GetValue (iter, IdColumn, ref value);
+				compare = tag_store.Get ((uint)value);
 
 				if (compare.CompareTo (tag) > 0) {
 					iter = store.InsertNodeBefore (iter);
@@ -318,7 +318,7 @@ namespace FSpot
 						ExpandRow (Model.GetPath (parent), false);
 					return iter;
 				}
-				valid = store.IterNext(ref iter);
+				valid = store.IterNext (ref iter);
 			}
 
 			if (is_root)
@@ -352,8 +352,8 @@ namespace FSpot
 					TreeIterForTag (tag.Category, out iter);
 
 				InsertInOrder (iter,
-					       tag.Category.Name == tag_store.RootCategory.Name,
-					       tag);
+						   tag.Category.Name == tag_store.RootCategory.Name,
+						   tag);
 			}
 		}
 
@@ -365,8 +365,8 @@ namespace FSpot
 			foreach (Tag tag in args.Items) {
 				TreeIterForTag (tag, out iter);
 
-				bool category_valid = TreeIterForTag(tag.Category, out category_iter);
-				bool parent_valid = Model.IterParent(out parent_iter, iter);
+				bool category_valid = TreeIterForTag (tag.Category, out category_iter);
+				bool parent_valid = Model.IterParent (out parent_iter, iter);
 
 				if ((category_valid && (category_iter.Equals (parent_iter))) || (!category_valid && !parent_valid)) {
 					// if we haven't been reparented
@@ -382,21 +382,20 @@ namespace FSpot
 
 		void ExpandDefaults ()
 		{
-			int [] tags = Preferences.Get<int []> (Preferences.ExpandedTags);
+			int[] tags = Preferences.Get<int[]> (Preferences.ExpandedTags);
 			if (tags == null) {
 				ExpandAll ();
 				return;
 			}
 
-			TreeIter [] iters = ModelIters ();
+			TreeIter[] iters = ModelIters ();
 			if (iters == null || iters.Length == 0 || tags.Length == 0)
 				return;
 
-			foreach (TreeIter iter in iters)
-			{
+			foreach (TreeIter iter in iters) {
 				GLib.Value v = new GLib.Value ();
 				Model.GetValue (iter, IdColumn, ref v);
-				int tag_id = (int)(uint) v;
+				int tag_id = (int)(uint)v;
 				if (Array.IndexOf (tags, tag_id) > -1) {
 					ExpandRow (Model.GetPath (iter), false);
 				}
@@ -409,11 +408,10 @@ namespace FSpot
 		/// <returns>
 		/// TreeIter []
 		/// </returns>
-		TreeIter [] ModelIters ()
+		TreeIter[] ModelIters ()
 		{
 			TreeIter root;
-			if (Model.GetIterFirst (out root))
-			{
+			if (Model.GetIterFirst (out root)) {
 				return ModelIters (root, true).ToArray ();
 			}
 			return null;
@@ -445,16 +443,15 @@ namespace FSpot
 		{
 			List<int> expanded_tags = new List<int> ();
 
-			TreeIter [] iters = ModelIters ();
+			TreeIter[] iters = ModelIters ();
 			if (iters == null)
 				return;
 
-			foreach (TreeIter iter in iters)
-			{
+			foreach (TreeIter iter in iters) {
 				if (GetRowExpanded (Model.GetPath (iter))) {
 					GLib.Value v = new GLib.Value ();
 					Model.GetValue (iter, IdColumn, ref v);
-					expanded_tags.Add ((int)(uint) v);
+					expanded_tags.Add ((int)(uint)v);
 				}
 			}
 
@@ -463,7 +460,7 @@ namespace FSpot
 
 		public void EditSelectedTagName ()
 		{
-			TreePath [] rows = Selection.GetSelectedRows();
+			TreePath[] rows = Selection.GetSelectedRows ();
 			if (rows.Length != 1)
 				return;
 
@@ -485,7 +482,7 @@ namespace FSpot
 
 			GLib.Value value = new GLib.Value ();
 			Model.GetValue (iter, IdColumn, ref value);
-			uint tag_id = (uint) value;
+			uint tag_id = (uint)value;
 			Tag tag = tag_store.Get (tag_id);
 
 			// Ignore if it hasn't changed
@@ -494,7 +491,7 @@ namespace FSpot
 
 			// Check that the tag doesn't already exist
 			if (string.Compare (args.NewText, tag.Name, true) != 0 &&
-			    tag_store.GetTagByName (args.NewText) != null) {
+				tag_store.GetTagByName (args.NewText) != null) {
 				HigMessageDialog md = new HigMessageDialog (App.Instance.Organizer.Window,
 					DialogFlags.DestroyWithParent,
 					MessageType.Warning, ButtonsType.Ok,
@@ -515,17 +512,17 @@ namespace FSpot
 			args.RetVal = true;
 		}
 
-        static TargetList tagSourceTargetList = new TargetList();
-        static TargetList tagDestTargetList = new TargetList();
+		static TargetList tagSourceTargetList = new TargetList ();
+		static TargetList tagDestTargetList = new TargetList ();
 
-        static TagSelectionWidget()
-        {
-            tagSourceTargetList.AddTargetEntry(DragDropTargets.TagListEntry);
+		static TagSelectionWidget ()
+		{
+			tagSourceTargetList.AddTargetEntry (DragDropTargets.TagListEntry);
 
-            tagDestTargetList.AddTargetEntry(DragDropTargets.PhotoListEntry);
-            tagDestTargetList.AddUriTargets((uint)DragDropTargets.TargetType.UriList);
-            tagDestTargetList.AddTargetEntry(DragDropTargets.TagListEntry);
-        }
+			tagDestTargetList.AddTargetEntry (DragDropTargets.PhotoListEntry);
+			tagDestTargetList.AddUriTargets ((uint)DragDropTargets.TargetType.UriList);
+			tagDestTargetList.AddTargetEntry (DragDropTargets.TagListEntry);
+		}
 
 		CellRendererPixbuf pix_render;
 		TreeViewColumn complete_column;
@@ -535,7 +532,7 @@ namespace FSpot
 
 		// Constructor.
 		public TagSelectionWidget (TagStore tag_store)
-			: base (new TreeStore (typeof(uint), typeof(string)))
+			: base (new TreeStore (typeof (uint), typeof (string)))
 		{
 			database = App.Instance.Database;
 
@@ -573,7 +570,7 @@ namespace FSpot
 			SearchColumn = NameColumn;
 
 			// Transparent white
-			empty_pixbuf.Fill(0xffffff00);
+			empty_pixbuf.Fill (0xffffff00);
 
 
 			/* set up drag and drop */
@@ -582,38 +579,38 @@ namespace FSpot
 			DragBegin += HandleDragBegin;
 
 			Gtk.Drag.SourceSet (this,
-			           Gdk.ModifierType.Button1Mask | Gdk.ModifierType.Button3Mask,
-			           (TargetEntry[])tagSourceTargetList,
-			           DragAction.Copy | DragAction.Move);
+					   Gdk.ModifierType.Button1Mask | Gdk.ModifierType.Button3Mask,
+					   (TargetEntry[])tagSourceTargetList,
+					   DragAction.Copy | DragAction.Move);
 
 			DragDataReceived += HandleDragDataReceived;
 			DragMotion += HandleDragMotion;
 
 			Gtk.Drag.DestSet (this,
-			                  DestDefaults.All,
-			                  (TargetEntry[])tagDestTargetList,
-			                  DragAction.Copy | DragAction.Move);
+							  DestDefaults.All,
+							  (TargetEntry[])tagDestTargetList,
+							  DragAction.Copy | DragAction.Move);
 		}
 
 		void HandleDragBegin (object sender, DragBeginArgs args)
 		{
-			Tag [] tags = TagHighlight;
+			Tag[] tags = TagHighlight;
 			int len = tags.Length;
 			int size = 32;
-			int csize = size/2 + len * size / 2 + 2;
+			int csize = size / 2 + len * size / 2 + 2;
 
 			Pixbuf container = new Pixbuf (Gdk.Colorspace.Rgb, true, 8, csize, csize);
 			container.Fill (0x00000000);
 
-			bool use_icon = false;;
+			bool use_icon = false; ;
 			while (len-- > 0) {
 				Pixbuf thumbnail = tags[len].Icon;
 
 				if (thumbnail != null) {
 					Pixbuf small = thumbnail.ScaleToMaxSize (size, size);
 
-					int x = len * (size/2) + (size - small.Width)/2;
-					int y = len * (size/2) + (size - small.Height)/2;
+					int x = len * (size / 2) + (size - small.Width) / 2;
+					int y = len * (size / 2) + (size - small.Height) / 2;
 
 					small.Composite (container, x, y, small.Width, small.Height, x, y, 1.0, 1.0, Gdk.InterpType.Nearest, 0xff);
 					small.Dispose ();
@@ -643,31 +640,31 @@ namespace FSpot
 		public void HandleDragMotion (object o, DragMotionArgs args)
 		{
 			TreePath path;
-	        TreeViewDropPosition position = TreeViewDropPosition.IntoOrAfter;
+			TreeViewDropPosition position = TreeViewDropPosition.IntoOrAfter;
 			GetPathAtPos (args.X, args.Y, out path);
 
-	        if (path == null)
-	            return;
+			if (path == null)
+				return;
 
-	        // Tags can be dropped into another tag
+			// Tags can be dropped into another tag
 			SetDragDestRow (path, position);
 
 			// Scroll if within 20 pixels of the top or bottom of the tag list
 			if (args.Y < 20)
 				Vadjustment.Value -= 30;
-	        else if (((o as Gtk.Widget).Allocation.Height - args.Y) < 20)
+			else if (((o as Gtk.Widget).Allocation.Height - args.Y) < 20)
 				Vadjustment.Value += 30;
 		}
 
 		public void HandleDragDataReceived (object o, DragDataReceivedArgs args)
 		{
-	        TreePath path;
-	        TreeViewDropPosition position;
+			TreePath path;
+			TreeViewDropPosition position;
 
-	        if ( ! GetDestRowAtPos ((int)args.X, (int)args.Y, out path, out position))
-	            return;
+			if (!GetDestRowAtPos ((int)args.X, (int)args.Y, out path, out position))
+				return;
 
-	        Tag tag = path == null ? null : TagByPath (path);
+			Tag tag = path == null ? null : TagByPath (path);
 			if (tag == null)
 				return;
 
@@ -707,7 +704,7 @@ namespace FSpot
 						continue;
 
 					// FIXME this should really follow the AddTagsExtended path too
-					photo.AddTag (new Tag[] {tag});
+					photo.AddTag (new Tag[] { tag });
 					photos.Add (photo);
 				}
 				database.Photos.Commit (photos.ToArray ());
@@ -720,39 +717,39 @@ namespace FSpot
 
 			if (args.Info == DragDropTargets.TagListEntry.Info) {
 				Category parent;
-	            if (position == TreeViewDropPosition.Before || position == TreeViewDropPosition.After) {
-	                parent = tag.Category;
-	            } else {
-	                parent = tag as Category;
-	            }
+				if (position == TreeViewDropPosition.Before || position == TreeViewDropPosition.After) {
+					parent = tag.Category;
+				} else {
+					parent = tag as Category;
+				}
 
 				if (parent == null || TagHighlight.Length < 1) {
-	                args.RetVal = false;
+					args.RetVal = false;
 					return;
-	            }
+				}
 
-	            int moved_count = 0;
-	            Tag [] highlighted_tags = TagHighlight;
+				int moved_count = 0;
+				Tag[] highlighted_tags = TagHighlight;
 				foreach (Tag child in TagHighlight) {
-	                // FIXME with this reparenting via dnd, you cannot move a tag to root.
-	                if (child != parent && child.Category != parent && !child.IsAncestorOf(parent)) {
-	                    child.Category = parent;
+					// FIXME with this reparenting via dnd, you cannot move a tag to root.
+					if (child != parent && child.Category != parent && !child.IsAncestorOf (parent)) {
+						child.Category = parent;
 
-	                    // Saving changes will automatically cause the TreeView to be updated
-	                    database.Tags.Commit (child);
-	                    moved_count++;
-	                }
-	            }
+						// Saving changes will automatically cause the TreeView to be updated
+						database.Tags.Commit (child);
+						moved_count++;
+					}
+				}
 
-	            // Reselect the same tags
-	            TagHighlight = highlighted_tags;
+				// Reselect the same tags
+				TagHighlight = highlighted_tags;
 
-	            args.RetVal = moved_count > 0;
+				args.RetVal = moved_count > 0;
 			}
 		}
 
 
-	#if TEST_TAG_SELECTION_WIDGET
+#if TEST_TAG_SELECTION_WIDGET
 
 		class Test {
 
@@ -814,6 +811,6 @@ namespace FSpot
 			}
 		}
 
-	#endif
+#endif
 	}
 }

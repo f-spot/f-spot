@@ -30,7 +30,7 @@
 using System;
 
 namespace FSpot.Bling
-{	
+{
 	public abstract class BackEase : EasingFunction
 	{
 		double amplitude;

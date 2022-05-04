@@ -1,4 +1,4 @@
-﻿//
+//
 // ImageFileTests.cs
 //
 // Author:
@@ -27,6 +27,7 @@
 //
 
 using Hyena;
+
 using NUnit.Framework;
 
 namespace FSpot.Imaging.UnitTest

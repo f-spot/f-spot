@@ -29,8 +29,8 @@
 namespace Hyena.Data
 {
 	public interface ICacheableItem
-    {
-        object CacheEntryId { get; set; }
-        long CacheModelId { get; set; }
-    }
+	{
+		object CacheEntryId { get; set; }
+		long CacheModelId { get; set; }
+	}
 }

@@ -11,11 +11,12 @@
 using System.Collections.Generic;
 using System.IO;
 
-using NUnit.Framework;
+using FSpot.Platform;
 
 using Newtonsoft.Json.Linq;
 
-using FSpot.Platform;
+using NUnit.Framework;
+
 using Shouldly;
 
 namespace FSpot.Preferences.UnitTest
@@ -61,7 +62,7 @@ namespace FSpot.Preferences.UnitTest
 			Assert.That (new FileInfo (TestSettingsFile).Length > 0);
 
 			var settings = LoadSettings (TestSettingsFile);
-			var result = settings[key].ToObject<T>();
+			var result = settings[key].ToObject<T> ();
 
 			result.ShouldBe (v);
 		}
@@ -139,7 +140,7 @@ namespace FSpot.Preferences.UnitTest
 			Settings.Preferences.Set ("RandomKey", "WrongValue");
 			var result = Settings.Preferences.TryGet ("RandomKey", out double randomValue);
 
-			result.ShouldBeTrue();
+			result.ShouldBeTrue ();
 			randomValue.ShouldBe (default);
 		}
 	}

@@ -20,7 +20,7 @@ namespace FSpot.Cms
 
 		public HandleRef Handle { get; private set; }
 
-		public Transform (Profile [] profiles,
+		public Transform (Profile[] profiles,
 				  Format inputFormat,
 				  Format outputFormat,
 				  Intent intent, uint flags)
@@ -28,9 +28,9 @@ namespace FSpot.Cms
 			if (profiles == null)
 				throw new ArgumentNullException (nameof (profiles));
 
-			var Handles = new HandleRef [profiles.Length];
+			var Handles = new HandleRef[profiles.Length];
 			for (int i = 0; i < profiles.Length; i++) {
-				Handles [i] = profiles [i].Handle;
+				Handles[i] = profiles[i].Handle;
 			}
 
 			Handle = new HandleRef (this, NativeMethods.CmsCreateMultiprofileTransform (Handles, Handles.Length,
@@ -49,8 +49,8 @@ namespace FSpot.Cms
 				throw new ArgumentNullException (nameof (output));
 
 			Handle = new HandleRef (this, NativeMethods.CmsCreateTransform (input.Handle, inputFormat,
-									       output.Handle, outputFormat,
-									       (int)intent, flags));
+										   output.Handle, outputFormat,
+										   (int)intent, flags));
 		}
 
 		// Fixme this should probably be more type stafe 

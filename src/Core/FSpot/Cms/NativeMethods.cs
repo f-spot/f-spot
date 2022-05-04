@@ -101,10 +101,10 @@ namespace FSpot.Cms
 
 		public enum CmsProfileInfo
 		{
-			Description	= 0,
-			Manufacturer	= 1,
-			Model		= 2,
-			Copyright	= 3
+			Description = 0,
+			Manufacturer = 1,
+			Model = 2,
+			Copyright = 3
 		}
 
 		[DllImport (lcmsLib, EntryPoint = "cmsGetProfileInfo", CallingConvention = CallingConvention.Cdecl)]
@@ -118,11 +118,11 @@ namespace FSpot.Cms
 
 		public enum CmsTagSignature
 		{
-			MediaBlackPoint		= 0x626B7074,
-			MediaWhitePoint		= 0x77747074,
-			RedColorant		= 0x7258595A,
-			GreenColorant		= 0x6758595A,
-			BlueColorant		= 0x6258595A
+			MediaBlackPoint = 0x626B7074,
+			MediaWhitePoint = 0x77747074,
+			RedColorant = 0x7258595A,
+			GreenColorant = 0x6758595A,
+			BlueColorant = 0x6258595A
 		}
 
 

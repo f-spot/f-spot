@@ -63,11 +63,11 @@ namespace FSpot.Database
 
 				List<Version> keys = new List<Version> ();
 				foreach (Version k in updates.Keys) {
-					keys.Add(k);
+					keys.Add (k);
 				}
 				keys.Sort ();
 
-				return keys [keys.Count - 1];
+				return keys[keys.Count - 1];
 			}
 		}
 
@@ -129,7 +129,7 @@ namespace FSpot.Database
 			});
 
 			//Version 4.0, bump the version number to a integer, for backward compatibility
-			AddUpdate (new Version (4, 0), delegate () {});
+			AddUpdate (new Version (4, 0), delegate () { });
 
 
 			//Version 5.0, add a roll_id field to photos, rename table 'imports' to 'rolls'
@@ -204,21 +204,21 @@ namespace FSpot.Database
 						"WHERE photo_id = id ", tmp_versions));
 
 				while (reader.Read ()) {
-					System.Uri photo_uri = new System.Uri (reader [3] as string);
+					System.Uri photo_uri = new System.Uri (reader[3] as string);
 					string name_without_extension = System.IO.Path.GetFileNameWithoutExtension (photo_uri.AbsolutePath);
 					string extension = System.IO.Path.GetExtension (photo_uri.AbsolutePath);
 
 					string uri = photo_uri.Scheme + "://" +
 						photo_uri.Host +
 						System.IO.Path.GetDirectoryName (photo_uri.AbsolutePath) + "/" +
-						name_without_extension + " (" + (reader [2]).ToString () + ")" + extension;
+						name_without_extension + " (" + (reader[2]).ToString () + ")" + extension;
 
 					Execute (new HyenaSqliteCommand (
 						"INSERT INTO photo_versions (photo_id, version_id, name, uri) " +
 						"VALUES (?, ?, ?, ?)",
-						Convert.ToUInt32 (reader [0]),
-						Convert.ToUInt32 (reader [1]),
-						(reader [2]).ToString (),
+						Convert.ToUInt32 (reader[0]),
+						Convert.ToUInt32 (reader[1]),
+						(reader[2]).ToString (),
 						uri));
 				}
 
@@ -374,7 +374,7 @@ namespace FSpot.Database
 				Execute (string.Format ("INSERT INTO jobs (job_type, job_options, run_at, job_priority) " +
 							 "SELECT '{0}', id, {1}, {2} " +
 							 "FROM   photos ",
-							 typeof(Jobs.CalculateHashJob).ToString (),
+							 typeof (Jobs.CalculateHashJob).ToString (),
 							 DateTimeUtil.FromDateTime (DateTime.Now),
 							 0
 							)
@@ -393,7 +393,7 @@ namespace FSpot.Database
 
 			// Update to version 16.3
 			AddUpdate (new Version (16, 3), delegate () {
-				Execute (string.Format ("DELETE FROM jobs WHERE job_type = '{0}'", typeof(Jobs.CalculateHashJob).ToString ()));
+				Execute (string.Format ("DELETE FROM jobs WHERE job_type = '{0}'", typeof (Jobs.CalculateHashJob).ToString ()));
 			}, false);
 
 			// Update to version 16.4
@@ -572,24 +572,24 @@ namespace FSpot.Database
 					"FROM {0} ", tmp_photos));
 
 				while (reader.Read ()) {
-					System.Uri photo_uri = new System.Uri (reader ["uri"] as string);
+					System.Uri photo_uri = new System.Uri (reader["uri"] as string);
 
 					string filename = photo_uri.GetFilename ();
 					Uri base_uri = photo_uri.GetDirectoryUri ();
 
-					string md5 = reader ["md5_sum"] != null ? reader ["md5_sum"].ToString () : null;
+					string md5 = reader["md5_sum"] != null ? reader["md5_sum"].ToString () : null;
 
 					Execute (new HyenaSqliteCommand (
 						"INSERT INTO photos (id, time, base_uri, filename, description, roll_id, default_version_id, rating, md5_sum) " +
 						"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
-						Convert.ToUInt32 (reader ["id"]),
-						reader ["time"],
+						Convert.ToUInt32 (reader["id"]),
+						reader["time"],
 						base_uri.ToString (),
 						filename,
-						reader ["description"].ToString (),
-						Convert.ToUInt32 (reader ["roll_id"]),
-						Convert.ToUInt32 (reader ["default_version_id"]),
-						Convert.ToUInt32 (reader ["rating"]),
+						reader["description"].ToString (),
+						Convert.ToUInt32 (reader["roll_id"]),
+						Convert.ToUInt32 (reader["default_version_id"]),
+						Convert.ToUInt32 (reader["rating"]),
 						string.IsNullOrEmpty (md5) ? null : md5));
 				}
 
@@ -600,22 +600,22 @@ namespace FSpot.Database
 						"FROM {0} ", tmp_versions));
 
 				while (reader.Read ()) {
-					System.Uri photo_uri = new System.Uri (reader ["uri"] as string);
+					System.Uri photo_uri = new System.Uri (reader["uri"] as string);
 
 					string filename = photo_uri.GetFilename ();
 					Uri base_uri = photo_uri.GetDirectoryUri ();
 
-					string md5 = reader ["md5_sum"] != null ? reader ["md5_sum"].ToString () : null;
+					string md5 = reader["md5_sum"] != null ? reader["md5_sum"].ToString () : null;
 
 					Execute (new HyenaSqliteCommand (
 						"INSERT INTO photo_versions (photo_id, version_id, name, base_uri, filename, protected, md5_sum) " +
 						"VALUES (?, ?, ?, ?, ?, ?, ?)",
-						Convert.ToUInt32 (reader ["photo_id"]),
-						Convert.ToUInt32 (reader ["version_id"]),
-						reader ["name"].ToString (),
+						Convert.ToUInt32 (reader["photo_id"]),
+						Convert.ToUInt32 (reader["version_id"]),
+						reader["name"].ToString (),
 						base_uri.ToString (),
 						filename,
-						Convert.ToBoolean (reader ["protected"]),
+						Convert.ToBoolean (reader["protected"]),
 						string.IsNullOrEmpty (md5) ? null : md5));
 				}
 
@@ -642,11 +642,11 @@ namespace FSpot.Database
 					Execute (new HyenaSqliteCommand (
 						"INSERT INTO photo_versions (photo_id, version_id, name, base_uri, filename, protected, md5_sum) " +
 						"VALUES (?, ?, ?, ?, ?, ?, ?)",
-						Convert.ToUInt32 (reader ["id"]),
+						Convert.ToUInt32 (reader["id"]),
 						1,
 						"Original",
-						reader ["base_uri"].ToString (),
-						reader ["filename"].ToString (),
+						reader["base_uri"].ToString (),
+						reader["filename"].ToString (),
 						1,
 						""));
 				}
@@ -689,14 +689,14 @@ namespace FSpot.Database
 					Execute (new HyenaSqliteCommand (
 						"INSERT INTO photos (id, time, base_uri, filename, description, roll_id, default_version_id, rating) " +
 						"VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-						Convert.ToUInt32 (reader ["id"]),
-						reader ["time"],
-						reader ["base_uri"].ToString (),
-						reader ["filename"].ToString (),
-						reader ["description"].ToString (),
-						Convert.ToUInt32 (reader ["roll_id"]),
-						Convert.ToUInt32 (reader ["default_version_id"]),
-						Convert.ToUInt32 (reader ["rating"])));
+						Convert.ToUInt32 (reader["id"]),
+						reader["time"],
+						reader["base_uri"].ToString (),
+						reader["filename"].ToString (),
+						reader["description"].ToString (),
+						Convert.ToUInt32 (reader["roll_id"]),
+						Convert.ToUInt32 (reader["default_version_id"]),
+						Convert.ToUInt32 (reader["rating"])));
 				}
 
 				reader.Dispose ();
@@ -709,12 +709,12 @@ namespace FSpot.Database
 					Execute (new HyenaSqliteCommand (
 						"INSERT INTO photo_versions (photo_id, version_id, name, base_uri, filename, protected, import_md5) " +
 						"VALUES (?, ?, ?, ?, ?, ?, ?)",
-						Convert.ToUInt32 (reader ["photo_id"]),
-						Convert.ToUInt32 (reader ["version_id"]),
-						reader ["name"].ToString (),
-						reader ["base_uri"].ToString (),
-						reader ["filename"].ToString (),
-						Convert.ToBoolean (reader ["protected"]),
+						Convert.ToUInt32 (reader["photo_id"]),
+						Convert.ToUInt32 (reader["version_id"]),
+						reader["name"].ToString (),
+						reader["base_uri"].ToString (),
+						reader["filename"].ToString (),
+						Convert.ToBoolean (reader["protected"]),
 						""));
 				}
 
@@ -761,7 +761,7 @@ namespace FSpot.Database
 			// marked as being slow
 			bool slow = false;
 			foreach (Version version in updates.Keys) {
-				if (version > db_version && (updates [version] as Update).IsSlow)
+				if (version > db_version && (updates[version] as Update).IsSlow)
 					slow = true;
 				break;
 			}
@@ -774,14 +774,14 @@ namespace FSpot.Database
 			try {
 				List<Version> keys = new List<Version> ();
 				foreach (Version k in updates.Keys) {
-					keys.Add(k);
+					keys.Add (k);
 				}
 				keys.Sort ();
 				foreach (Version version in keys) {
 					if (version <= db_version)
 						continue;
 					dialog.Pulse ();
-					(updates [version] as Update).Execute (db, db_version);
+					(updates[version] as Update).Execute (db, db_version);
 				}
 
 				db.CommitTransaction ();
@@ -812,7 +812,7 @@ namespace FSpot.Database
 
 		private static void AddUpdate (Version version, UpdateCode code, bool is_slow)
 		{
-			updates [version] = new Update (version, code, is_slow);
+			updates[version] = new Update (version, code, is_slow);
 		}
 
 		private static int Execute (string statement)
@@ -820,9 +820,7 @@ namespace FSpot.Database
 			int result = -1;
 			try {
 				result = Convert.ToInt32 (db.Execute (statement));
-			}
-			catch (OverflowException e)
-			{
+			} catch (OverflowException e) {
 				Logger.Log.Error (e, $"Updater.Execute failed. ({statement})");
 				throw;
 			}
@@ -834,9 +832,7 @@ namespace FSpot.Database
 			int result = -1;
 			try {
 				result = Convert.ToInt32 (db.Execute (command));
-			}
-			catch (OverflowException e)
-			{
+			} catch (OverflowException e) {
 				Logger.Log.Error (e, $"Updater.Execute failed. ({command})");
 				throw;
 			}
@@ -866,7 +862,7 @@ namespace FSpot.Database
 				result = db.Query<string> (statement);
 			} catch (Exception) {
 			}
-				return result;
+			return result;
 		}
 
 		private static string MoveTableToTemp (string table_name)
@@ -939,14 +935,14 @@ namespace FSpot.Database
 
 			public Version (string version)
 			{
-				string [] parts = version.Split (new char [] {'.'}, 2);
+				string[] parts = version.Split (new char[] { '.' }, 2);
 				try {
-					this.maj = Convert.ToInt32 (parts [0]);
+					this.maj = Convert.ToInt32 (parts[0]);
 				} catch (Exception) {
 					this.maj = 0;
 				}
 				try {
-					this.min = Convert.ToInt32 (parts [1]);
+					this.min = Convert.ToInt32 (parts[1]);
 				} catch (Exception) {
 					this.min = 0;
 				}

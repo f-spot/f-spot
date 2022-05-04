@@ -34,18 +34,18 @@ using Gdk;
 
 namespace FSpot.Editors
 {
-    class AutoStretchEditor : Editor
+	class AutoStretchEditor : Editor
 	{
-        public AutoStretchEditor () : base (Strings.AutoColor, "autocolor")
+		public AutoStretchEditor () : base (Strings.AutoColor, "autocolor")
 		{
 			// FIXME: need tooltip Catalog.GetString ("Automatically adjust the colors")
 			CanHandleMultiple = true;
-        }
+		}
 
-        protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile)
+		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile)
 		{
-            AutoStretch autostretch = new AutoStretch (input, input_profile);
-            return autostretch.Adjust ();
-        }
-    }
+			AutoStretch autostretch = new AutoStretch (input, input_profile);
+			return autostretch.Adjust ();
+		}
+	}
 }

@@ -27,11 +27,12 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Gtk;
-using Gdk;
-
 using FSpot.Core;
 using FSpot.Settings;
+
+using Gdk;
+
+using Gtk;
 
 namespace FSpot.Widgets
 {
@@ -68,7 +69,7 @@ namespace FSpot.Widgets
 									 StateType cell_state,
 									 IPhoto photo)
 		{
-			Tag [] tags = photo.Tags;
+			Tag[] tags = photo.Tags;
 			Rectangle tag_bounds;
 
 			tag_bounds.X = cell_area.X + (cell_area.Width + tag_icon_hspacing - tags.Length * (tag_icon_size + tag_icon_hspacing)) / 2;

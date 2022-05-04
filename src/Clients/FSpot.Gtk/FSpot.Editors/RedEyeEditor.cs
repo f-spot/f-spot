@@ -33,6 +33,7 @@ using FSpot.Resources.Lang;
 using FSpot.Settings;
 
 using Gdk;
+
 using Gtk;
 
 namespace FSpot.Editors
@@ -48,14 +49,14 @@ namespace FSpot.Editors
 
 		public override Widget ConfigurationWidget ()
 		{
-			return new Label(Strings.SelectTheEyesYouWishToFix);
+			return new Label (Strings.SelectTheEyesYouWishToFix);
 		}
 
 		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile)
 		{
 			Rectangle selection = FSpot.Utils.PixbufUtils.TransformOrientation ((int)State.PhotoImageView.PixbufOrientation <= 4 ? input.Width : input.Height,
-											    (int)State.PhotoImageView.PixbufOrientation <= 4 ? input.Height : input.Width,
-											    State.Selection, State.PhotoImageView.PixbufOrientation);
+												(int)State.PhotoImageView.PixbufOrientation <= 4 ? input.Height : input.Width,
+												State.Selection, State.PhotoImageView.PixbufOrientation);
 			int threshold = Preferences.Get<int> (Preferences.EditRedeyeThreshold);
 			return PixbufUtils.RemoveRedeye (input, selection, threshold);
 		}

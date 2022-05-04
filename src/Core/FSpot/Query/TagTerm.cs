@@ -52,7 +52,7 @@ namespace FSpot.Query
 			return SqlClause (this);
 		}
 
-		internal static string SqlClause (params TagTerm [] tags)
+		internal static string SqlClause (params TagTerm[] tags)
 		{
 			return SqlClause (GetTagIds (tags.Select (t => t.Tag)));
 		}
@@ -75,7 +75,7 @@ namespace FSpot.Query
 			if (tagids.Count == 0)
 				return null;
 			if (tagids.Count == 1)
-				return string.Format (" (photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id = {0})) ", tagids [0]);
+				return string.Format (" (photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id = {0})) ", tagids[0]);
 			return string.Format (" (photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id IN ({0}))) ", string.Join (", ", tagids));
 		}
 	}

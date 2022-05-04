@@ -29,14 +29,14 @@
 namespace Hyena.Data.Sqlite
 {
 	public interface ICacheableDatabaseModel : ICacheableModel
-    {
-        string ReloadFragment { get; }
-        string SelectAggregates { get; }
-        string JoinTable { get; }
-        string JoinFragment { get; }
-        string JoinPrimaryKey { get; }
-        string JoinColumn { get; }
-        bool CachesJoinTableEntries { get; }
-        bool CachesValues { get; }
-    }
+	{
+		string ReloadFragment { get; }
+		string SelectAggregates { get; }
+		string JoinTable { get; }
+		string JoinFragment { get; }
+		string JoinPrimaryKey { get; }
+		string JoinColumn { get; }
+		bool CachesJoinTableEntries { get; }
+		bool CachesValues { get; }
+	}
 }

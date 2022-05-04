@@ -33,18 +33,21 @@ using FSpot.Editors;
 using FSpot.Resources.Lang;
 
 using Gdk;
+
 using Gtk;
 
 namespace FSpot.Addins.Editors
 {
 	class PixelateEditor : Editor
 	{
-		public PixelateEditor () : base (Strings.Pixelate, null) {
+		public PixelateEditor () : base (Strings.Pixelate, null)
+		{
 			CanHandleMultiple = false;
 			NeedsSelection = true;
 		}
 
-		public override Widget ConfigurationWidget () {
+		public override Widget ConfigurationWidget ()
+		{
 			VBox vbox = new VBox ();
 
 			Label info = new Label (Strings.SelectTheAreaThatYouWantPixelated);
@@ -54,13 +57,14 @@ namespace FSpot.Addins.Editors
 			return vbox;
 		}
 
-		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile) {
+		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile)
+		{
 			Pixbuf output = input.Copy ();
 
 			Pixbuf sub = new Pixbuf (output, State.Selection.X, State.Selection.Y,
 					State.Selection.Width, State.Selection.Height);
 			/* lazy man's pixelate: scale down and then back up */
-			Pixbuf down = sub.ScaleSimple (State.Selection.Width/75, State.Selection.Height/75,
+			Pixbuf down = sub.ScaleSimple (State.Selection.Width / 75, State.Selection.Height / 75,
 					InterpType.Nearest);
 			Pixbuf up = down.ScaleSimple (State.Selection.Width, State.Selection.Height,
 					InterpType.Nearest);

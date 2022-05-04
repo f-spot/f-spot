@@ -30,18 +30,19 @@
 using System;
 using System.Collections.Generic;
 
-using Gtk;
-using Gdk;
-
-using Mono.Addins;
-
-using FSpot.Core;
 using FSpot.Bling;
+using FSpot.Core;
 using FSpot.Extensions;
 using FSpot.Imaging;
 using FSpot.Settings;
 using FSpot.Transitions;
 using FSpot.Utils;
+
+using Gdk;
+
+using Gtk;
+
+using Mono.Addins;
 
 namespace FSpot.Widgets
 {
@@ -50,7 +51,7 @@ namespace FSpot.Widgets
 		bool running;
 		BrowsablePointer item;
 		int loadRetries;
-#region Public API
+		#region Public API
 
 		public SlideShow (BrowsablePointer item) : this (item, 6000, false)
 		{
@@ -70,7 +71,7 @@ namespace FSpot.Widgets
 				transitions.Add (transition.Transition);
 			}
 
-			flip = new DelayedOperation (interval_ms, delegate {item.MoveNext (true); return true;});
+			flip = new DelayedOperation (interval_ms, delegate { item.MoveNext (true); return true; });
 			animation = new DoubleAnimation (0, 1, new TimeSpan (0, 0, 2), HandleProgressChanged, GLib.Priority.Default);
 
 			if (init) {
@@ -80,7 +81,7 @@ namespace FSpot.Widgets
 
 		SlideShowTransition transition;
 		public SlideShowTransition Transition {
-            get { return transition; }
+			get { return transition; }
 			set {
 				if (value == transition)
 					return;
@@ -107,9 +108,9 @@ namespace FSpot.Widgets
 			running = false;
 			flip.Stop ();
 		}
-#endregion
+		#endregion
 
-#region Event Handlers
+		#region Event Handlers
 		Pixbuf prev, next;
 		object sync_handle = new object ();
 		void HandleItemChanged (object sender, EventArgs e)
@@ -142,8 +143,8 @@ namespace FSpot.Widgets
 
 			using (var img = App.Instance.Container.Resolve<IImageFileFactory> ().Create (item.Current.DefaultVersion.Uri)) {
 				try {
-					using (var pb =  img.Load ()) {
-						double scale = Math.Min ((double)Allocation.Width/(double)pb.Width, (double)Allocation.Height/(double)pb.Height);
+					using (var pb = img.Load ()) {
+						double scale = Math.Min ((double)Allocation.Width / (double)pb.Width, (double)Allocation.Height / (double)pb.Height);
 						int w = (int)(pb.Width * scale);
 						int h = (int)(pb.Height * scale);
 
@@ -172,9 +173,9 @@ namespace FSpot.Widgets
 				QueueDraw ();
 			}
 		}
-#endregion
+		#endregion
 
-#region Gtk Widgetry
+		#region Gtk Widgetry
 		protected override bool OnExposeEvent (Gdk.EventExpose args)
 		{
 			lock (sync_handle) {
@@ -204,6 +205,6 @@ namespace FSpot.Widgets
 			flip.Stop ();
 			base.OnUnrealized ();
 		}
-#endregion
+		#endregion
 	}
 }

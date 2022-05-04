@@ -22,13 +22,16 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace Gdk {
-	public static class PixbufFormatExtensions {
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern void gdk_pixbuf_format_set_disabled(IntPtr raw, bool disabled);
+namespace Gdk
+{
+	public static class PixbufFormatExtensions
+	{
+		[DllImport ("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		static extern void gdk_pixbuf_format_set_disabled (IntPtr raw, bool disabled);
 
-		public static void SetDisabled (this PixbufFormat format, bool value) { 
-			gdk_pixbuf_format_set_disabled(format.Handle, value);
+		public static void SetDisabled (this PixbufFormat format, bool value)
+		{
+			gdk_pixbuf_format_set_disabled (format.Handle, value);
 		}
 	}
-}	
+}

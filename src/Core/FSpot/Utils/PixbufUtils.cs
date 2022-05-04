@@ -31,36 +31,38 @@
 
 using System;
 using System.Runtime.InteropServices;
+
 using Gdk;
 
 using Hyena;
+
 using TagLib.Image;
 
 namespace FSpot.Utils
 {
 	public static class PixbufUtils
 	{
-	        public static ImageOrientation Rotate270 (ImageOrientation orientation)
-	        {
-	            if (orientation == ImageOrientation.None) {
-	                orientation = ImageOrientation.TopLeft;
-	            }
+		public static ImageOrientation Rotate270 (ImageOrientation orientation)
+		{
+			if (orientation == ImageOrientation.None) {
+				orientation = ImageOrientation.TopLeft;
+			}
 
-	            ImageOrientation [] rot = {
-	                ImageOrientation.LeftBottom,
-	                    ImageOrientation.LeftTop,
-	                    ImageOrientation.RightTop,
-	                    ImageOrientation.RightBottom,
-	                    ImageOrientation.BottomLeft,
-	                    ImageOrientation.TopLeft,
-	                    ImageOrientation.TopRight,
-	                    ImageOrientation.BottomRight
-	            };
+			ImageOrientation[] rot = {
+					ImageOrientation.LeftBottom,
+						ImageOrientation.LeftTop,
+						ImageOrientation.RightTop,
+						ImageOrientation.RightBottom,
+						ImageOrientation.BottomLeft,
+						ImageOrientation.TopLeft,
+						ImageOrientation.TopRight,
+						ImageOrientation.BottomRight
+				};
 
-	            orientation = rot [((int)orientation) -1];
-	            return orientation;
-	        }
-	
+			orientation = rot[((int)orientation) - 1];
+			return orientation;
+		}
+
 		public static ImageOrientation Rotate90 (ImageOrientation orientation)
 		{
 			orientation = Rotate270 (orientation);
@@ -73,11 +75,11 @@ namespace FSpot.Utils
 		{
 			return TransformOrientation (src.Width, src.Height, args, orientation);
 		}
-		
+
 		public static Rectangle TransformOrientation (int total_width, int total_height, Rectangle args, ImageOrientation orientation)
 		{
 			Rectangle area = args;
-			
+
 			switch (orientation) {
 			case ImageOrientation.BottomRight:
 				area.X = total_width - args.X - args.Width;
@@ -116,7 +118,7 @@ namespace FSpot.Utils
 			default:
 				break;
 			}
-			
+
 			return area;
 		}
 
@@ -213,7 +215,7 @@ namespace FSpot.Utils
 				dest = src.RotateSimple (PixbufRotation.Counterclockwise);
 				break;
 			}
-			
+
 			return dest;
 		}
 
@@ -302,7 +304,7 @@ namespace FSpot.Utils
 		// Save which allows specifying the variable arguments (it's not
 		// possible with p/invoke).
 
-		[DllImport("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("libgdk_pixbuf-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern bool gdk_pixbuf_save (IntPtr raw, IntPtr filename, IntPtr type, out IntPtr error, IntPtr optlabel1, IntPtr optvalue1, IntPtr dummy);
 
 		static bool Save (this Pixbuf pixbuf, string filename, string type, uint jpeg_quality)

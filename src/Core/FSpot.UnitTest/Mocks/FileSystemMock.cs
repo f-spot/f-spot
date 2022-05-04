@@ -1,4 +1,4 @@
-﻿//
+//
 // FileSystemMock.cs
 //
 // Author:
@@ -69,7 +69,7 @@ namespace Mocks
 
 		public void SetFile (SafeUri file, DateTime mTime)
 		{
-			SetFile (file, mTime, new byte[]{ });
+			SetFile (file, mTime, new byte[] { });
 		}
 
 		public void SetFile (SafeUri file, DateTime mTime, byte[] contents)

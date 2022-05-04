@@ -64,18 +64,15 @@ namespace FSpot.Widgets
 		{
 		}
 
-		public uint Color1
-		{
+		public uint Color1 {
 			get { return color1; }
 		}
 
-		public uint Color2
-		{
+		public uint Color2 {
 			get { return color2; }
 		}
 
-		public int CheckSize
-		{
+		public int CheckSize {
 			get { return check_size; }
 		}
 
@@ -86,18 +83,18 @@ namespace FSpot.Widgets
 		public static CheckPattern Gray = new CheckPattern (0x00808080, 0x00808080, 8);
 		public static CheckPattern White = new CheckPattern (0x00ffffff, 0x00ffffff, 8);
 
-		public static bool operator== (CheckPattern left, CheckPattern right)
+		public static bool operator == (CheckPattern left, CheckPattern right)
 		{
 			return (left.color1 == right.color1) &&
-			       (left.color2 == right.color2) &&
-			       (left.color1 == left.color2 || left.check_size == right.check_size);
+				   (left.color2 == right.color2) &&
+				   (left.color1 == left.color2 || left.check_size == right.check_size);
 		}
 
-		public static bool operator!= (CheckPattern left, CheckPattern right)
+		public static bool operator != (CheckPattern left, CheckPattern right)
 		{
-			return (left.color1 != right.color1) || 
-			       (left.color2 != right.color2) ||
-			       (left.color1 != left.color2 && left.check_size != right.check_size);
+			return (left.color1 != right.color1) ||
+				   (left.color2 != right.color2) ||
+				   (left.color1 != left.color2 && left.check_size != right.check_size);
 		}
 
 		public override int GetHashCode ()
@@ -114,16 +111,16 @@ namespace FSpot.Widgets
 
 		static uint s_to_h (string color)
 		{
-			return (uint)(Byte.Parse (color.Substring (1,2), System.Globalization.NumberStyles.AllowHexSpecifier) << 16) +
-			       (uint)(Byte.Parse (color.Substring (3,2), System.Globalization.NumberStyles.AllowHexSpecifier) << 8) +
-			       (uint)(Byte.Parse (color.Substring (5,2), System.Globalization.NumberStyles.AllowHexSpecifier));
+			return (uint)(Byte.Parse (color.Substring (1, 2), System.Globalization.NumberStyles.AllowHexSpecifier) << 16) +
+				   (uint)(Byte.Parse (color.Substring (3, 2), System.Globalization.NumberStyles.AllowHexSpecifier) << 8) +
+				   (uint)(Byte.Parse (color.Substring (5, 2), System.Globalization.NumberStyles.AllowHexSpecifier));
 		}
 
 		static uint c_to_h (Color color)
 		{
 			return (((uint)color.Red) << 16) +
-			       (((uint)color.Green) << 8) +
-			       (((uint)color.Blue));
+				   (((uint)color.Green) << 8) +
+				   (((uint)color.Blue));
 		}
 
 	}

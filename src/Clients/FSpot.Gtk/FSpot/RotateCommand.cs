@@ -131,9 +131,9 @@ namespace FSpot
 
 		public int Index { get; private set; }
 
-		public IPhoto [] Items { get; private set; }
+		public IPhoto[] Items { get; private set; }
 
-		public RotateMultiple (IPhoto [] items, RotateDirection direction)
+		public RotateMultiple (IPhoto[] items, RotateDirection direction)
 		{
 			this.direction = direction;
 			Items = items;
@@ -146,7 +146,7 @@ namespace FSpot
 				return false;
 
 			if (op == null)
-				op = new RotateOperation (Items [Index], direction);
+				op = new RotateOperation (Items[Index], direction);
 
 			if (op.Step ())
 				return true;
@@ -168,7 +168,7 @@ namespace FSpot
 			this.parent_window = parent_window;
 		}
 
-		public bool Execute (RotateDirection direction, IPhoto [] items)
+		public bool Execute (RotateDirection direction, IPhoto[] items)
 		{
 			ProgressDialog progress_dialog = null;
 
@@ -184,7 +184,7 @@ namespace FSpot
 
 			while (!done) {
 				if (progress_dialog != null && op.Index != -1 && index < items.Length)
-					if (progress_dialog.Update (string.Format (Strings.RotatingPhotoX, op.Items [op.Index].Name)))
+					if (progress_dialog.Update (string.Format (Strings.RotatingPhotoX, op.Items[op.Index].Name)))
 						break;
 
 				try {
@@ -197,11 +197,11 @@ namespace FSpot
 				} catch (GLib.GException) {
 					readonly_count++;
 				} catch (DirectoryNotFoundException e) {
-					RunGenericError (e, op.Items [op.Index].DefaultVersion.Uri.LocalPath, Strings.DirectoryNotFound);
+					RunGenericError (e, op.Items[op.Index].DefaultVersion.Uri.LocalPath, Strings.DirectoryNotFound);
 				} catch (FileNotFoundException e) {
-					RunGenericError (e, op.Items [op.Index].DefaultVersion.Uri.LocalPath, Strings.FileNotFonud);
+					RunGenericError (e, op.Items[op.Index].DefaultVersion.Uri.LocalPath, Strings.FileNotFonud);
 				} catch (Exception e) {
-					RunGenericError (e, op.Items [op.Index].DefaultVersion.Uri.LocalPath);
+					RunGenericError (e, op.Items[op.Index].DefaultVersion.Uri.LocalPath);
 				}
 				index++;
 			}

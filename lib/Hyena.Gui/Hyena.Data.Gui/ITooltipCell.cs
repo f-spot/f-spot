@@ -29,7 +29,7 @@
 namespace Hyena.Data.Gui
 {
 	public interface ITooltipCell
-    {
-        string GetTooltipMarkup (CellContext cellContext, double columnWidth);
-    }
+	{
+		string GetTooltipMarkup (CellContext cellContext, double columnWidth);
+	}
 }

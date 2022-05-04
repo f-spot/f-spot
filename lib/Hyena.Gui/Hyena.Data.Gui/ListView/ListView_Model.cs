@@ -33,199 +33,199 @@ using Gtk;
 
 namespace Hyena.Data.Gui
 {
-    public partial class ListView<T> : ListViewBase
-    {
-        #pragma warning disable 0067
-        public event EventHandler ModelChanged;
-        public event EventHandler ModelReloaded;
-        #pragma warning restore 0067
+	public partial class ListView<T> : ListViewBase
+	{
+#pragma warning disable 0067
+		public event EventHandler ModelChanged;
+		public event EventHandler ModelReloaded;
+#pragma warning restore 0067
 
-        public void SetModel (IListModel<T> model)
-        {
-            SetModel (model, 0.0);
-        }
+		public void SetModel (IListModel<T> model)
+		{
+			SetModel (model, 0.0);
+		}
 
-        public virtual void SetModel (IListModel<T> value, double vpos)
-        {
-            if (model == value) {
-                return;
-            }
+		public virtual void SetModel (IListModel<T> value, double vpos)
+		{
+			if (model == value) {
+				return;
+			}
 
-            if (model != null) {
-                model.Cleared -= OnModelClearedHandler;
-                model.Reloaded -= OnModelReloadedHandler;
-            }
+			if (model != null) {
+				model.Cleared -= OnModelClearedHandler;
+				model.Reloaded -= OnModelReloadedHandler;
+			}
 
-            model = value;
+			model = value;
 
-            if (model != null) {
-                model.Cleared += OnModelClearedHandler;
-                model.Reloaded += OnModelReloadedHandler;
-                selection_proxy.Selection = model.Selection;
-                IsEverReorderable = model.CanReorder;
-            }
+			if (model != null) {
+				model.Cleared += OnModelClearedHandler;
+				model.Reloaded += OnModelReloadedHandler;
+				selection_proxy.Selection = model.Selection;
+				IsEverReorderable = model.CanReorder;
+			}
 
-            if (ViewLayout != null) {
-                ViewLayout.Model = Model;
-            }
+			if (ViewLayout != null) {
+				ViewLayout.Model = Model;
+			}
 
-            ISortable sortable = model as ISortable;
-            if (sortable != null && ColumnController != null) {
-                ISortableColumn sort_column = ColumnController.SortColumn ?? ColumnController.DefaultSortColumn;
-                if (sort_column != null) {
-                    if (sortable.Sort (sort_column)) {
-                        model.Reload ();
-                    }
-                    RecalculateColumnSizes ();
-                    RegenerateColumnCache ();
-                    InvalidateHeader ();
-                    IsReorderable = sortable.SortColumn == null || sortable.SortColumn.SortType == SortType.None;
-                }
-            }
+			ISortable sortable = model as ISortable;
+			if (sortable != null && ColumnController != null) {
+				ISortableColumn sort_column = ColumnController.SortColumn ?? ColumnController.DefaultSortColumn;
+				if (sort_column != null) {
+					if (sortable.Sort (sort_column)) {
+						model.Reload ();
+					}
+					RecalculateColumnSizes ();
+					RegenerateColumnCache ();
+					InvalidateHeader ();
+					IsReorderable = sortable.SortColumn == null || sortable.SortColumn.SortType == SortType.None;
+				}
+			}
 
-            RefreshViewForModel (vpos);
+			RefreshViewForModel (vpos);
 
-            var handler = ModelChanged;
-            if (handler != null) {
-                handler (this, EventArgs.Empty);
-            }
-        }
+			var handler = ModelChanged;
+			if (handler != null) {
+				handler (this, EventArgs.Empty);
+			}
+		}
 
-        void RefreshViewForModel (double? vpos)
-        {
-            if (Model == null) {
-                UpdateAdjustments ();
-                QueueDraw ();
-                return;
-            }
+		void RefreshViewForModel (double? vpos)
+		{
+			if (Model == null) {
+				UpdateAdjustments ();
+				QueueDraw ();
+				return;
+			}
 
-            if (ViewLayout != null) {
-                ViewLayout.ModelUpdated ();
-            }
+			if (ViewLayout != null) {
+				ViewLayout.ModelUpdated ();
+			}
 
-            UpdateAdjustments ();
+			UpdateAdjustments ();
 
-            if (vpos != null) {
-                ScrollToY ((double) vpos);
-            } else if (Model.Count <= ItemsInView) {
-                // If our view fits all rows at once, make sure we're scrolled to the top
-                ScrollToY (0.0);
-            } else if (vadjustment != null) {
-                ScrollToY (vadjustment.Value);
-            }
+			if (vpos != null) {
+				ScrollToY ((double)vpos);
+			} else if (Model.Count <= ItemsInView) {
+				// If our view fits all rows at once, make sure we're scrolled to the top
+				ScrollToY (0.0);
+			} else if (vadjustment != null) {
+				ScrollToY (vadjustment.Value);
+			}
 
-            if (Parent is ScrolledWindow) {
-                Parent.QueueDraw ();
-            }
-        }
+			if (Parent is ScrolledWindow) {
+				Parent.QueueDraw ();
+			}
+		}
 
-        void OnModelClearedHandler (object o, EventArgs args)
-        {
-            OnModelCleared ();
-        }
+		void OnModelClearedHandler (object o, EventArgs args)
+		{
+			OnModelCleared ();
+		}
 
-        void OnModelReloadedHandler (object o, EventArgs args)
-        {
-            OnModelReloaded ();
+		void OnModelReloadedHandler (object o, EventArgs args)
+		{
+			OnModelReloaded ();
 
-            var handler = ModelReloaded;
-            if (handler != null) {
-                handler (this, EventArgs.Empty);
-            }
-        }
+			var handler = ModelReloaded;
+			if (handler != null) {
+				handler (this, EventArgs.Empty);
+			}
+		}
 
-        void OnColumnControllerUpdatedHandler (object o, EventArgs args)
-        {
-            OnColumnControllerUpdated ();
-        }
+		void OnColumnControllerUpdatedHandler (object o, EventArgs args)
+		{
+			OnColumnControllerUpdated ();
+		}
 
-        protected virtual void OnModelCleared ()
-        {
-            RefreshViewForModel (null);
-        }
+		protected virtual void OnModelCleared ()
+		{
+			RefreshViewForModel (null);
+		}
 
-        protected virtual void OnModelReloaded ()
-        {
-            RefreshViewForModel (null);
-        }
+		protected virtual void OnModelReloaded ()
+		{
+			RefreshViewForModel (null);
+		}
 
-        IListModel<T> model;
-        public virtual IListModel<T> Model {
-            get { return model; }
-        }
+		IListModel<T> model;
+		public virtual IListModel<T> Model {
+			get { return model; }
+		}
 
-        string row_opaque_property_name = "Sensitive";
-        PropertyInfo row_opaque_property_info;
-        bool row_opaque_property_invalid = false;
+		string row_opaque_property_name = "Sensitive";
+		PropertyInfo row_opaque_property_info;
+		bool row_opaque_property_invalid = false;
 
-        public string RowOpaquePropertyName {
-            get { return row_opaque_property_name; }
-            set {
-                if (value == row_opaque_property_name) {
-                    return;
-                }
+		public string RowOpaquePropertyName {
+			get { return row_opaque_property_name; }
+			set {
+				if (value == row_opaque_property_name) {
+					return;
+				}
 
-                row_opaque_property_name = value;
-                row_opaque_property_info = null;
-                row_opaque_property_invalid = false;
+				row_opaque_property_name = value;
+				row_opaque_property_info = null;
+				row_opaque_property_invalid = false;
 
-                InvalidateList ();
-            }
-        }
+				InvalidateList ();
+			}
+		}
 
-        bool IsRowOpaque (object item)
-        {
-            if (item == null || row_opaque_property_invalid) {
-                return true;
-            }
+		bool IsRowOpaque (object item)
+		{
+			if (item == null || row_opaque_property_invalid) {
+				return true;
+			}
 
-            if (row_opaque_property_info == null || row_opaque_property_info.ReflectedType != item.GetType ()) {
-                row_opaque_property_info = item.GetType ().GetProperty (row_opaque_property_name);
-                if (row_opaque_property_info == null || row_opaque_property_info.PropertyType != typeof (bool)) {
-                    row_opaque_property_info = null;
-                    row_opaque_property_invalid = true;
-                    return true;
-                }
-            }
+			if (row_opaque_property_info == null || row_opaque_property_info.ReflectedType != item.GetType ()) {
+				row_opaque_property_info = item.GetType ().GetProperty (row_opaque_property_name);
+				if (row_opaque_property_info == null || row_opaque_property_info.PropertyType != typeof (bool)) {
+					row_opaque_property_info = null;
+					row_opaque_property_invalid = true;
+					return true;
+				}
+			}
 
-            return (bool)row_opaque_property_info.GetValue (item, null);
-        }
+			return (bool)row_opaque_property_info.GetValue (item, null);
+		}
 
-        string row_bold_property_name = "IsBold";
-        PropertyInfo row_bold_property_info;
-        bool row_bold_property_invalid = false;
+		string row_bold_property_name = "IsBold";
+		PropertyInfo row_bold_property_info;
+		bool row_bold_property_invalid = false;
 
-        public string RowBoldPropertyName {
-            get { return row_bold_property_name; }
-            set {
-                if (value == row_bold_property_name) {
-                    return;
-                }
+		public string RowBoldPropertyName {
+			get { return row_bold_property_name; }
+			set {
+				if (value == row_bold_property_name) {
+					return;
+				}
 
-                row_bold_property_name = value;
-                row_bold_property_info = null;
-                row_bold_property_invalid = false;
+				row_bold_property_name = value;
+				row_bold_property_info = null;
+				row_bold_property_invalid = false;
 
-                InvalidateList ();
-            }
-        }
+				InvalidateList ();
+			}
+		}
 
-        bool IsRowBold (object item)
-        {
-            if (item == null || row_bold_property_invalid) {
-                return false;
-            }
+		bool IsRowBold (object item)
+		{
+			if (item == null || row_bold_property_invalid) {
+				return false;
+			}
 
-            if (row_bold_property_info == null || row_bold_property_info.ReflectedType != item.GetType ()) {
-                row_bold_property_info = item.GetType ().GetProperty (row_bold_property_name);
-                if (row_bold_property_info == null || row_bold_property_info.PropertyType != typeof (bool)) {
-                    row_bold_property_info = null;
-                    row_bold_property_invalid = true;
-                    return false;
-                }
-            }
+			if (row_bold_property_info == null || row_bold_property_info.ReflectedType != item.GetType ()) {
+				row_bold_property_info = item.GetType ().GetProperty (row_bold_property_name);
+				if (row_bold_property_info == null || row_bold_property_info.PropertyType != typeof (bool)) {
+					row_bold_property_info = null;
+					row_bold_property_invalid = true;
+					return false;
+				}
+			}
 
-            return (bool)row_bold_property_info.GetValue (item, null);
-        }
-    }
+			return (bool)row_bold_property_info.GetValue (item, null);
+		}
+	}
 }

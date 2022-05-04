@@ -70,37 +70,37 @@ namespace FSpot
 			: val;
 		}
 
-		public static byte [] GetBytes (uint val, bool little)
+		public static byte[] GetBytes (uint val, bool little)
 		{
 			val = Swap (val, little);
 			return System.BitConverter.GetBytes (val);
 		}
 
-		public static byte [] GetBytes (ushort val, bool little)
+		public static byte[] GetBytes (ushort val, bool little)
 		{
 			val = Swap (val, little);
 			return System.BitConverter.GetBytes (val);
 		}
 
-		public static byte [] GetBytes (ulong val, bool little)
+		public static byte[] GetBytes (ulong val, bool little)
 		{
 			val = Swap (val, little);
 			return System.BitConverter.GetBytes (val);
 		}
 
-		public static ushort ToUInt16 (byte [] data, int position, bool little)
+		public static ushort ToUInt16 (byte[] data, int position, bool little)
 		{
 			ushort val = System.BitConverter.ToUInt16 (data, position);
 			return Swap (val, little);
 		}
 
-		public static uint ToUInt32 (byte [] data, int position, bool little)
+		public static uint ToUInt32 (byte[] data, int position, bool little)
 		{
 			uint val = System.BitConverter.ToUInt32 (data, position);
 			return Swap (val, little);
 		}
 
-		public static float ToSingle (byte [] data, int position, bool little)
+		public static float ToSingle (byte[] data, int position, bool little)
 		{
 			float retval;
 			unsafe {
@@ -111,12 +111,12 @@ namespace FSpot
 			return retval;
 		}
 
-		public static int ToInt32 (byte [] data, int position, bool little)
+		public static int ToInt32 (byte[] data, int position, bool little)
 		{
 			return unchecked((int)ToUInt32 (data, position, little));
 		}
 
-		public static ulong ToUInt64 (byte [] data, int position, bool little)
+		public static ulong ToUInt64 (byte[] data, int position, bool little)
 		{
 			ulong val = System.BitConverter.ToUInt64 (data, position);
 			return Swap (val, little);

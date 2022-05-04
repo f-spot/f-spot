@@ -16,7 +16,7 @@ namespace FSpot.Cms
 		public double L;
 		public double C;
 		public double h;
-		
+
 		public ColorCIELab ToLab ()
 		{
 			NativeMethods.CmsLCh2Lab (out var lab, ref this);

@@ -33,46 +33,46 @@ using NUnit.Framework;
 namespace Hyena.Collections.Tests
 {
 	[TestFixture]
-    public class QueuePipelineTests
-    {
-        private class FakeElement : QueuePipelineElement<object>
-        {
-            protected override object ProcessItem (object item)
-            {
-                return null;
-            }
-        }
+	public class QueuePipelineTests
+	{
+		private class FakeElement : QueuePipelineElement<object>
+		{
+			protected override object ProcessItem (object item)
+			{
+				return null;
+			}
+		}
 
-        [Test]
-        public void BuildPipeline ()
-        {
-            BuildPipeline (1);
-            BuildPipeline (2);
-            BuildPipeline (3);
-            BuildPipeline (10);
-            BuildPipeline (1000);
-        }
+		[Test]
+		public void BuildPipeline ()
+		{
+			BuildPipeline (1);
+			BuildPipeline (2);
+			BuildPipeline (3);
+			BuildPipeline (10);
+			BuildPipeline (1000);
+		}
 
-        private void BuildPipeline (int count)
-        {
-            List<FakeElement> elements = new List<FakeElement> ();
-            for (int i = 0; i < count; i++) {
-                elements.Add (new FakeElement ());
-            }
+		private void BuildPipeline (int count)
+		{
+			List<FakeElement> elements = new List<FakeElement> ();
+			for (int i = 0; i < count; i++) {
+				elements.Add (new FakeElement ());
+			}
 
-            QueuePipeline<object> qp = new QueuePipeline<object> ();
-            foreach (FakeElement s in elements) {
-                qp.AddElement (s);
-            }
+			QueuePipeline<object> qp = new QueuePipeline<object> ();
+			foreach (FakeElement s in elements) {
+				qp.AddElement (s);
+			}
 
-            Assert.AreEqual (elements[0], qp.FirstElement);
+			Assert.AreEqual (elements[0], qp.FirstElement);
 
-            int index = 0;
-            FakeElement element = (FakeElement)qp.FirstElement;
-            while (element != null) {
-                Assert.AreEqual (elements[index++], element);
-                element = (FakeElement)element.NextElement;
-            }
-        }
-    }
+			int index = 0;
+			FakeElement element = (FakeElement)qp.FirstElement;
+			while (element != null) {
+				Assert.AreEqual (elements[index++], element);
+				element = (FakeElement)element.NextElement;
+			}
+		}
+	}
 }

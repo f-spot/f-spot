@@ -31,10 +31,10 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Gtk;
-
 using FSpot.Core;
 using FSpot.Database;
+
+using Gtk;
 
 namespace FSpot.UI.Dialog
 {
@@ -56,7 +56,7 @@ namespace FSpot.UI.Dialog
 		public new Tag[] Run ()
 		{
 			int response = base.Run ();
-			if ((ResponseType) response == ResponseType.Ok)
+			if ((ResponseType)response == ResponseType.Ok)
 				return tag_selection_widget.TagHighlight;
 
 			return null;

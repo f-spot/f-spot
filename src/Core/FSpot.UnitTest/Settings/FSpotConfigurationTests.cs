@@ -26,11 +26,11 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using FSpot.Settings;
+
 using NUnit.Framework;
 
 using Shouldly;
-
-using FSpot.Settings;
 
 namespace FSpot.UnitTest.Settings
 {

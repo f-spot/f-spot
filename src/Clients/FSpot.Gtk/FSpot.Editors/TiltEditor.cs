@@ -31,14 +31,16 @@
 
 using System;
 
-using Gdk;
-using Gtk;
 using Cairo;
 
+using FSpot.Resources.Lang;
 using FSpot.Widgets;
 
+using Gdk;
+
+using Gtk;
+
 using Pinta.Core;
-using FSpot.Resources.Lang;
 
 namespace FSpot.Editors
 {
@@ -52,7 +54,7 @@ namespace FSpot.Editors
 		{
 			// FIXME: need tooltip Catalog.GetString ("Adjust the angle of the image to straighten the horizon")
 			HasSettings = true;
-        }
+		}
 
 		public override Widget ConfigurationWidget ()
 		{
@@ -85,12 +87,12 @@ namespace FSpot.Editors
 						ctx.Matrix = info.Fill (info.Bounds, angle);
 						using (SurfacePattern p = new SurfacePattern (info.Surface)) {
 							if (fast)
-								p.Filter =  Filter.Fast;
-							ctx.SetSource(p);
+								p.Filter = Filter.Fast;
+							ctx.SetSource (p);
 							ctx.Paint ();
 						}
-						result = surface.ToPixbuf();
-                        surface.Flush ();
+						result = surface.ToPixbuf ();
+						surface.Flush ();
 					}
 				}
 			}

@@ -11,11 +11,12 @@
 
 using System.Collections.Generic;
 
+using FSpot.Resources.Lang;
+using FSpot.Utils;
+
 using Gtk;
 
 using Hyena;
-using FSpot.Utils;
-using FSpot.Resources.Lang;
 
 namespace FSpot.UI.Dialog
 {

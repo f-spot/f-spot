@@ -41,7 +41,7 @@ namespace FSpot.Core
 			list = new List<IPhoto> (photos);
 		}
 
-		public PhotoList (params IPhoto[] photos) : this(photos as IEnumerable<IPhoto>)
+		public PhotoList (params IPhoto[] photos) : this (photos as IEnumerable<IPhoto>)
 		{
 		}
 

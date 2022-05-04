@@ -31,13 +31,14 @@
 
 using Cairo;
 
-using Gdk;
-using Gtk;
-
+using FSpot.Resources.Lang;
 using FSpot.Widgets;
 
+using Gdk;
+
+using Gtk;
+
 using Pinta.Core;
-using FSpot.Resources.Lang;
 
 namespace FSpot.Editors
 {
@@ -87,7 +88,7 @@ namespace FSpot.Editors
 							soft.Apply (ctx, info.Bounds);
 						}
 
-                        result = surface.ToPixbuf();
+						result = surface.ToPixbuf ();
 						surface.Flush ();
 					}
 				}

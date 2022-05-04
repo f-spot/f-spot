@@ -85,7 +85,8 @@ namespace FSpot.Editors
 		}
 
 
-		protected void LoadPhoto (Photo photo, out Pixbuf photo_pixbuf, out Cms.Profile photo_profile) {
+		protected void LoadPhoto (Photo photo, out Pixbuf photo_pixbuf, out Cms.Profile photo_profile)
+		{
 			// FIXME: We might get this value from the PhotoImageView.
 			using (var img = App.Instance.Container.Resolve<IImageFileFactory> ().Create (photo.DefaultVersion.Uri)) {
 				photo_pixbuf = img.Load ();
@@ -165,8 +166,7 @@ namespace FSpot.Editors
 		}
 
 		bool has_settings;
-		public bool HasSettings
-		{
+		public bool HasSettings {
 			get { return has_settings; }
 			protected set { has_settings = value; }
 		}
@@ -219,12 +219,12 @@ namespace FSpot.Editors
 				width = iwidth;
 				height = iheight;
 			} else {
-				double wratio = (double) iwidth / awidth;
-				double hratio = (double) iheight / aheight;
+				double wratio = (double)iwidth / awidth;
+				double hratio = (double)iheight / aheight;
 
 				double ratio = Math.Max (wratio, hratio);
-				width = (int) (iwidth / ratio);
-				height = (int) (iheight / ratio);
+				width = (int)(iwidth / ratio);
+				height = (int)(iheight / ratio);
 			}
 			//Logger.Log.Debug ("Preview size: Allocation: {0}x{1}, Input: {2}x{3}, Result: {4}x{5}", awidth, aheight, iwidth, iheight, width, height);
 		}

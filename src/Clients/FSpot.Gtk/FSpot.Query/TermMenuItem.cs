@@ -42,7 +42,7 @@ namespace FSpot.Query
 {
 	public static class TermMenuItem
 	{
-		public static void Create (Tag [] tags, Gtk.Menu menu)
+		public static void Create (Tag[] tags, Gtk.Menu menu)
 		{
 			var findWithString = Strings.FindWithMnemonic;
 			var item = new Gtk.MenuItem (string.Format (findWithString, tags.Length));
@@ -57,7 +57,7 @@ namespace FSpot.Query
 			item.Show ();
 		}
 
-		public static Gtk.Menu GetSubmenu (Tag [] tags)
+		public static Gtk.Menu GetSubmenu (Tag[] tags)
 		{
 			Tag single_tag = null;
 			if (tags != null && tags.Length == 1)

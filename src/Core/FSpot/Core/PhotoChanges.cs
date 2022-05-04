@@ -44,7 +44,7 @@ namespace FSpot.Core
 		}
 
 		List<Tag> tags_added = null;
-		public Tag [] TagsAdded {
+		public Tag[] TagsAdded {
 			get {
 				if (tags_added == null)
 					return null;
@@ -69,7 +69,7 @@ namespace FSpot.Core
 		}
 
 		List<Tag> tags_removed = null;
-		public Tag [] TagsRemoved {
+		public Tag[] TagsRemoved {
 			get {
 				if (tags_removed == null)
 					return null;
@@ -94,7 +94,7 @@ namespace FSpot.Core
 
 
 		List<uint> versions_added = null;
-		public uint [] VersionsAdded {
+		public uint[] VersionsAdded {
 			get {
 				if (versions_added == null)
 					return null;
@@ -116,7 +116,7 @@ namespace FSpot.Core
 		}
 
 		List<uint> versions_removed = null;
-		public uint [] VersionsRemoved {
+		public uint[] VersionsRemoved {
 			get {
 				if (versions_removed == null)
 					return null;
@@ -133,7 +133,7 @@ namespace FSpot.Core
 		public void RemoveVersion (uint v)
 		{
 			if (versions_removed == null)
-				versions_removed= new List<uint> ();
+				versions_removed = new List<uint> ();
 			if (versions_added != null)
 				versions_added.Remove (v);
 			if (versions_modified != null)
@@ -143,7 +143,7 @@ namespace FSpot.Core
 
 
 		List<uint> versions_modified = null;
-		public uint [] VersionsModified {
+		public uint[] VersionsModified {
 			get {
 				if (versions_modified == null)
 					return null;

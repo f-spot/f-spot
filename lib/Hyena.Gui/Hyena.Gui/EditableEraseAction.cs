@@ -33,68 +33,68 @@ using Gtk;
 namespace Hyena.Gui
 {
 	class EditableEraseAction : IUndoAction
-    {
-        Editable editable;
-        string text;
-        int start;
-        int end;
-        bool is_forward;
-        bool is_cut;
+	{
+		Editable editable;
+		string text;
+		int start;
+		int end;
+		bool is_forward;
+		bool is_cut;
 
-        public EditableEraseAction (Editable editable, int start, int end)
-        {
-            this.editable = editable;
-            this.text = editable.GetChars (start, end);
-            this.start = start;
-            this.end = end;
-            this.is_cut = end - start > 1;
-            this.is_forward = editable.Position < start;
-        }
+		public EditableEraseAction (Editable editable, int start, int end)
+		{
+			this.editable = editable;
+			this.text = editable.GetChars (start, end);
+			this.start = start;
+			this.end = end;
+			this.is_cut = end - start > 1;
+			this.is_forward = editable.Position < start;
+		}
 
-        public void Undo ()
-        {
-            int start_r = start;
-            editable.InsertText (text, ref start_r);
-            editable.Position = is_forward ? start_r : end;
-        }
+		public void Undo ()
+		{
+			int start_r = start;
+			editable.InsertText (text, ref start_r);
+			editable.Position = is_forward ? start_r : end;
+		}
 
-        public void Redo ()
-        {
-            editable.DeleteText (start, end);
-            editable.Position = start;
-        }
+		public void Redo ()
+		{
+			editable.DeleteText (start, end);
+			editable.Position = start;
+		}
 
-        public void Merge (IUndoAction action)
-        {
-            EditableEraseAction erase = (EditableEraseAction)action;
-            if (start == erase.start) {
-                text += erase.text;
-                end += erase.end - erase.start;
-            } else {
-                text = erase.text + text;
-                start = erase.start;
-            }
-        }
+		public void Merge (IUndoAction action)
+		{
+			EditableEraseAction erase = (EditableEraseAction)action;
+			if (start == erase.start) {
+				text += erase.text;
+				end += erase.end - erase.start;
+			} else {
+				text = erase.text + text;
+				start = erase.start;
+			}
+		}
 
-        public bool CanMerge (IUndoAction action)
-        {
-            EditableEraseAction erase = action as EditableEraseAction;
-            if (erase == null) {
-                return false;
-            }
+		public bool CanMerge (IUndoAction action)
+		{
+			EditableEraseAction erase = action as EditableEraseAction;
+			if (erase == null) {
+				return false;
+			}
 
-            return !(
-                is_cut || erase.is_cut ||                          // don't group separate text cuts
-                start != (is_forward ? erase.start : erase.end) || // must meet eachother
-                is_forward != erase.is_forward ||                  // don't group deletes with backspaces
-                text[0] == '\n' ||                                 // don't group more than one line (inclusive)
-                erase.text[0] == ' ' || erase.text[0] == '\t'      // don't group more than one word (exclusive)
-            );
-        }
+			return !(
+				is_cut || erase.is_cut ||                          // don't group separate text cuts
+				start != (is_forward ? erase.start : erase.end) || // must meet eachother
+				is_forward != erase.is_forward ||                  // don't group deletes with backspaces
+				text[0] == '\n' ||                                 // don't group more than one line (inclusive)
+				erase.text[0] == ' ' || erase.text[0] == '\t'      // don't group more than one word (exclusive)
+			);
+		}
 
-        public override string ToString ()
-        {
-            return String.Format ("Erased: [{0}] ({1},{2})", text, start, end);
-        }
-    }
+		public override string ToString ()
+		{
+			return String.Format ("Erased: [{0}] ({1},{2})", text, start, end);
+		}
+	}
 }

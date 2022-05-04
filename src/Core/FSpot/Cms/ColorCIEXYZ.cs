@@ -19,7 +19,7 @@ namespace FSpot.Cms
 		public double x;
 		public double y;
 		public double z;
-		
+
 		public ColorCIEXYZ (double x, double y, double z)
 		{
 			this.x = x;
@@ -41,18 +41,18 @@ namespace FSpot.Cms
 			return lab;
 		}
 
-		public static ColorCIEXYZ FromPtr(IntPtr ptr)
+		public static ColorCIEXYZ FromPtr (IntPtr ptr)
 		{
 			if (ptr == IntPtr.Zero)
 				throw new ArgumentNullException (nameof (ptr), "lcms Color argument was null");
 
-			return (ColorCIEXYZ) Marshal.PtrToStructure (ptr, typeof (ColorCIEXYZ));
+			return (ColorCIEXYZ)Marshal.PtrToStructure (ptr, typeof (ColorCIEXYZ));
 		}
 
 		public static ColorCIEXYZ D50 {
 			get {
 				IntPtr ptr = NativeMethods.CmsD50XYZ ();
-				return FromPtr(ptr);
+				return FromPtr (ptr);
 			}
 		}
 
@@ -67,7 +67,8 @@ namespace FSpot.Cms
 		}
 	}
 
-	public struct ColorCIEXYZTriple {
+	public struct ColorCIEXYZTriple
+	{
 		public ColorCIEXYZ Red;
 		public ColorCIEXYZ Blue;
 		public ColorCIEXYZ Green;

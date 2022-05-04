@@ -30,9 +30,12 @@
 //
 
 using System;
+
 using FSpot.FileSystem;
 using FSpot.Imaging;
+
 using Gdk;
+
 using Hyena;
 
 
@@ -67,8 +70,7 @@ namespace FSpot.Thumbnail
 			try {
 				var imageFile = factory.Create (fileUri);
 				return CreateThumbnail (thumbnailUri, size, imageFile);
-			}
-			catch {
+			} catch {
 				return false;
 			}
 		}
@@ -100,8 +102,8 @@ namespace FSpot.Thumbnail
 			var thumb_pixbuf = pixbuf.ScaleSimple (target_x, target_y, InterpType.Bilinear);
 			var mtime = fileSystem.File.GetMTime (imageFile.Uri).ToString ();
 			thumb_pixbuf.Savev (thumbnailUri.LocalPath, "png",
-				new string [] { ThumbnailService.ThumbUriOpt, ThumbnailService.ThumbMTimeOpt, null },
-				new string [] { imageFile.Uri, mtime });
+				new string[] { ThumbnailService.ThumbUriOpt, ThumbnailService.ThumbMTimeOpt, null },
+				new string[] { imageFile.Uri, mtime });
 
 			pixbuf.Dispose ();
 			thumb_pixbuf.Dispose ();

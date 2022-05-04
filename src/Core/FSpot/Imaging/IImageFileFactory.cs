@@ -1,4 +1,4 @@
-﻿//
+//
 // IImageFileFactory.cs
 //
 // Author:

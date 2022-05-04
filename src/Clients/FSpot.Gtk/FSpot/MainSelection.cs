@@ -30,10 +30,10 @@
 namespace FSpot
 {
 	public class MainSelection
-    {
-        public MainSelection ()
-        {
-        }
-    }
+	{
+		public MainSelection ()
+		{
+		}
+	}
 }
 

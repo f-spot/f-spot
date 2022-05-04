@@ -29,7 +29,8 @@
 
 namespace FSpot.Bling
 {
-	public enum EasingMode {
+	public enum EasingMode
+	{
 		EaseIn = 0,
 		EaseOut,
 		EaseInOut,

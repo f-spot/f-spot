@@ -113,7 +113,7 @@ namespace FSpot.Exporters.Gallery
 		{
 			bool retVal = true;
 			//Console.WriteLine ("^^^^^^^Checking IsConnected");
-			foreach (Cookie cookie in cookies.GetCookies(Uri)) {
+			foreach (Cookie cookie in cookies.GetCookies (Uri)) {
 				bool isExpired = cookie.Expired;
 				//Console.WriteLine (cookie.Name + " " + (isExpired ? "expired" : "valid"));
 				if (isExpired)
@@ -152,9 +152,9 @@ namespace FSpot.Exporters.Gallery
 			return reader;
 		}
 
-		protected string [] GetNextLine (StreamReader reader)
+		protected string[] GetNextLine (StreamReader reader)
 		{
-			char [] value_split = new char[1] {'='};
+			char[] value_split = new char[1] { '=' };
 			bool haveLine = false;
 			string[] array = null;
 			while (!haveLine) {
@@ -172,14 +172,14 @@ namespace FSpot.Exporters.Gallery
 
 		private bool LineIgnored (string[] line)
 		{
-			if (line [0].StartsWith ("debug") || line [0].StartsWith ("can_create_root"))
+			if (line[0].StartsWith ("debug") || line[0].StartsWith ("can_create_root"))
 				return true;
 			return false;
 		}
 
 		protected bool ParseLogin (HttpWebResponse response)
 		{
-			string [] data;
+			string[] data;
 			StreamReader reader = null;
 			ResultCode status = ResultCode.UnknownResponse;
 			string status_text = "Error: Unable to parse server response";
@@ -187,15 +187,15 @@ namespace FSpot.Exporters.Gallery
 			try {
 				reader = findResponse (response);
 				while ((data = GetNextLine (reader)) != null) {
-					if (data [0] == "status")
-						status = (ResultCode)int.Parse (data [1]);
-					else if (data [0].StartsWith ("status_text")) {
-						status_text = data [1];
+					if (data[0] == "status")
+						status = (ResultCode)int.Parse (data[1]);
+					else if (data[0].StartsWith ("status_text")) {
+						status_text = data[1];
 						Logger.Log.Debug ($"StatusText : {data[1]}");
-					} else if (data [0].StartsWith ("server_version")) {
+					} else if (data[0].StartsWith ("server_version")) {
 						//FIXME we should use the to determine what capabilities the server has
-					} else if (data [0].StartsWith ("auth_token"))
-						AuthToken = data [1];
+					} else if (data[0].StartsWith ("auth_token"))
+						AuthToken = data[1];
 					else
 						Logger.Log.Debug ($"Unparsed Line in ParseLogin(): {data[0]}={data[1]}");
 				}
@@ -216,7 +216,7 @@ namespace FSpot.Exporters.Gallery
 		public List<Album> ParseFetchAlbums (HttpWebResponse response)
 		{
 			//Console.WriteLine ("in ParseFetchAlbums()");
-			string [] data;
+			string[] data;
 			StreamReader reader = null;
 			ResultCode status = ResultCode.UnknownResponse;
 			string status_text = "Error: Unable to parse server response";
@@ -227,59 +227,59 @@ namespace FSpot.Exporters.Gallery
 				reader = findResponse (response);
 				while ((data = GetNextLine (reader)) != null) {
 					//Console.WriteLine ("Parsing Line: {0}={1}", data[0], data[1]);
-					if (data [0] == "status")
-						status = (ResultCode)int.Parse (data [1]);
-					else if (data [0].StartsWith ("status_text")) {
-						status_text = data [1];
+					if (data[0] == "status")
+						status = (ResultCode)int.Parse (data[1]);
+					else if (data[0].StartsWith ("status_text")) {
+						status_text = data[1];
 						Logger.Log.Debug ($"StatusText : {data[1]}");
-					} else if (data [0].StartsWith ("album.name")) {
+					} else if (data[0].StartsWith ("album.name")) {
 						//this is the URL name
 						int ref_num = -1;
 						if (this.Version == GalleryVersion.Version1) {
-							string [] segments = data [0].Split (new char[1]{'.'});
-							ref_num = int.Parse (segments [segments.Length - 1]);
+							string[] segments = data[0].Split (new char[1] { '.' });
+							ref_num = int.Parse (segments[segments.Length - 1]);
 						} else
-							ref_num = int.Parse (data [1]);
-						current_album = new Album (this, data [1], ref_num);
+							ref_num = int.Parse (data[1]);
+						current_album = new Album (this, data[1], ref_num);
 						Albums.Add (current_album);
 						//Console.WriteLine ("current_album: " + data[1]);
-					} else if (data [0].StartsWith ("album.title"))
+					} else if (data[0].StartsWith ("album.title"))
 						//this is the display name
-						current_album.Title = data [1];
-					else if (data [0].StartsWith ("album.summary"))
-						current_album.Summary = data [1];
-					else if (data [0].StartsWith ("album.parent"))
+						current_album.Title = data[1];
+					else if (data[0].StartsWith ("album.summary"))
+						current_album.Summary = data[1];
+					else if (data[0].StartsWith ("album.parent"))
 						//FetchAlbums and G2 FetchAlbumsPrune return ints
 						//G1 FetchAlbumsPrune returns album names (and 0 for root albums)
 						try {
-							current_album.ParentRefNum = int.Parse (data [1]);
+							current_album.ParentRefNum = int.Parse (data[1]);
 						} catch (System.FormatException) {
-							current_album.ParentRefNum = LookupAlbum (data [1]).RefNum;
+							current_album.ParentRefNum = LookupAlbum (data[1]).RefNum;
 						}
-						//Console.WriteLine ("album.parent data[1]: " + data[1]);
-					else if (data [0].StartsWith ("album.resize_size"))
-						current_album.ResizeSize = int.Parse (data [1]);
-					else if (data [0].StartsWith ("album.thumb_size"))
-						current_album.ThumbSize = int.Parse (data [1]);
-					else if (data [0].StartsWith ("album.info.extrafields")) {
+					//Console.WriteLine ("album.parent data[1]: " + data[1]);
+					else if (data[0].StartsWith ("album.resize_size"))
+						current_album.ResizeSize = int.Parse (data[1]);
+					else if (data[0].StartsWith ("album.thumb_size"))
+						current_album.ThumbSize = int.Parse (data[1]);
+					else if (data[0].StartsWith ("album.info.extrafields")) {
 						//ignore, this is the album description
-					} else if (data [0].StartsWith ("album.perms.add") && data [1] == "true")
+					} else if (data[0].StartsWith ("album.perms.add") && data[1] == "true")
 						current_album.Perms |= AlbumPermission.Add;
-					else if (data [0].StartsWith ("album.perms.write") && data [1] == "true")
+					else if (data[0].StartsWith ("album.perms.write") && data[1] == "true")
 						current_album.Perms |= AlbumPermission.Write;
-					else if (data [0].StartsWith ("album.perms.del_item") && data [1] == "true")
+					else if (data[0].StartsWith ("album.perms.del_item") && data[1] == "true")
 						current_album.Perms |= AlbumPermission.Delete;
-					else if (data [0].StartsWith ("album.perms.del_alb") && data [1] == "true")
+					else if (data[0].StartsWith ("album.perms.del_alb") && data[1] == "true")
 						current_album.Perms |= AlbumPermission.DeleteAlbum;
-					else if (data [0].StartsWith ("album.perms.create_sub") && data [1] == "true")
+					else if (data[0].StartsWith ("album.perms.create_sub") && data[1] == "true")
 						current_album.Perms |= AlbumPermission.CreateSubAlbum;
-					else if (data [0].StartsWith ("album_count"))
-					if (Albums.Count != int.Parse (data [1]))
-						Logger.Log.Warning ("Parsed album count does not match album_count.  Something is amiss");
-					else if (data [0].StartsWith ("auth_token"))
-						AuthToken = data [1];
-					else
-						Logger.Log.Debug ($"Unparsed Line in ParseFetchAlbums(): {data[0]}={data[1]}");
+					else if (data[0].StartsWith ("album_count"))
+						if (Albums.Count != int.Parse (data[1]))
+							Logger.Log.Warning ("Parsed album count does not match album_count.  Something is amiss");
+						else if (data[0].StartsWith ("auth_token"))
+							AuthToken = data[1];
+						else
+							Logger.Log.Debug ($"Unparsed Line in ParseFetchAlbums(): {data[0]}={data[1]}");
 
 				}
 				//Console.WriteLine ("Found: {0} cookies", response.Cookies.Count);
@@ -299,7 +299,7 @@ namespace FSpot.Exporters.Gallery
 
 		public int ParseAddItem (HttpWebResponse response)
 		{
-			string [] data;
+			string[] data;
 			StreamReader reader = null;
 			ResultCode status = ResultCode.UnknownResponse;
 			string status_text = "Error: Unable to parse server response";
@@ -307,15 +307,15 @@ namespace FSpot.Exporters.Gallery
 			try {
 				reader = findResponse (response);
 				while ((data = GetNextLine (reader)) != null) {
-					if (data [0] == "status")
-						status = (ResultCode)int.Parse (data [1]);
-					else if (data [0].StartsWith ("status_text")) {
-						status_text = data [1];
+					if (data[0] == "status")
+						status = (ResultCode)int.Parse (data[1]);
+					else if (data[0].StartsWith ("status_text")) {
+						status_text = data[1];
 						Logger.Log.Debug ($"StatusText : {data[1]}");
-					} else if (data [0].StartsWith ("auth_token"))
-						AuthToken = data [1];
-					else if (data [0].StartsWith ("item_name"))
-						item_id = int.Parse (data [1]);
+					} else if (data[0].StartsWith ("auth_token"))
+						AuthToken = data[1];
+					else if (data[0].StartsWith ("item_name"))
+						item_id = int.Parse (data[1]);
 					else
 						Logger.Log.Debug ($"Unparsed Line in ParseAddItem(): {data[0]}={data[1]}");
 				}
@@ -383,20 +383,20 @@ namespace FSpot.Exporters.Gallery
 
 		private bool ParseBasic (HttpWebResponse response)
 		{
-			string [] data;
+			string[] data;
 			StreamReader reader = null;
 			ResultCode status = ResultCode.UnknownResponse;
 			string status_text = "Error: Unable to parse server response";
 			try {
 				reader = findResponse (response);
 				while ((data = GetNextLine (reader)) != null) {
-					if (data [0] == "status")
-						status = (ResultCode)int.Parse (data [1]);
-					else if (data [0].StartsWith ("status_text")) {
-						status_text = data [1];
+					if (data[0] == "status")
+						status = (ResultCode)int.Parse (data[1]);
+					else if (data[0].StartsWith ("status_text")) {
+						status_text = data[1];
 						Logger.Log.Debug ($"StatusText : {data[1]}");
-					} else if (data [0].StartsWith ("auth_token"))
-						AuthToken = data [1];
+					} else if (data[0].StartsWith ("auth_token"))
+						AuthToken = data[1];
 					else
 						Logger.Log.Debug ($"Unparsed Line in ParseBasic(): {data[0]}={data[1]}");
 				}
@@ -458,11 +458,11 @@ namespace FSpot.Exporters.Gallery
 			Logger.Log.Debug ($"{e.Message} : {e.ResponseText} ({e.Status})");
 			HigMessageDialog md =
 				new HigMessageDialog (d,
-						      Gtk.DialogFlags.Modal |
+							  Gtk.DialogFlags.Modal |
 					Gtk.DialogFlags.DestroyWithParent,
-						      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
+							  Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
 							  Strings.ErrorWhileCreatingNewAlbum,
-						      string.Format (Strings.FollowingErrorEncounteredAttemptingToPerformRequestedOperation, e.Message, e.Status));
+							  string.Format (Strings.FollowingErrorEncounteredAttemptingToPerformRequestedOperation, e.Message, e.Status));
 			md.Run ();
 			md.Destroy ();
 		}

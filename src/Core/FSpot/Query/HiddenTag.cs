@@ -43,7 +43,7 @@ namespace FSpot.Query
 		static HiddenTag hide_hidden_tag;
 		readonly bool show_hidden;
 
-		public static Tag Tag { get; set;}
+		public static Tag Tag { get; set; }
 
 		public static HiddenTag ShowHiddenTag {
 			get {

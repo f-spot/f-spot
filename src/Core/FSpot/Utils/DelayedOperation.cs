@@ -31,73 +31,73 @@ using System;
 
 namespace FSpot.Utils
 {
-    public class DelayedOperation
-    {
-        object syncHandle = new object ();
+	public class DelayedOperation
+	{
+		object syncHandle = new object ();
 
-        public DelayedOperation (uint interval, GLib.IdleHandler op)
-        {
-            this.op = op;
-            this.interval = interval;
-        }
+		public DelayedOperation (uint interval, GLib.IdleHandler op)
+		{
+			this.op = op;
+			this.interval = interval;
+		}
 
-        public DelayedOperation (GLib.IdleHandler op)
-        {
-            this.op = op;
-        }
+		public DelayedOperation (GLib.IdleHandler op)
+		{
+			this.op = op;
+		}
 
-        uint source;
-        uint interval;
+		uint source;
+		uint interval;
 
-        GLib.IdleHandler op;
+		GLib.IdleHandler op;
 
-        bool HandleOperation ()
-        {
-            lock (syncHandle) {
-                bool runagain = op ();
-                if (!runagain)
-                    source = 0;
-                
-                return runagain;
-            }
-        }
+		bool HandleOperation ()
+		{
+			lock (syncHandle) {
+				bool runagain = op ();
+				if (!runagain)
+					source = 0;
 
-        public void Start ()
-        {
-            lock (syncHandle) {
-                if (IsPending)
-                    return;
-                
-                if (interval != 0)
-                    source = GLib.Timeout.Add (interval, new GLib.TimeoutHandler (HandleOperation));
-                else
-                    source = GLib.Idle.Add (new GLib.IdleHandler (HandleOperation));
-            }
-        }
+				return runagain;
+			}
+		}
 
-        public bool IsPending => (source != 0);
+		public void Start ()
+		{
+			lock (syncHandle) {
+				if (IsPending)
+					return;
 
-        public void Connect (Gtk.Object obj)
-        {
-            if (obj == null)
-                throw new ArgumentNullException (nameof (obj));
-            obj.Destroyed += (s, e) => Stop();
-        }
+				if (interval != 0)
+					source = GLib.Timeout.Add (interval, new GLib.TimeoutHandler (HandleOperation));
+				else
+					source = GLib.Idle.Add (new GLib.IdleHandler (HandleOperation));
+			}
+		}
 
-        public void Stop ()
-        {
-            lock (syncHandle) {
-                if (IsPending) {
-                    GLib.Source.Remove (source);
-                    source = 0;
-                }
-            }
-        }
+		public bool IsPending => (source != 0);
 
-        public void Restart ()
-        {
-            Stop ();
-            Start ();
-        }
-    }
+		public void Connect (Gtk.Object obj)
+		{
+			if (obj == null)
+				throw new ArgumentNullException (nameof (obj));
+			obj.Destroyed += (s, e) => Stop ();
+		}
+
+		public void Stop ()
+		{
+			lock (syncHandle) {
+				if (IsPending) {
+					GLib.Source.Remove (source);
+					source = 0;
+				}
+			}
+		}
+
+		public void Restart ()
+		{
+			Stop ();
+			Start ();
+		}
+	}
 }

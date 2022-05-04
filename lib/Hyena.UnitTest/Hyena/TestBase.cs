@@ -27,8 +27,8 @@
 //
 
 using System;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 
 using NUnit.Framework;
@@ -36,64 +36,62 @@ using NUnit.Framework;
 namespace Hyena.Tests
 {
 	public struct TransformPair<F, T>
-    {
-        public F From;
-        public T To;
+	{
+		public F From;
+		public T To;
 
-        public TransformPair (F from, T to)
-        {
-            From = from;
-            To = to;
-        }
+		public TransformPair (F from, T to)
+		{
+			From = from;
+			To = to;
+		}
 
-        public static TransformPair<F, T> [] GetFrom (params object [] objects)
-        {
-            TransformPair<F, T> [] pairs = new TransformPair<F, T> [objects.Length / 2];
-            for (int i = 0; i < objects.Length; i += 2) {
-                pairs[i/2] = new TransformPair<F, T> ((F)objects[i], (T)objects[i+1]);
-            }
-            return pairs;
-        }
+		public static TransformPair<F, T>[] GetFrom (params object[] objects)
+		{
+			TransformPair<F, T>[] pairs = new TransformPair<F, T>[objects.Length / 2];
+			for (int i = 0; i < objects.Length; i += 2) {
+				pairs[i / 2] = new TransformPair<F, T> ((F)objects[i], (T)objects[i + 1]);
+			}
+			return pairs;
+		}
 
-        public override string ToString ()
-        {
-            return From.ToString ();
-        }
-    }
+		public override string ToString ()
+		{
+			return From.ToString ();
+		}
+	}
 
-    public delegate To Transform<F, To> (F from);
+	public delegate To Transform<F, To> (F from);
 
-    public abstract class TestBase
-    {
-        private static string bin_dir;
-        public static string BinDir {
-            get { return bin_dir ?? (bin_dir = Path.GetDirectoryName (Assembly.GetExecutingAssembly ().Location)); }
-        }
+	public abstract class TestBase
+	{
+		private static string bin_dir;
+		public static string BinDir {
+			get { return bin_dir ?? (bin_dir = Path.GetDirectoryName (Assembly.GetExecutingAssembly ().Location)); }
+		}
 
-        private static string tests_dir;
-        public static string TestsDir {
-            get { return tests_dir ?? (tests_dir = Path.Combine (Path.GetDirectoryName (BinDir), "tests")); }
-        }
+		private static string tests_dir;
+		public static string TestsDir {
+			get { return tests_dir ?? (tests_dir = Path.Combine (Path.GetDirectoryName (BinDir), "tests")); }
+		}
 
-        public static void AssertForEach<T> (IEnumerable<T> objects, Action<T> runner)
-        {
-            System.Text.StringBuilder sb = new System.Text.StringBuilder ();
-            foreach (T o in objects) {
-                try { runner (o); }
-                catch (AssertionException e) { sb.AppendFormat ("Failed assertion on {0}: {1}\n", o, e.Message); }
-                catch (Exception e) { sb.AppendFormat ("\nCaught exception on {0}: {1}\n", o, e.ToString ()); }
-            }
+		public static void AssertForEach<T> (IEnumerable<T> objects, Action<T> runner)
+		{
+			System.Text.StringBuilder sb = new System.Text.StringBuilder ();
+			foreach (T o in objects) {
+				try { runner (o); } catch (AssertionException e) { sb.AppendFormat ("Failed assertion on {0}: {1}\n", o, e.Message); } catch (Exception e) { sb.AppendFormat ("\nCaught exception on {0}: {1}\n", o, e.ToString ()); }
+			}
 
-            if (sb.Length > 0)
-                Assert.Fail ("\n" + sb.ToString ());
-        }
+			if (sb.Length > 0)
+				Assert.Fail ("\n" + sb.ToString ());
+		}
 
-        // Fails to compile, causes SIGABRT in gmcs; boo
-        /*public static void AssertTransformsEach<A, B> (IEnumerable<TransformPair<A, B>> pairs, Transform<A, B> transform)
+		// Fails to compile, causes SIGABRT in gmcs; boo
+		/*public static void AssertTransformsEach<A, B> (IEnumerable<TransformPair<A, B>> pairs, Transform<A, B> transform)
         {
             AssertForEach (pairs, delegate (TransformPair<A, B> pair) {
                 Assert.AreEqual (pair.To, transform (pair.From));
             });
         }*/
-    }
+	}
 }

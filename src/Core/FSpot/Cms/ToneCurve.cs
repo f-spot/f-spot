@@ -21,32 +21,32 @@ namespace FSpot.Cms
 
 		public enum Type
 		{
-			GAMMA = 			1,
-			CIE_122_1966 = 			2,
-			IEC_61966_3 = 			3,
-			IEC_61966_2_1_SRGB = 		4,
-			TYPE_5 = 			5,
-			TYPE_6 = 			6,
-			TYPE_7 = 			7,
-			TYPE_8 = 			8,
-			S_SHAPED_SIGMOIDAL = 		108,
-			REVERSED_GAMMA = 		-1,
-			REVERSED_CIE_122_1966 = 	-2,
-			REVERSED_IEC_61966_3 = 		-3,
-			REVERSED_IEC_61966_2_1_SRGB = 	-4,
-			REVERSED_TYPE_5 = 		-5,
-			REVERSED_TYPE_6 = 		-6,
-			REVERSED_TYPE_7 = 		-7,
-			REVERSED_TYPE_8 = 		-8,
-			REVERSED_S_SHAPED_SIGMOIDAL = 	-108
+			GAMMA = 1,
+			CIE_122_1966 = 2,
+			IEC_61966_3 = 3,
+			IEC_61966_2_1_SRGB = 4,
+			TYPE_5 = 5,
+			TYPE_6 = 6,
+			TYPE_7 = 7,
+			TYPE_8 = 8,
+			S_SHAPED_SIGMOIDAL = 108,
+			REVERSED_GAMMA = -1,
+			REVERSED_CIE_122_1966 = -2,
+			REVERSED_IEC_61966_3 = -3,
+			REVERSED_IEC_61966_2_1_SRGB = -4,
+			REVERSED_TYPE_5 = -5,
+			REVERSED_TYPE_6 = -6,
+			REVERSED_TYPE_7 = -7,
+			REVERSED_TYPE_8 = -8,
+			REVERSED_S_SHAPED_SIGMOIDAL = -108
 		};
 
 		public HandleRef Handle { get; private set; }
-		
-//		internal struct GammaTableStruct {
-//			public int Count;
-//			public ushort StartOfData;  // ushort array Count entries long
-//		}
+
+		//		internal struct GammaTableStruct {
+		//			public int Count;
+		//			public ushort StartOfData;  // ushort array Count entries long
+		//		}
 
 		public ToneCurve (double gamma)
 		{
@@ -83,12 +83,12 @@ namespace FSpot.Cms
 		  Giving negative values for Type does result in reversed curve.
 		*/
 
-		public ToneCurve (Type type, double [] values)
+		public ToneCurve (Type type, double[] values)
 		{
 			Handle = new HandleRef (this, NativeMethods.CmsBuildParametricToneCurve (0, (int)type, values));
 		}
 
-		public ToneCurve (ushort [] values) : this (values, 0, values.Length)
+		public ToneCurve (ushort[] values) : this (values, 0, values.Length)
 		{
 		}
 
@@ -104,29 +104,29 @@ namespace FSpot.Cms
 			}
 		}
 
-		public ushort this [int index] {
+		public ushort this[int index] {
 			get {
 				unsafe {
 					if (Handle.Handle == (IntPtr)0)
 						throw new CmsException ();
-					
+
 					if (index < 0 || index >= Count)
 						throw new ArgumentOutOfRangeException ($"index {index} outside of count {Count} for {Handle.Handle}");
 
-					ushort *data = (ushort *)Values;
-					return data [index];
+					ushort* data = (ushort*)Values;
+					return data[index];
 				}
 			}
 			set {
 				unsafe {
 					if (Handle.Handle == (IntPtr)0)
 						throw new CmsException ();
-					
+
 					if (index < 0 || index >= Count)
 						throw new ArgumentOutOfRangeException ($"index {index} outside of count {Count} for handle {Handle.Handle}");
 
-					ushort *data = (ushort *)Values;
-					data [index] = value;
+					ushort* data = (ushort*)Values;
+					data[index] = value;
 				}
 			}
 		}
@@ -134,14 +134,14 @@ namespace FSpot.Cms
 		/// <summary>
 		/// Gamma table tone curve
 		/// </summary>
-		public ToneCurve (ushort [] values, int startOffset, int length)
+		public ToneCurve (ushort[] values, int startOffset, int length)
 		{
 #if true
 			if (values == null)
 				throw new ArgumentNullException (nameof (values));
 
 			if (startOffset != 0)
-				Array.Copy(values, startOffset, values, 0, length);
+				Array.Copy (values, startOffset, values, 0, length);
 
 			Handle = new HandleRef (
 				this, NativeMethods.CmsBuildTabulatedToneCurve16 (

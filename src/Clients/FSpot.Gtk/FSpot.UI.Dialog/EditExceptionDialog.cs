@@ -31,11 +31,12 @@
 
 using System;
 
-using Gtk;
-using Hyena.Widgets;
-
 using FSpot.Core;
 using FSpot.Resources.Lang;
+
+using Gtk;
+
+using Hyena.Widgets;
 
 
 namespace FSpot.UI.Dialog
@@ -45,8 +46,8 @@ namespace FSpot.UI.Dialog
 		public IPhoto Item { get; private set; }
 
 		public EditException (IPhoto item, Exception e) : base (
-                        string.Format (Strings.ReceivedExceptionXUnableToSavePhotoY,
-				       e.Message, item.Name), e)
+						string.Format (Strings.ReceivedExceptionXUnableToSavePhotoY,
+					   e.Message, item.Name), e)
 		{
 			Item = item;
 		}
@@ -56,10 +57,10 @@ namespace FSpot.UI.Dialog
 	{
 		const int MaxErrors = 10;
 
-		public EditExceptionDialog (Gtk.Window parent, Exception [] errors) : base (parent, DialogFlags.DestroyWithParent,
-											    Gtk.MessageType.Error, ButtonsType.Ok,
-											    Strings.ErrorEditingPhoto,
-											    GenerateMessage (errors))
+		public EditExceptionDialog (Gtk.Window parent, Exception[] errors) : base (parent, DialogFlags.DestroyWithParent,
+												Gtk.MessageType.Error, ButtonsType.Ok,
+												Strings.ErrorEditingPhoto,
+												GenerateMessage (errors))
 		{
 			foreach (Exception e in errors)
 				Logger.Log.Error (e, "");
@@ -69,15 +70,15 @@ namespace FSpot.UI.Dialog
 		{
 		}
 
-		public EditExceptionDialog (Gtk.Window parent, Exception e) : this (parent, new Exception [] { e })
+		public EditExceptionDialog (Gtk.Window parent, Exception e) : this (parent, new Exception[] { e })
 		{
 		}
 
-		static string GenerateMessage (Exception [] errors)
+		static string GenerateMessage (Exception[] errors)
 		{
 			string desc = string.Empty;
 			for (int i = 0; i < errors.Length && i < MaxErrors; i++) {
-				Exception e = errors [i];
+				Exception e = errors[i];
 				desc += e.Message + Environment.NewLine;
 			}
 			return desc;

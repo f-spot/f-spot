@@ -30,17 +30,17 @@ using System;
 
 namespace Hyena.Gui
 {
-    class TestModuleAttribute : Attribute
-    {
-        string name;
-        public string Name {
-            get { return name; }
-            set { name = value; }
-        }
+	class TestModuleAttribute : Attribute
+	{
+		string name;
+		public string Name {
+			get { return name; }
+			set { name = value; }
+		}
 
-        public TestModuleAttribute (string name)
-        {
-            this.name = name;
-        }
-    }
+		public TestModuleAttribute (string name)
+		{
+			this.name = name;
+		}
+	}
 }

@@ -24,9 +24,10 @@ using System.Runtime.InteropServices;
 
 namespace GtkBeans
 {
-	public class Image {
-		[DllImport("libgtk-win32-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
-		static extern IntPtr gtk_image_new_from_gicon(IntPtr icon, int size);
+	public class Image
+	{
+		[DllImport ("libgtk-win32-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		static extern IntPtr gtk_image_new_from_gicon (IntPtr icon, int size);
 
 		//public static Gtk.Image NewFromIcon (GLib.Icon icon, Gtk.IconSize size)
 		//{
@@ -34,4 +35,4 @@ namespace GtkBeans
 		//}
 	}
 }
-	
+

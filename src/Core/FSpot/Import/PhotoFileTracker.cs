@@ -61,7 +61,7 @@ namespace FSpot.Import
 			}
 
 			// Copy XMP sidecar
-			var xmp_original = defaultVersionUri.ReplaceExtension(".xmp");
+			var xmp_original = defaultVersionUri.ReplaceExtension (".xmp");
 			if (file_system.File.Exists (xmp_original)) {
 				var xmp_destination = item.DefaultVersion.Uri.ReplaceExtension (".xmp");
 				file_system.File.Copy (xmp_original, xmp_destination, true);

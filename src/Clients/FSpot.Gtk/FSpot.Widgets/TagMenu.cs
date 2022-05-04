@@ -33,13 +33,13 @@
 
 using System;
 
-using Gtk;
-
 using FSpot;
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Resources.Lang;
 using FSpot.Utils;
+
+using Gtk;
 
 public class TagMenu : Menu
 {
@@ -71,15 +71,15 @@ public class TagMenu : Menu
 			var label_builder = new System.Text.StringBuilder ();
 
 			for (Category parent = t.Category;
-			     parent != null && parent.Category != null;
-			     parent = parent.Category)
+				 parent != null && parent.Category != null;
+				 parent = parent.Category)
 				label_builder.Append ("  ");
 
 			label_builder.Append (t.Name);
 			return new TagMenuItem (t, label_builder.ToString ());
 		}
 
-		protected TagMenuItem (IntPtr raw) : base (raw) {}
+		protected TagMenuItem (IntPtr raw) : base (raw) { }
 	}
 
 	public TagMenu (MenuItem item, TagStore store)
@@ -92,7 +92,7 @@ public class TagMenu : Menu
 		tag_store = store;
 	}
 
-	protected TagMenu (IntPtr raw) : base (raw) {}
+	protected TagMenu (IntPtr raw) : base (raw) { }
 
 	public int GetPosition (Tag t)
 	{
@@ -124,7 +124,7 @@ public class TagMenu : Menu
 		}
 	}
 
-        public void PopulateFlat (Category cat, Gtk.Menu parent)
+	public void PopulateFlat (Category cat, Gtk.Menu parent)
 	{
 		foreach (Tag t in cat.Children) {
 			var item = TagMenuItem.IndentedItem (t);
@@ -142,9 +142,9 @@ public class TagMenu : Menu
 
 	public void Populate (Category cat, Gtk.Menu parent)
 	{
-		Widget [] dead_pool = parent.Children;
+		Widget[] dead_pool = parent.Children;
 		for (int i = 0; i < dead_pool.Length; i++)
-			dead_pool [i].Destroy ();
+			dead_pool[i].Destroy ();
 
 		foreach (Tag t in cat.Children) {
 			var item = new TagMenuItem (t);

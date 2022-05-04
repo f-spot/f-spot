@@ -28,7 +28,7 @@
 //
 
 namespace FSpot.Bling
-{	
+{
 	public class CubicEase : EasingFunction
 	{
 		public CubicEase ()

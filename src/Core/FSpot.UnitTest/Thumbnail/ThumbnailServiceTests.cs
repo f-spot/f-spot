@@ -1,4 +1,4 @@
-﻿//
+//
 // ThumbnailServiceTests.cs
 //
 // Author:
@@ -54,11 +54,11 @@ namespace FSpot.Thumbnail.UnitTest
 
 		IXdgDirectoryService xdgDirectoryService;
 		IThumbnailerFactory thumbnailerFactory;
-		Mock<IThumbnailer> thumbnailerMock  = new Mock<IThumbnailer> ();
+		Mock<IThumbnailer> thumbnailerMock = new Mock<IThumbnailer> ();
 		byte[] thumbnail = PixbufMock.CreateThumbnail (fileUri, fileMTime);
 
 		[OneTimeSetUp]
-		public void OneTimeSetUp()
+		public void OneTimeSetUp ()
 		{
 			var xdgDirectoryServiceMock = new Mock<IXdgDirectoryService> ();
 			xdgDirectoryServiceMock.Setup (xdg => xdg.GetThumbnailsDir (ThumbnailSize.Large)).Returns (largeThumbnailPath);
@@ -100,7 +100,7 @@ namespace FSpot.Thumbnail.UnitTest
 			// Analysis disable once ObjectCreationAsStatement
 			new ThumbnailService (xdgDirectoryService, thumbnailerFactory, fileSystem);
 
-			fileSystem.DirectoryMock.Verify (m => m.CreateDirectory(It.IsAny<SafeUri> ()), Times.Never ());
+			fileSystem.DirectoryMock.Verify (m => m.CreateDirectory (It.IsAny<SafeUri> ()), Times.Never ());
 		}
 
 		#endregion

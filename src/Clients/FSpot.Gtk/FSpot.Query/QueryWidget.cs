@@ -68,9 +68,9 @@ namespace FSpot.Query
 			get { return logic_widget; }
 		}
 
-		protected QueryWidget (IntPtr raw) : base (raw) {}
+		protected QueryWidget (IntPtr raw) : base (raw) { }
 
-		public QueryWidget (PhotoQuery query, Db db) : base(new HBox())
+		public QueryWidget (PhotoQuery query, Db db) : base (new HBox ())
 		{
 			box = Child as HBox;
 			box.Spacing = 6;
@@ -186,13 +186,13 @@ namespace FSpot.Query
 		public void HandleChanged (IBrowsableCollection collection)
 		{
 			if (query.TagTerm == null)
-				logic_widget.Clear();
+				logic_widget.Clear ();
 
-			if ( ! logic_widget.IsClear
-			    || query.Untagged
-			    || (query.RollSet != null)
-			    || (query.RatingRange != null)
-			    || ! folder_query_widget.Empty)
+			if (!logic_widget.IsClear
+				|| query.Untagged
+				|| (query.RollSet != null)
+				|| (query.RatingRange != null)
+				|| !folder_query_widget.Empty)
 				ShowBar ();
 			else
 				HideBar ();
@@ -203,7 +203,7 @@ namespace FSpot.Query
 			rollfilter.Visible = (query.RollSet != null);
 			comma1_label.Visible = (untagged.Visible && rated.Visible);
 			comma2_label.Visible = (!untagged.Visible && rated.Visible && rollfilter.Visible) ||
-					       (untagged.Visible && rollfilter.Visible);
+						   (untagged.Visible && rollfilter.Visible);
 
 		}
 
@@ -212,22 +212,22 @@ namespace FSpot.Query
 			logic_widget.PhotoTagsChanged (tags);
 		}
 
-		public void Include (Tag [] tags)
+		public void Include (Tag[] tags)
 		{
 			logic_widget.Include (tags);
 		}
 
-		public void UnInclude (Tag [] tags)
+		public void UnInclude (Tag[] tags)
 		{
 			logic_widget.UnInclude (tags);
 		}
 
-		public void Require (Tag [] tags)
+		public void Require (Tag[] tags)
 		{
 			logic_widget.Require (tags);
 		}
 
-		public void UnRequire (Tag [] tags)
+		public void UnRequire (Tag[] tags)
 		{
 			logic_widget.UnRequire (tags);
 		}

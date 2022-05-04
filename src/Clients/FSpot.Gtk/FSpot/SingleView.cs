@@ -54,28 +54,29 @@ using Mono.Addins;
 
 namespace FSpot
 {
-	public class SingleView {
+	public class SingleView
+	{
 		ToolButton rr_button, rl_button;
 		Sidebar sidebar;
 		Gtk.ScrolledWindow directory_scrolled;
 
 #pragma warning disable 649
-		[GtkBeans.Builder.Object]  Gtk.HBox toolbar_hbox;
-		[GtkBeans.Builder.Object]  Gtk.VBox info_vbox;
-		[GtkBeans.Builder.Object]  Gtk.ScrolledWindow image_scrolled;
+		[GtkBeans.Builder.Object] Gtk.HBox toolbar_hbox;
+		[GtkBeans.Builder.Object] Gtk.VBox info_vbox;
+		[GtkBeans.Builder.Object] Gtk.ScrolledWindow image_scrolled;
 
-		[GtkBeans.Builder.Object]  Gtk.CheckMenuItem side_pane_item;
-		[GtkBeans.Builder.Object]  Gtk.CheckMenuItem toolbar_item;
-		[GtkBeans.Builder.Object]  Gtk.CheckMenuItem filenames_item;
+		[GtkBeans.Builder.Object] Gtk.CheckMenuItem side_pane_item;
+		[GtkBeans.Builder.Object] Gtk.CheckMenuItem toolbar_item;
+		[GtkBeans.Builder.Object] Gtk.CheckMenuItem filenames_item;
 
-		[GtkBeans.Builder.Object]  Gtk.MenuItem export;
+		[GtkBeans.Builder.Object] Gtk.MenuItem export;
 
-		[GtkBeans.Builder.Object]  Gtk.Scale zoom_scale;
+		[GtkBeans.Builder.Object] Gtk.Scale zoom_scale;
 
-		[GtkBeans.Builder.Object]  Label status_label;
+		[GtkBeans.Builder.Object] Label status_label;
 
-		[GtkBeans.Builder.Object]  ImageMenuItem rotate_left;
-		[GtkBeans.Builder.Object]  ImageMenuItem rotate_right;
+		[GtkBeans.Builder.Object] ImageMenuItem rotate_left;
+		[GtkBeans.Builder.Object] ImageMenuItem rotate_right;
 
 		[GtkBeans.Builder.Object] Gtk.Window single_view;
 #pragma warning restore 649
@@ -94,9 +95,9 @@ namespace FSpot
 
 		FullScreenView fsview;
 
-		public SingleView (SafeUri [] uris)
+		public SingleView (SafeUri[] uris)
 		{
-			uri = uris [0];
+			uri = uris[0];
 			Logger.Log.Debug ($"uri: {uri}");
 
 			var builder = new GtkBeans.Builder ("single_view.ui");
@@ -132,9 +133,9 @@ namespace FSpot
 
 			collection = new UriCollection (uris);
 
-			TargetList targetList = new TargetList();
-			targetList.AddTextTargets((uint)DragDropTargets.TargetType.PlainText);
-			targetList.AddUriTargets((uint)DragDropTargets.TargetType.UriList);
+			TargetList targetList = new TargetList ();
+			targetList.AddTextTargets ((uint)DragDropTargets.TargetType.PlainText);
+			targetList.AddUriTargets ((uint)DragDropTargets.TargetType.UriList);
 
 			directory_view = new SelectionCollectionGridView (collection);
 			directory_view.Selection.Changed += HandleSelectionChanged;
@@ -145,7 +146,7 @@ namespace FSpot
 			directory_view.DisplayDates = false;
 			directory_view.DisplayRatings = false;
 
-			directory_scrolled = new ScrolledWindow();
+			directory_scrolled = new ScrolledWindow ();
 			directory_scrolled.Add (directory_view);
 
 			sidebar = new Sidebar ();
@@ -193,11 +194,11 @@ namespace FSpot
 
 			// wrap the methods to fit to the delegate
 			image_view.Item.Changed += delegate (object sender, BrowsablePointerChangedEventArgs old) {
-					BrowsablePointer pointer = sender as BrowsablePointer;
-					if (pointer == null)
-						return;
-					IPhoto [] item = {pointer.Current};
-					sidebar.HandleSelectionChanged (new PhotoList (item));
+				BrowsablePointer pointer = sender as BrowsablePointer;
+				if (pointer == null)
+					return;
+				IPhoto[] item = { pointer.Current };
+				sidebar.HandleSelectionChanged (new PhotoList (item));
 			};
 
 			image_view.Item.Collection.ItemsChanged += sidebar.HandleSelectionItemsChanged;
@@ -209,10 +210,11 @@ namespace FSpot
 
 			export.Submenu = (Mono.Addins.AddinManager.GetExtensionNode ("/FSpot/Menus/Exports") as FSpot.Extensions.SubmenuNode).GetMenuItem (this).Submenu;
 			export.Submenu.ShowAll ();
-			export.Activated += HandleExportActivated ;
+			export.Activated += HandleExportActivated;
 		}
 
-		void OnSidebarExtensionChanged (object s, ExtensionNodeEventArgs args) {
+		void OnSidebarExtensionChanged (object s, ExtensionNodeEventArgs args)
+		{
 			// FIXME: No sidebar page removal yet!
 			if (args.Change == ExtensionChange.Add)
 				sidebar.AppendPage ((args.ExtensionNode as SidebarPageNode).GetPage ());
@@ -220,7 +222,7 @@ namespace FSpot
 
 		void HandleExportActivated (object o, EventArgs e)
 		{
-			FSpot.Extensions.ExportMenuItemNode.SelectedImages = () => new PhotoList(directory_view.Selection.Items);
+			FSpot.Extensions.ExportMenuItemNode.SelectedImages = () => new PhotoList (directory_view.Selection.Items);
 		}
 
 		public void HandleCollectionChanged (IBrowsableCollection collection)
@@ -260,8 +262,7 @@ namespace FSpot
 			}
 		}
 
-		SafeUri CurrentUri
-		{
+		SafeUri CurrentUri {
 			get {
 				return uri;
 			}
@@ -275,14 +276,14 @@ namespace FSpot
 		void HandleRotate90Command (object sender, EventArgs args)
 		{
 			RotateCommand command = new RotateCommand (this.Window);
-			if (command.Execute (RotateDirection.Clockwise, new IPhoto [] { image_view.Item.Current }))
+			if (command.Execute (RotateDirection.Clockwise, new IPhoto[] { image_view.Item.Current }))
 				collection.MarkChanged (image_view.Item.Index, FullInvalidate.Instance);
 		}
 
 		void HandleRotate270Command (object sender, EventArgs args)
 		{
 			RotateCommand command = new RotateCommand (Window);
-			if (command.Execute (RotateDirection.Counterclockwise, new IPhoto [] { image_view.Item.Current }))
+			if (command.Execute (RotateDirection.Counterclockwise, new IPhoto[] { image_view.Item.Current }))
 				collection.MarkChanged (image_view.Item.Index, FullInvalidate.Instance);
 		}
 
@@ -321,7 +322,7 @@ namespace FSpot
 			throw new NotImplementedException ("HandlSetAsBackgroundCommand");
 		}
 
-        void HandleViewToolbar(object sender, EventArgs args)
+		void HandleViewToolbar (object sender, EventArgs args)
 		{
 			ShowToolbar = toolbar_item.Active;
 		}
@@ -331,7 +332,7 @@ namespace FSpot
 			ShowSidebar = false;
 		}
 
-        void HandleViewSidePane(object sender, EventArgs args)
+		void HandleViewSidePane (object sender, EventArgs args)
 		{
 			ShowSidebar = side_pane_item.Active;
 		}
@@ -342,34 +343,34 @@ namespace FSpot
 			fsview.PlayPause ();
 		}
 
-        void HandleViewFilenames(object sender, EventArgs args)
+		void HandleViewFilenames (object sender, EventArgs args)
 		{
 			directory_view.DisplayFilenames = filenames_item.Active;
 			UpdateStatusLabel ();
 		}
 
-        void HandleAbout(object sender, EventArgs args)
+		void HandleAbout (object sender, EventArgs args)
 		{
 			FSpot.UI.Dialog.AboutDialog.ShowUp ();
 		}
 
-        void HandleNewWindow(object sender, EventArgs args)
+		void HandleNewWindow (object sender, EventArgs args)
 		{
 			/* FIXME this needs to register witth the core */
-			new SingleView (new SafeUri[] {uri});
+			new SingleView (new SafeUri[] { uri });
 		}
 
-        void HandlePreferences(object sender, EventArgs args)
+		void HandlePreferences (object sender, EventArgs args)
 		{
 			SingleView.PreferenceDialog.Show ();
 		}
 
-        void HandleOpenFolder(object sender, EventArgs args)
+		void HandleOpenFolder (object sender, EventArgs args)
 		{
 			Open (FileChooserAction.SelectFolder);
 		}
 
-        void HandleOpen(object sender, EventArgs args)
+		void HandleOpen (object sender, EventArgs args)
 		{
 			Open (FileChooserAction.Open);
 		}
@@ -389,7 +390,7 @@ namespace FSpot
 			chooser.SetUri (uri.ToString ());
 			int response = chooser.Run ();
 
-			if ((ResponseType) response == ResponseType.Ok)
+			if ((ResponseType)response == ResponseType.Ok)
 				CurrentUri = new SafeUri (chooser.Uri, true);
 
 
@@ -458,7 +459,7 @@ namespace FSpot
 			var popup_menu = new Gtk.Menu ();
 			bool has_item = image_view.Item.Current != null;
 
-			GtkUtil.MakeMenuItem (popup_menu, Strings.RotateLeftMnemonic, "object-rotate-left", delegate { HandleRotate270Command(Window, null); }, has_item);
+			GtkUtil.MakeMenuItem (popup_menu, Strings.RotateLeftMnemonic, "object-rotate-left", delegate { HandleRotate270Command (Window, null); }, has_item);
 			GtkUtil.MakeMenuItem (popup_menu, Strings.RotateRightMnemonic, "object-rotate-right", delegate { HandleRotate90Command (Window, null); }, has_item);
 			GtkUtil.MakeMenuSeparator (popup_menu);
 			GtkUtil.MakeMenuItem (popup_menu, Strings.SetAsBackground, HandleSetAsBackgroundCommand, has_item);
@@ -476,7 +477,7 @@ namespace FSpot
 		void HandleDragDataReceived (object sender, DragDataReceivedArgs args)
 		{
 			if (args.Info == (uint)FSpot.DragDropTargets.TargetType.UriList
-			    || args.Info == (uint)FSpot.DragDropTargets.TargetType.PlainText) {
+				|| args.Info == (uint)FSpot.DragDropTargets.TargetType.PlainText) {
 
 				/*
 				 * If the drop is coming from inside f-spot then we don't want to import
@@ -485,16 +486,16 @@ namespace FSpot
 					return;
 
 				UriList list = args.SelectionData.GetUriListData ();
-				collection.LoadItems (list.ToArray());
+				collection.LoadItems (list.ToArray ());
 
 				Gtk.Drag.Finish (args.Context, true, false, args.Time);
-			    }
+			}
 		}
 
 		void UpdateStatusLabel ()
 		{
 			IPhoto item = image_view.Item.Current;
-			var sb = new System.Text.StringBuilder();
+			var sb = new System.Text.StringBuilder ();
 			if (filenames_item.Active && item != null)
 				sb.Append (System.IO.Path.GetFileName (item.DefaultVersion.Uri.LocalPath) + "  -  ");
 
@@ -509,7 +510,7 @@ namespace FSpot
 			Window.Destroy ();
 		}
 
-		void SavePreferences  ()
+		void SavePreferences ()
 		{
 			int width, height;
 			Window.GetSize (out width, out height);
@@ -518,22 +519,22 @@ namespace FSpot
 			Preferences.Set (Preferences.ViewerMaximized, maximized);
 
 			if (!maximized) {
-				Preferences.Set (Preferences.ViewerWidth,	width);
-				Preferences.Set (Preferences.ViewerHeight,	height);
+				Preferences.Set (Preferences.ViewerWidth, width);
+				Preferences.Set (Preferences.ViewerHeight, height);
 			}
 
-			Preferences.Set (Preferences.ViewerShowToolbar,	toolbar_hbox.Visible);
+			Preferences.Set (Preferences.ViewerShowToolbar, toolbar_hbox.Visible);
 			Preferences.Set (Preferences.ViewerShawFilenames, filenames_item.Active);
 		}
 
-        void HandleFileOpen(object sender, EventArgs args)
+		void HandleFileOpen (object sender, EventArgs args)
 		{
 			var file_selector = new FileChooserDialog ("Open", Window, FileChooserAction.Open);
 
 			file_selector.SetUri (uri.ToString ());
 			int response = file_selector.Run ();
 
-			if ((Gtk.ResponseType) response == Gtk.ResponseType.Ok) {
+			if ((Gtk.ResponseType)response == Gtk.ResponseType.Ok) {
 				var l = new List<SafeUri> ();
 				foreach (var s in file_selector.Uris)
 					l.Add (new SafeUri (s));
@@ -564,12 +565,12 @@ namespace FSpot
 				width = Preferences.Get<int> (Preferences.ViewerWidth);
 				height = Preferences.Get<int> (Preferences.ViewerHeight);
 
-				if( width == 0 || height == 0 )
+				if (width == 0 || height == 0)
 					break;
 
-				Window.SetDefaultSize(width, height);
+				Window.SetDefaultSize (width, height);
 
-				Window.ReshowWithInitialSize();
+				Window.ReshowWithInitialSize ();
 				break;
 
 			case Preferences.ViewerShowToolbar:
@@ -597,7 +598,7 @@ namespace FSpot
 				else if (Preferences.Get<string> (key) == "COLOR")
 					image_view.CheckPattern = new CheckPattern (Preferences.Get<string> (Preferences.ViewerTransColor));
 				else // NONE
-					image_view.CheckPattern = new CheckPattern (image_view.Style.BaseColors [(int)Gtk.StateType.Normal]);
+					image_view.CheckPattern = new CheckPattern (image_view.Style.BaseColors[(int)Gtk.StateType.Normal]);
 				break;
 
 			case Preferences.ViewerTransColor:
@@ -626,21 +627,21 @@ namespace FSpot
 				Destroyed += HandleDestroyed;
 			}
 
-            void InterpolationToggled(object sender, EventArgs args)
+			void InterpolationToggled (object sender, EventArgs args)
 			{
 				Preferences.Set (Preferences.ViewerInterpolation, interpolation_check.Active);
 			}
 
-            void HandleTransparentColorSet(object sender, EventArgs args)
+			void HandleTransparentColorSet (object sender, EventArgs args)
 			{
 				Preferences.Set (Preferences.ViewerTransColor,
 						"#" +
-						(color_button.Color.Red / 256 ).ToString("x").PadLeft (2, '0') +
-						(color_button.Color.Green / 256 ).ToString("x").PadLeft (2, '0') +
-						(color_button.Color.Blue / 256 ).ToString("x").PadLeft (2, '0'));
+						(color_button.Color.Red / 256).ToString ("x").PadLeft (2, '0') +
+						(color_button.Color.Green / 256).ToString ("x").PadLeft (2, '0') +
+						(color_button.Color.Blue / 256).ToString ("x").PadLeft (2, '0'));
 			}
 
-            void HandleTransparencyToggled(object sender, EventArgs args)
+			void HandleTransparencyToggled (object sender, EventArgs args)
 			{
 				if (as_background_radio.Active)
 					Preferences.Set (Preferences.ViewerTransparency, "NONE");
@@ -664,7 +665,7 @@ namespace FSpot
 				LoadPreference (args.Key);
 			}
 
-            void HandleClose(object sender, EventArgs args)
+			void HandleClose (object sender, EventArgs args)
 			{
 				Destroy ();
 			}
@@ -696,9 +697,9 @@ namespace FSpot
 					break;
 				case Preferences.ViewerTransColor:
 					color_button.Color = new Gdk.Color (
-						Byte.Parse (Preferences.Get<string> (key).Substring (1,2), System.Globalization.NumberStyles.AllowHexSpecifier),
-						Byte.Parse (Preferences.Get<string> (key).Substring (3,2), System.Globalization.NumberStyles.AllowHexSpecifier),
-						Byte.Parse (Preferences.Get<string> (key).Substring (5,2), System.Globalization.NumberStyles.AllowHexSpecifier));
+						Byte.Parse (Preferences.Get<string> (key).Substring (1, 2), System.Globalization.NumberStyles.AllowHexSpecifier),
+						Byte.Parse (Preferences.Get<string> (key).Substring (3, 2), System.Globalization.NumberStyles.AllowHexSpecifier),
+						Byte.Parse (Preferences.Get<string> (key).Substring (5, 2), System.Globalization.NumberStyles.AllowHexSpecifier));
 					break;
 				}
 			}

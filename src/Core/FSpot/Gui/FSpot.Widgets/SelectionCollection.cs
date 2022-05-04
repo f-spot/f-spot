@@ -29,9 +29,9 @@
 //
 
 using System;
-using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 using FSpot.Core;
 
@@ -56,7 +56,7 @@ namespace FSpot.Widgets
 
 		void HandleParentChanged (IBrowsableCollection collection)
 		{
-			IPhoto [] local = old;
+			IPhoto[] local = old;
 			selected_cells.Clear ();
 			bit_array = new BitArray (parent.Count);
 			ClearCached ();
@@ -65,7 +65,7 @@ namespace FSpot.Widgets
 				int i = 0;
 
 				for (i = 0; i < local.Length; i++) {
-					int parent_index = parent.IndexOf (local [i]);
+					int parent_index = parent.IndexOf (local[i]);
 					if (parent_index >= 0)
 						Add (parent_index, false);
 				}
@@ -95,7 +95,7 @@ namespace FSpot.Widgets
 			var local_ids = new List<int> ();
 			foreach (int parent_index in args.Items) {
 				// If the item isn't part of the selection ignore it
-				if (!Contains (collection [parent_index]))
+				if (!Contains (collection[parent_index]))
 					return;
 
 				int local_index = IndexOf (parent_index);
@@ -106,7 +106,7 @@ namespace FSpot.Widgets
 			if (local_ids.Count == 0)
 				return;
 
-			int [] localIdsItems = local_ids.ToArray ();
+			int[] localIdsItems = local_ids.ToArray ();
 			ItemsChanged (this, new BrowsableEventArgs (localIdsItems, args.Changes));
 		}
 
@@ -115,17 +115,17 @@ namespace FSpot.Widgets
 			return new BitArray (bit_array);
 		}
 
-		public int [] Ids {
+		public int[] Ids {
 			get {
 				// TODO: use IEnumerable<>
 				return (from i in selected_cells.Values orderby i select i).ToArray ();
 			}
 		}
 
-		public IPhoto this [int index] {
+		public IPhoto this[int index] {
 			get {
-				int [] ids = Ids;
-				return parent [ids [index]];
+				int[] ids = Ids;
+				return parent[ids[index]];
 			}
 		}
 
@@ -134,10 +134,10 @@ namespace FSpot.Widgets
 				if (items != null)
 					return items;
 
-				int [] ids = Ids;
-				items = new IPhoto [ids.Length];
+				int[] ids = Ids;
+				items = new IPhoto[ids.Length];
 				for (int i = 0; i < items.Length; i++) {
-					items [i] = parent [ids [i]];
+					items[i] = parent[ids[i]];
 				}
 				return items;
 			}
@@ -150,7 +150,7 @@ namespace FSpot.Widgets
 
 		public void Clear (bool update)
 		{
-			int [] ids = Ids;
+			int[] ids = Ids;
 			selected_cells.Clear ();
 			bit_array.SetAll (false);
 			if (update)
@@ -182,7 +182,7 @@ namespace FSpot.Widgets
 			if (num < 0 || num >= parent.Count)
 				return false;
 
-			return Contains (parent [num]);
+			return Contains (parent[num]);
 		}
 
 		public void Add (int num)
@@ -198,12 +198,12 @@ namespace FSpot.Widgets
 			if (Contains (num))
 				return;
 
-			IPhoto item = parent [num];
-			selected_cells [item] = num;
+			IPhoto item = parent[num];
+			selected_cells[item] = num;
 			bit_array.Set (num, true);
 
 			if (notify)
-				SignalChange (new [] {num});
+				SignalChange (new[] { num });
 		}
 
 		public void Add (int start, int end)
@@ -214,11 +214,11 @@ namespace FSpot.Widgets
 			int current = Math.Min (start, end);
 			int final = Math.Max (start, end);
 			int count = final - current + 1;
-			var ids = new int [count];
+			var ids = new int[count];
 
 			for (int i = 0; i < count; i++) {
 				Add (current, false);
-				ids [i] = current;
+				ids[i] = current;
 				current++;
 			}
 
@@ -227,7 +227,7 @@ namespace FSpot.Widgets
 
 		public void Remove (int cell, bool notify)
 		{
-			IPhoto item = parent [cell];
+			IPhoto item = parent[cell];
 			if (item != null)
 				Remove (item, notify);
 
@@ -248,12 +248,12 @@ namespace FSpot.Widgets
 			if (item == null)
 				return;
 
-			int parent_index = selected_cells [item];
+			int parent_index = selected_cells[item];
 			selected_cells.Remove (item);
 			bit_array.Set (parent_index, false);
 
 			if (notify)
-				SignalChange (new [] {parent_index});
+				SignalChange (new[] { parent_index });
 		}
 
 		// Remove a range, except the start entry
@@ -265,11 +265,11 @@ namespace FSpot.Widgets
 			int current = Math.Min (start + 1, end);
 			int final = Math.Max (start - 1, end);
 			int count = final - current + 1;
-			var ids = new int [count];
+			var ids = new int[count];
 
 			for (int i = 0; i < count; i++) {
 				Remove (current, false);
-				ids [i] = current;
+				ids[i] = current;
 				current++;
 			}
 
@@ -286,7 +286,7 @@ namespace FSpot.Widgets
 			if (!Contains (item))
 				return -1;
 
-			int parent_index = selected_cells [item];
+			int parent_index = selected_cells[item];
 			return Array.IndexOf (Ids, parent_index);
 		}
 
@@ -308,7 +308,7 @@ namespace FSpot.Widgets
 			var changed_cell = new int[parent.Count];
 			for (int i = 0; i < parent.Count; i++) {
 				ToggleCell (i, false);
-				changed_cell [i] = i;
+				changed_cell[i] = i;
 			}
 
 			SignalChange (changed_cell);
@@ -317,7 +317,7 @@ namespace FSpot.Widgets
 		public event IBrowsableCollectionChangedHandler Changed;
 		public event IBrowsableCollectionItemsChangedHandler ItemsChanged;
 
-		public delegate void DetailedCollectionChanged (IBrowsableCollection collection,int[] ids);
+		public delegate void DetailedCollectionChanged (IBrowsableCollection collection, int[] ids);
 
 		public event DetailedCollectionChanged DetailedChanged;
 
@@ -326,7 +326,7 @@ namespace FSpot.Widgets
 			items = null;
 		}
 
-		public void SignalChange (int [] ids)
+		public void SignalChange (int[] ids)
 		{
 			ClearCached ();
 			old = Items.ToArray ();

@@ -28,11 +28,11 @@
 
 namespace Hyena.Data
 {
-    public interface ISortableColumn
-    {
-        string SortKey { get; }
-        SortType SortType { get; set; }
-        Hyena.Query.QueryField Field { get; }
-        string Id { get; }
-    }
+	public interface ISortableColumn
+	{
+		string SortKey { get; }
+		SortType SortType { get; set; }
+		Hyena.Query.QueryField Field { get; }
+		string Id { get; }
+	}
 }

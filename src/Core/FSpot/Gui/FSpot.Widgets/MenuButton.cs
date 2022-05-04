@@ -69,7 +69,7 @@ namespace FSpot.Widgets
 		public MenuButton (string label, Menu menu, ArrowType arrow_type) : base ()
 		{
 			HBox hbox = new HBox ();
-			
+
 			Image = new Image ();
 			hbox.PackStart (Image, false, false, 1);
 			Image.Show ();
@@ -93,7 +93,7 @@ namespace FSpot.Widgets
 		{
 			if (popup_menu == null)
 				return;
-			
+
 			popup_menu.Popup (null, null, Position, 0, Gtk.Global.CurrentEventTime);
 		}
 

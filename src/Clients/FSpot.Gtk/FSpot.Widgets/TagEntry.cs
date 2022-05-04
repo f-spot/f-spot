@@ -32,16 +32,16 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System.Text;
 using System.Collections.Generic;
+using System.Text;
 
 using FSpot.Core;
 using FSpot.Database;
 
 namespace FSpot.Widgets
 {
-	public delegate void TagsAttachedHandler (object sender, string [] tags);
-	public delegate void TagsRemovedHandler (object sender, Tag [] tags);
+	public delegate void TagsAttachedHandler (object sender, string[] tags);
+	public delegate void TagsRemovedHandler (object sender, Tag[] tags);
 
 	public class TagEntry : Gtk.Entry
 	{
@@ -50,7 +50,7 @@ namespace FSpot.Widgets
 
 		readonly TagStore tagStore;
 
-		protected TagEntry (System.IntPtr raw) : base(raw) { }
+		protected TagEntry (System.IntPtr raw) : base (raw) { }
 
 		public TagEntry (TagStore tagStore, bool updateOnFocusOut = true)
 		{
@@ -61,21 +61,21 @@ namespace FSpot.Widgets
 		}
 
 		List<string> selected_photos_tagnames;
-		public void UpdateFromSelection (IPhoto [] selection)
+		public void UpdateFromSelection (IPhoto[] selection)
 		{
-			Dictionary<Tag,int> taghash = new Dictionary<Tag,int> ();
+			Dictionary<Tag, int> taghash = new Dictionary<Tag, int> ();
 
 			for (int i = 0; i < selection.Length; i++) {
-				foreach (Tag tag in selection [i].Tags) {
+				foreach (Tag tag in selection[i].Tags) {
 					int count = 1;
 
 					if (taghash.ContainsKey (tag))
-						count = (taghash [tag]) + 1;
+						count = (taghash[tag]) + 1;
 
 					if (count <= i)
 						taghash.Remove (tag);
 					else
-						taghash [tag] = count;
+						taghash[tag] = count;
 				}
 
 				if (taghash.Count == 0)
@@ -84,13 +84,13 @@ namespace FSpot.Widgets
 
 			selected_photos_tagnames = new List<string> ();
 			foreach (Tag tag in taghash.Keys)
-				if (taghash [tag] == selection.Length)
+				if (taghash[tag] == selection.Length)
 					selected_photos_tagnames.Add (tag.Name);
 
 			Update ();
 		}
 
-		public void UpdateFromTagNames (string [] tagnames)
+		public void UpdateFromTagNames (string[] tagnames)
 		{
 			selected_photos_tagnames = new List<string> ();
 			foreach (string tagname in tagnames)
@@ -124,13 +124,13 @@ namespace FSpot.Widgets
 			}
 		}
 
-		public string [] GetTypedTagNames ()
+		public string[] GetTypedTagNames ()
 		{
-			string [] tagnames = Text.Split (new char [] {','});
+			string[] tagnames = Text.Split (new char[] { ',' });
 
 			List<string> list = new List<string> ();
-			for (int i = 0; i < tagnames.Length; i ++) {
-				string s = tagnames [i].Trim ();
+			for (int i = 0; i < tagnames.Length; i++) {
+				string s = tagnames[i].Trim ();
 
 				if (s.Length > 0)
 					list.Add (s);
@@ -139,7 +139,7 @@ namespace FSpot.Widgets
 		}
 
 		int tag_completion_index = -1;
-		Tag [] tag_completions;
+		Tag[] tag_completions;
 
 		public void ClearTagCompletions ()
 		{
@@ -211,7 +211,7 @@ namespace FSpot.Widgets
 				if (last_comma > tag_completion_typed_position)
 					return;
 
-				tag_completion_typed_so_far = Text.Substring (last_comma + 1).TrimStart (new char [] {' '});
+				tag_completion_typed_so_far = Text.Substring (last_comma + 1).TrimStart (new char[] { ' ' });
 				if (tag_completion_typed_so_far == null || tag_completion_typed_so_far.Length == 0)
 					return;
 
@@ -226,7 +226,7 @@ namespace FSpot.Widgets
 			}
 
 			tag_ignore_changes = true;
-			completion = tag_completions [tag_completion_index].Name.Substring (tag_completion_typed_so_far.Length);
+			completion = tag_completions[tag_completion_index].Name.Substring (tag_completion_typed_so_far.Length);
 			Text = Text.Substring (0, tag_completion_typed_position) + completion;
 			tag_ignore_changes = false;
 
@@ -255,26 +255,26 @@ namespace FSpot.Widgets
 		//Activated means the user pressed 'Enter'
 		protected override void OnActivated ()
 		{
-			string [] tagnames = GetTypedTagNames ();
+			string[] tagnames = GetTypedTagNames ();
 
 			if (tagnames == null)
 				return;
 
 			// Add any new tags to the selected photos
 			List<string> new_tags = new List<string> ();
-			for (int i = 0; i < tagnames.Length; i ++) {
-				if (tagnames [i].Length == 0)
+			for (int i = 0; i < tagnames.Length; i++) {
+				if (tagnames[i].Length == 0)
 					continue;
 
-				if (selected_photos_tagnames.Contains (tagnames [i]))
+				if (selected_photos_tagnames.Contains (tagnames[i]))
 					continue;
 
-				Tag t = tagStore.GetTagByName (tagnames [i]);
+				Tag t = tagStore.GetTagByName (tagnames[i]);
 
 				if (t != null) // Correct for capitalization differences
-					tagnames [i] = t.Name;
+					tagnames[i] = t.Name;
 
-				new_tags.Add (tagnames [i]);
+				new_tags.Add (tagnames[i]);
 			}
 
 			//Send event
@@ -284,7 +284,7 @@ namespace FSpot.Widgets
 			// Remove any removed tags from the selected photos
 			List<Tag> remove_tags = new List<Tag> ();
 			foreach (string tagname in selected_photos_tagnames) {
-				if (! IsTagInList (tagnames, tagname)) {
+				if (!IsTagInList (tagnames, tagname)) {
 					Tag tag = tagStore.GetTagByName (tagname);
 					remove_tags.Add (tag);
 				}
@@ -295,7 +295,7 @@ namespace FSpot.Widgets
 				TagsRemoved (this, remove_tags.ToArray ());
 		}
 
-		static bool IsTagInList (string [] tags, string tag)
+		static bool IsTagInList (string[] tags, string tag)
 		{
 			foreach (string t in tags)
 				if (t == tag)

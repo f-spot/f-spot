@@ -73,7 +73,7 @@ namespace FSpot.ColorAdjustment
 			InputProfile = input_profile;
 		}
 
-		protected abstract List <Cms.Profile> GenerateAdjustments ();
+		protected abstract List<Cms.Profile> GenerateAdjustments ();
 
 		public Pixbuf Adjust ()
 		{
@@ -81,15 +81,15 @@ namespace FSpot.ColorAdjustment
 							   false, 8,
 							   Input.Width,
 							   Input.Height);
-			Cms.Profile [] list = GenerateAdjustments ().ToArray ();
+			Cms.Profile[] list = GenerateAdjustments ().ToArray ();
 
 			if (Input.HasAlpha) {
 				Gdk.Pixbuf input_copy = (Gdk.Pixbuf)Input.Clone ();
 				Pixbuf alpha = PixbufUtils.Flatten (Input);
 				Transform transform = new Transform (list,
-								     PixbufUtils.PixbufCmsFormat (alpha),
-								     PixbufUtils.PixbufCmsFormat (final),
-								     intent, 0x0000);
+									 PixbufUtils.PixbufCmsFormat (alpha),
+									 PixbufUtils.PixbufCmsFormat (final),
+									 intent, 0x0000);
 				PixbufUtils.ColorAdjust (alpha, final, transform);
 				PixbufUtils.ReplaceColor (final, input_copy);
 				alpha.Dispose ();
@@ -97,9 +97,9 @@ namespace FSpot.ColorAdjustment
 				final = input_copy;
 			} else {
 				Cms.Transform transform = new Cms.Transform (list,
-									     PixbufUtils.PixbufCmsFormat (Input),
-									     PixbufUtils.PixbufCmsFormat (final),
-									     intent, 0x0000);
+										 PixbufUtils.PixbufCmsFormat (Input),
+										 PixbufUtils.PixbufCmsFormat (final),
+										 intent, 0x0000);
 
 				PixbufUtils.ColorAdjust (Input, final, transform);
 			}

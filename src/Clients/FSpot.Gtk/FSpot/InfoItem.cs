@@ -32,10 +32,10 @@ using FSpot.Widgets;
 namespace FSpot
 {
 	public class InfoItem : InfoBox
-    {
-        readonly BrowsablePointer item;
+	{
+		readonly BrowsablePointer item;
 
-        public InfoItem (BrowsablePointer item)
+		public InfoItem (BrowsablePointer item)
 		{
 			this.item = item;
 			item.Changed += HandleItemChanged;

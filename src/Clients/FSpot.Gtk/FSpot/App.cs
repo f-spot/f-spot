@@ -30,12 +30,10 @@
 //
 
 using System;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading;
-
-using Hyena;
 
 using FSpot.Core;
 using FSpot.Database;
@@ -43,6 +41,8 @@ using FSpot.Imaging;
 using FSpot.Resources.Lang;
 using FSpot.Settings;
 using FSpot.Thumbnail;
+
+using Hyena;
 
 using TinyIoC;
 
@@ -193,7 +193,7 @@ namespace FSpot
 
 		public void View (SafeUri uri)
 		{
-			View (new[] {uri});
+			View (new[] { uri });
 		}
 
 		public void View (IEnumerable<SafeUri> uris)
@@ -204,7 +204,7 @@ namespace FSpot
 
 		public void View (string uri)
 		{
-			View (new[] {uri});
+			View (new[] { uri });
 		}
 
 		public void View (IEnumerable<string> uris)
@@ -253,18 +253,18 @@ namespace FSpot
 		//	}
 		//}
 
-        void HandleImport (string path)
-        {
-            // Some users get wonky URIs here, trying to work around below.
-            // https://bugzilla.gnome.org/show_bug.cgi?id=629248
-            if (path != null && path.StartsWith ("gphoto2:usb:")) {
-                path = $"gphoto2://[{path.Substring (8)}]";
-            }
+		void HandleImport (string path)
+		{
+			// Some users get wonky URIs here, trying to work around below.
+			// https://bugzilla.gnome.org/show_bug.cgi?id=629248
+			if (path != null && path.StartsWith ("gphoto2:usb:")) {
+				path = $"gphoto2://[{path.Substring (8)}]";
+			}
 
-           Logger.Log.Debug ($"Importing from {path}");
-            Organizer.Window.Present ();
-            Organizer.ImportFile (path == null ? null : new SafeUri(path));
-        }
+			Logger.Log.Debug ($"Importing from {path}");
+			Organizer.Window.Present ();
+			Organizer.ImportFile (path == null ? null : new SafeUri (path));
+		}
 
 		void HandleOrganize ()
 		{
@@ -296,11 +296,11 @@ namespace FSpot
 
 			IPhoto[] photos;
 			if (tag != null)
-				photos = ObsoletePhotoQueries.Query (new Tag[] {tag});
+				photos = ObsoletePhotoQueries.Query (new Tag[] { tag });
 			else if (Preferences.Get<int> (Preferences.ScreensaverTag) == 0)
-				photos = ObsoletePhotoQueries.Query (new Tag [] {});
+				photos = ObsoletePhotoQueries.Query (new Tag[] { });
 			else
-				photos = new IPhoto [0];
+				photos = new IPhoto[0];
 
 			// Minimum delay 1 second; default is 4s
 			var delay = Math.Max (1.0, Preferences.Get<double> (Preferences.ScreensaverDelay));
@@ -341,7 +341,7 @@ namespace FSpot
 				hbox.PackStart (label, false, false, 0);
 
 				Gtk.Label long_label = new Gtk.Label (long_msg);
-				long_label.Markup  = $"<small>{long_msg}</small>";
+				long_label.Markup = $"<small>{long_msg}</small>";
 
 				vbox.PackStart (long_label, false, false, 0);
 				vbox.PackStart (new Gtk.Label (string.Empty));

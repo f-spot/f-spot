@@ -30,82 +30,83 @@ using FSpot.Resources.Lang;
 
 namespace Hyena.Data.Gui.Accessibility
 {
-	class ColumnHeaderCellTextAccessible: ColumnCellTextAccessible, Atk.ActionImplementor
-    {
-        static string [] action_descriptions  = new string[] { "", Strings.OpenContextMenu };
-        static string [] action_names_localized = new string[] { Strings.Click, Strings.Menu };
+	class ColumnHeaderCellTextAccessible : ColumnCellTextAccessible, Atk.ActionImplementor
+	{
+		static string[] action_descriptions = new string[] { "", Strings.OpenContextMenu };
+		static string[] action_names_localized = new string[] { Strings.Click, Strings.Menu };
 
-        enum Actions {
-            Click,
-            Menu,
-            Last
-        };
+		enum Actions
+		{
+			Click,
+			Menu,
+			Last
+		};
 
-        public ColumnHeaderCellTextAccessible (object bound_object, ColumnHeaderCellText cell, ICellAccessibleParent parent)
-            : base (bound_object, cell as ColumnCellText, parent)
-        {
-            Role = Atk.Role.TableColumnHeader;
-        }
+		public ColumnHeaderCellTextAccessible (object bound_object, ColumnHeaderCellText cell, ICellAccessibleParent parent)
+			: base (bound_object, cell as ColumnCellText, parent)
+		{
+			Role = Atk.Role.TableColumnHeader;
+		}
 
-        protected override Atk.StateSet OnRefStateSet ()
-        {
-            Atk.StateSet states = base.OnRefStateSet ();
-            states.RemoveState (Atk.StateType.Selectable);
-            states.RemoveState (Atk.StateType.Transient);
-            return states;
-        }
+		protected override Atk.StateSet OnRefStateSet ()
+		{
+			Atk.StateSet states = base.OnRefStateSet ();
+			states.RemoveState (Atk.StateType.Selectable);
+			states.RemoveState (Atk.StateType.Transient);
+			return states;
+		}
 
-        public string GetLocalizedName (int action)
-        {
-            if (action >= action_names_localized.Length)
-                return "";
+		public string GetLocalizedName (int action)
+		{
+			if (action >= action_names_localized.Length)
+				return "";
 
-            return action_names_localized[action];
-        }
+			return action_names_localized[action];
+		}
 
-        public string GetName (int action)
-        {
-            if (action >= (int)Actions.Last)
-                return "";
+		public string GetName (int action)
+		{
+			if (action >= (int)Actions.Last)
+				return "";
 
-            return ((Actions)action).ToString ().ToLower ();
-        }
+			return ((Actions)action).ToString ().ToLower ();
+		}
 
-        public string GetDescription (int action)
-        {
-            if (action >= action_descriptions.Length)
-                return "";
+		public string GetDescription (int action)
+		{
+			if (action >= action_descriptions.Length)
+				return "";
 
-            return action_descriptions[action];
-        }
+			return action_descriptions[action];
+		}
 
-        public string GetKeybinding (int action)
-        {
-            return "";
-        }
+		public string GetKeybinding (int action)
+		{
+			return "";
+		}
 
-        public int NActions {
-            get { return (int)Actions.Last; }
-        }
+		public int NActions {
+			get { return (int)Actions.Last; }
+		}
 
-        public bool DoAction (int action)
-        {
-            ICellAccessibleParent parent = (ICellAccessibleParent)Parent;
-            switch ((Actions)action) {
-                case Actions.Menu: parent.InvokeColumnHeaderMenu (this); break;
-                case Actions.Click: parent.ClickColumnHeader (this); break;
-            }
+		public bool DoAction (int action)
+		{
+			ICellAccessibleParent parent = (ICellAccessibleParent)Parent;
+			switch ((Actions)action) {
+			case Actions.Menu: parent.InvokeColumnHeaderMenu (this); break;
+			case Actions.Click: parent.ClickColumnHeader (this); break;
+			}
 
-            if (action == (int)Actions.Menu) {
-                ((ICellAccessibleParent)Parent).InvokeColumnHeaderMenu (this);
-            }
+			if (action == (int)Actions.Menu) {
+				((ICellAccessibleParent)Parent).InvokeColumnHeaderMenu (this);
+			}
 
-            return true;
-        }
+			return true;
+		}
 
-        public bool SetDescription (int action, string description)
-        {
-            return false;
-        }
-    }
+		public bool SetDescription (int action, string description)
+		{
+			return false;
+		}
+	}
 }

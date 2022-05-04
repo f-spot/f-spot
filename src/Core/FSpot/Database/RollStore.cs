@@ -81,7 +81,7 @@ namespace FSpot.Database
 			Hyena.Data.Sqlite.IDataReader reader = Database.Query (new HyenaSqliteCommand ("SELECT time FROM rolls WHERE id = ?", id));
 
 			if (reader.Read ()) {
-				roll = new Roll (id, Convert.ToUInt32 (reader ["time"]));
+				roll = new Roll (id, Convert.ToUInt32 (reader["time"]));
 				AddToCache (roll);
 			}
 
@@ -106,19 +106,19 @@ namespace FSpot.Database
 			uint number_of_photos = 0;
 			using (Hyena.Data.Sqlite.IDataReader reader = Database.Query (new HyenaSqliteCommand ("SELECT count(*) AS count FROM photos WHERE roll_id = ?", roll.Id))) {
 				if (reader.Read ())
-					number_of_photos = Convert.ToUInt32 (reader ["count"]);
+					number_of_photos = Convert.ToUInt32 (reader["count"]);
 
 				reader.Dispose ();
 			}
 			return number_of_photos;
 		}
 
-		public Roll [] GetRolls ()
+		public Roll[] GetRolls ()
 		{
 			return GetRolls (-1);
 		}
 
-		public Roll [] GetRolls (int limit)
+		public Roll[] GetRolls (int limit)
 		{
 			List<Roll> rolls = new List<Roll> ();
 
@@ -126,13 +126,13 @@ namespace FSpot.Database
 			if (limit >= 0)
 				query += " LIMIT " + limit;
 
-			using (Hyena.Data.Sqlite.IDataReader reader = Database.Query(query)) {
+			using (Hyena.Data.Sqlite.IDataReader reader = Database.Query (query)) {
 				while (reader.Read ()) {
-					uint id = Convert.ToUInt32 (reader ["roll_id"]);
+					uint id = Convert.ToUInt32 (reader["roll_id"]);
 
 					Roll roll = LookupInCache (id);
 					if (roll == null) {
-						roll = new Roll (id, Convert.ToUInt32 (reader ["roll_time"]));
+						roll = new Roll (id, Convert.ToUInt32 (reader["roll_time"]));
 						AddToCache (roll);
 					}
 					rolls.Add (roll);

@@ -76,9 +76,9 @@ namespace FSpot.Extensions
 		// Can be overriden to get notified as soon as we're added to a sidebar.
 		protected virtual void AddedToSidebar () { }
 
-//		// Whether this page is currently visible
-//		public bool IsActive {
-//			get { return Sidebar.IsActive (this); }
-//		}
+		//		// Whether this page is currently visible
+		//		public bool IsActive {
+		//			get { return Sidebar.IsActive (this); }
+		//		}
 	}
 }

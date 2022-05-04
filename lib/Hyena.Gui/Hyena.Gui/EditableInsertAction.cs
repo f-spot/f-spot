@@ -33,56 +33,56 @@ using Gtk;
 namespace Hyena.Gui
 {
 	class EditableInsertAction : IUndoAction
-    {
-        Editable editable;
-        string text;
-        int index;
-        bool is_paste;
+	{
+		Editable editable;
+		string text;
+		int index;
+		bool is_paste;
 
-        public EditableInsertAction (Editable editable, int start, string text, int length)
-        {
-            this.editable = editable;
-            this.text = text;
-            this.index = start;
-            this.is_paste = length > 1;
-        }
+		public EditableInsertAction (Editable editable, int start, string text, int length)
+		{
+			this.editable = editable;
+			this.text = text;
+			this.index = start;
+			this.is_paste = length > 1;
+		}
 
-        public void Undo ()
-        {
-            editable.DeleteText (index, index + text.Length);
-            editable.Position = index;
-        }
+		public void Undo ()
+		{
+			editable.DeleteText (index, index + text.Length);
+			editable.Position = index;
+		}
 
-        public void Redo ()
-        {
-            int index_r = index;
-            editable.InsertText (text, ref index_r);
-            editable.Position = index_r;
-        }
+		public void Redo ()
+		{
+			int index_r = index;
+			editable.InsertText (text, ref index_r);
+			editable.Position = index_r;
+		}
 
-        public void Merge (IUndoAction action)
-        {
-            text += ((EditableInsertAction)action).text;
-        }
+		public void Merge (IUndoAction action)
+		{
+			text += ((EditableInsertAction)action).text;
+		}
 
-        public bool CanMerge (IUndoAction action)
-        {
-            EditableInsertAction insert = action as EditableInsertAction;
-            if (insert == null || String.IsNullOrEmpty (text)) {
-                return false;
-            }
+		public bool CanMerge (IUndoAction action)
+		{
+			EditableInsertAction insert = action as EditableInsertAction;
+			if (insert == null || String.IsNullOrEmpty (text)) {
+				return false;
+			}
 
-            return !(
-               is_paste || insert.is_paste ||                  // Don't group text pastes
-               insert.index != index + text.Length ||          // Must meet eachother
-               text[0] == '\n' ||                              // Don't group more than one line (inclusive)
-               insert.text[0] == ' ' || insert.text[0] == '\t' // Don't group more than one word (exclusive)
-            );
-        }
+			return !(
+			   is_paste || insert.is_paste ||                  // Don't group text pastes
+			   insert.index != index + text.Length ||          // Must meet eachother
+			   text[0] == '\n' ||                              // Don't group more than one line (inclusive)
+			   insert.text[0] == ' ' || insert.text[0] == '\t' // Don't group more than one word (exclusive)
+			);
+		}
 
-        public override string ToString ()
-        {
-            return String.Format ("Inserted: [{0}] ({1})", text, index);
-        }
-    }
+		public override string ToString ()
+		{
+			return String.Format ("Inserted: [{0}] ({1})", text, index);
+		}
+	}
 }

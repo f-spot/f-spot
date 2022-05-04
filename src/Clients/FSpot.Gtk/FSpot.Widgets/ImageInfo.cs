@@ -32,11 +32,16 @@
 //
 
 using System;
+
 using Cairo;
+
 using FSpot.Imaging;
 using FSpot.Utils;
+
 using Gdk;
+
 using Gtk;
+
 using Hyena;
 
 namespace FSpot.Widgets
@@ -85,8 +90,8 @@ namespace FSpot.Widgets
 		public ImageInfo (ImageInfo info, Gdk.Rectangle allocation)
 		{
 			Surface = info.Surface.CreateSimilar (Content.Color,
-							      allocation.Width,
-							      allocation.Height);
+								  allocation.Width,
+								  allocation.Height);
 
 			var ctx = new Context (Surface);
 			Bounds = allocation;
@@ -101,7 +106,7 @@ namespace FSpot.Widgets
 
 		void SetPixbuf (Pixbuf pixbuf)
 		{
-			Surface = Hyena.Gui.PixbufImageSurface.Create(pixbuf);
+			Surface = Hyena.Gui.PixbufImageSurface.Create (pixbuf);
 			Bounds.Width = pixbuf.Width;
 			Bounds.Height = pixbuf.Height;
 		}
@@ -111,11 +116,11 @@ namespace FSpot.Widgets
 			var m = new Matrix ();
 			m.InitIdentity ();
 
-			double scale = Math.Max (viewport.Width / (double) Bounds.Width,
-						 viewport.Height / (double) Bounds.Height);
+			double scale = Math.Max (viewport.Width / (double)Bounds.Width,
+						 viewport.Height / (double)Bounds.Height);
 
-			double x_offset = Math.Round (((viewport.Width  - Bounds.Width * scale) / 2.0));
-			double y_offset = Math.Round (((viewport.Height  - Bounds.Height * scale) / 2.0));
+			double x_offset = Math.Round (((viewport.Width - Bounds.Width * scale) / 2.0));
+			double y_offset = Math.Round (((viewport.Height - Bounds.Height * scale) / 2.0));
 
 			m.Translate (x_offset, y_offset);
 			m.Scale (scale, scale);
@@ -154,8 +159,8 @@ namespace FSpot.Widgets
 
 			double scale = slen / orig_len;
 
-			double x_offset = (viewport.Width  - Bounds.Width * scale) / 2.0;
-			double y_offset = (viewport.Height  - Bounds.Height * scale) / 2.0;
+			double x_offset = (viewport.Width - Bounds.Width * scale) / 2.0;
+			double y_offset = (viewport.Height - Bounds.Height * scale) / 2.0;
 
 			m.Translate (x_offset, y_offset);
 			m.Scale (scale, scale);
@@ -172,11 +177,11 @@ namespace FSpot.Widgets
 			var m = new Matrix ();
 			m.InitIdentity ();
 
-			double scale = Math.Min (viewport.Width / (double) Bounds.Width,
-						 viewport.Height / (double) Bounds.Height);
+			double scale = Math.Min (viewport.Width / (double)Bounds.Width,
+						 viewport.Height / (double)Bounds.Height);
 
-			double x_offset = (viewport.Width  - Bounds.Width * scale) / 2.0;
-			double y_offset = (viewport.Height  - Bounds.Height * scale) / 2.0;
+			double x_offset = (viewport.Width - Bounds.Width * scale) / 2.0;
+			double y_offset = (viewport.Height - Bounds.Height * scale) / 2.0;
 
 			m.Translate (x_offset, y_offset);
 			m.Scale (scale, scale);

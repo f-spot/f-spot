@@ -48,7 +48,8 @@ using Hyena.Data.Sqlite;
 
 namespace FSpot.Database
 {
-	public class InvalidTagOperationException : InvalidOperationException {
+	public class InvalidTagOperationException : InvalidOperationException
+	{
 
 		public InvalidTagOperationException (Tag t, string message) : base (message)
 		{
@@ -60,7 +61,8 @@ namespace FSpot.Database
 
 	// Sorts tags into an order that it will be safe to delete
 	// them in (eg children first).
-	public class TagRemoveComparer : IComparer {
+	public class TagRemoveComparer : IComparer
+	{
 		public int Compare (object obj1, object obj2)
 		{
 			Tag t1 = obj1 as Tag;
@@ -128,9 +130,9 @@ namespace FSpot.Database
 			return null;
 		}
 
-		public Tag [] GetTagsByNameStart (string s)
+		public Tag[] GetTagsByNameStart (string s)
 		{
-			List <Tag> l = new List<Tag> ();
+			List<Tag> l = new List<Tag> ();
 			foreach (Tag t in item_cache.Values) {
 				if (t.Name.ToLower ().StartsWith (s.ToLower ()))
 					l.Add (t);
@@ -156,9 +158,9 @@ namespace FSpot.Database
 			IDataReader reader = Database.Query ("SELECT id, name, is_category, sort_priority, icon FROM tags");
 
 			while (reader.Read ()) {
-				uint id = Convert.ToUInt32 (reader ["id"]);
-				string name = reader ["name"].ToString ();
-				bool is_category = (Convert.ToUInt32 (reader ["is_category"]) != 0);
+				uint id = Convert.ToUInt32 (reader["id"]);
+				string name = reader["name"].ToString ();
+				bool is_category = (Convert.ToUInt32 (reader["is_category"]) != 0);
 
 				Tag tag;
 				if (is_category)
@@ -166,9 +168,9 @@ namespace FSpot.Database
 				else
 					tag = new Tag (null, id, name);
 
-				if (reader ["icon"] != null)
+				if (reader["icon"] != null)
 					try {
-						SetIconFromString (tag, reader ["icon"].ToString ());
+						SetIconFromString (tag, reader["icon"].ToString ());
 					} catch (Exception ex) {
 						Logger.Log.Error (ex, $"Unable to load icon for tag {name}");
 					}
@@ -183,8 +185,8 @@ namespace FSpot.Database
 			reader = Database.Query ("SELECT id, category_id FROM tags");
 
 			while (reader.Read ()) {
-				uint id = Convert.ToUInt32 (reader ["id"]);
-				uint category_id = Convert.ToUInt32 (reader ["category_id"]);
+				uint id = Convert.ToUInt32 (reader["id"]);
+				uint category_id = Convert.ToUInt32 (reader["category_id"]);
 
 				Tag tag = Get (id);
 				if (tag == null)
@@ -203,9 +205,9 @@ namespace FSpot.Database
 			//Pass 3, set popularity
 			reader = Database.Query ("SELECT tag_id, COUNT (*) AS popularity FROM photo_tags GROUP BY tag_id");
 			while (reader.Read ()) {
-				Tag t = Get (Convert.ToUInt32 (reader ["tag_id"]));
+				Tag t = Get (Convert.ToUInt32 (reader["tag_id"]));
 				if (t != null)
-					t.Popularity = Convert.ToInt32 (reader ["popularity"]);
+					t.Popularity = Convert.ToInt32 (reader["popularity"]);
 			}
 			reader.Dispose ();
 
@@ -238,7 +240,7 @@ namespace FSpot.Database
 			hidden_tag.SortPriority = -9;
 			Hidden = hidden_tag;
 			Commit (hidden_tag);
-			Db.Meta.HiddenTagId.ValueAsInt = (int) hidden_tag.Id;
+			Db.Meta.HiddenTagId.ValueAsInt = (int)hidden_tag.Id;
 			Db.Meta.Commit (Db.Meta.HiddenTagId);
 
 			Tag people_category = CreateCategory (RootCategory, Strings.People, false);
@@ -264,7 +266,7 @@ namespace FSpot.Database
 			// The label for the root category is used in new and edit tag dialogs
 			RootCategory = new Category (null, 0, Strings.ParenNoneParen);
 
-			if (! isNew) {
+			if (!isNew) {
 				LoadAllTags ();
 			} else {
 				CreateTable ();
@@ -286,7 +288,7 @@ namespace FSpot.Database
 				default_tag_icon_value));
 
 			// The table in the database is setup to be an INTEGER.
-			return (uint) id;
+			return (uint)id;
 		}
 
 		public Tag CreateTag (Category category, string name, bool autoicon)
@@ -323,7 +325,7 @@ namespace FSpot.Database
 
 		public override Tag Get (uint id)
 		{
-		    return id == 0 ? RootCategory : LookupInCache (id);
+			return id == 0 ? RootCategory : LookupInCache (id);
 		}
 
 		public override void Remove (Tag item)
@@ -353,7 +355,7 @@ namespace FSpot.Database
 				return null;
 			}
 
-			byte [] data = GdkUtils.Serialize (tag.Icon);
+			byte[] data = GdkUtils.Serialize (tag.Icon);
 			return Convert.ToBase64String (data);
 		}
 
@@ -364,10 +366,10 @@ namespace FSpot.Database
 
 		public void Commit (Tag tag, bool updateXmp)
 		{
-			Commit (new Tag[] {tag}, updateXmp);
+			Commit (new Tag[] { tag }, updateXmp);
 		}
 
-		public void Commit (Tag [] tags, bool updateXmp)
+		public void Commit (Tag[] tags, bool updateXmp)
 		{
 			// TODO.
 			bool use_transactions = updateXmp;//!Database.InTransaction && update_xmp;
@@ -397,7 +399,7 @@ namespace FSpot.Database
 								  tag.Id));
 
 				if (updateXmp && Preferences.Get<bool> (Preferences.MetadataEmbedInImage)) {
-					Photo [] photos = Db.Photos.Query (new TagTerm (tag));
+					Photo[] photos = Db.Photos.Query (new TagTerm (tag));
 					foreach (Photo p in photos)
 						if (p.HasTag (tag)) // the query returns all the pics of the tag and all its child. this avoids updating child tags
 							SyncMetadataJob.Create (Db.Jobs, p);
@@ -410,13 +412,13 @@ namespace FSpot.Database
 			EmitChanged (tags);
 		}
 
-		public void Dispose()
+		public void Dispose ()
 		{
-			Dispose(true);
-			GC.SuppressFinalize(this);
+			Dispose (true);
+			GC.SuppressFinalize (this);
 		}
 
-		protected virtual void Dispose(bool disposing)
+		protected virtual void Dispose (bool disposing)
 		{
 			if (disposed)
 				return;

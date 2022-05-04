@@ -31,273 +31,274 @@ using System.Threading;
 
 namespace Hyena.Jobs
 {
-	public enum JobState {
-        None,
-        Scheduled,
-        Running,
-        Paused,
-        Cancelled,
-        Completed
-    };
+	public enum JobState
+	{
+		None,
+		Scheduled,
+		Running,
+		Paused,
+		Cancelled,
+		Completed
+	};
 
-    public class Job
-    {
-        public event EventHandler Updated;
-        public event EventHandler Finished;
-        public event EventHandler CancelRequested;
+	public class Job
+	{
+		public event EventHandler Updated;
+		public event EventHandler Finished;
+		public event EventHandler CancelRequested;
 
-        int update_freeze_ref;
-        JobState state = JobState.None;
+		int update_freeze_ref;
+		JobState state = JobState.None;
 
-        ManualResetEvent pause_event;
-        DateTime created_at = DateTime.Now;
-        TimeSpan run_time = TimeSpan.Zero;
-        object sync = new object ();
+		ManualResetEvent pause_event;
+		DateTime created_at = DateTime.Now;
+		TimeSpan run_time = TimeSpan.Zero;
+		object sync = new object ();
 
-        public bool IsCancelRequested { get; private set; }
+		public bool IsCancelRequested { get; private set; }
 
-#region Internal Properties
+		#region Internal Properties
 
-        internal bool IsScheduled {
-            get { return state == JobState.Scheduled; }
-        }
+		internal bool IsScheduled {
+			get { return state == JobState.Scheduled; }
+		}
 
-        internal bool IsRunning {
-            get { return state == JobState.Running; }
-        }
+		internal bool IsRunning {
+			get { return state == JobState.Running; }
+		}
 
-        internal bool IsPaused {
-            get { return state == JobState.Paused; }
-        }
+		internal bool IsPaused {
+			get { return state == JobState.Paused; }
+		}
 
-        public bool IsFinished {
-            get {
-                lock (sync) {
-                    return state == JobState.Cancelled || state == JobState.Completed;
-                }
-            }
-        }
+		public bool IsFinished {
+			get {
+				lock (sync) {
+					return state == JobState.Cancelled || state == JobState.Completed;
+				}
+			}
+		}
 
-        internal DateTime CreatedAt {
-            get { return created_at; }
-        }
+		internal DateTime CreatedAt {
+			get { return created_at; }
+		}
 
-        internal TimeSpan RunTime {
-            get { return run_time; }
-        }
+		internal TimeSpan RunTime {
+			get { return run_time; }
+		}
 
-#endregion
+		#endregion
 
-#region Scheduler Methods
+		#region Scheduler Methods
 
-        internal void Start ()
-        {
-            Log.Debug ("Starting", Title);
-            lock (sync) {
-                if (state != JobState.Scheduled && state != JobState.Paused) {
-                    Log.DebugFormat ("Job {0} in {1} state is not runnable", Title, state);
-                    return;
-                }
+		internal void Start ()
+		{
+			Log.Debug ("Starting", Title);
+			lock (sync) {
+				if (state != JobState.Scheduled && state != JobState.Paused) {
+					Log.DebugFormat ("Job {0} in {1} state is not runnable", Title, state);
+					return;
+				}
 
-                State = JobState.Running;
+				State = JobState.Running;
 
-                if (pause_event != null) {
-                    pause_event.Set ();
-                }
+				if (pause_event != null) {
+					pause_event.Set ();
+				}
 
-                RunJob ();
-            }
-        }
+				RunJob ();
+			}
+		}
 
-        internal void Cancel ()
-        {
-            lock (sync) {
-                if (!IsFinished) {
-                    IsCancelRequested = true;
-                    State = JobState.Cancelled;
+		internal void Cancel ()
+		{
+			lock (sync) {
+				if (!IsFinished) {
+					IsCancelRequested = true;
+					State = JobState.Cancelled;
 					CancelRequested?.Invoke (this, EventArgs.Empty);
 				}
-            }
-            Log.Debug ("Canceled", Title);
-        }
+			}
+			Log.Debug ("Canceled", Title);
+		}
 
-        internal void Preempt ()
-        {
-            Log.Debug ("Preempting", Title);
-            Pause (false);
-        }
+		internal void Preempt ()
+		{
+			Log.Debug ("Preempting", Title);
+			Pause (false);
+		}
 
-        internal bool Pause ()
-        {
-            Log.Debug ("Pausing ", Title);
-            return Pause (true);
-        }
+		internal bool Pause ()
+		{
+			Log.Debug ("Pausing ", Title);
+			return Pause (true);
+		}
 
-        bool Pause (bool unschedule)
-        {
-            lock (sync) {
-                if (IsFinished) {
-                    Log.DebugFormat ("Job {0} in {1} state is not pausable", Title, state);
-                    return false;
-                }
+		bool Pause (bool unschedule)
+		{
+			lock (sync) {
+				if (IsFinished) {
+					Log.DebugFormat ("Job {0} in {1} state is not pausable", Title, state);
+					return false;
+				}
 
-                State = unschedule ? JobState.Paused : JobState.Scheduled;
-                if (pause_event != null) {
-                    pause_event.Reset ();
-                }
-            }
+				State = unschedule ? JobState.Paused : JobState.Scheduled;
+				if (pause_event != null) {
+					pause_event.Reset ();
+				}
+			}
 
-            return true;
-        }
+			return true;
+		}
 
-#endregion
+		#endregion
 
-        string title;
-        string status;
-        string [] icon_names;
-        double progress;
+		string title;
+		string status;
+		string[] icon_names;
+		double progress;
 
-#region Public Properties
+		#region Public Properties
 
-        public string Title {
-            get { return title; }
-            set {
-                title = value;
-                OnUpdated ();
-            }
-        }
+		public string Title {
+			get { return title; }
+			set {
+				title = value;
+				OnUpdated ();
+			}
+		}
 
-        public string Status {
-            get { return status; }
-            set {
-                status = value;
-                OnUpdated ();
-            }
-        }
+		public string Status {
+			get { return status; }
+			set {
+				status = value;
+				OnUpdated ();
+			}
+		}
 
-        public double Progress {
-            get { return progress; }
-            set {
-                progress = Math.Max (0.0, Math.Min (1.0, value));
-                OnUpdated ();
-            }
-        }
+		public double Progress {
+			get { return progress; }
+			set {
+				progress = Math.Max (0.0, Math.Min (1.0, value));
+				OnUpdated ();
+			}
+		}
 
-        public string [] IconNames {
-            get { return icon_names; }
-            set {
-                if (value != null) {
-                    icon_names = value;
-                    OnUpdated ();
-                }
-            }
-        }
+		public string[] IconNames {
+			get { return icon_names; }
+			set {
+				if (value != null) {
+					icon_names = value;
+					OnUpdated ();
+				}
+			}
+		}
 
-        public bool IsBackground { get; set; }
-        public bool CanCancel { get; set; }
-        public string CancelMessage { get; set; }
-        public bool DelayShow { get; set; }
+		public bool IsBackground { get; set; }
+		public bool CanCancel { get; set; }
+		public string CancelMessage { get; set; }
+		public bool DelayShow { get; set; }
 
-        public PriorityHints PriorityHints { get; set; }
+		public PriorityHints PriorityHints { get; set; }
 
-        // Causes runtime method-not-found error in mono 2.0.1
-        //public IEnumerable<Resource> Resources { get; protected set; }
-        internal Resource [] Resources;
+		// Causes runtime method-not-found error in mono 2.0.1
+		//public IEnumerable<Resource> Resources { get; protected set; }
+		internal Resource[] Resources;
 
-        public JobState State {
-            get { return state; }
-            internal set {
-                state = value;
-                OnUpdated ();
-            }
-        }
+		public JobState State {
+			get { return state; }
+			internal set {
+				state = value;
+				OnUpdated ();
+			}
+		}
 
-        public void SetResources (params Resource [] resources)
-        {
-            Resources = resources ?? new Resource [0];
-        }
+		public void SetResources (params Resource[] resources)
+		{
+			Resources = resources ?? new Resource[0];
+		}
 
-#endregion
+		#endregion
 
-#region Constructor
+		#region Constructor
 
-        public Job () : this (null, PriorityHints.None)
-        {
-        }
+		public Job () : this (null, PriorityHints.None)
+		{
+		}
 
-        public Job (string title, PriorityHints hints, params Resource [] resources)
-        {
-            Title = title;
-            PriorityHints = hints;
-            SetResources (resources);
-        }
+		public Job (string title, PriorityHints hints, params Resource[] resources)
+		{
+			Title = title;
+			PriorityHints = hints;
+			SetResources (resources);
+		}
 
-#endregion
+		#endregion
 
-#region Abstract Methods
+		#region Abstract Methods
 
-        protected virtual void RunJob ()
-        {
-        }
+		protected virtual void RunJob ()
+		{
+		}
 
-#endregion
+		#endregion
 
-#region Protected Methods
+		#region Protected Methods
 
-        public void Update (string title, string status, double progress)
-        {
-            Title = title;
-            Status = status;
-            Progress = progress;
-        }
+		public void Update (string title, string status, double progress)
+		{
+			Title = title;
+			Status = status;
+			Progress = progress;
+		}
 
-        protected void FreezeUpdate ()
-        {
-            System.Threading.Interlocked.Increment (ref update_freeze_ref);
-        }
+		protected void FreezeUpdate ()
+		{
+			System.Threading.Interlocked.Increment (ref update_freeze_ref);
+		}
 
-        protected void ThawUpdate (bool raiseUpdate)
-        {
-            System.Threading.Interlocked.Decrement (ref update_freeze_ref);
-            if (raiseUpdate) {
-                OnUpdated ();
-            }
-        }
+		protected void ThawUpdate (bool raiseUpdate)
+		{
+			System.Threading.Interlocked.Decrement (ref update_freeze_ref);
+			if (raiseUpdate) {
+				OnUpdated ();
+			}
+		}
 
-        protected void OnUpdated ()
-        {
-            if (update_freeze_ref != 0) {
-                return;
-            }
+		protected void OnUpdated ()
+		{
+			if (update_freeze_ref != 0) {
+				return;
+			}
 
 			Updated?.Invoke (this, EventArgs.Empty);
 		}
 
-        public void YieldToScheduler ()
-        {
-            if (IsPaused || IsScheduled) {
-                if (pause_event == null) {
-                    pause_event = new ManualResetEvent (false);
-                }
+		public void YieldToScheduler ()
+		{
+			if (IsPaused || IsScheduled) {
+				if (pause_event == null) {
+					pause_event = new ManualResetEvent (false);
+				}
 
-                pause_event.WaitOne ();
-            }
-        }
+				pause_event.WaitOne ();
+			}
+		}
 
-        protected void OnFinished ()
-        {
-            Log.Debug ("Finished", Title);
-            pause_event = null;
+		protected void OnFinished ()
+		{
+			Log.Debug ("Finished", Title);
+			pause_event = null;
 
-            if (state != JobState.Cancelled) {
-                State = JobState.Completed;
-            }
+			if (state != JobState.Cancelled) {
+				State = JobState.Completed;
+			}
 
 			Finished?.Invoke (this, EventArgs.Empty);
 		}
 
-#endregion
+		#endregion
 
-        internal bool HasScheduler { get; set; }
-    }
+		internal bool HasScheduler { get; set; }
+	}
 }

@@ -42,7 +42,7 @@ namespace FSpot.Utils
 
 			return builder.Uri;
 		}
-		
+
 		public static string GetFilename (this Uri uri)
 		{
 			return Path.GetFileName (uri.AbsolutePath);

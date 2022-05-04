@@ -11,7 +11,7 @@ namespace FSpot
 {
 	public static class Logger
 	{
-		static readonly LoggingLevelSwitch logLevel = new LoggingLevelSwitch();
+		static readonly LoggingLevelSwitch logLevel = new LoggingLevelSwitch ();
 
 		public static ILogger Log { get; private set; }
 
@@ -27,8 +27,8 @@ namespace FSpot
 		{
 			Log = new LoggerConfiguration ()
 							.MinimumLevel.ControlledBy (logLevel)
-							.Enrich.WithExceptionDetails()
-							.Enrich.FromLogContext()
+							.Enrich.WithExceptionDetails ()
+							.Enrich.FromLogContext ()
 							.WriteTo.Console ()
 							.WriteTo.File (Path.Combine ("logs", "f-spot.txt"), rollingInterval: RollingInterval.Day)
 							.CreateLogger ();

@@ -28,75 +28,76 @@
 
 using System;
 using System.Reflection;
+
 using Gtk;
 
 namespace Hyena.Gui
 {
-    public class TestModuleRunner : Window
-    {
-        public static void Run ()
-        {
-            Application.Init ();
-            Hyena.ThreadAssist.InitializeMainThread ();
-            TestModuleRunner runner = new TestModuleRunner ();
-            runner.DeleteEvent += delegate { Application.Quit (); };
-            runner.ShowAll ();
-            Application.Run ();
-        }
+	public class TestModuleRunner : Window
+	{
+		public static void Run ()
+		{
+			Application.Init ();
+			Hyena.ThreadAssist.InitializeMainThread ();
+			TestModuleRunner runner = new TestModuleRunner ();
+			runner.DeleteEvent += delegate { Application.Quit (); };
+			runner.ShowAll ();
+			Application.Run ();
+		}
 
-        TreeStore store;
+		TreeStore store;
 
-        public TestModuleRunner () : base ("Hyena.Gui Module Tester")
-        {
-            SetSizeRequest (-1, 300);
-            Move (100, 100);
+		public TestModuleRunner () : base ("Hyena.Gui Module Tester")
+		{
+			SetSizeRequest (-1, 300);
+			Move (100, 100);
 
-            BuildModuleList ();
-            BuildView ();
-        }
+			BuildModuleList ();
+			BuildView ();
+		}
 
-        void BuildModuleList ()
-        {
-            store = new TreeStore (typeof (string), typeof (Type));
+		void BuildModuleList ()
+		{
+			store = new TreeStore (typeof (string), typeof (Type));
 
-            foreach (Type type in Assembly.GetExecutingAssembly ().GetTypes ()) {
-                foreach (TestModuleAttribute attr in type.GetCustomAttributes (typeof (TestModuleAttribute), false)) {
-                    store.AppendValues (attr.Name, type);
-                }
-            }
-        }
+			foreach (Type type in Assembly.GetExecutingAssembly ().GetTypes ()) {
+				foreach (TestModuleAttribute attr in type.GetCustomAttributes (typeof (TestModuleAttribute), false)) {
+					store.AppendValues (attr.Name, type);
+				}
+			}
+		}
 
-        void BuildView ()
-        {
-            VBox box = new VBox ();
-            Add (box);
+		void BuildView ()
+		{
+			VBox box = new VBox ();
+			Add (box);
 
-            ScrolledWindow sw = new ScrolledWindow ();
-            sw.HscrollbarPolicy = PolicyType.Never;
+			ScrolledWindow sw = new ScrolledWindow ();
+			sw.HscrollbarPolicy = PolicyType.Never;
 
-            TreeView view = new TreeView ();
-            view.RowActivated += delegate (object o, RowActivatedArgs args) {
-                TreeIter iter;
-                if (store.GetIter (out iter, args.Path)) {
-                    Type type = (Type)store.GetValue (iter, 1);
-                    Window window = (Window)Activator.CreateInstance (type);
-                    window.WindowPosition = WindowPosition.Center;
-                    window.DeleteEvent += delegate { window.Destroy (); };
-                    window.Show ();
-                }
-            };
-            view.Model = store;
-            view.AppendColumn ("Module", new CellRendererText (), "text", 0);
+			TreeView view = new TreeView ();
+			view.RowActivated += delegate (object o, RowActivatedArgs args) {
+				TreeIter iter;
+				if (store.GetIter (out iter, args.Path)) {
+					Type type = (Type)store.GetValue (iter, 1);
+					Window window = (Window)Activator.CreateInstance (type);
+					window.WindowPosition = WindowPosition.Center;
+					window.DeleteEvent += delegate { window.Destroy (); };
+					window.Show ();
+				}
+			};
+			view.Model = store;
+			view.AppendColumn ("Module", new CellRendererText (), "text", 0);
 
-            sw.Add (view);
-            box.PackStart (sw, true, true, 0);
-            sw.ShowAll ();
+			sw.Add (view);
+			box.PackStart (sw, true, true, 0);
+			sw.ShowAll ();
 
-            Button button = new Button (Stock.Quit);
-            button.Clicked += delegate { Destroy (); Application.Quit (); };
-            box.PackStart (button, false, false, 0);
+			Button button = new Button (Stock.Quit);
+			button.Clicked += delegate { Destroy (); Application.Quit (); };
+			box.PackStart (button, false, false, 0);
 
-            box.ShowAll ();
-        }
-    }
+			box.ShowAll ();
+		}
+	}
 }

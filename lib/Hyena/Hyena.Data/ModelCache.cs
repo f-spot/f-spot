@@ -28,40 +28,40 @@
 
 namespace Hyena.Data
 {
-	public abstract class ModelCache<T> where T : ICacheableItem, new ()
-    {
-        ICacheableModel model;
-        protected ICacheableModel Model { get { return model; } }
+	public abstract class ModelCache<T> where T : ICacheableItem, new()
+	{
+		ICacheableModel model;
+		protected ICacheableModel Model { get { return model; } }
 
-        public ModelCache (ICacheableModel model)
-        {
-            this.model = model;
-        }
+		public ModelCache (ICacheableModel model)
+		{
+			this.model = model;
+		}
 
-        public virtual T GetValue (long index)
-        {
-            lock (this) {
-                if (ContainsKey (index))
-                    return this[index];
+		public virtual T GetValue (long index)
+		{
+			lock (this) {
+				if (ContainsKey (index))
+					return this[index];
 
-                FetchSet (index, model.FetchCount);
+				FetchSet (index, model.FetchCount);
 
-                if (ContainsKey (index))
-                    return this[index];
+				if (ContainsKey (index))
+					return this[index];
 
-                return default;
-            }
-        }
+				return default;
+			}
+		}
 
-        // Responsible for fetching a set of items and placing them in the cache
-        protected abstract void FetchSet (long offset, long limit);
+		// Responsible for fetching a set of items and placing them in the cache
+		protected abstract void FetchSet (long offset, long limit);
 
-        // Regenerate the cache
-        public abstract void Reload ();
+		// Regenerate the cache
+		public abstract void Reload ();
 
-        public abstract bool ContainsKey (long i);
-        public abstract void Add (long i, T item);
-        public abstract T this[long i] { get; }
-        public abstract void Clear ();
-    }
+		public abstract bool ContainsKey (long i);
+		public abstract void Add (long i, T item);
+		public abstract T this[long i] { get; }
+		public abstract void Clear ();
+	}
 }

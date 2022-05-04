@@ -33,10 +33,10 @@
 
 using System;
 
-using Gdk;
-
 using FSpot.Settings;
 using FSpot.Utils;
+
+using Gdk;
 
 namespace FSpot.Core
 {

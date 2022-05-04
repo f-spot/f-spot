@@ -1,4 +1,4 @@
-﻿//
+//
 // ObsoletePhotoQueries.cs
 //
 // Author:
@@ -40,33 +40,36 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+
 using FSpot.Core;
 using FSpot.Query;
+
 using Hyena;
 
-namespace FSpot {
+namespace FSpot
+{
 	public static class ObsoletePhotoQueries
 	{
 		[Obsolete ("drop this, use IQueryCondition correctly instead")]
-		public static Photo [] Query (Tag [] tags)
+		public static Photo[] Query (Tag[] tags)
 		{
 			return Query (tags, null, null, null, null);
 		}
 
 		[Obsolete ("drop this, use IQueryCondition correctly instead")]
-		public static Photo [] Query (Tag [] tags, string extraCondition, DateRange range, RollSet importidrange)
+		public static Photo[] Query (Tag[] tags, string extraCondition, DateRange range, RollSet importidrange)
 		{
-			return Query (OrTerm.FromTags(tags), extraCondition, range, importidrange, null);
+			return Query (OrTerm.FromTags (tags), extraCondition, range, importidrange, null);
 		}
 
 		[Obsolete ("drop this, use IQueryCondition correctly instead")]
-		public static Photo [] Query (Tag [] tags, string extraCondition, DateRange range, RollSet importidrange, RatingRange ratingrange)
+		public static Photo[] Query (Tag[] tags, string extraCondition, DateRange range, RollSet importidrange, RatingRange ratingrange)
 		{
-			return Query (OrTerm.FromTags(tags), extraCondition, range, importidrange, ratingrange);
+			return Query (OrTerm.FromTags (tags), extraCondition, range, importidrange, ratingrange);
 		}
 
 		[Obsolete ("drop this, use IQueryCondition correctly instead")]
-		public static Photo [] Query (Term searchexpression, string extraCondition, DateRange range, RollSet importidrange, RatingRange ratingrange)
+		public static Photo[] Query (Term searchexpression, string extraCondition, DateRange range, RollSet importidrange, RatingRange ratingrange)
 		{
 			bool hide = (extraCondition == null);
 

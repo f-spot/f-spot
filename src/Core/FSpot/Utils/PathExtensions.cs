@@ -12,15 +12,15 @@ namespace FSpot.Utils
 
 		public static string FindInEnvironmentPath (this string executable)
 		{
-				var path = Environment.GetEnvironmentVariable ("PATH");
-				var directories = path.Split (EnvironmentPathSeparator);
+			var path = Environment.GetEnvironmentVariable ("PATH");
+			var directories = path.Split (EnvironmentPathSeparator);
 
-				foreach (var dir in directories) {
-					var fullPath = Path.Combine (dir, executable);
-					if (File.Exists (fullPath)) return fullPath;
-				}
+			foreach (var dir in directories) {
+				var fullPath = Path.Combine (dir, executable);
+				if (File.Exists (fullPath)) return fullPath;
+			}
 
-				return string.Empty;
+			return string.Empty;
 		}
 	}
 }

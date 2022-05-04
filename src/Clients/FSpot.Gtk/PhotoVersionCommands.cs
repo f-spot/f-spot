@@ -35,13 +35,14 @@
 
 using System;
 
-using Gtk;
-
 using FSpot;
 using FSpot.Database;
-using FSpot.UI.Dialog;
-using Hyena.Widgets;
 using FSpot.Resources.Lang;
+using FSpot.UI.Dialog;
+
+using Gtk;
+
+using Hyena.Widgets;
 
 
 public class PhotoVersionCommands
@@ -80,7 +81,7 @@ public class PhotoVersionCommands
 			string msg = string.Format (Strings.ReallyDeleteVersionXQuestion, photo.DefaultVersion.Name);
 			string desc = Strings.ThisRemovesTheVersionAndDeletesTheFileFromDisk;
 			try {
-				if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation(parent_window, DialogFlags.DestroyWithParent,
+				if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation (parent_window, DialogFlags.DestroyWithParent,
 									   MessageType.Warning, msg, desc, ok_caption)) {
 					photo.DeleteVersion (photo.DefaultVersionId);
 					store.Commit (photo);
@@ -99,7 +100,7 @@ public class PhotoVersionCommands
 		public bool Execute (PhotoStore store, Photo photo, Gtk.Window parent_window)
 		{
 			VersionNameDialog request = new VersionNameDialog (VersionNameDialog.RequestType.Rename,
-									     photo, parent_window);
+										 photo, parent_window);
 
 			string new_name;
 			ResponseType response = request.Run (out new_name);
@@ -124,15 +125,15 @@ public class PhotoVersionCommands
 		public bool Execute (PhotoStore store, Photo photo, Gtk.Window parent_window)
 		{
 			string ok_caption = Strings.DetachMnemonic;
-			string msg = string.Format (Strings.ReallyDetachVersionXFromY, photo.DefaultVersion.Name, photo.Name.Replace("_", "__"));
+			string msg = string.Format (Strings.ReallyDetachVersionXFromY, photo.DefaultVersion.Name, photo.Name.Replace ("_", "__"));
 			string desc = Strings.ThisMakesTheVersionAppearAsASeparatePhotoInLibraryToUndoDragNewPhotoBackToParent;
 			try {
-				if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation(parent_window, DialogFlags.DestroyWithParent,
+				if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation (parent_window, DialogFlags.DestroyWithParent,
 									   MessageType.Warning, msg, desc, ok_caption)) {
 					Photo new_photo = store.CreateFrom (photo, true, photo.RollId);
 					new_photo.CopyAttributesFrom (photo);
 					photo.DeleteVersion (photo.DefaultVersionId, false, true);
-					store.Commit (new Photo[] {new_photo, photo});
+					store.Commit (new Photo[] { new_photo, photo });
 					return true;
 				}
 			} catch (Exception e) {
@@ -145,21 +146,21 @@ public class PhotoVersionCommands
 	// Reparenting a photo as version of another one
 	public class Reparent
 	{
-		public bool Execute (PhotoStore store, Photo [] photos, Photo new_parent, Gtk.Window parent_window)
+		public bool Execute (PhotoStore store, Photo[] photos, Photo new_parent, Gtk.Window parent_window)
 		{
 			string ok_caption = Strings.ReparentMnemonic;
 			string msg = string.Format (photos.Length <= 1 ? Strings.ReallyReparentXAsVersionOfY : Strings.ReallyReparentZPhotosAsVersionsOfY,
-			                            new_parent.Name.Replace ("_", "__"), photos[0].Name.Replace ("_", "__"), photos.Length);
+										new_parent.Name.Replace ("_", "__"), photos[0].Name.Replace ("_", "__"), photos.Length);
 			string desc = Strings.ThisMakesThePhotosAppearAsASingleOneInLibraryTheVersionsCanBeDetachedUsingThePhotoMenu;
 
 			try {
-				if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation(parent_window, DialogFlags.DestroyWithParent,
+				if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation (parent_window, DialogFlags.DestroyWithParent,
 									   MessageType.Warning, msg, desc, ok_caption)) {
 					uint highest_rating = new_parent.Rating;
 					string new_description = new_parent.Description;
 					foreach (Photo photo in photos) {
-						highest_rating = Math.Max(photo.Rating, highest_rating);
-						if (string.IsNullOrEmpty(new_description))
+						highest_rating = Math.Max (photo.Rating, highest_rating);
+						if (string.IsNullOrEmpty (new_description))
 							new_description = photo.Description;
 						new_parent.AddTag (photo.Tags);
 
@@ -167,7 +168,7 @@ public class PhotoVersionCommands
 							new_parent.DefaultVersionId = new_parent.CreateReparentedVersion (photo.GetVersion (version_id) as PhotoVersion);
 							store.Commit (new_parent);
 						}
-						uint [] version_ids = photo.VersionIds;
+						uint[] version_ids = photo.VersionIds;
 						Array.Reverse (version_ids);
 						foreach (uint version_id in version_ids) {
 							photo.DeleteVersion (version_id, true, true);
@@ -179,8 +180,7 @@ public class PhotoVersionCommands
 					store.Commit (new_parent);
 					return true;
 				}
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				HandleException ("Could not reparent photos", e, parent_window);
 			}
 			return false;

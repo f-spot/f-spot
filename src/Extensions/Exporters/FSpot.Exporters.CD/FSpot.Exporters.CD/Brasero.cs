@@ -28,8 +28,8 @@
 // Borrowed parts from banshee.
 // src/Backends/Banshee.Gnome/Banshee.GnomeBackend/Brasero.cs
 
-using System.IO;
 using System.Diagnostics;
+using System.IO;
 
 using FSpot.Utils;
 
@@ -44,7 +44,7 @@ namespace FSpot.Exporters.CD
 		{
 			CommandFullPath = CommandName.FindInEnvironmentPath ();
 			if (string.IsNullOrEmpty (CommandFullPath))
-				throw new FileNotFoundException (nameof(CommandName));
+				throw new FileNotFoundException (nameof (CommandName));
 		}
 
 		/// <summary>

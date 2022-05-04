@@ -11,12 +11,12 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using System.Collections;
 using System.IO;
 
-using Newtonsoft.Json.Linq;
-
 using FSpot.Settings;
-using System.Collections;
+
+using Newtonsoft.Json.Linq;
 
 namespace FSpot.Platform
 {
@@ -73,7 +73,7 @@ namespace FSpot.Platform
 			if (Client.ContainsKey (key))
 				return Client[key].ToObject<T> ();
 
-			throw new NoSuchKeyException (nameof(key));
+			throw new NoSuchKeyException (nameof (key));
 		}
 
 		internal void Set<T> (string key, T value)

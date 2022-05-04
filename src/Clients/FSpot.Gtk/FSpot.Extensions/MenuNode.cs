@@ -117,7 +117,7 @@ namespace FSpot.Extensions
 	public abstract class MenuNode : ExtensionNode
 	{
 		// TODO: Review this. Gettext (_label)
-		[NodeAttribute (Localizable=true)]
+		[NodeAttribute (Localizable = true)]
 		protected string _label;
 
 		[NodeAttribute]

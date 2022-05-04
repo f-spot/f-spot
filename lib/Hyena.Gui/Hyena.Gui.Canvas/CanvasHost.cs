@@ -25,309 +25,311 @@
 // THE SOFTWARE.
 
 using System;
-using Gtk;
+
 using Gdk;
+
+using Gtk;
 
 using Hyena.Gui.Theming;
 
 namespace Hyena.Gui.Canvas
 {
-    public class CanvasHost : Widget, ICanvasHost
-    {
-        Gdk.Window event_window;
-        CanvasItem canvas_child;
-        Theme theme;
-        CanvasManager manager;
-        bool debug = false;
-        FpsCalculator fps = new FpsCalculator ();
-        Hyena.Data.Gui.CellContext context = new Hyena.Data.Gui.CellContext ();
+	public class CanvasHost : Widget, ICanvasHost
+	{
+		Gdk.Window event_window;
+		CanvasItem canvas_child;
+		Theme theme;
+		CanvasManager manager;
+		bool debug = false;
+		FpsCalculator fps = new FpsCalculator ();
+		Hyena.Data.Gui.CellContext context = new Hyena.Data.Gui.CellContext ();
 
-        public CanvasHost ()
-        {
-            WidgetFlags |= WidgetFlags.NoWindow;
-            manager = new CanvasManager (this);
-        }
+		public CanvasHost ()
+		{
+			WidgetFlags |= WidgetFlags.NoWindow;
+			manager = new CanvasManager (this);
+		}
 
-        protected CanvasHost (IntPtr native) : base (native)
-        {
-        }
+		protected CanvasHost (IntPtr native) : base (native)
+		{
+		}
 
-        protected override void OnRealized ()
-        {
-            base.OnRealized ();
+		protected override void OnRealized ()
+		{
+			base.OnRealized ();
 
-            WindowAttr attributes = new WindowAttr ();
-            attributes.WindowType = Gdk.WindowType.Child;
-            attributes.X = Allocation.X;
-            attributes.Y = Allocation.Y;
-            attributes.Width = Allocation.Width;
-            attributes.Height = Allocation.Height;
-            attributes.Wclass = WindowClass.InputOnly;
-            attributes.EventMask = (int)(
-                EventMask.PointerMotionMask |
-                EventMask.ButtonPressMask |
-                EventMask.ButtonReleaseMask |
-                EventMask.EnterNotifyMask |
-                EventMask.LeaveNotifyMask |
-                EventMask.ExposureMask);
+			WindowAttr attributes = new WindowAttr ();
+			attributes.WindowType = Gdk.WindowType.Child;
+			attributes.X = Allocation.X;
+			attributes.Y = Allocation.Y;
+			attributes.Width = Allocation.Width;
+			attributes.Height = Allocation.Height;
+			attributes.Wclass = WindowClass.InputOnly;
+			attributes.EventMask = (int)(
+				EventMask.PointerMotionMask |
+				EventMask.ButtonPressMask |
+				EventMask.ButtonReleaseMask |
+				EventMask.EnterNotifyMask |
+				EventMask.LeaveNotifyMask |
+				EventMask.ExposureMask);
 
-            WindowAttributesType attributes_mask =
-                WindowAttributesType.X | WindowAttributesType.Y | WindowAttributesType.Wmclass;
+			WindowAttributesType attributes_mask =
+				WindowAttributesType.X | WindowAttributesType.Y | WindowAttributesType.Wmclass;
 
-            event_window = new Gdk.Window (GdkWindow, attributes, attributes_mask);
-            event_window.UserData = Handle;
+			event_window = new Gdk.Window (GdkWindow, attributes, attributes_mask);
+			event_window.UserData = Handle;
 
-            AllocateChild ();
-            QueueResize ();
-        }
+			AllocateChild ();
+			QueueResize ();
+		}
 
-        protected override void OnUnrealized ()
-        {
-            WidgetFlags ^= WidgetFlags.Realized;
+		protected override void OnUnrealized ()
+		{
+			WidgetFlags ^= WidgetFlags.Realized;
 
-            event_window.UserData = IntPtr.Zero;
-            Hyena.Gui.GtkWorkarounds.WindowDestroy (event_window);
-            event_window = null;
+			event_window.UserData = IntPtr.Zero;
+			Hyena.Gui.GtkWorkarounds.WindowDestroy (event_window);
+			event_window = null;
 
-            base.OnUnrealized ();
-        }
+			base.OnUnrealized ();
+		}
 
-        protected override void OnMapped ()
-        {
-            event_window.Show ();
-            base.OnMapped ();
-        }
+		protected override void OnMapped ()
+		{
+			event_window.Show ();
+			base.OnMapped ();
+		}
 
-        protected override void OnUnmapped ()
-        {
-            event_window.Hide ();
-            base.OnUnmapped ();
-        }
+		protected override void OnUnmapped ()
+		{
+			event_window.Hide ();
+			base.OnUnmapped ();
+		}
 
-        protected override void OnSizeAllocated (Gdk.Rectangle allocation)
-        {
-            base.OnSizeAllocated (allocation);
+		protected override void OnSizeAllocated (Gdk.Rectangle allocation)
+		{
+			base.OnSizeAllocated (allocation);
 
-            if (IsRealized) {
-                event_window.MoveResize (allocation);
-                AllocateChild ();
-            }
-        }
+			if (IsRealized) {
+				event_window.MoveResize (allocation);
+				AllocateChild ();
+			}
+		}
 
-        protected override void OnSizeRequested (ref Gtk.Requisition requisition)
-        {
-            if (canvas_child != null) {
-                Size size = canvas_child.Measure (Size.Empty);
+		protected override void OnSizeRequested (ref Gtk.Requisition requisition)
+		{
+			if (canvas_child != null) {
+				Size size = canvas_child.Measure (Size.Empty);
 
-                if (size.Width > 0) {
-                    requisition.Width = (int)Math.Ceiling (size.Width);
-                }
+				if (size.Width > 0) {
+					requisition.Width = (int)Math.Ceiling (size.Width);
+				}
 
-                if (size.Height > 0) {
-                    requisition.Height = (int)Math.Ceiling (size.Height);
-                }
-            }
-        }
+				if (size.Height > 0) {
+					requisition.Height = (int)Math.Ceiling (size.Height);
+				}
+			}
+		}
 
-        Random rand;
+		Random rand;
 
-        protected override bool OnExposeEvent (Gdk.EventExpose evnt)
-        {
-            if (canvas_child == null || !canvas_child.Visible || !Visible || !IsMapped) {
-                return true;
-            }
+		protected override bool OnExposeEvent (Gdk.EventExpose evnt)
+		{
+			if (canvas_child == null || !canvas_child.Visible || !Visible || !IsMapped) {
+				return true;
+			}
 
-            Cairo.Context cr = Gdk.CairoHelper.Create (evnt.Window);
-            context.Context = cr;
+			Cairo.Context cr = Gdk.CairoHelper.Create (evnt.Window);
+			context.Context = cr;
 
-            foreach (Gdk.Rectangle damage in evnt.Region.GetRectangles ()) {
-                cr.Rectangle (damage.X, damage.Y, damage.Width, damage.Height);
-                cr.Clip ();
+			foreach (Gdk.Rectangle damage in evnt.Region.GetRectangles ()) {
+				cr.Rectangle (damage.X, damage.Y, damage.Width, damage.Height);
+				cr.Clip ();
 
-                cr.Translate (Allocation.X, Allocation.Y);
-                canvas_child.Render (context);
-                cr.Translate (-Allocation.X, -Allocation.Y);
+				cr.Translate (Allocation.X, Allocation.Y);
+				canvas_child.Render (context);
+				cr.Translate (-Allocation.X, -Allocation.Y);
 
-                if (Debug) {
-                    cr.LineWidth = 1.0;
-                    cr.SetSourceColor (CairoExtensions.RgbToColor (
+				if (Debug) {
+					cr.LineWidth = 1.0;
+					cr.SetSourceColor (CairoExtensions.RgbToColor (
 			(uint)(rand = rand ?? new Random ()).Next (0, 0xffffff)));
-                    cr.Rectangle (damage.X + 0.5, damage.Y + 0.5, damage.Width - 1, damage.Height - 1);
-                    cr.Stroke ();
-                }
+					cr.Rectangle (damage.X + 0.5, damage.Y + 0.5, damage.Width - 1, damage.Height - 1);
+					cr.Stroke ();
+				}
 
-                cr.ResetClip ();
-            }
+				cr.ResetClip ();
+			}
 
-            CairoExtensions.DisposeContext (cr);
+			CairoExtensions.DisposeContext (cr);
 
-            if (fps.Update ()) {
-                // Console.WriteLine ("FPS: {0}", fps.FramesPerSecond);
-            }
+			if (fps.Update ()) {
+				// Console.WriteLine ("FPS: {0}", fps.FramesPerSecond);
+			}
 
-            return true;
-        }
+			return true;
+		}
 
-        void AllocateChild ()
-        {
-            if (canvas_child != null) {
-                canvas_child.Allocation = new Rect (0, 0, Allocation.Width, Allocation.Height);
-                canvas_child.Measure (new Size (Allocation.Width, Allocation.Height));
-                canvas_child.Arrange ();
-            }
-        }
+		void AllocateChild ()
+		{
+			if (canvas_child != null) {
+				canvas_child.Allocation = new Rect (0, 0, Allocation.Width, Allocation.Height);
+				canvas_child.Measure (new Size (Allocation.Width, Allocation.Height));
+				canvas_child.Arrange ();
+			}
+		}
 
-        public void QueueRender (CanvasItem item, Rect rect)
-        {
-            double x = Allocation.X;
-            double y = Allocation.Y;
-            double w, h;
+		public void QueueRender (CanvasItem item, Rect rect)
+		{
+			double x = Allocation.X;
+			double y = Allocation.Y;
+			double w, h;
 
-            if (rect.IsEmpty) {
-                w = item.Allocation.Width;
-                h = item.Allocation.Height;
-            } else {
-                x += rect.X;
-                y += rect.Y;
-                w = rect.Width;
-                h = rect.Height;
-            }
+			if (rect.IsEmpty) {
+				w = item.Allocation.Width;
+				h = item.Allocation.Height;
+			} else {
+				x += rect.X;
+				y += rect.Y;
+				w = rect.Width;
+				h = rect.Height;
+			}
 
-            while (item != null) {
-                x += item.ContentAllocation.X;
-                y += item.ContentAllocation.Y;
-                item = item.Parent;
-            }
+			while (item != null) {
+				x += item.ContentAllocation.X;
+				y += item.ContentAllocation.Y;
+				item = item.Parent;
+			}
 
-            QueueDrawArea (
-                (int)Math.Floor (x),
-                (int)Math.Floor (y),
-                (int)Math.Ceiling (w),
-                (int)Math.Ceiling (h)
-            );
-        }
+			QueueDrawArea (
+				(int)Math.Floor (x),
+				(int)Math.Floor (y),
+				(int)Math.Ceiling (w),
+				(int)Math.Ceiling (h)
+			);
+		}
 
-        bool changing_style = false;
+		bool changing_style = false;
 
-        protected override void OnStyleSet (Style old_style)
-        {
-            if (changing_style) {
-                return;
-            }
+		protected override void OnStyleSet (Style old_style)
+		{
+			if (changing_style) {
+				return;
+			}
 
-            changing_style = true;
+			changing_style = true;
 
-            theme = new GtkTheme (this);
-            context.Theme = theme;
-            if (canvas_child != null) {
-                canvas_child.Theme = theme;
-            }
+			theme = new GtkTheme (this);
+			context.Theme = theme;
+			if (canvas_child != null) {
+				canvas_child.Theme = theme;
+			}
 
-            changing_style = false;
+			changing_style = false;
 
-            base.OnStyleSet (old_style);
-        }
+			base.OnStyleSet (old_style);
+		}
 
-        protected override bool OnButtonPressEvent (Gdk.EventButton press)
-        {
-            if (canvas_child != null) {
-                canvas_child.ButtonEvent (new Point (press.X, press.Y), true, press.Button);
-            }
-            return true;
-        }
+		protected override bool OnButtonPressEvent (Gdk.EventButton press)
+		{
+			if (canvas_child != null) {
+				canvas_child.ButtonEvent (new Point (press.X, press.Y), true, press.Button);
+			}
+			return true;
+		}
 
-        protected override bool OnButtonReleaseEvent (Gdk.EventButton press)
-        {
-            if (canvas_child != null) {
-                canvas_child.ButtonEvent (new Point (press.X, press.Y), false, press.Button);
-            }
-            return true;
-        }
+		protected override bool OnButtonReleaseEvent (Gdk.EventButton press)
+		{
+			if (canvas_child != null) {
+				canvas_child.ButtonEvent (new Point (press.X, press.Y), false, press.Button);
+			}
+			return true;
+		}
 
-        protected override bool OnMotionNotifyEvent (EventMotion evnt)
-        {
-            if (canvas_child != null) {
-                canvas_child.CursorMotionEvent (new Point (evnt.X, evnt.Y));
-            }
-            return true;
-        }
+		protected override bool OnMotionNotifyEvent (EventMotion evnt)
+		{
+			if (canvas_child != null) {
+				canvas_child.CursorMotionEvent (new Point (evnt.X, evnt.Y));
+			}
+			return true;
+		}
 
-        public void Add (CanvasItem child)
-        {
-            if (Child != null) {
-                throw new InvalidOperationException ("Child is already set, remove it first");
-            }
+		public void Add (CanvasItem child)
+		{
+			if (Child != null) {
+				throw new InvalidOperationException ("Child is already set, remove it first");
+			}
 
-            Child = child;
-        }
+			Child = child;
+		}
 
-        public void Remove (CanvasItem child)
-        {
-            if (Child != child) {
-                throw new InvalidOperationException ("child does not already belong to host");
-            }
+		public void Remove (CanvasItem child)
+		{
+			if (Child != child) {
+				throw new InvalidOperationException ("child does not already belong to host");
+			}
 
-            Child = null;
-        }
+			Child = null;
+		}
 
-        void OnCanvasChildLayoutUpdated (object o, EventArgs args)
-        {
-            QueueDraw ();
-        }
+		void OnCanvasChildLayoutUpdated (object o, EventArgs args)
+		{
+			QueueDraw ();
+		}
 
-        void OnCanvasChildSizeChanged (object o, EventArgs args)
-        {
-            QueueResize ();
-        }
+		void OnCanvasChildSizeChanged (object o, EventArgs args)
+		{
+			QueueResize ();
+		}
 
-        public CanvasItem Child {
-            get { return canvas_child; }
-            set {
-                if (canvas_child == value) {
-                    return;
-                } else if (canvas_child != null) {
-                    canvas_child.Theme = null;
-                    canvas_child.Manager = null;
-                    canvas_child.LayoutUpdated -= OnCanvasChildLayoutUpdated;
-                    canvas_child.SizeChanged -= OnCanvasChildSizeChanged;
-                }
+		public CanvasItem Child {
+			get { return canvas_child; }
+			set {
+				if (canvas_child == value) {
+					return;
+				} else if (canvas_child != null) {
+					canvas_child.Theme = null;
+					canvas_child.Manager = null;
+					canvas_child.LayoutUpdated -= OnCanvasChildLayoutUpdated;
+					canvas_child.SizeChanged -= OnCanvasChildSizeChanged;
+				}
 
-                canvas_child = value;
+				canvas_child = value;
 
-                if (canvas_child != null) {
-                    canvas_child.Theme = theme;
-                    canvas_child.Manager = manager;
-                    canvas_child.LayoutUpdated += OnCanvasChildLayoutUpdated;
-                    canvas_child.SizeChanged += OnCanvasChildSizeChanged;
-                }
+				if (canvas_child != null) {
+					canvas_child.Theme = theme;
+					canvas_child.Manager = manager;
+					canvas_child.LayoutUpdated += OnCanvasChildLayoutUpdated;
+					canvas_child.SizeChanged += OnCanvasChildSizeChanged;
+				}
 
-                AllocateChild ();
-            }
-        }
+				AllocateChild ();
+			}
+		}
 
-        Pango.Layout layout;
-        public Pango.Layout PangoLayout {
-            get {
-                if (layout == null) {
-                    if (GdkWindow == null || !IsRealized) {
-                        return null;
-                    }
+		Pango.Layout layout;
+		public Pango.Layout PangoLayout {
+			get {
+				if (layout == null) {
+					if (GdkWindow == null || !IsRealized) {
+						return null;
+					}
 
-                    using (var cr = Gdk.CairoHelper.Create (GdkWindow)) {
-                        layout = CairoExtensions.CreateLayout (this, cr);
-                        FontDescription = layout.FontDescription;
-                    }
-                }
+					using (var cr = Gdk.CairoHelper.Create (GdkWindow)) {
+						layout = CairoExtensions.CreateLayout (this, cr);
+						FontDescription = layout.FontDescription;
+					}
+				}
 
-                return layout;
-            }
-        }
+				return layout;
+			}
+		}
 
-        public Pango.FontDescription FontDescription { get; private set; }
+		public Pango.FontDescription FontDescription { get; private set; }
 
-        public bool Debug {
-            get { return debug; }
-            set { debug = value; }
-        }
-    }
+		public bool Debug {
+			get { return debug; }
+			set { debug = value; }
+		}
+	}
 }

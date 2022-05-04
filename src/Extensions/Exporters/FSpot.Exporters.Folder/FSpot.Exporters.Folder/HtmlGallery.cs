@@ -53,13 +53,13 @@
 //located on a GIO location.
 
 using System;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 using FSpot.Core;
-using FSpot.Settings;
-using System.Linq;
 using FSpot.Resources.Lang;
+using FSpot.Settings;
 
 namespace FSpot.Exporters.Folder
 {
@@ -75,12 +75,12 @@ namespace FSpot.Exporters.Folder
 		static string dark = Strings.Dark;
 
 		List<string> allTagNames = new List<string> ();
-		Dictionary<string,Tag> allTags = new Dictionary<string, Tag> ();
+		Dictionary<string, Tag> allTags = new Dictionary<string, Tag> ();
 		Dictionary<string, List<int>> tagSets = new Dictionary<string, List<int>> ();
 
 		public HtmlGallery (IBrowsableCollection selection, string path, string name) : base (selection, path, name)
 		{
-			requests = new ScaleRequest [] { new ScaleRequest ("hq", 0, 0, false),
+			requests = new ScaleRequest[] { new ScaleRequest ("hq", 0, 0, false),
 							 new ScaleRequest ("mq", 480, 320, false),
 							 new ScaleRequest ("thumbs", 120, 90, false) };
 		}
@@ -97,7 +97,7 @@ namespace FSpot.Exporters.Folder
 
 			base.GenerateLayout ();
 
-			IPhoto [] photos = Collection.Items.ToArray ();
+			IPhoto[] photos = Collection.Items.ToArray ();
 
 			int i;
 			for (i = 0; i < photos.Length; i++)
@@ -115,7 +115,7 @@ namespace FSpot.Exporters.Folder
 							tagSets.Add (tag.Name, new List<int> ());
 							allTags.Add (tag.Name, tag);
 						}
-						tagSets [tag.Name].Add (i);
+						tagSets[tag.Name].Add (i);
 					}
 					i++;
 				}
@@ -139,10 +139,10 @@ namespace FSpot.Exporters.Folder
 			using (Stream s = assembly.GetManifestResourceStream (stylesheet)) {
 				using (Stream fs = System.IO.File.Open (SubdirPath ("style", stylesheet), System.IO.FileMode.Create)) {
 
-					byte [] buffer = new byte [8192];
+					byte[] buffer = new byte[8192];
 					int n;
 					while ((n = s.Read (buffer, 0, buffer.Length)) != 0)
-						fs.Write (buffer, 0,  n);
+						fs.Write (buffer, 0, n);
 
 				}
 			}
@@ -152,10 +152,10 @@ namespace FSpot.Exporters.Folder
 			using (Stream s = assembly.GetManifestResourceStream (altstylesheet)) {
 				using (Stream fs = System.IO.File.Open (SubdirPath ("style", altstylesheet), System.IO.FileMode.Create)) {
 
-					byte [] buffer = new byte [8192];
+					byte[] buffer = new byte[8192];
 					int n = 0;
 					while ((n = s.Read (buffer, 0, buffer.Length)) != 0)
-						fs.Write (buffer, 0,  n);
+						fs.Write (buffer, 0, n);
 
 				}
 			}
@@ -165,10 +165,10 @@ namespace FSpot.Exporters.Folder
 			using (Stream s = assembly.GetManifestResourceStream (javascript)) {
 				using (Stream fs = System.IO.File.Open (SubdirPath ("script", javascript), System.IO.FileMode.Create)) {
 
-					byte [] buffer = new byte [8192];
+					byte[] buffer = new byte[8192];
 					int n = 0;
 					while ((n = s.Read (buffer, 0, buffer.Length)) != 0)
-						fs.Write (buffer, 0,  n);
+						fs.Write (buffer, 0, n);
 
 				}
 			}
@@ -176,28 +176,28 @@ namespace FSpot.Exporters.Folder
 
 		public int PageCount {
 			get {
-				return 	(int) System.Math.Ceiling (Collection.Items.Count () / (double)perpage);
+				return (int)System.Math.Ceiling (Collection.Items.Count () / (double)perpage);
 			}
 		}
 
 		public int TagPageCount (string tag)
 		{
-			return (int) System.Math.Ceiling (tagSets [tag].Count / (double)perpage);
+			return (int)System.Math.Ceiling (tagSets[tag].Count / (double)perpage);
 		}
 
 		public string PhotoThumbPath (int item)
 		{
-			return System.IO.Path.Combine (requests [2].Name, ImageName (item));
+			return System.IO.Path.Combine (requests[2].Name, ImageName (item));
 		}
 
 		public string PhotoWebPath (int item)
 		{
-			return System.IO.Path.Combine (requests [1].Name, ImageName (item));
+			return System.IO.Path.Combine (requests[1].Name, ImageName (item));
 		}
 
 		public string PhotoOriginalPath (int item)
 		{
-			return System.IO.Path.Combine (requests [0].Name, ImageName (item));
+			return System.IO.Path.Combine (requests[0].Name, ImageName (item));
 		}
 
 		public string PhotoIndexPath (int item)
@@ -259,7 +259,7 @@ namespace FSpot.Exporters.Folder
 			if (ExportTags)
 				WritePageNav (writer, "tagpage", TagsIndexPath (), Strings.Tags);
 
-			if (i < Collection.Count -1)
+			if (i < Collection.Count - 1)
 				WritePageNav (writer, "next", PhotoIndexPath (i + 1), Strings.Next);
 
 			writer.RenderEndTag (); //navi
@@ -281,12 +281,12 @@ namespace FSpot.Exporters.Folder
 
 			writer.AddAttribute ("id", "description");
 			writer.RenderBeginTag ("div");
-			writer.Write (Collection [i].Description);
+			writer.Write (Collection[i].Description);
 			writer.RenderEndTag (); //div#description
 
 			writer.RenderEndTag (); //div.photo
 
-			WriteTagsLinks (writer, Collection [i].Tags);
+			WriteTagsLinks (writer, Collection[i].Tags);
 
 			WriteStyleSelectionBox (writer);
 
@@ -316,8 +316,8 @@ namespace FSpot.Exporters.Folder
 
 		public static string TagIndexPath (string tag, int page_num)
 		{
-			string name = "tag_"+tag;
-			name = name.Replace ("/", "_").Replace (" ","_");
+			string name = "tag_" + tag;
+			name = name.Replace ("/", "_").Replace (" ", "_");
 			if (page_num == 0)
 				return name + ".html";
 			else
@@ -348,7 +348,7 @@ namespace FSpot.Exporters.Folder
 			writer.Write (string.Format ("{0}", "style/" + stylesheet));
 			writer.Write ("\" title=\"" + dark + "\" media=\"screen\" />" + Environment.NewLine);
 
-			writer.Write ("<link type=\"text/css\" rel=\"prefetch ") ;
+			writer.Write ("<link type=\"text/css\" rel=\"prefetch ");
 			writer.Write ("alternate stylesheet\" href=\"");
 			writer.Write (string.Format ("{0}", "style/" + altstylesheet));
 			writer.Write ("\" title=\"" + light + "\" media=\"screen\" />" + Environment.NewLine);
@@ -423,7 +423,7 @@ namespace FSpot.Exporters.Folder
 		{
 
 			// check if we should write tags
-			if (!ExportTags && tags.Count>0)
+			if (!ExportTags && tags.Count > 0)
 				return;
 
 			writer.AddAttribute ("id", "tagbox");
@@ -446,7 +446,7 @@ namespace FSpot.Exporters.Folder
 					writer.RenderBeginTag ("img");
 					writer.RenderEndTag ();
 				}
-				writer.Write(" ");
+				writer.Write (" ");
 				if (ExportTagIcons)
 					writer.AddAttribute ("class", "tagtext-icon");
 				else
@@ -556,7 +556,7 @@ namespace FSpot.Exporters.Folder
 			writer.RenderEndTag (); //a
 
 			writer.RenderEndTag (); //navipage
-			// end link to all photos
+									// end link to all photos
 
 			// link to all tags
 			writer.AddAttribute ("class", "navipage");
@@ -568,7 +568,7 @@ namespace FSpot.Exporters.Folder
 			writer.RenderEndTag (); //a
 
 			writer.RenderEndTag (); //navipage
-			// end link to all tags
+									// end link to all tags
 
 			writer.AddAttribute ("class", "navilabel");
 			writer.RenderBeginTag ("div");
@@ -594,14 +594,14 @@ namespace FSpot.Exporters.Folder
 			writer.RenderBeginTag ("div");
 
 			int start = page_num * perpage;
-			List<int> tagSet = tagSets [tag];
+			List<int> tagSet = tagSets[tag];
 			int end = Math.Min (start + perpage, tagSet.Count);
 			for (i = start; i < end; i++) {
-				writer.AddAttribute ("href", PhotoIndexPath ((int) tagSet [i]));
+				writer.AddAttribute ("href", PhotoIndexPath ((int)tagSet[i]));
 				writer.RenderBeginTag ("a");
 
-				writer.AddAttribute  ("src", PhotoThumbPath ((int) tagSet [i]));
-				writer.AddAttribute  ("alt", "#");
+				writer.AddAttribute ("src", PhotoThumbPath ((int)tagSet[i]));
+				writer.AddAttribute ("alt", "#");
 				writer.RenderBeginTag ("img");
 				writer.RenderEndTag ();
 
@@ -635,25 +635,26 @@ namespace FSpot.Exporters.Folder
 				SaveTagIcon (tag);
 		}
 
-		public void SaveTagIcon (Tag tag) {
+		public void SaveTagIcon (Tag tag)
+		{
 			Gdk.Pixbuf icon = tag.Icon;
 			Gdk.Pixbuf scaled = null;
 			if (icon.Height != 52 || icon.Width != 52) {
-				scaled=icon.ScaleSimple(52,52,Gdk.InterpType.Bilinear);
+				scaled = icon.ScaleSimple (52, 52, Gdk.InterpType.Bilinear);
 			} else
-				scaled=icon.Copy ();
-			scaled.Save (SubdirPath("tags",TagName(tag)), "png");
+				scaled = icon.Copy ();
+			scaled.Save (SubdirPath ("tags", TagName (tag)), "png");
 			scaled.Dispose ();
 		}
 
 		public string TagPath (Tag tag)
 		{
-			return System.IO.Path.Combine("tags",TagName(tag));
+			return System.IO.Path.Combine ("tags", TagName (tag));
 		}
 
 		public string TagName (Tag tag)
 		{
-			return "tag_"+ ((DbItem)tag).Id+".png";
+			return "tag_" + ((DbItem)tag).Id + ".png";
 		}
 
 		public void SaveHtmlIndex (int page_num)
@@ -700,7 +701,7 @@ namespace FSpot.Exporters.Folder
 				writer.RenderEndTag (); //a
 
 				writer.RenderEndTag (); //navipage
-				// end link to all tags
+										// end link to all tags
 			}
 
 			writer.AddAttribute ("class", "navilabel");
@@ -732,8 +733,8 @@ namespace FSpot.Exporters.Folder
 				writer.AddAttribute ("href", PhotoIndexPath (i));
 				writer.RenderBeginTag ("a");
 
-				writer.AddAttribute  ("src", PhotoThumbPath (i));
-				writer.AddAttribute  ("alt", "#");
+				writer.AddAttribute ("src", PhotoThumbPath (i));
+				writer.AddAttribute ("alt", "#");
 				writer.RenderBeginTag ("img");
 				writer.RenderEndTag ();
 

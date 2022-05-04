@@ -33,17 +33,17 @@ using FSpot.Core;
 
 namespace FSpot.Widgets
 {
-    /// <summary>
-    ///    This class implements a simply tray widget which which shows a collection of photos
-    ///    and does not react to user interaction.
-    /// </summary>
-    public class TrayView : CollectionGridView
+	/// <summary>
+	///    This class implements a simply tray widget which which shows a collection of photos
+	///    and does not react to user interaction.
+	/// </summary>
+	public class TrayView : CollectionGridView
 	{
-		public TrayView (System.IntPtr raw) : base (raw) {}
+		public TrayView (System.IntPtr raw) : base (raw) { }
 
-        public TrayView (IBrowsableCollection collection) : base (collection)
-        {
-            MaxColumns = 1;
-        }
-    }
+		public TrayView (IBrowsableCollection collection) : base (collection)
+		{
+			MaxColumns = 1;
+		}
+	}
 }

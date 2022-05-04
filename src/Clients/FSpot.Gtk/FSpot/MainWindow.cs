@@ -39,14 +39,14 @@ using FSpot.Core;
 using FSpot.Database;
 using FSpot.Database.Jobs;
 using FSpot.Extensions;
-using FSpot.Query;
-using FSpot.Widgets;
-using FSpot.Utils;
-using FSpot.UI.Dialog;
 using FSpot.FileSystem;
 using FSpot.Import;
+using FSpot.Query;
 using FSpot.Resources.Lang;
 using FSpot.Settings;
+using FSpot.UI.Dialog;
+using FSpot.Utils;
+using FSpot.Widgets;
 
 using Gdk;
 
@@ -198,10 +198,9 @@ namespace FSpot
 		Gdk.Cursor watch = new Gdk.Cursor (Gdk.CursorType.Watch);
 
 		// Tag Icon Sizes
-		public int TagsIconSize
-		{
-			get { return (int) Tag.TagIconSize; }
-			set { Tag.TagIconSize = (Settings.IconSize) value; }
+		public int TagsIconSize {
+			get { return (int)Tag.TagIconSize; }
+			set { Tag.TagIconSize = (Settings.IconSize)value; }
 		}
 
 		static TargetEntry[] tagTargetTable = {
@@ -555,7 +554,7 @@ namespace FSpot
 			get {
 				int active = ActiveIndex ();
 				if (active >= 0)
-					return query [active] as Photo;
+					return query[active] as Photo;
 
 				return null;
 			}
@@ -564,7 +563,7 @@ namespace FSpot
 		// Index into the PhotoQuery.  If -1, no photo is selected or multiple photos are selected.
 		int ActiveIndex ()
 		{
-			return Selection.Count == 1 ? SelectedIds () [0] : PHOTO_IDX_NONE;
+			return Selection.Count == 1 ? SelectedIds ()[0] : PHOTO_IDX_NONE;
 		}
 
 		// Switching mode.
@@ -663,7 +662,7 @@ namespace FSpot
 
 		void HandleDbItemsChanged (object sender, DbItemEventArgs<Photo> args)
 		{
-			foreach (Photo p in args.Items.Where(p => p != null).Where(p => write_metadata)) {
+			foreach (Photo p in args.Items.Where (p => p != null).Where (p => write_metadata)) {
 				SyncMetadataJob.Create (Database.Jobs, p);
 			}
 
@@ -689,12 +688,12 @@ namespace FSpot
 			}
 		}
 
-		int [] SelectedIds ()
+		int[] SelectedIds ()
 		{
-			int[] ids = new int [0];
+			int[] ids = new int[0];
 
 			if (fsview != null && fsview.View.Item.IsValid)
-				ids = new int [] { fsview.View.Item.Index };
+				ids = new int[] { fsview.View.Item.Index };
 			else {
 				switch (ViewMode) {
 				case ModeType.IconView:
@@ -703,7 +702,7 @@ namespace FSpot
 				default:
 				case ModeType.PhotoView:
 					if (photo_view.Item.IsValid)
-						ids = new [] { photo_view.Item.Index };
+						ids = new[] { photo_view.Item.Index };
 					break;
 				}
 			}
@@ -768,7 +767,7 @@ namespace FSpot
 				throw new NotImplementedException ("I didn't think you'd find me");
 			}
 
-			public IPhoto this [int index] {
+			public IPhoto this[int index] {
 				get {
 					switch (win.ViewMode) {
 					case ModeType.PhotoView:
@@ -776,7 +775,7 @@ namespace FSpot
 							return win.photo_view.Item.Current;
 						break;
 					case ModeType.IconView:
-						return win.icon_view.Selection [index];
+						return win.icon_view.Selection[index];
 					}
 					throw new ArgumentOutOfRangeException ();
 				}
@@ -787,13 +786,13 @@ namespace FSpot
 					switch (win.ViewMode) {
 					case ModeType.PhotoView:
 						if (win.photo_view.Item.IsValid)
-							return new IPhoto [] { win.photo_view.Item.Current };
+							return new IPhoto[] { win.photo_view.Item.Current };
 
 						break;
 					case ModeType.IconView:
 						return win.icon_view.Selection.Items;
 					}
-					return new IPhoto [0];
+					return new IPhoto[0];
 				}
 			}
 
@@ -805,7 +804,7 @@ namespace FSpot
 				if (win.ViewMode != ModeType.PhotoView || ItemsChanged == null)
 					return;
 
-				foreach (int item in args.Items.Where(item => win.photo_view.Item.Index == item)) {
+				foreach (int item in args.Items.Where (item => win.photo_view.Item.Index == item)) {
 					ItemsChanged (this, new BrowsableEventArgs (item, args.Changes));
 					break;
 				}
@@ -858,18 +857,18 @@ namespace FSpot
 		// Selection Interface
 		//
 
-		Photo [] SelectedPhotos (int[] selected_ids)
+		Photo[] SelectedPhotos (int[] selected_ids)
 		{
-			Photo[] photo_list = new Photo [selected_ids.Length];
+			Photo[] photo_list = new Photo[selected_ids.Length];
 
 			int i = 0;
 			foreach (int num in selected_ids)
-				photo_list [i++] = query [num] as Photo;
+				photo_list[i++] = query[num] as Photo;
 
 			return photo_list;
 		}
 
-		public Photo [] SelectedPhotos ()
+		public Photo[] SelectedPhotos ()
 		{
 			return SelectedPhotos (SelectedIds ());
 		}
@@ -896,7 +895,7 @@ namespace FSpot
 		public void AddTagExtended (int[] nums, Tag[] tags)
 		{
 			foreach (int num in nums)
-				(query [num] as Photo).AddTag (tags);
+				(query[num] as Photo).AddTag (tags);
 			query.Commit (nums);
 
 			foreach (Tag t in tags) {
@@ -905,7 +904,7 @@ namespace FSpot
 				// FIXME this needs a lot more work.
 				Pixbuf icon = null;
 				try {
-					var tmp = PhotoLoader.LoadAtMaxSize (query [nums [0]], 128, 128);
+					var tmp = PhotoLoader.LoadAtMaxSize (query[nums[0]], 128, 128);
 					icon = PixbufUtils.TagIconFromPixbuf (tmp);
 					tmp.Dispose ();
 				} catch {
@@ -926,7 +925,7 @@ namespace FSpot
 		public void RemoveTags (int[] nums, Tag[] tags)
 		{
 			foreach (int num in nums)
-				(query [num] as Photo).RemoveTag (tags);
+				(query[num] as Photo).RemoveTag (tags);
 			query.Commit (nums);
 		}
 
@@ -950,7 +949,7 @@ namespace FSpot
 		void HandleTagSelectionRowActivated (object sender, RowActivatedArgs args)
 		{
 			ShowQueryWidget ();
-			query_widget.Include (new Tag [] { tag_selection_widget.TagByPath (args.Path) });
+			query_widget.Include (new Tag[] { tag_selection_widget.TagByPath (args.Path) });
 		}
 
 		void JumpTo (int index)
@@ -989,7 +988,7 @@ namespace FSpot
 			if (cell_num == -1 /*|| cell_num == lastTopLeftCell*/)
 				return;
 
-			IPhoto photo = icon_view.Collection [cell_num];
+			IPhoto photo = icon_view.Collection[cell_num];
 			/*
 			 * FIXME this is a lame hack to get around a delegate chain.  This should
 			 * actually operate directly on the adaptor not on the selector but I don't have
@@ -1040,7 +1039,7 @@ namespace FSpot
 				bool use_icon = false;
 
 				while (len-- > 0) {
-					FSpot.PixbufCache.CacheEntry entry = icon_view.Cache.Lookup (photos [len].DefaultVersion.Uri);
+					FSpot.PixbufCache.CacheEntry entry = icon_view.Cache.Lookup (photos[len].DefaultVersion.Uri);
 
 					Pixbuf thumbnail = null;
 					if (entry != null) {
@@ -1058,7 +1057,7 @@ namespace FSpot
 						int x = border + len * (size / 2) + (size - small.Width) / 2;
 						int y = border + len * (size / 2) + (size - small.Height) / 2;
 						Pixbuf box = new Pixbuf (container, x - border, y - border,
-							             small.Width + 2 * border, small.Height + 2 * border);
+										 small.Width + 2 * border, small.Height + 2 * border);
 
 						box.Fill (0x000000ff);
 						small.CopyArea (0, 0, small.Width, small.Height, container, x, y);
@@ -1082,13 +1081,13 @@ namespace FSpot
 		{
 			if (args.Info == (uint)DragDropTargets.TargetType.UriList) {
 				var uris = from p in SelectedPhotos ()
-				                       select p.DefaultVersion.Uri;
-				args.SelectionData.SetUriListData (new UriList (uris), args.Context.Targets [0]);
+						   select p.DefaultVersion.Uri;
+				args.SelectionData.SetUriListData (new UriList (uris), args.Context.Targets[0]);
 				return;
 			}
 
 			if (args.Info == DragDropTargets.PhotoListEntry.Info) {
-				args.SelectionData.SetPhotosData (SelectedPhotos (), args.Context.Targets [0]);
+				args.SelectionData.SetPhotosData (SelectedPhotos (), args.Context.Targets[0]);
 				return;
 			}
 
@@ -1169,14 +1168,14 @@ namespace FSpot
 				// drag events use the viewport.  Owen sends his regrets.
 				//
 				int item = icon_view.CellAtPosition (args.X + (int)icon_view.Hadjustment.Value,
-					           args.Y + (int)icon_view.Vadjustment.Value);
+							   args.Y + (int)icon_view.Vadjustment.Value);
 
 				//Console.WriteLine ("Drop cell = {0} ({1},{2})", item, args.X, args.Y);
 				if (item >= 0) {
 					if (icon_view.Selection.Contains (item))
 						AttachTags (tag_selection_widget.TagHighlight, SelectedIds ());
 					else
-						AttachTags (tag_selection_widget.TagHighlight, new int [] { item });
+						AttachTags (tag_selection_widget.TagHighlight, new int[] { item });
 				}
 
 				Gtk.Drag.Finish (args.Context, true, false, args.Time);
@@ -1200,7 +1199,7 @@ namespace FSpot
 
 			if (args.Info == DragDropTargets.PhotoListEntry.Info) {
 				int p_item = icon_view.CellAtPosition (args.X + (int)icon_view.Hadjustment.Value,
-					             args.Y + (int)icon_view.Vadjustment.Value);
+								 args.Y + (int)icon_view.Vadjustment.Value);
 
 				if (p_item >= 0) {
 					if (icon_view.Selection.Contains (p_item)) //We don't want to reparent ourselves!
@@ -1209,7 +1208,7 @@ namespace FSpot
 					Photo[] photos_to_reparent = SelectedPhotos ();
 					// Give feedback to user that something happened, and leave the parent selected after reparenting
 					icon_view.Selection.Add (p_item);
-					cmd.Execute (Database.Photos, photos_to_reparent, query.Photos [p_item], GetToplevel (null));
+					cmd.Execute (Database.Photos, photos_to_reparent, query.Photos[p_item], GetToplevel (null));
 					UpdateQuery ();
 				}
 				Gtk.Drag.Finish (args.Context, true, false, args.Time);
@@ -1228,7 +1227,7 @@ namespace FSpot
 
 			switch (ViewMode) {
 			case ModeType.IconView:
-				icon_view.FocusCell = args.Items [0];
+				icon_view.FocusCell = args.Items[0];
 				SetViewMode (ModeType.PhotoView);
 				break;
 			case ModeType.PhotoView:
@@ -1392,7 +1391,7 @@ namespace FSpot
 			Database.BeginTransaction ();
 			int[] selected_photos = SelectedIds ();
 			foreach (int num in selected_photos) {
-				p = query [num] as Photo;
+				p = query[num] as Photo;
 				p.Rating = (uint)r;
 			}
 			query.Commit (selected_photos);
@@ -1414,7 +1413,7 @@ namespace FSpot
 		public void HandleAttachTagMenuSelected (Tag t)
 		{
 			Database.BeginTransaction ();
-			AddTagExtended (SelectedIds (), new Tag [] { t });
+			AddTagExtended (SelectedIds (), new Tag[] { t });
 			Database.CommitTransaction ();
 			query_widget.PhotoTagsChanged (new Tag[] { t });
 		}
@@ -1570,7 +1569,7 @@ namespace FSpot
 				Preferences.Set (Preferences.MainWindowX, x);
 				Preferences.Set (Preferences.MainWindowY, y);
 				Preferences.Set (Preferences.MainWindowWidth, width);
-				Preferences.Set (Preferences.MainWindowHeight,	height);
+				Preferences.Set (Preferences.MainWindowHeight, height);
 			}
 
 			Preferences.Set (Preferences.ShowToolbar, toolbar.Visible);
@@ -1634,7 +1633,7 @@ namespace FSpot
 
 			if (new_tag != null) {
 				tag_selection_widget.ScrollTo (new_tag);
-				tag_selection_widget.TagHighlight = new Tag [] { new_tag };
+				tag_selection_widget.TagHighlight = new Tag[] { new_tag };
 			}
 		}
 
@@ -1673,7 +1672,7 @@ namespace FSpot
 			if (tags.Length != 1)
 				return;
 
-			HandleEditSelectedTagWithTag (tags [0]);
+			HandleEditSelectedTagWithTag (tags[0]);
 		}
 
 		public void HandleEditSelectedTagWithTag (Tag tag)
@@ -1705,7 +1704,7 @@ namespace FSpot
 			if (tags.Length < 2)
 				return;
 
-			string header = string.Format(Strings.MergeTheSelectedTags, tags.Length);
+			string header = string.Format (Strings.MergeTheSelectedTags, tags.Length);
 
 			// If a tag with children tags is selected for merging, we
 			// should also merge its children..
@@ -1731,18 +1730,18 @@ namespace FSpot
 			}
 
 			if (ResponseType.Ok != HigMessageDialog.RunHigConfirmation (main_window,
-				    DialogFlags.DestroyWithParent,
-				    MessageType.Warning,
-				    header,
-				    Strings.ThisWillMergeSelectedTagsAndSubTagsIntoSingleTag,
-				    Strings.MergeTagsMnemonic))
+					DialogFlags.DestroyWithParent,
+					MessageType.Warning,
+					header,
+					Strings.ThisWillMergeSelectedTagsAndSubTagsIntoSingleTag,
+					Strings.MergeTagsMnemonic))
 				return;
 
 			// The surviving tag is the last tag, as it is definitely not a child of any other the
 			// other tags.  removetags will contain the tags to be merged.
-			Tag survivor = tags [tags.Length - 1];
+			Tag survivor = tags[tags.Length - 1];
 
-			var removetags = new Tag [tags.Length - 1];
+			var removetags = new Tag[tags.Length - 1];
 			Array.Copy (tags, 0, removetags, 0, tags.Length - 1);
 
 			// Add the surviving tag to all the photos with the other tags
@@ -1882,7 +1881,7 @@ namespace FSpot
 
 		void HandleViewFullscreen (object sender, EventArgs args)
 		{
-			int active = (Selection.Count > 0 ? SelectedIds () [0] : 0);
+			int active = (Selection.Count > 0 ? SelectedIds ()[0] : 0);
 			if (fsview == null) {
 				fsview = new FSpot.FullScreenView (query, main_window);
 				fsview.Destroyed += HandleFullScreenViewDestroy;
@@ -2093,9 +2092,9 @@ namespace FSpot
 			}
 
 			if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation (GetToplevel (sender),
-				    DialogFlags.DestroyWithParent,
-				    MessageType.Warning,
-				    header, msg, ok_caption)) {
+					DialogFlags.DestroyWithParent,
+					MessageType.Warning,
+					header, msg, ok_caption)) {
 
 				using var op = Operation.Begin ($"PhotosPerMonth");
 				foreach (Photo photo in photos) {
@@ -2137,7 +2136,7 @@ namespace FSpot
 			string msg = Strings.IfYouRemovePhotosFromFSpotCatalogAllTagInfoLost;
 			string ok_caption = Strings.RemoveFromCatalogMnemonic;
 			if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation (GetToplevel (sender), DialogFlags.DestroyWithParent,
-				    MessageType.Warning, header, msg, ok_caption)) {
+					MessageType.Warning, header, msg, ok_caption)) {
 				Database.Photos.Remove (photos);
 				UpdateQuery ();
 			}
@@ -2209,7 +2208,7 @@ namespace FSpot
 
 			string header;
 			if (tags.Length == 1)
-				header = string.Format (Strings.DeleteTagXQuestion, tags [0].Name.Replace ("_", "__"));
+				header = string.Format (Strings.DeleteTagXQuestion, tags[0].Name.Replace ("_", "__"));
 			else
 				header = string.Format (Strings.DeleteTheXSelectedTagsQuestion, tags.Length);
 
@@ -2226,11 +2225,11 @@ namespace FSpot
 			string ok_caption = (tags.Length <= 1) ? Strings.DeleteTagMnemonic : Strings.DeleteTagsMnemonic;
 
 			if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation (main_window,
-				    DialogFlags.DestroyWithParent,
-				    MessageType.Warning,
-				    header,
-				    msg,
-				    ok_caption)) {
+					DialogFlags.DestroyWithParent,
+					MessageType.Warning,
+					header,
+					msg,
+					ok_caption)) {
 				try {
 					db.Photos.Remove (tags);
 				} catch (InvalidTagOperationException e) {
@@ -2239,12 +2238,12 @@ namespace FSpot
 					// A Category is not empty. Can not delete it.
 					string error_msg = Strings.TagIsNotEmpty;
 					string error_desc = string.Format (Strings.CanNotDeleteTagsThatHaveTagsWihinThem_PleaseDeleteTagUnderXFirst,
-						                    e.Tag.Name.Replace ("_", "__"));
+											e.Tag.Name.Replace ("_", "__"));
 
 					HigMessageDialog md = new HigMessageDialog (main_window, DialogFlags.DestroyWithParent,
-						                      Gtk.MessageType.Error, ButtonsType.Ok,
-						                      error_msg,
-						                      error_desc);
+											  Gtk.MessageType.Error, ButtonsType.Ok,
+											  error_msg,
+											  error_desc);
 					md.Run ();
 					md.Destroy ();
 				}
@@ -2302,11 +2301,11 @@ namespace FSpot
 
 			// use eager evaluation, because we want to copy the photos which are currently selected ...
 			var uris = new UriList (from p in SelectedPhotos ()
-			                                 select p.DefaultVersion.Uri);
+									select p.DefaultVersion.Uri);
 			var paths = string.Join (" ",
-				                     (from p in SelectedPhotos ()
-				                                  select p.DefaultVersion.Uri.LocalPath).ToArray ()
-			                     );
+									 (from p in SelectedPhotos ()
+									  select p.DefaultVersion.Uri.LocalPath).ToArray ()
+								 );
 
 			clipboard.SetWithData ((TargetEntry[])targetList, delegate (Clipboard clip, SelectionData data, uint info) {
 
@@ -2419,7 +2418,7 @@ namespace FSpot
 			case Preferences.MainWindowWidth:
 			case Preferences.MainWindowHeight:
 				if (Preferences.Get<int> (Preferences.MainWindowWidth) > 0 &&
-				    Preferences.Get<int> (Preferences.MainWindowHeight) > 0)
+					Preferences.Get<int> (Preferences.MainWindowHeight) > 0)
 					main_window.Resize (Preferences.Get<int> (Preferences.MainWindowWidth),
 						Preferences.Get<int> (Preferences.MainWindowHeight));
 
@@ -2454,7 +2453,7 @@ namespace FSpot
 			case Preferences.ShowDates:
 				if (display_dates_menu_item.Active != Preferences.Get<bool> (key))
 					display_dates_menu_item.Active = Preferences.Get<bool> (key);
-					//display_dates_menu_item.Toggle ();
+				//display_dates_menu_item.Toggle ();
 				break;
 
 			case Preferences.ShowRatings:
@@ -2598,7 +2597,7 @@ namespace FSpot
 			// account for All and separator menu items
 			item_pos -= 2;
 
-			Term parent_term = LogicWidget.Root.SubTerms [item_pos];
+			Term parent_term = LogicWidget.Root.SubTerms[item_pos];
 
 			if (LogicWidget.Box != null) {
 				Literal after = parent_term.Last as Literal;
@@ -2891,12 +2890,12 @@ namespace FSpot
 			Category default_category = null;
 			Tag[] selection = tag_selection_widget.TagHighlight;
 			if (selection.Length > 0) {
-				if (selection [0] is Category)
-					default_category = (Category)selection [0];
+				if (selection[0] is Category)
+					default_category = (Category)selection[0];
 				else
-					default_category = selection [0].Category;
+					default_category = selection[0].Category;
 			}
-			Tag[] tags = new Tag [new_tags.Length];
+			Tag[] tags = new Tag[new_tags.Length];
 			int i = 0;
 			Database.BeginTransaction ();
 			foreach (string tagname in new_tags) {
@@ -2905,7 +2904,7 @@ namespace FSpot
 					t = Database.Tags.CreateCategory (default_category, tagname, true);
 					Database.Tags.Commit (t);
 				}
-				tags [i++] = t;
+				tags[i++] = t;
 			}
 			AddTagExtended (selected_photos, tags);
 			Database.CommitTransaction ();

@@ -33,241 +33,241 @@ using System.Text;
 namespace Hyena.Query
 {
 	public class UserQueryParser : QueryParser
-    {
-        QueryListNode current_parent;
+	{
+		QueryListNode current_parent;
 
-        char peek;
-        int current_column;
-        int current_line;
-        int token_start_column;
-        int token_start_line;
-        bool eos_consumed;
+		char peek;
+		int current_column;
+		int current_line;
+		int token_start_column;
+		int token_start_line;
+		bool eos_consumed;
 
-        QueryListNode root;
-        QueryFieldSet field_set;
+		QueryListNode root;
+		QueryFieldSet field_set;
 
-        public static QueryNode Parse (string input, QueryFieldSet fieldSet)
-        {
-            return new UserQueryParser (input).BuildTree (fieldSet);
-        }
+		public static QueryNode Parse (string input, QueryFieldSet fieldSet)
+		{
+			return new UserQueryParser (input).BuildTree (fieldSet);
+		}
 
-        public UserQueryParser () : base () {}
-        public UserQueryParser (string inputQuery) : base (inputQuery) {}
-        public UserQueryParser (Stream stream) : base (stream) {}
-        public UserQueryParser (StreamReader reader) : base (reader) {}
+		public UserQueryParser () : base () { }
+		public UserQueryParser (string inputQuery) : base (inputQuery) { }
+		public UserQueryParser (Stream stream) : base (stream) { }
+		public UserQueryParser (StreamReader reader) : base (reader) { }
 
-        public override QueryNode BuildTree (QueryFieldSet fieldSet)
-        {
-            field_set = fieldSet;
-            root = current_parent = new QueryListNode (Keyword.And);
-            bool last_was_term = false;
+		public override QueryNode BuildTree (QueryFieldSet fieldSet)
+		{
+			field_set = fieldSet;
+			root = current_parent = new QueryListNode (Keyword.And);
+			bool last_was_term = false;
 
-            while (true) {
-                QueryToken token = Scan ();
+			while (true) {
+				QueryToken token = Scan ();
 
-                if (token.ID == TokenID.Unknown) {
-                    break;
-                }
+				if (token.ID == TokenID.Unknown) {
+					break;
+				}
 
-                token.Column = token_start_column;
-                token.Line = token_start_line;
+				token.Column = token_start_column;
+				token.Line = token_start_line;
 
-                // If we have two terms in a row, put an AND between them
-                if (last_was_term && token.ID == TokenID.Term)
-                    ParseToken (new QueryToken (TokenID.And));
+				// If we have two terms in a row, put an AND between them
+				if (last_was_term && token.ID == TokenID.Term)
+					ParseToken (new QueryToken (TokenID.And));
 
-                ParseToken (token);
+				ParseToken (token);
 
-                last_was_term = token.ID == TokenID.Term;
-            }
+				last_was_term = token.ID == TokenID.Term;
+			}
 
-            return root.Trim ();
-        }
+			return root.Trim ();
+		}
 
-        void DepthPush ()
-        {
-            current_parent = new QueryListNode (Keyword.And, current_parent);
-        }
+		void DepthPush ()
+		{
+			current_parent = new QueryListNode (Keyword.And, current_parent);
+		}
 
-        void DepthPop ()
-        {
-            // Avoid trying to pop more than is possible
-            if (current_parent.Parent != null)
-                current_parent = current_parent.Parent;
-        }
+		void DepthPop ()
+		{
+			// Avoid trying to pop more than is possible
+			if (current_parent.Parent != null)
+				current_parent = current_parent.Parent;
+		}
 
-        void NodePush (QueryNode node)
-        {
-            if (current_parent == null && node is QueryListNode) {
-                root = current_parent = node as QueryListNode;
-                return;
-            }
+		void NodePush (QueryNode node)
+		{
+			if (current_parent == null && node is QueryListNode) {
+				root = current_parent = node as QueryListNode;
+				return;
+			}
 
-            if (current_parent.Keyword == Keyword.Not && current_parent.ChildCount == 1)
-                DepthPop ();
+			if (current_parent.Keyword == Keyword.Not && current_parent.ChildCount == 1)
+				DepthPop ();
 
-            current_parent.AddChild (node);
+			current_parent.AddChild (node);
 
-            // If the node is a list, it's our new parent
-            QueryListNode list = node as QueryListNode;
-            if (list != null) {
-                current_parent = list;
-            }
-        }
+			// If the node is a list, it's our new parent
+			QueryListNode list = node as QueryListNode;
+			if (list != null) {
+				current_parent = list;
+			}
+		}
 
-        void ParseToken (QueryToken token)
-        {
-            switch (token.ID) {
-                case TokenID.OpenParen:
-                    DepthPush ();
-                    break;
+		void ParseToken (QueryToken token)
+		{
+			switch (token.ID) {
+			case TokenID.OpenParen:
+				DepthPush ();
+				break;
 
-                case TokenID.CloseParen:
-                    DepthPop ();
-                    break;
+			case TokenID.CloseParen:
+				DepthPop ();
+				break;
 
-                case TokenID.Not:
-                    NodePush (new QueryListNode (Keyword.Not));
-                    break;
+			case TokenID.Not:
+				NodePush (new QueryListNode (Keyword.Not));
+				break;
 
-                case TokenID.Or:
-                case TokenID.And:
-                    // Only push a node if the current_parent is not the same as this token
-                    if (current_parent.Keyword == Keyword.Not ||
-                            current_parent.Keyword == (token.ID == TokenID.Or ? Keyword.And : Keyword.Or)) {
+			case TokenID.Or:
+			case TokenID.And:
+				// Only push a node if the current_parent is not the same as this token
+				if (current_parent.Keyword == Keyword.Not ||
+						current_parent.Keyword == (token.ID == TokenID.Or ? Keyword.And : Keyword.Or)) {
 
-                        QueryListNode list = new QueryListNode (token.ID == TokenID.Or ? Keyword.Or : Keyword.And);
-                        QueryListNode p = current_parent.Parent;
+					QueryListNode list = new QueryListNode (token.ID == TokenID.Or ? Keyword.Or : Keyword.And);
+					QueryListNode p = current_parent.Parent;
 
-                        if (p != null) {
-                            current_parent.Parent.RemoveChild (current_parent);
-                        }
+					if (p != null) {
+						current_parent.Parent.RemoveChild (current_parent);
+					}
 
-                        if (current_parent.Keyword == Keyword.Not || current_parent.ChildCount > 1) {
-                            list.AddChild (current_parent);
-                        } else {
-                            list.TakeChildren (current_parent);
-                        }
+					if (current_parent.Keyword == Keyword.Not || current_parent.ChildCount > 1) {
+						list.AddChild (current_parent);
+					} else {
+						list.TakeChildren (current_parent);
+					}
 
-                        current_parent = p;
-                        NodePush (list);
-                    }
-                    break;
+					current_parent = p;
+					NodePush (list);
+				}
+				break;
 
-                case TokenID.Term:
-                    NodePush (QueryTermNode.ParseUserQuery (field_set, token.Term));
-                    break;
-            }
-        }
+			case TokenID.Term:
+				NodePush (QueryTermNode.ParseUserQuery (field_set, token.Term));
+				break;
+			}
+		}
 
-        QueryToken Scan ()
-        {
-            if (reader.EndOfStream) {
-                if (eos_consumed)
-                    return new QueryToken (TokenID.Unknown);
-                else
-                    eos_consumed = true;
-            }
+		QueryToken Scan ()
+		{
+			if (reader.EndOfStream) {
+				if (eos_consumed)
+					return new QueryToken (TokenID.Unknown);
+				else
+					eos_consumed = true;
+			}
 
-            for (; ; ReadChar ()) {
-                if (char.IsWhiteSpace (peek) && peek != '\n') {
-                    continue;
-                } else if (peek == '\n') {
-                    current_line++;
-                    current_column = 0;
-                } else {
-                    break;
-                }
-            }
+			for (; ; ReadChar ()) {
+				if (char.IsWhiteSpace (peek) && peek != '\n') {
+					continue;
+				} else if (peek == '\n') {
+					current_line++;
+					current_column = 0;
+				} else {
+					break;
+				}
+			}
 
-            token_start_column = current_column;
-            token_start_line = current_line;
+			token_start_column = current_column;
+			token_start_line = current_line;
 
-            if (peek == '(') {
-                ReadChar ();
-                return new QueryToken (TokenID.OpenParen);
-            } else if (peek == ')') {
-                ReadChar ();
-                return new QueryToken (TokenID.CloseParen);
-            } else if (peek == '-') {
-                ReadChar ();
-                return new QueryToken (TokenID.Not);
-            } else if (peek == '|' || peek == ',') {
-                ReadChar ();
-                return new QueryToken (TokenID.Or);
-            } else {
-                string token = ScanString ();
+			if (peek == '(') {
+				ReadChar ();
+				return new QueryToken (TokenID.OpenParen);
+			} else if (peek == ')') {
+				ReadChar ();
+				return new QueryToken (TokenID.CloseParen);
+			} else if (peek == '-') {
+				ReadChar ();
+				return new QueryToken (TokenID.Not);
+			} else if (peek == '|' || peek == ',') {
+				ReadChar ();
+				return new QueryToken (TokenID.Or);
+			} else {
+				string token = ScanString ();
 
-                if (reader.EndOfStream)
-                    eos_consumed = true;
+				if (reader.EndOfStream)
+					eos_consumed = true;
 
-                switch (token) {
-                    case "or":
-                    case "OR":
-                        return new QueryToken (TokenID.Or);
-                    case "NOT":
-                        return new QueryToken (TokenID.Not);
-                    default:
-                        return new QueryToken (token);
-                }
-            }
-        }
+				switch (token) {
+				case "or":
+				case "OR":
+					return new QueryToken (TokenID.Or);
+				case "NOT":
+					return new QueryToken (TokenID.Not);
+				default:
+					return new QueryToken (token);
+				}
+			}
+		}
 
-        // TODO: Allow white space before/after term operators
+		// TODO: Allow white space before/after term operators
 
-        bool IsStringTerminationChar (char ch)
-        {
-            return char.IsWhiteSpace (ch) || ch == '(' || ch == ')' || ch == '|' || ch == ',';
-        }
+		bool IsStringTerminationChar (char ch)
+		{
+			return char.IsWhiteSpace (ch) || ch == '(' || ch == ')' || ch == '|' || ch == ',';
+		}
 
-        string ScanString ()
-        {
-            StringBuilder buffer = new StringBuilder ();
-            bool in_string = false;
+		string ScanString ()
+		{
+			StringBuilder buffer = new StringBuilder ();
+			bool in_string = false;
 
-            while (true) {
-                if (!in_string && IsStringTerminationChar (peek)) {
-                    break;
-                } else if (peek == '"') {
-                    in_string = !in_string;
-                } else {
-                    buffer.Append (peek);
-                    if (reader.EndOfStream) {
-                        break;
-                    }
-                }
+			while (true) {
+				if (!in_string && IsStringTerminationChar (peek)) {
+					break;
+				} else if (peek == '"') {
+					in_string = !in_string;
+				} else {
+					buffer.Append (peek);
+					if (reader.EndOfStream) {
+						break;
+					}
+				}
 
-                ReadChar ();
+				ReadChar ();
 
-                if (reader.EndOfStream) {
-                    if (!IsStringTerminationChar (peek) && peek != '"') {
-                        buffer.Append (peek);
-                    }
+				if (reader.EndOfStream) {
+					if (!IsStringTerminationChar (peek) && peek != '"') {
+						buffer.Append (peek);
+					}
 
-                    break;
-                }
-            }
+					break;
+				}
+			}
 
-            return buffer.ToString ();
-        }
+			return buffer.ToString ();
+		}
 
-        public override void Reset ()
-        {
-            peek = ' ';
-            current_column = 0;
-            current_line = 0;
-            token_start_column = 0;
-            token_start_line = 0;
-        }
+		public override void Reset ()
+		{
+			peek = ' ';
+			current_column = 0;
+			current_line = 0;
+			token_start_column = 0;
+			token_start_line = 0;
+		}
 
-        void ReadChar ()
-        {
-            if (peek == char.MinValue) {
-                return;
-            }
+		void ReadChar ()
+		{
+			if (peek == char.MinValue) {
+				return;
+			}
 
-            peek = (char)reader.Read ();
-            current_column++;
-        }
-    }
+			peek = (char)reader.Read ();
+			current_column++;
+		}
+	}
 }

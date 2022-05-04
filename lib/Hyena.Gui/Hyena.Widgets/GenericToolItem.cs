@@ -31,17 +31,17 @@ using Gtk;
 namespace Hyena.Widgets
 {
 	public class GenericToolItem<T> : ToolItem where T : Widget
-    {
-        T widget;
+	{
+		T widget;
 
-        public GenericToolItem (T widget)
-        {
-            this.widget = widget;
-            Add (widget);
-        }
+		public GenericToolItem (T widget)
+		{
+			this.widget = widget;
+			Add (widget);
+		}
 
-        public T Widget {
-            get { return widget; }
-        }
-    }
+		public T Widget {
+			get { return widget; }
+		}
+	}
 }

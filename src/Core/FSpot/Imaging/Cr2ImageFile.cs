@@ -30,6 +30,7 @@
 //
 
 using System;
+
 using Hyena;
 
 
@@ -60,7 +61,7 @@ namespace FSpot.Imaging
 				var tag = metadata.GetTag (TagTypes.TiffIFD) as IFDTag;
 				var structure = tag.Structure;
 				var entry = structure.GetEntry (0, (ushort)IFDEntryTag.StripOffsets);
-				offset = (entry as StripOffsetsIFDEntry).Values [0];
+				offset = (entry as StripOffsetsIFDEntry).Values[0];
 			} catch (Exception e) {
 				Logger.Log.Debug (e, "");
 			}

@@ -29,21 +29,22 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System.Text;
 using System.Collections.Generic;
 using System.Linq;
-
-using Gtk;
-using Hyena;
+using System.Text;
 
 using FSpot.Query;
+
+using Gtk;
+
+using Hyena;
 
 namespace FSpot
 {
 	public class FolderQueryWidget : HBox
 	{
-        readonly PhotoQuery query;
-        FolderSet folder_set;
+		readonly PhotoQuery query;
+		FolderSet folder_set;
 
 		public FolderQueryWidget (PhotoQuery query)
 		{
@@ -53,8 +54,8 @@ namespace FSpot
 			query.SetCondition (folder_set);
 
 			Drag.DestSet (this, DestDefaults.All,
-			              folder_query_widget_source_table,
-			              Gdk.DragAction.Copy | Gdk.DragAction.Move);
+						  folder_query_widget_source_table,
+						  Gdk.DragAction.Copy | Gdk.DragAction.Move);
 		}
 
 		void UpdateGui ()
@@ -115,10 +116,10 @@ namespace FSpot
 		}
 
 		public bool Empty {
-			get { return folder_set.Folders == null || !folder_set.Folders.Any(); }
+			get { return folder_set.Folders == null || !folder_set.Folders.Any (); }
 		}
 
-		static TargetEntry [] folder_query_widget_source_table = {
+		static TargetEntry[] folder_query_widget_source_table = {
 				DragDropTargets.UriQueryEntry
 		};
 

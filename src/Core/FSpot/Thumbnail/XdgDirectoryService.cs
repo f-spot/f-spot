@@ -1,4 +1,4 @@
-﻿//
+//
 // XdgDirectoryService.cs
 //
 // Author:
@@ -27,6 +27,7 @@
 //
 
 using System.IO;
+
 using FSpot.FileSystem;
 
 namespace FSpot.Thumbnail

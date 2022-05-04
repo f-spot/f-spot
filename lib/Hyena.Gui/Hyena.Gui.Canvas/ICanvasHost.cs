@@ -27,9 +27,9 @@
 namespace Hyena.Gui.Canvas
 {
 	public interface ICanvasHost
-    {
-        void QueueRender (CanvasItem item, Rect rect);
-        Pango.Layout PangoLayout { get; }
-        Pango.FontDescription FontDescription { get; }
-    }
+	{
+		void QueueRender (CanvasItem item, Rect rect);
+		Pango.Layout PangoLayout { get; }
+		Pango.FontDescription FontDescription { get; }
+	}
 }

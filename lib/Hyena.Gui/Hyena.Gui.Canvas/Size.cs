@@ -30,92 +30,92 @@ using System;
 
 namespace Hyena.Gui.Canvas
 {
-    public struct Size
-    {
-        double width;
-        double height;
+	public struct Size
+	{
+		double width;
+		double height;
 
-        public Size (double width, double height) : this ()
-        {
-            Width = width;
-            Height = height;
-        }
+		public Size (double width, double height) : this ()
+		{
+			Width = width;
+			Height = height;
+		}
 
-        public override bool Equals (object o)
-        {
-            if (!(o is Size)) {
-                return false;
-            }
+		public override bool Equals (object o)
+		{
+			if (!(o is Size)) {
+				return false;
+			}
 
-            return Equals ((Size)o);
-        }
+			return Equals ((Size)o);
+		}
 
-        public bool Equals (Size value)
-        {
-            return value.width == width && value.height == height;
-        }
+		public bool Equals (Size value)
+		{
+			return value.width == width && value.height == height;
+		}
 
-        public override int GetHashCode ()
-        {
-            return ((int)width) ^ ((int)height);
-        }
+		public override int GetHashCode ()
+		{
+			return ((int)width) ^ ((int)height);
+		}
 
-        public static bool operator == (Size size1, Size size2)
-        {
-            return size1.width == size2.width && size1.height == size2.height;
-        }
+		public static bool operator == (Size size1, Size size2)
+		{
+			return size1.width == size2.width && size1.height == size2.height;
+		}
 
-        public static bool operator != (Size size1, Size size2)
-        {
-            return size1.width != size2.width || size1.height != size2.height;
-        }
+		public static bool operator != (Size size1, Size size2)
+		{
+			return size1.width != size2.width || size1.height != size2.height;
+		}
 
-        public double Height {
-            get { return height; }
-            set {
-                if (value < 0) {
-                    Log.Exception (String.Format ("Height value to set: {0}", value),
-                                   new ArgumentException ("Height setter should not receive negative values", nameof (value)));
-                    value = 0;
-                }
+		public double Height {
+			get { return height; }
+			set {
+				if (value < 0) {
+					Log.Exception (String.Format ("Height value to set: {0}", value),
+								   new ArgumentException ("Height setter should not receive negative values", nameof (value)));
+					value = 0;
+				}
 
-                height = value;
-            }
-        }
+				height = value;
+			}
+		}
 
-        public double Width {
-            get { return width; }
-            set {
-                if (value < 0) {
-                    Log.Exception (String.Format ("Width value to set: {0}", value),
-                                   new ArgumentException ("Width setter should not receive negative values", nameof (value)));
-                    value = 0;
-                }
+		public double Width {
+			get { return width; }
+			set {
+				if (value < 0) {
+					Log.Exception (String.Format ("Width value to set: {0}", value),
+								   new ArgumentException ("Width setter should not receive negative values", nameof (value)));
+					value = 0;
+				}
 
-                width = value;
-            }
-        }
+				width = value;
+			}
+		}
 
-        public bool IsEmpty {
-            get { return width == Double.NegativeInfinity && height == Double.NegativeInfinity; }
-        }
+		public bool IsEmpty {
+			get { return width == Double.NegativeInfinity && height == Double.NegativeInfinity; }
+		}
 
-        public static Size Empty {
-            get {
-                Size size = new Size ();
-                size.width = Double.NegativeInfinity;
-                size.height = Double.NegativeInfinity;
-                return size;
-            }
-        }
+		public static Size Empty {
+			get {
+				Size size = new Size ();
+				size.width = Double.NegativeInfinity;
+				size.height = Double.NegativeInfinity;
+				return size;
+			}
+		}
 
-        public override string ToString ()
-        {
-            if (IsEmpty) {
-                return "Empty";
-            }
+		public override string ToString ()
+		{
+			if (IsEmpty) {
+				return "Empty";
+			}
 
-            return String.Format ("{0}x{1}", width, height);
-        }
-    }
+			return String.Format ("{0}x{1}", width, height);
+		}
+	}
 }

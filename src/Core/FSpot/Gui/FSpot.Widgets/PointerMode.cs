@@ -29,7 +29,8 @@
 
 namespace FSpot.Widgets
 {
-	public enum PointerMode {
+	public enum PointerMode
+	{
 		None,
 		Select,
 		Scroll

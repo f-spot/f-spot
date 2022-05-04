@@ -30,7 +30,9 @@
 //
 
 using System;
+
 using Banshee.Kernel;
+
 using FSpot.Core;
 using FSpot.Jobs;
 

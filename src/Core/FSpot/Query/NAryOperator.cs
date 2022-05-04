@@ -40,7 +40,7 @@ namespace FSpot.Query
 			get { return terms.ToArray (); }
 		}
 
-		protected string [] ToStringArray ()
+		protected string[] ToStringArray ()
 		{
 			var ls = new List<string> (terms.Count);
 			foreach (LogicalTerm term in terms)
@@ -51,7 +51,7 @@ namespace FSpot.Query
 		public static string SqlClause (string op, string[] items)
 		{
 			if (items.Length == 1)
-				return items [0];
+				return items[0];
 			return " (" + string.Join (string.Format (" {0} ", op), items) + ") ";
 		}
 	}

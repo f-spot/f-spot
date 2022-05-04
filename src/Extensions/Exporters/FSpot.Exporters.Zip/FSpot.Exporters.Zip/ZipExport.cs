@@ -33,18 +33,19 @@ using System;
 using System.IO;
 using System.Linq;
 
-using FSpot.UI.Dialog;
 using FSpot.Core;
 using FSpot.Extensions;
 using FSpot.Filters;
-using Hyena.Widgets;
+using FSpot.Resources.Lang;
+using FSpot.Settings;
+using FSpot.UI.Dialog;
 
 using Gtk;
 
+using Hyena.Widgets;
+
 using ICSharpCode.SharpZipLib.Checksum;
 using ICSharpCode.SharpZipLib.Zip;
-using FSpot.Settings;
-using FSpot.Resources.Lang;
 
 
 namespace FSpot.Exporters.Zip
@@ -60,10 +61,11 @@ namespace FSpot.Exporters.Zip
 		[GtkBeans.Builder.Object] Gtk.Button create_button;
 #pragma warning restore 649
 
-		IPhoto [] photos;
+		IPhoto[] photos;
 		Gtk.FileChooserButton uri_chooser;
 
-		public void Run (IBrowsableCollection p) {
+		public void Run (IBrowsableCollection p)
+		{
 			Logger.Log.Information ("Executing ZipExport extension");
 			if (p.Count == 0) {
 				HigMessageDialog md = new HigMessageDialog (App.Instance.Organizer.Window, DialogFlags.DestroyWithParent,
@@ -79,7 +81,8 @@ namespace FSpot.Exporters.Zip
 			ShowDialog ();
 		}
 
-		public void ShowDialog () {
+		public void ShowDialog ()
+		{
 			var builder = new GtkBeans.Builder (null, "zip_export.ui", null);
 			builder.Autoconnect (this);
 			zipdiag.Modal = false;
@@ -100,7 +103,8 @@ namespace FSpot.Exporters.Zip
 			zipdiag.ShowAll ();
 		}
 
-		private void on_dialog_response (object sender, ResponseArgs args) {
+		private void on_dialog_response (object sender, ResponseArgs args)
+		{
 			if (args.ResponseId != Gtk.ResponseType.Ok) {
 				// FIXME this is to work around a bug in gtk+ where
 				// the filesystem events are still listened to when
@@ -114,21 +118,22 @@ namespace FSpot.Exporters.Zip
 			zipdiag.Destroy ();
 		}
 
-		void zip () {
+		void zip ()
+		{
 			System.Uri dest = new System.Uri (uri_chooser.Uri);
 			Crc32 crc = new Crc32 ();
 			string filedest = dest.LocalPath + "/" + filename.Text;
 			Logger.Log.Debug ($"Creating zip file {filedest}");
-			ZipOutputStream s = new ZipOutputStream (File.Create(filedest));
+			ZipOutputStream s = new ZipOutputStream (File.Create (filedest));
 			if (scale_check.Active)
 				Logger.Log.Debug ($"Scaling to {scale_size.ValueAsInt}");
 
 			ProgressDialog progress_dialog = new ProgressDialog (Strings.ExportingFiles,
-							      ProgressDialog.CancelButtonType.Stop,
-							      photos.Length, zipdiag);
+								  ProgressDialog.CancelButtonType.Stop,
+								  photos.Length, zipdiag);
 
 			//Pack up
-			for (int i = 0; i < photos.Length; i ++) {
+			for (int i = 0; i < photos.Length; i++) {
 				if (progress_dialog.Update (string.Format (Strings.PreparingPhotoX, photos[i].Name))) {
 					progress_dialog.Destroy ();
 					return;
@@ -138,18 +143,18 @@ namespace FSpot.Exporters.Zip
 				if (scale_check.Active) {
 					FilterSet filters = new FilterSet ();
 					filters.Add (new JpegFilter ());
-					filters.Add (new ResizeFilter ((uint) scale_size.ValueAsInt));
-					FilterRequest freq = new FilterRequest (photos [i].DefaultVersion.Uri);
+					filters.Add (new ResizeFilter ((uint)scale_size.ValueAsInt));
+					FilterRequest freq = new FilterRequest (photos[i].DefaultVersion.Uri);
 					filters.Convert (freq);
 					f = freq.Current.LocalPath;
 				} else {
-					f = photos [i].DefaultVersion.Uri.LocalPath;
+					f = photos[i].DefaultVersion.Uri.LocalPath;
 				}
 				FileStream fs = File.OpenRead (f);
 
-				byte [] buffer = new byte [fs.Length];
+				byte[] buffer = new byte[fs.Length];
 				fs.Read (buffer, 0, buffer.Length);
-				ZipEntry entry = new ZipEntry (System.IO.Path.GetFileName (photos [i].DefaultVersion.Uri.LocalPath));
+				ZipEntry entry = new ZipEntry (System.IO.Path.GetFileName (photos[i].DefaultVersion.Uri.LocalPath));
 
 				entry.DateTime = DateTime.Now;
 
@@ -172,11 +177,13 @@ namespace FSpot.Exporters.Zip
 
 		}
 
-		private void on_filename_change (object sender, System.EventArgs args) {
+		private void on_filename_change (object sender, System.EventArgs args)
+		{
 			create_button.Sensitive = System.Text.RegularExpressions.Regex.IsMatch (filename.Text, "[.]zip$");
 		}
 
-		private void on_scalecheck_change (object sender, System.EventArgs args) {
+		private void on_scalecheck_change (object sender, System.EventArgs args)
+		{
 			scale_size.Sensitive = scale_check.Active;
 		}
 	}

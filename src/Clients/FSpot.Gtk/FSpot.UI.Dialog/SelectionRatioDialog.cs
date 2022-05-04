@@ -28,15 +28,14 @@
 //
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
-using System.Collections.Generic;
 
+using FSpot.Resources.Lang;
 using FSpot.Settings;
 
 using Gtk;
-
-using FSpot.Resources.Lang;
 
 namespace FSpot.UI.Dialog
 {
@@ -82,7 +81,7 @@ namespace FSpot.UI.Dialog
 				Destroy ();
 			};
 
-			add_button.Clicked += (o, e) => {constraints_store.AppendValues (Strings.NewSelection, 1.0); };
+			add_button.Clicked += (o, e) => { constraints_store.AppendValues (Strings.NewSelection, 1.0); };
 			delete_button.Clicked += DeleteSelectedRows;
 			up_button.Clicked += MoveUp;
 			down_button.Clicked += MoveDown;
@@ -103,8 +102,8 @@ namespace FSpot.UI.Dialog
 		{
 			constraints_store = new ListStore (typeof (string), typeof (double));
 			content_treeview.Model = constraints_store;
-			XmlSerializer serializer = new XmlSerializer (typeof(SelectionConstraint));
-			string [] vals = Preferences.Get<string []> (Preferences.CustomCropRatios);
+			XmlSerializer serializer = new XmlSerializer (typeof (SelectionConstraint));
+			string[] vals = Preferences.Get<string[]> (Preferences.CustomCropRatios);
 			if (vals != null)
 				foreach (string xml in vals) {
 					SelectionConstraint constraint = (SelectionConstraint)serializer.Deserialize (new StringReader (xml));
@@ -138,7 +137,7 @@ namespace FSpot.UI.Dialog
 			}
 
 			if (prefs.Count != 0)
-				Preferences.Set (Preferences.CustomCropRatios, prefs.ToArray());
+				Preferences.Set (Preferences.CustomCropRatios, prefs.ToArray ());
 		}
 
 		public void HandleLabelEdited (object sender, EditedArgs args)
@@ -182,7 +181,7 @@ namespace FSpot.UI.Dialog
 			try {
 				return Convert.ToDouble (text);
 			} catch (FormatException) {
-				char [] separators = {'/', ':'};
+				char[] separators = { '/', ':' };
 				foreach (char c in separators) {
 					if (text.IndexOf (c) != -1) {
 						double ratio = Convert.ToDouble (text.Substring (0, text.IndexOf (c)));

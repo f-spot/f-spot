@@ -31,11 +31,11 @@
 using System;
 using System.Collections.Generic;
 
-using Gtk;
-
 using FSpot;
 using FSpot.Core;
 using FSpot.Resources.Lang;
+
+using Gtk;
 
 public class PhotoTagMenu : Menu
 {
@@ -46,9 +46,10 @@ public class PhotoTagMenu : Menu
 	{
 	}
 
-	protected PhotoTagMenu (IntPtr raw) : base (raw) {}
+	protected PhotoTagMenu (IntPtr raw) : base (raw) { }
 
-	public void Populate (IPhoto [] photos) {
+	public void Populate (IPhoto[] photos)
+	{
 		Dictionary<uint, Tag> dict = new Dictionary<uint, Tag> ();
 		if (photos != null) {
 			foreach (IPhoto p in photos) {

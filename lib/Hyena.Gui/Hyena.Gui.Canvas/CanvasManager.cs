@@ -27,35 +27,35 @@
 namespace Hyena.Gui.Canvas
 {
 	public class CanvasManager
-    {
-        ICanvasHost host;
+	{
+		ICanvasHost host;
 
-        public CanvasManager (ICanvasHost host)
-        {
-            this.host = host;
-        }
+		public CanvasManager (ICanvasHost host)
+		{
+			this.host = host;
+		}
 
-        public void QueueArrange (CanvasItem item)
-        {
-            item.Arrange ();
-        }
+		public void QueueArrange (CanvasItem item)
+		{
+			item.Arrange ();
+		}
 
-        public void QueueMeasure (CanvasItem item)
-        {
-            item.Measure (item.ContentSize);
-        }
+		public void QueueMeasure (CanvasItem item)
+		{
+			item.Measure (item.ContentSize);
+		}
 
-        public void QueueRender (CanvasItem item, Rect rect)
-        {
-            if (host == null) {
-                return;
-            }
+		public void QueueRender (CanvasItem item, Rect rect)
+		{
+			if (host == null) {
+				return;
+			}
 
-            host.QueueRender (item, rect);
-        }
+			host.QueueRender (item, rect);
+		}
 
-        public ICanvasHost Host {
-            get { return host; }
-        }
-    }
+		public ICanvasHost Host {
+			get { return host; }
+		}
+	}
 }

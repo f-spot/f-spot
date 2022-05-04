@@ -29,13 +29,13 @@
 namespace Hyena.Jobs
 {
 	public class Resource
-    {
-        // Convenience Resources for programs to use
-        public static readonly Resource Cpu = new Resource { Id = "cpu", Name = "CPU" };
-        public static readonly Resource Disk = new Resource { Id = "disk", Name = "Disk" };
-        public static readonly Resource Database = new Resource { Id = "db", Name = "Database" };
+	{
+		// Convenience Resources for programs to use
+		public static readonly Resource Cpu = new Resource { Id = "cpu", Name = "CPU" };
+		public static readonly Resource Disk = new Resource { Id = "disk", Name = "Disk" };
+		public static readonly Resource Database = new Resource { Id = "db", Name = "Database" };
 
-        public string Id { get; set; }
-        public string Name { get; set; }
-    }
+		public string Id { get; set; }
+		public string Name { get; set; }
+	}
 }

@@ -27,40 +27,41 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Hyena;
 using FSpot.Core;
 using FSpot.Utils;
 
+using Hyena;
+
 namespace FSpot
 {
-    public class PhotoVersion : IPhotoVersion
-    {
-        public string Name { get; set; }
-        public IPhoto Photo { get; private set; }
-        public SafeUri BaseUri { get; set; }
-        public string Filename { get; set; }
+	public class PhotoVersion : IPhotoVersion
+	{
+		public string Name { get; set; }
+		public IPhoto Photo { get; private set; }
+		public SafeUri BaseUri { get; set; }
+		public string Filename { get; set; }
 
-        public SafeUri Uri {
-            get { return BaseUri.Append (Filename); }
-            set {
-                BaseUri = value.GetBaseUri ();
-                Filename = value.GetFilename ();
-            }
-        }
+		public SafeUri Uri {
+			get { return BaseUri.Append (Filename); }
+			set {
+				BaseUri = value.GetBaseUri ();
+				Filename = value.GetFilename ();
+			}
+		}
 
-        public string ImportMD5 { get; set; }
-        public uint VersionId { get; private set; }
-        public bool IsProtected { get; private set; }
+		public string ImportMD5 { get; set; }
+		public uint VersionId { get; private set; }
+		public bool IsProtected { get; private set; }
 
-        public PhotoVersion (IPhoto photo, uint version_id, SafeUri base_uri, string filename, string md5_sum, string name, bool is_protected)
-        {
-            Photo = photo;
-            VersionId = version_id;
-            BaseUri = base_uri;
-            Filename = filename;
-            ImportMD5 = md5_sum;
-            Name = name;
-            IsProtected = is_protected;
-        }
-    }
+		public PhotoVersion (IPhoto photo, uint version_id, SafeUri base_uri, string filename, string md5_sum, string name, bool is_protected)
+		{
+			Photo = photo;
+			VersionId = version_id;
+			BaseUri = base_uri;
+			Filename = filename;
+			ImportMD5 = md5_sum;
+			Name = name;
+			IsProtected = is_protected;
+		}
+	}
 }

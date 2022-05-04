@@ -29,16 +29,16 @@
 namespace Hyena.Query.Gui
 {
 	public class NullQueryValueEntry : QueryValueEntry
-    {
-        protected NullQueryValue query_value;
+	{
+		protected NullQueryValue query_value;
 
-        public NullQueryValueEntry () : base ()
-        {
-        }
+		public NullQueryValueEntry () : base ()
+		{
+		}
 
-        public override QueryValue QueryValue {
-            get { return query_value; }
-            set { query_value = value as NullQueryValue; }
-        }
-    }
+		public override QueryValue QueryValue {
+			get { return query_value; }
+			set { query_value = value as NullQueryValue; }
+		}
+	}
 }

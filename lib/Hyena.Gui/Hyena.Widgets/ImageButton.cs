@@ -31,45 +31,45 @@ using Gtk;
 namespace Hyena.Widgets
 {
 	public class ImageButton : Button
-    {
-        Image image;
-        Label label;
-        HBox hbox;
+	{
+		Image image;
+		Label label;
+		HBox hbox;
 
-        public Image ImageWidget { get { return image; } }
-        public Label LabelWidget { get { return label; } }
+		public Image ImageWidget { get { return image; } }
+		public Label LabelWidget { get { return label; } }
 
-        public uint InnerPadding {
-            get { return hbox.BorderWidth; }
-            set { hbox.BorderWidth = value; }
-        }
+		public uint InnerPadding {
+			get { return hbox.BorderWidth; }
+			set { hbox.BorderWidth = value; }
+		}
 
-        public int Spacing {
-            get { return hbox.Spacing; }
-            set { hbox.Spacing = value; }
-        }
+		public int Spacing {
+			get { return hbox.Spacing; }
+			set { hbox.Spacing = value; }
+		}
 
-        public ImageButton (string text, string iconName) : this (text, iconName, Gtk.IconSize.Button)
-        {
-        }
+		public ImageButton (string text, string iconName) : this (text, iconName, Gtk.IconSize.Button)
+		{
+		}
 
-        public ImageButton (string text, string iconName, Gtk.IconSize iconSize) : base ()
-        {
-            image = new Image ();
-            image.IconName = iconName;
-            image.IconSize = (int) iconSize;
+		public ImageButton (string text, string iconName, Gtk.IconSize iconSize) : base ()
+		{
+			image = new Image ();
+			image.IconName = iconName;
+			image.IconSize = (int)iconSize;
 
-            label = new Label ();
-            label.MarkupWithMnemonic = text;
+			label = new Label ();
+			label.MarkupWithMnemonic = text;
 
-            hbox = new HBox ();
-            hbox.Spacing = 2;
-            hbox.PackStart (image, false, false, 0);
-            hbox.PackStart (label, true, true, 0);
+			hbox = new HBox ();
+			hbox.Spacing = 2;
+			hbox.PackStart (image, false, false, 0);
+			hbox.PackStart (label, true, true, 0);
 
-            Child = hbox;
-            CanDefault = true;
-            ShowAll ();
-        }
-    }
+			Child = hbox;
+			CanDefault = true;
+			ShowAll ();
+		}
+	}
 }

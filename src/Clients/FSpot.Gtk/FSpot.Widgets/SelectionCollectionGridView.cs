@@ -29,9 +29,12 @@
 
 using System;
 using System.Collections.Generic;
+
 using FSpot.Core;
 using FSpot.Utils;
+
 using Gdk;
+
 using Gtk;
 
 namespace FSpot.Widgets
@@ -69,7 +72,7 @@ namespace FSpot.Widgets
 		{
 			Selection = new SelectionCollection (Collection);
 
-			Selection.DetailedChanged += delegate(IBrowsableCollection sender, Int32[] ids) {
+			Selection.DetailedChanged += delegate (IBrowsableCollection sender, Int32[] ids) {
 				if (ids == null)
 					QueueDraw ();
 				else
@@ -171,7 +174,7 @@ namespace FSpot.Widgets
 			switch (evnt.Type) {
 			case EventType.TwoButtonPress:
 				if (evnt.Button != 1 ||
-				    (evnt.State & (ModifierType.ControlMask | ModifierType.ShiftMask)) != 0)
+					(evnt.State & (ModifierType.ControlMask | ModifierType.ShiftMask)) != 0)
 					return false;
 
 				DoubleClicked?.Invoke (this, new BrowsableEventArgs (cell_num, null));
@@ -335,7 +338,7 @@ namespace FSpot.Widgets
 				if (newVadj < 0)
 					newVadj = 0;
 			} else if ((new_y > Allocation.Height) &&
-			           (newVadj < Vadjustment.Upper - Allocation.Height - deltaVscroll))
+					   (newVadj < Vadjustment.Upper - Allocation.Height - deltaVscroll))
 				newVadj += deltaVscroll;
 			Vadjustment.Value = newVadj;
 
@@ -353,7 +356,7 @@ namespace FSpot.Widgets
 				return false;
 
 			if (!Gtk.Drag.CheckThreshold (this, selection_start.X, selection_start.Y,
-			    (int)evnt.X, (int)evnt.Y))
+				(int)evnt.X, (int)evnt.Y))
 				return false;
 
 			if (isRectSelection) {
@@ -397,7 +400,7 @@ namespace FSpot.Widgets
 						Selection.Clear ();
 
 					start_select_selection = Selection.Ids; // keep initial selection
-					// no rect draw at beginning
+															// no rect draw at beginning
 					rect_select = Rectangle.Zero;
 
 					return false;

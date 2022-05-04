@@ -35,7 +35,7 @@ namespace FSpot.Exporters.Gallery
 {
 	public class GalleryAccount
 	{
-		public GalleryAccount (string name, string url, string username, string password) : this (name, url, username, password, GalleryVersion.VersionUnknown) {}
+		public GalleryAccount (string name, string url, string username, string password) : this (name, url, username, password, GalleryVersion.VersionUnknown) { }
 		public GalleryAccount (string name, string url, string username, string password, GalleryVersion version)
 		{
 			this.Name = name;
@@ -46,7 +46,7 @@ namespace FSpot.Exporters.Gallery
 			if (version != GalleryVersion.VersionUnknown)
 				this.Version = version;
 			else
-				this.Version = Gallery.DetectGalleryVersion(Url);
+				this.Version = Gallery.DetectGalleryVersion (Url);
 		}
 
 		public const string EXPORT_SERVICE = "gallery/";
@@ -58,7 +58,7 @@ namespace FSpot.Exporters.Gallery
 			Gallery gal = null;
 
 			if (Version == GalleryVersion.VersionUnknown)
-				this.Version = Gallery.DetectGalleryVersion(Url);
+				this.Version = Gallery.DetectGalleryVersion (Url);
 
 			if (Version == GalleryVersion.Version1)
 				gal = new Gallery1 (url, url);
@@ -79,7 +79,7 @@ namespace FSpot.Exporters.Gallery
 			return Gallery;
 		}
 
-		public GalleryVersion Version{ get; private set; }
+		public GalleryVersion Version { get; private set; }
 		public Gallery Gallery { get; private set; }
 		public string Name { get; set; }
 
@@ -87,7 +87,7 @@ namespace FSpot.Exporters.Gallery
 		public bool Connected {
 			get {
 				bool retVal = false;
-				if(Gallery != null) {
+				if (Gallery != null) {
 					retVal = Gallery.IsConnected ();
 				}
 				if (connected != retVal) {

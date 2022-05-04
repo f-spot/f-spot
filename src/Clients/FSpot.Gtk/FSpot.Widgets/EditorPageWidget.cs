@@ -88,7 +88,8 @@ namespace FSpot.Widgets
 
 		ProgressDialog progress;
 
-		void OnProcessingStarted (string name, int count) {
+		void OnProcessingStarted (string name, int count)
+		{
 			progress = new ProgressDialog (name, ProgressDialog.CancelButtonType.None, count, App.Instance.Organizer.Window);
 		}
 
@@ -226,10 +227,10 @@ namespace FSpot.Widgets
 				string desc = string.Format (Strings.ReceivedExceptionXNoteThatYouHaveToDevelopRaw, e.Message);
 
 				HigMessageDialog md = new HigMessageDialog (App.Instance.Organizer.Window,
-									    DialogFlags.DestroyWithParent,
-									    MessageType.Error, ButtonsType.Ok,
-									    msg,
-									    desc);
+										DialogFlags.DestroyWithParent,
+										MessageType.Error, ButtonsType.Ok,
+										msg,
+										desc);
 				md.Run ();
 				md.Destroy ();
 			}
@@ -246,7 +247,7 @@ namespace FSpot.Widgets
 			// Top label
 			VBox vbox = new VBox (false, 4);
 			Label label = new Label ();
-			label.Markup = string.Format("<big><b>{0}</b></big>", editor.Label);
+			label.Markup = string.Format ("<big><b>{0}</b></big>", editor.Label);
 			vbox.PackStart (label, false, false, 5);
 
 			// Optional config widget

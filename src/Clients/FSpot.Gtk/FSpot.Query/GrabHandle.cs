@@ -43,14 +43,14 @@ namespace FSpot.Query
 
 		protected override bool OnExposeEvent (Gdk.EventExpose evnt)
 		{
-			bool ret = base.OnExposeEvent(evnt);
+			bool ret = base.OnExposeEvent (evnt);
 
 			if (evnt.Window != GdkWindow) {
 				return ret;
 			}
 
-			Gtk.Style.PaintHandle(Style, GdkWindow, State, ShadowType.In,
-					      evnt.Area, this, "entry", 0, 0, Allocation.Width, Allocation.Height, Orientation);
+			Gtk.Style.PaintHandle (Style, GdkWindow, State, ShadowType.In,
+						  evnt.Area, this, "entry", 0, 0, Allocation.Width, Allocation.Height, Orientation);
 
 			//(Style, GdkWindow, StateType.Normal, ShadowType.In,
 			//evnt.Area, this, "entry", 0, y_mid - y_offset, Allocation.Width,

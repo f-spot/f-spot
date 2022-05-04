@@ -36,7 +36,6 @@ using System.IO;
 using System.Runtime.InteropServices;
 
 using Cairo;
-using Gdk;
 
 using FSpot;
 using FSpot.Cms;
@@ -45,12 +44,14 @@ using FSpot.Settings;
 using FSpot.UI.Dialog;
 using FSpot.Utils;
 
-using Hyena;
+using Gdk;
 
-using TagLib.Image;
+using Hyena;
 
 using Pinta.Core;
 using Pinta.Effects;
+
+using TagLib.Image;
 
 
 public static class PixbufUtils
@@ -73,9 +74,9 @@ public static class PixbufUtils
 				  out int fit_width, out int fit_height)
 	{
 		return Fit (pixbuf.Width, pixbuf.Height,
-			    dest_width, dest_height,
-			    upscale_smaller,
-			    out fit_width, out fit_height);
+				dest_width, dest_height,
+				upscale_smaller,
+				out fit_width, out fit_height);
 	}
 
 	public static double Fit (int orig_width, int orig_height,
@@ -146,7 +147,7 @@ public static class PixbufUtils
 		public Pixbuf Load (System.IO.Stream stream, ImageOrientation orientation)
 		{
 			int count;
-			byte [] data = new byte [8192];
+			byte[] data = new byte[8192];
 			while (((count = stream.Read (data, 0, data.Length)) > 0) && loader.Write (data, (ulong)count)) {
 				;
 			}
@@ -242,10 +243,10 @@ public static class PixbufUtils
 
 		Pixbuf flattened = new Pixbuf (Colorspace.Rgb, false, 8, pixbuf.Width, pixbuf.Height);
 		pixbuf.CompositeColor (flattened, 0, 0,
-				       pixbuf.Width, pixbuf.Height,
-				       0, 0, 1, 1,
-				       InterpType.Bilinear,
-				       255, 0, 0, 2000, 0xffffff, 0xffffff);
+					   pixbuf.Width, pixbuf.Height,
+					   0, 0, 1, 1,
+					   InterpType.Bilinear,
+					   255, 0, 0, 2000, 0xffffff, 0xffffff);
 
 		return flattened;
 	}
@@ -263,16 +264,16 @@ public static class PixbufUtils
 	{
 		byte* destPtr = pixels + row * rowstride;
 
-		for (int i=0; i < width*channels; i++) {
-			destPtr [i] = dest [i];
+		for (int i = 0; i < width * channels; i++) {
+			destPtr[i] = dest[i];
 		}
 	}
 
 	unsafe public static Pixbuf UnsharpMask (Pixbuf src,
-                                             double radius,
-                                             double amount,
-                                             double threshold,
-                                             ThreadProgressDialog progressDialog)
+											 double radius,
+											 double amount,
+											 double threshold,
+											 ThreadProgressDialog progressDialog)
 	{
 		// Make sure the pixbuf has an alpha channel before we try to blur it
 		src = src.AddAlpha (false, 0, 0, 0);
@@ -294,31 +295,31 @@ public static class PixbufUtils
 		byte* sourcePixels = (byte*)src.Pixels;
 		byte* resultPixels = (byte*)result.Pixels;
 
-		for (int row=0; row < sourceHeight; row++) {
+		for (int row = 0; row < sourceHeight; row++) {
 			Pixbuf_GetRow (sourcePixels, row, sourceRowstride, sourceWidth, sourceChannels, srcRow);
 			Pixbuf_GetRow (resultPixels, row, resultRowstride, resultWidth, resultChannels, destRow);
 
 			int diff;
-			for (int i=0; i < sourceWidth*sourceChannels; i++) {
-				diff = srcRow [i] - destRow [i];
+			for (int i = 0; i < sourceWidth * sourceChannels; i++) {
+				diff = srcRow[i] - destRow[i];
 				if (Math.Abs (2 * diff) < threshold)
 					diff = 0;
 
-				int val = (int)(srcRow [i] + amount * diff);
+				int val = (int)(srcRow[i] + amount * diff);
 
 				if (val > 255)
 					val = 255;
 				else if (val < 0)
 					val = 0;
 
-				destRow [i] = (byte)val;
+				destRow[i] = (byte)val;
 			}
 
 			Pixbuf_SetRow (resultPixels, destRow, row, resultRowstride, resultWidth, resultChannels);
 
 			// This is the other half of the progress so start and halfway
 			if (progressDialog != null)
-				progressDialog.Fraction = ((double)row / ((double) sourceHeight - 1) ) * 0.25 + 0.75;
+				progressDialog.Fraction = ((double)row / ((double)sourceHeight - 1)) * 0.25 + 0.75;
 		}
 
 		return result;
@@ -331,7 +332,7 @@ public static class PixbufUtils
 
 		// If we do it as a bunch of single lines (rectangles of one pixel) then we can give the progress
 		// here instead of going deeper to provide the feedback
-		for (int i=0; i < src.Height; i++) {
+		for (int i = 0; i < src.Height; i++) {
 			GaussianBlurEffect.RenderBlurEffect (sourceSurface, destinationSurface, new[] { new Gdk.Rectangle (0, i, src.Width, 1) }, radius);
 
 			if (dialog != null) {
@@ -366,7 +367,7 @@ public static class PixbufUtils
 	{
 		Gdk.Pixbuf copy = src.Copy ();
 		Gdk.Pixbuf selection = new Gdk.Pixbuf (copy, area.X, area.Y, area.Width, area.Height);
-		byte * spix = (byte *)selection.Pixels;
+		byte* spix = (byte*)selection.Pixels;
 		int h = selection.Height;
 		int w = selection.Width;
 		int channels = src.NChannels;
@@ -376,15 +377,15 @@ public static class PixbufUtils
 		double BLUE_FACTOR = 0.1933333;
 
 		for (int j = 0; j < h; j++) {
-			byte * s = spix;
+			byte* s = spix;
 			for (int i = 0; i < w; i++) {
-				int adjusted_red = (int)(s [0] * RED_FACTOR);
-				int adjusted_green = (int)(s [1] * GREEN_FACTOR);
-				int adjusted_blue = (int)(s [2] * BLUE_FACTOR);
+				int adjusted_red = (int)(s[0] * RED_FACTOR);
+				int adjusted_green = (int)(s[1] * GREEN_FACTOR);
+				int adjusted_blue = (int)(s[2] * BLUE_FACTOR);
 
 				if (adjusted_red >= adjusted_green - threshold
-				    && adjusted_red >= adjusted_blue - threshold)
-					s [0] = (byte)(((double)(adjusted_green + adjusted_blue)) / (2.0 * RED_FACTOR));
+					&& adjusted_red >= adjusted_blue - threshold)
+					s[0] = (byte)(((double)(adjusted_green + adjusted_blue)) / (2.0 * RED_FACTOR));
 				s += channels;
 			}
 			spix += selection.Rowstride;
@@ -407,9 +408,9 @@ public static class PixbufUtils
 	}
 
 	public static unsafe void ColorAdjust (Pixbuf src, Pixbuf dest,
-					       double brightness, double contrast,
-					       double hue, double saturation,
-					       int src_color, int dest_color)
+						   double brightness, double contrast,
+						   double hue, double saturation,
+						   int src_color, int dest_color)
 	{
 		if (src.Width != dest.Width || src.Height != dest.Height)
 			throw new Exception ("Invalid Dimensions");
@@ -422,7 +423,7 @@ public static class PixbufUtils
 							hue, saturation, src_color,
 							dest_color);
 
-		Profile [] list = { srgb, bchsw, srgb };
+		Profile[] list = { srgb, bchsw, srgb };
 		var trans = new Transform (list,
 						 PixbufCmsFormat (src),
 						 PixbufCmsFormat (dest),
@@ -438,13 +439,13 @@ public static class PixbufUtils
 	public static unsafe void ColorAdjust (Gdk.Pixbuf src, Gdk.Pixbuf dest, Transform trans)
 	{
 		int width = src.Width;
-		byte * srcpix = (byte *)src.Pixels;
-		byte * destpix = (byte *)dest.Pixels;
+		byte* srcpix = (byte*)src.Pixels;
+		byte* destpix = (byte*)dest.Pixels;
 
 		for (int row = 0; row < src.Height; row++) {
 			trans.Apply ((IntPtr)(srcpix + row * src.Rowstride),
-				     (IntPtr)(destpix + row * dest.Rowstride),
-				     (uint)width);
+					 (IntPtr)(destpix + row * dest.Rowstride),
+					 (uint)width);
 		}
 
 	}
@@ -453,15 +454,15 @@ public static class PixbufUtils
 	{
 		int chan = pixbuf.NChannels;
 
-		byte * pix = (byte *)pixbuf.Pixels;
+		byte* pix = (byte*)pixbuf.Pixels;
 		int h = pixbuf.Height;
 		int w = pixbuf.Width;
 		int stride = pixbuf.Rowstride;
 
 		for (int j = 0; j < h; j++) {
-			byte * p = pix;
+			byte* p = pix;
 			for (int i = 0; i < w; i++) {
-				if (Math.Abs (p [0] - p [1]) > max_difference || Math.Abs (p [0] - p [2]) > max_difference)
+				if (Math.Abs (p[0] - p[1]) > max_difference || Math.Abs (p[0] - p[2]) > max_difference)
 					return false;
 				p += chan;
 			}
@@ -476,17 +477,17 @@ public static class PixbufUtils
 		if (src.HasAlpha || !dest.HasAlpha || (src.Width != dest.Width) || (src.Height != dest.Height))
 			throw new ApplicationException ("invalid pixbufs");
 
-		byte * dpix = (byte *)dest.Pixels;
-		byte * spix = (byte *)src.Pixels;
+		byte* dpix = (byte*)dest.Pixels;
+		byte* spix = (byte*)src.Pixels;
 		int h = src.Height;
 		int w = src.Width;
 		for (int j = 0; j < h; j++) {
-			byte * d = dpix;
-			byte * s = spix;
+			byte* d = dpix;
+			byte* s = spix;
 			for (int i = 0; i < w; i++) {
-				d [0] = s [0];
-				d [1] = s [1];
-				d [2] = s [2];
+				d[0] = s[0];
+				d[1] = s[1];
+				d[2] = s[2];
 				d += 4;
 				s += 3;
 			}

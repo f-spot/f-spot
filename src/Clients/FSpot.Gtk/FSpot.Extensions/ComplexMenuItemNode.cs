@@ -31,9 +31,9 @@
 
 using System;
 
-using Mono.Addins;
-
 using Hyena.Widgets;
+
+using Mono.Addins;
 
 namespace FSpot.Extensions
 {
@@ -53,15 +53,15 @@ namespace FSpot.Extensions
 			var item = Activator.CreateInstance (Type.GetType (WidgetType), parent) as ComplexMenuItem;
 			cmd = (ICommand)Addin.CreateInstance (CommandType);
 
-            if (item != null)
-                item.Activated += OnActivated;
-            return item;
-        }
+			if (item != null)
+				item.Activated += OnActivated;
+			return item;
+		}
 
-        void OnActivated (object o, EventArgs e)
-        {
-            if (cmd != null)
-                cmd.Run (o, e);
-        }
+		void OnActivated (object o, EventArgs e)
+		{
+			if (cmd != null)
+				cmd.Run (o, e);
+		}
 	}
 }

@@ -23,11 +23,13 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace GLib {
-	public class Format {
-		[DllImport("libglib-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+namespace GLib
+{
+	public class Format
+	{
+		[DllImport ("libglib-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr g_format_size_for_display (long size);
-		
+
 		static public string SizeForDisplay (long size)
 		{
 			string result = Marshaller.PtrToStringGFree (g_format_size_for_display (size));

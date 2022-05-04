@@ -37,7 +37,8 @@ namespace FSpot
 {
 	public static class DragDropTargets
 	{
-		public enum TargetType : uint {
+		public enum TargetType : uint
+		{
 			PlainText = 0,
 			UriList,
 			TagList,

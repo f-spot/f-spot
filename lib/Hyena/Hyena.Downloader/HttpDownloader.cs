@@ -31,252 +31,252 @@ using System.Threading;
 
 namespace Hyena.Downloader
 {
-    public class HttpDownloader
-    {
-        object sync_root = new object ();
-        protected object SyncRoot {
-            get { return sync_root; }
-        }
+	public class HttpDownloader
+	{
+		object sync_root = new object ();
+		protected object SyncRoot {
+			get { return sync_root; }
+		}
 
-        HttpWebRequest request;
-        HttpWebResponse response;
-        Stream response_stream;
-        DateTime last_raised_percent_complete;
-        IAsyncResult async_begin_result;
-        ManualResetEvent sync_event;
+		HttpWebRequest request;
+		HttpWebResponse response;
+		Stream response_stream;
+		DateTime last_raised_percent_complete;
+		IAsyncResult async_begin_result;
+		ManualResetEvent sync_event;
 
-        public string UserAgent { get; set; }
-        public Uri Uri { get; set; }
-        public TimeSpan ProgressEventRaiseLimit { get; set; }
-        public HttpDownloaderState State { get; private set; }
-        public string [] AcceptContentTypes { get; set; }
+		public string UserAgent { get; set; }
+		public Uri Uri { get; set; }
+		public TimeSpan ProgressEventRaiseLimit { get; set; }
+		public HttpDownloaderState State { get; private set; }
+		public string[] AcceptContentTypes { get; set; }
 
-        int buffer_size = 8192;
-        public int BufferSize {
-            get { return buffer_size; }
-            set {
-                if (value <= 0) {
-                    throw new InvalidOperationException ("Invalid buffer size");
-                }
-                buffer_size = value;
-            }
-        }
+		int buffer_size = 8192;
+		public int BufferSize {
+			get { return buffer_size; }
+			set {
+				if (value <= 0) {
+					throw new InvalidOperationException ("Invalid buffer size");
+				}
+				buffer_size = value;
+			}
+		}
 
-        string name;
-        public string Name {
-            get { return name ?? Path.GetFileName (Uri.UnescapeDataString (Uri.LocalPath)); }
-            set { name = value; }
-        }
+		string name;
+		public string Name {
+			get { return name ?? Path.GetFileName (Uri.UnescapeDataString (Uri.LocalPath)); }
+			set { name = value; }
+		}
 
-        public event Action<HttpDownloader> Started;
-        public event Action<HttpDownloader> Finished;
-        public event Action<HttpDownloader> Progress;
-        public event Action<HttpDownloader> BufferUpdated;
+		public event Action<HttpDownloader> Started;
+		public event Action<HttpDownloader> Finished;
+		public event Action<HttpDownloader> Progress;
+		public event Action<HttpDownloader> BufferUpdated;
 
-        public HttpDownloader ()
-        {
-            ProgressEventRaiseLimit = TimeSpan.FromSeconds (0.25);
-        }
+		public HttpDownloader ()
+		{
+			ProgressEventRaiseLimit = TimeSpan.FromSeconds (0.25);
+		}
 
-        public void StartSync ()
-        {
-            sync_event = new ManualResetEvent (false);
-            Start ();
-            sync_event.WaitOne ();
-            sync_event = null;
-        }
+		public void StartSync ()
+		{
+			sync_event = new ManualResetEvent (false);
+			Start ();
+			sync_event.WaitOne ();
+			sync_event = null;
+		}
 
-        public void Start ()
-        {
-            lock (SyncRoot) {
-                if (request != null || async_begin_result != null) {
-                    throw new InvalidOperationException ("HttpDownloader is already active");
-                }
-                
-                State = new HttpDownloaderState () {
-                    Buffer = new Buffer () {
-                        Data = new byte[BufferSize]
-                    }
-                };
+		public void Start ()
+		{
+			lock (SyncRoot) {
+				if (request != null || async_begin_result != null) {
+					throw new InvalidOperationException ("HttpDownloader is already active");
+				}
 
-                request = CreateRequest ();
-                async_begin_result = request.BeginGetResponse (OnRequestResponse, this);
+				State = new HttpDownloaderState () {
+					Buffer = new Buffer () {
+						Data = new byte[BufferSize]
+					}
+				};
 
-                State.StartTime = DateTime.Now;
-                State.Working = true;
-                OnStarted ();
-            }
-        }
+				request = CreateRequest ();
+				async_begin_result = request.BeginGetResponse (OnRequestResponse, this);
 
-        public void Abort ()
-        {
-            lock (SyncRoot) {
-                Close ();
-                OnFinished ();
-            }
-        }
+				State.StartTime = DateTime.Now;
+				State.Working = true;
+				OnStarted ();
+			}
+		}
 
-        void Close ()
-        {
-            lock (SyncRoot) {
-                State.FinishTime = DateTime.Now;
-                State.Working = false;
+		public void Abort ()
+		{
+			lock (SyncRoot) {
+				Close ();
+				OnFinished ();
+			}
+		}
 
-                if (response_stream != null) {
-                    response_stream.Close ();
-                }
+		void Close ()
+		{
+			lock (SyncRoot) {
+				State.FinishTime = DateTime.Now;
+				State.Working = false;
 
-                if (response != null) {
-                    response.Close ();
-                }
+				if (response_stream != null) {
+					response_stream.Close ();
+				}
 
-                response_stream = null;
-                response = null;
-                request = null;
-            }
-        }
+				if (response != null) {
+					response.Close ();
+				}
 
-        protected virtual HttpWebRequest CreateRequest ()
-        {
-            var request = (HttpWebRequest)WebRequest.Create (Uri);
-            request.Method = "GET";
-            request.AllowAutoRedirect = true;
-            request.UserAgent = UserAgent;
-            request.Timeout = 10000;
-            return request;
-        }
+				response_stream = null;
+				response = null;
+				request = null;
+			}
+		}
 
-        void OnRequestResponse (IAsyncResult asyncResult)
-        {
-            lock (SyncRoot) {
-                async_begin_result = null;
+		protected virtual HttpWebRequest CreateRequest ()
+		{
+			var request = (HttpWebRequest)WebRequest.Create (Uri);
+			request.Method = "GET";
+			request.AllowAutoRedirect = true;
+			request.UserAgent = UserAgent;
+			request.Timeout = 10000;
+			return request;
+		}
 
-                if (request == null) {
-                    return;
-                }
+		void OnRequestResponse (IAsyncResult asyncResult)
+		{
+			lock (SyncRoot) {
+				async_begin_result = null;
 
-                var raise = false;
+				if (request == null) {
+					return;
+				}
 
-                try {
-                    response = (HttpWebResponse)request.EndGetResponse (asyncResult);
-                    if (response.StatusCode != HttpStatusCode.OK) {
-                        State.Success = false;
-                        raise = true;
-                        return;
-                    } else if (AcceptContentTypes != null) {
-                        var accepted = false;
-                        foreach (var type in AcceptContentTypes) {
-                            if (type == response.ContentType) {
-                                accepted = true;
-                                break;
-                            }
-                        }
-                        if (!accepted) {
-                            throw new WebException ("Invalid content type: " +
-                                response.ContentType + "; expected one of: " +
+				var raise = false;
+
+				try {
+					response = (HttpWebResponse)request.EndGetResponse (asyncResult);
+					if (response.StatusCode != HttpStatusCode.OK) {
+						State.Success = false;
+						raise = true;
+						return;
+					} else if (AcceptContentTypes != null) {
+						var accepted = false;
+						foreach (var type in AcceptContentTypes) {
+							if (type == response.ContentType) {
+								accepted = true;
+								break;
+							}
+						}
+						if (!accepted) {
+							throw new WebException ("Invalid content type: " +
+								response.ContentType + "; expected one of: " +
 								string.Join (", ", AcceptContentTypes));
-                        }
-                    }
+						}
+					}
 
-                    State.ContentType = response.ContentType;
-                    State.CharacterSet = response.CharacterSet;
+					State.ContentType = response.ContentType;
+					State.CharacterSet = response.CharacterSet;
 
-                    State.TotalBytesExpected = response.ContentLength;
+					State.TotalBytesExpected = response.ContentLength;
 
-                    response_stream = response.GetResponseStream ();
-                    async_begin_result = response_stream.BeginRead (State.Buffer.Data, 0,
-                        State.Buffer.Data.Length, OnResponseRead, this);
-                } catch (Exception e) {
-                    State.FailureException = e;
-                    State.Success = false;
-                    raise = true;
-                } finally {
-                    if (raise) {
-                        Close ();
-                        OnFinished ();
-                    }
-                }
-            }
-        }
+					response_stream = response.GetResponseStream ();
+					async_begin_result = response_stream.BeginRead (State.Buffer.Data, 0,
+						State.Buffer.Data.Length, OnResponseRead, this);
+				} catch (Exception e) {
+					State.FailureException = e;
+					State.Success = false;
+					raise = true;
+				} finally {
+					if (raise) {
+						Close ();
+						OnFinished ();
+					}
+				}
+			}
+		}
 
-        void OnResponseRead (IAsyncResult asyncResult)
-        {
-            lock (SyncRoot) {
-                async_begin_result = null;
+		void OnResponseRead (IAsyncResult asyncResult)
+		{
+			lock (SyncRoot) {
+				async_begin_result = null;
 
-                if (request == null || response == null || response_stream == null) {
-                    return;
-                }
+				if (request == null || response == null || response_stream == null) {
+					return;
+				}
 
-                try {
-                    var now = DateTime.Now;
+				try {
+					var now = DateTime.Now;
 
-                    State.Buffer.Length = response_stream.EndRead (asyncResult);
-                    State.Buffer.TimeStamp = now;
-                    State.TotalBytesRead += State.Buffer.Length;
-                    State.TransferRate = State.TotalBytesRead / (now - State.StartTime).TotalSeconds;
-                    State.PercentComplete = (double)State.TotalBytesRead / (double)State.TotalBytesExpected;
+					State.Buffer.Length = response_stream.EndRead (asyncResult);
+					State.Buffer.TimeStamp = now;
+					State.TotalBytesRead += State.Buffer.Length;
+					State.TransferRate = State.TotalBytesRead / (now - State.StartTime).TotalSeconds;
+					State.PercentComplete = (double)State.TotalBytesRead / (double)State.TotalBytesExpected;
 
-                    OnBufferUpdated ();
+					OnBufferUpdated ();
 
-                    if (State.Buffer.Length <= 0) {
-                        State.Success = true;
-                        Close ();
-                        OnFinished ();
-                        return;
-                    }
+					if (State.Buffer.Length <= 0) {
+						State.Success = true;
+						Close ();
+						OnFinished ();
+						return;
+					}
 
-                    if (State.PercentComplete >= 1 || last_raised_percent_complete == DateTime.MinValue ||
-                        (now - last_raised_percent_complete >= ProgressEventRaiseLimit)) {
-                        last_raised_percent_complete = now;
-                        OnProgress ();
-                    }
+					if (State.PercentComplete >= 1 || last_raised_percent_complete == DateTime.MinValue ||
+						(now - last_raised_percent_complete >= ProgressEventRaiseLimit)) {
+						last_raised_percent_complete = now;
+						OnProgress ();
+					}
 
-                    async_begin_result = response_stream.BeginRead (State.Buffer.Data, 0,
-                        State.Buffer.Data.Length, OnResponseRead, this);
-                } catch (Exception e) {
-                    State.FailureException = e;
-                    State.Success = false;
-                    Close ();
-                    OnFinished ();
-                }
-            }
-        }
+					async_begin_result = response_stream.BeginRead (State.Buffer.Data, 0,
+						State.Buffer.Data.Length, OnResponseRead, this);
+				} catch (Exception e) {
+					State.FailureException = e;
+					State.Success = false;
+					Close ();
+					OnFinished ();
+				}
+			}
+		}
 
-        protected virtual void OnStarted ()
-        {
+		protected virtual void OnStarted ()
+		{
 			Started?.Invoke (this);
 		}
 
-        protected virtual void OnBufferUpdated ()
-        {
+		protected virtual void OnBufferUpdated ()
+		{
 			BufferUpdated?.Invoke (this);
 		}
 
-        protected virtual void OnProgress ()
-        {
+		protected virtual void OnProgress ()
+		{
 			Progress?.Invoke (this);
 		}
 
-        protected virtual void OnFinished ()
-        {
-            var handler = Finished;
-            if (handler != null) {
-                try {
-                    handler (this);
-                } catch (Exception e) {
-                    Log.Exception (string.Format ("HttpDownloader.Finished handler ({0})", Uri), e);
-                }
-            } 
+		protected virtual void OnFinished ()
+		{
+			var handler = Finished;
+			if (handler != null) {
+				try {
+					handler (this);
+				} catch (Exception e) {
+					Log.Exception (string.Format ("HttpDownloader.Finished handler ({0})", Uri), e);
+				}
+			}
 
-            if (sync_event != null) {
-                sync_event.Set ();
-            }
-        }
+			if (sync_event != null) {
+				sync_event.Set ();
+			}
+		}
 
-        public override string ToString ()
-        {
-            return Name;
-        }
-    }
+		public override string ToString ()
+		{
+			return Name;
+		}
+	}
 }

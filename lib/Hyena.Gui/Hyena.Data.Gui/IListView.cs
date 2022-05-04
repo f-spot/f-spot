@@ -28,20 +28,20 @@
 
 namespace Hyena.Data.Gui
 {
-    public interface IListView
-    {
-        Hyena.Collections.SelectionProxy SelectionProxy { get; }
-        Hyena.Collections.Selection Selection { get; }
+	public interface IListView
+	{
+		Hyena.Collections.SelectionProxy SelectionProxy { get; }
+		Hyena.Collections.Selection Selection { get; }
 
-        void ScrollTo (int index);
-        void CenterOn (int index);
-        void GrabFocus ();
-        ColumnController ColumnController { get; set; }
-    }
+		void ScrollTo (int index);
+		void CenterOn (int index);
+		void GrabFocus ();
+		ColumnController ColumnController { get; set; }
+	}
 
-    public interface IListView<T> : IListView
-    {
-        void SetModel (IListModel<T> model);
-        IListModel<T> Model { get; }
-    }
+	public interface IListView<T> : IListView
+	{
+		void SetModel (IListModel<T> model);
+		IListModel<T> Model { get; }
+	}
 }

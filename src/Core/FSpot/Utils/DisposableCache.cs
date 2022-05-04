@@ -64,21 +64,21 @@ namespace FSpot.Utils
 					mru.Remove (key);
 
 				mru.Insert (0, key);
-				Hash [key] = value;
+				Hash[key] = value;
 
 				while (mru.Count >= MaxCount) {
-					var iDisposable = Hash [mru [MaxCount - 1]] as IDisposable;
+					var iDisposable = Hash[mru[MaxCount - 1]] as IDisposable;
 					iDisposable?.Dispose ();
-					Hash.Remove (mru [MaxCount - 1]);
+					Hash.Remove (mru[MaxCount - 1]);
 					mru.RemoveAt (MaxCount - 1);
-				}	
+				}
 			}
 		}
 
 		public override void Remove (TKey key)
 		{
 			lock (o) {
-				var iDisposable = Hash [key] as IDisposable;
+				var iDisposable = Hash[key] as IDisposable;
 				iDisposable?.Dispose ();
 				mru.Remove (key);
 				Hash.Remove (key);
@@ -97,8 +97,7 @@ namespace FSpot.Utils
 				return;
 			disposed = true;
 
-			if (disposing)
-			{
+			if (disposing) {
 				Clear ();
 			}
 		}

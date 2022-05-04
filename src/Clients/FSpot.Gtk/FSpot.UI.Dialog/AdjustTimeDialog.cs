@@ -33,11 +33,11 @@
 
 using System;
 
-using Gtk;
-
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Widgets;
+
+using Gtk;
 
 namespace FSpot.UI.Dialog
 {

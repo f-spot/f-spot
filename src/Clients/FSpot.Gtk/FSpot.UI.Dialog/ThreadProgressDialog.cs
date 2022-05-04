@@ -32,13 +32,13 @@
 //
 
 using System;
-using System.Threading;
 using System.Collections.Generic;
+using System.Threading;
+
+using FSpot.Resources.Lang;
+using FSpot.Utils;
 
 using Gtk;
-
-using FSpot.Utils;
-using FSpot.Resources.Lang;
 
 namespace FSpot.UI.Dialog
 {
@@ -88,7 +88,7 @@ namespace FSpot.UI.Dialog
 			ActionArea.Add (skip_button);
 
 			button_label = Gtk.Stock.Cancel;
-			button = (Gtk.Button) AddButton (button_label, (int)Gtk.ResponseType.Cancel);
+			button = (Gtk.Button)AddButton (button_label, (int)Gtk.ResponseType.Cancel);
 
 			delay = new DelayedOperation (new GLib.IdleHandler (HandleUpdate));
 
@@ -183,7 +183,8 @@ namespace FSpot.UI.Dialog
 			return (error_response == Gtk.ResponseType.Yes);
 		}
 
-		void HandleResponse (object obj, Gtk.ResponseArgs args) {
+		void HandleResponse (object obj, Gtk.ResponseArgs args)
+		{
 			Destroy ();
 		}
 
@@ -224,7 +225,8 @@ namespace FSpot.UI.Dialog
 			error_response_event.Set ();
 		}
 
-		public void Start () {
+		public void Start ()
+		{
 			ShowAll ();
 			RetrySkipVisible = false;
 			thread.Start ();

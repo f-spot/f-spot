@@ -41,9 +41,9 @@ namespace FSpot.ColorAdjustment
 		{
 		}
 
-		protected override List <Profile> GenerateAdjustments ()
+		protected override List<Profile> GenerateAdjustments ()
 		{
-			var profiles = new List <Profile> ();
+			var profiles = new List<Profile> ();
 			profiles.Add (InputProfile);
 			profiles.Add (Profile.CreateAbstract (nsteps,
 								  1.0,

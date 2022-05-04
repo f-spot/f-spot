@@ -30,99 +30,99 @@ using System;
 
 namespace Hyena.Gui.Canvas
 {
-    public struct Thickness
-    {
-        double left;
-        double top;
-        double right;
-        double bottom;
+	public struct Thickness
+	{
+		double left;
+		double top;
+		double right;
+		double bottom;
 
-        public static readonly Thickness Zero = new Thickness (0);
+		public static readonly Thickness Zero = new Thickness (0);
 
-        public Thickness (double thickness)
-            : this (thickness, thickness, thickness, thickness)
-        {
-        }
+		public Thickness (double thickness)
+			: this (thickness, thickness, thickness, thickness)
+		{
+		}
 
-        public Thickness (double xthickness, double ythickness)
-            : this (xthickness, ythickness, xthickness, ythickness)
-        {
-        }
+		public Thickness (double xthickness, double ythickness)
+			: this (xthickness, ythickness, xthickness, ythickness)
+		{
+		}
 
-        public Thickness (double left, double top, double right, double bottom)
-        {
-            this.left = left;
-            this.top = top;
-            this.right = right;
-            this.bottom = bottom;
-        }
+		public Thickness (double left, double top, double right, double bottom)
+		{
+			this.left = left;
+			this.top = top;
+			this.right = right;
+			this.bottom = bottom;
+		}
 
-        public override string ToString ()
-        {
-            return string.Format ("{0},{1},{2},{3}", Double.IsNaN (left) ? "Auto" : left.ToString (),
-                Double.IsNaN (top) ? "Auto" : top.ToString (),
-                Double.IsNaN (right) ? "Auto" : right.ToString (),
-                Double.IsNaN (bottom) ? "Auto" : bottom.ToString ());
-        }
+		public override string ToString ()
+		{
+			return string.Format ("{0},{1},{2},{3}", Double.IsNaN (left) ? "Auto" : left.ToString (),
+				Double.IsNaN (top) ? "Auto" : top.ToString (),
+				Double.IsNaN (right) ? "Auto" : right.ToString (),
+				Double.IsNaN (bottom) ? "Auto" : bottom.ToString ());
+		}
 
-        public override bool Equals (object o)
-        {
-            if (!(o is Thickness)) {
-                return false;
-            }
+		public override bool Equals (object o)
+		{
+			if (!(o is Thickness)) {
+				return false;
+			}
 
-            return this == (Thickness)o;
-        }
+			return this == (Thickness)o;
+		}
 
-        public bool Equals (Thickness thickness)
-        {
-            return this == thickness;
-        }
+		public bool Equals (Thickness thickness)
+		{
+			return this == thickness;
+		}
 
-        public override int GetHashCode ()
-        {
-            return left.GetHashCode () ^ top.GetHashCode () ^ right.GetHashCode () ^ bottom.GetHashCode ();
-        }
+		public override int GetHashCode ()
+		{
+			return left.GetHashCode () ^ top.GetHashCode () ^ right.GetHashCode () ^ bottom.GetHashCode ();
+		}
 
-        public static bool operator == (Thickness t1, Thickness t2)
-        {
-            return t1.left == t2.left &&
-                t1.right == t2.right &&
-                t1.top == t2.top &&
-                t1.bottom == t2.bottom;
-        }
+		public static bool operator == (Thickness t1, Thickness t2)
+		{
+			return t1.left == t2.left &&
+				t1.right == t2.right &&
+				t1.top == t2.top &&
+				t1.bottom == t2.bottom;
+		}
 
-        public static bool operator != (Thickness t1, Thickness t2)
-        {
-            return !(t1 == t2);
-        }
+		public static bool operator != (Thickness t1, Thickness t2)
+		{
+			return !(t1 == t2);
+		}
 
-        public double Left {
-            get { return left; }
-            set { left = value; }
-        }
+		public double Left {
+			get { return left; }
+			set { left = value; }
+		}
 
-        public double Top {
-            get { return top; }
-            set { top = value; }
-        }
+		public double Top {
+			get { return top; }
+			set { top = value; }
+		}
 
-        public double Right {
-            get { return right; }
-            set { right = value; }
-        }
+		public double Right {
+			get { return right; }
+			set { right = value; }
+		}
 
-        public double Bottom {
-            get { return bottom; }
-            set { bottom = value; }
-        }
+		public double Bottom {
+			get { return bottom; }
+			set { bottom = value; }
+		}
 
-        public double X {
-            get { return Left + Right; }
-        }
+		public double X {
+			get { return Left + Right; }
+		}
 
-        public double Y {
-            get { return Top + Bottom; }
-        }
-    }
+		public double Y {
+			get { return Top + Bottom; }
+		}
+	}
 }

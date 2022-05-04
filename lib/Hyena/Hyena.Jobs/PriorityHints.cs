@@ -30,12 +30,12 @@ using System;
 
 namespace Hyena.Jobs
 {
-    [Flags]
-    public enum PriorityHints
-    {
-        None = 0,
-        DataLossIfStopped = 1,
-        SpeedSensitive = 2,
-        LongRunning = 4
-    }
+	[Flags]
+	public enum PriorityHints
+	{
+		None = 0,
+		DataLossIfStopped = 1,
+		SpeedSensitive = 2,
+		LongRunning = 4
+	}
 }

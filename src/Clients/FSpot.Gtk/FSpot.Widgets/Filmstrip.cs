@@ -41,6 +41,7 @@
 
 using System;
 using System.Collections.Generic;
+
 using FSpot.Bling;
 using FSpot.Core;
 using FSpot.Imaging;
@@ -48,8 +49,11 @@ using FSpot.Resources.Lang;
 using FSpot.Settings;
 using FSpot.Thumbnail;
 using FSpot.Utils;
+
 using Gdk;
+
 using Gtk;
+
 using Hyena;
 
 namespace FSpot.Widgets
@@ -58,7 +62,7 @@ namespace FSpot.Widgets
 	{
 		bool disposed;
 
-//		public event OrientationChangedHandler OrientationChanged;
+		//		public event OrientationChangedHandler OrientationChanged;
 		public event EventHandler PositionChanged;
 
 		DoubleAnimation animation;
@@ -78,11 +82,11 @@ namespace FSpot.Widgets
 
 				BackgroundPixbuf = null;
 				orientation = value;
-//				if (OrientationChanged != null) {
-//					OrientationChangedArgs args = new OrientationChangedArgs ();
-//					args.Orientation = value;
-//					OrientationChanged (this, args);
-//				}
+				//				if (OrientationChanged != null) {
+				//					OrientationChangedArgs args = new OrientationChangedArgs ();
+				//					args.Orientation = value;
+				//					OrientationChanged (this, args);
+				//				}
 			}
 		}
 
@@ -311,7 +315,7 @@ namespace FSpot.Widgets
 			}
 		}
 
-		Dictionary<int,int> start_indexes;
+		Dictionary<int, int> start_indexes;
 		int filmstrip_start_pos;
 		int filmstrip_end_pos;
 		protected override bool OnExposeEvent (EventExpose evnt)
@@ -323,19 +327,19 @@ namespace FSpot.Widgets
 				return true;
 
 			if (Orientation == Orientation.Horizontal && (extendable && Allocation.Width >= BackgroundPixbuf.Width + (2 * x_offset) + BackgroundTile.Width) ||
-				Orientation == Orientation.Vertical && (extendable && Allocation.Height >= BackgroundPixbuf.Height + (2 * y_offset) + BackgroundTile.Height) )
+				Orientation == Orientation.Vertical && (extendable && Allocation.Height >= BackgroundPixbuf.Height + (2 * y_offset) + BackgroundTile.Height))
 				BackgroundPixbuf = null;
 
-			if ( Orientation == Orientation.Horizontal && (extendable && Allocation.Width < BackgroundPixbuf.Width + (2 * x_offset) ) ||
-				Orientation == Orientation.Vertical && ( extendable && Allocation.Height < BackgroundPixbuf.Height + (2 * y_offset) ))
+			if (Orientation == Orientation.Horizontal && (extendable && Allocation.Width < BackgroundPixbuf.Width + (2 * x_offset)) ||
+				Orientation == Orientation.Vertical && (extendable && Allocation.Height < BackgroundPixbuf.Height + (2 * y_offset)))
 				BackgroundPixbuf = null;
 
 			int xpad = 0, ypad = 0;
 			if (Allocation.Width > BackgroundPixbuf.Width + (2 * x_offset))
-				xpad = (int) (x_align * (Allocation.Width - (BackgroundPixbuf.Width + (2 * x_offset))));
+				xpad = (int)(x_align * (Allocation.Width - (BackgroundPixbuf.Width + (2 * x_offset))));
 
 			if (Allocation.Height > BackgroundPixbuf.Height + (2 * y_offset))
-				ypad = (int) (y_align * (Allocation.Height - (BackgroundPixbuf.Height + (2 * y_offset))));
+				ypad = (int)(y_align * (Allocation.Height - (BackgroundPixbuf.Height + (2 * y_offset))));
 
 			GdkWindow.DrawPixbuf (Style.BackgroundGC (StateType.Normal), BackgroundPixbuf,
 					0, 0, x_offset + xpad, y_offset + ypad,
@@ -351,23 +355,23 @@ namespace FSpot.Widgets
 				icon_pixbuf = new Pixbuf (Colorspace.Rgb, true, 8, thumb_size, BackgroundPixbuf.Height);
 			icon_pixbuf.Fill (0x00000000);
 
-			Pixbuf current = GetPixbuf ((int) Math.Round (Position));
+			Pixbuf current = GetPixbuf ((int)Math.Round (Position));
 			int ref_x = (int)(icon_pixbuf.Width / 2.0 - current.Width * (Position + 0.5f - Math.Round (Position))); //xpos of the reference icon
 			int ref_y = (int)(icon_pixbuf.Height / 2.0 - current.Height * (Position + 0.5f - Math.Round (Position)));
 
 			int start_x = Orientation == Orientation.Horizontal ? ref_x : 0;
 			int start_y = Orientation == Orientation.Vertical ? ref_y : 0;
-			for (int i = (int) Math.Round (Position); i < selection.Collection.Count; i++) {
+			for (int i = (int)Math.Round (Position); i < selection.Collection.Count; i++) {
 				current = GetPixbuf (i, ActiveItem == i);
 				if (Orientation == Orientation.Horizontal) {
-					current.CopyArea (0, 0, Math.Min (current.Width, icon_pixbuf.Width - start_x) , current.Height, icon_pixbuf, start_x, start_y);
-					start_indexes [start_x] = i;
+					current.CopyArea (0, 0, Math.Min (current.Width, icon_pixbuf.Width - start_x), current.Height, icon_pixbuf, start_x, start_y);
+					start_indexes[start_x] = i;
 					start_x += current.Width + spacing;
 					if (start_x > icon_pixbuf.Width)
 						break;
 				} else if (Orientation == Orientation.Vertical) {
 					current.CopyArea (0, 0, current.Width, Math.Min (current.Height, icon_pixbuf.Height - start_y), icon_pixbuf, start_x, start_y);
-					start_indexes [start_y] = i;
+					start_indexes[start_y] = i;
 					start_y += current.Height + spacing;
 					if (start_y > icon_pixbuf.Height)
 						break;
@@ -377,18 +381,18 @@ namespace FSpot.Widgets
 
 			start_x = Orientation == Orientation.Horizontal ? ref_x : 0;
 			start_y = Orientation == Orientation.Vertical ? ref_y : 0;
-			for (int i = (int) Math.Round (Position) - 1; i >= 0; i--) {
+			for (int i = (int)Math.Round (Position) - 1; i >= 0; i--) {
 				current = GetPixbuf (i, ActiveItem == i);
 				if (Orientation == Orientation.Horizontal) {
 					start_x -= (current.Width + spacing);
 					current.CopyArea (Math.Max (0, -start_x), 0, Math.Min (current.Width, current.Width + start_x), current.Height, icon_pixbuf, Math.Max (start_x, 0), 0);
-					start_indexes [Math.Max (0, start_x)] = i;
+					start_indexes[Math.Max (0, start_x)] = i;
 					if (start_x < 0)
 						break;
 				} else if (Orientation == Orientation.Vertical) {
 					start_y -= (current.Height + spacing);
 					current.CopyArea (0, Math.Max (0, -start_y), current.Width, Math.Min (current.Height, current.Height + start_y), icon_pixbuf, 0, Math.Max (start_y, 0));
-					start_indexes [Math.Max (0, start_y)] = i;
+					start_indexes[Math.Max (0, start_y)] = i;
 					if (start_y < 0)
 						break;
 				}
@@ -429,13 +433,13 @@ namespace FSpot.Widgets
 			case Gdk.Key.Page_Down:
 			case Gdk.Key.Down:
 			case Gdk.Key.Right:
-				ActiveItem ++;
+				ActiveItem++;
 				return true;
 
 			case Gdk.Key.Page_Up:
 			case Gdk.Key.Up:
 			case Gdk.Key.Left:
-				ActiveItem --;
+				ActiveItem--;
 				return true;
 			}
 			return false;
@@ -471,13 +475,14 @@ namespace FSpot.Widgets
 			if (!args.Changes.DataChanged)
 				return;
 			foreach (int item in args.Items)
-				thumb_cache.TryRemove ((selection.Collection [item]).DefaultVersion.Uri);
+				thumb_cache.TryRemove ((selection.Collection[item]).DefaultVersion.Uri);
 
 			//FIXME call QueueDrawArea
 			QueueDraw ();
 		}
 
-		void HandlePixbufLoaded (IImageLoaderThread pl, RequestItem item) {
+		void HandlePixbufLoaded (IImageLoaderThread pl, RequestItem item)
+		{
 			if (!thumb_cache.Contains (item.Uri)) {
 				return;
 			}
@@ -526,7 +531,7 @@ namespace FSpot.Widgets
 			foreach (int key in start_indexes.Keys)
 				if (key <= (Orientation == Orientation.Horizontal ? evnt.X : evnt.Y) && key > pos)
 					pos = key;
-			ActiveItem = start_indexes [pos];
+			ActiveItem = start_indexes[pos];
 			return true;
 		}
 
@@ -538,7 +543,7 @@ namespace FSpot.Widgets
 		protected virtual Pixbuf GetPixbuf (int i, bool highlighted)
 		{
 			Pixbuf current = null;
-			SafeUri uri = (selection.Collection [i]).DefaultVersion.Uri;
+			SafeUri uri = (selection.Collection[i]).DefaultVersion.Uri;
 			try {
 				var pixbuf = thumb_cache.Get (uri);
 				if (pixbuf != null)
@@ -591,7 +596,8 @@ namespace FSpot.Widgets
 			return highlight;
 		}
 
-		static uint ColorToInt(Color color) {
+		static uint ColorToInt (Color color)
+		{
 			return ((uint)color.Red / 256 << 24) + ((uint)color.Green / 256 << 16) + ((uint)color.Blue / 256 << 8) + 255;
 		}
 

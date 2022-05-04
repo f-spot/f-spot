@@ -37,13 +37,13 @@ using FSpot.Core;
 using FSpot.Loaders;
 using FSpot.Settings;
 
-using Hyena;
-
 using Gdk;
 
-using TagLib.Image;
+using Hyena;
 
 using SerilogTimings;
+
+using TagLib.Image;
 
 namespace FSpot.Widgets
 {
@@ -107,7 +107,7 @@ namespace FSpot.Widgets
 		#region Gtk widgetry
 		protected override void OnStyleSet (Gtk.Style previous)
 		{
-			CheckPattern = new CheckPattern (this.Style.Backgrounds [(int)Gtk.StateType.Normal]);
+			CheckPattern = new CheckPattern (this.Style.Backgrounds[(int)Gtk.StateType.Normal]);
 		}
 
 		protected override bool OnKeyPressEvent (Gdk.EventKey evnt)
@@ -302,7 +302,7 @@ namespace FSpot.Widgets
 			// update the db entry, but for now just set the error pixbuf
 			Pixbuf old = Pixbuf;
 			Pixbuf = new Pixbuf (PixbufUtils.ErrorPixbuf, 0, 0,
-			          PixbufUtils.ErrorPixbuf.Width,
+					  PixbufUtils.ErrorPixbuf.Width,
 						 PixbufUtils.ErrorPixbuf.Height);
 
 			old?.Dispose ();
@@ -418,7 +418,7 @@ namespace FSpot.Widgets
 
 			using (Cairo.Context ctx = CairoHelper.Create (GdkWindow)) {
 				ctx.SetSourceRGBA (.7, .7, .7, .8);
-				ctx.SetDash (new double [] { 10, 15 }, 0);
+				ctx.SetDash (new double[] { 10, 15 }, 0);
 				ctx.LineWidth = .8;
 				for (int i = 1; i < 3; i++) {
 					Point s = ImageCoordsToWindow (new Point (Selection.X + Selection.Width / 3 * i, Selection.Y));

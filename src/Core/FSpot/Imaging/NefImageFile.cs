@@ -31,6 +31,7 @@
 
 using System;
 using System.IO;
+
 using Hyena;
 
 
@@ -60,7 +61,7 @@ namespace FSpot.Imaging
 			try {
 				var tag = metadata.GetTag (TagTypes.TiffIFD) as IFDTag;
 				var structure = tag.Structure;
-				var SubImage1_structure = (structure.GetEntry (0, (ushort)IFDEntryTag.SubIFDs) as SubIFDArrayEntry).Entries [0];
+				var SubImage1_structure = (structure.GetEntry (0, (ushort)IFDEntryTag.SubIFDs) as SubIFDArrayEntry).Entries[0];
 				var entry = SubImage1_structure.GetEntry (0, (ushort)IFDEntryTag.JPEGInterchangeFormat);
 				jpeg_data = (entry as ThumbnailDataIFDEntry).Data.Data;
 			} catch (Exception e) {

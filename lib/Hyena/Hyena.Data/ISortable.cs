@@ -28,9 +28,9 @@
 
 namespace Hyena.Data
 {
-    public interface ISortable
-    {
-        bool Sort (ISortableColumn column);
-        ISortableColumn SortColumn { get; }
-    }
+	public interface ISortable
+	{
+		bool Sort (ISortableColumn column);
+		ISortableColumn SortColumn { get; }
+	}
 }

@@ -81,7 +81,7 @@ namespace FSpot.Extensions
 		{
 			owm = new Widgets.OpenWithMenu (App.Instance.Organizer.SelectedMimeTypes, "f-spot");
 			//owm.ApplicationActivated += App.Instance.Organizer.HandleOpenWith;
-			return (Gtk.Menu) owm;
+			return (Gtk.Menu)owm;
 		}
 
 		public void OnActivated (object o, EventArgs e)

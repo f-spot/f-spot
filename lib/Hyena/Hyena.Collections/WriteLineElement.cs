@@ -30,17 +30,17 @@ using System;
 
 namespace Hyena.Collections
 {
-    public class WriteLineElement<T> : QueuePipelineElement<T> where T : class
-    {
-        public WriteLineElement ()
-        {
-            Threaded = false;
-        }
+	public class WriteLineElement<T> : QueuePipelineElement<T> where T : class
+	{
+		public WriteLineElement ()
+		{
+			Threaded = false;
+		}
 
-        protected override T ProcessItem (T item)
-        {
-            Console.WriteLine (item);
-            return null;
-        }
-    }
+		protected override T ProcessItem (T item)
+		{
+			Console.WriteLine (item);
+			return null;
+		}
+	}
 }

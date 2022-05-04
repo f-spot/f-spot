@@ -1,4 +1,4 @@
-﻿//
+//
 // EnvironmentAdapter.cs
 //
 // Author:

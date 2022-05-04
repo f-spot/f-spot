@@ -33,11 +33,11 @@
 
 using System;
 
+using FSpot.Extensions;
+
 using Gtk;
 
 using Mono.Addins;
-
-using FSpot.Extensions;
 
 namespace FSpot
 {

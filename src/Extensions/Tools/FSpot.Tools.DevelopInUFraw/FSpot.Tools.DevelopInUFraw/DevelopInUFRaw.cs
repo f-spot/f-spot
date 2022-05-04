@@ -35,7 +35,7 @@ namespace FSpot.Tools.DevelopInUFraw
 	// GUI Version
 	public class DevelopInUFRaw : AbstractDevelopInUFRaw
 	{
-		public DevelopInUFRaw() : base("ufraw")
+		public DevelopInUFRaw () : base ("ufraw")
 		{
 		}
 

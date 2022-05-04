@@ -31,18 +31,21 @@ using FSpot.Editors;
 using FSpot.Resources.Lang;
 
 using Gdk;
+
 using Gtk;
 
 namespace FSpot.Addins.Editors
 {
 	class BlackoutEditor : Editor
 	{
-		public BlackoutEditor () : base (Strings.Blackout, null) {
+		public BlackoutEditor () : base (Strings.Blackout, null)
+		{
 			CanHandleMultiple = false;
 			NeedsSelection = true;
 		}
 
-		public override Widget ConfigurationWidget () {
+		public override Widget ConfigurationWidget ()
+		{
 			VBox vbox = new VBox ();
 
 			Label info = new Label (Strings.SelectTheAreaThatYouWantBlackedOut);
@@ -52,7 +55,8 @@ namespace FSpot.Addins.Editors
 			return vbox;
 		}
 
-		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile) {
+		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile)
+		{
 			Pixbuf output = input.Copy ();
 
 			Pixbuf sub = new Pixbuf (output, State.Selection.X, State.Selection.Y,

@@ -29,10 +29,10 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Gtk;
-
 using FSpot.Extensions;
 using FSpot.Resources.Lang;
+
+using Gtk;
 
 namespace FSpot.Widgets
 {

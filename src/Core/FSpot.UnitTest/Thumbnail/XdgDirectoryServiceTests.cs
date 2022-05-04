@@ -29,8 +29,11 @@
 using System.IO;
 
 using FSpot.FileSystem;
+
 using Mocks;
+
 using Moq;
+
 using NUnit.Framework;
 
 namespace FSpot.Thumbnail.UnitTest

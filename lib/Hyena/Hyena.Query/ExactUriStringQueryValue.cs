@@ -30,19 +30,19 @@ using System;
 
 namespace Hyena.Query
 {
-    public class ExactUriStringQueryValue : ExactStringQueryValue
-    {
-        public override string ToSql (Operator op)
-        {
-            if (string.IsNullOrEmpty (value)) {
-                return null;
-            }
+	public class ExactUriStringQueryValue : ExactStringQueryValue
+	{
+		public override string ToSql (Operator op)
+		{
+			if (string.IsNullOrEmpty (value)) {
+				return null;
+			}
 
-            string escaped_value = EscapeString (op, Uri.EscapeUriString (value.ToLower ()));
-            if (op == StartsWith) {
-                return "file://" + escaped_value;
-            }
-            return escaped_value;
-         }
-    }
+			string escaped_value = EscapeString (op, Uri.EscapeUriString (value.ToLower ()));
+			if (op == StartsWith) {
+				return "file://" + escaped_value;
+			}
+			return escaped_value;
+		}
+	}
 }

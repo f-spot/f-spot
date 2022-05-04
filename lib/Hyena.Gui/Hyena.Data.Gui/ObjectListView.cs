@@ -29,22 +29,22 @@
 namespace Hyena.Data.Gui
 {
 	public class ObjectListView : ListView<object>
-    {
-        public ObjectListView () : base ()
-        {
-            ColumnController = new ColumnController();
-        }
+	{
+		public ObjectListView () : base ()
+		{
+			ColumnController = new ColumnController ();
+		}
 
-        protected override void OnModelReloaded ()
-        {
-            ColumnController.Clear ();
-            foreach (ColumnDescription column_description in Model.ColumnDescriptions) {
-                ColumnController.Add (new Column (column_description));
-            }
-        }
+		protected override void OnModelReloaded ()
+		{
+			ColumnController.Clear ();
+			foreach (ColumnDescription column_description in Model.ColumnDescriptions) {
+				ColumnController.Add (new Column (column_description));
+			}
+		}
 
-        public new IObjectListModel Model {
-            get { return (IObjectListModel)base.Model; }
-        }
-    }
+		public new IObjectListModel Model {
+			get { return (IObjectListModel)base.Model; }
+		}
+	}
 }

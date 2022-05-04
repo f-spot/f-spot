@@ -28,40 +28,40 @@ using System;
 
 namespace Hyena.Gui.Canvas
 {
-    public class Image : CanvasItem
-    {
-        public Image ()
-        {
-        }
+	public class Image : CanvasItem
+	{
+		public Image ()
+		{
+		}
 
-        protected override void ClippedRender (Cairo.Context cr)
-        {
-            Brush brush = Background;
-            if (!brush.IsValid) {
-                return;
-            }
+		protected override void ClippedRender (Cairo.Context cr)
+		{
+			Brush brush = Background;
+			if (!brush.IsValid) {
+				return;
+			}
 
-            double x = Double.IsNaN (brush.Width)
-                ? 0
-                : (RenderSize.Width - brush.Width) * XAlign;
+			double x = Double.IsNaN (brush.Width)
+				? 0
+				: (RenderSize.Width - brush.Width) * XAlign;
 
-            double y = Double.IsNaN (brush.Height)
-                ? 0
-                : (RenderSize.Height - brush.Height) * YAlign;
+			double y = Double.IsNaN (brush.Height)
+				? 0
+				: (RenderSize.Height - brush.Height) * YAlign;
 
-            cr.Rectangle (0, 0, RenderSize.Width, RenderSize.Height);
-            cr.ClipPreserve ();
+			cr.Rectangle (0, 0, RenderSize.Width, RenderSize.Height);
+			cr.ClipPreserve ();
 
-            if (x != 0 || y != 0) {
-                cr.Translate (x, y);
-            }
+			if (x != 0 || y != 0) {
+				cr.Translate (x, y);
+			}
 
-            cr.Antialias = Cairo.Antialias.None;
-            brush.Apply (cr);
-            cr.Fill ();
-        }
+			cr.Antialias = Cairo.Antialias.None;
+			brush.Apply (cr);
+			cr.Fill ();
+		}
 
-        public double XAlign { get; set; }
-        public double YAlign { get; set; }
-    }
+		public double XAlign { get; set; }
+		public double YAlign { get; set; }
+	}
 }

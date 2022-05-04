@@ -27,6 +27,7 @@
 //
 
 using System;
+
 using Banshee.Kernel;
 
 namespace FSpot.Database.Jobs

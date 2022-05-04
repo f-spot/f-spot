@@ -34,14 +34,14 @@ using FSpot.Core;
 namespace FSpot
 {
 	public interface ILimitable
-    {
+	{
 		void SetLimits (int min, int max);
 	}
 
 	public abstract class GroupAdaptor
-    {
+	{
 		protected PhotoQuery query;
-        public PhotoQuery Query { get { return query; } }
+		public PhotoQuery Query { get { return query; } }
 
 		protected bool order_ascending = false;
 		public bool OrderAscending {
@@ -55,7 +55,7 @@ namespace FSpot
 			}
 		}
 
-		public abstract int Value (int item) ;
+		public abstract int Value (int item);
 		public abstract int Count ();
 		public abstract string TickLabel (int item);
 		public abstract string GlassLabel (int item);

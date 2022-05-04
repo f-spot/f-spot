@@ -33,68 +33,68 @@ using Hyena.Collections;
 namespace Hyena.Data
 {
 	public class MemoryListModel<T> : BaseListModel<T>
-    {
-        List<T> list;
+	{
+		List<T> list;
 
-        public MemoryListModel ()
-        {
-            list = new List<T> ();
-            Selection = new Selection ();
-        }
+		public MemoryListModel ()
+		{
+			list = new List<T> ();
+			Selection = new Selection ();
+		}
 
-        public override void Clear ()
-        {
-            lock (list) {
-                list.Clear ();
-            }
+		public override void Clear ()
+		{
+			lock (list) {
+				list.Clear ();
+			}
 
-            OnCleared ();
-        }
+			OnCleared ();
+		}
 
-        public override void Reload ()
-        {
-            OnReloaded ();
-        }
+		public override void Reload ()
+		{
+			OnReloaded ();
+		}
 
-        public int IndexOf (T item)
-        {
-            lock (list) {
-                return list.IndexOf (item);
-            }
-        }
+		public int IndexOf (T item)
+		{
+			lock (list) {
+				return list.IndexOf (item);
+			}
+		}
 
-        public void Add (T item)
-        {
-            lock (list) {
-                list.Add (item);
-            }
-        }
+		public void Add (T item)
+		{
+			lock (list) {
+				list.Add (item);
+			}
+		}
 
-        public void Remove (T item)
-        {
-            lock (list) {
-                list.Remove (item);
-            }
-        }
+		public void Remove (T item)
+		{
+			lock (list) {
+				list.Remove (item);
+			}
+		}
 
-        public override T this[int index] {
-            get {
-                lock (list) {
-                    if (list.Count <= index || index < 0) {
-                        return default;
-                    }
+		public override T this[int index] {
+			get {
+				lock (list) {
+					if (list.Count <= index || index < 0) {
+						return default;
+					}
 
-                    return list[index];
-                }
-            }
-        }
+					return list[index];
+				}
+			}
+		}
 
-        public override int Count {
-            get {
-                lock (list) {
-                    return list.Count;
-                }
-            }
-        }
-    }
+		public override int Count {
+			get {
+				lock (list) {
+					return list.Count;
+				}
+			}
+		}
+	}
 }

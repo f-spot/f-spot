@@ -35,15 +35,15 @@ using Gtk;
 namespace Hyena.Query.Gui
 {
 	public class RelativeTimeSpanQueryValueEntry : TimeSpanQueryValueEntry
-    {
-        public RelativeTimeSpanQueryValueEntry () : base ()
-        {
-            Add (new Label (Strings.Ago));
-        }
+	{
+		public RelativeTimeSpanQueryValueEntry () : base ()
+		{
+			Add (new Label (Strings.Ago));
+		}
 
-        protected override void HandleValueChanged (object o, EventArgs args)
-        {
-            query_value.SetRelativeValue (-spin_button.ValueAsInt, factors [combo.Active]);
-        }
-    }
+		protected override void HandleValueChanged (object o, EventArgs args)
+		{
+			query_value.SetRelativeValue (-spin_button.ValueAsInt, factors[combo.Active]);
+		}
+	}
 }

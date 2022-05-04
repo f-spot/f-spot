@@ -29,7 +29,7 @@
 namespace Hyena.Data
 {
 	public interface IPropertyStoreExpose
-    {
-        PropertyStore PropertyStore { get; }
-    }
+	{
+		PropertyStore PropertyStore { get; }
+	}
 }

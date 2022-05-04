@@ -31,13 +31,13 @@ using System;
 namespace Hyena.Widgets
 {
 	public class AnimatedHBox : AnimatedBox
-    {
-        public AnimatedHBox () : base (true)
-        {
-        }
+	{
+		public AnimatedHBox () : base (true)
+		{
+		}
 
-        protected AnimatedHBox (IntPtr raw) : base (raw)
-        {
-        }
-    }
+		protected AnimatedHBox (IntPtr raw) : base (raw)
+		{
+		}
+	}
 }

@@ -31,7 +31,8 @@ using Mono.Addins;
 
 namespace FSpot.Extensions
 {
-	public enum ViewMode {
+	public enum ViewMode
+	{
 		Unknown,
 		Single,
 		Library
@@ -70,7 +71,7 @@ namespace FSpot.Extensions
 		{
 			string val = conditionNode.GetAttribute ("mode");
 			if (val.Length > 0) {
-				foreach (string mode in val.Split(',')) {
+				foreach (string mode in val.Split (',')) {
 					if (mode == "single" && Mode == ViewMode.Single) {
 						return true;
 					}

@@ -29,7 +29,7 @@
 namespace Hyena.Data.Gui
 {
 	public interface ITextCell
-    {
-        Pango.Weight FontWeight { get; set; }
-    }
+	{
+		Pango.Weight FontWeight { get; set; }
+	}
 }

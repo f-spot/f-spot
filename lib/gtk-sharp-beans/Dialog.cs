@@ -22,21 +22,25 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace Gtk {
-	public static class DialogExtensions {
-		[DllImport("libgtk-win32-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+namespace Gtk
+{
+	public static class DialogExtensions
+	{
+		[DllImport ("libgtk-win32-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_dialog_get_action_area (IntPtr raw);
 
-		public static HButtonBox GetActionArea (this Dialog dialog) {
+		public static HButtonBox GetActionArea (this Dialog dialog)
+		{
 			IntPtr raw_ret = gtk_dialog_get_action_area (dialog.Handle);
 			Gtk.HButtonBox ret = GLib.Object.GetObject (raw_ret) as Gtk.HButtonBox;
 			return ret;
 		}
 
-		[DllImport("libgtk-win32-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport ("libgtk-win32-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern IntPtr gtk_dialog_get_content_area (IntPtr raw);
 
-		public static Widget GetContentArea (this Dialog dialog) { 
+		public static Widget GetContentArea (this Dialog dialog)
+		{
 			IntPtr raw_ret = gtk_dialog_get_content_area (dialog.Handle);
 			Gtk.Widget ret = GLib.Object.GetObject (raw_ret) as Gtk.Widget;
 			return ret;

@@ -29,9 +29,9 @@
 namespace Hyena.Data.Gui
 {
 	public interface IInteractiveCell
-    {
-        bool ButtonEvent (Hyena.Gui.Canvas.Point cursor,  bool pressed, uint button);
-        bool CursorMotionEvent (Hyena.Gui.Canvas.Point cursor);
-        bool CursorLeaveEvent ();
-    }
+	{
+		bool ButtonEvent (Hyena.Gui.Canvas.Point cursor, bool pressed, uint button);
+		bool CursorMotionEvent (Hyena.Gui.Canvas.Point cursor);
+		bool CursorLeaveEvent ();
+	}
 }

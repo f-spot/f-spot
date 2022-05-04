@@ -27,29 +27,30 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Gtk;
+using FSpot.Core;
+
 using Gdk;
 
-using FSpot.Core;
+using Gtk;
 
 namespace FSpot.Widgets
 {
-    /// <summary>
-    ///    This is a renderer for drawing annotations to a thumbnail. The annotations
-    ///    are rendered directly to the thumbnail and no previous size computation is needed.
-    /// </summary>
-    public abstract class ThumbnailDecorationRenderer
-    {
-#region Drawing Methods
+	/// <summary>
+	///    This is a renderer for drawing annotations to a thumbnail. The annotations
+	///    are rendered directly to the thumbnail and no previous size computation is needed.
+	/// </summary>
+	public abstract class ThumbnailDecorationRenderer
+	{
+		#region Drawing Methods
 
-        public abstract void Render (Drawable window,
-                                     Widget widget,
-                                     Rectangle cell_area,
-                                     Rectangle expose_area,
-                                     StateType cell_state,
-                                     IPhoto photo);
+		public abstract void Render (Drawable window,
+									 Widget widget,
+									 Rectangle cell_area,
+									 Rectangle expose_area,
+									 StateType cell_state,
+									 IPhoto photo);
 
-#endregion
+		#endregion
 
-    }
+	}
 }

@@ -1,4 +1,4 @@
-﻿//
+//
 // IThumbnailer.cs
 //
 // Author:

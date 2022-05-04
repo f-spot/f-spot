@@ -31,12 +31,12 @@
 
 using System;
 
-using Gtk;
-
+using FSpot.Resources.Lang;
 using FSpot.UI.Dialog;
 
+using Gtk;
+
 using Hyena.Widgets;
-using FSpot.Resources.Lang;
 
 namespace FSpot.Widgets
 {
@@ -57,17 +57,17 @@ namespace FSpot.Widgets
 		{
 			if (!okClicked) {
 				base.UpdateSample ();
-    
+
 				if (overlay != null)
 					overlay.Dispose ();
-    
+
 				overlay = null;
 				if (source != null)
 					overlay = PixbufUtils.UnsharpMask (source,
-    								   radius_spin.Value,
-    								   amount_spin.Value,
-    								   threshold_spin.Value,
-                                       null);
+									   radius_spin.Value,
+									   amount_spin.Value,
+									   threshold_spin.Value,
+									   null);
 			}
 		}
 
@@ -91,10 +91,10 @@ namespace FSpot.Widgets
 			try {
 				Gdk.Pixbuf orig = view.Pixbuf;
 				Gdk.Pixbuf final = PixbufUtils.UnsharpMask (orig,
-                                        radius_spin.Value,
-                                        amount_spin.Value,
-                                        threshold_spin.Value,
-                                        progressDialog);
+										radius_spin.Value,
+										amount_spin.Value,
+										threshold_spin.Value,
+										progressDialog);
 
 				bool create_version = photo.DefaultVersion.IsProtected;
 
@@ -106,10 +106,10 @@ namespace FSpot.Widgets
 				string desc = string.Format (Strings.ReceivedExceptionXUnableToSavePhotoY, e.Message, photo.Name);
 
 				HigMessageDialog md = new HigMessageDialog (this, DialogFlags.DestroyWithParent,
-                                        Gtk.MessageType.Error,
-                                        ButtonsType.Ok,
-                                        msg,
-                                        desc);
+										Gtk.MessageType.Error,
+										ButtonsType.Ok,
+										msg,
+										desc);
 				md.Run ();
 				md.Destroy ();
 			}
@@ -150,7 +150,7 @@ namespace FSpot.Widgets
 
 			string title = Strings.Sharpen;
 			dialog = new Gtk.Dialog (title, (Gtk.Window)this,
-						 DialogFlags.DestroyWithParent, new object [0]);
+						 DialogFlags.DestroyWithParent, new object[0]);
 			dialog.BorderWidth = 12;
 			dialog.VBox.Spacing = 6;
 

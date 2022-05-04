@@ -63,7 +63,7 @@ namespace FSpot.Import
 		}
 
 
-#region Status Reporting
+		#region Status Reporting
 
 		public delegate void ImportProgressHandler (int current, int total);
 		public event ImportProgressHandler ProgressUpdated;
@@ -76,9 +76,9 @@ namespace FSpot.Import
 			ThreadAssist.ProxyToMain (() => { StatusEvent?.Invoke (evnt); });
 		}
 
-#endregion
+		#endregion
 
-#region Source Switching
+		#region Source Switching
 
 		ImportSource activeSource;
 		public ImportSource ActiveSource {
@@ -97,9 +97,9 @@ namespace FSpot.Import
 			}
 		}
 
-#endregion
+		#endregion
 
-#region Photo Scanning
+		#region Photo Scanning
 
 		Thread scanThread;
 		CancellationTokenSource scanTokenSource;
@@ -152,9 +152,9 @@ namespace FSpot.Import
 			FireEvent (ImportEvent.PhotoScanFinished);
 		}
 
-#endregion
+		#endregion
 
-#region Importing
+		#region Importing
 
 		Thread importThread;
 		CancellationTokenSource importTokenSource;
@@ -199,9 +199,9 @@ namespace FSpot.Import
 			FireEvent (ImportEvent.ImportFinished);
 		}
 
-#endregion
+		#endregion
 
-#region Tagging
+		#region Tagging
 
 		readonly List<Tag> attachTags = new List<Tag> ();
 		readonly TagStore tagStore = App.Instance.Database.Tags;
@@ -232,6 +232,6 @@ namespace FSpot.Import
 			return defaultCategory;
 		}
 
-#endregion
+		#endregion
 	}
 }

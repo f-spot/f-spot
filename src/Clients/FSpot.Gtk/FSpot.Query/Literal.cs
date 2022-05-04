@@ -38,11 +38,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-using Gtk;
-using Gdk;
-
 using FSpot.Core;
 using FSpot.Resources.Lang;
+
+using Gdk;
+
+using Gtk;
 
 namespace FSpot.Query
 {
@@ -229,10 +230,10 @@ namespace FSpot.Query
 			label.UseMarkup = true;
 
 			// Show the icon unless it's null
-			if (Tag.Icon == null && container.Children [0] == image) {
+			if (Tag.Icon == null && container.Children[0] == image) {
 				container.Remove (image);
 				container.Add (label);
-			} else if (Tag.Icon != null && container.Children [0] == label) {
+			} else if (Tag.Icon != null && container.Children[0] == label) {
 				container.Remove (label);
 				container.Add (image);
 			}
@@ -268,9 +269,8 @@ namespace FSpot.Query
 				var tags = new List<Tag> ();
 				category.AddDescendentsTo (tags);
 
-                foreach (var t in tags)
-				{
-				    ids.Append (", " + t.Id);
+				foreach (var t in tags) {
+					ids.Append (", " + t.Id);
 				}
 			}
 
@@ -391,10 +391,10 @@ namespace FSpot.Query
 			if (args.Info == DragDropTargets.TagListEntry.Info || args.Info == DragDropTargets.TagQueryEntry.Info) {
 
 				// FIXME: do really write data
-				Byte [] data = Encoding.UTF8.GetBytes (string.Empty);
-				Atom [] targets = args.Context.Targets;
+				Byte[] data = Encoding.UTF8.GetBytes (string.Empty);
+				Atom[] targets = args.Context.Targets;
 
-				args.SelectionData.Set (targets [0], 8, data, data.Length);
+				args.SelectionData.Set (targets[0], 8, data, data.Length);
 
 				return;
 			}
@@ -458,15 +458,15 @@ namespace FSpot.Query
 
 		void HandleDragMotion (object o, DragMotionArgs args)
 		{
-		    if (preview)
-                return;
+			if (preview)
+				return;
 
-		    if (preview_widget == null) {
-		        preview_widget = new Gtk.Label (" | ");
-		        box.Add (preview_widget);
-		    }
+			if (preview_widget == null) {
+				preview_widget = new Gtk.Label (" | ");
+				box.Add (preview_widget);
+			}
 
-		    preview_widget.Show ();
+			preview_widget.Show ();
 		}
 
 		void HandleDragLeave (object o, EventArgs args)
@@ -535,11 +535,11 @@ namespace FSpot.Query
 
 		public event RemovedHandler Removed;
 
-		public delegate void TagsAddedHandler (Tag[] tags,Term parent,Literal after);
+		public delegate void TagsAddedHandler (Tag[] tags, Term parent, Literal after);
 
 		public event TagsAddedHandler TagsAdded;
 
-		public delegate void AttachTagHandler (Tag tag,Term parent,Literal after);
+		public delegate void AttachTagHandler (Tag tag, Term parent, Literal after);
 
 		public event AttachTagHandler AttachTag;
 
@@ -551,7 +551,7 @@ namespace FSpot.Query
 
 		public event TagUnRequiredHandler UnRequireTag;
 
-		public delegate void LiteralsMovedHandler (List<Literal> literals,Term parent,Literal after);
+		public delegate void LiteralsMovedHandler (List<Literal> literals, Term parent, Literal after);
 
 		public event LiteralsMovedHandler LiteralsMoved;
 		#endregion

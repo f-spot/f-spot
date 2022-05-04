@@ -31,19 +31,19 @@
 
 using System;
 
-using Gtk;
-
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Imaging;
 using FSpot.Query;
+using FSpot.Resources.Lang;
 using FSpot.Settings;
 using FSpot.Utils;
 using FSpot.Widgets;
 
+using Gtk;
+
 using Hyena;
 using Hyena.Widgets;
-using FSpot.Resources.Lang;
 
 namespace FSpot.UI.Dialog
 {
@@ -82,11 +82,11 @@ namespace FSpot.UI.Dialog
 			query = new PhotoQuery (db.Photos);
 
 			if (db.Tags.Hidden != null)
-				query.Terms = OrTerm.FromTags (new [] {t});
+				query.Terms = OrTerm.FromTags (new[] { t });
 			else
 				query.Terms = new Literal (t);
 
-			image_view = new PhotoImageView (query) {CropHelpers = false};
+			image_view = new PhotoImageView (query) { CropHelpers = false };
 			image_view.SelectionXyRatio = 1.0;
 			image_view.SelectionChanged += HandleSelectionChanged;
 			image_view.PhotoChanged += HandlePhotoChanged;
@@ -94,9 +94,9 @@ namespace FSpot.UI.Dialog
 			external_photo_chooser = new Gtk.FileChooserButton (Strings.SelectPhotoFromFile,
 					Gtk.FileChooserAction.Open);
 
-			external_photo_chooser.Filter = new FileFilter();
-			external_photo_chooser.Filter.AddPixbufFormats();
-                        external_photo_chooser.LocalOnly = false;
+			external_photo_chooser.Filter = new FileFilter ();
+			external_photo_chooser.Filter.AddPixbufFormats ();
+			external_photo_chooser.LocalOnly = false;
 			external_photo_chooser_hbox.PackStart (external_photo_chooser);
 			external_photo_chooser.Show ();
 			external_photo_chooser.SelectionChanged += HandleExternalFileSelectionChanged;
@@ -106,7 +106,7 @@ namespace FSpot.UI.Dialog
 			if (query.Count > 0) {
 				photo_spin_button.Wrap = true;
 				photo_spin_button.Adjustment.Lower = 1.0;
-				photo_spin_button.Adjustment.Upper = (double) query.Count;
+				photo_spin_button.Adjustment.Upper = (double)query.Count;
 				photo_spin_button.Adjustment.StepIncrement = 1.0;
 				photo_spin_button.ValueChanged += HandleSpinButtonChanged;
 
@@ -127,7 +127,7 @@ namespace FSpot.UI.Dialog
 
 			icon_scrolled_window.Add (icon_view);
 
-			icon_view.Show();
+			icon_view.Show ();
 
 			image_view.Show ();
 
@@ -146,7 +146,7 @@ namespace FSpot.UI.Dialog
 				icon_name = null;
 				preview_pixbuf = value;
 				Cms.Profile screen_profile;
-				if (value!= null && ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out screen_profile)) {
+				if (value != null && ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out screen_profile)) {
 					preview_image.Pixbuf = value.Copy ();
 					ColorManagement.ApplyProfile (preview_image.Pixbuf, screen_profile);
 				} else
@@ -160,7 +160,7 @@ namespace FSpot.UI.Dialog
 			get { return icon_name; }
 			set {
 				icon_name = value;
-				PreviewPixbuf = GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, value, 48, (IconLookupFlags) 0);
+				PreviewPixbuf = GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, value, 48, (IconLookupFlags)0);
 			}
 
 		}
@@ -173,14 +173,14 @@ namespace FSpot.UI.Dialog
 		}
 
 		void HandleExternalFileSelectionChanged (object sender, EventArgs args)
-		{	//Note: The filter on the FileChooserButton's dialog means that we will have a Pixbuf compatible uri here
+		{   //Note: The filter on the FileChooserButton's dialog means that we will have a Pixbuf compatible uri here
 			CreateTagIconFromExternalPhoto ();
 		}
 
 		void CreateTagIconFromExternalPhoto ()
 		{
 			try {
-				using (var img = App.Instance.Container.Resolve<IImageFileFactory> ().Create (new SafeUri(external_photo_chooser.Uri, true))) {
+				using (var img = App.Instance.Container.Resolve<IImageFileFactory> ().Create (new SafeUri (external_photo_chooser.Uri, true))) {
 					using (Gdk.Pixbuf external_image = img.Load ()) {
 						PreviewPixbuf = PixbufUtils.TagIconFromPixbuf (external_image);
 					}
@@ -188,15 +188,15 @@ namespace FSpot.UI.Dialog
 			} catch (Exception) {
 				string caption = Strings.UnableToLoadImage;
 				string message = string.Format (Strings.UnableToLoadXAsIconForTheTag,
-					                 external_photo_chooser.Uri);
+									 external_photo_chooser.Uri);
 				HigMessageDialog md = new HigMessageDialog (this,
-									    DialogFlags.DestroyWithParent,
-									    MessageType.Error,
-									    ButtonsType.Close,
-									    caption,
-									    message);
-				md.Run();
-				md.Destroy();
+										DialogFlags.DestroyWithParent,
+										MessageType.Error,
+										ButtonsType.Close,
+										caption,
+										message);
+				md.Run ();
+				md.Destroy ();
 			}
 		}
 
@@ -237,16 +237,16 @@ namespace FSpot.UI.Dialog
 				return;
 
 			TreeIter iter;
-			icon_store.GetIter (out iter, icon_view.SelectedItems [0]);
-			ThemeIconName = (string) icon_store.GetValue (iter, 0);
+			icon_store.GetIter (out iter, icon_view.SelectedItems[0]);
+			ThemeIconName = (string)icon_store.GetValue (iter, 0);
 		}
 
 		public bool FillIconView ()
 		{
 			icon_store.Clear ();
-			string [] icon_list = FSpotConfiguration.IconTheme.ListIcons ("Emblems");
+			string[] icon_list = FSpotConfiguration.IconTheme.ListIcons ("Emblems");
 			foreach (string item_name in icon_list)
-				icon_store.AppendValues (item_name, GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, item_name, 32, (IconLookupFlags) 0));
+				icon_store.AppendValues (item_name, GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, item_name, 32, (IconLookupFlags)0));
 			return false;
 		}
 	}
