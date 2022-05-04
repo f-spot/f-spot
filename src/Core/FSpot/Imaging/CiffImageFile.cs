@@ -34,7 +34,6 @@ using System.Collections.Generic;
 using Hyena;
 using System.IO;
 
-
 namespace FSpot.Imaging
 {
 	class CiffImageFile : BaseImageFile

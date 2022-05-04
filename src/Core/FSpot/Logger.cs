@@ -2,7 +2,6 @@
 
 using System.IO;
 
-
 using Serilog;
 using Serilog.Core;
 using Serilog.Events;
@@ -12,7 +11,7 @@ namespace FSpot
 {
 	public static class Logger
 	{
-		static LoggingLevelSwitch logLevel = new LoggingLevelSwitch();
+		static readonly LoggingLevelSwitch logLevel = new LoggingLevelSwitch();
 
 		public static ILogger Log { get; private set; }
 

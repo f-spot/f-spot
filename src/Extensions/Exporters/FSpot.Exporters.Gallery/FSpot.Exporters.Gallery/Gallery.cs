@@ -38,7 +38,6 @@ using System.Text;
 
 using FSpot.Resources.Lang;
 
-using Hyena;
 using Hyena.Widgets;
 
 
