@@ -61,7 +61,7 @@ namespace FSpot.Bling
 			get { return amplitude; }
 			set {
 				if (value < 0)
-					throw new ArgumentOutOfRangeException ("amplitude");
+					throw new ArgumentOutOfRangeException (nameof (amplitude));
 				amplitude = value;
 			}
 		}

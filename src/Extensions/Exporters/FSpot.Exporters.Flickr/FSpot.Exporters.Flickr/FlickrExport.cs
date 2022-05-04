@@ -31,7 +31,6 @@
 //
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -203,9 +202,10 @@ namespace FSpot.Exporters.Flickr
 			this.selection = selection;
 			current_service = FlickrRemote.Service.FromSupported (service);
 
-			var view = new TrayView (selection);
-			view.DisplayTags = display_tags;
-			view.DisplayDates = false;
+			var view = new TrayView (selection) {
+				DisplayTags = display_tags,
+				DisplayDates = false
+			};
 
 			builder = new GtkBeans.Builder (null, "flickr_export.ui", null);
 			builder.Autoconnect (this);
@@ -362,11 +362,11 @@ namespace FSpot.Exporters.Flickr
 			progress_dialog.Fraction = (photo_index - 1.0 + (args.BytesSent / (double)info.Length)) / (double)selection.Count;
 		}
 
-		class DateComparer : IComparer
+		class DateComparer : IComparer<IPhoto>
 		{
-			public int Compare (object left, object right)
+			public int Compare (IPhoto left, IPhoto right)
 			{
-				return DateTime.Compare ((left as IPhoto).Time, (right as IPhoto).Time);
+				return DateTime.Compare (left.Time, right.Time);
 			}
 		}
 
@@ -514,8 +514,9 @@ namespace FSpot.Exporters.Flickr
 			if (scale)
 				size = size_spin.ValueAsInt;
 
-			command_thread = new Thread (new ThreadStart (Upload));
-			command_thread.Name = Strings.UploadingPictures;
+			command_thread = new Thread (new ThreadStart (Upload)) {
+				Name = Strings.UploadingPictures
+			};
 
 			Dialog.Destroy ();
 			progress_dialog = new ThreadProgressDialog (command_thread, selection.Count);
@@ -567,11 +568,12 @@ namespace FSpot.Exporters.Flickr
 			case FlickrRemote.TOKEN_FLICKR:
 			case FlickrRemote.TOKEN_23HQ:
 			case FlickrRemote.TOKEN_ZOOOMR:
-				token = new OAuthAccessToken ();
-				token.Token = Preferences.Get<string> (key);
-				token.TokenSecret = Preferences.Get<string> (key + "secret");
-				token.UserId = Preferences.Get<string> (key + "userId");
-				token.Username = Preferences.Get<string> (key + "userName");
+				token = new OAuthAccessToken {
+					Token = Preferences.Get<string> (key),
+					TokenSecret = Preferences.Get<string> (key + "secret"),
+					UserId = Preferences.Get<string> (key + "userId"),
+					Username = Preferences.Get<string> (key + "userName")
+				};
 				break;
 
 			case PUBLIC_KEY:

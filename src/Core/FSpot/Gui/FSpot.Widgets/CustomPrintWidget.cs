@@ -65,8 +65,7 @@ namespace FSpot.Widgets
 
 		void TriggerChanged (object sender, EventArgs e)
 		{
-			if (Changed != null)
-				Changed (this);
+			Changed?.Invoke (this);
 		}
 
 		public bool CropMarks {

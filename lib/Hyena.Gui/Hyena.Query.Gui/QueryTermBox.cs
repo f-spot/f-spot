@@ -201,16 +201,12 @@ namespace Hyena.Query.Gui
 
 		void OnButtonAddClicked (object o, EventArgs args)
 		{
-			EventHandler handler = AddRequest;
-			if (handler != null)
-				handler (this, new EventArgs ());
+			AddRequest?.Invoke (this, new EventArgs ());
 		}
 
 		void OnButtonRemoveClicked (object o, EventArgs args)
 		{
-			EventHandler handler = RemoveRequest;
-			if (handler != null)
-				handler (this, new EventArgs ());
+			RemoveRequest?.Invoke (this, new EventArgs ());
 		}
 
 		public bool CanDelete {

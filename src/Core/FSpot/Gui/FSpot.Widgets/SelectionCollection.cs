@@ -62,9 +62,7 @@ namespace FSpot.Widgets
 			ClearCached ();
 
 			if (old != null) {
-				int i = 0;
-
-				for (i = 0; i < local.Length; i++) {
+				for (int i = 0; i < local.Length; i++) {
 					int parent_index = parent.IndexOf (local[i]);
 					if (parent_index >= 0)
 						Add (parent_index, false);
@@ -73,13 +71,9 @@ namespace FSpot.Widgets
 
 			// Call the directly so that we don't reset old immediately this way the old selection
 			// set isn't actually lost until we change it.
-			var changedHandler = Changed;
-			if (changedHandler != null)
-				changedHandler (this);
+			Changed?.Invoke (this);
 
-			var detailedChangedHandler = DetailedChanged;
-			if (detailedChangedHandler != null)
-				detailedChangedHandler (this, null);
+			DetailedChanged?.Invoke (this, null);
 		}
 
 		public void MarkChanged (int item, IBrowsableItemChanges changes)
@@ -332,11 +326,9 @@ namespace FSpot.Widgets
 			old = Items.ToArray ();
 
 
-			if (Changed != null)
-				Changed (this);
+			Changed?.Invoke (this);
 
-			if (DetailedChanged != null)
-				DetailedChanged (this, ids);
+			DetailedChanged?.Invoke (this, ids);
 		}
 	}
 }

@@ -84,10 +84,7 @@ namespace Hyena.Gui
 		void OnFocus (object o, EventArgs args)
 		{
 			NotifyStateChange (StateType.Focused, widget.HasFocus);
-			var handler = FocusChanged;
-			if (handler != null) {
-				handler (this, widget.HasFocus);
-			}
+			FocusChanged?.Invoke (this, widget.HasFocus);
 		}
 
 		void OnMap (object o, EventArgs args)

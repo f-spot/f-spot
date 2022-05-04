@@ -31,7 +31,6 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 
@@ -47,19 +46,18 @@ namespace FSpot.Imaging
 {
 	public class ImageLoaderThread : IImageLoaderThread
 	{
-		#region Private members.
-		static List<ImageLoaderThread> instances = new List<ImageLoaderThread> ();
+		static readonly List<ImageLoaderThread> instances = new List<ImageLoaderThread> ();
 
 		/* The thread used to handle the requests.  */
 		Thread worker_thread;
 
 		/* The request queue; it's shared between the threads so it
 		   needs to be locked prior to access.  */
-		List<RequestItem> queue;
+		readonly List<RequestItem> queue;
 
 		/* A dict of all the requests; note that the current request
 		   isn't in the dict.  */
-		Dictionary<SafeUri, RequestItem> requests_by_uri;
+		readonly Dictionary<SafeUri, RequestItem> requests_by_uri;
 
 		/* Current request.  Request currently being handled by the
 		   auxiliary thread.  Should be modified only by the auxiliary
@@ -67,12 +65,12 @@ namespace FSpot.Imaging
 		RequestItem current_request;
 
 		/* The queue of processed requests.  */
-		readonly Queue processed_requests;
+		readonly Queue<RequestItem> processed_requests;
 
 		/* This is used by the helper thread to notify the main GLib
 		   thread that there are pending items in the
 		   `processed_requests' queue.  */
-		ThreadNotify pending_notify;
+		readonly ThreadNotify pending_notify;
 
 		/* Whether a notification is pending on `pending_notify'
 		   already or not.  */
@@ -80,9 +78,7 @@ namespace FSpot.Imaging
 		volatile bool should_cancel;
 
 		readonly IImageFileFactory imageFileFactory;
-		#endregion
 
-		#region Public API
 		public event PixbufLoadedHandler OnPixbufLoaded;
 
 		public ImageLoaderThread (IImageFileFactory imageFileFactory)
@@ -92,7 +88,7 @@ namespace FSpot.Imaging
 			queue = new List<RequestItem> ();
 			requests_by_uri = new Dictionary<SafeUri, RequestItem> ();
 			// requests_by_path = Hashtable.Synchronized (new Hashtable ());
-			processed_requests = new Queue ();
+			processed_requests = new Queue<RequestItem> ();
 
 			pending_notify = new ThreadNotify (new Gtk.ReadyEvent (HandleProcessedRequests));
 
@@ -170,9 +166,7 @@ namespace FSpot.Imaging
 				}
 			}
 		}
-		#endregion
 
-		#region Private utility methods.
 		protected virtual void ProcessRequest (RequestItem request)
 		{
 			Pixbuf orig_image;
@@ -274,7 +268,7 @@ namespace FSpot.Imaging
 			}
 		}
 
-		protected virtual void EmitLoaded (Queue results)
+		protected virtual void EmitLoaded (Queue<RequestItem> results)
 		{
 			if (OnPixbufLoaded != null) {
 				foreach (RequestItem r in results) {
@@ -285,12 +279,13 @@ namespace FSpot.Imaging
 
 		void HandleProcessedRequests ()
 		{
-			Queue results;
+			var results = new Queue<RequestItem> ();
 
 			lock (processed_requests) {
 				/* Copy the queued items out of the shared queue so we hold the lock for
 				   as little time as possible.  */
-				results = processed_requests.Clone () as Queue;
+				foreach (var item in processed_requests)
+					results.Enqueue (item);
 				processed_requests.Clear ();
 
 				pending_notify_notified = false;
@@ -302,6 +297,5 @@ namespace FSpot.Imaging
 				request.Dispose ();
 			}
 		}
-		#endregion
 	}
 }

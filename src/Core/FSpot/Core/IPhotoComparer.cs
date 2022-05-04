@@ -28,7 +28,6 @@
 //
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace FSpot.Core
@@ -48,11 +47,11 @@ namespace FSpot.Core
 			}
 		}
 
-		public class RandomSort : IComparer
+		public class RandomSort : IComparer<IPhoto>
 		{
 			readonly Random random = new Random ();
 
-			public int Compare (object obj1, object obj2)
+			public int Compare (IPhoto obj1, IPhoto obj2)
 			{
 				return random.Next (-5, 5);
 			}

@@ -140,14 +140,12 @@ namespace FSpot
 
 		void Update ()
 		{
-			if (UpdateStarted != null)
-				UpdateStarted (this);
+			UpdateStarted?.Invoke (this);
 
 			UpdateDescriptionEntry ();
 			UpdateRating ();
 
-			if (UpdateFinished != null)
-				UpdateFinished (this);
+			UpdateFinished?.Invoke (this);
 		}
 
 		public void ZoomIn ()
@@ -237,8 +235,7 @@ namespace FSpot
 			tag_view.Current = Item.Current;
 			Update ();
 
-			if (PhotoChanged != null)
-				PhotoChanged (this);
+			PhotoChanged?.Invoke (this);
 		}
 
 		void HandleDestroy (object sender, EventArgs args)

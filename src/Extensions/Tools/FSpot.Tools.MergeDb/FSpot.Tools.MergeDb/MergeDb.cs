@@ -57,7 +57,7 @@ namespace FSpot.Tools.MergeDb
 	{
 		Db from_db;
 		Db to_db;
-		Roll[] new_rolls;
+		List<Roll> new_rolls;
 		MergeDbDialog mdd;
 
 		Dictionary<uint, Tag> tag_map; //Key is a TagId from from_db, Value is a Tag from to_db
@@ -96,11 +96,7 @@ namespace FSpot.Tools.MergeDb
 				string msg = Strings.ErrorOpeningTheSelectedFile;
 				string desc = string.Format (Strings.TheFileSelectedNotValidOrSupportedDataaseReceivedExceptionX, ex.Message);
 
-				var md = new HigMessageDialog (mdd.Dialog, DialogFlags.DestroyWithParent,
-										Gtk.MessageType.Error,
-										ButtonsType.Ok,
-										msg,
-										desc);
+				var md = new HigMessageDialog (mdd.Dialog, DialogFlags.DestroyWithParent, MessageType.Error, ButtonsType.Ok, msg, desc);
 				md.Run ();
 				md.Destroy ();
 
@@ -111,12 +107,12 @@ namespace FSpot.Tools.MergeDb
 		void FillRolls ()
 		{
 			var from_rolls = new List<Roll> (from_db.Rolls.GetRolls ());
-			Roll[] to_rolls = to_db.Rolls.GetRolls ();
+			var to_rolls = to_db.Rolls.GetRolls ();
 			foreach (Roll tr in to_rolls)
 				foreach (Roll fr in from_rolls.ToArray ())
 					if (tr.Time == fr.Time)
 						from_rolls.Remove (fr);
-			new_rolls = from_rolls.ToArray ();
+			new_rolls = from_rolls;
 
 		}
 
@@ -140,7 +136,7 @@ namespace FSpot.Tools.MergeDb
 
 		}
 
-		void DoMerge (PhotoQuery query, Roll[] rolls, bool copy)
+		void DoMerge (PhotoQuery query, List<Roll> rolls, bool copy)
 		{
 			tag_map = new Dictionary<uint, Tag> ();
 			roll_map = new Dictionary<uint, uint> ();
@@ -179,7 +175,7 @@ namespace FSpot.Tools.MergeDb
 				MergeTags (t);
 		}
 
-		void CreateRolls (Roll[] rolls)
+		void CreateRolls (List<Roll> rolls)
 		{
 			if (rolls == null)
 				rolls = from_db.Rolls.GetRolls ();

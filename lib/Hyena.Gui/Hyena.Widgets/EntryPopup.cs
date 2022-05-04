@@ -206,18 +206,12 @@ namespace Hyena.Widgets
 
 		protected virtual void OnChanged (EventArgs args)
 		{
-			var handler = Changed;
-			if (handler != null) {
-				handler (this, EventArgs.Empty);
-			}
+			Changed?.Invoke (this, EventArgs.Empty);
 		}
 
 		protected virtual void OnKeyPressed (KeyPressEventArgs args)
 		{
-			var handler = KeyPressed;
-			if (handler != null) {
-				handler (this, args);
-			}
+			KeyPressed?.Invoke (this, args);
 		}
 
 		//TODO figure out why this event does not get raised

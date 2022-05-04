@@ -30,12 +30,10 @@
 //
 
 using System;
+using System.Collections.Generic;
 
-using FSpot.Core;
 using FSpot.Settings;
 using FSpot.Utils;
-
-
 
 namespace FSpot.Database.Jobs
 {
@@ -76,11 +74,11 @@ namespace FSpot.Database.Jobs
 
 		void WriteMetadataToImage (Photo photo)
 		{
-			Tag[] tags = photo.Tags;
-			string[] names = new string[tags.Length];
+			var tags = photo.Tags;
+			var names = new List<string> (tags.Length);
 
-			for (int i = 0; i < tags.Length; i++)
-				names[i] = tags[i].Name;
+			foreach (var t in tags)
+				names.Add (t.Name);
 
 			using var metadata = MetadataUtils.Parse (photo.DefaultVersion.Uri);
 
@@ -89,7 +87,7 @@ namespace FSpot.Database.Jobs
 			var tag = metadata.ImageTag;
 			tag.DateTime = photo.Time;
 			tag.Comment = photo.Description ?? string.Empty;
-			tag.Keywords = names;
+			tag.Keywords = names.ToArray ();
 			tag.Rating = photo.Rating;
 			tag.Software = FSpotConfiguration.Package + " version " + FSpotConfiguration.Version;
 

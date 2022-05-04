@@ -69,10 +69,7 @@ namespace Hyena.Data.Gui
 			get { return active_column; }
 			set {
 				active_column = value;
-				var handler = ActiveColumnChanged;
-				if (handler != null) {
-					handler (this, EventArgs.Empty);
-				}
+				ActiveColumnChanged?.Invoke (this, EventArgs.Empty);
 			}
 		}
 
@@ -911,10 +908,7 @@ namespace Hyena.Data.Gui
 		protected virtual void OnRowActivated ()
 		{
 			if (Selection.FocusedIndex != -1) {
-				RowActivatedHandler<T> handler = RowActivated;
-				if (handler != null) {
-					handler (this, new RowActivatedArgs<T> (Selection.FocusedIndex, model[Selection.FocusedIndex]));
-				}
+				RowActivated?.Invoke (this, new RowActivatedArgs<T> (Selection.FocusedIndex, model[Selection.FocusedIndex]));
 			}
 		}
 

@@ -48,9 +48,9 @@ namespace FSpot.Bling
 		TimeSpan pausedafter;
 
 		DateTimeOffset starttime;
-		Action<T> action;
+		readonly Action<T> action;
 		AnimationState state;
-		GLib.Priority priority = GLib.Priority.DefaultIdle;
+		readonly GLib.Priority priority = GLib.Priority.DefaultIdle;
 
 		protected Animation ()
 		{

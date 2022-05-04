@@ -31,8 +31,6 @@ using System;
 using System.IO;
 using System.Runtime.InteropServices;
 
-
-
 namespace FSpot.Imaging
 {
 	[Flags]
@@ -245,8 +243,7 @@ namespace FSpot.Imaging
 		bool DataReadyHandler (IntPtr channel, IOCondition condition, IntPtr data)
 		{
 			var args = new DataReadEventArgs (condition);
-			if (data_ready != null)
-				data_ready (this, args);
+			data_ready?.Invoke (this, args);
 
 			return args.Continue;
 		}

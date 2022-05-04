@@ -35,17 +35,14 @@ namespace FSpot.Core
 {
 	public class BrowsablePointer
 	{
-		readonly IBrowsableCollection collection;
+		readonly IBrowsableCollection browsableCollection;
 		IPhoto item;
 		int index;
 		public event EventHandler<BrowsablePointerChangedEventArgs> Changed;
 
 		public BrowsablePointer (IBrowsableCollection collection, int index)
 		{
-			if (collection == null)
-				throw new ArgumentNullException (nameof (collection));
-
-			this.collection = collection;
+			browsableCollection = collection ?? throw new ArgumentNullException (nameof (collection));
 			Index = index;
 			item = Current;
 
@@ -53,20 +50,20 @@ namespace FSpot.Core
 			collection.ItemsChanged += HandleCollectionItemsChanged;
 		}
 
-		public IBrowsableCollection Collection => collection;
+		public IBrowsableCollection Collection => browsableCollection;
 
 		public IPhoto Current {
 			get {
 				if (!IsValid)
 					return null;
 
-				return collection[index];
+				return browsableCollection[index];
 			}
 		}
 
 		bool Valid (int val)
 		{
-			return val >= 0 && val < collection.Count;
+			return val >= 0 && val < browsableCollection.Count;
 		}
 
 		public bool IsValid => Valid (Index);
@@ -78,7 +75,7 @@ namespace FSpot.Core
 
 		public void MoveLast ()
 		{
-			Index = collection.Count - 1;
+			Index = browsableCollection.Count - 1;
 		}
 
 		public void MoveNext ()
@@ -108,7 +105,7 @@ namespace FSpot.Core
 
 			val--;
 			if (!Valid (val))
-				val = wrap ? collection.Count - 1 : Index;
+				val = wrap ? browsableCollection.Count - 1 : Index;
 
 			Index = val;
 		}

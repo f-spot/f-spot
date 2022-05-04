@@ -44,39 +44,39 @@ namespace FSpot.Database
 		public event EventHandler<DbItemEventArgs<T>> ItemsRemoved;
 		public event EventHandler<DbItemEventArgs<T>> ItemsChanged;
 
-		protected Dictionary<uint, object> item_cache;
-		bool cache_is_immortal;
+		protected Dictionary<uint, object> itemCache;
+		readonly bool cacheIsImmortal;
 
 		protected void AddToCache (T item)
 		{
-			if (item_cache.ContainsKey (item.Id)) {
-				item_cache.Remove (item.Id);
+			if (itemCache.ContainsKey (item.Id)) {
+				itemCache.Remove (item.Id);
 			}
 
-			if (cache_is_immortal) {
-				item_cache.Add (item.Id, item);
+			if (cacheIsImmortal) {
+				itemCache.Add (item.Id, item);
 			} else {
-				item_cache.Add (item.Id, new WeakReference (item));
+				itemCache.Add (item.Id, new WeakReference (item));
 			}
 		}
 
 		protected T LookupInCache (uint id)
 		{
-			if (!item_cache.ContainsKey (id)) {
+			if (!itemCache.ContainsKey (id)) {
 				return null;
 			}
 
-			if (cache_is_immortal) {
-				return item_cache[id] as T;
+			if (cacheIsImmortal) {
+				return itemCache[id] as T;
 			}
 
-			var weakref = item_cache[id] as WeakReference;
+			var weakref = itemCache[id] as WeakReference;
 			return (T)weakref.Target;
 		}
 
 		protected void RemoveFromCache (T item)
 		{
-			item_cache.Remove (item.Id);
+			itemCache.Remove (item.Id);
 		}
 
 		protected void EmitAdded (T item)
@@ -127,7 +127,7 @@ namespace FSpot.Database
 		}
 
 		public bool CacheEmpty {
-			get { return item_cache.Count == 0; }
+			get { return itemCache.Count == 0; }
 		}
 
 		protected IDb Db { get; private set; }
@@ -138,9 +138,9 @@ namespace FSpot.Database
 		public DbStore (IDb db, bool cache_is_immortal)
 		{
 			Db = db;
-			this.cache_is_immortal = cache_is_immortal;
+			cacheIsImmortal = cache_is_immortal;
 
-			item_cache = new Dictionary<uint, object> ();
+			itemCache = new Dictionary<uint, object> ();
 		}
 
 

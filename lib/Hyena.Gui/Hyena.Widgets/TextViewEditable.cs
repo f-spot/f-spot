@@ -47,10 +47,7 @@ namespace Hyena.Widgets
 
 		void OnBufferChanged (object o, EventArgs args)
 		{
-			EventHandler handler = Changed;
-			if (handler != null) {
-				handler (this, EventArgs.Empty);
-			}
+			Changed?.Invoke (this, EventArgs.Empty);
 		}
 
 		void OnBufferInsertText (object o, InsertTextArgs args)

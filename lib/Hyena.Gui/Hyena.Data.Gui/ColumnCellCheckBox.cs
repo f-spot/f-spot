@@ -79,10 +79,7 @@ namespace Hyena.Data.Gui
 				Value = !Value;
 				last_pressed_bound = null;
 
-				var handler = Toggled;
-				if (handler != null) {
-					handler (BoundObjectParent, EventArgs.Empty);
-				}
+				Toggled?.Invoke (BoundObjectParent, EventArgs.Empty);
 
 				InvalidateRender ();
 			}

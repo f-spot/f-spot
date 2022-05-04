@@ -159,7 +159,7 @@ namespace FSpot.Widgets
 			get { return border_size; }
 			set {
 				if (value < 0)
-					throw new ArgumentException ("value");
+					throw new ArgumentException (nameof (value));
 
 				border_size = value;
 				QueueResize ();
@@ -283,12 +283,7 @@ namespace FSpot.Widgets
 			}
 		}
 
-		public void ScrollTo (int cell_num)
-		{
-			ScrollTo (cell_num, true);
-		}
-
-		public void ScrollTo (int cell_num, bool center)
+		public void ScrollTo (int cell_num, bool center = true)
 		{
 			if (!IsRealized)
 				return;

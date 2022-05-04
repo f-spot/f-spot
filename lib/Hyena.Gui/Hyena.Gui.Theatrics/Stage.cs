@@ -211,10 +211,7 @@ namespace Hyena.Gui.Theatrics
 
 		protected virtual void OnIteration ()
 		{
-			EventHandler handler = Iteration;
-			if (handler != null) {
-				handler (this, EventArgs.Empty);
-			}
+			Iteration?.Invoke (this, EventArgs.Empty);
 		}
 
 		public void Play ()
