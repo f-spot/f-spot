@@ -61,7 +61,7 @@ using System.Collections.Generic;
 
 namespace Banshee.Kernel
 {
-	public class IntervalHeap<T> : ICollection<T>, ICollection, IEnumerable<T>, IEnumerable
+	public class IntervalHeap<T> : ICollection<T>, IEnumerable<T>
 	{
 		const int MIN_CAPACITY = 16;
 
@@ -115,19 +115,6 @@ namespace Banshee.Kernel
 		{
 			generation = 0;
 			heap = new Interval[MIN_CAPACITY];
-		}
-
-		void ICollection.CopyTo (Array array, int index)
-		{
-			if (array == null) {
-				throw new ArgumentNullException (nameof (array));
-			}
-
-			if (index < 0) {
-				throw new ArgumentOutOfRangeException (nameof (index));
-			}
-
-			Array.Copy (heap, 0, array, index, count);
 		}
 
 		public virtual void CopyTo (T[] array, int index)

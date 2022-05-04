@@ -43,20 +43,18 @@ namespace FSpot
 {
 	public class RequestItem : IDisposable
 	{
-		/// <summary>
-		/// Gets or Sets image uri
-		/// </summary>
-		/// <value>
-		/// Image Uri
-		/// </value>
 		public SafeUri Uri { get; set; }
 
-		/* Order value; requests with a lower value get performed first.  */
+		/// <summary>
+		/// Order value; requests with a lower value get performed first.
+		/// </summary>
 		public int Order { get; set; }
 
-		/* The pixbuf obtained from the operation.  */
 		Pixbuf result;
 
+		/// <summary>
+		/// The pixbuf obtained from the operation.
+		/// </summary>
 		public Pixbuf Result {
 			get {
 				return result?.ShallowCopy ();
@@ -64,7 +62,9 @@ namespace FSpot
 			set { result = value; }
 		}
 
-		/* the maximium size both must be greater than zero if either is */
+		/// <summary>
+		/// The maximium size both must be greater than zero if either is
+		/// </summary>
 		public int Width { get; set; }
 
 		public int Height { get; set; }
@@ -80,8 +80,6 @@ namespace FSpot
 			}
 		}
 
-		#region IDisposable
-
 		public void Dispose ()
 		{
 			Dispose (true);
@@ -96,7 +94,5 @@ namespace FSpot
 				}
 			}
 		}
-
-		#endregion
 	}
 }

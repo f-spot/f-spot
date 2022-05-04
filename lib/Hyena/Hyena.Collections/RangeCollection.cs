@@ -32,35 +32,24 @@ using System.Collections.Generic;
 
 namespace Hyena.Collections
 {
-	public
-
-	class RangeCollection : ICloneable, ICollection<int>
+	public class RangeCollection : ICollection<int>
 	{
 		public struct Range
 		{
-			int start;
-			int end;
-
 			public Range (int start, int end)
 			{
-				this.start = start;
-				this.end = end;
+				Start = start;
+				End = end;
 			}
 
 			public override string ToString ()
 			{
-				return string.Format ("{0}-{1} ({2})", Start, End, Count);
+				return $"{Start}-{End} ({Count})";
 			}
 
-			public int Start {
-				get { return start; }
-				set { start = value; }
-			}
+			public int Start { get; set; }
 
-			public int End {
-				get { return end; }
-				set { end = value; }
-			}
+			public int End { get; set; }
 
 			public int Count {
 				get { return End - Start + 1; }
@@ -333,15 +322,6 @@ namespace Hyena.Collections
 
 		#endregion
 
-		#region ICloneable Implementation
-
-		public object Clone ()
-		{
-			return MemberwiseClone ();
-		}
-
-		#endregion
-
 		#region IEnumerable Implementation
 
 		public IEnumerator<int> GetEnumerator ()
@@ -359,6 +339,5 @@ namespace Hyena.Collections
 		}
 
 		#endregion
-
 	}
 }

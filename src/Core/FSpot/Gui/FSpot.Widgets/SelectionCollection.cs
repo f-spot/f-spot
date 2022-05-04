@@ -62,9 +62,7 @@ namespace FSpot.Widgets
 			ClearCached ();
 
 			if (old != null) {
-				int i = 0;
-
-				for (i = 0; i < local.Length; i++) {
+				for (int i = 0; i < local.Length; i++) {
 					int parent_index = parent.IndexOf (local[i]);
 					if (parent_index >= 0)
 						Add (parent_index, false);

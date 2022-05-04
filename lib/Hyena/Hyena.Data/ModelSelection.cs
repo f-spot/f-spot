@@ -33,7 +33,6 @@ using Hyena.Collections;
 
 namespace Hyena.Data
 {
-	//public class ModelSelection<T> : IList<T>
 	public class ModelSelection<T> : IEnumerable<T>
 	{
 		IListModel<T> model;
