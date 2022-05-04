@@ -275,7 +275,7 @@ namespace FSpot
 
 		void HandleRotate90Command (object sender, EventArgs args)
 		{
-			var command = new RotateCommand (this.Window);
+			var command = new RotateCommand (Window);
 			if (command.Execute (RotateDirection.Clockwise, new IPhoto[] { image_view.Item.Current }))
 				collection.MarkChanged (image_view.Item.Index, FullInvalidate.Instance);
 		}

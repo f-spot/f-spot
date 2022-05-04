@@ -422,7 +422,7 @@ namespace FSpot.Widgets
 				Hadjustment.Value = x;
 			}
 
-			if (this.Width != Allocation.Width || this.Height != Allocation.Height)
+			if (Width != Allocation.Width || Height != Allocation.Height)
 				SetSize ((uint)Allocation.Width, (uint)height);
 
 			if (xchange || ychange) {

@@ -434,7 +434,7 @@ namespace GtkBeans
 			public SignalConnector (Builder builder, Type handler_type)
 			{
 				this.builder = builder;
-				this.handler = null;
+				handler = null;
 				this.handler_type = handler_type;
 			}
 

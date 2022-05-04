@@ -135,7 +135,7 @@ namespace Hyena.Gui
 
 		int value;
 		public int Value {
-			get { return ClampValue (this.value); }
+			get { return ClampValue (value); }
 			set { this.value = ClampValue (value); }
 		}
 

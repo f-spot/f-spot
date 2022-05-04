@@ -897,14 +897,14 @@ namespace FSpot.Database
 
 			public Update (Version to_version, UpdateCode code, bool slow)
 			{
-				this.Version = to_version;
+				Version = to_version;
 				this.code = code;
 				IsSlow = slow;
 			}
 
 			public Update (Version to_version, UpdateCode code)
 			{
-				this.Version = to_version;
+				Version = to_version;
 				this.code = code;
 			}
 
@@ -937,21 +937,21 @@ namespace FSpot.Database
 			{
 				string[] parts = version.Split (new char[] { '.' }, 2);
 				try {
-					this.maj = Convert.ToInt32 (parts[0]);
+					maj = Convert.ToInt32 (parts[0]);
 				} catch (Exception) {
-					this.maj = 0;
+					maj = 0;
 				}
 				try {
-					this.min = Convert.ToInt32 (parts[1]);
+					min = Convert.ToInt32 (parts[1]);
 				} catch (Exception) {
-					this.min = 0;
+					min = 0;
 				}
 			}
 
 			//IComparable
 			public int CompareTo (object obj)
 			{
-				if (this.GetType () == obj.GetType ())
+				if (GetType () == obj.GetType ())
 					return Compare (this, (Version)obj);
 				else
 					throw new Exception ("Object must be of type Version");

@@ -69,7 +69,7 @@ namespace FSpot
 
 					Style.SetBackground (GdkWindow, Gtk.StateType.Normal);
 					GdkWindow.SetDecorations (0);
-					GdkWindow.UserData = this.Handle;
+					GdkWindow.UserData = Handle;
 					SetFlag (WidgetFlags.Realized);
 					SizeRequest ();
 					Gdk.Rectangle geom;

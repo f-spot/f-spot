@@ -59,7 +59,7 @@ namespace Hyena.Gui.Theming
 
 		public Theme (Widget widget, GtkColors colors)
 		{
-			this.Widget = widget;
+			Widget = widget;
 			this.colors = colors;
 			this.colors.Refreshed += delegate { OnColorsRefreshed (); };
 			this.colors.Widget = widget;

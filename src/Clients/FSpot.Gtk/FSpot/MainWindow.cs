@@ -1441,7 +1441,7 @@ namespace FSpot
 		//
 		void HandlePageSetupActivated (object o, EventArgs e)
 		{
-			FSpotConfiguration.PageSetup = Print.RunPageSetupDialog (this.Window, FSpotConfiguration.PageSetup, null);
+			FSpotConfiguration.PageSetup = Print.RunPageSetupDialog (Window, FSpotConfiguration.PageSetup, null);
 		}
 
 		void HandlePrintCommand (object sender, EventArgs e)
@@ -1586,7 +1586,7 @@ namespace FSpot
 
 			tag_selection_widget.SaveExpandDefaults ();
 
-			this.Window.Destroy ();
+			Window.Destroy ();
 
 			photo_view.Dispose ();
 			preview_popup.Dispose ();
@@ -1656,7 +1656,7 @@ namespace FSpot
 
 		public void HandleRemoveTagCommand (object obj, EventArgs args)
 		{
-			Tag[] tags = this.tag_selection_widget.TagHighlight;
+			Tag[] tags = tag_selection_widget.TagHighlight;
 
 			Database.BeginTransaction ();
 			RemoveTags (SelectedIds (), tags);
@@ -1666,7 +1666,7 @@ namespace FSpot
 
 		public void HandleEditSelectedTag (object sender, EventArgs ea)
 		{
-			Tag[] tags = this.tag_selection_widget.TagHighlight;
+			Tag[] tags = tag_selection_widget.TagHighlight;
 			if (tags.Length != 1)
 				return;
 
@@ -2194,7 +2194,7 @@ namespace FSpot
 
 		public void HandleDeleteSelectedTagCommand (object sender, EventArgs args)
 		{
-			Tag[] tags = this.tag_selection_widget.TagHighlight;
+			Tag[] tags = tag_selection_widget.TagHighlight;
 
 			Array.Sort (tags, new TagRemoveComparer ());
 

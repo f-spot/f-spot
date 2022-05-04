@@ -62,14 +62,14 @@ namespace Hyena.Gui
 
 		public void Register ()
 		{
-			if (ActionManager.FindActionGroup (this.Name) == null) {
+			if (ActionManager.FindActionGroup (Name) == null) {
 				ActionManager.AddActionGroup (this);
 			}
 		}
 
 		public void UnRegister ()
 		{
-			if (ActionManager.FindActionGroup (this.Name) != null) {
+			if (ActionManager.FindActionGroup (Name) != null) {
 				ActionManager.RemoveActionGroup (this);
 			}
 		}

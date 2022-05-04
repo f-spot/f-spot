@@ -198,7 +198,7 @@ namespace FSpot.UI.Dialog
 
 			Tag new_tag = null;
 			if (response == ResponseType.Ok) {
-				bool autoicon = this.auto_icon_checkbutton.Active;
+				bool autoicon = auto_icon_checkbutton.Active;
 				Preferences.Set (Preferences.TagIconAutomatic, autoicon);
 				try {
 					Category parent_category = Category;

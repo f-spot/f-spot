@@ -46,16 +46,16 @@ namespace FSpot.Widgets
 		public ScrolledView () : base ()
 		{
 			ScrolledWindow = new ScrolledWindow (null, null);
-			this.Put (ScrolledWindow, 0, 0);
+			Put (ScrolledWindow, 0, 0);
 			ScrolledWindow.Show ();
 
 			//ebox = new BlendBox ();
 			ControlBox = new EventBox ();
-			this.Put (ControlBox, 0, 0);
+			Put (ControlBox, 0, 0);
 			ControlBox.ShowAll ();
 
 			hide = new DelayedOperation (2000, new GLib.IdleHandler (HideControls));
-			this.Destroyed += HandleDestroyed;
+			Destroyed += HandleDestroyed;
 		}
 
 		public bool HideControls ()

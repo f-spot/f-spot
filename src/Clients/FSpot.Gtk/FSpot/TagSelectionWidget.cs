@@ -488,7 +488,7 @@ namespace FSpot
 
 				md.Run ();
 				md.Destroy ();
-				this.GrabFocus ();
+				GrabFocus ();
 				return;
 			}
 

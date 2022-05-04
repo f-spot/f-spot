@@ -350,7 +350,7 @@ namespace Hyena.Widgets
 
 		internal bool HandleKeyPress (Gdk.EventKey evnt)
 		{
-			return this.OnKeyPressEvent (evnt);
+			return OnKeyPressEvent (evnt);
 		}
 
 		internal bool HandleScroll (Gdk.EventScroll args)

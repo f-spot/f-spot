@@ -58,7 +58,7 @@ namespace Hyena.Widgets
 				this.title = title;
 				this.percent = percent;
 				this.color = color;
-				this.show_in_bar = showInBar;
+				show_in_bar = showInBar;
 			}
 
 			public string Title {

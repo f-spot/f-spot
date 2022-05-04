@@ -68,8 +68,8 @@ namespace FSpot.Exporters.Gallery
 			(edit_button.Parent as Gtk.HBox).ReorderChild (gallery_optionmenu, 1);
 			gallery_optionmenu.Show ();
 
-			this.items = selection.Items.ToArray ();
-			Array.Sort<IPhoto> (this.items, new IPhotoComparer.CompareDateName ());
+			items = selection.Items.ToArray ();
+			Array.Sort<IPhoto> (items, new IPhotoComparer.CompareDateName ());
 			album_button.Sensitive = false;
 			var view = new TrayView (selection);
 			view.DisplayDates = false;
@@ -159,7 +159,7 @@ namespace FSpot.Exporters.Gallery
 
 				export_dialog.Destroy ();
 
-				command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (this.Upload));
+				command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (Upload));
 				command_thread.Name = Strings.UploadingPictures;
 
 				progress_dialog = new ThreadProgressDialog (command_thread, items.Length);
@@ -238,7 +238,7 @@ namespace FSpot.Exporters.Gallery
 
 		void PopulateGalleryOptionMenu (GalleryAccountManager manager, GalleryAccount changed_account)
 		{
-			this.account = changed_account;
+			account = changed_account;
 			int pos = -1;
 
 			accounts = manager.GetAccounts ();

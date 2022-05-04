@@ -543,7 +543,7 @@ namespace FSpot
 		public Photo (IImageFileFactory imageFactory, IThumbnailService thumbnailService, uint id, long unix_time)
 			: base (id)
 		{
-			this.imageFileFactory = imageFactory;
+			imageFileFactory = imageFactory;
 			this.thumbnailService = thumbnailService;
 
 			time = DateTimeUtil.ToDateTime (unix_time);

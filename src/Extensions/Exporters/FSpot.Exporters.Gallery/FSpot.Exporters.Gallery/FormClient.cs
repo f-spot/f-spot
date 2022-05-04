@@ -84,14 +84,14 @@ namespace FSpot.Exporters.Gallery
 
 		public FormClient (CookieContainer cookies)
 		{
-			this.Cookies = cookies;
-			this.Items = new List<FormItem> ();
+			Cookies = cookies;
+			Items = new List<FormItem> ();
 		}
 
 		public FormClient ()
 		{
-			this.Items = new List<FormItem> ();
-			this.Cookies = new CookieContainer ();
+			Items = new List<FormItem> ();
+			Cookies = new CookieContainer ();
 		}
 
 		void GenerateBoundary ()
@@ -239,7 +239,7 @@ namespace FSpot.Exporters.Gallery
 
 		public HttpWebResponse Submit (Uri uri, FSpot.ProgressItem progress_item = null)
 		{
-			this.Progress = progress_item;
+			Progress = progress_item;
 			Request = (HttpWebRequest)WebRequest.Create (uri);
 			CookieCollection cookie_collection = Cookies.GetCookies (uri);
 

@@ -44,11 +44,11 @@ namespace Hyena.Gui
 		public EditableEraseAction (Editable editable, int start, int end)
 		{
 			this.editable = editable;
-			this.text = editable.GetChars (start, end);
+			text = editable.GetChars (start, end);
 			this.start = start;
 			this.end = end;
-			this.is_cut = end - start > 1;
-			this.is_forward = editable.Position < start;
+			is_cut = end - start > 1;
+			is_forward = editable.Position < start;
 		}
 
 		public void Undo ()

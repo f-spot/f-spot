@@ -79,13 +79,13 @@ namespace FSpot.Widgets
 			hbox.PackStart (this.label, true, true, 1);
 			this.label.Show ();
 
-			this.arrow = new Arrow (arrow_type, ShadowType.None);
+			arrow = new Arrow (arrow_type, ShadowType.None);
 			hbox.PackStart (arrow, false, false, 1);
 			arrow.Show ();
 
 			Menu = menu;
 
-			this.Add (hbox);
+			Add (hbox);
 			hbox.Show ();
 		}
 
@@ -99,7 +99,7 @@ namespace FSpot.Widgets
 
 		void Position (Menu menu, out int x, out int y, out bool push_in)
 		{
-			this.GdkWindow.GetOrigin (out x, out y);
+			GdkWindow.GetOrigin (out x, out y);
 			x += Allocation.X;
 			y += Allocation.Y + Allocation.Height;
 			push_in = false;

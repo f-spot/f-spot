@@ -79,16 +79,16 @@ namespace FSpot.Exporters.Folder
 
 			public ScaleRequest (string name, int width, int height, bool skip, bool exif = false)
 			{
-				this.Name = name ?? string.Empty;
-				this.Width = width;
-				this.Height = height;
-				this.Skip = skip;
-				this.CopyExif = exif;
+				Name = name ?? string.Empty;
+				Width = width;
+				Height = height;
+				Skip = skip;
+				CopyExif = exif;
 			}
 
 			public bool AvoidScale (int size)
 			{
-				return (size < this.Width && size < this.Height && this.Skip);
+				return (size < Width && size < Height && Skip);
 			}
 		}
 
@@ -115,7 +115,7 @@ namespace FSpot.Exporters.Folder
 			Collection = selection;
 			GalleryName = gallery_name;
 			GalleryPath = Path.Combine (path, GalleryName);
-			this.requests = new ScaleRequest[] { ScaleRequest.Default };
+			requests = new ScaleRequest[] { ScaleRequest.Default };
 		}
 		#endregion
 
@@ -254,7 +254,7 @@ namespace FSpot.Exporters.Folder
 
 		public void SetScale (int size)
 		{
-			this.scale = true;
+			scale = true;
 			Size = size;
 			requests[0].Width = size;
 			requests[0].Height = size;

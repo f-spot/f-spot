@@ -228,7 +228,7 @@ namespace FSpot.Exporters.Folder
 			//writer.Write ("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 			writer.WriteLine ("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">");
 			writer.AddAttribute ("xmlns", "http://www.w3.org/1999/xhtml");
-			writer.AddAttribute ("xml:lang", this.Language);
+			writer.AddAttribute ("xml:lang", Language);
 			writer.RenderBeginTag ("html");
 
 			WriteHeader (writer);
@@ -467,7 +467,7 @@ namespace FSpot.Exporters.Folder
 
 			writer.WriteLine ("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">");
 			writer.AddAttribute ("xmlns", "http://www.w3.org/1999/xhtml");
-			writer.AddAttribute ("xml:lang", this.Language);
+			writer.AddAttribute ("xml:lang", Language);
 			writer.RenderBeginTag ("html");
 			string titleExtension = " " + Strings.Tags;
 			WriteHeader (writer, titleExtension);
@@ -524,7 +524,7 @@ namespace FSpot.Exporters.Folder
 
 			writer.WriteLine ("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">");
 			writer.AddAttribute ("xmlns", "http://www.w3.org/1999/xhtml");
-			writer.AddAttribute ("xml:lang", this.Language);
+			writer.AddAttribute ("xml:lang", Language);
 			writer.RenderBeginTag ("html");
 			string titleExtension = ": " + tag;
 			WriteHeader (writer, titleExtension);
@@ -667,7 +667,7 @@ namespace FSpot.Exporters.Folder
 			//writer.Write ("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 			writer.WriteLine ("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">");
 			writer.AddAttribute ("xmlns", "http://www.w3.org/1999/xhtml");
-			writer.AddAttribute ("xml:lang", this.Language);
+			writer.AddAttribute ("xml:lang", Language);
 			writer.RenderBeginTag ("html");
 			WriteHeader (writer);
 

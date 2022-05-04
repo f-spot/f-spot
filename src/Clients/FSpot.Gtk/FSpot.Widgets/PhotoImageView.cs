@@ -107,7 +107,7 @@ namespace FSpot.Widgets
 		#region Gtk widgetry
 		protected override void OnStyleSet (Gtk.Style previous)
 		{
-			CheckPattern = new CheckPattern (this.Style.Backgrounds[(int)Gtk.StateType.Normal]);
+			CheckPattern = new CheckPattern (Style.Backgrounds[(int)Gtk.StateType.Normal]);
 		}
 
 		protected override bool OnKeyPressEvent (Gdk.EventKey evnt)
@@ -218,8 +218,8 @@ namespace FSpot.Widgets
 			if (!ShowProgress)
 				return;
 
-			Gdk.Pixbuf prev = this.Pixbuf;
-			this.Pixbuf = loader.Pixbuf;
+			Gdk.Pixbuf prev = Pixbuf;
+			Pixbuf = loader.Pixbuf;
 			prev?.Dispose ();
 
 			ZoomFit (args.ReducedResolution);

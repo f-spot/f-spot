@@ -604,7 +604,7 @@ namespace Hyena.Data.Gui
 			public ColumnHideMenuItem (Column column) : base ()
 			{
 				this.column = column;
-				this.Image = new Image (Stock.Remove, IconSize.Menu);
+				Image = new Image (Stock.Remove, IconSize.Menu);
 
 				label = new Label ();
 				label.Xalign = 0.0f;

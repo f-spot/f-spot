@@ -235,7 +235,7 @@ namespace FSpot.Exporters.Gallery
 					} else if (data[0].StartsWith ("album.name")) {
 						//this is the URL name
 						int ref_num = -1;
-						if (this.Version == GalleryVersion.Version1) {
+						if (Version == GalleryVersion.Version1) {
 							string[] segments = data[0].Split (new char[1] { '.' });
 							ref_num = int.Parse (segments[segments.Length - 1]);
 						} else

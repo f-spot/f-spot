@@ -43,8 +43,8 @@ namespace Hyena.Gui
 		{
 			this.editable = editable;
 			this.text = text;
-			this.index = start;
-			this.is_paste = length > 1;
+			index = start;
+			is_paste = length > 1;
 		}
 
 		public void Undo ()

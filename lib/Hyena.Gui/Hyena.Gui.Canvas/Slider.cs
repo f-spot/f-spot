@@ -198,7 +198,7 @@ namespace Hyena.Gui.Canvas
 
 		double value;
 		public virtual double Value {
-			get { return this.value; }
+			get { return value; }
 			set {
 				if (value < 0.0 || value > 1.0) {
 					throw new ArgumentOutOfRangeException ("Value", "Must be between 0.0 and 1.0 inclusive");

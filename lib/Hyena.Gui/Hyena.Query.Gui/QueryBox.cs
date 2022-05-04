@@ -58,7 +58,7 @@ namespace Hyena.Query.Gui
 		public QueryBox (QueryFieldSet fieldSet, QueryOrder[] orders, QueryLimit[] limits) : base ()
 		{
 			//this.sorted_fields = fieldSet.Fields;
-			this.field_set = fieldSet;
+			field_set = fieldSet;
 			terms_box = new QueryTermsBox (field_set);
 			limit_box = new QueryLimitBox (orders, limits);
 

@@ -322,7 +322,7 @@ namespace FSpot.Widgets
 						Wclass = Gdk.WindowClass.InputOutput,
 						Visual = ParentWindow.Visual,
 						Colormap = ParentWindow.Colormap,
-						Mask = this.Events
+						Mask = Events
 							| EventMask.ExposureMask
 							| EventMask.ButtonPressMask
 							| EventMask.ButtonReleaseMask

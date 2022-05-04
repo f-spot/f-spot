@@ -159,7 +159,7 @@ namespace FSpot
 			SetPosition (i < box_counts.Length ? i : min_limit.Position);
 			ScrollTo (min_limit.Position);
 
-			this.QueueDraw ();
+			QueueDraw ();
 		}
 
 		int[] Counts {
@@ -427,7 +427,7 @@ namespace FSpot
 						 EventMask.PointerMotionMask);
 
 			event_window = new Gdk.Window (GdkWindow, attr, (int)(WindowAttributesType.X | WindowAttributesType.Y));
-			event_window.UserData = this.Handle;
+			event_window.UserData = Handle;
 		}
 
 		protected override void OnUnrealized ()
@@ -677,7 +677,7 @@ namespace FSpot
 				DragOffset = 0;
 				Dragging = false;
 				if (selector.BoxXHit (middle, out var position)) {
-					this.SetPosition (position);
+					SetPosition (position);
 					State = StateType.Prelight;
 				} else {
 					State = selector.State;
@@ -708,7 +708,7 @@ namespace FSpot
 					return;
 
 				Rectangle then = Bounds ();
-				this.Position = position;
+				Position = position;
 				Rectangle now = Bounds ();
 
 				if (selector.Visible) {
@@ -789,10 +789,10 @@ namespace FSpot
 					return;
 
 				base.StartDrag (x, y, time);
-				popup_label.Text = selector.Adaptor.GlassLabel (this.Position);
+				popup_label.Text = selector.Adaptor.GlassLabel (Position);
 				popup_window.Show ();
 				UpdatePopupPosition ();
-				drag_position = this.Position;
+				drag_position = Position;
 			}
 
 			public override void UpdateDrag (double x, double y)
@@ -813,7 +813,7 @@ namespace FSpot
 
 				selector.BoxXHitFilled (middle, out var position);
 				UpdateGlass = true;
-				this.SetPosition (position);
+				SetPosition (position);
 				UpdateGlass = false;
 				State = StateType.Prelight;
 				popup_window.Hide ();
@@ -990,7 +990,7 @@ namespace FSpot
 						DrawBox (area, i++);
 				}
 
-				Style.PaintShadow (this.Style, GdkWindow, State, ShadowType.In, area,
+				Style.PaintShadow (Style, GdkWindow, State, ShadowType.In, area,
 						   this, null, background.X, background.Y,
 						   background.Width, background.Height);
 
@@ -1043,7 +1043,7 @@ namespace FSpot
 		{
 			int max_height = 0;
 
-			Pango.FontMetrics metrics = this.PangoContext.GetMetrics (this.Style.FontDescription,
+			Pango.FontMetrics metrics = PangoContext.GetMetrics (Style.FontDescription,
 										  Pango.Language.FromString ("en_US"));
 			max_height += PangoPixels (metrics.Ascent + metrics.Descent);
 
@@ -1120,12 +1120,12 @@ namespace FSpot
 
 			if (left.Allocation.Y != bar.Y || left.Allocation.X != bar.X) {
 				left.SetSizeRequest (-1, bar.Height);
-				this.Move (left, bar.X - Allocation.X, bar.Y - Allocation.Y);
+				Move (left, bar.X - Allocation.X, bar.Y - Allocation.Y);
 			}
 
 			if (right.Allocation.Y != bar.Y || right.Allocation.X != bar.X + bar.Width - right.Allocation.Width) {
 				right.SetSizeRequest (-1, bar.Height);
-				this.Move (right, bar.X - Allocation.X + bar.Width - right.Allocation.Width,
+				Move (right, bar.X - Allocation.X + bar.Width - right.Allocation.Width,
 						   bar.Y - Allocation.Y);
 			}
 
@@ -1138,7 +1138,7 @@ namespace FSpot
 
 			SetMouseActionArea ();
 
-			this.Offset = this.Offset;
+			Offset = Offset;
 
 			UpdateButtons ();
 		}
@@ -1187,8 +1187,8 @@ namespace FSpot
 			right_delay = new DelayedOperation (50, new GLib.IdleHandler (HandleScrollRight));
 			//right.Clicked += HandleScrollRight;
 
-			this.Put (left, 0, 0);
-			this.Put (right, 100, 0);
+			Put (left, 0, 0);
+			Put (right, 100, 0);
 			left.Show ();
 			right.Show ();
 

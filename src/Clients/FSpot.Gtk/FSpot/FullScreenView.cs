@@ -107,7 +107,7 @@ namespace FSpot
 				scroll.ScrolledWindow.SetPolicy (PolicyType.Never, PolicyType.Never);
 				view = new PhotoImageView (collection);
 				// FIXME this should be handled by the new style setting code
-				view.ModifyBg (Gtk.StateType.Normal, this.Style.Black);
+				view.ModifyBg (Gtk.StateType.Normal, Style.Black);
 				Add (notebook);
 				view.Show ();
 				view.MotionNotifyEvent += HandleViewMotion;
@@ -204,7 +204,7 @@ namespace FSpot
 			if (empty_cursor == null)
 				empty_cursor = GdkUtils.CreateEmptyCursor (GdkWindow.Display);
 
-			this.GdkWindow.Cursor = empty_cursor;
+			GdkWindow.Cursor = empty_cursor;
 			view.GdkWindow.Cursor = empty_cursor;
 			return false;
 		}
@@ -212,7 +212,7 @@ namespace FSpot
 		void ShowCursor ()
 		{
 			view.PointerMode = PointerMode.Scroll;
-			this.GdkWindow.Cursor = null;
+			GdkWindow.Cursor = null;
 		}
 
 		void HandleItemChanged (object sender, BrowsablePointerChangedEventArgs args)
@@ -300,7 +300,7 @@ namespace FSpot
 			if (args.Event.Type == Gdk.EventType.ButtonPress
 				&& args.Event.Button == 3) {
 				var popup = new PhotoPopup (this);
-				popup.Activate (this.Toplevel, args.Event);
+				popup.Activate (Toplevel, args.Event);
 			}
 		}
 

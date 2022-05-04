@@ -191,9 +191,9 @@ namespace Hyena.Query.Gui
 				return;
 			}
 
-			this.op = operators[op_chooser.Active];
-			if (operator_entries[this.op] != current_value_entry) {
-				SetValueEntry (operator_entries[this.op]);
+			op = operators[op_chooser.Active];
+			if (operator_entries[op] != current_value_entry) {
+				SetValueEntry (operator_entries[op]);
 			}
 
 			//value_entry = new QueryValueEntry <field.ValueType> ();

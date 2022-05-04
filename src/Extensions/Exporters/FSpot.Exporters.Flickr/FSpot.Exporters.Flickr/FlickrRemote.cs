@@ -76,10 +76,10 @@ namespace FSpot.Exporters.Flickr
 		{
 			if (token == null) {
 				flickr = new FlickrNet.Flickr (service.ApiKey, service.Secret);
-				this.accessToken = null;
+				accessToken = null;
 			} else {
 				flickr = new FlickrNet.Flickr (service.ApiKey, service.Secret, token.Token);
-				this.accessToken = token;
+				accessToken = token;
 				flickr.OAuthAccessToken = token.Token;
 				flickr.OAuthAccessTokenSecret = token.TokenSecret;
 			}

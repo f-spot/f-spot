@@ -139,8 +139,8 @@ namespace FSpot.Widgets
 				Width = Allocation.Width,
 				Height = Allocation.Height,
 				Wclass = Gdk.WindowClass.InputOutput,
-				Visual = this.Visual,
-				Colormap = this.Colormap,
+				Visual = Visual,
+				Colormap = Colormap,
 				Mask = Gdk.EventMask.VisibilityNotifyMask
 			};
 			GdkWindow = new Gdk.Window (ParentWindow, attributes,
@@ -156,9 +156,9 @@ namespace FSpot.Widgets
 				Width = (int)Math.Max (width, Allocation.Width),
 				Height = (int)Math.Max (height, Allocation.Height),
 				Wclass = Gdk.WindowClass.InputOutput,
-				Visual = this.Visual,
-				Colormap = this.Colormap,
-				Mask = Gdk.EventMask.ExposureMask | Gdk.EventMask.ScrollMask | this.Events
+				Visual = Visual,
+				Colormap = Colormap,
+				Mask = Gdk.EventMask.ExposureMask | Gdk.EventMask.ScrollMask | Events
 			};
 			bin_window = new Gdk.Window (GdkWindow, attributes,
 							 Gdk.WindowAttributesType.X | Gdk.WindowAttributesType.Y | Gdk.WindowAttributesType.Visual | Gdk.WindowAttributesType.Colormap);

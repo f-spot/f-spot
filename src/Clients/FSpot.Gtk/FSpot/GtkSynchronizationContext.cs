@@ -38,7 +38,7 @@ namespace FSpot
 			{
 				this.d = d;
 				this.state = state;
-				this.resetEvent = lockObject;
+				resetEvent = lockObject;
 			}
 
 			internal static readonly GSourceFuncInternal SourceHandler = HandlerInternal;
