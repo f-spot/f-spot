@@ -85,10 +85,7 @@ namespace Hyena.Data.Gui
 
 			RefreshViewForModel (vpos);
 
-			var handler = ModelChanged;
-			if (handler != null) {
-				handler (this, EventArgs.Empty);
-			}
+			ModelChanged?.Invoke (this, EventArgs.Empty);
 		}
 
 		void RefreshViewForModel (double? vpos)
@@ -128,10 +125,7 @@ namespace Hyena.Data.Gui
 		{
 			OnModelReloaded ();
 
-			var handler = ModelReloaded;
-			if (handler != null) {
-				handler (this, EventArgs.Empty);
-			}
+			ModelReloaded?.Invoke (this, EventArgs.Empty);
 		}
 
 		void OnColumnControllerUpdatedHandler (object o, EventArgs args)

@@ -611,8 +611,7 @@ namespace FSpot
 			}
 			Selection.MarkChanged ();
 			UpdateToolbar ();
-			if (ViewModeChanged != null)
-				ViewModeChanged (this, null);
+			ViewModeChanged?.Invoke (this, null);
 		}
 
 		void UpdateToolbar ()

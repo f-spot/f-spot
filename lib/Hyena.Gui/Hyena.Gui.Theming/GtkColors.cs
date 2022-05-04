@@ -139,10 +139,7 @@ namespace Hyena.Gui.Theming
 
 		protected virtual void OnRefreshed ()
 		{
-			EventHandler handler = Refreshed;
-			if (handler != null) {
-				handler (this, EventArgs.Empty);
-			}
+			Refreshed?.Invoke (this, EventArgs.Empty);
 		}
 	}
 }

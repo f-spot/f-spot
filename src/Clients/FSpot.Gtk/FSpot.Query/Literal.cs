@@ -91,8 +91,7 @@ namespace FSpot.Query
 				NegatedIcon = null;
 				Update ();
 
-				if (NegatedToggled != null)
-					NegatedToggled (this);
+				NegatedToggled?.Invoke (this);
 			}
 		}
 
@@ -250,14 +249,12 @@ namespace FSpot.Query
 
 		public void RemoveSelf ()
 		{
-			if (Removing != null)
-				Removing (this);
+			Removing?.Invoke (this);
 
 			if (Parent != null)
 				Parent.Remove (this);
 
-			if (Removed != null)
-				Removed (this);
+			Removed?.Invoke (this);
 		}
 
 		public override string SqlCondition ()

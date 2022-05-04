@@ -54,18 +54,12 @@ namespace Hyena.Gui.Canvas
 				return;
 			}
 
-			var handler = ValueChanged;
-			if (handler != null) {
-				handler (this, EventArgs.Empty);
-			}
+			ValueChanged?.Invoke (this, EventArgs.Empty);
 		}
 
 		protected virtual void OnPendingValueChanged ()
 		{
-			var handler = PendingValueChanged;
-			if (handler != null) {
-				handler (this, EventArgs.Empty);
-			}
+			PendingValueChanged?.Invoke (this, EventArgs.Empty);
 		}
 
 		public void InhibitValueChangeEvent ()

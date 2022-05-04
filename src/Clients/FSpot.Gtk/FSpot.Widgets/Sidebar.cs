@@ -258,15 +258,13 @@ namespace FSpot.Widgets
 		{
 			Selection = collection;
 			// Proxy selection change to the subscribed sidebar pages.
-			if (SelectionChanged != null)
-				SelectionChanged (collection);
+			SelectionChanged?.Invoke (collection);
 		}
 
 		// Proxy selection item changes to the subscribed sidebar pages.
 		public void HandleSelectionItemsChanged (IBrowsableCollection collection, BrowsableEventArgs args)
 		{
-			if (SelectionItemsChanged != null)
-				SelectionItemsChanged (collection, args);
+			SelectionItemsChanged?.Invoke (collection, args);
 		}
 	}
 }

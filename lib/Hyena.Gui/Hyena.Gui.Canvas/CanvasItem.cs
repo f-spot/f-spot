@@ -317,18 +317,12 @@ namespace Hyena.Gui.Canvas
 
 		protected virtual void OnSizeChanged ()
 		{
-			EventHandler<EventArgs> handler = SizeChanged;
-			if (handler != null) {
-				handler (this, EventArgs.Empty);
-			}
+			SizeChanged?.Invoke (this, EventArgs.Empty);
 		}
 
 		protected virtual void OnLayoutUpdated ()
 		{
-			EventHandler<EventArgs> handler = LayoutUpdated;
-			if (handler != null) {
-				handler (this, EventArgs.Empty);
-			}
+			LayoutUpdated?.Invoke (this, EventArgs.Empty);
 		}
 
 		internal CanvasManager Manager {

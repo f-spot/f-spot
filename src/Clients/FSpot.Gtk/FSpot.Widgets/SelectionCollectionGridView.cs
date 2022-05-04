@@ -470,8 +470,7 @@ namespace FSpot.Widgets
 				break;
 
 			case Gdk.Key.Return:
-				if (DoubleClicked != null)
-					DoubleClicked (this, new BrowsableEventArgs (FocusCell, null));
+				DoubleClicked?.Invoke (this, new BrowsableEventArgs (FocusCell, null));
 				break;
 
 			default:

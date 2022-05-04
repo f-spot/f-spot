@@ -111,10 +111,7 @@ namespace Hyena.Gui.Theatrics
 
 		protected virtual void OnPulse ()
 		{
-			EventHandler handler = Pulse;
-			if (handler != null) {
-				handler (this, EventArgs.Empty);
-			}
+			Pulse?.Invoke (this, EventArgs.Empty);
 		}
 	}
 }

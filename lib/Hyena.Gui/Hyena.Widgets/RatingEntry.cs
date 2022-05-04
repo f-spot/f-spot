@@ -76,20 +76,14 @@ namespace Hyena.Widgets
 
 		protected virtual void OnChanging ()
 		{
-			EventHandler handler = Changing;
-			if (handler != null) {
-				handler (this, new EventArgs ());
-			}
+			Changing?.Invoke (this, new EventArgs ());
 		}
 
 		protected virtual void OnChanged ()
 		{
 			QueueDraw ();
 
-			EventHandler handler = Changed;
-			if (handler != null) {
-				handler (this, new EventArgs ());
-			}
+			Changed?.Invoke (this, new EventArgs ());
 		}
 
 		internal void SetValueFromPosition (int x)

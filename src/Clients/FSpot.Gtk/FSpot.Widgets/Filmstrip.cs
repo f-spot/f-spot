@@ -219,8 +219,7 @@ namespace FSpot.Widgets
 				animation.To = value;
 				animation.Restart ();
 
-				if (PositionChanged != null)
-					PositionChanged (this, EventArgs.Empty);
+				PositionChanged?.Invoke (this, EventArgs.Empty);
 			}
 		}
 

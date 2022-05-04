@@ -68,8 +68,7 @@ namespace FSpot.Exporters.Gallery
 			if (write)
 				WriteAccounts ();
 
-			if (AccountListChanged != null)
-				AccountListChanged (this, changed_account);
+			AccountListChanged?.Invoke (this, changed_account);
 		}
 
 		public List<GalleryAccount> GetAccounts ()

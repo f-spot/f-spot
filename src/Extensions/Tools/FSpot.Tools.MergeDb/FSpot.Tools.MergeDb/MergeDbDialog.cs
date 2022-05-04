@@ -111,8 +111,7 @@ namespace FSpot.Tools.MergeDb
 
 		public void OnFileSet (object o, EventArgs e)
 		{
-			if (FileSet != null)
-				FileSet (o, e);
+			FileSet?.Invoke (o, e);
 		}
 
 		public void SetSensitive ()

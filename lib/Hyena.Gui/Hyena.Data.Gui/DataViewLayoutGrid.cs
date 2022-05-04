@@ -71,10 +71,7 @@ namespace Hyena.Data.Gui
 
 			ResizeChildCollection (Rows * Columns);
 
-			var handler = ChildCountChanged;
-			if (handler != null) {
-				handler (this, new EventArgs<int> (Rows * Columns));
-			}
+			ChildCountChanged?.Invoke (this, new EventArgs<int> (Rows * Columns));
 		}
 
 		protected override void InvalidateChildLayout (bool arrange)

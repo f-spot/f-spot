@@ -303,8 +303,7 @@ namespace FSpot
 			cache = new PhotoCache (store, temp_table);
 			reverse_lookup = new Dictionary<uint, int> ();
 
-			if (Changed != null)
-				Changed (this);
+			Changed?.Invoke (this);
 
 			op.Complete ();
 		}

@@ -118,14 +118,10 @@ namespace FSpot.Editors
 		public void Apply ()
 		{
 			try {
-				if (ProcessingStarted != null) {
-					ProcessingStarted (Label, State.Items.Length);
-				}
+				ProcessingStarted?.Invoke (Label, State.Items.Length);
 				TryApply ();
 			} finally {
-				if (ProcessingFinished != null) {
-					ProcessingFinished ();
-				}
+				ProcessingFinished?.Invoke ();
 			}
 		}
 
@@ -148,9 +144,7 @@ namespace FSpot.Editors
 				App.Instance.Database.Photos.Commit (photo);
 
 				done++;
-				if (ProcessingStep != null) {
-					ProcessingStep (done);
-				}
+				ProcessingStep?.Invoke (done);
 			}
 
 			Reset ();

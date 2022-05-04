@@ -55,10 +55,7 @@ namespace Hyena.Data.Gui
 
 		protected void OnUpdated ()
 		{
-			EventHandler handler = Updated;
-			if (handler != null) {
-				handler (this, EventArgs.Empty);
-			}
+			Updated?.Invoke (this, EventArgs.Empty);
 		}
 
 		public void Clear ()

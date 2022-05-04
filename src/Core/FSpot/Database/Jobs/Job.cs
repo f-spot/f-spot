@@ -66,8 +66,7 @@ namespace FSpot.Database.Jobs
 				switch (value) {
 				case JobStatus.Finished:
 				case JobStatus.Failed:
-					if (Finished != null)
-						Finished (this, new EventArgs ());
+					Finished?.Invoke (this, new EventArgs ());
 					break;
 				default:
 					break;
