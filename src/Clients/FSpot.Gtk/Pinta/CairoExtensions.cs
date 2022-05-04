@@ -37,6 +37,8 @@ using System;
 
 using Cairo;
 
+using FSpot;
+
 namespace Pinta.Core
 {
 	public static class CairoExtensions

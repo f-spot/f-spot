@@ -35,65 +35,67 @@
 
 using System;
 
-using FSpot;
 using FSpot.Core;
 using FSpot.Query;
 using FSpot.Resources.Lang;
 using FSpot.Utils;
 
-public class TagPopup
+namespace FSpot
 {
-	public void Activate (Gdk.EventButton eb, Tag tag, Tag[] tags)
+	public class TagPopup
 	{
-		int photo_count = App.Instance.Organizer.SelectedPhotos ().Length;
-		int tags_count = tags.Length;
+		public void Activate (Gdk.EventButton eb, Tag tag, Tag[] tags)
+		{
+			var photo_count = App.Instance.Organizer.SelectedPhotos ().Length;
+			var tags_count = tags.Length;
 
-		var popup_menu = new Gtk.Menu ();
+			var popup_menu = new Gtk.Menu ();
 
-		GtkUtil.MakeMenuItem (popup_menu,
-				Strings.Find,
-				"gtk-add",
-				new EventHandler (App.Instance.Organizer.HandleIncludeTag),
-				true
-		);
+			GtkUtil.MakeMenuItem (popup_menu,
+					Strings.Find,
+					"gtk-add",
+					new EventHandler (App.Instance.Organizer.HandleIncludeTag),
+					true
+			);
 
-		TermMenuItem.Create (tags, popup_menu);
+			TermMenuItem.Create (tags, popup_menu);
 
-		GtkUtil.MakeMenuSeparator (popup_menu);
-
-		GtkUtil.MakeMenuItem (popup_menu, Strings.CreateNewTag, "tag-new",
-					  App.Instance.Organizer.HandleCreateNewCategoryCommand, true);
-
-		GtkUtil.MakeMenuSeparator (popup_menu);
-
-		GtkUtil.MakeMenuItem (popup_menu, Strings.EditTag, "gtk-edit",
-			delegate {
-				App.Instance.Organizer.HandleEditSelectedTagWithTag (tag);
-			}, tag != null && tags_count == 1);
-
-		GtkUtil.MakeMenuItem (popup_menu, Strings.DeleteTag, "gtk-delete",
-			new EventHandler (App.Instance.Organizer.HandleDeleteSelectedTagCommand), tag != null);
-
-		GtkUtil.MakeMenuSeparator (popup_menu);
-
-		GtkUtil.MakeMenuItem (popup_menu, Strings.AttachTagToSelection, "gtk-add",
-					  new EventHandler (App.Instance.Organizer.HandleAttachTagCommand), tag != null && photo_count > 0);
-
-		GtkUtil.MakeMenuItem (popup_menu, Strings.RemoveTagFromSelection, "gtk-remove",
-					  new EventHandler (App.Instance.Organizer.HandleRemoveTagCommand), tag != null && photo_count > 0);
-
-		if (tags_count > 1 && tag != null) {
 			GtkUtil.MakeMenuSeparator (popup_menu);
 
-			GtkUtil.MakeMenuItem (popup_menu, Strings.MergeTags,
-						  new EventHandler (App.Instance.Organizer.HandleMergeTagsCommand), true);
+			GtkUtil.MakeMenuItem (popup_menu, Strings.CreateNewTag, "tag-new",
+						  App.Instance.Organizer.HandleCreateNewCategoryCommand, true);
 
-		}
+			GtkUtil.MakeMenuSeparator (popup_menu);
 
-		if (eb != null) {
-			popup_menu.Popup (null, null, null, eb.Button, eb.Time);
-		} else {
-			popup_menu.Popup (null, null, null, 0, Gtk.Global.CurrentEventTime);
+			GtkUtil.MakeMenuItem (popup_menu, Strings.EditTag, "gtk-edit",
+				delegate {
+					App.Instance.Organizer.HandleEditSelectedTagWithTag (tag);
+				}, tag != null && tags_count == 1);
+
+			GtkUtil.MakeMenuItem (popup_menu, Strings.DeleteTag, "gtk-delete",
+				new EventHandler (App.Instance.Organizer.HandleDeleteSelectedTagCommand), tag != null);
+
+			GtkUtil.MakeMenuSeparator (popup_menu);
+
+			GtkUtil.MakeMenuItem (popup_menu, Strings.AttachTagToSelection, "gtk-add",
+						  new EventHandler (App.Instance.Organizer.HandleAttachTagCommand), tag != null && photo_count > 0);
+
+			GtkUtil.MakeMenuItem (popup_menu, Strings.RemoveTagFromSelection, "gtk-remove",
+						  new EventHandler (App.Instance.Organizer.HandleRemoveTagCommand), tag != null && photo_count > 0);
+
+			if (tags_count > 1 && tag != null) {
+				GtkUtil.MakeMenuSeparator (popup_menu);
+
+				GtkUtil.MakeMenuItem (popup_menu, Strings.MergeTags,
+							  new EventHandler (App.Instance.Organizer.HandleMergeTagsCommand), true);
+
+			}
+
+			if (eb != null) {
+				popup_menu.Popup (null, null, null, eb.Button, eb.Time);
+			} else {
+				popup_menu.Popup (null, null, null, 0, Gtk.Global.CurrentEventTime);
+			}
 		}
 	}
 }

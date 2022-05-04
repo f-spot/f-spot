@@ -35,7 +35,6 @@
 
 using System;
 
-using FSpot;
 using FSpot.Database;
 using FSpot.Resources.Lang;
 using FSpot.UI.Dialog;
@@ -44,154 +43,156 @@ using Gtk;
 
 using Hyena.Widgets;
 
-
-public class PhotoVersionCommands
+namespace FSpot
 {
-	// Creating a new version.
-	public class Create
+	public class PhotoVersionCommands
 	{
-		public bool Execute (PhotoStore store, Photo photo, Gtk.Window parent_window)
+		// Creating a new version.
+		public class Create
 		{
-			var request = new VersionNameDialog (VersionNameDialog.RequestType.Create, photo, parent_window);
+			public bool Execute (PhotoStore store, Photo photo, Window parent_window)
+			{
+				var request = new VersionNameDialog (VersionNameDialog.RequestType.Create, photo, parent_window);
 
-			ResponseType response = request.Run (out var name);
+				var response = request.Run (out var name);
 
-			if (response != ResponseType.Ok)
-				return false;
+				if (response != ResponseType.Ok)
+					return false;
 
-			try {
-				photo.DefaultVersionId = photo.CreateVersion (name, photo.DefaultVersionId, true);
-				store.Commit (photo);
-				return true;
-			} catch (Exception e) {
-				HandleException ("Could not create a new version", e, parent_window);
-				return false;
-			}
-		}
-	}
-
-
-	// Deleting a version.
-	public class Delete
-	{
-		public bool Execute (PhotoStore store, Photo photo, Gtk.Window parent_window)
-		{
-			string ok_caption = Strings.Delete;
-			string msg = string.Format (Strings.ReallyDeleteVersionXQuestion, photo.DefaultVersion.Name);
-			string desc = Strings.ThisRemovesTheVersionAndDeletesTheFileFromDisk;
-			try {
-				if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation (parent_window, DialogFlags.DestroyWithParent,
-									   MessageType.Warning, msg, desc, ok_caption)) {
-					photo.DeleteVersion (photo.DefaultVersionId);
+				try {
+					photo.DefaultVersionId = photo.CreateVersion (name, photo.DefaultVersionId, true);
 					store.Commit (photo);
 					return true;
+				} catch (Exception e) {
+					HandleException ("Could not create a new version", e, parent_window);
+					return false;
 				}
-			} catch (Exception e) {
-				HandleException ("Could not delete a version", e, parent_window);
-			}
-			return false;
-		}
-	}
-
-	// Renaming a version.
-	public class Rename
-	{
-		public bool Execute (PhotoStore store, Photo photo, Gtk.Window parent_window)
-		{
-			var request = new VersionNameDialog (VersionNameDialog.RequestType.Rename,
-										 photo, parent_window);
-
-			ResponseType response = request.Run (out var new_name);
-
-			if (response != ResponseType.Ok)
-				return false;
-
-			try {
-				photo.RenameVersion (photo.DefaultVersionId, new_name);
-				store.Commit (photo);
-				return true;
-			} catch (Exception e) {
-				HandleException ("Could not rename a version", e, parent_window);
-				return false;
 			}
 		}
-	}
 
-	// Detaching a version (making it a separate photo).
-	public class Detach
-	{
-		public bool Execute (PhotoStore store, Photo photo, Gtk.Window parent_window)
+
+		// Deleting a version.
+		public class Delete
 		{
-			string ok_caption = Strings.DetachMnemonic;
-			string msg = string.Format (Strings.ReallyDetachVersionXFromY, photo.DefaultVersion.Name, photo.Name.Replace ("_", "__"));
-			string desc = Strings.ThisMakesTheVersionAppearAsASeparatePhotoInLibraryToUndoDragNewPhotoBackToParent;
-			try {
-				if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation (parent_window, DialogFlags.DestroyWithParent,
-									   MessageType.Warning, msg, desc, ok_caption)) {
-					Photo new_photo = store.CreateFrom (photo, true, photo.RollId);
-					new_photo.CopyAttributesFrom (photo);
-					photo.DeleteVersion (photo.DefaultVersionId, false, true);
-					store.Commit (new Photo[] { new_photo, photo });
-					return true;
-				}
-			} catch (Exception e) {
-				HandleException ("Could not detach a version", e, parent_window);
-			}
-			return false;
-		}
-	}
-
-	// Reparenting a photo as version of another one
-	public class Reparent
-	{
-		public bool Execute (PhotoStore store, Photo[] photos, Photo new_parent, Gtk.Window parent_window)
-		{
-			string ok_caption = Strings.ReparentMnemonic;
-			string msg = string.Format (photos.Length <= 1 ? Strings.ReallyReparentXAsVersionOfY : Strings.ReallyReparentZPhotosAsVersionsOfY,
-										new_parent.Name.Replace ("_", "__"), photos[0].Name.Replace ("_", "__"), photos.Length);
-			string desc = Strings.ThisMakesThePhotosAppearAsASingleOneInLibraryTheVersionsCanBeDetachedUsingThePhotoMenu;
-
-			try {
-				if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation (parent_window, DialogFlags.DestroyWithParent,
-									   MessageType.Warning, msg, desc, ok_caption)) {
-					uint highest_rating = new_parent.Rating;
-					string new_description = new_parent.Description;
-					foreach (Photo photo in photos) {
-						highest_rating = Math.Max (photo.Rating, highest_rating);
-						if (string.IsNullOrEmpty (new_description))
-							new_description = photo.Description;
-						new_parent.AddTag (photo.Tags);
-
-						foreach (uint version_id in photo.VersionIds) {
-							new_parent.DefaultVersionId = new_parent.CreateReparentedVersion (photo.GetVersion (version_id) as PhotoVersion);
-							store.Commit (new_parent);
-						}
-						uint[] version_ids = photo.VersionIds;
-						Array.Reverse (version_ids);
-						foreach (uint version_id in version_ids) {
-							photo.DeleteVersion (version_id, true, true);
-						}
-						store.Remove (photo);
+			public bool Execute (PhotoStore store, Photo photo, Window parent_window)
+			{
+				var ok_caption = Strings.Delete;
+				var msg = string.Format (Strings.ReallyDeleteVersionXQuestion, photo.DefaultVersion.Name);
+				var desc = Strings.ThisRemovesTheVersionAndDeletesTheFileFromDisk;
+				try {
+					if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation (parent_window, DialogFlags.DestroyWithParent,
+										   MessageType.Warning, msg, desc, ok_caption)) {
+						photo.DeleteVersion (photo.DefaultVersionId);
+						store.Commit (photo);
+						return true;
 					}
-					new_parent.Rating = highest_rating;
-					new_parent.Description = new_description;
-					store.Commit (new_parent);
-					return true;
+				} catch (Exception e) {
+					HandleException ("Could not delete a version", e, parent_window);
 				}
-			} catch (Exception e) {
-				HandleException ("Could not reparent photos", e, parent_window);
+				return false;
 			}
-			return false;
 		}
-	}
 
-	static void HandleException (string msg, Exception e, Gtk.Window parent_window)
-	{
-		Logger.Log.Debug (e, "");
-		string desc = string.Format (Strings.ReceivedExceptionX, e.Message);
-		var md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent,
-								Gtk.MessageType.Error, ButtonsType.Ok, msg, desc);
-		md.Run ();
-		md.Destroy ();
+		// Renaming a version.
+		public class Rename
+		{
+			public bool Execute (PhotoStore store, Photo photo, Window parent_window)
+			{
+				var request = new VersionNameDialog (VersionNameDialog.RequestType.Rename,
+											 photo, parent_window);
+
+				var response = request.Run (out var new_name);
+
+				if (response != ResponseType.Ok)
+					return false;
+
+				try {
+					photo.RenameVersion (photo.DefaultVersionId, new_name);
+					store.Commit (photo);
+					return true;
+				} catch (Exception e) {
+					HandleException ("Could not rename a version", e, parent_window);
+					return false;
+				}
+			}
+		}
+
+		// Detaching a version (making it a separate photo).
+		public class Detach
+		{
+			public bool Execute (PhotoStore store, Photo photo, Window parent_window)
+			{
+				var ok_caption = Strings.DetachMnemonic;
+				var msg = string.Format (Strings.ReallyDetachVersionXFromY, photo.DefaultVersion.Name, photo.Name.Replace ("_", "__"));
+				var desc = Strings.ThisMakesTheVersionAppearAsASeparatePhotoInLibraryToUndoDragNewPhotoBackToParent;
+				try {
+					if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation (parent_window, DialogFlags.DestroyWithParent,
+										   MessageType.Warning, msg, desc, ok_caption)) {
+						var new_photo = store.CreateFrom (photo, true, photo.RollId);
+						new_photo.CopyAttributesFrom (photo);
+						photo.DeleteVersion (photo.DefaultVersionId, false, true);
+						store.Commit (new Photo[] { new_photo, photo });
+						return true;
+					}
+				} catch (Exception e) {
+					HandleException ("Could not detach a version", e, parent_window);
+				}
+				return false;
+			}
+		}
+
+		// Reparenting a photo as version of another one
+		public class Reparent
+		{
+			public bool Execute (PhotoStore store, Photo[] photos, Photo new_parent, Window parent_window)
+			{
+				var ok_caption = Strings.ReparentMnemonic;
+				var msg = string.Format (photos.Length <= 1 ? Strings.ReallyReparentXAsVersionOfY : Strings.ReallyReparentZPhotosAsVersionsOfY,
+											new_parent.Name.Replace ("_", "__"), photos[0].Name.Replace ("_", "__"), photos.Length);
+				var desc = Strings.ThisMakesThePhotosAppearAsASingleOneInLibraryTheVersionsCanBeDetachedUsingThePhotoMenu;
+
+				try {
+					if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation (parent_window, DialogFlags.DestroyWithParent,
+										   MessageType.Warning, msg, desc, ok_caption)) {
+						var highest_rating = new_parent.Rating;
+						var new_description = new_parent.Description;
+						foreach (var photo in photos) {
+							highest_rating = Math.Max (photo.Rating, highest_rating);
+							if (string.IsNullOrEmpty (new_description))
+								new_description = photo.Description;
+							new_parent.AddTag (photo.Tags);
+
+							foreach (var version_id in photo.VersionIds) {
+								new_parent.DefaultVersionId = new_parent.CreateReparentedVersion (photo.GetVersion (version_id) as PhotoVersion);
+								store.Commit (new_parent);
+							}
+							var version_ids = photo.VersionIds;
+							Array.Reverse (version_ids);
+							foreach (var version_id in version_ids) {
+								photo.DeleteVersion (version_id, true, true);
+							}
+							store.Remove (photo);
+						}
+						new_parent.Rating = highest_rating;
+						new_parent.Description = new_description;
+						store.Commit (new_parent);
+						return true;
+					}
+				} catch (Exception e) {
+					HandleException ("Could not reparent photos", e, parent_window);
+				}
+				return false;
+			}
+		}
+
+		static void HandleException (string msg, Exception e, Window parent_window)
+		{
+			Logger.Log.Debug (e, "");
+			var desc = string.Format (Strings.ReceivedExceptionX, e.Message);
+			var md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent,
+									MessageType.Error, ButtonsType.Ok, msg, desc);
+			md.Run ();
+			md.Destroy ();
+		}
 	}
 }

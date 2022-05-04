@@ -29,48 +29,50 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using FSpot;
 using FSpot.Core;
 using FSpot.Resources.Lang;
 using FSpot.Thumbnail;
 using FSpot.UI.Dialog;
 
-public class ThumbnailCommand
+namespace FSpot
 {
-	readonly Gtk.Window parent_window;
-
-	public ThumbnailCommand (Gtk.Window parent_window)
+	public class ThumbnailCommand
 	{
-		this.parent_window = parent_window;
-	}
+		readonly Gtk.Window parent_window;
 
-	public bool Execute (IPhoto[] photos)
-	{
-		ProgressDialog progress_dialog = null;
-		var loader = App.Instance.Container.Resolve<IThumbnailLoader> ();
-
-		if (photos.Length > 1) {
-			progress_dialog = new ProgressDialog (Strings.UpdatingThumbnails,
-								  ProgressDialog.CancelButtonType.Stop,
-								  photos.Length, parent_window);
+		public ThumbnailCommand (Gtk.Window parent_window)
+		{
+			this.parent_window = parent_window;
 		}
 
-		int count = 0;
-		foreach (IPhoto photo in photos) {
-			if (progress_dialog != null
-				&& progress_dialog.Update (string.Format (Strings.UpdatingPictureX, photo.Name)))
-				break;
+		public bool Execute (IPhoto[] photos)
+		{
+			ProgressDialog progress_dialog = null;
+			var loader = App.Instance.Container.Resolve<IThumbnailLoader> ();
 
-			foreach (IPhotoVersion version in photo.Versions) {
-				loader.Request (version.Uri, ThumbnailSize.Large, 10);
+			if (photos.Length > 1) {
+				progress_dialog = new ProgressDialog (Strings.UpdatingThumbnails,
+									  ProgressDialog.CancelButtonType.Stop,
+									  photos.Length, parent_window);
 			}
 
-			count++;
+			var count = 0;
+			foreach (var photo in photos) {
+				if (progress_dialog != null
+					&& progress_dialog.Update (string.Format (Strings.UpdatingPictureX, photo.Name)))
+					break;
+
+				foreach (var version in photo.Versions) {
+					loader.Request (version.Uri, ThumbnailSize.Large, 10);
+				}
+
+				count++;
+			}
+
+			if (progress_dialog != null)
+				progress_dialog.Destroy ();
+
+			return true;
 		}
-
-		if (progress_dialog != null)
-			progress_dialog.Destroy ();
-
-		return true;
 	}
 }
