@@ -17,12 +17,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using FSpot.Core;
 using FSpot.Database;
+using FSpot.Models;
 using FSpot.Query;
-
-
 
 using SerilogTimings;
 
@@ -37,7 +37,7 @@ namespace FSpot
 				get { return SIZE; }
 			}
 
-			readonly Dictionary<int, Photo[]> cache;
+			readonly Dictionary<int, List<Photo>> cache;
 			readonly string temp_table;
 			readonly PhotoStore store;
 
@@ -45,7 +45,7 @@ namespace FSpot
 			{
 				this.temp_table = temp_table;
 				this.store = store;
-				cache = new Dictionary<int, Photo[]> ();
+				cache = new Dictionary<int, List<Photo>> ();
 			}
 
 			public bool TryGetPhoto (int index, out Photo photo)
@@ -62,7 +62,7 @@ namespace FSpot
 			{
 				int offset = index - index % SIZE;
 				if (!cache.TryGetValue (offset, out var val)) {
-					val = store.QueryFromTemp (temp_table, offset, SIZE);
+					val = store.QueryFromTemp (temp_table, offset, SIZE).ToList ();
 					cache[offset] = val;
 				}
 				return val[index - offset];
@@ -78,18 +78,18 @@ namespace FSpot
 			get { return query_count++; }
 		}
 
-		Dictionary<uint, int> reverse_lookup;
+		Dictionary<Guid, int> reverse_lookup;
 
 		int count = -1;
 
-		string temp_table = string.Format ("photoquery_temp_{0}", QueryCount);
+		string temp_table = $"photoquery_temp_{QueryCount}";
 
 		public PhotoQuery (PhotoStore store, params IQueryCondition[] conditions)
 		{
 			this.store = store;
 			this.store.ItemsChanged += MarkChanged;
 			cache = new PhotoCache (store, temp_table);
-			reverse_lookup = new Dictionary<uint, int> ();
+			reverse_lookup = new Dictionary<Guid, int> ();
 			SetCondition (OrderByTime.OrderByTimeDesc);
 
 			foreach (IQueryCondition condition in conditions)
@@ -125,8 +125,8 @@ namespace FSpot
 		}
 
 		[Obsolete ("DO NOT USE Items on PhotoQuery")]
-		public IEnumerable<IPhoto> Items {
-			get { throw new NotImplementedException (); }
+		public List<IPhoto> Items {
+			get => throw new NotImplementedException ();
 		}
 
 		public PhotoStore Store {
@@ -279,11 +279,11 @@ namespace FSpot
 				i++;
 			}
 
-			store.QueryToTemp (temp_table, condition_array);
+			store.QueryToTemp (temp_table, "condition_array");
 
 			count = -1;
 			cache = new PhotoCache (store, temp_table);
-			reverse_lookup = new Dictionary<uint, int> ();
+			reverse_lookup = new Dictionary<Guid, int> ();
 
 			Changed?.Invoke (this);
 
@@ -297,23 +297,26 @@ namespace FSpot
 			return store.IndexOf (temp_table, photo as Photo);
 		}
 
-		int[] IndicesOf (DbItem[] dbitems)
+		List<Guid> IndicesOf (BaseDbSet[] dbitems)
 		{
 			using var op = Operation.Begin ($"PhotoQuery.IndicesOf");
-			var indices = new List<int> ();
-			var items_to_search = new List<uint> ();
-			foreach (DbItem dbitem in dbitems) {
-				if (reverse_lookup.TryGetValue (dbitem.Id, out var cur))
-					indices.Add (cur);
-				else
-					items_to_search.Add (dbitem.Id);
-			}
 
-			if (items_to_search.Count > 0)
-				indices.AddRange (store.IndicesOf (temp_table, items_to_search.ToArray ()));
+			var indices = new List<Guid> ();
+			var items_to_search = new List<Guid> ();
+
+			// FIXME
+			//foreach (var dbitem in dbitems) {
+			//	if (reverse_lookup.TryGetValue (dbitem.Id, out var cur))
+			//		indices.Add (cur);
+			//	else
+			//		items_to_search.Add (dbitem.Id);
+			//}
+
+			//if (items_to_search.Count > 0)
+			//	indices.AddRange (store.IndicesOf (temp_table, items_to_search.ToArray ()));
 
 			op.Complete ();
-			return indices.ToArray ();
+			return indices;
 		}
 
 		public int LookupItem (DateTime date)
@@ -339,7 +342,7 @@ namespace FSpot
 					//lets reduce that number to 1
 					return store.IndexOf (temp_table, date, asc);
 
-				int comp = this[mid].Time.CompareTo (date);
+				int comp = this[mid].UtcTime.CompareTo (date);
 				if (!asc && comp < 0 || asc && comp > 0)
 					high = mid - 1;
 				else if (!asc && comp > 0 || asc && comp < 0)
@@ -350,17 +353,17 @@ namespace FSpot
 
 			op.Complete ();
 			if (asc)
-				return this[mid].Time < date ? mid + 1 : mid;
+				return this[mid].UtcTime < date ? mid + 1 : mid;
 
-			return this[mid].Time > date ? mid + 1 : mid;
+			return this[mid].UtcTime > date ? mid + 1 : mid;
 		}
 
 		public void Commit (int index)
 		{
-			Commit (new int[] { index });
+			Commit (new List<int> { index });
 		}
 
-		public void Commit (int[] indexes)
+		public void Commit (List<int> indexes)
 		{
 			var to_commit = new List<Photo> ();
 			foreach (int index in indexes) {
@@ -372,18 +375,19 @@ namespace FSpot
 
 		void MarkChanged (object sender, DbItemEventArgs<Photo> args)
 		{
-			int[] indexes = IndicesOf (args.Items);
+			// FIXME
+			//int[] indexes = IndicesOf (args.Items);
 
-			if (indexes.Length > 0 && ItemsChanged != null)
-				ItemsChanged (this, new BrowsableEventArgs (indexes, (args as PhotoEventArgs).Changes));
+			//if (indexes.Length > 0)
+			//	ItemsChanged?.Invoke (this, new BrowsableEventArgs (indexes, (args as PhotoEventArgs).Changes));
 		}
 
 		public void MarkChanged (int index, IBrowsableItemChanges changes)
 		{
-			MarkChanged (new int[] { index }, changes);
+			MarkChanged (new List<int> { index }, changes);
 		}
 
-		public void MarkChanged (int[] indexes, IBrowsableItemChanges changes)
+		public void MarkChanged (List<int> indexes, IBrowsableItemChanges changes)
 		{
 			ItemsChanged (this, new BrowsableEventArgs (indexes, changes));
 		}

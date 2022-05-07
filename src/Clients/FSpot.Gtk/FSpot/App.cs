@@ -20,6 +20,7 @@ using System.Threading;
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Imaging;
+using FSpot.Models;
 using FSpot.Resources.Lang;
 using FSpot.Settings;
 using FSpot.Thumbnail;
@@ -107,6 +108,7 @@ namespace FSpot
 			}
 		}
 
+		// FIXME
 		public Db Database {
 			get {
 				lock (sync_handle) {
@@ -114,13 +116,15 @@ namespace FSpot
 						if (!File.Exists (FSpotConfiguration.BaseDirectory))
 							Directory.CreateDirectory (FSpotConfiguration.BaseDirectory);
 
-						db = new Db (Container.Resolve<IImageFileFactory> (), Container.Resolve<IThumbnailService> (), new UpdaterUI ());
+						db = new Db ();//Container.Resolve<IImageFileFactory> (), Container.Resolve<IThumbnailService> (), new UpdaterUI ());
 
 						try {
-							db.Init (Path.Combine (FSpotConfiguration.BaseDirectory, FSpotConfiguration.DatabaseName), true);
+							db.Init (Path.Combine (FSpotConfiguration.BaseDirectory, FSpotConfiguration.DatabaseName));
 						} catch (Exception e) {
-							new FSpot.UI.Dialog.RepairDbDialog (e, db.Repair (), null);
-							db.Init (Path.Combine (FSpotConfiguration.BaseDirectory, FSpotConfiguration.DatabaseName), true);
+							//new FSpot.UI.Dialog.RepairDbDialog (e, db.Repair (), null);
+							//db.Init (Path.Combine (Configuration.BaseDirectory, Configuration.DatabaseName), true);
+							Console.WriteLine (e.Message);
+							Environment.Exit (-1);
 						}
 					}
 				}
@@ -269,12 +273,12 @@ namespace FSpot
 		void HandleSlideshow (string tagname)
 		{
 			Tag tag;
-			FSpot.Widgets.SlideShow slideshow = null;
+			Widgets.SlideShow slideshow = null;
 
 			if (!string.IsNullOrEmpty (tagname))
 				tag = Database.Tags.GetTagByName (tagname);
 			else
-				tag = Database.Tags.GetTagById (Preferences.Get<int> (Preferences.ScreensaverTag));
+				tag = Database.Tags.GetTagById (Preferences.Get<Guid> (Preferences.ScreensaverTag));
 
 			IPhoto[] photos;
 			if (tag != null)
@@ -293,7 +297,7 @@ namespace FSpot
 
 			if (photos.Length > 0) {
 				Array.Sort (photos, new IPhotoComparer.RandomSort ());
-				slideshow = new FSpot.Widgets.SlideShow (new BrowsablePointer (new PhotoList (photos), 0), (uint)(delay * 1000), true);
+				slideshow = new Widgets.SlideShow (new BrowsablePointer (new PhotoList (photos), 0), (uint)(delay * 1000), true);
 				window.Add (slideshow);
 			} else {
 				var outer = new Gtk.HBox ();
@@ -368,7 +372,8 @@ namespace FSpot
 			if (toplevels.Count == 0) {
 				Logger.Log.Information ("Exiting...");
 				Banshee.Kernel.Scheduler.Dispose ();
-				Database.Dispose ();
+				// FIXME: DBConversion
+				//Database.Dispose ();
 				ImageLoaderThread.CleanAll ();
 				Gtk.Application.Quit ();
 			}

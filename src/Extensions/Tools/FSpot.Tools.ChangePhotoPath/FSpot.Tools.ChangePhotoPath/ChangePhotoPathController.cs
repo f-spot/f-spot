@@ -25,6 +25,7 @@ using System.IO;
 
 using FSpot.Core;
 using FSpot.Database;
+using FSpot.Models;
 using FSpot.Settings;
 using FSpot.Utils;
 
@@ -56,7 +57,7 @@ namespace FSpot.Tools.ChangePhotoPath
 	public class ChangePathController
 	{
 		PhotoStore photo_store = FSpot.App.Instance.Database.Photos;
-		List<uint> photo_id_array;
+		List<Guid> photo_id_array;
 		List<uint> version_id_array;
 		StringCollection old_path_array, new_path_array;
 		int total_photos;
@@ -131,13 +132,13 @@ namespace FSpot.Tools.ChangePhotoPath
 
 		void InitializeArrays ()
 		{
-			photo_id_array = new List<uint> ();
+			photo_id_array = new List<Guid> ();
 			version_id_array = new List<uint> ();
 			old_path_array = new StringCollection ();
 			new_path_array = new StringCollection ();
 		}
 
-		void AddVersionToArrays (uint photo_id, uint version_id, string old_path, string new_path)
+		void AddVersionToArrays (Guid photo_id, uint version_id, string old_path, string new_path)
 		{
 			photo_id_array.Add (photo_id);
 			version_id_array.Add (version_id);
@@ -147,7 +148,7 @@ namespace FSpot.Tools.ChangePhotoPath
 
 		string CreateNewPath (string old_base, string new_base, PhotoVersion version)
 		{
-			return string.Format ("{0}{1}", new_base, version.Uri.AbsolutePath.Substring (old_base.Length));
+			return $"{new_base}{version.Uri.AbsolutePath.Substring (old_base.Length)}";
 		}
 
 		bool ChangeThisVersionUri (PhotoVersion version, string old_base, string new_base)
@@ -185,7 +186,7 @@ namespace FSpot.Tools.ChangePhotoPath
 			return true;
 		}
 
-		public bool StillOnSamePhotoId (int old_index, int current_index, List<uint> array)
+		public bool StillOnSamePhotoId (int old_index, int current_index, List<Guid> array)
 		{
 			try {
 				return (array[old_index] == array[current_index]);

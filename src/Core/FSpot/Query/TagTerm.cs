@@ -16,7 +16,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using FSpot.Core;
+using FSpot.Models;
 
 namespace FSpot.Query
 {
@@ -44,7 +44,7 @@ namespace FSpot.Query
 			var tagList = new List<Tag> ();
 			foreach (var tag in tags) {
 				tagList.Add (tag);
-				var category = tag as Category;
+				var category = tag;
 				if (category != null) {
 					category.AddDescendentsTo (tagList);
 				}

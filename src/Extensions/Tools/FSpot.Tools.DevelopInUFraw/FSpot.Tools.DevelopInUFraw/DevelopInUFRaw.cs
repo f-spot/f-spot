@@ -11,6 +11,7 @@
 
 using System;
 
+using FSpot.Models;
 
 namespace FSpot.Tools.DevelopInUFraw
 {

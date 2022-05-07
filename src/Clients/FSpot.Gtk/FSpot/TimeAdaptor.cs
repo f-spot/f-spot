@@ -124,9 +124,9 @@ namespace FSpot
 		public override int IndexFromPhoto (IPhoto photo)
 		{
 			if (order_ascending)
-				return IndexFromDateAscending (photo.Time);
+				return IndexFromDateAscending (photo.UtcTime);
 
-			return IndexFromDateDescending (photo.Time);
+			return IndexFromDateDescending (photo.UtcTime);
 		}
 
 		public int IndexFromDate (DateTime date)

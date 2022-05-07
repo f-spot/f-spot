@@ -9,7 +9,9 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
-using FSpot.Core;
+using System;
+
+using FSpot.Models;
 
 using NUnit.Framework;
 
@@ -21,15 +23,15 @@ namespace FSpot.Query.Tests
 		[Test]
 		public void SomeTests ()
 		{
-			var c10 = new Category (null, 10, "tag10");
-			var c11 = new Category (null, 11, "tag11");
-			var c12 = new Category (c11, 12, "tag12");
+			var c10 = new Tag (null, new Guid (), "tag10");
+			var c11 = new Tag (null, new Guid (), "tag11");
+			var c12 = new Tag (c11, new Guid (), "tag12");
 
-			var t1 = new Tag (null, 1, "tag1");
-			var t2 = new Tag (null, 2, "tag2");
-			var t3 = new Tag (c10, 3, "tag3");
-			var t4 = new Tag (c11, 4, "tag4");
-			var t5 = new Tag (c12, 5, "tag5");
+			var t1 = new Tag (null, new Guid (), "tag1");
+			var t2 = new Tag (null, new Guid (), "tag2");
+			var t3 = new Tag (c10, new Guid (), "tag3");
+			var t4 = new Tag (c11, new Guid (), "tag4");
+			var t5 = new Tag (c12, new Guid (), "tag5");
 
 			var tt10 = new TagTerm (c10);
 			var tt11 = new TagTerm (c11);

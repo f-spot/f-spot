@@ -20,6 +20,7 @@ using System.Collections.Generic;
 
 using FSpot.Core;
 using FSpot.Database;
+using FSpot.Models;
 using FSpot.Resources.Lang;
 using FSpot.Widgets;
 

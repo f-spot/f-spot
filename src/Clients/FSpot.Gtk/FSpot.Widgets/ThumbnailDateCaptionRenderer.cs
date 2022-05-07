@@ -49,9 +49,9 @@ namespace FSpot.Widgets
 				return;
 
 			if (cell_area.Width > 200) {
-				date_text = photo.Time.ToString ();
+				date_text = photo.UtcTime.ToString ();
 			} else {
-				date_text = photo.Time.ToShortDateString ();
+				date_text = photo.UtcTime.ToShortDateString ();
 			}
 
 			if (!cache.TryGetValue (date_text, out var layout)) {

@@ -11,19 +11,21 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using System.Collections.Generic;
+
 namespace FSpot.Core
 {
 	public class BrowsableEventArgs : System.EventArgs
 	{
-		public int[] Items { get; }
+		public List<int> Items { get; }
 
 		public IBrowsableItemChanges Changes { get; }
 
-		public BrowsableEventArgs (int item, IBrowsableItemChanges changes) : this (new[] { item }, changes)
+		public BrowsableEventArgs (int item, IBrowsableItemChanges changes) : this (new List<int> { item }, changes)
 		{
 		}
 
-		public BrowsableEventArgs (int[] items, IBrowsableItemChanges changes)
+		public BrowsableEventArgs (List<int> items, IBrowsableItemChanges changes)
 		{
 			Items = items;
 			Changes = changes;

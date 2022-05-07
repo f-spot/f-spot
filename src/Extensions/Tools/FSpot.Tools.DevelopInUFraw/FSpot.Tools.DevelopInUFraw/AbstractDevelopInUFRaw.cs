@@ -16,6 +16,7 @@ using System.IO;
 
 using FSpot.Extensions;
 using FSpot.Imaging;
+using FSpot.Models;
 using FSpot.Resources.Lang;
 using FSpot.Settings;
 using FSpot.Utils;

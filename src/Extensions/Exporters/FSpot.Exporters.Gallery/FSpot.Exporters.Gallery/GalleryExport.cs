@@ -21,6 +21,7 @@ using FSpot.Core;
 using FSpot.Database;
 using FSpot.Extensions;
 using FSpot.Filters;
+using FSpot.Models;
 using FSpot.Resources.Lang;
 using FSpot.Settings;
 using FSpot.UI.Dialog;

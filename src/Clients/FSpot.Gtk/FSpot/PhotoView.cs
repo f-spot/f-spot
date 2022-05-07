@@ -18,6 +18,7 @@
 using System;
 
 using FSpot.Core;
+using FSpot.Models;
 using FSpot.Resources.Lang;
 using FSpot.Settings;
 using FSpot.Utils;

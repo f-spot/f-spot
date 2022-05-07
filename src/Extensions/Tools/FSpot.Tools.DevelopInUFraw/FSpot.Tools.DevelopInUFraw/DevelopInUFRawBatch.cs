@@ -11,6 +11,7 @@
 
 using System;
 
+using FSpot.Models;
 using FSpot.Resources.Lang;
 using FSpot.UI.Dialog;
 

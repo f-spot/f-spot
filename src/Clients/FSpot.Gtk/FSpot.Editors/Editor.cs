@@ -12,11 +12,11 @@
 using System;
 
 using FSpot.Imaging;
+using FSpot.Models;
 
 using Gdk;
 
 using Gtk;
-
 
 namespace FSpot.Editors
 {
@@ -113,7 +113,7 @@ namespace FSpot.Editors
 				Pixbuf edited = Process (input, input_profile);
 				input.Dispose ();
 
-				bool create_version = photo.DefaultVersion.IsProtected;
+				bool create_version = photo.DefaultVersion.Protected;
 				photo.SaveVersion (edited, create_version);
 				photo.Changes.DataChanged = true;
 				App.Instance.Database.Photos.Commit (photo);

@@ -13,9 +13,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-
+using FSpot.Models;
 using FSpot.Utils;
-
 using Hyena;
 
 namespace FSpot.Core
@@ -72,12 +71,12 @@ namespace FSpot.Core
 			}
 		}
 
-		public Tag[] Tags {
+		public List<Tag> Tags {
 			get { return null; }
 		}
 
 		DateTime time;
-		public DateTime Time {
+		public DateTime UtcTime {
 			get {
 				EnsureMetadataParsed ();
 				return time;
@@ -90,7 +89,7 @@ namespace FSpot.Core
 			}
 		}
 
-		public IEnumerable<IPhotoVersion> Versions {
+		public List<IPhotoVersion> Versions {
 			get {
 				return versions;
 			}
@@ -108,7 +107,7 @@ namespace FSpot.Core
 			get { return DefaultVersion.Uri.GetFilename (); }
 		}
 
-		public uint Rating {
+		public long Rating {
 			//FIXME ndMaxxer: correct?
 			get { return 0; }
 		}
@@ -122,11 +121,11 @@ namespace FSpot.Core
 		{
 			public string Name { get; set; }
 
-			public bool IsProtected {
+			public bool Protected {
 				get { return true; }
 			}
 
-			public SafeUri BaseUri {
+			public string BaseUri {
 				get { return Uri.GetBaseUri (); }
 			}
 			public string Filename {
@@ -135,7 +134,7 @@ namespace FSpot.Core
 			public SafeUri Uri { get; set; }
 
 			string import_md5 = string.Empty;
-			public string ImportMD5 {
+			public string ImportMd5 {
 				get {
 					if (string.IsNullOrEmpty (import_md5))
 						import_md5 = HashUtils.GenerateMD5 (Uri);

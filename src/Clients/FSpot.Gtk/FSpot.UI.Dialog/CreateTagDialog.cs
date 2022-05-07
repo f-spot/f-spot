@@ -18,6 +18,7 @@ using System.Collections.Generic;
 
 using FSpot.Core;
 using FSpot.Database;
+using FSpot.Models;
 using FSpot.Resources.Lang;
 using FSpot.Settings;
 
@@ -48,20 +49,20 @@ namespace FSpot.UI.Dialog
 
 		List<Tag> categories;
 
-		void PopulateCategories (List<Tag> categories, Category parent)
+		void PopulateCategories (List<Tag> categories, Tag parent)
 		{
 			foreach (Tag tag in parent.Children) {
-				if (tag is Category) {
+				if (tag.IsCategory) {
 					categories.Add (tag);
-					PopulateCategories (categories, tag as Category);
+					PopulateCategories (categories, tag);
 				}
 			}
 		}
 
-		string Indentation (Category category)
+		string Indentation (Tag category)
 		{
 			int indentations = 0;
-			for (Category parent = category.Category;
+			for (var parent = category.Category;
 				 parent != null && parent.Category != null;
 				 parent = parent.Category)
 				indentations++;
@@ -76,8 +77,8 @@ namespace FSpot.UI.Dialog
 
 			var category_store = new ListStore (typeof (Pixbuf), typeof (string));
 
-			foreach (Category category in categories) {
-				category_store.AppendValues (category.SizedIcon, Indentation (category) + category.Name);
+			foreach (var category in categories) {
+				category_store.AppendValues (category.TagIcon.SizedIcon, Indentation (category) + category.Name);
 			}
 
 			category_option_menu.Sensitive = true;
@@ -97,13 +98,13 @@ namespace FSpot.UI.Dialog
 			category_option_menu.ShowAll ();
 		}
 
-		bool TagNameExistsInCategory (string name, Category category)
+		bool TagNameExistsInCategory (string name, Tag category)
 		{
 			foreach (Tag tag in category.Children) {
 				if (string.Compare (tag.Name, name, true) == 0)
 					return true;
 
-				if (tag is Category && TagNameExistsInCategory (name, tag as Category))
+				if (tag.IsCategory && TagNameExistsInCategory (name, tag))
 					return true;
 			}
 
@@ -129,17 +130,17 @@ namespace FSpot.UI.Dialog
 			Update ();
 		}
 
-		Category Category {
+		Tag Category {
 			get {
 				if (categories.Count == 0)
 					return tag_store.RootCategory;
-				return categories[category_option_menu.Active] as Category;
+				return categories[category_option_menu.Active];
 			}
 			set {
 				if ((value != null) && (categories.Count > 0)) {
 					//System.Console.WriteLine("TagCreateCommand.set_Category(" + value.Name + ")");
 					for (int i = 0; i < categories.Count; i++) {
-						var category = (Category)categories[i];
+						var category = categories[i];
 						// should there be an equals type method?
 						if (value.Id == category.Id) {
 							category_option_menu.Active = i;
@@ -154,10 +155,10 @@ namespace FSpot.UI.Dialog
 
 		public Tag Execute (TagType type, List<Tag> selection)
 		{
-			Category default_category = null;
+			Tag default_category = null;
 			if (selection.Count > 0) {
-				if (selection[0] is Category)
-					default_category = (Category)selection[0];
+				if (selection[0].IsCategory)
+					default_category = selection[0];
 				else
 					default_category = selection[0].Category;
 			} else {
@@ -183,12 +184,12 @@ namespace FSpot.UI.Dialog
 				bool autoicon = auto_icon_checkbutton.Active;
 				Preferences.Set (Preferences.TagIconAutomatic, autoicon);
 				try {
-					Category parent_category = Category;
+					var parent_category = Category;
 
 					if (type == TagType.Category)
-						new_tag = tag_store.CreateCategory (parent_category, tag_name_entry.Text, autoicon);
+						new_tag = tag_store.CreateTag (parent_category, tag_name_entry.Text, autoicon, true);
 					else
-						new_tag = tag_store.CreateTag (parent_category, tag_name_entry.Text, autoicon);
+						new_tag = tag_store.CreateTag (parent_category, tag_name_entry.Text, autoicon, false);
 				} catch (Exception ex) {
 					// FIXME error dialog.
 					Logger.Log.Error (ex, "");

@@ -12,10 +12,15 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using FSpot.Models;
+
 namespace FSpot.Core
 {
 	public class PhotoList : IBrowsableCollection
 	{
+		public event IBrowsableCollectionChangedHandler Changed;
+		public event IBrowsableCollectionItemsChangedHandler ItemsChanged;
+
 		protected List<IPhoto> list;
 
 		public PhotoList (IEnumerable<IPhoto> photos)
@@ -90,9 +95,6 @@ namespace FSpot.Core
 			ItemsChanged?.Invoke (this, args);
 		}
 
-		public IEnumerable<IPhoto> Items => list.AsEnumerable ();
-
-		public event IBrowsableCollectionChangedHandler Changed;
-		public event IBrowsableCollectionItemsChangedHandler ItemsChanged;
+		public List<IPhoto> Items => list;
 	}
 }

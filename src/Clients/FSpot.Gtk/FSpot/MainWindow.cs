@@ -19,12 +19,14 @@ using System.Linq;
 
 using FSpot.Core;
 using FSpot.Database;
-using FSpot.Database.Jobs;
 using FSpot.Extensions;
 using FSpot.FileSystem;
 using FSpot.Import;
+using FSpot.Jobs;
+using FSpot.Models;
 using FSpot.Query;
 using FSpot.Resources.Lang;
+using FSpot.Services;
 using FSpot.Settings;
 using FSpot.UI.Dialog;
 using FSpot.Utils;
@@ -191,13 +193,13 @@ namespace FSpot
 
 		const int PHOTO_IDX_NONE = -1;
 
-		public Db Database { get; set; }
+		public Db Database { get; }
 
 		public ModeType ViewMode { get; set; }
 
-		public MainSelection Selection { get; set; }
+		public MainSelection Selection { get; }
 
-		public InfoBox InfoBox { get; set; }
+		public InfoBox InfoBox { get; }
 
 		static TargetList iconSourceTargetList = new TargetList ();
 		static TargetList iconDestTargetList = new TargetList ();
@@ -360,9 +362,9 @@ namespace FSpot
 
 			try {
 				query = new PhotoQuery (Database.Photos);
-			} catch (Exception e) {
-				//FIXME assume any exception here is due to a corrupt db and handle that.
-				new RepairDbDialog (e, Database.Repair (), main_window);
+			} catch (Exception) {
+				//FIXME: DBConversion assume any exception here is due to a corrupt db and handle that.
+				//new RepairDbDialog (e, Database.Repair (), main_window);
 				query = new PhotoQuery (Database.Photos);
 			}
 
@@ -669,12 +671,12 @@ namespace FSpot
 			}
 		}
 
-		int[] SelectedIds ()
+		List<int> SelectedIds ()
 		{
-			int[] ids = Array.Empty<int> ();
+			var ids = new List<int> ();
 
 			if (fsview != null && fsview.View.Item.IsValid)
-				ids = new int[] { fsview.View.Item.Index };
+				ids = new List<int> { fsview.View.Item.Index };
 			else {
 				switch (ViewMode) {
 				case ModeType.IconView:
@@ -683,7 +685,7 @@ namespace FSpot
 				default:
 				case ModeType.PhotoView:
 					if (photo_view.Item.IsValid)
-						ids = new[] { photo_view.Item.Index };
+						ids = new List<int> { photo_view.Item.Index };
 					break;
 				}
 			}
@@ -762,18 +764,18 @@ namespace FSpot
 				}
 			}
 
-			public IEnumerable<IPhoto> Items {
+			public List<IPhoto> Items {
 				get {
 					switch (win.ViewMode) {
 					case ModeType.PhotoView:
 						if (win.photo_view.Item.IsValid)
-							return new IPhoto[] { win.photo_view.Item.Current };
+							return new List<IPhoto> { win.photo_view.Item.Current };
 
 						break;
 					case ModeType.IconView:
 						return win.icon_view.Selection.Items;
 					}
-					return Array.Empty<IPhoto> ();
+					return new List<IPhoto> ();
 				}
 			}
 
@@ -838,15 +840,14 @@ namespace FSpot
 		// Selection Interface
 		//
 
-		Photo[] SelectedPhotos (int[] selected_ids)
+		Photo[] SelectedPhotos (List<int> selected_ids)
 		{
-			var photo_list = new Photo[selected_ids.Length];
+			var photoList = new List<Photo> (selected_ids.Count);
 
-			int i = 0;
 			foreach (int num in selected_ids)
-				photo_list[i++] = query[num] as Photo;
+				photoList.Add (query[num] as Photo);
 
-			return photo_list;
+			return photoList.ToArray ();
 		}
 
 		public Photo[] SelectedPhotos ()
@@ -864,8 +865,8 @@ namespace FSpot
 		{
 			var command = new RotateCommand (parent);
 
-			int[] selected_ids = SelectedIds ();
-			if (command.Execute (direction, SelectedPhotos (selected_ids)))
+			var selected_ids = SelectedIds ();
+			if (command.Execute (direction, SelectedPhotos (selected_ids).ToArray ()))
 				query.MarkChanged (selected_ids, InvalidateData.Instance);
 		}
 
@@ -873,17 +874,18 @@ namespace FSpot
 		// Tag Selection Drag Handlers
 		//
 
-		public void AddTagExtended (int[] nums, List<Tag> tags)
+		public void AddTagExtended (List<int> nums, IEnumerable<Tag> tags)
 		{
 			foreach (int num in nums)
-				(query[num] as Photo).AddTag (tags);
+				TagService.Instance.Add (query[num] as Photo, tags);
+
 			query.Commit (nums);
 
 			foreach (Tag t in tags) {
-				if (t.Icon != null || t.IconWasCleared)
+				if (t.TagIcon.Icon != null || t.IconWasCleared)
 					continue;
 				// FIXME this needs a lot more work.
-				Pixbuf icon = null;
+				Pixbuf icon;
 				try {
 					var tmp = PhotoLoader.LoadAtMaxSize (query[nums[0]], 128, 128);
 					icon = PixbufUtils.TagIconFromPixbuf (tmp);
@@ -892,7 +894,7 @@ namespace FSpot
 					icon = null;
 				}
 
-				t.Icon = icon;
+				t.TagIcon.Icon = icon;
 				Database.Tags.Commit (t);
 			}
 		}
@@ -903,10 +905,11 @@ namespace FSpot
 			query_widget.SetFolders (uriList);
 		}
 
-		public void RemoveTags (int[] nums, List<Tag> tags)
+		public void RemoveTags (List<int> nums, IEnumerable<Tag> tags)
 		{
 			foreach (int num in nums)
-				(query[num] as Photo).RemoveTag (tags);
+				TagService.Instance.Remove (query[num] as Photo, tags);
+
 			query.Commit (nums);
 		}
 
@@ -1155,7 +1158,7 @@ namespace FSpot
 					if (icon_view.Selection.Contains (item))
 						AttachTags (tag_selection_widget.TagHighlight, SelectedIds ());
 					else
-						AttachTags (tag_selection_widget.TagHighlight, new int[] { item });
+						AttachTags (tag_selection_widget.TagHighlight, new List<int> { item });
 				}
 
 				Gtk.Drag.Finish (args.Context, true, false, args.Time);
@@ -1185,7 +1188,7 @@ namespace FSpot
 					if (icon_view.Selection.Contains (p_item)) //We don't want to reparent ourselves!
 						return;
 					var cmd = new PhotoVersionCommands.Reparent ();
-					Photo[] photos_to_reparent = SelectedPhotos ();
+					var photos_to_reparent = SelectedPhotos ();
 					// Give feedback to user that something happened, and leave the parent selected after reparenting
 					icon_view.Selection.Add (p_item);
 					cmd.Execute (Database.Photos, photos_to_reparent, query.Photos[p_item], GetToplevel (null));
@@ -1368,14 +1371,12 @@ namespace FSpot
 				photo_view.UpdateRating (r);
 
 			Photo p;
-			Database.BeginTransaction ();
-			int[] selected_photos = SelectedIds ();
+			var selected_photos = SelectedIds ();
 			foreach (int num in selected_photos) {
 				p = query[num] as Photo;
 				p.Rating = (uint)r;
 			}
 			query.Commit (selected_photos);
-			Database.CommitTransaction ();
 		}
 
 		//
@@ -1392,9 +1393,7 @@ namespace FSpot
 
 		public void HandleAttachTagMenuSelected (Tag t)
 		{
-			Database.BeginTransaction ();
 			AddTagExtended (SelectedIds (), new List<Tag> { t });
-			Database.CommitTransaction ();
 			query_widget.PhotoTagsChanged (new List<Tag> { t });
 		}
 
@@ -1411,9 +1410,7 @@ namespace FSpot
 
 		public void HandleRemoveTagMenuSelected (Tag t)
 		{
-			Database.BeginTransaction ();
 			RemoveTags (SelectedIds (), new List<Tag> { t });
-			Database.CommitTransaction ();
 			query_widget.PhotoTagsChanged (new List<Tag> { t });
 		}
 
@@ -1427,7 +1424,7 @@ namespace FSpot
 
 		void HandlePrintCommand (object sender, EventArgs e)
 		{
-			var print = new FSpot.PrintOperation (SelectedPhotos ());
+			var print = new PrintOperation (SelectedPhotos ());
 			print.Run (PrintOperationAction.PrintDialog, null);
 		}
 
@@ -1627,11 +1624,9 @@ namespace FSpot
 			AttachTags (tag_selection_widget.TagHighlight, SelectedIds ());
 		}
 
-		void AttachTags (List<Tag> tags, int[] ids)
+		void AttachTags (List<Tag> tags, List<int> ids)
 		{
-			Database.BeginTransaction ();
 			AddTagExtended (ids, tags);
-			Database.CommitTransaction ();
 			query_widget.PhotoTagsChanged (tags);
 		}
 
@@ -1639,9 +1634,7 @@ namespace FSpot
 		{
 			var tags = tag_selection_widget.TagHighlight;
 
-			Database.BeginTransaction ();
 			RemoveTags (SelectedIds (), tags);
-			Database.CommitTransaction ();
 			query_widget.PhotoTagsChanged (tags);
 		}
 
@@ -1694,10 +1687,7 @@ namespace FSpot
 				else
 					continue;
 
-				if (!(tag is Category))
-					continue;
-
-				(tag as Category).AddDescendentsTo (all_tags);
+				(tag)?.AddDescendentsTo (all_tags);
 			}
 
 			// debug..
@@ -1726,15 +1716,12 @@ namespace FSpot
 
 			// Add the surviving tag to all the photos with the other tags
 			var photos = ObsoletePhotoQueries.Query (removetags);
-			foreach (Photo p in photos) {
-				p.AddTag (survivor);
-			}
+			foreach (var p in photos)
+				TagService.Instance.Add (p, survivor);
 
 			// Remove the defunct tags, which removes them from the photos, commits
 			// the photos, and removes the tags from the TagStore
-			Database.BeginTransaction ();
 			Database.Photos.Remove (removetags);
-			Database.CommitTransaction ();
 
 			HandleEditSelectedTagWithTag (survivor);
 		}
@@ -2056,7 +2043,7 @@ namespace FSpot
 				return;
 			}
 
-			Photo[] photos = SelectedPhotos ();
+			var photos = SelectedPhotos ();
 			string header;
 			string msg;
 			string ok_caption;
@@ -2182,7 +2169,12 @@ namespace FSpot
 
 			//How many pictures are associated to these tags?
 			Db db = App.Instance.Database;
-			var count_query = new FSpot.PhotoQuery (db.Photos);
+			var count_query = new PhotoQuery (db.Photos);
+			//How many pictures are associated to these tags?
+			// FIXME, DBConversion Which one is it?
+			// var photoStore = new PhotoStore ();
+			// var count_query = new PhotoQuery (photoStore);
+
 			count_query.Terms = OrTerm.FromTags (tags);
 			int associated_photos = count_query.Count;
 
@@ -2234,7 +2226,7 @@ namespace FSpot
 		{
 			var command = new ThumbnailCommand (main_window);
 
-			int[] selected_ids = SelectedIds ();
+			var selected_ids = SelectedIds ();
 			if (command.Execute (SelectedPhotos (selected_ids)))
 				query.MarkChanged (selected_ids, InvalidateData.Instance);
 		}
@@ -2451,7 +2443,7 @@ namespace FSpot
 					// If the database has changed since this pref was saved, this could cause
 					// an exception to be thrown.
 					try {
-						IPhoto photo = group_selector.Adaptor.PhotoFromIndex (Preferences.Get<int> (key));
+						var photo = group_selector.Adaptor.PhotoFromIndex (Preferences.Get<int> (key));
 
 						if (photo != null)
 							JumpTo (query.IndexOf (photo));
@@ -2862,42 +2854,38 @@ namespace FSpot
 
 		void HandleTagEntryTagsAttached (object o, List<string> new_tags)
 		{
-			int[] selected_photos = SelectedIds ();
+			var selected_photos = SelectedIds ();
 			if (selected_photos == null || new_tags == null || new_tags.Count == 0)
 				return;
 
-			Category default_category = null;
+			Tag default_category = null;
 			var selection = tag_selection_widget.TagHighlight;
-			if (selection.Count > 0) {
-				if (selection[0] is Category)
-					default_category = (Category)selection[0];
+			if (selection.Any ()) {
+				if (selection.First ().IsCategory)
+					default_category = selection.First ();
 				else
-					default_category = selection[0].Category;
+					default_category = selection.First ().Category;
 			}
 			var tags = new List<Tag> (new_tags.Count);
 			int i = 0;
-			Database.BeginTransaction ();
 			foreach (string tagname in new_tags) {
-				Tag t = Database.Tags.GetTagByName (tagname);
+				var t = Database.Tags.GetTagByName (tagname);
 				if (t == null) {
-					t = Database.Tags.CreateCategory (default_category, tagname, true);
+					t = Database.Tags.CreateTag (default_category, tagname, true, true);
 					Database.Tags.Commit (t);
 				}
 				tags[i++] = t;
 			}
 			AddTagExtended (selected_photos, tags);
-			Database.CommitTransaction ();
 		}
 
 		void HandleTagEntryRemoveTags (object o, List<Tag> remove_tags)
 		{
-			int[] selected_photos = SelectedIds ();
+			var selected_photos = SelectedIds ();
 			if (selected_photos == null || remove_tags == null || remove_tags.Count == 0)
 				return;
 
-			Database.BeginTransaction ();
 			RemoveTags (selected_photos, remove_tags);
-			Database.CommitTransaction ();
 		}
 
 		void HideTagbar ()

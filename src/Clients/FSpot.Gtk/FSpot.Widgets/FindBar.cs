@@ -17,6 +17,7 @@ using System;
 using System.Text.RegularExpressions;
 
 using FSpot.Core;
+using FSpot.Models;
 using FSpot.Query;
 using FSpot.Resources.Lang;
 

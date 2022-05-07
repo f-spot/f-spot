@@ -12,9 +12,11 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
+using System.Linq;
 
 using FSpot.Core;
 using FSpot.Database;
+using FSpot.Models;
 using FSpot.Utils;
 
 using Gtk;
@@ -27,20 +29,11 @@ namespace FSpot.Widgets
 	{
 		protected FolderTreeModel (IntPtr raw) : base (raw) { }
 
-		readonly Db database;
-
-		const string query_string =
-			"SELECT base_uri, COUNT(*) AS count " +
-			"FROM photos " +
-			"GROUP BY base_uri " +
-			"ORDER BY base_uri ASC";
-
-
 		public FolderTreeModel ()
 			: base (typeof (string), typeof (int), typeof (SafeUri))
 		{
-			database = App.Instance.Database;
-			database.Photos.ItemsChanged += HandlePhotoItemsChanged;
+			// FIXME, DBConversion: subscribe to photo changes
+			//database.Photos.ItemsChanged += HandlePhotoItemsChanged;
 
 			UpdateFolderTree ();
 		}
@@ -82,10 +75,7 @@ namespace FSpot.Widgets
 			return GetUriByIter (iter);
 		}
 
-		int count_all;
-		public int Count {
-			get { return count_all; }
-		}
+		public int Count { get; private set; }
 
 		/*
 		 * UpdateFolderTree queries for directories in database and updates
@@ -95,7 +85,7 @@ namespace FSpot.Widgets
 		{
 			Clear ();
 
-			count_all = 0;
+			Count = 0;
 
 			/* points at start of each iteration to the leaf of the last inserted uri */
 			TreeIter iter = TreeIter.Zero;
@@ -105,16 +95,18 @@ namespace FSpot.Widgets
 
 			int last_count = 0;
 
-			Hyena.Data.Sqlite.IDataReader reader = database.Database.Query (query_string);
+			var results = new FSpotContext ().Photos
+				.GroupBy (p => p.BaseUri)
+				.Select (x => new { BaseUri = x.Key, Count = x.Count () })
+				.OrderBy (x => x.BaseUri);
 
-			while (reader.Read ()) {
-				var base_uri = new SafeUri (reader["base_uri"].ToString (), true);
-
-				int count = Convert.ToInt32 (reader["count"]);
+			foreach (var result in results) {
+				var baseUri = new SafeUri (result.BaseUri, true);
+				int count = result.Count;
 
 				// FIXME: this is a workaround hack to stop things from crashing - https://bugzilla.gnome.org/show_bug.cgi?id=622318
-				int index = base_uri.ToString ().IndexOf ("://");
-				var hack = base_uri.ToString ().Substring (index + 3);
+				int index = baseUri.ToString ().IndexOf ("://");
+				var hack = baseUri.ToString ().Substring (index + 3);
 				hack = hack.IndexOf ('/') == 0 ? hack : "/" + hack;
 				string[] segments = hack.TrimEnd ('/').Split ('/');
 
@@ -122,7 +114,7 @@ namespace FSpot.Widgets
 				 * can overwrite the first segment for our needs and put the
 				 * scheme here.
 				 */
-				segments[0] = base_uri.Scheme;
+				segments[0] = baseUri.Scheme;
 
 				int i = 0;
 
@@ -146,7 +138,7 @@ namespace FSpot.Widgets
 						last_count += (int)GetValue (parent_iter, 1);
 						SetValue (parent_iter, 1, last_count);
 					} else
-						count_all += (int)last_count;
+						Count += (int)last_count;
 				}
 
 				while (i < segments.Length) {
@@ -155,13 +147,13 @@ namespace FSpot.Widgets
 							AppendValues (parent_iter,
 										  Uri.UnescapeDataString (segments[i]),
 										  (segments.Length - 1 == i) ? count : 0,
-										  (GetValue (parent_iter, 2) as SafeUri).Append (string.Format ("{0}/", segments[i]))
+										  (GetValue (parent_iter, 2) as SafeUri).Append ($"{segments[i]}/")
 										  );
 					} else {
 						iter =
 							AppendValues (Uri.UnescapeDataString (segments[i]),
 										  (segments.Length - 1 == i) ? count : 0,
-										  new SafeUri (string.Format ("{0}:///", base_uri.Scheme), true));
+										  new SafeUri ($"{baseUri.Scheme}:///", true));
 					}
 
 					parent_iter = iter;
@@ -180,7 +172,7 @@ namespace FSpot.Widgets
 					last_count += (int)GetValue (iter, 1);
 					SetValue (iter, 1, last_count);
 				}
-				count_all += last_count;
+				Count += last_count;
 			}
 		}
 	}

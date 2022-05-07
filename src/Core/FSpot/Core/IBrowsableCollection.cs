@@ -13,6 +13,8 @@
 
 using System.Collections.Generic;
 
+using FSpot.Models;
+
 namespace FSpot.Core
 {
 	public delegate void IBrowsableCollectionChangedHandler (IBrowsableCollection collection);
@@ -20,7 +22,7 @@ namespace FSpot.Core
 
 	public interface IBrowsableCollection
 	{
-		IEnumerable<IPhoto> Items {
+		List<IPhoto> Items {
 			get;
 		}
 

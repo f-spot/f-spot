@@ -18,6 +18,7 @@ using System.Collections.Generic;
 
 using FSpot.Core;
 using FSpot.Extensions;
+using FSpot.Models;
 using FSpot.Resources.Lang;
 using FSpot.Settings;
 using FSpot.Thumbnail;

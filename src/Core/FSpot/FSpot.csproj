@@ -4,7 +4,6 @@
     <TargetFramework>$(FSpotTargetFramework)</TargetFramework>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <AssemblySearchPaths>$(AssemblySearchPaths);{GAC}</AssemblySearchPaths>
-    <ReleaseVersion>0.9.0</ReleaseVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -32,6 +31,12 @@
     <PackageReference Include="SerilogTimings" />
     <PackageReference Include="TagLibSharp" />
     <PackageReference Include="TinyIoC" />
+    <PackageReference Include="Dapper" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" />
+    <PackageReference Include="System.Data.SQLite.Core" />
   </ItemGroup>
 
   <ItemGroup>

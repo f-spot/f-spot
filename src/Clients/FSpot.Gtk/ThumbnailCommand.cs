@@ -11,7 +11,10 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using System.Collections.Generic;
+
 using FSpot.Core;
+using FSpot.Models;
 using FSpot.Resources.Lang;
 using FSpot.Thumbnail;
 using FSpot.UI.Dialog;
@@ -51,8 +54,7 @@ namespace FSpot
 				count++;
 			}
 
-			if (progress_dialog != null)
-				progress_dialog.Destroy ();
+			progress_dialog?.Destroy ();
 
 			return true;
 		}

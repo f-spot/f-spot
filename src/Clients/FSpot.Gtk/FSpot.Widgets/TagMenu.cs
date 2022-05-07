@@ -15,9 +15,8 @@
 
 using System;
 
-using FSpot;
-using FSpot.Core;
 using FSpot.Database;
+using FSpot.Models;
 using FSpot.Resources.Lang;
 using FSpot.Utils;
 
@@ -44,7 +43,7 @@ namespace FSpot.Widgets
 			{
 				Value = t;
 				if (t.Icon != null) {
-					Image = new Image (t.SizedIcon);
+					Image = new Image (t.TagIcon.SizedIcon);
 					// FIXME:  Where did this method go?
 					//this.SetAlwaysShowImage (true);
 				}
@@ -108,23 +107,23 @@ namespace FSpot.Widgets
 			}
 		}
 
-		public void PopulateFlat (Category cat, Menu parent)
+		public void PopulateFlat (Tag cat, Menu parent)
 		{
 			foreach (var t in cat.Children) {
 				var item = TagMenuItem.IndentedItem (t);
 				parent.Append (item);
 				item.ShowAll ();
 
-				var subcat = t as Category;
+				var subcat = t;
 				if (subcat != null && subcat.Children.Count != 0) {
-					PopulateFlat (t as Category, parent);
+					PopulateFlat (t, parent);
 				} else {
 					item.Activated += HandleActivate;
 				}
 			}
 		}
 
-		public void Populate (Category cat, Menu parent)
+		public void Populate (Tag cat, Menu parent)
 		{
 			var dead_pool = parent.Children;
 			for (var i = 0; i < dead_pool.Length; i++)
@@ -135,10 +134,10 @@ namespace FSpot.Widgets
 				parent.Append (item);
 				item.ShowAll ();
 
-				var subcat = t as Category;
+				var subcat = t;
 				if (subcat != null && subcat.Children.Count != 0) {
 					var submenu = new Menu ();
-					Populate (t as Category, submenu);
+					Populate (t, submenu);
 
 					var sep = new SeparatorMenuItem ();
 					submenu.Prepend (sep);

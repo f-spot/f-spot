@@ -18,7 +18,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using FSpot.Core;
+using FSpot.Models;
 using FSpot.Resources.Lang;
 
 using Gtk;

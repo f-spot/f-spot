@@ -51,7 +51,7 @@ namespace FSpot.Settings
 			{ ShowTimeline, true },
 			{ ShowFilmstrip, true },
 			{ ShowTags, true },
-			{ ExpandedTags, Array.Empty<int> () },
+			{ ExpandedTags, Array.Empty<string> () }, // FIXME, DBConversion should this be a list of guids?
 			{ ShowDates, true },
 			{ ShowRatings, true },
 			{ ViewerShawFilenames, true },

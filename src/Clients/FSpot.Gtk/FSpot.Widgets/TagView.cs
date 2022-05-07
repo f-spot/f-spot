@@ -14,8 +14,10 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
+using System.Collections.Generic;
 
 using FSpot.Core;
+using FSpot.Models;
 using FSpot.Settings;
 
 using Gdk;
@@ -28,7 +30,7 @@ namespace FSpot.Widgets
 	{
 		int thumbnail_size = 20;
 		IPhoto photo;
-		Tag[] tags;
+		List<Tag> tags;
 		static int TAG_ICON_VSPACING = 5;
 
 		bool HideTags {
@@ -52,7 +54,7 @@ namespace FSpot.Widgets
 				photo = value;
 
 				if (photo != null && photo.Tags != null && !HideTags) {
-					SetSizeRequest ((thumbnail_size + TAG_ICON_VSPACING) * photo.Tags.Length,
+					SetSizeRequest ((thumbnail_size + TAG_ICON_VSPACING) * photo.Tags.Count,
 							thumbnail_size);
 				} else {
 					SetSizeRequest (0, thumbnail_size);
@@ -62,7 +64,7 @@ namespace FSpot.Widgets
 			}
 		}
 
-		public Tag[] Tags {
+		public List<Tag> Tags {
 			get { return tags; }
 			set {
 				tags = value;
@@ -90,22 +92,21 @@ namespace FSpot.Widgets
 			if (tags == null)
 				return;
 
-			SetSizeRequest ((thumbnail_size + TAG_ICON_VSPACING) * tags.Length,
-					thumbnail_size);
+			SetSizeRequest ((thumbnail_size + TAG_ICON_VSPACING) * tags.Count, thumbnail_size);
 
 			int tag_x = Allocation.X;
 			int tag_y = Allocation.Y + (Allocation.Height - thumbnail_size) / 2;
 
-			string[] names = new string[tags.Length];
+			string[] names = new string[tags.Count];
 			int i = 0;
 			foreach (Tag t in tags) {
 				names[i++] = t.Name;
 
-				Pixbuf icon = t.Icon;
+				Pixbuf icon = t.TagIcon.Icon;
 
-				Category category = t.Category;
+				var category = t.Category;
 				while (icon == null && category != null) {
-					icon = category.Icon;
+					icon = category.TagIcon.Icon;
 					category = category.Category;
 				}
 

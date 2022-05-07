@@ -309,11 +309,7 @@ namespace FSpot.Widgets
 			var focus = Rectangle.Inflate (cellArea, -3, -3);
 
 			if (HasFocus && focussed) {
-				Style.PaintFocus (Style, BinWindow,
-						cellState, exposeArea,
-						this, null,
-						focus.X, focus.Y,
-						focus.Width, focus.Height);
+				Style.PaintFocus (Style, BinWindow, cellState, exposeArea, this, null, focus.X, focus.Y, focus.Width, focus.Height);
 			}
 
 			var region = Rectangle.Zero;

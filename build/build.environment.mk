@@ -21,7 +21,6 @@ DIR_BIN = $(top_builddir)/bin
 LINK_SYSTEM = -r:System
 LINK_SYSTEMDATA = -r:System.Data
 LINK_SYSTEM_WEB = -r:System.Web
-LINK_MONO_POSIX = -r:Mono.Posix
 LINK_MONO_CAIRO = -r:Mono.Cairo
 LINK_ICSHARP_ZIP_LIB = -r:ICSharpCode.SharpZipLib
 
@@ -34,7 +33,7 @@ LINK_GTK_BEANS = -r:$(DIR_GTKSHARPBEANS)/gtk-sharp-beans.dll
 LINK_GTK_BEANS_DEPS = $(REF_GTK_BEANS) $(LINK_GTK_BEANS)
 
 # Hyena
-REF_HYENA = $(LINK_SYSTEM) $(LINK_MONO_POSIX)
+REF_HYENA = $(LINK_SYSTEM)
 LINK_HYENA = -r:$(DIR_BIN)/Hyena.dll
 LINK_HYENA_DEPS = $(REF_HYENA) $(LINK_HYENA)
 

@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using FSpot.Core;
 using FSpot.FileSystem;
 using FSpot.Imaging;
+using FSpot.Models;
 using FSpot.Resources.Lang;
 using FSpot.Settings;
 using FSpot.Utils;
@@ -132,7 +133,7 @@ namespace FSpot.Widgets
 		}
 
 
-		IPhoto[] photos = Array.Empty<IPhoto> ();
+		IPhoto[] photos = new IPhoto[0];
 		public IPhoto[] Photos {
 			private get { return photos; }
 			set {
@@ -144,7 +145,7 @@ namespace FSpot.Widgets
 		public IPhoto Photo {
 			set {
 				if (value != null) {
-					Photos = new IPhoto[] { value };
+					Photos = new[] { value };
 				}
 			}
 		}
@@ -366,21 +367,21 @@ namespace FSpot.Widgets
 
 			AddLabelEntry ("date", Strings.Date, Strings.ShowDate,
 						   (photo, file) => {
-							   return $"{photo.Time.ToShortDateString ()}{Environment.NewLine}{photo.Time.ToShortTimeString ()}";
+							   return $"{photo.UtcTime.ToShortDateString ()}{Environment.NewLine}{photo.UtcTime.ToShortTimeString ()}";
 						   },
 						   photos => {
 							   IPhoto first = photos[photos.Length - 1];
 							   IPhoto last = photos[0];
-							   if (first.Time.Date == last.Time.Date) {
+							   if (first.UtcTime.Date == last.UtcTime.Date) {
 								   //Note for translators: {0} is a date, {1} and {2} are times.
 								   return string.Format (Strings.OnXBetweenYAndZ,
-														 first.Time.ToShortDateString (),
-														 first.Time.ToShortTimeString (),
-														 last.Time.ToShortTimeString ());
+														 first.UtcTime.ToShortDateString (),
+														 first.UtcTime.ToShortTimeString (),
+														 last.UtcTime.ToShortTimeString ());
 							   } else {
 								   return string.Format (Strings.BetweenXAndY,
-														 first.Time.ToShortDateString (),
-														 last.Time.ToShortDateString ());
+														 first.UtcTime.ToShortDateString (),
+														 last.UtcTime.ToShortDateString ());
 							   }
 						   });
 

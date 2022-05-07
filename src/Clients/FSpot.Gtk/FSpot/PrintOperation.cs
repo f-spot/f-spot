@@ -10,11 +10,13 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
+using System.Collections.Generic;
 
 using Cairo;
 
 using FSpot.Core;
 using FSpot.Imaging;
+using FSpot.Models;
 using FSpot.Resources.Lang;
 using FSpot.Settings;
 using FSpot.Utils;
@@ -146,8 +148,8 @@ namespace FSpot
 						var label = string.Format (print_label_format,
 										  comment,
 										  selected_photos[p_index].Name,
-										  selected_photos[p_index].Time.ToLocalTime ().ToShortDateString (),
-										  selected_photos[p_index].Time.ToLocalTime ().ToShortTimeString (),
+										  selected_photos[p_index].UtcTime.ToLocalTime ().ToShortDateString (),
+										  selected_photos[p_index].UtcTime.ToLocalTime ().ToShortTimeString (),
 										  tag_string,
 										  selected_photos[p_index].Description);
 

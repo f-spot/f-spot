@@ -40,6 +40,7 @@ using System.IO;
 using System.Linq;
 
 using FSpot.Core;
+using FSpot.Models;
 using FSpot.Resources.Lang;
 using FSpot.Settings;
 
@@ -619,7 +620,7 @@ namespace FSpot.Exporters.Folder
 
 		public void SaveTagIcon (Tag tag)
 		{
-			Gdk.Pixbuf icon = tag.Icon;
+			Gdk.Pixbuf icon = tag.TagIcon.Icon;
 			Gdk.Pixbuf scaled = null;
 			if (icon.Height != 52 || icon.Width != 52) {
 				scaled = icon.ScaleSimple (52, 52, Gdk.InterpType.Bilinear);
@@ -636,13 +637,13 @@ namespace FSpot.Exporters.Folder
 
 		public string TagName (Tag tag)
 		{
-			return "tag_" + ((DbItem)tag).Id + ".png";
+			return $"tag_{tag.Id}.png";
 		}
 
 		public void SaveHtmlIndex (int page_num)
 		{
-			System.IO.StreamWriter stream = System.IO.File.CreateText (SubdirPath (IndexPath (page_num)));
-			var writer = new System.Web.UI.HtmlTextWriter (stream);
+			using var stream = File.CreateText (SubdirPath (IndexPath (page_num)));
+			using var writer = new System.Web.UI.HtmlTextWriter (stream);
 
 			//writer.Indent = 4;
 

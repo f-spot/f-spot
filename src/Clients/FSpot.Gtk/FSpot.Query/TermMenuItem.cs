@@ -15,7 +15,7 @@
 using System;
 using System.Collections.Generic;
 
-using FSpot.Core;
+using FSpot.Models;
 using FSpot.Resources.Lang;
 using FSpot.Utils;
 

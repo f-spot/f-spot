@@ -16,9 +16,13 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 using FSpot.Database;
+using FSpot.Models;
 using FSpot.Resources.Lang;
+using FSpot.Services;
 using FSpot.UI.Dialog;
 
 using Gtk;
@@ -80,8 +84,7 @@ namespace FSpot
 		{
 			public bool Execute (PhotoStore store, Photo photo, Window parent_window)
 			{
-				var request = new VersionNameDialog (VersionNameDialog.RequestType.Rename,
-											 photo, parent_window);
+				using var request = new VersionNameDialog (VersionNameDialog.RequestType.Rename, photo, parent_window);
 
 				var response = request.Run (out var new_name);
 
@@ -113,7 +116,7 @@ namespace FSpot
 						var new_photo = store.CreateFrom (photo, true, photo.RollId);
 						new_photo.CopyAttributesFrom (photo);
 						photo.DeleteVersion (photo.DefaultVersionId, false, true);
-						store.Commit (new Photo[] { new_photo, photo });
+						store.Commit (new[] { new_photo, photo });
 						return true;
 					}
 				} catch (Exception e) {
@@ -142,15 +145,14 @@ namespace FSpot
 							highest_rating = Math.Max (photo.Rating, highest_rating);
 							if (string.IsNullOrEmpty (new_description))
 								new_description = photo.Description;
-							new_parent.AddTag (photo.Tags);
+							TagService.Instance.Add (new_parent, photo.Tags);
 
 							foreach (var version_id in photo.VersionIds) {
-								new_parent.DefaultVersionId = new_parent.CreateReparentedVersion (photo.GetVersion (version_id) as PhotoVersion);
+								new_parent.DefaultVersionId = new_parent.CreateReparentedVersion (photo.GetVersion (version_id));
 								store.Commit (new_parent);
 							}
 							var version_ids = photo.VersionIds;
-							Array.Reverse (version_ids);
-							foreach (var version_id in version_ids) {
+							foreach (var version_id in version_ids.Reverse ()) {
 								photo.DeleteVersion (version_id, true, true);
 							}
 							store.Remove (photo);

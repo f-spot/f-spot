@@ -15,6 +15,7 @@ using System;
 using System.Collections.Generic;
 
 using FSpot.Core;
+using FSpot.Models;
 
 namespace FSpot.Tools.MergeDb
 {
@@ -68,9 +69,9 @@ namespace FSpot.Tools.MergeDb
 			set {
 				rolls = value;
 				foreach (Roll r in rolls) {
-					uint numphotos = parent.FromDb.Rolls.PhotosInRoll (r);
+					var numphotos = parent.FromDb.Rolls.PhotosInRoll (r);
 					// Roll time is in UTC always
-					DateTime date = r.Time.ToLocalTime ();
+					DateTime date = r.UtcTime.ToLocalTime ();
 					rolls_combo.AppendText ($"{date:%dd %MMM, %HH:%mm} ({numphotos})");
 					rolls_combo.Active = 0;
 				}

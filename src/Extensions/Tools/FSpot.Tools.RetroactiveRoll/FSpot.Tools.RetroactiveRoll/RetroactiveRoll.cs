@@ -12,14 +12,11 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
+using System.Linq;
 
-using FSpot.Core;
 using FSpot.Database;
 using FSpot.Extensions;
-
-using Hyena.Data.Sqlite;
-
-
+using FSpot.Models;
 
 namespace FSpot.Tools.RetroactiveRoll
 {
@@ -27,27 +24,30 @@ namespace FSpot.Tools.RetroactiveRoll
 	{
 		public void Run (object o, EventArgs e)
 		{
-			Photo[] photos = App.Instance.Organizer.SelectedPhotos ();
+			var photos = App.Instance.Organizer.SelectedPhotos ();
 
 			if (photos.Length == 0) {
 				Logger.Log.Debug ("no photos selected, returning");
 				return;
 			}
 
-			DateTime import_time = photos[0].Time;
+			DateTime import_time = photos[0].UtcTime;
 			foreach (Photo p in photos)
-				if (p.Time > import_time)
-					import_time = p.Time;
+				if (p.UtcTime > import_time)
+					import_time = p.UtcTime;
 
 			RollStore rolls = App.Instance.Database.Rolls;
 			Roll roll = rolls.Create (import_time);
+
+			var context = new FSpotContext ();
 			foreach (Photo p in photos) {
-				var cmd = new HyenaSqliteCommand ("UPDATE photos SET roll_id = ? " +
-								   "WHERE id = ? ", roll.Id, p.Id);
-				App.Instance.Database.Database.Execute (cmd);
+				var photo = context.Photos.First (x => x.Id == p.Id);
+				photo.RollId = roll.Id;
+				context.Photos.Update (photo);
 				p.RollId = roll.Id;
 			}
-			Logger.Log.Debug ("RetroactiveRoll done: " + photos.Length + " photos in roll " + roll.Id);
+			context.SaveChanges ();
+			Logger.Log.Debug ($"RetroactiveRoll done: {photos.Length} photos in roll {roll.Id}");
 		}
 	}
 }

@@ -54,7 +54,7 @@ namespace FSpot.Widgets
 		{
 			Selection = new SelectionCollection (Collection);
 
-			Selection.DetailedChanged += delegate (IBrowsableCollection sender, int[] ids) {
+			Selection.DetailedChanged += delegate (IBrowsableCollection sender, List<int> ids) {
 				if (ids == null)
 					QueueDraw ();
 				else
@@ -219,7 +219,7 @@ namespace FSpot.Widgets
 		bool isDragDrop;
 
 		// initial selection
-		int[] start_select_selection;
+		List<int> start_select_selection;
 		// initial event used to detect drag&drop
 		EventButton start_select_event;
 		// timer using when scrolling selection
@@ -292,7 +292,7 @@ namespace FSpot.Widgets
 				if (selection_changed.Get (i))
 					changed.Add (i);
 			if (changed.Count != 0)
-				Selection.SignalChange (changed.ToArray ());
+				Selection.SignalChange (changed);
 		}
 
 		// if scroll is required, a timeout is fired

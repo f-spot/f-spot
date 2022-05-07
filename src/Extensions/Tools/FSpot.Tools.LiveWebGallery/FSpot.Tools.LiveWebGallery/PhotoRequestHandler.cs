@@ -9,9 +9,11 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using System;
 using System.IO;
 
 using FSpot.Filters;
+using FSpot.Models;
 using FSpot.Thumbnail;
 
 
@@ -29,7 +31,7 @@ namespace FSpot.Tools.LiveWebGallery
 
 		public override void Handle (string requested, Stream stream)
 		{
-			uint photo_id = uint.Parse (requested);
+			var photo_id = Guid.Parse (requested);
 			Photo photo = App.Instance.Database.Photos.Get (photo_id);
 
 			SendImage (photo, stream);
@@ -64,7 +66,7 @@ namespace FSpot.Tools.LiveWebGallery
 			Logger.Log.Debug ($"Sending {file.FullName}, {file.Length / 1024} kb");
 			SendHeadersAndStartContent (dest, "Content-Type: " + MimeTypeForExt (file.Extension),
 											 "Content-Length: " + file.Length,
-								 "Last-Modified: " + photo.Time.ToString ("r"));
+								 "Last-Modified: " + photo.UtcTime.ToString ("r"));
 			using (Stream src = file.OpenRead ()) {
 				byte[] buf = new byte[10240];
 				int read;
@@ -86,7 +88,7 @@ namespace FSpot.Tools.LiveWebGallery
 			byte[] buf = thumb.SaveToBuffer ("png");
 			SendHeadersAndStartContent (dest, "Content-Type: " + MimeTypeForExt (".png"),
 											 "Content-Length: " + buf.Length,
-								 "Last-Modified: " + photo.Time.ToString ("r"));
+								 "Last-Modified: " + photo.UtcTime.ToString ("r"));
 			dest.Write (buf, 0, buf.Length);
 		}
 	}
