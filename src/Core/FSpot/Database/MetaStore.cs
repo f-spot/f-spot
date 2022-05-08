@@ -1,7 +1,7 @@
 // Copyright (C) 2006-2010 Novell, Inc.
 // Copyright (C) 2006 Gabriel Burt
 // Copyright (C) 2009-2010 Ruben Vermeersch
-// Copyright (C) 2020 Stephen Shaw
+// Copyright (C) 2022 Stephen Shaw
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 

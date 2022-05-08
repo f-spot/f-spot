@@ -6,7 +6,7 @@
 //   Ruben Vermeersch <ruben@savanne.be>
 //   Stephane Delcroix <sdelcroix@novell.com>
 //
-// Copyright (C) 2013-2020 Stephen Shaw
+// Copyright (C) 2013-2022 Stephen Shaw
 // Copyright (C) 2008-2010 Novell, Inc.
 // Copyright (C) 2010 Ruben Vermeersch
 // Copyright (C) 2008 Stephane Delcroix

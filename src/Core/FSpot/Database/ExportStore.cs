@@ -2,7 +2,7 @@
 // Copyright (C) 2007-2008 Stephane Delcroix
 // Copyright (C) 2009-2010 Ruben Vermeersch
 // Copyright (C) 2007 Larry Ewing
-// Copyright (C) 2020 Stephen Shaw
+// Copyright (C) 2022 Stephen Shaw
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 

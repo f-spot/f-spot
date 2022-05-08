@@ -1,4 +1,4 @@
-// Copyright (C) 2019-2020 Stephen Shaw
+// Copyright (C) 2019-2022 Stephen Shaw
 // Copyright (C) 2004-2010 Novell, Inc.
 // Copyright (C) 2007-2008 Stephane Delcroix
 // Copyright (C) 2010 Ruben Vermeersch
