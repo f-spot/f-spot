@@ -189,7 +189,7 @@ namespace FSpot
 		static Pixbuf LoadFromAssembly (string resource)
 		{
 			try {
-				return new Pixbuf (System.Reflection.Assembly.GetEntryAssembly (), resource);
+				return Resources.ResourceLoader.GetIcon (resource);
 			} catch {
 				return null;
 			}
