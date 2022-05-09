@@ -1,6 +1,3 @@
-//
-// IPhoto.cs
-//
 // Author:
 //   Ruben Vermeersch <ruben@savanne.be>
 //
@@ -13,6 +10,7 @@ using System;
 using System.Collections.Generic;
 
 using FSpot.Interfaces;
+
 namespace FSpot.Core
 {
 	public interface IPhoto : IMedia

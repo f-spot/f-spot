@@ -97,7 +97,7 @@ namespace FSpot.Database
 			// Pass 2, set the parents.
 			foreach (var tag in tags) {
 				try {
-					tag.Category = Get (tag.CategoryId);
+					tag.Category = Get (tag.ParentId);
 				} catch (Exception ex) {
 					Console.WriteLine (ex.Message);
 				}
@@ -135,7 +135,7 @@ namespace FSpot.Database
 			var tag = new Tag (parentCategory) {
 				Name = name,
 				IsCategory = isCategory,
-				CategoryId = parentCategory.Id,
+				ParentId = parentCategory.Id,
 				Icon = autoicon ? null : string.Empty,
 				SortPriority = 0
 			};
@@ -170,7 +170,7 @@ namespace FSpot.Database
 			if (tag == null)
 				throw new ArgumentNullException (nameof (tag));
 
-			var children = Context.Tags.Where (x => x.CategoryId == tag.Id).ToList ();
+			var children = Context.Tags.Where (x => x.ParentId == tag.Id).ToList ();
 			children.Sort ();
 			tag.Children = children;
 		}

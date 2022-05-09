@@ -27,12 +27,7 @@ namespace FSpot.Models
 		public DateTime UtcTime { get; set; }
 		public string BaseUri { get; set; }
 		public string Filename { get; set; }
-
-		public string Description {
-			get;
-			set;
-		}
-
+		public string Description { get; set; }
 		public Guid RollId { get; set; }
 		[NotMapped]
 		public long OldRollId { get; set; }
@@ -41,7 +36,6 @@ namespace FSpot.Models
 		public Roll Roll { get; set; }
 		public List<Tag> Tags { get; }
 		public List<IPhotoVersion> Versions { get; }
-
 
 		[NotMapped]
 		public string Name {
@@ -124,6 +118,7 @@ namespace FSpot.Models
 		public Photo ()
 		{
 			Versions ??= new List<IPhotoVersion> ();
+			Tags ??= new List<Tag> ();
 			CreateImageFileFactory ();
 		}
 
@@ -457,7 +452,7 @@ namespace FSpot.Models
 			UtcTime = that.UtcTime;
 			Description = that.Description;
 			Rating = that.Rating;
-			TagService.Instance.Add (this, that.Tags);// AddTag (that.Tags);
+			TagService.Instance.Add (this, that.Tags);
 		}
 	}
 }

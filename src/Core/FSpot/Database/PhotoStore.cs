@@ -367,17 +367,17 @@ namespace FSpot.Database
 		{
 			using var op = Operation.Begin ($"[PhotoStore] Commit {items.Length} items");
 
-			//var changes = new PhotosChanges ();
-			//foreach (IDbItem item in items)
-			//	changes |= Update ((Photo)item);
+			var changes = new PhotosChanges ();
+			foreach (var item in items)
+				changes |= Update (item);
 
 			//EmitChanged (items, new PhotoEventArgs (items, changes));
 			op.Complete ();
 		}
 
-		//PhotoChanges Update (Photo photo)
-		//{
-		//	PhotoChanges changes = photo.Changes;
+		PhotoChanges Update (Photo photo)
+		{
+			PhotoChanges changes = photo.Changes;
 		//	// Update photo.
 		//	if (changes.DescriptionChanged || changes.DefaultVersionIdChanged || changes.TimeChanged || changes.UriChanged || changes.RatingChanged || changes.MD5SumChanged)
 		//		Database.Execute (
@@ -446,9 +446,9 @@ namespace FSpot.Database
 		//				version_id));
 		//		}
 
-		//	photo.Changes = null;
-		//	return changes;
-		//}
+			photo.Changes = null;
+			return changes;
+		}
 
 		public void CalculateMD5Sum (Photo photo)
 		{

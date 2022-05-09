@@ -28,13 +28,13 @@ namespace FSpot.Core
 		Pixbuf icon;
 		Pixbuf cached_icon;
 		IconSize cached_icon_size = IconSize.Hidden;
-
-		Tag tag;
+		readonly Tag tag;
 
 		public TagHelper (Tag tag)
 		{
 			this.tag = tag;
 		}
+
 		public Pixbuf Icon {
 			get {
 				if (icon == null && tag.ThemeIconName != null) {

@@ -17,12 +17,12 @@ namespace FSpot.Models
 		public long OldId { get; set; }
 		[NotMapped]
 		public long OldCategoryId { get; set; }
+
 		public string Name { get; set; }
-		public Guid CategoryId { get; set; }
+		public Guid ParentId { get; set; }
 		public bool IsCategory { get; set; }
 		public long SortPriority { get; set; }
 		public string Icon { get; set; }
-
 
 		[NotMapped]
 		List<Tag> children = new List<Tag> ();

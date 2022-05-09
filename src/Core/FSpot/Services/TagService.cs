@@ -6,8 +6,7 @@ using System;
 using System.Collections.Generic;
 
 using FSpot.Interfaces;
-
-using Tag = FSpot.Models.Tag;
+using FSpot.Models;
 
 namespace FSpot.Services
 {

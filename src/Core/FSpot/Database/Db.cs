@@ -6,13 +6,9 @@ using SerilogTimings;
 
 namespace FSpot.Database
 {
-	// The Database puts the stores together.
 	public class Db : IDb
 	{
-		//string Path { get; set; }
-
-		//readonly IImageFileFactory imageFileFactory;
-		//readonly IThumbnailService thumbnailService;
+		string Path { get; set; }
 
 		public FSpotContext Context { get; private set; }
 		public bool Empty { get; private set; }
@@ -23,10 +19,8 @@ namespace FSpot.Database
 		public PhotoStore Photos { get; private set; }
 		public MetaStore Meta { get; private set; }
 
-		public Db (/*IImageFileFactory imageFileFactory, IThumbnailService thumbnailService*/)
+		public Db ()
 		{
-			//this.imageFileFactory = imageFileFactory;
-			//this.thumbnailService = thumbnailService;
 		}
 
 		//public string Repair ()
@@ -43,7 +37,7 @@ namespace FSpot.Database
 			Rolls = new RollStore ();
 			Exports = new ExportStore ();
 			Jobs = new JobStore ();
-			Photos = new PhotoStore (/*imageFileFactory, thumbnailService, */);
+			Photos = new PhotoStore ();
 
 			op.Complete ();
 		}

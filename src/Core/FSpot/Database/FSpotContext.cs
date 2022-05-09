@@ -56,7 +56,7 @@ namespace FSpot.Database
 					SortPriority = -10,
 					Icon = "emblem-favorite",
 					IsCategory = true,
-					CategoryId = Constants.RootCategory.Id
+					ParentId = Constants.RootCategory.Id
 				},
 				new Tag (Constants.RootCategory) {
 					Id = Constants.HiddenTagGuid,
@@ -64,7 +64,7 @@ namespace FSpot.Database
 					SortPriority = -9,
 					Icon = "emblem-readonly",
 					IsCategory = false,
-					CategoryId = Constants.RootCategory.Id
+					ParentId = Constants.RootCategory.Id
 				},
 				new Tag (Constants.RootCategory) {
 					Id = Constants.PeopleTagGuid,
@@ -72,7 +72,7 @@ namespace FSpot.Database
 					SortPriority = -8,
 					Icon = "emblem-people",
 					IsCategory = true,
-					CategoryId = Constants.RootCategory.Id
+					ParentId = Constants.RootCategory.Id
 				},
 				new Tag (Constants.RootCategory) {
 					Id = Constants.PlacesTagGuid,
@@ -80,7 +80,7 @@ namespace FSpot.Database
 					SortPriority = -7,
 					Icon = "emblem-places",
 					IsCategory = true,
-					CategoryId = Constants.RootCategory.Id
+					ParentId = Constants.RootCategory.Id
 				},
 				new Tag (Constants.RootCategory) {
 					Id = Constants.EventsTagGuid,
@@ -88,7 +88,7 @@ namespace FSpot.Database
 					SortPriority = -6,
 					Icon = "emblem-event",
 					IsCategory = true,
-					CategoryId = Constants.RootCategory.Id
+					ParentId = Constants.RootCategory.Id
 				}
 			);
 

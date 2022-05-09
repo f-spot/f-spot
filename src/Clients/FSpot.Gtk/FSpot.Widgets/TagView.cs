@@ -53,7 +53,7 @@ namespace FSpot.Widgets
 			set {
 				photo = value;
 
-				if (photo != null && photo.Tags != null && !HideTags) {
+				if (photo?.Tags != null && !HideTags) {
 					SetSizeRequest ((thumbnail_size + TAG_ICON_VSPACING) * photo.Tags.Count,
 							thumbnail_size);
 				} else {
@@ -97,7 +97,7 @@ namespace FSpot.Widgets
 			int tag_x = Allocation.X;
 			int tag_y = Allocation.Y + (Allocation.Height - thumbnail_size) / 2;
 
-			string[] names = new string[tags.Count];
+			var names = new string[tags.Count];
 			int i = 0;
 			foreach (Tag t in tags) {
 				names[i++] = t.Name;
