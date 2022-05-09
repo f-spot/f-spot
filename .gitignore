@@ -42,6 +42,7 @@ data/desktop-files/f-spot.desktop
 data/desktop-files/f-spot.desktop.in
 src/Clients/FSpot.Gtk/f-spot
 tools/f-spot-screensaver.desktop
+*.db
 
 # Translation stuff
 po/.intltool-merge-cache
@@ -99,3 +100,4 @@ tests/TinyIoc.cs
 
 # VS Code extensions
 .ionide
+.vscode
