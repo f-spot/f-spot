@@ -11,6 +11,7 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -79,9 +80,16 @@ namespace FSpot.Platform
 		internal void Set<T> (string key, T value)
 		{
 			JToken token;
-			if (value is IEnumerable<T> && !(value is string))
-				token = new JArray (value);
-			else
+			// Check to see if value is some kind of collection
+			if (typeof (T).GetInterface (nameof (IEnumerable<T>)) != null) {
+				// If a collection then make sure it isn't null (default)
+				// Also, assume we aren't getting a dictionary.
+				// Currently we only have Lists and arrays
+				if (value == null)
+					token = new JArray (Array.Empty<T> ());
+				else
+					token = new JArray (value);
+			} else
 				token = new JValue (value);
 
 			if (Client[key] != null)
@@ -90,6 +98,7 @@ namespace FSpot.Platform
 				Client.Add (key, token);
 
 			// This isn't ideal, but guarantees settings will be saved for now
+
 			SaveSettings ();
 		}
 	}
