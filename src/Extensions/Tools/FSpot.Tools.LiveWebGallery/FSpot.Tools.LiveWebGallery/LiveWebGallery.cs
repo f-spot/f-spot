@@ -14,6 +14,7 @@ using System.Net;
 
 using FSpot.Core;
 using FSpot.Extensions;
+using FSpot.Models;
 
 using Gtk;
 

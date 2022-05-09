@@ -9,12 +9,15 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using System.Diagnostics;
+
 using FSpot.Core;
 
 using Hyena;
 
 namespace FSpot.Import
 {
+	[DebuggerDisplay ("Name = {name}")]
 	public class FileImportInfo : FilePhoto
 	{
 		public FileImportInfo (SafeUri original, string name) : base (original, name)

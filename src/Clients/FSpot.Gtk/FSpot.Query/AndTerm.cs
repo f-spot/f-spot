@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.Text;
 
 using FSpot.Core;
+using FSpot.Models;
 using FSpot.Resources.Lang;
 
 using Gtk;

@@ -1,10 +1,5 @@
-//
-// IDb.cs
-//
-// Author:
-//   Daniel Köb <daniel.koeb@peony.at>
-//
 // Copyright (C) 2016 Daniel Köb
+// Copyright (C) 2022 Stephen Shaw
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
@@ -12,8 +7,7 @@ namespace FSpot.Database
 {
 	public interface IDb
 	{
-		FSpotDatabaseConnection Database { get; }
-		bool Sync { set; }
+		FSpotContext Context { get; }
 
 		TagStore Tags { get; }
 		RollStore Rolls { get; }

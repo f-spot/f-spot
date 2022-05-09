@@ -18,7 +18,7 @@ namespace FSpot.Core
 	{
 		public static int CompareDate (this IPhoto photo1, IPhoto photo2)
 		{
-			return DateTime.Compare (photo1.Time, photo2.Time);
+			return DateTime.Compare (photo1.UtcTime, photo2.UtcTime);
 		}
 
 		public static int CompareName (this IPhoto photo1, IPhoto photo2)

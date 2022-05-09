@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Imaging;
+using FSpot.Models;
 using FSpot.Query;
 using FSpot.Resources.Lang;
 using FSpot.Settings;
@@ -54,7 +55,7 @@ namespace FSpot.UI.Dialog
 			TransientFor = parent_window;
 			Title = string.Format (Strings.EditIconForTagX, t.Name);
 
-			preview_pixbuf = t.Icon;
+			preview_pixbuf = t.TagIcon.Icon;
 			if (preview_pixbuf != null && ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screen_profile)) {
 				preview_image.Pixbuf = preview_pixbuf.Copy ();
 				ColorManagement.ApplyProfile (preview_image.Pixbuf, screen_profile);

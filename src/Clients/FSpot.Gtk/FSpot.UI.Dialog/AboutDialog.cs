@@ -1,6 +1,3 @@
-//
-// AboutDialog.cs
-//
 // Author:
 //   Ruben Vermeersch <ruben@savanne.be>
 //
@@ -29,12 +26,14 @@ namespace FSpot.UI.Dialog
 			};
 			Authors = new string[] {
 				"Primary Development",
-					"\tLawrence Ewing",
-					"\tStephane Delcroix",
-					"\tRuben Vermeersch",
 					"\tStephen Shaw",
 					"",
 					"Active Contributors to this release",
+					"",
+					"Contributors",
+					"\tLawrence Ewing",
+					"\tStephane Delcroix",
+					"\tRuben Vermeersch",
 					"\tAdemir Mendoza",
 					"\tAlex Launi",
 					"\tAnton Keks",
@@ -61,8 +60,6 @@ namespace FSpot.UI.Dialog
 					"\tTrevor Buchanan",
 					"\tVincent Pomey",
 					"\tWojciech Dzierżanowski",
-					"",
-					"Contributors",
 					"\tAaron Bockover",
 					"\tAlessandro Gervaso",
 					"\tAlex Graveley",
@@ -118,16 +115,15 @@ namespace FSpot.UI.Dialog
 			//Read license from COPYING
 			try {
 				var assembly = System.Reflection.Assembly.GetCallingAssembly ();
-				using (Stream s = assembly.GetManifestResourceStream ("COPYING")) {
-					var reader = new StreamReader (s);
-					License = reader.ReadToEnd ();
-					s.Close ();
-				}
+				using var s = assembly.GetManifestResourceStream ("COPYING");
+				var reader = new StreamReader (s);
+				License = reader.ReadToEnd ();
+				s.Close ();
 			} catch (Exception e) {
 				Logger.Log.Debug (e, "");
-				License = "GPL v2";
+				License = "MIT";
 			}
-			Logo = new Gdk.Pixbuf (System.Reflection.Assembly.GetEntryAssembly (), "f-spot-128.png");
+			Logo = Resources.ResourceLoader.GetIcon ("FSpot", 128);
 			ProgramName = "F-Spot";
 			TranslatorCredits = Strings.TranslatorCredits;
 			if (string.Compare (TranslatorCredits, "translator-credits") == 0)

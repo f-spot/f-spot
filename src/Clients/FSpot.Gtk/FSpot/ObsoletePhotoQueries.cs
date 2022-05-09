@@ -21,9 +21,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 using FSpot.Core;
+using FSpot.Models;
 using FSpot.Query;
 
 using Hyena;
@@ -118,7 +120,7 @@ namespace FSpot
 			}
 
 			query_builder.Append (" ORDER BY time");
-			return App.Instance.Database.Photos.Query (query_builder.ToString ());
+			return App.Instance.Database.Photos.Query (query_builder.ToString ()).ToArray ();
 		}
 	}
 }

@@ -13,6 +13,7 @@
 
 using System;
 
+using FSpot.Models;
 using FSpot.Resources.Lang;
 using FSpot.UI.Dialog;
 
@@ -78,7 +79,7 @@ namespace FSpot.Widgets
 										threshold_spin.Value,
 										progressDialog);
 
-				bool create_version = photo.DefaultVersion.IsProtected;
+				bool create_version = photo.DefaultVersion.Protected;
 
 				photo.SaveVersion (final, create_version);
 				photo.Changes.DataChanged = true;

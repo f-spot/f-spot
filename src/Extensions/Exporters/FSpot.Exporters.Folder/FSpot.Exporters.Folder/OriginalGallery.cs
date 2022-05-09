@@ -66,7 +66,7 @@ namespace FSpot.Exporters.Folder
 
 		protected override string ImageName (int photo_index)
 		{
-			return string.Format ("img-{0}.jpg", photo_index + 1);
+			return $"img-{photo_index + 1}.jpg";
 		}
 
 		void SetTime ()
@@ -75,7 +75,7 @@ namespace FSpot.Exporters.Folder
 				for (int i = 0; i < Collection.Count; i++)
 					CreateComments (Collection[i].DefaultVersion.Uri.LocalPath, i);
 
-				Directory.SetLastWriteTimeUtc (GalleryPath, Collection[0].Time);
+				Directory.SetLastWriteTimeUtc (GalleryPath, Collection[0].UtcTime);
 			} catch (Exception e) {
 				Logger.Log.Error (e, "");
 			}
@@ -155,7 +155,7 @@ namespace FSpot.Exporters.Folder
 		{
 			StreamWriter info = File.CreateText (Path.Combine (GalleryPath, "info.txt"));
 			info.WriteLine ("name|" + GalleryName);
-			info.WriteLine ("date|" + Collection[0].Time.Date.ToString ("dd.MM.yyyy"));
+			info.WriteLine ("date|" + Collection[0].UtcTime.Date.ToString ("dd.MM.yyyy"));
 			info.WriteLine ("description|" + Description);
 			info.Close ();
 		}

@@ -40,7 +40,7 @@ namespace FSpot
 		static void ShowVersion ()
 		{
 			Console.WriteLine ($"F-Spot {FSpotConfiguration.Version}");
-			Console.WriteLine ("http://f-spot.org");
+			Console.WriteLine ("http://f-spot.app");
 			Console.WriteLine ("\t(c)2003-2009, Novell Inc");
 			Console.WriteLine ("\t(c)2009 Stephane Delcroix");
 			Console.WriteLine ("Personal photo management for the GNOME Desktop");
@@ -323,7 +323,7 @@ namespace FSpot
 
 			var setupService = new SetupService (AddinManager.Registry);
 			foreach (AddinRepository repo in setupService.Repositories.GetRepositories ()) {
-				if (repo.Url.StartsWith ("http://addins.f-spot.org/", StringComparison.OrdinalIgnoreCase)) {
+				if (repo.Url.StartsWith ("http://addins.f-spot.app/", StringComparison.OrdinalIgnoreCase)) {
 					Logger.Log.Information ($"Unregistering {repo.Url}");
 					setupService.Repositories.RemoveRepository (repo.Url);
 				}

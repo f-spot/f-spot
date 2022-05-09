@@ -348,7 +348,7 @@ namespace FSpot.Exporters.Flickr
 		{
 			public int Compare (IPhoto left, IPhoto right)
 			{
-				return DateTime.Compare (left.Time, right.Time);
+				return DateTime.Compare (left.UtcTime, right.UtcTime);
 			}
 		}
 
@@ -380,8 +380,8 @@ namespace FSpot.Exporters.Flickr
 					ids.Add (id);
 
 					if (App.Instance.Database != null && photo is Photo)
-						App.Instance.Database.Exports.Create ((photo as Photo).Id,
-										  (photo as Photo).DefaultVersionId,
+						App.Instance.Database.Exports.Create ((photo as Models.Photo).Id,
+										  (photo as Models.Photo).DefaultVersionId,
 										  ExportStore.FlickrExportType,
 										  token.UserId + ":" + token.Username + ":" + current_service.Name + ":" + id);
 

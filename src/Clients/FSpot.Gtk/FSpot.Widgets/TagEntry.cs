@@ -19,6 +19,7 @@ using System.Text;
 
 using FSpot.Core;
 using FSpot.Database;
+using FSpot.Models;
 
 namespace FSpot.Widgets
 {
@@ -121,7 +122,7 @@ namespace FSpot.Widgets
 		}
 
 		int tag_completion_index = -1;
-		Tag[] tag_completions;
+		List<Tag> tag_completions;
 
 		public void ClearTagCompletions ()
 		{
@@ -178,9 +179,9 @@ namespace FSpot.Widgets
 
 			if (tag_completion_index != -1) {
 				if (forward)
-					tag_completion_index = (tag_completion_index + 1) % tag_completions.Length;
+					tag_completion_index = (tag_completion_index + 1) % tag_completions.Count;
 				else
-					tag_completion_index = (tag_completion_index + tag_completions.Length - 1) % tag_completions.Length;
+					tag_completion_index = (tag_completion_index + tag_completions.Count - 1) % tag_completions.Count;
 			} else {
 
 				tag_completion_typed_position = Position;
@@ -197,14 +198,14 @@ namespace FSpot.Widgets
 				if (tag_completion_typed_so_far == null || tag_completion_typed_so_far.Length == 0)
 					return;
 
-				tag_completions = tagStore.GetTagsByNameStart (tag_completion_typed_so_far);
+				tag_completions = tagStore.TagsStartWith (tag_completion_typed_so_far);
 				if (tag_completions == null)
 					return;
 
 				if (forward)
 					tag_completion_index = 0;
 				else
-					tag_completion_index = tag_completions.Length - 1;
+					tag_completion_index = tag_completions.Count - 1;
 			}
 
 			tag_ignore_changes = true;

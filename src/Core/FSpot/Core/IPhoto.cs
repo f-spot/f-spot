@@ -1,6 +1,3 @@
-//
-// IPhoto.cs
-//
 // Author:
 //   Ruben Vermeersch <ruben@savanne.be>
 //
@@ -9,23 +6,19 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using System;
 using System.Collections.Generic;
+
+using FSpot.Interfaces;
 
 namespace FSpot.Core
 {
-	public interface IPhoto
+	public interface IPhoto : IMedia
 	{
-		#region Metadata
-
 		/// <summary>
 		///    The time the item was created.
 		/// </summary>
-		System.DateTime Time { get; }
-
-		/// <summary>
-		///    The tags which are dedicated to this item.
-		/// </summary>
-		Tag[] Tags { get; }
+		DateTime UtcTime { get; }
 
 		/// <summary>
 		///    The description of the item.
@@ -38,14 +31,9 @@ namespace FSpot.Core
 		string Name { get; }
 
 		/// <summary>
-		///    The rating which is dedicted to this item. It should only range from 0 to 5.
+		///    The rating which is dedicated to this item. It should only range from 0 to 5.
 		/// </summary>
-		uint Rating { get; }
-
-		#endregion
-
-
-		#region Versioning
+		long Rating { get; }
 
 		/// <summary>
 		///    The default version of this item. Every item must have at least one version and this must not be
@@ -57,8 +45,6 @@ namespace FSpot.Core
 		///    All versions of this item. Since every item must have at least the default version, this enumeration
 		///    must not be empty.
 		/// </summary>
-		IEnumerable<IPhotoVersion> Versions { get; }
-
-		#endregion
+		List<IPhotoVersion> Versions { get; }
 	}
 }

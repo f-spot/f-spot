@@ -15,8 +15,8 @@
 
 using System.Collections.Generic;
 
-using FSpot.Core;
 using FSpot.Database;
+using FSpot.Models;
 
 using Gtk;
 

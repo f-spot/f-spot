@@ -8,12 +8,15 @@
 // Copyright (c) 2010 Jonathan Pobst
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
+
 using System;
 using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
 using Gdk;
+
+using Gtk;
 
 namespace FSpot.Resources
 {
@@ -30,21 +33,22 @@ namespace FSpot.Resources
 		}
 
 		[MethodImpl (MethodImplOptions.NoInlining)]
-		public static Pixbuf GetIcon (string name, int size)
+		public static Pixbuf GetIcon (string name, int size = -1)
 		{
 			Pixbuf result = null;
 			try {
 				// First see if it's a built-in gtk icon, like gtk-new.
 				// This will also load any icons added by Gtk.IconFactory.AddDefault() .
-				using (var icon_set = Gtk.Widget.DefaultStyle.LookupIconSet (name)) {
+				using (var icon_set = Widget.DefaultStyle.LookupIconSet (name)) {
 					if (icon_set != null) {
-						result = icon_set.RenderIcon (Gtk.Widget.DefaultStyle, Gtk.Widget.DefaultDirection,
-							Gtk.StateType.Normal, GetIconSize (size), null, null);
+						result = icon_set.RenderIcon (Widget.DefaultStyle, Widget.DefaultDirection, StateType.Normal, GetIconSize (size), null, null);
 					}
 				}
 				// Otherwise, get it from our embedded resources.
 				if (result == null) {
 					var image = $"{name}-{size}.png";
+					if (size == -1)
+						image = $"{name}.png";
 					if (HasResource (Assembly.GetExecutingAssembly (), image)) //Assembly.GetCallingAssembly() is wrong here!
 						result = Pixbuf.LoadFromResource (image);
 				}
@@ -64,8 +68,8 @@ namespace FSpot.Resources
 			if (result == null) {
 				try {
 					// Try to return gtk's default missing image
-					if (name != Gtk.Stock.MissingImage) {
-						result = GetIcon (Gtk.Stock.MissingImage, size);
+					if (name != Stock.MissingImage) {
+						result = GetIcon (Stock.MissingImage, size);
 					} else {
 						// If gtk is missing it's "missing image", we'll create one on the fly
 						result = CreateMissingImage (size);
@@ -107,9 +111,9 @@ namespace FSpot.Resources
 		static Gtk.IconSize GetIconSize (int size)
 		{
 			return size switch {
-				16 => Gtk.IconSize.SmallToolbar,
-				32 => Gtk.IconSize.Dnd,
-				_ => Gtk.IconSize.Invalid,
+				16 => IconSize.SmallToolbar,
+				32 => IconSize.Dnd,
+				_ => IconSize.Invalid,
 			};
 		}
 	}

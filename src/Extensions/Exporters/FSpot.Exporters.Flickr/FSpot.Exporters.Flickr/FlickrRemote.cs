@@ -185,14 +185,14 @@ namespace FSpot.Exporters.Flickr
 
 					if (ExportTags && photo.Tags != null) {
 						var taglist = new StringBuilder ();
-						Core.Tag[] t = photo.Tags;
-						Core.Tag tag_iter = null;
+						var t = photo.Tags;
+						Models.Tag tag_iter = null;
 
-						for (int i = 0; i < t.Length; i++) {
+						for (int i = 0; i < t.Count; i++) {
 							if (i > 0)
 								taglist.Append (',');
 
-							taglist.Append (string.Format ("\"{0}\"", t[i].Name));
+							taglist.Append ($"\"{t[i].Name}\"");
 
 							// Go through the tag parents
 							if (ExportTagHierarchy) {
@@ -205,7 +205,7 @@ namespace FSpot.Exporters.Flickr
 
 									// FIXME Look if the tag is already there!
 									taglist.Append (',');
-									taglist.Append (string.Format ("\"{0}\"", tag_iter.Name));
+									taglist.Append ($"\"{tag_iter.Name}\"");
 									tag_iter = tag_iter.Category;
 								}
 							}

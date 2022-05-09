@@ -1,13 +1,9 @@
-//
-// PhotoStoreTests.cs
-//
-// Author:
-//   Daniel Köb <daniel.koeb@peony.at>
-//
 // Copyright (C) 2016 Daniel Köb
+// Copyright (C) 2022 Stephen Shaw
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using System;
 using System.IO;
 using System.Linq;
 
@@ -52,13 +48,14 @@ namespace FSpot
 		[Test]
 		public void CreateFrom ()
 		{
-			var databaseConnection = new FSpotDatabaseConnection (database);
+			//var databaseConnection = new FSpotDatabaseConnection (database);
 			var dbMock = new Mock<IDb> ();
-			dbMock.Setup (m => m.Database).Returns (databaseConnection);
-			var store = new PhotoStore (null, null, dbMock.Object, true);
+			//dbMock.Setup (m => m.Database).Returns (databaseConnection);
+			var store = new PhotoStore ();//null, null, dbMock.Object, true);
 			var photoMock = PhotoMock.Create (uri, originalName);
 
-			var photo = store.CreateFrom (photoMock, true, 1);
+			var newRollId = Guid.NewGuid ();
+			var photo = store.CreateFrom (photoMock, true, newRollId);//1));
 
 			// default version name is ignored on import
 			Assert.AreEqual (Strings.Original, photo.DefaultVersion.Name);
@@ -66,19 +63,19 @@ namespace FSpot
 			Assert.AreEqual (1, photo.Versions.Count ());
 
 			Assert.AreEqual (1, store.TotalPhotos);
-			databaseConnection.Dispose ();
+			//databaseConnection.Dispose ();
 		}
 
 		[Test]
 		public void CreateFromWithVersionIgnored ()
 		{
-			var databaseConnection = new FSpotDatabaseConnection (database);
+			//var databaseConnection = new FSpotDatabaseConnection (database);
 			var dbMock = new Mock<IDb> ();
-			dbMock.Setup (m => m.Database).Returns (databaseConnection);
-			var store = new PhotoStore (null, null, dbMock.Object, true);
+			//dbMock.Setup (m => m.Database).Returns (databaseConnection);
+			var store = new PhotoStore ();// (null, null, dbMock.Object, true);
 			var photoMock = PhotoMock.CreateWithVersion (uri, originalName, modifiedUri, modifiedName);
 
-			var photo = store.CreateFrom (photoMock, true, 1);
+			var photo = store.CreateFrom (photoMock, true, Guid.NewGuid ());// 1);
 
 			Assert.AreEqual (Strings.Original, photo.DefaultVersion.Name);
 			Assert.AreEqual (uri, photo.DefaultVersion.BaseUri);
@@ -86,19 +83,19 @@ namespace FSpot
 			Assert.AreEqual (1, photo.Versions.Count ());
 
 			Assert.AreEqual (1, store.TotalPhotos);
-			databaseConnection.Dispose ();
+			//databaseConnection.Dispose ();
 		}
 
 		[Test]
 		public void CreateFromWithVersionAdded ()
 		{
-			var databaseConnection = new FSpotDatabaseConnection (database);
+			//var databaseConnection = new FSpotDatabaseConnection (database);
 			var dbMock = new Mock<IDb> ();
-			dbMock.Setup (m => m.Database).Returns (databaseConnection);
-			var store = new PhotoStore (null, null, dbMock.Object, true);
+			//dbMock.Setup (m => m.Database).Returns (databaseConnection);
+			var store = new PhotoStore ();//null, null, dbMock.Object, true);
 			var photoMock = PhotoMock.CreateWithVersion (uri, originalName, modifiedUri, modifiedName);
 
-			var photo = store.CreateFrom (photoMock, false, 1);
+			var photo = store.CreateFrom (photoMock, false, Guid.NewGuid ());// 1);
 
 			Assert.AreEqual (modifiedName, photo.DefaultVersion.Name);
 			Assert.AreEqual (modifiedUri, photo.DefaultVersion.BaseUri);
@@ -108,7 +105,7 @@ namespace FSpot
 			Assert.AreEqual (uri, photo.GetVersion (1).BaseUri);
 
 			Assert.AreEqual (1, store.TotalPhotos);
-			databaseConnection.Dispose ();
+			//databaseConnection.Dispose ();
 		}
 	}
 }

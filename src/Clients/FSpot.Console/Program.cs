@@ -1,3 +1,5 @@
+using System;
+
 using FSpot.Database;
 
 namespace FSpot.Console
@@ -12,8 +14,8 @@ namespace FSpot.Console
 			if (args.Length != 1)
 				System.Console.WriteLine ("Old database not specified");
 
-			//var dbUpgrader = new DatabaseUpgrader (args[0]);
-			//dbUpgrader.Migrate ();
+			var dbUpgrader = new DatabaseUpgrader (args[0]);
+			dbUpgrader.Migrate ();
 		}
 	}
 }

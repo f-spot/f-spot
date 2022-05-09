@@ -21,8 +21,10 @@ using FSpot.Core;
 using FSpot.Database;
 using FSpot.Extensions;
 using FSpot.Imaging;
+using FSpot.Models;
 using FSpot.Query;
 using FSpot.Resources.Lang;
+using FSpot.Services;
 using FSpot.Settings;
 using FSpot.Thumbnail;
 using FSpot.Utils;
@@ -31,7 +33,6 @@ using Gtk;
 
 using Hyena;
 using Hyena.Widgets;
-
 
 namespace FSpot.Tools.MergeDb
 {
@@ -42,12 +43,12 @@ namespace FSpot.Tools.MergeDb
 		List<Roll> new_rolls;
 		MergeDbDialog mdd;
 
-		Dictionary<uint, Tag> tag_map; //Key is a TagId from from_db, Value is a Tag from to_db
-		Dictionary<uint, uint> roll_map;
+		Dictionary<Guid, Tag> tag_map; //Key is a TagId from from_db, Value is a Tag from to_db
+		Dictionary<Guid, Guid> roll_map;
 
 		public void Run (object o, EventArgs e)
 		{
-			from_db = new Db (App.Instance.Container.Resolve<IImageFileFactory> (), App.Instance.Container.Resolve<IThumbnailService> (), new UpdaterUI ());
+			from_db = new Db ();// (App.Instance.Container.Resolve<IImageFileFactory> (), App.Instance.Container.Resolve<IThumbnailService> ());
 			to_db = App.Instance.Database;
 
 			//ShowDialog ();
@@ -67,7 +68,7 @@ namespace FSpot.Tools.MergeDb
 				string tempfilename = Path.GetTempFileName ();
 				File.Copy (mdd.FileChooser.Filename, tempfilename, true);
 
-				from_db.Init (tempfilename, true);
+				from_db.Init (tempfilename);
 
 				FillRolls ();
 				mdd.Rolls = new_rolls;
@@ -92,7 +93,7 @@ namespace FSpot.Tools.MergeDb
 			var to_rolls = to_db.Rolls.GetRolls ();
 			foreach (Roll tr in to_rolls)
 				foreach (Roll fr in from_rolls.ToArray ())
-					if (tr.Time == fr.Time)
+					if (tr.UtcTime == fr.UtcTime)
 						from_rolls.Remove (fr);
 			new_rolls = from_rolls;
 
@@ -112,16 +113,16 @@ namespace FSpot.Tools.MergeDb
 		public static void Merge (string path, Db to_db)
 		{
 			Logger.Log.Warning ($"Will merge db {path} into main f-spot db {Path.Combine (FSpotConfiguration.BaseDirectory, FSpotConfiguration.DatabaseName)}");
-			var from_db = new Db (App.Instance.Container.Resolve<IImageFileFactory> (), App.Instance.Container.Resolve<IThumbnailService> (), new UpdaterUI ());
-			from_db.Init (path, true);
+			var from_db = new Db ();// App.Instance.Container.Resolve<IImageFileFactory> (), App.Instance.Container.Resolve<IThumbnailService> ());
+			from_db.Init (path);
 			//MergeDb mdb = new MergeDb (from_db, to_db);
 
 		}
 
 		void DoMerge (PhotoQuery query, List<Roll> rolls, bool copy)
 		{
-			tag_map = new Dictionary<uint, Tag> ();
-			roll_map = new Dictionary<uint, uint> ();
+			tag_map = new Dictionary<Guid, Tag> ();
+			roll_map = new Dictionary<Guid, Guid> ();
 
 			Logger.Log.Warning ("Merging tags");
 			MergeTags (from_db.Tags.RootCategory);
@@ -141,19 +142,20 @@ namespace FSpot.Tools.MergeDb
 			if (tagToMerge != fromStore.RootCategory) { //Do not merge RootCategory
 				Tag dest_tag = to_store.GetTagByName (tagToMerge.Name);
 				if (dest_tag == null) {
-					Category parent = (tagToMerge.Category == fromStore.RootCategory) ?
+					var parent = (tagToMerge.Category == fromStore.RootCategory) ?
 							to_store.RootCategory :
-							to_store.GetTagByName (tagToMerge.Category.Name) as Category;
-					dest_tag = to_store.CreateTag (parent, tagToMerge.Name, false);
+							to_store.GetTagByName (tagToMerge.Category.Name);
+					// FIXME, DBConversion: Is CreateTag a category or plain tag???
+					dest_tag = to_store.CreateTag (parent, tagToMerge.Name, false, false);
 					//FIXME: copy the tag icon and commit
 				}
 				tag_map[tagToMerge.Id] = dest_tag;
 			}
 
-			if (!(tagToMerge is Category))
+			if (!(tagToMerge.IsCategory))
 				return;
 
-			foreach (var t in (tagToMerge as Category).Children)
+			foreach (var t in tagToMerge.Children)
 				MergeTags (t);
 		}
 
@@ -168,7 +170,7 @@ namespace FSpot.Tools.MergeDb
 			foreach (Roll roll in rolls) {
 				if (from_store.PhotosInRoll (roll) == 0)
 					continue;
-				roll_map[roll.Id] = to_store.Create (roll.Time).Id;
+				roll_map[roll.Id] = to_store.Create (roll.UtcTime).Id;
 			}
 		}
 
@@ -232,7 +234,7 @@ namespace FSpot.Tools.MergeDb
 			Photo newp;
 
 			if (copy)
-				destination = FindImportDestination (new SafeUri (photoPath), photo.Time).AbsolutePath;
+				destination = FindImportDestination (new SafeUri (photoPath), photo.UtcTime).AbsolutePath;
 			else
 				destination = photoPath;
 
@@ -241,8 +243,8 @@ namespace FSpot.Tools.MergeDb
 			photo.DefaultVersionId = 1;
 			photo.DefaultVersion.Uri = dest_uri;
 
-			if (photo.DefaultVersion.ImportMD5 == string.Empty) {
-				(photo.DefaultVersion as PhotoVersion).ImportMD5 = HashUtils.GenerateMD5 (photo.DefaultVersion.Uri);
+			if (photo.DefaultVersion.ImportMd5 == string.Empty) {
+				(photo.DefaultVersion as PhotoVersion).ImportMd5 = HashUtils.GenerateMD5 (photo.DefaultVersion.Uri);
 			}
 
 			if (photoPath != destination) {
@@ -268,20 +270,20 @@ namespace FSpot.Tools.MergeDb
 
 			foreach (Tag t in photo.Tags) {
 				Logger.Log.Warning ($"Tagging with {t.Name}");
-				newp.AddTag (tag_map[t.Id]);
+				TagService.Instance.Add (newp, tag_map[t.Id]);
 			}
 
 			foreach (uint version_id in photo.VersionIds) {
 				if (version_id != Photo.OriginalVersionId) {
-					var version = photo.GetVersion (version_id) as PhotoVersion;
-					uint newv = newp.AddVersion (version.BaseUri, version.Filename, version.Name, version.IsProtected);
+					var version = photo.GetVersion (version_id);
+					uint newv = newp.AddVersion (new SafeUri (version.BaseUri, true), version.Filename, version.Name, version.Protected);
 					if (version_id == photo.DefaultVersionId)
 						newp.DefaultVersionId = newv;
 				}
 			}
 
 			//FIXME Import extra info (time, description, rating)
-			newp.Time = photo.Time;
+			newp.UtcTime = photo.UtcTime;
 			newp.Description = photo.Description;
 			newp.Rating = photo.Rating;
 

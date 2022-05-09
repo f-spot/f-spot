@@ -10,6 +10,7 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using FSpot.Core;
+using FSpot.Models;
 using FSpot.Settings;
 
 using Gdk;
@@ -51,10 +52,10 @@ namespace FSpot.Widgets
 									 StateType cell_state,
 									 IPhoto photo)
 		{
-			Tag[] tags = photo.Tags;
+			var tags = photo.Tags;
 			Rectangle tag_bounds;
 
-			tag_bounds.X = cell_area.X + (cell_area.Width + tag_icon_hspacing - tags.Length * (tag_icon_size + tag_icon_hspacing)) / 2;
+			tag_bounds.X = cell_area.X + (cell_area.Width + tag_icon_hspacing - tags.Count * (tag_icon_size + tag_icon_hspacing)) / 2;
 			tag_bounds.Y = cell_area.Y;// + cell_area.Height - cell_border_width - tag_icon_size + tag_icon_vspacing;
 			tag_bounds.Width = tag_icon_size;
 			tag_bounds.Height = tag_icon_size;
@@ -65,11 +66,11 @@ namespace FSpot.Widgets
 				if (t == null)
 					continue;
 
-				Pixbuf icon = t.Icon;
+				Pixbuf icon = t.TagIcon.Icon;
 
 				Tag tag_iter = t.Category;
 				while (icon == null && tag_iter != App.Instance.Database.Tags.RootCategory && tag_iter != null) {
-					icon = tag_iter.Icon;
+					icon = tag_iter.TagIcon.Icon;
 					tag_iter = tag_iter.Category;
 				}
 

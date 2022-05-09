@@ -47,7 +47,7 @@ namespace FSpot.UI.Dialog
 			missing.Clear ();
 
 			for (i = 0; i < source.Count; i++) {
-				IPhoto item = source[i];
+				var item = source[i];
 				string path = item.DefaultVersion.Uri.LocalPath;
 				if (!File.Exists (path) || (new FileInfo (path).Length == 0))
 					missing.Add (item);

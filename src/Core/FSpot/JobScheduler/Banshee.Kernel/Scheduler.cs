@@ -41,6 +41,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 
+using FSpot.Jobs;
+
 namespace Banshee.Kernel
 {
 	public delegate void JobEventHandler (IJob job);
@@ -275,7 +277,7 @@ namespace Banshee.Kernel
 
 		static void Debug (string message, params object[] args)
 		{
-			if (Banshee.Base.Globals.Debugging) {
+			if (Globals.Debugging) {
 				Console.Error.WriteLine ($"** Scheduler: {message}", args);
 			}
 		}

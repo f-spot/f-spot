@@ -13,7 +13,7 @@ using System;
 using System.Net;
 using System.Reflection;
 
-using FSpot.Core;
+using FSpot.Models;
 using FSpot.Resources.Lang;
 using FSpot.Widgets;
 
@@ -60,10 +60,10 @@ namespace FSpot.Tools.LiveWebGallery
 			limit_spin.Sensitive = options.LimitMaxPhotos;
 			limit_spin.Value = options.MaxPhotos;
 			UpdateQueryRadios ();
-			HandleQueryTagSelected (options.QueryTag ?? App.Instance.Database.Tags.GetTagById (1));
+			HandleQueryTagSelected (options.QueryTag ?? App.Instance.Database.Tags.GetTagByName (Strings.Favorites));
 			allow_tagging_checkbox.Active = options.TaggingAllowed;
 			tag_edit_button.Sensitive = options.TaggingAllowed;
-			HandleEditableTagSelected (options.EditableTag ?? App.Instance.Database.Tags.GetTagById (3));
+			HandleEditableTagSelected (options.EditableTag ?? App.Instance.Database.Tags.GetTagByName (Strings.People));
 			HandleStatsChanged (null, null);
 
 			activate_button.Toggled += HandleActivated;
@@ -181,7 +181,7 @@ namespace FSpot.Tools.LiveWebGallery
 		{
 			options.QueryTag = tag;
 			tag_button.Label = tag.Name;
-			tag_button.Image = tag.Icon != null ? new Gtk.Image (tag.Icon.ScaleSimple (16, 16, Gdk.InterpType.Bilinear)) : null;
+			tag_button.Image = tag.Icon != null ? new Gtk.Image (tag.TagIcon.Icon.ScaleSimple (16, 16, Gdk.InterpType.Bilinear)) : null;
 		}
 
 		void HandleAllowTaggingToggled (object sender, EventArgs e)
@@ -199,7 +199,7 @@ namespace FSpot.Tools.LiveWebGallery
 		{
 			options.EditableTag = tag;
 			tag_edit_button.Label = tag.Name;
-			tag_edit_button.Image = tag.Icon != null ? new Gtk.Image (tag.Icon.ScaleSimple (16, 16, Gdk.InterpType.Bilinear)) : null;
+			tag_edit_button.Image = tag.Icon != null ? new Gtk.Image (tag.TagIcon.Icon.ScaleSimple (16, 16, Gdk.InterpType.Bilinear)) : null;
 		}
 	}
 }

@@ -14,6 +14,7 @@ using System.Collections.Generic;
 
 using FSpot.Core;
 using FSpot.Database;
+using FSpot.Models;
 using FSpot.Resources.Lang;
 using FSpot.Settings;
 
@@ -43,7 +44,7 @@ namespace FSpot.UI.Dialog
 			orig_name = last_valid_name = t.Name;
 			tag_name_entry.Text = t.Name;
 
-			icon_image.Pixbuf = t.Icon;
+			icon_image.Pixbuf = t.TagIcon.Icon;
 			if (icon_image.Pixbuf != null && FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screen_profile)) {
 				icon_image.Pixbuf = icon_image.Pixbuf.Copy ();
 				FSpot.ColorManagement.ApplyProfile (icon_image.Pixbuf, screen_profile);
@@ -62,8 +63,8 @@ namespace FSpot.UI.Dialog
 			get { return last_valid_name; }
 		}
 
-		public Category TagCategory {
-			get { return categories[category_option_menu.Active] as Category; }
+		public Tag TagCategory {
+			get { return categories[category_option_menu.Active]; }
 		}
 
 		List<Tag> categories;
@@ -86,25 +87,25 @@ namespace FSpot.UI.Dialog
 			}
 		}
 
-		bool TagNameExistsInCategory (string name, Category category)
+		bool TagNameExistsInCategory (string name, Tag category)
 		{
 			foreach (Tag tag in category.Children) {
 				if (string.Compare (tag.Name, name, true) == 0)
 					return true;
 
-				if (tag is Category && TagNameExistsInCategory (name, tag as Category))
+				if (TagNameExistsInCategory (name, tag))
 					return true;
 			}
 
 			return false;
 		}
 
-		void PopulateCategories (List<Tag> categories, Category parent)
+		void PopulateCategories (List<Tag> categories, Tag parent)
 		{
 			foreach (Tag tag in parent.Children) {
-				if (tag is Category && tag != this.tag && !this.tag.IsAncestorOf (tag)) {
+				if (tag != this.tag && !this.tag.IsAncestorOf (tag)) {
 					categories.Add (tag);
-					PopulateCategories (categories, tag as Category);
+					PopulateCategories (categories, tag);
 				}
 			}
 		}
@@ -119,16 +120,16 @@ namespace FSpot.UI.Dialog
 					tag.ThemeIconName = dialog.ThemeIconName;
 				} else {
 					tag.ThemeIconName = null;
-					tag.Icon = dialog.PreviewPixbuf;
+					tag.TagIcon.Icon = dialog.PreviewPixbuf;
 				}
 			else if (response == (ResponseType)1)
 				tag.Icon = null;
 
 			if (tag.Icon != null && FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screen_profile)) {
-				icon_image.Pixbuf = tag.Icon.Copy ();
+				icon_image.Pixbuf = tag.TagIcon.Icon.Copy ();
 				FSpot.ColorManagement.ApplyProfile (icon_image.Pixbuf, screen_profile);
 			} else
-				icon_image.Pixbuf = tag.Icon;
+				icon_image.Pixbuf = tag.TagIcon.Icon;
 
 			dialog.Destroy ();
 		}
@@ -138,7 +139,7 @@ namespace FSpot.UI.Dialog
 			int history = 0;
 			int i = 0;
 			categories = new List<Tag> ();
-			Category root = db.Tags.RootCategory;
+			var root = db.Tags.RootCategory;
 			categories.Add (root);
 			PopulateCategories (categories, root);
 
@@ -155,13 +156,13 @@ namespace FSpot.UI.Dialog
 			var store = new ListStore (new[] { typeof (Gdk.Pixbuf), typeof (string) });
 			category_option_menu.Model = store;
 
-			foreach (Category category in categories) {
+			foreach (var category in categories) {
 				if (t.Category == category)
 					history = i;
 
 				i++;
 				string categoryName = category.Name;
-				Gdk.Pixbuf categoryImage = category.Icon;
+				Gdk.Pixbuf categoryImage = category.TagIcon.Icon;
 
 				store.AppendValues (new object[] {
 					categoryImage,

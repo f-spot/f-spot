@@ -16,11 +16,11 @@ namespace FSpot.Editors
 	public class EditorNode : ExtensionNode
 	{
 		[NodeAttribute (Required = true)]
-		protected string editorType;
+		protected string EditorType;
 
 		public Editor GetEditor ()
 		{
-			return (Editor)Addin.CreateInstance (editorType);
+			return (Editor)Addin.CreateInstance (EditorType);
 		}
 	}
 }

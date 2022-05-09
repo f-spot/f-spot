@@ -43,8 +43,8 @@ namespace Mocks
 
 			var photo = new Mock<IPhoto> ();
 			photo.Setup (p => p.DefaultVersion).Returns (defaultVersion);
-			photo.Setup (p => p.Time).Returns (time);
-			photo.Setup (p => p.Versions).Returns (allVersions);
+			photo.Setup (p => p.UtcTime).Returns (time);
+			photo.Setup (p => p.Versions).Returns (allVersions.ToList ());
 			return photo.Object;
 		}
 	}

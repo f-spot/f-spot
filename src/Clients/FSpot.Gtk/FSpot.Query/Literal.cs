@@ -21,7 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-using FSpot.Core;
+using FSpot.Models;
 using FSpot.Resources.Lang;
 
 using Gdk;
@@ -33,7 +33,7 @@ namespace FSpot.Query
 	// TODO rename to TagLiteral?
 	public class Literal : AbstractLiteral
 	{
-		public static List<Literal> FocusedLiterals { get; set; } = new List<Literal>();
+		public static List<Literal> FocusedLiterals { get; set; } = new List<Literal> ();
 
 		public Literal (Tag tag) : this (null, tag, null)
 		{
@@ -164,10 +164,10 @@ namespace FSpot.Query
 					return normal_icon;
 
 				Pixbuf scaled = null;
-				scaled = Tag.Icon;
+				scaled = Tag.TagIcon.Icon;
 
-				for (Category category = Tag.Category; category != null && scaled == null; category = category.Category) {
-					scaled = category.Icon;
+				for (var category = Tag.Category; category != null && scaled == null; category = category.Category) {
+					scaled = category.TagIcon.Icon;
 				}
 
 				if (scaled == null)
@@ -236,8 +236,8 @@ namespace FSpot.Query
 		{
 			var ids = new StringBuilder (Tag.Id.ToString ());
 
-			var category = Tag as Category;
-			if (category != null) {
+			var category = Tag;
+			if (category.IsCategory) {
 				var tags = new List<Tag> ();
 				category.AddDescendentsTo (tags);
 

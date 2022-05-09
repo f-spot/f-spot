@@ -15,8 +15,9 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 
-using FSpot.Core;
+using FSpot.Models;
 using FSpot.Resources.Lang;
+using FSpot.Services;
 
 namespace FSpot.Tools.LiveWebGallery
 {
@@ -115,7 +116,7 @@ namespace FSpot.Tools.LiveWebGallery
 
 		public override void Handle (string requested, Stream stream)
 		{
-			Photo[] photos = GetChosenPhotos ();
+			var photos = GetChosenPhotos ();
 
 			var s = new StringBuilder (4096);
 			s.Append (template);
@@ -210,7 +211,7 @@ namespace FSpot.Tools.LiveWebGallery
 			int slash_pos = requested.IndexOf ('/');
 			requested = requested.Substring (slash_pos + 1);
 			slash_pos = requested.IndexOf ('/');
-			uint photo_id = uint.Parse (requested.Substring (0, slash_pos));
+			var photo_id = Guid.Parse (requested.Substring (0, slash_pos));
 			string tag_name = requested.Substring (slash_pos + 1);
 
 			if (!options.TaggingAllowed || !options.EditableTag.Name.Equals (tag_name)) {
@@ -220,9 +221,9 @@ namespace FSpot.Tools.LiveWebGallery
 
 			Photo photo = App.Instance.Database.Photos.Get (photo_id);
 			if (addTag)
-				photo.AddTag (options.EditableTag);
+				TagService.Instance.Add (photo, options.EditableTag);
 			else
-				photo.RemoveTag (options.EditableTag);
+				TagService.Instance.Remove (photo, options.EditableTag);
 			App.Instance.Database.Photos.Commit (photo);
 
 			SendHeadersAndStartContent (stream, "Content-type: text/plain;charset=UTF-8");

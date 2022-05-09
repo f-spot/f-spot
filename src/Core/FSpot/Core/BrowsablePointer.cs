@@ -13,6 +13,8 @@
 
 using System;
 
+using FSpot.Models;
+
 namespace FSpot.Core
 {
 	public class BrowsablePointer

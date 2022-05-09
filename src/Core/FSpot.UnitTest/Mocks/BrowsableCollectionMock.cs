@@ -7,7 +7,8 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System.Collections.Generic;
-using System.Linq;
+
+using FSpot.Models;
 
 namespace FSpot.Core.UnitTest.Mocks
 {
@@ -43,9 +44,9 @@ namespace FSpot.Core.UnitTest.Mocks
 		{
 			throw new System.NotImplementedException ();
 		}
-		public IEnumerable<IPhoto> Items {
+		public List<IPhoto> Items {
 			get {
-				return itemCollection.AsEnumerable ();
+				return itemCollection;
 			}
 		}
 		public IPhoto this[int index] {

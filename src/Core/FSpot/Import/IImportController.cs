@@ -14,6 +14,7 @@ using System.Threading;
 
 using FSpot.Core;
 using FSpot.Database;
+using FSpot.Models;
 
 using Hyena;
 

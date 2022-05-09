@@ -15,8 +15,8 @@
 using System;
 using System.Collections.Generic;
 
-using FSpot.Core;
 using FSpot.Database;
+using FSpot.Models;
 using FSpot.Query;
 using FSpot.Settings;
 
@@ -85,7 +85,7 @@ namespace FSpot.UI.Dialog
 		void UpdateNumberOfPhotos ()
 		{
 			var selected_rolls = SelectedRolls ();
-			uint sum = 0;
+			long sum = 0;
 			if (selected_rolls != null)
 				foreach (Roll roll in selected_rolls) {
 					sum += rollstore.PhotosInRoll (roll);
@@ -96,9 +96,9 @@ namespace FSpot.UI.Dialog
 		void PopulateCombos ()
 		{
 			for (var k = 0; k < rolls.Count; k++) {
-				uint numphotos = rollstore.PhotosInRoll (rolls[k]);
+				long numphotos = rollstore.PhotosInRoll (rolls[k]);
 				// Roll time is in UTC always
-				DateTime date = rolls[k].Time.ToLocalTime ();
+				DateTime date = rolls[k].UtcTime.ToLocalTime ();
 
 				string header = $"{date:%dd %MMM, %HH:%mm} ({numphotos})";
 

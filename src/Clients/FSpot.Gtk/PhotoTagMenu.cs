@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 
 using FSpot.Core;
+using FSpot.Models;
 using FSpot.Resources.Lang;
 using FSpot.Widgets;
 
@@ -34,7 +35,7 @@ namespace FSpot
 
 		public void Populate (IPhoto[] photos)
 		{
-			var dict = new Dictionary<uint, Tag> ();
+			var dict = new Dictionary<Guid, Tag> ();
 			if (photos != null) {
 				foreach (var p in photos) {
 					foreach (var t in p.Tags) {

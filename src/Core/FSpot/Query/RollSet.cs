@@ -11,7 +11,7 @@
 
 using System.Collections.Generic;
 
-using FSpot.Core;
+using FSpot.Models;
 
 namespace FSpot.Query
 {

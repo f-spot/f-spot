@@ -15,6 +15,8 @@ using System.Collections.Generic;
 using FSpot.Core;
 using FSpot.Extensions;
 using FSpot.Imaging;
+using FSpot.Models;
+using FSpot.Services;
 using FSpot.Utils;
 
 using Gtk;
@@ -38,7 +40,7 @@ namespace FSpot.Tools.RawPlusJpeg
 				"Do it now"))
 				return;
 
-			Photo[] photos = ObsoletePhotoQueries.Query (null, null, null, null);
+			var photos = ObsoletePhotoQueries.Query (null, null, null, null);
 			Array.Sort (photos, new IPhotoComparer.CompareDirectory ());
 
 			Photo raw = null;
@@ -109,8 +111,9 @@ namespace FSpot.Tools.RawPlusJpeg
 						Logger.Log.Error (e, "");
 					}
 				}
-				raw.AddTag (jpeg.Tags);
-				uint[] version_ids = jpeg.VersionIds;
+
+				TagService.Instance.Add (raw, jpeg.Tags);
+				var version_ids = jpeg.VersionIds;
 				Array.Reverse (version_ids);
 				foreach (uint version_id in version_ids) {
 					try {

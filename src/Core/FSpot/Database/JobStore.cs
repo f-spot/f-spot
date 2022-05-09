@@ -15,167 +15,126 @@ using System;
 
 using Banshee.Kernel;
 
-using FSpot.Database.Jobs;
 using FSpot.Jobs;
-
-using Hyena;
-using Hyena.Data.Sqlite;
+using FSpot.Models;
 
 using TinyIoC;
 
 namespace FSpot.Database
 {
-	public class JobStore : DbStore<Job>
+	public class JobStore : DbStore<Models.Job>
 	{
-		const string jobsTableName = "jobs";
 		readonly TinyIoCContainer container;
 
-		internal static void CreateTable (FSpotDatabaseConnection database)
+		public JobStore ()
 		{
-			if (database.TableExists (jobsTableName)) {
-				return;
-			}
+			// this should be replaced by a global registry as soon as
+			// extensions may provide job implementations
+			container = new TinyIoCContainer ();
+			container.Register<Jobs.Job, SyncMetadataJob> (SyncMetadataJob.JobName).AsMultiInstance ();
+			container.Register<Jobs.Job, CalculateHashJob> (CalculateHashJob.JobName).AsMultiInstance ();
 
-			database.Execute (
-				$"CREATE TABLE {jobsTableName} (\n" +
-				"  id           INTEGER PRIMARY KEY NOT NULL, \n" +
-				"  job_type     TEXT NOT NULL, \n" +
-				"  job_options  TEXT NOT NULL, \n" +
-				"  run_at       INTEGER, \n" +
-				"  job_priority INTEGER NOT NULL\n" +
-				")");
+			LoadAllItems ();
 		}
 
-		Job CreateJob (string type, uint id, string options, DateTime runAt, JobPriority priority)
+		Jobs.Job CreateJob (string type, string options, DateTime runAt, JobPriority priority)
 		{
-			using (var childContainer = container.GetChildContainer ()) {
-				childContainer.Register (new JobData {
-					Id = id,
-					JobOptions = options,
-					JobPriority = priority,
-					RunAt = runAt,
-					Persistent = true
-				});
-				childContainer.TryResolve<Job> (type, out var job);
-				if (job == null) {
-					Logger.Log.Error ($"Unknown job type {type} ignored.");
-				}
-				return job;
-			}
-		}
+			using var childContainer = container.GetChildContainer ();
 
-		Job LoadItem (IDataReader reader)
-		{
-			return CreateJob (
-					reader["job_type"].ToString (),
-					Convert.ToUInt32 (reader["id"]),
-					reader["job_options"].ToString (),
-					DateTimeUtil.ToDateTime (Convert.ToInt32 (reader["run_at"])),
-					(JobPriority)Convert.ToInt32 (reader["job_priority"]));
+			childContainer.Register (new JobData {
+				JobOptions = options,
+				JobPriority = priority,
+				RunAt = runAt,
+				Persistent = true
+			});
+
+			childContainer.TryResolve<Jobs.Job> (type, out var job);
+			if (job == null) {
+				Logger.Log.Error ($"Unknown job type {type} ignored.");
+			}
+			return job;
 		}
 
 		void LoadAllItems ()
 		{
-			var reader = Database.Query ($"SELECT id, job_type, job_options, run_at, job_priority FROM {jobsTableName}");
+			var jobs = Context.Jobs;
 
 			Scheduler.Suspend ();
-			while (reader.Read ()) {
-				Job job = LoadItem (reader);
-				if (job != null) {
-					AddToCache (job);
-					job.Finished += HandleRemoveJob;
-					Scheduler.Schedule (job, job.JobPriority);
-					job.Status = JobStatus.Scheduled;
-				}
-			}
-
-			reader.Dispose ();
+			//foreach (var job in jobs) {
+			//	job.Finished += HandleRemoveJob;
+			//	Scheduler.Schedule (job, job.JobPriority);
+			//	job.Status = JobStatus.Scheduled;
+			//}
 		}
 
-		public Job CreatePersistent (string job_type, string job_options)
+		public Models.Job CreatePersistent (string jobType, string jobOptions)
 		{
-			var run_at = DateTime.Now;
-			var job_priority = JobPriority.Lowest;
-			var id = Database.Execute (new HyenaSqliteCommand ($"INSERT INTO {jobsTableName} (job_type, job_options, run_at, job_priority) VALUES (?, ?, ?, ?)",
-				job_type,
-				job_options,
-				DateTimeUtil.FromDateTime (run_at),
-				Convert.ToInt32 (job_priority)));
+			var job = new Models.Job {
+				JobType = jobType,
+				JobOptions = jobOptions,
+				RunAt = DateTime.Now,
+				JobPriority = (long)JobPriority.Lowest
+			};
+			Context.Jobs.Add (job);
+			Context.SaveChanges ();
 
-			var job = CreateJob (job_type, (uint)id, job_options, run_at, job_priority);
+			//AddToCache (job);
+			//job.Finished += HandleRemoveJob;
+			//Scheduler.Schedule (job, job.JobPriority);
+			//job.Status = JobStatus.Scheduled;
 
-			AddToCache (job);
-			job.Finished += HandleRemoveJob;
-			Scheduler.Schedule (job, job.JobPriority);
-			job.Status = JobStatus.Scheduled;
 			EmitAdded (job);
 
 			return job;
 		}
 
-		public override void Commit (Job item)
+		public override void Commit (Models.Job item)
 		{
+			//if (item.Persistent)
+			//Database.Execute (new HyenaSqliteCommand (
+			//	$"UPDATE {jobsTableName} " +
+			//	"  SET job_type = ? " +
+			//	"  SET job_options = ? " +
+			//	"  SET run_at = ? " +
+			//	"  SET job_priority = ? " +
+			//	"  WHERE id = ?",
+			//	"Empty", //FIXME
+			//	item.JobOptions,
+			//	DateTimeUtil.FromDateTime (item.RunAt),
+			//	item.JobPriority,
+			//	item.Id));
+
+			if (item == null)
+				throw new NullReferenceException (nameof (item));
+
 			if (item.Persistent)
-				Database.Execute (new HyenaSqliteCommand (
-					$"UPDATE {jobsTableName} " +
-					"  SET job_type = ? " +
-					"  SET job_options = ? " +
-					"  SET run_at = ? " +
-					"  SET job_priority = ? " +
-					"  WHERE id = ?",
-					"Empty", //FIXME
-					item.JobOptions,
-					DateTimeUtil.FromDateTime (item.RunAt),
-					item.JobPriority,
-					item.Id));
+				Context.Jobs.Update (item);
 
 			EmitChanged (item);
 		}
 
-		public override Job Get (uint id)
+		public override Models.Job Get (Guid id)
 		{
 			// we never use this
-			return null;
+			return Context.Jobs.Find (id);
 		}
 
-		public override void Remove (Job item)
+		public override void Remove (Models.Job item)
 		{
-			RemoveFromCache (item);
+			if (item == null)
+				throw new NullReferenceException (nameof (item));
 
-			if (item.Persistent)
-				Database.Execute (new HyenaSqliteCommand ($"DELETE FROM {jobsTableName} WHERE id = ?", item.Id));
+			if (item.Persistent) {
+				Context.Remove (item);
+				Context.SaveChanges ();
+			}
 
 			EmitRemoved (item);
 		}
 
-		public void HandleRemoveJob (object o, EventArgs e)
+		void HandleRemoveJob (object o, EventArgs e)
 		{
-			Remove (o as Job);
-		}
-
-		public JobStore (IDb db, bool is_new) : base (db, true)
-		{
-			// this should be replaced by a global registry as soon as
-			// extensions may provide job implementations
-			container = new TinyIoCContainer ();
-			container.Register (Db);
-			container.Register<Job, SyncMetadataJob> (SyncMetadataJob.JobName).AsMultiInstance ();
-			container.Register<Job, CalculateHashJob> (CalculateHashJob.JobName).AsMultiInstance ();
-
-			// Register legacy names of jobs as previous versions of f-spot saved the full job type
-			// name in the database which prevents refactoring of type names and namespaces.
-			// This also prevents us from intoducing a new database schema version including an
-			// upgrade.
-			container.Register<Job, SyncMetadataJob> ("FSpot.Database.Jobs.SyncMetadataJob").AsMultiInstance ();
-			container.Register<Job, SyncMetadataJob> ("FSpot.Jobs.SyncMetadataJob").AsMultiInstance ();
-			container.Register<Job, CalculateHashJob> ("FSpot.Database.Jobs.CalculateHashJob").AsMultiInstance ();
-			container.Register<Job, CalculateHashJob> ("FSpot.Jobs.CalculateHashJob").AsMultiInstance ();
-
-			if (is_new || !Database.TableExists (jobsTableName)) {
-				CreateTable (Database);
-			} else {
-				LoadAllItems ();
-			}
+			Remove (o as Jobs.Job);
 		}
 	}
 }
