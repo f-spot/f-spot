@@ -1,0 +1,1903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F-Spot Photo Manager - Technical Documentation</title>
+    <meta name="description" content="Comprehensive technical documentation and revival roadmap for F-Spot Photo Manager">
+    <meta name="keywords" content="F-Spot, photo manager, GNOME, revival, modernization, architecture">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb',
+                        secondary: '#64748b',
+                        accent: '#f59e0b',
+                        success: '#10b981',
+                        warning: '#f59e0b',
+                        danger: '#ef4444',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="custom.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563eb'%3E%3Cpath d='M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z'/%3E%3C/svg%3E">
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <nav class="fixed left-0 top-0 h-screen w-64 bg-white shadow-lg border-r border-gray-200 overflow-y-auto">
+        <div class="p-6 border-b border-gray-200">
+            <h2 class="text-xl font-bold text-primary">F-Spot</h2>
+            <p class="text-sm text-gray-600">Technical Documentation</p>
+        </div>
+
+        <div class="p-4">
+            <input type="text" id="search-input" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Search documentation...">
+            <div id="search-results" class="mt-2"></div>
+        </div>
+
+        <ul class="px-4 pb-6">
+            <li><a href="#home" class="flex items-center px-3 py-2 bg-blue-100 text-primary rounded-lg transition-colors nav-link active">🏠 Overview</a></li>
+            <li><a href="#features" class="flex items-center px-3 py-2 text-gray-700 hover:bg-blue-50 hover:text-primary rounded-lg transition-colors nav-link">✨ Features</a></li>
+            <li><a href="#download" class="flex items-center px-3 py-2 text-gray-700 hover:bg-blue-50 hover:text-primary rounded-lg transition-colors nav-link">💾 Download</a></li>
+            <li><a href="#documentation" class="flex items-center px-3 py-2 text-gray-700 hover:bg-blue-50 hover:text-primary rounded-lg transition-colors nav-link">📚 Documentation</a></li>
+            <li><a href="#community" class="flex items-center px-3 py-2 text-gray-700 hover:bg-blue-50 hover:text-primary rounded-lg transition-colors nav-link">👥 Community</a></li>
+            <li><a href="#development" class="flex items-center px-3 py-2 text-gray-700 hover:bg-blue-50 hover:text-primary rounded-lg transition-colors nav-link">🛠️ Development</a></li>
+
+            <li class="mt-6 mb-2 px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">🔬 Technical Analysis</li>
+            <li><a href="#architecture" class="flex items-center px-3 py-2 text-gray-700 hover:bg-blue-50 hover:text-primary rounded-lg transition-colors nav-link">🏗️ System Architecture</a></li>
+            <li><a href="#domain" class="flex items-center px-3 py-2 text-gray-700 hover:bg-blue-50 hover:text-primary rounded-lg transition-colors nav-link">🎯 Domain Model</a></li>
+            <li><a href="#database" class="flex items-center px-3 py-2 text-gray-700 hover:bg-blue-50 hover:text-primary rounded-lg transition-colors nav-link">🗄️ Database Layer</a></li>
+            <li><a href="#services" class="flex items-center px-3 py-2 text-gray-700 hover:bg-blue-50 hover:text-primary rounded-lg transition-colors nav-link">⚙️ Service Layer</a></li>
+            <li><a href="#ui" class="flex items-center px-3 py-2 text-gray-700 hover:bg-blue-50 hover:text-primary rounded-lg transition-colors nav-link">🎨 UI Components</a></li>
+            <li><a href="#plugins" class="flex items-center px-3 py-2 text-gray-700 hover:bg-blue-50 hover:text-primary rounded-lg transition-colors nav-link">🔌 Plugin System</a></li>
+            <li><a href="#dataflow" class="flex items-center px-3 py-2 text-gray-700 hover:bg-blue-50 hover:text-primary rounded-lg transition-colors nav-link">🔄 Data Flow</a></li>
+            <li><a href="#dependencies" class="flex items-center px-3 py-2 text-gray-700 hover:bg-blue-50 hover:text-primary rounded-lg transition-colors nav-link">📦 Dependencies</a></li>
+
+            <li class="mt-6 mb-2 px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">⚡ Performance</li>
+            <li><a href="#performance" class="flex items-center px-3 py-2 text-gray-700 hover:bg-blue-50 hover:text-primary rounded-lg transition-colors nav-link">⚡ Performance Analysis</a></li>
+
+            <li class="mt-6 mb-2 px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">🚀 Revival Strategy</li>
+            <li><a href="#roadmap" class="flex items-center px-3 py-2 text-gray-700 hover:bg-blue-50 hover:text-primary rounded-lg transition-colors nav-link">🗺️ Revival Roadmap</a></li>
+            <li><a href="#status" class="flex items-center px-3 py-2 text-gray-700 hover:bg-blue-50 hover:text-primary rounded-lg transition-colors nav-link">📊 Current Status</a></li>
+        </ul>
+
+        <div class="p-4 border-t border-gray-200">
+            <div class="text-xs text-gray-500">
+                <small>💡 Use Alt + ↑/↓ to navigate</small>
+            </div>
+        </div>
+    </nav>
+
+    <main class="ml-64 min-h-screen">
+        <section id="home" class="p-8 section active">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl font-bold text-gray-900 mb-4">F-Spot Photo Manager</h1>
+                    <p class="text-xl text-gray-600 mb-6">Personal photo management for the GNOME desktop - Revival Documentation</p>
+                    <div class="bg-red-50 border border-red-200 rounded-lg p-4 max-w-2xl mx-auto">
+                        <div class="flex items-center justify-center mb-2">
+                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">Revival in Progress</span>
+                        </div>
+                        <p class="text-red-700">This project is undergoing active modernization. See our <a href="#roadmap" class="text-red-800 underline">Revival Roadmap</a> for details.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                    <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3">🖼️ Photo Management</h3>
+                        <p class="text-gray-600 mb-4">Organize, tag, and rate your photo collection with powerful search and filtering capabilities</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm">SQLite Database</span>
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm">Hierarchical Tags</span>
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm">5-Star Rating</span>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3">🎨 Built-in Editing</h3>
+                        <p class="text-gray-600 mb-4">Crop, rotate, adjust colors, and apply effects with non-destructive versioning</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">LCMS Color Management</span>
+                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">Version Control</span>
+                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">RAW Support</span>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3">🔌 Plugin System</h3>
+                        <p class="text-gray-600 mb-4">Extensible architecture with editors, exporters, and tools for enhanced functionality</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-sm">Mono.Addins</span>
+                            <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-sm">25+ Extensions</span>
+                            <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-sm">Modular Design</span>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3">🌐 Web Export</h3>
+                        <p class="text-gray-600 mb-4">Share to Flickr, Facebook, PicasaWeb, SmugMug, and other online services</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded text-sm">REST APIs</span>
+                            <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded text-sm">OAuth Integration</span>
+                            <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded text-sm">Batch Upload</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-12">
+                    <div class="bg-white rounded-lg shadow-md p-4 text-center border border-gray-200">
+                        <strong class="text-sm text-gray-600">Architecture Quality</strong>
+                        <div class="text-2xl font-bold text-green-600 my-2">7.5/10</div>
+                        <span class="text-xs text-gray-500">Excellent separation of concerns</span>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-4 text-center border border-gray-200">
+                        <strong class="text-sm text-gray-600">Codebase Size</strong>
+                        <div class="text-2xl font-bold text-blue-600 my-2">~50K LoC</div>
+                        <span class="text-xs text-gray-500">Well-structured C# application</span>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-4 text-center border border-gray-200">
+                        <strong class="text-sm text-gray-600">Plugin Ecosystem</strong>
+                        <div class="text-2xl font-bold text-purple-600 my-2">25+ Plugins</div>
+                        <span class="text-xs text-gray-500">Editors, exporters, and tools</span>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-4 text-center border border-gray-200">
+                        <strong class="text-sm text-gray-600">Revival Status</strong>
+                        <div class="text-2xl font-bold text-yellow-600 my-2">Phase 1</div>
+                        <span class="text-xs text-gray-500">Stabilization in progress</span>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-4 text-center border border-gray-200">
+                        <strong class="text-sm text-gray-600">Build Status</strong>
+                        <div class="text-2xl font-bold text-red-600 my-2">Failed</div>
+                        <span class="text-xs text-gray-500">Cannot build on modern systems</span>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-4 text-center border border-gray-200">
+                        <strong class="text-sm text-gray-600">Test Coverage</strong>
+                        <div class="text-2xl font-bold text-red-600 my-2">~5%</div>
+                        <span class="text-xs text-gray-500">Needs comprehensive testing</span>
+                    </div>
+                </div>
+
+                <div class="mb-12">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">🚀 Quick Navigation</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <a href="#architecture" class="block bg-white rounded-lg shadow-md p-6 border border-gray-200 hover:shadow-lg transition-shadow hover:border-blue-300">
+                            <strong class="text-lg text-gray-900">System Architecture</strong>
+                            <span class="block text-gray-600 mt-1">Layered design and component analysis</span>
+                        </a>
+                        <a href="#roadmap" class="block bg-white rounded-lg shadow-md p-6 border border-gray-200 hover:shadow-lg transition-shadow hover:border-blue-300">
+                            <strong class="text-lg text-gray-900">Revival Roadmap</strong>
+                            <span class="block text-gray-600 mt-1">15-21 month modernization plan</span>
+                        </a>
+                        <a href="#database" class="block bg-white rounded-lg shadow-md p-6 border border-gray-200 hover:shadow-lg transition-shadow hover:border-blue-300">
+                            <strong class="text-lg text-gray-900">Database Analysis</strong>
+                            <span class="block text-gray-600 mt-1">SQLite schema and performance review</span>
+                        </a>
+                        <a href="#plugins" class="block bg-white rounded-lg shadow-md p-6 border border-gray-200 hover:shadow-lg transition-shadow hover:border-blue-300">
+                            <strong class="text-lg text-gray-900">Plugin System</strong>
+                            <span class="block text-gray-600 mt-1">Mono.Addins extensibility framework</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">📊 Project Dashboard</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div id="architecture-quality-chart" class="bg-gray-50 rounded-lg p-4 min-h-[200px]"></div>
+                        <div id="dependency-chart" class="bg-gray-50 rounded-lg p-4 min-h-[200px]"></div>
+                        <div id="revival-progress-chart" class="bg-gray-50 rounded-lg p-4 min-h-[200px]"></div>
+                        <div id="codebase-metrics-chart" class="bg-gray-50 rounded-lg p-4 min-h-[200px]"></div>
+                    </div>
+                    <div id="issue-distribution-chart" class="bg-gray-50 rounded-lg p-4 min-h-[300px]"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="p-8 section hidden">
+            <div class="max-w-6xl mx-auto">
+                <h1 class="text-4xl font-bold text-gray-900 mb-8">Features</h1>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Photo Organization</h3>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start"><span class="text-green-500 mr-2">•</span> Import photos from cameras and storage devices</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2">•</span> Automatic organization by date and metadata</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2">•</span> Hierarchical tag system with drag-and-drop</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2">•</span> 5-star rating system</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2">•</span> Advanced search and filtering</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Image Editing</h3>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start"><span class="text-blue-500 mr-2">•</span> Non-destructive editing with versioning</li>
+                            <li class="flex items-start"><span class="text-blue-500 mr-2">•</span> Crop, rotate, and straighten</li>
+                            <li class="flex items-start"><span class="text-blue-500 mr-2">•</span> Color adjustments and auto-enhance</li>
+                            <li class="flex items-start"><span class="text-blue-500 mr-2">•</span> Red-eye removal</li>
+                            <li class="flex items-start"><span class="text-blue-500 mr-2">•</span> Black & white and sepia effects</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Format Support</h3>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start"><span class="text-purple-500 mr-2">•</span> JPEG, PNG, TIFF, BMP</li>
+                            <li class="flex items-start"><span class="text-purple-500 mr-2">•</span> RAW formats (Canon, Nikon, Sony, etc.)</li>
+                            <li class="flex items-start"><span class="text-purple-500 mr-2">•</span> RAW+JPEG pairing</li>
+                            <li class="flex items-start"><span class="text-purple-500 mr-2">•</span> EXIF/XMP metadata support</li>
+                            <li class="flex items-start"><span class="text-purple-500 mr-2">•</span> Color profile management</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Export & Sharing</h3>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start"><span class="text-orange-500 mr-2">•</span> Web galleries with HTML/CSS</li>
+                            <li class="flex items-start"><span class="text-orange-500 mr-2">•</span> CD/DVD burning</li>
+                            <li class="flex items-start"><span class="text-orange-500 mr-2">•</span> Flickr, Facebook, PicasaWeb</li>
+                            <li class="flex items-start"><span class="text-orange-500 mr-2">•</span> SmugMug and Gallery integration</li>
+                            <li class="flex items-start"><span class="text-orange-500 mr-2">•</span> Batch export and resizing</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="download" class="p-8 section hidden">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="text-4xl font-bold text-gray-900 mb-8">Download & Installation</h1>
+                <div class="bg-red-50 border-l-4 border-red-400 p-6 mb-8">
+                    <h3 class="text-lg font-semibold text-red-800 mb-2">⚠️ Current Status</h3>
+                    <p class="text-red-700 mb-2">F-Spot is currently <strong>non-functional</strong> and undergoing active revival. The application does not build or run on modern systems.</p>
+                    <p class="text-red-700">We are working to restore functionality through our <a href="#roadmap" class="underline">Revival Roadmap</a>. Check back for updates or <a href="#community" class="underline">join our community</a> to help with development.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">System Requirements</h3>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start"><span class="text-gray-400 mr-2">•</span> GNOME 2.4+ (legacy requirement)</li>
+                            <li class="flex items-start"><span class="text-gray-400 mr-2">•</span> Mono 6.0+ or .NET 6+</li>
+                            <li class="flex items-start"><span class="text-gray-400 mr-2">•</span> GTK# 2.12.2+ (being modernized)</li>
+                            <li class="flex items-start"><span class="text-gray-400 mr-2">•</span> SQLite 2.8.6+</li>
+                            <li class="flex items-start"><span class="text-gray-400 mr-2">•</span> liblcms 2+</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Build from Source</h3>
+                        <p class="text-gray-600 mb-4">For developers interested in contributing to the revival:</p>
+                        <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+                            <div>git clone https://github.com/f-spot/f-spot.git</div>
+                            <div>cd f-spot</div>
+                            <div># See CLAUDE.md for build instructions</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="documentation" class="p-8 section hidden">
+            <div class="max-w-6xl mx-auto">
+                <h1 class="text-4xl font-bold text-gray-900 mb-8">Documentation</h1>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">📚 User Guide</h3>
+                        <p class="text-gray-600 mb-4">Comprehensive documentation covering all features and workflows</p>
+                        <ul class="space-y-2 text-gray-600 mb-4">
+                            <li class="flex items-start"><span class="text-blue-500 mr-2">•</span> Getting started with F-Spot</li>
+                            <li class="flex items-start"><span class="text-blue-500 mr-2">•</span> Photo import and organization</li>
+                            <li class="flex items-start"><span class="text-blue-500 mr-2">•</span> Tagging and rating systems</li>
+                            <li class="flex items-start"><span class="text-blue-500 mr-2">•</span> Editing and enhancement tools</li>
+                            <li class="flex items-start"><span class="text-blue-500 mr-2">•</span> Export and sharing options</li>
+                        </ul>
+                        <p class="text-sm text-gray-500 italic">Available in 9 languages</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">🔧 Technical Documentation</h3>
+                        <p class="text-gray-600 mb-4">Deep technical analysis and development resources</p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start"><span class="text-green-500 mr-2">•</span> <a href="#architecture" class="text-blue-600 hover:underline">System Architecture</a></li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2">•</span> Build system and dependencies</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2">•</span> Database schema and migrations</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2">•</span> Plugin development guide</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2">•</span> API reference</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">🚀 Revival Strategy</h3>
+                        <p class="text-gray-600 mb-4">Comprehensive modernization plan and progress tracking</p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start"><span class="text-purple-500 mr-2">•</span> Current status assessment</li>
+                            <li class="flex items-start"><span class="text-purple-500 mr-2">•</span> Phased modernization approach</li>
+                            <li class="flex items-start"><span class="text-purple-500 mr-2">•</span> Technology migration strategy</li>
+                            <li class="flex items-start"><span class="text-purple-500 mr-2">•</span> Timeline and milestones</li>
+                            <li class="flex items-start"><span class="text-purple-500 mr-2">•</span> How to contribute</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="community" class="p-8 section hidden">
+            <div class="max-w-6xl mx-auto">
+                <h1 class="text-4xl font-bold text-gray-900 mb-8">Community</h1>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">💬 Chat & Discussion</h3>
+                        <p class="text-gray-600 mb-4"><a href="https://gitter.im/mono/f-spot" class="text-blue-600 hover:underline">Join our Gitter chat</a> for real-time discussion about development, issues, and the revival process.</p>
+                        <div class="bg-blue-50 p-3 rounded-lg">
+                            <p class="text-sm text-blue-800">Active developers and contributors available for help and collaboration</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">🐛 Issue Tracking</h3>
+                        <p class="text-gray-600 mb-4">Report bugs, request features, and track development progress on our <a href="https://github.com/f-spot/f-spot/issues" class="text-blue-600 hover:underline">GitHub Issues</a>.</p>
+                        <div class="bg-green-50 p-3 rounded-lg">
+                            <p class="text-sm text-green-800">Help us prioritize and fix issues with your feedback</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">🤝 Contributing</h3>
+                        <p class="text-gray-600 mb-4">Help revive F-Spot! We need developers, testers, and documentation contributors.</p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start"><span class="text-purple-500 mr-2">•</span> Code contributions</li>
+                            <li class="flex items-start"><span class="text-purple-500 mr-2">•</span> Testing and bug reports</li>
+                            <li class="flex items-start"><span class="text-purple-500 mr-2">•</span> Documentation improvements</li>
+                            <li class="flex items-start"><span class="text-purple-500 mr-2">•</span> Translation work</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">📢 Project Status</h3>
+                        <p class="text-gray-600 mb-4">Stay updated on revival progress:</p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start"><span class="text-orange-500 mr-2">•</span> GitHub repository activity</li>
+                            <li class="flex items-start"><span class="text-orange-500 mr-2">•</span> Build status badges</li>
+                            <li class="flex items-start"><span class="text-orange-500 mr-2">•</span> Milestone tracking</li>
+                            <li class="flex items-start"><span class="text-orange-500 mr-2">•</span> Release announcements</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="development" class="p-8 section hidden">
+            <div class="max-w-6xl mx-auto">
+                <h1 class="text-4xl font-bold text-gray-900 mb-8">Development</h1>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">🏗️ Build Status</h3>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <img src="https://travis-ci.org/f-spot/f-spot.svg?branch=master" alt="Linux Build" class="h-6">
+                            <img src="https://github.com/f-spot/f-spot/workflows/Ubuntu/badge.svg" alt="Ubuntu Build" class="h-6">
+                            <img src="https://dev.azure.com/decriptor-oss/f-spot/_apis/build/status/Windows?branchName=master" alt="Windows Build" class="h-6">
+                        </div>
+                        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
+                            <p class="text-sm text-yellow-800"><em>Note: Builds currently failing due to known issues</em></p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">🛠️ Development Setup</h3>
+                        <p class="text-gray-600 mb-4">Quick start for developers:</p>
+                        <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+                            <code>
+                                # See CLAUDE.md for detailed instructions<br>
+                                ./autogen.sh<br>
+                                make<br>
+                                # OR use MSBuild approach<br>
+                                dotnet build F-Spot.sln
+                            </code>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">🎯 Priority Tasks</h3>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start"><span class="text-red-500 mr-2">•</span> Fix GTK# 2.12 dependencies</li>
+                            <li class="flex items-start"><span class="text-red-500 mr-2">•</span> Resolve build system conflicts</li>
+                            <li class="flex items-start"><span class="text-red-500 mr-2">•</span> Security vulnerability fixes</li>
+                            <li class="flex items-start"><span class="text-orange-500 mr-2">•</span> UI framework migration planning</li>
+                            <li class="flex items-start"><span class="text-blue-500 mr-2">•</span> Test coverage improvements</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">📊 Project Metrics</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-blue-50 p-3 rounded-lg text-center">
+                                <div class="text-2xl font-bold text-blue-600">~150</div>
+                                <div class="text-sm text-blue-800">C# source files</div>
+                            </div>
+                            <div class="bg-green-50 p-3 rounded-lg text-center">
+                                <div class="text-2xl font-bold text-green-600">~50K</div>
+                                <div class="text-sm text-green-800">lines of code</div>
+                            </div>
+                            <div class="bg-purple-50 p-3 rounded-lg text-center">
+                                <div class="text-2xl font-bold text-purple-600">25+</div>
+                                <div class="text-sm text-purple-800">plugins & extensions</div>
+                            </div>
+                            <div class="bg-orange-50 p-3 rounded-lg text-center">
+                                <div class="text-2xl font-bold text-orange-600">18+</div>
+                                <div class="text-sm text-orange-800">database schemas</div>
+                            </div>
+                        </div>
+                        <div class="mt-4 bg-gray-50 p-3 rounded-lg text-center">
+                            <span class="text-gray-700 font-medium">Multilingual support (9 languages)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="architecture" class="p-8 section hidden">
+            <div class="max-w-6xl mx-auto">
+                <h1 class="text-4xl font-bold text-gray-900 mb-8">F-Spot Architecture Analysis</h1>
+
+                <!-- Executive Summary -->
+                <div class="bg-blue-50 border-l-4 border-blue-400 p-6 rounded-lg mb-8">
+                    <h3 class="text-xl font-semibold text-blue-900 mb-3">Architecture Score: 7.0/10</h3>
+                    <p class="text-blue-800 mb-3">F-Spot implements a well-structured layered architecture with clear separation of concerns. The codebase demonstrates mature design patterns including Repository, Observer, and Dependency Injection through TinyIoC. While the Gtk-based UI shows its age, the core architecture provides a solid foundation for modernization.</p>
+                    <div class="grid grid-cols-3 gap-4 mt-4">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-green-600">Strong</div>
+                            <div class="text-sm text-blue-800">Data Layer</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-yellow-600">Moderate</div>
+                            <div class="text-sm text-blue-800">Business Logic</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-orange-600">Legacy</div>
+                            <div class="text-sm text-blue-800">UI Framework</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Layered Architecture Diagram -->
+                <div class="mb-8">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">Layered Architecture</h3>
+                    <div class="space-y-4">
+                        <!-- Presentation Layer -->
+                        <div class="bg-gradient-to-r from-red-50 to-red-100 border border-red-200 rounded-lg p-6">
+                            <h4 class="text-lg font-semibold text-red-900 mb-3">🖥️ Presentation Layer (GTK#/WinForms)</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+                                <div class="bg-white p-3 rounded border border-red-200">
+                                    <div class="font-medium text-red-800 text-sm">UI Widgets</div>
+                                    <div class="text-xs text-red-600">PhotoView, Dialogs, Menus</div>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-red-200">
+                                    <div class="font-medium text-red-800 text-sm">Event Handling</div>
+                                    <div class="text-xs text-red-600">User interactions, shortcuts</div>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-red-200">
+                                    <div class="font-medium text-red-800 text-sm">Layout Management</div>
+                                    <div class="text-xs text-red-600">Window composition</div>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-red-200">
+                                    <div class="font-medium text-red-800 text-sm">Data Binding</div>
+                                    <div class="text-xs text-red-600">Model-View synchronization</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Application Layer -->
+                        <div class="bg-gradient-to-r from-orange-50 to-orange-100 border border-orange-200 rounded-lg p-6">
+                            <h4 class="text-lg font-semibold text-orange-900 mb-3">⚙️ Application Layer</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+                                <div class="bg-white p-3 rounded border border-orange-200">
+                                    <div class="font-medium text-orange-800 text-sm">MainWindow</div>
+                                    <div class="text-xs text-orange-600">Primary application controller</div>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-orange-200">
+                                    <div class="font-medium text-orange-800 text-sm">Editors</div>
+                                    <div class="text-xs text-orange-600">Image editing coordination</div>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-orange-200">
+                                    <div class="font-medium text-orange-800 text-sm">Import System</div>
+                                    <div class="text-xs text-orange-600">File discovery and processing</div>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-orange-200">
+                                    <div class="font-medium text-orange-800 text-sm">Export System</div>
+                                    <div class="text-xs text-orange-600">Output format handlers</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Business Logic Layer -->
+                        <div class="bg-gradient-to-r from-blue-50 to-blue-100 border border-blue-200 rounded-lg p-6">
+                            <h4 class="text-lg font-semibold text-blue-900 mb-3">🧠 Business Logic Layer</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+                                <div class="bg-white p-3 rounded border border-blue-200">
+                                    <div class="font-medium text-blue-800 text-sm">Domain Services</div>
+                                    <div class="text-xs text-blue-600">Photo operations, tagging</div>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-blue-200">
+                                    <div class="font-medium text-blue-800 text-sm">Image Processing</div>
+                                    <div class="text-xs text-blue-600">Rotation, color correction</div>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-blue-200">
+                                    <div class="font-medium text-blue-800 text-sm">Query Engine</div>
+                                    <div class="text-xs text-blue-600">Complex photo searches</div>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-blue-200">
+                                    <div class="font-medium text-blue-800 text-sm">Background Jobs</div>
+                                    <div class="text-xs text-blue-600">Metadata sync, thumbnails</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Infrastructure Layer -->
+                        <div class="bg-gradient-to-r from-green-50 to-green-100 border border-green-200 rounded-lg p-6">
+                            <h4 class="text-lg font-semibold text-green-900 mb-3">🗄️ Infrastructure Layer</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+                                <div class="bg-white p-3 rounded border border-green-200">
+                                    <div class="font-medium text-green-800 text-sm">Database Stores</div>
+                                    <div class="text-xs text-green-600">PhotoStore, TagStore, RollStore</div>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-green-200">
+                                    <div class="font-medium text-green-800 text-sm">File System</div>
+                                    <div class="text-xs text-green-600">SafeUri, directory operations</div>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-green-200">
+                                    <div class="font-medium text-green-800 text-sm">External APIs</div>
+                                    <div class="text-xs text-green-600">Web services, cloud sync</div>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-green-200">
+                                    <div class="font-medium text-green-800 text-sm">Hardware</div>
+                                    <div class="text-xs text-green-600">Camera import, storage</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Core/Utilities -->
+                        <div class="bg-gradient-to-r from-purple-50 to-purple-100 border border-purple-200 rounded-lg p-6">
+                            <h4 class="text-lg font-semibold text-purple-900 mb-3">🔧 Core & Utilities</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+                                <div class="bg-white p-3 rounded border border-purple-200">
+                                    <div class="font-medium text-purple-800 text-sm">TinyIoC Container</div>
+                                    <div class="text-xs text-purple-600">Dependency injection</div>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-purple-200">
+                                    <div class="font-medium text-purple-800 text-sm">Extensions System</div>
+                                    <div class="text-xs text-purple-600">Mono.Addins framework</div>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-purple-200">
+                                    <div class="font-medium text-purple-800 text-sm">Utils</div>
+                                    <div class="text-xs text-purple-600">Threading, caching, logging</div>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-purple-200">
+                                    <div class="font-medium text-purple-800 text-sm">Platform Abstraction</div>
+                                    <div class="text-xs text-purple-600">Cross-platform compatibility</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Design Patterns -->
+                <div class="mb-8">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">Core Design Patterns</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-3">Repository Pattern</h4>
+                            <p class="text-gray-600 text-sm mb-3">Abstracted data access through specialized stores</p>
+                            <ul class="text-xs text-gray-500 space-y-1">
+                                <li>• DbStore&lt;T&gt; base implementation</li>
+                                <li>• Consistent CRUD operations</li>
+                                <li>• Query building abstraction</li>
+                                <li>• Caching strategies</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-3">Observer Pattern</h4>
+                            <p class="text-gray-600 text-sm mb-3">Event-driven architecture with thread-safe notifications</p>
+                            <ul class="text-xs text-gray-500 space-y-1">
+                                <li>• ItemsAdded/Changed/Removed events</li>
+                                <li>• Thread-safe event marshaling</li>
+                                <li>• UI-data synchronization</li>
+                                <li>• Weak reference management</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-3">Dependency Injection</h4>
+                            <p class="text-gray-600 text-sm mb-3">TinyIoC container for loose coupling</p>
+                            <ul class="text-xs text-gray-500 space-y-1">
+                                <li>• Service registration</li>
+                                <li>• Automatic resolution</li>
+                                <li>• Singleton lifecycle management</li>
+                                <li>• Interface-based dependencies</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-3">Strategy Pattern</h4>
+                            <p class="text-gray-600 text-sm mb-3">Pluggable algorithms for image processing and export</p>
+                            <ul class="text-xs text-gray-500 space-y-1">
+                                <li>• Multiple export formats</li>
+                                <li>• Image processing pipelines</li>
+                                <li>• Import source handlers</li>
+                                <li>• Extension point interfaces</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-3">Factory Pattern</h4>
+                            <p class="text-gray-600 text-sm mb-3">Object creation abstractions</p>
+                            <ul class="text-xs text-gray-500 space-y-1">
+                                <li>• SafeUri creation</li>
+                                <li>• Database connection factory</li>
+                                <li>• Widget instantiation</li>
+                                <li>• Export target creation</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-3">Command Pattern</h4>
+                            <p class="text-gray-600 text-sm mb-3">Action encapsulation for undo/redo</p>
+                            <ul class="text-xs text-gray-500 space-y-1">
+                                <li>• Photo editing operations</li>
+                                <li>• Batch processing commands</li>
+                                <li>• Import/export jobs</li>
+                                <li>• Background task queuing</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Architecture Strengths and Challenges -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+                        <h3 class="text-xl font-semibold text-green-900 mb-4">Architecture Strengths</h3>
+                        <ul class="space-y-3 text-green-800">
+                            <li class="flex items-start">
+                                <span class="text-green-600 mr-2 font-bold">✓</span>
+                                <span class="text-sm"><strong>Clear Layer Separation:</strong> Well-defined boundaries between presentation, business logic, and data layers</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-600 mr-2 font-bold">✓</span>
+                                <span class="text-sm"><strong>Mature Design Patterns:</strong> Proper implementation of Repository, Observer, and DI patterns</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-600 mr-2 font-bold">✓</span>
+                                <span class="text-sm"><strong>Extensible Plugin System:</strong> Mono.Addins provides robust extension capabilities</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-600 mr-2 font-bold">✓</span>
+                                <span class="text-sm"><strong>Strong Data Layer:</strong> Sophisticated database abstraction with migration support</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-600 mr-2 font-bold">✓</span>
+                                <span class="text-sm"><strong>Thread-Safe Design:</strong> Proper event marshaling and concurrent access patterns</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-orange-50 border border-orange-200 rounded-lg p-6">
+                        <h3 class="text-xl font-semibold text-orange-900 mb-4">Modernization Challenges</h3>
+                        <ul class="space-y-3 text-orange-800">
+                            <li class="flex items-start">
+                                <span class="text-orange-600 mr-2 font-bold">⚠</span>
+                                <span class="text-sm"><strong>Legacy UI Framework:</strong> GTK# is deprecated, needs migration to modern UI framework</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-orange-600 mr-2 font-bold">⚠</span>
+                                <span class="text-sm"><strong>Tight Platform Coupling:</strong> Strong dependencies on Mono/GTK ecosystem</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-orange-600 mr-2 font-bold">⚠</span>
+                                <span class="text-sm"><strong>Mixed Architectural Concerns:</strong> Some UI logic mixed with business logic in MainWindow</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-orange-600 mr-2 font-bold">⚠</span>
+                                <span class="text-sm"><strong>Limited Testability:</strong> Heavy integration testing focus, limited unit test coverage</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-orange-600 mr-2 font-bold">⚠</span>
+                                <span class="text-sm"><strong>Performance Bottlenecks:</strong> Large photo collections can stress the UI thread</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="domain" class="p-8 section hidden">
+            <div class="max-w-6xl mx-auto">
+                <h1 class="text-4xl font-bold text-gray-900 mb-8">Domain Model Architecture</h1>
+
+                <!-- Executive Summary -->
+                <div class="bg-blue-50 border-l-4 border-blue-400 p-6 rounded-lg mb-8">
+                    <h3 class="text-xl font-semibold text-blue-900 mb-3">Executive Summary</h3>
+                    <p class="text-blue-800 mb-3">F-Spot demonstrates <strong>excellent architectural foundations</strong> with clear separation of concerns, appropriate abstraction layers, and solid design patterns. The architecture shows mature engineering principles typical of well-designed desktop applications.</p>
+                    <div class="bg-blue-100 text-blue-800 px-4 py-2 rounded-lg inline-block">
+                        <strong>Overall Architecture Score: 7.5/10</strong>
+                    </div>
+                </div>
+
+                <!-- Core Relationships -->
+                <div class="mb-8">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">Core Entity Relationships</h3>
+                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-3">
+                                <div class="flex items-center space-x-3">
+                                    <div class="bg-blue-600 text-white px-3 py-1 rounded">Photo (1)</div>
+                                    <span class="text-gray-500">←→</span>
+                                    <div class="bg-green-600 text-white px-3 py-1 rounded">PhotoVersion (N)</div>
+                                </div>
+                                <p class="text-sm text-gray-600">Non-destructive editing system</p>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex items-center space-x-3">
+                                    <div class="bg-blue-600 text-white px-3 py-1 rounded">Photo (N)</div>
+                                    <span class="text-gray-500">←→</span>
+                                    <div class="bg-purple-600 text-white px-3 py-1 rounded">Tag (N)</div>
+                                </div>
+                                <p class="text-sm text-gray-600">Flexible tagging system</p>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex items-center space-x-3">
+                                    <div class="bg-purple-600 text-white px-3 py-1 rounded">Tag (1)</div>
+                                    <span class="text-gray-500">←→</span>
+                                    <div class="bg-purple-600 text-white px-3 py-1 rounded">Tag (N)</div>
+                                </div>
+                                <p class="text-sm text-gray-600">Hierarchical categories</p>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex items-center space-x-3">
+                                    <div class="bg-blue-600 text-white px-3 py-1 rounded">Photo (N)</div>
+                                    <span class="text-gray-500">←→</span>
+                                    <div class="bg-orange-600 text-white px-3 py-1 rounded">Roll (1)</div>
+                                </div>
+                                <p class="text-sm text-gray-600">Import grouping</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Photo Entity Detail -->
+                <div class="mb-8">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">Photo Entity Architecture</h3>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-4">Core Properties</h4>
+                            <div class="space-y-3">
+                                <div class="bg-gray-50 p-3 rounded border-l-4 border-blue-400">
+                                    <div class="text-sm font-medium text-gray-900">DefaultVersionId: uint</div>
+                                    <div class="text-xs text-gray-600">Active version reference</div>
+                                </div>
+                                <div class="bg-gray-50 p-3 rounded border-l-4 border-green-400">
+                                    <div class="text-sm font-medium text-gray-900">Description: string</div>
+                                    <div class="text-xs text-gray-600">User-provided metadata</div>
+                                </div>
+                                <div class="bg-gray-50 p-3 rounded border-l-4 border-yellow-400">
+                                    <div class="text-sm font-medium text-gray-900">Rating: uint (0-5)</div>
+                                    <div class="text-xs text-gray-600">Star rating system</div>
+                                </div>
+                                <div class="bg-gray-50 p-3 rounded border-l-4 border-purple-400">
+                                    <div class="text-sm font-medium text-gray-900">Versions: PhotoVersion[]</div>
+                                    <div class="text-xs text-gray-600">Non-destructive editing</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-4">Advanced Features</h4>
+                            <ul class="space-y-3 text-gray-600">
+                                <li class="flex items-start">
+                                    <span class="text-blue-500 mr-2">•</span>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Version Management</div>
+                                        <div class="text-sm">Sophisticated versioning system supporting non-destructive editing</div>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">•</span>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Metadata Integration</div>
+                                        <div class="text-sm">Comprehensive metadata support (EXIF, XMP, IPTC)</div>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-purple-500 mr-2">•</span>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Change Tracking</div>
+                                        <div class="text-sm">Built-in change detection for efficient database updates</div>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-orange-500 mr-2">•</span>
+                                    <div>
+                                        <div class="font-medium text-gray-900">URI-based Storage</div>
+                                        <div class="text-sm">Flexible file location with base URI + filename splitting</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tag System -->
+                <div class="mb-8">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">Hierarchical Tag System</h3>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-4">Tag Properties</h4>
+                            <div class="space-y-3">
+                                <div class="bg-purple-50 p-3 rounded border-l-4 border-purple-400">
+                                    <div class="text-sm font-medium text-purple-900">ParentCategory: Tag</div>
+                                    <div class="text-xs text-purple-700">Hierarchical structure support</div>
+                                </div>
+                                <div class="bg-blue-50 p-3 rounded border-l-4 border-blue-400">
+                                    <div class="text-sm font-medium text-blue-900">Children: Tag[]</div>
+                                    <div class="text-xs text-blue-700">Child tag collection</div>
+                                </div>
+                                <div class="bg-green-50 p-3 rounded border-l-4 border-green-400">
+                                    <div class="text-sm font-medium text-green-900">Popularity: int</div>
+                                    <div class="text-xs text-green-700">Usage-based sorting</div>
+                                </div>
+                                <div class="bg-orange-50 p-3 rounded border-l-4 border-orange-400">
+                                    <div class="text-sm font-medium text-orange-900">Icon: string</div>
+                                    <div class="text-xs text-orange-700">Theme icon integration</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-4">Tag Features</h4>
+                            <ul class="space-y-3 text-gray-600">
+                                <li class="flex items-start">
+                                    <span class="text-purple-500 mr-2">•</span>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Self-organizing</div>
+                                        <div class="text-sm">Popularity tracking for automatic sorting</div>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-blue-500 mr-2">•</span>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Icon Integration</div>
+                                        <div class="text-sm">Theme icon support with fallback mechanisms</div>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">•</span>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Unlimited Nesting</div>
+                                        <div class="text-sm">Hierarchical structure with unlimited depth</div>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-orange-500 mr-2">•</span>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Usage Analytics</div>
+                                        <div class="text-sm">Built-in popularity tracking and analytics</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Design Patterns -->
+                <div class="mb-8">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">Design Patterns Used</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                            <h4 class="text-lg font-semibold text-blue-900 mb-3">Versioning Pattern</h4>
+                            <p class="text-blue-800 text-sm mb-3">Multiple photo versions (Original, Edited, etc.) enable non-destructive editing workflow.</p>
+                            <div class="bg-blue-100 text-blue-800 px-3 py-1 rounded text-xs">Photo ← PhotoVersion</div>
+                        </div>
+                        <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+                            <h4 class="text-lg font-semibold text-green-900 mb-3">Observer Pattern</h4>
+                            <p class="text-green-800 text-sm mb-3">Change notification system keeps UI and services synchronized.</p>
+                            <div class="bg-green-100 text-green-800 px-3 py-1 rounded text-xs">PhotoChanges → Events</div>
+                        </div>
+                        <div class="bg-purple-50 border border-purple-200 rounded-lg p-6">
+                            <h4 class="text-lg font-semibold text-purple-900 mb-3">Factory Pattern</h4>
+                            <p class="text-purple-800 text-sm mb-3">Version creation and management handled through factory methods.</p>
+                            <div class="bg-purple-100 text-purple-800 px-3 py-1 rounded text-xs">VersionFactory</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="database" class="p-8 section hidden">
+            <div class="max-w-6xl mx-auto">
+                <h1 class="text-4xl font-bold text-gray-900 mb-8">Database Layer Analysis</h1>
+
+                <!-- Overview -->
+                <div class="bg-green-50 border-l-4 border-green-400 p-6 rounded-lg mb-8">
+                    <h3 class="text-xl font-semibold text-green-900 mb-3">Architecture Overview</h3>
+                    <p class="text-green-800 mb-3">F-Spot implements a sophisticated SQLite-based database layer using a Repository/Store pattern with comprehensive migration support. The database architecture has evolved through <strong>18 major versions</strong>, managing complex relationships between photos, tags, rolls, and metadata.</p>
+                </div>
+
+                <!-- Core Components -->
+                <div class="mb-8">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">Core Database Components</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                            <h4 class="text-lg font-semibold text-blue-900 mb-3">Database Interface (IDb)</h4>
+                            <p class="text-blue-800 text-sm mb-3">Central abstraction defining all database stores with consistent interfaces.</p>
+                            <div class="bg-blue-100 text-blue-800 px-3 py-1 rounded text-xs">Abstraction Layer</div>
+                        </div>
+                        <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+                            <h4 class="text-lg font-semibold text-green-900 mb-3">Store Pattern (DbStore&lt;T&gt;)</h4>
+                            <p class="text-green-800 text-sm mb-3">Abstract base class providing repository functionality for all data stores.</p>
+                            <div class="bg-green-100 text-green-800 px-3 py-1 rounded text-xs">Repository Pattern</div>
+                        </div>
+                        <div class="bg-purple-50 border border-purple-200 rounded-lg p-6">
+                            <h4 class="text-lg font-semibold text-purple-900 mb-3">Migration System (Updater)</h4>
+                            <p class="text-purple-800 text-sm mb-3">Handles database schema versioning and upgrades across 18+ versions.</p>
+                            <div class="bg-purple-100 text-purple-800 px-3 py-1 rounded text-xs">Schema Evolution</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Design Patterns -->
+                <div class="mb-8">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">Database Design Patterns</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-3">Repository Pattern</h4>
+                            <p class="text-gray-600 text-sm mb-3">Each store acts as a repository for its domain objects, providing abstracted access through the IDb interface.</p>
+                            <ul class="text-xs text-gray-500 space-y-1">
+                                <li>• Centralized query building</li>
+                                <li>• Abstracted database access</li>
+                                <li>• Consistent interfaces</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-3">Active Record (Partial)</h4>
+                            <p class="text-gray-600 text-sm mb-3">Domain objects contain business logic while stores handle persistence separately.</p>
+                            <ul class="text-xs text-gray-500 space-y-1">
+                                <li>• DbItem base class identity</li>
+                                <li>• Business logic in entities</li>
+                                <li>• Separated persistence layer</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-3">Observer Pattern</h4>
+                            <p class="text-gray-600 text-sm mb-3">Event-driven notifications with thread-safe event marshaling.</p>
+                            <ul class="text-xs text-gray-500 space-y-1">
+                                <li>• ItemsAdded/Changed/Removed</li>
+                                <li>• Thread-safe marshaling</li>
+                                <li>• UI synchronization</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Database Stores -->
+                <div class="mb-8">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">Database Stores</h3>
+
+                    <!-- PhotoStore -->
+                    <div class="mb-6">
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                            <h4 class="text-xl font-semibold text-blue-900 mb-4">PhotoStore - Primary Entity Store</h4>
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                <div>
+                                    <h5 class="font-semibold text-blue-900 mb-3">Key Features</h5>
+                                    <ul class="space-y-2 text-blue-800 text-sm">
+                                        <li class="flex items-start"><span class="text-blue-600 mr-2">•</span> Supports multiple versions per photo (Original + edited versions)</li>
+                                        <li class="flex items-start"><span class="text-blue-600 mr-2">•</span> Stores file paths as base_uri + filename (split since v17.0)</li>
+                                        <li class="flex items-start"><span class="text-blue-600 mr-2">•</span> Implements duplicate detection via MD5 hashing</li>
+                                        <li class="flex items-start"><span class="text-blue-600 mr-2">•</span> Provides complex querying with conditions and temporary tables</li>
+                                        <li class="flex items-start"><span class="text-blue-600 mr-2">•</span> Handles batch operations with transactions</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-white p-4 rounded border">
+                                    <h5 class="font-semibold text-gray-900 mb-3">Main Schema Tables</h5>
+                                    <div class="space-y-2 text-xs">
+                                        <div class="bg-blue-100 text-blue-800 px-2 py-1 rounded">photos - Main photo records</div>
+                                        <div class="bg-green-100 text-green-800 px-2 py-1 rounded">photo_versions - Original + edits</div>
+                                        <div class="bg-purple-100 text-purple-800 px-2 py-1 rounded">photo_tags - Photo-tag relationships</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TagStore -->
+                    <div class="mb-6">
+                        <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+                            <h4 class="text-xl font-semibold text-green-900 mb-4">TagStore - Hierarchical Tag Management</h4>
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                <div>
+                                    <h5 class="font-semibold text-green-900 mb-3">Key Features</h5>
+                                    <ul class="space-y-2 text-green-800 text-sm">
+                                        <li class="flex items-start"><span class="text-green-600 mr-2">•</span> Supports hierarchical categories with parent-child relationships</li>
+                                        <li class="flex items-start"><span class="text-green-600 mr-2">•</span> Immortal caching (all tags kept in memory)</li>
+                                        <li class="flex items-start"><span class="text-green-600 mr-2">•</span> Icon support (theme icons or custom pixbufs)</li>
+                                        <li class="flex items-start"><span class="text-green-600 mr-2">•</span> Popularity tracking based on usage count</li>
+                                        <li class="flex items-start"><span class="text-green-600 mr-2">•</span> Built-in system tags (Hidden, Favorites, People, Places, Events)</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-white p-4 rounded border">
+                                    <h5 class="font-semibold text-gray-900 mb-3">Tag Properties</h5>
+                                    <div class="space-y-2 text-xs">
+                                        <div class="bg-gray-100 text-gray-800 px-2 py-1 rounded">id, name, category_id</div>
+                                        <div class="bg-gray-100 text-gray-800 px-2 py-1 rounded">is_category, sort_priority</div>
+                                        <div class="bg-gray-100 text-gray-800 px-2 py-1 rounded">icon (theme integration)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Other Stores -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-orange-50 border border-orange-200 rounded-lg p-6">
+                            <h4 class="text-lg font-semibold text-orange-900 mb-3">RollStore</h4>
+                            <p class="text-orange-800 text-sm mb-3">Import Session Management</p>
+                            <ul class="text-xs text-orange-700 space-y-1">
+                                <li>• Time-based grouping</li>
+                                <li>• Immutable once created</li>
+                                <li>• Batch operations</li>
+                            </ul>
+                        </div>
+                        <div class="bg-purple-50 border border-purple-200 rounded-lg p-6">
+                            <h4 class="text-lg font-semibold text-purple-900 mb-3">MetaStore</h4>
+                            <p class="text-purple-800 text-sm mb-3">Configuration and Metadata</p>
+                            <ul class="text-xs text-purple-700 space-y-1">
+                                <li>• Version tracking</li>
+                                <li>• Schema versions</li>
+                                <li>• Key-value storage</li>
+                            </ul>
+                        </div>
+                        <div class="bg-red-50 border border-red-200 rounded-lg p-6">
+                            <h4 class="text-lg font-semibold text-red-900 mb-3">JobStore</h4>
+                            <p class="text-red-800 text-sm mb-3">Background Task Management</p>
+                            <ul class="text-xs text-red-700 space-y-1">
+                                <li>• Hash calculation</li>
+                                <li>• Metadata sync</li>
+                                <li>• TinyIoC integration</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Performance Characteristics -->
+                <div class="mb-8">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">Performance & Optimization</h3>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-4">Caching Strategy</h4>
+                            <div class="space-y-3">
+                                <div class="bg-blue-50 p-3 rounded border-l-4 border-blue-400">
+                                    <div class="text-sm font-medium text-blue-900">TagStore: Immortal Cache</div>
+                                    <div class="text-xs text-blue-700">All tags kept in memory for fast access</div>
+                                </div>
+                                <div class="bg-green-50 p-3 rounded border-l-4 border-green-400">
+                                    <div class="text-sm font-medium text-green-900">PhotoStore: Weak References</div>
+                                    <div class="text-xs text-green-700">Cached photos with automatic cleanup</div>
+                                </div>
+                                <div class="bg-purple-50 p-3 rounded border-l-4 border-purple-400">
+                                    <div class="text-sm font-medium text-purple-900">Lazy Loading</div>
+                                    <div class="text-xs text-purple-700">Versions and tags loaded on demand</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-4">Query Optimization</h4>
+                            <div class="space-y-3">
+                                <div class="bg-yellow-50 p-3 rounded border-l-4 border-yellow-400">
+                                    <div class="text-sm font-medium text-yellow-900">Strategic Indexing</div>
+                                    <div class="text-xs text-yellow-700">Optimized indexes on photo_versions, photos, and MD5</div>
+                                </div>
+                                <div class="bg-orange-50 p-3 rounded border-l-4 border-orange-400">
+                                    <div class="text-sm font-medium text-orange-900">Temporary Tables</div>
+                                    <div class="text-xs text-orange-700">Complex queries use temp tables for performance</div>
+                                </div>
+                                <div class="bg-red-50 p-3 rounded border-l-4 border-red-400">
+                                    <div class="text-sm font-medium text-red-900">Parameterized Queries</div>
+                                    <div class="text-xs text-red-700">All SQL uses HyenaSqliteCommand with parameters</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Migration System -->
+                <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">18-Version Migration System</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="bg-green-100 text-green-800 px-3 py-2 rounded text-center">
+                            <div class="font-semibold">v1.0</div>
+                            <div class="text-xs">Base Schema</div>
+                        </div>
+                        <div class="bg-blue-100 text-blue-800 px-3 py-2 rounded text-center">
+                            <div class="font-semibold">v11.0</div>
+                            <div class="text-xs">Rating System</div>
+                        </div>
+                        <div class="bg-purple-100 text-purple-800 px-3 py-2 rounded text-center">
+                            <div class="font-semibold">v16.0</div>
+                            <div class="text-xs">Job System</div>
+                        </div>
+                        <div class="bg-orange-100 text-orange-800 px-3 py-2 rounded text-center">
+                            <div class="font-semibold">v18.0</div>
+                            <div class="text-xs">Import MD5</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm mt-4">Progressive schema evolution with comprehensive upgrade paths ensuring data integrity across all versions.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="p-8 section hidden">
+            <div class="max-w-6xl mx-auto">
+                <h1 class="text-4xl font-bold text-gray-900 mb-8">Service Layer</h1>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Import Controller</h3>
+                        <p class="text-gray-600 mb-4">Handles photo import with transaction safety</p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start"><span class="text-blue-500 mr-2">•</span> RAW+JPEG pairing</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2">•</span> Duplicate detection</li>
+                            <li class="flex items-start"><span class="text-purple-500 mr-2">•</span> Metadata extraction</li>
+                            <li class="flex items-start"><span class="text-red-500 mr-2">•</span> Error rollback</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Imaging Services</h3>
+                        <p class="text-gray-600 mb-4">Format handling and processing</p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start"><span class="text-blue-500 mr-2">•</span> JPEG, RAW, TIFF support</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2">•</span> EXIF/XMP metadata</li>
+                            <li class="flex items-start"><span class="text-purple-500 mr-2">•</span> Color profile management</li>
+                            <li class="flex items-start"><span class="text-orange-500 mr-2">•</span> Orientation correction</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Thumbnail Service</h3>
+                        <p class="text-gray-600 mb-4">XDG-compliant thumbnail caching</p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start"><span class="text-blue-500 mr-2">•</span> Multiple size variants</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2">•</span> Hash-based storage</li>
+                            <li class="flex items-start"><span class="text-purple-500 mr-2">•</span> Async generation</li>
+                            <li class="flex items-start"><span class="text-orange-500 mr-2">•</span> Cache management</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Query System</h3>
+                        <p class="text-gray-600 mb-4">Type-safe SQL generation</p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start"><span class="text-blue-500 mr-2">•</span> Composable conditions</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2">•</span> Date/tag/rating filters</li>
+                            <li class="flex items-start"><span class="text-purple-500 mr-2">•</span> Performance optimization</li>
+                            <li class="flex items-start"><span class="text-orange-500 mr-2">•</span> Logical operators</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ui" class="p-8 section hidden">
+            <div class="max-w-6xl mx-auto">
+                <h1 class="text-4xl font-bold text-gray-900 mb-8">UI Framework Analysis</h1>
+
+                <!-- Current State Warning -->
+                <div class="bg-red-50 border-l-4 border-red-400 p-6 rounded-lg mb-8">
+                    <h3 class="text-xl font-semibold text-red-900 mb-3">Critical UI Framework Issues</h3>
+                    <p class="text-red-800 mb-3">F-Spot relies on completely deprecated GTK# 2.12 assemblies that are no longer available on modern Linux distributions and incompatible with modern .NET. This represents the <strong>most challenging aspect</strong> of the revival project.</p>
+                    <div class="grid grid-cols-3 gap-4 mt-4">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-red-600">Deprecated</div>
+                            <div class="text-sm text-red-800">GTK# 2.12</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-red-600">3,000+</div>
+                            <div class="text-sm text-red-800">MainWindow Lines</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-orange-600">6-8 Months</div>
+                            <div class="text-sm text-red-800">Migration Time</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Current GTK# Dependencies -->
+                <div class="mb-8">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">Deprecated GTK# Dependencies</h3>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-4">Obsolete Assembly References</h4>
+                            <div class="bg-gray-50 p-4 rounded border font-mono text-sm space-y-1">
+                                <div class="text-red-600">gtk-sharp, Version=2.12.0.0</div>
+                                <div class="text-red-600">gdk-sharp, Version=2.12.0.0</div>
+                                <div class="text-red-600">glib-sharp, Version=2.12.0.0</div>
+                                <div class="text-red-600">pango-sharp, Version=2.12.0.0</div>
+                                <div class="text-red-600">atk-sharp, Version=2.12.0.0</div>
+                            </div>
+                        </div>
+                        <div class="bg-red-50 border border-red-200 rounded-lg p-6">
+                            <h4 class="text-lg font-semibold text-red-900 mb-4">Critical Issues</h4>
+                            <ul class="space-y-2 text-red-800 text-sm">
+                                <li class="flex items-start">
+                                    <span class="text-red-600 mr-2">✗</span>
+                                    <span>Completely deprecated and unmaintained</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-red-600 mr-2">✗</span>
+                                    <span>Not available on modern Linux distributions</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-red-600 mr-2">✗</span>
+                                    <span>Incompatible with modern .NET 6+</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-red-600 mr-2">✗</span>
+                                    <span>No high-DPI support or modern theming</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-red-600 mr-2">✗</span>
+                                    <span>Limited to obsolete GTK+2 features</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Current UI Architecture Problems -->
+                <div class="mb-8">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">Architecture Challenges</h3>
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div class="bg-red-50 border border-red-200 rounded-lg shadow-md p-6">
+                            <h4 class="text-xl font-semibold text-red-900 mb-4">MainWindow God Class</h4>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-red-100 text-red-800 px-3 py-1 rounded text-sm">3,000+ lines</span>
+                                <span class="bg-red-100 text-red-800 px-3 py-1 rounded text-sm">High complexity</span>
+                            </div>
+                            <ul class="text-sm text-red-700 space-y-1">
+                                <li>• Tightly coupled UI code</li>
+                                <li>• Direct database access mixed with UI</li>
+                                <li>• Event-driven without proper MVVM</li>
+                                <li>• Manual window state management</li>
+                            </ul>
+                        </div>
+                        <div class="bg-orange-50 border border-orange-200 rounded-lg shadow-md p-6">
+                            <h4 class="text-xl font-semibold text-orange-900 mb-4">Complex Custom Widgets</h4>
+                            <div class="space-y-3">
+                                <div class="bg-white p-3 rounded border border-orange-200">
+                                    <div class="font-medium text-orange-800 text-sm">ImageView</div>
+                                    <div class="text-xs text-orange-600">1,000+ lines Cairo-based rendering</div>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-orange-200">
+                                    <div class="font-medium text-orange-800 text-sm">PhotoImageView</div>
+                                    <div class="text-xs text-orange-600">Complex photo-specific viewer</div>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-orange-200">
+                                    <div class="font-medium text-orange-800 text-sm">QueryView</div>
+                                    <div class="text-xs text-orange-600">Photo browser with selection logic</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-yellow-50 border border-yellow-200 rounded-lg shadow-md p-6">
+                            <h4 class="text-xl font-semibold text-yellow-900 mb-4">Legacy Patterns</h4>
+                            <ul class="text-sm text-yellow-800 space-y-2">
+                                <li class="flex items-start">
+                                    <span class="text-yellow-600 mr-2">⚠</span>
+                                    <span>No data binding support</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-yellow-600 mr-2">⚠</span>
+                                    <span>Manual event wire-up patterns</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-yellow-600 mr-2">⚠</span>
+                                    <span>Imperative UI construction</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-yellow-600 mr-2">⚠</span>
+                                    <span>Limited styling capabilities</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modern Framework Recommendation -->
+                <div class="mb-8">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">Recommended Migration: Avalonia UI</h3>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+                            <h4 class="text-xl font-semibold text-green-900 mb-4">Why Avalonia UI?</h4>
+                            <ul class="space-y-3 text-green-800 text-sm">
+                                <li class="flex items-start">
+                                    <span class="text-green-600 mr-2 font-bold">✓</span>
+                                    <span><strong>Cross-platform:</strong> Windows, macOS, Linux native support</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-600 mr-2 font-bold">✓</span>
+                                    <span><strong>XAML-based:</strong> Declarative UI with MVVM binding</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-600 mr-2 font-bold">✓</span>
+                                    <span><strong>Modern .NET:</strong> Full .NET 6+ compatibility</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-600 mr-2 font-bold">✓</span>
+                                    <span><strong>Performance:</strong> Hardware acceleration and efficient rendering</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-600 mr-2 font-bold">✓</span>
+                                    <span><strong>Image Support:</strong> Advanced image display and manipulation</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-600 mr-2 font-bold">✓</span>
+                                    <span><strong>Community:</strong> Active development and strong ecosystem</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                            <h4 class="text-xl font-semibold text-blue-900 mb-4">Avalonia Advantages for F-Spot</h4>
+                            <ul class="space-y-3 text-blue-800 text-sm">
+                                <li class="flex items-start">
+                                    <span class="text-blue-600 mr-2">🖼️</span>
+                                    <span><strong>Advanced Image Controls:</strong> Built-in image display with zoom/pan</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-blue-600 mr-2">📊</span>
+                                    <span><strong>Grid Virtualization:</strong> Efficient handling of large photo collections</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-blue-600 mr-2">🎨</span>
+                                    <span><strong>Styling System:</strong> Modern theming and high-DPI support</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-blue-600 mr-2">🔗</span>
+                                    <span><strong>Data Binding:</strong> MVVM support reduces code complexity</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-blue-600 mr-2">🧩</span>
+                                    <span><strong>Custom Controls:</strong> Easy specialized photo management widgets</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-blue-600 mr-2">⚖️</span>
+                                    <span><strong>MIT License:</strong> Commercial-friendly licensing</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Migration Strategy -->
+                <div class="mb-8">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">Migration Strategy Overview</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-3">Phase 1: MVVM Foundation</h4>
+                            <div class="mb-3">
+                                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm">4-6 weeks</span>
+                            </div>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• Create ViewModel layer</li>
+                                <li>• Extract service interfaces</li>
+                                <li>• Implement dependency injection</li>
+                                <li>• Add unit tests</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-3">Phase 2: Core Views</h4>
+                            <div class="mb-3">
+                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">8-10 weeks</span>
+                            </div>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• MainWindow decomposition</li>
+                                <li>• Photo grid implementation</li>
+                                <li>• Image viewer controls</li>
+                                <li>• Navigation and toolbar</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-3">Phase 3: Advanced Features</h4>
+                            <div class="mb-3">
+                                <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-sm">6-8 weeks</span>
+                            </div>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• Editing interface</li>
+                                <li>• Export dialogs</li>
+                                <li>• Plugin integration</li>
+                                <li>• Final polishing</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Current View System -->
+                <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Current View System (To Be Migrated)</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="bg-white p-4 rounded border border-gray-200">
+                            <h5 class="font-semibold text-gray-800 mb-2">Browse Mode</h5>
+                            <p class="text-gray-600 text-sm">Grid view with thumbnails and metadata</p>
+                        </div>
+                        <div class="bg-white p-4 rounded border border-gray-200">
+                            <h5 class="font-semibold text-gray-800 mb-2">Edit Mode</h5>
+                            <p class="text-gray-600 text-sm">Single photo with editing tools</p>
+                        </div>
+                        <div class="bg-white p-4 rounded border border-gray-200">
+                            <h5 class="font-semibold text-gray-800 mb-2">Slideshow</h5>
+                            <p class="text-gray-600 text-sm">Fullscreen presentation mode</p>
+                        </div>
+                        <div class="bg-white p-4 rounded border border-gray-200">
+                            <h5 class="font-semibold text-gray-800 mb-2">Dynamic Switching</h5>
+                            <p class="text-gray-600 text-sm">Seamless mode transitions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="plugins" class="p-8 section hidden">
+            <div class="max-w-6xl mx-auto">
+                <h1 class="text-4xl font-bold text-gray-900 mb-8">Plugin System</h1>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-semibold text-blue-900 mb-4">Editors (8 built-in + 5 plugins)</h3>
+                        <div class="space-y-3">
+                            <div class="bg-white rounded-lg p-3 border border-blue-200">
+                                <div class="text-sm text-blue-800">Crop, RedEye, Desaturate</div>
+                            </div>
+                            <div class="bg-white rounded-lg p-3 border border-blue-200">
+                                <div class="text-sm text-blue-800">BW, Blackout, Flip</div>
+                            </div>
+                            <div class="bg-white rounded-lg p-3 border border-blue-200">
+                                <div class="text-sm text-blue-800">Pixelate, Resize</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-green-50 border border-green-200 rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-semibold text-green-900 mb-4">Exporters (8 plugins)</h3>
+                        <div class="space-y-3">
+                            <div class="bg-white rounded-lg p-3 border border-green-200">
+                                <div class="text-sm text-green-800">Flickr, Facebook, PicasaWeb</div>
+                            </div>
+                            <div class="bg-white rounded-lg p-3 border border-green-200">
+                                <div class="text-sm text-green-800">Gallery, SmugMug, Folder</div>
+                            </div>
+                            <div class="bg-white rounded-lg p-3 border border-green-200">
+                                <div class="text-sm text-green-800">CD, Zip</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-purple-50 border border-purple-200 rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-semibold text-purple-900 mb-4">Tools (6 plugins)</h3>
+                        <div class="space-y-3">
+                            <div class="bg-white rounded-lg p-3 border border-purple-200">
+                                <div class="text-sm text-purple-800">ChangePhotoPath, MergeDb</div>
+                            </div>
+                            <div class="bg-white rounded-lg p-3 border border-purple-200">
+                                <div class="text-sm text-purple-800">RawPlusJpeg, DevelopInUFraw</div>
+                            </div>
+                            <div class="bg-white rounded-lg p-3 border border-purple-200">
+                                <div class="text-sm text-purple-800">LiveWebGallery</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-orange-50 border border-orange-200 rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-semibold text-orange-900 mb-4">Transitions (3 plugins)</h3>
+                        <div class="space-y-3">
+                            <div class="bg-white rounded-lg p-3 border border-orange-200">
+                                <div class="text-sm text-orange-800">Cover, Dissolve, Push</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 border border-gray-200 rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Extension Points</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start"><span class="text-blue-500 mr-2">•</span> /FSpot/Editors - Image processing plugins</li>
+                        <li class="flex items-start"><span class="text-green-500 mr-2">•</span> /FSpot/Menus - Menu item extensions</li>
+                        <li class="flex items-start"><span class="text-purple-500 mr-2">•</span> /FSpot/Sidebar - UI panel extensions</li>
+                        <li class="flex items-start"><span class="text-orange-500 mr-2">•</span> /FSpot/Services - Background services</li>
+                        <li class="flex items-start"><span class="text-red-500 mr-2">•</span> /FSpot/SlideShow - Visual transitions</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="dataflow" class="p-8 section hidden">
+            <div class="max-w-6xl mx-auto">
+                <h1 class="text-4xl font-bold text-gray-900 mb-8">Data Flow Patterns</h1>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-semibold text-blue-900 mb-4">Photo Import Flow</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center space-x-2">
+                                <div class="bg-blue-600 text-white px-3 py-1 rounded text-sm">File Selection</div>
+                                <span class="text-gray-400">→</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <div class="bg-blue-600 text-white px-3 py-1 rounded text-sm">Format Detection</div>
+                                <span class="text-gray-400">→</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <div class="bg-blue-600 text-white px-3 py-1 rounded text-sm">Metadata Extraction</div>
+                                <span class="text-gray-400">→</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <div class="bg-blue-600 text-white px-3 py-1 rounded text-sm">Database Transaction</div>
+                                <span class="text-gray-400">→</span>
+                            </div>
+                            <div class="bg-blue-600 text-white px-3 py-1 rounded text-sm">Thumbnail Generation</div>
+                        </div>
+                    </div>
+                    <div class="bg-green-50 border border-green-200 rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-semibold text-green-900 mb-4">Photo Editing Flow</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center space-x-2">
+                                <div class="bg-green-600 text-white px-3 py-1 rounded text-sm">Editor Selection</div>
+                                <span class="text-gray-400">→</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <div class="bg-green-600 text-white px-3 py-1 rounded text-sm">Parameter Setup</div>
+                                <span class="text-gray-400">→</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <div class="bg-green-600 text-white px-3 py-1 rounded text-sm">Preview Generation</div>
+                                <span class="text-gray-400">→</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <div class="bg-green-600 text-white px-3 py-1 rounded text-sm">Version Creation</div>
+                                <span class="text-gray-400">→</span>
+                            </div>
+                            <div class="bg-green-600 text-white px-3 py-1 rounded text-sm">Database Update</div>
+                        </div>
+                    </div>
+                    <div class="bg-purple-50 border border-purple-200 rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-semibold text-purple-900 mb-4">Search/Filter Flow</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center space-x-2">
+                                <div class="bg-purple-600 text-white px-3 py-1 rounded text-sm">Query Input</div>
+                                <span class="text-gray-400">→</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <div class="bg-purple-600 text-white px-3 py-1 rounded text-sm">Condition Building</div>
+                                <span class="text-gray-400">→</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <div class="bg-purple-600 text-white px-3 py-1 rounded text-sm">SQL Generation</div>
+                                <span class="text-gray-400">→</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <div class="bg-purple-600 text-white px-3 py-1 rounded text-sm">Result Caching</div>
+                                <span class="text-gray-400">→</span>
+                            </div>
+                            <div class="bg-purple-600 text-white px-3 py-1 rounded text-sm">UI Display</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="dependencies" class="p-8 section hidden">
+            <div class="max-w-6xl mx-auto">
+                <h1 class="text-4xl font-bold text-gray-900 mb-8">Component Dependencies</h1>
+                <div class="space-y-6">
+                    <div class="bg-red-50 border border-red-200 rounded-lg p-6">
+                        <div class="flex justify-center">
+                            <div class="bg-red-600 text-white px-6 py-3 rounded-lg font-semibold">Application</div>
+                        </div>
+                    </div>
+                    <div class="bg-orange-50 border border-orange-200 rounded-lg p-6">
+                        <div class="flex justify-center space-x-8">
+                            <div class="bg-orange-600 text-white px-4 py-2 rounded-lg">TinyIoC</div>
+                            <div class="bg-orange-600 text-white px-4 py-2 rounded-lg">AddinManager</div>
+                            <div class="bg-orange-600 text-white px-4 py-2 rounded-lg">Database</div>
+                        </div>
+                    </div>
+                    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+                        <div class="flex justify-center space-x-12">
+                            <div class="bg-yellow-600 text-white px-4 py-2 rounded-lg">Services</div>
+                            <div class="bg-yellow-600 text-white px-4 py-2 rounded-lg">Stores</div>
+                        </div>
+                    </div>
+                    <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+                        <div class="flex justify-center space-x-12">
+                            <div class="bg-green-600 text-white px-4 py-2 rounded-lg">UI Components</div>
+                            <div class="bg-green-600 text-white px-4 py-2 rounded-lg">Plugins</div>
+                        </div>
+                    </div>
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                        <div class="flex justify-center">
+                            <div class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold">Infrastructure</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="performance" class="p-8 section hidden">
+            <div class="max-w-6xl mx-auto">
+                <h1 class="text-4xl font-bold text-gray-900 mb-8">Performance Analysis</h1>
+
+                <!-- Performance Overview -->
+                <div class="bg-orange-50 border-l-4 border-orange-400 p-6 rounded-lg mb-8">
+                    <h3 class="text-xl font-semibold text-orange-900 mb-3">Performance Status</h3>
+                    <p class="text-orange-800 mb-3">F-Spot exhibits significant performance issues due to legacy design patterns, lack of modern async/await patterns, inefficient memory management, and synchronous operations blocking the UI thread. The application was designed for single-threaded GUI applications and requires comprehensive modernization.</p>
+                    <div class="grid grid-cols-3 gap-4 mt-4">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-red-600">Critical</div>
+                            <div class="text-sm text-orange-800">UI Threading</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-red-600">Critical</div>
+                            <div class="text-sm text-orange-800">Memory Management</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-orange-600">Poor</div>
+                            <div class="text-sm text-orange-800">Async Operations</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Critical Performance Issues -->
+                <div class="mb-8">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">Critical Performance Issues</h3>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <!-- UI Layer Issues -->
+                        <div class="bg-red-50 border border-red-200 rounded-lg p-6">
+                            <h4 class="text-xl font-semibold text-red-900 mb-4">UI Layer Problems</h4>
+                            <div class="space-y-4">
+                                <div class="bg-white p-4 rounded border border-red-200">
+                                    <h5 class="font-semibold text-red-800 mb-2">Massive MainWindow Class</h5>
+                                    <p class="text-red-700 text-sm mb-2">2,989 lines of code in single class with all UI operations concentrated</p>
+                                    <div class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs">Poor separation of concerns</div>
+                                </div>
+                                <div class="bg-white p-4 rounded border border-red-200">
+                                    <h5 class="font-semibold text-red-800 mb-2">Synchronous UI Operations</h5>
+                                    <p class="text-red-700 text-sm mb-2">UI freezes during image loading with Gtk.Application.RunIteration()</p>
+                                    <div class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs">Blocking operations</div>
+                                </div>
+                                <div class="bg-white p-4 rounded border border-red-200">
+                                    <h5 class="font-semibold text-red-800 mb-2">Inefficient Redraws</h5>
+                                    <p class="text-red-700 text-sm mb-2">Full redraws on every zoom/pan instead of dirty regions</p>
+                                    <div class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs">Unnecessary CPU usage</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Memory Management Issues -->
+                        <div class="bg-orange-50 border border-orange-200 rounded-lg p-6">
+                            <h4 class="text-xl font-semibold text-orange-900 mb-4">Memory Management Problems</h4>
+                            <div class="space-y-4">
+                                <div class="bg-white p-4 rounded border border-orange-200">
+                                    <h5 class="font-semibold text-orange-800 mb-2">Fixed PixbufCache Limits</h5>
+                                    <p class="text-orange-700 text-sm mb-2">Fixed 78MB cache inappropriate for modern systems</p>
+                                    <div class="bg-orange-100 text-orange-800 px-2 py-1 rounded text-xs">Thread-unsafe operations</div>
+                                </div>
+                                <div class="bg-white p-4 rounded border border-orange-200">
+                                    <h5 class="font-semibold text-orange-800 mb-2">Finalizer Anti-pattern</h5>
+                                    <p class="text-orange-700 text-sm mb-2">Heavy work in finalizers causing GC delays</p>
+                                    <div class="bg-orange-100 text-orange-800 px-2 py-1 rounded text-xs">Resource leaks</div>
+                                </div>
+                                <div class="bg-white p-4 rounded border border-orange-200">
+                                    <h5 class="font-semibold text-orange-800 mb-2">Linear Cache Eviction</h5>
+                                    <p class="text-orange-700 text-sm mb-2">O(n) performance bottleneck in cache management</p>
+                                    <div class="bg-orange-100 text-orange-800 px-2 py-1 rounded text-xs">Inefficient algorithms</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Memory Usage Analysis -->
+                <div class="mb-8">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">Memory Usage Patterns</h3>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-4">Small Collection (&lt; 1,000 photos)</h4>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-700 text-sm">Base Application</span>
+                                    <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm">~50MB</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-700 text-sm">Thumbnail Cache</span>
+                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">~80MB</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-700 text-sm">Database Cache</span>
+                                    <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-sm">~20MB</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-700 text-sm">UI Objects</span>
+                                    <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded text-sm">~30MB</span>
+                                </div>
+                                <div class="border-t pt-2 flex justify-between items-center font-semibold">
+                                    <span class="text-gray-900">Total Memory</span>
+                                    <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded">~180MB</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-4">Large Collection (&gt; 10,000 photos)</h4>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-700 text-sm">Base Application</span>
+                                    <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm">~50MB</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-700 text-sm">Thumbnail Cache</span>
+                                    <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-sm">~200MB</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-700 text-sm">Database Cache</span>
+                                    <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-sm">~100MB</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-700 text-sm">UI Objects</span>
+                                    <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded text-sm">~50MB</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-700 text-sm">Image Processing</span>
+                                    <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-sm">~500MB</span>
+                                </div>
+                                <div class="border-t pt-2 flex justify-between items-center font-semibold">
+                                    <span class="text-gray-900">Total Memory</span>
+                                    <span class="bg-red-100 text-red-800 px-3 py-1 rounded">~900MB+</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Threading and Concurrency Issues -->
+                <div class="mb-8">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">Threading & Concurrency Problems</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-3">Legacy Threading</h4>
+                            <div class="bg-gray-50 p-3 rounded border text-xs font-mono mb-3">
+                                worker_thread = new Thread(...);<br>
+                                worker_thread.Start();
+                            </div>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• Old Thread class usage</li>
+                                <li>• No cancellation support</li>
+                                <li>• Manual lifecycle management</li>
+                                <li>• Potential thread leaks</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-3">Callback Hell</h4>
+                            <div class="bg-gray-50 p-3 rounded border text-xs font-mono mb-3">
+                                BeginRead(..., delegate {<br>
+                                &nbsp;&nbsp;QueueUserWorkItem(...);<br>
+                                });
+                            </div>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• Complex error handling</li>
+                                <li>• Difficult control flow</li>
+                                <li>• Memory overhead</li>
+                                <li>• Poor exception handling</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-3">Missing Cancellation</h4>
+                            <div class="bg-red-50 p-3 rounded border mb-3">
+                                <div class="text-red-800 text-sm font-medium">No CancellationToken Support</div>
+                            </div>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• Import operations can't cancel</li>
+                                <li>• Export blocks until completion</li>
+                                <li>• Database queries can't interrupt</li>
+                                <li>• Poor user experience</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Performance Recommendations -->
+                <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+                    <h3 class="text-xl font-semibold text-green-900 mb-4">Modernization Recommendations</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold text-green-900 mb-3">UI Layer Improvements</h4>
+                            <ul class="space-y-2 text-green-800 text-sm">
+                                <li class="flex items-start">
+                                    <span class="text-green-600 mr-2">✓</span>
+                                    <span><strong>Decompose MainWindow:</strong> Break into focused components using MVVM pattern</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-600 mr-2">✓</span>
+                                    <span><strong>Async Operations:</strong> Replace synchronous operations with async/await</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-600 mr-2">✓</span>
+                                    <span><strong>Viewport Rendering:</strong> Implement for large image collections</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-600 mr-2">✓</span>
+                                    <span><strong>Background Processing:</strong> Move non-UI operations off main thread</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-green-900 mb-3">Memory & Threading</h4>
+                            <ul class="space-y-2 text-green-800 text-sm">
+                                <li class="flex items-start">
+                                    <span class="text-green-600 mr-2">✓</span>
+                                    <span><strong>Memory Pressure Caching:</strong> Dynamic cache sizing based on system memory</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-600 mr-2">✓</span>
+                                    <span><strong>Proper IDisposable:</strong> Follow standard disposal patterns</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-600 mr-2">✓</span>
+                                    <span><strong>Task-based Async:</strong> Migrate to async/await throughout</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-600 mr-2">✓</span>
+                                    <span><strong>Cancellation Support:</strong> Add CancellationToken to all long operations</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="roadmap" class="p-8 section hidden">
+            <div class="max-w-6xl mx-auto">
+                <h1 class="text-4xl font-bold text-gray-900 mb-8">Revival Roadmap</h1>
+                <div class="space-y-6 mb-12">
+                    <div class="bg-blue-50 border-l-4 border-blue-400 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold text-blue-900 mb-3">Phase 1: Stabilization (3-6 months)</h3>
+                        <ul class="space-y-1 text-blue-800 mb-4">
+                            <li class="flex items-start"><span class="text-blue-600 mr-2">•</span> Fix build system and dependencies</li>
+                            <li class="flex items-start"><span class="text-blue-600 mr-2">•</span> Resolve SQL injection vulnerabilities</li>
+                            <li class="flex items-start"><span class="text-blue-600 mr-2">•</span> Add comprehensive unit testing</li>
+                            <li class="flex items-start"><span class="text-blue-600 mr-2">•</span> Modernize C# language features</li>
+                        </ul>
+                        <div class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium inline-block">Q1-Q2 2025</div>
+                    </div>
+                    <div class="bg-green-50 border-l-4 border-green-400 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold text-green-900 mb-3">Phase 2: Modernization (6-9 months)</h3>
+                        <ul class="space-y-1 text-green-800 mb-4">
+                            <li class="flex items-start"><span class="text-green-600 mr-2">•</span> Implement async/await patterns</li>
+                            <li class="flex items-start"><span class="text-green-600 mr-2">•</span> Decompose MainWindow god class</li>
+                            <li class="flex items-start"><span class="text-green-600 mr-2">•</span> Add proper MVVM architecture</li>
+                            <li class="flex items-start"><span class="text-green-600 mr-2">•</span> Performance optimizations</li>
+                        </ul>
+                        <div class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium inline-block">Q3-Q4 2025</div>
+                    </div>
+                    <div class="bg-purple-50 border-l-4 border-purple-400 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold text-purple-900 mb-3">Phase 3: UI Migration (6-9 months)</h3>
+                        <ul class="space-y-1 text-purple-800 mb-4">
+                            <li class="flex items-start"><span class="text-purple-600 mr-2">•</span> Migrate to Avalonia UI framework</li>
+                            <li class="flex items-start"><span class="text-purple-600 mr-2">•</span> Redesign user interface</li>
+                            <li class="flex items-start"><span class="text-purple-600 mr-2">•</span> Cross-platform compatibility</li>
+                            <li class="flex items-start"><span class="text-purple-600 mr-2">•</span> Plugin system updates</li>
+                        </ul>
+                        <div class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium inline-block">Q1-Q2 2026</div>
+                    </div>
+                    <div class="bg-orange-50 border-l-4 border-orange-400 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold text-orange-900 mb-3">Phase 4: Polish (3-6 months)</h3>
+                        <ul class="space-y-1 text-orange-800 mb-4">
+                            <li class="flex items-start"><span class="text-orange-600 mr-2">•</span> Performance optimization</li>
+                            <li class="flex items-start"><span class="text-orange-600 mr-2">•</span> User experience improvements</li>
+                            <li class="flex items-start"><span class="text-orange-600 mr-2">•</span> Documentation and packaging</li>
+                            <li class="flex items-start"><span class="text-orange-600 mr-2">•</span> Community building</li>
+                        </ul>
+                        <div class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium inline-block">Q3 2026</div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-white rounded-lg shadow-md p-6 text-center border border-gray-200">
+                        <h4 class="text-sm font-semibold text-gray-600 mb-2">Total Timeline</h4>
+                        <span class="text-2xl font-bold text-gray-900">15-21 months</span>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 text-center border border-gray-200">
+                        <h4 class="text-sm font-semibold text-gray-600 mb-2">Estimated Cost</h4>
+                        <span class="text-2xl font-bold text-gray-900">$160K-$245K</span>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 text-center border border-gray-200">
+                        <h4 class="text-sm font-semibold text-gray-600 mb-2">Effort</h4>
+                        <span class="text-2xl font-bold text-gray-900">30-44 person-months</span>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 text-center border border-gray-200">
+                        <h4 class="text-sm font-semibold text-gray-600 mb-2">Feasibility</h4>
+                        <span class="text-2xl font-bold text-green-600">High</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,327 @@
+/**
+ * F-Spot Documentation Theme
+ * Custom styling to match the original design system
+ */
+
+:root {
+  /* Primary Color Palette */
+  --vp-c-brand-1: #2563eb;
+  --vp-c-brand-2: #3b82f6;
+  --vp-c-brand-3: #60a5fa;
+  
+  /* Status Colors */
+  --vp-c-success-1: #10b981;
+  --vp-c-success-2: #34d399;
+  --vp-c-warning-1: #f59e0b;
+  --vp-c-warning-2: #fbbf24;
+  --vp-c-danger-1: #ef4444;
+  --vp-c-danger-2: #f87171;
+  
+  /* Custom Colors */
+  --f-spot-primary: #2563eb;
+  --f-spot-secondary: #64748b;
+  --f-spot-accent: #f59e0b;
+  --f-spot-success: #10b981;
+  --f-spot-warning: #f59e0b;
+  --f-spot-danger: #ef4444;
+  
+  /* Background and Text */
+  --vp-c-bg: #ffffff;
+  --vp-c-bg-alt: #f8fafc;
+  --vp-c-bg-soft: #f1f5f9;
+  --vp-c-text-1: #1e293b;
+  --vp-c-text-2: #475569;
+  --vp-c-text-3: #64748b;
+}
+
+/* Dark mode color overrides */
+.dark {
+  --vp-c-bg: #0f172a;
+  --vp-c-bg-alt: #1e293b;
+  --vp-c-bg-soft: #334155;
+  --vp-c-text-1: #f8fafc;
+  --vp-c-text-2: #e2e8f0;
+  --vp-c-text-3: #cbd5e1;
+}
+
+/* Custom hero styling */
+.VPHero {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  border-radius: 12px;
+  margin: 2rem 0;
+  padding: 3rem 2rem;
+}
+
+.dark .VPHero {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+}
+
+/* Status badges */
+.vp-doc .status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin: 0.25rem;
+}
+
+.status-badge.completed {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.status-badge.in-progress {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.status-badge.planned {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.status-badge.critical {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.dark .status-badge.completed {
+  background-color: #166534;
+  color: #dcfce7;
+}
+
+.dark .status-badge.in-progress {
+  background-color: #92400e;
+  color: #fef3c7;
+}
+
+.dark .status-badge.planned {
+  background-color: #1e40af;
+  color: #dbeafe;
+}
+
+.dark .status-badge.critical {
+  background-color: #991b1b;
+  color: #fee2e2;
+}
+
+/* Enhanced code blocks */
+.vp-doc [class*='language-'] {
+  border-radius: 8px;
+  border: 1px solid var(--vp-c-divider);
+}
+
+/* Custom containers */
+.vp-doc .custom-block {
+  border-radius: 8px;
+  border: 1px solid var(--vp-c-divider);
+  margin: 1.5rem 0;
+}
+
+.vp-doc .custom-block.warning {
+  border-color: var(--f-spot-warning);
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+}
+
+.vp-doc .custom-block.danger {
+  border-color: var(--f-spot-danger);
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+}
+
+.vp-doc .custom-block.info {
+  border-color: var(--f-spot-primary);
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+}
+
+.vp-doc .custom-block.tip {
+  border-color: var(--f-spot-success);
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+}
+
+.dark .vp-doc .custom-block.warning {
+  background: linear-gradient(135deg, #451a03 0%, #78350f 100%);
+}
+
+.dark .vp-doc .custom-block.danger {
+  background: linear-gradient(135deg, #450a0a 0%, #7f1d1d 100%);
+}
+
+.dark .vp-doc .custom-block.info {
+  background: linear-gradient(135deg, #172554 0%, #1e40af 100%);
+}
+
+.dark .vp-doc .custom-block.tip {
+  background: linear-gradient(135deg, #052e16 0%, #166534 100%);
+}
+
+/* Tables */
+.vp-doc table {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--vp-c-divider);
+}
+
+.vp-doc table th {
+  background: var(--vp-c-bg-soft);
+  font-weight: 600;
+}
+
+.vp-doc table tr:nth-child(even) {
+  background: var(--vp-c-bg-alt);
+}
+
+/* Navigation enhancements */
+.VPSidebar .title {
+  font-weight: 600;
+  color: var(--f-spot-primary);
+}
+
+/* Feature cards on home page */
+.VPFeatures {
+  margin: 3rem 0;
+}
+
+.VPFeature {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.VPFeature:hover {
+  border-color: var(--f-spot-primary);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
+  transform: translateY(-2px);
+}
+
+.dark .VPFeature:hover {
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+/* Custom architecture diagrams */
+.architecture-diagram {
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  overflow-x: auto;
+}
+
+/* Metrics table styling */
+.metrics-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.metrics-table th {
+  background: linear-gradient(135deg, var(--f-spot-primary) 0%, #3b82f6 100%);
+  color: white;
+  font-weight: 600;
+  text-align: left;
+}
+
+/* Status indicators */
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+.status-indicator::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-indicator.completed::before {
+  background-color: var(--f-spot-success);
+}
+
+.status-indicator.warning::before {
+  background-color: var(--f-spot-warning);
+}
+
+.status-indicator.critical::before {
+  background-color: var(--f-spot-danger);
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  .VPHero {
+    padding: 2rem 1rem;
+    margin: 1rem 0;
+  }
+  
+  .VPFeature {
+    padding: 1.5rem;
+  }
+  
+  .architecture-diagram {
+    font-size: 0.875rem;
+    padding: 1rem;
+  }
+}
+
+/* Print styles */
+@media print {
+  .VPNav,
+  .VPSidebar,
+  .VPFooter {
+    display: none !important;
+  }
+  
+  .VPContent {
+    margin-left: 0 !important;
+    padding: 0 !important;
+  }
+  
+  .vp-doc {
+    max-width: none !important;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .VPFeature {
+    transition: none;
+  }
+  
+  .VPFeature:hover {
+    transform: none;
+  }
+}
+
+/* Focus indicators */
+.VPSidebar a:focus,
+.VPNav a:focus {
+  outline: 2px solid var(--f-spot-primary);
+  outline-offset: 2px;
+}
+
+/* Custom scrollbar */
+.VPSidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.VPSidebar::-webkit-scrollbar-track {
+  background: var(--vp-c-bg-alt);
+}
+
+.VPSidebar::-webkit-scrollbar-thumb {
+  background: var(--vp-c-divider);
+  border-radius: 3px;
+}
+
+.VPSidebar::-webkit-scrollbar-thumb:hover {
+  background: var(--f-spot-primary);
+}

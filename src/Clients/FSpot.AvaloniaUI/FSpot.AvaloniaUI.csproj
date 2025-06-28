@@ -1,0 +1,86 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>FSpot.AvaloniaUI</RootNamespace>
+    <AssemblyName>f-spot-avalonia</AssemblyName>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TrimmerDefaultAction>link</TrimmerDefaultAction>
+    <PublishTrimmed>true</PublishTrimmed>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <DefineConstants>DEBUG</DefineConstants>
+  </PropertyGroup>
+
+  <!-- Avalonia Packages -->
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="11.0.6" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.0.6" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.6" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="11.0.6" />
+    <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.6" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.6" />
+    <PackageReference Include="Avalonia.Xaml.Behaviors" Version="11.0.6" />
+    <PackageReference Include="Avalonia.Controls.DataGrid" Version="11.0.6" />
+  </ItemGroup>
+
+  <!-- Image Processing -->
+  <ItemGroup>
+    <PackageReference Include="SkiaSharp" Version="2.88.6" />
+    <PackageReference Include="SkiaSharp.Views.Avalonia" Version="2.88.6" />
+    <PackageReference Include="Avalonia.Skia" Version="11.0.6" />
+  </ItemGroup>
+
+  <!-- MVVM and Reactive Extensions -->
+  <ItemGroup>
+    <PackageReference Include="ReactiveUI" Version="19.5.41" />
+    <PackageReference Include="ReactiveUI.Fody" Version="19.5.41" />
+    <PackageReference Include="DynamicData" Version="7.14.2" />
+  </ItemGroup>
+
+  <!-- Logging and Configuration -->
+  <ItemGroup>
+    <PackageReference Include="Serilog" Version="3.1.1" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="5.0.1" />
+    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
+  </ItemGroup>
+
+  <!-- F-Spot Core Dependencies -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\FSpot\FSpot.csproj" />
+    <ProjectReference Include="..\..\Core\FSpot.Resources\FSpot.Resources.csproj" />
+    <ProjectReference Include="..\..\..\external\mono-addins\Mono.Addins\Mono.Addins.csproj" />
+  </ItemGroup>
+
+  <!-- Embedded Resources -->
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\..\COPYING.md">
+      <LogicalName>COPYING</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <!-- Asset Files -->
+  <ItemGroup>
+    <AvaloniaResource Include="Assets\**" />
+  </ItemGroup>
+
+  <!-- Configuration Files -->
+  <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="appsettings.Development.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

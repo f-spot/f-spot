@@ -1,0 +1,122 @@
+/* Minimal custom styles for F-Spot documentation - Tailwind CSS Extension */
+
+/* Custom chart containers */
+#architecture-quality-chart,
+#dependency-chart,
+#revival-progress-chart,
+#codebase-metrics-chart,
+#issue-distribution-chart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+#architecture-quality-chart::before {
+    content: "📊 Architecture Quality Chart";
+}
+
+#dependency-chart::before {
+    content: "📦 Dependencies Overview";
+}
+
+#revival-progress-chart::before {
+    content: "🚀 Revival Progress";
+}
+
+#codebase-metrics-chart::before {
+    content: "📈 Codebase Metrics";
+}
+
+#issue-distribution-chart::before {
+    content: "🔍 Issue Distribution Analysis";
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Focus states for accessibility */
+.nav-link:focus {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+}
+
+/* Custom hover animations */
+.nav-link {
+    transition: all 0.2s ease-in-out;
+}
+
+/* Search results styling */
+#search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 50;
+    display: none;
+}
+
+#search-results.show {
+    display: block;
+}
+
+.search-result-item {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #f3f4f6;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.search-result-item:hover {
+    background-color: #f9fafb;
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+/* Active section styles */
+.section {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.section.active {
+    opacity: 1;
+}
+
+/* Print styles */
+@media print {
+    .sidebar {
+        display: none;
+    }
+
+    .content {
+        margin-left: 0;
+    }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .sidebar.mobile-open {
+        transform: translateX(0);
+    }
+
+    .content {
+        margin-left: 0;
+    }
+}

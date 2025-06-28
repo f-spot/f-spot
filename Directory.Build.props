@@ -1,5 +1,10 @@
 <Project>
-  <Import Project="fspot.props" />
+
+  <PropertyGroup>
+    <IsMac>$([MSBuild]::IsOSPlatform('OSX'))</IsMac>
+    <IsWindows>$([MSBuild]::IsOSPlatform('Windows'))</IsWindows>
+    <IsLinux>$([MSBuild]::IsOSPlatform('Linux'))</IsLinux>
+  </PropertyGroup>
 
   <PropertyGroup>
     <RepoRoot>$(MSBuildThisFileDirectory)</RepoRoot>
@@ -21,10 +26,6 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
-  </PropertyGroup>
-
-  <PropertyGroup>
     <GtkPlatformTarget Condition="$(IsWindows)">x86</GtkPlatformTarget>
     <GtkPlatformTarget Condition="!$(IsWindows)">AnyCpu</GtkPlatformTarget>
     <Platforms>$(GtkPlatformTarget)</Platforms>
@@ -41,7 +42,6 @@
 
   <!-- Common nugets -->
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" />
     <PackageReference Include="Microsoft.VisualStudio.Threading" />
     <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers">
       <PrivateAssets>all</PrivateAssets>

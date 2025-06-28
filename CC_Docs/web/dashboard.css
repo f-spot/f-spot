@@ -1,0 +1,437 @@
+/* Dashboard Visualization Styles */
+
+/* Quality Chart */
+.quality-chart {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    background: var(--bg-primary);
+    padding: 2rem;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow);
+    margin: 1rem 0;
+}
+
+.quality-circle {
+    position: relative;
+    width: 120px;
+    height: 120px;
+}
+
+.quality-fill {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: conic-gradient(
+        var(--success-color) 0deg,
+        var(--success-color) calc(var(--percentage) * 3.6deg),
+        var(--bg-tertiary) calc(var(--percentage) * 3.6deg),
+        var(--bg-tertiary) 360deg
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.quality-fill::before {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: var(--bg-primary);
+    border-radius: 50%;
+}
+
+.quality-score {
+    position: absolute;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    z-index: 1;
+}
+
+.quality-details {
+    flex: 1;
+}
+
+.quality-details h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+}
+
+.quality-breakdown {
+    margin-top: 1rem;
+}
+
+.quality-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.quality-item span {
+    min-width: 100px;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.quality-bar {
+    flex: 1;
+    height: 8px;
+    background: var(--bg-tertiary);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.quality-bar div {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--success-color));
+    transition: width 0.3s ease-in-out;
+}
+
+/* Dependency Donut Chart */
+.dependency-chart {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    background: var(--bg-primary);
+    padding: 2rem;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow);
+    margin: 1rem 0;
+}
+
+.dep-donut {
+    position: relative;
+    width: 120px;
+    height: 120px;
+}
+
+.donut {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.donut-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.donut-number {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.donut-label {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.dep-legend {
+    flex: 1;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.legend-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+}
+
+.legend-item.critical .legend-color {
+    background: var(--danger-color);
+}
+
+.legend-item.warning .legend-color {
+    background: var(--warning-color);
+}
+
+.legend-item.success .legend-color {
+    background: var(--success-color);
+}
+
+.legend-item span:last-child {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+/* Revival Progress */
+.revival-progress {
+    background: var(--bg-primary);
+    padding: 2rem;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow);
+    margin: 1rem 0;
+}
+
+.revival-progress h4 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+}
+
+.progress-phases {
+    margin-bottom: 1.5rem;
+}
+
+.phase-item {
+    margin-bottom: 1rem;
+}
+
+.phase-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.phase-header span:first-child {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.phase-percentage {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+.progress-bar {
+    height: 12px;
+    background: var(--bg-tertiary);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--success-color));
+    transition: width 0.3s ease-in-out;
+}
+
+.revival-summary {
+    display: flex;
+    gap: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.summary-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.summary-item strong {
+    color: var(--text-primary);
+    font-size: 0.875rem;
+}
+
+.summary-item span {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* Codebase Metrics */
+.codebase-metrics {
+    background: var(--bg-primary);
+    padding: 2rem;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow);
+    margin: 1rem 0;
+}
+
+.metric-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.metric-card {
+    background: var(--bg-secondary);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.metric-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.metric-card.critical {
+    border-color: var(--danger-color);
+    background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+}
+
+.metric-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.metric-card.critical .metric-value {
+    color: var(--danger-color);
+}
+
+.metric-label {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-bottom: 0.25rem;
+}
+
+.metric-trend {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* Issue Distribution */
+.issue-distribution {
+    background: var(--bg-primary);
+    padding: 2rem;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow);
+    margin: 1rem 0;
+}
+
+.issue-distribution h4 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+}
+
+.issue-bars {
+    margin-bottom: 1rem;
+}
+
+.issue-bar {
+    height: 40px;
+    background: var(--bg-tertiary);
+    border-radius: var(--border-radius);
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.issue-fill {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: width 0.3s ease-in-out;
+}
+
+.issue-bar.critical .issue-fill {
+    background: var(--danger-color);
+}
+
+.issue-bar.high .issue-fill {
+    background: #f97316;
+}
+
+.issue-bar.medium .issue-fill {
+    background: var(--warning-color);
+}
+
+.issue-bar.low .issue-fill {
+    background: var(--info-color);
+}
+
+.issue-total {
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+/* Dashboard Grid Layout */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+/* Responsive Dashboard */
+@media (max-width: 768px) {
+    .quality-chart,
+    .dependency-chart {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .revival-summary {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .metric-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .issue-fill span {
+        font-size: 0.75rem;
+    }
+}
+
+/* Animation for dashboard elements */
+@keyframes dashboardFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.quality-chart,
+.dependency-chart,
+.revival-progress,
+.codebase-metrics,
+.issue-distribution {
+    animation: dashboardFadeIn 0.6s ease-out;
+}
+
+/* Dashboard loading states */
+.dashboard-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    color: var(--text-muted);
+}
+
+.dashboard-loading::before {
+    content: "📊";
+    font-size: 3rem;
+    margin-right: 1rem;
+    animation: pulse 2s ease-in-out infinite;
+}

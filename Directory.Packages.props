@@ -1,4 +1,9 @@
 <Project>
+
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageVersion Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageVersion Include="TinyIoC" Version="1.4.0-rc1" />
@@ -20,4 +25,5 @@
     <PackageVersion Include="NUnit3TestAdapter" Version="4.2.1" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
   </ItemGroup>
+
 </Project>

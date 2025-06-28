@@ -1,0 +1,53 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:FSpot.AvaloniaUI.ViewModels"
+             x:Class="FSpot.AvaloniaUI.Views.TagManagerView"
+             x:DataType="vm:TagManagerViewModel">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Toolbar -->
+        <StackPanel Grid.Row="0" Classes="Toolbar" Orientation="Horizontal">
+            <Button Content="➕" ToolTip.Tip="Create Tag" />
+            <Button Content="✏️" ToolTip.Tip="Edit Tag" />
+            <Button Content="🗑️" ToolTip.Tip="Delete Tag" />
+            <Button Content="🔄" ToolTip.Tip="Refresh" Command="{Binding RefreshCommand}" />
+        </StackPanel>
+
+        <!-- Tag List -->
+        <ScrollViewer Grid.Row="1">
+            <TreeView Items="{Binding Tags}">
+                <TreeView.ItemTemplate>
+                    <TreeDataTemplate ItemsSource="{Binding Children}">
+                        <StackPanel Orientation="Horizontal" Spacing="4">
+                            <TextBlock Text="📁" IsVisible="{Binding IsCategory}" />
+                            <TextBlock Text="🏷️" IsVisible="{Binding !IsCategory}" />
+                            <TextBlock Text="{Binding Name}" />
+                        </StackPanel>
+                    </TreeDataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
+        </ScrollViewer>
+
+        <!-- Tag Info -->
+        <Border Grid.Row="2" 
+                Background="#F5F5F5" 
+                BorderBrush="#E0E0E0" 
+                BorderThickness="0,1,0,0" 
+                Padding="8"
+                IsVisible="{Binding SelectedTag, Converter={x:Static ObjectConverters.IsNotNull}}">
+            <StackPanel Spacing="4">
+                <TextBlock Text="{Binding SelectedTag.Name}" FontWeight="Bold" />
+                <TextBlock Text="{Binding SelectedTag.CategoryName, StringFormat='Category: {0}'}" 
+                           IsVisible="{Binding SelectedTag.CategoryName, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+                <TextBlock Text="Root tag" 
+                           IsVisible="{Binding SelectedTag.CategoryName, Converter={x:Static StringConverters.IsNullOrEmpty}}" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

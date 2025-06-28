@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find:*)",
+      "Bash(git submodule:*)",
+      "Bash(ls:*)",
+      "Bash(dotnet build:*)",
+      "Bash(pkg-config:*)",
+      "Bash(apt list:*)",
+      "Bash(grep:*)",
+      "Bash(mkdir:*)",
+      "Bash(rg:*)",
+      "Bash(sqlite3:*)",
+      "Bash(npm --version)",
+      "Bash(node:*)",
+      "Bash(npm init:*)",
+      "Bash(npm install)",
+      "Bash(cp:*)",
+      "Bash(rm:*)",
+      "Bash(npm run build:*)",
+      "Bash(sed:*)",
+      "Bash(mv:*)",
+      "Bash(chmod:*)",
+      "Bash(./normalize-filenames.sh)",
+      "Bash(npm run dev:*)"
+    ],
+    "deny": []
+  }
+}

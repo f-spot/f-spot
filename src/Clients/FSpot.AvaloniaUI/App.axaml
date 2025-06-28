@@ -1,0 +1,84 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="FSpot.AvaloniaUI.App"
+             RequestedThemeVariant="Default">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+    <Application.DataTemplates>
+        <local:ViewLocator xmlns:local="using:FSpot.AvaloniaUI"/>
+    </Application.DataTemplates>
+
+    <Application.Styles>
+        <FluentTheme />
+        
+        <!-- F-Spot Custom Styles -->
+        <Style Selector="Window">
+            <Setter Property="Icon" Value="/Assets/fspot-icon.ico"/>
+        </Style>
+        
+        <!-- Photo Grid Styles -->
+        <Style Selector="ListBox.PhotoGrid">
+            <Setter Property="Background" Value="#F5F5F5"/>
+            <Setter Property="Padding" Value="8"/>
+        </Style>
+        
+        <Style Selector="ListBoxItem.PhotoGridItem">
+            <Setter Property="Margin" Value="4"/>
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E0E0E0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+        
+        <Style Selector="ListBoxItem.PhotoGridItem:selected">
+            <Setter Property="Background" Value="#2563EB"/>
+            <Setter Property="BorderBrush" Value="#1D4ED8"/>
+        </Style>
+        
+        <Style Selector="ListBoxItem.PhotoGridItem:pointerover">
+            <Setter Property="Background" Value="#F0F9FF"/>
+            <Setter Property="BorderBrush" Value="#3B82F6"/>
+        </Style>
+        
+        <!-- Tag Styles -->
+        <Style Selector="Button.TagButton">
+            <Setter Property="Background" Value="#EFF6FF"/>
+            <Setter Property="BorderBrush" Value="#DBEAFE"/>
+            <Setter Property="Foreground" Value="#1E40AF"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Padding" Value="8,4"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+        
+        <!-- Toolbar Styles -->
+        <Style Selector="StackPanel.Toolbar">
+            <Setter Property="Background" Value="#FAFAFA"/>
+            <Setter Property="Spacing" Value="8"/>
+            <Setter Property="Margin" Value="8"/>
+        </Style>
+        
+        <!-- Rating Control Styles -->
+        <Style Selector="StackPanel.Rating">
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="Spacing" Value="2"/>
+        </Style>
+        
+        <Style Selector="Button.RatingStar">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="2"/>
+            <Setter Property="FontFamily" Value="Segoe UI Symbol"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+        
+        <Style Selector="Button.RatingStar.Filled">
+            <Setter Property="Foreground" Value="#F59E0B"/>
+        </Style>
+        
+        <Style Selector="Button.RatingStar.Empty">
+            <Setter Property="Foreground" Value="#D1D5DB"/>
+        </Style>
+    </Application.Styles>
+</Application>

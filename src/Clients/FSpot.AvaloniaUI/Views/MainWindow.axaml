@@ -1,0 +1,236 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:FSpot.AvaloniaUI.ViewModels"
+        xmlns:views="using:FSpot.AvaloniaUI.Views"
+        x:Class="FSpot.AvaloniaUI.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/fspot-icon.ico"
+        Title="{Binding WindowTitle}"
+        Width="1200"
+        Height="800"
+        MinWidth="800"
+        MinHeight="600">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Menu Bar -->
+        <Menu Grid.Row="0">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Import Photos..." Command="{Binding ImportPhotosCommand}" />
+                <Separator />
+                <MenuItem Header="E_xit" Command="{Binding ExitCommand}" />
+            </MenuItem>
+            <MenuItem Header="_View">
+                <MenuItem Header="_Photo Browser" />
+                <MenuItem Header="_Single Photo" />
+                <MenuItem Header="_Slideshow" />
+            </MenuItem>
+            <MenuItem Header="_Tools">
+                <MenuItem Header="_Preferences..." />
+                <MenuItem Header="_Database Repair..." />
+            </MenuItem>
+            <MenuItem Header="_Help">
+                <MenuItem Header="_About F-Spot" Command="{Binding ShowAboutCommand}" />
+            </MenuItem>
+        </Menu>
+
+        <!-- Main Content Area -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300" MinWidth="200" />
+                <ColumnDefinition Width="4" />
+                <ColumnDefinition Width="*" MinWidth="400" />
+                <ColumnDefinition Width="4" />
+                <ColumnDefinition Width="250" MinWidth="200" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Left Panel - Photo Browser -->
+            <Border Grid.Column="0" Background="#FAFAFA" BorderBrush="#E0E0E0" BorderThickness="0,0,1,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <!-- Search Box -->
+                    <Border Grid.Row="0" Margin="8" Padding="8" Background="White" CornerRadius="4" BorderBrush="#D1D5DB" BorderThickness="1">
+                        <TextBox Text="{Binding PhotoBrowser.SearchText}" 
+                                 Watermark="Search photos..." 
+                                 BorderThickness="0" 
+                                 Background="Transparent" />
+                    </Border>
+
+                    <!-- Toolbar -->
+                    <StackPanel Grid.Row="1" Classes="Toolbar" Orientation="Horizontal">
+                        <Button Content="🔄" ToolTip.Tip="Refresh" Command="{Binding PhotoBrowser.RefreshCommand}" />
+                        <Button Content="📥" ToolTip.Tip="Import" Command="{Binding ImportPhotosCommand}" />
+                    </StackPanel>
+
+                    <!-- Photo Grid -->
+                    <ScrollViewer Grid.Row="2">
+                        <ListBox Items="{Binding PhotoBrowser.Photos}"
+                                 SelectedItem="{Binding PhotoBrowser.SelectedPhoto}"
+                                 Classes="PhotoGrid">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Padding="4" CornerRadius="4">
+                                        <StackPanel>
+                                            <!-- Thumbnail -->
+                                            <Border Width="120" Height="120" CornerRadius="4" Background="#F5F5F5">
+                                                <Image Source="{Binding Thumbnail}" 
+                                                       Stretch="Uniform"
+                                                       StretchDirection="Both" />
+                                            </Border>
+                                            
+                                            <!-- File Info -->
+                                            <TextBlock Text="{Binding FileName}" 
+                                                       FontSize="11" 
+                                                       TextTrimming="CharacterEllipsis"
+                                                       HorizontalAlignment="Center"
+                                                       Margin="2,4,2,0" />
+                                            
+                                            <!-- Date -->
+                                            <TextBlock Text="{Binding DateTaken, StringFormat='{}{0:MM/dd/yyyy}'}" 
+                                                       FontSize="10" 
+                                                       Foreground="Gray"
+                                                       HorizontalAlignment="Center"
+                                                       Margin="2,0,2,2" />
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+
+            <!-- Splitter -->
+            <GridSplitter Grid.Column="1" Background="#E0E0E0" />
+
+            <!-- Center Panel - Photo Viewer -->
+            <Border Grid.Column="2" Background="Black">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <!-- Viewer Toolbar -->
+                    <Border Grid.Row="0" Background="#2D3748" Padding="8">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <Button Content="🔍+" Command="{Binding PhotoViewer.ZoomInCommand}" />
+                            <Button Content="🔍-" Command="{Binding PhotoViewer.ZoomOutCommand}" />
+                            <Button Content="⊞" Command="{Binding PhotoViewer.ZoomToFitCommand}" />
+                            <Button Content="1:1" Command="{Binding PhotoViewer.ZoomToActualSizeCommand}" />
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Image Display -->
+                    <ScrollViewer Grid.Row="1" 
+                                  ZoomScrollBarVisibility="Auto"
+                                  HorizontalScrollBarVisibility="Auto"
+                                  VerticalScrollBarVisibility="Auto">
+                        <Image Source="{Binding PhotoViewer.Image}" 
+                               Stretch="Uniform"
+                               StretchDirection="DownOnly" />
+                    </ScrollViewer>
+
+                    <!-- Image Info -->
+                    <Border Grid.Row="2" Background="#2D3748" Padding="8">
+                        <TextBlock Text="{Binding PhotoViewer.ImageInfo}" 
+                                   Foreground="White" 
+                                   FontSize="12" />
+                    </Border>
+                </Grid>
+
+                <!-- Loading Overlay -->
+                <Border Background="#80000000" 
+                        IsVisible="{Binding PhotoViewer.IsLoading}">
+                    <StackPanel HorizontalAlignment="Center" 
+                                VerticalAlignment="Center">
+                        <ProgressBar IsIndeterminate="True" Width="200" />
+                        <TextBlock Text="Loading image..." 
+                                   Foreground="White" 
+                                   HorizontalAlignment="Center" 
+                                   Margin="0,8,0,0" />
+                    </StackPanel>
+                </Border>
+            </Border>
+
+            <!-- Splitter -->
+            <GridSplitter Grid.Column="3" Background="#E0E0E0" />
+
+            <!-- Right Panel - Tags and Info -->
+            <Border Grid.Column="4" Background="#FAFAFA" BorderBrush="#E0E0E0" BorderThickness="1,0,0,0">
+                <TabControl>
+                    <TabItem Header="Tags">
+                        <views:TagManagerView DataContext="{Binding TagManager}" />
+                    </TabItem>
+                    <TabItem Header="Info">
+                        <ScrollViewer>
+                            <StackPanel Margin="8" Spacing="8">
+                                <TextBlock Text="Photo Information" FontWeight="Bold" />
+                                
+                                <!-- Selected Photo Info -->
+                                <StackPanel IsVisible="{Binding PhotoBrowser.SelectedPhoto, Converter={x:Static ObjectConverters.IsNotNull}}">
+                                    <TextBlock Text="File Name:" FontWeight="SemiBold" />
+                                    <TextBlock Text="{Binding PhotoBrowser.SelectedPhoto.FileName}" Margin="0,0,0,8" />
+                                    
+                                    <TextBlock Text="Date Taken:" FontWeight="SemiBold" />
+                                    <TextBlock Text="{Binding PhotoBrowser.SelectedPhoto.DateTaken}" Margin="0,0,0,8" />
+                                    
+                                    <TextBlock Text="Description:" FontWeight="SemiBold" />
+                                    <TextBlock Text="{Binding PhotoBrowser.SelectedPhoto.Description}" 
+                                               TextWrapping="Wrap" 
+                                               Margin="0,0,0,8" />
+                                    
+                                    <TextBlock Text="Rating:" FontWeight="SemiBold" />
+                                    <StackPanel Classes="Rating">
+                                        <!-- Rating stars would go here -->
+                                        <TextBlock Text="{Binding PhotoBrowser.SelectedPhoto.Rating, StringFormat='{}{0}/5'}" />
+                                    </StackPanel>
+                                </StackPanel>
+                                
+                                <TextBlock Text="No photo selected" 
+                                           IsVisible="{Binding PhotoBrowser.SelectedPhoto, Converter={x:Static ObjectConverters.IsNull}}" />
+                            </StackPanel>
+                        </ScrollViewer>
+                    </TabItem>
+                </TabControl>
+            </Border>
+        </Grid>
+
+        <!-- Status Bar -->
+        <Border Grid.Row="2" Background="#F5F5F5" BorderBrush="#E0E0E0" BorderThickness="0,1,0,0" Padding="8,4">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="{Binding StatusText}" VerticalAlignment="Center" />
+                
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
+                    <ProgressBar Width="100" 
+                                 IsIndeterminate="True" 
+                                 IsVisible="{Binding IsLoading}" />
+                    <TextBlock Text="{Binding PhotoBrowser.Photos.Count, StringFormat='{}{0} photos'}" 
+                               VerticalAlignment="Center" />
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F-Spot Architecture Analysis - Test</title>
+    <style>
+        /* Basic test styles */
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        .sidebar { position: fixed; left: 0; top: 0; width: 250px; height: 100vh; background: #f5f5f5; padding: 20px; overflow-y: auto; }
+        .content { margin-left: 250px; padding: 20px; }
+        .nav-link { display: block; padding: 10px; text-decoration: none; color: #333; margin: 5px 0; }
+        .nav-link.active { background: #007bff; color: white; }
+        .section { display: none; }
+        .section.active { display: block; }
+        h1 { color: #333; }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <h2>F-Spot Analysis</h2>
+        <a href="#overview" class="nav-link active">Overview</a>
+        <a href="#architecture" class="nav-link">System Architecture</a>
+        <a href="#domain" class="nav-link">Domain Model</a>
+    </nav>
+
+    <main class="content">
+        <section id="overview" class="section active">
+            <h1>Overview Section</h1>
+            <p>This is the overview section content.</p>
+        </section>
+
+        <section id="architecture" class="section">
+            <h1>Architecture Section</h1>
+            <p>This is the architecture section content.</p>
+        </section>
+
+        <section id="domain" class="section">
+            <h1>Domain Model Section</h1>
+            <p>This is the domain model section content.</p>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Page loaded');
+            
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('.section');
+            
+            console.log('Found nav links:', navLinks.length);
+            console.log('Found sections:', sections.length);
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log('Clicked:', this.getAttribute('href'));
+                    
+                    // Get target section
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    
+                    console.log('Target ID:', targetId);
+                    console.log('Target section:', targetSection);
+                    
+                    if (targetSection) {
+                        // Update active nav link
+                        navLinks.forEach(navLink => navLink.classList.remove('active'));
+                        this.classList.add('active');
+                        
+                        // Show target section
+                        sections.forEach(section => {
+                            section.classList.remove('active');
+                            console.log('Hiding section:', section.id);
+                        });
+                        targetSection.classList.add('active');
+                        console.log('Showing section:', targetSection.id);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
