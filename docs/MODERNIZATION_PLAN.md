@@ -14,7 +14,8 @@ This plan outlines a phased approach to modernize F-Spot from GTK# 2.x / .NET Fr
 
 | Layer | Status | Issues |
 |-------|--------|--------|
-| Database | Good | Clean interfaces, Hyena.Data.Sqlite abstraction |
+| **Database** | **Replace** | Hyena.Data.Sqlite is Mono-specific, migrate to EF Core |
+| **Extensions** | **Replace** | Mono.Addins is legacy, needs modern plugin system |
 | Settings | Good | UI-agnostic |
 | FileSystem | Good | No GTK# dependencies |
 | Query | Good | Clean business logic |
@@ -51,7 +52,8 @@ src/Core/FSpot/
 | Image Library | Gdk.Pixbuf | SkiaSharp / ImageSharp |
 | MVVM | None (code-behind) | CommunityToolkit.Mvvm |
 | DI Container | TinyIoC | Microsoft.Extensions.DI |
-| Database | Hyena.Data.Sqlite | Keep (works with .NET 10) |
+| Database | Hyena.Data.Sqlite | EF Core + Microsoft.Data.Sqlite |
+| Extensions | Mono.Addins | Custom plugin system or MEF |
 | Logging | Serilog | Keep |
 
 ### Proposed Project Structure
@@ -80,8 +82,7 @@ F-Spot.sln
 │       └── ... (Editors, Exporters, Tools)
 │
 ├── lib/
-│   ├── Hyena/                       # Keep, migrate to .NET 8
-│   └── Hyena.Data.Sqlite/           # Keep
+│   └── Hyena/                       # Migrate core utilities to .NET 10, remove Sqlite
 │
 └── tests/
     ├── FSpot.Core.Tests/
@@ -209,15 +210,50 @@ public class SkiaImage : IImage
 }
 ```
 
-#### 2.3 Move Widgets Out of Core
+#### 2.3 Database Migration (Hyena.Data.Sqlite → EF Core)
+
+Replace Hyena.Data.Sqlite with Entity Framework Core:
+
+```csharp
+// FSpot.Database/FSpotDbContext.cs
+public class FSpotDbContext : DbContext
+{
+    public DbSet<Photo> Photos => Set<Photo>();
+    public DbSet<Tag> Tags => Set<Tag>();
+    public DbSet<Roll> Rolls => Set<Roll>();
+    public DbSet<PhotoVersion> PhotoVersions => Set<PhotoVersion>();
+
+    protected override void OnConfiguring(DbContextOptionsBuilder options)
+        => options.UseSqlite($"Data Source={GetDatabasePath()}");
+}
+
+// Repository pattern for data access
+public interface IPhotoRepository
+{
+    Task<Photo?> GetByIdAsync(int id);
+    Task<IReadOnlyList<Photo>> QueryAsync(PhotoQuery query);
+    Task AddAsync(Photo photo);
+    Task UpdateAsync(Photo photo);
+    Task DeleteAsync(Photo photo);
+}
+```
+
+**Migration Strategy**:
+- Keep existing SQLite schema for data compatibility
+- Map EF Core entities to existing tables
+- Provide migration tool for any schema updates
+- Existing F-Spot databases remain readable
+
+#### 2.4 Move Widgets Out of Core
 
 Relocate `src/Core/FSpot/Gui/FSpot.Widgets/` to client layer:
 - These become reference implementations for Avalonia rewrites
 - Core library becomes truly UI-agnostic
 
-#### 2.4 Deliverables
+#### 2.5 Deliverables
 - [ ] FSpot.Core targeting .NET 10
 - [ ] FSpot.Imaging with SkiaSharp backend
+- [ ] FSpot.Database with EF Core (compatible with existing data)
 - [ ] All widgets moved to presentation layer
 - [ ] Unit tests passing on .NET 10
 
@@ -315,23 +351,80 @@ public partial class MainWindowViewModel : ViewModelBase
 | Search/Query | Low | Query logic is clean |
 | Ratings/Flags | Low | UI only |
 
-#### 4.2 Extension System Migration
+#### 4.2 Extension System Migration (Mono.Addins → Modern Plugin System)
 
-Migrate from Mono.Addins to modern plugin system:
+Replace Mono.Addins with a lightweight, modern plugin architecture:
+
+**Option A: AssemblyLoadContext + Interfaces (Recommended)**
 
 ```csharp
-// FSpot.Extensions.Core/IExporter.cs
-public interface IExporter
+// FSpot.Extensions.Abstractions/IPlugin.cs
+public interface IPlugin
 {
+    string Id { get; }
     string Name { get; }
-    string Description { get; }
+    string Version { get; }
+    Task InitializeAsync(IServiceProvider services);
+}
+
+// Extension point interfaces
+public interface IExporter : IPlugin
+{
     Task ExportAsync(IReadOnlyList<IPhoto> photos, ExportOptions options);
 }
 
-// Load via reflection or MEF
-[Export(typeof(IExporter))]
-public class FlickrExporter : IExporter { }
+public interface IPhotoEditor : IPlugin
+{
+    Task<IImage> ApplyAsync(IImage source, EditorOptions options);
+}
+
+public interface IImportSource : IPlugin
+{
+    Task<IReadOnlyList<ImportItem>> ScanAsync(CancellationToken ct);
+}
+
+// FSpot.Extensions.Host/PluginLoader.cs
+public class PluginLoader
+{
+    private readonly List<AssemblyLoadContext> _contexts = new();
+
+    public IEnumerable<T> LoadPlugins<T>(string pluginsDirectory) where T : IPlugin
+    {
+        foreach (var dll in Directory.GetFiles(pluginsDirectory, "*.dll"))
+        {
+            var context = new AssemblyLoadContext(dll, isCollectible: true);
+            var assembly = context.LoadFromAssemblyPath(dll);
+
+            foreach (var type in assembly.GetTypes()
+                .Where(t => typeof(T).IsAssignableFrom(t) && !t.IsAbstract))
+            {
+                yield return (T)Activator.CreateInstance(type)!;
+            }
+            _contexts.Add(context);
+        }
+    }
+}
 ```
+
+**Option B: MEF (System.Composition)**
+
+```csharp
+[Export(typeof(IExporter))]
+[ExportMetadata("Name", "Flickr")]
+public class FlickrExporter : IExporter { }
+
+// Discovery
+var configuration = new ContainerConfiguration()
+    .WithAssembliesInPath(pluginsPath);
+using var container = configuration.CreateContainer();
+var exporters = container.GetExports<IExporter>();
+```
+
+**Migration Path**:
+1. Define new plugin interfaces in `FSpot.Extensions.Abstractions`
+2. Create plugin host with discovery/loading
+3. Port each extension (update namespace, implement new interfaces)
+4. Extensions become separate NuGet packages or loose DLLs
 
 #### 4.3 Platform-Specific Features
 
