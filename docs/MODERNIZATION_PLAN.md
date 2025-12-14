@@ -47,11 +47,11 @@ src/Core/FSpot/
 | Component | Current | Target |
 |-----------|---------|--------|
 | UI Framework | GTK# 2.12 | Avalonia UI 11.x |
-| Runtime | .NET Framework 4.7.2 (Mono) | .NET 8 LTS |
+| Runtime | .NET Framework 4.7.2 (Mono) | .NET 10 LTS |
 | Image Library | Gdk.Pixbuf | SkiaSharp / ImageSharp |
 | MVVM | None (code-behind) | CommunityToolkit.Mvvm |
 | DI Container | TinyIoC | Microsoft.Extensions.DI |
-| Database | Hyena.Data.Sqlite | Keep (works with .NET 8) |
+| Database | Hyena.Data.Sqlite | Keep (works with .NET 10) |
 | Logging | Serilog | Keep |
 
 ### Proposed Project Structure
@@ -168,9 +168,9 @@ public class GdkImageAdapter : IImage
 
 ### Phase 2: Core Library Modernization (Weeks 9-16)
 
-**Goal**: Migrate core library to .NET 8, implement modern image backend
+**Goal**: Migrate core library to .NET 10, implement modern image backend
 
-#### 2.1 .NET 8 Migration
+#### 2.1 .NET 10 Migration
 
 Update project files:
 
@@ -178,7 +178,7 @@ Update project files:
 <!-- FSpot.Core.csproj -->
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
@@ -216,10 +216,10 @@ Relocate `src/Core/FSpot/Gui/FSpot.Widgets/` to client layer:
 - Core library becomes truly UI-agnostic
 
 #### 2.4 Deliverables
-- [ ] FSpot.Core targeting .NET 8
+- [ ] FSpot.Core targeting .NET 10
 - [ ] FSpot.Imaging with SkiaSharp backend
 - [ ] All widgets moved to presentation layer
-- [ ] Unit tests passing on .NET 8
+- [ ] Unit tests passing on .NET 10
 
 ---
 
@@ -413,9 +413,9 @@ Keep SQLite with Hyena.Data.Sqlite or migrate to EF Core:
 ### Prerequisites for Development
 
 ```bash
-# Install .NET 8 SDK
-# Ubuntu
-sudo apt install dotnet-sdk-8.0
+# Install .NET 10 SDK
+# Download from https://dotnet.microsoft.com/download/dotnet/10.0
+# Or via package manager once available
 
 # Install Avalonia templates
 dotnet new install Avalonia.Templates
