@@ -45,8 +45,8 @@ namespace FSpot.Resources
 				// Otherwise, get it from our embedded resources.
 				if (result == null) {
 					var image = $"{name}-{size}.png";
-					if (HasResource (Assembly.GetExecutingAssembly (), image)) //Assembly.GetCallingAssembly() is wrong here!
-						result = Pixbuf.LoadFromResource (image);
+					if (HasResource (ResourceAssembly.Instance, image))
+						result = new Pixbuf (ResourceAssembly.Instance, image);
 				}
 
 				//Maybe we can find the icon in the resource of a different assembly (e.g. Plugin)
@@ -79,9 +79,7 @@ namespace FSpot.Resources
 
 		public static Stream GetResourceIconStream (string name)
 		{
-			var ass = typeof (ResourceLoader).Assembly;
-
-			return ass.GetManifestResourceStream (name);
+			return ResourceAssembly.Instance.GetManifestResourceStream (name);
 		}
 
 		// From MonoDevelop:

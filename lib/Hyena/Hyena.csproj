@@ -2,11 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>$(NetStandard)</TargetFramework>
-    <AssemblySearchPaths>$(AssemblySearchPaths);{GAC}</AssemblySearchPaths>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Core\FSpot.Resources\FSpot.Resources.csproj" />
+    <ProjectReference Include="..\..\src\Core\FSpot.Strings\FSpot.Strings.csproj" />
   </ItemGroup>
 
 </Project>
