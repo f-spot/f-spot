@@ -9,12 +9,15 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
+using System.Globalization;
 
-using NUnit.Framework;
+using Hyena;
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Hyena.Query.Tests
 {
-	[TestFixture]
+	[TestClass]
 	public class QueryTests : Hyena.Tests.TestBase
 	{
 		static QueryField ArtistField = new QueryField (
@@ -51,15 +54,16 @@ namespace Hyena.Query.Tests
 			ArtistField, AlbumField, PlayCountField, MimeTypeField, DurationField
 		);
 
-		[Test]
-		public void QueryValueSql ()
+		[TestMethod]
+				public void QueryValueSql ()
 		{
+			CultureInfo.CurrentCulture = new CultureInfo ("it-IT");
 			QueryValue qv;
 
 			qv = new DateQueryValue (); qv.ParseUserQuery ("2007-03-9");
 			Assert.AreEqual (new DateTime (2007, 3, 9), qv.Value);
 			Assert.AreEqual ("2007-03-09", qv.ToUserQuery ());
-			Assert.AreEqual ("1173420000", qv.ToSql ());
+			Assert.AreEqual (DateTimeUtil.FromDateTime (new DateTime (2007, 3, 9)).ToString (CultureInfo.InvariantCulture), qv.ToSql ());
 
 			qv = new StringQueryValue (); qv.ParseUserQuery ("foo 'bar'");
 			Assert.AreEqual ("foo 'bar'", qv.Value);
@@ -77,28 +81,28 @@ namespace Hyena.Query.Tests
 			Assert.AreEqual ("foo ''bar''", qv.ToSql ());
 
 			qv = new IntegerQueryValue (); qv.ParseUserQuery ("22");
-			Assert.AreEqual (22, qv.Value);
+			Assert.AreEqual (22L, Convert.ToInt64 (qv.Value));
 			Assert.AreEqual ("22", qv.ToUserQuery ());
 			Assert.AreEqual ("22", qv.ToSql ());
 
 			qv = new FileSizeQueryValue (); qv.ParseUserQuery ("2048 KB");
-			Assert.AreEqual (2097152, qv.Value);
+			Assert.AreEqual (2097152L, Convert.ToInt64 (qv.Value));
 			Assert.AreEqual ("2.048 KB", qv.ToUserQuery ());
 			Assert.AreEqual ("2097152", qv.ToSql ());
 
 			// TODO this will break once an it_IT translation for "days ago" etc is committed
 			qv = new RelativeTimeSpanQueryValue (); qv.ParseUserQuery ("2 days ago");
-			Assert.AreEqual (-172800, qv.Value);
-			Assert.AreEqual ("2 days ago", qv.ToUserQuery ());
+			Assert.AreEqual (-172800L, Convert.ToInt64 (qv.Value));
+			Assert.AreEqual ("2 Days ago", qv.ToUserQuery ());
 
 			// TODO this will break once an it_IT translation for "minutes" etc is committed
 			qv = new TimeSpanQueryValue (); qv.ParseUserQuery ("4 minutes");
-			Assert.AreEqual (240, qv.Value);
-			Assert.AreEqual ("4 minutes", qv.ToUserQuery ());
+			Assert.AreEqual (240L, Convert.ToInt64 (qv.Value));
+			Assert.AreEqual ("4 Minutes", qv.ToUserQuery ());
 			Assert.AreEqual ("240000", qv.ToSql ());
 		}
 
-		[Test]
+		[TestMethod]
 		public void QueryParsing ()
 		{
 			string[] tests = new string[] {
@@ -113,7 +117,7 @@ namespace Hyena.Query.Tests
 				"by:foo",
 				"-by:foo",
 				"-by!=foo",
-				"duration>\"2 minutes\"",
+				"duration>\"2 Minutes\"",
 				"plays>3",
 				"-plays>3",
 				"by:baz -on:bar",
@@ -126,7 +130,7 @@ namespace Hyena.Query.Tests
 			AssertForEach<string> (tests, UserQueryParsesAndGenerates);
 		}
 
-		[Test]
+		[TestMethod]
 		public void CustomFormatParenthesisBugFixed ()
 		{
 			QueryValue val = new StringQueryValue ();
@@ -138,7 +142,7 @@ namespace Hyena.Query.Tests
 			);
 		}
 
-		[Test]
+		[TestMethod]
 		public void EscapeSingleQuotes ()
 		{
 			QueryValue val = new StringQueryValue ();
@@ -150,7 +154,7 @@ namespace Hyena.Query.Tests
 			);
 		}
 
-		[Test] // http://bugzilla.gnome.org/show_bug.cgi?id=570312
+		[TestMethod] // http://bugzilla.gnome.org/show_bug.cgi?id=570312
 		public void EscapeSqliteWildcards1 ()
 		{
 			QueryValue val = new StringQueryValue ();
@@ -162,7 +166,7 @@ namespace Hyena.Query.Tests
 			);
 		}
 
-		[Test] // http://bugzilla.gnome.org/show_bug.cgi?id=570312
+		[TestMethod] // http://bugzilla.gnome.org/show_bug.cgi?id=570312
 		public void EscapeSqliteWildcards2 ()
 		{
 			QueryValue val = new StringQueryValue ();
@@ -174,7 +178,7 @@ namespace Hyena.Query.Tests
 			);
 		}
 
-		[Test] // http://bugzilla.gnome.org/show_bug.cgi?id=570312
+		[TestMethod] // http://bugzilla.gnome.org/show_bug.cgi?id=570312
 		public void EscapeSqliteWildcards3 ()
 		{
 			QueryValue val = new StringQueryValue ();
@@ -186,7 +190,7 @@ namespace Hyena.Query.Tests
 			);
 		}
 
-		[Test] // http://bugzilla.gnome.org/show_bug.cgi?id=570312
+		[TestMethod] // http://bugzilla.gnome.org/show_bug.cgi?id=570312
 		public void EscapeSqliteWildcards4Real ()
 		{
 			QueryValue val = new ExactStringQueryValue ();
@@ -198,7 +202,7 @@ namespace Hyena.Query.Tests
 			);
 		}
 
-		[Test] // http://bugzilla.gnome.org/show_bug.cgi?id=612152
+		[TestMethod] // http://bugzilla.gnome.org/show_bug.cgi?id=612152
 		public void EscapeUri ()
 		{
 			QueryValue val = new ExactUriStringQueryValue ();
@@ -210,7 +214,7 @@ namespace Hyena.Query.Tests
 			);
 		}
 
-		[Test] // http://bugzilla.gnome.org/show_bug.cgi?id=644145
+		[TestMethod] // http://bugzilla.gnome.org/show_bug.cgi?id=644145
 		public void EscapeUriWithStartsWithOperator ()
 		{
 			QueryValue val = new ExactUriStringQueryValue ();
@@ -223,7 +227,7 @@ namespace Hyena.Query.Tests
 			);
 		}
 
-		[Test]
+		[TestMethod]
 		// Test behavior issues described in
 		// http://bugzilla.gnome.org/show_bug.cgi?id=547078
 		public void ParenthesesInQuotes ()
@@ -239,7 +243,7 @@ namespace Hyena.Query.Tests
 		{
 			QueryNode node = UserQueryParser.Parse (query, FieldSet);
 			if (query == null || query.Trim () == string.Empty) {
-				Assert.AreEqual (node, null);
+				Assert.IsNull (node);
 				return;
 			}
 

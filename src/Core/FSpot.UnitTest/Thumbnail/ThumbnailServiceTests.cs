@@ -16,11 +16,12 @@ using Mocks;
 
 using Moq;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FSpot.Thumbnail.UnitTest
 {
-	[TestFixture]
+	[TestClass]
+	[TestCategory("RequiresGdk")]
 	public class ThumbnailServiceTests
 	{
 		static readonly SafeUri fileUri = new SafeUri ("file:///path/to/file");
@@ -39,7 +40,7 @@ namespace FSpot.Thumbnail.UnitTest
 		Mock<IThumbnailer> thumbnailerMock = new Mock<IThumbnailer> ();
 		byte[] thumbnail = PixbufMock.CreateThumbnail (fileUri, fileMTime);
 
-		[OneTimeSetUp]
+		[TestInitialize]
 		public void OneTimeSetUp ()
 		{
 			var xdgDirectoryServiceMock = new Mock<IXdgDirectoryService> ();
@@ -58,7 +59,7 @@ namespace FSpot.Thumbnail.UnitTest
 
 		#region Constructor tests
 
-		[Test]
+		[TestMethod]
 		// Analysis disable once InconsistentNaming
 		public void Constructor_CreatesThumbnailFolders_IfTheyDontExist ()
 		{
@@ -71,7 +72,7 @@ namespace FSpot.Thumbnail.UnitTest
 			fileSystem.DirectoryMock.Verify (m => m.CreateDirectory (new SafeUri (normalThumbnailPath)), Times.Once ());
 		}
 
-		[Test]
+		[TestMethod]
 		// Analysis disable once InconsistentNaming
 		public void Constructor_DoesNotCreateThumbnailFolders_IfTheyExist ()
 		{
@@ -89,7 +90,7 @@ namespace FSpot.Thumbnail.UnitTest
 
 		#region GetThumbnail tests
 
-		[Test]
+		[TestMethod]
 		// Analysis disable once InconsistentNaming
 		public void GetThumbnail_ReturnsPixbuf_IfValidPngExists ()
 		{
@@ -103,7 +104,7 @@ namespace FSpot.Thumbnail.UnitTest
 			Assert.IsNotNull (result);
 		}
 
-		[Test]
+		[TestMethod]
 		// Analysis disable once InconsistentNaming
 		public void GetThumbnail_CreatesPngAndReturnsPixbuf_IfPngIsMissing ()
 		{
@@ -119,7 +120,7 @@ namespace FSpot.Thumbnail.UnitTest
 			Assert.IsNotNull (result);
 		}
 
-		[Test]
+		[TestMethod]
 		// Analysis disable once InconsistentNaming
 		public void GetThumbnail_ReturnsNull_IfNoThumbnailerFound ()
 		{
@@ -132,7 +133,7 @@ namespace FSpot.Thumbnail.UnitTest
 			Assert.IsNull (result);
 		}
 
-		[Test]
+		[TestMethod]
 		// Analysis disable once InconsistentNaming
 		public void GetThumbnail_ReturnsNull_IfThumbnailCreationFails ()
 		{
@@ -150,7 +151,7 @@ namespace FSpot.Thumbnail.UnitTest
 
 		#region DeleteThumbnail tests
 
-		[Test]
+		[TestMethod]
 		// Analysis disable once InconsistentNaming
 		public void DeleteThumbnail_DeletesLargeAndNormalThumbnails_IfTheyExist ()
 		{
@@ -165,7 +166,7 @@ namespace FSpot.Thumbnail.UnitTest
 			fileSystem.FileMock.Verify (m => m.Delete (normalThumbnailUri), Times.Once ());
 		}
 
-		[Test]
+		[TestMethod]
 		// Analysis disable once InconsistentNaming
 		public void DeleteThumbnail_DoesNotDeleteThumbnails_IfNotExist ()
 		{
@@ -178,7 +179,7 @@ namespace FSpot.Thumbnail.UnitTest
 			fileSystem.FileMock.Verify (m => m.Delete (normalThumbnailUri), Times.Never ());
 		}
 
-		[Test]
+		[TestMethod]
 		// Analysis disable once InconsistentNaming
 		public void DeleteThumbnail_IgnoresExceptionsOnDeletingThumbnails ()
 		{
@@ -200,7 +201,7 @@ namespace FSpot.Thumbnail.UnitTest
 
 		#region LoadThumbnail tests
 
-		[Test]
+		[TestMethod]
 		// Analysis disable once InconsistentNaming
 		public void LoadThumbnail_ReturnsNull_IfThumbnailDoesNotExist ()
 		{
@@ -212,7 +213,7 @@ namespace FSpot.Thumbnail.UnitTest
 			Assert.IsNull (result);
 		}
 
-		[Test]
+		[TestMethod]
 		// Analysis disable once InconsistentNaming
 		public void LoadThumbnail_ReturnsPixbuf_IfThumbnailExists ()
 		{
@@ -225,7 +226,7 @@ namespace FSpot.Thumbnail.UnitTest
 			Assert.IsNotNull (result);
 		}
 
-		[Test]
+		[TestMethod]
 		// Analysis disable once InconsistentNaming
 		public void LoadThumbnail_DeletesThumbnail_IfLoadFails ()
 		{
@@ -240,7 +241,7 @@ namespace FSpot.Thumbnail.UnitTest
 			fileSystem.FileMock.Verify (file => file.Delete (largeThumbnailUri), Times.Once ());
 		}
 
-		[Test]
+		[TestMethod]
 		// Analysis disable once InconsistentNaming
 		public void LoadThumbnail_IgnoresExceptionsOnDeletingThumbnails ()
 		{
@@ -260,7 +261,7 @@ namespace FSpot.Thumbnail.UnitTest
 
 		#region GetThumbnailPath tests
 
-		[Test]
+		[TestMethod]
 		// Analysis disable once InconsistentNaming
 		public void GetThumbnailPath_ReturnsPathForLargeThumbnail ()
 		{
@@ -272,7 +273,7 @@ namespace FSpot.Thumbnail.UnitTest
 			Assert.AreEqual (largeThumbnailUri, result);
 		}
 
-		[Test]
+		[TestMethod]
 		// Analysis disable once InconsistentNaming
 		public void GetThumbnailPath_ReturnsPathForNormalThumbnail ()
 		{
@@ -288,7 +289,7 @@ namespace FSpot.Thumbnail.UnitTest
 
 		#region IsValid tests
 
-		[Test]
+		[TestMethod]
 		// Analysis disable once InconsistentNaming
 		public void IsValid_ReturnsFalse_IfPixbufIsNull ()
 		{
@@ -301,7 +302,7 @@ namespace FSpot.Thumbnail.UnitTest
 			Assert.IsFalse (result);
 		}
 
-		[Test]
+		[TestMethod]
 		// Analysis disable once InconsistentNaming
 		public void IsValid_ReturnsFalse_IfFileUriIsDifferent ()
 		{
@@ -315,7 +316,7 @@ namespace FSpot.Thumbnail.UnitTest
 			Assert.IsFalse (result);
 		}
 
-		[Test]
+		[TestMethod]
 		// Analysis disable once InconsistentNaming
 		public void IsValid_ReturnsFalse_IfMTimeIsDifferent ()
 		{
@@ -329,7 +330,7 @@ namespace FSpot.Thumbnail.UnitTest
 			Assert.IsFalse (result);
 		}
 
-		[Test]
+		[TestMethod]
 		// Analysis disable once InconsistentNaming
 		public void IsValid_ReturnsFalse_IfFileDoesNotExist ()
 		{
@@ -342,7 +343,7 @@ namespace FSpot.Thumbnail.UnitTest
 			Assert.IsFalse (result);
 		}
 
-		[Test]
+		[TestMethod]
 		// Analysis disable once InconsistentNaming
 		public void IsValid_ReturnsTrue_IfPixbufIsValid ()
 		{

@@ -11,31 +11,31 @@
 using System;
 using System.IO;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Hyena.Data.Sqlite.Tests
 {
-	[TestFixture]
+	[TestClass]
 	public class SqliteModelProviderTests
 	{
 		HyenaSqliteConnection connection;
 		ModelProvider provider;
 
-		[OneTimeSetUp]
+		[TestInitialize]
 		public void Init ()
 		{
 			connection = new HyenaSqliteConnection ("test.db");
 			provider = new ModelProvider (connection);
 		}
 
-		[OneTimeTearDown]
+		[TestCleanup]
 		public void Dispose ()
 		{
 			connection.Dispose ();
 			File.Delete ("test.db");
 		}
 
-		[Test]
+		[TestMethod]
 		public void IntMembers ()
 		{
 			var newed_item = new DbBoundType ();
@@ -53,7 +53,7 @@ namespace Hyena.Data.Sqlite.Tests
 			Assert.AreEqual (newed_item.GetPrivateIntProperty (), loaded_item.GetPrivateIntProperty ());
 		}
 
-		[Test]
+		[TestMethod]
 		public void LongMembers ()
 		{
 			var newed_item = new DbBoundType ();
@@ -71,7 +71,7 @@ namespace Hyena.Data.Sqlite.Tests
 			Assert.AreEqual (newed_item.GetPrivateLongProperty (), loaded_item.GetPrivateLongProperty ());
 		}
 
-		[Test]
+		[TestMethod]
 		public void StringMembers ()
 		{
 			var newed_item = new DbBoundType ();
@@ -89,7 +89,7 @@ namespace Hyena.Data.Sqlite.Tests
 			Assert.AreEqual (newed_item.GetPrivateStringProperty (), loaded_item.GetPrivateStringProperty ());
 		}
 
-		[Test]
+		[TestMethod]
 		public void BlankStringMembers ()
 		{
 			var newed_item = new DbBoundType ();
@@ -107,7 +107,7 @@ namespace Hyena.Data.Sqlite.Tests
 			Assert.AreEqual (" foo ", loaded_item.GetPrivateStringProperty ());
 		}
 
-		[Test]
+		[TestMethod]
 		public void NullStringMembers ()
 		{
 			var newed_item = new DbBoundType ();
@@ -136,7 +136,7 @@ namespace Hyena.Data.Sqlite.Tests
 			Assert.AreEqual (time1.Second, time2.Second);
 		}
 
-		[Test]
+		[TestMethod]
 		public void DateTimeMembers ()
 		{
 			var newed_item = new DbBoundType ();
@@ -161,7 +161,7 @@ namespace Hyena.Data.Sqlite.Tests
 			AssertArePrettyClose (newed_item.GetPrivateDateTimeProperty (), loaded_item.GetPrivateDateTimeProperty ());
 		}
 
-		[Test]
+		[TestMethod]
 		public void TimeSpanMembers ()
 		{
 			var newed_item = new DbBoundType ();
@@ -178,7 +178,6 @@ namespace Hyena.Data.Sqlite.Tests
 				Assert.IsTrue (reader[0] == null);
 			}
 
-			// NUnit boxes and uses reference equality, rather than Equals()
 			DbBoundType loaded_item = provider.FetchSingle (newed_item.PrimaryKey);
 			Assert.AreEqual (newed_item.PublicTimeSpanField, loaded_item.PublicTimeSpanField);
 			Assert.AreEqual (newed_item.PublicTimeSpanProperty, loaded_item.PublicTimeSpanProperty);
@@ -186,7 +185,7 @@ namespace Hyena.Data.Sqlite.Tests
 			Assert.AreEqual (newed_item.GetPrivateTimeSpanProperty (), loaded_item.GetPrivateTimeSpanProperty ());
 		}
 
-		[Test]
+		[TestMethod]
 		public void IntEnumMembers ()
 		{
 			var newed_item = new DbBoundType ();
@@ -204,7 +203,7 @@ namespace Hyena.Data.Sqlite.Tests
 			Assert.AreEqual (newed_item.GetPrivateIntEnumProperty (), loaded_item.GetPrivateIntEnumProperty ());
 		}
 
-		[Test]
+		[TestMethod]
 		public void LongEnumMembers ()
 		{
 			var newed_item = new DbBoundType ();

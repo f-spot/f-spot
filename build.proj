@@ -5,7 +5,7 @@
     <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
     <PortableSolution>$(MSBuildThisFileDirectory).build\F-Spot.Portable.slnf</PortableSolution>
     <FullSolution>$(MSBuildThisFileDirectory)F-Spot.slnx</FullSolution>
-    <HyenaTests>$(MSBuildThisFileDirectory)lib\Hyena.UnitTest\Hyena.UnitTest.csproj</HyenaTests>
+    <TestSolution>$(MSBuildThisFileDirectory).build\F-Spot.Tests.slnf</TestSolution>
   </PropertyGroup>
 
   <Target Name="CopyConfigInFiles">
@@ -31,14 +31,13 @@
 
   <Target Name="Rebuild" DependsOnTargets="Clean;Build" />
 
-  <!-- Gtk-free slice: FSpot.Strings, FSpot.Resources, Hyena, Hyena.UnitTest. -->
+  <!-- FSpot.Strings, FSpot.Resources, Hyena, Hyena.UnitTest. -->
   <Target Name="Portable">
     <Exec Command="dotnet restore &quot;$(PortableSolution)&quot;" />
     <Exec Command="dotnet build &quot;$(PortableSolution)&quot; --configuration $(Configuration) --no-restore" />
   </Target>
 
-  <!-- Sqlite P/Invoke still needs a native e_sqlite3; skip that namespace until the provider is replaced. -->
   <Target Name="Test" DependsOnTargets="Build">
-    <Exec Command="dotnet test &quot;$(HyenaTests)&quot; --configuration $(Configuration) --no-build --filter FullyQualifiedName!~Hyena.Data.Sqlite --logger trx --results-directory TestResults" />
+    <Exec Command="dotnet test &quot;$(TestSolution)&quot; --configuration $(Configuration) --no-build --filter &quot;TestCategory!=RequiresGdk&amp;TestCategory!=RequiresGtk&quot; --logger trx --results-directory TestResults" />
   </Target>
 </Project>

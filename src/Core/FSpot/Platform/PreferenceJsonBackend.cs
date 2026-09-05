@@ -11,7 +11,6 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
-using System.Collections.Generic;
 using System.IO;
 
 using FSpot.Settings;
@@ -78,11 +77,8 @@ namespace FSpot.Platform
 
 		internal void Set<T> (string key, T value)
 		{
-			JToken token;
-			if (value is IEnumerable<T> && !(value is string))
-				token = new JArray (value);
-			else
-				token = new JValue (value);
+			// JValue cannot wrap collections.
+			var token = value == null ? JValue.CreateNull () : JToken.FromObject (value);
 
 			if (Client[key] != null)
 				Client[key].Replace (token);

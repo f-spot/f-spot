@@ -16,11 +16,11 @@ using Hyena;
 
 using Moq;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FSpot.UnitTest.FileSystem
 {
-	[TestFixture]
+	[TestClass]
 	public class SortedFileEnumeratorTests
 	{
 		IFileSystem GetFileSystemMock ()
@@ -40,7 +40,7 @@ namespace FSpot.UnitTest.FileSystem
 			Mock.Get (fileSystem.Directory).Setup (m => m.Exists (dir)).Returns (true);
 		}
 
-		[Test]
+		[TestMethod]
 		public void FilesAppearSorted ()
 		{
 			var file1 = new SafeUri ("/1");
@@ -59,7 +59,7 @@ namespace FSpot.UnitTest.FileSystem
 			CollectionAssert.AreEqual (new[] { file1, file2 }, result2);
 		}
 
-		[Test]
+		[TestMethod]
 		public void DirectoriesAppearSorted ()
 		{
 			var dir1 = new SafeUri ("/1");
@@ -78,7 +78,7 @@ namespace FSpot.UnitTest.FileSystem
 			CollectionAssert.AreEqual (new[] { dir1, dir2 }, result2);
 		}
 
-		[Test]
+		[TestMethod]
 		public void DirectoriesAppearBeforeFiles ()
 		{
 			var file = new SafeUri ("/1");

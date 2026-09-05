@@ -1,26 +1,24 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>$(FSpotTargetFramework)</TargetFramework>
-    <OutputPath>$(TestsPath)</OutputPath>
-    <AssemblySearchPaths>$(AssemblySearchPaths);{GAC}</AssemblySearchPaths>
+    <TargetFramework>net10.0</TargetFramework>
+    <Platforms>AnyCPU</Platforms>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <OutputPath>$(RepoRoot)artifacts/fspot-gtk-test/</OutputPath>
   </PropertyGroup>
 
-
   <ItemGroup>
-    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <!-- Compile CompletionLogic here so the testhost does not load f-spot.exe. -->
+    <Compile Include="..\FSpot.Gtk\FSpot.Widgets\CompletionLogic.cs" Link="FSpot.Widgets\CompletionLogic.cs" />
+    <!-- AndTerm lives in FSpot.Gtk and needs a Gtk runtime. -->
+    <Compile Remove="FSpot\AndTermTests.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" />
-    <PackageReference Include="Moq" />
-    <PackageReference Include="NUnit" />
-    <PackageReference Include="NUnit3TestAdapter" />
-    <PackageReference Include="System.Threading.Tasks.Extensions" />
+    <PackageReference Include="MSTest" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FSpot.Gtk\FSpot.Gtk.csproj" />
     <ProjectReference Include="..\..\..\lib\Hyena\Hyena.csproj" />
     <ProjectReference Include="..\..\Core\FSpot\FSpot.csproj" />
   </ItemGroup>

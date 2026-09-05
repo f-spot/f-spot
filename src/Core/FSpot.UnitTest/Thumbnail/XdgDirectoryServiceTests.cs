@@ -16,11 +16,11 @@ using Mocks;
 
 using Moq;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FSpot.Thumbnail.UnitTest
 {
-	[TestFixture]
+	[TestClass]
 	public class XdgDirectoryServiceTests
 	{
 		string PathToCache = Path.Combine ("/", "path", "to", ".cache");
@@ -29,7 +29,7 @@ namespace FSpot.Thumbnail.UnitTest
 
 		#region GetUserCacheDir tests
 
-		[Test]
+		[TestMethod]
 		// Analysis disable once InconsistentNaming
 		public void GetUserCacheDir_ReturnsXdgCacheHome_WhenXdgCacheHomeAndHomeAreSet ()
 		{
@@ -42,7 +42,7 @@ namespace FSpot.Thumbnail.UnitTest
 			Assert.AreEqual (PathToCache, result);
 		}
 
-		[Test]
+		[TestMethod]
 		// Analysis disable once InconsistentNaming
 		public void GetUserCacheDir_ReturnsXdgCacheHome_WhenXdgCacheHomeSet ()
 		{
@@ -54,7 +54,7 @@ namespace FSpot.Thumbnail.UnitTest
 			Assert.AreEqual (PathToCache, result);
 		}
 
-		[Test]
+		[TestMethod]
 		// Analysis disable once InconsistentNaming
 		public void GetUserCacheDir_ReturnsHome_WhenXdgCacheHomeNotSet ()
 		{
@@ -66,7 +66,7 @@ namespace FSpot.Thumbnail.UnitTest
 			Assert.AreEqual (Path.Combine (HomeUserPath, ".cache"), result);
 		}
 
-		[Test]
+		[TestMethod]
 		// Analysis disable once InconsistentNaming
 		public void GetUserCacheDir_ReturnsTempPath_WhenXdgCacheHomeAndHomeNotSet ()
 		{
@@ -81,7 +81,7 @@ namespace FSpot.Thumbnail.UnitTest
 			Assert.AreEqual (Path.Combine ("/", "temp", "path", "user", ".cache"), result);
 		}
 
-		[Test]
+		[TestMethod]
 		// Analysis disable once InconsistentNaming
 		public void GetUserCacheDir_ReturnsCachedValue_WhenXdgCacheHomeIsChanged ()
 		{
@@ -102,7 +102,7 @@ namespace FSpot.Thumbnail.UnitTest
 
 		#region GetThumbnailsDir tests
 
-		[Test]
+		[TestMethod]
 		// Analysis disable once InconsistentNaming
 		public void GethThumbnailsDir_ReturnsFolderForLargeThumbnails ()
 		{
@@ -114,7 +114,7 @@ namespace FSpot.Thumbnail.UnitTest
 			Assert.AreEqual (Path.Combine (PathToCache, "thumbnails", "large"), result);
 		}
 
-		[Test]
+		[TestMethod]
 		// Analysis disable once InconsistentNaming
 		public void GethThumbnailsDir_ReturnsFolderForNormalThumbnails ()
 		{

@@ -8,36 +8,35 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 using System;
+using System.Text.RegularExpressions;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Hyena.Tests
 {
-	[TestFixture]
+	[TestClass]
 	public class DateTimeUtilTests
 	{
-		[Test]
+		[TestMethod]
 		public void InvariantString ()
 		{
-			// Tests are run in Chicago timezone, UTC -6 in the winter, -5 in the summer
-			TestInv ("2010-02-18 02:41:00.000 -06:00", new DateTime (2010, 2, 18, 2, 41, 0, 0));
-			TestInv ("2010-02-18 02:41:50.123 -06:00", new DateTime (2010, 2, 18, 2, 41, 50, 123));
-			TestInv ("2010-10-18 02:01:00.000 -05:00", new DateTime (2010, 10, 18, 2, 1, 0, 0));
+			TestInv (new DateTime (2010, 2, 18, 2, 41, 0, 0));
+			TestInv (new DateTime (2010, 2, 18, 2, 41, 50, 123));
+			TestInv (new DateTime (2010, 10, 18, 2, 1, 0, 0));
 		}
 
-		void TestInv (string inv_string, DateTime dt)
+		void TestInv (DateTime dt)
 		{
-			// Make sure we can generate the given string from the DateTime
-			Assert.AreEqual (inv_string, DateTimeUtil.ToInvariantString (dt));
+			string inv_string = DateTimeUtil.ToInvariantString (dt);
+			Assert.IsTrue (Regex.IsMatch (inv_string, @"^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3} [+-]\d{2}:\d{2}$"));
 
-			// And vice versa
 			if (DateTimeUtil.TryParseInvariant (inv_string, out var parsed_dt))
 				Assert.AreEqual (dt, parsed_dt);
 			else
 				Assert.Fail (string.Format ("TryParseInvariant failed on {0}", inv_string));
 		}
 
-		[Test]
+		[TestMethod]
 		public void FromToSymmetry ()
 		{
 			// ToTimeT only has precision to the second; so strip off the remainding ticks

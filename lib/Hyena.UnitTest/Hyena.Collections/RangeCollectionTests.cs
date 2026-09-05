@@ -11,20 +11,20 @@
 using System;
 using System.Collections.Generic;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Hyena.Collections.Tests
 {
-	[TestFixture]
+	[TestClass]
 	public class RangeCollectionTests
 	{
-		[Test]
+		[TestMethod]
 		public void SingleRanges ()
 		{
 			_TestRanges (new RangeCollection (), new int[] { 1, 11, 5, 7, 15, 32, 3, 9, 34 });
 		}
 
-		[Test]
+		[TestMethod]
 		public void MergedRanges ()
 		{
 			var range = new RangeCollection ();
@@ -55,7 +55,7 @@ namespace Hyena.Collections.Tests
 			}
 		}
 
-		[Test]
+		[TestMethod]
 		public void LargeSequentialContains ()
 		{
 			var range = new RangeCollection ();
@@ -70,7 +70,7 @@ namespace Hyena.Collections.Tests
 			}
 		}
 
-		[Test]
+		[TestMethod]
 		public void LargeSequential ()
 		{
 			var range = new RangeCollection ();
@@ -91,7 +91,7 @@ namespace Hyena.Collections.Tests
 			Assert.AreEqual (n, i);
 		}
 
-		[Test]
+		[TestMethod]
 		public void LargeNonAdjacent ()
 		{
 			var range = new RangeCollection ();
@@ -128,7 +128,7 @@ namespace Hyena.Collections.Tests
 			}
 		}
 
-		[Test]
+		[TestMethod]
 		public void RemoveSingles ()
 		{
 			var range = new RangeCollection ();
@@ -142,7 +142,7 @@ namespace Hyena.Collections.Tests
 			}
 		}
 
-		[Test]
+		[TestMethod]
 		public void RemoveStarts ()
 		{
 			RangeCollection range = _SetupTestRemoveMerges ();
@@ -167,7 +167,7 @@ namespace Hyena.Collections.Tests
 			Assert.AreEqual (15, range.Ranges[2].End);
 		}
 
-		[Test]
+		[TestMethod]
 		public void RemoveEnds ()
 		{
 			RangeCollection range = _SetupTestRemoveMerges ();
@@ -187,7 +187,7 @@ namespace Hyena.Collections.Tests
 			Assert.AreEqual (14, range.Ranges[3].End);
 		}
 
-		[Test]
+		[TestMethod]
 		public void RemoveMids ()
 		{
 			RangeCollection range = _SetupTestRemoveMerges ();
@@ -254,7 +254,7 @@ namespace Hyena.Collections.Tests
 			return range;
 		}
 
-		[Test]
+		[TestMethod]
 		public void IndexOf ()
 		{
 			var range = new RangeCollection ();
@@ -283,7 +283,7 @@ namespace Hyena.Collections.Tests
 			Assert.AreEqual (-1, range.IndexOf (99));
 		}
 
-		[Test]
+		[TestMethod]
 		public void IndexerForGoodIndexes ()
 		{
 			var range = new RangeCollection ();
@@ -324,7 +324,7 @@ namespace Hyena.Collections.Tests
 			Assert.AreEqual (13, range[8]);
 		}
 
-		[Test]
+		[TestMethod]
 		public void StressForGoodIndexes ()
 		{
 			var random = new Random (0xbeef);
@@ -344,7 +344,7 @@ namespace Hyena.Collections.Tests
 			}
 		}
 
-		//[Test]
+		//[TestMethod]
 		//[ExpectedException (typeof (IndexOutOfRangeException))]
 		//public void IndexerForNegativeBadIndex ()
 		//{
@@ -352,7 +352,7 @@ namespace Hyena.Collections.Tests
 		//    Assert.AreEqual (0, range[1]);
 		//}
 
-		//[Test]
+		//[TestMethod]
 		//[ExpectedException (typeof (IndexOutOfRangeException))]
 		//public void IndexerForZeroBadIndex ()
 		//{
@@ -360,7 +360,7 @@ namespace Hyena.Collections.Tests
 		//    Assert.AreEqual (0, range[0]);
 		//}
 
-		//[Test]
+		//[TestMethod]
 		//[ExpectedException (typeof (IndexOutOfRangeException))]
 		//public void IndexerForPositiveBadIndex ()
 		//{
@@ -369,7 +369,7 @@ namespace Hyena.Collections.Tests
 		//    Assert.AreEqual (0, range[1]);
 		//}
 
-		[Test]
+		[TestMethod]
 		public void ExplicitInterface ()
 		{
 			ICollection<int> range = new RangeCollection ();
@@ -381,7 +381,7 @@ namespace Hyena.Collections.Tests
 			Assert.AreEqual (4, range.Count);
 		}
 
-		[Test]
+		[TestMethod]
 		public void NegativeIndices ()
 		{
 			var c = new RangeCollection ();
@@ -407,7 +407,7 @@ namespace Hyena.Collections.Tests
 			Assert.IsTrue (c.FindRangeIndexForValue (-7) < 0, "#11");
 		}
 
-		[Test]
+		[TestMethod]
 		public void IPAddressRanges ()
 		{
 			var ranges = new RangeCollection ();

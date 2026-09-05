@@ -10,11 +10,11 @@
 
 using System.Collections.Generic;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Hyena.Collections.Tests
 {
-	[TestFixture]
+	[TestClass]
 	public class QueuePipelineTests
 	{
 		class FakeElement : QueuePipelineElement<object>
@@ -25,7 +25,7 @@ namespace Hyena.Collections.Tests
 			}
 		}
 
-		[Test]
+		[TestMethod]
 		public void BuildPipeline ()
 		{
 			BuildPipeline (1);

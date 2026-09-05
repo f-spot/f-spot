@@ -13,17 +13,18 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using System;
 using System.IO;
 
 using Hyena;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FSpot.Utils.Tests
 {
 	public static class ImageTestHelper
 	{
-		static readonly string TestDir = TestContext.CurrentContext.TestDirectory;
+		static readonly string TestDir = AppContext.BaseDirectory.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
 		static readonly string TestDataLocation = "TestData";
 
 		public static SafeUri CreateTempFile (string name)

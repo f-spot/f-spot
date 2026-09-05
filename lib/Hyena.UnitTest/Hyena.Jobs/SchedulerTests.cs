@@ -11,16 +11,16 @@
 using System;
 using System.Linq;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Hyena.Jobs
 {
-	[TestFixture]
+	[TestClass]
 	public class SchedulerTests
 	{
 		Scheduler scheduler;
 
-		[SetUp]
+		[TestInitialize]
 		public void Setup ()
 		{
 			//Log.Debugging = true;
@@ -28,7 +28,7 @@ namespace Hyena.Jobs
 			Log.Debug ("New job scheduler test");
 		}
 
-		[TearDown]
+		[TestCleanup]
 		public void TearDown ()
 		{
 			if (scheduler != null) {
@@ -40,7 +40,7 @@ namespace Hyena.Jobs
 			//Log.Debugging = false;
 		}
 
-		[Test]
+		[TestMethod]
 		public void TestSimultaneousSpeedJobs ()
 		{
 			scheduler = new Scheduler ();
@@ -56,7 +56,7 @@ namespace Hyena.Jobs
 			Assert.AreEqual (PriorityHints.None, scheduler.Jobs.First ().PriorityHints);
 		}
 
-		[Test]
+		[TestMethod]
 		public void TestOneNonSpeedJobPerResource ()
 		{
 			// Test that two SpeedSensitive jobs with the same Resources will run simultaneously
@@ -66,7 +66,7 @@ namespace Hyena.Jobs
 			AssertJobsRunning (1);
 		}
 
-		[Test]
+		[TestMethod]
 		public void TestSpeedJobPreemptsNonSpeedJobs ()
 		{
 			scheduler = new Scheduler ();
@@ -89,7 +89,7 @@ namespace Hyena.Jobs
 			Assert.AreEqual (true, c.IsRunning);
 		}
 
-		/*[Test]
+		/*[TestMethod]
         public void TestManyJobs ()
         {
             var timer = System.Diagnostics.Stopwatch.StartNew ();
@@ -115,7 +115,7 @@ namespace Hyena.Jobs
             //scheduler.StopAll ();
         }*/
 
-		/*[Test]
+		/*[TestMethod]
         public void TestCannotDisposeWhileDatalossJobsScheduled ()
         {
             scheduler = new Scheduler ();

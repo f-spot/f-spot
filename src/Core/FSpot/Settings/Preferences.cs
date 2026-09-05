@@ -24,6 +24,8 @@ using System.IO;
 using FSpot.Platform;
 using FSpot.Resources.Lang;
 
+using Newtonsoft.Json;
+
 namespace FSpot.Settings
 {
 	public static partial class Preferences
@@ -126,12 +128,13 @@ namespace FSpot.Settings
 
 				// FIXME, analytics/log when key is first used
 				JsonBackend.Set<T> (key, result);
-			} catch (FormatException ex) {
-				Logger.Log.Error ($"[Preferences] Wrong type: {key}", ex);
+			} catch (Exception ex) when (
+				ex is FormatException ||
+				ex is InvalidCastException ||
+				ex is JsonException ||
+				ex is ArgumentException) {
+				Logger.Log.Error (ex, "[Preferences] Wrong type: {Key}", key);
 				JsonBackend.Set<T> (key, result);
-			} catch (InvalidCastException ex) {
-				Logger.Log.Error ($"[Preferences] Invalid cast: {key}", ex);
-				return false;
 			}
 
 			// Update cache

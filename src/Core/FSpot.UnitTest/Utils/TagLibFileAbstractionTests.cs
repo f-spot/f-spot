@@ -9,7 +9,7 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using TagLib;
 using TagLib.IFD;
@@ -20,10 +20,10 @@ using TagLib.Xmp;
 namespace FSpot.Utils.Tests
 {
 	// This is a trimmed down test case from Taglib# to test the file abstraction.
-	[TestFixture]
+	[TestClass]
 	public class TagLibFileAbstractionTests
 	{
-		[Test]
+		[TestMethod]
 		public void StraightIOTest ()
 		{
 			var uri = ImageTestHelper.CreateTempFile ("taglib-sample.jpg");
@@ -43,7 +43,7 @@ namespace FSpot.Utils.Tests
 			ImageTestHelper.DeleteTempFile (uri);
 		}
 
-		[Test]
+		[TestMethod]
 		public void TaglibSharpFileStreamTest ()
 		{
 			var uri = ImageTestHelper.CreateTempFile ("taglib-sample.jpg");
@@ -107,7 +107,7 @@ namespace FSpot.Utils.Tests
 		void ValidateChangedMetadata (TagLib.Image.File file)
 		{
 			Assert.AreEqual ("Testing!", file.ImageTag.Comment);
-			Assert.AreEqual (new string[] { "One", "Two", "Three" }, file.ImageTag.Keywords);
+			Assert.AreSequenceEqual (new string[] { "One", "Two", "Three" }, file.ImageTag.Keywords);
 		}
 	}
 }

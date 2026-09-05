@@ -45,7 +45,7 @@ NuGet
 
 	Tests
 
-	- NUnit 3.12.0
+	- MSTest 4.4.0 (`dotnet test .build/F-Spot.Tests.slnf --filter "TestCategory!=RequiresGdk&TestCategory!=RequiresGtk"`)
 
 	- Moq 4.13.1
 

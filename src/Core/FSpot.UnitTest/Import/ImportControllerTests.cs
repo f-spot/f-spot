@@ -14,14 +14,14 @@ using Hyena;
 
 using Mocks;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FSpot.Import
 {
-	[TestFixture]
+	[TestClass]
 	public class ImportControllerTests
 	{
-		[Test]
+		[TestMethod]
 		public void FindImportDestinationTest ()
 		{
 			var fileUri = new SafeUri ("/path/to/photo.jpg");

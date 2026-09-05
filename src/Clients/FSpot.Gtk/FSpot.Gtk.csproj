@@ -3,6 +3,8 @@
   <PropertyGroup>
     <TargetFramework>$(FSpotTargetFramework)</TargetFramework>
     <PlatformTarget>$(GtkPlatformTarget)</PlatformTarget>
+    <!-- gtk-sharp 2.12 native is 32-bit on Windows. -->
+    <Prefer32Bit>true</Prefer32Bit>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <AssemblySearchPaths>$(AssemblySearchPaths);{GAC}</AssemblySearchPaths>
     <OutputType>Exe</OutputType>

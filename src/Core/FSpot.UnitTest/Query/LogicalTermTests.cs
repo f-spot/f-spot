@@ -11,14 +11,14 @@
 
 using FSpot.Core;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FSpot.Query.Tests
 {
-	[TestFixture]
+	[TestClass]
 	public class LogicalTermTests
 	{
-		[Test]
+		[TestMethod]
 		public void SomeTests ()
 		{
 			var c10 = new Category (null, 10, "tag10");

@@ -8,6 +8,7 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using System;
 using System.IO;
 using System.Linq;
 
@@ -15,16 +16,16 @@ using FSpot.FileSystem;
 
 using Hyena;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using Shouldly;
 
 namespace FSpot.UnitTest.FileSystem
 {
-	[TestFixture]
+	[TestClass]
 	public class RecursiveFileEnumeratorTests
 	{
-		static readonly string TestDir = TestContext.CurrentContext.TestDirectory;
+		static readonly string TestDir = AppContext.BaseDirectory.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
 		static readonly string TestDataLocation = "TestData";
 
 		public static SafeUri GetTestDataDir ()
@@ -33,7 +34,7 @@ namespace FSpot.UnitTest.FileSystem
 			return uri;
 		}
 
-		[Test]
+		[TestMethod]
 		public void FourFilesAreFound ()
 		{
 			var result = new RecursiveFileEnumerator (GetTestDataDir (), new DotNetFileSystem ()).ToArray ();

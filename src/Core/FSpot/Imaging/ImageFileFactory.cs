@@ -148,6 +148,16 @@ namespace FSpot.Imaging
 			RegisterMimeTypes<RafImageFile> (
 				"image/x-raf");
 
+			// Pixbuf.Formats type-loads gdk; isolate so jpeg/raw still register.
+			try {
+				TryRegisterXcfLoader ();
+			} catch (Exception ex) {
+				Logger.Log.Debug (ex, "XCF loader unavailable");
+			}
+		}
+
+		void TryRegisterXcfLoader ()
+		{
 			// as xcf pixbufloader is not part of gdk-pixbuf, check if it's there,
 			// and enable it if needed.
 			foreach (PixbufFormat format in Pixbuf.Formats) {

@@ -11,11 +11,11 @@
 
 using Hyena;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FSpot.Utils.Tests
 {
-	[TestFixture]
+	[TestClass]
 	public class SafeUriTests
 	{
 		static SafeUriTest[] tests = new SafeUriTest[] {
@@ -66,7 +66,7 @@ namespace FSpot.Utils.Tests
 			}
 		};
 
-		[Test]
+		[TestMethod]
 		public void TestFileUris ()
 		{
 			foreach (var test in tests) {
@@ -79,7 +79,7 @@ namespace FSpot.Utils.Tests
 			}
 		}
 
-		[Test]
+		[TestMethod]
 		public void TestReplaceExtension ()
 		{
 			var uri = new SafeUri ("file:///test/image.jpg", true);

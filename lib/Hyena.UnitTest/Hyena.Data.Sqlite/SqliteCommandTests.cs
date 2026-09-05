@@ -11,14 +11,16 @@
 using System;
 using System.Reflection;
 
-using NUnit.Framework;
+using Hyena;
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Hyena.Data.Sqlite.Tests
 {
-	[TestFixture]
+	[TestClass]
 	public class SqliteCommandTests
 	{
-		[Test]
+		[TestMethod]
 		public void IdentifiesParameters ()
 		{
 			HyenaSqliteCommand cmd = null;
@@ -38,29 +40,31 @@ namespace Hyena.Data.Sqlite.Tests
 			Assert.AreEqual ("select foo from bar where baz = 'a', bbz = 32, this = '22'", GetGeneratedSql (cmd));
 		}
 
-		[Test]
+		[TestMethod]
 		public void Constructor ()
 		{
 			var cmd = new HyenaSqliteCommand ("select foo from bar where baz = ?, bbz = ?, this = ?", "a", 32, "22");
 			Assert.AreEqual ("select foo from bar where baz = 'a', bbz = 32, this = '22'", GetGeneratedSql (cmd));
 		}
 
-		[Test]
+		[TestMethod]
 		public void CultureInvariant ()
 		{
 			var cmd = new HyenaSqliteCommand ("select foo from bar where baz = ?", 32.2);
 			Assert.AreEqual ("select foo from bar where baz = 32.2", GetGeneratedSql (cmd));
 		}
 
-		[Test]
+		[TestMethod]
 		public void ParameterSerialization ()
 		{
 			var cmd = new HyenaSqliteCommand ("select foo from bar where baz = ?");
 
 			Assert.AreEqual ("select foo from bar where baz = NULL", GetGeneratedSql (cmd, null));
 			Assert.AreEqual ("select foo from bar where baz = 'It''s complicated, \"but\" ''''why not''''?'", GetGeneratedSql (cmd, "It's complicated, \"but\" ''why not''?"));
-			Assert.AreEqual ("select foo from bar where baz = 0", GetGeneratedSql (cmd, new DateTime (1970, 1, 1).ToLocalTime ()));
-			Assert.AreEqual ("select foo from bar where baz = 931309200", GetGeneratedSql (cmd, new DateTime (1999, 7, 7).ToLocalTime ()));
+			var epoch = new DateTime (1970, 1, 1).ToLocalTime ();
+			Assert.AreEqual ($"select foo from bar where baz = {DateTimeUtil.ToTimeT (epoch)}", GetGeneratedSql (cmd, epoch));
+			var july = new DateTime (1999, 7, 7).ToLocalTime ();
+			Assert.AreEqual ($"select foo from bar where baz = {DateTimeUtil.ToTimeT (july)}", GetGeneratedSql (cmd, july));
 			Assert.AreEqual ("select foo from bar where baz = 555.55", GetGeneratedSql (cmd, 555.55f));
 			Assert.AreEqual ("select foo from bar where baz = 555.55", GetGeneratedSql (cmd, 555.55));
 			Assert.AreEqual ("select foo from bar where baz = 555", GetGeneratedSql (cmd, 555));
@@ -87,7 +91,7 @@ namespace Hyena.Data.Sqlite.Tests
 		}
 	}
 
-	[TestFixture]
+	[TestClass]
 	public class ObjectToSqlTests
 	{
 		protected void AssertToSql (object o, object expected)
@@ -95,20 +99,20 @@ namespace Hyena.Data.Sqlite.Tests
 			Assert.AreEqual (expected, HyenaSqliteCommand.SqlifyObject (o));
 		}
 
-		[Test]
+		[TestMethod]
 		public void TestNull ()
 		{
 			AssertToSql (null, "NULL");
 		}
 
-		[Test]
+		[TestMethod]
 		public void TestBool ()
 		{
 			AssertToSql (false, "0");
 			AssertToSql (true, "1");
 		}
 
-		[Test]
+		[TestMethod]
 		public void TestString ()
 		{
 			AssertToSql ("", "''");
@@ -116,7 +120,7 @@ namespace Hyena.Data.Sqlite.Tests
 			AssertToSql ("te'st", "'te''st'");
 		}
 
-		[Test]
+		[TestMethod]
 		public void TestByteArray ()
 		{
 			// BLOB notation
@@ -124,7 +128,7 @@ namespace Hyena.Data.Sqlite.Tests
 			AssertToSql (new byte[] { 0x10, 0x20, 0x30 }, "X'102030'");
 		}
 
-		[Test]
+		[TestMethod]
 		public void TestOtherArray ()
 		{
 			AssertToSql (Array.Empty<object> (), "");
@@ -132,14 +136,16 @@ namespace Hyena.Data.Sqlite.Tests
 			AssertToSql (new object[] { "a", "b" }, "'a','b'");
 		}
 
-		[Test]
+		[TestMethod]
 		public void TestDateTime ()
 		{
-			// Returned using local time, not UTC
-			AssertToSql (new DateTime (2000, 1, 2), 946792800);
+			var date = new DateTime (2000, 1, 2);
+			AssertToSql (date, DateTimeUtil.ToTimeT (date));
 
 			// Disregards milliseconds
-			AssertToSql (new DateTime (2000, 1, 2, 10, 9, 8, 7), 946829348);
+			var with_ms = new DateTime (2000, 1, 2, 10, 9, 8, 7);
+			var truncated = new DateTime (2000, 1, 2, 10, 9, 8);
+			AssertToSql (with_ms, DateTimeUtil.ToTimeT (truncated));
 		}
 	}
 }

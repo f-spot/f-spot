@@ -10,18 +10,18 @@ using FSpot.Core.UnitTest.Mocks;
 
 using Hyena;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FSpot.Core.UnitTest
 {
-	[TestFixture]
+	[TestClass]
 	public class BrowsablePointerTests
 	{
 		IPhoto photo1 = new FilePhoto (new SafeUri ("/1"));
 		IPhoto photo2 = new FilePhoto (new SafeUri ("/2"));
 		IPhoto photo3 = new FilePhoto (new SafeUri ("/3"));
 
-		[Test]
+		[TestMethod]
 		public void BrowsablePointer_IndexIsNullForEmptyCollection ()
 		{
 			var list = new BrowsableCollectionMock ();
@@ -30,7 +30,7 @@ namespace FSpot.Core.UnitTest
 			Assert.IsNull (pointer.Current);
 		}
 
-		[Test]
+		[TestMethod]
 		public void BrowsablePointer_IndexPointsToFirstItem ()
 		{
 			var list = new BrowsableCollectionMock (photo1);
@@ -39,7 +39,7 @@ namespace FSpot.Core.UnitTest
 			Assert.AreEqual (photo1, pointer.Current);
 		}
 
-		[Test]
+		[TestMethod]
 		public void BrowsablePointerTest_IndexIsOutOfBounds ()
 		{
 			var list = new BrowsableCollectionMock (photo1);
@@ -49,7 +49,7 @@ namespace FSpot.Core.UnitTest
 			Assert.IsNull (pointer.Current);
 		}
 
-		[Test]
+		[TestMethod]
 		public void BrowsablePointer_PointsToSecond_WhenFirstIsDeleted ()
 		{
 			var list = new BrowsableCollectionMock (photo1, photo2, photo3);
@@ -59,7 +59,7 @@ namespace FSpot.Core.UnitTest
 			Assert.AreEqual (photo2, pointer.Current);
 		}
 
-		[Test]
+		[TestMethod]
 		public void BrowsablePointer_PointsToThird_WhenSecondIsDeleted ()
 		{
 			var list = new BrowsableCollectionMock (photo1, photo2, photo3);
@@ -69,7 +69,7 @@ namespace FSpot.Core.UnitTest
 			Assert.AreEqual (photo3, pointer.Current);
 		}
 
-		[Test]
+		[TestMethod]
 		public void BrowsablePointer_PointsToSecond_WhenThirdIsDeleted ()
 		{
 			var list = new BrowsableCollectionMock (photo1, photo2, photo3);
@@ -79,7 +79,7 @@ namespace FSpot.Core.UnitTest
 			Assert.AreEqual (photo2, pointer.Current);
 		}
 
-		[Test]
+		[TestMethod]
 		public void BrowsablePointer_StillPointsToSecond_WhenFirstIsDeleted ()
 		{
 			var list = new BrowsableCollectionMock (photo1, photo2, photo3);
@@ -89,7 +89,7 @@ namespace FSpot.Core.UnitTest
 			Assert.AreEqual (photo2, pointer.Current);
 		}
 
-		[Test]
+		[TestMethod]
 		public void BrowsablePointer_StillPointsToSecond_WhenThirdIsDeleted ()
 		{
 			var list = new BrowsableCollectionMock (photo1, photo2, photo3);

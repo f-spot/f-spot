@@ -6,36 +6,40 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Hyena.Data.Sqlite.Tests
 {
-	[TestFixture]
+	[TestClass]
 	public class CollationKeyTests
 	{
 		protected void CollationKeyTest (object before, object after)
 		{
-			Assert.AreEqual (after, (new CollationKeyFunction ()).Invoke (new object[] { before }));
+			var actual = (new CollationKeyFunction ()).Invoke (new object[] { before });
+			if (after is byte[] expectedBytes && actual is byte[] actualBytes)
+				Assert.AreSequenceEqual (expectedBytes, actualBytes);
+			else
+				Assert.AreEqual (after, actual);
 		}
 
-		[Test]
+		[TestMethod]
 		public void TestNull ()
 		{
 			CollationKeyTest (null, null);
 			CollationKeyTest (System.DBNull.Value, null);
 		}
 
-		[Test]
+		[TestMethod]
 		public void TestKey ()
 		{
 			// See Hyena.StringUtil.Tests for full tests. This just checks that
 			// the collation function is actually being used.
-			CollationKeyTest ("", new byte[] { 1, 1, 1, 1, 0 });
-			CollationKeyTest ("\u0104", new byte[] { 14, 2, 1, 27, 1, 1, 1, 0 });
+			CollationKeyTest ("", Hyena.StringUtil.SortKey (""));
+			CollationKeyTest ("\u0104", Hyena.StringUtil.SortKey ("\u0104"));
 		}
 	}
 
-	[TestFixture]
+	[TestClass]
 	public class SearchKeyTests
 	{
 		protected void SearchKeyTest (object before, object after)
@@ -43,14 +47,14 @@ namespace Hyena.Data.Sqlite.Tests
 			Assert.AreEqual (after, new SearchKeyFunction ().Invoke (new object[] { before }));
 		}
 
-		[Test]
+		[TestMethod]
 		public void TestNull ()
 		{
 			SearchKeyTest (null, null);
 			SearchKeyTest (System.DBNull.Value, null);
 		}
 
-		[Test]
+		[TestMethod]
 		public void TestKey ()
 		{
 			// See Hyena.StringUtil.Tests for full tests. This just checks that

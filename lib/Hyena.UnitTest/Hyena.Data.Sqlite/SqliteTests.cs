@@ -11,25 +11,25 @@
 using System;
 using System.Linq;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Hyena.Data.Sqlite
 {
-	[TestFixture]
+	[TestClass]
 	public class SqliteTests
 	{
 		Connection con;
 		Statement select_literal;
 		string dbfile = "hyena-data-sqlite-test.db";
 
-		[SetUp]
+		[TestInitialize]
 		public void Setup ()
 		{
 			con = new Connection (dbfile);
 			select_literal = con.CreateStatement ("SELECT ?");
 		}
 
-		[TearDown]
+		[TestCleanup]
 		public void TearDown ()
 		{
 			select_literal.Dispose ();
@@ -38,21 +38,21 @@ namespace Hyena.Data.Sqlite
 			System.IO.File.Delete (dbfile);
 		}
 
-		[Test]
+		[TestMethod]
 		public void TestBindWhileReading ()
 		{
 			using (var stmt = con.CreateStatement ("SELECT ? as version")) {
 				stmt.Bind (7);
 				var reader = stmt.Query ();
 				Assert.IsTrue (reader.Read ());
-				Assert.AreEqual (7, reader[0]);
+				Assert.AreEqual (7L, Convert.ToInt64 (reader[0]));
 
 				try {
 					stmt.Bind (6);
 					Assert.Fail ("Shouldn't be able to bind while a reader is active");
 				} catch { }
 
-				Assert.AreEqual (7, reader[0]);
+				Assert.AreEqual (7L, Convert.ToInt64 (reader[0]));
 				reader.Dispose ();
 
 				stmt.Bind (6);
@@ -60,14 +60,14 @@ namespace Hyena.Data.Sqlite
 			}
 		}
 
-		[Test]
+		[TestMethod]
 		public void TestQueryWhileReading ()
 		{
 			using (var stmt = con.CreateStatement ("SELECT ? as version")) {
 				stmt.Bind (7);
 				var reader = stmt.Query ();
 				Assert.IsTrue (reader.Read ());
-				Assert.AreEqual (7, reader[0]);
+				Assert.AreEqual (7L, Convert.ToInt64 (reader[0]));
 
 				try {
 					stmt.Execute ();
@@ -84,7 +84,7 @@ namespace Hyena.Data.Sqlite
 					Assert.Fail ("Shouldn't be able to query while a reader is active");
 				} catch { }
 
-				Assert.AreEqual (7, reader[0]);
+				Assert.AreEqual (7L, Convert.ToInt64 (reader[0]));
 				reader.Dispose ();
 
 				stmt.Bind (6);
@@ -92,7 +92,7 @@ namespace Hyena.Data.Sqlite
 			}
 		}
 
-		[Test]
+		[TestMethod]
 		public void Test ()
 		{
 			using (var stmt = con.CreateStatement ("SELECT 'foobar' as version")) {
@@ -108,13 +108,13 @@ namespace Hyena.Data.Sqlite
 				using (var reader = stmt.Query ()) {
 					Assert.IsTrue (reader.Read ());
 					Assert.AreEqual (7, reader.Get<int> (0));
-					Assert.AreEqual (7, reader[0]);
-					Assert.AreEqual (7, reader["res"]);
+					Assert.AreEqual (7L, Convert.ToInt64 (reader[0]));
+					Assert.AreEqual (7L, Convert.ToInt64 (reader["res"]));
 				}
 			}
 		}
 
-		[Test]
+		[TestMethod]
 		public void TestBinding ()
 		{
 			using (var stmt = con.CreateStatement ("SELECT ? as version")) {
@@ -157,7 +157,7 @@ namespace Hyena.Data.Sqlite
 			}
 		}
 
-		[Test]
+		[TestMethod]
 		public void CreateTable ()
 		{
 			CreateUsers (con);
@@ -170,14 +170,14 @@ namespace Hyena.Data.Sqlite
 				Assert.IsTrue (reader.Read ());
 				Assert.AreEqual ("Aaron", reader["Name"]);
 				Assert.AreEqual ("Aaron", reader[1]);
-				Assert.AreEqual (2, reader["ID"]);
-				Assert.AreEqual (2, reader[0]);
+				Assert.AreEqual (2L, Convert.ToInt64 (reader["ID"]));
+				Assert.AreEqual (2L, Convert.ToInt64 (reader[0]));
 
 				Assert.IsTrue (reader.Read ());
 				Assert.AreEqual ("Gabriel", reader["Name"]);
 				Assert.AreEqual ("Gabriel", reader[1]);
-				Assert.AreEqual (1, reader["ID"]);
-				Assert.AreEqual (1, reader[0]);
+				Assert.AreEqual (1L, Convert.ToInt64 (reader["ID"]));
+				Assert.AreEqual (1L, Convert.ToInt64 (reader[0]));
 
 				Assert.IsFalse (reader.Read ());
 			}
@@ -203,7 +203,7 @@ namespace Hyena.Data.Sqlite
 			}
 		}
 
-		[Test]
+		[TestMethod]
 		public void CheckInterleavedAccess ()
 		{
 			CreateUsers (con);
@@ -250,7 +250,7 @@ namespace Hyena.Data.Sqlite
 			q2.Dispose ();
 		}
 
-		[Test]
+		[TestMethod]
 		public void ConnectionDisposesStatements ()
 		{
 			var stmt = con.CreateStatement ("SELECT 1");
@@ -259,7 +259,7 @@ namespace Hyena.Data.Sqlite
 			Assert.IsTrue (stmt.IsDisposed);
 		}
 
-		[Test]
+		[TestMethod]
 		public void MultipleCommands ()
 		{
 			try {
@@ -270,26 +270,26 @@ namespace Hyena.Data.Sqlite
 			} catch { }
 		}
 
-		[Test]
+		[TestMethod]
 		public void Query ()
 		{
 			using (var q = con.Query ("SELECT 7")) {
 				int rows = 0;
 				while (q.Read ()) {
-					Assert.AreEqual (7, q[0]);
+					Assert.AreEqual (7L, Convert.ToInt64 (q[0]));
 					rows++;
 				}
 				Assert.AreEqual (1, rows);
 			}
 		}
 
-		[Test]
+		[TestMethod]
 		public void QueryScalar ()
 		{
 			Assert.AreEqual (7, con.Query<int> ("SELECT 7"));
 		}
 
-		[Test]
+		[TestMethod]
 		public void Execute ()
 		{
 			try {
@@ -300,7 +300,7 @@ namespace Hyena.Data.Sqlite
 			Assert.AreEqual (0, con.Query<int> ("SELECT COUNT(*) FROM Users"));
 		}
 
-		[Test]
+		[TestMethod]
 		public void Md5Function ()
 		{
 			using (var stmt = con.CreateStatement ("SELECT HYENA_MD5(?, ?)")) {
@@ -333,7 +333,7 @@ namespace Hyena.Data.Sqlite
 
 		}
 
-		[Test]
+		[TestMethod]
 		public void SearchKeyFunction ()
 		{
 			using (var stmt = con.CreateStatement ("SELECT HYENA_SEARCH_KEY(?)")) {
@@ -345,15 +345,15 @@ namespace Hyena.Data.Sqlite
 			con.Execute ("SELECT HYENA_SEARCH_KEY('foo')");
 		}
 
-		[Test]
+		[TestMethod]
 		public void CollationKeyFunction ()
 		{
 			using (var stmt = con.CreateStatement ("SELECT HYENA_COLLATION_KEY(?)")) {
-				Assert.AreEqual (new byte[] { 14, 2, 1, 27, 1, 1, 1, 0 }, stmt.Bind ("\u0104").Query<byte[]> ());
+				Assert.AreSequenceEqual (Hyena.StringUtil.SortKey ("\u0104"), stmt.Bind ("\u0104").Query<byte[]> ());
 			}
 		}
 
-		[Test]
+		[TestMethod]
 		public void DataTypes ()
 		{
 			AssertGetNull<int> (0);
@@ -441,7 +441,10 @@ namespace Hyena.Data.Sqlite
 		{
 			var o = select_literal.Bind (val).Query<T> ();
 			if (func == null) {
-				Assert.AreEqual (val, o);
+				if (val is byte[] expectedBytes && o is byte[] actualBytes)
+					Assert.AreSequenceEqual (expectedBytes, actualBytes);
+				else
+					Assert.AreEqual (val, o);
 			} else {
 				Assert.IsTrue (func (val, o));
 			}

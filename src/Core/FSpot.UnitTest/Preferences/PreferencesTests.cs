@@ -15,13 +15,13 @@ using FSpot.Platform;
 
 using Newtonsoft.Json.Linq;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using Shouldly;
 
 namespace FSpot.Preferences.UnitTest
 {
-	[TestFixture]
+	[TestClass]
 	public class PreferencesTests
 	{
 		string TestSettingsFile;
@@ -34,7 +34,7 @@ namespace FSpot.Preferences.UnitTest
 			return (JObject)o[PreferenceJsonBackend.SettingsRoot];
 		}
 
-		[SetUp]
+		[TestInitialize]
 		public void Setup ()
 		{
 			var tmpFile = Path.GetTempFileName ();
@@ -44,30 +44,48 @@ namespace FSpot.Preferences.UnitTest
 			jsonBackend = new PreferenceJsonBackend ();
 		}
 
-		[TearDown]
+		[TestCleanup]
 		public void TearDown ()
 		{
 			if (File.Exists (TestSettingsFile))
 				File.Delete (TestSettingsFile);
 		}
 
-		[TestCase (Settings.Preferences.StoragePath, "StoragePathString")]
-		[TestCase (Settings.Preferences.ExportKey, true)]
-		[TestCase (Settings.Preferences.CustomCropRatios, 0.0)]
-		[TestCase (Settings.Preferences.ExpandedTags, new int[0])]
-		public void CanSetSetting<T> (string key, T v)
+		void AssertSettingsFileWritten ()
+			=> Assert.IsGreaterThan (0, new FileInfo (TestSettingsFile).Length);
+
+		[TestMethod]
+		public void CanSetStringSetting ()
 		{
+			const string key = Settings.Preferences.StoragePath;
+			const string v = "StoragePathString";
 			jsonBackend.Set (key, v);
 			jsonBackend.SaveSettings ();
-			Assert.That (new FileInfo (TestSettingsFile).Length > 0);
-
-			var settings = LoadSettings (TestSettingsFile);
-			var result = settings[key].ToObject<T> ();
-
-			result.ShouldBe (v);
+			AssertSettingsFileWritten ();
+			LoadSettings (TestSettingsFile)[key].ToObject<string> ().ShouldBe (v);
 		}
 
-		[Test]
+		[TestMethod]
+		public void CanSetBoolSetting ()
+		{
+			const string key = Settings.Preferences.ExportKey;
+			jsonBackend.Set (key, true);
+			jsonBackend.SaveSettings ();
+			AssertSettingsFileWritten ();
+			LoadSettings (TestSettingsFile)[key].ToObject<bool> ().ShouldBeTrue ();
+		}
+
+		[TestMethod]
+		public void CanSetDoubleSetting ()
+		{
+			const string key = Settings.Preferences.CustomCropRatios;
+			jsonBackend.Set (key, 0.0);
+			jsonBackend.SaveSettings ();
+			AssertSettingsFileWritten ();
+			LoadSettings (TestSettingsFile)[key].ToObject<double> ().ShouldBe (0.0);
+		}
+
+		[TestMethod]
 		public void CanSetSettingWithCollection ()
 		{
 			var key = Settings.Preferences.ExpandedTags;
@@ -75,7 +93,7 @@ namespace FSpot.Preferences.UnitTest
 
 			jsonBackend.Set (key, list);
 			jsonBackend.SaveSettings ();
-			Assert.That (new FileInfo (TestSettingsFile).Length > 0);
+			AssertSettingsFileWritten ();
 
 			var settings = LoadSettings (TestSettingsFile);
 			var result = settings[key].ToObject<List<int>> ();
@@ -83,58 +101,52 @@ namespace FSpot.Preferences.UnitTest
 			result.ShouldBe (list);
 		}
 
-		[TestCase (Settings.Preferences.StoragePath, "StoragePathString")]
-		public void CanGetStringSettings<T> (string key, T v)
+		[TestMethod]
+		public void CanGetStringSettings ()
 		{
+			const string key = Settings.Preferences.StoragePath;
+			const string v = "StoragePathString";
 			jsonBackend.Set (key, v);
 			jsonBackend.SaveSettings ();
-			Assert.That (new FileInfo (TestSettingsFile).Length > 0);
-
-			var result = jsonBackend.Get<string> (key);
-
-			Assert.AreEqual (v, result);
+			AssertSettingsFileWritten ();
+			Assert.AreEqual (v, jsonBackend.Get<string> (key));
 		}
 
-		[TestCase (Settings.Preferences.ExportKey, true)]
-		public void CanGetBoolSettings<T> (string key, T v)
+		[TestMethod]
+		public void CanGetBoolSettings ()
 		{
-			jsonBackend.Set (key, v);
+			const string key = Settings.Preferences.ExportKey;
+			jsonBackend.Set (key, true);
 			jsonBackend.SaveSettings ();
-			Assert.That (new FileInfo (TestSettingsFile).Length > 0);
-
-			var result = jsonBackend.Get<bool> (key);
-
-			Assert.AreEqual (v, result);
+			AssertSettingsFileWritten ();
+			Assert.AreEqual (true, jsonBackend.Get<bool> (key));
 		}
 
-
-		[TestCase (Settings.Preferences.CustomCropRatios, 0.0)]
-		public void CanGetDoubleSettings<T> (string key, T v)
+		[TestMethod]
+		public void CanGetDoubleSettings ()
 		{
-			jsonBackend.Set (key, v);
+			const string key = Settings.Preferences.CustomCropRatios;
+			jsonBackend.Set (key, 0.0);
 			jsonBackend.SaveSettings ();
-			Assert.That (new FileInfo (TestSettingsFile).Length > 0);
-
-			var result = jsonBackend.Get<double> (key);
-
-			Assert.AreEqual (v, result);
+			AssertSettingsFileWritten ();
+			Assert.AreEqual (0.0, jsonBackend.Get<double> (key));
 		}
 
-		[Test]
+		[TestMethod]
 		public void UnsetSettingThrowsNoSuchKeyException ()
 		{
-			Assert.Throws<NoSuchKeyException> (() => jsonBackend.Get<bool> ("RandomKey123"));
+			Assert.ThrowsExactly<NoSuchKeyException> (() => jsonBackend.Get<bool> ("RandomKey123"));
 		}
 
 		// Preferences returns the default value instead of an exception
-		[Test]
+		[TestMethod]
 		public void PreferencesGetDefaultSetting ()
 		{
 			var result = Settings.Preferences.Get<bool> (Settings.Preferences.TagIconAutomatic);
 			result.ShouldBeTrue ();
 		}
 
-		[Test]
+		[TestMethod]
 		public void ResetIncorrectTypeInSettings ()
 		{
 			Settings.Preferences.Set ("RandomKey", "WrongValue");

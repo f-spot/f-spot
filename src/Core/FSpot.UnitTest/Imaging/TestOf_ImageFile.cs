@@ -14,18 +14,17 @@
 using System;
 using System.Collections.Generic;
 
-using Hyena;
-
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 
 namespace FSpot.Imaging
 {
-	[TestFixture]
+	[TestClass]
+	[TestCategory("RequiresGdk")]
 	public class TestOf_ImageFile
 	{
 		List<string> _imageTypes;
-		[SetUp]
+		[TestInitialize]
 		public void Initialize ()
 		{
 			GLib.GType.Init ();
@@ -33,38 +32,7 @@ namespace FSpot.Imaging
 			_imageTypes = factory.UnitTestImageFileTypes ();
 		}
 
-		[TestCase ("file.arw")]
-		[TestCase ("file.crw")]
-		[TestCase ("file.cr2")]
-		[TestCase ("file.dng")]
-		[TestCase ("file.mrw")]
-		[TestCase ("file.nef")]
-		[TestCase ("file.orf")]
-		[TestCase ("file.pef")]
-		[TestCase ("file.raw")]
-		[TestCase ("file.raf")]
-		[TestCase ("file.rw2")]
-		public void TestIfUriIsRaw (string uri)
-		{
-			var factory = new ImageFileFactory (null);
-			var result = factory.IsRaw (new SafeUri (uri, true));
-			Assert.That (result);
-		}
-
-		[TestCase ("file.jpg")]
-		[TestCase ("file.jpeg")]
-		[TestCase ("file.jpe")]
-		[TestCase ("file.jfi")]
-		[TestCase ("file.jfif")]
-		[TestCase ("file.jif")]
-		public void TestIfUriJpeg (string uri)
-		{
-			var factory = new ImageFileFactory (null);
-			var result = factory.IsJpeg (new SafeUri (uri, true));
-			Assert.That (result);
-		}
-
-		[Test]
+		[TestMethod]
 		public void CheckLoadableTypes ()
 		{
 			bool missing = false;
@@ -90,7 +58,7 @@ namespace FSpot.Imaging
 			Assert.IsFalse (missing, "No missing loaders for Taglib# parseable files.");
 		}
 
-		[Test]
+		[TestMethod]
 		public void CheckTaglibSupport ()
 		{
 			bool missing = false;
@@ -108,7 +76,7 @@ namespace FSpot.Imaging
 				}
 			}
 
-			Assert.That (missingTypes.Count == 6, string.Join (",", missingTypes));
+			Assert.AreEqual (6, missingTypes.Count, string.Join (",", missingTypes));
 
 			Assert.IsTrue (missing, $"There are {missingTypes.Count} missing type support in Taglib#.");
 		}

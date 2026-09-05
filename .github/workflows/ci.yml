@@ -14,7 +14,73 @@ concurrency:
 permissions:
   contents: read
 
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+
 jobs:
+  # F-Spot.Tests.slnf: Hyena, FSpot, and Gtk unit tests only.
+  test:
+    name: Test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+          cache: true
+          cache-dependency-path: |
+            Directory.Packages.props
+            **/*.csproj
+
+      - name: Copy .config.in files
+        shell: bash
+        run: |
+          cp src/Clients/FSpot.Gtk/f-spot.exe.config.in src/Clients/FSpot.Gtk/f-spot.exe.config
+          cp src/Core/FSpot/FSpot.dll.config.in src/Core/FSpot/FSpot.dll.config
+
+      - name: Restore tests
+        run: dotnet restore .build/F-Spot.Tests.slnf
+
+      - name: Test Hyena
+        run: >
+          dotnet test lib/Hyena.UnitTest/Hyena.UnitTest.csproj
+          --configuration Release --no-restore
+          --logger trx --results-directory TestResults
+
+      - name: Test FSpot
+        if: ${{ !cancelled() }}
+        run: >
+          dotnet test src/Core/FSpot.UnitTest/FSpot.UnitTest.csproj
+          --configuration Release --no-restore
+          --filter "TestCategory!=RequiresGdk&TestCategory!=RequiresGtk"
+          --logger trx --results-directory TestResults
+
+      - name: Test FSpot.Gtk
+        if: ${{ !cancelled() }}
+        run: >
+          dotnet test src/Clients/FSpot.Gtk.UnitTest/FSpot.Gtk.UnitTest.csproj
+          --configuration Release --no-restore
+          --filter "TestCategory!=RequiresGdk&TestCategory!=RequiresGtk"
+          --logger trx --results-directory TestResults
+
+      - name: Upload test results
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-${{ matrix.os }}
+          path: TestResults/**/*.trx
+          if-no-files-found: ignore
+
   build:
     name: Build (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
@@ -31,6 +97,10 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           global-json-file: global.json
+          cache: true
+          cache-dependency-path: |
+            Directory.Packages.props
+            **/*.csproj
 
       - name: Copy .config.in files
         shell: bash
@@ -43,20 +113,3 @@ jobs:
 
       - name: Build
         run: dotnet build F-Spot.slnx --configuration Release --no-restore
-
-      # net472 testhost is Windows-only. Sqlite tests P/Invoke e_sqlite3; skip until that layer is replaced.
-      - name: Test Hyena
-        if: runner.os == 'Windows'
-        run: >
-          dotnet test lib/Hyena.UnitTest/Hyena.UnitTest.csproj
-          --configuration Release --no-build
-          --filter FullyQualifiedName!~Hyena.Data.Sqlite
-          --logger trx --results-directory TestResults
-
-      - name: Upload test results
-        if: runner.os == 'Windows' && !cancelled()
-        uses: actions/upload-artifact@v4
-        with:
-          name: hyena-test-results
-          path: TestResults/*.trx
-          if-no-files-found: ignore

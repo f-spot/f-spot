@@ -10,16 +10,16 @@
 
 using FSpot.Settings;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using Shouldly;
 
 namespace FSpot.UnitTest.Settings
 {
-	[TestFixture]
-	class FSpotConfigurationTests
+	[TestClass]
+	public class FSpotConfigurationTests
 	{
-		[Test]
+		[TestMethod]
 		public void CheckPackageName ()
 		{
 			// This shouldn't change, but, this test will catch someone changing it
@@ -27,7 +27,7 @@ namespace FSpot.UnitTest.Settings
 			FSpotConfiguration.Package.ShouldBe ("f-spot");
 		}
 
-		[Test]
+		[TestMethod]
 		public void CheckCurrentVersion ()
 		{
 			FSpotConfiguration.Version.ShouldBe ("0.9.0");

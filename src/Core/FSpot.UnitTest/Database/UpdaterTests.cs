@@ -14,11 +14,11 @@ using System.IO;
 
 using Moq;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FSpot.Database.Tests
 {
-	[TestFixture]
+	[TestClass]
 	public class UpdaterTests
 	{
 		static bool initialized = false;
@@ -28,25 +28,25 @@ namespace FSpot.Database.Tests
 			initialized = true;
 		}
 
-		[Test]
+		[TestMethod]
 		public void Test_0_6_1_5 ()
 		{
 			TestUpdate ("0.6.1.5", "17.0");
 		}
 
-		[Test]
+		[TestMethod]
 		public void Test_0_6_2 ()
 		{
 			TestUpdate ("0.6.2", "17.1");
 		}
 
-		[Test]
+		[TestMethod]
 		public void Test_0_7_0_17_2 ()
 		{
 			TestUpdate ("0.7.0-17.2", "17.2");
 		}
 
-		[Test]
+		[TestMethod]
 		public void Test_0_7_0_18_0 ()
 		{
 			TestUpdate ("0.7.0-18.0", "18");
@@ -57,31 +57,30 @@ namespace FSpot.Database.Tests
 			if (!initialized)
 				Initialize ();
 
-			// Looks like a sqlite missing issue. These tests will be going away soon anyways
-			if (Utils.Platform.IsWindows)
-				return;
-
-			var testDir = TestContext.CurrentContext.TestDirectory;
+			var testDir = AppContext.BaseDirectory.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
 			var databaseLocation = Path.Combine (testDir, "data", $"f-spot-{version}.db");
 			Assert.IsTrue (File.Exists (databaseLocation), $"Test database for version {version} not found");
 
-			var tmp = Path.GetTempFileName ();
-			File.Copy (databaseLocation, tmp, true);
+			var tmp = Path.Combine (Path.GetTempPath (), $"f-spot-update-{version}-{Guid.NewGuid ():N}.db");
+			File.Copy (databaseLocation, tmp);
 
-			var db = new FSpotDatabaseConnection (tmp);
-			ValidateRevision (db, revision);
+			try {
+				using (var db = new FSpotDatabaseConnection (tmp)) {
+					ValidateRevision (db, revision);
 
-			var updaterUI = new Mock<IUpdaterUI> ().Object;
-			Updater.Run (db, updaterUI);
-			ValidateRevision (db, Updater.LatestVersion.ToString ());
+					var updaterUI = new Mock<IUpdaterUI> ().Object;
+					Updater.Run (db, updaterUI);
+					ValidateRevision (db, Updater.LatestVersion.ToString ());
 
-			ValidateTableStructure (db);
+					ValidateTableStructure (db);
 
-			CheckPhotosTable (db);
-			CheckPhotoVersionsTable (db);
-			CheckTagsTable (db);
-
-			File.Delete (tmp);
+					CheckPhotosTable (db);
+					CheckPhotoVersionsTable (db);
+					CheckTagsTable (db);
+				}
+			} finally {
+				File.Delete (tmp);
+			}
 		}
 
 		void ValidateRevision (FSpotDatabaseConnection db, string revision)
@@ -198,37 +197,39 @@ namespace FSpot.Database.Tests
 
 		void CheckPhoto (FSpotDatabaseConnection db, uint id, uint time, string base_uri, string filename, string description, uint roll_id, uint default_version_id, uint rating)
 		{
-			var reader = db.Query ("SELECT id, time, base_uri, filename, description, roll_id, default_version_id, rating FROM photos WHERE id = " + id);
-			var found = false;
-			while (reader.Read ()) {
-				Assert.AreEqual (id, Convert.ToUInt32 (reader[0]), "id on photo " + id);
-				Assert.AreEqual (time, Convert.ToUInt32 (reader[1]), "time on photo " + id);
-				Assert.AreEqual (base_uri, reader[2], "base_uri on photo " + id);
-				Assert.AreEqual (filename, reader[3], "filename on photo " + id);
-				Assert.AreEqual (description, reader[4], "description on photo " + id);
-				Assert.AreEqual (roll_id, Convert.ToUInt32 (reader[5]), "roll_id on photo " + id);
-				Assert.AreEqual (default_version_id, Convert.ToUInt32 (reader[6]), "default_version_id on photo " + id);
-				Assert.AreEqual (rating, Convert.ToUInt32 (reader[7]), "rating on photo " + id);
-				found = true;
+			using (var reader = db.Query ("SELECT id, time, base_uri, filename, description, roll_id, default_version_id, rating FROM photos WHERE id = " + id)) {
+				var found = false;
+				while (reader.Read ()) {
+					Assert.AreEqual (id, Convert.ToUInt32 (reader[0]), "id on photo " + id);
+					Assert.AreEqual (time, Convert.ToUInt32 (reader[1]), "time on photo " + id);
+					Assert.AreEqual (base_uri, reader[2], "base_uri on photo " + id);
+					Assert.AreEqual (filename, reader[3], "filename on photo " + id);
+					Assert.AreEqual (description, reader[4], "description on photo " + id);
+					Assert.AreEqual (roll_id, Convert.ToUInt32 (reader[5]), "roll_id on photo " + id);
+					Assert.AreEqual (default_version_id, Convert.ToUInt32 (reader[6]), "default_version_id on photo " + id);
+					Assert.AreEqual (rating, Convert.ToUInt32 (reader[7]), "rating on photo " + id);
+					found = true;
+				}
+				Assert.IsTrue (found, "photo " + id + " missing");
 			}
-			Assert.IsTrue (found, "photo " + id + " missing");
 		}
 
 		void CheckPhotoVersion (FSpotDatabaseConnection db, uint photo_id, uint version_id, string name, string base_uri, string filename, string import_md5, uint is_protected)
 		{
-			var reader = db.Query ("SELECT photo_id, version_id, name, base_uri, filename, import_md5, protected FROM photo_versions WHERE photo_id = " + photo_id + " AND version_id = " + version_id);
-			var found = false;
-			while (reader.Read ()) {
-				Assert.AreEqual (photo_id, Convert.ToUInt32 (reader[0]), "photo_id on photo version " + photo_id + "/" + version_id);
-				Assert.AreEqual (version_id, Convert.ToUInt32 (reader[1]), "version_id on photo version " + photo_id + "/" + version_id);
-				Assert.AreEqual (name, reader[2], "name on photo version " + photo_id + "/" + version_id);
-				Assert.AreEqual (base_uri, reader[3], "base_uri on photo version " + photo_id + "/" + version_id);
-				Assert.AreEqual (filename, reader[4], "filename on photo version " + photo_id + "/" + version_id);
-				Assert.AreEqual (import_md5, reader[5], "import_md5 on photo version " + photo_id + "/" + version_id);
-				Assert.AreEqual (is_protected, Convert.ToUInt32 (reader[6]), "protected on photo version " + photo_id + "/" + version_id);
-				found = true;
+			using (var reader = db.Query ("SELECT photo_id, version_id, name, base_uri, filename, import_md5, protected FROM photo_versions WHERE photo_id = " + photo_id + " AND version_id = " + version_id)) {
+				var found = false;
+				while (reader.Read ()) {
+					Assert.AreEqual (photo_id, Convert.ToUInt32 (reader[0]), "photo_id on photo version " + photo_id + "/" + version_id);
+					Assert.AreEqual (version_id, Convert.ToUInt32 (reader[1]), "version_id on photo version " + photo_id + "/" + version_id);
+					Assert.AreEqual (name, reader[2], "name on photo version " + photo_id + "/" + version_id);
+					Assert.AreEqual (base_uri, reader[3], "base_uri on photo version " + photo_id + "/" + version_id);
+					Assert.AreEqual (filename, reader[4], "filename on photo version " + photo_id + "/" + version_id);
+					Assert.AreEqual (import_md5, reader[5], "import_md5 on photo version " + photo_id + "/" + version_id);
+					Assert.AreEqual (is_protected, Convert.ToUInt32 (reader[6]), "protected on photo version " + photo_id + "/" + version_id);
+					found = true;
+				}
+				Assert.IsTrue (found, "photo version " + photo_id + "/" + version_id + " missing");
 			}
-			Assert.IsTrue (found, "photo version " + photo_id + "/" + version_id + " missing");
 		}
 
 		void CheckOriginalVersionCount (FSpotDatabaseConnection db)
@@ -240,18 +241,19 @@ namespace FSpot.Database.Tests
 
 		void CheckTag (FSpotDatabaseConnection db, uint id, string name, uint cat_id, int is_cat, int sort, string icon)
 		{
-			var reader = db.Query ("SELECT id, name, category_id, is_category, sort_priority, icon FROM tags WHERE id = " + id);
-			var found = false;
-			while (reader.Read ()) {
-				Assert.AreEqual (id, Convert.ToUInt32 (reader[0]), "id on tag " + id);
-				Assert.AreEqual (name, reader[1], "name on tag " + id);
-				Assert.AreEqual (cat_id, Convert.ToUInt32 (reader[2]), "category_id on tag " + id);
-				Assert.AreEqual (is_cat, Convert.ToInt32 (reader[3]), "is_cat on tag " + id);
-				Assert.AreEqual (sort, reader[4], "sort_priority on tag " + id);
-				Assert.AreEqual (icon, reader[5], "icon on tag " + id);
-				found = true;
+			using (var reader = db.Query ("SELECT id, name, category_id, is_category, sort_priority, icon FROM tags WHERE id = " + id)) {
+				var found = false;
+				while (reader.Read ()) {
+					Assert.AreEqual (id, Convert.ToUInt32 (reader[0]), "id on tag " + id);
+					Assert.AreEqual (name, reader[1], "name on tag " + id);
+					Assert.AreEqual (cat_id, Convert.ToUInt32 (reader[2]), "category_id on tag " + id);
+					Assert.AreEqual (is_cat, Convert.ToInt32 (reader[3]), "is_cat on tag " + id);
+					Assert.AreEqual (sort, Convert.ToInt32 (reader[4]), "sort_priority on tag " + id);
+					Assert.AreEqual (icon, reader[5], "icon on tag " + id);
+					found = true;
+				}
+				Assert.IsTrue (found, "tag " + id + " missing");
 			}
-			Assert.IsTrue (found, "tag " + id + " missing");
 		}
 
 		int GetCount (FSpotDatabaseConnection db, string table, string where)

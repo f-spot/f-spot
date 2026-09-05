@@ -9,17 +9,17 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using TagLib;
 using TagLib.Xmp;
 
 namespace FSpot.Utils.Tests
 {
-	[TestFixture]
+	[TestClass]
 	public class MetadataTest
 	{
-		[Test]
+		[TestMethod]
 		public void ValidateWithoutSidecar ()
 		{
 			// Tests the file in its original state
@@ -39,12 +39,12 @@ namespace FSpot.Utils.Tests
 				Assert.AreEqual (0, node.Children.Count);
 			}
 
-			Assert.AreEqual (new[] { "Kirche Sulzbach" }, file.ImageTag.Keywords);
+			Assert.AreSequenceEqual (new[] { "Kirche Sulzbach" }, file.ImageTag.Keywords);
 
 			ImageTestHelper.DeleteTempFile (uri);
 		}
 
-		[Test]
+		[TestMethod]
 		public void ValidateWithSidecar ()
 		{
 			// Tests the file with a sidecar
@@ -62,13 +62,13 @@ namespace FSpot.Utils.Tests
 				Assert.IsNull (node);
 			}
 
-			Assert.AreEqual (new[] { "F-Spot", "metadata", "test" }, file.ImageTag.Keywords);
+			Assert.AreSequenceEqual (new[] { "F-Spot", "metadata", "test" }, file.ImageTag.Keywords);
 
 			ImageTestHelper.DeleteTempFile (uri);
 			ImageTestHelper.DeleteTempFile (sidecar_uri);
 		}
 
-		[Test]
+		[TestMethod]
 		public void ValidateWithBrokenSidecar ()
 		{
 			// Tests the file with a sidecar
@@ -88,13 +88,13 @@ namespace FSpot.Utils.Tests
 				Assert.AreEqual (0, node.Children.Count);
 			}
 
-			Assert.AreEqual (new[] { "Kirche Sulzbach" }, file.ImageTag.Keywords);
+			Assert.AreSequenceEqual (new[] { "Kirche Sulzbach" }, file.ImageTag.Keywords);
 
 			ImageTestHelper.DeleteTempFile (uri);
 			ImageTestHelper.DeleteTempFile (sidecar_uri);
 		}
 
-		[Test]
+		[TestMethod]
 		public void ValidateWithBrokenMetadata ()
 		{
 			// Tests the file with a sidecar

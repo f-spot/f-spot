@@ -11,7 +11,7 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using Shouldly;
 
@@ -20,10 +20,10 @@ using TagLib.Xmp;
 
 namespace FSpot.Utils.Tests
 {
-	[TestFixture]
+	[TestClass]
 	public class SidecarXmpExtensionsTests
 	{
-		[Test]
+		[TestMethod]
 		public void ValidateWithoutSidecar ()
 		{
 			// Tests the file in its original state
@@ -44,12 +44,12 @@ namespace FSpot.Utils.Tests
 				Assert.AreEqual (0, node.Children.Count);
 			}
 
-			Assert.AreEqual (new string[] { "Kirche Sulzbach" }, file.ImageTag.Keywords);
+			Assert.AreSequenceEqual (new string[] { "Kirche Sulzbach" }, file.ImageTag.Keywords);
 
 			ImageTestHelper.DeleteTempFile (uri);
 		}
 
-		[Test]
+		[TestMethod]
 		public void ValidateWithSidecar ()
 		{
 			// Tests the file with a sidecar
@@ -73,13 +73,13 @@ namespace FSpot.Utils.Tests
 				Assert.IsNull (node);
 			}
 
-			Assert.AreEqual (new string[] { "F-Spot", "metadata", "test" }, file.ImageTag.Keywords);
+			Assert.AreSequenceEqual (new string[] { "F-Spot", "metadata", "test" }, file.ImageTag.Keywords);
 
 			ImageTestHelper.DeleteTempFile (uri);
 			ImageTestHelper.DeleteTempFile (sidecar_uri);
 		}
 
-		[Test]
+		[TestMethod]
 		public void ValidateWithBrokenSidecar ()
 		{
 			// Tests the file with a sidecar
@@ -105,24 +105,24 @@ namespace FSpot.Utils.Tests
 				Assert.AreEqual (0, node.Children.Count);
 			}
 
-			Assert.AreEqual (new[] { "Kirche Sulzbach" }, file.ImageTag.Keywords);
+			Assert.AreSequenceEqual (new[] { "Kirche Sulzbach" }, file.ImageTag.Keywords);
 
 			ImageTestHelper.DeleteTempFile (uri);
 			ImageTestHelper.DeleteTempFile (sidecar_uri);
 		}
 
-		[Test]
+		[TestMethod]
 		public void TestSidecarWrite ()
 		{
 			var uri = ImageTestHelper.CreateTempFile ("taglib-sample.jpg");
 			var res = new TagLibFileAbstraction (uri);
-			Assert.True (System.IO.File.Exists (uri.AbsolutePath));
+			Assert.IsTrue (System.IO.File.Exists (uri.AbsolutePath));
 
 			var sidecar_uri = uri.ReplaceExtension (".xmp");
 			var sidecar_res = new TagLibFileAbstraction (sidecar_uri);
 			sidecar_uri.ToString ().ShouldEndWith (".xmp");
 			System.IO.File.Create (sidecar_uri.AbsolutePath).Dispose ();
-			Assert.True (System.IO.File.Exists (sidecar_uri.AbsolutePath));
+			Assert.IsTrue (System.IO.File.Exists (sidecar_uri.AbsolutePath));
 
 
 			var file = File.Create (res) as TagLib.Image.File;
@@ -162,7 +162,7 @@ namespace FSpot.Utils.Tests
 			// Check that the file is unchanged
 			file = File.Create (res) as TagLib.Image.File;
 			var keywords = file.ImageTag.Keywords;
-			Assert.AreEqual (new[] { "Kirche Sulzbach" }, keywords);
+			Assert.AreSequenceEqual (new[] { "Kirche Sulzbach" }, keywords);
 
 			ImageTestHelper.DeleteTempFile (uri);
 			ImageTestHelper.DeleteTempFile (sidecar_uri);

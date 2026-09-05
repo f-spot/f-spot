@@ -4,23 +4,24 @@
 //  Copyright (c) 2011 sshaw
 using FSpot.Query;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FSpot
 {
-	[TestFixture]
+	[TestClass]
+	[TestCategory("RequiresGtk")]
 	public class AndTermTests
 	{
 		//private AndTerm andTerm = null;
 		AndTerm andTerm = null;
 
-		[OneTimeSetUp]
+		[TestInitialize]
 		public void OneTimeSetUp ()
 		{
 			andTerm = new AndTerm (null, null);
 		}
 
-		[OneTimeTearDown]
+		[TestCleanup]
 		public void OneTimeTearDown ()
 		{
 			andTerm = null;

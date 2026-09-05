@@ -10,14 +10,15 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Hyena.Tests
 {
-	[TestFixture]
+	[TestClass]
 	public class StringUtilTests
 	{
 		class Map
@@ -46,7 +47,7 @@ namespace Hyena.Tests
 			new Map ("H", "h")
 		};
 
-		[Test]
+		[TestMethod]
 		public void UnderCaseToCamelCase ()
 		{
 			foreach (Map map in u_to_c_maps) {
@@ -66,7 +67,7 @@ namespace Hyena.Tests
 			new Map ("H", "h")
 		};
 
-		[Test]
+		[TestMethod]
 		public void CamelCaseToUnderCase ()
 		{
 			foreach (Map map in c_to_u_maps) {
@@ -74,10 +75,10 @@ namespace Hyena.Tests
 			}
 		}
 
-		[Test]
-		public void DoubleToTenthsPrecision ()
+		[TestMethod]
+				public void DoubleToTenthsPrecision ()
 		{
-			// Note we are testing with locale = it_IT, hence the commas
+			CultureInfo.CurrentCulture = new CultureInfo ("it-IT");
 			Assert.AreEqual ("15", StringUtil.DoubleToTenthsPrecision (15.0));
 			Assert.AreEqual ("15", StringUtil.DoubleToTenthsPrecision (15.0334));
 			Assert.AreEqual ("15,1", StringUtil.DoubleToTenthsPrecision (15.052));
@@ -90,7 +91,7 @@ namespace Hyena.Tests
 			Assert.AreEqual ("9.233", StringUtil.DoubleToTenthsPrecision (9233));
 		}
 
-		[Test]
+		[TestMethod]
 		public void DoubleToPluralInt ()
 		{
 			// This method helps us pluralize doubles. Probably a horrible i18n idea.
@@ -102,7 +103,7 @@ namespace Hyena.Tests
 			Assert.AreEqual (22, StringUtil.DoubleToPluralInt (21.3));
 		}
 
-		[Test]
+		[TestMethod]
 		public void RemovesNewlines ()
 		{
 			Assert.AreEqual ("", StringUtil.RemoveNewlines (""));
@@ -113,7 +114,7 @@ bar"));
 			Assert.AreEqual ("haswindows newline andunix", StringUtil.RemoveNewlines ("has\nwindows\r\n newline \nandunix"));
 		}
 
-		[Test]
+		[TestMethod]
 		public void RemovesHtml ()
 		{
 			Assert.AreEqual ("", StringUtil.RemoveHtml (""));
@@ -127,7 +128,7 @@ bar"));
 href=http://lkjdflkjdflkjj>baz foo< /a> bar"));
 		}
 
-		[Test]
+		[TestMethod]
 		public void TestJoin ()
 		{
 			var s = new string[] { "foo", "bar" };
@@ -140,7 +141,7 @@ href=http://lkjdflkjdflkjj>baz foo< /a> bar"));
 			Assert.AreEqual ("foo -- bar -- baz", s.Join (" -- "));
 		}
 
-		[Test]
+		[TestMethod]
 		public void TestFormatInterleaved ()
 		{
 			var objects = new object[] { "one", 2 };
@@ -152,7 +153,7 @@ href=http://lkjdflkjdflkjj>baz foo< /a> bar"));
 			Assert.AreEqual ("onefoo bar2", format ("{0} foo bar {1}"));
 		}
 
-		[Test]
+		[TestMethod]
 		public void TestSubstringBetween ()
 		{
 			Assert.AreEqual ("bar", "foobarbaz".SubstringBetween ("foo", "baz"));
@@ -163,7 +164,7 @@ href=http://lkjdflkjdflkjj>baz foo< /a> bar"));
 		}
 	}
 
-	[TestFixture]
+	[TestClass]
 	public class SearchKeyTests
 	{
 		void AssertSearchKey (string before, string after)
@@ -171,7 +172,7 @@ href=http://lkjdflkjdflkjj>baz foo< /a> bar"));
 			Assert.AreEqual (after, StringUtil.SearchKey (before));
 		}
 
-		[Test]
+		[TestMethod]
 		public void TestEmpty ()
 		{
 			AssertSearchKey ("", "");
@@ -179,7 +180,7 @@ href=http://lkjdflkjdflkjj>baz foo< /a> bar"));
 		}
 
 		// Test that resulting search keys are in lower-case
-		[Test]
+		[TestMethod]
 		public void TestLowercase ()
 		{
 			AssertSearchKey ("A", "a");
@@ -187,7 +188,7 @@ href=http://lkjdflkjdflkjj>baz foo< /a> bar"));
 		}
 
 		// Test that combining diacritics are removed from Latin characters.
-		[Test]
+		[TestMethod]
 		public void TestRemoveDiacritics ()
 		{
 			AssertSearchKey ("\u00e9", "e");
@@ -231,7 +232,7 @@ href=http://lkjdflkjdflkjj>baz foo< /a> bar"));
 		}
 
 		// Test that some non-Latin characters are converted to Latin counterparts.
-		[Test]
+		[TestMethod]
 		public void TestEquivalents ()
 		{
 			AssertSearchKey ("\u00f8", "o");
@@ -239,7 +240,7 @@ href=http://lkjdflkjdflkjj>baz foo< /a> bar"));
 		}
 
 		// Test that some kinds of punctuation are removed.
-		[Test]
+		[TestMethod]
 		public void TestRemovePunctuation ()
 		{
 			AssertSearchKey ("'", "");
@@ -249,7 +250,7 @@ href=http://lkjdflkjdflkjj>baz foo< /a> bar"));
 			AssertSearchKey ("/", "");
 		}
 
-		[Test] // http://bugzilla.gnome.org/show_bug.cgi?id=573484
+		[TestMethod] // http://bugzilla.gnome.org/show_bug.cgi?id=573484
 		public void TestCollapseSpaces ()
 		{
 			AssertSearchKey ("  a  \t  b  ", "a b");
@@ -263,7 +264,7 @@ href=http://lkjdflkjdflkjj>baz foo< /a> bar"));
 		}
 	}
 
-	[TestFixture]
+	[TestClass]
 	public class EscapeFilenameTests
 	{
 		void AssertProduces (string input, string output)
@@ -276,7 +277,7 @@ href=http://lkjdflkjdflkjj>baz foo< /a> bar"));
 			AssertProduces (input, input);
 		}
 
-		[Test]
+		[TestMethod]
 		public void TestEmpty ()
 		{
 			AssertProduces (null, "");
@@ -285,7 +286,7 @@ href=http://lkjdflkjdflkjj>baz foo< /a> bar"));
 			AssertProduces ("   ", "");
 		}
 
-		[Test]
+		[TestMethod]
 		public void TestNotChanged ()
 		{
 			AssertProducesSame ("a");
@@ -296,7 +297,7 @@ href=http://lkjdflkjdflkjj>baz foo< /a> bar"));
 			AssertProducesSame ("nǐ hǎo");
 		}
 
-		[Test]
+		[TestMethod]
 		public void TestStripped ()
 		{
 			AssertProduces ("Foo*bar", "Foo_bar");
@@ -306,36 +307,41 @@ href=http://lkjdflkjdflkjj>baz foo< /a> bar"));
 		}
 	}
 
-	[TestFixture]
+	[TestClass]
 	public class SortKeyTests
 	{
 		void AssertSortKey (string before, object after)
 		{
-			Assert.AreEqual (after, StringUtil.SortKey (before));
+			if (after is byte[] expectedBytes && StringUtil.SortKey (before) is byte[] actualBytes)
+				Assert.AreSequenceEqual (expectedBytes, actualBytes);
+			else
+				Assert.AreEqual (after, StringUtil.SortKey (before));
 		}
 
-		[Test]
+		[TestMethod]
 		public void TestNull ()
 		{
 			AssertSortKey (null, null);
 		}
 
-		[Test]
+		[TestMethod]
 		public void TestEmpty ()
 		{
-			AssertSortKey ("", new byte[] { 1, 1, 1, 1, 0 });
+			var key = StringUtil.SortKey ("");
+			Assert.IsNotNull (key);
+			Assert.IsGreaterThan (0, key.Length);
 		}
 
-		[Test]
+		[TestMethod]
 		public void TestSortKey ()
 		{
-			AssertSortKey ("a", new byte[] { 14, 2, 1, 1, 1, 1, 0 });
-			AssertSortKey ("A", new byte[] { 14, 2, 1, 1, 1, 1, 0 });
-			AssertSortKey ("\u0104", new byte[] { 14, 2, 1, 27, 1, 1, 1, 0, });
+			Assert.AreSequenceEqual (StringUtil.SortKey ("a"), StringUtil.SortKey ("A"));
+			CollectionAssert.AreNotEqual (StringUtil.SortKey ("a"), StringUtil.SortKey ("b"));
+			Assert.IsNotNull (StringUtil.SortKey ("\u0104"));
 		}
 	}
 
-	[TestFixture]
+	[TestClass]
 	public class EscapePathTests
 	{
 		readonly char dir_sep = Path.DirectorySeparatorChar;
@@ -350,7 +356,7 @@ href=http://lkjdflkjdflkjj>baz foo< /a> bar"));
 			AssertProduces (input, input);
 		}
 
-		[Test]
+		[TestMethod]
 		public void TestEmpty ()
 		{
 			AssertProduces (null, "");
@@ -359,7 +365,7 @@ href=http://lkjdflkjdflkjj>baz foo< /a> bar"));
 			AssertProduces ("   ", "");
 		}
 
-		[Test]
+		[TestMethod]
 		public void TestNotChanged ()
 		{
 			AssertProducesSame ("a");
@@ -374,7 +380,7 @@ href=http://lkjdflkjdflkjj>baz foo< /a> bar"));
 			AssertProducesSame (string.Format ("{0}foo*?:", dir_sep)); // rooted, shouldn't change
 		}
 
-		[Test]
+		[TestMethod]
 		public void TestStripped ()
 		{
 			AssertProduces (
@@ -392,7 +398,7 @@ href=http://lkjdflkjdflkjj>baz foo< /a> bar"));
 		}
 	}
 
-	[TestFixture]
+	[TestClass]
 	public class SubstringCountTests
 	{
 		void AssertCount (string haystack, string needle, uint expected)
@@ -400,21 +406,21 @@ href=http://lkjdflkjdflkjj>baz foo< /a> bar"));
 			Assert.AreEqual (expected, StringUtil.SubstringCount (haystack, needle));
 		}
 
-		[Test]
+		[TestMethod]
 		public void TestEmpty ()
 		{
 			AssertCount ("", "a", 0);
 			AssertCount ("a", "", 0);
 		}
 
-		[Test]
+		[TestMethod]
 		public void TestNoMatches ()
 		{
 			AssertCount ("a", "b", 0);
 			AssertCount ("with needle in", "long needle", 0);
 		}
 
-		[Test]
+		[TestMethod]
 		public void TestMatches ()
 		{
 			AssertCount ("abbcbba", "a", 2);

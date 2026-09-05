@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Hyena.Tests
 {
@@ -61,7 +61,7 @@ namespace Hyena.Tests
 		{
 			var sb = new System.Text.StringBuilder ();
 			foreach (T o in objects) {
-				try { runner (o); } catch (AssertionException e) { sb.AppendFormat ("Failed assertion on {0}: {1}\n", o, e.Message); } catch (Exception e) { sb.AppendFormat ("\nCaught exception on {0}: {1}\n", o, e.ToString ()); }
+				try { runner (o); } catch (AssertFailedException e) { sb.AppendFormat ("Failed assertion on {0}: {1}\n", o, e.Message); } catch (Exception e) { sb.AppendFormat ("\nCaught exception on {0}: {1}\n", o, e.ToString ()); }
 			}
 
 			if (sb.Length > 0)

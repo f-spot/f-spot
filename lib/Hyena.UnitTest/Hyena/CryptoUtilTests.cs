@@ -10,14 +10,14 @@
 
 using System.IO;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Hyena.Tests
 {
-	[TestFixture]
+	[TestClass]
 	public class CryptoUtilTests
 	{
-		[Test]
+		[TestMethod]
 		public void Md5Encode ()
 		{
 			Assert.AreEqual ("ae2b1fca515949e5d54fb22b8ed95575", CryptoUtil.Md5Encode ("testing"));
@@ -25,7 +25,7 @@ namespace Hyena.Tests
 			Assert.AreEqual ("", CryptoUtil.Md5Encode (""));
 		}
 
-		[Test]
+		[TestMethod]
 		public void IsMd5Encoded ()
 		{
 			Assert.IsTrue (CryptoUtil.IsMd5Encoded ("ae2b1fca515949e5d54fb22b8ed95575"));
@@ -36,7 +36,7 @@ namespace Hyena.Tests
 			Assert.IsFalse (CryptoUtil.IsMd5Encoded (""));
 		}
 
-		[Test]
+		[TestMethod]
 		public void Md5EncodeStream ()
 		{
 			var file = Path.GetTempFileName ();
@@ -51,7 +51,7 @@ namespace Hyena.Tests
 			File.Delete (file);
 		}
 
-		/*[Test]
+		/*[TestMethod]
         public void Md5Performance ()
         {
             int max = 10000;
