@@ -11,7 +11,8 @@
   <PropertyGroup>
     <FSpotTargetFramework>net472</FSpotTargetFramework>
     <NetStandard>netstandard2.0</NetStandard>
-    <LangVersion>latest</LangVersion>
+    <!-- C# 14's `field` keyword collides with existing Hyena.Query `field` members. -->
+    <LangVersion>13</LangVersion>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <Deterministic>true</Deterministic>

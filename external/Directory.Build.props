@@ -1,3 +1,10 @@
 <Project>
-  <!-- Intentionally blank. This prevents repo's Directory.Build.* from interferring with external repos -->
+  <!-- Blocks repo Directory.Build.props. FrameworkPathOverride is required for
+       old-style net472 projects on non-Windows (pack restored by SDK-style projects). -->
+  <PropertyGroup>
+    <NuGetPackageRoot Condition="'$(NuGetPackageRoot)' == '' and $([MSBuild]::IsOSPlatform('Windows'))">$(UserProfile)\.nuget\packages\</NuGetPackageRoot>
+    <NuGetPackageRoot Condition="'$(NuGetPackageRoot)' == ''">$(HOME)/.nuget/packages/</NuGetPackageRoot>
+    <_Net472Ref>$([MSBuild]::NormalizeDirectory('$(NuGetPackageRoot)microsoft.netframework.referenceassemblies.net472\1.0.3\build\.NETFramework\v4.7.2'))</_Net472Ref>
+    <FrameworkPathOverride Condition="'$(FrameworkPathOverride)' == '' and Exists('$(_Net472Ref)')">$(_Net472Ref)</FrameworkPathOverride>
+  </PropertyGroup>
 </Project>

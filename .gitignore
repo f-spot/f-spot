@@ -174,8 +174,13 @@ BenchmarkDotNet.Artifacts/
 # Assemblies / debug (legacy Mono + modern)
 *.mdb
 *.pdb
-*.dll*
-*.exe*
+*.dll
+*.exe
+!/lib/gtk-sharp-2.12/
+!/lib/gtk-sharp-2.12/**
+# Copied from *.config.in at build; keep the .in files and checked-in *.dll.config.
+src/Clients/FSpot.Gtk/f-spot.exe.config
+src/Core/FSpot/FSpot.dll.config
 
 # Avalonia generated output lands in obj/; keep this for previewer/local caches
 .avalonia/

@@ -1,4 +1,6 @@
 <Project>
+    <Import Project="$(MSBuildThisFileDirectory).build\GtkSharp.refs.targets" />
+
     <ItemGroup>
         <None Remove="*.in" />
         <None Remove="*.cs.in" />

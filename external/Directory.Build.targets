@@ -1,3 +1,4 @@
 <Project>
-  <!-- Intentionally blank. This prevents repo's Directory.Build.* from interferring with external repos -->
+  <!-- Blocks repo Directory.Build.targets. Import Gtk# HintPaths for Mono.Addins.Gui. -->
+  <Import Project="$(MSBuildThisFileDirectory)..\.build\GtkSharp.refs.targets" />
 </Project>

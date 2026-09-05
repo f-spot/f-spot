@@ -1,0 +1,62 @@
+name: CI
+
+on:
+  push:
+    branches: [main, modernize]
+  pull_request:
+    branches: [main, modernize]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Copy .config.in files
+        shell: bash
+        run: |
+          cp src/Clients/FSpot.Gtk/f-spot.exe.config.in src/Clients/FSpot.Gtk/f-spot.exe.config
+          cp src/Core/FSpot/FSpot.dll.config.in src/Core/FSpot/FSpot.dll.config
+
+      - name: Restore
+        run: dotnet restore F-Spot.slnx
+
+      - name: Build
+        run: dotnet build F-Spot.slnx --configuration Release --no-restore
+
+      # net472 testhost is Windows-only. Sqlite tests P/Invoke e_sqlite3; skip until that layer is replaced.
+      - name: Test Hyena
+        if: runner.os == 'Windows'
+        run: >
+          dotnet test lib/Hyena.UnitTest/Hyena.UnitTest.csproj
+          --configuration Release --no-build
+          --filter FullyQualifiedName!~Hyena.Data.Sqlite
+          --logger trx --results-directory TestResults
+
+      - name: Upload test results
+        if: runner.os == 'Windows' && !cancelled()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hyena-test-results
+          path: TestResults/*.trx
+          if-no-files-found: ignore
