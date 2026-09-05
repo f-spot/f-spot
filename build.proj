@@ -2,7 +2,7 @@
   <Import Project="fspot.props" />
 
   <Target Name="Clean">
-    <MSBuild Projects="F-Spot.sln" Targets="Clean" />
+    <MSBuild Projects="F-Spot.slnx" Targets="Clean" />
   </Target>
 
   <Target Name="Rebuild">
@@ -10,7 +10,7 @@
   </Target>
 
   <Target Name="Restore">
-    <MSBuild Projects="F-Spot.sln" Targets="Restore" />
+    <MSBuild Projects="F-Spot.slnx" Targets="Restore" />
   </Target>
 
   <Target Name="BuildWindows" DependsOnTargets="CopyConfigInFiles">
@@ -51,7 +51,7 @@
       <TargetPlatform Condition="'$(TargetPlatform)'==''">Any CPU</TargetPlatform>
     </PropertyGroup>
 
-    <MSBuild Projects="F-Spot.sln" Properties="Platform=$(TargetPlatform)" Targets="Build" />
+    <MSBuild Projects="F-Spot.slnx" Properties="Platform=$(TargetPlatform)" Targets="Build" />
   </Target>
 
   <Target Name="Run">

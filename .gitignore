@@ -2,8 +2,19 @@
 *~
 *.swp
 
-# Mac
+# macOS
 .DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
 
 
 # Autotools
@@ -51,51 +62,120 @@ po/stamp-it
 *.gmo
 *.page
 *.mo
-tests/EmptyFiles
 
 # GNOME
 gnome-doc-utils.make
-
-# msbuild
-*.binlog
-
-# CSharp
-[Bb]in/
-[Oo]bj/
-TestResult.xml
-tests/*.addins
-tests/*.xml
-tests/TestData
-tests/nunit_random_seed.tmp
-test-results/
-packages/*
-!packages/repositories.config
-*.mdb
-*.pdb
-*.dll*
-*.exe*
 
 # C
 *.o
 *.la
 *.lo
 
-# monodevelop files
-*.userprefs
-.vs
 
-# Rider
-# User-specific stuff:
+# --- Modern .NET / IDEs (rough pass; trim later) ---
+
+# MSBuild / SDK
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+artifacts/
+.artifacts/
+*.binlog
+MSBuild_Logs/
+project.lock.json
+project.fragment.lock.json
+*.nuget.props
+*.nuget.targets
+!Directory.Build.rsp
+
+# NuGet
+*.nupkg
+*.snupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+
+# Publish
+publish/
+*.[Pp]ublish.xml
+*.pubxml
+*.publishproj
+*.azurePubxml
+
+# Solutions / user files
+*.sln.user
+*.slnx.user
+*.suo
+*.user
+*.userosscache
+*.rsuser
+*.sln.docstates
+*.env
+
+# Visual Studio
+.vs/
+Generated\ Files/
+*.pidb
+mono_crash.*
+
+# MonoDevelop / Xamarin
+*.userprefs
+**/.mfractor/
+
+# Rider / ReSharper / JetBrains
 .idea/**/workspace.xml
 .idea/**/tasks.xml
-.idea/dictionaries
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+.idea/**/contentModel.xml
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
 
-# User settings
-*.user
+# VS Code / C# Dev Kit / Ionide
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+.history/
+**/.ionide/
+*.vsix
 
-# Other
-tests/libe_sqlite3.so
-tests/TinyIoc.cs
+# Local secrets
+.env
+.env.*
+!.env.example
 
-# VS Code extensions
-.ionide
+# Test output — unit test projects set OutputPath to $(TestsPath) = tests/
+# Keep the checked-in fixtures; ignore everything the build copies here.
+/tests/*
+!/tests/Makefile.am
+!/tests/data/
+!/tests/data/**
+
+# VSTest / MSTest / NUnit / coverage
+[Tt]est[Rr]esult*/
+TestResults/
+test-results/
+TestResult.xml
+nunit-*.xml
+*.trx
+*.VisualState.xml
+*.coverage
+*.coveragexml
+coverage*.json
+coverage*.xml
+coverage*.info
+*.received.*
+BenchmarkDotNet.Artifacts/
+
+# Assemblies / debug (legacy Mono + modern)
+*.mdb
+*.pdb
+*.dll*
+*.exe*
+
+# Avalonia generated output lands in obj/; keep this for previewer/local caches
+.avalonia/
