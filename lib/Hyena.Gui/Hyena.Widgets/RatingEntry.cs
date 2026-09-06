@@ -368,8 +368,6 @@ namespace Hyena.Widgets
 
 	}
 
-	#region Test Module
-
 	public class RatingAccessible : Atk.Object, Atk.Value, Atk.ValueImplementor
 	{
 		RatingEntry rating;
@@ -437,51 +435,4 @@ namespace Hyena.Widgets
 			return RatingAccessible.GType;
 		}
 	}
-
-	[Hyena.Gui.TestModule ("Rating Entry")]
-	class RatingEntryTestModule : Gtk.Window
-	{
-		public RatingEntryTestModule () : base ("Rating Entry")
-		{
-			var pbox = new VBox ();
-			Add (pbox);
-
-			var m = new Menu ();
-			var b = new MenuBar ();
-			var item = new MenuItem ("Rate Me!");
-			item.Submenu = m;
-			b.Append (item);
-			m.Append (new MenuItem ("Apples"));
-			m.Append (new MenuItem ("Pears"));
-			m.Append (new RatingMenuItem ());
-			m.Append (new ImageMenuItem ("gtk-remove", null));
-			m.ShowAll ();
-			pbox.PackStart (b, false, false, 0);
-
-			var box = new VBox ();
-			box.BorderWidth = 10;
-			box.Spacing = 10;
-			pbox.PackStart (box, true, true, 0);
-
-			var entry1 = new RatingEntry ();
-			box.PackStart (entry1, true, true, 0);
-
-			var entry2 = new RatingEntry ();
-			box.PackStart (entry2, false, false, 0);
-
-			box.PackStart (new Entry ("Normal GtkEntry"), false, false, 0);
-
-			var entry3 = new RatingEntry ();
-			Pango.FontDescription fd = entry3.PangoContext.FontDescription.Copy ();
-			fd.Size = (int)(fd.Size * Pango.Scale.XXLarge);
-			entry3.ModifyFont (fd);
-			fd.Dispose ();
-			box.PackStart (entry3, true, true, 0);
-
-			pbox.ShowAll ();
-		}
-	}
-
-	#endregion
-
 }

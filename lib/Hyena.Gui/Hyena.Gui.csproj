@@ -17,10 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Hyena\Hyena.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="SharpZipLib" />
+    <ProjectReference Include="..\..\src\Core\FSpot.Strings\FSpot.Strings.csproj" />
   </ItemGroup>
 
   <ItemGroup>

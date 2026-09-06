@@ -35,14 +35,14 @@ namespace Hyena.Gui
 			try {
 				startup ();
 			} catch (Exception e) {
-				Console.WriteLine (e.Message);
 				Console.WriteLine (e);
 
 				Gtk.Application.Init ();
-				var dialog = new Hyena.Gui.Dialogs.ExceptionDialog (e);
+				var dialog = new Gtk.MessageDialog (null, Gtk.DialogFlags.Modal,
+					Gtk.MessageType.Error, Gtk.ButtonsType.Close, "{0}", e.ToString ());
 				dialog.Run ();
 				dialog.Destroy ();
-				System.Environment.Exit (1);
+				Environment.Exit (1);
 			}
 		}
 	}
