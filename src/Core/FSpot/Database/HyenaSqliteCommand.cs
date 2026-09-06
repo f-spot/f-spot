@@ -25,8 +25,7 @@ namespace FSpot.Database
 
 		ManualResetEvent finished_event = new ManualResetEvent (true);
 		string command;
-		string command_format = null;
-		string command_formatted = null;
+		string parameterized_sql = null;
 		int parameter_count = 0;
 		object[] current_values;
 
@@ -60,23 +59,24 @@ namespace FSpot.Database
 
 			string command_text = null;
 			try {
-				command_text = CurrentSqlText;
+				EnsureParameterized ();
+				command_text = parameterized_sql;
 				int ticks = System.Environment.TickCount;
 
 				switch (CommandType) {
 				case HyenaCommandType.Reader:
-					using (var reader = connection.Query (command_text)) {
+					using (var reader = connection.Query (command_text, current_values)) {
 						result = new ArrayDataReader (reader, command_text);
 					}
 					break;
 
 				case HyenaCommandType.Scalar:
-					result = connection.QueryScalar (command_text);
+					result = connection.QueryScalar (command_text, current_values);
 					break;
 
 				case HyenaCommandType.Execute:
 				default:
-					result = connection.Execute (command_text);
+					result = connection.Execute (command_text, current_values);
 					break;
 				}
 
@@ -125,90 +125,38 @@ namespace FSpot.Database
 
 		internal HyenaSqliteCommand ApplyValues (params object[] param_values)
 		{
-			if (command_format == null) {
-				CreateParameters ();
-			}
+			EnsureParameterized ();
 
-			// Special case for if a single null values is the paramter array
 			if (parameter_count == 1 && param_values == null) {
-				current_values = new object[] { "NULL" };
-				command_formatted = null;
+				current_values = new object[] { null };
 				return this;
 			}
 
-			if (param_values.Length != parameter_count) {
+			if (param_values == null || param_values.Length != parameter_count) {
 				throw new ArgumentException (string.Format (
-					"Command {2} has {0} parameters, but {1} values given.", parameter_count, param_values.Length, command
+					"Command {2} has {0} parameters, but {1} values given.", parameter_count, param_values == null ? 0 : param_values.Length, command
 				));
 			}
 
-			// Transform values as necessary - not needed for numerical types
-			for (int i = 0; i < parameter_count; i++) {
-				param_values[i] = SqlifyObject (param_values[i]);
-			}
-
 			current_values = param_values;
-			command_formatted = null;
 			return this;
 		}
 
-		public static object SqlifyObject (object o)
+		void EnsureParameterized ()
 		{
-			if (o is string) {
-				return string.Format ("'{0}'", (o as string).Replace ("'", "''"));
-			} else if (o is DateTime) {
-				return DateTimeUtil.FromDateTime ((DateTime)o);
-			} else if (o is bool) {
-				return ((bool)o) ? "1" : "0";
-			} else if (o == null) {
-				return "NULL";
-			} else if (o is byte[]) {
-				string hex = System.BitConverter.ToString (o as byte[]).Replace ("-", "");
-				return string.Format ("X'{0}'", hex);
-			} else if (o is Array) {
-				var sb = new StringBuilder ();
-				bool first = true;
-				foreach (object i in (o as Array)) {
-					if (!first)
-						sb.Append (',');
-					else
-						first = false;
+			if (parameterized_sql != null)
+				return;
 
-					sb.Append (SqlifyObject (i));
-				}
-				return sb.ToString ();
-			} else {
-				return o;
-			}
-		}
-
-		string CurrentSqlText {
-			get {
-				if (command_format == null) {
-					return command;
-				}
-
-				if (command_formatted == null) {
-					command_formatted = string.Format (System.Globalization.CultureInfo.InvariantCulture, command_format, current_values);
-				}
-
-				return command_formatted;
-			}
-		}
-
-		void CreateParameters ()
-		{
 			var sb = new StringBuilder ();
 			foreach (char c in command) {
 				if (c == '?') {
-					sb.Append ('{');
+					sb.Append ("@p");
 					sb.Append (parameter_count++);
-					sb.Append ('}');
 				} else {
 					sb.Append (c);
 				}
 			}
-			command_format = sb.ToString ();
+			parameterized_sql = sb.ToString ();
 		}
 
 		static bool log_all = false;

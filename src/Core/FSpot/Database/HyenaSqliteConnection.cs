@@ -42,6 +42,10 @@ namespace FSpot.Database
 		volatile Thread transaction_thread = null;
 		ManualResetEvent transaction_signal = new ManualResetEvent (true);
 
+		public bool InTransaction {
+			get { return transaction_thread == Thread.CurrentThread; }
+		}
+
 		public string ServerVersion { get { return Query<string> ("SELECT sqlite_version ()"); } }
 
 		public HyenaSqliteConnection (string dbpath)

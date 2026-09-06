@@ -403,21 +403,9 @@ namespace FSpot.Database
 		{
 			using var op = Operation.Begin ("PhotoStore.Commit");
 
-			// Only use a transaction for multiple saves. Avoids recursive transactions.
-
-			// TODO.
-			bool use_transactions = true; //!Database.InTransaction && items.Length > 1;
-
-			//if (use_transactions)
-			//      Database.BeginTransaction ();
-
-			// FIXME: this hack is used, because HyenaSqliteConnection does not support
-			// the InTransaction propery
-			try {
+			bool use_transactions = !Database.InTransaction;
+			if (use_transactions)
 				Database.BeginTransaction ();
-			} catch {
-				use_transactions = false;
-			}
 
 			var changes = new PhotosChanges ();
 			foreach (DbItem item in items)

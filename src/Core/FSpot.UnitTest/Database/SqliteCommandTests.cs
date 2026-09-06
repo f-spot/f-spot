@@ -9,7 +9,7 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
-using System.Reflection;
+using System.IO;
 
 using Hyena;
 
@@ -20,132 +20,92 @@ namespace FSpot.Database.Tests
 	[TestClass]
 	public class SqliteCommandTests
 	{
-		[TestMethod]
-		public void IdentifiesParameters ()
-		{
-			HyenaSqliteCommand cmd = null;
-			try {
-				cmd = new HyenaSqliteCommand ("select foo from bar where baz = ?, bbz = ?, this = ?",
-					"a", 32);
-				Assert.Fail ("Should not have been able to pass 2 values to ApplyValues without exception");
-			} catch { }
+		string dbfile;
+		HyenaSqliteConnection connection;
 
-			try {
-				cmd = new HyenaSqliteCommand ("select foo from bar where baz = ?, bbz = ?, this = ?",
-					"a", 32, "22");
-			} catch {
-				Assert.Fail ("Should have been able to pass 3 values to ApplyValues without exception");
+		[TestInitialize]
+		public void Setup ()
+		{
+			dbfile = Path.Combine (Path.GetTempPath (), "sqlite-command-" + Guid.NewGuid ().ToString ("N") + ".db");
+			connection = new HyenaSqliteConnection (dbfile);
+		}
+
+		[TestCleanup]
+		public void TearDown ()
+		{
+			connection?.Dispose ();
+			if (dbfile != null && File.Exists (dbfile)) {
+				File.Delete (dbfile);
 			}
-
-			Assert.AreEqual ("select foo from bar where baz = 'a', bbz = 32, this = '22'", GetGeneratedSql (cmd));
 		}
 
 		[TestMethod]
-		public void Constructor ()
+		public void WrongParameterCountThrows ()
 		{
-			var cmd = new HyenaSqliteCommand ("select foo from bar where baz = ?, bbz = ?, this = ?", "a", 32, "22");
-			Assert.AreEqual ("select foo from bar where baz = 'a', bbz = 32, this = '22'", GetGeneratedSql (cmd));
+			Assert.ThrowsExactly<ArgumentException> (() =>
+				connection.Execute ("INSERT INTO t (a, b, c) VALUES (?, ?, ?)", "a", 32));
 		}
 
 		[TestMethod]
-		public void CultureInvariant ()
+		public void StringWithQuotesRoundTrips ()
 		{
-			var cmd = new HyenaSqliteCommand ("select foo from bar where baz = ?", 32.2);
-			Assert.AreEqual ("select foo from bar where baz = 32.2", GetGeneratedSql (cmd));
+			connection.Execute ("CREATE TABLE t (s TEXT)");
+			const string value = "It's complicated, \"but\" ''why not''?";
+			connection.Execute ("INSERT INTO t (s) VALUES (?)", value);
+			Assert.AreEqual (value, connection.Query<string> ("SELECT s FROM t"));
 		}
 
 		[TestMethod]
-		public void ParameterSerialization ()
+		public void NullRoundTrips ()
 		{
-			var cmd = new HyenaSqliteCommand ("select foo from bar where baz = ?");
-
-			Assert.AreEqual ("select foo from bar where baz = NULL", GetGeneratedSql (cmd, null));
-			Assert.AreEqual ("select foo from bar where baz = 'It''s complicated, \"but\" ''''why not''''?'", GetGeneratedSql (cmd, "It's complicated, \"but\" ''why not''?"));
-			var epoch = new DateTime (1970, 1, 1).ToLocalTime ();
-			Assert.AreEqual ($"select foo from bar where baz = {DateTimeUtil.ToTimeT (epoch)}", GetGeneratedSql (cmd, epoch));
-			var july = new DateTime (1999, 7, 7).ToLocalTime ();
-			Assert.AreEqual ($"select foo from bar where baz = {DateTimeUtil.ToTimeT (july)}", GetGeneratedSql (cmd, july));
-			Assert.AreEqual ("select foo from bar where baz = 555.55", GetGeneratedSql (cmd, 555.55f));
-			Assert.AreEqual ("select foo from bar where baz = 555.55", GetGeneratedSql (cmd, 555.55));
-			Assert.AreEqual ("select foo from bar where baz = 555", GetGeneratedSql (cmd, 555));
-			Assert.AreEqual ("select foo from bar where baz = 1", GetGeneratedSql (cmd, true));
-			Assert.AreEqual ("select foo from bar where baz = 0", GetGeneratedSql (cmd, false));
-
-			var cmd2 = new HyenaSqliteCommand ("select foo from bar where baz = ?, bar = ?, boo = ?");
-			Assert.AreEqual ("select foo from bar where baz = NULL, bar = NULL, boo = 22", GetGeneratedSql (cmd2, null, null, 22));
-
-			var cmd3 = new HyenaSqliteCommand ("select foo from bar where id in (?) and foo not in (?)");
-			Assert.AreEqual ("select foo from bar where id in (1,2,4) and foo not in ('foo','baz')",
-					GetGeneratedSql (cmd3, new int[] { 1, 2, 4 }, new string[] { "foo", "baz" }));
-		}
-
-		static PropertyInfo tf = typeof (HyenaSqliteCommand).GetProperty ("CurrentSqlText", BindingFlags.Instance | BindingFlags.NonPublic);
-		static string GetGeneratedSql (HyenaSqliteCommand cmd, params object[] p)
-		{
-			return tf.GetValue ((new HyenaSqliteCommand (cmd.Text, p)), null) as string;
-		}
-
-		static string GetGeneratedSql (HyenaSqliteCommand cmd)
-		{
-			return tf.GetValue (cmd, null) as string;
-		}
-	}
-
-	[TestClass]
-	public class ObjectToSqlTests
-	{
-		protected void AssertToSql (object o, object expected)
-		{
-			Assert.AreEqual (expected, HyenaSqliteCommand.SqlifyObject (o));
+			connection.Execute ("CREATE TABLE t (s TEXT, n INTEGER)");
+			connection.Execute ("INSERT INTO t (s, n) VALUES (?, ?)", null, 22);
+			Assert.IsNull (connection.Query<string> ("SELECT s FROM t"));
+			Assert.AreEqual (22, connection.Query<int> ("SELECT n FROM t"));
 		}
 
 		[TestMethod]
-		public void TestNull ()
+		public void BoolIsStoredAsInteger ()
 		{
-			AssertToSql (null, "NULL");
+			connection.Execute ("CREATE TABLE t (b INTEGER)");
+			connection.Execute ("INSERT INTO t (b) VALUES (?)", true);
+			Assert.AreEqual ("integer", connection.Query<string> ("SELECT typeof(b) FROM t"));
+			Assert.AreEqual (1, connection.Query<int> ("SELECT b FROM t"));
+
+			connection.Execute ("DELETE FROM t");
+			connection.Execute ("INSERT INTO t (b) VALUES (?)", false);
+			Assert.AreEqual (0, connection.Query<int> ("SELECT b FROM t"));
 		}
 
 		[TestMethod]
-		public void TestBool ()
+		public void DoubleIsCultureInvariant ()
 		{
-			AssertToSql (false, "0");
-			AssertToSql (true, "1");
+			connection.Execute ("CREATE TABLE t (n REAL)");
+			connection.Execute ("INSERT INTO t (n) VALUES (?)", 32.2);
+			Assert.AreEqual (32.2, connection.Query<double> ("SELECT n FROM t"), 0.0001);
 		}
 
 		[TestMethod]
-		public void TestString ()
+		public void ByteArrayRoundTripsAsBlob ()
 		{
-			AssertToSql ("", "''");
-			AssertToSql ("test", "'test'");
-			AssertToSql ("te'st", "'te''st'");
+			connection.Execute ("CREATE TABLE t (b BLOB)");
+			var value = new byte[] { 0x10, 0x20, 0x30 };
+			connection.Execute ("INSERT INTO t (b) VALUES (?)", value);
+			Assert.AreEqual ("blob", connection.Query<string> ("SELECT typeof(b) FROM t"));
+			using (var reader = connection.Query ("SELECT b FROM t")) {
+				Assert.IsTrue (reader.Read ());
+				Assert.AreSequenceEqual (value, reader.Get<byte[]> (0));
+			}
 		}
 
 		[TestMethod]
-		public void TestByteArray ()
+		public void NestedBeginTransactionThrowsWhenAlreadyInTransaction ()
 		{
-			// BLOB notation
-			AssertToSql (Array.Empty<byte> (), "X''");
-			AssertToSql (new byte[] { 0x10, 0x20, 0x30 }, "X'102030'");
-		}
-
-		[TestMethod]
-		public void TestOtherArray ()
-		{
-			AssertToSql (Array.Empty<object> (), "");
-			AssertToSql (new object[] { "a" }, "'a'");
-			AssertToSql (new object[] { "a", "b" }, "'a','b'");
-		}
-
-		[TestMethod]
-		public void TestDateTime ()
-		{
-			var date = new DateTime (2000, 1, 2);
-			AssertToSql (date, DateTimeUtil.ToTimeT (date));
-
-			// Disregards milliseconds
-			var with_ms = new DateTime (2000, 1, 2, 10, 9, 8, 7);
-			var truncated = new DateTime (2000, 1, 2, 10, 9, 8);
-			AssertToSql (with_ms, DateTimeUtil.ToTimeT (truncated));
+			connection.BeginTransaction ();
+			Assert.IsTrue (connection.InTransaction);
+			Assert.ThrowsExactly<Exception> (() => connection.BeginTransaction ());
+			connection.RollbackTransaction ();
+			Assert.IsFalse (connection.InTransaction);
 		}
 	}
 }

@@ -50,10 +50,10 @@ namespace FSpot.Database
 			}
 		}
 
-		public IDataReader Query (string sql)
+		public IDataReader Query (string sql, object[] args = null)
 		{
 			var cmd = sqlite.CreateCommand ();
-			cmd.CommandText = sql;
+			Bind (cmd, sql, args);
 			try {
 				return new SqliteResultReader (cmd, cmd.ExecuteReader ());
 			} catch {
@@ -62,22 +62,44 @@ namespace FSpot.Database
 			}
 		}
 
-		public object QueryScalar (string sql)
+		public object QueryScalar (string sql, object[] args = null)
 		{
 			using (var cmd = sqlite.CreateCommand ()) {
-				cmd.CommandText = sql;
+				Bind (cmd, sql, args);
 				return SqliteUtils.NormalizeDbValue (cmd.ExecuteScalar ());
 			}
 		}
 
-		public long Execute (string sql)
+		public long Execute (string sql, object[] args = null)
 		{
 			using (var cmd = sqlite.CreateCommand ()) {
-				cmd.CommandText = sql;
+				Bind (cmd, sql, args);
 				cmd.ExecuteNonQuery ();
+				cmd.Parameters.Clear ();
 				cmd.CommandText = "SELECT last_insert_rowid()";
 				return Convert.ToInt64 (cmd.ExecuteScalar ());
 			}
+		}
+
+		static void Bind (MdsSqliteCommand cmd, string sql, object[] args)
+		{
+			cmd.CommandText = sql;
+			if (args == null)
+				return;
+			for (int i = 0; i < args.Length; i++) {
+				cmd.Parameters.AddWithValue ("@p" + i, ToBindValue (args[i]));
+			}
+		}
+
+		static object ToBindValue (object value)
+		{
+			if (value == null)
+				return DBNull.Value;
+			if (value is DateTime)
+				return DateTimeUtil.FromDateTime ((DateTime)value);
+			if (value is bool)
+				return ((bool)value) ? 1 : 0;
+			return value;
 		}
 
 		public void Dispose ()

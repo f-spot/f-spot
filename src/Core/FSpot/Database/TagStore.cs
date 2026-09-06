@@ -344,22 +344,9 @@ namespace FSpot.Database
 
 		public void Commit (Tag[] tags, bool updateXmp)
 		{
-			// TODO.
-			bool use_transactions = updateXmp;//!Database.InTransaction && update_xmp;
-
-			//if (use_transactions)
-			//	Database.BeginTransaction ();
-
-			// FIXME: this hack is used, because HyenaSqliteConnection does not support
-			// the InTransaction propery
-
-			if (use_transactions) {
-				try {
-					Database.BeginTransaction ();
-				} catch {
-					use_transactions = false;
-				}
-			}
+			bool use_transactions = updateXmp && !Database.InTransaction;
+			if (use_transactions)
+				Database.BeginTransaction ();
 
 			foreach (Tag tag in tags) {
 				Database.Execute (new HyenaSqliteCommand ("UPDATE tags SET name = ?, category_id = ?, "
