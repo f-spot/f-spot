@@ -10,6 +10,10 @@
 
 using System;
 
+using FSpot.Resources.Lang;
+
+using Hyena.Widgets;
+
 namespace Hyena.Gui
 {
 	public static class CleanRoomStartup
@@ -38,8 +42,11 @@ namespace Hyena.Gui
 				Console.WriteLine (e);
 
 				Gtk.Application.Init ();
-				var dialog = new Gtk.MessageDialog (null, Gtk.DialogFlags.Modal,
-					Gtk.MessageType.Error, Gtk.ButtonsType.Close, "{0}", e.ToString ());
+				var dialog = new HigMessageDialog (
+					null, Gtk.DialogFlags.Modal,
+					Gtk.MessageType.Error, Gtk.ButtonsType.Close,
+					Strings.UnhandledException,
+					e.ToString ());
 				dialog.Run ();
 				dialog.Destroy ();
 				Environment.Exit (1);
