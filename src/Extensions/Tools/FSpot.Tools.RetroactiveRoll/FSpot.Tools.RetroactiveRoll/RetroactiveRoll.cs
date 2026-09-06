@@ -38,7 +38,7 @@ namespace FSpot.Tools.RetroactiveRoll
 			RollStore rolls = App.Instance.Database.Rolls;
 			Roll roll = rolls.Create (import_time);
 			foreach (Photo p in photos) {
-				var cmd = new HyenaSqliteCommand ("UPDATE photos SET roll_id = ? " +
+				var cmd = new DatabaseCommand ("UPDATE photos SET roll_id = ? " +
 								   "WHERE id = ? ", roll.Id, p.Id);
 				App.Instance.Database.Database.Execute (cmd);
 				p.RollId = roll.Id;

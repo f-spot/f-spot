@@ -85,7 +85,7 @@ namespace FSpot.Database
 
 		public ExportItem Create (uint image_id, uint image_version_id, string export_type, string export_token)
 		{
-			long id = Database.Execute (new HyenaSqliteCommand ("INSERT INTO exports (image_id, image_version_id, export_type, export_token) VALUES (?, ?, ?, ?)",
+			long id = Database.Execute (new DatabaseCommand ("INSERT INTO exports (image_id, image_version_id, export_type, export_token) VALUES (?, ?, ?, ?)",
 		image_id, image_version_id, export_type, export_token));
 
 			// The table in the database is setup to be an INTEGER.
@@ -99,7 +99,7 @@ namespace FSpot.Database
 
 		public override void Commit (ExportItem item)
 		{
-			Database.Execute (new HyenaSqliteCommand ("UPDATE exports SET image_id = ?, image_version_id = ?, export_type = ? SET export_token = ? WHERE id = ?",
+			Database.Execute (new DatabaseCommand ("UPDATE exports SET image_id = ?, image_version_id = ?, export_type = ? SET export_token = ? WHERE id = ?",
 					item.ImageId, item.ImageVersionId, item.ExportType, item.ExportToken, item.Id));
 
 			EmitChanged (item);
@@ -114,7 +114,7 @@ namespace FSpot.Database
 		public List<ExportItem> GetByImageId (uint image_id, uint image_version_id)
 		{
 
-			var reader = Database.Query (new HyenaSqliteCommand ("SELECT id, image_id, image_version_id, export_type, export_token FROM exports WHERE image_id = ? AND image_version_id = ?",
+			var reader = Database.Query (new DatabaseCommand ("SELECT id, image_id, image_version_id, export_type, export_token FROM exports WHERE image_id = ? AND image_version_id = ?",
 					image_id, image_version_id));
 
 			var export_items = new List<ExportItem> ();
@@ -130,7 +130,7 @@ namespace FSpot.Database
 		{
 			RemoveFromCache (item);
 
-			Database.Execute (new HyenaSqliteCommand ("DELETE FROM exports WHERE id = ?", item.Id));
+			Database.Execute (new DatabaseCommand ("DELETE FROM exports WHERE id = ?", item.Id));
 
 			EmitRemoved (item);
 		}

@@ -192,7 +192,7 @@ namespace FSpot.Database
 						System.IO.Path.GetDirectoryName (photo_uri.AbsolutePath) + "/" +
 						name_without_extension + " (" + (reader[2]).ToString () + ")" + extension;
 
-					Execute (new HyenaSqliteCommand (
+					Execute (new DatabaseCommand (
 						"INSERT INTO photo_versions (photo_id, version_id, name, uri) " +
 						"VALUES (?, ?, ?, ?)",
 						Convert.ToUInt32 (reader[0]),
@@ -558,7 +558,7 @@ namespace FSpot.Database
 
 					string md5 = reader["md5_sum"]?.ToString ();
 
-					Execute (new HyenaSqliteCommand (
+					Execute (new DatabaseCommand (
 						"INSERT INTO photos (id, time, base_uri, filename, description, roll_id, default_version_id, rating, md5_sum) " +
 						"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
 						Convert.ToUInt32 (reader["id"]),
@@ -586,7 +586,7 @@ namespace FSpot.Database
 
 					string md5 = reader["md5_sum"]?.ToString ();
 
-					Execute (new HyenaSqliteCommand (
+					Execute (new DatabaseCommand (
 						"INSERT INTO photo_versions (photo_id, version_id, name, base_uri, filename, protected, md5_sum) " +
 						"VALUES (?, ?, ?, ?, ?, ?, ?)",
 						Convert.ToUInt32 (reader["photo_id"]),
@@ -618,7 +618,7 @@ namespace FSpot.Database
 				var reader = ExecuteReader (no_original_query);
 
 				while (reader.Read ()) {
-					Execute (new HyenaSqliteCommand (
+					Execute (new DatabaseCommand (
 						"INSERT INTO photo_versions (photo_id, version_id, name, base_uri, filename, protected, md5_sum) " +
 						"VALUES (?, ?, ?, ?, ?, ?, ?)",
 						Convert.ToUInt32 (reader["id"]),
@@ -665,7 +665,7 @@ namespace FSpot.Database
 					"FROM {0} ", tmp_photos));
 
 				while (reader.Read ()) {
-					Execute (new HyenaSqliteCommand (
+					Execute (new DatabaseCommand (
 						"INSERT INTO photos (id, time, base_uri, filename, description, roll_id, default_version_id, rating) " +
 						"VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
 						Convert.ToUInt32 (reader["id"]),
@@ -685,7 +685,7 @@ namespace FSpot.Database
 						"FROM {0} ", tmp_versions));
 
 				while (reader.Read ()) {
-					Execute (new HyenaSqliteCommand (
+					Execute (new DatabaseCommand (
 						"INSERT INTO photo_versions (photo_id, version_id, name, base_uri, filename, protected, import_md5) " +
 						"VALUES (?, ?, ?, ?, ?, ?, ?)",
 						Convert.ToUInt32 (reader["photo_id"]),
@@ -806,7 +806,7 @@ namespace FSpot.Database
 			return result;
 		}
 
-		static int Execute (HyenaSqliteCommand command)
+		static int Execute (DatabaseCommand command)
 		{
 			int result = -1;
 			try {
@@ -887,7 +887,7 @@ namespace FSpot.Database
 				this.code = code;
 			}
 
-			public void Execute (HyenaSqliteConnection db, Version db_version)
+			public void Execute (DatabaseConnection db, Version db_version)
 			{
 				code ();
 
@@ -896,7 +896,7 @@ namespace FSpot.Database
 				}
 
 				db_version = Version;
-				db.Execute (new HyenaSqliteCommand ("UPDATE meta SET data = ? WHERE name = ?", db_version.ToString (), meta_db_version_string));
+				db.Execute (new DatabaseCommand ("UPDATE meta SET data = ? WHERE name = ?", db_version.ToString (), meta_db_version_string));
 			}
 		}
 

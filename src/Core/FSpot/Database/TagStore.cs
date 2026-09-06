@@ -251,7 +251,7 @@ namespace FSpot.Database
 			uint parent_category_id = parentCategory.Id;
 			string default_tag_icon_value = autoicon ? null : string.Empty;
 
-			long id = Database.Execute (new HyenaSqliteCommand ("INSERT INTO tags (name, category_id, is_category, sort_priority, icon)"
+			long id = Database.Execute (new DatabaseCommand ("INSERT INTO tags (name, category_id, is_category, sort_priority, icon)"
 				+ "VALUES (?, ?, ?, 0, ?)",
 				name,
 				parent_category_id,
@@ -313,7 +313,7 @@ namespace FSpot.Database
 
 			item.Category = null;
 
-			Database.Execute (new HyenaSqliteCommand ("DELETE FROM tags WHERE id = ?", item.Id));
+			Database.Execute (new DatabaseCommand ("DELETE FROM tags WHERE id = ?", item.Id));
 
 			EmitRemoved (item);
 		}
@@ -349,7 +349,7 @@ namespace FSpot.Database
 				Database.BeginTransaction ();
 
 			foreach (Tag tag in tags) {
-				Database.Execute (new HyenaSqliteCommand ("UPDATE tags SET name = ?, category_id = ?, "
+				Database.Execute (new DatabaseCommand ("UPDATE tags SET name = ?, category_id = ?, "
 							+ "is_category = ?, sort_priority = ?, icon = ? WHERE id = ?",
 								  tag.Name,
 								  tag.Category.Id,

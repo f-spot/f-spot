@@ -107,7 +107,7 @@ namespace FSpot.Database
 
 			// Check if the exact given uri already exists.
 			const string query = "SELECT COUNT(*) AS count FROM photo_versions WHERE base_uri = ? AND filename = ?";
-			using (var reader = Database.Query (new HyenaSqliteCommand (query, uri.GetBaseUri ().ToString (), uri.GetFilename ()))) {
+			using (var reader = Database.Query (new DatabaseCommand (query, uri.GetBaseUri ().ToString (), uri.GetFilename ()))) {
 				reader.Read ();
 				int count = Convert.ToInt32 (reader["count"]);
 				if (count > 0)
@@ -134,7 +134,7 @@ namespace FSpot.Database
 			DateTime? time = null;
 
 			// Look for a filename match.
-			using (var reader = Database.Query (new HyenaSqliteCommand ("SELECT photos.id, photos.time, pv.filename FROM photos LEFT JOIN photo_versions AS pv ON pv.photo_id = photos.id WHERE pv.filename = ?", name))) {
+			using (var reader = Database.Query (new DatabaseCommand ("SELECT photos.id, photos.time, pv.filename FROM photos LEFT JOIN photo_versions AS pv ON pv.photo_id = photos.id WHERE pv.filename = ?", name))) {
 				while (reader.Read ()) {
 					Logger.Log.Debug ("Found one possible duplicate for {0}", reader["filename"]);
 					if (!time.HasValue) {
@@ -163,7 +163,7 @@ namespace FSpot.Database
 			string description = item.Description ?? string.Empty;
 
 			uint id = (uint)Database.Execute (
-				new HyenaSqliteCommand (
+				new DatabaseCommand (
 					"INSERT INTO photos (time, base_uri, filename, description, roll_id, default_version_id, rating) " +
 					"VALUES (?, ?, ?, ?, ?, ?, ?)",
 					unix_time,
@@ -195,7 +195,7 @@ namespace FSpot.Database
 
 		void InsertVersion (DbItem photo, PhotoVersion version)
 		{
-			Database.Execute (new HyenaSqliteCommand (
+			Database.Execute (new DatabaseCommand (
 				"INSERT OR IGNORE INTO photo_versions (photo_id, version_id, name, base_uri, filename, protected, import_md5) " +
 				"VALUES (?, ?, ?, ?, ?, ?, ?)",
 				photo.Id,
@@ -209,7 +209,7 @@ namespace FSpot.Database
 
 		void GetVersions (Photo photo)
 		{
-			using (var reader = Database.Query (new HyenaSqliteCommand (
+			using (var reader = Database.Query (new DatabaseCommand (
 				"SELECT version_id, name, base_uri, filename, import_md5, protected " +
 				"FROM photo_versions " +
 				"WHERE photo_id = ?",
@@ -230,7 +230,7 @@ namespace FSpot.Database
 
 		void GetTags (Photo photo)
 		{
-			using (var reader = Database.Query (new HyenaSqliteCommand ("SELECT tag_id FROM photo_tags WHERE photo_id = ?", photo.Id))) {
+			using (var reader = Database.Query (new DatabaseCommand ("SELECT tag_id FROM photo_tags WHERE photo_id = ?", photo.Id))) {
 				while (reader.Read ()) {
 					uint tag_id = Convert.ToUInt32 (reader["tag_id"]);
 					Tag tag = Db.Tags.Get (tag_id);
@@ -294,7 +294,7 @@ namespace FSpot.Database
 			if (photo != null)
 				return photo;
 
-			using (var reader = Database.Query (new HyenaSqliteCommand (
+			using (var reader = Database.Query (new DatabaseCommand (
 				"SELECT time, description, roll_id, default_version_id, rating " +
 				"FROM photos " +
 				"WHERE id = ?", id))) {
@@ -325,7 +325,7 @@ namespace FSpot.Database
 			var base_uri = uri.GetBaseUri ();
 			var filename = uri.GetFilename ();
 
-			using (var reader = Database.Query (new HyenaSqliteCommand (
+			using (var reader = Database.Query (new DatabaseCommand (
 				"SELECT id, time, description, roll_id, default_version_id, rating " +
 				" FROM photos " +
 				" LEFT JOIN photo_versions AS pv ON photos.id = pv.photo_id" +
@@ -425,7 +425,7 @@ namespace FSpot.Database
 			// Update photo.
 			if (changes.DescriptionChanged || changes.DefaultVersionIdChanged || changes.TimeChanged || changes.UriChanged || changes.RatingChanged || changes.MD5SumChanged)
 				Database.Execute (
-					new HyenaSqliteCommand (
+					new DatabaseCommand (
 						"UPDATE photos " +
 						"SET description = ?, " +
 						"    default_version_id = ?, " +
@@ -447,14 +447,14 @@ namespace FSpot.Database
 			// Update tags.
 			if (changes.TagsRemoved != null)
 				foreach (Tag tag in changes.TagsRemoved)
-					Database.Execute (new HyenaSqliteCommand (
+					Database.Execute (new DatabaseCommand (
 						"DELETE FROM photo_tags WHERE photo_id = ? AND tag_id = ?",
 						photo.Id,
 						tag.Id));
 
 			if (changes.TagsAdded != null)
 				foreach (Tag tag in changes.TagsAdded)
-					Database.Execute (new HyenaSqliteCommand (
+					Database.Execute (new DatabaseCommand (
 						"INSERT OR IGNORE INTO photo_tags (photo_id, tag_id) " +
 						"VALUES (?, ?)",
 						photo.Id,
@@ -463,7 +463,7 @@ namespace FSpot.Database
 			// Update versions.
 			if (changes.VersionsRemoved != null)
 				foreach (uint version_id in changes.VersionsRemoved)
-					Database.Execute (new HyenaSqliteCommand (
+					Database.Execute (new DatabaseCommand (
 						"DELETE FROM photo_versions WHERE photo_id = ? AND version_id = ?",
 						photo.Id,
 						version_id));
@@ -477,7 +477,7 @@ namespace FSpot.Database
 			if (changes.VersionsModified != null)
 				foreach (uint version_id in changes.VersionsModified) {
 					PhotoVersion version = photo.GetVersion (version_id);
-					Database.Execute (new HyenaSqliteCommand (
+					Database.Execute (new DatabaseCommand (
 						"UPDATE photo_versions SET name = ?, " +
 						"base_uri = ?, filename = ?, protected = ?, import_md5 = ? " +
 						"WHERE photo_id = ? AND version_id = ?",
@@ -722,10 +722,10 @@ namespace FSpot.Database
 
 		public Photo[] Query (string query)
 		{
-			return Query (new HyenaSqliteCommand (query));
+			return Query (new DatabaseCommand (query));
 		}
 
-		Photo[] Query (HyenaSqliteCommand query)
+		Photo[] Query (DatabaseCommand query)
 		{
 			using var op = Operation.Begin ($"PhotoStore.Query {query}");
 			var new_photos = new List<Photo> ();
@@ -779,7 +779,7 @@ namespace FSpot.Database
 
 			/* query by file */
 			if (!string.IsNullOrEmpty (filename)) {
-				return Query (new HyenaSqliteCommand (
+				return Query (new DatabaseCommand (
 					"SELECT id, " +
 						"time, " +
 						"base_uri, " +
@@ -796,7 +796,7 @@ namespace FSpot.Database
 			}
 
 			/* query by directory */
-			return Query (new HyenaSqliteCommand (
+			return Query (new DatabaseCommand (
 				"SELECT id, " +
 					"time, " +
 					"base_uri, " +

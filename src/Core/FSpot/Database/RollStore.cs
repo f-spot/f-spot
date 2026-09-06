@@ -40,7 +40,7 @@ namespace FSpot.Database
 		public Roll Create (DateTime time_in_utc)
 		{
 			long unix_time = DateTimeUtil.FromDateTime (time_in_utc);
-			uint id = (uint)Database.Execute (new HyenaSqliteCommand ("INSERT INTO rolls (time) VALUES (?)", unix_time));
+			uint id = (uint)Database.Execute (new DatabaseCommand ("INSERT INTO rolls (time) VALUES (?)", unix_time));
 
 			var roll = new Roll (id, unix_time);
 			AddToCache (roll);
@@ -59,7 +59,7 @@ namespace FSpot.Database
 			if (roll != null)
 				return roll;
 
-			var reader = Database.Query (new HyenaSqliteCommand ("SELECT time FROM rolls WHERE id = ?", id));
+			var reader = Database.Query (new DatabaseCommand ("SELECT time FROM rolls WHERE id = ?", id));
 
 			if (reader.Read ()) {
 				roll = new Roll (id, Convert.ToUInt32 (reader["time"]));
@@ -74,7 +74,7 @@ namespace FSpot.Database
 		public override void Remove (Roll item)
 		{
 			RemoveFromCache (item);
-			Database.Execute (new HyenaSqliteCommand ("DELETE FROM rolls WHERE id = ?", item.Id));
+			Database.Execute (new DatabaseCommand ("DELETE FROM rolls WHERE id = ?", item.Id));
 		}
 
 		public override void Commit (Roll item)
@@ -85,7 +85,7 @@ namespace FSpot.Database
 		public uint PhotosInRoll (Roll roll)
 		{
 			uint number_of_photos = 0;
-			using (var reader = Database.Query (new HyenaSqliteCommand ("SELECT count(*) AS count FROM photos WHERE roll_id = ?", roll.Id))) {
+			using (var reader = Database.Query (new DatabaseCommand ("SELECT count(*) AS count FROM photos WHERE roll_id = ?", roll.Id))) {
 				if (reader.Read ())
 					number_of_photos = Convert.ToUInt32 (reader["count"]);
 

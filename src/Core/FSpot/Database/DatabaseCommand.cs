@@ -1,5 +1,5 @@
 //
-// HyenaSqliteCommand.cs
+// DatabaseCommand.cs
 //
 // Authors:
 //   Aaron Bockover <abockover@novell.com>
@@ -17,7 +17,7 @@ using Hyena;
 
 namespace FSpot.Database
 {
-	public class HyenaSqliteCommand
+	public class DatabaseCommand
 	{
 		object result = null;
 		Exception execution_exception = null;
@@ -35,20 +35,20 @@ namespace FSpot.Database
 
 		public bool ReaderDisposes { get; set; }
 
-		internal HyenaCommandType CommandType;
+		internal DatabaseCommandType CommandType;
 
-		public HyenaSqliteCommand (string command)
+		public DatabaseCommand (string command)
 		{
 			this.command = command;
 		}
 
-		public HyenaSqliteCommand (string command, params object[] param_values)
+		public DatabaseCommand (string command, params object[] param_values)
 		{
 			this.command = command;
 			ApplyValues (param_values);
 		}
 
-		internal void Execute (HyenaSqliteConnection hconnection, SqliteBackend connection)
+		internal void Execute (DatabaseConnection hconnection, SqliteBackend connection)
 		{
 			if (finished) {
 				throw new Exception ("Command is already set to finished; result needs to be claimed before command can be rerun");
@@ -64,17 +64,17 @@ namespace FSpot.Database
 				int ticks = System.Environment.TickCount;
 
 				switch (CommandType) {
-				case HyenaCommandType.Reader:
+				case DatabaseCommandType.Reader:
 					using (var reader = connection.Query (command_text, current_values)) {
 						result = new ArrayDataReader (reader, command_text);
 					}
 					break;
 
-				case HyenaCommandType.Scalar:
+				case DatabaseCommandType.Scalar:
 					result = connection.QueryScalar (command_text, current_values);
 					break;
 
-				case HyenaCommandType.Execute:
+				case DatabaseCommandType.Execute:
 				default:
 					result = connection.Execute (command_text, current_values);
 					break;
@@ -95,7 +95,7 @@ namespace FSpot.Database
 			finished = true;
 		}
 
-		internal object WaitForResult (HyenaSqliteConnection conn)
+		internal object WaitForResult (DatabaseConnection conn)
 		{
 			while (!finished) {
 				conn.ResultReadySignal.WaitOne ();
@@ -123,7 +123,7 @@ namespace FSpot.Database
 			finished_event.WaitOne ();
 		}
 
-		internal HyenaSqliteCommand ApplyValues (params object[] param_values)
+		internal DatabaseCommand ApplyValues (params object[] param_values)
 		{
 			EnsureParameterized ();
 

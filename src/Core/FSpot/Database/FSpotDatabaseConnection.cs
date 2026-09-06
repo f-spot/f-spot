@@ -13,7 +13,7 @@ using Hyena;
 
 namespace FSpot.Database
 {
-	public class FSpotDatabaseConnection : HyenaSqliteConnection
+	public class FSpotDatabaseConnection : DatabaseConnection
 	{
 		public FSpotDatabaseConnection (string dbpath) : base (dbpath)
 		{
@@ -22,7 +22,7 @@ namespace FSpot.Database
 			//Execute ("PRAGMA count_changes = OFF");
 
 			if (ApplicationContext.CommandLine.Contains ("debug-sql")) {
-				HyenaSqliteCommand.LogAll = true;
+				DatabaseCommand.LogAll = true;
 			}
 		}
 	}

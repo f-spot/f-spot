@@ -1,5 +1,5 @@
 //
-// HyenaSqliteConnection.cs
+// DatabaseConnection.cs
 //
 // Authors:
 //   Aaron Bockover <abockover@novell.com>
@@ -15,14 +15,14 @@ using System.Threading;
 
 namespace FSpot.Database
 {
-	public enum HyenaCommandType
+	public enum DatabaseCommandType
 	{
 		Reader,
 		Scalar,
 		Execute,
 	}
 
-	public class HyenaSqliteConnection : IDisposable
+	public class DatabaseConnection : IDisposable
 	{
 		SqliteBackend connection;
 		string dbpath;
@@ -30,7 +30,7 @@ namespace FSpot.Database
 		protected string DbPath { get { return dbpath; } }
 
 		// Parallel queues: a command and its ? placeholder args (null when none).
-		Queue<HyenaSqliteCommand> command_queue = new Queue<HyenaSqliteCommand> ();
+		Queue<DatabaseCommand> command_queue = new Queue<DatabaseCommand> ();
 		Queue<object[]> args_queue = new Queue<object[]> ();
 
 		Thread queue_thread;
@@ -48,11 +48,11 @@ namespace FSpot.Database
 
 		public string ServerVersion { get { return Query<string> ("SELECT sqlite_version ()"); } }
 
-		public HyenaSqliteConnection (string dbpath)
+		public DatabaseConnection (string dbpath)
 		{
 			this.dbpath = dbpath;
 			queue_thread = new Thread (ProcessQueue);
-			queue_thread.Name = string.Format ("HyenaSqliteConnection ({0})", dbpath);
+			queue_thread.Name = string.Format ("DatabaseConnection ({0})", dbpath);
 			queue_thread.IsBackground = true;
 			queue_thread.Start ();
 		}
@@ -60,32 +60,32 @@ namespace FSpot.Database
 		#region Public Query Methods
 
 		// SELECT multiple column queries
-		public IDataReader Query (HyenaSqliteCommand command)
+		public IDataReader Query (DatabaseCommand command)
 		{
-			command.CommandType = HyenaCommandType.Reader;
+			command.CommandType = DatabaseCommandType.Reader;
 			QueueCommand (command);
 			return (IDataReader)command.WaitForResult (this);
 		}
 
-		public IDataReader Query (HyenaSqliteCommand command, params object[] param_values)
+		public IDataReader Query (DatabaseCommand command, params object[] param_values)
 		{
-			command.CommandType = HyenaCommandType.Reader;
+			command.CommandType = DatabaseCommandType.Reader;
 			QueueCommand (command, param_values);
 			return (IDataReader)command.WaitForResult (this);
 		}
 
 		public IDataReader Query (string command_str, params object[] param_values)
 		{
-			return Query (new HyenaSqliteCommand (command_str, param_values) { ReaderDisposes = true });
+			return Query (new DatabaseCommand (command_str, param_values) { ReaderDisposes = true });
 		}
 
 		public IDataReader Query (object command)
 		{
-			return Query (new HyenaSqliteCommand (command.ToString ()) { ReaderDisposes = true });
+			return Query (new DatabaseCommand (command.ToString ()) { ReaderDisposes = true });
 		}
 
 		// SELECT single column, multiple rows queries
-		public IEnumerable<T> QueryEnumerable<T> (HyenaSqliteCommand command)
+		public IEnumerable<T> QueryEnumerable<T> (DatabaseCommand command)
 		{
 			Type type = typeof (T);
 			using (IDataReader reader = Query (command)) {
@@ -95,7 +95,7 @@ namespace FSpot.Database
 			}
 		}
 
-		public IEnumerable<T> QueryEnumerable<T> (HyenaSqliteCommand command, params object[] param_values)
+		public IEnumerable<T> QueryEnumerable<T> (DatabaseCommand command, params object[] param_values)
 		{
 			Type type = typeof (T);
 			using (IDataReader reader = Query (command, param_values)) {
@@ -107,26 +107,26 @@ namespace FSpot.Database
 
 		public IEnumerable<T> QueryEnumerable<T> (string command_str, params object[] param_values)
 		{
-			return QueryEnumerable<T> (new HyenaSqliteCommand (command_str, param_values) { ReaderDisposes = true });
+			return QueryEnumerable<T> (new DatabaseCommand (command_str, param_values) { ReaderDisposes = true });
 		}
 
 		public IEnumerable<T> QueryEnumerable<T> (object command)
 		{
-			return QueryEnumerable<T> (new HyenaSqliteCommand (command.ToString ()) { ReaderDisposes = true });
+			return QueryEnumerable<T> (new DatabaseCommand (command.ToString ()) { ReaderDisposes = true });
 		}
 
 		// SELECT single column, single row queries
-		public T Query<T> (HyenaSqliteCommand command)
+		public T Query<T> (DatabaseCommand command)
 		{
-			command.CommandType = HyenaCommandType.Scalar;
+			command.CommandType = DatabaseCommandType.Scalar;
 			QueueCommand (command);
 			object result = command.WaitForResult (this);
 			return (T)SqliteUtils.FromDbFormat (typeof (T), result);
 		}
 
-		public T Query<T> (HyenaSqliteCommand command, params object[] param_values)
+		public T Query<T> (DatabaseCommand command, params object[] param_values)
 		{
-			command.CommandType = HyenaCommandType.Scalar;
+			command.CommandType = DatabaseCommandType.Scalar;
 			QueueCommand (command, param_values);
 			object result = command.WaitForResult (this);
 			return (T)SqliteUtils.FromDbFormat (typeof (T), result);
@@ -134,37 +134,37 @@ namespace FSpot.Database
 
 		public T Query<T> (string command_str, params object[] param_values)
 		{
-			return Query<T> (new HyenaSqliteCommand (command_str, param_values) { ReaderDisposes = true });
+			return Query<T> (new DatabaseCommand (command_str, param_values) { ReaderDisposes = true });
 		}
 
 		public T Query<T> (object command)
 		{
-			return Query<T> (new HyenaSqliteCommand (command.ToString ()) { ReaderDisposes = true });
+			return Query<T> (new DatabaseCommand (command.ToString ()) { ReaderDisposes = true });
 		}
 
 		// INSERT, UPDATE, DELETE queries
-		public long Execute (HyenaSqliteCommand command)
+		public long Execute (DatabaseCommand command)
 		{
-			command.CommandType = HyenaCommandType.Execute;
+			command.CommandType = DatabaseCommandType.Execute;
 			QueueCommand (command);
 			return (long)command.WaitForResult (this);
 		}
 
-		public long Execute (HyenaSqliteCommand command, params object[] param_values)
+		public long Execute (DatabaseCommand command, params object[] param_values)
 		{
-			command.CommandType = HyenaCommandType.Execute;
+			command.CommandType = DatabaseCommandType.Execute;
 			QueueCommand (command, param_values);
 			return (long)command.WaitForResult (this);
 		}
 
 		public long Execute (string command_str, params object[] param_values)
 		{
-			return Execute (new HyenaSqliteCommand (command_str, param_values) { ReaderDisposes = true });
+			return Execute (new DatabaseCommand (command_str, param_values) { ReaderDisposes = true });
 		}
 
 		public long Execute (object command)
 		{
-			return Execute (new HyenaSqliteCommand (command.ToString ()) { ReaderDisposes = true });
+			return Execute (new DatabaseCommand (command.ToString ()) { ReaderDisposes = true });
 		}
 
 		#endregion
@@ -291,12 +291,12 @@ namespace FSpot.Database
 
 		#region Private Queue Methods
 
-		void QueueCommand (HyenaSqliteCommand command)
+		void QueueCommand (DatabaseCommand command)
 		{
 			QueueCommand (command, null);
 		}
 
-		void QueueCommand (HyenaSqliteCommand command, object[] args)
+		void QueueCommand (DatabaseCommand command, object[] args)
 		{
 			while (true) {
 				lock (command_queue) {
@@ -335,7 +335,7 @@ namespace FSpot.Database
 			// Keep handling queries
 			while (!dispose_requested) {
 				while (command_queue.Count > 0) {
-					HyenaSqliteCommand command;
+					DatabaseCommand command;
 					object[] args;
 					lock (command_queue) {
 						command = command_queue.Dequeue ();

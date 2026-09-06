@@ -21,13 +21,13 @@ namespace FSpot.Database.Tests
 	public class SqliteCommandTests
 	{
 		string dbfile;
-		HyenaSqliteConnection connection;
+		DatabaseConnection connection;
 
 		[TestInitialize]
 		public void Setup ()
 		{
 			dbfile = Path.Combine (Path.GetTempPath (), "sqlite-command-" + Guid.NewGuid ().ToString ("N") + ".db");
-			connection = new HyenaSqliteConnection (dbfile);
+			connection = new DatabaseConnection (dbfile);
 		}
 
 		[TestCleanup]

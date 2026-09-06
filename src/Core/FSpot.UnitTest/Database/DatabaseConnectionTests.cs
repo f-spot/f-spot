@@ -1,5 +1,5 @@
 //
-// HyenaSqliteConnectionTests.cs
+// DatabaseConnectionTests.cs
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
@@ -13,16 +13,16 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace FSpot.Database.Tests
 {
 	[TestClass]
-	public class HyenaSqliteConnectionTests
+	public class DatabaseConnectionTests
 	{
 		string dbfile;
-		HyenaSqliteConnection connection;
+		DatabaseConnection connection;
 
 		[TestInitialize]
 		public void Setup ()
 		{
-			dbfile = Path.Combine (Path.GetTempPath (), "hyena-sqlite-connection-" + Guid.NewGuid ().ToString ("N") + ".db");
-			connection = new HyenaSqliteConnection (dbfile);
+			dbfile = Path.Combine (Path.GetTempPath (), "database-connection-" + Guid.NewGuid ().ToString ("N") + ".db");
+			connection = new DatabaseConnection (dbfile);
 		}
 
 		[TestCleanup]

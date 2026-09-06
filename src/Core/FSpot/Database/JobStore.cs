@@ -95,7 +95,7 @@ namespace FSpot.Database
 		{
 			var run_at = DateTime.Now;
 			var job_priority = JobPriority.Lowest;
-			var id = Database.Execute (new HyenaSqliteCommand ($"INSERT INTO {jobsTableName} (job_type, job_options, run_at, job_priority) VALUES (?, ?, ?, ?)",
+			var id = Database.Execute (new DatabaseCommand ($"INSERT INTO {jobsTableName} (job_type, job_options, run_at, job_priority) VALUES (?, ?, ?, ?)",
 				job_type,
 				job_options,
 				DateTimeUtil.FromDateTime (run_at),
@@ -115,7 +115,7 @@ namespace FSpot.Database
 		public override void Commit (Job item)
 		{
 			if (item.Persistent)
-				Database.Execute (new HyenaSqliteCommand (
+				Database.Execute (new DatabaseCommand (
 					$"UPDATE {jobsTableName} " +
 					"  SET job_type = ? " +
 					"  SET job_options = ? " +
@@ -142,7 +142,7 @@ namespace FSpot.Database
 			RemoveFromCache (item);
 
 			if (item.Persistent)
-				Database.Execute (new HyenaSqliteCommand ($"DELETE FROM {jobsTableName} WHERE id = ?", item.Id));
+				Database.Execute (new DatabaseCommand ($"DELETE FROM {jobsTableName} WHERE id = ?", item.Id));
 
 			EmitRemoved (item);
 		}

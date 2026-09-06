@@ -116,7 +116,7 @@ namespace FSpot.Database
 		MetaItem Create (string name, string data)
 		{
 
-			uint id = (uint)Database.Execute (new HyenaSqliteCommand ("INSERT INTO meta (name, data) VALUES (?, ?)", name, data ?? "NULL"));
+			uint id = (uint)Database.Execute (new DatabaseCommand ("INSERT INTO meta (name, data) VALUES (?, ?)", name, data ?? "NULL"));
 
 			//FIXME This smells bad. This line used to be *before* the
 			//Command.executeNonQuery. It smells of a bug, but there might
@@ -132,7 +132,7 @@ namespace FSpot.Database
 
 		public override void Commit (MetaItem item)
 		{
-			Database.Execute (new HyenaSqliteCommand ("UPDATE meta SET data = ? WHERE name = ?", item.Value, item.Name));
+			Database.Execute (new DatabaseCommand ("UPDATE meta SET data = ? WHERE name = ?", item.Value, item.Name));
 
 			EmitChanged (item);
 		}
@@ -146,7 +146,7 @@ namespace FSpot.Database
 		{
 			RemoveFromCache (item);
 
-			Database.Execute (new HyenaSqliteCommand ("DELETE FROM meta WHERE id = ?", item.Id));
+			Database.Execute (new DatabaseCommand ("DELETE FROM meta WHERE id = ?", item.Id));
 
 			EmitRemoved (item);
 		}
