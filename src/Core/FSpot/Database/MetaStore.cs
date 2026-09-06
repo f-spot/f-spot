@@ -16,8 +16,6 @@ using System;
 using FSpot.Core;
 using FSpot.Settings;
 
-using Hyena.Data.Sqlite;
-
 namespace FSpot.Database
 {
 	public class MetaItem : DbItem

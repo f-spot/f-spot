@@ -13,7 +13,9 @@ using System;
 using System.Text;
 using System.Threading;
 
-namespace Hyena.Data.Sqlite
+using Hyena;
+
+namespace FSpot.Database
 {
 	public class HyenaSqliteCommand
 	{
@@ -80,13 +82,12 @@ namespace Hyena.Data.Sqlite
 
 				int execution_ms = System.Environment.TickCount - ticks;
 				if (log_all) {
-					Log.DebugFormat ("Executed in {0}ms {1}", execution_ms, command_text);
-				} else if (Log.Debugging && execution_ms > 500) {
-					Log.WarningFormat ("Executed in {0}ms {1}", execution_ms, command_text);
+					Logger.Log.Debug ("Executed in {0}ms {1}", execution_ms, command_text);
+				} else if (ApplicationContext.Debugging && execution_ms > 500) {
+					Logger.Log.Warning ("Executed in {0}ms {1}", execution_ms, command_text);
 				}
 			} catch (Exception e) {
-				Log.DebugFormat ("Exception executing command: {0}", command_text ?? command);
-				Log.Exception (e);
+				Logger.Log.Warning (e, "Exception executing command: {0}", command_text ?? command);
 				execution_exception = e;
 			}
 
@@ -162,7 +163,7 @@ namespace Hyena.Data.Sqlite
 			} else if (o == null) {
 				return "NULL";
 			} else if (o is byte[]) {
-				string hex = BitConverter.ToString (o as byte[]).Replace ("-", "");
+				string hex = System.BitConverter.ToString (o as byte[]).Replace ("-", "");
 				return string.Format ("X'{0}'", hex);
 			} else if (o is Array) {
 				var sb = new StringBuilder ();

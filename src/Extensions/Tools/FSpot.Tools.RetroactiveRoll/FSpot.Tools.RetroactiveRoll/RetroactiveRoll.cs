@@ -17,10 +17,6 @@ using FSpot.Core;
 using FSpot.Database;
 using FSpot.Extensions;
 
-using Hyena.Data.Sqlite;
-
-
-
 namespace FSpot.Tools.RetroactiveRoll
 {
 	public class RetroactiveRoll : ICommand

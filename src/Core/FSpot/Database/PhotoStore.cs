@@ -33,7 +33,6 @@ using FSpot.Thumbnail;
 using FSpot.Utils;
 
 using Hyena;
-using Hyena.Data.Sqlite;
 
 using SerilogTimings;
 
@@ -717,7 +716,7 @@ namespace FSpot.Database
 			Database.BeginTransaction ();
 			Database.Execute ($"DROP TABLE IF EXISTS {tempTable}");
 			Database.Execute ($"CREATE TEMPORARY TABLE {tempTable} AS {query}");
-			// For Hyena.Data.Sqlite, we need to call Execute. Calling Query here does fail.
+			// Need Execute here; Query fails on CREATE TEMPORARY TABLE AS.
 			//Database.Query (string.Format ("CREATE TEMPORARY TABLE {0} AS {1}", temp_table, query)).Close ();
 			Database.CommitTransaction ();
 			op.Complete ();

@@ -105,7 +105,7 @@ namespace FSpot.Widgets
 
 			int last_count = 0;
 
-			Hyena.Data.Sqlite.IDataReader reader = database.Database.Query (query_string);
+			IDataReader reader = database.Database.Query (query_string);
 
 			while (reader.Read ()) {
 				var base_uri = new SafeUri (reader["base_uri"].ToString (), true);

@@ -19,7 +19,6 @@ using FSpot.Database.Jobs;
 using FSpot.Jobs;
 
 using Hyena;
-using Hyena.Data.Sqlite;
 
 using TinyIoC;
 

@@ -13,7 +13,7 @@ using MdsSqliteConnection = Microsoft.Data.Sqlite.SqliteConnection;
 using MdsSqliteConnectionStringBuilder = Microsoft.Data.Sqlite.SqliteConnectionStringBuilder;
 using MdsSqliteDataReader = Microsoft.Data.Sqlite.SqliteDataReader;
 
-namespace Hyena.Data.Sqlite
+namespace FSpot.Database
 {
 	public interface IDataReader : IDisposable
 	{

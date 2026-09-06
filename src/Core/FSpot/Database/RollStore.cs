@@ -20,7 +20,6 @@ using System.Collections.Generic;
 using FSpot.Core;
 
 using Hyena;
-using Hyena.Data.Sqlite;
 
 namespace FSpot.Database
 {

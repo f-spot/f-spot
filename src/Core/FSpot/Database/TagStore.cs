@@ -25,8 +25,6 @@ using FSpot.Resources.Lang;
 using FSpot.Settings;
 using FSpot.Utils;
 
-using Hyena.Data.Sqlite;
-
 namespace FSpot.Database
 {
 	public class InvalidTagOperationException : InvalidOperationException

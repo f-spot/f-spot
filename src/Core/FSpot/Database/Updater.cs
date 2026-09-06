@@ -22,9 +22,6 @@ using System.Collections.Generic;
 using FSpot.Utils;
 
 using Hyena;
-using Hyena.Data.Sqlite;
-
-
 
 using SerilogTimings;
 
@@ -180,7 +177,7 @@ namespace FSpot.Database
 					"       uri             STRING NOT NULL " +
 					")");
 
-				Hyena.Data.Sqlite.IDataReader reader = ExecuteReader (string.Format (
+				IDataReader reader = ExecuteReader (string.Format (
 						"SELECT photo_id, version_id, name, uri " +
 						"FROM {0}, photos " +
 						"WHERE photo_id = id ", tmp_versions));
@@ -549,7 +546,7 @@ namespace FSpot.Database
 					"	UNIQUE (photo_id, version_id)\n" +
 					")");
 
-				Hyena.Data.Sqlite.IDataReader reader = ExecuteReader (string.Format (
+				IDataReader reader = ExecuteReader (string.Format (
 					"SELECT id, time, uri, description, roll_id, default_version_id, rating, md5_sum " +
 					"FROM {0} ", tmp_photos));
 
@@ -826,7 +823,7 @@ namespace FSpot.Database
 			return Execute (statement);
 		}
 
-		static Hyena.Data.Sqlite.IDataReader ExecuteReader (string statement)
+		static IDataReader ExecuteReader (string statement)
 		{
 			return db.Query (statement);
 		}

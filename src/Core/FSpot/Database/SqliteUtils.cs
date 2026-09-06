@@ -11,7 +11,9 @@
 using System;
 using System.Collections.Generic;
 
-namespace Hyena.Data.Sqlite
+using Hyena;
+
+namespace FSpot.Database
 {
 	public static class SqliteUtils
 	{

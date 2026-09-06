@@ -13,7 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 
-namespace Hyena.Data.Sqlite
+namespace FSpot.Database
 {
 	public enum HyenaCommandType
 	{

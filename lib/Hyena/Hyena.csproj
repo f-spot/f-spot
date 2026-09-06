@@ -8,11 +8,4 @@
     <ProjectReference Include="..\..\src\Core\FSpot.Strings\FSpot.Strings.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <!-- Metapackage already includes SQLitePCLRaw.bundle_e_sqlite3. Do not pin 3.0.5:
-         that bundle depends on the SQLite package whose net471 props reject AnyCPU, which
-         FSpot (net472) still uses. -->
-    <PackageReference Include="Microsoft.Data.Sqlite" />
-  </ItemGroup>
-
 </Project>

@@ -15,7 +15,7 @@ using Hyena;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Hyena.Data.Sqlite.Tests
+namespace FSpot.Database.Tests
 {
 	[TestClass]
 	public class SqliteCommandTests

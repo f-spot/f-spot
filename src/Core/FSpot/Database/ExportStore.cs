@@ -20,8 +20,6 @@ using System.Collections.Generic;
 
 using FSpot.Core;
 
-using Hyena.Data.Sqlite;
-
 namespace FSpot.Database
 {
 	public class ExportItem : DbItem

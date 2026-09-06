@@ -11,7 +11,9 @@
 using System;
 using System.Collections.Generic;
 
-namespace Hyena.Data.Sqlite
+using Hyena;
+
+namespace FSpot.Database
 {
 	class ArrayDataReader : IDataReader
 	{
@@ -44,8 +46,8 @@ namespace Hyena.Data.Sqlite
 
 		public void Dispose ()
 		{
-			if (rows > 1 && max_got_row < (rows - 1) && Log.Debugging) {
-				Log.WarningFormat ("Disposing ArrayDataReader that has {0} rows but we only read {1} of them\n{2}", rows, row, sql);
+			if (rows > 1 && max_got_row < (rows - 1) && ApplicationContext.Debugging) {
+				Logger.Log.Warning ("Disposing ArrayDataReader that has {0} rows but we only read {1} of them\n{2}", rows, row, sql);
 			}
 			row = -1;
 			max_got_row = -1;
