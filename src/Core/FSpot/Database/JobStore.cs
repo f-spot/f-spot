@@ -116,16 +116,10 @@ namespace FSpot.Database
 		{
 			if (item.Persistent)
 				Database.Execute (new DatabaseCommand (
-					$"UPDATE {jobsTableName} " +
-					"  SET job_type = ? " +
-					"  SET job_options = ? " +
-					"  SET run_at = ? " +
-					"  SET job_priority = ? " +
-					"  WHERE id = ?",
-					"Empty", //FIXME
+					$"UPDATE {jobsTableName} SET job_options = ?, run_at = ?, job_priority = ? WHERE id = ?",
 					item.JobOptions,
 					DateTimeUtil.FromDateTime (item.RunAt),
-					item.JobPriority,
+					Convert.ToInt32 (item.JobPriority),
 					item.Id));
 
 			EmitChanged (item);

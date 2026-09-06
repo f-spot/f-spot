@@ -99,7 +99,7 @@ namespace FSpot.Database
 
 		public override void Commit (ExportItem item)
 		{
-			Database.Execute (new DatabaseCommand ("UPDATE exports SET image_id = ?, image_version_id = ?, export_type = ? SET export_token = ? WHERE id = ?",
+			Database.Execute (new DatabaseCommand ("UPDATE exports SET image_id = ?, image_version_id = ?, export_type = ?, export_token = ? WHERE id = ?",
 					item.ImageId, item.ImageVersionId, item.ExportType, item.ExportToken, item.Id));
 
 			EmitChanged (item);
