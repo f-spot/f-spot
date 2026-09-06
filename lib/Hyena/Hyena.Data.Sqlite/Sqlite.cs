@@ -12,32 +12,58 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
+
+using MdsSqliteCommand = Microsoft.Data.Sqlite.SqliteCommand;
+using MdsSqliteConnection = Microsoft.Data.Sqlite.SqliteConnection;
+using MdsSqliteConnectionStringBuilder = Microsoft.Data.Sqlite.SqliteConnectionStringBuilder;
+using MdsSqliteDataReader = Microsoft.Data.Sqlite.SqliteDataReader;
+using MdsSqliteException = Microsoft.Data.Sqlite.SqliteException;
 
 namespace Hyena.Data.Sqlite
 {
 	public class Connection : IDisposable
 	{
-		IntPtr ptr;
-		internal IntPtr Ptr { get { return ptr; } }
-
+		MdsSqliteConnection sqlite;
 		internal List<Statement> Statements = new List<Statement> ();
+
+		// Keep managed refs so function objects are not GC'd while SQLite holds the callbacks.
+		List<SqliteFunction> functions = new List<SqliteFunction> ();
 
 		public string DbPath { get; private set; }
 
+		internal MdsSqliteConnection Sqlite {
+			get { return sqlite; }
+		}
+
 		public long LastInsertRowId {
-			get { return Native.sqlite3_last_insert_rowid (Ptr); }
+			get {
+				try {
+					using (var cmd = sqlite.CreateCommand ()) {
+						cmd.CommandText = "SELECT last_insert_rowid()";
+						return Convert.ToInt64 (cmd.ExecuteScalar ());
+					}
+				} catch (MdsSqliteException ex) {
+					throw Wrap (ex);
+				}
+			}
 		}
 
 		public Connection (string dbPath)
 		{
 			DbPath = dbPath;
-			CheckError (Native.sqlite3_open (Native.GetUtf8Bytes (dbPath), out ptr));
-			if (ptr == IntPtr.Zero)
-				throw new Exception ("Unable to open connection");
-
-			Native.sqlite3_extended_result_codes (ptr, 1);
+			sqlite = new MdsSqliteConnection (new MdsSqliteConnectionStringBuilder {
+				DataSource = dbPath,
+				// Pooled connections keep the file locked after Dispose (breaks Windows File.Delete).
+				Pooling = false,
+				// Match the old P/Invoke layer: no busy timeout.
+				DefaultTimeout = 0
+			}.ToString ());
+			try {
+				sqlite.Open ();
+			} catch (MdsSqliteException ex) {
+				throw Wrap (ex);
+			}
 
 			AddFunction<BinaryFunction> ();
 			AddFunction<CollationKeyFunction> ();
@@ -47,44 +73,32 @@ namespace Hyena.Data.Sqlite
 
 		public void Dispose ()
 		{
-			if (ptr != IntPtr.Zero) {
-				lock (Statements) {
-					var stmts = Statements.ToArray ();
+			if (sqlite == null)
+				return;
 
-					if (stmts.Length > 0)
-						Hyena.Log.DebugFormat ("Connection disposing of {0} remaining statements", stmts.Length);
+			lock (Statements) {
+				var stmts = Statements.ToArray ();
 
-					foreach (var stmt in stmts) {
-						stmt.Dispose ();
-					}
+				if (stmts.Length > 0)
+					Hyena.Log.DebugFormat ("Connection disposing of {0} remaining statements", stmts.Length);
+
+				foreach (var stmt in stmts) {
+					stmt.Dispose ();
 				}
-
-				CheckError (Native.sqlite3_close (ptr));
-				ptr = IntPtr.Zero;
 			}
+
+			foreach (var f in functions) {
+				f.Dispose ();
+			}
+			functions.Clear ();
+
+			sqlite.Dispose ();
+			sqlite = null;
 		}
 
 		~Connection ()
 		{
 			Dispose ();
-		}
-
-		internal void CheckError (int errorCode)
-		{
-			CheckError (errorCode, "");
-		}
-
-		internal void CheckError (int errorCode, string sql)
-		{
-			if (errorCode == 0 || errorCode == 100 || errorCode == 101)
-				return;
-
-			string errmsg = Native.sqlite3_errmsg16 (Ptr).PtrToString ();
-			if (sql != null) {
-				errmsg = string.Format ("{0} (SQL: {1})", errmsg, sql);
-			}
-
-			throw new SqliteException (errorCode, errmsg);
 		}
 
 		public Statement CreateStatement (string sql)
@@ -106,39 +120,35 @@ namespace Hyena.Data.Sqlite
 
 		public void Execute (string sql)
 		{
-			// TODO
-			// * The application must insure that the 1st parameter to sqlite3_exec() is a valid and open database connection.
-			// * The application must not close database connection specified by the 1st parameter to sqlite3_exec() while sqlite3_exec() is running.
-			// * The application must not modify the SQL statement text passed into the 2nd parameter of sqlite3_exec() while sqlite3_exec() is running.
-			CheckError (Native.sqlite3_exec (Ptr, Native.GetUtf8Bytes (sql), IntPtr.Zero, IntPtr.Zero, IntPtr.Zero), sql);
+			try {
+				using (var cmd = sqlite.CreateCommand ()) {
+					cmd.CommandText = sql;
+					cmd.ExecuteNonQuery ();
+				}
+			} catch (MdsSqliteException ex) {
+				throw Wrap (ex, sql);
+			}
 		}
 
-		// We need to keep a managed ref to the function objects we create so
-		// they won't get GC'd
-		List<SqliteFunction> functions = new List<SqliteFunction> ();
-
-		const int UTF16 = 4;
 		public void AddFunction<T> () where T : SqliteFunction
 		{
 			var type = typeof (T);
 			var pr = (SqliteFunctionAttribute)type.GetCustomAttributes (typeof (SqliteFunctionAttribute), false).First ();
 			var f = (SqliteFunction)Activator.CreateInstance (typeof (T));
 
-			f._InvokeFunc = (pr.FuncType == FunctionType.Scalar) ? new SqliteCallback (f.ScalarCallback) : null;
-			f._StepFunc = (pr.FuncType == FunctionType.Aggregate) ? new SqliteCallback (f.StepCallback) : null;
-			f._FinalFunc = (pr.FuncType == FunctionType.Aggregate) ? new SqliteFinalCallback (f.FinalCallback) : null;
-			f._CompareFunc = (pr.FuncType == FunctionType.Collation) ? new SqliteCollation (f.CompareCallback) : null;
-
-			if (pr.FuncType != FunctionType.Collation) {
-				CheckError (Native.sqlite3_create_function16 (
-					ptr, pr.Name, pr.Arguments, UTF16, IntPtr.Zero,
-					f._InvokeFunc, f._StepFunc, f._FinalFunc
-				));
-			} else {
-				CheckError (Native.sqlite3_create_collation16 (
-					ptr, pr.Name, UTF16, IntPtr.Zero, f._CompareFunc
-				));
+			try {
+				if (pr.FuncType == FunctionType.Collation) {
+					sqlite.CreateCollation (pr.Name, f.Compare);
+				} else if (pr.FuncType == FunctionType.Scalar) {
+					sqlite.CreateFunction (pr.Name, f, (SqliteFunction state, object[] args) => InvokeScalar (state, args));
+				} else {
+					throw new NotSupportedException (string.Format (
+						"Microsoft.Data.Sqlite adapter does not register {0} functions named {1}", pr.FuncType, pr.Name));
+				}
+			} catch (MdsSqliteException ex) {
+				throw Wrap (ex);
 			}
+
 			functions.Add (f);
 		}
 
@@ -146,21 +156,71 @@ namespace Hyena.Data.Sqlite
 		{
 			var type = typeof (T);
 			var pr = (SqliteFunctionAttribute)type.GetCustomAttributes (typeof (SqliteFunctionAttribute), false).First ();
-			if (pr.FuncType != FunctionType.Collation) {
-				CheckError (Native.sqlite3_create_function16 (
-					ptr, pr.Name, pr.Arguments, UTF16, IntPtr.Zero,
-					null, null, null
-				));
-			} else {
-				CheckError (Native.sqlite3_create_collation16 (
-					ptr, pr.Name, UTF16, IntPtr.Zero, null
-				));
+			try {
+				if (pr.FuncType == FunctionType.Collation) {
+					sqlite.CreateCollation (pr.Name, null);
+				} else {
+					sqlite.CreateFunction<object> (pr.Name, (Func<object[], object>)null);
+				}
+			} catch (MdsSqliteException ex) {
+				throw Wrap (ex);
 			}
 
 			var func = functions.FirstOrDefault (f => f is T);
 			if (func != null) {
 				functions.Remove (func);
+				func.Dispose ();
 			}
+		}
+
+		internal static SqliteException Wrap (MdsSqliteException ex, string sql = null)
+		{
+			string errmsg = ex.Message;
+			if (sql != null) {
+				errmsg = string.Format ("{0} (SQL: {1})", errmsg, sql);
+			}
+			return new SqliteException (ex.SqliteErrorCode, errmsg);
+		}
+
+		static object InvokeScalar (SqliteFunction function, object[] args)
+		{
+			var result = function.Invoke (NormalizeFunctionArgs (args));
+			if (result is Exception ex)
+				throw ex;
+			return SqliteUtils.ToDbFormat (result);
+		}
+
+		internal static object[] NormalizeFunctionArgs (object[] args)
+		{
+			if (args == null)
+				return Array.Empty<object> ();
+
+			var normalized = new object[args.Length];
+			for (int i = 0; i < args.Length; i++) {
+				normalized[i] = NormalizeDbValue (args[i]);
+			}
+			return normalized;
+		}
+
+		internal static object NormalizeDbValue (object value)
+		{
+			if (value == null || value is DBNull)
+				return null;
+			if (value is int i)
+				return (long)i;
+			if (value is uint ui)
+				return (long)ui;
+			if (value is byte b)
+				return (long)b;
+			if (value is sbyte sb)
+				return (long)sb;
+			if (value is short s)
+				return (long)s;
+			if (value is ushort us)
+				return (long)us;
+			if (value is float f)
+				return (double)f;
+			return value;
 		}
 	}
 
@@ -188,14 +248,14 @@ namespace Hyena.Data.Sqlite
 
 	public class Statement : IDisposable, IEnumerable<IDataReader>
 	{
-		IntPtr ptr;
 		Connection connection;
-		bool bound;
+		MdsSqliteCommand command;
+		MdsSqliteDataReader mds_reader;
 		QueryReader reader;
+		bool bound;
 		bool disposed;
 
 		internal bool Reading { get; set; }
-		internal IntPtr Ptr { get { return ptr; } }
 		internal bool Bound { get { return bound; } }
 		internal Connection Connection { get { return connection; } }
 
@@ -212,20 +272,32 @@ namespace Hyena.Data.Sqlite
 			CommandText = sql;
 			this.connection = connection;
 
-			IntPtr pzTail = IntPtr.Zero;
-			CheckError (Native.sqlite3_prepare16_v2 (connection.Ptr, sql, -1, out ptr, out pzTail));
+			if (HasMultipleStatements (sql)) {
+				throw new ArgumentException ("sql", string.Format ("This sqlite binding does not support multiple commands in one statement:\n  {0}", sql));
+			}
+
+			string rewritten = RewritePositionalParameters (sql, out var parameterCount);
+			ParameterCount = parameterCount;
+
+			command = connection.Sqlite.CreateCommand ();
+			command.CommandText = rewritten;
+			try {
+				command.Prepare ();
+			} catch (MdsSqliteException ex) {
+				command.Dispose ();
+				command = null;
+				throw Connection.Wrap (ex, sql);
+			}
 
 			lock (Connection.Statements) {
 				Connection.Statements.Add (this);
 			}
 
-			if (pzTail != IntPtr.Zero && Marshal.ReadByte (pzTail) != 0) {
-				Dispose ();
-				throw new ArgumentException ("sql", string.Format ("This sqlite binding does not support multiple commands in one statement:\n  {0}", sql));
-			}
-
-			ParameterCount = Native.sqlite3_bind_parameter_count (ptr);
 			reader = new QueryReader () { Statement = this };
+		}
+
+		internal MdsSqliteDataReader CurrentReader {
+			get { return mds_reader; }
 		}
 
 		internal void CheckReading ()
@@ -249,19 +321,17 @@ namespace Hyena.Data.Sqlite
 				return;
 
 			disposed = true;
-			if (ptr != IntPtr.Zero) {
-				// Don't check for error here, because if the most recent evaluation had an error finalize will return it too
-				// See http://sqlite.org/c3ref/finalize.html
-				Native.sqlite3_finalize (ptr);
-
-				ptr = IntPtr.Zero;
-
-				lock (Connection.Statements) {
-					Connection.Statements.Remove (this);
-				}
-
-				Disposed?.Invoke (this, EventArgs.Empty);
+			CloseReader ();
+			if (command != null) {
+				command.Dispose ();
+				command = null;
 			}
+
+			lock (Connection.Statements) {
+				Connection.Statements.Remove (this);
+			}
+
+			Disposed?.Invoke (this, EventArgs.Empty);
 		}
 
 		~Statement ()
@@ -269,7 +339,7 @@ namespace Hyena.Data.Sqlite
 			Dispose ();
 		}
 
-		object[] null_val = new object[] { null };
+		static readonly object[] null_val = new object[] { null };
 		public Statement Bind (params object[] vals)
 		{
 			Reset ();
@@ -280,44 +350,29 @@ namespace Hyena.Data.Sqlite
 			if (vals == null || vals.Length != ParameterCount || ParameterCount == 0)
 				throw new ArgumentException ("vals", string.Format ("Statement has {0} parameters", ParameterCount));
 
-			for (int i = 1; i <= vals.Length; i++) {
-				int code = 0;
-				object o = SqliteUtils.ToDbFormat (vals[i - 1]);
-
-				if (o == null)
-					code = Native.sqlite3_bind_null (Ptr, i);
-				else if (o is double)
-					code = Native.sqlite3_bind_double (Ptr, i, (double)o);
-				else if (o is float)
-					code = Native.sqlite3_bind_double (Ptr, i, (double)(float)o);
-				else if (o is int)
-					code = Native.sqlite3_bind_int (Ptr, i, (int)o);
-				else if (o is uint)
-					code = Native.sqlite3_bind_int (Ptr, i, (int)(uint)o);
-				else if (o is long)
-					code = Native.sqlite3_bind_int64 (Ptr, i, (long)o);
-				else if (o is ulong)
-					code = Native.sqlite3_bind_int64 (Ptr, i, (long)(ulong)o);
-				else if (o is byte[]) {
-					byte[] bytes = o as byte[];
-					code = Native.sqlite3_bind_blob (Ptr, i, bytes, bytes.Length, (IntPtr)(-1));
-				} else {
-					// C# strings are UTF-16, so 2 bytes per char
-					// -1 for the last arg is the TRANSIENT destructor type so that sqlite will make its own copy of the string
-					string str = (o as string) ?? o.ToString ();
-					code = Native.sqlite3_bind_text16 (Ptr, i, str, str.Length * 2, (IntPtr)(-1));
-				}
-
-				CheckError (code);
+			command.Parameters.Clear ();
+			for (int i = 0; i < vals.Length; i++) {
+				var p = command.CreateParameter ();
+				p.ParameterName = "$hp" + i;
+				p.Value = ToBindValue (SqliteUtils.ToDbFormat (vals[i]));
+				command.Parameters.Add (p);
 			}
 
 			bound = true;
 			return this;
 		}
 
-		internal void CheckError (int code)
+		static object ToBindValue (object o)
 		{
-			connection.CheckError (code, CommandText);
+			if (o == null)
+				return DBNull.Value;
+			if (o is ulong ul)
+				return unchecked((long)ul);
+			if (o is uint ui)
+				return unchecked((int)ui);
+			if (o is float fl)
+				return (double)fl;
+			return o;
 		}
 
 		void Reset ()
@@ -327,7 +382,31 @@ namespace Hyena.Data.Sqlite
 				throw new InvalidOperationException ("Can't reset statement while it's being read; make sure to Dispose any IDataReaders");
 			}
 
-			CheckError (Native.sqlite3_reset (ptr));
+			CloseReader ();
+		}
+
+		void CloseReader ()
+		{
+			if (mds_reader != null) {
+				mds_reader.Dispose ();
+				mds_reader = null;
+			}
+			Reading = false;
+		}
+
+		internal void EnsureReader ()
+		{
+			if (mds_reader != null)
+				return;
+
+			if (ParameterCount > 0 && !Bound)
+				throw new InvalidOperationException ("Statement not bound");
+
+			try {
+				mds_reader = command.ExecuteReader ();
+			} catch (MdsSqliteException ex) {
+				throw Connection.Wrap (ex, CommandText);
+			}
 		}
 
 		public IEnumerator<IDataReader> GetEnumerator ()
@@ -346,8 +425,13 @@ namespace Hyena.Data.Sqlite
 		public Statement Execute ()
 		{
 			Reset ();
-			using (reader) {
-				reader.Read ();
+			if (ParameterCount > 0 && !Bound)
+				throw new InvalidOperationException ("Statement not bound");
+
+			try {
+				command.ExecuteNonQuery ();
+			} catch (MdsSqliteException ex) {
+				throw Connection.Wrap (ex, CommandText);
 			}
 			return this;
 		}
@@ -365,6 +449,33 @@ namespace Hyena.Data.Sqlite
 			Reset ();
 			return reader;
 		}
+
+		static bool HasMultipleStatements (string sql)
+		{
+			if (string.IsNullOrEmpty (sql))
+				return false;
+
+			var trimmed = sql.TrimEnd ();
+			while (trimmed.EndsWith (";", StringComparison.Ordinal)) {
+				trimmed = trimmed.Substring (0, trimmed.Length - 1).TrimEnd ();
+			}
+			return trimmed.IndexOf (';') >= 0;
+		}
+
+		static string RewritePositionalParameters (string sql, out int count)
+		{
+			var sb = new StringBuilder ();
+			count = 0;
+			foreach (char c in sql) {
+				if (c == '?') {
+					sb.Append ("$hp");
+					sb.Append (count++);
+				} else {
+					sb.Append (c);
+				}
+			}
+			return sb.ToString ();
+		}
 	}
 
 	public class QueryReader : IDataReader
@@ -373,7 +484,6 @@ namespace Hyena.Data.Sqlite
 		int column_count = -1;
 
 		internal Statement Statement { get; set; }
-		IntPtr Ptr { get { return Statement.Ptr; } }
 
 		public void Dispose ()
 		{
@@ -387,7 +497,8 @@ namespace Hyena.Data.Sqlite
 			get {
 				if (column_count == -1) {
 					Statement.CheckDisposed ();
-					column_count = Native.sqlite3_column_count (Ptr);
+					Statement.EnsureReader ();
+					column_count = Statement.CurrentReader.FieldCount;
 				}
 				return column_count;
 			}
@@ -406,44 +517,25 @@ namespace Hyena.Data.Sqlite
 		public bool Read ()
 		{
 			Statement.CheckDisposed ();
-			if (Statement.ParameterCount > 0 && !Statement.Bound)
-				throw new InvalidOperationException ("Statement not bound");
+			Statement.EnsureReader ();
 
-			int code = Native.sqlite3_step (Ptr);
-			if (code == ROW) {
-				Statement.Reading = true;
-				return true;
-			} else {
+			bool has_row;
+			try {
+				has_row = Statement.CurrentReader.Read ();
+			} catch (MdsSqliteException ex) {
 				Statement.Reading = false;
-				Statement.CheckError (code);
-				return false;
+				throw Connection.Wrap (ex, Statement.CommandText);
 			}
+
+			Statement.Reading = has_row;
+			return has_row;
 		}
 
 		public object this[int i] {
 			get {
 				Statement.CheckReading ();
-				int type = Native.sqlite3_column_type (Ptr, i);
-				switch (type) {
-				case SQLITE_INTEGER:
-					return Native.sqlite3_column_int64 (Ptr, i);
-				case SQLITE_FLOAT:
-					return Native.sqlite3_column_double (Ptr, i);
-				case SQLITE3_TEXT:
-					return Native.sqlite3_column_text16 (Ptr, i).PtrToString ();
-				case SQLITE_BLOB:
-					int num_bytes = Native.sqlite3_column_bytes (Ptr, i);
-					if (num_bytes == 0)
-						return null;
-
-					byte[] bytes = new byte[num_bytes];
-					Marshal.Copy (Native.sqlite3_column_blob (Ptr, i), bytes, 0, num_bytes);
-					return bytes;
-				case SQLITE_NULL:
-					return null;
-				default:
-					throw new Exception (string.Format ("Column is of unknown type {0}", type));
-				}
+				var value = Statement.CurrentReader.GetValue (i);
+				return Connection.NormalizeDbValue (value);
 			}
 		}
 
@@ -493,7 +585,7 @@ namespace Hyena.Data.Sqlite
 				if (columns == null) {
 					columns = new Dictionary<string, int> ();
 					for (int i = 0; i < FieldCount; i++) {
-						columns[Native.sqlite3_column_name16 (Ptr, i).PtrToString ()] = i;
+						columns[Statement.CurrentReader.GetName (i)] = i;
 					}
 				}
 				return columns;
@@ -507,178 +599,6 @@ namespace Hyena.Data.Sqlite
 			if (!Columns.TryGetValue (columnName, out var col))
 				throw new ArgumentException ("columnName");
 			return col;
-		}
-
-		const int SQLITE_INTEGER = 1;
-		const int SQLITE_FLOAT = 2;
-		const int SQLITE3_TEXT = 3;
-		const int SQLITE_BLOB = 4;
-		const int SQLITE_NULL = 5;
-
-		const int ROW = 100;
-		const int DONE = 101;
-	}
-
-	static class Native
-	{
-		const string SQLITE_DLL = "e_sqlite3";
-
-		// Connection functions
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern int sqlite3_open (byte[] utf8DbPath, out IntPtr db);
-
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern int sqlite3_close (IntPtr db);
-
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern long sqlite3_last_insert_rowid (IntPtr db);
-
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern int sqlite3_busy_timeout (IntPtr db, int ms);
-
-		[DllImport (SQLITE_DLL, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern IntPtr sqlite3_errmsg16 (IntPtr db);
-
-		[DllImport (SQLITE_DLL, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern int sqlite3_create_function16 (IntPtr db, string strName, int nArgs, int eTextRep, IntPtr app, SqliteCallback func, SqliteCallback funcstep, SqliteFinalCallback funcfinal);
-
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern int sqlite3_aggregate_count (IntPtr context);
-
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern IntPtr sqlite3_aggregate_context (IntPtr context, int nBytes);
-
-		[DllImport (SQLITE_DLL, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern int sqlite3_create_collation16 (IntPtr db, string strName, int eTextRep, IntPtr ctx, SqliteCollation fcompare);
-
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern int sqlite3_extended_result_codes (IntPtr db, int onoff);
-
-		// Statement functions
-		[DllImport (SQLITE_DLL, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern int sqlite3_prepare16_v2 (IntPtr db, string pSql, int nBytes, out IntPtr stmt, out IntPtr ptrRemain);
-
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern int sqlite3_step (IntPtr stmt);
-
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern int sqlite3_column_count (IntPtr stmt);
-
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern IntPtr sqlite3_column_name16 (IntPtr stmt, int index);
-
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern int sqlite3_column_type (IntPtr stmt, int iCol);
-
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern IntPtr sqlite3_column_blob (IntPtr stmt, int iCol);
-
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern int sqlite3_column_bytes (IntPtr stmt, int iCol);
-
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern double sqlite3_column_double (IntPtr stmt, int iCol);
-
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern long sqlite3_column_int64 (IntPtr stmt, int iCol);
-
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern IntPtr sqlite3_column_text16 (IntPtr stmt, int iCol);
-
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern int sqlite3_finalize (IntPtr stmt);
-
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern int sqlite3_reset (IntPtr stmt);
-
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern int sqlite3_exec (IntPtr db, byte[] sql, IntPtr callback, IntPtr cbArg, IntPtr errPtr);
-
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern int sqlite3_bind_parameter_index (IntPtr stmt, byte[] paramName);
-
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern int sqlite3_bind_parameter_count (IntPtr stmt);
-
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern int sqlite3_bind_blob (IntPtr stmt, int param, byte[] val, int nBytes, IntPtr destructorType);
-
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern int sqlite3_bind_double (IntPtr stmt, int param, double val);
-
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern int sqlite3_bind_int (IntPtr stmt, int param, int val);
-
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern int sqlite3_bind_int64 (IntPtr stmt, int param, long val);
-
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern int sqlite3_bind_null (IntPtr stmt, int param);
-
-		[DllImport (SQLITE_DLL, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern int sqlite3_bind_text16 (IntPtr stmt, int param, string val, int numBytes, IntPtr destructorType);
-
-		//DllImport(SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		//internal static extern int sqlite3_bind_zeroblob(IntPtr stmt, int, int n);
-
-		// Context functions
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern void sqlite3_result_blob (IntPtr context, byte[] value, int nSize, IntPtr pvReserved);
-
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern void sqlite3_result_double (IntPtr context, double value);
-
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern void sqlite3_result_error (IntPtr context, byte[] strErr, int nLen);
-
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern void sqlite3_result_int (IntPtr context, int value);
-
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern void sqlite3_result_int64 (IntPtr context, long value);
-
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern void sqlite3_result_null (IntPtr context);
-
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern void sqlite3_result_text (IntPtr context, byte[] value, int nLen, IntPtr pvReserved);
-
-		[DllImport (SQLITE_DLL, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern void sqlite3_result_error16 (IntPtr context, string strName, int nLen);
-
-		[DllImport (SQLITE_DLL, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern void sqlite3_result_text16 (IntPtr context, string strName, int nLen, IntPtr pvReserved);
-
-		// Value methods
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern IntPtr sqlite3_value_blob (IntPtr p);
-
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern int sqlite3_value_bytes (IntPtr p);
-
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern double sqlite3_value_double (IntPtr p);
-
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern int sqlite3_value_int (IntPtr p);
-
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern long sqlite3_value_int64 (IntPtr p);
-
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern int sqlite3_value_type (IntPtr p);
-
-		[DllImport (SQLITE_DLL, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern IntPtr sqlite3_value_text16 (IntPtr p);
-
-		internal static string PtrToString (this IntPtr ptr)
-		{
-			return System.Runtime.InteropServices.Marshal.PtrToStringUni (ptr);
-		}
-
-		internal static byte[] GetUtf8Bytes (string str)
-		{
-			return Encoding.UTF8.GetBytes (str + '\0');
 		}
 	}
 }
