@@ -222,7 +222,7 @@ namespace FSpot.Widgets
 			win.X = Clamp (win.X - x_offset, 0, (int)scaled_width - 1);
 			win.Y = Clamp (win.Y - y_offset, 0, (int)scaled_height - 1);
 
-			win = PixbufUtils.TransformOrientation ((int)scaled_width, (int)scaled_height, win, PixbufUtils.ReverseTransformation (pixbuf_orientation));
+			win = FSpot.Utils.PixbufUtils.TransformOrientation ((int)scaled_width, (int)scaled_height, win, FSpot.Utils.PixbufUtils.ReverseTransformation (pixbuf_orientation));
 
 			return new Point ((int)Math.Floor (win.X * (double)(((int)PixbufOrientation <= 4 ? Pixbuf.Width : Pixbuf.Height) - 1) / (double)(scaled_width - 1) + .5),
 					   (int)Math.Floor (win.Y * (double)(((int)PixbufOrientation <= 4 ? Pixbuf.Height : Pixbuf.Width) - 1) / (double)(scaled_height - 1) + .5));
@@ -233,7 +233,7 @@ namespace FSpot.Widgets
 			if (Pixbuf == null)
 				return Point.Zero;
 
-			image = PixbufUtils.TransformOrientation (Pixbuf.Width, Pixbuf.Height, image, pixbuf_orientation);
+			image = FSpot.Utils.PixbufUtils.TransformOrientation (Pixbuf.Width, Pixbuf.Height, image, pixbuf_orientation);
 			int x_offset = scaled_width < Allocation.Width ? (int)(Allocation.Width - scaled_width) / 2 : -XOffset;
 			int y_offset = scaled_height < Allocation.Height ? (int)(Allocation.Height - scaled_height) / 2 : -YOffset;
 
@@ -246,7 +246,7 @@ namespace FSpot.Widgets
 			if (Pixbuf == null)
 				return Gdk.Rectangle.Zero;
 
-			image = PixbufUtils.TransformOrientation (Pixbuf.Width, Pixbuf.Height, image, pixbuf_orientation);
+			image = FSpot.Utils.PixbufUtils.TransformOrientation (Pixbuf.Width, Pixbuf.Height, image, pixbuf_orientation);
 			int x_offset = scaled_width < Allocation.Width ? (int)(Allocation.Width - scaled_width) / 2 : -XOffset;
 			int y_offset = scaled_height < Allocation.Height ? (int)(Allocation.Height - scaled_height) / 2 : -YOffset;
 
@@ -646,13 +646,13 @@ namespace FSpot.Widgets
 				return;
 			}
 
-			Rectangle pixbuf_area = PixbufUtils.TransformOrientation ((int)scaled_width,
+			Rectangle pixbuf_area = FSpot.Utils.PixbufUtils.TransformOrientation ((int)scaled_width,
 										  (int)scaled_height,
 										  new Rectangle ((area.X - x_offset),
 												 (area.Y - y_offset),
 												 area.Width,
 												 area.Height),
-										  PixbufUtils.ReverseTransformation (pixbuf_orientation));
+										  FSpot.Utils.PixbufUtils.ReverseTransformation (pixbuf_orientation));
 			using (var temp_pixbuf = new Pixbuf (Colorspace.Rgb, false, 8, pixbuf_area.Width, pixbuf_area.Height)) {
 				if (Pixbuf.HasAlpha)
 					temp_pixbuf.Fill (0x00000000);
@@ -669,7 +669,7 @@ namespace FSpot.Widgets
 
 				ApplyColorTransform (temp_pixbuf);
 
-				using (var dest_pixbuf = PixbufUtils.TransformOrientation (temp_pixbuf, pixbuf_orientation)) {
+				using (var dest_pixbuf = FSpot.Utils.PixbufUtils.TransformOrientation (temp_pixbuf, pixbuf_orientation)) {
 					GdkWindow.DrawPixbuf (Style.BlackGC,
 								  dest_pixbuf,
 								  0, 0,

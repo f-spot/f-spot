@@ -22,5 +22,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Core\FSpot\FSpot.csproj" />
+    <ProjectReference Include="..\..\..\Clients\FSpot.Gtk\FSpot.Gtk.csproj" />
   </ItemGroup>
 </Project>
