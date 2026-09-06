@@ -79,7 +79,7 @@ namespace Hyena.Data.Sqlite
 
 		public object Get (int i, Type asType)
 		{
-			return QueryReader.GetAs (this[i], asType);
+			return SqliteUtils.GetAs (this[i], asType);
 		}
 
 		public T Get<T> (string columnName)

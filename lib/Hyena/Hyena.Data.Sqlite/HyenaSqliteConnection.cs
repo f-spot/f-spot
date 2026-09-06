@@ -15,41 +15,6 @@ using System.Threading;
 
 namespace Hyena.Data.Sqlite
 {
-	public class HyenaDataReader : IDisposable
-	{
-		IDataReader reader;
-		bool read = false;
-
-		public IDataReader Reader {
-			get { return reader; }
-		}
-
-		public HyenaDataReader (IDataReader reader)
-		{
-			this.reader = reader;
-		}
-
-		public T Get<T> (int i)
-		{
-			if (!read) {
-				Read ();
-			}
-			return reader.Get<T> (i);
-		}
-
-		public bool Read ()
-		{
-			read = true;
-			return reader.Read ();
-		}
-
-		public void Dispose ()
-		{
-			reader.Dispose ();
-			reader = null;
-		}
-	}
-
 	public enum HyenaCommandType
 	{
 		Reader,
@@ -59,19 +24,14 @@ namespace Hyena.Data.Sqlite
 
 	public class HyenaSqliteConnection : IDisposable
 	{
-		Hyena.Data.Sqlite.Connection connection;
+		SqliteBackend connection;
 		string dbpath;
 
 		protected string DbPath { get { return dbpath; } }
 
-		// These are 'parallel' queues; that is, when a value is pushed or popped to
-		// one, a value is pushed or popped to all three.
-		// The 1st contains the command object itself, and the 2nd and 3rd contain the
-		// arguments to be applied to that command (filled in for any ? placeholder in the command).
-		// The 3rd exists as an optimization to avoid making an object [] for a single arg.
+		// Parallel queues: a command and its ? placeholder args (null when none).
 		Queue<HyenaSqliteCommand> command_queue = new Queue<HyenaSqliteCommand> ();
 		Queue<object[]> args_queue = new Queue<object[]> ();
-		Queue<object> arg_queue = new Queue<object> ();
 
 		Thread queue_thread;
 		volatile bool dispose_requested = false;
@@ -81,12 +41,6 @@ namespace Hyena.Data.Sqlite
 
 		volatile Thread transaction_thread = null;
 		ManualResetEvent transaction_signal = new ManualResetEvent (true);
-
-		Thread warn_if_called_from_thread;
-		public Thread WarnIfCalledFromThread {
-			get { return warn_if_called_from_thread; }
-			set { warn_if_called_from_thread = value; }
-		}
 
 		public string ServerVersion { get { return Query<string> ("SELECT sqlite_version ()"); } }
 
@@ -99,20 +53,7 @@ namespace Hyena.Data.Sqlite
 			queue_thread.Start ();
 		}
 
-		public void AddFunction<T> () where T : SqliteFunction
-		{
-			connection.AddFunction<T> ();
-		}
-
-		public void RemoveFunction<T> () where T : SqliteFunction
-		{
-			connection.RemoveFunction<T> ();
-		}
-
-
 		#region Public Query Methods
-
-		// TODO special case for single object param to avoid object []
 
 		// SELECT multiple column queries
 		public IDataReader Query (HyenaSqliteCommand command)
@@ -200,14 +141,14 @@ namespace Hyena.Data.Sqlite
 		// INSERT, UPDATE, DELETE queries
 		public long Execute (HyenaSqliteCommand command)
 		{
-			command.CommandType = HyenaCommandType.Execute; ;
+			command.CommandType = HyenaCommandType.Execute;
 			QueueCommand (command);
 			return (long)command.WaitForResult (this);
 		}
 
 		public long Execute (HyenaSqliteCommand command, params object[] param_values)
 		{
-			command.CommandType = HyenaCommandType.Execute; ;
+			command.CommandType = HyenaCommandType.Execute;
 			QueueCommand (command, param_values);
 			return (long)command.WaitForResult (this);
 		}
@@ -346,28 +287,13 @@ namespace Hyena.Data.Sqlite
 
 		#region Private Queue Methods
 
-		void QueueCommand (HyenaSqliteCommand command, object[] args)
-		{
-			QueueCommand (command, null, args);
-		}
-
-		// TODO optimize object vs object [] code paths?
-		/*private void QueueCommand(HyenaSqliteCommand command, object arg)
-        {
-            QueueCommand (command, arg, null);
-        }*/
-
 		void QueueCommand (HyenaSqliteCommand command)
 		{
-			QueueCommand (command, null, null);
+			QueueCommand (command, null);
 		}
 
-		void QueueCommand (HyenaSqliteCommand command, object arg, object[] args)
+		void QueueCommand (HyenaSqliteCommand command, object[] args)
 		{
-			if (warn_if_called_from_thread != null && Thread.CurrentThread == warn_if_called_from_thread) {
-				Hyena.Log.Warning ("HyenaSqliteConnection command issued from the main thread");
-			}
-
 			while (true) {
 				lock (command_queue) {
 					if (dispose_requested) {
@@ -377,7 +303,6 @@ namespace Hyena.Data.Sqlite
 					} else if (transaction_thread == null || Thread.CurrentThread == transaction_thread) {
 						command_queue.Enqueue (command);
 						args_queue.Enqueue (args);
-						arg_queue.Enqueue (arg);
 						break;
 					}
 				}
@@ -400,7 +325,7 @@ namespace Hyena.Data.Sqlite
 		void ProcessQueue ()
 		{
 			if (connection == null) {
-				connection = new Hyena.Data.Sqlite.Connection (dbpath);
+				connection = new SqliteBackend (dbpath);
 			}
 
 			// Keep handling queries
@@ -408,20 +333,16 @@ namespace Hyena.Data.Sqlite
 				while (command_queue.Count > 0) {
 					HyenaSqliteCommand command;
 					object[] args;
-					object arg;
 					lock (command_queue) {
 						command = command_queue.Dequeue ();
 						args = args_queue.Dequeue ();
-						arg = arg_queue.Dequeue ();
 					}
 
 					// Ensure the command is not altered while applying values or executing
 					lock (command) {
 						command.WaitIfNotFinished ();
 
-						if (arg != null) {
-							command.ApplyValues (arg);
-						} else if (args != null) {
+						if (args != null) {
 							command.ApplyValues (args);
 						}
 

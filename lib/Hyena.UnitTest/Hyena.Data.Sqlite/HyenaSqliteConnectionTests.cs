@@ -51,6 +51,48 @@ namespace Hyena.Data.Sqlite.Tests
 		public void SearchKeyFunctionIsRegisteredOnConnection ()
 		{
 			Assert.AreEqual ("eee", connection.Query<string> ("SELECT HYENA_SEARCH_KEY('Éee')"));
+			Assert.AreEqual ("a", connection.Query<string> ("SELECT HYENA_SEARCH_KEY(?)", "\u0104"));
+			Assert.IsNull (connection.Query<string> ("SELECT HYENA_SEARCH_KEY(?)", null));
+		}
+
+		[TestMethod]
+		public void CollationKeyFunctionIsRegisteredOnConnection ()
+		{
+			using (var reader = connection.Query ("SELECT HYENA_COLLATION_KEY(?)", "\u0104")) {
+				Assert.IsTrue (reader.Read ());
+				Assert.AreSequenceEqual (StringUtil.SortKey ("\u0104"), reader.Get<byte[]> (0));
+			}
+
+			using (var reader = connection.Query ("SELECT HYENA_COLLATION_KEY(?)", null)) {
+				Assert.IsTrue (reader.Read ());
+				Assert.IsNull (reader.Get<byte[]> (0));
+			}
+		}
+
+		[TestMethod]
+		public void Md5FunctionIsRegisteredOnConnection ()
+		{
+			Assert.AreEqual ("ae2b1fca515949e5d54fb22b8ed95575", connection.Query<string> ("SELECT HYENA_MD5(?, ?)", 1, "testing"));
+			Assert.AreEqual ("ae2b1fca515949e5d54fb22b8ed95575", connection.Query<string> ("SELECT HYENA_MD5(?, ?, ?)", 2, "test", "ing"));
+			Assert.IsNull (connection.Query<string> ("SELECT HYENA_MD5(?, ?)", 1, null));
+		}
+
+		[TestMethod]
+		public void ExecuteAndQueryRoundTripRows ()
+		{
+			connection.Execute ("CREATE TABLE Users (ID INTEGER PRIMARY KEY, Name TEXT)");
+			Assert.AreEqual (1L, connection.Execute ("INSERT INTO Users (Name) VALUES (?)", "Gabriel"));
+			Assert.AreEqual (2L, connection.Execute ("INSERT INTO Users (Name) VALUES (?)", "Aaron"));
+			Assert.AreEqual (2, connection.Query<int> ("SELECT COUNT(*) FROM Users"));
+
+			using (var reader = connection.Query ("SELECT ID, Name FROM Users ORDER BY NAME")) {
+				Assert.IsTrue (reader.Read ());
+				Assert.AreEqual ("Aaron", reader["Name"]);
+				Assert.AreEqual (2L, Convert.ToInt64 (reader["ID"]));
+				Assert.IsTrue (reader.Read ());
+				Assert.AreEqual ("Gabriel", reader.Get<string> (1));
+				Assert.IsFalse (reader.Read ());
+			}
 		}
 
 		[TestMethod]

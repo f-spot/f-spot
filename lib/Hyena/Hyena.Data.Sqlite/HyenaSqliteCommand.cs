@@ -15,18 +15,6 @@ using System.Threading;
 
 namespace Hyena.Data.Sqlite
 {
-	public class CommandExecutedArgs : EventArgs
-	{
-		public CommandExecutedArgs (string sql, int ms)
-		{
-			Sql = sql;
-			Ms = ms;
-		}
-
-		public string Sql;
-		public int Ms;
-	}
-
 	public class HyenaSqliteCommand
 	{
 		object result = null;
@@ -39,7 +27,6 @@ namespace Hyena.Data.Sqlite
 		string command_formatted = null;
 		int parameter_count = 0;
 		object[] current_values;
-		int ticks;
 
 		public string Text {
 			get { return command; }
@@ -60,7 +47,7 @@ namespace Hyena.Data.Sqlite
 			ApplyValues (param_values);
 		}
 
-		internal void Execute (HyenaSqliteConnection hconnection, Connection connection)
+		internal void Execute (HyenaSqliteConnection hconnection, SqliteBackend connection)
 		{
 			if (finished) {
 				throw new Exception ("Command is already set to finished; result needs to be claimed before command can be rerun");
@@ -68,12 +55,11 @@ namespace Hyena.Data.Sqlite
 
 			execution_exception = null;
 			result = null;
-			int execution_ms = 0;
 
 			string command_text = null;
 			try {
 				command_text = CurrentSqlText;
-				ticks = System.Environment.TickCount;
+				int ticks = System.Environment.TickCount;
 
 				switch (CommandType) {
 				case HyenaCommandType.Reader:
@@ -83,17 +69,16 @@ namespace Hyena.Data.Sqlite
 					break;
 
 				case HyenaCommandType.Scalar:
-					result = connection.Query<object> (command_text);
+					result = connection.QueryScalar (command_text);
 					break;
 
 				case HyenaCommandType.Execute:
 				default:
-					connection.Execute (command_text);
-					result = connection.LastInsertRowId;
+					result = connection.Execute (command_text);
 					break;
 				}
 
-				execution_ms = System.Environment.TickCount - ticks;
+				int execution_ms = System.Environment.TickCount - ticks;
 				if (log_all) {
 					Log.DebugFormat ("Executed in {0}ms {1}", execution_ms, command_text);
 				} else if (Log.Debugging && execution_ms > 500) {
@@ -105,25 +90,8 @@ namespace Hyena.Data.Sqlite
 				execution_exception = e;
 			}
 
-			// capture the text
-			string raise_text = null;
-			if (raise_command_executed && execution_ms >= raise_command_executed_threshold_ms) {
-				raise_text = Text;
-			}
-
 			finished_event.Reset ();
 			finished = true;
-
-			if (raise_command_executed && execution_ms >= raise_command_executed_threshold_ms) {
-				var handler = CommandExecuted;
-				if (handler != null) {
-
-					// Don't raise this on this thread; this thread is dedicated for use by the db connection
-					ThreadAssist.ProxyToMain (delegate {
-						handler (this, new CommandExecutedArgs (raise_text, execution_ms));
-					});
-				}
-			}
 		}
 
 		internal object WaitForResult (HyenaSqliteConnection conn)
@@ -242,29 +210,10 @@ namespace Hyena.Data.Sqlite
 			command_format = sb.ToString ();
 		}
 
-		#region Static Debugging Facilities
-
 		static bool log_all = false;
 		public static bool LogAll {
 			get { return log_all; }
 			set { log_all = value; }
 		}
-
-		public delegate void CommandExecutedHandler (object o, CommandExecutedArgs args);
-		public static event CommandExecutedHandler CommandExecuted;
-
-		static bool raise_command_executed = false;
-		public static bool RaiseCommandExecuted {
-			get { return raise_command_executed; }
-			set { raise_command_executed = value; }
-		}
-
-		static int raise_command_executed_threshold_ms = 400;
-		public static int RaiseCommandExecutedThresholdMs {
-			get { return raise_command_executed_threshold_ms; }
-			set { raise_command_executed_threshold_ms = value; }
-		}
-
-		#endregion
 	}
 }

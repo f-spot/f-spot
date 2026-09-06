@@ -10,34 +10,11 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Hyena.Data.Sqlite
 {
 	public static class SqliteUtils
 	{
-		internal static string GetType (Type type)
-		{
-			if (type == typeof (string)) {
-				return "TEXT";
-			} else if (type == typeof (int) || type == typeof (long) || type == typeof (bool)
-				|| type == typeof (DateTime) || type == typeof (TimeSpan) || type.IsEnum) {
-				return "INTEGER";
-			} else if (type == typeof (int?) || type == typeof (long?) || type == typeof (bool?)
-				|| type == typeof (uint?)) {
-				return "INTEGER NULL";
-			} else if (type == typeof (byte[])) {
-				return "BLOB";
-			} else if (type == typeof (double)) {
-				return "REAL";
-			} else if (type == typeof (double?)) {
-				return "REAL NULL";
-			} else {
-				throw new Exception (string.Format (
-					"The type {0} cannot be bound to a database column.", type.Name));
-			}
-		}
-
 		public static object ToDbFormat (object value)
 		{
 			if (value == null)
@@ -117,97 +94,61 @@ namespace Hyena.Data.Sqlite
 			}
 		}
 
-		internal static string BuildColumnSchema (string type, string name, string default_value,
-			DatabaseColumnConstraints constraints)
+		internal static object NormalizeDbValue (object value)
 		{
-			var builder = new StringBuilder ();
-			builder.Append (name);
-			builder.Append (' ');
-			builder.Append (type);
-			if ((constraints & DatabaseColumnConstraints.NotNull) > 0) {
-				builder.Append (" NOT NULL");
+			if (value == null || value is DBNull)
+				return null;
+			if (value is int i)
+				return (long)i;
+			if (value is uint ui)
+				return (long)ui;
+			if (value is byte b)
+				return (long)b;
+			if (value is sbyte sb)
+				return (long)sb;
+			if (value is short s)
+				return (long)s;
+			if (value is ushort us)
+				return (long)us;
+			if (value is float f)
+				return (double)f;
+			return value;
+		}
+
+		internal static object[] NormalizeFunctionArgs (object[] args)
+		{
+			if (args == null)
+				return Array.Empty<object> ();
+
+			var normalized = new object[args.Length];
+			for (int i = 0; i < args.Length; i++) {
+				normalized[i] = NormalizeDbValue (args[i]);
 			}
-			if ((constraints & DatabaseColumnConstraints.Unique) > 0) {
-				builder.Append (" UNIQUE");
-			}
-			if ((constraints & DatabaseColumnConstraints.PrimaryKey) > 0) {
-				builder.Append (" PRIMARY KEY");
-			}
-			if (default_value != null) {
-				builder.Append (" DEFAULT ");
-				builder.Append (default_value);
-			}
-			return builder.ToString ();
+			return normalized;
+		}
+
+		internal static object GetAs (object o, Type type)
+		{
+			if (o != null && o.GetType () == type)
+				return o;
+
+			if (o == null)
+				o = null;
+			else if (type == typeof (int))
+				o = (int)(long)o;
+			else if (type == typeof (uint))
+				o = (uint)(long)o;
+			else if (type == typeof (ulong))
+				o = (ulong)(long)o;
+			else if (type == typeof (float))
+				o = (float)(double)o;
+
+			if (o != null && o.GetType () == type)
+				return o;
+
+			return FromDbFormat (type, o);
 		}
 
 		static HashSet<Type> enum_types = new HashSet<Type> ();
-	}
-
-	[SqliteFunction (Name = "HYENA_BINARY_FUNCTION", FuncType = FunctionType.Scalar, Arguments = 3)]
-	public sealed class BinaryFunction : SqliteFunction
-	{
-		static Dictionary<string, Func<object, object, object>> funcs = new Dictionary<string, Func<object, object, object>> ();
-
-		public static void Add (string functionId, Func<object, object, object> func)
-		{
-			lock (funcs) {
-				if (funcs.ContainsKey (functionId)) {
-					throw new ArgumentException (string.Format ("{0} is already taken", functionId), nameof (functionId));
-				}
-
-				funcs[functionId] = func;
-			}
-		}
-
-		public static void Remove (string functionId)
-		{
-			lock (funcs) {
-				if (!funcs.ContainsKey (functionId)) {
-					throw new ArgumentException (string.Format ("{0} does not exist", functionId), nameof (functionId));
-				}
-
-				funcs.Remove (functionId);
-			}
-		}
-
-		public override object Invoke (object[] args)
-		{
-			if (!funcs.TryGetValue (args[0] as string, out var func))
-				throw new ArgumentException (args[0] as string, "HYENA_BINARY_FUNCTION name (arg 0)");
-
-			return func (args[1], args[2]);
-		}
-	}
-
-	[SqliteFunction (Name = "HYENA_COLLATION_KEY", FuncType = FunctionType.Scalar, Arguments = 1)]
-	class CollationKeyFunction : SqliteFunction
-	{
-		public override object Invoke (object[] args)
-		{
-			return Hyena.StringUtil.SortKey (args[0] as string);
-		}
-	}
-
-	[SqliteFunction (Name = "HYENA_SEARCH_KEY", FuncType = FunctionType.Scalar, Arguments = 1)]
-	class SearchKeyFunction : SqliteFunction
-	{
-		public override object Invoke (object[] args)
-		{
-			return Hyena.StringUtil.SearchKey (args[0] as string);
-		}
-	}
-
-	[SqliteFunction (Name = "HYENA_MD5", FuncType = FunctionType.Scalar, Arguments = -1)]
-	class Md5Function : SqliteFunction
-	{
-		public override object Invoke (object[] args)
-		{
-			int n_args = (int)(long)args[0];
-			var sb = new StringBuilder ();
-			for (int i = 1; i <= n_args; i++) {
-				sb.Append (args[i]);
-			}
-			return Hyena.CryptoUtil.Md5Encode (sb.ToString (), System.Text.Encoding.UTF8);
-		}
 	}
 }
