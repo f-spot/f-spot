@@ -220,7 +220,6 @@ help/Makefile
 external/Makefile
 
 lib/Hyena/Makefile
-lib/Hyena.Gui/Makefile
 lib/Hyena.UnitTest/Makefile
 lib/gtk-sharp-beans/Makefile
 lib/libfspot/Makefile

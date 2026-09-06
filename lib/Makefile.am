@@ -2,6 +2,5 @@
 SUBDIRS = \
 	gtk-sharp-beans	\
 	Hyena			\
-	Hyena.Gui		\
 	Hyena.UnitTest	\
 	libfspot

@@ -11,5 +11,5 @@
 using System.Runtime.CompilerServices;
 
 // Temporary until Hyena is removed
-[assembly: InternalsVisibleTo ("Hyena.Gui")]
+[assembly: InternalsVisibleTo ("f-spot")]
 [assembly: InternalsVisibleTo ("Hyena.UnitTest")]
