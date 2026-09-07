@@ -9,10 +9,7 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
-using System;
-using System.IO;
-using System.Reflection;
-using System.Runtime.InteropServices;
+using lcmsNET;
 
 namespace FSpot.Cms
 {
@@ -35,49 +32,12 @@ namespace FSpot.Cms
 			return new ColorCIExyY (x, y, 1.0);
 		}
 
-		public static ColorCIExyY WhitePointFromTemperatureCIE (int temp)
-		{
-			NativeMethods.CmsWhitePointFromTemp (temp, out var wp);
-			return wp;
-		}
-
-		public static ColorCIExyY WhitePointFromTemperatureResource (int temp, string name)
-		{
-			ColorCIExyY wp;
-			//const int line_size = 0x1e;
-
-			using var stream = Assembly.GetExecutingAssembly ().GetManifestResourceStream (name);
-			using var reader = new StreamReader (stream, System.Text.Encoding.ASCII);
-			string line = null;
-			for (int i = 0; i <= temp - 1000; i++) {
-				line = reader.ReadLine ();
-			}
-
-			//System.Console.WriteLine (line);
-			string[] subs = line.Split ('\t');
-			int ptemp = int.Parse (subs[0]);
-			if (ptemp != temp)
-				throw new CmsException ($"{ptemp} != {temp}");
-
-			double x = double.Parse (subs[1]);
-			double y = double.Parse (subs[2]);
-			wp = new ColorCIExyY (x, y, 1.0);
-			return wp;
-		}
-
 		public ColorCIEXYZ ToXYZ ()
 		{
-			NativeMethods.CmsxyY2XYZ (out var dest, ref this);
-
-			return dest;
+			return ColorCIEXYZ.FromNative (Colorimetric.xyY2XYZ (ToNative ()));
 		}
 
-		public static ColorCIExyY D50 {
-			get {
-				IntPtr ptr = NativeMethods.CmsD50xyY ();
-				return (ColorCIExyY)Marshal.PtrToStructure (ptr, typeof (ColorCIExyY));
-			}
-		}
+		public static ColorCIExyY D50 => FromNative (Colorimetric.D50_xyY);
 
 		public ColorCIELab ToLab (ColorCIExyY wp)
 		{
@@ -87,6 +47,16 @@ namespace FSpot.Cms
 		public ColorCIELab ToLab (ColorCIEXYZ wp)
 		{
 			return ToXYZ ().ToLab (wp);
+		}
+
+		internal CIExyY ToNative ()
+		{
+			return new CIExyY { x = x, y = y, Y = Y };
+		}
+
+		internal static ColorCIExyY FromNative (CIExyY native)
+		{
+			return new ColorCIExyY (native.x, native.y, native.Y);
 		}
 
 		public override string ToString ()
@@ -106,6 +76,11 @@ namespace FSpot.Cms
 			Red = red;
 			Green = green;
 			Blue = blue;
+		}
+
+		internal CIExyYTRIPLE ToNative ()
+		{
+			return new CIExyYTRIPLE { Red = Red.ToNative (), Green = Green.ToNative (), Blue = Blue.ToNative () };
 		}
 	}
 }

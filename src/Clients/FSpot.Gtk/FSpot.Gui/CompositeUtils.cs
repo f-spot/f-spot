@@ -178,15 +178,5 @@ namespace FSpot.Gui
 
 			return null;
 		}
-
-		public static void SetScreenProfile (Screen screen, Cms.Profile profile)
-		{
-			byte[] data = profile.Save ();
-			ChangeProperty (screen.RootWindow,
-					Atom.Intern ("_ICC_PROFILE", false),
-					Atom.Intern ("CARDINAL", false),
-					PropMode.Replace,
-					data);
-		}
 	}
 }

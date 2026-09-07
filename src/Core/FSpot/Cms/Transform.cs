@@ -10,7 +10,9 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
-using System.Runtime.InteropServices;
+using System.Linq;
+
+using lcmsNET;
 
 namespace FSpot.Cms
 {
@@ -18,7 +20,10 @@ namespace FSpot.Cms
 	{
 		bool disposed;
 
-		public HandleRef Handle { get; private set; }
+		internal lcmsNET.Transform Native { get; }
+
+		readonly int inputBytesPerPixel;
+		readonly int outputBytesPerPixel;
 
 		public Transform (Profile[] profiles,
 				  Format inputFormat,
@@ -27,36 +32,47 @@ namespace FSpot.Cms
 		{
 			if (profiles == null)
 				throw new ArgumentNullException (nameof (profiles));
+			if (profiles.Length == 0 || profiles.Any (p => p == null))
+				throw new ArgumentException ("a transform needs at least one profile and no nulls", nameof (profiles));
 
-			var Handles = new HandleRef[profiles.Length];
-			for (int i = 0; i < profiles.Length; i++) {
-				Handles[i] = profiles[i].Handle;
+			inputBytesPerPixel = inputFormat.BytesPerPixel ();
+			outputBytesPerPixel = outputFormat.BytesPerPixel ();
+
+			try {
+				Native = lcmsNET.Transform.Create (profiles.Select (p => p.Native).ToArray (),
+					(uint)inputFormat, (uint)outputFormat, (lcmsNET.Intent)intent, (CmsFlags)flags);
+			} catch (LcmsNETException e) {
+				// The old bindings handed a null handle to cmsDoTransform here and died
+				// with SIGSEGV; an exception at construction is the contract now.
+				throw new CmsException ("Unable to create the colour transform", e);
 			}
-
-			Handle = new HandleRef (this, NativeMethods.CmsCreateMultiprofileTransform (Handles, Handles.Length,
-											   inputFormat,
-											   outputFormat,
-											   (int)intent, flags));
 		}
 
 		public Transform (Profile input, Format inputFormat,
 				  Profile output, Format outputFormat,
 				  Intent intent, uint flags)
+			: this (new[] { input ?? throw new ArgumentNullException (nameof (input)),
+					output ?? throw new ArgumentNullException (nameof (output)) },
+				inputFormat, outputFormat, intent, flags)
 		{
-			if (input == null)
-				throw new ArgumentNullException (nameof (input));
-			if (output == null)
-				throw new ArgumentNullException (nameof (output));
-
-			Handle = new HandleRef (this, NativeMethods.CmsCreateTransform (input.Handle, inputFormat,
-										   output.Handle, outputFormat,
-										   (int)intent, flags));
 		}
 
-		// Fixme this should probably be more type stafe 
-		public void Apply (IntPtr input, IntPtr output, uint size)
+		// Input and output may alias: ColorManagement.ApplyProfile converts a pixbuf in
+		// place, which cmsDoTransform supports for matching formats.
+		public unsafe void Apply (IntPtr input, IntPtr output, uint size)
 		{
-			NativeMethods.CmsDoTransform (Handle, input, output, size);
+			if (disposed)
+				throw new ObjectDisposedException (nameof (Transform));
+			if (input == IntPtr.Zero)
+				throw new ArgumentNullException (nameof (input));
+			if (output == IntPtr.Zero)
+				throw new ArgumentNullException (nameof (output));
+
+			checked {
+				var source = new ReadOnlySpan<byte> ((void*)input, (int)size * inputBytesPerPixel);
+				var destination = new Span<byte> ((void*)output, (int)size * outputBytesPerPixel);
+				Native.DoTransform (source, destination, (int)size);
+			}
 		}
 
 		public void Dispose ()
@@ -71,11 +87,9 @@ namespace FSpot.Cms
 				return;
 			disposed = true;
 
-			if (disposing) {
-				// free managed resources
-			}
-			// free unmanaged resources
-			NativeMethods.CmsDeleteTransform (Handle);
+			// lcmsNET.Transform is a SafeHandle and frees itself when finalised.
+			if (disposing)
+				Native.Dispose ();
 		}
 
 		~Transform ()

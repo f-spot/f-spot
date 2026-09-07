@@ -2,12 +2,14 @@
 // ColorCIELab.cs
 //
 // Author:
-//   Stephane Delcroix <sdelcroix@src.gnome.org>
+//   Stephane Delcroix <sdelcroix@novell.com>
 //
 // Copyright (C) 2008 Novell, Inc.
 // Copyright (C) 2008 Stephane Delcroix
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
+
+using lcmsNET;
 
 namespace FSpot.Cms
 {
@@ -17,18 +19,19 @@ namespace FSpot.Cms
 		public double a;
 		public double b;
 
-		public ColorCIELCh ToLCh ()
-		{
-			NativeMethods.CmsLab2LCh (out var lch, ref this);
-
-			return lch;
-		}
-
 		public ColorCIEXYZ ToXYZ (ColorCIEXYZ wp)
 		{
-			NativeMethods.CmsLab2XYZ (ref wp, out var xyz, ref this);
+			return ColorCIEXYZ.FromNative (Colorimetric.Lab2XYZ (wp.ToNative (), ToNative ()));
+		}
 
-			return xyz;
+		internal CIELab ToNative ()
+		{
+			return new CIELab { L = L, a = a, b = b };
+		}
+
+		internal static ColorCIELab FromNative (CIELab native)
+		{
+			return new ColorCIELab { L = native.L, a = native.a, b = native.b };
 		}
 
 		public override string ToString ()

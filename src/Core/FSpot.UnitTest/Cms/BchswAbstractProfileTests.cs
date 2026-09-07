@@ -91,6 +91,31 @@ namespace FSpot.Cms.UnitTest
 				+ string.Join ("; ", mismatches.Take (8)));
 		}
 
+		// The same comparison through the surface F-Spot's editors use: Profile.CreateAbstract
+		// with the default tables, FSpot.Cms.Transform, and Apply on unmanaged memory.
+		[TestMethod]
+		[DynamicData (nameof (Cases), DynamicDataDisplayName = nameof (CaseName))]
+		public void ProfileCreateAbstractMatchesTheCImplementation (BchswGoldenData.Case golden)
+		{
+			byte[] expected = FromHex (golden.Rgb8OutHex);
+			var srgb = Profile.CreateStandardRgb ();
+			using var abstractProfile = Profile.CreateAbstract (golden.GridPoints, golden.Exposure, golden.Bright,
+				golden.Contrast, golden.Hue, golden.Saturation, null,
+				new ColorCIExyY (golden.SrcX, golden.SrcY, 1.0), new ColorCIExyY (golden.DestX, golden.DestY, 1.0));
+			using var transform = new Transform (new[] { srgb, abstractProfile, srgb }, Format.Rgb8, Format.Rgb8,
+				Intent.Perceptual, golden.Flags);
+
+			byte[] actual = CmsFacadeTests.Apply (transform, BchswGoldenData.Rgb8Probes, 3, BchswGoldenData.Rgb8Probes.Length / 3);
+
+			var mismatches = new List<string> ();
+			for (int i = 0; i < expected.Length; i++)
+				if (Math.Abs (actual[i] - expected[i]) > Rgb8Tolerance)
+					mismatches.Add ($"pixel {i / 3} channel {i % 3}: expected {expected[i]} got {actual[i]}");
+
+			Assert.IsEmpty (mismatches, $"{mismatches.Count} of {expected.Length} channel values differ: "
+				+ string.Join ("; ", mismatches.Take (8)));
+		}
+
 		// Guards against the failure mode of the unpatched lcmsNET sampler: a profile that
 		// builds fine and maps every colour to the same value.
 		[TestMethod]

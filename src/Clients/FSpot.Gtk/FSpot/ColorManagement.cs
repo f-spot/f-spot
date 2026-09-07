@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.IO;
 
 using FSpot.Cms;
+using FSpot.Gui;
 using FSpot.Settings;
 
 namespace FSpot
@@ -46,6 +47,12 @@ namespace FSpot
 		}
 
 		static Profile x_profile;
+
+		// The profile an X11 colour manager publishes on the root window's _ICC_PROFILE
+		// atom; null wherever there is none, which includes every non-X11 backend. This
+		// used to go through libfspot's f_screen_get_profile, a native function that no
+		// dev or CI build ever resolved, so reading it threw DllNotFoundException into a
+		// dozen UI paths. CompositeUtils reads the same atom in managed code.
 		public static Profile XProfile {
 			get {
 				if (x_profile != null)
@@ -53,7 +60,12 @@ namespace FSpot
 				var screen = Gdk.Screen.Default;
 				if (screen == null)
 					return null;
-				return x_profile = Profile.GetScreenProfile (screen.Handle);
+				try {
+					return x_profile = CompositeUtils.GetScreenProfile (screen);
+				} catch (CmsException e) {
+					Logger.Log.Warning ($"Ignoring the unreadable _ICC_PROFILE published for the screen: {e.Message}");
+					return null;
+				}
 			}
 		}
 

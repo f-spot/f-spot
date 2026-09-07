@@ -11,16 +11,16 @@
 
 using System;
 using System.IO;
-using System.Runtime.InteropServices;
-using System.Text;
+using System.Linq;
+
+using lcmsNET;
 
 namespace FSpot.Cms
 {
 	public class Profile : IDisposable
 	{
-		// lcms serialises badly across threads, so the profile-info readers below share
-		// this lock. It used to be the srgb instance itself, which cannot work once that
-		// instance is created lazily.
+		// Little-CMS is thread-safe per handle, but the profile-info readers share the
+		// process-wide sRGB profile, so they still serialise on this.
 		static readonly object lcmsLock = new object ();
 
 		static Profile srgbProfile;
@@ -33,7 +33,7 @@ namespace FSpot.Cms
 			get {
 				lock (lcmsLock) {
 					if (srgbProfile == null) {
-						srgbProfile = new Profile (NativeMethods.CmsCreateSRGBProfile ());
+						srgbProfile = new Profile (lcmsNET.Profile.Create_sRGB ());
 						srgbProfile.shared = true;
 					}
 
@@ -42,26 +42,15 @@ namespace FSpot.Cms
 			}
 		}
 
-		static Profile ()
-		{
-			//TODO
-			//SetErrorAction (ErrorAction.Show);
-		}
-
 		bool disposed;
 		bool shared;
 
-		public HandleRef Handle { get; private set; }
+		internal lcmsNET.Profile Native { get; }
 
-		Profile () : this (NativeMethods.CmsCreateProfilePlaceholder ())
+		Profile (lcmsNET.Profile native)
 		{
+			Native = native ?? throw new ArgumentNullException (nameof (native));
 		}
-
-		public static Profile CreateSRgb ()
-		{
-			return CreateStandardRgb ();
-		}
-
 
 		// Process-wide and deliberately not the caller's to dispose -- see Dispose.
 		public static Profile CreateStandardRgb ()
@@ -79,41 +68,10 @@ namespace FSpot.Cms
 				new ColorCIExyY (.64, .33, 1.0),
 				new ColorCIExyY (.21, .71, 1.0),
 				new ColorCIExyY (.15, .06, 1.0));
-			var tc = new ToneCurve (2.2);
-			var tcs = new ToneCurve[] { tc, tc, tc, tc };
 
-			return new Profile (wp, primaries, tcs);
-		}
-
-		public static Profile CreateLab (ColorCIExyY wp)
-		{
-			return new Profile (NativeMethods.CmsCreateLabProfile (out wp));
-		}
-
-		public static Profile CreateLab ()
-		{
-			return new Profile (NativeMethods.CmsCreateLabProfile (IntPtr.Zero));
-		}
-
-		public static Profile CreateGray (ColorCIExyY whitePoint, ToneCurve transfer)
-		{
-			if (transfer == null)
-				return new Profile (NativeMethods.CmsCreateGrayProfile (ref whitePoint, new ToneCurve (2.2).Handle));
-
-			return new Profile (NativeMethods.CmsCreateGrayProfile (ref whitePoint, transfer.Handle));
-		}
-
-		public static Profile GetScreenProfile (IntPtr screenHandle)
-		{
-			if (screenHandle == IntPtr.Zero)
-				throw new ArgumentNullException (nameof (screenHandle));
-
-			IntPtr profile = NativeMethods.FScreenGetProfile (screenHandle);
-
-			if (profile == IntPtr.Zero)
-				return null;
-
-			return new Profile (profile);
+			// lcms copies the curves into the profile, so ours can go straight away.
+			using var tc = new ToneCurve (2.2);
+			return new Profile (wp, primaries, new[] { tc, tc, tc });
 		}
 
 		public static Profile CreateAbstract (int nLUTPoints,
@@ -125,21 +83,14 @@ namespace FSpot.Cms
 							  int TempSrc,
 							  int TempDest)
 		{
-#if true
-			var gamma = new ToneCurve (Math.Pow (10, -Bright / 100));
-			var line = new ToneCurve (1.0);
-			var tables = new ToneCurve[] { gamma, line, line };
-			return CreateAbstract (nLUTPoints, Exposure, 0.0, Contrast, Hue, Saturation, tables,
+			return CreateAbstract (nLUTPoints, Exposure, Bright, Contrast, Hue, Saturation, null,
 						   ColorCIExyY.WhitePointFromTemperature (TempSrc),
 						   ColorCIExyY.WhitePointFromTemperature (TempDest));
-#else
-			GammaTable [] tables = null;
-			return CreateAbstract (nLUTPoints, Exposure, Bright, Contrast, Hue, Saturation, tables, 
-					       ColorCIExyY.WhitePointFromTemperature (TempSrc), 
-					       ColorCIExyY.WhitePointFromTemperature (TempDest));
-#endif
 		}
 
+		// Brightness does not reach the CLUT: it becomes a gamma curve on L ahead of
+		// it, and the CLUT's own brightness term is always zero. That is how the C
+		// implementation behaved and the golden tests pin it.
 		public static Profile CreateAbstract (int nLUTPoints,
 							  double Exposure,
 							  double Bright,
@@ -150,62 +101,61 @@ namespace FSpot.Cms
 							  ColorCIExyY srcWp,
 							  ColorCIExyY destWp)
 		{
+			ToneCurve[] owned = null;
 			if (tables == null) {
 				var gamma = new ToneCurve (Math.Pow (10, -Bright / 100));
 				var line = new ToneCurve (1.0);
-				tables = new ToneCurve[] { gamma, line, line };
+				tables = owned = new[] { gamma, line, line };
 			}
 
-			/*
-			System.Console.WriteLine ("e {0}", Exposure);
-			System.Console.WriteLine ("b {0}", Bright);
-			System.Console.WriteLine ("c {0}", Contrast);
-			System.Console.WriteLine ("h {0}", Hue);
-			System.Console.WriteLine ("s {0} {1} {2}", Saturation, srcWp, destWp);
-			*/
-			return new Profile (NativeMethods.FCmsCreateBCHSWabstractProfile (nLUTPoints,
-										 Exposure,
-										 0.0, //Bright,
-										 Contrast,
-										 Hue,
-										 Saturation,
-										 ref srcWp,
-										 ref destWp,
-										 CopyHandles (tables)));
+			try {
+				return new Profile (BchswAbstractProfile.Create (nLUTPoints, Exposure, 0.0, Contrast, Hue, Saturation,
+					srcWp.ToNative (), destWp.ToNative (), tables.Select (t => t.Native).ToArray ()));
+			} catch (LcmsNETException e) {
+				throw new CmsException ("Unable to create the BCHSW abstract profile", e);
+			} finally {
+				if (owned != null)
+					foreach (var curve in owned.Distinct ())
+						curve.Dispose ();
+			}
 		}
 
 		public Profile (IccColorSpace colorSpace, ToneCurve[] gamma)
+			: this (Wrap (() => lcmsNET.Profile.CreateLinearizationDeviceLink ((ColorSpaceSignature)colorSpace, Handles (gamma)),
+				"Unable to create the linearization device link"))
 		{
-			Handle = new HandleRef (this, NativeMethods.CmsCreateLinearizationDeviceLink (colorSpace, CopyHandles (gamma)));
 		}
 
-		static HandleRef[] CopyHandles (ToneCurve[] gamma)
+		Profile (ColorCIExyY whitepoint, ColorCIExyYTriple primaries, ToneCurve[] gamma)
+			: this (Wrap (() => lcmsNET.Profile.CreateRGB (whitepoint.ToNative (), primaries.ToNative (), Handles (gamma)),
+				"Unable to create the RGB profile"))
 		{
-			if (gamma == null)
-				return null;
-
-			var gamma_handles = new HandleRef[gamma.Length];
-			for (int i = 0; i < gamma_handles.Length; i++)
-				gamma_handles[i] = gamma[i].Handle;
-
-			return gamma_handles;
 		}
 
-		public Profile (ColorCIExyY whitepoint, ColorCIExyYTriple primaries, ToneCurve[] gamma)
+		static lcmsNET.ToneCurve[] Handles (ToneCurve[] curves)
 		{
-			Handle = new HandleRef (this, NativeMethods.CmsCreateRGBProfile (out whitepoint, out primaries, CopyHandles (gamma)));
+			if (curves == null)
+				throw new ArgumentNullException (nameof (curves));
+
+			return curves.Select (c => c.Native).ToArray ();
+		}
+
+		static lcmsNET.Profile Wrap (Func<lcmsNET.Profile> create, string failure)
+		{
+			try {
+				return create ();
+			} catch (LcmsNETException e) {
+				throw new CmsException (failure, e);
+			}
 		}
 
 		public Profile (string path) : this (ReadProfile (path))
 		{
 		}
 
-		// cmsOpenProfileFromFile hands the path straight to fopen, so which bytes the
-		// native side receives depends on the platform's narrow encoding rather than on
-		// anything we control -- a non-ASCII profile path resolves differently under
-		// .NET Framework, .NET and Mono. Reading the file here settles that, and the
-		// bytes then go through the same CmsOpenProfileFromMem path as an embedded
-		// profile.
+		// The file is read here rather than by lcms so that a non-ASCII path resolves
+		// the same way under .NET Framework, .NET and Mono, and so the bytes then go
+		// through the same path as an embedded profile.
 		static byte[] ReadProfile (string path)
 		{
 			try {
@@ -219,160 +169,64 @@ namespace FSpot.Cms
 			}
 		}
 
-		public byte[] Save ()
+		public Profile (byte[] data) : this (data, 0, data?.Length ?? 0)
 		{
-			unsafe {
-				uint length = 0;
-				if (NativeMethods.CmsSaveProfileToMem (Handle, null, ref length)) {
-					byte[] data = new byte[length];
-					fixed (byte* data_p = &data[0]) {
-						if (NativeMethods.CmsSaveProfileToMem (Handle, data_p, ref length)) {
-							return data;
-						}
-					}
-				}
-			}
-			throw new SaveException ("Error Saving Profile");
 		}
 
-		public Profile (byte[] data) : this (data, 0, data.Length)
+		public Profile (byte[] data, int startOffset, int length) : this (Open (data, startOffset, length))
+		{
+		}
+
+		static lcmsNET.Profile Open (byte[] data, int startOffset, int length)
 		{
 			if (data == null)
 				throw new ArgumentNullException (nameof (data));
-		}
 
-		public Profile (byte[] data, int startOffset, int length)
-		{
 			if (startOffset < 0)
 				throw new ArgumentOutOfRangeException (nameof (startOffset), "startOffset < 0");
-
-			if (data == null)
-				throw new ArgumentNullException (nameof (data));
 
 			if (data.Length - startOffset < 0)
 				throw new ArgumentOutOfRangeException (nameof (startOffset), "startOffset > data.Length");
 
-			if (data.Length - length - startOffset < 0)
+			if (length < 0 || data.Length - length - startOffset < 0)
 				throw new ArgumentOutOfRangeException (nameof (length), "startOffset + length > data.Length");
 
-			IntPtr profileh;
-			unsafe {
-				fixed (byte* start = &data[startOffset]) {
-					profileh = NativeMethods.CmsOpenProfileFromMem (start, (uint)length);
-				}
+			byte[] slice = data;
+			if (startOffset != 0 || length != data.Length) {
+				slice = new byte[length];
+				Array.Copy (data, startOffset, slice, 0, length);
 			}
 
-			if (profileh == IntPtr.Zero)
-				throw new CmsException ("Invalid Profile Data");
-
-			Handle = new HandleRef (this, profileh);
-		}
-
-		public ColorCIEXYZ MediaWhitePoint {
-			get {
-				IntPtr ptr = NativeMethods.CmsReadTag (Handle, NativeMethods.CmsTagSignature.MediaWhitePoint);
-				if (ptr == IntPtr.Zero)
-					throw new CmsException ("unable to retrieve white point from profile");
-				return ColorCIEXYZ.FromPtr (ptr);
+			try {
+				return lcmsNET.Profile.Open (slice);
+			} catch (LcmsNETException e) {
+				throw new CmsException ("Invalid Profile Data", e);
 			}
 		}
 
-		public ColorCIEXYZ MediaBlackPoint {
-			get {
-				IntPtr ptr = NativeMethods.CmsReadTag (Handle, NativeMethods.CmsTagSignature.MediaBlackPoint);
-				if (ptr == IntPtr.Zero)
-					throw new CmsException ("unable to retrieve white point from profile");
-				return ColorCIEXYZ.FromPtr (ptr);
-			}
-		}
+		public IccColorSpace ColorSpace => (IccColorSpace)Native.ColorSpace;
 
-		public ColorCIEXYZTriple Colorants {
-			get {
-				IntPtr rPtr = NativeMethods.CmsReadTag (Handle, NativeMethods.CmsTagSignature.RedColorant);
-				if (rPtr == IntPtr.Zero)
-					throw new CmsException ("Unable to retrieve red profile colorant");
-				IntPtr gPtr = NativeMethods.CmsReadTag (Handle, NativeMethods.CmsTagSignature.GreenColorant);
-				if (gPtr == IntPtr.Zero)
-					throw new CmsException ("Unable to retrieve green profile colorant");
-				IntPtr bPtr = NativeMethods.CmsReadTag (Handle, NativeMethods.CmsTagSignature.BlueColorant);
-				if (bPtr == IntPtr.Zero)
-					throw new CmsException ("Unable to retrieve blue profile colorant");
-				return new ColorCIEXYZTriple (
-					ColorCIEXYZ.FromPtr (rPtr),
-					ColorCIEXYZ.FromPtr (gPtr),
-					ColorCIEXYZ.FromPtr (bPtr)
-					);
-			}
-		}
+		public IccProfileClass DeviceClass => (IccProfileClass)Native.DeviceClass;
 
-		public IccColorSpace ColorSpace {
-			get { return (IccColorSpace)NativeMethods.CmsGetColorSpace (Handle); }
-		}
-
-		public IccProfileClass DeviceClass {
-			get { return (IccProfileClass)NativeMethods.CmsGetDeviceClass (Handle); }
-		}
-
-		// lcms2 fills a wchar_t buffer and counts the size in bytes; wchar_t is 4 bytes on
-		// Unix and 2 on Windows. Marshalling it as an LPWStr StringBuilder read a 2-byte
-		// string out of a 4-byte buffer and passed a character capacity where bytes were
-		// wanted, so every value came back as its first character -- "s" for
-		// "sRGB built-in". ColorManagement keys its profile dictionary on
-		// ProductDescription, so profiles collided under one letter and were dropped.
-		static readonly Encoding wideEncoding = RuntimeInformation.IsOSPlatform (OSPlatform.Windows)
-			? Encoding.Unicode
-			: new UTF32Encoding (false, false);
-
-		string ReadInfo (NativeMethods.CmsProfileInfo info)
+		string ReadInfo (InfoType info)
 		{
 			lock (lcmsLock) {
-				// Ask for the size first: a fixed buffer either truncates or wastes, and
-				// on Unix a size that is not a multiple of 4 yields a partial character.
-				uint needed = NativeMethods.CmsGetProfileInfo (Handle, info, "en", "US", IntPtr.Zero, 0);
-				if (needed == 0)
-					return string.Empty;
-
-				IntPtr buffer = Marshal.AllocHGlobal ((int)needed);
-				try {
-					uint written = NativeMethods.CmsGetProfileInfo (Handle, info, "en", "US", buffer, needed);
-					if (written == 0)
-						return string.Empty;
-
-					var bytes = new byte[Math.Min (written, needed)];
-					Marshal.Copy (buffer, bytes, 0, bytes.Length);
-					return wideEncoding.GetString (bytes).TrimEnd ('\0');
-				} finally {
-					Marshal.FreeHGlobal (buffer);
-				}
+				// lcmsNET reads the wchar_t buffer at the platform's width, which is what
+				// went wrong here before: the LPWStr marshalling read "s" for "sRGB
+				// built-in", and ColorManagement keys its dictionary on this string.
+				return Native.GetProfileInfo (info, "en", "US") ?? string.Empty;
 			}
 		}
 
-		public string Model => ReadInfo (NativeMethods.CmsProfileInfo.Model);
+		public string Model => ReadInfo (InfoType.Model);
 
-		public string ProductName => ReadInfo (NativeMethods.CmsProfileInfo.Manufacturer);
+		public string ProductName => ReadInfo (InfoType.Manufacturer);
 
-		public string ProductDescription => ReadInfo (NativeMethods.CmsProfileInfo.Description);
-
-		enum ErrorAction
-		{
-			Abort,
-			Show,
-			Ignore
-		}
-
-		static void SetErrorAction (ErrorAction act)
-		{
-			NativeMethods.CmsErrorAction ((int)act);
-		}
+		public string ProductDescription => ReadInfo (InfoType.Description);
 
 		public override string ToString ()
 		{
 			return ProductName;
-		}
-
-		protected Profile (IntPtr handle)
-		{
-			Handle = new HandleRef (this, handle);
 		}
 
 		public void Dispose ()
@@ -396,11 +250,10 @@ namespace FSpot.Cms
 
 			disposed = true;
 
-			if (disposing) {
-				// free managed resources
-			}
-			// free unmanaged resources
-			_ = NativeMethods.CmsCloseProfile (Handle);
+			// lcmsNET.Profile is a SafeHandle, so it releases itself if we are being
+			// finalised; disposing it here only matters on the explicit path.
+			if (disposing)
+				Native.Dispose ();
 		}
 
 		~Profile ()

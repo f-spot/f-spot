@@ -1,5 +1,7 @@
+<!--
+  FSpot.dll declares no DllImports of its own any more: colour management goes
+  through the lcmsNET package, whose native mapping lives in lcmsNET.dll.config.
+  A test pins this file's dllmap entries against the assembly's real imports.
+-->
 <configuration>
-  <dllmap dll="liblcms-2.0.0.dll" target="liblcms2.so.2" os="!osx,windows"/>
-  <dllmap dll="liblcms-2.0.0.dll" target="liblcms2.2.dylib" os="osx"/>
-  <dllmap dll="libfspot" target="@expanded_libdir@/f-spot/libfspot.so.0"/>
 </configuration>

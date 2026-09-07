@@ -2,15 +2,14 @@
 // ColorCIEXYZ.cs
 //
 // Author:
-//   Stephane Delcroix <sdelcroix@src.gnome.org>
+//   Stephane Delcroix <sdelcroix@novell.com>
 //
 // Copyright (C) 2008 Novell, Inc.
 // Copyright (C) 2008 Stephane Delcroix
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
-using System;
-using System.Runtime.InteropServices;
+using lcmsNET;
 
 namespace FSpot.Cms
 {
@@ -29,55 +28,34 @@ namespace FSpot.Cms
 
 		public ColorCIExyY ToxyY ()
 		{
-			NativeMethods.CmsXYZ2xyY (out var dest, ref this);
-
-			return dest;
+			return ColorCIExyY.FromNative (Colorimetric.XYZ2xyY (ToNative ()));
 		}
 
 		public ColorCIELab ToLab (ColorCIEXYZ wp)
 		{
-			NativeMethods.CmsXYZ2Lab (ref wp, out var lab, ref this);
-
-			return lab;
+			return ColorCIELab.FromNative (Colorimetric.XYZ2Lab (wp.ToNative (), ToNative ()));
 		}
 
-		public static ColorCIEXYZ FromPtr (IntPtr ptr)
-		{
-			if (ptr == IntPtr.Zero)
-				throw new ArgumentNullException (nameof (ptr), "lcms Color argument was null");
-
-			return (ColorCIEXYZ)Marshal.PtrToStructure (ptr, typeof (ColorCIEXYZ));
-		}
-
-		public static ColorCIEXYZ D50 {
-			get {
-				IntPtr ptr = NativeMethods.CmsD50XYZ ();
-				return FromPtr (ptr);
-			}
-		}
+		public static ColorCIEXYZ D50 => FromNative (Colorimetric.D50_XYZ);
 
 		public ColorCIELab ToLab (ColorCIExyY wp)
 		{
 			return ToLab (wp.ToXYZ ());
 		}
 
+		internal CIEXYZ ToNative ()
+		{
+			return new CIEXYZ { X = x, Y = y, Z = z };
+		}
+
+		internal static ColorCIEXYZ FromNative (CIEXYZ native)
+		{
+			return new ColorCIEXYZ (native.X, native.Y, native.Z);
+		}
+
 		public override string ToString ()
 		{
 			return $"(x={x}, y={y}, z={z})";
-		}
-	}
-
-	public struct ColorCIEXYZTriple
-	{
-		public ColorCIEXYZ Red;
-		public ColorCIEXYZ Blue;
-		public ColorCIEXYZ Green;
-
-		public ColorCIEXYZTriple (ColorCIEXYZ red, ColorCIEXYZ green, ColorCIEXYZ blue)
-		{
-			Red = red;
-			Blue = blue;
-			Green = green;
 		}
 	}
 }
