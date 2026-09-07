@@ -31,11 +31,9 @@ namespace FSpot.Imaging
 		internal static System.IO.Stream RawPixbufStream (SafeUri location)
 		{
 			string path = location.LocalPath;
-			string[] args = { dcraw_command, "-h", "-w", "-c", "-t", "0", path };
+			string[] args = { "-h", "-w", "-c", "-t", "0", path };
 
-			var proc = new InternalProcess (System.IO.Path.GetDirectoryName (path), args);
-			proc.StandardInput.Close ();
-			return proc.StandardOutput;
+			return ProcessStream.Start (System.IO.Path.GetDirectoryName (path), dcraw_command, args);
 		}
 	}
 }
