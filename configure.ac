@@ -110,7 +110,6 @@ GTKSHARPBEANS_REQUIRED=2.13.92
 GTK_REQUIRED=2.14
 MONO_CAIRO_REQUIRED=1.2.5
 CAIRO_REQUIRED=1.4.0
-LCMS2_REQUIRED=2.4
 
 PKG_CHECK_MODULES(F, gtk+-2.0 >= $GTK_REQUIRED mono-cairo >= $MONO_CAIRO_REQUIRED cairo >= $CAIRO_REQUIRED)
 AC_SUBST(F_CFLAGS)
@@ -131,15 +130,6 @@ AC_CHECK_LIB(jpeg, jpeg_start_decompress, [],
 	[AC_MSG_ERROR([libjpeg not found])], -lm)
 AC_CHECK_HEADER(jpeglib.h, , [AC_MSG_ERROR([libjpeg not found])])
 LIBJPEG='-ljpeg'
-
-dnl --- lcms
-
-PKG_CHECK_MODULES(LCMS2, lcms2 >= $LCMS2_REQUIRED, [],
-	[AC_CHECK_LIB(lcms2, cmsCreateBCHSWabstractProfile, [],
-		[AC_MSG_ERROR([liblcms2 not found])], -lm)
-	AC_CHECK_HEADER(lcms2.h, , [AC_MSG_ERROR([liblcms2 not found])])
-	LCMS2_LIBS='-llcms2'
-	LCMS2_CFLAGS=''])
 
 dnl --- Set up paths
 
@@ -164,8 +154,6 @@ AM_GLIB_GNU_GETTEXT
 dnl --- Prologue
 
 AC_SUBST(LIBJPEG)
-AC_SUBST(LCMS2_LIBS)
-AC_SUBST(LCMS2_CFLAGS)
 AC_SUBST(CFLAGS)
 AC_SUBST(CPPFLAGS)
 AC_SUBST(LDFLAGS)
@@ -222,7 +210,6 @@ external/Makefile
 lib/Hyena/Makefile
 lib/Hyena.UnitTest/Makefile
 lib/gtk-sharp-beans/Makefile
-lib/libfspot/Makefile
 lib/Makefile
 
 src/Makefile
