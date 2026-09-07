@@ -45,6 +45,11 @@ namespace FSpot.Cms
 				// cmsDoTransform segfaults on a null handle rather than reporting an
 				// error, so a transform lcms declined to build has to fail here.
 				throw new CmsException ("Unable to create the colour transform", e);
+			} finally {
+				// lcmsNET reads the profile handles and drops its own array before the
+				// native call returns; Adjustment.Adjust has no other reference to the
+				// abstract profiles it just built, so nothing else keeps them alive.
+				GC.KeepAlive (profiles);
 			}
 		}
 

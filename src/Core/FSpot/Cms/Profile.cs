@@ -132,6 +132,11 @@ namespace FSpot.Cms
 				return create ();
 			} catch (LcmsNETException e) {
 				throw new CmsException (failure, e);
+			} finally {
+				// lcmsNET hands lcms the raw handles and keeps nothing alive, so the
+				// caller's ToneCurve wrappers are collectable during the native call. The
+				// closure is what still holds them.
+				GC.KeepAlive (create);
 			}
 		}
 

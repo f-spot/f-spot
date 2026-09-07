@@ -119,6 +119,28 @@ namespace FSpot.Cms.UnitTest
 			Assert.AreNotEqual (pixels[0], expected[0], "sRGB red should not survive unchanged into AdobeRGB");
 		}
 
+		// Adjustment.Adjust closes the abstract profiles it generated as soon as the
+		// transform exists -- one 20x20x20 CLUT per editor slider drag, otherwise left to
+		// the finalizer. That is only safe because lcms copies the pipeline into the
+		// transform, so this pins the assumption the disposal rests on.
+		[TestMethod]
+		public void TransformKeepsWorkingAfterItsSourceProfilesAreDisposed ()
+		{
+			var srgb = Profile.CreateStandardRgb ();
+			var desaturate = Profile.CreateAbstract (20, 1.0, 0.0, 0.0, 0.0, -100.0, null,
+				ColorCIExyY.D50, ColorCIExyY.D50);
+			byte[] pixels = { 255, 0, 0, 0, 255, 0, 0, 0, 255, 200, 100, 50 };
+
+			using var transform = new Transform (new[] { srgb, desaturate, srgb }, Format.Rgb8, Format.Rgb8,
+				Intent.Perceptual, 0);
+			byte[] before = Apply (transform, pixels, 3, pixels.Length / 3);
+			desaturate.Dispose ();
+			byte[] after = Apply (transform, pixels, 3, pixels.Length / 3);
+
+			Assert.AreNotEqual (pixels[0], before[0], "the abstract profile should have changed the pixels");
+			Assert.AreSequenceEqual (before, after);
+		}
+
 		[TestMethod]
 		public void TransformWithMismatchedProfilesThrowsCmsExceptionInsteadOfCrashing ()
 		{

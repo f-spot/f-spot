@@ -65,6 +65,21 @@ namespace FSpot.ColorAdjustment
 							   Input.Height);
 			Cms.Profile[] list = GenerateAdjustments ().ToArray ();
 
+			try {
+				return Adjust (final, list);
+			} finally {
+				// GenerateAdjustments builds a fresh abstract profile per call -- a
+				// 20x20x20 CLUT per slider drag -- and lcms has copied everything it needs
+				// by the time the transform exists. The input and destination profiles
+				// belong to the caller; the shared sRGB refuses disposal anyway.
+				foreach (var profile in list)
+					if (profile != InputProfile && profile != DestinationProfile)
+						profile.Dispose ();
+			}
+		}
+
+		Pixbuf Adjust (Pixbuf final, Cms.Profile[] list)
+		{
 			if (Input.HasAlpha) {
 				var input_copy = (Gdk.Pixbuf)Input.Clone ();
 				Pixbuf alpha = PixbufUtils.Flatten (Input);
