@@ -93,7 +93,9 @@ namespace FSpot.Loaders
 			get { return pixbuf_orientation; }
 		}
 
-		bool is_disposed;
+		// Set on the GTK main thread by Dispose and read on the thread pool from the
+		// BeginRead completion in HandleReadDone, so it needs a barrier.
+		volatile bool is_disposed;
 
 		public override void Dispose ()
 		{
