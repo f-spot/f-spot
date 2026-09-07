@@ -1,8 +1,13 @@
 <configuration>
-  <dllmap dll="libXcomposite.dll" target="libXcomposite.so.1"/>
-  <dllmap dll="X11" target="libX11.so.6"/>
+  <!-- X11-only: there is no libX11 or libXcomposite under quartz, and CompositeUtils
+       and GdkUtils only reach these on an X11 display. -->
+  <dllmap dll="libXcomposite.dll" target="libXcomposite.so.1" os="!osx,windows"/>
+  <dllmap dll="X11" target="libX11.so.6" os="!osx,windows"/>
 
-	<dllmap dll="libgdk_pixbuf-2.0-0.dll" target="libgdk_pixbuf-2.0.so.0"/>
+  <!-- PixbufUtils imports this on every platform, so it needs the quartz target too;
+       the names match gtk-sharp's own gdk-sharp.dll.config. -->
+  <dllmap dll="libgdk_pixbuf-2.0-0.dll" target="libgdk_pixbuf-2.0.so.0" os="!osx,windows"/>
+  <dllmap dll="libgdk_pixbuf-2.0-0.dll" target="libgdk_pixbuf-2.0.0.dylib" os="osx"/>
 
 	<dllmap os="!windows,osx" dll="libglib-2.0-0.dll" target="libglib-2.0.so.0"/>
   <dllmap os="osx" dll="libglib-2.0-0.dll" target="libglib-2.0.0.dylib"/>

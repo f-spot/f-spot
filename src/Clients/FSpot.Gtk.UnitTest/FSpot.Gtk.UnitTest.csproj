@@ -16,6 +16,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <!-- The dllmaps under test. Read as data, not compiled. -->
+    <Content Include="..\FSpot.Gtk\f-spot.exe.config.in" Link="f-spot.exe.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MSTest" />
   </ItemGroup>
 
