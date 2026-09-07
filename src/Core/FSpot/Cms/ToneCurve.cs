@@ -31,9 +31,8 @@ namespace FSpot.Cms
 			}
 		}
 
-		/// <summary>
-		/// Gamma table tone curve
-		/// </summary>
+		// Tabulated rather than computed from a gamma, which is what the other
+		// constructor does.
 		public ToneCurve (ushort[] values)
 		{
 			if (values == null)

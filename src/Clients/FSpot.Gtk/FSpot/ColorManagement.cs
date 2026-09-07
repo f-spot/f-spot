@@ -49,10 +49,7 @@ namespace FSpot
 		static Profile x_profile;
 
 		// The profile an X11 colour manager publishes on the root window's _ICC_PROFILE
-		// atom; null wherever there is none, which includes every non-X11 backend. This
-		// used to go through libfspot's f_screen_get_profile, a native function that no
-		// dev or CI build ever resolved, so reading it threw DllNotFoundException into a
-		// dozen UI paths. CompositeUtils reads the same atom in managed code.
+		// atom; null wherever there is none, which includes every non-X11 backend.
 		public static Profile XProfile {
 			get {
 				if (x_profile != null)
