@@ -35,16 +35,16 @@ namespace FSpot.Imaging
 		{
 		}
 
-		public override Stream PixbufStream ()
+		public override Stream OpenImageStream ()
 		{
 			byte[] data = GetEmbeddedJpeg ();
 
-			return data != null ? new MemoryStream (data) : DCRawImageFile.RawPixbufStream (Uri);
+			return data != null ? new MemoryStream (data) : DCRawImageFile.OpenRawImageStream (Uri);
 		}
 
 		byte[] GetEmbeddedJpeg ()
 		{
-			using (Stream stream = base.PixbufStream ()) {
+			using (Stream stream = base.OpenImageStream ()) {
 				stream.Position = 0x54;
 				var data = new byte[24];
 				stream.Read (data, 0, data.Length);

@@ -123,7 +123,7 @@ namespace FSpot.Imaging.UnitTest
 		public void Start_ThrowsIOExceptionWhenTheProgramIsMissing ()
 		{
 			// The GLib spawn this replaced surfaced a failed exec as an IOException;
-			// callers of PixbufStream still expect an IO failure, not a Win32 one.
+			// callers of OpenImageStream still expect an IO failure, not a Win32 one.
 			Assert.ThrowsExactly<IOException> (
 				() => ProcessStream.Start (Path.GetTempPath (), "f-spot-no-such-decoder", new[] { "-c" }));
 		}

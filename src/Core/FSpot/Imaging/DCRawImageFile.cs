@@ -23,12 +23,12 @@ namespace FSpot.Imaging
 		{
 		}
 
-		public override System.IO.Stream PixbufStream ()
+		public override System.IO.Stream OpenImageStream ()
 		{
-			return RawPixbufStream (Uri);
+			return OpenRawImageStream (Uri);
 		}
 
-		internal static System.IO.Stream RawPixbufStream (SafeUri location)
+		internal static System.IO.Stream OpenRawImageStream (SafeUri location)
 		{
 			string path = location.LocalPath;
 			string[] args = { "-h", "-w", "-c", "-t", "0", path };

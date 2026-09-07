@@ -52,9 +52,9 @@ namespace FSpot.Imaging
 			}
 		}
 
-		public override Stream PixbufStream ()
+		public override Stream OpenImageStream ()
 		{
-			return jpeg_data != null ? new MemoryStream (jpeg_data) : DCRawImageFile.RawPixbufStream (Uri);
+			return jpeg_data != null ? new MemoryStream (jpeg_data) : DCRawImageFile.OpenRawImageStream (Uri);
 		}
 	}
 }

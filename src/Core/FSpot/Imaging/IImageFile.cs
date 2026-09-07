@@ -29,6 +29,6 @@ namespace FSpot.Imaging
 		ImageBuffer Load ();
 		Cms.Profile GetProfile ();
 		ImageBuffer Load (int maxWidth, int maxHeight);
-		Stream PixbufStream ();
+		Stream OpenImageStream ();
 	}
 }

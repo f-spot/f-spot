@@ -137,14 +137,14 @@ namespace FSpot.Imaging
 			}
 		}
 
-		public override System.IO.Stream PixbufStream ()
+		public override System.IO.Stream OpenImageStream ()
 		{
 			try {
-				System.IO.Stream file = base.PixbufStream ();
+				System.IO.Stream file = base.OpenImageStream ();
 				file.Position = offset;
 				return file;
 			} catch {
-				return DCRawImageFile.RawPixbufStream (Uri);
+				return DCRawImageFile.OpenRawImageStream (Uri);
 			}
 		}
 	}

@@ -124,7 +124,7 @@ namespace FSpot.Imaging
 		ImageDirectory Root {
 			get {
 				if (root == null) {
-					stream = base.PixbufStream ();
+					stream = base.OpenImageStream ();
 					root = LoadImageDirectory ();
 				}
 				return root;
@@ -154,10 +154,10 @@ namespace FSpot.Imaging
 			return new ImageDirectory (stream, start, end, little);
 		}
 
-		public override Stream PixbufStream ()
+		public override Stream OpenImageStream ()
 		{
 			byte[] data = GetEmbeddedJpeg ();
-			return data != null ? new MemoryStream (data) : DCRawImageFile.RawPixbufStream (Uri);
+			return data != null ? new MemoryStream (data) : DCRawImageFile.OpenRawImageStream (Uri);
 		}
 
 		byte[] GetEmbeddedJpeg ()

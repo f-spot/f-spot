@@ -48,7 +48,7 @@ namespace FSpot.Imaging
 				Orientation = metadata.ImageTag.Orientation;
 		}
 
-		public virtual Stream PixbufStream ()
+		public virtual Stream OpenImageStream ()
 		{
 			Logger.Log.Debug ($"open uri = {Uri}");
 			return new FileStream (Uri.AbsolutePath, FileMode.Open, FileAccess.Read);
@@ -56,7 +56,7 @@ namespace FSpot.Imaging
 
 		public ImageBuffer Load ()
 		{
-			using Stream stream = PixbufStream ();
+			using Stream stream = OpenImageStream ();
 			return ImagingServices.Required.Decode (stream, Orientation);
 		}
 
