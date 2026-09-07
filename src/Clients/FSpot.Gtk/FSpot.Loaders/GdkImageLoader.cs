@@ -17,6 +17,7 @@ using System.Threading;
 
 using FSpot.Imaging;
 using FSpot.Thumbnail;
+using FSpot.Utils;
 
 using Gdk;
 
@@ -44,7 +45,7 @@ namespace FSpot.Loaders
 				return;
 
 			//First, send a thumbnail if we have one
-			if ((thumb = App.Instance.Container.Resolve<IThumbnailService> ().TryLoadThumbnail (uri, ThumbnailSize.Large)) != null) {
+			if ((thumb = App.Instance.Container.Resolve<IThumbnailService> ().TryLoadThumbnail (uri, ThumbnailSize.Large).ToPixbuf ()) != null) {
 				pixbuf_orientation = ImageOrientation.TopLeft;
 				AreaPrepared?.Invoke (this, new AreaPreparedEventArgs (true));
 				AreaUpdated?.Invoke (this, new AreaUpdatedEventArgs (new Rectangle (0, 0, thumb.Width, thumb.Height)));

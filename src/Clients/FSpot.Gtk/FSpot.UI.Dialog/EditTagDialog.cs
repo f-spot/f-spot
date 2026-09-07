@@ -16,6 +16,7 @@ using FSpot.Core;
 using FSpot.Database;
 using FSpot.Resources.Lang;
 using FSpot.Settings;
+using FSpot.Utils;
 
 using Gtk;
 
@@ -43,7 +44,7 @@ namespace FSpot.UI.Dialog
 			orig_name = last_valid_name = t.Name;
 			tag_name_entry.Text = t.Name;
 
-			icon_image.Pixbuf = t.Icon;
+			icon_image.Pixbuf = t.Icon?.ToPixbuf ();
 			if (icon_image.Pixbuf != null && FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screen_profile)) {
 				icon_image.Pixbuf = icon_image.Pixbuf.Copy ();
 				FSpot.ColorManagement.ApplyProfile (icon_image.Pixbuf, screen_profile);
@@ -119,16 +120,16 @@ namespace FSpot.UI.Dialog
 					tag.ThemeIconName = dialog.ThemeIconName;
 				} else {
 					tag.ThemeIconName = null;
-					tag.Icon = dialog.PreviewPixbuf;
+					tag.Icon = dialog.PreviewPixbuf.ToImageBuffer ();
 				}
 			else if (response == (ResponseType)1)
 				tag.Icon = null;
 
 			if (tag.Icon != null && FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screen_profile)) {
-				icon_image.Pixbuf = tag.Icon.Copy ();
+				icon_image.Pixbuf = tag.Icon.ToPixbuf ();
 				FSpot.ColorManagement.ApplyProfile (icon_image.Pixbuf, screen_profile);
 			} else
-				icon_image.Pixbuf = tag.Icon;
+				icon_image.Pixbuf = tag.Icon?.ToPixbuf ();
 
 			dialog.Destroy ();
 		}
@@ -161,7 +162,7 @@ namespace FSpot.UI.Dialog
 
 				i++;
 				string categoryName = category.Name;
-				Gdk.Pixbuf categoryImage = category.Icon;
+				Gdk.Pixbuf categoryImage = category.Icon?.ToPixbuf ();
 
 				store.AppendValues (new object[] {
 					categoryImage,

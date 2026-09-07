@@ -13,6 +13,7 @@ using System.IO;
 
 using FSpot.Filters;
 using FSpot.Thumbnail;
+using FSpot.Utils;
 
 
 
@@ -82,7 +83,7 @@ namespace FSpot.Tools.LiveWebGallery
 
 		protected override void SendImage (Photo photo, Stream dest)
 		{
-			Gdk.Pixbuf thumb = App.Instance.Container.Resolve<IThumbnailService> ().GetThumbnail (photo.DefaultVersion.Uri, ThumbnailSize.Large);
+			using Gdk.Pixbuf thumb = App.Instance.Container.Resolve<IThumbnailService> ().GetThumbnail (photo.DefaultVersion.Uri, ThumbnailSize.Large).ToPixbuf ();
 			byte[] buf = thumb.SaveToBuffer ("png");
 			SendHeadersAndStartContent (dest, "Content-Type: " + MimeTypeForExt (".png"),
 											 "Content-Length: " + buf.Length,

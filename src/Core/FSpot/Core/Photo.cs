@@ -218,7 +218,7 @@ namespace FSpot
 
 
 		//FIXME: won't work on non file uris
-		public uint SaveVersion (Gdk.Pixbuf buffer, bool create_version)
+		public uint SaveVersion (ImageBuffer buffer, bool create_version)
 		{
 			uint version = DefaultVersionId;
 			using (var img = imageFileFactory.Create (DefaultVersion.Uri)) {
@@ -234,7 +234,8 @@ namespace FSpot
 				try {
 					var versionUri = VersionUri (version);
 
-					PixbufUtils.CreateDerivedVersion (DefaultVersion.Uri, versionUri, 95, buffer);
+					using var pixbuf = buffer.ToPixbuf ();
+					PixbufUtils.CreateDerivedVersion (DefaultVersion.Uri, versionUri, 95, pixbuf);
 					GetVersion (version).ImportMD5 = HashUtils.GenerateMD5 (VersionUri (version));
 					DefaultVersionId = version;
 				} catch (Exception e) {

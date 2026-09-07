@@ -15,6 +15,7 @@ using System;
 
 using FSpot.FileSystem;
 using FSpot.Imaging;
+using FSpot.Utils;
 
 using Gdk;
 
@@ -66,7 +67,7 @@ namespace FSpot.Thumbnail
 			var pixels = size == ThumbnailSize.Normal ? 128 : 256;
 			Pixbuf pixbuf;
 			try {
-				pixbuf = imageFile.Load ();
+				pixbuf = imageFile.Load ().ToPixbuf ();
 			} catch (Exception e) {
 				Logger.Log.Debug ($"Failed loading image for thumbnailing: {imageFile.Uri}");
 				Logger.Log.Debug (e, "");

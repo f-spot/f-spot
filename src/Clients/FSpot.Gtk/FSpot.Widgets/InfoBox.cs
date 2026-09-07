@@ -571,7 +571,7 @@ namespace FSpot.Widgets
 			try {
 				if (hint == null)
 					using (var img = App.Instance.Container.Resolve<IImageFileFactory> ().Create (photo.DefaultVersion.Uri)) {
-						hint = img.Load (256, 256);
+						hint = img.Load (256, 256).ToPixbuf ();
 					}
 
 				histogram_image.Pixbuf = histogram.Generate (hint, max);

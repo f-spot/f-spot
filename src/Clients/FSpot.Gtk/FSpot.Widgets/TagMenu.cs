@@ -44,7 +44,7 @@ namespace FSpot.Widgets
 			{
 				Value = t;
 				if (t.Icon != null) {
-					Image = new Image (t.SizedIcon);
+					Image = new Image (t.SizedIcon.ToPixbuf ());
 					// FIXME:  Where did this method go?
 					//this.SetAlwaysShowImage (true);
 				}

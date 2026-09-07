@@ -113,7 +113,7 @@ namespace FSpot
 					using (var img = App.Instance.Container.Resolve<IImageFileFactory> ().Create (selected_photos[p_index].DefaultVersion.Uri)) {
 						Gdk.Pixbuf pixbuf;
 						try {
-							pixbuf = img.Load ((int)mx, (int)my);
+							pixbuf = img.Load ((int)mx, (int)my).ToPixbuf ();
 							if (pixbuf == null) {
 								Logger.Log.Error ("Not enough memory for printing " + selected_photos[p_index].DefaultVersion.Uri);
 								continue;

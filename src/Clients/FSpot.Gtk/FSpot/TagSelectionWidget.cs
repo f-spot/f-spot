@@ -172,12 +172,12 @@ namespace FSpot
 			if (tag.SizedIcon != null) {
 				if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screen_profile)) {
 					//FIXME, we're leaking a pixbuf here
-					using (Gdk.Pixbuf temp = tag.SizedIcon.Copy ()) {
+					using (Gdk.Pixbuf temp = tag.SizedIcon.ToPixbuf ()) {
 						FSpot.ColorManagement.ApplyProfile (temp, screen_profile);
 						(renderer as CellRendererPixbuf).Pixbuf = temp;
 					}
 				} else
-					(renderer as CellRendererPixbuf).Pixbuf = tag.SizedIcon;
+					(renderer as CellRendererPixbuf).Pixbuf = tag.SizedIcon.ToPixbuf ();
 			} else
 				(renderer as CellRendererPixbuf).Pixbuf = empty_pixbuf;
 		}
@@ -573,7 +573,7 @@ namespace FSpot
 
 			bool use_icon = false; ;
 			while (len-- > 0) {
-				Pixbuf thumbnail = tags[len].Icon;
+				Pixbuf thumbnail = tags[len].Icon?.ToPixbuf ();
 
 				if (thumbnail != null) {
 					Pixbuf small = thumbnail.ScaleToMaxSize (size, size);

@@ -42,6 +42,7 @@ using System.Linq;
 using FSpot.Core;
 using FSpot.Resources.Lang;
 using FSpot.Settings;
+using FSpot.Utils;
 
 namespace FSpot.Exporters.Folder
 {
@@ -619,7 +620,7 @@ namespace FSpot.Exporters.Folder
 
 		public void SaveTagIcon (Tag tag)
 		{
-			Gdk.Pixbuf icon = tag.Icon;
+			Gdk.Pixbuf icon = tag.Icon.ToPixbuf ();
 			Gdk.Pixbuf scaled = null;
 			if (icon.Height != 52 || icon.Width != 52) {
 				scaled = icon.ScaleSimple (52, 52, Gdk.InterpType.Bilinear);

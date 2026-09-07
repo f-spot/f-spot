@@ -26,9 +26,9 @@ namespace FSpot.Imaging
 		SafeUri Uri { get; }
 		ImageOrientation Orientation { get; }
 
-		Gdk.Pixbuf Load ();
+		ImageBuffer Load ();
 		Cms.Profile GetProfile ();
-		Gdk.Pixbuf Load (int maxWidth, int maxHeight);
+		ImageBuffer Load (int maxWidth, int maxHeight);
 		Stream PixbufStream ();
 	}
 }

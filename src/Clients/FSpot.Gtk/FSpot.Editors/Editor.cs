@@ -12,6 +12,7 @@
 using System;
 
 using FSpot.Imaging;
+using FSpot.Utils;
 
 using Gdk;
 
@@ -65,7 +66,7 @@ namespace FSpot.Editors
 		{
 			// FIXME: We might get this value from the PhotoImageView.
 			using (var img = App.Instance.Container.Resolve<IImageFileFactory> ().Create (photo.DefaultVersion.Uri)) {
-				photo_pixbuf = img.Load ();
+				photo_pixbuf = img.Load ().ToPixbuf ();
 				photo_profile = img.GetProfile ();
 			}
 		}
@@ -114,7 +115,7 @@ namespace FSpot.Editors
 				input.Dispose ();
 
 				bool create_version = photo.DefaultVersion.IsProtected;
-				photo.SaveVersion (edited, create_version);
+				photo.SaveVersion (edited.ToImageBuffer (), create_version);
 				photo.Changes.DataChanged = true;
 				App.Instance.Database.Photos.Commit (photo);
 

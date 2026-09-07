@@ -11,6 +11,7 @@
 
 using FSpot.Core;
 using FSpot.Settings;
+using FSpot.Utils;
 
 using Gdk;
 
@@ -65,11 +66,11 @@ namespace FSpot.Widgets
 				if (t == null)
 					continue;
 
-				Pixbuf icon = t.Icon;
+				Pixbuf icon = t.Icon?.ToPixbuf ();
 
 				Tag tag_iter = t.Category;
 				while (icon == null && tag_iter != App.Instance.Database.Tags.RootCategory && tag_iter != null) {
-					icon = tag_iter.Icon;
+					icon = tag_iter.Icon?.ToPixbuf ();
 					tag_iter = tag_iter.Category;
 				}
 

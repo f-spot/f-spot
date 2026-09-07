@@ -21,6 +21,7 @@ using Hyena;
 using Hyena.Widgets;
 using FSpot.Core;
 using FSpot.Thumbnail;
+using FSpot.Utils;
 using FSpot.UI.Dialog;
 using FSpot.Widgets;
 
@@ -195,7 +196,7 @@ namespace FSpot.Exporters.Facebook
 				tag_image.Destroy ();
 			}
 
-			using (Gdk.Pixbuf data = App.Instance.Container.Resolve<IThumbnailService> ().GetThumbnail (item.DefaultVersion.Uri, ThumbnailSize.Large)) {
+			using (Gdk.Pixbuf data = App.Instance.Container.Resolve<IThumbnailService> ().GetThumbnail (item.DefaultVersion.Uri, ThumbnailSize.Large).ToPixbuf ()) {
 				tag_image_height = data.Height;
 				tag_image_width = data.Width;
 				tag_image = new Gtk.Image (data);

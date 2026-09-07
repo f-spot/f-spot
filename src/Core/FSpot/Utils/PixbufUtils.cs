@@ -14,6 +14,8 @@
 using System;
 using System.Runtime.InteropServices;
 
+using FSpot.Imaging;
+
 using Gdk;
 
 using Hyena;
@@ -24,6 +26,24 @@ namespace FSpot.Utils
 {
 	public static class PixbufUtils
 	{
+		public static ImageBuffer ToImageBuffer (this Pixbuf pixbuf)
+		{
+			if (pixbuf == null)
+				return null;
+			int length = pixbuf.Rowstride * pixbuf.Height;
+			var pixels = new byte[length];
+			Marshal.Copy (pixbuf.Pixels, pixels, 0, length);
+			return new ImageBuffer (pixbuf.Width, pixbuf.Height, pixbuf.HasAlpha, pixbuf.Rowstride, pixels);
+		}
+
+		public static Pixbuf ToPixbuf (this ImageBuffer buffer)
+		{
+			if (buffer == null)
+				return null;
+			using var view = new Pixbuf (buffer.Pixels, Colorspace.Rgb, buffer.HasAlpha, 8, buffer.Width, buffer.Height, buffer.Rowstride);
+			return view.Copy ();
+		}
+
 		public static ImageOrientation Rotate270 (ImageOrientation orientation)
 		{
 			if (orientation == ImageOrientation.None) {

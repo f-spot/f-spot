@@ -892,7 +892,7 @@ namespace FSpot
 					icon = null;
 				}
 
-				t.Icon = icon;
+				t.Icon = icon.ToImageBuffer ();
 				Database.Tags.Commit (t);
 			}
 		}

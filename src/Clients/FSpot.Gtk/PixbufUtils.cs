@@ -495,7 +495,7 @@ namespace FSpot
 
 			// Else make a derived copy with metadata copied
 			using var img = App.Instance.Container.Resolve<IImageFileFactory> ().Create (source);
-			using var pixbuf = img.Load ();
+			using var pixbuf = img.Load ().ToPixbuf ();
 
 			Utils.PixbufUtils.CreateDerivedVersion (source, destination, jpegQuality, pixbuf);
 		}

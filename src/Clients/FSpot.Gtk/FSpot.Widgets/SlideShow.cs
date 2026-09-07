@@ -125,7 +125,7 @@ namespace FSpot.Widgets
 
 			using (var img = App.Instance.Container.Resolve<IImageFileFactory> ().Create (item.Current.DefaultVersion.Uri)) {
 				try {
-					using (var pb = img.Load ()) {
+					using (var pb = img.Load ().ToPixbuf ()) {
 						double scale = Math.Min ((double)Allocation.Width / (double)pb.Width, (double)Allocation.Height / (double)pb.Height);
 						int w = (int)(pb.Width * scale);
 						int h = (int)(pb.Height * scale);

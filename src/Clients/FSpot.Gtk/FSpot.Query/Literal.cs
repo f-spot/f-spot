@@ -23,6 +23,7 @@ using System.Text;
 
 using FSpot.Core;
 using FSpot.Resources.Lang;
+using FSpot.Utils;
 
 using Gdk;
 
@@ -164,10 +165,10 @@ namespace FSpot.Query
 					return normal_icon;
 
 				Pixbuf scaled = null;
-				scaled = Tag.Icon;
+				scaled = Tag.Icon?.ToPixbuf ();
 
 				for (Category category = Tag.Category; category != null && scaled == null; category = category.Category) {
-					scaled = category.Icon;
+					scaled = category.Icon?.ToPixbuf ();
 				}
 
 				if (scaled == null)

@@ -15,9 +15,7 @@
 
 using System;
 
-using FSpot.Utils;
-
-using Gdk;
+using FSpot.Imaging;
 
 using Hyena;
 
@@ -32,15 +30,13 @@ namespace FSpot
 		/// </summary>
 		public int Order { get; set; }
 
-		Pixbuf result;
+		ImageBuffer result;
 
 		/// <summary>
-		/// The pixbuf obtained from the operation.
+		/// Pixel buffer obtained from the operation.
 		/// </summary>
-		public Pixbuf Result {
-			get {
-				return result?.ShallowCopy ();
-			}
+		public ImageBuffer Result {
+			get { return result; }
 			set { result = value; }
 		}
 
@@ -70,11 +66,6 @@ namespace FSpot
 
 		protected virtual void Dispose (bool disposing)
 		{
-			if (disposing) {
-				if (result != null) {
-					result.Dispose ();
-				}
-			}
 		}
 	}
 }

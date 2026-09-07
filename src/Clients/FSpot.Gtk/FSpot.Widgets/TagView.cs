@@ -17,6 +17,7 @@ using System;
 
 using FSpot.Core;
 using FSpot.Settings;
+using FSpot.Utils;
 
 using Gdk;
 
@@ -101,11 +102,11 @@ namespace FSpot.Widgets
 			foreach (Tag t in tags) {
 				names[i++] = t.Name;
 
-				Pixbuf icon = t.Icon;
+				Pixbuf icon = t.Icon?.ToPixbuf ();
 
 				Category category = t.Category;
 				while (icon == null && category != null) {
-					icon = category.Icon;
+					icon = category.Icon?.ToPixbuf ();
 					category = category.Category;
 				}
 

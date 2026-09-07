@@ -14,6 +14,7 @@ using System;
 using FSpot.Editors;
 using FSpot.Imaging;
 using FSpot.Resources.Lang;
+using FSpot.Utils;
 
 using Gdk;
 
@@ -42,7 +43,7 @@ namespace FSpot.Addins.Editors
 		{
 			int max;
 			using (var img = App.Instance.Container.Resolve<IImageFileFactory> ().Create (State.Items[0].DefaultVersion.Uri))
-			using (Pixbuf p = img.Load ())
+			using (Pixbuf p = img.Load ().ToPixbuf ())
 				max = Math.Max (p.Width, p.Height);
 
 			size = new SpinButton (128, max, 10);

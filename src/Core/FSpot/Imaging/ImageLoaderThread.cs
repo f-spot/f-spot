@@ -151,7 +151,7 @@ namespace FSpot.Imaging
 
 		protected virtual void ProcessRequest (RequestItem request)
 		{
-			Pixbuf orig_image;
+			ImageBuffer orig_image;
 			try {
 				using (var img = imageFileFactory.Create (request.Uri)) {
 					if (request.Width > 0) {

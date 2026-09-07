@@ -15,6 +15,7 @@
 
 using System;
 
+using FSpot.Imaging;
 using FSpot.Settings;
 using FSpot.Utils;
 
@@ -46,20 +47,20 @@ namespace FSpot.Core
 			}
 		}
 
-		Pixbuf icon;
-		public Pixbuf Icon {
+		ImageBuffer icon;
+		public ImageBuffer Icon {
 			get {
 				if (icon == null && ThemeIconName != null) {
 					cached_icon_size = IconSize.Hidden;
-					icon = GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, ThemeIconName, 48, (Gtk.IconLookupFlags)0);
+					using var pixbuf = GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, ThemeIconName, 48, (Gtk.IconLookupFlags)0);
+					icon = pixbuf.ToImageBuffer ();
 				}
 				return icon;
 			}
 			set {
 				ThemeIconName = null;
-				if (icon != null)
-					icon.Dispose ();
 				icon = value;
+				cached_icon = null;
 				cached_icon_size = IconSize.Hidden;
 				IconWasCleared = value == null;
 			}
@@ -67,24 +68,22 @@ namespace FSpot.Core
 
 		public static IconSize TagIconSize { get; set; } = IconSize.Large;
 
-		Pixbuf cached_icon;
+		ImageBuffer cached_icon;
 		IconSize cached_icon_size = IconSize.Hidden;
 
 		// We can use a SizedIcon everywhere we were using an Icon
-		public Pixbuf SizedIcon {
+		public ImageBuffer SizedIcon {
 			get {
 				if (TagIconSize == IconSize.Hidden) //Hidden
 					return null;
 				if (TagIconSize == cached_icon_size)
 					return cached_icon;
 				if (ThemeIconName != null) { //Theme icon
-					if (cached_icon != null)
-						cached_icon.Dispose ();
 					try {
-						cached_icon = GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, ThemeIconName, (int)TagIconSize, (Gtk.IconLookupFlags)0);
+						using var pixbuf = GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, ThemeIconName, (int)TagIconSize, (Gtk.IconLookupFlags)0);
 
-						if (Math.Max (cached_icon.Width, cached_icon.Height) <= (int)TagIconSize)
-							return cached_icon;
+						if (Math.Max (pixbuf.Width, pixbuf.Height) <= (int)TagIconSize)
+							return cached_icon = pixbuf.ToImageBuffer ();
 					} catch (Exception) {
 						Console.WriteLine ($"missing theme icon: {ThemeIconName}");
 						return null;
@@ -94,9 +93,9 @@ namespace FSpot.Core
 					return null;
 
 				if (Math.Max (Icon.Width, Icon.Height) >= (int)TagIconSize) { //Don't upscale
-					if (cached_icon != null)
-						cached_icon.Dispose ();
-					cached_icon = Icon.ScaleSimple ((int)TagIconSize, (int)TagIconSize, InterpType.Bilinear);
+					using var source = Icon.ToPixbuf ();
+					using var scaled = source.ScaleSimple ((int)TagIconSize, (int)TagIconSize, InterpType.Bilinear);
+					cached_icon = scaled.ToImageBuffer ();
 					cached_icon_size = TagIconSize;
 					return cached_icon;
 				}
@@ -154,15 +153,8 @@ namespace FSpot.Core
 			disposed = true;
 
 			if (disposing) {
-				// free managed resources
-				if (icon != null) {
-					icon.Dispose ();
-					icon = null;
-				}
-				if (cached_icon != null) {
-					cached_icon.Dispose ();
-					cached_icon = null;
-				}
+				icon = null;
+				cached_icon = null;
 			}
 			// free unmanaged resources
 		}

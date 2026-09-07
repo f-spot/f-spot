@@ -534,17 +534,17 @@ namespace FSpot.Widgets
 			}
 
 			if (current == null) {
-				var pixbuf = App.Instance.Container.Resolve<IThumbnailService> ().GetThumbnail (uri, ThumbnailSize.Large);
-				if (pixbuf == null) {
+				var buffer = App.Instance.Container.Resolve<IThumbnailService> ().GetThumbnail (uri, ThumbnailSize.Large);
+				if (buffer == null) {
 					App.Instance.Container.Resolve<IThumbnailLoader> ().Request (uri, ThumbnailSize.Large, 0);
 					current = FSpotConfiguration.IconTheme.LoadIcon ("gtk-missing-image", ThumbSize, (IconLookupFlags)0);
 				} else {
+					using var pixbuf = buffer.ToPixbuf ();
 					if (SquaredThumbs) {
 						current = PixbufUtils.IconFromPixbuf (pixbuf, ThumbSize);
 					} else {
 						current = pixbuf.ScaleSimple (ThumbSize, ThumbSize, InterpType.Nearest);
 					}
-					pixbuf.Dispose ();
 					thumb_cache.Add (uri, current);
 				}
 			}

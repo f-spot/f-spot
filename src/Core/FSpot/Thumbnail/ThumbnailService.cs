@@ -16,6 +16,8 @@ using System.IO;
 using System.Linq;
 
 using FSpot.FileSystem;
+using FSpot.Imaging;
+using FSpot.Utils;
 
 using Gdk;
 
@@ -56,24 +58,26 @@ namespace FSpot.Thumbnail
 
 		#region public API
 
-		public Pixbuf GetThumbnail (SafeUri fileUri, ThumbnailSize size)
+		public ImageBuffer GetThumbnail (SafeUri fileUri, ThumbnailSize size)
 		{
 			var thumbnailUri = GetThumbnailPath (fileUri, size);
-			var thumbnail = LoadThumbnail (thumbnailUri);
+			using var thumbnail = LoadThumbnail (thumbnailUri);
 			if (IsValid (fileUri, thumbnail))
-				return thumbnail;
+				return thumbnail.ToImageBuffer ();
 			IThumbnailer thumbnailer = thumbnailerFactory.GetThumbnailerForUri (fileUri);
 			if (thumbnailer == null)
 				return null;
-			return !thumbnailer.TryCreateThumbnail (thumbnailUri, size)
-				? null
-				: LoadThumbnail (thumbnailUri);
+			if (!thumbnailer.TryCreateThumbnail (thumbnailUri, size))
+				return null;
+			using var created = LoadThumbnail (thumbnailUri);
+			return created.ToImageBuffer ();
 		}
 
-		public Pixbuf TryLoadThumbnail (SafeUri fileUri, ThumbnailSize size)
+		public ImageBuffer TryLoadThumbnail (SafeUri fileUri, ThumbnailSize size)
 		{
 			var thumbnailUri = GetThumbnailPath (fileUri, size);
-			return LoadThumbnail (thumbnailUri);
+			using var thumbnail = LoadThumbnail (thumbnailUri);
+			return thumbnail.ToImageBuffer ();
 		}
 
 		public void DeleteThumbnails (SafeUri fileUri)

@@ -14,6 +14,7 @@
 using System;
 
 using FSpot.Resources.Lang;
+using FSpot.Utils;
 using FSpot.UI.Dialog;
 
 using Gtk;
@@ -80,7 +81,7 @@ namespace FSpot.Widgets
 
 				bool create_version = photo.DefaultVersion.IsProtected;
 
-				photo.SaveVersion (final, create_version);
+				photo.SaveVersion (final.ToImageBuffer (), create_version);
 				photo.Changes.DataChanged = true;
 				App.Instance.Database.Photos.Commit (photo);
 			} catch (Exception e) {

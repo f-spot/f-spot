@@ -186,7 +186,7 @@ namespace FSpot
 		{
 			Gdk.Pixbuf loaded = null;
 			try {
-				loaded = App.Instance.Container.Resolve<IThumbnailService> ().GetThumbnail (entry.Uri, ThumbnailSize.Large);
+				loaded = App.Instance.Container.Resolve<IThumbnailService> ().GetThumbnail (entry.Uri, ThumbnailSize.Large).ToPixbuf ();
 				Update (entry, loaded);
 			} catch (GLib.GException) {
 				if (loaded != null)

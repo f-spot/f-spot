@@ -54,7 +54,7 @@ namespace FSpot.UI.Dialog
 			TransientFor = parent_window;
 			Title = string.Format (Strings.EditIconForTagX, t.Name);
 
-			preview_pixbuf = t.Icon;
+			preview_pixbuf = t.Icon?.ToPixbuf ();
 			if (preview_pixbuf != null && ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screen_profile)) {
 				preview_image.Pixbuf = preview_pixbuf.Copy ();
 				ColorManagement.ApplyProfile (preview_image.Pixbuf, screen_profile);
@@ -162,7 +162,7 @@ namespace FSpot.UI.Dialog
 		{
 			try {
 				using (var img = App.Instance.Container.Resolve<IImageFileFactory> ().Create (new SafeUri (external_photo_chooser.Uri, true))) {
-					using (Gdk.Pixbuf external_image = img.Load ()) {
+					using (Gdk.Pixbuf external_image = img.Load ().ToPixbuf ()) {
 						PreviewPixbuf = PixbufUtils.TagIconFromPixbuf (external_image);
 					}
 				}

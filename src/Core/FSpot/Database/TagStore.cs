@@ -81,8 +81,10 @@ namespace FSpot.Database
 				tag.Icon = null;
 			else if (iconString.StartsWith (STOCK_ICON_DB_PREFIX, StringComparison.Ordinal))
 				tag.ThemeIconName = iconString.Substring (STOCK_ICON_DB_PREFIX.Length);
-			else
-				tag.Icon = GdkUtils.Deserialize (Convert.FromBase64String (iconString));
+			else {
+				using var pixbuf = GdkUtils.Deserialize (Convert.FromBase64String (iconString));
+				tag.Icon = pixbuf.ToImageBuffer ();
+			}
 		}
 
 		public Tag GetTagByName (string name)
@@ -328,7 +330,8 @@ namespace FSpot.Database
 				return null;
 			}
 
-			var data = GdkUtils.Serialize (tag.Icon);
+			using var pixbuf = tag.Icon.ToPixbuf ();
+			var data = GdkUtils.Serialize (pixbuf);
 			return Convert.ToBase64String (data);
 		}
 

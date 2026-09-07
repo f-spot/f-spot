@@ -66,19 +66,20 @@ namespace FSpot.Imaging
 			return rotated;
 		}
 
-		public Gdk.Pixbuf Load ()
+		public ImageBuffer Load ()
 		{
 			using Stream stream = PixbufStream ();
 
 			var orig = new Gdk.Pixbuf (stream);
-			return TransformAndDispose (orig);
+			using var rotated = TransformAndDispose (orig);
+			return rotated.ToImageBuffer ();
 		}
 
-		public Gdk.Pixbuf Load (int maxWidth, int maxHeight)
+		public ImageBuffer Load (int maxWidth, int maxHeight)
 		{
-			using var full = Load ();
-
-			return full.ScaleToMaxSize (maxWidth, maxHeight);
+			using var full = Load ().ToPixbuf ();
+			using var scaled = full.ScaleToMaxSize (maxWidth, maxHeight);
+			return scaled.ToImageBuffer ();
 		}
 
 		// FIXME this need to have an intent just like the loading stuff.
