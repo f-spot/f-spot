@@ -174,8 +174,11 @@ namespace FSpot.Query
 				if (scaled == null)
 					return null;
 
-				if (scaled.Width != ICON_SIZE)
-					scaled = scaled.ScaleSimple (ICON_SIZE, ICON_SIZE, InterpType.Bilinear);
+				if (scaled.Width != ICON_SIZE) {
+					Pixbuf resized = scaled.ScaleSimple (ICON_SIZE, ICON_SIZE, InterpType.Bilinear);
+					scaled.Dispose ();
+					scaled = resized;
+				}
 
 				normal_icon = scaled;
 

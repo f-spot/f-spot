@@ -77,29 +77,32 @@ namespace FSpot.Widgets
 				if (icon == null)
 					continue;
 
-				if (tag_bounds.Intersect (expose_area, out var region)) {
-					Pixbuf scaled_icon;
-					if (icon.Width == tag_bounds.Width) {
-						scaled_icon = icon;
-					} else {
-						scaled_icon = icon.ScaleSimple (tag_bounds.Width,
-								tag_bounds.Height,
-								InterpType.Bilinear);
+				try {
+					if (tag_bounds.Intersect (expose_area, out var region)) {
+						Pixbuf scaled_icon;
+						if (icon.Width == tag_bounds.Width) {
+							scaled_icon = icon;
+						} else {
+							scaled_icon = icon.ScaleSimple (tag_bounds.Width,
+									tag_bounds.Height,
+									InterpType.Bilinear);
+						}
+
+						if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screen_profile))
+							FSpot.ColorManagement.ApplyProfile (scaled_icon, screen_profile);
+
+						scaled_icon.RenderToDrawable (window, widget.Style.WhiteGC,
+								region.X - tag_bounds.X,
+								region.Y - tag_bounds.Y,
+								region.X, region.Y,
+								region.Width, region.Height,
+								RgbDither.None, region.X, region.Y);
+
+						if (scaled_icon != icon)
+							scaled_icon.Dispose ();
 					}
-
-					if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screen_profile))
-						FSpot.ColorManagement.ApplyProfile (scaled_icon, screen_profile);
-
-					scaled_icon.RenderToDrawable (window, widget.Style.WhiteGC,
-							region.X - tag_bounds.X,
-							region.Y - tag_bounds.Y,
-							region.X, region.Y,
-							region.Width, region.Height,
-							RgbDither.None, region.X, region.Y);
-
-					if (scaled_icon != icon) {
-						scaled_icon.Dispose ();
-					}
+				} finally {
+					icon.Dispose ();
 				}
 
 				tag_bounds.X += tag_bounds.Width + tag_icon_hspacing;

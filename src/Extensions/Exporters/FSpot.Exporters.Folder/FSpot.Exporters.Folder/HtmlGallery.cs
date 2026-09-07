@@ -620,12 +620,10 @@ namespace FSpot.Exporters.Folder
 
 		public void SaveTagIcon (Tag tag)
 		{
-			Gdk.Pixbuf icon = tag.Icon.ToPixbuf ();
-			Gdk.Pixbuf scaled = null;
-			if (icon.Height != 52 || icon.Width != 52) {
-				scaled = icon.ScaleSimple (52, 52, Gdk.InterpType.Bilinear);
-			} else
-				scaled = icon.Copy ();
+			using var icon = tag.Icon.ToPixbuf ();
+			Gdk.Pixbuf scaled = icon.Height != 52 || icon.Width != 52
+				? icon.ScaleSimple (52, 52, Gdk.InterpType.Bilinear)
+				: icon.Copy ();
 			scaled.Save (SubdirPath ("tags", TagName (tag)), "png");
 			scaled.Dispose ();
 		}

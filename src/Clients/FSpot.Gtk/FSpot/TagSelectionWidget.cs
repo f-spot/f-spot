@@ -170,14 +170,11 @@ namespace FSpot
 			SetBackground (renderer, tag);
 
 			if (tag.SizedIcon != null) {
-				if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screen_profile)) {
-					//FIXME, we're leaking a pixbuf here
-					using (Gdk.Pixbuf temp = tag.SizedIcon.ToPixbuf ()) {
+				using (Gdk.Pixbuf temp = tag.SizedIcon.ToPixbuf ()) {
+					if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screen_profile))
 						FSpot.ColorManagement.ApplyProfile (temp, screen_profile);
-						(renderer as CellRendererPixbuf).Pixbuf = temp;
-					}
-				} else
-					(renderer as CellRendererPixbuf).Pixbuf = tag.SizedIcon.ToPixbuf ();
+					(renderer as CellRendererPixbuf).Pixbuf = temp;
+				}
 			} else
 				(renderer as CellRendererPixbuf).Pixbuf = empty_pixbuf;
 		}
@@ -573,18 +570,18 @@ namespace FSpot
 
 			bool use_icon = false; ;
 			while (len-- > 0) {
-				Pixbuf thumbnail = tags[len].Icon?.ToPixbuf ();
+				using (Pixbuf thumbnail = tags[len].Icon?.ToPixbuf ()) {
+					if (thumbnail != null) {
+						Pixbuf small = thumbnail.ScaleToMaxSize (size, size);
 
-				if (thumbnail != null) {
-					Pixbuf small = thumbnail.ScaleToMaxSize (size, size);
+						int x = len * (size / 2) + (size - small.Width) / 2;
+						int y = len * (size / 2) + (size - small.Height) / 2;
 
-					int x = len * (size / 2) + (size - small.Width) / 2;
-					int y = len * (size / 2) + (size - small.Height) / 2;
+						small.Composite (container, x, y, small.Width, small.Height, x, y, 1.0, 1.0, Gdk.InterpType.Nearest, 0xff);
+						small.Dispose ();
 
-					small.Composite (container, x, y, small.Width, small.Height, x, y, 1.0, 1.0, Gdk.InterpType.Nearest, 0xff);
-					small.Dispose ();
-
-					use_icon = true;
+						use_icon = true;
+					}
 				}
 			}
 

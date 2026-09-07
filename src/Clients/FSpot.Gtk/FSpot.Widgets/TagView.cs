@@ -113,18 +113,25 @@ namespace FSpot.Widgets
 				if (icon == null)
 					continue;
 
-				Pixbuf scaled_icon;
-				if (icon.Width == thumbnail_size) {
-					scaled_icon = icon;
-				} else {
-					scaled_icon = icon.ScaleSimple (thumbnail_size, thumbnail_size, InterpType.Bilinear);
-				}
-				if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screen_profile))
-					FSpot.ColorManagement.ApplyProfile (scaled_icon, screen_profile);
+				try {
+					Pixbuf scaled_icon;
+					if (icon.Width == thumbnail_size) {
+						scaled_icon = icon;
+					} else {
+						scaled_icon = icon.ScaleSimple (thumbnail_size, thumbnail_size, InterpType.Bilinear);
+					}
+					if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screen_profile))
+						FSpot.ColorManagement.ApplyProfile (scaled_icon, screen_profile);
 
-				scaled_icon.RenderToDrawable (GdkWindow, Style.WhiteGC,
-								  0, 0, tag_x, tag_y, thumbnail_size, thumbnail_size,
-								  RgbDither.None, tag_x, tag_y);
+					scaled_icon.RenderToDrawable (GdkWindow, Style.WhiteGC,
+									  0, 0, tag_x, tag_y, thumbnail_size, thumbnail_size,
+									  RgbDither.None, tag_x, tag_y);
+
+					if (scaled_icon != icon)
+						scaled_icon.Dispose ();
+				} finally {
+					icon.Dispose ();
+				}
 				tag_x += thumbnail_size + TAG_ICON_VSPACING;
 			}
 
