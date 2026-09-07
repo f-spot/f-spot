@@ -184,3 +184,6 @@ src/Core/FSpot/FSpot.dll.config
 
 # Avalonia generated output lands in obj/; keep this for previewer/local caches
 .avalonia/
+
+# Claude Code: per-developer state (agent worktrees, local settings), not project config.
+.claude/

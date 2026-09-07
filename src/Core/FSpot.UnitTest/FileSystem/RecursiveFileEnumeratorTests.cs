@@ -18,7 +18,6 @@ using Hyena;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using Shouldly;
 
 namespace FSpot.UnitTest.FileSystem
 {
@@ -39,8 +38,7 @@ namespace FSpot.UnitTest.FileSystem
 		{
 			var result = new RecursiveFileEnumerator (GetTestDataDir (), new DotNetFileSystem ()).ToArray ();
 
-			result.Length.ShouldBe (4);
-			result.ShouldNotBeNull ();
+			Assert.HasCount (4, result);
 		}
 	}
 }

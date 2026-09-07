@@ -17,7 +17,6 @@ using Newtonsoft.Json.Linq;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using Shouldly;
 
 namespace FSpot.Preferences.UnitTest
 {
@@ -62,7 +61,7 @@ namespace FSpot.Preferences.UnitTest
 			jsonBackend.Set (key, v);
 			jsonBackend.SaveSettings ();
 			AssertSettingsFileWritten ();
-			LoadSettings (TestSettingsFile)[key].ToObject<string> ().ShouldBe (v);
+			Assert.AreEqual (v, LoadSettings (TestSettingsFile)[key].ToObject<string> ());
 		}
 
 		[TestMethod]
@@ -72,7 +71,7 @@ namespace FSpot.Preferences.UnitTest
 			jsonBackend.Set (key, true);
 			jsonBackend.SaveSettings ();
 			AssertSettingsFileWritten ();
-			LoadSettings (TestSettingsFile)[key].ToObject<bool> ().ShouldBeTrue ();
+			Assert.IsTrue (LoadSettings (TestSettingsFile)[key].ToObject<bool> ());
 		}
 
 		[TestMethod]
@@ -82,7 +81,7 @@ namespace FSpot.Preferences.UnitTest
 			jsonBackend.Set (key, 0.0);
 			jsonBackend.SaveSettings ();
 			AssertSettingsFileWritten ();
-			LoadSettings (TestSettingsFile)[key].ToObject<double> ().ShouldBe (0.0);
+			Assert.AreEqual (0.0, LoadSettings (TestSettingsFile)[key].ToObject<double> ());
 		}
 
 		[TestMethod]
@@ -98,7 +97,7 @@ namespace FSpot.Preferences.UnitTest
 			var settings = LoadSettings (TestSettingsFile);
 			var result = settings[key].ToObject<List<int>> ();
 
-			result.ShouldBe (list);
+			Assert.AreSequenceEqual (list, result);
 		}
 
 		[TestMethod]
@@ -143,7 +142,7 @@ namespace FSpot.Preferences.UnitTest
 		public void PreferencesGetDefaultSetting ()
 		{
 			var result = Settings.Preferences.Get<bool> (Settings.Preferences.TagIconAutomatic);
-			result.ShouldBeTrue ();
+			Assert.IsTrue (result);
 		}
 
 		[TestMethod]
@@ -152,8 +151,8 @@ namespace FSpot.Preferences.UnitTest
 			Settings.Preferences.Set ("RandomKey", "WrongValue");
 			var result = Settings.Preferences.TryGet ("RandomKey", out double randomValue);
 
-			result.ShouldBeTrue ();
-			randomValue.ShouldBe (default);
+			Assert.IsTrue (result);
+			Assert.AreEqual (0.0, randomValue);
 		}
 	}
 }

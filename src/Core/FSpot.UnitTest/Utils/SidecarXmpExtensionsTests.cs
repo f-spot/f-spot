@@ -13,7 +13,6 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using Shouldly;
 
 using TagLib;
 using TagLib.Xmp;
@@ -120,7 +119,7 @@ namespace FSpot.Utils.Tests
 
 			var sidecar_uri = uri.ReplaceExtension (".xmp");
 			var sidecar_res = new TagLibFileAbstraction (sidecar_uri);
-			sidecar_uri.ToString ().ShouldEndWith (".xmp");
+			Assert.EndsWith (".xmp", sidecar_uri.ToString ());
 			System.IO.File.Create (sidecar_uri.AbsolutePath).Dispose ();
 			Assert.IsTrue (System.IO.File.Exists (sidecar_uri.AbsolutePath));
 
