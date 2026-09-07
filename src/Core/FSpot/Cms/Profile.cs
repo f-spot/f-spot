@@ -10,6 +10,7 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -17,7 +18,23 @@ namespace FSpot.Cms
 {
 	public class Profile : IDisposable
 	{
-		static readonly Profile srgb = new Profile (NativeMethods.CmsCreateSRGBProfile ());
+		// lcms serialises badly across threads, so the profile-info readers below share
+		// this lock. It used to be the srgb instance itself, which cannot work once that
+		// instance is created lazily.
+		static readonly object lcmsLock = new object ();
+
+		static Profile srgbProfile;
+
+		// Built on first use rather than in a static initialiser: creating it eagerly
+		// meant that merely touching this type loaded liblcms, so any code path that
+		// mentions Profile depended on a native library whether it did colour work or
+		// not -- and nothing in this assembly could be tested without one.
+		static Profile Srgb {
+			get {
+				lock (lcmsLock)
+					return srgbProfile ??= new Profile (NativeMethods.CmsCreateSRGBProfile ());
+			}
+		}
 
 		static Profile ()
 		{
@@ -41,7 +58,7 @@ namespace FSpot.Cms
 
 		public static Profile CreateStandardRgb ()
 		{
-			return srgb;
+			return Srgb;
 		}
 
 		public static Profile CreateAlternateRgb ()
@@ -171,12 +188,27 @@ namespace FSpot.Cms
 			Handle = new HandleRef (this, NativeMethods.CmsCreateRGBProfile (out whitepoint, out primaries, CopyHandles (gamma)));
 		}
 
-		public Profile (string path)
+		public Profile (string path) : this (ReadProfile (path))
 		{
-			Handle = new HandleRef (this, NativeMethods.CmsOpenProfileFromFile (path, "r"));
+		}
 
-			if (Handle.Handle == IntPtr.Zero)
-				throw new CmsException ($"Error opening ICC profile in file {path}");
+		// cmsOpenProfileFromFile hands the path straight to fopen, so which bytes the
+		// native side receives depends on the platform's narrow encoding rather than on
+		// anything we control -- a non-ASCII profile path resolves differently under
+		// .NET Framework, .NET and Mono. Reading the file here settles that, and the
+		// bytes then go through the same CmsOpenProfileFromMem path as an embedded
+		// profile.
+		static byte[] ReadProfile (string path)
+		{
+			try {
+				return File.ReadAllBytes (path);
+			} catch (Exception e) when (e is IOException || e is UnauthorizedAccessException
+					|| e is NotSupportedException || e is System.Security.SecurityException) {
+				// ColorManagement.AddProfilesByExtension walks a directory and catches
+				// CmsException per file; an IO failure escaping here would abandon every
+				// profile after the bad one.
+				throw new CmsException ($"Error opening ICC profile in file {path}", e);
+			}
 		}
 
 		public byte[] Save ()
@@ -275,7 +307,7 @@ namespace FSpot.Cms
 
 		public string Model {
 			get {
-				lock (srgb) {
+				lock (lcmsLock) {
 					var ret = new StringBuilder (128);
 					_ = NativeMethods.CmsGetProfileInfo (
 						Handle,
@@ -291,7 +323,7 @@ namespace FSpot.Cms
 
 		public string ProductName {
 			get {
-				lock (srgb) {
+				lock (lcmsLock) {
 					var ret = new StringBuilder (128);
 					_ = NativeMethods.CmsGetProfileInfo (
 						Handle,
@@ -307,7 +339,7 @@ namespace FSpot.Cms
 
 		public string ProductDescription {
 			get {
-				lock (srgb) {
+				lock (lcmsLock) {
 					var ret = new StringBuilder (128);
 					_ = NativeMethods.CmsGetProfileInfo (
 						Handle,
