@@ -81,7 +81,8 @@ namespace FSpot.Cms.UnitTest
 				"the table differs from the C implementation somewhere the strided sample does not look");
 		}
 
-		// The goldens serialise the table as little-endian ushorts.
+		// Buffer.BlockCopy emits native-endian bytes; the goldens were captured as
+		// little-endian, which is the same thing on every platform .NET supports.
 		static string Sha256 (ushort[] table)
 		{
 			var bytes = new byte[table.Length * sizeof (ushort)];
