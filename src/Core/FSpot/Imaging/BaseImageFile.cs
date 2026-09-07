@@ -54,32 +54,16 @@ namespace FSpot.Imaging
 			return new FileStream (Uri.AbsolutePath, FileMode.Open, FileAccess.Read);
 		}
 
-		protected Gdk.Pixbuf TransformAndDispose (Gdk.Pixbuf orig)
-		{
-			if (orig == null)
-				return null;
-
-			Gdk.Pixbuf rotated = orig.TransformOrientation (Orientation);
-
-			orig.Dispose ();
-
-			return rotated;
-		}
-
 		public ImageBuffer Load ()
 		{
 			using Stream stream = PixbufStream ();
-
-			var orig = new Gdk.Pixbuf (stream);
-			using var rotated = TransformAndDispose (orig);
-			return rotated.ToImageBuffer ();
+			return ImagingServices.Required.Decode (stream, Orientation);
 		}
 
 		public ImageBuffer Load (int maxWidth, int maxHeight)
 		{
-			using var full = Load ().ToPixbuf ();
-			using var scaled = full.ScaleToMaxSize (maxWidth, maxHeight);
-			return scaled.ToImageBuffer ();
+			var full = Load ();
+			return ImagingServices.Required.ScaleToMaxSize (full, maxWidth, maxHeight);
 		}
 
 		// FIXME this need to have an intent just like the loading stuff.

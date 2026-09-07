@@ -126,7 +126,7 @@ namespace FSpot.Widgets
 			var page_frame = new Frame (Strings.PageSetup);
 			var page_box = new VBox ();
 			var current_settings = new Label ();
-			if (FSpotConfiguration.PageSetup != null)
+			if (GtkSettings.PageSetup != null)
 				current_settings.Text = string.Format (Strings.PaperSizeXxYmm,
 								Math.Round (print_operation.DefaultPageSetup.GetPaperWidth (Unit.Mm), 1),
 								Math.Round (print_operation.DefaultPageSetup.GetPaperHeight (Unit.Mm), 1));

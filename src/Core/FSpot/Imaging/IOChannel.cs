@@ -125,8 +125,7 @@ namespace FSpot.Imaging
 			handle = new HandleRef (this, raw);
 
 			g_io_channel_set_encoding (handle, null, out var error);
-			if (error != IntPtr.Zero)
-				throw new GLib.GException (error);
+			GError.ThrowIfSet (error);
 		}
 
 		[DllImport ("libglib-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
@@ -141,8 +140,7 @@ namespace FSpot.Imaging
 			if (status != IOStatus.Normal && status != IOStatus.Eof)
 				Logger.Log.Debug ($"IOChannel status = {status}");
 
-			if (error != IntPtr.Zero)
-				throw new GLib.GException (error);
+			GError.ThrowIfSet (error);
 		}
 
 		[DllImport ("libglib-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
@@ -163,8 +161,7 @@ namespace FSpot.Imaging
 						status = g_io_channel_write_chars (handle, data, count, out written, out error);
 					}
 
-					if (error != IntPtr.Zero)
-						throw new GLib.GException (error);
+					GError.ThrowIfSet (error);
 
 					offset += written;
 					count -= written;
@@ -190,8 +187,7 @@ namespace FSpot.Imaging
 			if (status != IOStatus.Normal && status != IOStatus.Eof)
 				Logger.Log.Debug ($"IOChannel status = {status}");
 
-			if (error != IntPtr.Zero)
-				throw new GLib.GException (error);
+			GError.ThrowIfSet (error);
 
 			return read;
 		}
@@ -216,7 +212,7 @@ namespace FSpot.Imaging
 				data_ready_source = AddWatch (IOCondition.In, func);
 			}
 			remove {
-				GLib.Source.Remove (data_ready_source);
+				GError.RemoveSource (data_ready_source);
 				data_ready_source = 0;
 				data_ready -= value;
 			}
@@ -257,22 +253,21 @@ namespace FSpot.Imaging
 		{
 
 			if (data_ready_source != 0)
-				GLib.Source.Remove (data_ready_source);
+				GError.RemoveSource (data_ready_source);
 			data_ready_source = 0;
 
 			g_io_channel_shutdown (handle, false, out var error);
 
 			base.Close ();
 
-			if (error != IntPtr.Zero)
-				throw new GLib.GException (error);
+			GError.ThrowIfSet (error);
 
 		}
 
 		~IOChannel ()
 		{
 			if (data_ready_source != 0)
-				GLib.Source.Remove (data_ready_source);
+				GError.RemoveSource (data_ready_source);
 			data_ready_source = 0;
 			g_io_channel_unref (handle);
 		}

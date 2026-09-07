@@ -234,8 +234,7 @@ namespace FSpot
 				try {
 					var versionUri = VersionUri (version);
 
-					using var pixbuf = buffer.ToPixbuf ();
-					PixbufUtils.CreateDerivedVersion (DefaultVersion.Uri, versionUri, 95, pixbuf);
+					ImagingServices.Required.SaveDerivedVersion (buffer, DefaultVersion.Uri, versionUri, 95);
 					GetVersion (version).ImportMD5 = HashUtils.GenerateMD5 (VersionUri (version));
 					DefaultVersionId = version;
 				} catch (Exception e) {

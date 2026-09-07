@@ -9,6 +9,9 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
+using System.IO;
+
+using FSpot.Imaging;
 
 using Hyena;
 
@@ -21,7 +24,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace FSpot.Thumbnail.UnitTest
 {
 	[TestClass]
-	[TestCategory("RequiresGdk")]
 	public class ThumbnailServiceTests
 	{
 		static readonly SafeUri fileUri = new SafeUri ("file:///path/to/file");
@@ -33,12 +35,15 @@ namespace FSpot.Thumbnail.UnitTest
 		static readonly SafeUri largeThumbnailUri = new SafeUri (largeThumbnailPath + "/" + fileHash + ".png");
 		static readonly SafeUri normalThumbnailUri = new SafeUri (normalThumbnailPath + "/" + fileHash + ".png");
 
+		static readonly ImageBuffer dummyImage = new ImageBuffer (1, 1, false, 4, new byte[4]);
+
 		#region Test setup
 
 		IXdgDirectoryService xdgDirectoryService;
 		IThumbnailerFactory thumbnailerFactory;
 		Mock<IThumbnailer> thumbnailerMock = new Mock<IThumbnailer> ();
-		byte[] thumbnail = PixbufMock.CreateThumbnail (fileUri, fileMTime);
+		FakeImagingBackend backend;
+		IImagingBackend previousBackend;
 
 		[TestInitialize]
 		public void OneTimeSetUp ()
@@ -51,6 +56,16 @@ namespace FSpot.Thumbnail.UnitTest
 			var thumbnailerFactoryMock = new Mock<IThumbnailerFactory> ();
 			thumbnailerFactoryMock.Setup (factory => factory.GetThumbnailerForUri (fileUri)).Returns (thumbnailerMock.Object);
 			thumbnailerFactory = thumbnailerFactoryMock.Object;
+
+			previousBackend = ImagingServices.Backend;
+			backend = new FakeImagingBackend ();
+			ImagingServices.Backend = backend;
+		}
+
+		[TestCleanup]
+		public void TearDown ()
+		{
+			ImagingServices.Backend = previousBackend;
 		}
 
 		#endregion
@@ -96,7 +111,8 @@ namespace FSpot.Thumbnail.UnitTest
 		{
 			var fileSystem = new FileSystemMock ();
 			fileSystem.SetFile (fileUri, fileMTime);
-			fileSystem.SetFile (largeThumbnailUri, DateTime.MinValue, thumbnail);
+			fileSystem.SetFile (largeThumbnailUri, DateTime.MinValue, new byte[] { 1 });
+			backend.Png = ValidPng ();
 			var thumbnailService = new ThumbnailService (xdgDirectoryService, thumbnailerFactory, fileSystem);
 
 			var result = thumbnailService.GetThumbnail (fileUri, ThumbnailSize.Large);
@@ -112,7 +128,10 @@ namespace FSpot.Thumbnail.UnitTest
 			fileSystem.SetFile (fileUri, fileMTime);
 			thumbnailerMock.Setup (thumb => thumb.TryCreateThumbnail (largeThumbnailUri, ThumbnailSize.Large))
 				.Returns (true)
-				.Callback (() => fileSystem.SetFile (largeThumbnailUri, DateTime.MinValue, thumbnail));
+				.Callback (() => {
+					fileSystem.SetFile (largeThumbnailUri, DateTime.MinValue, new byte[] { 1 });
+					backend.Png = ValidPng ();
+				});
 			var thumbnailService = new ThumbnailService (xdgDirectoryService, thumbnailerFactory, fileSystem);
 
 			var result = thumbnailService.GetThumbnail (fileUri, ThumbnailSize.Large);
@@ -218,7 +237,8 @@ namespace FSpot.Thumbnail.UnitTest
 		public void LoadThumbnail_ReturnsPixbuf_IfThumbnailExists ()
 		{
 			var fileSystem = new FileSystemMock ();
-			fileSystem.SetFile (largeThumbnailUri, DateTime.MinValue, thumbnail);
+			fileSystem.SetFile (largeThumbnailUri, DateTime.MinValue, new byte[] { 1 });
+			backend.Png = ValidPng ();
 			var thumbnailService = new ThumbnailService (xdgDirectoryService, thumbnailerFactory, fileSystem);
 
 			var result = thumbnailService.LoadThumbnail (largeThumbnailUri);
@@ -231,7 +251,7 @@ namespace FSpot.Thumbnail.UnitTest
 		public void LoadThumbnail_DeletesThumbnail_IfLoadFails ()
 		{
 			var fileSystem = new FileSystemMock ();
-			fileSystem.SetFile (largeThumbnailUri, DateTime.MinValue, thumbnail);
+			fileSystem.SetFile (largeThumbnailUri, DateTime.MinValue, new byte[] { 1 });
 			fileSystem.FileMock.Setup (m => m.Read (largeThumbnailUri)).Throws<Exception> ();
 			var thumbnailService = new ThumbnailService (xdgDirectoryService, thumbnailerFactory, fileSystem);
 
@@ -246,7 +266,7 @@ namespace FSpot.Thumbnail.UnitTest
 		public void LoadThumbnail_IgnoresExceptionsOnDeletingThumbnails ()
 		{
 			var fileSystem = new FileSystemMock ();
-			fileSystem.SetFile (largeThumbnailUri, DateTime.MinValue, thumbnail);
+			fileSystem.SetFile (largeThumbnailUri, DateTime.MinValue, new byte[] { 1 });
 			fileSystem.FileMock.Setup (m => m.Read (largeThumbnailUri)).Throws<Exception> ();
 			fileSystem.FileMock.Setup (m => m.Delete (largeThumbnailUri)).Throws<Exception> ();
 			var thumbnailService = new ThumbnailService (xdgDirectoryService, thumbnailerFactory, fileSystem);
@@ -308,10 +328,10 @@ namespace FSpot.Thumbnail.UnitTest
 		{
 			var fileSystem = new FileSystemMock ();
 			fileSystem.SetFile (fileUri, fileMTime);
-			var pixbuf = PixbufMock.CreatePixbuf (new SafeUri ("file:///some-uri"), fileMTime);
+			var png = new ThumbnailPng { Image = dummyImage, UriOption = "file:///some-uri", MTimeOption = fileMTime.ToString () };
 			var thumbnailService = new ThumbnailService (xdgDirectoryService, thumbnailerFactory, fileSystem);
 
-			var result = thumbnailService.IsValid (fileUri, pixbuf);
+			var result = thumbnailService.IsValid (fileUri, png);
 
 			Assert.IsFalse (result);
 		}
@@ -322,10 +342,10 @@ namespace FSpot.Thumbnail.UnitTest
 		{
 			var fileSystem = new FileSystemMock ();
 			fileSystem.SetFile (fileUri, fileMTime);
-			var pixbuf = PixbufMock.CreatePixbuf (fileUri, fileMTime.AddSeconds (1.0));
+			var png = new ThumbnailPng { Image = dummyImage, UriOption = fileUri.ToString (), MTimeOption = fileMTime.AddSeconds (1.0).ToString () };
 			var thumbnailService = new ThumbnailService (xdgDirectoryService, thumbnailerFactory, fileSystem);
 
-			var result = thumbnailService.IsValid (fileUri, pixbuf);
+			var result = thumbnailService.IsValid (fileUri, png);
 
 			Assert.IsFalse (result);
 		}
@@ -335,10 +355,10 @@ namespace FSpot.Thumbnail.UnitTest
 		public void IsValid_ReturnsFalse_IfFileDoesNotExist ()
 		{
 			var fileSystem = new FileSystemMock ();
-			var pixbuf = PixbufMock.CreatePixbuf (fileUri, fileMTime.AddSeconds (1.0));
+			var png = new ThumbnailPng { Image = dummyImage, UriOption = fileUri.ToString (), MTimeOption = fileMTime.AddSeconds (1.0).ToString () };
 			var thumbnailService = new ThumbnailService (xdgDirectoryService, thumbnailerFactory, fileSystem);
 
-			var result = thumbnailService.IsValid (fileUri, pixbuf);
+			var result = thumbnailService.IsValid (fileUri, png);
 
 			Assert.IsFalse (result);
 		}
@@ -349,10 +369,10 @@ namespace FSpot.Thumbnail.UnitTest
 		{
 			var fileSystem = new FileSystemMock ();
 			fileSystem.SetFile (fileUri, fileMTime);
-			var pixbuf = PixbufMock.CreatePixbuf (fileUri, fileMTime);
+			var png = ValidPng ();
 			var thumbnailService = new ThumbnailService (xdgDirectoryService, thumbnailerFactory, fileSystem);
 
-			var result = thumbnailService.IsValid (fileUri, pixbuf);
+			var result = thumbnailService.IsValid (fileUri, png);
 
 			Assert.IsTrue (result);
 		}
@@ -360,5 +380,29 @@ namespace FSpot.Thumbnail.UnitTest
 		#endregion
 
 		#endregion
+
+		ThumbnailPng ValidPng ()
+		{
+			return new ThumbnailPng {
+				Image = dummyImage,
+				UriOption = fileUri.ToString (),
+				MTimeOption = fileMTime.ToString ()
+			};
+		}
+
+		class FakeImagingBackend : IImagingBackend
+		{
+			public ThumbnailPng Png { get; set; }
+
+			public ImageBuffer Decode (Stream stream, TagLib.Image.ImageOrientation orientation) => dummyImage;
+			public ImageBuffer ScaleToMaxSize (ImageBuffer source, int maxWidth, int maxHeight, bool upscale = true) => source;
+			public ImageBuffer Scale (ImageBuffer source, int width, int height) => source;
+			public void SaveDerivedVersion (ImageBuffer buffer, SafeUri source, SafeUri dest, uint jpegQuality) { }
+			public ImageBuffer LoadThemeIcon (string name, int size) => dummyImage;
+			public byte[] SerializeIcon (ImageBuffer icon) => Array.Empty<byte> ();
+			public ImageBuffer DeserializeIcon (byte[] data) => dummyImage;
+			public ThumbnailPng LoadPng (Stream stream) => Png;
+			public void SavePng (ImageBuffer image, string path, string[] optionKeys, string[] optionValues) { }
+		}
 	}
 }

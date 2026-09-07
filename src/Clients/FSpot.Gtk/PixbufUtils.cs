@@ -43,7 +43,7 @@ namespace FSpot
 		public static Pixbuf ErrorPixbuf {
 			get {
 				if (error_pixbuf == null)
-					error_pixbuf = GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, "FSpotQuestionMark", 256, 0);
+					error_pixbuf = GtkUtil.TryLoadIcon (GtkSettings.IconTheme, "FSpotQuestionMark", 256, 0);
 				return error_pixbuf;
 			}
 		}

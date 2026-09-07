@@ -78,12 +78,12 @@ namespace FSpot.Cms
 			return new Profile (NativeMethods.CmsCreateGrayProfile (ref whitePoint, transfer.Handle));
 		}
 
-		public static Profile GetScreenProfile (Gdk.Screen screen)
+		public static Profile GetScreenProfile (IntPtr screenHandle)
 		{
-			if (screen == null)
-				throw new ArgumentNullException (nameof (screen));
+			if (screenHandle == IntPtr.Zero)
+				throw new ArgumentNullException (nameof (screenHandle));
 
-			IntPtr profile = NativeMethods.FScreenGetProfile (screen.Handle);
+			IntPtr profile = NativeMethods.FScreenGetProfile (screenHandle);
 
 			if (profile == IntPtr.Zero)
 				return null;

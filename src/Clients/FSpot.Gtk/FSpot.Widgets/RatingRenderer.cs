@@ -30,7 +30,7 @@ namespace FSpot.Widgets
 		protected static Pixbuf IconRated {
 			get {
 				if (icon_rated == null)
-					icon_rated = GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, "rating-rated",
+					icon_rated = GtkUtil.TryLoadIcon (GtkSettings.IconTheme, "rating-rated",
 													  REQUESTED_ICON_SIZE, (Gtk.IconLookupFlags)0);
 
 				return icon_rated;
@@ -40,7 +40,7 @@ namespace FSpot.Widgets
 		protected static Pixbuf IconBlank {
 			get {
 				if (icon_blank == null)
-					icon_blank = GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, "rating-blank",
+					icon_blank = GtkUtil.TryLoadIcon (GtkSettings.IconTheme, "rating-blank",
 													  REQUESTED_ICON_SIZE, (Gtk.IconLookupFlags)0);
 
 				return icon_blank;
@@ -50,7 +50,7 @@ namespace FSpot.Widgets
 		protected static Pixbuf IconHover {
 			get {
 				if (icon_hover == null)
-					icon_hover = GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, "rating-rated-gray",
+					icon_hover = GtkUtil.TryLoadIcon (GtkSettings.IconTheme, "rating-rated-gray",
 													  REQUESTED_ICON_SIZE, (Gtk.IconLookupFlags)0);
 
 				return icon_hover;

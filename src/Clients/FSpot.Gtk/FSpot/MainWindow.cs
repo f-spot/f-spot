@@ -1422,7 +1422,7 @@ namespace FSpot
 		//
 		void HandlePageSetupActivated (object o, EventArgs e)
 		{
-			FSpotConfiguration.PageSetup = Print.RunPageSetupDialog (Window, FSpotConfiguration.PageSetup, null);
+			GtkSettings.PageSetup = Print.RunPageSetupDialog (Window, GtkSettings.PageSetup, null);
 		}
 
 		void HandlePrintCommand (object sender, EventArgs e)

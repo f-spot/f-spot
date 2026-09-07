@@ -17,9 +17,6 @@ using System;
 
 using FSpot.Imaging;
 using FSpot.Settings;
-using FSpot.Utils;
-
-using Gdk;
 
 namespace FSpot.Core
 {
@@ -52,8 +49,7 @@ namespace FSpot.Core
 			get {
 				if (icon == null && ThemeIconName != null) {
 					cached_icon_size = IconSize.Hidden;
-					using var pixbuf = GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, ThemeIconName, 48, (Gtk.IconLookupFlags)0);
-					icon = pixbuf.ToImageBuffer ();
+					icon = ImagingServices.Required.LoadThemeIcon (ThemeIconName, 48);
 				}
 				return icon;
 			}
@@ -80,10 +76,9 @@ namespace FSpot.Core
 					return cached_icon;
 				if (ThemeIconName != null) { //Theme icon
 					try {
-						using var pixbuf = GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, ThemeIconName, (int)TagIconSize, (Gtk.IconLookupFlags)0);
-
-						if (Math.Max (pixbuf.Width, pixbuf.Height) <= (int)TagIconSize)
-							return cached_icon = pixbuf.ToImageBuffer ();
+						var themed = ImagingServices.Required.LoadThemeIcon (ThemeIconName, (int)TagIconSize);
+						if (themed != null && Math.Max (themed.Width, themed.Height) <= (int)TagIconSize)
+							return cached_icon = themed;
 					} catch (Exception) {
 						Console.WriteLine ($"missing theme icon: {ThemeIconName}");
 						return null;
@@ -93,9 +88,7 @@ namespace FSpot.Core
 					return null;
 
 				if (Math.Max (Icon.Width, Icon.Height) >= (int)TagIconSize) { //Don't upscale
-					using var source = Icon.ToPixbuf ();
-					using var scaled = source.ScaleSimple ((int)TagIconSize, (int)TagIconSize, InterpType.Bilinear);
-					cached_icon = scaled.ToImageBuffer ();
+					cached_icon = ImagingServices.Required.Scale (Icon, (int)TagIconSize, (int)TagIconSize);
 					cached_icon_size = TagIconSize;
 					return cached_icon;
 				}

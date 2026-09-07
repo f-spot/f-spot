@@ -20,14 +20,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace FSpot.Imaging
 {
 	[TestClass]
-	[TestCategory("RequiresGdk")]
 	public class TestOf_ImageFile
 	{
 		List<string> _imageTypes;
 		[TestInitialize]
 		public void Initialize ()
 		{
-			GLib.GType.Init ();
 			var factory = new ImageFileFactory (null);
 			_imageTypes = factory.UnitTestImageFileTypes ();
 		}

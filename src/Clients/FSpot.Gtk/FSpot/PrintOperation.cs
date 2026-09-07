@@ -36,7 +36,7 @@ namespace FSpot
 			selected_photos = selectedPhotos;
 			CustomTabLabel = Strings.ImageSettings;
 			NPages = selectedPhotos.Length;
-			DefaultPageSetup = FSpotConfiguration.PageSetup;
+			DefaultPageSetup = GtkSettings.PageSetup;
 		}
 
 		protected override Gtk.Widget OnCreateCustomWidget ()

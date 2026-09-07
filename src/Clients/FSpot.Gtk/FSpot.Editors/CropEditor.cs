@@ -172,7 +172,7 @@ namespace FSpot.Editors
 		{
 			string stockname = (string)tree_model.GetValue (iter, 0);
 			if (stockname != null)
-				(cell as CellRendererPixbuf).Pixbuf = GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, stockname, 16, (Gtk.IconLookupFlags)0);
+				(cell as CellRendererPixbuf).Pixbuf = GtkUtil.TryLoadIcon (GtkSettings.IconTheme, stockname, 16, (Gtk.IconLookupFlags)0);
 			else
 				(cell as CellRendererPixbuf).Pixbuf = null;
 		}

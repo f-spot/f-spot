@@ -17,8 +17,6 @@ using FSpot.FileSystem;
 using FSpot.Imaging;
 using FSpot.Utils;
 
-using Gdk;
-
 using Hyena;
 
 
@@ -65,31 +63,26 @@ namespace FSpot.Thumbnail
 		bool CreateThumbnail (SafeUri thumbnailUri, ThumbnailSize size, IImageFile imageFile)
 		{
 			var pixels = size == ThumbnailSize.Normal ? 128 : 256;
-			Pixbuf pixbuf;
+			ImageBuffer buffer;
 			try {
-				pixbuf = imageFile.Load ().ToPixbuf ();
+				buffer = imageFile.Load ();
 			} catch (Exception e) {
 				Logger.Log.Debug ($"Failed loading image for thumbnailing: {imageFile.Uri}");
 				Logger.Log.Debug (e, "");
 				return false;
 			}
 
-			double scale_x = (double)pixbuf.Width / pixels;
-			double scale_y = (double)pixbuf.Height / pixels;
+			double scale_x = (double)buffer.Width / pixels;
+			double scale_y = (double)buffer.Height / pixels;
 			double scale = Math.Max (1.0, Math.Max (scale_x, scale_y));
-			// Ensures that the minimum value is 1 so that pixbuf.ScaleSimple doesn't return null
-			// Seems to only happen in rare(?) cases
-			int target_x = Math.Max ((int)(pixbuf.Width / scale), 1);
-			int target_y = Math.Max ((int)(pixbuf.Height / scale), 1);
+			int target_x = Math.Max ((int)(buffer.Width / scale), 1);
+			int target_y = Math.Max ((int)(buffer.Height / scale), 1);
 
-			var thumb_pixbuf = pixbuf.ScaleSimple (target_x, target_y, InterpType.Bilinear);
+			var thumb = ImagingServices.Required.Scale (buffer, target_x, target_y);
 			var mtime = fileSystem.File.GetMTime (imageFile.Uri).ToString ();
-			thumb_pixbuf.Savev (thumbnailUri.LocalPath, "png",
-				new string[] { ThumbnailService.ThumbUriOpt, ThumbnailService.ThumbMTimeOpt, null },
+			ImagingServices.Required.SavePng (thumb, thumbnailUri.LocalPath,
+				new string[] { ThumbnailPng.UriOptionKey, ThumbnailPng.MTimeOptionKey },
 				new string[] { imageFile.Uri, mtime });
-
-			pixbuf.Dispose ();
-			thumb_pixbuf.Dispose ();
 
 			return true;
 		}

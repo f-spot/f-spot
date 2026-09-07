@@ -246,7 +246,7 @@ namespace FSpot.UI.Dialog
 				else
 					Preferences.Set (Preferences.GtkRc, string.Empty);
 			}
-			Gtk.Rc.DefaultFiles = FSpotConfiguration.DefaultRcFiles;
+			Gtk.Rc.DefaultFiles = GtkSettings.DefaultRcFiles;
 			Gtk.Rc.AddDefaultFile (Preferences.Get<string> (Preferences.GtkRc));
 			Gtk.Rc.ReparseAllForSettings (Gtk.Settings.Default, true);
 		}

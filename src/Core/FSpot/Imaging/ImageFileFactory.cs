@@ -21,8 +21,6 @@ using System.Linq;
 using FSpot.FileSystem;
 using FSpot.Utils;
 
-using Gdk;
-
 using Hyena;
 
 
@@ -147,26 +145,11 @@ namespace FSpot.Imaging
 				".raf");
 			RegisterMimeTypes<RafImageFile> (
 				"image/x-raf");
-
-			// Pixbuf.Formats type-loads gdk; isolate so jpeg/raw still register.
-			try {
-				TryRegisterXcfLoader ();
-			} catch (Exception ex) {
-				Logger.Log.Debug (ex, "XCF loader unavailable");
-			}
 		}
 
-		void TryRegisterXcfLoader ()
+		public void RegisterGenericLoader (string extension)
 		{
-			// as xcf pixbufloader is not part of gdk-pixbuf, check if it's there,
-			// and enable it if needed.
-			foreach (PixbufFormat format in Pixbuf.Formats) {
-				if (format.Name == "xcf") {
-					if (format.IsDisabled)
-						format.SetDisabled (false);
-					RegisterExtensions<BaseImageFile> (ImageType.Other, ".xcf");
-				}
-			}
+			RegisterExtensions<BaseImageFile> (ImageType.Other, extension);
 		}
 
 		void RegisterMimeTypes<T> (params string[] mimeTypes)

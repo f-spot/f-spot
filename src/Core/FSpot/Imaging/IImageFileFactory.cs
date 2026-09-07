@@ -20,5 +20,6 @@ namespace FSpot.Imaging
 		bool IsJpeg (SafeUri uri);
 		bool IsRaw (SafeUri uri);
 		bool IsJpegRawPair (SafeUri file1, SafeUri file2);
+		void RegisterGenericLoader (string extension);
 	}
 }

@@ -13,12 +13,9 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using System;
 using System.Collections.Generic;
 using System.Threading;
-
-using Gdk;
-
-using Gtk;
 
 using Hyena;
 
@@ -49,12 +46,7 @@ namespace FSpot.Imaging
 		/* The queue of processed requests.  */
 		readonly Queue<RequestItem> processed_requests;
 
-		/* This is used by the helper thread to notify the main GLib
-		   thread that there are pending items in the
-		   `processed_requests' queue.  */
-		readonly ThreadNotify pending_notify;
-
-		/* Whether a notification is pending on `pending_notify'
+		/* Whether a notification is pending on the main thread
 		   already or not.  */
 		bool pending_notify_notified;
 		volatile bool should_cancel;
@@ -71,8 +63,6 @@ namespace FSpot.Imaging
 			requests_by_uri = new Dictionary<SafeUri, RequestItem> ();
 			// requests_by_path = Hashtable.Synchronized (new Hashtable ());
 			processed_requests = new Queue<RequestItem> ();
-
-			pending_notify = new ThreadNotify (new Gtk.ReadyEvent (HandleProcessedRequests));
 
 			instances.Add (this);
 		}
@@ -160,7 +150,7 @@ namespace FSpot.Imaging
 						orig_image = img.Load ();
 					}
 				}
-			} catch (GLib.GException e) {
+			} catch (Exception e) {
 				Logger.Log.Error (e, "");
 				return;
 			}
@@ -218,7 +208,7 @@ namespace FSpot.Imaging
 							processed_requests.Enqueue (current_request);
 
 							if (!pending_notify_notified) {
-								pending_notify.WakeupMain ();
+								ThreadAssist.ProxyToMain (HandleProcessedRequests);
 								pending_notify_notified = true;
 							}
 

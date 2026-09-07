@@ -19,8 +19,6 @@ using FSpot.FileSystem;
 using FSpot.Imaging;
 using FSpot.Utils;
 
-using Gdk;
-
 using Hyena;
 
 
@@ -61,23 +59,22 @@ namespace FSpot.Thumbnail
 		public ImageBuffer GetThumbnail (SafeUri fileUri, ThumbnailSize size)
 		{
 			var thumbnailUri = GetThumbnailPath (fileUri, size);
-			using var thumbnail = LoadThumbnail (thumbnailUri);
+			var thumbnail = LoadThumbnail (thumbnailUri);
 			if (IsValid (fileUri, thumbnail))
-				return thumbnail.ToImageBuffer ();
+				return thumbnail.Image;
 			IThumbnailer thumbnailer = thumbnailerFactory.GetThumbnailerForUri (fileUri);
 			if (thumbnailer == null)
 				return null;
 			if (!thumbnailer.TryCreateThumbnail (thumbnailUri, size))
 				return null;
-			using var created = LoadThumbnail (thumbnailUri);
-			return created.ToImageBuffer ();
+			var created = LoadThumbnail (thumbnailUri);
+			return created?.Image;
 		}
 
 		public ImageBuffer TryLoadThumbnail (SafeUri fileUri, ThumbnailSize size)
 		{
 			var thumbnailUri = GetThumbnailPath (fileUri, size);
-			using var thumbnail = LoadThumbnail (thumbnailUri);
-			return thumbnail.ToImageBuffer ();
+			return LoadThumbnail (thumbnailUri)?.Image;
 		}
 
 		public void DeleteThumbnails (SafeUri fileUri)
@@ -112,12 +109,13 @@ namespace FSpot.Thumbnail
 		}
 
 		// internal for unit testing with Moq
-		internal Pixbuf LoadThumbnail (SafeUri thumbnailUri)
+		internal ThumbnailPng LoadThumbnail (SafeUri thumbnailUri)
 		{
 			if (!fileSystem.File.Exists (thumbnailUri))
 				return null;
 			try {
-				return LoadPng (thumbnailUri);
+				using (var stream = fileSystem.File.Read (thumbnailUri))
+					return ImagingServices.Required.LoadPng (stream);
 			} catch (Exception e) {
 				try {
 					fileSystem.File.Delete (thumbnailUri);
@@ -133,30 +131,20 @@ namespace FSpot.Thumbnail
 			}
 		}
 
-		internal const string ThumbMTimeOpt = "tEXt::Thumb::MTime";
-		internal const string ThumbUriOpt = "tEXt::Thumb::URI";
-
 		// internal for unit testing with Moq
-		internal bool IsValid (SafeUri uri, Pixbuf pixbuf)
+		internal bool IsValid (SafeUri uri, ThumbnailPng png)
 		{
-			if (pixbuf == null)
+			if (png == null)
 				return false;
 
-			if (pixbuf.GetOption (ThumbUriOpt) != uri.ToString ())
+			if (png.UriOption != uri.ToString ())
 				return false;
 
 			if (!fileSystem.File.Exists (uri))
 				return false;
 
 			var mTime = fileSystem.File.GetMTime (uri);
-			return pixbuf.GetOption (ThumbMTimeOpt) == mTime.ToString ();
-		}
-
-		Pixbuf LoadPng (SafeUri uri)
-		{
-			using (var stream = fileSystem.File.Read (uri)) {
-				return new Pixbuf (stream);
-			}
+			return png.MTimeOption == mTime.ToString ();
 		}
 
 		#endregion

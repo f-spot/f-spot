@@ -39,7 +39,14 @@ namespace FSpot
 
 		static Profile x_profile;
 		public static Profile XProfile {
-			get => x_profile ??= Profile.GetScreenProfile (Gdk.Screen.Default);
+			get {
+				if (x_profile != null)
+					return x_profile;
+				var screen = Gdk.Screen.Default;
+				if (screen == null)
+					return null;
+				return x_profile = Profile.GetScreenProfile (screen.Handle);
+			}
 		}
 
 		static string[] ColorSearchPath ()

@@ -47,10 +47,12 @@ namespace FSpot
 			//	MessageReceived += HandleMessageReceived;
 			//}
 
+			ImagingServices.Backend = new GdkImagingBackend ();
 			FSpot.FileSystem.ModuleController.RegisterTypes (Container);
 			FSpot.Imaging.ModuleController.RegisterTypes (Container);
 			FSpot.Import.ModuleController.RegisterTypes (Container);
 			FSpot.Thumbnail.ModuleController.RegisterTypes (Container);
+			GdkImagingBackend.TryEnableXcf (Container.Resolve<IImageFileFactory> ());
 		}
 
 		Thread constructing_organizer = null;

@@ -56,26 +56,5 @@ namespace FSpot.Settings
 		public static Cms.Profile DisplayProfile { get; set; }
 
 		public static Cms.Profile DestinationProfile { get; set; }
-
-		static Gtk.IconTheme icon_theme;
-		public static Gtk.IconTheme IconTheme {
-			get {
-				if (icon_theme == null) {
-					icon_theme = Gtk.IconTheme.Default;
-					icon_theme.AppendSearchPath (Path.Combine (AppDataDir, "icons"));
-				}
-				return icon_theme;
-			}
-		}
-
-		static string[] default_rc_files;
-		public static string[] DefaultRcFiles {
-			get {
-				return default_rc_files ?? Gtk.Rc.DefaultFiles;
-			}
-			set { default_rc_files = value; }
-		}
-
-		public static Gtk.PageSetup PageSetup { get; set; }
 	}
 }

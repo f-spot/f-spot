@@ -12,8 +12,6 @@
 using System;
 using System.Runtime.InteropServices;
 
-using GLib;
-
 namespace FSpot.Imaging
 {
 	[Flags]
@@ -75,8 +73,7 @@ namespace FSpot.Imaging
 				IntPtr.Zero, IntPtr.Zero, IntPtr.Zero,
 				ref stdin, ref stdout, IntPtr.Zero, out var error);
 
-			if (error != IntPtr.Zero)
-				throw new GException (error);
+			GError.ThrowIfSet (error);
 
 			input = new IOChannel (stdin);
 			output = new IOChannel (stdout);

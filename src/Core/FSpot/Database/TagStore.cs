@@ -20,6 +20,7 @@ using System.Collections.Generic;
 
 using FSpot.Core;
 using FSpot.Database.Jobs;
+using FSpot.Imaging;
 using FSpot.Query;
 using FSpot.Resources.Lang;
 using FSpot.Settings;
@@ -82,8 +83,7 @@ namespace FSpot.Database
 			else if (iconString.StartsWith (STOCK_ICON_DB_PREFIX, StringComparison.Ordinal))
 				tag.ThemeIconName = iconString.Substring (STOCK_ICON_DB_PREFIX.Length);
 			else {
-				using var pixbuf = GdkUtils.Deserialize (Convert.FromBase64String (iconString));
-				tag.Icon = pixbuf.ToImageBuffer ();
+				tag.Icon = ImagingServices.Required.DeserializeIcon (Convert.FromBase64String (iconString));
 			}
 		}
 
@@ -330,8 +330,7 @@ namespace FSpot.Database
 				return null;
 			}
 
-			using var pixbuf = tag.Icon.ToPixbuf ();
-			var data = GdkUtils.Serialize (pixbuf);
+			var data = ImagingServices.Required.SerializeIcon (tag.Icon);
 			return Convert.ToBase64String (data);
 		}
 

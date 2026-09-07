@@ -277,17 +277,17 @@ namespace FSpot
 				if (File.Exists (Path.Combine (FSpotConfiguration.BaseDirectory, "gtkrc")))
 					Gtk.Rc.AddDefaultFile (Path.Combine (FSpotConfiguration.BaseDirectory, "gtkrc"));
 
-				FSpotConfiguration.DefaultRcFiles = Gtk.Rc.DefaultFiles;
+				GtkSettings.DefaultRcFiles = Gtk.Rc.DefaultFiles;
 				Gtk.Rc.AddDefaultFile (Preferences.Get<string> (Preferences.GtkRc));
 				Gtk.Rc.ReparseAllForSettings (Gtk.Settings.Default, true);
 			}
 
 			try {
 				Gtk.Window.DefaultIconList = new[] {
-					GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, "FSpot", 16, 0),
-					GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, "FSpot", 22, 0),
-					GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, "FSpot", 32, 0),
-					GtkUtil.TryLoadIcon (FSpotConfiguration.IconTheme, "FSpot", 48, 0)
+					GtkUtil.TryLoadIcon (GtkSettings.IconTheme, "FSpot", 16, 0),
+					GtkUtil.TryLoadIcon (GtkSettings.IconTheme, "FSpot", 22, 0),
+					GtkUtil.TryLoadIcon (GtkSettings.IconTheme, "FSpot", 32, 0),
+					GtkUtil.TryLoadIcon (GtkSettings.IconTheme, "FSpot", 48, 0)
 				};
 			} catch (Exception ex) {
 				Logger.Log.Error (ex, "Loading default f-spot icons");
