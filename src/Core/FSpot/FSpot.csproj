@@ -18,6 +18,7 @@
          that bundle depends on the SQLite package whose net471 props reject AnyCPU, which
          FSpot (net472) still uses. -->
     <PackageReference Include="Microsoft.Data.Sqlite" />
+    <PackageReference Include="lcmsNET" />
     <PackageReference Include="Newtonsoft.Json" />
     <PackageReference Include="Serilog" />
     <PackageReference Include="Serilog.Sinks.Console" />
@@ -30,6 +31,9 @@
 
   <ItemGroup>
     <None Update="FSpot.dll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="lcmsNET.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="FSpot.addins">
