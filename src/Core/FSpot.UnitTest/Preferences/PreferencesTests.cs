@@ -119,7 +119,7 @@ namespace FSpot.Preferences.UnitTest
 			jsonBackend.Set (key, true);
 			jsonBackend.SaveSettings ();
 			AssertSettingsFileWritten ();
-			Assert.AreEqual (true, jsonBackend.Get<bool> (key));
+			Assert.IsTrue (jsonBackend.Get<bool> (key));
 		}
 
 		[TestMethod]

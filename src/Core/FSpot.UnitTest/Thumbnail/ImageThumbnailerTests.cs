@@ -47,10 +47,10 @@ namespace FSpot.Thumbnail.UnitTest
 		{
 			CreateThumbnail ();
 
-			CollectionAssert.AreEqual (
+			Assert.AreSequenceEqual (
 				new[] { ThumbnailPng.UriOptionKey, ThumbnailPng.MTimeOptionKey },
 				backend.OptionKeys);
-			Assert.AreEqual (backend.OptionKeys.Length, backend.OptionValues.Length);
+			Assert.HasCount (backend.OptionKeys.Length, backend.OptionValues);
 		}
 
 		[TestMethod]
@@ -58,8 +58,8 @@ namespace FSpot.Thumbnail.UnitTest
 		{
 			CreateThumbnail ();
 
-			CollectionAssert.DoesNotContain (backend.OptionKeys, null);
-			CollectionAssert.DoesNotContain (backend.OptionValues, null);
+			Assert.DoesNotContain ((string)null, backend.OptionKeys);
+			Assert.DoesNotContain ((string)null, backend.OptionValues);
 		}
 
 		static void CreateThumbnail ()

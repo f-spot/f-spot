@@ -5,6 +5,7 @@
     <Platforms>AnyCPU</Platforms>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <OutputPath>$(RepoRoot)artifacts/fspot-gtk-test/</OutputPath>
+    <MSTestAnalysisMode>Recommended</MSTestAnalysisMode>
   </PropertyGroup>
 
   <ItemGroup>

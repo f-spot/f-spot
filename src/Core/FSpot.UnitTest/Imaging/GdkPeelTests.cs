@@ -33,7 +33,7 @@ namespace FSpot.UnitTest
 				typeof (RequestItem),
 			}.SelectMany (Leaks).ToList ();
 
-			Assert.AreEqual (0, leaks.Count, string.Join (Environment.NewLine, leaks));
+			Assert.IsEmpty (leaks, string.Join (Environment.NewLine, leaks));
 		}
 
 		[TestMethod]
@@ -56,7 +56,7 @@ namespace FSpot.UnitTest
 				.OrderBy (name => name)
 				.ToList ();
 
-			Assert.AreEqual (0, leaks.Count, string.Join (", ", leaks));
+			Assert.IsEmpty (leaks, string.Join (", ", leaks));
 		}
 
 		[TestMethod]
@@ -77,7 +77,7 @@ namespace FSpot.UnitTest
 
 			var imported = ImportedLibraries (typeof (ImageBuffer).Assembly);
 
-			CollectionAssert.AreEqual (imported, mapped,
+			Assert.AreSequenceEqual (imported, mapped,
 				$"dllmap drift: FSpot.dll.config maps [{string.Join (", ", mapped)}] "
 				+ $"but FSpot.dll imports [{string.Join (", ", imported)}]");
 		}

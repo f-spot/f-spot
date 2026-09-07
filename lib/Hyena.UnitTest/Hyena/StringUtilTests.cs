@@ -107,7 +107,7 @@ namespace Hyena.Tests
 		public void RemovesNewlines ()
 		{
 			Assert.AreEqual ("", StringUtil.RemoveNewlines (""));
-			Assert.AreEqual (null, StringUtil.RemoveNewlines (null));
+			Assert.IsNull (StringUtil.RemoveNewlines (null));
 			Assert.AreEqual ("foobar", StringUtil.RemoveNewlines (@"foo
 bar"));
 			Assert.AreEqual ("foobar baz", StringUtil.RemoveNewlines ("foo\nbar \nbaz"));
@@ -118,7 +118,7 @@ bar"));
 		public void RemovesHtml ()
 		{
 			Assert.AreEqual ("", StringUtil.RemoveHtml (""));
-			Assert.AreEqual (null, StringUtil.RemoveHtml (null));
+			Assert.IsNull (StringUtil.RemoveHtml (null));
 			Assert.AreEqual ("foobar", StringUtil.RemoveHtml ("foobar"));
 			Assert.AreEqual ("foobar", StringUtil.RemoveHtml ("foo<baz>bar"));
 			Assert.AreEqual ("foobar", StringUtil.RemoveHtml ("foo<baz/>bar"));
@@ -158,9 +158,9 @@ href=http://lkjdflkjdflkjj>baz foo< /a> bar"));
 		{
 			Assert.AreEqual ("bar", "foobarbaz".SubstringBetween ("foo", "baz"));
 			Assert.AreEqual ("barfoobam", "erefoobarfoobambazabc".SubstringBetween ("foo", "baz"));
-			Assert.AreEqual (null, "foobar".SubstringBetween ("foo", "baz"));
-			Assert.AreEqual (null, "bar".SubstringBetween ("foo", "baz"));
-			Assert.AreEqual (null, "".SubstringBetween ("foo", "baz"));
+			Assert.IsNull ("foobar".SubstringBetween ("foo", "baz"));
+			Assert.IsNull ("bar".SubstringBetween ("foo", "baz"));
+			Assert.IsNull ("".SubstringBetween ("foo", "baz"));
 		}
 	}
 
@@ -310,18 +310,10 @@ href=http://lkjdflkjdflkjj>baz foo< /a> bar"));
 	[TestClass]
 	public class SortKeyTests
 	{
-		void AssertSortKey (string before, object after)
-		{
-			if (after is byte[] expectedBytes && StringUtil.SortKey (before) is byte[] actualBytes)
-				Assert.AreSequenceEqual (expectedBytes, actualBytes);
-			else
-				Assert.AreEqual (after, StringUtil.SortKey (before));
-		}
-
 		[TestMethod]
 		public void TestNull ()
 		{
-			AssertSortKey (null, null);
+			Assert.IsNull (StringUtil.SortKey (null));
 		}
 
 		[TestMethod]
@@ -336,7 +328,7 @@ href=http://lkjdflkjdflkjj>baz foo< /a> bar"));
 		public void TestSortKey ()
 		{
 			Assert.AreSequenceEqual (StringUtil.SortKey ("a"), StringUtil.SortKey ("A"));
-			CollectionAssert.AreNotEqual (StringUtil.SortKey ("a"), StringUtil.SortKey ("b"));
+			Assert.AreNotSequenceEqual (StringUtil.SortKey ("a"), StringUtil.SortKey ("b"));
 			Assert.IsNotNull (StringUtil.SortKey ("\u0104"));
 		}
 	}

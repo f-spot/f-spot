@@ -5,6 +5,7 @@
     <OutputPath>$(RepoRoot)artifacts/hyena-test/</OutputPath>
     <Platforms>AnyCPU</Platforms>
     <PlatformTarget>AnyCPU</PlatformTarget>
+    <MSTestAnalysisMode>Recommended</MSTestAnalysisMode>
   </PropertyGroup>
 
   <ItemGroup>

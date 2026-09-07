@@ -74,7 +74,7 @@ namespace FSpot.Imaging
 				}
 			}
 
-			Assert.AreEqual (6, missingTypes.Count, string.Join (",", missingTypes));
+			Assert.HasCount (6, missingTypes, string.Join (",", missingTypes));
 
 			Assert.IsTrue (missing, $"There are {missingTypes.Count} missing type support in Taglib#.");
 		}

@@ -55,8 +55,8 @@ namespace FSpot.UnitTest.FileSystem
 			// 2-1
 			var result2 = new SortedFileEnumerator (new[] { file2, file1 }, fileSystem).ToArray ();
 
-			CollectionAssert.AreEqual (new[] { file1, file2 }, result1);
-			CollectionAssert.AreEqual (new[] { file1, file2 }, result2);
+			Assert.AreSequenceEqual (new[] { file1, file2 }, result1);
+			Assert.AreSequenceEqual (new[] { file1, file2 }, result2);
 		}
 
 		[TestMethod]
@@ -74,8 +74,8 @@ namespace FSpot.UnitTest.FileSystem
 			// 2-1
 			var result2 = new SortedFileEnumerator (new[] { dir2, dir1 }, fileSystem).ToArray ();
 
-			CollectionAssert.AreEqual (new[] { dir1, dir2 }, result1);
-			CollectionAssert.AreEqual (new[] { dir1, dir2 }, result2);
+			Assert.AreSequenceEqual (new[] { dir1, dir2 }, result1);
+			Assert.AreSequenceEqual (new[] { dir1, dir2 }, result2);
 		}
 
 		[TestMethod]
@@ -93,8 +93,8 @@ namespace FSpot.UnitTest.FileSystem
 			// dir, file
 			var result2 = new SortedFileEnumerator (new[] { dir, file }, fileSystem).ToArray ();
 
-			CollectionAssert.AreEqual (new[] { dir, file }, result1);
-			CollectionAssert.AreEqual (new[] { dir, file }, result2);
+			Assert.AreSequenceEqual (new[] { dir, file }, result1);
+			Assert.AreSequenceEqual (new[] { dir, file }, result2);
 		}
 	}
 }

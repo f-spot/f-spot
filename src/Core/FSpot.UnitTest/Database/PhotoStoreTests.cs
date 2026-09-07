@@ -70,7 +70,7 @@ namespace FSpot.Database.Tests
 				// default version name is ignored on import
 				Assert.AreEqual (Strings.Original, photo.DefaultVersion.Name);
 				Assert.AreEqual (uri, photo.DefaultVersion.BaseUri);
-				Assert.AreEqual (1, photo.Versions.Count ());
+				Assert.HasCount (1, photo.Versions);
 
 				Assert.AreEqual (1, store.TotalPhotos);
 			}
@@ -90,7 +90,7 @@ namespace FSpot.Database.Tests
 				Assert.AreEqual (Strings.Original, photo.DefaultVersion.Name);
 				Assert.AreEqual (uri, photo.DefaultVersion.BaseUri);
 				// CreateFrom ignores any versions except the default version
-				Assert.AreEqual (1, photo.Versions.Count ());
+				Assert.HasCount (1, photo.Versions);
 
 				Assert.AreEqual (1, store.TotalPhotos);
 			}
@@ -109,7 +109,7 @@ namespace FSpot.Database.Tests
 
 				Assert.AreEqual (modifiedName, photo.DefaultVersion.Name);
 				Assert.AreEqual (modifiedUri, photo.DefaultVersion.BaseUri);
-				Assert.AreEqual (2, photo.Versions.Count ());
+				Assert.HasCount (2, photo.Versions);
 				// version id 1 is the first photo added - the original photo
 				Assert.AreEqual (originalName, photo.GetVersion (1).Name);
 				Assert.AreEqual (uri, photo.GetVersion (1).BaseUri);

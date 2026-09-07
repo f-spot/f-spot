@@ -41,7 +41,7 @@ namespace FSpot.Utils.Tests
 				Assert.IsNotNull (node);
 				Assert.AreEqual ("2009-08-04T20:42:36Z", node.Value);
 				Assert.AreEqual (XmpNodeType.Simple, node.Type);
-				Assert.AreEqual (0, node.Children.Count);
+				Assert.IsEmpty (node.Children);
 			}
 
 			Assert.AreSequenceEqual (new string[] { "Kirche Sulzbach" }, file.ImageTag.Keywords);
@@ -102,7 +102,7 @@ namespace FSpot.Utils.Tests
 				node = node.GetChild (XmpTag.MS_PHOTO_NS, "DateAcquired");
 				Assert.AreEqual ("2009-08-04T20:42:36Z", node.Value);
 				Assert.AreEqual (XmpNodeType.Simple, node.Type);
-				Assert.AreEqual (0, node.Children.Count);
+				Assert.IsEmpty (node.Children);
 			}
 
 			Assert.AreSequenceEqual (new[] { "Kirche Sulzbach" }, file.ImageTag.Keywords);

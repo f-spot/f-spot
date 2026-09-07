@@ -29,13 +29,13 @@ namespace FSpot.Utils.Tests
 			var uri = ImageTestHelper.CreateTempFile ("taglib-sample.jpg");
 
 			var file = File.Create (uri.AbsolutePath) as TagLib.Image.File;
-			Assert.IsTrue (file != null);
+			Assert.IsNotNull (file);
 
 			Validate (file);
 			ChangeMetadata (file);
 
 			file = File.Create (uri.AbsolutePath) as TagLib.Image.File;
-			Assert.IsTrue (file != null);
+			Assert.IsNotNull (file);
 
 			Validate (file);
 			ValidateChangedMetadata (file);
@@ -51,13 +51,13 @@ namespace FSpot.Utils.Tests
 			var res = new TagLibFileAbstraction (uri);
 
 			var file = File.Create (res) as TagLib.Image.File;
-			Assert.IsTrue (file != null);
+			Assert.IsNotNull (file);
 
 			Validate (file);
 			ChangeMetadata (file);
 
 			file = File.Create (res) as TagLib.Image.File;
-			Assert.IsTrue (file != null);
+			Assert.IsNotNull (file);
 
 			Validate (file);
 			ValidateChangedMetadata (file);
@@ -93,7 +93,7 @@ namespace FSpot.Utils.Tests
 				Assert.IsNotNull (node);
 				Assert.AreEqual ("2009-08-04T20:42:36Z", node.Value);
 				Assert.AreEqual (XmpNodeType.Simple, node.Type);
-				Assert.AreEqual (0, node.Children.Count);
+				Assert.IsEmpty (node.Children);
 			}
 		}
 

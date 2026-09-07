@@ -45,8 +45,8 @@ namespace FSpot.Import
 		{
 			var tracker = new PhotoFileTracker (null);
 
-			Assert.AreEqual (0, tracker.OriginalFiles.Count ());
-			Assert.AreEqual (0, tracker.CopiedFiles.Count ());
+			Assert.IsEmpty (tracker.OriginalFiles);
+			Assert.IsEmpty (tracker.CopiedFiles);
 		}
 
 		[TestMethod]
@@ -58,8 +58,8 @@ namespace FSpot.Import
 
 			tracker.CopyIfNeeded (photo, targetBase);
 
-			Assert.AreEqual (0, tracker.OriginalFiles.Count ());
-			Assert.AreEqual (0, tracker.CopiedFiles.Count ());
+			Assert.IsEmpty (tracker.OriginalFiles);
+			Assert.IsEmpty (tracker.CopiedFiles);
 			Assert.AreEqual (targetUri, photo.DefaultVersion.Uri);
 			fileSystem.FileMock.Verify (f => f.Copy (It.IsAny<SafeUri> (), It.IsAny<SafeUri> (), It.IsAny<bool> ()), Times.Never);
 		}
