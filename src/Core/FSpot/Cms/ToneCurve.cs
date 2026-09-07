@@ -47,26 +47,14 @@ namespace FSpot.Cms
 			}
 		}
 
+		// No finalizer: lcmsNET.ToneCurve is a SafeHandle and frees itself when finalised.
 		public void Dispose ()
-		{
-			Dispose (true);
-			GC.SuppressFinalize (this);
-		}
-
-		protected virtual void Dispose (bool disposing)
 		{
 			if (disposed)
 				return;
+
 			disposed = true;
-
-			// lcmsNET.ToneCurve is a SafeHandle and frees itself when finalised.
-			if (disposing)
-				Native.Dispose ();
-		}
-
-		~ToneCurve ()
-		{
-			Dispose (false);
+			Native.Dispose ();
 		}
 	}
 }

@@ -80,26 +80,14 @@ namespace FSpot.Cms
 			}
 		}
 
+		// No finalizer: lcmsNET.Transform is a SafeHandle and frees itself when finalised.
 		public void Dispose ()
-		{
-			Dispose (true);
-			GC.SuppressFinalize (this);
-		}
-
-		protected virtual void Dispose (bool disposing)
 		{
 			if (disposed)
 				return;
+
 			disposed = true;
-
-			// lcmsNET.Transform is a SafeHandle and frees itself when finalised.
-			if (disposing)
-				Native.Dispose ();
-		}
-
-		~Transform ()
-		{
-			Dispose (false);
+			Native.Dispose ();
 		}
 	}
 }

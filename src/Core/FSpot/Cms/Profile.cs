@@ -32,10 +32,8 @@ namespace FSpot.Cms
 		static Profile Srgb {
 			get {
 				lock (lcmsLock) {
-					if (srgbProfile == null) {
-						srgbProfile = new Profile (lcmsNET.Profile.Create_sRGB ());
-						srgbProfile.shared = true;
-					}
+					if (srgbProfile == null)
+						srgbProfile = new Profile (lcmsNET.Profile.Create_sRGB (), shared: true);
 
 					return srgbProfile;
 				}
@@ -43,13 +41,21 @@ namespace FSpot.Cms
 		}
 
 		bool disposed;
-		bool shared;
+
+		// Set only by the process-wide sRGB profile, and set through the constructor so
+		// the flag is never observable as false on a profile that is already published.
+		readonly bool shared;
 
 		internal lcmsNET.Profile Native { get; }
 
-		Profile (lcmsNET.Profile native)
+		Profile (lcmsNET.Profile native) : this (native, false)
+		{
+		}
+
+		Profile (lcmsNET.Profile native, bool shared)
 		{
 			Native = native ?? throw new ArgumentNullException (nameof (native));
+			this.shared = shared;
 		}
 
 		// Process-wide and deliberately not the caller's to dispose -- see Dispose.
@@ -218,36 +224,20 @@ namespace FSpot.Cms
 
 		public string ProductDescription => ReadInfo (InfoType.Description);
 
+		// No finalizer: lcmsNET.Profile is a SafeHandle with a critical finalizer, so an
+		// undisposed profile still releases its handle.
 		public void Dispose ()
 		{
-			Dispose (true);
-			GC.SuppressFinalize (this);
-		}
-
-		protected virtual void Dispose (bool disposing)
-		{
-			if (disposed)
-				return;
-
 			// The sRGB profile is process-wide: CreateStandardRgb hands the same instance
 			// to every caller, and it escapes further through IImageFile.GetProfile.
 			// Closing it would leave every later caller holding a dead lcms handle, so
 			// the shared instance refuses disposal rather than depending on six call
 			// sites each knowing they do not own it.
-			if (shared)
+			if (shared || disposed)
 				return;
 
 			disposed = true;
-
-			// lcmsNET.Profile is a SafeHandle, so it releases itself if we are being
-			// finalised; disposing it here only matters on the explicit path.
-			if (disposing)
-				Native.Dispose ();
-		}
-
-		~Profile ()
-		{
-			Dispose (false);
+			Native.Dispose ();
 		}
 	}
 }

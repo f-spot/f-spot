@@ -2,7 +2,7 @@
 // ColorCIELab.cs
 //
 // Author:
-//   Stephane Delcroix <sdelcroix@novell.com>
+//   Stephane Delcroix <sdelcroix@src.gnome.org>
 //
 // Copyright (C) 2008 Novell, Inc.
 // Copyright (C) 2008 Stephane Delcroix
