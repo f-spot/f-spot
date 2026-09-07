@@ -173,7 +173,10 @@ namespace FSpot.Gui
 						  out var aformat,
 						  out var alength,
 						  out var data)) {
-				return new Cms.Profile (data);
+				// The atom exists but can be empty or unreadable; a colour manager that
+				// publishes nothing is the same as no colour manager at all.
+				if (data != null && data.Length != 0)
+					return new Cms.Profile (data);
 			}
 
 			return null;

@@ -58,7 +58,9 @@ namespace FSpot
 					return null;
 				try {
 					return x_profile = CompositeUtils.GetScreenProfile (screen);
-				} catch (CmsException e) {
+				} catch (Exception e) when (e is CmsException || e is ArgumentException) {
+					// Read from BuildProfiles, so an escape here surfaces in whichever draw
+					// handler touched Profiles first and leaves the catalogue half built.
 					Logger.Log.Warning ($"Ignoring the unreadable _ICC_PROFILE published for the screen: {e.Message}");
 					return null;
 				}
@@ -138,14 +140,21 @@ namespace FSpot
 			imageProfile = imageProfile ?? Profile.CreateStandardRgb ();
 
 			Profile[] list = { imageProfile, destinationProfile };
-			// CollectionCellGridView calls this from its draw handler, so an undisposed
-			// transform here leaks a native handle per thumbnail per repaint.
-			using var transform = new Transform (list,
-								 PixbufUtils.PixbufCmsFormat (pixbuf),
-								 PixbufUtils.PixbufCmsFormat (pixbuf),
-								 Intent.Perceptual,
-								 0x0000);
-			PixbufUtils.ColorAdjust (pixbuf, pixbuf, transform);
+			try {
+				// CollectionCellGridView calls this from its draw handler, so an undisposed
+				// transform here leaks a native handle per thumbnail per repaint.
+				using var transform = new Transform (list,
+									 PixbufUtils.PixbufCmsFormat (pixbuf),
+									 PixbufUtils.PixbufCmsFormat (pixbuf),
+									 Intent.Perceptual,
+									 0x0000);
+				PixbufUtils.ColorAdjust (pixbuf, pixbuf, transform);
+			} catch (CmsException e) {
+				// Every caller but PrintOperation is a bare call in a draw or render
+				// handler, where gtk-sharp turns an escaping exception into an abort. A
+				// transform lcms declines to build has to degrade to unmanaged colour.
+				Logger.Log.Warning ($"Leaving the image unmanaged: {e.Message}");
+			}
 		}
 	}
 }
