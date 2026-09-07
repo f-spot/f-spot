@@ -207,7 +207,7 @@ namespace FSpot.Cms.UnitTest
 			}
 		}
 
-		static byte[] SaveStandardRgb ()
+		internal static byte[] SaveStandardRgb ()
 		{
 			using var srgb = lcmsNET.Profile.Create_sRGB ();
 			srgb.Save (null, out uint needed);

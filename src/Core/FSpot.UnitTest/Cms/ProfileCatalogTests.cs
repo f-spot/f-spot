@@ -3,6 +3,10 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using System;
+using System.Collections.Generic;
+using System.IO;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FSpot.Cms.UnitTest
@@ -10,10 +14,24 @@ namespace FSpot.Cms.UnitTest
 	[TestClass]
 	public class ProfileCatalogTests
 	{
+		readonly List<string> temporaryDirectories = new List<string> ();
+
 		[TestInitialize]
 		public void RequireLcms ()
 		{
 			LcmsNative.Require ();
+		}
+
+		[TestCleanup]
+		public void RemoveTemporaryDirectories ()
+		{
+			foreach (string directory in temporaryDirectories) {
+				Restore (directory);
+				try {
+					Directory.Delete (directory, true);
+				} catch (DirectoryNotFoundException) {
+				}
+			}
 		}
 
 		[TestMethod]
@@ -88,6 +106,65 @@ namespace FSpot.Cms.UnitTest
 			catalog.Add (Profile.CreateAlternateRgb ());
 
 			Assert.AreEqual ("RGB built-in", first.ProductDescription);
+		}
+
+		[TestMethod]
+		public void AddFrom_RegistersTheProfilesItFindsBelowTheDirectory ()
+		{
+			string root = TemporaryDirectory ();
+			string nested = Directory.CreateDirectory (Path.Combine (root, "nested")).FullName;
+			File.WriteAllBytes (Path.Combine (nested, "srgb.icc"), CmsFacadeTests.SaveStandardRgb ());
+			var catalog = new ProfileCatalog ();
+
+			catalog.AddFrom (root);
+
+			Assert.Contains ("sRGB built-in", catalog.Profiles.Keys);
+		}
+
+		// The scan walks user-writable trees -- ~/Library/ColorSync/Profiles and
+		// ~/.color/icc among them -- so one directory the user cannot read must not
+		// abandon the rest. Nothing is cached until the walk completes, so an escape here
+		// would repeat on every later access to the profile list.
+		[TestMethod]
+		[OSCondition (ConditionMode.Exclude, OperatingSystems.Windows)]
+		public void AddFrom_SkipsADirectoryItCannotRead ()
+		{
+			string root = TemporaryDirectory ();
+			File.WriteAllBytes (Path.Combine (root, "srgb.icc"), CmsFacadeTests.SaveStandardRgb ());
+			string locked = Directory.CreateDirectory (Path.Combine (root, "locked")).FullName;
+			Directory.CreateDirectory (Path.Combine (locked, "deeper"));
+			File.SetUnixFileMode (locked, UnixFileMode.None);
+
+			try {
+				Directory.GetFiles (locked);
+				Assert.Inconclusive ("this user can read a mode-000 directory, so there is nothing to skip; do not run as root");
+			} catch (UnauthorizedAccessException) {
+			}
+
+			var catalog = new ProfileCatalog ();
+
+			catalog.AddFrom (root);
+
+			Assert.Contains ("sRGB built-in", catalog.Profiles.Keys);
+		}
+
+		string TemporaryDirectory ()
+		{
+			string path = Path.Combine (Path.GetTempPath (), $"f-spot-catalog-{Guid.NewGuid ()}");
+			Directory.CreateDirectory (path);
+			temporaryDirectories.Add (path);
+
+			return path;
+		}
+
+		// A mode-000 directory cannot be deleted by the cleanup that has to remove it.
+		static void Restore (string directory)
+		{
+			if (OperatingSystem.IsWindows ())
+				return;
+
+			foreach (string child in Directory.EnumerateDirectories (directory, "*", SearchOption.AllDirectories))
+				File.SetUnixFileMode (child, UnixFileMode.UserRead | UnixFileMode.UserWrite | UnixFileMode.UserExecute);
 		}
 
 		// XProfile is published by ColorManagement.XProfile and cached there, so the

@@ -36,7 +36,7 @@ namespace FSpot
 		};
 
 		static ProfileCatalog catalog;
-		public static IDictionary<string, Profile> Profiles {
+		public static IReadOnlyDictionary<string, Profile> Profiles {
 			get {
 				if (catalog == null)
 					BuildProfiles ();
@@ -89,7 +89,7 @@ namespace FSpot
 			built.Add (Profile.CreateAlternateRgb ());
 
 			foreach (var path in ColorSearchPath ())
-				AddProfiles (built, path);
+				built.AddFrom (path);
 
 			if (XProfile != null)
 				built.AddShared ("_x_profile_", XProfile);
@@ -97,34 +97,6 @@ namespace FSpot
 			// Published only once complete: a failure part-way through used to leave a
 			// half-built dictionary in place, which every later lookup then trusted.
 			catalog = built;
-		}
-
-		static void AddProfiles (ProfileCatalog into, string path)
-		{
-			//recursive search, only RGB color profiles would be added
-			if (!Directory.Exists (path))
-				return;
-
-			AddProfilesByExtension (into, path, "*.icc");
-			AddProfilesByExtension (into, path, "*.icm");
-
-			var DirList = Directory.GetDirectories (path);
-			foreach (string dir in DirList)
-				AddProfiles (into, dir);
-		}
-
-		static void AddProfilesByExtension (ProfileCatalog into, string path, string fileExtension)
-		{
-			var colorProfilList = Directory.GetFiles (path, fileExtension);
-			foreach (string ColorProfilePath in colorProfilList) {
-				try {
-					// The catalogue closes what it declines; on macOS that is most of the
-					// system profiles, since only RGB ones are offered.
-					into.Add (new Profile (ColorProfilePath));
-				} catch (CmsException CmsEx) {
-					Logger.Log.Warning ($"Ignoring the unreadable ICC profile {ColorProfilePath}: {CmsEx.Message}");
-				}
-			}
 		}
 
 		public static void ApplyProfile (Gdk.Pixbuf pixbuf, Profile destinationProfile)

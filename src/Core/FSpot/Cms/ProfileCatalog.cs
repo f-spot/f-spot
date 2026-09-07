@@ -5,6 +5,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
+
+using Hyena;
 
 namespace FSpot.Cms
 {
@@ -16,7 +19,9 @@ namespace FSpot.Cms
 	{
 		readonly Dictionary<string, Profile> profiles = new Dictionary<string, Profile> (StringComparer.Ordinal);
 
-		public IDictionary<string, Profile> Profiles => profiles;
+		// Read-only on purpose: the two rules below are the reason this class exists, and
+		// handing out the live dictionary would let a caller step around them.
+		public IReadOnlyDictionary<string, Profile> Profiles => profiles;
 
 		// Takes ownership: a profile the catalogue declines is closed here, because the
 		// directory scan that produced it has nowhere else to put it.
@@ -39,6 +44,49 @@ namespace FSpot.Cms
 
 			profiles.Add (description, profile);
 			return true;
+		}
+
+		// Adds every profile below a directory, recursively. A directory or a file it
+		// cannot read is skipped rather than abandoning the walk: the search paths
+		// include user-writable trees, and the catalogue is published only once the walk
+		// completes, so an escape here would repeat on every later lookup.
+		public void AddFrom (string directory)
+		{
+			if (directory == null)
+				throw new ArgumentNullException (nameof (directory));
+
+			if (!Directory.Exists (directory))
+				return;
+
+			AddFrom (directory, "*.icc");
+			AddFrom (directory, "*.icm");
+
+			foreach (string child in Enumerate (directory, () => Directory.GetDirectories (directory)))
+				AddFrom (child);
+		}
+
+		void AddFrom (string directory, string pattern)
+		{
+			foreach (string path in Enumerate (directory, () => Directory.GetFiles (directory, pattern))) {
+				try {
+					// The catalogue closes what it declines; on macOS that is most of the
+					// system profiles, since only RGB ones are offered.
+					Add (new Profile (path));
+				} catch (CmsException e) {
+					Logger.Log.Warning ($"Ignoring the unreadable ICC profile {path}: {e.Message}");
+				}
+			}
+		}
+
+		static string[] Enumerate (string directory, Func<string[]> list)
+		{
+			try {
+				return list ();
+			} catch (Exception e) when (e is IOException || e is UnauthorizedAccessException
+					|| e is System.Security.SecurityException) {
+				Logger.Log.Warning ($"Skipping the unreadable profile directory {directory}: {e.Message}");
+				return Array.Empty<string> ();
+			}
 		}
 
 		// Borrows: the caller keeps ownership, which is what ColorManagement.XProfile
