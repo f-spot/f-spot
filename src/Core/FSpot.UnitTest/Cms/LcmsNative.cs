@@ -38,7 +38,9 @@ namespace FSpot.Cms.UnitTest
 
 		// Call at the top of any test that reaches liblcms2. Skips (Inconclusive) rather
 		// than failing on a box with no liblcms2, and says why; passing silently without
-		// the library is what this must never do.
+		// the library is what this must never do. Set FSPOT_REQUIRE_LCMS2 where the
+		// library is supposed to be installed -- CI does -- and a missing one fails the
+		// run instead of skipping quietly.
 		public static void Require ()
 		{
 			lock (gate) {
@@ -51,14 +53,31 @@ namespace FSpot.Cms.UnitTest
 					try {
 						_ = lcmsNET.Cms.EncodedCMMVersion;
 						loadFailure = string.Empty;
-					} catch (DllNotFoundException e) {
+					} catch (Exception e) when (IsMissingLibrary (e)) {
 						loadFailure = e.Message;
 					}
 				}
 			}
 
-			if (loadFailure.Length != 0)
-				Assert.Inconclusive ($"liblcms2 is not available on this machine: {loadFailure}");
+			if (loadFailure.Length == 0)
+				return;
+
+			string message = $"liblcms2 is not available on this machine: {loadFailure}";
+			if (string.IsNullOrEmpty (Environment.GetEnvironmentVariable ("FSPOT_REQUIRE_LCMS2")))
+				Assert.Inconclusive (message);
+
+			Assert.Fail ($"FSPOT_REQUIRE_LCMS2 is set but {message}");
+		}
+
+		// A missing native library reaches managed code in more shapes than one: too old
+		// a liblcms2 has no cmsGetEncodedCMMversion, an architecture mismatch is a bad
+		// image, and any of them raised from a static constructor arrives wrapped.
+		internal static bool IsMissingLibrary (Exception e)
+		{
+			if (e is TypeInitializationException && e.InnerException != null)
+				return IsMissingLibrary (e.InnerException);
+
+			return e is DllNotFoundException || e is EntryPointNotFoundException || e is BadImageFormatException;
 		}
 
 		static IntPtr Resolve (string libraryName, Assembly assembly, DllImportSearchPath? searchPath)

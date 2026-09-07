@@ -42,15 +42,20 @@ jobs:
             Directory.Packages.props
             **/*.csproj
 
-      # The FSpot.Cms tests drive a real liblcms2; without one they report
-      # Inconclusive rather than pass, so make sure the library is there.
+      # The FSpot.Cms tests drive a real liblcms2. Inconclusive is silent, so the two
+      # runners that install it also set FSPOT_REQUIRE_LCMS2, which turns a missing
+      # library into a failure instead of a quiet skip that still reports success.
       - name: Install Little-CMS (Linux)
         if: runner.os == 'Linux'
-        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends liblcms2-2
+        run: |
+          sudo apt-get update && sudo apt-get install -y --no-install-recommends liblcms2-2
+          echo "FSPOT_REQUIRE_LCMS2=1" >> "$GITHUB_ENV"
 
       - name: Install Little-CMS (macOS)
         if: runner.os == 'macOS'
-        run: brew install little-cms2
+        run: |
+          brew install little-cms2
+          echo "FSPOT_REQUIRE_LCMS2=1" >> "$GITHUB_ENV"
 
       - name: Restore tests
         run: dotnet restore .build/F-Spot.Tests.slnf
