@@ -105,9 +105,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="f-spot.exe.config">
+    <!-- The template, not the file configure generates from it: a fresh checkout has
+         only the template, and Mono reads these dllmaps from the output directory. -->
+    <Content Include="f-spot.exe.config.in" Link="f-spot.exe.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
   </ItemGroup>
 
   <PropertyGroup>

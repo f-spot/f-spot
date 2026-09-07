@@ -42,12 +42,6 @@ jobs:
             Directory.Packages.props
             **/*.csproj
 
-      - name: Copy .config.in files
-        shell: bash
-        run: |
-          cp src/Clients/FSpot.Gtk/f-spot.exe.config.in src/Clients/FSpot.Gtk/f-spot.exe.config
-          cp src/Core/FSpot/FSpot.dll.config.in src/Core/FSpot/FSpot.dll.config
-
       # The FSpot.Cms tests drive a real liblcms2; without one they report
       # Inconclusive rather than pass, so make sure the library is there.
       - name: Install Little-CMS (Linux)
@@ -111,12 +105,6 @@ jobs:
           cache-dependency-path: |
             Directory.Packages.props
             **/*.csproj
-
-      - name: Copy .config.in files
-        shell: bash
-        run: |
-          cp src/Clients/FSpot.Gtk/f-spot.exe.config.in src/Clients/FSpot.Gtk/f-spot.exe.config
-          cp src/Core/FSpot/FSpot.dll.config.in src/Core/FSpot/FSpot.dll.config
 
       - name: Restore
         run: dotnet restore F-Spot.slnx
