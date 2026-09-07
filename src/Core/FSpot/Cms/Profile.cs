@@ -313,53 +313,45 @@ namespace FSpot.Cms
 			get { return (IccProfileClass)NativeMethods.CmsGetDeviceClass (Handle); }
 		}
 
-		public string Model {
-			get {
-				lock (lcmsLock) {
-					var ret = new StringBuilder (128);
-					_ = NativeMethods.CmsGetProfileInfo (
-						Handle,
-						NativeMethods.CmsProfileInfo.Model,
-						"en", "US",
-						ret,
-						ret.Capacity
-						);
-					return ret.ToString ();
+		// lcms2 fills a wchar_t buffer and counts the size in bytes; wchar_t is 4 bytes on
+		// Unix and 2 on Windows. Marshalling it as an LPWStr StringBuilder read a 2-byte
+		// string out of a 4-byte buffer and passed a character capacity where bytes were
+		// wanted, so every value came back as its first character -- "s" for
+		// "sRGB built-in". ColorManagement keys its profile dictionary on
+		// ProductDescription, so profiles collided under one letter and were dropped.
+		static readonly Encoding wideEncoding = RuntimeInformation.IsOSPlatform (OSPlatform.Windows)
+			? Encoding.Unicode
+			: new UTF32Encoding (false, false);
+
+		string ReadInfo (NativeMethods.CmsProfileInfo info)
+		{
+			lock (lcmsLock) {
+				// Ask for the size first: a fixed buffer either truncates or wastes, and
+				// on Unix a size that is not a multiple of 4 yields a partial character.
+				uint needed = NativeMethods.CmsGetProfileInfo (Handle, info, "en", "US", IntPtr.Zero, 0);
+				if (needed == 0)
+					return string.Empty;
+
+				IntPtr buffer = Marshal.AllocHGlobal ((int)needed);
+				try {
+					uint written = NativeMethods.CmsGetProfileInfo (Handle, info, "en", "US", buffer, needed);
+					if (written == 0)
+						return string.Empty;
+
+					var bytes = new byte[Math.Min (written, needed)];
+					Marshal.Copy (buffer, bytes, 0, bytes.Length);
+					return wideEncoding.GetString (bytes).TrimEnd ('\0');
+				} finally {
+					Marshal.FreeHGlobal (buffer);
 				}
 			}
 		}
 
-		public string ProductName {
-			get {
-				lock (lcmsLock) {
-					var ret = new StringBuilder (128);
-					_ = NativeMethods.CmsGetProfileInfo (
-						Handle,
-						NativeMethods.CmsProfileInfo.Manufacturer,
-						"en", "US",
-						ret,
-						ret.Capacity
-						);
-					return ret.ToString ();
-				}
-			}
-		}
+		public string Model => ReadInfo (NativeMethods.CmsProfileInfo.Model);
 
-		public string ProductDescription {
-			get {
-				lock (lcmsLock) {
-					var ret = new StringBuilder (128);
-					_ = NativeMethods.CmsGetProfileInfo (
-						Handle,
-						NativeMethods.CmsProfileInfo.Description,
-						"en", "US",
-						ret,
-						ret.Capacity
-						);
-					return ret.ToString ();
-				}
-			}
-		}
+		public string ProductName => ReadInfo (NativeMethods.CmsProfileInfo.Manufacturer);
+
+		public string ProductDescription => ReadInfo (NativeMethods.CmsProfileInfo.Description);
 
 		enum ErrorAction
 		{

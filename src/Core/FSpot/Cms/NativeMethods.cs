@@ -107,13 +107,18 @@ namespace FSpot.Cms
 			Copyright = 3
 		}
 
+		// The buffer is wchar_t*, which is 4 bytes on Unix and 2 on Windows, and the size
+		// is counted in BYTES -- so it cannot be marshalled as an LPWStr StringBuilder.
+		// Called with a null buffer it returns the bytes needed including the
+		// terminator; with a buffer it returns the bytes written, truncating silently
+		// if the buffer is short. Zero means the tag is absent. See Profile.ReadInfo.
 		[DllImport (lcmsLib, EntryPoint = "cmsGetProfileInfo", CallingConvention = CallingConvention.Cdecl)]
-		public static extern int CmsGetProfileInfo (HandleRef hprofile,
+		public static extern uint CmsGetProfileInfo (HandleRef hprofile,
 													  CmsProfileInfo info,
 													  string languageCode,
 													  string countryCode,
-													  [Out, MarshalAsAttribute (UnmanagedType.LPWStr)] StringBuilder buffer,
-													  int bufferSize);
+													  IntPtr buffer,
+													  uint bufferSizeInBytes);
 
 
 		public enum CmsTagSignature
