@@ -8,7 +8,6 @@ data/desktop-files/f-spot.desktop.in.in
 data/desktop-files/f-spot-import.desktop.in.in
 data/desktop-files/f-spot-view.desktop.in.in
 f-spot.schemas.in
-lib/Mono.Google/Mono.Google/CaptchaException.cs
 src/Clients/FSpot/FSpot.addin.xml
 src/Clients/FSpot/FSpot/App.cs
 src/Clients/FSpot/FSpot.Database/Updater.cs
@@ -93,9 +92,6 @@ src/Extensions/Editors/FSpot.Editors.Pixelate/FSpot.Addins.Editors/PixelateEdito
 src/Extensions/Editors/FSpot.Editors.Resize/FSpot.Addins.Editors/ResizeEditor.cs
 src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs
 [type: gettext/glade]src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui
-src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs
-src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs
-[type: gettext/glade]src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui
 src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs
 [type: gettext/glade]src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui
 src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs
@@ -111,22 +107,6 @@ src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/Gallery
 [type: gettext/glade]src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_add_album_dialog.ui
 [type: gettext/glade]src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_add_dialog.ui
 [type: gettext/glade]src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui
-src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/GoogleAccount.cs
-src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/GoogleAccountDialog.cs
-src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/GoogleAccountManager.cs
-src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/GoogleAddAlbum.cs
-src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs
-[type: gettext/glade]src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_album_dialog.ui
-[type: gettext/glade]src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_dialog.ui
-[type: gettext/glade]src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui
-src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugAccount.cs
-src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugAccountDialog.cs
-src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugAccountManager.cs
-src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugAddAlbum.cs
-src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs
-[type: gettext/glade]src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_add_album_dialog.ui
-[type: gettext/glade]src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_add_dialog.ui
-[type: gettext/glade]src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui
 src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs
 [type: gettext/glade]src/Extensions/Exporters/FSpot.Exporters.Zip/Resources/zip_export.ui
 [type: gettext/glade]src/Extensions/Tools/FSpot.Tools.ChangePhotoPath/Resources/ChangePhotoPath.ui
