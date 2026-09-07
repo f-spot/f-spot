@@ -36,13 +36,6 @@ namespace FSpot.Cms
 			return ColorCIELab.FromNative (Colorimetric.XYZ2Lab (wp.ToNative (), ToNative ()));
 		}
 
-		public static ColorCIEXYZ D50 => FromNative (Colorimetric.D50_XYZ);
-
-		public ColorCIELab ToLab (ColorCIExyY wp)
-		{
-			return ToLab (wp.ToXYZ ());
-		}
-
 		internal CIEXYZ ToNative ()
 		{
 			return new CIEXYZ { X = x, Y = y, Z = z };

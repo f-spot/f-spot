@@ -52,9 +52,5 @@ namespace FSpot.Settings
 		public static string SettingsName { get; } = "f-spot-settings.json";
 		// path is relative
 		public static string HelpDirectory { get; } = "f-spot";
-
-		public static Cms.Profile DisplayProfile { get; set; }
-
-		public static Cms.Profile DestinationProfile { get; set; }
 	}
 }

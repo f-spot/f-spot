@@ -39,16 +39,6 @@ namespace FSpot.Cms
 
 		public static ColorCIExyY D50 => FromNative (Colorimetric.D50_xyY);
 
-		public ColorCIELab ToLab (ColorCIExyY wp)
-		{
-			return ToXYZ ().ToLab (wp);
-		}
-
-		public ColorCIELab ToLab (ColorCIEXYZ wp)
-		{
-			return ToXYZ ().ToLab (wp);
-		}
-
 		internal CIExyY ToNative ()
 		{
 			return new CIExyY { x = x, y = y, Y = Y };
@@ -65,7 +55,7 @@ namespace FSpot.Cms
 		}
 	}
 
-	public struct ColorCIExyYTriple
+	internal struct ColorCIExyYTriple
 	{
 		public ColorCIExyY Red;
 		public ColorCIExyY Green;

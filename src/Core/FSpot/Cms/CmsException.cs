@@ -21,15 +21,7 @@ namespace FSpot.Cms
 		{
 		}
 
-		protected CmsException (SerializationInfo info, StreamingContext context) : base (info, context)
-		{
-		}
-
 		public CmsException (string message, Exception innerException) : base (message, innerException)
-		{
-		}
-
-		public CmsException ()
 		{
 		}
 	}

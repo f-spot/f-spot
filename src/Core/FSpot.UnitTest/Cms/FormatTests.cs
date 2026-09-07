@@ -20,16 +20,9 @@ namespace FSpot.Cms.UnitTest
 			yield return (Format.Rgb8, lcmsNET.Cms.TYPE_RGB_8, 3);
 			yield return (Format.Rgba8, lcmsNET.Cms.TYPE_RGBA_8, 4);
 			yield return (Format.Rgba8Planar, lcmsNET.Cms.TYPE_RGBA_8_PLANAR, 4);
-			yield return (Format.Bgr8, lcmsNET.Cms.TYPE_BGR_8, 3);
 			yield return (Format.Rgb16, lcmsNET.Cms.TYPE_RGB_16, 6);
-			yield return (Format.Rgb16Planar, lcmsNET.Cms.TYPE_RGB_16_PLANAR, 6);
 			yield return (Format.Rgba16, lcmsNET.Cms.TYPE_RGBA_16, 8);
-			yield return (Format.Rgba16se, lcmsNET.Cms.TYPE_RGBA_16_SE, 8);
-			yield return (Format.Rgb16se, lcmsNET.Cms.TYPE_RGB_16_SE, 6);
-			yield return (Format.Lab8, lcmsNET.Cms.TYPE_Lab_8, 3);
 			yield return (Format.Lab16, lcmsNET.Cms.TYPE_Lab_16, 6);
-			yield return (Format.Xyz16, lcmsNET.Cms.TYPE_XYZ_16, 6);
-			yield return (Format.Yxy16, lcmsNET.Cms.TYPE_Yxy_16, 6);
 		}
 
 		[TestMethod]

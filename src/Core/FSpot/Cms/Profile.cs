@@ -74,20 +74,6 @@ namespace FSpot.Cms
 			return new Profile (wp, primaries, new[] { tc, tc, tc });
 		}
 
-		public static Profile CreateAbstract (int nLUTPoints,
-							  double Exposure,
-							  double Bright,
-							  double Contrast,
-							  double Hue,
-							  double Saturation,
-							  int TempSrc,
-							  int TempDest)
-		{
-			return CreateAbstract (nLUTPoints, Exposure, Bright, Contrast, Hue, Saturation, null,
-						   ColorCIExyY.WhitePointFromTemperature (TempSrc),
-						   ColorCIExyY.WhitePointFromTemperature (TempDest));
-		}
-
 		// Brightness does not reach the CLUT: it becomes a gamma curve on L ahead of
 		// it, and the CLUT's own brightness term is always zero. That is how the C
 		// implementation behaved and the golden tests pin it.
@@ -173,7 +159,7 @@ namespace FSpot.Cms
 		{
 		}
 
-		public Profile (byte[] data, int startOffset, int length) : this (Open (data, startOffset, length))
+		internal Profile (byte[] data, int startOffset, int length) : this (Open (data, startOffset, length))
 		{
 		}
 
@@ -218,16 +204,7 @@ namespace FSpot.Cms
 			}
 		}
 
-		public string Model => ReadInfo (InfoType.Model);
-
-		public string ProductName => ReadInfo (InfoType.Manufacturer);
-
 		public string ProductDescription => ReadInfo (InfoType.Description);
-
-		public override string ToString ()
-		{
-			return ProductName;
-		}
 
 		public void Dispose ()
 		{

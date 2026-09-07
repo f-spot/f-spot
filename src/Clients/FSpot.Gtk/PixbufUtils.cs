@@ -372,46 +372,9 @@ namespace FSpot
 			return copy;
 		}
 
-		public static unsafe Pixbuf ColorAdjust (Pixbuf src, double brightness, double contrast,
-						  double hue, double saturation, int src_color, int dest_color)
-		{
-			var adjusted = new Pixbuf (Colorspace.Rgb, src.HasAlpha, 8, src.Width, src.Height);
-			ColorAdjust (src, adjusted, brightness, contrast, hue, saturation, src_color, dest_color);
-			return adjusted;
-		}
-
 		public static Cms.Format PixbufCmsFormat (Pixbuf buf)
 		{
 			return buf.HasAlpha ? Cms.Format.Rgba8Planar : Cms.Format.Rgb8;
-		}
-
-		public static unsafe void ColorAdjust (Pixbuf src, Pixbuf dest,
-							   double brightness, double contrast,
-							   double hue, double saturation,
-							   int src_color, int dest_color)
-		{
-			if (src.Width != dest.Width || src.Height != dest.Height)
-				throw new Exception ("Invalid Dimensions");
-
-			var srgb = Profile.CreateStandardRgb ();
-
-			var bchsw = Profile.CreateAbstract (256,
-								0.0,
-								brightness, contrast,
-								hue, saturation, src_color,
-								dest_color);
-
-			Profile[] list = { srgb, bchsw, srgb };
-			var trans = new Transform (list,
-							 PixbufCmsFormat (src),
-							 PixbufCmsFormat (dest),
-							 Intent.Perceptual, 0x0100);
-
-			ColorAdjust (src, dest, trans);
-
-			trans.Dispose ();
-			// srgb is Profile.CreateStandardRgb's shared instance and is not ours to close.
-			bchsw.Dispose ();
 		}
 
 		public static unsafe void ColorAdjust (Pixbuf src, Pixbuf dest, Transform trans)
