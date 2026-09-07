@@ -76,7 +76,10 @@ SHAMROCK_CHECK_MONO_4_5_GAC_ASSEMBLIES([
 	Mono.Cairo
 ])
 
-FSPOT_CHECK_LIBFSPOT
+dnl --- AM_GLIB_GNU_GETTEXT below still needs a C compiler; nothing else does now
+dnl --- that lib/libfspot is gone.
+AC_PROG_CC
+
 dnl --- Checks for gtk-sharp and glib-sharp
 FSPOT_CHECK_GTK_SHARP
 FSPOT_CHECK_ADWAITA_ICON_THEME

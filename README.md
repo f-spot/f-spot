@@ -93,8 +93,7 @@ There are a few steps you have to run before you can open MonoDevelop:
 
 	1.  ./autogen.sh (on ubuntu you have to do ./autogen.sh)
 	2.  cd build; make
-	3.  cd lib/libfspot; make
-	4.  sudo make install (this will install the libfspot.so files)
+	3.  cd ../lib; make
 
 OR
 
