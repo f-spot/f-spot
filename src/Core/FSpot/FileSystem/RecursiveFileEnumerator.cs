@@ -43,8 +43,8 @@ namespace FSpot.FileSystem
 		IEnumerable<SafeUri> ScanForFiles (SafeUri rootPath, bool firstLevel)
 		{
 			bool isSymlink;
-			// TODO: this try catch was ported from the old glib implementation
-			// could be removed when exceptions are handle up the call stack
+			// TODO: this try/catch can go once callers handle enumeration failures
+			// themselves instead of relying on CatchErrors.
 			try {
 				isSymlink = fileSystem.File.IsSymlink (rootPath);
 			} catch (Exception) {

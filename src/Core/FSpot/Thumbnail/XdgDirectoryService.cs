@@ -38,7 +38,9 @@ namespace FSpot.Thumbnail
 		/// There is a single base directory relative to which user-specific non-essential (cached) data should be
 		/// written. This directory is defined by the environment variable $XDG_CACHE_HOME.
 		///
-		/// Re-implements glib's g_get_user_cache_dir
+		/// Matches glib's g_get_user_cache_dir. Core no longer links glib, but the
+		/// reference is kept deliberately: the HOME-unset fallback below is glib's
+		/// behaviour, not anything the XDG spec mandates.
 		/// </summary>
 		/// <returns>The user cache dir.</returns>
 		public string GetUserCacheDir ()
