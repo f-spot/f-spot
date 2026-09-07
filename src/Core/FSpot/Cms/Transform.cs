@@ -42,8 +42,8 @@ namespace FSpot.Cms
 				Native = lcmsNET.Transform.Create (profiles.Select (p => p.Native).ToArray (),
 					(uint)inputFormat, (uint)outputFormat, (lcmsNET.Intent)intent, (CmsFlags)flags);
 			} catch (LcmsNETException e) {
-				// The old bindings handed a null handle to cmsDoTransform here and died
-				// with SIGSEGV; an exception at construction is the contract now.
+				// cmsDoTransform segfaults on a null handle rather than reporting an
+				// error, so a transform lcms declined to build has to fail here.
 				throw new CmsException ("Unable to create the colour transform", e);
 			}
 		}

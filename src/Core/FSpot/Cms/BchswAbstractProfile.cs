@@ -9,7 +9,8 @@ using lcmsNET;
 
 namespace FSpot.Cms
 {
-	// A port of f_cmsCreateBCHSWabstractProfile from lib/libfspot/f-screen-utils.c:
+	// A port of f_cmsCreateBCHSWabstractProfile, from the lib/libfspot/f-screen-utils.c
+	// this branch removes -- see git history to compare against the original:
 	// F-Spot's fork of lcms's cmsCreateBCHSWabstractProfile, which adds an exposure
 	// factor and an optional tone-curve stage ahead of the CLUT. Little-CMS's own
 	// seven-parameter version is not a substitute.
