@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 
 using lcmsNET;
 
@@ -64,6 +65,29 @@ namespace FSpot.Cms.UnitTest
 
 			Assert.IsEmpty (mismatches, $"{mismatches.Count} of {golden.TableSamples.Length} sampled nodes differ: "
 				+ string.Join ("; ", mismatches.Take (8)));
+		}
+
+		// The strided comparison above never reaches a* or b*: on the five 20-grid cases
+		// the stride is 120, a multiple of 3, so every sampled index is congruent to 0 mod
+		// 3 and only L* is compared -- while Hue and Saturation move chroma, not lightness.
+		// Hashing the whole table pins all 24 000 entries and makes the stride irrelevant.
+		[TestMethod]
+		[DynamicData (nameof (Cases), DynamicDataDisplayName = nameof (CaseName))]
+		public void ClutTableHashMatchesTheCImplementation (BchswGoldenData.Case golden)
+		{
+			ushort[] table = BchswAbstractProfile.FillTable (golden.GridPoints, Adjustments (golden));
+
+			Assert.AreEqual (golden.TableSha256, Sha256 (table),
+				"the table differs from the C implementation somewhere the strided sample does not look");
+		}
+
+		// The goldens serialise the table as little-endian ushorts.
+		static string Sha256 (ushort[] table)
+		{
+			var bytes = new byte[table.Length * sizeof (ushort)];
+			Buffer.BlockCopy (table, 0, bytes, 0, bytes.Length);
+
+			return Convert.ToHexString (SHA256.HashData (bytes)).ToLowerInvariant ();
 		}
 
 		[TestMethod]
