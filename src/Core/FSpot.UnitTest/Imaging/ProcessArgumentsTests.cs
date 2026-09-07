@@ -13,63 +13,63 @@ namespace FSpot.Imaging.UnitTest
 	public class ProcessArgumentsTests
 	{
 		[TestMethod]
-		public void Join_LeavesPlainArgumentsUnquoted ()
+		public void JoinWindows_LeavesPlainArgumentsUnquoted ()
 		{
 			Assert.AreEqual ("-h -w -c", ProcessArguments.JoinWindows (new[] { "-h", "-w", "-c" }));
 		}
 
 		[TestMethod]
-		public void Join_QuotesArgumentsContainingSpaces ()
+		public void JoinWindows_QuotesArgumentsContainingSpaces ()
 		{
 			Assert.AreEqual ("\"/my photos/a.nef\"",
 				ProcessArguments.JoinWindows (new[] { "/my photos/a.nef" }));
 		}
 
 		[TestMethod]
-		public void Join_QuotesArgumentsContainingTabs ()
+		public void JoinWindows_QuotesArgumentsContainingTabs ()
 		{
 			Assert.AreEqual ("\"a\tb\"", ProcessArguments.JoinWindows (new[] { "a\tb" }));
 		}
 
 		[TestMethod]
-		public void Join_EscapesEmbeddedQuotes ()
+		public void JoinWindows_EscapesEmbeddedQuotes ()
 		{
 			Assert.AreEqual ("\"say \\\"hi\\\"\"", ProcessArguments.JoinWindows (new[] { "say \"hi\"" }));
 		}
 
 		[TestMethod]
-		public void Join_DoublesBackslashesOnlyBeforeAQuote ()
+		public void JoinWindows_DoublesBackslashesOnlyBeforeAQuote ()
 		{
 			Assert.AreEqual ("\"a\\\\\\\"b\"", ProcessArguments.JoinWindows (new[] { "a\\\"b" }));
 		}
 
 		[TestMethod]
-		public void Join_DoublesTrailingBackslashesInsideQuotes ()
+		public void JoinWindows_DoublesTrailingBackslashesInsideQuotes ()
 		{
 			Assert.AreEqual ("\"c:\\dir with space\\\\\"",
 				ProcessArguments.JoinWindows (new[] { "c:\\dir with space\\" }));
 		}
 
 		[TestMethod]
-		public void Join_LeavesInteriorBackslashesAlone ()
+		public void JoinWindows_LeavesInteriorBackslashesAlone ()
 		{
 			Assert.AreEqual ("c:\\dir\\file.nef", ProcessArguments.JoinWindows (new[] { "c:\\dir\\file.nef" }));
 		}
 
 		[TestMethod]
-		public void Join_QuotesTheEmptyArgument ()
+		public void JoinWindows_QuotesTheEmptyArgument ()
 		{
 			Assert.AreEqual ("-c \"\"", ProcessArguments.JoinWindows (new[] { "-c", string.Empty }));
 		}
 
 		[TestMethod]
-		public void Join_LeavesNonAsciiUnquoted ()
+		public void JoinWindows_LeavesNonAsciiUnquoted ()
 		{
 			Assert.AreEqual ("café_日本.nef", ProcessArguments.JoinWindows (new[] { "café_日本.nef" }));
 		}
 
 		[TestMethod]
-		public void Join_ReturnsEmptyForNoArguments ()
+		public void JoinWindows_ReturnsEmptyForNoArguments ()
 		{
 			Assert.AreEqual (string.Empty, ProcessArguments.JoinWindows (new string[0]));
 		}
@@ -95,7 +95,7 @@ namespace FSpot.Imaging.UnitTest
 		[TestMethod]
 		public void JoinPosix_KeepsBackslashesLiteral ()
 		{
-			Assert.AreEqual (@"'/photos/a.nef'", ProcessArguments.JoinPosix (new[] { @"/photos/a.nef" }));
+			Assert.AreEqual (@"'/photos/a\b.nef'", ProcessArguments.JoinPosix (new[] { @"/photos/a\b.nef" }));
 		}
 
 		[TestMethod]
