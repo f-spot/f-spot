@@ -48,6 +48,25 @@ namespace FSpot.Cms.UnitTest
 			Assert.Contains (Path.GetFileName (path), exception.Message);
 		}
 
+		[TestMethod]
+		public void Profile_ThrowsCmsExceptionWhenTheBufferIsEmpty ()
+		{
+			Assert.ThrowsExactly<CmsException> (() => new Profile (Array.Empty<byte> ()));
+		}
+
+		[TestMethod]
+		public void Profile_ThrowsCmsExceptionWhenTheFileIsEmpty ()
+		{
+			string path = MissingPath ();
+			File.WriteAllBytes (path, Array.Empty<byte> ());
+
+			try {
+				Assert.ThrowsExactly<CmsException> (() => new Profile (path));
+			} finally {
+				File.Delete (path);
+			}
+		}
+
 		static string MissingPath () =>
 			Path.Combine (Path.GetTempPath (), $"f-spot-no-such-profile-{Guid.NewGuid ()}.icc");
 	}

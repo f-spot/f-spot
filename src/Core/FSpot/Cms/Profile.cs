@@ -177,6 +177,13 @@ namespace FSpot.Cms
 			if (length < 0 || data.Length - length - startOffset < 0)
 				throw new ArgumentOutOfRangeException (nameof (length), "startOffset + length > data.Length");
 
+			// lcmsNET pins the buffer with fixed (byte* p = &memory[0]), so an empty one
+			// raises IndexOutOfRangeException before lcms sees it. A truncated download or
+			// a placeholder 0-byte .icc in a scanned directory has to reach the caller as
+			// the CmsException they catch per file, not as an escape that abandons the scan.
+			if (length == 0)
+				throw new CmsException ("Invalid Profile Data: the profile is empty");
+
 			byte[] slice = data;
 			if (startOffset != 0 || length != data.Length) {
 				slice = new byte[length];
