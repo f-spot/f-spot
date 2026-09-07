@@ -48,6 +48,16 @@ jobs:
           cp src/Clients/FSpot.Gtk/f-spot.exe.config.in src/Clients/FSpot.Gtk/f-spot.exe.config
           cp src/Core/FSpot/FSpot.dll.config.in src/Core/FSpot/FSpot.dll.config
 
+      # The FSpot.Cms tests drive a real liblcms2; without one they report
+      # Inconclusive rather than pass, so make sure the library is there.
+      - name: Install Little-CMS (Linux)
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends liblcms2-2
+
+      - name: Install Little-CMS (macOS)
+        if: runner.os == 'macOS'
+        run: brew install little-cms2
+
       - name: Restore tests
         run: dotnet restore .build/F-Spot.Tests.slnf
 
