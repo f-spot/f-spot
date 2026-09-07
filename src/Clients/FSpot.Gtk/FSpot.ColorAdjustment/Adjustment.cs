@@ -68,7 +68,7 @@ namespace FSpot.ColorAdjustment
 			if (Input.HasAlpha) {
 				var input_copy = (Gdk.Pixbuf)Input.Clone ();
 				Pixbuf alpha = PixbufUtils.Flatten (Input);
-				var transform = new Transform (list,
+				using var transform = new Transform (list,
 									 PixbufUtils.PixbufCmsFormat (alpha),
 									 PixbufUtils.PixbufCmsFormat (final),
 									 intent, 0x0000);
@@ -78,7 +78,7 @@ namespace FSpot.ColorAdjustment
 				final.Dispose ();
 				final = input_copy;
 			} else {
-				var transform = new Cms.Transform (list,
+				using var transform = new Cms.Transform (list,
 										 PixbufUtils.PixbufCmsFormat (Input),
 										 PixbufUtils.PixbufCmsFormat (final),
 										 intent, 0x0000);

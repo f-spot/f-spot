@@ -22,10 +22,18 @@ namespace FSpot
 {
 	public static class ColorManagement
 	{
-		static readonly string[] linuxProfileDirectories = { "/usr/share/color/icc", Path.Combine (FSpotConfiguration.HomeDirectory, ".color/icc"), "/usr/local/share/color/icc " };
+		static readonly string[] linuxProfileDirectories = { "/usr/share/color/icc", Path.Combine (FSpotConfiguration.HomeDirectory, ".color/icc"), "/usr/local/share/color/icc" };
 		static readonly string[] windowsProfileDirectories = { @"C:\Windows\System32\spool\drivers\color" };
-		// FIXME, this needs to be verified
-		static readonly string[] macProfileDirectories = { "/Library/Colorsync/Profiles", "/User/x/Library/Colorsync/Profiles", "/Library/Application support/Adobe/Color/Profiles" };
+		// Every ICC profile shipped with macOS lives in the first of these; it was not
+		// searched at all. "/User/x/..." was a placeholder rather than a path, and the
+		// two remaining entries only resolved because APFS is case-insensitive by
+		// default -- the directories are ColorSync and Application Support.
+		static readonly string[] macProfileDirectories = {
+			"/System/Library/ColorSync/Profiles",
+			"/Library/ColorSync/Profiles",
+			Path.Combine (FSpotConfiguration.HomeDirectory, "Library/ColorSync/Profiles"),
+			"/Library/Application Support/Adobe/Color/Profiles"
+		};
 
 		static Dictionary<string, Profile> profiles;
 		public static IDictionary<string, Profile> Profiles {
@@ -125,7 +133,9 @@ namespace FSpot
 			imageProfile = imageProfile ?? Profile.CreateStandardRgb ();
 
 			Profile[] list = { imageProfile, destinationProfile };
-			var transform = new Transform (list,
+			// CollectionCellGridView calls this from its draw handler, so an undisposed
+			// transform here leaks a native handle per thumbnail per repaint.
+			using var transform = new Transform (list,
 								 PixbufUtils.PixbufCmsFormat (pixbuf),
 								 PixbufUtils.PixbufCmsFormat (pixbuf),
 								 Intent.Perceptual,
