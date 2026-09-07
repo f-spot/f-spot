@@ -31,8 +31,14 @@ namespace FSpot.Cms
 		// not -- and nothing in this assembly could be tested without one.
 		static Profile Srgb {
 			get {
-				lock (lcmsLock)
-					return srgbProfile ??= new Profile (NativeMethods.CmsCreateSRGBProfile ());
+				lock (lcmsLock) {
+					if (srgbProfile == null) {
+						srgbProfile = new Profile (NativeMethods.CmsCreateSRGBProfile ());
+						srgbProfile.shared = true;
+					}
+
+					return srgbProfile;
+				}
 			}
 		}
 
@@ -43,6 +49,7 @@ namespace FSpot.Cms
 		}
 
 		bool disposed;
+		bool shared;
 
 		public HandleRef Handle { get; private set; }
 
@@ -56,6 +63,7 @@ namespace FSpot.Cms
 		}
 
 
+		// Process-wide and deliberately not the caller's to dispose -- see Dispose.
 		public static Profile CreateStandardRgb ()
 		{
 			return Srgb;
@@ -385,6 +393,15 @@ namespace FSpot.Cms
 		{
 			if (disposed)
 				return;
+
+			// The sRGB profile is process-wide: CreateStandardRgb hands the same instance
+			// to every caller, and it escapes further through IImageFile.GetProfile.
+			// Closing it would leave every later caller holding a dead lcms handle, so
+			// the shared instance refuses disposal rather than depending on six call
+			// sites each knowing they do not own it.
+			if (shared)
+				return;
+
 			disposed = true;
 
 			if (disposing) {

@@ -410,7 +410,7 @@ namespace FSpot
 			ColorAdjust (src, dest, trans);
 
 			trans.Dispose ();
-			srgb.Dispose ();
+			// srgb is Profile.CreateStandardRgb's shared instance and is not ours to close.
 			bchsw.Dispose ();
 		}
 
