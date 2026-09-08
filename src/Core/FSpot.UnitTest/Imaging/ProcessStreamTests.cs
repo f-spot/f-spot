@@ -52,7 +52,7 @@ namespace FSpot.Imaging.UnitTest
 		{
 			var stream = ProcessStream.Start (Path.GetTempPath (), "/bin/cat", new[] { "/dev/zero" });
 			var buffer = new byte[64];
-			stream.Read (buffer, 0, buffer.Length);
+			Assert.IsGreaterThan (0, stream.Read (buffer, 0, buffer.Length), "the child should be producing output");
 
 			var stopwatch = Stopwatch.StartNew ();
 			stream.Dispose ();

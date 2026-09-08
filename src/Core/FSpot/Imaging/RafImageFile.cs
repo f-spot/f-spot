@@ -13,6 +13,8 @@
 
 using System.IO;
 
+using FSpot.Utils;
+
 using Hyena;
 
 namespace FSpot.Imaging
@@ -47,7 +49,7 @@ namespace FSpot.Imaging
 			using (Stream stream = base.OpenImageStream ()) {
 				stream.Position = 0x54;
 				var data = new byte[24];
-				stream.Read (data, 0, data.Length);
+				stream.ReadExactly (data, 0, data.Length);
 				uint jpeg_offset = BitConverter.ToUInt32 (data, 0, false);
 				uint jpeg_length = BitConverter.ToUInt32 (data, 4, false);
 
@@ -61,7 +63,7 @@ namespace FSpot.Imaging
 
 				var image = new byte[jpeg_length];
 				stream.Position = jpeg_offset;
-				stream.Read (image, 0, image.Length);
+				stream.ReadExactly (image, 0, image.Length);
 				return image;
 			}
 		}

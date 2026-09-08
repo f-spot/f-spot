@@ -15,6 +15,8 @@
 using System.Collections.Generic;
 using System.IO;
 
+using FSpot.Utils;
+
 using Hyena;
 
 namespace FSpot.Imaging
@@ -62,17 +64,17 @@ namespace FSpot.Imaging
 
 				stream.Position = end - 4;
 				var buf = new byte[10];
-				stream.Read (buf, 0, 4);
+				stream.ReadExactly (buf, 0, 4);
 				uint directory_pos = BitConverter.ToUInt32 (buf, 0, little);
 				DirPosition = start + directory_pos;
 
 				stream.Position = DirPosition;
-				stream.Read (buf, 0, 2);
+				stream.ReadExactly (buf, 0, 2);
 
 				Count = BitConverter.ToUInt16 (buf, 0, little);
 
 				for (int i = 0; i < Count; i++) {
-					stream.Read (buf, 0, 10);
+					stream.ReadExactly (buf, 0, 10);
 					Logger.Log.Debug ($"reading {i} {stream.Position}");
 					var entry = new Entry (buf, 0, little);
 					entry_list.Add (entry);
@@ -98,7 +100,7 @@ namespace FSpot.Imaging
 				stream.Position = start + e.Offset;
 
 				var data = new byte[e.Size];
-				stream.Read (data, 0, data.Length);
+				stream.ReadExactly (data, 0, data.Length);
 
 				return data;
 			}
@@ -138,7 +140,7 @@ namespace FSpot.Imaging
 		ImageDirectory LoadImageDirectory ()
 		{
 			var header = new byte[26];  // the spec reserves the first 26 bytes as the header block
-			stream.Read (header, 0, header.Length);
+			stream.ReadExactly (header, 0, header.Length);
 
 			uint start;
 

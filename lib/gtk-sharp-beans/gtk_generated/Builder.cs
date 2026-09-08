@@ -365,9 +365,15 @@ namespace GtkBeans
 			if (s == null)
 				throw new ArgumentNullException (nameof (s));
 
-			int size = (int)s.Length;
-			byte[] buffer = new byte[size];
-			s.Read (buffer, 0, size);
+			// CopyTo rather than a single Read of s.Length: Stream.Read may return fewer
+			// bytes than asked for, which would hand the builder a truncated UI
+			// definition, and Length is not available on every stream this is called
+			// with. Kept in sync with Builder.custom, which the generator inlines here.
+			byte[] buffer;
+			using (var copy = new System.IO.MemoryStream ()) {
+				s.CopyTo (copy);
+				buffer = copy.ToArray ();
+			}
 			s.Close ();
 
 			AddFromString (System.Text.Encoding.UTF8.GetString (buffer));
@@ -396,9 +402,15 @@ namespace GtkBeans
 				throw new ArgumentException ("Cannot get resource file '" + resource_name + "'",
 								 nameof (resource_name));
 
-			int size = (int)s.Length;
-			byte[] buffer = new byte[size];
-			s.Read (buffer, 0, size);
+			// CopyTo rather than a single Read of s.Length: Stream.Read may return fewer
+			// bytes than asked for, which would hand the builder a truncated UI
+			// definition, and Length is not available on every stream this is called
+			// with. Kept in sync with Builder.custom, which the generator inlines here.
+			byte[] buffer;
+			using (var copy = new System.IO.MemoryStream ()) {
+				s.CopyTo (copy);
+				buffer = copy.ToArray ();
+			}
 			s.Close ();
 
 			AddFromString (System.Text.Encoding.UTF8.GetString (buffer));

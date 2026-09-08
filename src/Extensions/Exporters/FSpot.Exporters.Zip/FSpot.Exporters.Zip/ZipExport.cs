@@ -132,16 +132,12 @@ namespace FSpot.Exporters.Zip
 				} else {
 					f = photos[i].DefaultVersion.Uri.LocalPath;
 				}
-				FileStream fs = File.OpenRead (f);
-
-				byte[] buffer = new byte[fs.Length];
-				fs.Read (buffer, 0, buffer.Length);
+				byte[] buffer = File.ReadAllBytes (f);
 				var entry = new ZipEntry (System.IO.Path.GetFileName (photos[i].DefaultVersion.Uri.LocalPath));
 
 				entry.DateTime = DateTime.Now;
 
-				entry.Size = fs.Length;
-				fs.Close ();
+				entry.Size = buffer.Length;
 
 				crc.Reset ();
 				crc.Update (buffer);

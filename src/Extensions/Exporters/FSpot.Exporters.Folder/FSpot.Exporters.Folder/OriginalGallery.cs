@@ -112,10 +112,7 @@ namespace FSpot.Exporters.Folder
 
 			s.SetLevel (0);
 			foreach (string file in filenames) {
-				FileStream fs = File.OpenRead (file);
-
-				byte[] buffer = new byte[fs.Length];
-				fs.Read (buffer, 0, buffer.Length);
+				byte[] buffer = File.ReadAllBytes (file);
 				var entry = new ZipEntry (Path.GetFileName (file));
 
 				entry.DateTime = DateTime.Now;
@@ -126,8 +123,7 @@ namespace FSpot.Exporters.Folder
 				// (in this case size == crc == -1 in the header)
 				// Some ZIP programs have problems with zip files that don't store
 				// the size and crc in the header.
-				entry.Size = fs.Length;
-				fs.Close ();
+				entry.Size = buffer.Length;
 
 				crc.Reset ();
 				crc.Update (buffer);
