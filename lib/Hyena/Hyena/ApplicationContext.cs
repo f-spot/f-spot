@@ -12,7 +12,6 @@ using System;
 using System.Runtime.InteropServices;
 using System.Text;
 
-using Hyena.CommandLine;
 
 namespace Hyena
 {
@@ -20,34 +19,13 @@ namespace Hyena
 
 	public static class ApplicationContext
 	{
-		static CommandLineParser command_line = new CommandLineParser ();
-		public static CommandLineParser CommandLine {
-			set { command_line = value; }
-			get { return command_line; }
-		}
-
 		public static string ApplicationName { get; set; }
 
-		static bool? debugging = null;
-		public static bool Debugging {
-			get {
-				if (debugging == null) {
-					debugging = CommandLine.Contains ("debug");
-					debugging |= CommandLine.Contains ("debug-sql");
-					debugging |= EnvironmentIsSet ("BANSHEE_DEBUG");
-				}
-
-				return debugging.Value;
-			}
-			set {
-				debugging = value;
-			}
-		}
-
-		static bool EnvironmentIsSet (string env)
-		{
-			return !string.IsNullOrEmpty (Environment.GetEnvironmentVariable (env));
-		}
+		// Set by the client from its parsed command line rather than read from a parser
+		// here, so nothing in this assembly depends on how arguments are parsed. The
+		// BANSHEE_DEBUG fallback that used to live in this getter moved with it: the
+		// client assigns before anything reads, so a fallback here could never evaluate.
+		public static bool Debugging { get; set; }
 
 		[DllImport ("libc")] // Linux
 		static extern int prctl (int option, byte[] arg2, IntPtr arg3, IntPtr arg4, IntPtr arg5);

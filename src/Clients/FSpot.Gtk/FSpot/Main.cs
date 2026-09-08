@@ -17,7 +17,6 @@
 
 using System;
 using System.Linq;
-using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Threading;
@@ -26,7 +25,6 @@ using FSpot.Settings;
 using FSpot.Utils;
 
 using Hyena;
-using Hyena.CommandLine;
 using Hyena.Gui;
 
 using Mono.Addins;
@@ -60,82 +58,26 @@ namespace FSpot
 			}
 		}
 
-		static void ShowHelp ()
+		static void ShowHelp (CommandLineOptions options)
 		{
 			Console.WriteLine ("Usage: f-spot [options...] [files|URIs...]");
 			Console.WriteLine ();
 
-			if (ApplicationContext.CommandLine.Contains ("help-all")) {
+			if (options.HelpAll) {
 				Console.WriteLine (CommandLineHelp.Everything ());
 				return;
 			}
 
-			List<string> errors = null;
-			foreach (var argument in ApplicationContext.CommandLine.Arguments) {
-				switch (argument.Key) {
-				case "help": Console.WriteLine (CommandLineHelp.Section ("help")); break;
-				case "help-options": Console.WriteLine (CommandLineHelp.Section ("options")); break;
-				default:
-					if (argument.Key.StartsWith ("help", StringComparison.OrdinalIgnoreCase)) {
-						(errors ??= new List<string> ()).Add (argument.Key);
-					}
-					break;
-				}
-			}
+			if (options.Help)
+				Console.WriteLine (CommandLineHelp.Section ("help"));
 
-			if (errors != null)
-				Console.WriteLine ($"The following help arguments are invalid: {string.Join (", ", errors.Select (e => $"--{e}"))}");
-		}
+			if (options.HelpOptions)
+				Console.WriteLine (CommandLineHelp.Section ("options"));
 
-		static string[] FixArgs (IReadOnlyList<string> args)
-		{
-			// Makes sure command line arguments are parsed backwards compatible.
-			var outargs = new List<string> ();
-			for (int i = 0; i < args.Count; i++) {
-				switch (args[i]) {
-				case "-h":
-				case "-help":
-				case "-usage":
-					outargs.Add ("--help");
-					break;
-				case "-V":
-				case "-version":
-					outargs.Add ("--version");
-					break;
-				case "-versions":
-					outargs.Add ("--versions");
-					break;
-				case "-shutdown":
-					outargs.Add ("--shutdown");
-					break;
-				case "-b":
-				case "-basedir":
-				case "--basedir":
-					outargs.Add ("--basedir=" + (i + 1 == args.Count ? string.Empty : args[++i]));
-					break;
-				case "-p":
-				case "-photodir":
-				case "--photodir":
-					outargs.Add ("--photodir=" + (i + 1 == args.Count ? string.Empty : args[++i]));
-					break;
-				case "-i":
-				case "-import":
-				case "--import":
-					outargs.Add ("--import=" + (i + 1 == args.Count ? string.Empty : args[++i]));
-					break;
-				case "-v":
-				case "-view":
-					outargs.Add ("--view");
-					break;
-				case "-slideshow":
-					outargs.Add ("--slideshow");
-					break;
-				default:
-					outargs.Add (args[i]);
-					break;
-				}
+			if (options.InvalidHelpArguments.Count > 0) {
+				Console.WriteLine ("The following help arguments are invalid: " +
+					string.Join (", ", options.InvalidHelpArguments.Select (e => $"--{e}")));
 			}
-			return outargs.ToArray ();
 		}
 
 		static int Main (string[] args)
@@ -144,8 +86,6 @@ namespace FSpot
 
 			if (Environment.Is64BitProcess)
 				throw new ApplicationException ("GtkSharp does not support running 64bit");
-
-			args = FixArgs (args);
 
 			ApplicationContext.ApplicationName = "F-Spot";
 			ApplicationContext.TrySetProcessName (FSpotConfiguration.Package);
@@ -161,74 +101,60 @@ namespace FSpot
 			// when it is already on it -- which is exactly when posting is wanted.
 			ThreadAssist.ProxyToMainHandler = handler => mainContext.PostAtIdlePriority (_ => handler (), null);
 
-			// Options and Option parsing
-			bool shutdown = false;
-			bool view = false;
-			bool slideshow = false;
-			bool import = false;
-
 			GLib.GType.Init ();
 
 			FSpotConfiguration.PhotoUri = new SafeUri (Preferences.Get<string> (Preferences.StoragePath));
 
-			ApplicationContext.CommandLine = new CommandLineParser (args, 0);
+			var options = CommandLineOptions.Parse (args);
+			CommandLineOptions.Current = options;
+			// Hyena's ApplicationContext.Debugging used to read the parser itself; it is
+			// told instead, so nothing below the client depends on how args are parsed.
+			// DebuggingRequested rather than the two flags, so BANSHEE_DEBUG still counts:
+			// assigning here means a lazy fallback in the getter could never evaluate.
+			ApplicationContext.Debugging = options.DebuggingRequested;
 
-			if (ApplicationContext.CommandLine.ContainsStart ("help")) {
-				ShowHelp ();
+			if (options.WantsAnyHelp) {
+				ShowHelp (options);
 				return 0;
 			}
 
-			if (ApplicationContext.CommandLine.Contains ("version")) {
+			if (options.Version) {
 				ShowVersion ();
 				return 0;
 			}
 
-			if (ApplicationContext.CommandLine.Contains ("versions")) {
+			if (options.Versions) {
 				ShowAssemblyVersions ();
 				return 0;
 			}
 
-			if (ApplicationContext.CommandLine.Contains ("shutdown")) {
+			if (options.Shutdown)
 				Logger.Log.Information ("Shutting down existing F-Spot server...");
-				shutdown = true;
-			}
 
-			if (ApplicationContext.CommandLine.Contains ("slideshow")) {
+			if (options.Slideshow)
 				Logger.Log.Information ("Running F-Spot in slideshow mode.");
-				slideshow = true;
-			}
 
-			if (ApplicationContext.CommandLine.Contains ("basedir")) {
-				string dir = ApplicationContext.CommandLine["basedir"];
-
-				if (!string.IsNullOrEmpty (dir)) {
-					FSpotConfiguration.BaseDirectory = dir;
-					Logger.Log.Information ($"BaseDirectory is now {dir}");
+			if (options.BaseDir != null) {
+				if (!string.IsNullOrEmpty (options.BaseDir)) {
+					FSpotConfiguration.BaseDirectory = options.BaseDir;
+					Logger.Log.Information ($"BaseDirectory is now {options.BaseDir}");
 				} else {
 					Logger.Log.Error ("f-spot: -basedir option takes one argument");
 					return 1;
 				}
 			}
 
-			if (ApplicationContext.CommandLine.Contains ("photodir")) {
-				string dir = ApplicationContext.CommandLine["photodir"];
-
-				if (!string.IsNullOrEmpty (dir)) {
-					FSpotConfiguration.PhotoUri = new SafeUri (dir);
-					Logger.Log.Information ($"PhotoDirectory is now {dir}");
+			if (options.PhotoDir != null) {
+				if (!string.IsNullOrEmpty (options.PhotoDir)) {
+					FSpotConfiguration.PhotoUri = new SafeUri (options.PhotoDir);
+					Logger.Log.Information ($"PhotoDirectory is now {options.PhotoDir}");
 				} else {
 					Logger.Log.Error ("f-spot: -photodir option takes one argument");
 					return 1;
 				}
 			}
 
-			if (ApplicationContext.CommandLine.Contains ("import"))
-				import = true;
-
-			if (ApplicationContext.CommandLine.Contains ("view"))
-				view = true;
-
-			if (ApplicationContext.CommandLine.Contains ("debug")) {
+			if (options.Debug) {
 				Logger.SetLevel (Serilog.Events.LogEventLevel.Debug);
 				// Debug GdkPixbuf critical warnings
 				var logFunc = new GLib.LogFunc (GLib.Log.PrintTraceLogFunction);
@@ -247,9 +173,10 @@ namespace FSpot
 			}
 
 			// Validate command line options
-			if ((import && (view || shutdown || slideshow)) ||
-				(view && (shutdown || slideshow)) ||
-				(shutdown && slideshow)) {
+			bool import = options.Import != null;
+			if ((import && (options.View || options.Shutdown || options.Slideshow)) ||
+				(options.View && (options.Shutdown || options.Slideshow)) ||
+				(options.Shutdown && options.Slideshow)) {
 				Logger.Log.Error ("Can't mix -import, -view, -shutdown or -slideshow");
 				return 1;
 			}
@@ -346,29 +273,31 @@ namespace FSpot
 
 		static void Startup ()
 		{
-			if (ApplicationContext.CommandLine.Contains ("slideshow"))
+			var options = CommandLineOptions.Current;
+
+			if (options.Slideshow)
 				App.Instance.Slideshow (null);
-			else if (ApplicationContext.CommandLine.Contains ("shutdown"))
+			else if (options.Shutdown)
 				App.Instance.Shutdown ();
-			else if (ApplicationContext.CommandLine.Contains ("view")) {
-				if (ApplicationContext.CommandLine.Files.Count == 0) {
+			else if (options.View) {
+				if (options.Files.Count == 0) {
 					Logger.Log.Error ("f-spot: -view option takes at least one argument");
 					Environment.Exit (1);
 				}
 
 				var list = new UriList ();
 
-				foreach (var f in ApplicationContext.CommandLine.Files)
+				foreach (var f in options.Files)
 					list.AddUnknown (f);
 
 				if (list.Count == 0) {
-					ShowHelp ();
+					ShowHelp (options);
 					Environment.Exit (1);
 				}
 
 				App.Instance.View (list);
-			} else if (ApplicationContext.CommandLine.Contains ("import")) {
-				string dir = ApplicationContext.CommandLine["import"];
+			} else if (options.Import != null) {
+				string dir = options.Import;
 
 				if (string.IsNullOrEmpty (dir)) {
 					Logger.Log.Error ("f-spot: -import option takes one argument");

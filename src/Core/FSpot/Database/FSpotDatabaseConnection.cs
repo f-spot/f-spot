@@ -9,7 +9,6 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
-using Hyena;
 
 namespace FSpot.Database
 {
@@ -21,7 +20,7 @@ namespace FSpot.Database
 			//Execute ("PRAGMA temp_store = MEMORY");
 			//Execute ("PRAGMA count_changes = OFF");
 
-			if (ApplicationContext.CommandLine.Contains ("debug-sql")) {
+			if (CommandLineOptions.Current.DebugSql) {
 				DatabaseCommand.LogAll = true;
 			}
 		}
