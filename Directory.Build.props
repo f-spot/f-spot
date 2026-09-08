@@ -14,6 +14,19 @@
     <LangVersion>latest</LangVersion>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <!-- Pinned because the SDK defaults AnalysisLevel only for .NETCoreApp: on net472
+         EffectiveAnalysisLevel stays empty, no AnalysisLevel globalconfig is applied at
+         all, and every CA rule runs at whatever severity its author declared. That is
+         how the SDK's analyzers surfaced 24 CA2022 the old package never reported, and
+         the next SDK could move the set again just as silently. Measured as
+         warning-neutral for F-Spot's own code at the time it was set. -->
+    <AnalysisLevel>10.0</AnalysisLevel>
+    <AnalysisMode>Default</AnalysisMode>
+    <!-- Both report zero occurrences today, which is what makes promoting them free.
+         VSTHRD100 is the reason the threading analyzers are here at all: an async void
+         GTK signal handler turns an unhandled exception into a process abort, and CI
+         builds without -warnaserror, so as a warning it would merge green. -->
+    <WarningsAsErrors>VSTHRD100;CA2007</WarningsAsErrors>
     <Deterministic>true</Deterministic>
     <!-- Lots of warning this'll be a long slow process -->
     <!-- <Nullable>enable</Nullable> -->

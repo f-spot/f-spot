@@ -101,7 +101,25 @@ dotnet_style_require_accessibility_modifiers = omit_if_default:suggestion
 dotnet_diagnostic.CA1303.severity = none
 
 # CA2007: Consider calling ConfigureAwait on the awaited task.
-# On by default only at higher analysis levels. Turned on while the tree has no async at
-# all, so the convention is set before the code exists rather than retrofitted across
-# hundreds of awaits later.
+# On by default only at higher analysis levels. Turned on while F-Spot's own code has no
+# async at all, so the convention is set before the code exists rather than retrofitted
+# across hundreds of awaits later. (external/ does contain awaits, but external/
+# Directory.Build.props blocks inheritance, so no CA rule reaches the submodules.)
+#
+# Library code only, which is what the rule is for and what makes promoting it to an
+# error in Directory.Build.props safe. It does not demand ConfigureAwait(false) --
+# ConfigureAwait(true) satisfies it too -- but in the GTK client and the extensions
+# essentially every await wants to resume on the UI thread, so requiring the annotation
+# there is noise that would block the first await written. src/Core and lib/ can be
+# called from a worker, so there the choice is worth stating.
 dotnet_diagnostic.CA2007.severity = warning
+
+# The GTK client and the extensions are UI-affine: their continuations belong on the
+# main loop, which is the default a bare await already gives them.
+[src/{Clients,Extensions}/**.cs]
+dotnet_diagnostic.CA2007.severity = none
+
+# ConfigureAwait(false) in a test is conventionally noise: the test host has no
+# synchronization context to deadlock against, and MSTest resumes the continuation itself.
+[**/*{UnitTest,Tests}/**.cs]
+dotnet_diagnostic.CA2007.severity = none

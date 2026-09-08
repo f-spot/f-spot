@@ -23,10 +23,6 @@ namespace Hyena
 	{
 		public static readonly DateTime StartedAt = DateTime.Now;
 
-		static ApplicationContext ()
-		{
-		}
-
 		static CommandLineParser command_line = new CommandLineParser ();
 		public static CommandLineParser CommandLine {
 			set { command_line = value; }
