@@ -4,7 +4,6 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
-using System.Text;
 
 using Hyena;
 
@@ -42,7 +41,6 @@ namespace FSpot.Database
 			}.ToString ());
 			try {
 				sqlite.Open ();
-				RegisterFunctions (sqlite);
 			} catch {
 				sqlite.Dispose ();
 				sqlite = null;
@@ -108,27 +106,6 @@ namespace FSpot.Database
 				return;
 			sqlite.Dispose ();
 			sqlite = null;
-		}
-
-		static void RegisterFunctions (MdsSqliteConnection connection)
-		{
-			connection.CreateFunction ("HYENA_SEARCH_KEY", (object[] args) => {
-				var value = SqliteUtils.NormalizeDbValue (args != null && args.Length > 0 ? args[0] : null) as string;
-				return SqliteUtils.ToDbFormat (StringUtil.SearchKey (value));
-			});
-			connection.CreateFunction ("HYENA_COLLATION_KEY", (object[] args) => {
-				var value = SqliteUtils.NormalizeDbValue (args != null && args.Length > 0 ? args[0] : null) as string;
-				return StringUtil.SortKey (value);
-			});
-			connection.CreateFunction ("HYENA_MD5", (object[] args) => {
-				args = SqliteUtils.NormalizeFunctionArgs (args);
-				int n_args = (int)(long)args[0];
-				var sb = new StringBuilder ();
-				for (int i = 1; i <= n_args; i++) {
-					sb.Append (args[i]);
-				}
-				return SqliteUtils.ToDbFormat (CryptoUtil.Md5Encode (sb.ToString (), Encoding.UTF8));
-			});
 		}
 	}
 

@@ -18,7 +18,7 @@ namespace Hyena.CommandLine
 	{
 		List<LayoutGroup> groups;
 
-		public Layout (List<LayoutGroup> groups)
+		Layout (List<LayoutGroup> groups)
 		{
 			this.groups = groups;
 		}
@@ -41,7 +41,7 @@ namespace Hyena.CommandLine
 			return ToString (groups);
 		}
 
-		public string ToString (IEnumerable<LayoutGroup> groups)
+		string ToString (IEnumerable<LayoutGroup> groups)
 		{
 			var builder = new StringBuilder ();
 

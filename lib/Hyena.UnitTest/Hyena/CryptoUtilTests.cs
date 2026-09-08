@@ -26,17 +26,6 @@ namespace Hyena.Tests
 		}
 
 		[TestMethod]
-		public void IsMd5Encoded ()
-		{
-			Assert.IsTrue (CryptoUtil.IsMd5Encoded ("ae2b1fca515949e5d54fb22b8ed95575"));
-			Assert.IsFalse (CryptoUtil.IsMd5Encoded ("abc233"));
-			Assert.IsFalse (CryptoUtil.IsMd5Encoded ("lebowski"));
-			Assert.IsFalse (CryptoUtil.IsMd5Encoded ("ae2b1fca515949e5g54fb22b8ed95575"));
-			Assert.IsFalse (CryptoUtil.IsMd5Encoded (null));
-			Assert.IsFalse (CryptoUtil.IsMd5Encoded (""));
-		}
-
-		[TestMethod]
 		public void Md5EncodeStream ()
 		{
 			var file = Path.GetTempFileName ();
@@ -50,16 +39,5 @@ namespace Hyena.Tests
 
 			File.Delete (file);
 		}
-
-		/*[TestMethod]
-        public void Md5Performance ()
-        {
-            int max = 10000;
-            using (new Timer (String.Format ("Computed {0} MD5 hashes", max))) {
-                for (int i = 0; i < max; i++) {
-                    CryptoUtil.Md5Encode ("LkaJSd Flkjdf234234lkj3WlkejewrVlkdf @343434 dsfjk 3497u34 l 2008 lkjdf");
-                }
-            }
-        }*/
 	}
 }

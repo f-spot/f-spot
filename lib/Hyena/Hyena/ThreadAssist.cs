@@ -49,20 +49,15 @@ namespace Hyena
 			}
 		}
 
-		public static Thread Spawn (ThreadStart threadedMethod, bool autoStart)
-		{
-			var thread = new Thread (threadedMethod);
-			thread.Name = $"Spawned: {threadedMethod}";
-			thread.IsBackground = true;
-			if (autoStart) {
-				thread.Start ();
-			}
-			return thread;
-		}
-
 		public static Thread Spawn (ThreadStart threadedMethod)
 		{
-			return Spawn (threadedMethod, true);
+			var thread = new Thread (threadedMethod) {
+				Name = $"Spawned: {threadedMethod}",
+				IsBackground = true
+			};
+			thread.Start ();
+
+			return thread;
 		}
 	}
 }

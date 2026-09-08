@@ -18,7 +18,7 @@ namespace Hyena.CommandLine
 		string id;
 		string title;
 
-		public LayoutGroup (string id, string title, List<LayoutOption> options)
+		LayoutGroup (string id, string title, List<LayoutOption> options)
 		{
 			this.id = id;
 			this.title = title;

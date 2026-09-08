@@ -89,11 +89,6 @@ namespace Hyena
 		{
 			return new Uri (uri).LocalPath;
 		}
-		public static string UriToFilename (SafeUri uri)
-		{
-			return UriToFilename (uri.AbsoluteUri);
-		}
-
 		public override string ToString ()
 		{
 			return AbsoluteUri;

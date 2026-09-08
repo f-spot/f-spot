@@ -11,27 +11,14 @@
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
-using System.Text.RegularExpressions;
 
 namespace Hyena
 {
 	public static class CryptoUtil
 	{
-		// A-Z is ignored on purpose
-		static Regex md5_regex = new Regex ("^[a-f0-9]{32}$", RegexOptions.Compiled);
 		static MD5 md5 = MD5.Create ();
 
-		public static bool IsMd5Encoded (string text)
-		{
-			return text == null || text.Length != 32 ? false : md5_regex.IsMatch (text);
-		}
-
 		public static string Md5Encode (string text)
-		{
-			return Md5Encode (text, Encoding.ASCII);
-		}
-
-		public static string Md5Encode (string text, Encoding encoding)
 		{
 			if (string.IsNullOrEmpty (text)) {
 				return string.Empty;
@@ -39,7 +26,7 @@ namespace Hyena
 
 			byte[] hash;
 			lock (md5) {
-				hash = md5.ComputeHash (encoding.GetBytes (text));
+				hash = md5.ComputeHash (Encoding.ASCII.GetBytes (text));
 			}
 
 			return ToHex (hash);
