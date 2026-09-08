@@ -65,32 +65,16 @@ namespace FSpot
 			Console.WriteLine ("Usage: f-spot [options...] [files|URIs...]");
 			Console.WriteLine ();
 
-			var commands = new Hyena.CommandLine.Layout (
-				new LayoutGroup ("help", "Help Options",
-					new LayoutOption ("help", "Show this help"),
-					new LayoutOption ("help-options", "Show command line options"),
-					new LayoutOption ("help-all", "Show all options"),
-					new LayoutOption ("version", "Show version information"),
-					new LayoutOption ("versions", "Show detailed version information")),
-				new LayoutGroup ("options", "General options",
-					new LayoutOption ("basedir=DIR", "Path to the photo database folder"),
-					new LayoutOption ("import=URI", "Import from the given uri"),
-					new LayoutOption ("photodir=DIR", "Default import folder"),
-					new LayoutOption ("view ITEM", "View file(s) or directories"),
-					new LayoutOption ("shutdown", "Shut down a running instance of F-Spot"),
-					new LayoutOption ("slideshow", "Display a slideshow"),
-					new LayoutOption ("debug", "Run in debug mode")));
-
 			if (ApplicationContext.CommandLine.Contains ("help-all")) {
-				Console.WriteLine (commands);
+				Console.WriteLine (CommandLineHelp.Everything ());
 				return;
 			}
 
 			List<string> errors = null;
 			foreach (var argument in ApplicationContext.CommandLine.Arguments) {
 				switch (argument.Key) {
-				case "help": Console.WriteLine (commands.ToString ("help")); break;
-				case "help-options": Console.WriteLine (commands.ToString ("options")); break;
+				case "help": Console.WriteLine (CommandLineHelp.Section ("help")); break;
+				case "help-options": Console.WriteLine (CommandLineHelp.Section ("options")); break;
 				default:
 					if (argument.Key.StartsWith ("help", StringComparison.OrdinalIgnoreCase)) {
 						(errors ??= new List<string> ()).Add (argument.Key);
@@ -100,7 +84,7 @@ namespace FSpot
 			}
 
 			if (errors != null)
-				Console.WriteLine (commands.LayoutLine ($"The following help arguments are invalid: {string.Join (", ", errors.Select (e => $"--{e}"))}"));
+				Console.WriteLine ($"The following help arguments are invalid: {string.Join (", ", errors.Select (e => $"--{e}"))}");
 		}
 
 		static string[] FixArgs (IReadOnlyList<string> args)
