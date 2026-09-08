@@ -43,7 +43,8 @@ using System.Collections.Generic;
 
 namespace Banshee.Kernel
 {
-	public class IntervalHeap<T> : ICollection<T>, IEnumerable<T>
+	// Sealed: SyncIntervalHeap was the only derived type, and it was deleted as dead.
+	public sealed class IntervalHeap<T> : ICollection<T>, IEnumerable<T>
 	{
 		const int MIN_CAPACITY = 16;
 
@@ -57,7 +58,7 @@ namespace Banshee.Kernel
 			Clear ();
 		}
 
-		public virtual T Pop ()
+		public T Pop ()
 		{
 			if (count == 0) {
 				throw new InvalidOperationException ();
@@ -70,7 +71,7 @@ namespace Banshee.Kernel
 			return item;
 		}
 
-		public virtual T Peek ()
+		public T Peek ()
 		{
 			if (count == 0) {
 				throw new InvalidOperationException ();
@@ -79,7 +80,7 @@ namespace Banshee.Kernel
 			return heap[0].Item;
 		}
 
-		public virtual void Push (T item, int priority)
+		public void Push (T item, int priority)
 		{
 			if (item == null) {
 				throw new ArgumentNullException (nameof (item));
@@ -93,13 +94,17 @@ namespace Banshee.Kernel
 			generation++;
 		}
 
-		public virtual void Clear ()
+		public void Clear ()
 		{
-			generation = 0;
+			count = 0;
+			// Incremented, not reset: enumerators compare for equality, so resetting to 0
+			// let two pushes after a clear return generation to a value a pre-clear
+			// enumerator was still holding, and it would then walk the new contents.
+			generation++;
 			heap = new Interval[MIN_CAPACITY];
 		}
 
-		public virtual void CopyTo (T[] array, int index)
+		public void CopyTo (T[] array, int index)
 		{
 			if (array == null) {
 				throw new ArgumentNullException (nameof (array));
@@ -109,10 +114,20 @@ namespace Banshee.Kernel
 				throw new ArgumentOutOfRangeException (nameof (index));
 			}
 
-			Array.Copy (heap, 0, array, index, count);
+			// The Array.Copy this replaced raised ArgumentException for a destination too
+			// small to hold the items; the unwrap loop below would walk off the end with
+			// IndexOutOfRangeException instead, which ICollection<T> does not allow.
+			if (array.Length - index < count) {
+				throw new ArgumentException ("The destination array is too small to hold the items", nameof (array));
+			}
+
+			// heap is Interval[], so it cannot be Array.Copy'd into a T[]; the items
+			// have to be unwrapped one at a time.
+			for (int i = 0; i < count; i++)
+				array[index + i] = heap[i].Item;
 		}
 
-		public virtual bool Contains (T item)
+		public bool Contains (T item)
 		{
 			if (item == null) {
 				throw new ArgumentNullException (nameof (item));
@@ -121,7 +136,7 @@ namespace Banshee.Kernel
 			return FindItemHeapIndex (item) >= 0;
 		}
 
-		public virtual void Add (T item)
+		public void Add (T item)
 		{
 			if (item == null) {
 				throw new ArgumentNullException (nameof (item));
@@ -130,7 +145,7 @@ namespace Banshee.Kernel
 			Push (item, 0);
 		}
 
-		public virtual bool Remove (T item)
+		public bool Remove (T item)
 		{
 			if (item == null) {
 				throw new ArgumentNullException (nameof (item));
@@ -148,7 +163,7 @@ namespace Banshee.Kernel
 			return true;
 		}
 
-		public virtual void TrimExcess ()
+		public void TrimExcess ()
 		{
 			if (count < heap.Length * 0.9) {
 				Array.Resize (ref heap, count);
@@ -160,18 +175,9 @@ namespace Banshee.Kernel
 			return GetEnumerator ();
 		}
 
-		public virtual IEnumerator<T> GetEnumerator ()
+		public IEnumerator<T> GetEnumerator ()
 		{
 			return new IntervalHeapEnumerator (this);
-		}
-
-		public static IntervalHeap<T> Synchronized (IntervalHeap<T> heap)
-		{
-			if (heap == null) {
-				throw new ArgumentNullException (nameof (heap));
-			}
-
-			return new SyncIntervalHeap (heap);
 		}
 
 		int FindItemHeapIndex (T item)
@@ -239,19 +245,11 @@ namespace Banshee.Kernel
 			MoveUp (index, node);
 		}
 
-		public virtual int Count {
+		public int Count {
 			get { return count; }
 		}
 
 		public bool IsReadOnly {
-			get { return false; }
-		}
-
-		public virtual object SyncRoot {
-			get { return this; }
-		}
-
-		public virtual bool IsSynchronized {
 			get { return false; }
 		}
 
@@ -277,78 +275,6 @@ namespace Banshee.Kernel
 			public override int GetHashCode ()
 			{
 				return priority.GetHashCode () ^ item.GetHashCode ();
-			}
-		}
-
-		sealed class SyncIntervalHeap : IntervalHeap<T>
-		{
-			IntervalHeap<T> heap;
-
-			internal SyncIntervalHeap (IntervalHeap<T> heap)
-			{
-				this.heap = heap;
-			}
-
-			public override int Count {
-				get { lock (heap) { return heap.Count; } }
-			}
-
-			public override bool IsSynchronized {
-				get { return true; }
-			}
-
-			public override object SyncRoot {
-				get { return heap.SyncRoot; }
-			}
-
-			public override void Clear ()
-			{
-				lock (heap) { heap.Clear (); }
-			}
-
-			public override bool Contains (T item)
-			{
-				lock (heap) { return heap.Contains (item); }
-			}
-
-			public override T Pop ()
-			{
-				lock (heap) { return heap.Pop (); }
-			}
-
-			public override T Peek ()
-			{
-				lock (heap) { return heap.Peek (); }
-			}
-
-			public override void Push (T item, int priority)
-			{
-				lock (heap) { heap.Push (item, priority); }
-			}
-
-			public override void Add (T item)
-			{
-				lock (heap) { heap.Add (item); }
-			}
-
-			public override bool Remove (T item)
-			{
-				lock (heap) { return heap.Remove (item); }
-			}
-
-			public override void TrimExcess ()
-			{
-				lock (heap) { heap.TrimExcess (); }
-			}
-
-			public override void CopyTo (T[] array, int index)
-			{
-				lock (heap) { heap.CopyTo (array, index); }
-			}
-
-			public override IEnumerator<T> GetEnumerator ()
-			{
-				lock (heap) { return new IntervalHeapEnumerator (this); }
 			}
 		}
 

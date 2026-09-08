@@ -365,16 +365,7 @@ namespace GtkBeans
 			if (s == null)
 				throw new ArgumentNullException (nameof (s));
 
-			// CopyTo rather than a single Read of s.Length: Stream.Read may return fewer
-			// bytes than asked for, which would hand the builder a truncated UI
-			// definition, and Length is not available on every stream this is called
-			// with. Kept in sync with Builder.custom, which the generator inlines here.
-			byte[] buffer;
-			using (var copy = new System.IO.MemoryStream ()) {
-				s.CopyTo (copy);
-				buffer = copy.ToArray ();
-			}
-			s.Close ();
+			byte[] buffer = ReadAllAndClose (s);
 
 			AddFromString (System.Text.Encoding.UTF8.GetString (buffer));
 
@@ -402,16 +393,7 @@ namespace GtkBeans
 				throw new ArgumentException ("Cannot get resource file '" + resource_name + "'",
 								 nameof (resource_name));
 
-			// CopyTo rather than a single Read of s.Length: Stream.Read may return fewer
-			// bytes than asked for, which would hand the builder a truncated UI
-			// definition, and Length is not available on every stream this is called
-			// with. Kept in sync with Builder.custom, which the generator inlines here.
-			byte[] buffer;
-			using (var copy = new System.IO.MemoryStream ()) {
-				s.CopyTo (copy);
-				buffer = copy.ToArray ();
-			}
-			s.Close ();
+			byte[] buffer = ReadAllAndClose (s);
 
 			AddFromString (System.Text.Encoding.UTF8.GetString (buffer));
 
@@ -629,6 +611,21 @@ namespace GtkBeans
 				type = type.BaseType;
 			}
 			while (type != typeof (object) && type != null);
+		}
+
+		// Stream.Read may return fewer bytes than asked for, which would hand the
+		// builder a truncated UI definition, and Length is not available on every
+		// stream Builder is constructed with. Mirrors Builder.custom.
+		static byte[] ReadAllAndClose (System.IO.Stream s)
+		{
+			// s is disposed by the using rather than closed after CopyTo: this method is
+			// named for closing the stream, and a throwing CopyTo would leak it.
+			using (s)
+			using (var copy = new System.IO.MemoryStream ()) {
+				s.CopyTo (copy);
+
+				return copy.ToArray ();
+			}
 		}
 
 		#endregion
