@@ -38,10 +38,13 @@
     <Copyright>Copyright (C) 2003-2012 Novell Inc. and others</Copyright>
   </PropertyGroup>
 
-  <!-- Common nugets -->
+  <!-- The SDK supplies the CA rules via EnableNETAnalyzers above, so
+       Microsoft.CodeAnalysis.NetAnalyzers is not referenced; it only warned that the
+       SDK's copy was newer. The threading analyzers stay: measured against a probe of
+       five async hazards, the SDK caught none and these caught four, including
+       VSTHRD100 (async void), which in a GTK signal handler crashes the process.
+       Microsoft.VisualStudio.Threading itself is gone, since no API of it was used. -->
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" />
-    <PackageReference Include="Microsoft.VisualStudio.Threading" />
     <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
