@@ -80,7 +80,7 @@ namespace Hyena
 			this.uri = uri.AbsoluteUri;
 		}
 
-		public static string FilenameToUri (string localPath)
+		static string FilenameToUri (string localPath)
 		{
 			return new Uri (new Uri ("file://"), localPath).ToString ();
 		}
@@ -123,7 +123,7 @@ namespace Hyena
 			get { return uri; }
 		}
 
-		public bool IsLocalPath {
+		bool IsLocalPath {
 			get {
 				if (local_path_check == LocalPathCheck.NotPerformed) {
 					if (IsFile) {
@@ -162,6 +162,6 @@ namespace Hyena
 			}
 		}
 
-		public bool IsFile => Scheme == Uri.UriSchemeFile;
+		bool IsFile => Scheme == Uri.UriSchemeFile;
 	}
 }

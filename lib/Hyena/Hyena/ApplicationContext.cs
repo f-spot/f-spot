@@ -9,7 +9,6 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
-using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -21,8 +20,6 @@ namespace Hyena
 
 	public static class ApplicationContext
 	{
-		public static readonly DateTime StartedAt = DateTime.Now;
-
 		static CommandLineParser command_line = new CommandLineParser ();
 		public static CommandLineParser CommandLine {
 			set { command_line = value; }
@@ -30,12 +27,6 @@ namespace Hyena
 		}
 
 		public static string ApplicationName { get; set; }
-
-		static Layout command_line_layout;
-		public static Layout CommandLineLayout {
-			get { return command_line_layout; }
-			set { command_line_layout = value; }
-		}
 
 		static bool? debugging = null;
 		public static bool Debugging {
@@ -53,18 +44,9 @@ namespace Hyena
 			}
 		}
 
-		public static bool EnvironmentIsSet (string env)
+		static bool EnvironmentIsSet (string env)
 		{
 			return !string.IsNullOrEmpty (Environment.GetEnvironmentVariable (env));
-		}
-
-		static CultureInfo current_culture = CultureInfo.CurrentCulture;
-		public static CultureInfo CurrentCulture {
-			get { return current_culture; }
-		}
-
-		public static CultureInfo InternalCultureInfo {
-			get { return CultureInfo.InvariantCulture; }
 		}
 
 		[DllImport ("libc")] // Linux

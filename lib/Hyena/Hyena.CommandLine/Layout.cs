@@ -127,24 +127,6 @@ namespace Hyena.CommandLine
 			return builder.ToString ();
 		}
 
-		public void Add (LayoutGroup group)
-		{
-			groups.Add (group);
-		}
-
-		public void Remove (LayoutGroup group)
-		{
-			groups.Remove (group);
-		}
-
-		public void Remove (string groupId)
-		{
-			LayoutGroup group = FindGroup (groupId);
-			if (group != null) {
-				groups.Remove (group);
-			}
-		}
-
 		LayoutGroup FindGroup (string id)
 		{
 			foreach (LayoutGroup group in groups) {
@@ -164,16 +146,6 @@ namespace Hyena.CommandLine
 					yield return group;
 				}
 			}
-		}
-
-		public static LayoutOption Option (string name, string description)
-		{
-			return new LayoutOption (name, description);
-		}
-
-		public static LayoutGroup Group (string id, string title, params LayoutOption[] options)
-		{
-			return new LayoutGroup (id, title, options);
 		}
 	}
 }

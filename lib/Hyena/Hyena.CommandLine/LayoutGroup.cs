@@ -40,43 +40,8 @@ namespace Hyena.CommandLine
 			return GetEnumerator ();
 		}
 
-		public void Add (LayoutOption option)
-		{
-			options.Add (option);
-		}
-
-		public void Add (string name, string description)
-		{
-			options.Add (new LayoutOption (name, description));
-		}
-
-		public void Remove (LayoutOption option)
-		{
-			options.Remove (option);
-		}
-
-		public void Remove (string optionName)
-		{
-			LayoutOption option = FindOption (optionName);
-			if (option != null) {
-				options.Remove (option);
-			}
-		}
-
-		LayoutOption FindOption (string name)
-		{
-			foreach (LayoutOption option in options) {
-				if (option.Name == name) {
-					return option;
-				}
-			}
-
-			return null;
-		}
-
 		public LayoutOption this[int index] {
 			get { return options[index]; }
-			set { options[index] = value; }
 		}
 
 		public int Count {
@@ -89,10 +54,6 @@ namespace Hyena.CommandLine
 
 		public string Title {
 			get { return title; }
-		}
-
-		public IList<LayoutOption> Options {
-			get { return options; }
 		}
 	}
 }

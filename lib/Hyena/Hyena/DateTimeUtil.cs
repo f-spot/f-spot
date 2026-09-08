@@ -18,7 +18,7 @@ namespace Hyena
 		// FIXME I don't think having a local-unix-epoch makes any sense, I think we should be using
 		// all UTC values.  Depending on the time of year in daylight savings timezones, the
 		// local-seconds-since-epoch value will differ, which will cause errors, no?
-		public static readonly DateTime LocalUnixEpoch = new DateTime (1970, 1, 1).ToLocalTime ();
+		static readonly DateTime LocalUnixEpoch = new DateTime (1970, 1, 1).ToLocalTime ();
 
 		public static DateTime ToDateTime (long time)
 		{
@@ -39,23 +39,6 @@ namespace Hyena
 		public static long ToTimeT (DateTime time)
 		{
 			return (long)time.Subtract (LocalUnixEpoch).TotalSeconds;
-		}
-
-		public static string FormatDuration (long time)
-		{
-			return FormatDuration (TimeSpan.FromSeconds (time));
-		}
-
-		public static string FormatDuration (TimeSpan time)
-		{
-			return FormatDuration (time.Hours, time.Minutes, time.Seconds);
-		}
-
-		public static string FormatDuration (int hours, int minutes, int seconds)
-		{
-			return (hours > 0 ?
-					string.Format ("{0}:{1:00}:{2:00}", hours, minutes, seconds) :
-					string.Format ("{0}:{1:00}", minutes, seconds));
 		}
 
 		const string INVARIANT_FMT = "yyyy-MM-dd HH:mm:ss.fff zzz";

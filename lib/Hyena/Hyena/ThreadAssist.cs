@@ -16,7 +16,7 @@ namespace Hyena
 {
 	public static class ThreadAssist
 	{
-		public static Thread MainThread { get; private set; }
+		static Thread MainThread { get; set; }
 
 		public static Action<InvokeHandler> ProxyToMainHandler { get; set; }
 
@@ -30,7 +30,7 @@ namespace Hyena
 			}
 		}
 
-		public static bool InMainThread {
+		static bool InMainThread {
 			get {
 				if (MainThread == null) {
 					throw new ApplicationException ("ThreadAssist.InitializeMainThread must be called first");
