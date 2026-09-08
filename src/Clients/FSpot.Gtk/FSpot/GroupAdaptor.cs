@@ -49,10 +49,10 @@ namespace FSpot
 		public abstract IPhoto PhotoFromIndex (int item);
 
 		public delegate void GlassSetHandler (GroupAdaptor adaptor, int index);
-		public virtual event GlassSetHandler GlassSet;
+		public abstract event GlassSetHandler GlassSet;
 
 		public delegate void ChangedHandler (GroupAdaptor adaptor);
-		public virtual event ChangedHandler Changed;
+		public abstract event ChangedHandler Changed;
 
 		protected void HandleQueryChanged (IBrowsableCollection sender)
 		{

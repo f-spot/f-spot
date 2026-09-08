@@ -133,7 +133,9 @@ namespace FSpot.Cms.UnitTest
 			File.WriteAllBytes (Path.Combine (root, "srgb.icc"), CmsFacadeTests.SaveStandardRgb ());
 			string locked = Directory.CreateDirectory (Path.Combine (root, "locked")).FullName;
 			Directory.CreateDirectory (Path.Combine (locked, "deeper"));
+#pragma warning disable CA1416 // [OSCondition] above excludes Windows; the analyzer cannot see a runtime gate.
 			File.SetUnixFileMode (locked, UnixFileMode.None);
+#pragma warning restore CA1416
 
 			try {
 				Directory.GetFiles (locked);
