@@ -44,7 +44,7 @@ namespace Hyena.Gui
 				return null;
 			}
 
-			if (!PlatformDetection.IsWindows) {
+			if (!RuntimeInformation.IsOSPlatform (OSPlatform.Windows)) {
 				try {
 					return new PixbufImageSurface (pixbuf, disposePixbuf);
 				} catch {

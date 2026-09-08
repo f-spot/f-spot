@@ -374,7 +374,7 @@ namespace Hyena.Widgets
 
 		public RatingAccessible (IntPtr raw) : base (raw)
 		{
-			Hyena.Log.Information ("RatingAccessible raw ctor..");
+			FSpot.Logger.Log.Information ("RatingAccessible raw ctor..");
 		}
 
 		public RatingAccessible (GLib.Object widget) : base ()

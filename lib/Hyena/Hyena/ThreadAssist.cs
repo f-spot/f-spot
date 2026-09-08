@@ -25,8 +25,8 @@ namespace Hyena
 			MainThread = Thread.CurrentThread;
 			try {
 				MainThread.Name = "Main Thread";
-			} catch {
-				Log.Debug ($"Main thread set to {MainThread.Name}");
+			} catch (InvalidOperationException) {
+				// Already named; nothing to do.
 			}
 		}
 
@@ -40,54 +40,12 @@ namespace Hyena
 			}
 		}
 
-		public static void AssertNotInMainThread ()
-		{
-			if (ApplicationContext.Debugging && InMainThread) {
-				Log.Warning ("In GUI thread, will probably block it", Environment.StackTrace);
-			}
-		}
-
-		public static void AssertInMainThread ()
-		{
-			if (ApplicationContext.Debugging && !InMainThread) {
-				Log.Warning ("Not in main thread!", Environment.StackTrace);
-			}
-		}
-
-		public static void BlockingProxyToMain (InvokeHandler handler)
-		{
-			if (!InMainThread) {
-				var reset_event = new ManualResetEvent (false);
-
-				ProxyToMainHandler (delegate {
-					try {
-						handler ();
-					} finally {
-						reset_event.Set ();
-					}
-				});
-
-				reset_event.WaitOne ();
-			} else {
-				handler ();
-			}
-		}
-
 		public static void ProxyToMain (InvokeHandler handler)
 		{
 			if (!InMainThread) {
 				ProxyToMainHandler (handler);
 			} else {
 				handler ();
-			}
-		}
-
-		public static void SpawnFromMain (ThreadStart threadedMethod)
-		{
-			if (InMainThread) {
-				Spawn (threadedMethod, true);
-			} else {
-				threadedMethod ();
 			}
 		}
 

@@ -44,7 +44,7 @@ namespace Hyena.Gui
 				context.Dispose ();
 			}
 
-			Log.Debug ("Creating Pango.Layout, configuring Cairo.Context");
+			FSpot.Logger.Log.Debug ("Creating Pango.Layout, configuring Cairo.Context");
 
 			return layout;
 		}

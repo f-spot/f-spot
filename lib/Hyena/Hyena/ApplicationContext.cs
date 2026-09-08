@@ -25,7 +25,6 @@ namespace Hyena
 
 		static ApplicationContext ()
 		{
-			Log.Debugging = Debugging;
 		}
 
 		static CommandLineParser command_line = new CommandLineParser ();
@@ -55,7 +54,6 @@ namespace Hyena
 			}
 			set {
 				debugging = value;
-				Log.Debugging = Debugging;
 			}
 		}
 

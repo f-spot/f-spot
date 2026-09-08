@@ -16,6 +16,7 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
@@ -99,7 +100,7 @@ namespace FSpot
 			}
 
 			if (errors != null)
-				Console.WriteLine (commands.LayoutLine ($"The following help arguments are invalid: {Hyena.Collections.CollectionExtensions.Join (errors, "--", null, ", ")}"));
+				Console.WriteLine (commands.LayoutLine ($"The following help arguments are invalid: {string.Join (", ", errors.Select (e => $"--{e}"))}"));
 		}
 
 		static string[] FixArgs (IReadOnlyList<string> args)

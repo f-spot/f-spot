@@ -350,34 +350,5 @@ namespace Hyena
 			return sb.ToString ();
 		}
 
-		public static IEnumerable<object> FormatInterleaved (string format, params object[] objects)
-		{
-			var indices = new Dictionary<object, int> ();
-
-			for (int i = 0; i < objects.Length; i++) {
-				int j = format.IndexOf ("{" + i + "}");
-				if (j == -1) {
-					Hyena.Log.ErrorFormat ("Translated string {0} should contain {{1}} in which to place object {2}", format, i, objects[i]);
-				}
-				indices[objects[i]] = j;
-			}
-
-			int str_pos = 0;
-			foreach (var obj in objects.OrderBy (w => indices[w])) {
-				int widget_i = indices[obj];
-				if (widget_i > str_pos) {
-					var str = format.Substring (str_pos, widget_i - str_pos).Trim ();
-					if (str != "") yield return str;
-				}
-
-				yield return obj;
-				str_pos = widget_i + 2 + Array.IndexOf (objects, obj).ToString ().Length;
-			}
-
-			if (str_pos < format.Length - 1) {
-				var str = format.Substring (str_pos, format.Length - str_pos).Trim ();
-				if (str != "") yield return str;
-			}
-		}
 	}
 }

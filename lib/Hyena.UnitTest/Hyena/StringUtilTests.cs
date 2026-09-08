@@ -142,18 +142,6 @@ href=http://lkjdflkjdflkjj>baz foo< /a> bar"));
 		}
 
 		[TestMethod]
-		public void TestFormatInterleaved ()
-		{
-			var objects = new object[] { "one", 2 };
-			var format = new Func<string, string> ((fmt) => StringUtil.FormatInterleaved (fmt, objects).Select (o => o.ToString ()).Join (""));
-
-			Assert.AreEqual ("onefoo2bar", format ("{0} foo {1} bar"));
-			Assert.AreEqual ("fooone2bar", format ("foo {0} {1} bar"));
-			Assert.AreEqual ("fooonebar2", format ("foo {0} bar {1}"));
-			Assert.AreEqual ("onefoo bar2", format ("{0} foo bar {1}"));
-		}
-
-		[TestMethod]
 		public void TestSubstringBetween ()
 		{
 			Assert.AreEqual ("bar", "foobarbaz".SubstringBetween ("foo", "baz"));
