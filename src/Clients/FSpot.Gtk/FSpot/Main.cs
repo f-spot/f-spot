@@ -166,9 +166,16 @@ namespace FSpot
 			ApplicationContext.ApplicationName = "F-Spot";
 			ApplicationContext.TrySetProcessName (FSpotConfiguration.Package);
 
-			SynchronizationContext.SetSynchronizationContext (new GLibSynchronizationContext ());
+			var mainContext = new GLibSynchronizationContext ();
+			SynchronizationContext.SetSynchronizationContext (mainContext);
 			ThreadAssist.InitializeMainThread ();
-			ThreadAssist.ProxyToMainHandler = RunIdle;
+			// ProxyToMain and the synchronization context marshal to the same main loop,
+			// so route one through the other rather than keeping GLib.Idle.Add alive as a
+			// second implementation. At idle priority, which is where GLib.Idle.Add put
+			// these and where the bulk UI updates ProxyToMain carries belong. The handler
+			// is only reached from off the main thread -- ProxyToMain invokes directly
+			// when it is already on it -- which is exactly when posting is wanted.
+			ThreadAssist.ProxyToMainHandler = handler => mainContext.PostAtIdlePriority (_ => handler (), null);
 
 			// Options and Option parsing
 			bool shutdown = false;
@@ -394,11 +401,6 @@ namespace FSpot
 			} catch (Exception ex) {
 				Logger.Log.Error (ex, "");
 			}
-		}
-
-		public static void RunIdle (InvokeHandler handler)
-		{
-			GLib.Idle.Add (delegate { handler (); return false; });
 		}
 	}
 }

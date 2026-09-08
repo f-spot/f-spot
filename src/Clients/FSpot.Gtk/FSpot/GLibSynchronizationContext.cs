@@ -23,12 +23,16 @@ namespace FSpot
 	// any process running a GLib main loop.
 	class GLibSynchronizationContext : SynchronizationContext
 	{
-		// Called directly rather than through GLib.Idle.Add, for three reasons that all
-		// matter on a path taken by every await resumption. GLib.Idle.Add locks a shared
-		// static dictionary per callback; it needs the glibsharpglue-2 native library,
-		// which ships as a .so even on macOS; and it queues at G_PRIORITY_DEFAULT_IDLE
-		// (200), behind GTK's own redraws (120), whereas G_PRIORITY_DEFAULT is 0.
+		// Called directly rather than through GLib.Idle.Add, for two reasons that both
+		// matter on a path taken by every await resumption: GLib.Idle.Add locks a shared
+		// static dictionary per callback, and it needs the glibsharpglue-2 native
+		// library, which ships as a .so even on macOS. Going direct also makes the
+		// priority a choice rather than a fixed G_PRIORITY_DEFAULT_IDLE.
 		const int GPriorityDefault = 0;
+
+		// GTK queues its own redraws at G_PRIORITY_HIGH_IDLE + 20 = 120, between these
+		// two, which is what makes the choice matter. See PostAtIdlePriority.
+		const int GPriorityDefaultIdle = 200;
 
 		[DllImport ("libglib-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
 		static extern uint g_timeout_add_full (int priority, uint interval, GSourceFuncInternal d, IntPtr data, GLib.DestroyNotify notify);
@@ -79,7 +83,24 @@ namespace FSpot
 				return;
 			}
 
-			Enqueue (d, state, null);
+			Enqueue (d, state, null, GPriorityDefault);
+		}
+
+		// For callers that marshal a high volume of UI updates from a background thread
+		// rather than resuming a single await: ImportDialogController.DoScan posts one
+		// callback per photo found, unthrottled, and ProxyToMain funnels fourteen other
+		// sites here too. At G_PRIORITY_DEFAULT those outrank GTK's redraws at 120, and
+		// a scanner that enqueues faster than the loop drains would keep a priority-0
+		// source ready forever and freeze the window it is updating. Queued behind the
+		// redraws instead, which is where GLib.Idle.Add used to put them.
+		internal void PostAtIdlePriority (SendOrPostCallback d, object state)
+		{
+			if (d == null) {
+				ReportNullCallback ();
+				return;
+			}
+
+			Enqueue (d, state, null, GPriorityDefaultIdle);
 		}
 
 		public override void Send (SendOrPostCallback d, object state)
@@ -98,7 +119,7 @@ namespace FSpot
 			}
 
 			using var completed = new ManualResetEventSlim (false);
-			Enqueue (d, state, completed);
+			Enqueue (d, state, completed, GPriorityDefault);
 			completed.Wait ();
 		}
 
@@ -121,11 +142,17 @@ namespace FSpot
 				Environment.StackTrace);
 		}
 
-		void Enqueue (SendOrPostCallback d, object state, ManualResetEventSlim completed)
+		// Every caller guards against a null callback before getting here, which is why
+		// this only asserts: the guards have to live at the entry points, one for the
+		// main-thread shortcut that skips this method and one to avoid allocating the
+		// event. The assert keeps the invariant stated where the handle is taken.
+		void Enqueue (SendOrPostCallback d, object state, ManualResetEventSlim completed, int priority)
 		{
+			Debug.Assert (d != null, "the callback is null-checked by every caller");
+
 			var handle = GCHandle.Alloc (new Callback (d, state, completed));
 			try {
-				g_timeout_add_full (GPriorityDefault, 0, Callback.SourceHandler, (IntPtr)handle, GLib.DestroyHelper.NotifyHandler);
+				g_timeout_add_full (priority, 0, Callback.SourceHandler, (IntPtr)handle, GLib.DestroyHelper.NotifyHandler);
 			} catch {
 				// No source was created, so no destroy notify will ever fire to free this.
 				handle.Free ();
