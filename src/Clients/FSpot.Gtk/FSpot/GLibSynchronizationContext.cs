@@ -23,12 +23,11 @@ namespace FSpot
 	// any process running a GLib main loop.
 	class GLibSynchronizationContext : SynchronizationContext
 	{
-		// g_timeout_add_full is called directly rather than through GLib.Idle.Add for
-		// three reasons, all of which matter on a path that runs for every await
-		// resumption: GLib.Idle.Add takes a Monitor lock on a shared static dictionary
-		// per callback and removes the entry afterwards; it pulls in the glibsharpglue-2
-		// native library, which ships as a .so even on macOS; and it schedules at
-		// G_PRIORITY_DEFAULT_IDLE, which would let redraws starve continuations.
+		// Called directly rather than through GLib.Idle.Add, for three reasons that all
+		// matter on a path taken by every await resumption. GLib.Idle.Add locks a shared
+		// static dictionary per callback; it needs the glibsharpglue-2 native library,
+		// which ships as a .so even on macOS; and it queues at G_PRIORITY_DEFAULT_IDLE
+		// (200), behind GTK's own redraws (120), whereas G_PRIORITY_DEFAULT is 0.
 		const int GPriorityDefault = 0;
 
 		[DllImport ("libglib-2.0-0.dll", CallingConvention = CallingConvention.Cdecl)]
@@ -75,11 +74,24 @@ namespace FSpot
 
 		public override void Post (SendOrPostCallback d, object state)
 		{
+			if (d == null) {
+				ReportNullCallback ();
+				return;
+			}
+
 			Enqueue (d, state, null);
 		}
 
 		public override void Send (SendOrPostCallback d, object state)
 		{
+			// Checked before the main-thread shortcut rather than inside Enqueue, which
+			// the shortcut skips: a null callback threw here and was tolerated from
+			// every other thread.
+			if (d == null) {
+				ReportNullCallback ();
+				return;
+			}
+
 			if (Thread.CurrentThread == mainThread) {
 				d (state);
 				return;
@@ -101,19 +113,16 @@ namespace FSpot
 		// that worker for the main thread and run Send inline, off the loop.
 		public override SynchronizationContext CreateCopy () => this;
 
+		// A null continuation has nothing to run, and an awaiter waiting on it continues
+		// either way, so log and carry on rather than taking the process down.
+		static void ReportNullCallback ()
+		{
+			Logger.Log.Error ("Unexpected null delegate sent to the synchronization context, at {StackTrace}",
+				Environment.StackTrace);
+		}
+
 		void Enqueue (SendOrPostCallback d, object state, ManualResetEventSlim completed)
 		{
-			if (d == null) {
-				// A null continuation cannot do anything, and awaiters that are waiting
-				// on it continue immediately either way, so log and carry on rather than
-				// bringing the process down. Throwing here is expensive and this can be
-				// reached often.
-				Logger.Log.Error ("Unexpected null delegate sent to the synchronization context, at {StackTrace}",
-					Environment.StackTrace);
-				completed?.Set ();
-				return;
-			}
-
 			var handle = GCHandle.Alloc (new Callback (d, state, completed));
 			try {
 				g_timeout_add_full (GPriorityDefault, 0, Callback.SourceHandler, (IntPtr)handle, GLib.DestroyHelper.NotifyHandler);

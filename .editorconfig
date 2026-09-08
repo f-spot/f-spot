@@ -101,7 +101,7 @@ dotnet_style_require_accessibility_modifiers = omit_if_default:suggestion
 dotnet_diagnostic.CA1303.severity = none
 
 # CA2007: Consider calling ConfigureAwait on the awaited task.
-# On by default only at higher analysis levels. Turned on deliberately while there is
-# almost no async in the tree, so the convention is established before the code exists
-# rather than retrofitted across hundreds of awaits later.
+# On by default only at higher analysis levels. Turned on while the tree has no async at
+# all, so the convention is set before the code exists rather than retrofitted across
+# hundreds of awaits later.
 dotnet_diagnostic.CA2007.severity = warning
