@@ -166,7 +166,7 @@ namespace FSpot
 			ApplicationContext.ApplicationName = "F-Spot";
 			ApplicationContext.TrySetProcessName (FSpotConfiguration.Package);
 
-			SynchronizationContext.SetSynchronizationContext (new GtkSynchronizationContext ());
+			SynchronizationContext.SetSynchronizationContext (new GLibSynchronizationContext ());
 			ThreadAssist.InitializeMainThread ();
 			ThreadAssist.ProxyToMainHandler = RunIdle;
 
