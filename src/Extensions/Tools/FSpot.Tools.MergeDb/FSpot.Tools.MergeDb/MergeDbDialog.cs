@@ -15,6 +15,7 @@ using System;
 using System.Collections.Generic;
 
 using FSpot.Core;
+using FSpot.Gui;
 
 namespace FSpot.Tools.MergeDb
 {
@@ -40,7 +41,7 @@ namespace FSpot.Tools.MergeDb
 		{
 			this.parent = parent;
 
-			var builder = new GtkBeans.Builder (null, "mergedb_dialog.ui", null);
+			var builder = TranslatedBuilder.FromResource (null, "mergedb_dialog.ui");
 			builder.Autoconnect (this);
 			mergedb_dialog.Modal = false;
 			mergedb_dialog.TransientFor = null;

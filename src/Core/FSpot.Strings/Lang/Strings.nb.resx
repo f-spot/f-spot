@@ -1,0 +1,2071 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AbortThisSession" xml:space="preserve">
+    <value>Avbryt denne sesjonen</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>_Konto:</value>
+  </data>
+  <data name="Adjust" xml:space="preserve">
+    <value>Juster</value>
+  </data>
+  <data name="AdjustColors" xml:space="preserve">
+    <value>Juster farger</value>
+  </data>
+  <data name="AdjustTime" xml:space="preserve">
+    <value>Juster tid</value>
+  </data>
+  <data name="AdjustTime2" xml:space="preserve">
+    <value>Juster _tid …</value>
+  </data>
+  <data name="AdjustedDate" xml:space="preserve">
+    <value>Justert dato:</value>
+  </data>
+  <data name="After" xml:space="preserve">
+    <value>etter</value>
+  </data>
+  <data name="AlbumMustHaveAName" xml:space="preserve">
+    <value>Album må ha et navn</value>
+  </data>
+  <data name="AlbumName" xml:space="preserve">
+    <value>Navn på _album:</value>
+  </data>
+  <data name="AlbumTitle" xml:space="preserve">
+    <value>_Navn på album:</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Alle</value>
+  </data>
+  <data name="AllImages" xml:space="preserve">
+    <value>Alle bilder</value>
+  </data>
+  <data name="AlwaysTrustThisSiteSCertificate" xml:space="preserve">
+    <value>Alltid stol på dette nettstedets sertifikat</value>
+  </data>
+  <data name="AmountColon" xml:space="preserve">
+    <value>Mengde:</value>
+  </data>
+  <data name="And" xml:space="preserve">
+    <value>og</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Bruk</value>
+  </data>
+  <data name="ApplyChanges" xml:space="preserve">
+    <value>_Bruk endringer</value>
+  </data>
+  <data name="ArrangeBy" xml:space="preserve">
+    <value>_Sorter etter</value>
+  </data>
+  <data name="AsBackground" xml:space="preserve">
+    <value>Som _bakgrunn</value>
+  </data>
+  <data name="AsCheckPattern" xml:space="preserve">
+    <value>Som rutenetty_pe</value>
+  </data>
+  <data name="AsCustomColor" xml:space="preserve">
+    <value>Som _egendefinert farge: </value>
+  </data>
+  <data name="AttachTag" xml:space="preserve">
+    <value>_Legg til merke</value>
+  </data>
+  <data name="AttachTagToSelection" xml:space="preserve">
+    <value>Legg merke til utvalg</value>
+  </data>
+  <data name="AttachTagToSelection2" xml:space="preserve">
+    <value>_Legg til merkelapp for utvalg</value>
+  </data>
+  <data name="AttachTags2" xml:space="preserve">
+    <value>_Legg ved merkelapper:</value>
+  </data>
+  <data name="AttachTagsToSelection" xml:space="preserve">
+    <value>Legg merker til utvalg</value>
+  </data>
+  <data name="Authenticating" xml:space="preserve">
+    <value>Autentiserer …</value>
+  </data>
+  <data name="Authorize" xml:space="preserve">
+    <value>Autoriser</value>
+  </data>
+  <data name="AuthorizingSession" xml:space="preserve">
+    <value>Autoriserer sesjonen</value>
+  </data>
+  <data name="AutoColor" xml:space="preserve">
+    <value>Automatisk farge</value>
+  </data>
+  <data name="AutoConfirmPhotos" xml:space="preserve">
+    <value>Bekreft bilder automatisk</value>
+  </data>
+  <data name="AvailableSpaceXYUsedOutOfZ" xml:space="preserve">
+    <value>Tilgjengelig plass: {0}, {1}% brukt av {2}</value>
+  </data>
+  <data name="BAccountB" xml:space="preserve">
+    <value>&lt;b&gt;Konto&lt;/b&gt;</value>
+  </data>
+  <data name="BActionB" xml:space="preserve">
+    <value>&lt;b&gt;Handling&lt;/b&gt;</value>
+  </data>
+  <data name="BAlbumB" xml:space="preserve">
+    <value>&lt;b&gt;Album&lt;/b&gt;</value>
+  </data>
+  <data name="BCorrectionsB" xml:space="preserve">
+    <value>&lt;b&gt;Forbedringer&lt;/b&gt;</value>
+  </data>
+  <data name="BDestinationB" xml:space="preserve">
+    <value>&lt;b&gt;Mål&lt;/b&gt;</value>
+  </data>
+  <data name="BEndDateB" xml:space="preserve">
+    <value>&lt;b&gt;Sluttdato&lt;/b&gt;</value>
+  </data>
+  <data name="BExportMethodB" xml:space="preserve">
+    <value>&lt;b&gt;Metode for eksport&lt;/b&gt;</value>
+  </data>
+  <data name="BFSpotTagsB" xml:space="preserve">
+    <value>&lt;b&gt;Merkelapper for F-Spot&lt;/b&gt;</value>
+  </data>
+  <data name="BFromExternalPhotoB" xml:space="preserve">
+    <value>&lt;b&gt;Fra eksternt bilde&lt;/b&gt;</value>
+  </data>
+  <data name="BFromPhotoB" xml:space="preserve">
+    <value>&lt;b&gt;Fra Fotografi&lt;/b&gt;</value>
+  </data>
+  <data name="BGalleryB" xml:space="preserve">
+    <value>&lt;b&gt;Galleri&lt;/b&gt;</value>
+  </data>
+  <data name="BImageInterpolationB" xml:space="preserve">
+    <value>&lt;b&gt;Interpolering av bilde&lt;/b&gt;</value>
+  </data>
+  <data name="BMaxRatingB" xml:space="preserve">
+    <value>&lt;b&gt;Høyeste poengsum&lt;/b&gt;</value>
+  </data>
+  <data name="BMinRatingB" xml:space="preserve">
+    <value>&lt;b&gt;Laveste poengsum&lt;/b&gt;</value>
+  </data>
+  <data name="BPhotosB" xml:space="preserve">
+    <value>&lt;b&gt;Foto&lt;/b&gt;</value>
+  </data>
+  <data name="BPhotosToBurnB" xml:space="preserve">
+    <value>&lt;b&gt;Bilder som skal skrives til CD&lt;/b&gt;</value>
+  </data>
+  <data name="BPicasaWebExportB" xml:space="preserve">
+    <value>&lt;b&gt;Eksport til PicasaWeb&lt;/b&gt;</value>
+  </data>
+  <data name="BPredefinedIconsB" xml:space="preserve">
+    <value>&lt;b&gt;Forhåndsdefinerte ikoner&lt;/b&gt;</value>
+  </data>
+  <data name="BPreviewB" xml:space="preserve">
+    <value>&lt;b&gt;Forhåndsvisning&lt;/b&gt;</value>
+  </data>
+  <data name="BReferencePhotoB" xml:space="preserve">
+    <value>&lt;b&gt;Referansefotografi&lt;/b&gt;</value>
+  </data>
+  <data name="BSelectPeriodB" xml:space="preserve">
+    <value>&lt;b&gt;Velg periode&lt;/b&gt;</value>
+  </data>
+  <data name="BSizeB" xml:space="preserve">
+    <value>&lt;b&gt;Størrelse&lt;/b&gt;</value>
+  </data>
+  <data name="BSmugMugExportB" xml:space="preserve">
+    <value>&lt;b&gt;SmugMug-eksport&lt;/b&gt;</value>
+  </data>
+  <data name="BStartDateB" xml:space="preserve">
+    <value>&lt;b&gt;Startdato&lt;/b&gt;</value>
+  </data>
+  <data name="BStyleB" xml:space="preserve">
+    <value>&lt;b&gt;Stil&lt;/b&gt;</value>
+  </data>
+  <data name="BSummaryB" xml:space="preserve">
+    <value>&lt;b&gt;Sammendrag&lt;/b&gt;</value>
+  </data>
+  <data name="BTabbloAccountB" xml:space="preserve">
+    <value>&lt;b&gt;Tabblo-konto&lt;/b&gt;</value>
+  </data>
+  <data name="BTransparentPartsB" xml:space="preserve">
+    <value>&lt;b&gt;Gjennomsiktige deler&lt;/b&gt;</value>
+  </data>
+  <data name="BViewAllPicturesImportedB" xml:space="preserve">
+    <value>&lt;b&gt;Vis alle importerte bilder&lt;/b&gt;</value>
+  </data>
+  <data name="BViewingPermissionsB" xml:space="preserve">
+    <value>&lt;b&gt;Viser rettigheter&lt;/b&gt;</value>
+  </data>
+  <data name="BWEditor" xml:space="preserve">
+    <value>BWEditor</value>
+  </data>
+  <data name="BWhiteBalanceB" xml:space="preserve">
+    <value>&lt;b&gt;_Hvitbalanse&lt;/b&gt;</value>
+  </data>
+  <data name="Between" xml:space="preserve">
+    <value>mellom</value>
+  </data>
+  <data name="BetweenXAndY" xml:space="preserve">
+    <value>Mellom {0} 
+og {1}</value>
+  </data>
+  <data name="Blackout" xml:space="preserve">
+    <value>Gjør sort</value>
+  </data>
+  <data name="Brightness" xml:space="preserve">
+    <value>_Lysstyrke:</value>
+  </data>
+  <data name="Browse2" xml:space="preserve">
+    <value>Finn</value>
+  </data>
+  <data name="BrowseManyPhotosSimultaneously" xml:space="preserve">
+    <value>Vis mange bilder samtidig</value>
+  </data>
+  <data name="BuildingGallery" xml:space="preserve">
+    <value>Bygger galleri</value>
+  </data>
+  <data name="ByDate" xml:space="preserve">
+    <value>Etter _dato</value>
+  </data>
+  <data name="ByImportRoll" xml:space="preserve">
+    <value>Etter _importrull</value>
+  </data>
+  <data name="CD2" xml:space="preserve">
+    <value>_CD …</value>
+  </data>
+  <data name="CDExport" xml:space="preserve">
+    <value>CD-eksport</value>
+  </data>
+  <data name="Camera" xml:space="preserve">
+    <value>Kamera</value>
+  </data>
+  <data name="CanNotDeleteTagsThatHaveTagsWihinThem.PleaseDeleteTagUnderXFirst" xml:space="preserve">
+    <value>Kan ikke slette merkelapper som har merkelapper inne i seg. Vennligst slett merkelapper under «{0}» først</value>
+  </data>
+  <data name="Captchaurl" xml:space="preserve">
+    <value>URL til captcha</value>
+  </data>
+  <data name="Caption2" xml:space="preserve">
+    <value>Bildetekst</value>
+  </data>
+  <data name="ChangePath" xml:space="preserve">
+    <value>Endre sti</value>
+  </data>
+  <data name="ChangePathToPhotos" xml:space="preserve">
+    <value>Endre sti til bilder</value>
+  </data>
+  <data name="ChangePhotosDirectory" xml:space="preserve">
+    <value>Endre bildekatalog</value>
+  </data>
+  <data name="CheckingCredentials" xml:space="preserve">
+    <value>Sjekker påloggingsinformasjon …</value>
+  </data>
+  <data name="ChooseFolder" xml:space="preserve">
+    <value>Velg mappe …</value>
+  </data>
+  <data name="ChooseImportSource" xml:space="preserve">
+    <value>Velg kilde for import …</value>
+  </data>
+  <data name="ClearDateRangeMnemonic" xml:space="preserve">
+    <value>_Nullstill datointervall</value>
+  </data>
+  <data name="ClearSearch" xml:space="preserve">
+    <value>Tøm søk</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>_Lukk</value>
+  </data>
+  <data name="CommaSpace" xml:space="preserve">
+    <value>, </value>
+  </data>
+  <data name="CompleteAuthorization" xml:space="preserve">
+    <value>Fullfør autorisasjon</value>
+  </data>
+  <data name="Components" xml:space="preserve">
+    <value>_Komponenter</value>
+  </data>
+  <data name="CompressedFile" xml:space="preserve">
+    <value>Komprim_ert fil …</value>
+  </data>
+  <data name="ConfigureScreensaver" xml:space="preserve">
+    <value>Konfigurer skjermsparer</value>
+  </data>
+  <data name="Contents" xml:space="preserve">
+    <value>_Innhold</value>
+  </data>
+  <data name="Contrast2" xml:space="preserve">
+    <value>K_ontrast:</value>
+  </data>
+  <data name="ConvertToBW" xml:space="preserve">
+    <value>Konverter til sorthvit</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Kopier</value>
+  </data>
+  <data name="CopyFilesToThePhotosFolder2" xml:space="preserve">
+    <value>K_opier filer til bildemappen</value>
+  </data>
+  <data name="CopyImagesToPhotosFolder" xml:space="preserve">
+    <value>Kopier bilder til bildemappen</value>
+  </data>
+  <data name="CopyPhoto" xml:space="preserve">
+    <value>Kopier bilde</value>
+  </data>
+  <data name="CopyURLToClipboard" xml:space="preserve">
+    <value>Kopier URL til utklippstavlen</value>
+  </data>
+  <data name="Copying2" xml:space="preserve">
+    <value>kopierer …</value>
+  </data>
+  <data name="Copyright20032010NovellInc" xml:space="preserve">
+    <value>Opphavsrett © 2003-2010 Novell Inc.</value>
+  </data>
+  <data name="Cover" xml:space="preserve">
+    <value>Dekk</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>_Lag</value>
+  </data>
+  <data name="Create2" xml:space="preserve">
+    <value>_Lag</value>
+  </data>
+  <data name="CreateAMailWithTheSelectedPhotosPossiblyResizedAttached" xml:space="preserve">
+    <value>Lag en e-postmelding med valgte bilder som vedlegg (muligvis med ny størrelse)</value>
+  </data>
+  <data name="CreateANewAlbum" xml:space="preserve">
+    <value>Opprett et nytt album</value>
+  </data>
+  <data name="CreateCD" xml:space="preserve">
+    <value>Lag CD</value>
+  </data>
+  <data name="CreateMail" xml:space="preserve">
+    <value>Lag e-post</value>
+  </data>
+  <data name="CreateMail2" xml:space="preserve">
+    <value>_Lag e-post</value>
+  </data>
+  <data name="CreateNewTag" xml:space="preserve">
+    <value>Opprett nytt merke</value>
+  </data>
+  <data name="CreateNewTag2" xml:space="preserve">
+    <value>Lag ny merkelapp …</value>
+  </data>
+  <data name="CreateNewTag3" xml:space="preserve">
+    <value>Lag ny _merkelapp …</value>
+  </data>
+  <data name="CreateNewVersion" xml:space="preserve">
+    <value>Opprett ny versjon</value>
+  </data>
+  <data name="CreateNewVersion2" xml:space="preserve">
+    <value>Opprett ny versjon?</value>
+  </data>
+  <data name="CreateNewVersion3" xml:space="preserve">
+    <value>Opprett _ny versjon …</value>
+  </data>
+  <data name="CreateNewVersions" xml:space="preserve">
+    <value>Opprett nye versjoner?</value>
+  </data>
+  <data name="CreatePhotomosaic" xml:space="preserve">
+    <value>Lag bilde_mosaikk</value>
+  </data>
+  <data name="CreatePhotowall" xml:space="preserve">
+    <value>Lag vegg med bilder</value>
+  </data>
+  <data name="Crop" xml:space="preserve">
+    <value>Beskjær</value>
+  </data>
+  <data name="CurrentDate" xml:space="preserve">
+    <value>Nåværende dato:</value>
+  </data>
+  <data name="CurrentView" xml:space="preserve">
+    <value>Nåværende visning</value>
+  </data>
+  <data name="CurrentWeekMonSun" xml:space="preserve">
+    <value>Nåværende uke (Man-Søn)</value>
+  </data>
+  <data name="CustomRatios" xml:space="preserve">
+    <value>Egendefinerte rater …</value>
+  </data>
+  <data name="CustomText" xml:space="preserve">
+    <value>Egendefinert tekst</value>
+  </data>
+  <data name="CustomizedRange" xml:space="preserve">
+    <value>Egendefinert område</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>Mørk</value>
+  </data>
+  <data name="DatabaseLocation" xml:space="preserve">
+    <value>Databaselokasjon:</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Dato</value>
+  </data>
+  <data name="Dates" xml:space="preserve">
+    <value>_Datoer</value>
+  </data>
+  <data name="Delay" xml:space="preserve">
+    <value>Pause:</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Slett</value>
+  </data>
+  <data name="DeleteFromDrive" xml:space="preserve">
+    <value>_Slett fra disk</value>
+  </data>
+  <data name="DeletePhotoMnemonic" xml:space="preserve">
+    <value>Slett bilde</value>
+  </data>
+  <data name="DeletePhotosMnemonic" xml:space="preserve">
+    <value>Slett bilder</value>
+  </data>
+  <data name="DeleteSelectedTag" xml:space="preserve">
+    <value>_Slett valgt merkelapp</value>
+  </data>
+  <data name="DeleteTag" xml:space="preserve">
+    <value>Slett merke</value>
+  </data>
+  <data name="DeleteTagMnemonic" xml:space="preserve">
+    <value>_Slett merke</value>
+  </data>
+  <data name="DeleteTagXQuestion" xml:space="preserve">
+    <value>_Slett merket «{0}»?</value>
+  </data>
+  <data name="DeleteTags" xml:space="preserve">
+    <value>Slett merker</value>
+  </data>
+  <data name="DeleteTagsMnemonic" xml:space="preserve">
+    <value>_Slett merker</value>
+  </data>
+  <data name="DeleteTheSelectedPhotoPermanently" xml:space="preserve">
+    <value>Slett det valgte bildet permanent?</value>
+  </data>
+  <data name="DeleteTheXSelectedPhotosPermanently" xml:space="preserve">
+    <value>Slett de {0} valgte bildene permanent?</value>
+  </data>
+  <data name="DeleteTheXSelectedTagsQuestion" xml:space="preserve">
+    <value>Slett {0} valgte merkelapper?</value>
+  </data>
+  <data name="DeleteVersion" xml:space="preserve">
+    <value>_Slett versjon</value>
+  </data>
+  <data name="Desaturate" xml:space="preserve">
+    <value>Fjern metning</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Beskrivelse:</value>
+  </data>
+  <data name="Description2" xml:space="preserve">
+    <value>B_eskrivelse:</value>
+  </data>
+  <data name="Description3" xml:space="preserve">
+    <value>_Beskrivelse:</value>
+  </data>
+  <data name="Description4" xml:space="preserve">
+    <value>Beskrivelse</value>
+  </data>
+  <data name="DetachMnemonic" xml:space="preserve">
+    <value>Koble _fra</value>
+  </data>
+  <data name="DetachVersion" xml:space="preserve">
+    <value>Koble _fra versjon</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Detaljer</value>
+  </data>
+  <data name="DetectDuplicates2" xml:space="preserve">
+    <value>_Finn duplikater</value>
+  </data>
+  <data name="DevelopingPhotos" xml:space="preserve">
+    <value>Fremkaller bilder</value>
+  </data>
+  <data name="DevelopingX" xml:space="preserve">
+    <value>Fremkaller {0}</value>
+  </data>
+  <data name="Difference" xml:space="preserve">
+    <value>forskjell:</value>
+  </data>
+  <data name="DirectoryNotFound" xml:space="preserve">
+    <value>Katalog ikke funnet</value>
+  </data>
+  <data name="Display2" xml:space="preserve">
+    <value>Vis:</value>
+  </data>
+  <data name="DisplayASlideshowFromFSpot" xml:space="preserve">
+    <value>Vis lysbilder fra F-Spot</value>
+  </data>
+  <data name="DisplayFileNames" xml:space="preserve">
+    <value>Vis fil_navn</value>
+  </data>
+  <data name="Dissolve" xml:space="preserve">
+    <value>Løs opp</value>
+  </data>
+  <data name="DoNotSendAMail" xml:space="preserve">
+    <value>Ikke send e-post</value>
+  </data>
+  <data name="DoYouWishTo" xml:space="preserve">
+    <value>Vil du:</value>
+  </data>
+  <data name="DoneSendingPhotos" xml:space="preserve">
+    <value>Overføring av bilder fullført</value>
+  </data>
+  <data name="DoneSendingPhotos2" xml:space="preserve">
+    <value>Overføring av bilder fullført</value>
+  </data>
+  <data name="DragTagsHereToSearchForThem" xml:space="preserve">
+    <value>Dra merkelapper hit for å søke etter dem</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Rediger</value>
+  </data>
+  <data name="Edit2" xml:space="preserve">
+    <value>R_ediger</value>
+  </data>
+  <data name="EditIcon" xml:space="preserve">
+    <value>Rediger ikon</value>
+  </data>
+  <data name="EditIconForTagX" xml:space="preserve">
+    <value>Rediger ikon for merke {0}</value>
+  </data>
+  <data name="EditImage" xml:space="preserve">
+    <value>Rediger bilde</value>
+  </data>
+  <data name="EditTag" xml:space="preserve">
+    <value>Rediger merkelapp …</value>
+  </data>
+  <data name="EditTag2" xml:space="preserve">
+    <value>Rediger merke</value>
+  </data>
+  <data name="EditTag3" xml:space="preserve">
+    <value>R_ediger merkelapp …</value>
+  </data>
+  <data name="EditTagIcon" xml:space="preserve">
+    <value>Rediger ikon for merke</value>
+  </data>
+  <data name="Editors" xml:space="preserve">
+    <value>Redigeringsfunksjoner</value>
+  </data>
+  <data name="EightByTen" xml:space="preserve">
+    <value>8 x 10</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Feil</value>
+  </data>
+  <data name="ErrorCopyingXToGalleryZY" xml:space="preserve">
+    <value>Feil ved kopiering av {0} til galleri:{2}{1}</value>
+  </data>
+  <data name="ErrorDeletingPicture" xml:space="preserve">
+    <value>Kunne ikke slette bilde</value>
+  </data>
+  <data name="ErrorEditingPhoto" xml:space="preserve">
+    <value>Feil ved redigering av bilde</value>
+  </data>
+  <data name="ErrorLoadingDatabase" xml:space="preserve">
+    <value>Feil ved lasting av database.</value>
+  </data>
+  <data name="ErrorLoggingIntoFacebook" xml:space="preserve">
+    <value>Feil ved innlogging på Facebook</value>
+  </data>
+  <data name="ErrorOpeningTheSelectedFile" xml:space="preserve">
+    <value>Feil ved åpning av valgt fil</value>
+  </data>
+  <data name="ErrorProcessingImage" xml:space="preserve">
+    <value>Feil ved prosessering av bilde</value>
+  </data>
+  <data name="ErrorRenamingTag" xml:space="preserve">
+    <value>Feil ved endring av merkenavn</value>
+  </data>
+  <data name="ErrorSavingAdjustedPhoto" xml:space="preserve">
+    <value>Feil ved lagring av endret bilde</value>
+  </data>
+  <data name="ErrorSavingAdjustedPhotos" xml:space="preserve">
+    <value>Feil ved lagring av endrede bilder</value>
+  </data>
+  <data name="ErrorSavingSharpenedPhoto" xml:space="preserve">
+    <value>Feil ved lagring av skjerpet foto</value>
+  </data>
+  <data name="ErrorTransferring" xml:space="preserve">
+    <value>Feil under overføring</value>
+  </data>
+  <data name="ErrorUploadingPictureXToGalleryColonY" xml:space="preserve">
+    <value>Feil ved opplasting av bilde «{0}» til galleri: {1}</value>
+  </data>
+  <data name="ErrorUploadingToFacebookX" xml:space="preserve">
+    <value>Feil ved opplasting til Facebook: {0}</value>
+  </data>
+  <data name="ErrorUploadingToGalleryX" xml:space="preserve">
+    <value>Feil ved opplasting til galleri: {0}</value>
+  </data>
+  <data name="ErrorUploadingToXColonY" xml:space="preserve">
+    <value>Feil ved opplasting til {0}: {1}</value>
+  </data>
+  <data name="ErrorWhileConnectingToGallery" xml:space="preserve">
+    <value>Feil ved tilkobling til galleri</value>
+  </data>
+  <data name="ErrorWhileCreatingAlbum" xml:space="preserve">
+    <value>Feil under oppretting av album</value>
+  </data>
+  <data name="ErrorWhileCreatingNewAlbum" xml:space="preserve">
+    <value>Feil under oppretting av nytt album</value>
+  </data>
+  <data name="ErrorWhileRotatingPhoto" xml:space="preserve">
+    <value>Feil under rotering av bilde.</value>
+  </data>
+  <data name="ErrorWhileTransferring" xml:space="preserve">
+    <value>Feil under overføring</value>
+  </data>
+  <data name="EstimatedNewSize" xml:space="preserve">
+    <value>Estimert ny størrelse</value>
+  </data>
+  <data name="Events" xml:space="preserve">
+    <value>Hendelser</value>
+  </data>
+  <data name="Everything" xml:space="preserve">
+    <value>Alt</value>
+  </data>
+  <data name="ExitFullscreen" xml:space="preserve">
+    <value>Lukk fullskjerm</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Eksporter</value>
+  </data>
+  <data name="Export2" xml:space="preserve">
+    <value>_Eksporter</value>
+  </data>
+  <data name="ExportComplete" xml:space="preserve">
+    <value>Eksport fullført.</value>
+  </data>
+  <data name="ExportPicturesToFacebook" xml:space="preserve">
+    <value>Eksporter bilder til Facebook</value>
+  </data>
+  <data name="ExportTagHierarchy" xml:space="preserve">
+    <value>Eksporter merke_hierarki</value>
+  </data>
+  <data name="ExportTagIcons" xml:space="preserve">
+    <value>Eksporter _ikoner for merker</value>
+  </data>
+  <data name="ExportTags" xml:space="preserve">
+    <value>_Eksporter merker</value>
+  </data>
+  <data name="ExportTags2" xml:space="preserve">
+    <value>Eksporter _merker</value>
+  </data>
+  <data name="ExportTitlesAndComments2" xml:space="preserve">
+    <value>Eksporter _titler og kommentarer</value>
+  </data>
+  <data name="ExportTo" xml:space="preserve">
+    <value>Eksporter til</value>
+  </data>
+  <data name="ExportTo2" xml:space="preserve">
+    <value>_Eksporter til</value>
+  </data>
+  <data name="ExportToAlbum" xml:space="preserve">
+    <value>_Eksporter til album:</value>
+  </data>
+  <data name="ExportToFacebook" xml:space="preserve">
+    <value>Eksporter til Facebook</value>
+  </data>
+  <data name="ExportingFiles" xml:space="preserve">
+    <value>Eksporterer filer</value>
+  </data>
+  <data name="ExportingPhotoX" xml:space="preserve">
+    <value>Eksporter bilde «{0}»</value>
+  </data>
+  <data name="ExportingPhotos" xml:space="preserve">
+    <value>Eksporterer bilder</value>
+  </data>
+  <data name="ExportingPhotosCompleted2" xml:space="preserve">
+    <value>Eksport av bilder er fullført.</value>
+  </data>
+  <data name="ExportingX" xml:space="preserve">
+    <value>Eksporterer «{0}» …</value>
+  </data>
+  <data name="Exposure" xml:space="preserve">
+    <value>Eksponering</value>
+  </data>
+  <data name="Exposure2" xml:space="preserve">
+    <value>_Eksponering:</value>
+  </data>
+  <data name="ExtendedMetadata" xml:space="preserve">
+    <value>Utvidet metadata</value>
+  </data>
+  <data name="ExtraLarge" xml:space="preserve">
+    <value>Ekstra stor</value>
+  </data>
+  <data name="FSpot" xml:space="preserve">
+    <value>F-Spot</value>
+  </data>
+  <data name="FSpotAppearance" xml:space="preserve">
+    <value>Utseende for F-Spot:</value>
+  </data>
+  <data name="FSpotGallery" xml:space="preserve">
+    <value>F-Spot galleri</value>
+  </data>
+  <data name="FSpotPhotoManager" xml:space="preserve">
+    <value>F-Spot bildebehandling</value>
+  </data>
+  <data name="FSpotPhotoViewer" xml:space="preserve">
+    <value>F-spot bildebehandling</value>
+  </data>
+  <data name="FSpotPhotos" xml:space="preserve">
+    <value>F-Spot-bilder</value>
+  </data>
+  <data name="FSpotPreferences" xml:space="preserve">
+    <value>Brukervalg for F-Spot</value>
+  </data>
+  <data name="FSpotView" xml:space="preserve">
+    <value>F-Spot bildebehandling</value>
+  </data>
+  <data name="FSpotWebsite" xml:space="preserve">
+    <value>F-Spot nettsted</value>
+  </data>
+  <data name="Facebook" xml:space="preserve">
+    <value>F_acebook …</value>
+  </data>
+  <data name="FacebookConnectionError" xml:space="preserve">
+    <value>Feil ved tilkobling til Facebook</value>
+  </data>
+  <data name="FacebookExport" xml:space="preserve">
+    <value>FacebookExport</value>
+  </data>
+  <data name="Favorites" xml:space="preserve">
+    <value>Favoritter</value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>_Filnavn:</value>
+  </data>
+  <data name="FileNotFonud" xml:space="preserve">
+    <value>Fil ikke funnet</value>
+  </data>
+  <data name="FileSize" xml:space="preserve">
+    <value>Filstørrelse</value>
+  </data>
+  <data name="Filesystem" xml:space="preserve">
+    <value>Filsystem</value>
+  </data>
+  <data name="Fill" xml:space="preserve">
+    <value>Fyll</value>
+  </data>
+  <data name="Filmstrip" xml:space="preserve">
+    <value>_Filmstripe</value>
+  </data>
+  <data name="Find" xml:space="preserve">
+    <value>Finn</value>
+  </data>
+  <data name="Find2" xml:space="preserve">
+    <value>Finn:</value>
+  </data>
+  <data name="Find3" xml:space="preserve">
+    <value>_Finn</value>
+  </data>
+  <data name="FindColon" xml:space="preserve">
+    <value>Finn: </value>
+  </data>
+  <data name="FindSelectedTagMnemonic" xml:space="preserve">
+    <value>Finn _valgt merkelapp</value>
+  </data>
+  <data name="FindSelectedTagWithMnemonic" xml:space="preserve">
+    <value>Finn valgt merkelapp _med</value>
+  </data>
+  <data name="FindSelectedTagsMnemonic" xml:space="preserve">
+    <value>Finn _valgte merkelapper</value>
+  </data>
+  <data name="FindSelectedTagsWithMnemonic" xml:space="preserve">
+    <value>Finn valgte merkelapper _med</value>
+  </data>
+  <data name="FindWithMnemonic" xml:space="preserve">
+    <value>Finn _med</value>
+  </data>
+  <data name="FiveBySevenL2L" xml:space="preserve">
+    <value>5 x 7 (L, 2L)</value>
+  </data>
+  <data name="FixExclamation" xml:space="preserve">
+    <value>Fiks!</value>
+  </data>
+  <data name="Flickr2" xml:space="preserve">
+    <value>_Flickr …</value>
+  </data>
+  <data name="FlickrExport" xml:space="preserve">
+    <value>Eksport til Flickr</value>
+  </data>
+  <data name="Flip" xml:space="preserve">
+    <value>Vend</value>
+  </data>
+  <data name="FlipEditor" xml:space="preserve">
+    <value>FlipEditor</value>
+  </data>
+  <data name="FlipsTheImageHorizontally" xml:space="preserve">
+    <value>Vender bildet horisontalt.</value>
+  </data>
+  <data name="Folder" xml:space="preserve">
+    <value>Mappe</value>
+  </data>
+  <data name="Folder3" xml:space="preserve">
+    <value>Ma_ppe …</value>
+  </data>
+  <data name="Folder4" xml:space="preserve">
+    <value>_Mappe:</value>
+  </data>
+  <data name="FolderExport" xml:space="preserve">
+    <value>Eksport av mappe</value>
+  </data>
+  <data name="Folders" xml:space="preserve">
+    <value>Mapper</value>
+  </data>
+  <data name="FourBySixPostcard" xml:space="preserve">
+    <value>4 x 6 (postkort)</value>
+  </data>
+  <data name="FourByThreeBook" xml:space="preserve">
+    <value>4 x 3 (bok)</value>
+  </data>
+  <data name="FullPageNomargin" xml:space="preserve">
+    <value>Full side (ingen marg)</value>
+  </data>
+  <data name="Fullscreen" xml:space="preserve">
+    <value>Fullskjerm</value>
+  </data>
+  <data name="Fullscreen2" xml:space="preserve">
+    <value>_Fullskjerm</value>
+  </data>
+  <data name="Gallery" xml:space="preserve">
+    <value>Galleri</value>
+  </data>
+  <data name="Gallery5" xml:space="preserve">
+    <value>_Galleri:</value>
+  </data>
+  <data name="GalleryExport" xml:space="preserve">
+    <value>Eksport av galleri</value>
+  </data>
+  <data name="GalleryGeneratedBy" xml:space="preserve">
+    <value>Galleri laget av</value>
+  </data>
+  <data name="GalleryIsInactive" xml:space="preserve">
+    <value>Galleri er inaktivt</value>
+  </data>
+  <data name="GalleryName" xml:space="preserve">
+    <value>Navn på g_alleri:</value>
+  </data>
+  <data name="GalleryName2" xml:space="preserve">
+    <value>Navn på _galleri:</value>
+  </data>
+  <data name="GalleryURL" xml:space="preserve">
+    <value>URL til galleri:</value>
+  </data>
+  <data name="GalleryWithThisNameAlreadyExists" xml:space="preserve">
+    <value>Et galleri med dette navnet eksisterer allerede</value>
+  </data>
+  <data name="GalleryXPhotosYLastClient3" xml:space="preserve">
+    <value> Galleri: {0},  Bilder: {1},  Siste klient: {3}</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>_Hjelp</value>
+  </data>
+  <data name="Hidden" xml:space="preserve">
+    <value>Skjult</value>
+  </data>
+  <data name="Hidden2" xml:space="preserve">
+    <value>_Skjulte</value>
+  </data>
+  <data name="Hide" xml:space="preserve">
+    <value>Skjul</value>
+  </data>
+  <data name="HideFindBarMnemonic" xml:space="preserve">
+    <value>Skjul sø_kelinjen</value>
+  </data>
+  <data name="HideStyles" xml:space="preserve">
+    <value>Skjul stiler</value>
+  </data>
+  <data name="HideToolbar" xml:space="preserve">
+    <value>Skjul verktøylinje</value>
+  </data>
+  <data name="Histogram" xml:space="preserve">
+    <value>Histogram</value>
+  </data>
+  <data name="HorizontalMnemonic" xml:space="preserve">
+    <value>_Horisontal</value>
+  </data>
+  <data name="Hue" xml:space="preserve">
+    <value>_Tone:</value>
+  </data>
+  <data name="Icon" xml:space="preserve">
+    <value>_Ikon:</value>
+  </data>
+  <data name="IfYouDeleteThisTagTheAssociationWithXYWillBeLost" xml:space="preserve">
+    <value>Hvis du sletter denne merkelappen vil merkets tilknytninger til {0} {1} gå tapt.</value>
+  </data>
+  <data name="IfYouDeleteThisTagsTheAssociationWithXYWillBeLost" xml:space="preserve">
+    <value>Hvis du sletter disse merkelappene vil merkenes tilknytninger til {0} {1} gå tapt.</value>
+  </data>
+  <data name="IfYouRemovePhotosFromFSpotCatalogAllTagInfoLost" xml:space="preserve">
+    <value>Hvis du fjerner bilder fra F-Spot-katalogen, vil all merkeinformasjon gå tapt. Bildene vil fremdeles være lagret på datamaskinen, og de kan importeres til F-Spot igjen seinere.</value>
+  </data>
+  <data name="ImageInformation" xml:space="preserve">
+    <value>Bildeinformasjon</value>
+  </data>
+  <data name="ImageInformation2" xml:space="preserve">
+    <value>Bildeinformasjon</value>
+  </data>
+  <data name="ImageSettings" xml:space="preserve">
+    <value>Innstillinger for bilde</value>
+  </data>
+  <data name="ImagesTaggedWith" xml:space="preserve">
+    <value>Bilder merket med:</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Importer</value>
+  </data>
+  <data name="Import2" xml:space="preserve">
+    <value>_Importer …</value>
+  </data>
+  <data name="Import3" xml:space="preserve">
+    <value>Importer:</value>
+  </data>
+  <data name="Import4" xml:space="preserve">
+    <value>_Importer</value>
+  </data>
+  <data name="ImportFailures2" xml:space="preserve">
+    <value>Feil ved import</value>
+  </data>
+  <data name="ImportFrom2" xml:space="preserve">
+    <value>Importer _fra:</value>
+  </data>
+  <data name="ImportIntoFSpot" xml:space="preserve">
+    <value>Importer til F-Spot</value>
+  </data>
+  <data name="ImportNewImages" xml:space="preserve">
+    <value>Importer nye bilder</value>
+  </data>
+  <data name="ImportPhotosXOfY" xml:space="preserve">
+    <value>Importerer bilder: {0} av {1} …</value>
+  </data>
+  <data name="ImportRoll" xml:space="preserve">
+    <value>Importer rull</value>
+  </data>
+  <data name="ImportedTags" xml:space="preserve">
+    <value>Importerte merker</value>
+  </data>
+  <data name="ImportingPhotos" xml:space="preserve">
+    <value>Importerer bilder …</value>
+  </data>
+  <data name="InThisPhoto" xml:space="preserve">
+    <value>I dette bildet</value>
+  </data>
+  <data name="IncludeSubfolders2" xml:space="preserve">
+    <value>Ta med u_ndermapper</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>Indeks</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Informasjon</value>
+  </data>
+  <data name="InterpolateImageOnZoom" xml:space="preserve">
+    <value>_Interpoler bilde ved zoom</value>
+  </data>
+  <data name="InvalidGalleryName" xml:space="preserve">
+    <value>Ugyldig navn på galleri</value>
+  </data>
+  <data name="InvalidUrl" xml:space="preserve">
+    <value>Ugyldig URL</value>
+  </data>
+  <data name="InvertSelection" xml:space="preserve">
+    <value>_Omvendt utvalg</value>
+  </data>
+  <data name="Label" xml:space="preserve">
+    <value>Etikett</value>
+  </data>
+  <data name="Large" xml:space="preserve">
+    <value>Stor:</value>
+  </data>
+  <data name="Large2" xml:space="preserve">
+    <value>_Stor</value>
+  </data>
+  <data name="LastNintyDays" xml:space="preserve">
+    <value>Siste 90 dagene</value>
+  </data>
+  <data name="LastSevenDays" xml:space="preserve">
+    <value>Siste 7 dagene</value>
+  </data>
+  <data name="LastThirtyDays" xml:space="preserve">
+    <value>Siste 30 dagene</value>
+  </data>
+  <data name="LastThreeHundredSixtyDays" xml:space="preserve">
+    <value>Siste 360 dagene</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>Lys</value>
+  </data>
+  <data name="LimitNumberOfSharedPhotosTo" xml:space="preserve">
+    <value>Begrens antall delte bilder til</value>
+  </data>
+  <data name="LiteralAnd" xml:space="preserve">
+    <value> og </value>
+  </data>
+  <data name="LiteralOr" xml:space="preserve">
+    <value> eller </value>
+  </data>
+  <data name="LiveWebGallery" xml:space="preserve">
+    <value>Galleri på nettet</value>
+  </data>
+  <data name="LiveWebGallery2" xml:space="preserve">
+    <value>Galleri på nettet</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Lokasjon</value>
+  </data>
+  <data name="Location2" xml:space="preserve">
+    <value>_Lokasjon:</value>
+  </data>
+  <data name="LoggingIntoTabblo" xml:space="preserve">
+    <value>Logger på Tabblo</value>
+  </data>
+  <data name="LoggingIntoX" xml:space="preserve">
+    <value>Logger på «{0}»</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Logg inn</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Logg ut</value>
+  </data>
+  <data name="Loupe" xml:space="preserve">
+    <value>_Lupe</value>
+  </data>
+  <data name="MakeFSpotMyScreensaver" xml:space="preserve">
+    <value>La F-Spot være skjermsparer</value>
+  </data>
+  <data name="ManageExtensions" xml:space="preserve">
+    <value>Håndter utvid_elser</value>
+  </data>
+  <data name="Medium" xml:space="preserve">
+    <value>Middelse</value>
+  </data>
+  <data name="Medium2" xml:space="preserve">
+    <value>_Middels</value>
+  </data>
+  <data name="MergeDb" xml:space="preserve">
+    <value>Sammenføy databaser</value>
+  </data>
+  <data name="MergeDb2" xml:space="preserve">
+    <value>Sammenføy databaser</value>
+  </data>
+  <data name="MergeTags" xml:space="preserve">
+    <value>Sammenføy merker</value>
+  </data>
+  <data name="MergeTagsMnemonic" xml:space="preserve">
+    <value>_Sammenføy merker</value>
+  </data>
+  <data name="MergeTheSelectedTag" xml:space="preserve">
+    <value>Flett {0} valgt merke</value>
+  </data>
+  <data name="MergeTheSelectedTags" xml:space="preserve">
+    <value>Flett de {0} valgte merkene?</value>
+  </data>
+  <data name="MetaPixel" xml:space="preserve">
+    <value>Metapiksel</value>
+  </data>
+  <data name="Metadata" xml:space="preserve">
+    <value>Metadata</value>
+  </data>
+  <data name="MinStartingAtX" xml:space="preserve">
+    <value>min. Start på {0}</value>
+  </data>
+  <data name="Modified" xml:space="preserve">
+    <value>Endret</value>
+  </data>
+  <data name="ModifiedInY" xml:space="preserve">
+    <value>Endret i {1}</value>
+  </data>
+  <data name="ModifiedInYX" xml:space="preserve">
+    <value>Endret i {1} ({0})</value>
+  </data>
+  <data name="ModifiedX" xml:space="preserve">
+    <value>Endret ({0})</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>Mer</value>
+  </data>
+  <data name="MoreDates" xml:space="preserve">
+    <value>Flere datoer</value>
+  </data>
+  <data name="MyPhotos" xml:space="preserve">
+    <value>Mine bilder</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Navn</value>
+  </data>
+  <data name="NameColon" xml:space="preserve">
+    <value>Navn:</value>
+  </data>
+  <data name="NameOfNewTagColon" xml:space="preserve">
+    <value>Navn på nytt merke:</value>
+  </data>
+  <data name="NewNameColon" xml:space="preserve">
+    <value>Nytt navn:</value>
+  </data>
+  <data name="NewSelection" xml:space="preserve">
+    <value>Nytt utvalg</value>
+  </data>
+  <data name="NewWindow" xml:space="preserve">
+    <value>_Nytt vindu</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Neste</value>
+  </data>
+  <data name="NextPhoto" xml:space="preserve">
+    <value>Neste bilde</value>
+  </data>
+  <data name="NextPicture" xml:space="preserve">
+    <value>Neste bilde</value>
+  </data>
+  <data name="NoAccountSelected" xml:space="preserve">
+    <value>Ingen konto valgt</value>
+  </data>
+  <data name="NoActivePhoto" xml:space="preserve">
+    <value>Intet aktivt fotografi</value>
+  </data>
+  <data name="NoApplicationsAvailable" xml:space="preserve">
+    <value>Ingen programmer tilgjengelig</value>
+  </data>
+  <data name="NoCamerasDetected" xml:space="preserve">
+    <value>(Ingen kameraer funnet)</value>
+  </data>
+  <data name="NoConstraint" xml:space="preserve">
+    <value>Ingen begrensning</value>
+  </data>
+  <data name="NoImage" xml:space="preserve">
+    <value>Ingen b_ilder</value>
+  </data>
+  <data name="NoMatchingPhotosFound" xml:space="preserve">
+    <value>Ingen passende bilder funnet</value>
+  </data>
+  <data name="NoMetadataAvailable" xml:space="preserve">
+    <value>Ingen metadata tilgjengelig</value>
+  </data>
+  <data name="NoPermissionToDeleteTheFile" xml:space="preserve">
+    <value>Ikke rettigheter til å slette filen:{1}{0}</value>
+  </data>
+  <data name="NoPhotosMatchingFound" xml:space="preserve">
+    <value>Ingen bilder funnet med treff på {0}</value>
+  </data>
+  <data name="NoSelectionAvailable" xml:space="preserve">
+    <value>Ingen markerte områder tilgjengelig</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>Ingen</value>
+  </data>
+  <data name="None2" xml:space="preserve">
+    <value>ingen</value>
+  </data>
+  <data name="NotLoggedIn" xml:space="preserve">
+    <value>Ikke logget inn</value>
+  </data>
+  <data name="NotSpaceX" xml:space="preserve">
+    <value>Ikke {0}</value>
+  </data>
+  <data name="NumberOfPhotosInSelectedRolls" xml:space="preserve">
+    <value>Antall bilder i valgt valgte ruller:</value>
+  </data>
+  <data name="NumberOfPictures" xml:space="preserve">
+    <value>Antall bilder</value>
+  </data>
+  <data name="ObtainingURLForUpload" xml:space="preserve">
+    <value>Henter URL for opplasting</value>
+  </data>
+  <data name="OkMnemonic" xml:space="preserve">
+    <value>_Ok</value>
+  </data>
+  <data name="OnXBetweenYAndZ" xml:space="preserve">
+    <value>{0} mellom
+{1} og {2}</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Åpne</value>
+  </data>
+  <data name="OpenAlbumInBrowserWhenDoneUploading2" xml:space="preserve">
+    <value>Åpne _album i nettleser når opplasting er ferdig</value>
+  </data>
+  <data name="OpenDestinationWhenDoneExporting" xml:space="preserve">
+    <value>Åpne _mål når eksport er ferdig</value>
+  </data>
+  <data name="OpenFolder" xml:space="preserve">
+    <value>Åpne _mappe …</value>
+  </data>
+  <data name="OpenWith" xml:space="preserve">
+    <value>Åpne _med</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>Alternativer:</value>
+  </data>
+  <data name="Or" xml:space="preserve">
+    <value>eller</value>
+  </data>
+  <data name="OrganizeEnjoyAndShareYourPhotos" xml:space="preserve">
+    <value>Organiser, verdsett og del bildene dine</value>
+  </data>
+  <data name="Original" xml:space="preserve">
+    <value>Original</value>
+  </data>
+  <data name="OriginalSizePossibleVeryLargeFileSize" xml:space="preserve">
+    <value>Opprinnelig størrelse (kan være veldig stor fil)</value>
+  </data>
+  <data name="PageColon" xml:space="preserve">
+    <value>Side:</value>
+  </data>
+  <data name="PageSetup" xml:space="preserve">
+    <value>Sideoppsett</value>
+  </data>
+  <data name="PageSetup2" xml:space="preserve">
+    <value>Side_oppsett …</value>
+  </data>
+  <data name="PaperSizeXxYmm" xml:space="preserve">
+    <value>Papirstørrelse: {0} x {1} mm</value>
+  </data>
+  <data name="ParenNoAlbumsParen" xml:space="preserve">
+    <value>(Ingen album)</value>
+  </data>
+  <data name="ParenNoEditsParen" xml:space="preserve">
+    <value>(Ingen redigeringer)</value>
+  </data>
+  <data name="ParenNoGalleryParen" xml:space="preserve">
+    <value>(Uten galleri)</value>
+  </data>
+  <data name="ParenNoTagsParen" xml:space="preserve">
+    <value>(Ingen merkelapper)</value>
+  </data>
+  <data name="ParenNoneParen" xml:space="preserve">
+    <value>(Ingen)</value>
+  </data>
+  <data name="ParenNotConnectedParen" xml:space="preserve">
+    <value>(Ikke koblet til)</value>
+  </data>
+  <data name="ParenOneEditParen" xml:space="preserve">
+    <value>(En redigering)</value>
+  </data>
+  <data name="ParenUnknownParen" xml:space="preserve">
+    <value>(Ukjent)</value>
+  </data>
+  <data name="ParenXEditsParen" xml:space="preserve">
+    <value>({0} redigeringer)</value>
+  </data>
+  <data name="ParentAlbum" xml:space="preserve">
+    <value>O_pphavsalbum:</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>_Passord:</value>
+  </data>
+  <data name="People" xml:space="preserve">
+    <value>Personer</value>
+  </data>
+  <data name="Permissions" xml:space="preserve">
+    <value>Rettigheter:</value>
+  </data>
+  <data name="Photo2" xml:space="preserve">
+    <value>bilde</value>
+  </data>
+  <data name="Photo3" xml:space="preserve">
+    <value>_Bilde</value>
+  </data>
+  <data name="PhotoManagementForGNOME" xml:space="preserve">
+    <value>Fotobehandler for GNOME</value>
+  </data>
+  <data name="PhotoManager" xml:space="preserve">
+    <value>Fotobehandler</value>
+  </data>
+  <data name="PhotoViewer" xml:space="preserve">
+    <value>Fotovisning</value>
+  </data>
+  <data name="PhotoXOfY" xml:space="preserve">
+    <value>Foto {0} av {1}</value>
+  </data>
+  <data name="Photos" xml:space="preserve">
+    <value>Bilder</value>
+  </data>
+  <data name="Photos2" xml:space="preserve">
+    <value>bilder</value>
+  </data>
+  <data name="PhotosInfos" xml:space="preserve">
+    <value>Informasjon om bilder</value>
+  </data>
+  <data name="PhotosLayout" xml:space="preserve">
+    <value>Utforming av bilder</value>
+  </data>
+  <data name="PhotosPerPage" xml:space="preserve">
+    <value>Bilder per side</value>
+  </data>
+  <data name="PhotosWithATag" xml:space="preserve">
+    <value>Bilder med merking</value>
+  </data>
+  <data name="PicasaWeb2" xml:space="preserve">
+    <value>_Picasaweb …</value>
+  </data>
+  <data name="PicasaWebExport" xml:space="preserve">
+    <value>Eksport til PicasaWeb</value>
+  </data>
+  <data name="Pixels" xml:space="preserve">
+    <value>piksler</value>
+  </data>
+  <data name="Places" xml:space="preserve">
+    <value>Steder</value>
+  </data>
+  <data name="PleaseWaitFSpotGalleryDBUpdating" xml:space="preserve">
+    <value>Vennligst vent mens F-Spot-databasen blir oppdatert. Dette kan ta litt tid.</value>
+  </data>
+  <data name="Preferences" xml:space="preserve">
+    <value>Brukervalg</value>
+  </data>
+  <data name="PreparingEmail" xml:space="preserve">
+    <value>Forbereder e-post</value>
+  </data>
+  <data name="PreparingPhotoX" xml:space="preserve">
+    <value>Forbereder bilde «{0}»</value>
+  </data>
+  <data name="Prev" xml:space="preserve">
+    <value>Forrige</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Forrige</value>
+  </data>
+  <data name="PreviousPhoto" xml:space="preserve">
+    <value>Forrige bilde</value>
+  </data>
+  <data name="PreviousPicture" xml:space="preserve">
+    <value>Forrige bilde</value>
+  </data>
+  <data name="PreviousWeekMonSun" xml:space="preserve">
+    <value>Forrige uke (Man-Søn)</value>
+  </data>
+  <data name="PrintCutMarks" xml:space="preserve">
+    <value>Skriv ut beskjæringsmerker</value>
+  </data>
+  <data name="PrintFileName" xml:space="preserve">
+    <value>Skriv ut filnavn</value>
+  </data>
+  <data name="PrintPhotoComment" xml:space="preserve">
+    <value>Skriv ut kommentar for bilde</value>
+  </data>
+  <data name="PrintPhotoDate" xml:space="preserve">
+    <value>Skriv ut dato for bilde</value>
+  </data>
+  <data name="PrintPhotoTags" xml:space="preserve">
+    <value>Skriv ut merkelapper for bilde</value>
+  </data>
+  <data name="PrintPhotoTime" xml:space="preserve">
+    <value>Skriv ut klokkeslett for bilde</value>
+  </data>
+  <data name="Private" xml:space="preserve">
+    <value>Privat</value>
+  </data>
+  <data name="Public" xml:space="preserve">
+    <value>Offentlig</value>
+  </data>
+  <data name="PublicAlbum" xml:space="preserve">
+    <value>Offentlig album</value>
+  </data>
+  <data name="Push" xml:space="preserve">
+    <value>Dytt</value>
+  </data>
+  <data name="Quit" xml:space="preserve">
+    <value>A_vslutt</value>
+  </data>
+  <data name="RadiusColon" xml:space="preserve">
+    <value>Radius:</value>
+  </data>
+  <data name="RatedPhotos" xml:space="preserve">
+    <value>Bilder med poeng</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Poeng</value>
+  </data>
+  <data name="Ratings" xml:space="preserve">
+    <value>_Poeng</value>
+  </data>
+  <data name="Ratio" xml:space="preserve">
+    <value>Rate</value>
+  </data>
+  <data name="ReallyDeleteVersionXQuestion" xml:space="preserve">
+    <value>Vil du slette versjon «{0}»?</value>
+  </data>
+  <data name="ReallyDetachVersionXFromY" xml:space="preserve">
+    <value>Vil du virkelig koble versjon «{0}» fra «%{1}»?</value>
+  </data>
+  <data name="ReceivedErrorXWhileAttemptingToRotateY" xml:space="preserve">
+    <value>Mottok feil «{0}» ved forsøk på å rotere {1}</value>
+  </data>
+  <data name="ReceivedExceptionX" xml:space="preserve">
+    <value>Mottok unntak «{0}».</value>
+  </data>
+  <data name="ReceivedExceptionXUnableToSavePhotoY" xml:space="preserve">
+    <value>Mottok unntak «{0}». Kunne ikke lagre bilde {1}</value>
+  </data>
+  <data name="RedEyeReduction" xml:space="preserve">
+    <value>Fjern røde øyne</value>
+  </data>
+  <data name="RefreshSearch" xml:space="preserve">
+    <value>Oppdater søk</value>
+  </data>
+  <data name="RefreshThumbnail" xml:space="preserve">
+    <value>_Oppdater miniatyrbilde</value>
+  </data>
+  <data name="RemoveFromCatalog" xml:space="preserve">
+    <value>_Fjern fra katalog</value>
+  </data>
+  <data name="RemoveFromCatalogMnemonic" xml:space="preserve">
+    <value>_Fjern fra F-Spot</value>
+  </data>
+  <data name="RemoveFromSearch" xml:space="preserve">
+    <value>Fjern fra søk</value>
+  </data>
+  <data name="RemoveOriginalFilesAfterImport" xml:space="preserve">
+    <value>Fje_rn originalfiler etter import</value>
+  </data>
+  <data name="RemoveTag" xml:space="preserve">
+    <value>_Fjern merke</value>
+  </data>
+  <data name="RemoveTagFromSelection" xml:space="preserve">
+    <value>Fjern merker fra utvalg</value>
+  </data>
+  <data name="RemoveTagFromSelection2" xml:space="preserve">
+    <value>_Fjern merkelapp fra utvalg</value>
+  </data>
+  <data name="RemoveTagFromSelection3" xml:space="preserve">
+    <value>Fjern merke fra utvalg</value>
+  </data>
+  <data name="RemoveTheSelectedPhotoFromFSpot" xml:space="preserve">
+    <value>Fjern det valgte bildet fra F-Spot?</value>
+  </data>
+  <data name="RemoveTheXSelectedPhotosFromFSpot" xml:space="preserve">
+    <value>Fjern de {0} valgte bildene fra F-Spot?</value>
+  </data>
+  <data name="RenameVersion" xml:space="preserve">
+    <value>Endre versjonsnavn</value>
+  </data>
+  <data name="RenameVersion2" xml:space="preserve">
+    <value>_Endre versjonsnavn</value>
+  </data>
+  <data name="Repair" xml:space="preserve">
+    <value>Reparer</value>
+  </data>
+  <data name="Repeat" xml:space="preserve">
+    <value>Gjenta</value>
+  </data>
+  <data name="Resize" xml:space="preserve">
+    <value>Endre størrelse</value>
+  </data>
+  <data name="ResizeEditor" xml:space="preserve">
+    <value>Rediger størrelse</value>
+  </data>
+  <data name="ResizeTheImage" xml:space="preserve">
+    <value>Endre størrelse på bildet</value>
+  </data>
+  <data name="ResizeTo" xml:space="preserve">
+    <value>_Endre størrelse til:</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Prøv igjen</value>
+  </data>
+  <data name="ReverseOrder" xml:space="preserve">
+    <value>_Motsatt rekkefølge</value>
+  </data>
+  <data name="RotateLeft" xml:space="preserve">
+    <value>Roter mot venstre</value>
+  </data>
+  <data name="RotateLeftMnemonic" xml:space="preserve">
+    <value>Roter mot _venstre</value>
+  </data>
+  <data name="RotatePhotoLeft" xml:space="preserve">
+    <value>Roter bildet til venstre</value>
+  </data>
+  <data name="RotatePhotoRight" xml:space="preserve">
+    <value>Roter bildet til høyre</value>
+  </data>
+  <data name="RotatePictureLeft" xml:space="preserve">
+    <value>Roter bilde mot venstre</value>
+  </data>
+  <data name="RotatePictureRight" xml:space="preserve">
+    <value>Roter bilde mot høyre</value>
+  </data>
+  <data name="RotateRight" xml:space="preserve">
+    <value>Roter mot høyre</value>
+  </data>
+  <data name="RotateRightMnemonic" xml:space="preserve">
+    <value>Roter mot _høyre</value>
+  </data>
+  <data name="RotateSelectedPhotoLeft" xml:space="preserve">
+    <value>Roter valgt bilde til venstre</value>
+  </data>
+  <data name="RotateSelectedPhotoRight" xml:space="preserve">
+    <value>Roter valgt bilde til høyre</value>
+  </data>
+  <data name="RotateSelectedPhotosLeft" xml:space="preserve">
+    <value>Roter valgte bilder til venstre</value>
+  </data>
+  <data name="RotateSelectedPhotosRight" xml:space="preserve">
+    <value>Roter valgte bilder til høyre</value>
+  </data>
+  <data name="RotatingPhotoX" xml:space="preserve">
+    <value>Roterer bilde «{0}»</value>
+  </data>
+  <data name="RotatingPhotos" xml:space="preserve">
+    <value>Roterer bilder</value>
+  </data>
+  <data name="S000000" xml:space="preserve">
+    <value>00:00:00</value>
+  </data>
+  <data name="S00000000000000" xml:space="preserve">
+    <value>0000:00:00:00:00:00</value>
+  </data>
+  <data name="S1024Px" xml:space="preserve">
+    <value>1024 piksler</value>
+  </data>
+  <data name="S23hq" xml:space="preserve">
+    <value>_23hq …</value>
+  </data>
+  <data name="S320Px" xml:space="preserve">
+    <value>320 piksler</value>
+  </data>
+  <data name="S480Px" xml:space="preserve">
+    <value>480 piksler</value>
+  </data>
+  <data name="S5" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="S640Px" xml:space="preserve">
+    <value>640 piksler</value>
+  </data>
+  <data name="S800Px" xml:space="preserve">
+    <value>800 piksler</value>
+  </data>
+  <data name="SameAsPhoto" xml:space="preserve">
+    <value>Samme som bilde</value>
+  </data>
+  <data name="Saturation2" xml:space="preserve">
+    <value>_Metning:</value>
+  </data>
+  <data name="SaveTheFilesOnly" xml:space="preserve">
+    <value>_Lagre kun filer</value>
+  </data>
+  <data name="Scale" xml:space="preserve">
+    <value>_Skaler:</value>
+  </data>
+  <data name="Scaled" xml:space="preserve">
+    <value>Skalert</value>
+  </data>
+  <data name="ScreensaverConfiguration" xml:space="preserve">
+    <value>Konfigurasjon av skjermsparer</value>
+  </data>
+  <data name="ScreensaverOptions" xml:space="preserve">
+    <value>Alternativer for skjermsparer</value>
+  </data>
+  <data name="SearchReturnedNoResults" xml:space="preserve">
+    <value>Ingen søkeresultater</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Velg …</value>
+  </data>
+  <data name="SelectAFolder" xml:space="preserve">
+    <value>Velg en mappe</value>
+  </data>
+  <data name="SelectATag" xml:space="preserve">
+    <value>Velg en merkelapp …</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Velg _alle</value>
+  </data>
+  <data name="SelectExportFolder" xml:space="preserve">
+    <value>Velg eksportmappe</value>
+  </data>
+  <data name="SelectExportFolder2" xml:space="preserve">
+    <value>Velg en eksportmappe</value>
+  </data>
+  <data name="SelectFolder" xml:space="preserve">
+    <value>Velg mappe</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>Velg _ingen</value>
+  </data>
+  <data name="SelectPhotoFromFile" xml:space="preserve">
+    <value>Velg bilde fra fil</value>
+  </data>
+  <data name="SelectTheAreaThatNeedsCropping" xml:space="preserve">
+    <value>Velg område som trenger beskjæring.</value>
+  </data>
+  <data name="SelectTheAreaThatYouWantBlackedOut" xml:space="preserve">
+    <value>Velg område du vil gjøre sort.</value>
+  </data>
+  <data name="SelectTheEyesYouWishToFix" xml:space="preserve">
+    <value>Velg øynene du vil ordne.</value>
+  </data>
+  <data name="Selected" xml:space="preserve">
+    <value>Valgt</value>
+  </data>
+  <data name="SelectedPhotos" xml:space="preserve">
+    <value>Valgte bilder</value>
+  </data>
+  <data name="SelectionConstraints" xml:space="preserve">
+    <value>Begrensning for utvalg</value>
+  </data>
+  <data name="SendByMail" xml:space="preserve">
+    <value>Send _med e-post …</value>
+  </data>
+  <data name="SepiaTone2" xml:space="preserve">
+    <value>Sepiatone</value>
+  </data>
+  <data name="SetAsBackground" xml:space="preserve">
+    <value>Bruk som bakgrunn</value>
+  </data>
+  <data name="SetAsBackground2" xml:space="preserve">
+    <value>Bruk som _bakgrunn</value>
+  </data>
+  <data name="SetDateRange" xml:space="preserve">
+    <value>Sett datoområde</value>
+  </data>
+  <data name="SetDateRange2" xml:space="preserve">
+    <value>_Sett datointervall …</value>
+  </data>
+  <data name="SetPageSizeAndOrientation" xml:space="preserve">
+    <value>Sett sidestørrelse og orientering</value>
+  </data>
+  <data name="Share" xml:space="preserve">
+    <value>Del:</value>
+  </data>
+  <data name="Sharpen" xml:space="preserve">
+    <value>Øk skarphet</value>
+  </data>
+  <data name="Sharpen2" xml:space="preserve">
+    <value>_Skjerp …</value>
+  </data>
+  <data name="ShowAll" xml:space="preserve">
+    <value>Vis alle</value>
+  </data>
+  <data name="ShowAllPhotos" xml:space="preserve">
+    <value>Vis alle bilder.</value>
+  </data>
+  <data name="ShowCamera" xml:space="preserve">
+    <value>Vis kamera</value>
+  </data>
+  <data name="ShowDate" xml:space="preserve">
+    <value>Vis dato</value>
+  </data>
+  <data name="ShowExposure" xml:space="preserve">
+    <value>Vis eksponering</value>
+  </data>
+  <data name="ShowFileSize" xml:space="preserve">
+    <value>Vis filstørrelse</value>
+  </data>
+  <data name="ShowFindBarMnemonic" xml:space="preserve">
+    <value>Vis sø_kelinjen</value>
+  </data>
+  <data name="ShowOrHideTheSidePane" xml:space="preserve">
+    <value>Vis eller skjul sidefeltet</value>
+  </data>
+  <data name="ShowOrHideTheToolbar" xml:space="preserve">
+    <value>Vis eller skjul verktøylinjen</value>
+  </data>
+  <data name="ShowRating" xml:space="preserve">
+    <value>Vis poeng</value>
+  </data>
+  <data name="ShowSize" xml:space="preserve">
+    <value>Vis størrelse</value>
+  </data>
+  <data name="ShowStyles" xml:space="preserve">
+    <value>Vis stiler</value>
+  </data>
+  <data name="ShowTags" xml:space="preserve">
+    <value>Vis merkelapper</value>
+  </data>
+  <data name="SidePane" xml:space="preserve">
+    <value>Side_felt</value>
+  </data>
+  <data name="Sidebar" xml:space="preserve">
+    <value>_Sidefelt</value>
+  </data>
+  <data name="SignInAsADifferentUser" xml:space="preserve">
+    <value>Logg inn som en annen bruker</value>
+  </data>
+  <data name="SimpleExportToZipFile" xml:space="preserve">
+    <value>Enkel eksport til en Zip-fil</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Størrelse</value>
+  </data>
+  <data name="SizeOfTheExportedSelection" xml:space="preserve">
+    <value>Størrelse på det eksporterte utvalget:</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>Hopp over</value>
+  </data>
+  <data name="SlideTransition" xml:space="preserve">
+    <value>Overgang mellom lysbilder:</value>
+  </data>
+  <data name="Slideshow" xml:space="preserve">
+    <value>Bildefremvisning</value>
+  </data>
+  <data name="Slideshow2" xml:space="preserve">
+    <value>_Bildefremvisning</value>
+  </data>
+  <data name="Small" xml:space="preserve">
+    <value>Liten</value>
+  </data>
+  <data name="Small2" xml:space="preserve">
+    <value>_Liten</value>
+  </data>
+  <data name="SmugMug" xml:space="preserve">
+    <value>_SmugMug …</value>
+  </data>
+  <data name="SmugMugExport" xml:space="preserve">
+    <value>SmugMug-eksport</value>
+  </data>
+  <data name="SoftFocus" xml:space="preserve">
+    <value>Mykt fokus</value>
+  </data>
+  <data name="SomeFilesFailedToImport" xml:space="preserve">
+    <value>Klarte ikke å importere alle filene</value>
+  </data>
+  <data name="Square" xml:space="preserve">
+    <value>Kvadratisk</value>
+  </data>
+  <data name="StandardTheme" xml:space="preserve">
+    <value>Standard tema</value>
+  </data>
+  <data name="StartSlideshow" xml:space="preserve">
+    <value>Start lysbildefremvisning</value>
+  </data>
+  <data name="StayConnected" xml:space="preserve">
+    <value>Forbli koblet til</value>
+  </data>
+  <data name="Straighten" xml:space="preserve">
+    <value>Rett ut</value>
+  </data>
+  <data name="SyncMetaData" xml:space="preserve">
+    <value>Synkroniser metadata</value>
+  </data>
+  <data name="SystemProfile" xml:space="preserve">
+    <value>Systemprofil</value>
+  </data>
+  <data name="Tabblo" xml:space="preserve">
+    <value>_Tabblo …</value>
+  </data>
+  <data name="TabbloExport" xml:space="preserve">
+    <value>Eksporter til Tabblo</value>
+  </data>
+  <data name="TagDoesntExistTrySelectingDifferentTagInPerferenceDialog" xml:space="preserve">
+    <value>Merket F-Spot leter etter finnes ikke. Prøv
+å velge et annet merke via brukervalg-dialogen
+for F-Spot.</value>
+  </data>
+  <data name="TagIcons" xml:space="preserve">
+    <value>_Ikoner for merkelapper</value>
+  </data>
+  <data name="TagIsNotEmpty" xml:space="preserve">
+    <value>Merkelappen er ikke tom</value>
+  </data>
+  <data name="TagName2" xml:space="preserve">
+    <value>_Merkenavn:</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Merker</value>
+  </data>
+  <data name="Tags2" xml:space="preserve">
+    <value>_Merker</value>
+  </data>
+  <data name="Tags3" xml:space="preserve">
+    <value>_Merkelapper</value>
+  </data>
+  <data name="TagsColon" xml:space="preserve">
+    <value>Merkelapper:</value>
+  </data>
+  <data name="Temp" xml:space="preserve">
+    <value>Te_mperatur:</value>
+  </data>
+  <data name="ThePhotoXDoesNotExist" xml:space="preserve">
+    <value>Bildet «{0}» finnes ikke</value>
+  </data>
+  <data name="ThisDeletesAllVersionsOfTheSelectedPhotoFromYourDrive" xml:space="preserve">
+    <value>Dette sletter alle versjoner av det valgte bildet fra harddisken din.</value>
+  </data>
+  <data name="ThisDeletesAllVersionsOfTheSelectedPhotosFromYourDrive" xml:space="preserve">
+    <value>Dette sletter alle versjoner av de valgte bildene fra harddisken din.</value>
+  </data>
+  <data name="ThisExtensionAllowsYouToExportYourPhotosToFlickrAnd23hq" xml:space="preserve">
+    <value>Denne utvidelsen lar deg eksportere dine bilder til Flickr og 23hq.</value>
+  </data>
+  <data name="ThisNameIsAlreadyInUse" xml:space="preserve">
+    <value>Dette navnet er allerede i bruk</value>
+  </data>
+  <data name="ThisRemovesTheVersionAndDeletesTheFileFromDisk" xml:space="preserve">
+    <value>Dette fjerner versjonen og sletter tilhørende fil fra disk.</value>
+  </data>
+  <data name="ThisToolRequiresAnActiveSelection.PleaseSelectOneOrMore" xml:space="preserve">
+    <value>Dette verktøyet krever et aktivt utvalg. Velg ett eller flere bildet og prøv igjen</value>
+  </data>
+  <data name="ThisToolRequiresAnActiveSelectionPleaseSelectARegion" xml:space="preserve">
+    <value>Dette verktøyet krever et aktivt utvalg. Velg et område av bildet og prøv operasjonen på nytt</value>
+  </data>
+  <data name="ThresholdColon" xml:space="preserve">
+    <value>Terskel:</value>
+  </data>
+  <data name="ThumbnailElements" xml:space="preserve">
+    <value>Miniatyrbilde_elementer</value>
+  </data>
+  <data name="Timeline" xml:space="preserve">
+    <value>_Tidslinje</value>
+  </data>
+  <data name="Tiny" xml:space="preserve">
+    <value>Liten</value>
+  </data>
+  <data name="Title2" xml:space="preserve">
+    <value>_Tittel:</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Idag</value>
+  </data>
+  <data name="TooManyImagesToExport" xml:space="preserve">
+    <value>For mange bilder å importere</value>
+  </data>
+  <data name="Toolbar" xml:space="preserve">
+    <value>Verktøy_linje</value>
+  </data>
+  <data name="Toolbar2" xml:space="preserve">
+    <value>Verk_tøylinje</value>
+  </data>
+  <data name="Tools" xml:space="preserve">
+    <value>Verktøy</value>
+  </data>
+  <data name="Tools2" xml:space="preserve">
+    <value>Verk_tøy</value>
+  </data>
+  <data name="TotalOriginalSize" xml:space="preserve">
+    <value>Total størrelse på originaler</value>
+  </data>
+  <data name="TransferComplete" xml:space="preserve">
+    <value>Overføring fullført</value>
+  </data>
+  <data name="Transferring" xml:space="preserve">
+    <value>Overfører …</value>
+  </data>
+  <data name="TransferringPictureXToCD" xml:space="preserve">
+    <value>Overfører bilde «{0}» til CD</value>
+  </data>
+  <data name="TransferringPictures" xml:space="preserve">
+    <value>Overfører bilder</value>
+  </data>
+  <data name="TransferringToX" xml:space="preserve">
+    <value>Overfører til «{0}»</value>
+  </data>
+  <data name="Transitions" xml:space="preserve">
+    <value>Overganger</value>
+  </data>
+  <data name="TranslatorCredits" xml:space="preserve">
+    <value>Kjartan Maraas &lt;kmaraas@gnome.org&gt;, 2006-2010
+Espen Stefansen &lt;espens@svn.gnome.org&gt;, 2007
+Sigurd Gartmann
+Øivind Hoel &lt;ohoel@cvs.gnome.org&gt;, 2006</value>
+  </data>
+  <data name="TrustError" xml:space="preserve">
+    <value>Feil ved tillit</value>
+  </data>
+  <data name="TrustTheSiteSCertificateThisOnce" xml:space="preserve">
+    <value>Stol på nettstedets sertifikat denne ene gangen</value>
+  </data>
+  <data name="URL3" xml:space="preserve">
+    <value>U_RL:</value>
+  </data>
+  <data name="UnableToLoadImage" xml:space="preserve">
+    <value>Kan ikke laste bilde</value>
+  </data>
+  <data name="UnableToLogOn" xml:space="preserve">
+    <value>Kan ikke logge på</value>
+  </data>
+  <data name="UnableToLogOn2" xml:space="preserve">
+    <value>Kan ikke logge på.</value>
+  </data>
+  <data name="UnableToRotatePhoto" xml:space="preserve">
+    <value>Kan ikke rotere bilde</value>
+  </data>
+  <data name="UnableToRotateReadonlyFile" xml:space="preserve">
+    <value>Kan ikke rotere skrivebeskytte fil</value>
+  </data>
+  <data name="UnableToRotateThisTypeOfPhoto" xml:space="preserve">
+    <value>Kan ikke rotere denne typen bilde</value>
+  </data>
+  <data name="UnableToRotateXPhotos" xml:space="preserve">
+    <value>Kan ikke rotere {0} bilder</value>
+  </data>
+  <data name="UnhandledException" xml:space="preserve">
+    <value>Uhåndtert unntak</value>
+  </data>
+  <data name="UntaggedPhotos" xml:space="preserve">
+    <value>Umerkede fotografier</value>
+  </data>
+  <data name="UntaggedPhotos2" xml:space="preserve">
+    <value>_Umerkede fotografier</value>
+  </data>
+  <data name="UpdatingFSpotDatabase" xml:space="preserve">
+    <value>Oppdaterer F-Spot-databasen</value>
+  </data>
+  <data name="UpdatingPictureX" xml:space="preserve">
+    <value>Oppdaterer bilde «{0}»</value>
+  </data>
+  <data name="UpdatingThumbnails" xml:space="preserve">
+    <value>Oppdaterer miniatyrer</value>
+  </data>
+  <data name="UploadComplete" xml:space="preserve">
+    <value>Opplasting fullført</value>
+  </data>
+  <data name="UploadComplete2" xml:space="preserve">
+    <value>Opplasting fullført</value>
+  </data>
+  <data name="UploadingPhotoX" xml:space="preserve">
+    <value>Laster opp bilde «{0}»</value>
+  </data>
+  <data name="UploadingPictureX" xml:space="preserve">
+    <value>Laster opp bilde «{0}»</value>
+  </data>
+  <data name="UploadingPictureXYOfZ" xml:space="preserve">
+    <value>Laster opp bilde «{0}» ({1} av {2})</value>
+  </data>
+  <data name="UploadingPictures" xml:space="preserve">
+    <value>Laster opp bilder</value>
+  </data>
+  <data name="Url4" xml:space="preserve">
+    <value>URL</value>
+  </data>
+  <data name="UseAnExistingAlbum" xml:space="preserve">
+    <value>Bruk et eksisterende album</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Br_ukernavn:</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Versjon</value>
+  </data>
+  <data name="Version3" xml:space="preserve">
+    <value>_Versjon</value>
+  </data>
+  <data name="VerticalMnemonic" xml:space="preserve">
+    <value>_Vertikal</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>Vis</value>
+  </data>
+  <data name="View2" xml:space="preserve">
+    <value>_Vis</value>
+  </data>
+  <data name="ViewAndEditAPhoto" xml:space="preserve">
+    <value>Vis og rediger et bilde</value>
+  </data>
+  <data name="ViewPhotosFullscreen" xml:space="preserve">
+    <value>Vis bilder i fullskjerm</value>
+  </data>
+  <data name="ViewPhotosInASlideshow" xml:space="preserve">
+    <value>Vis bilder som lysbilder</value>
+  </data>
+  <data name="ViewPhotosInBrowserWhenDoneUploading" xml:space="preserve">
+    <value>_Vis bilder i nettleser når opplasting er ferdig</value>
+  </data>
+  <data name="Views" xml:space="preserve">
+    <value>Visninger:</value>
+  </data>
+  <data name="VisibleToFamily" xml:space="preserve">
+    <value>Synlig for familien</value>
+  </data>
+  <data name="VisibleToFriends" xml:space="preserve">
+    <value>Synlig for venner</value>
+  </data>
+  <data name="VisitFSpotGroupOnFacebook" xml:space="preserve">
+    <value>Besøk F-Spot-gruppen på Facebook</value>
+  </data>
+  <data name="WaitingForAuthentication" xml:space="preserve">
+    <value>Venter på autentisering</value>
+  </data>
+  <data name="WaitingForAuthorization" xml:space="preserve">
+    <value>Venter på autorisasjon</value>
+  </data>
+  <data name="WaitingForResponseXOfY" xml:space="preserve">
+    <value>Venter på svar {0} av {1}</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Advarsel</value>
+  </data>
+  <data name="WebGallery" xml:space="preserve">
+    <value>_Galleri på nettet …</value>
+  </data>
+  <data name="WelcomeXYouAreConnectedToY3" xml:space="preserve">
+    <value>Velkommen {0}. Du er koblet til {1}</value>
+  </data>
+  <data name="WhiteBorders" xml:space="preserve">
+    <value>Hvite kanter</value>
+  </data>
+  <data name="WhoIsThis" xml:space="preserve">
+    <value>Hvem er dette?</value>
+  </data>
+  <data name="XCFVersion" xml:space="preserve">
+    <value>XCF-versjon</value>
+  </data>
+  <data name="XOfApproxY" xml:space="preserve">
+    <value>{0} av ca. {1}</value>
+  </data>
+  <data name="XOfY" xml:space="preserve">
+    <value>{0} av {1}</value>
+  </data>
+  <data name="XPhoto" xml:space="preserve">
+    <value>{0} bilde</value>
+  </data>
+  <data name="XPhoto2" xml:space="preserve">
+    <value>{0} bilde</value>
+  </data>
+  <data name="XPhotoOutOfY2" xml:space="preserve">
+    <value>{0} bilde av {1}</value>
+  </data>
+  <data name="XPhotos" xml:space="preserve">
+    <value>{0} bilder</value>
+  </data>
+  <data name="XPhotos2" xml:space="preserve">
+    <value>{0} bilder</value>
+  </data>
+  <data name="XPhotosOutOfY2" xml:space="preserve">
+    <value>{0} bilder av {1}</value>
+  </data>
+  <data name="XSelected2" xml:space="preserve">
+    <value> ({0} valgt)</value>
+  </data>
+  <data name="XSent" xml:space="preserve">
+    <value>{0} sendt</value>
+  </data>
+  <data name="XYIsLoggedIntoFacebook" xml:space="preserve">
+    <value>{0} {1} er logget på Facebook</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>Igår</value>
+  </data>
+  <data name="YouAreNotLoggedIn" xml:space="preserve">
+    <value>Du er ikke logget inn.</value>
+  </data>
+  <data name="ZipExport" xml:space="preserve">
+    <value>Eksporter til Zip</value>
+  </data>
+  <data name="Zoom" xml:space="preserve">
+    <value>Zoom</value>
+  </data>
+  <data name="ZoomIn" xml:space="preserve">
+    <value>Zoom _inn</value>
+  </data>
+  <data name="ZoomIn2" xml:space="preserve">
+    <value>Zoom inn</value>
+  </data>
+  <data name="ZoomOut" xml:space="preserve">
+    <value>Zoom _ut</value>
+  </data>
+  <data name="ZoomOut2" xml:space="preserve">
+    <value>Zoom ut</value>
+  </data>
+  <data name="Zooomr" xml:space="preserve">
+    <value>_Zooomr …</value>
+  </data>
+</root>

@@ -22,6 +22,7 @@ using FSpot.Database;
 using FSpot.Database.Jobs;
 using FSpot.Extensions;
 using FSpot.FileSystem;
+using FSpot.Gui;
 using FSpot.Import;
 using FSpot.Query;
 using FSpot.Resources.Lang;
@@ -228,7 +229,7 @@ namespace FSpot
 
 			Database = db;
 
-			var builder = new GtkBeans.Builder ("main_window.ui");
+			var builder = TranslatedBuilder.FromResource (null, "main_window.ui");
 			builder.Autoconnect (this);
 
 			//Set the global DefaultColormap. Allows transparency according
@@ -2736,8 +2737,8 @@ namespace FSpot
 			//if (selected?.Length < 1)
 			//	return;
 
-			//string header = Catalog.GetPluralString ("Create New Version?", "Create New Versions?", selected.Length);
-			//string msg = string.Format (Catalog.GetPluralString (
+			//string header = MsgidLookup.GetString ("Create New Version?", "Create New Versions?", selected.Length);
+			//string msg = string.Format (MsgidLookup.GetString (
 			//	             "Before launching {1}, should F-Spot create a new version of the selected photo to preserve the original?",
 			//	             "Before launching {1}, should F-Spot create new versions of the selected photos to preserve the originals?", selected.Length),
 			//	             selected.Length, application.Name);
@@ -2760,7 +2761,7 @@ namespace FSpot
 			////This allows creating a version with a .xcf extension.
 			////There's no need to convert the file to xcf file format, gimp will take care of this
 			//if (support_xcf) {
-			//	var cb = new CheckButton (Catalog.GetString ("XCF version"));
+			//	var cb = new CheckButton (MsgidLookup.GetString ("XCF version"));
 			//	cb.Active = Preferences.Get<bool> (Preferences.EditCreateXcfVersion);
 			//	hmd.VBox.Add (cb);
 			//	cb.Toggled += (s, ea) => Preferences.Set (Preferences.EditCreateXcfVersion, (s as CheckButton).Active);

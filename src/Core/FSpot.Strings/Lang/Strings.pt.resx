@@ -1,0 +1,2707 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ASingleImportRoll" xml:space="preserve">
+    <value>Um único rolo</value>
+  </data>
+  <data name="ASlideshowTransitionThatCoversImages" xml:space="preserve">
+    <value>Uma transição de diaporama que cobre imagens</value>
+  </data>
+  <data name="ASlideshowTransitionThatDissolvesImages" xml:space="preserve">
+    <value>Uma transição de diaporama que dissolve imagens</value>
+  </data>
+  <data name="ASlideshowTransitionThatPushesImages" xml:space="preserve">
+    <value>Uma transição de diaporama que empurra imagens</value>
+  </data>
+  <data name="ATrustErrorOccuredWhileAttemptingToAccess" xml:space="preserve">
+    <value>Um erro de confiança ocorreu ao tentar o acesso</value>
+  </data>
+  <data name="AbortThisSession" xml:space="preserve">
+    <value>Abortar esta sessão</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>_Conta:</value>
+  </data>
+  <data name="ActivatesAndDeactivatesTheWebGallery" xml:space="preserve">
+    <value>Ativa e desativa a galeria web</value>
+  </data>
+  <data name="Adjust" xml:space="preserve">
+    <value>Ajustar</value>
+  </data>
+  <data name="AdjustColors" xml:space="preserve">
+    <value>Ajustar cores</value>
+  </data>
+  <data name="AdjustTime" xml:space="preserve">
+    <value>Ajustar hora</value>
+  </data>
+  <data name="AdjustTime2" xml:space="preserve">
+    <value>Ajustar _Hora...</value>
+  </data>
+  <data name="AdjustedDate" xml:space="preserve">
+    <value>Data ajustada: </value>
+  </data>
+  <data name="After" xml:space="preserve">
+    <value>após</value>
+  </data>
+  <data name="AlbumMustHaveAName" xml:space="preserve">
+    <value>O álbum tem de ter um nome</value>
+  </data>
+  <data name="AlbumName" xml:space="preserve">
+    <value>_Nome do álbum:</value>
+  </data>
+  <data name="AlbumTitle" xml:space="preserve">
+    <value>_Título do álbum:</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Tudo</value>
+  </data>
+  <data name="AllImages" xml:space="preserve">
+    <value>Todas as imagens</value>
+  </data>
+  <data name="AllowViewersToAddTags" xml:space="preserve">
+    <value>Permitir que os visitantes adicionem etiquetas</value>
+  </data>
+  <data name="AlwaysTrustThisSiteSCertificate" xml:space="preserve">
+    <value>Confiar sempre no certificado deste sítio</value>
+  </data>
+  <data name="AmountColon" xml:space="preserve">
+    <value>Quantidade:</value>
+  </data>
+  <data name="AnErrorOccuredWhileProcessingXY" xml:space="preserve">
+    <value>Ocorreu um erro ao processar "{0}": {1}</value>
+  </data>
+  <data name="AnErrorOccurredCreatingANewAlbumX" xml:space="preserve">
+    <value>Ocorreu um erro ao criar um novo álbum.
+
+{0}</value>
+  </data>
+  <data name="AnErrorOfTypeXOccurredWhileDeletingTheFile" xml:space="preserve">
+    <value>Um erro do tipo {0} ocorreu ao eliminar o ficheiro:{2}{1}</value>
+  </data>
+  <data name="And" xml:space="preserve">
+    <value>e</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Aplicar</value>
+  </data>
+  <data name="ApplyChanges" xml:space="preserve">
+    <value>_Aplicar alterações</value>
+  </data>
+  <data name="ArrangeBy" xml:space="preserve">
+    <value>_Ordenar por</value>
+  </data>
+  <data name="AsBackground" xml:space="preserve">
+    <value>Como _Fundo</value>
+  </data>
+  <data name="AsCheckPattern" xml:space="preserve">
+    <value>Como _Padrão axadrezado</value>
+  </data>
+  <data name="AsCustomColor" xml:space="preserve">
+    <value>_Como cor personalizada: </value>
+  </data>
+  <data name="At" xml:space="preserve">
+    <value>em</value>
+  </data>
+  <data name="AttachTag" xml:space="preserve">
+    <value>_Anexar etiqueta</value>
+  </data>
+  <data name="AttachTagToSelection" xml:space="preserve">
+    <value>Juntar Etiqueta à Seleção</value>
+  </data>
+  <data name="AttachTagToSelection2" xml:space="preserve">
+    <value>_Anexar etiqueta à seleção</value>
+  </data>
+  <data name="AttachTags2" xml:space="preserve">
+    <value>_Anexar etiquetas:</value>
+  </data>
+  <data name="AttachTagsToSelection" xml:space="preserve">
+    <value>Juntar etiquetas à seleção</value>
+  </data>
+  <data name="AttachToExportedPhotos" xml:space="preserve">
+    <value>_Anexar às fotografias exportadas:</value>
+  </data>
+  <data name="Authenticating" xml:space="preserve">
+    <value>A autenticar...</value>
+  </data>
+  <data name="Authorize" xml:space="preserve">
+    <value>Autorizar</value>
+  </data>
+  <data name="AuthorizingSession" xml:space="preserve">
+    <value>A autorizar sessão</value>
+  </data>
+  <data name="AutoColor" xml:space="preserve">
+    <value>Ajuste automático das cores</value>
+  </data>
+  <data name="AutoConfirmPhotos" xml:space="preserve">
+    <value>Confirmar fotografias automaticamente</value>
+  </data>
+  <data name="AvailableSpaceXYUsedOutOfZ" xml:space="preserve">
+    <value>Espaço disponível: {0}, {1}% usado de {2}</value>
+  </data>
+  <data name="BAccountB" xml:space="preserve">
+    <value>&lt;b&gt;Conta&lt;/b&gt;</value>
+  </data>
+  <data name="BActionB" xml:space="preserve">
+    <value>&lt;b&gt;Ação&lt;/b&gt;</value>
+  </data>
+  <data name="BAlbumB" xml:space="preserve">
+    <value>&lt;b&gt;Álbum&lt;/b&gt;</value>
+  </data>
+  <data name="BCorrectionsB" xml:space="preserve">
+    <value>&lt;b&gt;Co_Rreções&lt;/b&gt;</value>
+  </data>
+  <data name="BDestinationB" xml:space="preserve">
+    <value>&lt;b&gt;Destino&lt;/b&gt;</value>
+  </data>
+  <data name="BEndDateB" xml:space="preserve">
+    <value>&lt;b&gt;Data de fim&lt;/b&gt;</value>
+  </data>
+  <data name="BExportMethodB" xml:space="preserve">
+    <value>&lt;b&gt;Método de exportação&lt;/b&gt;</value>
+  </data>
+  <data name="BFSpotTagsB" xml:space="preserve">
+    <value>&lt;b&gt;Etiquetas do F-Spot&lt;/b&gt;</value>
+  </data>
+  <data name="BFromExternalPhotoB" xml:space="preserve">
+    <value>&lt;b&gt;De fotografia externa&lt;/b&gt;</value>
+  </data>
+  <data name="BFromPhotoB" xml:space="preserve">
+    <value>&lt;b&gt;De fotografia&lt;/b&gt;</value>
+  </data>
+  <data name="BFromPhotoBYouCanUseOneOfYourLibraryPhotosAsAnIconForThisTagHoweverFirstYouMustHaveAtLeastOnePhotoAssociatedWithThisTagPleaseTagAPhotoAsXAndReturnHereToUseItAsAnIcon" xml:space="preserve">
+    <value>
+&lt;b&gt;Da fotografia&lt;/b&gt;
+Pode usar uma das suas fotografias da biblioteca como ícone da 
+etiqueta. No entanto, primeiro precisa de pelo menos uma fotografia 
+associada com esta etiqueta. Por favor etiquete uma fotografia 
+como "{0}" e volte aqui para utilizá-la como um ícone.</value>
+  </data>
+  <data name="BGalleryB" xml:space="preserve">
+    <value>&lt;b&gt;Galeria&lt;/b&gt;</value>
+  </data>
+  <data name="BIThereAreSomePreviouslyScheduledItemsToWriteIB" xml:space="preserve">
+    <value>&lt;b&gt;&lt;i&gt;Existem itens previamente agendados para escrita&lt;/i&gt;&lt;/b&gt;</value>
+  </data>
+  <data name="BImageInterpolationB" xml:space="preserve">
+    <value>&lt;b&gt;Interpolação de imagem&lt;/b&gt;</value>
+  </data>
+  <data name="BMaxRatingB" xml:space="preserve">
+    <value>&lt;b&gt;Classificação máxima&lt;/b&gt;</value>
+  </data>
+  <data name="BMinRatingB" xml:space="preserve">
+    <value>&lt;b&gt;Classificação mínima&lt;/b&gt;</value>
+  </data>
+  <data name="BPhotosB" xml:space="preserve">
+    <value>&lt;b&gt;Fotografias&lt;/b&gt;</value>
+  </data>
+  <data name="BPhotosToBurnB" xml:space="preserve">
+    <value>&lt;b&gt;Fotografias para gravar&lt;/b&gt;</value>
+  </data>
+  <data name="BPicasaWebExportB" xml:space="preserve">
+    <value>&lt;b&gt;Exportar para PicasaWeb&lt;/b&gt;</value>
+  </data>
+  <data name="BPredefinedIconsB" xml:space="preserve">
+    <value>&lt;b&gt;Ícones predefinidos&lt;/b&gt;</value>
+  </data>
+  <data name="BPreviewB" xml:space="preserve">
+    <value>&lt;b&gt;Antevisão&lt;/b&gt;</value>
+  </data>
+  <data name="BReferencePhotoB" xml:space="preserve">
+    <value>&lt;b&gt;Fotografia de referência&lt;/b&gt;</value>
+  </data>
+  <data name="BSelectPeriodB" xml:space="preserve">
+    <value>&lt;b&gt;Selecionar período&lt;/b&gt;</value>
+  </data>
+  <data name="BSizeB" xml:space="preserve">
+    <value>&lt;b&gt;Tamanho&lt;/b&gt;</value>
+  </data>
+  <data name="BSmugMugExportB" xml:space="preserve">
+    <value>&lt;b&gt;Exportar para SmugMug&lt;/b&gt;</value>
+  </data>
+  <data name="BSpecifyTheToplevelPhotosDirectoriesB" xml:space="preserve">
+    <value>&lt;b&gt;Especifique a pasta de topo das fotografias&lt;/b&gt;</value>
+  </data>
+  <data name="BStartDateB" xml:space="preserve">
+    <value>&lt;b&gt;Data de início&lt;/b&gt;</value>
+  </data>
+  <data name="BStyleB" xml:space="preserve">
+    <value>&lt;b&gt;Estilo&lt;/b&gt;</value>
+  </data>
+  <data name="BSummaryB" xml:space="preserve">
+    <value>&lt;b&gt;Resumo&lt;/b&gt;</value>
+  </data>
+  <data name="BTabbloAccountB" xml:space="preserve">
+    <value>&lt;b&gt;Conta Tabblo&lt;/b&gt;</value>
+  </data>
+  <data name="BTransparentPartsB" xml:space="preserve">
+    <value>&lt;b&gt;Partes transparentes&lt;/b&gt;</value>
+  </data>
+  <data name="BViewAllPicturesImportedB" xml:space="preserve">
+    <value>&lt;b&gt;Ver todas as imagens importadas&lt;/b&gt;</value>
+  </data>
+  <data name="BViewingPermissionsB" xml:space="preserve">
+    <value>&lt;b&gt;Permissões de visualização&lt;/b&gt;</value>
+  </data>
+  <data name="BWEditor" xml:space="preserve">
+    <value>PretoBranco</value>
+  </data>
+  <data name="BWhiteBalanceB" xml:space="preserve">
+    <value>&lt;b&gt;_Equilíbrio de branco&lt;/b&gt;</value>
+  </data>
+  <data name="BeforeLaunchingYShouldFSpotCreateANewVersionOfTheSelectedPhotoToPreserveTheOriginal" xml:space="preserve">
+    <value>Antes de iniciar {1}, deverá o F-Spot criar uma nova versão da fotografia selecionada para preservar a original?</value>
+  </data>
+  <data name="BeforeLaunchingYShouldFSpotCreateNewVersionsOfTheSelectedPhotosToPreserveTheOriginals" xml:space="preserve">
+    <value>Antes de iniciar {1}, deverá o F-Spot criar novas versões das fotografias selecionadas para preservar as originais?</value>
+  </data>
+  <data name="Between" xml:space="preserve">
+    <value>entre</value>
+  </data>
+  <data name="BetweenXAndY" xml:space="preserve">
+    <value>Entre {0} 
+e {1}</value>
+  </data>
+  <data name="Blackout" xml:space="preserve">
+    <value>Cobrir</value>
+  </data>
+  <data name="BlackoutEditor" xml:space="preserve">
+    <value>Tapar</value>
+  </data>
+  <data name="BlacksOutAnAreaOfTheImage" xml:space="preserve">
+    <value>Tapa uma área da imagem.</value>
+  </data>
+  <data name="Brightness" xml:space="preserve">
+    <value>_Brilho:</value>
+  </data>
+  <data name="Browse2" xml:space="preserve">
+    <value>Navegar</value>
+  </data>
+  <data name="BrowseManyPhotosSimultaneously" xml:space="preserve">
+    <value>Navegar em várias fotografias simultaneamente</value>
+  </data>
+  <data name="BrowsePreviouslyScheduledFiles" xml:space="preserve">
+    <value>_Navegar em ficheiros previamente agendados</value>
+  </data>
+  <data name="BuildingGallery" xml:space="preserve">
+    <value>A construir galeria</value>
+  </data>
+  <data name="ByDate" xml:space="preserve">
+    <value>Por _Data</value>
+  </data>
+  <data name="ByImportRoll" xml:space="preserve">
+    <value>Por rolo _Importado</value>
+  </data>
+  <data name="ByRating" xml:space="preserve">
+    <value>Por _Classificação</value>
+  </data>
+  <data name="CD2" xml:space="preserve">
+    <value>_CD...</value>
+  </data>
+  <data name="CDExport" xml:space="preserve">
+    <value>Exportar CD</value>
+  </data>
+  <data name="Camera" xml:space="preserve">
+    <value>Câmara</value>
+  </data>
+  <data name="CanNotDeleteTagsThatHaveTagsWihinThem.PleaseDeleteTagUnderXFirst" xml:space="preserve">
+    <value>Impossível eliminar etiquetas que contêm etiquetas. Por favor, elimine as etiquetas dentro de "{0}" primeiro</value>
+  </data>
+  <data name="CancelDoNotChangeTheCurrentTimeline" xml:space="preserve">
+    <value>Cancelar, não altera a cronologia atual. </value>
+  </data>
+  <data name="CannotConnectToGalleryUnknownVersionCheckRemotePlugin" xml:space="preserve">
+    <value>Impossível ligar a uma Galeria cuja versão é desconhecida.
+Por favor verifique que tem a extensão Remote 1.0.8 ou posterior</value>
+  </data>
+  <data name="Captcha" xml:space="preserve">
+    <value>_Captcha:</value>
+  </data>
+  <data name="Captchaurl" xml:space="preserve">
+    <value>captcha_url</value>
+  </data>
+  <data name="Caption2" xml:space="preserve">
+    <value>Legenda</value>
+  </data>
+  <data name="ChangeBasePathURITo" xml:space="preserve">
+    <value>Alterar caminho base (URI) para</value>
+  </data>
+  <data name="ChangePath" xml:space="preserve">
+    <value>Alterar caminho</value>
+  </data>
+  <data name="ChangePathToPhotos" xml:space="preserve">
+    <value>Alterar caminho para fotografias</value>
+  </data>
+  <data name="ChangePhotosDirectory" xml:space="preserve">
+    <value>Alterar pasta de imagens</value>
+  </data>
+  <data name="CheckBoxToRemoveImportedPhotosFromCameraAndWarning" xml:space="preserve">
+    <value>Ativar esta caixa removerá as fotografias importadas da câmara depois da importação terminar com sucesso.
+
+É geralmente recomendado que efetue uma cópia de segurança das suas fotografias antes de as remover da câmara. &lt;b&gt;Utilize esta opção a seu próprio risco!&lt;/b&gt;</value>
+  </data>
+  <data name="CheckingCredentials" xml:space="preserve">
+    <value>A verificar credenciais...</value>
+  </data>
+  <data name="ChooseFolder" xml:space="preserve">
+    <value>Escolha a pasta...</value>
+  </data>
+  <data name="ChooseImportSource" xml:space="preserve">
+    <value>Escolha fonte de importação...</value>
+  </data>
+  <data name="ClearDateRangeMnemonic" xml:space="preserve">
+    <value>_Limpar intervalo de datas</value>
+  </data>
+  <data name="ClearRatingFilter" xml:space="preserve">
+    <value>_Limpar filtro de classificações</value>
+  </data>
+  <data name="ClearRollFilter" xml:space="preserve">
+    <value>_Limpar filtro de rolos</value>
+  </data>
+  <data name="ClearSearch" xml:space="preserve">
+    <value>Limpar procura</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>_Fechar</value>
+  </data>
+  <data name="ColorProfileForDisplay" xml:space="preserve">
+    <value>Perfil de cor para ecrã:</value>
+  </data>
+  <data name="ColorProfileForPrinting" xml:space="preserve">
+    <value>Perfil de cor para impressão:</value>
+  </data>
+  <data name="CommaSpace" xml:space="preserve">
+    <value>, </value>
+  </data>
+  <data name="CompleteAuthorization" xml:space="preserve">
+    <value>Terminar autorização</value>
+  </data>
+  <data name="Components" xml:space="preserve">
+    <value>_Componentes</value>
+  </data>
+  <data name="CompressedFile" xml:space="preserve">
+    <value>_Ficheiro comprimido...</value>
+  </data>
+  <data name="ConfigureScreensaver" xml:space="preserve">
+    <value>Configurar protetor de ecrã</value>
+  </data>
+  <data name="Contents" xml:space="preserve">
+    <value>_Conteúdo</value>
+  </data>
+  <data name="Contrast2" xml:space="preserve">
+    <value>C_Ontraste:</value>
+  </data>
+  <data name="ConvertToBW" xml:space="preserve">
+    <value>Converter para P/B</value>
+  </data>
+  <data name="ConvertToBWWithControlRequiresMono22" xml:space="preserve">
+    <value>Converter para P/B com controlo. Requer Mono 2.2.</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Copiar</value>
+  </data>
+  <data name="CopyFilesToThePhotosFolder2" xml:space="preserve">
+    <value>C_Opiar ficheiros para a pasta fotografias</value>
+  </data>
+  <data name="CopyImagesToPhotosFolder" xml:space="preserve">
+    <value>Copiar imagens para a pasta de fotografias</value>
+  </data>
+  <data name="CopyPhoto" xml:space="preserve">
+    <value>Copiar fotografia</value>
+  </data>
+  <data name="CopyURLToClipboard" xml:space="preserve">
+    <value>Copiar URL para a área de transferência</value>
+  </data>
+  <data name="Copying2" xml:space="preserve">
+    <value>a copiar...</value>
+  </data>
+  <data name="Copyright20032010NovellInc" xml:space="preserve">
+    <value>Copyright © 2003-2010 Novell Inc.</value>
+  </data>
+  <data name="Cover" xml:space="preserve">
+    <value>Capa</value>
+  </data>
+  <data name="CoverTransition" xml:space="preserve">
+    <value>Transição Cobrir</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>_Criar</value>
+  </data>
+  <data name="Create2" xml:space="preserve">
+    <value>C_riar</value>
+  </data>
+  <data name="CreateAMailWithTheSelectedPhotosPossiblyResizedAttached" xml:space="preserve">
+    <value>Criar um email com as fotografias selecionadas (possivelmente redimensionadas) anexadas</value>
+  </data>
+  <data name="CreateANewAlbum" xml:space="preserve">
+    <value>Criar um novo álbum</value>
+  </data>
+  <data name="CreateCD" xml:space="preserve">
+    <value>Criar CD</value>
+  </data>
+  <data name="CreateGalleryUsingOriginal" xml:space="preserve">
+    <value>Criar _Galeria usando "Original"</value>
+  </data>
+  <data name="CreateIconForThisTagWhenFirstUsed" xml:space="preserve">
+    <value>Criar _Um ícone para esta etiqueta na primeira utilização</value>
+  </data>
+  <data name="CreateMail" xml:space="preserve">
+    <value>Criar email</value>
+  </data>
+  <data name="CreateMail2" xml:space="preserve">
+    <value>_Criar email</value>
+  </data>
+  <data name="CreateNewTag" xml:space="preserve">
+    <value>Criar nova etiqueta</value>
+  </data>
+  <data name="CreateNewTag2" xml:space="preserve">
+    <value>Criar nova etiqueta...</value>
+  </data>
+  <data name="CreateNewTag3" xml:space="preserve">
+    <value>Criar nova e_Tiqueta...</value>
+  </data>
+  <data name="CreateNewVersion" xml:space="preserve">
+    <value>Criar nova versão</value>
+  </data>
+  <data name="CreateNewVersion2" xml:space="preserve">
+    <value>Criar nova versão?</value>
+  </data>
+  <data name="CreateNewVersion3" xml:space="preserve">
+    <value>Criar _Nova versão...</value>
+  </data>
+  <data name="CreateNewVersions" xml:space="preserve">
+    <value>Criar novas versões?</value>
+  </data>
+  <data name="CreatePhotoWallUsingPictureTileByJamieZawinskiHttpWwwJwzOrgPicturetile" xml:space="preserve">
+    <value>Criar uma parede de fotografias usando o PictureTile por Jamie Zawinski (http://www.jwz.org/picturetile/)</value>
+  </data>
+  <data name="CreatePhotomosaic" xml:space="preserve">
+    <value>Criar _Mosaicos de fotografias</value>
+  </data>
+  <data name="CreatePhotomosaicsUsingMetaPixelHttpWwwComplangTuwienAcAtSchaniMetapixel" xml:space="preserve">
+    <value>Criar mosaicos de fotografias com o MetaPixel (http://www.complang.tuwien.ac.at/schani/metapixel/)</value>
+  </data>
+  <data name="CreatePhotowall" xml:space="preserve">
+    <value>Criar parede de fotografias</value>
+  </data>
+  <data name="CreateStandaloneWebGallery" xml:space="preserve">
+    <value>Criar galeria _Web autónoma</value>
+  </data>
+  <data name="CreatingANewAlbumFailed" xml:space="preserve">
+    <value>Criação de um novo álbum falhou</value>
+  </data>
+  <data name="Creator" xml:space="preserve">
+    <value>Criador</value>
+  </data>
+  <data name="Crop" xml:space="preserve">
+    <value>Cortar</value>
+  </data>
+  <data name="CurrentDate" xml:space="preserve">
+    <value>Data atual:</value>
+  </data>
+  <data name="CurrentView" xml:space="preserve">
+    <value>Vista atual</value>
+  </data>
+  <data name="CurrentWeekMonSun" xml:space="preserve">
+    <value>Semana atual (seg-dom)</value>
+  </data>
+  <data name="CustomRatios" xml:space="preserve">
+    <value>Proporções personalizadas...</value>
+  </data>
+  <data name="CustomText" xml:space="preserve">
+    <value>Texto personalizado:</value>
+  </data>
+  <data name="CustomizedRange" xml:space="preserve">
+    <value>Intervalo personalizado</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>Escuro</value>
+  </data>
+  <data name="DatabaseLocation" xml:space="preserve">
+    <value>Localização da base de dados:</value>
+  </data>
+  <data name="DatabaseRefersToFilesContainedInXFolderPleaseSelectThatFolderSoICanDoTheMapping" xml:space="preserve">
+    <value>&lt;big&gt;A base de dados refere-se a ficheiros contidos na pasta &lt;b&gt;{0}&lt;/b&gt;.
+ Por favor, selecione essa pasta para que se possa fazer o mapeamento.&lt;/big&gt;</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="Dates" xml:space="preserve">
+    <value>_Datas</value>
+  </data>
+  <data name="Delay" xml:space="preserve">
+    <value>Atraso:</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="DeleteFromDrive" xml:space="preserve">
+    <value>_Eliminar do disco</value>
+  </data>
+  <data name="DeletePhotoMnemonic" xml:space="preserve">
+    <value>_Eliminar fotografia</value>
+  </data>
+  <data name="DeletePhotosMnemonic" xml:space="preserve">
+    <value>_Eliminar fotografias</value>
+  </data>
+  <data name="DeleteSelectedTag" xml:space="preserve">
+    <value>_Eliminar etiqueta selecionada</value>
+  </data>
+  <data name="DeleteTag" xml:space="preserve">
+    <value>Eliminar etiqueta</value>
+  </data>
+  <data name="DeleteTagMnemonic" xml:space="preserve">
+    <value>_Eliminar etiqueta</value>
+  </data>
+  <data name="DeleteTagXQuestion" xml:space="preserve">
+    <value>Eliminar etiqueta "{0}"?</value>
+  </data>
+  <data name="DeleteTags" xml:space="preserve">
+    <value>Eliminar etiquetas</value>
+  </data>
+  <data name="DeleteTagsMnemonic" xml:space="preserve">
+    <value>_Eliminar Etiquetas</value>
+  </data>
+  <data name="DeleteTheSelectedPhotoPermanently" xml:space="preserve">
+    <value>Eliminar a fotografia selecionada permanentemente?</value>
+  </data>
+  <data name="DeleteTheXSelectedPhotosPermanently" xml:space="preserve">
+    <value>Eliminar as {0} fotografias selecionadas permanentemente?</value>
+  </data>
+  <data name="DeleteTheXSelectedTagsQuestion" xml:space="preserve">
+    <value>Eliminar as {0} etiquetas selecionadas?</value>
+  </data>
+  <data name="DeleteVersion" xml:space="preserve">
+    <value>_Eliminar versão</value>
+  </data>
+  <data name="Desaturate" xml:space="preserve">
+    <value>Reduzir a saturação</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Descrição:</value>
+  </data>
+  <data name="Description2" xml:space="preserve">
+    <value>D_escrição:</value>
+  </data>
+  <data name="Description3" xml:space="preserve">
+    <value>_Descrição:</value>
+  </data>
+  <data name="Description4" xml:space="preserve">
+    <value>Descrição</value>
+  </data>
+  <data name="DesignIconFrom" xml:space="preserve">
+    <value>Desenhar ícone a partir de</value>
+  </data>
+  <data name="DetachMnemonic" xml:space="preserve">
+    <value>Desane_Xar</value>
+  </data>
+  <data name="DetachVersion" xml:space="preserve">
+    <value>Desane_Xar versão</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Detalhes</value>
+  </data>
+  <data name="DetectDuplicates2" xml:space="preserve">
+    <value>_Detetar duplicados</value>
+  </data>
+  <data name="DevelopInUFRaw" xml:space="preserve">
+    <value>Revelar em UFRaw</value>
+  </data>
+  <data name="DevelopInUFRaw2" xml:space="preserve">
+    <value>Revelar em UFRaw</value>
+  </data>
+  <data name="DevelopTheImageInUFRawSavesTheResultAsANewVersionNNNoteRequireUfraw013OrCVSVersionNewerThan20070906" xml:space="preserve">
+    <value>Revela a imagem em UFRaw, grava o resultado como nova versão\n\nNota: requer ufraw 0.13 ou uma versão CVS posterior a 06-09-2007!!!</value>
+  </data>
+  <data name="DevelopingPhotos" xml:space="preserve">
+    <value>A revelar fotografias</value>
+  </data>
+  <data name="DevelopingX" xml:space="preserve">
+    <value>A revelar {0}</value>
+  </data>
+  <data name="Difference" xml:space="preserve">
+    <value>diferença:</value>
+  </data>
+  <data name="DirectoryNotFound" xml:space="preserve">
+    <value>Pasta não encontrada</value>
+  </data>
+  <data name="Display2" xml:space="preserve">
+    <value>Mostrar:</value>
+  </data>
+  <data name="DisplayASlideshowFromFSpot" xml:space="preserve">
+    <value>Mostrar um diaporama do F-Spot</value>
+  </data>
+  <data name="DisplayFileNames" xml:space="preserve">
+    <value>_Mostrar nomes de ficheiro</value>
+  </data>
+  <data name="DisplayOfTransparentParts" xml:space="preserve">
+    <value>Apresentação de partes transparentes.</value>
+  </data>
+  <data name="DisplayOnlyThosePhotosThatWereImportedInSpecifiedRolls" xml:space="preserve">
+    <value>Mostrar só fotografias que foram importadas em rolos especificos.</value>
+  </data>
+  <data name="Dissolve" xml:space="preserve">
+    <value>Dissolver</value>
+  </data>
+  <data name="DissolveTransition" xml:space="preserve">
+    <value>Transição Dissolver</value>
+  </data>
+  <data name="DoNotSendAMail" xml:space="preserve">
+    <value>Não enviar email</value>
+  </data>
+  <data name="DoYouWishTo" xml:space="preserve">
+    <value>Deseja:</value>
+  </data>
+  <data name="DoneSendingPhotos" xml:space="preserve">
+    <value>Envio de fotografias terminado</value>
+  </data>
+  <data name="DoneSendingPhotos2" xml:space="preserve">
+    <value>Envio de fotografias terminado</value>
+  </data>
+  <data name="DragTagsHereToSearchForThem" xml:space="preserve">
+    <value>Arraste etiquetas para aqui para procurá-las</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="Edit2" xml:space="preserve">
+    <value>_Editar</value>
+  </data>
+  <data name="EditIcon" xml:space="preserve">
+    <value>Editar ícone</value>
+  </data>
+  <data name="EditIconForTagX" xml:space="preserve">
+    <value>Editar ícone para etiqueta {0}</value>
+  </data>
+  <data name="EditImage" xml:space="preserve">
+    <value>Editar imagem</value>
+  </data>
+  <data name="EditTag" xml:space="preserve">
+    <value>Editar etiqueta...</value>
+  </data>
+  <data name="EditTag2" xml:space="preserve">
+    <value>Editar etiqueta</value>
+  </data>
+  <data name="EditTag3" xml:space="preserve">
+    <value>_Editar etiqueta...</value>
+  </data>
+  <data name="EditTagIcon" xml:space="preserve">
+    <value>Editar ícone da etiqueta</value>
+  </data>
+  <data name="Editors" xml:space="preserve">
+    <value>Editores</value>
+  </data>
+  <data name="EightByTen" xml:space="preserve">
+    <value>8 x 10</value>
+  </data>
+  <data name="EnableThisToAllowInterpolationOnZoomedImages" xml:space="preserve">
+    <value>Ativar para permitir interpolação em imagens ampliadas.</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Erro</value>
+  </data>
+  <data name="ErrorCopyingXToGalleryZY" xml:space="preserve">
+    <value>Erro ao copiar "{0}" para galeria:{2}{1}</value>
+  </data>
+  <data name="ErrorDeletingPicture" xml:space="preserve">
+    <value>Erro ao eliminar imagem</value>
+  </data>
+  <data name="ErrorEditingPhoto" xml:space="preserve">
+    <value>Erro ao editar fotografia</value>
+  </data>
+  <data name="ErrorLoadingDatabase" xml:space="preserve">
+    <value>Erro ao carregar a base de dados</value>
+  </data>
+  <data name="ErrorLoggingIntoFacebook" xml:space="preserve">
+    <value>Erro ao iniciar sessão no Facebook</value>
+  </data>
+  <data name="ErrorOpeningTheSelectedFile" xml:space="preserve">
+    <value>Erro ao abrir o ficheiro selecionado</value>
+  </data>
+  <data name="ErrorProcessingImage" xml:space="preserve">
+    <value>Erro ao processar imagem</value>
+  </data>
+  <data name="ErrorReadingServerResponse" xml:space="preserve">
+    <value>Erro ao ler resposta do servidor</value>
+  </data>
+  <data name="ErrorRenamingTag" xml:space="preserve">
+    <value>Erro ao renomear etiqueta</value>
+  </data>
+  <data name="ErrorSavingAdjustedPhoto" xml:space="preserve">
+    <value>Erro ao gravar fotografia ajustada</value>
+  </data>
+  <data name="ErrorSavingAdjustedPhotos" xml:space="preserve">
+    <value>Erro ao gravar fotografias ajustadas</value>
+  </data>
+  <data name="ErrorSavingSharpenedPhoto" xml:space="preserve">
+    <value>Erro ao gravar fotografia melhorada</value>
+  </data>
+  <data name="ErrorTransferring" xml:space="preserve">
+    <value>Erro ao transferir</value>
+  </data>
+  <data name="ErrorUploadingPictureXToGalleryColonY" xml:space="preserve">
+    <value>Erro ao enviar a imagem "{0}" à galeria: {1}</value>
+  </data>
+  <data name="ErrorUploadingToFacebookX" xml:space="preserve">
+    <value>Erro ao enviar para o Facebook: {0}</value>
+  </data>
+  <data name="ErrorUploadingToGalleryX" xml:space="preserve">
+    <value>Erro ao enviar para galeria: {0}</value>
+  </data>
+  <data name="ErrorUploadingToTabblo" xml:space="preserve">
+    <value>Erro ao enviar para o Tabblo: </value>
+  </data>
+  <data name="ErrorUploadingToXColonY" xml:space="preserve">
+    <value>Erro ao enviar para {0}: {1}</value>
+  </data>
+  <data name="ErrorWhileConnectingToGallery" xml:space="preserve">
+    <value>Erro ao ligar à galeria</value>
+  </data>
+  <data name="ErrorWhileCreatingAlbum" xml:space="preserve">
+    <value>Erro ao criar álbum</value>
+  </data>
+  <data name="ErrorWhileCreatingNewAlbum" xml:space="preserve">
+    <value>Erro ao criar um novo álbum</value>
+  </data>
+  <data name="ErrorWhileRotatingPhoto" xml:space="preserve">
+    <value>Erro ao rodar fotografia.</value>
+  </data>
+  <data name="ErrorWhileTransferring" xml:space="preserve">
+    <value>Erro durante a transferência</value>
+  </data>
+  <data name="EstimatedNewSize" xml:space="preserve">
+    <value>Novo tamanho estimado</value>
+  </data>
+  <data name="Events" xml:space="preserve">
+    <value>Eventos</value>
+  </data>
+  <data name="Everything" xml:space="preserve">
+    <value>Tudo</value>
+  </data>
+  <data name="ExcludePhotosTaggedX" xml:space="preserve">
+    <value>Excluir fotografias etiquetadas como "{0}"</value>
+  </data>
+  <data name="ExitFullscreen" xml:space="preserve">
+    <value>Sair do modo de ecrã completo</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Exportar</value>
+  </data>
+  <data name="Export2" xml:space="preserve">
+    <value>_Exportar</value>
+  </data>
+  <data name="ExportComplete" xml:space="preserve">
+    <value>Exportação concluída.</value>
+  </data>
+  <data name="ExportPicturesToFacebook" xml:space="preserve">
+    <value>Exportar imagens para o Facebook</value>
+  </data>
+  <data name="ExportTagHierarchy" xml:space="preserve">
+    <value>Exportar _Hierarquia de etiquetas</value>
+  </data>
+  <data name="ExportTagIcons" xml:space="preserve">
+    <value>E_Xportar ícones de etiquetas</value>
+  </data>
+  <data name="ExportTags" xml:space="preserve">
+    <value>_Exportar etiquetas</value>
+  </data>
+  <data name="ExportTags2" xml:space="preserve">
+    <value>Exportar e_Tiquetas</value>
+  </data>
+  <data name="ExportTitlesAndComments2" xml:space="preserve">
+    <value>Exportar _títulos e comentários</value>
+  </data>
+  <data name="ExportTo" xml:space="preserve">
+    <value>Exportar para</value>
+  </data>
+  <data name="ExportTo2" xml:space="preserve">
+    <value>_Exportar para</value>
+  </data>
+  <data name="ExportToAlbum" xml:space="preserve">
+    <value>_Exportar para álbum:</value>
+  </data>
+  <data name="ExportToFacebook" xml:space="preserve">
+    <value>Exportar para o Facebook</value>
+  </data>
+  <data name="ExportingFiles" xml:space="preserve">
+    <value>A exportar ficheiros</value>
+  </data>
+  <data name="ExportingPhotoX" xml:space="preserve">
+    <value>A exportar imagem "{0}"</value>
+  </data>
+  <data name="ExportingPhotos" xml:space="preserve">
+    <value>Exportar fotografias</value>
+  </data>
+  <data name="ExportingPhotosCompleted2" xml:space="preserve">
+    <value>Exportação de fotografias concluída.</value>
+  </data>
+  <data name="ExportingX" xml:space="preserve">
+    <value>A exportar "{0}"...</value>
+  </data>
+  <data name="Exposure" xml:space="preserve">
+    <value>Exposição</value>
+  </data>
+  <data name="Exposure2" xml:space="preserve">
+    <value>_Exposição:</value>
+  </data>
+  <data name="ExtendedMetadata" xml:space="preserve">
+    <value>Metadados estendidos</value>
+  </data>
+  <data name="ExtraLarge" xml:space="preserve">
+    <value>Muito grande</value>
+  </data>
+  <data name="FSpot" xml:space="preserve">
+    <value>F-Spot</value>
+  </data>
+  <data name="FSpotAppearance" xml:space="preserve">
+    <value>Aparência do F-Spot:</value>
+  </data>
+  <data name="FSpotEncounteredAnErrorWhileLoadingThePhotoDatabaseTheOldDatabaseHasBeMovedToXAndANewDatabaseHasBeenCreated" xml:space="preserve">
+    <value>O F-Spot encontrou um erro ao carregar a base de dados de fotografias. A base de dados antiga foi movida para {0} e uma nova foi criada.</value>
+  </data>
+  <data name="FSpotGallery" xml:space="preserve">
+    <value>Galeria do F-Spot</value>
+  </data>
+  <data name="FSpotLiveWebGallery" xml:space="preserve">
+    <value>Galeria Web ao vivo do F-Spot</value>
+  </data>
+  <data name="FSpotNeedsYourAuthorizationInOrderToUploadPhotosToYourXAccountPressTheAuthorizeButtonToOpenAWebBrowserAndGiveFSpotTheAuthorization" xml:space="preserve">
+    <value>O F-Spot precisa da sua autorização para enviar fotografias para o sua conta {0}. Clique em "Autorizar" para abrir o navegador web e forneça autorização ao F-Spot. </value>
+  </data>
+  <data name="FSpotPhotoManager" xml:space="preserve">
+    <value>Gestor de fotografias do F-Spot</value>
+  </data>
+  <data name="FSpotPhotoViewer" xml:space="preserve">
+    <value>Visualizador de fotografias F-Spot</value>
+  </data>
+  <data name="FSpotPhotos" xml:space="preserve">
+    <value>Fotografias do F-Spot</value>
+  </data>
+  <data name="FSpotPreferences" xml:space="preserve">
+    <value>Preferências do F-Spot</value>
+  </data>
+  <data name="FSpotView" xml:space="preserve">
+    <value>Vista do F-Spot</value>
+  </data>
+  <data name="FSpotWasUnableToLogOnToXMakeSureYouHaveGivenTheAuthUsingXWebBrowser" xml:space="preserve">
+    <value>o F-Spot não pôde iniciar sessão em {0}. Verifique se forneceu a autenticação utilizando {0} do navegador web.</value>
+  </data>
+  <data name="FSpotWebsite" xml:space="preserve">
+    <value>Página web do F-Spot</value>
+  </data>
+  <data name="FSpotWillNowLaunchYourBrowserSoThatYouCanEnableThePermissionYouJustSelectedOnceYouAreDirectedByFacebookToReturnToThisApplicationClickOkBelow" xml:space="preserve">
+    <value>O F-Spot vai lançar agora o seu navegador para que possa ativar a permissão que acabou de selecionar.
+
+Assim que for indicado pelo Facebook para voltar a esta aplicação, clique em "Aceitar" abaixo.</value>
+  </data>
+  <data name="FSpotWillNowLaunchYourBrowserSoThatYouCanLogIntoFacebookOnceYouAreDirectedByFacebookToReturnToThisApplicationClickOkBelowFSpotWillCacheYourSessionInGnomeKeyringIfPossibleAndReUseItOnFutureFacebookExports" xml:space="preserve">
+    <value>O F-Spot vai agora lançar o seu navegador para que possa iniciar sessão no Facebook.
+
+Assim que for indicado pelo Facebook para voltar a esta aplicação, clique em "Aceitar" abaixo.  O F-Spot vai gravar em cache a sua sessão no gnome-keyring, se possível e reutilizá-la em futuras exportações para o Facebook.</value>
+  </data>
+  <data name="Facebook" xml:space="preserve">
+    <value>F_acebook...</value>
+  </data>
+  <data name="FacebookConnectionError" xml:space="preserve">
+    <value>Erro de ligação ao Facebook</value>
+  </data>
+  <data name="FacebookExport" xml:space="preserve">
+    <value>Facebook</value>
+  </data>
+  <data name="FacebookOnlyPermitsXPhotographsPerAlbumPleaseRefineYourSelectionAndTryAgain" xml:space="preserve">
+    <value>O Facebook permite apenas {0} fotografias por álbum. Por favor refine a sua seleção e tente novamente.</value>
+  </data>
+  <data name="Favorites" xml:space="preserve">
+    <value>Favoritos</value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>_Nome do ficheiro_</value>
+  </data>
+  <data name="FileNotFonud" xml:space="preserve">
+    <value>Ficheiro não encontrado</value>
+  </data>
+  <data name="FileSize" xml:space="preserve">
+    <value>Tamanho do ficheiro</value>
+  </data>
+  <data name="Filesystem" xml:space="preserve">
+    <value>Sistema de ficheiros</value>
+  </data>
+  <data name="Fill" xml:space="preserve">
+    <value>Preencher</value>
+  </data>
+  <data name="Filmstrip" xml:space="preserve">
+    <value>_Tira de imagens</value>
+  </data>
+  <data name="FilterOnSelectedRolls" xml:space="preserve">
+    <value>Filtrar rolos selecionados</value>
+  </data>
+  <data name="Find" xml:space="preserve">
+    <value>Procurar</value>
+  </data>
+  <data name="Find2" xml:space="preserve">
+    <value>Procurar:</value>
+  </data>
+  <data name="Find3" xml:space="preserve">
+    <value>_Procurar</value>
+  </data>
+  <data name="FindColon" xml:space="preserve">
+    <value>Procurar: </value>
+  </data>
+  <data name="FindSelectedTagMnemonic" xml:space="preserve">
+    <value>Procurar a etiqueta _Selecionada</value>
+  </data>
+  <data name="FindSelectedTagWithMnemonic" xml:space="preserve">
+    <value>Procurar etiqueta selecionada _Com</value>
+  </data>
+  <data name="FindSelectedTagsMnemonic" xml:space="preserve">
+    <value>Procurar as etiquetas _Selecionadas</value>
+  </data>
+  <data name="FindSelectedTagsWithMnemonic" xml:space="preserve">
+    <value>Procurar etiquetas selecionadas _Com</value>
+  </data>
+  <data name="FindWithMnemonic" xml:space="preserve">
+    <value>Procurar _Com</value>
+  </data>
+  <data name="FiveBySevenL2L" xml:space="preserve">
+    <value>5 x 7 (L, 2L)</value>
+  </data>
+  <data name="FixExclamation" xml:space="preserve">
+    <value>Corrigir!</value>
+  </data>
+  <data name="FlashDidntFire" xml:space="preserve">
+    <value>Flash não disparado</value>
+  </data>
+  <data name="Flashfired" xml:space="preserve">
+    <value>Flash disparado</value>
+  </data>
+  <data name="Flickr2" xml:space="preserve">
+    <value>_Flickr...</value>
+  </data>
+  <data name="FlickrExport" xml:space="preserve">
+    <value>Flickr</value>
+  </data>
+  <data name="Flip" xml:space="preserve">
+    <value>Inverter</value>
+  </data>
+  <data name="FlipEditor" xml:space="preserve">
+    <value>Inverter</value>
+  </data>
+  <data name="FlipsTheImageHorizontally" xml:space="preserve">
+    <value>Inverte a imagem na horizontal.</value>
+  </data>
+  <data name="FocalLength" xml:space="preserve">
+    <value>Distância focal</value>
+  </data>
+  <data name="Folder" xml:space="preserve">
+    <value>Pasta</value>
+  </data>
+  <data name="Folder3" xml:space="preserve">
+    <value>_Pasta...</value>
+  </data>
+  <data name="Folder4" xml:space="preserve">
+    <value>_Pasta:</value>
+  </data>
+  <data name="FolderExport" xml:space="preserve">
+    <value>Exportar pasta</value>
+  </data>
+  <data name="Folders" xml:space="preserve">
+    <value>Pastas</value>
+  </data>
+  <data name="FollowingErrorEncounteredAttemptingToPerformRequestedOperation" xml:space="preserve">
+    <value>O seguinte erro foi encontrado ao tentar realizar a operação pedida:
+{0} ({1})</value>
+  </data>
+  <data name="FollowingErrorWasEncounteredAttemptingToLogInX" xml:space="preserve">
+    <value>O seguinte erro foi encontrado ao tentar iniciar sessão: {0}</value>
+  </data>
+  <data name="FourBySixPostcard" xml:space="preserve">
+    <value>4 x 6 (postal)</value>
+  </data>
+  <data name="FourByThreeBook" xml:space="preserve">
+    <value>4 x 3 (livro)</value>
+  </data>
+  <data name="FullPageNomargin" xml:space="preserve">
+    <value>Página completa (sem margem)</value>
+  </data>
+  <data name="Fullscreen" xml:space="preserve">
+    <value>Ecrã completo</value>
+  </data>
+  <data name="Fullscreen2" xml:space="preserve">
+    <value>_Ecrã completo</value>
+  </data>
+  <data name="Gallery" xml:space="preserve">
+    <value>Galeria</value>
+  </data>
+  <data name="Gallery5" xml:space="preserve">
+    <value>_Galeria:</value>
+  </data>
+  <data name="GalleryExport" xml:space="preserve">
+    <value>Exportar para Gallery</value>
+  </data>
+  <data name="GalleryGeneratedBy" xml:space="preserve">
+    <value>Galeria gerada por</value>
+  </data>
+  <data name="GalleryIsInactive" xml:space="preserve">
+    <value>Galeria está inativa</value>
+  </data>
+  <data name="GalleryName" xml:space="preserve">
+    <value>Nome da g_Aleria:</value>
+  </data>
+  <data name="GalleryName2" xml:space="preserve">
+    <value>Nome da _Galeria:</value>
+  </data>
+  <data name="GalleryURL" xml:space="preserve">
+    <value>URL da galeria:</value>
+  </data>
+  <data name="GalleryWithThisNameAlreadyExists" xml:space="preserve">
+    <value>Já existe uma galeria com este nome</value>
+  </data>
+  <data name="GalleryXPhotosYLastClient3" xml:space="preserve">
+    <value> Galeria: {0}, fotografias: {1}, último cliente: {3}</value>
+  </data>
+  <data name="HeightOfTheImportDialog" xml:space="preserve">
+    <value>Altura do diálogo de importação.</value>
+  </data>
+  <data name="HeightOfTheMainWindow" xml:space="preserve">
+    <value>Altura da janela principal.</value>
+  </data>
+  <data name="HeightOfThePhotoViewerWindow" xml:space="preserve">
+    <value>Altura da janela de visualização de fotografia.</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>A_Juda</value>
+  </data>
+  <data name="Hidden" xml:space="preserve">
+    <value>Oculto</value>
+  </data>
+  <data name="Hidden2" xml:space="preserve">
+    <value>_Oculto</value>
+  </data>
+  <data name="Hide" xml:space="preserve">
+    <value>Ocultar</value>
+  </data>
+  <data name="HideFindBarMnemonic" xml:space="preserve">
+    <value>Ocultar barra de _Procura</value>
+  </data>
+  <data name="HideStyles" xml:space="preserve">
+    <value>Ocultar estilos</value>
+  </data>
+  <data name="HideToolbar" xml:space="preserve">
+    <value>Ocultar a barra de ferramentas</value>
+  </data>
+  <data name="Histogram" xml:space="preserve">
+    <value>Histograma</value>
+  </data>
+  <data name="HorizontalMnemonic" xml:space="preserve">
+    <value>_Horizontal</value>
+  </data>
+  <data name="Hue" xml:space="preserve">
+    <value>_Matiz:</value>
+  </data>
+  <data name="Icon" xml:space="preserve">
+    <value>Íc_One:</value>
+  </data>
+  <data name="IfTheTransparencyOptionIsSetTheColorSpecifiedInThisOptionWillBeUsedAsTheTransparentColorWhenViewingImages" xml:space="preserve">
+    <value>Se a opção de 'transparência' estiver ativa, a cor especificada nesta opção será utilizada como a cor transparente quando mostra imagens.</value>
+  </data>
+  <data name="IfYouDeleteThisTagTheAssociationWithXYWillBeLost" xml:space="preserve">
+    <value>Se eliminar esta etiqueta, a associação com {0} {1} será perdida.</value>
+  </data>
+  <data name="IfYouDeleteThisTagsTheAssociationWithXYWillBeLost" xml:space="preserve">
+    <value>Se eliminar estas etiquetas, a associação com {0} {1} será perdida.</value>
+  </data>
+  <data name="IfYouRemovePhotosFromFSpotCatalogAllTagInfoLost" xml:space="preserve">
+    <value>Se remover fotografias do catálogo do F-Spot todas as informações das etiquetas serão perdidas. As fotografias permanecem no seu computador e podem ser importadas para o F-Spot de novo.</value>
+  </data>
+  <data name="IgnoreTopLevelTags" xml:space="preserve">
+    <value>Ignorar e_Tiquetas de nível superior</value>
+  </data>
+  <data name="ImageInformation" xml:space="preserve">
+    <value>Informação da imagem</value>
+  </data>
+  <data name="ImageInformation2" xml:space="preserve">
+    <value>Informação da imagem</value>
+  </data>
+  <data name="ImageSettings" xml:space="preserve">
+    <value>Definições da imagem</value>
+  </data>
+  <data name="ImagesTaggedWith" xml:space="preserve">
+    <value>Imagens etiquetadas com:</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Importar</value>
+  </data>
+  <data name="Import2" xml:space="preserve">
+    <value>_Importar...</value>
+  </data>
+  <data name="Import3" xml:space="preserve">
+    <value>Importar:</value>
+  </data>
+  <data name="Import4" xml:space="preserve">
+    <value>_Importar</value>
+  </data>
+  <data name="ImportFailures2" xml:space="preserve">
+    <value>Falhas na importação</value>
+  </data>
+  <data name="ImportFrom2" xml:space="preserve">
+    <value>Importar _De:</value>
+  </data>
+  <data name="ImportIntoFSpot" xml:space="preserve">
+    <value>Importar para o F-Spot</value>
+  </data>
+  <data name="ImportNewImages" xml:space="preserve">
+    <value>Importar imagens novas</value>
+  </data>
+  <data name="ImportPhotosXOfY" xml:space="preserve">
+    <value>A importar fotografias: {0} de {1}...</value>
+  </data>
+  <data name="ImportRoll" xml:space="preserve">
+    <value>Rolo importado</value>
+  </data>
+  <data name="ImportedTags" xml:space="preserve">
+    <value>Etiquetas importadas</value>
+  </data>
+  <data name="ImportingPhotos" xml:space="preserve">
+    <value>A importar fotografias...</value>
+  </data>
+  <data name="InThisPhoto" xml:space="preserve">
+    <value>Nesta fotografia</value>
+  </data>
+  <data name="IncludePhotoTaggedX" xml:space="preserve">
+    <value>Incluir fotografias etiquetadas como "{0}"</value>
+  </data>
+  <data name="IncludeSubfolders2" xml:space="preserve">
+    <value>I_Ncluir sub-pastas</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>Índice</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Informação</value>
+  </data>
+  <data name="InsideTheImageFilesWhenPossibleSmallMakesThemAccessibleToOtherImageEditingProgramsSmall" xml:space="preserve">
+    <value>Dentro dos ficheiros de imagem quando possível.
+&lt;small&gt;Torna-os acessíveis a outros programas de edição de imagem.&lt;/small&gt;</value>
+  </data>
+  <data name="InterpolateImageOnZoom" xml:space="preserve">
+    <value>_Interpolar imagem ao ampliar</value>
+  </data>
+  <data name="InterpolateImageOnZoom2" xml:space="preserve">
+    <value>Interpolar imagem ao ampliar.</value>
+  </data>
+  <data name="InvalidGalleryName" xml:space="preserve">
+    <value>Nome de galeria inválido</value>
+  </data>
+  <data name="InvalidUrl" xml:space="preserve">
+    <value>URL inválido</value>
+  </data>
+  <data name="InvertSelection" xml:space="preserve">
+    <value>_Inverter seleção</value>
+  </data>
+  <data name="KeepTheImagesAtTheirOriginalLocation" xml:space="preserve">
+    <value>Manter imagens nas suas localizações originais</value>
+  </data>
+  <data name="Label" xml:space="preserve">
+    <value>Etiqueta</value>
+  </data>
+  <data name="Large" xml:space="preserve">
+    <value>Grande</value>
+  </data>
+  <data name="Large2" xml:space="preserve">
+    <value>_Grande</value>
+  </data>
+  <data name="LastImportRoll" xml:space="preserve">
+    <value>Ú_Ltimo rolo importado</value>
+  </data>
+  <data name="LastNintyDays" xml:space="preserve">
+    <value>Últimos 90 dias</value>
+  </data>
+  <data name="LastSevenDays" xml:space="preserve">
+    <value>Últimos 7 dias</value>
+  </data>
+  <data name="LastThirtyDays" xml:space="preserve">
+    <value>Últimos 30 dias</value>
+  </data>
+  <data name="LastThreeHundredSixtyDays" xml:space="preserve">
+    <value>Últimos 360 dias</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>Claro</value>
+  </data>
+  <data name="LimitNumberOfSharedPhotosTo" xml:space="preserve">
+    <value>Limitar número de fotografias partilhadas a</value>
+  </data>
+  <data name="LiteralAnd" xml:space="preserve">
+    <value> e </value>
+  </data>
+  <data name="LiteralOr" xml:space="preserve">
+    <value> ou </value>
+  </data>
+  <data name="LiveWebGallery" xml:space="preserve">
+    <value>Galeria Web ao vivo</value>
+  </data>
+  <data name="LiveWebGallery2" xml:space="preserve">
+    <value>Galeria Web ao vivo</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Localização</value>
+  </data>
+  <data name="Location2" xml:space="preserve">
+    <value>_Localização:</value>
+  </data>
+  <data name="LoggingIntoTabblo" xml:space="preserve">
+    <value>A iniciar sessão no Tabblo</value>
+  </data>
+  <data name="LoggingIntoX" xml:space="preserve">
+    <value>A iniciar sessão em {0}</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Iniciar sessão</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Terminar sessão</value>
+  </data>
+  <data name="Loupe" xml:space="preserve">
+    <value>_Lupa</value>
+  </data>
+  <data name="MakeFSpotMyScreensaver" xml:space="preserve">
+    <value>Fazer do F-Spot o meu protetor de ecrã</value>
+  </data>
+  <data name="ManageExtensions" xml:space="preserve">
+    <value>Gerir _Extensões</value>
+  </data>
+  <data name="ManageYourCustomSelectionRatios" xml:space="preserve">
+    <value>Gerir as suas taxas de seleção personalizadas</value>
+  </data>
+  <data name="MaximizeTheMainWindow" xml:space="preserve">
+    <value>Maximizar a janela principal.</value>
+  </data>
+  <data name="MaximizeThePhotoViewerWindow" xml:space="preserve">
+    <value>Maximizar a janela de visualização de fotografia.</value>
+  </data>
+  <data name="Medium" xml:space="preserve">
+    <value>Médio</value>
+  </data>
+  <data name="Medium2" xml:space="preserve">
+    <value>_Médio</value>
+  </data>
+  <data name="MergeAnotherDbBackToTheMainOne" xml:space="preserve">
+    <value>Unir outra base de dados com a principal</value>
+  </data>
+  <data name="MergeAnotherFSpotCollection" xml:space="preserve">
+    <value>Unir outra coleção do F-Spot</value>
+  </data>
+  <data name="MergeDb" xml:space="preserve">
+    <value>Unir base de dados</value>
+  </data>
+  <data name="MergeDb2" xml:space="preserve">
+    <value>Unir base de dados</value>
+  </data>
+  <data name="MergeRAWJpegAsMultipleVersionsOfTheSamePhoto" xml:space="preserve">
+    <value>Unir RAW+Jpeg como múltiplas versões da mesma fotografia</value>
+  </data>
+  <data name="MergeRaw" xml:space="preserve">
+    <value>Unir Raw</value>
+  </data>
+  <data name="MergeTags" xml:space="preserve">
+    <value>Unir etiquetas</value>
+  </data>
+  <data name="MergeTagsMnemonic" xml:space="preserve">
+    <value>_Unir etiquetas</value>
+  </data>
+  <data name="MergeTheSelectedTag" xml:space="preserve">
+    <value>Unir a etiqueta selecionada?</value>
+  </data>
+  <data name="MergeTheSelectedTags" xml:space="preserve">
+    <value>Unir as {0} etiquetas selecionadas?</value>
+  </data>
+  <data name="MetaPixel" xml:space="preserve">
+    <value>MetaPixel</value>
+  </data>
+  <data name="Metadata" xml:space="preserve">
+    <value>Metadados</value>
+  </data>
+  <data name="MinStartingAtX" xml:space="preserve">
+    <value>min. Iniciar em {0}</value>
+  </data>
+  <data name="Modified" xml:space="preserve">
+    <value>Modificado</value>
+  </data>
+  <data name="ModifiedInY" xml:space="preserve">
+    <value>Modificado em {1}</value>
+  </data>
+  <data name="ModifiedInYX" xml:space="preserve">
+    <value>Modificado em {1} ({0})</value>
+  </data>
+  <data name="ModifiedX" xml:space="preserve">
+    <value>({0}) modificados</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>Mais</value>
+  </data>
+  <data name="MoreDates" xml:space="preserve">
+    <value>Mais datas</value>
+  </data>
+  <data name="MyPhotos" xml:space="preserve">
+    <value>As minhas fotografias</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="NameColon" xml:space="preserve">
+    <value>Nome:</value>
+  </data>
+  <data name="NameOfNewTagColon" xml:space="preserve">
+    <value>Nome da nova etiqueta:</value>
+  </data>
+  <data name="NeverModifyImageFilesSmallWriteXMPFilesNextToTheImagesInsteadSmall" xml:space="preserve">
+    <value>Nunca modificar ficheiros de imagem.
+&lt;small&gt;Escrever ficheiros XMP junto às imagens alternativamente.&lt;/small&gt;</value>
+  </data>
+  <data name="NewNameColon" xml:space="preserve">
+    <value>Novo nome:</value>
+  </data>
+  <data name="NewRollsOnly" xml:space="preserve">
+    <value>Só novos rolos</value>
+  </data>
+  <data name="NewSelection" xml:space="preserve">
+    <value>Nova seleção</value>
+  </data>
+  <data name="NewWindow" xml:space="preserve">
+    <value>_Nova janela</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Seguinte</value>
+  </data>
+  <data name="NextPhoto" xml:space="preserve">
+    <value>Fotografia seguinte</value>
+  </data>
+  <data name="NextPicture" xml:space="preserve">
+    <value>Imagem seguinte</value>
+  </data>
+  <data name="NoAccountSelected" xml:space="preserve">
+    <value>Nenhuma conta selecionada</value>
+  </data>
+  <data name="NoActivePhoto" xml:space="preserve">
+    <value>Nenhuma fotografia ativa</value>
+  </data>
+  <data name="NoApplicationsAvailable" xml:space="preserve">
+    <value>Nenhuma aplicação disponível</value>
+  </data>
+  <data name="NoCamerasDetected" xml:space="preserve">
+    <value>(nenhuma câmara detetada)</value>
+  </data>
+  <data name="NoConstraint" xml:space="preserve">
+    <value>Sem restrições</value>
+  </data>
+  <data name="NoImage" xml:space="preserve">
+    <value>Nenhuma _Imagem</value>
+  </data>
+  <data name="NoMatchingPhotosFound" xml:space="preserve">
+    <value>Sem fotografias correspondentes</value>
+  </data>
+  <data name="NoMetadataAvailable" xml:space="preserve">
+    <value>Nenhuns metadados disponíveis</value>
+  </data>
+  <data name="NoPermissionToDeleteTheFile" xml:space="preserve">
+    <value>Sem permissão para eliminar o ficheiro:{1}{0}</value>
+  </data>
+  <data name="NoPhotosMatchingFound" xml:space="preserve">
+    <value>Nenhuma fotografia correspondendo a {0} encontrada</value>
+  </data>
+  <data name="NoSelectionAvailable" xml:space="preserve">
+    <value>Nenhuma seleção disponível</value>
+  </data>
+  <data name="NoTagAppliedToAppliedTryAddingorSelectingDifferentTagInPreferenceDialog" xml:space="preserve">
+    <value>A etiqueta "{0}" não está aplicada a nenhuma fotografia. Tente
+adicionar a etiqueta a algumas fotografias ou selecionar
+uma etiqueta diferente no diálogo de preferências do F-Spot.</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>Nenhum</value>
+  </data>
+  <data name="None2" xml:space="preserve">
+    <value>nenhum</value>
+  </data>
+  <data name="NotLoggedIn" xml:space="preserve">
+    <value>Não tem sessão iniciada</value>
+  </data>
+  <data name="NotSpaceX" xml:space="preserve">
+    <value>Não {0}</value>
+  </data>
+  <data name="NumberOfPhotosInSelectedRolls" xml:space="preserve">
+    <value>Número de fotografias nos rolos selecionados:</value>
+  </data>
+  <data name="NumberOfPictures" xml:space="preserve">
+    <value>Número de imagens</value>
+  </data>
+  <data name="ObtainingURLForUpload" xml:space="preserve">
+    <value>A obter URL para envio</value>
+  </data>
+  <data name="OkMnemonic" xml:space="preserve">
+    <value>_Aceitar</value>
+  </data>
+  <data name="OldBasePathURIWas" xml:space="preserve">
+    <value>Caminho base (URI) antigo era</value>
+  </data>
+  <data name="OnXBetweenYAndZ" xml:space="preserve">
+    <value>Em {0} entre 
+{1} e {2}</value>
+  </data>
+  <data name="OnlyPhotosTakenWithinTheseDatesWillBeDisplayed" xml:space="preserve">
+    <value>Só fotografias tiradas entre estes dias serão mostradas.</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Abrir</value>
+  </data>
+  <data name="OpenAlbumInBrowserWhenDoneUploading2" xml:space="preserve">
+    <value>Abrir _álbum no navegador quando o envio terminar</value>
+  </data>
+  <data name="OpenDestinationWhenDoneExporting" xml:space="preserve">
+    <value>Abrir _Destino quando terminar exportação</value>
+  </data>
+  <data name="OpenFolder" xml:space="preserve">
+    <value>_Abrir pasta...</value>
+  </data>
+  <data name="OpenWith" xml:space="preserve">
+    <value>_Abrir com</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>Opções:</value>
+  </data>
+  <data name="Or" xml:space="preserve">
+    <value>ou</value>
+  </data>
+  <data name="OrganizeEnjoyAndShareYourPhotos" xml:space="preserve">
+    <value>Organize, aprecie e partilhe as suas fotografias</value>
+  </data>
+  <data name="Original" xml:space="preserve">
+    <value>Original</value>
+  </data>
+  <data name="OriginalSizePossibleVeryLargeFileSize" xml:space="preserve">
+    <value>Tamanho original (possivelmente tamanhos muito grandes)</value>
+  </data>
+  <data name="PageColon" xml:space="preserve">
+    <value>Página:</value>
+  </data>
+  <data name="PageSetup" xml:space="preserve">
+    <value>Configuração da página</value>
+  </data>
+  <data name="PageSetup2" xml:space="preserve">
+    <value>Config_Uração de página...</value>
+  </data>
+  <data name="PaperSizeXxYmm" xml:space="preserve">
+    <value>Tamanho do papel: {0} x {1} mm</value>
+  </data>
+  <data name="ParenFileReadErrorParen" xml:space="preserve">
+    <value>(erro na leitura do ficheiro)</value>
+  </data>
+  <data name="ParenNoAlbumsParen" xml:space="preserve">
+    <value>(sem álbuns)</value>
+  </data>
+  <data name="ParenNoEditsParen" xml:space="preserve">
+    <value>(sem edições)</value>
+  </data>
+  <data name="ParenNoGalleryParen" xml:space="preserve">
+    <value>(sem galeria)</value>
+  </data>
+  <data name="ParenNoTagsParen" xml:space="preserve">
+    <value>(sem etiquetas)</value>
+  </data>
+  <data name="ParenNoneParen" xml:space="preserve">
+    <value>(nenhum)</value>
+  </data>
+  <data name="ParenNotConnectedParen" xml:space="preserve">
+    <value>(não ligado)</value>
+  </data>
+  <data name="ParenOneEditParen" xml:space="preserve">
+    <value>(uma edição)</value>
+  </data>
+  <data name="ParenTopLevelParen" xml:space="preserve">
+    <value>(nível de topo)</value>
+  </data>
+  <data name="ParenUnknownParen" xml:space="preserve">
+    <value>(desconhecido)</value>
+  </data>
+  <data name="ParenXEditsParen" xml:space="preserve">
+    <value>({0} edições)</value>
+  </data>
+  <data name="ParentAlbum" xml:space="preserve">
+    <value>Álbum-_Mãe:</value>
+  </data>
+  <data name="ParentTag" xml:space="preserve">
+    <value>_Etiqueta-mãe:</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>_Senha:</value>
+  </data>
+  <data name="PathToCustomGtkrcForThemingFSpot" xml:space="preserve">
+    <value>Caminho para gtkrc personalizado para tematizar o F-Spot.</value>
+  </data>
+  <data name="People" xml:space="preserve">
+    <value>Pessoas</value>
+  </data>
+  <data name="Permissions" xml:space="preserve">
+    <value>Permissões:</value>
+  </data>
+  <data name="Photo2" xml:space="preserve">
+    <value>fotografia</value>
+  </data>
+  <data name="Photo3" xml:space="preserve">
+    <value>_Fotografia</value>
+  </data>
+  <data name="PhotoManagementForGNOME" xml:space="preserve">
+    <value>Gestor de fotografias para o GNOME</value>
+  </data>
+  <data name="PhotoManager" xml:space="preserve">
+    <value>Gestor de fotografias</value>
+  </data>
+  <data name="PhotoViewer" xml:space="preserve">
+    <value>Visualizador de fotografias</value>
+  </data>
+  <data name="PhotoXOfY" xml:space="preserve">
+    <value>Fotografia {0} de {1}</value>
+  </data>
+  <data name="Photos" xml:space="preserve">
+    <value>Fotografias</value>
+  </data>
+  <data name="Photos2" xml:space="preserve">
+    <value>fotografias</value>
+  </data>
+  <data name="PhotosInfos" xml:space="preserve">
+    <value>Informação das fotografias</value>
+  </data>
+  <data name="PhotosLayout" xml:space="preserve">
+    <value>Disposição das fotografias</value>
+  </data>
+  <data name="PhotosPerPage" xml:space="preserve">
+    <value>Fotografias por página</value>
+  </data>
+  <data name="PhotosWithATag" xml:space="preserve">
+    <value>Fotografias com uma etiqueta</value>
+  </data>
+  <data name="PicasaWeb2" xml:space="preserve">
+    <value>_PicasaWeb...</value>
+  </data>
+  <data name="PicasaWebExport" xml:space="preserve">
+    <value>Exportar para PicasaWeb</value>
+  </data>
+  <data name="PictureTile" xml:space="preserve">
+    <value>PictureTile</value>
+  </data>
+  <data name="Pixelate" xml:space="preserve">
+    <value>Pixelizar</value>
+  </data>
+  <data name="PixelateEditor" xml:space="preserve">
+    <value>Pixelar</value>
+  </data>
+  <data name="PixelatesAnAreaOfTheImage" xml:space="preserve">
+    <value>Faz a pixelização de uma área da imagem.</value>
+  </data>
+  <data name="Pixels" xml:space="preserve">
+    <value>pixels</value>
+  </data>
+  <data name="Places" xml:space="preserve">
+    <value>Locais</value>
+  </data>
+  <data name="PleaseNameYourAlbumOrChooseAnExistingAlbum" xml:space="preserve">
+    <value>Por favor nomeie o seu álbum ou escolha um existente.</value>
+  </data>
+  <data name="PleaseVerifyThatTheSettingsForThisGalleryAreCorrect" xml:space="preserve">
+    <value>Por favor verifique se as definições para esta galeria estão corretas</value>
+  </data>
+  <data name="PleaseVerifyThatTheSettingsForThisGalleryAreCorrectEnterTheLettersAsTheyAreShownInTheImageInTheCaptchaFieldILettersAreNotCaseSensitiveI" xml:space="preserve">
+    <value>Por favor verifique se as definições desta galeria estão corretas.
+Insira as letras mostradas na imagem no campo
+"Captcha". &lt;i&gt;Não é sensível a maiúsculas/minúsculas&lt;/i&gt;</value>
+  </data>
+  <data name="PleaseWaitFSpotGalleryDBUpdating" xml:space="preserve">
+    <value>Por favor aguarde enquanto a base de dados da galeria do F-Spot é atualizada. Isto pode demorar uma bocado.</value>
+  </data>
+  <data name="Preferences" xml:space="preserve">
+    <value>Preferências</value>
+  </data>
+  <data name="PreparingEmail" xml:space="preserve">
+    <value>A preparar email</value>
+  </data>
+  <data name="PreparingPhotoX" xml:space="preserve">
+    <value>A preparar fotografia "{0}"</value>
+  </data>
+  <data name="Prev" xml:space="preserve">
+    <value>Ant</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Anterior</value>
+  </data>
+  <data name="PreviousPhoto" xml:space="preserve">
+    <value>Fotografia anterior</value>
+  </data>
+  <data name="PreviousPicture" xml:space="preserve">
+    <value>Imagem anterior</value>
+  </data>
+  <data name="PreviousWeekMonSun" xml:space="preserve">
+    <value>Semana anterior (seg-dom)</value>
+  </data>
+  <data name="PrintCutMarks" xml:space="preserve">
+    <value>Imprimir marcas de corte</value>
+  </data>
+  <data name="PrintFileName" xml:space="preserve">
+    <value>Imprimir nome do ficheiro</value>
+  </data>
+  <data name="PrintPhotoComment" xml:space="preserve">
+    <value>Imprimir comentário da fotografia</value>
+  </data>
+  <data name="PrintPhotoDate" xml:space="preserve">
+    <value>Imprimir data da fotografia</value>
+  </data>
+  <data name="PrintPhotoTags" xml:space="preserve">
+    <value>Imprimir etiquetas da fotografia</value>
+  </data>
+  <data name="PrintPhotoTime" xml:space="preserve">
+    <value>Imprimir hora da fotografia</value>
+  </data>
+  <data name="Private" xml:space="preserve">
+    <value>Privado</value>
+  </data>
+  <data name="Public" xml:space="preserve">
+    <value>Público</value>
+  </data>
+  <data name="PublicAlbum" xml:space="preserve">
+    <value>Álbum público</value>
+  </data>
+  <data name="Push" xml:space="preserve">
+    <value>Empurrar</value>
+  </data>
+  <data name="PushTransition" xml:space="preserve">
+    <value>Transição Empurrar</value>
+  </data>
+  <data name="Quit" xml:space="preserve">
+    <value>_Sair</value>
+  </data>
+  <data name="RadiusColon" xml:space="preserve">
+    <value>Raio:</value>
+  </data>
+  <data name="RatedPhotos" xml:space="preserve">
+    <value>Fotografias classificadas</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Classificação</value>
+  </data>
+  <data name="Ratings" xml:space="preserve">
+    <value>_Classificações</value>
+  </data>
+  <data name="Ratio" xml:space="preserve">
+    <value>Taxa</value>
+  </data>
+  <data name="RawPlusJpeg" xml:space="preserve">
+    <value>RawPlusJpeg</value>
+  </data>
+  <data name="ReallyDeleteVersionXQuestion" xml:space="preserve">
+    <value>Eliminar mesmo a versão "{0}"?</value>
+  </data>
+  <data name="ReallyDetachVersionXFromY" xml:space="preserve">
+    <value>Desanexar mesmo a versão "{0}" de "{1}"?</value>
+  </data>
+  <data name="ReallyReparentXAsVersionOfY" xml:space="preserve">
+    <value>Reafiliar mesmo "{0}" como versão de "{1}"?</value>
+  </data>
+  <data name="ReallyReparentZPhotosAsVersionsOfY" xml:space="preserve">
+    <value>Reafiliar mesmo {2} fotografias como versões de "{1}"?</value>
+  </data>
+  <data name="ReassignToNewImportRoll" xml:space="preserve">
+    <value>Reatribuir a novo rolo de importação</value>
+  </data>
+  <data name="ReceivedErrorXWhileAttemptingToRotateY" xml:space="preserve">
+    <value>Recebido erro "{0}" ao tentar rodar {1}</value>
+  </data>
+  <data name="ReceivedExceptionX" xml:space="preserve">
+    <value>Recebida excepção "{0}".</value>
+  </data>
+  <data name="ReceivedExceptionXNoteThatYouHaveToDevelopRaw" xml:space="preserve">
+    <value>Recebida excepção "{0}". Note que tem de revelar ficheiros em RAW para JPEG antes de poder editá-los.</value>
+  </data>
+  <data name="ReceivedExceptionXUnableToSavePhotoY" xml:space="preserve">
+    <value>Excepção "{0}" recebida. Impossível gravar fotografia {1}</value>
+  </data>
+  <data name="RedEyeReduction" xml:space="preserve">
+    <value>Redução de olhos vermelhos</value>
+  </data>
+  <data name="RefreshSearch" xml:space="preserve">
+    <value>Atualizar procura</value>
+  </data>
+  <data name="RefreshThumbnail" xml:space="preserve">
+    <value>_Atualizar miniatura</value>
+  </data>
+  <data name="RemoveFromCatalog" xml:space="preserve">
+    <value>_Remover do catálogo</value>
+  </data>
+  <data name="RemoveFromCatalogMnemonic" xml:space="preserve">
+    <value>_Remover do catálogo</value>
+  </data>
+  <data name="RemoveFromExportedPhotos" xml:space="preserve">
+    <value>Remover das fotografias _Exportadas:</value>
+  </data>
+  <data name="RemoveFromSearch" xml:space="preserve">
+    <value>Remover da procura</value>
+  </data>
+  <data name="RemoveOriginalFilesAfterImport" xml:space="preserve">
+    <value>_Remover originais depois de importar</value>
+  </data>
+  <data name="RemoveTag" xml:space="preserve">
+    <value>Remover _Etiqueta</value>
+  </data>
+  <data name="RemoveTagFromSelection" xml:space="preserve">
+    <value>Remover Etiquetas da Seleção</value>
+  </data>
+  <data name="RemoveTagFromSelection2" xml:space="preserve">
+    <value>_Remover etiqueta da seleção</value>
+  </data>
+  <data name="RemoveTagFromSelection3" xml:space="preserve">
+    <value>Remover etiqueta da seleção</value>
+  </data>
+  <data name="RemoveTheSelectedPhotoFromFSpot" xml:space="preserve">
+    <value>Remover a fotografia selecionada do F-Spot?</value>
+  </data>
+  <data name="RemoveTheXSelectedPhotosFromFSpot" xml:space="preserve">
+    <value>Remover as {0} fotografias selecionadas do F-Spot?</value>
+  </data>
+  <data name="RenameVersion" xml:space="preserve">
+    <value>Renomear versão</value>
+  </data>
+  <data name="RenameVersion2" xml:space="preserve">
+    <value>_Renomear versão</value>
+  </data>
+  <data name="Repair" xml:space="preserve">
+    <value>Reparar</value>
+  </data>
+  <data name="ReparentMnemonic" xml:space="preserve">
+    <value>Rea_Filiado</value>
+  </data>
+  <data name="Reparented" xml:space="preserve">
+    <value>Reafiliado</value>
+  </data>
+  <data name="Repeat" xml:space="preserve">
+    <value>Repetir</value>
+  </data>
+  <data name="Resize" xml:space="preserve">
+    <value>Redimensionar</value>
+  </data>
+  <data name="ResizeEditor" xml:space="preserve">
+    <value>Redimensionar</value>
+  </data>
+  <data name="ResizeTheImage" xml:space="preserve">
+    <value>Redimensiona a imagem.</value>
+  </data>
+  <data name="ResizeTo" xml:space="preserve">
+    <value>_Redimensionar para: </value>
+  </data>
+  <data name="RetroactiveRoll" xml:space="preserve">
+    <value>Rolo retroativo</value>
+  </data>
+  <data name="RetroactivelyAssignOldPhotosToImportRolls" xml:space="preserve">
+    <value>Atribuir fotografias antigas retroativamente a rolos de importação</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Tentar novamente</value>
+  </data>
+  <data name="ReturnToThisWindowAfterYouHaveFinishedAuthProcessOnXClickCompleteAuthorizationButton" xml:space="preserve">
+    <value>Volte a esta janela depois de terminar o processo de autenticação em {0} e clique em "Terminar autenticação" abaixo</value>
+  </data>
+  <data name="ReverseOrder" xml:space="preserve">
+    <value>_Inverter ordem</value>
+  </data>
+  <data name="RotateLeft" xml:space="preserve">
+    <value>Rodar à esquerda</value>
+  </data>
+  <data name="RotateLeftMnemonic" xml:space="preserve">
+    <value>Rodar à _Esquerda</value>
+  </data>
+  <data name="RotatePhotoLeft" xml:space="preserve">
+    <value>Rodar fotografia à esquerda</value>
+  </data>
+  <data name="RotatePhotoRight" xml:space="preserve">
+    <value>Rodar fotografia à direita</value>
+  </data>
+  <data name="RotatePictureLeft" xml:space="preserve">
+    <value>Rodar imagem à esquerda</value>
+  </data>
+  <data name="RotatePictureRight" xml:space="preserve">
+    <value>Rodar imagem à direita</value>
+  </data>
+  <data name="RotateRight" xml:space="preserve">
+    <value>Rodar à direita</value>
+  </data>
+  <data name="RotateRightMnemonic" xml:space="preserve">
+    <value>Rodar à _Direita</value>
+  </data>
+  <data name="RotateSelectedPhotoLeft" xml:space="preserve">
+    <value>Rodar a fotografia selecionada à esquerda</value>
+  </data>
+  <data name="RotateSelectedPhotoRight" xml:space="preserve">
+    <value>Rodar a fotografia selecionada à direita</value>
+  </data>
+  <data name="RotateSelectedPhotosLeft" xml:space="preserve">
+    <value>Rodar as fotografias selecionadas à esquerda</value>
+  </data>
+  <data name="RotateSelectedPhotosRight" xml:space="preserve">
+    <value>Rodar as fotografias selecionadas à direita</value>
+  </data>
+  <data name="RotatingPhotoX" xml:space="preserve">
+    <value>A rodar fotografia "{0}"</value>
+  </data>
+  <data name="RotatingPhotos" xml:space="preserve">
+    <value>A rodar fotografias</value>
+  </data>
+  <data name="S000000" xml:space="preserve">
+    <value>00:00:00</value>
+  </data>
+  <data name="S00000000000000" xml:space="preserve">
+    <value>0000:00:00 00:00:00</value>
+  </data>
+  <data name="S1024Px" xml:space="preserve">
+    <value>1024 px</value>
+  </data>
+  <data name="S23hq" xml:space="preserve">
+    <value>_23hq...</value>
+  </data>
+  <data name="S320Px" xml:space="preserve">
+    <value>320 px</value>
+  </data>
+  <data name="S480Px" xml:space="preserve">
+    <value>480 px</value>
+  </data>
+  <data name="S5" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="S640Px" xml:space="preserve">
+    <value>640 px</value>
+  </data>
+  <data name="S800Px" xml:space="preserve">
+    <value>800 px</value>
+  </data>
+  <data name="SameAsPhoto" xml:space="preserve">
+    <value>O mesmo que a fotografia</value>
+  </data>
+  <data name="Saturation2" xml:space="preserve">
+    <value>_Saturação:</value>
+  </data>
+  <data name="SaveTheFilesOnly" xml:space="preserve">
+    <value>_Gravar só os ficheiros</value>
+  </data>
+  <data name="Scale" xml:space="preserve">
+    <value>_Escala:</value>
+  </data>
+  <data name="Scaled" xml:space="preserve">
+    <value>Escalado</value>
+  </data>
+  <data name="ScreensaverConfiguration" xml:space="preserve">
+    <value>Configuração do protetor de ecrã</value>
+  </data>
+  <data name="ScreensaverOptions" xml:space="preserve">
+    <value>Opções do protetor de ecrã</value>
+  </data>
+  <data name="SearchReturnedNoResults" xml:space="preserve">
+    <value>A procura não devolveu resultados</value>
+  </data>
+  <data name="SearchingForPhotosYouCanAlreadyClickImportToContinue" xml:space="preserve">
+    <value>A procurar fotografias... (já pode clicar em Importar para continuar)</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Selecionar...</value>
+  </data>
+  <data name="SelectAFolder" xml:space="preserve">
+    <value>Selecione uma pasta</value>
+  </data>
+  <data name="SelectATag" xml:space="preserve">
+    <value>Selecionar uma etiqueta...</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Selecionar _Tudo</value>
+  </data>
+  <data name="SelectExportFolder" xml:space="preserve">
+    <value>Selecionar pasta de exportação</value>
+  </data>
+  <data name="SelectExportFolder2" xml:space="preserve">
+    <value>Selecionar pasta de exportação</value>
+  </data>
+  <data name="SelectFolder" xml:space="preserve">
+    <value>Selecionar pasta</value>
+  </data>
+  <data name="SelectImportRolls" xml:space="preserve">
+    <value>_Selecionar rolos importados...</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>_Não selecionar nada</value>
+  </data>
+  <data name="SelectPhotoFromFile" xml:space="preserve">
+    <value>Selecionar fotografia do ficheiro</value>
+  </data>
+  <data name="SelectTheAreaThatNeedsCropping" xml:space="preserve">
+    <value>Selecione a área para cortar.</value>
+  </data>
+  <data name="SelectTheAreaThatYouWantBlackedOut" xml:space="preserve">
+    <value>Selecione a área que deseja cobrir.</value>
+  </data>
+  <data name="SelectTheAreaThatYouWantPixelated" xml:space="preserve">
+    <value>Selecione a área que deseja pixelizar.</value>
+  </data>
+  <data name="SelectTheEyesYouWishToFix" xml:space="preserve">
+    <value>Selecione os olhos a corrigir</value>
+  </data>
+  <data name="Selected" xml:space="preserve">
+    <value>Selecionado</value>
+  </data>
+  <data name="SelectedPhotos" xml:space="preserve">
+    <value>Fotografias selecionadas</value>
+  </data>
+  <data name="SelectionConstraints" xml:space="preserve">
+    <value>Restrições da seleção</value>
+  </data>
+  <data name="SendByMail" xml:space="preserve">
+    <value>_Enviar por email...</value>
+  </data>
+  <data name="SeparatelyFromTheImageFiles" xml:space="preserve">
+    <value>Separadamente dos ficheiros de imagem</value>
+  </data>
+  <data name="SepiaTone2" xml:space="preserve">
+    <value>Tom sépia</value>
+  </data>
+  <data name="ServerReturnedResponseWithoutGalleryContent" xml:space="preserve">
+    <value>O servidor devolveu resposta sem conteúdo da galeria</value>
+  </data>
+  <data name="SessionEstablishedFetchingFriendDetails" xml:space="preserve">
+    <value>Sessão estabelecida, a obter detalhes de amigos...</value>
+  </data>
+  <data name="SessionEstablishedFetchingFriendList" xml:space="preserve">
+    <value>Sessão estabelecida, a obter lista de amigos...</value>
+  </data>
+  <data name="SessionEstablishedFetchingPhotoAlbums" xml:space="preserve">
+    <value>Sessão estabelecida, a obter álbuns de fotografias...</value>
+  </data>
+  <data name="SessionEstablishedFetchingUserInfo" xml:space="preserve">
+    <value>Sessão estabelecida, a obter informação do utilizador...</value>
+  </data>
+  <data name="SetAsBackground" xml:space="preserve">
+    <value>Definir como fundo</value>
+  </data>
+  <data name="SetAsBackground2" xml:space="preserve">
+    <value>Definir como _Fundo</value>
+  </data>
+  <data name="SetDateRange" xml:space="preserve">
+    <value>Definir intervalo de datas</value>
+  </data>
+  <data name="SetDateRange2" xml:space="preserve">
+    <value>_Definir intervalo de datas...</value>
+  </data>
+  <data name="SetPageSizeAndOrientation" xml:space="preserve">
+    <value>Definir tamanho e orientação da página</value>
+  </data>
+  <data name="SetRatingFilter" xml:space="preserve">
+    <value>Definir filtro de classificação</value>
+  </data>
+  <data name="SetRatingFilter2" xml:space="preserve">
+    <value>_Definir filtro de classificação...</value>
+  </data>
+  <data name="Share" xml:space="preserve">
+    <value>Partilha:</value>
+  </data>
+  <data name="SharePhotosWithOtherPeopleOnTheSameNetworkViaWebBrowser" xml:space="preserve">
+    <value>Partilhe fotografias com outras pessoas na mesma rede via navegador web</value>
+  </data>
+  <data name="Sharpen" xml:space="preserve">
+    <value>Melhorar</value>
+  </data>
+  <data name="Sharpen2" xml:space="preserve">
+    <value>_Melhorar...</value>
+  </data>
+  <data name="ShiftAllPhotosByX" xml:space="preserve">
+    <value>Deslocar todas as fotografias por {0}</value>
+  </data>
+  <data name="ShowAll" xml:space="preserve">
+    <value>Mostrar tudo</value>
+  </data>
+  <data name="ShowAllPhotos" xml:space="preserve">
+    <value>Mostrar todas as fotografias.</value>
+  </data>
+  <data name="ShowCamera" xml:space="preserve">
+    <value>Mostrar câmara</value>
+  </data>
+  <data name="ShowCreator" xml:space="preserve">
+    <value>Mostrar criador</value>
+  </data>
+  <data name="ShowDate" xml:space="preserve">
+    <value>Mostrar data</value>
+  </data>
+  <data name="ShowDatesInTheThumbnailView" xml:space="preserve">
+    <value>Mostrar datas na vista de miniatura.</value>
+  </data>
+  <data name="ShowExposure" xml:space="preserve">
+    <value>Mostrar exposição</value>
+  </data>
+  <data name="ShowFileSize" xml:space="preserve">
+    <value>Mostrar tamanho do ficheiro</value>
+  </data>
+  <data name="ShowFindBarMnemonic" xml:space="preserve">
+    <value>Mostrar barra de _Procura</value>
+  </data>
+  <data name="ShowFocalLength" xml:space="preserve">
+    <value>Mostrar distância focal</value>
+  </data>
+  <data name="ShowOrHideTheSidePane" xml:space="preserve">
+    <value>Mostrar ou ocultar o painel lateral</value>
+  </data>
+  <data name="ShowOrHideTheToolbar" xml:space="preserve">
+    <value>Mostrar ou ocultar a barra de ferramentas</value>
+  </data>
+  <data name="ShowRating" xml:space="preserve">
+    <value>Mostrar classificação</value>
+  </data>
+  <data name="ShowRatingsInTheThumbnailView" xml:space="preserve">
+    <value>Mostrar avaliações na vista de miniatura.</value>
+  </data>
+  <data name="ShowSize" xml:space="preserve">
+    <value>Mostrar tamanho</value>
+  </data>
+  <data name="ShowStyles" xml:space="preserve">
+    <value>Mostrar estilos</value>
+  </data>
+  <data name="ShowTags" xml:space="preserve">
+    <value>Mostrar etiquetas</value>
+  </data>
+  <data name="ShowTagsInTheThumbnailView" xml:space="preserve">
+    <value>Mostrar etiquetas na vista de miniatura.</value>
+  </data>
+  <data name="ShowTheFilenameInTheViewerWindow" xml:space="preserve">
+    <value>Mostrar o nome do ficheiro na janela de visualização.</value>
+  </data>
+  <data name="ShowTheFilmstripInTheMainWindow" xml:space="preserve">
+    <value>Mostrar o filme na janela principal.</value>
+  </data>
+  <data name="ShowTheSidebarInTheMainWindow" xml:space="preserve">
+    <value>Mostrar a barra lateral na janela principal.</value>
+  </data>
+  <data name="ShowTheTimelineInTheMainWindow" xml:space="preserve">
+    <value>Mostrar a cronologia na janela principal.</value>
+  </data>
+  <data name="ShowTheToolbarInTheMainWindow" xml:space="preserve">
+    <value>Mostrar a barra de ferramentas na janela principal.</value>
+  </data>
+  <data name="ShowTheToolbarInThePhotoViewerWindow" xml:space="preserve">
+    <value>Mostrar a barra de ferramentas na janela de visualização de fotografia.</value>
+  </data>
+  <data name="SidePane" xml:space="preserve">
+    <value>_Painel lateral</value>
+  </data>
+  <data name="Sidebar" xml:space="preserve">
+    <value>_Barra lateral</value>
+  </data>
+  <data name="SignInAsADifferentUser" xml:space="preserve">
+    <value>Iniciar sessão como um utilizador diferente</value>
+  </data>
+  <data name="SimpleExportToZipFile" xml:space="preserve">
+    <value>Exportação simples para ficheiro zip</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Tamanho</value>
+  </data>
+  <data name="SizeOfTheExportedSelection" xml:space="preserve">
+    <value>Tamanho da seleção exportada:</value>
+  </data>
+  <data name="SizeOfTheTagIconsShownInTheSidebar" xml:space="preserve">
+    <value>Tamanho dos ícones de etiquetas na barra lateral.</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>Saltar</value>
+  </data>
+  <data name="SlideTransition" xml:space="preserve">
+    <value>Transição dos diapositivos:</value>
+  </data>
+  <data name="Slideshow" xml:space="preserve">
+    <value>Diaporama</value>
+  </data>
+  <data name="Slideshow2" xml:space="preserve">
+    <value>_Diaporama</value>
+  </data>
+  <data name="Small" xml:space="preserve">
+    <value>Pequeno</value>
+  </data>
+  <data name="Small2" xml:space="preserve">
+    <value>_Pequeno</value>
+  </data>
+  <data name="SmallIChooseTheLocationOfTheDatabaseYouWantToImportFromISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;Escolha a localização da base de dados de onde quer importar&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIChooseWhatToImportFromTheSelectedDbNewRollsOnlyIsTheSmartOptionThatWillAvoidReImportingPhotosYouCouldHaveImportedDuringAPreviousOperationASingleImportRollLetYouChooseWhichRollYouWantToMergeBackEverythingWillImportEverythingCreatingDuplicatesIfYouAlreadyImportedFromThatDatabaseISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;Escolha o que importar da base de dados.
+"Só novos rolos" é a opção inteligente que evitará a reimportação de fotografias que podem ter sido importadas previamente.
+"Um único rolo" deixa-o escolher que rolo quer unir.
+"Tudo" importará tudo, criando duplicados se já tiver importado desta base de dados&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallICopyTheImagesLocallyOrKeepThemWhereTheyAreIfYouChoseTheLaterBeSureThatThisLocationWillStayAccessibleFromFSpotISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;Copiar as imagens localmente ou mantê-las onde estão. Se escolher esta última, certifique-se que a localização se mantém acessivel do F-Spot.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIEnableThisToAllowInterpolationOnZoomedImagesYouShouldnTDisableThisForViewingPhotosButDisablingTheInterpolationCouldBeUsefulInIconDesignISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;Ative esta opção para permitir interpolação em imagens ampliadas. Não deveria desativar para ver fotografias, mas desativar a interpolação poderá ser útil no desenho de ícones.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIFSpotTagsCanHelpYouTrackTheExportStatusOfPhotosExampleUseOneTagForThePhotosThatYouPlanToExportAndAnotherOneForThoseAlreadyExportedHereYouCanTellFSpotToAutomaticallyReplaceTheseTagsAsAppropriateISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;As etiquetas do F-Spot podem ajudá-lo a seguir o estado da exportação das fotografias. Exemplo: use uma etiqueta para as fotografias que quer exportar e outra às já exportadas. Aqui, pode dizer ao F-Spot para substituir automaticamente estas etiquetas apropriadamente.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallITheGalleryStaysActiveUntilYouEitherDeactivateItOrCloseFSpotMakeSureLocalViewersAccessItBypassingHTTPProxyISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;A galeria mantém-se ativa até que a desative ou feche
+o F-Spot. Certifique-se que os visitantes locais a acedem contornando o proxy HTTP.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIWhenTheGalleryIsActiveAboveIsTheURLYouNeedToOpenOnAnotherComputerToAccessTheSharedPhotosISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;Quando a galeria está ativa, em cima está o URL que precisa de abrir 
+noutro computador para aceder às fotografias partilhadas.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIYouCanChooseHowToDisplayTransparentPartsInImagesThisOptionHasNoEffectOnPhotosButSettingThisAsCheckPatternOrCustomColorCouldBeUsefulWhenViewingIconsOrOtherArtworksWithTransparentPartsISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;Pode escolher como mostrar partes transparentes das imagens. Esta opção não tem efeito nas fotografias, mas definida como padrão axadrezado ou cor personalizada poderá ser útil ao ver ícones ou outras imagens com partes transparentes.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmugMug" xml:space="preserve">
+    <value>_SmugMug...</value>
+  </data>
+  <data name="SmugMugExport" xml:space="preserve">
+    <value>Exportar para SmugMug</value>
+  </data>
+  <data name="SoftFocus" xml:space="preserve">
+    <value>Foco suave</value>
+  </data>
+  <data name="SomeFilesCouldNotBeImported" xml:space="preserve">
+    <value>Alguns ficheiros não puderam ser importados, podem estar corrompidos ou pode haver algo de errado com o meio de armazenamento onde residem.</value>
+  </data>
+  <data name="SomeFilesFailedToImport" xml:space="preserve">
+    <value>Alguns ficheiros falharam a importação</value>
+  </data>
+  <data name="SpaceAllPhotosBy" xml:space="preserve">
+    <value>Espaçar todas as fotografias por</value>
+  </data>
+  <data name="SpanWeightBoldSizeLargerErrorConnectingToGallerySpan" xml:space="preserve">
+    <value>&lt;span weight='bold' size='larger'&gt;Erro ao ligar à galeria&lt;/span&gt;
+</value>
+  </data>
+  <data name="SpanWeightBoldSizeLargerYourGoogleAccountIsLockedSpan" xml:space="preserve">
+    <value>&lt;span weight='bold' size='larger'&gt;A sua conta Google está bloqueada&lt;/span&gt;
+</value>
+  </data>
+  <data name="Square" xml:space="preserve">
+    <value>Quadrado</value>
+  </data>
+  <data name="StandardTheme" xml:space="preserve">
+    <value>Tema padrão</value>
+  </data>
+  <data name="StartSlideshow" xml:space="preserve">
+    <value>Iniciar diaporama</value>
+  </data>
+  <data name="StayConnected" xml:space="preserve">
+    <value>Manter-se ligado</value>
+  </data>
+  <data name="StoreTagsAndDescriptionsForPhotos" xml:space="preserve">
+    <value>Armazenar etiquetas e descrição para fotografias:</value>
+  </data>
+  <data name="Straighten" xml:space="preserve">
+    <value>Endireitar</value>
+  </data>
+  <data name="SyncCatalogWithPhotos" xml:space="preserve">
+    <value>Sincronizar catálogo com Imagens</value>
+  </data>
+  <data name="SyncMetaData" xml:space="preserve">
+    <value>Sincronizar metadados</value>
+  </data>
+  <data name="SyncMetaDataInformationOfAllCatalogWithPhotos" xml:space="preserve">
+    <value>Sincronizar informação de metadados de todo o catálogo com Imagens</value>
+  </data>
+  <data name="SystemProfile" xml:space="preserve">
+    <value>Perfil do sistema</value>
+  </data>
+  <data name="Tabblo" xml:space="preserve">
+    <value>_Tabblo...</value>
+  </data>
+  <data name="TabbloExport" xml:space="preserve">
+    <value>Exportar para Tabblo</value>
+  </data>
+  <data name="TagDoesntExistTrySelectingDifferentTagInPerferenceDialog" xml:space="preserve">
+    <value>A etiqueta que o F-Spot está a procurar não existe.
+Tente selecionar uma etiqueta diferente no diálogo
+de preferências do F-Spot.</value>
+  </data>
+  <data name="TagIcons" xml:space="preserve">
+    <value>Ícones de _Etiquetas</value>
+  </data>
+  <data name="TagIsNotEmpty" xml:space="preserve">
+    <value>A etiqueta não está vazia</value>
+  </data>
+  <data name="TagName2" xml:space="preserve">
+    <value>_Nome da etiqueta:</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Etiquetas</value>
+  </data>
+  <data name="Tags2" xml:space="preserve">
+    <value>_Etiquetas</value>
+  </data>
+  <data name="Tags3" xml:space="preserve">
+    <value>_Etiquetas</value>
+  </data>
+  <data name="TagsColon" xml:space="preserve">
+    <value>Etiquetas: </value>
+  </data>
+  <data name="Temp" xml:space="preserve">
+    <value>Te_Mperatura:</value>
+  </data>
+  <data name="TheColorToUseForTransparentParts" xml:space="preserve">
+    <value>A cor a usar para partes transparentes.</value>
+  </data>
+  <data name="TheFileSelectedNotValidOrSupportedDataaseReceivedExceptionX" xml:space="preserve">
+    <value>O ficheiro que selecionou não é uma base de dados válida ou suportada.
+
+Recebida excepção "{0}".</value>
+  </data>
+  <data name="TheFollowingErrorWasEncounteredWhileAttemptingToCreateAnAlbumX" xml:space="preserve">
+    <value>O seguinte erro foi encontrado ao tentar criar um álbum: {0}</value>
+  </data>
+  <data name="TheGalleryNameContainsInvalidCharactersOnlyLettersNumbersUnderscoreAllowed" xml:space="preserve">
+    <value>O nome da galeria contém caracteres inválidos.
+Só são permitidos letras, números, - e _</value>
+  </data>
+  <data name="TheGalleryUrlEntryDoesNotAppearToBeValid" xml:space="preserve">
+    <value>O URL da galeria não aparenta ser um URL válido</value>
+  </data>
+  <data name="TheHeightDimensionToUseForTheImportDialog" xml:space="preserve">
+    <value>A dimensão da altura a usar para o diálogo de importação.</value>
+  </data>
+  <data name="TheHeightDimensionToUseForTheMainWindow" xml:space="preserve">
+    <value>A dimensão de altura a usar à janela principal.</value>
+  </data>
+  <data name="TheHeightDimensionToUseForThePhotoViewerWindow" xml:space="preserve">
+    <value>A dimensão de altura a usar à janela de visualização de fotografias.</value>
+  </data>
+  <data name="TheOrientationOfTheFilmstrip" xml:space="preserve">
+    <value>A orientação do filme.</value>
+  </data>
+  <data name="TheOrientationOfTheFilmstripIfShown" xml:space="preserve">
+    <value>A orientação do filme, se mostrado.</value>
+  </data>
+  <data name="ThePhotoCouldNotBeRotatedReadonlyOrMedia" xml:space="preserve">
+    <value>A fotografia não pôde ser rodada porque está num sistema de ficheiros ou suporte só de leitura, tal como um CDROM. Por favor, verifique as permissões e tente novamente.</value>
+  </data>
+  <data name="ThePhotoXDoesNotExist" xml:space="preserve">
+    <value>A fotografia "{0}" não existe</value>
+  </data>
+  <data name="TheSelectedAlbumHasALimitOfXPicturesWhichWouldBePassedWithTheCurrentSelectionOfYImages" xml:space="preserve">
+    <value>O álbum selecionado tem um limite de {0} imagens,
+que seria ultrapassado com a atual seleção de {1} imagens</value>
+  </data>
+  <data name="TheSizeOfTheSidebarInTheMainWindow" xml:space="preserve">
+    <value>O tamanho da barra lateral na janela principal.</value>
+  </data>
+  <data name="TheSizeWidthOfTheSidebarInTheMainWindow" xml:space="preserve">
+    <value>O tamanho (largura) da barra lateral na janela principal.</value>
+  </data>
+  <data name="TheWebGallerySeemsToBeOfflineNow" xml:space="preserve">
+    <value>A galeria web parece estar offline neste momento</value>
+  </data>
+  <data name="TheWidthDimensionToUseForTheImportDialog" xml:space="preserve">
+    <value>A dimensão da largura a usar para o diálogo de importação.</value>
+  </data>
+  <data name="TheWidthDimensionToUseForTheMainWindow" xml:space="preserve">
+    <value>A dimensão de largura a usar à janela principal.</value>
+  </data>
+  <data name="TheWidthDimensionToUseForThePhotoViewerWindow" xml:space="preserve">
+    <value>A dimensão de largura a usar à janela de visualização de fotografias.</value>
+  </data>
+  <data name="TheXPositionToUseForTheMainWindow" xml:space="preserve">
+    <value>A posição X a usar à janela principal.</value>
+  </data>
+  <data name="TheXPositionToUseForThePhotoViewerWindow" xml:space="preserve">
+    <value>A posição X a usar para janela de visualização de fotografias.</value>
+  </data>
+  <data name="TheYPositionToUseForTheMainWindow" xml:space="preserve">
+    <value>A posição Y a usar à janela principal.</value>
+  </data>
+  <data name="TheYPositionToUseForThePhotoViewerWindow" xml:space="preserve">
+    <value>A posição Y a usar para janela de visualização de fotografias.</value>
+  </data>
+  <data name="ThereAlreadyGallerySameNameInYourRegisteredGalleriesPleaseChooseUniqueName" xml:space="preserve">
+    <value>Já existe uma galeria com o mesmo nome nas suas galerias registadas. Por favor escolha um nome único.</value>
+  </data>
+  <data name="ThereWasAProblemLoggingIntoFacebookCheckYourCredentialsAndTryAgain" xml:space="preserve">
+    <value>Houve um problema ao iniciar sessão no Facebook.  Verifique as suas credenciais e tente novamente.</value>
+  </data>
+  <data name="ThereWasAnErrorWhenDownloadingYourInformationFromFacebookFacebookSaidX" xml:space="preserve">
+    <value>Ocorreu um erro ao transferir a sua informação do Facebook.
+
+O Facebook disse: {0}</value>
+  </data>
+  <data name="ThisDeletesAllVersionsOfTheSelectedPhotoFromYourDrive" xml:space="preserve">
+    <value>Isto elimina todas as versões da fotografia selecionada do disco.</value>
+  </data>
+  <data name="ThisDeletesAllVersionsOfTheSelectedPhotosFromYourDrive" xml:space="preserve">
+    <value>Isto elimina todas as versões das fotografias selecionadas do disco.</value>
+  </data>
+  <data name="ThisExtensionAllowsYouToBurnYourPhotosToCD" xml:space="preserve">
+    <value>Esta extensão permite-lhe queimar um CD com as suas fotografias.</value>
+  </data>
+  <data name="ThisExtensionAllowsYouToExportYourPhotosToFlickrAnd23hq" xml:space="preserve">
+    <value>Esta extensão permite-lhe exportar as suas imagens para o Flickr e o 23hq.</value>
+  </data>
+  <data name="ThisExtensionAllowsYouToExportYourPhotosToHTMLGalleriesOriginalGalleriesOrJustToAFolder" xml:space="preserve">
+    <value>Esta extensão permite-lhe exportar as suas fotografias para galerias html, galerias originais ou simplesmente para uma pasta.</value>
+  </data>
+  <data name="ThisExtensionAllowsYouToExportYourPhotosToPHPGalleryHttpGalleryMenaltoCom" xml:space="preserve">
+    <value>Esta extensão permite-lhe exportar as suas fotografias para PHP Gallery (http://gallery.menalto.com).</value>
+  </data>
+  <data name="ThisExtensionAllowsYouToExportYourPhotosToPicasaWeb" xml:space="preserve">
+    <value>Esta extensão permite-lhe exportar as suas fotografias para PicasaWeb.</value>
+  </data>
+  <data name="ThisExtensionAllowsYouToExportYourPhotosToSmugMug" xml:space="preserve">
+    <value>Esta extensão permite-lhe exportar as suas fotografias para SmugMug.</value>
+  </data>
+  <data name="ThisExtensionAllowsYouToExportYourPhotosToTabblo" xml:space="preserve">
+    <value>Esta extensão permite-lhe exportar as suas fotografias para Tabblo</value>
+  </data>
+  <data name="ThisMakesThePhotosAppearAsASingleOneInLibraryTheVersionsCanBeDetachedUsingThePhotoMenu" xml:space="preserve">
+    <value>Isto faz as fotografias aparecerem como uma única na biblioteca. As versões podem ser dissociadas utilizado o menu fotografia.</value>
+  </data>
+  <data name="ThisMakesTheVersionAppearAsASeparatePhotoInLibraryToUndoDragNewPhotoBackToParent" xml:space="preserve">
+    <value>Isto faz a versão aparecer como uma fotografia separada na biblioteca. Para desfazer, arraste a nova fotografia de volta ao seu pai.</value>
+  </data>
+  <data name="ThisNameIsAlreadyInUse" xml:space="preserve">
+    <value>Este nome já está em utilização</value>
+  </data>
+  <data name="ThisRemovesTheVersionAndDeletesTheFileFromDisk" xml:space="preserve">
+    <value>Isto remove a versão e elimina o ficheiro correspondente do disco.</value>
+  </data>
+  <data name="ThisToolRequiresAnActiveSelection.PleaseSelectOneOrMore" xml:space="preserve">
+    <value>Esta ferramenta precisa de uma seleção ativa. Por favor, selecione uma ou mais fotografias e tente novamente</value>
+  </data>
+  <data name="ThisToolRequiresAnActiveSelectionPleaseSelectARegion" xml:space="preserve">
+    <value>Esta ferramenta necessita de uma seleção ativa. Por favor selecione uma região da fotografia e tente esta operação novamente</value>
+  </data>
+  <data name="ThisWillMergeSelectedTagsAndSubTagsIntoSingleTag" xml:space="preserve">
+    <value>Esta operação vai unir as etiquetas selecionadas e quaisquer subetiquetas numa só.</value>
+  </data>
+  <data name="ThresholdColon" xml:space="preserve">
+    <value>Limite:</value>
+  </data>
+  <data name="ThumbnailElements" xml:space="preserve">
+    <value>_Elementos das miniaturas</value>
+  </data>
+  <data name="Timeline" xml:space="preserve">
+    <value>_Cronologia</value>
+  </data>
+  <data name="Tint" xml:space="preserve">
+    <value>_Coloração:</value>
+  </data>
+  <data name="Tiny" xml:space="preserve">
+    <value>Minúsculo</value>
+  </data>
+  <data name="Title2" xml:space="preserve">
+    <value>_Título:</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Hoje</value>
+  </data>
+  <data name="Token" xml:space="preserve">
+    <value>símbolo</value>
+  </data>
+  <data name="TooManyImagesToExport" xml:space="preserve">
+    <value>Demasiadas imagens para exportar</value>
+  </data>
+  <data name="Toolbar" xml:space="preserve">
+    <value>_Barra de ferramentas</value>
+  </data>
+  <data name="Toolbar2" xml:space="preserve">
+    <value>_Barra de ferramentas</value>
+  </data>
+  <data name="Tools" xml:space="preserve">
+    <value>Ferramentas</value>
+  </data>
+  <data name="Tools2" xml:space="preserve">
+    <value>Ferramen_Tas</value>
+  </data>
+  <data name="TotalOriginalSize" xml:space="preserve">
+    <value>Tamanho total original</value>
+  </data>
+  <data name="TransferComplete" xml:space="preserve">
+    <value>Transferência concluída</value>
+  </data>
+  <data name="Transferring" xml:space="preserve">
+    <value>A transferir...</value>
+  </data>
+  <data name="TransferringPictureXToCD" xml:space="preserve">
+    <value>A transferir imagem "{0}" Para CD</value>
+  </data>
+  <data name="TransferringPictures" xml:space="preserve">
+    <value>A transferir imagens</value>
+  </data>
+  <data name="TransferringToX" xml:space="preserve">
+    <value>A transferir para "{0}"</value>
+  </data>
+  <data name="Transitions" xml:space="preserve">
+    <value>Transições</value>
+  </data>
+  <data name="TranslatorCredits" xml:space="preserve">
+    <value>Filipe Gomes &lt;filipefgomes@gmail.com&gt;
+Pedro Albuquerque &lt;palbuquerque73@gmail.com&gt;, 2015</value>
+  </data>
+  <data name="TrustError" xml:space="preserve">
+    <value>Erro de confiança</value>
+  </data>
+  <data name="TrustTheSiteSCertificateThisOnce" xml:space="preserve">
+    <value>Confiar no certificado deste sítio desta vez</value>
+  </data>
+  <data name="UNSTABLEPleaseEnsureYouHaveABackupOfYourPhotosDbBeforeYouTestThisExtensionThisExtensionWillAllowYouToChangeTheBasePathToTheYourPhotosItIsVeryHandyIfYouMoveYourPhotosFromPhotosToOurPhotosForInstanceJustEnsureYouLetSqLiteContinueToProcessTheChangesForUpToAFewHoursAfterFSpotReportsFinishedItWillOnlyChangeThePathToPhotosWhichAreLocatedUnderThePhotoDirectory" xml:space="preserve">
+    <value>INSTÁVEL - por favor, assegure-se que tem uma cópia de segurança das suas fotografias antesde testar esta extensão. Ela permitir-lhe-á alterar o caminho base às suas fotografias. É muito útil se mover as suas fotografias de ~/Fotografias para /MinhasFotografias, por exemplo. Garanta que o SQLite continua a processar as alterações durante mais algumas horas após o Fspot ter reportado a conclusão. Só altera o caminho para fotografias localizadas na pasta Imagens.</value>
+  </data>
+  <data name="URL3" xml:space="preserve">
+    <value>U_RL:</value>
+  </data>
+  <data name="UnableToLoadImage" xml:space="preserve">
+    <value>Impossível carregar imagem</value>
+  </data>
+  <data name="UnableToLoadXAsIconForTheTag" xml:space="preserve">
+    <value>Impossível carregar "{0}" como ícone da etiqueta</value>
+  </data>
+  <data name="UnableToLogOn" xml:space="preserve">
+    <value>Impossível iniciar sessão</value>
+  </data>
+  <data name="UnableToLogOn2" xml:space="preserve">
+    <value>Impossível iniciar sessão.</value>
+  </data>
+  <data name="UnableToRotatePhoto" xml:space="preserve">
+    <value>Impossível rodar fotografia</value>
+  </data>
+  <data name="UnableToRotateReadonlyFile" xml:space="preserve">
+    <value>Impossível rodar ficheiro só de leitura</value>
+  </data>
+  <data name="UnableToRotateThisTypeOfPhoto" xml:space="preserve">
+    <value>Impossível rodar este tipo de fotografia</value>
+  </data>
+  <data name="UnableToRotateXPhotos" xml:space="preserve">
+    <value>Impossível rodar {0} fotografias</value>
+  </data>
+  <data name="UnhandledException" xml:space="preserve">
+    <value>Excepção não gerida</value>
+  </data>
+  <data name="UntaggedPhotos" xml:space="preserve">
+    <value>Fotografias sem etiqueta</value>
+  </data>
+  <data name="UntaggedPhotos2" xml:space="preserve">
+    <value>_Fotografias sem etiqueta</value>
+  </data>
+  <data name="UpdatingFSpotDatabase" xml:space="preserve">
+    <value>A atualizar base de dados do F-Spot</value>
+  </data>
+  <data name="UpdatingPictureX" xml:space="preserve">
+    <value>A atualizar imagem "{0}"</value>
+  </data>
+  <data name="UpdatingThumbnails" xml:space="preserve">
+    <value>A atualizar miniaturas</value>
+  </data>
+  <data name="UploadComplete" xml:space="preserve">
+    <value>Envio terminado</value>
+  </data>
+  <data name="UploadComplete2" xml:space="preserve">
+    <value>Envio terminado</value>
+  </data>
+  <data name="UploadingPhotoX" xml:space="preserve">
+    <value>A enviar fotografia "{0}"</value>
+  </data>
+  <data name="UploadingPictureX" xml:space="preserve">
+    <value>A enviar imagem "{0}"</value>
+  </data>
+  <data name="UploadingPictureXYOfZ" xml:space="preserve">
+    <value>A enviar imagem "{0}" ({1} de {2})</value>
+  </data>
+  <data name="UploadingPictures" xml:space="preserve">
+    <value>A enviar imagens</value>
+  </data>
+  <data name="Url4" xml:space="preserve">
+    <value>url</value>
+  </data>
+  <data name="UseAnExistingAlbum" xml:space="preserve">
+    <value>Utilizar um álbum existente</value>
+  </data>
+  <data name="UseTheCurrentPhotoSFilenameAsTheViewerWindowSTitle" xml:space="preserve">
+    <value>Utilizar o nome de ficheiro da fotografia atual como título da janela de visualização.</value>
+  </data>
+  <data name="UsedXOfYourAllowedYMonthlyQuota" xml:space="preserve">
+    <value>Utilizou {0} da sua cota mensal de {1}</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>_Utilizador:</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Versão</value>
+  </data>
+  <data name="Version3" xml:space="preserve">
+    <value>_Versão</value>
+  </data>
+  <data name="VerticalMnemonic" xml:space="preserve">
+    <value>_Vertical</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>Ver</value>
+  </data>
+  <data name="View2" xml:space="preserve">
+    <value>_Ver</value>
+  </data>
+  <data name="ViewAndEditAPhoto" xml:space="preserve">
+    <value>Ver e editar uma fotografia</value>
+  </data>
+  <data name="ViewPhotosFullscreen" xml:space="preserve">
+    <value>Ver fotografias em ecrã completo</value>
+  </data>
+  <data name="ViewPhotosInASlideshow" xml:space="preserve">
+    <value>Ver fotografias num diaporama</value>
+  </data>
+  <data name="ViewPhotosInBrowserWhenDoneUploading" xml:space="preserve">
+    <value>_Ver fotografias no navegador quando terminar o envio</value>
+  </data>
+  <data name="Views" xml:space="preserve">
+    <value>Vistas:</value>
+  </data>
+  <data name="VisibleToFamily" xml:space="preserve">
+    <value>Visível para família</value>
+  </data>
+  <data name="VisibleToFriends" xml:space="preserve">
+    <value>Visível para amigos</value>
+  </data>
+  <data name="VisitFSpotGroupOnFacebook" xml:space="preserve">
+    <value>Visitar grupo F-Spot no Facebook</value>
+  </data>
+  <data name="WaitingForAuthentication" xml:space="preserve">
+    <value>À espera de autenticação</value>
+  </data>
+  <data name="WaitingForAuthorization" xml:space="preserve">
+    <value>À espera de autorização</value>
+  </data>
+  <data name="WaitingForResponseXOfY" xml:space="preserve">
+    <value>À espera de resposta {0} de {1}</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Aviso</value>
+  </data>
+  <data name="WebGallery" xml:space="preserve">
+    <value>_Galeria Web...</value>
+  </data>
+  <data name="WelcomeXYouAreConnectedToY3" xml:space="preserve">
+    <value>Bem-vindo {0}. Está ligado a {1}.</value>
+  </data>
+  <data name="WhenImportingPhotosCopyThemTo" xml:space="preserve">
+    <value>Ao importar fotografias, copiá-las para:</value>
+  </data>
+  <data name="WhiteBorders" xml:space="preserve">
+    <value>Contornos brancos</value>
+  </data>
+  <data name="WhoIsThis" xml:space="preserve">
+    <value>Quem é este?</value>
+  </data>
+  <data name="WidthOfTheImportDialog" xml:space="preserve">
+    <value>Largura do diálogo de importação.</value>
+  </data>
+  <data name="WidthOfTheMainWindow" xml:space="preserve">
+    <value>Largura da janela principal.</value>
+  </data>
+  <data name="WidthOfThePhotoViewerWindow" xml:space="preserve">
+    <value>Largura da janela de visualização de fotografia.</value>
+  </data>
+  <data name="WidthOfThePreviewImagePaneInTheImportDialog" xml:space="preserve">
+    <value>Largura do painel de antevisão de imagem no diálogo de importação.</value>
+  </data>
+  <data name="WriteOnlyThesePhotosToCD" xml:space="preserve">
+    <value>_Gravar só estas fotografias para CD</value>
+  </data>
+  <data name="XCFVersion" xml:space="preserve">
+    <value>Versão XCF</value>
+  </data>
+  <data name="XOfApproxY" xml:space="preserve">
+    <value>{0} de aprox. {1}</value>
+  </data>
+  <data name="XOfY" xml:space="preserve">
+    <value>{0} de {1}</value>
+  </data>
+  <data name="XPhoto" xml:space="preserve">
+    <value>{0} fotografia</value>
+  </data>
+  <data name="XPhoto2" xml:space="preserve">
+    <value>{0} fotografia</value>
+  </data>
+  <data name="XPhotoCouldNotBeRotatedReadonlyOrMedia" xml:space="preserve">
+    <value>{0} fotografias não puderam ser rodadas porque estão num sistema de ficheiros ou suporte só de leitura, tal como um CDROM. Por favor, verifique as permissões e tente novamente.</value>
+  </data>
+  <data name="XPhotoOutOfY2" xml:space="preserve">
+    <value>Fotografia {0} de {1}</value>
+  </data>
+  <data name="XPhotos" xml:space="preserve">
+    <value>{0} fotografias</value>
+  </data>
+  <data name="XPhotos2" xml:space="preserve">
+    <value>{0} fotografias</value>
+  </data>
+  <data name="XPhotosOutOfY2" xml:space="preserve">
+    <value>{0} fotografias de {1}</value>
+  </data>
+  <data name="XPositionOfTheMainWindow" xml:space="preserve">
+    <value>Posição X da janela principal.</value>
+  </data>
+  <data name="XPositionOfThePhotoViewerWindow" xml:space="preserve">
+    <value>Posição X da janela de visualização de fotografias.</value>
+  </data>
+  <data name="XSelected2" xml:space="preserve">
+    <value>({0} selecionados)</value>
+  </data>
+  <data name="XSent" xml:space="preserve">
+    <value>{0} enviado</value>
+  </data>
+  <data name="XYIsLoggedIntoFacebook" xml:space="preserve">
+    <value>{0} {1} tem sessão iniciada no Facebook</value>
+  </data>
+  <data name="YPositionOfTheMainWindow" xml:space="preserve">
+    <value>Posição Y da janela principal.</value>
+  </data>
+  <data name="YPositionOfThePhotoViewerWindow" xml:space="preserve">
+    <value>Posição Y da janela de visualização de fotografias.</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>Ontem</value>
+  </data>
+  <data name="YouAreNotLoggedIn" xml:space="preserve">
+    <value>Não tem sessão iniciada.</value>
+  </data>
+  <data name="YouCanChooseHowToDisplayTransparentPartsInImagesThisOptionHasNoEffectOnPhotosButSettingThisValueToCHECKPATTERNOrCUSTOMCOLORCouldBeUsefulWhenViewingIconsOrOtherArtworkWithTransparentParts" xml:space="preserve">
+    <value>Pode escolher como mostrar partes transparentes das imagens. Esta opção não tem efeito nas fotografias, mas definindo este valor para CHECK_PATTERN ou CUSTOM_COLOR poderá ser útil ao ver ícones ou outras imagens com partes transparentes.</value>
+  </data>
+  <data name="ZipExport" xml:space="preserve">
+    <value>Exportar para Zip</value>
+  </data>
+  <data name="Zoom" xml:space="preserve">
+    <value>Ampliação</value>
+  </data>
+  <data name="ZoomIn" xml:space="preserve">
+    <value>_Ampliar</value>
+  </data>
+  <data name="ZoomIn2" xml:space="preserve">
+    <value>Ampliar</value>
+  </data>
+  <data name="ZoomOut" xml:space="preserve">
+    <value>_Reduzir</value>
+  </data>
+  <data name="ZoomOut2" xml:space="preserve">
+    <value>Reduzir</value>
+  </data>
+  <data name="Zooomr" xml:space="preserve">
+    <value>_Zooomr...</value>
+  </data>
+</root>

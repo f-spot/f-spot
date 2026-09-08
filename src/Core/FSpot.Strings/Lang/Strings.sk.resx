@@ -1,0 +1,1616 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AbortThisSession" xml:space="preserve">
+    <value>Zrušiť túto reláciu</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>Úč_et:</value>
+  </data>
+  <data name="Adjust" xml:space="preserve">
+    <value>Upraviť</value>
+  </data>
+  <data name="AdjustColors" xml:space="preserve">
+    <value>Upraviť farby</value>
+  </data>
+  <data name="AdjustTime" xml:space="preserve">
+    <value>Upraviť čas</value>
+  </data>
+  <data name="AdjustTime2" xml:space="preserve">
+    <value>Upraviť č_as...</value>
+  </data>
+  <data name="AdjustedDate" xml:space="preserve">
+    <value>Nastavený dátum: </value>
+  </data>
+  <data name="AlbumMustHaveAName" xml:space="preserve">
+    <value>Album musí mať názov</value>
+  </data>
+  <data name="AlbumName" xml:space="preserve">
+    <value>Názov _albumu:</value>
+  </data>
+  <data name="AlbumTitle" xml:space="preserve">
+    <value>Titulok _albumu:</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Všetky</value>
+  </data>
+  <data name="AllImages" xml:space="preserve">
+    <value>Všetky obrázky</value>
+  </data>
+  <data name="AmountColon" xml:space="preserve">
+    <value>Množstvo:</value>
+  </data>
+  <data name="AnErrorOccuredWhileProcessingXY" xml:space="preserve">
+    <value>Vyskytla sa chyba počas spracovania "{0}": {1}</value>
+  </data>
+  <data name="AnErrorOfTypeXOccurredWhileDeletingTheFile" xml:space="preserve">
+    <value>Vyskytla sa chyba typu {0} počas odstraňovania súboru:{2}{1}</value>
+  </data>
+  <data name="And" xml:space="preserve">
+    <value>a</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Použiť</value>
+  </data>
+  <data name="ArrangeBy" xml:space="preserve">
+    <value>Usporiadať _podľa</value>
+  </data>
+  <data name="AsBackground" xml:space="preserve">
+    <value>Ako _pozadie</value>
+  </data>
+  <data name="AttachTag" xml:space="preserve">
+    <value>Pr_ipojiť emblém</value>
+  </data>
+  <data name="AttachTagToSelection" xml:space="preserve">
+    <value>Pridať emblémy do výberu</value>
+  </data>
+  <data name="AttachTagToSelection2" xml:space="preserve">
+    <value>Prid_ať emblém do výberu</value>
+  </data>
+  <data name="AttachTagsToSelection" xml:space="preserve">
+    <value>Pridať emblém do výberu</value>
+  </data>
+  <data name="Authorize" xml:space="preserve">
+    <value>Autorizovať</value>
+  </data>
+  <data name="AutoColor" xml:space="preserve">
+    <value>Automatická farba</value>
+  </data>
+  <data name="AvailableSpaceXYUsedOutOfZ" xml:space="preserve">
+    <value>Dostupné miesto: {0}, {1}% použitých z {2}</value>
+  </data>
+  <data name="BAccountB" xml:space="preserve">
+    <value>&lt;b&gt;Účet&lt;/b&gt;</value>
+  </data>
+  <data name="BActionB" xml:space="preserve">
+    <value>&lt;b&gt;Akcia&lt;/b&gt;</value>
+  </data>
+  <data name="BAlbumB" xml:space="preserve">
+    <value>&lt;b&gt;Album&lt;/b&gt;</value>
+  </data>
+  <data name="BCorrectionsB" xml:space="preserve">
+    <value>&lt;b&gt;Ko_rekcie&lt;/b&gt;</value>
+  </data>
+  <data name="BDestinationB" xml:space="preserve">
+    <value>&lt;b&gt;Cieľové umiestnenie&lt;/b&gt;</value>
+  </data>
+  <data name="BEndDateB" xml:space="preserve">
+    <value>&lt;b&gt;Dátum konca&lt;/b&gt;</value>
+  </data>
+  <data name="BExportMethodB" xml:space="preserve">
+    <value>&lt;b&gt;Spôsob exportu&lt;/b&gt;</value>
+  </data>
+  <data name="BFromPhotoB" xml:space="preserve">
+    <value>&lt;b&gt;Z fotky&lt;/b&gt;</value>
+  </data>
+  <data name="BGalleryB" xml:space="preserve">
+    <value>&lt;b&gt;Galéria&lt;/b&gt;</value>
+  </data>
+  <data name="BMaxRatingB" xml:space="preserve">
+    <value>&lt;b&gt;Maximálne hodnotenie&lt;/b&gt;</value>
+  </data>
+  <data name="BMinRatingB" xml:space="preserve">
+    <value>&lt;b&gt;Minimálne hodnotenie&lt;/b&gt;</value>
+  </data>
+  <data name="BPhotosB" xml:space="preserve">
+    <value>&lt;b&gt;Fotky&lt;/b&gt;</value>
+  </data>
+  <data name="BPhotosToBurnB" xml:space="preserve">
+    <value>&lt;b&gt;Fotky na napálenie&lt;/b&gt;</value>
+  </data>
+  <data name="BPicasaWebExportB" xml:space="preserve">
+    <value>&lt;b&gt;PicasaWeb export&lt;/b&gt;</value>
+  </data>
+  <data name="BPreviewB" xml:space="preserve">
+    <value>&lt;b&gt;Náhľad&lt;/b&gt;</value>
+  </data>
+  <data name="BSelectPeriodB" xml:space="preserve">
+    <value>&lt;b&gt;Vyberte obdobie&lt;/b&gt;</value>
+  </data>
+  <data name="BSizeB" xml:space="preserve">
+    <value>&lt;b&gt;Veľkosť&lt;/b&gt;</value>
+  </data>
+  <data name="BSmugMugExportB" xml:space="preserve">
+    <value>&lt;b&gt;SmugMug export&lt;/b&gt;</value>
+  </data>
+  <data name="BStartDateB" xml:space="preserve">
+    <value>&lt;b&gt;Počiatočný dátum&lt;/b&gt;</value>
+  </data>
+  <data name="BStyleB" xml:space="preserve">
+    <value>&lt;b&gt;Štýl&lt;/b&gt;</value>
+  </data>
+  <data name="BSummaryB" xml:space="preserve">
+    <value>&lt;b&gt;Zhrnutie&lt;/b&gt;</value>
+  </data>
+  <data name="BTabbloAccountB" xml:space="preserve">
+    <value>&lt;b&gt;Tabblo účet&lt;/b&gt;</value>
+  </data>
+  <data name="BTransparentPartsB" xml:space="preserve">
+    <value>&lt;b&gt;Priehľadné časti&lt;/b&gt;</value>
+  </data>
+  <data name="BViewAllPicturesImportedB" xml:space="preserve">
+    <value>&lt;b&gt;Zobraziť všetky importované obrázky&lt;/b&gt;</value>
+  </data>
+  <data name="BViewingPermissionsB" xml:space="preserve">
+    <value>&lt;b&gt;Oprávnenia zobrazenia&lt;/b&gt;</value>
+  </data>
+  <data name="BWhiteBalanceB" xml:space="preserve">
+    <value>&lt;b&gt;_Vyváženie bielej&lt;/b&gt;</value>
+  </data>
+  <data name="BetweenXAndY" xml:space="preserve">
+    <value>Medzi {0} 
+a {1}</value>
+  </data>
+  <data name="Brightness" xml:space="preserve">
+    <value>_Jas:</value>
+  </data>
+  <data name="Browse2" xml:space="preserve">
+    <value>Prehliadať</value>
+  </data>
+  <data name="BrowseManyPhotosSimultaneously" xml:space="preserve">
+    <value>Prehliadať viac fotiek súčasne</value>
+  </data>
+  <data name="BuildingGallery" xml:space="preserve">
+    <value>Vytvára sa galéria</value>
+  </data>
+  <data name="ByDate" xml:space="preserve">
+    <value>Podľa _dátumu</value>
+  </data>
+  <data name="ByImportRoll" xml:space="preserve">
+    <value>Podľa registru _importovania</value>
+  </data>
+  <data name="ByRating" xml:space="preserve">
+    <value>Podľa _hodnotenia</value>
+  </data>
+  <data name="CD2" xml:space="preserve">
+    <value>_CD...</value>
+  </data>
+  <data name="Camera" xml:space="preserve">
+    <value>Fotoaparát</value>
+  </data>
+  <data name="Captcha" xml:space="preserve">
+    <value>_Captcha:</value>
+  </data>
+  <data name="ClearDateRangeMnemonic" xml:space="preserve">
+    <value>_Vymazať rozsah dátumu</value>
+  </data>
+  <data name="ClearRatingFilter" xml:space="preserve">
+    <value>_Vymazať filter hodnotenia</value>
+  </data>
+  <data name="ClearRollFilter" xml:space="preserve">
+    <value>Vy_mazať filter registru</value>
+  </data>
+  <data name="ClearSearch" xml:space="preserve">
+    <value>Vymazať hľadanie</value>
+  </data>
+  <data name="CommaSpace" xml:space="preserve">
+    <value>, </value>
+  </data>
+  <data name="CompleteAuthorization" xml:space="preserve">
+    <value>Dokončiť autorizáciu</value>
+  </data>
+  <data name="Components" xml:space="preserve">
+    <value>_Komponenty</value>
+  </data>
+  <data name="CompressedFile" xml:space="preserve">
+    <value>Komprimovaný sú_bor...</value>
+  </data>
+  <data name="Contents" xml:space="preserve">
+    <value>Ob_sah</value>
+  </data>
+  <data name="Contrast2" xml:space="preserve">
+    <value>K_ontrast:</value>
+  </data>
+  <data name="CopyImagesToPhotosFolder" xml:space="preserve">
+    <value>Kopírovať obrázky do priečinku s fotkami</value>
+  </data>
+  <data name="Copying2" xml:space="preserve">
+    <value>kopírujú sa...</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>_Vytvoriť</value>
+  </data>
+  <data name="CreateAMailWithTheSelectedPhotosPossiblyResizedAttached" xml:space="preserve">
+    <value>Vytvoriť e-mail s priloženými vybranými fotkami (možno so zmenenou veľkosťou)</value>
+  </data>
+  <data name="CreateANewAlbum" xml:space="preserve">
+    <value>Vytvoriť nový album</value>
+  </data>
+  <data name="CreateCD" xml:space="preserve">
+    <value>Vytvoriť CD</value>
+  </data>
+  <data name="CreateMail" xml:space="preserve">
+    <value>Vytvoriť e-mail</value>
+  </data>
+  <data name="CreateMail2" xml:space="preserve">
+    <value>_Vytvoriť e-mail</value>
+  </data>
+  <data name="CreateNewTag" xml:space="preserve">
+    <value>Vytvoriť nový emblém</value>
+  </data>
+  <data name="CreateNewTag2" xml:space="preserve">
+    <value>Vytvoriť nový emblém...</value>
+  </data>
+  <data name="CreateNewTag3" xml:space="preserve">
+    <value>Vytvoriť nový _emblém...</value>
+  </data>
+  <data name="CreateNewVersion" xml:space="preserve">
+    <value>Vytvoriť novú verziu</value>
+  </data>
+  <data name="CreateNewVersion2" xml:space="preserve">
+    <value>Vytvoriť nové verzie?</value>
+  </data>
+  <data name="CreateNewVersion3" xml:space="preserve">
+    <value>Vytvoriť _novú verziu...</value>
+  </data>
+  <data name="CreateNewVersions" xml:space="preserve">
+    <value>Vytvoriť novú verziu?</value>
+  </data>
+  <data name="CreatingANewAlbumFailed" xml:space="preserve">
+    <value>Vytváranie nového albumu zlyhalo</value>
+  </data>
+  <data name="Creator" xml:space="preserve">
+    <value>Tvorca</value>
+  </data>
+  <data name="Crop" xml:space="preserve">
+    <value>Orezať</value>
+  </data>
+  <data name="CurrentDate" xml:space="preserve">
+    <value>Súčasný dátum:</value>
+  </data>
+  <data name="CurrentWeekMonSun" xml:space="preserve">
+    <value>Súčasný týždeň (Pondelok-Nedeľa)</value>
+  </data>
+  <data name="CustomRatios" xml:space="preserve">
+    <value>Vlastné pomery...</value>
+  </data>
+  <data name="CustomizedRange" xml:space="preserve">
+    <value>Upravený rozsah</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>Tmavý</value>
+  </data>
+  <data name="DatabaseLocation" xml:space="preserve">
+    <value>Umiestnenie databázy:</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Dátum</value>
+  </data>
+  <data name="Dates" xml:space="preserve">
+    <value>_Dátumy</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Odstrániť</value>
+  </data>
+  <data name="DeleteFromDrive" xml:space="preserve">
+    <value>O_dstrániť z disku</value>
+  </data>
+  <data name="DeletePhotoMnemonic" xml:space="preserve">
+    <value>O_dstrániť fotky</value>
+  </data>
+  <data name="DeletePhotosMnemonic" xml:space="preserve">
+    <value>O_dstrániť fotku</value>
+  </data>
+  <data name="DeleteSelectedTag" xml:space="preserve">
+    <value>O_dstrániť vybraný emblém</value>
+  </data>
+  <data name="DeleteTag" xml:space="preserve">
+    <value>Odstrániť emblémy</value>
+  </data>
+  <data name="DeleteTagMnemonic" xml:space="preserve">
+    <value>O_dstrániť emblémy</value>
+  </data>
+  <data name="DeleteTagXQuestion" xml:space="preserve">
+    <value>Odstrániť emblém "{0}"?</value>
+  </data>
+  <data name="DeleteTags" xml:space="preserve">
+    <value>Odstrániť emblém</value>
+  </data>
+  <data name="DeleteTagsMnemonic" xml:space="preserve">
+    <value>O_dstrániť emblém</value>
+  </data>
+  <data name="DeleteTheSelectedPhotoPermanently" xml:space="preserve">
+    <value>Odstrániť {0} vybraných fotiek navždy?</value>
+  </data>
+  <data name="DeleteTheXSelectedPhotosPermanently" xml:space="preserve">
+    <value>Odstrániť vybranú fotku navždy?</value>
+  </data>
+  <data name="DeleteTheXSelectedTagsQuestion" xml:space="preserve">
+    <value>Odstrániť {0} vybraných emblémov?</value>
+  </data>
+  <data name="DeleteVersion" xml:space="preserve">
+    <value>O_dstrániť verziu</value>
+  </data>
+  <data name="Description2" xml:space="preserve">
+    <value>_Popis:</value>
+  </data>
+  <data name="Description3" xml:space="preserve">
+    <value>_Popis:</value>
+  </data>
+  <data name="Description4" xml:space="preserve">
+    <value>Popis</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Podrobnosti</value>
+  </data>
+  <data name="Difference" xml:space="preserve">
+    <value>rozdiel:</value>
+  </data>
+  <data name="DirectoryNotFound" xml:space="preserve">
+    <value>Priečinok nebol nájdený</value>
+  </data>
+  <data name="DisplayASlideshowFromFSpot" xml:space="preserve">
+    <value>Zobraziť prezentáciu z F-Spot</value>
+  </data>
+  <data name="DisplayFileNames" xml:space="preserve">
+    <value>Zobraziť _názvy súborov</value>
+  </data>
+  <data name="DoNotSendAMail" xml:space="preserve">
+    <value>Neposlať e-mail</value>
+  </data>
+  <data name="DoneSendingPhotos" xml:space="preserve">
+    <value>Dokončené odosielanie fotiek</value>
+  </data>
+  <data name="DoneSendingPhotos2" xml:space="preserve">
+    <value>Dokončené posielanie fotiek</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Upraviť</value>
+  </data>
+  <data name="Edit2" xml:space="preserve">
+    <value>_Upraviť</value>
+  </data>
+  <data name="EditIcon" xml:space="preserve">
+    <value>Upraviť ikonu</value>
+  </data>
+  <data name="EditIconForTagX" xml:space="preserve">
+    <value>Upraviť ikonu pre emblém {0}</value>
+  </data>
+  <data name="EditImage" xml:space="preserve">
+    <value>Upraviť obrázok</value>
+  </data>
+  <data name="EditTag2" xml:space="preserve">
+    <value>Upraviť emblém</value>
+  </data>
+  <data name="EditTagIcon" xml:space="preserve">
+    <value>Upraviť ikonu emblému</value>
+  </data>
+  <data name="EightByTen" xml:space="preserve">
+    <value>8 x 10</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Chyba</value>
+  </data>
+  <data name="ErrorDeletingPicture" xml:space="preserve">
+    <value>Chyba odstraňovania obrázka</value>
+  </data>
+  <data name="ErrorEditingPhoto" xml:space="preserve">
+    <value>Chyba upravovania fotky</value>
+  </data>
+  <data name="ErrorLoadingDatabase" xml:space="preserve">
+    <value>Chyba načítavania databázy.</value>
+  </data>
+  <data name="ErrorLoggingIntoFacebook" xml:space="preserve">
+    <value>Chyba prihlasovania na Facebook</value>
+  </data>
+  <data name="ErrorOpeningTheSelectedFile" xml:space="preserve">
+    <value>Chyba otvárania vybraného súboru</value>
+  </data>
+  <data name="ErrorRenamingTag" xml:space="preserve">
+    <value>Chyba premenovania emblému</value>
+  </data>
+  <data name="ErrorSavingAdjustedPhoto" xml:space="preserve">
+    <value>Chyba ukladania upravených fotiek</value>
+  </data>
+  <data name="ErrorSavingAdjustedPhotos" xml:space="preserve">
+    <value>Chyba ukladania upravenej fotky</value>
+  </data>
+  <data name="ErrorTransferring" xml:space="preserve">
+    <value>Chyba prenášania</value>
+  </data>
+  <data name="ErrorUploadingPictureXToGalleryColonY" xml:space="preserve">
+    <value>Chyba nahrávania obrázku "{0}" do galérie: {1}</value>
+  </data>
+  <data name="ErrorUploadingToFacebookX" xml:space="preserve">
+    <value>Chyba nahrávania na Facebook: {0}</value>
+  </data>
+  <data name="ErrorUploadingToGalleryX" xml:space="preserve">
+    <value>Chyba nahrávania do galérie: {0}</value>
+  </data>
+  <data name="ErrorUploadingToTabblo" xml:space="preserve">
+    <value>Chyba nahrávania na Tabblo: </value>
+  </data>
+  <data name="ErrorUploadingToXColonY" xml:space="preserve">
+    <value>Chyba nahrávania do {0}: {1}</value>
+  </data>
+  <data name="ErrorWhileConnectingToGallery" xml:space="preserve">
+    <value>Chyba počas pripájania k galérii</value>
+  </data>
+  <data name="ErrorWhileCreatingAlbum" xml:space="preserve">
+    <value>Chyba počas vytvárania albumu</value>
+  </data>
+  <data name="ErrorWhileCreatingNewAlbum" xml:space="preserve">
+    <value>Chyba počas vytvárania nového albumu</value>
+  </data>
+  <data name="ErrorWhileRotatingPhoto" xml:space="preserve">
+    <value>Chyba počas otáčania fotky.</value>
+  </data>
+  <data name="ErrorWhileTransferring" xml:space="preserve">
+    <value>Chyba počas prenosu</value>
+  </data>
+  <data name="EstimatedNewSize" xml:space="preserve">
+    <value>Odhadovaná nová veľkosť</value>
+  </data>
+  <data name="Events" xml:space="preserve">
+    <value>Udalosti</value>
+  </data>
+  <data name="Everything" xml:space="preserve">
+    <value>Všetko</value>
+  </data>
+  <data name="ExcludePhotosTaggedX" xml:space="preserve">
+    <value>Vyňať fotky s emblémom "{0}"</value>
+  </data>
+  <data name="ExitFullscreen" xml:space="preserve">
+    <value>Opustiť režim celej obrazovky</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Exportovať</value>
+  </data>
+  <data name="Export2" xml:space="preserve">
+    <value>_Exportovať</value>
+  </data>
+  <data name="ExportTagHierarchy" xml:space="preserve">
+    <value>Exportovať _hierarchiu emblémov</value>
+  </data>
+  <data name="ExportTagIcons" xml:space="preserve">
+    <value>Exportovať _ikony emblémov</value>
+  </data>
+  <data name="ExportTags" xml:space="preserve">
+    <value>_Exportovať emblémy</value>
+  </data>
+  <data name="ExportTags2" xml:space="preserve">
+    <value>Expor_tovať emblémy</value>
+  </data>
+  <data name="ExportTitlesAndComments2" xml:space="preserve">
+    <value>Exportovať _titulky a komentáre</value>
+  </data>
+  <data name="ExportTo" xml:space="preserve">
+    <value>Exportovať do</value>
+  </data>
+  <data name="ExportTo2" xml:space="preserve">
+    <value>_Exportovať do</value>
+  </data>
+  <data name="ExportToAlbum" xml:space="preserve">
+    <value>_Exportovať do albumu:</value>
+  </data>
+  <data name="ExportToFacebook" xml:space="preserve">
+    <value>Exportovať na Facebook</value>
+  </data>
+  <data name="ExportingFiles" xml:space="preserve">
+    <value>Prebieha export súborov</value>
+  </data>
+  <data name="ExportingPhotoX" xml:space="preserve">
+    <value>Exportuje sa obrázok "{0}"</value>
+  </data>
+  <data name="Exposure" xml:space="preserve">
+    <value>Expozícia</value>
+  </data>
+  <data name="Exposure2" xml:space="preserve">
+    <value>_Expozícia:</value>
+  </data>
+  <data name="ExtraLarge" xml:space="preserve">
+    <value>Mimoriadne veľká</value>
+  </data>
+  <data name="FSpot" xml:space="preserve">
+    <value>F-Spot</value>
+  </data>
+  <data name="FSpotEncounteredAnErrorWhileLoadingThePhotoDatabaseTheOldDatabaseHasBeMovedToXAndANewDatabaseHasBeenCreated" xml:space="preserve">
+    <value>F-Spot narazil na chybu počas načítavania databázy fotiek. Stará databáza bola presunutá do {0} a nová databáza bola vytvorená.</value>
+  </data>
+  <data name="FSpotNeedsYourAuthorizationInOrderToUploadPhotosToYourXAccountPressTheAuthorizeButtonToOpenAWebBrowserAndGiveFSpotTheAuthorization" xml:space="preserve">
+    <value>F-Spot potrebuje vašu autorizáciu aby boli nahrané fotky na váš {0} účet. Pre otvorenie webového prehliadača stlačte tlačidlo "Autorizovať" a dajte autorizáciu programu F-Spot.</value>
+  </data>
+  <data name="FSpotPhotoManager" xml:space="preserve">
+    <value>Správca fotiek F-Spot</value>
+  </data>
+  <data name="FSpotPhotoViewer" xml:space="preserve">
+    <value>Prehliadač fotiek F-Spot</value>
+  </data>
+  <data name="FSpotPhotos" xml:space="preserve">
+    <value>F-Spot fotky</value>
+  </data>
+  <data name="FSpotView" xml:space="preserve">
+    <value>Prehliadka F-Spot</value>
+  </data>
+  <data name="FSpotWebsite" xml:space="preserve">
+    <value>Webová stránka F-Spot</value>
+  </data>
+  <data name="Facebook" xml:space="preserve">
+    <value>F_acebook...</value>
+  </data>
+  <data name="Favorites" xml:space="preserve">
+    <value>Obľúbené</value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>Názov _súboru:</value>
+  </data>
+  <data name="FileNotFonud" xml:space="preserve">
+    <value>Súbor nebol nájdený</value>
+  </data>
+  <data name="FileSize" xml:space="preserve">
+    <value>Veľkosť súboru</value>
+  </data>
+  <data name="Fill" xml:space="preserve">
+    <value>Vyplniť</value>
+  </data>
+  <data name="FilterOnSelectedRolls" xml:space="preserve">
+    <value>Filter na vybraných registroch</value>
+  </data>
+  <data name="Find" xml:space="preserve">
+    <value>Nájsť</value>
+  </data>
+  <data name="Find2" xml:space="preserve">
+    <value>Nájsť:</value>
+  </data>
+  <data name="Find3" xml:space="preserve">
+    <value>_Nájsť</value>
+  </data>
+  <data name="FindColon" xml:space="preserve">
+    <value>Nájsť: </value>
+  </data>
+  <data name="FindSelectedTagMnemonic" xml:space="preserve">
+    <value>Nájsť _vybraný emblém</value>
+  </data>
+  <data name="FindSelectedTagWithMnemonic" xml:space="preserve">
+    <value>Nájsť vybraný emblém _pomocou</value>
+  </data>
+  <data name="FindSelectedTagsMnemonic" xml:space="preserve">
+    <value>Nájsť _vybrané emblémy</value>
+  </data>
+  <data name="FindSelectedTagsWithMnemonic" xml:space="preserve">
+    <value>Nájsť vybrané emblémy _pomocou</value>
+  </data>
+  <data name="FindWithMnemonic" xml:space="preserve">
+    <value>Nájsť _pomocou</value>
+  </data>
+  <data name="FiveBySevenL2L" xml:space="preserve">
+    <value>5 x 7 (L, 2L)</value>
+  </data>
+  <data name="FixExclamation" xml:space="preserve">
+    <value>Oprav!</value>
+  </data>
+  <data name="Flickr2" xml:space="preserve">
+    <value>_Flickr...</value>
+  </data>
+  <data name="Flip" xml:space="preserve">
+    <value>Preklopiť</value>
+  </data>
+  <data name="Folder" xml:space="preserve">
+    <value>Priečinok</value>
+  </data>
+  <data name="Folder3" xml:space="preserve">
+    <value>Priečin_ok...</value>
+  </data>
+  <data name="Folder4" xml:space="preserve">
+    <value>_Priečinok:</value>
+  </data>
+  <data name="FolderExport" xml:space="preserve">
+    <value>Export priečinku</value>
+  </data>
+  <data name="FourBySixPostcard" xml:space="preserve">
+    <value>4 x 6 (Pohľadnica)</value>
+  </data>
+  <data name="FourByThreeBook" xml:space="preserve">
+    <value>4 x 3 (Kniha)</value>
+  </data>
+  <data name="FullPageNomargin" xml:space="preserve">
+    <value>Celá stránka (bez okraju)</value>
+  </data>
+  <data name="Fullscreen" xml:space="preserve">
+    <value>Celá obrazovka</value>
+  </data>
+  <data name="Fullscreen2" xml:space="preserve">
+    <value>_Celá obrazovka</value>
+  </data>
+  <data name="Gallery" xml:space="preserve">
+    <value>Galéria:</value>
+  </data>
+  <data name="Gallery5" xml:space="preserve">
+    <value>_Galéria:</value>
+  </data>
+  <data name="GalleryGeneratedBy" xml:space="preserve">
+    <value>Galéria generovaná pomocou</value>
+  </data>
+  <data name="GalleryName" xml:space="preserve">
+    <value>Názov g_alérie:</value>
+  </data>
+  <data name="GalleryName2" xml:space="preserve">
+    <value>Názov _galérie:</value>
+  </data>
+  <data name="GalleryWithThisNameAlreadyExists" xml:space="preserve">
+    <value>Galéria s týmto názvom už existuje</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>_Pomocník</value>
+  </data>
+  <data name="Hidden" xml:space="preserve">
+    <value>Skryté</value>
+  </data>
+  <data name="Hidden2" xml:space="preserve">
+    <value>_Skryté</value>
+  </data>
+  <data name="Hide" xml:space="preserve">
+    <value>Skryť</value>
+  </data>
+  <data name="HideFindBarMnemonic" xml:space="preserve">
+    <value>Skryť panel _hľadania</value>
+  </data>
+  <data name="HideStyles" xml:space="preserve">
+    <value>Skryť štýly</value>
+  </data>
+  <data name="Histogram" xml:space="preserve">
+    <value>Histogram</value>
+  </data>
+  <data name="Hue" xml:space="preserve">
+    <value>O_dtieň:</value>
+  </data>
+  <data name="Icon" xml:space="preserve">
+    <value>_Ikona:</value>
+  </data>
+  <data name="IfYouDeleteThisTagTheAssociationWithXYWillBeLost" xml:space="preserve">
+    <value>Ak odstránite tieto emblémy, spojenie s {0} {1} bude stratené.</value>
+  </data>
+  <data name="IfYouDeleteThisTagsTheAssociationWithXYWillBeLost" xml:space="preserve">
+    <value>Ak odstránite tento emblém, spojenie s {0} {1} bude stratené.</value>
+  </data>
+  <data name="IfYouRemovePhotosFromFSpotCatalogAllTagInfoLost" xml:space="preserve">
+    <value>Ak odstránite fotky z F-Spot katalógu, potom budú všetky emblémy stratené. Fotky zostávajú vo vašom počítači a môžu byť importované do programu F-Spot znovu.</value>
+  </data>
+  <data name="ImageInformation2" xml:space="preserve">
+    <value>Informácie obrázku</value>
+  </data>
+  <data name="ImageSettings" xml:space="preserve">
+    <value>Nastavenia obrázku</value>
+  </data>
+  <data name="ImagesTaggedWith" xml:space="preserve">
+    <value>Obrázky s emblémom:</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Importovať</value>
+  </data>
+  <data name="Import2" xml:space="preserve">
+    <value>_Importovať...</value>
+  </data>
+  <data name="Import3" xml:space="preserve">
+    <value>Importovať:</value>
+  </data>
+  <data name="ImportIntoFSpot" xml:space="preserve">
+    <value>Importovať do F-Spot</value>
+  </data>
+  <data name="ImportNewImages" xml:space="preserve">
+    <value>Importovať nové obrázky</value>
+  </data>
+  <data name="ImportRoll" xml:space="preserve">
+    <value>Register importovania</value>
+  </data>
+  <data name="InThisPhoto" xml:space="preserve">
+    <value>V tejto fotke</value>
+  </data>
+  <data name="IncludePhotoTaggedX" xml:space="preserve">
+    <value>Zahrnúť fotky s emblémom "{0}"</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>Index</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Informácie</value>
+  </data>
+  <data name="InvalidGalleryName" xml:space="preserve">
+    <value>Neplatný názov galérie</value>
+  </data>
+  <data name="InvalidUrl" xml:space="preserve">
+    <value>Neplatná URL</value>
+  </data>
+  <data name="Label" xml:space="preserve">
+    <value>Menovka</value>
+  </data>
+  <data name="Large" xml:space="preserve">
+    <value>Veľká</value>
+  </data>
+  <data name="Large2" xml:space="preserve">
+    <value>V_eľké</value>
+  </data>
+  <data name="LastImportRoll" xml:space="preserve">
+    <value>Pos_ledný register importovania</value>
+  </data>
+  <data name="LastNintyDays" xml:space="preserve">
+    <value>Posledných 90 dní</value>
+  </data>
+  <data name="LastSevenDays" xml:space="preserve">
+    <value>Posledných 7 dní</value>
+  </data>
+  <data name="LastThirtyDays" xml:space="preserve">
+    <value>Posledných 30 dní</value>
+  </data>
+  <data name="LastThreeHundredSixtyDays" xml:space="preserve">
+    <value>Posledných 360 dní</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>Svetlý</value>
+  </data>
+  <data name="LiteralAnd" xml:space="preserve">
+    <value> a </value>
+  </data>
+  <data name="LiteralOr" xml:space="preserve">
+    <value> alebo </value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Umiestnenie</value>
+  </data>
+  <data name="Location2" xml:space="preserve">
+    <value>_Umiestnenie:</value>
+  </data>
+  <data name="LoggingIntoTabblo" xml:space="preserve">
+    <value>Prihlasuje sa na Tabblo</value>
+  </data>
+  <data name="LoggingIntoX" xml:space="preserve">
+    <value>Prihlasuje sa do {0}</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Prihlásiť</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Odhlásiť</value>
+  </data>
+  <data name="ManageExtensions" xml:space="preserve">
+    <value>Spravovať rozšír_enia</value>
+  </data>
+  <data name="ManageYourCustomSelectionRatios" xml:space="preserve">
+    <value>Spravovať vaše vlastné vybrané pomery</value>
+  </data>
+  <data name="Medium" xml:space="preserve">
+    <value>Stredná</value>
+  </data>
+  <data name="Medium2" xml:space="preserve">
+    <value>S_tredné</value>
+  </data>
+  <data name="MergeDb" xml:space="preserve">
+    <value>Zlúčiť databázy</value>
+  </data>
+  <data name="MergeTags" xml:space="preserve">
+    <value>Zlúčiť emblémy</value>
+  </data>
+  <data name="MergeTagsMnemonic" xml:space="preserve">
+    <value>Zlúčiť e_mblémy</value>
+  </data>
+  <data name="MergeTheSelectedTag" xml:space="preserve">
+    <value>Zlúčiť {0} vybraných emblémov?</value>
+  </data>
+  <data name="MergeTheSelectedTags" xml:space="preserve">
+    <value>Zlúčiť vybraný emblém?</value>
+  </data>
+  <data name="Metadata" xml:space="preserve">
+    <value>Metaúdaje</value>
+  </data>
+  <data name="Modified" xml:space="preserve">
+    <value>Modifikované ({0})</value>
+  </data>
+  <data name="ModifiedX" xml:space="preserve">
+    <value>Modifikovaná</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>Viac</value>
+  </data>
+  <data name="MoreDates" xml:space="preserve">
+    <value>Viac údajov</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Názov</value>
+  </data>
+  <data name="NameColon" xml:space="preserve">
+    <value>Názov:</value>
+  </data>
+  <data name="NameOfNewTagColon" xml:space="preserve">
+    <value>Názov nového emblému:</value>
+  </data>
+  <data name="NewNameColon" xml:space="preserve">
+    <value>Nový názov:</value>
+  </data>
+  <data name="NewWindow" xml:space="preserve">
+    <value>_Nové okno</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Ďalšia</value>
+  </data>
+  <data name="NextPhoto" xml:space="preserve">
+    <value>Ďalšia fotka</value>
+  </data>
+  <data name="NextPicture" xml:space="preserve">
+    <value>Ďalší obrázok</value>
+  </data>
+  <data name="NoAccountSelected" xml:space="preserve">
+    <value>Žiadny vybraný účet</value>
+  </data>
+  <data name="NoActivePhoto" xml:space="preserve">
+    <value>Žiadna aktívna fotka</value>
+  </data>
+  <data name="NoApplicationsAvailable" xml:space="preserve">
+    <value>Žiadne dostupné aplikácie</value>
+  </data>
+  <data name="NoCamerasDetected" xml:space="preserve">
+    <value>(Nebol zistený žiadny fotoaparát)</value>
+  </data>
+  <data name="NoImage" xml:space="preserve">
+    <value>Žiadny o_brázok</value>
+  </data>
+  <data name="NoMatchingPhotosFound" xml:space="preserve">
+    <value>Nenájdené žiadne zhodujúce sa fotky</value>
+  </data>
+  <data name="NoMetadataAvailable" xml:space="preserve">
+    <value>Nedostupné metaúdaje</value>
+  </data>
+  <data name="NoPermissionToDeleteTheFile" xml:space="preserve">
+    <value>Nemáte oprávnenie na odstránenie súboru:{1}{0}</value>
+  </data>
+  <data name="NoPhotosMatchingFound" xml:space="preserve">
+    <value>Nenájdené žiadne fotky zhodujúce sa s {0}</value>
+  </data>
+  <data name="NoSelectionAvailable" xml:space="preserve">
+    <value>Žiadny dostupný výber</value>
+  </data>
+  <data name="NumberOfPhotosInSelectedRolls" xml:space="preserve">
+    <value>Počet fotiek vo vybraných registroch:</value>
+  </data>
+  <data name="NumberOfPictures" xml:space="preserve">
+    <value>Počet obrázkov</value>
+  </data>
+  <data name="ObtainingURLForUpload" xml:space="preserve">
+    <value>Získava sa URL pre nahrávanie</value>
+  </data>
+  <data name="OkMnemonic" xml:space="preserve">
+    <value>_Ok</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Otvoriť</value>
+  </data>
+  <data name="OpenAlbumInBrowserWhenDoneUploading2" xml:space="preserve">
+    <value>Otvoriť _album v prehliadači keď sa dokončí nahrávanie</value>
+  </data>
+  <data name="OpenDestinationWhenDoneExporting" xml:space="preserve">
+    <value>_Otvoriť cieľové miesto keď bude dokončené exportovanie</value>
+  </data>
+  <data name="OpenFolder" xml:space="preserve">
+    <value>Otvoriť _priečinok...</value>
+  </data>
+  <data name="OpenWith" xml:space="preserve">
+    <value>Otvoriť _pomocou</value>
+  </data>
+  <data name="Or" xml:space="preserve">
+    <value>alebo</value>
+  </data>
+  <data name="OrganizeEnjoyAndShareYourPhotos" xml:space="preserve">
+    <value>Organizovať, mať potešenie a zdielať vaše fotky</value>
+  </data>
+  <data name="Original" xml:space="preserve">
+    <value>Pôvodná</value>
+  </data>
+  <data name="OriginalSizePossibleVeryLargeFileSize" xml:space="preserve">
+    <value>Pôvodná veľkosť (možný veľmi veľký súbor)</value>
+  </data>
+  <data name="PageColon" xml:space="preserve">
+    <value>Strana:</value>
+  </data>
+  <data name="PageSetup" xml:space="preserve">
+    <value>Nastavenie strany</value>
+  </data>
+  <data name="PageSetup2" xml:space="preserve">
+    <value>N_astavenie strany...</value>
+  </data>
+  <data name="PaperSizeXxYmm" xml:space="preserve">
+    <value>Veľkosť papiera: {0} x {1} mm</value>
+  </data>
+  <data name="ParenFileReadErrorParen" xml:space="preserve">
+    <value>(Chyba čítania súboru)</value>
+  </data>
+  <data name="ParenNoAlbumsParen" xml:space="preserve">
+    <value>(Žiadne albumy)</value>
+  </data>
+  <data name="ParenNoEditsParen" xml:space="preserve">
+    <value>(Bez úprav)</value>
+  </data>
+  <data name="ParenNoGalleryParen" xml:space="preserve">
+    <value>(Žiadna galéria)</value>
+  </data>
+  <data name="ParenNoTagsParen" xml:space="preserve">
+    <value>(Žiadne emblémy)</value>
+  </data>
+  <data name="ParenNoneParen" xml:space="preserve">
+    <value>(Žiadny)</value>
+  </data>
+  <data name="ParenNotConnectedParen" xml:space="preserve">
+    <value>(Nepripojený)</value>
+  </data>
+  <data name="ParenUnknownParen" xml:space="preserve">
+    <value>(Neznámy)</value>
+  </data>
+  <data name="ParentAlbum" xml:space="preserve">
+    <value>_Rodičovský album:</value>
+  </data>
+  <data name="ParentTag" xml:space="preserve">
+    <value>_Rodičovský emblém:</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>_Heslo:</value>
+  </data>
+  <data name="People" xml:space="preserve">
+    <value>Ľudia</value>
+  </data>
+  <data name="Photo2" xml:space="preserve">
+    <value>fotiek</value>
+  </data>
+  <data name="Photo3" xml:space="preserve">
+    <value>_Fotka</value>
+  </data>
+  <data name="PhotoManagementForGNOME" xml:space="preserve">
+    <value>Správa fotiek pre GNOME</value>
+  </data>
+  <data name="PhotoManager" xml:space="preserve">
+    <value>Správca fotiek</value>
+  </data>
+  <data name="PhotoViewer" xml:space="preserve">
+    <value>Prehliadač fotiek</value>
+  </data>
+  <data name="PhotoXOfY" xml:space="preserve">
+    <value>Fotka {0} z {1}</value>
+  </data>
+  <data name="Photos" xml:space="preserve">
+    <value>Fotky</value>
+  </data>
+  <data name="Photos2" xml:space="preserve">
+    <value>fotka</value>
+  </data>
+  <data name="PhotosPerPage" xml:space="preserve">
+    <value>Fotiek na stranu</value>
+  </data>
+  <data name="PicasaWeb2" xml:space="preserve">
+    <value>_PicasaWeb...</value>
+  </data>
+  <data name="Pixels" xml:space="preserve">
+    <value>pixelov</value>
+  </data>
+  <data name="Places" xml:space="preserve">
+    <value>Miesta</value>
+  </data>
+  <data name="PleaseNameYourAlbumOrChooseAnExistingAlbum" xml:space="preserve">
+    <value>Prosím, pomenujte váš album alebo zvoľte už existujúci.</value>
+  </data>
+  <data name="PleaseVerifyThatTheSettingsForThisGalleryAreCorrectEnterTheLettersAsTheyAreShownInTheImageInTheCaptchaFieldILettersAreNotCaseSensitiveI" xml:space="preserve">
+    <value>Overte, prosím, či sú nastavenia pre túto galériu správne.
+Vložte znaky ako sú zobrazené na obrázku v 'Captcha'
+oblasti. &lt;i&gt;Nie je rozlišovaná veľkosť písmen&lt;/i&gt;</value>
+  </data>
+  <data name="PleaseWaitFSpotGalleryDBUpdating" xml:space="preserve">
+    <value>Počkajte , prosím, pokiaľ je vaša F-Spot galéria aktualizovaná. Môže to chvíľu trvať.</value>
+  </data>
+  <data name="Preferences" xml:space="preserve">
+    <value>Predvoľby</value>
+  </data>
+  <data name="PreparingEmail" xml:space="preserve">
+    <value>Zostavuje sa e-mail</value>
+  </data>
+  <data name="PreparingPhotoX" xml:space="preserve">
+    <value>Pripravuje sa fotka "{0}"</value>
+  </data>
+  <data name="Prev" xml:space="preserve">
+    <value>Predchádzajúca</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Predchádzajúca</value>
+  </data>
+  <data name="PreviousPhoto" xml:space="preserve">
+    <value>Predchádzajúca fotka</value>
+  </data>
+  <data name="PreviousPicture" xml:space="preserve">
+    <value>Predchádzajúci obrázok</value>
+  </data>
+  <data name="PreviousWeekMonSun" xml:space="preserve">
+    <value>Predchádzajúci týždeň (Pondelok-Nedela)</value>
+  </data>
+  <data name="Private" xml:space="preserve">
+    <value>Súkromné</value>
+  </data>
+  <data name="Public" xml:space="preserve">
+    <value>Verejné</value>
+  </data>
+  <data name="PublicAlbum" xml:space="preserve">
+    <value>Verejný album</value>
+  </data>
+  <data name="Quit" xml:space="preserve">
+    <value>_Koniec</value>
+  </data>
+  <data name="RadiusColon" xml:space="preserve">
+    <value>Rozsah:</value>
+  </data>
+  <data name="RatedPhotos" xml:space="preserve">
+    <value>Hodnotené fotky</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Hodnotenie</value>
+  </data>
+  <data name="Ratings" xml:space="preserve">
+    <value>_Hodnotenia</value>
+  </data>
+  <data name="Ratio" xml:space="preserve">
+    <value>Pomer</value>
+  </data>
+  <data name="ReallyDeleteVersionXQuestion" xml:space="preserve">
+    <value>Skutočne odstrániť verziu "{0}"?</value>
+  </data>
+  <data name="ReceivedExceptionXUnableToSavePhotoY" xml:space="preserve">
+    <value>Nastala výnimka "{0}". Nepodarilo sa uložiť fotku {1}</value>
+  </data>
+  <data name="RedEyeReduction" xml:space="preserve">
+    <value>Redukcia červených očí</value>
+  </data>
+  <data name="RefreshSearch" xml:space="preserve">
+    <value>Obnoviť hľadanie</value>
+  </data>
+  <data name="RefreshThumbnail" xml:space="preserve">
+    <value>_Obnoviť náhľady</value>
+  </data>
+  <data name="RemoveFromCatalog" xml:space="preserve">
+    <value>Odst_rániť z katalógu</value>
+  </data>
+  <data name="RemoveFromCatalogMnemonic" xml:space="preserve">
+    <value>Odst_rániť z katalógu</value>
+  </data>
+  <data name="RemoveFromSearch" xml:space="preserve">
+    <value>Odstrániť z hľadania</value>
+  </data>
+  <data name="RemoveTag" xml:space="preserve">
+    <value>_Odstrániť emblém</value>
+  </data>
+  <data name="RemoveTagFromSelection" xml:space="preserve">
+    <value>Odstrániť emblém z výberu</value>
+  </data>
+  <data name="RemoveTagFromSelection2" xml:space="preserve">
+    <value>Odst_rániť emblém z výberu</value>
+  </data>
+  <data name="RemoveTagFromSelection3" xml:space="preserve">
+    <value>Odstrániť emblémy z výberu</value>
+  </data>
+  <data name="RemoveTheSelectedPhotoFromFSpot" xml:space="preserve">
+    <value>Odstrániť {0} vybraných fotiek z F-Spot?</value>
+  </data>
+  <data name="RemoveTheXSelectedPhotosFromFSpot" xml:space="preserve">
+    <value>Odstrániť vybranú fotku z F-Spot?</value>
+  </data>
+  <data name="RenameVersion" xml:space="preserve">
+    <value>Premenovať verziu</value>
+  </data>
+  <data name="RenameVersion2" xml:space="preserve">
+    <value>P_remenovať verziu</value>
+  </data>
+  <data name="Repair" xml:space="preserve">
+    <value>Opraviť</value>
+  </data>
+  <data name="Repeat" xml:space="preserve">
+    <value>Opakovať</value>
+  </data>
+  <data name="ResizeTo" xml:space="preserve">
+    <value>_Zmeniť veľkosť na: </value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Znovu</value>
+  </data>
+  <data name="ReverseOrder" xml:space="preserve">
+    <value>Opačné po_radie</value>
+  </data>
+  <data name="RotateLeft" xml:space="preserve">
+    <value>Otočiť vľavo</value>
+  </data>
+  <data name="RotateLeftMnemonic" xml:space="preserve">
+    <value>Otočiť _vľavo</value>
+  </data>
+  <data name="RotatePhotoLeft" xml:space="preserve">
+    <value>Otočiť fotku vľavo</value>
+  </data>
+  <data name="RotatePhotoRight" xml:space="preserve">
+    <value>Otočiť fotku vpavo</value>
+  </data>
+  <data name="RotatePictureLeft" xml:space="preserve">
+    <value>Otočiť obrázok vľavo</value>
+  </data>
+  <data name="RotatePictureRight" xml:space="preserve">
+    <value>Otočiť obrázok vpravo</value>
+  </data>
+  <data name="RotateRight" xml:space="preserve">
+    <value>Otočiť vpravo</value>
+  </data>
+  <data name="RotateRightMnemonic" xml:space="preserve">
+    <value>Otočiť vp_ravo</value>
+  </data>
+  <data name="RotateSelectedPhotoLeft" xml:space="preserve">
+    <value>Otočiť vybrané fotky vľavo</value>
+  </data>
+  <data name="RotateSelectedPhotoRight" xml:space="preserve">
+    <value>Otočiť vybrané fotky vpravo</value>
+  </data>
+  <data name="RotateSelectedPhotosLeft" xml:space="preserve">
+    <value>Otočiť vybranú fotku vľavo</value>
+  </data>
+  <data name="RotateSelectedPhotosRight" xml:space="preserve">
+    <value>Otočiť vybranú fotku vpravo</value>
+  </data>
+  <data name="RotatingPhotoX" xml:space="preserve">
+    <value>Otáča sa fotka "{0}"</value>
+  </data>
+  <data name="RotatingPhotos" xml:space="preserve">
+    <value>Otáčajú sa fotky</value>
+  </data>
+  <data name="S000000" xml:space="preserve">
+    <value>00:00:00</value>
+  </data>
+  <data name="S00000000000000" xml:space="preserve">
+    <value>0000:00:00 00:00:00</value>
+  </data>
+  <data name="S1024Px" xml:space="preserve">
+    <value>1024 px</value>
+  </data>
+  <data name="S23hq" xml:space="preserve">
+    <value>_23hq...</value>
+  </data>
+  <data name="S320Px" xml:space="preserve">
+    <value>320 px</value>
+  </data>
+  <data name="S480Px" xml:space="preserve">
+    <value>480 px</value>
+  </data>
+  <data name="S5" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="S640Px" xml:space="preserve">
+    <value>640 px</value>
+  </data>
+  <data name="S800Px" xml:space="preserve">
+    <value>800 px</value>
+  </data>
+  <data name="SameAsPhoto" xml:space="preserve">
+    <value>Rovnaká ako fotka</value>
+  </data>
+  <data name="Saturation2" xml:space="preserve">
+    <value>_Sýtosť:</value>
+  </data>
+  <data name="SaveTheFilesOnly" xml:space="preserve">
+    <value>_Uložiť len súbory</value>
+  </data>
+  <data name="SearchReturnedNoResults" xml:space="preserve">
+    <value>Hľadanie nevrátilo žiadne výsledky</value>
+  </data>
+  <data name="SelectAFolder" xml:space="preserve">
+    <value>Vybrať priečinok</value>
+  </data>
+  <data name="SelectATag" xml:space="preserve">
+    <value>Vybrať emblém...</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Vybr_ať všetko</value>
+  </data>
+  <data name="SelectExportFolder" xml:space="preserve">
+    <value>Vybrať priečinok na export</value>
+  </data>
+  <data name="SelectExportFolder2" xml:space="preserve">
+    <value>Vybrať priečinok na export</value>
+  </data>
+  <data name="SelectFolder" xml:space="preserve">
+    <value>Vybrať priečinok</value>
+  </data>
+  <data name="SelectImportRolls" xml:space="preserve">
+    <value>_Vybrať registre importovania...</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>Odz_načiť všetko</value>
+  </data>
+  <data name="SelectPhotoFromFile" xml:space="preserve">
+    <value>Vybrať fotku zo súboru</value>
+  </data>
+  <data name="SelectTheAreaThatNeedsCropping" xml:space="preserve">
+    <value>Vybrať oblasť, ktorú treba orezať.</value>
+  </data>
+  <data name="SendByMail" xml:space="preserve">
+    <value>Poslať e-_mailom...</value>
+  </data>
+  <data name="SepiaTone2" xml:space="preserve">
+    <value>Sépiový odtieň</value>
+  </data>
+  <data name="ServerReturnedResponseWithoutGalleryContent" xml:space="preserve">
+    <value>Server vrátil odpoveď bez obsahu galérie</value>
+  </data>
+  <data name="SetAsBackground" xml:space="preserve">
+    <value>Nastaviť ako pozadie</value>
+  </data>
+  <data name="SetAsBackground2" xml:space="preserve">
+    <value>Nastaviť ako _pozadie</value>
+  </data>
+  <data name="SetDateRange" xml:space="preserve">
+    <value>Nastaviť rozsah dátumu</value>
+  </data>
+  <data name="SetDateRange2" xml:space="preserve">
+    <value>Na_staviť rozsah dátumu...</value>
+  </data>
+  <data name="SetRatingFilter" xml:space="preserve">
+    <value>Nastaviť filter hodnotenia</value>
+  </data>
+  <data name="SetRatingFilter2" xml:space="preserve">
+    <value>Na_staviť filter hodnotenia...</value>
+  </data>
+  <data name="Sharpen" xml:space="preserve">
+    <value>Ostrosť</value>
+  </data>
+  <data name="Sharpen2" xml:space="preserve">
+    <value>O_strosť...</value>
+  </data>
+  <data name="ShiftAllPhotosByX" xml:space="preserve">
+    <value>Zoradiť všetky fotky podľa {0}</value>
+  </data>
+  <data name="ShowAllPhotos" xml:space="preserve">
+    <value>Zobraziť všetky fotky.</value>
+  </data>
+  <data name="ShowCamera" xml:space="preserve">
+    <value>Zobraziť fotoaparát</value>
+  </data>
+  <data name="ShowDate" xml:space="preserve">
+    <value>Zobraziť dátum</value>
+  </data>
+  <data name="ShowExposure" xml:space="preserve">
+    <value>Zobraziť expozíciu</value>
+  </data>
+  <data name="ShowFileSize" xml:space="preserve">
+    <value>Zobraziť veľkosť súboru</value>
+  </data>
+  <data name="ShowFindBarMnemonic" xml:space="preserve">
+    <value>Zobraziť panel _hľadania</value>
+  </data>
+  <data name="ShowOrHideTheSidePane" xml:space="preserve">
+    <value>Zobraziť alebo skryť bočný panel</value>
+  </data>
+  <data name="ShowOrHideTheToolbar" xml:space="preserve">
+    <value>Zobraziť alebo skryť panel nástrojov</value>
+  </data>
+  <data name="ShowSize" xml:space="preserve">
+    <value>Zobraziť veľkosť</value>
+  </data>
+  <data name="ShowStyles" xml:space="preserve">
+    <value>Zobraziť štýly</value>
+  </data>
+  <data name="SidePane" xml:space="preserve">
+    <value>_Bočný panel</value>
+  </data>
+  <data name="Sidebar" xml:space="preserve">
+    <value>_Bočný panel</value>
+  </data>
+  <data name="SignInAsADifferentUser" xml:space="preserve">
+    <value>Prihlásiť sa ako iný používateľ</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Veľkosť</value>
+  </data>
+  <data name="SizeOfTheExportedSelection" xml:space="preserve">
+    <value>Veľkosť exportovaného výberu:</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>Preskočiť</value>
+  </data>
+  <data name="Slideshow" xml:space="preserve">
+    <value>Prezentácia</value>
+  </data>
+  <data name="Slideshow2" xml:space="preserve">
+    <value>_Prezentácia</value>
+  </data>
+  <data name="Small" xml:space="preserve">
+    <value>Malá</value>
+  </data>
+  <data name="Small2" xml:space="preserve">
+    <value>_Malé</value>
+  </data>
+  <data name="SmugMug" xml:space="preserve">
+    <value>_SmugMug...</value>
+  </data>
+  <data name="SpanWeightBoldSizeLargerErrorConnectingToGallerySpan" xml:space="preserve">
+    <value>&lt;span weight='bold' size='larger'&gt;Chyba spájania s galériou&lt;/span&gt;
+</value>
+  </data>
+  <data name="SpanWeightBoldSizeLargerYourGoogleAccountIsLockedSpan" xml:space="preserve">
+    <value>&lt;span weight='bold' size='larger'&gt;Váš Google účet je zamknutý&lt;/span&gt;
+</value>
+  </data>
+  <data name="Square" xml:space="preserve">
+    <value>Štvorec</value>
+  </data>
+  <data name="StartSlideshow" xml:space="preserve">
+    <value>Spustiť prezentáciu</value>
+  </data>
+  <data name="Straighten" xml:space="preserve">
+    <value>Vyrovanie</value>
+  </data>
+  <data name="Tabblo" xml:space="preserve">
+    <value>_Tabblo...</value>
+  </data>
+  <data name="TagIcons" xml:space="preserve">
+    <value>Ikony _emblémov</value>
+  </data>
+  <data name="TagIsNotEmpty" xml:space="preserve">
+    <value>Emblém nie je prázdny</value>
+  </data>
+  <data name="TagName2" xml:space="preserve">
+    <value>Názov _emblému:</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Emblémy</value>
+  </data>
+  <data name="Tags2" xml:space="preserve">
+    <value>E_mblémy</value>
+  </data>
+  <data name="Tags3" xml:space="preserve">
+    <value>_Emblémy</value>
+  </data>
+  <data name="TagsColon" xml:space="preserve">
+    <value>Emblémy:</value>
+  </data>
+  <data name="ThePhotoXDoesNotExist" xml:space="preserve">
+    <value>Fotka "{0}" neexistuje</value>
+  </data>
+  <data name="ThisDeletesAllVersionsOfTheSelectedPhotoFromYourDrive" xml:space="preserve">
+    <value>Toto odstráni všetky verzie vybraných fotiek z vášho disku.</value>
+  </data>
+  <data name="ThisDeletesAllVersionsOfTheSelectedPhotosFromYourDrive" xml:space="preserve">
+    <value>Toto odstráni všetky verzie vybranej fotky z vášho disku.</value>
+  </data>
+  <data name="ThisNameIsAlreadyInUse" xml:space="preserve">
+    <value>Tento názov sa už používa</value>
+  </data>
+  <data name="ThisToolRequiresAnActiveSelection.PleaseSelectOneOrMore" xml:space="preserve">
+    <value>Tento nástroj vyžaduje aktívny výber. Vyberte, prosím, jeden alebo viac obrázkov a skúste to znovu</value>
+  </data>
+  <data name="ThisToolRequiresAnActiveSelectionPleaseSelectARegion" xml:space="preserve">
+    <value>Tento nástroj vyžaduje aktívny výber. Vyberte, prosím, oblasť fotky a skúste túto operáciu znovu</value>
+  </data>
+  <data name="ThisWillMergeSelectedTagsAndSubTagsIntoSingleTag" xml:space="preserve">
+    <value>Táto operácia zlúči vybrané emblémy a každý podemblém do jedného emblému.</value>
+  </data>
+  <data name="ThresholdColon" xml:space="preserve">
+    <value>Prah:</value>
+  </data>
+  <data name="ThumbnailElements" xml:space="preserve">
+    <value>_Prvky náhľadov</value>
+  </data>
+  <data name="Timeline" xml:space="preserve">
+    <value>Č_asová línia</value>
+  </data>
+  <data name="Tiny" xml:space="preserve">
+    <value>Nepatrná</value>
+  </data>
+  <data name="Title2" xml:space="preserve">
+    <value>_Titulok:</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Dnes</value>
+  </data>
+  <data name="TooManyImagesToExport" xml:space="preserve">
+    <value>Príliš veľa obrázkov na exportovanie</value>
+  </data>
+  <data name="Toolbar" xml:space="preserve">
+    <value>Pane_l nástrojov</value>
+  </data>
+  <data name="Toolbar2" xml:space="preserve">
+    <value>Panel nás_trojov</value>
+  </data>
+  <data name="Tools" xml:space="preserve">
+    <value>Nástroje</value>
+  </data>
+  <data name="Tools2" xml:space="preserve">
+    <value>Nás_troje</value>
+  </data>
+  <data name="TotalOriginalSize" xml:space="preserve">
+    <value>Celková pôvodná veľkosť</value>
+  </data>
+  <data name="TransferComplete" xml:space="preserve">
+    <value>Prenos dokončený</value>
+  </data>
+  <data name="TransferringPictureXToCD" xml:space="preserve">
+    <value>Prenáša sa obrázok "{0}" na CD</value>
+  </data>
+  <data name="TransferringPictures" xml:space="preserve">
+    <value>Prenášajú sa obrázky</value>
+  </data>
+  <data name="TranslatorCredits" xml:space="preserve">
+    <value>Pavol Klačanský &lt;pavol@klacansky.com&gt;</value>
+  </data>
+  <data name="URL3" xml:space="preserve">
+    <value>U_RL:</value>
+  </data>
+  <data name="UnableToLoadImage" xml:space="preserve">
+    <value>Nepodarilo načítať fotku</value>
+  </data>
+  <data name="UnableToLoadXAsIconForTheTag" xml:space="preserve">
+    <value>Nepodarilo sa načítať "{0}" ako ikonu pre emblém</value>
+  </data>
+  <data name="UnableToLogOn" xml:space="preserve">
+    <value>Nepodarilo sa prihlásiť</value>
+  </data>
+  <data name="UnableToLogOn2" xml:space="preserve">
+    <value>Nepodarilo sa prihlásiť.</value>
+  </data>
+  <data name="UnableToRotatePhoto" xml:space="preserve">
+    <value>Nepodarilo sa otočiť {0} fotiek</value>
+  </data>
+  <data name="UnableToRotateReadonlyFile" xml:space="preserve">
+    <value>Nepodarilo sa otočiť súbor iba na čítanie</value>
+  </data>
+  <data name="UnableToRotateThisTypeOfPhoto" xml:space="preserve">
+    <value>Nepodarilo sa otočiť tento typ fotky</value>
+  </data>
+  <data name="UnableToRotateXPhotos" xml:space="preserve">
+    <value>Nepodarilo sa otočiť fotku</value>
+  </data>
+  <data name="UntaggedPhotos" xml:space="preserve">
+    <value>Fotka bez emblému</value>
+  </data>
+  <data name="UntaggedPhotos2" xml:space="preserve">
+    <value>Fotky _bez emblémov</value>
+  </data>
+  <data name="UpdatingFSpotDatabase" xml:space="preserve">
+    <value>Aktualizuje sa databáza F-Spot</value>
+  </data>
+  <data name="UploadComplete" xml:space="preserve">
+    <value>Nahrávanie dokončené</value>
+  </data>
+  <data name="UploadComplete2" xml:space="preserve">
+    <value>Nahrávanie dokončené</value>
+  </data>
+  <data name="UploadingPhotoX" xml:space="preserve">
+    <value>Nahráva sa fotka "{0}"</value>
+  </data>
+  <data name="UploadingPictureX" xml:space="preserve">
+    <value>Nahráva sa obrázok "{0}"</value>
+  </data>
+  <data name="UploadingPictureXYOfZ" xml:space="preserve">
+    <value>Nahráva sa obrázok "{0}" ({1} z {2})</value>
+  </data>
+  <data name="UploadingPictures" xml:space="preserve">
+    <value>Nahrávajú sa obrázky</value>
+  </data>
+  <data name="Url4" xml:space="preserve">
+    <value>url</value>
+  </data>
+  <data name="UseAnExistingAlbum" xml:space="preserve">
+    <value>Použiť existujúci album</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Po_užívateľské meno:</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Verzia</value>
+  </data>
+  <data name="Version3" xml:space="preserve">
+    <value>_Verzia</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>Zobraziť</value>
+  </data>
+  <data name="View2" xml:space="preserve">
+    <value>_Zobraziť</value>
+  </data>
+  <data name="ViewAndEditAPhoto" xml:space="preserve">
+    <value>Zobraziť a upraviť fotku</value>
+  </data>
+  <data name="ViewPhotosFullscreen" xml:space="preserve">
+    <value>Zobraziť fotky na celú obrazovku</value>
+  </data>
+  <data name="ViewPhotosInASlideshow" xml:space="preserve">
+    <value>Zobraziť fotky v prezentácii</value>
+  </data>
+  <data name="ViewPhotosInBrowserWhenDoneUploading" xml:space="preserve">
+    <value>Zobraziť fotky _v prehliadači keď sa dokončí nahrávanie</value>
+  </data>
+  <data name="VisibleToFamily" xml:space="preserve">
+    <value>Viditeľné pre rodinu</value>
+  </data>
+  <data name="VisibleToFriends" xml:space="preserve">
+    <value>Viditeľné pre priateľov</value>
+  </data>
+  <data name="WaitingForAuthentication" xml:space="preserve">
+    <value>Čaká sa na overenie totožnosti</value>
+  </data>
+  <data name="WaitingForResponseXOfY" xml:space="preserve">
+    <value>Čaká sa na odpoveď {0} z {1}</value>
+  </data>
+  <data name="WebGallery" xml:space="preserve">
+    <value>Webová _galéria...</value>
+  </data>
+  <data name="WhiteBorders" xml:space="preserve">
+    <value>Biele okraje</value>
+  </data>
+  <data name="WhoIsThis" xml:space="preserve">
+    <value>Kto je to?</value>
+  </data>
+  <data name="WriteOnlyThesePhotosToCD" xml:space="preserve">
+    <value>_Zapísať len tieto fotky na CD</value>
+  </data>
+  <data name="XCFVersion" xml:space="preserve">
+    <value>XCF verzia</value>
+  </data>
+  <data name="XOfApproxY" xml:space="preserve">
+    <value>{0} približne z {1}</value>
+  </data>
+  <data name="XOfY" xml:space="preserve">
+    <value>{0} z {1}</value>
+  </data>
+  <data name="XPhoto2" xml:space="preserve">
+    <value>{0} fotiek</value>
+  </data>
+  <data name="XPhotoOutOfY2" xml:space="preserve">
+    <value>{0} fotiek z {1}</value>
+  </data>
+  <data name="XPhotos2" xml:space="preserve">
+    <value>{0} fotiek</value>
+  </data>
+  <data name="XPhotosOutOfY2" xml:space="preserve">
+    <value>{0} fotka z {1}</value>
+  </data>
+  <data name="XSelected2" xml:space="preserve">
+    <value> ({0} vybraná)</value>
+  </data>
+  <data name="XSent" xml:space="preserve">
+    <value>{0} Odoslaných</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>Včera</value>
+  </data>
+  <data name="YouAreNotLoggedIn" xml:space="preserve">
+    <value>Nie ste prihlásený.</value>
+  </data>
+  <data name="ZoomIn" xml:space="preserve">
+    <value>_Zväčšiť</value>
+  </data>
+  <data name="ZoomIn2" xml:space="preserve">
+    <value>Zväčšiť</value>
+  </data>
+  <data name="ZoomOut" xml:space="preserve">
+    <value>Z_menšiť</value>
+  </data>
+  <data name="ZoomOut2" xml:space="preserve">
+    <value>Zmenšiť</value>
+  </data>
+</root>

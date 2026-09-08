@@ -1,0 +1,2783 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ASingleImportRoll" xml:space="preserve">
+    <value>단일 룰 가져오기</value>
+  </data>
+  <data name="ATrustErrorOccurredWhileAttemptingToAccess" xml:space="preserve">
+    <value>액세스하는 동안 인증 오류</value>
+  </data>
+  <data name="AUniqueNumber" xml:space="preserve">
+    <value>고유 번호</value>
+  </data>
+  <data name="AUniqueNumberIdentifyingTheEnvelope" xml:space="preserve">
+    <value>envolope을(를) 구별하기 위한 고유 번호</value>
+  </data>
+  <data name="AbortThisSession" xml:space="preserve">
+    <value>이 세션 중지</value>
+  </data>
+  <data name="AbstractRelationshipMethodARMIdentifier" xml:space="preserve">
+    <value>추상 연관 방식 (ARM) 구별자</value>
+  </data>
+  <data name="AbstractRelationshipMethodARMVersionNumber" xml:space="preserve">
+    <value>추상 연관 방식 (ARM) 버전 번호.</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>계정(_A):</value>
+  </data>
+  <data name="AddNewRepository" xml:space="preserve">
+    <value>새 저장소 더하기</value>
+  </data>
+  <data name="AdditionalExtensionsAreRequiredToPerformThisOperation" xml:space="preserve">
+    <value>이 작업을 수행하려면 추가적인 확장이 필요합니다.</value>
+  </data>
+  <data name="Adjust" xml:space="preserve">
+    <value>조정</value>
+  </data>
+  <data name="AdjustColors" xml:space="preserve">
+    <value>색상 조정</value>
+  </data>
+  <data name="AdjustTime" xml:space="preserve">
+    <value>시간 조정</value>
+  </data>
+  <data name="AdjustTime2" xml:space="preserve">
+    <value>시간 조정(_T)...</value>
+  </data>
+  <data name="AdjustedDate" xml:space="preserve">
+    <value>조정된 날짜: </value>
+  </data>
+  <data name="AlbumMustHaveAName" xml:space="preserve">
+    <value>앨범 이름이 필요합니다</value>
+  </data>
+  <data name="AlbumName" xml:space="preserve">
+    <value>앨범 이름(_A):</value>
+  </data>
+  <data name="AlbumTitle" xml:space="preserve">
+    <value>앨범 제목(_A):</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>모두</value>
+  </data>
+  <data name="AllImages" xml:space="preserve">
+    <value>모든 이미지</value>
+  </data>
+  <data name="AllRegisteredRepositories" xml:space="preserve">
+    <value>등록된 모든 저장소</value>
+  </data>
+  <data name="AlwaysTrustThisSiteSCertificate" xml:space="preserve">
+    <value>이 사이트에 대한 인증을 항상 허용</value>
+  </data>
+  <data name="AmountColon" xml:space="preserve">
+    <value>강도:</value>
+  </data>
+  <data name="AnErrorOccurredCreatingANewAlbumX" xml:space="preserve">
+    <value>앨범을 만드는 중 오류가 발생했습니다.
+
+{0}</value>
+  </data>
+  <data name="AnErrorOccurredWhileProcessingXMessage" xml:space="preserve">
+    <value>"{0}"처리 중 오류: {1}</value>
+  </data>
+  <data name="AnErrorOfTypeXOccurredWhileDeletingTheFile" xml:space="preserve">
+    <value>파일을 지우는 도중 {0} 오류가 발생했습니다:{2}{1}</value>
+  </data>
+  <data name="AnUnhandledExceptionWasThrown" xml:space="preserve">
+    <value>처리할 수 없는 예외 발생: </value>
+  </data>
+  <data name="And" xml:space="preserve">
+    <value>그리고</value>
+  </data>
+  <data name="AreYouSureYouWantToCancelTheInstallation" xml:space="preserve">
+    <value>정말로 설치를 취소하시겠습니까?</value>
+  </data>
+  <data name="ArrangeBy" xml:space="preserve">
+    <value>다음으로 정렬(_B)</value>
+  </data>
+  <data name="AsBackground" xml:space="preserve">
+    <value>배경색으로(_B)</value>
+  </data>
+  <data name="AsCheckPattern" xml:space="preserve">
+    <value>체크무늬로(_P)</value>
+  </data>
+  <data name="AsCustomColor" xml:space="preserve">
+    <value>사용자 정의 색(_C) </value>
+  </data>
+  <data name="AtAfterBetween" xml:space="preserve">
+    <value>일치
+이후
+사이</value>
+  </data>
+  <data name="AtLeastOneFileNotFound" xml:space="preserve">
+    <value>(파일이 하나도 찾을 수 없음)</value>
+  </data>
+  <data name="AttachTag" xml:space="preserve">
+    <value>태그 붙이기(_A)</value>
+  </data>
+  <data name="AttachTag2" xml:space="preserve">
+    <value>태그 붙이기:</value>
+  </data>
+  <data name="AttachTagToSelection" xml:space="preserve">
+    <value>선택한 사진에 태그 붙이기</value>
+  </data>
+  <data name="AttachTagToSelection2" xml:space="preserve">
+    <value>선택한 사진에 태그 붙이기(_A)</value>
+  </data>
+  <data name="AttachTags" xml:space="preserve">
+    <value>태그 붙이기:</value>
+  </data>
+  <data name="AttachTagsToSelection" xml:space="preserve">
+    <value>선택한 사진에 태그 붙이기</value>
+  </data>
+  <data name="AttachToExportedPhotos" xml:space="preserve">
+    <value>내보내기 사진에 첨부(_A):</value>
+  </data>
+  <data name="Authenticating" xml:space="preserve">
+    <value>인증하는 중...</value>
+  </data>
+  <data name="Author" xml:space="preserve">
+    <value>만든 이:</value>
+  </data>
+  <data name="Authorize" xml:space="preserve">
+    <value>인증</value>
+  </data>
+  <data name="AuthorizingSession" xml:space="preserve">
+    <value>세션 인증 중</value>
+  </data>
+  <data name="AutoColor" xml:space="preserve">
+    <value>자동 색조정</value>
+  </data>
+  <data name="AutoConfirmPhotos" xml:space="preserve">
+    <value>사진 자동-확인</value>
+  </data>
+  <data name="Autorotate" xml:space="preserve">
+    <value>자동 회전</value>
+  </data>
+  <data name="Autorotate2" xml:space="preserve">
+    <value>자동 회전(_A)</value>
+  </data>
+  <data name="AvailableSpaceXYUsedOutOfZ" xml:space="preserve">
+    <value>사용 가능 공간: {0},  {1}% 중에 {2}사용</value>
+  </data>
+  <data name="BAccountB" xml:space="preserve">
+    <value>&lt;b&gt;계정&lt;/b&gt;</value>
+  </data>
+  <data name="BActionB" xml:space="preserve">
+    <value>&lt;b&gt;동작&lt;/b&gt;</value>
+  </data>
+  <data name="BAlbumB" xml:space="preserve">
+    <value>&lt;b&gt;앨범&lt;/b&gt;</value>
+  </data>
+  <data name="BB" xml:space="preserve">
+    <value>&lt;b&gt; &lt;/b&gt;</value>
+  </data>
+  <data name="BCorrectionsB" xml:space="preserve">
+    <value>&lt;b&gt;수정(_R)&lt;/b&gt;</value>
+  </data>
+  <data name="BDestinationB" xml:space="preserve">
+    <value>&lt;b&gt;대상&lt;/b&gt;</value>
+  </data>
+  <data name="BEndDateB" xml:space="preserve">
+    <value>&lt;b&gt;종료일&lt;/b&gt;</value>
+  </data>
+  <data name="BExportMethodB" xml:space="preserve">
+    <value>&lt;b&gt;내보내기 방식&lt;/b&gt;</value>
+  </data>
+  <data name="BFSpotTagsB" xml:space="preserve">
+    <value>&lt;b&gt;F-Spot 태그&lt;/b&gt;</value>
+  </data>
+  <data name="BFromExternalPhotoB" xml:space="preserve">
+    <value>&lt;b&gt;외부 사진에서&lt;/b&gt;</value>
+  </data>
+  <data name="BFromPhotoB" xml:space="preserve">
+    <value>&lt;b&gt;사진에서&lt;/b&gt;</value>
+  </data>
+  <data name="BFromPhotoBYouCanUseOneOfYourLibraryPhotosAsAnIconForThisTagHoweverFirstYouMustHaveAtLeastOnePhotoAssociatedWithThisTagPleaseTagAPhotoAsXAndReturnHereToUseItAsAnIcon" xml:space="preserve">
+    <value>
+&lt;b&gt;사진에서 만든 &lt;/b&gt;
+ 이 태그를 위해 아이콘 라이브러리의 사진 1장을 사용할 수 있습니다.
+ 그러나 이 태그와 관련된 사진 이어야 합니다. 좋아하는
+ 사진에 태그 '{0}' 부여하고 여기에서 돌아가서는 아이콘으로
+ 이용하세요.</value>
+  </data>
+  <data name="BGalleryB" xml:space="preserve">
+    <value>&lt;b&gt;갤러리&lt;/b&gt;</value>
+  </data>
+  <data name="BIThereIsSomePreviouslyScheduledItemsToWriteIB" xml:space="preserve">
+    <value>&lt;b&gt; &lt;i&gt; 다른 쓰기 예약된 항목이있습니다&lt;/i&gt;&lt;/b&gt;</value>
+  </data>
+  <data name="BImageInterpolationB" xml:space="preserve">
+    <value>&lt;b&gt;이미지 보간(Interpolation)&lt;/b&gt;</value>
+  </data>
+  <data name="BMaxRatingB" xml:space="preserve">
+    <value>&lt;b&gt;최고 평가&lt;/b&gt;</value>
+  </data>
+  <data name="BMinRatingB" xml:space="preserve">
+    <value>&lt;b&gt;최소 평가g&lt;/b&gt;</value>
+  </data>
+  <data name="BPhotosB" xml:space="preserve">
+    <value>&lt;b&gt;사진&lt;/b&gt;</value>
+  </data>
+  <data name="BPhotosToBurnB" xml:space="preserve">
+    <value>&lt;b&gt;구울 사진&lt;/b&gt;</value>
+  </data>
+  <data name="BPicasaWebExportB" xml:space="preserve">
+    <value>&lt;b&gt;PicasaWeb 내보내기&lt;/b&gt;</value>
+  </data>
+  <data name="BPredefinedIconsB" xml:space="preserve">
+    <value>&lt;b&gt;미리정의된 아이콘&lt;/b&gt;</value>
+  </data>
+  <data name="BPreviewB" xml:space="preserve">
+    <value>&lt;b&gt;미리보기&lt;/b&gt;</value>
+  </data>
+  <data name="BReferencePhotoB" xml:space="preserve">
+    <value>&lt;b&gt;참조 사진&lt;/b&gt;</value>
+  </data>
+  <data name="BSelectPeriodB" xml:space="preserve">
+    <value>&lt;b&gt;기간 선택&lt;/b&gt;</value>
+  </data>
+  <data name="BSelectTheExtensionsToInstallAndClickOnNextB" xml:space="preserve">
+    <value>&lt;b&gt;설치할 확장기능을 선택하고 다음을 누르십시오&lt;/b&gt;</value>
+  </data>
+  <data name="BSizeB" xml:space="preserve">
+    <value>&lt;b&gt;크기&lt;/b&gt;</value>
+  </data>
+  <data name="BSmugMugExportB" xml:space="preserve">
+    <value>&lt;b&gt;SmugMug 내보내기&lt;/b&gt;</value>
+  </data>
+  <data name="BStartDateB" xml:space="preserve">
+    <value>&lt;b&gt;시작일&lt;/b&gt;</value>
+  </data>
+  <data name="BStyleB" xml:space="preserve">
+    <value>&lt;b&gt;스타일&lt;/b&gt;</value>
+  </data>
+  <data name="BSummaryB" xml:space="preserve">
+    <value>&lt;b&gt;요약&lt;/b&gt;</value>
+  </data>
+  <data name="BTabbloAccountB" xml:space="preserve">
+    <value>&lt;b&gt;Tabblo 계정&lt;/b&gt;</value>
+  </data>
+  <data name="BTransparentPartsB" xml:space="preserve">
+    <value>&lt;b&gt;투명 부분&lt;/b&gt;</value>
+  </data>
+  <data name="BViewAllPicturesImportedB" xml:space="preserve">
+    <value>&lt;b&gt;가져온 모든 사진 보기&lt;/b&gt;</value>
+  </data>
+  <data name="BViewingPermissionsB" xml:space="preserve">
+    <value>&lt;b&gt;보기 권한&lt;/b&gt;</value>
+  </data>
+  <data name="BWhiteBalanceB" xml:space="preserve">
+    <value>&lt;b&gt;화이트 밸런스(_W)&lt;/b&gt;</value>
+  </data>
+  <data name="BXB" xml:space="preserve">
+    <value>&lt;b&gt;{0}&lt;/b&gt;.</value>
+  </data>
+  <data name="BeforeLaunchingYShouldFSpotCreateANewVersionOfTheSelectedPhotoToPreserveTheOriginal" xml:space="preserve">
+    <value>시작 하기 전에, 원본을 유지하기 위해 "{1}"에 선택한 사진의 새 버전을 만드시겠습니까?</value>
+  </data>
+  <data name="BeforeLaunchingYShouldFSpotCreateNewVersionsOfTheSelectedPhotosToPreserveTheOriginals" xml:space="preserve">
+    <value>시작 하기 전에, 원본을 유지하기 위해 "{1}"에 선택한 사진의 새 버전을 만드시겠습니까?</value>
+  </data>
+  <data name="BetweenXAndY" xml:space="preserve">
+    <value>{0} 〜
+{1}</value>
+  </data>
+  <data name="BigBExtensionManagerBBig" xml:space="preserve">
+    <value>&lt;big&gt;&lt;b&gt;확장기능 관리자&lt;/b&gt;&lt;/big&gt;</value>
+  </data>
+  <data name="Brightness" xml:space="preserve">
+    <value>밝기(_B):</value>
+  </data>
+  <data name="Browse" xml:space="preserve">
+    <value>찾아보기...</value>
+  </data>
+  <data name="Browse2" xml:space="preserve">
+    <value>찾아보기</value>
+  </data>
+  <data name="BrowseManyPhotosSimultaneously" xml:space="preserve">
+    <value>여러 사진들을 동시에 찾아봅니다</value>
+  </data>
+  <data name="BrowsePreviouslyScheduledFiles" xml:space="preserve">
+    <value>이전에 스케줄된 파일 찾아보기(_B)</value>
+  </data>
+  <data name="BuildingGallery" xml:space="preserve">
+    <value>갤러리를 구성하는 중</value>
+  </data>
+  <data name="ByDate" xml:space="preserve">
+    <value>날짜순(_D)</value>
+  </data>
+  <data name="ByImportRoll" xml:space="preserve">
+    <value>가져오기 규칙순(_I)</value>
+  </data>
+  <data name="ByRating" xml:space="preserve">
+    <value>평가순(_R)</value>
+  </data>
+  <data name="CD" xml:space="preserve">
+    <value>CD</value>
+  </data>
+  <data name="CD2" xml:space="preserve">
+    <value>CD(_C)...</value>
+  </data>
+  <data name="Camera" xml:space="preserve">
+    <value>카메라</value>
+  </data>
+  <data name="CameraSelection" xml:space="preserve">
+    <value>카메라 선택</value>
+  </data>
+  <data name="CanNotDeleteTagsThatHaveTagsWihinThem.PleaseDeleteTagUnderXFirst" xml:space="preserve">
+    <value>다른 태그들을 포함하는 태그를 지울 수 없습니다. "{0}" 아래의 태그들을 먼저 지우십시오.</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>취소</value>
+  </data>
+  <data name="CancelDoNotChangeTheCurrentTimeline" xml:space="preserve">
+    <value>취소, 현재 타임라인을 바꾸지 않습니다. </value>
+  </data>
+  <data name="CannotConnectToGalleryUnknownVersionCheckRemotePlugin" xml:space="preserve">
+    <value>이 버전에서는 갤러리에 연결할 수 없습니다.
+원격 플러그인이 1.08 이상인지 확인하십시오.</value>
+  </data>
+  <data name="Captcha" xml:space="preserve">
+    <value>Captcha(_C):</value>
+  </data>
+  <data name="Caption2" xml:space="preserve">
+    <value>표제</value>
+  </data>
+  <data name="CheckForDuplicates" xml:space="preserve">
+    <value>중복 확인을 위한...</value>
+  </data>
+  <data name="CheckingCredentials" xml:space="preserve">
+    <value>자격을 점검하는 중...</value>
+  </data>
+  <data name="ChooseDestinationDirectory" xml:space="preserve">
+    <value>원하는 디렉터리를 선택</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>도시</value>
+  </data>
+  <data name="ClearDateRangeMnemonic" xml:space="preserve">
+    <value>날짜 범위 초기화(_C)</value>
+  </data>
+  <data name="ClearRatingFilter" xml:space="preserve">
+    <value>평가 필터 청소(_C)</value>
+  </data>
+  <data name="ClearRollFilter" xml:space="preserve">
+    <value>목록 필터 청소(_C)</value>
+  </data>
+  <data name="ClearSearch" xml:space="preserve">
+    <value>찾아보기 없앰</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>닫기(_C)</value>
+  </data>
+  <data name="ColorProfileForDisplay" xml:space="preserve">
+    <value>디스플레이 색 프로필 :</value>
+  </data>
+  <data name="ColorProfileForPrinting" xml:space="preserve">
+    <value>프린팅 색 프로필 :</value>
+  </data>
+  <data name="ColorSpace" xml:space="preserve">
+    <value>색 공간</value>
+  </data>
+  <data name="CommaSpace" xml:space="preserve">
+    <value>, </value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>메모:</value>
+  </data>
+  <data name="CompleteAuthorization" xml:space="preserve">
+    <value>인증 완료</value>
+  </data>
+  <data name="Components" xml:space="preserve">
+    <value>컴포넌트(_C)</value>
+  </data>
+  <data name="ComponentsConfiguration" xml:space="preserve">
+    <value>컴포넌트 설정</value>
+  </data>
+  <data name="CompressedFile" xml:space="preserve">
+    <value>압축 파일(_E)...</value>
+  </data>
+  <data name="Compression" xml:space="preserve">
+    <value>압축</value>
+  </data>
+  <data name="ConfigureScreensaver" xml:space="preserve">
+    <value>화면 보호기 설정</value>
+  </data>
+  <data name="Contents" xml:space="preserve">
+    <value>차례(_C)</value>
+  </data>
+  <data name="ContinueEditing" xml:space="preserve">
+    <value>계속 편집</value>
+  </data>
+  <data name="Contrast" xml:space="preserve">
+    <value>대비</value>
+  </data>
+  <data name="Contrast2" xml:space="preserve">
+    <value>대비(_O):</value>
+  </data>
+  <data name="CopyFilesToThePhotosFolder" xml:space="preserve">
+    <value>파일을 사진 폴더로 복사</value>
+  </data>
+  <data name="CopyImagesToPhotosFolder" xml:space="preserve">
+    <value>사진 폴더로 이미지 복사</value>
+  </data>
+  <data name="CopyLocation" xml:space="preserve">
+    <value>위치 복사(_I)</value>
+  </data>
+  <data name="CopyPhotoLocation" xml:space="preserve">
+    <value>사진 위치 복사(_I)</value>
+  </data>
+  <data name="Copying2" xml:space="preserve">
+    <value>복사중...</value>
+  </data>
+  <data name="CopyingFileXOfY" xml:space="preserve">
+    <value>{1} 중 {0} 파일 복사하는 중</value>
+  </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>저작권:</value>
+  </data>
+  <data name="Copyright2" xml:space="preserve">
+    <value>저작권</value>
+  </data>
+  <data name="Copyright20032009NovellInc" xml:space="preserve">
+    <value>Copyright © 2003-2009 Novell Inc.</value>
+  </data>
+  <data name="CopyrightInformationFor" xml:space="preserve">
+    <value>저작권 정보</value>
+  </data>
+  <data name="CouldNotCreateANewVersion" xml:space="preserve">
+    <value>새 버전을 만들 수 없습니다</value>
+  </data>
+  <data name="CouldNotDeleteAVersion" xml:space="preserve">
+    <value>버전을 지울 수 없음</value>
+  </data>
+  <data name="CouldNotRenameAVersion" xml:space="preserve">
+    <value>버전의 이름을 바꿀 수 없음</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>국가</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>만들기(_C)</value>
+  </data>
+  <data name="Create2" xml:space="preserve">
+    <value>만들기(_R)</value>
+  </data>
+  <data name="CreateAMailWithTheSelectedPhotosPossiblyResizedAttached" xml:space="preserve">
+    <value>사진을 첨부한 메일을 작성합니다. (필요에 따라 크기를 조절할 수 있습니다)</value>
+  </data>
+  <data name="CreateANewAlbum" xml:space="preserve">
+    <value>새 앨범 만들기</value>
+  </data>
+  <data name="CreateCD" xml:space="preserve">
+    <value>CD 만들기</value>
+  </data>
+  <data name="CreateGalleryUsingOriginal" xml:space="preserve">
+    <value>"원본"을 이용하여 갤러리 만들기(_G)</value>
+  </data>
+  <data name="CreateIconForThisTagWhenFirstUsed" xml:space="preserve">
+    <value>이 태그를 처음 사용할 때 아이콘 만들기(_I)</value>
+  </data>
+  <data name="CreateMail" xml:space="preserve">
+    <value>메일 작성하기</value>
+  </data>
+  <data name="CreateMail2" xml:space="preserve">
+    <value>메일 만들기(_C)</value>
+  </data>
+  <data name="CreateNewTag" xml:space="preserve">
+    <value>새 태그 만들기</value>
+  </data>
+  <data name="CreateNewTag2" xml:space="preserve">
+    <value>새 태그 만들기...</value>
+  </data>
+  <data name="CreateNewTag3" xml:space="preserve">
+    <value>새 태그 만들기(_T)...</value>
+  </data>
+  <data name="CreateNewVersion" xml:space="preserve">
+    <value>새 버전 만들기</value>
+  </data>
+  <data name="CreateNewVersion2" xml:space="preserve">
+    <value>새 버전을 만들겠습니까?</value>
+  </data>
+  <data name="CreateNewVersion3" xml:space="preserve">
+    <value>새 버전 만들기(_N)...</value>
+  </data>
+  <data name="CreateNewVersions" xml:space="preserve">
+    <value>새 버전을 만들겠습니까?</value>
+  </data>
+  <data name="CreateStandaloneWebGallery" xml:space="preserve">
+    <value>별도의 웹 갤러리 만들기(_W)</value>
+  </data>
+  <data name="CreatingANewAlbumFailed" xml:space="preserve">
+    <value>앨범 생성 실패</value>
+  </data>
+  <data name="Creator" xml:space="preserve">
+    <value>만든 이</value>
+  </data>
+  <data name="CreatorOfTheContent" xml:space="preserve">
+    <value>만든 사람</value>
+  </data>
+  <data name="Crop" xml:space="preserve">
+    <value>잘라내기</value>
+  </data>
+  <data name="CurrentDate" xml:space="preserve">
+    <value>오늘:</value>
+  </data>
+  <data name="CurrentWeekMonSun" xml:space="preserve">
+    <value>이번 주 (월-일요일)</value>
+  </data>
+  <data name="CustomRatios" xml:space="preserve">
+    <value>사용자 지정 비율...</value>
+  </data>
+  <data name="CustomRendered" xml:space="preserve">
+    <value>사용자 정의된</value>
+  </data>
+  <data name="CustomText" xml:space="preserve">
+    <value>사용자 정의 글자</value>
+  </data>
+  <data name="CustomizedRange" xml:space="preserve">
+    <value>사용자가 지정한 범위</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>어둡게</value>
+  </data>
+  <data name="DatabaseLocation" xml:space="preserve">
+    <value>데이터베이스의 위치:</value>
+  </data>
+  <data name="DatabaseRefersToFilesContainedInXFolderPleaseSelectThatFolderSoICanDoTheMapping" xml:space="preserve">
+    <value>&lt;big&gt;데이터베이스가 &lt;b&gt;{0}&lt;/b&gt; 폴더에 있는 파일을 참조합니다.
+이 폴더를 선택하면 매핑합니다.&lt;/big&gt;</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>날짜</value>
+  </data>
+  <data name="Dates" xml:space="preserve">
+    <value>날짜(_D)</value>
+  </data>
+  <data name="Delay" xml:space="preserve">
+    <value>지연:</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>삭제</value>
+  </data>
+  <data name="DeleteFromDrive" xml:space="preserve">
+    <value>드라이브에서 삭제(_D)</value>
+  </data>
+  <data name="DeletePhotoMnemonic" xml:space="preserve">
+    <value>사진 삭제(_D)</value>
+  </data>
+  <data name="DeletePhotosMnemonic" xml:space="preserve">
+    <value>사진 삭제(_D)</value>
+  </data>
+  <data name="DeleteSelectedTag" xml:space="preserve">
+    <value>선택한 태그 삭제(_D)</value>
+  </data>
+  <data name="DeleteTag" xml:space="preserve">
+    <value>태그 삭제</value>
+  </data>
+  <data name="DeleteTagMnemonic" xml:space="preserve">
+    <value>태그 삭제(_D)</value>
+  </data>
+  <data name="DeleteTagXQuestion" xml:space="preserve">
+    <value>"{0}" 태그를 지우겠습니까?</value>
+  </data>
+  <data name="DeleteTags" xml:space="preserve">
+    <value>태그 삭제</value>
+  </data>
+  <data name="DeleteTagsMnemonic" xml:space="preserve">
+    <value>태그 삭제(_D)</value>
+  </data>
+  <data name="DeleteTheSelectedPhotoPermanently" xml:space="preserve">
+    <value>선택한 {0}개의 사진을 완전히 지우겠습니까?</value>
+  </data>
+  <data name="DeleteTheXSelectedPhotosPermanently" xml:space="preserve">
+    <value>선택한 {0}개의 사진을 완전히 지우겠습니까?</value>
+  </data>
+  <data name="DeleteTheXSelectedTagsQuestion" xml:space="preserve">
+    <value>선택한 {0} 태그를 지우겠습니까?</value>
+  </data>
+  <data name="DeleteVersion" xml:space="preserve">
+    <value>버전 삭제(_D)</value>
+  </data>
+  <data name="Desaturate" xml:space="preserve">
+    <value>흑백 사진</value>
+  </data>
+  <data name="Description2" xml:space="preserve">
+    <value>설명(_E):</value>
+  </data>
+  <data name="Description3" xml:space="preserve">
+    <value>설명(_D):</value>
+  </data>
+  <data name="Description4" xml:space="preserve">
+    <value>설명</value>
+  </data>
+  <data name="DesignIconFrom" xml:space="preserve">
+    <value>디자인 아이콘에서</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>상세 정보</value>
+  </data>
+  <data name="DetectDuplicates" xml:space="preserve">
+    <value>중복 검색</value>
+  </data>
+  <data name="Difference" xml:space="preserve">
+    <value>차이:</value>
+  </data>
+  <data name="DirectoryDoesNotExist" xml:space="preserve">
+    <value>디렉터리가 존재하지 않습니다.</value>
+  </data>
+  <data name="DirectoryNotFound" xml:space="preserve">
+    <value>폴더를 찾을 수 없습니다.</value>
+  </data>
+  <data name="Disable" xml:space="preserve">
+    <value>사용 안함</value>
+  </data>
+  <data name="DisabledExtensionsCanTBeLoaded" xml:space="preserve">
+    <value>비활성화된 확장기능을 로드할 수 없습니다.</value>
+  </data>
+  <data name="DiscardChanges" xml:space="preserve">
+    <value>바뀐 사항 무시</value>
+  </data>
+  <data name="Display2" xml:space="preserve">
+    <value>표시:</value>
+  </data>
+  <data name="DisplayASlideshowFromFSpot" xml:space="preserve">
+    <value>F-Spot에서 슬라이드쇼 보기</value>
+  </data>
+  <data name="DisplayFileNames" xml:space="preserve">
+    <value>파일 이름 표시(_N)</value>
+  </data>
+  <data name="DisplayOnlyThosePhotosThatWereImportedInSpecifiedRolls" xml:space="preserve">
+    <value>지정된 롤에서 가져온 사진만을 표시.</value>
+  </data>
+  <data name="DoNotSendAMail" xml:space="preserve">
+    <value>메일을 보내지 않음</value>
+  </data>
+  <data name="DoYouWishTo" xml:space="preserve">
+    <value>하시겠습니까:</value>
+  </data>
+  <data name="DoneCopyingFiles" xml:space="preserve">
+    <value>파일 복사 완료</value>
+  </data>
+  <data name="DoneLoading" xml:space="preserve">
+    <value>읽어오기 완료</value>
+  </data>
+  <data name="DoneSendingPhotos" xml:space="preserve">
+    <value>사진 보내기 완료</value>
+  </data>
+  <data name="DoneSendingPhotos2" xml:space="preserve">
+    <value>사진 전송 완료</value>
+  </data>
+  <data name="DownloadComplete" xml:space="preserve">
+    <value>다운로드 완료</value>
+  </data>
+  <data name="DownloadingExtensions" xml:space="preserve">
+    <value>확장기능을 다운로드하는 중...</value>
+  </data>
+  <data name="DownloadingPreviewOfX" xml:space="preserve">
+    <value>{0}의 미리보기를 다운로드하는 중</value>
+  </data>
+  <data name="DownloadingPreviews" xml:space="preserve">
+    <value>미리보기를 다운로드하는 중</value>
+  </data>
+  <data name="DragTagsHereToSearchForThem" xml:space="preserve">
+    <value>찾아볼 태그를 여기로 끌어다 놓으세요</value>
+  </data>
+  <data name="EMail" xml:space="preserve">
+    <value>전자메일(_M):</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>편집</value>
+  </data>
+  <data name="Edit2" xml:space="preserve">
+    <value>편집(_E)</value>
+  </data>
+  <data name="EditIcon" xml:space="preserve">
+    <value>아이콘 편집</value>
+  </data>
+  <data name="EditIconForTagX" xml:space="preserve">
+    <value>{0} 태그의 아이콘 편집</value>
+  </data>
+  <data name="EditImage" xml:space="preserve">
+    <value>이미지 편집</value>
+  </data>
+  <data name="EditSelectedTag2" xml:space="preserve">
+    <value>선택한 태그 편집(_E)...</value>
+  </data>
+  <data name="EditTag" xml:space="preserve">
+    <value>태그 편집...</value>
+  </data>
+  <data name="EditTag2" xml:space="preserve">
+    <value>태그 편집</value>
+  </data>
+  <data name="EditTagIcon" xml:space="preserve">
+    <value>태그 아이콘 편집</value>
+  </data>
+  <data name="EightByTen" xml:space="preserve">
+    <value>8 x 10</value>
+  </data>
+  <data name="Enable" xml:space="preserve">
+    <value>사용</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>오류</value>
+  </data>
+  <data name="ErrorConnectingToCamera" xml:space="preserve">
+    <value>카메라에 연결하는 중 오류</value>
+  </data>
+  <data name="ErrorDeletingPicture" xml:space="preserve">
+    <value>사진을 지우는 중 오류</value>
+  </data>
+  <data name="ErrorDetails" xml:space="preserve">
+    <value>오류 상세 정보</value>
+  </data>
+  <data name="ErrorEditingPhoto" xml:space="preserve">
+    <value>사진을 편집하는 중 오류</value>
+  </data>
+  <data name="ErrorErrorWhileTransferringAborting" xml:space="preserve">
+    <value>오류: 전송 중 오류 - 중지</value>
+  </data>
+  <data name="ErrorFileAlreadyExistsAborting" xml:space="preserve">
+    <value>오류: 파일이 이미 존재함 - 중지</value>
+  </data>
+  <data name="ErrorImportingXZZY" xml:space="preserve">
+    <value>{0}{2}{2}{1} 가져오기 도중 오류</value>
+  </data>
+  <data name="ErrorLoadingDatabase" xml:space="preserve">
+    <value>데이터베이스를 읽어오는 중 오류.</value>
+  </data>
+  <data name="ErrorLoggingIntoFacebook" xml:space="preserve">
+    <value>Facebook에 로그인하는 동안 오류</value>
+  </data>
+  <data name="ErrorOpeningTheSelectedFile" xml:space="preserve">
+    <value>선택된 파일을 불러오는 중 오류</value>
+  </data>
+  <data name="ErrorProcessingImage" xml:space="preserve">
+    <value>이미지 처리 오류</value>
+  </data>
+  <data name="ErrorReadingServerResponse" xml:space="preserve">
+    <value>서버의 응답을 읽는 중 오류</value>
+  </data>
+  <data name="ErrorRenamingTag" xml:space="preserve">
+    <value>태그 이름 바꾸기 오류</value>
+  </data>
+  <data name="ErrorSavingAdjustedPhoto" xml:space="preserve">
+    <value>조정된 사진을 저장하는 도중 오류</value>
+  </data>
+  <data name="ErrorSavingAdjustedPhotos" xml:space="preserve">
+    <value>조정된 사진을 저장하는 도중 오류</value>
+  </data>
+  <data name="ErrorSavingSharpenedPhoto" xml:space="preserve">
+    <value>선명하게 만든 사진을 저장하는 도중 오류</value>
+  </data>
+  <data name="ErrorTransferring" xml:space="preserve">
+    <value>전송 오류</value>
+  </data>
+  <data name="ErrorTransferringFile" xml:space="preserve">
+    <value>파일 전송 오류</value>
+  </data>
+  <data name="ErrorUploadingPictureXToGalleryColonY" xml:space="preserve">
+    <value>"{0}" 사진을 갤러리로 업로드 하는 중 오류: {1}</value>
+  </data>
+  <data name="ErrorUploadingPictureXToGalleryZY" xml:space="preserve">
+    <value>"{0}" 사진을 갤러리로 업로드 하는 중 오류: {2}{1}</value>
+  </data>
+  <data name="ErrorUploadingToFacebookX" xml:space="preserve">
+    <value>Facebook에 업로드하는 중 오류: {0}</value>
+  </data>
+  <data name="ErrorUploadingToGalleryX" xml:space="preserve">
+    <value>갤러리로 업로드 하는 중 오류: {0}</value>
+  </data>
+  <data name="ErrorUploadingToTabblo" xml:space="preserve">
+    <value>Tabblo에 업로드하는 동안 오류: </value>
+  </data>
+  <data name="ErrorUploadingToXColonY" xml:space="preserve">
+    <value>{0}으로 업로드 하는 중 오류: {1}</value>
+  </data>
+  <data name="ErrorWhileConnectingToGallery" xml:space="preserve">
+    <value>갤러리에 연결하는 도중 오류</value>
+  </data>
+  <data name="ErrorWhileCreatingAlbum" xml:space="preserve">
+    <value>앨범을 만드는 중 오류</value>
+  </data>
+  <data name="ErrorWhileCreatingNewAlbum" xml:space="preserve">
+    <value>새 앨범을 만드는 중 오류</value>
+  </data>
+  <data name="ErrorWhileRotatingPhoto" xml:space="preserve">
+    <value>사진을 회전하는 중 오류.</value>
+  </data>
+  <data name="ErrorWhileTransferring" xml:space="preserve">
+    <value>전송 중 오류</value>
+  </data>
+  <data name="EstimatedNewSize" xml:space="preserve">
+    <value>예상 새 크기</value>
+  </data>
+  <data name="Events" xml:space="preserve">
+    <value>이벤트</value>
+  </data>
+  <data name="Everything" xml:space="preserve">
+    <value>전체</value>
+  </data>
+  <data name="ExceptionOccurredX" xml:space="preserve">
+    <value>예외 발생: {0}</value>
+  </data>
+  <data name="ExcludePhotosTaggedX" xml:space="preserve">
+    <value>"{0}" 태그가 붙은 사진 제외</value>
+  </data>
+  <data name="ExifDirectory" xml:space="preserve">
+    <value>Exif 디렉터리</value>
+  </data>
+  <data name="ExitFullscreen" xml:space="preserve">
+    <value>전체화면 끝내기</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>내보내기</value>
+  </data>
+  <data name="Export2" xml:space="preserve">
+    <value>내보내기(_E)</value>
+  </data>
+  <data name="ExportTagHierarchy" xml:space="preserve">
+    <value>태그 계층 구조를 내보내기(_H)</value>
+  </data>
+  <data name="ExportTagIcons" xml:space="preserve">
+    <value>태그 아이콘 내보내기(_I)</value>
+  </data>
+  <data name="ExportTags" xml:space="preserve">
+    <value>태그 내보내기(_E)</value>
+  </data>
+  <data name="ExportTags2" xml:space="preserve">
+    <value>태그 내보내기(_T)</value>
+  </data>
+  <data name="ExportTitlesAndComments" xml:space="preserve">
+    <value>제목과 메모 내보내기(_X)</value>
+  </data>
+  <data name="ExportTitlesAndComments2" xml:space="preserve">
+    <value>제목과 메모 내보내기(_T)</value>
+  </data>
+  <data name="ExportTo" xml:space="preserve">
+    <value>다음으로 내보내기</value>
+  </data>
+  <data name="ExportTo2" xml:space="preserve">
+    <value>다음으로 내보내기(_E)</value>
+  </data>
+  <data name="ExportToAlbum" xml:space="preserve">
+    <value>앨범으로 내보내기(_E):</value>
+  </data>
+  <data name="ExportToFacebook" xml:space="preserve">
+    <value>Facebook으로 내보내기</value>
+  </data>
+  <data name="ExportingFiles" xml:space="preserve">
+    <value>파일 내보내기 중</value>
+  </data>
+  <data name="ExportingPhotoX" xml:space="preserve">
+    <value>"{0}" 사진을 내보내는 중</value>
+  </data>
+  <data name="Exposure" xml:space="preserve">
+    <value>노출</value>
+  </data>
+  <data name="Exposure2" xml:space="preserve">
+    <value>노출(_E):</value>
+  </data>
+  <data name="ExposureMode" xml:space="preserve">
+    <value>노출 모드</value>
+  </data>
+  <data name="ExposureProgram" xml:space="preserve">
+    <value>노출 프로그램</value>
+  </data>
+  <data name="ExtendedMetadata" xml:space="preserve">
+    <value>확장 메타데이터</value>
+  </data>
+  <data name="Extension" xml:space="preserve">
+    <value>확장기능</value>
+  </data>
+  <data name="ExtensionDependencies" xml:space="preserve">
+    <value>확장기능 의존성:</value>
+  </data>
+  <data name="ExtensionInstallation" xml:space="preserve">
+    <value>확장기능 설치</value>
+  </data>
+  <data name="ExtensionManager" xml:space="preserve">
+    <value>확장기능 관리자</value>
+  </data>
+  <data name="ExtensionRepositoryManagement" xml:space="preserve">
+    <value>확장기능 저장소 관리</value>
+  </data>
+  <data name="ExternalGloballyUniqueObjectIdentifier" xml:space="preserve">
+    <value>외부 전역 고유 객체 구별자</value>
+  </data>
+  <data name="ExtraLarge" xml:space="preserve">
+    <value>매우 크게</value>
+  </data>
+  <data name="FSpot" xml:space="preserve">
+    <value>F-Spot</value>
+  </data>
+  <data name="FSpotAppearance" xml:space="preserve">
+    <value>F-Spot 외양:</value>
+  </data>
+  <data name="FSpotEncounteredAFatalError" xml:space="preserve">
+    <value>F-Spot에 치명적인 오류가 발생했습니다</value>
+  </data>
+  <data name="FSpotEncounteredAnErrorWhileLoadingThePhotoDatabaseTheOldDatabaseHasBeMovedToXAndANewDatabaseHasBeenCreated" xml:space="preserve">
+    <value>F-Spot이 사진 데이터베이스를 읽어오는 도중 오류가 발생했습니다. 예전 데이터베이스는 {0}(으)로 옮겨지고 새 데이터베이스가 만들어 졌습니다.</value>
+  </data>
+  <data name="FSpotNeedsYourAuthorizationInOrderToUploadPhotosToYourXAccountPressTheAuthorizeButtonToOpenAWebBrowserAndGiveFSpotTheAuthorization" xml:space="preserve">
+    <value>F-Spot에서 여러분의 {0} 계정에 사진을 업로드 하기 위해 인증이 필요합니다. "인증" 단추를 눌러 웹 브라우저를 열고 인증 과정을 수행해 주십시오. </value>
+  </data>
+  <data name="FSpotPhotoManager" xml:space="preserve">
+    <value>F-Spot 사진 관리자</value>
+  </data>
+  <data name="FSpotPhotoViewer" xml:space="preserve">
+    <value>F-Spot 사진 보기</value>
+  </data>
+  <data name="FSpotPhotos" xml:space="preserve">
+    <value>F-Spot 사진</value>
+  </data>
+  <data name="FSpotPreferences" xml:space="preserve">
+    <value>F-Spot 기본 설정</value>
+  </data>
+  <data name="FSpotView" xml:space="preserve">
+    <value>F-Spot 보기</value>
+  </data>
+  <data name="FSpotWasUnableToFindAnyCamerasAttachedToThisSystemDoubleCheckThatTheCameraIsConnectedAndHasPower" xml:space="preserve">
+    <value>F-Spot에서 시스템에 연결된 카메라를 찾을 수 없습니다. 카메라가 연결되어 있고 전원이 켜져 있는지 다시 한 번 확인해 주십시오</value>
+  </data>
+  <data name="FSpotWasUnableToLogOnToXMakeSureYouHaveGivenTheAuthUsingXWebBrowser" xml:space="preserve">
+    <value>F-Spot에서 {0}(으)로 로그인 할 수 없습니다. {0} 웹 브라우저 인터페이스를 이용한 인증 과정이 올바른지 확인하여 주십시오.</value>
+  </data>
+  <data name="FSpotWebsite" xml:space="preserve">
+    <value>F-Spot 웹사이트</value>
+  </data>
+  <data name="FSpotWillNowLaunchYourBrowserSoThatYouCanEnableThePermissionYouJustSelectedOnceYouAreDirectedByFacebookToReturnToThisApplicationClickOkBelow" xml:space="preserve">
+    <value>F-Spot 브라우저를 시작합니다 때문에 거기서 권한을 선택하십시오.
+
+페이스북 프로그램으로 하라는 메시지가 표시 되면  "확인" 버튼을 클릭하십시오.</value>
+  </data>
+  <data name="FSpotWillNowLaunchYourBrowserSoThatYouCanLogIntoFacebookOnceYouAreDirectedByFacebookToReturnToThisApplicationClickOkBelowFSpotWillCacheYourSessionInGnomeKeyringIfPossibleAndReUseItOnFutureFacebookExports" xml:space="preserve">
+    <value>F-Spot Facebook에 로그인하기 위해 브라우저를 시작합니다.
+
+Facebook 응용 프로그램에 이전하라는 메시지가 표시되면 다음 "OK"버튼을 클릭하십시오. F-Spot은 가능하면 당신의 세션을 Gnome-Keyring에 캐시하고 후반 Facebook에 내보내기에 다시 사용합니다.</value>
+  </data>
+  <data name="Facebook" xml:space="preserve">
+    <value>페이스북(_A)...</value>
+  </data>
+  <data name="FacebookConnectionError" xml:space="preserve">
+    <value>페이스북 연결 오류</value>
+  </data>
+  <data name="FacebookOnlyPermitsXPhotographsPerAlbumPleaseRefineYourSelectionAndTryAgain" xml:space="preserve">
+    <value>Facebook 에서는 한개의 앨범에 들어있는 사진은 {0} 장입니다. 사진을 선택하고 다시 다시 시도하십시오.</value>
+  </data>
+  <data name="Favorites" xml:space="preserve">
+    <value>좋은 사진</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>파일</value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>파일 이름(_F):</value>
+  </data>
+  <data name="FileNotFonud" xml:space="preserve">
+    <value>파일을 찾을 수 없음</value>
+  </data>
+  <data name="FileSize" xml:space="preserve">
+    <value>파일 크기</value>
+  </data>
+  <data name="FileSourceType" xml:space="preserve">
+    <value>파일 소스 타입</value>
+  </data>
+  <data name="Filesystem" xml:space="preserve">
+    <value>파일 시스템</value>
+  </data>
+  <data name="Fill" xml:space="preserve">
+    <value>채움</value>
+  </data>
+  <data name="Filmstrip" xml:space="preserve">
+    <value>슬라이드(_F)</value>
+  </data>
+  <data name="FilterOnSelectedRolls" xml:space="preserve">
+    <value>선택된 롤에 필터 적용</value>
+  </data>
+  <data name="Find" xml:space="preserve">
+    <value>찾기</value>
+  </data>
+  <data name="Find2" xml:space="preserve">
+    <value>찾기:</value>
+  </data>
+  <data name="Find3" xml:space="preserve">
+    <value>찾기(_D)</value>
+  </data>
+  <data name="FindColon" xml:space="preserve">
+    <value>찾기: </value>
+  </data>
+  <data name="FindSelectedTagMnemonic" xml:space="preserve">
+    <value>선택된 태그 찾기(_S)</value>
+  </data>
+  <data name="FindSelectedTagWithMnemonic" xml:space="preserve">
+    <value>선택된 태그에서 찾기(_W)</value>
+  </data>
+  <data name="FindSelectedTagsMnemonic" xml:space="preserve">
+    <value>선택된 태그 찾기(_S)</value>
+  </data>
+  <data name="FindSelectedTagsWithMnemonic" xml:space="preserve">
+    <value>선택된 태그에서 찾기(_W)</value>
+  </data>
+  <data name="FindWithMnemonic" xml:space="preserve">
+    <value>다음으로 찾기(_W)</value>
+  </data>
+  <data name="FiveBySevenL2L" xml:space="preserve">
+    <value>5 x 7 (L, 2L)</value>
+  </data>
+  <data name="FixExclamation" xml:space="preserve">
+    <value>고치기!</value>
+  </data>
+  <data name="Flickr" xml:space="preserve">
+    <value>Flickr(_F)</value>
+  </data>
+  <data name="Flickr2" xml:space="preserve">
+    <value>Flickr(_F)...</value>
+  </data>
+  <data name="FocalLength" xml:space="preserve">
+    <value>초점 거리</value>
+  </data>
+  <data name="FocalPlaneResolutionUnit" xml:space="preserve">
+    <value>초점면 해상도 단위</value>
+  </data>
+  <data name="Folder" xml:space="preserve">
+    <value>폴더</value>
+  </data>
+  <data name="Folder3" xml:space="preserve">
+    <value>폴더(_O)...</value>
+  </data>
+  <data name="Folder4" xml:space="preserve">
+    <value>폴더(_F):</value>
+  </data>
+  <data name="FolderExport" xml:space="preserve">
+    <value>폴더 내보내기</value>
+  </data>
+  <data name="Folders" xml:space="preserve">
+    <value>폴더</value>
+  </data>
+  <data name="FollowingErrorEncounteredAttemptingToPerformRequestedOperation" xml:space="preserve">
+    <value>요청한 작업을 할 때 다음 오류가 발생했습니다:
+{0} ({1})</value>
+  </data>
+  <data name="FollowingErrorWasEncounteredAttemptingToLogInX" xml:space="preserve">
+    <value>로그인을 시도하는 중 다음과 같은 오류가 발생했습니다: {0}</value>
+  </data>
+  <data name="FourBySixPostcard" xml:space="preserve">
+    <value>4 x 6 (엽서)</value>
+  </data>
+  <data name="FourByThreeBook" xml:space="preserve">
+    <value>4 x 3 (책)</value>
+  </data>
+  <data name="FullNameOfTheCountryOfTheFocusOfTheContent" xml:space="preserve">
+    <value>내용에서 포커스를 맞추고 있는 국가의 (완전한) 이름</value>
+  </data>
+  <data name="FullPageNomargin" xml:space="preserve">
+    <value>전체 페이지 (여백 없음)</value>
+  </data>
+  <data name="Fullscreen" xml:space="preserve">
+    <value>전체 화면</value>
+  </data>
+  <data name="Fullscreen2" xml:space="preserve">
+    <value>전체 화면(_F)</value>
+  </data>
+  <data name="GPSDirectory" xml:space="preserve">
+    <value>GPS 디렉터리</value>
+  </data>
+  <data name="GainControl" xml:space="preserve">
+    <value>게인 조정</value>
+  </data>
+  <data name="Gallery" xml:space="preserve">
+    <value>갤러리</value>
+  </data>
+  <data name="Gallery3" xml:space="preserve">
+    <value>갤러리(_A):</value>
+  </data>
+  <data name="Gallery4" xml:space="preserve">
+    <value>갤러리(_G)</value>
+  </data>
+  <data name="Gallery5" xml:space="preserve">
+    <value>갤러리(_G):</value>
+  </data>
+  <data name="GalleryGeneratedBy" xml:space="preserve">
+    <value>다음으로 만들어진 갤러리:</value>
+  </data>
+  <data name="GalleryName" xml:space="preserve">
+    <value>갤러리 이름(_A):</value>
+  </data>
+  <data name="GalleryName2" xml:space="preserve">
+    <value>갤러리 이름(_G):</value>
+  </data>
+  <data name="GalleryWithThisNameAlreadyExists" xml:space="preserve">
+    <value>같은 이름의 갤러리가 이미 존재합니다</value>
+  </data>
+  <data name="HeadlineOfTheContent" xml:space="preserve">
+    <value>내용의 머리글</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>도움말(_H)</value>
+  </data>
+  <data name="Hidden" xml:space="preserve">
+    <value>숨김</value>
+  </data>
+  <data name="Hidden2" xml:space="preserve">
+    <value>숨김(_H)</value>
+  </data>
+  <data name="Hide" xml:space="preserve">
+    <value>숨기기</value>
+  </data>
+  <data name="HideFindBarMnemonic" xml:space="preserve">
+    <value>찾기 정보 숨김(_F)</value>
+  </data>
+  <data name="HideStyles" xml:space="preserve">
+    <value>스타일 숨기기</value>
+  </data>
+  <data name="HideToolbar2" xml:space="preserve">
+    <value>도구 모음 숨기기</value>
+  </data>
+  <data name="Histogram" xml:space="preserve">
+    <value>히스토그램</value>
+  </data>
+  <data name="HorizontalMnemonic" xml:space="preserve">
+    <value>수평(_H)</value>
+  </data>
+  <data name="Hue" xml:space="preserve">
+    <value>색조(_H):</value>
+  </data>
+  <data name="IPTCFileFormat" xml:space="preserve">
+    <value>IPTC 파일 형식</value>
+  </data>
+  <data name="IPTCInformationInterchangeModelIIMVersionNumber" xml:space="preserve">
+    <value>IPTC 정보 교환 모델 (IIM) 버전 번호</value>
+  </data>
+  <data name="Icon" xml:space="preserve">
+    <value>아이콘(_I):</value>
+  </data>
+  <data name="IdentifiesTheProviderAndProduct" xml:space="preserve">
+    <value>업체와 제품을 구분합니다</value>
+  </data>
+  <data name="IfYouDeleteThisTagTheAssociationWithXYWillBeLost" xml:space="preserve">
+    <value>태그를 삭제하면 {0}개의 {1}연결이 손실 됩니다.</value>
+  </data>
+  <data name="IfYouDeleteThisTagsTheAssociationWithXYWillBeLost" xml:space="preserve">
+    <value>태그를 삭제하면 {0}개의 {1}연결이 손실 됩니다.</value>
+  </data>
+  <data name="IfYouDonTSaveTheChangesYouHaveMadeToTheseImagesWillBePermanentlyLost" xml:space="preserve">
+    <value>저장하지 않으면, 당신이 바꾼 내용의 이 이미지가 영구적으로 손실 됩니다</value>
+  </data>
+  <data name="IfYouDonTSaveTheChangesYouHaveMadeToThisImageWillBePermanentlyLost" xml:space="preserve">
+    <value>저장하지 않으면, 당신이 바꾼 내용의 이 이미지가 영구적으로 손실 됩니다</value>
+  </data>
+  <data name="IfYouRemovePhotosFromFSpotCatalogAllTagInfoLost" xml:space="preserve">
+    <value>사진을 F-Spot 카탈로그에서 지우면 모든 태그 정보가 사라질 것입니다. 사진은 컴퓨터에 남아 있게 되며 나중에 다시 F-Spot(으)로 가져올 수 있습니다.</value>
+  </data>
+  <data name="IgnoreTopLevelTags" xml:space="preserve">
+    <value>최상위 태그는 무시(_T)</value>
+  </data>
+  <data name="ImageDirectory" xml:space="preserve">
+    <value>이미지 디렉터리</value>
+  </data>
+  <data name="ImageInformation2" xml:space="preserve">
+    <value>이미지 정보</value>
+  </data>
+  <data name="ImageSettings" xml:space="preserve">
+    <value>이미지 설정</value>
+  </data>
+  <data name="ImagesTaggedWith" xml:space="preserve">
+    <value>다음 태그가 붙은 이미지:</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>가져오기</value>
+  </data>
+  <data name="Import2" xml:space="preserve">
+    <value>가져오기(_I)...</value>
+  </data>
+  <data name="Import3" xml:space="preserve">
+    <value>불러오기:</value>
+  </data>
+  <data name="ImportError" xml:space="preserve">
+    <value>가져오기 오류</value>
+  </data>
+  <data name="ImportIntoFSpot" xml:space="preserve">
+    <value>F-스팟으로 가져오기</value>
+  </data>
+  <data name="ImportNewImages" xml:space="preserve">
+    <value>새 이미지 가져오기</value>
+  </data>
+  <data name="ImportRoll" xml:space="preserve">
+    <value>가져오기 롤</value>
+  </data>
+  <data name="ImportSource" xml:space="preserve">
+    <value>가져오기 소스:</value>
+  </data>
+  <data name="ImportTags" xml:space="preserve">
+    <value>태그 가져오기</value>
+  </data>
+  <data name="InOrderToDetectDuplicatesOnPicturesYouImportedBefore050FSpotNeedsToAnalyzeYourImageCollectionThisIsNotDoneByDefaultAsItSTimeConsumingYouCanStartOrPauseThisUpdateProcessUsingThisDialog" xml:space="preserve">
+    <value>버전 0.5.0 이전에 가져온 사진의 중복을 감지하기 위해 F-Spot은 사진 컬렉션을 분석 해야합니다. 이 작업은 시간이 걸리기 때문에 기본적으로 제공하지 않습니다. 이 업데이트 프로세스에 대한 시작/일시 중지는 이 대화 상자에서 할 수 있습니다.</value>
+  </data>
+  <data name="InThisPhoto" xml:space="preserve">
+    <value>이 사진 속의</value>
+  </data>
+  <data name="InUserDirectory" xml:space="preserve">
+    <value> (사용자 디렉터리에)</value>
+  </data>
+  <data name="IncludePhotoTaggedX" xml:space="preserve">
+    <value>"{0}" 태그가 붙은 사진 포함</value>
+  </data>
+  <data name="IncludeSubfolders" xml:space="preserve">
+    <value>하위 폴더 포함</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>인덱스</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>정보</value>
+  </data>
+  <data name="InsideTheImageFilesWhenPossibleSmallMakesThemAccessibleToOtherImageEditingProgramsSmall" xml:space="preserve">
+    <value>가능하면 이미지 파일 안에서
+&lt;small&gt; 다른 이미지 편집 프로그램에 액세스 할 수 있습니다.&lt;/small&gt;</value>
+  </data>
+  <data name="InstallExtensions" xml:space="preserve">
+    <value>확장 기능 설치(_I)...</value>
+  </data>
+  <data name="InstallFrom" xml:space="preserve">
+    <value>설치 경로:</value>
+  </data>
+  <data name="InstallationCancelled" xml:space="preserve">
+    <value>설치 취소됨</value>
+  </data>
+  <data name="InstallationFailed" xml:space="preserve">
+    <value>설치 실패</value>
+  </data>
+  <data name="InstructionsFromTheCreatorToTheReceiverNotCoveredByOtherFields" xml:space="preserve">
+    <value>작성자가 제공하는 다른 항목에서 다루지 않은 수신자에 대한 지시</value>
+  </data>
+  <data name="IntellectualGenreOfTheObject" xml:space="preserve">
+    <value>대상의 지적인 장르</value>
+  </data>
+  <data name="InterOperabilityDirectory" xml:space="preserve">
+    <value>상호운용성 디렉터리</value>
+  </data>
+  <data name="InterpolateImageOnZoom" xml:space="preserve">
+    <value>확대/축소할 때 인터폴레이션(_I)</value>
+  </data>
+  <data name="InvalidGalleryName" xml:space="preserve">
+    <value>잘못된 갤러리 이름</value>
+  </data>
+  <data name="InvalidUrl" xml:space="preserve">
+    <value>잘못된 URL</value>
+  </data>
+  <data name="KeepTheImagesAtTheirOriginalLocation" xml:space="preserve">
+    <value>이미지를 원래 위치에 그대로 보존</value>
+  </data>
+  <data name="Label" xml:space="preserve">
+    <value>레이블</value>
+  </data>
+  <data name="Label124" xml:space="preserve">
+    <value>label124</value>
+  </data>
+  <data name="Large" xml:space="preserve">
+    <value>크게</value>
+  </data>
+  <data name="Large2" xml:space="preserve">
+    <value>크게(_L)</value>
+  </data>
+  <data name="LastImportRoll" xml:space="preserve">
+    <value>마지막 가져온 룰(_L)</value>
+  </data>
+  <data name="LastNintyDays" xml:space="preserve">
+    <value>3 달 이내</value>
+  </data>
+  <data name="LastSevenDays" xml:space="preserve">
+    <value>일주일 이내</value>
+  </data>
+  <data name="LastThirtyDays" xml:space="preserve">
+    <value>한 달 이내</value>
+  </data>
+  <data name="LastThreeHundredSixtyDays" xml:space="preserve">
+    <value>1 년 이내</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>밝게</value>
+  </data>
+  <data name="LightSource" xml:space="preserve">
+    <value>광원</value>
+  </data>
+  <data name="LiteralAnd" xml:space="preserve">
+    <value> 와(과) </value>
+  </data>
+  <data name="LiteralOr" xml:space="preserve">
+    <value> 혹은 </value>
+  </data>
+  <data name="LoadingXExtension" xml:space="preserve">
+    <value>확장기능 {0}을(를) 로드하는 중</value>
+  </data>
+  <data name="LoadingXOfY" xml:space="preserve">
+    <value>{1} 중 {0} 읽어오는 중</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>위치</value>
+  </data>
+  <data name="Location2" xml:space="preserve">
+    <value>위치(_L):</value>
+  </data>
+  <data name="LocationWithinACityOrAreaWhereTheObjectOriginates" xml:space="preserve">
+    <value>대상이 존재하는 도시 혹은 영역 내의 위치</value>
+  </data>
+  <data name="LoggingIntoTabblo" xml:space="preserve">
+    <value>Tabblo에 로그인 중</value>
+  </data>
+  <data name="LoggingIntoX" xml:space="preserve">
+    <value>{0}(으)로 로그인 하는 중</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>로그인</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>로그아웃</value>
+  </data>
+  <data name="Loupe" xml:space="preserve">
+    <value>확대경(_L)</value>
+  </data>
+  <data name="MakeFSpotMyScreensaver" xml:space="preserve">
+    <value>F-Spot에서 화면 보호기 만들기</value>
+  </data>
+  <data name="ManageExtensions" xml:space="preserve">
+    <value>확장 기능 관리(_E)</value>
+  </data>
+  <data name="ManageYourCustomSelectionRatios" xml:space="preserve">
+    <value>사용자 정의 선택 화면 비율 관리</value>
+  </data>
+  <data name="Medium" xml:space="preserve">
+    <value>보통</value>
+  </data>
+  <data name="Medium2" xml:space="preserve">
+    <value>보통(_M)</value>
+  </data>
+  <data name="MergeAnotherFSpotCollection" xml:space="preserve">
+    <value>다른 F-Spot 컬렉션을 병합</value>
+  </data>
+  <data name="MergeDb" xml:space="preserve">
+    <value>DB 병합</value>
+  </data>
+  <data name="MergeTags" xml:space="preserve">
+    <value>태그 통합</value>
+  </data>
+  <data name="MergeTagsMnemonic" xml:space="preserve">
+    <value>태그 통합(_M)</value>
+  </data>
+  <data name="MergeTheSelectedTag" xml:space="preserve">
+    <value>{0} 선택한 태그를 통합</value>
+  </data>
+  <data name="MergeTheSelectedTags" xml:space="preserve">
+    <value>{0} 선택한 태그를 통합</value>
+  </data>
+  <data name="Metadata" xml:space="preserve">
+    <value>메타데이터</value>
+  </data>
+  <data name="MeteringMode" xml:space="preserve">
+    <value>미터법 모드</value>
+  </data>
+  <data name="MinStartingAtX" xml:space="preserve">
+    <value>분. {0}에 시작</value>
+  </data>
+  <data name="Modified" xml:space="preserve">
+    <value>수정됨 ({0})</value>
+  </data>
+  <data name="ModifiedInY" xml:space="preserve">
+    <value>{1}에 수정됨</value>
+  </data>
+  <data name="ModifiedInYX" xml:space="preserve">
+    <value>{1}에서 수정 ({0})</value>
+  </data>
+  <data name="ModifiedX" xml:space="preserve">
+    <value>수정됨 ({0})</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>기타</value>
+  </data>
+  <data name="MoreDates" xml:space="preserve">
+    <value>다른 날짜</value>
+  </data>
+  <data name="MyPhotos" xml:space="preserve">
+    <value>내 사진</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>이름</value>
+  </data>
+  <data name="NameColon" xml:space="preserve">
+    <value>이름:</value>
+  </data>
+  <data name="NameOfNewTagColon" xml:space="preserve">
+    <value>새 태그의 이름:</value>
+  </data>
+  <data name="NameOfTheCityTheContentIsFocussingOn" xml:space="preserve">
+    <value>내용에서 포커스를 맞추고 있는 도시의 이름</value>
+  </data>
+  <data name="NewNameColon" xml:space="preserve">
+    <value>새 이름:</value>
+  </data>
+  <data name="NewRollsOnly" xml:space="preserve">
+    <value>새로운 룰스 전용</value>
+  </data>
+  <data name="NewWindow" xml:space="preserve">
+    <value>새 창(_N)</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>다음</value>
+  </data>
+  <data name="NextPhoto" xml:space="preserve">
+    <value>다음 사진</value>
+  </data>
+  <data name="NextPicture" xml:space="preserve">
+    <value>다음 사진</value>
+  </data>
+  <data name="NoAccountSelected" xml:space="preserve">
+    <value>계정이 선택되지 않음</value>
+  </data>
+  <data name="NoActivePhoto" xml:space="preserve">
+    <value>활성화된 사진이 없음</value>
+  </data>
+  <data name="NoApplicationsAvailable" xml:space="preserve">
+    <value>이용할 수 있는 프로그램이 없음</value>
+  </data>
+  <data name="NoCamerasDetected" xml:space="preserve">
+    <value>(카메라를 찾을 수 없음)</value>
+  </data>
+  <data name="NoCamerasDetected2" xml:space="preserve">
+    <value>카메라를 찾을 수 없음.</value>
+  </data>
+  <data name="NoConstraint" xml:space="preserve">
+    <value>제한 없음</value>
+  </data>
+  <data name="NoExtendedMetadataAvailable" xml:space="preserve">
+    <value>사용 가능한 확장 메타데이터가 없습니다</value>
+  </data>
+  <data name="NoImage" xml:space="preserve">
+    <value>이미지 없음(_I)</value>
+  </data>
+  <data name="NoMatchingPhotosFound" xml:space="preserve">
+    <value>일치하는 사진을 찾을 수 없음</value>
+  </data>
+  <data name="NoMetadataAvailable" xml:space="preserve">
+    <value>메타데이터 없음</value>
+  </data>
+  <data name="NoPermissionToDeleteTheFile" xml:space="preserve">
+    <value>파일을 지울 권한이 없음:{1}{0}</value>
+  </data>
+  <data name="NoPhotosMatchingFound" xml:space="preserve">
+    <value>{0}와(과) 일치하는 사진을 찾을 수 없습니다</value>
+  </data>
+  <data name="NoSelectionAvailable" xml:space="preserve">
+    <value>선택한 영역이 없음</value>
+  </data>
+  <data name="NoTagAppliedToAppliedTryAddingorSelectingDifferentTagInPreferenceDialog" xml:space="preserve">
+    <value>"{0}" 태그는 어떤 사진에도 적용되지 않았습니다.
+이 태그를 몇몇 사진에 더하거나, F-Spot 기본 설정 대화상자에서
+다른 태그를 선택해 보십시오.</value>
+  </data>
+  <data name="NoWayToSaveFilesOfTypeX" xml:space="preserve">
+    <value>"{0}" 형식의 파일을 저장할 수 없습니다</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>없음</value>
+  </data>
+  <data name="NotLoggedIn" xml:space="preserve">
+    <value>로그인되어 있지 않습니다.</value>
+  </data>
+  <data name="NotSpaceX" xml:space="preserve">
+    <value>{0}이(가) 아님</value>
+  </data>
+  <data name="NumberIdentifyingTheIIMVersionThisApplicationRecordUses" xml:space="preserve">
+    <value>이 프로그램 항목에서 사용할 IIM 번호를 나타내는 숫자</value>
+  </data>
+  <data name="NumberOfPhotosInSelectedRolls" xml:space="preserve">
+    <value>선택된 룰의 사진 수:</value>
+  </data>
+  <data name="NumberOfPictures" xml:space="preserve">
+    <value>사진의 수</value>
+  </data>
+  <data name="OSIDestinationRoutingInformation" xml:space="preserve">
+    <value>OSI 대상 라우팅 정보</value>
+  </data>
+  <data name="ObjectAttributeReference" xml:space="preserve">
+    <value>대상 속성 참조</value>
+  </data>
+  <data name="ObjectName" xml:space="preserve">
+    <value>대상 이름</value>
+  </data>
+  <data name="ObjectTypeReference" xml:space="preserve">
+    <value>대상 종류 참조</value>
+  </data>
+  <data name="ObtainingURLForUpload" xml:space="preserve">
+    <value>업로드를위한 URL을 검색하는 중</value>
+  </data>
+  <data name="OkMnemonic" xml:space="preserve">
+    <value>확인(_O)</value>
+  </data>
+  <data name="OnXBetweenYAndZ" xml:space="preserve">
+    <value>{0}
+{1} 〜 {2}</value>
+  </data>
+  <data name="OnlyPhotosTakenWithinTheseDatesWillBeDisplayed" xml:space="preserve">
+    <value>이 날짜 내에 찍힌 사진만이 표시될 것입니다.</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>열기</value>
+  </data>
+  <data name="OpenAlbumInBrowserWhenDoneUploading" xml:space="preserve">
+    <value>업로드가 끝나면 브라우저에서 앨범 열기(_O)</value>
+  </data>
+  <data name="OpenAlbumInBrowserWhenDoneUploading2" xml:space="preserve">
+    <value>업로드가 끝나면 브라우저에서 앨범 열기(_A)</value>
+  </data>
+  <data name="OpenDestinationWhenDoneExporting" xml:space="preserve">
+    <value>내보내기가 끝나면 대상 폴더 열기(_D)</value>
+  </data>
+  <data name="OpenDestinationWhenDoneExporting2" xml:space="preserve">
+    <value>내보내기가 끝나면 대상 폴더 열기(_O)</value>
+  </data>
+  <data name="OpenFolder" xml:space="preserve">
+    <value>폴더 열기(_F)...</value>
+  </data>
+  <data name="OpenWith" xml:space="preserve">
+    <value>다른 프로그램으로 열기(_W)</value>
+  </data>
+  <data name="OperationFailed" xml:space="preserve">
+    <value>작업 실패</value>
+  </data>
+  <data name="Or" xml:space="preserve">
+    <value>혹은</value>
+  </data>
+  <data name="OrganizeEnjoyAndShareYourPhotos" xml:space="preserve">
+    <value>여러분의 사진을 관리하고 공유하세요</value>
+  </data>
+  <data name="Orientation" xml:space="preserve">
+    <value>방향</value>
+  </data>
+  <data name="Original" xml:space="preserve">
+    <value>원본</value>
+  </data>
+  <data name="OriginalSizePossibleVeryLargeFileSize" xml:space="preserve">
+    <value>원본 크기 (아마도 매우 클 것입니다)</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>기타</value>
+  </data>
+  <data name="OverallProgress" xml:space="preserve">
+    <value>전체 진행도:</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>패키지</value>
+  </data>
+  <data name="PageColon" xml:space="preserve">
+    <value>페이지:</value>
+  </data>
+  <data name="PageSetup" xml:space="preserve">
+    <value>페이지 설정</value>
+  </data>
+  <data name="PageSetup2" xml:space="preserve">
+    <value>페이지 설정(_U)...</value>
+  </data>
+  <data name="PaperSizeXxYmm" xml:space="preserve">
+    <value>용지 크기: {0} x {1} mm</value>
+  </data>
+  <data name="ParenFileReadErrorParen" xml:space="preserve">
+    <value>(파일 읽기 오류)</value>
+  </data>
+  <data name="ParenNoAlbumsParen" xml:space="preserve">
+    <value>(앨범 없음)</value>
+  </data>
+  <data name="ParenNoEditsParen" xml:space="preserve">
+    <value>(편집하지 않음)</value>
+  </data>
+  <data name="ParenNoGalleryParen" xml:space="preserve">
+    <value>(갤러리 없음)</value>
+  </data>
+  <data name="ParenNoTagsParen" xml:space="preserve">
+    <value>(태그 없음)</value>
+  </data>
+  <data name="ParenNoneParen" xml:space="preserve">
+    <value>(없음)</value>
+  </data>
+  <data name="ParenNotConnectedParen" xml:space="preserve">
+    <value>(연결되지 않음)</value>
+  </data>
+  <data name="ParenTopLevelParen" xml:space="preserve">
+    <value>(최상위)</value>
+  </data>
+  <data name="ParenUnknownParen" xml:space="preserve">
+    <value>(알 수 없음)</value>
+  </data>
+  <data name="ParentAlbum" xml:space="preserve">
+    <value>상위 앨범(_P):</value>
+  </data>
+  <data name="ParentTag" xml:space="preserve">
+    <value>상위 태그(_A):</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>암호(_P):</value>
+  </data>
+  <data name="Path" xml:space="preserve">
+    <value>경로:</value>
+  </data>
+  <data name="Path2" xml:space="preserve">
+    <value>경로</value>
+  </data>
+  <data name="Pause" xml:space="preserve">
+    <value>일시 정지</value>
+  </data>
+  <data name="People" xml:space="preserve">
+    <value>사람</value>
+  </data>
+  <data name="Permissions" xml:space="preserve">
+    <value>권한:</value>
+  </data>
+  <data name="Photo0Of0" xml:space="preserve">
+    <value>0 중 0 사진</value>
+  </data>
+  <data name="Photo2" xml:space="preserve">
+    <value>사진</value>
+  </data>
+  <data name="Photo3" xml:space="preserve">
+    <value>사진(_P)</value>
+  </data>
+  <data name="PhotoManagementForGNOME" xml:space="preserve">
+    <value>그놈을 위한 사진관리기</value>
+  </data>
+  <data name="PhotoManager" xml:space="preserve">
+    <value>사진 관리자</value>
+  </data>
+  <data name="PhotoViewer" xml:space="preserve">
+    <value>사진 보기</value>
+  </data>
+  <data name="PhotoXOfY" xml:space="preserve">
+    <value>사진 {0} / {1}</value>
+  </data>
+  <data name="PhotometricInterpretation" xml:space="preserve">
+    <value>광도 해석</value>
+  </data>
+  <data name="Photos" xml:space="preserve">
+    <value>사진</value>
+  </data>
+  <data name="Photos2" xml:space="preserve">
+    <value>사진</value>
+  </data>
+  <data name="PhotosInfos" xml:space="preserve">
+    <value>사진 정보</value>
+  </data>
+  <data name="PhotosLayout" xml:space="preserve">
+    <value>사진 레이아웃</value>
+  </data>
+  <data name="PhotosPerPage" xml:space="preserve">
+    <value>1페이지에 인쇄할 사진 매수</value>
+  </data>
+  <data name="PicasaWeb2" xml:space="preserve">
+    <value>피카사웹(_P)...</value>
+  </data>
+  <data name="Pixels" xml:space="preserve">
+    <value>픽셀</value>
+  </data>
+  <data name="Places" xml:space="preserve">
+    <value>장소</value>
+  </data>
+  <data name="PlanarConfiguration" xml:space="preserve">
+    <value>Planar 설정</value>
+  </data>
+  <data name="PleaseNameYourAlbumOrChooseAnExistingAlbum" xml:space="preserve">
+    <value>앨범에 이름을 지정하거나 기존 앨범을 선택하십시오.</value>
+  </data>
+  <data name="PleaseVerifyThatTheSettingsForThisGalleryAreCorrect" xml:space="preserve">
+    <value>이 갤러리에 대한 설정이 올바른지 확인하십시오.</value>
+  </data>
+  <data name="PleaseVerifyThatTheSettingsForThisGalleryAreCorrectEnterTheLettersAsTheyAreShownInTheImageInTheCaptchaFieldILettersAreNotCaseSensitiveI" xml:space="preserve">
+    <value>이 갤러리에 대한 설정이 올바른지 확인하십시오.
+'Captcha' 부분의 이미지에 표시된 글자를 입력하세요.
+&lt;i&gt;대소문자는 구분하지 않습니다&lt;/i&gt;</value>
+  </data>
+  <data name="PleaseWaitFSpotGalleryDBUpdating" xml:space="preserve">
+    <value>F-Spot 갤러리 데이터베이스를 업데이트하는 동안 잠시 기다려 주십시오. 이 과정은 약간의 시간이 소요됩니다.</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>포트</value>
+  </data>
+  <data name="Preferences" xml:space="preserve">
+    <value>기본 설정</value>
+  </data>
+  <data name="PreparingEmail" xml:space="preserve">
+    <value>전자메일을 준비하는 중</value>
+  </data>
+  <data name="PreparingPhotoX" xml:space="preserve">
+    <value>사진 "{0}" 준비 중</value>
+  </data>
+  <data name="Prev" xml:space="preserve">
+    <value>이전</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>미리보기</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>이전</value>
+  </data>
+  <data name="PreviousPhoto" xml:space="preserve">
+    <value>이전 사진</value>
+  </data>
+  <data name="PreviousPicture" xml:space="preserve">
+    <value>이전 사진</value>
+  </data>
+  <data name="PreviousWeekMonSun" xml:space="preserve">
+    <value>지난 주 (월-일요일)</value>
+  </data>
+  <data name="PrintCutMarks" xml:space="preserve">
+    <value>인쇄 잘라내기 표시</value>
+  </data>
+  <data name="PrintFileName" xml:space="preserve">
+    <value>파일 이름을 인쇄하기</value>
+  </data>
+  <data name="PrintPhotoComment" xml:space="preserve">
+    <value>사진 설명 인쇄하기</value>
+  </data>
+  <data name="PrintPhotoDate" xml:space="preserve">
+    <value>사진 날짜 인쇄하기</value>
+  </data>
+  <data name="PrintPhotoTags" xml:space="preserve">
+    <value>사진 태그 인쇄하기</value>
+  </data>
+  <data name="PrintPhotoTime" xml:space="preserve">
+    <value>사진 시간 인쇄하기</value>
+  </data>
+  <data name="Private" xml:space="preserve">
+    <value>비공개</value>
+  </data>
+  <data name="ProcessingImages" xml:space="preserve">
+    <value>이미지 처리중...</value>
+  </data>
+  <data name="ProvidedByX" xml:space="preserve">
+    <value>({0} 제공)</value>
+  </data>
+  <data name="ProviderOfTheObject" xml:space="preserve">
+    <value>대상 제공자</value>
+  </data>
+  <data name="Public" xml:space="preserve">
+    <value>공개</value>
+  </data>
+  <data name="PublicAlbum" xml:space="preserve">
+    <value>공개 앨범</value>
+  </data>
+  <data name="Quit" xml:space="preserve">
+    <value>끝내기(_Q)</value>
+  </data>
+  <data name="RadiusColon" xml:space="preserve">
+    <value>반경:</value>
+  </data>
+  <data name="RatedPhotos" xml:space="preserve">
+    <value>사진 등급</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>평가</value>
+  </data>
+  <data name="RatingColon" xml:space="preserve">
+    <value>평가 :</value>
+  </data>
+  <data name="Ratings" xml:space="preserve">
+    <value>평가(_R)</value>
+  </data>
+  <data name="Ratio" xml:space="preserve">
+    <value>비율</value>
+  </data>
+  <data name="ReallyDelete" xml:space="preserve">
+    <value>정말로 지우시겠습니까?</value>
+  </data>
+  <data name="ReallyDeleteVersionXQuestion" xml:space="preserve">
+    <value>정말로 "{0}" 버전을 지우시겠습니까?</value>
+  </data>
+  <data name="ReceivedErrorXWhileAttemptingToRotateY" xml:space="preserve">
+    <value>{1}을(를) 회전시키는 도중 "{0}" 오류가 발생했습니다</value>
+  </data>
+  <data name="ReceivedErrorXWhileConnectingToCamera" xml:space="preserve">
+    <value>카메라에 연결하는 도중 "{0}" 오류가 발생했습니다</value>
+  </data>
+  <data name="ReceivedExceptionXNoteThatYouHaveToDevelopRaw" xml:space="preserve">
+    <value>예외 "{0}"오류가 발생했습니다. 편집하기 전에 RAW파일을 JPEG파일에 현상해야함을 주의하십시오.</value>
+  </data>
+  <data name="ReceivedExceptionXUnableToCreateVersionY" xml:space="preserve">
+    <value>"{0}" 오류가 발생했습니다. "{1}" 버전을 만들 수 없습니다</value>
+  </data>
+  <data name="ReceivedExceptionXUnableToDeleteVersionY" xml:space="preserve">
+    <value>"{0}" 오류가 발생했습니다. "{1}" 버전을 지울 수 없습니다</value>
+  </data>
+  <data name="ReceivedExceptionXUnableToRenameVersionToY" xml:space="preserve">
+    <value>"{0}" 오류가 발생했습니다. 버전의 이름을 "{1}"(으)로 바꿀 수 없습니다</value>
+  </data>
+  <data name="ReceivedExceptionXUnableToSavePhotoY" xml:space="preserve">
+    <value>"{0}" 예외가 발생했습니다. {1} 사진을 저장할 수 없습니다</value>
+  </data>
+  <data name="RedEyeReduction" xml:space="preserve">
+    <value>적목감소</value>
+  </data>
+  <data name="RefreshSearch" xml:space="preserve">
+    <value>다시 검색</value>
+  </data>
+  <data name="RefreshThumbnail" xml:space="preserve">
+    <value>미리보기 새로 고침(_F)</value>
+  </data>
+  <data name="RegisterALocalRepository" xml:space="preserve">
+    <value>로컬 저장소 등록</value>
+  </data>
+  <data name="RegisterAnOnLineRepository" xml:space="preserve">
+    <value>온라인 저장소 등록</value>
+  </data>
+  <data name="RemoveFromCatalog" xml:space="preserve">
+    <value>카탈로그에서 제거(_R)</value>
+  </data>
+  <data name="RemoveFromCatalogMnemonic" xml:space="preserve">
+    <value>카탈로그에서 제거(_R)</value>
+  </data>
+  <data name="RemoveFromExportedPhotos" xml:space="preserve">
+    <value>내보내기 사진에서 제외(_O):</value>
+  </data>
+  <data name="RemoveFromSearch" xml:space="preserve">
+    <value>검색에서 제거</value>
+  </data>
+  <data name="RemoveTag" xml:space="preserve">
+    <value>태그 제거(_O)</value>
+  </data>
+  <data name="RemoveTagFromSelection" xml:space="preserve">
+    <value>선택한 사진에서 태그 제거</value>
+  </data>
+  <data name="RemoveTagFromSelection2" xml:space="preserve">
+    <value>선택한 사진에서 태그 제거(_R)</value>
+  </data>
+  <data name="RemoveTagFromSelection3" xml:space="preserve">
+    <value>선택한 사진에서 태그 제거</value>
+  </data>
+  <data name="RemoveTheSelectedPhotoFromFSpot" xml:space="preserve">
+    <value>{0} 선택한 사진을 F-Spot에서 지우겠습니까?</value>
+  </data>
+  <data name="RemoveTheXSelectedPhotosFromFSpot" xml:space="preserve">
+    <value>{0} 선택한 사진을 F-Spot에서 지우겠습니까?</value>
+  </data>
+  <data name="RenameVersion" xml:space="preserve">
+    <value>버전 이름 바꾸기</value>
+  </data>
+  <data name="RenameVersion2" xml:space="preserve">
+    <value>버전 이름 바꾸기(_R)</value>
+  </data>
+  <data name="Repair" xml:space="preserve">
+    <value>복구</value>
+  </data>
+  <data name="Reparented" xml:space="preserve">
+    <value>재연결</value>
+  </data>
+  <data name="ReparentedX" xml:space="preserve">
+    <value>재연결 ({0})</value>
+  </data>
+  <data name="Repeat" xml:space="preserve">
+    <value>반복</value>
+  </data>
+  <data name="Repositories" xml:space="preserve">
+    <value>저장소(_R)...</value>
+  </data>
+  <data name="Repository" xml:space="preserve">
+    <value>저장소</value>
+  </data>
+  <data name="ResizeTo" xml:space="preserve">
+    <value>크기 조정(_R): </value>
+  </data>
+  <data name="ResolutionUnit" xml:space="preserve">
+    <value>해상도 단위</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>재시도</value>
+  </data>
+  <data name="ReturnToThisWindowAfterYouHaveFinishedAuthProcessOnXClickCompleteAuthorizationButton" xml:space="preserve">
+    <value>{0}의 인증 과정을 마친 후 이 창으로 돌아와서 아래의 "인증 완료" 단추를 누르세요</value>
+  </data>
+  <data name="ReverseOrder" xml:space="preserve">
+    <value>역순으로(_R)</value>
+  </data>
+  <data name="RotateLeft" xml:space="preserve">
+    <value>왼쪽으로 회전</value>
+  </data>
+  <data name="RotateLeftMnemonic" xml:space="preserve">
+    <value>왼쪽으로 회전(_L)</value>
+  </data>
+  <data name="RotatePhotoLeft" xml:space="preserve">
+    <value>사진을 왼쪽으로 회전</value>
+  </data>
+  <data name="RotatePhotoRight" xml:space="preserve">
+    <value>사진을 오른쪽으로 회전</value>
+  </data>
+  <data name="RotatePictureLeft" xml:space="preserve">
+    <value>사진을 왼쪽으로 회전</value>
+  </data>
+  <data name="RotatePictureRight" xml:space="preserve">
+    <value>오른쪽으로 그림 돌리기</value>
+  </data>
+  <data name="RotateRight" xml:space="preserve">
+    <value>오른쪽으로 회전</value>
+  </data>
+  <data name="RotateRightMnemonic" xml:space="preserve">
+    <value>오른쪽으로 회전(_R)</value>
+  </data>
+  <data name="RotateSelectedPhotoLeft" xml:space="preserve">
+    <value>선택한 사진을 왼쪽으로 회전</value>
+  </data>
+  <data name="RotateSelectedPhotoRight" xml:space="preserve">
+    <value>선택한 사진을 오른쪽으로 회전</value>
+  </data>
+  <data name="RotateSelectedPhotosLeft" xml:space="preserve">
+    <value>선택한 사진을 왼쪽으로 회전</value>
+  </data>
+  <data name="RotateSelectedPhotosRight" xml:space="preserve">
+    <value>선택한 사진을 오른쪽으로 회전</value>
+  </data>
+  <data name="RotatingPhotoX" xml:space="preserve">
+    <value>"{0}" 사진을 회전시키는 중</value>
+  </data>
+  <data name="RotatingPhotos" xml:space="preserve">
+    <value>사진을 회전시키는 중</value>
+  </data>
+  <data name="S" xml:space="preserve">
+    <value> </value>
+  </data>
+  <data name="S000000" xml:space="preserve">
+    <value>00:00:00</value>
+  </data>
+  <data name="S00000000000000" xml:space="preserve">
+    <value>0000:00:00 00:00:00</value>
+  </data>
+  <data name="S1024Px" xml:space="preserve">
+    <value>1024 px</value>
+  </data>
+  <data name="S2" xml:space="preserve">
+    <value>
+</value>
+  </data>
+  <data name="S23hq" xml:space="preserve">
+    <value>23hq(_2)...</value>
+  </data>
+  <data name="S320Px" xml:space="preserve">
+    <value>320 px</value>
+  </data>
+  <data name="S480Px" xml:space="preserve">
+    <value>480 px</value>
+  </data>
+  <data name="S5" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="S640Px" xml:space="preserve">
+    <value>640 px</value>
+  </data>
+  <data name="S800Px" xml:space="preserve">
+    <value>800 px</value>
+  </data>
+  <data name="SameAsPhoto" xml:space="preserve">
+    <value>사진과 동일</value>
+  </data>
+  <data name="Saturation" xml:space="preserve">
+    <value>채도</value>
+  </data>
+  <data name="Saturation2" xml:space="preserve">
+    <value>채도(_S):</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>저장</value>
+  </data>
+  <data name="SaveAll" xml:space="preserve">
+    <value>저장</value>
+  </data>
+  <data name="SaveAs" xml:space="preserve">
+    <value>다른 이름으로 저장...</value>
+  </data>
+  <data name="SaveChangesToImageXBeforeClosing" xml:space="preserve">
+    <value>{0}를 닫기 전에: 이미지가 바뀐 사항을 저장 하겠습니까?</value>
+  </data>
+  <data name="SaveChangesToImagesXBeforeClosing" xml:space="preserve">
+    <value>{0}를 닫기 전에: 이미지가 바뀐 사항을 저장 하겠습니까?</value>
+  </data>
+  <data name="SaveTheFilesOnly" xml:space="preserve">
+    <value>파일들만 저장(_S)</value>
+  </data>
+  <data name="Scale" xml:space="preserve">
+    <value>크기 조절(_S):</value>
+  </data>
+  <data name="ScalePhotosToNoLargerThan" xml:space="preserve">
+    <value>다음 보다 크지 않게 사진 확대(_S): </value>
+  </data>
+  <data name="Scaled" xml:space="preserve">
+    <value>크기 조정</value>
+  </data>
+  <data name="SceneCaptureType" xml:space="preserve">
+    <value>장면 캡처 타입</value>
+  </data>
+  <data name="SceneType" xml:space="preserve">
+    <value>장면 타입</value>
+  </data>
+  <data name="ScreensaverConfiguration" xml:space="preserve">
+    <value>화면 보호기 설정</value>
+  </data>
+  <data name="SearchReturnedNoResults" xml:space="preserve">
+    <value>검색 결과가 없습니다</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>선택하기...</value>
+  </data>
+  <data name="SelectAFolder" xml:space="preserve">
+    <value>폴더 선택</value>
+  </data>
+  <data name="SelectATag" xml:space="preserve">
+    <value>태그 선택...</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>모두 선택(_A)</value>
+  </data>
+  <data name="SelectExportFolder" xml:space="preserve">
+    <value>내보내기 폴더 선택</value>
+  </data>
+  <data name="SelectExportFolder2" xml:space="preserve">
+    <value>내보내기 폴더 선택</value>
+  </data>
+  <data name="SelectFolder" xml:space="preserve">
+    <value>폴더 선택</value>
+  </data>
+  <data name="SelectImportRolls" xml:space="preserve">
+    <value>선택된 룰 가져오기(_S)...</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>선택하지 않음(_N)</value>
+  </data>
+  <data name="SelectPhotoFromFile" xml:space="preserve">
+    <value>파일에서 사진 선택</value>
+  </data>
+  <data name="SelectPhotosToCopyFromCamera" xml:space="preserve">
+    <value>카메라에서 복사할 사진 선택...</value>
+  </data>
+  <data name="SelectTag" xml:space="preserve">
+    <value>태그 선택</value>
+  </data>
+  <data name="SelectTheAreaThatNeedsCropping" xml:space="preserve">
+    <value>잘라낼 영역을 선택하십시오.</value>
+  </data>
+  <data name="SelectTheCameraFromWhichYouWantToTransferFiles" xml:space="preserve">
+    <value>파일을 전송할 카메라를 선택하십시오</value>
+  </data>
+  <data name="SelectTheEyesYouWishToFix" xml:space="preserve">
+    <value>고칠 눈을 선택하십시오.</value>
+  </data>
+  <data name="SelectTheLocationOfTheRepositoryYouWantToRegister" xml:space="preserve">
+    <value>등록하고 싶은 저장소의 위치를 선택하십시오:</value>
+  </data>
+  <data name="SelectedCamera" xml:space="preserve">
+    <value>선택한 카메라: </value>
+  </data>
+  <data name="SelectionConstraints" xml:space="preserve">
+    <value>선택화면 비율 관리</value>
+  </data>
+  <data name="SendByMail" xml:space="preserve">
+    <value>메일로 보내기(_M)...</value>
+  </data>
+  <data name="SensingMethod" xml:space="preserve">
+    <value>센싱 방식</value>
+  </data>
+  <data name="SeparatelyFromTheImageFiles" xml:space="preserve">
+    <value>별도로 이미지 파일에서</value>
+  </data>
+  <data name="SepiaTone2" xml:space="preserve">
+    <value>세피아 톤</value>
+  </data>
+  <data name="ServerReturnedResponseWithoutGalleryContent" xml:space="preserve">
+    <value>서버에서 갤러리의 내용을 포함하지 않은 응답을 반환했습니다</value>
+  </data>
+  <data name="SessionEstablishedFetchingFriendDetails" xml:space="preserve">
+    <value>세션을 설정, 친구 정보를 가져오는 중...</value>
+  </data>
+  <data name="SessionEstablishedFetchingFriendList" xml:space="preserve">
+    <value>세션을 설정, 친구 목록을 가져오는 중...</value>
+  </data>
+  <data name="SessionEstablishedFetchingPhotoAlbums" xml:space="preserve">
+    <value>세션을 설정, 앨범을 요청 중...</value>
+  </data>
+  <data name="SessionEstablishedFetchingUserInfo" xml:space="preserve">
+    <value>세션을 설정, 사용자 정보를 가져오는 중...</value>
+  </data>
+  <data name="SetAsBackground" xml:space="preserve">
+    <value>배경으로 설정</value>
+  </data>
+  <data name="SetAsBackground2" xml:space="preserve">
+    <value>배경으로 설정(_B)</value>
+  </data>
+  <data name="SetDateRange" xml:space="preserve">
+    <value>날짜 범위 지정</value>
+  </data>
+  <data name="SetDateRange2" xml:space="preserve">
+    <value>날짜 범위를 설정(_S)...</value>
+  </data>
+  <data name="SetPageSizeAndOrientation" xml:space="preserve">
+    <value>용지 크기와 방향을 설정하기</value>
+  </data>
+  <data name="SetRatingFilter" xml:space="preserve">
+    <value>설정 평가 필터</value>
+  </data>
+  <data name="SetRatingFilter2" xml:space="preserve">
+    <value>평가 필터 셋(_S)...</value>
+  </data>
+  <data name="Sharpen" xml:space="preserve">
+    <value>선명하게</value>
+  </data>
+  <data name="Sharpen2" xml:space="preserve">
+    <value>선명하게(_S)...</value>
+  </data>
+  <data name="Sharpness" xml:space="preserve">
+    <value>선명도</value>
+  </data>
+  <data name="ShiftAllPhotosByX" xml:space="preserve">
+    <value>모든 사진을 {0} 만큼 시프트</value>
+  </data>
+  <data name="ShowAllPackages" xml:space="preserve">
+    <value>모든 꾸러미 보기</value>
+  </data>
+  <data name="ShowAllPhotos" xml:space="preserve">
+    <value>모든 사진 보기.</value>
+  </data>
+  <data name="ShowCamera" xml:space="preserve">
+    <value>카메라 표시</value>
+  </data>
+  <data name="ShowDate" xml:space="preserve">
+    <value>날짜 보기</value>
+  </data>
+  <data name="ShowExposure" xml:space="preserve">
+    <value>노출 표시</value>
+  </data>
+  <data name="ShowFileSize" xml:space="preserve">
+    <value>파일 크기 표시</value>
+  </data>
+  <data name="ShowFindBarMnemonic" xml:space="preserve">
+    <value>찾기 정보 보기(_F)</value>
+  </data>
+  <data name="ShowFocalLength" xml:space="preserve">
+    <value>초점 거리 표시</value>
+  </data>
+  <data name="ShowNewVersionsOnly" xml:space="preserve">
+    <value>새 버전 만 보기</value>
+  </data>
+  <data name="ShowOrHideTheSidePane" xml:space="preserve">
+    <value>왼쪽 창을 보이거나 숨깁니다</value>
+  </data>
+  <data name="ShowOrHideTheToolbar" xml:space="preserve">
+    <value>도구 모음을 보이거나 숨깁니다</value>
+  </data>
+  <data name="ShowPhotoName" xml:space="preserve">
+    <value>사진 이름 표시</value>
+  </data>
+  <data name="ShowSize" xml:space="preserve">
+    <value>크기 표시</value>
+  </data>
+  <data name="ShowStyles" xml:space="preserve">
+    <value>스타일 보기</value>
+  </data>
+  <data name="ShowUpdatesOnly" xml:space="preserve">
+    <value>업데이트 만 보기</value>
+  </data>
+  <data name="SidePane" xml:space="preserve">
+    <value>왼쪽 창(_P)</value>
+  </data>
+  <data name="Sidebar" xml:space="preserve">
+    <value>왼쪽 창(_B)</value>
+  </data>
+  <data name="SignInAsADifferentUser" xml:space="preserve">
+    <value>다른 사용자로 로그인</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>크기</value>
+  </data>
+  <data name="SizeOfTheExportedSelection" xml:space="preserve">
+    <value>내 보낸 크기:</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>건너뜀</value>
+  </data>
+  <data name="SlideTransition" xml:space="preserve">
+    <value>슬라이드 전환:</value>
+  </data>
+  <data name="Slideshow" xml:space="preserve">
+    <value>슬라이드쇼</value>
+  </data>
+  <data name="Slideshow2" xml:space="preserve">
+    <value>슬라이드쇼(_S)</value>
+  </data>
+  <data name="Small" xml:space="preserve">
+    <value>작게</value>
+  </data>
+  <data name="Small2" xml:space="preserve">
+    <value>작게(_S)</value>
+  </data>
+  <data name="SmallIChooseTheLocationOfTheDatabaseYouWantToImportFromISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;가져올 데이터베이스의 위치를 선택하십시오&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIChooseWhatToImportFromTheSelectedDbNewRollsOnlyIsTheSmartOptionThatWillAvoidReImportingPhotosYouCouldHaveImportedDuringAPreviousOperationASingleImportRollLetYouChooseWhichRollYouWantToMergeBackEverythingWillImportEverythingCreatingDuplicatesIfYouAlreadyImportedFromThatDatabaseISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;선택한 데이터베이스에서 가져오는 역할을 선택합니다.
+"새로운 롤스 전용"이 전에 가져온 사진을 다시 또 가져오기 위해 적절한 선택입니다.
+"특정 룰스"로 병합하고 싶은 역할을 선택할 수 있습니다.
+"모두"는 전체를 가져옵니다. 중복되게 만들면 동일한 데이터베이스에서 이미 가져오려 할 때 충돌이 발생합니다.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallICopyTheImagesLocallyOrKeepThemWhereTheyAreIfYouChoseTheLaterBeSureThatThisLocationWillStayAccessibleFromFSpotISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;이미지를 로컬로 복사하거나 원래 위치에 그대로 유지 할지 여부를 선택합니다. 후자를 선택하면, F-Spot이 앞으로도 그 위치를 액세스할 수 있는지 확인하십시오.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIEnableThisToAllowInterpolationOnZoomedImagesYouShouldnTDisableThisForViewingPhotosButDisablingTheInterpolationCouldBeUsefulInIconDesignISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;사진을 확대하기 위해 보관 허용을 활성화합니다. 사진을 볼 때 해제해야 하지 않지만 아이콘을 볼 때 비활성화 하는 것이 도움이 될 것입니다.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIYouCanChooseHowToDisplayTransparentPartsInImagesThisOptionHasNoEffectOnPhotosButSettingThisAsCheckPatternOrCustomColorCouldBeUsefulWhenViewingIconsOrOtherArtworksWithTransparentPartsISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;이미지 내의 투명한 부분을 표시하는 방식을 선택할 수 있습니다. 이 옵션은 일반 사진에서는 아무 효과도 없지만, 이를 체크 패턴이나 특정 색상으로 지정해 두면 투명한 영역을 포함한아이콘이나 다른 아트워크를 볼 때 유용하게 사용할 수 있습니다.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallSmall2" xml:space="preserve">
+    <value>&lt;small&gt; &lt;/small&gt;</value>
+  </data>
+  <data name="SmugMug" xml:space="preserve">
+    <value>SmugMug(_S)...</value>
+  </data>
+  <data name="SoftFocus" xml:space="preserve">
+    <value>소프트 포커스</value>
+  </data>
+  <data name="SomeOfTheRequiredExtensionsWereNotFound" xml:space="preserve">
+    <value>몇몇 필요한 확장기능을 찾을 수 없습니다.</value>
+  </data>
+  <data name="SpaceAllPhotosBy" xml:space="preserve">
+    <value>공간의 모든 사진에 의해</value>
+  </data>
+  <data name="SpanWeightBoldSizeLargerErrorConnectingToGallerySpan" xml:space="preserve">
+    <value>&lt;span weight='bold' size='larger'&gt;갤러리에 연결하는 중 오류&lt;/span&gt;
+</value>
+  </data>
+  <data name="SpanWeightBoldSizeLargerYourGoogleAccountIsLockedSpan" xml:space="preserve">
+    <value>&lt;span weight='bold' size='larger'&gt;여러분의 Google 계정이 잠겨있습니다&lt;/span&gt;
+</value>
+  </data>
+  <data name="SpecifyIfAnOriginalSizePictureShouldBeRotatedOrNotSmallerSizesAreAutomaticallyRotated" xml:space="preserve">
+    <value>원본 크기의 사진이 회전되어야 하는지 여부를 지정합니다. 작은 크기의 사진들은 자동으로 회전됩니다.</value>
+  </data>
+  <data name="Square" xml:space="preserve">
+    <value>정사각형</value>
+  </data>
+  <data name="StandardTheme" xml:space="preserve">
+    <value>표준 테마</value>
+  </data>
+  <data name="StartSlideshow" xml:space="preserve">
+    <value>슬라이드쇼 시작</value>
+  </data>
+  <data name="State" xml:space="preserve">
+    <value>상태</value>
+  </data>
+  <data name="StatusOfTheObjectdataAccordingToTheProvider" xml:space="preserve">
+    <value>제공자에 따른 대상-데이터 상태</value>
+  </data>
+  <data name="StayConnected" xml:space="preserve">
+    <value>연결한 상태로 두기</value>
+  </data>
+  <data name="Stopped" xml:space="preserve">
+    <value>정지됨</value>
+  </data>
+  <data name="StoreTagsAndDescriptionsForPhotos" xml:space="preserve">
+    <value>스토어 태그와 사진 설명:</value>
+  </data>
+  <data name="Straighten" xml:space="preserve">
+    <value>수평 조정</value>
+  </data>
+  <data name="StripImageMetadata" xml:space="preserve">
+    <value>이미지 메타데이터 삭제(_M)</value>
+  </data>
+  <data name="StripMetadata" xml:space="preserve">
+    <value>메타데이터 제거(_S)</value>
+  </data>
+  <data name="StripMetadata2" xml:space="preserve">
+    <value>메타데이터 없앰(_M)</value>
+  </data>
+  <data name="SubjectAndKeywords" xml:space="preserve">
+    <value>주제와 키워드</value>
+  </data>
+  <data name="SystemProfile" xml:space="preserve">
+    <value>시스템 프로필</value>
+  </data>
+  <data name="Tabblo" xml:space="preserve">
+    <value>Tabblo(_T)...</value>
+  </data>
+  <data name="TagDoesntExistTrySelectingDifferentTagInPerferenceDialog" xml:space="preserve">
+    <value>F-Spot이 찾고 있는 태그가 존재하지 않습니다.
+F-Spot 기본 설정 대화상자에서 다른 태그를
+선택해 보십시오.</value>
+  </data>
+  <data name="TagIcons" xml:space="preserve">
+    <value>아이콘 상태(_T)</value>
+  </data>
+  <data name="TagIsNotEmpty" xml:space="preserve">
+    <value>태그가 존재함</value>
+  </data>
+  <data name="TagName2" xml:space="preserve">
+    <value>태그 이름(_T):</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>태그</value>
+  </data>
+  <data name="Tags2" xml:space="preserve">
+    <value>태그(_A)</value>
+  </data>
+  <data name="Tags3" xml:space="preserve">
+    <value>태그(_T)</value>
+  </data>
+  <data name="TagsColon" xml:space="preserve">
+    <value>태그: </value>
+  </data>
+  <data name="TargetLocation" xml:space="preserve">
+    <value>대상 위치:	</value>
+  </data>
+  <data name="Temp" xml:space="preserve">
+    <value>색온도(_M):</value>
+  </data>
+  <data name="TheCharacterSetDesignation" xml:space="preserve">
+    <value>문자셋 지정</value>
+  </data>
+  <data name="TheDirectoryYouSelectedXDoesNotExistPleaseChooseADifferentDirectory" xml:space="preserve">
+    <value>선택한 "{0}" 디렉터리가 존재하지 않습니다. 다른 디렉터리를 선택하여 주십시오</value>
+  </data>
+  <data name="TheEnvelopeHandlingPriorityBetween1MostUrgentAnd9LeastUrgent" xml:space="preserve">
+    <value>envelope 처리 우선 순위: 1 (가장 빠름)부터 9 (가장 느림)</value>
+  </data>
+  <data name="TheFileSelectedNotValidOrSupportedDataaseReceivedExceptionX" xml:space="preserve">
+    <value>선택한 파일은 잘못된 것, 또는 지원되지 않는 데이터베이스입니다.
+
+수신된 예외  "{0}"</value>
+  </data>
+  <data name="TheFollowingDependenciesCouldNotBeResolved" xml:space="preserve">
+    <value>다음 의존성을 해결할 수 없었습니다:</value>
+  </data>
+  <data name="TheFollowingErrorWasEncounteredWhileAttemptingToCreateAnAlbumX" xml:space="preserve">
+    <value>앨범을 만드는 도중 다음과 같은 오류가 발생했습니다: {0}</value>
+  </data>
+  <data name="TheFollowingExtensionsAreCurrentlyInstalled" xml:space="preserve">
+    <value>다음 확장기능이 설치되어 있습니다:</value>
+  </data>
+  <data name="TheFollowingExtensionsWillBeInstalled" xml:space="preserve">
+    <value>다음 확장기능을 설치할 것입니다:</value>
+  </data>
+  <data name="TheFollowingPackagesNeedToBeUninstalled" xml:space="preserve">
+    <value>다음 꾸러미들의 설치가 제거되어야 합니다:</value>
+  </data>
+  <data name="TheFollowingPackagesWillBeInstalled" xml:space="preserve">
+    <value>다음 꾸러미들이 설치될 것입니다:</value>
+  </data>
+  <data name="TheFollowingPackagesWillBeUninstalled" xml:space="preserve">
+    <value>다음 꾸러미들의 설치가 제거될 것입니다:</value>
+  </data>
+  <data name="TheGalleryNameContainsInvalidCharactersOnlyLettersNumbersUnderscoreAllowed" xml:space="preserve">
+    <value>갤러리 이름에 잘못된 문자가 포함되어 있습니다.
+오직 문자, 숫자,  - 그리고 _ 이외의 문자는 사용할 수 없습니다</value>
+  </data>
+  <data name="TheGalleryUrlEntryDoesNotAppearToBeValid" xml:space="preserve">
+    <value>갤러리 URL 항목이 올바르지 않은 URL인 것 같습니다</value>
+  </data>
+  <data name="TheHourMinuteAndSecondHHMMSSTheServiceSentTheMaterial" xml:space="preserve">
+    <value>서비스에서 자료를 보낸 시, 분, 초 (HHMMSS)</value>
+  </data>
+  <data name="TheInstallationFailed" xml:space="preserve">
+    <value>설치가 실패하였습니다!</value>
+  </data>
+  <data name="TheInstallationHasBeenSuccessfullyCompleted" xml:space="preserve">
+    <value>설치가 성공적으로 완료되었습니다.</value>
+  </data>
+  <data name="TheInstallationHasCompletedWithWarnings" xml:space="preserve">
+    <value>설치가 완료되었고 경고가 있습니다.</value>
+  </data>
+  <data name="ThePersonInvolvedInWritingEditingOrCorrectingTheObjectDataOrCaptionAbstract" xml:space="preserve">
+    <value>대상 데이터 및 캡션, 요약문을 작성하거나, 편집하거나, 수정해 준 사람들</value>
+  </data>
+  <data name="ThePhotoCouldNotBeRotatedBecauseItIsOnAReadOnlyFileSystemOrMediaSuchAsACDROMPleaseCheckThePermissionsAndTryAgain" xml:space="preserve">
+    <value>읽기 전용 파일 시스템이나 CD-ROM등의 매체에 있으므로 {0}개의 사진을 회전시킬 수 없습니다. 권한을 확인하고 다시 시도해보십시오.</value>
+  </data>
+  <data name="ThePhotoXDoesNotExist" xml:space="preserve">
+    <value>"{0}" 사진이 존재하지 않습니다</value>
+  </data>
+  <data name="TheRequiredExtensionXIsDisabled" xml:space="preserve">
+    <value>필요한 확장기능 '{0}'이(가) 비활성화되었습니다.</value>
+  </data>
+  <data name="TheRequiredExtensionXIsNotInstalled" xml:space="preserve">
+    <value>필요한 확장기능 '{0}'이(가) 설치되지 않았습니다.</value>
+  </data>
+  <data name="TheSelectedAlbumHasALimitOfXPicturesWhichWouldBePassedWithTheCurrentSelectionOfYImages" xml:space="preserve">
+    <value>선택한 앨범은 사용 가능한 사진 매수가 {0} 개의 제한이 있습니다,
+따라서 선택된 사진에서 {1}개를 업로드합니다.</value>
+  </data>
+  <data name="TheSelectedExtensionsCanTBeInstalledBecauseThereAreDependencyConflicts" xml:space="preserve">
+    <value>의존성 충돌로 선택한 확장 기능을 설치할 수 없습니다.</value>
+  </data>
+  <data name="TheTitleOfTheAuthorOrCreator" xml:space="preserve">
+    <value>만든 사람들</value>
+  </data>
+  <data name="TheUninstallationFailed" xml:space="preserve">
+    <value>제거가 실패하였습니다!</value>
+  </data>
+  <data name="TheUninstallationHasBeenSuccessfullyCompleted" xml:space="preserve">
+    <value>제거가 성공적으로 완료되었습니다.</value>
+  </data>
+  <data name="TheUninstallationHasCompletedWithWarnings" xml:space="preserve">
+    <value>제가가 완료되었고 경고가 있습니다.</value>
+  </data>
+  <data name="TheYearMonthAndDayCCYYMMDDTheServiceSentTheMaterial" xml:space="preserve">
+    <value>서비스에서 자료를 보낸 연, 월, 일 (CCYYMMDD)</value>
+  </data>
+  <data name="ThereAlreadyGallerySameNameInYourRegisteredGalleriesPleaseChooseUniqueName" xml:space="preserve">
+    <value>입력된 갤러리 이름과 같은 이름의 걀러리가 이미 존재합니다. 다른 이름을 선택하십시오.</value>
+  </data>
+  <data name="ThereAreOtherExtensionsThatDependOnThePreviousOnesWhichWillAlsoBeUninstalled" xml:space="preserve">
+    <value>먼저 설치하는 확장 기능에 의존하는 다른 확장 기능이 있습니다 :</value>
+  </data>
+  <data name="ThereWasAProblemLoggingIntoFacebookCheckYourCredentialsAndTryAgain" xml:space="preserve">
+    <value>Facebook에 로그인에 문제가 있었습니다. 계정 정보를 확인하고 다시 시도하십시오.</value>
+  </data>
+  <data name="ThereWasAnErrorWhenDownloadingYourInformationFromFacebookFacebookSaidX" xml:space="preserve">
+    <value>Facebook에서 당신의 사용자 정보를 다운로드할 때 오류가 발생했습니다.
+
+Facebook 답변 :{0}</value>
+  </data>
+  <data name="ThisDeletesAllVersionsOfTheSelectedPhotoFromYourDrive" xml:space="preserve">
+    <value>선택한 사진의 모든 버전을 드라이브에서 지웁니다.</value>
+  </data>
+  <data name="ThisDeletesAllVersionsOfTheSelectedPhotosFromYourDrive" xml:space="preserve">
+    <value>선택한 사진의 모든 버전을 드라이브에서 지웁니다.</value>
+  </data>
+  <data name="ThisNameIsAlreadyInUse" xml:space="preserve">
+    <value>이 이름은 이미 사용 중입니다</value>
+  </data>
+  <data name="ThisToolRequiresAnActiveSelection.PleaseSelectOneOrMore" xml:space="preserve">
+    <value>이 도구는 선택한 사진이 필요합니다. 1개 이상의 사진을 선택하고 다시 시도하십시오</value>
+  </data>
+  <data name="ThisToolRequiresAnActiveSelectionPleaseSelectARegion" xml:space="preserve">
+    <value>이 도구는 활성화된 선택 영역이 필요합니다. 사진의 일부를 선택한 뒤에 다시 시도해 주십시오</value>
+  </data>
+  <data name="ThisWillMergeSelectedTagsAndSubTagsIntoSingleTag" xml:space="preserve">
+    <value>이 작업은 선택한 태그들과 하위 태그들을 하나의 태그로 통합할 것입니다.</value>
+  </data>
+  <data name="ThresholdColon" xml:space="preserve">
+    <value>임계치:</value>
+  </data>
+  <data name="ThumbnailDirectory" xml:space="preserve">
+    <value>미리보기(Thumbnail) 디렉터리</value>
+  </data>
+  <data name="ThumbnailElements" xml:space="preserve">
+    <value>미리보기 환경(_E)</value>
+  </data>
+  <data name="Timeline" xml:space="preserve">
+    <value>타임라인(_T)</value>
+  </data>
+  <data name="Tint" xml:space="preserve">
+    <value>색조(_T):</value>
+  </data>
+  <data name="Tiny" xml:space="preserve">
+    <value>매우 작게</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>제목</value>
+  </data>
+  <data name="Title2" xml:space="preserve">
+    <value>제목(_T):</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>오늘</value>
+  </data>
+  <data name="TooManyImagesToExport" xml:space="preserve">
+    <value>내보낼 사진이 너무 많습니다</value>
+  </data>
+  <data name="Toolbar" xml:space="preserve">
+    <value>도구 모음(_L)</value>
+  </data>
+  <data name="Toolbar2" xml:space="preserve">
+    <value>도구 모음(_T)</value>
+  </data>
+  <data name="Tools" xml:space="preserve">
+    <value>도구</value>
+  </data>
+  <data name="Tools2" xml:space="preserve">
+    <value>도구(_T)</value>
+  </data>
+  <data name="TotalOriginalSize" xml:space="preserve">
+    <value>총 원본 크기</value>
+  </data>
+  <data name="TransferComplete" xml:space="preserve">
+    <value>전송 완료</value>
+  </data>
+  <data name="TransferringPictureXToCD" xml:space="preserve">
+    <value>"{0}" 사진을 CD로 보내는 중</value>
+  </data>
+  <data name="TransferringPictures" xml:space="preserve">
+    <value>사진을 전송하는 중</value>
+  </data>
+  <data name="TransferringXFromCamera" xml:space="preserve">
+    <value>카메라에서 "{0}"을(를) 전송하는 중</value>
+  </data>
+  <data name="TranslatorCredits" xml:space="preserve">
+    <value>Namhyung Kim &lt;namhyung@gmail.com&gt;, 2007.
+강분도 &lt;bundo@bundo.biz&gt;, 2010.
+
+Launchpad Contributions:
+  Bundo https://launchpad.net/~kang-bundo</value>
+  </data>
+  <data name="TrustError" xml:space="preserve">
+    <value>인증 오류</value>
+  </data>
+  <data name="TrustTheSiteSCertificateThisOnce" xml:space="preserve">
+    <value>이 사이트에 대한 인증을 한번만 허용</value>
+  </data>
+  <data name="TwoOrThreeLetterISO3166CodeOfTheCountryOfTheFocusOfTheContent" xml:space="preserve">
+    <value>내용에서 포커스를 맞추고 있는 국가에 대한 2 글자 혹은 3 글자의 ISO3166 코드</value>
+  </data>
+  <data name="URI" xml:space="preserve">
+    <value>URI(_U):</value>
+  </data>
+  <data name="URL3" xml:space="preserve">
+    <value>URL(_R):</value>
+  </data>
+  <data name="UnableToCreateTemporaryFile" xml:space="preserve">
+    <value>임시 파일을 만들 수 없음</value>
+  </data>
+  <data name="UnableToLoadImage" xml:space="preserve">
+    <value>그림을 불러올 수 없음</value>
+  </data>
+  <data name="UnableToLoadXAsIconForTheTag" xml:space="preserve">
+    <value>태그 아이콘으로 "{0}"를 읽을 수 없습니다.</value>
+  </data>
+  <data name="UnableToLogOn" xml:space="preserve">
+    <value>로그인 할 수 없음</value>
+  </data>
+  <data name="UnableToLogOn2" xml:space="preserve">
+    <value>로그인 할 수 없음.</value>
+  </data>
+  <data name="UnableToRotatePhoto" xml:space="preserve">
+    <value>{0} 사진을 회전시킬 수 없음</value>
+  </data>
+  <data name="UnableToRotateReadonlyFile" xml:space="preserve">
+    <value>읽기전용 파일을 회전시킬 수 없습니다.</value>
+  </data>
+  <data name="UnableToRotateThisTypeOfPhoto" xml:space="preserve">
+    <value>이러한 종류의 사진은 회전시킬 수 없습니다.</value>
+  </data>
+  <data name="UnableToRotateXPhotos" xml:space="preserve">
+    <value>{0} 사진을 회전시킬 수 없음</value>
+  </data>
+  <data name="UnhandledException" xml:space="preserve">
+    <value>처리되지 않은 예외</value>
+  </data>
+  <data name="Uninstall" xml:space="preserve">
+    <value>설치 제거(_U)...</value>
+  </data>
+  <data name="UnknownDirectory" xml:space="preserve">
+    <value>알 수 없는 디렉터리</value>
+  </data>
+  <data name="UnknownIIMDataSet" xml:space="preserve">
+    <value>알 수 없는 IIM 데이터셋</value>
+  </data>
+  <data name="UnknownTransformTypeD" xml:space="preserve">
+    <value>알 수 없는 변형 방식 %d</value>
+  </data>
+  <data name="UnselectAll" xml:space="preserve">
+    <value>모두 선택 해제(_U)</value>
+  </data>
+  <data name="UntaggedPhotos" xml:space="preserve">
+    <value>태그가 붙지 않은 사진</value>
+  </data>
+  <data name="UntaggedPhotos2" xml:space="preserve">
+    <value>태그가 없는 사진(_U)</value>
+  </data>
+  <data name="UpdatingFSpotDatabase" xml:space="preserve">
+    <value>F-Spot 데이터베이스 업데이트 하는 중</value>
+  </data>
+  <data name="UpdatingPictureX" xml:space="preserve">
+    <value>사진 "{0}" 업데이트 중</value>
+  </data>
+  <data name="UpdatingThumbnails" xml:space="preserve">
+    <value>미리보기 업데이트 중</value>
+  </data>
+  <data name="UploadComplete" xml:space="preserve">
+    <value>업로드 완료</value>
+  </data>
+  <data name="UploadComplete2" xml:space="preserve">
+    <value>업로드 완료</value>
+  </data>
+  <data name="UploadingPhotoX" xml:space="preserve">
+    <value>사진 "{0}" 업로드 중</value>
+  </data>
+  <data name="UploadingPictureX" xml:space="preserve">
+    <value>"{0}" 사진을 업로드 하는 중</value>
+  </data>
+  <data name="UploadingPictureXYOfZ" xml:space="preserve">
+    <value>"{0}" 사진을 업로드 하는 중 ({1} / {2})</value>
+  </data>
+  <data name="UploadingPictures" xml:space="preserve">
+    <value>사진을 업로드 하는 중</value>
+  </data>
+  <data name="Url" xml:space="preserve">
+    <value>URL</value>
+  </data>
+  <data name="Url2" xml:space="preserve">
+    <value>URL:</value>
+  </data>
+  <data name="UseAnExistingAlbum" xml:space="preserve">
+    <value>기존 앨범을 이용</value>
+  </data>
+  <data name="UsedXOfYourAllowedYMonthlyQuota" xml:space="preserve">
+    <value>한달 사용할 수 있는 공간 {1} 중 {0}을 사용할 때</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>사용자 이름(_U):</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>버전</value>
+  </data>
+  <data name="Version2" xml:space="preserve">
+    <value>버전:</value>
+  </data>
+  <data name="Version3" xml:space="preserve">
+    <value>버전(_V)</value>
+  </data>
+  <data name="VerticalMnemonic" xml:space="preserve">
+    <value>수직(_V)</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>보기</value>
+  </data>
+  <data name="View2" xml:space="preserve">
+    <value>보기(_V)</value>
+  </data>
+  <data name="ViewAndEditAPhoto" xml:space="preserve">
+    <value>사진을 보고 편집합니다</value>
+  </data>
+  <data name="ViewPhotosFullscreen" xml:space="preserve">
+    <value>사진을 전체 화면으로 봅니다</value>
+  </data>
+  <data name="ViewPhotosInASlideshow" xml:space="preserve">
+    <value>사진을 슬라이드쇼로 봅니다</value>
+  </data>
+  <data name="ViewPhotosInBrowserWhenDoneUploading" xml:space="preserve">
+    <value>업로드 할 때 브라우저에서 사진 보기(_V)</value>
+  </data>
+  <data name="VirtualFilesystem" xml:space="preserve">
+    <value>가상 파일 시스템(_V)</value>
+  </data>
+  <data name="VisibleToFamily" xml:space="preserve">
+    <value>가족들과 공유</value>
+  </data>
+  <data name="VisibleToFriends" xml:space="preserve">
+    <value>친구들과 공유</value>
+  </data>
+  <data name="VisitFSpotGroupOnFacebook" xml:space="preserve">
+    <value>페이스 북에서 F - Spot 구릅 방문</value>
+  </data>
+  <data name="WaitingForAuthentication" xml:space="preserve">
+    <value>인증을 기다리는 중</value>
+  </data>
+  <data name="WaitingForAuthorization" xml:space="preserve">
+    <value>인증 기다리는 중</value>
+  </data>
+  <data name="WaitingForResponseXOfY" xml:space="preserve">
+    <value>{1}의 {0} 응답을 기다리는 중</value>
+  </data>
+  <data name="WebGallery" xml:space="preserve">
+    <value>웹 갤러리(_G)...</value>
+  </data>
+  <data name="WelcomeXYouAreConnectedToY2" xml:space="preserve">
+    <value>{0}님 {1}에 연결하신 것을 환영합니다!</value>
+  </data>
+  <data name="WhenImportingPhotosCopyThemTo" xml:space="preserve">
+    <value>사진 가져오기했을 때, 복사 해올곳 :</value>
+  </data>
+  <data name="WhiteBalance" xml:space="preserve">
+    <value>화이트 밸런스</value>
+  </data>
+  <data name="WhiteBorders" xml:space="preserve">
+    <value>흰 테두리</value>
+  </data>
+  <data name="WhoIsThis" xml:space="preserve">
+    <value>이것은 누구입니까?</value>
+  </data>
+  <data name="WriteOnlyThesePhotosToCD" xml:space="preserve">
+    <value>이 사진들만 CD에 쓰기(_W)</value>
+  </data>
+  <data name="WritingToThisFileFormatIsNotSupported" xml:space="preserve">
+    <value>이 파일 형식은 쓰기를 지원하지 않습니다</value>
+  </data>
+  <data name="WrongFormat" xml:space="preserve">
+    <value>(잘못된 형식)</value>
+  </data>
+  <data name="X" xml:space="preserve">
+    <value>x</value>
+  </data>
+  <data name="XCFVersion" xml:space="preserve">
+    <value>XCF 버전</value>
+  </data>
+  <data name="XOfApproxY" xml:space="preserve">
+    <value>{0} 의 약. {1}</value>
+  </data>
+  <data name="XOfY" xml:space="preserve">
+    <value>{1} 중 {0}</value>
+  </data>
+  <data name="XPhoto2" xml:space="preserve">
+    <value>{0} 사진</value>
+  </data>
+  <data name="XPhotoOutOfY2" xml:space="preserve">
+    <value>총 {1}개중 {0}번째 사진</value>
+  </data>
+  <data name="XPhotos2" xml:space="preserve">
+    <value>{0} 사진</value>
+  </data>
+  <data name="XPhotosCouldNotBeRotatedBecauseTheyAreOnAReadOnlyFileSystemOrMediaSuchAsACDROMPleaseCheckThePermissionsAndTryAgain" xml:space="preserve">
+    <value>읽기 전용 파일 시스템이나 CD-ROM등의 매체에 있으므로 {0}개의 사진을 회전시킬 수 없습니다. 권한을 확인하고 다시 시도해보십시오.</value>
+  </data>
+  <data name="XPhotosOutOfY2" xml:space="preserve">
+    <value>총 {1}개중 {0}번째 사진</value>
+  </data>
+  <data name="XSelected2" xml:space="preserve">
+    <value> ({0} 선택됨)</value>
+  </data>
+  <data name="XSent" xml:space="preserve">
+    <value>{0} 보냄</value>
+  </data>
+  <data name="XYIsLoggedIntoFacebook" xml:space="preserve">
+    <value>{0} {1} 페이스 북에 로그인 합니다.</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>어제</value>
+  </data>
+  <data name="YouAreNotLoggedIn" xml:space="preserve">
+    <value>당신은 로그인 되지  않았습니다.</value>
+  </data>
+  <data name="YouCurrentlyHaveXPhotosNeedingMd5CalculationAndYPendingJobs" xml:space="preserve">
+    <value>현재 {0} 사진은 MD5 계산을 필요로 하고, {1} 보류중인 작업</value>
+  </data>
+  <data name="Zoom" xml:space="preserve">
+    <value>확대</value>
+  </data>
+  <data name="ZoomIn" xml:space="preserve">
+    <value>확대(_I)</value>
+  </data>
+  <data name="ZoomIn2" xml:space="preserve">
+    <value>확대</value>
+  </data>
+  <data name="ZoomOut" xml:space="preserve">
+    <value>축소(_O)</value>
+  </data>
+  <data name="ZoomOut2" xml:space="preserve">
+    <value>축소</value>
+  </data>
+  <data name="Zooomr" xml:space="preserve">
+    <value>Zooomr(_Z)...</value>
+  </data>
+</root>

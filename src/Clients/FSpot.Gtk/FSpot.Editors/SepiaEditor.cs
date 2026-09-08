@@ -20,7 +20,7 @@ namespace FSpot.Editors
 	{
 		public SepiaEditor () : base (Strings.SepiaTone, "color-sepia")
 		{
-			// FIXME: need tooltip Catalog.GetString ("Convert the photo to sepia tones")
+			// FIXME: need tooltip MsgidLookup.GetString ("Convert the photo to sepia tones")
 			CanHandleMultiple = true;
 		}
 

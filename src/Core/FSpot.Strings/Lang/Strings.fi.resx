@@ -1,0 +1,2082 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ASingleImportRoll" xml:space="preserve">
+    <value>Yhden filmirullan tuonti</value>
+  </data>
+  <data name="ATrustErrorOccuredWhileAttemptingToAccess" xml:space="preserve">
+    <value>Tapahtui luottamusvirhe yritettäessä yhteyttä</value>
+  </data>
+  <data name="AbortThisSession" xml:space="preserve">
+    <value>Keskeytä tämä istunto</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>_Tili:</value>
+  </data>
+  <data name="Adjust" xml:space="preserve">
+    <value>Säädä</value>
+  </data>
+  <data name="AdjustColors" xml:space="preserve">
+    <value>Säädä värejä</value>
+  </data>
+  <data name="AdjustTime" xml:space="preserve">
+    <value>Säädä aikaa</value>
+  </data>
+  <data name="AdjustTime2" xml:space="preserve">
+    <value>Säädä _aikaa...</value>
+  </data>
+  <data name="AdjustedDate" xml:space="preserve">
+    <value>Säädetty päiväys: </value>
+  </data>
+  <data name="AlbumMustHaveAName" xml:space="preserve">
+    <value>Albumilla täytyy olla nimi</value>
+  </data>
+  <data name="AlbumName" xml:space="preserve">
+    <value>_Albumin nimi:</value>
+  </data>
+  <data name="AlbumTitle" xml:space="preserve">
+    <value>_Albumin nimi:</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Kaikki</value>
+  </data>
+  <data name="AllImages" xml:space="preserve">
+    <value>Kaikki kuvat</value>
+  </data>
+  <data name="AlwaysTrustThisSiteSCertificate" xml:space="preserve">
+    <value>Luota tämän sivuston varmenteeseen aina</value>
+  </data>
+  <data name="AmountColon" xml:space="preserve">
+    <value>Määrä:</value>
+  </data>
+  <data name="AnErrorOccuredWhileProcessingXY" xml:space="preserve">
+    <value>Virhe käsiteltäessä "{0}": {1}</value>
+  </data>
+  <data name="AnErrorOccurredCreatingANewAlbumX" xml:space="preserve">
+    <value>Virhe luotaessa uutta albumia.
+
+{0}</value>
+  </data>
+  <data name="AnErrorOfTypeXOccurredWhileDeletingTheFile" xml:space="preserve">
+    <value>Tiedostoa poistettaessa tapahtui virhe tyyppiä {0}:{2}{1}</value>
+  </data>
+  <data name="And" xml:space="preserve">
+    <value>ja</value>
+  </data>
+  <data name="ArrangeBy" xml:space="preserve">
+    <value>Kokoa _kentän mukaan</value>
+  </data>
+  <data name="AsBackground" xml:space="preserve">
+    <value>Taustakuvana</value>
+  </data>
+  <data name="AsCheckPattern" xml:space="preserve">
+    <value>Ruutu_kuviona</value>
+  </data>
+  <data name="AsCustomColor" xml:space="preserve">
+    <value>Itse _määriteltynä värinä: </value>
+  </data>
+  <data name="AttachTag" xml:space="preserve">
+    <value>_Liitä tunniste</value>
+  </data>
+  <data name="AttachTagToSelection" xml:space="preserve">
+    <value>Lisää tunniste valintaan</value>
+  </data>
+  <data name="AttachTagToSelection2" xml:space="preserve">
+    <value>_Liitä tunniste valintaan</value>
+  </data>
+  <data name="AttachTagsToSelection" xml:space="preserve">
+    <value>Lisää tunnisteet valintaan</value>
+  </data>
+  <data name="AttachToExportedPhotos" xml:space="preserve">
+    <value>_Liitä vietyihin kuviin</value>
+  </data>
+  <data name="Authenticating" xml:space="preserve">
+    <value>Tunnistaudutaan...</value>
+  </data>
+  <data name="Authorize" xml:space="preserve">
+    <value>Valtuuta</value>
+  </data>
+  <data name="AuthorizingSession" xml:space="preserve">
+    <value>Valtuutetaan istunto</value>
+  </data>
+  <data name="AutoColor" xml:space="preserve">
+    <value>Automaattinen värinsäätö</value>
+  </data>
+  <data name="AutoConfirmPhotos" xml:space="preserve">
+    <value>Vahvista kuvien lisääminen automaattisesti</value>
+  </data>
+  <data name="AvailableSpaceXYUsedOutOfZ" xml:space="preserve">
+    <value>Vapaana oleva tila: {0}, {1}% käytössä, yhteensä {2}</value>
+  </data>
+  <data name="BAccountB" xml:space="preserve">
+    <value>&lt;b&gt;Tili&lt;/b&gt;</value>
+  </data>
+  <data name="BActionB" xml:space="preserve">
+    <value>&lt;b&gt;Toiminto&lt;/b&gt;</value>
+  </data>
+  <data name="BAlbumB" xml:space="preserve">
+    <value>&lt;b&gt;Albumi&lt;/b&gt;</value>
+  </data>
+  <data name="BCorrectionsB" xml:space="preserve">
+    <value>&lt;b&gt;Ko_rjaukset&lt;/b&gt;</value>
+  </data>
+  <data name="BDestinationB" xml:space="preserve">
+    <value>&lt;b&gt;Kohde&lt;/b&gt;</value>
+  </data>
+  <data name="BEndDateB" xml:space="preserve">
+    <value>&lt;b&gt;Päättymispäivä&lt;/b&gt;</value>
+  </data>
+  <data name="BExportMethodB" xml:space="preserve">
+    <value>&lt;b&gt;Vientimenetelmä&lt;/b&gt;</value>
+  </data>
+  <data name="BFSpotTagsB" xml:space="preserve">
+    <value>&lt;b&gt;F-Spot-tunnisteet&lt;/b&gt;</value>
+  </data>
+  <data name="BFromExternalPhotoB" xml:space="preserve">
+    <value>&lt;b&gt;Ulkoisesta valokuvasta&lt;/b&gt;</value>
+  </data>
+  <data name="BFromPhotoB" xml:space="preserve">
+    <value>&lt;b&gt;Valokuvasta&lt;/b&gt;</value>
+  </data>
+  <data name="BFromPhotoBYouCanUseOneOfYourLibraryPhotosAsAnIconForThisTagHoweverFirstYouMustHaveAtLeastOnePhotoAssociatedWithThisTagPleaseTagAPhotoAsXAndReturnHereToUseItAsAnIcon" xml:space="preserve">
+    <value>
+&lt;b&gt;Valokuvasta&lt;/b&gt;
+Voit käyttää yhtä kirjaston valokuvista tämän tunnisteen kuvakkeena.
+Sinulla täytyy kuitenkin olla ainakin yksi valokuva tässä tunnisteessa.
+Merkitse kuva tunnisteella "{0}" ja palaa tähän käyttääksesi sitä
+kuvakkeena.</value>
+  </data>
+  <data name="BGalleryB" xml:space="preserve">
+    <value>&lt;b&gt;Galleria&lt;/b&gt;</value>
+  </data>
+  <data name="BImageInterpolationB" xml:space="preserve">
+    <value>&lt;b&gt;Kuvan interpolointi&lt;/b&gt;</value>
+  </data>
+  <data name="BMaxRatingB" xml:space="preserve">
+    <value>&lt;b&gt;Paras arviointi&lt;/b&gt;</value>
+  </data>
+  <data name="BMinRatingB" xml:space="preserve">
+    <value>&lt;b&gt;Huonoin arviointi&lt;/b&gt;</value>
+  </data>
+  <data name="BPhotosB" xml:space="preserve">
+    <value>&lt;b&gt;Valokuvat&lt;/b&gt;</value>
+  </data>
+  <data name="BPhotosToBurnB" xml:space="preserve">
+    <value>&lt;b&gt;Poltettavat kuvat&lt;/b&gt;</value>
+  </data>
+  <data name="BPicasaWebExportB" xml:space="preserve">
+    <value>&lt;b&gt;PicasaWeb-vienti&lt;/b&gt;</value>
+  </data>
+  <data name="BPredefinedIconsB" xml:space="preserve">
+    <value>&lt;b&gt;Ennalta määritetyt kuvakkeet&lt;/b&gt;</value>
+  </data>
+  <data name="BPreviewB" xml:space="preserve">
+    <value>&lt;b&gt;Esikatselu&lt;/b&gt;</value>
+  </data>
+  <data name="BReferencePhotoB" xml:space="preserve">
+    <value>&lt;b&gt;Referenssikuva&lt;/b&gt;</value>
+  </data>
+  <data name="BSelectPeriodB" xml:space="preserve">
+    <value>&lt;b&gt;Valitse aikaväli&lt;/b&gt;</value>
+  </data>
+  <data name="BSizeB" xml:space="preserve">
+    <value>&lt;b&gt;Koko&lt;/b&gt;</value>
+  </data>
+  <data name="BSmugMugExportB" xml:space="preserve">
+    <value>&lt;b&gt;SmugMug-vienti&lt;/b&gt;</value>
+  </data>
+  <data name="BStartDateB" xml:space="preserve">
+    <value>&lt;b&gt;Aloituspäivä&lt;/b&gt;</value>
+  </data>
+  <data name="BStyleB" xml:space="preserve">
+    <value>&lt;b&gt;Tyyli&lt;/b&gt;</value>
+  </data>
+  <data name="BSummaryB" xml:space="preserve">
+    <value>&lt;b&gt;Yhteenveto&lt;/b&gt;</value>
+  </data>
+  <data name="BTabbloAccountB" xml:space="preserve">
+    <value>&lt;b&gt;Tabblo-tili&lt;/b&gt;</value>
+  </data>
+  <data name="BTransparentPartsB" xml:space="preserve">
+    <value>&lt;b&gt;Läpinäkyvät osat&lt;/b&gt;</value>
+  </data>
+  <data name="BViewAllPicturesImportedB" xml:space="preserve">
+    <value>&lt;b&gt;Näytä kaikki tuodut kuvat&lt;/b&gt;</value>
+  </data>
+  <data name="BViewingPermissionsB" xml:space="preserve">
+    <value>&lt;b&gt;Kuvien katseluoikeudet&lt;/b&gt;</value>
+  </data>
+  <data name="BWhiteBalanceB" xml:space="preserve">
+    <value>&lt;b&gt;_Valkotasapaino&lt;/b&gt;</value>
+  </data>
+  <data name="BeforeLaunchingYShouldFSpotCreateANewVersionOfTheSelectedPhotoToPreserveTheOriginal" xml:space="preserve">
+    <value>Haluatko F-Spotin luovan ennen {1} käynnistystä valitusta kuvasta uuden version siten, että alkuperäiskuva säilytetään?</value>
+  </data>
+  <data name="BeforeLaunchingYShouldFSpotCreateNewVersionsOfTheSelectedPhotosToPreserveTheOriginals" xml:space="preserve">
+    <value>Haluatko F-Spotin luovan ennen {1} käynnistystä kuvista uudet versiot siten, että alkuperäiskuvat säilytetään?</value>
+  </data>
+  <data name="BetweenXAndY" xml:space="preserve">
+    <value>Välillä {0} 
+ja {1}</value>
+  </data>
+  <data name="Brightness" xml:space="preserve">
+    <value>_Kirkkaus:</value>
+  </data>
+  <data name="Browse2" xml:space="preserve">
+    <value>Selaa</value>
+  </data>
+  <data name="BrowseManyPhotosSimultaneously" xml:space="preserve">
+    <value>Selaa useita kuvia samaan aikaan</value>
+  </data>
+  <data name="BrowsePreviouslyScheduledFiles" xml:space="preserve">
+    <value>S_elaa aiemmin ajastettuja tiedostoja</value>
+  </data>
+  <data name="BuildingGallery" xml:space="preserve">
+    <value>Luodaan galleriaa</value>
+  </data>
+  <data name="ByDate" xml:space="preserve">
+    <value>_Päiväyksen mukaan</value>
+  </data>
+  <data name="ByImportRoll" xml:space="preserve">
+    <value>Tuodun f_ilmirullan mukaan</value>
+  </data>
+  <data name="ByRating" xml:space="preserve">
+    <value>A_rvioinnin mukaan</value>
+  </data>
+  <data name="CD2" xml:space="preserve">
+    <value>_CD...</value>
+  </data>
+  <data name="Camera" xml:space="preserve">
+    <value>Kamera</value>
+  </data>
+  <data name="CanNotDeleteTagsThatHaveTagsWihinThem.PleaseDeleteTagUnderXFirst" xml:space="preserve">
+    <value>Tunnisteita ei voi poistaa, jos ne sisältävät muita tunnisteita. Poista kohteen "{0}" sisällä olevat tunnisteet ensin</value>
+  </data>
+  <data name="CancelDoNotChangeTheCurrentTimeline" xml:space="preserve">
+    <value>Peru, älä muuta nykyistä aikajanaa. </value>
+  </data>
+  <data name="CannotConnectToGalleryUnknownVersionCheckRemotePlugin" xml:space="preserve">
+    <value>Ei voida ottaa yhteyttä galleriaan, jonka versio on tuntematon.
+Tarkista että sinulla on Remote-liitännäinen 1.0.8 tai uudempi</value>
+  </data>
+  <data name="Captcha" xml:space="preserve">
+    <value>_Captcha:</value>
+  </data>
+  <data name="Caption2" xml:space="preserve">
+    <value>Otsikko</value>
+  </data>
+  <data name="CheckingCredentials" xml:space="preserve">
+    <value>Tarkistetaan käyttöoikeuksia...</value>
+  </data>
+  <data name="ClearDateRangeMnemonic" xml:space="preserve">
+    <value>_Tyhjennä päivämääräväli</value>
+  </data>
+  <data name="ClearRatingFilter" xml:space="preserve">
+    <value>_Tyhjennä arviointisuodatin</value>
+  </data>
+  <data name="ClearRollFilter" xml:space="preserve">
+    <value>_Tyhjennä filmirullasuodatin</value>
+  </data>
+  <data name="ClearSearch" xml:space="preserve">
+    <value>Tyhjennä hakuehto</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>_Sulje</value>
+  </data>
+  <data name="ColorProfileForDisplay" xml:space="preserve">
+    <value>Näytön väriprofiili:</value>
+  </data>
+  <data name="ColorProfileForPrinting" xml:space="preserve">
+    <value>Tulostuksen väriprofiili:</value>
+  </data>
+  <data name="CommaSpace" xml:space="preserve">
+    <value>, </value>
+  </data>
+  <data name="CompleteAuthorization" xml:space="preserve">
+    <value>Viimeistele valtuutus</value>
+  </data>
+  <data name="Components" xml:space="preserve">
+    <value>_Komponentit</value>
+  </data>
+  <data name="CompressedFile" xml:space="preserve">
+    <value>Pakattu _tiedosto...</value>
+  </data>
+  <data name="ConfigureScreensaver" xml:space="preserve">
+    <value>Määritä näytönsäästäjä</value>
+  </data>
+  <data name="Contents" xml:space="preserve">
+    <value>_Sisältö</value>
+  </data>
+  <data name="Contrast2" xml:space="preserve">
+    <value>K_ontrasti:</value>
+  </data>
+  <data name="CopyImagesToPhotosFolder" xml:space="preserve">
+    <value>Kopioi kuvat valokuvakansioon</value>
+  </data>
+  <data name="Copying2" xml:space="preserve">
+    <value>kopioidaan...</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>_Luo</value>
+  </data>
+  <data name="Create2" xml:space="preserve">
+    <value>_Luo</value>
+  </data>
+  <data name="CreateAMailWithTheSelectedPhotosPossiblyResizedAttached" xml:space="preserve">
+    <value>Luo sähköpostiviesti, johon valitut kuvat on liitetty (koko voi olla muutettu)</value>
+  </data>
+  <data name="CreateANewAlbum" xml:space="preserve">
+    <value>Luo uusi albumi</value>
+  </data>
+  <data name="CreateCD" xml:space="preserve">
+    <value>Luo CD</value>
+  </data>
+  <data name="CreateGalleryUsingOriginal" xml:space="preserve">
+    <value>Luo _galleria käyttäen "alkuperäistä"</value>
+  </data>
+  <data name="CreateIconForThisTagWhenFirstUsed" xml:space="preserve">
+    <value>Luo _kuvake tälle tunnisteelle ensimmäistä kertaa käytettäessä</value>
+  </data>
+  <data name="CreateMail" xml:space="preserve">
+    <value>Luo sähköposti</value>
+  </data>
+  <data name="CreateMail2" xml:space="preserve">
+    <value>_Luo sähköposti</value>
+  </data>
+  <data name="CreateNewTag" xml:space="preserve">
+    <value>Luo uusi luokitus</value>
+  </data>
+  <data name="CreateNewTag2" xml:space="preserve">
+    <value>Luo uusi tunniste...</value>
+  </data>
+  <data name="CreateNewTag3" xml:space="preserve">
+    <value>Luo uusi _tunniste...</value>
+  </data>
+  <data name="CreateNewVersion" xml:space="preserve">
+    <value>Luo uusi versio</value>
+  </data>
+  <data name="CreateNewVersion2" xml:space="preserve">
+    <value>Luo uusi versio?</value>
+  </data>
+  <data name="CreateNewVersion3" xml:space="preserve">
+    <value>Luo _uusi versio...</value>
+  </data>
+  <data name="CreateNewVersions" xml:space="preserve">
+    <value>Luo uudet versiot?</value>
+  </data>
+  <data name="CreateStandaloneWebGallery" xml:space="preserve">
+    <value>Käytä erillinen _web-galleria</value>
+  </data>
+  <data name="CreatingANewAlbumFailed" xml:space="preserve">
+    <value>Uuden albumin luonti epäonnistui</value>
+  </data>
+  <data name="Creator" xml:space="preserve">
+    <value>Luonut</value>
+  </data>
+  <data name="Crop" xml:space="preserve">
+    <value>Rajaa</value>
+  </data>
+  <data name="CurrentDate" xml:space="preserve">
+    <value>Tämänhetkinen päiväys.</value>
+  </data>
+  <data name="CurrentWeekMonSun" xml:space="preserve">
+    <value>Tämä viikko (ma-su)</value>
+  </data>
+  <data name="CustomRatios" xml:space="preserve">
+    <value>Omat kuvasuhteet...</value>
+  </data>
+  <data name="CustomText" xml:space="preserve">
+    <value>Oma teksti</value>
+  </data>
+  <data name="CustomizedRange" xml:space="preserve">
+    <value>Itsemääritelty alue</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>Tumma</value>
+  </data>
+  <data name="DatabaseLocation" xml:space="preserve">
+    <value>Tietokannan sijainti:</value>
+  </data>
+  <data name="DatabaseRefersToFilesContainedInXFolderPleaseSelectThatFolderSoICanDoTheMapping" xml:space="preserve">
+    <value>&lt;big&gt;Tietokanta viittaa tiedostoihin kansiossa &lt;b&gt;{0}&lt;/b&gt;.
+Valitse tämä kansio, jotta viittaus voidaan tehdä.&lt;/big&gt;</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Päiväys</value>
+  </data>
+  <data name="Dates" xml:space="preserve">
+    <value>_Päiväykset</value>
+  </data>
+  <data name="Delay" xml:space="preserve">
+    <value>Viive:</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Poista</value>
+  </data>
+  <data name="DeleteFromDrive" xml:space="preserve">
+    <value>_Poista asemalta</value>
+  </data>
+  <data name="DeletePhotoMnemonic" xml:space="preserve">
+    <value>_Poista kuva</value>
+  </data>
+  <data name="DeletePhotosMnemonic" xml:space="preserve">
+    <value>_Poista kuvat</value>
+  </data>
+  <data name="DeleteSelectedTag" xml:space="preserve">
+    <value>_Poista valittu tunniste</value>
+  </data>
+  <data name="DeleteTag" xml:space="preserve">
+    <value>Poista tunniste</value>
+  </data>
+  <data name="DeleteTagMnemonic" xml:space="preserve">
+    <value>_Poista tunniste</value>
+  </data>
+  <data name="DeleteTagXQuestion" xml:space="preserve">
+    <value>Poistetaanko tunniste "{0}"?</value>
+  </data>
+  <data name="DeleteTags" xml:space="preserve">
+    <value>Poista tunnisteet</value>
+  </data>
+  <data name="DeleteTagsMnemonic" xml:space="preserve">
+    <value>_Poista tunnisteet</value>
+  </data>
+  <data name="DeleteTheSelectedPhotoPermanently" xml:space="preserve">
+    <value>Poista valittu kuva pysyvästi?</value>
+  </data>
+  <data name="DeleteTheXSelectedPhotosPermanently" xml:space="preserve">
+    <value>Poista valitut {0} kuvaa pysyvästi?</value>
+  </data>
+  <data name="DeleteTheXSelectedTagsQuestion" xml:space="preserve">
+    <value>Poista {0} valittua tunnistetta?</value>
+  </data>
+  <data name="DeleteVersion" xml:space="preserve">
+    <value>_Poista versio</value>
+  </data>
+  <data name="Desaturate" xml:space="preserve">
+    <value>Vähennä saturaatiota</value>
+  </data>
+  <data name="Description2" xml:space="preserve">
+    <value>_Kuvaus:</value>
+  </data>
+  <data name="Description3" xml:space="preserve">
+    <value>_Kuvaus:</value>
+  </data>
+  <data name="Description4" xml:space="preserve">
+    <value>Kuvaus</value>
+  </data>
+  <data name="DesignIconFrom" xml:space="preserve">
+    <value>Suunnittele kuvake</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Yksityiskohdat</value>
+  </data>
+  <data name="Difference" xml:space="preserve">
+    <value>ero:</value>
+  </data>
+  <data name="DirectoryNotFound" xml:space="preserve">
+    <value>Kansiota ei löydy</value>
+  </data>
+  <data name="Display2" xml:space="preserve">
+    <value>Näytä:</value>
+  </data>
+  <data name="DisplayASlideshowFromFSpot" xml:space="preserve">
+    <value>Näytä diaesitys F-Spotista</value>
+  </data>
+  <data name="DisplayFileNames" xml:space="preserve">
+    <value>Näytä tiedosto_nimet</value>
+  </data>
+  <data name="DisplayOnlyThosePhotosThatWereImportedInSpecifiedRolls" xml:space="preserve">
+    <value>Näytä vain kuvat, jotka tuotiin annetuilta filmirullilta.</value>
+  </data>
+  <data name="DoNotSendAMail" xml:space="preserve">
+    <value>Älä lähetä sähköpostia</value>
+  </data>
+  <data name="DoYouWishTo" xml:space="preserve">
+    <value>Haluatko:</value>
+  </data>
+  <data name="DoneSendingPhotos" xml:space="preserve">
+    <value>Kuvien lähetys valmistui</value>
+  </data>
+  <data name="DoneSendingPhotos2" xml:space="preserve">
+    <value>Kuvien lähetys valmistui</value>
+  </data>
+  <data name="DragTagsHereToSearchForThem" xml:space="preserve">
+    <value>Raahaa tähän tunnisteita etsiäksesi niitä kuvista</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Muokkaa</value>
+  </data>
+  <data name="Edit2" xml:space="preserve">
+    <value>_Muokkaa</value>
+  </data>
+  <data name="EditIcon" xml:space="preserve">
+    <value>Muokkaa kuvaketta</value>
+  </data>
+  <data name="EditIconForTagX" xml:space="preserve">
+    <value>Muokkaa tunnisteen {0} kuvaketta</value>
+  </data>
+  <data name="EditImage" xml:space="preserve">
+    <value>Muokkaa kuvaa</value>
+  </data>
+  <data name="EditTag" xml:space="preserve">
+    <value>Muokaa tunnistetta...</value>
+  </data>
+  <data name="EditTag2" xml:space="preserve">
+    <value>Muokkaa luokitusta</value>
+  </data>
+  <data name="EditTagIcon" xml:space="preserve">
+    <value>Muokkaa tunnisteen kuvaketta</value>
+  </data>
+  <data name="EightByTen" xml:space="preserve">
+    <value>8 x 10</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Virhe</value>
+  </data>
+  <data name="ErrorDeletingPicture" xml:space="preserve">
+    <value>Virhe poistettaessa kuvaa</value>
+  </data>
+  <data name="ErrorEditingPhoto" xml:space="preserve">
+    <value>Virhe muokattaessa valokuvaa</value>
+  </data>
+  <data name="ErrorLoadingDatabase" xml:space="preserve">
+    <value>Virhe ladattaessa tietokantaa.</value>
+  </data>
+  <data name="ErrorLoggingIntoFacebook" xml:space="preserve">
+    <value>Virhe kirjauduttaessa Facebookiin</value>
+  </data>
+  <data name="ErrorOpeningTheSelectedFile" xml:space="preserve">
+    <value>Virhe avattaessa valittua tiedostoa</value>
+  </data>
+  <data name="ErrorProcessingImage" xml:space="preserve">
+    <value>Virhe käsiteltäessä kuvaa</value>
+  </data>
+  <data name="ErrorReadingServerResponse" xml:space="preserve">
+    <value>Virhe luettaessa palvelimen vastausta</value>
+  </data>
+  <data name="ErrorRenamingTag" xml:space="preserve">
+    <value>Virhe nimettäessä tunnistetta uudelleen</value>
+  </data>
+  <data name="ErrorSavingAdjustedPhoto" xml:space="preserve">
+    <value>Virhe tallennettaessa säädettyä kuvaa</value>
+  </data>
+  <data name="ErrorSavingAdjustedPhotos" xml:space="preserve">
+    <value>Virhe tallennettaessa säädettyjä kuvia</value>
+  </data>
+  <data name="ErrorSavingSharpenedPhoto" xml:space="preserve">
+    <value>Virhe tallennettaessa terävöitettyä kuvaa</value>
+  </data>
+  <data name="ErrorTransferring" xml:space="preserve">
+    <value>Virhe siirrossa</value>
+  </data>
+  <data name="ErrorUploadingPictureXToGalleryColonY" xml:space="preserve">
+    <value>Virhe vietäessä kuvaa "{0}" galleriaan: {1}</value>
+  </data>
+  <data name="ErrorUploadingToFacebookX" xml:space="preserve">
+    <value>Virhe vietäessä Facebookiin: {0}</value>
+  </data>
+  <data name="ErrorUploadingToGalleryX" xml:space="preserve">
+    <value>Virhe vietäessä galleriaan: {0}</value>
+  </data>
+  <data name="ErrorUploadingToTabblo" xml:space="preserve">
+    <value>Virhe vietäessä Tabbloon: </value>
+  </data>
+  <data name="ErrorUploadingToXColonY" xml:space="preserve">
+    <value>Virhe vietäessä kohteeseen {0}: {1}</value>
+  </data>
+  <data name="ErrorWhileConnectingToGallery" xml:space="preserve">
+    <value>Virhe yhdistettäessä galleriaan</value>
+  </data>
+  <data name="ErrorWhileCreatingAlbum" xml:space="preserve">
+    <value>Virhe luotaessa albumia</value>
+  </data>
+  <data name="ErrorWhileCreatingNewAlbum" xml:space="preserve">
+    <value>Virhe luotaessa uutta albumia</value>
+  </data>
+  <data name="ErrorWhileRotatingPhoto" xml:space="preserve">
+    <value>Virhe kierrettäessä kuvaa.</value>
+  </data>
+  <data name="ErrorWhileTransferring" xml:space="preserve">
+    <value>Virhe siirrettäessä</value>
+  </data>
+  <data name="EstimatedNewSize" xml:space="preserve">
+    <value>Arvioitu uusi koko</value>
+  </data>
+  <data name="Events" xml:space="preserve">
+    <value>Tapahtumat</value>
+  </data>
+  <data name="Everything" xml:space="preserve">
+    <value>Kaikki</value>
+  </data>
+  <data name="ExcludePhotosTaggedX" xml:space="preserve">
+    <value>Älä sisällytä valokuvia, joilla on tunniste "{0}"</value>
+  </data>
+  <data name="ExitFullscreen" xml:space="preserve">
+    <value>Poistu kokoruututilasta</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Vie</value>
+  </data>
+  <data name="Export2" xml:space="preserve">
+    <value>_Vie</value>
+  </data>
+  <data name="ExportTagHierarchy" xml:space="preserve">
+    <value>Vie luokittelu_hierarkia</value>
+  </data>
+  <data name="ExportTagIcons" xml:space="preserve">
+    <value>Vie tunn_istekuvakkeet</value>
+  </data>
+  <data name="ExportTags" xml:space="preserve">
+    <value>Vi_e merkinnät</value>
+  </data>
+  <data name="ExportTags2" xml:space="preserve">
+    <value>Vie _tunnisteet</value>
+  </data>
+  <data name="ExportTitlesAndComments2" xml:space="preserve">
+    <value>Vie _otsikot ja kommentit</value>
+  </data>
+  <data name="ExportTo" xml:space="preserve">
+    <value>Vie sijaintiin</value>
+  </data>
+  <data name="ExportTo2" xml:space="preserve">
+    <value>Vi_e sijaintiin</value>
+  </data>
+  <data name="ExportToAlbum" xml:space="preserve">
+    <value>Vi_e albumiin:</value>
+  </data>
+  <data name="ExportToFacebook" xml:space="preserve">
+    <value>Vie Facebookiin</value>
+  </data>
+  <data name="ExportingFiles" xml:space="preserve">
+    <value>Viedään tiedostoja</value>
+  </data>
+  <data name="ExportingPhotoX" xml:space="preserve">
+    <value>Viedään kuvaa "{0}"</value>
+  </data>
+  <data name="Exposure" xml:space="preserve">
+    <value>Valotus</value>
+  </data>
+  <data name="Exposure2" xml:space="preserve">
+    <value>_Valotus:</value>
+  </data>
+  <data name="ExtendedMetadata" xml:space="preserve">
+    <value>Laajennettu metatieto</value>
+  </data>
+  <data name="ExtraLarge" xml:space="preserve">
+    <value>Hyvin suuri</value>
+  </data>
+  <data name="FSpot" xml:space="preserve">
+    <value>F-Spot</value>
+  </data>
+  <data name="FSpotAppearance" xml:space="preserve">
+    <value>F-Spotin ulkoasu:</value>
+  </data>
+  <data name="FSpotEncounteredAnErrorWhileLoadingThePhotoDatabaseTheOldDatabaseHasBeMovedToXAndANewDatabaseHasBeenCreated" xml:space="preserve">
+    <value>F-Spot törmäsi virheeseen valokuvatietokantaa ladattaessa. Vanha tietokanta on siirretty nimelle {0}  ja uusi tietokanta on luotu.</value>
+  </data>
+  <data name="FSpotNeedsYourAuthorizationInOrderToUploadPhotosToYourXAccountPressTheAuthorizeButtonToOpenAWebBrowserAndGiveFSpotTheAuthorization" xml:space="preserve">
+    <value>F-Spot vaatii valtuutuksesi, jotta voit viedä kuviasi {0}-tilillesi. Avaa selain napsauttamalla "Valtuuta"-painiketta ja valtuuta F-Spot palvelussa. </value>
+  </data>
+  <data name="FSpotPhotoManager" xml:space="preserve">
+    <value>F-Spot - valokuvien hallinta</value>
+  </data>
+  <data name="FSpotPhotoViewer" xml:space="preserve">
+    <value>F-Spot - valokuvien hallinta</value>
+  </data>
+  <data name="FSpotPhotos" xml:space="preserve">
+    <value>F-Spot-valokuvat</value>
+  </data>
+  <data name="FSpotPreferences" xml:space="preserve">
+    <value>F-Spotin asetukset</value>
+  </data>
+  <data name="FSpotView" xml:space="preserve">
+    <value>F-Spot-näkymä</value>
+  </data>
+  <data name="FSpotWasUnableToLogOnToXMakeSureYouHaveGivenTheAuthUsingXWebBrowser" xml:space="preserve">
+    <value>F-Spot ei voinut kirjautua {0}-palveluun. Tarkista, että olet valtuuttanut yhteydenoton käyttäen {0}-palvelun selainliittymää.</value>
+  </data>
+  <data name="FSpotWebsite" xml:space="preserve">
+    <value>F-Spot-WWW-sivusto</value>
+  </data>
+  <data name="FSpotWillNowLaunchYourBrowserSoThatYouCanEnableThePermissionYouJustSelectedOnceYouAreDirectedByFacebookToReturnToThisApplicationClickOkBelow" xml:space="preserve">
+    <value>F-Spot käynnistää nyt selaimesi, jotta voit asettaa valitsemasi käyttöoikeudet.
+
+Kun Facebook ohjaa sinut takaisin tähän sovellukseen, napsauta ”OK” alla.</value>
+  </data>
+  <data name="FSpotWillNowLaunchYourBrowserSoThatYouCanLogIntoFacebookOnceYouAreDirectedByFacebookToReturnToThisApplicationClickOkBelowFSpotWillCacheYourSessionInGnomeKeyringIfPossibleAndReUseItOnFutureFacebookExports" xml:space="preserve">
+    <value>F-Spot käynnistää nyt selaimesi, jotta voit kirjautua Facebookiin.
+
+Kun Facebook ohjaa sinut palaamaan tähän sovellukseen, napsauta ”OK” alla. F-Spot tallentaa istuntosi Gnomen avainrenkaaseen mikäli mahdollista, ja käyttää sitä uudelleen tulevaisuuden Facebook-vienneissä.</value>
+  </data>
+  <data name="Facebook" xml:space="preserve">
+    <value>F_acebook...</value>
+  </data>
+  <data name="FacebookConnectionError" xml:space="preserve">
+    <value>Facebook-yhteysvirhe</value>
+  </data>
+  <data name="FacebookOnlyPermitsXPhotographsPerAlbumPleaseRefineYourSelectionAndTryAgain" xml:space="preserve">
+    <value>Facebook sallii korkeintaan {0} kuvaa per albumi. Määritä valintasi uudelleen ja koeta uudelleen.</value>
+  </data>
+  <data name="Favorites" xml:space="preserve">
+    <value>Suosikit</value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>_Tiedostonimi:</value>
+  </data>
+  <data name="FileNotFonud" xml:space="preserve">
+    <value>Tiedostoa ei löydy</value>
+  </data>
+  <data name="FileSize" xml:space="preserve">
+    <value>Tiedoston koko</value>
+  </data>
+  <data name="Filesystem" xml:space="preserve">
+    <value>Tiedostojärjestelmä</value>
+  </data>
+  <data name="Fill" xml:space="preserve">
+    <value>Täytä</value>
+  </data>
+  <data name="Filmstrip" xml:space="preserve">
+    <value>_Raina</value>
+  </data>
+  <data name="FilterOnSelectedRolls" xml:space="preserve">
+    <value>Suodata valittujen filmirullien mukaan</value>
+  </data>
+  <data name="Find" xml:space="preserve">
+    <value>Etsi</value>
+  </data>
+  <data name="Find2" xml:space="preserve">
+    <value>Etsi:</value>
+  </data>
+  <data name="Find3" xml:space="preserve">
+    <value>_Etsi</value>
+  </data>
+  <data name="FindColon" xml:space="preserve">
+    <value>Haku: </value>
+  </data>
+  <data name="FindSelectedTagMnemonic" xml:space="preserve">
+    <value>Etsi valittu tunni_ste</value>
+  </data>
+  <data name="FindSelectedTagWithMnemonic" xml:space="preserve">
+    <value>Etsi valittu tunniste _käyttäen</value>
+  </data>
+  <data name="FindSelectedTagsMnemonic" xml:space="preserve">
+    <value>Etsi valitut tunni_steet</value>
+  </data>
+  <data name="FindSelectedTagsWithMnemonic" xml:space="preserve">
+    <value>Etsi valitut tunnisteet _käyttäen</value>
+  </data>
+  <data name="FindWithMnemonic" xml:space="preserve">
+    <value>Etsi _käyttäen</value>
+  </data>
+  <data name="FiveBySevenL2L" xml:space="preserve">
+    <value>5 x 7 (L, 2L)</value>
+  </data>
+  <data name="FixExclamation" xml:space="preserve">
+    <value>Korjaa</value>
+  </data>
+  <data name="Flickr2" xml:space="preserve">
+    <value>_Flickr...</value>
+  </data>
+  <data name="FocalLength" xml:space="preserve">
+    <value>Polttoväli</value>
+  </data>
+  <data name="Folder" xml:space="preserve">
+    <value>Kansio</value>
+  </data>
+  <data name="Folder3" xml:space="preserve">
+    <value>Kansi_o...</value>
+  </data>
+  <data name="Folder4" xml:space="preserve">
+    <value>_Kansio:</value>
+  </data>
+  <data name="FolderExport" xml:space="preserve">
+    <value>Kansion vienti</value>
+  </data>
+  <data name="Folders" xml:space="preserve">
+    <value>Kansiot</value>
+  </data>
+  <data name="FollowingErrorEncounteredAttemptingToPerformRequestedOperation" xml:space="preserve">
+    <value>Tapahtui seuraava virhe yritettäessä suorittaa pyydettyä toimintoa:
+{0} ({1})</value>
+  </data>
+  <data name="FollowingErrorWasEncounteredAttemptingToLogInX" xml:space="preserve">
+    <value>Sisäänkirjauduttaessa tapahtui seuraava virhe: {0}</value>
+  </data>
+  <data name="FourBySixPostcard" xml:space="preserve">
+    <value>4 x 6 (Postikortti)</value>
+  </data>
+  <data name="FourByThreeBook" xml:space="preserve">
+    <value>4 x 3 (Kirja)</value>
+  </data>
+  <data name="FullPageNomargin" xml:space="preserve">
+    <value>Kokosivu (ei marginaalia)</value>
+  </data>
+  <data name="Fullscreen" xml:space="preserve">
+    <value>Kokoruutu</value>
+  </data>
+  <data name="Fullscreen2" xml:space="preserve">
+    <value>_Kokoruutu</value>
+  </data>
+  <data name="Gallery" xml:space="preserve">
+    <value>Galleria</value>
+  </data>
+  <data name="Gallery5" xml:space="preserve">
+    <value>_Galleria:</value>
+  </data>
+  <data name="GalleryGeneratedBy" xml:space="preserve">
+    <value>Valokuvakokoelman loi</value>
+  </data>
+  <data name="GalleryName" xml:space="preserve">
+    <value>G_allerian nimi:</value>
+  </data>
+  <data name="GalleryName2" xml:space="preserve">
+    <value>_Gallerian nimi:</value>
+  </data>
+  <data name="GalleryWithThisNameAlreadyExists" xml:space="preserve">
+    <value>Tällä nimellä oleva galleria on jo olemassa</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>O_hje</value>
+  </data>
+  <data name="Hidden" xml:space="preserve">
+    <value>Piilotettu</value>
+  </data>
+  <data name="Hidden2" xml:space="preserve">
+    <value>_Piilotettu</value>
+  </data>
+  <data name="Hide" xml:space="preserve">
+    <value>Piilota</value>
+  </data>
+  <data name="HideFindBarMnemonic" xml:space="preserve">
+    <value>Piilota _hakupalkki</value>
+  </data>
+  <data name="HideStyles" xml:space="preserve">
+    <value>Piilota tyylit</value>
+  </data>
+  <data name="Histogram" xml:space="preserve">
+    <value>Histogrammi</value>
+  </data>
+  <data name="HorizontalMnemonic" xml:space="preserve">
+    <value>_Vaaka</value>
+  </data>
+  <data name="Hue" xml:space="preserve">
+    <value>_Värisävy:</value>
+  </data>
+  <data name="Icon" xml:space="preserve">
+    <value>_Kuvake:</value>
+  </data>
+  <data name="IfYouDeleteThisTagTheAssociationWithXYWillBeLost" xml:space="preserve">
+    <value>Jos poistat tunnisteen, menetetään assosiaatiot: {0} {1}.</value>
+  </data>
+  <data name="IfYouDeleteThisTagsTheAssociationWithXYWillBeLost" xml:space="preserve">
+    <value>Jos poistat tunnisteet, menetetään assosiaatiot: {0} {1}.</value>
+  </data>
+  <data name="IfYouRemovePhotosFromFSpotCatalogAllTagInfoLost" xml:space="preserve">
+    <value>Jos poistat valokuvia F-Spotin luettelosta, kaikki kuviin liittyvien tunnisteiden tiedot menetetään. Valokuvat säilyvät tietokoneellasi ja ne voidaan tuoda F-Spotiin uudestaan.</value>
+  </data>
+  <data name="IgnoreTopLevelTags" xml:space="preserve">
+    <value>Jätä huomiotta ylimmän _tason tunnisteet</value>
+  </data>
+  <data name="ImageInformation2" xml:space="preserve">
+    <value>Tietoja kuvasta</value>
+  </data>
+  <data name="ImageSettings" xml:space="preserve">
+    <value>Kuvan asetukset</value>
+  </data>
+  <data name="ImagesTaggedWith" xml:space="preserve">
+    <value>Kuvat, joilla on tunniste:</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Tuo</value>
+  </data>
+  <data name="Import2" xml:space="preserve">
+    <value>_Tuo...</value>
+  </data>
+  <data name="Import3" xml:space="preserve">
+    <value>Tuo:</value>
+  </data>
+  <data name="ImportIntoFSpot" xml:space="preserve">
+    <value>Tuo F-Spotiin</value>
+  </data>
+  <data name="ImportNewImages" xml:space="preserve">
+    <value>Tuo uudet kuvat</value>
+  </data>
+  <data name="ImportRoll" xml:space="preserve">
+    <value>Tuotu filmirulla</value>
+  </data>
+  <data name="InThisPhoto" xml:space="preserve">
+    <value>Tässä valokuvassa</value>
+  </data>
+  <data name="IncludePhotoTaggedX" xml:space="preserve">
+    <value>Sisällytä valokuvat, joilla on tunniste "{0}"</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>Indeksi</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Tietoja</value>
+  </data>
+  <data name="InsideTheImageFilesWhenPossibleSmallMakesThemAccessibleToOtherImageEditingProgramsSmall" xml:space="preserve">
+    <value>Kuvatiedostoon kun mahdollista
+&lt;small&gt;Muut kuvankäsittelyohjelmat voivat lukea luokituksia.&lt;/small&gt;</value>
+  </data>
+  <data name="InterpolateImageOnZoom" xml:space="preserve">
+    <value>_Interpoloi kuva lähennettäessä</value>
+  </data>
+  <data name="InvalidGalleryName" xml:space="preserve">
+    <value>Virheellinen gallerian nimi</value>
+  </data>
+  <data name="InvalidUrl" xml:space="preserve">
+    <value>Virheellinen URL</value>
+  </data>
+  <data name="KeepTheImagesAtTheirOriginalLocation" xml:space="preserve">
+    <value>Pidä kuvat alkuperäisessä sijainnissaan</value>
+  </data>
+  <data name="Label" xml:space="preserve">
+    <value>Otsake</value>
+  </data>
+  <data name="Large" xml:space="preserve">
+    <value>Suuri</value>
+  </data>
+  <data name="Large2" xml:space="preserve">
+    <value>_Suuri</value>
+  </data>
+  <data name="LastImportRoll" xml:space="preserve">
+    <value>Viimeisin tuotu fi_lmirulla</value>
+  </data>
+  <data name="LastNintyDays" xml:space="preserve">
+    <value>Viimeiset 90 päivää</value>
+  </data>
+  <data name="LastSevenDays" xml:space="preserve">
+    <value>Viimeiset 7 päivää</value>
+  </data>
+  <data name="LastThirtyDays" xml:space="preserve">
+    <value>Viimeiset 30 päivää</value>
+  </data>
+  <data name="LastThreeHundredSixtyDays" xml:space="preserve">
+    <value>Viimeiset 360 päivää</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>Vaalea</value>
+  </data>
+  <data name="LiteralAnd" xml:space="preserve">
+    <value> ja </value>
+  </data>
+  <data name="LiteralOr" xml:space="preserve">
+    <value> tai </value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Sijainti</value>
+  </data>
+  <data name="Location2" xml:space="preserve">
+    <value>_Sijainti:</value>
+  </data>
+  <data name="LoggingIntoTabblo" xml:space="preserve">
+    <value>Kirjaudutaan Tabbloon</value>
+  </data>
+  <data name="LoggingIntoX" xml:space="preserve">
+    <value>Kirjaudutaan sivustolle {0}</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Kirjaudu sisään</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Kirjaudu ulos</value>
+  </data>
+  <data name="Loupe" xml:space="preserve">
+    <value>_Luuppi</value>
+  </data>
+  <data name="MakeFSpotMyScreensaver" xml:space="preserve">
+    <value>Tee F-Spotista näytönsäästäjä</value>
+  </data>
+  <data name="ManageExtensions" xml:space="preserve">
+    <value>Hallitse _laajennoksia</value>
+  </data>
+  <data name="ManageYourCustomSelectionRatios" xml:space="preserve">
+    <value>Hallitse omia valintakuvasuhteitasi</value>
+  </data>
+  <data name="Medium" xml:space="preserve">
+    <value>Keskikoko</value>
+  </data>
+  <data name="Medium2" xml:space="preserve">
+    <value>_Keskikoko</value>
+  </data>
+  <data name="MergeAnotherFSpotCollection" xml:space="preserve">
+    <value>Yhdistä toinen F-Spot-kokoelma</value>
+  </data>
+  <data name="MergeDb" xml:space="preserve">
+    <value>Yhdistä tietokanta</value>
+  </data>
+  <data name="MergeTags" xml:space="preserve">
+    <value>Yhdistä tunnisteet</value>
+  </data>
+  <data name="MergeTagsMnemonic" xml:space="preserve">
+    <value>_Yhdistä tunnisteet</value>
+  </data>
+  <data name="MergeTheSelectedTag" xml:space="preserve">
+    <value>Yhdistä valittu tunniste</value>
+  </data>
+  <data name="MergeTheSelectedTags" xml:space="preserve">
+    <value>Yhdistä {0} valittua tunnistetta?</value>
+  </data>
+  <data name="Metadata" xml:space="preserve">
+    <value>Metatiedot</value>
+  </data>
+  <data name="MinStartingAtX" xml:space="preserve">
+    <value>min. alkaen {0}</value>
+  </data>
+  <data name="Modified" xml:space="preserve">
+    <value>Muokattu</value>
+  </data>
+  <data name="ModifiedInY" xml:space="preserve">
+    <value>Muokattu {1}</value>
+  </data>
+  <data name="ModifiedInYX" xml:space="preserve">
+    <value>Muokattu {1} ({0})</value>
+  </data>
+  <data name="ModifiedX" xml:space="preserve">
+    <value>Muokattuja ({0})</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>Lisää</value>
+  </data>
+  <data name="MoreDates" xml:space="preserve">
+    <value>Lisää päiväyksiä</value>
+  </data>
+  <data name="MyPhotos" xml:space="preserve">
+    <value>Valokuvani</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nimi</value>
+  </data>
+  <data name="NameColon" xml:space="preserve">
+    <value>Nimi:</value>
+  </data>
+  <data name="NameOfNewTagColon" xml:space="preserve">
+    <value>Uuden tunnisteen nimi:</value>
+  </data>
+  <data name="NewNameColon" xml:space="preserve">
+    <value>Uusi nimi:</value>
+  </data>
+  <data name="NewRollsOnly" xml:space="preserve">
+    <value>Vain uudet filmirullat</value>
+  </data>
+  <data name="NewWindow" xml:space="preserve">
+    <value>_Uusi ikkuna</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Seuraava</value>
+  </data>
+  <data name="NextPhoto" xml:space="preserve">
+    <value>Seuraava valokuva</value>
+  </data>
+  <data name="NextPicture" xml:space="preserve">
+    <value>Seuraava kuva</value>
+  </data>
+  <data name="NoAccountSelected" xml:space="preserve">
+    <value>Tiliä ei ole valittu</value>
+  </data>
+  <data name="NoActivePhoto" xml:space="preserve">
+    <value>Ei valittua valokuvaa</value>
+  </data>
+  <data name="NoApplicationsAvailable" xml:space="preserve">
+    <value>Sovelluksia ei ole saatavilla</value>
+  </data>
+  <data name="NoCamerasDetected" xml:space="preserve">
+    <value>(Kameroita ei löytynyt)</value>
+  </data>
+  <data name="NoConstraint" xml:space="preserve">
+    <value>Ei rajoitusta</value>
+  </data>
+  <data name="NoImage" xml:space="preserve">
+    <value>E_i kuvaa</value>
+  </data>
+  <data name="NoMatchingPhotosFound" xml:space="preserve">
+    <value>Täsmääviä valokuvia ei löytynyt</value>
+  </data>
+  <data name="NoMetadataAvailable" xml:space="preserve">
+    <value>Metatietoja ei ole saatavilla</value>
+  </data>
+  <data name="NoPermissionToDeleteTheFile" xml:space="preserve">
+    <value>Oikeudet eivät riitä tiedoston poistamiseen:{1}{0}</value>
+  </data>
+  <data name="NoPhotosMatchingFound" xml:space="preserve">
+    <value>Hakua {0} vastaavia valokuvia ei löydy</value>
+  </data>
+  <data name="NoSelectionAvailable" xml:space="preserve">
+    <value>Valintaa ei ole saatavilla</value>
+  </data>
+  <data name="NoTagAppliedToAppliedTryAddingorSelectingDifferentTagInPreferenceDialog" xml:space="preserve">
+    <value>Tunniste "{0}" ei liity mihinkään valokuvaan. Lisää tunniste
+joihinkin valokuviin tai valitse toinen tunniste F-Spotin
+asetusvalikosta.</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>Ei mitään</value>
+  </data>
+  <data name="NotLoggedIn" xml:space="preserve">
+    <value>Et ole kirjautunut sisään</value>
+  </data>
+  <data name="NotSpaceX" xml:space="preserve">
+    <value>Ei {0}</value>
+  </data>
+  <data name="NumberOfPhotosInSelectedRolls" xml:space="preserve">
+    <value>Valokuvien lukumäärä valituissa filmirullissa:</value>
+  </data>
+  <data name="NumberOfPictures" xml:space="preserve">
+    <value>Kuvien lukumäärä</value>
+  </data>
+  <data name="ObtainingURLForUpload" xml:space="preserve">
+    <value>Selvitetään viennin URL:ia</value>
+  </data>
+  <data name="OkMnemonic" xml:space="preserve">
+    <value>_Ok</value>
+  </data>
+  <data name="OnXBetweenYAndZ" xml:space="preserve">
+    <value>{0} kellonaikojen 
+{1} ja {2} välillä</value>
+  </data>
+  <data name="OnlyPhotosTakenWithinTheseDatesWillBeDisplayed" xml:space="preserve">
+    <value>Vain annettuna aikana otetut kuvat näytetään.</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Avaa</value>
+  </data>
+  <data name="OpenAlbumInBrowserWhenDoneUploading2" xml:space="preserve">
+    <value>Avaa _albumi selaimessa, kun kuvien vienti on valmistunut</value>
+  </data>
+  <data name="OpenDestinationWhenDoneExporting" xml:space="preserve">
+    <value>Avaa _kohde, kun vienti on valmis</value>
+  </data>
+  <data name="OpenFolder" xml:space="preserve">
+    <value>Avaa _kansio...</value>
+  </data>
+  <data name="OpenWith" xml:space="preserve">
+    <value>Avaa _sovelluksella</value>
+  </data>
+  <data name="Or" xml:space="preserve">
+    <value>tai</value>
+  </data>
+  <data name="OrganizeEnjoyAndShareYourPhotos" xml:space="preserve">
+    <value>Järjestele ja jaa valokuviasi</value>
+  </data>
+  <data name="Original" xml:space="preserve">
+    <value>Alkuperäinen</value>
+  </data>
+  <data name="OriginalSizePossibleVeryLargeFileSize" xml:space="preserve">
+    <value>Alkuperäinen koko (mahdollisesti hyvin suuri tiedosto)</value>
+  </data>
+  <data name="PageColon" xml:space="preserve">
+    <value>Sivu:</value>
+  </data>
+  <data name="PageSetup" xml:space="preserve">
+    <value>Sivun asetukset</value>
+  </data>
+  <data name="PageSetup2" xml:space="preserve">
+    <value>Sivun _asetukset...</value>
+  </data>
+  <data name="PaperSizeXxYmm" xml:space="preserve">
+    <value>Paperin koko: {0} x {1} mm</value>
+  </data>
+  <data name="ParenFileReadErrorParen" xml:space="preserve">
+    <value>(Tiedoston lukuvirhe)</value>
+  </data>
+  <data name="ParenNoAlbumsParen" xml:space="preserve">
+    <value>(Ei albumeita)</value>
+  </data>
+  <data name="ParenNoEditsParen" xml:space="preserve">
+    <value>(Ei muokkauksia)</value>
+  </data>
+  <data name="ParenNoGalleryParen" xml:space="preserve">
+    <value>(Ei galleriaa)</value>
+  </data>
+  <data name="ParenNoTagsParen" xml:space="preserve">
+    <value>(Ei tunnisteita)</value>
+  </data>
+  <data name="ParenNoneParen" xml:space="preserve">
+    <value>(Ei mitään)</value>
+  </data>
+  <data name="ParenNotConnectedParen" xml:space="preserve">
+    <value>(Ei yhteyttä)</value>
+  </data>
+  <data name="ParenTopLevelParen" xml:space="preserve">
+    <value>(Ylätaso)</value>
+  </data>
+  <data name="ParenUnknownParen" xml:space="preserve">
+    <value>(Tuntematon)</value>
+  </data>
+  <data name="ParentAlbum" xml:space="preserve">
+    <value>_Ylemmän tason albumi:</value>
+  </data>
+  <data name="ParentTag" xml:space="preserve">
+    <value>Y_lemmän tason tunniste:</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>_Salasana:</value>
+  </data>
+  <data name="People" xml:space="preserve">
+    <value>Ihmiset</value>
+  </data>
+  <data name="Permissions" xml:space="preserve">
+    <value>Oikeudet:</value>
+  </data>
+  <data name="Photo2" xml:space="preserve">
+    <value>valokuva</value>
+  </data>
+  <data name="Photo3" xml:space="preserve">
+    <value>_Valokuva</value>
+  </data>
+  <data name="PhotoManagementForGNOME" xml:space="preserve">
+    <value>Valokuvien hallinta Gnomelle</value>
+  </data>
+  <data name="PhotoManager" xml:space="preserve">
+    <value>Valokuvien hallinta</value>
+  </data>
+  <data name="PhotoViewer" xml:space="preserve">
+    <value>Valokuvien katselin</value>
+  </data>
+  <data name="PhotoXOfY" xml:space="preserve">
+    <value>Valokuva {0} / {1}</value>
+  </data>
+  <data name="Photos" xml:space="preserve">
+    <value>Valokuvat</value>
+  </data>
+  <data name="Photos2" xml:space="preserve">
+    <value>valokuvat</value>
+  </data>
+  <data name="PhotosInfos" xml:space="preserve">
+    <value>Valokuvien tiedot</value>
+  </data>
+  <data name="PhotosLayout" xml:space="preserve">
+    <value>Valokuvien asettelu</value>
+  </data>
+  <data name="PhotosPerPage" xml:space="preserve">
+    <value>Valokuvia sivulla</value>
+  </data>
+  <data name="PicasaWeb2" xml:space="preserve">
+    <value>_Picasaweb...</value>
+  </data>
+  <data name="Pixels" xml:space="preserve">
+    <value>pikseliä</value>
+  </data>
+  <data name="Places" xml:space="preserve">
+    <value>Paikat</value>
+  </data>
+  <data name="PleaseNameYourAlbumOrChooseAnExistingAlbum" xml:space="preserve">
+    <value>Anna albumin nimi tai valitse olemassa oleva albumi.</value>
+  </data>
+  <data name="PleaseVerifyThatTheSettingsForThisGalleryAreCorrect" xml:space="preserve">
+    <value>Tarkista että tämän gallerian asetukset ovat oikein.</value>
+  </data>
+  <data name="PleaseVerifyThatTheSettingsForThisGalleryAreCorrectEnterTheLettersAsTheyAreShownInTheImageInTheCaptchaFieldILettersAreNotCaseSensitiveI" xml:space="preserve">
+    <value>Tarkista, että tämän gallerian asetukset ovat oikein.
+Syötä "Captcha"-kentässä näytettävät kirjaimet
+&lt;i&gt;Kirjainkoolla ei ole merkitystä&lt;/i&gt;</value>
+  </data>
+  <data name="PleaseWaitFSpotGalleryDBUpdating" xml:space="preserve">
+    <value>Odota, kunnes F-Spotin gallerian tietokanta on päivitetty. Tämä voi kestää jonkin aikaa.</value>
+  </data>
+  <data name="Preferences" xml:space="preserve">
+    <value>Asetukset</value>
+  </data>
+  <data name="PreparingEmail" xml:space="preserve">
+    <value>Valmistellaan sähköpostia</value>
+  </data>
+  <data name="PreparingPhotoX" xml:space="preserve">
+    <value>Valmistellaan kuvaa "{0}"</value>
+  </data>
+  <data name="Prev" xml:space="preserve">
+    <value>Edellinen</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Edellinen</value>
+  </data>
+  <data name="PreviousPhoto" xml:space="preserve">
+    <value>Edellinen valokuva</value>
+  </data>
+  <data name="PreviousPicture" xml:space="preserve">
+    <value>Edellinen kuva</value>
+  </data>
+  <data name="PreviousWeekMonSun" xml:space="preserve">
+    <value>Edellinen viikko (ma-su)</value>
+  </data>
+  <data name="PrintCutMarks" xml:space="preserve">
+    <value>Tulosta rajausmerkit</value>
+  </data>
+  <data name="PrintFileName" xml:space="preserve">
+    <value>Tulosta tiedostonimi</value>
+  </data>
+  <data name="PrintPhotoComment" xml:space="preserve">
+    <value>Tulosta valokuvan kommentti</value>
+  </data>
+  <data name="PrintPhotoDate" xml:space="preserve">
+    <value>Tulosta valokuvan päiväys</value>
+  </data>
+  <data name="PrintPhotoTags" xml:space="preserve">
+    <value>Tulosta valokuvan tagit</value>
+  </data>
+  <data name="PrintPhotoTime" xml:space="preserve">
+    <value>Tulosta valokuvan aika</value>
+  </data>
+  <data name="Private" xml:space="preserve">
+    <value>Yksityinen</value>
+  </data>
+  <data name="Public" xml:space="preserve">
+    <value>Julkinen</value>
+  </data>
+  <data name="PublicAlbum" xml:space="preserve">
+    <value>Julkinen albumi</value>
+  </data>
+  <data name="Quit" xml:space="preserve">
+    <value>_Lopeta</value>
+  </data>
+  <data name="RadiusColon" xml:space="preserve">
+    <value>Säde:</value>
+  </data>
+  <data name="RatedPhotos" xml:space="preserve">
+    <value>Arvioidut valokuvat</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Arvostelu</value>
+  </data>
+  <data name="Ratings" xml:space="preserve">
+    <value>A_rvioinnit</value>
+  </data>
+  <data name="Ratio" xml:space="preserve">
+    <value>Suhde</value>
+  </data>
+  <data name="ReallyDeleteVersionXQuestion" xml:space="preserve">
+    <value>Poistetaanko todella versio "{0}"?</value>
+  </data>
+  <data name="ReceivedErrorXWhileAttemptingToRotateY" xml:space="preserve">
+    <value>Saatiin virhe "{0}" yritettäessä kääntää kuvaa {1}</value>
+  </data>
+  <data name="ReceivedExceptionXNoteThatYouHaveToDevelopRaw" xml:space="preserve">
+    <value>Saatiin poikkeus "{0}". Huomaa, että RAW-tiedostot täytyy muuntaa JPEG- muotoon ennen kuin voit muokata niitä.</value>
+  </data>
+  <data name="ReceivedExceptionXUnableToSavePhotoY" xml:space="preserve">
+    <value>Saatiin poikkeus "{0}". Kuvaa {1} ei voi tallentaa</value>
+  </data>
+  <data name="RedEyeReduction" xml:space="preserve">
+    <value>Punasilmäisyyden vähennys</value>
+  </data>
+  <data name="RefreshSearch" xml:space="preserve">
+    <value>Virkistä haku</value>
+  </data>
+  <data name="RefreshThumbnail" xml:space="preserve">
+    <value>_Päivitä pienoiskuva</value>
+  </data>
+  <data name="RemoveFromCatalog" xml:space="preserve">
+    <value>Poista sisällysluettelosta</value>
+  </data>
+  <data name="RemoveFromCatalogMnemonic" xml:space="preserve">
+    <value>_Poista luettelosta</value>
+  </data>
+  <data name="RemoveFromExportedPhotos" xml:space="preserve">
+    <value>_Poista viedyistä kuvista</value>
+  </data>
+  <data name="RemoveFromSearch" xml:space="preserve">
+    <value>Poista hausta</value>
+  </data>
+  <data name="RemoveTag" xml:space="preserve">
+    <value>P_oista tunniste</value>
+  </data>
+  <data name="RemoveTagFromSelection" xml:space="preserve">
+    <value>Poista tunnisteet valinnasta</value>
+  </data>
+  <data name="RemoveTagFromSelection2" xml:space="preserve">
+    <value>_Poista tunniste valinnasta</value>
+  </data>
+  <data name="RemoveTagFromSelection3" xml:space="preserve">
+    <value>Poista tunniste valinnasta</value>
+  </data>
+  <data name="RemoveTheSelectedPhotoFromFSpot" xml:space="preserve">
+    <value>Poista valittu kuva F-Spotista?</value>
+  </data>
+  <data name="RemoveTheXSelectedPhotosFromFSpot" xml:space="preserve">
+    <value>Poista valitut {0} kuvaa F-Spotista?</value>
+  </data>
+  <data name="RenameVersion" xml:space="preserve">
+    <value>Nimeä versio uudelleen</value>
+  </data>
+  <data name="RenameVersion2" xml:space="preserve">
+    <value>Nimeä versio uudelleen</value>
+  </data>
+  <data name="Repair" xml:space="preserve">
+    <value>Korjaa</value>
+  </data>
+  <data name="Reparented" xml:space="preserve">
+    <value>Jaettu versio</value>
+  </data>
+  <data name="Repeat" xml:space="preserve">
+    <value>Toista</value>
+  </data>
+  <data name="ResizeTo" xml:space="preserve">
+    <value>_Muuta kokoon: </value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Yritä uudestaan</value>
+  </data>
+  <data name="ReturnToThisWindowAfterYouHaveFinishedAuthProcessOnXClickCompleteAuthorizationButton" xml:space="preserve">
+    <value>Palaa tähän ikkunaan, kun olet päättänyt valtuutusprosessin palvelussa {0} ja napsauta alla olevaa "Viimeistele valtuutus"-painiketta.</value>
+  </data>
+  <data name="ReverseOrder" xml:space="preserve">
+    <value>_Käänteinen järjestys</value>
+  </data>
+  <data name="RotateLeft" xml:space="preserve">
+    <value>Kierrä vasemmalle</value>
+  </data>
+  <data name="RotateLeftMnemonic" xml:space="preserve">
+    <value>Kierrä _vasemmalle</value>
+  </data>
+  <data name="RotatePhotoLeft" xml:space="preserve">
+    <value>Kierrä kuvaa vasemmalle</value>
+  </data>
+  <data name="RotatePhotoRight" xml:space="preserve">
+    <value>Kierrä kuvaa oikealle</value>
+  </data>
+  <data name="RotatePictureLeft" xml:space="preserve">
+    <value>Kierrä kuvaa vasemmalle</value>
+  </data>
+  <data name="RotatePictureRight" xml:space="preserve">
+    <value>Kierrä kuvaa oikealle</value>
+  </data>
+  <data name="RotateRight" xml:space="preserve">
+    <value>Kierrä oikealle</value>
+  </data>
+  <data name="RotateRightMnemonic" xml:space="preserve">
+    <value>Kierrä _oikealle</value>
+  </data>
+  <data name="RotateSelectedPhotoLeft" xml:space="preserve">
+    <value>Kierrä valittua kuvaa vasemmalle</value>
+  </data>
+  <data name="RotateSelectedPhotoRight" xml:space="preserve">
+    <value>Kierrä valittua kuvaa oikealle</value>
+  </data>
+  <data name="RotateSelectedPhotosLeft" xml:space="preserve">
+    <value>Kierrä valittuja kuvia vasemmalle</value>
+  </data>
+  <data name="RotateSelectedPhotosRight" xml:space="preserve">
+    <value>Kierrä valittuja kuvia oikealle</value>
+  </data>
+  <data name="RotatingPhotoX" xml:space="preserve">
+    <value>Kierretään valokuvaa "{0}"</value>
+  </data>
+  <data name="RotatingPhotos" xml:space="preserve">
+    <value>Valokuvien kiertäminen</value>
+  </data>
+  <data name="S000000" xml:space="preserve">
+    <value>00:00:00</value>
+  </data>
+  <data name="S00000000000000" xml:space="preserve">
+    <value>0000:00:00 00:00:00</value>
+  </data>
+  <data name="S1024Px" xml:space="preserve">
+    <value>1024 px</value>
+  </data>
+  <data name="S23hq" xml:space="preserve">
+    <value>_23hq...</value>
+  </data>
+  <data name="S320Px" xml:space="preserve">
+    <value>320 px</value>
+  </data>
+  <data name="S480Px" xml:space="preserve">
+    <value>480 px</value>
+  </data>
+  <data name="S5" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="S640Px" xml:space="preserve">
+    <value>640 px</value>
+  </data>
+  <data name="S800Px" xml:space="preserve">
+    <value>800 px</value>
+  </data>
+  <data name="SameAsPhoto" xml:space="preserve">
+    <value>Sama kuin valokuvassa</value>
+  </data>
+  <data name="Saturation2" xml:space="preserve">
+    <value>_Värikylläisyys:</value>
+  </data>
+  <data name="SaveTheFilesOnly" xml:space="preserve">
+    <value>_Tallenna vain tiedostot</value>
+  </data>
+  <data name="Scale" xml:space="preserve">
+    <value>_Venytä:</value>
+  </data>
+  <data name="Scaled" xml:space="preserve">
+    <value>Venytä</value>
+  </data>
+  <data name="ScreensaverConfiguration" xml:space="preserve">
+    <value>Näytönsäästäjän asetukset</value>
+  </data>
+  <data name="SearchReturnedNoResults" xml:space="preserve">
+    <value>Haku ei palauttanut tuloksia</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Valitse...</value>
+  </data>
+  <data name="SelectAFolder" xml:space="preserve">
+    <value>Valitse kansio</value>
+  </data>
+  <data name="SelectATag" xml:space="preserve">
+    <value>Valitse tunniste...</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Valitse k_aikki</value>
+  </data>
+  <data name="SelectExportFolder" xml:space="preserve">
+    <value>Valitse vientikansio</value>
+  </data>
+  <data name="SelectExportFolder2" xml:space="preserve">
+    <value>Valitse vientikansio</value>
+  </data>
+  <data name="SelectFolder" xml:space="preserve">
+    <value>Valitse kansio</value>
+  </data>
+  <data name="SelectImportRolls" xml:space="preserve">
+    <value>Valit_se filmirullat...</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>Älä valitse _mitään</value>
+  </data>
+  <data name="SelectPhotoFromFile" xml:space="preserve">
+    <value>Valitse valokuva tiedostosta</value>
+  </data>
+  <data name="SelectTheAreaThatNeedsCropping" xml:space="preserve">
+    <value>Valitse rajattava alue.</value>
+  </data>
+  <data name="SelectTheEyesYouWishToFix" xml:space="preserve">
+    <value>Valitse korjattavat silmät.</value>
+  </data>
+  <data name="SelectionConstraints" xml:space="preserve">
+    <value>Valinnan rajoitukset</value>
+  </data>
+  <data name="SendByMail" xml:space="preserve">
+    <value>Lähetä _sähköpostitse...</value>
+  </data>
+  <data name="SeparatelyFromTheImageFiles" xml:space="preserve">
+    <value>Erilleen kuvatiedostoista</value>
+  </data>
+  <data name="SepiaTone2" xml:space="preserve">
+    <value>Sepia-väritys</value>
+  </data>
+  <data name="ServerReturnedResponseWithoutGalleryContent" xml:space="preserve">
+    <value>Palvelin palautti vastauksen ilman galleriasisältöä</value>
+  </data>
+  <data name="SessionEstablishedFetchingFriendDetails" xml:space="preserve">
+    <value>Istunto muodostettu, noudetaan ystävien tietoja...</value>
+  </data>
+  <data name="SessionEstablishedFetchingFriendList" xml:space="preserve">
+    <value>Istunto muodostettu, noudetaan ystäväluetteloa...</value>
+  </data>
+  <data name="SessionEstablishedFetchingPhotoAlbums" xml:space="preserve">
+    <value>Istunto muodostettu, noudetaan valokuva-albumeita...</value>
+  </data>
+  <data name="SessionEstablishedFetchingUserInfo" xml:space="preserve">
+    <value>Istunto muodostettu, noudetaan käyttäjätietoja...</value>
+  </data>
+  <data name="SetAsBackground" xml:space="preserve">
+    <value>Aseta taustakuvaksi</value>
+  </data>
+  <data name="SetAsBackground2" xml:space="preserve">
+    <value>Aseta _taustakuvaksi</value>
+  </data>
+  <data name="SetDateRange" xml:space="preserve">
+    <value>Valitse aikaväli</value>
+  </data>
+  <data name="SetDateRange2" xml:space="preserve">
+    <value>A_seta päivämääräväli...</value>
+  </data>
+  <data name="SetPageSizeAndOrientation" xml:space="preserve">
+    <value>Aseta paperikoko ja -suunta</value>
+  </data>
+  <data name="SetRatingFilter" xml:space="preserve">
+    <value>Aseta arviointisuodatin</value>
+  </data>
+  <data name="SetRatingFilter2" xml:space="preserve">
+    <value>A_seta arviointisuodatin...</value>
+  </data>
+  <data name="Sharpen" xml:space="preserve">
+    <value>_Terävöitä</value>
+  </data>
+  <data name="Sharpen2" xml:space="preserve">
+    <value>_Terävöitä...</value>
+  </data>
+  <data name="ShiftAllPhotosByX" xml:space="preserve">
+    <value>Siirrä kaikkia kuvia {0} verran</value>
+  </data>
+  <data name="ShowAllPhotos" xml:space="preserve">
+    <value>Näytä kaikki valokuvat.</value>
+  </data>
+  <data name="ShowCamera" xml:space="preserve">
+    <value>Näytä kamera</value>
+  </data>
+  <data name="ShowDate" xml:space="preserve">
+    <value>Näytä päiväys</value>
+  </data>
+  <data name="ShowExposure" xml:space="preserve">
+    <value>Näytä valotus</value>
+  </data>
+  <data name="ShowFileSize" xml:space="preserve">
+    <value>Näytä tiedoston koko</value>
+  </data>
+  <data name="ShowFindBarMnemonic" xml:space="preserve">
+    <value>Näytä _hakupalkki</value>
+  </data>
+  <data name="ShowFocalLength" xml:space="preserve">
+    <value>Näytä polttoväli</value>
+  </data>
+  <data name="ShowOrHideTheSidePane" xml:space="preserve">
+    <value>Näytä tai piilota sivupaneeli</value>
+  </data>
+  <data name="ShowOrHideTheToolbar" xml:space="preserve">
+    <value>Näytä tai piilota työkalupalkki</value>
+  </data>
+  <data name="ShowSize" xml:space="preserve">
+    <value>Näytä koko</value>
+  </data>
+  <data name="ShowStyles" xml:space="preserve">
+    <value>Näytä tyylit</value>
+  </data>
+  <data name="SidePane" xml:space="preserve">
+    <value>Sivu_paneeli</value>
+  </data>
+  <data name="Sidebar" xml:space="preserve">
+    <value>Sivu_palkki</value>
+  </data>
+  <data name="SignInAsADifferentUser" xml:space="preserve">
+    <value>Kirjaudu sisään toisena käyttäjänä</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Koko</value>
+  </data>
+  <data name="SizeOfTheExportedSelection" xml:space="preserve">
+    <value>Vietävän valinnan koko:</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>Ohita</value>
+  </data>
+  <data name="SlideTransition" xml:space="preserve">
+    <value>Diasiirros:</value>
+  </data>
+  <data name="Slideshow" xml:space="preserve">
+    <value>Diaesitys</value>
+  </data>
+  <data name="Slideshow2" xml:space="preserve">
+    <value>_Diaesitys</value>
+  </data>
+  <data name="Small" xml:space="preserve">
+    <value>Pieni</value>
+  </data>
+  <data name="Small2" xml:space="preserve">
+    <value>_Pieni</value>
+  </data>
+  <data name="SmallIChooseTheLocationOfTheDatabaseYouWantToImportFromISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;Valitse tuotavan tietokannan sijainti&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIChooseWhatToImportFromTheSelectedDbNewRollsOnlyIsTheSmartOptionThatWillAvoidReImportingPhotosYouCouldHaveImportedDuringAPreviousOperationASingleImportRollLetYouChooseWhichRollYouWantToMergeBackEverythingWillImportEverythingCreatingDuplicatesIfYouAlreadyImportedFromThatDatabaseISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;Valitse mitä valitusta tietokannasta tuodaan.
+"Vain uudet filmirullat" on älykäs valinta, joka jättää tuomatta aiemmin tuodut valokuvat.
+"Tuo yksi filmirulla" antaa valita tuotavan filmirullan.
+"Kaikki" tuo kaiken, mukaan lukien kaksoiskappaleet, jos olet aiemmin tuonut kuvia tästä tietokannasta.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallICopyTheImagesLocallyOrKeepThemWhereTheyAreIfYouChoseTheLaterBeSureThatThisLocationWillStayAccessibleFromFSpotISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;Kopioi kuvat paikallisesti tai pidä ne alkuperäisessä paikassaan. Jos haluat jättää ne paikalleen, varmista että tämä sijainti on aina F-Spotin luettavissa.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIEnableThisToAllowInterpolationOnZoomedImagesYouShouldnTDisableThisForViewingPhotosButDisablingTheInterpolationCouldBeUsefulInIconDesignISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;Ota tämä käyttöön, jos haluat interpoloida lähennetyt kuvat. Tätä ei pidä ottaa käyttöön kuvien katselussa, mutta interpolointi voi olla hyvä kytkeä käytöstä suunniteltaessa kuvakkeita.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIFSpotTagsCanHelpYouTrackTheExportStatusOfPhotosExampleUseOneTagForThePhotosThatYouPlanToExportAndAnotherOneForThoseAlreadyExportedHereYouCanTellFSpotToAutomaticallyReplaceTheseTagsAsAppropriateISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;F-Spot-tunnisteet voivat olla avuksi kuvien tuontivaiheessa. Esimerkki: Käytä yhtä tunnistetta kuville, jotka olet aikeissa tuoda koneelle, ja toista tunnistetta kuville, jotka olet jo tuonut koneelle. Tässä kohdassa voit määrittää F-Spotin automaattisesti muuttamaan tunnisteita, kun kuvat on tuotu.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIYouCanChooseHowToDisplayTransparentPartsInImagesThisOptionHasNoEffectOnPhotosButSettingThisAsCheckPatternOrCustomColorCouldBeUsefulWhenViewingIconsOrOtherArtworksWithTransparentPartsISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;Voit valita, kuinka kuvan läpinäkyvät osat näytetään. Tämä valinta ei vaikuta valokuviin, mutta tämän asettaminen ruutukuvioksi tai itse määritellyksi väriksi voi olla hyödyllistä katsottaessa kuvakkeita tai muita grafiikoita, joissa on läpinäkyviä osia.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmugMug" xml:space="preserve">
+    <value>_SmugMug...</value>
+  </data>
+  <data name="SoftFocus" xml:space="preserve">
+    <value>Pehmytpiirto</value>
+  </data>
+  <data name="SpaceAllPhotosBy" xml:space="preserve">
+    <value>Aseta kaikkien kuvien väliksi</value>
+  </data>
+  <data name="SpanWeightBoldSizeLargerErrorConnectingToGallerySpan" xml:space="preserve">
+    <value>&lt;span weight='bold' size='larger'&gt;Virhe yhdistettäessä galleriaan&lt;/span&gt;
+</value>
+  </data>
+  <data name="SpanWeightBoldSizeLargerYourGoogleAccountIsLockedSpan" xml:space="preserve">
+    <value>&lt;span weight='bold' size='larger'&gt;Google-tilisi on lukittu&lt;/span&gt;
+</value>
+  </data>
+  <data name="Square" xml:space="preserve">
+    <value>Neliö</value>
+  </data>
+  <data name="StandardTheme" xml:space="preserve">
+    <value>Standardi teema</value>
+  </data>
+  <data name="StartSlideshow" xml:space="preserve">
+    <value>Aloita diaesitys</value>
+  </data>
+  <data name="StayConnected" xml:space="preserve">
+    <value>Pidä yhteys auki</value>
+  </data>
+  <data name="StoreTagsAndDescriptionsForPhotos" xml:space="preserve">
+    <value>Tallenna kuvien tunnisteet ja kuvaukset:</value>
+  </data>
+  <data name="Straighten" xml:space="preserve">
+    <value>Suorista</value>
+  </data>
+  <data name="SystemProfile" xml:space="preserve">
+    <value>Järjestelmän profiili</value>
+  </data>
+  <data name="Tabblo" xml:space="preserve">
+    <value>_Tabblo...</value>
+  </data>
+  <data name="TagDoesntExistTrySelectingDifferentTagInPerferenceDialog" xml:space="preserve">
+    <value>F-Spotin etsimää tunnistetta ei ole olemassa. Yritä
+valita toinen tunniste F-Spotin asetusikkunasta.</value>
+  </data>
+  <data name="TagIcons" xml:space="preserve">
+    <value>_Tunnisteiden kuvakkeet</value>
+  </data>
+  <data name="TagIsNotEmpty" xml:space="preserve">
+    <value>Tunniste ei ole tyhjä</value>
+  </data>
+  <data name="TagName2" xml:space="preserve">
+    <value>_Tunnisteen nimi:</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Tunnisteet</value>
+  </data>
+  <data name="Tags2" xml:space="preserve">
+    <value>_Tunnisteet</value>
+  </data>
+  <data name="Tags3" xml:space="preserve">
+    <value>Tunn_isteet</value>
+  </data>
+  <data name="TagsColon" xml:space="preserve">
+    <value>Tunnisteet: </value>
+  </data>
+  <data name="Temp" xml:space="preserve">
+    <value>_Lämpö:</value>
+  </data>
+  <data name="TheFileSelectedNotValidOrSupportedDataaseReceivedExceptionX" xml:space="preserve">
+    <value>Valitsemasi tiedosto ei ole kelvollinen tai tuettu tietokanta.
+
+Tapahtui poikkeus "{0}".</value>
+  </data>
+  <data name="TheFollowingErrorWasEncounteredWhileAttemptingToCreateAnAlbumX" xml:space="preserve">
+    <value>Seuraava virhe tapahtui yritettäessä luoda albumia: {0}</value>
+  </data>
+  <data name="TheGalleryNameContainsInvalidCharactersOnlyLettersNumbersUnderscoreAllowed" xml:space="preserve">
+    <value>Gallerian nimi sisältää virheellisiä merkkejä.
+Vain kirjaimet, numerot, - ja _ ovat sallittuja.</value>
+  </data>
+  <data name="TheGalleryUrlEntryDoesNotAppearToBeValid" xml:space="preserve">
+    <value>Gallerian URL ei näytä olevan kelvollinen URL</value>
+  </data>
+  <data name="ThePhotoXDoesNotExist" xml:space="preserve">
+    <value>Valokuvaa "{0}" ei ole olemassa</value>
+  </data>
+  <data name="TheSelectedAlbumHasALimitOfXPicturesWhichWouldBePassedWithTheCurrentSelectionOfYImages" xml:space="preserve">
+    <value>Valittuun albumiin voi laittaa enintään {0} kuvaa,
+ja nykyisten {1} kuvan lisääminen ylittäisi tämän rajan.</value>
+  </data>
+  <data name="ThereAlreadyGallerySameNameInYourRegisteredGalleriesPleaseChooseUniqueName" xml:space="preserve">
+    <value>Samalla nimellä oleva galleria on jo olemassa rekisteröidyissä gallerioissa. Valitse uusi nimi.</value>
+  </data>
+  <data name="ThereWasAProblemLoggingIntoFacebookCheckYourCredentialsAndTryAgain" xml:space="preserve">
+    <value>Tapahtui virhe kirjauduttaessa Facebookiin. Tarkista oikeutesi ja yritä uudestaan.</value>
+  </data>
+  <data name="ThereWasAnErrorWhenDownloadingYourInformationFromFacebookFacebookSaidX" xml:space="preserve">
+    <value>Virhe ladattaessa tietojasi Facebookista.
+
+Facebook sanoi: {0}</value>
+  </data>
+  <data name="ThisDeletesAllVersionsOfTheSelectedPhotoFromYourDrive" xml:space="preserve">
+    <value>Tämä poistaa valitun kuvan kaikki versiot kovalevyltäsi.</value>
+  </data>
+  <data name="ThisDeletesAllVersionsOfTheSelectedPhotosFromYourDrive" xml:space="preserve">
+    <value>Tämä poistaa valittujen kuvien kaikki versiot kovalevyltäsi.</value>
+  </data>
+  <data name="ThisNameIsAlreadyInUse" xml:space="preserve">
+    <value>Tämä nimi on jo käytössä</value>
+  </data>
+  <data name="ThisToolRequiresAnActiveSelection.PleaseSelectOneOrMore" xml:space="preserve">
+    <value>Työkalu vaatii aktiivisen valinnan. Valitse yksi tai useampi kuva ja yritä uudestaan</value>
+  </data>
+  <data name="ThisToolRequiresAnActiveSelectionPleaseSelectARegion" xml:space="preserve">
+    <value>Työkalu vaatii aktiivisen valinnan. Valitse haluttu alue kuvasta ja yritä uudestaan</value>
+  </data>
+  <data name="ThisWillMergeSelectedTagsAndSubTagsIntoSingleTag" xml:space="preserve">
+    <value>Tämä toiminto yhdistää valitut tunnisteet ja niiden alitunnisteet yhdeksi tunnisteeksi.</value>
+  </data>
+  <data name="ThresholdColon" xml:space="preserve">
+    <value>Kynnysarvo:</value>
+  </data>
+  <data name="ThumbnailElements" xml:space="preserve">
+    <value>Pienoiskuva_elementit</value>
+  </data>
+  <data name="Timeline" xml:space="preserve">
+    <value>_Aikajana</value>
+  </data>
+  <data name="Tint" xml:space="preserve">
+    <value>_Värisävy:</value>
+  </data>
+  <data name="Tiny" xml:space="preserve">
+    <value>Hyvin pieni</value>
+  </data>
+  <data name="Title2" xml:space="preserve">
+    <value>_Otsikko</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Tänään</value>
+  </data>
+  <data name="TooManyImagesToExport" xml:space="preserve">
+    <value>Liian monta vietävää kuvaa</value>
+  </data>
+  <data name="Toolbar" xml:space="preserve">
+    <value>Työka_lupalkki</value>
+  </data>
+  <data name="Toolbar2" xml:space="preserve">
+    <value>_Työkalupalkki</value>
+  </data>
+  <data name="Tools" xml:space="preserve">
+    <value>Työkalut</value>
+  </data>
+  <data name="Tools2" xml:space="preserve">
+    <value>_Työkalut</value>
+  </data>
+  <data name="TotalOriginalSize" xml:space="preserve">
+    <value>Alkuperäinen koko kaikkiaan</value>
+  </data>
+  <data name="TransferComplete" xml:space="preserve">
+    <value>Siirto valmistui</value>
+  </data>
+  <data name="TransferringPictureXToCD" xml:space="preserve">
+    <value>Siirretään kuvaa "{0}" CD:lle</value>
+  </data>
+  <data name="TransferringPictures" xml:space="preserve">
+    <value>Siirretään kuvia</value>
+  </data>
+  <data name="TranslatorCredits" xml:space="preserve">
+    <value>Timo Jyrinki, 2008-2009.
+Ilkka Tuohela, 2005-2007.
+
+https://l10n.gnome.org/teams/fi/
+
+Launchpad Contributions:
+  Antti Ruonakoski https://launchpad.net/~anttimr
+  Christian Hellberg https://launchpad.net/~christian-hellberg
+  Elias Julkunen https://launchpad.net/~eliasj
+  Jiri Grönroos https://launchpad.net/~jiri-gronroos
+  Jussi Aalto https://launchpad.net/~jtaalto
+  Tomi Juntunen https://launchpad.net/~tojuntu
+  Tommi Vainikainen https://launchpad.net/~thv</value>
+  </data>
+  <data name="TrustError" xml:space="preserve">
+    <value>Luottamusvirhe</value>
+  </data>
+  <data name="TrustTheSiteSCertificateThisOnce" xml:space="preserve">
+    <value>Luota sivuston varmenteeseen tämän kerran</value>
+  </data>
+  <data name="URL3" xml:space="preserve">
+    <value>U_RL:</value>
+  </data>
+  <data name="UnableToLoadImage" xml:space="preserve">
+    <value>Kuvan lataus epäonnistui</value>
+  </data>
+  <data name="UnableToLoadXAsIconForTheTag" xml:space="preserve">
+    <value>Kuvan "{0}" lataus tunnisteen kuvakkeeksi epäonnistui</value>
+  </data>
+  <data name="UnableToLogOn" xml:space="preserve">
+    <value>Kirjautuminen epäonnistui</value>
+  </data>
+  <data name="UnableToLogOn2" xml:space="preserve">
+    <value>Kirjautuminen epäonnistui.</value>
+  </data>
+  <data name="UnableToRotatePhoto" xml:space="preserve">
+    <value>Valokuvaa ei voi kiertää</value>
+  </data>
+  <data name="UnableToRotateReadonlyFile" xml:space="preserve">
+    <value>Kirjoitussuojattua tiedostoa ei voi kiertää</value>
+  </data>
+  <data name="UnableToRotateThisTypeOfPhoto" xml:space="preserve">
+    <value>Tämäntyyppistä valokuvaa ei voi kiertää</value>
+  </data>
+  <data name="UnableToRotateXPhotos" xml:space="preserve">
+    <value>Valokuvia ({0} kpl) ei voi kiertää</value>
+  </data>
+  <data name="UnhandledException" xml:space="preserve">
+    <value>Käsittelemätön poikkeus</value>
+  </data>
+  <data name="UntaggedPhotos" xml:space="preserve">
+    <value>Ilman tunnistetta olevat valokuvat</value>
+  </data>
+  <data name="UntaggedPhotos2" xml:space="preserve">
+    <value>Luokittelemattomat kuvat</value>
+  </data>
+  <data name="UpdatingFSpotDatabase" xml:space="preserve">
+    <value>Päivitetään F-Spotin tietokantaa</value>
+  </data>
+  <data name="UpdatingPictureX" xml:space="preserve">
+    <value>Päivitetään kuvaa ”{0}”</value>
+  </data>
+  <data name="UpdatingThumbnails" xml:space="preserve">
+    <value>Päivitetään pienoiskuvia</value>
+  </data>
+  <data name="UploadComplete" xml:space="preserve">
+    <value>Kuvien vienti valmis</value>
+  </data>
+  <data name="UploadComplete2" xml:space="preserve">
+    <value>Vienti valmistui</value>
+  </data>
+  <data name="UploadingPhotoX" xml:space="preserve">
+    <value>Viedään kuvaa "{0}"</value>
+  </data>
+  <data name="UploadingPictureX" xml:space="preserve">
+    <value>Viedään kuvaa "{0}"</value>
+  </data>
+  <data name="UploadingPictureXYOfZ" xml:space="preserve">
+    <value>Viedään kuvaa "{0}" ({1}/{2})</value>
+  </data>
+  <data name="UploadingPictures" xml:space="preserve">
+    <value>Viedään kuvia</value>
+  </data>
+  <data name="UseAnExistingAlbum" xml:space="preserve">
+    <value>Käytä olemassa olevaa albumia</value>
+  </data>
+  <data name="UsedXOfYourAllowedYMonthlyQuota" xml:space="preserve">
+    <value>Käytettiin {0} sallitusta kuukausittaisesta {1} siirtomäärästä</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>_Käyttäjätunnus:</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Versio</value>
+  </data>
+  <data name="Version3" xml:space="preserve">
+    <value>_Versio</value>
+  </data>
+  <data name="VerticalMnemonic" xml:space="preserve">
+    <value>_Pysty</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>Näytä</value>
+  </data>
+  <data name="View2" xml:space="preserve">
+    <value>_Näytä</value>
+  </data>
+  <data name="ViewAndEditAPhoto" xml:space="preserve">
+    <value>Näytä ja muokkaa kuvaa</value>
+  </data>
+  <data name="ViewPhotosFullscreen" xml:space="preserve">
+    <value>Näytä kuvia kokoruututilassa</value>
+  </data>
+  <data name="ViewPhotosInASlideshow" xml:space="preserve">
+    <value>Näytä kuvia diaesityksenä</value>
+  </data>
+  <data name="ViewPhotosInBrowserWhenDoneUploading" xml:space="preserve">
+    <value>_Näytä valokuvat selaimessa, kun vienti on valmis</value>
+  </data>
+  <data name="VisibleToFamily" xml:space="preserve">
+    <value>Näkyvissä perheelle</value>
+  </data>
+  <data name="VisibleToFriends" xml:space="preserve">
+    <value>Näkyvissä ystäville</value>
+  </data>
+  <data name="VisitFSpotGroupOnFacebook" xml:space="preserve">
+    <value>Vieraile F-Spot-ryhmän Facebook-sivulla</value>
+  </data>
+  <data name="WaitingForAuthentication" xml:space="preserve">
+    <value>Odotetaan tunnistautumista</value>
+  </data>
+  <data name="WaitingForAuthorization" xml:space="preserve">
+    <value>Odotetaan valtuutusta</value>
+  </data>
+  <data name="WaitingForResponseXOfY" xml:space="preserve">
+    <value>Odotetaan vastausta {0}/{1}</value>
+  </data>
+  <data name="WebGallery" xml:space="preserve">
+    <value>WWW-_galleria...</value>
+  </data>
+  <data name="WhenImportingPhotosCopyThemTo" xml:space="preserve">
+    <value>Kun kuvat siirretään, kopioi ne kohteeseen:</value>
+  </data>
+  <data name="WhiteBorders" xml:space="preserve">
+    <value>Valkoiset reunat</value>
+  </data>
+  <data name="WhoIsThis" xml:space="preserve">
+    <value>Kuka tämä on?</value>
+  </data>
+  <data name="WriteOnlyThesePhotosToCD" xml:space="preserve">
+    <value>_Kirjoita vain nämä valokuvat CD:lle</value>
+  </data>
+  <data name="XCFVersion" xml:space="preserve">
+    <value>XCF-versio</value>
+  </data>
+  <data name="XOfApproxY" xml:space="preserve">
+    <value>{0} / noin {1}</value>
+  </data>
+  <data name="XOfY" xml:space="preserve">
+    <value>{0}/{1}</value>
+  </data>
+  <data name="XPhoto2" xml:space="preserve">
+    <value>{0} valokuva</value>
+  </data>
+  <data name="XPhotoOutOfY2" xml:space="preserve">
+    <value>{0} valokuva / {1}</value>
+  </data>
+  <data name="XPhotos2" xml:space="preserve">
+    <value>{0} valokuvaa</value>
+  </data>
+  <data name="XPhotosOutOfY2" xml:space="preserve">
+    <value>{0} valokuvaa / {1}</value>
+  </data>
+  <data name="XSelected2" xml:space="preserve">
+    <value> ({0} valittu)</value>
+  </data>
+  <data name="XSent" xml:space="preserve">
+    <value>{0} lähetetty</value>
+  </data>
+  <data name="XYIsLoggedIntoFacebook" xml:space="preserve">
+    <value>{0} {1} on kirjautunut Facebookiin</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>Eilen</value>
+  </data>
+  <data name="YouAreNotLoggedIn" xml:space="preserve">
+    <value>Et ole kirjautunut sisään.</value>
+  </data>
+  <data name="Zoom" xml:space="preserve">
+    <value>Suurenna</value>
+  </data>
+  <data name="ZoomIn" xml:space="preserve">
+    <value>Lä_hennä</value>
+  </data>
+  <data name="ZoomIn2" xml:space="preserve">
+    <value>Lähennä</value>
+  </data>
+  <data name="ZoomOut" xml:space="preserve">
+    <value>L_oitonna</value>
+  </data>
+  <data name="ZoomOut2" xml:space="preserve">
+    <value>Loitonna</value>
+  </data>
+  <data name="Zooomr" xml:space="preserve">
+    <value>_Zooomr...</value>
+  </data>
+</root>

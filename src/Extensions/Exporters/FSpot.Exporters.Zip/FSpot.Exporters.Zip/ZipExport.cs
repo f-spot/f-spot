@@ -18,6 +18,7 @@ using System.Linq;
 using FSpot.Core;
 using FSpot.Extensions;
 using FSpot.Filters;
+using FSpot.Gui;
 using FSpot.Resources.Lang;
 using FSpot.Settings;
 using FSpot.UI.Dialog;
@@ -65,7 +66,7 @@ namespace FSpot.Exporters.Zip
 
 		public void ShowDialog ()
 		{
-			var builder = new GtkBeans.Builder (null, "zip_export.ui", null);
+			var builder = TranslatedBuilder.FromResource (null, "zip_export.ui");
 			builder.Autoconnect (this);
 			zipdiag.Modal = false;
 			zipdiag.TransientFor = null;

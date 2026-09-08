@@ -32,7 +32,7 @@ namespace FSpot.Editors
 
 		public SoftFocusEditor () : base (Strings.SoftFocus, "filter-soft-focus")
 		{
-			// FIXME: need tooltip Catalog.GetString ("Create a soft focus visual effect")
+			// FIXME: need tooltip MsgidLookup.GetString ("Create a soft focus visual effect")
 			HasSettings = true;
 		}
 

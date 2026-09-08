@@ -41,7 +41,6 @@ AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIR([build/m4])
 AC_SUBST([ACLOCAL_AMFLAGS], ["-I build/m4/shamrock -I build/m4/f-spot \${ACLOCAL_FLAGS}"])
 
-IT_PROG_INTLTOOL([0.35.0])
 AC_PROG_LIBTOOL
 AC_PROG_INSTALL
 
@@ -76,8 +75,6 @@ SHAMROCK_CHECK_MONO_4_5_GAC_ASSEMBLIES([
 	Mono.Cairo
 ])
 
-dnl --- AM_GLIB_GNU_GETTEXT below still needs a C compiler; nothing else does now
-dnl --- that lib/libfspot is gone.
 AC_PROG_CC
 
 dnl --- Checks for gtk-sharp and glib-sharp
@@ -146,13 +143,6 @@ fi
 ICONS_DIRECTORY=${datadir}/${PACKAGE}-${VERSION}
 
 AC_SUBST(ICONS_DIRECTORY)
-
-dnl -- Intl
-
-GETTEXT_PACKAGE=f-spot
-AC_SUBST(GETTEXT_PACKAGE)
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package])
-AM_GLIB_GNU_GETTEXT
 
 dnl --- Prologue
 
@@ -254,7 +244,6 @@ src/Extensions/Transitions/FSpot.Transitions.Push/Makefile
 docs/Makefile
 icons/Makefile
 tools/Makefile
-po/Makefile.in
 tests/Makefile
 ])
 

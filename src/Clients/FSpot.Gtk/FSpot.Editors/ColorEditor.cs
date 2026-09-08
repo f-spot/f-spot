@@ -14,6 +14,7 @@
 using System;
 
 using FSpot.ColorAdjustment;
+using FSpot.Gui;
 using FSpot.Resources.Lang;
 
 using Gdk;
@@ -46,14 +47,14 @@ namespace FSpot.Editors
 
 		public ColorEditor () : base (Strings.AdjustColors, "adjust-colors")
 		{
-			// FIXME: need tooltip Catalog.GetString ("Adjust the photo colors")
+			// FIXME: need tooltip MsgidLookup.GetString ("Adjust the photo colors")
 			HasSettings = true;
 			ApplyLabel = Strings.Adjust;
 		}
 
 		public override Widget ConfigurationWidget ()
 		{
-			builder = new GtkBeans.Builder (null, "color_editor_prefs_window.ui", null);
+			builder = TranslatedBuilder.FromResource (null, "color_editor_prefs_window.ui");
 			builder.Autoconnect (this);
 			AttachInterface ();
 			return new VBox (builder.GetRawObject ("color_editor_prefs"));

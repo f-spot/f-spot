@@ -341,7 +341,7 @@ namespace FSpot.Widgets
 
 				} else {
 					// clear Extended Metadata
-					String s = string.Format ("<small>{0}</small>", Catalog.GetString ("No Extended Metadata Available"));
+					String s = string.Format ("<small>{0}</small>", MsgidLookup.GetString ("No Extended Metadata Available"));
 					if (model.IterIsValid(iter))
 					{
 						model.SetValue (iter, 0, s);

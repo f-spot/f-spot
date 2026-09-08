@@ -11,6 +11,7 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using FSpot.Gui;
 using FSpot.Resources.Lang;
 
 namespace FSpot.Tools.MergeDb
@@ -25,7 +26,7 @@ namespace FSpot.Tools.MergeDb
 
 		public PickFolderDialog (Gtk.Dialog parent, string folder)
 		{
-			var builder = new GtkBeans.Builder (null, "pickfolder_dialog.ui", null);
+			var builder = TranslatedBuilder.FromResource (null, "pickfolder_dialog.ui");
 			builder.Autoconnect (this);
 
 			Logger.Log.Debug ("new pickfolder");

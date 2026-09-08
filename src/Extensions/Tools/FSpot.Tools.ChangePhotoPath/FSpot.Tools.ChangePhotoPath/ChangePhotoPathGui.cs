@@ -21,6 +21,7 @@
 using System;
 
 using FSpot.Extensions;
+using FSpot.Gui;
 using FSpot.UI.Dialog;
 
 using Hyena.Widgets;
@@ -81,7 +82,7 @@ namespace FSpot.Tools.ChangePhotoPath
 
 		void CreateDialog ()
 		{
-			builder = new GtkBeans.Builder (null, "ChangePhotoPath.ui", null);
+			builder = TranslatedBuilder.FromResource (null, "ChangePhotoPath.ui");
 			builder.Autoconnect (this);
 		}
 

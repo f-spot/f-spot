@@ -1,0 +1,2708 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ASingleImportRoll" xml:space="preserve">
+    <value>Viena importavimo juostelė</value>
+  </data>
+  <data name="ASlideshowTransitionThatCoversImages" xml:space="preserve">
+    <value>Skaidžių perėjimo užsklanda, kuri uždengia paveikslėlius</value>
+  </data>
+  <data name="ASlideshowTransitionThatDissolvesImages" xml:space="preserve">
+    <value>Skaidrių perėjimas, kuris panaikina paveikslėlius</value>
+  </data>
+  <data name="ASlideshowTransitionThatPushesImages" xml:space="preserve">
+    <value>Skaidrių perėjimas, kuris stumia paveikslėlius</value>
+  </data>
+  <data name="ATrustErrorOccurredWhileAttemptingToAccess" xml:space="preserve">
+    <value>Bandant gauti prieigą iškilo pasitikėjimo klaida</value>
+  </data>
+  <data name="AbortThisSession" xml:space="preserve">
+    <value>Nutraukti šį seansą</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>_Paskyra:</value>
+  </data>
+  <data name="ActivatesAndDeactivatesTheWebGallery" xml:space="preserve">
+    <value>Įjungia ir išjungia žiniatinklio galeriją</value>
+  </data>
+  <data name="Adjust" xml:space="preserve">
+    <value>Koreguoti</value>
+  </data>
+  <data name="AdjustColors" xml:space="preserve">
+    <value>Koreguoti spalvas</value>
+  </data>
+  <data name="AdjustTime" xml:space="preserve">
+    <value>Koreguoti laiką</value>
+  </data>
+  <data name="AdjustTime2" xml:space="preserve">
+    <value>Koreguoti _laiką...</value>
+  </data>
+  <data name="AdjustedDate" xml:space="preserve">
+    <value>Pakoreguota data:</value>
+  </data>
+  <data name="After" xml:space="preserve">
+    <value>po</value>
+  </data>
+  <data name="AlbumMustHaveAName" xml:space="preserve">
+    <value>Reikia nurodyti albumo pavadinimą</value>
+  </data>
+  <data name="AlbumName" xml:space="preserve">
+    <value>_Albumo pavadinimas:</value>
+  </data>
+  <data name="AlbumTitle" xml:space="preserve">
+    <value>_Albumo pavadinimas:</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Visus</value>
+  </data>
+  <data name="AllImages" xml:space="preserve">
+    <value>Visi paveikslėliai</value>
+  </data>
+  <data name="AllowViewersToAddTags" xml:space="preserve">
+    <value>Leisti žiūrovams pridėti žymas</value>
+  </data>
+  <data name="AlwaysTrustThisSiteSCertificate" xml:space="preserve">
+    <value>Visada pasitikėti šios svetainės liudijimu</value>
+  </data>
+  <data name="AmountColon" xml:space="preserve">
+    <value>Kiekis:</value>
+  </data>
+  <data name="AnErrorOccurredCreatingANewAlbumX" xml:space="preserve">
+    <value>Klaida kuriant naują albumą.
+
+{0}</value>
+  </data>
+  <data name="AnErrorOccurredWhileProcessingXMessage" xml:space="preserve">
+    <value>Klaida apdorojant „{0}“: {1}</value>
+  </data>
+  <data name="AnErrorOfTypeXOccurredWhileDeletingTheFile" xml:space="preserve">
+    <value>Iškilo {0} tipo klaida trinant failą:{2}{1}</value>
+  </data>
+  <data name="And" xml:space="preserve">
+    <value>ir</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Pritaikyti</value>
+  </data>
+  <data name="ApplyChanges" xml:space="preserve">
+    <value>Prit_aikyti pakeitimus</value>
+  </data>
+  <data name="ArrangeBy" xml:space="preserve">
+    <value>Rikiuoti _pagal</value>
+  </data>
+  <data name="AsBackground" xml:space="preserve">
+    <value>Kaip _fonas</value>
+  </data>
+  <data name="AsCheckPattern" xml:space="preserve">
+    <value>Kaip šachmatų _raštas</value>
+  </data>
+  <data name="AsCustomColor" xml:space="preserve">
+    <value>Kaip _pasirinktinė spalva: </value>
+  </data>
+  <data name="At" xml:space="preserve">
+    <value>vietoje</value>
+  </data>
+  <data name="AttachTag" xml:space="preserve">
+    <value>_Pridėti žymą</value>
+  </data>
+  <data name="AttachTagToSelection" xml:space="preserve">
+    <value>_Prisegti žymą pasirinktai</value>
+  </data>
+  <data name="AttachTagToSelection2" xml:space="preserve">
+    <value>_Prisegti žymą pažymėtoms</value>
+  </data>
+  <data name="AttachTags2" xml:space="preserve">
+    <value>_Atsegti žymą:</value>
+  </data>
+  <data name="AttachTagsToSelection" xml:space="preserve">
+    <value>_Prisegti žymą pasirinktoms</value>
+  </data>
+  <data name="AttachToExportedPhotos" xml:space="preserve">
+    <value>_Prikabinti eksportuotoms fotografijoms:</value>
+  </data>
+  <data name="Authenticating" xml:space="preserve">
+    <value>Nustatoma tapatybė...</value>
+  </data>
+  <data name="Authorize" xml:space="preserve">
+    <value>Nustatyti tapatybę</value>
+  </data>
+  <data name="AuthorizingSession" xml:space="preserve">
+    <value>Nustatoma seanso tapatybė</value>
+  </data>
+  <data name="AutoColor" xml:space="preserve">
+    <value>Automatinės spalvos</value>
+  </data>
+  <data name="AutoConfirmPhotos" xml:space="preserve">
+    <value>Automatiškai patvirtinti fotografijas</value>
+  </data>
+  <data name="AvailableSpaceXYUsedOutOfZ" xml:space="preserve">
+    <value>Prieinama vieta: {0}, naudojama {1}% iš {2}</value>
+  </data>
+  <data name="BAccountB" xml:space="preserve">
+    <value>&lt;b&gt;Paskyra&lt;/b&gt;</value>
+  </data>
+  <data name="BActionB" xml:space="preserve">
+    <value>&lt;b&gt;Veiksmas&lt;/b&gt;</value>
+  </data>
+  <data name="BAlbumB" xml:space="preserve">
+    <value>&lt;b&gt;Albumas&lt;/b&gt;</value>
+  </data>
+  <data name="BCorrectionsB" xml:space="preserve">
+    <value>&lt;b&gt;_Korekcijos&lt;/b&gt;</value>
+  </data>
+  <data name="BDestinationB" xml:space="preserve">
+    <value>&lt;b&gt;Paskirties vieta&lt;/b&gt;</value>
+  </data>
+  <data name="BEndDateB" xml:space="preserve">
+    <value>&lt;b&gt;Pabaigos data&lt;/b&gt;</value>
+  </data>
+  <data name="BExportMethodB" xml:space="preserve">
+    <value>&lt;b&gt;Eksportavimo metodas&lt;/b&gt;</value>
+  </data>
+  <data name="BFSpotTagsB" xml:space="preserve">
+    <value>&lt;b&gt;F-Spot žymos&lt;/b&gt;</value>
+  </data>
+  <data name="BFromExternalPhotoB" xml:space="preserve">
+    <value>&lt;b&gt;Iš išorinės fotografijos&lt;/b&gt;</value>
+  </data>
+  <data name="BFromPhotoB" xml:space="preserve">
+    <value>&lt;b&gt;Iš fotografijos&lt;/b&gt;</value>
+  </data>
+  <data name="BFromPhotoBYouCanUseOneOfYourLibraryPhotosAsAnIconForThisTagHoweverFirstYouMustHaveAtLeastOnePhotoAssociatedWithThisTagPleaseTagAPhotoAsXAndReturnHereToUseItAsAnIcon" xml:space="preserve">
+    <value>
+&lt;b&gt;Iš fotografijos&lt;/b&gt;
+ Šiai žymai galite naudoti vieną iš savo fotografijų.
+ Tačiau iš pradžių turite su šia žyma susieti bent vieną
+ fotografiją. Pažymėkite šią fotografiją kaip „{0}“ ir
+ tuomet grįžkite čia, kad naudotumėte ją kaip piktogramą.</value>
+  </data>
+  <data name="BGalleryB" xml:space="preserve">
+    <value>&lt;b&gt;Galerija&lt;/b&gt;</value>
+  </data>
+  <data name="BIThereAreSomePreviouslyScheduledItemsToWriteIB" xml:space="preserve">
+    <value>&lt;b&gt;&lt;i&gt;Yra keletas anksčiau suplanuotų įrašymui elementų&lt;/i&gt;&lt;/b&gt;</value>
+  </data>
+  <data name="BImageInterpolationB" xml:space="preserve">
+    <value>&lt;b&gt;Paveikslėlių interpoliacija&lt;/b&gt;</value>
+  </data>
+  <data name="BMaxRatingB" xml:space="preserve">
+    <value>&lt;b&gt;Didžiausias įvertinimas&lt;/b&gt;</value>
+  </data>
+  <data name="BMinRatingB" xml:space="preserve">
+    <value>&lt;b&gt;Mažiausias įvertinimas&lt;/b&gt;</value>
+  </data>
+  <data name="BPhotosB" xml:space="preserve">
+    <value>&lt;b&gt;Fotografijos&lt;/b&gt;</value>
+  </data>
+  <data name="BPhotosToBurnB" xml:space="preserve">
+    <value>&lt;b&gt;Rašytinos fotografijos&lt;/b&gt;</value>
+  </data>
+  <data name="BPicasaWebExportB" xml:space="preserve">
+    <value>&lt;b&gt;Eksportavimas į PicasaWeb&lt;/b&gt;</value>
+  </data>
+  <data name="BPredefinedIconsB" xml:space="preserve">
+    <value>&lt;b&gt;Numatytosios piktogramos&lt;/b&gt;</value>
+  </data>
+  <data name="BPreviewB" xml:space="preserve">
+    <value>&lt;b&gt;Peržiūra&lt;/b&gt;</value>
+  </data>
+  <data name="BReferencePhotoB" xml:space="preserve">
+    <value>&lt;b&gt;Pamatinė fotografija&lt;/b&gt;</value>
+  </data>
+  <data name="BSelectPeriodB" xml:space="preserve">
+    <value>&lt;b&gt;Pasirinkite laikotarpį&lt;/b&gt;</value>
+  </data>
+  <data name="BSizeB" xml:space="preserve">
+    <value>&lt;b&gt;Dydis&lt;/b&gt;</value>
+  </data>
+  <data name="BSmugMugExportB" xml:space="preserve">
+    <value>&lt;b&gt;Eksportavimas į SmugMug&lt;/b&gt;</value>
+  </data>
+  <data name="BSpecifyTheToplevelPhotosDirectoriesB" xml:space="preserve">
+    <value>&lt;b&gt;Nurodykite aukščiausio lygio fotografijų aplankus&lt;/b&gt;</value>
+  </data>
+  <data name="BStartDateB" xml:space="preserve">
+    <value>&lt;b&gt;Pradžios data&lt;/b&gt;</value>
+  </data>
+  <data name="BStyleB" xml:space="preserve">
+    <value>&lt;b&gt;Stilius&lt;/b&gt;</value>
+  </data>
+  <data name="BSummaryB" xml:space="preserve">
+    <value>&lt;b&gt;Santrauka&lt;/b&gt;</value>
+  </data>
+  <data name="BTabbloAccountB" xml:space="preserve">
+    <value>&lt;b&gt;Tabblo paskyra&lt;/b&gt;</value>
+  </data>
+  <data name="BTransparentPartsB" xml:space="preserve">
+    <value>&lt;b&gt;Permatomos dalys&lt;/b&gt;</value>
+  </data>
+  <data name="BViewAllPicturesImportedB" xml:space="preserve">
+    <value>&lt;b&gt;Žiūrėti visus importuotus paveikslėlius&lt;/b&gt;</value>
+  </data>
+  <data name="BViewingPermissionsB" xml:space="preserve">
+    <value>&lt;b&gt;Peržiūros leidimai&lt;/b&gt;</value>
+  </data>
+  <data name="BWEditor" xml:space="preserve">
+    <value>BWEditor</value>
+  </data>
+  <data name="BWhiteBalanceB" xml:space="preserve">
+    <value>&lt;b&gt;_Baltumo balansas&lt;/b&gt;</value>
+  </data>
+  <data name="BeforeLaunchingYShouldFSpotCreateANewVersionOfTheSelectedPhotoToPreserveTheOriginal" xml:space="preserve">
+    <value>Ar prieš paleidžiant {1}, F-Spot, siekiant išsaugoti originalią, turėtų sukurti naują pasirinktos fotografijos versiją?</value>
+  </data>
+  <data name="BeforeLaunchingYShouldFSpotCreateNewVersionsOfTheSelectedPhotosToPreserveTheOriginals" xml:space="preserve">
+    <value>Ar prieš paleidžiant {1}, F-Spot, siekiant išsaugoti originalias, turėtų sukurti naujas pasirinktų fotografijų versijas?</value>
+  </data>
+  <data name="Between" xml:space="preserve">
+    <value>tarp</value>
+  </data>
+  <data name="BetweenXAndY" xml:space="preserve">
+    <value>Tarp {0} 
+ir {1}</value>
+  </data>
+  <data name="Blackout" xml:space="preserve">
+    <value>Užtemdyti</value>
+  </data>
+  <data name="BlackoutEditor" xml:space="preserve">
+    <value>BlackoutEditor</value>
+  </data>
+  <data name="BlacksOutAnAreaOfTheImage" xml:space="preserve">
+    <value>Užtemdo nudažo paveikslėlio sritį.</value>
+  </data>
+  <data name="Brightness" xml:space="preserve">
+    <value>R_yškumas:</value>
+  </data>
+  <data name="Browse2" xml:space="preserve">
+    <value>Naršyti</value>
+  </data>
+  <data name="BrowseManyPhotosSimultaneously" xml:space="preserve">
+    <value>Naršyti vienu metu daug fotografijų</value>
+  </data>
+  <data name="BrowsePreviouslyScheduledFiles" xml:space="preserve">
+    <value>_Naršyti anksčiau suplanuotus failus</value>
+  </data>
+  <data name="BuildingGallery" xml:space="preserve">
+    <value>Kuriama galerija</value>
+  </data>
+  <data name="ByDate" xml:space="preserve">
+    <value>Pagal _datą</value>
+  </data>
+  <data name="ByImportRoll" xml:space="preserve">
+    <value>Pagal _importavimo juostelę</value>
+  </data>
+  <data name="ByRating" xml:space="preserve">
+    <value>Pagal į_vertinimą</value>
+  </data>
+  <data name="CD2" xml:space="preserve">
+    <value>_CD...</value>
+  </data>
+  <data name="CDExport" xml:space="preserve">
+    <value>CD eksportavimas</value>
+  </data>
+  <data name="Camera" xml:space="preserve">
+    <value>Fotoaparatas</value>
+  </data>
+  <data name="CanNotDeleteTagsThatHaveTagsWihinThem.PleaseDeleteTagUnderXFirst" xml:space="preserve">
+    <value>Nepavyko ištrinti žymų, kuriose yra žymų. Pirma ištrinkite žymas, esančias „{0}“</value>
+  </data>
+  <data name="CancelDoNotChangeTheCurrentTimeline" xml:space="preserve">
+    <value>Atšaukti, nekeisti dabartinės laiko juostos.</value>
+  </data>
+  <data name="CannotConnectToGalleryUnknownVersionCheckRemotePlugin" xml:space="preserve">
+    <value>Nepavyko prisijungti prie Gallery, kurios versija nežinoma.
+Įsitikinkite, kad turite Nuotolinio įskipio versiją 1.0.8 ar
+naujesnę</value>
+  </data>
+  <data name="Captcha" xml:space="preserve">
+    <value>_Captcha:</value>
+  </data>
+  <data name="Captchaurl" xml:space="preserve">
+    <value>captcha_url</value>
+  </data>
+  <data name="Caption2" xml:space="preserve">
+    <value>Antraštė</value>
+  </data>
+  <data name="ChangeBasePathURITo" xml:space="preserve">
+    <value>Keisti bazinį kelią (URI) į</value>
+  </data>
+  <data name="ChangePath" xml:space="preserve">
+    <value>ChangePath</value>
+  </data>
+  <data name="ChangePathToPhotos" xml:space="preserve">
+    <value>Keisti fotografijų kelią</value>
+  </data>
+  <data name="ChangePhotosDirectory" xml:space="preserve">
+    <value>Keisti fotografijų aplanką</value>
+  </data>
+  <data name="CheckBoxToRemoveImportedPhotosFromCameraAndWarning" xml:space="preserve">
+    <value>Šio langelio pažymėjimas pašalins importuotas fotografijas iš fotoaparato pabaigus importavimą.
+
+Paprastai rekomenduojama pasidaryti fotografijų atsarginę kopiją prieš jas ištrinant iš fotoaparato. &lt;b&gt;Atsargiai naudokitės šia parinktimi!&lt;/b&gt;</value>
+  </data>
+  <data name="CheckingCredentials" xml:space="preserve">
+    <value>Trikrinama tapatybė...</value>
+  </data>
+  <data name="ChooseFolder" xml:space="preserve">
+    <value>Pasirinkite aplanką...</value>
+  </data>
+  <data name="ChooseImportSource" xml:space="preserve">
+    <value>Pasirinkite importavimo šaltinį...</value>
+  </data>
+  <data name="ClearDateRangeMnemonic" xml:space="preserve">
+    <value>_Išvalyti datos diapazoną</value>
+  </data>
+  <data name="ClearRatingFilter" xml:space="preserve">
+    <value>_Išvalyti įvertinimų filtrą</value>
+  </data>
+  <data name="ClearRollFilter" xml:space="preserve">
+    <value>_Išvalyti juostelių filtrą</value>
+  </data>
+  <data name="ClearSearch" xml:space="preserve">
+    <value>Išvalyti paiešką</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>_Užverti</value>
+  </data>
+  <data name="ColorProfileForDisplay" xml:space="preserve">
+    <value>Spalvos profilis rodymui ekrane:</value>
+  </data>
+  <data name="ColorProfileForPrinting" xml:space="preserve">
+    <value>Spalvos profilis spausdinimui:</value>
+  </data>
+  <data name="CommaSpace" xml:space="preserve">
+    <value>, </value>
+  </data>
+  <data name="CompleteAuthorization" xml:space="preserve">
+    <value>Baigti tapatybės nustatymą</value>
+  </data>
+  <data name="Components" xml:space="preserve">
+    <value>_Komponentai</value>
+  </data>
+  <data name="CompressedFile" xml:space="preserve">
+    <value>Suglaudintas _failas...</value>
+  </data>
+  <data name="ConfigureScreensaver" xml:space="preserve">
+    <value>Konfigūruoti ekrano užsklandą</value>
+  </data>
+  <data name="Contents" xml:space="preserve">
+    <value>_Turinys</value>
+  </data>
+  <data name="Contrast2" xml:space="preserve">
+    <value>K_ontrastas:</value>
+  </data>
+  <data name="ConvertToBW" xml:space="preserve">
+    <value>Konvertuoti į juodai baltą</value>
+  </data>
+  <data name="ConvertToBWWithControlRequiresMono22" xml:space="preserve">
+    <value>Konvertuoti į B/W su valdumo elementu. Reikalauja Mono 2.2.</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Kopijuoti</value>
+  </data>
+  <data name="CopyFilesToThePhotosFolder2" xml:space="preserve">
+    <value>K_opijuoti failus į fotografijų aplanką</value>
+  </data>
+  <data name="CopyImagesToPhotosFolder" xml:space="preserve">
+    <value>Kopijuoti paveikslėlius į fotografijų aplanką</value>
+  </data>
+  <data name="CopyPhoto" xml:space="preserve">
+    <value>Kopijuoti fotografiją</value>
+  </data>
+  <data name="CopyURLToClipboard" xml:space="preserve">
+    <value>Kopijuoti URL į iškarpinę</value>
+  </data>
+  <data name="Copying2" xml:space="preserve">
+    <value>kopijuojama...</value>
+  </data>
+  <data name="Copyright20032010NovellInc" xml:space="preserve">
+    <value>Autorinės teisės © 2003-2010 Novell Inc.</value>
+  </data>
+  <data name="Cover" xml:space="preserve">
+    <value>Uždengti</value>
+  </data>
+  <data name="CoverTransition" xml:space="preserve">
+    <value>Perėjimo užsklanda</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>_Sukurti</value>
+  </data>
+  <data name="Create2" xml:space="preserve">
+    <value>_Sukurti</value>
+  </data>
+  <data name="CreateAMailWithTheSelectedPhotosPossiblyResizedAttached" xml:space="preserve">
+    <value>Sukurti el. laišką su prisegtomis pasirinktomis fotografijomis (pageidaujant, pakeisto dydžio)</value>
+  </data>
+  <data name="CreateANewAlbum" xml:space="preserve">
+    <value>Sukurti naują albumą</value>
+  </data>
+  <data name="CreateCD" xml:space="preserve">
+    <value>Sukurti CD</value>
+  </data>
+  <data name="CreateGalleryUsingOriginal" xml:space="preserve">
+    <value>Sukurti _galeriją naudojant „Original“</value>
+  </data>
+  <data name="CreateIconForThisTagWhenFirstUsed" xml:space="preserve">
+    <value>Sukurti _piktogramą šiai žymai, pirmąkart ją panaudojus</value>
+  </data>
+  <data name="CreateMail" xml:space="preserve">
+    <value>Sukurti el. laišką</value>
+  </data>
+  <data name="CreateMail2" xml:space="preserve">
+    <value>_Sukurti el. laišką</value>
+  </data>
+  <data name="CreateNewTag" xml:space="preserve">
+    <value>Sukurti naują žymą</value>
+  </data>
+  <data name="CreateNewTag2" xml:space="preserve">
+    <value>Sukurti naują žymą...</value>
+  </data>
+  <data name="CreateNewTag3" xml:space="preserve">
+    <value>Sukurti naują žy_mą...</value>
+  </data>
+  <data name="CreateNewVersion" xml:space="preserve">
+    <value>Sukurti naują versiją</value>
+  </data>
+  <data name="CreateNewVersion2" xml:space="preserve">
+    <value>Sukurti naują versiją?</value>
+  </data>
+  <data name="CreateNewVersion3" xml:space="preserve">
+    <value>Sukurti _naują versiją...</value>
+  </data>
+  <data name="CreateNewVersions" xml:space="preserve">
+    <value>Sukurti naujas versijas?</value>
+  </data>
+  <data name="CreatePhotoWallUsingPictureTileByJamieZawinskiHttpWwwJwzOrgPicturetile" xml:space="preserve">
+    <value>Sukurkite fotografijų sieną naudodami Jamie Zawinski PictureTile (http://www.jwz.org/picturetile/)</value>
+  </data>
+  <data name="CreatePhotomosaic" xml:space="preserve">
+    <value>Sukurti _fotomozaiką</value>
+  </data>
+  <data name="CreatePhotomosaicsUsingMetaPixelHttpWwwComplangTuwienAcAtSchaniMetapixel" xml:space="preserve">
+    <value>Kurkite fotomozaikas naudodami MetaPixel (http://www.complang.tuwien.ac.at/schani/metapixel/)</value>
+  </data>
+  <data name="CreatePhotowall" xml:space="preserve">
+    <value>Sukurti fotografijų sieną</value>
+  </data>
+  <data name="CreateStandaloneWebGallery" xml:space="preserve">
+    <value>Sukurti autonominę _žiniatinklio galeriją</value>
+  </data>
+  <data name="CreatingANewAlbumFailed" xml:space="preserve">
+    <value>Nepavyko sukurti naujo albumo</value>
+  </data>
+  <data name="Creator" xml:space="preserve">
+    <value>Kūrėjas</value>
+  </data>
+  <data name="Crop" xml:space="preserve">
+    <value>Apkirpti</value>
+  </data>
+  <data name="CurrentDate" xml:space="preserve">
+    <value>Dabartinė data:</value>
+  </data>
+  <data name="CurrentView" xml:space="preserve">
+    <value>Dabartinis rodinys</value>
+  </data>
+  <data name="CurrentWeekMonSun" xml:space="preserve">
+    <value>Dabartinė savaitė (Pir-Sek)</value>
+  </data>
+  <data name="CustomRatios" xml:space="preserve">
+    <value>Pasirinktinės proporcijos...</value>
+  </data>
+  <data name="CustomText" xml:space="preserve">
+    <value>Pasirinktinis tekstas</value>
+  </data>
+  <data name="CustomizedRange" xml:space="preserve">
+    <value>Pasirinktinis diapazonas</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>Tamsu</value>
+  </data>
+  <data name="DatabaseLocation" xml:space="preserve">
+    <value>Duomenų bazės vieta:</value>
+  </data>
+  <data name="DatabaseRefersToFilesContainedInXFolderPleaseSelectThatFolderSoICanDoTheMapping" xml:space="preserve">
+    <value>&lt;big&gt;Duomenų bazė – tai failai, esantys aplanke &lt;b&gt;{0}&lt;/b&gt;.
+ Pasirinkite tą aplanką, kad būtų galima atlikti žymėjimą.&lt;/big&gt;</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="Dates" xml:space="preserve">
+    <value>_Datos</value>
+  </data>
+  <data name="Delay" xml:space="preserve">
+    <value>Delsa:</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Ištrinti</value>
+  </data>
+  <data name="DeleteFromDrive" xml:space="preserve">
+    <value>_Ištrinti iš disko</value>
+  </data>
+  <data name="DeletePhotoMnemonic" xml:space="preserve">
+    <value>_Ištrinti fotografiją</value>
+  </data>
+  <data name="DeletePhotosMnemonic" xml:space="preserve">
+    <value>_Ištrinti fotografijas</value>
+  </data>
+  <data name="DeleteSelectedTag" xml:space="preserve">
+    <value>_Ištrinti pažymėtą žymą</value>
+  </data>
+  <data name="DeleteTag" xml:space="preserve">
+    <value>Ištrinti žymą</value>
+  </data>
+  <data name="DeleteTagMnemonic" xml:space="preserve">
+    <value>_Ištrinti žymą</value>
+  </data>
+  <data name="DeleteTagXQuestion" xml:space="preserve">
+    <value>Ištrinti žymą „{0}“?</value>
+  </data>
+  <data name="DeleteTags" xml:space="preserve">
+    <value>Ištrinti žymas</value>
+  </data>
+  <data name="DeleteTagsMnemonic" xml:space="preserve">
+    <value>_Ištrinti žymas</value>
+  </data>
+  <data name="DeleteTheSelectedPhotoPermanently" xml:space="preserve">
+    <value>Visam laikui ištrinti {0} pasirinktą fotografiją?</value>
+  </data>
+  <data name="DeleteTheXSelectedPhotosPermanently" xml:space="preserve">
+    <value>Visam laikui ištrinti {0} pasirinktas fotografijas?</value>
+  </data>
+  <data name="DeleteTheXSelectedTagsQuestion" xml:space="preserve">
+    <value>Ištrinti {0} pasirinktas žymas?</value>
+  </data>
+  <data name="DeleteVersion" xml:space="preserve">
+    <value>_Ištrinti versiją</value>
+  </data>
+  <data name="Desaturate" xml:space="preserve">
+    <value>Nusodrinti</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Aprašymas:</value>
+  </data>
+  <data name="Description2" xml:space="preserve">
+    <value>Ap_rašymas:</value>
+  </data>
+  <data name="Description3" xml:space="preserve">
+    <value>_Aprašymas:</value>
+  </data>
+  <data name="Description4" xml:space="preserve">
+    <value>Aprašymas</value>
+  </data>
+  <data name="DesignIconFrom" xml:space="preserve">
+    <value>Sukurti piktogramą iš</value>
+  </data>
+  <data name="DetachMnemonic" xml:space="preserve">
+    <value>A_tkabinti</value>
+  </data>
+  <data name="DetachVersion" xml:space="preserve">
+    <value>A_tkabinti versiją</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Išsami informacija</value>
+  </data>
+  <data name="DetectDuplicates2" xml:space="preserve">
+    <value>_Rasti dublikatus</value>
+  </data>
+  <data name="DevelopInUFRaw" xml:space="preserve">
+    <value>DevelopInUFRaw</value>
+  </data>
+  <data name="DevelopInUFRaw2" xml:space="preserve">
+    <value>Sukurkite UFRaw formatu</value>
+  </data>
+  <data name="DevelopTheImageInUFRawSavesTheResultAsANewVersionNNNoteRequireUfraw013OrCVSVersionNewerThan20070906" xml:space="preserve">
+    <value>Sukurkite paveikslėlį UFRaw formatu, įrašo rezultatą kaip naują versiją\n\mPastaba: reikalauja ufraw 0.13 arba CVS versijos naujesnės nei 2007-09-06 !!!</value>
+  </data>
+  <data name="DevelopingPhotos" xml:space="preserve">
+    <value>Fotografijų kūrimas</value>
+  </data>
+  <data name="DevelopingX" xml:space="preserve">
+    <value>Kuriama {0}</value>
+  </data>
+  <data name="Difference" xml:space="preserve">
+    <value>skirtumas:</value>
+  </data>
+  <data name="DirectoryNotFound" xml:space="preserve">
+    <value>Aplankas nerastas</value>
+  </data>
+  <data name="Display2" xml:space="preserve">
+    <value>Rodyti:</value>
+  </data>
+  <data name="DisplayASlideshowFromFSpot" xml:space="preserve">
+    <value>Rodyti skaidrių peržiūrą iš F-Spot</value>
+  </data>
+  <data name="DisplayFileNames" xml:space="preserve">
+    <value>Rodyti failų _pavadinimus</value>
+  </data>
+  <data name="DisplayOfTransparentParts" xml:space="preserve">
+    <value>Rodyti permatomas dalis.</value>
+  </data>
+  <data name="DisplayOnlyThosePhotosThatWereImportedInSpecifiedRolls" xml:space="preserve">
+    <value>Rodyti tik tas fotografijas, kurios buvo importuotos pasirinktose juostelėse.</value>
+  </data>
+  <data name="Dissolve" xml:space="preserve">
+    <value>Pamažu išnykti</value>
+  </data>
+  <data name="DissolveTransition" xml:space="preserve">
+    <value>Išnykstantis perėjimas</value>
+  </data>
+  <data name="DoNotSendAMail" xml:space="preserve">
+    <value>Nesiųsti el. laiško</value>
+  </data>
+  <data name="DoYouWishTo" xml:space="preserve">
+    <value>Ar norite:</value>
+  </data>
+  <data name="DoneSendingPhotos" xml:space="preserve">
+    <value>Fotografijos nusiųstos</value>
+  </data>
+  <data name="DoneSendingPhotos2" xml:space="preserve">
+    <value>Fotografijos išsiųstos</value>
+  </data>
+  <data name="DragTagsHereToSearchForThem" xml:space="preserve">
+    <value>Norėdami ieškoti žymų, nuvilkite jas čia</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Taisyti</value>
+  </data>
+  <data name="Edit2" xml:space="preserve">
+    <value>_Keisti</value>
+  </data>
+  <data name="EditIcon" xml:space="preserve">
+    <value>Keisti piktogramą</value>
+  </data>
+  <data name="EditIconForTagX" xml:space="preserve">
+    <value>Keisti žymos {0} piktogramą</value>
+  </data>
+  <data name="EditImage" xml:space="preserve">
+    <value>Redaguoti paveikslėlį</value>
+  </data>
+  <data name="EditTag" xml:space="preserve">
+    <value>Keisti žymą...</value>
+  </data>
+  <data name="EditTag2" xml:space="preserve">
+    <value>Keisti žymą</value>
+  </data>
+  <data name="EditTag3" xml:space="preserve">
+    <value>_Keisti žymą...</value>
+  </data>
+  <data name="EditTagIcon" xml:space="preserve">
+    <value>Keisti žymos piktogramą</value>
+  </data>
+  <data name="Editors" xml:space="preserve">
+    <value>Redaktoriai</value>
+  </data>
+  <data name="EightByTen" xml:space="preserve">
+    <value>8 x 10</value>
+  </data>
+  <data name="EnableThisToAllowInterpolationOnZoomedImages" xml:space="preserve">
+    <value>Įjunkite šį didinamų paveikslėlių interpoliavimui leisti</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Klaida</value>
+  </data>
+  <data name="ErrorCopyingXToGalleryZY" xml:space="preserve">
+    <value>Kopijuojant paveikslėlį „{0}“ į galeriją įvyko klaida:{2}{1}</value>
+  </data>
+  <data name="ErrorDeletingPicture" xml:space="preserve">
+    <value>Klaida trinant paveikslėlį</value>
+  </data>
+  <data name="ErrorEditingPhoto" xml:space="preserve">
+    <value>Redaguojant fotografiją įvyko klaida</value>
+  </data>
+  <data name="ErrorLoadingDatabase" xml:space="preserve">
+    <value>Įvyko klaida įkeliant duomenų bazę.</value>
+  </data>
+  <data name="ErrorLoggingIntoFacebook" xml:space="preserve">
+    <value>Klaida jungiantis į Facebook</value>
+  </data>
+  <data name="ErrorOpeningTheSelectedFile" xml:space="preserve">
+    <value>Klaida atveriant pasirinktą failą</value>
+  </data>
+  <data name="ErrorProcessingImage" xml:space="preserve">
+    <value>Klaida apdorojant paveikslėlį</value>
+  </data>
+  <data name="ErrorReadingServerResponse" xml:space="preserve">
+    <value>Klaida skaitant serverio atsaką</value>
+  </data>
+  <data name="ErrorRenamingTag" xml:space="preserve">
+    <value>Pervadinant žymą įvyko klaida</value>
+  </data>
+  <data name="ErrorSavingAdjustedPhoto" xml:space="preserve">
+    <value>Saugant pakoreguotą fotografiją įvyko klaida</value>
+  </data>
+  <data name="ErrorSavingAdjustedPhotos" xml:space="preserve">
+    <value>Saugant pakoreguotas fotografijas įvyko klaida</value>
+  </data>
+  <data name="ErrorSavingSharpenedPhoto" xml:space="preserve">
+    <value>Klaida saugant paryškintą fotografiją</value>
+  </data>
+  <data name="ErrorTransferring" xml:space="preserve">
+    <value>Siunčiant įvyko klaida</value>
+  </data>
+  <data name="ErrorUploadingPictureXToGalleryColonY" xml:space="preserve">
+    <value>Klaida siunčiant paveikslėlį „{0}“ į galeriją: {1}</value>
+  </data>
+  <data name="ErrorUploadingToFacebookX" xml:space="preserve">
+    <value>Klaida siunčiant į Facebook: {0}</value>
+  </data>
+  <data name="ErrorUploadingToGalleryX" xml:space="preserve">
+    <value>Siunčiant į galeriją įvyko klaida: {0}</value>
+  </data>
+  <data name="ErrorUploadingToTabblo" xml:space="preserve">
+    <value>Klaida siunčiant į Tabblo: </value>
+  </data>
+  <data name="ErrorUploadingToXColonY" xml:space="preserve">
+    <value>Siunčiant į {0} įvyko klaida: {1}</value>
+  </data>
+  <data name="ErrorWhileConnectingToGallery" xml:space="preserve">
+    <value>Klaida jungiantis prie Galerijos</value>
+  </data>
+  <data name="ErrorWhileCreatingAlbum" xml:space="preserve">
+    <value>Klaida kuriant albumą</value>
+  </data>
+  <data name="ErrorWhileCreatingNewAlbum" xml:space="preserve">
+    <value>Klaida kuriant naują albumą</value>
+  </data>
+  <data name="ErrorWhileRotatingPhoto" xml:space="preserve">
+    <value>Sukant paveikslėlį įvyko klaida.</value>
+  </data>
+  <data name="ErrorWhileTransferring" xml:space="preserve">
+    <value>Siunčiant įvyko klaida</value>
+  </data>
+  <data name="EstimatedNewSize" xml:space="preserve">
+    <value>Apskaičiuotas naujas dydis</value>
+  </data>
+  <data name="Events" xml:space="preserve">
+    <value>Įvykiai</value>
+  </data>
+  <data name="Everything" xml:space="preserve">
+    <value>Viską</value>
+  </data>
+  <data name="ExcludePhotosTaggedX" xml:space="preserve">
+    <value>Išskirtas fotografijas, pažymėtas kaip „{0}“</value>
+  </data>
+  <data name="ExitFullscreen" xml:space="preserve">
+    <value>Išjungti viso ekrano veikseną</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Eksportuoti</value>
+  </data>
+  <data name="Export2" xml:space="preserve">
+    <value>_Eksportuoti</value>
+  </data>
+  <data name="ExportComplete" xml:space="preserve">
+    <value>Eksportas užbaigtas.</value>
+  </data>
+  <data name="ExportPicturesToFacebook" xml:space="preserve">
+    <value>Eksportuoti paveikslėliu į Facebook</value>
+  </data>
+  <data name="ExportTagHierarchy" xml:space="preserve">
+    <value>Eksportuoti žymų _hierarchiją</value>
+  </data>
+  <data name="ExportTagIcons" xml:space="preserve">
+    <value>Eksportuoti žymų _piktogramas</value>
+  </data>
+  <data name="ExportTags" xml:space="preserve">
+    <value>_Eksportuoti žymas</value>
+  </data>
+  <data name="ExportTags2" xml:space="preserve">
+    <value>Eksportuoti ž_ymas</value>
+  </data>
+  <data name="ExportTitlesAndComments2" xml:space="preserve">
+    <value>Eksportuoti _pavadinimus ir komentarus</value>
+  </data>
+  <data name="ExportTo" xml:space="preserve">
+    <value>Eksportuoti į</value>
+  </data>
+  <data name="ExportTo2" xml:space="preserve">
+    <value>_Eksportuoti į</value>
+  </data>
+  <data name="ExportToAlbum" xml:space="preserve">
+    <value>_Eksportuoti į albumą:</value>
+  </data>
+  <data name="ExportToFacebook" xml:space="preserve">
+    <value>Eksportuoti į Facebook...</value>
+  </data>
+  <data name="ExportingFiles" xml:space="preserve">
+    <value>Eksportuojami failai</value>
+  </data>
+  <data name="ExportingPhotoX" xml:space="preserve">
+    <value>Eksportuojamas paveikslėlis „{0}“</value>
+  </data>
+  <data name="ExportingPhotos" xml:space="preserve">
+    <value>Eksportuojamos fotografijos</value>
+  </data>
+  <data name="ExportingPhotosCompleted2" xml:space="preserve">
+    <value>Fotografijų eksportas užbaigtas.</value>
+  </data>
+  <data name="ExportingX" xml:space="preserve">
+    <value>Eksportuojamas paveikslėlis „{0}“...</value>
+  </data>
+  <data name="Exposure" xml:space="preserve">
+    <value>Ekspozicija</value>
+  </data>
+  <data name="Exposure2" xml:space="preserve">
+    <value>_Ekspozicija:</value>
+  </data>
+  <data name="ExtendedMetadata" xml:space="preserve">
+    <value>Išplėstiniai metaduomenys</value>
+  </data>
+  <data name="ExtraLarge" xml:space="preserve">
+    <value>Labai didelis</value>
+  </data>
+  <data name="FSpot" xml:space="preserve">
+    <value>F-Spot</value>
+  </data>
+  <data name="FSpotAppearance" xml:space="preserve">
+    <value>F-Spot išvaizda:</value>
+  </data>
+  <data name="FSpotEncounteredAnErrorWhileLoadingThePhotoDatabaseTheOldDatabaseHasBeMovedToXAndANewDatabaseHasBeenCreated" xml:space="preserve">
+    <value>F-Spot aptiko klaidą įkeliant fotografijų duomenų bazę. Sena duomenų bazė perkelta į {0} ir buvo sukurta nauja duomenų bazė.</value>
+  </data>
+  <data name="FSpotGallery" xml:space="preserve">
+    <value>F-Spot galerija</value>
+  </data>
+  <data name="FSpotLiveWebGallery" xml:space="preserve">
+    <value>F-Spot tiesioginė žiniatinklio galerija</value>
+  </data>
+  <data name="FSpotNeedsYourAuthorizationInOrderToUploadPhotosToYourXAccountPressTheAuthorizeButtonToOpenAWebBrowserAndGiveFSpotTheAuthorization" xml:space="preserve">
+    <value>Norint nusiųsti fotografijas į jūsų {0} paskyrą, reikia prieigos teisių. Norėdami atverti žiniatinklio naršyklę ir suteikti F-Spot prieigos teisę, spustelėkite mygtuką „Nustatyti tapatybę“. </value>
+  </data>
+  <data name="FSpotPhotoManager" xml:space="preserve">
+    <value>Fotografijų tvarkymo programa F-Spot</value>
+  </data>
+  <data name="FSpotPhotoViewer" xml:space="preserve">
+    <value>Fotografijų peržiūros programa F-Spot</value>
+  </data>
+  <data name="FSpotPhotos" xml:space="preserve">
+    <value>F-Spot fotografijos</value>
+  </data>
+  <data name="FSpotPreferences" xml:space="preserve">
+    <value>F-Spot nustatymai</value>
+  </data>
+  <data name="FSpotView" xml:space="preserve">
+    <value>F-Spot rodinys</value>
+  </data>
+  <data name="FSpotWasUnableToLogOnToXMakeSureYouHaveGivenTheAuthUsingXWebBrowser" xml:space="preserve">
+    <value>F-Spot nepavyko prisijungti prie {0}. Įsitikinkite, kad gavote prieigos teisę naudodami {0} žiniatinklio naršyklės sąsają.</value>
+  </data>
+  <data name="FSpotWebsite" xml:space="preserve">
+    <value>F-Spot tinklalapis</value>
+  </data>
+  <data name="FSpotWillNowLaunchYourBrowserSoThatYouCanEnableThePermissionYouJustSelectedOnceYouAreDirectedByFacebookToReturnToThisApplicationClickOkBelow" xml:space="preserve">
+    <value>F-Spot dabar paleis jūsų naršyklę, kad galėtumėte įjungti ką tik parinktas teises.
+
+Kai jums Facebook nurodys grįžti prie šios programos, spustelėkite žemiau esantį mygtuką „Gerai“.</value>
+  </data>
+  <data name="FSpotWillNowLaunchYourBrowserSoThatYouCanLogIntoFacebookOnceYouAreDirectedByFacebookToReturnToThisApplicationClickOkBelowFSpotWillCacheYourSessionInGnomeKeyringIfPossibleAndReUseItOnFutureFacebookExports" xml:space="preserve">
+    <value>F-Spot dabar paleis jūsų naršyklę, kad galėtumėte prisijungti prie Facebook.
+
+Kai Facebook jums nurodys grįžti prie šios programos, spustelėkite žemiau esantį mygtuką „Gerai“. F-Spot įrašys jūsų seansą gnome-keyring podėlyje, jei įmanoma, ir naudos jį ateityje eksportuojant į Facebook.</value>
+  </data>
+  <data name="Facebook" xml:space="preserve">
+    <value>F_acebook...</value>
+  </data>
+  <data name="FacebookConnectionError" xml:space="preserve">
+    <value>Facebook ryšio klaida</value>
+  </data>
+  <data name="FacebookExport" xml:space="preserve">
+    <value>FacebookExport</value>
+  </data>
+  <data name="FacebookOnlyPermitsXPhotographsPerAlbumPleaseRefineYourSelectionAndTryAgain" xml:space="preserve">
+    <value>Facebook leidžia tik {0} fotografijų albume. Sumažinkite savo pasirinktų fotografijų skaičių ir bandykite dar kartą.</value>
+  </data>
+  <data name="Favorites" xml:space="preserve">
+    <value>Mėgstamos</value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>_Failo vardas:</value>
+  </data>
+  <data name="FileNotFonud" xml:space="preserve">
+    <value>Failas nerastas</value>
+  </data>
+  <data name="FileSize" xml:space="preserve">
+    <value>Failo dydis</value>
+  </data>
+  <data name="Filesystem" xml:space="preserve">
+    <value>Failų sistema</value>
+  </data>
+  <data name="Fill" xml:space="preserve">
+    <value>Užpildyti</value>
+  </data>
+  <data name="Filmstrip" xml:space="preserve">
+    <value>_Diafilmas</value>
+  </data>
+  <data name="FilterOnSelectedRolls" xml:space="preserve">
+    <value>Filtruoti pagal pasirinktas juosteles</value>
+  </data>
+  <data name="Find" xml:space="preserve">
+    <value>Rasti</value>
+  </data>
+  <data name="Find2" xml:space="preserve">
+    <value>Rasti:</value>
+  </data>
+  <data name="Find3" xml:space="preserve">
+    <value>Ra_sti</value>
+  </data>
+  <data name="FindColon" xml:space="preserve">
+    <value>Rasti: </value>
+  </data>
+  <data name="FindSelectedTagMnemonic" xml:space="preserve">
+    <value>Rasti _pasirinktą žymą</value>
+  </data>
+  <data name="FindSelectedTagWithMnemonic" xml:space="preserve">
+    <value>Rasti pasirinktą žymą _su</value>
+  </data>
+  <data name="FindSelectedTagsMnemonic" xml:space="preserve">
+    <value>Rasti _pasirinktas žymas</value>
+  </data>
+  <data name="FindSelectedTagsWithMnemonic" xml:space="preserve">
+    <value>Rasti pasirinktas žymas _su</value>
+  </data>
+  <data name="FindWithMnemonic" xml:space="preserve">
+    <value>Rasti _su</value>
+  </data>
+  <data name="FiveBySevenL2L" xml:space="preserve">
+    <value>5 x 7 (L, 2L)</value>
+  </data>
+  <data name="FixExclamation" xml:space="preserve">
+    <value>Taisyti!</value>
+  </data>
+  <data name="FlashDidntFire" xml:space="preserve">
+    <value>blykstė nesuveikė</value>
+  </data>
+  <data name="Flashfired" xml:space="preserve">
+    <value>blykstė suveikė</value>
+  </data>
+  <data name="Flickr2" xml:space="preserve">
+    <value>_Flickr...</value>
+  </data>
+  <data name="FlickrExport" xml:space="preserve">
+    <value>Flickr eksportavimas</value>
+  </data>
+  <data name="Flip" xml:space="preserve">
+    <value>Perversti</value>
+  </data>
+  <data name="FlipEditor" xml:space="preserve">
+    <value>FlipEditor</value>
+  </data>
+  <data name="FlipsTheImageHorizontally" xml:space="preserve">
+    <value>Apverčia paveikslėlį horizontaliai.</value>
+  </data>
+  <data name="FocalLength" xml:space="preserve">
+    <value>Židinio nuotolis</value>
+  </data>
+  <data name="Folder" xml:space="preserve">
+    <value>Aplankas</value>
+  </data>
+  <data name="Folder3" xml:space="preserve">
+    <value>_Aplankas...</value>
+  </data>
+  <data name="Folder4" xml:space="preserve">
+    <value>_Aplankas:</value>
+  </data>
+  <data name="FolderExport" xml:space="preserve">
+    <value>Aplanko eksportavimas</value>
+  </data>
+  <data name="Folders" xml:space="preserve">
+    <value>Aplankai</value>
+  </data>
+  <data name="FollowingErrorEncounteredAttemptingToPerformRequestedOperation" xml:space="preserve">
+    <value>Bandant atlikti nurodytą operaciją iškilo ši klaida:
+{0} ({1})</value>
+  </data>
+  <data name="FollowingErrorWasEncounteredAttemptingToLogInX" xml:space="preserve">
+    <value>Bandant prisijungti susidurta su šia klaida: {0}</value>
+  </data>
+  <data name="FourBySixPostcard" xml:space="preserve">
+    <value>4 x 6 (Atvirutė)</value>
+  </data>
+  <data name="FourByThreeBook" xml:space="preserve">
+    <value>4 x 3 (Knyga)</value>
+  </data>
+  <data name="FullPageNomargin" xml:space="preserve">
+    <value>Visas puslapis (be paraščių)</value>
+  </data>
+  <data name="Fullscreen" xml:space="preserve">
+    <value>Visame ekrane</value>
+  </data>
+  <data name="Fullscreen2" xml:space="preserve">
+    <value>_Visame ekrane</value>
+  </data>
+  <data name="Gallery" xml:space="preserve">
+    <value>Galerija</value>
+  </data>
+  <data name="Gallery5" xml:space="preserve">
+    <value>_Galerija:</value>
+  </data>
+  <data name="GalleryExport" xml:space="preserve">
+    <value>Galerijos eksportavimas</value>
+  </data>
+  <data name="GalleryGeneratedBy" xml:space="preserve">
+    <value>Galeriją sukūrė</value>
+  </data>
+  <data name="GalleryIsInactive" xml:space="preserve">
+    <value>Galerija neaktyvi</value>
+  </data>
+  <data name="GalleryName" xml:space="preserve">
+    <value>G_alerijos pavadinimas:</value>
+  </data>
+  <data name="GalleryName2" xml:space="preserve">
+    <value>_Galerijos pavadinimas:</value>
+  </data>
+  <data name="GalleryURL" xml:space="preserve">
+    <value>Galerijos URL:</value>
+  </data>
+  <data name="GalleryWithThisNameAlreadyExists" xml:space="preserve">
+    <value>Galerija tokiu pavadinimu jau yra</value>
+  </data>
+  <data name="GalleryXPhotosYLastClient3" xml:space="preserve">
+    <value> Galerija: {0},  Fotografijos: {1},  Paskutinis klientas: {3}</value>
+  </data>
+  <data name="HeightOfTheImportDialog" xml:space="preserve">
+    <value>Importo dialogo aukštis.</value>
+  </data>
+  <data name="HeightOfTheMainWindow" xml:space="preserve">
+    <value>Pagrindinio lango aukštis.</value>
+  </data>
+  <data name="HeightOfThePhotoViewerWindow" xml:space="preserve">
+    <value>Fotografijos žiūryklės lango aukštis.</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>_Žinynas</value>
+  </data>
+  <data name="Hidden" xml:space="preserve">
+    <value>Paslėptos</value>
+  </data>
+  <data name="Hidden2" xml:space="preserve">
+    <value>_Paslėptos</value>
+  </data>
+  <data name="Hide" xml:space="preserve">
+    <value>Paslėpti</value>
+  </data>
+  <data name="HideFindBarMnemonic" xml:space="preserve">
+    <value>Paslėpti _paieškos juostą</value>
+  </data>
+  <data name="HideStyles" xml:space="preserve">
+    <value>Paslėpti stilius</value>
+  </data>
+  <data name="HideToolbar" xml:space="preserve">
+    <value>Paslėpti įrankių juostą</value>
+  </data>
+  <data name="Histogram" xml:space="preserve">
+    <value>Histograma</value>
+  </data>
+  <data name="HorizontalMnemonic" xml:space="preserve">
+    <value>_Horizontali</value>
+  </data>
+  <data name="Hue" xml:space="preserve">
+    <value>_Atspalvis:</value>
+  </data>
+  <data name="Icon" xml:space="preserve">
+    <value>_Piktograma:</value>
+  </data>
+  <data name="IfTheTransparencyOptionIsSetTheColorSpecifiedInThisOptionWillBeUsedAsTheTransparentColorWhenViewingImages" xml:space="preserve">
+    <value>Jei nustatyta „transparency“ parinktis, šioje parinktyje nustatyta spalva bus naudojama kaip permatoma spalva rodant paveikslėlius.</value>
+  </data>
+  <data name="IfYouDeleteThisTagTheAssociationWithXYWillBeLost" xml:space="preserve">
+    <value>Jeigu ištrinsite šią žymą, saitas su {0} {1} bus prarastas.</value>
+  </data>
+  <data name="IfYouDeleteThisTagsTheAssociationWithXYWillBeLost" xml:space="preserve">
+    <value>Jeigu ištrinsite šias žymas, saitas su {0} {1} bus prarastas.</value>
+  </data>
+  <data name="IfYouRemovePhotosFromFSpotCatalogAllTagInfoLost" xml:space="preserve">
+    <value>Jeigu pašalinsite fotografijas iš F-Spot katalogo, visa žymų informacija bus prarasta. Fotografijos liks jūsų kompiuteryje ir jas bus galima importuoti į F-Spot dar kartą.</value>
+  </data>
+  <data name="IgnoreTopLevelTags" xml:space="preserve">
+    <value>Nepaisyti _viršutinio lygmens žymų</value>
+  </data>
+  <data name="ImageInformation" xml:space="preserve">
+    <value>Paveikslėlio informacija</value>
+  </data>
+  <data name="ImageInformation2" xml:space="preserve">
+    <value>Paveikslėlio informacija</value>
+  </data>
+  <data name="ImageSettings" xml:space="preserve">
+    <value>Paveikslėlio parametrai</value>
+  </data>
+  <data name="ImagesTaggedWith" xml:space="preserve">
+    <value>Paveikslėliai, turintys žymą:</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Importuoti</value>
+  </data>
+  <data name="Import2" xml:space="preserve">
+    <value>_Importuoti...</value>
+  </data>
+  <data name="Import3" xml:space="preserve">
+    <value>Importuoti:</value>
+  </data>
+  <data name="Import4" xml:space="preserve">
+    <value>_Importuoti</value>
+  </data>
+  <data name="ImportFailures2" xml:space="preserve">
+    <value>Importo klaidos</value>
+  </data>
+  <data name="ImportFrom2" xml:space="preserve">
+    <value>Importuoti _iš:</value>
+  </data>
+  <data name="ImportIntoFSpot" xml:space="preserve">
+    <value>Importuoti į F-Spot</value>
+  </data>
+  <data name="ImportNewImages" xml:space="preserve">
+    <value>Importuoti naujus paveikslėlius</value>
+  </data>
+  <data name="ImportPhotosXOfY" xml:space="preserve">
+    <value>Importuojamos fotografijos: {0} iš {1}...</value>
+  </data>
+  <data name="ImportRoll" xml:space="preserve">
+    <value>Importuoti juostelę</value>
+  </data>
+  <data name="ImportedTags" xml:space="preserve">
+    <value>Importuotos žymos</value>
+  </data>
+  <data name="ImportingPhotos" xml:space="preserve">
+    <value>Importuojamos fotografijos...</value>
+  </data>
+  <data name="InThisPhoto" xml:space="preserve">
+    <value>Šioje fotografijoje</value>
+  </data>
+  <data name="IncludePhotoTaggedX" xml:space="preserve">
+    <value>Įtraukti fotografijas, pažymėtas kaip „{0}“</value>
+  </data>
+  <data name="IncludeSubfolders2" xml:space="preserve">
+    <value>Įtraukti poapla_nkius</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>Rodyklė</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Informacija</value>
+  </data>
+  <data name="InsideTheImageFilesWhenPossibleSmallMakesThemAccessibleToOtherImageEditingProgramsSmall" xml:space="preserve">
+    <value>Paveikslėlių failuose, kai įmanoma
+&lt;small&gt;Taip jie prieinami kitoms paveikslėlių redagavimo programoms.&lt;/small&gt;</value>
+  </data>
+  <data name="InterpolateImageOnZoom" xml:space="preserve">
+    <value>_Keičiant mastelį interpoliuoti paveikslėlį</value>
+  </data>
+  <data name="InterpolateImageOnZoom2" xml:space="preserve">
+    <value>Keičiant mastelį interpoliuoti paveikslėlį</value>
+  </data>
+  <data name="InvalidGalleryName" xml:space="preserve">
+    <value>Netinkamas Galerijos pavadinimas</value>
+  </data>
+  <data name="InvalidUrl" xml:space="preserve">
+    <value>Netinkamas URL</value>
+  </data>
+  <data name="InvertSelection" xml:space="preserve">
+    <value>_Invertuoti žymėjimą</value>
+  </data>
+  <data name="KeepTheImagesAtTheirOriginalLocation" xml:space="preserve">
+    <value>Palikti paveikslėlius pradinėje vietoje</value>
+  </data>
+  <data name="Label" xml:space="preserve">
+    <value>Užrašas</value>
+  </data>
+  <data name="Large" xml:space="preserve">
+    <value>Didelis</value>
+  </data>
+  <data name="Large2" xml:space="preserve">
+    <value>_Didelės</value>
+  </data>
+  <data name="LastImportRoll" xml:space="preserve">
+    <value>_Paskutinioji importuota juostelė</value>
+  </data>
+  <data name="LastNintyDays" xml:space="preserve">
+    <value>Paskutinės 90 dienų</value>
+  </data>
+  <data name="LastSevenDays" xml:space="preserve">
+    <value>Paskutinės 7 dienos</value>
+  </data>
+  <data name="LastThirtyDays" xml:space="preserve">
+    <value>Paskutinės 30 dienų</value>
+  </data>
+  <data name="LastThreeHundredSixtyDays" xml:space="preserve">
+    <value>Paskutinės 360 dienų</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>Šviesu</value>
+  </data>
+  <data name="LimitNumberOfSharedPhotosTo" xml:space="preserve">
+    <value>Riboti viešinamų fotografijų skaičių iki</value>
+  </data>
+  <data name="LiteralAnd" xml:space="preserve">
+    <value> ir </value>
+  </data>
+  <data name="LiteralOr" xml:space="preserve">
+    <value> arba </value>
+  </data>
+  <data name="LiveWebGallery" xml:space="preserve">
+    <value>Tiesioginė žiniatinklio galerija</value>
+  </data>
+  <data name="LiveWebGallery2" xml:space="preserve">
+    <value>LiveWebGallery</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Vieta</value>
+  </data>
+  <data name="Location2" xml:space="preserve">
+    <value>_Vieta:</value>
+  </data>
+  <data name="LoggingIntoTabblo" xml:space="preserve">
+    <value>Jungiamasi prie Tabblo</value>
+  </data>
+  <data name="LoggingIntoX" xml:space="preserve">
+    <value>Jungiamasi prie {0}</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Prisijungti</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Atsijungti</value>
+  </data>
+  <data name="Loupe" xml:space="preserve">
+    <value>_Lupa</value>
+  </data>
+  <data name="MakeFSpotMyScreensaver" xml:space="preserve">
+    <value>Padaryti F-Spot ekrano užsklanda</value>
+  </data>
+  <data name="ManageExtensions" xml:space="preserve">
+    <value>Valdyti _plėtinius</value>
+  </data>
+  <data name="ManageYourCustomSelectionRatios" xml:space="preserve">
+    <value>Valdyti pasirinktines žymėjimo proporcijas</value>
+  </data>
+  <data name="MaximizeTheMainWindow" xml:space="preserve">
+    <value>Išdidinti pagrindinį langą.</value>
+  </data>
+  <data name="MaximizeThePhotoViewerWindow" xml:space="preserve">
+    <value>Išdidinti fotografijos žiūryklės langą.</value>
+  </data>
+  <data name="Medium" xml:space="preserve">
+    <value>Vidutinis</value>
+  </data>
+  <data name="Medium2" xml:space="preserve">
+    <value>_Vidutinės</value>
+  </data>
+  <data name="MergeAnotherDbBackToTheMainOne" xml:space="preserve">
+    <value>Sujungti kitą db su pagrindine</value>
+  </data>
+  <data name="MergeAnotherFSpotCollection" xml:space="preserve">
+    <value>Sulieti kitą F-Spot kolekciją</value>
+  </data>
+  <data name="MergeDb" xml:space="preserve">
+    <value>Sujungti DB</value>
+  </data>
+  <data name="MergeDb2" xml:space="preserve">
+    <value>MergeDb</value>
+  </data>
+  <data name="MergeRAWJpegAsMultipleVersionsOfTheSamePhoto" xml:space="preserve">
+    <value>Sujunkite RAW+Jpeg kaip kelias tos pačios fotografijos versijas</value>
+  </data>
+  <data name="MergeRaw" xml:space="preserve">
+    <value>Sujungti Raw</value>
+  </data>
+  <data name="MergeTags" xml:space="preserve">
+    <value>Sujungti žymas</value>
+  </data>
+  <data name="MergeTagsMnemonic" xml:space="preserve">
+    <value>_Sujungti žymas</value>
+  </data>
+  <data name="MergeTheSelectedTag" xml:space="preserve">
+    <value>Sujungti {0} pasirinktą žymą?</value>
+  </data>
+  <data name="MergeTheSelectedTags" xml:space="preserve">
+    <value>Sujungti {0} pasirinktas žymas?</value>
+  </data>
+  <data name="MetaPixel" xml:space="preserve">
+    <value>MetaPixel</value>
+  </data>
+  <data name="Metadata" xml:space="preserve">
+    <value>Metaduomenys</value>
+  </data>
+  <data name="MinStartingAtX" xml:space="preserve">
+    <value>min. Pradedant nuo {0}</value>
+  </data>
+  <data name="Modified" xml:space="preserve">
+    <value>Modifikuota ({0})</value>
+  </data>
+  <data name="ModifiedInY" xml:space="preserve">
+    <value>Pakeista {1}</value>
+  </data>
+  <data name="ModifiedInYX" xml:space="preserve">
+    <value>Pakeista {1} ({0})</value>
+  </data>
+  <data name="ModifiedX" xml:space="preserve">
+    <value>Modifikuota ({0})</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>Daugiau</value>
+  </data>
+  <data name="MoreDates" xml:space="preserve">
+    <value>Daugiau datų</value>
+  </data>
+  <data name="MyPhotos" xml:space="preserve">
+    <value>Mano fotografijos</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Pavadinimas</value>
+  </data>
+  <data name="NameColon" xml:space="preserve">
+    <value>Pavadinimas:</value>
+  </data>
+  <data name="NameOfNewTagColon" xml:space="preserve">
+    <value>Naujos žymos pavadinimas:</value>
+  </data>
+  <data name="NeverModifyImageFilesSmallWriteXMPFilesNextToTheImagesInsteadSmall" xml:space="preserve">
+    <value>Niekada nekeisti paveikslėlių failų.
+&lt;small&gt;Vietoj to įrašyti XMP failus šalia paveikslėlių.&lt;/small&gt;</value>
+  </data>
+  <data name="NewNameColon" xml:space="preserve">
+    <value>Naujas pavadinimas:</value>
+  </data>
+  <data name="NewRollsOnly" xml:space="preserve">
+    <value>Tik naujos juostelės</value>
+  </data>
+  <data name="NewSelection" xml:space="preserve">
+    <value>Naujas pasirinkimas</value>
+  </data>
+  <data name="NewWindow" xml:space="preserve">
+    <value>_Naujas langas</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Kitas</value>
+  </data>
+  <data name="NextPhoto" xml:space="preserve">
+    <value>Kita fotografija</value>
+  </data>
+  <data name="NextPicture" xml:space="preserve">
+    <value>Kitas paveikslėlis</value>
+  </data>
+  <data name="NoAccountSelected" xml:space="preserve">
+    <value>Nepasirinkta paskyra</value>
+  </data>
+  <data name="NoActivePhoto" xml:space="preserve">
+    <value>Nėra aktyvios fotografijos</value>
+  </data>
+  <data name="NoApplicationsAvailable" xml:space="preserve">
+    <value>Nėra prieinamų programų</value>
+  </data>
+  <data name="NoCamerasDetected" xml:space="preserve">
+    <value>(Fotoaparatų neaptikta)</value>
+  </data>
+  <data name="NoConstraint" xml:space="preserve">
+    <value>Nėra apribojimų</value>
+  </data>
+  <data name="NoImage" xml:space="preserve">
+    <value>Nėra _paveikslėlio</value>
+  </data>
+  <data name="NoMatchingPhotosFound" xml:space="preserve">
+    <value>Atitinkančių fotografijų nerasta</value>
+  </data>
+  <data name="NoMetadataAvailable" xml:space="preserve">
+    <value>Metaduomenų neprieinama</value>
+  </data>
+  <data name="NoPermissionToDeleteTheFile" xml:space="preserve">
+    <value>Nėra leidimo ištrinti šį failą:{1}{0}</value>
+  </data>
+  <data name="NoPhotosMatchingFound" xml:space="preserve">
+    <value>Fotografijų atitinkančių {0} nerasta</value>
+  </data>
+  <data name="NoSelectionAvailable" xml:space="preserve">
+    <value>Pasirinkimas negalimas</value>
+  </data>
+  <data name="NoTagAppliedToAppliedTryAddingorSelectingDifferentTagInPreferenceDialog" xml:space="preserve">
+    <value>Žyma „{0}“ nepritaikyta jokioms fotografijoms. Pabandykite
+pridėti žymą kai kurioms fotografijoms arba F-Spot nustatymų
+dialoge pasirinkite kitą žymą.</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>Nėra</value>
+  </data>
+  <data name="None2" xml:space="preserve">
+    <value>nėra</value>
+  </data>
+  <data name="NotLoggedIn" xml:space="preserve">
+    <value>Neprisijungę</value>
+  </data>
+  <data name="NotSpaceX" xml:space="preserve">
+    <value>Ne {0}</value>
+  </data>
+  <data name="NumberOfPhotosInSelectedRolls" xml:space="preserve">
+    <value>Fotografijų pasirinktose juostelėse skaičius:</value>
+  </data>
+  <data name="NumberOfPictures" xml:space="preserve">
+    <value>Paveikslėlių skaičius</value>
+  </data>
+  <data name="ObtainingURLForUpload" xml:space="preserve">
+    <value>Gaunamas URL išsiuntimui</value>
+  </data>
+  <data name="OkMnemonic" xml:space="preserve">
+    <value>_Gerai</value>
+  </data>
+  <data name="OldBasePathURIWas" xml:space="preserve">
+    <value>Senas bazinis kelias (URI) buvo</value>
+  </data>
+  <data name="OnXBetweenYAndZ" xml:space="preserve">
+    <value>{0} tarp
+{1} ir {2}</value>
+  </data>
+  <data name="OnlyPhotosTakenWithinTheseDatesWillBeDisplayed" xml:space="preserve">
+    <value>Bus rodomos tik fotografjos, nufotografuotos šiuo laikotarpiu.</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Atverti</value>
+  </data>
+  <data name="OpenAlbumInBrowserWhenDoneUploading2" xml:space="preserve">
+    <value>Įkėlus, _atverti albumą naršyklėje</value>
+  </data>
+  <data name="OpenDestinationWhenDoneExporting" xml:space="preserve">
+    <value>Baigus eksportavimą atverti _paskirties vietą</value>
+  </data>
+  <data name="OpenFolder" xml:space="preserve">
+    <value>Atverti _aplanką...</value>
+  </data>
+  <data name="OpenWith" xml:space="preserve">
+    <value>Atverti _su</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>Parinktys:</value>
+  </data>
+  <data name="Or" xml:space="preserve">
+    <value>arba</value>
+  </data>
+  <data name="OrganizeEnjoyAndShareYourPhotos" xml:space="preserve">
+    <value>Rūšiuokite, mėgaukitės ir dalinkitės savo fotografijomis</value>
+  </data>
+  <data name="Original" xml:space="preserve">
+    <value>Originalas</value>
+  </data>
+  <data name="OriginalSizePossibleVeryLargeFileSize" xml:space="preserve">
+    <value>Originalus dydis (gali būti labai didelis failų dydis)</value>
+  </data>
+  <data name="PageColon" xml:space="preserve">
+    <value>Puslapis:</value>
+  </data>
+  <data name="PageSetup" xml:space="preserve">
+    <value>Puslapio sąranka</value>
+  </data>
+  <data name="PageSetup2" xml:space="preserve">
+    <value>Puslapio sąran_ka...</value>
+  </data>
+  <data name="PaperSizeXxYmm" xml:space="preserve">
+    <value>Popieriaus dydis: {0} x {1} mm</value>
+  </data>
+  <data name="ParenFileReadErrorParen" xml:space="preserve">
+    <value>(Failo skaitymo klaida)</value>
+  </data>
+  <data name="ParenNoAlbumsParen" xml:space="preserve">
+    <value>(Nėra albumų)</value>
+  </data>
+  <data name="ParenNoEditsParen" xml:space="preserve">
+    <value>(Nėra redagavimų)</value>
+  </data>
+  <data name="ParenNoGalleryParen" xml:space="preserve">
+    <value>(Nėra galerijos)</value>
+  </data>
+  <data name="ParenNoTagsParen" xml:space="preserve">
+    <value>(Žymų nėra)</value>
+  </data>
+  <data name="ParenNoneParen" xml:space="preserve">
+    <value>(Nėra)</value>
+  </data>
+  <data name="ParenNotConnectedParen" xml:space="preserve">
+    <value>(Neprisijungta)</value>
+  </data>
+  <data name="ParenOneEditParen" xml:space="preserve">
+    <value>({0} kartą redaguota)</value>
+  </data>
+  <data name="ParenTopLevelParen" xml:space="preserve">
+    <value>(Aukščiausio lygio)</value>
+  </data>
+  <data name="ParenUnknownParen" xml:space="preserve">
+    <value>(Nežinoma)</value>
+  </data>
+  <data name="ParenXEditsParen" xml:space="preserve">
+    <value>({0} kartus redaguota)</value>
+  </data>
+  <data name="ParentAlbum" xml:space="preserve">
+    <value>_Pirminis albumas:</value>
+  </data>
+  <data name="ParentTag" xml:space="preserve">
+    <value>_Pirminė žyma:</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>_Slaptažodis:</value>
+  </data>
+  <data name="PathToCustomGtkrcForThemingFSpot" xml:space="preserve">
+    <value>Kelias iki pasirinktinio gtkrc F-Spot temoms.</value>
+  </data>
+  <data name="People" xml:space="preserve">
+    <value>Žmonės</value>
+  </data>
+  <data name="Permissions" xml:space="preserve">
+    <value>Leidimai:</value>
+  </data>
+  <data name="Photo2" xml:space="preserve">
+    <value>fotografija</value>
+  </data>
+  <data name="Photo3" xml:space="preserve">
+    <value>_Fotografija</value>
+  </data>
+  <data name="PhotoManagementForGNOME" xml:space="preserve">
+    <value>GNOME fotografijų valdymas</value>
+  </data>
+  <data name="PhotoManager" xml:space="preserve">
+    <value>Fotografijų tvarkymo programa</value>
+  </data>
+  <data name="PhotoViewer" xml:space="preserve">
+    <value>Fotografijų peržiūros programa</value>
+  </data>
+  <data name="PhotoXOfY" xml:space="preserve">
+    <value>{0} fotografija iš {1}</value>
+  </data>
+  <data name="Photos" xml:space="preserve">
+    <value>Fotografijos</value>
+  </data>
+  <data name="Photos2" xml:space="preserve">
+    <value>fotografijos</value>
+  </data>
+  <data name="PhotosInfos" xml:space="preserve">
+    <value>Fotografijų informacija</value>
+  </data>
+  <data name="PhotosLayout" xml:space="preserve">
+    <value>Fotografijų išdėstymas</value>
+  </data>
+  <data name="PhotosPerPage" xml:space="preserve">
+    <value>Fotografijų puslapyje</value>
+  </data>
+  <data name="PhotosWithATag" xml:space="preserve">
+    <value>Fotografijos su žyma</value>
+  </data>
+  <data name="PicasaWeb2" xml:space="preserve">
+    <value>_PicasaWeb...</value>
+  </data>
+  <data name="PicasaWebExport" xml:space="preserve">
+    <value>Eksportavimas į PicasaWeb</value>
+  </data>
+  <data name="PictureTile" xml:space="preserve">
+    <value>PictureTile</value>
+  </data>
+  <data name="Pixelate" xml:space="preserve">
+    <value>Pikseliuoti</value>
+  </data>
+  <data name="PixelateEditor" xml:space="preserve">
+    <value>PixelateEditor</value>
+  </data>
+  <data name="PixelatesAnAreaOfTheImage" xml:space="preserve">
+    <value>Suskaido paveikslėlio sritį pikseliais.</value>
+  </data>
+  <data name="Pixels" xml:space="preserve">
+    <value>pikseliai</value>
+  </data>
+  <data name="Places" xml:space="preserve">
+    <value>Vietos</value>
+  </data>
+  <data name="PleaseNameYourAlbumOrChooseAnExistingAlbum" xml:space="preserve">
+    <value>Nurodykite savo albumo pavadinimą arba pasirinkite esantį albumą.</value>
+  </data>
+  <data name="PleaseVerifyThatTheSettingsForThisGalleryAreCorrect" xml:space="preserve">
+    <value>Patvirtinkite, kad šios galerijos nustatymai yra teisingi.</value>
+  </data>
+  <data name="PleaseVerifyThatTheSettingsForThisGalleryAreCorrectEnterTheLettersAsTheyAreShownInTheImageInTheCaptchaFieldILettersAreNotCaseSensitiveI" xml:space="preserve">
+    <value>Įsitikinkite, jog šios galerijos nustatymai yra teisingi.
+Įveskite paveikslėlyje parodytas raides į „Captcha“ laukelį.
+&lt;i&gt;Raidžių registras nesvarbus&lt;/i&gt;</value>
+  </data>
+  <data name="PleaseWaitFSpotGalleryDBUpdating" xml:space="preserve">
+    <value>Luktelėkite, kol bus atnaujinta jūsų F-Spot galerijos duomenų bazė. Tai gali šiek tiek užtrukti.</value>
+  </data>
+  <data name="Preferences" xml:space="preserve">
+    <value>Nustatymai</value>
+  </data>
+  <data name="PreparingEmail" xml:space="preserve">
+    <value>Ruošiamas el. laiškas</value>
+  </data>
+  <data name="PreparingPhotoX" xml:space="preserve">
+    <value>Ruošiama fotografija „{0}“</value>
+  </data>
+  <data name="Prev" xml:space="preserve">
+    <value>Ankst</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Ankstesnis</value>
+  </data>
+  <data name="PreviousPhoto" xml:space="preserve">
+    <value>Ankstesnė fotografija</value>
+  </data>
+  <data name="PreviousPicture" xml:space="preserve">
+    <value>Ankstesnis paveikslėlis</value>
+  </data>
+  <data name="PreviousWeekMonSun" xml:space="preserve">
+    <value>Ankstesnė savaitė (Pir-Sek)</value>
+  </data>
+  <data name="PrintCutMarks" xml:space="preserve">
+    <value>Spausdinti kirpimo žymes</value>
+  </data>
+  <data name="PrintFileName" xml:space="preserve">
+    <value>Spausdinti failo vardą</value>
+  </data>
+  <data name="PrintPhotoComment" xml:space="preserve">
+    <value>Spausdinti fotografijos komentarą</value>
+  </data>
+  <data name="PrintPhotoDate" xml:space="preserve">
+    <value>Spausdinti fotografavimo datą</value>
+  </data>
+  <data name="PrintPhotoTags" xml:space="preserve">
+    <value>Spausdinti fotografijos žymas</value>
+  </data>
+  <data name="PrintPhotoTime" xml:space="preserve">
+    <value>Spausdinti fotografavimo laiką</value>
+  </data>
+  <data name="Private" xml:space="preserve">
+    <value>Asmeniška</value>
+  </data>
+  <data name="Public" xml:space="preserve">
+    <value>Vieša</value>
+  </data>
+  <data name="PublicAlbum" xml:space="preserve">
+    <value>Viešas albumas</value>
+  </data>
+  <data name="Push" xml:space="preserve">
+    <value>Nustumti</value>
+  </data>
+  <data name="PushTransition" xml:space="preserve">
+    <value>Stumiantis perėjimas</value>
+  </data>
+  <data name="Quit" xml:space="preserve">
+    <value>Iš_eiti</value>
+  </data>
+  <data name="RadiusColon" xml:space="preserve">
+    <value>Spindulys</value>
+  </data>
+  <data name="RatedPhotos" xml:space="preserve">
+    <value>Įvertintos fotografijos</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Įvertinimas</value>
+  </data>
+  <data name="Ratings" xml:space="preserve">
+    <value>Į_vertinimai</value>
+  </data>
+  <data name="Ratio" xml:space="preserve">
+    <value>Proporcija</value>
+  </data>
+  <data name="RawPlusJpeg" xml:space="preserve">
+    <value>RawPlusJpeg</value>
+  </data>
+  <data name="ReallyDeleteVersionXQuestion" xml:space="preserve">
+    <value>Tikrai ištrinti versiją „{0}“?</value>
+  </data>
+  <data name="ReallyDetachVersionXFromY" xml:space="preserve">
+    <value>Tikrai atkabinti versiją „{0}“ nuo „{1}“?</value>
+  </data>
+  <data name="ReallyReparentXAsVersionOfY" xml:space="preserve">
+    <value>Tikrai keisti {2} fotografiją kaip „{1}“ versiją?</value>
+  </data>
+  <data name="ReallyReparentZPhotosAsVersionsOfY" xml:space="preserve">
+    <value>Tikrai keisti {2} fotografijas kaip „{1}“ versijas?</value>
+  </data>
+  <data name="ReassignToNewImportRoll" xml:space="preserve">
+    <value>Perskirti naujai importo rolei</value>
+  </data>
+  <data name="ReceivedErrorXWhileAttemptingToRotateY" xml:space="preserve">
+    <value>Bandant pasukti {1} gauta klaida „{0}“</value>
+  </data>
+  <data name="ReceivedExceptionX" xml:space="preserve">
+    <value>Gauta išimtis „{0}“.</value>
+  </data>
+  <data name="ReceivedExceptionXNoteThatYouHaveToDevelopRaw" xml:space="preserve">
+    <value>Gauta išimtis „{0}“. Atminkite, kad prieš redaguodami turite konvertuoti RAW failą į JPEG.</value>
+  </data>
+  <data name="ReceivedExceptionXUnableToSavePhotoY" xml:space="preserve">
+    <value>Gauta išimtis „{0}“. Nepavyko išsaugoti fotografijos {1}</value>
+  </data>
+  <data name="RedEyeReduction" xml:space="preserve">
+    <value>Akių raudonumo sumažinimas</value>
+  </data>
+  <data name="RefreshSearch" xml:space="preserve">
+    <value>Atnaujinti paiešką</value>
+  </data>
+  <data name="RefreshThumbnail" xml:space="preserve">
+    <value>_Atnaujinti miniatiūrą</value>
+  </data>
+  <data name="RemoveFromCatalog" xml:space="preserve">
+    <value>_Pašalinti iš katalogo</value>
+  </data>
+  <data name="RemoveFromCatalogMnemonic" xml:space="preserve">
+    <value>_Pašalinti iš katalogo</value>
+  </data>
+  <data name="RemoveFromExportedPhotos" xml:space="preserve">
+    <value>_Pašalinti iš eksportuotų fotografijų:</value>
+  </data>
+  <data name="RemoveFromSearch" xml:space="preserve">
+    <value>Pašalinti iš paieškos</value>
+  </data>
+  <data name="RemoveOriginalFilesAfterImport" xml:space="preserve">
+    <value>Pašalinti o_riginalo failus po importo</value>
+  </data>
+  <data name="RemoveTag" xml:space="preserve">
+    <value>Paša_linti žymą</value>
+  </data>
+  <data name="RemoveTagFromSelection" xml:space="preserve">
+    <value>Pašalinti žymas nuo pasirinktų</value>
+  </data>
+  <data name="RemoveTagFromSelection2" xml:space="preserve">
+    <value>_Pašalinti žymą iš pasirinktų elementų</value>
+  </data>
+  <data name="RemoveTagFromSelection3" xml:space="preserve">
+    <value>Pašalinti žymą nuo pasirinkos</value>
+  </data>
+  <data name="RemoveTheSelectedPhotoFromFSpot" xml:space="preserve">
+    <value>Pašalinti {0} pasirinktą fotografiją iš F-Spot?</value>
+  </data>
+  <data name="RemoveTheXSelectedPhotosFromFSpot" xml:space="preserve">
+    <value>Pašalinti {0} pasirinktas fotografijas iš F-Spot?</value>
+  </data>
+  <data name="RenameVersion" xml:space="preserve">
+    <value>Pervadinti versiją</value>
+  </data>
+  <data name="RenameVersion2" xml:space="preserve">
+    <value>_Pervadinti versiją</value>
+  </data>
+  <data name="Repair" xml:space="preserve">
+    <value>Pataisyti</value>
+  </data>
+  <data name="ReparentMnemonic" xml:space="preserve">
+    <value>_Keisti tėvą</value>
+  </data>
+  <data name="Reparented" xml:space="preserve">
+    <value>Pakeista pirminė fotografija</value>
+  </data>
+  <data name="Repeat" xml:space="preserve">
+    <value>Kartoti</value>
+  </data>
+  <data name="Resize" xml:space="preserve">
+    <value>Keisti dydį</value>
+  </data>
+  <data name="ResizeEditor" xml:space="preserve">
+    <value>ResizeEditor</value>
+  </data>
+  <data name="ResizeTheImage" xml:space="preserve">
+    <value>Keičia paveikslėlio dydį</value>
+  </data>
+  <data name="ResizeTo" xml:space="preserve">
+    <value>_Keisti dydį į: </value>
+  </data>
+  <data name="RetroactiveRoll" xml:space="preserve">
+    <value>RetroactiveRoll</value>
+  </data>
+  <data name="RetroactivelyAssignOldPhotosToImportRolls" xml:space="preserve">
+    <value>Retroaktyviai priskirti senas fotografijas prie importo rolių</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Kartoti</value>
+  </data>
+  <data name="ReturnToThisWindowAfterYouHaveFinishedAuthProcessOnXClickCompleteAuthorizationButton" xml:space="preserve">
+    <value>Gavę {0} prieigos teises, grįžkite į šį langą ir spustelėkite žemiau esantį mygtuką „Baigti tapatybės nustatymą“</value>
+  </data>
+  <data name="ReverseOrder" xml:space="preserve">
+    <value>_Atvirkštinė tvarka</value>
+  </data>
+  <data name="RotateLeft" xml:space="preserve">
+    <value>Pasukti kairėn</value>
+  </data>
+  <data name="RotateLeftMnemonic" xml:space="preserve">
+    <value>Pasukti _kairėn</value>
+  </data>
+  <data name="RotatePhotoLeft" xml:space="preserve">
+    <value>Pasukti fotografiją kairėn</value>
+  </data>
+  <data name="RotatePhotoRight" xml:space="preserve">
+    <value>Pasukti fotografiją dešinėn</value>
+  </data>
+  <data name="RotatePictureLeft" xml:space="preserve">
+    <value>Pasukti fotografiją kairėn</value>
+  </data>
+  <data name="RotatePictureRight" xml:space="preserve">
+    <value>Pasukti fotografiją dešinėn</value>
+  </data>
+  <data name="RotateRight" xml:space="preserve">
+    <value>Pasukti dešinėn</value>
+  </data>
+  <data name="RotateRightMnemonic" xml:space="preserve">
+    <value>Pasukti _dešinėn</value>
+  </data>
+  <data name="RotateSelectedPhotoLeft" xml:space="preserve">
+    <value>Pasukti pasirinktą fotografiją kairėn</value>
+  </data>
+  <data name="RotateSelectedPhotoRight" xml:space="preserve">
+    <value>Pasukti pasirinktą fotografiją dešinėn</value>
+  </data>
+  <data name="RotateSelectedPhotosLeft" xml:space="preserve">
+    <value>Pasukti pasirinktas fotografijas kairėn</value>
+  </data>
+  <data name="RotateSelectedPhotosRight" xml:space="preserve">
+    <value>Pasukti pasirinktas fotografijas dešinėn</value>
+  </data>
+  <data name="RotatingPhotoX" xml:space="preserve">
+    <value>Sukama fotografija „{0}“</value>
+  </data>
+  <data name="RotatingPhotos" xml:space="preserve">
+    <value>Sukamos fotografijos</value>
+  </data>
+  <data name="S000000" xml:space="preserve">
+    <value>00:00:00</value>
+  </data>
+  <data name="S00000000000000" xml:space="preserve">
+    <value>0000:00:00 00:00:00</value>
+  </data>
+  <data name="S1024Px" xml:space="preserve">
+    <value>1024 px</value>
+  </data>
+  <data name="S23hq" xml:space="preserve">
+    <value>_23hq...</value>
+  </data>
+  <data name="S320Px" xml:space="preserve">
+    <value>320 px</value>
+  </data>
+  <data name="S480Px" xml:space="preserve">
+    <value>480 px</value>
+  </data>
+  <data name="S5" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="S640Px" xml:space="preserve">
+    <value>640 px</value>
+  </data>
+  <data name="S800Px" xml:space="preserve">
+    <value>800 px</value>
+  </data>
+  <data name="SameAsPhoto" xml:space="preserve">
+    <value>Taip kaip fotografija</value>
+  </data>
+  <data name="Saturation2" xml:space="preserve">
+    <value>_Sodrumas:</value>
+  </data>
+  <data name="SaveTheFilesOnly" xml:space="preserve">
+    <value>Iš_saugoti tik failus</value>
+  </data>
+  <data name="Scale" xml:space="preserve">
+    <value>_Ištempti:</value>
+  </data>
+  <data name="Scaled" xml:space="preserve">
+    <value>Ištempta</value>
+  </data>
+  <data name="ScreensaverConfiguration" xml:space="preserve">
+    <value>Ekrano užsklandos konfigūracija</value>
+  </data>
+  <data name="ScreensaverOptions" xml:space="preserve">
+    <value>Ekrano užsklandos nustatymai</value>
+  </data>
+  <data name="SearchReturnedNoResults" xml:space="preserve">
+    <value>Paieška negrąžino jokių rezultatų</value>
+  </data>
+  <data name="SearchingForPhotosYouCanAlreadyClickImportToContinue" xml:space="preserve">
+    <value>Ieškoma fotografijų... (Jau galite spausti Importuoti ir tęsti)</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Pasirinkti...</value>
+  </data>
+  <data name="SelectAFolder" xml:space="preserve">
+    <value>Pasirinkite aplanką</value>
+  </data>
+  <data name="SelectATag" xml:space="preserve">
+    <value>Pasirinkite žymą...</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Pasirinkti _visas</value>
+  </data>
+  <data name="SelectExportFolder" xml:space="preserve">
+    <value>Pasirinkite eksportavimo aplanką</value>
+  </data>
+  <data name="SelectExportFolder2" xml:space="preserve">
+    <value>Pasirinkite eksportavimo aplanką</value>
+  </data>
+  <data name="SelectFolder" xml:space="preserve">
+    <value>Pasirinkite aplanką</value>
+  </data>
+  <data name="SelectImportRolls" xml:space="preserve">
+    <value>_Pasirinkti importuotinas juosteles...</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>_Nepasirinkti jokių</value>
+  </data>
+  <data name="SelectPhotoFromFile" xml:space="preserve">
+    <value>Pasirinkti fotografiją iš failo</value>
+  </data>
+  <data name="SelectTheAreaThatNeedsCropping" xml:space="preserve">
+    <value>Pasirinkite apkirptiną sritį.</value>
+  </data>
+  <data name="SelectTheAreaThatYouWantBlackedOut" xml:space="preserve">
+    <value>Pasirinkite sritį užtemdymui.</value>
+  </data>
+  <data name="SelectTheAreaThatYouWantPixelated" xml:space="preserve">
+    <value>Pasirinkite sritį pikseliavimui.</value>
+  </data>
+  <data name="SelectTheEyesYouWishToFix" xml:space="preserve">
+    <value>Pasirinkite taisytinas akis.</value>
+  </data>
+  <data name="Selected" xml:space="preserve">
+    <value>Pasirinkta</value>
+  </data>
+  <data name="SelectedPhotos" xml:space="preserve">
+    <value>Pasirinktos fotografijos</value>
+  </data>
+  <data name="SelectionConstraints" xml:space="preserve">
+    <value>Pasirinkimo apribojimai</value>
+  </data>
+  <data name="SendByMail" xml:space="preserve">
+    <value>Siųsti _el. paštu...</value>
+  </data>
+  <data name="SeparatelyFromTheImageFiles" xml:space="preserve">
+    <value>Atskirai nuo paveikslėlių failų</value>
+  </data>
+  <data name="SepiaTone2" xml:space="preserve">
+    <value>Sepijos tonas</value>
+  </data>
+  <data name="ServerReturnedResponseWithoutGalleryContent" xml:space="preserve">
+    <value>Serveris grąžino atsaką be galerijos turinio</value>
+  </data>
+  <data name="SessionEstablishedFetchingFriendDetails" xml:space="preserve">
+    <value>Sukurtas seansas, gaunama draugų informacija...</value>
+  </data>
+  <data name="SessionEstablishedFetchingFriendList" xml:space="preserve">
+    <value>Sukurtas seansas, gaunamas draugų sąrašas...</value>
+  </data>
+  <data name="SessionEstablishedFetchingPhotoAlbums" xml:space="preserve">
+    <value>Sukurtas seansas, gaunami fotoalbumai...</value>
+  </data>
+  <data name="SessionEstablishedFetchingUserInfo" xml:space="preserve">
+    <value>Sukurtas seansas, gaunama naudotojo informacija...</value>
+  </data>
+  <data name="SetAsBackground" xml:space="preserve">
+    <value>Nustatyti kaip darbastalio foną</value>
+  </data>
+  <data name="SetAsBackground2" xml:space="preserve">
+    <value>Padaryti darbastalio _fonu</value>
+  </data>
+  <data name="SetDateRange" xml:space="preserve">
+    <value>Nustatyti datos diapazoną</value>
+  </data>
+  <data name="SetDateRange2" xml:space="preserve">
+    <value>_Nustatyti datos diapazoną...</value>
+  </data>
+  <data name="SetPageSizeAndOrientation" xml:space="preserve">
+    <value>Nustatyti puslapio dydį ir padėtį</value>
+  </data>
+  <data name="SetRatingFilter" xml:space="preserve">
+    <value>Nustatyti įvertinimo filtrą</value>
+  </data>
+  <data name="SetRatingFilter2" xml:space="preserve">
+    <value>_Nustatyti įvertinimo filtrą...</value>
+  </data>
+  <data name="Share" xml:space="preserve">
+    <value>Viešinti:</value>
+  </data>
+  <data name="SharePhotosWithOtherPeopleOnTheSameNetworkViaWebBrowser" xml:space="preserve">
+    <value>Dalinkitės fotografijomis su kitais tame pačiame tinkle per žiniatinklio naršyklę</value>
+  </data>
+  <data name="Sharpen" xml:space="preserve">
+    <value>Paryškinti</value>
+  </data>
+  <data name="Sharpen2" xml:space="preserve">
+    <value>_Paryškinti...</value>
+  </data>
+  <data name="ShiftAllPhotosByX" xml:space="preserve">
+    <value>Paslinkti visas fotografijas {0}</value>
+  </data>
+  <data name="ShowAll" xml:space="preserve">
+    <value>Rodyti visas</value>
+  </data>
+  <data name="ShowAllPhotos" xml:space="preserve">
+    <value>Rodyti visas fotografijas.</value>
+  </data>
+  <data name="ShowCamera" xml:space="preserve">
+    <value>Rodyti fotoaparatą</value>
+  </data>
+  <data name="ShowCreator" xml:space="preserve">
+    <value>Rodyti kūrėją</value>
+  </data>
+  <data name="ShowDate" xml:space="preserve">
+    <value>Rodyti datą</value>
+  </data>
+  <data name="ShowDatesInTheThumbnailView" xml:space="preserve">
+    <value>Rodyti datas miniatiūrų rodinyje.</value>
+  </data>
+  <data name="ShowExposure" xml:space="preserve">
+    <value>Rodyti ekspoziciją</value>
+  </data>
+  <data name="ShowFileSize" xml:space="preserve">
+    <value>Rodyti failo dydį</value>
+  </data>
+  <data name="ShowFindBarMnemonic" xml:space="preserve">
+    <value>Rodyti _paieškos juostą</value>
+  </data>
+  <data name="ShowFocalLength" xml:space="preserve">
+    <value>Rodyti židinio nuotolį</value>
+  </data>
+  <data name="ShowOrHideTheSidePane" xml:space="preserve">
+    <value>Rodyti arba slėpti šoninį polangį</value>
+  </data>
+  <data name="ShowOrHideTheToolbar" xml:space="preserve">
+    <value>Rodyti arba slėpti įrankinę</value>
+  </data>
+  <data name="ShowRating" xml:space="preserve">
+    <value>Rodyti įvertinimą</value>
+  </data>
+  <data name="ShowRatingsInTheThumbnailView" xml:space="preserve">
+    <value>Rodyti reitingus miniatiūrų rodinyje.</value>
+  </data>
+  <data name="ShowSize" xml:space="preserve">
+    <value>Rodyti dydį</value>
+  </data>
+  <data name="ShowStyles" xml:space="preserve">
+    <value>Rodyti stilius</value>
+  </data>
+  <data name="ShowTags" xml:space="preserve">
+    <value>Rodyti žymas</value>
+  </data>
+  <data name="ShowTagsInTheThumbnailView" xml:space="preserve">
+    <value>Rodyti žymas miniatiūrų rodinyje.</value>
+  </data>
+  <data name="ShowTheFilenameInTheViewerWindow" xml:space="preserve">
+    <value>Rodyti failo pavadinimą žiūryklės lange.</value>
+  </data>
+  <data name="ShowTheFilmstripInTheMainWindow" xml:space="preserve">
+    <value>Rodyti foto juostą pagrindiniame rodinyje.</value>
+  </data>
+  <data name="ShowTheSidebarInTheMainWindow" xml:space="preserve">
+    <value>Rodyti šoninį polangį pagrindiniame lange.</value>
+  </data>
+  <data name="ShowTheTimelineInTheMainWindow" xml:space="preserve">
+    <value>Rodyti laiko juostą pagrindiniame lange.</value>
+  </data>
+  <data name="ShowTheToolbarInTheMainWindow" xml:space="preserve">
+    <value>Rodyti įrankinę pagrindiniame lange.</value>
+  </data>
+  <data name="ShowTheToolbarInThePhotoViewerWindow" xml:space="preserve">
+    <value>Rodyti įrankinę fotografijų žiūryklės lange.</value>
+  </data>
+  <data name="SidePane" xml:space="preserve">
+    <value>Šoninis _polangis</value>
+  </data>
+  <data name="Sidebar" xml:space="preserve">
+    <value>Šoninė j_uosta</value>
+  </data>
+  <data name="SignInAsADifferentUser" xml:space="preserve">
+    <value>Prisijungti kitu naudotoju</value>
+  </data>
+  <data name="SimpleExportToZipFile" xml:space="preserve">
+    <value>Paprastas eksportavimas į Zip failą</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Dydis</value>
+  </data>
+  <data name="SizeOfTheExportedSelection" xml:space="preserve">
+    <value>Eksportuoto pažymėjimo dydis:</value>
+  </data>
+  <data name="SizeOfTheTagIconsShownInTheSidebar" xml:space="preserve">
+    <value>Šoniniame polangyje rodomų žymų piktogramų dydis.</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>Praleisti</value>
+  </data>
+  <data name="SlideTransition" xml:space="preserve">
+    <value>Skaidrių perėjimas:</value>
+  </data>
+  <data name="Slideshow" xml:space="preserve">
+    <value>Skaidrių rodymas</value>
+  </data>
+  <data name="Slideshow2" xml:space="preserve">
+    <value>_Skaidrių rodymas</value>
+  </data>
+  <data name="Small" xml:space="preserve">
+    <value>Mažas</value>
+  </data>
+  <data name="Small2" xml:space="preserve">
+    <value>_Mažos</value>
+  </data>
+  <data name="SmallIChooseTheLocationOfTheDatabaseYouWantToImportFromISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;Pasirinkite duomenų bazės, iš kurios norite importuoti, vietą&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIChooseWhatToImportFromTheSelectedDbNewRollsOnlyIsTheSmartOptionThatWillAvoidReImportingPhotosYouCouldHaveImportedDuringAPreviousOperationASingleImportRollLetYouChooseWhichRollYouWantToMergeBackEverythingWillImportEverythingCreatingDuplicatesIfYouAlreadyImportedFromThatDatabaseISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;Pasirinkite, ką imporuoti iš pasirinktos duomenų bazės.
+„Tik naujos juostelės“ – išmani parinktis, leidžianti išvengti pakartotino fotografijų, kurias esate importavę anksčiau, importavimo.
+„Viena importavimo juostelė“ – galite nurodyti, kurią juostelę norite vėl sulieti.
+„Viską“ – importuojama viskas, sukuriant kopijas, jei jau esate importavę iš tos duomenų bazės.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallICopyTheImagesLocallyOrKeepThemWhereTheyAreIfYouChoseTheLaterBeSureThatThisLocationWillStayAccessibleFromFSpotISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;Nukopijuokite paveikslėlius į savo kompiuterį arba palikite jas, kur jos yra. Pastaruoju atveju įsitikinkite, kad ši vieta bus pasiekiama iš F-Spot.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIEnableThisToAllowInterpolationOnZoomedImagesYouShouldnTDisableThisForViewingPhotosButDisablingTheInterpolationCouldBeUsefulInIconDesignISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;Įjunkite norėdami leisti interpoliaciją pakeisto mastelio paveikslėliuose. To nereikėtų išjungti fotografijų peržiūrai, tačiau gali būti naudinga išjungti interpoliaciją kuriant piktogramas.&lt;i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIFSpotTagsCanHelpYouTrackTheExportStatusOfPhotosExampleUseOneTagForThePhotosThatYouPlanToExportAndAnotherOneForThoseAlreadyExportedHereYouCanTellFSpotToAutomaticallyReplaceTheseTagsAsAppropriateISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;F-Spot žymos gali padėti jums sekti fotografijų eksportavimo būseną. Pavyzdžiui: naudokite vieną žymą planuojamom eksportuoti fotografijoms, kitą jau eksportuotoms. Čia galite nurodyti F-Spot pakeisti šias žymas, kaip norite.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallITheGalleryStaysActiveUntilYouEitherDeactivateItOrCloseFSpotMakeSureLocalViewersAccessItBypassingHTTPProxyISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;Ši galerija išlieka aktyvi, kol jos neišjungiate arba neužveriate
+F-Spot. Įsitikinkite, kad vietiniai žiūrovai prieina ją apeidami tarpinį
+HTTP serverį.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIWhenTheGalleryIsActiveAboveIsTheURLYouNeedToOpenOnAnotherComputerToAccessTheSharedPhotosISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;Kai galerija yra aktyvi, aukščiau pateiktas URL, kurį reikia
+atverti kitame kompiuteryje, norint gauti prieigą prie viešinamų fotografijų.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIYouCanChooseHowToDisplayTransparentPartsInImagesThisOptionHasNoEffectOnPhotosButSettingThisAsCheckPatternOrCustomColorCouldBeUsefulWhenViewingIconsOrOtherArtworksWithTransparentPartsISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;Galite pasirinkti kaip rodyti permatomas paveikslėlių dalis. Ši parinktis neturi jokio efekto fotografijoms, tačiau žiūrint piktogramas ar kitus paveikslėlius su permatomis dalimis, šios parinkties nustatymas į šachmatų lentos raštą ar kitą spalvą gali būti naudingas.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmugMug" xml:space="preserve">
+    <value>_SmugMug...</value>
+  </data>
+  <data name="SmugMugExport" xml:space="preserve">
+    <value>Eksportavimas į SmugMug</value>
+  </data>
+  <data name="SoftFocus" xml:space="preserve">
+    <value>Išfokusavimas</value>
+  </data>
+  <data name="SomeFilesCouldNotBeImported" xml:space="preserve">
+    <value>Kai kurių failų nepavyko importuoti, jie gali būti sugadinti arba gali būti kažkas negerai su saugykla, kur jie yra.</value>
+  </data>
+  <data name="SomeFilesFailedToImport" xml:space="preserve">
+    <value>Kai kurių failų nepavyko importuoti</value>
+  </data>
+  <data name="SpaceAllPhotosBy" xml:space="preserve">
+    <value>Praretinti visas fotografijas</value>
+  </data>
+  <data name="SpanWeightBoldSizeLargerErrorConnectingToGallerySpan" xml:space="preserve">
+    <value>&lt;span weight='bold' size='larger'&gt;Jungiantis prie galerijos įvyko klaida&lt;/span&gt;
+</value>
+  </data>
+  <data name="SpanWeightBoldSizeLargerYourGoogleAccountIsLockedSpan" xml:space="preserve">
+    <value>&lt;span weight='bold' size='larger'&gt;Jūsų Google paskyra užrakinta&lt;/span&gt;
+</value>
+  </data>
+  <data name="Square" xml:space="preserve">
+    <value>Kontrastas</value>
+  </data>
+  <data name="StandardTheme" xml:space="preserve">
+    <value>Standartinė tema</value>
+  </data>
+  <data name="StartSlideshow" xml:space="preserve">
+    <value>Pradėti skaidrių rodymą</value>
+  </data>
+  <data name="StayConnected" xml:space="preserve">
+    <value>Likti prisijungus</value>
+  </data>
+  <data name="StoreTagsAndDescriptionsForPhotos" xml:space="preserve">
+    <value>Saugoti paveikslėlių žymas ir aprašymus:</value>
+  </data>
+  <data name="Straighten" xml:space="preserve">
+    <value>Ištiesinti</value>
+  </data>
+  <data name="SyncCatalogWithPhotos" xml:space="preserve">
+    <value>Sinchronizuokite katalogą su Photos</value>
+  </data>
+  <data name="SyncMetaData" xml:space="preserve">
+    <value>SyncMetaData</value>
+  </data>
+  <data name="SyncMetaDataInformationOfAllCatalogWithPhotos" xml:space="preserve">
+    <value>Sinchronizuokite visų katalogų MetaData informaciją su Photos</value>
+  </data>
+  <data name="SystemProfile" xml:space="preserve">
+    <value>Sistemos profilis</value>
+  </data>
+  <data name="Tabblo" xml:space="preserve">
+    <value>_Tabblo...</value>
+  </data>
+  <data name="TabbloExport" xml:space="preserve">
+    <value>Eksportuoti į Tabblo</value>
+  </data>
+  <data name="TagDoesntExistTrySelectingDifferentTagInPerferenceDialog" xml:space="preserve">
+    <value>F-Spot ieškomos žymos nėra. Pabandykite F-Spot
+nustatymų dialoge pasirinkti kitą žymą.</value>
+  </data>
+  <data name="TagIcons" xml:space="preserve">
+    <value>Ž_ymų piktogramos</value>
+  </data>
+  <data name="TagIsNotEmpty" xml:space="preserve">
+    <value>Žyma yra netuščia</value>
+  </data>
+  <data name="TagName2" xml:space="preserve">
+    <value>Ž_ymos pavadinimas:</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Žymos</value>
+  </data>
+  <data name="Tags2" xml:space="preserve">
+    <value>Žy_mos</value>
+  </data>
+  <data name="Tags3" xml:space="preserve">
+    <value>Žy_mos</value>
+  </data>
+  <data name="TagsColon" xml:space="preserve">
+    <value>Žymos: </value>
+  </data>
+  <data name="Temp" xml:space="preserve">
+    <value>Te_mp:</value>
+  </data>
+  <data name="TheColorToUseForTransparentParts" xml:space="preserve">
+    <value>Spalva, naudojama permatomoms dalims.</value>
+  </data>
+  <data name="TheFileSelectedNotValidOrSupportedDataaseReceivedExceptionX" xml:space="preserve">
+    <value>Pasirinktas failas nėra galiojanti ar palaikoma duomenų bazė.
+
+Gauta išimtis „{0}“.</value>
+  </data>
+  <data name="TheFollowingErrorWasEncounteredWhileAttemptingToCreateAnAlbumX" xml:space="preserve">
+    <value>Bandant sukurti albumą aptikta ši klaida: {0}</value>
+  </data>
+  <data name="TheGalleryNameContainsInvalidCharactersOnlyLettersNumbersUnderscoreAllowed" xml:space="preserve">
+    <value>Galerijos pavadinime yra neleistinų simbolių.
+Leidžiama tik raidės, skaitmenys, - ir _.</value>
+  </data>
+  <data name="TheGalleryUrlEntryDoesNotAppearToBeValid" xml:space="preserve">
+    <value>Galerijos URL įrašas, atrodo, nėra tinkamas URL</value>
+  </data>
+  <data name="TheHeightDimensionToUseForTheImportDialog" xml:space="preserve">
+    <value>Aukščio dimensija importo dialogui.</value>
+  </data>
+  <data name="TheHeightDimensionToUseForTheMainWindow" xml:space="preserve">
+    <value>Pagrindinio lango aukščio dimensija.</value>
+  </data>
+  <data name="TheHeightDimensionToUseForThePhotoViewerWindow" xml:space="preserve">
+    <value>Fotografijos žiūryklės lango aukščio dimensija.</value>
+  </data>
+  <data name="TheOrientationOfTheFilmstrip" xml:space="preserve">
+    <value>Foto juostos orientacija.</value>
+  </data>
+  <data name="TheOrientationOfTheFilmstripIfShown" xml:space="preserve">
+    <value>Foto juostos orientacija, jei rodoma.</value>
+  </data>
+  <data name="ThePhotoCouldNotBeRotatedReadonlyOrMedia" xml:space="preserve">
+    <value>{0} fotografijos pasukti nepavyko, nes ji yra tik skaitymui skirtoje failų sistemoje ar laikmenoje, pvz., CD-ROM. Patikrinkite teises ir bandykite dar kartą</value>
+  </data>
+  <data name="ThePhotoXDoesNotExist" xml:space="preserve">
+    <value>Fotografija „{0}“ neegzistuoja</value>
+  </data>
+  <data name="TheSelectedAlbumHasALimitOfXPicturesWhichWouldBePassedWithTheCurrentSelectionOfYImages" xml:space="preserve">
+    <value>Pasirinktame albume yra {0} paveikslėlių riba,
+kuri būtų viršyta pasirinkus dabar pažymėtus {1} paveikslėlius</value>
+  </data>
+  <data name="TheSizeOfTheSidebarInTheMainWindow" xml:space="preserve">
+    <value>Šoninės juostos dydis pagrindiniame lange.</value>
+  </data>
+  <data name="TheSizeWidthOfTheSidebarInTheMainWindow" xml:space="preserve">
+    <value>Šoninės juostos dydis (plotis) pagrindiniame lange.</value>
+  </data>
+  <data name="TheWebGallerySeemsToBeOfflineNow" xml:space="preserve">
+    <value>Atrodo, kad žiniatinklio galerija dabar yra atsijungus</value>
+  </data>
+  <data name="TheWidthDimensionToUseForTheImportDialog" xml:space="preserve">
+    <value>Pločio dimensija importo dialogui.</value>
+  </data>
+  <data name="TheWidthDimensionToUseForTheMainWindow" xml:space="preserve">
+    <value>Pagrindinio lango pločio dimensija.</value>
+  </data>
+  <data name="TheWidthDimensionToUseForThePhotoViewerWindow" xml:space="preserve">
+    <value>Fotografijos žiūryklės lango pločio dimensija.</value>
+  </data>
+  <data name="TheXPositionToUseForTheMainWindow" xml:space="preserve">
+    <value>Pagrindinio lango X padėtis.</value>
+  </data>
+  <data name="TheXPositionToUseForThePhotoViewerWindow" xml:space="preserve">
+    <value>Fotografijos žiūryklės lango X padėtis.</value>
+  </data>
+  <data name="TheYPositionToUseForTheMainWindow" xml:space="preserve">
+    <value>Pagrindinio lango Y padėtis.</value>
+  </data>
+  <data name="TheYPositionToUseForThePhotoViewerWindow" xml:space="preserve">
+    <value>Fotografijos žiūryklės lango Y padėtis.</value>
+  </data>
+  <data name="ThereAlreadyGallerySameNameInYourRegisteredGalleriesPleaseChooseUniqueName" xml:space="preserve">
+    <value>Jūsų registruotose Galerijose jau yra Galerija, turinti tokį pavadinimą. Pasirinkite unikalų pavadinimą.</value>
+  </data>
+  <data name="ThereWasAProblemLoggingIntoFacebookCheckYourCredentialsAndTryAgain" xml:space="preserve">
+    <value>Problema jungiantis prie Facebook. Patikrinkite savo prisjungimo duomenis ir bandykite dar kartą.</value>
+  </data>
+  <data name="ThereWasAnErrorWhenDownloadingYourInformationFromFacebookFacebookSaidX" xml:space="preserve">
+    <value>Klaida atsiunčiant jūsų informaciją iš Facebook.
+
+Facebook grąžino: {0}</value>
+  </data>
+  <data name="ThisDeletesAllVersionsOfTheSelectedPhotoFromYourDrive" xml:space="preserve">
+    <value>Iš jūsų disko bus ištrintos visos pasirinktos fotografijos versijos.</value>
+  </data>
+  <data name="ThisDeletesAllVersionsOfTheSelectedPhotosFromYourDrive" xml:space="preserve">
+    <value>Iš jūsų disko bus ištrintos visos pasirinktų fotografijų versijos.</value>
+  </data>
+  <data name="ThisExtensionAllowsYouToBurnYourPhotosToCD" xml:space="preserve">
+    <value>Šis plėtinys leidžia įrašyti fotografijas į CD.</value>
+  </data>
+  <data name="ThisExtensionAllowsYouToExportYourPhotosToFlickrAnd23hq" xml:space="preserve">
+    <value>Šis plėtinys leidžia eksportuoti fotografijas į Flickr ir 23hq.</value>
+  </data>
+  <data name="ThisExtensionAllowsYouToExportYourPhotosToHTMLGalleriesOriginalGalleriesOrJustToAFolder" xml:space="preserve">
+    <value>Šis plėtinys leidžia eksportuoti fotografijas į HTML galerijas, originalias galerijas ar tiesiog į aplanką.</value>
+  </data>
+  <data name="ThisExtensionAllowsYouToExportYourPhotosToPHPGalleryHttpGalleryMenaltoCom" xml:space="preserve">
+    <value>Šis plėtinys leidžia eksportuoti fotografijas į PHP galeriją (http://gallery.menalto.com).</value>
+  </data>
+  <data name="ThisExtensionAllowsYouToExportYourPhotosToPicasaWeb" xml:space="preserve">
+    <value>Šis plėtinys leidžia eksportuoti fotografijas į PicasaWeb.</value>
+  </data>
+  <data name="ThisExtensionAllowsYouToExportYourPhotosToSmugMug" xml:space="preserve">
+    <value>Šis plėtinys leidžia eksportuoti fotografijas į SmugMug.</value>
+  </data>
+  <data name="ThisExtensionAllowsYouToExportYourPhotosToTabblo" xml:space="preserve">
+    <value>Šis plėtinys leidžia eksportuoti fotografijas į Tabblo.</value>
+  </data>
+  <data name="ThisMakesThePhotosAppearAsASingleOneInLibraryTheVersionsCanBeDetachedUsingThePhotoMenu" xml:space="preserve">
+    <value>Tai rodys fotografijas kaip vieną bibliotekoje. Versijos gali būti atkabintus naudojant fotografijų meniu.</value>
+  </data>
+  <data name="ThisMakesTheVersionAppearAsASeparatePhotoInLibraryToUndoDragNewPhotoBackToParent" xml:space="preserve">
+    <value>Tai rodo versiją kaip atskirą fotografiją bibliotekoje. Atšaukimui nutempkite fotografiją atgal prie tėvinės.</value>
+  </data>
+  <data name="ThisNameIsAlreadyInUse" xml:space="preserve">
+    <value>Šis pavadinimas jau naudojamas</value>
+  </data>
+  <data name="ThisRemovesTheVersionAndDeletesTheFileFromDisk" xml:space="preserve">
+    <value>Tai pašalina versiją ir ištrina atitinkamą failą iš disko.</value>
+  </data>
+  <data name="ThisToolRequiresAnActiveSelection.PleaseSelectOneOrMore" xml:space="preserve">
+    <value>Šiam įrankiui reikalingas aktyvus pažymėjimas. Pažymėkite vieną ar daugiau paveikslėlių ir bandykite dar kartą</value>
+  </data>
+  <data name="ThisToolRequiresAnActiveSelectionPleaseSelectARegion" xml:space="preserve">
+    <value>Šiam įrankiui reikia aktyvaus pažymėjimo. Pažymėkite dalį fotografijos ir bandykite dar kartą</value>
+  </data>
+  <data name="ThisWillMergeSelectedTagsAndSubTagsIntoSingleTag" xml:space="preserve">
+    <value>Atlikus šią operaciją visos pasirinktos žymos ir bet kokios jose esančios žymos bus sujungtos į vieną žymą.</value>
+  </data>
+  <data name="ThresholdColon" xml:space="preserve">
+    <value>Slenkstis:</value>
+  </data>
+  <data name="ThumbnailElements" xml:space="preserve">
+    <value>Miniatiūrų _elementai</value>
+  </data>
+  <data name="Timeline" xml:space="preserve">
+    <value>_Laiko juosta</value>
+  </data>
+  <data name="Tint" xml:space="preserve">
+    <value>_Atspalvis:</value>
+  </data>
+  <data name="Tiny" xml:space="preserve">
+    <value>Mažytis</value>
+  </data>
+  <data name="Title2" xml:space="preserve">
+    <value>_Pavadinimas:</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Šiandien</value>
+  </data>
+  <data name="Token" xml:space="preserve">
+    <value>leksema</value>
+  </data>
+  <data name="TooManyImagesToExport" xml:space="preserve">
+    <value>Per daug eksportuotinų paveikslėlių</value>
+  </data>
+  <data name="Toolbar" xml:space="preserve">
+    <value>Į_rankinė</value>
+  </data>
+  <data name="Toolbar2" xml:space="preserve">
+    <value>Į_rankinė</value>
+  </data>
+  <data name="Tools" xml:space="preserve">
+    <value>Įrankiai</value>
+  </data>
+  <data name="Tools2" xml:space="preserve">
+    <value>Įran_kiai</value>
+  </data>
+  <data name="TotalOriginalSize" xml:space="preserve">
+    <value>Visas originalus dydis</value>
+  </data>
+  <data name="TransferComplete" xml:space="preserve">
+    <value>Siuntimas baigtas</value>
+  </data>
+  <data name="Transferring" xml:space="preserve">
+    <value>Siunčiama...</value>
+  </data>
+  <data name="TransferringPictureXToCD" xml:space="preserve">
+    <value>Paveikslėlis „{0}“ siunčiamas į CD</value>
+  </data>
+  <data name="TransferringPictures" xml:space="preserve">
+    <value>Siunčiami paveikslėliai</value>
+  </data>
+  <data name="TransferringToX" xml:space="preserve">
+    <value>Siunčiama į „{0}“</value>
+  </data>
+  <data name="Transitions" xml:space="preserve">
+    <value>Perėjimai</value>
+  </data>
+  <data name="TranslatorCredits" xml:space="preserve">
+    <value>Žygimantas Beručka &lt;zygis@gnome.org&gt;
+Justina Klingaitė &lt;justina.klingaite@gmail.com&gt;</value>
+  </data>
+  <data name="TrustError" xml:space="preserve">
+    <value>Pasitikėjimo klaida</value>
+  </data>
+  <data name="TrustTheSiteSCertificateThisOnce" xml:space="preserve">
+    <value>Pasitikėti svetainės liudijimu tik šį kartą</value>
+  </data>
+  <data name="UNSTABLEPleaseEnsureYouHaveABackupOfYourPhotosDbBeforeYouTestThisExtensionThisExtensionWillAllowYouToChangeTheBasePathToTheYourPhotosItIsVeryHandyIfYouMoveYourPhotosFromPhotosToOurPhotosForInstanceJustEnsureYouLetSqLiteContinueToProcessTheChangesForUpToAFewHoursAfterFSpotReportsFinishedItWillOnlyChangeThePathToPhotosWhichAreLocatedUnderThePhotoDirectory" xml:space="preserve">
+    <value>NESTABILUS - Užtikrinkite, kad turite savo photos.db atsarginę kopiją prieš bandydami šį plėtinį. Šis plėtinys leidžia pakeisti jūsų fotografijų bazinį kelia. Pavyzdžiui, jis patogus jūsų fotografijoms perkelti iš ~/Photos į /Fotografijos. Tik užtikrinkite, kad leidžiate SqLite tęsti apdoroti pakeitimus iki kelių valandų iki f-spot praneša apie pabaigą. Tai leis pakeisti jūsų fotografijų iš Photo katalogo kelią.</value>
+  </data>
+  <data name="URL3" xml:space="preserve">
+    <value>U_RL:</value>
+  </data>
+  <data name="UnableToLoadImage" xml:space="preserve">
+    <value>Nepavyko įkelti paveikslėlio</value>
+  </data>
+  <data name="UnableToLoadXAsIconForTheTag" xml:space="preserve">
+    <value>Nepavyko įkelti „{0}“ kaip žymos piktogramos</value>
+  </data>
+  <data name="UnableToLogOn" xml:space="preserve">
+    <value>Nepavyko prisijungti</value>
+  </data>
+  <data name="UnableToLogOn2" xml:space="preserve">
+    <value>Nepavyko prisijungti</value>
+  </data>
+  <data name="UnableToRotatePhoto" xml:space="preserve">
+    <value>Nepavyko pasukti {0} fotografijos</value>
+  </data>
+  <data name="UnableToRotateReadonlyFile" xml:space="preserve">
+    <value>Nepavyko sukurti vien tik skaitomo failo</value>
+  </data>
+  <data name="UnableToRotateThisTypeOfPhoto" xml:space="preserve">
+    <value>Nepavyko pasukti šio tipo fotografijos</value>
+  </data>
+  <data name="UnableToRotateXPhotos" xml:space="preserve">
+    <value>Nepavyko pasukti {0} fotografijų</value>
+  </data>
+  <data name="UnhandledException" xml:space="preserve">
+    <value>Neapdorota išskirtinė situacija</value>
+  </data>
+  <data name="UntaggedPhotos" xml:space="preserve">
+    <value>Fotografijos be žymų</value>
+  </data>
+  <data name="UntaggedPhotos2" xml:space="preserve">
+    <value>_Fotografijos be žymų</value>
+  </data>
+  <data name="UpdatingFSpotDatabase" xml:space="preserve">
+    <value>Atnaujinama F-Spot duomenų bazė</value>
+  </data>
+  <data name="UpdatingPictureX" xml:space="preserve">
+    <value>Atnaujinamas paveikslėlis „{0}“</value>
+  </data>
+  <data name="UpdatingThumbnails" xml:space="preserve">
+    <value>Atnaujinamos miniatiūros</value>
+  </data>
+  <data name="UploadComplete" xml:space="preserve">
+    <value>Išsiųsta</value>
+  </data>
+  <data name="UploadComplete2" xml:space="preserve">
+    <value>Išsiųsta</value>
+  </data>
+  <data name="UploadingPhotoX" xml:space="preserve">
+    <value>Išsiunčiama fotografija „{0}“</value>
+  </data>
+  <data name="UploadingPictureX" xml:space="preserve">
+    <value>Siunčiamas paveikslėlis „{0}“</value>
+  </data>
+  <data name="UploadingPictureXYOfZ" xml:space="preserve">
+    <value>Siunčiamas paveikslėlis „{0}“ ({1} iš {2})</value>
+  </data>
+  <data name="UploadingPictures" xml:space="preserve">
+    <value>Išsiunčiami paveikslėliai</value>
+  </data>
+  <data name="Url4" xml:space="preserve">
+    <value>url</value>
+  </data>
+  <data name="UseAnExistingAlbum" xml:space="preserve">
+    <value>Naudoti esantį albumą</value>
+  </data>
+  <data name="UseTheCurrentPhotoSFilenameAsTheViewerWindowSTitle" xml:space="preserve">
+    <value>Naudoti esamą fotografijos failo pavadinimą kaip žiūryklės lango pavadinimą.</value>
+  </data>
+  <data name="UsedXOfYourAllowedYMonthlyQuota" xml:space="preserve">
+    <value>Naudojama {0} iš jūsų leidžiamos {1} mėnesinės kvotos</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>_Naudotojo vardas:</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Versija</value>
+  </data>
+  <data name="Version3" xml:space="preserve">
+    <value>_Versija</value>
+  </data>
+  <data name="VerticalMnemonic" xml:space="preserve">
+    <value>_Vertikali</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>Vaizduoti</value>
+  </data>
+  <data name="View2" xml:space="preserve">
+    <value>R_odymas</value>
+  </data>
+  <data name="ViewAndEditAPhoto" xml:space="preserve">
+    <value>Žiūrėti ir redaguoti fotografiją</value>
+  </data>
+  <data name="ViewPhotosFullscreen" xml:space="preserve">
+    <value>Žiūrėti fotografijas visame ekrane</value>
+  </data>
+  <data name="ViewPhotosInASlideshow" xml:space="preserve">
+    <value>Žiūrėti fotografijas kaip skaidres</value>
+  </data>
+  <data name="ViewPhotosInBrowserWhenDoneUploading" xml:space="preserve">
+    <value>Įkėlus, _rodyti fotografijas naršyklėje</value>
+  </data>
+  <data name="Views" xml:space="preserve">
+    <value>Peržiūrų:</value>
+  </data>
+  <data name="VisibleToFamily" xml:space="preserve">
+    <value>Matoma šeimai</value>
+  </data>
+  <data name="VisibleToFriends" xml:space="preserve">
+    <value>Matoma draugams</value>
+  </data>
+  <data name="VisitFSpotGroupOnFacebook" xml:space="preserve">
+    <value>Aplankykite F-Spot grupę Facebooke</value>
+  </data>
+  <data name="WaitingForAuthentication" xml:space="preserve">
+    <value>Laukiama tapatybės nustatymo</value>
+  </data>
+  <data name="WaitingForAuthorization" xml:space="preserve">
+    <value>Laukiama tapatybės nustatymo</value>
+  </data>
+  <data name="WaitingForResponseXOfY" xml:space="preserve">
+    <value>Laukiama atsako {0} iš {1}</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Įspėjimas</value>
+  </data>
+  <data name="WebGallery" xml:space="preserve">
+    <value>Žiniatinklio _galerija...</value>
+  </data>
+  <data name="WelcomeXYouAreConnectedToY3" xml:space="preserve">
+    <value>Sveiki, {0}, dabar esate prisijungę prie {1}.</value>
+  </data>
+  <data name="WhenImportingPhotosCopyThemTo" xml:space="preserve">
+    <value>Importuojant fotografijas, nukopijuotis juos į:</value>
+  </data>
+  <data name="WhiteBorders" xml:space="preserve">
+    <value>Balti rėmeliai</value>
+  </data>
+  <data name="WhoIsThis" xml:space="preserve">
+    <value>Kas tai?</value>
+  </data>
+  <data name="WidthOfTheImportDialog" xml:space="preserve">
+    <value>Importo dialogo plotis.</value>
+  </data>
+  <data name="WidthOfTheMainWindow" xml:space="preserve">
+    <value>Pagrindinio lango plotis.</value>
+  </data>
+  <data name="WidthOfThePhotoViewerWindow" xml:space="preserve">
+    <value>Fotografijos žiūryklės lango plotis.</value>
+  </data>
+  <data name="WidthOfThePreviewImagePaneInTheImportDialog" xml:space="preserve">
+    <value>Paveikslėlio peržiūros polangio plotis importo dialoge.</value>
+  </data>
+  <data name="WriteOnlyThesePhotosToCD" xml:space="preserve">
+    <value>Į CD į_rašyti tik šias fotografijas</value>
+  </data>
+  <data name="XCFVersion" xml:space="preserve">
+    <value>XCF versija</value>
+  </data>
+  <data name="XOfApproxY" xml:space="preserve">
+    <value>{0} iš apytikliai {1}</value>
+  </data>
+  <data name="XOfY" xml:space="preserve">
+    <value>{0} iš {1}</value>
+  </data>
+  <data name="XPhoto" xml:space="preserve">
+    <value>{0} fotografija</value>
+  </data>
+  <data name="XPhoto2" xml:space="preserve">
+    <value>{0} fotografija</value>
+  </data>
+  <data name="XPhotoCouldNotBeRotatedReadonlyOrMedia" xml:space="preserve">
+    <value>{0} fotografijų pasukti nepavyko, nes jos yra tik skaitymui skirtoje failų sistemoje arba laikmenoje, pvz., CD-ROM. Patikrinkite teises ir bandykite dar kartą</value>
+  </data>
+  <data name="XPhotoOutOfY2" xml:space="preserve">
+    <value>{0} fotografija iš {1}</value>
+  </data>
+  <data name="XPhotos" xml:space="preserve">
+    <value>{0} fotografijos</value>
+  </data>
+  <data name="XPhotos2" xml:space="preserve">
+    <value>{0} fotografijos</value>
+  </data>
+  <data name="XPhotosOutOfY2" xml:space="preserve">
+    <value>{0} fotografijos iš {1}</value>
+  </data>
+  <data name="XPositionOfTheMainWindow" xml:space="preserve">
+    <value>Pagrindinio lango X padėtis.</value>
+  </data>
+  <data name="XPositionOfThePhotoViewerWindow" xml:space="preserve">
+    <value>Fotografijos žiūryklės lango X padėtis.</value>
+  </data>
+  <data name="XSelected2" xml:space="preserve">
+    <value> (pasirinktos {0})</value>
+  </data>
+  <data name="XSent" xml:space="preserve">
+    <value>{0} išsiųsta</value>
+  </data>
+  <data name="XYIsLoggedIntoFacebook" xml:space="preserve">
+    <value>{0} {1} prisijungęs (-usi) prie Facebook</value>
+  </data>
+  <data name="YPositionOfTheMainWindow" xml:space="preserve">
+    <value>Pagrindinio lango Y padėtis.</value>
+  </data>
+  <data name="YPositionOfThePhotoViewerWindow" xml:space="preserve">
+    <value>Fotografijos žiūryklės lango Y padėtis.</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>Vakar</value>
+  </data>
+  <data name="YouAreNotLoggedIn" xml:space="preserve">
+    <value>Jūs neprisijungę.</value>
+  </data>
+  <data name="YouCanChooseHowToDisplayTransparentPartsInImagesThisOptionHasNoEffectOnPhotosButSettingThisValueToCHECKPATTERNOrCUSTOMCOLORCouldBeUsefulWhenViewingIconsOrOtherArtworkWithTransparentParts" xml:space="preserve">
+    <value>Galite pasirinkti kaip rodyti permatomas paveikslėlių dalis. Ši parinktis neturi jokio efekto fotografijoms, jos nustatymas į CHECK_PATTERN arba CUSTOM_COLOR gali būti naudingas žiūrint piktogramas ir kitus paveikslėlius su permatomomis dalimis.</value>
+  </data>
+  <data name="ZipExport" xml:space="preserve">
+    <value>Eksportuoti į Zip</value>
+  </data>
+  <data name="Zoom" xml:space="preserve">
+    <value>Didinti</value>
+  </data>
+  <data name="ZoomIn" xml:space="preserve">
+    <value>_Didinti</value>
+  </data>
+  <data name="ZoomIn2" xml:space="preserve">
+    <value>Didinti</value>
+  </data>
+  <data name="ZoomOut" xml:space="preserve">
+    <value>_Mažinti</value>
+  </data>
+  <data name="ZoomOut2" xml:space="preserve">
+    <value>Mažinti</value>
+  </data>
+  <data name="Zooomr" xml:space="preserve">
+    <value>_Zooomr...</value>
+  </data>
+</root>

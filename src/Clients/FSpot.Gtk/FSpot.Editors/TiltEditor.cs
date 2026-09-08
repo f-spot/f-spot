@@ -34,7 +34,7 @@ namespace FSpot.Editors
 
 		public TiltEditor () : base (Strings.Straighten, "align-horizon")
 		{
-			// FIXME: need tooltip Catalog.GetString ("Adjust the angle of the image to straighten the horizon")
+			// FIXME: need tooltip MsgidLookup.GetString ("Adjust the angle of the image to straighten the horizon")
 			HasSettings = true;
 		}
 

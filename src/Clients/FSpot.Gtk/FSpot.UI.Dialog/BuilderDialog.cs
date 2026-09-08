@@ -11,6 +11,8 @@
 
 using System.Reflection;
 
+using FSpot.Gui;
+
 using GtkBeans;
 
 namespace FSpot.UI.Dialog
@@ -21,7 +23,7 @@ namespace FSpot.UI.Dialog
 		{
 		}
 
-		protected BuilderDialog (Assembly assembly, string resourceName, string dialogName) : this (new Builder (assembly, resourceName, null), dialogName)
+		protected BuilderDialog (Assembly assembly, string resourceName, string dialogName) : this (TranslatedBuilder.FromResource (assembly, resourceName), dialogName)
 		{
 		}
 

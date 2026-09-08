@@ -11,6 +11,8 @@
 
 using System;
 
+using FSpot.Resources.Lang;
+
 using Mono.Addins;
 
 namespace FSpot.Extensions
@@ -98,7 +100,6 @@ namespace FSpot.Extensions
 
 	public abstract class MenuNode : ExtensionNode
 	{
-		// TODO: Review this. Gettext (_label)
 		[NodeAttribute (Localizable = true)]
 		protected string _label;
 
@@ -107,11 +108,12 @@ namespace FSpot.Extensions
 
 		public virtual Gtk.MenuItem GetMenuItem (object parent)
 		{
+			var label = MsgidLookup.GetString (_label ?? Id);
 			Gtk.MenuItem item;
 			if (icon == null)
-				item = new Gtk.MenuItem (_label ?? Id);
+				item = new Gtk.MenuItem (label);
 			else {
-				item = new Gtk.ImageMenuItem (_label ?? Id);
+				item = new Gtk.ImageMenuItem (label);
 				(item as Gtk.ImageMenuItem).Image = Gtk.Image.NewFromIconName (icon, Gtk.IconSize.Menu);
 			}
 			return item;

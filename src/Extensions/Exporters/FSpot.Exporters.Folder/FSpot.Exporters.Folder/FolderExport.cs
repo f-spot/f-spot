@@ -39,6 +39,7 @@ using System.IO;
 
 using FSpot.Core;
 using FSpot.Filters;
+using FSpot.Gui;
 using FSpot.Resources.Lang;
 using FSpot.Settings;
 using FSpot.UI.Dialog;
@@ -113,7 +114,7 @@ namespace FSpot.Exporters.Folder
 			view.DisplayDates = false;
 			view.DisplayTags = false;
 
-			builder = new GtkBeans.Builder (null, "folder_export.ui", null);
+			builder = TranslatedBuilder.FromResource (null, "folder_export.ui");
 			builder.Autoconnect (this);
 			Dialog.Modal = false;
 			Dialog.TransientFor = null;
@@ -245,8 +246,8 @@ namespace FSpot.Exporters.Folder
 				// otherwise we xfer
 				//if (!dest.IsNative) {
 				//	Logger.Log.Debug ($"Transferring \"{source.FullName}\" to \"{target.FullName}\"");
-				//	progress_dialog.Message = string.Format (Catalog.GetString ("Transferring to \"{0}\""), target.FullName);
-				//	progress_dialog.ProgressText = Catalog.GetString ("Transferring...");
+				//	progress_dialog.Message = string.Format (MsgidLookup.GetString ("Transferring to \"{0}\""), target.FullName);
+				//	progress_dialog.ProgressText = MsgidLookup.GetString ("Transferring...");
 
 				//	source.CopyRecursive (target, GLib.FileCopyFlags.Overwrite, new GLib.Cancellable (), Progress);
 				//}

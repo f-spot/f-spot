@@ -1,0 +1,2572 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ASingleImportRoll" xml:space="preserve">
+    <value>En enstaka importrulle</value>
+  </data>
+  <data name="ATrustErrorOccuredWhileAttemptingToAccess" xml:space="preserve">
+    <value>Ett fel inträffade vid försök att komma åt</value>
+  </data>
+  <data name="AbortThisSession" xml:space="preserve">
+    <value>Avbryt denna session</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>_Konto:</value>
+  </data>
+  <data name="ActivatesAndDeactivatesTheWebGallery" xml:space="preserve">
+    <value>Aktiverar och inaktiverar webbgalleriet</value>
+  </data>
+  <data name="Adjust" xml:space="preserve">
+    <value>Justera</value>
+  </data>
+  <data name="AdjustColors" xml:space="preserve">
+    <value>Justera färger</value>
+  </data>
+  <data name="AdjustTime" xml:space="preserve">
+    <value>Justera tid</value>
+  </data>
+  <data name="AdjustTime2" xml:space="preserve">
+    <value>Justera _tid...</value>
+  </data>
+  <data name="AdjustedDate" xml:space="preserve">
+    <value>Justerat datum: </value>
+  </data>
+  <data name="After" xml:space="preserve">
+    <value>efter den</value>
+  </data>
+  <data name="AlbumMustHaveAName" xml:space="preserve">
+    <value>Albumet måste ha ett namn</value>
+  </data>
+  <data name="AlbumName" xml:space="preserve">
+    <value>_Albumnamn:</value>
+  </data>
+  <data name="AlbumTitle" xml:space="preserve">
+    <value>_Albumtitel:</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Alla</value>
+  </data>
+  <data name="AllImages" xml:space="preserve">
+    <value>Alla bilder</value>
+  </data>
+  <data name="AllowViewersToAddTags" xml:space="preserve">
+    <value>Tillåt besökare att lägga till taggar</value>
+  </data>
+  <data name="AlwaysTrustThisSiteSCertificate" xml:space="preserve">
+    <value>Lita alltid på certifikatet för denna webbplats </value>
+  </data>
+  <data name="AmountColon" xml:space="preserve">
+    <value>Mängd:</value>
+  </data>
+  <data name="AnErrorOccuredWhileProcessingXY" xml:space="preserve">
+    <value>Ett fel inträffade vid behandling av "{0}": {1}</value>
+  </data>
+  <data name="AnErrorOccurredCreatingANewAlbumX" xml:space="preserve">
+    <value>Ett fel inträffade vid skapandet av nytt album.
+
+{0}</value>
+  </data>
+  <data name="AnErrorOfTypeXOccurredWhileDeletingTheFile" xml:space="preserve">
+    <value>Ett fel av typen {0} inträffade vid borttagning av filen:{2}{1}</value>
+  </data>
+  <data name="And" xml:space="preserve">
+    <value>och</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Verkställ</value>
+  </data>
+  <data name="ArrangeBy" xml:space="preserve">
+    <value>_Ordna efter</value>
+  </data>
+  <data name="AsBackground" xml:space="preserve">
+    <value>Som _bakgrund</value>
+  </data>
+  <data name="AsCheckPattern" xml:space="preserve">
+    <value>Som rutmö_nster</value>
+  </data>
+  <data name="AsCustomColor" xml:space="preserve">
+    <value>Som an_passad färg: </value>
+  </data>
+  <data name="At" xml:space="preserve">
+    <value>den</value>
+  </data>
+  <data name="AttachTag" xml:space="preserve">
+    <value>_Fäst tagg</value>
+  </data>
+  <data name="AttachTagToSelection" xml:space="preserve">
+    <value>Fäst tagg på markering</value>
+  </data>
+  <data name="AttachTagToSelection2" xml:space="preserve">
+    <value>_Fäst tagg till markering</value>
+  </data>
+  <data name="AttachTags2" xml:space="preserve">
+    <value>_Fäst taggar:</value>
+  </data>
+  <data name="AttachTagsToSelection" xml:space="preserve">
+    <value>Fäst taggar på markering</value>
+  </data>
+  <data name="AttachToExportedPhotos" xml:space="preserve">
+    <value>F_äst till exporterade foton:</value>
+  </data>
+  <data name="Authenticating" xml:space="preserve">
+    <value>Autentiserar...</value>
+  </data>
+  <data name="Authorize" xml:space="preserve">
+    <value>Ge behörighet</value>
+  </data>
+  <data name="AuthorizingSession" xml:space="preserve">
+    <value>Ger behörighet till session</value>
+  </data>
+  <data name="AutoColor" xml:space="preserve">
+    <value>Automatiska färger</value>
+  </data>
+  <data name="AutoConfirmPhotos" xml:space="preserve">
+    <value>Bekräfta automatiskt foton</value>
+  </data>
+  <data name="AvailableSpaceXYUsedOutOfZ" xml:space="preserve">
+    <value>Tillgängligt utrymme: {0}, {1}% används av {2}</value>
+  </data>
+  <data name="BAccountB" xml:space="preserve">
+    <value>&lt;b&gt;Konto&lt;/b&gt;</value>
+  </data>
+  <data name="BActionB" xml:space="preserve">
+    <value>&lt;b&gt;Åtgärd&lt;/b&gt;</value>
+  </data>
+  <data name="BAlbumB" xml:space="preserve">
+    <value>&lt;b&gt;Album&lt;/b&gt;</value>
+  </data>
+  <data name="BCorrectionsB" xml:space="preserve">
+    <value>&lt;b&gt;Färgko_rrektion&lt;/b&gt;</value>
+  </data>
+  <data name="BDestinationB" xml:space="preserve">
+    <value>&lt;b&gt;Mål&lt;/b&gt;</value>
+  </data>
+  <data name="BEndDateB" xml:space="preserve">
+    <value>&lt;b&gt;Slutdatum&lt;b&gt;</value>
+  </data>
+  <data name="BExportMethodB" xml:space="preserve">
+    <value>&lt;b&gt;Exportmetod&lt;/b&gt;</value>
+  </data>
+  <data name="BFSpotTagsB" xml:space="preserve">
+    <value>&lt;b&gt;F-Spot-taggar&lt;/b&gt;</value>
+  </data>
+  <data name="BFromExternalPhotoB" xml:space="preserve">
+    <value>&lt;b&gt;Från externt foto&lt;/b&gt;</value>
+  </data>
+  <data name="BFromPhotoB" xml:space="preserve">
+    <value>&lt;b&gt;Från foto&lt;/b&gt;</value>
+  </data>
+  <data name="BFromPhotoBYouCanUseOneOfYourLibraryPhotosAsAnIconForThisTagHoweverFirstYouMustHaveAtLeastOnePhotoAssociatedWithThisTagPleaseTagAPhotoAsXAndReturnHereToUseItAsAnIcon" xml:space="preserve">
+    <value>
+&lt;b&gt;Från foto&lt;/b&gt;
+ Du kan använda ett av dina egna foton som en ikon för
+ denna tagg. Dock måste du först associera minst ett foto
+ med denna tagg. Tagga ett foto som "{0}" och
+ återvänd hit för att använda det som en ikon.</value>
+  </data>
+  <data name="BGalleryB" xml:space="preserve">
+    <value>&lt;b&gt;Bildgalleri&lt;/b&gt;</value>
+  </data>
+  <data name="BIThereAreSomePreviouslyScheduledItemsToWriteIB" xml:space="preserve">
+    <value>&lt;b&gt;&lt;i&gt;Det finns några tidigare schemalagda objekt att skriva&lt;/i&gt;&lt;/b&gt;</value>
+  </data>
+  <data name="BImageInterpolationB" xml:space="preserve">
+    <value>&lt;b&gt;Bildinterpolering&lt;/b&gt;</value>
+  </data>
+  <data name="BMaxRatingB" xml:space="preserve">
+    <value>&lt;b&gt;Maximalt betyg&lt;/b&gt;</value>
+  </data>
+  <data name="BMinRatingB" xml:space="preserve">
+    <value>&lt;b&gt;Minimalt betyg&lt;/b&gt;</value>
+  </data>
+  <data name="BPhotosB" xml:space="preserve">
+    <value>&lt;b&gt;Foton&lt;/b&gt;</value>
+  </data>
+  <data name="BPhotosToBurnB" xml:space="preserve">
+    <value>&lt;b&gt;Foton att bränna&lt;/b&gt;</value>
+  </data>
+  <data name="BPicasaWebExportB" xml:space="preserve">
+    <value>&lt;b&gt;Exportera till PicasaWeb&lt;/b&gt;</value>
+  </data>
+  <data name="BPredefinedIconsB" xml:space="preserve">
+    <value>&lt;b&gt;Fördefinierade ikoner&lt;/b&gt;</value>
+  </data>
+  <data name="BPreviewB" xml:space="preserve">
+    <value>&lt;b&gt;Förhandsvisning&lt;/b&gt;</value>
+  </data>
+  <data name="BReferencePhotoB" xml:space="preserve">
+    <value>&lt;b&gt;Referensfoto&lt;/b&gt;</value>
+  </data>
+  <data name="BSelectPeriodB" xml:space="preserve">
+    <value>&lt;b&gt;Välj period&lt;/b&gt;</value>
+  </data>
+  <data name="BSizeB" xml:space="preserve">
+    <value>&lt;b&gt;Storlek&lt;/b&gt;</value>
+  </data>
+  <data name="BSmugMugExportB" xml:space="preserve">
+    <value>&lt;b&gt;SmugMug-exportering&lt;/b&gt;</value>
+  </data>
+  <data name="BSpecifyTheToplevelPhotosDirectoriesB" xml:space="preserve">
+    <value>&lt;b&gt;Ange toppnivå för bildkataloger&lt;/b&gt;</value>
+  </data>
+  <data name="BStartDateB" xml:space="preserve">
+    <value>&lt;b&gt;Startdatum&lt;/b&gt;</value>
+  </data>
+  <data name="BStyleB" xml:space="preserve">
+    <value>&lt;b&gt;Stil&lt;/b&gt;</value>
+  </data>
+  <data name="BSummaryB" xml:space="preserve">
+    <value>&lt;b&gt;Sammandrag&lt;/b&gt;</value>
+  </data>
+  <data name="BTabbloAccountB" xml:space="preserve">
+    <value>&lt;b&gt;Tabblo-konto&lt;/b&gt;</value>
+  </data>
+  <data name="BTransparentPartsB" xml:space="preserve">
+    <value>&lt;b&gt;Genomskinliga delar&lt;/b&gt;</value>
+  </data>
+  <data name="BViewAllPicturesImportedB" xml:space="preserve">
+    <value>&lt;b&gt;Visa alla importerade bilder&lt;/b&gt;</value>
+  </data>
+  <data name="BViewingPermissionsB" xml:space="preserve">
+    <value>&lt;b&gt;Visningsrättigheter&lt;/b&gt;</value>
+  </data>
+  <data name="BWhiteBalanceB" xml:space="preserve">
+    <value>&lt;b&gt;_Vitbalans&lt;/b&gt;</value>
+  </data>
+  <data name="BeforeLaunchingYShouldFSpotCreateANewVersionOfTheSelectedPhotoToPreserveTheOriginal" xml:space="preserve">
+    <value>Innan start av {1}, ska F-Spot skapa en ny version av det markerade fotot för att bibehålla originalet?</value>
+  </data>
+  <data name="BeforeLaunchingYShouldFSpotCreateNewVersionsOfTheSelectedPhotosToPreserveTheOriginals" xml:space="preserve">
+    <value>Innan start av {1}, ska F-Spot skapa nya versioner av de markerade fotona för att bibehålla originalen?</value>
+  </data>
+  <data name="Between" xml:space="preserve">
+    <value>mellan den</value>
+  </data>
+  <data name="BetweenXAndY" xml:space="preserve">
+    <value>Mellan {0} 
+och {1}</value>
+  </data>
+  <data name="Blackout" xml:space="preserve">
+    <value>Mörklägg</value>
+  </data>
+  <data name="Brightness" xml:space="preserve">
+    <value>_Ljusstyrka:</value>
+  </data>
+  <data name="Browse2" xml:space="preserve">
+    <value>Bläddra</value>
+  </data>
+  <data name="BrowseManyPhotosSimultaneously" xml:space="preserve">
+    <value>Bläddra bland många foton samtidigt</value>
+  </data>
+  <data name="BrowsePreviouslyScheduledFiles" xml:space="preserve">
+    <value>_Bläddra i tidigare schemalagda filer</value>
+  </data>
+  <data name="BuildingGallery" xml:space="preserve">
+    <value>Bygger bildgalleri</value>
+  </data>
+  <data name="ByDate" xml:space="preserve">
+    <value>Efter _datum</value>
+  </data>
+  <data name="ByImportRoll" xml:space="preserve">
+    <value>Efter _importrulle</value>
+  </data>
+  <data name="ByRating" xml:space="preserve">
+    <value>Efter bet_yg</value>
+  </data>
+  <data name="CD2" xml:space="preserve">
+    <value>_Cd...</value>
+  </data>
+  <data name="CDExport" xml:space="preserve">
+    <value>Cd-export</value>
+  </data>
+  <data name="Camera" xml:space="preserve">
+    <value>Kamera</value>
+  </data>
+  <data name="CanNotDeleteTagsThatHaveTagsWihinThem.PleaseDeleteTagUnderXFirst" xml:space="preserve">
+    <value>Kan inte ta bort taggar som har andra taggar under sig.  Ta bort alla taggar under "{0}" först</value>
+  </data>
+  <data name="CancelDoNotChangeTheCurrentTimeline" xml:space="preserve">
+    <value>Avbryt, ändra inte den aktuella tidslinjen. </value>
+  </data>
+  <data name="CannotConnectToGalleryUnknownVersionCheckRemotePlugin" xml:space="preserve">
+    <value>Kan inte ansluta till ett Gallery för vilket versionen är okänd.
+Kontrollera att du har insticksmodulen Remote 1.0.8 eller senare</value>
+  </data>
+  <data name="Captcha" xml:space="preserve">
+    <value>_Robotfälla:</value>
+  </data>
+  <data name="Captchaurl" xml:space="preserve">
+    <value>captcha_url</value>
+  </data>
+  <data name="Caption2" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="ChangeBasePathURITo" xml:space="preserve">
+    <value>Byt bassökväg (URI) till</value>
+  </data>
+  <data name="ChangePhotosDirectory" xml:space="preserve">
+    <value>Byt bildkatalog</value>
+  </data>
+  <data name="CheckBoxToRemoveImportedPhotosFromCameraAndWarning" xml:space="preserve">
+    <value>Kryssa denna ruta kommer att ta bort de importerade fotona från kameran efter lyckad import.
+
+Det rekommenderas att säkerhetskopiera dina foton innan de tas bort från kameran. &lt;b&gt;Använd detta alternativ på egen risk!&lt;/b&gt;</value>
+  </data>
+  <data name="CheckingCredentials" xml:space="preserve">
+    <value>Kontrollerar behörighet...</value>
+  </data>
+  <data name="ChooseFolder" xml:space="preserve">
+    <value>Välj mapp...</value>
+  </data>
+  <data name="ChooseImportSource" xml:space="preserve">
+    <value>Välj importkälla...</value>
+  </data>
+  <data name="ClearDateRangeMnemonic" xml:space="preserve">
+    <value>_Rensa datumintervall</value>
+  </data>
+  <data name="ClearRatingFilter" xml:space="preserve">
+    <value>_Töm betygsfilter</value>
+  </data>
+  <data name="ClearRollFilter" xml:space="preserve">
+    <value>_Töm rullfilter</value>
+  </data>
+  <data name="ClearSearch" xml:space="preserve">
+    <value>Rensa sökning</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>S_täng</value>
+  </data>
+  <data name="ColorProfileForDisplay" xml:space="preserve">
+    <value>Färgprofil för visning:</value>
+  </data>
+  <data name="ColorProfileForPrinting" xml:space="preserve">
+    <value>Färgprofil för utskrifter:</value>
+  </data>
+  <data name="CommaSpace" xml:space="preserve">
+    <value>, </value>
+  </data>
+  <data name="CompleteAuthorization" xml:space="preserve">
+    <value>Färdigställ behörighet</value>
+  </data>
+  <data name="Components" xml:space="preserve">
+    <value>_Komponenter</value>
+  </data>
+  <data name="CompressedFile" xml:space="preserve">
+    <value>Komprimerad fi_l...</value>
+  </data>
+  <data name="ConfigureScreensaver" xml:space="preserve">
+    <value>Konfigurera skärmsläckare</value>
+  </data>
+  <data name="Contents" xml:space="preserve">
+    <value>_Innehåll</value>
+  </data>
+  <data name="Contrast2" xml:space="preserve">
+    <value>_Kontrast:</value>
+  </data>
+  <data name="ConvertToBW" xml:space="preserve">
+    <value>Konvertera till svartvitt</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Kopiera</value>
+  </data>
+  <data name="CopyFilesToThePhotosFolder2" xml:space="preserve">
+    <value>K_opiera filer till fotomappen</value>
+  </data>
+  <data name="CopyImagesToPhotosFolder" xml:space="preserve">
+    <value>Kopiera bilder till fotomappen</value>
+  </data>
+  <data name="CopyPhoto" xml:space="preserve">
+    <value>Kopiera foto</value>
+  </data>
+  <data name="CopyURLToClipboard" xml:space="preserve">
+    <value>Kopiera URL till urklipp</value>
+  </data>
+  <data name="Copying2" xml:space="preserve">
+    <value>kopierar...</value>
+  </data>
+  <data name="Copyright20032010NovellInc" xml:space="preserve">
+    <value>Copyright © 2003-2010 Novell Inc.</value>
+  </data>
+  <data name="Cover" xml:space="preserve">
+    <value>Täck</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>S_kapa</value>
+  </data>
+  <data name="Create2" xml:space="preserve">
+    <value>S_kapa</value>
+  </data>
+  <data name="CreateAMailWithTheSelectedPhotosPossiblyResizedAttached" xml:space="preserve">
+    <value>Skapa ett e-postmeddelande med de markerade fotona (möjligen storleksändrade) som bilagor</value>
+  </data>
+  <data name="CreateANewAlbum" xml:space="preserve">
+    <value>Skapa ett nytt album</value>
+  </data>
+  <data name="CreateCD" xml:space="preserve">
+    <value>Skapa cd</value>
+  </data>
+  <data name="CreateGalleryUsingOriginal" xml:space="preserve">
+    <value>Skapa _galleri med "Original"</value>
+  </data>
+  <data name="CreateIconForThisTagWhenFirstUsed" xml:space="preserve">
+    <value>Skapa _ikon för denna tagg när den först används</value>
+  </data>
+  <data name="CreateMail" xml:space="preserve">
+    <value>Skapa e-post</value>
+  </data>
+  <data name="CreateMail2" xml:space="preserve">
+    <value>S_kapa e-post</value>
+  </data>
+  <data name="CreateNewTag" xml:space="preserve">
+    <value>Skapa ny tagg</value>
+  </data>
+  <data name="CreateNewTag2" xml:space="preserve">
+    <value>Skapa ny tagg...</value>
+  </data>
+  <data name="CreateNewTag3" xml:space="preserve">
+    <value>Skapa ny _tagg...</value>
+  </data>
+  <data name="CreateNewVersion" xml:space="preserve">
+    <value>Skapa ny version</value>
+  </data>
+  <data name="CreateNewVersion2" xml:space="preserve">
+    <value>Skapa en ny version?</value>
+  </data>
+  <data name="CreateNewVersion3" xml:space="preserve">
+    <value>Skapa _ny version...</value>
+  </data>
+  <data name="CreateNewVersions" xml:space="preserve">
+    <value>Skapa nya versioner?</value>
+  </data>
+  <data name="CreatePhotoWallUsingPictureTileByJamieZawinskiHttpWwwJwzOrgPicturetile" xml:space="preserve">
+    <value>Skapa en fotovägg med PictureTile av Jamie Zawinski (http://www.jwz.org/picturetile/)</value>
+  </data>
+  <data name="CreatePhotomosaic" xml:space="preserve">
+    <value>Skapa f_otomosaik</value>
+  </data>
+  <data name="CreatePhotomosaicsUsingMetaPixelHttpWwwComplangTuwienAcAtSchaniMetapixel" xml:space="preserve">
+    <value>Skapa fotomosaik med MetaPixel (http://www.complang.tuwien.ac.at/schani/metapixel/)</value>
+  </data>
+  <data name="CreatePhotowall" xml:space="preserve">
+    <value>Skapa foto_vägg</value>
+  </data>
+  <data name="CreateStandaloneWebGallery" xml:space="preserve">
+    <value>Skapa fristående _webbgalleri</value>
+  </data>
+  <data name="CreatingANewAlbumFailed" xml:space="preserve">
+    <value>Skapandet av nytt album misslyckades</value>
+  </data>
+  <data name="Creator" xml:space="preserve">
+    <value>Upphovsman</value>
+  </data>
+  <data name="Crop" xml:space="preserve">
+    <value>Beskär</value>
+  </data>
+  <data name="CurrentDate" xml:space="preserve">
+    <value>Aktuellt datum:</value>
+  </data>
+  <data name="CurrentView" xml:space="preserve">
+    <value>Aktuell vy</value>
+  </data>
+  <data name="CurrentWeekMonSun" xml:space="preserve">
+    <value>Aktuell vecka (Mån-Sön)</value>
+  </data>
+  <data name="CustomRatios" xml:space="preserve">
+    <value>Anpassade förhållanden...</value>
+  </data>
+  <data name="CustomText" xml:space="preserve">
+    <value>Anpassad text</value>
+  </data>
+  <data name="CustomizedRange" xml:space="preserve">
+    <value>Anpassat intervall</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>Mörk</value>
+  </data>
+  <data name="DatabaseLocation" xml:space="preserve">
+    <value>Databasplats:</value>
+  </data>
+  <data name="DatabaseRefersToFilesContainedInXFolderPleaseSelectThatFolderSoICanDoTheMapping" xml:space="preserve">
+    <value>&lt;big&gt;Databasen refererar till filer som finns i mappen &lt;b&gt;{0}&lt;/b&gt;.
+ Välj den mappen så att jag kan göra mappningen.&lt;/big&gt;</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Datum</value>
+  </data>
+  <data name="Dates" xml:space="preserve">
+    <value>_Datum</value>
+  </data>
+  <data name="Delay" xml:space="preserve">
+    <value>Fördröjning:</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Ta bort</value>
+  </data>
+  <data name="DeleteFromDrive" xml:space="preserve">
+    <value>Ta bort från _disk</value>
+  </data>
+  <data name="DeletePhotoMnemonic" xml:space="preserve">
+    <value>_Ta bort foto</value>
+  </data>
+  <data name="DeletePhotosMnemonic" xml:space="preserve">
+    <value>_Ta bort foton</value>
+  </data>
+  <data name="DeleteSelectedTag" xml:space="preserve">
+    <value>Ta bort _markerad tagg</value>
+  </data>
+  <data name="DeleteTag" xml:space="preserve">
+    <value>Ta bort tagg</value>
+  </data>
+  <data name="DeleteTagMnemonic" xml:space="preserve">
+    <value>_Ta bort tagg</value>
+  </data>
+  <data name="DeleteTagXQuestion" xml:space="preserve">
+    <value>Ta bort taggen "{0}"?</value>
+  </data>
+  <data name="DeleteTags" xml:space="preserve">
+    <value>Ta bort taggar</value>
+  </data>
+  <data name="DeleteTagsMnemonic" xml:space="preserve">
+    <value>_Ta bort taggar</value>
+  </data>
+  <data name="DeleteTheSelectedPhotoPermanently" xml:space="preserve">
+    <value>Ta bort det markerade fotot permanent?</value>
+  </data>
+  <data name="DeleteTheXSelectedPhotosPermanently" xml:space="preserve">
+    <value>Ta bort de {0} markerade fotona permanent?</value>
+  </data>
+  <data name="DeleteTheXSelectedTagsQuestion" xml:space="preserve">
+    <value>Ta bort de {0} markerade taggarna?</value>
+  </data>
+  <data name="DeleteVersion" xml:space="preserve">
+    <value>_Ta bort version</value>
+  </data>
+  <data name="Desaturate" xml:space="preserve">
+    <value>Avfärga</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Beskrivning:</value>
+  </data>
+  <data name="Description2" xml:space="preserve">
+    <value>B_eskrivning:</value>
+  </data>
+  <data name="Description3" xml:space="preserve">
+    <value>_Beskrivning:</value>
+  </data>
+  <data name="Description4" xml:space="preserve">
+    <value>Beskrivning</value>
+  </data>
+  <data name="DesignIconFrom" xml:space="preserve">
+    <value>Designa ikon från</value>
+  </data>
+  <data name="DetachMnemonic" xml:space="preserve">
+    <value>Ta _bort</value>
+  </data>
+  <data name="DetachVersion" xml:space="preserve">
+    <value>Ta _bort version</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Detaljer</value>
+  </data>
+  <data name="DetectDuplicates2" xml:space="preserve">
+    <value>_Upptäck dubbletter</value>
+  </data>
+  <data name="DevelopingPhotos" xml:space="preserve">
+    <value>Framkallar foton</value>
+  </data>
+  <data name="DevelopingX" xml:space="preserve">
+    <value>Framkallar {0}</value>
+  </data>
+  <data name="Difference" xml:space="preserve">
+    <value>skillnad:</value>
+  </data>
+  <data name="DirectoryNotFound" xml:space="preserve">
+    <value>Katalogen hittades inte</value>
+  </data>
+  <data name="Display2" xml:space="preserve">
+    <value>Visa:</value>
+  </data>
+  <data name="DisplayASlideshowFromFSpot" xml:space="preserve">
+    <value>Visa ett bildspel från F-Spot</value>
+  </data>
+  <data name="DisplayFileNames" xml:space="preserve">
+    <value>Visa fil_namn</value>
+  </data>
+  <data name="DisplayOfTransparentParts" xml:space="preserve">
+    <value>Visning av genomskinliga delar.</value>
+  </data>
+  <data name="DisplayOnlyThosePhotosThatWereImportedInSpecifiedRolls" xml:space="preserve">
+    <value>Visa endast de foton som blev importerade i angivna rullar.</value>
+  </data>
+  <data name="Dissolve" xml:space="preserve">
+    <value>Lös upp</value>
+  </data>
+  <data name="DoNotSendAMail" xml:space="preserve">
+    <value>Skicka inte e-post</value>
+  </data>
+  <data name="DoYouWishTo" xml:space="preserve">
+    <value>Vill du:</value>
+  </data>
+  <data name="DoneSendingPhotos" xml:space="preserve">
+    <value>Färdig med att skicka foton</value>
+  </data>
+  <data name="DoneSendingPhotos2" xml:space="preserve">
+    <value>Färdig med att skicka foton</value>
+  </data>
+  <data name="DragTagsHereToSearchForThem" xml:space="preserve">
+    <value>Dra taggar hit för att söka efter dem</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Redigera</value>
+  </data>
+  <data name="Edit2" xml:space="preserve">
+    <value>R_edigera</value>
+  </data>
+  <data name="EditIcon" xml:space="preserve">
+    <value>Redigera ikon</value>
+  </data>
+  <data name="EditIconForTagX" xml:space="preserve">
+    <value>Redigera ikon för taggen {0}</value>
+  </data>
+  <data name="EditImage" xml:space="preserve">
+    <value>Redigera bild</value>
+  </data>
+  <data name="EditTag" xml:space="preserve">
+    <value>Redigera tagg...</value>
+  </data>
+  <data name="EditTag2" xml:space="preserve">
+    <value>Redigera tagg</value>
+  </data>
+  <data name="EditTag3" xml:space="preserve">
+    <value>R_edigera tagg...</value>
+  </data>
+  <data name="EditTagIcon" xml:space="preserve">
+    <value>Redigera taggikon</value>
+  </data>
+  <data name="Editors" xml:space="preserve">
+    <value>Redigerare</value>
+  </data>
+  <data name="EightByTen" xml:space="preserve">
+    <value>8 x 10</value>
+  </data>
+  <data name="EnableThisToAllowInterpolationOnZoomedImages" xml:space="preserve">
+    <value>Aktivera detta för att tillåta interpolation på zoomade bilder.</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Fel</value>
+  </data>
+  <data name="ErrorCopyingXToGalleryZY" xml:space="preserve">
+    <value>Fel vid kopiering av "{0}" till Gallery:{2}{1}</value>
+  </data>
+  <data name="ErrorDeletingPicture" xml:space="preserve">
+    <value>Fel vid borttagning av foto</value>
+  </data>
+  <data name="ErrorEditingPhoto" xml:space="preserve">
+    <value>Fel vid redigering av foto</value>
+  </data>
+  <data name="ErrorLoadingDatabase" xml:space="preserve">
+    <value>Fel vid inläsning av databas.</value>
+  </data>
+  <data name="ErrorLoggingIntoFacebook" xml:space="preserve">
+    <value>Fel vid inloggning till Facebook</value>
+  </data>
+  <data name="ErrorOpeningTheSelectedFile" xml:space="preserve">
+    <value>Fel vid öppnadet av markerad fil</value>
+  </data>
+  <data name="ErrorProcessingImage" xml:space="preserve">
+    <value>Fel vid behandling av bild</value>
+  </data>
+  <data name="ErrorReadingServerResponse" xml:space="preserve">
+    <value>Fel vid läsning av serversvar</value>
+  </data>
+  <data name="ErrorRenamingTag" xml:space="preserve">
+    <value>Fel vid namnbyte av tagg</value>
+  </data>
+  <data name="ErrorSavingAdjustedPhoto" xml:space="preserve">
+    <value>Fel vid sparande av justerat foto</value>
+  </data>
+  <data name="ErrorSavingAdjustedPhotos" xml:space="preserve">
+    <value>Fel vid sparande av justerade foton</value>
+  </data>
+  <data name="ErrorSavingSharpenedPhoto" xml:space="preserve">
+    <value>Fel vid sparande av foto med ökad skärpa</value>
+  </data>
+  <data name="ErrorTransferring" xml:space="preserve">
+    <value>Fel vid överföring</value>
+  </data>
+  <data name="ErrorUploadingPictureXToGalleryColonY" xml:space="preserve">
+    <value>Fel vid sändning av bilden "{0}" till Gallery: {1}</value>
+  </data>
+  <data name="ErrorUploadingToFacebookX" xml:space="preserve">
+    <value>Fel vid sändning till Facebook: {0}</value>
+  </data>
+  <data name="ErrorUploadingToGalleryX" xml:space="preserve">
+    <value>Fel vid sändning till galleri: {0}</value>
+  </data>
+  <data name="ErrorUploadingToTabblo" xml:space="preserve">
+    <value>Fel vid sändning till Tabblo: </value>
+  </data>
+  <data name="ErrorUploadingToXColonY" xml:space="preserve">
+    <value>Fel vid sändning till {0}: {1}</value>
+  </data>
+  <data name="ErrorWhileConnectingToGallery" xml:space="preserve">
+    <value>Fel vid anslutning till Gallery</value>
+  </data>
+  <data name="ErrorWhileCreatingAlbum" xml:space="preserve">
+    <value>Fel vid skapandet av album</value>
+  </data>
+  <data name="ErrorWhileCreatingNewAlbum" xml:space="preserve">
+    <value>Fel vid skapandet av nytt album</value>
+  </data>
+  <data name="ErrorWhileRotatingPhoto" xml:space="preserve">
+    <value>Fel vid rotation av foto</value>
+  </data>
+  <data name="ErrorWhileTransferring" xml:space="preserve">
+    <value>Fel under överföring</value>
+  </data>
+  <data name="EstimatedNewSize" xml:space="preserve">
+    <value>Uppskattad ny storlek</value>
+  </data>
+  <data name="Events" xml:space="preserve">
+    <value>Händelser</value>
+  </data>
+  <data name="Everything" xml:space="preserve">
+    <value>Allting</value>
+  </data>
+  <data name="ExcludePhotosTaggedX" xml:space="preserve">
+    <value>Undanta foton taggade med "{0}"</value>
+  </data>
+  <data name="ExitFullscreen" xml:space="preserve">
+    <value>Lämna helskärmsläge</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Exportera</value>
+  </data>
+  <data name="Export2" xml:space="preserve">
+    <value>_Exportera</value>
+  </data>
+  <data name="ExportComplete" xml:space="preserve">
+    <value>Exporten är färdig.</value>
+  </data>
+  <data name="ExportTagHierarchy" xml:space="preserve">
+    <value>Exportera tagg_hierarki</value>
+  </data>
+  <data name="ExportTagIcons" xml:space="preserve">
+    <value>Exportera tagg_ikoner</value>
+  </data>
+  <data name="ExportTags" xml:space="preserve">
+    <value>_Exportera taggar</value>
+  </data>
+  <data name="ExportTags2" xml:space="preserve">
+    <value>Exportera _taggar</value>
+  </data>
+  <data name="ExportTitlesAndComments2" xml:space="preserve">
+    <value>Exportera _titlar och kommentarer</value>
+  </data>
+  <data name="ExportTo" xml:space="preserve">
+    <value>Exportera till</value>
+  </data>
+  <data name="ExportTo2" xml:space="preserve">
+    <value>_Exportera till</value>
+  </data>
+  <data name="ExportToAlbum" xml:space="preserve">
+    <value>_Exportera till album:</value>
+  </data>
+  <data name="ExportToFacebook" xml:space="preserve">
+    <value>Exportera till Facebook</value>
+  </data>
+  <data name="ExportingFiles" xml:space="preserve">
+    <value>Exporterar filer</value>
+  </data>
+  <data name="ExportingPhotoX" xml:space="preserve">
+    <value>Exporterar bilden "{0}"</value>
+  </data>
+  <data name="ExportingPhotos" xml:space="preserve">
+    <value>Exporterar foton</value>
+  </data>
+  <data name="ExportingPhotosCompleted2" xml:space="preserve">
+    <value>Exportering av foton är färdig.</value>
+  </data>
+  <data name="ExportingX" xml:space="preserve">
+    <value>Exporterar "{0}"...</value>
+  </data>
+  <data name="Exposure" xml:space="preserve">
+    <value>Exponering</value>
+  </data>
+  <data name="Exposure2" xml:space="preserve">
+    <value>_Exponering:</value>
+  </data>
+  <data name="ExtendedMetadata" xml:space="preserve">
+    <value>Utökad metadata</value>
+  </data>
+  <data name="ExtraLarge" xml:space="preserve">
+    <value>Extra stor</value>
+  </data>
+  <data name="FSpot" xml:space="preserve">
+    <value>F-Spot</value>
+  </data>
+  <data name="FSpotAppearance" xml:space="preserve">
+    <value>Utseende för F-Spot:</value>
+  </data>
+  <data name="FSpotEncounteredAnErrorWhileLoadingThePhotoDatabaseTheOldDatabaseHasBeMovedToXAndANewDatabaseHasBeenCreated" xml:space="preserve">
+    <value>F-Spot påträffade ett fel vid inläsning av fotodatabasen. Den gamla databasen måste flyttas till {0} och en ny databas måste skapas.</value>
+  </data>
+  <data name="FSpotGallery" xml:space="preserve">
+    <value>F-Spot-galleri</value>
+  </data>
+  <data name="FSpotLiveWebGallery" xml:space="preserve">
+    <value>F-Spots levande webbgalleri</value>
+  </data>
+  <data name="FSpotNeedsYourAuthorizationInOrderToUploadPhotosToYourXAccountPressTheAuthorizeButtonToOpenAWebBrowserAndGiveFSpotTheAuthorization" xml:space="preserve">
+    <value>F-Spot behöver din godkänning för att skicka upp foton till ditt {0}-konto. Tryck på "Godkänn"-knappen för att öppna ett webbläsarfönster och ge F-Spot godkännandet.</value>
+  </data>
+  <data name="FSpotPhotoManager" xml:space="preserve">
+    <value>Fotohanteraren F-Spot</value>
+  </data>
+  <data name="FSpotPhotoViewer" xml:space="preserve">
+    <value>Fotovisaren F-Spot</value>
+  </data>
+  <data name="FSpotPhotos" xml:space="preserve">
+    <value>Foton från F-Spot</value>
+  </data>
+  <data name="FSpotPreferences" xml:space="preserve">
+    <value>Inställningar för F-Spot</value>
+  </data>
+  <data name="FSpotView" xml:space="preserve">
+    <value>F-Spot Bildvisning</value>
+  </data>
+  <data name="FSpotWasUnableToLogOnToXMakeSureYouHaveGivenTheAuthUsingXWebBrowser" xml:space="preserve">
+    <value>F-Spot kunde inte logga in på {0}. Kontrollera att du har angivit rätt inloggningsuppgifter med hjälp av webbläsargränssnittet.</value>
+  </data>
+  <data name="FSpotWebsite" xml:space="preserve">
+    <value>F-Spots webbplats</value>
+  </data>
+  <data name="FSpotWillNowLaunchYourBrowserSoThatYouCanEnableThePermissionYouJustSelectedOnceYouAreDirectedByFacebookToReturnToThisApplicationClickOkBelow" xml:space="preserve">
+    <value>F-Spot kommer nu att starta din webbläsare så att du kan aktivera behörigheten som du just valde.
+
+När du blir dirigerad av Facebook till att återgå till detta program så klicka på "Ok" nedan.</value>
+  </data>
+  <data name="FSpotWillNowLaunchYourBrowserSoThatYouCanLogIntoFacebookOnceYouAreDirectedByFacebookToReturnToThisApplicationClickOkBelowFSpotWillCacheYourSessionInGnomeKeyringIfPossibleAndReUseItOnFutureFacebookExports" xml:space="preserve">
+    <value>F-Spot kommer nu att starta din webbläsare så att du kan logga in på Facebook.
+
+När du blir dirigerad av Facebook till att återgå till detta program så tryck på "Ok" nedan.  F-Spot kommer att mellanlagra din session i gnome-keyring, om möjligt, och återanvända den vid framtida exporter till Facebook.</value>
+  </data>
+  <data name="FacebookConnectionError" xml:space="preserve">
+    <value>Anslutningsfel till Facebook</value>
+  </data>
+  <data name="FacebookExport" xml:space="preserve">
+    <value>FacebookExport</value>
+  </data>
+  <data name="FacebookOnlyPermitsXPhotographsPerAlbumPleaseRefineYourSelectionAndTryAgain" xml:space="preserve">
+    <value>Facebook tillåter endast {0} fotografier per album.  Definiera om ditt val och försök igen.</value>
+  </data>
+  <data name="Favorites" xml:space="preserve">
+    <value>Favoriter</value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>_Filnamn:</value>
+  </data>
+  <data name="FileNotFonud" xml:space="preserve">
+    <value>Filen hittades inte</value>
+  </data>
+  <data name="FileSize" xml:space="preserve">
+    <value>Filstorlek</value>
+  </data>
+  <data name="Filesystem" xml:space="preserve">
+    <value>Filsystem</value>
+  </data>
+  <data name="Fill" xml:space="preserve">
+    <value>Fyll</value>
+  </data>
+  <data name="Filmstrip" xml:space="preserve">
+    <value>_Filmremsa</value>
+  </data>
+  <data name="FilterOnSelectedRolls" xml:space="preserve">
+    <value>Filtrera på markerade rullar</value>
+  </data>
+  <data name="Find" xml:space="preserve">
+    <value>Sök</value>
+  </data>
+  <data name="Find2" xml:space="preserve">
+    <value>Sök:</value>
+  </data>
+  <data name="Find3" xml:space="preserve">
+    <value>_Sök</value>
+  </data>
+  <data name="FindColon" xml:space="preserve">
+    <value>Sök: </value>
+  </data>
+  <data name="FindSelectedTagMnemonic" xml:space="preserve">
+    <value>Sök efter _vald tagg</value>
+  </data>
+  <data name="FindSelectedTagWithMnemonic" xml:space="preserve">
+    <value>Sök efter vald tagg _med</value>
+  </data>
+  <data name="FindSelectedTagsMnemonic" xml:space="preserve">
+    <value>Sök efter _valda taggar</value>
+  </data>
+  <data name="FindSelectedTagsWithMnemonic" xml:space="preserve">
+    <value>Sök efter valda taggar _med</value>
+  </data>
+  <data name="FindWithMnemonic" xml:space="preserve">
+    <value>Sök _med</value>
+  </data>
+  <data name="FiveBySevenL2L" xml:space="preserve">
+    <value>5 x 7 (L, 2L)</value>
+  </data>
+  <data name="FixExclamation" xml:space="preserve">
+    <value>Rätta till!</value>
+  </data>
+  <data name="FlashDidntFire" xml:space="preserve">
+    <value>blixt inte utlöst</value>
+  </data>
+  <data name="Flashfired" xml:space="preserve">
+    <value>blixt utlöst</value>
+  </data>
+  <data name="Flickr2" xml:space="preserve">
+    <value>_Flickr...</value>
+  </data>
+  <data name="FlickrExport" xml:space="preserve">
+    <value>Flickr-export</value>
+  </data>
+  <data name="Flip" xml:space="preserve">
+    <value>Vänd</value>
+  </data>
+  <data name="FlipsTheImageHorizontally" xml:space="preserve">
+    <value>Vänder bilden horisontellt.</value>
+  </data>
+  <data name="FocalLength" xml:space="preserve">
+    <value>Brännvidd</value>
+  </data>
+  <data name="Folder" xml:space="preserve">
+    <value>Mapp</value>
+  </data>
+  <data name="Folder3" xml:space="preserve">
+    <value>Ma_pp...</value>
+  </data>
+  <data name="Folder4" xml:space="preserve">
+    <value>_Mapp:</value>
+  </data>
+  <data name="FolderExport" xml:space="preserve">
+    <value>Mappexport</value>
+  </data>
+  <data name="Folders" xml:space="preserve">
+    <value>Mappar</value>
+  </data>
+  <data name="FollowingErrorEncounteredAttemptingToPerformRequestedOperation" xml:space="preserve">
+    <value>Följande fel påträffades vid försök att genomföra begärd åtgärd:
+{0} ({1})</value>
+  </data>
+  <data name="FollowingErrorWasEncounteredAttemptingToLogInX" xml:space="preserve">
+    <value>Följande fel påträffades vid försök att logga in: {0}</value>
+  </data>
+  <data name="FourBySixPostcard" xml:space="preserve">
+    <value>4 x 6 (Vykort)</value>
+  </data>
+  <data name="FourByThreeBook" xml:space="preserve">
+    <value>4 x 3 (Bok)</value>
+  </data>
+  <data name="FullPageNomargin" xml:space="preserve">
+    <value>Helsida (inga marginaler)</value>
+  </data>
+  <data name="Fullscreen" xml:space="preserve">
+    <value>Helskärm</value>
+  </data>
+  <data name="Fullscreen2" xml:space="preserve">
+    <value>_Helskärm</value>
+  </data>
+  <data name="Gallery" xml:space="preserve">
+    <value>Galleri</value>
+  </data>
+  <data name="Gallery5" xml:space="preserve">
+    <value>_Bildgalleri:</value>
+  </data>
+  <data name="GalleryExport" xml:space="preserve">
+    <value>Gallery-export</value>
+  </data>
+  <data name="GalleryGeneratedBy" xml:space="preserve">
+    <value>Galleri genererat av</value>
+  </data>
+  <data name="GalleryIsInactive" xml:space="preserve">
+    <value>Galleriet är inaktivt</value>
+  </data>
+  <data name="GalleryName" xml:space="preserve">
+    <value>G_allerinamn:</value>
+  </data>
+  <data name="GalleryName2" xml:space="preserve">
+    <value>_Gallerinamn:</value>
+  </data>
+  <data name="GalleryURL" xml:space="preserve">
+    <value>URL till galleri:</value>
+  </data>
+  <data name="GalleryWithThisNameAlreadyExists" xml:space="preserve">
+    <value>Ett galleri med det här namnet finns redan</value>
+  </data>
+  <data name="GalleryXPhotosYLastClient3" xml:space="preserve">
+    <value> Galleri: {0},  Foton: {1},  Senaste klient: {3}</value>
+  </data>
+  <data name="HeightOfTheImportDialog" xml:space="preserve">
+    <value>Höjd för importdialogen.</value>
+  </data>
+  <data name="HeightOfTheMainWindow" xml:space="preserve">
+    <value>Höjd för huvudfönstret.</value>
+  </data>
+  <data name="HeightOfThePhotoViewerWindow" xml:space="preserve">
+    <value>Höjd för fotovisningsfönstret.</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>_Hjälp</value>
+  </data>
+  <data name="Hidden" xml:space="preserve">
+    <value>Dolda</value>
+  </data>
+  <data name="Hidden2" xml:space="preserve">
+    <value>_Dolda</value>
+  </data>
+  <data name="Hide" xml:space="preserve">
+    <value>Dölj</value>
+  </data>
+  <data name="HideFindBarMnemonic" xml:space="preserve">
+    <value>Dölj _sökrad</value>
+  </data>
+  <data name="HideStyles" xml:space="preserve">
+    <value>Dölj stilar</value>
+  </data>
+  <data name="HideToolbar" xml:space="preserve">
+    <value>Dölj verktygsfält</value>
+  </data>
+  <data name="Histogram" xml:space="preserve">
+    <value>Histogram</value>
+  </data>
+  <data name="HorizontalMnemonic" xml:space="preserve">
+    <value>_Horisontellt</value>
+  </data>
+  <data name="Hue" xml:space="preserve">
+    <value>_Nyans:</value>
+  </data>
+  <data name="Icon" xml:space="preserve">
+    <value>_Ikon:</value>
+  </data>
+  <data name="IfTheTransparencyOptionIsSetTheColorSpecifiedInThisOptionWillBeUsedAsTheTransparentColorWhenViewingImages" xml:space="preserve">
+    <value>Om alternativet "transparency" är inställt kommer färgen som anges i detta alternativ att användas som den genomskinliga färgen när bilder visas.</value>
+  </data>
+  <data name="IfYouDeleteThisTagTheAssociationWithXYWillBeLost" xml:space="preserve">
+    <value>Om du tar bort denna tagg så försvinner associationen med {0} {1}.</value>
+  </data>
+  <data name="IfYouDeleteThisTagsTheAssociationWithXYWillBeLost" xml:space="preserve">
+    <value>Om du tar bort dessa taggar så försvinner associationen med {0} {1}.</value>
+  </data>
+  <data name="IfYouRemovePhotosFromFSpotCatalogAllTagInfoLost" xml:space="preserve">
+    <value>Om du tar bort foton från F-Spot-katalogen kommer all tagginformation för dem att gå förlorad. Fotona finns dock kvar på din dator och kan importeras in till F-Spot på nytt.</value>
+  </data>
+  <data name="IgnoreTopLevelTags" xml:space="preserve">
+    <value>Ignorera _toppnivåtaggar</value>
+  </data>
+  <data name="ImageInformation" xml:space="preserve">
+    <value>Bildinformation</value>
+  </data>
+  <data name="ImageInformation2" xml:space="preserve">
+    <value>Bildinformation</value>
+  </data>
+  <data name="ImageSettings" xml:space="preserve">
+    <value>Bildinställningar</value>
+  </data>
+  <data name="ImagesTaggedWith" xml:space="preserve">
+    <value>Bilder taggade med:</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Importera</value>
+  </data>
+  <data name="Import2" xml:space="preserve">
+    <value>_Importera...</value>
+  </data>
+  <data name="Import3" xml:space="preserve">
+    <value>Importera:</value>
+  </data>
+  <data name="Import4" xml:space="preserve">
+    <value>_Importera</value>
+  </data>
+  <data name="ImportFailures2" xml:space="preserve">
+    <value>Fel vid import</value>
+  </data>
+  <data name="ImportFrom2" xml:space="preserve">
+    <value>Importera _från:</value>
+  </data>
+  <data name="ImportIntoFSpot" xml:space="preserve">
+    <value>Importera till F-Spot</value>
+  </data>
+  <data name="ImportNewImages" xml:space="preserve">
+    <value>Importera nya bilder</value>
+  </data>
+  <data name="ImportPhotosXOfY" xml:space="preserve">
+    <value>Importerar foton: {0} av {1}...</value>
+  </data>
+  <data name="ImportRoll" xml:space="preserve">
+    <value>Importera rulle</value>
+  </data>
+  <data name="ImportedTags" xml:space="preserve">
+    <value>Importerade taggar</value>
+  </data>
+  <data name="ImportingPhotos" xml:space="preserve">
+    <value>Importerar foton...</value>
+  </data>
+  <data name="InThisPhoto" xml:space="preserve">
+    <value>I detta foto</value>
+  </data>
+  <data name="IncludePhotoTaggedX" xml:space="preserve">
+    <value>Inkludera foton taggade med "{0}"</value>
+  </data>
+  <data name="IncludeSubfolders2" xml:space="preserve">
+    <value>I_nkludera underkataloger</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>Index</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="InsideTheImageFilesWhenPossibleSmallMakesThemAccessibleToOtherImageEditingProgramsSmall" xml:space="preserve">
+    <value>Inne i bildfiler när möjligt
+&lt;small&gt;Gör dem åtkomliga för andra bildredigeringsprogram.&lt;/small&gt;</value>
+  </data>
+  <data name="InterpolateImageOnZoom" xml:space="preserve">
+    <value>_Interpolera bild vid zoomning</value>
+  </data>
+  <data name="InterpolateImageOnZoom2" xml:space="preserve">
+    <value>Interpolera bild vid zoomning</value>
+  </data>
+  <data name="InvalidGalleryName" xml:space="preserve">
+    <value>Ogiltigt gallerinamn</value>
+  </data>
+  <data name="InvalidUrl" xml:space="preserve">
+    <value>Ogiltig URL</value>
+  </data>
+  <data name="InvertSelection" xml:space="preserve">
+    <value>_Invertera markering</value>
+  </data>
+  <data name="KeepTheImagesAtTheirOriginalLocation" xml:space="preserve">
+    <value>Behåll bilderna på sin ursprungliga plats</value>
+  </data>
+  <data name="Label" xml:space="preserve">
+    <value>Etikett</value>
+  </data>
+  <data name="Large" xml:space="preserve">
+    <value>Stor</value>
+  </data>
+  <data name="Large2" xml:space="preserve">
+    <value>_Stor</value>
+  </data>
+  <data name="LastImportRoll" xml:space="preserve">
+    <value>Senaste imp_ortrullen</value>
+  </data>
+  <data name="LastNintyDays" xml:space="preserve">
+    <value>Senaste 90 dagar</value>
+  </data>
+  <data name="LastSevenDays" xml:space="preserve">
+    <value>Senaste 7 dagar</value>
+  </data>
+  <data name="LastThirtyDays" xml:space="preserve">
+    <value>Senaste 30 dagar</value>
+  </data>
+  <data name="LastThreeHundredSixtyDays" xml:space="preserve">
+    <value>Senaste 360 dagar</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>Ljus</value>
+  </data>
+  <data name="LimitNumberOfSharedPhotosTo" xml:space="preserve">
+    <value>Begränsa antalet utdelade foton till</value>
+  </data>
+  <data name="LiteralAnd" xml:space="preserve">
+    <value> och </value>
+  </data>
+  <data name="LiteralOr" xml:space="preserve">
+    <value> eller </value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Plats</value>
+  </data>
+  <data name="Location2" xml:space="preserve">
+    <value>_Plats:</value>
+  </data>
+  <data name="LoggingIntoTabblo" xml:space="preserve">
+    <value>Loggar in på Tabblo</value>
+  </data>
+  <data name="LoggingIntoX" xml:space="preserve">
+    <value>Loggar in på {0}</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Inloggning</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Logga ut</value>
+  </data>
+  <data name="Loupe" xml:space="preserve">
+    <value>_Loupe</value>
+  </data>
+  <data name="MakeFSpotMyScreensaver" xml:space="preserve">
+    <value>Använd F-Spot som skärmsläckare</value>
+  </data>
+  <data name="ManageExtensions" xml:space="preserve">
+    <value>Hantera _tillägg</value>
+  </data>
+  <data name="ManageYourCustomSelectionRatios" xml:space="preserve">
+    <value>Hantera dina anpassade markeringsförhållanden</value>
+  </data>
+  <data name="MaximizeTheMainWindow" xml:space="preserve">
+    <value>Maximerar huvudfönstret.</value>
+  </data>
+  <data name="MaximizeThePhotoViewerWindow" xml:space="preserve">
+    <value>Maximerar fotovisningsfönstret.</value>
+  </data>
+  <data name="Medium" xml:space="preserve">
+    <value>Mellan</value>
+  </data>
+  <data name="Medium2" xml:space="preserve">
+    <value>_Mellan</value>
+  </data>
+  <data name="MergeAnotherFSpotCollection" xml:space="preserve">
+    <value>Sammanfoga en annan F-Spot-samling</value>
+  </data>
+  <data name="MergeTags" xml:space="preserve">
+    <value>Slå ihop taggar</value>
+  </data>
+  <data name="MergeTagsMnemonic" xml:space="preserve">
+    <value>_Slå ihop taggar</value>
+  </data>
+  <data name="MergeTheSelectedTag" xml:space="preserve">
+    <value>Sammanfoga den markerade taggen</value>
+  </data>
+  <data name="MergeTheSelectedTags" xml:space="preserve">
+    <value>Sammanfoga de {0} markerade taggarna</value>
+  </data>
+  <data name="Metadata" xml:space="preserve">
+    <value>Metadata</value>
+  </data>
+  <data name="MinStartingAtX" xml:space="preserve">
+    <value>min. Början vid {0}</value>
+  </data>
+  <data name="Modified" xml:space="preserve">
+    <value>Ändrad</value>
+  </data>
+  <data name="ModifiedInY" xml:space="preserve">
+    <value>Ändrad i {1}</value>
+  </data>
+  <data name="ModifiedInYX" xml:space="preserve">
+    <value>Ändrad i {1} ({0})</value>
+  </data>
+  <data name="ModifiedX" xml:space="preserve">
+    <value>Ändrad ({0})</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>Fler</value>
+  </data>
+  <data name="MoreDates" xml:space="preserve">
+    <value>Fler datum</value>
+  </data>
+  <data name="MyPhotos" xml:space="preserve">
+    <value>Mina foton</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Namn</value>
+  </data>
+  <data name="NameColon" xml:space="preserve">
+    <value>Namn:</value>
+  </data>
+  <data name="NameOfNewTagColon" xml:space="preserve">
+    <value>Namn på ny tagg:</value>
+  </data>
+  <data name="NeverModifyImageFilesSmallWriteXMPFilesNextToTheImagesInsteadSmall" xml:space="preserve">
+    <value>Ändra aldrig bildfiler.
+&lt;small&gt;Skriv XMP-filer bredvid bilderna istället.&lt;/small&gt;</value>
+  </data>
+  <data name="NewNameColon" xml:space="preserve">
+    <value>Nytt namn:</value>
+  </data>
+  <data name="NewRollsOnly" xml:space="preserve">
+    <value>Endast nya rullar</value>
+  </data>
+  <data name="NewWindow" xml:space="preserve">
+    <value>_Nytt fönster</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Nästa</value>
+  </data>
+  <data name="NextPhoto" xml:space="preserve">
+    <value>Nästa foto</value>
+  </data>
+  <data name="NextPicture" xml:space="preserve">
+    <value>Nästa bild</value>
+  </data>
+  <data name="NoAccountSelected" xml:space="preserve">
+    <value>Inget konto valt</value>
+  </data>
+  <data name="NoActivePhoto" xml:space="preserve">
+    <value>Inget aktivt foto</value>
+  </data>
+  <data name="NoApplicationsAvailable" xml:space="preserve">
+    <value>Inga applikationer tillgängliga</value>
+  </data>
+  <data name="NoCamerasDetected" xml:space="preserve">
+    <value>(Inga kameror identifierades)</value>
+  </data>
+  <data name="NoConstraint" xml:space="preserve">
+    <value>Ingen begränsning</value>
+  </data>
+  <data name="NoImage" xml:space="preserve">
+    <value>Ingen _bild</value>
+  </data>
+  <data name="NoMatchingPhotosFound" xml:space="preserve">
+    <value>Inga matchande foton hittades</value>
+  </data>
+  <data name="NoMetadataAvailable" xml:space="preserve">
+    <value>Ingen metadata tillgänglig</value>
+  </data>
+  <data name="NoPermissionToDeleteTheFile" xml:space="preserve">
+    <value>Ingen behörighet att ta bort filen:{1}{0}</value>
+  </data>
+  <data name="NoPhotosMatchingFound" xml:space="preserve">
+    <value>Inga foton som matchar {0} hittades</value>
+  </data>
+  <data name="NoSelectionAvailable" xml:space="preserve">
+    <value>Ingen markering tillgänglig</value>
+  </data>
+  <data name="NoTagAppliedToAppliedTryAddingorSelectingDifferentTagInPreferenceDialog" xml:space="preserve">
+    <value>Taggen "{0}" har inte använts på några foton.
+Prova att sätta taggen på några foton, eller välja en
+annan tagg i F-Spots inställningsdialog.</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>Inget</value>
+  </data>
+  <data name="None2" xml:space="preserve">
+    <value>inga</value>
+  </data>
+  <data name="NotLoggedIn" xml:space="preserve">
+    <value>Inte inloggad</value>
+  </data>
+  <data name="NotSpaceX" xml:space="preserve">
+    <value>Inte {0}</value>
+  </data>
+  <data name="NumberOfPhotosInSelectedRolls" xml:space="preserve">
+    <value>Antal foton i markerade rullar:</value>
+  </data>
+  <data name="NumberOfPictures" xml:space="preserve">
+    <value>Antal bilder</value>
+  </data>
+  <data name="ObtainingURLForUpload" xml:space="preserve">
+    <value>Hämtar URL för sändning</value>
+  </data>
+  <data name="OkMnemonic" xml:space="preserve">
+    <value>_OK</value>
+  </data>
+  <data name="OldBasePathURIWas" xml:space="preserve">
+    <value>Gamla bassökvägen (URI) var</value>
+  </data>
+  <data name="OnXBetweenYAndZ" xml:space="preserve">
+    <value>Den {0} mellan 
+{1} och {2}</value>
+  </data>
+  <data name="OnlyPhotosTakenWithinTheseDatesWillBeDisplayed" xml:space="preserve">
+    <value>Endast foton tagna mellan dessa datum kommer att visas.</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Öppna</value>
+  </data>
+  <data name="OpenAlbumInBrowserWhenDoneUploading2" xml:space="preserve">
+    <value>Öppna _album i webbläsaren när sändningen är färdig</value>
+  </data>
+  <data name="OpenDestinationWhenDoneExporting" xml:space="preserve">
+    <value>Öppna _mål när exporteringen är färdig</value>
+  </data>
+  <data name="OpenWith" xml:space="preserve">
+    <value>Öppna _med</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>Alternativ:</value>
+  </data>
+  <data name="Or" xml:space="preserve">
+    <value>eller</value>
+  </data>
+  <data name="OrganizeEnjoyAndShareYourPhotos" xml:space="preserve">
+    <value>Organisera, njut av, och dela med dig av dina foton</value>
+  </data>
+  <data name="Original" xml:space="preserve">
+    <value>Original</value>
+  </data>
+  <data name="OriginalSizePossibleVeryLargeFileSize" xml:space="preserve">
+    <value>Ursprunglig storlek (möjligen mycket stor filstorlek)</value>
+  </data>
+  <data name="PageColon" xml:space="preserve">
+    <value>Sida:</value>
+  </data>
+  <data name="PageSetup" xml:space="preserve">
+    <value>Sidkonfiguration</value>
+  </data>
+  <data name="PageSetup2" xml:space="preserve">
+    <value>Sidkonfi_guration...</value>
+  </data>
+  <data name="PaperSizeXxYmm" xml:space="preserve">
+    <value>Pappersstorlek: {0} x {1} mm</value>
+  </data>
+  <data name="ParenFileReadErrorParen" xml:space="preserve">
+    <value>(Filläsningsfel)</value>
+  </data>
+  <data name="ParenNoAlbumsParen" xml:space="preserve">
+    <value>(Inga album)</value>
+  </data>
+  <data name="ParenNoEditsParen" xml:space="preserve">
+    <value>(Inga ändringar)</value>
+  </data>
+  <data name="ParenNoGalleryParen" xml:space="preserve">
+    <value>(Inget galleri)</value>
+  </data>
+  <data name="ParenNoTagsParen" xml:space="preserve">
+    <value>(Inga taggar)</value>
+  </data>
+  <data name="ParenNoneParen" xml:space="preserve">
+    <value>(Inget)</value>
+  </data>
+  <data name="ParenNotConnectedParen" xml:space="preserve">
+    <value>(Inte ansluten)</value>
+  </data>
+  <data name="ParenOneEditParen" xml:space="preserve">
+    <value>(En redigering)</value>
+  </data>
+  <data name="ParenTopLevelParen" xml:space="preserve">
+    <value>(Toppnivå)</value>
+  </data>
+  <data name="ParenUnknownParen" xml:space="preserve">
+    <value>(Okänt)</value>
+  </data>
+  <data name="ParenXEditsParen" xml:space="preserve">
+    <value>({0} redigeringar)</value>
+  </data>
+  <data name="ParentAlbum" xml:space="preserve">
+    <value>_Föräldraalbum:</value>
+  </data>
+  <data name="ParentTag" xml:space="preserve">
+    <value>_Föräldertagg:</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>_Lösenord:</value>
+  </data>
+  <data name="PathToCustomGtkrcForThemingFSpot" xml:space="preserve">
+    <value>Sökväg till anpassad gtkrc för temaanpassad F-Spot.</value>
+  </data>
+  <data name="People" xml:space="preserve">
+    <value>Människor</value>
+  </data>
+  <data name="Permissions" xml:space="preserve">
+    <value>Rättigheter:</value>
+  </data>
+  <data name="Photo2" xml:space="preserve">
+    <value>foto</value>
+  </data>
+  <data name="Photo3" xml:space="preserve">
+    <value>_Foto</value>
+  </data>
+  <data name="PhotoManagementForGNOME" xml:space="preserve">
+    <value>Fotohantering för GNOME</value>
+  </data>
+  <data name="PhotoManager" xml:space="preserve">
+    <value>Fotohanterare</value>
+  </data>
+  <data name="PhotoViewer" xml:space="preserve">
+    <value>Fotovisare</value>
+  </data>
+  <data name="PhotoXOfY" xml:space="preserve">
+    <value>Foto {0} av {1}</value>
+  </data>
+  <data name="Photos" xml:space="preserve">
+    <value>Foton</value>
+  </data>
+  <data name="Photos2" xml:space="preserve">
+    <value>foton</value>
+  </data>
+  <data name="PhotosInfos" xml:space="preserve">
+    <value>Fotoinformation</value>
+  </data>
+  <data name="PhotosLayout" xml:space="preserve">
+    <value>Fotolayout</value>
+  </data>
+  <data name="PhotosPerPage" xml:space="preserve">
+    <value>Foton per sida</value>
+  </data>
+  <data name="PhotosWithATag" xml:space="preserve">
+    <value>Foton med en tagg</value>
+  </data>
+  <data name="PicasaWeb2" xml:space="preserve">
+    <value>_PicasaWeb...</value>
+  </data>
+  <data name="PicasaWebExport" xml:space="preserve">
+    <value>PicasaWeb-export</value>
+  </data>
+  <data name="PictureTile" xml:space="preserve">
+    <value>PictureTile</value>
+  </data>
+  <data name="Pixelate" xml:space="preserve">
+    <value>Pixelisera</value>
+  </data>
+  <data name="Pixels" xml:space="preserve">
+    <value>bildpunkter</value>
+  </data>
+  <data name="Places" xml:space="preserve">
+    <value>Platser</value>
+  </data>
+  <data name="PleaseNameYourAlbumOrChooseAnExistingAlbum" xml:space="preserve">
+    <value>Namnge ditt album eller välj ett befintligt album.</value>
+  </data>
+  <data name="PleaseVerifyThatTheSettingsForThisGalleryAreCorrect" xml:space="preserve">
+    <value>Kontrollera att inställningarna för detta bildgalleri är korrekta.</value>
+  </data>
+  <data name="PleaseVerifyThatTheSettingsForThisGalleryAreCorrectEnterTheLettersAsTheyAreShownInTheImageInTheCaptchaFieldILettersAreNotCaseSensitiveI" xml:space="preserve">
+    <value>Validera att inställningarna för det här galleriet är korrekta.
+Ange bokstäverna som de visas i bilden i fältet "Robotfälla".
+&lt;i&gt;Bokstäverna är inte skiftlägeskänsliga&lt;/i&gt;</value>
+  </data>
+  <data name="PleaseWaitFSpotGalleryDBUpdating" xml:space="preserve">
+    <value>Var god vänta medan databasen för ditt F-Spot-galleri uppdateras. Detta kan ta lite tid.</value>
+  </data>
+  <data name="Preferences" xml:space="preserve">
+    <value>Inställningar</value>
+  </data>
+  <data name="PreparingEmail" xml:space="preserve">
+    <value>Förbereder e-post</value>
+  </data>
+  <data name="PreparingPhotoX" xml:space="preserve">
+    <value>Förbereder fotot "{0}"</value>
+  </data>
+  <data name="Prev" xml:space="preserve">
+    <value>Föregående</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Föregående</value>
+  </data>
+  <data name="PreviousPhoto" xml:space="preserve">
+    <value>Föregående foto</value>
+  </data>
+  <data name="PreviousPicture" xml:space="preserve">
+    <value>Föregående bild</value>
+  </data>
+  <data name="PreviousWeekMonSun" xml:space="preserve">
+    <value>Föregående vecka (Mån-Sön)</value>
+  </data>
+  <data name="PrintCutMarks" xml:space="preserve">
+    <value>Skriv ut skärmärken</value>
+  </data>
+  <data name="PrintFileName" xml:space="preserve">
+    <value>Skriv ut filnamn</value>
+  </data>
+  <data name="PrintPhotoComment" xml:space="preserve">
+    <value>Skriv ut fotokommentar</value>
+  </data>
+  <data name="PrintPhotoDate" xml:space="preserve">
+    <value>Skriv ut datum för foto</value>
+  </data>
+  <data name="PrintPhotoTags" xml:space="preserve">
+    <value>Skriv ut fototaggar</value>
+  </data>
+  <data name="PrintPhotoTime" xml:space="preserve">
+    <value>Skriv ut tid för foto</value>
+  </data>
+  <data name="Private" xml:space="preserve">
+    <value>Privat</value>
+  </data>
+  <data name="Public" xml:space="preserve">
+    <value>Allmän</value>
+  </data>
+  <data name="PublicAlbum" xml:space="preserve">
+    <value>Publikt album</value>
+  </data>
+  <data name="Push" xml:space="preserve">
+    <value>Tryck ut</value>
+  </data>
+  <data name="Quit" xml:space="preserve">
+    <value>_Avsluta</value>
+  </data>
+  <data name="RadiusColon" xml:space="preserve">
+    <value>Radie:</value>
+  </data>
+  <data name="RatedPhotos" xml:space="preserve">
+    <value>Betygsatta foton</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Betyg</value>
+  </data>
+  <data name="Ratings" xml:space="preserve">
+    <value>_Betyg</value>
+  </data>
+  <data name="Ratio" xml:space="preserve">
+    <value>Förhållande</value>
+  </data>
+  <data name="ReallyDeleteVersionXQuestion" xml:space="preserve">
+    <value>Verkligen ta bort version "{0}"?</value>
+  </data>
+  <data name="ReallyDetachVersionXFromY" xml:space="preserve">
+    <value>Verkligen ta bort version "{0}" från "{1}"?</value>
+  </data>
+  <data name="ReallyReparentXAsVersionOfY" xml:space="preserve">
+    <value>Verkligen ange förälder för "{0}" som version av "{1}"?</value>
+  </data>
+  <data name="ReallyReparentZPhotosAsVersionsOfY" xml:space="preserve">
+    <value>Verkligen ange förälder för {2} foton som versioner av "{1}"?</value>
+  </data>
+  <data name="ReceivedErrorXWhileAttemptingToRotateY" xml:space="preserve">
+    <value>Tog emot felet "{0}" under försöket att rotera {1}</value>
+  </data>
+  <data name="ReceivedExceptionX" xml:space="preserve">
+    <value>Mottog undantaget "{0}".</value>
+  </data>
+  <data name="ReceivedExceptionXNoteThatYouHaveToDevelopRaw" xml:space="preserve">
+    <value>Mottog undantaget "{0}". Observera att du måste framkalla RAW-filer i JPEG innan du kan redigera dem.</value>
+  </data>
+  <data name="ReceivedExceptionXUnableToSavePhotoY" xml:space="preserve">
+    <value>Mottog undantaget "{0}". Kunde inte spara fotot {1}</value>
+  </data>
+  <data name="RedEyeReduction" xml:space="preserve">
+    <value>Reduktion av röda ögon</value>
+  </data>
+  <data name="RefreshSearch" xml:space="preserve">
+    <value>Uppdatera sökning</value>
+  </data>
+  <data name="RefreshThumbnail" xml:space="preserve">
+    <value>_Uppdatera miniatyrbild</value>
+  </data>
+  <data name="RemoveFromCatalog" xml:space="preserve">
+    <value>Ta bort från _katalog</value>
+  </data>
+  <data name="RemoveFromCatalogMnemonic" xml:space="preserve">
+    <value>Ta bort från _katalog</value>
+  </data>
+  <data name="RemoveFromExportedPhotos" xml:space="preserve">
+    <value>Ta b_ort från exporterade foton:</value>
+  </data>
+  <data name="RemoveFromSearch" xml:space="preserve">
+    <value>Ta bort från sökning</value>
+  </data>
+  <data name="RemoveOriginalFilesAfterImport" xml:space="preserve">
+    <value>_Ta bort ursprungliga filer efter import</value>
+  </data>
+  <data name="RemoveTag" xml:space="preserve">
+    <value>Ta b_ort tagg</value>
+  </data>
+  <data name="RemoveTagFromSelection" xml:space="preserve">
+    <value>Ta bort taggar från markering</value>
+  </data>
+  <data name="RemoveTagFromSelection2" xml:space="preserve">
+    <value>_Ta bort tagg från markering</value>
+  </data>
+  <data name="RemoveTagFromSelection3" xml:space="preserve">
+    <value>Ta bort tagg från markering</value>
+  </data>
+  <data name="RemoveTheSelectedPhotoFromFSpot" xml:space="preserve">
+    <value>Ta bort det markerade fotot från F-Spot?</value>
+  </data>
+  <data name="RemoveTheXSelectedPhotosFromFSpot" xml:space="preserve">
+    <value>Ta bort de {0} markerade fotona från F-Spot?</value>
+  </data>
+  <data name="RenameVersion" xml:space="preserve">
+    <value>Byt namn på version</value>
+  </data>
+  <data name="RenameVersion2" xml:space="preserve">
+    <value>_Byt namn på versionen</value>
+  </data>
+  <data name="Repair" xml:space="preserve">
+    <value>Reparera</value>
+  </data>
+  <data name="ReparentMnemonic" xml:space="preserve">
+    <value>Ange förä_lder</value>
+  </data>
+  <data name="Reparented" xml:space="preserve">
+    <value>Adopterad</value>
+  </data>
+  <data name="Repeat" xml:space="preserve">
+    <value>Upprepa</value>
+  </data>
+  <data name="Resize" xml:space="preserve">
+    <value>Ändra storlek</value>
+  </data>
+  <data name="ResizeTo" xml:space="preserve">
+    <value>_Skala om bilder till: </value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Försök igen</value>
+  </data>
+  <data name="ReturnToThisWindowAfterYouHaveFinishedAuthProcessOnXClickCompleteAuthorizationButton" xml:space="preserve">
+    <value>Återvänd till detta fönster efter att du har färdigställt behörighetsprocessen för {0} och klicka på "Färdigställ behörighet"-knappen nedan</value>
+  </data>
+  <data name="ReverseOrder" xml:space="preserve">
+    <value>Omvä_nd ordning</value>
+  </data>
+  <data name="RotateLeft" xml:space="preserve">
+    <value>Rotera åt vänster</value>
+  </data>
+  <data name="RotateLeftMnemonic" xml:space="preserve">
+    <value>Rotera åt _vänster</value>
+  </data>
+  <data name="RotatePhotoLeft" xml:space="preserve">
+    <value>Rotera fotot åt vänster</value>
+  </data>
+  <data name="RotatePhotoRight" xml:space="preserve">
+    <value>Rotera fotot åt höger</value>
+  </data>
+  <data name="RotatePictureLeft" xml:space="preserve">
+    <value>Rotera bild åt vänster</value>
+  </data>
+  <data name="RotatePictureRight" xml:space="preserve">
+    <value>Rotera bild åt höger</value>
+  </data>
+  <data name="RotateRight" xml:space="preserve">
+    <value>Rotera åt höger</value>
+  </data>
+  <data name="RotateRightMnemonic" xml:space="preserve">
+    <value>Rotera åt _höger</value>
+  </data>
+  <data name="RotateSelectedPhotoLeft" xml:space="preserve">
+    <value>Rotera det markerade fotot åt vänster</value>
+  </data>
+  <data name="RotateSelectedPhotoRight" xml:space="preserve">
+    <value>Rotera det markerade fotot åt höger</value>
+  </data>
+  <data name="RotateSelectedPhotosLeft" xml:space="preserve">
+    <value>Rotera de markerade fotona åt vänster</value>
+  </data>
+  <data name="RotateSelectedPhotosRight" xml:space="preserve">
+    <value>Rotera de markerade fotona åt höger</value>
+  </data>
+  <data name="RotatingPhotoX" xml:space="preserve">
+    <value>Roterar foto "{0}"</value>
+  </data>
+  <data name="RotatingPhotos" xml:space="preserve">
+    <value>Roterar foton</value>
+  </data>
+  <data name="S000000" xml:space="preserve">
+    <value>00:00:00</value>
+  </data>
+  <data name="S00000000000000" xml:space="preserve">
+    <value>0000:00:00 00:00:00</value>
+  </data>
+  <data name="S1024Px" xml:space="preserve">
+    <value>1024 bildpunkter</value>
+  </data>
+  <data name="S23hq" xml:space="preserve">
+    <value>_23hq...</value>
+  </data>
+  <data name="S320Px" xml:space="preserve">
+    <value>320 bildpunkter</value>
+  </data>
+  <data name="S480Px" xml:space="preserve">
+    <value>480 bildpunkter</value>
+  </data>
+  <data name="S5" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="S640Px" xml:space="preserve">
+    <value>640 bildpunkter</value>
+  </data>
+  <data name="S800Px" xml:space="preserve">
+    <value>800 bildpunkter</value>
+  </data>
+  <data name="SameAsPhoto" xml:space="preserve">
+    <value>Samma som foto</value>
+  </data>
+  <data name="Saturation2" xml:space="preserve">
+    <value>_Mättnad:</value>
+  </data>
+  <data name="SaveTheFilesOnly" xml:space="preserve">
+    <value>_Spara endast filerna</value>
+  </data>
+  <data name="Scale" xml:space="preserve">
+    <value>_Skala:</value>
+  </data>
+  <data name="Scaled" xml:space="preserve">
+    <value>Skalad</value>
+  </data>
+  <data name="ScreensaverConfiguration" xml:space="preserve">
+    <value>Konfiguration av skärmsläckare</value>
+  </data>
+  <data name="SearchReturnedNoResults" xml:space="preserve">
+    <value>Sökningen gav inga resultat</value>
+  </data>
+  <data name="SearchingForPhotosYouCanAlreadyClickImportToContinue" xml:space="preserve">
+    <value>Söker efter foton... (Du kan klicka på Importera för att fortsätta)</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Välj...</value>
+  </data>
+  <data name="SelectAFolder" xml:space="preserve">
+    <value>Välj en mapp</value>
+  </data>
+  <data name="SelectATag" xml:space="preserve">
+    <value>Markera en tagg...</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Markera _allt</value>
+  </data>
+  <data name="SelectExportFolder" xml:space="preserve">
+    <value>Välj exportmapp</value>
+  </data>
+  <data name="SelectExportFolder2" xml:space="preserve">
+    <value>Välj exportmapp</value>
+  </data>
+  <data name="SelectFolder" xml:space="preserve">
+    <value>Välj mapp</value>
+  </data>
+  <data name="SelectImportRolls" xml:space="preserve">
+    <value>_Välj importrullar...</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>A_vmarkera allt</value>
+  </data>
+  <data name="SelectPhotoFromFile" xml:space="preserve">
+    <value>Välj foto från fil</value>
+  </data>
+  <data name="SelectTheAreaThatNeedsCropping" xml:space="preserve">
+    <value>Välj området som behöver beskäring.</value>
+  </data>
+  <data name="SelectTheAreaThatYouWantBlackedOut" xml:space="preserve">
+    <value>Välj området som du vill mörklägga.</value>
+  </data>
+  <data name="SelectTheAreaThatYouWantPixelated" xml:space="preserve">
+    <value>Välj området som du vill pixelisera.</value>
+  </data>
+  <data name="SelectTheEyesYouWishToFix" xml:space="preserve">
+    <value>Markera ögonen som du vill rätta till.</value>
+  </data>
+  <data name="Selected" xml:space="preserve">
+    <value>Markerade</value>
+  </data>
+  <data name="SelectedPhotos" xml:space="preserve">
+    <value>Markerade foton</value>
+  </data>
+  <data name="SelectionConstraints" xml:space="preserve">
+    <value>Markeringskriterier</value>
+  </data>
+  <data name="SendByMail" xml:space="preserve">
+    <value>Skicka med e-_post...</value>
+  </data>
+  <data name="SeparatelyFromTheImageFiles" xml:space="preserve">
+    <value>Separat från bildfilerna</value>
+  </data>
+  <data name="SepiaTone2" xml:space="preserve">
+    <value>Sepiaton</value>
+  </data>
+  <data name="ServerReturnedResponseWithoutGalleryContent" xml:space="preserve">
+    <value>Servern returnerade svar utan Gallery-innehåll</value>
+  </data>
+  <data name="SessionEstablishedFetchingFriendDetails" xml:space="preserve">
+    <value>Session etablerad, hämtar detaljer om vänner...</value>
+  </data>
+  <data name="SessionEstablishedFetchingFriendList" xml:space="preserve">
+    <value>Session etablerad, hämtar lista över vänner...</value>
+  </data>
+  <data name="SessionEstablishedFetchingPhotoAlbums" xml:space="preserve">
+    <value>Session etablerad, hämtar fotoalbum...</value>
+  </data>
+  <data name="SessionEstablishedFetchingUserInfo" xml:space="preserve">
+    <value>Session etablerad, hämtar användarinformation...</value>
+  </data>
+  <data name="SetAsBackground" xml:space="preserve">
+    <value>Ställ in som bakgrund</value>
+  </data>
+  <data name="SetAsBackground2" xml:space="preserve">
+    <value>Ställ in som _bakgrund</value>
+  </data>
+  <data name="SetDateRange" xml:space="preserve">
+    <value>Ställ in datumintervall</value>
+  </data>
+  <data name="SetDateRange2" xml:space="preserve">
+    <value>Ange dat_umintervall...</value>
+  </data>
+  <data name="SetPageSizeAndOrientation" xml:space="preserve">
+    <value>Ange sidstorlek och orientering</value>
+  </data>
+  <data name="SetRatingFilter" xml:space="preserve">
+    <value>Ställ in betygsfilter</value>
+  </data>
+  <data name="SetRatingFilter2" xml:space="preserve">
+    <value>Ange _betygsfilter...</value>
+  </data>
+  <data name="Share" xml:space="preserve">
+    <value>Dela ut:</value>
+  </data>
+  <data name="Sharpen" xml:space="preserve">
+    <value>Gör skarpare</value>
+  </data>
+  <data name="Sharpen2" xml:space="preserve">
+    <value>_Gör skarpare...</value>
+  </data>
+  <data name="ShiftAllPhotosByX" xml:space="preserve">
+    <value>Förskjut alla foton med {0}</value>
+  </data>
+  <data name="ShowAll" xml:space="preserve">
+    <value>Visa alla</value>
+  </data>
+  <data name="ShowAllPhotos" xml:space="preserve">
+    <value>Visa alla foton.</value>
+  </data>
+  <data name="ShowCamera" xml:space="preserve">
+    <value>Visa Kamera</value>
+  </data>
+  <data name="ShowCreator" xml:space="preserve">
+    <value>Visa upphovsman</value>
+  </data>
+  <data name="ShowDate" xml:space="preserve">
+    <value>Visa Datum</value>
+  </data>
+  <data name="ShowDatesInTheThumbnailView" xml:space="preserve">
+    <value>Visa datum i miniatyrbildsvisning.</value>
+  </data>
+  <data name="ShowExposure" xml:space="preserve">
+    <value>Visa Exponering</value>
+  </data>
+  <data name="ShowFileSize" xml:space="preserve">
+    <value>Visa Filstorlek</value>
+  </data>
+  <data name="ShowFindBarMnemonic" xml:space="preserve">
+    <value>Visa _sökrad</value>
+  </data>
+  <data name="ShowFocalLength" xml:space="preserve">
+    <value>Visa Brännvidd</value>
+  </data>
+  <data name="ShowOrHideTheSidePane" xml:space="preserve">
+    <value>Visa eller dölj sidopanelen</value>
+  </data>
+  <data name="ShowOrHideTheToolbar" xml:space="preserve">
+    <value>Visa eller dölj verktygsfältet</value>
+  </data>
+  <data name="ShowRating" xml:space="preserve">
+    <value>Visa betyg</value>
+  </data>
+  <data name="ShowRatingsInTheThumbnailView" xml:space="preserve">
+    <value>Visa betyg i miniatyrbildsvisning.</value>
+  </data>
+  <data name="ShowSize" xml:space="preserve">
+    <value>Visa Storlek</value>
+  </data>
+  <data name="ShowStyles" xml:space="preserve">
+    <value>Visa stilar</value>
+  </data>
+  <data name="ShowTags" xml:space="preserve">
+    <value>Visa taggar</value>
+  </data>
+  <data name="ShowTagsInTheThumbnailView" xml:space="preserve">
+    <value>Visa taggar i miniatyrbildsvisning.</value>
+  </data>
+  <data name="ShowTheFilenameInTheViewerWindow" xml:space="preserve">
+    <value>Visa filnamnet i visningsfönstret.</value>
+  </data>
+  <data name="ShowTheFilmstripInTheMainWindow" xml:space="preserve">
+    <value>Visa filmremsa i huvudfönstret.</value>
+  </data>
+  <data name="ShowTheSidebarInTheMainWindow" xml:space="preserve">
+    <value>Visa sidopanel i huvudfönstret.</value>
+  </data>
+  <data name="ShowTheTimelineInTheMainWindow" xml:space="preserve">
+    <value>Visa tidslinjen i huvudfönstret.</value>
+  </data>
+  <data name="ShowTheToolbarInTheMainWindow" xml:space="preserve">
+    <value>Visa verktygsfältet i huvudfönstret.</value>
+  </data>
+  <data name="ShowTheToolbarInThePhotoViewerWindow" xml:space="preserve">
+    <value>Visa verktygsfältet i fotovisningsfönstret.</value>
+  </data>
+  <data name="SidePane" xml:space="preserve">
+    <value>Sido_panel</value>
+  </data>
+  <data name="Sidebar" xml:space="preserve">
+    <value>Sido_panel</value>
+  </data>
+  <data name="SignInAsADifferentUser" xml:space="preserve">
+    <value>Logga in som annan användare</value>
+  </data>
+  <data name="SimpleExportToZipFile" xml:space="preserve">
+    <value>Enkel export till Zip-fil</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Storlek</value>
+  </data>
+  <data name="SizeOfTheExportedSelection" xml:space="preserve">
+    <value>Storlek på exporterad markering:</value>
+  </data>
+  <data name="SizeOfTheTagIconsShownInTheSidebar" xml:space="preserve">
+    <value>Storlek för taggikonerna som visas i sidopanelen.</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>Hoppa över</value>
+  </data>
+  <data name="SlideTransition" xml:space="preserve">
+    <value>Bildövergång:</value>
+  </data>
+  <data name="Slideshow" xml:space="preserve">
+    <value>Bildspel</value>
+  </data>
+  <data name="Slideshow2" xml:space="preserve">
+    <value>_Bildspel</value>
+  </data>
+  <data name="Small" xml:space="preserve">
+    <value>Liten</value>
+  </data>
+  <data name="Small2" xml:space="preserve">
+    <value>_Liten</value>
+  </data>
+  <data name="SmallIChooseTheLocationOfTheDatabaseYouWantToImportFromISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;Välj den plats för databasen som du vill importera från&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIChooseWhatToImportFromTheSelectedDbNewRollsOnlyIsTheSmartOptionThatWillAvoidReImportingPhotosYouCouldHaveImportedDuringAPreviousOperationASingleImportRollLetYouChooseWhichRollYouWantToMergeBackEverythingWillImportEverythingCreatingDuplicatesIfYouAlreadyImportedFromThatDatabaseISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;Välj vad som ska importeras från den valda databasen.
+"Endast nya rullar" är det smarta alternativet som kommer att undvika att samma foton importeras flera gånger.
+"En enstaka importrulle" låter dig välja vilken rulle som du vill sammanfoga tillbaka.
+"Allting" kommer att importera allting och kan skapa dubletter om du redan importerat från den databasen.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallICopyTheImagesLocallyOrKeepThemWhereTheyAreIfYouChoseTheLaterBeSureThatThisLocationWillStayAccessibleFromFSpotISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;Kopiera bilderna lokalt eller behåll dem där de är. Om du väljer det senare så bör du försäkra dig om att denna plats kommer att fortsätta vara tillgänglig för f-spot.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIEnableThisToAllowInterpolationOnZoomedImagesYouShouldnTDisableThisForViewingPhotosButDisablingTheInterpolationCouldBeUsefulInIconDesignISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;Aktivera detta för att tillåta interpolering på zoomade bilder. Du bör inte inaktivera detta för att visa foton, men att inaktivera interpoleringen kan vara användbart vid ikondesign.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIFSpotTagsCanHelpYouTrackTheExportStatusOfPhotosExampleUseOneTagForThePhotosThatYouPlanToExportAndAnotherOneForThoseAlreadyExportedHereYouCanTellFSpotToAutomaticallyReplaceTheseTagsAsAppropriateISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;F-Spot-taggar kan hjälpa dig att hålla ordning på exportstatusen för foton. Exempel: Använd en tagg för foton som du planerar att exportera och en annan för de som redan är exporterade. Här kan du säga till F-Spot att automatiskt ersätta dessa taggar där det lämpar sig.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallITheGalleryStaysActiveUntilYouEitherDeactivateItOrCloseFSpotMakeSureLocalViewersAccessItBypassingHTTPProxyISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;Galleriet kvarstår som aktivt tills du antingen inaktiverar det eller
+stänger av F-Spot. Försäkra dig om att lokala besökare inte går via en HTTP-proxy.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIWhenTheGalleryIsActiveAboveIsTheURLYouNeedToOpenOnAnotherComputerToAccessTheSharedPhotosISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;När galleriet är aktivt så kan du öppna ovanstående URL
+om du behöver komma åt utdelade foton från en annan dator.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIYouCanChooseHowToDisplayTransparentPartsInImagesThisOptionHasNoEffectOnPhotosButSettingThisAsCheckPatternOrCustomColorCouldBeUsefulWhenViewingIconsOrOtherArtworksWithTransparentPartsISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;Du kan välja hur genomskinliga delar i bilder ska visas. Det här alternativet har ingen effekt på foton, men att ställa in det här som rutmönster eller anpassad färg kan vara användbar vid visning av ikoner eller andra bilder med genomskinliga delar.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmugMug" xml:space="preserve">
+    <value>_SmugMug...</value>
+  </data>
+  <data name="SmugMugExport" xml:space="preserve">
+    <value>SmugMug-export</value>
+  </data>
+  <data name="SoftFocus" xml:space="preserve">
+    <value>Mjuk fokus</value>
+  </data>
+  <data name="SomeFilesCouldNotBeImported" xml:space="preserve">
+    <value>Vissa filer kunde inte importeras. De kanske är skadade eller så kan det vara något fel på lagringen där de ligger.</value>
+  </data>
+  <data name="SomeFilesFailedToImport" xml:space="preserve">
+    <value>Vissa filer gick inte att importera</value>
+  </data>
+  <data name="SpaceAllPhotosBy" xml:space="preserve">
+    <value>Ge alla foton mellanrummet </value>
+  </data>
+  <data name="SpanWeightBoldSizeLargerErrorConnectingToGallerySpan" xml:space="preserve">
+    <value>&lt;span weight='bold' size='larger'&gt;Fel vid anslutning till bildgalleri&lt;/span&gt;
+</value>
+  </data>
+  <data name="SpanWeightBoldSizeLargerYourGoogleAccountIsLockedSpan" xml:space="preserve">
+    <value>&lt;span weight='bold' size='larger'&gt;Ditt Google-konto är låst&lt;/span&gt;
+</value>
+  </data>
+  <data name="Square" xml:space="preserve">
+    <value>Ruta</value>
+  </data>
+  <data name="StandardTheme" xml:space="preserve">
+    <value>Standardtema</value>
+  </data>
+  <data name="StartSlideshow" xml:space="preserve">
+    <value>Starta bildspel</value>
+  </data>
+  <data name="StayConnected" xml:space="preserve">
+    <value>Fortsätt vara ansluten</value>
+  </data>
+  <data name="StoreTagsAndDescriptionsForPhotos" xml:space="preserve">
+    <value>Lagra taggar och beskrivningar för foton:</value>
+  </data>
+  <data name="Straighten" xml:space="preserve">
+    <value>Räta ut</value>
+  </data>
+  <data name="SystemProfile" xml:space="preserve">
+    <value>Systemprofil</value>
+  </data>
+  <data name="Tabblo" xml:space="preserve">
+    <value>_Tabblo...</value>
+  </data>
+  <data name="TabbloExport" xml:space="preserve">
+    <value>Tabblo-export</value>
+  </data>
+  <data name="TagDoesntExistTrySelectingDifferentTagInPerferenceDialog" xml:space="preserve">
+    <value>Taggen som F-Spot letar efter finns inte. Prova
+att välja en annan tagg i F-Spots inställningsdialog.</value>
+  </data>
+  <data name="TagIcons" xml:space="preserve">
+    <value>_Taggikoner</value>
+  </data>
+  <data name="TagIsNotEmpty" xml:space="preserve">
+    <value>Taggen är inte tom</value>
+  </data>
+  <data name="TagName2" xml:space="preserve">
+    <value>_Taggnamn:</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Taggar</value>
+  </data>
+  <data name="Tags2" xml:space="preserve">
+    <value>T_aggar</value>
+  </data>
+  <data name="Tags3" xml:space="preserve">
+    <value>_Taggar</value>
+  </data>
+  <data name="TagsColon" xml:space="preserve">
+    <value>Taggar: </value>
+  </data>
+  <data name="Temp" xml:space="preserve">
+    <value>Te_mp:</value>
+  </data>
+  <data name="TheColorToUseForTransparentParts" xml:space="preserve">
+    <value>Färgen att använda för genomskinliga delar.</value>
+  </data>
+  <data name="TheFileSelectedNotValidOrSupportedDataaseReceivedExceptionX" xml:space="preserve">
+    <value>Filen som du valde är inte en giltig eller stödd databas.
+
+Tog emot undantaget "{0}".</value>
+  </data>
+  <data name="TheFollowingErrorWasEncounteredWhileAttemptingToCreateAnAlbumX" xml:space="preserve">
+    <value>Följande fel påträffades vid försök att skapa ett album: {0}</value>
+  </data>
+  <data name="TheGalleryNameContainsInvalidCharactersOnlyLettersNumbersUnderscoreAllowed" xml:space="preserve">
+    <value>Gallerinamnet innehåller ogiltiga tecken.
+Endast bokstäver, siffror, - och _ är tillåtna</value>
+  </data>
+  <data name="TheGalleryUrlEntryDoesNotAppearToBeValid" xml:space="preserve">
+    <value>Galleriets URL-post verkar inte vara en giltig URL</value>
+  </data>
+  <data name="TheHeightDimensionToUseForTheImportDialog" xml:space="preserve">
+    <value>Höjddimensionen att använda för importdialogen.</value>
+  </data>
+  <data name="TheHeightDimensionToUseForTheMainWindow" xml:space="preserve">
+    <value>Höjddimensionen att använda för huvudfönstret.</value>
+  </data>
+  <data name="TheHeightDimensionToUseForThePhotoViewerWindow" xml:space="preserve">
+    <value>Höjddimensionen att använda för fotovisningsfönstret.</value>
+  </data>
+  <data name="TheOrientationOfTheFilmstrip" xml:space="preserve">
+    <value>Orientering för filmremsa.</value>
+  </data>
+  <data name="TheOrientationOfTheFilmstripIfShown" xml:space="preserve">
+    <value>Orienteringen för filmremsan, om den visas.</value>
+  </data>
+  <data name="ThePhotoXDoesNotExist" xml:space="preserve">
+    <value>Fotot "{0}" finns inte</value>
+  </data>
+  <data name="TheSelectedAlbumHasALimitOfXPicturesWhichWouldBePassedWithTheCurrentSelectionOfYImages" xml:space="preserve">
+    <value>Det valda albumet har en gräns på {0} bilder,
+som kommer att överstigas med aktuella markeringen på {1} bilder</value>
+  </data>
+  <data name="TheSizeOfTheSidebarInTheMainWindow" xml:space="preserve">
+    <value>Storlek för sidopanelen i huvudfönstret.</value>
+  </data>
+  <data name="TheSizeWidthOfTheSidebarInTheMainWindow" xml:space="preserve">
+    <value>Storlek (bredd) för sidopanelen i huvudfönstret.</value>
+  </data>
+  <data name="TheWebGallerySeemsToBeOfflineNow" xml:space="preserve">
+    <value>Webbgalleriet verkar inte vara aktivt nu</value>
+  </data>
+  <data name="TheWidthDimensionToUseForTheImportDialog" xml:space="preserve">
+    <value>Breddimensionen att använda för importdialogen.</value>
+  </data>
+  <data name="TheWidthDimensionToUseForTheMainWindow" xml:space="preserve">
+    <value>Breddimensionen att använda för huvudfönstret.</value>
+  </data>
+  <data name="TheWidthDimensionToUseForThePhotoViewerWindow" xml:space="preserve">
+    <value>Breddimensionen att använda för fotovisningsfönstret.</value>
+  </data>
+  <data name="TheXPositionToUseForTheMainWindow" xml:space="preserve">
+    <value>X-positionen att använda för huvudfönstret.</value>
+  </data>
+  <data name="TheXPositionToUseForThePhotoViewerWindow" xml:space="preserve">
+    <value>X-positionen att använda för fotovisningsfönstret.</value>
+  </data>
+  <data name="TheYPositionToUseForTheMainWindow" xml:space="preserve">
+    <value>Y-positionen att använda för huvudfönstret.</value>
+  </data>
+  <data name="TheYPositionToUseForThePhotoViewerWindow" xml:space="preserve">
+    <value>Y-positionen att använda för fotovisningsfönstret.</value>
+  </data>
+  <data name="ThereAlreadyGallerySameNameInYourRegisteredGalleriesPleaseChooseUniqueName" xml:space="preserve">
+    <value>Det finns redan ett galleri med samma namn bland dina registrerade gallerier. Välj ett unikt namn.</value>
+  </data>
+  <data name="ThereWasAProblemLoggingIntoFacebookCheckYourCredentialsAndTryAgain" xml:space="preserve">
+    <value>Det inträffade ett fel vid inloggning mot Facebook. Kontrollera dina inloggningsuppgifter och försök igen.</value>
+  </data>
+  <data name="ThereWasAnErrorWhenDownloadingYourInformationFromFacebookFacebookSaidX" xml:space="preserve">
+    <value>Det uppstod ett fel vid hämtning av din information från Facebook.
+
+Facebook svarade: {0}</value>
+  </data>
+  <data name="ThisDeletesAllVersionsOfTheSelectedPhotoFromYourDrive" xml:space="preserve">
+    <value>Detta tar bort alla versioner av det markerade fotot från din disk.</value>
+  </data>
+  <data name="ThisDeletesAllVersionsOfTheSelectedPhotosFromYourDrive" xml:space="preserve">
+    <value>Detta tar bort alla versioner av markerade foton från din disk.</value>
+  </data>
+  <data name="ThisExtensionAllowsYouToBurnYourPhotosToCD" xml:space="preserve">
+    <value>Detta tillägg låter dig bränna dina foton till en cd-skiva.</value>
+  </data>
+  <data name="ThisExtensionAllowsYouToExportYourPhotosToFlickrAnd23hq" xml:space="preserve">
+    <value>Detta tillägg låter dig exportera dina bilder till Flickr och 23hq.</value>
+  </data>
+  <data name="ThisExtensionAllowsYouToExportYourPhotosToHTMLGalleriesOriginalGalleriesOrJustToAFolder" xml:space="preserve">
+    <value>Detta tillägg låter dig exportera dina bilder till HTML-gallerier, ursprungliga gallerier eller bara till en mapp.</value>
+  </data>
+  <data name="ThisExtensionAllowsYouToExportYourPhotosToPHPGalleryHttpGalleryMenaltoCom" xml:space="preserve">
+    <value>Detta tillägg låter dig exportera dina bilder till PHP Gallery (http://gallery.menalto.com).</value>
+  </data>
+  <data name="ThisExtensionAllowsYouToExportYourPhotosToPicasaWeb" xml:space="preserve">
+    <value>Detta tillägg låter dig exportera dina bilder till PicasaWeb.</value>
+  </data>
+  <data name="ThisExtensionAllowsYouToExportYourPhotosToSmugMug" xml:space="preserve">
+    <value>Detta tillägg låter dig exportera dina bilder till SmugMug.</value>
+  </data>
+  <data name="ThisExtensionAllowsYouToExportYourPhotosToTabblo" xml:space="preserve">
+    <value>Detta tillägg låter dig exportera dina bilder till Tabblo.</value>
+  </data>
+  <data name="ThisMakesThePhotosAppearAsASingleOneInLibraryTheVersionsCanBeDetachedUsingThePhotoMenu" xml:space="preserve">
+    <value>Detta gör att fotona visas som en enda i biblioteket. Versionerna kan tas bort från Foto-menyn.</value>
+  </data>
+  <data name="ThisMakesTheVersionAppearAsASeparatePhotoInLibraryToUndoDragNewPhotoBackToParent" xml:space="preserve">
+    <value>Detta gör att versionen visas som ett separat foto i biblioteket. Dra det nya fotot tillbaka till sin förälder för att ångra.</value>
+  </data>
+  <data name="ThisNameIsAlreadyInUse" xml:space="preserve">
+    <value>Detta namn används redan</value>
+  </data>
+  <data name="ThisRemovesTheVersionAndDeletesTheFileFromDisk" xml:space="preserve">
+    <value>Detta tar bort versionen och tar även bort motsvarande fil från disken.</value>
+  </data>
+  <data name="ThisToolRequiresAnActiveSelection.PleaseSelectOneOrMore" xml:space="preserve">
+    <value>Detta verktyg kräver en aktiv markering. Markera en eller flera bilder och försök igen</value>
+  </data>
+  <data name="ThisToolRequiresAnActiveSelectionPleaseSelectARegion" xml:space="preserve">
+    <value>Detta verktyg kräver en aktiv markering. Markera ett område i fotot och försök göra samma operation igen</value>
+  </data>
+  <data name="ThisWillMergeSelectedTagsAndSubTagsIntoSingleTag" xml:space="preserve">
+    <value>Denna operation kommer att slå ihop de markerade taggarna och deras undertaggar till en enda tagg.</value>
+  </data>
+  <data name="ThresholdColon" xml:space="preserve">
+    <value>Tröskelvärde:</value>
+  </data>
+  <data name="ThumbnailElements" xml:space="preserve">
+    <value>Miniatyrbilds_element</value>
+  </data>
+  <data name="Timeline" xml:space="preserve">
+    <value>_Tidslinje</value>
+  </data>
+  <data name="Tint" xml:space="preserve">
+    <value>_Tona:</value>
+  </data>
+  <data name="Tiny" xml:space="preserve">
+    <value>Mycket liten</value>
+  </data>
+  <data name="Title2" xml:space="preserve">
+    <value>_Titel:</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Idag</value>
+  </data>
+  <data name="Token" xml:space="preserve">
+    <value>token</value>
+  </data>
+  <data name="TooManyImagesToExport" xml:space="preserve">
+    <value>För många bilder att exportera</value>
+  </data>
+  <data name="Toolbar" xml:space="preserve">
+    <value>Verktygs_fält</value>
+  </data>
+  <data name="Toolbar2" xml:space="preserve">
+    <value>_Verktygsfält</value>
+  </data>
+  <data name="Tools" xml:space="preserve">
+    <value>Verktyg</value>
+  </data>
+  <data name="Tools2" xml:space="preserve">
+    <value>Ver_ktyg</value>
+  </data>
+  <data name="TotalOriginalSize" xml:space="preserve">
+    <value>Total ursprunglig storlek</value>
+  </data>
+  <data name="TransferComplete" xml:space="preserve">
+    <value>Överföringen är färdig</value>
+  </data>
+  <data name="Transferring" xml:space="preserve">
+    <value>Överför...</value>
+  </data>
+  <data name="TransferringPictureXToCD" xml:space="preserve">
+    <value>Överför bilden "{0}" till cd</value>
+  </data>
+  <data name="TransferringPictures" xml:space="preserve">
+    <value>Överför bilder</value>
+  </data>
+  <data name="TransferringToX" xml:space="preserve">
+    <value>Överför till "{0}"</value>
+  </data>
+  <data name="Transitions" xml:space="preserve">
+    <value>Övergångar</value>
+  </data>
+  <data name="TranslatorCredits" xml:space="preserve">
+    <value>Daniel Nylander
+Sergej Kotliar
+Christian Rose
+
+Skicka synpunkter på översättningen till
+&lt;tp-sv@listor.tp-sv.se&gt;.</value>
+  </data>
+  <data name="TrustError" xml:space="preserve">
+    <value>Tillitsfel</value>
+  </data>
+  <data name="TrustTheSiteSCertificateThisOnce" xml:space="preserve">
+    <value>Lita tillfälligt på certifikatet för denna webbplats</value>
+  </data>
+  <data name="URL3" xml:space="preserve">
+    <value>U_RL:</value>
+  </data>
+  <data name="UnableToLoadImage" xml:space="preserve">
+    <value>Kunde inte läsa in bild</value>
+  </data>
+  <data name="UnableToLoadXAsIconForTheTag" xml:space="preserve">
+    <value>Kunde inte läsa in "{0}" som ikon för taggen</value>
+  </data>
+  <data name="UnableToLogOn" xml:space="preserve">
+    <value>Kunde inte logga in</value>
+  </data>
+  <data name="UnableToLogOn2" xml:space="preserve">
+    <value>Kunde inte logga in.</value>
+  </data>
+  <data name="UnableToRotatePhoto" xml:space="preserve">
+    <value>Kunde inte rotera foto</value>
+  </data>
+  <data name="UnableToRotateReadonlyFile" xml:space="preserve">
+    <value>Kunde inte rotera skrivskyddad fil</value>
+  </data>
+  <data name="UnableToRotateThisTypeOfPhoto" xml:space="preserve">
+    <value>Kunde inte rotera denna typ av foto</value>
+  </data>
+  <data name="UnableToRotateXPhotos" xml:space="preserve">
+    <value>Kunde inte rotera {0} foton</value>
+  </data>
+  <data name="UnhandledException" xml:space="preserve">
+    <value>Ohanterat undantag</value>
+  </data>
+  <data name="UntaggedPhotos" xml:space="preserve">
+    <value>Otaggade foton</value>
+  </data>
+  <data name="UntaggedPhotos2" xml:space="preserve">
+    <value>_Otaggade foton</value>
+  </data>
+  <data name="UpdatingFSpotDatabase" xml:space="preserve">
+    <value>Uppdaterar F-Spot-databasen</value>
+  </data>
+  <data name="UpdatingPictureX" xml:space="preserve">
+    <value>Uppdaterar bilden "{0}"</value>
+  </data>
+  <data name="UpdatingThumbnails" xml:space="preserve">
+    <value>Uppdaterar miniatyrbilder</value>
+  </data>
+  <data name="UploadComplete" xml:space="preserve">
+    <value>Sändning färdig</value>
+  </data>
+  <data name="UploadComplete2" xml:space="preserve">
+    <value>Sändning färdig</value>
+  </data>
+  <data name="UploadingPhotoX" xml:space="preserve">
+    <value>Skickar foto "{0}"</value>
+  </data>
+  <data name="UploadingPictureX" xml:space="preserve">
+    <value>Skickar upp bilden "{0}"</value>
+  </data>
+  <data name="UploadingPictureXYOfZ" xml:space="preserve">
+    <value>Skickar upp bilden "{0}" ({1} av {2})</value>
+  </data>
+  <data name="UploadingPictures" xml:space="preserve">
+    <value>Skickar upp bilder</value>
+  </data>
+  <data name="Url4" xml:space="preserve">
+    <value>url</value>
+  </data>
+  <data name="UseAnExistingAlbum" xml:space="preserve">
+    <value>Använd ett befintligt album</value>
+  </data>
+  <data name="UseTheCurrentPhotoSFilenameAsTheViewerWindowSTitle" xml:space="preserve">
+    <value>Använd filnamnet för det aktuella fotot som titel i visningsfönstret.</value>
+  </data>
+  <data name="UsedXOfYourAllowedYMonthlyQuota" xml:space="preserve">
+    <value>Använder {0} av din tillåtna månadskvota på {1}</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>_Användarnamn:</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="Version3" xml:space="preserve">
+    <value>_Version</value>
+  </data>
+  <data name="VerticalMnemonic" xml:space="preserve">
+    <value>_Vertikalt</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>Visa</value>
+  </data>
+  <data name="View2" xml:space="preserve">
+    <value>_Visa</value>
+  </data>
+  <data name="ViewAndEditAPhoto" xml:space="preserve">
+    <value>Visa och redigera ett foto</value>
+  </data>
+  <data name="ViewPhotosFullscreen" xml:space="preserve">
+    <value>Visa foton i helskärmsläge</value>
+  </data>
+  <data name="ViewPhotosInASlideshow" xml:space="preserve">
+    <value>Visa foton i ett bildspel</value>
+  </data>
+  <data name="ViewPhotosInBrowserWhenDoneUploading" xml:space="preserve">
+    <value>_Visa foton i webbläsaren när sändningen är färdig</value>
+  </data>
+  <data name="Views" xml:space="preserve">
+    <value>Visningar:</value>
+  </data>
+  <data name="VisibleToFamily" xml:space="preserve">
+    <value>Synlig för familjen</value>
+  </data>
+  <data name="VisibleToFriends" xml:space="preserve">
+    <value>Synlig för vänner</value>
+  </data>
+  <data name="VisitFSpotGroupOnFacebook" xml:space="preserve">
+    <value>Besök F-Spot-gruppen på Facebook</value>
+  </data>
+  <data name="WaitingForAuthentication" xml:space="preserve">
+    <value>Väntar på autentisering</value>
+  </data>
+  <data name="WaitingForAuthorization" xml:space="preserve">
+    <value>Väntar på behörighet</value>
+  </data>
+  <data name="WaitingForResponseXOfY" xml:space="preserve">
+    <value>Väntar på svar {0} av {1}</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Varning</value>
+  </data>
+  <data name="WebGallery" xml:space="preserve">
+    <value>Webb_galleri...</value>
+  </data>
+  <data name="WhenImportingPhotosCopyThemTo" xml:space="preserve">
+    <value>När foton importeras, kopiera dem till:</value>
+  </data>
+  <data name="WhiteBorders" xml:space="preserve">
+    <value>Vita ramar</value>
+  </data>
+  <data name="WhoIsThis" xml:space="preserve">
+    <value>Vem är det här?</value>
+  </data>
+  <data name="WidthOfTheImportDialog" xml:space="preserve">
+    <value>Bredd för importdialogen.</value>
+  </data>
+  <data name="WidthOfTheMainWindow" xml:space="preserve">
+    <value>Bredd för huvudfönstret.</value>
+  </data>
+  <data name="WidthOfThePhotoViewerWindow" xml:space="preserve">
+    <value>Bredd för fotovisningsfönstret.</value>
+  </data>
+  <data name="WidthOfThePreviewImagePaneInTheImportDialog" xml:space="preserve">
+    <value>Bredd för förhandsvisningspanelen i importdialogen.</value>
+  </data>
+  <data name="WriteOnlyThesePhotosToCD" xml:space="preserve">
+    <value>_Skriv endast dessa foton till cd</value>
+  </data>
+  <data name="XCFVersion" xml:space="preserve">
+    <value>XCF-version</value>
+  </data>
+  <data name="XOfApproxY" xml:space="preserve">
+    <value>{0} av ungefär {1}</value>
+  </data>
+  <data name="XOfY" xml:space="preserve">
+    <value>{0} av {1}</value>
+  </data>
+  <data name="XPhoto" xml:space="preserve">
+    <value>{0} foto</value>
+  </data>
+  <data name="XPhoto2" xml:space="preserve">
+    <value>{0} foto</value>
+  </data>
+  <data name="XPhotoOutOfY2" xml:space="preserve">
+    <value>{0} foto utav {1}</value>
+  </data>
+  <data name="XPhotos" xml:space="preserve">
+    <value>{0} foton</value>
+  </data>
+  <data name="XPhotos2" xml:space="preserve">
+    <value>{0} foton</value>
+  </data>
+  <data name="XPhotosOutOfY2" xml:space="preserve">
+    <value>{0} foton utav {1}</value>
+  </data>
+  <data name="XPositionOfTheMainWindow" xml:space="preserve">
+    <value>X-position för huvudfönstret.</value>
+  </data>
+  <data name="XPositionOfThePhotoViewerWindow" xml:space="preserve">
+    <value>X-position för fotovisningsfönstret.</value>
+  </data>
+  <data name="XSelected2" xml:space="preserve">
+    <value> ({0} markerade)</value>
+  </data>
+  <data name="XSent" xml:space="preserve">
+    <value>{0} skickat</value>
+  </data>
+  <data name="XYIsLoggedIntoFacebook" xml:space="preserve">
+    <value>{0} {1} är inloggad på Facebook</value>
+  </data>
+  <data name="YPositionOfTheMainWindow" xml:space="preserve">
+    <value>Y-position för huvudfönstret.</value>
+  </data>
+  <data name="YPositionOfThePhotoViewerWindow" xml:space="preserve">
+    <value>Y-position för fotovisningsfönstret.</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>Igår</value>
+  </data>
+  <data name="YouAreNotLoggedIn" xml:space="preserve">
+    <value>Du är inte inloggad.</value>
+  </data>
+  <data name="YouCanChooseHowToDisplayTransparentPartsInImagesThisOptionHasNoEffectOnPhotosButSettingThisValueToCHECKPATTERNOrCUSTOMCOLORCouldBeUsefulWhenViewingIconsOrOtherArtworkWithTransparentParts" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;Du kan välja hur genomskinliga delar i bilder ska visas. Det här alternativet har ingen effekt på foton, men att ställa in det här som rutmönster eller anpassad färg kan vara användbar vid visning av ikoner eller andra bilder med genomskinliga delar.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="ZipExport" xml:space="preserve">
+    <value>Zip-export</value>
+  </data>
+  <data name="Zoom" xml:space="preserve">
+    <value>Zooma</value>
+  </data>
+  <data name="ZoomIn" xml:space="preserve">
+    <value>Zooma _in</value>
+  </data>
+  <data name="ZoomIn2" xml:space="preserve">
+    <value>Zooma in</value>
+  </data>
+  <data name="ZoomOut" xml:space="preserve">
+    <value>Zooma _ut</value>
+  </data>
+  <data name="ZoomOut2" xml:space="preserve">
+    <value>Zooma ut</value>
+  </data>
+  <data name="Zooomr" xml:space="preserve">
+    <value>_Zooomr...</value>
+  </data>
+</root>

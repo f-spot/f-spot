@@ -1,0 +1,2706 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ASingleImportRoll" xml:space="preserve">
+    <value>Egyetlen importálási kör</value>
+  </data>
+  <data name="ASlideshowTransitionThatCoversImages" xml:space="preserve">
+    <value>Képeket lefedő diavetítés-átmenet</value>
+  </data>
+  <data name="ASlideshowTransitionThatDissolvesImages" xml:space="preserve">
+    <value>Képek áttűnése diavetítés-átmenet</value>
+  </data>
+  <data name="ASlideshowTransitionThatPushesImages" xml:space="preserve">
+    <value>Képeket eltoló diavetítés-átmenet</value>
+  </data>
+  <data name="ATrustErrorOccurredWhileAttemptingToAccess" xml:space="preserve">
+    <value>Megbízhatósági hiba az elérési kísérletkor</value>
+  </data>
+  <data name="AbortThisSession" xml:space="preserve">
+    <value>Megszakítom a munkamenetet</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>_Fiók:</value>
+  </data>
+  <data name="ActivatesAndDeactivatesTheWebGallery" xml:space="preserve">
+    <value>A webes galéria be- és kikapcsolása</value>
+  </data>
+  <data name="Adjust" xml:space="preserve">
+    <value>Módosítás</value>
+  </data>
+  <data name="AdjustColors" xml:space="preserve">
+    <value>Színek módosítása</value>
+  </data>
+  <data name="AdjustTime" xml:space="preserve">
+    <value>Idő beállítása</value>
+  </data>
+  <data name="AdjustTime2" xml:space="preserve">
+    <value>I_dő beállítása…</value>
+  </data>
+  <data name="AdjustedDate" xml:space="preserve">
+    <value>Módosított dátum: </value>
+  </data>
+  <data name="After" xml:space="preserve">
+    <value>ez után</value>
+  </data>
+  <data name="AlbumMustHaveAName" xml:space="preserve">
+    <value>Az albumnak nevet kell adni</value>
+  </data>
+  <data name="AlbumName" xml:space="preserve">
+    <value>_Album neve:</value>
+  </data>
+  <data name="AlbumTitle" xml:space="preserve">
+    <value>_Album címe:</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Összes</value>
+  </data>
+  <data name="AllImages" xml:space="preserve">
+    <value>Minden kép</value>
+  </data>
+  <data name="AllowViewersToAddTags" xml:space="preserve">
+    <value>A nézők felvehetnek címkéket</value>
+  </data>
+  <data name="AlwaysTrustThisSiteSCertificate" xml:space="preserve">
+    <value>Mindig megbízom ezen oldal tanúsítványában</value>
+  </data>
+  <data name="AmountColon" xml:space="preserve">
+    <value>Mennyiség:</value>
+  </data>
+  <data name="AnErrorOccurredCreatingANewAlbumX" xml:space="preserve">
+    <value>Hiba történt az új album létrehozása közben.
+
+{0}</value>
+  </data>
+  <data name="AnErrorOccurredWhileProcessingXMessage" xml:space="preserve">
+    <value>Hiba történt a(z) „{0}” feldolgozásakor: {1}</value>
+  </data>
+  <data name="AnErrorOfTypeXOccurredWhileDeletingTheFile" xml:space="preserve">
+    <value>{0} típusú hiba történt a következő fájl törlése közben: {2}{1}</value>
+  </data>
+  <data name="And" xml:space="preserve">
+    <value>és</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Alkalmaz</value>
+  </data>
+  <data name="ApplyChanges" xml:space="preserve">
+    <value>Változtatások _alkalmazása</value>
+  </data>
+  <data name="ArrangeBy" xml:space="preserve">
+    <value>_Rendezés szempontja</value>
+  </data>
+  <data name="AsBackground" xml:space="preserve">
+    <value>_Háttérként</value>
+  </data>
+  <data name="AsCheckPattern" xml:space="preserve">
+    <value>_Rácsmintaként</value>
+  </data>
+  <data name="AsCustomColor" xml:space="preserve">
+    <value>Eg_yéni színként: </value>
+  </data>
+  <data name="At" xml:space="preserve">
+    <value>ekkor</value>
+  </data>
+  <data name="AttachTag" xml:space="preserve">
+    <value>_Címke csatolása</value>
+  </data>
+  <data name="AttachTagToSelection" xml:space="preserve">
+    <value>Címke csatolása a kijelöléshez</value>
+  </data>
+  <data name="AttachTagToSelection2" xml:space="preserve">
+    <value>Cí_mke csatolása a kijelöléshez</value>
+  </data>
+  <data name="AttachTags2" xml:space="preserve">
+    <value>_Címkék csatolása:</value>
+  </data>
+  <data name="AttachTagsToSelection" xml:space="preserve">
+    <value>Címke csatolása a kijelöléshez</value>
+  </data>
+  <data name="AttachToExportedPhotos" xml:space="preserve">
+    <value>Az exportált fényképekhez _csatolandó:</value>
+  </data>
+  <data name="Authenticating" xml:space="preserve">
+    <value>Hitelesítés…</value>
+  </data>
+  <data name="Authorize" xml:space="preserve">
+    <value>Felhatalmazás</value>
+  </data>
+  <data name="AuthorizingSession" xml:space="preserve">
+    <value>Munkamenet felhatalmazása</value>
+  </data>
+  <data name="AutoColor" xml:space="preserve">
+    <value>Automatikus színezés</value>
+  </data>
+  <data name="AutoConfirmPhotos" xml:space="preserve">
+    <value>Fényképek automatikus elfogadása</value>
+  </data>
+  <data name="AvailableSpaceXYUsedOutOfZ" xml:space="preserve">
+    <value>Elérhető hely: {0}, összesen {2}: {1}% használatban</value>
+  </data>
+  <data name="BAccountB" xml:space="preserve">
+    <value>&lt;b&gt;Felhasználói fiók&lt;/b&gt;</value>
+  </data>
+  <data name="BActionB" xml:space="preserve">
+    <value>&lt;b&gt;Művelet&lt;/b&gt;</value>
+  </data>
+  <data name="BAlbumB" xml:space="preserve">
+    <value>&lt;b&gt;Album&lt;/b&gt;</value>
+  </data>
+  <data name="BCorrectionsB" xml:space="preserve">
+    <value>&lt;b&gt;_Javítások&lt;/b&gt;</value>
+  </data>
+  <data name="BDestinationB" xml:space="preserve">
+    <value>&lt;b&gt;Cél&lt;/b&gt;</value>
+  </data>
+  <data name="BEndDateB" xml:space="preserve">
+    <value>&lt;b&gt;Befejező dátum&lt;/b&gt;</value>
+  </data>
+  <data name="BExportMethodB" xml:space="preserve">
+    <value>&lt;b&gt;Exportálási módszer&lt;/b&gt;</value>
+  </data>
+  <data name="BFSpotTagsB" xml:space="preserve">
+    <value>&lt;b&gt;F-Spot címkék&lt;/b&gt;</value>
+  </data>
+  <data name="BFromExternalPhotoB" xml:space="preserve">
+    <value>&lt;b&gt;Külső fényképből&lt;/b&gt;</value>
+  </data>
+  <data name="BFromPhotoB" xml:space="preserve">
+    <value>&lt;b&gt;Ezen fényképből&lt;/b&gt;</value>
+  </data>
+  <data name="BFromPhotoBYouCanUseOneOfYourLibraryPhotosAsAnIconForThisTagHoweverFirstYouMustHaveAtLeastOnePhotoAssociatedWithThisTagPleaseTagAPhotoAsXAndReturnHereToUseItAsAnIcon" xml:space="preserve">
+    <value>
+&lt;b&gt;Fényképből&lt;/b&gt;
+ A gyűjtemény egyik fényképét a címke ikonjaként használhatja.
+ Először azonban legalább egy fényképet a címkéhez kell társítania
+ Címkézzen meg egy fényképet a(z) „{0}” címkével, ezután már
+ felhasználhatja azt ikonként.</value>
+  </data>
+  <data name="BGalleryB" xml:space="preserve">
+    <value>&lt;b&gt;Galéria&lt;/b&gt;</value>
+  </data>
+  <data name="BIThereAreSomePreviouslyScheduledItemsToWriteIB" xml:space="preserve">
+    <value>&lt;b&gt;&lt;i&gt;Korábban írásra ütemezett elemek vannak&lt;/i&gt;&lt;/b&gt;</value>
+  </data>
+  <data name="BImageInterpolationB" xml:space="preserve">
+    <value>&lt;b&gt;Képinterpoláció&lt;/b&gt;</value>
+  </data>
+  <data name="BMaxRatingB" xml:space="preserve">
+    <value>&lt;b&gt;Legjobb értékelés&lt;/b&gt;</value>
+  </data>
+  <data name="BMinRatingB" xml:space="preserve">
+    <value>&lt;b&gt;Leggyengébb értékelés&lt;/b&gt;</value>
+  </data>
+  <data name="BPhotosB" xml:space="preserve">
+    <value>&lt;b&gt;Fényképek&lt;/b&gt;</value>
+  </data>
+  <data name="BPhotosToBurnB" xml:space="preserve">
+    <value>&lt;b&gt;Kiírandó fényképek&lt;/b&gt;</value>
+  </data>
+  <data name="BPicasaWebExportB" xml:space="preserve">
+    <value>&lt;b&gt;PicasaWeb exportálás&lt;/b&gt;</value>
+  </data>
+  <data name="BPredefinedIconsB" xml:space="preserve">
+    <value>&lt;b&gt;Előre megadott ikonok&lt;/b&gt;</value>
+  </data>
+  <data name="BPreviewB" xml:space="preserve">
+    <value>&lt;b&gt;Előnézet&lt;/b&gt;</value>
+  </data>
+  <data name="BReferencePhotoB" xml:space="preserve">
+    <value>&lt;b&gt;Referencia-fénykép&lt;/b&gt;</value>
+  </data>
+  <data name="BSelectPeriodB" xml:space="preserve">
+    <value>&lt;b&gt;Válasszon időszakot&lt;/b&gt;</value>
+  </data>
+  <data name="BSizeB" xml:space="preserve">
+    <value>&lt;b&gt;Méret&lt;/b&gt;</value>
+  </data>
+  <data name="BSmugMugExportB" xml:space="preserve">
+    <value>&lt;b&gt;SmugMug exportálás&lt;/b&gt;</value>
+  </data>
+  <data name="BSpecifyTheToplevelPhotosDirectoriesB" xml:space="preserve">
+    <value>&lt;b&gt;Adja meg a felső szintű Fényképek könyvtárakat&lt;/b&gt;</value>
+  </data>
+  <data name="BStartDateB" xml:space="preserve">
+    <value>&lt;b&gt;Kezdődátum&lt;/b&gt;</value>
+  </data>
+  <data name="BStyleB" xml:space="preserve">
+    <value>&lt;b&gt;Stílus&lt;/b&gt;</value>
+  </data>
+  <data name="BSummaryB" xml:space="preserve">
+    <value>&lt;b&gt;Összefoglaló&lt;/b&gt;</value>
+  </data>
+  <data name="BTabbloAccountB" xml:space="preserve">
+    <value>&lt;b&gt;Tabblo fiók&lt;/b&gt;</value>
+  </data>
+  <data name="BTransparentPartsB" xml:space="preserve">
+    <value>&lt;b&gt;Átlátszó részek&lt;/b&gt;</value>
+  </data>
+  <data name="BViewAllPicturesImportedB" xml:space="preserve">
+    <value>&lt;b&gt;Az összes importált kép megjelenítése&lt;/b&gt;</value>
+  </data>
+  <data name="BViewingPermissionsB" xml:space="preserve">
+    <value>&lt;b&gt;Jogosultságok megtekintése&lt;/b&gt;</value>
+  </data>
+  <data name="BWEditor" xml:space="preserve">
+    <value>Fekete-fehér</value>
+  </data>
+  <data name="BWhiteBalanceB" xml:space="preserve">
+    <value>&lt;b&gt;Fe_héregyensúly&lt;/b&gt;</value>
+  </data>
+  <data name="BeforeLaunchingYShouldFSpotCreateANewVersionOfTheSelectedPhotoToPreserveTheOriginal" xml:space="preserve">
+    <value>A(z) {1} indítása előtt a F-Spot létrehozzon-e egy új változatot a kijelölt fényképből az eredeti megőrzése érdekében?</value>
+  </data>
+  <data name="BeforeLaunchingYShouldFSpotCreateNewVersionsOfTheSelectedPhotosToPreserveTheOriginals" xml:space="preserve">
+    <value>A(z) {1} indítása előtt a F-Spot létrehozzon-e új változatokat a kijelölt fényképekből az eredetik megőrzése érdekében?</value>
+  </data>
+  <data name="Between" xml:space="preserve">
+    <value>ezek közt</value>
+  </data>
+  <data name="BetweenXAndY" xml:space="preserve">
+    <value>{0} és {1}
+között</value>
+  </data>
+  <data name="Blackout" xml:space="preserve">
+    <value>Kitakarás</value>
+  </data>
+  <data name="BlackoutEditor" xml:space="preserve">
+    <value>Kitakarás</value>
+  </data>
+  <data name="BlacksOutAnAreaOfTheImage" xml:space="preserve">
+    <value>Kitakarja a kép egy részét.</value>
+  </data>
+  <data name="Brightness" xml:space="preserve">
+    <value>Fén_yesség:</value>
+  </data>
+  <data name="Browse2" xml:space="preserve">
+    <value>Tallózás</value>
+  </data>
+  <data name="BrowseManyPhotosSimultaneously" xml:space="preserve">
+    <value>Több fénykép párhuzamos böngészése</value>
+  </data>
+  <data name="BrowsePreviouslyScheduledFiles" xml:space="preserve">
+    <value>K_orábban ütemezett fájlok tallózása</value>
+  </data>
+  <data name="BuildingGallery" xml:space="preserve">
+    <value>Galéria felépítése</value>
+  </data>
+  <data name="ByDate" xml:space="preserve">
+    <value>_Dátum szerint</value>
+  </data>
+  <data name="ByImportRoll" xml:space="preserve">
+    <value>_Importálási kör szerint</value>
+  </data>
+  <data name="ByRating" xml:space="preserve">
+    <value>É_rtékelés szerint</value>
+  </data>
+  <data name="CD2" xml:space="preserve">
+    <value>_CD…</value>
+  </data>
+  <data name="CDExport" xml:space="preserve">
+    <value>Exportálás CD-re</value>
+  </data>
+  <data name="Camera" xml:space="preserve">
+    <value>Fényképezőgép</value>
+  </data>
+  <data name="CanNotDeleteTagsThatHaveTagsWihinThem.PleaseDeleteTagUnderXFirst" xml:space="preserve">
+    <value>Nem lehet címkéket tartalmazó címkéket törölni. Először törölje a(z) „{0}” alatti címkéket</value>
+  </data>
+  <data name="CancelDoNotChangeTheCurrentTimeline" xml:space="preserve">
+    <value>Megszakítás, az aktuális idővonal változatlanul hagyása. </value>
+  </data>
+  <data name="CannotConnectToGalleryUnknownVersionCheckRemotePlugin" xml:space="preserve">
+    <value>Nem lehet csatlakozni az ismeretlen verziószámú galériához.
+Ellenőrizze, hogy a távoli bővítmény 1.0.8 vagy újabb verzióját használja.</value>
+  </data>
+  <data name="Captcha" xml:space="preserve">
+    <value>_Captcha:</value>
+  </data>
+  <data name="Captchaurl" xml:space="preserve">
+    <value>captcha_url</value>
+  </data>
+  <data name="Caption2" xml:space="preserve">
+    <value>Felirat</value>
+  </data>
+  <data name="ChangeBasePathURITo" xml:space="preserve">
+    <value>Az alap útvonal (URI) módosítása erre:</value>
+  </data>
+  <data name="ChangePath" xml:space="preserve">
+    <value>ChangePath</value>
+  </data>
+  <data name="ChangePathToPhotos" xml:space="preserve">
+    <value>Fényképek útvonalának módosítása</value>
+  </data>
+  <data name="ChangePhotosDirectory" xml:space="preserve">
+    <value>Fényképek könyvtár módosítása</value>
+  </data>
+  <data name="CheckBoxToRemoveImportedPhotosFromCameraAndWarning" xml:space="preserve">
+    <value>Ezt a négyzetet bejelölve az importált fényképek törlésre kerülnek a fényképezőgépről az importálás sikeres befejeződése után.
+
+Általában javasolt biztonsági másolatot készíteni fényképeiről, mielőtt törli azokat a fényképezőgépről. &lt;b&gt;Ezt a beállítást csak saját felelősségére használja!&lt;/b&gt;</value>
+  </data>
+  <data name="CheckingCredentials" xml:space="preserve">
+    <value>Hitelesítési adatok ellenőrzése…</value>
+  </data>
+  <data name="ChooseFolder" xml:space="preserve">
+    <value>Válasszon mappát…</value>
+  </data>
+  <data name="ChooseImportSource" xml:space="preserve">
+    <value>Válasszon importálási forrást…</value>
+  </data>
+  <data name="ClearDateRangeMnemonic" xml:space="preserve">
+    <value>Dátumtartomány _törlése</value>
+  </data>
+  <data name="ClearRatingFilter" xml:space="preserve">
+    <value>Értékelési s_zűrő törlése</value>
+  </data>
+  <data name="ClearRollFilter" xml:space="preserve">
+    <value>_Körszűrő törlése</value>
+  </data>
+  <data name="ClearSearch" xml:space="preserve">
+    <value>Keresés törlése</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>_Bezárás</value>
+  </data>
+  <data name="ColorProfileForDisplay" xml:space="preserve">
+    <value>Színprofil megjelenítéshez:</value>
+  </data>
+  <data name="ColorProfileForPrinting" xml:space="preserve">
+    <value>Színprofil nyomtatáshoz:</value>
+  </data>
+  <data name="CommaSpace" xml:space="preserve">
+    <value>, </value>
+  </data>
+  <data name="CompleteAuthorization" xml:space="preserve">
+    <value>Felhatalmazás befejezése</value>
+  </data>
+  <data name="Components" xml:space="preserve">
+    <value>Öss_zetevők</value>
+  </data>
+  <data name="CompressedFile" xml:space="preserve">
+    <value>Tö_mörített fájl…</value>
+  </data>
+  <data name="ConfigureScreensaver" xml:space="preserve">
+    <value>Képernyővédő beállítása</value>
+  </data>
+  <data name="Contents" xml:space="preserve">
+    <value>_Tartalom</value>
+  </data>
+  <data name="Contrast2" xml:space="preserve">
+    <value>K_ontraszt:</value>
+  </data>
+  <data name="ConvertToBW" xml:space="preserve">
+    <value>Fekete-fehérré konvertálás</value>
+  </data>
+  <data name="ConvertToBWWithControlRequiresMono22" xml:space="preserve">
+    <value>Fekete-fehérré konvertálás vezérléssel. A Mono 2.2-t igényli.</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Másolás</value>
+  </data>
+  <data name="CopyFilesToThePhotosFolder2" xml:space="preserve">
+    <value>_Fájlok másolása a Fényképek mappába</value>
+  </data>
+  <data name="CopyImagesToPhotosFolder" xml:space="preserve">
+    <value>Fájlok másolása a Fényképek mappába</value>
+  </data>
+  <data name="CopyPhoto" xml:space="preserve">
+    <value>Fénykép másolása</value>
+  </data>
+  <data name="CopyURLToClipboard" xml:space="preserve">
+    <value>URL másolása vágólapra</value>
+  </data>
+  <data name="Copying2" xml:space="preserve">
+    <value>másolás…</value>
+  </data>
+  <data name="Copyright20032010NovellInc" xml:space="preserve">
+    <value>Copyright © 2003-2010 Novell Inc.</value>
+  </data>
+  <data name="Cover" xml:space="preserve">
+    <value>Borító</value>
+  </data>
+  <data name="CoverTransition" xml:space="preserve">
+    <value>Fedőátmenet</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>_Létrehozás</value>
+  </data>
+  <data name="Create2" xml:space="preserve">
+    <value>_Létrehozás</value>
+  </data>
+  <data name="CreateAMailWithTheSelectedPhotosPossiblyResizedAttached" xml:space="preserve">
+    <value>Levél létrehozása, csatolva a kijelölt (esetleg átméretezett) fényképeket</value>
+  </data>
+  <data name="CreateANewAlbum" xml:space="preserve">
+    <value>Új album létrehozása</value>
+  </data>
+  <data name="CreateCD" xml:space="preserve">
+    <value>CD létrehozása</value>
+  </data>
+  <data name="CreateGalleryUsingOriginal" xml:space="preserve">
+    <value>Galéria létrehozása az „_Original” használatával</value>
+  </data>
+  <data name="CreateIconForThisTagWhenFirstUsed" xml:space="preserve">
+    <value>I_kon létrehozása a címkéhez annak első használatakor</value>
+  </data>
+  <data name="CreateMail" xml:space="preserve">
+    <value>Levél létrehozása</value>
+  </data>
+  <data name="CreateMail2" xml:space="preserve">
+    <value>_Levél létrehozása</value>
+  </data>
+  <data name="CreateNewTag" xml:space="preserve">
+    <value>Új címke létrehozása</value>
+  </data>
+  <data name="CreateNewTag2" xml:space="preserve">
+    <value>Új címke létrehozása…</value>
+  </data>
+  <data name="CreateNewTag3" xml:space="preserve">
+    <value>Új _címke létrehozása…</value>
+  </data>
+  <data name="CreateNewVersion" xml:space="preserve">
+    <value>Új verzió létrehozása</value>
+  </data>
+  <data name="CreateNewVersion2" xml:space="preserve">
+    <value>Létrehoz egy új verziót?</value>
+  </data>
+  <data name="CreateNewVersion3" xml:space="preserve">
+    <value>Ú_j verzió létrehozása…</value>
+  </data>
+  <data name="CreateNewVersions" xml:space="preserve">
+    <value>Létrehoz új verziókat?</value>
+  </data>
+  <data name="CreatePhotoWallUsingPictureTileByJamieZawinskiHttpWwwJwzOrgPicturetile" xml:space="preserve">
+    <value>Képfal készítése Jamie Zawinski PictureTile (http://www.jwz.org/picturetile/) programjával</value>
+  </data>
+  <data name="CreatePhotomosaic" xml:space="preserve">
+    <value>_Fényképmozaik készítése</value>
+  </data>
+  <data name="CreatePhotomosaicsUsingMetaPixelHttpWwwComplangTuwienAcAtSchaniMetapixel" xml:space="preserve">
+    <value>Fotómozaik készítése a Metapixel (http://www.complang.tuwien.ac.at/schani/metapixel/) használatával.</value>
+  </data>
+  <data name="CreatePhotowall" xml:space="preserve">
+    <value>_Képfal készítése</value>
+  </data>
+  <data name="CreateStandaloneWebGallery" xml:space="preserve">
+    <value>Önálló _webes galéria létrehozása</value>
+  </data>
+  <data name="CreatingANewAlbumFailed" xml:space="preserve">
+    <value>Az új album létrehozása meghiúsult</value>
+  </data>
+  <data name="Creator" xml:space="preserve">
+    <value>Létrehozó</value>
+  </data>
+  <data name="Crop" xml:space="preserve">
+    <value>Levágás</value>
+  </data>
+  <data name="CurrentDate" xml:space="preserve">
+    <value>Jelenlegi dátum:</value>
+  </data>
+  <data name="CurrentView" xml:space="preserve">
+    <value>Jelenlegi nézet</value>
+  </data>
+  <data name="CurrentWeekMonSun" xml:space="preserve">
+    <value>Jelenlegi hét (hé-va)</value>
+  </data>
+  <data name="CustomRatios" xml:space="preserve">
+    <value>Egyéni arányok…</value>
+  </data>
+  <data name="CustomText" xml:space="preserve">
+    <value>Egyéni szöveg</value>
+  </data>
+  <data name="CustomizedRange" xml:space="preserve">
+    <value>Egyéni tartomány</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>Sötét</value>
+  </data>
+  <data name="DatabaseLocation" xml:space="preserve">
+    <value>Adatbázis helye:</value>
+  </data>
+  <data name="DatabaseRefersToFilesContainedInXFolderPleaseSelectThatFolderSoICanDoTheMapping" xml:space="preserve">
+    <value>&lt;big&gt;Az adatbázis a(z) &lt;b&gt;{0}&lt;/b&gt; mappában lévő fájlokra hivatkozik.
+Válassza ki ezt a mappát, a társítás elvégzéséhez.&lt;/big&gt;</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Dátum</value>
+  </data>
+  <data name="Dates" xml:space="preserve">
+    <value>_Dátumok</value>
+  </data>
+  <data name="Delay" xml:space="preserve">
+    <value>Késleltetés:</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Törlés</value>
+  </data>
+  <data name="DeleteFromDrive" xml:space="preserve">
+    <value>_Törlés a lemezről</value>
+  </data>
+  <data name="DeletePhotoMnemonic" xml:space="preserve">
+    <value>_Fénykép törlése</value>
+  </data>
+  <data name="DeletePhotosMnemonic" xml:space="preserve">
+    <value>_Fénykép törlése</value>
+  </data>
+  <data name="DeleteSelectedTag" xml:space="preserve">
+    <value>Kijelölt címke _törlése</value>
+  </data>
+  <data name="DeleteTag" xml:space="preserve">
+    <value>Címke törlése</value>
+  </data>
+  <data name="DeleteTagMnemonic" xml:space="preserve">
+    <value>_Címke törlése</value>
+  </data>
+  <data name="DeleteTagXQuestion" xml:space="preserve">
+    <value>Törli a(z) „{0}” címkét?</value>
+  </data>
+  <data name="DeleteTags" xml:space="preserve">
+    <value>Címkék törlése</value>
+  </data>
+  <data name="DeleteTagsMnemonic" xml:space="preserve">
+    <value>_Címkék törlése</value>
+  </data>
+  <data name="DeleteTheSelectedPhotoPermanently" xml:space="preserve">
+    <value>Véglegesen törli a kijelölt fényképet?</value>
+  </data>
+  <data name="DeleteTheXSelectedPhotosPermanently" xml:space="preserve">
+    <value>Véglegesen törli a kijelölt {0} fényképet?</value>
+  </data>
+  <data name="DeleteTheXSelectedTagsQuestion" xml:space="preserve">
+    <value>Törli a(z) {0} kijelölt címkét?</value>
+  </data>
+  <data name="DeleteVersion" xml:space="preserve">
+    <value>Verzió _törlése</value>
+  </data>
+  <data name="Desaturate" xml:space="preserve">
+    <value>Telítetlenítés</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Leírás:</value>
+  </data>
+  <data name="Description2" xml:space="preserve">
+    <value>_Leírás:</value>
+  </data>
+  <data name="Description3" xml:space="preserve">
+    <value>_Leírás:</value>
+  </data>
+  <data name="Description4" xml:space="preserve">
+    <value>Leírás</value>
+  </data>
+  <data name="DesignIconFrom" xml:space="preserve">
+    <value>Ikon tervezése ebből</value>
+  </data>
+  <data name="DetachMnemonic" xml:space="preserve">
+    <value>_Leválasztás</value>
+  </data>
+  <data name="DetachVersion" xml:space="preserve">
+    <value>V_erzió leválasztása</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Részletek</value>
+  </data>
+  <data name="DetectDuplicates2" xml:space="preserve">
+    <value>_Duplikátumok felismerése</value>
+  </data>
+  <data name="DevelopInUFRaw" xml:space="preserve">
+    <value>Előhívás UFRaw-ban</value>
+  </data>
+  <data name="DevelopInUFRaw2" xml:space="preserve">
+    <value>Előhívás UFRaw-ban</value>
+  </data>
+  <data name="DevelopTheImageInUFRawSavesTheResultAsANewVersionNNNoteRequireUfraw013OrCVSVersionNewerThan20070906" xml:space="preserve">
+    <value>A kép előhívása az UFRaw-ban, az eredményeket új változatként menti.\n\nMegjegyzés: az ufraw 0.13 vagy 2007-09-06 utáni verzióját igényli!</value>
+  </data>
+  <data name="DevelopingPhotos" xml:space="preserve">
+    <value>Fényképek előhívása</value>
+  </data>
+  <data name="DevelopingX" xml:space="preserve">
+    <value>{0} előhívása</value>
+  </data>
+  <data name="Difference" xml:space="preserve">
+    <value>különbség:</value>
+  </data>
+  <data name="DirectoryNotFound" xml:space="preserve">
+    <value>A könyvtár nem található</value>
+  </data>
+  <data name="Display2" xml:space="preserve">
+    <value>Képernyő:</value>
+  </data>
+  <data name="DisplayASlideshowFromFSpot" xml:space="preserve">
+    <value>Diavetítés megjelenítése az F-Spotból</value>
+  </data>
+  <data name="DisplayFileNames" xml:space="preserve">
+    <value>_Fájlnevek megjelenítése</value>
+  </data>
+  <data name="DisplayOfTransparentParts" xml:space="preserve">
+    <value>Átlátszó részek megjelenítése.</value>
+  </data>
+  <data name="DisplayOnlyThosePhotosThatWereImportedInSpecifiedRolls" xml:space="preserve">
+    <value>Csak az adott körökben importált fényképek megjelenítése.</value>
+  </data>
+  <data name="Dissolve" xml:space="preserve">
+    <value>Áttűnés</value>
+  </data>
+  <data name="DissolveTransition" xml:space="preserve">
+    <value>Áttűnés átmenet</value>
+  </data>
+  <data name="DoNotSendAMail" xml:space="preserve">
+    <value>Nincs levélküldés</value>
+  </data>
+  <data name="DoYouWishTo" xml:space="preserve">
+    <value>Mit szeretne tenni:</value>
+  </data>
+  <data name="DoneSendingPhotos" xml:space="preserve">
+    <value>Fényképek küldése kész</value>
+  </data>
+  <data name="DoneSendingPhotos2" xml:space="preserve">
+    <value>Fényképek küldése kész</value>
+  </data>
+  <data name="DragTagsHereToSearchForThem" xml:space="preserve">
+    <value>Húzza ide a keresendő címkéket</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Szerkesztés</value>
+  </data>
+  <data name="Edit2" xml:space="preserve">
+    <value>S_zerkesztés</value>
+  </data>
+  <data name="EditIcon" xml:space="preserve">
+    <value>Ikon szerkesztése</value>
+  </data>
+  <data name="EditIconForTagX" xml:space="preserve">
+    <value>{0} címke ikonjának szerkesztése</value>
+  </data>
+  <data name="EditImage" xml:space="preserve">
+    <value>Kép szerkesztése</value>
+  </data>
+  <data name="EditTag" xml:space="preserve">
+    <value>Címke szerkesztése…</value>
+  </data>
+  <data name="EditTag2" xml:space="preserve">
+    <value>Címke szerkesztése</value>
+  </data>
+  <data name="EditTag3" xml:space="preserve">
+    <value>_Címke szerkesztése…</value>
+  </data>
+  <data name="EditTagIcon" xml:space="preserve">
+    <value>Címke ikonjának szerkesztése</value>
+  </data>
+  <data name="Editors" xml:space="preserve">
+    <value>Szerkesztők</value>
+  </data>
+  <data name="EightByTen" xml:space="preserve">
+    <value>8 × 10</value>
+  </data>
+  <data name="EnableThisToAllowInterpolationOnZoomedImages" xml:space="preserve">
+    <value>A nagyított képek interpolációjának engedélyezése.</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Hiba</value>
+  </data>
+  <data name="ErrorCopyingXToGalleryZY" xml:space="preserve">
+    <value>Hiba a(z) „{0}” galériába másolásakor: {2}{1}</value>
+  </data>
+  <data name="ErrorDeletingPicture" xml:space="preserve">
+    <value>Hiba a kép törlése közben</value>
+  </data>
+  <data name="ErrorEditingPhoto" xml:space="preserve">
+    <value>Hiba a fénykép szerkesztése közben</value>
+  </data>
+  <data name="ErrorLoadingDatabase" xml:space="preserve">
+    <value>Hiba az adatbázis betöltése közben.</value>
+  </data>
+  <data name="ErrorLoggingIntoFacebook" xml:space="preserve">
+    <value>Hiba a Facebookba való belépés közben</value>
+  </data>
+  <data name="ErrorOpeningTheSelectedFile" xml:space="preserve">
+    <value>Hiba a kijelölt fájl megnyitásakor</value>
+  </data>
+  <data name="ErrorProcessingImage" xml:space="preserve">
+    <value>Hiba a kép feldolgozásakor</value>
+  </data>
+  <data name="ErrorReadingServerResponse" xml:space="preserve">
+    <value>Hiba a kiszolgáló válaszának olvasásakor</value>
+  </data>
+  <data name="ErrorRenamingTag" xml:space="preserve">
+    <value>Hiba a címke átnevezése közben</value>
+  </data>
+  <data name="ErrorSavingAdjustedPhoto" xml:space="preserve">
+    <value>Hiba a módosított fénykép mentése közben</value>
+  </data>
+  <data name="ErrorSavingAdjustedPhotos" xml:space="preserve">
+    <value>Hiba a módosított fényképek mentése közben</value>
+  </data>
+  <data name="ErrorSavingSharpenedPhoto" xml:space="preserve">
+    <value>Hiba az élesített fénykép mentése közben</value>
+  </data>
+  <data name="ErrorTransferring" xml:space="preserve">
+    <value>Átviteli hiba</value>
+  </data>
+  <data name="ErrorUploadingPictureXToGalleryColonY" xml:space="preserve">
+    <value>Hiba a kép („{0}”) ezen galériába való feltöltésekor: {1}</value>
+  </data>
+  <data name="ErrorUploadingToFacebookX" xml:space="preserve">
+    <value>Hiba a Facebookba való feltöltés közben: {0}</value>
+  </data>
+  <data name="ErrorUploadingToGalleryX" xml:space="preserve">
+    <value>Hiba a galériába való feltöltés közben: {0}</value>
+  </data>
+  <data name="ErrorUploadingToTabblo" xml:space="preserve">
+    <value>Hiba a Tabbloba való feltöltés közben: </value>
+  </data>
+  <data name="ErrorUploadingToXColonY" xml:space="preserve">
+    <value>Hiba a(z) {0} helyre feltöltés közben: {1}</value>
+  </data>
+  <data name="ErrorWhileConnectingToGallery" xml:space="preserve">
+    <value>Hiba a galériához való kapcsolódás közben</value>
+  </data>
+  <data name="ErrorWhileCreatingAlbum" xml:space="preserve">
+    <value>Hiba az album létrehozásakor</value>
+  </data>
+  <data name="ErrorWhileCreatingNewAlbum" xml:space="preserve">
+    <value>Hiba az új album létrehozásakor</value>
+  </data>
+  <data name="ErrorWhileRotatingPhoto" xml:space="preserve">
+    <value>Hiba a fénykép forgatása közben.</value>
+  </data>
+  <data name="ErrorWhileTransferring" xml:space="preserve">
+    <value>Átviteli hiba</value>
+  </data>
+  <data name="EstimatedNewSize" xml:space="preserve">
+    <value>Becsült új méret</value>
+  </data>
+  <data name="Events" xml:space="preserve">
+    <value>Események</value>
+  </data>
+  <data name="Everything" xml:space="preserve">
+    <value>Minden</value>
+  </data>
+  <data name="ExcludePhotosTaggedX" xml:space="preserve">
+    <value>„{0}” címkéjű fényképek kihagyása</value>
+  </data>
+  <data name="ExitFullscreen" xml:space="preserve">
+    <value>Kilépés a teljes képernyőből</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Exportálás</value>
+  </data>
+  <data name="Export2" xml:space="preserve">
+    <value>_Exportálás</value>
+  </data>
+  <data name="ExportComplete" xml:space="preserve">
+    <value>Exportálás kész.</value>
+  </data>
+  <data name="ExportPicturesToFacebook" xml:space="preserve">
+    <value>Képek exportálása a Facebookra</value>
+  </data>
+  <data name="ExportTagHierarchy" xml:space="preserve">
+    <value>Címkehierarchia ex_portálása</value>
+  </data>
+  <data name="ExportTagIcons" xml:space="preserve">
+    <value>Címkei_konok exportálása</value>
+  </data>
+  <data name="ExportTags" xml:space="preserve">
+    <value>Címkék ex_portálása</value>
+  </data>
+  <data name="ExportTags2" xml:space="preserve">
+    <value>Címkék ex_portálása</value>
+  </data>
+  <data name="ExportTitlesAndComments2" xml:space="preserve">
+    <value>Címek és _megjegyzések exportálása</value>
+  </data>
+  <data name="ExportTo" xml:space="preserve">
+    <value>Exportálás:</value>
+  </data>
+  <data name="ExportTo2" xml:space="preserve">
+    <value>E_xportálás</value>
+  </data>
+  <data name="ExportToAlbum" xml:space="preserve">
+    <value>E_xportálás ebbe az albumba:</value>
+  </data>
+  <data name="ExportToFacebook" xml:space="preserve">
+    <value>Exportálás Facebookba</value>
+  </data>
+  <data name="ExportingFiles" xml:space="preserve">
+    <value>Fájlok exportálása</value>
+  </data>
+  <data name="ExportingPhotoX" xml:space="preserve">
+    <value>„{0}” kép exportálása</value>
+  </data>
+  <data name="ExportingPhotos" xml:space="preserve">
+    <value>Fényképek exportálása</value>
+  </data>
+  <data name="ExportingPhotosCompleted2" xml:space="preserve">
+    <value>Fényképek exportálása kész.</value>
+  </data>
+  <data name="ExportingX" xml:space="preserve">
+    <value>„{0}” exportálása…</value>
+  </data>
+  <data name="Exposure" xml:space="preserve">
+    <value>Expozíció</value>
+  </data>
+  <data name="Exposure2" xml:space="preserve">
+    <value>E_xpozíció:</value>
+  </data>
+  <data name="ExtendedMetadata" xml:space="preserve">
+    <value>Kiterjesztett metaadatok</value>
+  </data>
+  <data name="ExtraLarge" xml:space="preserve">
+    <value>Extra nagy</value>
+  </data>
+  <data name="FSpot" xml:space="preserve">
+    <value>F-Spot</value>
+  </data>
+  <data name="FSpotAppearance" xml:space="preserve">
+    <value>F-Spot megjelenése:</value>
+  </data>
+  <data name="FSpotEncounteredAnErrorWhileLoadingThePhotoDatabaseTheOldDatabaseHasBeMovedToXAndANewDatabaseHasBeenCreated" xml:space="preserve">
+    <value>Az F-Spot hibát észlelt a fényképadatbázis betöltése közben. A régi adatbázis áthelyezésre került ide: {0} és egy új adatbázis került létrehozásra.</value>
+  </data>
+  <data name="FSpotGallery" xml:space="preserve">
+    <value>F-Spot galéria</value>
+  </data>
+  <data name="FSpotLiveWebGallery" xml:space="preserve">
+    <value>F-Spot élő webes galéria</value>
+  </data>
+  <data name="FSpotNeedsYourAuthorizationInOrderToUploadPhotosToYourXAccountPressTheAuthorizeButtonToOpenAWebBrowserAndGiveFSpotTheAuthorization" xml:space="preserve">
+    <value>Az F-Spot az Ön felhatalmazását igényli a fényképek feltöltéséhez az Ön {0}felhasználói fiókjába. Nyomja meg a „Felhatalmazás” gombot egy böngésző megnyitásához és a felhatalmazás megadásához. </value>
+  </data>
+  <data name="FSpotPhotoManager" xml:space="preserve">
+    <value>F-Spot fotókezelő</value>
+  </data>
+  <data name="FSpotPhotoViewer" xml:space="preserve">
+    <value>F-Spot fotómegjelenítő</value>
+  </data>
+  <data name="FSpotPhotos" xml:space="preserve">
+    <value>F-Spot fényképek</value>
+  </data>
+  <data name="FSpotPreferences" xml:space="preserve">
+    <value>F-Spot beállításai</value>
+  </data>
+  <data name="FSpotView" xml:space="preserve">
+    <value>F-Spot nézet</value>
+  </data>
+  <data name="FSpotWasUnableToLogOnToXMakeSureYouHaveGivenTheAuthUsingXWebBrowser" xml:space="preserve">
+    <value>Az F-Spot nem tudott bejelentkezni a(z) {0} helyre. Győződjön meg, hogy megadta a felhatalmazást a(z) {0} webböngésző felületének használatával.</value>
+  </data>
+  <data name="FSpotWebsite" xml:space="preserve">
+    <value>F-Spot honlap</value>
+  </data>
+  <data name="FSpotWillNowLaunchYourBrowserSoThatYouCanEnableThePermissionYouJustSelectedOnceYouAreDirectedByFacebookToReturnToThisApplicationClickOkBelow" xml:space="preserve">
+    <value>Az F-Spot most elindítja a böngészőjét, így engedélyezheti a kiválasztott jogosultságot.
+
+Miután a Facebook visszairányította ehhez az alkalmazáshoz, kattintson az „OK” gombra.</value>
+  </data>
+  <data name="FSpotWillNowLaunchYourBrowserSoThatYouCanLogIntoFacebookOnceYouAreDirectedByFacebookToReturnToThisApplicationClickOkBelowFSpotWillCacheYourSessionInGnomeKeyringIfPossibleAndReUseItOnFutureFacebookExports" xml:space="preserve">
+    <value>Az F-Spot most elindítja a böngészőjét, így beléphet a Facebookra.
+
+Miután a Facebook visszairányította ehhez az alkalmazáshoz, kattintson az „OK” gombra. Az F-Spot lehetőség szerint elmenti a munkamenetét a Gnome kulcstartóra és későbbi Facebook exportálásokkor újra felhasználja.</value>
+  </data>
+  <data name="Facebook" xml:space="preserve">
+    <value>F_acebook…</value>
+  </data>
+  <data name="FacebookConnectionError" xml:space="preserve">
+    <value>Facebook kapcsolódási hiba</value>
+  </data>
+  <data name="FacebookExport" xml:space="preserve">
+    <value>Facebook exportálás</value>
+  </data>
+  <data name="FacebookOnlyPermitsXPhotographsPerAlbumPleaseRefineYourSelectionAndTryAgain" xml:space="preserve">
+    <value>A Facebook albumonként csak {0} fényképet engedélyez. Finomítsa a kiválasztást, és próbálja újra.</value>
+  </data>
+  <data name="Favorites" xml:space="preserve">
+    <value>Kedvencek</value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>_Fájlnév:</value>
+  </data>
+  <data name="FileNotFonud" xml:space="preserve">
+    <value>A fájl nem található</value>
+  </data>
+  <data name="FileSize" xml:space="preserve">
+    <value>Fájlméret</value>
+  </data>
+  <data name="Filesystem" xml:space="preserve">
+    <value>Fájlrendszer</value>
+  </data>
+  <data name="Fill" xml:space="preserve">
+    <value>Kitöltés</value>
+  </data>
+  <data name="Filmstrip" xml:space="preserve">
+    <value>_Filmtekercs</value>
+  </data>
+  <data name="FilterOnSelectedRolls" xml:space="preserve">
+    <value>Szűrés kiválasztott körök alapján</value>
+  </data>
+  <data name="Find" xml:space="preserve">
+    <value>Keresés</value>
+  </data>
+  <data name="Find2" xml:space="preserve">
+    <value>Keresés:</value>
+  </data>
+  <data name="Find3" xml:space="preserve">
+    <value>_Keresés</value>
+  </data>
+  <data name="FindColon" xml:space="preserve">
+    <value>Keresés: </value>
+  </data>
+  <data name="FindSelectedTagMnemonic" xml:space="preserve">
+    <value>Kijelölt _címke keresése</value>
+  </data>
+  <data name="FindSelectedTagWithMnemonic" xml:space="preserve">
+    <value>Kijelölt címke _keresése ezzel</value>
+  </data>
+  <data name="FindSelectedTagsMnemonic" xml:space="preserve">
+    <value>Kijelölt _címkék keresése</value>
+  </data>
+  <data name="FindSelectedTagsWithMnemonic" xml:space="preserve">
+    <value>Kijelölt címkék _keresése ezzel</value>
+  </data>
+  <data name="FindWithMnemonic" xml:space="preserve">
+    <value>Keresés _ezzel</value>
+  </data>
+  <data name="FiveBySevenL2L" xml:space="preserve">
+    <value>5 x 7 (L, 2L)</value>
+  </data>
+  <data name="FixExclamation" xml:space="preserve">
+    <value>Javítás!</value>
+  </data>
+  <data name="FlashDidntFire" xml:space="preserve">
+    <value>Nem volt vakuvillanás</value>
+  </data>
+  <data name="Flashfired" xml:space="preserve">
+    <value>Vakuvillanás</value>
+  </data>
+  <data name="Flickr2" xml:space="preserve">
+    <value>_Flickr…</value>
+  </data>
+  <data name="FlickrExport" xml:space="preserve">
+    <value>Flickr exportálás</value>
+  </data>
+  <data name="Flip" xml:space="preserve">
+    <value>Tükrözés</value>
+  </data>
+  <data name="FlipEditor" xml:space="preserve">
+    <value>Tükrözés</value>
+  </data>
+  <data name="FlipsTheImageHorizontally" xml:space="preserve">
+    <value>A képet vízszintesen tükrözi</value>
+  </data>
+  <data name="FocalLength" xml:space="preserve">
+    <value>Fokális hossz</value>
+  </data>
+  <data name="Folder" xml:space="preserve">
+    <value>Mappa</value>
+  </data>
+  <data name="Folder3" xml:space="preserve">
+    <value>_Mappa…</value>
+  </data>
+  <data name="Folder4" xml:space="preserve">
+    <value>_Mappa:</value>
+  </data>
+  <data name="FolderExport" xml:space="preserve">
+    <value>Exportálás mappába</value>
+  </data>
+  <data name="Folders" xml:space="preserve">
+    <value>Mappák</value>
+  </data>
+  <data name="FollowingErrorEncounteredAttemptingToPerformRequestedOperation" xml:space="preserve">
+    <value>A következő hiba történt a kért művelet végrehajtására tett kísérlet közben:
+{0} ({1})</value>
+  </data>
+  <data name="FollowingErrorWasEncounteredAttemptingToLogInX" xml:space="preserve">
+    <value>A következő hiba történt a bejelentkezési kísérlet közben: {0}</value>
+  </data>
+  <data name="FourBySixPostcard" xml:space="preserve">
+    <value>4 × 6 (képeslap)</value>
+  </data>
+  <data name="FourByThreeBook" xml:space="preserve">
+    <value>4 x 3 (könyv)</value>
+  </data>
+  <data name="FullPageNomargin" xml:space="preserve">
+    <value>Teljes oldal (nincs margó)</value>
+  </data>
+  <data name="Fullscreen" xml:space="preserve">
+    <value>Teljes képernyő</value>
+  </data>
+  <data name="Fullscreen2" xml:space="preserve">
+    <value>_Teljes képernyő</value>
+  </data>
+  <data name="Gallery" xml:space="preserve">
+    <value>Galéria</value>
+  </data>
+  <data name="Gallery5" xml:space="preserve">
+    <value>_Galéria:</value>
+  </data>
+  <data name="GalleryExport" xml:space="preserve">
+    <value>Exportálás galériába</value>
+  </data>
+  <data name="GalleryGeneratedBy" xml:space="preserve">
+    <value>A galériát létrehozta:</value>
+  </data>
+  <data name="GalleryIsInactive" xml:space="preserve">
+    <value>A galéria inaktív</value>
+  </data>
+  <data name="GalleryName" xml:space="preserve">
+    <value>G_aléria neve:</value>
+  </data>
+  <data name="GalleryName2" xml:space="preserve">
+    <value>Galéria _neve:</value>
+  </data>
+  <data name="GalleryURL" xml:space="preserve">
+    <value>Galéria URL:</value>
+  </data>
+  <data name="GalleryWithThisNameAlreadyExists" xml:space="preserve">
+    <value>Már létezik ilyen nevű galéria</value>
+  </data>
+  <data name="GalleryXPhotosYLastClient3" xml:space="preserve">
+    <value> Galéria: {0},  fényképek: {1},  utolsó kliens: {3}</value>
+  </data>
+  <data name="HeightOfTheImportDialog" xml:space="preserve">
+    <value>Az importálás ablak magassága.</value>
+  </data>
+  <data name="HeightOfTheMainWindow" xml:space="preserve">
+    <value>A fő ablak magassága.</value>
+  </data>
+  <data name="HeightOfThePhotoViewerWindow" xml:space="preserve">
+    <value>A fénykép-megjelenítő ablak magassága.</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>_Súgó</value>
+  </data>
+  <data name="Hidden" xml:space="preserve">
+    <value>Rejtett</value>
+  </data>
+  <data name="Hidden2" xml:space="preserve">
+    <value>_Rejtett</value>
+  </data>
+  <data name="Hide" xml:space="preserve">
+    <value>Elrejtés</value>
+  </data>
+  <data name="HideFindBarMnemonic" xml:space="preserve">
+    <value>K_eresősáv elrejtése</value>
+  </data>
+  <data name="HideStyles" xml:space="preserve">
+    <value>Stílusok elrejtése</value>
+  </data>
+  <data name="HideToolbar" xml:space="preserve">
+    <value>Eszköztár elrejtése</value>
+  </data>
+  <data name="Histogram" xml:space="preserve">
+    <value>Hisztogram</value>
+  </data>
+  <data name="HorizontalMnemonic" xml:space="preserve">
+    <value>Ví_zszintes</value>
+  </data>
+  <data name="Hue" xml:space="preserve">
+    <value>Á_rnyalat:</value>
+  </data>
+  <data name="Icon" xml:space="preserve">
+    <value>_Ikon:</value>
+  </data>
+  <data name="IfTheTransparencyOptionIsSetTheColorSpecifiedInThisOptionWillBeUsedAsTheTransparentColorWhenViewingImages" xml:space="preserve">
+    <value>Ha a „transparency” beállítás engedélyezett, akkor az itt megadott szín kerül felhasználásra átlátszó színként képek megjelenítésekor.</value>
+  </data>
+  <data name="IfYouDeleteThisTagTheAssociationWithXYWillBeLost" xml:space="preserve">
+    <value>Ha törli a címkét, akkor annak kapcsolata elvész {0} {1}.</value>
+  </data>
+  <data name="IfYouDeleteThisTagsTheAssociationWithXYWillBeLost" xml:space="preserve">
+    <value>Ha törli a címkét, akkor annak kapcsolata elvész {0} {1}.</value>
+  </data>
+  <data name="IfYouRemovePhotosFromFSpotCatalogAllTagInfoLost" xml:space="preserve">
+    <value>Ha eltávolítja a fényképet az F-Spot katalógusból, minden címkeinformáció elvész. A fényképek megmaradnak a számítógépén és később újra importálhatóak lesznek az F-Spotba.</value>
+  </data>
+  <data name="IgnoreTopLevelTags" xml:space="preserve">
+    <value>_Felső szintű címkék figyelmen kívül hagyása</value>
+  </data>
+  <data name="ImageInformation" xml:space="preserve">
+    <value>Képinformációk</value>
+  </data>
+  <data name="ImageInformation2" xml:space="preserve">
+    <value>Képinformációk</value>
+  </data>
+  <data name="ImageSettings" xml:space="preserve">
+    <value>Képbeállítások</value>
+  </data>
+  <data name="ImagesTaggedWith" xml:space="preserve">
+    <value>Képek ezen címkével:</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Importálás</value>
+  </data>
+  <data name="Import2" xml:space="preserve">
+    <value>_Importálás…</value>
+  </data>
+  <data name="Import3" xml:space="preserve">
+    <value>Importálás:</value>
+  </data>
+  <data name="Import4" xml:space="preserve">
+    <value>_Importálás</value>
+  </data>
+  <data name="ImportFailures2" xml:space="preserve">
+    <value>Importálási hibák</value>
+  </data>
+  <data name="ImportFrom2" xml:space="preserve">
+    <value>_Importálás innen:</value>
+  </data>
+  <data name="ImportIntoFSpot" xml:space="preserve">
+    <value>Importálás az F-Spotba</value>
+  </data>
+  <data name="ImportNewImages" xml:space="preserve">
+    <value>Új képek importálása</value>
+  </data>
+  <data name="ImportPhotosXOfY" xml:space="preserve">
+    <value>Fényképek importálása: {1}/{0}…</value>
+  </data>
+  <data name="ImportRoll" xml:space="preserve">
+    <value>Importálási kör</value>
+  </data>
+  <data name="ImportedTags" xml:space="preserve">
+    <value>Importált címkék</value>
+  </data>
+  <data name="ImportingPhotos" xml:space="preserve">
+    <value>Fényképek exportálása…</value>
+  </data>
+  <data name="InThisPhoto" xml:space="preserve">
+    <value>A fényképen</value>
+  </data>
+  <data name="IncludePhotoTaggedX" xml:space="preserve">
+    <value>„{0}” címkéjű fényképek felvétele</value>
+  </data>
+  <data name="IncludeSubfolders2" xml:space="preserve">
+    <value>Al_mappákkal együtt</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>Index</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Információk</value>
+  </data>
+  <data name="InsideTheImageFilesWhenPossibleSmallMakesThemAccessibleToOtherImageEditingProgramsSmall" xml:space="preserve">
+    <value>Ha lehet, a képfájlokon belül
+&lt;small&gt;Elérhetővé teszi más képszerkesztő programoknak.&lt;/small&gt;</value>
+  </data>
+  <data name="InterpolateImageOnZoom" xml:space="preserve">
+    <value>Ké_p interpolációja nagyításkor</value>
+  </data>
+  <data name="InterpolateImageOnZoom2" xml:space="preserve">
+    <value>Kép interpolációja nagyításkor.</value>
+  </data>
+  <data name="InvalidGalleryName" xml:space="preserve">
+    <value>Érvénytelen galérianév</value>
+  </data>
+  <data name="InvalidUrl" xml:space="preserve">
+    <value>Érvénytelen URL</value>
+  </data>
+  <data name="InvertSelection" xml:space="preserve">
+    <value>Kijelölés megf_ordítása</value>
+  </data>
+  <data name="KeepTheImagesAtTheirOriginalLocation" xml:space="preserve">
+    <value>A képek megtartása az eredeti helyükön</value>
+  </data>
+  <data name="Label" xml:space="preserve">
+    <value>Címke</value>
+  </data>
+  <data name="Large" xml:space="preserve">
+    <value>Nagy</value>
+  </data>
+  <data name="Large2" xml:space="preserve">
+    <value>_Nagy</value>
+  </data>
+  <data name="LastImportRoll" xml:space="preserve">
+    <value>_Utolsó importálási kör</value>
+  </data>
+  <data name="LastNintyDays" xml:space="preserve">
+    <value>Elmúlt 90 nap</value>
+  </data>
+  <data name="LastSevenDays" xml:space="preserve">
+    <value>Elmúlt 7 nap</value>
+  </data>
+  <data name="LastThirtyDays" xml:space="preserve">
+    <value>Elmúlt 30 nap</value>
+  </data>
+  <data name="LastThreeHundredSixtyDays" xml:space="preserve">
+    <value>Elmúlt 360 nap</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>Világos</value>
+  </data>
+  <data name="LimitNumberOfSharedPhotosTo" xml:space="preserve">
+    <value>Megosztott fényképek számának korlátozása</value>
+  </data>
+  <data name="LiteralAnd" xml:space="preserve">
+    <value> és </value>
+  </data>
+  <data name="LiteralOr" xml:space="preserve">
+    <value> vagy </value>
+  </data>
+  <data name="LiveWebGallery" xml:space="preserve">
+    <value>Élő webes galéria</value>
+  </data>
+  <data name="LiveWebGallery2" xml:space="preserve">
+    <value>Élő webes galéria</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Hely</value>
+  </data>
+  <data name="Location2" xml:space="preserve">
+    <value>_Hely:</value>
+  </data>
+  <data name="LoggingIntoTabblo" xml:space="preserve">
+    <value>Bejelentkezés a Tabblora</value>
+  </data>
+  <data name="LoggingIntoX" xml:space="preserve">
+    <value>Bejelentkezés a következőre: {0}</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Bejelentkezés</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Kijelentkezés</value>
+  </data>
+  <data name="Loupe" xml:space="preserve">
+    <value>_Nagyító</value>
+  </data>
+  <data name="MakeFSpotMyScreensaver" xml:space="preserve">
+    <value>Az F-Spot legyen a képernyővédő</value>
+  </data>
+  <data name="ManageExtensions" xml:space="preserve">
+    <value>_Kiterjesztések kezelése</value>
+  </data>
+  <data name="ManageYourCustomSelectionRatios" xml:space="preserve">
+    <value>Egyéni kiválasztási arányok kezelése</value>
+  </data>
+  <data name="MaximizeTheMainWindow" xml:space="preserve">
+    <value>Főablak maximalizálása.</value>
+  </data>
+  <data name="MaximizeThePhotoViewerWindow" xml:space="preserve">
+    <value>Fénykép-megjelenítő ablak maximalizálása.</value>
+  </data>
+  <data name="Medium" xml:space="preserve">
+    <value>Közepes</value>
+  </data>
+  <data name="Medium2" xml:space="preserve">
+    <value>_Közepes</value>
+  </data>
+  <data name="MergeAnotherDbBackToTheMainOne" xml:space="preserve">
+    <value>Másik F-Spot gyűjtemény összefésülése az elsődlegessel</value>
+  </data>
+  <data name="MergeAnotherFSpotCollection" xml:space="preserve">
+    <value>Másik F-Spot gyűjtemény összefésülése</value>
+  </data>
+  <data name="MergeDb" xml:space="preserve">
+    <value>Adatbázis-egyesítés</value>
+  </data>
+  <data name="MergeDb2" xml:space="preserve">
+    <value>Gyűjteményegyesítés</value>
+  </data>
+  <data name="MergeRAWJpegAsMultipleVersionsOfTheSamePhoto" xml:space="preserve">
+    <value>RAW+Jpeg egyesítése ugyanazon kép több változataként</value>
+  </data>
+  <data name="MergeRaw" xml:space="preserve">
+    <value>Raw összefésülése</value>
+  </data>
+  <data name="MergeTags" xml:space="preserve">
+    <value>Címkék összefésülése</value>
+  </data>
+  <data name="MergeTagsMnemonic" xml:space="preserve">
+    <value>_Címkék összefésülése</value>
+  </data>
+  <data name="MergeTheSelectedTag" xml:space="preserve">
+    <value>Összefésüli a kijelölt címkét?</value>
+  </data>
+  <data name="MergeTheSelectedTags" xml:space="preserve">
+    <value>Összefésüli a kijelölt {0} címkét?</value>
+  </data>
+  <data name="MetaPixel" xml:space="preserve">
+    <value>MetaPixel</value>
+  </data>
+  <data name="Metadata" xml:space="preserve">
+    <value>Metaadatok</value>
+  </data>
+  <data name="MinStartingAtX" xml:space="preserve">
+    <value>perc. Kezdve a következőnél: {0}</value>
+  </data>
+  <data name="Modified" xml:space="preserve">
+    <value>Módosított</value>
+  </data>
+  <data name="ModifiedInY" xml:space="preserve">
+    <value>Módosítva ekkor: {1}</value>
+  </data>
+  <data name="ModifiedInYX" xml:space="preserve">
+    <value>Módosítva ekkor: {1} ({0})</value>
+  </data>
+  <data name="ModifiedX" xml:space="preserve">
+    <value>Módosított ({0})</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>További</value>
+  </data>
+  <data name="MoreDates" xml:space="preserve">
+    <value>További dátumok</value>
+  </data>
+  <data name="MyPhotos" xml:space="preserve">
+    <value>Fényképeim</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Név</value>
+  </data>
+  <data name="NameColon" xml:space="preserve">
+    <value>Név:</value>
+  </data>
+  <data name="NameOfNewTagColon" xml:space="preserve">
+    <value>Az új címke neve:</value>
+  </data>
+  <data name="NeverModifyImageFilesSmallWriteXMPFilesNextToTheImagesInsteadSmall" xml:space="preserve">
+    <value>Soha ne módosítsa a képfájlokat.
+&lt;small&gt;Ehelyett írjon XMP fájlokat a képek mellé.&lt;/small&gt;</value>
+  </data>
+  <data name="NewNameColon" xml:space="preserve">
+    <value>Új név:</value>
+  </data>
+  <data name="NewRollsOnly" xml:space="preserve">
+    <value>Csak az új körök</value>
+  </data>
+  <data name="NewSelection" xml:space="preserve">
+    <value>Új kijelölés</value>
+  </data>
+  <data name="NewWindow" xml:space="preserve">
+    <value>Új _ablak</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Következő</value>
+  </data>
+  <data name="NextPhoto" xml:space="preserve">
+    <value>Következő fénykép</value>
+  </data>
+  <data name="NextPicture" xml:space="preserve">
+    <value>Következő kép</value>
+  </data>
+  <data name="NoAccountSelected" xml:space="preserve">
+    <value>Nincs fiók kijelölve</value>
+  </data>
+  <data name="NoActivePhoto" xml:space="preserve">
+    <value>Nincs aktív fénykép</value>
+  </data>
+  <data name="NoApplicationsAvailable" xml:space="preserve">
+    <value>Nem állnak rendelkezésre alkalmazások</value>
+  </data>
+  <data name="NoCamerasDetected" xml:space="preserve">
+    <value>(Nem találhatók fényképezőgépek)</value>
+  </data>
+  <data name="NoConstraint" xml:space="preserve">
+    <value>Nincs megszorítás</value>
+  </data>
+  <data name="NoImage" xml:space="preserve">
+    <value>Nincs _kép</value>
+  </data>
+  <data name="NoMatchingPhotosFound" xml:space="preserve">
+    <value>Nem találhatók illeszkedő fényképek</value>
+  </data>
+  <data name="NoMetadataAvailable" xml:space="preserve">
+    <value>Nem érhetőek el metaadatok</value>
+  </data>
+  <data name="NoPermissionToDeleteTheFile" xml:space="preserve">
+    <value>Nincs jogosultsága a következő fájl törléséhez: {1}{0}</value>
+  </data>
+  <data name="NoPhotosMatchingFound" xml:space="preserve">
+    <value>Nem találhatóak a következőre illeszkedő fényképek: {0}</value>
+  </data>
+  <data name="NoSelectionAvailable" xml:space="preserve">
+    <value>Nem áll rendelkezésre kijelölés</value>
+  </data>
+  <data name="NoTagAppliedToAppliedTryAddingorSelectingDifferentTagInPreferenceDialog" xml:space="preserve">
+    <value>A(z) „{0}” címke nem került alkalmazásra minden fényképre. Próbálja
+hozzáadni a címkét néhány fényképhez, vagy válasszon másik címkét az
+F-Spot beállításablakában.</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>Nincs</value>
+  </data>
+  <data name="None2" xml:space="preserve">
+    <value>nincs</value>
+  </data>
+  <data name="NotLoggedIn" xml:space="preserve">
+    <value>Nincs bejelentkezve</value>
+  </data>
+  <data name="NotSpaceX" xml:space="preserve">
+    <value>Nem {0}</value>
+  </data>
+  <data name="NumberOfPhotosInSelectedRolls" xml:space="preserve">
+    <value>Fényképek száma a kijelölt körökben:</value>
+  </data>
+  <data name="NumberOfPictures" xml:space="preserve">
+    <value>Képek száma</value>
+  </data>
+  <data name="ObtainingURLForUpload" xml:space="preserve">
+    <value>A feltöltési URL lekérése</value>
+  </data>
+  <data name="OkMnemonic" xml:space="preserve">
+    <value>_OK</value>
+  </data>
+  <data name="OldBasePathURIWas" xml:space="preserve">
+    <value>A régi alap útvonal (URI):</value>
+  </data>
+  <data name="OnXBetweenYAndZ" xml:space="preserve">
+    <value>{0} napon,
+{1} és {2} között</value>
+  </data>
+  <data name="OnlyPhotosTakenWithinTheseDatesWillBeDisplayed" xml:space="preserve">
+    <value>Csak az ezen dátumok között készített fényképek kerülnek megjelenítésre.</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Megnyitás</value>
+  </data>
+  <data name="OpenAlbumInBrowserWhenDoneUploading2" xml:space="preserve">
+    <value>Az album megnyitása böngészőben a feltöltés _befejezésekor</value>
+  </data>
+  <data name="OpenDestinationWhenDoneExporting" xml:space="preserve">
+    <value>_Cél megnyitása az exportálás befejezésekor</value>
+  </data>
+  <data name="OpenFolder" xml:space="preserve">
+    <value>_Mappa megnyitása…</value>
+  </data>
+  <data name="OpenWith" xml:space="preserve">
+    <value>Megnyitás _ezzel</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>Beállítások:</value>
+  </data>
+  <data name="Or" xml:space="preserve">
+    <value>vagy</value>
+  </data>
+  <data name="OrganizeEnjoyAndShareYourPhotos" xml:space="preserve">
+    <value>Fényképek rendszerezése, megjelenítése és megosztása</value>
+  </data>
+  <data name="Original" xml:space="preserve">
+    <value>Eredeti</value>
+  </data>
+  <data name="OriginalSizePossibleVeryLargeFileSize" xml:space="preserve">
+    <value>Eredeti méret (előfordulhat nagyon nagy fájlméret)</value>
+  </data>
+  <data name="PageColon" xml:space="preserve">
+    <value>Oldal:</value>
+  </data>
+  <data name="PageSetup" xml:space="preserve">
+    <value>Oldalbeállítás</value>
+  </data>
+  <data name="PageSetup2" xml:space="preserve">
+    <value>_Oldalbeállítás…</value>
+  </data>
+  <data name="PaperSizeXxYmm" xml:space="preserve">
+    <value>Papírméret: {0} x {1} mm</value>
+  </data>
+  <data name="ParenFileReadErrorParen" xml:space="preserve">
+    <value>(Fájlolvasási hiba)</value>
+  </data>
+  <data name="ParenNoAlbumsParen" xml:space="preserve">
+    <value>(Nincsenek albumok)</value>
+  </data>
+  <data name="ParenNoEditsParen" xml:space="preserve">
+    <value>(nincs módosítás)</value>
+  </data>
+  <data name="ParenNoGalleryParen" xml:space="preserve">
+    <value>(Nincs galéria)</value>
+  </data>
+  <data name="ParenNoTagsParen" xml:space="preserve">
+    <value>(nincsenek címkék)</value>
+  </data>
+  <data name="ParenNoneParen" xml:space="preserve">
+    <value>(Nincs)</value>
+  </data>
+  <data name="ParenNotConnectedParen" xml:space="preserve">
+    <value>(Nincs kapcsolat)</value>
+  </data>
+  <data name="ParenOneEditParen" xml:space="preserve">
+    <value>(egy módosítás)</value>
+  </data>
+  <data name="ParenTopLevelParen" xml:space="preserve">
+    <value>(Felsőszintű)</value>
+  </data>
+  <data name="ParenUnknownParen" xml:space="preserve">
+    <value>(Ismeretlen)</value>
+  </data>
+  <data name="ParenXEditsParen" xml:space="preserve">
+    <value>({0} módosítás)</value>
+  </data>
+  <data name="ParentAlbum" xml:space="preserve">
+    <value>S_zülőalbum:</value>
+  </data>
+  <data name="ParentTag" xml:space="preserve">
+    <value>Szülőcí_mke:</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>_Jelszó:</value>
+  </data>
+  <data name="PathToCustomGtkrcForThemingFSpot" xml:space="preserve">
+    <value>Az F-Spot témájához használandó egyéni gtkrc útvonala.</value>
+  </data>
+  <data name="People" xml:space="preserve">
+    <value>Emberek</value>
+  </data>
+  <data name="Permissions" xml:space="preserve">
+    <value>Jogosultságok:</value>
+  </data>
+  <data name="Photo2" xml:space="preserve">
+    <value>fényképpel</value>
+  </data>
+  <data name="Photo3" xml:space="preserve">
+    <value>_Fénykép</value>
+  </data>
+  <data name="PhotoManagementForGNOME" xml:space="preserve">
+    <value>Fényképkezelő a GNOME-hoz</value>
+  </data>
+  <data name="PhotoManager" xml:space="preserve">
+    <value>Fényképkezelő</value>
+  </data>
+  <data name="PhotoViewer" xml:space="preserve">
+    <value>Fotómegjelenítő</value>
+  </data>
+  <data name="PhotoXOfY" xml:space="preserve">
+    <value>{0}/{1} fénykép</value>
+  </data>
+  <data name="Photos" xml:space="preserve">
+    <value>Fényképek</value>
+  </data>
+  <data name="Photos2" xml:space="preserve">
+    <value>fényképpel</value>
+  </data>
+  <data name="PhotosInfos" xml:space="preserve">
+    <value>Fénykép-információk</value>
+  </data>
+  <data name="PhotosLayout" xml:space="preserve">
+    <value>Fényképek elrendezése</value>
+  </data>
+  <data name="PhotosPerPage" xml:space="preserve">
+    <value>Fénykép oldalanként</value>
+  </data>
+  <data name="PhotosWithATag" xml:space="preserve">
+    <value>Fénykép adott címkével</value>
+  </data>
+  <data name="PicasaWeb2" xml:space="preserve">
+    <value>_PicasaWeb…</value>
+  </data>
+  <data name="PicasaWebExport" xml:space="preserve">
+    <value>PicasaWeb exportálás</value>
+  </data>
+  <data name="PictureTile" xml:space="preserve">
+    <value>PictureTile</value>
+  </data>
+  <data name="Pixelate" xml:space="preserve">
+    <value>Pixelesítés</value>
+  </data>
+  <data name="PixelateEditor" xml:space="preserve">
+    <value>Pixelesítés</value>
+  </data>
+  <data name="PixelatesAnAreaOfTheImage" xml:space="preserve">
+    <value>A kép egy részét pixelesíti.</value>
+  </data>
+  <data name="Pixels" xml:space="preserve">
+    <value>képpontra</value>
+  </data>
+  <data name="Places" xml:space="preserve">
+    <value>Helyek</value>
+  </data>
+  <data name="PleaseNameYourAlbumOrChooseAnExistingAlbum" xml:space="preserve">
+    <value>Nevezze el az albumát vagy válasszon meglévő albumot.</value>
+  </data>
+  <data name="PleaseVerifyThatTheSettingsForThisGalleryAreCorrect" xml:space="preserve">
+    <value>Ellenőrizze a galéria beállításainak helyességét.</value>
+  </data>
+  <data name="PleaseVerifyThatTheSettingsForThisGalleryAreCorrectEnterTheLettersAsTheyAreShownInTheImageInTheCaptchaFieldILettersAreNotCaseSensitiveI" xml:space="preserve">
+    <value>Ellenőrizze a galéria beállításainak helyességét.
+Adja meg a Captcha mezőben lévő képen látható betűket.
+&lt;i&gt;A kis- és nagybetűk itt nem különböznek&lt;/i&gt;</value>
+  </data>
+  <data name="PleaseWaitFSpotGalleryDBUpdating" xml:space="preserve">
+    <value>Várjon, amíg az F-Spot galéria-adatbázisa frissítésre kerül. Ez eltarthat egy ideig.</value>
+  </data>
+  <data name="Preferences" xml:space="preserve">
+    <value>Beállítások</value>
+  </data>
+  <data name="PreparingEmail" xml:space="preserve">
+    <value>E-mail előkészítése</value>
+  </data>
+  <data name="PreparingPhotoX" xml:space="preserve">
+    <value>„{0}” fénykép előkészítése</value>
+  </data>
+  <data name="Prev" xml:space="preserve">
+    <value>Előző</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Előző</value>
+  </data>
+  <data name="PreviousPhoto" xml:space="preserve">
+    <value>Előző fénykép</value>
+  </data>
+  <data name="PreviousPicture" xml:space="preserve">
+    <value>Előző kép</value>
+  </data>
+  <data name="PreviousWeekMonSun" xml:space="preserve">
+    <value>Előző hét (hé-va)</value>
+  </data>
+  <data name="PrintCutMarks" xml:space="preserve">
+    <value>Levágási jelek nyomtatása</value>
+  </data>
+  <data name="PrintFileName" xml:space="preserve">
+    <value>Fájlnév nyomtatása</value>
+  </data>
+  <data name="PrintPhotoComment" xml:space="preserve">
+    <value>Fénykép megjegyzésének nyomtatása</value>
+  </data>
+  <data name="PrintPhotoDate" xml:space="preserve">
+    <value>Fénykép dátumának nyomtatása</value>
+  </data>
+  <data name="PrintPhotoTags" xml:space="preserve">
+    <value>Fénykép címkéinek nyomtatása</value>
+  </data>
+  <data name="PrintPhotoTime" xml:space="preserve">
+    <value>Fénykép idejének nyomtatása</value>
+  </data>
+  <data name="Private" xml:space="preserve">
+    <value>Személyes</value>
+  </data>
+  <data name="Public" xml:space="preserve">
+    <value>Nyilvános</value>
+  </data>
+  <data name="PublicAlbum" xml:space="preserve">
+    <value>Nyilvános album</value>
+  </data>
+  <data name="Push" xml:space="preserve">
+    <value>Eltolás</value>
+  </data>
+  <data name="PushTransition" xml:space="preserve">
+    <value>Eltolás átmenet</value>
+  </data>
+  <data name="Quit" xml:space="preserve">
+    <value>_Kilépés</value>
+  </data>
+  <data name="RadiusColon" xml:space="preserve">
+    <value>Sugár:</value>
+  </data>
+  <data name="RatedPhotos" xml:space="preserve">
+    <value>Értékelt fényképek</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Értékelés</value>
+  </data>
+  <data name="Ratings" xml:space="preserve">
+    <value>Ér_tékelések</value>
+  </data>
+  <data name="Ratio" xml:space="preserve">
+    <value>Arány</value>
+  </data>
+  <data name="RawPlusJpeg" xml:space="preserve">
+    <value>RawPlusJpeg</value>
+  </data>
+  <data name="ReallyDeleteVersionXQuestion" xml:space="preserve">
+    <value>Valóban törli „{0}” verziót?</value>
+  </data>
+  <data name="ReallyDetachVersionXFromY" xml:space="preserve">
+    <value>Valóban leválasztja a(z) „{0}” verziót a következőről: „{1}”?</value>
+  </data>
+  <data name="ReallyReparentXAsVersionOfY" xml:space="preserve">
+    <value>Valóban örökbe adja a következőt: „{0}” „{1}” verziójaként?</value>
+  </data>
+  <data name="ReallyReparentZPhotosAsVersionsOfY" xml:space="preserve">
+    <value>Valóban örökbe ad {2} fényképet „{1}” verziójaként?</value>
+  </data>
+  <data name="ReassignToNewImportRoll" xml:space="preserve">
+    <value>Új importálási körhöz rendelés</value>
+  </data>
+  <data name="ReceivedErrorXWhileAttemptingToRotateY" xml:space="preserve">
+    <value>„{0}” hiba következett be {1} forgatására tett kísérlet közben</value>
+  </data>
+  <data name="ReceivedExceptionX" xml:space="preserve">
+    <value>„{0}” kivétel érkezett.</value>
+  </data>
+  <data name="ReceivedExceptionXNoteThatYouHaveToDevelopRaw" xml:space="preserve">
+    <value>„{0}” kivétel történt. Ne feledje, hogy a RAW fájlokat előbb JPEG formátumúvá kell alakítania a szerkesztéshez.</value>
+  </data>
+  <data name="ReceivedExceptionXUnableToSavePhotoY" xml:space="preserve">
+    <value>„{0}” kivétel következett be. A(z) {1} kép nem menthető</value>
+  </data>
+  <data name="RedEyeReduction" xml:space="preserve">
+    <value>Vörösszem-csökkentés</value>
+  </data>
+  <data name="RefreshSearch" xml:space="preserve">
+    <value>Keresés frissítése</value>
+  </data>
+  <data name="RefreshThumbnail" xml:space="preserve">
+    <value>Bél_yegkép frissítése</value>
+  </data>
+  <data name="RemoveFromCatalog" xml:space="preserve">
+    <value>Eltávolítás a _katalógusból</value>
+  </data>
+  <data name="RemoveFromCatalogMnemonic" xml:space="preserve">
+    <value>_Eltávolítás a katalógusból</value>
+  </data>
+  <data name="RemoveFromExportedPhotos" xml:space="preserve">
+    <value>_Eltávolítandó az exportált fényképekről:</value>
+  </data>
+  <data name="RemoveFromSearch" xml:space="preserve">
+    <value>Eltávolítás a keresésből</value>
+  </data>
+  <data name="RemoveOriginalFilesAfterImport" xml:space="preserve">
+    <value>_Eredeti fájlok eltávolítása importálás után</value>
+  </data>
+  <data name="RemoveTag" xml:space="preserve">
+    <value>Cí_mke eltávolítása</value>
+  </data>
+  <data name="RemoveTagFromSelection" xml:space="preserve">
+    <value>Címkék eltávolítása a kijelölésről</value>
+  </data>
+  <data name="RemoveTagFromSelection2" xml:space="preserve">
+    <value>Címke _eltávolítása a kijelölésből</value>
+  </data>
+  <data name="RemoveTagFromSelection3" xml:space="preserve">
+    <value>Címke eltávolítása a kijelölésről</value>
+  </data>
+  <data name="RemoveTheSelectedPhotoFromFSpot" xml:space="preserve">
+    <value>Eltávolítja a kijelölt fényképet az F-Spotból?</value>
+  </data>
+  <data name="RemoveTheXSelectedPhotosFromFSpot" xml:space="preserve">
+    <value>Eltávolítja a kijelölt {0} fényképet az F-Spotból?</value>
+  </data>
+  <data name="RenameVersion" xml:space="preserve">
+    <value>Verzió átnevezése</value>
+  </data>
+  <data name="RenameVersion2" xml:space="preserve">
+    <value>Verzió átneve_zése</value>
+  </data>
+  <data name="Repair" xml:space="preserve">
+    <value>Javítás</value>
+  </data>
+  <data name="ReparentMnemonic" xml:space="preserve">
+    <value>Örökbe a_dás</value>
+  </data>
+  <data name="Reparented" xml:space="preserve">
+    <value>Örökbe adva</value>
+  </data>
+  <data name="Repeat" xml:space="preserve">
+    <value>Ismétlés</value>
+  </data>
+  <data name="Resize" xml:space="preserve">
+    <value>Átméretezés</value>
+  </data>
+  <data name="ResizeEditor" xml:space="preserve">
+    <value>Átméretezés</value>
+  </data>
+  <data name="ResizeTheImage" xml:space="preserve">
+    <value>A kép átméretezése</value>
+  </data>
+  <data name="ResizeTo" xml:space="preserve">
+    <value>Át_méretezés: </value>
+  </data>
+  <data name="RetroactiveRoll" xml:space="preserve">
+    <value>Visszamenőleges körök</value>
+  </data>
+  <data name="RetroactivelyAssignOldPhotosToImportRolls" xml:space="preserve">
+    <value>Régi képek importálási körökhöz rendelése visszamenőlegesen</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Újra</value>
+  </data>
+  <data name="ReturnToThisWindowAfterYouHaveFinishedAuthProcessOnXClickCompleteAuthorizationButton" xml:space="preserve">
+    <value>Térjen vissza ehhez az ablakhoz a felhatalmazási eljárás a(z) {0} helyen történő befejezése után és kattintson az alábbi „Felhatalmazás befejezése” gombra</value>
+  </data>
+  <data name="ReverseOrder" xml:space="preserve">
+    <value>S_orrend megfordítása</value>
+  </data>
+  <data name="RotateLeft" xml:space="preserve">
+    <value>Forgatás balra</value>
+  </data>
+  <data name="RotateLeftMnemonic" xml:space="preserve">
+    <value>Forgatás b_alra</value>
+  </data>
+  <data name="RotatePhotoLeft" xml:space="preserve">
+    <value>Fénykép forgatása balra</value>
+  </data>
+  <data name="RotatePhotoRight" xml:space="preserve">
+    <value>Fénykép forgatása jobbra</value>
+  </data>
+  <data name="RotatePictureLeft" xml:space="preserve">
+    <value>Kép forgatása balra</value>
+  </data>
+  <data name="RotatePictureRight" xml:space="preserve">
+    <value>Kép forgatása jobbra</value>
+  </data>
+  <data name="RotateRight" xml:space="preserve">
+    <value>Forgatás jobbra</value>
+  </data>
+  <data name="RotateRightMnemonic" xml:space="preserve">
+    <value>Forgatás j_obbra</value>
+  </data>
+  <data name="RotateSelectedPhotoLeft" xml:space="preserve">
+    <value>A kijelölt fénykép forgatása balra</value>
+  </data>
+  <data name="RotateSelectedPhotoRight" xml:space="preserve">
+    <value>A kijelölt fénykép forgatása jobbra</value>
+  </data>
+  <data name="RotateSelectedPhotosLeft" xml:space="preserve">
+    <value>A kijelölt fényképek forgatása balra</value>
+  </data>
+  <data name="RotateSelectedPhotosRight" xml:space="preserve">
+    <value>A kijelölt fénykép forgatása jobbra</value>
+  </data>
+  <data name="RotatingPhotoX" xml:space="preserve">
+    <value>„{0}” fénykép forgatása</value>
+  </data>
+  <data name="RotatingPhotos" xml:space="preserve">
+    <value>Fényképek forgatása</value>
+  </data>
+  <data name="S000000" xml:space="preserve">
+    <value>00:00:00</value>
+  </data>
+  <data name="S00000000000000" xml:space="preserve">
+    <value>0000:00:00 00:00:00</value>
+  </data>
+  <data name="S1024Px" xml:space="preserve">
+    <value>1024 kp</value>
+  </data>
+  <data name="S23hq" xml:space="preserve">
+    <value>_23hq…</value>
+  </data>
+  <data name="S320Px" xml:space="preserve">
+    <value>320 kp</value>
+  </data>
+  <data name="S480Px" xml:space="preserve">
+    <value>480 kp</value>
+  </data>
+  <data name="S5" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="S640Px" xml:space="preserve">
+    <value>640 kp</value>
+  </data>
+  <data name="S800Px" xml:space="preserve">
+    <value>800 kp</value>
+  </data>
+  <data name="SameAsPhoto" xml:space="preserve">
+    <value>Ugyanaz, mint a fénykép</value>
+  </data>
+  <data name="Saturation2" xml:space="preserve">
+    <value>_Telítettség:</value>
+  </data>
+  <data name="SaveTheFilesOnly" xml:space="preserve">
+    <value>_Csak a fájlok mentése</value>
+  </data>
+  <data name="Scale" xml:space="preserve">
+    <value>Mé_rték:</value>
+  </data>
+  <data name="Scaled" xml:space="preserve">
+    <value>Kifeszített</value>
+  </data>
+  <data name="ScreensaverConfiguration" xml:space="preserve">
+    <value>Képernyővédő beállítása</value>
+  </data>
+  <data name="ScreensaverOptions" xml:space="preserve">
+    <value>Képernyővédő beállításai</value>
+  </data>
+  <data name="SearchReturnedNoResults" xml:space="preserve">
+    <value>A keresés nem adott vissza eredményeket</value>
+  </data>
+  <data name="SearchingForPhotosYouCanAlreadyClickImportToContinue" xml:space="preserve">
+    <value>Fényképek keresése… (a folytatáshoz máris megnyomhatja az Importálás gombot)</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Kijelölés…</value>
+  </data>
+  <data name="SelectAFolder" xml:space="preserve">
+    <value>Válasszon ki egy mappát</value>
+  </data>
+  <data name="SelectATag" xml:space="preserve">
+    <value>Válasszon ki egy címkét…</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Min_dent kijelöl</value>
+  </data>
+  <data name="SelectExportFolder" xml:space="preserve">
+    <value>Válassza ki az exportálási mappát</value>
+  </data>
+  <data name="SelectExportFolder2" xml:space="preserve">
+    <value>Válassza ki az exportálási mappát</value>
+  </data>
+  <data name="SelectFolder" xml:space="preserve">
+    <value>Mappa kiválasztása</value>
+  </data>
+  <data name="SelectImportRolls" xml:space="preserve">
+    <value>_Importálási körök kiválasztása…</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>Kijelölés megszü_ntetése</value>
+  </data>
+  <data name="SelectPhotoFromFile" xml:space="preserve">
+    <value>Válassza ki fájlból a fényképet</value>
+  </data>
+  <data name="SelectTheAreaThatNeedsCropping" xml:space="preserve">
+    <value>Válasszon egy területet a levágáshoz.</value>
+  </data>
+  <data name="SelectTheAreaThatYouWantBlackedOut" xml:space="preserve">
+    <value>Válassza ki a kitakarandó területet.</value>
+  </data>
+  <data name="SelectTheAreaThatYouWantPixelated" xml:space="preserve">
+    <value>Válassza ki a területet a pixelesítéshez.</value>
+  </data>
+  <data name="SelectTheEyesYouWishToFix" xml:space="preserve">
+    <value>Válassza ki a javítandó szemeket.</value>
+  </data>
+  <data name="Selected" xml:space="preserve">
+    <value>Kiválasztva</value>
+  </data>
+  <data name="SelectedPhotos" xml:space="preserve">
+    <value>Kiválasztott fényképek</value>
+  </data>
+  <data name="SelectionConstraints" xml:space="preserve">
+    <value>Kiválasztási megszorítások</value>
+  </data>
+  <data name="SendByMail" xml:space="preserve">
+    <value>Küldés e-_mailben…</value>
+  </data>
+  <data name="SeparatelyFromTheImageFiles" xml:space="preserve">
+    <value>Képfájloktól külön</value>
+  </data>
+  <data name="SepiaTone2" xml:space="preserve">
+    <value>Szépia árnyalat</value>
+  </data>
+  <data name="ServerReturnedResponseWithoutGalleryContent" xml:space="preserve">
+    <value>A kiszolgáló galériatartalom nélküli választ adott vissza</value>
+  </data>
+  <data name="SessionEstablishedFetchingFriendDetails" xml:space="preserve">
+    <value>Munkamenet létrejött, barátok részleteinek letöltése…</value>
+  </data>
+  <data name="SessionEstablishedFetchingFriendList" xml:space="preserve">
+    <value>Munkamenet létrejött, barátok listájának letöltése…</value>
+  </data>
+  <data name="SessionEstablishedFetchingPhotoAlbums" xml:space="preserve">
+    <value>Munkamenet létrejött, fényképalbumok letöltése…</value>
+  </data>
+  <data name="SessionEstablishedFetchingUserInfo" xml:space="preserve">
+    <value>Munkamenet létrehozva, felhasználói információk lekérése…</value>
+  </data>
+  <data name="SetAsBackground" xml:space="preserve">
+    <value>Beállítás háttérként</value>
+  </data>
+  <data name="SetAsBackground2" xml:space="preserve">
+    <value>Beállítás _háttérként</value>
+  </data>
+  <data name="SetDateRange" xml:space="preserve">
+    <value>Dátumtartomány beállítása</value>
+  </data>
+  <data name="SetDateRange2" xml:space="preserve">
+    <value>_Dátumtartomány beállítása…</value>
+  </data>
+  <data name="SetPageSizeAndOrientation" xml:space="preserve">
+    <value>Oldalméret és -tájolás beállítása</value>
+  </data>
+  <data name="SetRatingFilter" xml:space="preserve">
+    <value>Értékelési szűrő engedélyezése</value>
+  </data>
+  <data name="SetRatingFilter2" xml:space="preserve">
+    <value>Érté_kelési szűrő beállítása…</value>
+  </data>
+  <data name="Share" xml:space="preserve">
+    <value>Megosztás:</value>
+  </data>
+  <data name="SharePhotosWithOtherPeopleOnTheSameNetworkViaWebBrowser" xml:space="preserve">
+    <value>Képek megosztása ugyanazon hálózaton lévő személyekkel a webböngészőn keresztül</value>
+  </data>
+  <data name="Sharpen" xml:space="preserve">
+    <value>Élesítés</value>
+  </data>
+  <data name="Sharpen2" xml:space="preserve">
+    <value>Éle_sítés…</value>
+  </data>
+  <data name="ShiftAllPhotosByX" xml:space="preserve">
+    <value>Minden fénykép eltolása ennyivel: {0}</value>
+  </data>
+  <data name="ShowAll" xml:space="preserve">
+    <value>Összes megjelenítése</value>
+  </data>
+  <data name="ShowAllPhotos" xml:space="preserve">
+    <value>Minden fénykép megjelenítése.</value>
+  </data>
+  <data name="ShowCamera" xml:space="preserve">
+    <value>Fényképezőgép megjelenítése</value>
+  </data>
+  <data name="ShowCreator" xml:space="preserve">
+    <value>Létrehozó megjelenítése</value>
+  </data>
+  <data name="ShowDate" xml:space="preserve">
+    <value>Dátum megjelenítése</value>
+  </data>
+  <data name="ShowDatesInTheThumbnailView" xml:space="preserve">
+    <value>Dátumok megjelenítése bélyegkép nézetben.</value>
+  </data>
+  <data name="ShowExposure" xml:space="preserve">
+    <value>Expozíció megjelenítése</value>
+  </data>
+  <data name="ShowFileSize" xml:space="preserve">
+    <value>Fájlméret megjelenítése</value>
+  </data>
+  <data name="ShowFindBarMnemonic" xml:space="preserve">
+    <value>Keresősáv _megjelenítése</value>
+  </data>
+  <data name="ShowFocalLength" xml:space="preserve">
+    <value>Fokális hossz megjelenítése</value>
+  </data>
+  <data name="ShowOrHideTheSidePane" xml:space="preserve">
+    <value>Az oldalsáv mutatása vagy rejtése</value>
+  </data>
+  <data name="ShowOrHideTheToolbar" xml:space="preserve">
+    <value>Az eszköztár mutatása vagy rejtése</value>
+  </data>
+  <data name="ShowRating" xml:space="preserve">
+    <value>Értékelés megjelenítése</value>
+  </data>
+  <data name="ShowRatingsInTheThumbnailView" xml:space="preserve">
+    <value>Értékelések megjelenítése bélyegkép nézetben.</value>
+  </data>
+  <data name="ShowSize" xml:space="preserve">
+    <value>Méret megjelenítése</value>
+  </data>
+  <data name="ShowStyles" xml:space="preserve">
+    <value>Stílusok megjelenítése</value>
+  </data>
+  <data name="ShowTags" xml:space="preserve">
+    <value>Címkék megjelenítése</value>
+  </data>
+  <data name="ShowTagsInTheThumbnailView" xml:space="preserve">
+    <value>Címkék megjelenítése bélyegkép nézetben.</value>
+  </data>
+  <data name="ShowTheFilenameInTheViewerWindow" xml:space="preserve">
+    <value>Fájlnév megjelenítése a megjelenítő ablakban.</value>
+  </data>
+  <data name="ShowTheFilmstripInTheMainWindow" xml:space="preserve">
+    <value>Filmtekercs megjelenítése a fő ablakban.</value>
+  </data>
+  <data name="ShowTheSidebarInTheMainWindow" xml:space="preserve">
+    <value>Oldalsáv megjelenítése a fő ablakban.</value>
+  </data>
+  <data name="ShowTheTimelineInTheMainWindow" xml:space="preserve">
+    <value>Idővonal megjelenítése a fő ablakban.</value>
+  </data>
+  <data name="ShowTheToolbarInTheMainWindow" xml:space="preserve">
+    <value>Eszköztár megjelenítése a fő ablakban.</value>
+  </data>
+  <data name="ShowTheToolbarInThePhotoViewerWindow" xml:space="preserve">
+    <value>Eszköztár megjelenítése a fénykép-megjelenítő ablakban.</value>
+  </data>
+  <data name="SidePane" xml:space="preserve">
+    <value>_Oldalsáv</value>
+  </data>
+  <data name="Sidebar" xml:space="preserve">
+    <value>_Oldalsáv</value>
+  </data>
+  <data name="SignInAsADifferentUser" xml:space="preserve">
+    <value>Jelentkezzen be egy másik felhasználóként</value>
+  </data>
+  <data name="SimpleExportToZipFile" xml:space="preserve">
+    <value>Egyszerű exportálás zip fájlba</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Méret</value>
+  </data>
+  <data name="SizeOfTheExportedSelection" xml:space="preserve">
+    <value>Az exportált kijelölés mérete:</value>
+  </data>
+  <data name="SizeOfTheTagIconsShownInTheSidebar" xml:space="preserve">
+    <value>Az oldalsávban megjelenő címkeikonok mérete.</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>Kihagyás</value>
+  </data>
+  <data name="SlideTransition" xml:space="preserve">
+    <value>Diaátmenet:</value>
+  </data>
+  <data name="Slideshow" xml:space="preserve">
+    <value>Diavetítés</value>
+  </data>
+  <data name="Slideshow2" xml:space="preserve">
+    <value>_Diavetítés</value>
+  </data>
+  <data name="Small" xml:space="preserve">
+    <value>Kicsi</value>
+  </data>
+  <data name="Small2" xml:space="preserve">
+    <value>Ki_csi</value>
+  </data>
+  <data name="SmallIChooseTheLocationOfTheDatabaseYouWantToImportFromISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;Válassza ki az adatbázis helyét, amelyből importálni kíván&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIChooseWhatToImportFromTheSelectedDbNewRollsOnlyIsTheSmartOptionThatWillAvoidReImportingPhotosYouCouldHaveImportedDuringAPreviousOperationASingleImportRollLetYouChooseWhichRollYouWantToMergeBackEverythingWillImportEverythingCreatingDuplicatesIfYouAlreadyImportedFromThatDatabaseISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;Válassza ki, hogy mit akar importálni a kiválasztott adatbázisból.
+A „Csak az új körök” választásával elkerülhető a korábbi műveletek során már importált fényképek fényképek újraimportálása.
+Az „Egyetlen importálási kör” segítségével kiválaszthatja, hogy melyik kört kívánja visszafésülni.
+A „Minden” minden fényképet importál, de ha már importált az adatbázisból, akkor másolatokat fog létrehozni.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallICopyTheImagesLocallyOrKeepThemWhereTheyAreIfYouChoseTheLaterBeSureThatThisLocationWillStayAccessibleFromFSpotISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;A képek másolása helyileg, vagy megtartásuk a mostani helyükön. Ha az utóbbit választja, győződjön meg hogy a hely elérhető marad az F-Spotból.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIEnableThisToAllowInterpolationOnZoomedImagesYouShouldnTDisableThisForViewingPhotosButDisablingTheInterpolationCouldBeUsefulInIconDesignISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;Engedélyezze ezt a nagyított képek interpolációjának bekapcsolásához. Ezt nem szükséges kikapcsolni fényképek megjelenítéséhez, de hasznos lehet ikonok tervezésekor.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIFSpotTagsCanHelpYouTrackTheExportStatusOfPhotosExampleUseOneTagForThePhotosThatYouPlanToExportAndAnotherOneForThoseAlreadyExportedHereYouCanTellFSpotToAutomaticallyReplaceTheseTagsAsAppropriateISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;Az F-Spot címkék segítik a fényképek exportálási állapotának követését. Például: használja az egyik címkét az exportálni tervezett fotókon, egy másikat pedig a már exportáltakra. Itt megadhatja, hogy az F-Spot automatikusan cserélje le ezeket a címkéket, az állapottól függően.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallITheGalleryStaysActiveUntilYouEitherDeactivateItOrCloseFSpotMakeSureLocalViewersAccessItBypassingHTTPProxyISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;A galéria aktív marad, amíg nem kapcsolja ki vagy nem zárja be az F-Spotot.
+Győződjön meg róla, hogy a helyi nézők a HTTP proxy megkerülésével érik el.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIWhenTheGalleryIsActiveAboveIsTheURLYouNeedToOpenOnAnotherComputerToAccessTheSharedPhotosISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;Ha a galéria aktív, a fenti URL-címen nyithatja meg másik
+számítógépről a megosztott fényképek eléréséhez.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIYouCanChooseHowToDisplayTransparentPartsInImagesThisOptionHasNoEffectOnPhotosButSettingThisAsCheckPatternOrCustomColorCouldBeUsefulWhenViewingIconsOrOtherArtworksWithTransparentPartsISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;Kiválaszthatja a képek átlátszó részeinek megjelenítési módját. Ennek a beállításnak nincs hatása fényképekre, de sakkmintára vagy egyéni színre állítása hasznos lehet ikonok vagy más átlátszó részekkel rendelkező grafikák megjelenítésekor.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmugMug" xml:space="preserve">
+    <value>_SmugMug…</value>
+  </data>
+  <data name="SmugMugExport" xml:space="preserve">
+    <value>SmugMug exportálás</value>
+  </data>
+  <data name="SoftFocus" xml:space="preserve">
+    <value>Lágy fókusz</value>
+  </data>
+  <data name="SomeFilesCouldNotBeImported" xml:space="preserve">
+    <value>Egyes fájlok nem importálhatók, lehet hogy sérültek, vagy a tárolásukra használt tároló hibásodott meg.</value>
+  </data>
+  <data name="SomeFilesFailedToImport" xml:space="preserve">
+    <value>Egyes fájlok importálása meghiúsult</value>
+  </data>
+  <data name="SpaceAllPhotosBy" xml:space="preserve">
+    <value>Minden fénykép kitöltése ennyivel:</value>
+  </data>
+  <data name="SpanWeightBoldSizeLargerErrorConnectingToGallerySpan" xml:space="preserve">
+    <value>&lt;span weight='bold' size='larger'&gt;Hiba a galériához csatlakozáskor&lt;/span&gt;
+</value>
+  </data>
+  <data name="SpanWeightBoldSizeLargerYourGoogleAccountIsLockedSpan" xml:space="preserve">
+    <value>&lt;span weight='bold' size='larger'&gt;A Google fiókja zárolva van&lt;/span&gt;
+</value>
+  </data>
+  <data name="Square" xml:space="preserve">
+    <value>Négyzet</value>
+  </data>
+  <data name="StandardTheme" xml:space="preserve">
+    <value>Szabványos téma</value>
+  </data>
+  <data name="StartSlideshow" xml:space="preserve">
+    <value>Diavetítés indítása</value>
+  </data>
+  <data name="StayConnected" xml:space="preserve">
+    <value>Maradjon kapcsolódva</value>
+  </data>
+  <data name="StoreTagsAndDescriptionsForPhotos" xml:space="preserve">
+    <value>Fényképek címkéinek és leírásainak tárolása:</value>
+  </data>
+  <data name="Straighten" xml:space="preserve">
+    <value>Kiegyenesítés</value>
+  </data>
+  <data name="SyncCatalogWithPhotos" xml:space="preserve">
+    <value>Gyűjtemény szinkronizálása a fényképekkel</value>
+  </data>
+  <data name="SyncMetaData" xml:space="preserve">
+    <value>Metaadatok szinkronizálása</value>
+  </data>
+  <data name="SyncMetaDataInformationOfAllCatalogWithPhotos" xml:space="preserve">
+    <value>Az összes fényképeket tartalmazó gyűjtemény metaadat-információinak szinkronizálása</value>
+  </data>
+  <data name="SystemProfile" xml:space="preserve">
+    <value>Rendszerprofil</value>
+  </data>
+  <data name="Tabblo" xml:space="preserve">
+    <value>_Tabblo…</value>
+  </data>
+  <data name="TabbloExport" xml:space="preserve">
+    <value>Tabbloi exportálás</value>
+  </data>
+  <data name="TagDoesntExistTrySelectingDifferentTagInPerferenceDialog" xml:space="preserve">
+    <value>Az F-Spot által keresett címke nem létezik. Próbáljon
+másik címkét választani az F-Spot beállításablakában.</value>
+  </data>
+  <data name="TagIcons" xml:space="preserve">
+    <value>_Címkeikonok</value>
+  </data>
+  <data name="TagIsNotEmpty" xml:space="preserve">
+    <value>A címke nem üres</value>
+  </data>
+  <data name="TagName2" xml:space="preserve">
+    <value>Címke _neve:</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Címkék</value>
+  </data>
+  <data name="Tags2" xml:space="preserve">
+    <value>_Címkék</value>
+  </data>
+  <data name="Tags3" xml:space="preserve">
+    <value>_Címkék</value>
+  </data>
+  <data name="TagsColon" xml:space="preserve">
+    <value>Címkék: </value>
+  </data>
+  <data name="Temp" xml:space="preserve">
+    <value>Hő_m:</value>
+  </data>
+  <data name="TheColorToUseForTransparentParts" xml:space="preserve">
+    <value>Az átlátszó részekhez használandó szín.</value>
+  </data>
+  <data name="TheFileSelectedNotValidOrSupportedDataaseReceivedExceptionX" xml:space="preserve">
+    <value>A kiválasztott fájl nem érvényes vagy kiválasztott adatbázis.
+
+A kivétel: „{0}”.</value>
+  </data>
+  <data name="TheFollowingErrorWasEncounteredWhileAttemptingToCreateAnAlbumX" xml:space="preserve">
+    <value>A következő hiba történt az album létrehozásakor: {0}</value>
+  </data>
+  <data name="TheGalleryNameContainsInvalidCharactersOnlyLettersNumbersUnderscoreAllowed" xml:space="preserve">
+    <value>A galérianév érvénytelen karaktereket tartalmaz.
+Csak betűk, számok, - és _ engedélyezett</value>
+  </data>
+  <data name="TheGalleryUrlEntryDoesNotAppearToBeValid" xml:space="preserve">
+    <value>A galéria URL címe nem tűnik érvényesnek</value>
+  </data>
+  <data name="TheHeightDimensionToUseForTheImportDialog" xml:space="preserve">
+    <value>Az importálási ablakhoz használandó magasság.</value>
+  </data>
+  <data name="TheHeightDimensionToUseForTheMainWindow" xml:space="preserve">
+    <value>A fő ablakhoz használandó magasság.</value>
+  </data>
+  <data name="TheHeightDimensionToUseForThePhotoViewerWindow" xml:space="preserve">
+    <value>A fénykép-megjelenítő ablakhoz használandó magasság.</value>
+  </data>
+  <data name="TheOrientationOfTheFilmstrip" xml:space="preserve">
+    <value>A filmtekercs tájolása.</value>
+  </data>
+  <data name="TheOrientationOfTheFilmstripIfShown" xml:space="preserve">
+    <value>A filmtekercs tájolása, ha látható.</value>
+  </data>
+  <data name="ThePhotoCouldNotBeRotatedReadonlyOrMedia" xml:space="preserve">
+    <value>A fénykép nem forgatható, mivel az csak olvasható fájlrendszeren vagy adathordozón, például CD-ROM-on van. Ellenőrizze a jogosultságokat és próbálja újra.</value>
+  </data>
+  <data name="ThePhotoXDoesNotExist" xml:space="preserve">
+    <value>A(z) „{0}” fénykép nem létezik</value>
+  </data>
+  <data name="TheSelectedAlbumHasALimitOfXPicturesWhichWouldBePassedWithTheCurrentSelectionOfYImages" xml:space="preserve">
+    <value>A kiválasztott album {0} képre van korlátozva,
+amelyet a jelenleg kiválasztott {1} számú képpel meghaladna.</value>
+  </data>
+  <data name="TheSizeOfTheSidebarInTheMainWindow" xml:space="preserve">
+    <value>A főablak oldalsávjának mérete.</value>
+  </data>
+  <data name="TheSizeWidthOfTheSidebarInTheMainWindow" xml:space="preserve">
+    <value>A főablak oldalsávjának mérete (szélessége).</value>
+  </data>
+  <data name="TheWebGallerySeemsToBeOfflineNow" xml:space="preserve">
+    <value>A webes galéria elérhetetlennek tűnik</value>
+  </data>
+  <data name="TheWidthDimensionToUseForTheImportDialog" xml:space="preserve">
+    <value>Az importálási ablakhoz használandó szélesség.</value>
+  </data>
+  <data name="TheWidthDimensionToUseForTheMainWindow" xml:space="preserve">
+    <value>A fő ablakhoz használandó szélesség.</value>
+  </data>
+  <data name="TheWidthDimensionToUseForThePhotoViewerWindow" xml:space="preserve">
+    <value>A fénykép-megjelenítő ablakhoz használandó szélesség.</value>
+  </data>
+  <data name="TheXPositionToUseForTheMainWindow" xml:space="preserve">
+    <value>A fő ablakhoz használandó X pozíció.</value>
+  </data>
+  <data name="TheXPositionToUseForThePhotoViewerWindow" xml:space="preserve">
+    <value>A fénykép-megjelenítő ablakhoz használandó X pozíció.</value>
+  </data>
+  <data name="TheYPositionToUseForTheMainWindow" xml:space="preserve">
+    <value>A fő ablakhoz használandó Y pozíció.</value>
+  </data>
+  <data name="TheYPositionToUseForThePhotoViewerWindow" xml:space="preserve">
+    <value>A fénykép-megjelenítő ablakhoz használandó Y pozíció.</value>
+  </data>
+  <data name="ThereAlreadyGallerySameNameInYourRegisteredGalleriesPleaseChooseUniqueName" xml:space="preserve">
+    <value>Már létezik ilyen nevű galéria a regisztrált galériái között. Válasszon egyedi nevet.</value>
+  </data>
+  <data name="ThereWasAProblemLoggingIntoFacebookCheckYourCredentialsAndTryAgain" xml:space="preserve">
+    <value>Hiba történt a Facebookba való bejelentkezés közben. Ellenőrizze a hitelesítési adatait és próbálja újra.</value>
+  </data>
+  <data name="ThereWasAnErrorWhenDownloadingYourInformationFromFacebookFacebookSaidX" xml:space="preserve">
+    <value>Hiba történt az információk letöltésekor a Facebookról.
+
+A Facebook válasza: {0}</value>
+  </data>
+  <data name="ThisDeletesAllVersionsOfTheSelectedPhotoFromYourDrive" xml:space="preserve">
+    <value>Ez a kijelölt fénykép összes verzióját törli a merevlemezéről.</value>
+  </data>
+  <data name="ThisDeletesAllVersionsOfTheSelectedPhotosFromYourDrive" xml:space="preserve">
+    <value>Ez a kijelölt fényképek összes verzióját törli a merevlemezéről.</value>
+  </data>
+  <data name="ThisExtensionAllowsYouToBurnYourPhotosToCD" xml:space="preserve">
+    <value>Fényképek CD-re írása.</value>
+  </data>
+  <data name="ThisExtensionAllowsYouToExportYourPhotosToFlickrAnd23hq" xml:space="preserve">
+    <value>Képek exportálása a Flickr-re és 23hq-ra.</value>
+  </data>
+  <data name="ThisExtensionAllowsYouToExportYourPhotosToHTMLGalleriesOriginalGalleriesOrJustToAFolder" xml:space="preserve">
+    <value>Képek exportálása HTML galériákba, Original galériákba vagy egy mappába.</value>
+  </data>
+  <data name="ThisExtensionAllowsYouToExportYourPhotosToPHPGalleryHttpGalleryMenaltoCom" xml:space="preserve">
+    <value>Képek exportálása PHP Gallery-be (http://gallery.menalto.com)</value>
+  </data>
+  <data name="ThisExtensionAllowsYouToExportYourPhotosToPicasaWeb" xml:space="preserve">
+    <value>Képek exportálása a PicasaWebre.</value>
+  </data>
+  <data name="ThisExtensionAllowsYouToExportYourPhotosToSmugMug" xml:space="preserve">
+    <value>Képek exportálása a SmugMugra.</value>
+  </data>
+  <data name="ThisExtensionAllowsYouToExportYourPhotosToTabblo" xml:space="preserve">
+    <value>Képek exportálása a Tabblo-ra.</value>
+  </data>
+  <data name="ThisMakesThePhotosAppearAsASingleOneInLibraryTheVersionsCanBeDetachedUsingThePhotoMenu" xml:space="preserve">
+    <value>Ennek hatására a fotók egyetlen képként jelennek meg a gyűjteményben. A verziók a Fénykép menü segítségével választhatók le.</value>
+  </data>
+  <data name="ThisMakesTheVersionAppearAsASeparatePhotoInLibraryToUndoDragNewPhotoBackToParent" xml:space="preserve">
+    <value>Ennek hatására a verzió önálló képként jelenik meg a gyűjteményben. A visszavonáshoz húzza vissza az új képet a szülőjére.</value>
+  </data>
+  <data name="ThisNameIsAlreadyInUse" xml:space="preserve">
+    <value>Ez a név már használatban van</value>
+  </data>
+  <data name="ThisRemovesTheVersionAndDeletesTheFileFromDisk" xml:space="preserve">
+    <value>Ez eltávolítja a verziót, és törli a megfelelő fájlt a lemezről.</value>
+  </data>
+  <data name="ThisToolRequiresAnActiveSelection.PleaseSelectOneOrMore" xml:space="preserve">
+    <value>Ez az eszköz aktív kijelölést igényel. Jelöljön ki legalább egy fényképet és próbálja újra a műveletet.</value>
+  </data>
+  <data name="ThisToolRequiresAnActiveSelectionPleaseSelectARegion" xml:space="preserve">
+    <value>Ez az eszköz aktív kijelölést igényel. Jelölje ki a fénykép egy területét és próbálja újra a műveletet.</value>
+  </data>
+  <data name="ThisWillMergeSelectedTagsAndSubTagsIntoSingleTag" xml:space="preserve">
+    <value>Ez a művelet egy kivételével az összes kiválasztott címkét és alcímkét egyetlen címkébe fésüli össze.</value>
+  </data>
+  <data name="ThresholdColon" xml:space="preserve">
+    <value>Küszöb:</value>
+  </data>
+  <data name="ThumbnailElements" xml:space="preserve">
+    <value>Bélyegké_pek</value>
+  </data>
+  <data name="Timeline" xml:space="preserve">
+    <value>_Idővonal</value>
+  </data>
+  <data name="Tint" xml:space="preserve">
+    <value>Sz_ínezés:</value>
+  </data>
+  <data name="Tiny" xml:space="preserve">
+    <value>Apró</value>
+  </data>
+  <data name="Title2" xml:space="preserve">
+    <value>_Cím:</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Ma</value>
+  </data>
+  <data name="Token" xml:space="preserve">
+    <value>jelsor</value>
+  </data>
+  <data name="TooManyImagesToExport" xml:space="preserve">
+    <value>Túl sok exportálandó kép</value>
+  </data>
+  <data name="Toolbar" xml:space="preserve">
+    <value>_Eszköztár</value>
+  </data>
+  <data name="Toolbar2" xml:space="preserve">
+    <value>_Eszköztár</value>
+  </data>
+  <data name="Tools" xml:space="preserve">
+    <value>Eszközök</value>
+  </data>
+  <data name="Tools2" xml:space="preserve">
+    <value>_Eszközök</value>
+  </data>
+  <data name="TotalOriginalSize" xml:space="preserve">
+    <value>Teljes eredeti méret</value>
+  </data>
+  <data name="TransferComplete" xml:space="preserve">
+    <value>Feltöltés befejezve</value>
+  </data>
+  <data name="Transferring" xml:space="preserve">
+    <value>Átvitel…</value>
+  </data>
+  <data name="TransferringPictureXToCD" xml:space="preserve">
+    <value>„{0}” kép átvitele CD-re</value>
+  </data>
+  <data name="TransferringPictures" xml:space="preserve">
+    <value>Képek átvitele</value>
+  </data>
+  <data name="TransferringToX" xml:space="preserve">
+    <value>Átvitel a következőre: „{0}”</value>
+  </data>
+  <data name="Transitions" xml:space="preserve">
+    <value>Átmenetek</value>
+  </data>
+  <data name="TranslatorCredits" xml:space="preserve">
+    <value>Kelemen Gábor &lt;kelemeng at gnome dot hu&gt;
+Kéménczy Kálmán &lt;kkemenczy at novell dot com&gt;</value>
+  </data>
+  <data name="TrustError" xml:space="preserve">
+    <value>Megbízhatósági hiba</value>
+  </data>
+  <data name="TrustTheSiteSCertificateThisOnce" xml:space="preserve">
+    <value>Ez alkalommal megbízom az oldal tanúsítványában</value>
+  </data>
+  <data name="UNSTABLEPleaseEnsureYouHaveABackupOfYourPhotosDbBeforeYouTestThisExtensionThisExtensionWillAllowYouToChangeTheBasePathToTheYourPhotosItIsVeryHandyIfYouMoveYourPhotosFromPhotosToOurPhotosForInstanceJustEnsureYouLetSqLiteContinueToProcessTheChangesForUpToAFewHoursAfterFSpotReportsFinishedItWillOnlyChangeThePathToPhotosWhichAreLocatedUnderThePhotoDirectory" xml:space="preserve">
+    <value>INSTABIL – Ezen kiterjesztés tesztelése előtt győződjön meg róla, hogy rendelkezik biztonsági mentéssel a photos.db fájlról. Ez a kiterjesztés lehetővé teszi a fényképek elérési útjának módosítását. Ez akkor hasznos, ha például a képeket a ~/Fényképek könyvtárból a ~/Sajátképeink könyvtárba helyezi át. Egyszerűen csak hagyja, hogy a Sqlite folytassa a változások feldolgozását pár óráig az F-Spot jelentések befejezése után. Ez csak a Fényképek könyvtár alatti képek útvonalát módosítja.</value>
+  </data>
+  <data name="URL3" xml:space="preserve">
+    <value>U_RL:</value>
+  </data>
+  <data name="UnableToLoadImage" xml:space="preserve">
+    <value>A kép nem tölthető be</value>
+  </data>
+  <data name="UnableToLoadXAsIconForTheTag" xml:space="preserve">
+    <value>„{0}” nem tölthető be a címke ikonjaként</value>
+  </data>
+  <data name="UnableToLogOn" xml:space="preserve">
+    <value>Nem lehet bejelentkezni</value>
+  </data>
+  <data name="UnableToLogOn2" xml:space="preserve">
+    <value>Nem lehet bejelentkezni.</value>
+  </data>
+  <data name="UnableToRotatePhoto" xml:space="preserve">
+    <value>Nem lehet forgatni a fényképet</value>
+  </data>
+  <data name="UnableToRotateReadonlyFile" xml:space="preserve">
+    <value>Nem lehet forgatni az írásvédett fájlt</value>
+  </data>
+  <data name="UnableToRotateThisTypeOfPhoto" xml:space="preserve">
+    <value>Nem lehet forgatni ezt a fényképtípust</value>
+  </data>
+  <data name="UnableToRotateXPhotos" xml:space="preserve">
+    <value>Nem lehet forgatni {0} fényképet</value>
+  </data>
+  <data name="UnhandledException" xml:space="preserve">
+    <value>Kezeletlen kivétel történt</value>
+  </data>
+  <data name="UntaggedPhotos" xml:space="preserve">
+    <value>Címkézetlen fényképek</value>
+  </data>
+  <data name="UntaggedPhotos2" xml:space="preserve">
+    <value>_Címkézetlen fényképek</value>
+  </data>
+  <data name="UpdatingFSpotDatabase" xml:space="preserve">
+    <value>Az F-Spot adatbázisának frissítése</value>
+  </data>
+  <data name="UpdatingPictureX" xml:space="preserve">
+    <value>„{0}” kép frissítése</value>
+  </data>
+  <data name="UpdatingThumbnails" xml:space="preserve">
+    <value>Bélyegképek frissítése</value>
+  </data>
+  <data name="UploadComplete" xml:space="preserve">
+    <value>Feltöltés befejezve</value>
+  </data>
+  <data name="UploadComplete2" xml:space="preserve">
+    <value>Feltöltés befejezve</value>
+  </data>
+  <data name="UploadingPhotoX" xml:space="preserve">
+    <value>„{0}” fénykép feltöltése</value>
+  </data>
+  <data name="UploadingPictureX" xml:space="preserve">
+    <value>„{0}” kép feltöltése</value>
+  </data>
+  <data name="UploadingPictureXYOfZ" xml:space="preserve">
+    <value>„{0}” kép feltöltése ({1}. / {2})</value>
+  </data>
+  <data name="UploadingPictures" xml:space="preserve">
+    <value>Képek feltöltése</value>
+  </data>
+  <data name="Url4" xml:space="preserve">
+    <value>url</value>
+  </data>
+  <data name="UseAnExistingAlbum" xml:space="preserve">
+    <value>Meglévő album használata</value>
+  </data>
+  <data name="UseTheCurrentPhotoSFilenameAsTheViewerWindowSTitle" xml:space="preserve">
+    <value>Az aktuális kép fájlnevének használata a megjelenítő ablak címeként.</value>
+  </data>
+  <data name="UsedXOfYourAllowedYMonthlyQuota" xml:space="preserve">
+    <value>A havi engedélyezett {1} kvótából felhasználva: {0}</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>_Felhasználónév:</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Verzió</value>
+  </data>
+  <data name="Version3" xml:space="preserve">
+    <value>_Verzió</value>
+  </data>
+  <data name="VerticalMnemonic" xml:space="preserve">
+    <value>_Függőleges</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>Nézet</value>
+  </data>
+  <data name="View2" xml:space="preserve">
+    <value>_Nézet</value>
+  </data>
+  <data name="ViewAndEditAPhoto" xml:space="preserve">
+    <value>Fénykép megjelenítése és szerkesztése</value>
+  </data>
+  <data name="ViewPhotosFullscreen" xml:space="preserve">
+    <value>Képek megjelenítése teljes képernyőn</value>
+  </data>
+  <data name="ViewPhotosInASlideshow" xml:space="preserve">
+    <value>Fényképek megjelenítése diavetítésként</value>
+  </data>
+  <data name="ViewPhotosInBrowserWhenDoneUploading" xml:space="preserve">
+    <value>Fényképek _megtekintése böngészőben a feltöltés befejezésekor</value>
+  </data>
+  <data name="Views" xml:space="preserve">
+    <value>Nézetek:</value>
+  </data>
+  <data name="VisibleToFamily" xml:space="preserve">
+    <value>Látható a család számára</value>
+  </data>
+  <data name="VisibleToFriends" xml:space="preserve">
+    <value>Látható a barátok számára</value>
+  </data>
+  <data name="VisitFSpotGroupOnFacebook" xml:space="preserve">
+    <value>Keresse fel az F-Spot csoportot a Facebookon</value>
+  </data>
+  <data name="WaitingForAuthentication" xml:space="preserve">
+    <value>Várakozás hitelesítésre</value>
+  </data>
+  <data name="WaitingForAuthorization" xml:space="preserve">
+    <value>Várakozás az engedélyezésre</value>
+  </data>
+  <data name="WaitingForResponseXOfY" xml:space="preserve">
+    <value>{0}/{1} válaszra várakozás</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Figyelmeztetés</value>
+  </data>
+  <data name="WebGallery" xml:space="preserve">
+    <value>_Webes galéria…</value>
+  </data>
+  <data name="WelcomeXYouAreConnectedToY3" xml:space="preserve">
+    <value>Üdvözlöm, {0}! Sikeresen csatlakozott a következőre: {1}.</value>
+  </data>
+  <data name="WhenImportingPhotosCopyThemTo" xml:space="preserve">
+    <value>Fényképek importálásakor másolás ide:</value>
+  </data>
+  <data name="WhiteBorders" xml:space="preserve">
+    <value>Fehér szegélyek</value>
+  </data>
+  <data name="WhoIsThis" xml:space="preserve">
+    <value>Ki ez?</value>
+  </data>
+  <data name="WidthOfTheImportDialog" xml:space="preserve">
+    <value>Az importálás ablak szélessége.</value>
+  </data>
+  <data name="WidthOfTheMainWindow" xml:space="preserve">
+    <value>A fő ablak szélessége.</value>
+  </data>
+  <data name="WidthOfThePhotoViewerWindow" xml:space="preserve">
+    <value>A fénykép-megjelenítő ablak szélessége.</value>
+  </data>
+  <data name="WidthOfThePreviewImagePaneInTheImportDialog" xml:space="preserve">
+    <value>Az importálás ablak képelőnézet ablaktáblájának szélessége.</value>
+  </data>
+  <data name="WriteOnlyThesePhotosToCD" xml:space="preserve">
+    <value>_Csak ezen fényképek CD-re írása</value>
+  </data>
+  <data name="XCFVersion" xml:space="preserve">
+    <value>XCF verzió</value>
+  </data>
+  <data name="XOfApproxY" xml:space="preserve">
+    <value>{0}, összesen kb.: {1}</value>
+  </data>
+  <data name="XOfY" xml:space="preserve">
+    <value>{0}/{1}</value>
+  </data>
+  <data name="XPhoto" xml:space="preserve">
+    <value>{0} fénykép</value>
+  </data>
+  <data name="XPhoto2" xml:space="preserve">
+    <value>{0} fénykép</value>
+  </data>
+  <data name="XPhotoCouldNotBeRotatedReadonlyOrMedia" xml:space="preserve">
+    <value>{0} fénykép nem forgatható, mivel azok csak olvasható fájlrendszeren vagy adathordozón, például CD-ROM-on vannak. Ellenőrizze a jogosultságokat és próbálja újra.</value>
+  </data>
+  <data name="XPhotoOutOfY2" xml:space="preserve">
+    <value>{0}/{1} fénykép</value>
+  </data>
+  <data name="XPhotos" xml:space="preserve">
+    <value>{0} fénykép</value>
+  </data>
+  <data name="XPhotos2" xml:space="preserve">
+    <value>{0} fénykép</value>
+  </data>
+  <data name="XPhotosOutOfY2" xml:space="preserve">
+    <value>{0}/{1} fénykép</value>
+  </data>
+  <data name="XPositionOfTheMainWindow" xml:space="preserve">
+    <value>A fő ablak X pozíciója.</value>
+  </data>
+  <data name="XPositionOfThePhotoViewerWindow" xml:space="preserve">
+    <value>A fénykép-megjelenítő ablak X pozíciója.</value>
+  </data>
+  <data name="XSelected2" xml:space="preserve">
+    <value> ({0} kiválasztva)</value>
+  </data>
+  <data name="XSent" xml:space="preserve">
+    <value>{0} elküldve</value>
+  </data>
+  <data name="XYIsLoggedIntoFacebook" xml:space="preserve">
+    <value>{0} {1} bejelentkezett a Facebookba</value>
+  </data>
+  <data name="YPositionOfTheMainWindow" xml:space="preserve">
+    <value>A fő ablak Y pozíciója.</value>
+  </data>
+  <data name="YPositionOfThePhotoViewerWindow" xml:space="preserve">
+    <value>A fénykép-megjelenítő ablak Y pozíciója.</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>Tegnap</value>
+  </data>
+  <data name="YouAreNotLoggedIn" xml:space="preserve">
+    <value>Nincs bejelentkezve.</value>
+  </data>
+  <data name="YouCanChooseHowToDisplayTransparentPartsInImagesThisOptionHasNoEffectOnPhotosButSettingThisValueToCHECKPATTERNOrCUSTOMCOLORCouldBeUsefulWhenViewingIconsOrOtherArtworkWithTransparentParts" xml:space="preserve">
+    <value>Kiválaszthatja a képek átlátszó részeinek megjelenítési módját. Ennek a beállításnak nincs hatása fényképekre, de CHECK_PATTERN (sakkminta) vagy CUSTOM_COLOR (egyéni szín) értékre állítása hasznos lehet ikonok vagy más átlátszó részekkel rendelkező grafikák megjelenítésekor.</value>
+  </data>
+  <data name="ZipExport" xml:space="preserve">
+    <value>Zip exportálás</value>
+  </data>
+  <data name="Zoom" xml:space="preserve">
+    <value>Nagyítás</value>
+  </data>
+  <data name="ZoomIn" xml:space="preserve">
+    <value>_Nagyítás</value>
+  </data>
+  <data name="ZoomIn2" xml:space="preserve">
+    <value>Nagyítás</value>
+  </data>
+  <data name="ZoomOut" xml:space="preserve">
+    <value>_Kicsinyítés</value>
+  </data>
+  <data name="ZoomOut2" xml:space="preserve">
+    <value>Kicsinyítés</value>
+  </data>
+  <data name="Zooomr" xml:space="preserve">
+    <value>_Zooomr…</value>
+  </data>
+</root>

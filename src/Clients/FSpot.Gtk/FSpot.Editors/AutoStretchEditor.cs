@@ -20,7 +20,7 @@ namespace FSpot.Editors
 	{
 		public AutoStretchEditor () : base (Strings.AutoColor, "autocolor")
 		{
-			// FIXME: need tooltip Catalog.GetString ("Automatically adjust the colors")
+			// FIXME: need tooltip MsgidLookup.GetString ("Automatically adjust the colors")
 			CanHandleMultiple = true;
 		}
 

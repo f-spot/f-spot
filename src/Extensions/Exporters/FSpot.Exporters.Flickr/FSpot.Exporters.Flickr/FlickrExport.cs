@@ -23,6 +23,7 @@ using FlickrNet;
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Filters;
+using FSpot.Gui;
 using FSpot.Resources.Lang;
 using FSpot.Settings;
 using FSpot.UI.Dialog;
@@ -189,7 +190,7 @@ namespace FSpot.Exporters.Flickr
 				DisplayDates = false
 			};
 
-			builder = new GtkBeans.Builder (null, "flickr_export.ui", null);
+			builder = TranslatedBuilder.FromResource (null, "flickr_export.ui");
 			builder.Autoconnect (this);
 
 			Dialog.Modal = false;

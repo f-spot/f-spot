@@ -29,7 +29,7 @@ namespace FSpot.Query
 
 		public void Activate (Gdk.EventButton eb, Literal literal, Gtk.Menu popupMenu, bool isPopup)
 		{
-			/*MenuItem attach_item = new MenuItem (Catalog.GetString ("Find With"));
+			/*MenuItem attach_item = new MenuItem (MsgidLookup.GetString ("Find With"));
 			TagMenu attach_menu = new TagMenu (attach_item, App.Instance.Database.Tags);
 			attach_menu.TagSelected += literal.HandleAttachTagCommand;
 			attach_item.ShowAll ();

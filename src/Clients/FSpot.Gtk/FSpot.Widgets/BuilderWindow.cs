@@ -9,6 +9,8 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using FSpot.Gui;
+
 using GtkBeans;
 
 namespace FSpot.Widgets
@@ -19,7 +21,7 @@ namespace FSpot.Widgets
 		{
 		}
 
-		protected BuilderWindow (System.Reflection.Assembly assembly, string resourceName, string widgetName) : this (new Builder (assembly, resourceName, null), widgetName)
+		protected BuilderWindow (System.Reflection.Assembly assembly, string resourceName, string widgetName) : this (TranslatedBuilder.FromResource (assembly, resourceName), widgetName)
 		{
 		}
 

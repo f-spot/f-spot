@@ -18,6 +18,7 @@ using System.Collections.Generic;
 
 using FSpot.Core;
 using FSpot.Extensions;
+using FSpot.Gui;
 using FSpot.Resources.Lang;
 using FSpot.Settings;
 using FSpot.Thumbnail;
@@ -82,7 +83,7 @@ namespace FSpot
 			uri = uris[0];
 			Logger.Log.Debug ($"uri: {uri}");
 
-			var builder = new GtkBeans.Builder ("single_view.ui");
+			var builder = TranslatedBuilder.FromResource (null, "single_view.ui");
 			builder.Autoconnect (this);
 
 			LoadPreference (Preferences.ViewerWidth);

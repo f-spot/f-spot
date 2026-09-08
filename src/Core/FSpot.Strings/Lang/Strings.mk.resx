@@ -1,0 +1,2515 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AUniqueNumber" xml:space="preserve">
+    <value>Единствен број</value>
+  </data>
+  <data name="AUniqueNumberIdentifyingTheEnvelope" xml:space="preserve">
+    <value>Единствен број со кој се идентификува пликот</value>
+  </data>
+  <data name="AbstractRelationshipMethodARMIdentifier" xml:space="preserve">
+    <value>Идентификатор за методот на апстрактна врска (ARM)</value>
+  </data>
+  <data name="AbstractRelationshipMethodARMVersionNumber" xml:space="preserve">
+    <value>Број на верзија на методот на апстрактна врска (ARM).</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>_Сметка:</value>
+  </data>
+  <data name="AddNewRepository" xml:space="preserve">
+    <value>Додај ново складиште</value>
+  </data>
+  <data name="AdditionalExtensionsAreRequiredToPerformThisOperation" xml:space="preserve">
+    <value>Потребни се дополнителни проширувања за да се изврши оваа операција.</value>
+  </data>
+  <data name="AdjustColor" xml:space="preserve">
+    <value>Пр_илагоди ја бојата...</value>
+  </data>
+  <data name="AdjustColor2" xml:space="preserve">
+    <value>Прилагоди ја бојата</value>
+  </data>
+  <data name="AdjustColors" xml:space="preserve">
+    <value>Прилагоди ги боите</value>
+  </data>
+  <data name="AdjustTheAngleOfTheImageToStraightenTheHorizon" xml:space="preserve">
+    <value>Прилагоди го аголот од сликата за да се исправи хоризонтот</value>
+  </data>
+  <data name="AdjustThePhotoColors" xml:space="preserve">
+    <value>Прилагоди ги боите на сликата</value>
+  </data>
+  <data name="AdjustTime" xml:space="preserve">
+    <value>Прилагоди го времето</value>
+  </data>
+  <data name="AdjustTime2" xml:space="preserve">
+    <value>Прилагоди го _времето...</value>
+  </data>
+  <data name="AdjustedDate" xml:space="preserve">
+    <value>Прилагоди датум: </value>
+  </data>
+  <data name="AlbumName" xml:space="preserve">
+    <value>_Име на албум:</value>
+  </data>
+  <data name="AlbumTitle" xml:space="preserve">
+    <value>Наслов на _албум:</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Сите</value>
+  </data>
+  <data name="AllImages" xml:space="preserve">
+    <value>Сите слики</value>
+  </data>
+  <data name="AllRegisteredRepositories" xml:space="preserve">
+    <value>Сите регистрирани складишта</value>
+  </data>
+  <data name="AmountColon" xml:space="preserve">
+    <value>Количина:</value>
+  </data>
+  <data name="AnErrorOccurredWhileProcessingXMessage" xml:space="preserve">
+    <value>Се случи грешка при процесирањето "{0}": {1}</value>
+  </data>
+  <data name="AnErrorOfTypeXOccurredWhileDeletingTheFile" xml:space="preserve">
+    <value>Се случи грешка од типот {0} при бришењето на датотеката:{2}{1}</value>
+  </data>
+  <data name="AnUnhandledExceptionWasThrown" xml:space="preserve">
+    <value>Беше исфрлен несправувачки исклучок: </value>
+  </data>
+  <data name="And" xml:space="preserve">
+    <value>и</value>
+  </data>
+  <data name="ApplyStraightening" xml:space="preserve">
+    <value>Примени исправување</value>
+  </data>
+  <data name="ApplyStraighteningToImage" xml:space="preserve">
+    <value>Примени исправување на сликата</value>
+  </data>
+  <data name="AreYouSureYouWantToCancelTheInstallation" xml:space="preserve">
+    <value>Дали сигурно сакате да ја откажите инсталацијата?</value>
+  </data>
+  <data name="ArrangeBy" xml:space="preserve">
+    <value>Подреди _по</value>
+  </data>
+  <data name="ArrangeByFolder" xml:space="preserve">
+    <value>Подреди по _папка</value>
+  </data>
+  <data name="ArrangeByMonth" xml:space="preserve">
+    <value>Подреди по _месец</value>
+  </data>
+  <data name="AsBackground" xml:space="preserve">
+    <value>Како _позадина</value>
+  </data>
+  <data name="AsCheckPattern" xml:space="preserve">
+    <value>Како шема за _проверка</value>
+  </data>
+  <data name="AsCustomColor" xml:space="preserve">
+    <value>Како _сопствена боја: </value>
+  </data>
+  <data name="AtAfterBetween" xml:space="preserve">
+    <value>на
+после
+помеѓу</value>
+  </data>
+  <data name="AttachTag" xml:space="preserve">
+    <value>_Прикачи етикета</value>
+  </data>
+  <data name="AttachTag2" xml:space="preserve">
+    <value>Прикачи етикета:</value>
+  </data>
+  <data name="AttachTagToSelection" xml:space="preserve">
+    <value>Прикачи ја етикетата на избраното</value>
+  </data>
+  <data name="AttachTagToSelection2" xml:space="preserve">
+    <value>_Прикачи етикета на изборот</value>
+  </data>
+  <data name="AttachTags" xml:space="preserve">
+    <value>Прикачи етикети:</value>
+  </data>
+  <data name="AttachTagsToSelection" xml:space="preserve">
+    <value>Прикачи ги етикетите на избраното</value>
+  </data>
+  <data name="Author" xml:space="preserve">
+    <value>Автор:</value>
+  </data>
+  <data name="Authorize" xml:space="preserve">
+    <value>Авторизирај</value>
+  </data>
+  <data name="AutoColor" xml:space="preserve">
+    <value>Автоматска боја</value>
+  </data>
+  <data name="AutomaticallyAdjustTheColors" xml:space="preserve">
+    <value>Автоматски прилагоди ги боите</value>
+  </data>
+  <data name="Autorotate" xml:space="preserve">
+    <value>Автоматска ротација</value>
+  </data>
+  <data name="Autorotate2" xml:space="preserve">
+    <value>_Автоматска ротација</value>
+  </data>
+  <data name="AvailableSpace" xml:space="preserve">
+    <value>Достапен простор:</value>
+  </data>
+  <data name="BAccountB" xml:space="preserve">
+    <value>&lt;b&gt;Сметка&lt;/b&gt;</value>
+  </data>
+  <data name="BActionB" xml:space="preserve">
+    <value>&lt;b&gt;Дејство&lt;/b&gt;</value>
+  </data>
+  <data name="BAlbumB" xml:space="preserve">
+    <value>&lt;b&gt;Албум&lt;/b&gt;</value>
+  </data>
+  <data name="BB" xml:space="preserve">
+    <value>&lt;b&gt;&lt;/b&gt;</value>
+  </data>
+  <data name="BColorManagementB" xml:space="preserve">
+    <value>&lt;b&gt;Менаџмент на боја&lt;/b&gt;</value>
+  </data>
+  <data name="BColorTemperatureB" xml:space="preserve">
+    <value>&lt;b&gt;Интензитет на боја&lt;/b&gt;</value>
+  </data>
+  <data name="BCorrectionsB" xml:space="preserve">
+    <value>&lt;b&gt;Ко_рекции&lt;/b&gt;</value>
+  </data>
+  <data name="BDestinationB" xml:space="preserve">
+    <value>&lt;b&gt;Дестинација&lt;/b&gt;</value>
+  </data>
+  <data name="BEndDateB" xml:space="preserve">
+    <value>&lt;b&gt;Краен датум&lt;/b&gt;</value>
+  </data>
+  <data name="BExportMethodB" xml:space="preserve">
+    <value>&lt;b&gt;Начин на извезување&lt;/b&gt;</value>
+  </data>
+  <data name="BExposureB" xml:space="preserve">
+    <value>&lt;b&gt;Експозитура&lt;/b&gt;</value>
+  </data>
+  <data name="BFromExternalPhotoB" xml:space="preserve">
+    <value>&lt;b&gt;Од надворешна слика&lt;/b&gt;</value>
+  </data>
+  <data name="BFromPhotoB" xml:space="preserve">
+    <value>&lt;b&gt;Од слика&lt;/b&gt;</value>
+  </data>
+  <data name="BGalleryB" xml:space="preserve">
+    <value>&lt;b&gt;Галерија&lt;/b&gt;</value>
+  </data>
+  <data name="BHistogramB" xml:space="preserve">
+    <value>&lt;b&gt;Хисто_грам&lt;/b&gt;</value>
+  </data>
+  <data name="BHistogramB2" xml:space="preserve">
+    <value>&lt;b&gt;Хистограм&lt;/b&gt;</value>
+  </data>
+  <data name="BImageInterpolationB" xml:space="preserve">
+    <value>&lt;b&gt;Внесување на слика&lt;/b&gt;</value>
+  </data>
+  <data name="BImportSettingsB" xml:space="preserve">
+    <value>&lt;b&gt;Внеси поставувања&lt;/b&gt;</value>
+  </data>
+  <data name="BMaxRatingB" xml:space="preserve">
+    <value>&lt;b&gt;Макс. рејтинг&lt;/b&gt;</value>
+  </data>
+  <data name="BMetadataB" xml:space="preserve">
+    <value>&lt;b&gt;Мета податоци&lt;/b&gt;</value>
+  </data>
+  <data name="BMinRatingB" xml:space="preserve">
+    <value>&lt;b&gt;Мин. рејтинг&lt;/b&gt;</value>
+  </data>
+  <data name="BPhotographLayoutB" xml:space="preserve">
+    <value>&lt;b&gt;Фотографски изглед&lt;/b&gt;</value>
+  </data>
+  <data name="BPhotosB" xml:space="preserve">
+    <value>&lt;b&gt;Слики&lt;/b&gt;</value>
+  </data>
+  <data name="BPhotosToBurnB" xml:space="preserve">
+    <value>&lt;b&gt;Слики за снимање на CD&lt;/b&gt;</value>
+  </data>
+  <data name="BPicasaWebExportB" xml:space="preserve">
+    <value>&lt;b&gt;Извезување во PicasaWeb&lt;/b&gt;</value>
+  </data>
+  <data name="BPredefinedB" xml:space="preserve">
+    <value>&lt;b&gt;Однапред дефинирани&lt;/b&gt;</value>
+  </data>
+  <data name="BPreviewB" xml:space="preserve">
+    <value>&lt;b&gt;Преглед&lt;/b&gt;</value>
+  </data>
+  <data name="BPrinterDetailsB" xml:space="preserve">
+    <value>&lt;b&gt;Детали за печатачот&lt;/b&gt;</value>
+  </data>
+  <data name="BReferencePhotoB" xml:space="preserve">
+    <value>&lt;b&gt;Урнек&lt;/b&gt;</value>
+  </data>
+  <data name="BScreensaverB" xml:space="preserve">
+    <value>&lt;b&gt;Затишје&lt;/b&gt;</value>
+  </data>
+  <data name="BSelectPeriodB" xml:space="preserve">
+    <value>&lt;b&gt;Избрете период&lt;/b&gt;</value>
+  </data>
+  <data name="BSelectTheExtensionsToInstallAndClickOnNextB" xml:space="preserve">
+    <value>&lt;b&gt;Одберете ги проширувањата кои ќе ги инсталирате и притиснете на „Следно“&lt;/b&gt;</value>
+  </data>
+  <data name="BSizeB" xml:space="preserve">
+    <value>&lt;b&gt;Големина&lt;/b&gt;</value>
+  </data>
+  <data name="BSmugMugExportB" xml:space="preserve">
+    <value>&lt;b&gt;SmugMug извоз&lt;/b&gt;</value>
+  </data>
+  <data name="BStartDateB" xml:space="preserve">
+    <value>&lt;b&gt;Почетен датум&lt;/b&gt;</value>
+  </data>
+  <data name="BStyleB" xml:space="preserve">
+    <value>&lt;b&gt;Стил&lt;/b&gt;</value>
+  </data>
+  <data name="BSummaryB" xml:space="preserve">
+    <value>&lt;b&gt;Резиме&lt;/b&gt;</value>
+  </data>
+  <data name="BThemingB" xml:space="preserve">
+    <value>&lt;b&gt;Теми&lt;/b&gt;</value>
+  </data>
+  <data name="BTransparentPartsB" xml:space="preserve">
+    <value>&lt;b&gt;Провидни делови&lt;/b&gt;</value>
+  </data>
+  <data name="BViewAllPicturesImportedB" xml:space="preserve">
+    <value>&lt;b&gt;Прегледај ги сите увезени слики&lt;/b&gt;</value>
+  </data>
+  <data name="BViewingPermissionsB" xml:space="preserve">
+    <value>&lt;b&gt;Дозволи за преглед&lt;/b&gt;</value>
+  </data>
+  <data name="BWhiteBalanceB" xml:space="preserve">
+    <value>&lt;b&gt;_Баланс на белата боја&lt;/b&gt;</value>
+  </data>
+  <data name="BeforeLaunchingYShouldFSpotCreateANewVersionOfTheSelectedPhotoToPreserveTheOriginal" xml:space="preserve">
+    <value>Дали пред кревањето на {1} F-Spot треба да направи нова верзија од одбраната слика за да го зачува оригиналот?</value>
+  </data>
+  <data name="BeforeLaunchingYShouldFSpotCreateNewVersionsOfTheSelectedPhotosToPreserveTheOriginals" xml:space="preserve">
+    <value>Дали пред кревањето на {1} F-Spot треба да направи нови верзији од одбраните слики за да ги зачува оригиналите?</value>
+  </data>
+  <data name="BetweenXAndY" xml:space="preserve">
+    <value>Помеѓу {0} 
+и {1}</value>
+  </data>
+  <data name="BigBExtensionManagerBBig" xml:space="preserve">
+    <value>&lt;big&gt;&lt;b&gt;Менаџер за проширувања&lt;/b&gt;&lt;/big&gt;</value>
+  </data>
+  <data name="Border" xml:space="preserve">
+    <value>_Рамка:</value>
+  </data>
+  <data name="Brightness" xml:space="preserve">
+    <value>_Светлост:</value>
+  </data>
+  <data name="Browse" xml:space="preserve">
+    <value>Разгледај...</value>
+  </data>
+  <data name="Browse2" xml:space="preserve">
+    <value>Прелистај</value>
+  </data>
+  <data name="BrowseManyPhotosSimultaneously" xml:space="preserve">
+    <value>Прелистувај повеќе слики истовремено</value>
+  </data>
+  <data name="BrowsePreviouslyScheduledFiles" xml:space="preserve">
+    <value>_Прелистај ги претходно закажаните датотеки</value>
+  </data>
+  <data name="BuildingGallery" xml:space="preserve">
+    <value>Создавам галерија</value>
+  </data>
+  <data name="ByDate" xml:space="preserve">
+    <value>По _датум</value>
+  </data>
+  <data name="ByImportRoll" xml:space="preserve">
+    <value>По _улога</value>
+  </data>
+  <data name="ByRating" xml:space="preserve">
+    <value>По _рејтинг</value>
+  </data>
+  <data name="CD" xml:space="preserve">
+    <value>CD</value>
+  </data>
+  <data name="Camera" xml:space="preserve">
+    <value>Фотоапарат</value>
+  </data>
+  <data name="CameraSelection" xml:space="preserve">
+    <value>Избор на фотоапарат</value>
+  </data>
+  <data name="CanNotDeleteTagsThatHaveTagsWihinThem.PleaseDeleteTagUnderXFirst" xml:space="preserve">
+    <value>Не можам да ги избришам етикетите кои имаат етикети во нив.  Прво избришете ги етикетите под "{0}".</value>
+  </data>
+  <data name="CanTSaveNonLocalFiles" xml:space="preserve">
+    <value>Не можам да зачувам нелокални датотеки.</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Откажи</value>
+  </data>
+  <data name="Captcha" xml:space="preserve">
+    <value>_Captcha:</value>
+  </data>
+  <data name="Caption" xml:space="preserve">
+    <value>З_аглавје:</value>
+  </data>
+  <data name="CheckType" xml:space="preserve">
+    <value>провери тип</value>
+  </data>
+  <data name="CheckingCredentials" xml:space="preserve">
+    <value>Ги проверувам сертификатите...</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>Град</value>
+  </data>
+  <data name="ClearDateRangeMnemonic" xml:space="preserve">
+    <value>_Исчисти го опсегот на датите</value>
+  </data>
+  <data name="ClearRatingFilter" xml:space="preserve">
+    <value>_Исчисти го филтерот со рејтинг</value>
+  </data>
+  <data name="ClearRollFilter" xml:space="preserve">
+    <value>_Исчисти го филтерот со ленти</value>
+  </data>
+  <data name="ClearSearch" xml:space="preserve">
+    <value>Исчисти го барањето</value>
+  </data>
+  <data name="ColorSpace" xml:space="preserve">
+    <value>Шема на простор на боја</value>
+  </data>
+  <data name="CommaSpace" xml:space="preserve">
+    <value>, </value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Коментар:</value>
+  </data>
+  <data name="CompleteAuthorization" xml:space="preserve">
+    <value>Заврши авторизација</value>
+  </data>
+  <data name="Components" xml:space="preserve">
+    <value>_Компоненти</value>
+  </data>
+  <data name="ComponentsConfiguration" xml:space="preserve">
+    <value>Конфигурација на компонентите</value>
+  </data>
+  <data name="Compression" xml:space="preserve">
+    <value>Компресија</value>
+  </data>
+  <data name="Configure" xml:space="preserve">
+    <value>Кон_фигурирај</value>
+  </data>
+  <data name="ConstrainTheAspectRatioOfTheSelection" xml:space="preserve">
+    <value>Ограничи го пропорционалниот однос на избраното</value>
+  </data>
+  <data name="Contents" xml:space="preserve">
+    <value>_Содржини</value>
+  </data>
+  <data name="Contrast" xml:space="preserve">
+    <value>Контраст</value>
+  </data>
+  <data name="Contrast2" xml:space="preserve">
+    <value>К_онтраст:</value>
+  </data>
+  <data name="ConvertThePhotoToBlackAndWhite" xml:space="preserve">
+    <value>Направи ја сликата црно-бела</value>
+  </data>
+  <data name="ConvertThePhotoToSepiaTones" xml:space="preserve">
+    <value>Конвертирај ја сликата во сепија тонови</value>
+  </data>
+  <data name="CopyFilesToThePhotosFolder" xml:space="preserve">
+    <value>Копирај ги датотеките во папката Слики</value>
+  </data>
+  <data name="CopyLocation" xml:space="preserve">
+    <value>Копирај ја локаци_јата</value>
+  </data>
+  <data name="CopyPhotoLocation" xml:space="preserve">
+    <value>Копирај ја локација на слик_а</value>
+  </data>
+  <data name="CopyingFileXOfY" xml:space="preserve">
+    <value>Копирам датотека {0} од {1}</value>
+  </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>Авторски права:</value>
+  </data>
+  <data name="Copyright2" xml:space="preserve">
+    <value>Авторски права</value>
+  </data>
+  <data name="Copyright20032008NovellInc" xml:space="preserve">
+    <value>Copyright © 2003-2008 Novell Inc.</value>
+  </data>
+  <data name="CopyrightInformationFor" xml:space="preserve">
+    <value>Информации за авторските права за</value>
+  </data>
+  <data name="CouldNotCreateANewVersion" xml:space="preserve">
+    <value>Не можам да создадам нова верзија</value>
+  </data>
+  <data name="CouldNotDeleteAVersion" xml:space="preserve">
+    <value>Не можам да ја избришам верзијата</value>
+  </data>
+  <data name="CouldNotRenameAVersion" xml:space="preserve">
+    <value>Не можам да ја преименувам верзијата</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Држава</value>
+  </data>
+  <data name="Cover" xml:space="preserve">
+    <value>Покриј</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>_Креирај</value>
+  </data>
+  <data name="CreateAMailWithTheSelectedPhotosPossiblyResizedAttached" xml:space="preserve">
+    <value>Креирај порака со избраните слики (веројатно намалени) прикачени</value>
+  </data>
+  <data name="CreateASoftFocusVisualEffect" xml:space="preserve">
+    <value>Креирај визуелен ефект на мек фокус</value>
+  </data>
+  <data name="CreateCD" xml:space="preserve">
+    <value>Креирај CD</value>
+  </data>
+  <data name="CreateGalleryUsingOriginal" xml:space="preserve">
+    <value>Креирај _галерија користејќи "Оригинал"</value>
+  </data>
+  <data name="CreateMail" xml:space="preserve">
+    <value>Креирај е-пошта</value>
+  </data>
+  <data name="CreateMail2" xml:space="preserve">
+    <value>_Креирај порака</value>
+  </data>
+  <data name="CreateNewTag" xml:space="preserve">
+    <value>Креирај нова етикета</value>
+  </data>
+  <data name="CreateNewTag2" xml:space="preserve">
+    <value>Креирај нова етикета...</value>
+  </data>
+  <data name="CreateNewTag3" xml:space="preserve">
+    <value>Креирај нова _етикета...</value>
+  </data>
+  <data name="CreateNewVersion" xml:space="preserve">
+    <value>Креирај нова верзија</value>
+  </data>
+  <data name="CreateNewVersion2" xml:space="preserve">
+    <value>Да креирам нова верзија?</value>
+  </data>
+  <data name="CreateNewVersion3" xml:space="preserve">
+    <value>Креирај _нова верзија...</value>
+  </data>
+  <data name="CreateNewVersions" xml:space="preserve">
+    <value>Да креирам нови верзии?</value>
+  </data>
+  <data name="CreateStandaloneWebGallery" xml:space="preserve">
+    <value>Креирај самостојна _веб галерија</value>
+  </data>
+  <data name="Creator" xml:space="preserve">
+    <value>Создавач</value>
+  </data>
+  <data name="CreatorOfTheContent" xml:space="preserve">
+    <value>Креатор на содржината</value>
+  </data>
+  <data name="Crop" xml:space="preserve">
+    <value>Отсечи</value>
+  </data>
+  <data name="CropPhotoToFit" xml:space="preserve">
+    <value>Сечи ја сликата за да се _вклопи</value>
+  </data>
+  <data name="CropPhotoToSelectedArea" xml:space="preserve">
+    <value>Отсечи слика ок обележаната површина</value>
+  </data>
+  <data name="CurrentDate" xml:space="preserve">
+    <value>Тековен датум:</value>
+  </data>
+  <data name="CurrentWeekMonSun" xml:space="preserve">
+    <value>Тековна недела (Пон-Нед)</value>
+  </data>
+  <data name="CustomRatios" xml:space="preserve">
+    <value>Сопствени размери...</value>
+  </data>
+  <data name="CustomRendered" xml:space="preserve">
+    <value>Прилагодено исцртување</value>
+  </data>
+  <data name="CustomText2" xml:space="preserve">
+    <value>Сопствен текст: </value>
+  </data>
+  <data name="CustomTheme" xml:space="preserve">
+    <value>Сопствена тема</value>
+  </data>
+  <data name="CustomizedRange" xml:space="preserve">
+    <value>Прилагоден опсег</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>Темно</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Датум</value>
+  </data>
+  <data name="Dates" xml:space="preserve">
+    <value>_Датуми</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Избриши</value>
+  </data>
+  <data name="DeleteFromDrive" xml:space="preserve">
+    <value>_Избриши од уредот</value>
+  </data>
+  <data name="DeletePhotoMnemonic" xml:space="preserve">
+    <value>_Избриши ја сликата</value>
+  </data>
+  <data name="DeletePhotosMnemonic" xml:space="preserve">
+    <value>_Избриши ги сликите</value>
+  </data>
+  <data name="DeleteSelectedTag" xml:space="preserve">
+    <value>_Избриши ја избраната етикета</value>
+  </data>
+  <data name="DeleteTag" xml:space="preserve">
+    <value>Избриши ја етикетата</value>
+  </data>
+  <data name="DeleteTagMnemonic" xml:space="preserve">
+    <value>_Избриши ја етикетата</value>
+  </data>
+  <data name="DeleteTagXQuestion" xml:space="preserve">
+    <value>Да ја избришам етикетата "{0}"?</value>
+  </data>
+  <data name="DeleteTags" xml:space="preserve">
+    <value>Избриши ги етикетите</value>
+  </data>
+  <data name="DeleteTagsMnemonic" xml:space="preserve">
+    <value>_Избриши ги етикетите</value>
+  </data>
+  <data name="DeleteTheSelectedPhotoPermanently" xml:space="preserve">
+    <value>Да ја избришам {0}-та одбрана слика засекогаш?</value>
+  </data>
+  <data name="DeleteTheXSelectedPhotosPermanently" xml:space="preserve">
+    <value>Да ги избришам {0}-те одбрани слики засекогаш?</value>
+  </data>
+  <data name="DeleteTheXSelectedTagsQuestion" xml:space="preserve">
+    <value>Да ги избришам {0}-те одбрани етикети?</value>
+  </data>
+  <data name="DeleteVersion" xml:space="preserve">
+    <value>_Избриши ја верзијата</value>
+  </data>
+  <data name="Desaturate" xml:space="preserve">
+    <value>Десатурирај</value>
+  </data>
+  <data name="Description2" xml:space="preserve">
+    <value>О_пис:</value>
+  </data>
+  <data name="Description3" xml:space="preserve">
+    <value>_Опис:</value>
+  </data>
+  <data name="DestinationTemp" xml:space="preserve">
+    <value>_Привремена папка на дестинацијата</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Детали</value>
+  </data>
+  <data name="Difference" xml:space="preserve">
+    <value>разлика:</value>
+  </data>
+  <data name="DirectoryDoesNotExist" xml:space="preserve">
+    <value>Директориумот не постои.</value>
+  </data>
+  <data name="DirectoryNotFound" xml:space="preserve">
+    <value>Директориумот не е пронајден</value>
+  </data>
+  <data name="Disable" xml:space="preserve">
+    <value>Оневозможи</value>
+  </data>
+  <data name="DisabledExtensionsCanTBeLoaded" xml:space="preserve">
+    <value>Исклучените проширувања не може да се вчитаат.</value>
+  </data>
+  <data name="Display" xml:space="preserve">
+    <value>_Прикажи:</value>
+  </data>
+  <data name="DisplayASlideshowFromFSpot" xml:space="preserve">
+    <value>Прикажи слајд шоу од F-Spot</value>
+  </data>
+  <data name="DisplayFileNames" xml:space="preserve">
+    <value>Прикажи ги имињата на _датотеките</value>
+  </data>
+  <data name="DisplayOnlyThosePhotosThatWereImportedInSpecifiedRolls" xml:space="preserve">
+    <value>Прикаж ги само сликите кои беа увезени во одредени филм ролни.</value>
+  </data>
+  <data name="Dissolve" xml:space="preserve">
+    <value>Разложи</value>
+  </data>
+  <data name="Dither" xml:space="preserve">
+    <value>заматување</value>
+  </data>
+  <data name="DitherType" xml:space="preserve">
+    <value>тип на заматување</value>
+  </data>
+  <data name="DoNotSendAMail" xml:space="preserve">
+    <value>Не испраќај пошта</value>
+  </data>
+  <data name="DoneCopyingFiles" xml:space="preserve">
+    <value>Завршив со копирање на датотеките</value>
+  </data>
+  <data name="DoneLoading" xml:space="preserve">
+    <value>Завршив со вчитување</value>
+  </data>
+  <data name="DoneSendingPhotos" xml:space="preserve">
+    <value>Завршив со испраќање на сликите</value>
+  </data>
+  <data name="DownloadComplete" xml:space="preserve">
+    <value>Симнувањето заврши</value>
+  </data>
+  <data name="DownloadingExtensions" xml:space="preserve">
+    <value>Преземам проширувања...</value>
+  </data>
+  <data name="DownloadingPreviewOfX" xml:space="preserve">
+    <value>Симнувам преглед на {0}</value>
+  </data>
+  <data name="DownloadingPreviews" xml:space="preserve">
+    <value>Симнувам прегледи</value>
+  </data>
+  <data name="DragTagsHereToSearchForThem" xml:space="preserve">
+    <value>Влечете етикети овде за да ги пребарувате</value>
+  </data>
+  <data name="EMail" xml:space="preserve">
+    <value>Е-_пошта:</value>
+  </data>
+  <data name="Edit2" xml:space="preserve">
+    <value>_Уреди</value>
+  </data>
+  <data name="EditIcon" xml:space="preserve">
+    <value>Уреди ја иконата</value>
+  </data>
+  <data name="EditIconForTagX" xml:space="preserve">
+    <value>Уреди ја иконата на етикетата {0}</value>
+  </data>
+  <data name="EditImage" xml:space="preserve">
+    <value>Уреди ја сликата</value>
+  </data>
+  <data name="EditSelectedTag" xml:space="preserve">
+    <value>Уреди избрана етикета...</value>
+  </data>
+  <data name="EditSelectedTag2" xml:space="preserve">
+    <value>_Уреди ја избраната етикета...</value>
+  </data>
+  <data name="EditTag2" xml:space="preserve">
+    <value>Уреди етикета</value>
+  </data>
+  <data name="EditTagIcon" xml:space="preserve">
+    <value>Уреди ја иконата на етикетата</value>
+  </data>
+  <data name="EightByTen" xml:space="preserve">
+    <value>8 x 10</value>
+  </data>
+  <data name="Enable" xml:space="preserve">
+    <value>Овозможи</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Грешка</value>
+  </data>
+  <data name="ErrorConnectingToCamera" xml:space="preserve">
+    <value>Грешка при поврзувањето со фотоапаратот</value>
+  </data>
+  <data name="ErrorDeletingPicture" xml:space="preserve">
+    <value>Грешка при бришењето на сликата</value>
+  </data>
+  <data name="ErrorDetails" xml:space="preserve">
+    <value>Детали за грешката</value>
+  </data>
+  <data name="ErrorEditingPhoto" xml:space="preserve">
+    <value>Грешка во уредувањето на сликата</value>
+  </data>
+  <data name="ErrorErrorWhileTransferringAborting" xml:space="preserve">
+    <value>Грешка: Грешка при префрлувањето; Прекинувам</value>
+  </data>
+  <data name="ErrorFileAlreadyExistsAborting" xml:space="preserve">
+    <value>Грешка: Датотеката веќе постои; Прекинувам</value>
+  </data>
+  <data name="ErrorImportingXZZY" xml:space="preserve">
+    <value>Грешка при увезувањето на {0}{2}{2}{1}</value>
+  </data>
+  <data name="ErrorLoadingDatabase" xml:space="preserve">
+    <value>Грешка при вчитувањето на базата на податоци.</value>
+  </data>
+  <data name="ErrorProcessingImage" xml:space="preserve">
+    <value>Грешка при процесирање на сликата</value>
+  </data>
+  <data name="ErrorReadingServerResponse" xml:space="preserve">
+    <value>Грешка во читањето на одговорот на серверот</value>
+  </data>
+  <data name="ErrorRenamingTag" xml:space="preserve">
+    <value>Грешка во преименувањето на етикетата</value>
+  </data>
+  <data name="ErrorSavingAdjustedPhoto" xml:space="preserve">
+    <value>Грешка во зачувувањето на изменетата слика</value>
+  </data>
+  <data name="ErrorSavingSharpenedPhoto" xml:space="preserve">
+    <value>Грешка во зачувувањето на заострената слика</value>
+  </data>
+  <data name="ErrorTransferring" xml:space="preserve">
+    <value>Грешка во префрлањето</value>
+  </data>
+  <data name="ErrorTransferringFile" xml:space="preserve">
+    <value>Грешка при префрлувањето на датотеката</value>
+  </data>
+  <data name="ErrorUploadingPictureXToGalleryColonY" xml:space="preserve">
+    <value>Грешка во качувањето на сликата „{0}“ во галеријата: {1}</value>
+  </data>
+  <data name="ErrorUploadingPictureXToGalleryZY" xml:space="preserve">
+    <value>Грешка во качувањето на сликата „{0}“ во галеријата:{2}{1}</value>
+  </data>
+  <data name="ErrorUploadingToGalleryX" xml:space="preserve">
+    <value>Грешка во качувањето во галеријата: {0}</value>
+  </data>
+  <data name="ErrorUploadingToXColonY" xml:space="preserve">
+    <value>Грешка при качувањето до {0}: {1}</value>
+  </data>
+  <data name="ErrorWhileConnectingToGallery" xml:space="preserve">
+    <value>Грешка при поврзувањето со галеријата</value>
+  </data>
+  <data name="ErrorWhileCreatingAlbum" xml:space="preserve">
+    <value>Грешка при креирање на албум</value>
+  </data>
+  <data name="ErrorWhileRotatingPhoto" xml:space="preserve">
+    <value>Грешка при ротацијата на слииката</value>
+  </data>
+  <data name="ErrorWhileTransferring" xml:space="preserve">
+    <value>Грешка при префрлањето</value>
+  </data>
+  <data name="EstimatedNewSize" xml:space="preserve">
+    <value>Проценка на новата големина</value>
+  </data>
+  <data name="Events" xml:space="preserve">
+    <value>Настани</value>
+  </data>
+  <data name="ExceptionOccurredX" xml:space="preserve">
+    <value>Се појави исклучок: {0}</value>
+  </data>
+  <data name="ExcludePhotosTaggedX" xml:space="preserve">
+    <value>Исклучи слики етикетирани со "{0}"</value>
+  </data>
+  <data name="ExifDirectory" xml:space="preserve">
+    <value>Директориум за слики со разменувачки формат</value>
+  </data>
+  <data name="ExitFullscreen" xml:space="preserve">
+    <value>Излези од режим на цел екран</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Извези</value>
+  </data>
+  <data name="Export2" xml:space="preserve">
+    <value>_Извези</value>
+  </data>
+  <data name="ExportTagHierarchy" xml:space="preserve">
+    <value>Извези ја хиерархијата _за етикетите</value>
+  </data>
+  <data name="ExportTagIcons" xml:space="preserve">
+    <value>Извези _етикети за икони</value>
+  </data>
+  <data name="ExportTags" xml:space="preserve">
+    <value>_Извези ги етикетите</value>
+  </data>
+  <data name="ExportTags2" xml:space="preserve">
+    <value>Извези _етикети</value>
+  </data>
+  <data name="ExportTitlesAndComments" xml:space="preserve">
+    <value>Извези ги насловите и коментарите</value>
+  </data>
+  <data name="ExportTitlesAndComments2" xml:space="preserve">
+    <value>Извези ги _насловите и коментарите</value>
+  </data>
+  <data name="ExportTo" xml:space="preserve">
+    <value>Извези во</value>
+  </data>
+  <data name="ExportTo2" xml:space="preserve">
+    <value>_Извези во</value>
+  </data>
+  <data name="ExportToAlbum" xml:space="preserve">
+    <value>_Извези во албум:</value>
+  </data>
+  <data name="ExportedLocations" xml:space="preserve">
+    <value>Извезени локации</value>
+  </data>
+  <data name="ExportingPhotoX" xml:space="preserve">
+    <value>Ја извезувам сликата "{0}"</value>
+  </data>
+  <data name="Exposure" xml:space="preserve">
+    <value>Изложеност</value>
+  </data>
+  <data name="ExposureMode" xml:space="preserve">
+    <value>Режим на експозитура</value>
+  </data>
+  <data name="ExposureProgram" xml:space="preserve">
+    <value>Програма за експозитура</value>
+  </data>
+  <data name="ExtendedMetadata" xml:space="preserve">
+    <value>Проширени метаподатоци</value>
+  </data>
+  <data name="Extension" xml:space="preserve">
+    <value>Проширување</value>
+  </data>
+  <data name="ExtensionDependencies" xml:space="preserve">
+    <value>Зависности на проширувањето:</value>
+  </data>
+  <data name="ExtensionInstallation" xml:space="preserve">
+    <value>Инсталација на проширувања</value>
+  </data>
+  <data name="ExtensionManager" xml:space="preserve">
+    <value>Менаџер за проширувања</value>
+  </data>
+  <data name="ExtensionRepositoryManagement" xml:space="preserve">
+    <value>Менаџмент на складиштата за проширувања</value>
+  </data>
+  <data name="ExternalGloballyUniqueObjectIdentifier" xml:space="preserve">
+    <value>Надворешен, глобално единствен идентификатор на објектот</value>
+  </data>
+  <data name="ExtraLarge" xml:space="preserve">
+    <value>Екстра големо</value>
+  </data>
+  <data name="FSpot" xml:space="preserve">
+    <value>F-Spot</value>
+  </data>
+  <data name="FSpotEncounteredAFatalError" xml:space="preserve">
+    <value>F-Spot дојде до фатална грешка</value>
+  </data>
+  <data name="FSpotEncounteredAnErrorWhileLoadingThePhotoDatabaseTheOldDatabaseHasBeMovedToXAndANewDatabaseHasBeenCreated" xml:space="preserve">
+    <value>F-Spot дојде до грешка при вчитувањето на базата со слики. Старата база е преместена во {0} и нова база беше направена.</value>
+  </data>
+  <data name="FSpotNeedsYourAuthorizationInOrderToUploadPhotosToYourXAccountPressTheAuthorizeButtonToOpenAWebBrowserAndGiveFSpotTheAuthorization" xml:space="preserve">
+    <value>На F-Spot му треба Вашата авторизација за да качи {0} слики на вашата Flickr сметка. Притиснете го копчето "Авторизирај" за да отворите веб прелистувач и да се авторизирате. </value>
+  </data>
+  <data name="FSpotPhotoManager" xml:space="preserve">
+    <value>F-Spot Менаџер за слики</value>
+  </data>
+  <data name="FSpotPhotoViewer" xml:space="preserve">
+    <value>F-Spot Прегледувач за слики</value>
+  </data>
+  <data name="FSpotPhotos" xml:space="preserve">
+    <value>Слики од F-Spot</value>
+  </data>
+  <data name="FSpotView" xml:space="preserve">
+    <value>F-Spot преглед</value>
+  </data>
+  <data name="FSpotWasUnableToFindAnyCamerasAttachedToThisSystemDoubleCheckThatTheCameraIsConnectedAndHasPower" xml:space="preserve">
+    <value>F-Spot не можеше да пронајде фотоапарат прикачен на овој систем.  Повторно проверете дали фотоапаратот е поврзан и е приклучен</value>
+  </data>
+  <data name="FSpotWasUnableToLogOnToXMakeSureYouHaveGivenTheAuthUsingXWebBrowser" xml:space="preserve">
+    <value>F-Spot не може да се најави на {0}.  Проверете дали се авторизиравте преку {0} интерфејсот во веб прелистувачот.</value>
+  </data>
+  <data name="FSpotWebsite" xml:space="preserve">
+    <value>Веб сајтот на F-Spot</value>
+  </data>
+  <data name="Favorites" xml:space="preserve">
+    <value>Омилени</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>Датотека</value>
+  </data>
+  <data name="FileNotFonud" xml:space="preserve">
+    <value>Датотеката не е пронајдена</value>
+  </data>
+  <data name="FileSourceType" xml:space="preserve">
+    <value>Тип на изворна датотека</value>
+  </data>
+  <data name="Fill" xml:space="preserve">
+    <value>Исполнето</value>
+  </data>
+  <data name="FilterOnSelectedRolls" xml:space="preserve">
+    <value>Филтер на избраните филм ролни</value>
+  </data>
+  <data name="Find" xml:space="preserve">
+    <value>Барај</value>
+  </data>
+  <data name="Find2" xml:space="preserve">
+    <value>Најди:</value>
+  </data>
+  <data name="Find3" xml:space="preserve">
+    <value>Бара_ј</value>
+  </data>
+  <data name="FindColon" xml:space="preserve">
+    <value>Најди: </value>
+  </data>
+  <data name="FindSelectedTagMnemonic" xml:space="preserve">
+    <value>Најди _ја избраната етикета</value>
+  </data>
+  <data name="FindSelectedTagWithMnemonic" xml:space="preserve">
+    <value>Најди ја избраната етикета _со</value>
+  </data>
+  <data name="FindSelectedTagsMnemonic" xml:space="preserve">
+    <value>Најди _ги избраните етикети</value>
+  </data>
+  <data name="FindSelectedTagsWithMnemonic" xml:space="preserve">
+    <value>Најди _ги избраните етикети</value>
+  </data>
+  <data name="FindWithMnemonic" xml:space="preserve">
+    <value>Пребарај _со</value>
+  </data>
+  <data name="FiveBySevenL2L" xml:space="preserve">
+    <value>5 x 7 (L, 2L)</value>
+  </data>
+  <data name="Flickr" xml:space="preserve">
+    <value>_Flickr</value>
+  </data>
+  <data name="Flickr2" xml:space="preserve">
+    <value>_Flickr...</value>
+  </data>
+  <data name="Flip" xml:space="preserve">
+    <value>Преврти</value>
+  </data>
+  <data name="FocalPlaneResolutionUnit" xml:space="preserve">
+    <value>Резолуциска единица на фокусната рамнина</value>
+  </data>
+  <data name="Folder" xml:space="preserve">
+    <value>Папка</value>
+  </data>
+  <data name="Folder2" xml:space="preserve">
+    <value>_Папка</value>
+  </data>
+  <data name="Folder3" xml:space="preserve">
+    <value>П_апка...</value>
+  </data>
+  <data name="Folder4" xml:space="preserve">
+    <value>_Папка:</value>
+  </data>
+  <data name="FolderExport" xml:space="preserve">
+    <value>Извези папка</value>
+  </data>
+  <data name="FollowingErrorWasEncounteredAttemptingToLogInX" xml:space="preserve">
+    <value>Следнава грешка се појави при обидот за најава: {0}</value>
+  </data>
+  <data name="FourBySixPostcard" xml:space="preserve">
+    <value>4 x 6 (Поштенска карта)</value>
+  </data>
+  <data name="FourByThreeBook" xml:space="preserve">
+    <value>4 x 3 (Книга)</value>
+  </data>
+  <data name="FromScreenStandardRGB" xml:space="preserve">
+    <value>Од екранот
+Стандарден RGB</value>
+  </data>
+  <data name="FullNameOfTheCountryOfTheFocusOfTheContent" xml:space="preserve">
+    <value>Целосно име на државата на фокусот на содржината</value>
+  </data>
+  <data name="FullPageNomargin" xml:space="preserve">
+    <value>Цела страница (без маргини)</value>
+  </data>
+  <data name="FullPageStandard4x6" xml:space="preserve">
+    <value>На цела страница
+Стандардно - 4x6</value>
+  </data>
+  <data name="Fullscreen" xml:space="preserve">
+    <value>На цел екран</value>
+  </data>
+  <data name="Fullscreen2" xml:space="preserve">
+    <value>_На цел екран</value>
+  </data>
+  <data name="GPSDirectory" xml:space="preserve">
+    <value>Директориум за GPS</value>
+  </data>
+  <data name="GainControl" xml:space="preserve">
+    <value>Преземи контрола</value>
+  </data>
+  <data name="Gallery" xml:space="preserve">
+    <value>Галерија</value>
+  </data>
+  <data name="Gallery2" xml:space="preserve">
+    <value>Галерија2</value>
+  </data>
+  <data name="Gallery3" xml:space="preserve">
+    <value>Г_алерија:</value>
+  </data>
+  <data name="Gallery4" xml:space="preserve">
+    <value>_Галерија</value>
+  </data>
+  <data name="Gallery5" xml:space="preserve">
+    <value>_Галерија:</value>
+  </data>
+  <data name="GalleryGeneratedBy" xml:space="preserve">
+    <value>Галерија генерирана од</value>
+  </data>
+  <data name="GalleryName" xml:space="preserve">
+    <value>Име на г_алеријата:</value>
+  </data>
+  <data name="GalleryName2" xml:space="preserve">
+    <value>_Име на галерија:</value>
+  </data>
+  <data name="GalleryWithThisNameAlreadyExists" xml:space="preserve">
+    <value>Галерија со ова име веќе постои</value>
+  </data>
+  <data name="Hairline025051" xml:space="preserve">
+    <value>Тенка линија
+0.25"
+0.5"
+1"
+</value>
+  </data>
+  <data name="HeadlineOfTheContent" xml:space="preserve">
+    <value>Наслов на содржината</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>_Помош</value>
+  </data>
+  <data name="Hidden" xml:space="preserve">
+    <value>Скриени</value>
+  </data>
+  <data name="Hidden2" xml:space="preserve">
+    <value>_Скриени</value>
+  </data>
+  <data name="Hide" xml:space="preserve">
+    <value>Скриј</value>
+  </data>
+  <data name="HideFindBarMnemonic" xml:space="preserve">
+    <value>Скриј _лента за пребарување</value>
+  </data>
+  <data name="HideStyles" xml:space="preserve">
+    <value>Скриј стилови</value>
+  </data>
+  <data name="HideToolbar2" xml:space="preserve">
+    <value>Скриј ја лентата со алатки</value>
+  </data>
+  <data name="Hue" xml:space="preserve">
+    <value>_Боја:</value>
+  </data>
+  <data name="IPTCFileFormat" xml:space="preserve">
+    <value>IPTC формат на датотеки</value>
+  </data>
+  <data name="IPTCInformationInterchangeModelIIMVersionNumber" xml:space="preserve">
+    <value>IPTC модел за размена на информации (IIM) број на верзија</value>
+  </data>
+  <data name="Icon" xml:space="preserve">
+    <value>_Икона:</value>
+  </data>
+  <data name="IdentifiesTheProviderAndProduct" xml:space="preserve">
+    <value>Го идентификува снабдувачот и производот</value>
+  </data>
+  <data name="IfYouDeleteThisTagTheAssociationWithXYWillBeLost" xml:space="preserve">
+    <value>Ако ја избришете етикетата, сите асоцијации со {0} {1} ќе бидат изгубени.</value>
+  </data>
+  <data name="IfYouDeleteThisTagsTheAssociationWithXYWillBeLost" xml:space="preserve">
+    <value>Ако ја избришете етикетата, сите асоцијации со {0} {1} ќе бидат изгубени.</value>
+  </data>
+  <data name="IfYouRemovePhotosFromFSpotCatalogAllTagInfoLost" xml:space="preserve">
+    <value>Ако ги избришете сликите од F-Spot каталогот, сите информации за етикетите ќе бидат изгубени. Сликите остануваат на компјутерот и повторно можат да бидат увезени во F-Spot.</value>
+  </data>
+  <data name="ImageDirectory" xml:space="preserve">
+    <value>Директориум за слики</value>
+  </data>
+  <data name="ImageInformation2" xml:space="preserve">
+    <value>Информации за сликата</value>
+  </data>
+  <data name="ImageSettings" xml:space="preserve">
+    <value>Поставувања за сликата</value>
+  </data>
+  <data name="ImagesTaggedWith" xml:space="preserve">
+    <value>Сликите со етикета:</value>
+  </data>
+  <data name="Img000Jpg" xml:space="preserve">
+    <value>img_000.jpg</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Внеси</value>
+  </data>
+  <data name="Import2" xml:space="preserve">
+    <value>_Внеси...</value>
+  </data>
+  <data name="ImportError" xml:space="preserve">
+    <value>Грешка во увезувањето</value>
+  </data>
+  <data name="ImportIntoFSpot" xml:space="preserve">
+    <value>Увези во F-Spot</value>
+  </data>
+  <data name="ImportNewImages" xml:space="preserve">
+    <value>Увези нови слики</value>
+  </data>
+  <data name="ImportRoll" xml:space="preserve">
+    <value>Увези фотографски филм</value>
+  </data>
+  <data name="ImportSource" xml:space="preserve">
+    <value>Внеси извор:</value>
+  </data>
+  <data name="ImportTags" xml:space="preserve">
+    <value>Внеси етикети</value>
+  </data>
+  <data name="InUserDirectory" xml:space="preserve">
+    <value> (во кориснички директориум)</value>
+  </data>
+  <data name="IncludePhotoTaggedX" xml:space="preserve">
+    <value>Вклучи слики етикетирани со "{0}"</value>
+  </data>
+  <data name="IncludeSubfolders" xml:space="preserve">
+    <value>Вклучи и поддиректориуми</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>Индекс</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Информации</value>
+  </data>
+  <data name="InstallExtensions" xml:space="preserve">
+    <value>_Инсталирај проширувања...</value>
+  </data>
+  <data name="InstallFrom" xml:space="preserve">
+    <value>Инсталирај од:</value>
+  </data>
+  <data name="InstallationCancelled" xml:space="preserve">
+    <value>Инсталацијата е откажана</value>
+  </data>
+  <data name="InstallationFailed" xml:space="preserve">
+    <value>Инсталацијата не успеа</value>
+  </data>
+  <data name="InstructionsFromTheCreatorToTheReceiverNotCoveredByOtherFields" xml:space="preserve">
+    <value>Инструкции од креаторот до примачот кои не се покриени во другите полиња</value>
+  </data>
+  <data name="IntellectualGenreOfTheObject" xml:space="preserve">
+    <value>Интелектуален жанр на предметот</value>
+  </data>
+  <data name="InterOperabilityDirectory" xml:space="preserve">
+    <value>Директориум за интероперабилност</value>
+  </data>
+  <data name="InterpolateImageOnZoom" xml:space="preserve">
+    <value>_Вметни слика при зголемување</value>
+  </data>
+  <data name="InterpolationType" xml:space="preserve">
+    <value>тип на вметнување</value>
+  </data>
+  <data name="InvalidGalleryName" xml:space="preserve">
+    <value>Невалидно име на галерија</value>
+  </data>
+  <data name="InvalidUrl" xml:space="preserve">
+    <value>Невалидна URL</value>
+  </data>
+  <data name="Label" xml:space="preserve">
+    <value>Ознака</value>
+  </data>
+  <data name="Label124" xml:space="preserve">
+    <value>label124</value>
+  </data>
+  <data name="Large" xml:space="preserve">
+    <value>Голема</value>
+  </data>
+  <data name="Large2" xml:space="preserve">
+    <value>_Голема</value>
+  </data>
+  <data name="LastImportRoll" xml:space="preserve">
+    <value>_Последна увезена лента</value>
+  </data>
+  <data name="LastNintyDays" xml:space="preserve">
+    <value>Последните 90 дена</value>
+  </data>
+  <data name="LastSevenDays" xml:space="preserve">
+    <value>Последните 7 дена</value>
+  </data>
+  <data name="LastThirtyDays" xml:space="preserve">
+    <value>Последните 30 дена</value>
+  </data>
+  <data name="LastThreeHundredSixtyDays" xml:space="preserve">
+    <value>Последните 360 дена</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>Светло</value>
+  </data>
+  <data name="LightSource" xml:space="preserve">
+    <value>Светлосен извор</value>
+  </data>
+  <data name="LiteralAnd" xml:space="preserve">
+    <value> и </value>
+  </data>
+  <data name="LiteralOr" xml:space="preserve">
+    <value> или </value>
+  </data>
+  <data name="LoadingXExtension" xml:space="preserve">
+    <value>Вчитувам {0} проширување</value>
+  </data>
+  <data name="LoadingXOfY" xml:space="preserve">
+    <value>Вчитувам {0} од {1}</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Локација</value>
+  </data>
+  <data name="LocationWithinACityOrAreaWhereTheObjectOriginates" xml:space="preserve">
+    <value>Локацијата во градот или областа од каде предметот потекнува</value>
+  </data>
+  <data name="LoggingIntoX" xml:space="preserve">
+    <value>Се најавувам во {0}</value>
+  </data>
+  <data name="MakeFSpotYourScreensaver" xml:space="preserve">
+    <value>Направете го F-Spot ваше затишје</value>
+  </data>
+  <data name="ManageExtensions" xml:space="preserve">
+    <value>Справи се со _проширувањата</value>
+  </data>
+  <data name="ManageYourCustomSelectionRatios" xml:space="preserve">
+    <value>Менаџирајте ги Вашите сопствени размери</value>
+  </data>
+  <data name="Medium" xml:space="preserve">
+    <value>Средна</value>
+  </data>
+  <data name="Medium2" xml:space="preserve">
+    <value>_Средна</value>
+  </data>
+  <data name="MergeTags" xml:space="preserve">
+    <value>Спои етикети</value>
+  </data>
+  <data name="MergeTagsMnemonic" xml:space="preserve">
+    <value>_Спои ги етикетите</value>
+  </data>
+  <data name="MergeTheSelectedTag" xml:space="preserve">
+    <value>Да ја спојам {0}-та избрана етикета?</value>
+  </data>
+  <data name="MergeTheSelectedTags" xml:space="preserve">
+    <value>Да ги спојам {0}-те одбрани етикети?</value>
+  </data>
+  <data name="MetadataBrowser" xml:space="preserve">
+    <value>Прелистувач на мета податоци</value>
+  </data>
+  <data name="MeteringMode" xml:space="preserve">
+    <value>Начин на одбирање на точната експозитура</value>
+  </data>
+  <data name="MinStartingAtX" xml:space="preserve">
+    <value>мин. Започнувајќи од {0}</value>
+  </data>
+  <data name="Modified" xml:space="preserve">
+    <value>Изменета ({0})</value>
+  </data>
+  <data name="ModifiedInY" xml:space="preserve">
+    <value>Изменета во {1}</value>
+  </data>
+  <data name="ModifiedInYX" xml:space="preserve">
+    <value>Изменета во {1} ({0})</value>
+  </data>
+  <data name="ModifiedX" xml:space="preserve">
+    <value>Изменети ({0})</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>_Месец</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>Повеќе</value>
+  </data>
+  <data name="MoreDates" xml:space="preserve">
+    <value>Повеќе датуми</value>
+  </data>
+  <data name="MoreDirectories" xml:space="preserve">
+    <value>Повеќе директориуми</value>
+  </data>
+  <data name="MyPhotos2" xml:space="preserve">
+    <value>мои слики</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Име</value>
+  </data>
+  <data name="NameColon" xml:space="preserve">
+    <value>Име:</value>
+  </data>
+  <data name="NameOfNewTagColon" xml:space="preserve">
+    <value>Името на новата етикета:</value>
+  </data>
+  <data name="NameOfTheCityTheContentIsFocussingOn" xml:space="preserve">
+    <value>Име на градот во кој содржината е фокусирана</value>
+  </data>
+  <data name="NewNameColon" xml:space="preserve">
+    <value>Ново име:</value>
+  </data>
+  <data name="NewWindow" xml:space="preserve">
+    <value>_Нов прозорец</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Следно</value>
+  </data>
+  <data name="NextPhoto" xml:space="preserve">
+    <value>Следна слика</value>
+  </data>
+  <data name="NextPicture" xml:space="preserve">
+    <value>Следна слика</value>
+  </data>
+  <data name="NoAccountSelected" xml:space="preserve">
+    <value>Не се избрани сметки</value>
+  </data>
+  <data name="NoActivePhoto" xml:space="preserve">
+    <value>Нема активна слика</value>
+  </data>
+  <data name="NoApplicationsAvailable" xml:space="preserve">
+    <value>Не се достапни апликации</value>
+  </data>
+  <data name="NoCamerasDetected" xml:space="preserve">
+    <value>(Не се откриени фотоапарати)</value>
+  </data>
+  <data name="NoCamerasDetected2" xml:space="preserve">
+    <value>Не се откриени фотоапарати.</value>
+  </data>
+  <data name="NoConstraint" xml:space="preserve">
+    <value>Без ограничување </value>
+  </data>
+  <data name="NoImage" xml:space="preserve">
+    <value>Нема _слика</value>
+  </data>
+  <data name="NoImageLoaded" xml:space="preserve">
+    <value>Нема внесени слики.</value>
+  </data>
+  <data name="NoMatchingPhotosFound" xml:space="preserve">
+    <value>Не се пронајдени слики кои одговараат</value>
+  </data>
+  <data name="NoMetadataAvailable" xml:space="preserve">
+    <value>Нема достапни мета податоци</value>
+  </data>
+  <data name="NoPermissionToDeleteTheFile" xml:space="preserve">
+    <value>Немам дозвола за да ја избришам датотеката:{1}{0}</value>
+  </data>
+  <data name="NoPhotosMatchingFound" xml:space="preserve">
+    <value>Не се пронајдени слики кои одговараат на {0}</value>
+  </data>
+  <data name="NoSelectionAvailable" xml:space="preserve">
+    <value>Ништо не е обележано</value>
+  </data>
+  <data name="NoTagAppliedToAppliedTryAddingorSelectingDifferentTagInPreferenceDialog" xml:space="preserve">
+    <value>Етикетата „{0}“ не е применета на ниедна слика. Пробајте да 
+ја додадете етикетата на некои слики или да одберите друга етикета
+во дијалогот за преференции на F-Spot.</value>
+  </data>
+  <data name="NoWayToSaveFilesOfTypeX" xml:space="preserve">
+    <value>Нема начин за зачувување на датотеките од типот "{0}"</value>
+  </data>
+  <data name="NoneTitleFilenameDatePhotoDetails" xml:space="preserve">
+    <value>Ништо
+Наслов
+Име на датотека
+Датум
+Детали за сликата</value>
+  </data>
+  <data name="NotSpaceX" xml:space="preserve">
+    <value>Не {0}</value>
+  </data>
+  <data name="NumberIdentifyingTheIIMVersionThisApplicationRecordUses" xml:space="preserve">
+    <value>Бројот со кој што се идентификува IIM верзијата која оваа апликација ја користи</value>
+  </data>
+  <data name="NumberOfCopies" xml:space="preserve">
+    <value>Б_рој на копии:</value>
+  </data>
+  <data name="NumberOfPhotosInSelectedRolls" xml:space="preserve">
+    <value>Број на слики во избраните ленти:</value>
+  </data>
+  <data name="NumberOfPictures" xml:space="preserve">
+    <value>Број на слики</value>
+  </data>
+  <data name="OSIDestinationRoutingInformation" xml:space="preserve">
+    <value>OSI информации за насочувањето на дестинацијата</value>
+  </data>
+  <data name="ObjectAttributeReference" xml:space="preserve">
+    <value>Урнек на атрибут на предмет</value>
+  </data>
+  <data name="ObjectName" xml:space="preserve">
+    <value>Име на предмет</value>
+  </data>
+  <data name="ObjectTypeReference" xml:space="preserve">
+    <value>Урнек на тип на предмет</value>
+  </data>
+  <data name="OkMnemonic" xml:space="preserve">
+    <value>_Во ред</value>
+  </data>
+  <data name="OnXBetweenYAndZ" xml:space="preserve">
+    <value>На {0} помеѓу 
+{1} и {2}</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Отвори</value>
+  </data>
+  <data name="OpenAlbumInBrowserWhenDoneUploading" xml:space="preserve">
+    <value>_Отвори го албумот во прелистувач кога качувањето е готово</value>
+  </data>
+  <data name="OpenAlbumInBrowserWhenDoneUploading2" xml:space="preserve">
+    <value>Отвори _албум во прелистувач кога качувањето е готово</value>
+  </data>
+  <data name="OpenDestinationWhenDoneExporting" xml:space="preserve">
+    <value>Отвори _дестинација кога извезувањето е готово</value>
+  </data>
+  <data name="OpenDestinationWhenDoneExporting2" xml:space="preserve">
+    <value>_Отвори дестинација кога извезувањето е готово</value>
+  </data>
+  <data name="OpenFolder" xml:space="preserve">
+    <value>Отвори _папка...</value>
+  </data>
+  <data name="OpenWith" xml:space="preserve">
+    <value>Отвори _со</value>
+  </data>
+  <data name="OperationFailed" xml:space="preserve">
+    <value>Операцијата не успеа</value>
+  </data>
+  <data name="Or" xml:space="preserve">
+    <value>или</value>
+  </data>
+  <data name="OrganizeEnjoyAndShareYourPhotos" xml:space="preserve">
+    <value>Организирајте ги, споделете ги и уживајте во Вашите слики</value>
+  </data>
+  <data name="Orientation" xml:space="preserve">
+    <value>Ориентација</value>
+  </data>
+  <data name="Original" xml:space="preserve">
+    <value>Оригинал</value>
+  </data>
+  <data name="OriginalSizePossibleVeryLargeFileSize" xml:space="preserve">
+    <value>Оригинална големина (можна е огромна големина на датотеката)</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Друго</value>
+  </data>
+  <data name="Output" xml:space="preserve">
+    <value>_Излез:</value>
+  </data>
+  <data name="OverallProgress" xml:space="preserve">
+    <value>Вкупен напредок:</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>Пакет</value>
+  </data>
+  <data name="Page1Of3" xml:space="preserve">
+    <value>Страница 1 од 3</value>
+  </data>
+  <data name="PageColon" xml:space="preserve">
+    <value>Страна:</value>
+  </data>
+  <data name="PageSetup" xml:space="preserve">
+    <value>Поставување за страницата</value>
+  </data>
+  <data name="PaperSizeXxYmm" xml:space="preserve">
+    <value>Големина на хартијата: {0} x {1} mm</value>
+  </data>
+  <data name="ParenNoAlbumsParen" xml:space="preserve">
+    <value>(Нема албуми)</value>
+  </data>
+  <data name="ParenNoEditsParen" xml:space="preserve">
+    <value>(Нема уредувања)</value>
+  </data>
+  <data name="ParenNoGalleryParen" xml:space="preserve">
+    <value>(Нема галерија)</value>
+  </data>
+  <data name="ParenNoTagsParen" xml:space="preserve">
+    <value>(Нема етикети)</value>
+  </data>
+  <data name="ParenNoneParen" xml:space="preserve">
+    <value>(Без етикета родител)</value>
+  </data>
+  <data name="ParenNotConnectedParen" xml:space="preserve">
+    <value>(Не сум поврзан)</value>
+  </data>
+  <data name="ParenTopLevelParen" xml:space="preserve">
+    <value>(Највисоко ниво)</value>
+  </data>
+  <data name="ParenUnknownParen" xml:space="preserve">
+    <value>(Непознато)</value>
+  </data>
+  <data name="ParentAlbum" xml:space="preserve">
+    <value>_Албум родител:</value>
+  </data>
+  <data name="ParentTag" xml:space="preserve">
+    <value>Етикета р_одител:</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>_Лозинка:</value>
+  </data>
+  <data name="Path" xml:space="preserve">
+    <value>Патека:</value>
+  </data>
+  <data name="Path2" xml:space="preserve">
+    <value>Патека</value>
+  </data>
+  <data name="Pause" xml:space="preserve">
+    <value>Пауза</value>
+  </data>
+  <data name="People" xml:space="preserve">
+    <value>Луѓе</value>
+  </data>
+  <data name="Photo0Of0" xml:space="preserve">
+    <value>Слика 0 од 0</value>
+  </data>
+  <data name="Photo2" xml:space="preserve">
+    <value>слика</value>
+  </data>
+  <data name="Photo3" xml:space="preserve">
+    <value>_Слика</value>
+  </data>
+  <data name="PhotoManagementForGNOME" xml:space="preserve">
+    <value>Менаџер за слики за GNOME</value>
+  </data>
+  <data name="PhotoManager" xml:space="preserve">
+    <value>Менаџер за слики</value>
+  </data>
+  <data name="PhotoSize" xml:space="preserve">
+    <value>_Големина на слика:</value>
+  </data>
+  <data name="PhotoSource" xml:space="preserve">
+    <value>Извор на с_лика:</value>
+  </data>
+  <data name="PhotoViewer" xml:space="preserve">
+    <value>Прегледувач за слики</value>
+  </data>
+  <data name="PhotoXOfY" xml:space="preserve">
+    <value>Слика {0} од {1}</value>
+  </data>
+  <data name="PhotometricInterpretation" xml:space="preserve">
+    <value>Фотометричка интерпретација</value>
+  </data>
+  <data name="Photos" xml:space="preserve">
+    <value>Слики</value>
+  </data>
+  <data name="Photos2" xml:space="preserve">
+    <value>слики</value>
+  </data>
+  <data name="PhotosPerPage" xml:space="preserve">
+    <value>Слики по страна</value>
+  </data>
+  <data name="PicasaWeb2" xml:space="preserve">
+    <value>_PicasaWeb...</value>
+  </data>
+  <data name="Picasaweb" xml:space="preserve">
+    <value>Picasaweb</value>
+  </data>
+  <data name="Pixels" xml:space="preserve">
+    <value>пиксели</value>
+  </data>
+  <data name="Places" xml:space="preserve">
+    <value>Места</value>
+  </data>
+  <data name="PlanarConfiguration" xml:space="preserve">
+    <value>Планарна конфигурација</value>
+  </data>
+  <data name="PleaseVerifyThatTheSettingsForThisGalleryAreCorrect" xml:space="preserve">
+    <value>Проверете дали поставувањата на галеријата се точни.</value>
+  </data>
+  <data name="PleaseVerifyThatTheSettingsForThisGalleryAreCorrectEnterTheLettersAsTheyAreShownInTheImageInTheCaptchaFieldILettersAreNotCaseSensitiveI" xml:space="preserve">
+    <value>Ве молам, проверете дали поставувањата за оваа галерија се точни.
+Внесете ги буквите како што се прикажани во сликата во „Captcha“ полето. &lt;i&gt;Не е важно дали буквите се мали или големи&lt;/i&gt;</value>
+  </data>
+  <data name="PleaseWaitFSpotGalleryDBUpdating" xml:space="preserve">
+    <value>Почекајте додека вашата F-Spot база на податоци на галеријата се ажурира. Ова може да потрае подолго време.</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>Порта</value>
+  </data>
+  <data name="Preferences" xml:space="preserve">
+    <value>Параметри</value>
+  </data>
+  <data name="PreparingEmail" xml:space="preserve">
+    <value>Подготвувам за пошта</value>
+  </data>
+  <data name="Prev" xml:space="preserve">
+    <value>Претходно</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Преглед</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Претходно</value>
+  </data>
+  <data name="PreviousPhoto" xml:space="preserve">
+    <value>Претходна слика</value>
+  </data>
+  <data name="PreviousPicture" xml:space="preserve">
+    <value>Претходна слика</value>
+  </data>
+  <data name="PreviousWeekMonSun" xml:space="preserve">
+    <value>Претходна недела (Пон-Нед)</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>Печати...</value>
+  </data>
+  <data name="PrintCropMarks" xml:space="preserve">
+    <value>Печати ги _обележјата за отсекување</value>
+  </data>
+  <data name="PrintCutMarks" xml:space="preserve">
+    <value>Печати ги обележјата за сечење</value>
+  </data>
+  <data name="Private" xml:space="preserve">
+    <value>Приватно</value>
+  </data>
+  <data name="ProvidedByX" xml:space="preserve">
+    <value>(овозможено од {0})</value>
+  </data>
+  <data name="ProviderOfTheObject" xml:space="preserve">
+    <value>Добавувач на објектот</value>
+  </data>
+  <data name="Public" xml:space="preserve">
+    <value>Јавно</value>
+  </data>
+  <data name="PublicAlbum" xml:space="preserve">
+    <value>Јавен албум</value>
+  </data>
+  <data name="Push" xml:space="preserve">
+    <value>Притисни</value>
+  </data>
+  <data name="Quit" xml:space="preserve">
+    <value>_Напушти</value>
+  </data>
+  <data name="RadiusColon" xml:space="preserve">
+    <value>Радиус:</value>
+  </data>
+  <data name="RatedPhotos" xml:space="preserve">
+    <value>Рангирани слики</value>
+  </data>
+  <data name="RatingColon" xml:space="preserve">
+    <value>Рејтинг:</value>
+  </data>
+  <data name="Ratings" xml:space="preserve">
+    <value>_Рејтинзи</value>
+  </data>
+  <data name="Ratio" xml:space="preserve">
+    <value>Размер</value>
+  </data>
+  <data name="ReallyDelete" xml:space="preserve">
+    <value>Навистина да избришам?</value>
+  </data>
+  <data name="ReallyDeleteVersionXQuestion" xml:space="preserve">
+    <value>Дали навистина да ја избришам верзијата "{0}"?</value>
+  </data>
+  <data name="ReceivedErrorXWhileAttemptingToRotateY" xml:space="preserve">
+    <value>Добив грешка "{0}" при обидот за ротација на {1}</value>
+  </data>
+  <data name="ReceivedErrorXWhileConnectingToCamera" xml:space="preserve">
+    <value>Добив грешка "{0}" при поврзувањето со фотоапаратот</value>
+  </data>
+  <data name="ReceivedExceptionXUnableToCreateVersionY" xml:space="preserve">
+    <value>Грешка "{0}". Не можан да креирам верзија "{1}"</value>
+  </data>
+  <data name="ReceivedExceptionXUnableToDeleteVersionY" xml:space="preserve">
+    <value>Грешка "{0}". Не можам да ја избришам верзијата "{1}"</value>
+  </data>
+  <data name="ReceivedExceptionXUnableToRenameVersionToY" xml:space="preserve">
+    <value>Грешка "{0}". Не можам да ја преименувам верзијата во "{1}"</value>
+  </data>
+  <data name="ReceivedExceptionXUnableToSavePhotoY" xml:space="preserve">
+    <value>Грешка "{0}". Не можам да ја зачувам сликата {1}</value>
+  </data>
+  <data name="ReduceRedEye" xml:space="preserve">
+    <value>Намалиго ефектот црвени очи</value>
+  </data>
+  <data name="RefreshSearch" xml:space="preserve">
+    <value>Освежи пребарување</value>
+  </data>
+  <data name="RefreshThumbnail" xml:space="preserve">
+    <value>Ос_вежи ја сликичката</value>
+  </data>
+  <data name="RegisterALocalRepository" xml:space="preserve">
+    <value>Регистрирај се на локално складиште</value>
+  </data>
+  <data name="RegisterAnOnLineRepository" xml:space="preserve">
+    <value>Регистрирај се на онлајн складиште</value>
+  </data>
+  <data name="RemoveFromCatalog" xml:space="preserve">
+    <value>_Отстрани од каталог</value>
+  </data>
+  <data name="RemoveFromCatalogMnemonic" xml:space="preserve">
+    <value>_Отстрани од каталогот</value>
+  </data>
+  <data name="RemoveFromSearch" xml:space="preserve">
+    <value>Отстрани од од барањето</value>
+  </data>
+  <data name="RemoveRedeyeFromSelectedArea" xml:space="preserve">
+    <value>Отстрани црвени очи од обележаната површина</value>
+  </data>
+  <data name="RemoveTag" xml:space="preserve">
+    <value>Отс_трани етикета</value>
+  </data>
+  <data name="RemoveTagFromSelection" xml:space="preserve">
+    <value>Отстрани ги етикетите од избраното</value>
+  </data>
+  <data name="RemoveTagFromSelection2" xml:space="preserve">
+    <value>_Отстрани етикета од избраните</value>
+  </data>
+  <data name="RemoveTagFromSelection3" xml:space="preserve">
+    <value>Отстрани ја етикетата од избраното</value>
+  </data>
+  <data name="RemoveTheSelectedPhotoFromFSpot" xml:space="preserve">
+    <value>Да ја избришам {0}-та одбрана слика од F-Spot?</value>
+  </data>
+  <data name="RemoveTheXSelectedPhotosFromFSpot" xml:space="preserve">
+    <value>Да ги избришам {0}-те одбрани слики од F-Spot?</value>
+  </data>
+  <data name="RenameVersion" xml:space="preserve">
+    <value>Преименувај ја верзијата</value>
+  </data>
+  <data name="RenameVersion2" xml:space="preserve">
+    <value>_Отстрани верзија</value>
+  </data>
+  <data name="Repair" xml:space="preserve">
+    <value>Поправи</value>
+  </data>
+  <data name="Reparented" xml:space="preserve">
+    <value>Поправено</value>
+  </data>
+  <data name="ReparentedX" xml:space="preserve">
+    <value>Поправено ({0})</value>
+  </data>
+  <data name="Repeat" xml:space="preserve">
+    <value>Повтори</value>
+  </data>
+  <data name="Repositories" xml:space="preserve">
+    <value>_Складишта...</value>
+  </data>
+  <data name="Repository" xml:space="preserve">
+    <value>Складиште</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Ресетирај</value>
+  </data>
+  <data name="ResizeTo" xml:space="preserve">
+    <value>_Промени големина во: </value>
+  </data>
+  <data name="ResolutionUnit" xml:space="preserve">
+    <value>Единица на резолуција</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Обиди се повторно</value>
+  </data>
+  <data name="ReturnToThisWindowAfterYouHaveFinishedAuthProcessOnXClickCompleteAuthorizationButton" xml:space="preserve">
+    <value>Вратете се на овој прозорец кога ќе завршите со процесот на авторизација на {0} и кликнете на копчето "Заврши авторизација" подолу.</value>
+  </data>
+  <data name="Reveal" xml:space="preserve">
+    <value>Откриј</value>
+  </data>
+  <data name="ReverseOrder" xml:space="preserve">
+    <value>_Обратен редослед</value>
+  </data>
+  <data name="RotateLeft" xml:space="preserve">
+    <value>Ротирај лево</value>
+  </data>
+  <data name="RotateLeftMnemonic" xml:space="preserve">
+    <value>Ротирај _лево</value>
+  </data>
+  <data name="RotatePhotoLeft" xml:space="preserve">
+    <value>Ротирај ја сликата налево</value>
+  </data>
+  <data name="RotatePhotoRight" xml:space="preserve">
+    <value>Ротирај ја сликата надесно</value>
+  </data>
+  <data name="RotatePictureLeft" xml:space="preserve">
+    <value>Ротирај ја сликата налево</value>
+  </data>
+  <data name="RotatePictureRight" xml:space="preserve">
+    <value>Ротирај ја сликата на десно</value>
+  </data>
+  <data name="RotateRight" xml:space="preserve">
+    <value>Ротирај десно</value>
+  </data>
+  <data name="RotateRightMnemonic" xml:space="preserve">
+    <value>Ротирај _десно</value>
+  </data>
+  <data name="RotateSelectedPhotoLeft" xml:space="preserve">
+    <value>Ротирај ја избраната слика налево</value>
+  </data>
+  <data name="RotateSelectedPhotoRight" xml:space="preserve">
+    <value>Ротирај ја избраната слика надесно</value>
+  </data>
+  <data name="RotateSelectedPhotosLeft" xml:space="preserve">
+    <value>Ротирај ги избраните слики налево</value>
+  </data>
+  <data name="RotateSelectedPhotosRight" xml:space="preserve">
+    <value>Ротирај ги избраните слики надесно</value>
+  </data>
+  <data name="RotatingPhotoX" xml:space="preserve">
+    <value>Ја ротирам сликата "{0}"</value>
+  </data>
+  <data name="RotatingPhotos" xml:space="preserve">
+    <value>Слики кои што може да се ротираат</value>
+  </data>
+  <data name="S" xml:space="preserve">
+    <value> </value>
+  </data>
+  <data name="S000000" xml:space="preserve">
+    <value>00:00:00</value>
+  </data>
+  <data name="S00000000000000" xml:space="preserve">
+    <value>0000:00:00 00:00:00</value>
+  </data>
+  <data name="S1024Px" xml:space="preserve">
+    <value>1024 px</value>
+  </data>
+  <data name="S1Of1" xml:space="preserve">
+    <value>1 од 1</value>
+  </data>
+  <data name="S2" xml:space="preserve">
+    <value>
+</value>
+  </data>
+  <data name="S320Px" xml:space="preserve">
+    <value>320 px</value>
+  </data>
+  <data name="S480Px" xml:space="preserve">
+    <value>480 px</value>
+  </data>
+  <data name="S5" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="S640Px" xml:space="preserve">
+    <value>640 px</value>
+  </data>
+  <data name="S800Px" xml:space="preserve">
+    <value>800 px</value>
+  </data>
+  <data name="SameAsPhoto" xml:space="preserve">
+    <value>Исто како слика</value>
+  </data>
+  <data name="Saturation" xml:space="preserve">
+    <value>Сатурација</value>
+  </data>
+  <data name="Saturation2" xml:space="preserve">
+    <value>_Сатурација:</value>
+  </data>
+  <data name="SaveTheFilesOnly" xml:space="preserve">
+    <value>_Само зачувај ги датотеките</value>
+  </data>
+  <data name="ScalePhotosToNoLargerThan" xml:space="preserve">
+    <value>_Смали ги сликите до не поголеми од: </value>
+  </data>
+  <data name="Scaled" xml:space="preserve">
+    <value>Раширено</value>
+  </data>
+  <data name="SceneCaptureType" xml:space="preserve">
+    <value>Тип на сликање на сцената</value>
+  </data>
+  <data name="SceneType" xml:space="preserve">
+    <value>Тип на сцена</value>
+  </data>
+  <data name="SearchReturnedNoResults" xml:space="preserve">
+    <value>Нема резултати од барањето</value>
+  </data>
+  <data name="SelectAFolder" xml:space="preserve">
+    <value>Одбери папка</value>
+  </data>
+  <data name="SelectAGtkrcFile" xml:space="preserve">
+    <value>Изберете gtkrc датотека</value>
+  </data>
+  <data name="SelectATag" xml:space="preserve">
+    <value>Одбери етикета...</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Одбери _сé</value>
+  </data>
+  <data name="SelectAnAreaToCrop" xml:space="preserve">
+    <value>Одберете површина за отсекување</value>
+  </data>
+  <data name="SelectAnAreaToRemoveRedeye" xml:space="preserve">
+    <value>Одберете површина за отстранување на црвени очи</value>
+  </data>
+  <data name="SelectExportFolder" xml:space="preserve">
+    <value>Одбери папка за извезување</value>
+  </data>
+  <data name="SelectFolder" xml:space="preserve">
+    <value>Одбери папка</value>
+  </data>
+  <data name="SelectImportRolls" xml:space="preserve">
+    <value>_Изберете ги увезените ленти...</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>Не одбирај _ништо</value>
+  </data>
+  <data name="SelectPhotoFromFile" xml:space="preserve">
+    <value>Изберете слика од датотека</value>
+  </data>
+  <data name="SelectPhotosToCopyFromCamera" xml:space="preserve">
+    <value>Избери слики за копирање од фотоапарат...</value>
+  </data>
+  <data name="SelectTag" xml:space="preserve">
+    <value>Одбери етикета</value>
+  </data>
+  <data name="SelectTheCameraFromWhichYouWantToTransferFiles" xml:space="preserve">
+    <value>Одберете фотоапарат од кој што сакате да префрлите датотеки</value>
+  </data>
+  <data name="SelectTheLocationOfTheRepositoryYouWantToRegister" xml:space="preserve">
+    <value>Одберете ја локацијата на складиштето каде што сакате да се регистрирате:</value>
+  </data>
+  <data name="SelectedCamera" xml:space="preserve">
+    <value>Избран фотоапарат: </value>
+  </data>
+  <data name="SelectionConstraints" xml:space="preserve">
+    <value>Изберете ограничувања</value>
+  </data>
+  <data name="SelectionGalleryViewport" xml:space="preserve">
+    <value>Избор
+Галерија
+Место за преглед</value>
+  </data>
+  <data name="SendByMail" xml:space="preserve">
+    <value>Испрати по _е-пошта...</value>
+  </data>
+  <data name="SensingMethod" xml:space="preserve">
+    <value>Метод на осет</value>
+  </data>
+  <data name="SepiaTone2" xml:space="preserve">
+    <value>Сепија тон</value>
+  </data>
+  <data name="ServerReturnedResponseWithoutGalleryContent" xml:space="preserve">
+    <value>Серверот одговори без содржина на галерија</value>
+  </data>
+  <data name="SetAsBackground" xml:space="preserve">
+    <value>Постави како позадина</value>
+  </data>
+  <data name="SetAsBackground2" xml:space="preserve">
+    <value>Постави како _позадина</value>
+  </data>
+  <data name="SetDateRange" xml:space="preserve">
+    <value>Постави опсег за датум</value>
+  </data>
+  <data name="SetDateRange2" xml:space="preserve">
+    <value>_Постави го опсегот на _датумите...</value>
+  </data>
+  <data name="SetRatingFilter" xml:space="preserve">
+    <value>Постави филтер за рејтинг</value>
+  </data>
+  <data name="SetRatingFilter2" xml:space="preserve">
+    <value>_Постави филтер за рејтинг...</value>
+  </data>
+  <data name="Sharpen" xml:space="preserve">
+    <value>Заостри</value>
+  </data>
+  <data name="Sharpen2" xml:space="preserve">
+    <value>_Заостри...</value>
+  </data>
+  <data name="Sharpness" xml:space="preserve">
+    <value>Острина</value>
+  </data>
+  <data name="ShiftAllPhotosByX" xml:space="preserve">
+    <value>Премести ги сите слики по {0}</value>
+  </data>
+  <data name="ShowAllPackages" xml:space="preserve">
+    <value>Покажи ги сите пакети</value>
+  </data>
+  <data name="ShowAllPhotos" xml:space="preserve">
+    <value>Прикажи ги сите слики.</value>
+  </data>
+  <data name="ShowFindBarMnemonic" xml:space="preserve">
+    <value>Покажи _лента за пребарување</value>
+  </data>
+  <data name="ShowNewVersionsOnly" xml:space="preserve">
+    <value>Покажи ги само новите верзии</value>
+  </data>
+  <data name="ShowOrHideTheSidePane" xml:space="preserve">
+    <value>Прикажи ја или скриј ја страничната лента</value>
+  </data>
+  <data name="ShowOrHideTheToolbar" xml:space="preserve">
+    <value>Прикажи ја или скриј ја лентата со алатки</value>
+  </data>
+  <data name="ShowStyles" xml:space="preserve">
+    <value>Прикажи стилови</value>
+  </data>
+  <data name="ShowUpdatesOnly" xml:space="preserve">
+    <value>Покажи ги само ажурирањата</value>
+  </data>
+  <data name="SidePane" xml:space="preserve">
+    <value>Странична _лента</value>
+  </data>
+  <data name="Sidebar" xml:space="preserve">
+    <value>Странична _лента</value>
+  </data>
+  <data name="SignInAsADifferentUser" xml:space="preserve">
+    <value>Најави се како друг корисник</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Големина</value>
+  </data>
+  <data name="SizeOfTheExportedSelection" xml:space="preserve">
+    <value>Големина на извезениот избор:</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>Прескокни</value>
+  </data>
+  <data name="SlideTransition" xml:space="preserve">
+    <value>Премин на слајд:</value>
+  </data>
+  <data name="Slideshow" xml:space="preserve">
+    <value>Слајд шоу</value>
+  </data>
+  <data name="Slideshow2" xml:space="preserve">
+    <value>_Слајд шоу</value>
+  </data>
+  <data name="Small" xml:space="preserve">
+    <value>Мала</value>
+  </data>
+  <data name="Small2" xml:space="preserve">
+    <value>_Мала</value>
+  </data>
+  <data name="SmallBrightnessSmall" xml:space="preserve">
+    <value>&lt;small&gt;_Светлост:&lt;/small&gt;</value>
+  </data>
+  <data name="SmallContrastSmall" xml:space="preserve">
+    <value>&lt;small&gt;К_онтраст:&lt;/small&gt;</value>
+  </data>
+  <data name="SmallExposureSmall" xml:space="preserve">
+    <value>&lt;small&gt;_Експозитура:&lt;/small&gt;</value>
+  </data>
+  <data name="SmallHueSmall" xml:space="preserve">
+    <value>&lt;small&gt;_Боја:&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIChooseTheFolderWhereFSpotShouldStoreNewlyImportedPhotosISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;Одберете ја папката во која F-Spot ќе ги зачувува новоувезените слики&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIEnableThisOptionToStoreTagsAndDescriptionsInsideSupportedImageFormatsISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;Овозможете ја оваа опција за зачувување на етикети и описи во 
+слики од неподдржани формати.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIWhileActingAsAScreensaverFSpotCanDisplayAllOfYourImagesOrASmallSubsetBasedOnTagsISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;Кога се однесува како чувар на екранот, F-Spot може да ги прикаже ситеВаши слики или мала група од нив врз база на етикетите.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIYouCanChooseHowToDisplayTransparentPartsInImagesThisOptionHasNoEffectOnPhotosButSettingThisAsCheckPatternOrCustomColorCouldBeUsefulWhenViewingIconsOrOtherArtworksWithTransparentPartsISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;Можете да одберете како да ги прикажувате транспарентните делови во сликите. Оваа опција нема ефект врз сликите, но поставувањето како шема за проверка или посебна бојаможе да биде корисно при прегледувањето на икони или други слики со провидни делови.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIYouLlHaveToRestartFSpotToLoadTheNewThemeISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;Ќе треба да го рестартирате f-spot да се вчита новата тема.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallSaturationSmall" xml:space="preserve">
+    <value>&lt;small&gt;_Сатурација:&lt;/small&gt;</value>
+  </data>
+  <data name="SmallSmall" xml:space="preserve">
+    <value>&lt;small&gt; &lt;/small&gt;</value>
+  </data>
+  <data name="SmallSmall2" xml:space="preserve">
+    <value>&lt;small&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallTempSmall" xml:space="preserve">
+    <value>&lt;small&gt;Застарува_ње:&lt;/small&gt;</value>
+  </data>
+  <data name="SmallTintSmall" xml:space="preserve">
+    <value>&lt;small&gt;_Сенка:&lt;/small&gt;</value>
+  </data>
+  <data name="SmugMug" xml:space="preserve">
+    <value>_SmugMug...</value>
+  </data>
+  <data name="SmugMug2" xml:space="preserve">
+    <value>SmugMug</value>
+  </data>
+  <data name="SoftFocus" xml:space="preserve">
+    <value>Мек фокус</value>
+  </data>
+  <data name="SomeOfTheRequiredExtensionsWereNotFound" xml:space="preserve">
+    <value>Некои од потребните проширувања не беа најдени</value>
+  </data>
+  <data name="SourceTemp" xml:space="preserve">
+    <value>Привремена папка на изворот</value>
+  </data>
+  <data name="SpaceAllPhotosBy" xml:space="preserve">
+    <value>Оддели ги сите слики по</value>
+  </data>
+  <data name="SpanWeightBoldSizeLargerErrorConnectingToGallerySpan" xml:space="preserve">
+    <value>&lt;span weight='bold' size='larger'&gt;Грешка при поврзувањето со галеријата&lt;/span&gt;
+</value>
+  </data>
+  <data name="SpanWeightBoldSizeLargerYourGoogleAccountIsLockedSpan" xml:space="preserve">
+    <value>&lt;span weight='bold' size='larger'&gt;Вашата Google сметка е заклучена&lt;/span&gt;
+</value>
+  </data>
+  <data name="SpecifyIfAnOriginalSizePictureShouldBeRotatedOrNotSmallerSizesAreAutomaticallyRotated" xml:space="preserve">
+    <value>Одреди дали да се ротира оригиналната слика. Помалите слики автоматски се ротираат.</value>
+  </data>
+  <data name="Split" xml:space="preserve">
+    <value>Раздели</value>
+  </data>
+  <data name="Square" xml:space="preserve">
+    <value>Квадрат</value>
+  </data>
+  <data name="StandardRGBImageProfileCustom" xml:space="preserve">
+    <value>Стандардно RGB
+Профил на слики
+Прилагодено
+</value>
+  </data>
+  <data name="StartSlideshow" xml:space="preserve">
+    <value>Стартувај слајд шоу</value>
+  </data>
+  <data name="State" xml:space="preserve">
+    <value>Држава</value>
+  </data>
+  <data name="StatusOfTheObjectdataAccordingToTheProvider" xml:space="preserve">
+    <value>Статусот на податоците на објектот според снабдувачот</value>
+  </data>
+  <data name="Straighten" xml:space="preserve">
+    <value>Исправи</value>
+  </data>
+  <data name="StripImageMetadata" xml:space="preserve">
+    <value>Скрати ги _мета податоците на сликата</value>
+  </data>
+  <data name="StripMetadata" xml:space="preserve">
+    <value>_Скрати ги мета податоците</value>
+  </data>
+  <data name="StripMetadata2" xml:space="preserve">
+    <value>Скрати ги _мета податоците</value>
+  </data>
+  <data name="SubjectAndKeywords" xml:space="preserve">
+    <value>Наслов и клучни зборови</value>
+  </data>
+  <data name="SystemTheme" xml:space="preserve">
+    <value>Системска тема</value>
+  </data>
+  <data name="TagDoesntExistTrySelectingDifferentTagInPerferenceDialog" xml:space="preserve">
+    <value>Етикетата која F-Spot ја бара не постои. Пробајте да
+одберите друга етикета во дијалогот за преференции
+на F-Spot.</value>
+  </data>
+  <data name="TagIcons" xml:space="preserve">
+    <value>_Обележи икони</value>
+  </data>
+  <data name="TagIsNotEmpty" xml:space="preserve">
+    <value>Етикетата не е празна</value>
+  </data>
+  <data name="TagName" xml:space="preserve">
+    <value>Име на етикетата:</value>
+  </data>
+  <data name="TagName2" xml:space="preserve">
+    <value>_Име на етикета:</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Етикета</value>
+  </data>
+  <data name="Tags2" xml:space="preserve">
+    <value>Е_тикети</value>
+  </data>
+  <data name="Tags3" xml:space="preserve">
+    <value>_Етикети</value>
+  </data>
+  <data name="TagsColon" xml:space="preserve">
+    <value>Етикети: </value>
+  </data>
+  <data name="TheCharacterSetDesignation" xml:space="preserve">
+    <value>Назначувањето на множество знаци</value>
+  </data>
+  <data name="TheDirectoryYouSelectedXDoesNotExistPleaseChooseADifferentDirectory" xml:space="preserve">
+    <value>Директориумот кој го избравте "{0}" не постои.  Одберете друг директориум</value>
+  </data>
+  <data name="TheEnvelopeHandlingPriorityBetween1MostUrgentAnd9LeastUrgent" xml:space="preserve">
+    <value>Третирање на приоритетот на пликовите помеѓу 1 (најитно) и 9 (најмалку важно)</value>
+  </data>
+  <data name="TheFSpotManualCouldNotBeFoundPleaseVerifyThatYourInstallationHasBeenCompletedSuccessfully" xml:space="preserve">
+    <value>„Прирачникот за F-Spot" не можи да се пронајди.  Ве молам, уверете се дека Вашата инсталација е целосно завршена.</value>
+  </data>
+  <data name="TheFollowingDependenciesCouldNotBeResolved" xml:space="preserve">
+    <value>Следните зависности не можат да се решат:</value>
+  </data>
+  <data name="TheFollowingErrorWasEncounteredWhileAttemptingToCreateAnAlbumX" xml:space="preserve">
+    <value>Се појави следната грешка при обидот за креирање на албум: {0}</value>
+  </data>
+  <data name="TheFollowingExtensionsAreCurrentlyInstalled" xml:space="preserve">
+    <value>Следните проширувања се инсталирани моментално:</value>
+  </data>
+  <data name="TheFollowingExtensionsWillBeInstalled" xml:space="preserve">
+    <value>Следниве проширувања ќе бидат инсталирани:</value>
+  </data>
+  <data name="TheFollowingPackagesNeedToBeUninstalled" xml:space="preserve">
+    <value>Следните пакети треба да се деинсталираат:</value>
+  </data>
+  <data name="TheFollowingPackagesWillBeInstalled" xml:space="preserve">
+    <value>Ќе се инсталираат следните пакети:</value>
+  </data>
+  <data name="TheFollowingPackagesWillBeUninstalled" xml:space="preserve">
+    <value>Следните пакети ќе бидат деинсталирани:</value>
+  </data>
+  <data name="TheGalleryUrlEntryDoesNotAppearToBeValid" xml:space="preserve">
+    <value>URL-то на галеријата не е валидно</value>
+  </data>
+  <data name="TheHourMinuteAndSecondHHMMSSTheServiceSentTheMaterial" xml:space="preserve">
+    <value>Часот, минутите и секундите (ЧЧММСС) кога сервисот го испратил материјалот</value>
+  </data>
+  <data name="TheInstallationFailed" xml:space="preserve">
+    <value>Инсталацијата не успеа!</value>
+  </data>
+  <data name="TheInstallationHasBeenSuccessfullyCompleted" xml:space="preserve">
+    <value>Инсталацијата беше успешно завршена.</value>
+  </data>
+  <data name="TheInstallationHasCompletedWithWarnings" xml:space="preserve">
+    <value>Инсталацијата заврши со предупредувања.</value>
+  </data>
+  <data name="ThePersonInvolvedInWritingEditingOrCorrectingTheObjectDataOrCaptionAbstract" xml:space="preserve">
+    <value>Личноста вклучена во пишувањето, уредувањето или корегирањето на податоците за објектот или поглавјето</value>
+  </data>
+  <data name="ThePhotoXDoesNotExist" xml:space="preserve">
+    <value>Сликата "{0}" не постои</value>
+  </data>
+  <data name="TheRequiredExtensionXIsDisabled" xml:space="preserve">
+    <value>Потребното проширување „{0}“ е оневозможено.</value>
+  </data>
+  <data name="TheRequiredExtensionXIsNotInstalled" xml:space="preserve">
+    <value>Потребното проширување „{0}“ не е инсталирано.</value>
+  </data>
+  <data name="TheSelectedExtensionsCanTBeInstalledBecauseThereAreDependencyConflicts" xml:space="preserve">
+    <value>Избраните додатоци не можат да се инсталираат бидејќи постои конфликти на зависностите.</value>
+  </data>
+  <data name="TheSizeOfChequersToUse" xml:space="preserve">
+    <value>големина на квадратите кои ќе се користат</value>
+  </data>
+  <data name="TheTitleOfTheAuthorOrCreator" xml:space="preserve">
+    <value>Наслов на авторот или креаторот</value>
+  </data>
+  <data name="TheTypeOfChequeringToUse" xml:space="preserve">
+    <value>тип на правење на поле од квадрати низ сликата кој ќе се употребува</value>
+  </data>
+  <data name="TheTypeOfInterpolationToUse" xml:space="preserve">
+    <value>тип на вметнување кој ќе се користи</value>
+  </data>
+  <data name="TheUninstallationFailed" xml:space="preserve">
+    <value>Одинсталирањето не успеа!</value>
+  </data>
+  <data name="TheUninstallationHasBeenSuccessfullyCompleted" xml:space="preserve">
+    <value>Деинсталацијата заврши успешно.</value>
+  </data>
+  <data name="TheUninstallationHasCompletedWithWarnings" xml:space="preserve">
+    <value>Деинсталацијата заврши без предупредувања.</value>
+  </data>
+  <data name="TheYearMonthAndDayCCYYMMDDTheServiceSentTheMaterial" xml:space="preserve">
+    <value>Годината, месецот и денот (ГГГГММДД) кога сервисот го испратил материјалот</value>
+  </data>
+  <data name="ThereAreOtherExtensionsThatDependOnThePreviousOnesWhichWillAlsoBeUninstalled" xml:space="preserve">
+    <value>Има други проширувања кои зависат од претходните кои што исто така ќе бидат деинсталирани:</value>
+  </data>
+  <data name="ThisDeletesAllVersionsOfTheSelectedPhotoFromYourDrive" xml:space="preserve">
+    <value>Ова ќе ги избриши сите верзии од одбраната слика од Вашиот диск.</value>
+  </data>
+  <data name="ThisDeletesAllVersionsOfTheSelectedPhotosFromYourDrive" xml:space="preserve">
+    <value>Ова ќе ги избрише сите верзии од одбранате слики од Вашиот диск.</value>
+  </data>
+  <data name="ThisNameIsAlreadyInUse" xml:space="preserve">
+    <value>Името е веќе во употреба</value>
+  </data>
+  <data name="ThisToolRequiresAnActiveSelectionPleaseSelectARegion" xml:space="preserve">
+    <value>За оваа алатка потребна е активна одбрана површина. Одберете површина од сликата и повторете ја операцијата</value>
+  </data>
+  <data name="ThisWillMergeSelectedTagsAndSubTagsIntoSingleTag" xml:space="preserve">
+    <value>Оваа операција ќе ги спои одбраните етикети и подетикети во една етикета.</value>
+  </data>
+  <data name="ThresholdColon" xml:space="preserve">
+    <value>Нишка:</value>
+  </data>
+  <data name="ThumbnailDirectory" xml:space="preserve">
+    <value>Директориум за сликички</value>
+  </data>
+  <data name="ThumbnailElements" xml:space="preserve">
+    <value>Елементи за _сликички</value>
+  </data>
+  <data name="Timeline" xml:space="preserve">
+    <value>_Временска лента</value>
+  </data>
+  <data name="Tiny" xml:space="preserve">
+    <value>Најмала</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Наслов</value>
+  </data>
+  <data name="Title2" xml:space="preserve">
+    <value>_Наслов:</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Денес</value>
+  </data>
+  <data name="Toolbar" xml:space="preserve">
+    <value>Ала_тник</value>
+  </data>
+  <data name="Toolbar2" xml:space="preserve">
+    <value>_Алатник</value>
+  </data>
+  <data name="Tools" xml:space="preserve">
+    <value>Алатки</value>
+  </data>
+  <data name="Tools2" xml:space="preserve">
+    <value>_Алатки</value>
+  </data>
+  <data name="TotalOriginalSize" xml:space="preserve">
+    <value>Вкупна големина на оригинал</value>
+  </data>
+  <data name="TransferComplete" xml:space="preserve">
+    <value>Префрлувањето заврши</value>
+  </data>
+  <data name="TransferringPictureXToCD" xml:space="preserve">
+    <value>Ја префрлувам сликата "{0}" на CD</value>
+  </data>
+  <data name="TransferringPictures" xml:space="preserve">
+    <value>Префрлувам слики</value>
+  </data>
+  <data name="TransferringXFromCamera" xml:space="preserve">
+    <value>Префрлувам "{0}" од фотоапарат</value>
+  </data>
+  <data name="TranslatorCredits" xml:space="preserve">
+    <value>Jovan Naumovski  &lt;jovan@lugola.net&gt;</value>
+  </data>
+  <data name="TwoOrThreeLetterISO3166CodeOfTheCountryOfTheFocusOfTheContent" xml:space="preserve">
+    <value>ISO3166 код од две или три букви од државата која е во фокусот на содржината</value>
+  </data>
+  <data name="URI" xml:space="preserve">
+    <value>_URI:</value>
+  </data>
+  <data name="URL3" xml:space="preserve">
+    <value>U_RL:</value>
+  </data>
+  <data name="UnableToCreateTemporaryFile" xml:space="preserve">
+    <value>Не можам да креирам привремена датотека</value>
+  </data>
+  <data name="UnableToLoadImage" xml:space="preserve">
+    <value>Не успеав да ја вчитам сликата</value>
+  </data>
+  <data name="UnableToLoadXAsIconForTheTag" xml:space="preserve">
+    <value>Не успеав да ја вчитам "{0}" како иконата за етикетата</value>
+  </data>
+  <data name="UnableToLogOn" xml:space="preserve">
+    <value>Не можам да се најавам</value>
+  </data>
+  <data name="UnableToLogOn2" xml:space="preserve">
+    <value>Не можам да се најавам.</value>
+  </data>
+  <data name="UnableToRotatePhoto" xml:space="preserve">
+    <value>Не можам да ротирам {0} слика</value>
+  </data>
+  <data name="UnableToRotateReadonlyFile" xml:space="preserve">
+    <value>Не можам да ротирам датотека само за читање</value>
+  </data>
+  <data name="UnableToRotateThisTypeOfPhoto" xml:space="preserve">
+    <value>Не можам да ротирам ваков тип на слика</value>
+  </data>
+  <data name="UnableToRotateXPhotos" xml:space="preserve">
+    <value>Не можам да ротирам {0} слики</value>
+  </data>
+  <data name="UnhandledException" xml:space="preserve">
+    <value>Несправувачки исклучок</value>
+  </data>
+  <data name="Uninstall" xml:space="preserve">
+    <value>_Одинсталирај...</value>
+  </data>
+  <data name="UnknownDirectory" xml:space="preserve">
+    <value>Непознат директориум</value>
+  </data>
+  <data name="UnknownIIMDataSet" xml:space="preserve">
+    <value>Не познат IIM датасет</value>
+  </data>
+  <data name="UnknownTransformTypeD" xml:space="preserve">
+    <value>Непознат тип на трансформација %d</value>
+  </data>
+  <data name="UnselectAll" xml:space="preserve">
+    <value>_Не означувај ништо</value>
+  </data>
+  <data name="UnsupportedImageTypeForSaving" xml:space="preserve">
+    <value>Неподдржан формат на датотека за зачувување.</value>
+  </data>
+  <data name="UntaggedPhotos" xml:space="preserve">
+    <value>Слики без етикета</value>
+  </data>
+  <data name="UntaggedPhotos2" xml:space="preserve">
+    <value>_Неетикетирани слики</value>
+  </data>
+  <data name="UpdatingFSpotDatabase" xml:space="preserve">
+    <value>Ја ажурирам базата на податоци на F-Spot</value>
+  </data>
+  <data name="UploadComplete" xml:space="preserve">
+    <value>Качувањето заврши</value>
+  </data>
+  <data name="UploadingPictureX" xml:space="preserve">
+    <value>Ја качувам сликата "{0}"</value>
+  </data>
+  <data name="UploadingPictureXYOfZ" xml:space="preserve">
+    <value>Ја качувам сликата "{0}"({1} од {2})</value>
+  </data>
+  <data name="UploadingPictures" xml:space="preserve">
+    <value>Качувам слики</value>
+  </data>
+  <data name="Url" xml:space="preserve">
+    <value>Url</value>
+  </data>
+  <data name="Url2" xml:space="preserve">
+    <value>Url:</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>_Корисничко име:</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Верзија</value>
+  </data>
+  <data name="Version2" xml:space="preserve">
+    <value>Верзија:</value>
+  </data>
+  <data name="Version3" xml:space="preserve">
+    <value>_Верзија</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>Поглед</value>
+  </data>
+  <data name="View2" xml:space="preserve">
+    <value>_Поглед</value>
+  </data>
+  <data name="ViewAndEditAPhoto" xml:space="preserve">
+    <value>Прегледај ја и уреди ја сликата</value>
+  </data>
+  <data name="ViewPhotosFullscreen" xml:space="preserve">
+    <value>Прегледај ги сликите на цел екран</value>
+  </data>
+  <data name="ViewPhotosInASlideshow" xml:space="preserve">
+    <value>Прегледај ги сликите во слајд шоу</value>
+  </data>
+  <data name="ViewPhotosInBrowserWhenDoneUploading" xml:space="preserve">
+    <value>_Прегледај ги сликите во прегледувач кога качувањето е готово</value>
+  </data>
+  <data name="VirtualFilesystem" xml:space="preserve">
+    <value>_Виртуелен датотечен систем</value>
+  </data>
+  <data name="VisibleToFamily" xml:space="preserve">
+    <value>Видливо за фамилијата</value>
+  </data>
+  <data name="VisibleToFriends" xml:space="preserve">
+    <value>Видливо за пријателите</value>
+  </data>
+  <data name="WaitingForResponseXOfY" xml:space="preserve">
+    <value>Чекам одговор {0} од {1}</value>
+  </data>
+  <data name="WebGallery" xml:space="preserve">
+    <value>Веб _галерија...</value>
+  </data>
+  <data name="WelcomeXYouAreConnectedToY2" xml:space="preserve">
+    <value>Добредојдовте {0} сега сте поврзани на {1}</value>
+  </data>
+  <data name="WhiteBalance" xml:space="preserve">
+    <value>Баланс на белата боја</value>
+  </data>
+  <data name="WhiteBorders" xml:space="preserve">
+    <value>Бели граници</value>
+  </data>
+  <data name="WillPrintUsingUSLetterSizeOnGenericPostscript" xml:space="preserve">
+    <value>Ќе печатам користејќи: Американска големина на писмо на стандарден постскрипт</value>
+  </data>
+  <data name="Wipe" xml:space="preserve">
+    <value>Збриши</value>
+  </data>
+  <data name="WriteMetadataToFile" xml:space="preserve">
+    <value>Запиши _мета податоци во датотека</value>
+  </data>
+  <data name="WriteOnlyThesePhotosToCD" xml:space="preserve">
+    <value>_Запиши ги само овие слики на CD</value>
+  </data>
+  <data name="X" xml:space="preserve">
+    <value>x</value>
+  </data>
+  <data name="XOfApproxY" xml:space="preserve">
+    <value>{0} од приближно {1}</value>
+  </data>
+  <data name="XOfY" xml:space="preserve">
+    <value>{0} од {1}</value>
+  </data>
+  <data name="XPhoto2" xml:space="preserve">
+    <value>{0} Слика</value>
+  </data>
+  <data name="XPhotoOutOfY2" xml:space="preserve">
+    <value>Слика {0} од {1}</value>
+  </data>
+  <data name="XPhotos2" xml:space="preserve">
+    <value>{0} Слики</value>
+  </data>
+  <data name="XPhotosOutOfY2" xml:space="preserve">
+    <value>Слика {0} од {1}</value>
+  </data>
+  <data name="XSelected2" xml:space="preserve">
+    <value> ({0} избрани)</value>
+  </data>
+  <data name="XSent" xml:space="preserve">
+    <value>{0} Испратено</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>Вчера</value>
+  </data>
+  <data name="Zoom" xml:space="preserve">
+    <value>Зголеми</value>
+  </data>
+  <data name="ZoomIn" xml:space="preserve">
+    <value>_Зумирај</value>
+  </data>
+  <data name="ZoomIn2" xml:space="preserve">
+    <value>Зумирај</value>
+  </data>
+  <data name="ZoomOut" xml:space="preserve">
+    <value>_Одзумирај</value>
+  </data>
+  <data name="ZoomOut2" xml:space="preserve">
+    <value>Одзумирај</value>
+  </data>
+</root>

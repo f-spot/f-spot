@@ -1,0 +1,2580 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ASingleImportRoll" xml:space="preserve">
+    <value>એક આયાત રોલ</value>
+  </data>
+  <data name="ATrustErrorOccurredWhileAttemptingToAccess" xml:space="preserve">
+    <value>વશ્ર્વાસ ભૂલ ઉદ્ભવી જ્યારે પ્રવેશ કરવાનું પ્રયત્ન કરી રહ્યા હોય</value>
+  </data>
+  <data name="AUniqueNumber" xml:space="preserve">
+    <value>અનન્ય નંબર</value>
+  </data>
+  <data name="AUniqueNumberIdentifyingTheEnvelope" xml:space="preserve">
+    <value>અનન્ય નંબર એ પરબીડિયાને ઓળખી રહ્યા છે</value>
+  </data>
+  <data name="AbortThisSession" xml:space="preserve">
+    <value>આ સત્રને રદ કરો</value>
+  </data>
+  <data name="AbstractRelationshipMethodARMIdentifier" xml:space="preserve">
+    <value>Abstract Relationship Method (ARM) ઓળખનાર</value>
+  </data>
+  <data name="AbstractRelationshipMethodARMVersionNumber" xml:space="preserve">
+    <value>Abstract Relationship Method (ARM) આવૃત્તિ નંબર.</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>ખાતુ (_A):</value>
+  </data>
+  <data name="AddNewRepository" xml:space="preserve">
+    <value>નવી રિપોઝીટરીને ઉમેરો</value>
+  </data>
+  <data name="AdditionalExtensionsAreRequiredToPerformThisOperation" xml:space="preserve">
+    <value>આ ક્રિયાને કરવા માટે વધારાનાં એક્સટેન્શનોની જરૂર છે.</value>
+  </data>
+  <data name="Adjust" xml:space="preserve">
+    <value>ગોઠવો</value>
+  </data>
+  <data name="AdjustColors" xml:space="preserve">
+    <value>રંગોને ગોઠવો</value>
+  </data>
+  <data name="AlbumMustHaveAName" xml:space="preserve">
+    <value>આલ્બમ પાસે નામ હોવુ જ જોઇએ</value>
+  </data>
+  <data name="AlbumName" xml:space="preserve">
+    <value>આલ્બમ નામ (_A):</value>
+  </data>
+  <data name="AlbumTitle" xml:space="preserve">
+    <value>આલ્બમ શીર્ષક (_A):</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>બધુ</value>
+  </data>
+  <data name="AllImages" xml:space="preserve">
+    <value>બધી ઇમેજો</value>
+  </data>
+  <data name="AllRegisteredRepositories" xml:space="preserve">
+    <value>બધી રજીસ્ટર થયેલ રિપોઝીટરીઓ</value>
+  </data>
+  <data name="AlwaysTrustThisSiteSCertificate" xml:space="preserve">
+    <value>આ સાઇટનાં પ્રમાણપત્ર પર હંમેશા વિશ્ર્વાસ રાખો</value>
+  </data>
+  <data name="AmountColon" xml:space="preserve">
+    <value>કિંમત:</value>
+  </data>
+  <data name="AnErrorOccurredCreatingANewAlbumX" xml:space="preserve">
+    <value>નવા આલ્બમને બનાવતી વખતે ભૂલ ઉદ્ભવી.
+
+{0}</value>
+  </data>
+  <data name="AnErrorOccurredWhileImportingTheNewlyGeneratedPhotowallToFSpot" xml:space="preserve">
+    <value>ભૂલ ઉદ્ભવી જ્યારે F-Spot માં નવી ઉત્પન્ન થયેલ photowall ને આયાત કરી રહ્યા હોય</value>
+  </data>
+  <data name="AnErrorOccurredWhileProcessingXMessage" xml:space="preserve">
+    <value>જ્યારે "{0}" ની પ્રક્રિયા કરી રહ્યા હોય ત્યારે ભૂલ ઉદ્ભવી: {1}</value>
+  </data>
+  <data name="AnErrorOfTypeXOccurredWhileDeletingTheFile" xml:space="preserve">
+    <value>ભૂલનો પ્રકાર {0} ઉદ્ભવ્યો જ્યારે ફાઇલને કાઢી રહ્યા હોય ત્યારે:{2}{1}</value>
+  </data>
+  <data name="AnUnhandledExceptionWasThrown" xml:space="preserve">
+    <value>ન સંભાળાતા અપવાદને ફેંકી દીધા હતા: </value>
+  </data>
+  <data name="And" xml:space="preserve">
+    <value>અને</value>
+  </data>
+  <data name="AreYouSureYouWantToCancelTheInstallation" xml:space="preserve">
+    <value>શું તમે ખરેખર સ્થાપનને રદ કરવા માંગો છો?</value>
+  </data>
+  <data name="ArrangeByFolder" xml:space="preserve">
+    <value>ફોલ્ડર પ્રમાણે ગોઠવો (_F)</value>
+  </data>
+  <data name="ArrangeByMonth" xml:space="preserve">
+    <value>મહિના પ્રમાણે ગોઠવો (_M)</value>
+  </data>
+  <data name="AsBackground" xml:space="preserve">
+    <value>પાશ્ર્વભાગ તરીકે (_b)</value>
+  </data>
+  <data name="AsCheckPattern" xml:space="preserve">
+    <value>આ તરીકે ભાતને ચકાસો (_p)</value>
+  </data>
+  <data name="AsCustomColor" xml:space="preserve">
+    <value>વૈવિધ્ય રંગ તરીકે (_c): </value>
+  </data>
+  <data name="AtAfterBetween" xml:space="preserve">
+    <value>આગળ
+પછી
+વચ્ચે</value>
+  </data>
+  <data name="AtLeastOneFileNotFound" xml:space="preserve">
+    <value>(ઓછામાં ઓછી એક ફાઇલ શોધાઇ નથી)</value>
+  </data>
+  <data name="AttachTag" xml:space="preserve">
+    <value>ટેગને જોડો (_A)</value>
+  </data>
+  <data name="AttachTag2" xml:space="preserve">
+    <value>ટેગને જોડો:</value>
+  </data>
+  <data name="AttachTagToSelection" xml:space="preserve">
+    <value>પસંદગી વાળા ટેગને જોડો</value>
+  </data>
+  <data name="AttachTags" xml:space="preserve">
+    <value>ટેગોને જોડો:</value>
+  </data>
+  <data name="AttachTagsToSelection" xml:space="preserve">
+    <value>પસંદગી વાળા ટેગોને જોડો</value>
+  </data>
+  <data name="AttachToExportedPhotos" xml:space="preserve">
+    <value>નિકાસ થયેલ ફોટાઓને જોડો (_A):</value>
+  </data>
+  <data name="Authenticating" xml:space="preserve">
+    <value>સત્તાધિકરણ કરી રહ્યા છે...</value>
+  </data>
+  <data name="Author" xml:space="preserve">
+    <value>લેખક:</value>
+  </data>
+  <data name="Authorize" xml:space="preserve">
+    <value>સત્તા</value>
+  </data>
+  <data name="AuthorizingSession" xml:space="preserve">
+    <value>સત્તા સત્ર</value>
+  </data>
+  <data name="AutoColor" xml:space="preserve">
+    <value>સ્વયં રંગ</value>
+  </data>
+  <data name="Autorotate" xml:space="preserve">
+    <value>આપોઆપ ફેરવો</value>
+  </data>
+  <data name="Autorotate2" xml:space="preserve">
+    <value>સ્વયં ફેરવો (_A)</value>
+  </data>
+  <data name="AvailableSpaceXYUsedOutOfZ" xml:space="preserve">
+    <value>ઉપલ્બધ જગ્યા: {0}, {2} માંથી વપરાયેલ {1}%</value>
+  </data>
+  <data name="BAccountB" xml:space="preserve">
+    <value>&lt;b&gt;ખાતુ&lt;/b&gt;</value>
+  </data>
+  <data name="BAlbumB" xml:space="preserve">
+    <value>&lt;b&gt;આલ્બમ&lt;/b&gt;</value>
+  </data>
+  <data name="BB" xml:space="preserve">
+    <value>&lt;b&gt;&lt;/b&gt;</value>
+  </data>
+  <data name="BColorManagementB" xml:space="preserve">
+    <value>&lt;b&gt;રંગ વ્યવસ્થાપન&lt;/b&gt;</value>
+  </data>
+  <data name="BCorrectionsB" xml:space="preserve">
+    <value>&lt;b&gt;સુધારાઓ (_r)&lt;/b&gt;</value>
+  </data>
+  <data name="BDestinationB" xml:space="preserve">
+    <value>&lt;b&gt;લક્ષ્ય&lt;/b&gt;</value>
+  </data>
+  <data name="BExportMethodB" xml:space="preserve">
+    <value>&lt;b&gt;પદ્દતિની નિકાસ કરો&lt;/b&gt;</value>
+  </data>
+  <data name="BFSpotTagsB" xml:space="preserve">
+    <value>&lt;b&gt;F-Spot ટેગો&lt;/b&gt;</value>
+  </data>
+  <data name="BFromExternalPhotoB" xml:space="preserve">
+    <value>&lt;b&gt;બહારનાં ફોટો માંથી&lt;/b&gt;</value>
+  </data>
+  <data name="BFromPhotoB" xml:space="preserve">
+    <value>&lt;b&gt;ફોટો માંથી&lt;/b&gt;</value>
+  </data>
+  <data name="BFromPhotoBYouCanUseOneOfYourLibraryPhotosAsAnIconForThisTagHoweverFirstYouMustHaveAtLeastOnePhotoAssociatedWithThisTagPleaseTagAPhotoAsXAndReturnHereToUseItAsAnIcon" xml:space="preserve">
+    <value>
+&lt;b&gt;ફોટો માંથી&lt;/b&gt;
+ તમે આ ટેગ માટે ચિહ્ન તરીકે તમારી લાઇબ્રેરીનાં એકને વાપરી શકો છો.
+ છતાંપણ, પહેલા તમારી પાસે આ ટેગ સાથે સંકળાયેલ ઓછામાં ઓછો એક ફોટો હોવો જ
+ હોવો જ જોઇએ. મહેરબાની કરીને '{0}' તરીકે ફોટોનો ટેગ કરો અને ચિહ્ન તરીકે તેને વાપરવા માટે
+ અહિંયા પાછુ લાવો.</value>
+  </data>
+  <data name="BGalleryB" xml:space="preserve">
+    <value>&lt;b&gt;ગેલરિ&lt;/b&gt;</value>
+  </data>
+  <data name="BIThereIsSomePreviouslyScheduledItemsToWriteIB" xml:space="preserve">
+    <value>&lt;b&gt;&lt;i&gt;લખવા માટે અમુક પહેલાંની ગોઠવેલ વસ્તુઓ છે&lt;/i&gt;&lt;/b&gt;</value>
+  </data>
+  <data name="BImageInterpolationB" xml:space="preserve">
+    <value>&lt;b&gt;ઇમેજ ઇન્ટરપોલેશન&lt;/b&gt;</value>
+  </data>
+  <data name="BImportSettingsB" xml:space="preserve">
+    <value>&lt;b&gt;સુયોજનોને આયાત કરો&lt;/b&gt;</value>
+  </data>
+  <data name="BMaxRatingB" xml:space="preserve">
+    <value>&lt;b&gt;મહત્તમ રેટિંગ&lt;/b&gt;</value>
+  </data>
+  <data name="BMetadataB" xml:space="preserve">
+    <value>&lt;b&gt;મેટાડેટા&lt;/b&gt;</value>
+  </data>
+  <data name="BMinRatingB" xml:space="preserve">
+    <value>&lt;b&gt;ન્યૂનત્તમ રેટિંગ&lt;/b&gt;</value>
+  </data>
+  <data name="BPhotosB" xml:space="preserve">
+    <value>&lt;b&gt;ફોટાઓ&lt;/b&gt;</value>
+  </data>
+  <data name="BPhotosToBurnB" xml:space="preserve">
+    <value>&lt;b&gt;બર્ન કરવા માટે ફોટાઓ&lt;/b&gt;</value>
+  </data>
+  <data name="BPicasaWebExportB" xml:space="preserve">
+    <value>&lt;b&gt;PicasaWeb નિકાસ&lt;/b&gt;</value>
+  </data>
+  <data name="BPredefinedB" xml:space="preserve">
+    <value>&lt;b&gt;પહેલેથી વ્યાખ્યાયિત થયેલ&lt;/b&gt;</value>
+  </data>
+  <data name="BPreviewB" xml:space="preserve">
+    <value>&lt;b&gt;પૂર્વદર્શન&lt;/b&gt;</value>
+  </data>
+  <data name="BScreensaverB" xml:space="preserve">
+    <value>&lt;b&gt;સ્ક્રીનસેવર&lt;/b&gt;</value>
+  </data>
+  <data name="BSelectTheExtensionsToInstallAndClickOnNextB" xml:space="preserve">
+    <value>&lt;b&gt;સ્થાપિત કરવા માટે એક્સટેન્શનોને પસંદ કરો અને પછીનાં પર ક્લિક કરો&lt;/b&gt;</value>
+  </data>
+  <data name="BSizeB" xml:space="preserve">
+    <value>&lt;b&gt;માપ&lt;/b&gt;</value>
+  </data>
+  <data name="BSmugMugExportB" xml:space="preserve">
+    <value>&lt;b&gt;SmugMug નિકાસ&lt;/b&gt;</value>
+  </data>
+  <data name="BStyleB" xml:space="preserve">
+    <value>&lt;b&gt;શૈલી&lt;/b&gt;</value>
+  </data>
+  <data name="BSummaryB" xml:space="preserve">
+    <value>&lt;b&gt;સાર&lt;/b&gt;</value>
+  </data>
+  <data name="BTabbloAccountB" xml:space="preserve">
+    <value>&lt;b&gt;Tabblo ખાતુ&lt;/b&gt;</value>
+  </data>
+  <data name="BThemingB" xml:space="preserve">
+    <value>&lt;b&gt;થીમીંગ&lt;/b&gt;</value>
+  </data>
+  <data name="BTransparentPartsB" xml:space="preserve">
+    <value>&lt;b&gt;પારદર્શક ભાગો&lt;/b&gt;</value>
+  </data>
+  <data name="BViewAllPicturesImportedB" xml:space="preserve">
+    <value>&lt;b&gt;આયાત થયેલ બધા ચિત્રોને દર્શાવો&lt;/b&gt;</value>
+  </data>
+  <data name="BViewingPermissionsB" xml:space="preserve">
+    <value>&lt;b&gt;પરવાનગીઓને દેખી રહ્યા છે&lt;/b&gt;</value>
+  </data>
+  <data name="BWhiteBalanceB" xml:space="preserve">
+    <value>&lt;b&gt;White Balance (_W)&lt;/b&gt;</value>
+  </data>
+  <data name="BXB" xml:space="preserve">
+    <value>&lt;b&gt;{0}&lt;/b&gt;.</value>
+  </data>
+  <data name="BeforeLaunchingYShouldFSpotCreateANewVersionOfTheSelectedPhotoToPreserveTheOriginal" xml:space="preserve">
+    <value>{1} ને લોન્ચ કરતા પહેલા, શું મૂળભૂત ને સાચવવા માટે પસંદ થયેલ ફોટોની નવી આવૃત્તિ F-Spot એ બનાવવી જોઇએ?</value>
+  </data>
+  <data name="BeforeLaunchingYShouldFSpotCreateNewVersionsOfTheSelectedPhotosToPreserveTheOriginals" xml:space="preserve">
+    <value>{1} ને લોન્ચ કરતા પહેલા, શું મૂળભૂત ને સાચવવા માટે પસંદ થયેલ ફોટાઓની નવી આવૃત્તિ F-Spot એ બનાવવી જોઇએ?</value>
+  </data>
+  <data name="BetweenXAndY" xml:space="preserve">
+    <value>{0} અને
+{1} ની વચ્ચે</value>
+  </data>
+  <data name="BigBExtensionManagerBBig" xml:space="preserve">
+    <value>&lt;big&gt;&lt;b&gt;એક્સટેન્શન વ્યવસ્થાપક&lt;/b&gt;&lt;/big&gt;</value>
+  </data>
+  <data name="Blackout" xml:space="preserve">
+    <value>બ્લેકઆઉટ</value>
+  </data>
+  <data name="Brightness" xml:space="preserve">
+    <value>તેજસ્વિતા (_B):</value>
+  </data>
+  <data name="Browse" xml:space="preserve">
+    <value>બ્રાઉઝ કરો...</value>
+  </data>
+  <data name="Browse2" xml:space="preserve">
+    <value>બ્રાઉઝ કરો</value>
+  </data>
+  <data name="BrowseManyPhotosSimultaneously" xml:space="preserve">
+    <value>એકીસાથે ઘણાબધા ફોટોને બ્રાઉઝ કરો</value>
+  </data>
+  <data name="BrowsePreviouslyScheduledFiles" xml:space="preserve">
+    <value>પહેલાંની ગોઠવાયેલ ફાઇલોને બ્રાઉઝ કરો (_B)</value>
+  </data>
+  <data name="BuildingGallery" xml:space="preserve">
+    <value>ગેલરિને બિલ્ડ કરી રહ્યા છે</value>
+  </data>
+  <data name="CD" xml:space="preserve">
+    <value>CD</value>
+  </data>
+  <data name="CD2" xml:space="preserve">
+    <value>CD (_C)...</value>
+  </data>
+  <data name="Camera" xml:space="preserve">
+    <value>કેમેરા</value>
+  </data>
+  <data name="CameraSelection" xml:space="preserve">
+    <value>કેમેરા પસંદગી</value>
+  </data>
+  <data name="CanNotDeleteTagsThatHaveTagsWihinThem.PleaseDeleteTagUnderXFirst" xml:space="preserve">
+    <value>ટેગોને કાઢી શકાતુ નથી કે જે તેઓની અંદર ટેગો છે.  મહેરબાની કરીને પહેલાં "{0}" ની હેઠળ ટેગોને કાઢો</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>રદ કરો</value>
+  </data>
+  <data name="CannotConnectToGalleryUnknownVersionCheckRemotePlugin" xml:space="preserve">
+    <value>કઇ આવૃત્તિ અજ્ઞાત છે તે માટે ગેલરિમાં જોડી શકાતુ નથી.
+મહેરબાની કરીને ચકાસો કે જે તમારી પાસે દૂરસ્થ પલ્ગઇન 1.0.8 અથવા પછીનું છે</value>
+  </data>
+  <data name="Captcha" xml:space="preserve">
+    <value>Captcha (_C):</value>
+  </data>
+  <data name="CheckingCredentials" xml:space="preserve">
+    <value>ઓળખપત્રોને ચકાસી રહ્યા છે...</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>શહેર</value>
+  </data>
+  <data name="ClearDateRangeMnemonic" xml:space="preserve">
+    <value>તારીખની સીમાને સાફ કરો (_C)</value>
+  </data>
+  <data name="ClearSearch" xml:space="preserve">
+    <value>શોધ ને સાફ કરો</value>
+  </data>
+  <data name="ColorSpace" xml:space="preserve">
+    <value>રંગ જગ્યા</value>
+  </data>
+  <data name="CommaSpace" xml:space="preserve">
+    <value>, </value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>ટિપ્પણી:</value>
+  </data>
+  <data name="CompleteAuthorization" xml:space="preserve">
+    <value>સત્તાધિકરણ સમાપ્ત</value>
+  </data>
+  <data name="ComponentsConfiguration" xml:space="preserve">
+    <value>ઘટકો રૂપરેખાંકન</value>
+  </data>
+  <data name="CompressedFile" xml:space="preserve">
+    <value>દબાયેલ ફાઇલ (_e)...</value>
+  </data>
+  <data name="Compression" xml:space="preserve">
+    <value>દબાણ</value>
+  </data>
+  <data name="Contrast" xml:space="preserve">
+    <value>ભિન્નતા</value>
+  </data>
+  <data name="Contrast2" xml:space="preserve">
+    <value>ભિન્નતા (_o):</value>
+  </data>
+  <data name="CopyFilesToThePhotosFolder" xml:space="preserve">
+    <value>ફોટાઓ ફોલ્ડરની ફોઇલોની નકલ કરો</value>
+  </data>
+  <data name="CopyImagesToPhotosFolder" xml:space="preserve">
+    <value>ફોટાઓ ફોલ્ડરમાં ઇમેજોની નકલ કરો</value>
+  </data>
+  <data name="CopyPhotoLocation" xml:space="preserve">
+    <value>ફોટો સ્થાનની નકલ કરો (_i)</value>
+  </data>
+  <data name="Copying2" xml:space="preserve">
+    <value>નકલ કરી રહ્યા છે...</value>
+  </data>
+  <data name="CopyingFileXOfY" xml:space="preserve">
+    <value>{1} ની ફાઇલ {0} ની નકલ કરી રહ્યા છે</value>
+  </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>કોપીરાઇટ:</value>
+  </data>
+  <data name="Copyright2" xml:space="preserve">
+    <value>કોપીરાઇટ</value>
+  </data>
+  <data name="Copyright20032009NovellInc" xml:space="preserve">
+    <value>Copyright © 2003-2009 Novell Inc.</value>
+  </data>
+  <data name="CopyrightInformationFor" xml:space="preserve">
+    <value>તે માટે કોપીરાઇટ જાણકારી</value>
+  </data>
+  <data name="CouldNotCreateANewVersion" xml:space="preserve">
+    <value>નવી આવૃત્તિને બનાવી શક્યા નહિં</value>
+  </data>
+  <data name="CouldNotDeleteAVersion" xml:space="preserve">
+    <value>આવૃત્તિને કાઢી શકાયુ નહિં</value>
+  </data>
+  <data name="CouldNotRenameAVersion" xml:space="preserve">
+    <value>આવૃત્તિનું નામ બદલી શકાયુ નહિં</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>દેશ</value>
+  </data>
+  <data name="Cover" xml:space="preserve">
+    <value>કવર</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>બનાવો (_C)</value>
+  </data>
+  <data name="CreateAMailWithTheSelectedPhotosPossiblyResizedAttached" xml:space="preserve">
+    <value>જોડાયેલ પસંદ થયેલ ફોટાઓ (કદાચ પુન:માપ થયેલ છે) સાથે મેઇલને બનાવો</value>
+  </data>
+  <data name="CreateCD" xml:space="preserve">
+    <value>CD ને બનાવો</value>
+  </data>
+  <data name="CreateGalleryUsingOriginal" xml:space="preserve">
+    <value>"Original" ની મદદથી ગેલરિને બનાવો (_g)</value>
+  </data>
+  <data name="CreateIconForThisTagWhenFirstUsed" xml:space="preserve">
+    <value>જ્યારે પહેલા વાપરેલ હોય ત્યારે આ ટેગ માટે ચિહ્નને બનાવો (_i)</value>
+  </data>
+  <data name="CreateMail" xml:space="preserve">
+    <value>મેઇલને બનાવો</value>
+  </data>
+  <data name="CreateMail2" xml:space="preserve">
+    <value>મેઇલને બનાવો (_C)</value>
+  </data>
+  <data name="CreateNewTag" xml:space="preserve">
+    <value>નવા ટેગને બનાવો</value>
+  </data>
+  <data name="CreateNewTag2" xml:space="preserve">
+    <value>નવાં ટેગને બનાવો...</value>
+  </data>
+  <data name="CreateNewVersion" xml:space="preserve">
+    <value>નવી આવૃત્તિને બનાવો</value>
+  </data>
+  <data name="CreateNewVersion2" xml:space="preserve">
+    <value>નવી આવૃત્તિને બનાવો?</value>
+  </data>
+  <data name="CreateNewVersions" xml:space="preserve">
+    <value>નવી આવૃત્તિઓને બનાવો?</value>
+  </data>
+  <data name="CreatePhotomosaic" xml:space="preserve">
+    <value>photomosaic ને બનાવો (_h)</value>
+  </data>
+  <data name="CreatePhotowall" xml:space="preserve">
+    <value>ફોટો દિવાલને બનાવો (_w)</value>
+  </data>
+  <data name="CreateStandaloneWebGallery" xml:space="preserve">
+    <value>એકલી વેબ ગેલરિને બનાવો (_w)</value>
+  </data>
+  <data name="CreatingANewAlbumFailed" xml:space="preserve">
+    <value>નિષ્ફળ થયેલ નવાં આલ્બમને બનાવી રહ્યા છે</value>
+  </data>
+  <data name="CreatingMiniatures" xml:space="preserve">
+    <value>miniatures ને બનાવી રહ્યા છે</value>
+  </data>
+  <data name="CreatingPhotomosaics" xml:space="preserve">
+    <value>photomosaics ને બનાવી રહ્યા છે</value>
+  </data>
+  <data name="Creator" xml:space="preserve">
+    <value>નિર્માતા</value>
+  </data>
+  <data name="CreatorOfTheContent" xml:space="preserve">
+    <value>સમાવિષ્ટનો બનાવનાર</value>
+  </data>
+  <data name="Crop" xml:space="preserve">
+    <value>કાપો</value>
+  </data>
+  <data name="CurrentWeekMonSun" xml:space="preserve">
+    <value>હાલનુ અઠવાડિયું (સોમવાર-રવિવાર)</value>
+  </data>
+  <data name="CustomRatios" xml:space="preserve">
+    <value>વૈવિધ્ય પ્રમાણો...</value>
+  </data>
+  <data name="CustomRendered" xml:space="preserve">
+    <value>વૈવિધ્ય રીતે રેન્ડર થયેલ</value>
+  </data>
+  <data name="CustomText2" xml:space="preserve">
+    <value>વૈવિધ્ય લખાણ: </value>
+  </data>
+  <data name="CustomTheme" xml:space="preserve">
+    <value>વૈવિધ્ય થીમ</value>
+  </data>
+  <data name="CustomizedRange" xml:space="preserve">
+    <value>વિશિષ્ટ રૂપથી બનાવેલ ક્ષેત્ર</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>ઘટ્ટ</value>
+  </data>
+  <data name="DatabaseLocation" xml:space="preserve">
+    <value>ડેટાબેઝ સ્થાન:</value>
+  </data>
+  <data name="DatabaseRefersToFilesContainedInXFolderPleaseSelectThatFolderSoICanDoTheMapping" xml:space="preserve">
+    <value>&lt;big&gt;&lt;b&gt;{0}&lt;/b&gt; ફોલ્ડરમાં સમાવેલ ફાઇલોને ડેટાબેઝ સંદર્ભ કરે છે.
+ મહેરબાની કરીને પેલા ફોલ્ડરને પસંદ કરો તેથી હું મેપિંગ કરી શકુ.&lt;/big&gt;</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>તારીખ</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>કાઢી નાંખો</value>
+  </data>
+  <data name="DeleteFromDrive" xml:space="preserve">
+    <value>ડ્રાઇવ માંથી કાઢી નાંખો (_D)</value>
+  </data>
+  <data name="DeletePhotoMnemonic" xml:space="preserve">
+    <value>ફોટોને કાઢી નાંખો (_D)</value>
+  </data>
+  <data name="DeletePhotosMnemonic" xml:space="preserve">
+    <value>ફોટાઓને કાઢી નાંખો (_D)</value>
+  </data>
+  <data name="DeleteTag" xml:space="preserve">
+    <value>ટેગને કાઢી નાંખો</value>
+  </data>
+  <data name="DeleteTagMnemonic" xml:space="preserve">
+    <value>ટેગને કાઢી નાંખો (_D)</value>
+  </data>
+  <data name="DeleteTagXQuestion" xml:space="preserve">
+    <value>ટેગ "{0}" ને કાઢી નાંખો?</value>
+  </data>
+  <data name="DeleteTags" xml:space="preserve">
+    <value>ટેગોને કાઢી નાંખો</value>
+  </data>
+  <data name="DeleteTagsMnemonic" xml:space="preserve">
+    <value>ટેગોને કાઢી નાંખો (_D)</value>
+  </data>
+  <data name="DeleteTheSelectedPhotoPermanently" xml:space="preserve">
+    <value>કાયમ માટે પસંદ થયેલ ફોટાને કાઢી નાંખો?</value>
+  </data>
+  <data name="DeleteTheXSelectedPhotosPermanently" xml:space="preserve">
+    <value>કાયમ માટે {0} પસંદ થયેલ ફોટાઓને કાઢી નાંખો?</value>
+  </data>
+  <data name="DeleteTheXSelectedTagsQuestion" xml:space="preserve">
+    <value>{0} પસંદ થયેલ ટેગોને કાઢી નાંખો?</value>
+  </data>
+  <data name="Desaturate" xml:space="preserve">
+    <value>સંતૃપ્તિ ન કરો</value>
+  </data>
+  <data name="Description2" xml:space="preserve">
+    <value>વર્ણન (_e):</value>
+  </data>
+  <data name="Description3" xml:space="preserve">
+    <value>વર્ણન (_D):</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>વિગતો</value>
+  </data>
+  <data name="DetectDuplicates" xml:space="preserve">
+    <value>નકલોને શોધો</value>
+  </data>
+  <data name="DirectoryDoesNotExist" xml:space="preserve">
+    <value>ડિરેક્ટરી અસ્તિત્વ ધરાવતી નથી.</value>
+  </data>
+  <data name="DirectoryNotFound" xml:space="preserve">
+    <value>ડિરેક્ટરી શોધાઇ નથી</value>
+  </data>
+  <data name="Disable" xml:space="preserve">
+    <value>નિષ્ક્રિય</value>
+  </data>
+  <data name="DisabledExtensionsCanTBeLoaded" xml:space="preserve">
+    <value>નિષ્ક્રિય થયેલ એક્સટેન્શનો ને લોડ કરી શકાતા નથી.</value>
+  </data>
+  <data name="Display" xml:space="preserve">
+    <value>દર્શાવો (_D):</value>
+  </data>
+  <data name="DisplayASlideshowFromFSpot" xml:space="preserve">
+    <value>F-Spot માંથી તકતી પૂર્વદર્શનને દર્શાવો</value>
+  </data>
+  <data name="DisplayFileNames" xml:space="preserve">
+    <value>ફાઇલ નામોને દર્શાવો (_N)</value>
+  </data>
+  <data name="DisplayOnlyThosePhotosThatWereImportedInSpecifiedRolls" xml:space="preserve">
+    <value>ફક્ત પેલા ફોટોઓને દર્શાવો કે જે સ્પષ્ટ થયેલ રોલોમાં આયાત થયેલ હતા.</value>
+  </data>
+  <data name="Dissolve" xml:space="preserve">
+    <value>સુધારો નહિં</value>
+  </data>
+  <data name="DoNotSendAMail" xml:space="preserve">
+    <value>મેઇલ મોકલો નહિં</value>
+  </data>
+  <data name="DoYouWishTo" xml:space="preserve">
+    <value>શુ તમારી ઇચ્છા છે:</value>
+  </data>
+  <data name="DoneCopyingFiles" xml:space="preserve">
+    <value>ફાઇલોની નકલ કરવાનું પૂરુ થયુ</value>
+  </data>
+  <data name="DoneLoading" xml:space="preserve">
+    <value>લોડ કરવાનું પૂરુ થયુ</value>
+  </data>
+  <data name="DoneSendingPhotos" xml:space="preserve">
+    <value>ફોટાઓને મોકલવાનું પૂરુ થયુ</value>
+  </data>
+  <data name="DoneSendingPhotos2" xml:space="preserve">
+    <value>ફોટાઓને મોકલવાનું પૂરુ થયુ</value>
+  </data>
+  <data name="DownloadComplete" xml:space="preserve">
+    <value>ડાઉનલોડ સમાપ્ત</value>
+  </data>
+  <data name="DownloadingExtensions" xml:space="preserve">
+    <value>એક્સટેન્શનોને ડાઉનલોડ કરી રહ્યા છે...</value>
+  </data>
+  <data name="DownloadingPreviewOfX" xml:space="preserve">
+    <value>{0} નાં પૂર્વદર્શનને ડાઉનલોડ કરી રહ્યા છે</value>
+  </data>
+  <data name="DownloadingPreviews" xml:space="preserve">
+    <value>પૂર્વદર્શનોને ડાઉનલોડ કરી રહ્યા છે</value>
+  </data>
+  <data name="DragTagsHereToSearchForThem" xml:space="preserve">
+    <value>તેઓનાં માટે શોધવા માટે અહિંયા ટેગોને ખેંચો</value>
+  </data>
+  <data name="EMail" xml:space="preserve">
+    <value>ઇ-મેઇલ (_M):</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>ફેરફાર કરો</value>
+  </data>
+  <data name="Edit2" xml:space="preserve">
+    <value>ફેરફાર કરો (_E)</value>
+  </data>
+  <data name="EditIcon" xml:space="preserve">
+    <value>ચિહ્નમાં ફેરફાર કરો</value>
+  </data>
+  <data name="EditIconForTagX" xml:space="preserve">
+    <value>ટેગ {0} માટે ચિહ્નમાં ફેરફાર કરો</value>
+  </data>
+  <data name="EditImage" xml:space="preserve">
+    <value>ઇમેજમાં ફેરફાર કરો</value>
+  </data>
+  <data name="EditSelectedTag" xml:space="preserve">
+    <value>પસંદ થયેલ ટેગમાં ફેરફાર કરો...</value>
+  </data>
+  <data name="EditTag2" xml:space="preserve">
+    <value>ટેગમાં ફેરફાર કરો</value>
+  </data>
+  <data name="EditTagIcon" xml:space="preserve">
+    <value>ટેગ ચિહ્નમાં ફેરફાર કરો</value>
+  </data>
+  <data name="EightByTen" xml:space="preserve">
+    <value>8 x 10</value>
+  </data>
+  <data name="Enable" xml:space="preserve">
+    <value>સક્રિય</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>ભૂલ</value>
+  </data>
+  <data name="ErrorConnectingToCamera" xml:space="preserve">
+    <value>કેમેરાને જોડવા દરમ્યાન ભૂલ</value>
+  </data>
+  <data name="ErrorDeletingPicture" xml:space="preserve">
+    <value>ચિત્રને કાઢવા દરમ્યાન ભૂલ</value>
+  </data>
+  <data name="ErrorDetails" xml:space="preserve">
+    <value>ભૂલ વિગતો</value>
+  </data>
+  <data name="ErrorEditingPhoto" xml:space="preserve">
+    <value>ફોટોમાં ફેરફાર કરતી વખતે ભૂલ</value>
+  </data>
+  <data name="ErrorErrorWhileTransferringAborting" xml:space="preserve">
+    <value>ભૂલ: ભૂલ જ્યારે પરિવહન કરતા હોય; કાઢી રહ્યા છે</value>
+  </data>
+  <data name="ErrorFileAlreadyExistsAborting" xml:space="preserve">
+    <value>ભૂલ: ફાઇલ પહેલેથી અસ્તિત્વ ધરાવે છે; કાઢી રહ્યા છે</value>
+  </data>
+  <data name="ErrorImportingPhotowall" xml:space="preserve">
+    <value>photowall ને આયાત કરતી વખતે ભૂલ</value>
+  </data>
+  <data name="ErrorImportingXZZY" xml:space="preserve">
+    <value>{0}{2}{2}{1} ને આયાત કરવામાં ભૂલ</value>
+  </data>
+  <data name="ErrorLoadingDatabase" xml:space="preserve">
+    <value>ડેટાબેઝને લોડ કરતી વખતે ભૂલ.</value>
+  </data>
+  <data name="ErrorLoggingIntoFacebook" xml:space="preserve">
+    <value>ફેસબુકમાં પ્રવેશ કરતી વખતે ભૂલ</value>
+  </data>
+  <data name="ErrorOpeningTheSelectedFile" xml:space="preserve">
+    <value>પસંદ થયેલ ફાઇલને ખોલવા દરમ્યાન ભૂલ</value>
+  </data>
+  <data name="ErrorProcessingImage" xml:space="preserve">
+    <value>ઇમેજની પ્રક્રિયા કરવામાં ભૂલ</value>
+  </data>
+  <data name="ErrorReadingServerResponse" xml:space="preserve">
+    <value>સર્વર જવાબને વાંચતી વખતે ભૂલ</value>
+  </data>
+  <data name="ErrorRenamingTag" xml:space="preserve">
+    <value>ટેગનું નામ બદલતી વખતે ભૂલ</value>
+  </data>
+  <data name="ErrorSavingAdjustedPhoto" xml:space="preserve">
+    <value>ગોઠવાયેલ ફોટોને સંગ્રહ કરતી વખતે ભૂલ</value>
+  </data>
+  <data name="ErrorSavingAdjustedPhotos" xml:space="preserve">
+    <value>ગોઠવાયેલ ફોટાઓને સંગ્રહ કરતી વખતે ભૂલ</value>
+  </data>
+  <data name="ErrorSavingSharpenedPhoto" xml:space="preserve">
+    <value>સ્પષ્ટ ફોટો ને સંગ્રહ કરતી વખતે ભૂલ</value>
+  </data>
+  <data name="ErrorTransferring" xml:space="preserve">
+    <value>પરિવહન કરતી વખતે ભૂલ</value>
+  </data>
+  <data name="ErrorTransferringFile" xml:space="preserve">
+    <value>ફાઇલનું સ્થળાંતર કરતી વખતે ભૂલ</value>
+  </data>
+  <data name="ErrorUploadingPictureXToGalleryColonY" xml:space="preserve">
+    <value>ગેલરિમાં ચિત્ર "{0}" ને અપલોડ કરતી વખતે ભૂલ: {1}</value>
+  </data>
+  <data name="ErrorUploadingPictureXToGalleryZY" xml:space="preserve">
+    <value>ગેલરિમાં ચિત્ર "{0}" ને અપલોડ કરતી વખતે ભૂલ:{2}{1}</value>
+  </data>
+  <data name="ErrorUploadingToFacebookX" xml:space="preserve">
+    <value>ફેસબુકમાં અપલોડ કરતી વખતે ભૂલ: {0}</value>
+  </data>
+  <data name="ErrorUploadingToGalleryX" xml:space="preserve">
+    <value>ગેલરિમાં અપલોડ કરતી વખતે ભૂલ: {0}</value>
+  </data>
+  <data name="ErrorUploadingToTabblo" xml:space="preserve">
+    <value>Tabblo ને અપલોડ કરતી વખતે ભૂલ: </value>
+  </data>
+  <data name="ErrorUploadingToXColonY" xml:space="preserve">
+    <value>{0} માં અપલોડ કરતી વખતે ભૂલ: {1}</value>
+  </data>
+  <data name="ErrorWhileConnectingToGallery" xml:space="preserve">
+    <value>જ્યારે ગેલરિને જોડી રહ્યા હોય ત્યારે ભૂલ</value>
+  </data>
+  <data name="ErrorWhileCreatingAlbum" xml:space="preserve">
+    <value>જ્યારે આલ્બને બનાવી રહ્યા હોય ત્યારે ભૂલ</value>
+  </data>
+  <data name="ErrorWhileCreatingNewAlbum" xml:space="preserve">
+    <value>ભૂલ જ્યારે નવા આલ્બમને બનાવી રહ્યા હોય </value>
+  </data>
+  <data name="ErrorWhileRotatingPhoto" xml:space="preserve">
+    <value>જ્યારે ફોટો ફેરવી રહ્યા હોય ત્યારે ભૂલ.</value>
+  </data>
+  <data name="ErrorWhileTransferring" xml:space="preserve">
+    <value>જ્યારે પરિવહન કરી રહ્યા હોય ત્યારે ભૂલ</value>
+  </data>
+  <data name="EstimatedNewSize" xml:space="preserve">
+    <value>અંદાજિત નવુ માપ</value>
+  </data>
+  <data name="Events" xml:space="preserve">
+    <value>ઘટનાઓ</value>
+  </data>
+  <data name="Everything" xml:space="preserve">
+    <value>બધુ જ</value>
+  </data>
+  <data name="ExceptionOccurredX" xml:space="preserve">
+    <value>અપવાદ ઉદ્ભવ્યો: {0}</value>
+  </data>
+  <data name="ExcludePhotosTaggedX" xml:space="preserve">
+    <value>ફોટાઓ ટેગ થયેલ "{0}" ને બહાર નીકાળો</value>
+  </data>
+  <data name="ExifDirectory" xml:space="preserve">
+    <value>ડિરેક્ટરીમાંથી બહાર નીકળો</value>
+  </data>
+  <data name="ExitFullscreen" xml:space="preserve">
+    <value>સંપૂર્ણસ્ક્રીન માંથી બહાર નીકળો</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>નિકાસ કરો</value>
+  </data>
+  <data name="Export2" xml:space="preserve">
+    <value>નિકાસ કરો (_E)</value>
+  </data>
+  <data name="ExportTagHierarchy" xml:space="preserve">
+    <value>ટેગ શ્રેણીની નિકાસ કરો (_h)</value>
+  </data>
+  <data name="ExportTagIcons" xml:space="preserve">
+    <value>ટેગ ચિહ્નોની નિકાસ કરો (_i)</value>
+  </data>
+  <data name="ExportTags" xml:space="preserve">
+    <value>ટેગોની નિકાસ કરો (_E)</value>
+  </data>
+  <data name="ExportTags2" xml:space="preserve">
+    <value>ટેગોની નિકાસ કરો (_t)</value>
+  </data>
+  <data name="ExportTitlesAndComments" xml:space="preserve">
+    <value>શીર્ષકો અને ટિપ્પણીઓની નિકાસ કરો (_x)</value>
+  </data>
+  <data name="ExportTitlesAndComments2" xml:space="preserve">
+    <value>શીર્ષકો અને ટિપ્પણીઓની નિકાસ કરો (_t)</value>
+  </data>
+  <data name="ExportTo" xml:space="preserve">
+    <value>તેમાં નિકાસ કરો</value>
+  </data>
+  <data name="ExportToAlbum" xml:space="preserve">
+    <value>આલ્બમમાં નિકાસ કરો (_E):</value>
+  </data>
+  <data name="ExportingFiles" xml:space="preserve">
+    <value>ફાઇલોની નિકાસ કરી રહ્યા છે</value>
+  </data>
+  <data name="ExportingPhotoX" xml:space="preserve">
+    <value>ચિત્ર "{0}" ની નિકાસ કરી રહ્યા છે</value>
+  </data>
+  <data name="Exposure" xml:space="preserve">
+    <value>જાહેર કરો</value>
+  </data>
+  <data name="Exposure2" xml:space="preserve">
+    <value>ખુલ્લું પાડો (_E):</value>
+  </data>
+  <data name="ExposureMode" xml:space="preserve">
+    <value>જાહેર કરેલ સ્થિતિ</value>
+  </data>
+  <data name="ExposureProgram" xml:space="preserve">
+    <value>જાહેલ કરેલ પ્રક્રિયા</value>
+  </data>
+  <data name="ExtendedMetadata" xml:space="preserve">
+    <value>વિસ્તરેલ મેટાડેટા</value>
+  </data>
+  <data name="Extension" xml:space="preserve">
+    <value>એક્સટેન્શન</value>
+  </data>
+  <data name="ExtensionDependencies" xml:space="preserve">
+    <value>એક્સટેન્શન આધારો:</value>
+  </data>
+  <data name="ExtensionInstallation" xml:space="preserve">
+    <value>એક્સેન્શન સ્થાપન</value>
+  </data>
+  <data name="ExtensionManager" xml:space="preserve">
+    <value>એક્સટેન્શન વ્યવસ્થાપક</value>
+  </data>
+  <data name="ExtensionRepositoryManagement" xml:space="preserve">
+    <value>એકસટેન્શન રિપોઝીટરી વ્યવસ્થાપન</value>
+  </data>
+  <data name="ExternalGloballyUniqueObjectIdentifier" xml:space="preserve">
+    <value>બહારનું વૈશ્ર્વિક અનન્ય ઓબ્જેક્ટ ઓળખકર્તા</value>
+  </data>
+  <data name="ExtraLarge" xml:space="preserve">
+    <value>વધારે મોટુ</value>
+  </data>
+  <data name="FSpotEncounteredAFatalError" xml:space="preserve">
+    <value>F-Spot એ ફેટલ ભૂલ શોધી</value>
+  </data>
+  <data name="FSpotEncounteredAnErrorWhileLoadingThePhotoDatabaseTheOldDatabaseHasBeMovedToXAndANewDatabaseHasBeenCreated" xml:space="preserve">
+    <value>F-Spot એ ભૂલ શોધી જ્યારે ફોટો ડેટાબેઝને લોડ કરી રહ્યા હોય. જૂનું ડેટાબેઝને {0} માં ખસેડેલ છે અને નવા ડેટાબેઝને બનાવી દેવામાં આવ્યુ છે.</value>
+  </data>
+  <data name="FSpotNeedsYourAuthorizationInOrderToUploadPhotosToYourXAccountPressTheAuthorizeButtonToOpenAWebBrowserAndGiveFSpotTheAuthorization" xml:space="preserve">
+    <value>F-Spot ને તમારા {0} ખાતામાં ફોટાઓને અપલેડ કરવા માટે તમારા સત્તાધિકરણની જરૂર છે. વેબ બ્રાઉઝરને ખોલવા માટે "Authorize" બટનને દબાવો અને સત્તાધિકરણ F-Spot ને આપો. </value>
+  </data>
+  <data name="FSpotPhotoManager" xml:space="preserve">
+    <value>F-Spot ફોટો વ્યવસ્થાપક</value>
+  </data>
+  <data name="FSpotPhotoViewer" xml:space="preserve">
+    <value>F-Spot ફોટો દર્શક</value>
+  </data>
+  <data name="FSpotPhotos" xml:space="preserve">
+    <value>F-Spot ફોટાઓ</value>
+  </data>
+  <data name="FSpotView" xml:space="preserve">
+    <value>F-Spot દ્રશ્ય</value>
+  </data>
+  <data name="FSpotWasUnableToFindAnyCamerasAttachedToThisSystemDoubleCheckThatTheCameraIsConnectedAndHasPower" xml:space="preserve">
+    <value>F-Spot એ આ સિસ્ટમમાં કોઇપણ કેમેરાને શોધવામાં અસમર્થ હતી.  બેવાર ચકાસો કે જે કેમેરા જોડાયેલ છે અને તેની પાસે પાવર છે</value>
+  </data>
+  <data name="FSpotWasUnableToLogOnToXMakeSureYouHaveGivenTheAuthUsingXWebBrowser" xml:space="preserve">
+    <value>F-Spot એ {0} પર પ્રવેશવા માટે અસમર્થ હતુ. ખાતરી કરો તમે {0} વેબ બ્રાઉઝર ઇન્ટરફેસની મદદથી સત્તાધિકરણ આપેલ છે.</value>
+  </data>
+  <data name="FSpotWebsite" xml:space="preserve">
+    <value>F-Spot વેબસાઇટ</value>
+  </data>
+  <data name="FSpotWillNowLaunchYourBrowserSoThatYouCanEnableThePermissionYouJustSelectedOnceYouAreDirectedByFacebookToReturnToThisApplicationClickOkBelow" xml:space="preserve">
+    <value>F-Spot એ હવે તમારા બ્રાઉઝરને શરૂ કરશે તેથી તમે જે પસંદ કરેલ છે તે પરવાનગીઓને સક્રિય કરી શકો છો.
+
+એકવાર આ કાર્યક્રમમાં પાછા આવવ Facebook દ્દારા સૂચવેલ છે, નીચે "બરાબર" પર ક્લિક કરો.</value>
+  </data>
+  <data name="FSpotWillNowLaunchYourBrowserSoThatYouCanLogIntoFacebookOnceYouAreDirectedByFacebookToReturnToThisApplicationClickOkBelowFSpotWillCacheYourSessionInGnomeKeyringIfPossibleAndReUseItOnFutureFacebookExports" xml:space="preserve">
+    <value>F-Spot એ હવે તમારા બ્રાઉઝરને શરૂ કરશે તેથી તે Facebook માં પ્રવેશી શકે છે.
+
+એકવાર આ કાર્યક્રમમાં પાછા આવવા Facebook દ્દારા દિશા થયેલ છે, નીચે "બરાબર કરો" પર ક્લિક કરો.  F-Spot એ gnome-keyring માં તમારા સત્રને કેશ કરશે, જો શક્ય હોય તો, અને ભવિષ્યની Facebook નિકાસો પર તેને પુન:વાપરો.</value>
+  </data>
+  <data name="Facebook" xml:space="preserve">
+    <value>ફેસબુક (_a)...</value>
+  </data>
+  <data name="FacebookConnectionError" xml:space="preserve">
+    <value>Facebook જોડાણ ભૂલ</value>
+  </data>
+  <data name="FacebookOnlyPermits60PhotographsPerAlbumPleaseRefineYourSelectionAndTryAgain" xml:space="preserve">
+    <value>ફેસબુક ફક્ત આલ્બમ પ્રતિ ૬૦ ફોટોગ્રાફો ને પરવાનગી આપે છે. મહેરબાની કરીને તમારી પસંદગીને સ્પષ્ટ કરાલો અને ફરીથા પ્રયત્ન કરો.</value>
+  </data>
+  <data name="Favorites" xml:space="preserve">
+    <value>પસંદીદાઓ</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>ફાઇલ</value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>ફાઇલ નામ (_F):</value>
+  </data>
+  <data name="FileNotFonud" xml:space="preserve">
+    <value>ફાઇલ શોધાઇ નથી</value>
+  </data>
+  <data name="FileSize" xml:space="preserve">
+    <value>ફાઇલનું માપ</value>
+  </data>
+  <data name="FileSourceType" xml:space="preserve">
+    <value>ફાઇલ સ્ત્રોત પ્રકાર</value>
+  </data>
+  <data name="Fill" xml:space="preserve">
+    <value>ભરો</value>
+  </data>
+  <data name="FilterOnSelectedRolls" xml:space="preserve">
+    <value>પસંદ થયેલ રોલો પર ફિલ્ટર</value>
+  </data>
+  <data name="Find" xml:space="preserve">
+    <value>શોધો</value>
+  </data>
+  <data name="Find2" xml:space="preserve">
+    <value>શોધો:</value>
+  </data>
+  <data name="FindColon" xml:space="preserve">
+    <value>શોધો: </value>
+  </data>
+  <data name="FindSelectedTagMnemonic" xml:space="preserve">
+    <value>પસંદ થયેલ ટેગને શોધો (_S)</value>
+  </data>
+  <data name="FindSelectedTagWithMnemonic" xml:space="preserve">
+    <value>ની સાથે પસંદ થયેલ ટેગને શોધો (_W)</value>
+  </data>
+  <data name="FindSelectedTagsMnemonic" xml:space="preserve">
+    <value>પસંદ થયેલ ટેગો ને શોધો (_S)</value>
+  </data>
+  <data name="FindSelectedTagsWithMnemonic" xml:space="preserve">
+    <value>ની સાથે પસંદ થયેલ ટેગોને શોધો (_W)</value>
+  </data>
+  <data name="FindWithMnemonic" xml:space="preserve">
+    <value>ની સાથે શોધો (_W)</value>
+  </data>
+  <data name="FiveBySevenL2L" xml:space="preserve">
+    <value>5 x 7 (L, 2L)</value>
+  </data>
+  <data name="FixExclamation" xml:space="preserve">
+    <value>નિશ્ચિત!</value>
+  </data>
+  <data name="Flickr" xml:space="preserve">
+    <value>Flickr (_F)</value>
+  </data>
+  <data name="Flickr2" xml:space="preserve">
+    <value>Flickr (_F)...</value>
+  </data>
+  <data name="Flip" xml:space="preserve">
+    <value>ફ્લિપ</value>
+  </data>
+  <data name="FocalLength" xml:space="preserve">
+    <value>ફોકલ લંબાઇ</value>
+  </data>
+  <data name="FocalPlaneResolutionUnit" xml:space="preserve">
+    <value>ફોકલ પ્લેન રિઝોલ્યુશન એકમ</value>
+  </data>
+  <data name="Folder" xml:space="preserve">
+    <value>ફોલ્ડર</value>
+  </data>
+  <data name="Folder3" xml:space="preserve">
+    <value>ફોલ્ડર (_o)...</value>
+  </data>
+  <data name="Folder4" xml:space="preserve">
+    <value>ફોલ્ડર (_F):</value>
+  </data>
+  <data name="FolderExport" xml:space="preserve">
+    <value>ફોલ્ડરની નિકાસ કરો</value>
+  </data>
+  <data name="FollowingErrorEncounteredAttemptingToPerformRequestedOperation" xml:space="preserve">
+    <value>નીચેની ભૂલ શોધાઇ હતી જ્યારે સૂચિત ક્રિયાને અમલમાં મૂકવા પ્રયત્ન કરી રહ્યા હોય ત્યારે:
+{0} ({1})</value>
+  </data>
+  <data name="FollowingErrorWasEncounteredAttemptingToLogInX" xml:space="preserve">
+    <value>નીચેની ભૂલ શોધાઇ હતી જ્યારે પ્રવેશ કરવાનું પ્રયત્ન કરતા હોય: {0}</value>
+  </data>
+  <data name="FourBySixPostcard" xml:space="preserve">
+    <value>4 x 6 (પોસ્ટકાર્ડ)</value>
+  </data>
+  <data name="FourByThreeBook" xml:space="preserve">
+    <value>4 x 3 (ચોપડી)</value>
+  </data>
+  <data name="FromGtkrcFile" xml:space="preserve">
+    <value>gtkrc ફાઇલ માંથી:</value>
+  </data>
+  <data name="FromList" xml:space="preserve">
+    <value>યાદી માંથી:</value>
+  </data>
+  <data name="FullNameOfTheCountryOfTheFocusOfTheContent" xml:space="preserve">
+    <value>સમાવિષ્ટને કેન્દ્રિત કરવા માટે દેશનું સંપૂર્ણ નામ</value>
+  </data>
+  <data name="FullPageNomargin" xml:space="preserve">
+    <value>સંપૂર્ણ પાનું (અંતર નથી)</value>
+  </data>
+  <data name="Fullscreen" xml:space="preserve">
+    <value>સંપૂર્ણસ્ક્રીન</value>
+  </data>
+  <data name="Fullscreen2" xml:space="preserve">
+    <value>સંપૂર્ણસ્ક્રીન (_F)</value>
+  </data>
+  <data name="GPSDirectory" xml:space="preserve">
+    <value>GPS ડિરેક્ટરી</value>
+  </data>
+  <data name="GainControl" xml:space="preserve">
+    <value>ગેન નિયંત્રણ</value>
+  </data>
+  <data name="Gallery" xml:space="preserve">
+    <value>ગેલરિ</value>
+  </data>
+  <data name="Gallery3" xml:space="preserve">
+    <value>ગેલરિ (_a):</value>
+  </data>
+  <data name="Gallery4" xml:space="preserve">
+    <value>ગેલરિ (_G)</value>
+  </data>
+  <data name="Gallery5" xml:space="preserve">
+    <value>ગેલરિ (_G):</value>
+  </data>
+  <data name="GalleryGeneratedBy" xml:space="preserve">
+    <value>ને દ્દારા ઉત્પન્ન થયેલ ગેલરિ</value>
+  </data>
+  <data name="GalleryName" xml:space="preserve">
+    <value>ગેલરિ નામ (_a):</value>
+  </data>
+  <data name="GalleryName2" xml:space="preserve">
+    <value>ગેલરિ નામ (_G):</value>
+  </data>
+  <data name="GalleryWithThisNameAlreadyExists" xml:space="preserve">
+    <value>આ નામ સાથે ગેલરિ પહેલેથી અસ્તિત્વ ધરાવે છે</value>
+  </data>
+  <data name="HeadlineOfTheContent" xml:space="preserve">
+    <value>સમાવિષ્ટનું હેડલાઇન</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>મદદ (_H)</value>
+  </data>
+  <data name="Hidden" xml:space="preserve">
+    <value>છુપાયેલ</value>
+  </data>
+  <data name="Hide" xml:space="preserve">
+    <value>છુપાડો</value>
+  </data>
+  <data name="HideFindBarMnemonic" xml:space="preserve">
+    <value>શોધ પટ્ટીને છુપાડો (_F)</value>
+  </data>
+  <data name="HideStyles" xml:space="preserve">
+    <value>શૈલીઓને છુપાડો</value>
+  </data>
+  <data name="HideToolbar2" xml:space="preserve">
+    <value>સાધનપટ્ટીને છુપાડો</value>
+  </data>
+  <data name="Histogram" xml:space="preserve">
+    <value>હિસ્ટોગ્રામ</value>
+  </data>
+  <data name="Hue" xml:space="preserve">
+    <value>હ્યુ (_H):</value>
+  </data>
+  <data name="IPTCFileFormat" xml:space="preserve">
+    <value>IPTC ફાઇલ બંધારણ</value>
+  </data>
+  <data name="IPTCInformationInterchangeModelIIMVersionNumber" xml:space="preserve">
+    <value>IPTC Information Interchange Model (IIM) આવૃત્તિ નંબર</value>
+  </data>
+  <data name="Icon" xml:space="preserve">
+    <value>ચિહ્ન (_I):</value>
+  </data>
+  <data name="IdentifiesTheProviderAndProduct" xml:space="preserve">
+    <value>પુરવઠાકર્તા અને ઉત્પાદનને ઓળખો</value>
+  </data>
+  <data name="IfYouDeleteThisTagTheAssociationWithXYWillBeLost" xml:space="preserve">
+    <value>જો તમે આ ટેગને કાઢી નાંખો તો, {0} {1} સાથે સંસ્થાને ગુમાવશો.</value>
+  </data>
+  <data name="IfYouDeleteThisTagsTheAssociationWithXYWillBeLost" xml:space="preserve">
+    <value>જો તમે આ ટેગોને કાઢી નાંખો તો, {0} {1} સાથે સંસ્થાને ગુમાવશો.</value>
+  </data>
+  <data name="IfYouRemovePhotosFromFSpotCatalogAllTagInfoLost" xml:space="preserve">
+    <value>જો તમે F-Spot કેટલોગ માંથી ફોટાઓને દૂર કરો તો બધી ટેગ જાણકારી ગુમ થઇ જશે. ફોટાઓ તમારા કૉમ્પ્યુટર પર રહેલાં છે અને ફરીથી F-Spot માં આયાત કરી શકાય છે.</value>
+  </data>
+  <data name="IgnoreTopLevelTags" xml:space="preserve">
+    <value>ઊંચા સ્તરનાં ટેગોને અવગણો (_t)</value>
+  </data>
+  <data name="ImageDirectory" xml:space="preserve">
+    <value>ઇમેજ ડિરેક્ટરી</value>
+  </data>
+  <data name="ImageInformation2" xml:space="preserve">
+    <value>ઇમેજ જાણકારી</value>
+  </data>
+  <data name="ImageSettings" xml:space="preserve">
+    <value>ઇમેજ સુયોજનો</value>
+  </data>
+  <data name="ImagesTaggedWith" xml:space="preserve">
+    <value>ની સાથે ટેગ થયેલ ઇમેજો:</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>આયાત કરો</value>
+  </data>
+  <data name="Import3" xml:space="preserve">
+    <value>આયાત કરો:</value>
+  </data>
+  <data name="ImportError" xml:space="preserve">
+    <value>ભૂલને આયાત કરો</value>
+  </data>
+  <data name="ImportIntoFSpot" xml:space="preserve">
+    <value>F-Spot માં આયાત કરો</value>
+  </data>
+  <data name="ImportNewImages" xml:space="preserve">
+    <value>નવી ઇમેજોને આયાત કરો</value>
+  </data>
+  <data name="ImportRoll" xml:space="preserve">
+    <value>રોલને આયાત કરો</value>
+  </data>
+  <data name="ImportSource" xml:space="preserve">
+    <value>સ્ત્રોતની નિકાસ કરો:</value>
+  </data>
+  <data name="ImportTags" xml:space="preserve">
+    <value>ટેગોને આયાત કરો</value>
+  </data>
+  <data name="InOrderToDetectDuplicatesOnPicturesYouImportedBefore050FSpotNeedsToAnalyzeYourImageCollectionThisIsNotDoneByDefaultAsItSTimeConsumingYouCanStartOrPauseThisUpdateProcessUsingThisDialog" xml:space="preserve">
+    <value>0.5.0 પેહલાં તમે આયાત કરેલ ચિત્રો પર નકલોને શોધવાનું ક્રમમાં, F-Spot ને તમારી ચિત્ર સંગ્રહ ને વિશ્લેષણ કરવાની જરૂર છે. તે સમયને વાપરી રહ્યુ છે તે પ્રમાણે મૂળભૂત દ્દારા આ પૂરુ કરેલ નથી. આ સંવાદની મદદથી આ સુધારા પ્રક્રિયાને તમે શરૂ અથવા અટકાવી શકો છો.</value>
+  </data>
+  <data name="InUserDirectory" xml:space="preserve">
+    <value> (વપરાશકર્તા ડિરેક્ટરીમાં)</value>
+  </data>
+  <data name="IncludePhotoTaggedX" xml:space="preserve">
+    <value>ફોટાઓ ટેગ થયેલ "{0}" ને સમાવો</value>
+  </data>
+  <data name="IncludeSubfolders" xml:space="preserve">
+    <value>ઉપફોલ્ડરોને સમાવો</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>અનુક્રમણિકા</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>જાણકારી</value>
+  </data>
+  <data name="InstallExtensions" xml:space="preserve">
+    <value>એક્સટેન્શનોને સ્થાપિત કરો (_I)...</value>
+  </data>
+  <data name="InstallFrom" xml:space="preserve">
+    <value>તેમાંથી સ્થાપિત કરો:</value>
+  </data>
+  <data name="InstallationCancelled" xml:space="preserve">
+    <value>સ્થાપન રદ કરેલ છે</value>
+  </data>
+  <data name="InstallationFailed" xml:space="preserve">
+    <value>સ્થાપન નિષ્ફળ</value>
+  </data>
+  <data name="InstructionsFromTheCreatorToTheReceiverNotCoveredByOtherFields" xml:space="preserve">
+    <value>મેળવનાર બીજા ક્ષેત્રો દ્દારા આવરેલ નથી તે માટે નિર્માતા માંથી સૂચનાઓ</value>
+  </data>
+  <data name="IntellectualGenreOfTheObject" xml:space="preserve">
+    <value>ઓબ્જેક્ટની બુદ્ધિજીવી શ્રેણી</value>
+  </data>
+  <data name="InterOperabilityDirectory" xml:space="preserve">
+    <value>InterOperability ડિરેક્ટરી</value>
+  </data>
+  <data name="InterpolateImageOnZoom" xml:space="preserve">
+    <value>નાનુ મોટુ કરવાનુ પર ઇમેજને ઇન્ટરપોલેટ કરો (_I)</value>
+  </data>
+  <data name="InvalidGalleryName" xml:space="preserve">
+    <value>અયોગ્ય ગેલરિ નામ</value>
+  </data>
+  <data name="InvalidUrl" xml:space="preserve">
+    <value>અયોગ્ય URL</value>
+  </data>
+  <data name="KeepTheImagesAtTheirOriginalLocation" xml:space="preserve">
+    <value>તેનાં મૂળભૂત સ્થાન પર ઇમેજોને રાખો</value>
+  </data>
+  <data name="Label" xml:space="preserve">
+    <value>લેબલ</value>
+  </data>
+  <data name="Label124" xml:space="preserve">
+    <value>લેબલ124</value>
+  </data>
+  <data name="Large" xml:space="preserve">
+    <value>વિશાળ</value>
+  </data>
+  <data name="LastNintyDays" xml:space="preserve">
+    <value>છેલ્લા ૯૦ દિવસો</value>
+  </data>
+  <data name="LastSevenDays" xml:space="preserve">
+    <value>છેલ્લા ૭ દિવસો</value>
+  </data>
+  <data name="LastThirtyDays" xml:space="preserve">
+    <value>છેલ્લા ૩૦ દિવસો</value>
+  </data>
+  <data name="LastThreeHundredSixtyDays" xml:space="preserve">
+    <value>છેલ્લા ૩૬૦ દિવસો</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>ઝાંખુ</value>
+  </data>
+  <data name="LightSource" xml:space="preserve">
+    <value>પ્રકાશ સ્ત્રોત</value>
+  </data>
+  <data name="LiteralAnd" xml:space="preserve">
+    <value> અને </value>
+  </data>
+  <data name="LiteralOr" xml:space="preserve">
+    <value> અથવા </value>
+  </data>
+  <data name="LoadingXExtension" xml:space="preserve">
+    <value>{0} એક્સટેન્શનને લોડ કરી રહ્યા છે</value>
+  </data>
+  <data name="LoadingXOfY" xml:space="preserve">
+    <value>{1} નાં {0} ને લોડ કરી રહ્યા છે</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>સ્થાન</value>
+  </data>
+  <data name="Location2" xml:space="preserve">
+    <value>સ્થાન (_L):</value>
+  </data>
+  <data name="LocationWithinACityOrAreaWhereTheObjectOriginates" xml:space="preserve">
+    <value>જ્યાંથી ઓબ્જેક્ટ શરૂ થાય તે શહેર અથવા વિસ્તારમાં સ્થાન</value>
+  </data>
+  <data name="LoggingIntoTabblo" xml:space="preserve">
+    <value>Tabblo માં પ્રવેશી રહ્યા છે</value>
+  </data>
+  <data name="LoggingIntoX" xml:space="preserve">
+    <value>{0} માં પ્રવેશી રહ્યા છે</value>
+  </data>
+  <data name="MakeFSpotYourScreensaver" xml:space="preserve">
+    <value>તમારા સ્ક્રીનસેવર માટે F-Spot ને બનાવો</value>
+  </data>
+  <data name="ManageYourCustomSelectionRatios" xml:space="preserve">
+    <value>તમારા વૈવિધ્ય પસંદગી દરોને સંચાલિત કરો</value>
+  </data>
+  <data name="Medium" xml:space="preserve">
+    <value>માધ્યમ</value>
+  </data>
+  <data name="MergeAnotherFSpotCollection" xml:space="preserve">
+    <value>બીજા F-Spot સંગ્રહને ભેગુ કરો</value>
+  </data>
+  <data name="MergeDb" xml:space="preserve">
+    <value>Db ને ભેગુ કરો</value>
+  </data>
+  <data name="MergeTags" xml:space="preserve">
+    <value>ટેગોને ભેગા કરો</value>
+  </data>
+  <data name="MergeTagsMnemonic" xml:space="preserve">
+    <value>ટેગોને ભેગા કરો (_M)</value>
+  </data>
+  <data name="MergeTheSelectedTag" xml:space="preserve">
+    <value>{0} પસંદ થયેલ ટેગને ભેગા કરો</value>
+  </data>
+  <data name="MergeTheSelectedTags" xml:space="preserve">
+    <value>{0} પસંદ થયેલ ટેગોને ભેગા કરો</value>
+  </data>
+  <data name="Metadata" xml:space="preserve">
+    <value>મેટાડેટા</value>
+  </data>
+  <data name="MetapixelNotAvailable" xml:space="preserve">
+    <value>મેટાપિક્સેલ ઉપલ્બધ નથી</value>
+  </data>
+  <data name="MeteringMode" xml:space="preserve">
+    <value>મિટરીંગ સ્થિતિ</value>
+  </data>
+  <data name="Modified" xml:space="preserve">
+    <value>બદલાયેલ</value>
+  </data>
+  <data name="ModifiedInY" xml:space="preserve">
+    <value>{1} માં બદલાયેલ</value>
+  </data>
+  <data name="ModifiedInYX" xml:space="preserve">
+    <value>{1} ({0}) માં બદલાયેલ</value>
+  </data>
+  <data name="ModifiedX" xml:space="preserve">
+    <value>બદલાયેલ ({0})</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>વધારે</value>
+  </data>
+  <data name="MoreDates" xml:space="preserve">
+    <value>વધારે તારીખો</value>
+  </data>
+  <data name="MoreDirectories" xml:space="preserve">
+    <value>વધારે ડિરેક્ટરીઓ</value>
+  </data>
+  <data name="MyPhotos2" xml:space="preserve">
+    <value>મારા ફોટાઓ</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>નામ</value>
+  </data>
+  <data name="NameColon" xml:space="preserve">
+    <value>નામ:</value>
+  </data>
+  <data name="NameOfNewTagColon" xml:space="preserve">
+    <value>નવા ટેગનું નામ:</value>
+  </data>
+  <data name="NameOfTheCityTheContentIsFocussingOn" xml:space="preserve">
+    <value>જેની પર સમાવિષ્ટ પ્રકાશિત કરી રહ્યુ હોય તે શહેરનુ નામ</value>
+  </data>
+  <data name="NewNameColon" xml:space="preserve">
+    <value>નવું નામ:</value>
+  </data>
+  <data name="NewRollsOnly" xml:space="preserve">
+    <value>ફકેત નવાં રોલો</value>
+  </data>
+  <data name="NewWindow" xml:space="preserve">
+    <value>નવી વિન્ડો (_N)</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>પછીનું</value>
+  </data>
+  <data name="NextPhoto" xml:space="preserve">
+    <value>પછીનો ફોટો</value>
+  </data>
+  <data name="NextPicture" xml:space="preserve">
+    <value>પછીનું ચિત્ર</value>
+  </data>
+  <data name="NoAccountSelected" xml:space="preserve">
+    <value>ખાતુ પસંદ થયેલ નથી</value>
+  </data>
+  <data name="NoActivePhoto" xml:space="preserve">
+    <value>સક્રિય ફોટો નથી</value>
+  </data>
+  <data name="NoApplicationsAvailable" xml:space="preserve">
+    <value>કાર્યક્રમો ઉપલ્બધ નથી</value>
+  </data>
+  <data name="NoCamerasDetected" xml:space="preserve">
+    <value>(કેમેરાઓ શોધાયેલ નથી)</value>
+  </data>
+  <data name="NoCamerasDetected2" xml:space="preserve">
+    <value>કેમેરાઓ શોધાયેલ નથી.</value>
+  </data>
+  <data name="NoConstraint" xml:space="preserve">
+    <value>દબાણ નથી</value>
+  </data>
+  <data name="NoExtendedMetadataAvailable" xml:space="preserve">
+    <value>વિસ્તરેલ મેટાડેટા ઉપલ્બધ નથી</value>
+  </data>
+  <data name="NoImage" xml:space="preserve">
+    <value>ઇમેજ નથી (_i)</value>
+  </data>
+  <data name="NoMatchingPhotosFound" xml:space="preserve">
+    <value>બંધબેસતા ફોટાઓ શોધાયા નથી</value>
+  </data>
+  <data name="NoMetadataAvailable" xml:space="preserve">
+    <value>મેટાડેટા ઉપલ્બધ નથી</value>
+  </data>
+  <data name="NoPermissionToDeleteTheFile" xml:space="preserve">
+    <value>ફાઇલને કાઢી નાંખવા માટે પરવાનગી નથી:{1}{0}</value>
+  </data>
+  <data name="NoPhotosForTheSelection" xml:space="preserve">
+    <value>પસંદગી માટે ફોટાઓ નથી</value>
+  </data>
+  <data name="NoPhotosMatchingFound" xml:space="preserve">
+    <value>ફોટો બંધબેસતા {0} શોધાયા નથી</value>
+  </data>
+  <data name="NoSelectionAvailable" xml:space="preserve">
+    <value>પસંદગી ઉપલ્બધ નથી</value>
+  </data>
+  <data name="NoTagAppliedToAppliedTryAddingorSelectingDifferentTagInPreferenceDialog" xml:space="preserve">
+    <value>ટેગ "{0}" એ કોઇપણ ફોટાઓમાં લાગુ પાડેલ નથી. અમુક ફોટાઓમાં
+ટેગને ઉમેરવાનું પ્રયત્ન કરો અથવા F-Spot પસંદગી સંવાદમાં વિવિધ ટેગને પસંદ કરી
+કરી રહ્યા છે.</value>
+  </data>
+  <data name="NoWayToSaveFilesOfTypeX" xml:space="preserve">
+    <value>પ્રકાર "{0}" ની ફાઇલોને સંગ્રહ કરવા માટે રસ્તો નથી</value>
+  </data>
+  <data name="NotSpaceX" xml:space="preserve">
+    <value>{0} નથી</value>
+  </data>
+  <data name="NumberIdentifyingTheIIMVersionThisApplicationRecordUses" xml:space="preserve">
+    <value>કાર્યક્રમ રેકોર્ડ વપરાશ દ્દારા નંબર એ IIM આવૃત્તિને ઓળખી રહ્યા છે</value>
+  </data>
+  <data name="NumberOfPhotosInSelectedRolls" xml:space="preserve">
+    <value>પસંદ થયેલ રોલોમાં ફોટાઓની સંખ્યા:</value>
+  </data>
+  <data name="NumberOfPictures" xml:space="preserve">
+    <value>ચિત્રોની સંખ્યા</value>
+  </data>
+  <data name="OSIDestinationRoutingInformation" xml:space="preserve">
+    <value>OSI લક્ષ્ય રુટિન જાણકારી</value>
+  </data>
+  <data name="ObjectAttributeReference" xml:space="preserve">
+    <value>ઓબ્જેક્ટ ગુણધર્મ સંદર્ભ</value>
+  </data>
+  <data name="ObjectName" xml:space="preserve">
+    <value>ઓબ્જેક્ટ નામ</value>
+  </data>
+  <data name="ObjectTypeReference" xml:space="preserve">
+    <value>ઓબ્જેક્ટ પ્રકાર સંદર્ભ</value>
+  </data>
+  <data name="ObtainingURLForUpload" xml:space="preserve">
+    <value>અપલોડ કરવા માટે URL ને પ્રાપ્ત કરી રહ્યા છે</value>
+  </data>
+  <data name="OkMnemonic" xml:space="preserve">
+    <value>બરાબર (_O)</value>
+  </data>
+  <data name="OnXBetweenYAndZ" xml:space="preserve">
+    <value>{1} અને {2} વચ્ચે 
+{0} પર</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>ખોલો</value>
+  </data>
+  <data name="OpenAlbumInBrowserWhenDoneUploading" xml:space="preserve">
+    <value>જ્યારે અપલોડ કરવાનું પૂરુ થયુ હોય ત્યારે બ્રાઉઝરમાં આલ્બમને ખોલો (_O)</value>
+  </data>
+  <data name="OpenAlbumInBrowserWhenDoneUploading2" xml:space="preserve">
+    <value>જ્યારે અપલોડીંગ પૂર્ણ થાય ત્યારે બ્રાઉઝરમાં આલ્બમને ખોલો (_a)</value>
+  </data>
+  <data name="OpenDestinationWhenDoneExporting" xml:space="preserve">
+    <value>લક્ષ્યને ખોલો જ્યારે નિકાસ કરવાનું પૂરુ થઇ ગયુ હોય (_d)</value>
+  </data>
+  <data name="OpenDestinationWhenDoneExporting2" xml:space="preserve">
+    <value>જ્યારે નિકાસ કરવાનું પૂરુ થાય ત્યારે લક્ષ્યને ખોલો (_O)</value>
+  </data>
+  <data name="OpenFolder" xml:space="preserve">
+    <value>ફોલ્ડરને ખોલો (_F)...</value>
+  </data>
+  <data name="OpenWith" xml:space="preserve">
+    <value>ની સાથે ખોલો (_W)</value>
+  </data>
+  <data name="OperationFailed" xml:space="preserve">
+    <value>ક્રિયા નિષ્ફળ</value>
+  </data>
+  <data name="Or" xml:space="preserve">
+    <value>અથવા</value>
+  </data>
+  <data name="OrganizeEnjoyAndShareYourPhotos" xml:space="preserve">
+    <value>તમારા ફોટોને સંચાલિત, આનંદ માણો, અને વહેંચો</value>
+  </data>
+  <data name="Orientation" xml:space="preserve">
+    <value>દિશા </value>
+  </data>
+  <data name="Original" xml:space="preserve">
+    <value>મૂળભૂત</value>
+  </data>
+  <data name="OriginalSizePossibleVeryLargeFileSize" xml:space="preserve">
+    <value>મૂળભૂત માપ (કદાચ ઘણુ લાંબુ ફાઇલ માપ)</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>બીજા</value>
+  </data>
+  <data name="OverallProgress" xml:space="preserve">
+    <value>કુલ પ્રગતિ:</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>પેકેજ</value>
+  </data>
+  <data name="PageColon" xml:space="preserve">
+    <value>પાનું:</value>
+  </data>
+  <data name="PageSetup" xml:space="preserve">
+    <value>પાનું સુયોજન</value>
+  </data>
+  <data name="PaperSizeXxYmm" xml:space="preserve">
+    <value>પેપર માપ: {0} x {1} mm</value>
+  </data>
+  <data name="ParenFileReadErrorParen" xml:space="preserve">
+    <value>(ફાઇલ વાંચન ભૂલ)</value>
+  </data>
+  <data name="ParenNoAlbumsParen" xml:space="preserve">
+    <value>(આલ્બમો નથી)</value>
+  </data>
+  <data name="ParenNoEditsParen" xml:space="preserve">
+    <value>(ફેરફારો નથી)</value>
+  </data>
+  <data name="ParenNoGalleryParen" xml:space="preserve">
+    <value>(ગેલરિ નથી)</value>
+  </data>
+  <data name="ParenNoTagsParen" xml:space="preserve">
+    <value>(ટેગો નથી)</value>
+  </data>
+  <data name="ParenNoneParen" xml:space="preserve">
+    <value>(કંઇ નહિં)</value>
+  </data>
+  <data name="ParenNotConnectedParen" xml:space="preserve">
+    <value>(જોડાયેલ નથી)</value>
+  </data>
+  <data name="ParenTopLevelParen" xml:space="preserve">
+    <value>(ઊંચુ સ્તર)</value>
+  </data>
+  <data name="ParenUnknownParen" xml:space="preserve">
+    <value>(અજ્ઞાત)</value>
+  </data>
+  <data name="ParentAlbum" xml:space="preserve">
+    <value>પિતૃ આલ્બમ (_P):</value>
+  </data>
+  <data name="ParentTag" xml:space="preserve">
+    <value>પિતૃ ટેગ (_a):</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>પાસવર્ડ (_P):</value>
+  </data>
+  <data name="Path" xml:space="preserve">
+    <value>પાથ:</value>
+  </data>
+  <data name="Path2" xml:space="preserve">
+    <value>પાથ</value>
+  </data>
+  <data name="Pause" xml:space="preserve">
+    <value>અટકાવો</value>
+  </data>
+  <data name="People" xml:space="preserve">
+    <value>લોકો</value>
+  </data>
+  <data name="Photo0Of0" xml:space="preserve">
+    <value>0 માંનો 0 ફોટો</value>
+  </data>
+  <data name="Photo2" xml:space="preserve">
+    <value>ફોટો</value>
+  </data>
+  <data name="Photo3" xml:space="preserve">
+    <value>ફોટો (_P)</value>
+  </data>
+  <data name="PhotoManagementForGNOME" xml:space="preserve">
+    <value>GNOME માટે ફોટો વ્યવસ્થાપન</value>
+  </data>
+  <data name="PhotoManager" xml:space="preserve">
+    <value>ફોટો વ્યવસ્થાપક</value>
+  </data>
+  <data name="PhotoMosaic" xml:space="preserve">
+    <value>PhotoMosaic</value>
+  </data>
+  <data name="PhotoMosaicX" xml:space="preserve">
+    <value>PhotoMosaic ({0})</value>
+  </data>
+  <data name="PhotoMosaicsGenerated" xml:space="preserve">
+    <value>PhotoMosaics ઉત્પન્ન થયેલ છે!</value>
+  </data>
+  <data name="PhotoViewer" xml:space="preserve">
+    <value>ફોટો દર્શક</value>
+  </data>
+  <data name="PhotoWallGenerated" xml:space="preserve">
+    <value>PhotoWall ઉત્પન્ન થયેલ છે!</value>
+  </data>
+  <data name="PhotoXOfY" xml:space="preserve">
+    <value>{1} માંનો {0} ફોટો</value>
+  </data>
+  <data name="PhotometricInterpretation" xml:space="preserve">
+    <value>ફોટોમેટ્રીક અર્થઘટન</value>
+  </data>
+  <data name="Photos" xml:space="preserve">
+    <value>ફોટાઓ</value>
+  </data>
+  <data name="Photos2" xml:space="preserve">
+    <value>ફોટાઓ</value>
+  </data>
+  <data name="PhotosInfos" xml:space="preserve">
+    <value>ફોટાઓ જાણકારીઓ</value>
+  </data>
+  <data name="PhotosLayout" xml:space="preserve">
+    <value>ફોટાઓની રૂપરેખા</value>
+  </data>
+  <data name="PhotosPerPage" xml:space="preserve">
+    <value>ફોટાઓ પ્રતિ પાનું</value>
+  </data>
+  <data name="PicasaWeb2" xml:space="preserve">
+    <value>પિકાસાવેબ (_P)...</value>
+  </data>
+  <data name="PictureTileNotAvailable" xml:space="preserve">
+    <value>PictureTile ઉપલ્બધ નથી</value>
+  </data>
+  <data name="Pixelate" xml:space="preserve">
+    <value>પિક્સેલેટ</value>
+  </data>
+  <data name="Pixels" xml:space="preserve">
+    <value>પિક્સેલો</value>
+  </data>
+  <data name="Places" xml:space="preserve">
+    <value>જગ્યાઓ</value>
+  </data>
+  <data name="PlanarConfiguration" xml:space="preserve">
+    <value>પ્લાનર રૂપરેખાંકન</value>
+  </data>
+  <data name="PleaseNameYourAlbumOrChooseAnExistingAlbum" xml:space="preserve">
+    <value>મહેરબાની કરીને તમારા આલ્બમને નામ આપો અથવા હાલનાં આલ્બમને પસંદ કરો.</value>
+  </data>
+  <data name="PleaseVerifyThatTheSettingsForThisGalleryAreCorrect" xml:space="preserve">
+    <value>મહેરહાની કરીને ચકાસો કે જે આ ગેલરિ માટે સુયોજનો એ યોગ્ય છે.</value>
+  </data>
+  <data name="PleaseVerifyThatTheSettingsForThisGalleryAreCorrectEnterTheLettersAsTheyAreShownInTheImageInTheCaptchaFieldILettersAreNotCaseSensitiveI" xml:space="preserve">
+    <value>મહેરબાની કરીને ચકાસો કે જે આ ગેલરિ માટે સુયોજનો એ યોગ્ય નથી.
+તેઓએ 'Captcha' ક્ષેત્રમાં ઇમેજમાં બતાવેલ છે તે પ્રમાણે અક્ષરોને દાખલ કરો. &lt;i&gt;અક્ષરો કેસ-સંવેદનશીલ નથી&lt;/i&gt;</value>
+  </data>
+  <data name="PleaseWaitFSpotGalleryDBUpdating" xml:space="preserve">
+    <value>મહેરબાની કરીને થોભો જ્યારે તમારો F-Spot ગેલરિનો ડેટાબેઝ સુધારેલ છે. આને અમુક સમય લાગી શકે છે.</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>પોર્ટ</value>
+  </data>
+  <data name="Preferences" xml:space="preserve">
+    <value>પસંદગીઓ</value>
+  </data>
+  <data name="PreparingEmail" xml:space="preserve">
+    <value>ઇમેઇલની તૈયારી કરી રહ્યા છે</value>
+  </data>
+  <data name="PreparingPhotoX" xml:space="preserve">
+    <value>ફોટો "{0}" ની તૈયારી કરી રહ્યા છે</value>
+  </data>
+  <data name="PreparingSelectedPictures" xml:space="preserve">
+    <value>પસંદ થયેલ ચિત્રોની તૈયારી કરી રહ્યા છે</value>
+  </data>
+  <data name="Prev" xml:space="preserve">
+    <value>પહેલાનું</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>પૂર્વદર્શન</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>પહેલાનું</value>
+  </data>
+  <data name="PreviousPhoto" xml:space="preserve">
+    <value>પહેલાનો ફોટો</value>
+  </data>
+  <data name="PreviousPicture" xml:space="preserve">
+    <value>પહેલાનું ચિત્ર</value>
+  </data>
+  <data name="PreviousWeekMonSun" xml:space="preserve">
+    <value>પહેલાનું અઠવાડિયું (સોમવાર-રવિવાર)</value>
+  </data>
+  <data name="PrintCutMarks" xml:space="preserve">
+    <value>કાપતા ચિહ્નોને છાપો</value>
+  </data>
+  <data name="PrintFileName" xml:space="preserve">
+    <value>ફાઇલ નામ ને છાપો</value>
+  </data>
+  <data name="PrintOutput" xml:space="preserve">
+    <value>પ્રિન્ટ આઉટપુટ (_P):</value>
+  </data>
+  <data name="PrintPhotoComment" xml:space="preserve">
+    <value>ફોટો ટિપ્પણીને છાપો</value>
+  </data>
+  <data name="PrintPhotoDate" xml:space="preserve">
+    <value>ફોટો તારીખને છાપો</value>
+  </data>
+  <data name="PrintPhotoTags" xml:space="preserve">
+    <value>ફોટો ટેગોને છાપો</value>
+  </data>
+  <data name="PrintPhotoTime" xml:space="preserve">
+    <value>ફોટો સમયને છાપો</value>
+  </data>
+  <data name="Private" xml:space="preserve">
+    <value>ખાનગી</value>
+  </data>
+  <data name="ProcessingImages" xml:space="preserve">
+    <value>ઇમેજોની પ્રક્રિયા કરી રહ્યા છે...</value>
+  </data>
+  <data name="ProcessingX" xml:space="preserve">
+    <value>"{0}" ની પ્રક્રિયા કરી રહ્યા છે</value>
+  </data>
+  <data name="ProvidedByX" xml:space="preserve">
+    <value>({0} દ્દારા પૂરુ પાડેલ છે)</value>
+  </data>
+  <data name="ProviderOfTheObject" xml:space="preserve">
+    <value>ઓબ્જેક્ટને પૂરુ પાડનાર</value>
+  </data>
+  <data name="Public" xml:space="preserve">
+    <value>સાર્વજનિક</value>
+  </data>
+  <data name="PublicAlbum" xml:space="preserve">
+    <value>સાર્વજનિક આલ્બમ</value>
+  </data>
+  <data name="Push" xml:space="preserve">
+    <value>દબાવો</value>
+  </data>
+  <data name="RadiusColon" xml:space="preserve">
+    <value>ત્રિજ્યા:</value>
+  </data>
+  <data name="RatedPhotos" xml:space="preserve">
+    <value>વર્ગ આપેલ ફોટાઓ</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>રેટિંગ</value>
+  </data>
+  <data name="RatingColon" xml:space="preserve">
+    <value>રેટિંગ:</value>
+  </data>
+  <data name="Ratio" xml:space="preserve">
+    <value>પ્રમાણ</value>
+  </data>
+  <data name="ReallyDelete" xml:space="preserve">
+    <value>ખરેખર કાઢવુ છે?</value>
+  </data>
+  <data name="ReallyDeleteVersionXQuestion" xml:space="preserve">
+    <value>ખરેખર આવૃત્તિ "{0}" ને કાઢવી છે?</value>
+  </data>
+  <data name="ReceivedErrorXWhileAttemptingToRotateY" xml:space="preserve">
+    <value>જ્યારે {1} ને ફેરવવા માટે પ્રયત્ન કરી રહ્યા હોય ત્યારે ભૂલ "{0}" મળેલ છે</value>
+  </data>
+  <data name="ReceivedErrorXWhileConnectingToCamera" xml:space="preserve">
+    <value>ભૂલ "{0}" મળેલ છે જ્યારે કેમેરાને જોડી રહ્યા હોય છે</value>
+  </data>
+  <data name="ReceivedExceptionXNoteThatYouHaveToDevelopRaw" xml:space="preserve">
+    <value>અપવાદ "{0}" મળેલ છે. નોંધો કે તમે તેઓમાં ફેરફાર કરી શકો તે પહેલા JPEG માં RAW ફાઇલોને વિકસાવવુ જ પડશે.</value>
+  </data>
+  <data name="ReceivedExceptionXUnableToCreateVersionY" xml:space="preserve">
+    <value>અપવાદ "{0}" મળેલ છે. આવૃત્તિ "{1}" ને બનાવવામાં અસમર્થ</value>
+  </data>
+  <data name="ReceivedExceptionXUnableToDeleteVersionY" xml:space="preserve">
+    <value>અપવાદ "{0}" મળેલ છે. આવૃત્તિ "{1}" ને કાઢી નાખવામાં અસમર્થ</value>
+  </data>
+  <data name="ReceivedExceptionXUnableToRenameVersionToY" xml:space="preserve">
+    <value>અપવાદ "{0}" મળેલ છે. "{1}" માં આવૃત્તિને નામ બદલવામાં અસમર્થ</value>
+  </data>
+  <data name="ReceivedExceptionXUnableToSavePhotoY" xml:space="preserve">
+    <value>અપવાદ "{0}" મળેલ છે. ફોટો {1} ને સંગ્રહ કરવામાં અસમર્થ</value>
+  </data>
+  <data name="RedEyeReduction" xml:space="preserve">
+    <value>Red-eye Reduction</value>
+  </data>
+  <data name="RefreshSearch" xml:space="preserve">
+    <value>શોધ ને તાજુ કરો</value>
+  </data>
+  <data name="RegisterALocalRepository" xml:space="preserve">
+    <value>સ્થાનિય રિપોઝીટરીને રજીસ્ટર કરો</value>
+  </data>
+  <data name="RegisterAnOnLineRepository" xml:space="preserve">
+    <value>ઓનલાઇન રિપોઝીટરીને રજીસ્ટર કરો</value>
+  </data>
+  <data name="RemoveFromCatalog" xml:space="preserve">
+    <value>કેટલોગ માંથી દૂર કરો (_R)</value>
+  </data>
+  <data name="RemoveFromCatalogMnemonic" xml:space="preserve">
+    <value>કેટલોગ માંથી દૂર કરો (_R)</value>
+  </data>
+  <data name="RemoveFromExportedPhotos" xml:space="preserve">
+    <value>નિકાસ થયેલ ફોટાઓ માંથી દૂર કરો (_o):</value>
+  </data>
+  <data name="RemoveFromSearch" xml:space="preserve">
+    <value>શોધ માંથી દૂર કરો</value>
+  </data>
+  <data name="RemoveTag" xml:space="preserve">
+    <value>ટેગને દૂર કરો (_o)</value>
+  </data>
+  <data name="RemoveTagFromSelection" xml:space="preserve">
+    <value>પસંદગીમાંથી ટેગોને દૂર કરો</value>
+  </data>
+  <data name="RemoveTagFromSelection3" xml:space="preserve">
+    <value>પસંદગીમાંથી ટેગને દૂર કરો</value>
+  </data>
+  <data name="RemoveTheSelectedPhotoFromFSpot" xml:space="preserve">
+    <value>F-Spot માંથી પસંદ થયેલ ફોટોને દૂર કરો?</value>
+  </data>
+  <data name="RemoveTheXSelectedPhotosFromFSpot" xml:space="preserve">
+    <value>F-Spot માંથી {0} પસંદ થયેલ ફોટોને દૂર કરો?</value>
+  </data>
+  <data name="RenameVersion" xml:space="preserve">
+    <value>આવૃત્તિનું નામ બદલો</value>
+  </data>
+  <data name="Repair" xml:space="preserve">
+    <value>સુધારો</value>
+  </data>
+  <data name="Reparented" xml:space="preserve">
+    <value>Reparented</value>
+  </data>
+  <data name="ReparentedX" xml:space="preserve">
+    <value>Reparented ({0})</value>
+  </data>
+  <data name="Repeat" xml:space="preserve">
+    <value>વારંવાર કરો</value>
+  </data>
+  <data name="Repositories" xml:space="preserve">
+    <value>રિપોઝીટરીઓ (_R)...</value>
+  </data>
+  <data name="Repository" xml:space="preserve">
+    <value>રિપોઝીટરી</value>
+  </data>
+  <data name="ResizeTo" xml:space="preserve">
+    <value>માં માપને બદલો (_R): </value>
+  </data>
+  <data name="ResolutionUnit" xml:space="preserve">
+    <value>રિઝોલ્યુશન એકમ</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>ફરી પ્રયત્ન કરો</value>
+  </data>
+  <data name="ReturnToThisWindowAfterYouHaveFinishedAuthProcessOnXClickCompleteAuthorizationButton" xml:space="preserve">
+    <value>{0} પર સત્તાધિકરણ પ્રક્રિયા તમે સમાપ્ત કરો તે પછી આ વિન્ડોમાં પાછા આવો અને નીચે "Complete Authorization" બટન પર ક્લિક કરો</value>
+  </data>
+  <data name="Reveal" xml:space="preserve">
+    <value>નિશ્ચિત કરો</value>
+  </data>
+  <data name="ReverseOrder" xml:space="preserve">
+    <value>વિપરીત ક્રમ (_R)</value>
+  </data>
+  <data name="RotateLeft" xml:space="preserve">
+    <value>ડાબે ફેરવો</value>
+  </data>
+  <data name="RotateLeftMnemonic" xml:space="preserve">
+    <value>ડાબી તરફ ફેરવો (_L)</value>
+  </data>
+  <data name="RotatePhotoLeft" xml:space="preserve">
+    <value>ફોટોને ડાબી તરફ ફેરવો</value>
+  </data>
+  <data name="RotatePhotoRight" xml:space="preserve">
+    <value>ફોટોને જમણી તરફ ફેરવો</value>
+  </data>
+  <data name="RotatePictureLeft" xml:space="preserve">
+    <value>ચિત્રને ડાબે ફેરવો</value>
+  </data>
+  <data name="RotatePictureRight" xml:space="preserve">
+    <value>ચિત્રને જમણે ફેરવો</value>
+  </data>
+  <data name="RotateRight" xml:space="preserve">
+    <value>જમણે ફેરવો</value>
+  </data>
+  <data name="RotateRightMnemonic" xml:space="preserve">
+    <value>જમણે ફેરવો (_R)</value>
+  </data>
+  <data name="RotateSelectedPhotoLeft" xml:space="preserve">
+    <value>પસંદ થયેલ ફોટોને ડાબી તરફ ફેરવો</value>
+  </data>
+  <data name="RotateSelectedPhotoRight" xml:space="preserve">
+    <value>પસંદ થયેલ ફોટોને જમણી તરફ ફેરવો</value>
+  </data>
+  <data name="RotateSelectedPhotosLeft" xml:space="preserve">
+    <value>પસંદ થયેલ ફોટાઓને ડાબી તરફ ફેરવો</value>
+  </data>
+  <data name="RotateSelectedPhotosRight" xml:space="preserve">
+    <value>પસંદ થયેલ ફોટાઓને જમણી તરફ ફેરવો</value>
+  </data>
+  <data name="RotatingPhotoX" xml:space="preserve">
+    <value>ફોટો "{0}" ને ફેરવી રહ્યા છે</value>
+  </data>
+  <data name="RotatingPhotos" xml:space="preserve">
+    <value>ફોટાઓને ફેરવી રહ્યા છે</value>
+  </data>
+  <data name="S" xml:space="preserve">
+    <value> </value>
+  </data>
+  <data name="S1024Px" xml:space="preserve">
+    <value>1024 px</value>
+  </data>
+  <data name="S2" xml:space="preserve">
+    <value>
+</value>
+  </data>
+  <data name="S23hq" xml:space="preserve">
+    <value>23hq (_2)...</value>
+  </data>
+  <data name="S320Px" xml:space="preserve">
+    <value>320 px</value>
+  </data>
+  <data name="S480Px" xml:space="preserve">
+    <value>480 px</value>
+  </data>
+  <data name="S640Px" xml:space="preserve">
+    <value>640 px</value>
+  </data>
+  <data name="S800Px" xml:space="preserve">
+    <value>800 px</value>
+  </data>
+  <data name="SameAsPhoto" xml:space="preserve">
+    <value>ફોટોનાં જેવુ</value>
+  </data>
+  <data name="Saturation" xml:space="preserve">
+    <value>સંતૃપ્તિ</value>
+  </data>
+  <data name="Saturation2" xml:space="preserve">
+    <value>સંતૃપ્તિ (_S):</value>
+  </data>
+  <data name="SaveTheFilesOnly" xml:space="preserve">
+    <value>ફક્ત ફાઇલોને સંગ્રહો (_S)</value>
+  </data>
+  <data name="Scale" xml:space="preserve">
+    <value>પ્રમાણિત કરો (_S):</value>
+  </data>
+  <data name="ScalePhotosToNoLargerThan" xml:space="preserve">
+    <value>કરતા મોટો નથી તે ફોટાઓને પ્રમાણિત કરો: </value>
+  </data>
+  <data name="Scaled" xml:space="preserve">
+    <value>માપ થયેલ</value>
+  </data>
+  <data name="SceneCaptureType" xml:space="preserve">
+    <value>પસંગ પ્રાપ્યતા પ્રકાર</value>
+  </data>
+  <data name="SceneType" xml:space="preserve">
+    <value>પ્રસંગ પ્રકાર</value>
+  </data>
+  <data name="SearchReturnedNoResults" xml:space="preserve">
+    <value>શોધ પરિણામો પાછા મળ્યા નહિં</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>પસંદ કરો...</value>
+  </data>
+  <data name="SelectAFolder" xml:space="preserve">
+    <value>ફોલ્ડરને પસંદ કરો</value>
+  </data>
+  <data name="SelectAGtkrcFile" xml:space="preserve">
+    <value>gtkrc ફાઇલને પસંદ કરો</value>
+  </data>
+  <data name="SelectATag" xml:space="preserve">
+    <value>ટેગને પસંદ કરો...</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>બધુ પસંદ કરો (_A)</value>
+  </data>
+  <data name="SelectExportFolder" xml:space="preserve">
+    <value>નિકાસ ફોલ્ડરને પસંદ કરો</value>
+  </data>
+  <data name="SelectExportFolder2" xml:space="preserve">
+    <value>નિકાસ ફોલ્ડરને પસંદ કરો</value>
+  </data>
+  <data name="SelectFolder" xml:space="preserve">
+    <value>ફોલ્ડરને પસંદ કરો</value>
+  </data>
+  <data name="SelectPhotoFromFile" xml:space="preserve">
+    <value>ફાઇલ માંથી ફોટાને પસંદ કરો</value>
+  </data>
+  <data name="SelectPhotosToCopyFromCamera" xml:space="preserve">
+    <value>કેમેરા માંથી નકલ કરવા માટે ફોટાઓને પસંદ કરો...</value>
+  </data>
+  <data name="SelectTag" xml:space="preserve">
+    <value>ટેગને પસંદ કરો</value>
+  </data>
+  <data name="SelectTheAreaThatNeedsCropping" xml:space="preserve">
+    <value>વિસ્તારને પસંદ કરો કે જેને કાપવાની જરૂર હોય.</value>
+  </data>
+  <data name="SelectTheAreaThatYouWantBlackedOut" xml:space="preserve">
+    <value>વિસ્તારને પસંદ કરો કે જેને કાઢવાની ઇચ્છા હોય.</value>
+  </data>
+  <data name="SelectTheAreaThatYouWantPixelated" xml:space="preserve">
+    <value>વિસ્તારને પસંદ કરો કે જેને તમારે પિક્સેલેટેડ કરવાની ઇચ્છા હોય.</value>
+  </data>
+  <data name="SelectTheCameraFromWhichYouWantToTransferFiles" xml:space="preserve">
+    <value>તમે કઇ ફાઇલોનું પરિવહન કરવા માંગો છો તેમાંથી કેમેરા ને પસંદ કરો</value>
+  </data>
+  <data name="SelectTheEyesYouWishToFix" xml:space="preserve">
+    <value>તમે સુધારવા ઇચ્છતા હોય તેવી આંખોને પસંદ કરો.</value>
+  </data>
+  <data name="SelectTheLocationOfTheRepositoryYouWantToRegister" xml:space="preserve">
+    <value>તમે જે રજીસ્ટર કરવા માંગતા હોય તે રિપોઝીટરીનાં સ્થાનને પસંદ કરો:</value>
+  </data>
+  <data name="SelectedCamera" xml:space="preserve">
+    <value>પસંદ થયેલ કેમેરા: </value>
+  </data>
+  <data name="SelectionConstraints" xml:space="preserve">
+    <value>મૂંઝવણોને પસંદ કરો</value>
+  </data>
+  <data name="SensingMethod" xml:space="preserve">
+    <value>સેન્સીંગ પદ્દતિ</value>
+  </data>
+  <data name="SepiaTone2" xml:space="preserve">
+    <value>સેપિઆ ટોન</value>
+  </data>
+  <data name="ServerReturnedResponseWithoutGalleryContent" xml:space="preserve">
+    <value>ગેલરિ સમાવિષ્ટ વગર સર્વરને જવાબ પાછો મળેલ છે</value>
+  </data>
+  <data name="SessionEstablishedFetchingFriendDetails" xml:space="preserve">
+    <value>સત્ર સ્થાપિત થયેલ છે, મિત્ર વિગતોને લાવી રહ્યા છે...</value>
+  </data>
+  <data name="SessionEstablishedFetchingFriendList" xml:space="preserve">
+    <value>સત્ર સ્થાપિત થયેલ છે, મિત્રની જાણકારીને લાવી રહ્યા છે...</value>
+  </data>
+  <data name="SessionEstablishedFetchingPhotoAlbums" xml:space="preserve">
+    <value>સત્રને સ્થાપિત થયેલ છે, ફોટો આલ્બમોને લાવી રહ્યા છે...</value>
+  </data>
+  <data name="SessionEstablishedFetchingUserInfo" xml:space="preserve">
+    <value>સત્ર સ્થાપિત થયેલ છે, વપરાશકર્તાની જાણકારીને લાવી રહ્યા છે...</value>
+  </data>
+  <data name="SetAsBackground" xml:space="preserve">
+    <value>પાશ્ર્વ ભાગ તરીકે સુયોજિત કરો</value>
+  </data>
+  <data name="SetAsBackground2" xml:space="preserve">
+    <value>પાશ્ર્વ ભાગ તરીકે સુયોજિત કરો (_B)</value>
+  </data>
+  <data name="SetPageSizeAndOrientation" xml:space="preserve">
+    <value>પાનાનું માપ અને દિશાને સુયોજિત કરો</value>
+  </data>
+  <data name="SetRatingFilter" xml:space="preserve">
+    <value>રેટિંગ ફિલ્ટરને સુયોજિત કરો</value>
+  </data>
+  <data name="Sharpen" xml:space="preserve">
+    <value>સ્પષ્ટ કરો</value>
+  </data>
+  <data name="Sharpness" xml:space="preserve">
+    <value>તીક્ષતા</value>
+  </data>
+  <data name="ShiftAllPhotosByX" xml:space="preserve">
+    <value>{0} દ્દારા બધા ફોટાઓને ખસેડો</value>
+  </data>
+  <data name="ShowAllPackages" xml:space="preserve">
+    <value>બધા પેકેજોને બતાવો</value>
+  </data>
+  <data name="ShowAllPhotos" xml:space="preserve">
+    <value>બધા ફોટાઓને બતાવો.</value>
+  </data>
+  <data name="ShowCamera" xml:space="preserve">
+    <value>કેમેરાને બતાવો</value>
+  </data>
+  <data name="ShowDate" xml:space="preserve">
+    <value>તારીખને બતાવો</value>
+  </data>
+  <data name="ShowExposure" xml:space="preserve">
+    <value>જાહેર કરવાનું બતાવો</value>
+  </data>
+  <data name="ShowFileSize" xml:space="preserve">
+    <value>ફાઇલનાં માપને બતાવો</value>
+  </data>
+  <data name="ShowFindBarMnemonic" xml:space="preserve">
+    <value>શોધ પટ્ટીને બતાવો (_F)</value>
+  </data>
+  <data name="ShowFocalLength" xml:space="preserve">
+    <value>ફોકલ લંબાઇને બતાવો</value>
+  </data>
+  <data name="ShowNewVersionsOnly" xml:space="preserve">
+    <value>ફક્ત નવી આવૃત્તિઓને બતાવો</value>
+  </data>
+  <data name="ShowOrHideTheSidePane" xml:space="preserve">
+    <value>બાજુ પેનલને બતાવો અથવા છુપાડો</value>
+  </data>
+  <data name="ShowOrHideTheToolbar" xml:space="preserve">
+    <value>સાધનપટ્ટીને બતાવો અથવા છુપાડો</value>
+  </data>
+  <data name="ShowPhotoName" xml:space="preserve">
+    <value>ફોટો નામને બતાવો</value>
+  </data>
+  <data name="ShowSize" xml:space="preserve">
+    <value>માપને બતાવો</value>
+  </data>
+  <data name="ShowStyles" xml:space="preserve">
+    <value>શૈલીઓને બતાવો</value>
+  </data>
+  <data name="ShowUpdatesOnly" xml:space="preserve">
+    <value>ફક્ત સુધારાઓને બતાવો</value>
+  </data>
+  <data name="SidePane" xml:space="preserve">
+    <value>બાજુ પેનલ (_p)</value>
+  </data>
+  <data name="SignInAsADifferentUser" xml:space="preserve">
+    <value>વિવિધ વપરાશકર્તાઓ તરીકે પ્રવેશો</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>માપ</value>
+  </data>
+  <data name="SizeOfTheExportedSelection" xml:space="preserve">
+    <value>નિકાસ થયેલ પસંદગીનું માપ:</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>છોડી દો</value>
+  </data>
+  <data name="SlideTransition" xml:space="preserve">
+    <value>સ્લાઇડ સ્થળાંતરણ:</value>
+  </data>
+  <data name="Slideshow" xml:space="preserve">
+    <value>તકતી પૂર્વદર્શન</value>
+  </data>
+  <data name="Slideshow2" xml:space="preserve">
+    <value>તકતી પૂર્વદર્શન (_S)</value>
+  </data>
+  <data name="Small" xml:space="preserve">
+    <value>નાનું</value>
+  </data>
+  <data name="SmallIChooseTheFolderWhereFSpotShouldStoreNewlyImportedPhotosISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;ફોલ્ડરને પસંદ કરો જ્યાં F-Spot એ નવી આયાત થયેલ ફોટાઓનો સંગ્રહ થવો જોઇએ&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIChooseTheLocationOfTheDatabaseYouWantToImportFromISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;તમે જેમાંથી આયાત કરવા માંગતા હોય ત્યાંથી ડેટાબેઝનાં સ્થાનને પસંદ કરો&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIChooseWhatToImportFromTheSelectedDbNewRollsOnlyIsTheSmartOptionThatWillAvoidReImportingPhotosYouCouldHaveImportedDuringAPreviousOperationASingleImportRollLetYouChooseWhichRollYouWantToMergeBackEverythingWillImportEverythingCreatingDuplicatesIfYouAlreadyImportedFromThatDatabaseISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;પસંદ થયેલ db માંથી શુ આયાત કરવુ છે તેને પસંદ કરો.
+"New Rolls Only" એ યોગ્ય વિકલ્પ ચે કે જે ફોટાઓને પુન:આયાત કરવાનું અવગણશે જે તમે પહેલાંની ક્રિયા દરમ્યાન આયાત કરી શક્યા હોત.
+"A Single Import Roll" તમારે ક્યો રોલ પાછા ભેગા કરવા ની ઇચ્છા છે તે તમે પસંદ કરો.
+"Everything" એ બધુ આયાત કરશે, નકલોને બનાવી રહ્યા છે જો તમે પેલા ડેટાબેઝમાં પહેલેથી જ આયાત થયેલ હોય તો .&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallICopyTheImagesLocallyOrKeepThemWhereTheyAreIfYouChoseTheLaterBeSureThatThisLocationWillStayAccessibleFromFSpotISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;સ્થાનિક રીતે ઇમેજો ની નકલ કરો અથવા તેઓને ત્યાંજ રાખો જ્યાં તેઓ છે. જો તમે પછીથી પસંદ કરો તો, ખાતરી કરો કે જે આ સ્થાન એ f-spot માંથી પ્રવેશ કરવા માટે રાહ જોશે.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIEnableThisOptionToStoreTagsAndDescriptionsInsideSupportedImageFormatsISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;આધારભૂત ઇમેજ બંધારણોની અંદર ટેગો અને વર્ણનોનો સંગ્રહ કરવા માટે આ વિકલ્પને સક્રિય કરો.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIEnableThisToAllowInterpolationOnZoomedImagesYouShouldnTDisableThisForViewingPhotosButDisablingTheInterpolationCouldBeUsefulInIconDesignISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;નાનુ મોટુ થાય તેવી ઇમેજો પર ઇન્ટરપોલેશનને પરવાનગી આપવા માટે આને સક્રિય કરો. તમે ફોટાઓને દર્શાવવા માટે આને નિષ્ક્રિય કરવુ જોઇએ નહિં, પરંતુ ઇન્ટરપોલેશનને નિષ્ક્રિય કરવાનું એ ચિહ્ન રચનામાં ઉપયોગી થઇ શકે છે.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIFSpotTagsCanHelpYouTrackTheExportStatusOfPhotosExampleUseOneTagForThePhotosThatYouPlanToExportAndAnotherOneForThoseAlreadyExportedHereYouCanTellFSpotToAutomaticallyReplaceTheseTagsAsAppropriateISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;F-Spot ટેગો એ ફોટોની નિકાસ પરિસ્થિતિને ટ્રેક કરવા માટે તમને મદદ કરી શકે છે. ઉદાહરણ: ફોટાઓ માટે એક ટેગને વાપરો કે જે નિકાસ કરવા માટે પ્લાન કરો, અને જે પહેલેથી જ નિકાસ થયેલ છે તેને માટે બીજુ એક. અહિંયા, તમે અનૂકુળ પ્રમાણે આ ટેગો ને આપમેળે બદલવા માટે F-Spot ને કહી શકો છો.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIWhileActingAsAScreensaverFSpotCanDisplayAllOfYourImagesOrASmallSubsetBasedOnTagsISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;જ્યારે સ્ક્રીનસેવર તરીકે કાર્ય કરી રહ્યુ હોય ત્યારે, F-Spot એ બધી તમારી ઇમેજોને દર્શાવી શકે છે , અથવા ટેગો પર આધારિત નાનો ઉપસેટ.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIYouCanChooseHowToDisplayTransparentPartsInImagesThisOptionHasNoEffectOnPhotosButSettingThisAsCheckPatternOrCustomColorCouldBeUsefulWhenViewingIconsOrOtherArtworksWithTransparentPartsISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;ઇમેજોમાં પારદર્શક ભાગોને કેવી રીતે દર્શાવાય તે તમે પસંદ કરી શકો છો. આ વિકલ્પ એ ફોટાઓ પર અસર કરતુ નથી, પરંતુ ભાતને ચકાસો તે પ્રમાણે આને સુયોજિત કરી રહ્યા છે અથવા વૈવિધ્ય રંગ ઉપયોગી થઇ શકે છે જ્યારે ચિહ્નોને અથવા પારદર્શક ભાગો સાથે બીજા કલાકામોને દેખાડી રહ્યા છે .&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIYouLlHaveToRestartFSpotToLoadTheNewThemeISmall2" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;તમારે નવી થીમને લોડ કરવા માટે F-Spot ને પુન:શરૂ કરવુ જ પડશે.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallSmall2" xml:space="preserve">
+    <value>&lt;small&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmugMug" xml:space="preserve">
+    <value>SmugMug (_S)...</value>
+  </data>
+  <data name="SoftFocus" xml:space="preserve">
+    <value>Soft Focus</value>
+  </data>
+  <data name="SomeOfTheRequiredExtensionsWereNotFound" xml:space="preserve">
+    <value>અમુક જરૂરી એક્સટેન્શનો શોધાયા ન હતા</value>
+  </data>
+  <data name="SpanWeightBoldSizeLargerErrorConnectingToGallerySpan" xml:space="preserve">
+    <value>&lt;span weight='bold' size='larger'&gt;ગેલરિમા જોડાતી વખતે ભૂલ&lt;/span&gt;
+</value>
+  </data>
+  <data name="SpanWeightBoldSizeLargerYourGoogleAccountIsLockedSpan" xml:space="preserve">
+    <value>&lt;span weight='bold' size='larger'&gt;તમારુ Google ખાતાને તાળુ મારેલ છે&lt;/span&gt;
+</value>
+  </data>
+  <data name="SpecifyIfAnOriginalSizePictureShouldBeRotatedOrNotSmallerSizesAreAutomaticallyRotated" xml:space="preserve">
+    <value>સ્પષ્ટ કરો જો મૂળભૂત ચિત્ર માપ એ ફેરવાવુ જોઇએ કે નહિં. નાનામાં નાના માપો એ આપમેળે ફેરવાય છે.</value>
+  </data>
+  <data name="Split" xml:space="preserve">
+    <value>અલગ કરો</value>
+  </data>
+  <data name="Square" xml:space="preserve">
+    <value>ચોરસ</value>
+  </data>
+  <data name="StartSlideshow" xml:space="preserve">
+    <value>તકતી પૂર્વદર્શનને શરૂ કરો</value>
+  </data>
+  <data name="State" xml:space="preserve">
+    <value>સ્થિતિ</value>
+  </data>
+  <data name="StatusOfTheObjectdataAccordingToTheProvider" xml:space="preserve">
+    <value>પુરવઠાકર્તાને અનુસાર objectdata ની પરિસ્થિતિ</value>
+  </data>
+  <data name="Stopped" xml:space="preserve">
+    <value>અટકેલ છે</value>
+  </data>
+  <data name="Straighten" xml:space="preserve">
+    <value>સીધુ કરો</value>
+  </data>
+  <data name="StripImageMetadata" xml:space="preserve">
+    <value>ઇમેજ મેટાડેટા કાઢી લેવુ (_m)</value>
+  </data>
+  <data name="StripMetadata" xml:space="preserve">
+    <value>મેટાડેટા કાઢી લેવુ (_S)</value>
+  </data>
+  <data name="StripMetadata2" xml:space="preserve">
+    <value>મેટાડેટા ને કાઢી લેવુ (_m)</value>
+  </data>
+  <data name="SubjectAndKeywords" xml:space="preserve">
+    <value>વિષય અને કિવર્ડો</value>
+  </data>
+  <data name="SystemTheme" xml:space="preserve">
+    <value>સિસ્ટમ થીમ</value>
+  </data>
+  <data name="Tabblo" xml:space="preserve">
+    <value>Tabblo (_T)...</value>
+  </data>
+  <data name="TagDoesntExistTrySelectingDifferentTagInPerferenceDialog" xml:space="preserve">
+    <value>ટેગ F-Spot એ અસ્તિત્વ ધરાવતુ નથી તે માટે જોઇ રહ્યા છે. F-Spot પસંદગી સંવાદમાં વિવિધ ટેગને પસંદ કરવાનો પ્રયત્ન કરો.</value>
+  </data>
+  <data name="TagIsNotEmpty" xml:space="preserve">
+    <value>ટેગ એ ખાલી નથી</value>
+  </data>
+  <data name="TagName" xml:space="preserve">
+    <value>ટેગ નામ:</value>
+  </data>
+  <data name="TagName2" xml:space="preserve">
+    <value>ટેગ નામ (_T):</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>ટેગો</value>
+  </data>
+  <data name="TagsColon" xml:space="preserve">
+    <value>ટેગો: </value>
+  </data>
+  <data name="Temp" xml:space="preserve">
+    <value>ટેમ્પ (_m):</value>
+  </data>
+  <data name="TheCharacterSetDesignation" xml:space="preserve">
+    <value>અક્ષર સુયોજિત ભૂમિકા</value>
+  </data>
+  <data name="TheDirectoryYouSelectedXDoesNotExistPleaseChooseADifferentDirectory" xml:space="preserve">
+    <value>ડિરેક્ટરી જે તમે પસંદ કરેલ "{0}" છે તે અસ્તિત્વ ધરાવતી નથી.  મહેરબાની કરીને વિવિધ ડિરેક્ટરીને પસંદ કરો</value>
+  </data>
+  <data name="TheEnvelopeHandlingPriorityBetween1MostUrgentAnd9LeastUrgent" xml:space="preserve">
+    <value>પરબીડિયુ એ 1 (વધારે મહત્વનું) અને 9 (ઓછા મહત્વનું) વચ્ચે પ્રાધન્યને સંભાળી રહ્યા છે</value>
+  </data>
+  <data name="TheFileSelectedNotValidOrSupportedDataaseReceivedExceptionX" xml:space="preserve">
+    <value>ફાઇલ જે પસંદ થયેલ છે તે યોગ્ય નથી અથવા ડેટાબેઝ આધારભૂત નથી.
+
+અપવાદ "{0}" મળેલ છે.</value>
+  </data>
+  <data name="TheFollowingDependenciesCouldNotBeResolved" xml:space="preserve">
+    <value>નીચેનાં આધારોને સુધારી શકાયા નહિં:</value>
+  </data>
+  <data name="TheFollowingErrorWasEncounteredWhileAttemptingToCreateAnAlbumX" xml:space="preserve">
+    <value>નીચેની ભૂલ ઉદ્ભવી હતી જ્યારે આલ્બમને બનાવવા માટે પ્રયત્ન કરી રહ્યા હોય: {0}</value>
+  </data>
+  <data name="TheFollowingExtensionsAreCurrentlyInstalled" xml:space="preserve">
+    <value>નીચેનાં એક્સટેન્શનો હાલમાં સ્થાપિત થયેલ છે:</value>
+  </data>
+  <data name="TheFollowingExtensionsWillBeInstalled" xml:space="preserve">
+    <value>નીચેનાં એકસટેન્શનો સ્થાપિત થયેલ હશે:</value>
+  </data>
+  <data name="TheFollowingPackagesNeedToBeUninstalled" xml:space="preserve">
+    <value>નીચેનાં પેકેજોને બિનસ્થાપિત કરવાની જરૂર છે:</value>
+  </data>
+  <data name="TheFollowingPackagesWillBeInstalled" xml:space="preserve">
+    <value>નીચેનાં પેકેજો સ્થાપિત થયેલ હશે:</value>
+  </data>
+  <data name="TheFollowingPackagesWillBeUninstalled" xml:space="preserve">
+    <value>નીચેનાં પેકેજો સ્થાપિત થયેલ હશે નહિં:</value>
+  </data>
+  <data name="TheGalleryNameContainsInvalidCharactersOnlyLettersNumbersUnderscoreAllowed" xml:space="preserve">
+    <value>ગેલરિ નામ અયોગ્ય અક્ષરોને સમાવે છે.
+ફક્ત અક્ષરો, નેબરો, - , _ પરવાનગી આપેલ છે</value>
+  </data>
+  <data name="TheGalleryUrlEntryDoesNotAppearToBeValid" xml:space="preserve">
+    <value>યોગ્ય URL કરવા માટે ગેલરિ URL પ્રવેશ દેખાતુ નથી</value>
+  </data>
+  <data name="TheHourMinuteAndSecondHHMMSSTheServiceSentTheMaterial" xml:space="preserve">
+    <value>સેવા દ્દારા વસ્તુઓ મોકલેલ કલાક, મિનિટ અને સેકંડ (HHMMSS)</value>
+  </data>
+  <data name="TheInstallationFailed" xml:space="preserve">
+    <value>સ્થાપન નિષ્ફળ!</value>
+  </data>
+  <data name="TheInstallationHasBeenSuccessfullyCompleted" xml:space="preserve">
+    <value>સ્થાપન ને સફળતાપૂર્વક સમાપ્ત કરી દેવામાં આવ્યુ છે.</value>
+  </data>
+  <data name="TheInstallationHasCompletedWithWarnings" xml:space="preserve">
+    <value>સ્થાપન એ ચેતવણીઓ સાથે સમાપ્ત થયુ.</value>
+  </data>
+  <data name="TheMetapixelExecutableWasNotFoundInPathPleaseCheckThatYouHaveItInstalledAndThatYouHavePermissionsToExecuteIt" xml:space="preserve">
+    <value>મેટાપિક્સેલ એક્ઝીક્યુટેબલ પાથમાં શોધાયુ નથી. મહેરબાની કરીને ચકાસો કે તમારે તેને સ્થાપિત કરેલ છે અને તેને ચલાવવા માટે તમારી પાસે પરવાનગીઓ છે</value>
+  </data>
+  <data name="ThePersonInvolvedInWritingEditingOrCorrectingTheObjectDataOrCaptionAbstract" xml:space="preserve">
+    <value>માણસ એ ઓબ્જેક્ટ માહિતી અથવા મથાળુ/સાર ને લખવાનું, ફેરફાર કરવાનું અથવા સુધારવામાં સમાયેલ છે</value>
+  </data>
+  <data name="ThePhotoCouldNotBeRotatedBecauseItIsOnAReadOnlyFileSystemOrMediaSuchAsACDROMPleaseCheckThePermissionsAndTryAgain" xml:space="preserve">
+    <value>ફોટોને ફેરવી શકાયુ નહિં કારણ કે તે ફક્ત વંચાય તેવી ફાઇલ સિસ્ટમ છે અથવા મીડિયા જેવા કે CDROM.   મહેરબાની કરીને પરવાનગીઓને ચકાસો અને ફરીથી પ્રયત્ન કરો.</value>
+  </data>
+  <data name="ThePhotoXDoesNotExist" xml:space="preserve">
+    <value>ફોટો "{0}" અસ્તિત્વ ધરાવતુ નથી</value>
+  </data>
+  <data name="ThePicturetilePlExecutableWasNotFoundInPathPleaseCheckThatYouHaveItInstalledAndThatYouHavePermissionsToExecuteIt" xml:space="preserve">
+    <value>picturetile.pl એક્ઝીક્યુટેબલ પાથમાં શોધાયુ ન હતુ. મહેરબાની કરીને ચકાસો કે જે તમે તેને સ્થાપિત કરેલ છે અને તેને ચલાવવા માટે તમારી પાસે પરવાનગીઓ છે</value>
+  </data>
+  <data name="TheRequiredExtensionXIsDisabled" xml:space="preserve">
+    <value>જરૂરી એક્સટેન્શન '{0}' એ નિષ્ક્રિય થયેલ છે.</value>
+  </data>
+  <data name="TheRequiredExtensionXIsNotInstalled" xml:space="preserve">
+    <value>જરૂરી એક્સટેન્શન '{0}' એ સ્થાપિત થયેલ નથી.</value>
+  </data>
+  <data name="TheSelectedAlbumHasALimitOfXPicturesWhichWouldBePassedWithTheCurrentSelectionOfYImages" xml:space="preserve">
+    <value>પસંદ થયેલ આલ્બમ પાસે {0} ચિત્રોની મર્યાદા છે,
+કે જે {1} ઇમેજોની હાલની પસંદગી સાથે પસાર થયેલ હશે</value>
+  </data>
+  <data name="TheSelectedExtensionsCanTBeInstalledBecauseThereAreDependencyConflicts" xml:space="preserve">
+    <value>પસંદ થયેલ એક્સટેન્શનો ને સ્થાપિત કરી શકાતા નથી કારણ કે ત્યાં આધાર અથડામણ થાય છે.</value>
+  </data>
+  <data name="TheTagsSelectedProvidedNoPicturesPleaseSelectDifferentTags" xml:space="preserve">
+    <value>પસંદ થયેલ ટેગોને ચિત્રો પૂરા પાડેલ નથી. મહેરબાની કરીને વિવિધ ટેગોને પસંદ કરો</value>
+  </data>
+  <data name="TheTitleOfTheAuthorOrCreator" xml:space="preserve">
+    <value>લેખક અથવા નિર્માતા નું શિર્ષક</value>
+  </data>
+  <data name="TheUninstallationFailed" xml:space="preserve">
+    <value>બિનસ્થાપન નિષ્ફળ!</value>
+  </data>
+  <data name="TheUninstallationHasBeenSuccessfullyCompleted" xml:space="preserve">
+    <value>બિનસ્થાપન ને સફળતાપૂર્વક સમાપ્ત કરી દેવામાં આવ્યુ છે.</value>
+  </data>
+  <data name="TheUninstallationHasCompletedWithWarnings" xml:space="preserve">
+    <value>બિનસ્થાપન એ ચેતવણીઓ સાથે સમાપ્ત થયુ.</value>
+  </data>
+  <data name="TheYearMonthAndDayCCYYMMDDTheServiceSentTheMaterial" xml:space="preserve">
+    <value>સેવા દ્દારા વસ્તુઓ મોકલેલ વર્ષ, મહિનો અને દિવસ (CCYYMMDD)</value>
+  </data>
+  <data name="ThereAlreadyGallerySameNameInYourRegisteredGalleriesPleaseChooseUniqueName" xml:space="preserve">
+    <value>ત્યાં તમારી રજીસ્ટર થયેલ ગેલરિઓમાં એજ નામ સાથે પહેલેથી જ ગેલરિ છે. મહેરબાની કરીને અનન્ય નામ ને પસંદ કરો.</value>
+  </data>
+  <data name="ThereAreOtherExtensionsThatDependOnThePreviousOnesWhichWillAlsoBeUninstalled" xml:space="preserve">
+    <value>ત્યાં બીજા એક્સટેન્શનો છે કે જે પહેલાનાં એક પર આધાર રાખે છે કે જે પણ સ્થાપિત થયેલ નથી:</value>
+  </data>
+  <data name="ThereWasAProblemLoggingIntoFacebookCheckYourCredentialsAndTryAgain" xml:space="preserve">
+    <value>ત્યાં ફેસબુકમાં પ્રવેશતી વખતે સમસ્યા હતી.  તમારા ઓળખપત્રને ચકાસો અને ફરીથી પ્રયત્ન કરો.</value>
+  </data>
+  <data name="ThereWasAnErrorWhenDownloadingYourInformationFromFacebookFacebookSaidX" xml:space="preserve">
+    <value>જ્યારે Facebook માંથી તમારી જાણકારીને લાવી રહ્યા હોય ત્યારે ભૂલ હતી.
+
+Facebook એ કહ્યુ છે: {0}</value>
+  </data>
+  <data name="ThisDeletesAllVersionsOfTheSelectedPhotoFromYourDrive" xml:space="preserve">
+    <value>આ તમારી ડ્રાઇવ માંથી પસંદ થયેલ ફોટોની બધી આવૃત્તિ ને કાઢી નાંખે છે.</value>
+  </data>
+  <data name="ThisDeletesAllVersionsOfTheSelectedPhotosFromYourDrive" xml:space="preserve">
+    <value>આ તમારી ડ્રાઇવ માંથી પસંદ થયેલ ફોટાઓની બધી આવૃત્તિ ને કાઢી નાંખે છે.</value>
+  </data>
+  <data name="ThisNameIsAlreadyInUse" xml:space="preserve">
+    <value>આ નામ પહેલેથી જ વપરાશમાં છે</value>
+  </data>
+  <data name="ThisToolRequiresAnActiveSelection.PleaseSelectOneOrMore" xml:space="preserve">
+    <value>આ સાધનને સક્રિય પસંદગીની જરૂર છે. મહેરબાની કરીને એક અથવા વધારે ચિત્રોને પસંદ કરો અને ફરીથી પ્રયત્ન કરો</value>
+  </data>
+  <data name="ThisToolRequiresAnActiveSelectionPleaseSelectARegion" xml:space="preserve">
+    <value>આ સાધનને સક્રિય પસંદગીની જરૂર છે. મહેરબાની કરીને ફોટોનાં વિસ્તારને પસંદ કરો અને ફરીથી ક્રિયાનો પ્રયત્ન કરો</value>
+  </data>
+  <data name="ThisWillMergeSelectedTagsAndSubTagsIntoSingleTag" xml:space="preserve">
+    <value>આ ક્રિયા એ પસંદ થયેલ ટેગો સાથે ભેગા થશે અને એક ટેગમાં કોઇપણ ઉપ-ટેગો.</value>
+  </data>
+  <data name="ThresholdColon" xml:space="preserve">
+    <value>થ્રેશોલ્ડ:</value>
+  </data>
+  <data name="ThumbnailDirectory" xml:space="preserve">
+    <value>થમ્ભનેઇલ ડિરેક્ટરી</value>
+  </data>
+  <data name="Tint" xml:space="preserve">
+    <value>ટિન્ટ (_T):</value>
+  </data>
+  <data name="Tiny" xml:space="preserve">
+    <value>બહુ નાનું</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>શીર્ષક</value>
+  </data>
+  <data name="Title2" xml:space="preserve">
+    <value>શીર્ષક (_T):</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>આજે</value>
+  </data>
+  <data name="TooManyImagesToExport" xml:space="preserve">
+    <value>નિકાસ કરવા માટે ઘણા બધી ઇમેજો</value>
+  </data>
+  <data name="Toolbar2" xml:space="preserve">
+    <value>સાધનપટ્ટી (_T)</value>
+  </data>
+  <data name="Tools" xml:space="preserve">
+    <value>સાધનો</value>
+  </data>
+  <data name="TotalOriginalSize" xml:space="preserve">
+    <value>કુલ મૂળભૂત માપ</value>
+  </data>
+  <data name="TransferComplete" xml:space="preserve">
+    <value>પરિવહન સમાપ્ત</value>
+  </data>
+  <data name="TransferringPictureXToCD" xml:space="preserve">
+    <value>CD માં ચિત્ર "{0}" ને પરિવહન કરી રહ્યા છે</value>
+  </data>
+  <data name="TransferringPictures" xml:space="preserve">
+    <value>ચિત્રોને સ્થળાંતર કરી રહ્યા છે</value>
+  </data>
+  <data name="TransferringXFromCamera" xml:space="preserve">
+    <value>કેમેરા માંથી "{0}" નું પરિવહન કરી રહ્યા છે</value>
+  </data>
+  <data name="TranslatorCredits" xml:space="preserve">
+    <value>શ્ર્વેતા કોઠારી &lt;swkothar@redhat.com&gt;</value>
+  </data>
+  <data name="TrustError" xml:space="preserve">
+    <value>વિશ્ર્વાસુ ભૂલ</value>
+  </data>
+  <data name="TrustTheSiteSCertificateThisOnce" xml:space="preserve">
+    <value>એકવાર આ સાઇટનાં પ્રમાણપત્ર પર વિશ્ર્વાસ રાખો</value>
+  </data>
+  <data name="TryToUseTheSystemDisplayProfile" xml:space="preserve">
+    <value>સિસ્ટમ દર્શાવ પ્રોફાઇલને વાપરવા માટે પ્રયત્ન કરો</value>
+  </data>
+  <data name="TwoOrThreeLetterISO3166CodeOfTheCountryOfTheFocusOfTheContent" xml:space="preserve">
+    <value>સમાવિષ્ટને કેન્દ્રિત કરવા માટે શહોરનો બે અથવા ત્રણ અક્ષર ISO3166 કોડ</value>
+  </data>
+  <data name="URI" xml:space="preserve">
+    <value>URI (_U):</value>
+  </data>
+  <data name="URL3" xml:space="preserve">
+    <value>URL (_R):</value>
+  </data>
+  <data name="UnableToCreateTemporaryFile" xml:space="preserve">
+    <value>કામચલાઉ ફાઇલને બનાવવામાં અસમર્થ</value>
+  </data>
+  <data name="UnableToLoadImage" xml:space="preserve">
+    <value>ઇમેજને લોડ કરવામાં અસમર્થ</value>
+  </data>
+  <data name="UnableToLoadXAsIconForTheTag" xml:space="preserve">
+    <value>ટેગ માટે ચિહ્ન તરીકે "{0}" ને લોડ કરવામાં અસમર્થ</value>
+  </data>
+  <data name="UnableToLogOn" xml:space="preserve">
+    <value>તેની પ્રવેશવાનું અસમર્થ</value>
+  </data>
+  <data name="UnableToLogOn2" xml:space="preserve">
+    <value>તેની પર પ્રવેશવામાં અસમર્થ.</value>
+  </data>
+  <data name="UnableToRotatePhoto" xml:space="preserve">
+    <value>ફોટોને ફેરવવામાં અસમર્થ</value>
+  </data>
+  <data name="UnableToRotateReadonlyFile" xml:space="preserve">
+    <value>ફક્ત વાંચી શકાય તેવી ફાઇલને ફેરવવામાં અસમર્થ</value>
+  </data>
+  <data name="UnableToRotateThisTypeOfPhoto" xml:space="preserve">
+    <value>ફોટોનાં આ પ્રકારને ફેરવવામાં અસમર્થ</value>
+  </data>
+  <data name="UnableToRotateXPhotos" xml:space="preserve">
+    <value>{0} ફોટાઓને ફેરવવામાં અસમર્થ</value>
+  </data>
+  <data name="UnhandledException" xml:space="preserve">
+    <value>ન સંભાળેલ અપવાદ</value>
+  </data>
+  <data name="Uninstall" xml:space="preserve">
+    <value>બિનસ્થાપિત કરો (_U)...</value>
+  </data>
+  <data name="UnknownDirectory" xml:space="preserve">
+    <value>અજ્ઞાત ડિરેક્ટરી</value>
+  </data>
+  <data name="UnknownIIMDataSet" xml:space="preserve">
+    <value>અજ્ઞાત IIM માહિતી સુયોજન</value>
+  </data>
+  <data name="UnknownTransformTypeD" xml:space="preserve">
+    <value>અજ્ઞાત ટ્રાન્સફોર્મ પ્રકાર %d</value>
+  </data>
+  <data name="UnselectAll" xml:space="preserve">
+    <value>બધુ પસંદ ન કરો (_U)</value>
+  </data>
+  <data name="UntaggedPhotos" xml:space="preserve">
+    <value>ટેગ ન થયેલ ફોટાઓ</value>
+  </data>
+  <data name="UpdatingFSpotDatabase" xml:space="preserve">
+    <value>F-Spot ડેટાબેઝને સુધારી રહ્યા છે</value>
+  </data>
+  <data name="UpdatingPictureX" xml:space="preserve">
+    <value>ચિત્ર "{0}" ને સુધારી રહ્યા છે</value>
+  </data>
+  <data name="UpdatingThumbnails" xml:space="preserve">
+    <value>થમ્ભનેઇલોને સુધારી રહ્યા છે</value>
+  </data>
+  <data name="UploadComplete" xml:space="preserve">
+    <value>અપલોડ સમાપ્ત</value>
+  </data>
+  <data name="UploadComplete2" xml:space="preserve">
+    <value>અપલોડ સમાપ્ત</value>
+  </data>
+  <data name="UploadingPhotoX" xml:space="preserve">
+    <value>ફોટો "{0}" ને અપલોડ કરી રહ્યા છે</value>
+  </data>
+  <data name="UploadingPictureX" xml:space="preserve">
+    <value>ચિત્ર "{0}" ને અપલોડ કરી રહ્યા છે</value>
+  </data>
+  <data name="UploadingPictureXYOfZ" xml:space="preserve">
+    <value>ચિત્ર "{0}" ({2} માંનો {1}) ને અપલોડ કરી રહ્યા છે</value>
+  </data>
+  <data name="UploadingPictures" xml:space="preserve">
+    <value>ચિત્રોને અપલોડ કરી રહ્યા છે</value>
+  </data>
+  <data name="Url" xml:space="preserve">
+    <value>Url</value>
+  </data>
+  <data name="Url2" xml:space="preserve">
+    <value>Url:</value>
+  </data>
+  <data name="UsedXOfYourAllowedYMonthlyQuota" xml:space="preserve">
+    <value>તમારા પરવાનગી આપેલ {1} મહિનાનો ક્વોટાને વાપરેલ {0}</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>વપરાશકર્તા નામ (_U):</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>આવૃત્તિ</value>
+  </data>
+  <data name="Version2" xml:space="preserve">
+    <value>આવૃત્તિ:</value>
+  </data>
+  <data name="View2" xml:space="preserve">
+    <value>દ્રશ્ય (_V)</value>
+  </data>
+  <data name="ViewAndEditAPhoto" xml:space="preserve">
+    <value>ફોટોને દર્શાવો અને ફેરફાર કરો</value>
+  </data>
+  <data name="ViewPhotosFullscreen" xml:space="preserve">
+    <value>ફોટાઓની સંપૂર્ણસ્ક્રીનને દર્શાવો</value>
+  </data>
+  <data name="ViewPhotosInASlideshow" xml:space="preserve">
+    <value>તકતી પૂર્વદર્શનમાં ફોટોને દર્શાવો</value>
+  </data>
+  <data name="ViewPhotosInBrowserWhenDoneUploading" xml:space="preserve">
+    <value>જ્યારે અપલોડીંગ પૂરુ થાય ત્યારે બ્રાઉઝરમાં ફોટાઓને દેખાડો (_V)</value>
+  </data>
+  <data name="VirtualFilesystem" xml:space="preserve">
+    <value>વર્ચ્યુઅલ ફાઇલસિસ્ટમ (_V)</value>
+  </data>
+  <data name="VisibleToFamily" xml:space="preserve">
+    <value>કુટુંબમાં દેખાતુ</value>
+  </data>
+  <data name="VisibleToFriends" xml:space="preserve">
+    <value>મિત્રોમાં દેખાતુ</value>
+  </data>
+  <data name="WaitingForAuthentication" xml:space="preserve">
+    <value>સત્તાધિકરણ માટે રાહ જોઇ રહ્યા છે</value>
+  </data>
+  <data name="WaitingForAuthorization" xml:space="preserve">
+    <value>સત્તાધિકરણ માટે રાહ જોઇ રહ્યા છે</value>
+  </data>
+  <data name="WaitingForResponseXOfY" xml:space="preserve">
+    <value>{1} માંના{0} જવાબ માટે રાહ જોઇ રહ્યા છે</value>
+  </data>
+  <data name="WebGallery" xml:space="preserve">
+    <value>વેબ ગેલરિ (_G)...</value>
+  </data>
+  <data name="WelcomeXYouAreConnectedToY2" xml:space="preserve">
+    <value>{0} નું સ્વાગત છે, તમે {1} માં જોડાયેલ છો</value>
+  </data>
+  <data name="WhiteBalance" xml:space="preserve">
+    <value>White Balance</value>
+  </data>
+  <data name="WhiteBorders" xml:space="preserve">
+    <value>સફેદ કિનારીઓ</value>
+  </data>
+  <data name="Wipe" xml:space="preserve">
+    <value>લૂછવું</value>
+  </data>
+  <data name="WriteMetadataToFile" xml:space="preserve">
+    <value>ફાઇલમાં મેટાડેટાને લખો (_m)</value>
+  </data>
+  <data name="WriteOnlyThesePhotosToCD" xml:space="preserve">
+    <value>CD માં ફક્ત આ ફોટાઓને લખો (_W)</value>
+  </data>
+  <data name="WritingToThisFileFormatIsNotSupported" xml:space="preserve">
+    <value>આ ફાઇલ બંધારણને લખવાનું આધારભૂત નથી</value>
+  </data>
+  <data name="WrongFormat" xml:space="preserve">
+    <value>(ખોટુ બંધારણ)</value>
+  </data>
+  <data name="X" xml:space="preserve">
+    <value>x</value>
+  </data>
+  <data name="XCFVersion" xml:space="preserve">
+    <value>XCF આવૃત્તિ</value>
+  </data>
+  <data name="XOfApproxY" xml:space="preserve">
+    <value>અંદાજે {1} માંથી {0}</value>
+  </data>
+  <data name="XOfY" xml:space="preserve">
+    <value>{1} નો {0}</value>
+  </data>
+  <data name="XPhoto2" xml:space="preserve">
+    <value>{0} ફોટો</value>
+  </data>
+  <data name="XPhotoOutOfY2" xml:space="preserve">
+    <value>{1} માંનો {0} ફોટો</value>
+  </data>
+  <data name="XPhotos2" xml:space="preserve">
+    <value>{0} ફોટાઓ</value>
+  </data>
+  <data name="XPhotosCouldNotBeRotatedBecauseTheyAreOnAReadOnlyFileSystemOrMediaSuchAsACDROMPleaseCheckThePermissionsAndTryAgain" xml:space="preserve">
+    <value>{0} ફોટાઓ ફેરવી શક્યા નહિં કારણ કે તે ફક્ત વંચાય તેવી ફાઇલ સિસ્ટમ છે અથવા મીડિયા જેવા કે CDROM.   મહેરબાની કરીને પરવાનગીઓને ચકાસો અને ફરીથી પ્રયત્ન કરો.</value>
+  </data>
+  <data name="XPhotosOutOfY2" xml:space="preserve">
+    <value>{1} માંનો {0} ફોટાઓ</value>
+  </data>
+  <data name="XSelected2" xml:space="preserve">
+    <value> ({0} પસંદ થયેલ છે)</value>
+  </data>
+  <data name="XSent" xml:space="preserve">
+    <value>{0} મોકલેલ</value>
+  </data>
+  <data name="XYIsLoggedIntoFacebook" xml:space="preserve">
+    <value>{0} {1} એ ફેસબુકમાં પ્રવેશેલ છે</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>ગઇ કાલે</value>
+  </data>
+  <data name="YouAreNotLoggedIn" xml:space="preserve">
+    <value>તમે પ્રવેશેલ નથી.</value>
+  </data>
+  <data name="YourPhotoWallHaveBeenGeneratedAndImportedInFSpotSelectTheLastRollToSeeIt" xml:space="preserve">
+    <value>તમારા photo wall ને ઉત્પન્ન કરી દેવામાં આવ્યુ છે અને F-Spot માં આયાત થયેલ છે. તેને જોવા માટે છેલ્લા રોલને પસંદ કરો</value>
+  </data>
+  <data name="Zoom" xml:space="preserve">
+    <value>નાનું મોટુ કરો</value>
+  </data>
+  <data name="ZoomIn" xml:space="preserve">
+    <value>નાનું કરો (_i)</value>
+  </data>
+  <data name="ZoomIn2" xml:space="preserve">
+    <value>નાનું કરો</value>
+  </data>
+  <data name="ZoomOut" xml:space="preserve">
+    <value>મોટુ કરો (_o)</value>
+  </data>
+  <data name="ZoomOut2" xml:space="preserve">
+    <value>મોટુ કરો</value>
+  </data>
+  <data name="Zooomr" xml:space="preserve">
+    <value>Zooomr (_Z)...</value>
+  </data>
+</root>

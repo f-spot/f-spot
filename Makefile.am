@@ -7,31 +7,21 @@ SUBDIRS = \
 	help     \
 	icons    \
 	tools    \
-	po       \
 	src      \
 	tests
 
 CLEANFILES = \
-	$(schema_DATA)   \
-	intltool-extract \
-	intltool-update  \
-	intltool-merge
+	$(schema_DATA)
 
 EXTRA_DIST = \
 	COPYING              \
 	MAINTAINERS          \
-	intltool-extract.in  \
-	intltool-merge.in    \
-	intltool-update.in   \
 	Makefile.include     \
 	gnome-doc-utils.make \
 	icon-theme-installer \
 	F-Spot.sln
 
 DISTCLEANFILES = \
-	intltool-extract        \
-	intltool-merge          \
-	intltool-update         \
 	gnome-doc-utils.make
 
 DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper

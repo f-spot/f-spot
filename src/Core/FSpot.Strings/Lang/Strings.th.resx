@@ -1,0 +1,1958 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ATrustErrorOccurredWhileAttemptingToAccess" xml:space="preserve">
+    <value>เกิดข้อผิดพลาดเกี่ยวกับความเชื่อถือขณะพยายามเข้าถึง</value>
+  </data>
+  <data name="AbortThisSession" xml:space="preserve">
+    <value>เลิกทำวาระนี้</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>_บัญชี:</value>
+  </data>
+  <data name="Adjust" xml:space="preserve">
+    <value>ปรับ</value>
+  </data>
+  <data name="AdjustColors" xml:space="preserve">
+    <value>ปรับสี</value>
+  </data>
+  <data name="AdjustTime" xml:space="preserve">
+    <value>แก้ไขเวลา</value>
+  </data>
+  <data name="AdjustTime2" xml:space="preserve">
+    <value>แก้ไขเ_วลา...</value>
+  </data>
+  <data name="AdjustedDate" xml:space="preserve">
+    <value>แก้ไขวันที่: </value>
+  </data>
+  <data name="After" xml:space="preserve">
+    <value>หลังจาก</value>
+  </data>
+  <data name="AlbumMustHaveAName" xml:space="preserve">
+    <value>ต้องตั้งชื่ออัลบั้มด้วย</value>
+  </data>
+  <data name="AlbumName" xml:space="preserve">
+    <value>ชื่อ_อัลบั้ม:</value>
+  </data>
+  <data name="AlbumTitle" xml:space="preserve">
+    <value>ชื่อ_อัลบั้ม:</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>ทั้งหมด</value>
+  </data>
+  <data name="AllImages" xml:space="preserve">
+    <value>รูปภาพทั้งหมด</value>
+  </data>
+  <data name="AlwaysTrustThisSiteSCertificate" xml:space="preserve">
+    <value>เชื่อถือใบรับรองของไซต์นี้เสมอ</value>
+  </data>
+  <data name="AmountColon" xml:space="preserve">
+    <value>ปริมาณ:</value>
+  </data>
+  <data name="AnErrorOccurredWhileProcessingXMessage" xml:space="preserve">
+    <value>เกิดข้อผิดพลาดขณะประมวลผล "{0}": {1}</value>
+  </data>
+  <data name="AnErrorOfTypeXOccurredWhileDeletingTheFile" xml:space="preserve">
+    <value>เกิดข้อผิดพลาดแบบ {0} ขณะลบแฟ้ม:{2}{1}</value>
+  </data>
+  <data name="And" xml:space="preserve">
+    <value>ถึง</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>ปรับใช้</value>
+  </data>
+  <data name="ArrangeBy" xml:space="preserve">
+    <value>เ_รียงตาม</value>
+  </data>
+  <data name="AsBackground" xml:space="preserve">
+    <value>แสดง_พื้นหลัง</value>
+  </data>
+  <data name="AsCheckPattern" xml:space="preserve">
+    <value>แสดงตาห_มากรุก</value>
+  </data>
+  <data name="AsCustomColor" xml:space="preserve">
+    <value>แสดงสีที่_กำหนด: </value>
+  </data>
+  <data name="At" xml:space="preserve">
+    <value>เมื่อ</value>
+  </data>
+  <data name="AtLeastOneFileNotFound" xml:space="preserve">
+    <value>(ไม่พบแฟ้มอย่างน้อยหนึ่งแฟ้ม)</value>
+  </data>
+  <data name="AttachTag" xml:space="preserve">
+    <value>แ_ปะป้ายกำกับ</value>
+  </data>
+  <data name="AttachTagToSelection" xml:space="preserve">
+    <value>แปะป้ายกำกับให้ภาพที่เลือก</value>
+  </data>
+  <data name="AttachTagToSelection2" xml:space="preserve">
+    <value>แ_ปะป้ายกำกับให้ภาพที่เลือก</value>
+  </data>
+  <data name="AttachTags2" xml:space="preserve">
+    <value>แ_ปะป้ายกำกับ:</value>
+  </data>
+  <data name="AttachTagsToSelection" xml:space="preserve">
+    <value>แปะป้ายกำกับให้ภาพที่เลือก</value>
+  </data>
+  <data name="AttachToExportedPhotos" xml:space="preserve">
+    <value>_ติดให้กับภาพถ่ายที่ส่งออกแล้ว:</value>
+  </data>
+  <data name="Authenticating" xml:space="preserve">
+    <value>กำลังยืนยันตัวบุคคล...</value>
+  </data>
+  <data name="Authorize" xml:space="preserve">
+    <value>ขอยืนยันสิทธิ์</value>
+  </data>
+  <data name="AutoColor" xml:space="preserve">
+    <value>ปรับสีอัตโนมัติ</value>
+  </data>
+  <data name="AutoConfirmPhotos" xml:space="preserve">
+    <value>ยืนยันภาพถ่ายโดยอัตโนมัติ</value>
+  </data>
+  <data name="BAccountB" xml:space="preserve">
+    <value>&lt;b&gt;บัญชี&lt;/b&gt;</value>
+  </data>
+  <data name="BActionB" xml:space="preserve">
+    <value>&lt;b&gt;การดำเนินการ&lt;/b&gt;</value>
+  </data>
+  <data name="BAlbumB" xml:space="preserve">
+    <value>&lt;b&gt;อัลบั้ม&lt;/b&gt;</value>
+  </data>
+  <data name="BCorrectionsB" xml:space="preserve">
+    <value>&lt;b&gt;การ_ปรับแก้&lt;/b&gt;</value>
+  </data>
+  <data name="BDestinationB" xml:space="preserve">
+    <value>&lt;b&gt;ปลายทาง&lt;/b&gt;</value>
+  </data>
+  <data name="BExportMethodB" xml:space="preserve">
+    <value>&lt;b&gt;วิธีการส่งออก&lt;/b&gt;</value>
+  </data>
+  <data name="BFSpotTagsB" xml:space="preserve">
+    <value>&lt;b&gt;ป้ายกำกับ F-Spot&lt;/b&gt;</value>
+  </data>
+  <data name="BFromExternalPhotoB" xml:space="preserve">
+    <value>&lt;b&gt;จากภาพถ่ายภายนอก&lt;/b&gt;</value>
+  </data>
+  <data name="BFromPhotoB" xml:space="preserve">
+    <value>&lt;b&gt;จากภาพถ่าย&lt;/b&gt;</value>
+  </data>
+  <data name="BGalleryB" xml:space="preserve">
+    <value>&lt;b&gt;แกลเลอรี่&lt;/b&gt;</value>
+  </data>
+  <data name="BIThereAreSomePreviouslyScheduledItemsToWriteIB" xml:space="preserve">
+    <value>&lt;b&gt;&lt;i&gt;มีรายการที่สั่งเขียนค้างไว้&lt;/i&gt;&lt;/b&gt;</value>
+  </data>
+  <data name="BImageInterpolationB" xml:space="preserve">
+    <value>&lt;b&gt;การประมาณจุดภาพ&lt;/b&gt;</value>
+  </data>
+  <data name="BMaxRatingB" xml:space="preserve">
+    <value>&lt;b&gt;คะแนนนิยมสูงสุด&lt;/b&gt;</value>
+  </data>
+  <data name="BMinRatingB" xml:space="preserve">
+    <value>&lt;b&gt;คะแนนนิยมต่ำสุด&lt;/b&gt;</value>
+  </data>
+  <data name="BPhotosB" xml:space="preserve">
+    <value>&lt;b&gt;ภาพถ่าย&lt;/b&gt;</value>
+  </data>
+  <data name="BPhotosToBurnB" xml:space="preserve">
+    <value>&lt;b&gt;ภาพถ่ายที่จะเขียนลงแผ่น&lt;/b&gt;</value>
+  </data>
+  <data name="BPreviewB" xml:space="preserve">
+    <value>&lt;b&gt;ดูตัวอย่าง&lt;/b&gt;</value>
+  </data>
+  <data name="BReferencePhotoB" xml:space="preserve">
+    <value>&lt;b&gt;ภาพถ่ายอ้างอิง&lt;/b&gt;</value>
+  </data>
+  <data name="BSizeB" xml:space="preserve">
+    <value>&lt;b&gt;ขนาด&lt;/b&gt;</value>
+  </data>
+  <data name="BSmugMugExportB" xml:space="preserve">
+    <value>&lt;b&gt;การส่งออก SmugMug&lt;/b&gt;</value>
+  </data>
+  <data name="BStyleB" xml:space="preserve">
+    <value>&lt;b&gt;รูปแบบ&lt;/b&gt;</value>
+  </data>
+  <data name="BSummaryB" xml:space="preserve">
+    <value>&lt;b&gt;สรุป&lt;/b&gt;</value>
+  </data>
+  <data name="BTabbloAccountB" xml:space="preserve">
+    <value>&lt;b&gt;บัญชี Tabblo&lt;/b&gt;</value>
+  </data>
+  <data name="BTransparentPartsB" xml:space="preserve">
+    <value>&lt;b&gt;ส่วนที่โปร่งใส&lt;/b&gt;</value>
+  </data>
+  <data name="BViewingPermissionsB" xml:space="preserve">
+    <value>&lt;b&gt;การอนุญาตให้ดู&lt;/b&gt;</value>
+  </data>
+  <data name="BWhiteBalanceB" xml:space="preserve">
+    <value>&lt;b&gt;สมดุลแสง_ขาว&lt;/b&gt;</value>
+  </data>
+  <data name="BeforeLaunchingYShouldFSpotCreateANewVersionOfTheSelectedPhotoToPreserveTheOriginal" xml:space="preserve">
+    <value>ก่อนที่จะเรียก {1} จะให้ F-Spot สร้างฉบับสำเนาของภาพถ่ายที่เลือกเพื่อรักษาต้นฉบับไว้หรือไม่?</value>
+  </data>
+  <data name="BeforeLaunchingYShouldFSpotCreateNewVersionsOfTheSelectedPhotosToPreserveTheOriginals" xml:space="preserve">
+    <value>ก่อนที่จะเรียก {1} จะให้ F-Spot สร้างฉบับสำเนาของภาพถ่ายที่เลือกเพื่อรักษาต้นฉบับไว้หรือไม่?</value>
+  </data>
+  <data name="Between" xml:space="preserve">
+    <value>ระหว่าง</value>
+  </data>
+  <data name="Blackout" xml:space="preserve">
+    <value>ทาสีดำทับ</value>
+  </data>
+  <data name="Brightness" xml:space="preserve">
+    <value>ความส_ว่าง:</value>
+  </data>
+  <data name="Browse2" xml:space="preserve">
+    <value>ท่องดู</value>
+  </data>
+  <data name="BrowseManyPhotosSimultaneously" xml:space="preserve">
+    <value>ท่องดูภาพถ่ายพร้อมกันหลายภาพ</value>
+  </data>
+  <data name="BrowsePreviouslyScheduledFiles" xml:space="preserve">
+    <value>_ท่องดูแฟ้มที่สั่งเขียนค้างไว้</value>
+  </data>
+  <data name="BuildingGallery" xml:space="preserve">
+    <value>กำลังสร้างแกลเลอรี่</value>
+  </data>
+  <data name="ByDate" xml:space="preserve">
+    <value>ตาม_วันที่</value>
+  </data>
+  <data name="ByImportRoll" xml:space="preserve">
+    <value>ตามชุดการ_นำเข้า</value>
+  </data>
+  <data name="ByRating" xml:space="preserve">
+    <value>ตามคะแนน_นิยม</value>
+  </data>
+  <data name="Camera" xml:space="preserve">
+    <value>กล้อง</value>
+  </data>
+  <data name="CanNotDeleteTagsThatHaveTagsWihinThem.PleaseDeleteTagUnderXFirst" xml:space="preserve">
+    <value>ไม่สามารถลบป้ายกำกับที่มีป้ายกำกับย่อยอยู่ภายในได้ กรุณาลบป้ายกำกับต่างๆ ภายใต้ "{0}" เสียก่อน</value>
+  </data>
+  <data name="Caption2" xml:space="preserve">
+    <value>ชื่อภาพ</value>
+  </data>
+  <data name="CheckingCredentials" xml:space="preserve">
+    <value>กำลังตรวจสอบรหัสลับ...</value>
+  </data>
+  <data name="ChooseFolder" xml:space="preserve">
+    <value>เลือกโฟลเดอร์...</value>
+  </data>
+  <data name="ChooseImportSource" xml:space="preserve">
+    <value>เลือกแหล่งที่จะนำเข้า...</value>
+  </data>
+  <data name="ClearDateRangeMnemonic" xml:space="preserve">
+    <value>_ล้างช่วงเวลา</value>
+  </data>
+  <data name="ClearRatingFilter" xml:space="preserve">
+    <value>_ล้างตัวกรองคะแนนนิยม</value>
+  </data>
+  <data name="ClearRollFilter" xml:space="preserve">
+    <value>_ล้างตัวกรองชุดนำเข้า</value>
+  </data>
+  <data name="ClearSearch" xml:space="preserve">
+    <value>ล้างการค้นหา</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>ปิ_ด</value>
+  </data>
+  <data name="ColorProfileForDisplay" xml:space="preserve">
+    <value>โพรไฟล์สีสำหรับการแสดงผล:</value>
+  </data>
+  <data name="ColorProfileForPrinting" xml:space="preserve">
+    <value>โพรไฟล์สีสำหรับการพิมพ์:</value>
+  </data>
+  <data name="CommaSpace" xml:space="preserve">
+    <value>, </value>
+  </data>
+  <data name="CompleteAuthorization" xml:space="preserve">
+    <value>เสร็จสิ้นการยืนยันสิทธิ์</value>
+  </data>
+  <data name="Components" xml:space="preserve">
+    <value>_องค์ประกอบ</value>
+  </data>
+  <data name="Contents" xml:space="preserve">
+    <value>เนื้อ_หา</value>
+  </data>
+  <data name="Contrast2" xml:space="preserve">
+    <value>ความ_ต่างระดับสี:</value>
+  </data>
+  <data name="ConvertToBW" xml:space="preserve">
+    <value>แปลงเป็นขาว-ดำ</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>คัดลอก</value>
+  </data>
+  <data name="CopyFilesToThePhotosFolder2" xml:space="preserve">
+    <value>_คัดลอกแฟ้มไปยังโฟลเดอร์ "ภาพถ่าย"</value>
+  </data>
+  <data name="CopyImagesToPhotosFolder" xml:space="preserve">
+    <value>คัดลอกรูปภาพไปยังโฟลเดอร์ภาพถ่าย</value>
+  </data>
+  <data name="CopyPhoto" xml:space="preserve">
+    <value>คัดลอกภาพถ่าย</value>
+  </data>
+  <data name="CopyURLToClipboard" xml:space="preserve">
+    <value>คัดลอก URL ไปยังคลิปบอร์ด</value>
+  </data>
+  <data name="Copying2" xml:space="preserve">
+    <value>กำลังคัดลอก...</value>
+  </data>
+  <data name="Copyright20032010NovellInc" xml:space="preserve">
+    <value>Copyright © 2003-2010 Novell Inc.</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>_สร้าง</value>
+  </data>
+  <data name="Create2" xml:space="preserve">
+    <value>_สร้าง</value>
+  </data>
+  <data name="CreateAMailWithTheSelectedPhotosPossiblyResizedAttached" xml:space="preserve">
+    <value>สร้างเมลพร้อมแนบภาพถ่ายที่เลือก (โดยอาจมีการปรับขนาด)</value>
+  </data>
+  <data name="CreateANewAlbum" xml:space="preserve">
+    <value>สร้างอัลบั้มใหม่</value>
+  </data>
+  <data name="CreateCD" xml:space="preserve">
+    <value>สร้างซีดี</value>
+  </data>
+  <data name="CreateGalleryUsingOriginal" xml:space="preserve">
+    <value>สร้างแ_กลเลอรี่โดยใช้ "ต้นฉบับ"</value>
+  </data>
+  <data name="CreateMail" xml:space="preserve">
+    <value>สร้างเมล</value>
+  </data>
+  <data name="CreateMail2" xml:space="preserve">
+    <value>_สร้างเมล</value>
+  </data>
+  <data name="CreateNewTag" xml:space="preserve">
+    <value>สร้างป้ายกำกับใหม่</value>
+  </data>
+  <data name="CreateNewTag2" xml:space="preserve">
+    <value>สร้างป้ายกำกับใหม่...</value>
+  </data>
+  <data name="CreateNewTag3" xml:space="preserve">
+    <value>สร้าง_ป้ายกำกับใหม่...</value>
+  </data>
+  <data name="CreateNewVersion" xml:space="preserve">
+    <value>สร้างฉบับสำเนาใหม่</value>
+  </data>
+  <data name="CreateNewVersion2" xml:space="preserve">
+    <value>จะสร้างฉบับสำเนาใหม่หรือไม่?</value>
+  </data>
+  <data name="CreateNewVersion3" xml:space="preserve">
+    <value>สร้างฉบับ_สำเนาใหม่...</value>
+  </data>
+  <data name="CreateNewVersions" xml:space="preserve">
+    <value>จะสร้างฉบับสำเนาใหม่หรือไม่?</value>
+  </data>
+  <data name="CreateStandaloneWebGallery" xml:space="preserve">
+    <value>สร้างแกลเลอรี่บนเ_ว็บแบบอยู่เดี่ยวๆ</value>
+  </data>
+  <data name="CreatingANewAlbumFailed" xml:space="preserve">
+    <value>สร้างอัลบั้มใหม่ไม่สำเร็จ</value>
+  </data>
+  <data name="Crop" xml:space="preserve">
+    <value>ครอบตัด</value>
+  </data>
+  <data name="CurrentDate" xml:space="preserve">
+    <value>วันที่ปัจจุบัน:</value>
+  </data>
+  <data name="CurrentView" xml:space="preserve">
+    <value>มุมมองปัจจุบัน</value>
+  </data>
+  <data name="CurrentWeekMonSun" xml:space="preserve">
+    <value>สัปดาห์นี้ (จ.-อา.)</value>
+  </data>
+  <data name="CustomRatios" xml:space="preserve">
+    <value>กำหนดสัดส่วน...</value>
+  </data>
+  <data name="CustomText" xml:space="preserve">
+    <value>ข้อความกำหนดเอง</value>
+  </data>
+  <data name="CustomizedRange" xml:space="preserve">
+    <value>กำหนดช่วงเวลา</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>แก่</value>
+  </data>
+  <data name="DatabaseLocation" xml:space="preserve">
+    <value>ตำแหน่งของฐานข้อมูล:</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>วันที่</value>
+  </data>
+  <data name="Dates" xml:space="preserve">
+    <value>_วันที่</value>
+  </data>
+  <data name="Delay" xml:space="preserve">
+    <value>หน่วงเวลา:</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>ลบ</value>
+  </data>
+  <data name="DeleteFromDrive" xml:space="preserve">
+    <value>_ลบจากดิสก์</value>
+  </data>
+  <data name="DeletePhotoMnemonic" xml:space="preserve">
+    <value>_ลบภาพถ่าย</value>
+  </data>
+  <data name="DeletePhotosMnemonic" xml:space="preserve">
+    <value>_ลบภาพถ่าย</value>
+  </data>
+  <data name="DeleteSelectedTag" xml:space="preserve">
+    <value>_ลบป้ายกำกับที่เลือก</value>
+  </data>
+  <data name="DeleteTag" xml:space="preserve">
+    <value>ลบป้ายกำกับ</value>
+  </data>
+  <data name="DeleteTagMnemonic" xml:space="preserve">
+    <value>_ลบป้ายกำกับ</value>
+  </data>
+  <data name="DeleteTagXQuestion" xml:space="preserve">
+    <value>ต้องการลบป้ายกำกับ "{0}" หรือไม่?</value>
+  </data>
+  <data name="DeleteTags" xml:space="preserve">
+    <value>ลบป้ายกำกับ</value>
+  </data>
+  <data name="DeleteTagsMnemonic" xml:space="preserve">
+    <value>_ลบป้ายกำกับ</value>
+  </data>
+  <data name="DeleteTheSelectedPhotoPermanently" xml:space="preserve">
+    <value>ต้องการลบภาพถ่าย {0} ภาพที่เลือกอย่างถาวรหรือไม่?</value>
+  </data>
+  <data name="DeleteTheXSelectedPhotosPermanently" xml:space="preserve">
+    <value>ต้องการลบภาพถ่าย {0} ภาพที่เลือกอย่างถาวรหรือไม่?</value>
+  </data>
+  <data name="DeleteTheXSelectedTagsQuestion" xml:space="preserve">
+    <value>ต้องการลบป้ายกำกับที่เลือก {0} ป้ายหรือไม่?</value>
+  </data>
+  <data name="DeleteVersion" xml:space="preserve">
+    <value>_ลบฉบับสำเนา</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>คำอธิบาย:</value>
+  </data>
+  <data name="Description2" xml:space="preserve">
+    <value>คำ_บรรยาย:</value>
+  </data>
+  <data name="Description3" xml:space="preserve">
+    <value>คำ_บรรยาย:</value>
+  </data>
+  <data name="Description4" xml:space="preserve">
+    <value>คำบรรยาย</value>
+  </data>
+  <data name="DesignIconFrom" xml:space="preserve">
+    <value>ออกแบบไอคอนจาก</value>
+  </data>
+  <data name="DetachVersion" xml:space="preserve">
+    <value>_ถอนฉบับสำเนาออก</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>รายละเอียด</value>
+  </data>
+  <data name="DetectDuplicates2" xml:space="preserve">
+    <value>_ตรวจสอบภาพถ่ายซ้ำ</value>
+  </data>
+  <data name="DevelopingPhotos" xml:space="preserve">
+    <value>กำลังล้างภาพถ่าย</value>
+  </data>
+  <data name="DevelopingX" xml:space="preserve">
+    <value>กำลังล้างภาพถ่าย {0}</value>
+  </data>
+  <data name="DirectoryNotFound" xml:space="preserve">
+    <value>ไม่พบไดเรกทอรี</value>
+  </data>
+  <data name="Display2" xml:space="preserve">
+    <value>แสดง:</value>
+  </data>
+  <data name="DisplayASlideshowFromFSpot" xml:space="preserve">
+    <value>ฉายสไลด์จาก F-Spot</value>
+  </data>
+  <data name="DisplayFileNames" xml:space="preserve">
+    <value>แสดง_ชื่อแฟ้ม</value>
+  </data>
+  <data name="DoNotSendAMail" xml:space="preserve">
+    <value>ไม่ต้องส่งจดหมาย</value>
+  </data>
+  <data name="DoYouWishTo" xml:space="preserve">
+    <value>คุณต้องการที่จะ:</value>
+  </data>
+  <data name="DoneSendingPhotos" xml:space="preserve">
+    <value>ส่งภาพถ่ายเสร็จแล้ว</value>
+  </data>
+  <data name="DoneSendingPhotos2" xml:space="preserve">
+    <value>ส่งภาพถ่ายเสร็จแล้ว</value>
+  </data>
+  <data name="DragTagsHereToSearchForThem" xml:space="preserve">
+    <value>ลากป้ายกำกับที่ต้องการค้นหามาวางที่นี่</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>แก้ไข</value>
+  </data>
+  <data name="Edit2" xml:space="preserve">
+    <value>แ_ก้ไข</value>
+  </data>
+  <data name="EditIcon" xml:space="preserve">
+    <value>แก้ไขไอคอน</value>
+  </data>
+  <data name="EditIconForTagX" xml:space="preserve">
+    <value>แก้ไขไอคอนของป้ายกำกับ {0}</value>
+  </data>
+  <data name="EditImage" xml:space="preserve">
+    <value>แก้ไขรูปภาพ</value>
+  </data>
+  <data name="EditTag" xml:space="preserve">
+    <value>แก้ไขป้ายกำกับ...</value>
+  </data>
+  <data name="EditTag2" xml:space="preserve">
+    <value>แก้ไขป้ายกำกับ</value>
+  </data>
+  <data name="EditTag3" xml:space="preserve">
+    <value>แ_ก้ไขป้ายกำกับ...</value>
+  </data>
+  <data name="EditTagIcon" xml:space="preserve">
+    <value>แก้ไขไอคอนป้ายกำกับ</value>
+  </data>
+  <data name="EightByTen" xml:space="preserve">
+    <value>8 x 10</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>ผิดพลาด</value>
+  </data>
+  <data name="ErrorCopyingXToGalleryZY" xml:space="preserve">
+    <value>เกิดข้อผิดพลาดขณะคัดลอก "{0}" ไปยังแกลเลอรี่:{2}{1}</value>
+  </data>
+  <data name="ErrorDeletingPicture" xml:space="preserve">
+    <value>เกิดข้อผิดพลาดขณะลบรูป</value>
+  </data>
+  <data name="ErrorEditingPhoto" xml:space="preserve">
+    <value>เกิดปัญหาในการแก้ไขภาพถ่าย</value>
+  </data>
+  <data name="ErrorLoadingDatabase" xml:space="preserve">
+    <value>เกิดข้อผิดพลาดขณะโหลดฐานข้อมูล</value>
+  </data>
+  <data name="ErrorLoggingIntoFacebook" xml:space="preserve">
+    <value>เกิดข้อผิดพลาดในการเข้าระบบ Facebook</value>
+  </data>
+  <data name="ErrorOpeningTheSelectedFile" xml:space="preserve">
+    <value>เกิดข้อผิดพลาดขณะเปิดแฟ้มที่เลือก</value>
+  </data>
+  <data name="ErrorProcessingImage" xml:space="preserve">
+    <value>เกิดข้อผิดพลาดขณะประมวลผลรูปภาพ</value>
+  </data>
+  <data name="ErrorRenamingTag" xml:space="preserve">
+    <value>เกิดข้อผิดพลาดขณะเปลี่ยนชื่อป้ายกำกับ</value>
+  </data>
+  <data name="ErrorSavingAdjustedPhoto" xml:space="preserve">
+    <value>เกิดข้อผิดพลาดขณะบันทึกภาพถ่ายที่ปรับแก้แล้ว</value>
+  </data>
+  <data name="ErrorSavingAdjustedPhotos" xml:space="preserve">
+    <value>เกิดข้อผิดพลาดขณะบันทึกภาพถ่ายที่ปรับแก้แล้ว</value>
+  </data>
+  <data name="ErrorSavingSharpenedPhoto" xml:space="preserve">
+    <value>เกิดข้อผิดพลาดขณะบันทึกภาพถ่ายที่เพิ่มความคมแล้ว</value>
+  </data>
+  <data name="ErrorTransferring" xml:space="preserve">
+    <value>การถ่ายโอนข้อมูลผิดพลาด</value>
+  </data>
+  <data name="ErrorUploadingToFacebookX" xml:space="preserve">
+    <value>เกิดการผิดพลาดขณะอัปโหลดไปยัง Facebook: {0}</value>
+  </data>
+  <data name="ErrorUploadingToTabblo" xml:space="preserve">
+    <value>เกิดข้อผิดพลาดขณะอัปโหลดไปยัง Tabblo: </value>
+  </data>
+  <data name="ErrorUploadingToXColonY" xml:space="preserve">
+    <value>เกิดข้อผิดพลาดขณะอัปโหลดไปยัง {0}: {1}</value>
+  </data>
+  <data name="ErrorWhileConnectingToGallery" xml:space="preserve">
+    <value>เกิดข้อผิดพลาดขณะเชื่อมต่อไปยังแกลเลอรี่</value>
+  </data>
+  <data name="ErrorWhileCreatingAlbum" xml:space="preserve">
+    <value>เกิดข้อผิดพลาดขณะสร้างอัลบั้ม</value>
+  </data>
+  <data name="ErrorWhileCreatingNewAlbum" xml:space="preserve">
+    <value>เกิดข้อผิดพลาดขณะสร้างอัลบั้มใหม่</value>
+  </data>
+  <data name="ErrorWhileRotatingPhoto" xml:space="preserve">
+    <value>เกิดข้อผิดพลาดขณะหมุนภาพถ่าย</value>
+  </data>
+  <data name="ErrorWhileTransferring" xml:space="preserve">
+    <value>เกิดข้อผิดพลาดขณะถ่ายโอนข้อมูล</value>
+  </data>
+  <data name="EstimatedNewSize" xml:space="preserve">
+    <value>ขนาดใหม่โดยประมาณ</value>
+  </data>
+  <data name="Events" xml:space="preserve">
+    <value>เหตุการณ์</value>
+  </data>
+  <data name="Everything" xml:space="preserve">
+    <value>ทุกอย่าง</value>
+  </data>
+  <data name="ExcludePhotosTaggedX" xml:space="preserve">
+    <value>ไม่นับรวมภาพถ่ายที่มีป้ายกำกับ "{0}"</value>
+  </data>
+  <data name="ExitFullscreen" xml:space="preserve">
+    <value>ออกจากโหมดเต็มจอ</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>ส่งออก</value>
+  </data>
+  <data name="Export2" xml:space="preserve">
+    <value>_ส่งออก</value>
+  </data>
+  <data name="ExportComplete" xml:space="preserve">
+    <value>ส่งออกเสร็จสมบูรณ์</value>
+  </data>
+  <data name="ExportTagHierarchy" xml:space="preserve">
+    <value>ส่งออกป้ายกำกับทุก_ระดับชั้น</value>
+  </data>
+  <data name="ExportTagIcons" xml:space="preserve">
+    <value>ส่งออกไ_อคอนป้ายกำกับ</value>
+  </data>
+  <data name="ExportTags" xml:space="preserve">
+    <value>_ส่งออกป้ายกำกับ</value>
+  </data>
+  <data name="ExportTags2" xml:space="preserve">
+    <value>ส่งออก_ป้ายกำกับ</value>
+  </data>
+  <data name="ExportTitlesAndComments2" xml:space="preserve">
+    <value>ส่งออก_ชื่อเรื่องและหมายเหตุ</value>
+  </data>
+  <data name="ExportTo" xml:space="preserve">
+    <value>ส่งออกไปยัง</value>
+  </data>
+  <data name="ExportTo2" xml:space="preserve">
+    <value>_ส่งออกไปยัง</value>
+  </data>
+  <data name="ExportToAlbum" xml:space="preserve">
+    <value>ส่_งออกไปยังอัลบั้ม:</value>
+  </data>
+  <data name="ExportToFacebook" xml:space="preserve">
+    <value>ส่งออกไปยัง Facebook</value>
+  </data>
+  <data name="ExportingFiles" xml:space="preserve">
+    <value>กำลังส่งออกแฟ้ม</value>
+  </data>
+  <data name="ExportingPhotoX" xml:space="preserve">
+    <value>กำลังส่งออกรูปภาพ "{0}"</value>
+  </data>
+  <data name="ExportingPhotos" xml:space="preserve">
+    <value>กำลังส่งออกภาพถ่าย</value>
+  </data>
+  <data name="ExportingPhotosCompleted2" xml:space="preserve">
+    <value>ส่งออกภาพถ่ายเสร็จสมบูรณ์แล้ว</value>
+  </data>
+  <data name="ExportingX" xml:space="preserve">
+    <value>กำลังส่งออก "{0}"...</value>
+  </data>
+  <data name="Exposure2" xml:space="preserve">
+    <value>ความเร็ว_ชัตเตอร์:</value>
+  </data>
+  <data name="ExtendedMetadata" xml:space="preserve">
+    <value>ข้อมูลภาพถ่ายเพิ่มเติม</value>
+  </data>
+  <data name="ExtraLarge" xml:space="preserve">
+    <value>ใหญ่พิเศษ</value>
+  </data>
+  <data name="FSpot" xml:space="preserve">
+    <value>F-Spot</value>
+  </data>
+  <data name="FSpotAppearance" xml:space="preserve">
+    <value>รูปโฉมของ F-Spot:</value>
+  </data>
+  <data name="FSpotGallery" xml:space="preserve">
+    <value>แกลเลอรี่ F-Spot</value>
+  </data>
+  <data name="FSpotNeedsYourAuthorizationInOrderToUploadPhotosToYourXAccountPressTheAuthorizeButtonToOpenAWebBrowserAndGiveFSpotTheAuthorization" xml:space="preserve">
+    <value>คุณต้องยืนยันสิทธิ์เพื่อให้ F-Spot สามารถอัปโหลดภาพถ่ายไปยังบัญชี {0} ของคุณได้ กรุณากดปุ่ม "ขอยืนยันสิทธิ์" เพื่อเปิดเว็บเบราว์เซอร์เพื่อยืนยันสิทธิ์ให้กับ F-Spot</value>
+  </data>
+  <data name="FSpotPhotoManager" xml:space="preserve">
+    <value>F-Spot: โปรแกรมจัดการภาพถ่าย</value>
+  </data>
+  <data name="FSpotPhotos" xml:space="preserve">
+    <value>ภาพถ่าย F-Spot</value>
+  </data>
+  <data name="FSpotPreferences" xml:space="preserve">
+    <value>ปรับแต่ง F-Spot</value>
+  </data>
+  <data name="FSpotView" xml:space="preserve">
+    <value>มุมมอง F-Spot</value>
+  </data>
+  <data name="FSpotWebsite" xml:space="preserve">
+    <value>เว็บไซต์ F-Spot</value>
+  </data>
+  <data name="FacebookConnectionError" xml:space="preserve">
+    <value>การเชื่อมต่อ Facebook ผิดพลาด</value>
+  </data>
+  <data name="Favorites" xml:space="preserve">
+    <value>โปรดปราน</value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>_ชื่อแฟ้ม:</value>
+  </data>
+  <data name="FileNotFonud" xml:space="preserve">
+    <value>ไม่พบแฟ้ม</value>
+  </data>
+  <data name="FileSize" xml:space="preserve">
+    <value>ขนาดแฟ้ม</value>
+  </data>
+  <data name="Filesystem" xml:space="preserve">
+    <value>ระบบแฟ้ม</value>
+  </data>
+  <data name="Fill" xml:space="preserve">
+    <value>ยืดเต็มกรอบ</value>
+  </data>
+  <data name="Filmstrip" xml:space="preserve">
+    <value>แ_ผ่นฟิล์ม</value>
+  </data>
+  <data name="Find" xml:space="preserve">
+    <value>หา</value>
+  </data>
+  <data name="Find2" xml:space="preserve">
+    <value>หา:</value>
+  </data>
+  <data name="Find3" xml:space="preserve">
+    <value>_หา</value>
+  </data>
+  <data name="FindColon" xml:space="preserve">
+    <value>ค้นหา: </value>
+  </data>
+  <data name="FindSelectedTagMnemonic" xml:space="preserve">
+    <value>_ค้นหาป้ายกำกับที่เลือก</value>
+  </data>
+  <data name="FindSelectedTagWithMnemonic" xml:space="preserve">
+    <value>ค้นหาป้ายกำกับที่เลือก _ด้วย</value>
+  </data>
+  <data name="FindSelectedTagsMnemonic" xml:space="preserve">
+    <value>_ค้นหาป้ายกำกับที่เลือก</value>
+  </data>
+  <data name="FindSelectedTagsWithMnemonic" xml:space="preserve">
+    <value>ค้นหาป้ายกำกับที่เลือก _ด้วย</value>
+  </data>
+  <data name="FindWithMnemonic" xml:space="preserve">
+    <value>ค้นหา _ด้วย</value>
+  </data>
+  <data name="FixExclamation" xml:space="preserve">
+    <value>แก้!</value>
+  </data>
+  <data name="Flip" xml:space="preserve">
+    <value>พลิก</value>
+  </data>
+  <data name="FocalLength" xml:space="preserve">
+    <value>ระยะโฟกัส</value>
+  </data>
+  <data name="Folder" xml:space="preserve">
+    <value>โฟลเดอร์</value>
+  </data>
+  <data name="Folder4" xml:space="preserve">
+    <value>โ_ฟลเดอร์</value>
+  </data>
+  <data name="FolderExport" xml:space="preserve">
+    <value>ส่งออกโฟลเดอร์</value>
+  </data>
+  <data name="Folders" xml:space="preserve">
+    <value>โฟลเดอร์</value>
+  </data>
+  <data name="FourBySixPostcard" xml:space="preserve">
+    <value>4 x 6 (ไปรษณียบัตร)</value>
+  </data>
+  <data name="FourByThreeBook" xml:space="preserve">
+    <value>4 x 3 (หนังสือ)</value>
+  </data>
+  <data name="FullPageNomargin" xml:space="preserve">
+    <value>เต็มหน้ากระดาษ (ไม่มีขอบ)</value>
+  </data>
+  <data name="Fullscreen" xml:space="preserve">
+    <value>เต็มจอ</value>
+  </data>
+  <data name="Fullscreen2" xml:space="preserve">
+    <value>เ_ต็มจอ</value>
+  </data>
+  <data name="Gallery5" xml:space="preserve">
+    <value>แ_กลเลอรี่:</value>
+  </data>
+  <data name="GalleryGeneratedBy" xml:space="preserve">
+    <value>แกลเลอรี่สร้างโดย</value>
+  </data>
+  <data name="GalleryIsInactive" xml:space="preserve">
+    <value>แกลเลอรี่ไม่ทำงาน</value>
+  </data>
+  <data name="GalleryName" xml:space="preserve">
+    <value>_ชื่อแกลเลอรี่:</value>
+  </data>
+  <data name="GalleryName2" xml:space="preserve">
+    <value>ชื่อแ_กลเลอรี่:</value>
+  </data>
+  <data name="GalleryURL" xml:space="preserve">
+    <value>URL ของแกลเลอรี่:</value>
+  </data>
+  <data name="GalleryXPhotosYLastClient3" xml:space="preserve">
+    <value> แกลเลอรี่: {0},  ภาพถ่าย: {1},  ผู้ชมคนล่าสุด: {3}</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>_วิธีใช้</value>
+  </data>
+  <data name="Hidden" xml:space="preserve">
+    <value>ซ่อน</value>
+  </data>
+  <data name="Hidden2" xml:space="preserve">
+    <value>_ซ่อน</value>
+  </data>
+  <data name="Hide" xml:space="preserve">
+    <value>ซ่อน</value>
+  </data>
+  <data name="HideFindBarMnemonic" xml:space="preserve">
+    <value>ซ่อนแ_ถบค้นหา</value>
+  </data>
+  <data name="HideStyles" xml:space="preserve">
+    <value>ซ่อนรูปแบบ</value>
+  </data>
+  <data name="HideToolbar" xml:space="preserve">
+    <value>ซ่อนแถบเครื่องมือ</value>
+  </data>
+  <data name="Hue" xml:space="preserve">
+    <value>ธาตุ_สี:</value>
+  </data>
+  <data name="Icon" xml:space="preserve">
+    <value>ไ_อคอน:</value>
+  </data>
+  <data name="IfTheTransparencyOptionIsSetTheColorSpecifiedInThisOptionWillBeUsedAsTheTransparentColorWhenViewingImages" xml:space="preserve">
+    <value>ถ้าเลือกตัวเลือก 'transparency' ไว้ ก็จะใช้สีที่กำหนดในตัวเลือกนี้กับส่วนที่โปร่งใสเมื่อแสดงรูปภาพ</value>
+  </data>
+  <data name="IfYouDeleteThisTagTheAssociationWithXYWillBeLost" xml:space="preserve">
+    <value>ถ้าคุณลบป้ายกำกับเหล่านี้ การเชื่อมโยงกับภาพถ่าย {0} {1}ก็จะสูญหายไป</value>
+  </data>
+  <data name="IfYouDeleteThisTagsTheAssociationWithXYWillBeLost" xml:space="preserve">
+    <value>ถ้าคุณลบป้ายกำกับเหล่านี้ การเชื่อมโยงกับภาพถ่าย {0} {1}ก็จะสูญหายไป</value>
+  </data>
+  <data name="IgnoreTopLevelTags" xml:space="preserve">
+    <value>ไม่สนใจป้ายกำกับระดับ_บนสุด</value>
+  </data>
+  <data name="ImageInformation" xml:space="preserve">
+    <value>ข้อมูลของรูปภาพ</value>
+  </data>
+  <data name="ImageSettings" xml:space="preserve">
+    <value>ตั้งค่ารูปภาพ</value>
+  </data>
+  <data name="ImagesTaggedWith" xml:space="preserve">
+    <value>รูปภาพที่มีป้ายกำกับเป็น:</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>นำเข้า</value>
+  </data>
+  <data name="Import2" xml:space="preserve">
+    <value>_นำเข้า...</value>
+  </data>
+  <data name="Import3" xml:space="preserve">
+    <value>นำเข้า:</value>
+  </data>
+  <data name="Import4" xml:space="preserve">
+    <value>_นำเข้า</value>
+  </data>
+  <data name="ImportFailures2" xml:space="preserve">
+    <value>นำเข้าไม่สำเร็จ</value>
+  </data>
+  <data name="ImportFrom2" xml:space="preserve">
+    <value>นำเข้า_จาก:</value>
+  </data>
+  <data name="ImportIntoFSpot" xml:space="preserve">
+    <value>นำเข้าสู่ F-Spot</value>
+  </data>
+  <data name="ImportNewImages" xml:space="preserve">
+    <value>นำเข้ารูปภาพใหม่</value>
+  </data>
+  <data name="ImportPhotosXOfY" xml:space="preserve">
+    <value>กำลังนำเข้าภาพถ่าย: {0} จาก {1}...</value>
+  </data>
+  <data name="ImportRoll" xml:space="preserve">
+    <value>ชุดการนำเข้า</value>
+  </data>
+  <data name="ImportedTags" xml:space="preserve">
+    <value>ป้ายกำกับที่นำเข้า</value>
+  </data>
+  <data name="ImportingPhotos" xml:space="preserve">
+    <value>กำลังนำเข้าภาพถ่าย...</value>
+  </data>
+  <data name="InThisPhoto" xml:space="preserve">
+    <value>ในภาพถ่ายนี้</value>
+  </data>
+  <data name="IncludePhotoTaggedX" xml:space="preserve">
+    <value>นับรวมภาพถ่ายที่มีป้ายกำกับ "{0}"</value>
+  </data>
+  <data name="IncludeSubfolders2" xml:space="preserve">
+    <value>_รวมโฟลเดอร์ย่อยด้วย</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>ดัชนี</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>ข้อมูล</value>
+  </data>
+  <data name="InterpolateImageOnZoom" xml:space="preserve">
+    <value>_ประมาณจุดภาพเมื่อซูม</value>
+  </data>
+  <data name="InvalidGalleryName" xml:space="preserve">
+    <value>ชื่อแกลเลอรี่ไม่ถูกต้อง</value>
+  </data>
+  <data name="InvalidUrl" xml:space="preserve">
+    <value>URL ผิดรูปแบบ</value>
+  </data>
+  <data name="InvertSelection" xml:space="preserve">
+    <value>_สลับการเลือก</value>
+  </data>
+  <data name="KeepTheImagesAtTheirOriginalLocation" xml:space="preserve">
+    <value>เก็บรูปภาพไว้ที่ตำแหน่งต้นฉบับ</value>
+  </data>
+  <data name="Label" xml:space="preserve">
+    <value>ป้ายชื่อ</value>
+  </data>
+  <data name="Large" xml:space="preserve">
+    <value>ใหญ่</value>
+  </data>
+  <data name="Large2" xml:space="preserve">
+    <value>ใ_หญ่</value>
+  </data>
+  <data name="LastImportRoll" xml:space="preserve">
+    <value>ชุดนำเข้า_ล่าสุด</value>
+  </data>
+  <data name="LastNintyDays" xml:space="preserve">
+    <value>90 วันก่อน</value>
+  </data>
+  <data name="LastSevenDays" xml:space="preserve">
+    <value>7 วันก่อน</value>
+  </data>
+  <data name="LastThirtyDays" xml:space="preserve">
+    <value>30 วันก่อน</value>
+  </data>
+  <data name="LastThreeHundredSixtyDays" xml:space="preserve">
+    <value>360 วันก่อน</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>อ่อน</value>
+  </data>
+  <data name="LiteralAnd" xml:space="preserve">
+    <value> และ </value>
+  </data>
+  <data name="LiteralOr" xml:space="preserve">
+    <value> หรือ </value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>สถานที่</value>
+  </data>
+  <data name="Location2" xml:space="preserve">
+    <value>_ตำแหน่งเก็บ:</value>
+  </data>
+  <data name="LoggingIntoTabblo" xml:space="preserve">
+    <value>กำลังเข้าสู่ระบบ Tabblo</value>
+  </data>
+  <data name="LoggingIntoX" xml:space="preserve">
+    <value>กำลังเข้าระบบยัง {0}</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>เข้าระบบ</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>ออกจากระบบ</value>
+  </data>
+  <data name="Loupe" xml:space="preserve">
+    <value>แ_ว่นขยาย</value>
+  </data>
+  <data name="MakeFSpotMyScreensaver" xml:space="preserve">
+    <value>กำหนดให้ F-Spot เป็นโปรแกรมรักษาหน้าจอ</value>
+  </data>
+  <data name="ManageExtensions" xml:space="preserve">
+    <value>จัดการ_ส่วนเสริม</value>
+  </data>
+  <data name="MaximizeTheMainWindow" xml:space="preserve">
+    <value>ขยายหน้าต่างหลักเต็มจอ</value>
+  </data>
+  <data name="MaximizeThePhotoViewerWindow" xml:space="preserve">
+    <value>ขยายหน้าต่างแสดงภาพถ่ายเต็มจอ</value>
+  </data>
+  <data name="Medium" xml:space="preserve">
+    <value>กลาง</value>
+  </data>
+  <data name="Medium2" xml:space="preserve">
+    <value>_กลาง</value>
+  </data>
+  <data name="MergeTags" xml:space="preserve">
+    <value>ผสานป้ายกำกับ</value>
+  </data>
+  <data name="MergeTagsMnemonic" xml:space="preserve">
+    <value>_ผสานป้ายกำกับ</value>
+  </data>
+  <data name="MergeTheSelectedTag" xml:space="preserve">
+    <value>ผสานป้ายกำกับ {0} ป้ายที่เลือกเข้าด้วยกัน</value>
+  </data>
+  <data name="MergeTheSelectedTags" xml:space="preserve">
+    <value>ผสานป้ายกำกับ {0} ป้ายที่เลือกเข้าด้วยกัน</value>
+  </data>
+  <data name="Metadata" xml:space="preserve">
+    <value>ข้อมูลภาพถ่าย</value>
+  </data>
+  <data name="Modified" xml:space="preserve">
+    <value>มีการแก้ไข ({0})</value>
+  </data>
+  <data name="ModifiedInY" xml:space="preserve">
+    <value>มีการแก้ไขใน {1}</value>
+  </data>
+  <data name="ModifiedInYX" xml:space="preserve">
+    <value>มีการแก้ไขใน {1} ({0})</value>
+  </data>
+  <data name="ModifiedX" xml:space="preserve">
+    <value>มีการแก้ไข ({0})</value>
+  </data>
+  <data name="MyPhotos" xml:space="preserve">
+    <value>ภาพถ่ายของฉัน</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>ชื่อ</value>
+  </data>
+  <data name="NameColon" xml:space="preserve">
+    <value>ชื่อ:</value>
+  </data>
+  <data name="NameOfNewTagColon" xml:space="preserve">
+    <value>ชื่อของป้ายกำกับใหม่:</value>
+  </data>
+  <data name="NewNameColon" xml:space="preserve">
+    <value>ชื่อใหม่:</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>ถัดไป</value>
+  </data>
+  <data name="NextPhoto" xml:space="preserve">
+    <value>ภาพถัดไป</value>
+  </data>
+  <data name="NextPicture" xml:space="preserve">
+    <value>รูปถัดไป</value>
+  </data>
+  <data name="NoAccountSelected" xml:space="preserve">
+    <value>ไม่ได้เลือกบัญชี</value>
+  </data>
+  <data name="NoApplicationsAvailable" xml:space="preserve">
+    <value>ไม่มีโปรแกรม</value>
+  </data>
+  <data name="NoCamerasDetected" xml:space="preserve">
+    <value>(ไม่พบกล้องดิจิทัล)</value>
+  </data>
+  <data name="NoConstraint" xml:space="preserve">
+    <value>ไม่มีข้อกำหนด</value>
+  </data>
+  <data name="NoImage" xml:space="preserve">
+    <value>ไม่ใช้รู_ปภาพ</value>
+  </data>
+  <data name="NoMatchingPhotosFound" xml:space="preserve">
+    <value>ไม่พบภาพถ่ายที่ตรงเงื่อนไข</value>
+  </data>
+  <data name="NoMetadataAvailable" xml:space="preserve">
+    <value>ไม่มีข้อมูลภาพถ่าย</value>
+  </data>
+  <data name="NoPermissionToDeleteTheFile" xml:space="preserve">
+    <value>ไม่มีสิทธิ์ในการลบแฟ้ม:{1}{0}</value>
+  </data>
+  <data name="NoPhotosMatchingFound" xml:space="preserve">
+    <value>ไม่พบภาพถ่ายที่ตรงกับ {0}</value>
+  </data>
+  <data name="NoSelectionAvailable" xml:space="preserve">
+    <value>ไม่ได้เลือกพื้นที่</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>ไม่มี</value>
+  </data>
+  <data name="None2" xml:space="preserve">
+    <value>ไม่มี</value>
+  </data>
+  <data name="NotLoggedIn" xml:space="preserve">
+    <value>ยังไม่ได้เข้าสู่ระบบ</value>
+  </data>
+  <data name="NumberOfPictures" xml:space="preserve">
+    <value>จำนวนรูปภาพ</value>
+  </data>
+  <data name="ObtainingURLForUpload" xml:space="preserve">
+    <value>กำลังขอ URL สำหรับอัปโหลด</value>
+  </data>
+  <data name="OkMnemonic" xml:space="preserve">
+    <value>_ตกลง</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>เปิด</value>
+  </data>
+  <data name="OpenAlbumInBrowserWhenDoneUploading2" xml:space="preserve">
+    <value>เปิด_อัลบั้มในเบราว์เซอร์เมื่ออัปโหลดเสร็จแล้ว</value>
+  </data>
+  <data name="OpenDestinationWhenDoneExporting" xml:space="preserve">
+    <value>เปิดตำแหน่งป_ลายทางเมื่อส่งออกเสร็จแล้ว</value>
+  </data>
+  <data name="OpenWith" xml:space="preserve">
+    <value>เปิด_ด้วย</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>ตัวเลือก:</value>
+  </data>
+  <data name="Or" xml:space="preserve">
+    <value>หรือ</value>
+  </data>
+  <data name="Original" xml:space="preserve">
+    <value>ต้นฉบับ</value>
+  </data>
+  <data name="OriginalSizePossibleVeryLargeFileSize" xml:space="preserve">
+    <value>ขนาดต้นฉบับ (ขนาดแฟ้มอาจจะใหญ่มาก)</value>
+  </data>
+  <data name="PageColon" xml:space="preserve">
+    <value>หน้า:</value>
+  </data>
+  <data name="PageSetup" xml:space="preserve">
+    <value>ตั้งค่าหน้ากระดาษ</value>
+  </data>
+  <data name="PageSetup2" xml:space="preserve">
+    <value>_ตั้งค่าหน้ากระดาษ...</value>
+  </data>
+  <data name="PaperSizeXxYmm" xml:space="preserve">
+    <value>ขนาดกระดาษ: {0} x {1} มม.</value>
+  </data>
+  <data name="ParenNoAlbumsParen" xml:space="preserve">
+    <value>(ไม่มีอัลบั้ม)</value>
+  </data>
+  <data name="ParenNoEditsParen" xml:space="preserve">
+    <value>(ไม่มีการแก้ไข)</value>
+  </data>
+  <data name="ParenNoGalleryParen" xml:space="preserve">
+    <value>(ไม่มีแกลเลอรี่)</value>
+  </data>
+  <data name="ParenNoTagsParen" xml:space="preserve">
+    <value>(ไม่มี)</value>
+  </data>
+  <data name="ParenNoneParen" xml:space="preserve">
+    <value>(ไม่มี)</value>
+  </data>
+  <data name="ParenNotConnectedParen" xml:space="preserve">
+    <value>(ไม่ได้เชื่อมต่อ)</value>
+  </data>
+  <data name="ParenOneEditParen" xml:space="preserve">
+    <value>(การแก้ไข {0} รายการ)</value>
+  </data>
+  <data name="ParenTopLevelParen" xml:space="preserve">
+    <value>(ชั้นบนสุด)</value>
+  </data>
+  <data name="ParenUnknownParen" xml:space="preserve">
+    <value>(ไม่มีข้อมูล)</value>
+  </data>
+  <data name="ParenXEditsParen" xml:space="preserve">
+    <value>(การแก้ไข {0} รายการ)</value>
+  </data>
+  <data name="ParentAlbum" xml:space="preserve">
+    <value>อัลบั้ม_ระดับบน:</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>รหัส_ผ่าน:</value>
+  </data>
+  <data name="People" xml:space="preserve">
+    <value>บุคคล</value>
+  </data>
+  <data name="Permissions" xml:space="preserve">
+    <value>สิทธิ์:</value>
+  </data>
+  <data name="Photo2" xml:space="preserve">
+    <value>ภาพ</value>
+  </data>
+  <data name="Photo3" xml:space="preserve">
+    <value>_ภาพถ่าย</value>
+  </data>
+  <data name="PhotoManagementForGNOME" xml:space="preserve">
+    <value>โปรแกรมจัดการภาพถ่ายสำหรับ GNOME</value>
+  </data>
+  <data name="PhotoManager" xml:space="preserve">
+    <value>โปรแกรมจัดการภาพถ่าย</value>
+  </data>
+  <data name="PhotoXOfY" xml:space="preserve">
+    <value>ภาพถ่ายที่ {0} จาก {1}</value>
+  </data>
+  <data name="Photos" xml:space="preserve">
+    <value>ภาพถ่าย</value>
+  </data>
+  <data name="Photos2" xml:space="preserve">
+    <value>ภาพ</value>
+  </data>
+  <data name="PhotosInfos" xml:space="preserve">
+    <value>ข้อมูลภาพถ่าย</value>
+  </data>
+  <data name="PhotosLayout" xml:space="preserve">
+    <value>การจัดวางภาพถ่าย</value>
+  </data>
+  <data name="PhotosPerPage" xml:space="preserve">
+    <value>จำนวนภาพต่อหน้า</value>
+  </data>
+  <data name="PhotosWithATag" xml:space="preserve">
+    <value>ภาพถ่ายที่มีป้ายกำกับ</value>
+  </data>
+  <data name="Pixelate" xml:space="preserve">
+    <value>ทำภาพโมเสก</value>
+  </data>
+  <data name="Pixels" xml:space="preserve">
+    <value>พิกเซล</value>
+  </data>
+  <data name="Places" xml:space="preserve">
+    <value>สถานที่</value>
+  </data>
+  <data name="PleaseNameYourAlbumOrChooseAnExistingAlbum" xml:space="preserve">
+    <value>กรุณาตั้งชื่ออัลบั้มของคุณ หรือเลือกอัลบั้มที่มีอยู่</value>
+  </data>
+  <data name="PleaseVerifyThatTheSettingsForThisGalleryAreCorrect" xml:space="preserve">
+    <value>กรุณาตรวจสอบค่าต่างๆ ที่กำหนดไว้สำหรับแกลเลอรี่นี้ว่าถูกต้องหรือไม่</value>
+  </data>
+  <data name="Preferences" xml:space="preserve">
+    <value>ปรับแต่ง</value>
+  </data>
+  <data name="PreparingPhotoX" xml:space="preserve">
+    <value>กำลังเตรียมภาพถ่าย "{0}"</value>
+  </data>
+  <data name="Prev" xml:space="preserve">
+    <value>ก่อนหน้า</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>ก่อนหน้า</value>
+  </data>
+  <data name="PreviousPhoto" xml:space="preserve">
+    <value>ภาพก่อนหน้า</value>
+  </data>
+  <data name="PreviousPicture" xml:space="preserve">
+    <value>รูปก่อนหน้า</value>
+  </data>
+  <data name="PreviousWeekMonSun" xml:space="preserve">
+    <value>สัปดาห์ที่แล้ว (จ.-อา.)</value>
+  </data>
+  <data name="PrintCutMarks" xml:space="preserve">
+    <value>พิมพ์เครื่องหมายแนวตัดกระดาษ</value>
+  </data>
+  <data name="PrintFileName" xml:space="preserve">
+    <value>พิมพ์ชื่อแฟ้ม</value>
+  </data>
+  <data name="PrintPhotoComment" xml:space="preserve">
+    <value>พิมพ์คำบรรยายภาพถ่าย</value>
+  </data>
+  <data name="PrintPhotoDate" xml:space="preserve">
+    <value>พิมพ์วันที่ของภาพถ่าย</value>
+  </data>
+  <data name="PrintPhotoTags" xml:space="preserve">
+    <value>พิมพ์ป้ายกำกับของภาพถ่าย</value>
+  </data>
+  <data name="PrintPhotoTime" xml:space="preserve">
+    <value>พิมพ์เวลาของภาพถ่าย</value>
+  </data>
+  <data name="Private" xml:space="preserve">
+    <value>ส่วนตัว</value>
+  </data>
+  <data name="Public" xml:space="preserve">
+    <value>เผยแพร่</value>
+  </data>
+  <data name="PublicAlbum" xml:space="preserve">
+    <value>อัลบั้มเผยแพร่</value>
+  </data>
+  <data name="Quit" xml:space="preserve">
+    <value>_ออก</value>
+  </data>
+  <data name="RadiusColon" xml:space="preserve">
+    <value>รัศมี:</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>คะแนนนิยม</value>
+  </data>
+  <data name="Ratings" xml:space="preserve">
+    <value>_คะแนนนิยม</value>
+  </data>
+  <data name="Ratio" xml:space="preserve">
+    <value>สัดส่วน</value>
+  </data>
+  <data name="RedEyeReduction" xml:space="preserve">
+    <value>ลดตาแดง</value>
+  </data>
+  <data name="RefreshSearch" xml:space="preserve">
+    <value>ปรับแสดงผลการค้นหาใหม่</value>
+  </data>
+  <data name="RefreshThumbnail" xml:space="preserve">
+    <value>ปรับแ_สดงภาพย่อ</value>
+  </data>
+  <data name="RemoveFromCatalog" xml:space="preserve">
+    <value>_ลบจากแค็ตตาล็อก</value>
+  </data>
+  <data name="RemoveFromCatalogMnemonic" xml:space="preserve">
+    <value>_ลบจากแค็ตตาล็อก</value>
+  </data>
+  <data name="RemoveFromExportedPhotos" xml:space="preserve">
+    <value>_ลบออกจากภาพถ่ายที่ส่งออกแล้ว:</value>
+  </data>
+  <data name="RemoveFromSearch" xml:space="preserve">
+    <value>ตัดออกจากการค้นหา</value>
+  </data>
+  <data name="RemoveOriginalFilesAfterImport" xml:space="preserve">
+    <value>_ลบแฟ้มต้นฉบับหลังจากนำเข้า</value>
+  </data>
+  <data name="RemoveTag" xml:space="preserve">
+    <value>_ลบป้ายกำกับ</value>
+  </data>
+  <data name="RemoveTagFromSelection" xml:space="preserve">
+    <value>ลบป้ายกำกับจากภาพที่เลือก</value>
+  </data>
+  <data name="RemoveTagFromSelection2" xml:space="preserve">
+    <value>_ลบป้ายกำกับจากภาพที่เลือก</value>
+  </data>
+  <data name="RemoveTagFromSelection3" xml:space="preserve">
+    <value>ลบป้ายกำกับจากภาพที่เลือก</value>
+  </data>
+  <data name="RemoveTheSelectedPhotoFromFSpot" xml:space="preserve">
+    <value>ต้องการลบภาพถ่าย {0} ภาพที่เลือกออกจาก F-Spot หรือไม่?</value>
+  </data>
+  <data name="RemoveTheXSelectedPhotosFromFSpot" xml:space="preserve">
+    <value>ต้องการลบภาพถ่าย {0} ภาพที่เลือกออกจาก F-Spot หรือไม่?</value>
+  </data>
+  <data name="RenameVersion" xml:space="preserve">
+    <value>เปลี่ยนชื่อฉบับสำเนา</value>
+  </data>
+  <data name="RenameVersion2" xml:space="preserve">
+    <value>เปลี่ยน_ชื่อฉบับสำเนา</value>
+  </data>
+  <data name="Repair" xml:space="preserve">
+    <value>ซ่อมแซม</value>
+  </data>
+  <data name="Repeat" xml:space="preserve">
+    <value>ซ้ำภาพ</value>
+  </data>
+  <data name="Resize" xml:space="preserve">
+    <value>ปรับขนาด</value>
+  </data>
+  <data name="ResizeTo" xml:space="preserve">
+    <value>_ปรับขนาดเป็น: </value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>ลองใหม่</value>
+  </data>
+  <data name="ReturnToThisWindowAfterYouHaveFinishedAuthProcessOnXClickCompleteAuthorizationButton" xml:space="preserve">
+    <value>กลับมาที่หน้าต่างนี้หลังจากที่คุณได้ยืนยันสิทธิ์ของคุณที่ {0} เรียบร้อยแล้ว โดยคลิกปุ่ม "เสร็จสิ้นการยืนยันสิทธิ์" ด้านล่างนี้</value>
+  </data>
+  <data name="ReverseOrder" xml:space="preserve">
+    <value>_ย้อนลำดับการเรียง</value>
+  </data>
+  <data name="RotateLeft" xml:space="preserve">
+    <value>หมุนซ้าย</value>
+  </data>
+  <data name="RotateLeftMnemonic" xml:space="preserve">
+    <value>หมุนซ้า_ย</value>
+  </data>
+  <data name="RotatePhotoLeft" xml:space="preserve">
+    <value>หมุนภาพถ่ายไปทางซ้าย</value>
+  </data>
+  <data name="RotatePhotoRight" xml:space="preserve">
+    <value>หมุนภาพถ่ายไปทางขวา</value>
+  </data>
+  <data name="RotatePictureLeft" xml:space="preserve">
+    <value>หมุนรูปไปทางซ้าย</value>
+  </data>
+  <data name="RotatePictureRight" xml:space="preserve">
+    <value>หมุนรูปไปทางขวา</value>
+  </data>
+  <data name="RotateRight" xml:space="preserve">
+    <value>หมุนขวา</value>
+  </data>
+  <data name="RotateRightMnemonic" xml:space="preserve">
+    <value>หมุน_ขวา</value>
+  </data>
+  <data name="RotateSelectedPhotoLeft" xml:space="preserve">
+    <value>หมุนภาพถ่ายที่เลือกไปทางซ้าย</value>
+  </data>
+  <data name="RotateSelectedPhotoRight" xml:space="preserve">
+    <value>หมุนภาพถ่ายที่เลือกไปทางขวา</value>
+  </data>
+  <data name="RotateSelectedPhotosLeft" xml:space="preserve">
+    <value>หมุนภาพถ่ายที่เลือกไปทางซ้าย</value>
+  </data>
+  <data name="RotateSelectedPhotosRight" xml:space="preserve">
+    <value>หมุนภาพถ่ายที่เลือกไปทางขวา</value>
+  </data>
+  <data name="RotatingPhotoX" xml:space="preserve">
+    <value>กำลังหมุนภาพถ่าย "{0}"</value>
+  </data>
+  <data name="RotatingPhotos" xml:space="preserve">
+    <value>กำลังหมุนภาพถ่าย</value>
+  </data>
+  <data name="S1024Px" xml:space="preserve">
+    <value>1024 พิกเซล</value>
+  </data>
+  <data name="S320Px" xml:space="preserve">
+    <value>320 พิกเซล</value>
+  </data>
+  <data name="S480Px" xml:space="preserve">
+    <value>480 พิกเซล</value>
+  </data>
+  <data name="S640Px" xml:space="preserve">
+    <value>640 พิกเซล</value>
+  </data>
+  <data name="S800Px" xml:space="preserve">
+    <value>800 พิกเซล</value>
+  </data>
+  <data name="SameAsPhoto" xml:space="preserve">
+    <value>เหมือนภาพถ่าย</value>
+  </data>
+  <data name="Saturation2" xml:space="preserve">
+    <value>ความส_ดของสี:</value>
+  </data>
+  <data name="SaveTheFilesOnly" xml:space="preserve">
+    <value>บันทึกแฟ้มเ_ท่านั้น</value>
+  </data>
+  <data name="Scale" xml:space="preserve">
+    <value>_ปรับขนาด:</value>
+  </data>
+  <data name="Scaled" xml:space="preserve">
+    <value>ย่อ-ขยายพอดีกรอบ</value>
+  </data>
+  <data name="ScreensaverConfiguration" xml:space="preserve">
+    <value>ตั้งค่าโปรแกรมรักษาหน้าจอ</value>
+  </data>
+  <data name="SearchingForPhotosYouCanAlreadyClickImportToContinue" xml:space="preserve">
+    <value>กำลังค้นหาภาพถ่าย... (คุณสามารถคลิก "นำเข้า" เพื่อนดำเนินการต่อได้ทันที)</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>เลือก...</value>
+  </data>
+  <data name="SelectAFolder" xml:space="preserve">
+    <value>เลือกโฟลเดอร์</value>
+  </data>
+  <data name="SelectATag" xml:space="preserve">
+    <value>เลือกป้ายกำกับ...</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>เลือก_ทั้งหมด</value>
+  </data>
+  <data name="SelectExportFolder" xml:space="preserve">
+    <value>เลือกโฟลเดอร์สำหรับส่งออก</value>
+  </data>
+  <data name="SelectExportFolder2" xml:space="preserve">
+    <value>เลือกโฟลเดอร์ส่งออก</value>
+  </data>
+  <data name="SelectFolder" xml:space="preserve">
+    <value>เลือกโฟลเดอร์</value>
+  </data>
+  <data name="SelectImportRolls" xml:space="preserve">
+    <value>เ_ลือกชุดนำเข้า...</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>ไม่เลือกทั้ง_หมด</value>
+  </data>
+  <data name="SelectPhotoFromFile" xml:space="preserve">
+    <value>เลือกภาพถ่ายจากแฟ้ม</value>
+  </data>
+  <data name="SelectTheAreaThatNeedsCropping" xml:space="preserve">
+    <value>เลือกพื้นที่ที่ต้องการครอบตัด</value>
+  </data>
+  <data name="SelectTheAreaThatYouWantBlackedOut" xml:space="preserve">
+    <value>เลือกพื้นที่ที่ต้องการทาสีดำทับ</value>
+  </data>
+  <data name="SelectTheAreaThatYouWantPixelated" xml:space="preserve">
+    <value>เลือกพื้นที่ที่ต้องการทำภาพโมเสก</value>
+  </data>
+  <data name="SelectTheEyesYouWishToFix" xml:space="preserve">
+    <value>เลือกตำแหน่งตาที่คุณต้องการแก้</value>
+  </data>
+  <data name="Selected" xml:space="preserve">
+    <value>ที่เลือกอยู่</value>
+  </data>
+  <data name="SelectedPhotos" xml:space="preserve">
+    <value>ภาพถ่ายที่เลือก</value>
+  </data>
+  <data name="SendByMail" xml:space="preserve">
+    <value>ส่งทาง_อีเมล...</value>
+  </data>
+  <data name="SepiaTone2" xml:space="preserve">
+    <value>สีซีเปีย</value>
+  </data>
+  <data name="SetAsBackground" xml:space="preserve">
+    <value>ตั้งเป็นพื้นหลัง</value>
+  </data>
+  <data name="SetAsBackground2" xml:space="preserve">
+    <value>ตั้งเป็น_พื้นหลัง</value>
+  </data>
+  <data name="SetDateRange" xml:space="preserve">
+    <value>กำหนดช่วงเวลา</value>
+  </data>
+  <data name="SetDateRange2" xml:space="preserve">
+    <value>กำหนด_ช่วงเวลา...</value>
+  </data>
+  <data name="SetPageSizeAndOrientation" xml:space="preserve">
+    <value>กำหนดขนาดและแนววางของหน้ากระดาษ</value>
+  </data>
+  <data name="SetRatingFilter" xml:space="preserve">
+    <value>กำหนดตัวกรองคะแนนนิยม</value>
+  </data>
+  <data name="SetRatingFilter2" xml:space="preserve">
+    <value>กำหนดตัวกรอง_คะแนนนิยม...</value>
+  </data>
+  <data name="Share" xml:space="preserve">
+    <value>แบ่งปัน:</value>
+  </data>
+  <data name="Sharpen" xml:space="preserve">
+    <value>เพิ่มความคม</value>
+  </data>
+  <data name="Sharpen2" xml:space="preserve">
+    <value>เพิ่มความ_คม...</value>
+  </data>
+  <data name="ShiftAllPhotosByX" xml:space="preserve">
+    <value>เลื่อนภาพถ่ายทั้งหมดเป็นเวลา {0}</value>
+  </data>
+  <data name="ShowAll" xml:space="preserve">
+    <value>แสดงทั้งหมด</value>
+  </data>
+  <data name="ShowAllPhotos" xml:space="preserve">
+    <value>แสดงภาพถ่ายทั้งหมด</value>
+  </data>
+  <data name="ShowCamera" xml:space="preserve">
+    <value>แสดงกล้อง</value>
+  </data>
+  <data name="ShowDate" xml:space="preserve">
+    <value>แสดงวันที่</value>
+  </data>
+  <data name="ShowFileSize" xml:space="preserve">
+    <value>แสดงขนาดแฟ้ม</value>
+  </data>
+  <data name="ShowFindBarMnemonic" xml:space="preserve">
+    <value>แสดงแ_ถบค้นหา</value>
+  </data>
+  <data name="ShowFocalLength" xml:space="preserve">
+    <value>แสดงระยะโฟกัส</value>
+  </data>
+  <data name="ShowOrHideTheSidePane" xml:space="preserve">
+    <value>แสดงหรือซ่อนช่องด้านข้าง</value>
+  </data>
+  <data name="ShowOrHideTheToolbar" xml:space="preserve">
+    <value>แสดงหรือซ่อนแถบเครื่องมือ</value>
+  </data>
+  <data name="ShowPhotoName" xml:space="preserve">
+    <value>แสดงชื่อภาพถ่าย</value>
+  </data>
+  <data name="ShowSize" xml:space="preserve">
+    <value>แสดงขนาด</value>
+  </data>
+  <data name="ShowStyles" xml:space="preserve">
+    <value>แสดงรูปแบบ</value>
+  </data>
+  <data name="SidePane" xml:space="preserve">
+    <value>ช่องด้าน_ข้าง</value>
+  </data>
+  <data name="Sidebar" xml:space="preserve">
+    <value>แถบ_ข้าง</value>
+  </data>
+  <data name="SignInAsADifferentUser" xml:space="preserve">
+    <value>ลงชื่อเช้าใช้ในนามผู้ใช้อื่น</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>ขนาด</value>
+  </data>
+  <data name="SizeOfTheExportedSelection" xml:space="preserve">
+    <value>ขนาดของส่วนที่เลือกส่งออก:</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>ข้าม</value>
+  </data>
+  <data name="Slideshow" xml:space="preserve">
+    <value>แสดงสไลด์</value>
+  </data>
+  <data name="Slideshow2" xml:space="preserve">
+    <value>แสดง_สไลด์</value>
+  </data>
+  <data name="Small" xml:space="preserve">
+    <value>เล็ก</value>
+  </data>
+  <data name="Small2" xml:space="preserve">
+    <value>เ_ล็ก</value>
+  </data>
+  <data name="SmallIEnableThisToAllowInterpolationOnZoomedImagesYouShouldnTDisableThisForViewingPhotosButDisablingTheInterpolationCouldBeUsefulInIconDesignISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;เปิดใช้ตัวเลือกนี้ถ้าต้องการให้ประมาณจุดภาพในรูปภาพที่ซูมเข้า-ออก คุณไม่ควรปิดตัวเลือกนี้ขณะดูภาพถ่าย แต่การปิดการประมาณจุดภาพจะเป็นประโยชน์สำหรับการออกแบบไอคอน&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIFSpotTagsCanHelpYouTrackTheExportStatusOfPhotosExampleUseOneTagForThePhotosThatYouPlanToExportAndAnotherOneForThoseAlreadyExportedHereYouCanTellFSpotToAutomaticallyReplaceTheseTagsAsAppropriateISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;ป้ายกำกับของ F-Spot สามารถช่วยคุณติดตามสถานะการส่งออกของภาพถ่ายต่างๆ ได้ ตัวอย่างเช่น: ใช้ป้ายกำกับหนึ่งกับภาพถ่ายที่คุณตั้งใจจะส่งออก และใช้ป้ายกำกับอีกป้ายหนึ่งกับภาพถ่ายที่ส่งออกแล้ว โดยในที่นี้ คุณสามารถสั่งให้ F-Spot แทนที่ป้ายกำกับเหล่านี้ได้ตามที่เห็นสมควร&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIYouCanChooseHowToDisplayTransparentPartsInImagesThisOptionHasNoEffectOnPhotosButSettingThisAsCheckPatternOrCustomColorCouldBeUsefulWhenViewingIconsOrOtherArtworksWithTransparentPartsISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;คุณสามารถเลือกวิธีแสดงส่วนที่โปร่งใสของรูปภาพได้ ตัวเลือกนี้จะไม่มีผลกับภาพถ่าย แต่การกำหนดค่านี้เป็นตาหมากรุกหรือสีที่กำหนดจะมีประโยชน์เมื่อดูไอคอนหรืองานศิลป์อื่น ๆ ที่มีส่วนที่โปร่งใส&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SomeFilesFailedToImport" xml:space="preserve">
+    <value>นำเข้าแฟ้มบางแฟ้มไม่สำเร็จ</value>
+  </data>
+  <data name="SpanWeightBoldSizeLargerErrorConnectingToGallerySpan" xml:space="preserve">
+    <value>&lt;span weight='bold' size='larger'&gt;เกิดข้อผิดพลาดขณะเชื่อมต่อไปยังแกลเลอรี่&lt;/span&gt;
+</value>
+  </data>
+  <data name="Square" xml:space="preserve">
+    <value>สี่เหลี่ยมจัตุรัส</value>
+  </data>
+  <data name="StandardTheme" xml:space="preserve">
+    <value>ชุดตกแต่งมาตรฐาน</value>
+  </data>
+  <data name="StartSlideshow" xml:space="preserve">
+    <value>เริ่มแสดงสไลด์</value>
+  </data>
+  <data name="StayConnected" xml:space="preserve">
+    <value>คงการเชื่อมต่อไว้</value>
+  </data>
+  <data name="SystemProfile" xml:space="preserve">
+    <value>โพรไฟล์ระบบ</value>
+  </data>
+  <data name="TagIcons" xml:space="preserve">
+    <value>ไ_อคอนป้ายกำกับ</value>
+  </data>
+  <data name="TagIsNotEmpty" xml:space="preserve">
+    <value>ป้ายกำกับมีข้อมูลอยู่</value>
+  </data>
+  <data name="TagName2" xml:space="preserve">
+    <value>ชื่อ_ป้ายกำกับ:</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>ป้ายกำกับ</value>
+  </data>
+  <data name="Tags2" xml:space="preserve">
+    <value>_ป้ายกำกับ</value>
+  </data>
+  <data name="Tags3" xml:space="preserve">
+    <value>_ป้ายกำกับ</value>
+  </data>
+  <data name="TagsColon" xml:space="preserve">
+    <value>ป้ายกำกับ: </value>
+  </data>
+  <data name="Temp" xml:space="preserve">
+    <value>อุณหภู_มิ:</value>
+  </data>
+  <data name="TheColorToUseForTransparentParts" xml:space="preserve">
+    <value>สีที่จะใช้สำหรับส่วนที่โปร่งใส</value>
+  </data>
+  <data name="TheGalleryUrlEntryDoesNotAppearToBeValid" xml:space="preserve">
+    <value>ข้อมูลในช่อง URL ของแกลเลอรี่ไม่ใช่ URL ที่ใช้การได้</value>
+  </data>
+  <data name="ThePhotoXDoesNotExist" xml:space="preserve">
+    <value>ไม่มีภาพถ่าย "{0}" อยู่</value>
+  </data>
+  <data name="TheSizeOfTheSidebarInTheMainWindow" xml:space="preserve">
+    <value>ขนาดของแถบข้างในหน้าต่างหลัก</value>
+  </data>
+  <data name="TheSizeWidthOfTheSidebarInTheMainWindow" xml:space="preserve">
+    <value>ขนาด (ความกว้าง) ของแถบข้างในหน้าต่างหลัก</value>
+  </data>
+  <data name="TheWebGallerySeemsToBeOfflineNow" xml:space="preserve">
+    <value>ดูเหมือนแกลเลอรี่บนเว็บจะออฟไลน์อยู่</value>
+  </data>
+  <data name="TheWidthDimensionToUseForTheImportDialog" xml:space="preserve">
+    <value>ขนาดความกว้างที่จะใช้สำหรับกล่องโต้ตอบนำเข้า</value>
+  </data>
+  <data name="TheWidthDimensionToUseForTheMainWindow" xml:space="preserve">
+    <value>ขนาดความกว้างที่จะใช้สำหรับหน้าต่างหลัก</value>
+  </data>
+  <data name="TheWidthDimensionToUseForThePhotoViewerWindow" xml:space="preserve">
+    <value>ขนาดความกว้างที่จะใช้สำหรับหน้าต่างแสดงภาพถ่าย</value>
+  </data>
+  <data name="TheXPositionToUseForTheMainWindow" xml:space="preserve">
+    <value>ตำแหน่ง X ที่จะใช้สำหรับหน้าต่างหลัก</value>
+  </data>
+  <data name="TheXPositionToUseForThePhotoViewerWindow" xml:space="preserve">
+    <value>ตำแหน่ง X ที่จะใช้สำหรับหน้าต่างแสดงภาพถ่าย</value>
+  </data>
+  <data name="TheYPositionToUseForTheMainWindow" xml:space="preserve">
+    <value>ตำแหน่ง Y ที่จะใช้สำหรับหน้าต่างหลัก</value>
+  </data>
+  <data name="TheYPositionToUseForThePhotoViewerWindow" xml:space="preserve">
+    <value>ตำแหน่ง Y ที่จะใช้สำหรับหน้าต่างแสดงภาพถ่าย</value>
+  </data>
+  <data name="ThereWasAProblemLoggingIntoFacebookCheckYourCredentialsAndTryAgain" xml:space="preserve">
+    <value>มีปัญหาในการเข้าระบบ Facebook กรุณาตรวจสอบรหัสลับของคุณและลองใหม่อีกครั้ง</value>
+  </data>
+  <data name="ThisNameIsAlreadyInUse" xml:space="preserve">
+    <value>ชื่อนี้ถูกใช้แล้ว</value>
+  </data>
+  <data name="ThisToolRequiresAnActiveSelection.PleaseSelectOneOrMore" xml:space="preserve">
+    <value>เครื่องมือนี้จำเป็นต้องเลือกรูปภาพตั้งแต่หนึ่งรูปขึ้นไป กรุณาลองอีกครั้ง</value>
+  </data>
+  <data name="ThisToolRequiresAnActiveSelectionPleaseSelectARegion" xml:space="preserve">
+    <value>เครื่องมือนี้จำเป็นต้องเลือกพื้นที่ที่ต้องการทำงานก่อน กรุณาลองอีกครั้ง</value>
+  </data>
+  <data name="ThresholdColon" xml:space="preserve">
+    <value>ขีดเริ่ม:</value>
+  </data>
+  <data name="ThumbnailElements" xml:space="preserve">
+    <value>ส่ว_นประกอบภาพย่อ</value>
+  </data>
+  <data name="Timeline" xml:space="preserve">
+    <value>ลำดับเว_ลา</value>
+  </data>
+  <data name="Tint" xml:space="preserve">
+    <value>ความ_อ่อนแก่:</value>
+  </data>
+  <data name="Tiny" xml:space="preserve">
+    <value>จิ๋ว</value>
+  </data>
+  <data name="Title2" xml:space="preserve">
+    <value>_ชื่อ:</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>วันนี้</value>
+  </data>
+  <data name="Token" xml:space="preserve">
+    <value>โทเคน</value>
+  </data>
+  <data name="TooManyImagesToExport" xml:space="preserve">
+    <value>มีรูปภาพที่จะส่งออกมากเกินไป</value>
+  </data>
+  <data name="Toolbar" xml:space="preserve">
+    <value>แถบเ_ครื่องมือ</value>
+  </data>
+  <data name="Toolbar2" xml:space="preserve">
+    <value>แถบเ_ครื่องมือ</value>
+  </data>
+  <data name="Tools" xml:space="preserve">
+    <value>เครื่องมือ</value>
+  </data>
+  <data name="Tools2" xml:space="preserve">
+    <value>เ_ครื่องมือ</value>
+  </data>
+  <data name="TotalOriginalSize" xml:space="preserve">
+    <value>ขนาดต้นฉบับทั้งหมด</value>
+  </data>
+  <data name="TransferComplete" xml:space="preserve">
+    <value>ถ่ายโอนข้อมูลเสร็จสมบูรณ์</value>
+  </data>
+  <data name="Transferring" xml:space="preserve">
+    <value>กำลังถ่ายโอน...</value>
+  </data>
+  <data name="TransferringPictureXToCD" xml:space="preserve">
+    <value>กำลังถ่ายโอนรูปภาพ "{0}" ไปยังซีดี</value>
+  </data>
+  <data name="TransferringPictures" xml:space="preserve">
+    <value>กำลังถ่ายโอนรูปภาพ</value>
+  </data>
+  <data name="TransferringToX" xml:space="preserve">
+    <value>กำลังถ่ายโอนไปยัง "{0}"</value>
+  </data>
+  <data name="TranslatorCredits" xml:space="preserve">
+    <value>Isriya Paireepairit &lt;markpeak@gmail.com&gt;
+Sira Nokyoongtong &lt;gumaraa@gmail.com&gt;
+Theppitak Karoonboonyanan &lt;thep@linux.thai.net&gt;
+Sarita Kangkerkkul &lt;saritaoil@hotmail.com&gt;
+Maetinee &lt;your_friend_mn17@hotmail.com&gt;</value>
+  </data>
+  <data name="TrustError" xml:space="preserve">
+    <value>ข้อผิดพลาดเกี่ยวกับความเชื่อถือ</value>
+  </data>
+  <data name="TrustTheSiteSCertificateThisOnce" xml:space="preserve">
+    <value>เชื่อถือใบรับรองของไซต์นี้เพียงครั้งนี้เท่านั้น</value>
+  </data>
+  <data name="URL3" xml:space="preserve">
+    <value>U_RL:</value>
+  </data>
+  <data name="UnableToLoadImage" xml:space="preserve">
+    <value>ไม่สามารถโหลดรูปภาพได้</value>
+  </data>
+  <data name="UnableToLoadXAsIconForTheTag" xml:space="preserve">
+    <value>ไม่สามารถโหลด "{0}" เป็นไอคอนสำหรับป้ายกำกับ</value>
+  </data>
+  <data name="UnableToLogOn" xml:space="preserve">
+    <value>ไม่สามารถเข้าระบบได้</value>
+  </data>
+  <data name="UnableToLogOn2" xml:space="preserve">
+    <value>ไม่สามารถเข้าระบบได้</value>
+  </data>
+  <data name="UnableToRotatePhoto" xml:space="preserve">
+    <value>ไม่สามารถหมุนภาพถ่าย {0} ภาพนี้ได้</value>
+  </data>
+  <data name="UnableToRotateReadonlyFile" xml:space="preserve">
+    <value>ไม่สามารถหมุนภาพถ่ายในแฟ้มที่อ่านอย่างเดียวได้</value>
+  </data>
+  <data name="UnableToRotateThisTypeOfPhoto" xml:space="preserve">
+    <value>ไม่สามารถหมุนภาพถ่ายชนิดนี้ได้</value>
+  </data>
+  <data name="UnableToRotateXPhotos" xml:space="preserve">
+    <value>ไม่สามารถหมุนภาพถ่าย {0} ภาพนี้ได้</value>
+  </data>
+  <data name="UntaggedPhotos" xml:space="preserve">
+    <value>ภาพถ่ายไม่มีป้ายกำกับ</value>
+  </data>
+  <data name="UntaggedPhotos2" xml:space="preserve">
+    <value>ภาพถ่ายไ_ม่มีป้ายกำกับ</value>
+  </data>
+  <data name="UpdatingFSpotDatabase" xml:space="preserve">
+    <value>กำลังปรับข้อมูลฐานข้อมูล F-Spot</value>
+  </data>
+  <data name="UpdatingPictureX" xml:space="preserve">
+    <value>กำลังปรับข้อมูลรูปภาพ "{0}"</value>
+  </data>
+  <data name="UpdatingThumbnails" xml:space="preserve">
+    <value>กำลังปรับข้อมูลภาพย่อ</value>
+  </data>
+  <data name="UploadComplete" xml:space="preserve">
+    <value>อัปโหลดเสร็จสมบูรณ์</value>
+  </data>
+  <data name="UploadComplete2" xml:space="preserve">
+    <value>อัปโหลดเสร็จสมบูรณ์</value>
+  </data>
+  <data name="UploadingPhotoX" xml:space="preserve">
+    <value>กำลังอัปโหลดภาพถ่าย "{0}"</value>
+  </data>
+  <data name="UploadingPictureX" xml:space="preserve">
+    <value>กำลังอัปโหลดรูปภาพ "{0}"</value>
+  </data>
+  <data name="UploadingPictureXYOfZ" xml:space="preserve">
+    <value>กำลังอัปโหลดรูปภาพ "{0}" ({1} จาก {2})</value>
+  </data>
+  <data name="UploadingPictures" xml:space="preserve">
+    <value>กำลังอัปโหลดรูปภาพ</value>
+  </data>
+  <data name="Url4" xml:space="preserve">
+    <value>url</value>
+  </data>
+  <data name="UseAnExistingAlbum" xml:space="preserve">
+    <value>ใช้อัลบั้มที่มีอยู่</value>
+  </data>
+  <data name="UsedXOfYourAllowedYMonthlyQuota" xml:space="preserve">
+    <value>ใช้ไป {0} จากโควต้ารายเดือน {1} ที่คุณได้รับอนุญาต</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>_ชื่อผู้ใช้:</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>รุ่น</value>
+  </data>
+  <data name="Version3" xml:space="preserve">
+    <value>ฉบับ_สำเนา</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>มุมมอง</value>
+  </data>
+  <data name="View2" xml:space="preserve">
+    <value>_มุมมอง</value>
+  </data>
+  <data name="ViewAndEditAPhoto" xml:space="preserve">
+    <value>แสดงและแก้ไขภาพถ่าย</value>
+  </data>
+  <data name="ViewPhotosFullscreen" xml:space="preserve">
+    <value>ดูภาพถ่ายแบบเต็มหน้าจอ</value>
+  </data>
+  <data name="ViewPhotosInASlideshow" xml:space="preserve">
+    <value>ดูภาพถ่ายแบบฉายสไลด์</value>
+  </data>
+  <data name="ViewPhotosInBrowserWhenDoneUploading" xml:space="preserve">
+    <value>แสด_งภาพถ่ายในเบราว์เซอร์เมื่ออัปโหลดเสร็จแล้ว</value>
+  </data>
+  <data name="Views" xml:space="preserve">
+    <value>มุมมอง:</value>
+  </data>
+  <data name="VisibleToFamily" xml:space="preserve">
+    <value>ครอบครัวสามารถดูได้</value>
+  </data>
+  <data name="VisibleToFriends" xml:space="preserve">
+    <value>เพื่อนสามารถดูได้</value>
+  </data>
+  <data name="WaitingForAuthentication" xml:space="preserve">
+    <value>กำลังรอยืนยันตัวบุคคล</value>
+  </data>
+  <data name="WaitingForResponseXOfY" xml:space="preserve">
+    <value>กำลังรอการตอบกลับ {0} จาก {1}</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>คำเตือน</value>
+  </data>
+  <data name="WelcomeXYouAreConnectedToY2" xml:space="preserve">
+    <value>ยินดีต้อนรับ คุณ {0} คุณได้เชื่อมต่อกับ {1} เรียบร้อยแล้ว</value>
+  </data>
+  <data name="WhenImportingPhotosCopyThemTo" xml:space="preserve">
+    <value>เมื่อนำเข้าภาพถ่าย ให้คัดลอกภาพถ่ายไปที่:</value>
+  </data>
+  <data name="WhiteBorders" xml:space="preserve">
+    <value>ขอบขาว</value>
+  </data>
+  <data name="WhoIsThis" xml:space="preserve">
+    <value>นี่คือใคร?</value>
+  </data>
+  <data name="WidthOfTheImportDialog" xml:space="preserve">
+    <value>ความกว้างของกล่องโต้ตอบนำเข้า</value>
+  </data>
+  <data name="WidthOfTheMainWindow" xml:space="preserve">
+    <value>ความกว้างของหน้าต่างหลัก</value>
+  </data>
+  <data name="WidthOfThePhotoViewerWindow" xml:space="preserve">
+    <value>ความกว้างของหน้าต่างแสดงภาพถ่าย</value>
+  </data>
+  <data name="WriteOnlyThesePhotosToCD" xml:space="preserve">
+    <value>เ_ขียนเฉพาะภาพถ่ายเหล่านี้ลงซีดี</value>
+  </data>
+  <data name="XCFVersion" xml:space="preserve">
+    <value>ฉบับ XCF</value>
+  </data>
+  <data name="XOfApproxY" xml:space="preserve">
+    <value>{0} จากประมาณ {1}</value>
+  </data>
+  <data name="XOfY" xml:space="preserve">
+    <value>{0} จาก {1}</value>
+  </data>
+  <data name="XPhoto" xml:space="preserve">
+    <value>ภาพถ่าย {0} ภาพ</value>
+  </data>
+  <data name="XPhoto2" xml:space="preserve">
+    <value>ภาพถ่าย {0} ภาพ</value>
+  </data>
+  <data name="XPhotoOutOfY2" xml:space="preserve">
+    <value>ภาพถ่าย {0} จาก {1} ภาพ</value>
+  </data>
+  <data name="XPhotos" xml:space="preserve">
+    <value>ภาพถ่าย {0} ภาพ</value>
+  </data>
+  <data name="XPhotos2" xml:space="preserve">
+    <value>ภาพถ่าย {0} ภาพ</value>
+  </data>
+  <data name="XPhotosOutOfY2" xml:space="preserve">
+    <value>ภาพถ่าย {0} จาก {1} ภาพ</value>
+  </data>
+  <data name="XPositionOfTheMainWindow" xml:space="preserve">
+    <value>ตำแหน่ง X ของหน้าต่างหลัก</value>
+  </data>
+  <data name="XPositionOfThePhotoViewerWindow" xml:space="preserve">
+    <value>ตำแหน่ง X ของหน้าต่างแสดงภาพถ่าย</value>
+  </data>
+  <data name="XSelected2" xml:space="preserve">
+    <value>(เลือกไว้ {0} ภาพ)</value>
+  </data>
+  <data name="XSent" xml:space="preserve">
+    <value>ส่งแล้ว {0}</value>
+  </data>
+  <data name="YPositionOfTheMainWindow" xml:space="preserve">
+    <value>ตำแหน่ง Y ของหน้าต่างหลัก</value>
+  </data>
+  <data name="YPositionOfThePhotoViewerWindow" xml:space="preserve">
+    <value>ตำแหน่ง Y ของหน้าต่างแสดงภาพถ่าย</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>เมื่อวาน</value>
+  </data>
+  <data name="YouAreNotLoggedIn" xml:space="preserve">
+    <value>คุณยังไม่ได้เข้าระบบ</value>
+  </data>
+  <data name="Zoom" xml:space="preserve">
+    <value>ซูมเต็มกรอบ</value>
+  </data>
+  <data name="ZoomIn" xml:space="preserve">
+    <value>ซูมเ_ข้า</value>
+  </data>
+  <data name="ZoomIn2" xml:space="preserve">
+    <value>ซูมเข้า</value>
+  </data>
+  <data name="ZoomOut" xml:space="preserve">
+    <value>ซูม_ออก</value>
+  </data>
+  <data name="ZoomOut2" xml:space="preserve">
+    <value>ซูมออก</value>
+  </data>
+</root>

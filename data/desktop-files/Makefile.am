@@ -1,16 +1,21 @@
 desktop_in_files=	\
-	f-spot.desktop.in	\
-	f-spot-view.desktop.in	\
-	f-spot-import.desktop.in
+	f-spot.desktop.in.in	\
+	f-spot-view.desktop.in.in	\
+	f-spot-import.desktop.in.in
 
 Applicationsdir = $(datadir)/applications
 Applications_DATA = $(desktop_files)
 
-desktop_files=$(desktop_in_files:.desktop.in=.desktop)
-@INTLTOOL_DESKTOP_RULE@
+desktop_files=	\
+	f-spot.desktop	\
+	f-spot-view.desktop	\
+	f-spot-import.desktop
+
+%.desktop: %.desktop.in.in
+	cp $< $@
 
 CLEANFILES =			\
-	$(desktop_DATA)
+	$(desktop_files)
 
 EXTRA_DIST =			\
 	$(desktop_in_files)     \

@@ -20,7 +20,7 @@ namespace FSpot.Editors
 	{
 		public DesaturateEditor () : base (Strings.Desaturate, "color-desaturate")
 		{
-			// FIXME: need tooltip Catalog.GetString ("Convert the photo to black and white")
+			// FIXME: need tooltip MsgidLookup.GetString ("Convert the photo to black and white")
 			CanHandleMultiple = true;
 		}
 

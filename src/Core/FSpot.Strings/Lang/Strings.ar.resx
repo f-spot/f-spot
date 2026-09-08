@@ -1,0 +1,2325 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AUniqueNumber" xml:space="preserve">
+    <value>رقم فريد</value>
+  </data>
+  <data name="AUniqueNumberIdentifyingTheEnvelope" xml:space="preserve">
+    <value>رقم فريد يعرف المظروف</value>
+  </data>
+  <data name="AbstractRelationshipMethodARMIdentifier" xml:space="preserve">
+    <value>هوية وظيفة علاقة مجردة (ARM).</value>
+  </data>
+  <data name="AbstractRelationshipMethodARMVersionNumber" xml:space="preserve">
+    <value>رقم اصدار وظيفة علاقة مجردة (ARM).</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>ال_حساب:</value>
+  </data>
+  <data name="AddNewRepository" xml:space="preserve">
+    <value>إضفاة مقر جديد</value>
+  </data>
+  <data name="AdditionalExtensionsAreRequiredToPerformThisOperation" xml:space="preserve">
+    <value>امتدادات إضافية مطلوبة لتكوين هذه العملية.</value>
+  </data>
+  <data name="AdjustColor" xml:space="preserve">
+    <value>تسوية اللون...</value>
+  </data>
+  <data name="AdjustColor2" xml:space="preserve">
+    <value>تسوية اللون</value>
+  </data>
+  <data name="AdjustColors" xml:space="preserve">
+    <value>تسوية الألوان</value>
+  </data>
+  <data name="AdjustTheAngleOfTheImageToStraightenTheHorizon" xml:space="preserve">
+    <value>سوٍّ محاذاة الصورة ليستقيم أفقيا</value>
+  </data>
+  <data name="AdjustThePhotoColors" xml:space="preserve">
+    <value>تسوية ألوان الصورة</value>
+  </data>
+  <data name="AdjustTime" xml:space="preserve">
+    <value>غيّر الوقت</value>
+  </data>
+  <data name="AdjustTime2" xml:space="preserve">
+    <value>_غيّر الوقت...</value>
+  </data>
+  <data name="AdjustedDate" xml:space="preserve">
+    <value>غيّر التاريخ:</value>
+  </data>
+  <data name="AlbumName" xml:space="preserve">
+    <value>اسم الألبوم:</value>
+  </data>
+  <data name="AlbumTitle" xml:space="preserve">
+    <value>عنوان ال_ألبوم:</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>الكل</value>
+  </data>
+  <data name="AllImages" xml:space="preserve">
+    <value>كل الصور</value>
+  </data>
+  <data name="AmountColon" xml:space="preserve">
+    <value>الكمية:</value>
+  </data>
+  <data name="AnErrorOccurredWhileProcessingXMessage" xml:space="preserve">
+    <value>خطأ حدث أثناء تنفيذ "{0}": {1}</value>
+  </data>
+  <data name="AnErrorOfTypeXOccurredWhileDeletingTheFile" xml:space="preserve">
+    <value>خطأ من نوع {0} حدث أثناء حذف الملف:{2}{1}</value>
+  </data>
+  <data name="AnUnhandledExceptionWasThrown" xml:space="preserve">
+    <value>لم تتم السيطرة على الإستثناء </value>
+  </data>
+  <data name="And" xml:space="preserve">
+    <value>و</value>
+  </data>
+  <data name="ApplyStraightening" xml:space="preserve">
+    <value>أدر الصورة يميناتطبيق ال_خلفية</value>
+  </data>
+  <data name="ApplyStraighteningToImage" xml:space="preserve">
+    <value>تطبيق التقويم إلى الصورة</value>
+  </data>
+  <data name="AreYouSureYouWantToCancelTheInstallation" xml:space="preserve">
+    <value>هل أنت متأكد من أنك تريد إلغاء التثبيت؟</value>
+  </data>
+  <data name="ArrangeBy" xml:space="preserve">
+    <value>ترتيب _حسب</value>
+  </data>
+  <data name="ArrangeByFolder" xml:space="preserve">
+    <value>رتّب حسب المجلد</value>
+  </data>
+  <data name="ArrangeByMonth" xml:space="preserve">
+    <value>رتّب حسب الشهر</value>
+  </data>
+  <data name="AsBackground" xml:space="preserve">
+    <value>ك_خلفية</value>
+  </data>
+  <data name="AsCustomColor" xml:space="preserve">
+    <value>كلون م_خصص..</value>
+  </data>
+  <data name="AtAfterBetween" xml:space="preserve">
+    <value>مع
+بعد
+بين</value>
+  </data>
+  <data name="AttachTag" xml:space="preserve">
+    <value>إ_رفاق وسم</value>
+  </data>
+  <data name="AttachTag2" xml:space="preserve">
+    <value>إرفاق وسم:</value>
+  </data>
+  <data name="AttachTagToSelection2" xml:space="preserve">
+    <value>_إرفاق الوسم مع المنتقى</value>
+  </data>
+  <data name="AttachTags" xml:space="preserve">
+    <value>إرفاق وسوم:</value>
+  </data>
+  <data name="Author" xml:space="preserve">
+    <value>المؤلف:</value>
+  </data>
+  <data name="Authorize" xml:space="preserve">
+    <value>ترخيص</value>
+  </data>
+  <data name="AutoColor" xml:space="preserve">
+    <value>تلوين تلقائي</value>
+  </data>
+  <data name="AutomaticallyAdjustTheColors" xml:space="preserve">
+    <value>تسوية الألوان تلقائيا</value>
+  </data>
+  <data name="Autorotate" xml:space="preserve">
+    <value>تدوير تلقائي</value>
+  </data>
+  <data name="Autorotate2" xml:space="preserve">
+    <value>_تدوير تلقائي</value>
+  </data>
+  <data name="AvailableSpace" xml:space="preserve">
+    <value>المساحة المتوفرة:</value>
+  </data>
+  <data name="BAccountB" xml:space="preserve">
+    <value>&lt;b&gt;الحساب&lt;/b&gt;</value>
+  </data>
+  <data name="BActionB" xml:space="preserve">
+    <value>&lt;b&gt;إجراء&lt;/b&gt;</value>
+  </data>
+  <data name="BAlbumB" xml:space="preserve">
+    <value>&lt;b&gt;ألبوم&lt;/b&gt;</value>
+  </data>
+  <data name="BB" xml:space="preserve">
+    <value>&lt;b&gt;&lt;/b</value>
+  </data>
+  <data name="BColorManagementB" xml:space="preserve">
+    <value>&lt;b&gt;إدارة الألوان&lt;/b&gt;</value>
+  </data>
+  <data name="BColorTemperatureB" xml:space="preserve">
+    <value>&lt;b&gt;درجة التلوين&lt;/b&gt;</value>
+  </data>
+  <data name="BCorrectionsB" xml:space="preserve">
+    <value>&lt;b&gt;ت_صحيحات&lt;/b&gt;</value>
+  </data>
+  <data name="BDestinationB" xml:space="preserve">
+    <value>&lt;b&gt;مقصد&lt;/b&gt;</value>
+  </data>
+  <data name="BEndDateB" xml:space="preserve">
+    <value>&lt;b&gt;تاريخ الإنتهاء&lt;/b&gt;</value>
+  </data>
+  <data name="BExportMethodB" xml:space="preserve">
+    <value>&lt;b&gt;طريقة التصدير&lt;/b&gt;</value>
+  </data>
+  <data name="BExposureB" xml:space="preserve">
+    <value>&lt;b&gt;التعرض&lt;/b&gt;</value>
+  </data>
+  <data name="BFromExternalPhotoB" xml:space="preserve">
+    <value>&lt;b&gt;من صورة خارجية&lt;/b&gt;</value>
+  </data>
+  <data name="BFromPhotoB" xml:space="preserve">
+    <value>&lt;b&gt;من صورة&lt;/b&gt;</value>
+  </data>
+  <data name="BFromPhotoBYouCanUseOneOfYourLibraryPhotosAsAnIconForThisTagHoweverFirstYouMustHaveAtLeastOnePhotoAssociatedWithThisTagPleaseTagAPhotoAsXAndReturnHereToUseItAsAnIcon" xml:space="preserve">
+    <value>
+&lt;b&gt;من الصورة&lt;/b&gt;
+تستطيع استخدام أحد صور مكتبتك كأيقونة لهذا الوسم.
+ولكن، يجب عليك أولا أن تمتلك صورة واحدة على الأقل
+مع هذا الوسم. من فضلك سِم صورةً ب'{0}' وعد هنا
+لاستخدامها كأيقونة.</value>
+  </data>
+  <data name="BGalleryB" xml:space="preserve">
+    <value>&lt;b&gt;معرض&lt;/b&gt;</value>
+  </data>
+  <data name="BHistogramB" xml:space="preserve">
+    <value>&lt;b&gt;م_درّج تكراري&lt;/b&gt;</value>
+  </data>
+  <data name="BHistogramB2" xml:space="preserve">
+    <value>&lt;b&gt;مدرّج تكراري&lt;/b&gt;</value>
+  </data>
+  <data name="BImageInterpolationB" xml:space="preserve">
+    <value>&lt;b&gt;التوليد الصورة&lt;/b&gt;</value>
+  </data>
+  <data name="BImportSettingsB" xml:space="preserve">
+    <value>&lt;b&gt;إعدادات الاستيراد&lt;/b&gt;</value>
+  </data>
+  <data name="BMaxRatingB" xml:space="preserve">
+    <value>&lt;b&gt;أقصى تقييم&lt;/b&gt;</value>
+  </data>
+  <data name="BMetadataB" xml:space="preserve">
+    <value>&lt;b&gt;ميتاداتا&lt;/b&gt;</value>
+  </data>
+  <data name="BMinRatingB" xml:space="preserve">
+    <value>&lt;b&gt;أدنى تقييم&lt;/b&gt;</value>
+  </data>
+  <data name="BPhotographLayoutB" xml:space="preserve">
+    <value>&lt;b&gt;النسق الفوتوغرافي&lt;/b&gt;</value>
+  </data>
+  <data name="BPhotosB" xml:space="preserve">
+    <value>&lt;b&gt;الصور&lt;/b&gt;</value>
+  </data>
+  <data name="BPhotosToBurnB" xml:space="preserve">
+    <value>&lt;b&gt;الصور للحرق&lt;/b&gt;</value>
+  </data>
+  <data name="BPicasaWebExportB" xml:space="preserve">
+    <value>&lt;b&gt;تصدير بيكاسا (SmugMug)&lt;/b&gt;</value>
+  </data>
+  <data name="BPredefinedB" xml:space="preserve">
+    <value>&lt;b&gt;معرّف مسبقا&lt;/b&gt;</value>
+  </data>
+  <data name="BPreviewB" xml:space="preserve">
+    <value>&lt;b&gt;معاينة&lt;/b&gt;</value>
+  </data>
+  <data name="BPrinterDetailsB" xml:space="preserve">
+    <value>&lt;b&gt;تفاصيل الطباعة&lt;/b&gt;</value>
+  </data>
+  <data name="BReferencePhotoB" xml:space="preserve">
+    <value>&lt;b&gt;مرجع الصورة&lt;/b&gt;</value>
+  </data>
+  <data name="BScreensaverB" xml:space="preserve">
+    <value>&lt;b&gt;حافظة الشاشة&lt;/b&gt;</value>
+  </data>
+  <data name="BSelectPeriodB" xml:space="preserve">
+    <value>&lt;b&gt;انتق دورة&lt;/b&gt;</value>
+  </data>
+  <data name="BSelectTheExtensionsToInstallAndClickOnNextB" xml:space="preserve">
+    <value>&lt;b&gt;انتق الامتدادات المطلوب تثبيتها ثم انقر التالي&lt;/b&gt;</value>
+  </data>
+  <data name="BSizeB" xml:space="preserve">
+    <value>&lt;b&gt;الحجم&lt;/b&gt;</value>
+  </data>
+  <data name="BSmugMugExportB" xml:space="preserve">
+    <value>&lt;b&gt;تصدير سمغ‌مغ (SmugMug)&lt;/b&gt;</value>
+  </data>
+  <data name="BStartDateB" xml:space="preserve">
+    <value>&lt;b&gt;تاريخ البدء&lt;/b&gt;</value>
+  </data>
+  <data name="BStyleB" xml:space="preserve">
+    <value>&lt;b&gt;أسلوب&lt;/b&gt;</value>
+  </data>
+  <data name="BSummaryB" xml:space="preserve">
+    <value>&lt;b&gt;ملخص&lt;/b&gt;</value>
+  </data>
+  <data name="BThemingB" xml:space="preserve">
+    <value>&lt;b&gt;سمة&lt;/b&gt;</value>
+  </data>
+  <data name="BTransparentPartsB" xml:space="preserve">
+    <value>&lt;b&gt;الأجزاء الشفّافة&lt;/b&gt;</value>
+  </data>
+  <data name="BViewAllPicturesImportedB" xml:space="preserve">
+    <value>&lt;b&gt;اعرض كل الصور المستوردة&lt;/b&gt;</value>
+  </data>
+  <data name="BViewingPermissionsB" xml:space="preserve">
+    <value>&lt;b&gt;عرض الأذونات&lt;/b&gt;</value>
+  </data>
+  <data name="BWhiteBalanceB" xml:space="preserve">
+    <value>&lt;b&gt;توازن أبي_ض&lt;/b&gt;</value>
+  </data>
+  <data name="BetweenXAndY" xml:space="preserve">
+    <value>بين {0} 
+و {1}</value>
+  </data>
+  <data name="BigBExtensionManagerBBig" xml:space="preserve">
+    <value>&lt;big&gt;&lt;b&gt;مدير الامتدادات&lt;/b&gt;&lt;/big&gt;</value>
+  </data>
+  <data name="Border" xml:space="preserve">
+    <value>_حد:</value>
+  </data>
+  <data name="Brightness" xml:space="preserve">
+    <value>ال_سطوع:</value>
+  </data>
+  <data name="Browse" xml:space="preserve">
+    <value>تصفَّح...</value>
+  </data>
+  <data name="Browse2" xml:space="preserve">
+    <value>تصفَّح</value>
+  </data>
+  <data name="BrowseManyPhotosSimultaneously" xml:space="preserve">
+    <value>تصفح الكثير من الصور في وقت واحد</value>
+  </data>
+  <data name="BrowsePreviouslyScheduledFiles" xml:space="preserve">
+    <value>ت_صفح الملفات المجدولة سابقا</value>
+  </data>
+  <data name="BuildingGallery" xml:space="preserve">
+    <value>بناء معرض</value>
+  </data>
+  <data name="ByDate" xml:space="preserve">
+    <value>حسب ال_تاريخ</value>
+  </data>
+  <data name="ByRating" xml:space="preserve">
+    <value>حسب الت_قييم</value>
+  </data>
+  <data name="CD" xml:space="preserve">
+    <value>سيدي</value>
+  </data>
+  <data name="CD2" xml:space="preserve">
+    <value>_سيدي...</value>
+  </data>
+  <data name="Camera" xml:space="preserve">
+    <value>كاميرا</value>
+  </data>
+  <data name="CameraSelection" xml:space="preserve">
+    <value>انتقاء كاميرا</value>
+  </data>
+  <data name="CanNotDeleteTagsThatHaveTagsWihinThem.PleaseDeleteTagUnderXFirst" xml:space="preserve">
+    <value>لا يمكن حذف وسوم تحتوي وسوما داخلها. من فضلك احذف الوسوم تحت "{0}" أولا</value>
+  </data>
+  <data name="CanTSaveNonLocalFiles" xml:space="preserve">
+    <value>لا يمكن حفظ ملفات ليست محلية.</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>الغِ</value>
+  </data>
+  <data name="CancelDoNotChangeTheCurrentTimeline" xml:space="preserve">
+    <value>ألغِ، لا تغير الخط الزمني الحالي</value>
+  </data>
+  <data name="Captcha" xml:space="preserve">
+    <value>_كابتشا (captcha):</value>
+  </data>
+  <data name="Caption" xml:space="preserve">
+    <value>عنوان _فرعي:</value>
+  </data>
+  <data name="CheckType" xml:space="preserve">
+    <value>فحص النوع</value>
+  </data>
+  <data name="CheckingCredentials" xml:space="preserve">
+    <value>فحص الاعتمادات...</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>مدينة</value>
+  </data>
+  <data name="ClearDateRangeMnemonic" xml:space="preserve">
+    <value>_مسح مدى التاريخ</value>
+  </data>
+  <data name="ClearRatingFilter" xml:space="preserve">
+    <value>_مسح مرشح التقييم</value>
+  </data>
+  <data name="ClearSearch" xml:space="preserve">
+    <value>مسح البحث</value>
+  </data>
+  <data name="ColorSpace" xml:space="preserve">
+    <value>فراغ اللون</value>
+  </data>
+  <data name="CommaSpace" xml:space="preserve">
+    <value>،</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>تعليق:</value>
+  </data>
+  <data name="CompleteAuthorization" xml:space="preserve">
+    <value>اكتمل الترخيص</value>
+  </data>
+  <data name="Components" xml:space="preserve">
+    <value>الم_|كونات</value>
+  </data>
+  <data name="ComponentsConfiguration" xml:space="preserve">
+    <value>إعدادات المكونات</value>
+  </data>
+  <data name="Compression" xml:space="preserve">
+    <value>الضغط</value>
+  </data>
+  <data name="Configure" xml:space="preserve">
+    <value>إ_ضبط</value>
+  </data>
+  <data name="Contents" xml:space="preserve">
+    <value>_المحتويات</value>
+  </data>
+  <data name="Contrast" xml:space="preserve">
+    <value>تباين</value>
+  </data>
+  <data name="Contrast2" xml:space="preserve">
+    <value>ت_باين:</value>
+  </data>
+  <data name="ConvertThePhotoToBlackAndWhite" xml:space="preserve">
+    <value>تحويل الصورة الى ابيض واسود</value>
+  </data>
+  <data name="CopyFilesToThePhotosFolder" xml:space="preserve">
+    <value>نسخ الملفات إلى مجلد الصور</value>
+  </data>
+  <data name="CopyLocation" xml:space="preserve">
+    <value>نسخ ال_موقع</value>
+  </data>
+  <data name="CopyPhotoLocation" xml:space="preserve">
+    <value>نسخ مو_قع الصورة</value>
+  </data>
+  <data name="Copying2" xml:space="preserve">
+    <value>نسخ...</value>
+  </data>
+  <data name="CopyingFileXOfY" xml:space="preserve">
+    <value>نسخ الملف {0} من {1}</value>
+  </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>حقوق النشر:</value>
+  </data>
+  <data name="Copyright2" xml:space="preserve">
+    <value>حقوق النسخ</value>
+  </data>
+  <data name="Copyright20032008NovellInc" xml:space="preserve">
+    <value>حقوق النشر © 2003-2008 نوفل المحدودة.</value>
+  </data>
+  <data name="CopyrightInformationFor" xml:space="preserve">
+    <value>معلومات حقوق نسخ</value>
+  </data>
+  <data name="CouldNotCreateANewVersion" xml:space="preserve">
+    <value>لا يمكن إنشاء اصدار جديد</value>
+  </data>
+  <data name="CouldNotDeleteAVersion" xml:space="preserve">
+    <value>لا يمكن حذف إصدار</value>
+  </data>
+  <data name="CouldNotRenameAVersion" xml:space="preserve">
+    <value>لا يمكن إعادة تسمية إصدار</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>كنتري</value>
+  </data>
+  <data name="Cover" xml:space="preserve">
+    <value>غطِّ</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>أ_نشئ</value>
+  </data>
+  <data name="CreateAMailWithTheSelectedPhotosPossiblyResizedAttached" xml:space="preserve">
+    <value>إنشاء بريد مع الصور المختارة (قد تكون معادة التحجيم) كمرفقة</value>
+  </data>
+  <data name="CreateASoftFocusVisualEffect" xml:space="preserve">
+    <value>إنشاء التأثير المرئي بؤرة ناعمة</value>
+  </data>
+  <data name="CreateCD" xml:space="preserve">
+    <value>إنشاء سيدي</value>
+  </data>
+  <data name="CreateGalleryUsingOriginal" xml:space="preserve">
+    <value>إنشاء معرض بإسخدام "الطبيعي"</value>
+  </data>
+  <data name="CreateMail" xml:space="preserve">
+    <value>إنشاء بريد</value>
+  </data>
+  <data name="CreateMail2" xml:space="preserve">
+    <value>إ_نشاء بريد</value>
+  </data>
+  <data name="CreateNewTag" xml:space="preserve">
+    <value>إنشاء وسم جديد</value>
+  </data>
+  <data name="CreateNewTag2" xml:space="preserve">
+    <value>إنشاء وسم جديد...</value>
+  </data>
+  <data name="CreateNewTag3" xml:space="preserve">
+    <value>إنشاء _وسم جديد...</value>
+  </data>
+  <data name="CreateNewVersion" xml:space="preserve">
+    <value>إنشاء إصدار جديد</value>
+  </data>
+  <data name="CreateNewVersion2" xml:space="preserve">
+    <value>إنشاء إصدار جديد؟</value>
+  </data>
+  <data name="CreateNewVersion3" xml:space="preserve">
+    <value>إنشاء إصدار _جديد...</value>
+  </data>
+  <data name="CreateNewVersions" xml:space="preserve">
+    <value>إنشاء إصدارات جديدة؟</value>
+  </data>
+  <data name="Creator" xml:space="preserve">
+    <value>المنشئ</value>
+  </data>
+  <data name="CreatorOfTheContent" xml:space="preserve">
+    <value>منشيء المحتوى</value>
+  </data>
+  <data name="Crop" xml:space="preserve">
+    <value>اقتصاص</value>
+  </data>
+  <data name="CurrentDate" xml:space="preserve">
+    <value>التاريخ الحالي:</value>
+  </data>
+  <data name="CurrentWeekMonSun" xml:space="preserve">
+    <value>الأسبوع الحالي (الإثنين-الأحد)</value>
+  </data>
+  <data name="CustomRatios" xml:space="preserve">
+    <value>نسب مخصص...</value>
+  </data>
+  <data name="CustomRendered" xml:space="preserve">
+    <value> تصيير مخصص</value>
+  </data>
+  <data name="CustomText2" xml:space="preserve">
+    <value>نص مخصص:</value>
+  </data>
+  <data name="CustomTheme" xml:space="preserve">
+    <value>سمة مخصصة</value>
+  </data>
+  <data name="CustomizedRange" xml:space="preserve">
+    <value>مدى مخصص</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>غامق</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>التاريخ</value>
+  </data>
+  <data name="Dates" xml:space="preserve">
+    <value>الت_واريخ</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>حدف</value>
+  </data>
+  <data name="DeleteFromDrive" xml:space="preserve">
+    <value>ا_حذف من السواقة</value>
+  </data>
+  <data name="DeleteSelectedTag" xml:space="preserve">
+    <value>ح_ذف الوسم المنتقى</value>
+  </data>
+  <data name="DeleteTag" xml:space="preserve">
+    <value>احذف شارة</value>
+  </data>
+  <data name="DeleteTagXQuestion" xml:space="preserve">
+    <value>حذف الوسم "{0}"؟</value>
+  </data>
+  <data name="DeleteTags" xml:space="preserve">
+    <value>احذف شارة</value>
+  </data>
+  <data name="DeleteTheXSelectedTagsQuestion" xml:space="preserve">
+    <value>حذف الوسوم {0} المنتقاه؟</value>
+  </data>
+  <data name="DeleteVersion" xml:space="preserve">
+    <value>ح_ذف الإصدار</value>
+  </data>
+  <data name="Description2" xml:space="preserve">
+    <value>الو_صف:</value>
+  </data>
+  <data name="Description3" xml:space="preserve">
+    <value>ال_وصف:</value>
+  </data>
+  <data name="DestinationTemp" xml:space="preserve">
+    <value>_مقصد مؤقت</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>التفاصيل</value>
+  </data>
+  <data name="Difference" xml:space="preserve">
+    <value>فرق:</value>
+  </data>
+  <data name="DirectoryDoesNotExist" xml:space="preserve">
+    <value>الدليل غير موجود.</value>
+  </data>
+  <data name="DirectoryNotFound" xml:space="preserve">
+    <value>الدليل غير موجود</value>
+  </data>
+  <data name="Disable" xml:space="preserve">
+    <value>تعطيل</value>
+  </data>
+  <data name="DisabledExtensionsCanTBeLoaded" xml:space="preserve">
+    <value>تعطيل امتدادات لا يمكن تحميلها.</value>
+  </data>
+  <data name="Display" xml:space="preserve">
+    <value>_عرض:</value>
+  </data>
+  <data name="DisplayASlideshowFromFSpot" xml:space="preserve">
+    <value>أظهر عرض شرائح من إف-سبوت</value>
+  </data>
+  <data name="DisplayFileNames" xml:space="preserve">
+    <value>عرض _أسماء الملفات</value>
+  </data>
+  <data name="Dissolve" xml:space="preserve">
+    <value>أذب</value>
+  </data>
+  <data name="Dither" xml:space="preserve">
+    <value>تظليل وهمي</value>
+  </data>
+  <data name="DitherType" xml:space="preserve">
+    <value>نوع التظليل الوهمي</value>
+  </data>
+  <data name="DoNotSendAMail" xml:space="preserve">
+    <value>لا ترسل بريدا</value>
+  </data>
+  <data name="DoneCopyingFiles" xml:space="preserve">
+    <value>انتهى نسخ الملفات</value>
+  </data>
+  <data name="DoneLoading" xml:space="preserve">
+    <value>انتهى التحميل</value>
+  </data>
+  <data name="DoneSendingPhotos" xml:space="preserve">
+    <value>انتهى إرسال الصور</value>
+  </data>
+  <data name="DownloadComplete" xml:space="preserve">
+    <value>اكتمل التنزيل</value>
+  </data>
+  <data name="DownloadingExtensions" xml:space="preserve">
+    <value>تنزيل الامتدادات...</value>
+  </data>
+  <data name="DownloadingPreviewOfX" xml:space="preserve">
+    <value>تنزيل معاينات ل {0}</value>
+  </data>
+  <data name="DownloadingPreviews" xml:space="preserve">
+    <value>تنزيل معاينات</value>
+  </data>
+  <data name="DragTagsHereToSearchForThem" xml:space="preserve">
+    <value>اسحب الوسوم إلى هنا للبحث عنهم</value>
+  </data>
+  <data name="EMail" xml:space="preserve">
+    <value>بريد إل_كتروني:</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>حرّر</value>
+  </data>
+  <data name="Edit2" xml:space="preserve">
+    <value>_تحرير</value>
+  </data>
+  <data name="EditIcon" xml:space="preserve">
+    <value>تحرير الأيقونة</value>
+  </data>
+  <data name="EditIconForTagX" xml:space="preserve">
+    <value>تحرير أيقونة الوسم {0}</value>
+  </data>
+  <data name="EditImage" xml:space="preserve">
+    <value>حرّر الصورة</value>
+  </data>
+  <data name="EditSelectedTag" xml:space="preserve">
+    <value>تحرير الوسم المنتقى...</value>
+  </data>
+  <data name="EditSelectedTag2" xml:space="preserve">
+    <value>_تحرير الوسم المنتقى...</value>
+  </data>
+  <data name="EditTag2" xml:space="preserve">
+    <value>تحرير الوسم</value>
+  </data>
+  <data name="EditTagIcon" xml:space="preserve">
+    <value>تحرير أيقونة الوسم</value>
+  </data>
+  <data name="EightByTen" xml:space="preserve">
+    <value>8 × 10</value>
+  </data>
+  <data name="Enable" xml:space="preserve">
+    <value>فعّل</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>خطأ</value>
+  </data>
+  <data name="ErrorConnectingToCamera" xml:space="preserve">
+    <value>خطأ الاتصال بالكاميرا</value>
+  </data>
+  <data name="ErrorDeletingPicture" xml:space="preserve">
+    <value>خطأ حذف صورة</value>
+  </data>
+  <data name="ErrorDetails" xml:space="preserve">
+    <value>تفاصيل الخطأ</value>
+  </data>
+  <data name="ErrorEditingPhoto" xml:space="preserve">
+    <value>خطأ تعديل الصورة</value>
+  </data>
+  <data name="ErrorErrorWhileTransferringAborting" xml:space="preserve">
+    <value>خطأ: خطأ أثناء النقل؛ إجهاض</value>
+  </data>
+  <data name="ErrorFileAlreadyExistsAborting" xml:space="preserve">
+    <value>خطأ: الملف موجود حاليا؛ إجهاض</value>
+  </data>
+  <data name="ErrorImportingXZZY" xml:space="preserve">
+    <value>خطأ استيراد {0}{2}{2}{1}</value>
+  </data>
+  <data name="ErrorLoadingDatabase" xml:space="preserve">
+    <value>خطأ تحميل قاعدة البيانات.</value>
+  </data>
+  <data name="ErrorProcessingImage" xml:space="preserve">
+    <value>خطأ في عملية الصورة</value>
+  </data>
+  <data name="ErrorReadingServerResponse" xml:space="preserve">
+    <value>خطأ في قراءة استجابة الخادم</value>
+  </data>
+  <data name="ErrorRenamingTag" xml:space="preserve">
+    <value>خطأ إعادة تسمية وسم</value>
+  </data>
+  <data name="ErrorSavingAdjustedPhoto" xml:space="preserve">
+    <value>خطأ حفظ صورة مُسوّية</value>
+  </data>
+  <data name="ErrorSavingSharpenedPhoto" xml:space="preserve">
+    <value>خطأ حفظ صورة مُقوّمة.</value>
+  </data>
+  <data name="ErrorTransferring" xml:space="preserve">
+    <value>خطا نقل</value>
+  </data>
+  <data name="ErrorTransferringFile" xml:space="preserve">
+    <value>خطأ نقل الملف</value>
+  </data>
+  <data name="ErrorUploadingPictureXToGalleryColonY" xml:space="preserve">
+    <value>خطأ رفع الصورة "{0}"  إلى المعرض: {1}</value>
+  </data>
+  <data name="ErrorUploadingPictureXToGalleryZY" xml:space="preserve">
+    <value>خطأ رفع الصورة "{0}" إلى المعرض:{2}{1}</value>
+  </data>
+  <data name="ErrorUploadingToGalleryX" xml:space="preserve">
+    <value>خطأ في رفع إلى المعرض: {0}</value>
+  </data>
+  <data name="ErrorUploadingToXColonY" xml:space="preserve">
+    <value>خطأ الرفع إلى {0}: {1}</value>
+  </data>
+  <data name="ErrorWhileConnectingToGallery" xml:space="preserve">
+    <value>خطأ أثناء الاتصال بالمعرض</value>
+  </data>
+  <data name="ErrorWhileCreatingAlbum" xml:space="preserve">
+    <value>خطأ أثناء إنشاء ألبوم</value>
+  </data>
+  <data name="ErrorWhileRotatingPhoto" xml:space="preserve">
+    <value>خطأ أثناء تدوير الصورة.</value>
+  </data>
+  <data name="ErrorWhileTransferring" xml:space="preserve">
+    <value>خطأ أثناء النقل</value>
+  </data>
+  <data name="Events" xml:space="preserve">
+    <value>أحداث</value>
+  </data>
+  <data name="ExceptionOccurredX" xml:space="preserve">
+    <value>حدث استثناء: {0}</value>
+  </data>
+  <data name="ExcludePhotosTaggedX" xml:space="preserve">
+    <value>استثنِ الصور الموسومة ب"{0}"</value>
+  </data>
+  <data name="ExifDirectory" xml:space="preserve">
+    <value>دليل Exif</value>
+  </data>
+  <data name="ExitFullscreen" xml:space="preserve">
+    <value>غادر ملء الشاشة</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>صدِّر</value>
+  </data>
+  <data name="Export2" xml:space="preserve">
+    <value>تصدي_ر</value>
+  </data>
+  <data name="ExportTagHierarchy" xml:space="preserve">
+    <value>تصدير شجرة الوسم</value>
+  </data>
+  <data name="ExportTags" xml:space="preserve">
+    <value>ت_صدير الوسوم</value>
+  </data>
+  <data name="ExportTags2" xml:space="preserve">
+    <value>صدّر _وسوما</value>
+  </data>
+  <data name="ExportTitlesAndComments" xml:space="preserve">
+    <value>تصدير العناوين والتعليقات</value>
+  </data>
+  <data name="ExportTitlesAndComments2" xml:space="preserve">
+    <value>تصدير ال_عناوين والتعليقات</value>
+  </data>
+  <data name="ExportTo" xml:space="preserve">
+    <value>تصدير إلى</value>
+  </data>
+  <data name="ExportTo2" xml:space="preserve">
+    <value>_تصدير إلى</value>
+  </data>
+  <data name="ExportToAlbum" xml:space="preserve">
+    <value>تصدير إلى الألبوم:</value>
+  </data>
+  <data name="ExportedLocations" xml:space="preserve">
+    <value>مواقع مُصدّرة</value>
+  </data>
+  <data name="ExportingPhotoX" xml:space="preserve">
+    <value>تصدير الصورة "{0}"</value>
+  </data>
+  <data name="ExposureMode" xml:space="preserve">
+    <value>نمط التعرض</value>
+  </data>
+  <data name="ExposureProgram" xml:space="preserve">
+    <value>برنامج التعرض</value>
+  </data>
+  <data name="ExtendedMetadata" xml:space="preserve">
+    <value>ميتاداتا ممتدّة</value>
+  </data>
+  <data name="Extension" xml:space="preserve">
+    <value>امتداد</value>
+  </data>
+  <data name="ExtensionDependencies" xml:space="preserve">
+    <value>اعماديات الامدادات:</value>
+  </data>
+  <data name="ExtensionInstallation" xml:space="preserve">
+    <value>تثبيت امتداد</value>
+  </data>
+  <data name="ExtensionManager" xml:space="preserve">
+    <value>مدير الامتدادات</value>
+  </data>
+  <data name="ExtensionRepositoryManagement" xml:space="preserve">
+    <value>مقر إدارة الامتدادات</value>
+  </data>
+  <data name="ExternalGloballyUniqueObjectIdentifier" xml:space="preserve">
+    <value>هوية جسم خارجية فريدة عالميا</value>
+  </data>
+  <data name="ExtraLarge" xml:space="preserve">
+    <value>كبير جدا</value>
+  </data>
+  <data name="FSpot" xml:space="preserve">
+    <value>إف-سبوت</value>
+  </data>
+  <data name="FSpotEncounteredAFatalError" xml:space="preserve">
+    <value>إف-سبوت واجه خطأً قاتلًا</value>
+  </data>
+  <data name="FSpotEncounteredAnErrorWhileLoadingThePhotoDatabaseTheOldDatabaseHasBeMovedToXAndANewDatabaseHasBeenCreated" xml:space="preserve">
+    <value>صادف إف-سبوت خطأ أثناء تحميل قاعدة بيانات الصور. قاعدة بيانات الصور القديمة نقلت إلى {0} وتم إنشاء قاعدة بيانات جديدة.</value>
+  </data>
+  <data name="FSpotNeedsYourAuthorizationInOrderToUploadPhotosToYourXAccountPressTheAuthorizeButtonToOpenAWebBrowserAndGiveFSpotTheAuthorization" xml:space="preserve">
+    <value>إف-سبوت يحتاج ترخيصك للسماح برفع الصور إلى حسابك {0}. انقر زر "ترخيص" لفتح متصفح الوب وأعط إف-سبوت الترخيص.</value>
+  </data>
+  <data name="FSpotPhotoManager" xml:space="preserve">
+    <value>مدير الصور إف-سبوت</value>
+  </data>
+  <data name="FSpotPhotoViewer" xml:space="preserve">
+    <value>عارض صور إف-سبوت</value>
+  </data>
+  <data name="FSpotPhotos" xml:space="preserve">
+    <value>صور إف-سبوت</value>
+  </data>
+  <data name="FSpotView" xml:space="preserve">
+    <value>عرض إف-سبوت</value>
+  </data>
+  <data name="FSpotWasUnableToFindAnyCamerasAttachedToThisSystemDoubleCheckThatTheCameraIsConnectedAndHasPower" xml:space="preserve">
+    <value>إف-سبوت غير قادر على اكتشاف أي كاميرا متصلة بالنظام. تحقق ثانيةً من اتصال الكاميرا ومن طاقتها.</value>
+  </data>
+  <data name="FSpotWasUnableToLogOnToXMakeSureYouHaveGivenTheAuthUsingXWebBrowser" xml:space="preserve">
+    <value>إف-سبوت غير قادر على تسجيل الدخول إلى {0}. تأكد من الأذونات باستخدام واجهى متصفح الوب {0}.</value>
+  </data>
+  <data name="FSpotWebsite" xml:space="preserve">
+    <value>موقع إف-سبوت</value>
+  </data>
+  <data name="Favorites" xml:space="preserve">
+    <value>مفضّلات</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>ملف</value>
+  </data>
+  <data name="FileNotFonud" xml:space="preserve">
+    <value>الملف غير موجود</value>
+  </data>
+  <data name="FileSourceType" xml:space="preserve">
+    <value>نوع الملف المصدر </value>
+  </data>
+  <data name="Fill" xml:space="preserve">
+    <value>املأ</value>
+  </data>
+  <data name="Find" xml:space="preserve">
+    <value>ايجاد</value>
+  </data>
+  <data name="Find2" xml:space="preserve">
+    <value>إيجاد:</value>
+  </data>
+  <data name="Find3" xml:space="preserve">
+    <value>ا_بحث</value>
+  </data>
+  <data name="FindColon" xml:space="preserve">
+    <value>ايجاد:</value>
+  </data>
+  <data name="FindWithMnemonic" xml:space="preserve">
+    <value>ا_بحث بـاستخدام</value>
+  </data>
+  <data name="FiveBySevenL2L" xml:space="preserve">
+    <value>5 × 7 (L, 2L)</value>
+  </data>
+  <data name="Flickr" xml:space="preserve">
+    <value>_فلكر</value>
+  </data>
+  <data name="Flickr2" xml:space="preserve">
+    <value>_فلكر...</value>
+  </data>
+  <data name="Flip" xml:space="preserve">
+    <value>اقلب</value>
+  </data>
+  <data name="FocalPlaneResolutionUnit" xml:space="preserve">
+    <value>وحدة حل المستوى البؤري </value>
+  </data>
+  <data name="Folder" xml:space="preserve">
+    <value>مجلد</value>
+  </data>
+  <data name="Folder2" xml:space="preserve">
+    <value>_مجلد</value>
+  </data>
+  <data name="Folder3" xml:space="preserve">
+    <value>ال_مجلد...</value>
+  </data>
+  <data name="Folder4" xml:space="preserve">
+    <value>ال_مجلد:</value>
+  </data>
+  <data name="FolderExport" xml:space="preserve">
+    <value>_تصدير مجلّد</value>
+  </data>
+  <data name="FollowingErrorWasEncounteredAttemptingToLogInX" xml:space="preserve">
+    <value>الخطأ التالي صودف أثناء محاولة الدخول: {0}</value>
+  </data>
+  <data name="FourBySixPostcard" xml:space="preserve">
+    <value>4 × 6 (بطاقة بريدية)</value>
+  </data>
+  <data name="FourByThreeBook" xml:space="preserve">
+    <value>4 × 3 (كتاب)</value>
+  </data>
+  <data name="FromList" xml:space="preserve">
+    <value>من قائمة:</value>
+  </data>
+  <data name="FullNameOfTheCountryOfTheFocusOfTheContent" xml:space="preserve">
+    <value>الاسم الكامل للبلد الذي يركز عليه المحتوى</value>
+  </data>
+  <data name="FullPageNomargin" xml:space="preserve">
+    <value>صفحة كاملة (لا هوامش)</value>
+  </data>
+  <data name="FullPageStandard4x6" xml:space="preserve">
+    <value>كامل الصفحة
+الاعتيادي- 4x6</value>
+  </data>
+  <data name="Fullscreen" xml:space="preserve">
+    <value>ملء الشاشة</value>
+  </data>
+  <data name="Fullscreen2" xml:space="preserve">
+    <value>مل_ء الشاشة</value>
+  </data>
+  <data name="GPSDirectory" xml:space="preserve">
+    <value>دليل GPS</value>
+  </data>
+  <data name="GainControl" xml:space="preserve">
+    <value>التحكّم في الزيادة</value>
+  </data>
+  <data name="Gallery" xml:space="preserve">
+    <value>معرض</value>
+  </data>
+  <data name="Gallery2" xml:space="preserve">
+    <value>معرض2</value>
+  </data>
+  <data name="Gallery3" xml:space="preserve">
+    <value>م_عرض:</value>
+  </data>
+  <data name="Gallery4" xml:space="preserve">
+    <value>م_عرض</value>
+  </data>
+  <data name="Gallery5" xml:space="preserve">
+    <value>_معرض:</value>
+  </data>
+  <data name="GalleryGeneratedBy" xml:space="preserve">
+    <value>معرض مولد بواسطة</value>
+  </data>
+  <data name="GalleryName" xml:space="preserve">
+    <value>اسم الم_عرض:</value>
+  </data>
+  <data name="GalleryName2" xml:space="preserve">
+    <value>اسم ال_معرض:</value>
+  </data>
+  <data name="GalleryWithThisNameAlreadyExists" xml:space="preserve">
+    <value>يوجد معرض بهذا الاسم مسبقا</value>
+  </data>
+  <data name="Hairline025051" xml:space="preserve">
+    <value>خط دقيق
+0.25"
+0.5"
+1"
+</value>
+  </data>
+  <data name="HeadlineOfTheContent" xml:space="preserve">
+    <value>عنوان المحتوى</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>م_ساعدة</value>
+  </data>
+  <data name="Hidden" xml:space="preserve">
+    <value>مخفي</value>
+  </data>
+  <data name="Hidden2" xml:space="preserve">
+    <value>م_خفي</value>
+  </data>
+  <data name="Hide" xml:space="preserve">
+    <value>إخفاء</value>
+  </data>
+  <data name="HideFindBarMnemonic" xml:space="preserve">
+    <value>أخفِ شريط ال_بحث</value>
+  </data>
+  <data name="HideStyles" xml:space="preserve">
+    <value>إخفاء الأساليب</value>
+  </data>
+  <data name="HideToolbar2" xml:space="preserve">
+    <value>اخفاء شريط الأدوات</value>
+  </data>
+  <data name="Hue" xml:space="preserve">
+    <value>التدرج:</value>
+  </data>
+  <data name="IPTCFileFormat" xml:space="preserve">
+    <value>تنسيق ملفات IPTC</value>
+  </data>
+  <data name="IPTCInformationInterchangeModelIIMVersionNumber" xml:space="preserve">
+    <value>رقم اصدار نموذج تبادل المعلومات IPTC </value>
+  </data>
+  <data name="Icon" xml:space="preserve">
+    <value>أيقونة:</value>
+  </data>
+  <data name="IdentifiesTheProviderAndProduct" xml:space="preserve">
+    <value>يحدد المزود والمنتَج</value>
+  </data>
+  <data name="IfYouRemovePhotosFromFSpotCatalogAllTagInfoLost" xml:space="preserve">
+    <value>إذا أزلت الصور من كاتلوج إف-سبوت سوف تفقد كل معلومات الوسوم. الصور ستظل مخزنة على حاسوبك ويمكن استيرادها إلى إف-سبوت مجددا.</value>
+  </data>
+  <data name="IgnoreTopLevelTags" xml:space="preserve">
+    <value>تجاهل وسوم المستوى الأ_على</value>
+  </data>
+  <data name="ImageDirectory" xml:space="preserve">
+    <value>دليل صور</value>
+  </data>
+  <data name="ImageInformation2" xml:space="preserve">
+    <value>معلومات الصورة</value>
+  </data>
+  <data name="ImageSettings" xml:space="preserve">
+    <value>إعدادات الصورة</value>
+  </data>
+  <data name="ImagesTaggedWith" xml:space="preserve">
+    <value>الصور الموسومة ب:</value>
+  </data>
+  <data name="Img000Jpg" xml:space="preserve">
+    <value>الصورة_000.jpg</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>استورد</value>
+  </data>
+  <data name="Import2" xml:space="preserve">
+    <value>ا_ستورد...</value>
+  </data>
+  <data name="ImportError" xml:space="preserve">
+    <value>خطأ استيراد</value>
+  </data>
+  <data name="ImportIntoFSpot" xml:space="preserve">
+    <value>استيراد إلى إف-سبوت</value>
+  </data>
+  <data name="ImportNewImages" xml:space="preserve">
+    <value>استيراد صور جديدة</value>
+  </data>
+  <data name="ImportSource" xml:space="preserve">
+    <value>مصدر الاستيراد:</value>
+  </data>
+  <data name="ImportTags" xml:space="preserve">
+    <value>وسوم الاستيراد</value>
+  </data>
+  <data name="InUserDirectory" xml:space="preserve">
+    <value>(في مجلّد المستخدم)</value>
+  </data>
+  <data name="IncludePhotoTaggedX" xml:space="preserve">
+    <value>تضمين الصور الموسومة ب"{0}"</value>
+  </data>
+  <data name="IncludeSubfolders" xml:space="preserve">
+    <value>تضمين المجلدات الفرعية</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>فهرس</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>معلومات</value>
+  </data>
+  <data name="InstallExtensions" xml:space="preserve">
+    <value>...تثبيت الامتدادات</value>
+  </data>
+  <data name="InstallFrom" xml:space="preserve">
+    <value>تثبيت من:</value>
+  </data>
+  <data name="InstallationCancelled" xml:space="preserve">
+    <value>ألغي التثبيت</value>
+  </data>
+  <data name="InstallationFailed" xml:space="preserve">
+    <value>فشل التثبيت</value>
+  </data>
+  <data name="InstructionsFromTheCreatorToTheReceiverNotCoveredByOtherFields" xml:space="preserve">
+    <value>تعاليم من المنشئ إلى المتلقي غير مغطاة في الحقول الأخرى</value>
+  </data>
+  <data name="IntellectualGenreOfTheObject" xml:space="preserve">
+    <value>النوع الفكري للجسم</value>
+  </data>
+  <data name="InterOperabilityDirectory" xml:space="preserve">
+    <value>دليل InterOperability</value>
+  </data>
+  <data name="InterpolationType" xml:space="preserve">
+    <value>نوع التّوليد</value>
+  </data>
+  <data name="InvalidGalleryName" xml:space="preserve">
+    <value>اسم معرض غير صحيح</value>
+  </data>
+  <data name="InvalidUrl" xml:space="preserve">
+    <value>عنوان غير صالح</value>
+  </data>
+  <data name="Label" xml:space="preserve">
+    <value>لصيقة</value>
+  </data>
+  <data name="Label124" xml:space="preserve">
+    <value>تسمية124</value>
+  </data>
+  <data name="Large" xml:space="preserve">
+    <value>كبير</value>
+  </data>
+  <data name="Large2" xml:space="preserve">
+    <value>_كبير</value>
+  </data>
+  <data name="LastNintyDays" xml:space="preserve">
+    <value>آخر 90 يوم</value>
+  </data>
+  <data name="LastSevenDays" xml:space="preserve">
+    <value>آخر 7 أيام</value>
+  </data>
+  <data name="LastThirtyDays" xml:space="preserve">
+    <value>آخر 30 يوم</value>
+  </data>
+  <data name="LastThreeHundredSixtyDays" xml:space="preserve">
+    <value>آخر 360 يوم</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>فاتح</value>
+  </data>
+  <data name="LightSource" xml:space="preserve">
+    <value>مصدر الضوء</value>
+  </data>
+  <data name="LiteralAnd" xml:space="preserve">
+    <value> و </value>
+  </data>
+  <data name="LiteralOr" xml:space="preserve">
+    <value> أو </value>
+  </data>
+  <data name="LoadingXExtension" xml:space="preserve">
+    <value>تحميل الامتداد {0}</value>
+  </data>
+  <data name="LoadingXOfY" xml:space="preserve">
+    <value>تحميل {0} من {1}</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>الموقع</value>
+  </data>
+  <data name="LocationWithinACityOrAreaWhereTheObjectOriginates" xml:space="preserve">
+    <value>مكان في مدينة أو منطقة من حيث نشأ الجسم</value>
+  </data>
+  <data name="LoggingIntoX" xml:space="preserve">
+    <value>دخول إلى {0}</value>
+  </data>
+  <data name="MakeFSpotYourScreensaver" xml:space="preserve">
+    <value>اجعل إف-سبوت حافظ شاشتك</value>
+  </data>
+  <data name="ManageExtensions" xml:space="preserve">
+    <value>إدارة الا_متدادات</value>
+  </data>
+  <data name="ManageYourCustomSelectionRatios" xml:space="preserve">
+    <value>إدارة نسب منتقياتك المخصصة</value>
+  </data>
+  <data name="Medium" xml:space="preserve">
+    <value>متوسط</value>
+  </data>
+  <data name="Medium2" xml:space="preserve">
+    <value>_متوسط</value>
+  </data>
+  <data name="MergeTags" xml:space="preserve">
+    <value>دمج الوسوم</value>
+  </data>
+  <data name="MergeTagsMnemonic" xml:space="preserve">
+    <value>_دمج الوسوم</value>
+  </data>
+  <data name="MetadataBrowser" xml:space="preserve">
+    <value>متصفّح ميتاداتا</value>
+  </data>
+  <data name="MeteringMode" xml:space="preserve">
+    <value>نمط القياس</value>
+  </data>
+  <data name="ModifiedInY" xml:space="preserve">
+    <value>مغيَّر في {1}</value>
+  </data>
+  <data name="ModifiedInYX" xml:space="preserve">
+    <value>مغيَّر في {1} ({0})</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>_شهر</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>المزيد</value>
+  </data>
+  <data name="MoreDates" xml:space="preserve">
+    <value>المزيد من التواريخ</value>
+  </data>
+  <data name="MoreDirectories" xml:space="preserve">
+    <value>المزيد من الأدلة</value>
+  </data>
+  <data name="MyPhotos2" xml:space="preserve">
+    <value>صوري</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>الاسم</value>
+  </data>
+  <data name="NameColon" xml:space="preserve">
+    <value>الاسم:</value>
+  </data>
+  <data name="NameOfNewTagColon" xml:space="preserve">
+    <value>اسم الوسم الجديد:</value>
+  </data>
+  <data name="NameOfTheCityTheContentIsFocussingOn" xml:space="preserve">
+    <value>اسم المدينة التي يركز عليها المحتوى</value>
+  </data>
+  <data name="NewNameColon" xml:space="preserve">
+    <value>الاسم الجديد:</value>
+  </data>
+  <data name="NewWindow" xml:space="preserve">
+    <value>نافذة _جديدة</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>التالي</value>
+  </data>
+  <data name="NextPhoto" xml:space="preserve">
+    <value>الصورة التالية</value>
+  </data>
+  <data name="NextPicture" xml:space="preserve">
+    <value>الصورة التالية</value>
+  </data>
+  <data name="NoAccountSelected" xml:space="preserve">
+    <value>لا حساب منتقى</value>
+  </data>
+  <data name="NoActivePhoto" xml:space="preserve">
+    <value>لا صورة نشطة</value>
+  </data>
+  <data name="NoApplicationsAvailable" xml:space="preserve">
+    <value>لا تطبيقات متاحة.</value>
+  </data>
+  <data name="NoCamerasDetected" xml:space="preserve">
+    <value>(لا كاميرات مكتشفة)</value>
+  </data>
+  <data name="NoCamerasDetected2" xml:space="preserve">
+    <value>لا كاميرات مكتشفة</value>
+  </data>
+  <data name="NoConstraint" xml:space="preserve">
+    <value>لا قيد</value>
+  </data>
+  <data name="NoExtendedMetadataAvailable" xml:space="preserve">
+    <value>لا ميتاداتا ممتدّة متاحة</value>
+  </data>
+  <data name="NoImage" xml:space="preserve">
+    <value>_لا صورة</value>
+  </data>
+  <data name="NoImageLoaded" xml:space="preserve">
+    <value>لم تحمّل صورة.</value>
+  </data>
+  <data name="NoMatchingPhotosFound" xml:space="preserve">
+    <value>لم يتم العثور على صور موائمة</value>
+  </data>
+  <data name="NoMetadataAvailable" xml:space="preserve">
+    <value>لا ميتاداتا متاحة</value>
+  </data>
+  <data name="NoPermissionToDeleteTheFile" xml:space="preserve">
+    <value>لا أذونات بحذف الملف:{1}{0}</value>
+  </data>
+  <data name="NoPhotosMatchingFound" xml:space="preserve">
+    <value>لا صور ملائمة ل{0}</value>
+  </data>
+  <data name="NoSelectionAvailable" xml:space="preserve">
+    <value>لا انتقاء متاح</value>
+  </data>
+  <data name="NoTagAppliedToAppliedTryAddingorSelectingDifferentTagInPreferenceDialog" xml:space="preserve">
+    <value>الوسم "{0}" غير مطبق على أي صورة. جرب إضافة
+الوسم إلى بعض الصور أو اخيار وسم آخر من
+حوار خصائص إف-سبوت.</value>
+  </data>
+  <data name="NoWayToSaveFilesOfTypeX" xml:space="preserve">
+    <value>لا يمكن حفظ الملفات من نوع "{0}"</value>
+  </data>
+  <data name="NoneTitleFilenameDatePhotoDetails" xml:space="preserve">
+    <value>لا شيء
+العنوان
+اسم الملف
+التاريخ
+تفاصيل الصورة</value>
+  </data>
+  <data name="NotSpaceX" xml:space="preserve">
+    <value>ليس {0}</value>
+  </data>
+  <data name="NumberIdentifyingTheIIMVersionThisApplicationRecordUses" xml:space="preserve">
+    <value>عدد يُعرف اصدار الـ IIM المستعمل من طرف سجل التطبيق هذا</value>
+  </data>
+  <data name="NumberOfCopies" xml:space="preserve">
+    <value>_عدد النسخ:</value>
+  </data>
+  <data name="NumberOfPictures" xml:space="preserve">
+    <value>عدد الصور</value>
+  </data>
+  <data name="OSIDestinationRoutingInformation" xml:space="preserve">
+    <value>معلومات توجيه الغاية لـ OSI </value>
+  </data>
+  <data name="ObjectAttributeReference" xml:space="preserve">
+    <value>مرجع صفات الكائن</value>
+  </data>
+  <data name="ObjectName" xml:space="preserve">
+    <value>اسم الكائن</value>
+  </data>
+  <data name="ObjectTypeReference" xml:space="preserve">
+    <value>مرجع نوع الكائن</value>
+  </data>
+  <data name="OkMnemonic" xml:space="preserve">
+    <value>_موافق</value>
+  </data>
+  <data name="OnXBetweenYAndZ" xml:space="preserve">
+    <value>على {0} بين 
+{1} و {2}</value>
+  </data>
+  <data name="OnlyPhotosTakenWithinTheseDatesWillBeDisplayed" xml:space="preserve">
+    <value>فقط الصور الملتقطة في هذه التواريخ سيتم عرضها.</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>فتح</value>
+  </data>
+  <data name="OpenAlbumInBrowserWhenDoneUploading" xml:space="preserve">
+    <value>اف_تح الألبوم في المتصفح عند انتهاء الرفع</value>
+  </data>
+  <data name="OpenAlbumInBrowserWhenDoneUploading2" xml:space="preserve">
+    <value>فتح الأ_لبوم  في المتصفح عند الانتهاء من الرفع</value>
+  </data>
+  <data name="OpenDestinationWhenDoneExporting" xml:space="preserve">
+    <value>افتح الم_قصد بعد انتهاء التصدير</value>
+  </data>
+  <data name="OpenFolder" xml:space="preserve">
+    <value>فتح _مجلد...</value>
+  </data>
+  <data name="OpenWith" xml:space="preserve">
+    <value>ا_فتح باستخدام</value>
+  </data>
+  <data name="OperationFailed" xml:space="preserve">
+    <value>فشلت العملية</value>
+  </data>
+  <data name="Or" xml:space="preserve">
+    <value>أو</value>
+  </data>
+  <data name="OrganizeEnjoyAndShareYourPhotos" xml:space="preserve">
+    <value>نظم, تمتع, وقم بمشاركة الصور</value>
+  </data>
+  <data name="Orientation" xml:space="preserve">
+    <value>الإتجاه</value>
+  </data>
+  <data name="Original" xml:space="preserve">
+    <value>الأصلي</value>
+  </data>
+  <data name="OriginalSizePossibleVeryLargeFileSize" xml:space="preserve">
+    <value>المقاس الحقيقي (قد يكون حجم الملف كبير جداً)</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>أخرى</value>
+  </data>
+  <data name="Output" xml:space="preserve">
+    <value>الخ_رْج:</value>
+  </data>
+  <data name="OverallProgress" xml:space="preserve">
+    <value>التقدّم الكلّي:</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>حزمة</value>
+  </data>
+  <data name="Page1Of3" xml:space="preserve">
+    <value>صفحة 1 من 3</value>
+  </data>
+  <data name="PageColon" xml:space="preserve">
+    <value>صفحة:</value>
+  </data>
+  <data name="PageSetup" xml:space="preserve">
+    <value>إعداد الصفحة</value>
+  </data>
+  <data name="PaperSizeXxYmm" xml:space="preserve">
+    <value>حجم الورقة: {0} × {1} ملم</value>
+  </data>
+  <data name="ParenNoAlbumsParen" xml:space="preserve">
+    <value>(لا ألبومات)</value>
+  </data>
+  <data name="ParenNoEditsParen" xml:space="preserve">
+    <value>(لا تعديلات)</value>
+  </data>
+  <data name="ParenNoGalleryParen" xml:space="preserve">
+    <value>(لا معرض)</value>
+  </data>
+  <data name="ParenNoTagsParen" xml:space="preserve">
+    <value>(بدون وسوم)</value>
+  </data>
+  <data name="ParenNoneParen" xml:space="preserve">
+    <value>(لا شيء)</value>
+  </data>
+  <data name="ParenNotConnectedParen" xml:space="preserve">
+    <value>(غير متصل)</value>
+  </data>
+  <data name="ParenTopLevelParen" xml:space="preserve">
+    <value>(أعلى مستوى)</value>
+  </data>
+  <data name="ParenUnknownParen" xml:space="preserve">
+    <value>(مجهول)</value>
+  </data>
+  <data name="ParentAlbum" xml:space="preserve">
+    <value>الأ_لبوم الأب:</value>
+  </data>
+  <data name="ParentTag" xml:space="preserve">
+    <value>الوسم الأ_ب:</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>_كلمة السر:</value>
+  </data>
+  <data name="Path" xml:space="preserve">
+    <value>المسار:</value>
+  </data>
+  <data name="Path2" xml:space="preserve">
+    <value>المسار</value>
+  </data>
+  <data name="Pause" xml:space="preserve">
+    <value>ايقاف مؤقت</value>
+  </data>
+  <data name="People" xml:space="preserve">
+    <value>أشخاص</value>
+  </data>
+  <data name="Photo0Of0" xml:space="preserve">
+    <value>الصورة 0 من 0</value>
+  </data>
+  <data name="Photo2" xml:space="preserve">
+    <value>لا صورة</value>
+  </data>
+  <data name="Photo3" xml:space="preserve">
+    <value>ال_صور</value>
+  </data>
+  <data name="PhotoManagementForGNOME" xml:space="preserve">
+    <value>إدارة الصور لجنوم</value>
+  </data>
+  <data name="PhotoManager" xml:space="preserve">
+    <value>مدير الصور</value>
+  </data>
+  <data name="PhotoSize" xml:space="preserve">
+    <value>_حجم الصورة:</value>
+  </data>
+  <data name="PhotoSource" xml:space="preserve">
+    <value>مصدر الصورة:</value>
+  </data>
+  <data name="PhotoViewer" xml:space="preserve">
+    <value>عارض الصور</value>
+  </data>
+  <data name="PhotoXOfY" xml:space="preserve">
+    <value>الصورة  {0} من {1}</value>
+  </data>
+  <data name="PhotometricInterpretation" xml:space="preserve">
+    <value>تأويل القيمة</value>
+  </data>
+  <data name="Photos" xml:space="preserve">
+    <value>الصور</value>
+  </data>
+  <data name="Photos2" xml:space="preserve">
+    <value>صورة</value>
+  </data>
+  <data name="PhotosPerPage" xml:space="preserve">
+    <value>صور لكل صفحة</value>
+  </data>
+  <data name="PicasaWeb2" xml:space="preserve">
+    <value>_بيكاساوب...</value>
+  </data>
+  <data name="Picasaweb" xml:space="preserve">
+    <value>موقع بيكاسا</value>
+  </data>
+  <data name="Pixels" xml:space="preserve">
+    <value>بكسل</value>
+  </data>
+  <data name="Places" xml:space="preserve">
+    <value>أماكن</value>
+  </data>
+  <data name="PlanarConfiguration" xml:space="preserve">
+    <value>إعداد مستوي</value>
+  </data>
+  <data name="PleaseVerifyThatTheSettingsForThisGalleryAreCorrect" xml:space="preserve">
+    <value>الرجاء تاكيد صحة إعدادات هذا المعرض </value>
+  </data>
+  <data name="PleaseVerifyThatTheSettingsForThisGalleryAreCorrectEnterTheLettersAsTheyAreShownInTheImageInTheCaptchaFieldILettersAreNotCaseSensitiveI" xml:space="preserve">
+    <value>الرجاء تاكيد صحة إعدادات هذا المعرض. 
+قم بإدخال الحروف كما هي معروضة في الصورة
+بداخل حقل  'Captcha' . &lt;i&gt; حساسية حالة الحروف غير مطلوبة&lt;/i&gt;</value>
+  </data>
+  <data name="PleaseWaitFSpotGalleryDBUpdating" xml:space="preserve">
+    <value>الرجاء الانتظار حتى يتم تحديث قاعدة بيانات معرض الF-spot قد تستغرق العملية زمنا اطول</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>منفذ</value>
+  </data>
+  <data name="Preferences" xml:space="preserve">
+    <value>خصائص</value>
+  </data>
+  <data name="PreparingEmail" xml:space="preserve">
+    <value>تحضير بريد إلكتروني</value>
+  </data>
+  <data name="Prev" xml:space="preserve">
+    <value>سابق</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>معاينة</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>سابقا</value>
+  </data>
+  <data name="PreviousPhoto" xml:space="preserve">
+    <value>الصورة السابقة</value>
+  </data>
+  <data name="PreviousPicture" xml:space="preserve">
+    <value>الصورة السابقة</value>
+  </data>
+  <data name="PreviousWeekMonSun" xml:space="preserve">
+    <value>الأسبوع الماضي (الإثنين-الأحد)</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>اطبع...</value>
+  </data>
+  <data name="Private" xml:space="preserve">
+    <value>خاص</value>
+  </data>
+  <data name="ProvidedByX" xml:space="preserve">
+    <value>(شريطة ان {0})</value>
+  </data>
+  <data name="ProviderOfTheObject" xml:space="preserve">
+    <value>موفّر الجسم</value>
+  </data>
+  <data name="Public" xml:space="preserve">
+    <value>عام</value>
+  </data>
+  <data name="PublicAlbum" xml:space="preserve">
+    <value>ألبوم عام</value>
+  </data>
+  <data name="Push" xml:space="preserve">
+    <value>ادفع</value>
+  </data>
+  <data name="Quit" xml:space="preserve">
+    <value>_غادر</value>
+  </data>
+  <data name="RadiusColon" xml:space="preserve">
+    <value>نصف-القطر:</value>
+  </data>
+  <data name="RatedPhotos" xml:space="preserve">
+    <value>صور مقيمة</value>
+  </data>
+  <data name="RatingColon" xml:space="preserve">
+    <value>تقييم:</value>
+  </data>
+  <data name="Ratings" xml:space="preserve">
+    <value>ت_قييمات</value>
+  </data>
+  <data name="Ratio" xml:space="preserve">
+    <value>نسبة</value>
+  </data>
+  <data name="ReallyDelete" xml:space="preserve">
+    <value>احذف حقا؟</value>
+  </data>
+  <data name="ReallyDeleteVersionXQuestion" xml:space="preserve">
+    <value>حذف الإصدار "{0}" حقا؟</value>
+  </data>
+  <data name="ReceivedErrorXWhileAttemptingToRotateY" xml:space="preserve">
+    <value>تم إستلام الخطأ "{0}" عند محاولتك تدوير الصورة {1}</value>
+  </data>
+  <data name="ReceivedErrorXWhileConnectingToCamera" xml:space="preserve">
+    <value>تم إستلام الخطأ "{0}" عند الاتصال بالكاميرا</value>
+  </data>
+  <data name="ReceivedExceptionXUnableToCreateVersionY" xml:space="preserve">
+    <value>إستلام الاستثناء "{0}". لا يمكن إنشاء الاصدارة "{1}"</value>
+  </data>
+  <data name="ReceivedExceptionXUnableToDeleteVersionY" xml:space="preserve">
+    <value>إستلام الاستثناء "{0}". لا يمكن حذف الاصدارة "{1}"</value>
+  </data>
+  <data name="ReceivedExceptionXUnableToRenameVersionToY" xml:space="preserve">
+    <value>إستلام الاستثناء "{0}". لا يمكن إعادة تسمية الاصدارة "{1}"</value>
+  </data>
+  <data name="ReceivedExceptionXUnableToSavePhotoY" xml:space="preserve">
+    <value>تم إستلام الخطأ "{0}". لايمكن حفظ الصورة {1}</value>
+  </data>
+  <data name="ReduceRedEye" xml:space="preserve">
+    <value>تخفيف حرارة اللون الاحمر</value>
+  </data>
+  <data name="RefreshSearch" xml:space="preserve">
+    <value>إنعاش البحث</value>
+  </data>
+  <data name="RefreshThumbnail" xml:space="preserve">
+    <value>إ_نعاش المصغرات</value>
+  </data>
+  <data name="RegisterALocalRepository" xml:space="preserve">
+    <value>تسجيل مقر محلي</value>
+  </data>
+  <data name="RegisterAnOnLineRepository" xml:space="preserve">
+    <value>تسجيل مقر على الإنترنت</value>
+  </data>
+  <data name="RemoveFromCatalog" xml:space="preserve">
+    <value>مسح من الكاتلوج</value>
+  </data>
+  <data name="RemoveFromCatalogMnemonic" xml:space="preserve">
+    <value>_حذف من الكاتلوج</value>
+  </data>
+  <data name="RemoveFromSearch" xml:space="preserve">
+    <value>إزالة من البحث</value>
+  </data>
+  <data name="RemoveRedeyeFromSelectedArea" xml:space="preserve">
+    <value>أزل العين الحمراء من المنطقة المنتقاه</value>
+  </data>
+  <data name="RemoveTag" xml:space="preserve">
+    <value>ام_سح الوسم</value>
+  </data>
+  <data name="RemoveTagFromSelection2" xml:space="preserve">
+    <value>إ_زالة الوسم من المنتقى</value>
+  </data>
+  <data name="RenameVersion" xml:space="preserve">
+    <value>إعادة تسمية الإصدار</value>
+  </data>
+  <data name="RenameVersion2" xml:space="preserve">
+    <value>_إعادة تسمية الإصدار</value>
+  </data>
+  <data name="Repair" xml:space="preserve">
+    <value>إصلاح</value>
+  </data>
+  <data name="Reparented" xml:space="preserve">
+    <value>زوج</value>
+  </data>
+  <data name="Repeat" xml:space="preserve">
+    <value>كرّر</value>
+  </data>
+  <data name="Repositories" xml:space="preserve">
+    <value>م_ستودعات...</value>
+  </data>
+  <data name="Repository" xml:space="preserve">
+    <value>مقر</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>إعادة ضبط</value>
+  </data>
+  <data name="ResizeTo" xml:space="preserve">
+    <value>إعادة _تحجيم إلى:</value>
+  </data>
+  <data name="ResolutionUnit" xml:space="preserve">
+    <value>وحدة الإستبانة</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>أعِد المحاولة</value>
+  </data>
+  <data name="ReturnToThisWindowAfterYouHaveFinishedAuthProcessOnXClickCompleteAuthorizationButton" xml:space="preserve">
+    <value>العودة الى هذه النافذة بعد الانتهاء من عملية المصادقة على {0} قم بالضعط على زر "الإنتهاء من المصادقة"  بالاسفل</value>
+  </data>
+  <data name="Reveal" xml:space="preserve">
+    <value>أظهر</value>
+  </data>
+  <data name="ReverseOrder" xml:space="preserve">
+    <value>ا_عكس الترتيب</value>
+  </data>
+  <data name="RotateLeft" xml:space="preserve">
+    <value>أدر يسارا</value>
+  </data>
+  <data name="RotateLeftMnemonic" xml:space="preserve">
+    <value>استدر ي_ساراً</value>
+  </data>
+  <data name="RotatePhotoLeft" xml:space="preserve">
+    <value>تدوير الصورة إلى اليسار</value>
+  </data>
+  <data name="RotatePhotoRight" xml:space="preserve">
+    <value>تدوير الصورة إلى اليمين</value>
+  </data>
+  <data name="RotatePictureLeft" xml:space="preserve">
+    <value>أدر الصورة يسارا</value>
+  </data>
+  <data name="RotatePictureRight" xml:space="preserve">
+    <value>أدر الصورة يمينا</value>
+  </data>
+  <data name="RotateRight" xml:space="preserve">
+    <value>أدر يمينا</value>
+  </data>
+  <data name="RotateRightMnemonic" xml:space="preserve">
+    <value>استدر ي_ميناَ</value>
+  </data>
+  <data name="RotatingPhotoX" xml:space="preserve">
+    <value>تدوير الصورة "{0}"</value>
+  </data>
+  <data name="RotatingPhotos" xml:space="preserve">
+    <value>تدوير الصور</value>
+  </data>
+  <data name="S" xml:space="preserve">
+    <value> </value>
+  </data>
+  <data name="S000000" xml:space="preserve">
+    <value>00:00:00</value>
+  </data>
+  <data name="S00000000000000" xml:space="preserve">
+    <value>0000:00:00 00:00:00</value>
+  </data>
+  <data name="S1024Px" xml:space="preserve">
+    <value>1024 بيكسل</value>
+  </data>
+  <data name="S1Of1" xml:space="preserve">
+    <value>1 من 1</value>
+  </data>
+  <data name="S2" xml:space="preserve">
+    <value>
+</value>
+  </data>
+  <data name="S320Px" xml:space="preserve">
+    <value>320 بيكسل</value>
+  </data>
+  <data name="S480Px" xml:space="preserve">
+    <value>480 بيكسل</value>
+  </data>
+  <data name="S5" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="S640Px" xml:space="preserve">
+    <value>640 بيكسل</value>
+  </data>
+  <data name="S800Px" xml:space="preserve">
+    <value>800 بيكسل</value>
+  </data>
+  <data name="SameAsPhoto" xml:space="preserve">
+    <value>كصورة</value>
+  </data>
+  <data name="Saturation" xml:space="preserve">
+    <value>الإشباع</value>
+  </data>
+  <data name="Saturation2" xml:space="preserve">
+    <value>الت_شبع:</value>
+  </data>
+  <data name="SaveTheFilesOnly" xml:space="preserve">
+    <value>_حفظ الملفات فقط</value>
+  </data>
+  <data name="ScalePhotosToNoLargerThan" xml:space="preserve">
+    <value>لا تقم بتكبير الصورة اكبر من </value>
+  </data>
+  <data name="Scaled" xml:space="preserve">
+    <value>حجّم</value>
+  </data>
+  <data name="SceneCaptureType" xml:space="preserve">
+    <value>نوع أخذ المشهد</value>
+  </data>
+  <data name="SceneType" xml:space="preserve">
+    <value>نوع المشهد</value>
+  </data>
+  <data name="SearchReturnedNoResults" xml:space="preserve">
+    <value>لا نتائج لعملية البحث.</value>
+  </data>
+  <data name="SelectAFolder" xml:space="preserve">
+    <value>اختر مجلّد</value>
+  </data>
+  <data name="SelectATag" xml:space="preserve">
+    <value>انتقاء وسم...</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>ا_نتقاء الكل</value>
+  </data>
+  <data name="SelectAnAreaToRemoveRedeye" xml:space="preserve">
+    <value>انتقِ منطقة لإزالة العين الحمراء</value>
+  </data>
+  <data name="SelectExportFolder" xml:space="preserve">
+    <value>انتقاء مجلد التصدير</value>
+  </data>
+  <data name="SelectFolder" xml:space="preserve">
+    <value>انتق مجلدا</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>لا تنتق _شيئاً</value>
+  </data>
+  <data name="SelectPhotoFromFile" xml:space="preserve">
+    <value>انتقاء صورة من ملف</value>
+  </data>
+  <data name="SelectPhotosToCopyFromCamera" xml:space="preserve">
+    <value>انتقاء صور لنسخها من الكاميرا...</value>
+  </data>
+  <data name="SelectTag" xml:space="preserve">
+    <value>انتقاء وسم</value>
+  </data>
+  <data name="SelectTheCameraFromWhichYouWantToTransferFiles" xml:space="preserve">
+    <value>انتق الكاميرا التي تريد نقل الملفات منها</value>
+  </data>
+  <data name="SelectTheLocationOfTheRepositoryYouWantToRegister" xml:space="preserve">
+    <value>انتق موقع المقر الذي تريد تسجيله:</value>
+  </data>
+  <data name="SelectedCamera" xml:space="preserve">
+    <value>الكاميرا المنتقاه:</value>
+  </data>
+  <data name="SelectionConstraints" xml:space="preserve">
+    <value>انتقاء قيود</value>
+  </data>
+  <data name="SendByMail" xml:space="preserve">
+    <value>إرسال بواسطة البريد...</value>
+  </data>
+  <data name="SensingMethod" xml:space="preserve">
+    <value>طريقة الإستشعار</value>
+  </data>
+  <data name="ServerReturnedResponseWithoutGalleryContent" xml:space="preserve">
+    <value>عاد الخادم باستجابة بدون محتويات المعرض</value>
+  </data>
+  <data name="SetAsBackground" xml:space="preserve">
+    <value>اضبط كخلفية</value>
+  </data>
+  <data name="SetAsBackground2" xml:space="preserve">
+    <value>اضبط ك_خلفية</value>
+  </data>
+  <data name="SetDateRange" xml:space="preserve">
+    <value>عين تاريخ انتهاء الصلاحية</value>
+  </data>
+  <data name="SetDateRange2" xml:space="preserve">
+    <value>_ضبط تاريخ إنتهاء الصلاحية...</value>
+  </data>
+  <data name="SetRatingFilter" xml:space="preserve">
+    <value>ضبط مرشح التقييم</value>
+  </data>
+  <data name="SetRatingFilter2" xml:space="preserve">
+    <value>_ضبط مرشّح التقييم...</value>
+  </data>
+  <data name="Sharpen" xml:space="preserve">
+    <value>تحديد</value>
+  </data>
+  <data name="Sharpen2" xml:space="preserve">
+    <value>ت_حديد...</value>
+  </data>
+  <data name="Sharpness" xml:space="preserve">
+    <value>حدّة</value>
+  </data>
+  <data name="ShiftAllPhotosByX" xml:space="preserve">
+    <value>تبديل جميع الصور بواسطة {0}</value>
+  </data>
+  <data name="ShowAllPackages" xml:space="preserve">
+    <value>اعرض كل الحزم</value>
+  </data>
+  <data name="ShowAllPhotos" xml:space="preserve">
+    <value>عرض كل الصور.</value>
+  </data>
+  <data name="ShowFindBarMnemonic" xml:space="preserve">
+    <value>أظهر شريط ال_بحث</value>
+  </data>
+  <data name="ShowNewVersionsOnly" xml:space="preserve">
+    <value>إظهار الإصدارات الجديدة فقط</value>
+  </data>
+  <data name="ShowOrHideTheSidePane" xml:space="preserve">
+    <value>اعرض أو إخفي اللوحة الجانبية</value>
+  </data>
+  <data name="ShowOrHideTheToolbar" xml:space="preserve">
+    <value>اعرض أو إخفي شريط الأدوات</value>
+  </data>
+  <data name="ShowStyles" xml:space="preserve">
+    <value>عرض الأساليب</value>
+  </data>
+  <data name="ShowUpdatesOnly" xml:space="preserve">
+    <value>اعرض التحديثات فقط</value>
+  </data>
+  <data name="SidePane" xml:space="preserve">
+    <value>ال_لوحة الجانبية</value>
+  </data>
+  <data name="Sidebar" xml:space="preserve">
+    <value>شريط جانبي</value>
+  </data>
+  <data name="SignInAsADifferentUser" xml:space="preserve">
+    <value>دخول كمستخدم آخر</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>الحجم</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>تخطي</value>
+  </data>
+  <data name="SlideTransition" xml:space="preserve">
+    <value>انتقال الشريحة:</value>
+  </data>
+  <data name="Slideshow" xml:space="preserve">
+    <value>عرض شرائح</value>
+  </data>
+  <data name="Slideshow2" xml:space="preserve">
+    <value>عرض _شرائح</value>
+  </data>
+  <data name="Small" xml:space="preserve">
+    <value>صغير</value>
+  </data>
+  <data name="Small2" xml:space="preserve">
+    <value>_صغير</value>
+  </data>
+  <data name="SmallBrightnessSmall" xml:space="preserve">
+    <value>&lt;small&gt;ال_سطوع:&lt;/small&gt;</value>
+  </data>
+  <data name="SmallContrastSmall" xml:space="preserve">
+    <value>&lt;small&gt;ال_تباين:&lt;/small&gt;</value>
+  </data>
+  <data name="SmallExposureSmall" xml:space="preserve">
+    <value>&lt;small&gt;زمن التعرض_:&lt;/small&gt;</value>
+  </data>
+  <data name="SmallHueSmall" xml:space="preserve">
+    <value>&lt;small&gt;_تدرج الألوان:&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIChooseTheFolderWhereFSpotShouldStoreNewlyImportedPhotosISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;اختر المجلد حيث يجب على إف-سبوت تخزين الصور المستوردة حديثا&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIEnableThisOptionToStoreTagsAndDescriptionsInsideSupportedImageFormatsISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;فعّل هذا الخيار لتخزين الوسوم والأوصاف داخل
+صيغ الصور المدعومة.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallIYouLlHaveToRestartFSpotToLoadTheNewThemeISmall" xml:space="preserve">
+    <value>&lt;small&gt;&lt;i&gt;ستحتاج إلى إعادة تشغيل إف-سبوت لتحميل السمة الجديدة.&lt;/i&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallSaturationSmall" xml:space="preserve">
+    <value>&lt;small&gt;الت_شبع:&lt;/small&gt;</value>
+  </data>
+  <data name="SmallSmall" xml:space="preserve">
+    <value>&lt;small&gt; &lt;/small&gt;</value>
+  </data>
+  <data name="SmallSmall2" xml:space="preserve">
+    <value>&lt;small&gt;&lt;/small&gt;</value>
+  </data>
+  <data name="SmallTempSmall" xml:space="preserve">
+    <value>&lt;small&gt;ملف _مؤفت:&lt;/small&gt;</value>
+  </data>
+  <data name="SmallTintSmall" xml:space="preserve">
+    <value>&lt;small&gt;_صبغة:&lt;/small&gt;</value>
+  </data>
+  <data name="SmugMug" xml:space="preserve">
+    <value>_سمغ‌مغ (SmugMug)...</value>
+  </data>
+  <data name="SoftFocus" xml:space="preserve">
+    <value>بؤرة ناعمة</value>
+  </data>
+  <data name="SomeOfTheRequiredExtensionsWereNotFound" xml:space="preserve">
+    <value>بعض الامتدادات المطلوبة غير موجودة</value>
+  </data>
+  <data name="SourceTemp" xml:space="preserve">
+    <value>م_صدر مؤقت</value>
+  </data>
+  <data name="SpanWeightBoldSizeLargerErrorConnectingToGallerySpan" xml:space="preserve">
+    <value>&lt;span weight='bold' size='larger'&gt;خطأ الاتصال بمعرض&lt;/span&gt;
+</value>
+  </data>
+  <data name="SpanWeightBoldSizeLargerYourGoogleAccountIsLockedSpan" xml:space="preserve">
+    <value>&lt;span weight='bold' size='larger'&gt;حسابك في غوغل مقفلed&lt;/span&gt;
+</value>
+  </data>
+  <data name="Split" xml:space="preserve">
+    <value>قسّم</value>
+  </data>
+  <data name="Square" xml:space="preserve">
+    <value>مربع</value>
+  </data>
+  <data name="StandardRGBImageProfileCustom" xml:space="preserve">
+    <value>الإفتراضي RGB
+خصائص الصورة
+مخصص
+</value>
+  </data>
+  <data name="StartSlideshow" xml:space="preserve">
+    <value>ابدأ عرض الشرائح</value>
+  </data>
+  <data name="State" xml:space="preserve">
+    <value>الحالة</value>
+  </data>
+  <data name="StatusOfTheObjectdataAccordingToTheProvider" xml:space="preserve">
+    <value>حالة بيانات الكائن طبقا للمزود</value>
+  </data>
+  <data name="Straighten" xml:space="preserve">
+    <value>قوّم</value>
+  </data>
+  <data name="StripImageMetadata" xml:space="preserve">
+    <value>انزع _ميتاداتا الصورة</value>
+  </data>
+  <data name="StripMetadata" xml:space="preserve">
+    <value>انز_ع ميتاداتا</value>
+  </data>
+  <data name="StripMetadata2" xml:space="preserve">
+    <value>انزع _ميتاداتا</value>
+  </data>
+  <data name="SubjectAndKeywords" xml:space="preserve">
+    <value>الموضوع والكلمات المفتاحية</value>
+  </data>
+  <data name="SystemTheme" xml:space="preserve">
+    <value>سمة النظام</value>
+  </data>
+  <data name="TagIcons" xml:space="preserve">
+    <value>أيقونات ال_وسم</value>
+  </data>
+  <data name="TagIsNotEmpty" xml:space="preserve">
+    <value>الوسم ليس فارغا</value>
+  </data>
+  <data name="TagName" xml:space="preserve">
+    <value>اسم الوسم:</value>
+  </data>
+  <data name="TagName2" xml:space="preserve">
+    <value>اسم ال_وسم:</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>وسوم</value>
+  </data>
+  <data name="Tags2" xml:space="preserve">
+    <value>_وسوم</value>
+  </data>
+  <data name="Tags3" xml:space="preserve">
+    <value>_وسوم</value>
+  </data>
+  <data name="TagsColon" xml:space="preserve">
+    <value>وسوم:</value>
+  </data>
+  <data name="TheCharacterSetDesignation" xml:space="preserve">
+    <value>مجموعة المحارف الغاية</value>
+  </data>
+  <data name="TheDirectoryYouSelectedXDoesNotExistPleaseChooseADifferentDirectory" xml:space="preserve">
+    <value>الدليل الذي انتقيت "{0}" غير موجود. رجاءً اختر دليلا آخر</value>
+  </data>
+  <data name="TheEnvelopeHandlingPriorityBetween1MostUrgentAnd9LeastUrgent" xml:space="preserve">
+    <value>أولوية معالجة الظرف من 1 (أكثر الحاحا) إلى 9  (أقل الحاحا) </value>
+  </data>
+  <data name="TheFSpotManualCouldNotBeFoundPleaseVerifyThatYourInstallationHasBeenCompletedSuccessfully" xml:space="preserve">
+    <value>لا يمكن إيجاد "دليل إف-سبوت". تأكد رجاءً أن تثبيتك اكتمل بنجاح</value>
+  </data>
+  <data name="TheFollowingDependenciesCouldNotBeResolved" xml:space="preserve">
+    <value>لا يمكن تجاوز الاعتمادات التالية:</value>
+  </data>
+  <data name="TheFollowingErrorWasEncounteredWhileAttemptingToCreateAnAlbumX" xml:space="preserve">
+    <value>الخطأ التالي صودف أثناء محاولة إنشاء ألبوم: {0}</value>
+  </data>
+  <data name="TheFollowingExtensionsAreCurrentlyInstalled" xml:space="preserve">
+    <value>الامتدادات التالية مثبتة حاليا:</value>
+  </data>
+  <data name="TheFollowingExtensionsWillBeInstalled" xml:space="preserve">
+    <value>الامتدادات التالية سيتم تثبيتها:</value>
+  </data>
+  <data name="TheFollowingPackagesNeedToBeUninstalled" xml:space="preserve">
+    <value>الحزم التالية بحاجة إلى إزالة التثبيت:</value>
+  </data>
+  <data name="TheFollowingPackagesWillBeInstalled" xml:space="preserve">
+    <value>الحزم التالية سيتم تثبيتها:</value>
+  </data>
+  <data name="TheFollowingPackagesWillBeUninstalled" xml:space="preserve">
+    <value>الحزم التالية سيتم إلغاء تثبياها:</value>
+  </data>
+  <data name="TheGalleryNameContainsInvalidCharactersOnlyLettersNumbersUnderscoreAllowed" xml:space="preserve">
+    <value>اسم المعرض يحتوي أحرف غير صحيح.
+فقط الأحرف، والأرقام، و- و_ مسموحة</value>
+  </data>
+  <data name="TheGalleryUrlEntryDoesNotAppearToBeValid" xml:space="preserve">
+    <value>وصلة المعرض لا تبدو وصلة صحيحة</value>
+  </data>
+  <data name="TheHourMinuteAndSecondHHMMSSTheServiceSentTheMaterial" xml:space="preserve">
+    <value>الساعة، والدقيقة، والثانية (HHMMSS) الخدمة أرسلت العتاد</value>
+  </data>
+  <data name="TheInstallationFailed" xml:space="preserve">
+    <value>فشل التثبيت!</value>
+  </data>
+  <data name="TheInstallationHasBeenSuccessfullyCompleted" xml:space="preserve">
+    <value>التثبيت اكتمل بنجاح.</value>
+  </data>
+  <data name="TheInstallationHasCompletedWithWarnings" xml:space="preserve">
+    <value>اكتمل التثبيت مع وجود تحذيرات.</value>
+  </data>
+  <data name="ThePersonInvolvedInWritingEditingOrCorrectingTheObjectDataOrCaptionAbstract" xml:space="preserve">
+    <value>الشخص الذي يقوم بكتابة، تحرير أو تصحيح بيانات الجسم أو العنوان والملخص</value>
+  </data>
+  <data name="ThePhotoXDoesNotExist" xml:space="preserve">
+    <value>الصورة "{0}" غير موجودة</value>
+  </data>
+  <data name="TheRequiredExtensionXIsDisabled" xml:space="preserve">
+    <value>الامتداد المطلوب '{0}' معطل.</value>
+  </data>
+  <data name="TheRequiredExtensionXIsNotInstalled" xml:space="preserve">
+    <value>الامتداد المطلوب '{0}' غير مثبت.</value>
+  </data>
+  <data name="TheSelectedExtensionsCanTBeInstalledBecauseThereAreDependencyConflicts" xml:space="preserve">
+    <value>الامتدادات المنتقاة لا يمكن تثبيتها بسبب وجود تضارب الاعتمادية.</value>
+  </data>
+  <data name="TheTitleOfTheAuthorOrCreator" xml:space="preserve">
+    <value>لقب المؤلف أو المنشيء</value>
+  </data>
+  <data name="TheTypeOfInterpolationToUse" xml:space="preserve">
+    <value>نوع استخدام التوليد</value>
+  </data>
+  <data name="TheUninstallationFailed" xml:space="preserve">
+    <value>فشل إلغاء التثبيت!</value>
+  </data>
+  <data name="TheUninstallationHasBeenSuccessfullyCompleted" xml:space="preserve">
+    <value>اكتمل إلغاء التثبيت بنجاح.</value>
+  </data>
+  <data name="TheUninstallationHasCompletedWithWarnings" xml:space="preserve">
+    <value>اكتمل إلغاء التثبيت مع وجود تحذيرات.</value>
+  </data>
+  <data name="TheYearMonthAndDayCCYYMMDDTheServiceSentTheMaterial" xml:space="preserve">
+    <value>السنة والشهر واليوم (CCYYMMDD) ارسال الخدمة للمواد</value>
+  </data>
+  <data name="ThereAlreadyGallerySameNameInYourRegisteredGalleriesPleaseChooseUniqueName" xml:space="preserve">
+    <value>يوجد معرض سابقا بنفس الاسم في معارضك المسجلة. من فضلك اختر اسمًا فريدًا.</value>
+  </data>
+  <data name="ThereAreOtherExtensionsThatDependOnThePreviousOnesWhichWillAlsoBeUninstalled" xml:space="preserve">
+    <value>يوجد امتدادات أخرى تعتمد على الامتدادات السابقة وسيتم إلغاء تثبيتها أيضا:</value>
+  </data>
+  <data name="ThisNameIsAlreadyInUse" xml:space="preserve">
+    <value>الاسم المحدد مستخدم حاليا</value>
+  </data>
+  <data name="ThisToolRequiresAnActiveSelectionPleaseSelectARegion" xml:space="preserve">
+    <value>هذه الاداة تتطلب تحديد المنطقة. رجاء قم بتحديد منطقة من الصورة واعادة العملية مرة اخرى</value>
+  </data>
+  <data name="ThisWillMergeSelectedTagsAndSubTagsIntoSingleTag" xml:space="preserve">
+    <value>هذه المهمة ستدمج "{0}"الوسوم المنتقاه وأي وسم فرعي إلى وسم واحد.</value>
+  </data>
+  <data name="ThresholdColon" xml:space="preserve">
+    <value>العتبة:</value>
+  </data>
+  <data name="ThumbnailDirectory" xml:space="preserve">
+    <value>دليل مُسْتَصْغرات</value>
+  </data>
+  <data name="ThumbnailElements" xml:space="preserve">
+    <value>_عناصر مصغرة</value>
+  </data>
+  <data name="Timeline" xml:space="preserve">
+    <value>الخط ال_زمني</value>
+  </data>
+  <data name="Tiny" xml:space="preserve">
+    <value>ضئيل</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>العنوان</value>
+  </data>
+  <data name="Title2" xml:space="preserve">
+    <value>الع_نوان:</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>اليوم</value>
+  </data>
+  <data name="Toolbar" xml:space="preserve">
+    <value>شريط الأ_دوات</value>
+  </data>
+  <data name="Toolbar2" xml:space="preserve">
+    <value>_شريط الأدوات</value>
+  </data>
+  <data name="Tools" xml:space="preserve">
+    <value>الأدوات</value>
+  </data>
+  <data name="Tools2" xml:space="preserve">
+    <value>أد_وات</value>
+  </data>
+  <data name="TotalOriginalSize" xml:space="preserve">
+    <value>مجموع الحجم الأصلي</value>
+  </data>
+  <data name="TransferComplete" xml:space="preserve">
+    <value>اكتمل النقل</value>
+  </data>
+  <data name="TransferringPictureXToCD" xml:space="preserve">
+    <value>نقل الصورة "{0}"إلى سيدي</value>
+  </data>
+  <data name="TransferringPictures" xml:space="preserve">
+    <value>نقل الصور</value>
+  </data>
+  <data name="TransferringXFromCamera" xml:space="preserve">
+    <value>نقل "{0}" من الكاميرا</value>
+  </data>
+  <data name="TranslatorCredits" xml:space="preserve">
+    <value>فريق عربآيز للترجمة http://www.arabeyes.org :
+جهاد عفيفي	&lt;djihed@gmail.com&gt;
+يوسف رفه	&lt;yousef@raffah.com&gt;
+أسامة خالد	&lt;osamak.wfm@gmail.com&gt;</value>
+  </data>
+  <data name="TwoOrThreeLetterISO3166CodeOfTheCountryOfTheFocusOfTheContent" xml:space="preserve">
+    <value>رمز ثنائي أو ثلاثي للبلد الذي يركز عليه المحتوى</value>
+  </data>
+  <data name="URI" xml:space="preserve">
+    <value>_وصلة إنترنت:</value>
+  </data>
+  <data name="URL3" xml:space="preserve">
+    <value>و_صلة إنترنت:</value>
+  </data>
+  <data name="UnableToCreateTemporaryFile" xml:space="preserve">
+    <value>لا يمكن إنشاء ملف مؤقت</value>
+  </data>
+  <data name="UnableToLoadImage" xml:space="preserve">
+    <value>لا يمكن تحميل الصورة</value>
+  </data>
+  <data name="UnableToLoadXAsIconForTheTag" xml:space="preserve">
+    <value>لا يمكن تحميل "{0}" كأيقونة للوسم</value>
+  </data>
+  <data name="UnableToLogOn" xml:space="preserve">
+    <value>غير قابل للدخول</value>
+  </data>
+  <data name="UnableToLogOn2" xml:space="preserve">
+    <value>لا يمكن الدخول.</value>
+  </data>
+  <data name="UnableToRotateReadonlyFile" xml:space="preserve">
+    <value>لا يمكن تدوير ملف للقراءة فقط</value>
+  </data>
+  <data name="UnableToRotateThisTypeOfPhoto" xml:space="preserve">
+    <value>لا يمكن تدوير هذا النوع من الصورة</value>
+  </data>
+  <data name="Uninstall" xml:space="preserve">
+    <value>إ_زالة التثبيت...</value>
+  </data>
+  <data name="UnknownDirectory" xml:space="preserve">
+    <value>دليل مجهول</value>
+  </data>
+  <data name="UnknownIIMDataSet" xml:space="preserve">
+    <value>مجموعة بيانات مجهول</value>
+  </data>
+  <data name="UnknownTransformTypeD" xml:space="preserve">
+    <value>نوع تحويل غير معروف %d</value>
+  </data>
+  <data name="UnselectAll" xml:space="preserve">
+    <value>_إلغاء انتقاء الكل</value>
+  </data>
+  <data name="UnsupportedImageTypeForSaving" xml:space="preserve">
+    <value>نوع الصورة غير مدعوم للحفظ.</value>
+  </data>
+  <data name="UntaggedPhotos" xml:space="preserve">
+    <value>صور غير موسومة</value>
+  </data>
+  <data name="UntaggedPhotos2" xml:space="preserve">
+    <value>صور بدون موسومة</value>
+  </data>
+  <data name="UpdatingFSpotDatabase" xml:space="preserve">
+    <value>تحديث قاعدة بيانات إف-سبوت</value>
+  </data>
+  <data name="UploadComplete" xml:space="preserve">
+    <value>اكتمل الرفع</value>
+  </data>
+  <data name="UploadingPictureX" xml:space="preserve">
+    <value>رفع الصورة "{0}"</value>
+  </data>
+  <data name="UploadingPictureXYOfZ" xml:space="preserve">
+    <value>رفع الصورة "{0}" ({1} من {2})</value>
+  </data>
+  <data name="UploadingPictures" xml:space="preserve">
+    <value>رفع الصور</value>
+  </data>
+  <data name="Url" xml:space="preserve">
+    <value>وصلة إنترنت</value>
+  </data>
+  <data name="Url2" xml:space="preserve">
+    <value>وصلة الإنترنت:</value>
+  </data>
+  <data name="UsedXOfYourAllowedYMonthlyQuota" xml:space="preserve">
+    <value>المستخدم {0} من الحصة المسموحة {1} شهريا</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>ا_سم المستخدم:</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>إصدار</value>
+  </data>
+  <data name="Version2" xml:space="preserve">
+    <value>الإصدار:</value>
+  </data>
+  <data name="Version3" xml:space="preserve">
+    <value>إ_صدار</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>عرض</value>
+  </data>
+  <data name="View2" xml:space="preserve">
+    <value>_عرض</value>
+  </data>
+  <data name="ViewAndEditAPhoto" xml:space="preserve">
+    <value>عرض وتعديل صورة</value>
+  </data>
+  <data name="ViewPhotosFullscreen" xml:space="preserve">
+    <value>اعرض الصور في شاشة كاملة</value>
+  </data>
+  <data name="ViewPhotosInASlideshow" xml:space="preserve">
+    <value>عرض الصور في عرض شرائح</value>
+  </data>
+  <data name="ViewPhotosInBrowserWhenDoneUploading" xml:space="preserve">
+    <value>عرض الصورة في المتصفح بعد الإنتهاء من التحميل</value>
+  </data>
+  <data name="VisibleToFamily" xml:space="preserve">
+    <value>ظاهر للعائلة</value>
+  </data>
+  <data name="VisibleToFriends" xml:space="preserve">
+    <value>ظاهر للأصدقاء</value>
+  </data>
+  <data name="WaitingForResponseXOfY" xml:space="preserve">
+    <value>انتظار استجابة {0} من {1}</value>
+  </data>
+  <data name="WebGallery" xml:space="preserve">
+    <value>معرض الوب</value>
+  </data>
+  <data name="WelcomeXYouAreConnectedToY2" xml:space="preserve">
+    <value>مرحبا {0} أنت متصل ب{1}</value>
+  </data>
+  <data name="WhiteBalance" xml:space="preserve">
+    <value>الميزان الأبيض</value>
+  </data>
+  <data name="WhiteBorders" xml:space="preserve">
+    <value>حدود بيضاء</value>
+  </data>
+  <data name="WillPrintUsingUSLetterSizeOnGenericPostscript" xml:space="preserve">
+    <value>سيتم طباعة الصورة مقاس US Letter size  على Generic Postscript</value>
+  </data>
+  <data name="Wipe" xml:space="preserve">
+    <value>أمحُ</value>
+  </data>
+  <data name="WriteMetadataToFile" xml:space="preserve">
+    <value>اكتب _ميتاداتا إلى ملف</value>
+  </data>
+  <data name="WriteOnlyThesePhotosToCD" xml:space="preserve">
+    <value>_كتابة هذه الصور فقط إلى سيدي</value>
+  </data>
+  <data name="X" xml:space="preserve">
+    <value>س</value>
+  </data>
+  <data name="XOfApproxY" xml:space="preserve">
+    <value>{0} من تقريبا {1}</value>
+  </data>
+  <data name="XOfY" xml:space="preserve">
+    <value>{0} من {1}</value>
+  </data>
+  <data name="XPhotos2" xml:space="preserve">
+    <value>{0} صورة</value>
+  </data>
+  <data name="XSent" xml:space="preserve">
+    <value>{0} أرسل</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>الأمس</value>
+  </data>
+  <data name="Zoom" xml:space="preserve">
+    <value>كبّر</value>
+  </data>
+  <data name="ZoomIn" xml:space="preserve">
+    <value>ت_كبير</value>
+  </data>
+  <data name="ZoomIn2" xml:space="preserve">
+    <value>تكبير</value>
+  </data>
+  <data name="ZoomOut" xml:space="preserve">
+    <value>ت_صغير</value>
+  </data>
+  <data name="ZoomOut2" xml:space="preserve">
+    <value>تصغير</value>
+  </data>
+</root>
