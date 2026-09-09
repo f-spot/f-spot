@@ -17,7 +17,7 @@ namespace FSpot
 	// accepted --basedir=/photos and turned the following token into a file.
 	//
 	// Lives in FSpot.dll rather than the GTK client because --debug-sql is read by
-	// FSpotDatabaseConnection and --debug by ApplicationContext.Debugging, both below the
+	// FSpotDatabaseConnection and --debug by FSpotConfiguration.Debugging, both below the
 	// client. Current is set once by Main before anything reads it.
 	public sealed class CommandLineOptions
 	{
@@ -65,10 +65,10 @@ namespace FSpot
 
 		public bool WantsAnyHelp => Help || HelpOptions || HelpAll || InvalidHelpArguments.Count > 0;
 
-		// The three sources Hyena's ApplicationContext.Debugging getter OR'd together,
-		// combined here rather than left to a lazy fallback there. Main assigns Debugging
-		// before anything reads it, so a fallback inside the getter can never evaluate --
-		// which is how BANSHEE_DEBUG stopped working. Reading it here also makes it
+		// The three sources Hyena's Debugging getter OR'd together, combined here rather
+		// than left to a lazy fallback there. Main assigns FSpotConfiguration.Debugging
+		// before anything reads it, so a fallback inside that property can never evaluate
+		// -- which is how BANSHEE_DEBUG stopped working. Reading it here also makes it
 		// testable, which it was not.
 		public bool DebuggingRequested =>
 			Debug || DebugSql || !string.IsNullOrEmpty (Environment.GetEnvironmentVariable ("BANSHEE_DEBUG"));

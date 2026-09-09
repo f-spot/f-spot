@@ -116,7 +116,11 @@ namespace FSpot.Import
 			Photos.Clear ();
 
 			scanTokenSource = new CancellationTokenSource ();
-			scanThread = ThreadAssist.Spawn (() => DoScan (source, Preferences, scanTokenSource.Token));
+			scanThread = new Thread (() => DoScan (source, Preferences, scanTokenSource.Token)) {
+				Name = "Import scan",
+				IsBackground = true
+			};
+			scanThread.Start ();
 		}
 
 		void CancelScan ()
@@ -165,7 +169,11 @@ namespace FSpot.Import
 				throw new Exception ("Import already running!");
 
 			importTokenSource = new CancellationTokenSource ();
-			importThread = ThreadAssist.Spawn (() => DoImport (importTokenSource.Token));
+			importThread = new Thread (() => DoImport (importTokenSource.Token)) {
+				Name = "Import",
+				IsBackground = true
+			};
+			importThread.Start ();
 		}
 
 		public void CancelImport ()

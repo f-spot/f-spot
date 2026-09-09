@@ -19,6 +19,8 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Text;
 using System.Threading;
 
 using FSpot.Settings;
@@ -87,8 +89,7 @@ namespace FSpot
 			if (Environment.Is64BitProcess)
 				throw new ApplicationException ("GtkSharp does not support running 64bit");
 
-			ApplicationContext.ApplicationName = "F-Spot";
-			ApplicationContext.TrySetProcessName (FSpotConfiguration.Package);
+			TrySetProcessName (FSpotConfiguration.Package);
 
 			var mainContext = new GLibSynchronizationContext ();
 			SynchronizationContext.SetSynchronizationContext (mainContext);
@@ -107,11 +108,9 @@ namespace FSpot
 
 			var options = CommandLineOptions.Parse (args);
 			CommandLineOptions.Current = options;
-			// Hyena's ApplicationContext.Debugging used to read the parser itself; it is
-			// told instead, so nothing below the client depends on how args are parsed.
-			// DebuggingRequested rather than the two flags, so BANSHEE_DEBUG still counts:
-			// assigning here means a lazy fallback in the getter could never evaluate.
-			ApplicationContext.Debugging = options.DebuggingRequested;
+			// DebuggingRequested rather than the two flags, so BANSHEE_DEBUG still counts.
+			// Core reads FSpotConfiguration.Debugging, not the parser.
+			FSpotConfiguration.Debugging = options.DebuggingRequested;
 
 			if (options.WantsAnyHelp) {
 				ShowHelp (options);
@@ -313,6 +312,36 @@ namespace FSpot
 				Gtk.Application.Run ();
 			} catch (Exception ex) {
 				Logger.Log.Error (ex, "");
+			}
+		}
+
+		[DllImport ("libc")]
+		static extern int prctl (int option, byte[] arg2, IntPtr arg3, IntPtr arg4, IntPtr arg5);
+
+		[DllImport ("libc")]
+		static extern void setproctitle (byte[] fmt, byte[] str_arg);
+
+		static void TrySetProcessName (string name)
+		{
+			if (Environment.OSVersion.Platform != PlatformID.Unix)
+				return;
+
+			try {
+				SetProcessName (name);
+			} catch {
+			}
+		}
+
+		static void SetProcessName (string name)
+		{
+			try {
+				if (prctl (15 /* PR_SET_NAME */, Encoding.ASCII.GetBytes (name + "\0"),
+					IntPtr.Zero, IntPtr.Zero, IntPtr.Zero) != 0) {
+					throw new ApplicationException ($"Error setting process name {name}");
+				}
+			} catch (EntryPointNotFoundException) {
+				setproctitle (Encoding.ASCII.GetBytes ("%s\0"),
+					Encoding.ASCII.GetBytes (name + "\0"));
 			}
 		}
 	}

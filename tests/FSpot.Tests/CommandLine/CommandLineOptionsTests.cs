@@ -303,13 +303,12 @@ namespace FSpot.Tests.CommandLine
 				Parse ("--view", "false", "a.jpg").Files.ToArray ());
 		}
 
-		// BANSHEE_DEBUG is the third source the old ApplicationContext.Debugging getter
-		// OR'd together, and the rewrite silenced it: Main assigned Debugging
-		// unconditionally before anything read it, so the getter's lazy env-var fallback
-		// could never evaluate. Both its consumers -- slow-query logging in
-		// DatabaseCommand and the row-count warning in ArrayDataReader -- went quiet.
-		// Combined here instead of in a lazy fallback so it cannot be latched off, and so
-		// it is testable at all.
+		// BANSHEE_DEBUG is the third source the old Debugging getter OR'd together, and
+		// the rewrite silenced it: Main assigned Debugging unconditionally before anything
+		// read it, so the getter's lazy env-var fallback could never evaluate. Both its
+		// consumers -- slow-query logging in DatabaseCommand and the row-count warning in
+		// ArrayDataReader -- went quiet. Combined here instead of in a lazy fallback so
+		// it cannot be latched off, and so it is testable at all.
 		[TestMethod]
 		public void DebuggingRequested_ComesFromTheEnvironmentWhenNoFlagWasGiven ()
 		{

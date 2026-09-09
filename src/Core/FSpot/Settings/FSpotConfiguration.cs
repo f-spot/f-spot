@@ -27,6 +27,10 @@ namespace FSpot.Settings
 	{
 		public static string Package { get; } = "f-spot";
 
+		// Set once from CommandLineOptions.DebuggingRequested so Core can log slow
+		// queries without depending on how arguments were parsed.
+		public static bool Debugging { get; set; }
+
 		public static readonly Version version = Assembly.GetExecutingAssembly ().GetName ().Version;
 		public static string Version { get; } = $"{version.Major}.{version.Minor}.{version.Revision}";
 

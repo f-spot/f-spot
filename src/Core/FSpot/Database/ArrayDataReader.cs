@@ -11,7 +11,7 @@
 using System;
 using System.Collections.Generic;
 
-using Hyena;
+using FSpot.Settings;
 
 namespace FSpot.Database
 {
@@ -46,7 +46,7 @@ namespace FSpot.Database
 
 		public void Dispose ()
 		{
-			if (rows > 1 && max_got_row < (rows - 1) && ApplicationContext.Debugging) {
+			if (rows > 1 && max_got_row < (rows - 1) && FSpotConfiguration.Debugging) {
 				Logger.Log.Warning ("Disposing ArrayDataReader that has {0} rows but we only read {1} of them\n{2}", rows, row, sql);
 			}
 			row = -1;

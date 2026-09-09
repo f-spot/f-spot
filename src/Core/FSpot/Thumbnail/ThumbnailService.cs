@@ -104,7 +104,7 @@ namespace FSpot.Thumbnail
 		// internal for unit testing with Moq
 		internal SafeUri GetThumbnailPath (SafeUri fileUri, ThumbnailSize size)
 		{
-			var fileHash = CryptoUtil.Md5Encode (fileUri.AbsoluteUri);
+			var fileHash = HashUtils.Md5Encode (fileUri.AbsoluteUri);
 			return new SafeUri (Path.Combine (xdgDirectoryService.GetThumbnailsDir (size), fileHash + ".png"));
 		}
 

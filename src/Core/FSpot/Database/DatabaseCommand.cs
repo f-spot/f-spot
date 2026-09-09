@@ -13,7 +13,7 @@ using System;
 using System.Text;
 using System.Threading;
 
-using Hyena;
+using FSpot.Settings;
 
 namespace FSpot.Database
 {
@@ -83,7 +83,7 @@ namespace FSpot.Database
 				int execution_ms = System.Environment.TickCount - ticks;
 				if (log_all) {
 					Logger.Log.Debug ("Executed in {0}ms {1}", execution_ms, command_text);
-				} else if (ApplicationContext.Debugging && execution_ms > 500) {
+				} else if (FSpotConfiguration.Debugging && execution_ms > 500) {
 					Logger.Log.Warning ("Executed in {0}ms {1}", execution_ms, command_text);
 				}
 			} catch (Exception e) {

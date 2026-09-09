@@ -14,6 +14,8 @@ using System.Threading;
 
 namespace Hyena
 {
+	public delegate void InvokeHandler ();
+
 	public static class ThreadAssist
 	{
 		static Thread MainThread { get; set; }
@@ -47,17 +49,6 @@ namespace Hyena
 			} else {
 				handler ();
 			}
-		}
-
-		public static Thread Spawn (ThreadStart threadedMethod)
-		{
-			var thread = new Thread (threadedMethod) {
-				Name = $"Spawned: {threadedMethod}",
-				IsBackground = true
-			};
-			thread.Start ();
-
-			return thread;
 		}
 	}
 }
