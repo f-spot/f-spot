@@ -1,7 +1,7 @@
 <Project>
   <!-- Compile-only gtk-sharp 2.12 refs; dotnet MSBuild does not use the Mono GAC. -->
   <PropertyGroup>
-    <GtkSharpLibDir>$([MSBuild]::NormalizeDirectory('$(MSBuildThisFileDirectory)..\lib\gtk-sharp-2.12'))</GtkSharpLibDir>
+    <GtkSharpLibDir>$([MSBuild]::NormalizeDirectory('$(MSBuildThisFileDirectory)lib\gtk-sharp-2.12'))</GtkSharpLibDir>
   </PropertyGroup>
 
   <Target Name="AddGtkSharpHintPaths" BeforeTargets="ResolveAssemblyReferences">

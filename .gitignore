@@ -17,63 +17,6 @@ Desktop.ini
 $RECYCLE.BIN/
 
 
-# Autotools
-Makefile
-Makefile.in
-after.F-Spot.sln.targets
-autom4te.cache
-autoscan.log
-autoscan-*.log
-aclocal.m4
-compile
-config.*
-configure
-configure.scan
-depcomp
-/install-sh
-missing
-stamp-h1
-build/m4/*.m4
-.libs/
-.deps/
-intltool-extract.in
-intltool-merge.in
-intltool-update.in
-libtool
-ltmain.sh
-*.tar.bz2
-
-# F-Spot stuff
-build/pkg-config/f-spot.pc
-data/desktop-files/f-spot-import.desktop
-data/desktop-files/f-spot-import.desktop.in
-data/desktop-files/f-spot-view.desktop
-data/desktop-files/f-spot-view.desktop.in
-data/desktop-files/f-spot.desktop
-data/desktop-files/f-spot.desktop.in
-src/Clients/FSpot.Gtk/f-spot
-tools/f-spot-screensaver.desktop
-
-# Translation stuff
-po/.intltool-merge-cache
-po/Makefile.in.in
-po/POTFILES
-po/stamp-it
-*.gmo
-*.page
-*.mo
-
-# GNOME
-gnome-doc-utils.make
-
-# C
-*.o
-*.la
-*.lo
-
-
-# --- Modern .NET / IDEs (rough pass; trim later) ---
-
 # MSBuild / SDK
 [Bb]in/
 [Oo]bj/
@@ -84,9 +27,6 @@ artifacts/
 MSBuild_Logs/
 project.lock.json
 project.fragment.lock.json
-*.nuget.props
-*.nuget.targets
-!Directory.Build.rsp
 
 # NuGet
 *.nupkg
@@ -148,19 +88,11 @@ _ReSharper*/
 .env.*
 !.env.example
 
-# Test output — unit test projects set OutputPath to $(TestsPath) = tests/
-# Keep the checked-in fixtures; ignore everything the build copies here.
-/tests/*
-!/tests/Makefile.am
-!/tests/data/
-!/tests/data/**
-
-# VSTest / MSTest / NUnit / coverage
+# Test output (projects and fixtures live in tests/; OutputPath is artifacts/)
 [Tt]est[Rr]esult*/
 TestResults/
 test-results/
 TestResult.xml
-nunit-*.xml
 *.trx
 *.VisualState.xml
 *.coverage
@@ -178,10 +110,6 @@ BenchmarkDotNet.Artifacts/
 *.exe
 !/lib/gtk-sharp-2.12/
 !/lib/gtk-sharp-2.12/**
-# Copied from *.config.in at build; keep the .in files and checked-in *.dll.config.
-src/Clients/FSpot.Gtk/f-spot.exe.config
-src/Core/FSpot/FSpot.dll.config
-
 # Avalonia generated output lands in obj/; keep this for previewer/local caches
 .avalonia/
 

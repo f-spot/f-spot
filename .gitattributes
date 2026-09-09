@@ -1,4 +1,6 @@
 *.sln text eol=crlf
+*.slnx text
+*.slnf text
 *.cs text
 *.targets text
 *.dll.config text
@@ -6,3 +8,8 @@
 *.props text
 *.resx text
 *.sh text eol=lf
+# PATH/libdir launchers have no .sh suffix; keep LF so shebangs survive Windows checkouts.
+tools/f-spot text eol=lf
+tools/f-spot-import text eol=lf
+tools/f-spot-sqlite-upgrade text eol=lf
+src/Clients/FSpot.Gtk/f-spot text eol=lf
