@@ -13,8 +13,6 @@
     <Compile Include="..\..\src\Clients\FSpot.Gtk\FSpot.Widgets\CompletionLogic.cs" Link="FSpot.Widgets\CompletionLogic.cs" />
     <!-- Same for the help text: it is plain string formatting with no Gtk in it. -->
     <Compile Include="..\..\src\Clients\FSpot.Gtk\FSpot\CommandLineHelp.cs" Link="FSpot\CommandLineHelp.cs" />
-    <!-- AndTerm lives in FSpot.Gtk and needs a Gtk runtime. -->
-    <Compile Remove="FSpot\AndTermTests.cs" />
   </ItemGroup>
 
   <ItemGroup>

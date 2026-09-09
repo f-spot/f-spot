@@ -60,6 +60,7 @@
   </Target>
 
   <Target Name="InstallLinux" DependsOnTargets="LayoutLinuxShare">
+    <Error Condition="!Exists('$([System.IO.Path]::Combine(`$(FSpotOutputDir)`, `f-spot.exe`))')" Text="f-spot.exe is missing. Build F-Spot.slnx first, or run: dotnet msbuild build.proj -t:InstallLinux" />
     <MakeDir Directories="$(FSpotBindir);$(FSpotLibdir);$(FSpotApplicationsDir);$(FSpotHelpDir)figures" />
     <ItemGroup>
       <_Built Include="$(FSpotOutputDir)**\*.*" />
