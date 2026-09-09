@@ -36,8 +36,9 @@ gtk-sharp 2.12 is vendored under `lib/gtk-sharp-2.12/` for compile. NuGet packag
 	dotnet build F-Spot.slnx
 	dotnet test F-Spot.Tests.slnf --filter "TestCategory!=RequiresGdk&TestCategory!=RequiresGtk"
 
-Linux/Freedesktop layout (desktop files, hicolor icons, help, PATH wrappers)
-lives in `LinuxDesktop.targets`. A Gtk build stages icons under
+Linux/Freedesktop layout (desktop files, hicolor icons, English Mallard help,
+PATH wrappers) lives in `LinuxDesktop.targets`. Translated `help/` trees are
+parked; only `help/C` is installed. A Gtk build stages icons under
 `bin/share/f-spot`. To install into a prefix:
 
 	dotnet msbuild LinuxDesktop.targets -t:InstallLinux -p:Prefix=/usr/local

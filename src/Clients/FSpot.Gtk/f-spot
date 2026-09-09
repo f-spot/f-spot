@@ -1,7 +1,6 @@
 #!/bin/bash
 # Location-relative launcher: lives next to f-spot.exe (bin/ after build, or
 # libdir/f-spot after a prefix install that copies this script beside the exe).
-# A bindir-vs-libdir split still needs an install-time rewrite.
 
 set -e
 

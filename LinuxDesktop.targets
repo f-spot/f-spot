@@ -1,7 +1,9 @@
-<Project DefaultTargets="LayoutLinuxShare">
+<Project>
   <!-- Linux/Freedesktop prefix layout. macOS app bundle and Windows installer are separate.
        Invoke: dotnet msbuild LinuxDesktop.targets -t:InstallLinux -p:Prefix=/usr/local
-       FSpot.Gtk imports this so a normal build stages icons next to the exe. -->
+       FSpot.Gtk imports this so a normal build stages icons next to the exe.
+       Do not set DefaultTargets: an imported DefaultTargets becomes Gtk's, and
+       ProjectReference then runs icon copy instead of compiling f-spot.exe. -->
 
   <PropertyGroup>
     <RepoRoot Condition="'$(RepoRoot)' == ''">$(MSBuildThisFileDirectory)</RepoRoot>
