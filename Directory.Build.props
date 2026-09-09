@@ -5,7 +5,6 @@
     <RepoRoot>$(MSBuildThisFileDirectory)</RepoRoot>
     <OutputPath>$(RepoRoot)\bin</OutputPath>
     <OutputExtensionPath>$(RepoRoot)\bin\Extensions</OutputExtensionPath>
-    <TestsPath>$(RepoRoot)\tests</TestsPath>
   </PropertyGroup>
 
   <PropertyGroup>

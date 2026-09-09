@@ -1,13 +1,11 @@
 <Solution>
   <Folder Name="/Clients/">
     <Project Path="src/Clients/FSpot.Gtk/FSpot.Gtk.csproj" />
-    <Project Path="src/Clients/FSpot.Gtk.UnitTest/FSpot.Gtk.UnitTest.csproj" />
   </Folder>
   <Folder Name="/Core/">
     <Project Path="src/Core/FSpot/FSpot.csproj" />
     <Project Path="src/Core/FSpot.Resources/FSpot.Resources.csproj" />
     <Project Path="src/Core/FSpot.Strings/FSpot.Strings.csproj" />
-    <Project Path="src/Core/FSpot.UnitTest/FSpot.UnitTest.csproj" />
   </Folder>
   <Folder Name="/Extensions/Editors/">
     <Project Path="src/Extensions/Editors/FSpot.Editors.Blackout/FSpot.Editors.Blackout.csproj" />
@@ -43,7 +41,11 @@
   <Folder Name="/Libraries/">
     <Project Path="lib/gtk-sharp-beans/gtk-sharp-beans.csproj" />
     <Project Path="lib/Hyena/Hyena.csproj" />
-    <Project Path="lib/Hyena.UnitTest/Hyena.UnitTest.csproj" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="tests/Hyena.Tests/Hyena.Tests.csproj" />
+    <Project Path="tests/FSpot.Tests/FSpot.Tests.csproj" />
+    <Project Path="tests/FSpot.Gtk.Tests/FSpot.Gtk.Tests.csproj" />
   </Folder>
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
@@ -51,7 +53,10 @@
     <File Path=".gitignore" />
     <File Path="build.proj" />
     <File Path="global.json" />
-    <File Path=".build/F-Spot.Portable.slnf" />
+    <File Path="F-Spot.Portable.slnf" />
+    <File Path="LinuxDesktop.targets" />
+    <File Path="GtkSharp.refs.targets" />
+    <File Path="F-Spot.Tests.slnf" />
     <File Path="Directory.Build.props" />
     <File Path="Directory.Build.targets" />
     <File Path="Directory.Packages.props" />

@@ -10,5 +10,5 @@
 
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo ("FSpot.UnitTest")]
+[assembly: InternalsVisibleTo ("FSpot.Tests")]
 [assembly: InternalsVisibleTo ("DynamicProxyGenAssembly2")]

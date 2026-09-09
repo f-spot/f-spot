@@ -58,18 +58,18 @@ jobs:
           echo "FSPOT_REQUIRE_LCMS2=1" >> "$GITHUB_ENV"
 
       - name: Restore tests
-        run: dotnet restore .build/F-Spot.Tests.slnf
+        run: dotnet restore F-Spot.Tests.slnf
 
       - name: Test Hyena
         run: >
-          dotnet test lib/Hyena.UnitTest/Hyena.UnitTest.csproj
+          dotnet test tests/Hyena.Tests/Hyena.Tests.csproj
           --configuration Release --no-restore
           --logger trx --results-directory TestResults
 
       - name: Test FSpot
         if: ${{ !cancelled() }}
         run: >
-          dotnet test src/Core/FSpot.UnitTest/FSpot.UnitTest.csproj
+          dotnet test tests/FSpot.Tests/FSpot.Tests.csproj
           --configuration Release --no-restore
           --filter "TestCategory!=RequiresGdk&TestCategory!=RequiresGtk"
           --logger trx --results-directory TestResults
@@ -77,7 +77,7 @@ jobs:
       - name: Test FSpot.Gtk
         if: ${{ !cancelled() }}
         run: >
-          dotnet test src/Clients/FSpot.Gtk.UnitTest/FSpot.Gtk.UnitTest.csproj
+          dotnet test tests/FSpot.Gtk.Tests/FSpot.Gtk.Tests.csproj
           --configuration Release --no-restore
           --filter "TestCategory!=RequiresGdk&TestCategory!=RequiresGtk"
           --logger trx --results-directory TestResults

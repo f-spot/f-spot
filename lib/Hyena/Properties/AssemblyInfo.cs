@@ -12,4 +12,4 @@ using System.Runtime.CompilerServices;
 
 // Temporary until Hyena is removed
 [assembly: InternalsVisibleTo ("f-spot")]
-[assembly: InternalsVisibleTo ("Hyena.UnitTest")]
+[assembly: InternalsVisibleTo ("Hyena.Tests")]
