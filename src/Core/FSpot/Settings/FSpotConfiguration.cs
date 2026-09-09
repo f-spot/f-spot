@@ -30,10 +30,7 @@ namespace FSpot.Settings
 		public static readonly Version version = Assembly.GetExecutingAssembly ().GetName ().Version;
 		public static string Version { get; } = $"{version.Major}.{version.Minor}.{version.Revision}";
 
-		// FIXME, for now we are going to hard code these
-		//			I think this stuff will be "installed"
-		//			next to the assembly in the future instead
-		public static string AppDataDir { get; } = "/usr/local/share/f-spot";
+		public static string AppDataDir { get; } = Path.Combine (AppContext.BaseDirectory, "share", "f-spot");
 
 		public static string HomeDirectory {
 			get => Environment.GetFolderPath (Environment.SpecialFolder.UserProfile);

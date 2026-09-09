@@ -1,4 +1,4 @@
 <Project>
   <!-- Blocks repo Directory.Build.targets. Import Gtk# HintPaths for Mono.Addins.Gui. -->
-  <Import Project="$(MSBuildThisFileDirectory)..\.build\GtkSharp.refs.targets" />
+  <Import Project="$(MSBuildThisFileDirectory)..\GtkSharp.refs.targets" />
 </Project>

@@ -3,19 +3,10 @@
 
   <PropertyGroup>
     <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
-    <PortableSolution>$(MSBuildThisFileDirectory).build\F-Spot.Portable.slnf</PortableSolution>
+    <PortableSolution>$(MSBuildThisFileDirectory)F-Spot.Portable.slnf</PortableSolution>
     <FullSolution>$(MSBuildThisFileDirectory)F-Spot.slnx</FullSolution>
-    <TestSolution>$(MSBuildThisFileDirectory).build\F-Spot.Tests.slnf</TestSolution>
+    <TestSolution>$(MSBuildThisFileDirectory)F-Spot.Tests.slnf</TestSolution>
   </PropertyGroup>
-
-  <Target Name="CopyConfigInFiles">
-    <Copy Condition="!Exists('src\Clients\FSpot.Gtk\f-spot.exe.config')"
-          SourceFiles="src\Clients\FSpot.Gtk\f-spot.exe.config.in"
-          DestinationFiles="src\Clients\FSpot.Gtk\f-spot.exe.config" />
-    <Copy Condition="!Exists('src\Core\FSpot\FSpot.dll.config')"
-          SourceFiles="src\Core\FSpot\FSpot.dll.config.in"
-          DestinationFiles="src\Core\FSpot\FSpot.dll.config" />
-  </Target>
 
   <Target Name="Clean">
     <Exec Command="dotnet clean &quot;$(FullSolution)&quot; --configuration $(Configuration)" />
@@ -25,13 +16,13 @@
     <Exec Command="dotnet restore &quot;$(FullSolution)&quot;" />
   </Target>
 
-  <Target Name="Build" DependsOnTargets="CopyConfigInFiles;Restore">
+  <Target Name="Build" DependsOnTargets="Restore">
     <Exec Command="dotnet build &quot;$(FullSolution)&quot; --configuration $(Configuration) --no-restore" />
   </Target>
 
   <Target Name="Rebuild" DependsOnTargets="Clean;Build" />
 
-  <!-- FSpot.Strings, FSpot.Resources, Hyena, Hyena.UnitTest. -->
+  <!-- FSpot.Strings, FSpot.Resources, Hyena, Hyena.Tests. -->
   <Target Name="Portable">
     <Exec Command="dotnet restore &quot;$(PortableSolution)&quot;" />
     <Exec Command="dotnet build &quot;$(PortableSolution)&quot; --configuration $(Configuration) --no-restore" />
@@ -40,4 +31,9 @@
   <Target Name="Test" DependsOnTargets="Build">
     <Exec Command="dotnet test &quot;$(TestSolution)&quot; --configuration $(Configuration) --no-build --filter &quot;TestCategory!=RequiresGdk&amp;TestCategory!=RequiresGtk&quot; --logger trx --results-directory TestResults" />
   </Target>
+
+  <Target Name="InstallLinux">
+    <MSBuild Projects="$(MSBuildThisFileDirectory)LinuxDesktop.targets" Targets="InstallLinux" Properties="Prefix=$(Prefix)" />
+  </Target>
 </Project>
+

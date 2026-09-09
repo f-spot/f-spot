@@ -31,13 +31,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <!-- configure generates FSpot.dll.config from this template; an MSBuild build never
-         runs configure, so it copies the template itself under the runtime name. Naming
-         the generated file here instead matched nothing on a fresh checkout, and the
-         test that pins these dllmaps against the assembly's imports then skipped. -->
-    <Content Include="FSpot.dll.config.in" Link="FSpot.dll.config">
+    <None Include="FSpot.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </None>
     <None Update="lcmsNET.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

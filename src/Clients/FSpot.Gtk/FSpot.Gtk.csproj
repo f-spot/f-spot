@@ -105,11 +105,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <!-- The template, not the file configure generates from it: a fresh checkout has
-         only the template, and Mono reads these dllmaps from the output directory. -->
-    <Content Include="f-spot.exe.config.in" Link="f-spot.exe.config">
+    <None Include="f-spot.exe.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </None>
+    <None Include="f-spot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <PropertyGroup>
@@ -121,5 +122,8 @@
 		  .config
 	  </AllowedReferenceRelatedFileExtensions>
   </PropertyGroup>
+
+  <Import Project="$(RepoRoot)LinuxDesktop.targets" />
+  <Target Name="LayoutLinuxShareAfterBuild" AfterTargets="Build" DependsOnTargets="LayoutLinuxShare" />
 
 </Project>

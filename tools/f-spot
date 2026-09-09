@@ -1,0 +1,4 @@
+#!/bin/sh
+# PATH wrapper: prefix/bin/f-spot → prefix/lib/f-spot/f-spot (next to the exe).
+LIBDIR="$(cd "$(dirname "$0")/../lib/f-spot" && pwd)"
+exec "$LIBDIR/f-spot" "$@"
