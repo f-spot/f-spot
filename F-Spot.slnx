@@ -38,9 +38,6 @@
     <Project Path="external/mono-addins/Mono.Addins.Setup/Mono.Addins.Setup.csproj" />
     <Project Path="external/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui.csproj" />
   </Folder>
-  <Folder Name="/Libraries/">
-    <Project Path="lib/gtk-sharp-beans/gtk-sharp-beans.csproj" />
-  </Folder>
   <Folder Name="/Tests/">
     <Project Path="tests/FSpot.Tests/FSpot.Tests.csproj" />
     <Project Path="tests/FSpot.Gtk.Tests/FSpot.Gtk.Tests.csproj" />
