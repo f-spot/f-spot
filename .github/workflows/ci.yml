@@ -19,7 +19,7 @@ env:
   DOTNET_CLI_TELEMETRY_OPTOUT: true
 
 jobs:
-  # F-Spot.Tests.slnf: Hyena, FSpot, and Gtk unit tests only.
+  # F-Spot.Tests.slnf: FSpot and Gtk unit tests only.
   test:
     name: Test (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
@@ -59,12 +59,6 @@ jobs:
 
       - name: Restore tests
         run: dotnet restore F-Spot.Tests.slnf
-
-      - name: Test Hyena
-        run: >
-          dotnet test tests/Hyena.Tests/Hyena.Tests.csproj
-          --configuration Release --no-restore
-          --logger trx --results-directory TestResults
 
       - name: Test FSpot
         if: ${{ !cancelled() }}

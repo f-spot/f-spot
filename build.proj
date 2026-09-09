@@ -22,7 +22,7 @@
 
   <Target Name="Rebuild" DependsOnTargets="Clean;Build" />
 
-  <!-- FSpot.Strings, FSpot.Resources, Hyena, Hyena.Tests. -->
+  <!-- FSpot.Strings, FSpot.Resources, FSpot (gtk-free). -->
   <Target Name="Portable">
     <Exec Command="dotnet restore &quot;$(PortableSolution)&quot;" />
     <Exec Command="dotnet build &quot;$(PortableSolution)&quot; --configuration $(Configuration) --no-restore" />
