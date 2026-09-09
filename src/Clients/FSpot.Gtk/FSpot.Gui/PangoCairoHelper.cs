@@ -11,7 +11,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace Hyena.Gui
+namespace FSpot.Gui
 {
 	public static class PangoCairoHelper
 	{

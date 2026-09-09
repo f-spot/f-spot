@@ -23,7 +23,7 @@ using FSpot.Utils;
 
 using Gtk;
 
-using Hyena.Widgets;
+using FSpot.Widgets;
 
 using Mono.Addins;
 

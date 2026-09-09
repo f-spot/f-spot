@@ -36,7 +36,6 @@ using Gdk;
 using Gtk;
 
 using Hyena;
-using Hyena.Widgets;
 
 using Mono.Addins;
 

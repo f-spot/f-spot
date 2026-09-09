@@ -25,7 +25,7 @@ using FSpot.UI.Dialog;
 
 using Gtk;
 
-using Hyena.Widgets;
+using FSpot.Widgets;
 
 using ICSharpCode.SharpZipLib.Checksum;
 using ICSharpCode.SharpZipLib.Zip;

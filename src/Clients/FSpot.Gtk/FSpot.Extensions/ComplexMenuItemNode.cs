@@ -13,7 +13,7 @@
 
 using System;
 
-using Hyena.Widgets;
+using FSpot.Widgets;
 
 using Mono.Addins;
 

@@ -10,7 +10,7 @@
 
 using System;
 
-namespace Hyena.Widgets
+namespace FSpot.Widgets
 {
 	public class HigMessageDialog : Gtk.Dialog
 	{

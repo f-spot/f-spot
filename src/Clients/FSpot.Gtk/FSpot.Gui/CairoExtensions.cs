@@ -14,7 +14,7 @@ using System.Runtime.InteropServices;
 
 using Cairo;
 
-namespace Hyena.Gui
+namespace FSpot.Gui
 {
 	[Flags]
 	public enum CairoCorners

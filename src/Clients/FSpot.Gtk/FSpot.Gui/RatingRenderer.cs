@@ -12,7 +12,7 @@ using System;
 
 using Cairo;
 
-namespace Hyena.Gui
+namespace FSpot.Gui
 {
 	public class RatingRenderer
 	{

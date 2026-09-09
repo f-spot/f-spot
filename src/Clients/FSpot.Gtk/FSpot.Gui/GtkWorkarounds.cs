@@ -10,7 +10,7 @@
 
 using System.Reflection;
 
-namespace Hyena.Gui
+namespace FSpot.Gui
 {
 	public static class GtkWorkarounds
 	{

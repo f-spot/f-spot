@@ -25,7 +25,7 @@ using FSpot.Settings;
 using FSpot.Utils;
 
 using Hyena;
-using Hyena.Gui;
+using FSpot.Gui;
 
 using Mono.Addins;
 using Mono.Addins.Setup;

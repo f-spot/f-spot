@@ -14,7 +14,7 @@ using System.Runtime.InteropServices;
 
 using Pango;
 
-namespace Hyena.Gui
+namespace FSpot.Gui
 {
 	public static class PangoExtensions
 	{

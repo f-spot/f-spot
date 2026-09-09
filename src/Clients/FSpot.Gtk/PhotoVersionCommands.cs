@@ -23,7 +23,7 @@ using FSpot.UI.Dialog;
 
 using Gtk;
 
-using Hyena.Widgets;
+using FSpot.Widgets;
 
 namespace FSpot
 {

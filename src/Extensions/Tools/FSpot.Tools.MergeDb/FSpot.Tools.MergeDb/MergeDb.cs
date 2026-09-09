@@ -30,7 +30,7 @@ using FSpot.Utils;
 using Gtk;
 
 using Hyena;
-using Hyena.Widgets;
+using FSpot.Widgets;
 
 
 namespace FSpot.Tools.MergeDb

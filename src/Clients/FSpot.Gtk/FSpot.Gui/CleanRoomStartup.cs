@@ -12,9 +12,9 @@ using System;
 
 using FSpot.Resources.Lang;
 
-using Hyena.Widgets;
+using FSpot.Widgets;
 
-namespace Hyena.Gui
+namespace FSpot.Gui
 {
 	public static class CleanRoomStartup
 	{

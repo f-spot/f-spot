@@ -24,7 +24,7 @@ using FSpot.Extensions;
 using FSpot.Gui;
 using FSpot.UI.Dialog;
 
-using Hyena.Widgets;
+using FSpot.Widgets;
 
 
 

@@ -14,11 +14,11 @@ using FSpot.Utils;
 
 using Gdk;
 
-using Hyena.Gui;
+using FSpot.Gui;
 
 namespace FSpot.Widgets
 {
-	public class RatingRenderer : Hyena.Gui.RatingRenderer
+	public class RatingRenderer : FSpot.Gui.RatingRenderer
 	{
 		static readonly int REQUESTED_ICON_SIZE = 16;
 

@@ -88,7 +88,7 @@ namespace FSpot.Widgets
 
 		void SetPixbuf (Pixbuf pixbuf)
 		{
-			Surface = Hyena.Gui.PixbufImageSurface.Create (pixbuf);
+			Surface = FSpot.Gui.PixbufImageSurface.Create (pixbuf);
 			Bounds.Width = pixbuf.Width;
 			Bounds.Height = pixbuf.Height;
 		}

@@ -27,7 +27,7 @@ namespace FSpot.UI.Dialog
 		VBox inner_vbox;
 
 		Label header_label;
-		Hyena.Widgets.WrapLabel message_label;
+		FSpot.Widgets.WrapLabel message_label;
 		Expander details_expander;
 
 		protected AccelGroup AccelGroup { get; private set; }
@@ -102,7 +102,7 @@ namespace FSpot.UI.Dialog
 				AttachOptions.Fill | AttachOptions.Expand,
 				AttachOptions.Shrink, 0, 0);
 
-			table.Attach (message_label = new Hyena.Widgets.WrapLabel (), 1, 2, 1, 2,
+			table.Attach (message_label = new FSpot.Widgets.WrapLabel (), 1, 2, 1, 2,
 				AttachOptions.Fill | AttachOptions.Expand,
 				AttachOptions.Shrink, 0, 0);
 

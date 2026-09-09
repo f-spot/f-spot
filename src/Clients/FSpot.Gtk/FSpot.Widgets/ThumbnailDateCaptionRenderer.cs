@@ -17,7 +17,7 @@ using Gdk;
 
 using Gtk;
 
-using Hyena.Gui;
+using FSpot.Gui;
 
 namespace FSpot.Widgets
 {

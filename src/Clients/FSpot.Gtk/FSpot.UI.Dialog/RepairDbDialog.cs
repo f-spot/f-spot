@@ -17,7 +17,7 @@ using FSpot.Resources.Lang;
 
 using Gtk;
 
-using Hyena.Widgets;
+using FSpot.Widgets;
 
 
 

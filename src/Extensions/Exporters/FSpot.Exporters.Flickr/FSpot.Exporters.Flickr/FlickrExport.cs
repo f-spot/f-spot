@@ -32,7 +32,6 @@ using FSpot.Widgets;
 using Gtk;
 
 using Hyena;
-using Hyena.Widgets;
 
 namespace FSpot.Exporters.Flickr
 {

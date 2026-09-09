@@ -13,13 +13,13 @@ using System.Runtime.InteropServices;
 
 using Cairo;
 
-namespace Hyena.Gui
+namespace FSpot.Gui
 {
 	public class PixbufImageSurface : ImageSurface, IDisposable
 	{
 		delegate void cairo_destroy_func_t (IntPtr userdata);
 
-		static bool is_le = BitConverter.IsLittleEndian;
+		static bool is_le = System.BitConverter.IsLittleEndian;
 		static int user_data_key = 0;
 		static cairo_destroy_func_t destroy_func;
 

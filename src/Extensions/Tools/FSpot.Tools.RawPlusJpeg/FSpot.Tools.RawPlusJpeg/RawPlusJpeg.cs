@@ -19,7 +19,7 @@ using FSpot.Utils;
 
 using Gtk;
 
-using Hyena.Widgets;
+using FSpot.Widgets;
 
 namespace FSpot.Tools.RawPlusJpeg
 {

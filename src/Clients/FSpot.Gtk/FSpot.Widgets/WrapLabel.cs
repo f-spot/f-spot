@@ -12,7 +12,7 @@ using System;
 
 using Gtk;
 
-namespace Hyena.Widgets
+namespace FSpot.Widgets
 {
 	public class WrapLabel : Widget
 	{

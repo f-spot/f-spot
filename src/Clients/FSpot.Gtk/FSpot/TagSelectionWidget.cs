@@ -25,7 +25,6 @@ using Gdk;
 
 using Gtk;
 
-using Hyena.Widgets;
 
 namespace FSpot
 {

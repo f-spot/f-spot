@@ -305,7 +305,7 @@ namespace FSpot
 
 		public static Pixbuf Blur (Pixbuf src, int radius, ThreadProgressDialog dialog)
 		{
-			var sourceSurface = Hyena.Gui.PixbufImageSurface.Create (src);
+			var sourceSurface = FSpot.Gui.PixbufImageSurface.Create (src);
 			var destinationSurface = new ImageSurface (Cairo.Format.Rgb24, src.Width, src.Height);
 
 			// If we do it as a bunch of single lines (rectangles of one pixel) then we can give the progress
