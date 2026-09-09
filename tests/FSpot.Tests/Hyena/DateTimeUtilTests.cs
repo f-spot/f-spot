@@ -17,18 +17,17 @@ namespace Hyena.Tests
 	public class DateTimeUtilTests
 	{
 		[TestMethod]
-		public void FromToSymmetry ()
+		[DataRow (2020, 6, 15, 12, 30, 45)]
+		[DataRow (2020, 1, 15, 12, 30, 45)]
+		public void FromToSymmetry (int year, int month, int day, int hour, int minute, int second)
 		{
-			// FromDateTime only has precision to the second; strip the remaining ticks.
-			DateTime now = DateTime.Now;
-			now = now.Subtract (TimeSpan.FromTicks (now.Ticks % TimeSpan.TicksPerSecond));
+			var local = new DateTime (year, month, day, hour, minute, second, DateTimeKind.Local);
 
-			long time_t = DateTimeUtil.FromDateTime (now);
-			DateTime now_t = DateTimeUtil.ToDateTime (time_t);
+			long unix = DateTimeUtil.FromDateTime (local);
+			DateTime roundTrip = DateTimeUtil.ToDateTime (unix);
 
-			Assert.AreEqual (DateTimeKind.Local, now.Kind);
-			Assert.AreEqual (DateTimeKind.Local, now_t.Kind);
-			Assert.AreEqual (now, now_t);
+			Assert.AreEqual (DateTimeKind.Local, roundTrip.Kind);
+			Assert.AreEqual (local, roundTrip);
 		}
 	}
 }

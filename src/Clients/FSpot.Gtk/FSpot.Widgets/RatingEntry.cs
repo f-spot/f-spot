@@ -94,11 +94,13 @@ namespace FSpot.Widgets
 		public int Value {
 			get { return renderer.Value; }
 			set {
-				if (renderer.Value != value && renderer.Value >= renderer.MinRating && value <= renderer.MaxRating) {
-					renderer.Value = value;
-					OnChanging ();
-					OnChanged ();
-				}
+				if (value < renderer.MinRating || value > renderer.MaxRating)
+					return;
+				if (renderer.Value == value)
+					return;
+				renderer.Value = value;
+				OnChanging ();
+				OnChanged ();
 			}
 		}
 
@@ -385,7 +387,7 @@ namespace FSpot.Widgets
 
 		public void GetMaximumValue (ref GLib.Value val)
 		{
-			val = new GLib.Value (5);
+			val = new GLib.Value (rating.MaxRating);
 		}
 
 		public void GetMinimumIncrement (ref GLib.Value val)
@@ -395,7 +397,7 @@ namespace FSpot.Widgets
 
 		public void GetMinimumValue (ref GLib.Value val)
 		{
-			val = new GLib.Value (0);
+			val = new GLib.Value (rating.MinRating);
 		}
 
 		public void GetCurrentValue (ref GLib.Value val)
@@ -406,11 +408,10 @@ namespace FSpot.Widgets
 		public bool SetCurrentValue (GLib.Value val)
 		{
 			int r = (int)val.Val;
-			if (r <= 0 || r > 5) {
+			if (r < rating.MinRating || r > rating.MaxRating)
 				return false;
-			}
 
-			rating.Value = (int)val.Val;
+			rating.Value = r;
 			return true;
 		}
 	}
