@@ -1,0 +1,82 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="FSpot.Avalonia.App"
+             Name="F-Spot"
+             RequestedThemeVariant="Default">
+	<NativeMenu.Menu>
+		<NativeMenu>
+			<NativeMenuItem Header="About F-Spot" Click="OnAboutClicked" />
+		</NativeMenu>
+	</NativeMenu.Menu>
+	<Application.Styles>
+		<FluentTheme />
+		<Style Selector="Button.tool, ToggleButton.tool, RadioButton.tool">
+			<Setter Property="Padding" Value="8,4" />
+		</Style>
+		<Style Selector="Button.sidebar-chooser">
+			<Setter Property="HorizontalAlignment" Value="Stretch" />
+			<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+			<Setter Property="Padding" Value="6,4" />
+			<Setter Property="Background" Value="Transparent" />
+			<Setter Property="BorderThickness" Value="0" />
+		</Style>
+		<Style Selector="Button.sidebar-close">
+			<Setter Property="Padding" Value="8,4" />
+			<Setter Property="Background" Value="Transparent" />
+			<Setter Property="BorderThickness" Value="0" />
+		</Style>
+		<Style Selector="Button.editor">
+			<Setter Property="HorizontalAlignment" Value="Stretch" />
+			<Setter Property="HorizontalContentAlignment" Value="Left" />
+			<Setter Property="Padding" Value="8,6" />
+			<Setter Property="Margin" Value="0,0,0,5" />
+		</Style>
+		<Style Selector="TreeView.sidebar">
+			<Setter Property="Background" Value="Transparent" />
+			<Setter Property="FontSize" Value="12" />
+			<Setter Property="BorderThickness" Value="0" />
+		</Style>
+		<Style Selector="TextBlock.info-label">
+			<Setter Property="FontSize" Value="11" />
+			<Setter Property="FontWeight" Value="Bold" />
+			<Setter Property="TextAlignment" Value="Right" />
+			<Setter Property="VerticalAlignment" Value="Top" />
+			<Setter Property="Margin" Value="0,3,6,3" />
+			<Setter Property="Opacity" Value="0.85" />
+		</Style>
+		<Style Selector="TextBlock.info-value">
+			<Setter Property="FontSize" Value="11" />
+			<Setter Property="TextWrapping" Value="NoWrap" />
+			<Setter Property="TextTrimming" Value="CharacterEllipsis" />
+			<Setter Property="VerticalAlignment" Value="Top" />
+			<Setter Property="Margin" Value="0,3,0,3" />
+		</Style>
+		<Style Selector="TextBlock.folder-count">
+			<Setter Property="FontSize" Value="11" />
+			<Setter Property="Opacity" Value="0.55" />
+			<Setter Property="Margin" Value="8,0,4,0" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+		</Style>
+		<Style Selector="Border.query-bar">
+			<Setter Property="Padding" Value="8,2" />
+			<Setter Property="Background" Value="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}" />
+		</Style>
+		<Style Selector="Border.query-chip">
+			<Setter Property="Padding" Value="6,2,2,2" />
+			<Setter Property="CornerRadius" Value="3" />
+			<Setter Property="Background" Value="{DynamicResource SystemControlBackgroundAltHighBrush}" />
+		</Style>
+		<Style Selector="Button.chip-close">
+			<Setter Property="Padding" Value="4,0" />
+			<Setter Property="Background" Value="Transparent" />
+			<Setter Property="BorderThickness" Value="0" />
+		</Style>
+		<Style Selector="Expander.sidebar">
+			<Setter Property="FontSize" Value="12" />
+			<Setter Property="Margin" Value="2,0" />
+			<Setter Property="Padding" Value="2" />
+			<Setter Property="HorizontalAlignment" Value="Stretch" />
+			<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+		</Style>
+	</Application.Styles>
+</Application>

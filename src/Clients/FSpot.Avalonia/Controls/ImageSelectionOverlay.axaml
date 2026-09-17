@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="FSpot.Avalonia.Controls.ImageSelectionOverlay"
+             x:Name="Root"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch"
+             Background="Transparent"
+             Cursor="Cross"
+             PointerPressed="OnPointerPressed"
+             PointerMoved="OnPointerMoved"
+             PointerReleased="OnPointerReleased"
+             PointerCaptureLost="OnPointerCaptureLost">
+	<Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+		<Rectangle Name="Marquee"
+		           Stroke="White"
+		           StrokeThickness="1"
+		           Fill="#33FFFFFF"
+		           IsVisible="False" />
+	</Canvas>
+</UserControl>

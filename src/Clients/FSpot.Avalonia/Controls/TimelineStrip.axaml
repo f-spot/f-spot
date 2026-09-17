@@ -1,0 +1,73 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:FSpot.Avalonia.ViewModels"
+             x:Class="FSpot.Avalonia.Controls.TimelineStrip"
+             x:Name="Root">
+	<Border Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}"
+	        AutomationProperties.Name="Timeline">
+		<ScrollViewer HorizontalScrollBarVisibility="Auto"
+		              VerticalScrollBarVisibility="Disabled">
+			<ItemsControl ItemsSource="{Binding #Root.Items}">
+				<ItemsControl.ItemsPanel>
+					<ItemsPanelTemplate>
+						<StackPanel Orientation="Horizontal" Spacing="2" Margin="8,6" />
+					</ItemsPanelTemplate>
+				</ItemsControl.ItemsPanel>
+				<ItemsControl.ItemTemplate>
+					<DataTemplate DataType="vm:TimelineBucket">
+						<Button Classes="timeline-month"
+						        Width="22"
+						        Padding="0,2"
+						        Background="Transparent"
+						        BorderThickness="0"
+						        IsEnabled="{Binding HasPhotos}"
+						        Classes.selected="{Binding Selected}"
+						        Classes.inrange="{Binding InRange}"
+						        ToolTip.Tip="{Binding ToolTip}"
+						        Command="{Binding #Root.SelectCommand}"
+						        CommandParameter="{Binding}"
+						        AutomationProperties.AutomationId="{Binding AutomationId}"
+						        AutomationProperties.Name="{Binding ToolTip}">
+							<Button.Styles>
+								<Style Selector="Button.timeline-month:disabled">
+									<Setter Property="Opacity" Value="0.35" />
+								</Style>
+							</Button.Styles>
+							<StackPanel Width="22">
+								<TextBlock Text="{Binding YearLabel}"
+								           FontSize="9"
+								           Opacity="0.7"
+								           HorizontalAlignment="Center"
+								           Height="14" />
+								<Panel Height="40">
+									<Border Width="14"
+									        Height="{Binding BarHeight}"
+									        HorizontalAlignment="Center"
+									        VerticalAlignment="Bottom"
+									        CornerRadius="1"
+									        Background="{DynamicResource SystemControlForegroundBaseMediumLowBrush}"
+									        Classes.filled="{Binding HasPhotos}"
+									        Classes.selected="{Binding Selected}"
+									        Classes.inrange="{Binding InRange}">
+										<Border.Styles>
+											<Style Selector="Border.filled">
+												<Setter Property="Background" Value="{DynamicResource SystemAccentColorLight2}" />
+											</Style>
+											<Style Selector="Border.selected">
+												<Setter Property="Background" Value="{DynamicResource SystemAccentColor}" />
+											</Style>
+										</Border.Styles>
+									</Border>
+								</Panel>
+								<TextBlock Text="{Binding MonthLabel}"
+								           FontSize="9"
+								           HorizontalAlignment="Center"
+								           Margin="0,2,0,0" />
+							</StackPanel>
+						</Button>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+		</ScrollViewer>
+	</Border>
+</UserControl>

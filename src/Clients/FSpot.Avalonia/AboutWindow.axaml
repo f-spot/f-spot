@@ -1,0 +1,32 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:FSpot.Avalonia.ViewModels"
+        xmlns:svg="using:Avalonia.Svg.Skia"
+        xmlns:auto="using:FSpot.Avalonia"
+        x:Class="FSpot.Avalonia.AboutWindow"
+        x:DataType="vm:AboutViewModel"
+        Title="About F-Spot"
+        Width="420"
+        Height="280"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False"
+        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.AboutWindow}"
+        AutomationProperties.Name="About F-Spot">
+	<StackPanel Margin="24" Spacing="8">
+		<svg:Svg Width="64" Height="64" Path="avares://FSpot.Avalonia/Icons/f-spot.svg" HorizontalAlignment="Left"
+		         AutomationProperties.AutomationId="{x:Static auto:AutomationIds.AboutLogo}"
+		         AutomationProperties.Name="F-Spot" />
+		<TextBlock FontSize="22" FontWeight="SemiBold" Text="F-Spot" />
+		<TextBlock Text="{Binding Version}"
+		           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.AboutVersion}" />
+		<TextBlock TextWrapping="Wrap" Text="{Binding Description}"
+		           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.AboutDescription}" />
+		<TextBlock Text="http://f-spot.org" />
+		<Button HorizontalAlignment="Right"
+		        Margin="0,16,0,0"
+		        Content="Close"
+		        Click="OnClose"
+		        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.AboutClose}"
+		        AutomationProperties.Name="Close" />
+	</StackPanel>
+</Window>

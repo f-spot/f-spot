@@ -29,6 +29,11 @@ namespace FSpot.Loaders
 {
 	public class GdkImageLoader : Gdk.PixbufLoader, IImageLoader
 	{
+		public GdkImageLoader ()
+		{
+			SizePrepared += HandleSizePrepared;
+		}
+
 		#region public api
 
 		// FIXME: Probably really shouldn't be doing this?
@@ -74,6 +79,8 @@ namespace FSpot.Loaders
 
 		new public Pixbuf Pixbuf {
 			get {
+				if (over_budget)
+					return null;
 				if (thumb != null) {
 					return thumb;
 				}
@@ -96,6 +103,10 @@ namespace FSpot.Loaders
 		// Set on the GTK main thread by Dispose and read on the thread pool from the
 		// BeginRead completion in HandleReadDone, so it needs a barrier.
 		volatile bool is_disposed;
+
+		// Set from SizePrepared on the thread pool during Write, read on the main
+		// thread when the idle handler decides whether to show the pixbuf.
+		volatile bool over_budget;
 
 		public override void Dispose ()
 		{
@@ -127,6 +138,17 @@ namespace FSpot.Loaders
 		#endregion
 
 		#region event handlers
+		void HandleSizePrepared (object sender, SizePreparedArgs args)
+		{
+			if (!DecodeBudget.Exceeds (args.Width, args.Height))
+				return;
+
+			// Allocate a 1×1 instead of the header size, then hide it. PhotoImageView
+			// treats a null Pixbuf as a failed load and shows the error image.
+			over_budget = true;
+			SetSize (1, 1);
+		}
+
 		protected override void OnAreaPrepared ()
 		{
 			if (is_disposed)
@@ -179,7 +201,10 @@ namespace FSpot.Loaders
 					notify_completed = true;
 				} else {
 					try {
-						if (!is_disposed && Write (buffer, (ulong)byte_read)) {
+						// SizePrepared runs inside Write, so the budget flag is only
+						// visible after Write returns.
+						bool wrote = !is_disposed && Write (buffer, (ulong)byte_read);
+						if (wrote && !over_budget) {
 							image_stream.BeginRead (buffer, 0, count, HandleReadDone, null);
 						} else {
 							Loading = false;
@@ -199,7 +224,7 @@ namespace FSpot.Loaders
 
 			GLib.Idle.Add (delegate {
 				//Send the AreaPrepared event
-				if (notify_prepared) {
+				if (notify_prepared && !over_budget) {
 					notify_prepared = false;
 					if (thumb != null) {
 						thumb.Dispose ();
@@ -210,7 +235,7 @@ namespace FSpot.Loaders
 				}
 
 				//Send the AreaUpdated events
-				if (damage != Rectangle.Zero) {
+				if (damage != Rectangle.Zero && !over_budget) {
 					AreaUpdated?.Invoke (this, new AreaUpdatedEventArgs (damage));
 					damage = Rectangle.Zero;
 				}

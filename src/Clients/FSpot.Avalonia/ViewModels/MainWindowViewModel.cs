@@ -1,0 +1,1469 @@
+//
+// MainWindowViewModel.cs
+//
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
+
+using System.Collections.ObjectModel;
+using System.IO;
+
+using Avalonia.Media;
+using Avalonia.Media.Imaging;
+
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+
+using FSpot;
+using FSpot.Avalonia.Imaging;
+using FSpot.Avalonia.Models;
+using FSpot.Avalonia.Services;
+using FSpot.Core;
+using FSpot.Database;
+using FSpot.Editors;
+using FSpot.Imaging;
+using FSpot.Query;
+using FSpot.Resources.Lang;
+using FSpot.Slideshow;
+using FSpot.Thumbnail;
+using FSpot.Utils;
+
+using Hyena;
+
+using TinyIoC;
+
+namespace FSpot.Avalonia.ViewModels;
+
+public partial class MainWindowViewModel : ObservableObject
+{
+	readonly Db? database;
+	readonly IAvaloniaShell shell;
+	readonly IPhotoThumbnailLoader thumbnails;
+	CancellationTokenSource? thumbnailLoad;
+
+	[ObservableProperty]
+	LibraryViewMode viewMode = LibraryViewMode.IconView;
+
+	[ObservableProperty]
+	PhotoItemViewModel? selectedPhoto;
+
+	[ObservableProperty]
+	TagNode? selectedTag;
+
+	[ObservableProperty]
+	FolderNode? selectedFolder;
+
+	[ObservableProperty]
+	TagNode? activeTagFilter;
+
+	[ObservableProperty]
+	FolderNode? activeFolderFilter;
+
+	[ObservableProperty]
+	int sidebarTab;
+
+	int browseSidebarTab;
+
+	[ObservableProperty]
+	Bitmap? preview;
+
+	[ObservableProperty]
+	double zoom = 128;
+
+	[ObservableProperty]
+	string statusText = string.Empty;
+
+	[ObservableProperty]
+	bool reverseOrder;
+
+	[ObservableProperty]
+	bool findUntagged;
+
+	[ObservableProperty]
+	bool displaySidebar = true;
+
+	[ObservableProperty]
+	bool displayTimeline = true;
+
+	[ObservableProperty]
+	bool displayFilmstrip = true;
+
+	[ObservableProperty]
+	bool displayToolbar = true;
+
+	[ObservableProperty]
+	bool displayDates = true;
+
+	[ObservableProperty]
+	bool displayTags = true;
+
+	[ObservableProperty]
+	bool displayRatings = true;
+
+	[ObservableProperty]
+	bool isFindBarVisible;
+
+	[ObservableProperty]
+	string findText = string.Empty;
+
+	[ObservableProperty]
+	TimelineBucket? selectedTimeline;
+
+	[ObservableProperty]
+	Bitmap? histogram;
+
+	[ObservableProperty]
+	PhotoEditorSession? editorSession;
+
+	[ObservableProperty]
+	bool isLoupeVisible;
+
+	[ObservableProperty]
+	double loupeX;
+
+	[ObservableProperty]
+	double loupeY;
+
+	[ObservableProperty]
+	IImage? loupeSample;
+
+	[ObservableProperty]
+	string windowTitle = "F-Spot";
+
+	[ObservableProperty]
+	bool findMatchAllTags;
+
+	[ObservableProperty]
+	uint? findMinRating;
+
+	[ObservableProperty]
+	uint? findMaxRating;
+
+	[ObservableProperty]
+	DateTime? findStart;
+
+	[ObservableProperty]
+	DateTime? findEnd;
+
+	DateTime? timelineRangeStart;
+	DateTime? timelineRangeEnd;
+
+	readonly List<PhotoItemViewModel> catalogPhotos = [];
+	readonly List<uint> findRollIds = [];
+
+	public MainWindowViewModel (Db? database, IAvaloniaShell shell, IPhotoThumbnailLoader thumbnails)
+	{
+		this.database = database;
+		this.shell = shell;
+		this.thumbnails = thumbnails;
+		Info.VersionChosen += ApplyVersion;
+		Info.RatingChosen += ApplyRating;
+	}
+
+	public ObservableCollection<PhotoItemViewModel> Photos { get; } = [];
+	public ObservableCollection<TagNode> Tags { get; } = [];
+	public ObservableCollection<FolderNode> Folders { get; } = [];
+	public ObservableCollection<TimelineBucket> TimelineBuckets { get; } = [];
+	public PhotoInfoViewModel Info { get; } = new ();
+
+	public bool IsBrowsing => ViewMode == LibraryViewMode.IconView;
+	public bool IsEditing => ViewMode == LibraryViewMode.PhotoView;
+	public IReadOnlyList<PhotoEditorDescriptor> VisibleEditors =>
+		PhotoEditorCatalog.VisibleIn (ViewMode).ToList ();
+	public bool HasEditorSession => EditorSession is not null;
+	public bool ShowEditorList => IsEditPage && EditorSession is null;
+	public bool ShowEditorSelection => EditorSession?.Editor.NeedsSelection == true;
+	public bool ShowEditorSettings => EditorSession?.Editor.HasSettings == true;
+	public bool ShowColorSettings => EditorSession?.Editor.Id == PhotoEditorCatalog.Color.Id;
+	public bool ShowBwSettings => EditorSession?.Editor.Id == PhotoEditorCatalog.BW.Id;
+	public bool ShowResizeSettings => EditorSession?.Editor.Id == PhotoEditorCatalog.Resize.Id;
+	public bool ShowTiltSettings => EditorSession?.Editor.Id == PhotoEditorCatalog.Tilt.Id;
+	public bool ShowSoftFocusSettings => EditorSession?.Editor.Id == PhotoEditorCatalog.SoftFocus.Id;
+	public bool ShowSharpenSettings => EditorSession?.Editor.Id == PhotoEditorCatalog.Sharpen.Id;
+	public int PreviewPixelWidth => Preview?.PixelSize.Width ?? 0;
+	public int PreviewPixelHeight => Preview?.PixelSize.Height ?? 0;
+	public bool ShowLoupe => IsLoupeVisible && IsEditing && Preview is not null;
+	public bool ShowTimeline => IsBrowsing && DisplayTimeline;
+	public bool ShowFilmstrip => IsEditing && DisplayFilmstrip;
+	public bool ShowTagBar => IsEditing;
+	public bool ShowInfoBox => SelectedPhoto is not null;
+	public bool HasLibraryFilter => ActiveTagFilter is not null || ActiveFolderFilter is not null || FindUntagged
+		|| FindTags.Count > 0 || HasFindRating || HasFindDate || HasFindRoll;
+	public bool HasFindRating => FindMinRating is not null || FindMaxRating is not null;
+	public bool HasFindDate => FindStart is not null || FindEnd is not null;
+	public bool HasFindRoll => findRollIds.Count > 0;
+	public string FindRatingLabel => HasFindRating
+		? $"{FindMinRating ?? 0}–{FindMaxRating ?? 5}★"
+		: string.Empty;
+	public string FindDateLabel => HasFindDate
+		? $"{FindStart:yyyy-MM-dd} – {FindEnd:yyyy-MM-dd}"
+		: string.Empty;
+	public string FindRollLabel => HasFindRoll
+		? string.Format (Strings.ImportRoll + " {0}", string.Join (", ", findRollIds))
+		: string.Empty;
+	public ObservableCollection<TagNode> FindTags { get; } = [];
+	public bool ShowEmptyLibrary =>
+		database is not null && IsBrowsing && catalogPhotos.Count == 0
+		&& !HasLibraryFilter && string.IsNullOrWhiteSpace (FindText) && SelectedTimeline is null
+		&& timelineRangeStart is null;
+	public bool ShowNoMatches =>
+		IsBrowsing && Photos.Count == 0 && !ShowEmptyLibrary
+		&& (catalogPhotos.Count > 0 || HasLibraryFilter || !string.IsNullOrWhiteSpace (FindText)
+			|| SelectedTimeline is not null || timelineRangeStart is not null);
+	public bool ShowPhotoGrid => IsBrowsing && Photos.Count > 0;
+	public bool IsTagsPage => SidebarTab == 0;
+	public bool IsFoldersPage => SidebarTab == 1;
+	public bool IsEditPage => SidebarTab == 2;
+	public string SidebarPageTitle => SidebarTab switch {
+		1 => Strings.Folders,
+		2 => Strings.Edit,
+		_ => Strings.Tags
+	};
+	public string ZoomLabel => $"{(int)Zoom} px";
+	public string CountText =>
+		SelectedPhoto is null
+			? string.Empty
+			: string.Format (Strings.PhotoOutOfPhotos, Photos.IndexOf (SelectedPhoto) + 1, Photos.Count);
+
+	public void LoadCatalog ()
+	{
+		if (database is null)
+			return;
+
+		ReloadTags ();
+		ReloadFolders ();
+		ReloadPhotos ();
+	}
+
+	void ReloadTags ()
+	{
+		if (database is null)
+			return;
+
+		var selected = SelectedTag?.Tag;
+		Tags.Clear ();
+		foreach (var tag in database.Tags.RootCategory.Children)
+			Tags.Add (new TagNode (tag));
+
+		if (selected is not null)
+			SelectedTag = FindTagNode (Tags, selected);
+	}
+
+	static TagNode? FindTagNode (IEnumerable<TagNode> nodes, Tag tag)
+	{
+		foreach (var node in nodes) {
+			if (node.Tag.Id == tag.Id)
+				return node;
+			var child = FindTagNode (node.Children, tag);
+			if (child is not null)
+				return child;
+		}
+
+		return null;
+	}
+
+	void ReloadFolders ()
+	{
+		if (database is null)
+			return;
+
+		var selected = SelectedFolder?.Uri;
+		Folders.Clear ();
+		foreach (var node in FolderTree.Build (database.Photos.ListFolderCounts ()))
+			Folders.Add (new FolderNode (node, true));
+
+		SelectedFolder = selected is null ? null : FindFolderNode (Folders, selected);
+	}
+
+	static FolderNode? FindFolderNode (IEnumerable<FolderNode> nodes, SafeUri uri)
+	{
+		foreach (var node in nodes) {
+			if (node.Uri.Equals (uri))
+				return node;
+			var child = FindFolderNode (node.Children, uri);
+			if (child is not null)
+				return child;
+		}
+
+		return null;
+	}
+
+	void ReloadPhotos ()
+	{
+		if (database is null) {
+			ApplyLocalFilters ();
+			NotifyFilterBar ();
+			return;
+		}
+
+		var conditions = new List<IQueryCondition> {
+			ReverseOrder ? OrderByTime.OrderByTimeAsc : OrderByTime.OrderByTimeDesc
+		};
+		if (ActiveTagFilter is not null)
+			conditions.Add (new TagTerm (ActiveTagFilter.Tag));
+		if (ActiveFolderFilter is not null)
+			conditions.Add (new FolderSet { Folders = new[] { ActiveFolderFilter.Uri } });
+		if (FindUntagged)
+			conditions.Add (new UntaggedCondition ());
+		if (FindMinRating is uint minRating)
+			conditions.Add (new RatingRange (minRating, FindMaxRating ?? 5));
+		if (FindStart is DateTime start && FindEnd is DateTime end)
+			conditions.Add (new DateRange (start, end));
+		if (findRollIds.Count > 0) {
+			var rolls = new List<Roll> ();
+			foreach (uint id in findRollIds)
+				rolls.Add (new Roll (id, 0));
+			conditions.Add (new RollSet (rolls));
+		}
+
+		catalogPhotos.Clear ();
+		foreach (var photo in database.Photos.Query ([.. conditions]))
+			catalogPhotos.Add (new PhotoItemViewModel (photo));
+
+		RebuildTimeline ();
+		ApplyLocalFilters ();
+	}
+
+	void RebuildTimeline ()
+	{
+		var selectedStart = SelectedTimeline?.Start;
+		var months = TimelineMonths.Span (catalogPhotos.Select (photo => photo.Photo));
+		int maxCount = Math.Max (1, months.Count == 0 ? 1 : months.Max (month => month.Count));
+
+		TimelineBuckets.Clear ();
+		foreach (var month in months) {
+			TimelineBuckets.Add (new TimelineBucket {
+				MonthLabel = month.Start.ToString ("MMM"),
+				YearLabel = month.Start.Month == 1 || month.Start == months[0].Start
+					? month.Start.Year.ToString ()
+					: null,
+				Start = month.Start,
+				End = month.End,
+				Count = month.Count,
+				RelativeHeight = month.Count / (double)maxCount,
+				Selected = selectedStart == month.Start
+			});
+		}
+
+		if (SelectedTimeline is not null && TimelineBuckets.All (bucket => bucket.Start != SelectedTimeline.Start))
+			SelectedTimeline = null;
+		HighlightTimelineRange ();
+	}
+
+	void ApplyLocalFilters ()
+	{
+		DateTime? start = timelineRangeStart ?? SelectedTimeline?.Start ?? FindStart;
+		DateTime? end = timelineRangeEnd ?? SelectedTimeline?.End ?? FindEnd;
+		if (timelineRangeStart is DateTime rangeStart && FindStart is DateTime findStart)
+			start = rangeStart > findStart ? rangeStart : findStart;
+		if (timelineRangeEnd is DateTime rangeEnd && FindEnd is DateTime findEnd)
+			end = rangeEnd < findEnd ? rangeEnd : findEnd;
+
+		var tags = new List<Tag> ();
+		if (ActiveTagFilter is not null)
+			tags.Add (ActiveTagFilter.Tag);
+		foreach (var node in FindTags) {
+			if (tags.All (tag => tag.Id != node.Tag.Id))
+				tags.Add (node.Tag);
+		}
+
+		var find = new LibraryFind {
+			Text = FindText,
+			Tags = tags,
+			RequireAllTags = FindMatchAllTags,
+			Untagged = FindUntagged,
+			MinRating = FindMinRating,
+			MaxRating = FindMaxRating,
+			Start = start,
+			End = end,
+			RollIds = findRollIds
+		};
+		var visible = catalogPhotos
+			.Where (item => PhotoLibraryFilter.Matches (item.Photo, find, RollIdOf (item.Photo)))
+			.ToList ();
+
+		Photos.Clear ();
+		foreach (var item in visible)
+			Photos.Add (item);
+
+		PhotoItemViewModel? current = SelectedPhoto is not null && visible.Contains (SelectedPhoto) && SelectedPhoto.Selected
+			? SelectedPhoto
+			: visible.FirstOrDefault (item => item.Selected) ?? visible.FirstOrDefault ();
+		SelectedPhoto = current;
+		UpdateStatus ();
+		OnPropertyChanged (nameof (ShowEmptyLibrary));
+		OnPropertyChanged (nameof (ShowNoMatches));
+		OnPropertyChanged (nameof (ShowPhotoGrid));
+		ClearVisibleFiltersCommand.NotifyCanExecuteChanged ();
+		NotifyFindTerms ();
+		_ = LoadThumbnailsAsync ();
+	}
+
+	static uint RollIdOf (IPhoto photo)
+		=> photo is Photo catalog ? catalog.RollId : 0;
+
+	void HighlightTimelineRange ()
+	{
+		DateTime? start = timelineRangeStart ?? SelectedTimeline?.Start;
+		DateTime? end = timelineRangeEnd ?? SelectedTimeline?.End;
+		foreach (var bucket in TimelineBuckets) {
+			bucket.Selected = SelectedTimeline is not null && bucket.Start == SelectedTimeline.Start;
+			bucket.InRange = start is DateTime rangeStart && end is DateTime rangeEnd
+				&& bucket.Start >= rangeStart && bucket.Start < rangeEnd;
+		}
+	}
+
+	internal void SeedCatalog (params IPhoto[] photos)
+	{
+		catalogPhotos.Clear ();
+		foreach (var photo in photos)
+			catalogPhotos.Add (new PhotoItemViewModel (photo));
+		RebuildTimeline ();
+		ApplyLocalFilters ();
+	}
+
+	void NotifyFindTerms ()
+	{
+		OnPropertyChanged (nameof (HasLibraryFilter));
+		OnPropertyChanged (nameof (HasFindRating));
+		OnPropertyChanged (nameof (HasFindDate));
+		OnPropertyChanged (nameof (HasFindRoll));
+		OnPropertyChanged (nameof (FindRatingLabel));
+		OnPropertyChanged (nameof (FindDateLabel));
+		OnPropertyChanged (nameof (FindRollLabel));
+		OnPropertyChanged (nameof (ShowEmptyLibrary));
+		OnPropertyChanged (nameof (ShowNoMatches));
+		OnPropertyChanged (nameof (ShowPhotoGrid));
+		ClearVisibleFiltersCommand.NotifyCanExecuteChanged ();
+		ClearLibraryFiltersCommand.NotifyCanExecuteChanged ();
+	}
+
+	async Task LoadThumbnailsAsync ()
+	{
+		if (thumbnailLoad is not null)
+			await thumbnailLoad.CancelAsync ();
+		thumbnailLoad = new CancellationTokenSource ();
+		var token = thumbnailLoad.Token;
+		int size = (int)Zoom;
+
+		try {
+			foreach (var item in Photos.ToArray ()) {
+				token.ThrowIfCancellationRequested ();
+				try {
+					item.Thumbnail = await thumbnails.LoadAsync (item.Path, size, token);
+				} catch (OperationCanceledException) {
+					throw;
+				} catch (Exception ex) {
+					Logger.Log.Debug (ex, "Failed to decode thumbnail for {Path}", item.Path);
+				}
+			}
+		} catch (OperationCanceledException) {
+		}
+	}
+
+	void UpdatePreview ()
+	{
+		if (!IsEditing || SelectedPhoto is null) {
+			Preview = null;
+			return;
+		}
+
+		Preview = SelectedPhoto.Thumbnail;
+		if (!File.Exists (SelectedPhoto.Path))
+			return;
+
+		try {
+			Preview = AvaloniaPhotoDecoder.DecodeFile (SelectedPhoto.Path);
+		} catch (Exception ex) {
+			Logger.Log.Debug (ex, "Failed to load preview {Path}", SelectedPhoto.Path);
+		}
+	}
+
+	partial void OnPreviewChanged (Bitmap? value)
+	{
+		OnPropertyChanged (nameof (PreviewPixelWidth));
+		OnPropertyChanged (nameof (PreviewPixelHeight));
+		OnPropertyChanged (nameof (ShowLoupe));
+		if (value is null)
+			LoupeSample = null;
+	}
+
+	void UpdateStatus ()
+	{
+		int shown = Photos.Count;
+		int total = database?.Photos.TotalPhotos ?? 0;
+		int selected = Photos.Count (item => item.Selected);
+		string text;
+		if (shown == total)
+			text = string.Format (shown <= 1 ? Strings.XPhoto : Strings.XPhotos, shown);
+		else
+			text = string.Format (shown <= 1 ? Strings.XPhotoOutOfY : Strings.XPhotosOutOfY, shown, total);
+		if (selected > 0)
+			text += string.Format (Strings.XSelected, selected);
+		StatusText = text;
+		WindowTitle = $"F-Spot — {string.Format (shown <= 1 ? Strings.XPhoto : Strings.XPhotos, shown)}";
+	}
+
+	async Task UpdateHistogramAsync (PhotoItemViewModel item)
+	{
+		try {
+			var source = item.Thumbnail ?? await thumbnails.LoadAsync (item.Path, 256, CancellationToken.None);
+			Histogram = HistogramRenderer.FromBitmap (source);
+		} catch (Exception ex) {
+			Logger.Log.Debug (ex, "Failed to build histogram for {Path}", item.Path);
+			Histogram = null;
+		}
+	}
+
+	IReadOnlyList<PhotoItemViewModel> MutationItems ()
+	{
+		var selected = Photos.Where (item => item.Selected).ToList ();
+		if (selected.Count > 0)
+			return selected;
+		return SelectedPhoto is not null ? new[] { SelectedPhoto } : Array.Empty<PhotoItemViewModel> ();
+	}
+
+	IEnumerable<Photo> SelectedCatalogPhotos ()
+		=> MutationItems ().Select (item => item.Photo).OfType<Photo> ();
+
+	void NotifySelectionCommands ()
+	{
+		OnPropertyChanged (nameof (CountText));
+		PreviousCommand.NotifyCanExecuteChanged ();
+		NextCommand.NotifyCanExecuteChanged ();
+		AttachTagCommand.NotifyCanExecuteChanged ();
+		RemoveTagCommand.NotifyCanExecuteChanged ();
+		RemoveFromCatalogCommand.NotifyCanExecuteChanged ();
+		DeleteFromDriveCommand.NotifyCanExecuteChanged ();
+		RotateLeftCommand.NotifyCanExecuteChanged ();
+		RotateRightCommand.NotifyCanExecuteChanged ();
+	}
+
+	void NotifyViewLayout ()
+	{
+		OnPropertyChanged (nameof (IsBrowsing));
+		OnPropertyChanged (nameof (IsEditing));
+		OnPropertyChanged (nameof (ShowTimeline));
+		OnPropertyChanged (nameof (ShowFilmstrip));
+		OnPropertyChanged (nameof (ShowTagBar));
+		OnPropertyChanged (nameof (ShowEmptyLibrary));
+		OnPropertyChanged (nameof (ShowNoMatches));
+		OnPropertyChanged (nameof (ShowPhotoGrid));
+		OnPropertyChanged (nameof (VisibleEditors));
+		OnPropertyChanged (nameof (ShowLoupe));
+		PreviousCommand.NotifyCanExecuteChanged ();
+		NextCommand.NotifyCanExecuteChanged ();
+	}
+
+	partial void OnViewModeChanged (LibraryViewMode value)
+	{
+		if (value != LibraryViewMode.PhotoView)
+			CancelEditor ();
+		NotifyViewLayout ();
+		UpdatePreview ();
+		if (value == LibraryViewMode.PhotoView) {
+			if (SidebarTab != 2)
+				browseSidebarTab = SidebarTab;
+			SidebarTab = 2;
+		} else if (SidebarTab == 2) {
+			SidebarTab = browseSidebarTab;
+		}
+	}
+
+	partial void OnSidebarTabChanged (int value)
+	{
+		if (value != 2)
+			browseSidebarTab = value;
+		OnPropertyChanged (nameof (SidebarPageTitle));
+		OnPropertyChanged (nameof (IsTagsPage));
+		OnPropertyChanged (nameof (IsFoldersPage));
+		OnPropertyChanged (nameof (IsEditPage));
+		OnPropertyChanged (nameof (ShowEditorList));
+	}
+
+	partial void OnSelectedPhotoChanged (PhotoItemViewModel? value)
+	{
+		if (value is null) {
+			Info.Clear ();
+			Histogram = null;
+		} else {
+			Info.Update (value.Photo);
+			_ = UpdateHistogramAsync (value);
+		}
+
+		UpdatePreview ();
+		UpdateStatus ();
+		NotifySelectionCommands ();
+		OnPropertyChanged (nameof (ShowInfoBox));
+	}
+
+	partial void OnSelectedTagChanged (TagNode? value)
+	{
+		AttachTagCommand.NotifyCanExecuteChanged ();
+		RemoveTagCommand.NotifyCanExecuteChanged ();
+		DeleteTagCommand.NotifyCanExecuteChanged ();
+		EditTagCommand.NotifyCanExecuteChanged ();
+	}
+
+	partial void OnActiveTagFilterChanged (TagNode? value)
+	{
+		ReloadPhotos ();
+		NotifyFilterBar ();
+	}
+
+	partial void OnActiveFolderFilterChanged (FolderNode? value)
+	{
+		ReloadPhotos ();
+		NotifyFilterBar ();
+	}
+
+	void NotifyFilterBar ()
+	{
+		OnPropertyChanged (nameof (HasLibraryFilter));
+		OnPropertyChanged (nameof (ShowEmptyLibrary));
+		OnPropertyChanged (nameof (ShowNoMatches));
+		OnPropertyChanged (nameof (ShowPhotoGrid));
+		ClearTagFilterCommand.NotifyCanExecuteChanged ();
+		ClearFolderFilterCommand.NotifyCanExecuteChanged ();
+		ClearLibraryFiltersCommand.NotifyCanExecuteChanged ();
+		ClearVisibleFiltersCommand.NotifyCanExecuteChanged ();
+	}
+
+	partial void OnReverseOrderChanged (bool value)
+		=> ReloadPhotos ();
+
+	partial void OnFindUntaggedChanged (bool value)
+	{
+		ReloadPhotos ();
+		NotifyFilterBar ();
+	}
+
+	partial void OnFindTextChanged (string value)
+		=> ApplyLocalFilters ();
+
+	partial void OnSelectedTimelineChanged (TimelineBucket? value)
+	{
+		HighlightTimelineRange ();
+		ApplyLocalFilters ();
+	}
+
+	partial void OnDisplayTimelineChanged (bool value)
+		=> OnPropertyChanged (nameof (ShowTimeline));
+
+	partial void OnDisplayFilmstripChanged (bool value)
+		=> OnPropertyChanged (nameof (ShowFilmstrip));
+
+	partial void OnZoomChanged (double value)
+	{
+		OnPropertyChanged (nameof (ZoomLabel));
+		_ = LoadThumbnailsAsync ();
+	}
+
+	[RelayCommand]
+	void Browse ()
+		=> ViewMode = LibraryViewMode.IconView;
+
+	[RelayCommand]
+	void Edit ()
+		=> ViewMode = LibraryViewMode.PhotoView;
+
+	public void SelectPhoto (PhotoItemViewModel? item, bool additive = false)
+	{
+		if (item is null)
+			return;
+
+		if (!additive) {
+			foreach (var photo in Photos)
+				photo.Selected = ReferenceEquals (photo, item);
+			SelectedPhoto = item;
+			return;
+		}
+
+		if (item.Selected && Photos.Count (photo => photo.Selected) > 1) {
+			item.Selected = false;
+			if (ReferenceEquals (SelectedPhoto, item))
+				SelectedPhoto = Photos.FirstOrDefault (photo => photo.Selected);
+			else {
+				UpdateStatus ();
+				NotifySelectionCommands ();
+			}
+
+			return;
+		}
+
+		item.Selected = true;
+		SelectedPhoto = item;
+	}
+
+	[RelayCommand]
+	void OpenPhoto (PhotoItemViewModel? item)
+	{
+		if (item is null)
+			return;
+		SelectPhoto (item);
+		ViewMode = LibraryViewMode.PhotoView;
+	}
+
+	[RelayCommand (CanExecute = nameof (CanGoPrevious))]
+	void Previous ()
+	{
+		int index = SelectedPhoto is null ? -1 : Photos.IndexOf (SelectedPhoto);
+		if (index > 0)
+			SelectPhoto (Photos[index - 1]);
+	}
+
+	bool CanGoPrevious ()
+		=> SelectedPhoto is not null && Photos.IndexOf (SelectedPhoto) > 0;
+
+	[RelayCommand (CanExecute = nameof (CanGoNext))]
+	void Next ()
+	{
+		int index = SelectedPhoto is null ? -1 : Photos.IndexOf (SelectedPhoto);
+		if (index >= 0 && index + 1 < Photos.Count)
+			SelectPhoto (Photos[index + 1]);
+	}
+
+	bool CanGoNext ()
+	{
+		int index = SelectedPhoto is null ? -1 : Photos.IndexOf (SelectedPhoto);
+		return index >= 0 && index + 1 < Photos.Count;
+	}
+
+	[RelayCommand]
+	void SelectAll ()
+	{
+		foreach (var item in Photos)
+			item.Selected = true;
+		if (SelectedPhoto is null)
+			SelectedPhoto = Photos.FirstOrDefault ();
+		else {
+			UpdateStatus ();
+			NotifySelectionCommands ();
+		}
+	}
+
+	[RelayCommand]
+	void SelectNone ()
+	{
+		foreach (var item in Photos)
+			item.Selected = false;
+		SelectedPhoto = null;
+	}
+
+	[RelayCommand]
+	void SelectInvert ()
+	{
+		foreach (var item in Photos)
+			item.Selected = !item.Selected;
+		SelectedPhoto = Photos.FirstOrDefault (item => item.Selected);
+		if (SelectedPhoto is null) {
+			Info.Clear ();
+			Histogram = null;
+			UpdatePreview ();
+		}
+
+		UpdateStatus ();
+		NotifySelectionCommands ();
+	}
+
+	[RelayCommand]
+	void ZoomIn ()
+		=> Zoom = Math.Min (256, Zoom + 16);
+
+	[RelayCommand]
+	void ZoomOut ()
+		=> Zoom = Math.Max (64, Zoom - 16);
+
+	[RelayCommand]
+	void ShowFind ()
+	{
+		IsFindBarVisible = true;
+		shell.FocusFind ();
+	}
+
+	[RelayCommand]
+	void HideFind ()
+	{
+		IsFindBarVisible = false;
+		FindText = string.Empty;
+	}
+
+	[RelayCommand]
+	void ToggleFullscreen ()
+		=> shell.ToggleFullscreen ();
+
+	[RelayCommand]
+	void Quit ()
+		=> shell.Close ();
+
+	[RelayCommand]
+	Task NotYetAsync ()
+		=> shell.ShowWarningAsync (WindowTitle, Strings.ThisFeatureIsNotYetAvailable);
+
+	[RelayCommand]
+	void ToggleLoupe ()
+		=> IsLoupeVisible = !IsLoupeVisible;
+
+	public void MoveLoupe (double viewX, double viewY, double viewWidth, double viewHeight)
+	{
+		if (!IsLoupeVisible || Preview is null)
+			return;
+		if (viewWidth <= 0 || viewHeight <= 0)
+			return;
+
+		var image = Preview.PixelSize;
+		var point = UniformImageLayout.MapPoint (
+			(int)viewWidth, (int)viewHeight, image.Width, image.Height, viewX, viewY);
+		var region = LoupeRegion.Around (image.Width, image.Height, point.X, point.Y);
+		if (region.IsEmpty)
+			return;
+
+		LoupeSample = new CroppedBitmap (Preview, new global::Avalonia.PixelRect (region.X, region.Y, region.Width, region.Height));
+		LoupeX = viewX;
+		LoupeY = viewY;
+	}
+
+	partial void OnIsLoupeVisibleChanged (bool value)
+		=> OnPropertyChanged (nameof (ShowLoupe));
+
+	[RelayCommand]
+	Task SharpenAsync ()
+		=> ApplyEditorAsync (PhotoEditorCatalog.Sharpen);
+
+	[RelayCommand]
+	Task ApplyEditorAsync (PhotoEditorDescriptor? editor)
+	{
+		if (editor is null)
+			return Task.CompletedTask;
+
+		if (PhotoEditorSession.IsInstant (editor))
+			return ApplyInstantEditorAsync (editor);
+
+		if (PhotoEditorSession.NeedsSession (editor)) {
+			if (SelectedCatalogPhotos ().Any () == false && SelectedPhoto is null)
+				return shell.ShowWarningAsync (editor.Label, Strings.NoSelectionAvailable);
+
+			int maxEdge = Math.Max (PreviewPixelWidth, PreviewPixelHeight);
+			EditorSession = new PhotoEditorSession (editor, maxEdge);
+			return Task.CompletedTask;
+		}
+
+		return shell.ShowWarningAsync (editor.Label, string.Format (Strings.TheXEditorIsNotYetAvailable, editor.Label));
+	}
+
+	Task ApplyInstantEditorAsync (PhotoEditorDescriptor editor)
+	{
+		var photos = SelectedCatalogPhotos ().ToArray ();
+		if (photos.Length == 0)
+			return shell.ShowWarningAsync (editor.Label, Strings.NoSelectionAvailable);
+
+		try {
+			var factory = TinyIoCContainer.Current.Resolve<IImageFileFactory> ();
+			PhotoEditorApply.Apply (editor, photos, new PhotoEditorContext (), factory, database?.Photos);
+			RefreshEditedSelection ();
+		} catch (Exception ex) {
+			Logger.Log.Debug (ex, "Failed to apply {Editor}", editor.Id);
+			return shell.ShowWarningAsync (Strings.ErrorEditingPhoto, ex.Message);
+		}
+
+		return Task.CompletedTask;
+	}
+
+	public void SetEditorSelection (PixelRect selection)
+	{
+		if (EditorSession is null)
+			return;
+		EditorSession.Selection = selection;
+		CommitEditorCommand.NotifyCanExecuteChanged ();
+		OnPropertyChanged (nameof (EditorSession));
+	}
+
+	[RelayCommand]
+	void SelectEditorRegion (PixelRect selection)
+		=> SetEditorSelection (selection);
+
+	[RelayCommand]
+	void CancelEditor ()
+	{
+		if (EditorSession is null)
+			return;
+		EditorSession = null;
+	}
+
+	bool CanCommitEditor ()
+		=> EditorSession?.CanCommit == true;
+
+	[RelayCommand (CanExecute = nameof (CanCommitEditor))]
+	Task CommitEditorAsync ()
+	{
+		if (EditorSession is null || !EditorSession.CanCommit)
+			return Task.CompletedTask;
+
+		var photos = SelectedCatalogPhotos ().ToArray ();
+		if (photos.Length == 0)
+			return shell.ShowWarningAsync (EditorSession.Editor.Label, Strings.NoSelectionAvailable);
+
+		var editor = EditorSession.Editor;
+		var context = EditorSession.CreateContext ();
+		try {
+			var factory = TinyIoCContainer.Current.Resolve<IImageFileFactory> ();
+			PhotoEditorApply.Apply (editor, photos, context, factory, database?.Photos);
+			EditorSession = null;
+			RefreshEditedSelection ();
+		} catch (Exception ex) {
+			Logger.Log.Debug (ex, "Failed to apply {Editor}", editor.Id);
+			return shell.ShowWarningAsync (Strings.ErrorEditingPhoto, ex.Message);
+		}
+
+		return Task.CompletedTask;
+	}
+
+	partial void OnEditorSessionChanged (PhotoEditorSession? value)
+	{
+		OnPropertyChanged (nameof (HasEditorSession));
+		OnPropertyChanged (nameof (ShowEditorList));
+		OnPropertyChanged (nameof (ShowEditorSelection));
+		OnPropertyChanged (nameof (ShowEditorSettings));
+		OnPropertyChanged (nameof (ShowColorSettings));
+		OnPropertyChanged (nameof (ShowBwSettings));
+		OnPropertyChanged (nameof (ShowResizeSettings));
+		OnPropertyChanged (nameof (ShowTiltSettings));
+		OnPropertyChanged (nameof (ShowSoftFocusSettings));
+		OnPropertyChanged (nameof (ShowSharpenSettings));
+		CommitEditorCommand.NotifyCanExecuteChanged ();
+	}
+
+	[RelayCommand]
+	async Task ImportAsync ()
+	{
+		if (await shell.ShowImportAsync ())
+			LoadCatalog ();
+	}
+
+	[RelayCommand]
+	Task AboutAsync ()
+		=> shell.ShowAboutAsync ();
+
+	[RelayCommand]
+	void SelectTag (TagNode? node)
+		=> SelectedTag = node;
+
+	[RelayCommand]
+	void ActivateTag (TagNode? node)
+	{
+		if (node is null)
+			return;
+		ActiveTagFilter = node;
+		if (FindTags.All (tag => tag.Tag.Id != node.Tag.Id))
+			FindTags.Add (node);
+		ApplyLocalFilters ();
+		NotifyFindTerms ();
+	}
+
+	[RelayCommand (CanExecute = nameof (CanClearTagFilter))]
+	void ClearTagFilter ()
+	{
+		ActiveTagFilter = null;
+		FindTags.Clear ();
+		ApplyLocalFilters ();
+		NotifyFindTerms ();
+	}
+
+	bool CanClearTagFilter ()
+		=> ActiveTagFilter is not null;
+
+	[RelayCommand]
+	void SelectFolder (FolderNode? node)
+		=> SelectedFolder = node;
+
+	[RelayCommand]
+	void ActivateFolder (FolderNode? node)
+	{
+		if (node is not null)
+			ActiveFolderFilter = node;
+	}
+
+	[RelayCommand (CanExecute = nameof (CanClearFolderFilter))]
+	void ClearFolderFilter ()
+		=> ActiveFolderFilter = null;
+
+	bool CanClearFolderFilter ()
+		=> ActiveFolderFilter is not null;
+
+	[RelayCommand (CanExecute = nameof (CanClearLibraryFilters))]
+	void ClearLibraryFilters ()
+	{
+		ActiveTagFilter = null;
+		ActiveFolderFilter = null;
+		FindUntagged = false;
+		FindTags.Clear ();
+		ClearFindTerms ();
+	}
+
+	bool CanClearLibraryFilters ()
+		=> HasLibraryFilter;
+
+	[RelayCommand (CanExecute = nameof (CanClearVisibleFilters))]
+	void ClearVisibleFilters ()
+	{
+		FindText = string.Empty;
+		IsFindBarVisible = false;
+		SelectedTimeline = null;
+		timelineRangeStart = null;
+		timelineRangeEnd = null;
+		ActiveTagFilter = null;
+		ActiveFolderFilter = null;
+		FindUntagged = false;
+		FindTags.Clear ();
+		ClearFindTerms ();
+	}
+
+	bool CanClearVisibleFilters ()
+		=> HasLibraryFilter || !string.IsNullOrWhiteSpace (FindText) || SelectedTimeline is not null
+			|| timelineRangeStart is not null;
+
+	void ClearFindTerms ()
+	{
+		FindMinRating = null;
+		FindMaxRating = null;
+		FindStart = null;
+		FindEnd = null;
+		findRollIds.Clear ();
+		NotifyFindTerms ();
+		ReloadPhotos ();
+	}
+
+	[RelayCommand]
+	void ClearUntagged ()
+		=> FindUntagged = false;
+
+	[RelayCommand]
+	void ToggleFindMatchAllTags ()
+	{
+		FindMatchAllTags = !FindMatchAllTags;
+		ApplyLocalFilters ();
+	}
+
+	[RelayCommand]
+	async Task FindByRatingAsync ()
+	{
+		var range = await shell.PromptRatingRangeAsync ();
+		if (range is null)
+			return;
+		FindMinRating = range.Value.Min;
+		FindMaxRating = range.Value.Max;
+		NotifyFindTerms ();
+		ReloadPhotos ();
+	}
+
+	[RelayCommand]
+	void DismissFindRating ()
+	{
+		FindMinRating = null;
+		FindMaxRating = null;
+		NotifyFindTerms ();
+		ReloadPhotos ();
+	}
+
+	[RelayCommand]
+	async Task FindByDateAsync ()
+	{
+		var range = await shell.PromptDateRangeAsync ();
+		if (range is null)
+			return;
+		FindStart = range.Value.Start;
+		FindEnd = range.Value.End;
+		NotifyFindTerms ();
+		ReloadPhotos ();
+	}
+
+	[RelayCommand]
+	void DismissFindDate ()
+	{
+		FindStart = null;
+		FindEnd = null;
+		NotifyFindTerms ();
+		ReloadPhotos ();
+	}
+
+	[RelayCommand]
+	async Task FindByImportRollAsync ()
+	{
+		var rolls = new List<(uint Id, string Label)> ();
+		if (database?.Rolls is not null) {
+			foreach (var roll in database.Rolls.GetRolls ())
+				rolls.Add ((roll.Id, roll.Time.ToShortDateString ()));
+		}
+		var id = await shell.PickImportRollAsync (rolls);
+		if (id is null)
+			return;
+		if (!findRollIds.Contains (id.Value))
+			findRollIds.Add (id.Value);
+		NotifyFindTerms ();
+		ReloadPhotos ();
+	}
+
+	[RelayCommand]
+	void DismissFindRoll ()
+	{
+		findRollIds.Clear ();
+		NotifyFindTerms ();
+		ReloadPhotos ();
+	}
+
+	[RelayCommand]
+	void SetTimelineRange ((int Min, int Max) range)
+	{
+		if (TimelineBuckets.Count == 0)
+			return;
+		var span = TimelineMonths.InclusiveRange (
+			TimelineBuckets.Select (bucket => new TimelineMonth (bucket.Start, bucket.End, bucket.Count)).ToList (),
+			range.Min, range.Max);
+		timelineRangeStart = span.Start;
+		timelineRangeEnd = span.End;
+		SelectedTimeline = null;
+		HighlightTimelineRange ();
+		ApplyLocalFilters ();
+	}
+
+	[RelayCommand]
+	void Slideshow ()
+	{
+		var paths = PhotoFileActions.SelectedPaths (Photos.Select (item => item.Photo));
+		if (paths.Count == 0) {
+			_ = shell.ShowWarningAsync (Strings.Slideshow, Strings.NoSelectionAvailable);
+			return;
+		}
+		int start = SelectedPhoto is null ? 0 : Math.Max (0, Photos.ToList ().IndexOf (SelectedPhoto));
+		shell.ShowSlideshow (paths, start);
+	}
+
+	[RelayCommand]
+	async Task ExportAsync ()
+	{
+		var paths = PhotoFileActions.SelectedPaths (MutationItems ().Select (item => item.Photo));
+		if (paths.Count == 0) {
+			await shell.ShowWarningAsync (Strings.Export, Strings.NoSelectionAvailable);
+			return;
+		}
+		string? folder = await shell.PickFolderAsync (Strings.SelectExportFolder);
+		if (string.IsNullOrWhiteSpace (folder))
+			return;
+		PhotoFileActions.CopyToFolder (paths, folder);
+	}
+
+	[RelayCommand]
+	async Task PrintAsync ()
+	{
+		var paths = PhotoFileActions.SelectedPaths (MutationItems ().Select (item => item.Photo));
+		if (paths.Count == 0) {
+			await shell.ShowWarningAsync (Strings.Print, Strings.NoSelectionAvailable);
+			return;
+		}
+		await shell.PrintPhotosAsync (paths);
+	}
+
+	[RelayCommand]
+	async Task MailAsync ()
+	{
+		var paths = PhotoFileActions.SelectedPaths (MutationItems ().Select (item => item.Photo));
+		if (paths.Count == 0) {
+			await shell.ShowWarningAsync (Strings.SendMail, Strings.NoSelectionAvailable);
+			return;
+		}
+		await shell.MailPhotosAsync (paths);
+	}
+
+	[RelayCommand]
+	void ShowTagsPage ()
+		=> SidebarTab = 0;
+
+	[RelayCommand]
+	void ShowFoldersPage ()
+		=> SidebarTab = 1;
+
+	[RelayCommand]
+	void ShowEditPage ()
+		=> SidebarTab = 2;
+
+	[RelayCommand]
+	void HideSidebar ()
+		=> DisplaySidebar = false;
+
+	[RelayCommand]
+	void ToggleSidebar ()
+		=> DisplaySidebar = !DisplaySidebar;
+
+	[RelayCommand]
+	void SelectTimeline (TimelineBucket? bucket)
+	{
+		if (bucket is null || !bucket.HasPhotos)
+			return;
+		timelineRangeStart = null;
+		timelineRangeEnd = null;
+		SelectedTimeline = ReferenceEquals (SelectedTimeline, bucket) ? null : bucket;
+	}
+
+	[RelayCommand]
+	async Task CreateTagAsync ()
+	{
+		if (database is null)
+			return;
+
+		string? name = await shell.PromptAsync (Strings.CreateNewTag, Strings.NameOfNewTagColon, string.Empty);
+		if (string.IsNullOrWhiteSpace (name))
+			return;
+
+		var parent = SelectedTag?.Tag as Category
+			?? SelectedTag?.Tag.Category
+			?? database.Tags.RootCategory;
+		database.Tags.CreateCategory (parent, name.Trim (), true);
+		ReloadTags ();
+	}
+
+	[RelayCommand (CanExecute = nameof (CanEditTag))]
+	async Task EditTagAsync ()
+	{
+		if (database is null || SelectedTag is null)
+			return;
+
+		string? name = await shell.PromptAsync (Strings.EditTag, Strings.NameColon, SelectedTag.Tag.Name);
+		if (string.IsNullOrWhiteSpace (name) || name == SelectedTag.Tag.Name)
+			return;
+
+		SelectedTag.Tag.Name = name.Trim ();
+		database.Tags.Commit (SelectedTag.Tag, true);
+		ReloadTags ();
+	}
+
+	bool CanEditTag ()
+		=> SelectedTag is not null;
+
+	[RelayCommand (CanExecute = nameof (CanEditTag))]
+	async Task DeleteTagAsync ()
+	{
+		if (database is null || SelectedTag is null)
+			return;
+
+		if (!await shell.ConfirmAsync (
+				string.Format (Strings.DeleteTagXQuestion, SelectedTag.Tag.Name),
+				Strings.ThisRemovesTheTagFromTheCatalogAndFromAnyPhotosThatUseIt,
+				Strings.Delete))
+			return;
+
+		database.Tags.Remove (SelectedTag.Tag);
+		SelectedTag = null;
+		ReloadTags ();
+		ReloadPhotos ();
+	}
+
+	public void AttachDroppedTag (string? tagIdText, PhotoItemViewModel? dropTarget)
+	{
+		if (!uint.TryParse (tagIdText, out uint id))
+			return;
+		var node = FindTagNodeById (Tags, id);
+		if (node is null)
+			return;
+		AttachTagToItems (node.Tag, PhotoDropTargets.ForTagDrop (dropTarget, Photos));
+	}
+
+	public void AttachSelectionToTag (TagNode? node)
+	{
+		if (node is null)
+			return;
+		AttachTagToItems (node.Tag, Photos.Where (photo => photo.Selected).ToList ());
+	}
+
+	void AttachTagToItems (Tag tag, IReadOnlyList<PhotoItemViewModel> items)
+	{
+		if (database is null || items.Count == 0)
+			return;
+
+		var photos = items.Select (item => item.Photo).OfType<Photo> ().ToArray ();
+		if (photos.Length == 0)
+			return;
+
+		foreach (var photo in photos)
+			photo.AddTag (tag);
+		database.Photos.Commit (photos);
+		RefreshSelectedCaptions (photos);
+	}
+
+	static TagNode? FindTagNodeById (IEnumerable<TagNode> nodes, uint id)
+	{
+		foreach (var node in nodes) {
+			if (node.Tag.Id == id)
+				return node;
+			var child = FindTagNodeById (node.Children, id);
+			if (child is not null)
+				return child;
+		}
+
+		return null;
+	}
+
+	[RelayCommand (CanExecute = nameof (CanAttachTag))]
+	void AttachTag ()
+	{
+		if (SelectedTag is null)
+			return;
+		AttachTagToItems (SelectedTag.Tag, Photos.Where (photo => photo.Selected).ToList ());
+	}
+
+	[RelayCommand (CanExecute = nameof (CanAttachTag))]
+	void RemoveTag ()
+	{
+		if (database is null || SelectedTag is null)
+			return;
+
+		var photos = SelectedCatalogPhotos ().ToArray ();
+		if (photos.Length == 0)
+			return;
+
+		foreach (var photo in photos)
+			photo.RemoveTag (SelectedTag.Tag);
+		database.Photos.Commit (photos);
+		RefreshSelectedCaptions (photos);
+	}
+
+	bool CanAttachTag ()
+		=> SelectedTag is not null && SelectedCatalogPhotos ().Any ();
+
+	[RelayCommand (CanExecute = nameof (CanMutateSelection))]
+	async Task RemoveFromCatalogAsync ()
+	{
+		if (database is null)
+			return;
+
+		var photos = SelectedCatalogPhotos ().ToArray ();
+		if (photos.Length == 0)
+			return;
+
+		string header = photos.Length <= 1
+			? Strings.RemoveTheSelectedPhotoFromFSpot
+			: string.Format (Strings.RemoveTheXSelectedPhotosFromFSpot, photos.Length);
+		if (!await shell.ConfirmAsync (header, Strings.IfYouRemovePhotosFromFSpotCatalogAllTagInfoLost, Strings.Remove))
+			return;
+
+		database.Photos.Remove (photos);
+		ReloadPhotos ();
+	}
+
+	[RelayCommand (CanExecute = nameof (CanMutateSelection))]
+	async Task DeleteFromDriveAsync ()
+	{
+		if (database is null)
+			return;
+
+		var photos = SelectedCatalogPhotos ().ToArray ();
+		if (photos.Length == 0)
+			return;
+
+		string header = photos.Length <= 1
+			? Strings.DeleteTheSelectedPhotoPermanently
+			: string.Format (Strings.DeleteTheXSelectedPhotosPermanently, photos.Length);
+		string body = photos.Length <= 1
+			? Strings.ThisDeletesAllVersionsOfTheSelectedPhotoFromYourDrive
+			: Strings.ThisDeletesAllVersionsOfTheSelectedPhotosFromYourDrive;
+		if (!await shell.ConfirmAsync (header, body, Strings.Delete))
+			return;
+
+		foreach (var photo in photos) {
+			foreach (uint id in photo.VersionIds.ToArray ()) {
+				try {
+					photo.DeleteVersion (id, true);
+				} catch (Exception ex) {
+					Logger.Log.Debug (ex, "Failed to delete version {Version} of {Name}", id, photo.Name);
+				}
+			}
+		}
+
+		database.Photos.Remove (photos);
+		ReloadPhotos ();
+	}
+
+	bool CanMutateSelection ()
+		=> MutationItems ().Any ();
+
+	[RelayCommand (CanExecute = nameof (CanMutateSelection))]
+	void RotateLeft ()
+		=> RotateSelection (RotateDirection.Counterclockwise);
+
+	[RelayCommand (CanExecute = nameof (CanMutateSelection))]
+	void RotateRight ()
+		=> RotateSelection (RotateDirection.Clockwise);
+
+	void RotateSelection (RotateDirection direction)
+	{
+		var photos = MutationItems ().Select (item => item.Photo).ToArray ();
+		if (photos.Length == 0)
+			return;
+
+		var thumbnailsService = TinyIoCContainer.Current.Resolve<IThumbnailService> ();
+		var op = new RotateMultiple (photos, direction, thumbnailsService);
+		try {
+			while (op.Step ()) { }
+		} catch (RotateException ex) {
+			_ = shell.ShowWarningAsync (Strings.ErrorWhileRotatingPhoto, ex.Message);
+			return;
+		} catch (Exception ex) {
+			Logger.Log.Debug (ex, "Failed to rotate selection");
+			_ = shell.ShowWarningAsync (Strings.ErrorWhileRotatingPhoto, ex.Message);
+			return;
+		}
+
+		RefreshEditedSelection ();
+	}
+
+	void RefreshEditedSelection ()
+	{
+		foreach (var item in MutationItems ()) {
+			item.Thumbnail = null;
+			item.RefreshFromPhoto ();
+		}
+
+		if (SelectedPhoto is not null) {
+			Info.Update (SelectedPhoto.Photo);
+			UpdatePreview ();
+			_ = UpdateHistogramAsync (SelectedPhoto);
+		}
+
+		_ = LoadThumbnailsAsync ();
+	}
+
+	void RefreshSelectedCaptions (IEnumerable<Photo> photos)
+	{
+		var ids = photos.Select (photo => photo.Id).ToHashSet ();
+		foreach (var item in Photos.Where (item => item.Photo is Photo photo && ids.Contains (photo.Id))) {
+			item.RefreshCaptions ();
+			if (ReferenceEquals (item, SelectedPhoto))
+				Info.Update (item.Photo);
+		}
+	}
+
+	void ApplyVersion (string name)
+	{
+		if (database is null || SelectedPhoto?.Photo is not Photo photo)
+			return;
+
+		var version = photo.Versions.OfType<PhotoVersion> ().FirstOrDefault (item => item.Name == name);
+		if (version is null || ReferenceEquals (version, photo.DefaultVersion))
+			return;
+
+		photo.SetDefaultVersion (version);
+		database.Photos.Commit (photo);
+		SelectedPhoto.RefreshFromPhoto ();
+		Info.Update (photo);
+		UpdatePreview ();
+		_ = UpdateHistogramAsync (SelectedPhoto);
+		_ = LoadThumbnailsAsync ();
+	}
+
+	void ApplyRating (uint rating)
+	{
+		if (database is null || SelectedPhoto?.Photo is not Photo photo)
+			return;
+
+		photo.Rating = rating;
+		database.Photos.Commit (photo);
+		SelectedPhoto.RefreshCaptions ();
+	}
+}

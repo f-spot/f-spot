@@ -1,6 +1,7 @@
 <Solution>
   <Folder Name="/Clients/">
     <Project Path="src/Clients/FSpot.Gtk/FSpot.Gtk.csproj" />
+    <Project Path="src/Clients/FSpot.Avalonia/FSpot.Avalonia.csproj" />
   </Folder>
   <Folder Name="/Core/">
     <Project Path="src/Core/FSpot/FSpot.csproj" />
@@ -41,6 +42,7 @@
   <Folder Name="/Tests/">
     <Project Path="tests/FSpot.Tests/FSpot.Tests.csproj" />
     <Project Path="tests/FSpot.Gtk.Tests/FSpot.Gtk.Tests.csproj" />
+    <Project Path="tests/FSpot.Avalonia.Tests/FSpot.Avalonia.Tests.csproj" />
   </Folder>
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />

@@ -1,0 +1,20 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:auto="using:FSpot.Avalonia"
+        xmlns:lang="using:FSpot.Resources.Lang"
+        x:Class="FSpot.Avalonia.SlideshowWindow"
+        Title="{x:Static lang:Strings.Slideshow}"
+        WindowState="FullScreen"
+        Background="Black"
+        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SlideshowWindow}"
+        AutomationProperties.Name="{x:Static lang:Strings.Slideshow}">
+	<Panel>
+		<Image Name="Slide" Stretch="Uniform"
+		       AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SlideshowImage}"
+		       AutomationProperties.Name="{x:Static lang:Strings.Slideshow}" />
+		<Button HorizontalAlignment="Right" VerticalAlignment="Top" Margin="16"
+		        Content="×" Click="OnCloseClick"
+		        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SlideshowClose}"
+		        AutomationProperties.Name="Close slideshow" />
+	</Panel>
+</Window>

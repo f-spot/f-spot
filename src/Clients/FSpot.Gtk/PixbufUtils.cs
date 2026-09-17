@@ -94,6 +94,7 @@ namespace FSpot
 			int max_width;
 			int max_height;
 			ImageOrientation orientation;
+			bool refused;
 
 			public AspectLoader (int max_width, int max_height)
 			{
@@ -117,6 +118,13 @@ namespace FSpot
 
 
 				var scale = Fit (args.Width, args.Height, max_width, max_height, true, out var scale_width, out var scale_height);
+				int alloc_width = scale < 1.0 ? scale_width : args.Width;
+				int alloc_height = scale < 1.0 ? scale_height : args.Height;
+				if (DecodeBudget.Exceeds (alloc_width, alloc_height)) {
+					loader.SetSize (1, 1);
+					refused = true;
+					return;
+				}
 
 				if (scale < 1.0)
 					loader.SetSize (scale_width, scale_height);
@@ -127,10 +135,24 @@ namespace FSpot
 				int count;
 				var data = new byte[8192];
 				while ((count = stream.Read (data, 0, data.Length)) > 0 && loader.Write (data, (ulong)count)) {
-					;
+					if (refused)
+						break;
 				}
 
-				loader.Close ();
+				try {
+					loader.Close ();
+				} catch (GLib.GException) {
+					if (!refused)
+						throw;
+				}
+
+				if (refused) {
+					if (loader.Pixbuf != null)
+						loader.Pixbuf.Dispose ();
+					loader.Dispose ();
+					throw new InvalidDataException (DecodeBudget.TooLargeMessage);
+				}
+
 				var orig = loader.Pixbuf;
 				var rotated = orig.TransformOrientation (orientation);
 

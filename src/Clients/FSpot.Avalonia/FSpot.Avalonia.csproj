@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>$(FSpotModernTargetFramework)</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <RootNamespace>FSpot.Avalonia</RootNamespace>
+    <AssemblyName>FSpot.Avalonia</AssemblyName>
+    <ApplicationTitle>F-Spot</ApplicationTitle>
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    <OutputPath>$(RepoRoot)artifacts/fspot-avalonia/</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="FSpot.Avalonia.Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\FSpot\FSpot.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" />
+    <PackageReference Include="Avalonia.Desktop" />
+    <PackageReference Include="Avalonia.Themes.Fluent" />
+    <PackageReference Include="Avalonia.Fonts.Inter" />
+    <PackageReference Include="Sentry.Serilog" />
+    <PackageReference Include="CommunityToolkit.Mvvm" />
+    <PackageReference Include="Svg.Controls.Skia.Avalonia" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Include="$(RepoRoot)icons/src/*.svg">
+      <Link>Icons\%(Filename)%(Extension)</Link>
+    </AvaloniaResource>
+    <AvaloniaResource Include="$(RepoRoot)icons/f-spot-32.png">
+      <Link>Icons\f-spot-32.png</Link>
+    </AvaloniaResource>
+  </ItemGroup>
+
+</Project>
