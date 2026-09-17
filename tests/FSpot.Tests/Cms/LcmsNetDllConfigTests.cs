@@ -67,10 +67,28 @@ namespace FSpot.Cms.Tests
 				"the Linux mapping must exclude osx or Mono on a Mac tries the .so first");
 		}
 
+		// Homebrew's liblcms2 is arm64; Mono on this platform is x86_64. A relative
+		// dllmap target only resolves if that exact filename sits next to lcmsNET.dll.
+		[TestMethod]
+		[OSCondition (OperatingSystems.OSX)]
+		public void OsxDllmapTargetIsCopiedNextToLcmsNet ()
+		{
+			string target = Path.GetFileName (OsxDllmapTarget ());
+			string path = Path.Combine (AppContext.BaseDirectory, target);
+			Assert.IsTrue (File.Exists (path),
+				$"{path} is missing: Mono maps lcms2 to '{target}' and will throw DllNotFoundException without it.");
+		}
+
 		static IEnumerable<XElement> Dllmaps ()
 		{
 			Assert.IsTrue (File.Exists (ConfigPath), $"{ConfigPath} is missing");
 			return XDocument.Load (ConfigPath).Descendants ("dllmap");
+		}
+
+		static string OsxDllmapTarget ()
+		{
+			var mac = Dllmaps ().Single (m => ((string)m.Attribute ("os") ?? string.Empty).Split (',').Contains ("osx"));
+			return (string)mac.Attribute ("target");
 		}
 
 		static List<string> ImportedLibraries (Assembly assembly)

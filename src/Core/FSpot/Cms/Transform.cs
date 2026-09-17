@@ -18,6 +18,11 @@ namespace FSpot.Cms
 {
 	public class Transform : IDisposable
 	{
+		static Transform ()
+		{
+			LcmsNativeLibrary.Register ();
+		}
+
 		bool disposed;
 
 		internal lcmsNET.Transform Native { get; }

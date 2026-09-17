@@ -23,6 +23,39 @@ namespace FSpot.Cms
 		// handing out the live dictionary would let a caller step around them.
 		public IReadOnlyDictionary<string, Profile> Profiles => profiles;
 
+		// ColorManagement.Profiles is read from draw handlers and dialog constructors.
+		// gtk-sharp turns an escaping exception there into either an abort or a menu
+		// click that does nothing, so a missing liblcms2 has to become an empty
+		// catalogue rather than a DllNotFoundException.
+		public static ProfileCatalog Build (Action<ProfileCatalog> populate)
+		{
+			if (populate == null)
+				throw new ArgumentNullException (nameof (populate));
+
+			var built = new ProfileCatalog ();
+			try {
+				populate (built);
+				return built;
+			} catch (Exception e) when (IsNativeLibraryMissing (e)) {
+				Logger.Log.Warning ($"Colour management disabled: native Little CMS is not available ({e.Message})");
+				return new ProfileCatalog ();
+			}
+		}
+
+		// A missing native library reaches managed code in more shapes than one: too old
+		// a liblcms2 has no cmsGetEncodedCMMversion, an architecture mismatch is a bad
+		// image, and any of them raised from a static constructor arrives wrapped.
+		public static bool IsNativeLibraryMissing (Exception e)
+		{
+			if (e == null)
+				throw new ArgumentNullException (nameof (e));
+
+			if (e is TypeInitializationException && e.InnerException != null)
+				return IsNativeLibraryMissing (e.InnerException);
+
+			return e is DllNotFoundException || e is EntryPointNotFoundException || e is BadImageFormatException;
+		}
+
 		// Takes ownership: a profile the catalogue declines is closed here, because the
 		// directory scan that produced it has nowhere else to put it.
 		public bool Add (Profile profile)

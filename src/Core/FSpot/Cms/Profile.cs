@@ -19,6 +19,11 @@ namespace FSpot.Cms
 {
 	public class Profile : IDisposable
 	{
+		static Profile ()
+		{
+			LcmsNativeLibrary.Register ();
+		}
+
 		// Little-CMS is thread-safe per handle, but the profile-info readers share the
 		// process-wide sRGB profile, so they still serialise on this.
 		static readonly object lcmsLock = new object ();

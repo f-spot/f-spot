@@ -1,10 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>$(FSpotTargetFramework)</TargetFramework>
+    <TargetFrameworks>$(FSpotTargetFramework);$(FSpotModernTargetFramework)</TargetFrameworks>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <AssemblySearchPaths>$(AssemblySearchPaths);{GAC}</AssemblySearchPaths>
     <ReleaseVersion>0.9.0</ReleaseVersion>
+  </PropertyGroup>
+
+  <!-- Directory.Build.props dumps every project into $(RepoRoot)bin with no TFM
+       segment. A net10.0 FSpot.dll must not overwrite the net472 copy f-spot.exe
+       loads from there. -->
+  <PropertyGroup Condition="'$(TargetFramework)' != '' AND '$(TargetFramework)' != '$(FSpotTargetFramework)'">
+    <OutputPath>$(RepoRoot)artifacts/fspot/$(TargetFramework)/</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,6 +32,7 @@
     <PackageReference Include="Serilog.Sinks.File" />
     <PackageReference Include="Serilog.Exceptions" />
     <PackageReference Include="SerilogTimings" />
+    <PackageReference Include="Sentry.Serilog" />
     <PackageReference Include="TagLibSharp" />
     <PackageReference Include="TinyIoC" />
   </ItemGroup>
@@ -34,6 +42,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="lcmsNET.dll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <!-- Mono on macOS is x86_64; Homebrew liblcms2 is arm64. The dllmap target is the
+         versioned dylib name, which only resolves if that file sits next to lcmsNET.dll. -->
+    <None Include="$(RepoRoot)lib/native/osx-x64/liblcms2.2.dylib" Condition="$([MSBuild]::IsOSPlatform('OSX'))">
+      <Link>liblcms2.2.dylib</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="FSpot.addins">

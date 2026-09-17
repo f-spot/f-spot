@@ -5,8 +5,10 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Xml.Linq;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -34,12 +36,64 @@ namespace FSpot.Gtk.Tests
 			Assert.IsEmpty (ungated, "these map to an ELF library on macOS: " + string.Join (", ", ungated));
 		}
 
+		// SDK GenerateBindingRedirects rewrites $(TargetFileName).config and drops
+		// Mono dllmap entries unless the hand-written file is the AppConfig input.
+		[TestMethod]
+		[Timeout (120_000, CooperativeCancellation = true)]
+		public void BuiltExeConfig_KeepsGlibDllMap ()
+		{
+			string root = RepoRoot ();
+			string output = Path.Combine (Path.GetTempPath (), "f-spot-dllmap-" + Guid.NewGuid ().ToString ("N"));
+			Directory.CreateDirectory (output);
+			try {
+				var startInfo = new ProcessStartInfo ("dotnet") {
+					RedirectStandardOutput = true,
+					RedirectStandardError = true,
+					UseShellExecute = false,
+				};
+				startInfo.ArgumentList.Add ("build");
+				startInfo.ArgumentList.Add (Path.Combine (root, "src", "Clients", "FSpot.Gtk", "FSpot.Gtk.csproj"));
+				startInfo.ArgumentList.Add ("--configuration");
+				startInfo.ArgumentList.Add ("Release");
+				startInfo.ArgumentList.Add ($"-p:OutputPath={output}{Path.DirectorySeparatorChar}");
+
+				using var process = Process.Start (startInfo);
+				var log = new StringBuilder ();
+				process.OutputDataReceived += (_, e) => { if (e.Data != null) log.AppendLine (e.Data); };
+				process.ErrorDataReceived += (_, e) => { if (e.Data != null) log.AppendLine (e.Data); };
+				process.BeginOutputReadLine ();
+				process.BeginErrorReadLine ();
+				Assert.IsTrue (process.WaitForExit (120_000), "Gtk build timed out");
+				Assert.AreEqual (0, process.ExitCode, log.ToString ());
+
+				string config = File.ReadAllText (Path.Combine (output, "f-spot.exe.config"));
+				Assert.Contains ("dllmap", config);
+				Assert.Contains ("libglib-2.0-0.dll", config);
+			} finally {
+				try {
+					Directory.Delete (output, true);
+				} catch (IOException) {
+				}
+			}
+		}
+
 		static IEnumerable<XElement> DllMaps ()
 		{
 			string path = Path.Combine (AppContext.BaseDirectory, "f-spot.exe.config");
 			Assert.IsTrue (File.Exists (path), $"{path} is missing; the build should copy f-spot.exe.config next to the testhost.");
 
 			return XDocument.Load (path).Descendants ("dllmap");
+		}
+
+		static string RepoRoot ()
+		{
+			for (var dir = new DirectoryInfo (AppContext.BaseDirectory); dir != null; dir = dir.Parent) {
+				if (File.Exists (Path.Combine (dir.FullName, "F-Spot.slnx")))
+					return dir.FullName;
+			}
+
+			Assert.Fail ("F-Spot.slnx not found walking up from " + AppContext.BaseDirectory);
+			return null;
 		}
 
 		static bool IsElf (string target) =>
