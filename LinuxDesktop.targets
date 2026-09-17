@@ -57,6 +57,10 @@
       </_HicolorStaged>
     </ItemGroup>
     <Copy SourceFiles="@(_HicolorStaged)" DestinationFiles="@(_HicolorStaged->'%(Destination)')" SkipUnchangedFiles="true" />
+    <!-- Gtk.IconTheme ignores a hicolor tree with no index.theme, which is
+         why macOS painted gtk-missing-image for every IconName toolbar button
+         even though the pngs were staged. -->
+    <Copy SourceFiles="$(RepoRoot)icons\hicolor\index.theme" DestinationFiles="$(FSpotAppShare)icons\hicolor\index.theme" SkipUnchangedFiles="true" />
   </Target>
 
   <Target Name="InstallLinux" DependsOnTargets="LayoutLinuxShare">
