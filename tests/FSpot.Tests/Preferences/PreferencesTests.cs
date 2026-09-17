@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.IO;
 
 using FSpot.Platform;
+using FSpot.Tests;
 
 using Newtonsoft.Json.Linq;
 
@@ -135,6 +136,23 @@ namespace FSpot.Preferences.Tests
 		public void UnsetSettingThrowsNoSuchKeyException ()
 		{
 			Assert.ThrowsExactly<NoSuchKeyException> (() => jsonBackend.Get<bool> ("RandomKey123"));
+		}
+
+		[TestMethod]
+		public void LoadSettings_CreatesMissingParentDirectory ()
+		{
+			var dirs = new TemporaryDirectories ();
+			try {
+				PreferenceJsonBackend.Unload ();
+				string settingsFile = Path.Combine (dirs.Create ("prefs"), "missing", "f-spot-settings.json");
+				PreferenceJsonBackend.PreferenceLocationOverride = settingsFile;
+
+				Assert.ThrowsExactly<NoSuchKeyException> (() => new PreferenceJsonBackend ().Get<bool> ("RandomKey123"));
+				Assert.IsTrue (File.Exists (settingsFile));
+			} finally {
+				PreferenceJsonBackend.Unload ();
+				dirs.DeleteAll ();
+			}
 		}
 
 		// Preferences returns the default value instead of an exception

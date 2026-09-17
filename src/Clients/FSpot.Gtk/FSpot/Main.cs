@@ -32,6 +32,8 @@ using FSpot.Gui;
 using Mono.Addins;
 using Mono.Addins.Setup;
 
+using Sentry;
+
 using SerilogTimings;
 
 namespace FSpot
@@ -84,10 +86,16 @@ namespace FSpot
 
 		static int Main (string[] args)
 		{
-			Logger.CreateLogger ();
+			var options = CommandLineOptions.Parse (args);
+			if (!FSpotConfiguration.TryApplyBaseDirectory (options)) {
+				Console.Error.WriteLine ("f-spot: -basedir option takes one argument");
+				return 1;
+			}
 
-			if (Environment.Is64BitProcess)
-				throw new ApplicationException ("GtkSharp does not support running 64bit");
+			using var _ = FSpotSentry.TryInit (FSpotSentry.GtkClient);
+
+			if (RuntimeInformation.IsOSPlatform (OSPlatform.Windows) && Environment.Is64BitProcess)
+				throw new ApplicationException ("GtkSharp does not support running 64bit on Windows");
 
 			TrySetProcessName (FSpotConfiguration.Package);
 
@@ -106,7 +114,6 @@ namespace FSpot
 
 			FSpotConfiguration.PhotoUri = new SafeUri (Preferences.Get<string> (Preferences.StoragePath));
 
-			var options = CommandLineOptions.Parse (args);
 			CommandLineOptions.Current = options;
 			// DebuggingRequested rather than the two flags, so BANSHEE_DEBUG still counts.
 			// Core reads FSpotConfiguration.Debugging, not the parser.
@@ -127,34 +134,31 @@ namespace FSpot
 				return 0;
 			}
 
+			if (options.PhotoDir != null) {
+				if (string.IsNullOrEmpty (options.PhotoDir)) {
+					Console.Error.WriteLine ("f-spot: -photodir option takes one argument");
+					return 1;
+				}
+
+				FSpotConfiguration.PhotoUri = new SafeUri (options.PhotoDir);
+			}
+
+			// After --basedir so rolling files land next to that catalog, not the cwd.
+			Logger.CreateLogger ();
+
 			if (options.Shutdown)
 				Logger.Log.Information ("Shutting down existing F-Spot server...");
 
 			if (options.Slideshow)
 				Logger.Log.Information ("Running F-Spot in slideshow mode.");
 
-			if (options.BaseDir != null) {
-				if (!string.IsNullOrEmpty (options.BaseDir)) {
-					FSpotConfiguration.BaseDirectory = options.BaseDir;
-					Logger.Log.Information ($"BaseDirectory is now {options.BaseDir}");
-				} else {
-					Logger.Log.Error ("f-spot: -basedir option takes one argument");
-					return 1;
-				}
-			}
+			if (options.BaseDir != null)
+				Logger.Log.Information ($"BaseDirectory is now {options.BaseDir}");
 
-			if (options.PhotoDir != null) {
-				if (!string.IsNullOrEmpty (options.PhotoDir)) {
-					FSpotConfiguration.PhotoUri = new SafeUri (options.PhotoDir);
-					Logger.Log.Information ($"PhotoDirectory is now {options.PhotoDir}");
-				} else {
-					Logger.Log.Error ("f-spot: -photodir option takes one argument");
-					return 1;
-				}
-			}
+			if (options.PhotoDir != null)
+				Logger.Log.Information ($"PhotoDirectory is now {options.PhotoDir}");
 
 			if (options.Debug) {
-				Logger.SetLevel (Serilog.Events.LogEventLevel.Debug);
 				// Debug GdkPixbuf critical warnings
 				var logFunc = new GLib.LogFunc (GLib.Log.PrintTraceLogFunction);
 				GLib.Log.SetLogHandler ("GdkPixbuf", GLib.LogLevelFlags.Critical, logFunc);
@@ -184,6 +188,7 @@ namespace FSpot
 
 			// Gtk initialization
 			Gtk.Application.Init (FSpotConfiguration.Package, ref args);
+			GtkSettings.ConfigurePlatform ();
 			// Maybe we'll add this at a future date
 			//Xwt.Application.InitializeAsGuest (Xwt.ToolkitType.Gtk);
 
@@ -214,14 +219,26 @@ namespace FSpot
 			GLib.ExceptionManager.UnhandledException += exceptionArgs => {
 				Console.WriteLine ("Unhandled exception handler:");
 				if (exceptionArgs.ExceptionObject is Exception exception) {
-					Console.WriteLine ($"Message: {exception.Message}");
-					Console.WriteLine ($"Stack trace: {exception.StackTrace}");
+					for (var e = exception; e != null; e = e.InnerException) {
+						Console.WriteLine ($"{e.GetType ().FullName}: {e.Message}");
+						Console.WriteLine (e.StackTrace);
+					}
+					SentrySdk.CaptureException (exception);
 				} else {
 					Console.WriteLine ($"Unknown exception type: {exceptionArgs.ExceptionObject.GetType ()}");
 				}
 			};
 
-			CleanRoomStartup.Startup (Startup);
+			try {
+				CleanRoomStartup.Startup (Startup);
+			} catch (Exception ex) {
+				SentrySdk.CaptureException (ex);
+				SentrySdk.Flush (TimeSpan.FromSeconds (2));
+				throw;
+			}
+
+			SentrySdk.Flush (TimeSpan.FromSeconds (2));
+			SentrySdk.Close ();
 
 			// Running threads are preventing the application from quitting
 			// we force it for now until this is fixed

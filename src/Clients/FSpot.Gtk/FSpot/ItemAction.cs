@@ -17,6 +17,7 @@ using System;
 
 using FSpot.Core;
 using FSpot.Resources.Lang;
+using FSpot.Thumbnail;
 using FSpot.UI.Dialog;
 
 using Gtk;
@@ -54,7 +55,7 @@ namespace FSpot
 		protected override void OnActivated ()
 		{
 			try {
-				var op = new RotateOperation (item.Current, direction);
+				var op = new RotateOperation (item.Current, direction, App.Instance.Container.Resolve<IThumbnailService> ());
 
 				while (op.Step ()) { }
 

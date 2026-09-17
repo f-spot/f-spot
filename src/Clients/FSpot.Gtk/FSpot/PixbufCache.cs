@@ -184,14 +184,8 @@ namespace FSpot
 
 		protected virtual void ProcessRequest (CacheEntry entry)
 		{
-			Gdk.Pixbuf loaded = null;
-			try {
-				loaded = App.Instance.Container.Resolve<IThumbnailService> ().GetThumbnail (entry.Uri, ThumbnailSize.Large).ToPixbuf ();
-				Update (entry, loaded);
-			} catch (GLib.GException) {
-				if (loaded != null)
-					loaded.Dispose ();
-			}
+			Update (entry, LoadOrPlaceholder.Resolve (entry.Width, GtkUtil.MissingImagePlaceholder,
+				() => App.Instance.Container.Resolve<IThumbnailService> ().GetThumbnail (entry.Uri, ThumbnailSize.Large).ToPixbuf ()));
 		}
 
 		void QueueLast (CacheEntry entry)
@@ -313,7 +307,7 @@ namespace FSpot
 					Gdk.Pixbuf old = Pixbuf;
 					cache.total_size -= Size;
 					pixbuf = value;
-					if (pixbuf != null) {
+					if (pixbuf != null && pixbuf.Handle != IntPtr.Zero) {
 						Width = pixbuf.Width;
 						Height = pixbuf.Height;
 					}
@@ -336,9 +330,11 @@ namespace FSpot
 			public Gdk.Pixbuf ShallowCopyPixbuf ()
 			{
 				lock (locker) {
-					if (IsDisposed)
+					if (IsDisposed || pixbuf == null || pixbuf.Handle == IntPtr.Zero)
 						return null;
-					return pixbuf?.ShallowCopy ();
+					// Copy, not a subpixbuf: Update/Dispose of the cache entry would
+					// otherwise leave DrawPhoto holding a view of a dead GdkPixbuf.
+					return pixbuf.Copy ();
 				}
 			}
 

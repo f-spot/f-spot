@@ -167,6 +167,9 @@ namespace FSpot.Import
 
 			// Remove created roll
 			db.Rolls.Remove (createdRoll);
+
+			imported_photos.Clear ();
+			failedImports.Clear ();
 		}
 
 		void Cleanup (IDb db)

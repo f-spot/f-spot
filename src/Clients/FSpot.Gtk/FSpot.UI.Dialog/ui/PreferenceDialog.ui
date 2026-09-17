@@ -22,7 +22,7 @@
             <child>
               <object class="GtkTable" id="table1">
                 <property name="visible">True</property>
-                <property name="n_rows">14</property>
+                <property name="n_rows">15</property>
                 <property name="n_columns">2</property>
                 <property name="column_spacing">12</property>
                 <property name="row_spacing">6</property>
@@ -227,6 +227,21 @@
                     <property name="right_attach">2</property>
                     <property name="top_attach">4</property>
                     <property name="bottom_attach">5</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkCheckButton" id="send_crash_reports_check">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="label" translatable="yes">Send crash reports to Sentry</property>
+                    <property name="active">True</property>
+                    <property name="draw_indicator">True</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="right_attach">2</property>
+                    <property name="top_attach">14</property>
+                    <property name="bottom_attach">15</property>
                   </packing>
                 </child>
               </object>

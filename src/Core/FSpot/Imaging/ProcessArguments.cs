@@ -18,8 +18,8 @@ namespace FSpot.Imaging
 	// \r and \f separate arguments. net472 on Linux and macOS IS Mono, which is what
 	// F-Spot ships, so both parsers are live and a photo filename reaches both.
 	//
-	// When FSpot.dll reaches net10.0 for the Avalonia port, add each argument to
-	// ArgumentList and delete this class: the runtime then quotes for the real host.
+	// net10.0 ProcessStream uses ProcessStartInfo.ArgumentList instead. This joiner
+	// stays for the net472 TFM, which still has no ArgumentList.
 	static class ProcessArguments
 	{
 		static readonly char[] WindowsNeedsQuoting = { ' ', '\t', '\n', '\v', '"' };

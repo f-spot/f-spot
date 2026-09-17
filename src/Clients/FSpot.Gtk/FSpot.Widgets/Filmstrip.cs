@@ -534,19 +534,27 @@ namespace FSpot.Widgets
 			}
 
 			if (current == null) {
-				var buffer = App.Instance.Container.Resolve<IThumbnailService> ().GetThumbnail (uri, ThumbnailSize.Large);
-				if (buffer == null) {
-					App.Instance.Container.Resolve<IThumbnailLoader> ().Request (uri, ThumbnailSize.Large, 0);
-					current = GtkSettings.IconTheme.LoadIcon ("gtk-missing-image", ThumbSize, (IconLookupFlags)0);
-				} else {
-					using var pixbuf = buffer.ToPixbuf ();
-					if (SquaredThumbs) {
-						current = PixbufUtils.IconFromPixbuf (pixbuf, ThumbSize);
-					} else {
-						current = pixbuf.ScaleSimple (ThumbSize, ThumbSize, InterpType.Nearest);
-					}
-					thumb_cache.Add (uri, current);
+				ImageBuffer buffer = null;
+				try {
+					buffer = App.Instance.Container.Resolve<IThumbnailService> ().GetThumbnail (uri, ThumbnailSize.Large);
+				} catch (Exception) {
 				}
+
+				if (buffer == null)
+					App.Instance.Container.Resolve<IThumbnailLoader> ().Request (uri, ThumbnailSize.Large, 0);
+
+				current = LoadOrPlaceholder.Resolve (ThumbSize, GtkUtil.MissingImagePlaceholder, () => {
+					if (buffer == null)
+						return GtkUtil.TryLoadIcon (GtkSettings.IconTheme, "gtk-missing-image", ThumbSize, (IconLookupFlags)0);
+
+					using var pixbuf = buffer.ToPixbuf ();
+					Pixbuf scaled = SquaredThumbs
+						? PixbufUtils.IconFromPixbuf (pixbuf, ThumbSize)
+						: pixbuf.ScaleSimple (ThumbSize, ThumbSize, InterpType.Nearest);
+					if (scaled != null)
+						thumb_cache.Add (uri, scaled);
+					return scaled;
+				});
 			}
 
 			//FIXME: we might end up leaking a pixbuf here

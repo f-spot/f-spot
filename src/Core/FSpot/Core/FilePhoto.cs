@@ -23,6 +23,7 @@ namespace FSpot.Core
 	public class FilePhoto : IPhoto, IInvalidPhotoCheck
 	{
 		bool metadata_parsed;
+		bool invalid;
 
 		readonly List<IPhotoVersion> versions;
 
@@ -35,15 +36,8 @@ namespace FSpot.Core
 
 		public bool IsInvalid {
 			get {
-				if (metadata_parsed)
-					return false;
-
-				try {
-					EnsureMetadataParsed ();
-					return false;
-				} catch (Exception) {
-					return true;
-				}
+				EnsureMetadataParsed ();
+				return invalid;
 			}
 		}
 
@@ -52,14 +46,20 @@ namespace FSpot.Core
 			if (metadata_parsed)
 				return;
 
-			using (var metadata = MetadataUtils.Parse (DefaultVersion.Uri)) {
-				if (metadata != null) {
-					var date = metadata.ImageTag.DateTime;
-					time = date ?? CreateDate;
-					description = metadata.ImageTag.Comment;
-				} else {
-					throw new Exception ("Corrupt File!");
+			try {
+				using (var metadata = MetadataUtils.Parse (DefaultVersion.Uri)) {
+					if (metadata != null) {
+						var date = metadata.ImageTag.DateTime;
+						time = date ?? SafeCreateDate ();
+						description = metadata.ImageTag.Comment;
+					} else {
+						invalid = true;
+						time = SafeCreateDate ();
+					}
 				}
+			} catch {
+				invalid = true;
+				time = SafeCreateDate ();
 			}
 
 			metadata_parsed = true;
@@ -69,6 +69,15 @@ namespace FSpot.Core
 			get {
 				var info = new FileInfo (DefaultVersion.Uri.AbsolutePath);
 				return info.CreationTime;
+			}
+		}
+
+		DateTime SafeCreateDate ()
+		{
+			try {
+				return CreateDate;
+			} catch {
+				return DateTime.MinValue;
 			}
 		}
 

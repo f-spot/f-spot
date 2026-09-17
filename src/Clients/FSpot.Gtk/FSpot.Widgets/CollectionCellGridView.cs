@@ -248,11 +248,14 @@ namespace FSpot.Widgets
 				//  Logger.Logger.Log.Debug ("scaling");
 				Pixbuf temp = result.ScaleSimple (width, height, InterpType.Nearest);
 				result.Dispose ();
+				if (temp == null)
+					return;
 				result = temp;
 			} else if (result.Width < ThumbnailWidth && result.Height < ThumbnailHeight) {
 				// FIXME this is a workaround to handle images whose actual size is smaller than
 				// the thumbnail size, it needs to be fixed at a different level.
-				using var temp = new Pixbuf (Colorspace.Rgb, true, 8, ThumbnailWidth, ThumbnailHeight);
+				// Not using var: the cache takes ownership of this pixbuf after Update.
+				var temp = new Pixbuf (Colorspace.Rgb, true, 8, ThumbnailWidth, ThumbnailHeight);
 				temp.Fill (0x00000000);
 				result.CopyArea (0, 0,
 						result.Width, result.Height,
@@ -323,77 +326,80 @@ namespace FSpot.Widgets
 			Pixbuf thumbnail = null;
 			if (entry != null)
 				thumbnail = entry.ShallowCopyPixbuf ();
+			// Null means not loaded yet (or SVG Gdk cannot decode). Do not
+			// paint the gray placeholder for that — it made loading cells
+			// look like missing images. A disposed 0×0 handle still skips.
 
 			var draw = Rectangle.Zero;
-			if (Rectangle.Inflate (imageBounds, expansion + 1, expansion + 1).Intersect (exposeArea, out imageBounds) && thumbnail != null) {
+			if (Rectangle.Inflate (imageBounds, expansion + 1, expansion + 1).Intersect (exposeArea, out imageBounds) && thumbnail != null && thumbnail.Handle != IntPtr.Zero) {
 
 				PixbufUtils.Fit (thumbnail, ThumbnailWidth, ThumbnailHeight,
 						true, out region.Width, out region.Height);
 
-				region.X = cellArea.X + (cellArea.Width - region.Width) / 2;
-				region.Y = cellArea.Y + ThumbnailHeight - region.Height + CellBorderWidth;
+				// A pixbuf the loader has already disposed reports 0×0 (and Gdk
+				// criticals). Forcing 1×1 and calling ScaleSimple then returns null
+				// and DrawPhoto NRE'd while Import was filling this grid.
+				if (region.Width >= 1 && region.Height >= 1) {
+					region.X = cellArea.X + (cellArea.Width - region.Width) / 2;
+					region.Y = cellArea.Y + ThumbnailHeight - region.Height + CellBorderWidth;
 
-				if (Math.Abs (region.Width - thumbnail.Width) > 1 && Math.Abs (region.Height - thumbnail.Height) > 1)
-					Cache.Reload (entry, cellNum, thumbnail.Width, thumbnail.Height);
+					if (entry != null && Math.Abs (region.Width - thumbnail.Width) > 1 && Math.Abs (region.Height - thumbnail.Height) > 1)
+						Cache.Reload (entry, cellNum, thumbnail.Width, thumbnail.Height);
 
-				region = Rectangle.Inflate (region, expansion, expansion);
-				Pixbuf tempThumbnail;
-				region.Width = Math.Max (1, region.Width);
-				region.Height = Math.Max (1, region.Height);
+					region = Rectangle.Inflate (region, expansion, expansion);
+					region.Width = Math.Max (1, region.Width);
+					region.Height = Math.Max (1, region.Height);
 
-				if (Math.Abs (region.Width - thumbnail.Width) > 1 && Math.Abs (region.Height - thumbnail.Height) > 1) {
-					if (region.Width < thumbnail.Width && region.Height < thumbnail.Height) {
-						/*
-                        temp_thumbnail = PixbufUtils.ScaleDown (thumbnail,
-                                region.Width, region.Height);
-                        */
+					Pixbuf tempThumbnail;
+					if (Math.Abs (region.Width - thumbnail.Width) > 1 && Math.Abs (region.Height - thumbnail.Height) > 1) {
 						tempThumbnail = thumbnail.ScaleSimple (region.Width, region.Height, InterpType.Bilinear);
-
-
-						lock (entry) {
-							if (entry.Reload && expansion == 0 && !entry.IsDisposed) {
-								entry.SetPixbufExtended (tempThumbnail.ShallowCopy (), false);
-								entry.Reload = true;
+						if (entry != null && tempThumbnail != null && region.Width < thumbnail.Width && region.Height < thumbnail.Height) {
+							lock (entry) {
+								if (entry.Reload && expansion == 0 && !entry.IsDisposed) {
+									entry.SetPixbufExtended (tempThumbnail.ShallowCopy (), false);
+									entry.Reload = true;
+								}
 							}
 						}
-					} else {
-						tempThumbnail = thumbnail.ScaleSimple (region.Width, region.Height,
-								InterpType.Bilinear);
+					} else
+						tempThumbnail = thumbnail;
+
+					if (tempThumbnail != null) {
+						// FIXME There seems to be a rounding issue between the
+						// scaled thumbnail sizes, we avoid this for now by using
+						// the actual thumnail sizes here.
+						region.Width = tempThumbnail.Width;
+						region.Height = tempThumbnail.Height;
+
+						draw = Rectangle.Inflate (region, 1, 1);
+
+						if (!tempThumbnail.HasAlpha)
+							Style.PaintShadow (Style, BinWindow, cellState, ShadowType.Out, exposeArea, this, "IconView",
+								draw.X, draw.Y,
+								draw.Width, draw.Height);
+
+						if (region.Intersect (exposeArea, out draw)) {
+							if (ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screenProfile)) {
+								Pixbuf t = tempThumbnail.Copy ();
+								tempThumbnail.Dispose ();
+								tempThumbnail = t;
+								if (tempThumbnail != null)
+									ColorManagement.ApplyProfile (tempThumbnail, screenProfile);
+							}
+							if (tempThumbnail != null)
+								tempThumbnail.RenderToDrawable (BinWindow, Style.WhiteGC,
+										draw.X - region.X,
+										draw.Y - region.Y,
+										draw.X, draw.Y,
+										draw.Width, draw.Height,
+										RgbDither.None,
+										draw.X, draw.Y);
+						}
+
+						if (tempThumbnail != null && tempThumbnail != thumbnail)
+							tempThumbnail.Dispose ();
 					}
-				} else
-					tempThumbnail = thumbnail;
-
-				// FIXME There seems to be a rounding issue between the
-				// scaled thumbnail sizes, we avoid this for now by using
-				// the actual thumnail sizes here.
-				region.Width = tempThumbnail.Width;
-				region.Height = tempThumbnail.Height;
-
-				draw = Rectangle.Inflate (region, 1, 1);
-
-				if (!tempThumbnail.HasAlpha)
-					Style.PaintShadow (Style, BinWindow, cellState, ShadowType.Out, exposeArea, this, "IconView",
-						draw.X, draw.Y,
-						draw.Width, draw.Height);
-
-				if (region.Intersect (exposeArea, out draw)) {
-					if (ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayProfile), out var screenProfile)) {
-						Pixbuf t = tempThumbnail.Copy ();
-						tempThumbnail.Dispose ();
-						tempThumbnail = t;
-						ColorManagement.ApplyProfile (tempThumbnail, screenProfile);
-					}
-					tempThumbnail.RenderToDrawable (BinWindow, Style.WhiteGC,
-							draw.X - region.X,
-							draw.Y - region.Y,
-							draw.X, draw.Y,
-							draw.Width, draw.Height,
-							RgbDither.None,
-							draw.X, draw.Y);
 				}
-
-				if (tempThumbnail != thumbnail)
-					tempThumbnail.Dispose ();
 			}
 
 			thumbnail?.Dispose ();

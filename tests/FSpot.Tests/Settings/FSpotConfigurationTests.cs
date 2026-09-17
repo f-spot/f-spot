@@ -36,6 +36,37 @@ namespace FSpot.Tests.Settings
 		}
 
 		[TestMethod]
+		[OSCondition (OperatingSystems.Linux | OperatingSystems.OSX)]
+		public void BaseDirectory_UsesXdgConfigNotApplicationSupport ()
+		{
+			string configHome = Environment.GetEnvironmentVariable ("XDG_CONFIG_HOME");
+			if (string.IsNullOrWhiteSpace (configHome))
+				configHome = Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.UserProfile), ".config");
+
+			string expected = Path.GetFullPath (Path.Combine (configHome, "f-spot"));
+			Assert.AreEqual (expected, Path.GetFullPath (FSpotConfiguration.BaseDirectory));
+		}
+
+		[TestMethod]
+		public void TryApplyBaseDirectory_UsesAPresentDirectoryAndRejectsAnEmptyOne ()
+		{
+			string previous = FSpotConfiguration.BaseDirectory;
+			try {
+				string dir = Path.Combine (Path.GetTempPath (), "fspot-basedir-" + Guid.NewGuid ().ToString ("n"));
+				Assert.IsTrue (FSpotConfiguration.TryApplyBaseDirectory (CommandLineOptions.Parse (new[] { "--basedir", dir })));
+				Assert.AreEqual (dir, FSpotConfiguration.BaseDirectory);
+
+				Assert.IsFalse (FSpotConfiguration.TryApplyBaseDirectory (CommandLineOptions.Parse (new[] { "--basedir=" })));
+				Assert.AreEqual (dir, FSpotConfiguration.BaseDirectory);
+
+				Assert.IsTrue (FSpotConfiguration.TryApplyBaseDirectory (CommandLineOptions.Parse (new[] { "a.jpg" })));
+				Assert.AreEqual (dir, FSpotConfiguration.BaseDirectory);
+			} finally {
+				FSpotConfiguration.BaseDirectory = previous;
+			}
+		}
+
+		[TestMethod]
 		public void AppDataDir_IsUnderTheAssemblyDirectory ()
 		{
 			var baseDir = Path.GetFullPath (AppContext.BaseDirectory)

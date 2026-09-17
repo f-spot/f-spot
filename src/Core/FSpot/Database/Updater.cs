@@ -138,14 +138,14 @@ namespace FSpot.Database
 				ExecuteScalar (string.Format ("INSERT INTO rolls SELECT id, time FROM {0}", tmp_rolls));
 
 				Logger.Log.Debug ("Cleaning weird descriptions, fixes bug #324425.");
-				Execute ("UPDATE photos SET description = \"\" WHERE description LIKE \"Invalid size of entry%\"");
+				Execute ("UPDATE photos SET description = '' WHERE description LIKE 'Invalid size of entry%'");
 			});
 
 
 			//Version 6.0, change tag icon f-spot-tag-other to emblem-generic
 			AddUpdate (new Version (6, 0), delegate () {
-				ExecuteScalar ("UPDATE tags SET icon = \"stock_icon:emblem-generic\" " +
-						" WHERE icon LIKE \"stock_icon:f-spot-other.png\"");
+				ExecuteScalar ("UPDATE tags SET icon = 'stock_icon:emblem-generic' " +
+						" WHERE icon LIKE 'stock_icon:f-spot-other.png'");
 			});
 
 			//Update to version 7.0, keep photo uri instead of path

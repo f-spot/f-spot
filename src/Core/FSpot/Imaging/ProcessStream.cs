@@ -45,8 +45,16 @@ namespace FSpot.Imaging
 				CreateNoWindow = true,
 				// Standard error is deliberately not redirected: a pipe nobody drains
 				// would deadlock a decoder that writes more warnings than fit in it.
-				Arguments = ProcessArguments.Join (arguments)
 			};
+#if NET
+			foreach (var argument in arguments) {
+				if (argument == null)
+					throw new ArgumentException ("argv holds a null", nameof (arguments));
+				startInfo.ArgumentList.Add (argument);
+			}
+#else
+			startInfo.Arguments = ProcessArguments.Join (arguments);
+#endif
 
 			Process process;
 			try {

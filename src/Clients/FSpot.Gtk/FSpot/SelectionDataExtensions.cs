@@ -85,19 +85,29 @@ namespace FSpot
 
 		public static List<Tag> GetTagsData (this SelectionData selection_data)
 		{
-			int size = sizeof (uint);
-			int length = selection_data.Length / size;
+			try {
+				byte[] raw = selection_data.Data;
+				int claimed = selection_data.Length;
+				if (raw == null || claimed <= 0)
+					return new List<Tag> ();
 
-			TagStore tag_store = App.Instance.Database.Tags;
+				int size = sizeof (uint);
+				int length = Math.Min (claimed, raw.Length) / size;
+				TagStore tag_store = App.Instance.Database.Tags;
+				var tags = new List<Tag> (length);
 
-			var tags = new List<Tag> (length);
+				for (int i = 0; i < length; i++) {
+					uint id = System.BitConverter.ToUInt32 (raw, i * size);
+					var tag = tag_store.Get (id);
+					if (tag != null)
+						tags.Add (tag);
+				}
 
-			for (int i = 0; i < length; i++) {
-				uint id = System.BitConverter.ToUInt32 (selection_data.Data, i * size);
-				tags[i] = tag_store.Get (id);
+				return tags;
+			} catch (Exception e) {
+				Logger.Log.Debug (e, "GetTagsData");
+				return new List<Tag> ();
 			}
-
-			return tags;
 		}
 
 		public static string GetStringData (this SelectionData selection_data)

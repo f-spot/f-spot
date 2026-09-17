@@ -33,6 +33,7 @@ namespace FSpot.UI.Dialog
 		[GtkBeans.Builder.Object] RadioButton writemetadata_radio;
 		[GtkBeans.Builder.Object] RadioButton dontwrite_radio;
 		[GtkBeans.Builder.Object] CheckButton always_sidecar_check;
+		[GtkBeans.Builder.Object] CheckButton send_crash_reports_check;
 
 		[GtkBeans.Builder.Object] ComboBox theme_combo;
 		[GtkBeans.Builder.Object] ComboBox screenprofile_combo;
@@ -118,6 +119,7 @@ namespace FSpot.UI.Dialog
 			theme_combo.RowSeparatorFunc = ThemeSeparatorFunc;
 			theme_combo.SetCellDataFunc (themecellrenderer, ThemeCellFunc);
 			LoadPreference (Preferences.GtkRc);
+			LoadPreference (Preferences.SendCrashReports);
 
 			ConnectEvents ();
 		}
@@ -186,6 +188,9 @@ namespace FSpot.UI.Dialog
 					i++;
 				}
 				break;
+			case Preferences.SendCrashReports:
+				send_crash_reports_check.Active = Preferences.Get<bool> (key);
+				break;
 			case Preferences.ColorManagementDisplayOutputProfile:
 				pref = Preferences.Get<string> (key);
 				if (string.IsNullOrEmpty (pref)) {
@@ -214,6 +219,7 @@ namespace FSpot.UI.Dialog
 			theme_combo.Changed += HandleThemeComboChanged;
 			writemetadata_radio.Toggled += HandleWritemetadataGroupChanged;
 			always_sidecar_check.Toggled += HandleAlwaysSidecareCheckToggled;
+			send_crash_reports_check.Toggled += HandleSendCrashReportsToggled;
 		}
 
 		void HandlePhotosdirChanged (object sender, EventArgs args)
@@ -232,6 +238,12 @@ namespace FSpot.UI.Dialog
 		void HandleAlwaysSidecareCheckToggled (object sender, EventArgs args)
 		{
 			Preferences.Set (Preferences.MetadataAlwaysUseSidecar, always_sidecar_check.Active);
+		}
+
+		void HandleSendCrashReportsToggled (object sender, EventArgs args)
+		{
+			Preferences.Set (Preferences.SendCrashReports, send_crash_reports_check.Active);
+			FSpot.FSpotSentry.Apply (FSpot.FSpotSentry.GtkClient);
 		}
 
 		void HandleThemeComboChanged (object sender, EventArgs e)

@@ -52,6 +52,7 @@ namespace FSpot.UI.Dialog
 #pragma warning restore 649
 
 		PhotoImageView photo_view;
+		BrowseablePointerGridView thumbnail_tray;
 		TagEntry tag_entry;
 
 		public ImportDialog (ImportDialogController controller, Window parent) : base ("import.ui", "import_dialog")
@@ -78,11 +79,11 @@ namespace FSpot.UI.Dialog
 			GtkUtil.ModifyColors (photo_scrolled);
 			GtkUtil.ModifyColors (photo_view);
 
-			using var tray = new BrowseablePointerGridView (photo_view.Item) {
+			thumbnail_tray = new BrowseablePointerGridView (photo_view.Item) {
 				DisplayTags = false
 			};
-			icon_scrolled.Add (tray);
-			tray.Show ();
+			icon_scrolled.Add (thumbnail_tray);
+			thumbnail_tray.Show ();
 
 			progress_bar.Hide ();
 
@@ -322,7 +323,7 @@ namespace FSpot.UI.Dialog
 			if (Controller.FailedImports.Count == 0)
 				return;
 
-			using var dialog = new ImportFailureDialog (files);
+			var dialog = new ImportFailureDialog (files);
 			dialog.Show ();
 		}
 

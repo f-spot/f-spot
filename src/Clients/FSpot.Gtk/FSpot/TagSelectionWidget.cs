@@ -102,16 +102,18 @@ namespace FSpot
 			get {
 				var rows = Selection.GetSelectedRows (out var model);
 
+				// List(capacity) does not allocate slots. Indexer set on an
+				// empty list throws, so a drag of a selected tag never put
+				// ids on the clipboard (drop then attached nothing).
 				var tags = new List<Tag> (rows.Length);
-				int i = 0;
-
 				foreach (TreePath path in rows) {
 					var value = new GLib.Value ();
 					Model.GetIter (out var iter, path);
 					Model.GetValue (iter, IdColumn, ref value);
 					uint tag_id = (uint)value;
-					tags[i] = tag_store.Get (tag_id);
-					i++;
+					var tag = tag_store.Get (tag_id);
+					if (tag != null)
+						tags.Add (tag);
 				}
 				return tags;
 			}
@@ -542,6 +544,7 @@ namespace FSpot
 			DragDataGet += HandleDragDataGet;
 			DragDrop += HandleDragDrop;
 			DragBegin += HandleDragBegin;
+			DragEnd += HandleDragEnd;
 
 			Gtk.Drag.SourceSet (this,
 					   Gdk.ModifierType.Button1Mask | Gdk.ModifierType.Button3Mask,
@@ -557,19 +560,22 @@ namespace FSpot
 							  DragAction.Copy | DragAction.Move);
 		}
 
+		List<Tag> drag_tags = new List<Tag> ();
+		Pixbuf drag_icon;
+
 		void HandleDragBegin (object sender, DragBeginArgs args)
 		{
-			var tags = TagHighlight;
-			int len = tags.Count;
+			drag_tags = TagHighlight;
+			int len = drag_tags.Count;
 			int size = 32;
-			int csize = size / 2 + len * size / 2 + 2;
+			int csize = Math.Max (size, size / 2 + len * size / 2 + 2);
 
 			var container = new Pixbuf (Gdk.Colorspace.Rgb, true, 8, csize, csize);
 			container.Fill (0x00000000);
 
-			bool use_icon = false; ;
+			bool use_icon = false;
 			while (len-- > 0) {
-				using (Pixbuf thumbnail = tags[len].Icon?.ToPixbuf ()) {
+				using (Pixbuf thumbnail = drag_tags[len].Icon?.ToPixbuf ()) {
 					if (thumbnail != null) {
 						Pixbuf small = thumbnail.ScaleToMaxSize (size, size);
 
@@ -584,16 +590,25 @@ namespace FSpot
 				}
 			}
 
-			if (use_icon)
+			if (use_icon) {
 				Gtk.Drag.SetIconPixbuf (args.Context, container, 0, 0);
+				drag_icon = container;
+			} else
+				container.Dispose ();
+		}
 
-			container.Dispose ();
+		void HandleDragEnd (object sender, DragEndArgs args)
+		{
+			drag_icon?.Dispose ();
+			drag_icon = null;
+			drag_tags = new List<Tag> ();
 		}
 
 		void HandleDragDataGet (object sender, DragDataGetArgs args)
 		{
 			if (args.Info == DragDropTargets.TagListEntry.Info) {
-				args.SelectionData.SetTagsData (TagHighlight, args.Context.Targets[0]);
+				var tags = drag_tags.Count > 0 ? drag_tags : TagHighlight;
+				args.SelectionData.SetTagsData (tags, Atom.Intern (DragDropTargets.TagListEntry.Target, true));
 			}
 		}
 

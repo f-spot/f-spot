@@ -57,7 +57,12 @@ namespace FSpot.Imaging
 		public ImageBuffer Load ()
 		{
 			using Stream stream = OpenImageStream ();
-			return ImagingServices.Required.Decode (stream, Orientation);
+			try {
+				return ImagingServices.Required.Decode (stream, Orientation);
+			} catch (Exception e) {
+				Logger.Log.Warning (e, "Failed to decode {Uri}", Uri);
+				throw;
+			}
 		}
 
 		public ImageBuffer Load (int maxWidth, int maxHeight)

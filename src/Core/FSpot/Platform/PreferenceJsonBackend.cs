@@ -28,6 +28,12 @@ namespace FSpot.Platform
 
 		static JObject client;
 
+		internal static void Unload ()
+		{
+			lock (sync_handler)
+				client = null;
+		}
+
 		internal string SettingsFile { get; }
 
 		public PreferenceJsonBackend ()
@@ -46,12 +52,20 @@ namespace FSpot.Platform
 			}
 		}
 
+		void EnsureSettingsDirectory ()
+		{
+			string directory = Path.GetDirectoryName (SettingsFile);
+			if (!string.IsNullOrEmpty (directory))
+				Directory.CreateDirectory (directory);
+		}
+
 		JObject LoadSettings ()
 		{
 			if (!File.Exists (SettingsFile) || new FileInfo (SettingsFile).Length == 0) {
 				var empty = new JObject {
 					[SettingsRoot] = new JObject ()
 				};
+				EnsureSettingsDirectory ();
 				File.WriteAllText (SettingsFile, empty.ToString ());
 			}
 
@@ -64,6 +78,7 @@ namespace FSpot.Platform
 		internal void SaveSettings ()
 		{
 			var settings = Client.Root.ToString ();
+			EnsureSettingsDirectory ();
 			File.WriteAllText (SettingsFile, settings);
 		}
 

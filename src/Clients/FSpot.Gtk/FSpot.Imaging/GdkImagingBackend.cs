@@ -20,12 +20,8 @@ namespace FSpot.Imaging
 	{
 		public ImageBuffer Decode (Stream stream, ImageOrientation orientation)
 		{
-			var orig = new Pixbuf (stream);
-			Pixbuf rotated = orig.TransformOrientation (orientation);
-			if (rotated != orig)
-				orig.Dispose ();
-			using (rotated)
-				return rotated.ToImageBuffer ();
+			using var orig = new Pixbuf (stream);
+			return ImageBuffers.TransformOrientation (orig.ToImageBuffer (), orientation);
 		}
 
 		public ImageBuffer ScaleToMaxSize (ImageBuffer source, int maxWidth, int maxHeight, bool upscale = true)
@@ -55,14 +51,16 @@ namespace FSpot.Imaging
 		}
 
 		public byte[] SerializeIcon (ImageBuffer icon)
-		{
-			using var pixbuf = icon.ToPixbuf ();
-			return GdkUtils.Serialize (pixbuf);
-		}
+			=> GdkPixdata.Write (icon);
 
 		public ImageBuffer DeserializeIcon (byte[] data)
 		{
-			using var pixbuf = GdkUtils.Deserialize (data);
+			if (GdkPixdata.TryRead (data, out ImageBuffer icon))
+				return icon;
+
+			// Icons saved before both clients wrote GdkPixdata are PNGs.
+			using var stream = new MemoryStream (data);
+			using var pixbuf = new Pixbuf (stream);
 			return pixbuf.ToImageBuffer ();
 		}
 

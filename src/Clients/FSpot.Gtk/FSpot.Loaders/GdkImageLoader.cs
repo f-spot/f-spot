@@ -181,9 +181,18 @@ namespace FSpot.Loaders
 					try {
 						if (!is_disposed && Write (buffer, (ulong)byte_read)) {
 							image_stream.BeginRead (buffer, 0, count, HandleReadDone, null);
+						} else {
+							Loading = false;
+							notify_completed = true;
 						}
 					} catch (ObjectDisposedException) {
+						Loading = false;
+						notify_completed = true;
 					} catch (GLib.GException) {
+						// Unrecognized format (SVG on quartz, etc.): without this
+						// Completed never fires and PhotoImageView keeps the previous pixbuf.
+						Loading = false;
+						notify_completed = true;
 					}
 				}
 			}

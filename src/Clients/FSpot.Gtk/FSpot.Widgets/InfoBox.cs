@@ -116,10 +116,11 @@ namespace FSpot.Widgets
 									Func<IPhoto[], string> multiple_string)
 		{
 			Action<Widget, IPhoto, TagLib.Image.File> setSingle = (widget, photo, metadata) => {
-				if (metadata != null)
-					(widget as Label).Text = single_string (photo, metadata);
-				else
+				try {
+					(widget as Label).Text = single_string (photo, metadata) ?? string.Empty;
+				} catch (Exception) {
 					(widget as Label).Text = Strings.ParenUnknownParen;
+				}
 			};
 
 			Action<Widget, IPhoto[]> set_multiple = (widget, photos) => {
@@ -210,19 +211,17 @@ namespace FSpot.Widgets
 
 		Label CreateRightAlignedLabel (string text, float yalign)
 		{
-			var label = new Label {
+			return new Label {
 				UseMarkup = true,
 				Markup = text,
 				Xalign = 1.0f,
 				Yalign = yalign
 			};
-
-			return label;
 		}
 
 		Label CreateLeftAlignedLabel (string text)
 		{
-			var label = new Label {
+			return new Label {
 				UseMarkup = true,
 				Markup = text,
 				Xalign = 0.0f,
@@ -230,8 +229,6 @@ namespace FSpot.Widgets
 				Selectable = true,
 				Ellipsize = Pango.EllipsizeMode.End
 			};
-
-			return label;
 		}
 
 		Table info_table;
@@ -240,17 +237,15 @@ namespace FSpot.Widgets
 		{
 			if (!entry.TwoColumns) {
 				info_table.Attach (entry.LabelWidget, 0, 1, (uint)row, (uint)row + 1, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
+				entry.LabelWidget.Show ();
 			}
 
-			info_table.Attach (entry.InfoWidget, entry.TwoColumns ? 0u : 1u, 2, (uint)row, (uint)row + 1, AttachOptions.Expand | AttachOptions.Fill, AttachOptions.Expand | AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
+			info_table.Attach (entry.InfoWidget, entry.TwoColumns ? 0u : 1u, 2, (uint)row, (uint)row + 1, AttachOptions.Expand | AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
+			entry.InfoWidget.Show ();
 
 			var info_label = entry.InfoWidget as Label;
 			if (info_label != null)
 				info_label.PopulatePopup += HandlePopulatePopup;
-
-			var info_entry = entry.InfoWidget as Entry;
-			if (info_entry != null)
-				info_entry.PopulatePopup += HandlePopulatePopup;
 		}
 
 		void UpdateTable ()
@@ -262,7 +257,6 @@ namespace FSpot.Widgets
 				i++;
 			}
 		}
-
 
 		void SetEntryWidgetVisibility (InfoEntry entry, bool def)
 		{
@@ -314,6 +308,8 @@ namespace FSpot.Widgets
 			histogram_image = new Image ();
 			histogram = new Histogram ();
 			histogram_expander.Add (histogram_image);
+			histogram_image.Show ();
+			histogram_expander.Show ();
 
 			Add (histogram_expander);
 
@@ -328,7 +324,7 @@ namespace FSpot.Widgets
 						   photos => { return string.Format (Strings.XPhotos, photos.Length); });
 
 			AddLabelEntry (null, Strings.Name, null,
-						   (photo, file) => { return photo.Name ?? string.Empty; }, null);
+						   (photo, file) => PhotoInfoFormatter.Name (photo), null);
 
 			version_list = new ListStore (typeof (IPhotoVersion), typeof (string), typeof (bool));
 			version_combo = new ComboBox ();
@@ -365,9 +361,7 @@ namespace FSpot.Widgets
 					  }, null);
 
 			AddLabelEntry ("date", Strings.Date, Strings.ShowDate,
-						   (photo, file) => {
-							   return $"{photo.Time.ToShortDateString ()}{Environment.NewLine}{photo.Time.ToShortTimeString ()}";
-						   },
+						   (photo, file) => PhotoInfoFormatter.Date (photo),
 						   photos => {
 							   IPhoto first = photos[photos.Length - 1];
 							   IPhoto last = photos[0];
@@ -385,78 +379,20 @@ namespace FSpot.Widgets
 						   });
 
 			AddLabelEntry ("size", Strings.Size, Strings.ShowSize,
-						   (photo, metadata) => {
-							   int width = 0;
-							   int height = 0;
-							   if (null != metadata.Properties) {
-								   width = metadata.Properties.PhotoWidth;
-								   height = metadata.Properties.PhotoHeight;
-							   }
-
-							   if (width != 0 && height != 0)
-								   return $"{width}x{height}";
-
-							   return Strings.ParenUnknownParen;
-						   }, null);
+						   (photo, metadata) => PhotoInfoFormatter.Size (metadata), null);
 
 			AddLabelEntry ("exposure", Strings.Exposure, Strings.ShowExposure,
-						   (photo, metadata) => {
-							   var fnumber = metadata.ImageTag.FNumber;
-							   var exposure_time = metadata.ImageTag.ExposureTime;
-							   var iso_speed = metadata.ImageTag.ISOSpeedRatings;
-
-							   string info = string.Empty;
-
-							   if (fnumber.HasValue && fnumber.Value != 0.0) {
-								   info += $"f/{fnumber.Value:.0} ";
-							   }
-
-							   if (exposure_time.HasValue) {
-								   if (Math.Abs (exposure_time.Value) >= 1.0) {
-									   info += $"{exposure_time.Value} sec ";
-								   } else {
-									   info += $"1/{(int)(1 / exposure_time.Value)} sec ";
-								   }
-							   }
-
-							   if (iso_speed.HasValue) {
-								   info += $"{Environment.NewLine}ISO {iso_speed.Value}";
-							   }
-
-							   var exif = metadata.ImageTag.Exif;
-							   if (exif != null) {
-								   var flash = exif.ExifIFD.GetLongValue (0, (ushort)TagLib.IFD.Tags.ExifEntryTag.Flash);
-
-								   if (flash.HasValue) {
-									   if ((flash.Value & 0x01) == 0x01)
-										   info += $", {Strings.Flashfired}";
-									   else
-										   info += $", {Strings.FlashDidntFire}";
-								   }
-							   }
-
-							   if (string.IsNullOrEmpty (info))
-								   return Strings.ParenNoneParen;
-
-							   return info;
-						   }, null);
+						   (photo, metadata) => PhotoInfoFormatter.Exposure (metadata), null);
 
 			AddLabelEntry ("focal_length", Strings.FocalLength, Strings.ShowFocalLength,
-						   false, (photo, metadata) => {
-							   var focal_length = metadata.ImageTag.FocalLength;
-
-							   if (focal_length == null)
-								   return Strings.ParenUnknownParen;
-
-							   return $"{focal_length.Value} mm";
-						   }, null);
+						   false, (photo, metadata) => PhotoInfoFormatter.FocalLength (metadata), null);
 
 			AddLabelEntry ("camera", Strings.Camera, Strings.ShowCamera, false,
-						   (photo, metadata) => { return metadata.ImageTag.Model ?? Strings.ParenUnknownParen; },
+						   (photo, metadata) => PhotoInfoFormatter.Camera (metadata),
 						   null);
 
 			AddLabelEntry ("creator", Strings.Creator, Strings.ShowCreator,
-						   (photo, metadata) => { return metadata.ImageTag.Creator ?? Strings.ParenUnknownParen; },
+						   (photo, metadata) => PhotoInfoFormatter.Creator (metadata),
 						   null);
 
 			AddLabelEntry ("file_size", Strings.FileSize, Strings.ShowFileSize, false,
@@ -482,34 +418,68 @@ namespace FSpot.Widgets
 
 			UpdateTable ();
 
-			var eb = new EventBox { info_table };
-			info_expander.Add (eb);
-			eb.ButtonPressEvent += HandleButtonPressEvent;
+			info_expander.Add (info_table);
+			info_expander.ButtonPressEvent += HandleButtonPressEvent;
+			info_table.Show ();
+			info_expander.Show ();
 
 			Add (info_expander);
 		}
 
 		public bool Update ()
 		{
+			Logger.Log.Debug (
+				"InfoBox.Update count={Count} context={Context} {InfoBox} hist={Hist} info={Info} table={Table}",
+				Photos?.Length ?? 0, Context,
+				Describe (this),
+				Describe (histogram_expander),
+				Describe (info_expander),
+				Describe (info_table));
+
 			if (Photos == null || Photos.Length == 0) {
+				Logger.Log.Debug ("InfoBox.Update empty selection; hiding");
 				Hide ();
 			} else if (Photos.Length == 1) {
 				var photo = Photos[0];
+				Logger.Log.Debug (
+					"InfoBox.Update single name={Name} uri={Uri}",
+					photo.Name, photo.DefaultVersion?.Uri);
 
 				histogram_expander.Visible = true;
 				UpdateHistogram ();
 
-				using (var metadata = MetadataUtils.Parse (photo.DefaultVersion.Uri)) {
+				TagLib.Image.File metadata = null;
+				try {
+					metadata = MetadataUtils.Parse (photo.DefaultVersion.Uri);
+				} catch (Exception e) {
+					Logger.Log.Debug (e, "InfoBox.metadata parse failed for {Uri}", photo.DefaultVersion?.Uri);
+				}
+
+				Logger.Log.Debug ("InfoBox.metadata parsed={Parsed}", metadata != null);
+
+				try {
 					foreach (var entry in entries) {
 						bool is_single = (entry.SetSingle != null);
 
-						if (is_single)
-							entry.SetSingle (entry.InfoWidget, photo, metadata);
+						if (is_single) {
+							try {
+								entry.SetSingle (entry.InfoWidget, photo, metadata);
+							} catch (Exception e) {
+								Logger.Log.Debug (e, "InfoBox.entry {Id}", entry.Id ?? "entry");
+							}
+						}
 
 						SetEntryWidgetVisibility (entry, is_single);
+						LogEntry (entry);
 					}
+				} finally {
+					metadata?.Dispose ();
 				}
+
+				// Show, not ShowAll: ShowAll re-shows rows SetEntryWidgetVisibility just
+				// hid and grows this box until the rest of the sidebar is squeezed away.
 				Show ();
+				FlushQuartz ();
 			} else if (Photos.Length > 1) {
 				foreach (var entry in entries) {
 					bool is_multiple = (entry.SetMultiple != null);
@@ -518,11 +488,56 @@ namespace FSpot.Widgets
 						entry.SetMultiple (entry.InfoWidget, Photos);
 
 					SetEntryWidgetVisibility (entry, is_multiple);
+					LogEntry (entry);
 				}
 				histogram_expander.Visible = false;
 				Show ();
+				FlushQuartz ();
 			}
+
+			Logger.Log.Debug (
+				"InfoBox.Update done {InfoBox} hist={Hist} info={Info} table={Table} hist_image={Image}",
+				Describe (this),
+				Describe (histogram_expander),
+				Describe (info_expander),
+				Describe (info_table),
+				Describe (histogram_image));
 			return false;
+		}
+
+		// Quartz often drops gdk_window_invalidate from Label.Text (queue_draw)
+		// until focus leaves the pane. Histogram "worked" because setting Pixbuf
+		// resizes an NSView. ProcessUpdates on the windowed ancestor is the
+		// gtk-osx flush, not a different widget.
+		void FlushQuartz ()
+		{
+			QueueResize ();
+			var native = (Toplevel != null ? Toplevel.GdkWindow : null) ?? GdkWindow;
+			if (native == null)
+				return;
+			native.GetSize (out int w, out int h);
+			native.InvalidateRect (new Gdk.Rectangle (0, 0, w, h), true);
+			native.ProcessUpdates (true);
+		}
+
+		static string Describe (Widget w)
+		{
+			if (w == null)
+				return "null";
+
+			long win = w.GdkWindow != null ? w.GdkWindow.Handle.ToInt64 () : 0;
+			return $"{w.GetType ().Name} vis={w.Visible} mapped={w.IsMapped} {w.Allocation.Width}x{w.Allocation.Height}+{w.Allocation.X}+{w.Allocation.Y} win=0x{win:x}";
+		}
+
+		void LogEntry (InfoEntry entry)
+		{
+			string text = (entry.InfoWidget as Label)?.Text
+				?? entry.InfoWidget?.GetType ().Name;
+			Logger.Log.Debug (
+				"InfoBox.entry id={Id} {Widget} text={Text}",
+				entry.Id ?? "(always)",
+				Describe (entry.InfoWidget),
+				text);
 		}
 
 		void VersionNameCellFunc (CellLayout cell_layout, CellRenderer cell, TreeModel tree_model, TreeIter iter)
@@ -544,6 +559,7 @@ namespace FSpot.Widgets
 		}
 
 		Gdk.Pixbuf histogram_hint;
+		string histogram_uri;
 
 		void UpdateHistogram ()
 		{
@@ -559,14 +575,27 @@ namespace FSpot.Widgets
 
 		bool DelayedUpdateHistogram ()
 		{
-			if (Photos.Length == 0)
+			if (Photos.Length == 0) {
+				Logger.Log.Debug ("InfoBox.histogram skipped; no photos {Hist}", Describe (histogram_expander));
 				return false;
+			}
 
 			IPhoto photo = Photos[0];
+			string uri = photo.DefaultVersion?.Uri?.ToString ();
 
 			Gdk.Pixbuf hint = histogram_hint;
 			histogram_hint = null;
 			int max = histogram_expander.Allocation.Width;
+
+			if (hint == null && histogram_image.Pixbuf != null && histogram_uri == uri) {
+				Logger.Log.Debug ("InfoBox.histogram skip reload uri={Uri}", uri);
+				return false;
+			}
+
+			Logger.Log.Debug (
+				"InfoBox.histogram start uri={Uri} has_hint={HasHint} max={Max} expanded={Expanded} {Hist}",
+				uri, hint != null, max, histogram_expander.Expanded,
+				Describe (histogram_expander));
 
 			try {
 				if (hint == null)
@@ -575,10 +604,16 @@ namespace FSpot.Widgets
 					}
 
 				histogram_image.Pixbuf = histogram.Generate (hint, max);
+				histogram_uri = uri;
+				Logger.Log.Debug (
+					"InfoBox.histogram generated {Width}x{Height} from hint {HintW}x{HintH}",
+					histogram_image.Pixbuf?.Width, histogram_image.Pixbuf?.Height,
+					hint?.Width, hint?.Height);
 
 				hint.Dispose ();
 			} catch (Exception e) {
-				Logger.Log.Debug (e, "");
+				histogram_uri = null;
+				Logger.Log.Warning (e, "InfoBox.histogram load failed for {Uri}", photo.DefaultVersion?.Uri);
 				using var empty = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, true, 8, 256, 256);
 				empty.Fill (0x0);
 				histogram_image.Pixbuf = histogram.Generate (empty, max);

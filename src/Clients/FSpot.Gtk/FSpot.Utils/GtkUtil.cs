@@ -84,42 +84,37 @@ namespace FSpot.Utils
 
 		public static Gtk.ToolButton ToolButtonFromTheme (string theme_id, string label, bool important)
 		{
-			var button = new Gtk.ToolButton (null, null) {
+			return new Gtk.ToolButton (null, null) {
 				Label = label,
 				IconName = theme_id,
 				IsImportant = important,
 				UseUnderline = true
 			};
-
-			return button;
 		}
 
 		public static Gdk.Pixbuf TryLoadIcon (Gtk.IconTheme theme, string[] names, int size, Gtk.IconLookupFlags flags)
 		{
-			try {
-				var info = theme.ChooseIcon (names, size, flags);
-				return info.LoadIcon ();
-			} catch {
-				try {
-					return theme.LoadIcon ("gtk-missing-image", size, flags);
-				} catch {
-					return null;
-				}
-			}
+			return LoadOrPlaceholder.Resolve (size, MissingImagePlaceholder,
+				() => theme.ChooseIcon (names, size, flags).LoadIcon (),
+				() => theme.LoadIcon ("gtk-missing-image", size, flags));
 		}
 
 		public static Gdk.Pixbuf TryLoadIcon (Gtk.IconTheme theme, string icon_name, int size, Gtk.IconLookupFlags flags)
 		{
-			try {
-				return ResourceLoader.GetIcon (icon_name, size);
-				//return theme.LoadIcon (icon_name, size, flags);
-			} catch {
-				try {
-					return theme.LoadIcon ("gtk-missing-image", size, flags);
-				} catch {
-					return null;
-				}
-			}
+			return LoadOrPlaceholder.Resolve (size, MissingImagePlaceholder,
+				() => ResourceLoader.GetIcon (icon_name, size),
+				() => theme.LoadIcon ("gtk-missing-image", size, flags));
+		}
+
+		// In-memory last resort: IconTheme.LoadIcon ("gtk-missing-image") throws
+		// GException on themes that do not ship that stock icon, and ResourceLoader's
+		// Pixmap (RootWindow) path needs a display. Cache entries must own this pixbuf.
+		public static Gdk.Pixbuf MissingImagePlaceholder (int size)
+		{
+			int pixels = Math.Max (1, size);
+			var pixbuf = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, true, 8, pixels, pixels);
+			pixbuf.Fill (0x808080FFu);
+			return pixbuf;
 		}
 
 		public static void ModifyColors (Gtk.Widget widget)

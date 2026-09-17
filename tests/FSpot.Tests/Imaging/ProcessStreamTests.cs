@@ -31,10 +31,22 @@ namespace FSpot.Imaging.Tests
 		[OSCondition (OperatingSystems.Linux | OperatingSystems.OSX)]
 		public void Start_PassesArgumentsContainingSpacesThrough ()
 		{
+			AssertFileContentsRoundTrip ("a raw file.txt");
+		}
+
+		[TestMethod]
+		[OSCondition (OperatingSystems.Linux | OperatingSystems.OSX)]
+		public void Start_PassesArgumentsContainingApostrophesThrough ()
+		{
+			AssertFileContentsRoundTrip ("Dad's raw.nef");
+		}
+
+		static void AssertFileContentsRoundTrip (string fileName)
+		{
 			var directory = Path.Combine (Path.GetTempPath (), "f-spot tests " + Guid.NewGuid ());
 			Directory.CreateDirectory (directory);
 			try {
-				var file = Path.Combine (directory, "a raw file.txt");
+				var file = Path.Combine (directory, fileName);
 				File.WriteAllText (file, "dcraw output", Encoding.ASCII);
 
 				using var stream = ProcessStream.Start (directory, "/bin/cat", new[] { file });
@@ -117,6 +129,13 @@ namespace FSpot.Imaging.Tests
 			stream.Dispose ();
 
 			Assert.ThrowsExactly<ObjectDisposedException> (() => stream.ReadByte ());
+		}
+
+		[TestMethod]
+		public void Start_ThrowsWhenAnArgumentIsNull ()
+		{
+			Assert.ThrowsExactly<ArgumentException> (
+				() => ProcessStream.Start (Path.GetTempPath (), "dotnet", new[] { "--version", null }));
 		}
 
 		[TestMethod]

@@ -36,11 +36,13 @@ namespace FSpot.Resources
 			try {
 				// First see if it's a built-in gtk icon, like gtk-new.
 				// This will also load any icons added by Gtk.IconFactory.AddDefault() .
-				using (var icon_set = Gtk.Widget.DefaultStyle.LookupIconSet (name)) {
-					if (icon_set != null) {
-						result = icon_set.RenderIcon (Gtk.Widget.DefaultStyle, Gtk.Widget.DefaultDirection,
-							Gtk.StateType.Normal, GetIconSize (size), null, null);
-					}
+				string stock = FSpot.Utils.IconNameMap.StockId (name);
+				var icon_set = Gtk.Widget.DefaultStyle.LookupIconSet (stock);
+				if (icon_set == null && stock != name)
+					icon_set = Gtk.Widget.DefaultStyle.LookupIconSet (name);
+				if (icon_set != null && FSpot.Utils.GtkIconSizeMap.TryMapPixels (size, out int gtkSize)) {
+					result = icon_set.RenderIcon (Gtk.Widget.DefaultStyle, Gtk.Widget.DefaultDirection,
+						Gtk.StateType.Normal, (Gtk.IconSize)gtkSize, null, null);
 				}
 				// Otherwise, get it from our embedded resources.
 				if (result == null) {
@@ -82,33 +84,9 @@ namespace FSpot.Resources
 			return ResourceAssembly.Instance.GetManifestResourceStream (name);
 		}
 
-		// From MonoDevelop:
-		// https://github.com/mono/monodevelop/blob/master/main/src/core/MonoDevelop.Ide/gtk-gui/generated.cs
 		static Pixbuf CreateMissingImage (int size)
 		{
-			var pmap = new Pixmap (Screen.Default.RootWindow, size, size);
-			var gc = new Gdk.GC (pmap) {
-				RgbFgColor = new Color (255, 255, 255)
-			};
-			pmap.DrawRectangle (gc, true, 0, 0, size, size);
-			gc.RgbFgColor = new Color (0, 0, 0);
-			pmap.DrawRectangle (gc, false, 0, 0, (size - 1), (size - 1));
-
-			gc.SetLineAttributes (3, LineStyle.Solid, CapStyle.Round, JoinStyle.Round);
-			gc.RgbFgColor = new Color (255, 0, 0);
-			pmap.DrawLine (gc, (size / 4), (size / 4), ((size - 1) - (size / 4)), ((size - 1) - (size / 4)));
-			pmap.DrawLine (gc, ((size - 1) - (size / 4)), (size / 4), (size / 4), ((size - 1) - (size / 4)));
-
-			return Pixbuf.FromDrawable (pmap, pmap.Colormap, 0, 0, 0, 0, size, size);
-		}
-
-		static Gtk.IconSize GetIconSize (int size)
-		{
-			return size switch {
-				16 => Gtk.IconSize.SmallToolbar,
-				32 => Gtk.IconSize.Dnd,
-				_ => Gtk.IconSize.Invalid,
-			};
+			return FSpot.Utils.GtkUtil.MissingImagePlaceholder (size);
 		}
 	}
 }

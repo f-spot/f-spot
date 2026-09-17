@@ -49,6 +49,21 @@ namespace FSpot.Database
 			}
 		}
 
+		public IReadOnlyList<FolderCount> ListFolderCounts ()
+		{
+			var folders = new List<FolderCount> ();
+			using (var reader = Database.Query (
+				"SELECT base_uri, COUNT(*) AS count FROM photos GROUP BY base_uri ORDER BY base_uri ASC")) {
+				while (reader.Read ()) {
+					folders.Add (new FolderCount (
+						new SafeUri (reader["base_uri"].ToString (), true),
+						Convert.ToInt32 (reader["count"])));
+				}
+			}
+
+			return folders;
+		}
+
 		#region fields
 
 		readonly IImageFileFactory imageFileFactory;
@@ -115,16 +130,22 @@ namespace FSpot.Database
 			}
 
 			// Check by MD5. Won't import if there are photos with the same ImportMD5.
+			// Double-quoted values are identifiers in modern SQLite (SQLITE_DQS=0),
+			// which is how every import was failing with "no such column: <md5>".
 			string hash = item.DefaultVersion.ImportMD5;
-			var condition = new ConditionWrapper (string.Format ("import_md5 = \"{0}\"", hash));
-			var dupes_by_hash = Count ("photo_versions", condition);
-			if (dupes_by_hash > 0)
-				return true;
+			if (!string.IsNullOrEmpty (hash)) {
+				const string hashQuery = "SELECT COUNT(*) AS count FROM photo_versions WHERE import_md5 = ?";
+				using (var reader = Database.Query (new DatabaseCommand (hashQuery, hash))) {
+					reader.Read ();
+					if (Convert.ToInt32 (reader["count"]) > 0)
+						return true;
+				}
+			}
 
 			// This is a very lame check to overcome the lack of duplicate detect data right after transition.
 			//
 			// Does filename matching if there are files with no hash for the original version.
-			condition = new ConditionWrapper ("version_id = 1 AND (import_md5 = \"\" OR import_md5 IS NULL)");
+			var condition = new ConditionWrapper ("version_id = 1 AND (import_md5 = '' OR import_md5 IS NULL)");
 			var have_no_hashes = Count ("photo_versions", condition);
 			if (have_no_hashes <= 0)
 				// No matches
@@ -217,7 +238,7 @@ namespace FSpot.Database
 
 				while (reader.Read ()) {
 					uint version_id = Convert.ToUInt32 (reader["version_id"]);
-					string name = reader["name"].ToString ();
+					string name = reader["name"]?.ToString ();
 					var base_uri = new SafeUri (reader["base_uri"].ToString (), true);
 					var filename = reader["filename"].ToString ();
 					string import_md5 = reader["import_md5"]?.ToString ();
@@ -254,7 +275,7 @@ namespace FSpot.Database
 
 					if (reader["version_id"] != null) {
 						uint version_id = Convert.ToUInt32 (reader["version_id"]);
-						string name = reader["name"].ToString ();
+						string name = reader["name"]?.ToString ();
 						var base_uri = new SafeUri (reader["base_uri"].ToString (), true);
 						var filename = reader["filename"].ToString ();
 						string import_md5 = reader["import_md5"]?.ToString ();

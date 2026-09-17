@@ -40,11 +40,41 @@ namespace FSpot.Settings
 			get => Environment.GetFolderPath (Environment.SpecialFolder.UserProfile);
 		}
 
-		//$XDG_CONFIG_HOME/f-spot or $HOME/.config/f-spot
-		static readonly string xdg_config_home =
-			Environment.GetFolderPath (Environment.SpecialFolder.ApplicationData);
+		// Mono mapped ApplicationData to ~/.config. Modern .NET on macOS maps it to
+		// ~/Library/Application Support, which would split the catalog from the GTK
+		// client. Honor XDG on Unix so both clients open the same photos.db.
+		public static string BaseDirectory { get; set; } = DefaultBaseDirectory ();
 
-		public static string BaseDirectory { get; set; } = Path.Combine (xdg_config_home, "f-spot");
+		// GTK must call this before the first preference read and before Sentry
+		// starts, or --basedir still loads the default catalog's settings.
+		public static bool TryApplyBaseDirectory (CommandLineOptions options)
+		{
+			if (options == null || options.BaseDir == null)
+				return true;
+			if (options.BaseDir.Length == 0)
+				return false;
+
+			BaseDirectory = options.BaseDir;
+			return true;
+		}
+
+		static string DefaultBaseDirectory ()
+		{
+			string configHome = Environment.GetEnvironmentVariable ("XDG_CONFIG_HOME");
+			if (string.IsNullOrWhiteSpace (configHome)) {
+#if NET
+				configHome = OperatingSystem.IsWindows ()
+					? Environment.GetFolderPath (Environment.SpecialFolder.ApplicationData)
+					: Path.Combine (HomeDirectory, ".config");
+#else
+				configHome = Environment.OSVersion.Platform == PlatformID.Win32NT
+					? Environment.GetFolderPath (Environment.SpecialFolder.ApplicationData)
+					: Path.Combine (HomeDirectory, ".config");
+#endif
+			}
+
+			return Path.Combine (configHome, "f-spot");
+		}
 
 		public static SafeUri PhotoUri { get; set; }
 

@@ -12,9 +12,10 @@ using System;
 using System.IO;
 using System.Linq;
 
+using FSpot.Core;
 using FSpot.Database;
-
 using FSpot.Resources.Lang;
+using FSpot.Utils;
 
 using Hyena;
 
@@ -93,6 +94,106 @@ namespace FSpot.Database.Tests
 				Assert.HasCount (1, photo.Versions);
 
 				Assert.AreEqual (1, store.TotalPhotos);
+			}
+		}
+
+		[TestMethod]
+		public void HasDuplicate_DoesNotTreatImportMd5AsAColumnName ()
+		{
+			using (var databaseConnection = new FSpotDatabaseConnection (database)) {
+				var dbMock = new Mock<IDb> ();
+				dbMock.Setup (m => m.Database).Returns (databaseConnection);
+				var store = new PhotoStore (null, null, dbMock.Object, true);
+
+				Assert.IsFalse (store.HasDuplicate (PhotoWithMd5 (uri, "d1dfafd3d330eac79618309d2708c7ac")));
+			}
+		}
+
+		[TestMethod]
+		public void HasDuplicate_FindsAnExistingPhotoByImportMd5 ()
+		{
+			using (var databaseConnection = new FSpotDatabaseConnection (database)) {
+				var dbMock = new Mock<IDb> ();
+				dbMock.Setup (m => m.Database).Returns (databaseConnection);
+				var store = new PhotoStore (null, null, dbMock.Object, true);
+
+				const string hash = "d1dfafd3d330eac79618309d2708c7ac";
+				store.CreateFrom (PhotoWithMd5 (uri, hash), true, 1);
+
+				Assert.IsTrue (store.HasDuplicate (PhotoWithMd5 (modifiedUri, hash)));
+			}
+		}
+
+		static IPhoto PhotoWithMd5 (SafeUri photoUri, string hash)
+		{
+			var version = new Mock<IPhotoVersion> ();
+			version.Setup (v => v.Uri).Returns (photoUri);
+			version.Setup (v => v.BaseUri).Returns (photoUri.GetBaseUri ());
+			version.Setup (v => v.Filename).Returns (photoUri.GetFilename ());
+			version.Setup (v => v.ImportMD5).Returns (hash);
+			version.Setup (v => v.Name).Returns ("Original");
+
+			var photo = new Mock<IPhoto> ();
+			photo.Setup (p => p.DefaultVersion).Returns (version.Object);
+			photo.Setup (p => p.Versions).Returns (new[] { version.Object });
+			photo.Setup (p => p.Time).Returns (DateTime.UnixEpoch);
+			return photo.Object;
+		}
+
+		[TestMethod]
+		public void ListFolderCounts_GroupsPhotosByBaseUri ()
+		{
+			using (var databaseConnection = new FSpotDatabaseConnection (database)) {
+				var dbMock = new Mock<IDb> ();
+				dbMock.Setup (m => m.Database).Returns (databaseConnection);
+				var store = new PhotoStore (null, null, dbMock.Object, true);
+				store.CreateFrom (PhotoInFolder ("file:///photos/2020/01/", "a.jpg"), true, 1);
+				store.CreateFrom (PhotoInFolder ("file:///photos/2020/01/", "b.jpg"), true, 1);
+				store.CreateFrom (PhotoInFolder ("file:///photos/2020/06/", "c.jpg"), true, 1);
+
+				var folders = store.ListFolderCounts ();
+
+				Assert.HasCount (2, folders);
+				Assert.AreEqual (new SafeUri ("file:///photos/2020/01/", true), folders[0].Uri);
+				Assert.AreEqual (2, folders[0].Count);
+				Assert.AreEqual (new SafeUri ("file:///photos/2020/06/", true), folders[1].Uri);
+				Assert.AreEqual (1, folders[1].Count);
+			}
+		}
+
+		static IPhoto PhotoInFolder (string directory, string filename)
+		{
+			var dir = new SafeUri (directory, true);
+			var uri = dir.Append (filename);
+			var version = new Mock<IPhotoVersion> ();
+			version.Setup (v => v.Uri).Returns (uri);
+			version.Setup (v => v.BaseUri).Returns (dir);
+			version.Setup (v => v.Filename).Returns (filename);
+			version.Setup (v => v.Name).Returns ("Original");
+			version.Setup (v => v.ImportMD5).Returns (string.Empty);
+
+			var photo = new Mock<IPhoto> ();
+			photo.Setup (p => p.DefaultVersion).Returns (version.Object);
+			photo.Setup (p => p.Versions).Returns (new[] { version.Object });
+			photo.Setup (p => p.Time).Returns (DateTime.UnixEpoch);
+			return photo.Object;
+		}
+
+		[TestMethod]
+		public void Get_WhenVersionNameIsNull_DoesNotThrow ()
+		{
+			using (var databaseConnection = new FSpotDatabaseConnection (database)) {
+				var dbMock = new Mock<IDb> ();
+				dbMock.Setup (m => m.Database).Returns (databaseConnection);
+				var store = new PhotoStore (null, null, dbMock.Object, true);
+				var created = store.CreateFrom (PhotoMock.CreateNamed (uri, originalName), true, 1);
+
+				databaseConnection.Execute ("UPDATE photo_versions SET name = NULL");
+
+				var photo = store.Get (created.Id);
+
+				Assert.IsNotNull (photo);
+				Assert.IsNull (photo.DefaultVersion.Name);
 			}
 		}
 

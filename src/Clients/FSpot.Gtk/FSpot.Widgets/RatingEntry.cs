@@ -130,7 +130,7 @@ namespace FSpot.Widgets
 
 		protected override void OnRealized ()
 		{
-			WidgetFlags |= WidgetFlags.Realized | WidgetFlags.NoWindow;
+			WidgetFlags |= WidgetFlags.NoWindow;
 			GdkWindow = Parent.GdkWindow;
 
 			var attributes = new Gdk.WindowAttr ();
@@ -158,9 +158,14 @@ namespace FSpot.Widgets
 			event_window = new Gdk.Window (GdkWindow, attributes, attributes_mask);
 			event_window.UserData = Handle;
 
-			Style = Gtk.Rc.GetStyleByPaths (Settings, "*.GtkEntry", "*.GtkEntry", GType);
-
 			base.OnRealized ();
+
+			// HasFrame=false (both F-Spot call sites) does not use GtkEntry chrome.
+			// Assigning that style before GTK had attached one tripped
+			// gtk_style_detach (attach_count > 0) on the first photo-view realize
+			// and left the notebook page drawing garbage.
+			if (HasFrame)
+				Style = Gtk.Rc.GetStyleByPaths (Settings, "*.GtkEntry", "*.GtkEntry", GType);
 		}
 
 		protected override void OnUnrealized ()

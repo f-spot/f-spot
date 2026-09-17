@@ -63,9 +63,9 @@ namespace FSpot.UI.Dialog
 			query = new PhotoQuery (db.Photos);
 
 			if (db.Tags.Hidden != null)
-				query.Terms = OrTerm.FromTags (new List<Tag> { t });
+				query.Terms = new ConditionWrapper (OrTerm.FromTags (new List<Tag> { t }).SqlCondition ());
 			else
-				query.Terms = new Literal (t);
+				query.Terms = new ConditionWrapper (new Literal (t).SqlCondition ());
 
 			image_view = new PhotoImageView (query) { CropHelpers = false };
 			image_view.SelectionXyRatio = 1.0;
