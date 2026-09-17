@@ -58,7 +58,8 @@ namespace FSpot
 					return null;
 				try {
 					return x_profile = CompositeUtils.GetScreenProfile (screen);
-				} catch (Exception e) when (e is CmsException || e is ArgumentException) {
+				} catch (Exception e) when (e is CmsException || e is ArgumentException
+						|| ProfileCatalog.IsNativeLibraryMissing (e)) {
 					// Read from BuildProfiles, so an escape here surfaces in whichever draw
 					// handler touched Profiles first and leaves the catalogue half built.
 					Logger.Log.Warning ($"Ignoring the unreadable _ICC_PROFILE published for the screen: {e.Message}");
@@ -79,29 +80,25 @@ namespace FSpot
 
 		static void BuildProfiles ()
 		{
-			var built = new ProfileCatalog ();
-			if (Utils.Platform.IsWindows) { // FIXME, add lcms support -- see issue #77
-				catalog = built;
-				return;
-			}
-
-			built.Add (Profile.CreateStandardRgb ());
-			built.Add (Profile.CreateAlternateRgb ());
-
-			foreach (var path in ColorSearchPath ())
-				built.AddFrom (path);
-
-			if (XProfile != null)
-				built.AddShared ("_x_profile_", XProfile);
-
 			// Published only once complete: a failure part-way through used to leave a
 			// half-built dictionary in place, which every later lookup then trusted.
-			catalog = built;
+			// Missing liblcms2 (Windows, or x86_64 Mono with an arm64 Homebrew dylib)
+			// becomes an empty catalogue rather than escaping into a GTK draw handler.
+			catalog = ProfileCatalog.Build (built => {
+				built.Add (Profile.CreateStandardRgb ());
+				built.Add (Profile.CreateAlternateRgb ());
+
+				foreach (var path in ColorSearchPath ())
+					built.AddFrom (path);
+
+				if (XProfile != null)
+					built.AddShared ("_x_profile_", XProfile);
+			});
 		}
 
 		public static void ApplyProfile (Gdk.Pixbuf pixbuf, Profile destinationProfile)
 		{
-			ApplyProfile (pixbuf, Profile.CreateStandardRgb (), destinationProfile);
+			ApplyProfile (pixbuf, null, destinationProfile);
 		}
 
 		public static void ApplyProfile (Gdk.Pixbuf pixbuf, Profile imageProfile, Profile destinationProfile)
@@ -109,10 +106,10 @@ namespace FSpot
 			if (pixbuf == null || pixbuf.HasAlpha)
 				return;
 
-			imageProfile = imageProfile ?? Profile.CreateStandardRgb ();
-
-			Profile[] list = { imageProfile, destinationProfile };
 			try {
+				imageProfile = imageProfile ?? Profile.CreateStandardRgb ();
+
+				Profile[] list = { imageProfile, destinationProfile };
 				// CollectionCellGridView calls this from its draw handler, so an undisposed
 				// transform here leaks a native handle per thumbnail per repaint.
 				using var transform = new Transform (list,
@@ -121,7 +118,7 @@ namespace FSpot
 									 Intent.Perceptual,
 									 0x0000);
 				PixbufUtils.ColorAdjust (pixbuf, pixbuf, transform);
-			} catch (CmsException e) {
+			} catch (Exception e) when (e is CmsException || ProfileCatalog.IsNativeLibraryMissing (e)) {
 				// Every caller but PrintOperation is a bare call in a draw or render
 				// handler, where gtk-sharp turns an escaping exception into an abort. A
 				// transform lcms declines to build has to degrade to unmanaged colour.

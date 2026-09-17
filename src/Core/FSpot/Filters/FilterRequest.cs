@@ -1,24 +1,12 @@
-//
-// FilterRequest.cs
-//
-// Author:
-//   Ruben Vermeersch <ruben@savanne.be>
-//   Larry Ewing <lewing@novell.com>
-//   Stephane Delcroix <sdelcroix@src.gnome.org>
-//
-// Copyright (C) 2006-2010 Novell, Inc.
-// Copyright (C) 2010 Ruben Vermeersch
-// Copyright (C) 2006 Larry Ewing
-// Copyright (C) 2006, 2008 Stephane Delcroix
-//
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 using Hyena;
 
-
+using FSpot;
 
 namespace FSpot.Filters
 {
@@ -34,7 +22,6 @@ namespace FSpot.Filters
 			temp_uris = new List<SafeUri> ();
 		}
 
-		// FIXME: We probably don't want this?
 		~FilterRequest ()
 		{
 			Close ();
@@ -55,8 +42,8 @@ namespace FSpot.Filters
 		{
 			foreach (SafeUri uri in temp_uris) {
 				try {
-					System.IO.File.Delete (uri.LocalPath);
-				} catch (System.IO.IOException e) {
+					File.Delete (uri.LocalPath);
+				} catch (IOException e) {
 					Logger.Log.Error (e, "");
 				}
 			}
@@ -78,11 +65,11 @@ namespace FSpot.Filters
 		{
 			string imgtemp;
 			if (extension != null) {
-				string temp = System.IO.Path.GetTempFileName ();
+				string temp = Path.GetTempFileName ();
 				imgtemp = temp + "." + extension;
-				System.IO.File.Move (temp, imgtemp);
+				File.Move (temp, imgtemp);
 			} else
-				imgtemp = System.IO.Path.GetTempFileName ();
+				imgtemp = Path.GetTempFileName ();
 
 			var uri = new SafeUri (imgtemp);
 			if (!temp_uris.Contains (uri))

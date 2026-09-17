@@ -9,25 +9,12 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
-using FSpot.ColorAdjustment;
-using FSpot.Resources.Lang;
-
-using Gdk;
-
 namespace FSpot.Editors
 {
 	class AutoStretchEditor : Editor
 	{
-		public AutoStretchEditor () : base (Strings.AutoColor, "autocolor")
+		public AutoStretchEditor () : base (PhotoEditorCatalog.AutoStretch)
 		{
-			// FIXME: need tooltip MsgidLookup.GetString ("Automatically adjust the colors")
-			CanHandleMultiple = true;
-		}
-
-		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile)
-		{
-			var autostretch = new AutoStretch (input, input_profile);
-			return autostretch.Adjust ();
 		}
 	}
 }

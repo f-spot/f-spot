@@ -13,7 +13,6 @@
 
 using System;
 
-using FSpot.ColorAdjustment;
 using FSpot.Gui;
 using FSpot.Resources.Lang;
 
@@ -45,10 +44,8 @@ namespace FSpot.Editors
 		[GtkBeans.Builder.Object] Gtk.SpinButton sat_spinbutton;
 #pragma warning restore 649
 
-		public ColorEditor () : base (Strings.AdjustColors, "adjust-colors")
+		public ColorEditor () : base (PhotoEditorCatalog.Color)
 		{
-			// FIXME: need tooltip MsgidLookup.GetString ("Adjust the photo colors")
-			HasSettings = true;
 			ApplyLabel = Strings.Adjust;
 		}
 
@@ -86,21 +83,17 @@ namespace FSpot.Editors
 			UpdatePreview ();
 		}
 
-		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile)
+		protected override PhotoEditorContext CreateContext ()
 		{
-			Cms.ColorCIEXYZ src_wp;
-			Cms.ColorCIEXYZ dest_wp;
-
-			src_wp = Cms.ColorCIExyY.WhitePointFromTemperature (5000).ToXYZ ();
-			dest_wp = Cms.ColorCIExyY.WhitePointFromTemperature ((int)temp_scale.Value).ToXYZ ();
-			Cms.ColorCIELab dest_lab = dest_wp.ToLab (src_wp);
-			dest_lab.a += temptint_scale.Value;
-			dest_wp = dest_lab.ToXYZ (src_wp);
-
-			var adjust = new FullColorAdjustment (input, input_profile,
-					exposure_scale.Value, brightness_scale.Value, contrast_scale.Value,
-					hue_scale.Value, sat_scale.Value, src_wp, dest_wp);
-			return adjust.Adjust ();
+			var context = base.CreateContext ();
+			context.ColorExposure = exposure_scale.Value;
+			context.ColorBrightness = brightness_scale.Value;
+			context.ColorContrast = contrast_scale.Value;
+			context.ColorHue = hue_scale.Value;
+			context.ColorSaturation = sat_scale.Value;
+			context.ColorTemperature = temp_scale.Value;
+			context.ColorTint = temptint_scale.Value;
+			return context;
 		}
 	}
 }

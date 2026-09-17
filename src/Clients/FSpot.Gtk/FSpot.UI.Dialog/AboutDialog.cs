@@ -12,6 +12,7 @@
 using System;
 using System.IO;
 
+using FSpot.Resources;
 using FSpot.Resources.Lang;
 using FSpot.Settings;
 
@@ -127,7 +128,7 @@ namespace FSpot.UI.Dialog
 				Logger.Log.Debug (e, "");
 				License = "GPL v2";
 			}
-			Logo = new Gdk.Pixbuf (System.Reflection.Assembly.GetEntryAssembly (), "f-spot-128.png");
+			Logo = ResourceLoader.GetIcon ("FSpot", 128);
 			ProgramName = "F-Spot";
 			TranslatorCredits = Strings.TranslatorCredits;
 			if (string.Compare (TranslatorCredits, "translator-credits") == 0)

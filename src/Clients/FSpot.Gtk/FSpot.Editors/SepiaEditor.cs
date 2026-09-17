@@ -9,25 +9,12 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
-using FSpot.ColorAdjustment;
-using FSpot.Resources.Lang;
-
-using Gdk;
-
 namespace FSpot.Editors
 {
 	class SepiaEditor : Editor
 	{
-		public SepiaEditor () : base (Strings.SepiaTone, "color-sepia")
+		public SepiaEditor () : base (PhotoEditorCatalog.Sepia)
 		{
-			// FIXME: need tooltip MsgidLookup.GetString ("Convert the photo to sepia tones")
-			CanHandleMultiple = true;
-		}
-
-		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile)
-		{
-			var sepia = new SepiaTone (input, input_profile);
-			return sepia.Adjust ();
 		}
 	}
 }
