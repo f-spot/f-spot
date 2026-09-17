@@ -18,129 +18,15 @@ using System.IO;
 
 using FSpot.Core;
 using FSpot.Resources.Lang;
-using FSpot.Settings;
 using FSpot.Thumbnail;
 using FSpot.UI.Dialog;
-using FSpot.Utils;
 
 using Gtk;
 
-using Hyena;
 using FSpot.Widgets;
 
 namespace FSpot
 {
-	public class RotateException : ApplicationException
-	{
-		public bool ReadOnly;
-		public string Path { get; private set; }
-
-		public RotateException (string msg, string path) : this (msg, path, false) { }
-
-		public RotateException (string msg, string path, bool ro) : base (msg)
-		{
-			Path = path;
-			ReadOnly = ro;
-		}
-	}
-
-	public enum RotateDirection
-	{
-		Clockwise,
-		Counterclockwise,
-	}
-
-	public class RotateOperation
-	{
-		readonly IPhoto item;
-		readonly RotateDirection direction;
-		bool done;
-
-		public RotateOperation (IPhoto item, RotateDirection direction)
-		{
-			this.item = item;
-			this.direction = direction;
-			done = false;
-		}
-
-		static void RotateOrientation (string original_path, RotateDirection direction)
-		{
-			try {
-				var uri = new SafeUri (original_path);
-				using var metadata = MetadataUtils.Parse (uri);
-
-				metadata.EnsureAvailableTags ();
-				var tag = metadata.ImageTag;
-				var orientation = direction == RotateDirection.Clockwise
-					? FSpot.Utils.PixbufUtils.Rotate90 (tag.Orientation)
-					: FSpot.Utils.PixbufUtils.Rotate270 (tag.Orientation);
-
-				tag.Orientation = orientation;
-				var always_sidecar = Preferences.Get<bool> (Preferences.MetadataAlwaysUseSidecar);
-				metadata.SaveSafely (uri, always_sidecar);
-				App.Instance.Container.Resolve<IThumbnailService> ().DeleteThumbnails (uri);
-			} catch (Exception e) {
-				Logger.Log.Debug (e, "");
-				throw new RotateException (Strings.UnableToRotateThisTypeOfPhoto, original_path);
-			}
-		}
-
-		void Rotate (string original_path, RotateDirection dir)
-		{
-			RotateOrientation (original_path, dir);
-		}
-
-		public bool Step ()
-		{
-			if (done)
-				return false;
-
-			var attrs = File.GetAttributes (item.DefaultVersion.Uri.AbsolutePath);
-			if (attrs.HasFlag (FileAttributes.ReadOnly))
-				throw new RotateException (Strings.UnableToRotateReadonlyFile, item.DefaultVersion.Uri, true);
-
-			Rotate (item.DefaultVersion.Uri, direction);
-
-			done = true;
-			return !done;
-		}
-	}
-
-	public class RotateMultiple
-	{
-		RotateDirection direction;
-		RotateOperation op;
-
-		public int Index { get; private set; }
-
-		public IPhoto[] Items { get; private set; }
-
-		public RotateMultiple (IPhoto[] items, RotateDirection direction)
-		{
-			this.direction = direction;
-			Items = items;
-			Index = 0;
-		}
-
-		public bool Step ()
-		{
-			if (Index >= Items.Length)
-				return false;
-
-			if (op == null)
-				op = new RotateOperation (Items[Index], direction);
-
-			if (op.Step ())
-				return true;
-			else {
-				Index++;
-				op = null;
-			}
-
-			return (Index < Items.Length);
-		}
-	}
-
 	public class RotateCommand
 	{
 		readonly Gtk.Window parent_window;
@@ -159,7 +45,7 @@ namespace FSpot
 									  ProgressDialog.CancelButtonType.Stop,
 									  items.Length, parent_window);
 
-			var op = new RotateMultiple (items, direction);
+			var op = new RotateMultiple (items, direction, App.Instance.Container.Resolve<IThumbnailService> ());
 			int readonly_count = 0;
 			bool done = false;
 			int index = 0;
@@ -179,11 +65,11 @@ namespace FSpot
 				} catch (GLib.GException) {
 					readonly_count++;
 				} catch (DirectoryNotFoundException e) {
-					RunGenericError (e, op.Items[op.Index].DefaultVersion.Uri.LocalPath, Strings.DirectoryNotFound);
+					RunGenericError (e, op.FailedPath (), Strings.DirectoryNotFound);
 				} catch (FileNotFoundException e) {
-					RunGenericError (e, op.Items[op.Index].DefaultVersion.Uri.LocalPath, Strings.FileNotFonud);
+					RunGenericError (e, op.FailedPath (), Strings.FileNotFonud);
 				} catch (Exception e) {
-					RunGenericError (e, op.Items[op.Index].DefaultVersion.Uri.LocalPath);
+					RunGenericError (e, op.FailedPath ());
 				}
 				index++;
 			}

@@ -247,60 +247,18 @@ namespace FSpot
 			}
 		}
 
-		unsafe public static Pixbuf UnsharpMask (Pixbuf src,
-												 double radius,
-												 double amount,
-												 double threshold,
-												 ThreadProgressDialog progressDialog)
+		public static Pixbuf UnsharpMask (Pixbuf src,
+										  double radius,
+										  double amount,
+										  double threshold,
+										  ThreadProgressDialog progressDialog)
 		{
-			// Make sure the pixbuf has an alpha channel before we try to blur it
-			src = src.AddAlpha (false, 0, 0, 0);
-
-			var result = Blur (src, (int)radius, progressDialog);
-
-			var sourceRowstride = src.Rowstride;
-			var sourceHeight = src.Height;
-			var sourceChannels = src.NChannels;
-			var sourceWidth = src.Width;
-
-			var resultRowstride = result.Rowstride;
-			var resultWidth = result.Width;
-			var resultChannels = result.NChannels;
-
-			var srcRow = new byte[sourceRowstride];
-			var destRow = new byte[resultRowstride];
-
-			var sourcePixels = (byte*)src.Pixels;
-			var resultPixels = (byte*)result.Pixels;
-
-			for (var row = 0; row < sourceHeight; row++) {
-				Pixbuf_GetRow (sourcePixels, row, sourceRowstride, sourceWidth, sourceChannels, srcRow);
-				Pixbuf_GetRow (resultPixels, row, resultRowstride, resultWidth, resultChannels, destRow);
-
-				int diff;
-				for (var i = 0; i < sourceWidth * sourceChannels; i++) {
-					diff = srcRow[i] - destRow[i];
-					if (Math.Abs (2 * diff) < threshold)
-						diff = 0;
-
-					var val = (int)(srcRow[i] + amount * diff);
-
-					if (val > 255)
-						val = 255;
-					else if (val < 0)
-						val = 0;
-
-					destRow[i] = (byte)val;
-				}
-
-				Pixbuf_SetRow (resultPixels, destRow, row, resultRowstride, resultWidth, resultChannels);
-
-				// This is the other half of the progress so start and halfway
-				if (progressDialog != null)
-					progressDialog.Fraction = row / ((double)sourceHeight - 1) * 0.25 + 0.75;
-			}
-
-			return result;
+			if (progressDialog != null)
+				progressDialog.Fraction = 0.5;
+			var sharpened = ImageBuffers.UnsharpMask (src.ToImageBuffer (), radius, amount, threshold);
+			if (progressDialog != null)
+				progressDialog.Fraction = 1.0;
+			return sharpened.ToPixbuf ();
 		}
 
 		public static Pixbuf Blur (Pixbuf src, int radius, ThreadProgressDialog dialog)

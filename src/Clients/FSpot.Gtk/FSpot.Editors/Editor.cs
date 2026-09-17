@@ -12,11 +12,14 @@
 using System;
 
 using FSpot.Imaging;
+using FSpot.Settings;
 using FSpot.Utils;
 
 using Gdk;
 
 using Gtk;
+
+using TagLib.Image;
 
 
 namespace FSpot.Editors
@@ -90,6 +93,17 @@ namespace FSpot.Editors
 			IconName = icon_name;
 		}
 
+		protected PhotoEditorDescriptor Descriptor { get; }
+
+		protected Editor (PhotoEditorDescriptor descriptor)
+			: this (descriptor.Label, descriptor.IconName)
+		{
+			Descriptor = descriptor;
+			NeedsSelection = descriptor.NeedsSelection;
+			CanHandleMultiple = descriptor.CanHandleMultiple;
+			HasSettings = descriptor.HasSettings;
+		}
+
 		// Apply the editor's action to a photo.
 		public void Apply ()
 		{
@@ -105,6 +119,17 @@ namespace FSpot.Editors
 		{
 			if (NeedsSelection && !State.HasSelection) {
 				throw new Exception ("Cannot apply without selection!");
+			}
+
+			if (PhotoEditorOperations.CanProcess (Descriptor)) {
+				var photos = new Photo[State.Items.Length];
+				for (int i = 0; i < State.Items.Length; i++)
+					photos[i] = (Photo)State.Items[i];
+				PhotoEditorApply.Apply (Descriptor, photos, CreateContext (),
+					App.Instance.Container.Resolve<IImageFileFactory> (),
+					App.Instance.Database.Photos, done => ProcessingStep?.Invoke (done));
+				Reset ();
+				return;
 			}
 
 			int done = 0;
@@ -126,7 +151,28 @@ namespace FSpot.Editors
 			Reset ();
 		}
 
-		protected abstract Pixbuf Process (Pixbuf input, Cms.Profile input_profile);
+		protected virtual PhotoEditorContext CreateContext ()
+		{
+			var selection = State.Selection;
+			// The view stores the selection in raw pixbuf coordinates. Load() has
+			// already oriented the buffer, so this orientation maps the rectangle once.
+			var orientation = State.PhotoImageView != null
+				? State.PhotoImageView.PixbufOrientation
+				: ImageOrientation.TopLeft;
+			return GtkApplyContext.Create (
+				new PixelRect (selection.X, selection.Y, selection.Width, selection.Height),
+				orientation,
+				Preferences.Get<int> (Preferences.EditRedeyeThreshold));
+		}
+
+		protected virtual Pixbuf Process (Pixbuf input, Cms.Profile input_profile)
+		{
+			if (!PhotoEditorOperations.CanProcess (Descriptor))
+				throw new InvalidOperationException ($"{GetType ().Name} has no pixbuf Process");
+
+			var edited = PhotoEditorOperations.Process (Descriptor, input.ToImageBuffer (), input_profile, CreateContext ());
+			return edited.ToPixbuf ();
+		}
 
 		protected virtual Pixbuf ProcessFast (Pixbuf input, Cms.Profile input_profile)
 		{

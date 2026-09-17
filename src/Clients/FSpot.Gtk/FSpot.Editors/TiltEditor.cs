@@ -13,29 +13,17 @@
 
 using System;
 
-using Cairo;
-
-using FSpot.Resources.Lang;
-using FSpot.Widgets;
-
-using Gdk;
-
 using Gtk;
-
-using Pinta.Core;
 
 namespace FSpot.Editors
 {
 	// TODO: there were keybindings (left/right) to adjust tilt, maybe they should be added back.
 	class TiltEditor : Editor
 	{
-		double angle;
 		Scale scale;
 
-		public TiltEditor () : base (Strings.Straighten, "align-horizon")
+		public TiltEditor () : base (PhotoEditorCatalog.Tilt)
 		{
-			// FIXME: need tooltip MsgidLookup.GetString ("Adjust the angle of the image to straighten the horizon")
-			HasSettings = true;
 		}
 
 		public override Widget ConfigurationWidget ()
@@ -46,44 +34,15 @@ namespace FSpot.Editors
 			return scale;
 		}
 
-
-		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile)
+		protected override PhotoEditorContext CreateContext ()
 		{
-			return ProcessImpl (input, input_profile, false);
-		}
-
-		protected override Pixbuf ProcessFast (Pixbuf input, Cms.Profile input_profile)
-		{
-			return ProcessImpl (input, input_profile, true);
-		}
-
-
-		Pixbuf ProcessImpl (Pixbuf input, Cms.Profile inputProfile, bool fast)
-		{
-			Pixbuf result;
-			using (var info = new ImageInfo (input)) {
-				using (var surface = new ImageSurface (Format.Argb32,
-									   input.Width,
-									   input.Height)) {
-					using (var ctx = new Context (surface)) {
-						ctx.Matrix = info.Fill (info.Bounds, angle);
-						using (var p = new SurfacePattern (info.Surface)) {
-							if (fast)
-								p.Filter = Filter.Fast;
-							ctx.SetSource (p);
-							ctx.Paint ();
-						}
-						result = surface.ToPixbuf ();
-						surface.Flush ();
-					}
-				}
-			}
-			return result;
+			var context = base.CreateContext ();
+			context.TiltDegrees = scale.Value;
+			return context;
 		}
 
 		void HandleValueChanged (object sender, EventArgs args)
 		{
-			angle = scale.Value * Math.PI / -180;
 			UpdatePreview ();
 		}
 	}

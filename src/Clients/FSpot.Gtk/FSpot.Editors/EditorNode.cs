@@ -15,7 +15,7 @@ namespace FSpot.Editors
 	[ExtensionNode ("Editor")]
 	public class EditorNode : ExtensionNode
 	{
-		[NodeAttribute (Required = true)]
+		[NodeAttribute ("EditorType", Required = true)]
 		protected string editorType;
 
 		public Editor GetEditor ()

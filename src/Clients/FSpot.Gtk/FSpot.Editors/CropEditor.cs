@@ -47,9 +47,8 @@ namespace FSpot.Editors
 			new SelectionRatioDialog.SelectionConstraint (Strings.Square, 1.0)
 		};
 
-		public CropEditor () : base (Strings.Crop, "crop")
+		public CropEditor () : base (PhotoEditorCatalog.Crop)
 		{
-			NeedsSelection = true;
 
 			Preferences.SettingChanged += OnPreferencesChanged;
 
@@ -177,18 +176,6 @@ namespace FSpot.Editors
 				(cell as CellRendererPixbuf).Pixbuf = null;
 		}
 
-		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile)
-		{
-			Rectangle selection = FSpot.Utils.PixbufUtils.TransformOrientation ((int)State.PhotoImageView.PixbufOrientation <= 4 ? input.Width : input.Height,
-												(int)State.PhotoImageView.PixbufOrientation <= 4 ? input.Height : input.Width,
-												State.Selection, State.PhotoImageView.PixbufOrientation);
-			var edited = new Pixbuf (input.Colorspace,
-						 input.HasAlpha, input.BitsPerSample,
-						 selection.Width, selection.Height);
 
-			input.CopyArea (selection.X, selection.Y,
-					selection.Width, selection.Height, edited, 0, 0);
-			return edited;
-		}
 	}
 }

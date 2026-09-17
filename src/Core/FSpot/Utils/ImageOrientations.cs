@@ -31,8 +31,8 @@ namespace FSpot.Utils
 			=> Rotate270 (Rotate270 (Rotate270 (orientation)));
 
 		// GTK PixbufUtils.TransformOrientation: map a rectangle drawn on the
-		// oriented display into the un-oriented buffer. Crop and red-eye use this;
-		// pixelate/blackout apply the on-screen rect as-is.
+		// oriented display into the un-oriented buffer. Crop, red-eye, pixelate,
+		// and blackout each map the GTK selection once through this.
 		public static PixelRect TransformRect (int totalWidth, int totalHeight, PixelRect args, ImageOrientation orientation)
 		{
 			int x = args.X;

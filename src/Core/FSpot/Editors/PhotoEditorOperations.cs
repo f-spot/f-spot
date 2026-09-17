@@ -66,13 +66,13 @@ namespace FSpot.Editors
 		static ImageBuffer Blackout (ImageBuffer input, PhotoEditorContext context)
 		{
 			var output = ImageBuffers.Clone (input);
-			ImageBuffers.Fill (output, context.Selection, 0, 0, 0);
+			ImageBuffers.Fill (output, OrientedSelection (input, context), 0, 0, 0);
 			return output;
 		}
 
 		static ImageBuffer Pixelate (ImageBuffer input, PhotoEditorContext context)
 		{
-			var selection = ImageBuffers.Clamp (input, context.Selection);
+			var selection = ImageBuffers.Clamp (input, OrientedSelection (input, context));
 			if (selection.IsEmpty)
 				return ImageBuffers.Clone (input);
 

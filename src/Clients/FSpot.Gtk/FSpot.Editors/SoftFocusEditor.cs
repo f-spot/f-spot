@@ -11,29 +11,17 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
-using Cairo;
-
-using FSpot.Resources.Lang;
-using FSpot.Widgets;
-
-using Gdk;
-
 using Gtk;
-
-using Pinta.Core;
 
 namespace FSpot.Editors
 {
 	// TODO: This had a keybinding e. Maybe we should add it back, but did people even knew it?
 	class SoftFocusEditor : Editor
 	{
-		double radius;
 		Scale scale;
 
-		public SoftFocusEditor () : base (Strings.SoftFocus, "filter-soft-focus")
+		public SoftFocusEditor () : base (PhotoEditorCatalog.SoftFocus)
 		{
-			// FIXME: need tooltip MsgidLookup.GetString ("Create a soft focus visual effect")
-			HasSettings = true;
 		}
 
 		public override Widget ConfigurationWidget ()
@@ -44,43 +32,15 @@ namespace FSpot.Editors
 			return scale;
 		}
 
-		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile)
+		protected override PhotoEditorContext CreateContext ()
 		{
-			return ProcessImpl (input, input_profile, false);
-		}
-
-		protected override Pixbuf ProcessFast (Pixbuf input, Cms.Profile input_profile)
-		{
-			return ProcessImpl (input, input_profile, true);
-		}
-
-
-		Pixbuf ProcessImpl (Pixbuf input, Cms.Profile input_profile, bool fast)
-		{
-			Pixbuf result;
-			using (var info = new ImageInfo (input)) {
-				using (var soft = new Widgets.SoftFocus (info)) {
-					soft.Radius = radius;
-
-					using (var surface = new ImageSurface (Format.Argb32,
-										   input.Width,
-										   input.Height)) {
-
-						using (var ctx = new Context (surface)) {
-							soft.Apply (ctx, info.Bounds);
-						}
-
-						result = surface.ToPixbuf ();
-						surface.Flush ();
-					}
-				}
-			}
-			return result;
+			var context = base.CreateContext ();
+			context.SoftFocusRadius = scale.Value;
+			return context;
 		}
 
 		void HandleValueChanged (object sender, System.EventArgs args)
 		{
-			radius = scale.Value;
 			UpdatePreview ();
 		}
 	}

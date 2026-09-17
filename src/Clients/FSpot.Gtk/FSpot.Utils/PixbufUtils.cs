@@ -45,33 +45,10 @@ namespace FSpot.Utils
 		}
 
 		public static ImageOrientation Rotate270 (ImageOrientation orientation)
-		{
-			if (orientation == ImageOrientation.None) {
-				orientation = ImageOrientation.TopLeft;
-			}
-
-			ImageOrientation[] rot = {
-					ImageOrientation.LeftBottom,
-						ImageOrientation.LeftTop,
-						ImageOrientation.RightTop,
-						ImageOrientation.RightBottom,
-						ImageOrientation.BottomLeft,
-						ImageOrientation.TopLeft,
-						ImageOrientation.TopRight,
-						ImageOrientation.BottomRight
-				};
-
-			orientation = rot[((int)orientation) - 1];
-			return orientation;
-		}
+			=> ImageOrientations.Rotate270 (orientation);
 
 		public static ImageOrientation Rotate90 (ImageOrientation orientation)
-		{
-			orientation = Rotate270 (orientation);
-			orientation = Rotate270 (orientation);
-			orientation = Rotate270 (orientation);
-			return orientation;
-		}
+			=> ImageOrientations.Rotate90 (orientation);
 
 		public static Rectangle TransformOrientation (Pixbuf src, Rectangle args, ImageOrientation orientation)
 		{
@@ -80,48 +57,9 @@ namespace FSpot.Utils
 
 		public static Rectangle TransformOrientation (int total_width, int total_height, Rectangle args, ImageOrientation orientation)
 		{
-			Rectangle area = args;
-
-			switch (orientation) {
-			case ImageOrientation.BottomRight:
-				area.X = total_width - args.X - args.Width;
-				area.Y = total_height - args.Y - args.Height;
-				break;
-			case ImageOrientation.TopRight:
-				area.X = total_width - args.X - args.Width;
-				break;
-			case ImageOrientation.BottomLeft:
-				area.Y = total_height - args.Y - args.Height;
-				break;
-			case ImageOrientation.LeftTop:
-				area.X = args.Y;
-				area.Y = args.X;
-				area.Width = args.Height;
-				area.Height = args.Width;
-				break;
-			case ImageOrientation.RightBottom:
-				area.X = total_height - args.Y - args.Height;
-				area.Y = total_width - args.X - args.Width;
-				area.Width = args.Height;
-				area.Height = args.Width;
-				break;
-			case ImageOrientation.RightTop:
-				area.X = total_height - args.Y - args.Height;
-				area.Y = args.X;
-				area.Width = args.Height;
-				area.Height = args.Width;
-				break;
-			case ImageOrientation.LeftBottom:
-				area.X = args.Y;
-				area.Y = total_width - args.X - args.Width;
-				area.Width = args.Height;
-				area.Height = args.Width;
-				break;
-			default:
-				break;
-			}
-
-			return area;
+			var core = ImageOrientations.TransformRect (total_width, total_height,
+				new PixelRect (args.X, args.Y, args.Width, args.Height), orientation);
+			return new Rectangle (core.X, core.Y, core.Width, core.Height);
 		}
 
 		public static Point TransformOrientation (int total_width, int total_height, Point args, ImageOrientation orientation)
@@ -273,16 +211,9 @@ namespace FSpot.Utils
 
 		public static void CreateDerivedVersion (SafeUri source, SafeUri destination, uint jpeg_quality, Pixbuf pixbuf)
 		{
-			SaveToSuitableFormat (destination, pixbuf, jpeg_quality);
-
-			using var metadata_from = MetadataUtils.Parse (source);
-			using var metadata_to = MetadataUtils.Parse (destination);
-
-			metadata_to.CopyFrom (metadata_from);
-
-			// Reset orientation to make sure images appear upright.
-			metadata_to.ImageTag.Orientation = ImageOrientation.TopLeft;
-			metadata_to.Save ();
+			DerivedVersionFile.Publish (source, destination, temp => {
+				SaveToSuitableFormat (new SafeUri (temp), pixbuf, jpeg_quality);
+			});
 		}
 
 		static void SaveToSuitableFormat (SafeUri destination, Pixbuf pixbuf, uint jpeg_quality)

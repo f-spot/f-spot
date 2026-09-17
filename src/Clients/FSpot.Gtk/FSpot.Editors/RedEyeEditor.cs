@@ -22,10 +22,8 @@ namespace FSpot.Editors
 {
 	class RedEyeEditor : Editor
 	{
-		public RedEyeEditor () : base (Strings.RedEyeReduction, "red-eye-remove")
+		public RedEyeEditor () : base (PhotoEditorCatalog.RedEye)
 		{
-			// FIXME: ??? need tooltip Strings.RemoveRedEyeFromThePhoto;
-			NeedsSelection = true;
 			ApplyLabel = Strings.FixExclamation;
 		}
 
@@ -34,13 +32,6 @@ namespace FSpot.Editors
 			return new Label (Strings.SelectTheEyesYouWishToFix);
 		}
 
-		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile)
-		{
-			Rectangle selection = FSpot.Utils.PixbufUtils.TransformOrientation ((int)State.PhotoImageView.PixbufOrientation <= 4 ? input.Width : input.Height,
-												(int)State.PhotoImageView.PixbufOrientation <= 4 ? input.Height : input.Width,
-												State.Selection, State.PhotoImageView.PixbufOrientation);
-			int threshold = Preferences.Get<int> (Preferences.EditRedeyeThreshold);
-			return PixbufUtils.RemoveRedeye (input, selection, threshold);
-		}
+
 	}
 }

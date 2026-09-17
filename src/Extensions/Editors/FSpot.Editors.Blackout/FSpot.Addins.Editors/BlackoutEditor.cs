@@ -20,10 +20,8 @@ namespace FSpot.Addins.Editors
 {
 	class BlackoutEditor : Editor
 	{
-		public BlackoutEditor () : base (Strings.Blackout, null)
+		public BlackoutEditor () : base (PhotoEditorCatalog.Blackout)
 		{
-			CanHandleMultiple = false;
-			NeedsSelection = true;
 		}
 
 		public override Widget ConfigurationWidget ()
@@ -35,16 +33,6 @@ namespace FSpot.Addins.Editors
 			vbox.Add (info);
 
 			return vbox;
-		}
-
-		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile)
-		{
-			Pixbuf output = input.Copy ();
-
-			var sub = new Pixbuf (output, State.Selection.X, State.Selection.Y,
-					State.Selection.Width, State.Selection.Height);
-			sub.Fill (0x00000000);
-			return output;
 		}
 	}
 }

@@ -8,6 +8,10 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>FSpot</RootNamespace>
     <AssemblyName>f-spot</AssemblyName>
+    <!-- GenerateBindingRedirects rewrites $(TargetFileName).config. Without this it
+         starts from an empty template and drops the Mono dllmaps GLibSynchronizationContext
+         needs to resolve libglib-2.0-0.dll. -->
+    <AppConfig>f-spot.exe.config</AppConfig>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -100,6 +104,7 @@
 
   <ItemGroup>
     <PackageReference Include="TagLibSharp" />
+    <PackageReference Include="Sentry.Serilog" />
   </ItemGroup>
 
   <ItemGroup>

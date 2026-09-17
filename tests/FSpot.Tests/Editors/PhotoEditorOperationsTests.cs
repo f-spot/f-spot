@@ -93,6 +93,61 @@ namespace FSpot.Tests.Editors
 		}
 
 		[TestMethod]
+		public void GtkApplyContext_RightTopRawSelection_CropsTheMappedPixels ()
+		{
+			// Upright 2×4 buffer of a 4×2 raw frame. The selection is still in raw
+			// pixbuf coordinates, so RightTop must map (2,0,2,1) to the 1×2 at (1,2).
+			var input = Rgb (2, 4,
+				1, 0, 0, 2, 0, 0,
+				3, 0, 0, 4, 0, 0,
+				5, 0, 0, 6, 0, 0,
+				7, 0, 0, 8, 0, 0);
+			var raw = new PixelRect (2, 0, 2, 1);
+
+			var output = PhotoEditorOperations.Process (PhotoEditorCatalog.Crop, input, null,
+				GtkApplyContext.Create (raw, ImageOrientation.RightTop, 0));
+
+			Assert.AreEqual (1, output.Width);
+			Assert.AreEqual (2, output.Height);
+			AssertPixel (output, 0, 0, 6, 0, 0);
+			AssertPixel (output, 0, 1, 8, 0, 0);
+
+			var missed = Assert.ThrowsExactly<ArgumentException> (() =>
+				PhotoEditorOperations.Process (PhotoEditorCatalog.Crop, input, null,
+					GtkApplyContext.Create (raw, ImageOrientation.TopLeft, 0)));
+			Assert.AreEqual ("Crop requires a selection", missed.Message);
+
+			// BottomRight does not swap the frame, so skipping the map silently
+			// saves the raw 2×1 instead of the bottom row.
+			var flat = Rgb (4, 2,
+				1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0,
+				5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0);
+			var bottom = PhotoEditorOperations.Process (PhotoEditorCatalog.Crop, flat, null,
+				GtkApplyContext.Create (raw, ImageOrientation.BottomRight, 0));
+			Assert.AreEqual (2, bottom.Width);
+			Assert.AreEqual (1, bottom.Height);
+			AssertPixel (bottom, 0, 0, 5, 0, 0);
+			AssertPixel (bottom, 1, 0, 6, 0, 0);
+		}
+
+		[TestMethod]
+		public void GtkApplyContext_RightTopRawSelection_ReducesOnlyTheMappedRedEye ()
+		{
+			var input = Rgb (2, 4,
+				255, 0, 0, 0, 255, 0,
+				0, 255, 0, 0, 255, 0,
+				0, 255, 0, 255, 0, 0,
+				0, 255, 0, 0, 255, 0);
+			var raw = new PixelRect (2, 0, 2, 1);
+
+			var output = PhotoEditorOperations.Process (PhotoEditorCatalog.RedEye, input, null,
+				GtkApplyContext.Create (raw, ImageOrientation.RightTop, 0));
+
+			AssertPixel (output, 0, 0, 255, 0, 0);
+			AssertPixel (output, 1, 2, 0, 0, 0);
+		}
+
+		[TestMethod]
 		public void Blackout_FillsTheSelectionWithBlackAndKeepsTheRest ()
 		{
 			var input = Rgb (2, 1, 255, 255, 255, 128, 64, 32);
@@ -120,6 +175,81 @@ namespace FSpot.Tests.Editors
 			AssertPixel (output, 1, 0, first[0], first[1], first[2]);
 			AssertPixel (output, 0, 1, first[0], first[1], first[2]);
 			AssertPixel (output, 1, 1, first[0], first[1], first[2]);
+		}
+
+		[TestMethod]
+		public void GtkApplyContext_RightTopRawSelection_BlacksOutOnlyTheMappedPixels ()
+		{
+			// Same upright 2×4 frame as the crop test. Raw (2,0,2,1) maps to (1,2,1,2).
+			var input = Rgb (2, 4,
+				1, 0, 0, 2, 0, 0,
+				3, 0, 0, 4, 0, 0,
+				5, 0, 0, 6, 0, 0,
+				7, 0, 0, 8, 0, 0);
+			var raw = new PixelRect (2, 0, 2, 1);
+
+			var output = PhotoEditorOperations.Process (PhotoEditorCatalog.Blackout, input, null,
+				GtkApplyContext.Create (raw, ImageOrientation.RightTop, 0));
+
+			AssertPixel (output, 1, 2, 0, 0, 0);
+			AssertPixel (output, 1, 3, 0, 0, 0);
+			AssertPixel (output, 0, 0, 1, 0, 0);
+			AssertPixel (output, 0, 2, 5, 0, 0);
+		}
+
+		[TestMethod]
+		public void GtkApplyContext_BottomRightRawSelection_BlacksOutTheMappedRow ()
+		{
+			// BottomRight does not swap the frame. Skipping the map blacks the raw
+			// top-right pair (pixels 3 and 4) and leaves the bottom row alone.
+			var input = Rgb (4, 2,
+				1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0,
+				5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0);
+			var raw = new PixelRect (2, 0, 2, 1);
+
+			var output = PhotoEditorOperations.Process (PhotoEditorCatalog.Blackout, input, null,
+				GtkApplyContext.Create (raw, ImageOrientation.BottomRight, 0));
+
+			AssertPixel (output, 0, 1, 0, 0, 0);
+			AssertPixel (output, 1, 1, 0, 0, 0);
+			AssertPixel (output, 2, 0, 3, 0, 0);
+			AssertPixel (output, 3, 0, 4, 0, 0);
+		}
+
+		[TestMethod]
+		public void GtkApplyContext_RightTopRawSelection_PixelatesOnlyTheMappedBlock ()
+		{
+			var input = Rgb (2, 4,
+				1, 0, 0, 2, 0, 0,
+				3, 0, 0, 4, 0, 0,
+				5, 0, 0, 6, 0, 0,
+				7, 0, 0, 8, 0, 0);
+			var raw = new PixelRect (2, 0, 2, 1);
+
+			var output = PhotoEditorOperations.Process (PhotoEditorCatalog.Pixelate, input, null,
+				GtkApplyContext.Create (raw, ImageOrientation.RightTop, 0));
+
+			byte[] block = Pixel (output, 1, 2);
+			AssertPixel (output, 1, 3, block[0], block[1], block[2]);
+			AssertPixel (output, 0, 0, 1, 0, 0);
+			AssertPixel (output, 0, 2, 5, 0, 0);
+		}
+
+		[TestMethod]
+		public void GtkApplyContext_BottomRightRawSelection_PixelatesTheMappedRow ()
+		{
+			var input = Rgb (4, 2,
+				1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0,
+				5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0);
+			var raw = new PixelRect (2, 0, 2, 1);
+
+			var output = PhotoEditorOperations.Process (PhotoEditorCatalog.Pixelate, input, null,
+				GtkApplyContext.Create (raw, ImageOrientation.BottomRight, 0));
+
+			byte[] row = Pixel (output, 0, 1);
+			AssertPixel (output, 1, 1, row[0], row[1], row[2]);
+			AssertPixel (output, 2, 0, 3, 0, 0);
+			AssertPixel (output, 3, 0, 4, 0, 0);
 		}
 
 		[TestMethod]
