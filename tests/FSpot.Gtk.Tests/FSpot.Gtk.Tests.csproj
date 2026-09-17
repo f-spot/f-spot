@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
+    <TargetFramework>$(FSpotModernTargetFramework)</TargetFramework>
     <Platforms>AnyCPU</Platforms>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <OutputPath>$(RepoRoot)artifacts/fspot-gtk-test/</OutputPath>
@@ -9,8 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <!-- Compile CompletionLogic here so the testhost does not load f-spot.exe. -->
-    <Compile Include="..\..\src\Clients\FSpot.Gtk\FSpot.Widgets\CompletionLogic.cs" Link="FSpot.Widgets\CompletionLogic.cs" />
     <!-- Same for the help text: it is plain string formatting with no Gtk in it. -->
     <Compile Include="..\..\src\Clients\FSpot.Gtk\FSpot\CommandLineHelp.cs" Link="FSpot\CommandLineHelp.cs" />
   </ItemGroup>

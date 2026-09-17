@@ -28,9 +28,10 @@ namespace FSpot.Core.Tests.Mocks
 
 		#region IBrowsableCollection implementation
 		public event IBrowsableCollectionChangedHandler Changed;
-#pragma warning disable 67 // ItemsChanged event unused in mock
 		public event IBrowsableCollectionItemsChangedHandler ItemsChanged;
-#pragma warning restore 67
+
+		public void RaiseItemsChanged (int[] indexes, IBrowsableItemChanges changes)
+			=> ItemsChanged?.Invoke (this, new BrowsableEventArgs (indexes, changes));
 		public int IndexOf (IPhoto item)
 		{
 			return itemCollection.IndexOf (item);

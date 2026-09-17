@@ -70,9 +70,8 @@ namespace FSpot.Widgets
 
 			var local_ids = new List<int> ();
 			foreach (int parent_index in args.Items) {
-				// If the item isn't part of the selection ignore it
 				if (!Contains (collection[parent_index]))
-					return;
+					continue;
 
 				int local_index = IndexOf (parent_index);
 				if (local_index >= 0)

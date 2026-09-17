@@ -231,14 +231,18 @@ namespace FSpot
 			var builder = TranslatedBuilder.FromResource (null, "main_window.ui");
 			builder.Autoconnect (this);
 
-			//Set the global DefaultColormap. Allows transparency according
-			//to the theme (work on murrine engine)
-			Gdk.Colormap colormap = ((Widget)main_window).Screen.RgbaColormap;
-			if (colormap == null) {
-				Logger.Log.Debug ("Your screen doesn't support alpha channels!");
-				colormap = ((Widget)main_window).Screen.RgbColormap;
+			// RGBA as the process-wide default is for Linux themes (murrine) that
+			// paint their own alpha. On quartz an RGBA window that does not fill
+			// its background is a hole: the terminal shows through the toolbar.
+			// Overlay widgets that need alpha (Loupe, PreviewPopup) opt in themselves.
+			if (FSpot.Utils.Platform.IsLinux) {
+				Gdk.Colormap colormap = ((Widget)main_window).Screen.RgbaColormap;
+				if (colormap == null) {
+					Logger.Log.Debug ("Your screen doesn't support alpha channels!");
+					colormap = ((Widget)main_window).Screen.RgbColormap;
+				}
+				Gtk.Widget.DefaultColormap = colormap;
 			}
-			Gtk.Widget.DefaultColormap = colormap;
 
 			LoadPreference (Preferences.MainWindowWidth);
 			LoadPreference (Preferences.MainWindowX);
@@ -562,6 +566,7 @@ namespace FSpot
 			if (ViewMode == value)
 				return;
 
+			Logger.Log.Debug ("SetViewMode {From} -> {To}", ViewMode, value);
 			ViewMode = value;
 			switch (ViewMode) {
 			case ModeType.IconView:
@@ -822,7 +827,11 @@ namespace FSpot
 			UpdateStatusLabel ();
 			UpdateToolbar ();
 
-			InfoBox.Photos = SelectedPhotos ();
+			var selected = SelectedPhotos ();
+			Logger.Log.Debug (
+				"Selection changed mode={Mode} count={Count} first={First}",
+				ViewMode, selected.Length, selected.Length > 0 ? selected[0]?.Name : null);
+			InfoBox.Photos = selected;
 		}
 
 		void HandleSelectionItemsChanged (IBrowsableCollection collection, BrowsableEventArgs args)
@@ -1107,7 +1116,7 @@ namespace FSpot
 			controller.Preferences.RecurseSubdirectories = true;
 			controller.Preferences.RemoveOriginals = false;
 
-			using var importWindow = new ImportDialog (controller, Window);
+			var importWindow = new ImportDialog (controller, Window);
 			importWindow.Show ();
 
 			controller.StartImport ();
@@ -1134,65 +1143,73 @@ namespace FSpot
 				}
 			};
 
-			using var importWindow = new ImportDialog (controller, Window);
+			var importWindow = new ImportDialog (controller, Window);
 			importWindow.Show ();
 		}
 
 		void HandleIconViewDragDataReceived (object sender, DragDataReceivedArgs args)
 		{
-			Widget source = Gtk.Drag.GetSourceWidget (args.Context);
+			bool finished = false;
+			try {
+				Widget source = Gtk.Drag.GetSourceWidget (args.Context);
 
-			if (args.Info == DragDropTargets.TagListEntry.Info) {
-				//
-				// Translate the event args from viewport space to window space,
-				// drag events use the viewport.  Owen sends his regrets.
-				//
-				int item = icon_view.CellAtPosition (args.X + (int)icon_view.Hadjustment.Value,
-							   args.Y + (int)icon_view.Vadjustment.Value);
+				if (args.Info == DragDropTargets.TagListEntry.Info) {
+					int item = icon_view.CellAtPosition (args.X + (int)icon_view.Hadjustment.Value,
+								   args.Y + (int)icon_view.Vadjustment.Value);
 
-				//Console.WriteLine ("Drop cell = {0} ({1},{2})", item, args.X, args.Y);
-				if (item >= 0) {
-					if (icon_view.Selection.Contains (item))
-						AttachTags (tag_selection_widget.TagHighlight, SelectedIds ());
-					else
-						AttachTags (tag_selection_widget.TagHighlight, new int[] { item });
-				}
+					var tags = args.SelectionData.GetTagsData ();
+					if (tags.Count == 0)
+						tags = tag_selection_widget.TagHighlight;
 
-				Gtk.Drag.Finish (args.Context, true, false, args.Time);
-				return;
-			}
+					Logger.Log.Debug (
+						"IconView tag drop item={Item} tags={Count} selection={Sel}",
+						item, tags.Count, item >= 0 && icon_view.Selection.Contains (item));
 
-			if (args.Info == (uint)DragDropTargets.TargetType.UriList) {
+					if (item >= 0 && tags.Count > 0) {
+						if (icon_view.Selection.Contains (item))
+							AttachTags (tags, SelectedIds ());
+						else
+							AttachTags (tags, new int[] { item });
+					}
 
-				/*
-				 * If the drop is coming from inside f-spot then we don't want to import
-				 */
-				if (source != null)
+					Gtk.Drag.Finish (args.Context, true, false, args.Time);
+					finished = true;
 					return;
-
-				UriList list = args.SelectionData.GetUriListData ();
-				ImportUriList (list, (args.Context.Action & Gdk.DragAction.Copy) != 0);
-
-				Gtk.Drag.Finish (args.Context, true, false, args.Time);
-				return;
-			}
-
-			if (args.Info == DragDropTargets.PhotoListEntry.Info) {
-				int p_item = icon_view.CellAtPosition (args.X + (int)icon_view.Hadjustment.Value,
-								 args.Y + (int)icon_view.Vadjustment.Value);
-
-				if (p_item >= 0) {
-					if (icon_view.Selection.Contains (p_item)) //We don't want to reparent ourselves!
-						return;
-					var cmd = new PhotoVersionCommands.Reparent ();
-					Photo[] photos_to_reparent = SelectedPhotos ();
-					// Give feedback to user that something happened, and leave the parent selected after reparenting
-					icon_view.Selection.Add (p_item);
-					cmd.Execute (Database.Photos, photos_to_reparent, query.Photos[p_item], GetToplevel (null));
-					UpdateQuery ();
 				}
-				Gtk.Drag.Finish (args.Context, true, false, args.Time);
-				return;
+
+				if (args.Info == (uint)DragDropTargets.TargetType.UriList) {
+					if (source != null)
+						return;
+
+					UriList list = args.SelectionData.GetUriListData ();
+					ImportUriList (list, (args.Context.Action & Gdk.DragAction.Copy) != 0);
+
+					Gtk.Drag.Finish (args.Context, true, false, args.Time);
+					finished = true;
+					return;
+				}
+
+				if (args.Info == DragDropTargets.PhotoListEntry.Info) {
+					int p_item = icon_view.CellAtPosition (args.X + (int)icon_view.Hadjustment.Value,
+									 args.Y + (int)icon_view.Vadjustment.Value);
+
+					if (p_item >= 0) {
+						if (icon_view.Selection.Contains (p_item))
+							return;
+						var cmd = new PhotoVersionCommands.Reparent ();
+						Photo[] photos_to_reparent = SelectedPhotos ();
+						icon_view.Selection.Add (p_item);
+						cmd.Execute (Database.Photos, photos_to_reparent, query.Photos[p_item], GetToplevel (null));
+						UpdateQuery ();
+					}
+					Gtk.Drag.Finish (args.Context, true, false, args.Time);
+					finished = true;
+				}
+			} catch (Exception e) {
+				Logger.Log.Error (e, "IconView drag_data_received info={Info}", args.Info);
+			} finally {
+				if (!finished)
+					Gtk.Drag.Finish (args.Context, false, false, args.Time);
 			}
 		}
 
@@ -1348,14 +1365,23 @@ namespace FSpot
 
 		void HandlePhotoViewDragDataReceived (object sender, DragDataReceivedArgs args)
 		{
-			//Widget source = Gtk.Drag.GetSourceWidget (args.Context);
-			//Console.WriteLine ("Drag received {0}", source == null ? "null" : source.TypeName);
+			try {
+				if (args.Info == DragDropTargets.TagListEntry.Info) {
+					var tags = args.SelectionData.GetTagsData ();
+					if (tags.Count == 0)
+						tags = tag_selection_widget.TagHighlight;
 
-			HandleAttachTagCommand (sender, null);
+					Logger.Log.Debug ("PhotoView tag drop tags={Count}", tags.Count);
+					if (tags.Count > 0)
+						AttachTags (tags, SelectedIds ());
+				}
 
-			Gtk.Drag.Finish (args.Context, true, false, args.Time);
-
-			photo_view.View.GrabFocus ();
+				Gtk.Drag.Finish (args.Context, true, false, args.Time);
+				photo_view.View.GrabFocus ();
+			} catch (Exception e) {
+				Logger.Log.Error (e, "PhotoView drag_data_received info={Info}", args.Info);
+				Gtk.Drag.Finish (args.Context, false, false, args.Time);
+			}
 		}
 		#endregion
 
@@ -1451,7 +1477,14 @@ namespace FSpot
 
 		public static void HandleHelp (object sender, EventArgs args)
 		{
-			GtkBeans.Global.ShowUri (App.Instance.Organizer.Window.Screen, "ghelp:f-spot");
+			// ghelp: is a GNOME help URI; gtk_show_uri throws on macOS/Windows where
+			// there is no yelp. The website is what About already advertises.
+			string uri = FSpot.Utils.Platform.IsLinux ? "ghelp:f-spot" : "https://f-spot.app";
+			try {
+				GtkBeans.Global.ShowUri (App.Instance.Organizer.Window.Screen, uri);
+			} catch (GLib.GException e) {
+				Logger.Log.Warning ($"Opening help failed: {e.Message}");
+			}
 		}
 
 		public static void HandleAbout (object sender, EventArgs args)
@@ -2077,16 +2110,24 @@ namespace FSpot
 					header, msg, ok_caption)) {
 
 				using var op = Operation.Begin ($"PhotosPerMonth");
+				var removed = new List<Photo> ();
 				foreach (Photo photo in photos) {
-					foreach (uint id in photo.VersionIds) {
-						try {
-							photo.DeleteVersion (id, true);
-						} catch (Exception e) {
-							DeleteException (e, photo.VersionUri (id).ToString ());
+					string name = PhotoDriveDelete.DisplayName (photo);
+					try {
+						var versionFailures = PhotoDriveDelete.TryDeleteAllVersions (photo);
+						if (versionFailures.Count > 0) {
+							foreach (var failure in versionFailures)
+								DeleteException (failure.Exception, failure.Path);
+							Database.Photos.Commit (photo);
+						} else {
+							removed.Add (photo);
 						}
+					} catch (Exception e) {
+						DeleteException (e, name);
 					}
 				}
-				Database.Photos.Remove (photos);
+				if (removed.Count > 0)
+					Database.Photos.Remove (removed.ToArray ());
 
 				UpdateQuery ();
 				op.Complete ();
@@ -2183,7 +2224,7 @@ namespace FSpot
 			//How many pictures are associated to these tags?
 			Db db = App.Instance.Database;
 			var count_query = new FSpot.PhotoQuery (db.Photos);
-			count_query.Terms = OrTerm.FromTags (tags);
+			count_query.Terms = new ConditionWrapper (OrTerm.FromTags (tags).SqlCondition ());
 			int associated_photos = count_query.Count;
 
 			string header;

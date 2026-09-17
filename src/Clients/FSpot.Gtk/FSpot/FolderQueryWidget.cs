@@ -33,7 +33,7 @@ namespace FSpot
 			folder_set = new FolderSet ();
 			this.query = query;
 
-			query.SetCondition (folder_set);
+			query.FolderSet = folder_set;
 
 			Drag.DestSet (this, DestDefaults.All,
 						  folder_query_widget_source_table,

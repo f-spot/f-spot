@@ -71,7 +71,7 @@ namespace FSpot
 
 		PhotoCache cache;
 		PhotoStore store;
-		Term terms;
+		IQueryCondition extraTerms;
 
 		static int query_count = 0;
 		static int QueryCount {
@@ -139,7 +139,7 @@ namespace FSpot
 			get { return conditions ?? (conditions = new Dictionary<Type, IQueryCondition> ()); }
 		}
 
-		internal bool SetCondition (IQueryCondition condition)
+		public bool SetCondition (IQueryCondition condition)
 		{
 			if (condition == null)
 				throw new ArgumentNullException (nameof (condition));
@@ -149,13 +149,13 @@ namespace FSpot
 			return true;
 		}
 
-		internal T GetCondition<T> () where T : IQueryCondition
+		public T GetCondition<T> () where T : IQueryCondition
 		{
 			Conditions.TryGetValue (typeof (T), out var val);
 			return (T)val;
 		}
 
-		internal bool UnSetCondition<T> ()
+		public bool UnSetCondition<T> ()
 		{
 			if (!Conditions.ContainsKey (typeof (T)))
 				return false;
@@ -163,12 +163,20 @@ namespace FSpot
 			return true;
 		}
 
-		public Term Terms {
-			get { return terms; }
+		public IQueryCondition Terms {
+			get { return extraTerms; }
 			set {
-				terms = value;
+				extraTerms = value;
 				untagged = false;
 				RequestReload ();
+			}
+		}
+
+		public FolderSet FolderSet {
+			get { return GetCondition<FolderSet> (); }
+			set {
+				if (value == null && UnSetCondition<FolderSet> () || value != null && SetCondition (value))
+					RequestReload ();
 			}
 		}
 
@@ -270,7 +278,7 @@ namespace FSpot
 			} else {
 				condition_array = new IQueryCondition[conditions.Count + 2];
 				//		condition_array[0] = new ConditionWrapper (extra_condition);
-				condition_array[1] = new ConditionWrapper (terms?.SqlCondition ());
+				condition_array[1] = extraTerms;
 				i = 2;
 			}
 
