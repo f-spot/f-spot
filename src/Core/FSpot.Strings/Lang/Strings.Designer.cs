@@ -1123,6 +1123,15 @@ namespace FSpot.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Export.
+        /// </summary>
+        public static string Export {
+            get {
+                return ResourceManager.GetString("Export", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Export Complete..
         /// </summary>
         public static string ExportComplete {
@@ -2617,6 +2626,15 @@ namespace FSpot.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Print.
+        /// </summary>
+        public static string Print {
+            get {
+                return ResourceManager.GetString("Print2", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Print cut marks.
         /// </summary>
         public static string PrintCutMarks {
@@ -2811,6 +2829,15 @@ namespace FSpot.Resources.Lang {
         public static string RefreshSearch {
             get {
                 return ResourceManager.GetString("RefreshSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove.
+        /// </summary>
+        public static string Remove {
+            get {
+                return ResourceManager.GetString("Remove", resourceCulture);
             }
         }
         
@@ -3187,6 +3214,12 @@ namespace FSpot.Resources.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Sephia Tone.
         /// </summary>
+        public static string SendMail {
+            get {
+                return ResourceManager.GetString("SendMail", resourceCulture);
+            }
+        }
+
         public static string SepiaTone {
             get {
                 return ResourceManager.GetString("SepiaTone", resourceCulture);
@@ -3563,6 +3596,15 @@ namespace FSpot.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The {0} editor is not yet available..
+        /// </summary>
+        public static string TheXEditorIsNotYetAvailable {
+            get {
+                return ResourceManager.GetString("TheXEditorIsNotYetAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This deletes all versions of the selected photo from your drive..
         /// </summary>
         public static string ThisDeletesAllVersionsOfTheSelectedPhotoFromYourDrive {
@@ -3577,6 +3619,15 @@ namespace FSpot.Resources.Lang {
         public static string ThisDeletesAllVersionsOfTheSelectedPhotosFromYourDrive {
             get {
                 return ResourceManager.GetString("ThisDeletesAllVersionsOfTheSelectedPhotosFromYourDrive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This feature is not yet available..
+        /// </summary>
+        public static string ThisFeatureIsNotYetAvailable {
+            get {
+                return ResourceManager.GetString("ThisFeatureIsNotYetAvailable", resourceCulture);
             }
         }
         
@@ -3605,6 +3656,15 @@ namespace FSpot.Resources.Lang {
         public static string ThisNameIsAlreadyInUse {
             get {
                 return ResourceManager.GetString("ThisNameIsAlreadyInUse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The tag will be removed from the catalog and from any photos that use it..
+        /// </summary>
+        public static string ThisRemovesTheTagFromTheCatalogAndFromAnyPhotosThatUseIt {
+            get {
+                return ResourceManager.GetString("ThisRemovesTheTagFromTheCatalogAndFromAnyPhotosThatUseIt", resourceCulture);
             }
         }
         
@@ -4154,6 +4214,54 @@ namespace FSpot.Resources.Lang {
         public static string Zoom {
             get {
                 return ResourceManager.GetString("Zoom", resourceCulture);
+            }
+        }
+
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+
+        public static string Contrast {
+            get {
+                return ResourceManager.GetString("Contrast", resourceCulture);
+            }
+        }
+
+        public static string Saturation {
+            get {
+                return ResourceManager.GetString("Saturation", resourceCulture);
+            }
+        }
+
+        public static string Hue {
+            get {
+                return ResourceManager.GetString("Hue", resourceCulture);
+            }
+        }
+
+        public static string Brightness {
+            get {
+                return ResourceManager.GetString("Brightness", resourceCulture);
+            }
+        }
+
+        public static string Tint {
+            get {
+                return ResourceManager.GetString("Tint", resourceCulture);
+            }
+        }
+
+        public static string Temp {
+            get {
+                return ResourceManager.GetString("Temp", resourceCulture);
+            }
+        }
+
+        public static string Loupe {
+            get {
+                return ResourceManager.GetString("Loupe", resourceCulture);
             }
         }
     }
