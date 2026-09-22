@@ -126,7 +126,7 @@ public partial class MainWindowViewModel : ObservableObject
 	IImage? loupeSample;
 
 	[ObservableProperty]
-	string windowTitle = "F-Spot";
+	string windowTitle = Strings.FSpot;
 
 	[ObservableProperty]
 	bool findMatchAllTags;
@@ -143,10 +143,35 @@ public partial class MainWindowViewModel : ObservableObject
 	[ObservableProperty]
 	DateTime? findEnd;
 
+	[ObservableProperty]
+	double previewZoom = 1;
+
+	[ObservableProperty]
+	double previewPanX;
+
+	[ObservableProperty]
+	double previewPanY;
+
+	[ObservableProperty]
+	bool viewerInterpolation = true;
+
+	[ObservableProperty]
+	double uiScale = 1;
+
+	public BitmapInterpolationMode PreviewInterpolation
+		=> ViewerInterpolation ? BitmapInterpolationMode.HighQuality : BitmapInterpolationMode.None;
+
+	partial void OnViewerInterpolationChanged (bool value)
+		=> OnPropertyChanged (nameof (PreviewInterpolation));
+
+	public InfoFieldVisibility InfoVisibility { get; } = InfoFieldVisibility.Load ();
+	public ObservableCollection<AddinStatus> Extensions { get; } = [];
+
 	DateTime? timelineRangeStart;
 	DateTime? timelineRangeEnd;
 
 	readonly List<PhotoItemViewModel> catalogPhotos = [];
+	int histogramGeneration;
 	readonly List<uint> findRollIds = [];
 
 	public MainWindowViewModel (Db? database, IAvaloniaShell shell, IPhotoThumbnailLoader thumbnails)
@@ -154,6 +179,10 @@ public partial class MainWindowViewModel : ObservableObject
 		this.database = database;
 		this.shell = shell;
 		this.thumbnails = thumbnails;
+		DisplaySidebar = LibraryPreferences.ShowSidebar;
+		DisplayTimeline = LibraryPreferences.ShowTimeline;
+		DisplayFilmstrip = LibraryPreferences.ShowFilmstrip;
+		ViewerInterpolation = LibraryPreferences.ViewerInterpolation;
 		Info.VersionChosen += ApplyVersion;
 		Info.RatingChosen += ApplyRating;
 	}
@@ -167,7 +196,7 @@ public partial class MainWindowViewModel : ObservableObject
 	public bool IsBrowsing => ViewMode == LibraryViewMode.IconView;
 	public bool IsEditing => ViewMode == LibraryViewMode.PhotoView;
 	public IReadOnlyList<PhotoEditorDescriptor> VisibleEditors =>
-		PhotoEditorCatalog.VisibleIn (ViewMode).ToList ();
+		PhotoEditorCatalog.VisibleIn (ViewMode).Where (editor => EditorEnabled (editor.Id)).ToList ();
 	public bool HasEditorSession => EditorSession is not null;
 	public bool ShowEditorList => IsEditPage && EditorSession is null;
 	public bool ShowEditorSelection => EditorSession?.Editor.NeedsSelection == true;
@@ -191,14 +220,16 @@ public partial class MainWindowViewModel : ObservableObject
 	public bool HasFindDate => FindStart is not null || FindEnd is not null;
 	public bool HasFindRoll => findRollIds.Count > 0;
 	public string FindRatingLabel => HasFindRating
-		? $"{FindMinRating ?? 0}–{FindMaxRating ?? 5}★"
+		? QueryChipFormat.Rating (FindMinRating, FindMaxRating)
 		: string.Empty;
 	public string FindDateLabel => HasFindDate
-		? $"{FindStart:yyyy-MM-dd} – {FindEnd:yyyy-MM-dd}"
+		? QueryChipFormat.Date (FindStart, FindEnd)
 		: string.Empty;
 	public string FindRollLabel => HasFindRoll
-		? string.Format (Strings.ImportRoll + " {0}", string.Join (", ", findRollIds))
+		? QueryChipFormat.Roll (string.Join (", ", findRollIds))
 		: string.Empty;
+	public bool ShowQueryBarNoMatches => ShowNoMatches && HasLibraryFilter;
+	public bool ShowFindBarNoMatches => ShowNoMatches && IsFindBarVisible;
 	public ObservableCollection<TagNode> FindTags { get; } = [];
 	public bool ShowEmptyLibrary =>
 		database is not null && IsBrowsing && catalogPhotos.Count == 0
@@ -218,6 +249,9 @@ public partial class MainWindowViewModel : ObservableObject
 		_ => Strings.Tags
 	};
 	public string ZoomLabel => $"{(int)Zoom} px";
+	public double TileSize => Zoom;
+	public double FilmstripPaneHeight => Zoom + 24;
+	public PrintPageSetup PageSetup { get; private set; } = PrintPageSetup.Letter;
 	public string CountText =>
 		SelectedPhoto is null
 			? string.Empty
@@ -229,8 +263,8 @@ public partial class MainWindowViewModel : ObservableObject
 			return;
 
 		ReloadTags ();
-		ReloadFolders ();
 		ReloadPhotos ();
+		ReloadFolders ();
 	}
 
 	void ReloadTags ()
@@ -268,7 +302,7 @@ public partial class MainWindowViewModel : ObservableObject
 		var selected = SelectedFolder?.Uri;
 		Folders.Clear ();
 		foreach (var node in FolderTree.Build (database.Photos.ListFolderCounts ()))
-			Folders.Add (new FolderNode (node, true));
+			Folders.Add (new FolderNode (node, true, catalogPhotos.Count));
 
 		SelectedFolder = selected is null ? null : FindFolderNode (Folders, selected);
 	}
@@ -391,6 +425,8 @@ public partial class MainWindowViewModel : ObservableObject
 		UpdateStatus ();
 		OnPropertyChanged (nameof (ShowEmptyLibrary));
 		OnPropertyChanged (nameof (ShowNoMatches));
+		OnPropertyChanged (nameof (ShowQueryBarNoMatches));
+		OnPropertyChanged (nameof (ShowFindBarNoMatches));
 		OnPropertyChanged (nameof (ShowPhotoGrid));
 		ClearVisibleFiltersCommand.NotifyCanExecuteChanged ();
 		NotifyFindTerms ();
@@ -410,6 +446,8 @@ public partial class MainWindowViewModel : ObservableObject
 				&& bucket.Start >= rangeStart && bucket.Start < rangeEnd;
 		}
 	}
+
+	internal int CatalogCount => catalogPhotos.Count;
 
 	internal void SeedCatalog (params IPhoto[] photos)
 	{
@@ -431,6 +469,8 @@ public partial class MainWindowViewModel : ObservableObject
 		OnPropertyChanged (nameof (FindRollLabel));
 		OnPropertyChanged (nameof (ShowEmptyLibrary));
 		OnPropertyChanged (nameof (ShowNoMatches));
+		OnPropertyChanged (nameof (ShowQueryBarNoMatches));
+		OnPropertyChanged (nameof (ShowFindBarNoMatches));
 		OnPropertyChanged (nameof (ShowPhotoGrid));
 		ClearVisibleFiltersCommand.NotifyCanExecuteChanged ();
 		ClearLibraryFiltersCommand.NotifyCanExecuteChanged ();
@@ -442,7 +482,7 @@ public partial class MainWindowViewModel : ObservableObject
 			await thumbnailLoad.CancelAsync ();
 		thumbnailLoad = new CancellationTokenSource ();
 		var token = thumbnailLoad.Token;
-		int size = (int)Zoom;
+		int size = HiDpi.PixelSize (Zoom, UiScale);
 
 		try {
 			foreach (var item in Photos.ToArray ()) {
@@ -499,18 +539,73 @@ public partial class MainWindowViewModel : ObservableObject
 		if (selected > 0)
 			text += string.Format (Strings.XSelected, selected);
 		StatusText = text;
-		WindowTitle = $"F-Spot — {string.Format (shown <= 1 ? Strings.XPhoto : Strings.XPhotos, shown)}";
+		WindowTitle = $"{Strings.FSpot} — {string.Format (shown <= 1 ? Strings.XPhoto : Strings.XPhotos, shown)}";
 	}
 
-	async Task UpdateHistogramAsync (PhotoItemViewModel item)
+	void RequestHistogram (PhotoItemViewModel? item)
 	{
+		int generation = ++histogramGeneration;
+		if (item is null) {
+			Histogram = null;
+			return;
+		}
+		_ = UpdateHistogramAsync (item, generation);
+	}
+
+	async Task UpdateHistogramAsync (PhotoItemViewModel item, int generation)
+	{
+		var context = SynchronizationContext.Current;
+		Bitmap? loaded = null;
 		try {
-			var source = item.Thumbnail ?? await thumbnails.LoadAsync (item.Path, 256, CancellationToken.None);
-			Histogram = HistogramRenderer.FromBitmap (source);
+			var source = item.Thumbnail;
+			if (source is null) {
+				loaded = await thumbnails.LoadAsync (item.Path, 256, CancellationToken.None).ConfigureAwait (false);
+				source = loaded;
+			}
+			if (!HistogramStillCurrent (generation, item))
+				return;
+			void Apply ()
+			{
+				if (!HistogramStillCurrent (generation, item))
+					return;
+				try {
+					Histogram = HistogramRenderer.FromBitmap (source, UiScale);
+				} catch (Exception ex) {
+					if (!HistogramStillCurrent (generation, item))
+						return;
+					Logger.Log.Debug (ex, "Failed to build histogram for {Path}", item.Path);
+					Histogram = null;
+				}
+			}
+			if (context is null || SynchronizationContext.Current == context)
+				Apply ();
+			else
+				context.Post (_ => Apply (), null);
 		} catch (Exception ex) {
+			if (!HistogramStillCurrent (generation, item))
+				return;
 			Logger.Log.Debug (ex, "Failed to build histogram for {Path}", item.Path);
 			Histogram = null;
+		} finally {
+			if (context is null || SynchronizationContext.Current == context)
+				loaded?.Dispose ();
+			else {
+				var bitmap = loaded;
+				context.Post (_ => bitmap?.Dispose (), null);
+			}
 		}
+	}
+
+	bool HistogramStillCurrent (int generation, PhotoItemViewModel item)
+		=> generation == histogramGeneration && ReferenceEquals (item, SelectedPhoto);
+
+	public void SelectFromFilmstrip (PhotoItemViewModel? item)
+		=> SelectPhoto (item);
+
+	bool EditorEnabled (string id)
+	{
+		var row = Extensions.FirstOrDefault (addin => addin.Id == id);
+		return row is not null ? row.Enabled : AddinCatalog.IsEnabled (id);
 	}
 
 	IReadOnlyList<PhotoItemViewModel> MutationItems ()
@@ -535,6 +630,14 @@ public partial class MainWindowViewModel : ObservableObject
 		DeleteFromDriveCommand.NotifyCanExecuteChanged ();
 		RotateLeftCommand.NotifyCanExecuteChanged ();
 		RotateRightCommand.NotifyCanExecuteChanged ();
+		CreateVersionCommand.NotifyCanExecuteChanged ();
+		DeleteVersionCommand.NotifyCanExecuteChanged ();
+		RenameVersionCommand.NotifyCanExecuteChanged ();
+		DetachVersionCommand.NotifyCanExecuteChanged ();
+		AdjustTimeCommand.NotifyCanExecuteChanged ();
+		RefreshThumbnailCommand.NotifyCanExecuteChanged ();
+		CopyCommand.NotifyCanExecuteChanged ();
+		SetAsBackgroundCommand.NotifyCanExecuteChanged ();
 	}
 
 	void NotifyViewLayout ()
@@ -546,6 +649,8 @@ public partial class MainWindowViewModel : ObservableObject
 		OnPropertyChanged (nameof (ShowTagBar));
 		OnPropertyChanged (nameof (ShowEmptyLibrary));
 		OnPropertyChanged (nameof (ShowNoMatches));
+		OnPropertyChanged (nameof (ShowQueryBarNoMatches));
+		OnPropertyChanged (nameof (ShowFindBarNoMatches));
 		OnPropertyChanged (nameof (ShowPhotoGrid));
 		OnPropertyChanged (nameof (VisibleEditors));
 		OnPropertyChanged (nameof (ShowLoupe));
@@ -583,10 +688,10 @@ public partial class MainWindowViewModel : ObservableObject
 	{
 		if (value is null) {
 			Info.Clear ();
-			Histogram = null;
+			RequestHistogram (null);
 		} else {
 			Info.Update (value.Photo);
-			_ = UpdateHistogramAsync (value);
+			RequestHistogram (value);
 		}
 
 		UpdatePreview ();
@@ -620,6 +725,8 @@ public partial class MainWindowViewModel : ObservableObject
 		OnPropertyChanged (nameof (HasLibraryFilter));
 		OnPropertyChanged (nameof (ShowEmptyLibrary));
 		OnPropertyChanged (nameof (ShowNoMatches));
+		OnPropertyChanged (nameof (ShowQueryBarNoMatches));
+		OnPropertyChanged (nameof (ShowFindBarNoMatches));
 		OnPropertyChanged (nameof (ShowPhotoGrid));
 		ClearTagFilterCommand.NotifyCanExecuteChanged ();
 		ClearFolderFilterCommand.NotifyCanExecuteChanged ();
@@ -639,6 +746,9 @@ public partial class MainWindowViewModel : ObservableObject
 	partial void OnFindTextChanged (string value)
 		=> ApplyLocalFilters ();
 
+	partial void OnIsFindBarVisibleChanged (bool value)
+		=> OnPropertyChanged (nameof (ShowFindBarNoMatches));
+
 	partial void OnSelectedTimelineChanged (TimelineBucket? value)
 	{
 		HighlightTimelineRange ();
@@ -654,8 +764,16 @@ public partial class MainWindowViewModel : ObservableObject
 	partial void OnZoomChanged (double value)
 	{
 		OnPropertyChanged (nameof (ZoomLabel));
+		OnPropertyChanged (nameof (TileSize));
+		OnPropertyChanged (nameof (FilmstripPaneHeight));
 		_ = LoadThumbnailsAsync ();
 	}
+
+	partial void OnUiScaleChanged (double value)
+		=> _ = LoadThumbnailsAsync ();
+
+	internal Task ReloadThumbnailsAsync ()
+		=> LoadThumbnailsAsync ();
 
 	[RelayCommand]
 	void Browse ()
@@ -756,7 +874,7 @@ public partial class MainWindowViewModel : ObservableObject
 		SelectedPhoto = Photos.FirstOrDefault (item => item.Selected);
 		if (SelectedPhoto is null) {
 			Info.Clear ();
-			Histogram = null;
+			RequestHistogram (null);
 			UpdatePreview ();
 		}
 
@@ -1150,6 +1268,41 @@ public partial class MainWindowViewModel : ObservableObject
 		PhotoFileActions.CopyToFolder (paths, folder);
 	}
 
+	[RelayCommand (CanExecute = nameof (CanMutateSelection))]
+	async Task CopyAsync ()
+	{
+		var paths = PhotoFileActions.SelectedPaths (MutationItems ().Select (item => item.Photo));
+		if (paths.Count == 0) {
+			await shell.ShowWarningAsync (Strings.Copy, Strings.NoSelectionAvailable);
+			return;
+		}
+		await shell.CopyPhotosAsync (paths);
+	}
+
+	[RelayCommand]
+	async Task PageSetupAsync ()
+	{
+		var setup = await shell.PromptPageSetupAsync (PageSetup);
+		if (setup is null)
+			return;
+		PageSetup = setup;
+	}
+
+	[RelayCommand (CanExecute = nameof (CanMutateSelection))]
+	async Task SetAsBackgroundAsync ()
+	{
+		var paths = PhotoFileActions.SelectedPaths (MutationItems ().Select (item => item.Photo));
+		if (paths.Count == 0) {
+			await shell.ShowWarningAsync (Strings.SetAsBackground, Strings.NoSelectionAvailable);
+			return;
+		}
+		await shell.SetDesktopBackgroundAsync (paths[0]);
+	}
+
+	[RelayCommand]
+	Task ShowToolsAsync ()
+		=> ShowExtensionsAsync ();
+
 	[RelayCommand]
 	async Task PrintAsync ()
 	{
@@ -1158,7 +1311,7 @@ public partial class MainWindowViewModel : ObservableObject
 			await shell.ShowWarningAsync (Strings.Print, Strings.NoSelectionAvailable);
 			return;
 		}
-		await shell.PrintPhotosAsync (paths);
+		await shell.PrintPhotosAsync (paths, PageSetup);
 	}
 
 	[RelayCommand]
@@ -1219,38 +1372,55 @@ public partial class MainWindowViewModel : ObservableObject
 		ReloadTags ();
 	}
 
-	[RelayCommand (CanExecute = nameof (CanEditTag))]
-	async Task EditTagAsync ()
+	[RelayCommand (CanExecute = nameof (CanTargetTag))]
+	async Task EditTagAsync (TagNode? node)
 	{
-		if (database is null || SelectedTag is null)
+		var target = node ?? SelectedTag;
+		if (database is null || target is null)
 			return;
 
-		string? name = await shell.PromptAsync (Strings.EditTag, Strings.NameColon, SelectedTag.Tag.Name);
-		if (string.IsNullOrWhiteSpace (name) || name == SelectedTag.Tag.Name)
+		string? name = await shell.PromptAsync (Strings.EditTag, Strings.NameColon, target.Tag.Name);
+		if (string.IsNullOrWhiteSpace (name) || name == target.Tag.Name)
 			return;
 
-		SelectedTag.Tag.Name = name.Trim ();
-		database.Tags.Commit (SelectedTag.Tag, true);
+		target.Tag.Name = name.Trim ();
+		database.Tags.Commit (target.Tag, true);
 		ReloadTags ();
 	}
 
-	bool CanEditTag ()
-		=> SelectedTag is not null;
+	bool CanTargetTag (TagNode? node)
+		=> (node ?? SelectedTag) is not null;
 
-	[RelayCommand (CanExecute = nameof (CanEditTag))]
-	async Task DeleteTagAsync ()
+	[RelayCommand (CanExecute = nameof (CanTargetTag))]
+	async Task DeleteTagAsync (TagNode? node)
 	{
-		if (database is null || SelectedTag is null)
+		var target = node ?? SelectedTag;
+		if (target is null)
+			return;
+
+		if (TagDelete.HasChildren (target.Tag)) {
+			await shell.ShowWarningAsync (TagDelete.BlockedHeading, TagDelete.BlockedMessage (target.Tag));
+			return;
+		}
+
+		if (database is null)
 			return;
 
 		if (!await shell.ConfirmAsync (
-				string.Format (Strings.DeleteTagXQuestion, SelectedTag.Tag.Name),
-				Strings.ThisRemovesTheTagFromTheCatalogAndFromAnyPhotosThatUseIt,
+				TagDelete.ConfirmHeading (target.Tag),
+				TagDelete.ConfirmBody (0),
 				Strings.Delete))
 			return;
 
-		database.Tags.Remove (SelectedTag.Tag);
-		SelectedTag = null;
+		try {
+			database.Photos.Remove (new List<Tag> { target.Tag });
+		} catch (InvalidTagOperationException ex) {
+			await shell.ShowWarningAsync (TagDelete.BlockedHeading, TagDelete.BlockedMessage (ex.Tag ?? target.Tag));
+			return;
+		}
+
+		if (SelectedTag?.Tag.Id == target.Tag.Id)
+			SelectedTag = null;
 		ReloadTags ();
 		ReloadPhotos ();
 	}
@@ -1301,17 +1471,19 @@ public partial class MainWindowViewModel : ObservableObject
 	}
 
 	[RelayCommand (CanExecute = nameof (CanAttachTag))]
-	void AttachTag ()
+	void AttachTag (TagNode? node)
 	{
-		if (SelectedTag is null)
+		var target = node ?? SelectedTag;
+		if (target is null)
 			return;
-		AttachTagToItems (SelectedTag.Tag, Photos.Where (photo => photo.Selected).ToList ());
+		AttachTagToItems (target.Tag, Photos.Where (photo => photo.Selected).ToList ());
 	}
 
 	[RelayCommand (CanExecute = nameof (CanAttachTag))]
-	void RemoveTag ()
+	void RemoveTag (TagNode? node)
 	{
-		if (database is null || SelectedTag is null)
+		var target = node ?? SelectedTag;
+		if (database is null || target is null)
 			return;
 
 		var photos = SelectedCatalogPhotos ().ToArray ();
@@ -1319,13 +1491,13 @@ public partial class MainWindowViewModel : ObservableObject
 			return;
 
 		foreach (var photo in photos)
-			photo.RemoveTag (SelectedTag.Tag);
+			photo.RemoveTag (target.Tag);
 		database.Photos.Commit (photos);
 		RefreshSelectedCaptions (photos);
 	}
 
-	bool CanAttachTag ()
-		=> SelectedTag is not null && SelectedCatalogPhotos ().Any ();
+	bool CanAttachTag (TagNode? node)
+		=> (node ?? SelectedTag) is not null && SelectedCatalogPhotos ().Any ();
 
 	[RelayCommand (CanExecute = nameof (CanMutateSelection))]
 	async Task RemoveFromCatalogAsync ()
@@ -1423,7 +1595,7 @@ public partial class MainWindowViewModel : ObservableObject
 		if (SelectedPhoto is not null) {
 			Info.Update (SelectedPhoto.Photo);
 			UpdatePreview ();
-			_ = UpdateHistogramAsync (SelectedPhoto);
+			RequestHistogram (SelectedPhoto);
 		}
 
 		_ = LoadThumbnailsAsync ();
@@ -1453,8 +1625,241 @@ public partial class MainWindowViewModel : ObservableObject
 		SelectedPhoto.RefreshFromPhoto ();
 		Info.Update (photo);
 		UpdatePreview ();
-		_ = UpdateHistogramAsync (SelectedPhoto);
+		RequestHistogram (SelectedPhoto);
 		_ = LoadThumbnailsAsync ();
+	}
+
+	[RelayCommand (CanExecute = nameof (CanMutateSelection))]
+	async Task CreateVersionAsync ()
+	{
+		if (SelectedCatalogPhotos ().FirstOrDefault () is not Photo photo)
+			return;
+		string? name = await shell.PromptAsync (Strings.CreateNewVersion, Strings.NameOfNewTagColon, string.Empty);
+		if (string.IsNullOrWhiteSpace (name))
+			return;
+		try {
+			PhotoVersionWorkflow.Create (photo, name, p => database?.Photos.Commit (p));
+			RefreshEditedSelection ();
+		} catch (Exception ex) {
+			await shell.ShowWarningAsync (Strings.CreateNewVersion, ex.Message);
+		}
+	}
+
+	[RelayCommand (CanExecute = nameof (CanMutateSelection))]
+	async Task DeleteVersionAsync ()
+	{
+		if (SelectedCatalogPhotos ().FirstOrDefault () is not Photo photo)
+			return;
+		if (!await shell.ConfirmAsync (string.Format (Strings.ReallyDeleteVersionXQuestion, photo.DefaultVersion.Name),
+				Strings.ThisRemovesTheVersionAndDeletesTheFileFromDisk, Strings.Delete))
+			return;
+		try {
+			PhotoVersionWorkflow.Delete (photo, p => database?.Photos.Commit (p));
+			RefreshEditedSelection ();
+		} catch (Exception ex) {
+			await shell.ShowWarningAsync (Strings.DeleteVersion, ex.Message);
+		}
+	}
+
+	[RelayCommand (CanExecute = nameof (CanMutateSelection))]
+	async Task RenameVersionAsync ()
+	{
+		if (SelectedCatalogPhotos ().FirstOrDefault () is not Photo photo)
+			return;
+		string? name = await shell.PromptAsync (Strings.RenameVersion, Strings.NameOfNewTagColon, photo.DefaultVersion.Name);
+		if (string.IsNullOrWhiteSpace (name))
+			return;
+		try {
+			PhotoVersionWorkflow.Rename (photo, name, p => database?.Photos.Commit (p));
+			RefreshEditedSelection ();
+		} catch (Exception ex) {
+			await shell.ShowWarningAsync (Strings.RenameVersion, ex.Message);
+		}
+	}
+
+	[RelayCommand (CanExecute = nameof (CanMutateSelection))]
+	async Task DetachVersionAsync ()
+	{
+		if (SelectedCatalogPhotos ().FirstOrDefault () is not Photo photo || database is null)
+			return;
+		if (!await shell.ConfirmAsync (string.Format (Strings.ReallyDetachVersionXFromY, photo.DefaultVersion.Name, photo.Name),
+				Strings.ThisMakesTheVersionAppearAsASeparatePhotoInLibraryToUndoDragNewPhotoBackToParent, Strings.DetachMnemonic))
+			return;
+		try {
+			PhotoVersionWorkflow.Detach (photo, p => database.Photos.CreateFrom (p, true, p.RollId),
+				photos => database.Photos.Commit (photos.ToArray ()));
+			ReloadPhotos ();
+		} catch (Exception ex) {
+			await shell.ShowWarningAsync (Strings.DetachVersion, ex.Message);
+		}
+	}
+
+	[RelayCommand (CanExecute = nameof (CanMutateSelection))]
+	async Task AdjustTimeAsync ()
+	{
+		var hours = await shell.PromptHoursOffsetAsync ();
+		if (hours is null)
+			return;
+		var offset = TimeSpan.FromHours (hours.Value);
+		foreach (var photo in SelectedCatalogPhotos ())
+			PhotoTimeAdjust.Shift (photo, offset, p => database?.Photos.Commit (p));
+		RefreshEditedSelection ();
+	}
+
+	[RelayCommand (CanExecute = nameof (CanMutateSelection))]
+	void RefreshThumbnail ()
+	{
+		IThumbnailService? thumbs = null;
+		try {
+			thumbs = TinyIoCContainer.Current.Resolve<IThumbnailService> ();
+		} catch (Exception) {
+			// tests and hosts without a container still rebuild the preview
+		}
+		if (thumbs is not null) {
+			foreach (var photo in MutationItems ().Select (item => item.Photo))
+				ThumbnailRefresh.Invalidate (thumbs, photo);
+		}
+		RefreshEditedSelection ();
+	}
+
+	[RelayCommand]
+	async Task ShowPreferencesAsync ()
+	{
+		await shell.ShowPreferencesAsync ();
+		DisplaySidebar = LibraryPreferences.ShowSidebar;
+		DisplayTimeline = LibraryPreferences.ShowTimeline;
+		DisplayFilmstrip = LibraryPreferences.ShowFilmstrip;
+		ViewerInterpolation = LibraryPreferences.ViewerInterpolation;
+	}
+
+	[RelayCommand]
+	async Task ShowExtensionsAsync ()
+	{
+		if (Extensions.Count == 0) {
+			foreach (var editor in PhotoEditorCatalog.All)
+				Extensions.Add (new AddinStatus (editor.Id, editor.Label, AddinCatalog.IsEnabled (editor.Id)));
+		}
+		await shell.ShowExtensionsAsync (Extensions);
+		OnPropertyChanged (nameof (VisibleEditors));
+	}
+
+	[RelayCommand]
+	void HelpContents ()
+		=> shell.OpenUri (FSpot.HelpContents.Current);
+
+	[RelayCommand]
+	async Task ImportFromCameraAsync ()
+	{
+		if (DeviceImport.Cameras ().Count == 0) {
+			await shell.ShowWarningAsync (Strings.ImportFromCamera, DeviceImport.EmptyMessage);
+			return;
+		}
+		await ImportAsync ();
+	}
+
+	[RelayCommand]
+	void RenameTag (TagNode? node)
+	{
+		if (node is null || database is null)
+			return;
+		_ = RenameTagAsync (node);
+	}
+
+	async Task RenameTagAsync (TagNode node)
+	{
+		string? name = await shell.PromptAsync (Strings.EditTag, Strings.NameOfNewTagColon, node.Name);
+		if (string.IsNullOrWhiteSpace (name) || database is null)
+			return;
+		node.Tag.Name = name;
+		database.Tags.Commit (node.Tag);
+		ReloadTags ();
+	}
+
+	[RelayCommand]
+	void ReparentTag ((TagNode Child, TagNode Parent)? move)
+	{
+		if (move is null)
+			return;
+		var parent = move.Value.Parent.Tag as Category ?? move.Value.Parent.Tag.Category;
+		if (!TagReparent.Move (move.Value.Child.Tag, parent))
+			return;
+		database?.Tags.Commit (move.Value.Child.Tag);
+		if (database is not null)
+			ReloadTags ();
+	}
+
+	[RelayCommand]
+	void BeginRenameTag (TagNode? node)
+	{
+		if (node is null)
+			return;
+		SelectedTag = node;
+		foreach (var tag in FlattenTags (Tags))
+			tag.IsRenaming = false;
+		node.IsRenaming = true;
+	}
+
+	[RelayCommand]
+	void CommitRenameTag (TagNode? node)
+	{
+		if (node is null || string.IsNullOrWhiteSpace (node.Name))
+			return;
+		node.Tag.Name = node.Name;
+		node.IsRenaming = false;
+		database?.Tags.Commit (node.Tag);
+	}
+
+	static IEnumerable<TagNode> FlattenTags (IEnumerable<TagNode> nodes)
+	{
+		foreach (var node in nodes) {
+			yield return node;
+			foreach (var child in FlattenTags (node.Children))
+				yield return child;
+		}
+	}
+
+	[RelayCommand]
+	void ToggleInfoField (string? field)
+	{
+		switch (field) {
+		case "Date":
+			InfoVisibility.Date = !InfoVisibility.Date;
+			break;
+		case "Size":
+			InfoVisibility.Size = !InfoVisibility.Size;
+			break;
+		case "Exposure":
+			InfoVisibility.Exposure = !InfoVisibility.Exposure;
+			break;
+		case "FocalLength":
+			InfoVisibility.FocalLength = !InfoVisibility.FocalLength;
+			break;
+		case "Camera":
+			InfoVisibility.Camera = !InfoVisibility.Camera;
+			break;
+		case "Creator":
+			InfoVisibility.Creator = !InfoVisibility.Creator;
+			break;
+		case "Rating":
+			InfoVisibility.Rating = !InfoVisibility.Rating;
+			break;
+		default:
+			return;
+		}
+		InfoVisibility.Save ();
+		OnPropertyChanged (nameof (InfoVisibility));
+	}
+
+	public void PanPreviewBy (double dx, double dy)
+	{
+		PreviewPanX += dx;
+		PreviewPanY += dy;
+	}
+
+	[RelayCommand]
+	void ZoomPreview (double factor)
+	{
+		PreviewZoom = Math.Clamp (PreviewZoom * factor, 0.25, 8);
 	}
 
 	void ApplyRating (uint rating)

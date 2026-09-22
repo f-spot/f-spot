@@ -4264,5 +4264,605 @@ namespace FSpot.Resources.Lang {
                 return ResourceManager.GetString("Loupe", resourceCulture);
             }
         }
+
+        public static string AdjustTime {
+            get {
+                return ResourceManager.GetString("AdjustTime", resourceCulture);
+            }
+        }
+
+        public static string AdjustTime2 {
+            get {
+                return ResourceManager.GetString("AdjustTime2", resourceCulture);
+            }
+        }
+
+        public static string Contents {
+            get {
+                return ResourceManager.GetString("Contents", resourceCulture);
+            }
+        }
+
+        public static string ManageExtensions {
+            get {
+                return ResourceManager.GetString("ManageExtensions", resourceCulture);
+            }
+        }
+
+        public static string Preferences {
+            get {
+                return ResourceManager.GetString("Preferences", resourceCulture);
+            }
+        }
+
+        public static string RefreshThumbnail {
+            get {
+                return ResourceManager.GetString("RefreshThumbnail", resourceCulture);
+            }
+        }
+
+        public static string ImportFromCamera {
+            get {
+                return ResourceManager.GetString("ImportFromCamera", resourceCulture);
+            }
+        }
+
+        public static string HoursOffset {
+            get {
+                return ResourceManager.GetString("HoursOffset", resourceCulture);
+            }
+        }
+
+        public static string HideSidebar {
+            get {
+                return ResourceManager.GetString("HideSidebar", resourceCulture);
+            }
+        }
+
+        public static string DeleteVersion {
+            get {
+                return ResourceManager.GetString("DeleteVersion", resourceCulture);
+            }
+        }
+
+        public static string DetachVersion {
+            get {
+                return ResourceManager.GetString("DetachVersion", resourceCulture);
+            }
+        }
+
+        public static string Close {
+            get {
+                return ResourceManager.GetString("Close", resourceCulture);
+            }
+        }
+
+        public static string Sidebar {
+            get {
+                return ResourceManager.GetString("Sidebar", resourceCulture);
+            }
+        }
+
+        public static string Timeline {
+            get {
+                return ResourceManager.GetString("Timeline", resourceCulture);
+            }
+        }
+
+        public static string Filmstrip {
+            get {
+                return ResourceManager.GetString("Filmstrip", resourceCulture);
+            }
+        }
+
+        public static string CopyFilesToThePhotosFolder {
+            get {
+                return ResourceManager.GetString("CopyFilesToThePhotosFolder", resourceCulture);
+            }
+        }
+
+        public static string InterpolateImageOnZoom {
+            get {
+                return ResourceManager.GetString("InterpolateImageOnZoom", resourceCulture);
+            }
+        }
+
+        public static string RatingRangeChip {
+            get {
+                return ResourceManager.GetString("RatingRangeChip", resourceCulture);
+            }
+        }
+
+        public static string DateRangeChip {
+            get {
+                return ResourceManager.GetString("DateRangeChip", resourceCulture);
+            }
+        }
+
+        public static string ImportRollChip {
+            get {
+                return ResourceManager.GetString("ImportRollChip", resourceCulture);
+            }
+        }
+
+        public static string TimelineMonthCount {
+            get {
+                return ResourceManager.GetString("TimelineMonthCount", resourceCulture);
+            }
+        }
+
+        public static string AboutFSpot {
+            get {
+                return ResourceManager.GetString("AboutFSpot", resourceCulture);
+            }
+        }
+
+        public static string MatchAllTags {
+            get {
+                return ResourceManager.GetString("MatchAllTags", resourceCulture);
+            }
+        }
+
+        public static string AttachTagsPlaceholder {
+            get {
+                return ResourceManager.GetString("AttachTagsPlaceholder", resourceCulture);
+            }
+        }
+
+        public static string FSpotHomeUrl {
+            get {
+                return ResourceManager.GetString("FSpotHomeUrl", resourceCulture);
+            }
+        }
+
+        public static string RemoveFilter {
+            get {
+                return ResourceManager.GetString("RemoveFilter", resourceCulture);
+            }
+        }
+
+        public static string SelectAll {
+            get {
+                return ResourceManager.GetString("SelectAll", resourceCulture);
+            }
+        }
+
+        public static string SelectNone {
+            get {
+                return ResourceManager.GetString("SelectNone", resourceCulture);
+            }
+        }
+
+        public static string InvertSelection {
+            get {
+                return ResourceManager.GetString("InvertSelection", resourceCulture);
+            }
+        }
+
+        public static string Quit {
+            get {
+                return ResourceManager.GetString("Quit", resourceCulture);
+            }
+        }
+
+        public static string ZoomIn {
+            get {
+                return ResourceManager.GetString("ZoomIn", resourceCulture);
+            }
+        }
+
+        public static string ZoomOut {
+            get {
+                return ResourceManager.GetString("ZoomOut", resourceCulture);
+            }
+        }
+
+        public static string ExportToFolder {
+            get {
+                return ResourceManager.GetString("ExportToFolder", resourceCulture);
+            }
+        }
+
+        public static string ByRating {
+            get {
+                return ResourceManager.GetString("ByRating", resourceCulture);
+            }
+        }
+
+        public static string ByDate {
+            get {
+                return ResourceManager.GetString("ByDate", resourceCulture);
+            }
+        }
+
+        public static string ByImportRoll {
+            get {
+                return ResourceManager.GetString("ByImportRoll", resourceCulture);
+            }
+        }
+
+        public static string ReverseOrder {
+            get {
+                return ResourceManager.GetString("ReverseOrder", resourceCulture);
+            }
+        }
+
+        public static string DeleteFromDrive {
+            get {
+                return ResourceManager.GetString("DeleteFromDrive", resourceCulture);
+            }
+        }
+
+        public static string RemoveFromCatalog {
+            get {
+                return ResourceManager.GetString("RemoveFromCatalog", resourceCulture);
+            }
+        }
+
+        public static string SendByMail {
+            get {
+                return ResourceManager.GetString("SendByMail", resourceCulture);
+            }
+        }
+
+        public static string DetectDuplicates {
+            get {
+                return ResourceManager.GetString("DetectDuplicates", resourceCulture);
+            }
+        }
+
+        public static string IncludeSubfolders {
+            get {
+                return ResourceManager.GetString("IncludeSubfolders", resourceCulture);
+            }
+        }
+
+        public static string AttachTags {
+            get {
+                return ResourceManager.GetString("AttachTags", resourceCulture);
+            }
+        }
+
+        public static string Copy {
+            get {
+                return ResourceManager.GetString("Copy", resourceCulture);
+            }
+        }
+
+        public static string View {
+            get {
+                return ResourceManager.GetString("View", resourceCulture);
+            }
+        }
+
+        public static string Help {
+            get {
+                return ResourceManager.GetString("Help", resourceCulture);
+            }
+        }
+
+        public static string Tools {
+            get {
+                return ResourceManager.GetString("Tools", resourceCulture);
+            }
+        }
+
+        public static string Preview {
+            get {
+                return ResourceManager.GetString("Preview", resourceCulture);
+            }
+        }
+
+        public static string Photo3 {
+            get {
+                return ResourceManager.GetString("Photo3", resourceCulture);
+            }
+        }
+
+        public static string Edit2 {
+            get {
+                return ResourceManager.GetString("Edit2", resourceCulture);
+            }
+        }
+
+        public static string View2 {
+            get {
+                return ResourceManager.GetString("View2", resourceCulture);
+            }
+        }
+
+        public static string Find3 {
+            get {
+                return ResourceManager.GetString("Find3", resourceCulture);
+            }
+        }
+
+        public static string Tags3 {
+            get {
+                return ResourceManager.GetString("Tags3", resourceCulture);
+            }
+        }
+
+        public static string Import2 {
+            get {
+                return ResourceManager.GetString("Import2", resourceCulture);
+            }
+        }
+
+        public static string Print2 {
+            get {
+                return ResourceManager.GetString("Print2", resourceCulture);
+            }
+        }
+
+        public static string PageSetup2 {
+            get {
+                return ResourceManager.GetString("PageSetup2", resourceCulture);
+            }
+        }
+
+        public static string PageSetupPaperPrompt {
+            get {
+                return ResourceManager.GetString("PageSetupPaperPrompt", resourceCulture);
+            }
+        }
+
+        public static string PageSetupOrientationPrompt {
+            get {
+                return ResourceManager.GetString("PageSetupOrientationPrompt", resourceCulture);
+            }
+        }
+
+        public static string Slideshow2 {
+            get {
+                return ResourceManager.GetString("Slideshow2", resourceCulture);
+            }
+        }
+
+        public static string Fullscreen2 {
+            get {
+                return ResourceManager.GetString("Fullscreen2", resourceCulture);
+            }
+        }
+
+        public static string CreateNewTag2 {
+            get {
+                return ResourceManager.GetString("CreateNewTag2", resourceCulture);
+            }
+        }
+
+        public static string EditTag2 {
+            get {
+                return ResourceManager.GetString("EditTag2", resourceCulture);
+            }
+        }
+
+        public static string AttachTagToSelection2 {
+            get {
+                return ResourceManager.GetString("AttachTagToSelection2", resourceCulture);
+            }
+        }
+
+        public static string RemoveTagFromSelection2 {
+            get {
+                return ResourceManager.GetString("RemoveTagFromSelection2", resourceCulture);
+            }
+        }
+
+        public static string CopyFilesToThePhotosFolder2 {
+            get {
+                return ResourceManager.GetString("CopyFilesToThePhotosFolder2", resourceCulture);
+            }
+        }
+
+        public static string DetectDuplicates2 {
+            get {
+                return ResourceManager.GetString("DetectDuplicates2", resourceCulture);
+            }
+        }
+
+        public static string IncludeSubfolders2 {
+            get {
+                return ResourceManager.GetString("IncludeSubfolders2", resourceCulture);
+            }
+        }
+
+        public static string ImportFrom2 {
+            get {
+                return ResourceManager.GetString("ImportFrom2", resourceCulture);
+            }
+        }
+
+        public static string Ok {
+            get {
+                return ResourceManager.GetString("Ok", resourceCulture);
+            }
+        }
+
+        public static string MergeRawAndJpegOnImport {
+            get {
+                return ResourceManager.GetString("MergeRawAndJpegOnImport", resourceCulture);
+            }
+        }
+
+        public static string RatingRangePrompt {
+            get {
+                return ResourceManager.GetString("RatingRangePrompt", resourceCulture);
+            }
+        }
+
+        public static string CloseFind {
+            get {
+                return ResourceManager.GetString("CloseFind", resourceCulture);
+            }
+        }
+
+        public static string ResizeSidebar {
+            get {
+                return ResourceManager.GetString("ResizeSidebar", resourceCulture);
+            }
+        }
+
+        public static string ThumbnailSize {
+            get {
+                return ResourceManager.GetString("ThumbnailSize", resourceCulture);
+            }
+        }
+
+        public static string MainMenu {
+            get {
+                return ResourceManager.GetString("MainMenu", resourceCulture);
+            }
+        }
+
+        public static string StatusBarLabel {
+            get {
+                return ResourceManager.GetString("StatusBarLabel", resourceCulture);
+            }
+        }
+
+        public static string PhotoTags {
+            get {
+                return ResourceManager.GetString("PhotoTags", resourceCulture);
+            }
+        }
+
+        public static string WarningAboutRemovingOriginals {
+            get {
+                return ResourceManager.GetString("WarningAboutRemovingOriginals", resourceCulture);
+            }
+        }
+
+        public static string PhotosToImport {
+            get {
+                return ResourceManager.GetString("PhotosToImport", resourceCulture);
+            }
+        }
+
+        public static string ImportPreview {
+            get {
+                return ResourceManager.GetString("ImportPreview", resourceCulture);
+            }
+        }
+
+        public static string ImportProgress {
+            get {
+                return ResourceManager.GetString("ImportProgress", resourceCulture);
+            }
+        }
+
+        public static string Tags2 {
+            get {
+                return ResourceManager.GetString("Tags2", resourceCulture);
+            }
+        }
+
+        public static string Toolbar2 {
+            get {
+                return ResourceManager.GetString("Toolbar2", resourceCulture);
+            }
+        }
+
+        public static string AttachTag {
+            get {
+                return ResourceManager.GetString("AttachTag", resourceCulture);
+            }
+        }
+
+        public static string RemoveTag {
+            get {
+                return ResourceManager.GetString("RemoveTag", resourceCulture);
+            }
+        }
+
+        public static string DeleteSelectedTag {
+            get {
+                return ResourceManager.GetString("DeleteSelectedTag", resourceCulture);
+            }
+        }
+
+        public static string ThumbnailElements {
+            get {
+                return ResourceManager.GetString("ThumbnailElements", resourceCulture);
+            }
+        }
+
+        public static string Components {
+            get {
+                return ResourceManager.GetString("Components", resourceCulture);
+            }
+        }
+
+        public static string Dates {
+            get {
+                return ResourceManager.GetString("Dates", resourceCulture);
+            }
+        }
+
+        public static string Ratings {
+            get {
+                return ResourceManager.GetString("Ratings", resourceCulture);
+            }
+        }
+
+        public static string Red {
+            get {
+                return ResourceManager.GetString("Red", resourceCulture);
+            }
+        }
+
+        public static string Green {
+            get {
+                return ResourceManager.GetString("Green", resourceCulture);
+            }
+        }
+
+        public static string Blue {
+            get {
+                return ResourceManager.GetString("Blue", resourceCulture);
+            }
+        }
+
+        public static string FSpot {
+            get {
+                return ResourceManager.GetString("FSpot", resourceCulture);
+            }
+        }
+
+        public static string ImportFrom {
+            get {
+                return ResourceManager.GetString("ImportFrom", resourceCulture);
+            }
+        }
+
+        public static string RemoveOriginalFilesAfterImport {
+            get {
+                return ResourceManager.GetString("RemoveOriginalFilesAfterImport", resourceCulture);
+            }
+        }
+
+        public static string VersionX {
+            get {
+                return ResourceManager.GetString("VersionX", resourceCulture);
+            }
+        }
+
+        public static string AvaloniaAboutDescription {
+            get {
+                return ResourceManager.GetString("AvaloniaAboutDescription", resourceCulture);
+            }
+        }
+
+        public static string DateRangePrompt {
+            get {
+                return ResourceManager.GetString("DateRangePrompt", resourceCulture);
+            }
+        }
+
+        public static string RollIdPrompt {
+            get {
+                return ResourceManager.GetString("RollIdPrompt", resourceCulture);
+            }
+        }
     }
 }

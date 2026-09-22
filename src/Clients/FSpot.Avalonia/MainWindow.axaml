@@ -8,15 +8,16 @@
         xmlns:editors="using:FSpot.Editors"
         xmlns:auto="using:FSpot.Avalonia"
         xmlns:lang="using:FSpot.Resources.Lang"
+        xmlns:av="using:Avalonia.Controls"
         x:Class="FSpot.Avalonia.MainWindow"
         x:DataType="vm:MainWindowViewModel"
-        Icon="/Icons/f-spot-32.png"
+        Icon="{x:Static auto:ChromeIcons.WindowIcon}"
         Title="{Binding WindowTitle}"
         Width="1100"
         Height="720"
         WindowStartupLocation="CenterScreen"
         AutomationProperties.AutomationId="{x:Static auto:AutomationIds.MainWindow}"
-        AutomationProperties.Name="F-Spot">
+        AutomationProperties.Name="{x:Static lang:Strings.FSpot}">
 	<Window.KeyBindings>
 		<KeyBinding Gesture="Escape" Command="{Binding HideFindCommand}" />
 		<KeyBinding Gesture="Delete" Command="{Binding RemoveFromCatalogCommand}" />
@@ -24,132 +25,140 @@
 		<KeyBinding Gesture="Right" Command="{Binding NextCommand}" />
 		<KeyBinding Gesture="F9" Command="{Binding ToggleSidebarCommand}" />
 		<KeyBinding Gesture="F5" Command="{Binding SlideshowCommand}" />
+		<KeyBinding Gesture="F1" Command="{Binding HelpContentsCommand}" />
 	</Window.KeyBindings>
 	<NativeMenu.Menu>
 		<NativeMenu>
-			<NativeMenuItem Header="_Photo">
+			<NativeMenuItem Header="{x:Static lang:Strings.Photo3}">
 				<NativeMenuItem.Menu>
 					<NativeMenu>
-						<NativeMenuItem Header="_Import..." Gesture="Ctrl+N" Command="{Binding ImportCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.Import2}" Gesture="Ctrl+N" Command="{Binding ImportCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.ImportFromCamera}" Command="{Binding ImportFromCameraCommand}" />
 						<NativeMenuItemSeparator />
-						<NativeMenuItem Header="_Version" IsEnabled="False" />
-						<NativeMenuItem Header="Create _New Version..." Command="{Binding NotYetCommand}" />
-						<NativeMenuItem Header="_Delete Version" Command="{Binding NotYetCommand}" />
-						<NativeMenuItem Header="_Rename Version" Command="{Binding NotYetCommand}" />
-						<NativeMenuItem Header="De_tach Version" Command="{Binding NotYetCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.Version}" IsEnabled="False" />
+						<NativeMenuItem Header="{x:Static lang:Strings.CreateNewVersion}" Command="{Binding CreateVersionCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.DeleteVersion}" Command="{Binding DeleteVersionCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.RenameVersion}" Command="{Binding RenameVersionCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.DetachVersion}" Command="{Binding DetachVersionCommand}" />
 						<NativeMenuItemSeparator />
-						<NativeMenuItem Header="_Export to Folder..." Command="{Binding ExportCommand}" />
-						<NativeMenuItem Header="Print" Gesture="Ctrl+P" Command="{Binding PrintCommand}" />
-						<NativeMenuItem Header="Page Set_up..." Command="{Binding NotYetCommand}" />
-						<NativeMenuItem Header="Send by _Mail..." Command="{Binding MailCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.ExportToFolder}" Command="{Binding ExportCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.Print2}" Gesture="Ctrl+P" Command="{Binding PrintCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.PageSetup2}" Command="{Binding PageSetupCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.SendByMail}" Command="{Binding MailCommand}" />
 						<NativeMenuItemSeparator />
-						<NativeMenuItem Header="_Close" Gesture="Ctrl+W" Command="{Binding QuitCommand}" />
-						<NativeMenuItem Header="_Quit" Gesture="Ctrl+Q" Command="{Binding QuitCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.Close}" Gesture="Ctrl+W" Command="{Binding QuitCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.Quit}" Gesture="Ctrl+Q" Command="{Binding QuitCommand}" />
 					</NativeMenu>
 				</NativeMenuItem.Menu>
 			</NativeMenuItem>
-			<NativeMenuItem Header="_Edit">
+			<NativeMenuItem Header="{x:Static lang:Strings.Edit2}">
 				<NativeMenuItem.Menu>
 					<NativeMenu>
-						<NativeMenuItem Header="Copy" Gesture="Ctrl+C" Command="{Binding NotYetCommand}" />
-						<NativeMenuItem Header="Select _All" Gesture="Ctrl+A" Command="{Binding SelectAllCommand}" />
-						<NativeMenuItem Header="Select _None" Gesture="Ctrl+Shift+A" Command="{Binding SelectNoneCommand}" />
-						<NativeMenuItem Header="_Invert Selection" Gesture="Ctrl+I" Command="{Binding SelectInvertCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.Copy}" Gesture="Ctrl+C" Command="{Binding CopyCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.SelectAll}" Gesture="Ctrl+A" Command="{Binding SelectAllCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.SelectNone}" Gesture="Ctrl+Shift+A" Command="{Binding SelectNoneCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.InvertSelection}" Gesture="Ctrl+I" Command="{Binding SelectInvertCommand}" />
 						<NativeMenuItemSeparator />
 						<NativeMenuItem Header="{x:Static lang:Strings.RotateLeftMnemonic}" Command="{Binding RotateLeftCommand}" />
 						<NativeMenuItem Header="{x:Static lang:Strings.RotateRightMnemonic}" Command="{Binding RotateRightCommand}" />
 						<NativeMenuItemSeparator />
 						<NativeMenuItem Header="{x:Static lang:Strings.Sharpen}" Command="{Binding SharpenCommand}" />
-						<NativeMenuItem Header="Adjust _Time..." Command="{Binding NotYetCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.AdjustTime2}" Command="{Binding AdjustTimeCommand}" />
 						<NativeMenuItemSeparator />
-						<NativeMenuItem Header="Re_fresh Thumbnail" Command="{Binding NotYetCommand}" />
-						<NativeMenuItem Header="_Delete From Drive" Command="{Binding DeleteFromDriveCommand}" />
-						<NativeMenuItem Header="_Remove From Catalog" Command="{Binding RemoveFromCatalogCommand}" />
-						<NativeMenuItem Header="Set as _Background" Command="{Binding NotYetCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.RefreshThumbnail}" Command="{Binding RefreshThumbnailCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.DeleteFromDrive}" Command="{Binding DeleteFromDriveCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.RemoveFromCatalog}" Command="{Binding RemoveFromCatalogCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.SetAsBackground}" Command="{Binding SetAsBackgroundCommand}" />
 						<NativeMenuItemSeparator />
-						<NativeMenuItem Header="_Attach Tag" Command="{Binding AttachTagCommand}" />
-						<NativeMenuItem Header="Rem_ove Tag" Command="{Binding RemoveTagCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.AttachTag}" Command="{Binding AttachTagCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.RemoveTag}" Command="{Binding RemoveTagCommand}" />
 						<NativeMenuItemSeparator />
-						<NativeMenuItem Header="Preferences" Command="{Binding NotYetCommand}" />
-						<NativeMenuItem Header="Manage _Extensions" Command="{Binding NotYetCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.Preferences}" Command="{Binding ShowPreferencesCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.ManageExtensions}" Command="{Binding ShowExtensionsCommand}" />
 					</NativeMenu>
 				</NativeMenuItem.Menu>
 			</NativeMenuItem>
-			<NativeMenuItem Header="_View">
+			<NativeMenuItem Header="{x:Static lang:Strings.View2}">
 				<NativeMenuItem.Menu>
 					<NativeMenu>
-						<NativeMenuItem Header="_Slideshow" Gesture="F5" Command="{Binding SlideshowCommand}" />
-						<NativeMenuItem Header="_Fullscreen" Gesture="F11" Command="{Binding ToggleFullscreenCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.Slideshow2}" Gesture="F5" Command="{Binding SlideshowCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.Fullscreen2}" Gesture="F11" Command="{Binding ToggleFullscreenCommand}" />
 						<NativeMenuItemSeparator />
-						<NativeMenuItem Header="Thumbnail _elements">
+						<NativeMenuItem Header="{x:Static lang:Strings.ThumbnailElements}">
 							<NativeMenuItem.Menu>
 								<NativeMenu>
-									<NativeMenuItem Header="_Dates" ToggleType="CheckBox" IsChecked="{Binding DisplayDates}" />
-									<NativeMenuItem Header="T_ags" ToggleType="CheckBox" IsChecked="{Binding DisplayTags}" />
-									<NativeMenuItem Header="_Ratings" ToggleType="CheckBox" IsChecked="{Binding DisplayRatings}" />
+									<NativeMenuItem Header="{x:Static lang:Strings.Dates}" ToggleType="CheckBox" IsChecked="{Binding DisplayDates}" />
+									<NativeMenuItem Header="{x:Static lang:Strings.Tags2}" ToggleType="CheckBox" IsChecked="{Binding DisplayTags}" />
+									<NativeMenuItem Header="{x:Static lang:Strings.Ratings}" ToggleType="CheckBox" IsChecked="{Binding DisplayRatings}" />
 								</NativeMenu>
 							</NativeMenuItem.Menu>
 						</NativeMenuItem>
-						<NativeMenuItem Header="_Components">
+						<NativeMenuItem Header="{x:Static lang:Strings.Components}">
 							<NativeMenuItem.Menu>
 								<NativeMenu>
-									<NativeMenuItem Header="Side_bar" ToggleType="CheckBox"
+									<NativeMenuItem Header="{x:Static lang:Strings.Sidebar}" ToggleType="CheckBox"
 									                IsChecked="{Binding DisplaySidebar, Mode=OneWay}"
 									                Command="{Binding ToggleSidebarCommand}"
 									                Gesture="F9" />
-									<NativeMenuItem Header="_Timeline" ToggleType="CheckBox" IsChecked="{Binding DisplayTimeline}" />
-									<NativeMenuItem Header="_Filmstrip" ToggleType="CheckBox" IsChecked="{Binding DisplayFilmstrip}" />
-									<NativeMenuItem Header="Too_lbar" ToggleType="CheckBox" IsChecked="{Binding DisplayToolbar}" />
+									<NativeMenuItem Header="{x:Static lang:Strings.Timeline}" ToggleType="CheckBox" IsChecked="{Binding DisplayTimeline}" />
+									<NativeMenuItem Header="{x:Static lang:Strings.Filmstrip}" ToggleType="CheckBox" IsChecked="{Binding DisplayFilmstrip}" />
+									<NativeMenuItem Header="{x:Static lang:Strings.Toolbar2}" ToggleType="CheckBox" IsChecked="{Binding DisplayToolbar}" />
 								</NativeMenu>
 							</NativeMenuItem.Menu>
 						</NativeMenuItem>
 						<NativeMenuItemSeparator />
-						<NativeMenuItem Header="Zoom _in" Gesture="Ctrl+OemPlus" Command="{Binding ZoomInCommand}" />
-						<NativeMenuItem Header="Zoom _out" Gesture="Ctrl+OemMinus" Command="{Binding ZoomOutCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.ZoomIn}" Gesture="Ctrl+OemPlus" Command="{Binding ZoomInCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.ZoomOut}" Gesture="Ctrl+OemMinus" Command="{Binding ZoomOutCommand}" />
 						<NativeMenuItem Header="{x:Static lang:Strings.Loupe}" ToggleType="CheckBox"
 						                IsChecked="{Binding IsLoupeVisible, Mode=OneWay}"
 						                Command="{Binding ToggleLoupeCommand}"
 						                Gesture="V" />
 						<NativeMenuItemSeparator />
-						<NativeMenuItem Header="_Reverse Order" ToggleType="CheckBox" IsChecked="{Binding ReverseOrder}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.ReverseOrder}" ToggleType="CheckBox" IsChecked="{Binding ReverseOrder}" />
 					</NativeMenu>
 				</NativeMenuItem.Menu>
 			</NativeMenuItem>
-			<NativeMenuItem Header="Fin_d">
+			<NativeMenuItem Header="{x:Static lang:Strings.Find3}">
 				<NativeMenuItem.Menu>
 					<NativeMenu>
-						<NativeMenuItem Header="Find" Gesture="Ctrl+F" Command="{Binding ShowFindCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.Find}" Gesture="Ctrl+F" Command="{Binding ShowFindCommand}" />
 						<NativeMenuItemSeparator />
-						<NativeMenuItem Header="By _Rating" Command="{Binding FindByRatingCommand}" />
-						<NativeMenuItem Header="By _Date" Command="{Binding FindByDateCommand}" />
-						<NativeMenuItem Header="By _Import Roll" Command="{Binding FindByImportRollCommand}" />
-						<NativeMenuItem Header="Match _All Tags" ToggleType="CheckBox"
+						<NativeMenuItem Header="{x:Static lang:Strings.ByRating}" Command="{Binding FindByRatingCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.ByDate}" Command="{Binding FindByDateCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.ByImportRoll}" Command="{Binding FindByImportRollCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.MatchAllTags}" ToggleType="CheckBox"
 						                IsChecked="{Binding FindMatchAllTags, Mode=OneWay}"
 						                Command="{Binding ToggleFindMatchAllTagsCommand}" />
 						<NativeMenuItemSeparator />
-						<NativeMenuItem Header="_Untagged Photos" ToggleType="CheckBox" IsChecked="{Binding FindUntagged}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.UntaggedPhotos}" ToggleType="CheckBox" IsChecked="{Binding FindUntagged}" />
 					</NativeMenu>
 				</NativeMenuItem.Menu>
 			</NativeMenuItem>
-			<NativeMenuItem Header="_Tags">
+			<NativeMenuItem Header="{x:Static lang:Strings.Tags3}">
 				<NativeMenuItem.Menu>
 					<NativeMenu>
-						<NativeMenuItem Header="Create New _Tag..." Command="{Binding CreateTagCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.CreateNewTag2}" Command="{Binding CreateTagCommand}" />
 						<NativeMenuItemSeparator />
-						<NativeMenuItem Header="_Edit Tag..." Command="{Binding EditTagCommand}" />
-						<NativeMenuItem Header="_Delete Selected Tag" Command="{Binding DeleteTagCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.EditTag}" Command="{Binding EditTagCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.DeleteSelectedTag}" Command="{Binding DeleteTagCommand}" />
 						<NativeMenuItemSeparator />
-						<NativeMenuItem Header="_Attach Tag to Selection" Gesture="Ctrl+T" Command="{Binding AttachTagCommand}" />
-						<NativeMenuItem Header="_Remove Tag From Selection" Command="{Binding RemoveTagCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.AttachTagToSelection2}" Gesture="Ctrl+T" Command="{Binding AttachTagCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.RemoveTagFromSelection2}" Command="{Binding RemoveTagCommand}" />
 					</NativeMenu>
 				</NativeMenuItem.Menu>
 			</NativeMenuItem>
-			<NativeMenuItem Header="_Tools" IsEnabled="False" />
-			<NativeMenuItem Header="_Help">
+			<NativeMenuItem Header="{x:Static lang:Strings.Tools}">
 				<NativeMenuItem.Menu>
 					<NativeMenu>
-						<NativeMenuItem Header="_Contents" Gesture="F1" Command="{Binding NotYetCommand}" />
-						<NativeMenuItem Header="About" Command="{Binding AboutCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.ManageExtensions}" Command="{Binding ShowToolsCommand}" />
+					</NativeMenu>
+				</NativeMenuItem.Menu>
+			</NativeMenuItem>
+			<NativeMenuItem Header="{x:Static lang:Strings.Help}">
+				<NativeMenuItem.Menu>
+					<NativeMenu>
+						<NativeMenuItem Header="{x:Static lang:Strings.Contents}" Gesture="F1" Command="{Binding HelpContentsCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.AboutFSpot}" Command="{Binding AboutCommand}" />
 					</NativeMenu>
 				</NativeMenuItem.Menu>
 			</NativeMenuItem>
@@ -158,7 +167,7 @@
 
 	<DockPanel>
 		<NativeMenuBar DockPanel.Dock="Top"
-		               AutomationProperties.Name="Main menu" />
+		               AutomationProperties.Name="{x:Static lang:Strings.MainMenu}" />
 
 		<Border DockPanel.Dock="Top"
 		        Padding="6,4"
@@ -238,8 +247,11 @@
 		</Border>
 
 		<Grid DockPanel.Dock="Top" IsVisible="{Binding IsFindBarVisible}" Margin="8,4" ColumnDefinitions="Auto,*,Auto"
+		      DragDrop.AllowDrop="True"
+		      DragDrop.DragOver="OnFindBarDragOver"
+		      DragDrop.Drop="OnFindBarDrop"
 		      AutomationProperties.AutomationId="{x:Static auto:AutomationIds.FindBar}"
-		      AutomationProperties.Name="Find">
+		      AutomationProperties.Name="{x:Static lang:Strings.Find}">
 			<Label Content="{x:Static lang:Strings.FindColon}" Target="{Binding #FindBox}" VerticalAlignment="Center" Margin="0,0,8,0" />
 			<TextBox x:Name="FindBox"
 			         Grid.Column="1"
@@ -249,12 +261,17 @@
 			         AutomationProperties.Name="{x:Static lang:Strings.Find}" />
 			<Button Grid.Column="2" Content="×" Command="{Binding HideFindCommand}" Margin="8,0,0,0"
 			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.FindClose}"
-			        AutomationProperties.Name="Close find" />
+			        AutomationProperties.Name="{x:Static lang:Strings.CloseFind}" />
+			<TextBlock Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,36,0"
+			           IsVisible="{Binding ShowFindBarNoMatches}"
+			           Text="{x:Static lang:Strings.NoMatchingPhotosFound}"
+			           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.FindBarNoMatches}"
+			           AutomationProperties.Name="{x:Static lang:Strings.NoMatchingPhotosFound}" />
 		</Grid>
 
 		<Grid DockPanel.Dock="Bottom" Margin="8,4" ColumnDefinitions="Auto,*,Auto"
 		      AutomationProperties.AutomationId="{x:Static auto:AutomationIds.StatusBar}"
-		      AutomationProperties.Name="Status">
+		      AutomationProperties.Name="{x:Static lang:Strings.StatusBarLabel}">
 			<StackPanel Orientation="Horizontal" Spacing="6" VerticalAlignment="Center">
 				<svg:Svg Width="16" Height="16" Path="avares://FSpot.Avalonia/Icons/view-far-22.svg" />
 				<Slider Width="140"
@@ -263,7 +280,7 @@
 				        Value="{Binding Zoom}"
 				        VerticalAlignment="Center"
 				        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ZoomSlider}"
-				        AutomationProperties.Name="Thumbnail size" />
+				        AutomationProperties.Name="{x:Static lang:Strings.ThumbnailSize}" />
 				<svg:Svg Width="16" Height="16" Path="avares://FSpot.Avalonia/Icons/view-near-22.svg" />
 			</StackPanel>
 			<TextBlock Grid.Column="1" Margin="12,0" VerticalAlignment="Center" Text="{Binding StatusText}"
@@ -277,8 +294,10 @@
 
 		<Grid ColumnDefinitions="Auto,Auto,*">
 			<DockPanel Width="200" MinWidth="200" IsVisible="{Binding DisplaySidebar}"
+			           KeyboardNavigation.TabIndex="1"
+			           FlowDirection="{Binding $parent[Window].FlowDirection}"
 			           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.Sidebar}"
-			           AutomationProperties.Name="Sidebar">
+			           AutomationProperties.Name="{x:Static lang:Strings.Sidebar}">
 				<Grid DockPanel.Dock="Top" ColumnDefinitions="*,Auto" Margin="2,2,2,0">
 					<Button Classes="sidebar-chooser"
 					        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SidebarChooser}"
@@ -318,9 +337,9 @@
 							<TextBlock Grid.Column="2" Text="▾" Margin="6,0,0,0" Opacity="0.65" VerticalAlignment="Center" />
 						</Grid>
 					</Button>
-					<Button Grid.Column="1" Classes="sidebar-close" ToolTip.Tip="Hide sidebar" Command="{Binding HideSidebarCommand}" Content="×"
+					<Button Grid.Column="1" Classes="sidebar-close" ToolTip.Tip="{x:Static lang:Strings.HideSidebar}" Command="{Binding HideSidebarCommand}" Content="×"
 					        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SidebarClose}"
-					        AutomationProperties.Name="Hide sidebar" />
+					        AutomationProperties.Name="{x:Static lang:Strings.HideSidebar}" />
 				</Grid>
 				<StackPanel DockPanel.Dock="Bottom" IsVisible="{Binding ShowInfoBox}" Margin="2"
 				            HorizontalAlignment="Stretch">
@@ -336,6 +355,25 @@
 				          IsExpanded="True"
 				          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SidebarInfo}"
 				          AutomationProperties.Name="{x:Static lang:Strings.ImageInformation}">
+					<Expander.ContextMenu>
+						<ContextMenu>
+							<MenuItem Header="{x:Static lang:Strings.Date}"
+							          Command="{Binding ToggleInfoFieldCommand}" CommandParameter="Date"
+							          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.InfoShowDate}" />
+							<MenuItem Header="{x:Static lang:Strings.Size}"
+							          Command="{Binding ToggleInfoFieldCommand}" CommandParameter="Size" />
+							<MenuItem Header="{x:Static lang:Strings.Exposure}"
+							          Command="{Binding ToggleInfoFieldCommand}" CommandParameter="Exposure" />
+							<MenuItem Header="{x:Static lang:Strings.FocalLength}"
+							          Command="{Binding ToggleInfoFieldCommand}" CommandParameter="FocalLength" />
+							<MenuItem Header="{x:Static lang:Strings.Camera}"
+							          Command="{Binding ToggleInfoFieldCommand}" CommandParameter="Camera" />
+							<MenuItem Header="{x:Static lang:Strings.Creator}"
+							          Command="{Binding ToggleInfoFieldCommand}" CommandParameter="Creator" />
+							<MenuItem Header="{x:Static lang:Strings.Rating}"
+							          Command="{Binding ToggleInfoFieldCommand}" CommandParameter="Rating" />
+						</ContextMenu>
+					</Expander.ContextMenu>
 					<Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" Margin="2,4">
 						<TextBlock Grid.Row="0" Classes="info-label" Text="{x:Static lang:Strings.Name}" />
 						<TextBlock Grid.Row="0" Grid.Column="1" Classes="info-value" Text="{Binding Info.Name}"
@@ -346,30 +384,56 @@
 						          SelectedItem="{Binding Info.SelectedVersion}"
 						          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SidebarInfoVersion}"
 						          AutomationProperties.Name="{x:Static lang:Strings.Version}" />
-						<TextBlock Grid.Row="2" Classes="info-label" Text="{x:Static lang:Strings.Date}" />
-						<TextBlock Grid.Row="2" Grid.Column="1" Classes="info-value" Text="{Binding Info.Date}" TextWrapping="Wrap"
+						<TextBlock Grid.Row="2" Classes="info-label" Text="{x:Static lang:Strings.Date}"
+						           IsVisible="{Binding InfoVisibility.Date}" />
+						<TextBlock Grid.Row="2" Grid.Column="1" Classes="info-value info-date" Text="{Binding Info.Date}"
+						           TextWrapping="Wrap"
+						           IsVisible="{Binding InfoVisibility.Date}"
 						           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SidebarInfoDate}" />
-						<TextBlock Grid.Row="3" Classes="info-label" Text="{x:Static lang:Strings.Size}" />
+						<TextBlock Grid.Row="3" Classes="info-label" Text="{x:Static lang:Strings.Size}"
+						           IsVisible="{Binding InfoVisibility.Size}" />
 						<TextBlock Grid.Row="3" Grid.Column="1" Classes="info-value" Text="{Binding Info.Size}"
+						           IsVisible="{Binding InfoVisibility.Size}"
 						           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SidebarInfoSize}" />
-						<TextBlock Grid.Row="4" Classes="info-label" Text="{x:Static lang:Strings.Exposure}" />
+						<TextBlock Grid.Row="4" Classes="info-label" Text="{x:Static lang:Strings.Exposure}"
+						           IsVisible="{Binding InfoVisibility.Exposure}" />
 						<TextBlock Grid.Row="4" Grid.Column="1" Classes="info-value" Text="{Binding Info.Exposure}"
+						           IsVisible="{Binding InfoVisibility.Exposure}"
 						           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SidebarInfoExposure}" />
-						<TextBlock Grid.Row="5" Classes="info-label" Text="{x:Static lang:Strings.FocalLength}" />
+						<TextBlock Grid.Row="5" Classes="info-label" Text="{x:Static lang:Strings.FocalLength}"
+						           IsVisible="{Binding InfoVisibility.FocalLength}" />
 						<TextBlock Grid.Row="5" Grid.Column="1" Classes="info-value" Text="{Binding Info.FocalLength}"
+						           IsVisible="{Binding InfoVisibility.FocalLength}"
 						           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SidebarInfoFocalLength}" />
-						<TextBlock Grid.Row="6" Classes="info-label" Text="{x:Static lang:Strings.Camera}" />
+						<TextBlock Grid.Row="6" Classes="info-label" Text="{x:Static lang:Strings.Camera}"
+						           IsVisible="{Binding InfoVisibility.Camera}" />
 						<TextBlock Grid.Row="6" Grid.Column="1" Classes="info-value" Text="{Binding Info.Camera}"
+						           IsVisible="{Binding InfoVisibility.Camera}"
 						           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SidebarInfoCamera}" />
-						<TextBlock Grid.Row="7" Classes="info-label" Text="{x:Static lang:Strings.Creator}" />
+						<TextBlock Grid.Row="7" Classes="info-label" Text="{x:Static lang:Strings.Creator}"
+						           IsVisible="{Binding InfoVisibility.Creator}" />
 						<TextBlock Grid.Row="7" Grid.Column="1" Classes="info-value" Text="{Binding Info.Creator}"
+						           IsVisible="{Binding InfoVisibility.Creator}"
 						           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SidebarInfoCreator}" />
-						<TextBlock Grid.Row="8" Classes="info-label" Text="{x:Static lang:Strings.Rating}" />
-						<ComboBox Grid.Row="8" Grid.Column="1" FontSize="11"
-						          ItemsSource="{Binding Info.RatingChoices}"
-						          SelectedItem="{Binding Info.RatingValue}"
-						          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SidebarInfoRating}"
-						          AutomationProperties.Name="{x:Static lang:Strings.Rating}" />
+						<TextBlock Grid.Row="8" Classes="info-label" Text="{x:Static lang:Strings.Rating}"
+						           IsVisible="{Binding InfoVisibility.Rating}" />
+						<ItemsControl Grid.Row="8" Grid.Column="1" ItemsSource="{Binding Info.StarButtons}"
+						              IsVisible="{Binding InfoVisibility.Rating}"
+						              AutomationProperties.AutomationId="{x:Static auto:AutomationIds.InfoStars}"
+						              AutomationProperties.Name="{x:Static lang:Strings.Rating}">
+							<ItemsControl.ItemsPanel>
+								<ItemsPanelTemplate>
+									<StackPanel Orientation="Horizontal" Spacing="0" />
+								</ItemsPanelTemplate>
+							</ItemsControl.ItemsPanel>
+							<ItemsControl.ItemTemplate>
+								<DataTemplate x:DataType="vm:InfoStar">
+									<Button Classes="star" Padding="0" FontSize="16" Content="{Binding Glyph}"
+									        Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).Info.SetStarCommand}"
+									        CommandParameter="{Binding Value}" />
+								</DataTemplate>
+							</ItemsControl.ItemTemplate>
+						</ItemsControl>
 					</Grid>
 				</Expander>
 				</StackPanel>
@@ -379,6 +443,7 @@
 				<Panel>
 				<TreeView Classes="sidebar"
 				          ScrollViewer.VerticalScrollBarVisibility="Disabled"
+				          SelectionMode="Multiple"
 				          IsVisible="{Binding IsTagsPage}"
 				          ItemsSource="{Binding Tags}"
 				          SelectedItem="{Binding SelectedTag, Mode=OneWay}"
@@ -400,15 +465,20 @@
 								<StackPanel.ContextMenu>
 									<ContextMenu>
 										<MenuItem Header="{x:Static lang:Strings.FindColon}" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).ActivateTagCommand}" CommandParameter="{Binding}" />
-										<MenuItem Header="{x:Static lang:Strings.AttachTagToSelection}" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).AttachTagCommand}" />
-										<MenuItem Header="{x:Static lang:Strings.RemoveTagFromSelection}" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).RemoveTagCommand}" />
+										<MenuItem Header="{x:Static lang:Strings.AttachTagToSelection}" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).AttachTagCommand}" CommandParameter="{Binding}" />
+										<MenuItem Header="{x:Static lang:Strings.RemoveTagFromSelection}" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).RemoveTagCommand}" CommandParameter="{Binding}" />
 										<Separator />
-										<MenuItem Header="{x:Static lang:Strings.EditTag}" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).EditTagCommand}" />
-										<MenuItem Header="{x:Static lang:Strings.DeleteTag}" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).DeleteTagCommand}" />
+										<MenuItem Header="{x:Static lang:Strings.EditTag}" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).BeginRenameTagCommand}" CommandParameter="{Binding}" />
+										<MenuItem Header="{x:Static lang:Strings.DeleteTag}" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).DeleteTagCommand}" CommandParameter="{Binding}" />
 									</ContextMenu>
 								</StackPanel.ContextMenu>
-								<svg:Svg Width="16" Height="16" Path="avares://FSpot.Avalonia/Icons/tag-16.svg" />
-								<TextBlock Text="{Binding Name}" VerticalAlignment="Center" />
+								<controls:ChromeIcon Width="16" Height="16" Uri="{Binding IconPath}" />
+								<TextBlock Text="{Binding Name}" VerticalAlignment="Center"
+								           IsVisible="{Binding !IsRenaming}" />
+								<TextBox Text="{Binding Name}" Width="120"
+								         IsVisible="{Binding IsRenaming}"
+								         LostFocus="OnTagRenameLostFocus"
+								         KeyDown="OnTagRenameKeyDown" />
 							</StackPanel>
 						</TreeDataTemplate>
 					</TreeView.ItemTemplate>
@@ -427,6 +497,7 @@
 							      Background="Transparent"
 							      Tapped="OnFolderNodeTapped"
 							      DoubleTapped="OnFolderNodeDoubleTapped"
+							      PointerPressed="OnFolderPointerPressed"
 							      AutomationProperties.AutomationId="{Binding AutomationId}"
 							      AutomationProperties.Name="{Binding Name}">
 								<Grid.ContextMenu>
@@ -439,7 +510,13 @@
 								           FontWeight="Bold" IsVisible="{Binding IsRoot}" />
 								<TextBlock Grid.Column="1" Text="{Binding Name}" VerticalAlignment="Center"
 								           IsVisible="{Binding !IsRoot}" />
-								<TextBlock Grid.Column="2" Classes="folder-count" Text="{Binding Count}" />
+								<Border Grid.Column="2" Width="48" Height="8" Margin="6,0,0,0" CornerRadius="2"
+								        Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+								        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.FolderShare}"
+								        AutomationProperties.Name="{Binding Count}">
+									<Border Width="{Binding ShareWidth}"
+									        Height="8" HorizontalAlignment="Left" Background="{DynamicResource SystemAccentColor}" />
+								</Border>
 							</Grid>
 						</TreeDataTemplate>
 					</TreeView.ItemTemplate>
@@ -458,9 +535,9 @@
 							        AutomationProperties.AutomationId="{Binding Id, StringFormat=Main.Sidebar.Edit.{0}}"
 							        AutomationProperties.Name="{Binding Label}">
 								<StackPanel Orientation="Horizontal" Spacing="8">
-									<svg:Svg Width="22" Height="22"
-									         Path="{Binding IconName, Converter={x:Static auto:EditorIcons.Uri}}"
-									         IsVisible="{Binding IconName, Converter={x:Static auto:EditorIcons.IsAvailable}}" />
+									<controls:ChromeIcon Width="22" Height="22"
+									                     Uri="{Binding IconName, Converter={x:Static auto:EditorIcons.Uri}}"
+									                     IsVisible="{Binding IconName, Converter={x:Static auto:EditorIcons.IsAvailable}}" />
 									<TextBlock Text="{Binding Label}" VerticalAlignment="Center" />
 								</StackPanel>
 							</Button>
@@ -505,13 +582,13 @@
 					<StackPanel Spacing="6" IsVisible="{Binding ShowBwSettings}">
 						<Slider Minimum="0" Maximum="100" Value="{Binding EditorSession.Context.BwRed}"
 						        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.EditorBwRed}"
-						        AutomationProperties.Name="Red" />
+						        AutomationProperties.Name="{x:Static lang:Strings.Red}" />
 						<Slider Minimum="0" Maximum="100" Value="{Binding EditorSession.Context.BwGreen}"
 						        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.EditorBwGreen}"
-						        AutomationProperties.Name="Green" />
+						        AutomationProperties.Name="{x:Static lang:Strings.Green}" />
 						<Slider Minimum="0" Maximum="100" Value="{Binding EditorSession.Context.BwBlue}"
 						        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.EditorBwBlue}"
-						        AutomationProperties.Name="Blue" />
+						        AutomationProperties.Name="{x:Static lang:Strings.Blue}" />
 					</StackPanel>
 					<NumericUpDown IsVisible="{Binding ShowResizeSettings}"
 					               Minimum="128"
@@ -558,22 +635,27 @@
 
 			<GridSplitter Grid.Column="1" Width="4" ResizeDirection="Columns"
 			              IsVisible="{Binding DisplaySidebar}"
-			              AutomationProperties.Name="Resize sidebar" />
+			              AutomationProperties.Name="{x:Static lang:Strings.ResizeSidebar}" />
 
 			<DockPanel Grid.Column="2">
 				<Border DockPanel.Dock="Top" Classes="query-bar" IsVisible="{Binding HasLibraryFilter}"
 				        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.QueryBar}"
-				        AutomationProperties.Name="Find">
+				        AutomationProperties.Name="{x:Static lang:Strings.Find}">
 					<Grid ColumnDefinitions="Auto,*,Auto">
 						<TextBlock Text="{x:Static lang:Strings.FindColon}" VerticalAlignment="Center" Margin="0,0,8,0" FontSize="12" />
 						<StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="6">
+							<TextBlock IsVisible="{Binding ShowQueryBarNoMatches}"
+							           Text="{x:Static lang:Strings.NoMatchingPhotosFound}"
+							           VerticalAlignment="Center" FontSize="12" FontWeight="SemiBold"
+							           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.QueryNoMatches}"
+							           AutomationProperties.Name="{x:Static lang:Strings.NoMatchingPhotosFound}" />
 							<Border Classes="query-chip" IsVisible="{Binding FindUntagged}"
 							        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.QueryUntagged}"
 							        AutomationProperties.Name="{x:Static lang:Strings.UntaggedPhotos}">
 								<StackPanel Orientation="Horizontal" Spacing="4">
 									<TextBlock Text="{x:Static lang:Strings.UntaggedPhotos}" VerticalAlignment="Center" FontSize="12" />
 									<Button Classes="chip-close" Content="×" Command="{Binding ClearUntaggedCommand}"
-									        AutomationProperties.Name="Remove untagged filter" />
+									        AutomationProperties.Name="{x:Static lang:Strings.RemoveFilter}" />
 								</StackPanel>
 							</Border>
 							<Border Classes="query-chip" IsVisible="{Binding HasFindRating}"
@@ -583,7 +665,7 @@
 									<TextBlock Text="{Binding FindRatingLabel}" VerticalAlignment="Center" FontSize="12" />
 									<Button Classes="chip-close" Content="×" Command="{Binding DismissFindRatingCommand}"
 									        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.QueryClearRating}"
-									        AutomationProperties.Name="Remove rating filter" />
+									        AutomationProperties.Name="{x:Static lang:Strings.RemoveFilter}" />
 								</StackPanel>
 							</Border>
 							<Border Classes="query-chip" IsVisible="{Binding HasFindDate}"
@@ -593,7 +675,7 @@
 									<TextBlock Text="{Binding FindDateLabel}" VerticalAlignment="Center" FontSize="12" />
 									<Button Classes="chip-close" Content="×" Command="{Binding DismissFindDateCommand}"
 									        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.QueryClearDate}"
-									        AutomationProperties.Name="Remove date filter" />
+									        AutomationProperties.Name="{x:Static lang:Strings.RemoveFilter}" />
 								</StackPanel>
 							</Border>
 							<Border Classes="query-chip" IsVisible="{Binding HasFindRoll}"
@@ -603,35 +685,35 @@
 									<TextBlock Text="{Binding FindRollLabel}" VerticalAlignment="Center" FontSize="12" />
 									<Button Classes="chip-close" Content="×" Command="{Binding DismissFindRollCommand}"
 									        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.QueryClearRoll}"
-									        AutomationProperties.Name="Remove import roll filter" />
+									        AutomationProperties.Name="{x:Static lang:Strings.RemoveFilter}" />
 								</StackPanel>
 							</Border>
 							<Border Classes="query-chip" IsVisible="{Binding ActiveTagFilter, Converter={x:Static converters:ObjectConverters.IsNotNull}}"
 							        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.QueryTagChip}"
-							        AutomationProperties.Name="{Binding ActiveTagFilter.Name, FallbackValue='Tag'}">
+							        AutomationProperties.Name="{Binding ActiveTagFilter.Name, FallbackValue={x:Static lang:Strings.Tags}}">
 								<StackPanel Orientation="Horizontal" Spacing="4">
 									<svg:Svg Width="14" Height="14" Path="avares://FSpot.Avalonia/Icons/tag-16.svg" />
 									<TextBlock Text="{Binding ActiveTagFilter.Name, FallbackValue=''}" VerticalAlignment="Center" FontSize="12" />
 									<Button Classes="chip-close" Content="×" Command="{Binding ClearTagFilterCommand}"
 									        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.QueryClearTag}"
-									        AutomationProperties.Name="Remove tag filter" />
+									        AutomationProperties.Name="{x:Static lang:Strings.RemoveFilter}" />
 								</StackPanel>
 							</Border>
 							<Border Classes="query-chip" IsVisible="{Binding ActiveFolderFilter, Converter={x:Static converters:ObjectConverters.IsNotNull}}"
 							        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.QueryFolderChip}"
-							        AutomationProperties.Name="{Binding ActiveFolderFilter.Name, FallbackValue='Folder'}">
+							        AutomationProperties.Name="{Binding ActiveFolderFilter.Name, FallbackValue={x:Static lang:Strings.Folders}}">
 								<StackPanel Orientation="Horizontal" Spacing="4">
 									<svg:Svg Width="14" Height="14" Path="avares://FSpot.Avalonia/Icons/emblem-places.svg" />
 									<TextBlock Text="{Binding ActiveFolderFilter.Name, FallbackValue=''}" VerticalAlignment="Center" FontSize="12" />
 									<Button Classes="chip-close" Content="×" Command="{Binding ClearFolderFilterCommand}"
 									        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.QueryClearFolder}"
-									        AutomationProperties.Name="Remove folder filter" />
+									        AutomationProperties.Name="{x:Static lang:Strings.RemoveFilter}" />
 								</StackPanel>
 							</Border>
 						</StackPanel>
-						<Button Grid.Column="2" Classes="chip-close" Content="×" ToolTip.Tip="Clear search" Command="{Binding ClearLibraryFiltersCommand}"
+						<Button Grid.Column="2" Classes="chip-close" Content="×" ToolTip.Tip="{x:Static lang:Strings.ClearSearch}" Command="{Binding ClearLibraryFiltersCommand}"
 						        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.QueryClearAll}"
-						        AutomationProperties.Name="Clear search" />
+						        AutomationProperties.Name="{x:Static lang:Strings.ClearSearch}" />
 					</Grid>
 				</Border>
 				<controls:TimelineStrip DockPanel.Dock="Top"
@@ -641,26 +723,33 @@
 				                        SelectCommand="{Binding SelectTimelineCommand}"
 				                        RangeCommand="{Binding SetTimelineRangeCommand}"
 				                        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.Timeline}"
-				                        AutomationProperties.Name="Timeline" />
+				                        AutomationProperties.Name="{x:Static lang:Strings.Timeline}" />
 				<Border DockPanel.Dock="Bottom"
 				        Padding="8,4"
 				        IsVisible="{Binding ShowTagBar}"
 				        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.TagBar}"
-				        AutomationProperties.Name="Photo tags">
+				        AutomationProperties.Name="{x:Static lang:Strings.PhotoTags}">
 					<StackPanel Orientation="Horizontal" Spacing="8">
 						<TextBlock Text="{x:Static lang:Strings.TagsColon}" VerticalAlignment="Center" />
 						<TextBlock Text="{Binding Info.Tags}" VerticalAlignment="Center" />
 					</StackPanel>
 				</Border>
 				<Border DockPanel.Dock="Bottom"
-				        Height="96"
+				        Height="{Binding FilmstripPaneHeight}"
 				        IsVisible="{Binding ShowFilmstrip}"
 				        Margin="4"
+				        FlowDirection="{Binding $parent[Window].FlowDirection}"
 				        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.Filmstrip}"
-				        AutomationProperties.Name="Filmstrip">
+				        AutomationProperties.Name="{x:Static lang:Strings.Filmstrip}">
 					<ListBox ItemsSource="{Binding Photos}"
 					         SelectedItem="{Binding SelectedPhoto}"
-					         AutomationProperties.Name="Filmstrip">
+					         KeyboardNavigation.TabIndex="3"
+					         PointerPressed="OnFilmstripPointerPressed"
+					         PointerReleased="OnFilmstripPointerReleased"
+					         KeyDown="OnFilmstripKeyDown"
+					         KeyUp="OnFilmstripKeyUp"
+					         SelectionChanged="OnFilmstripSelectionChanged"
+					         AutomationProperties.Name="{x:Static lang:Strings.Filmstrip}">
 						<ListBox.ItemsPanel>
 							<ItemsPanelTemplate>
 								<StackPanel Orientation="Horizontal" />
@@ -668,7 +757,9 @@
 						</ListBox.ItemsPanel>
 						<ListBox.ItemTemplate>
 							<DataTemplate DataType="vm:PhotoItemViewModel">
-								<Image Width="72" Height="72" Stretch="UniformToFill" Source="{Binding Thumbnail}"
+								<Image Width="{Binding $parent[ListBox].((vm:MainWindowViewModel)DataContext).TileSize}"
+								       Height="{Binding $parent[ListBox].((vm:MainWindowViewModel)DataContext).TileSize}"
+								       Stretch="UniformToFill" Source="{Binding Thumbnail}"
 								       AutomationProperties.AutomationId="{Binding AutomationId}"
 								       AutomationProperties.Name="{Binding Caption}" />
 							</DataTemplate>
@@ -694,6 +785,7 @@
 					         ItemsSource="{Binding Photos}"
 					         SelectedItem="{Binding SelectedPhoto}"
 					         SelectionMode="Multiple"
+					         KeyboardNavigation.TabIndex="2"
 					         Background="Transparent"
 					         BorderThickness="0"
 					         DragDrop.AllowDrop="True"
@@ -701,7 +793,7 @@
 					         DragDrop.Drop="OnPhotoDrop"
 					         DoubleTapped="OnPhotoDoubleTapped"
 					         AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PhotoGrid}"
-					         AutomationProperties.Name="Photos">
+					         AutomationProperties.Name="{x:Static lang:Strings.Photos}">
 						<ListBox.ItemsPanel>
 							<ItemsPanelTemplate>
 								<WrapPanel />
@@ -716,14 +808,15 @@
 						</ListBox.ItemContainerTheme>
 						<ListBox.ItemTemplate>
 							<DataTemplate DataType="vm:PhotoItemViewModel">
-								<Border Width="140" Margin="4" Padding="4" CornerRadius="2"
+								<Border Width="{Binding $parent[ListBox].((vm:MainWindowViewModel)DataContext).TileSize}"
+								        Margin="4" Padding="4" CornerRadius="2"
 								        Classes.selected="{Binding Selected}"
 								        PointerPressed="OnPhotoPointerPressed"
 								        AutomationProperties.AutomationId="{Binding AutomationId}"
 								        AutomationProperties.Name="{Binding Caption}">
 									<Border.ContextMenu>
 										<ContextMenu>
-											<MenuItem Header="Open" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).OpenPhotoCommand}" CommandParameter="{Binding}" />
+											<MenuItem Header="{x:Static lang:Strings.Open}" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).OpenPhotoCommand}" CommandParameter="{Binding}" />
 											<Separator />
 											<MenuItem Header="{x:Static lang:Strings.AttachTagToSelection}" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).AttachTagCommand}" />
 											<MenuItem Header="{x:Static lang:Strings.RemoveTagFromSelection}" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).RemoveTagCommand}" />
@@ -738,7 +831,8 @@
 										</Style>
 									</Border.Styles>
 									<StackPanel>
-										<Image Height="120" Stretch="Uniform" Source="{Binding Thumbnail}" />
+										<Image Height="{Binding $parent[ListBox].((vm:MainWindowViewModel)DataContext).TileSize}"
+										       Stretch="Uniform" Source="{Binding Thumbnail}" />
 										<TextBlock Text="{Binding Caption}" TextAlignment="Center" TextTrimming="CharacterEllipsis" Margin="0,4,0,0" />
 										<TextBlock Text="{Binding DateCaption}" TextAlignment="Center" FontSize="11" Opacity="0.7"
 										           IsVisible="{Binding $parent[ListBox].((vm:MainWindowViewModel)DataContext).DisplayDates}" />
@@ -756,13 +850,27 @@
 						       Stretch="Uniform"
 						       Margin="8"
 						       PointerMoved="OnPreviewPointerMoved"
+						       PointerPressed="OnPreviewPointerPressed"
+						       PointerReleased="OnPreviewPointerReleased"
+						       PointerWheelChanged="OnPreviewPointerWheelChanged"
+						       RenderTransformOrigin="0.5,0.5"
 						       AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PhotoPreview}"
-						       AutomationProperties.Name="Photo preview" />
+						       AutomationProperties.Name="{x:Static lang:Strings.Preview}">
+							<Image.RenderTransform>
+								<TransformGroup>
+									<ScaleTransform ScaleX="{Binding PreviewZoom}" ScaleY="{Binding PreviewZoom}" />
+									<TranslateTransform X="{Binding PreviewPanX}" Y="{Binding PreviewPanY}" />
+								</TransformGroup>
+							</Image.RenderTransform>
+						</Image>
 						<controls:ImageSelectionOverlay Margin="8"
 						                                HorizontalAlignment="Stretch"
 						                                VerticalAlignment="Stretch"
 						                                IsVisible="{Binding ShowEditorSelection}"
 						                                Preview="{Binding Preview}"
+						                                Zoom="{Binding PreviewZoom}"
+						                                PanX="{Binding PreviewPanX}"
+						                                PanY="{Binding PreviewPanY}"
 						                                ImageWidth="{Binding PreviewPixelWidth}"
 						                                ImageHeight="{Binding PreviewPixelHeight}"
 						                                SelectionCommand="{Binding SelectEditorRegionCommand}"

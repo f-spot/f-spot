@@ -1,12 +1,13 @@
 using Avalonia;
-using Avalonia.Automation;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Layout;
 using Avalonia.Media;
 using Avalonia.Platform.Storage;
 using Avalonia.Threading;
+using Avalonia.VisualTree;
 
+using FSpot;
 using FSpot.Avalonia.Models;
 using FSpot.Avalonia.Services;
 using FSpot.Avalonia.ViewModels;
@@ -26,14 +27,36 @@ public partial class MainWindow : Window, IAvaloniaShell
 		var viewModel = new MainWindowViewModel (database, this, new AvaloniaThumbnailLoader ());
 		DataContext = viewModel;
 		InitializeComponent ();
+		viewModel.PropertyChanged += (_, e) => {
+			if (e.PropertyName is nameof (MainWindowViewModel.ViewerInterpolation)
+					or nameof (MainWindowViewModel.PreviewInterpolation))
+				PreviewInterpolation.Apply (PreviewImage, viewModel.ViewerInterpolation);
+		};
+		PreviewInterpolation.Apply (PreviewImage, viewModel.ViewerInterpolation);
+		Opened += (_, _) => ApplyUiScale ();
+		ScalingChanged += (_, _) => ApplyUiScale ();
 		viewModel.LoadCatalog ();
 	}
 
+	void ApplyUiScale ()
+	{
+		if (DataContext is MainWindowViewModel viewModel)
+			viewModel.UiScale = RenderScaling;
+	}
+
+	Point? panOrigin;
+
 	void OnPreviewPointerMoved (object? sender, PointerEventArgs e)
 	{
-		if (DataContext is not MainWindowViewModel viewModel || !viewModel.IsLoupeVisible)
+		if (DataContext is not MainWindowViewModel viewModel)
 			return;
 		var point = e.GetPosition (PreviewImage);
+		if (panOrigin is Point origin) {
+			viewModel.PanPreviewBy (point.X - origin.X, point.Y - origin.Y);
+			panOrigin = point;
+		}
+		if (!viewModel.IsLoupeVisible)
+			return;
 		viewModel.MoveLoupe (point.X, point.Y, PreviewImage.Bounds.Width, PreviewImage.Bounds.Height);
 	}
 
@@ -53,7 +76,7 @@ public partial class MainWindow : Window, IAvaloniaShell
 
 	public async Task<(uint Min, uint Max)?> PromptRatingRangeAsync ()
 	{
-		string? text = await PromptAsync (Strings.Find, "Rating 0-5 (min-max)", "0-5");
+		string? text = await PromptAsync (Strings.Find, Strings.RatingRangePrompt, "0-5");
 		if (string.IsNullOrWhiteSpace (text))
 			return null;
 		var parts = text.Split ('-', '–', ',');
@@ -68,7 +91,7 @@ public partial class MainWindow : Window, IAvaloniaShell
 
 	public async Task<(DateTime Start, DateTime End)?> PromptDateRangeAsync ()
 	{
-		string? text = await PromptAsync (Strings.Find, "Dates YYYY-MM-DD:YYYY-MM-DD", string.Empty);
+		string? text = await PromptAsync (Strings.Find, PromptCopy.DateRange, string.Empty);
 		if (string.IsNullOrWhiteSpace (text))
 			return null;
 		var parts = text.Split (':', '–');
@@ -81,15 +104,45 @@ public partial class MainWindow : Window, IAvaloniaShell
 
 	public async Task<uint?> PickImportRollAsync (IReadOnlyList<(uint Id, string Label)> rolls)
 	{
-		string hint = rolls.Count == 0
-			? "Roll id"
-			: string.Join (", ", rolls.Select (roll => $"{roll.Id}:{roll.Label}"));
+		string hint = PromptCopy.RollHint (rolls);
 		string? text = await PromptAsync (Strings.ImportRoll, hint, rolls.Count > 0 ? rolls[0].Id.ToString () : "1");
 		return uint.TryParse (text, out uint id) ? id : null;
 	}
 
-	public Task PrintPhotosAsync (IReadOnlyList<string> paths)
-		=> ShowWarningAsync (Strings.Print, string.Join (Environment.NewLine, paths));
+	public Task PrintPhotosAsync (IReadOnlyList<string> paths, PrintPageSetup? setup = null)
+	{
+		string paper = setup?.Caption ?? string.Empty;
+		string body = string.IsNullOrEmpty (paper)
+			? string.Join (Environment.NewLine, paths)
+			: paper + Environment.NewLine + string.Join (Environment.NewLine, paths);
+		return ShowWarningAsync (Strings.Print, body);
+	}
+
+	public async Task CopyPhotosAsync (IReadOnlyList<string> paths)
+	{
+		if (Clipboard is null || paths.Count == 0)
+			return;
+		var data = new DataTransfer ();
+		data.Add (DataTransferItem.Create (DataFormat.Text, string.Join (Environment.NewLine, paths)));
+		await Clipboard.SetDataAsync (data);
+	}
+
+	public Task SetDesktopBackgroundAsync (string path)
+	{
+		DesktopBackground.Set (path);
+		return Task.CompletedTask;
+	}
+
+	public async Task<PrintPageSetup?> PromptPageSetupAsync (PrintPageSetup current)
+	{
+		string? paper = await PromptAsync (Strings.PageSetup2, Strings.PageSetupPaperPrompt,
+			current.PaperWidthMm >= 210 && current.PaperWidthMm <= 211 ? "A4" : "Letter");
+		if (string.IsNullOrWhiteSpace (paper))
+			return null;
+		string? orientation = await PromptAsync (Strings.PageSetup2, Strings.PageSetupOrientationPrompt,
+			current.Landscape ? "Landscape" : "Portrait");
+		return PrintPageSetup.FromPrompt (paper, orientation);
+	}
 
 	public Task MailPhotosAsync (IReadOnlyList<string> paths)
 		=> ShowWarningAsync (Strings.SendMail, string.Join (Environment.NewLine, paths));
@@ -111,34 +164,8 @@ public partial class MainWindow : Window, IAvaloniaShell
 	public async Task ShowAboutAsync ()
 		=> await new AboutWindow ().ShowDialog (this);
 
-	public async Task ShowWarningAsync (string title, string message)
-	{
-		var dialog = new Window {
-			Title = title,
-			Width = 460,
-			Height = 200,
-			WindowStartupLocation = WindowStartupLocation.CenterOwner,
-			CanResize = false
-		};
-		SetId (dialog, AutomationIds.DialogWindow, title);
-		var messageBlock = new TextBlock { Text = message, TextWrapping = TextWrapping.Wrap };
-		SetId (messageBlock, AutomationIds.DialogMessage, message);
-		var close = new Button {
-			Content = "OK",
-			HorizontalAlignment = HorizontalAlignment.Right
-		};
-		SetId (close, AutomationIds.DialogOk, "OK");
-		close.Click += (_, _) => dialog.Close ();
-		dialog.Content = new StackPanel {
-			Margin = new Thickness (16),
-			Spacing = 12,
-			Children = {
-				messageBlock,
-				close
-			}
-		};
-		await dialog.ShowDialog (this);
-	}
+	public Task ShowWarningAsync (string title, string message)
+		=> MessageDialog.ShowAsync (this, title, message, MessageDialogKind.Warning);
 
 	public async Task<bool> ShowImportAsync ()
 	{
@@ -151,86 +178,11 @@ public partial class MainWindow : Window, IAvaloniaShell
 		return await window.ShowDialog<bool> (this);
 	}
 
-	public async Task<string?> PromptAsync (string title, string prompt, string defaultValue)
-	{
-		var promptLabel = new TextBlock { Text = prompt };
-		SetId (promptLabel, AutomationIds.DialogPrompt, prompt);
-		var box = new TextBox { Text = defaultValue };
-		SetId (box, AutomationIds.DialogInput, prompt);
-		var ok = new Button { Content = "OK", IsDefault = true };
-		SetId (ok, AutomationIds.DialogOk, "OK");
-		var cancel = new Button { Content = "Cancel", IsCancel = true };
-		SetId (cancel, AutomationIds.DialogCancel, "Cancel");
-		string? result = null;
-		var dialog = new Window {
-			Title = title,
-			Width = 420,
-			Height = 160,
-			WindowStartupLocation = WindowStartupLocation.CenterOwner,
-			CanResize = false
-		};
-		SetId (dialog, AutomationIds.DialogWindow, title);
-		ok.Click += (_, _) => {
-			result = box.Text;
-			dialog.Close ();
-		};
-		cancel.Click += (_, _) => dialog.Close ();
-		dialog.Content = new StackPanel {
-			Margin = new Thickness (16),
-			Spacing = 10,
-			Children = {
-				promptLabel,
-				box,
-				new StackPanel {
-					Orientation = Orientation.Horizontal,
-					HorizontalAlignment = HorizontalAlignment.Right,
-					Spacing = 8,
-					Children = { cancel, ok }
-				}
-			}
-		};
-		await dialog.ShowDialog (this);
-		return result;
-	}
+	public Task<string?> PromptAsync (string title, string prompt, string defaultValue)
+		=> MessageDialog.PromptAsync (this, title, prompt, defaultValue);
 
-	public async Task<bool> ConfirmAsync (string title, string message, string okCaption)
-	{
-		var ok = new Button { Content = okCaption, IsDefault = true };
-		SetId (ok, AutomationIds.DialogOk, okCaption);
-		var cancel = new Button { Content = "Cancel", IsCancel = true };
-		SetId (cancel, AutomationIds.DialogCancel, "Cancel");
-		var confirmed = false;
-		var dialog = new Window {
-			Title = title,
-			Width = 460,
-			Height = 180,
-			WindowStartupLocation = WindowStartupLocation.CenterOwner,
-			CanResize = false
-		};
-		SetId (dialog, AutomationIds.DialogWindow, title);
-		var messageBlock = new TextBlock { Text = message, TextWrapping = TextWrapping.Wrap };
-		SetId (messageBlock, AutomationIds.DialogMessage, message);
-		ok.Click += (_, _) => {
-			confirmed = true;
-			dialog.Close ();
-		};
-		cancel.Click += (_, _) => dialog.Close ();
-		dialog.Content = new StackPanel {
-			Margin = new Thickness (16),
-			Spacing = 12,
-			Children = {
-				messageBlock,
-				new StackPanel {
-					Orientation = Orientation.Horizontal,
-					HorizontalAlignment = HorizontalAlignment.Right,
-					Spacing = 8,
-					Children = { cancel, ok }
-				}
-			}
-		};
-		await dialog.ShowDialog (this);
-		return confirmed;
-	}
+	public Task<bool> ConfirmAsync (string title, string message, string okCaption)
+		=> MessageDialog.ConfirmAsync (this, title, message, okCaption);
 
 	public async Task<string?> PickFolderAsync (string title)
 	{
@@ -239,12 +191,6 @@ public partial class MainWindow : Window, IAvaloniaShell
 			AllowMultiple = false
 		});
 		return folders.Count == 0 ? null : folders[0].Path.LocalPath;
-	}
-
-	static void SetId (StyledElement target, string id, string name)
-	{
-		AutomationProperties.SetAutomationId (target, id);
-		AutomationProperties.SetName (target, name);
 	}
 
 	void OnPhotoDoubleTapped (object? sender, TappedEventArgs e)
@@ -256,13 +202,41 @@ public partial class MainWindow : Window, IAvaloniaShell
 
 	void OnTagPointerPressed (object? sender, PointerPressedEventArgs e)
 	{
-		if (!e.GetCurrentPoint ((Visual)sender!).Properties.IsLeftButtonPressed)
-			return;
 		if (sender is not Control { DataContext: TagNode node })
+			return;
+		if (e.GetCurrentPoint ((Visual)sender).Properties.IsRightButtonPressed) {
+			if (DataContext is MainWindowViewModel viewModel)
+				viewModel.SelectTagCommand.Execute (node);
+			return;
+		}
+		if (!e.GetCurrentPoint ((Visual)sender).Properties.IsLeftButtonPressed)
 			return;
 		var data = new DataTransfer ();
 		data.Add (DataTransferItem.Create (DragFormats.TagId, node.Tag.Id.ToString ()));
 		_ = DragDrop.DoDragDropAsync (e, data, DragDropEffects.Copy);
+	}
+
+	bool filmstripChoosing;
+
+	void OnFilmstripPointerPressed (object? sender, PointerPressedEventArgs e)
+		=> filmstripChoosing = true;
+
+	void OnFilmstripPointerReleased (object? sender, PointerReleasedEventArgs e)
+		=> filmstripChoosing = false;
+
+	void OnFilmstripKeyDown (object? sender, KeyEventArgs e)
+		=> filmstripChoosing = true;
+
+	void OnFilmstripKeyUp (object? sender, KeyEventArgs e)
+		=> filmstripChoosing = false;
+
+	void OnFilmstripSelectionChanged (object? sender, SelectionChangedEventArgs e)
+	{
+		if (!filmstripChoosing)
+			return;
+		if (DataContext is MainWindowViewModel viewModel
+				&& sender is ListBox { SelectedItem: PhotoItemViewModel item })
+			viewModel.SelectFromFilmstrip (item);
 	}
 
 	void OnPhotoPointerPressed (object? sender, PointerPressedEventArgs e)
@@ -286,14 +260,62 @@ public partial class MainWindow : Window, IAvaloniaShell
 	}
 
 	void OnTagTreeDragOver (object? sender, DragEventArgs e)
-		=> e.DragEffects = e.DataTransfer.Contains (DragFormats.Photos) ? DragDropEffects.Copy : DragDropEffects.None;
+	{
+		e.DragEffects = e.DataTransfer.Contains (DragFormats.Photos) || e.DataTransfer.Contains (DragFormats.TagId)
+			? DragDropEffects.Copy
+			: DragDropEffects.None;
+	}
 
 	void OnTagTreeDrop (object? sender, DragEventArgs e)
 	{
-		if (DataContext is not MainWindowViewModel viewModel || !e.DataTransfer.Contains (DragFormats.Photos))
+		if (DataContext is not MainWindowViewModel viewModel)
 			return;
 		var node = (e.Source as Control)?.DataContext as TagNode ?? viewModel.SelectedTag;
-		viewModel.AttachSelectionToTag (node);
+		if (e.DataTransfer.Contains (DragFormats.TagId) && node is not null) {
+			string? id = TryGetString (e.DataTransfer, DragFormats.TagId);
+			var child = id is null ? null : FindTagNodeById (viewModel.Tags, uint.Parse (id));
+			if (child is not null && !ReferenceEquals (child, node))
+				viewModel.ReparentTagCommand.Execute (((TagNode Child, TagNode Parent)?) (child, node));
+			return;
+		}
+		if (e.DataTransfer.Contains (DragFormats.Photos))
+			viewModel.AttachSelectionToTag (node);
+	}
+
+	static TagNode? FindTagNodeById (IEnumerable<TagNode> nodes, uint id)
+	{
+		foreach (var node in nodes) {
+			if (node.Tag.Id == id)
+				return node;
+			var child = FindTagNodeById (node.Children, id);
+			if (child is not null)
+				return child;
+		}
+		return null;
+	}
+
+	void OnFindBarDragOver (object? sender, DragEventArgs e)
+		=> e.DragEffects = e.DataTransfer.Contains (DragFormats.FolderUri) ? DragDropEffects.Copy : DragDropEffects.None;
+
+	void OnTagRenameLostFocus (object? sender, global::Avalonia.Interactivity.RoutedEventArgs e)
+	{
+		if (DataContext is MainWindowViewModel viewModel && sender is Control { DataContext: TagNode node })
+			viewModel.CommitRenameTagCommand.Execute (node);
+	}
+
+	void OnTagRenameKeyDown (object? sender, KeyEventArgs e)
+	{
+		if (e.Key != Key.Enter && e.Key != Key.Escape)
+			return;
+		if (DataContext is not MainWindowViewModel viewModel || sender is not Control { DataContext: TagNode node })
+			return;
+		if (e.Key == Key.Enter)
+			viewModel.CommitRenameTagCommand.Execute (node);
+		else {
+			node.Name = node.Tag.Name;
+			node.IsRenaming = false;
+		}
+		e.Handled = true;
 	}
 
 	static string? TryGetString (IDataTransfer? transfer, DataFormat<string> format)
@@ -335,6 +357,42 @@ public partial class MainWindow : Window, IAvaloniaShell
 		}
 	}
 
+	void OnFolderPointerPressed (object? sender, PointerPressedEventArgs e)
+	{
+		if (sender is not Control { DataContext: FolderNode node })
+			return;
+		if (e.GetCurrentPoint ((Visual)sender).Properties.IsRightButtonPressed) {
+			if (DataContext is MainWindowViewModel viewModel)
+				viewModel.SelectFolderCommand.Execute (node);
+			return;
+		}
+		if (!e.GetCurrentPoint ((Visual)sender).Properties.IsLeftButtonPressed)
+			return;
+		var data = new DataTransfer ();
+		data.Add (DataTransferItem.Create (DragFormats.FolderUri, node.Uri.AbsoluteUri));
+		_ = DragDrop.DoDragDropAsync (e, data, DragDropEffects.Copy);
+	}
+
+	void OnFindBarDrop (object? sender, DragEventArgs e)
+	{
+		if (DataContext is not MainWindowViewModel viewModel)
+			return;
+		string? uri = TryGetString (e.DataTransfer, DragFormats.FolderUri);
+		if (string.IsNullOrEmpty (uri))
+			return;
+		var match = viewModel.Folders.SelectMany (WalkFolders).FirstOrDefault (folder => folder.Uri.AbsoluteUri == uri);
+		if (match is not null)
+			viewModel.ActivateFolderCommand.Execute (match);
+	}
+
+	static IEnumerable<FolderNode> WalkFolders (FolderNode node)
+	{
+		yield return node;
+		foreach (var child in node.Children)
+			foreach (var nested in WalkFolders (child))
+				yield return nested;
+	}
+
 	void OnFolderNodeDoubleTapped (object? sender, TappedEventArgs e)
 	{
 		if (DataContext is MainWindowViewModel viewModel
@@ -346,15 +404,82 @@ public partial class MainWindow : Window, IAvaloniaShell
 
 	void OnTagsTreePointerPressed (object? sender, PointerPressedEventArgs e)
 	{
-		if (e.Source is Control { DataContext: TagNode } || DataContext is not MainWindowViewModel viewModel)
+		if (DataContext is not MainWindowViewModel viewModel)
+			return;
+		if (FindAncestorDataContext<TagNode> (e.Source as Visual) is not null)
 			return;
 		viewModel.SelectTagCommand.Execute (null);
 	}
 
 	void OnFoldersTreePointerPressed (object? sender, PointerPressedEventArgs e)
 	{
-		if (e.Source is Control { DataContext: FolderNode } || DataContext is not MainWindowViewModel viewModel)
+		if (DataContext is not MainWindowViewModel viewModel)
+			return;
+		if (FindAncestorDataContext<FolderNode> (e.Source as Visual) is not null)
 			return;
 		viewModel.SelectFolderCommand.Execute (null);
+	}
+
+	static T? FindAncestorDataContext<T> (Visual? start) where T : class
+	{
+		for (var visual = start; visual is not null; visual = visual.GetVisualParent ()) {
+			if (visual is Control { DataContext: T value })
+				return value;
+		}
+		return null;
+	}
+
+	public void OpenUri (string uri)
+	{
+		if (string.IsNullOrWhiteSpace (uri))
+			return;
+		try {
+			System.Diagnostics.Process.Start (new System.Diagnostics.ProcessStartInfo (uri) { UseShellExecute = true });
+		} catch (Exception ex) {
+			_ = ShowWarningAsync (Strings.Contents, ex.Message);
+		}
+	}
+
+	public Task ShowPreferencesAsync ()
+	{
+		var window = new PreferencesWindow ();
+		return window.ShowDialog (this);
+	}
+
+	public Task ShowExtensionsAsync (IList<AddinStatus> addins)
+	{
+		var window = new ExtensionsWindow (addins);
+		return window.ShowDialog (this);
+	}
+
+	public async Task<double?> PromptHoursOffsetAsync ()
+	{
+		string? text = await PromptAsync (Strings.AdjustTime, Strings.HoursOffset, "0");
+		return double.TryParse (text, out double hours) ? hours : null;
+	}
+
+	void OnPreviewPointerWheelChanged (object? sender, PointerWheelEventArgs e)
+	{
+		if (DataContext is not MainWindowViewModel viewModel)
+			return;
+		viewModel.ZoomPreviewCommand.Execute (e.Delta.Y > 0 ? 1.1 : 0.9);
+		e.Handled = true;
+	}
+
+	void OnPreviewPointerPressed (object? sender, PointerPressedEventArgs e)
+	{
+		if (e.KeyModifiers.HasFlag (KeyModifiers.Control) && e.GetCurrentPoint (PreviewImage).Properties.IsLeftButtonPressed) {
+			panOrigin = e.GetPosition (PreviewImage);
+			e.Pointer.Capture (PreviewImage);
+			e.Handled = true;
+		}
+	}
+
+	void OnPreviewPointerReleased (object? sender, PointerReleasedEventArgs e)
+	{
+		if (panOrigin is null)
+			return;
+		panOrigin = null;
+		e.Pointer.Capture (null);
 	}
 }

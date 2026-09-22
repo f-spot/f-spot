@@ -4,7 +4,9 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
+using FSpot;
 using FSpot.Core;
 using FSpot.Utils;
 
@@ -41,6 +43,14 @@ public partial class PhotoInfoViewModel : ObservableObject
 	[ObservableProperty]
 	uint ratingValue;
 
+	public IReadOnlyList<bool> Stars => StarRating.Stars (RatingValue);
+	public string StarCaption {
+		get {
+			int filled = RatingValue > 5 ? 5 : (int)RatingValue;
+			return new string ('★', filled) + new string ('☆', 5 - filled);
+		}
+	}
+
 	[ObservableProperty]
 	IReadOnlyList<string> versions = [];
 
@@ -51,6 +61,8 @@ public partial class PhotoInfoViewModel : ObservableObject
 	string tags = string.Empty;
 
 	public IReadOnlyList<uint> RatingChoices { get; } = [0, 1, 2, 3, 4, 5];
+	public IReadOnlyList<InfoStar> StarButtons
+		=> Enumerable.Range (1, 5).Select (index => new InfoStar ((uint)index, index <= RatingValue)).ToList ();
 
 	public event Action<string>? VersionChosen;
 	public event Action<uint>? RatingChosen;
@@ -104,11 +116,30 @@ public partial class PhotoInfoViewModel : ObservableObject
 			VersionChosen?.Invoke (value);
 	}
 
+	[RelayCommand]
+	void SetStar (uint rating)
+		=> RatingValue = rating;
+
 	partial void OnRatingValueChanged (uint value)
 	{
+		OnPropertyChanged (nameof (Stars));
+		OnPropertyChanged (nameof (StarButtons));
+		OnPropertyChanged (nameof (StarCaption));
 		if (syncing)
 			return;
 		Rating = value.ToString ();
 		RatingChosen?.Invoke (value);
 	}
+}
+
+public sealed class InfoStar
+{
+	public InfoStar (uint value, bool filled)
+	{
+		Value = value;
+		Glyph = filled ? "★" : "☆";
+	}
+
+	public uint Value { get; }
+	public string Glyph { get; }
 }

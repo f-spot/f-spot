@@ -3446,6 +3446,12 @@ Photo Details</value>
   <data name="PageSetup2" xml:space="preserve">
     <value>Page Set_up...</value>
   </data>
+  <data name="PageSetupPaperPrompt" xml:space="preserve">
+    <value>Paper size (Letter, Legal, or A4)</value>
+  </data>
+  <data name="PageSetupOrientationPrompt" xml:space="preserve">
+    <value>Orientation (Landscape or Portrait)</value>
+  </data>
   <data name="Pages" xml:space="preserve">
     <value>_Pages</value>
   </data>
@@ -4822,5 +4828,98 @@ Facebook said: {0}</value>
   </data>
   <data name="Zooomr" xml:space="preserve">
     <value>_Zooomr...</value>
+  </data>
+  <data name="HoursOffset" xml:space="preserve">
+    <value>Hours to add (negative to subtract)</value>
+  </data>
+  <data name="HideSidebar" xml:space="preserve">
+    <value>Hide sidebar</value>
+  </data>
+  <data name="RatingRangeChip" xml:space="preserve">
+    <value>{0}–{1}★</value>
+  </data>
+  <data name="DateRangeChip" xml:space="preserve">
+    <value>{0} – {1}</value>
+  </data>
+  <data name="ImportRollChip" xml:space="preserve">
+    <value>{0} {1}</value>
+  </data>
+  <data name="TimelineMonthCount" xml:space="preserve">
+    <value>{0} ({1})</value>
+  </data>
+  <data name="AboutFSpot" xml:space="preserve">
+    <value>About F-Spot</value>
+  </data>
+  <data name="MatchAllTags" xml:space="preserve">
+    <value>Match _All Tags</value>
+  </data>
+  <data name="AttachTagsPlaceholder" xml:space="preserve">
+    <value>tag one, tag two</value>
+  </data>
+  <data name="FSpotHomeUrl" xml:space="preserve">
+    <value>https://f-spot.app</value>
+  </data>
+  <data name="RemoveFilter" xml:space="preserve">
+    <value>Remove filter</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="MergeRawAndJpegOnImport" xml:space="preserve">
+    <value>M_erge RAW and JPEG on import</value>
+  </data>
+  <data name="RatingRangePrompt" xml:space="preserve">
+    <value>Rating 0-5 (min-max)</value>
+  </data>
+  <data name="CloseFind" xml:space="preserve">
+    <value>Close find</value>
+  </data>
+  <data name="ResizeSidebar" xml:space="preserve">
+    <value>Resize sidebar</value>
+  </data>
+  <data name="ThumbnailSize" xml:space="preserve">
+    <value>Thumbnail size</value>
+  </data>
+  <data name="MainMenu" xml:space="preserve">
+    <value>Main menu</value>
+  </data>
+  <data name="StatusBarLabel" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="PhotoTags" xml:space="preserve">
+    <value>Photo tags</value>
+  </data>
+  <data name="WarningAboutRemovingOriginals" xml:space="preserve">
+    <value>Warning about removing originals</value>
+  </data>
+  <data name="PhotosToImport" xml:space="preserve">
+    <value>Photos to import</value>
+  </data>
+  <data name="ImportPreview" xml:space="preserve">
+    <value>Import preview</value>
+  </data>
+  <data name="ImportProgress" xml:space="preserve">
+    <value>Import progress</value>
+  </data>
+  <data name="Red" xml:space="preserve">
+    <value>Red</value>
+  </data>
+  <data name="Green" xml:space="preserve">
+    <value>Green</value>
+  </data>
+  <data name="Blue" xml:space="preserve">
+    <value>Blue</value>
+  </data>
+  <data name="VersionX" xml:space="preserve">
+    <value>Version {0}</value>
+  </data>
+  <data name="AvaloniaAboutDescription" xml:space="preserve">
+    <value>Personal photo management. The Avalonia client uses the same catalog as the GTK 2 client.</value>
+  </data>
+  <data name="DateRangePrompt" xml:space="preserve">
+    <value>Dates YYYY-MM-DD:YYYY-MM-DD</value>
+  </data>
+  <data name="RollIdPrompt" xml:space="preserve">
+    <value>Roll id</value>
   </data>
 </root>
