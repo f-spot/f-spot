@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>$(FSpotModernTargetFramework)</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <OutputPath>$(RepoRoot)artifacts/rasterize-icons/</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <RasterizeIcons>false</RasterizeIcons>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Svg.Skia" />
+    <PackageReference Include="SkiaSharp" />
+  </ItemGroup>
+
+</Project>

@@ -8,6 +8,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>FSpot</RootNamespace>
     <AssemblyName>f-spot</AssemblyName>
+    <RasterizeIcons>false</RasterizeIcons>
     <!-- GenerateBindingRedirects rewrites $(TargetFileName).config. Without this it
          starts from an empty template and drops the Mono dllmaps GLibSynchronizationContext
          needs to resolve libglib-2.0-0.dll. -->

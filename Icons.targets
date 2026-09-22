@@ -1,0 +1,10 @@
+<Project>
+  <!-- Rasterize icons/src/*.svg into committed icons/*.png when missing or the SVG is newer. -->
+  <Target Name="RasterizeIconsFromSvg"
+          BeforeTargets="BeforeBuild"
+          Condition="'$(RasterizeIcons)' == 'true' AND '$(DesignTimeBuild)' != 'true'">
+    <Exec Command="dotnet run --project &quot;$(RepoRoot)tools/RasterizeIcons/RasterizeIcons.csproj&quot; -c $(Configuration) --no-launch-profile -- &quot;$(RepoRoot)icons&quot;"
+          WorkingDirectory="$(RepoRoot)"
+          StandardOutputImportance="low" />
+  </Target>
+</Project>

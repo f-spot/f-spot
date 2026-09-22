@@ -36,6 +36,10 @@ gtk-sharp 2.12 is vendored under `lib/gtk-sharp-2.12/` for compile. NuGet packag
 	dotnet build F-Spot.slnx
 	dotnet test F-Spot.Tests.slnf --filter "TestCategory!=RequiresGdk&TestCategory!=RequiresGtk"
 
+GTK and Avalonia builds rasterize `icons/src/*.svg` into `icons/*.png` when a PNG is missing or the SVG is newer (`Icons.targets`). Commit the generated PNGs; they are not rewritten on an up-to-date tree. PNG-only artwork (no SVG) is left alone. Force a refresh with:
+
+	dotnet run --project tools/RasterizeIcons -- icons
+
 Linux/Freedesktop layout (desktop files, hicolor icons, English Mallard help,
 PATH wrappers) lives in `LinuxDesktop.targets`. Translated `help/` trees are
 parked; only `help/C` is installed. A Gtk build stages icons under

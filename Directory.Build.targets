@@ -1,5 +1,6 @@
 <Project>
     <Import Project="$(MSBuildThisFileDirectory)GtkSharp.refs.targets" />
+    <Import Project="$(MSBuildThisFileDirectory)Icons.targets" />
 
     <!-- SQLitePCLRaw.lib.e_sqlite3 2.1.12 net461 targets copy win-arm e_sqlite3.dll,
          which is not in the package (win-x86/x64/arm64 only). AnyCPU net472 then fails MSB3030. -->

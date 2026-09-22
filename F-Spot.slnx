@@ -39,10 +39,14 @@
     <Project Path="external/mono-addins/Mono.Addins.Setup/Mono.Addins.Setup.csproj" />
     <Project Path="external/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui.csproj" />
   </Folder>
+  <Folder Name="/Tools/">
+    <Project Path="tools/RasterizeIcons/RasterizeIcons.csproj" />
+  </Folder>
   <Folder Name="/Tests/">
     <Project Path="tests/FSpot.Tests/FSpot.Tests.csproj" />
     <Project Path="tests/FSpot.Gtk.Tests/FSpot.Gtk.Tests.csproj" />
     <Project Path="tests/FSpot.Avalonia.Tests/FSpot.Avalonia.Tests.csproj" />
+    <Project Path="tests/RasterizeIcons.Tests/RasterizeIcons.Tests.csproj" />
   </Folder>
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
