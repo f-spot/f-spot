@@ -78,11 +78,13 @@ namespace FSpot.Query
 
 		static bool HasTag (IPhoto photo, Tag tag)
 		{
-			if (tag == null)
+			if (tag == null || photo.Tags == null)
 				return false;
-			foreach (var candidate in photo.Tags) {
-				if (candidate != null && candidate.Id == tag.Id)
-					return true;
+			foreach (var wanted in TagTerm.WithDescendents (tag)) {
+				foreach (var candidate in photo.Tags) {
+					if (candidate != null && candidate.Id == wanted.Id)
+						return true;
+				}
 			}
 			return false;
 		}

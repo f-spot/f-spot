@@ -3,6 +3,7 @@
 using System;
 
 using FSpot.Resources.Lang;
+using FSpot.Utils;
 
 namespace FSpot.Core
 {
@@ -19,7 +20,26 @@ namespace FSpot.Core
 			if (photo == null)
 				return string.Empty;
 
-			return $"{photo.Time.ToShortDateString ()}{Environment.NewLine}{photo.Time.ToShortTimeString ()}";
+			string date = PhotoDateCaption.Format (photo, wide: false);
+			if (string.IsNullOrEmpty (date))
+				return string.Empty;
+			return $"{date}{Environment.NewLine}{photo.Time.ToShortTimeString ()}";
+		}
+
+		public static string DateRange (IPhoto[] photos)
+		{
+			if (photos == null || photos.Length == 0)
+				return string.Empty;
+			IPhoto first = photos[photos.Length - 1];
+			IPhoto last = photos[0];
+			if (first.Time.Date == last.Time.Date)
+				return string.Format (Strings.OnXBetweenYAndZ,
+					PhotoDateCaption.Format (first, wide: false),
+					first.Time.ToShortTimeString (),
+					last.Time.ToShortTimeString ());
+			return string.Format (Strings.BetweenXAndY,
+				PhotoDateCaption.Format (first, wide: false),
+				PhotoDateCaption.Format (last, wide: false));
 		}
 
 		public static string Size (TagLib.Image.File metadata)

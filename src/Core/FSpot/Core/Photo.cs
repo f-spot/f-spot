@@ -256,19 +256,20 @@ namespace FSpot
 
 			SafeUri uri = VersionUri (versionId);
 			var fileInfo = new FileInfo (uri.AbsolutePath);
-			var dirInfo = new DirectoryInfo (uri.AbsolutePath);
+			var dirInfo = fileInfo.Directory;
 
 			if (!keepFile) {
 				if (fileInfo.Exists)
 					fileInfo.Delete ();
 
 				try {
-					thumbnailService.DeleteThumbnails (uri);
+					thumbnailService?.DeleteThumbnails (uri);
 				} catch {
 					// ignore an error here we don't really care.
 				}
 
-				DeleteEmptyDirectory (dirInfo);
+				if (dirInfo != null)
+					DeleteEmptyDirectory (dirInfo);
 			}
 
 			versions.Remove (versionId);
@@ -434,6 +435,8 @@ namespace FSpot
 		// This doesn't check if the tag is already there, use with caution.
 		public void AddTagUnsafely (Tag tag)
 		{
+			if (tag == null)
+				return;
 			tags.Add (tag);
 			changes.AddTag (tag);
 		}

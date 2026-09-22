@@ -95,10 +95,7 @@ namespace FSpot.Platform
 			// JValue cannot wrap collections.
 			var token = value == null ? JValue.CreateNull () : JToken.FromObject (value);
 
-			if (Client[key] != null)
-				Client[key].Replace (token);
-			else
-				Client.Add (key, token);
+			Client[key] = token;
 
 			// This isn't ideal, but guarantees settings will be saved for now
 			SaveSettings ();

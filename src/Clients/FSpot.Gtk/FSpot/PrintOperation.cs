@@ -146,7 +146,7 @@ namespace FSpot
 						var label = string.Format (print_label_format,
 										  comment,
 										  selected_photos[p_index].Name,
-										  selected_photos[p_index].Time.ToLocalTime ().ToShortDateString (),
+										  PhotoDateCaption.FormatLocal (selected_photos[p_index], wide: false),
 										  selected_photos[p_index].Time.ToLocalTime ().ToShortTimeString (),
 										  tag_string,
 										  selected_photos[p_index].Description);

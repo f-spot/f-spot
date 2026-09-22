@@ -39,16 +39,21 @@ namespace FSpot.Query
 			return SqlClause (GetTagIds (tags.Select (t => t.Tag)));
 		}
 
+		public static IList<Tag> WithDescendents (Tag tag)
+		{
+			var tagList = new List<Tag> ();
+			if (tag == null)
+				return tagList;
+			tagList.Add (tag);
+			(tag as Category)?.AddDescendentsTo (tagList);
+			return tagList;
+		}
+
 		static IList<string> GetTagIds (IEnumerable<Tag> tags)
 		{
 			var tagList = new List<Tag> ();
-			foreach (var tag in tags) {
-				tagList.Add (tag);
-				var category = tag as Category;
-				if (category != null) {
-					category.AddDescendentsTo (tagList);
-				}
-			}
+			foreach (var tag in tags)
+				tagList.AddRange (WithDescendents (tag));
 			return tagList.Select (t => t.Id.ToString ()).ToList ();
 		}
 

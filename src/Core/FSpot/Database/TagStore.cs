@@ -315,6 +315,7 @@ namespace FSpot.Database
 
 			item.Category = null;
 
+			Database.Execute (new DatabaseCommand ("DELETE FROM photo_tags WHERE tag_id = ?", item.Id));
 			Database.Execute (new DatabaseCommand ("DELETE FROM tags WHERE id = ?", item.Id));
 
 			EmitRemoved (item);

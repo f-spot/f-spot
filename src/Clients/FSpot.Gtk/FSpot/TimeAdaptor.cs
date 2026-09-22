@@ -67,7 +67,7 @@ namespace FSpot
 
 		public override string GlassLabel (int item)
 		{
-			return string.Format ("{0} ({1})", DateFromIndex (item).ToString ("MMMM yyyy"), Value (item));
+			return QueryChipFormat.TimelineMonth (DateFromIndex (item), Value (item));
 		}
 
 		public override string TickLabel (int item)

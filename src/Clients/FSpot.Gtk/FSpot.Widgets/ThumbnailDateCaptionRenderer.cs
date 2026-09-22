@@ -12,6 +12,7 @@
 using System.Collections.Generic;
 
 using FSpot.Core;
+using FSpot.Utils;
 
 using Gdk;
 
@@ -45,14 +46,9 @@ namespace FSpot.Widgets
 		{
 			string date_text = null;
 
-			if (photo is IInvalidPhotoCheck && (photo as IInvalidPhotoCheck).IsInvalid)
+			date_text = PhotoDateCaption.Format (photo, cell_area.Width > 200);
+			if (string.IsNullOrEmpty (date_text))
 				return;
-
-			if (cell_area.Width > 200) {
-				date_text = photo.Time.ToString ();
-			} else {
-				date_text = photo.Time.ToShortDateString ();
-			}
 
 			if (!cache.TryGetValue (date_text, out var layout)) {
 				layout = new Pango.Layout (widget.PangoContext);

@@ -255,7 +255,8 @@ namespace FSpot.Database
 				while (reader.Read ()) {
 					uint tag_id = Convert.ToUInt32 (reader["tag_id"]);
 					Tag tag = Db.Tags.Get (tag_id);
-					photo.AddTagUnsafely (tag);
+					if (tag != null)
+						photo.AddTagUnsafely (tag);
 				}
 			}
 		}
@@ -303,7 +304,8 @@ namespace FSpot.Database
 					if (reader[1] != null) {
 						uint tag_id = Convert.ToUInt32 (reader["tag_id"]);
 						Tag tag = Db.Tags.Get (tag_id);
-						photo.AddTagUnsafely (tag);
+						if (tag != null)
+							photo.AddTagUnsafely (tag);
 					}
 				}
 			}

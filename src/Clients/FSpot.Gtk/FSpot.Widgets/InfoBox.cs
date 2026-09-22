@@ -362,21 +362,7 @@ namespace FSpot.Widgets
 
 			AddLabelEntry ("date", Strings.Date, Strings.ShowDate,
 						   (photo, file) => PhotoInfoFormatter.Date (photo),
-						   photos => {
-							   IPhoto first = photos[photos.Length - 1];
-							   IPhoto last = photos[0];
-							   if (first.Time.Date == last.Time.Date) {
-								   //Note for translators: {0} is a date, {1} and {2} are times.
-								   return string.Format (Strings.OnXBetweenYAndZ,
-														 first.Time.ToShortDateString (),
-														 first.Time.ToShortTimeString (),
-														 last.Time.ToShortTimeString ());
-							   } else {
-								   return string.Format (Strings.BetweenXAndY,
-														 first.Time.ToShortDateString (),
-														 last.Time.ToShortDateString ());
-							   }
-						   });
+						   photos => PhotoInfoFormatter.DateRange (photos));
 
 			AddLabelEntry ("size", Strings.Size, Strings.ShowSize,
 						   (photo, metadata) => PhotoInfoFormatter.Size (metadata), null);

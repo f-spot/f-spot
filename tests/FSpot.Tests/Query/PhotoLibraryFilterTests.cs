@@ -100,6 +100,17 @@ namespace FSpot.Query.Tests
 		}
 
 		[TestMethod]
+		public void MatchesTags_Category_IncludesPhotosTaggedWithDescendants ()
+		{
+			var root = new Category (null, 1, "Root");
+			var vacation = new Tag (root, 2, "Vacation");
+			var photo = PhotoWithTags ("beach.jpg", new DateTime (2026, 6, 15), vacation);
+
+			Assert.IsTrue (PhotoLibraryFilter.MatchesTags (photo, new[] { root }, requireAll: false));
+			Assert.IsFalse (PhotoLibraryFilter.MatchesTags (photo, new[] { new Tag (null, 9, "Work") }, requireAll: false));
+		}
+
+		[TestMethod]
 		public void MatchesTags_And_RequiresEveryListedTag ()
 		{
 			var vacation = new Tag (null, 1, "Vacation");

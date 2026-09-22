@@ -85,11 +85,16 @@ namespace FSpot.Imaging
 		}
 
 		public static byte[] RenderBgra (int[,] values, int height)
+			=> RenderBgra (values, 256, height);
+
+		public static byte[] RenderBgra (int[,] values, int width, int height)
 		{
 			if (values == null)
 				throw new ArgumentNullException (nameof (values));
 			if (height <= 0)
 				throw new ArgumentOutOfRangeException (nameof (height));
+			if (width <= 0)
+				throw new ArgumentOutOfRangeException (nameof (width));
 
 			int max = 1;
 			int bins = Math.Min (256, values.GetLength (0));
@@ -99,15 +104,16 @@ namespace FSpot.Imaging
 				max = Math.Max (max, values[i, Blue]);
 			}
 
-			var pixels = new byte[256 * height * 4];
-			for (int x = 0; x < bins; x++) {
-				int r = values[x, Red] * height / max;
-				int g = values[x, Green] * height / max;
-				int b = values[x, Blue] * height / max;
+			var pixels = new byte[width * height * 4];
+			for (int x = 0; x < width; x++) {
+				int bin = Math.Min (bins - 1, x * bins / width);
+				int r = values[bin, Red] * height / max;
+				int g = values[bin, Green] * height / max;
+				int b = values[bin, Blue] * height / max;
 				int top = Math.Max (r, Math.Max (g, b));
 				for (int y = 0; y < height; y++) {
 					int fromBottom = height - 1 - y;
-					int i = (y * 256 + x) * 4;
+					int i = (y * width + x) * 4;
 					if (fromBottom >= top) {
 						pixels[i] = 0;
 						pixels[i + 1] = 0;
