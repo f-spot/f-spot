@@ -3,54 +3,56 @@
         xmlns:vm="using:FSpot.Avalonia.ViewModels"
         xmlns:svg="using:Avalonia.Svg.Skia"
         xmlns:auto="using:FSpot.Avalonia"
+        xmlns:lang="using:FSpot.Resources.Lang"
         x:Class="FSpot.Avalonia.ImportWindow"
         x:DataType="vm:ImportViewModel"
-        Title="Import"
+        Title="{x:Static lang:Strings.Import}"
         Width="780"
         Height="560"
         MinWidth="640"
         MinHeight="420"
         WindowStartupLocation="CenterOwner"
         AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportWindow}"
-        AutomationProperties.Name="Import">
+        AutomationProperties.Name="{x:Static lang:Strings.Import}">
 	<DockPanel Margin="12">
 		<Grid DockPanel.Dock="Bottom" ColumnDefinitions="*,Auto,Auto" Margin="0,12,0,0">
 			<Button HorizontalAlignment="Right"
 			        Margin="0,0,8,0"
 			        Grid.Column="1"
-			        Content="Cancel"
+			        Content="{x:Static lang:Strings.Cancel}"
 			        Command="{Binding CancelCommand}"
 			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportCancel}"
-			        AutomationProperties.Name="Cancel" />
+			        AutomationProperties.Name="{x:Static lang:Strings.Cancel}" />
 			<Button Grid.Column="2"
-			        Content="_Import"
+			        Content="{x:Static lang:Strings.Import}"
 			        Command="{Binding ImportCommand}"
 			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportConfirm}"
-			        AutomationProperties.Name="Import" />
+			        AutomationProperties.Name="{x:Static lang:Strings.Import}" />
 		</Grid>
 
 		<StackPanel DockPanel.Dock="Bottom" Spacing="8" Margin="0,12,0,0">
 			<Grid ColumnDefinitions="Auto,*" Margin="0,0,0,4">
-				<TextBlock Text="_Attach tags:" VerticalAlignment="Center" Margin="0,0,8,0" />
-				<TextBox Grid.Column="1"
+				<Label Content="{x:Static lang:Strings.AttachTags}" Target="{Binding #AttachTagsBox}" VerticalAlignment="Center" Margin="0,0,8,0" />
+				<TextBox x:Name="AttachTagsBox"
+				         Grid.Column="1"
 				         Text="{Binding AttachTagsText}"
-				         PlaceholderText="tag one, tag two"
+				         PlaceholderText="{x:Static lang:Strings.AttachTagsPlaceholder}"
 				         AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportAttachTags}"
-				         AutomationProperties.Name="Attach tags" />
+				         AutomationProperties.Name="{x:Static lang:Strings.AttachTags}" />
 			</Grid>
 			<Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto">
-				<CheckBox Content="_Detect duplicates" IsChecked="{Binding DuplicateDetect}"
+				<CheckBox Content="{x:Static lang:Strings.DetectDuplicates2}" IsChecked="{Binding DuplicateDetect}"
 				          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportDetectDuplicates}" />
 				<CheckBox Grid.Column="1"
-				          Content="C_opy files to the Photos folder"
+				          Content="{x:Static lang:Strings.CopyFilesToThePhotosFolder2}"
 				          IsChecked="{Binding CopyFiles}"
 				          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportCopyFiles}" />
 				<CheckBox Grid.Row="1"
-				          Content="I_nclude subfolders"
+				          Content="{x:Static lang:Strings.IncludeSubfolders2}"
 				          IsChecked="{Binding RecurseSubdirectories}"
 				          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportIncludeSubfolders}" />
 				<StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Spacing="4">
-					<CheckBox Content="_Remove original files after import"
+					<CheckBox Content="{x:Static lang:Strings.RemoveOriginalFilesAfterImport}"
 					          IsChecked="{Binding RemoveOriginals}"
 					          IsEnabled="{Binding RemoveOriginalsEnabled}"
 					          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportRemoveOriginals}" />
@@ -58,10 +60,10 @@
 					        IsEnabled="{Binding RemoveOriginalsEnabled}"
 					        Command="{Binding WarnRemoveOriginalsCommand}"
 					        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportRemoveOriginalsWarning}"
-					        AutomationProperties.Name="Warning about removing originals" />
+					        AutomationProperties.Name="{x:Static lang:Strings.WarningAboutRemovingOriginals}" />
 				</StackPanel>
 				<CheckBox Grid.Row="2"
-				          Content="M_erge RAW and JPEG on import"
+				          Content="{x:Static lang:Strings.MergeRawAndJpegOnImport}"
 				          IsChecked="{Binding MergeRawAndJpeg}"
 				          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportMergeRawJpeg}" />
 			</Grid>
@@ -75,23 +77,23 @@
 		             IsIndeterminate="{Binding IsScanning}"
 		             IsVisible="{Binding IsProgressVisible}"
 		             AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportProgress}"
-		             AutomationProperties.Name="Import progress" />
+		             AutomationProperties.Name="{x:Static lang:Strings.ImportProgress}" />
 		<TextBlock DockPanel.Dock="Bottom" Margin="0,4,0,0" Text="{Binding StatusText}"
 		           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportStatus}"
 		           AutomationProperties.Name="{Binding StatusText}" />
 
 		<StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="8" Margin="0,0,0,8">
-			<TextBlock Text="Import _from:" VerticalAlignment="Center" />
+			<TextBlock Text="{x:Static lang:Strings.ImportFrom2}" VerticalAlignment="Center" />
 			<Button Content="{Binding SourceLabel}" Command="{Binding ChooseFolderCommand}"
 			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportSource}"
-			        AutomationProperties.Name="Import from" />
+			        AutomationProperties.Name="{x:Static lang:Strings.ImportFrom}" />
 			<svg:Svg Width="16" Height="16" Path="avares://FSpot.Avalonia/Icons/camera-photo.svg" />
 		</StackPanel>
 
 		<Grid ColumnDefinitions="220,4,*">
 			<ListBox ItemsSource="{Binding Photos}" SelectedItem="{Binding SelectedPhoto}"
 			         AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportPhotoList}"
-			         AutomationProperties.Name="Photos to import">
+			         AutomationProperties.Name="{x:Static lang:Strings.PhotosToImport}">
 				<ListBox.ItemTemplate>
 					<DataTemplate DataType="vm:PhotoItemViewModel">
 						<StackPanel Orientation="Horizontal" Spacing="8" Margin="2">
@@ -109,7 +111,7 @@
 			       Stretch="Uniform"
 			       Source="{Binding SelectedPhoto.Thumbnail}"
 			       AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportPreview}"
-			       AutomationProperties.Name="Import preview" />
+			       AutomationProperties.Name="{x:Static lang:Strings.ImportPreview}" />
 		</Grid>
 	</DockPanel>
 </Window>

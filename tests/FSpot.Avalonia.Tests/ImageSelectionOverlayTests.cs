@@ -67,6 +67,27 @@ public sealed class ImageSelectionOverlayTests
 	}
 
 	[TestMethod]
+	public void CompleteSelection_AppliesPanAndZoomBeforeMapping ()
+	{
+		AvaloniaApp.Ensure ();
+		var command = new RecordingCommand ();
+		var overlay = ShowOverlay (new ImageSelectionOverlay {
+			Width = 200,
+			Height = 100,
+			ImageWidth = 200,
+			ImageHeight = 100,
+			Zoom = 2,
+			SelectionCommand = command
+		});
+
+		overlay.CompleteSelection (new Point (0, 0), new Point (200, 100));
+
+		Assert.IsNotNull (command.Last);
+		Assert.AreEqual (100, command.Last.Value.Width);
+		Assert.AreEqual (50, command.Last.Value.Height);
+	}
+
+	[TestMethod]
 	public void CompleteSelection_DoesNotExecuteWhenImageSizeIsMissing ()
 	{
 		AvaloniaApp.Ensure ();

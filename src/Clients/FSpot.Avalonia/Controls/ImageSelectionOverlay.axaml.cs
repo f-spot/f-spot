@@ -5,8 +5,8 @@ using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Media.Imaging;
 
+using FSpot;
 using FSpot.Imaging;
-using FSpot.Utils;
 
 namespace FSpot.Avalonia.Controls;
 
@@ -23,6 +23,15 @@ public partial class ImageSelectionOverlay : UserControl
 
 	public static readonly StyledProperty<Bitmap?> PreviewProperty =
 		AvaloniaProperty.Register<ImageSelectionOverlay, Bitmap?> (nameof (Preview));
+
+	public static readonly StyledProperty<double> ZoomProperty =
+		AvaloniaProperty.Register<ImageSelectionOverlay, double> (nameof (Zoom), 1);
+
+	public static readonly StyledProperty<double> PanXProperty =
+		AvaloniaProperty.Register<ImageSelectionOverlay, double> (nameof (PanX));
+
+	public static readonly StyledProperty<double> PanYProperty =
+		AvaloniaProperty.Register<ImageSelectionOverlay, double> (nameof (PanY));
 
 	Point dragStart;
 	bool dragging;
@@ -50,6 +59,21 @@ public partial class ImageSelectionOverlay : UserControl
 	public Bitmap? Preview {
 		get => GetValue (PreviewProperty);
 		set => SetValue (PreviewProperty, value);
+	}
+
+	public double Zoom {
+		get => GetValue (ZoomProperty);
+		set => SetValue (ZoomProperty, value);
+	}
+
+	public double PanX {
+		get => GetValue (PanXProperty);
+		set => SetValue (PanXProperty, value);
+	}
+
+	public double PanY {
+		get => GetValue (PanYProperty);
+		set => SetValue (PanYProperty, value);
 	}
 
 	void OnPointerPressed (object? sender, PointerPressedEventArgs e)
@@ -98,9 +122,9 @@ public partial class ImageSelectionOverlay : UserControl
 			viewHeight = (int)Height;
 		int imageWidth = Preview?.PixelSize.Width ?? ImageWidth;
 		int imageHeight = Preview?.PixelSize.Height ?? ImageHeight;
-		return UniformImageLayout.MapRect (
+		return PhotoViewTransform.MapRect (
 			viewWidth, viewHeight, imageWidth, imageHeight,
-			start.X, start.Y, end.X, end.Y);
+			Zoom, PanX, PanY, start.X, start.Y, end.X, end.Y);
 	}
 
 	void ShowMarquee (Point start, Point end)

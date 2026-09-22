@@ -3,30 +3,31 @@
         xmlns:vm="using:FSpot.Avalonia.ViewModels"
         xmlns:svg="using:Avalonia.Svg.Skia"
         xmlns:auto="using:FSpot.Avalonia"
+        xmlns:lang="using:FSpot.Resources.Lang"
         x:Class="FSpot.Avalonia.AboutWindow"
         x:DataType="vm:AboutViewModel"
-        Title="About F-Spot"
+        Title="{x:Static lang:Strings.AboutFSpot}"
         Width="420"
         Height="280"
         WindowStartupLocation="CenterOwner"
         CanResize="False"
         AutomationProperties.AutomationId="{x:Static auto:AutomationIds.AboutWindow}"
-        AutomationProperties.Name="About F-Spot">
+        AutomationProperties.Name="{x:Static lang:Strings.AboutFSpot}">
 	<StackPanel Margin="24" Spacing="8">
-		<svg:Svg Width="64" Height="64" Path="avares://FSpot.Avalonia/Icons/f-spot.svg" HorizontalAlignment="Left"
+		<svg:Svg Width="64" Height="64" Path="{x:Static auto:ChromeIcons.AppLogo}" HorizontalAlignment="Left"
 		         AutomationProperties.AutomationId="{x:Static auto:AutomationIds.AboutLogo}"
-		         AutomationProperties.Name="F-Spot" />
-		<TextBlock FontSize="22" FontWeight="SemiBold" Text="F-Spot" />
+		         AutomationProperties.Name="{x:Static lang:Strings.FSpot}" />
+		<TextBlock FontSize="22" FontWeight="SemiBold" Text="{x:Static lang:Strings.FSpot}" />
 		<TextBlock Text="{Binding Version}"
 		           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.AboutVersion}" />
 		<TextBlock TextWrapping="Wrap" Text="{Binding Description}"
 		           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.AboutDescription}" />
-		<TextBlock Text="http://f-spot.org" />
+		<TextBlock Text="{x:Static lang:Strings.FSpotHomeUrl}" />
 		<Button HorizontalAlignment="Right"
 		        Margin="0,16,0,0"
-		        Content="Close"
+		        Content="{x:Static lang:Strings.Close}"
 		        Click="OnClose"
 		        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.AboutClose}"
-		        AutomationProperties.Name="Close" />
+		        AutomationProperties.Name="{x:Static lang:Strings.Close}" />
 	</StackPanel>
 </Window>

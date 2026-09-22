@@ -10,6 +10,39 @@ namespace FSpot.Avalonia.Tests;
 public sealed class EditorChromeMarkupTests
 {
 	[TestMethod]
+	public void GridAndFilmstrip_BindTileSizeToZoom ()
+	{
+		string markup = File.ReadAllText (Path.Combine (ClientRoot (), "MainWindow.axaml"));
+		Assert.Contains ("TileSize", markup);
+		Assert.DoesNotContain ("Height=\"120\"", markup);
+	}
+
+	[TestMethod]
+	public void PhotoGrid_IsExtendedSelectWithTabOrderAndFocusStyle ()
+	{
+		string main = File.ReadAllText (Path.Combine (ClientRoot (), "MainWindow.axaml"));
+		Assert.Contains ("SelectionMode=\"Multiple\"", main);
+		Assert.Contains ("TabIndex", main);
+		string app = File.ReadAllText (Path.Combine (ClientRoot (), "App.axaml"));
+		Assert.Contains ("ListBoxItem:focus", app);
+		Assert.Contains ("timeline-month:focus", app);
+	}
+
+	[TestMethod]
+	public void CopyPageSetupBackgroundAndTools_AreEnabledCommands ()
+	{
+		string markup = File.ReadAllText (Path.Combine (ClientRoot (), "MainWindow.axaml"));
+		Assert.Contains ("CopyCommand", markup);
+		Assert.Contains ("PageSetupCommand", markup);
+		Assert.Contains ("SetAsBackgroundCommand", markup);
+		Assert.Contains ("ShowToolsCommand", markup);
+		Assert.DoesNotContain ("Strings.Copy}\" Gesture=\"Ctrl+C\" IsEnabled=\"False\"", markup);
+		Assert.DoesNotContain ("Strings.PageSetup2}\" IsEnabled=\"False\"", markup);
+		Assert.DoesNotContain ("Strings.SetAsBackground}\" IsEnabled=\"False\"", markup);
+		Assert.DoesNotContain ("Strings.Tools}\" IsEnabled=\"False\"", markup);
+	}
+
+	[TestMethod]
 	public void SelectionOverlay_BindsPreviewSoMapRectHasImageSize ()
 	{
 		var overlay = Descendants (MainWindow (), "ImageSelectionOverlay").Single ();
@@ -52,9 +85,9 @@ public sealed class EditorChromeMarkupTests
 	public void FindByRatingDateAndImportRoll_AreEnabledCommands ()
 	{
 		var find = Descendants (MainWindow (), "NativeMenuItem")
-			.Where (item => (item.Attribute ("Header")?.Value ?? string.Empty).Contains ("By _Rating")
-				|| (item.Attribute ("Header")?.Value ?? string.Empty).Contains ("By _Date")
-				|| (item.Attribute ("Header")?.Value ?? string.Empty).Contains ("By _Import Roll"))
+			.Where (item => (item.Attribute ("Command")?.Value ?? string.Empty).Contains ("FindByRating")
+				|| (item.Attribute ("Command")?.Value ?? string.Empty).Contains ("FindByDate")
+				|| (item.Attribute ("Command")?.Value ?? string.Empty).Contains ("FindByImportRoll"))
 			.ToList ();
 		Assert.HasCount (3, find);
 		foreach (var item in find) {
@@ -65,14 +98,81 @@ public sealed class EditorChromeMarkupTests
 	}
 
 	[TestMethod]
+	public void FindBar_DeclaresDragOverForFolderDrops ()
+	{
+		string markup = MainWindow ().ToString ();
+		Assert.Contains ("OnFindBarDragOver", markup);
+		Assert.Contains ("OnFindBarDrop", markup);
+	}
+
+	[TestMethod]
+	public void MessageDialog_HasHeadingBodyAndButtons ()
+	{
+		var dialog = XDocument.Load (Path.Combine (ClientRoot (), "MessageDialog.axaml"));
+		Assert.Contains ("HeadingBlock", dialog.ToString ());
+		Assert.Contains ("BodyBlock", dialog.ToString ());
+		Assert.Contains ("OkButton", dialog.ToString ());
+		Assert.Contains ("CancelButton", dialog.ToString ());
+		Assert.Contains ("SizeToContent", dialog.ToString ());
+	}
+
+	[TestMethod]
+	public void TagTree_BindsPerTagIconsAndInPlaceRename ()
+	{
+		var window = MainWindow ();
+		Assert.Contains ("IconPath", window.ToString ());
+		Assert.Contains ("IsRenaming", window.ToString ());
+		Assert.Contains ("BeginRenameTag", window.ToString ());
+		var delete = Descendants (window, "MenuItem")
+			.Single (item => (item.Attribute ("Command")?.Value ?? string.Empty).Contains ("DeleteTagCommand"));
+		Assert.Contains ("Binding", delete.Attribute ("CommandParameter")?.Value ?? string.Empty);
+	}
+
+	[TestMethod]
+	public void PhotoPreview_BindsInterpolationModeFromPreferences ()
+	{
+		string code = File.ReadAllText (Path.Combine (ClientRoot (), "MainWindow.axaml.cs"));
+		Assert.Contains ("PreviewInterpolation.Apply", code);
+		Assert.Contains ("ViewerInterpolation", code);
+	}
+
+	[TestMethod]
+	public void SelectionOverlay_BindsPanAndZoom ()
+	{
+		var overlay = Descendants (MainWindow (), "ImageSelectionOverlay").Single ();
+		Assert.Contains ("PreviewZoom", overlay.Attribute ("Zoom")?.Value ?? string.Empty);
+		Assert.Contains ("PreviewPanX", overlay.Attribute ("PanX")?.Value ?? string.Empty);
+	}
+
+	[TestMethod]
+	public void HighGtkSurfaces_AreNotNotYet ()
+	{
+		var window = MainWindow ();
+		var commands = Descendants (window, "NativeMenuItem")
+			.Select (item => (Header: item.Attribute ("Header")?.Value ?? string.Empty, Command: item.Attribute ("Command")?.Value ?? string.Empty, Enabled: item.Attribute ("IsEnabled")?.Value))
+			.ToList ();
+		string[] high = [
+			"CreateVersion", "DeleteVersion", "RenameVersion", "DetachVersion",
+			"AdjustTime", "RefreshThumbnail", "ShowPreferences", "ShowExtensions",
+			"HelpContents", "ImportFromCamera"
+		];
+		foreach (string name in high) {
+			Assert.IsTrue (commands.Any (item => item.Command.Contains (name)), name);
+		}
+
+		foreach (string name in new[] { "CopyCommand", "PageSetupCommand", "SetAsBackgroundCommand", "ShowToolsCommand" })
+			Assert.IsTrue (commands.Any (item => item.Command.Contains (name)), name);
+	}
+
+	[TestMethod]
 	public void SlideshowPrintMailExport_AreNotNotYet ()
 	{
 		var window = MainWindow ();
 		var items = Descendants (window, "NativeMenuItem")
 			.Where (item => {
-				string header = item.Attribute ("Header")?.Value ?? string.Empty;
-				return header.Contains ("Slideshow") || header == "Print"
-					|| header.Contains ("Send by") || header.Contains ("_Export");
+				string command = item.Attribute ("Command")?.Value ?? string.Empty;
+				return command.Contains ("Slideshow") || command.Contains ("PrintCommand")
+					|| command.Contains ("MailCommand") || command.Contains ("ExportCommand");
 			})
 			.ToList ();
 		Assert.IsGreaterThanOrEqualTo (4, items.Count);

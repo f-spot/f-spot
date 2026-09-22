@@ -77,6 +77,9 @@ public partial class ImportViewModel : ObservableObject
 	[ObservableProperty]
 	bool isScanning;
 
+	[ObservableProperty]
+	double uiScale = 1;
+
 	public ImportViewModel (Db database, IAvaloniaShell shell, IPhotoThumbnailLoader thumbnails, Action<bool> close)
 	{
 		this.database = database;
@@ -255,7 +258,7 @@ public partial class ImportViewModel : ObservableObject
 	async Task LoadThumbnailAsync (PhotoItemViewModel item, CancellationToken token)
 	{
 		try {
-			item.Thumbnail = await thumbnails.LoadAsync (item.Path, 128, token);
+			item.Thumbnail = await thumbnails.LoadAsync (item.Path, HiDpi.PixelSize (HiDpi.ImportListDip, UiScale), token);
 		} catch (Exception ex) {
 			Logger.Log.Debug (ex, "Failed to thumbnail import preview {Path}", item.Path);
 		}
@@ -266,7 +269,7 @@ public partial class ImportViewModel : ObservableObject
 		if (item.Thumbnail is not null)
 			return;
 		try {
-			item.Thumbnail = await thumbnails.LoadAsync (item.Path, 512, CancellationToken.None);
+			item.Thumbnail = await thumbnails.LoadAsync (item.Path, HiDpi.PixelSize (HiDpi.ImportPreviewDip, UiScale), CancellationToken.None);
 		} catch (Exception ex) {
 			Logger.Log.Debug (ex, "Failed to load import preview {Path}", item.Path);
 		}

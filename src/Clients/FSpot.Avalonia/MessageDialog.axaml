@@ -1,0 +1,41 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:auto="using:FSpot.Avalonia"
+        xmlns:lang="using:FSpot.Resources.Lang"
+        x:Class="FSpot.Avalonia.MessageDialog"
+        Title="{x:Static lang:Strings.FSpot}"
+        SizeToContent="WidthAndHeight"
+        MinWidth="440"
+        MaxWidth="520"
+        CanResize="False"
+        ShowInTaskbar="False"
+        WindowStartupLocation="CenterOwner"
+        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.DialogWindow}">
+	<DockPanel Margin="24,20,24,16">
+		<StackPanel Name="Buttons" DockPanel.Dock="Bottom" Orientation="Horizontal"
+		            HorizontalAlignment="Right" Spacing="8" Margin="0,20,0,0">
+			<Button Name="CancelButton" MinWidth="88" Padding="16,6"
+			        Content="{x:Static lang:Strings.Cancel}" IsCancel="True"
+			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.DialogCancel}"
+			        AutomationProperties.Name="{x:Static lang:Strings.Cancel}" />
+			<Button Name="OkButton" MinWidth="88" Padding="16,6" Classes="accent" IsDefault="True"
+			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.DialogOk}" />
+		</StackPanel>
+		<Grid ColumnDefinitions="Auto,*">
+			<Border Name="IconBadge" Width="40" Height="40" CornerRadius="20" Margin="0,0,16,0"
+			        VerticalAlignment="Top">
+				<TextBlock Name="IconGlyph" FontSize="20" FontWeight="SemiBold"
+				           HorizontalAlignment="Center" VerticalAlignment="Center" />
+			</Border>
+			<StackPanel Grid.Column="1" Spacing="8">
+				<TextBlock Name="HeadingBlock" FontSize="16" FontWeight="SemiBold"
+				           TextWrapping="Wrap"
+				           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.DialogHeading}" />
+				<TextBlock Name="BodyBlock" FontSize="13" Opacity="0.85" TextWrapping="Wrap" LineHeight="20"
+				           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.DialogMessage}" />
+				<TextBox Name="InputBox" Margin="0,4,0,0" IsVisible="False"
+				         AutomationProperties.AutomationId="{x:Static auto:AutomationIds.DialogInput}" />
+			</StackPanel>
+		</Grid>
+	</DockPanel>
+</Window>

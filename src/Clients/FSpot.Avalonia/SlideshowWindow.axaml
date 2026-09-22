@@ -15,6 +15,6 @@
 		<Button HorizontalAlignment="Right" VerticalAlignment="Top" Margin="16"
 		        Content="×" Click="OnCloseClick"
 		        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SlideshowClose}"
-		        AutomationProperties.Name="Close slideshow" />
+		        AutomationProperties.Name="{x:Static lang:Strings.Close}" />
 	</Panel>
 </Window>

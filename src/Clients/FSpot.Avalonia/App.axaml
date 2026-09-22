@@ -1,11 +1,13 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:lang="using:FSpot.Resources.Lang"
+             xmlns:utils="using:FSpot.Utils"
              x:Class="FSpot.Avalonia.App"
-             Name="F-Spot"
+             Name="{x:Static lang:Strings.FSpot}"
              RequestedThemeVariant="Default">
 	<NativeMenu.Menu>
 		<NativeMenu>
-			<NativeMenuItem Header="About F-Spot" Click="OnAboutClicked" />
+			<NativeMenuItem Header="{x:Static lang:Strings.AboutFSpot}" Click="OnAboutClicked" />
 		</NativeMenu>
 	</NativeMenu.Menu>
 	<Application.Styles>
@@ -31,6 +33,14 @@
 			<Setter Property="Padding" Value="8,6" />
 			<Setter Property="Margin" Value="0,0,0,5" />
 		</Style>
+		<Style Selector="ListBoxItem:focus">
+			<Setter Property="BorderBrush" Value="{DynamicResource SystemAccentColor}" />
+			<Setter Property="BorderThickness" Value="2" />
+		</Style>
+		<Style Selector="Button.timeline-month:focus">
+			<Setter Property="BorderBrush" Value="{DynamicResource SystemAccentColor}" />
+			<Setter Property="BorderThickness" Value="2" />
+		</Style>
 		<Style Selector="TreeView.sidebar">
 			<Setter Property="Background" Value="Transparent" />
 			<Setter Property="FontSize" Value="12" />
@@ -51,9 +61,13 @@
 			<Setter Property="VerticalAlignment" Value="Top" />
 			<Setter Property="Margin" Value="0,3,0,3" />
 		</Style>
+		<Style Selector="TextBlock.info-date">
+			<Setter Property="TextWrapping" Value="Wrap" />
+			<Setter Property="TextTrimming" Value="None" />
+		</Style>
 		<Style Selector="TextBlock.folder-count">
 			<Setter Property="FontSize" Value="11" />
-			<Setter Property="Opacity" Value="0.55" />
+			<Setter Property="Opacity" Value="{x:Static utils:TimelineChrome.FolderCountOpacity}" />
 			<Setter Property="Margin" Value="8,0,4,0" />
 			<Setter Property="VerticalAlignment" Value="Center" />
 		</Style>

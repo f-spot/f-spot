@@ -8,6 +8,7 @@ using Avalonia.Media.Imaging;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 using FSpot.Core;
+using FSpot.Utils;
 
 namespace FSpot.Avalonia.ViewModels;
 
@@ -40,9 +41,8 @@ public partial class PhotoItemViewModel : ObservableObject
 	{
 		Caption = Photo.Name;
 		Path = Photo.DefaultVersion.Uri.AbsolutePath;
-		AutomationId = "photo." + Path.Replace ('\\', '.').Replace ('/', '.');
-		bool invalid = Photo is IInvalidPhotoCheck { IsInvalid: true };
-		DateCaption = invalid ? string.Empty : Photo.Time.ToShortDateString ();
+		AutomationId = PhotoAutomationId.For (Photo);
+		DateCaption = PhotoDateCaption.Format (Photo, wide: false);
 		TagsCaption = FormatTags (Photo);
 		RatingCaption = Photo.Rating == 0 ? string.Empty : new string ('★', (int)Math.Min (Photo.Rating, 5u));
 		OnPropertyChanged (nameof (Caption));
@@ -54,5 +54,7 @@ public partial class PhotoItemViewModel : ObservableObject
 	}
 
 	static string FormatTags (IPhoto photo)
-		=> photo.Tags is null ? string.Empty : string.Join (", ", photo.Tags.Select (tag => tag.Name));
+		=> photo.Tags is null
+			? string.Empty
+			: string.Join (", ", photo.Tags.Where (tag => tag is not null).Select (tag => tag.Name));
 }

@@ -1,10 +1,12 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:vm="using:FSpot.Avalonia.ViewModels"
+             xmlns:utils="using:FSpot.Utils"
+             xmlns:lang="using:FSpot.Resources.Lang"
              x:Class="FSpot.Avalonia.Controls.TimelineStrip"
              x:Name="Root">
 	<Border Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}"
-	        AutomationProperties.Name="Timeline">
+	        AutomationProperties.Name="{x:Static lang:Strings.Timeline}">
 		<ScrollViewer HorizontalScrollBarVisibility="Auto"
 		              VerticalScrollBarVisibility="Disabled">
 			<ItemsControl ItemsSource="{Binding #Root.Items}">
@@ -16,7 +18,8 @@
 				<ItemsControl.ItemTemplate>
 					<DataTemplate DataType="vm:TimelineBucket">
 						<Button Classes="timeline-month"
-						        Width="22"
+						        MinWidth="{x:Static utils:TimelineChrome.MinHitPx}"
+						        Width="{x:Static utils:TimelineChrome.MinHitPx}"
 						        Padding="0,2"
 						        Background="Transparent"
 						        BorderThickness="0"
@@ -30,10 +33,11 @@
 						        AutomationProperties.Name="{Binding ToolTip}">
 							<Button.Styles>
 								<Style Selector="Button.timeline-month:disabled">
-									<Setter Property="Opacity" Value="0.35" />
+									<Setter Property="Opacity" Value="{x:Static utils:TimelineChrome.DisabledOpacity}" />
 								</Style>
 							</Button.Styles>
-							<StackPanel Width="22">
+							<StackPanel MinWidth="{x:Static utils:TimelineChrome.MinHitPx}"
+							            Width="{x:Static utils:TimelineChrome.MinHitPx}">
 								<TextBlock Text="{Binding YearLabel}"
 								           FontSize="9"
 								           Opacity="0.7"

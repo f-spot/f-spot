@@ -8,4 +8,5 @@ public static class DragFormats
 {
 	public static readonly DataFormat<string> TagId = DataFormat.CreateStringApplicationFormat ("x-fspot-tag-id");
 	public static readonly DataFormat<string> Photos = DataFormat.CreateStringApplicationFormat ("x-fspot-photos");
+	public static readonly DataFormat<string> FolderUri = DataFormat.CreateStringApplicationFormat ("x-fspot-folder-uri");
 }

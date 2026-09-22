@@ -5,22 +5,32 @@
 
 using System.Collections.ObjectModel;
 
+using CommunityToolkit.Mvvm.ComponentModel;
+
 using FSpot.Core;
 
 namespace FSpot.Avalonia.Models;
 
-public sealed class TagNode
+public sealed partial class TagNode : ObservableObject
 {
 	public TagNode (Tag tag)
 	{
 		Tag = tag;
-		Name = tag.Name;
+		name = tag.Name;
 		foreach (var child in tag is Category category ? category.Children : Array.Empty<Tag> ())
 			Children.Add (new TagNode (child));
 	}
 
 	public Tag Tag { get; }
-	public string Name { get; }
+
+	[ObservableProperty]
+	string name;
+
+	[ObservableProperty]
+	bool isRenaming;
+
+	public string? IconName => Tag.ThemeIconName;
+	public string IconPath => TagIcons.UriFor (Tag.ThemeIconName);
 	public string AutomationId => "tag." + Tag.Id;
 	public ObservableCollection<TagNode> Children { get; } = [];
 }

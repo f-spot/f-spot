@@ -15,5 +15,13 @@ public partial class ImportWindow : Window
 	{
 		DataContext = viewModel;
 		InitializeComponent ();
+		Opened += (_, _) => ApplyUiScale ();
+		ScalingChanged += (_, _) => ApplyUiScale ();
+	}
+
+	void ApplyUiScale ()
+	{
+		if (DataContext is ImportViewModel viewModel)
+			viewModel.UiScale = RenderScaling;
 	}
 }

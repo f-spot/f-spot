@@ -5,6 +5,8 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 
+using FSpot.Query;
+
 namespace FSpot.Avalonia.ViewModels;
 
 public partial class TimelineBucket : ObservableObject
@@ -23,8 +25,6 @@ public partial class TimelineBucket : ObservableObject
 	public required double RelativeHeight { get; init; }
 	public double BarHeight => Count == 0 ? 0 : Math.Max (3, RelativeHeight * 40);
 	public bool HasPhotos => Count > 0;
-	public string ToolTip => HasPhotos
-		? $"{Start:MMMM yyyy} ({Count})"
-		: $"{Start:MMMM yyyy}";
+	public string ToolTip => QueryChipFormat.TimelineMonth (Start, Count);
 	public string AutomationId => $"timeline.{Start:yyyy-MM}";
 }

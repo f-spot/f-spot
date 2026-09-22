@@ -1,0 +1,30 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:auto="using:FSpot.Avalonia"
+        xmlns:lang="using:FSpot.Resources.Lang"
+        x:Class="FSpot.Avalonia.PreferencesWindow"
+        Title="{x:Static lang:Strings.Preferences}"
+        Width="420"
+        Height="320"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False"
+        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PreferencesWindow}"
+        AutomationProperties.Name="{x:Static lang:Strings.Preferences}">
+	<StackPanel Margin="16" Spacing="10">
+		<CheckBox Name="ShowSidebar" Content="{x:Static lang:Strings.Sidebar}"
+		          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PreferencesSidebar}" />
+		<CheckBox Name="ShowTimeline" Content="{x:Static lang:Strings.Timeline}"
+		          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PreferencesTimeline}" />
+		<CheckBox Name="ShowFilmstrip" Content="{x:Static lang:Strings.Filmstrip}"
+		          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PreferencesFilmstrip}" />
+		<CheckBox Name="ImportCopyFiles" Content="{x:Static lang:Strings.CopyFilesToThePhotosFolder}"
+		          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PreferencesCopyFiles}" />
+		<CheckBox Name="ViewerInterpolation" Content="{x:Static lang:Strings.InterpolateImageOnZoom}"
+		          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PreferencesInterpolation}" />
+		<TextBlock Text="{x:Static lang:Strings.Photos}" />
+		<TextBox Name="StoragePath"
+		         AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PreferencesStoragePath}"
+		         AutomationProperties.Name="{x:Static lang:Strings.Photos}" />
+		<Button HorizontalAlignment="Right" Content="{x:Static lang:Strings.Close}" Click="OnClose" />
+	</StackPanel>
+</Window>

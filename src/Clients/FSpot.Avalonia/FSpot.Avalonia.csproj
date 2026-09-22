@@ -10,6 +10,7 @@
     <AssemblyName>FSpot.Avalonia</AssemblyName>
     <ApplicationTitle>F-Spot</ApplicationTitle>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    <RasterizeIcons>true</RasterizeIcons>
     <OutputPath>$(RepoRoot)artifacts/fspot-avalonia/</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
@@ -38,6 +39,21 @@
     </AvaloniaResource>
     <AvaloniaResource Include="$(RepoRoot)icons/f-spot-32.png">
       <Link>Icons\f-spot-32.png</Link>
+    </AvaloniaResource>
+    <AvaloniaResource Include="$(RepoRoot)icons/crop-22.png">
+      <Link>Icons\crop-22.png</Link>
+    </AvaloniaResource>
+    <AvaloniaResource Include="$(RepoRoot)icons/red-eye-remove-22.png">
+      <Link>Icons\red-eye-remove-22.png</Link>
+    </AvaloniaResource>
+    <AvaloniaResource Include="$(RepoRoot)icons/filter-soft-focus-22.png">
+      <Link>Icons\filter-soft-focus-22.png</Link>
+    </AvaloniaResource>
+    <AvaloniaResource Include="$(RepoRoot)icons/emblem-favorite-22.png">
+      <Link>Icons\emblem-favorite-22.png</Link>
+    </AvaloniaResource>
+    <AvaloniaResource Include="$(RepoRoot)icons/emblem-readonly-22.png">
+      <Link>Icons\emblem-readonly-22.png</Link>
     </AvaloniaResource>
   </ItemGroup>
 

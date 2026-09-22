@@ -8,6 +8,7 @@ public static class AutomationIds
 	public const string ImportWindow = "ImportWindow";
 	public const string AboutWindow = "AboutWindow";
 	public const string DialogWindow = "Dialog.Window";
+	public const string DialogHeading = "Dialog.Heading";
 	public const string DialogMessage = "Dialog.Message";
 	public const string DialogPrompt = "Dialog.Prompt";
 	public const string DialogInput = "Dialog.Input";
@@ -84,6 +85,8 @@ public static class AutomationIds
 	public const string QueryClearRating = "Main.QueryBar.ClearRating";
 	public const string QueryClearDate = "Main.QueryBar.ClearDate";
 	public const string QueryClearRoll = "Main.QueryBar.ClearRoll";
+	public const string QueryNoMatches = "Main.QueryBar.NoMatches";
+	public const string FindBarNoMatches = "Main.FindBar.NoMatches";
 	public const string SlideshowWindow = "Slideshow.Window";
 	public const string SlideshowImage = "Slideshow.Image";
 	public const string SlideshowClose = "Slideshow.Close";
@@ -136,4 +139,17 @@ public static class AutomationIds
 	public const string AboutVersion = "About.Version";
 	public const string AboutDescription = "About.Description";
 	public const string AboutClose = "About.Close";
+
+	public const string PreferencesWindow = "Preferences.Window";
+	public const string PreferencesSidebar = "Preferences.Sidebar";
+	public const string PreferencesTimeline = "Preferences.Timeline";
+	public const string PreferencesFilmstrip = "Preferences.Filmstrip";
+	public const string PreferencesCopyFiles = "Preferences.CopyFiles";
+	public const string PreferencesStoragePath = "Preferences.StoragePath";
+	public const string PreferencesInterpolation = "Preferences.Interpolation";
+	public const string ExtensionsWindow = "Extensions.Window";
+	public const string ExtensionsList = "Extensions.List";
+	public const string InfoShowDate = "Main.Sidebar.Info.ShowDate";
+	public const string InfoStars = "Main.Sidebar.Info.Stars";
+	public const string FolderShare = "Main.Sidebar.Folders.Share";
 }

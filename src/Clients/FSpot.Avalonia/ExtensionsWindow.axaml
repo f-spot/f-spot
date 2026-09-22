@@ -1,0 +1,27 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:auto="using:FSpot.Avalonia"
+        xmlns:lang="using:FSpot.Resources.Lang"
+        xmlns:core="using:FSpot"
+        x:Class="FSpot.Avalonia.ExtensionsWindow"
+        Title="{x:Static lang:Strings.ManageExtensions}"
+        Width="420"
+        Height="360"
+        WindowStartupLocation="CenterOwner"
+        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ExtensionsWindow}"
+        AutomationProperties.Name="{x:Static lang:Strings.ManageExtensions}">
+	<DockPanel Margin="16">
+		<Button DockPanel.Dock="Bottom" HorizontalAlignment="Right" Content="{x:Static lang:Strings.Close}" Click="OnClose" />
+		<ListBox Name="Addins" Margin="0,0,0,12"
+		         AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ExtensionsList}"
+		         AutomationProperties.Name="{x:Static lang:Strings.ManageExtensions}">
+			<ListBox.ItemTemplate>
+				<DataTemplate x:DataType="core:AddinStatus">
+					<CheckBox Content="{Binding Name}" IsChecked="{Binding Enabled}"
+					          AutomationProperties.AutomationId="{Binding Id, StringFormat=Extensions.{0}}"
+					          AutomationProperties.Name="{Binding Name}" />
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+	</DockPanel>
+</Window>

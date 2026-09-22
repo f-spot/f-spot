@@ -5,14 +5,14 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 
+using FSpot.Resources.Lang;
 using FSpot.Settings;
 
 namespace FSpot.Avalonia.ViewModels;
 
 public sealed class AboutViewModel : ObservableObject
 {
-	public string Version { get; } = $"Version {FSpotConfiguration.Version}";
+	public string Version { get; } = string.Format (Strings.VersionX, FSpotConfiguration.Version);
 
-	public string Description { get; } =
-		"Personal photo management. The Avalonia client uses the same catalog as the GTK 2 client.";
+	public string Description { get; } = Strings.AvaloniaAboutDescription;
 }

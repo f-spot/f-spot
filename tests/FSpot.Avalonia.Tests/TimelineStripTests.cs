@@ -10,6 +10,7 @@ using Avalonia.VisualTree;
 
 using FSpot.Avalonia.Controls;
 using FSpot.Avalonia.ViewModels;
+using FSpot.Utils;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -51,6 +52,54 @@ public sealed class TimelineStripTests
 		window.MouseUp (end, MouseButton.Left, RawInputModifiers.Shift);
 
 		Assert.AreEqual ((0, 2), range);
+	}
+
+	[TestMethod]
+	public void MonthButtons_AreAtLeastTheMinimumHitTarget ()
+	{
+		AvaloniaApp.Ensure ();
+		var strip = ShownStrip (Months (3));
+		var months = MonthButtons (strip);
+		Assert.IsGreaterThanOrEqualTo (1, months.Count);
+		foreach (var month in months) {
+			Assert.IsGreaterThanOrEqualTo (TimelineChrome.MinHitPx, month.MinWidth);
+			Assert.IsGreaterThanOrEqualTo (TimelineChrome.MinHitPx, month.Bounds.Width);
+			Assert.IsGreaterThanOrEqualTo (TimelineChrome.MinHitPx, month.Bounds.Height);
+		}
+	}
+
+	[TestMethod]
+	public void DisabledMonth_KeepsReadableOpacity ()
+	{
+		AvaloniaApp.Ensure ();
+		var empty = new TimelineBucket {
+			MonthLabel = "Jan",
+			Start = new DateTime (2026, 1, 1),
+			End = new DateTime (2026, 2, 1),
+			Count = 0,
+			RelativeHeight = 0
+		};
+		var strip = ShownStrip ([empty]);
+		var month = MonthButtons (strip).Single ();
+		Assert.IsFalse (month.IsEnabled);
+		Assert.IsGreaterThanOrEqualTo (TimelineChrome.DisabledOpacity, month.Opacity);
+	}
+
+	static TimelineStrip ShownStrip (IReadOnlyList<TimelineBucket> buckets)
+	{
+		var strip = new TimelineStrip {
+			Width = 240,
+			Height = 90,
+			Items = buckets
+		};
+		var window = new Window {
+			Width = 280,
+			Height = 120,
+			Content = strip
+		};
+		window.Show ();
+		strip.UpdateLayout ();
+		return strip;
 	}
 
 	static List<TimelineBucket> Months (int count)
