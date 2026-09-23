@@ -157,11 +157,11 @@ public sealed class EditorChromeMarkupTests
 			"HelpContents", "ImportFromCamera"
 		];
 		foreach (string name in high) {
-			Assert.IsTrue (commands.Any (item => item.Command.Contains (name)), name);
+			Assert.Contains (item => item.Command.Contains (name), commands, name);
 		}
 
 		foreach (string name in new[] { "CopyCommand", "PageSetupCommand", "SetAsBackgroundCommand", "ShowToolsCommand" })
-			Assert.IsTrue (commands.Any (item => item.Command.Contains (name)), name);
+			Assert.Contains (item => item.Command.Contains (name), commands, name);
 	}
 
 	[TestMethod]

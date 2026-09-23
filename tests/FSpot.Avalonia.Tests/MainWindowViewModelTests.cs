@@ -29,6 +29,8 @@ namespace FSpot.Avalonia.Tests;
 [TestClass]
 public sealed class MainWindowViewModelTests
 {
+	public TestContext TestContext { get; set; } = null!;
+
 	[TestMethod]
 	public void TileSize_FollowsZoom ()
 	{
@@ -67,7 +69,9 @@ public sealed class MainWindowViewModelTests
 
 		Assert.IsTrue (viewModel.SetAsBackgroundCommand.CanExecute (null));
 		await viewModel.SetAsBackgroundCommand.ExecuteAsync (null);
-		Assert.Contains ("wall.jpg", shell.BackgroundPath);
+		string? background = shell.BackgroundPath;
+		Assert.IsNotNull (background);
+		Assert.Contains ("wall.jpg", background);
 	}
 
 	[TestMethod]
@@ -159,7 +163,9 @@ public sealed class MainWindowViewModelTests
 		await viewModel.DeleteTagCommand.ExecuteAsync (node);
 
 		Assert.AreEqual (Strings.TagIsNotEmpty, shell.WarningTitle);
-		Assert.Contains ("Root", shell.WarningMessage);
+		string? warning = shell.WarningMessage;
+		Assert.IsNotNull (warning);
+		Assert.Contains ("Root", warning);
 		Assert.IsFalse (shell.ConfirmCalled);
 	}
 
@@ -898,8 +904,8 @@ public sealed class MainWindowViewModelTests
 		Directory.CreateDirectory (root);
 		string jpeg = Path.Combine (root, "photo.jpg");
 		string notes = Path.Combine (root, "notes.txt");
-		File.WriteAllText (jpeg, "jpg");
-		File.WriteAllText (notes, "text");
+		await File.WriteAllTextAsync (jpeg, "jpg", TestContext.CancellationToken);
+		await File.WriteAllTextAsync (notes, "text", TestContext.CancellationToken);
 		var shell = new RecordingShell ();
 		var viewModel = new MainWindowViewModel (null, shell, new NullThumbnails ());
 		try {
@@ -1014,14 +1020,14 @@ public sealed class MainWindowViewModelTests
 		try {
 			var shell = new RecordingShell ();
 			var viewModel = new MainWindowViewModel (null, shell, new NullThumbnails ());
-			Assert.IsFalse (viewModel.VisibleEditors.Any (editor => editor.Id == PhotoEditorCatalog.Desaturate.Id));
+			Assert.DoesNotContain (editor => editor.Id == PhotoEditorCatalog.Desaturate.Id, viewModel.VisibleEditors);
 
 			await viewModel.ShowToolsCommand.ExecuteAsync (null);
 			Assert.IsNotNull (shell.ShownAddins);
 			var row = shell.ShownAddins.Single (addin => addin.Id == PhotoEditorCatalog.Desaturate.Id);
 			Assert.IsFalse (row.Enabled);
 			row.Enabled = true;
-			Assert.IsTrue (viewModel.VisibleEditors.Any (editor => editor.Id == PhotoEditorCatalog.Desaturate.Id));
+			Assert.Contains (editor => editor.Id == PhotoEditorCatalog.Desaturate.Id, viewModel.VisibleEditors);
 		} finally {
 			FSpot.Settings.Preferences.Set (key, true);
 		}
@@ -1226,7 +1232,10 @@ public sealed class MainWindowViewModelTests
 		public Task<Bitmap?> LoadAsync (string path, int size, CancellationToken cancellationToken)
 		{
 			Started.TrySetResult ();
+			// The test completes Release. This method only waits on that gate.
+#pragma warning disable VSTHRD003
 			return Release.Task;
+#pragma warning restore VSTHRD003
 		}
 	}
 
@@ -1251,14 +1260,15 @@ public sealed class MainWindowViewModelTests
 
 	sealed class StubPhoto : IPhoto
 	{
-		public StubPhoto (string path, DateTime? time = null, uint rating = 0, params Tag[] tags)
+		public StubPhoto (string path, DateTime? time = null, uint rating = 0, params Tag?[] tags)
 		{
 			Name = System.IO.Path.GetFileName (path);
 			DefaultVersion = new StubVersion (path);
 			Versions = new[] { DefaultVersion };
 			Time = time ?? DateTime.UnixEpoch;
 			Rating = rating;
-			Tags = tags ?? Array.Empty<Tag> ();
+			// FormatTags skips null entries. IPhoto.Tags cannot say an element may be null.
+			Tags = tags is null ? Array.Empty<Tag> () : Array.ConvertAll (tags, static tag => tag!);
 		}
 
 		public DateTime Time { get; }

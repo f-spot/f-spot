@@ -47,7 +47,7 @@ public sealed class IconRasterPlanTests
 		File.WriteAllBytes (Path.Combine (dest, "camera-photo-16.png"), [0]);
 		File.WriteAllBytes (Path.Combine (dest, "camera-photo-32.png"), [0]);
 		var sizes = IconRasterPlan.Create (src, dest).Select (job => job.Size).OrderBy (size => size).ToArray ();
-		CollectionAssert.AreEqual (new[] { 16, 32 }, sizes);
+		Assert.AreSequenceEqual (new[] { 16, 32 }, sizes);
 	}
 
 	[TestMethod]
@@ -55,7 +55,7 @@ public sealed class IconRasterPlanTests
 	{
 		File.WriteAllText (Path.Combine (src, "new-icon.svg"), "<svg/>");
 		var sizes = IconRasterPlan.Create (src, dest).Select (job => job.Size).OrderBy (size => size).ToArray ();
-		CollectionAssert.AreEqual (IconRasterPlan.DefaultSizes, sizes);
+		Assert.AreSequenceEqual (IconRasterPlan.DefaultSizes, sizes);
 	}
 
 	[TestMethod]
@@ -64,7 +64,7 @@ public sealed class IconRasterPlanTests
 		File.WriteAllText (Path.Combine (src, "adjust-colors-22.svg"), "<svg/>");
 		File.WriteAllBytes (Path.Combine (dest, "adjust-colors-24.png"), [0]);
 		var jobs = IconRasterPlan.Create (src, dest);
-		Assert.IsTrue (jobs.Any (job => job.Size == 24 && job.SvgPath.EndsWith ("adjust-colors-22.svg", StringComparison.Ordinal)));
+		Assert.Contains (job => job.Size == 24 && job.SvgPath.EndsWith ("adjust-colors-22.svg", StringComparison.Ordinal), jobs);
 	}
 
 	[TestMethod]

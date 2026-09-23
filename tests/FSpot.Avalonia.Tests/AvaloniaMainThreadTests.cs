@@ -9,6 +9,10 @@ namespace FSpot.Avalonia.Tests;
 [TestClass]
 public sealed class AvaloniaMainThreadTests
 {
+	public TestContext TestContext { get; }
+
+	public AvaloniaMainThreadTests (TestContext testContext) => TestContext = testContext;
+
 	[TestMethod]
 	public void BackgroundProxy_UsesTheHandlerInsteadOfThrowing ()
 	{
@@ -27,7 +31,7 @@ public sealed class AvaloniaMainThreadTests
 		});
 		worker.Start ();
 
-		Assert.IsTrue (done.Wait (TimeSpan.FromSeconds (2)));
+		Assert.IsTrue (done.Wait (TimeSpan.FromSeconds (2), TestContext.CancellationToken));
 		Assert.IsNull (caught);
 		Assert.HasCount (1, posted);
 	}

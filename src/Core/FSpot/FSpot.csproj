@@ -42,6 +42,13 @@
     <PackageReference Include="TinyIoC" />
   </ItemGroup>
 
+  <!-- TinyIoC 1.4.0-rc1 is compiled from the package's TinyIoc.cs. That file still declares
+       BinaryFormatter constructors, which net10.0 reports as SYSLIB0051. A repo editorconfig
+       does not apply to a file under the NuGet cache. -->
+  <PropertyGroup Condition="'$(TargetFramework)' == '$(FSpotModernTargetFramework)'">
+    <NoWarn>$(NoWarn);SYSLIB0051</NoWarn>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Include="FSpot.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -92,7 +92,7 @@ namespace FSpot.Tests
 			Assert.AreSame (detached, result);
 			Assert.HasCount (1, photo.Versions);
 			Assert.HasCount (1, batch);
-			Assert.AreEqual (2, batch[0].Length);
+			Assert.HasCount (2, batch[0]);
 		}
 
 		[TestMethod]

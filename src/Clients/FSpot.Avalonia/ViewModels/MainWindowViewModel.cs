@@ -581,7 +581,7 @@ public partial class MainWindowViewModel : ObservableObject
 			if (context is null || SynchronizationContext.Current == context)
 				Apply ();
 			else
-				context.Post (_ => Apply (), null);
+				PostTo (context, Apply);
 		} catch (Exception ex) {
 			if (!HistogramStillCurrent (generation, item))
 				return;
@@ -592,9 +592,18 @@ public partial class MainWindowViewModel : ObservableObject
 				loaded?.Dispose ();
 			else {
 				var bitmap = loaded;
-				context.Post (_ => bitmap?.Dispose (), null);
+				PostTo (context, () => bitmap?.Dispose ());
 			}
 		}
+	}
+
+	// Post returns immediately. Apply and dispose must run on the context captured before
+	// ConfigureAwait(false). This process does not reference JoinableTaskFactory.
+	static void PostTo (SynchronizationContext context, Action action)
+	{
+#pragma warning disable VSTHRD001
+		context.Post (_ => action (), null);
+#pragma warning restore VSTHRD001
 	}
 
 	bool HistogramStillCurrent (int generation, PhotoItemViewModel item)

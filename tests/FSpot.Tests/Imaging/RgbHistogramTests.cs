@@ -68,10 +68,8 @@ namespace FSpot.Imaging.Tests
 			counts[0, RgbHistogram.Blue] = 4;
 
 			byte[] pixels = RgbHistogram.RenderBgra (counts, 4);
-			Assert.AreEqual (256 * 4 * 4, pixels.Length);
-
 			byte[] wide = RgbHistogram.RenderBgra (counts, 512, 8);
-			Assert.AreEqual (512 * 8 * 4, wide.Length);
+			Assert.HasCount (512 * 8 * 4, wide);
 
 			Assert.HasCount (256 * 4 * 4, pixels);
 			AssertBottomPixel (pixels, 4, 0, 3, blue: 255, green: 0, red: 0);

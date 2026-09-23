@@ -67,7 +67,7 @@ sealed class AvaloniaImagingBackend : IImagingBackend
 	{
 		using var stream = new MemoryStream ();
 		using (var bitmap = ToBgraBitmap (icon))
-			bitmap.Save (stream);
+			bitmap.Save (stream, PngBitmapEncoderOptions.Default);
 		return stream.ToArray ();
 	}
 
@@ -83,7 +83,7 @@ sealed class AvaloniaImagingBackend : IImagingBackend
 	public void SavePng (ImageBuffer image, string path, string[] optionKeys, string[] optionValues)
 	{
 		using var bitmap = ToBgraBitmap (image);
-		bitmap.Save (path);
+		bitmap.Save (path, PngBitmapEncoderOptions.Default);
 	}
 
 	internal static Bitmap ApplyOrientation (Bitmap bitmap, ImageOrientation orientation)

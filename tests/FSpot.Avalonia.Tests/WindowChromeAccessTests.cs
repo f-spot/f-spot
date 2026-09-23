@@ -41,7 +41,9 @@ public sealed class WindowChromeAccessTests
 			var import = window.GetVisualDescendants ().OfType<Button> ()
 				.First (button => AutomationProperties.GetAutomationId (button) == AutomationIds.ToolbarImport);
 			var access = import.GetVisualDescendants ().OfType<AccessText> ().Single ();
-			Assert.AreEqual ("I", access.AccessKey.ToString ());
+			string? accessKey = access.AccessKey;
+			Assert.IsNotNull (accessKey);
+			Assert.AreEqual ("I", accessKey);
 			Assert.AreEqual (Key.I, import.HotKey?.Key);
 			Assert.AreEqual (KeyModifiers.Alt, import.HotKey?.KeyModifiers);
 
@@ -88,7 +90,9 @@ public sealed class WindowChromeAccessTests
 		window.Show ();
 		try {
 			var access = window.GetVisualDescendants ().OfType<AccessText> ().Single ();
-			Assert.AreEqual ("D", access.AccessKey.ToString ());
+			string? accessKey = access.AccessKey;
+			Assert.IsNotNull (accessKey);
+			Assert.AreEqual ("D", accessKey);
 		} finally {
 			window.Close ();
 		}
