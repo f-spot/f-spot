@@ -7,27 +7,22 @@
         x:DataType="vm:AboutViewModel"
         Title="{x:Static lang:Strings.AboutFSpot}"
         Width="420"
-        Height="280"
+        SizeToContent="Height"
         WindowStartupLocation="CenterOwner"
         CanResize="False"
+        KeyDown="OnAboutKeyDown"
         AutomationProperties.AutomationId="{x:Static auto:AutomationIds.AboutWindow}"
         AutomationProperties.Name="{x:Static lang:Strings.AboutFSpot}">
 	<StackPanel Margin="24" Spacing="8">
 		<Image Width="64" Height="64" HorizontalAlignment="Left"
-		       Source="avares://FSpot.Avalonia/Icons/f-spot-256.png"
+		       Source="avares://FSpot.Avalonia/Icons/f-spot-logo.png"
 		       AutomationProperties.AutomationId="{x:Static auto:AutomationIds.AboutLogo}"
 		       AutomationProperties.Name="{x:Static lang:Strings.FSpot}" />
 		<TextBlock FontSize="22" FontWeight="SemiBold" Text="{x:Static lang:Strings.FSpot}" />
 		<TextBlock Text="{Binding Version}"
 		           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.AboutVersion}" />
-		<TextBlock TextWrapping="Wrap" Text="{Binding Description}"
-		           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.AboutDescription}" />
+		<TextBlock Text="{Binding Telemetry}" TextWrapping="Wrap"
+		           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.AboutTelemetry}" />
 		<TextBlock Text="{x:Static lang:Strings.FSpotHomeUrl}" />
-		<Button HorizontalAlignment="Right"
-		        Margin="0,16,0,0"
-		        Content="{x:Static lang:Strings.Close}"
-		        Click="OnClose"
-		        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.AboutClose}"
-		        AutomationProperties.Name="{x:Static lang:Strings.Close}" />
 	</StackPanel>
 </Window>

@@ -1,5 +1,5 @@
 using Avalonia.Controls;
-using Avalonia.Interactivity;
+using Avalonia.Input;
 
 using FSpot.Avalonia.ViewModels;
 
@@ -13,6 +13,11 @@ public partial class AboutWindow : Window
 		InitializeComponent ();
 	}
 
-	void OnClose (object? sender, RoutedEventArgs e)
-		=> Close ();
+	void OnAboutKeyDown (object? sender, KeyEventArgs e)
+	{
+		if (e.Key != Key.Escape)
+			return;
+		Close ();
+		e.Handled = true;
+	}
 }

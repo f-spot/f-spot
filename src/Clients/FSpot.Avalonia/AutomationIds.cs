@@ -119,6 +119,8 @@ public static class AutomationIds
 	public const string EditorSharpenRadius = "Main.Editor.Sharpen.Radius";
 	public const string EditorSharpenThreshold = "Main.Editor.Sharpen.Threshold";
 	public const string TagBar = "Main.TagBar";
+	public const string PhotoDescription = "Main.PhotoDescription";
+	public const string PhotoRating = "Main.PhotoRating";
 
 	public const string ImportSource = "Import.Source";
 	public const string ImportPhotoList = "Import.PhotoList";
@@ -141,6 +143,7 @@ public static class AutomationIds
 	public const string AboutClose = "About.Close";
 
 	public const string PreferencesWindow = "Preferences.Window";
+	public const string PreferencesColorScheme = "Preferences.ColorScheme";
 	public const string PreferencesSidebar = "Preferences.Sidebar";
 	public const string PreferencesTimeline = "Preferences.Timeline";
 	public const string PreferencesFilmstrip = "Preferences.Filmstrip";

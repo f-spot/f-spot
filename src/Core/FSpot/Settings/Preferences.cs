@@ -50,6 +50,7 @@ namespace FSpot.Settings
 			{ GlassPosition, 0 },
 			{ ShowToolbar, true },
 			{ ShowSidebar, true },
+			{ ColorScheme, "System" },
 			{ ShowTimeline, true },
 			{ ShowFilmstrip, true },
 			{ ShowTags, true },

@@ -22,7 +22,10 @@ public partial class App : Application
 	public static Db? Database { get; private set; }
 
 	public override void Initialize ()
-		=> AvaloniaXamlLoader.Load (this);
+	{
+		AvaloniaXamlLoader.Load (this);
+		AppearanceTheme.Apply (this);
+	}
 
 	void OnAboutClicked (object? sender, EventArgs e)
 	{

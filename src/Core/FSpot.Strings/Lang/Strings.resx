@@ -2708,6 +2708,9 @@ between</value>
   <data name="FSpotAppearance" xml:space="preserve">
     <value>F-Spot appearance:</value>
   </data>
+  <data name="UseSystemTheme" xml:space="preserve">
+    <value>System</value>
+  </data>
   <data name="FSpotEncounteredAFatalError" xml:space="preserve">
     <value>F-Spot Encountered a Fatal Error</value>
   </data>
@@ -4912,9 +4915,6 @@ Facebook said: {0}</value>
   </data>
   <data name="VersionX" xml:space="preserve">
     <value>Version {0}</value>
-  </data>
-  <data name="AvaloniaAboutDescription" xml:space="preserve">
-    <value>Personal photo management. The Avalonia client uses the same catalog as the GTK 2 client.</value>
   </data>
   <data name="DateRangePrompt" xml:space="preserve">
     <value>Dates YYYY-MM-DD:YYYY-MM-DD</value>

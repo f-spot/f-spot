@@ -93,10 +93,17 @@
 			        AutomationProperties.Name="{x:Static lang:Strings.ImportFrom}" />
 		</StackPanel>
 
-		<Grid ColumnDefinitions="220,8,*">
+		<Grid ColumnDefinitions="220,Auto,*">
 			<ListBox Grid.Column="0" ItemsSource="{Binding Photos}" SelectedItem="{Binding SelectedPhoto}"
+			         ContainerPrepared="OnThumbnailContainerPrepared"
+			         ContainerClearing="OnThumbnailContainerClearing"
 			         AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportPhotoList}"
 			         AutomationProperties.Name="{x:Static lang:Strings.PhotosToImport}">
+				<ListBox.ItemsPanel>
+					<ItemsPanelTemplate>
+						<VirtualizingStackPanel />
+					</ItemsPanelTemplate>
+				</ListBox.ItemsPanel>
 				<ListBox.ItemTemplate>
 					<DataTemplate DataType="vm:PhotoItemViewModel">
 						<StackPanel Orientation="Horizontal" Spacing="8" Margin="2">
@@ -108,12 +115,11 @@
 					</DataTemplate>
 				</ListBox.ItemTemplate>
 			</ListBox>
-			<GridSplitter Grid.Column="1" Width="8" ResizeDirection="Columns"
-			              Background="{DynamicResource SystemControlForegroundBaseMediumLowBrush}" />
+			<GridSplitter Grid.Column="1" Classes="hairline" ResizeDirection="Columns" />
 			<Image Grid.Column="2"
 			       Margin="8"
 			       Stretch="Uniform"
-			       Source="{Binding SelectedPhoto.Thumbnail}"
+			       Source="{Binding Preview}"
 			       AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportPreview}"
 			       AutomationProperties.Name="{x:Static lang:Strings.ImportPreview}" />
 		</Grid>

@@ -35,5 +35,10 @@ namespace FSpot
 			get => Preferences.Get<bool> (Preferences.ViewerInterpolation);
 			set => Preferences.Set (Preferences.ViewerInterpolation, value);
 		}
+
+		public static string ColorScheme {
+			get => Preferences.Get<string> (Preferences.ColorScheme);
+			set => Preferences.Set (Preferences.ColorScheme, value);
+		}
 	}
 }

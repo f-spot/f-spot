@@ -1,5 +1,6 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:sys="using:System"
              xmlns:lang="using:FSpot.Resources.Lang"
              xmlns:utils="using:FSpot.Utils"
              x:Class="FSpot.Avalonia.App"
@@ -15,12 +16,37 @@
 		<Style Selector="Button /template/ ContentPresenter, CheckBox /template/ ContentPresenter, Label /template/ ContentPresenter">
 			<Setter Property="RecognizesAccessKey" Value="True" />
 		</Style>
-		<Style Selector="Button.dialog /template/ AccessText">
+		<Style Selector="Button">
+			<Setter Property="HorizontalContentAlignment" Value="Center" />
+			<Setter Property="VerticalContentAlignment" Value="Center" />
+		</Style>
+		<Style Selector="Button /template/ AccessText">
 			<Setter Property="HorizontalAlignment" Value="Center" />
 			<Setter Property="VerticalAlignment" Value="Center" />
 		</Style>
-		<Style Selector="GridSplitter">
-			<Setter Property="Background" Value="{DynamicResource SystemControlForegroundBaseMediumLowBrush}" />
+		<Style Selector="GridSplitter.hairline">
+			<Setter Property="Background" Value="Transparent" />
+			<Setter Property="Width" Value="5" />
+			<Setter Property="MinWidth" Value="5" />
+			<Setter Property="Template">
+				<ControlTemplate>
+					<Panel Background="Transparent">
+						<Border Width="1" HorizontalAlignment="Center"
+						        Background="{DynamicResource SystemControlForegroundBaseMediumLowBrush}" />
+					</Panel>
+				</ControlTemplate>
+			</Setter>
+		</Style>
+		<!-- Fluent's horizontal slider is 15 + 32 + 15. The footer zoom control
+		     should sit in one text line, about 16px, under the taller toolbar. -->
+		<Style Selector="Slider.zoom">
+			<Style.Resources>
+				<GridLength x:Key="SliderPreContentMargin">0</GridLength>
+				<GridLength x:Key="SliderPostContentMargin">0</GridLength>
+				<sys:Double x:Key="SliderHorizontalHeight">16</sys:Double>
+				<sys:Double x:Key="SliderHorizontalThumbWidth">12</sys:Double>
+				<sys:Double x:Key="SliderHorizontalThumbHeight">12</sys:Double>
+			</Style.Resources>
 		</Style>
 		<Style Selector="Button.tool, ToggleButton.tool, RadioButton.tool">
 			<Setter Property="Padding" Value="8,4" />
@@ -55,6 +81,11 @@
 			<Setter Property="Background" Value="Transparent" />
 			<Setter Property="FontSize" Value="12" />
 			<Setter Property="BorderThickness" Value="0" />
+			<Setter Property="Padding" Value="0" />
+		</Style>
+		<Style Selector="TreeView.sidebar TreeViewItem">
+			<Setter Property="Padding" Value="0,1" />
+			<Setter Property="MinHeight" Value="22" />
 		</Style>
 		<Style Selector="TextBlock.info-label">
 			<Setter Property="FontSize" Value="11" />

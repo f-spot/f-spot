@@ -60,6 +60,11 @@ public partial class PhotoInfoViewModel : ObservableObject
 	[ObservableProperty]
 	string tags = string.Empty;
 
+	[ObservableProperty]
+	string description = string.Empty;
+
+	public event Action<string>? DescriptionChosen;
+
 	public IReadOnlyList<uint> RatingChoices { get; } = [0, 1, 2, 3, 4, 5];
 	public IReadOnlyList<InfoStar> StarButtons
 		=> Enumerable.Range (1, 5).Select (index => new InfoStar ((uint)index, index <= RatingValue)).ToList ();
@@ -71,7 +76,7 @@ public partial class PhotoInfoViewModel : ObservableObject
 	{
 		syncing = true;
 		try {
-			Name = Date = Size = Exposure = FocalLength = Camera = Creator = Rating = Tags = string.Empty;
+			Name = Date = Size = Exposure = FocalLength = Camera = Creator = Rating = Tags = Description = string.Empty;
 			RatingValue = 0;
 			Versions = [];
 			SelectedVersion = null;
@@ -105,6 +110,7 @@ public partial class PhotoInfoViewModel : ObservableObject
 			Tags = photo.Tags is null
 				? string.Empty
 				: string.Join (", ", photo.Tags.Select (t => t.Name));
+			Description = photo.Description ?? string.Empty;
 		} finally {
 			syncing = false;
 		}
@@ -118,7 +124,7 @@ public partial class PhotoInfoViewModel : ObservableObject
 
 	[RelayCommand]
 	void SetStar (uint rating)
-		=> RatingValue = rating;
+		=> RatingValue = RatingValue == rating ? 0 : rating;
 
 	partial void OnRatingValueChanged (uint value)
 	{
@@ -129,6 +135,12 @@ public partial class PhotoInfoViewModel : ObservableObject
 			return;
 		Rating = value.ToString ();
 		RatingChosen?.Invoke (value);
+	}
+
+	partial void OnDescriptionChanged (string value)
+	{
+		if (!syncing)
+			DescriptionChosen?.Invoke (value);
 	}
 }
 

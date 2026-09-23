@@ -118,7 +118,7 @@ public sealed class ChromeIconsTests
 			foreach (System.Text.RegularExpressions.Match match in
 				System.Text.RegularExpressions.Regex.Matches (markup, @"Icons/([A-Za-z0-9_.-]+\.png)")) {
 				string png = match.Groups[1].Value;
-				if (png == Path.GetFileName (ChromeIcons.WindowIcon) || png == "f-spot-256.png")
+				if (png == Path.GetFileName (ChromeIcons.WindowIcon) || png == "f-spot-logo.png")
 					continue;
 				string stem = StripSize (Path.GetFileNameWithoutExtension (png));
 				Assert.IsFalse (SrcHasStem (stem),
@@ -133,7 +133,8 @@ public sealed class ChromeIconsTests
 		string main = File.ReadAllText (Path.Combine (ClientRoot (), "MainWindow.axaml"));
 		Assert.Contains ("ChromeIcons.WindowIcon", main);
 		string about = File.ReadAllText (Path.Combine (ClientRoot (), "AboutWindow.axaml"));
-		Assert.Contains ("f-spot-256.png", about);
+		Assert.Contains ("f-spot-logo.png", about);
+		Assert.DoesNotContain ("f-spot-256.png", about);
 		Assert.DoesNotContain ("f-spot.svg", about);
 	}
 
@@ -213,9 +214,11 @@ public sealed class ChromeIconsTests
 
 	static string ExtractTagTreeIcon (string markup)
 	{
-		int start = markup.IndexOf ("Binding IconPath", StringComparison.Ordinal);
-		Assert.IsGreaterThanOrEqualTo (0, start);
-		return markup.Substring (Math.Max (0, start - 200), Math.Min (400, markup.Length - Math.Max (0, start - 200)));
+		int path = markup.IndexOf ("Uri=\"{Binding IconPath}\"", StringComparison.Ordinal);
+		Assert.IsGreaterThanOrEqualTo (0, path);
+		int icon = markup.LastIndexOf ("controls:ChromeIcon", path, StringComparison.Ordinal);
+		Assert.IsGreaterThanOrEqualTo (0, icon);
+		return markup.Substring (icon, path - icon);
 	}
 
 	static string ExtractEditorIcon (string markup)

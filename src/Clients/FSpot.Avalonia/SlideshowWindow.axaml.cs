@@ -3,6 +3,7 @@ using Avalonia.Input;
 using Avalonia.Media.Imaging;
 using Avalonia.Threading;
 
+using FSpot.Avalonia.Imaging;
 using FSpot.Slideshow;
 
 namespace FSpot.Avalonia;
@@ -11,6 +12,7 @@ public partial class SlideshowWindow : Window
 {
 	readonly SlideshowSequence sequence;
 	readonly DispatcherTimer timer;
+	Bitmap? slide;
 
 	public SlideshowWindow () : this (new[] { "about:blank" }, 0)
 	{
@@ -33,16 +35,28 @@ public partial class SlideshowWindow : Window
 		Closed += (_, _) => {
 			sequence.Stop ();
 			timer.Stop ();
+			ShowFrame (null);
 		};
 	}
 
 	void ShowCurrent ()
 	{
+		Bitmap? next = null;
 		try {
-			Slide.Source = new Bitmap (sequence.Current);
+			next = AvaloniaPhotoDecoder.DecodeFile (sequence.Current, EditorPreview.MaxPixels);
 		} catch {
-			Slide.Source = null;
+			next = null;
 		}
+
+		ShowFrame (next);
+	}
+
+	void ShowFrame (Bitmap? next)
+	{
+		Slide.Source = next;
+		var previous = slide;
+		slide = next;
+		ReleasedBitmap.DisposePrevious (previous, next);
 	}
 
 	void OnCloseClick (object? sender, global::Avalonia.Interactivity.RoutedEventArgs e)

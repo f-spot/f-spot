@@ -25,11 +25,7 @@ namespace FSpot.Query.Tests
 			});
 
 			Assert.HasCount (1, tree);
-			Assert.AreEqual ("file", tree[0].Name);
-			Assert.AreEqual (3, tree[0].Count);
-			Assert.AreEqual (new SafeUri ("file:///", true), tree[0].Uri);
-
-			var photos = tree[0].Children.Single ();
+			var photos = tree[0];
 			Assert.AreEqual ("photos", photos.Name);
 			Assert.AreEqual (3, photos.Count);
 
@@ -53,7 +49,7 @@ namespace FSpot.Query.Tests
 			});
 
 			Assert.AreEqual (3, tree[0].Count);
-			var year = tree[0].Children.Single ().Children.Single ();
+			var year = tree[0].Children.Single ();
 			Assert.AreEqual ("2020", year.Name);
 			Assert.AreEqual (3, year.Count);
 			Assert.HasCount (2, year.Children);
@@ -70,7 +66,22 @@ namespace FSpot.Query.Tests
 				new FolderCount (new SafeUri ("file:///My%20Photos/", true), 1)
 			});
 
-			Assert.AreEqual ("My Photos", tree[0].Children.Single ().Name);
+			Assert.AreEqual ("My Photos", tree[0].Name);
+		}
+
+		[TestMethod]
+		public void Build_DropsADayThatHasNoPhotos ()
+		{
+			var tree = FolderTree.Build (new[] {
+				new FolderCount (new SafeUri ("file:///photos/2020/01/", true), 0),
+				new FolderCount (new SafeUri ("file:///photos/2020/06/", true), 2)
+			});
+
+			var year = tree[0].Children.Single ();
+			Assert.AreEqual ("2020", year.Name);
+			Assert.HasCount (1, year.Children);
+			Assert.AreEqual ("06", year.Children[0].Name);
+			Assert.AreEqual (2, year.Children[0].Count);
 		}
 	}
 }

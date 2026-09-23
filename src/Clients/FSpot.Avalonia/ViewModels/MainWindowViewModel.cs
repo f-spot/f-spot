@@ -6,6 +6,7 @@
 using System.Collections.ObjectModel;
 using System.IO;
 
+using Avalonia.Controls;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
 
@@ -23,6 +24,7 @@ using FSpot.Imaging;
 using FSpot.Import;
 using FSpot.Query;
 using FSpot.Resources.Lang;
+using FSpot.Settings;
 using FSpot.Slideshow;
 using FSpot.Thumbnail;
 using FSpot.Utils;
@@ -38,7 +40,10 @@ public partial class MainWindowViewModel : ObservableObject
 	readonly Db? database;
 	readonly IAvaloniaShell shell;
 	readonly IPhotoThumbnailLoader thumbnails;
-	CancellationTokenSource? thumbnailLoad;
+	readonly ThumbnailLease shownThumbnails = new ();
+	readonly Dictionary<PhotoItemViewModel, int> thumbnailGeneration = new ();
+	CancellationTokenSource thumbnailLoads = new ();
+	Task previewTask = Task.CompletedTask;
 
 	[ObservableProperty]
 	LibraryViewMode viewMode = LibraryViewMode.IconView;
@@ -184,9 +189,26 @@ public partial class MainWindowViewModel : ObservableObject
 		DisplayTimeline = LibraryPreferences.ShowTimeline;
 		DisplayFilmstrip = LibraryPreferences.ShowFilmstrip;
 		ViewerInterpolation = LibraryPreferences.ViewerInterpolation;
+		FilmstripOnSide = Preferences.Get<int> (Preferences.FilmstripOrientation) == 1;
+		Tag.TagIconSize = (IconSize)Preferences.Get<int> (Preferences.TagIconSize);
 		Info.VersionChosen += ApplyVersion;
 		Info.RatingChosen += ApplyRating;
+		Info.DescriptionChosen += ApplyDescription;
 	}
+
+	double sidebarPixels = 220;
+
+	public GridLength SidebarLength {
+		get => DisplaySidebar ? new GridLength (sidebarPixels) : new GridLength (0);
+		set {
+			if (value.GridUnitType == GridUnitType.Pixel && value.Value >= 120)
+				sidebarPixels = value.Value;
+			OnPropertyChanged ();
+		}
+	}
+
+	partial void OnDisplaySidebarChanged (bool value)
+		=> OnPropertyChanged (nameof (SidebarLength));
 
 	public ObservableCollection<PhotoItemViewModel> Photos { get; } = [];
 	public ObservableCollection<TagNode> Tags { get; } = [];
@@ -251,7 +273,34 @@ public partial class MainWindowViewModel : ObservableObject
 	};
 	public string ZoomLabel => $"{(int)Zoom} px";
 	public double TileSize => Zoom;
+	public double GridCellWidth => TileSize + 8;
+	public double GridCellHeight => TileSize + 96;
 	public double FilmstripPaneHeight => Zoom + 24;
+	public bool FilmstripOnSide { get; private set; }
+	public global::Avalonia.Controls.Dock FilmstripEdge => FilmstripOnSide ? global::Avalonia.Controls.Dock.Right : global::Avalonia.Controls.Dock.Top;
+	public global::Avalonia.Layout.Orientation FilmstripFlow => FilmstripOnSide ? global::Avalonia.Layout.Orientation.Vertical : global::Avalonia.Layout.Orientation.Horizontal;
+	public double FilmstripBreadth => FilmstripOnSide ? 96 : double.NaN;
+	public double FilmstripSpan => FilmstripOnSide ? double.NaN : 84;
+	public bool TagIconsVisible => TagIconEdge > 0;
+	public double TagIconEdge => (int)Tag.TagIconSize;
+
+	[ObservableProperty]
+	bool isTagTypingOpen;
+
+	[ObservableProperty]
+	string tagTypingText = string.Empty;
+
+	[ObservableProperty]
+	bool isFullScreen;
+
+	[ObservableProperty]
+	bool showHoverPreview;
+
+	[ObservableProperty]
+	Bitmap? hoverThumbnail;
+
+	[ObservableProperty]
+	string hoverCaption = string.Empty;
 	public PrintPageSetup PageSetup { get; private set; } = PrintPageSetup.Letter;
 	public string CountText =>
 		SelectedPhoto is null
@@ -349,6 +398,7 @@ public partial class MainWindowViewModel : ObservableObject
 			conditions.Add (new RollSet (rolls));
 		}
 
+		DropAllThumbnails ();
 		catalogPhotos.Clear ();
 		foreach (var photo in database.Photos.Query ([.. conditions]))
 			catalogPhotos.Add (new PhotoItemViewModel (photo));
@@ -415,6 +465,7 @@ public partial class MainWindowViewModel : ObservableObject
 			.Where (item => PhotoLibraryFilter.Matches (item.Photo, find, RollIdOf (item.Photo)))
 			.ToList ();
 
+		DropAllThumbnails ();
 		Photos.Clear ();
 		foreach (var item in visible)
 			Photos.Add (item);
@@ -452,6 +503,7 @@ public partial class MainWindowViewModel : ObservableObject
 
 	internal void SeedCatalog (params IPhoto[] photos)
 	{
+		DropAllThumbnails ();
 		catalogPhotos.Clear ();
 		foreach (var photo in photos)
 			catalogPhotos.Add (new PhotoItemViewModel (photo));
@@ -477,45 +529,136 @@ public partial class MainWindowViewModel : ObservableObject
 		ClearLibraryFiltersCommand.NotifyCanExecuteChanged ();
 	}
 
+	internal Task RealizeThumbnailAsync (object container, PhotoItemViewModel item)
+	{
+		shownThumbnails.Realize (container, item);
+		if (item.Thumbnail is not null || thumbnailGeneration.ContainsKey (item))
+			return Task.CompletedTask;
+		return LoadOneAsync (item, thumbnailLoads.Token);
+	}
+
+	internal void ReleaseThumbnail (object container)
+	{
+		if (shownThumbnails.Release (container) is not PhotoItemViewModel item)
+			return;
+		thumbnailGeneration.Remove (item);
+		ReplaceThumbnail (item, null);
+	}
+
+	void DropAllThumbnails ()
+	{
+		thumbnailLoads.Cancel ();
+		thumbnailLoads.Dispose ();
+		thumbnailLoads = new CancellationTokenSource ();
+		var extras = shownThumbnails.Held.OfType<PhotoItemViewModel> ().ToArray ();
+		shownThumbnails.Clear ();
+		thumbnailGeneration.Clear ();
+		HoverThumbnail = null;
+		ShowHoverPreview = false;
+		foreach (var item in catalogPhotos)
+			ReplaceThumbnail (item, null);
+		foreach (var item in extras)
+			ReplaceThumbnail (item, null);
+	}
+
 	async Task LoadThumbnailsAsync ()
 	{
-		if (thumbnailLoad is not null)
-			await thumbnailLoad.CancelAsync ();
-		thumbnailLoad = new CancellationTokenSource ();
-		var token = thumbnailLoad.Token;
-		int size = HiDpi.PixelSize (Zoom, UiScale);
-
+		var token = thumbnailLoads.Token;
+		var held = shownThumbnails.Held.OfType<PhotoItemViewModel> ().ToArray ();
 		try {
-			foreach (var item in Photos.ToArray ()) {
+			foreach (var item in held) {
 				token.ThrowIfCancellationRequested ();
-				try {
-					item.Thumbnail = await thumbnails.LoadAsync (item.Path, size, token);
-				} catch (OperationCanceledException) {
-					throw;
-				} catch (Exception ex) {
-					Logger.Log.Debug (ex, "Failed to decode thumbnail for {Path}", item.Path);
-				}
+				await LoadOneAsync (item, token);
 			}
 		} catch (OperationCanceledException) {
 		}
 	}
 
-	void UpdatePreview ()
+	async Task LoadOneAsync (PhotoItemViewModel item, CancellationToken token)
+	{
+		int generation = NextThumbnailGeneration (item);
+		int size = HiDpi.PixelSize (Zoom, UiScale);
+		Bitmap? bitmap = null;
+		try {
+			bitmap = await thumbnails.LoadAsync (item.Path, size, token);
+			token.ThrowIfCancellationRequested ();
+			if (!shownThumbnails.IsHeld (item) || !thumbnailGeneration.TryGetValue (item, out int current) || current != generation) {
+				bitmap?.Dispose ();
+				return;
+			}
+
+			ReplaceThumbnail (item, bitmap);
+		} catch (OperationCanceledException) {
+			bitmap?.Dispose ();
+			throw;
+		} catch (Exception ex) {
+			bitmap?.Dispose ();
+			Logger.Log.Debug (ex, "Failed to decode thumbnail for {Path}", item.Path);
+		}
+	}
+
+	int NextThumbnailGeneration (PhotoItemViewModel item)
+	{
+		thumbnailGeneration.TryGetValue (item, out int generation);
+		generation++;
+		thumbnailGeneration[item] = generation;
+		return generation;
+	}
+
+	void ReplaceThumbnail (PhotoItemViewModel item, Bitmap? bitmap)
+	{
+		var previous = item.Thumbnail;
+		if (previous is not null && ReferenceEquals (HoverThumbnail, previous) && !ReferenceEquals (previous, bitmap)) {
+			HoverThumbnail = null;
+			ShowHoverPreview = false;
+		}
+
+		item.Thumbnail = bitmap;
+		ReleasedBitmap.DisposePrevious (previous, bitmap);
+	}
+
+	void RequestPreview ()
+		=> previewTask = UpdatePreviewAsync ();
+
+	internal Task ReloadPreviewAsync ()
+	{
+#pragma warning disable VSTHRD003 // Selection already started this load.
+		return previewTask;
+#pragma warning restore VSTHRD003
+	}
+
+	async Task UpdatePreviewAsync ()
 	{
 		if (!IsEditing || SelectedPhoto is null) {
-			Preview = null;
+			SetPreview (null);
 			return;
 		}
 
-		Preview = SelectedPhoto.Thumbnail;
-		if (!File.Exists (SelectedPhoto.Path))
-			return;
-
+		var item = SelectedPhoto;
+		int size = EditorPreview.DecodeWidth (UiScale);
+		Bitmap? bitmap = null;
 		try {
-			Preview = AvaloniaPhotoDecoder.DecodeFile (SelectedPhoto.Path);
+			bitmap = await thumbnails.LoadAsync (item.Path, size, CancellationToken.None);
+			if (!IsEditing || !ReferenceEquals (item, SelectedPhoto)) {
+				bitmap?.Dispose ();
+				return;
+			}
+
+			SetPreview (bitmap);
 		} catch (Exception ex) {
-			Logger.Log.Debug (ex, "Failed to load preview {Path}", SelectedPhoto.Path);
+			bitmap?.Dispose ();
+			Logger.Log.Debug (ex, "Failed to load preview {Path}", item.Path);
 		}
+	}
+
+	void SetPreview (Bitmap? next)
+	{
+		if (ReferenceEquals (Preview, next))
+			return;
+		LoupeSample = null;
+		var previous = Preview;
+		Preview = next;
+		ReleasedBitmap.DisposePrevious (previous, next);
 	}
 
 	partial void OnPreviewChanged (Bitmap? value)
@@ -673,7 +816,7 @@ public partial class MainWindowViewModel : ObservableObject
 		if (value != LibraryViewMode.PhotoView)
 			CancelEditor ();
 		NotifyViewLayout ();
-		UpdatePreview ();
+		RequestPreview ();
 		if (value == LibraryViewMode.PhotoView) {
 			if (SidebarTab != 2)
 				browseSidebarTab = SidebarTab;
@@ -704,7 +847,7 @@ public partial class MainWindowViewModel : ObservableObject
 			RequestHistogram (value);
 		}
 
-		UpdatePreview ();
+		RequestPreview ();
 		UpdateStatus ();
 		NotifySelectionCommands ();
 		OnPropertyChanged (nameof (ShowInfoBox));
@@ -775,12 +918,17 @@ public partial class MainWindowViewModel : ObservableObject
 	{
 		OnPropertyChanged (nameof (ZoomLabel));
 		OnPropertyChanged (nameof (TileSize));
+		OnPropertyChanged (nameof (GridCellWidth));
+		OnPropertyChanged (nameof (GridCellHeight));
 		OnPropertyChanged (nameof (FilmstripPaneHeight));
 		_ = LoadThumbnailsAsync ();
 	}
 
 	partial void OnUiScaleChanged (double value)
-		=> _ = LoadThumbnailsAsync ();
+	{
+		_ = LoadThumbnailsAsync ();
+		RequestPreview ();
+	}
 
 	internal Task ReloadThumbnailsAsync ()
 		=> LoadThumbnailsAsync ();
@@ -885,7 +1033,7 @@ public partial class MainWindowViewModel : ObservableObject
 		if (SelectedPhoto is null) {
 			Info.Clear ();
 			RequestHistogram (null);
-			UpdatePreview ();
+			RequestPreview ();
 		}
 
 		UpdateStatus ();
@@ -899,6 +1047,79 @@ public partial class MainWindowViewModel : ObservableObject
 	[RelayCommand]
 	void ZoomOut ()
 		=> Zoom = Math.Max (64, Zoom - 16);
+
+	[RelayCommand]
+	void ToggleFilmstripSide ()
+	{
+		FilmstripOnSide = !FilmstripOnSide;
+		Preferences.Set (Preferences.FilmstripOrientation, FilmstripOnSide ? 1 : 0);
+		OnPropertyChanged (nameof (FilmstripEdge));
+		OnPropertyChanged (nameof (FilmstripBreadth));
+		OnPropertyChanged (nameof (FilmstripSpan));
+		OnPropertyChanged (nameof (FilmstripFlow));
+	}
+
+	[RelayCommand]
+	void SetTagIconSize (string size)
+	{
+		if (!int.TryParse (size, out int pixels))
+			return;
+		Tag.TagIconSize = (IconSize)pixels;
+		Preferences.Set (Preferences.TagIconSize, pixels);
+		OnPropertyChanged (nameof (TagIconEdge));
+		OnPropertyChanged (nameof (TagIconsVisible));
+	}
+
+	[RelayCommand]
+	void OpenTagTyping ()
+	{
+		if (SelectedPhoto is null && !Photos.Any (photo => photo.Selected))
+			return;
+		IsTagTypingOpen = true;
+	}
+
+	[RelayCommand]
+	void HideTagTyping ()
+		=> IsTagTypingOpen = false;
+
+	[RelayCommand]
+	void ApplyTypedTags ()
+	{
+		if (database is null)
+			return;
+		var names = TagTyping.Names (TagTypingText);
+		if (names.Count == 0)
+			return;
+		var photos = Photos.Where (item => item.Selected).Select (item => item.Photo).OfType<Photo> ().ToArray ();
+		if (photos.Length == 0 && SelectedPhoto?.Photo is Photo selected)
+			photos = new[] { selected };
+		if (photos.Length == 0)
+			return;
+		foreach (string name in names) {
+			var tag = database.Tags.GetTagByName (name) ?? database.Tags.CreateCategory (database.Tags.RootCategory, name, true);
+			foreach (var photo in photos)
+				photo.AddTag (tag);
+		}
+		database.Photos.Commit (photos);
+		foreach (var item in Photos.Where (item => item.Photo is Photo photo && photos.Contains (photo)))
+			item.RefreshCaptions ();
+		if (SelectedPhoto is not null)
+			Info.Update (SelectedPhoto.Photo);
+		TagTypingText = string.Empty;
+		IsTagTypingOpen = false;
+	}
+
+	public void ShowHover (PhotoItemViewModel item)
+	{
+		if (IsEditing || item.Thumbnail is null)
+			return;
+		HoverThumbnail = item.Thumbnail;
+		HoverCaption = item.Caption;
+		ShowHoverPreview = true;
+	}
+
+	public void HideHover ()
+		=> ShowHoverPreview = false;
 
 	[RelayCommand]
 	void ShowFind ()
@@ -938,8 +1159,9 @@ public partial class MainWindowViewModel : ObservableObject
 			return;
 
 		var image = Preview.PixelSize;
-		var point = UniformImageLayout.MapPoint (
-			(int)viewWidth, (int)viewHeight, image.Width, image.Height, viewX, viewY);
+		var point = PhotoViewTransform.MapPoint (
+			(int)viewWidth, (int)viewHeight, image.Width, image.Height,
+			PreviewZoom, PreviewPanX, PreviewPanY, viewX, viewY);
 		var region = LoupeRegion.Around (image.Width, image.Height, point.X, point.Y);
 		if (region.IsEmpty)
 			return;
@@ -1628,13 +1850,14 @@ public partial class MainWindowViewModel : ObservableObject
 	void RefreshEditedSelection ()
 	{
 		foreach (var item in MutationItems ()) {
-			item.Thumbnail = null;
+			ReplaceThumbnail (item, null);
+			thumbnailGeneration.Remove (item);
 			item.RefreshFromPhoto ();
 		}
 
 		if (SelectedPhoto is not null) {
 			Info.Update (SelectedPhoto.Photo);
-			UpdatePreview ();
+			RequestPreview ();
 			RequestHistogram (SelectedPhoto);
 		}
 
@@ -1664,7 +1887,7 @@ public partial class MainWindowViewModel : ObservableObject
 		database.Photos.Commit (photo);
 		SelectedPhoto.RefreshFromPhoto ();
 		Info.Update (photo);
-		UpdatePreview ();
+		RequestPreview ();
 		RequestHistogram (SelectedPhoto);
 		_ = LoadThumbnailsAsync ();
 	}
@@ -1737,12 +1960,17 @@ public partial class MainWindowViewModel : ObservableObject
 	[RelayCommand (CanExecute = nameof (CanMutateSelection))]
 	async Task AdjustTimeAsync ()
 	{
-		var hours = await shell.PromptHoursOffsetAsync ();
-		if (hours is null)
+		var photos = SelectedCatalogPhotos ().ToList ();
+		if (photos.Count == 0)
 			return;
-		var offset = TimeSpan.FromHours (hours.Value);
-		foreach (var photo in SelectedCatalogPhotos ())
-			PhotoTimeAdjust.Shift (photo, offset, p => database?.Photos.Commit (p));
+		var choice = await shell.PromptAdjustTimeAsync (photos.Select (photo => (photo.Name, photo.Time)).ToList ());
+		if (choice is null)
+			return;
+		if (choice.ShiftByOffset)
+			PhotoTimeAdjust.ShiftEach (photos, TimeSpan.FromHours (choice.Hours), batch => database?.Photos.Commit (batch));
+		else
+			PhotoTimeAdjust.Space (photos, choice.AnchorIndex, photos[Math.Clamp (choice.AnchorIndex, 0, photos.Count - 1)].Time,
+				TimeSpan.FromMinutes (choice.SpacingMinutes), batch => database?.Photos.Commit (batch));
 		RefreshEditedSelection ();
 	}
 
@@ -1770,6 +1998,7 @@ public partial class MainWindowViewModel : ObservableObject
 		DisplayTimeline = LibraryPreferences.ShowTimeline;
 		DisplayFilmstrip = LibraryPreferences.ShowFilmstrip;
 		ViewerInterpolation = LibraryPreferences.ViewerInterpolation;
+		AppearanceTheme.Apply (global::Avalonia.Application.Current);
 	}
 
 	[RelayCommand]
@@ -1910,5 +2139,13 @@ public partial class MainWindowViewModel : ObservableObject
 		photo.Rating = rating > 5 ? 5 : rating;
 		database?.Photos.Commit (photo);
 		SelectedPhoto.RefreshCaptions ();
+	}
+
+	void ApplyDescription (string text)
+	{
+		if (SelectedPhoto?.Photo is not Photo photo)
+			return;
+		photo.Description = text ?? string.Empty;
+		database?.Photos.Commit (photo);
 	}
 }

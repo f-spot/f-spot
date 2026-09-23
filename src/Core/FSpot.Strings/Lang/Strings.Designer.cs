@@ -4685,6 +4685,12 @@ namespace FSpot.Resources.Lang {
             }
         }
 
+        public static string UseSystemTheme {
+            get {
+                return ResourceManager.GetString("UseSystemTheme", resourceCulture);
+            }
+        }
+
         public static string Ok {
             get {
                 return ResourceManager.GetString("Ok", resourceCulture);
@@ -4841,6 +4847,12 @@ namespace FSpot.Resources.Lang {
             }
         }
 
+        public static string FSpotAppearance {
+            get {
+                return ResourceManager.GetString("FSpotAppearance", resourceCulture);
+            }
+        }
+
         public static string ImportFrom {
             get {
                 return ResourceManager.GetString("ImportFrom", resourceCulture);
@@ -4856,12 +4868,6 @@ namespace FSpot.Resources.Lang {
         public static string VersionX {
             get {
                 return ResourceManager.GetString("VersionX", resourceCulture);
-            }
-        }
-
-        public static string AvaloniaAboutDescription {
-            get {
-                return ResourceManager.GetString("AvaloniaAboutDescription", resourceCulture);
             }
         }
 

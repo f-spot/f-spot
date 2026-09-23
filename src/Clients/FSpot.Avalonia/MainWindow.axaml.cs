@@ -27,10 +27,19 @@ public partial class MainWindow : Window, IAvaloniaShell
 		var viewModel = new MainWindowViewModel (database, this, new AvaloniaThumbnailLoader ());
 		DataContext = viewModel;
 		InitializeComponent ();
+		var sidebarColumn = BodyGrid.ColumnDefinitions[0];
+		sidebarColumn.Width = viewModel.SidebarLength;
+		sidebarColumn.PropertyChanged += (_, e) => {
+			if (e.Property == ColumnDefinition.WidthProperty && sidebarColumn.Width != viewModel.SidebarLength)
+				viewModel.SidebarLength = sidebarColumn.Width;
+		};
 		viewModel.PropertyChanged += (_, e) => {
 			if (e.PropertyName is nameof (MainWindowViewModel.ViewerInterpolation)
 					or nameof (MainWindowViewModel.PreviewInterpolation))
 				PreviewInterpolation.Apply (PreviewImage, viewModel.ViewerInterpolation);
+			if (e.PropertyName == nameof (MainWindowViewModel.SidebarLength)
+					&& sidebarColumn.Width != viewModel.SidebarLength)
+				sidebarColumn.Width = viewModel.SidebarLength;
 		};
 		PreviewInterpolation.Apply (PreviewImage, viewModel.ViewerInterpolation);
 		Opened += (_, _) => {
@@ -47,6 +56,21 @@ public partial class MainWindow : Window, IAvaloniaShell
 	{
 		if (DataContext is MainWindowViewModel viewModel)
 			viewModel.UiScale = RenderScaling;
+	}
+
+	void OnThumbnailContainerPrepared (object? sender, ContainerPreparedEventArgs e)
+	{
+		if (DataContext is not MainWindowViewModel viewModel || sender is not ListBox list)
+			return;
+		if ((uint)e.Index >= (uint)list.Items.Count || list.Items[e.Index] is not PhotoItemViewModel item)
+			return;
+		_ = viewModel.RealizeThumbnailAsync (e.Container, item);
+	}
+
+	void OnThumbnailContainerClearing (object? sender, ContainerClearingEventArgs e)
+	{
+		if (DataContext is MainWindowViewModel viewModel)
+			viewModel.ReleaseThumbnail (e.Container);
 	}
 
 	Point? panOrigin;
@@ -71,6 +95,13 @@ public partial class MainWindow : Window, IAvaloniaShell
 		if (Input.RatingKey.From (e.Key, e.KeyModifiers, focused) is uint rating
 				&& DataContext is MainWindowViewModel rated) {
 			rated.RateFocused (rating);
+			e.Handled = true;
+			return;
+		}
+		if (e.Key == Key.T && Input.ShortcutGuards.AllowsUnadornedKey (focused)
+				&& DataContext is MainWindowViewModel typing) {
+			typing.OpenTagTypingCommand.Execute (null);
+			Dispatcher.UIThread.Post (() => TagTypingBox?.Focus ());
 			e.Handled = true;
 			return;
 		}
@@ -167,7 +198,11 @@ public partial class MainWindow : Window, IAvaloniaShell
 	}
 
 	public void ToggleFullscreen ()
-		=> WindowState = WindowState == WindowState.FullScreen ? WindowState.Normal : WindowState.FullScreen;
+	{
+		WindowState = WindowState == WindowState.FullScreen ? WindowState.Normal : WindowState.FullScreen;
+		if (DataContext is MainWindowViewModel viewModel)
+			viewModel.IsFullScreen = WindowState == WindowState.FullScreen;
+	}
 
 	public void FocusFind ()
 		=> Dispatcher.UIThread.Post (() => FindBox.Focus ());
@@ -228,6 +263,52 @@ public partial class MainWindow : Window, IAvaloniaShell
 			viewModel.OpenPhotoCommand.Execute (item);
 	}
 
+	PointerPressedEventArgs? pendingDrag;
+	Visual? pendingDragSource;
+
+	void ArmDrag (Visual source, PointerPressedEventArgs e)
+	{
+		if (!e.GetCurrentPoint (source).Properties.IsLeftButtonPressed)
+			return;
+		pendingDrag = e;
+		pendingDragSource = source;
+		e.Pointer.Capture (source as IInputElement);
+	}
+
+	void OnPendingDragMoved (object? sender, PointerEventArgs e)
+	{
+		if (pendingDrag is not PointerPressedEventArgs press || sender is not Visual source
+				|| !ReferenceEquals (pendingDragSource, source))
+			return;
+		if (!Input.DragGesture.MovedFarEnough (press.GetPosition (source), e.GetPosition (source)))
+			return;
+		pendingDrag = null;
+		pendingDragSource = null;
+		e.Pointer.Capture (null);
+		if (source is Control { DataContext: TagNode tag }) {
+			var data = new DataTransfer ();
+			data.Add (DataTransferItem.Create (DragFormats.TagId, tag.Tag.Id.ToString ()));
+			_ = DragDrop.DoDragDropAsync (press, data, DragDropEffects.Copy);
+		} else if (source is Control { DataContext: FolderNode folder }) {
+			var data = new DataTransfer ();
+			data.Add (DataTransferItem.Create (DragFormats.FolderUri, folder.Uri.AbsoluteUri));
+			_ = DragDrop.DoDragDropAsync (press, data, DragDropEffects.Copy);
+		} else if (source is Control { DataContext: PhotoItemViewModel }) {
+			var data = new DataTransfer ();
+			data.Add (DataTransferItem.Create (DragFormats.Photos, "1"));
+			_ = DragDrop.DoDragDropAsync (press, data, DragDropEffects.Copy);
+		}
+	}
+
+	void OnPendingDragReleased (object? sender, PointerReleasedEventArgs e)
+	{
+		if (sender is not Visual source || !ReferenceEquals (pendingDragSource, source))
+			return;
+		pendingDrag = null;
+		pendingDragSource = null;
+		e.Pointer.Capture (null);
+	}
+
 	void OnTagPointerPressed (object? sender, PointerPressedEventArgs e)
 	{
 		if (sender is not Control { DataContext: TagNode node })
@@ -237,11 +318,7 @@ public partial class MainWindow : Window, IAvaloniaShell
 				viewModel.SelectTagCommand.Execute (node);
 			return;
 		}
-		if (!e.GetCurrentPoint ((Visual)sender).Properties.IsLeftButtonPressed)
-			return;
-		var data = new DataTransfer ();
-		data.Add (DataTransferItem.Create (DragFormats.TagId, node.Tag.Id.ToString ()));
-		_ = DragDrop.DoDragDropAsync (e, data, DragDropEffects.Copy);
+		ArmDrag ((Visual)sender, e);
 	}
 
 	bool filmstripChoosing;
@@ -269,29 +346,54 @@ public partial class MainWindow : Window, IAvaloniaShell
 
 	void OnPhotoPointerPressed (object? sender, PointerPressedEventArgs e)
 	{
-		if (!e.GetCurrentPoint ((Visual)sender!).Properties.IsLeftButtonPressed)
+		if (sender is Visual visual)
+			ArmDrag (visual, e);
+	}
+
+	void OnPhotoPointerEntered (object? sender, PointerEventArgs e)
+	{
+		if (DataContext is MainWindowViewModel viewModel && sender is Control { DataContext: PhotoItemViewModel item })
+			viewModel.ShowHover (item);
+	}
+
+	void OnPhotoPointerExited (object? sender, PointerEventArgs e)
+	{
+		if (DataContext is MainWindowViewModel viewModel)
+			viewModel.HideHover ();
+	}
+
+	void OnTagTypingKeyDown (object? sender, KeyEventArgs e)
+	{
+		if (e.Key != Key.Enter || DataContext is not MainWindowViewModel viewModel)
 			return;
-		var data = new DataTransfer ();
-		data.Add (DataTransferItem.Create (DragFormats.Photos, "1"));
-		_ = DragDrop.DoDragDropAsync (e, data, DragDropEffects.Copy);
+		viewModel.ApplyTypedTagsCommand.Execute (null);
+		e.Handled = true;
 	}
 
 	void OnPhotoDragOver (object? sender, DragEventArgs e)
-		=> e.DragEffects = AcceptsLibraryDrop (e.DataTransfer) ? DragDropEffects.Copy : DragDropEffects.None;
+	{
+		e.DragEffects = AcceptsLibraryDrop (e.DataTransfer) ? DragDropEffects.Copy : DragDropEffects.None;
+		// The empty-library panel behind the grid also listens, and it only accepts files.
+		// Leaving this unhandled clears a tag drop.
+		e.Handled = true;
+	}
 
 	void OnPhotoDrop (object? sender, DragEventArgs e)
-		=> DropOnLibrary (e);
+	{
+		DropOnLibrary (e, sender as Control);
+		e.Handled = true;
+	}
 
 	void OnLibraryDragOver (object? sender, DragEventArgs e)
 		=> e.DragEffects = e.DataTransfer.Contains (DataFormat.File) ? DragDropEffects.Copy : DragDropEffects.None;
 
 	void OnLibraryDrop (object? sender, DragEventArgs e)
-		=> DropOnLibrary (e);
+		=> DropOnLibrary (e, null);
 
 	static bool AcceptsLibraryDrop (IDataTransfer transfer)
 		=> transfer.Contains (DataFormat.File) || transfer.Contains (DragFormats.TagId);
 
-	void DropOnLibrary (DragEventArgs e)
+	void DropOnLibrary (DragEventArgs e, Control? dropRoot)
 	{
 		if (DataContext is not MainWindowViewModel viewModel)
 			return;
@@ -300,8 +402,18 @@ public partial class MainWindow : Window, IAvaloniaShell
 			_ = viewModel.ImportDroppedAsync (paths);
 			return;
 		}
-		var target = (e.Source as Control)?.DataContext as PhotoItemViewModel;
-		viewModel.AttachDroppedTag (TryGetString (e.DataTransfer, DragFormats.TagId), target);
+		viewModel.AttachDroppedTag (TryGetString (e.DataTransfer, DragFormats.TagId), PhotoUnderPointer (e, dropRoot));
+	}
+
+	static PhotoItemViewModel? PhotoUnderPointer (DragEventArgs e, Control? dropRoot)
+	{
+		var fromSource = FindAncestorDataContext<PhotoItemViewModel> (e.Source as Visual);
+		if (fromSource is not null)
+			return fromSource;
+		if (dropRoot is null)
+			return null;
+		var hit = dropRoot.InputHitTest (e.GetPosition (dropRoot));
+		return FindAncestorDataContext<PhotoItemViewModel> (hit as Visual);
 	}
 
 	static List<string> DroppedPaths (IDataTransfer transfer)
@@ -421,16 +533,13 @@ public partial class MainWindow : Window, IAvaloniaShell
 	{
 		if (sender is not Control { DataContext: FolderNode node })
 			return;
-		if (e.GetCurrentPoint ((Visual)sender).Properties.IsRightButtonPressed) {
-			if (DataContext is MainWindowViewModel viewModel)
-				viewModel.SelectFolderCommand.Execute (node);
+		if (DataContext is MainWindowViewModel viewModel)
+			viewModel.ActivateFolderCommand.Execute (node);
+		if (e.GetCurrentPoint ((Visual)sender).Properties.IsRightButtonPressed)
 			return;
-		}
 		if (!e.GetCurrentPoint ((Visual)sender).Properties.IsLeftButtonPressed)
 			return;
-		var data = new DataTransfer ();
-		data.Add (DataTransferItem.Create (DragFormats.FolderUri, node.Uri.AbsoluteUri));
-		_ = DragDrop.DoDragDropAsync (e, data, DragDropEffects.Copy);
+		ArmDrag ((Visual)sender, e);
 	}
 
 	void OnFindBarDrop (object? sender, DragEventArgs e)
@@ -510,6 +619,13 @@ public partial class MainWindow : Window, IAvaloniaShell
 	{
 		var window = new ExtensionsWindow (addins);
 		return window.ShowDialog (this);
+	}
+
+	public async Task<TimeAdjustChoice?> PromptAdjustTimeAsync (IReadOnlyList<(string Name, DateTime Time)> photos)
+	{
+		var dialog = new AdjustTimeWindow (photos);
+		await dialog.ShowDialog (this);
+		return dialog.Choice;
 	}
 
 	public async Task<double?> PromptHoursOffsetAsync ()

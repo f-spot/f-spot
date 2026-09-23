@@ -51,6 +51,7 @@ namespace FSpot.Settings
 
 		public const string ShowToolbar = UIKey + "ShowToolbar";
 		public const string ShowSidebar = UIKey + "ShowSidebar";
+		public const string ColorScheme = UIKey + "ColorScheme";
 		public const string ShowTimeline = UIKey + "ShowTimeline";
 		public const string ShowFilmstrip = UIKey + "ShowFilmstrip";
 		public const string FilmstripOrientation = UIKey + "FilmstripOrientation";

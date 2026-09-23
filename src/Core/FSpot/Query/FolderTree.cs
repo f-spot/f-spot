@@ -64,7 +64,10 @@ namespace FSpot.Query
 				current.DirectCount += folder.Count;
 			}
 
-			return roots.Values.Select (root => root.Freeze ()).ToList ();
+			return roots.Values
+				.SelectMany (root => root.Freeze ().Children)
+				.Where (node => node.Count > 0)
+				.ToList ();
 		}
 
 		static string[] Segments (SafeUri uri)
@@ -108,6 +111,7 @@ namespace FSpot.Query
 				var frozen = children.Values
 					.OrderBy (child => child.RawSegment, StringComparer.Ordinal)
 					.Select (child => child.Freeze ())
+					.Where (child => child.Count > 0)
 					.ToList ();
 				int count = DirectCount + frozen.Sum (child => child.Count);
 				return new FolderTreeNode (System.Uri.UnescapeDataString (RawSegment), Uri, count, frozen);

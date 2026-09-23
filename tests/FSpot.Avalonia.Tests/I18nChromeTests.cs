@@ -126,11 +126,10 @@ public sealed class I18nChromeTests
 	}
 
 	[TestMethod]
-	public void AboutViewModel_ServesVersionAndDescriptionFromStrings ()
+	public void AboutViewModel_ServesVersionFromStrings ()
 	{
 		var about = new AboutViewModel ();
 		Assert.AreEqual (string.Format (Strings.VersionX, FSpotConfiguration.Version), about.Version);
-		Assert.AreEqual (Strings.AvaloniaAboutDescription, about.Description);
 		Assert.Contains (FSpotConfiguration.Version, about.Version);
 		Assert.DoesNotContain ("{0}", about.Version);
 	}

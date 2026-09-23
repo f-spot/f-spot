@@ -1,0 +1,31 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:lang="using:FSpot.Resources.Lang"
+        xmlns:auto="using:FSpot.Avalonia"
+        x:Class="FSpot.Avalonia.AdjustTimeWindow"
+        Title="{x:Static lang:Strings.AdjustTime}"
+        Width="520"
+        Height="420"
+        WindowStartupLocation="CenterOwner"
+        CanResize="True"
+        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.DialogWindow}"
+        AutomationProperties.Name="{x:Static lang:Strings.AdjustTime}">
+	<DockPanel Margin="16">
+		<StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8" Margin="0,12,0,0">
+			<Button Classes="dialog" MinWidth="88" Content="{x:Static lang:Strings.Cancel}" IsCancel="True" Click="OnCancel" />
+			<Button Classes="dialog accent" MinWidth="88" Content="{x:Static lang:Strings.Ok}" IsDefault="True" Click="OnOk" />
+		</StackPanel>
+		<Grid ColumnDefinitions="160,*" ColumnSpacing="12">
+			<ListBox Name="PhotoList" />
+			<StackPanel Grid.Column="1" Spacing="8">
+				<TextBlock Name="PhotoName" FontWeight="SemiBold" TextWrapping="Wrap" />
+				<TextBlock Name="OldTime" TextWrapping="Wrap" />
+				<TextBlock Name="NewTime" TextWrapping="Wrap" />
+				<CheckBox Name="ShiftAll" Content="{x:Static lang:Strings.Hours}" IsChecked="True" IsCheckedChanged="OnModeChanged" />
+				<TextBox Name="HoursBox" Text="0" TextChanged="OnHoursChanged" />
+				<TextBlock Text="{x:Static lang:Strings.Minutes}" />
+				<TextBox Name="SpacingBox" Text="5" TextChanged="OnHoursChanged" />
+			</StackPanel>
+		</Grid>
+	</DockPanel>
+</Window>

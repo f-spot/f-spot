@@ -29,6 +29,33 @@ public sealed class EditorChromeMarkupTests
 	}
 
 	[TestMethod]
+	public void StatusBar_IsASingleTextLineUnderTheToolbar ()
+	{
+		string main = File.ReadAllText (Path.Combine (ClientRoot (), "MainWindow.axaml"));
+		Assert.Contains ("AutomationIds.StatusBar", main);
+		Assert.Contains ("Classes=\"zoom\"", main);
+		Assert.Contains ("Padding=\"8,2\"", main);
+		Assert.DoesNotContain ("Padding=\"8,6\"", main);
+		string app = File.ReadAllText (Path.Combine (ClientRoot (), "App.axaml"));
+		Assert.Contains ("Slider.zoom", app);
+		Assert.Contains ("SliderHorizontalHeight\">16", app);
+	}
+
+	[TestMethod]
+	public void Splitters_AreHairlinesRatherThanFilledBars ()
+	{
+		string app = File.ReadAllText (Path.Combine (ClientRoot (), "App.axaml"));
+		Assert.Contains ("GridSplitter.hairline", app);
+		Assert.Contains ("Width=\"1\"", app);
+		string main = File.ReadAllText (Path.Combine (ClientRoot (), "MainWindow.axaml"));
+		string import = File.ReadAllText (Path.Combine (ClientRoot (), "ImportWindow.axaml"));
+		Assert.Contains ("Classes=\"hairline\"", main);
+		Assert.Contains ("Classes=\"hairline\"", import);
+		Assert.DoesNotContain ("Width=\"6\"", main);
+		Assert.DoesNotContain ("Width=\"8\"", import);
+	}
+
+	[TestMethod]
 	public void CopyPageSetupBackgroundAndTools_AreEnabledCommands ()
 	{
 		string markup = File.ReadAllText (Path.Combine (ClientRoot (), "MainWindow.axaml"));

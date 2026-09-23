@@ -6,11 +6,13 @@
 using System.Collections.ObjectModel;
 using System.IO;
 
+using Avalonia.Media.Imaging;
 using Avalonia.Threading;
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
+using FSpot.Avalonia.Imaging;
 using FSpot.Avalonia.Services;
 using FSpot.Core;
 using FSpot.Database;
@@ -31,8 +33,8 @@ public partial class ImportViewModel : ObservableObject
 	readonly Db database;
 	readonly IAvaloniaShell shell;
 	readonly IPhotoThumbnailLoader thumbnails;
-	readonly IImageFileFactory factory;
-	readonly IFileSystem fileSystem;
+	readonly ThumbnailLease shownThumbnails = new ();
+	readonly Dictionary<PhotoItemViewModel, int> thumbnailGeneration = new ();
 	readonly Action<bool> close;
 	readonly PhotoList importList = new PhotoList ();
 	CancellationTokenSource? scan;
@@ -81,15 +83,15 @@ public partial class ImportViewModel : ObservableObject
 	[ObservableProperty]
 	double uiScale = 1;
 
+	[ObservableProperty]
+	Bitmap? preview;
+
 	public ImportViewModel (Db database, IAvaloniaShell shell, IPhotoThumbnailLoader thumbnails, Action<bool> close)
 	{
 		this.database = database;
 		this.shell = shell;
 		this.thumbnails = thumbnails;
 		this.close = close;
-		var container = TinyIoCContainer.Current;
-		factory = container.Resolve<IImageFileFactory> ();
-		fileSystem = container.Resolve<IFileSystem> ();
 		Preferences = new ImportPreferences (true);
 		CopyFiles = Preferences.CopyFiles;
 		RecurseSubdirectories = Preferences.RecurseSubdirectories;
@@ -142,6 +144,8 @@ public partial class ImportViewModel : ObservableObject
 	{
 		if (value is not null)
 			_ = LoadPreviewAsync (value);
+		else
+			SetPreview (null);
 	}
 
 	public void SeedDropped (IReadOnlyList<string> paths)
@@ -223,16 +227,18 @@ public partial class ImportViewModel : ObservableObject
 			await scan.CancelAsync ();
 		scan = new CancellationTokenSource ();
 		var token = scan.Token;
-		Photos.Clear ();
-		importList.Clear ();
+		ResetListedPhotos ();
 		IsScanning = true;
 		StatusText = Strings.SearchingForPhotosYouCanAlreadyClickImportToContinue;
 		Progress = 0;
 		ImportCommand.NotifyCanExecuteChanged ();
 
+		var container = TinyIoCContainer.Current;
+		var imageFactory = container.Resolve<IImageFileFactory> ();
+		var files = container.Resolve<IFileSystem> ();
 		IImportSource source = droppedPaths is { Count: > 0 }
-			? new MultiFileImportSource (droppedPaths.Select (path => new SafeUri (path)), factory, fileSystem)
-			: new FileImportSource (new SafeUri (SourcePath!), factory, fileSystem);
+			? new MultiFileImportSource (droppedPaths.Select (path => new SafeUri (path)), imageFactory, files)
+			: new FileImportSource (new SafeUri (SourcePath!), imageFactory, files);
 		try {
 			await Task.Run (async () => {
 				foreach (var info in source.ScanPhotos (Preferences)) {
@@ -243,12 +249,7 @@ public partial class ImportViewModel : ObservableObject
 							return;
 						try {
 							importList.Add (info);
-							var item = new PhotoItemViewModel (info);
-							Photos.Add (item);
-							OnPropertyChanged (nameof (CanImport));
-							ImportCommand.NotifyCanExecuteChanged ();
-							SelectedPhoto ??= item;
-							_ = LoadThumbnailAsync (item, token);
+							AddPendingPhoto (new PhotoItemViewModel (info));
 						} catch (Exception ex) {
 							Logger.Log.Debug (ex, "Skipping unreadable file {Uri}", info.DefaultVersion.Uri);
 						}
@@ -268,24 +269,97 @@ public partial class ImportViewModel : ObservableObject
 		}
 	}
 
+	internal void AddPendingPhoto (PhotoItemViewModel item)
+	{
+		Photos.Add (item);
+		OnPropertyChanged (nameof (CanImport));
+		ImportCommand.NotifyCanExecuteChanged ();
+		SelectedPhoto ??= item;
+	}
+
+	void ResetListedPhotos ()
+	{
+		var listed = Photos.ToArray ();
+		shownThumbnails.Clear ();
+		thumbnailGeneration.Clear ();
+		foreach (var item in listed)
+			ReplaceThumbnail (item, null);
+		SetPreview (null);
+		Photos.Clear ();
+		importList.Clear ();
+	}
+
+	internal Task RealizeThumbnailAsync (object container, PhotoItemViewModel item)
+	{
+		shownThumbnails.Realize (container, item);
+		if (item.Thumbnail is not null || thumbnailGeneration.ContainsKey (item))
+			return Task.CompletedTask;
+		return LoadThumbnailAsync (item, CancellationToken.None);
+	}
+
+	internal void ReleaseThumbnail (object container)
+	{
+		if (shownThumbnails.Release (container) is not PhotoItemViewModel item)
+			return;
+		thumbnailGeneration.Remove (item);
+		ReplaceThumbnail (item, null);
+	}
+
 	async Task LoadThumbnailAsync (PhotoItemViewModel item, CancellationToken token)
 	{
+		int generation = NextGeneration (item);
+		Bitmap? bitmap = null;
 		try {
-			item.Thumbnail = await thumbnails.LoadAsync (item.Path, HiDpi.PixelSize (HiDpi.ImportListDip, UiScale), token);
+			bitmap = await thumbnails.LoadAsync (item.Path, HiDpi.PixelSize (HiDpi.ImportListDip, UiScale), token);
+			if (!shownThumbnails.IsHeld (item) || !thumbnailGeneration.TryGetValue (item, out int current) || current != generation) {
+				bitmap?.Dispose ();
+				return;
+			}
+
+			ReplaceThumbnail (item, bitmap);
 		} catch (Exception ex) {
+			bitmap?.Dispose ();
 			Logger.Log.Debug (ex, "Failed to thumbnail import preview {Path}", item.Path);
 		}
 	}
 
 	async Task LoadPreviewAsync (PhotoItemViewModel item)
 	{
-		if (item.Thumbnail is not null)
-			return;
+		Bitmap? bitmap = null;
 		try {
-			item.Thumbnail = await thumbnails.LoadAsync (item.Path, HiDpi.PixelSize (HiDpi.ImportPreviewDip, UiScale), CancellationToken.None);
+			bitmap = await thumbnails.LoadAsync (item.Path, HiDpi.PixelSize (HiDpi.ImportPreviewDip, UiScale), CancellationToken.None);
+			if (!ReferenceEquals (item, SelectedPhoto)) {
+				bitmap?.Dispose ();
+				return;
+			}
+
+			SetPreview (bitmap);
 		} catch (Exception ex) {
+			bitmap?.Dispose ();
 			Logger.Log.Debug (ex, "Failed to load import preview {Path}", item.Path);
 		}
+	}
+
+	int NextGeneration (PhotoItemViewModel item)
+	{
+		thumbnailGeneration.TryGetValue (item, out int generation);
+		generation++;
+		thumbnailGeneration[item] = generation;
+		return generation;
+	}
+
+	static void ReplaceThumbnail (PhotoItemViewModel item, Bitmap? bitmap)
+	{
+		var previous = item.Thumbnail;
+		item.Thumbnail = bitmap;
+		ReleasedBitmap.DisposePrevious (previous, bitmap);
+	}
+
+	void SetPreview (Bitmap? next)
+	{
+		var previous = Preview;
+		Preview = next;
+		ReleasedBitmap.DisposePrevious (previous, next);
 	}
 
 	List<Tag> ResolveAttachTags ()

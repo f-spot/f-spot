@@ -7,6 +7,8 @@ using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
+using Avalonia.Threading;
+using Avalonia.VisualTree;
 
 using FSpot.Avalonia.Input;
 
@@ -108,12 +110,130 @@ public sealed class MainWindowViewModelTests
 	{
 		var thumbs = new RecordingThumbnails ();
 		var viewModel = new MainWindowViewModel (null, new RecordingShell (), thumbs) {
-			Zoom = 128,
+			Zoom = 100,
 			UiScale = 2
 		};
 		viewModel.SeedCatalog (new StubPhoto ("/a.jpg"));
+		await viewModel.RealizeThumbnailAsync (new object (), viewModel.Photos[0]);
+		Assert.AreEqual (HiDpi.PixelSize (100, 2), thumbs.LastSize);
+	}
+
+	[TestMethod]
+	public async Task VisibleWindow_DecodesThatWindowNotTheCatalog ()
+	{
+		var thumbs = new CountingThumbnails ();
+		var viewModel = new MainWindowViewModel (null, new RecordingShell (), thumbs);
+		var photos = new IPhoto[10_000];
+		for (int i = 0; i < photos.Length; i++)
+			photos[i] = new StubPhoto ($"/photos/{i}.jpg");
+		viewModel.SeedCatalog (photos);
+		int already = thumbs.Calls;
+
+		for (int i = 200; i < 240; i++)
+			await viewModel.RealizeThumbnailAsync (new object (), viewModel.Photos[i]);
+
+		Assert.AreEqual (40, thumbs.Calls - already);
+	}
+
+	[TestMethod]
+	[DoNotParallelize]
+	public async Task ScrollingPastAPhoto_DisposesItsThumbnail ()
+	{
+		AvaloniaApp.Ensure ();
+		var thumbs = new BitmapThumbnails ();
+		var viewModel = new MainWindowViewModel (null, new RecordingShell (), thumbs);
+		viewModel.SeedCatalog (new StubPhoto ("/a.jpg"), new StubPhoto ("/b.jpg"));
+		var container = new object ();
+		await viewModel.RealizeThumbnailAsync (container, viewModel.Photos[0]);
+		var thumbnail = viewModel.Photos[0].Thumbnail;
+		Assert.IsNotNull (thumbnail);
+
+		viewModel.ReleaseThumbnail (container);
+
+		Assert.IsNull (viewModel.Photos[0].Thumbnail);
+		Assert.ThrowsExactly<ObjectDisposedException> (() => _ = thumbnail.PixelSize);
+	}
+
+	[TestMethod]
+	[DoNotParallelize]
+	public async Task Editing_DecodesOneCappedPreviewAndDisposesThePrevious ()
+	{
+		AvaloniaApp.Ensure ();
+		var thumbs = new BitmapThumbnails ();
+		var viewModel = new MainWindowViewModel (null, new RecordingShell (), thumbs) {
+			UiScale = 3
+		};
+		viewModel.SeedCatalog (new StubPhoto ("/a.jpg"), new StubPhoto ("/b.jpg"));
+		viewModel.ViewMode = LibraryViewMode.PhotoView;
+		await viewModel.ReloadPreviewAsync ();
+		Assert.Contains (EditorPreview.DecodeWidth (3), thumbs.Sizes);
+		var first = viewModel.Preview;
+		Assert.IsNotNull (first);
+
+		viewModel.SelectedPhoto = viewModel.Photos[1];
+		await viewModel.ReloadPreviewAsync ();
+
+		Assert.ThrowsExactly<ObjectDisposedException> (() => _ = first.PixelSize);
+		Assert.IsNotNull (viewModel.Preview);
+		viewModel.ViewMode = LibraryViewMode.IconView;
+		await viewModel.ReloadPreviewAsync ();
+		Assert.IsNull (viewModel.Preview);
+	}
+
+	[TestMethod]
+	public async Task ImportList_DoesNotDecodeEveryFile ()
+	{
+		var thumbs = new CountingThumbnails ();
+		var viewModel = new ImportViewModel (null!, new RecordingShell (), thumbs, static _ => { });
+		for (int i = 0; i < 1_000; i++)
+			viewModel.AddPendingPhoto (new PhotoItemViewModel (new StubPhoto ($"/import/{i}.jpg")));
+		Assert.AreEqual (1, thumbs.Calls);
+
+		for (int i = 0; i < 30; i++)
+			await viewModel.RealizeThumbnailAsync (new object (), viewModel.Photos[i]);
+
+		Assert.AreEqual (31, thumbs.Calls);
+	}
+
+	[TestMethod]
+	[DoNotParallelize]
+	public void PhotoGrid_SizesCellsFromZoom ()
+	{
+		AvaloniaApp.Ensure ();
+		var window = new MainWindow (null) { Width = 900, Height = 600 };
+		window.Show ();
+		try {
+			var viewModel = (MainWindowViewModel)window.DataContext!;
+			var photos = new IPhoto[200];
+			for (int i = 0; i < photos.Length; i++)
+				photos[i] = new StubPhoto ($"/photos/{i}.jpg");
+			viewModel.SeedCatalog (photos);
+			viewModel.Zoom = 160;
+			Dispatcher.UIThread.RunJobs ();
+			var panel = window.GetVisualDescendants ().OfType<Controls.UniformVirtualizingWrapPanel> ().Single ();
+			Assert.AreEqual (viewModel.GridCellWidth, panel.ItemWidth, 0.5);
+			Assert.AreEqual (viewModel.GridCellHeight, panel.ItemHeight, 0.5);
+			Assert.IsGreaterThan (0, panel.RealizedCount);
+			Assert.IsLessThan (80, panel.RealizedCount);
+		} finally {
+			window.Close ();
+		}
+	}
+
+	[TestMethod]
+	public async Task OpeningALargeCatalog_DoesNotDecodeEveryPhoto ()
+	{
+		var thumbs = new CountingThumbnails ();
+		var viewModel = new MainWindowViewModel (null, new RecordingShell (), thumbs);
+		var photos = new IPhoto[10_000];
+		for (int i = 0; i < photos.Length; i++)
+			photos[i] = new StubPhoto ($"/photos/{i}.jpg");
+
+		viewModel.SeedCatalog (photos);
 		await viewModel.ReloadThumbnailsAsync ();
-		Assert.AreEqual (HiDpi.PixelSize (128, 2), thumbs.LastSize);
+
+		// The focused photo may build one histogram. The other 9,999 photos stay undecoded.
+		Assert.IsLessThanOrEqualTo (1, thumbs.Calls);
 	}
 
 	[TestMethod]
@@ -934,6 +1054,23 @@ public sealed class MainWindowViewModelTests
 		Assert.AreEqual ("★★★★☆", info.StarCaption);
 		Assert.AreEqual ("★", info.StarButtons[3].Glyph);
 		Assert.AreEqual ("☆", info.StarButtons[4].Glyph);
+		info.SetStarCommand.Execute (4u);
+		Assert.AreEqual (0u, info.RatingValue);
+		Assert.AreEqual (0u, chosen);
+		Assert.AreEqual ("☆☆☆☆☆", info.StarCaption);
+	}
+
+	[TestMethod]
+	public void EditBarDescription_IsWrittenOntoThePhoto ()
+	{
+		var viewModel = NewViewModel ();
+		var photo = CatalogPhoto ();
+		viewModel.SeedCatalog (photo);
+		viewModel.SelectPhoto (viewModel.Photos[0]);
+
+		viewModel.Info.Description = "Picnic";
+
+		Assert.AreEqual ("Picnic", photo.Description);
 	}
 
 	[TestMethod]
@@ -1114,6 +1251,8 @@ public sealed class MainWindowViewModelTests
 		public virtual void ShowSlideshow (IReadOnlyList<string> paths, int startIndex) { }
 		public virtual void OpenUri (string uri) { }
 		public virtual Task<double?> PromptHoursOffsetAsync () => Task.FromResult<double?> (null);
+		public virtual Task<TimeAdjustChoice?> PromptAdjustTimeAsync (IReadOnlyList<(string Name, DateTime Time)> photos)
+			=> Task.FromResult<TimeAdjustChoice?> (null);
 	}
 
 	sealed class RecordingShell : NullShell
@@ -1154,6 +1293,11 @@ public sealed class MainWindowViewModelTests
 
 		public override Task<double?> PromptHoursOffsetAsync ()
 			=> Task.FromResult (Hours);
+
+		public override Task<TimeAdjustChoice?> PromptAdjustTimeAsync (IReadOnlyList<(string Name, DateTime Time)> photos)
+			=> Task.FromResult<TimeAdjustChoice?> (Hours is double hours
+				? new TimeAdjustChoice { ShiftByOffset = true, Hours = hours }
+				: null);
 
 		public override Task ShowWarningAsync (string title, string message)
 		{
@@ -1221,6 +1365,29 @@ public sealed class MainWindowViewModelTests
 		{
 			LastSize = size;
 			return Task.FromResult<Bitmap?> (null);
+		}
+	}
+
+	sealed class CountingThumbnails : IPhotoThumbnailLoader
+	{
+		public int Calls { get; private set; }
+
+		public Task<Bitmap?> LoadAsync (string path, int size, CancellationToken cancellationToken)
+		{
+			Calls++;
+			return Task.FromResult<Bitmap?> (null);
+		}
+	}
+
+	sealed class BitmapThumbnails : IPhotoThumbnailLoader
+	{
+		public List<int> Sizes { get; } = [];
+
+		public Task<Bitmap?> LoadAsync (string path, int size, CancellationToken cancellationToken)
+		{
+			Sizes.Add (size);
+			var bitmap = new WriteableBitmap (new PixelSize (1, 1), new global::Avalonia.Vector (96, 96), PixelFormat.Bgra8888, AlphaFormat.Premul);
+			return Task.FromResult<Bitmap?> (bitmap);
 		}
 	}
 
