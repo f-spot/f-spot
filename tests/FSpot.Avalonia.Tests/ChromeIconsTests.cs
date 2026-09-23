@@ -118,7 +118,7 @@ public sealed class ChromeIconsTests
 			foreach (System.Text.RegularExpressions.Match match in
 				System.Text.RegularExpressions.Regex.Matches (markup, @"Icons/([A-Za-z0-9_.-]+\.png)")) {
 				string png = match.Groups[1].Value;
-				if (png == Path.GetFileName (ChromeIcons.WindowIcon))
+				if (png == Path.GetFileName (ChromeIcons.WindowIcon) || png == "f-spot-256.png")
 					continue;
 				string stem = StripSize (Path.GetFileNameWithoutExtension (png));
 				Assert.IsFalse (SrcHasStem (stem),
@@ -133,7 +133,8 @@ public sealed class ChromeIconsTests
 		string main = File.ReadAllText (Path.Combine (ClientRoot (), "MainWindow.axaml"));
 		Assert.Contains ("ChromeIcons.WindowIcon", main);
 		string about = File.ReadAllText (Path.Combine (ClientRoot (), "AboutWindow.axaml"));
-		Assert.Contains ("ChromeIcons.AppLogo", about);
+		Assert.Contains ("f-spot-256.png", about);
+		Assert.DoesNotContain ("f-spot.svg", about);
 	}
 
 	[TestMethod]

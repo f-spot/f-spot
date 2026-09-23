@@ -47,6 +47,8 @@ public partial class App : Application
 
 	static void InitializeCore ()
 	{
+		AvaloniaMainThread.InstallOnDispatcher ();
+
 		var container = TinyIoCContainer.Current;
 		FSpot.FileSystem.ModuleController.RegisterTypes (container);
 		FSpot.Imaging.ModuleController.RegisterTypes (container);

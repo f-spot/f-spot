@@ -91,11 +91,10 @@
 			<Button x:Name="ImportSourceButton" Content="{Binding SourceLabel}" Command="{Binding ChooseFolderCommand}"
 			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportSource}"
 			        AutomationProperties.Name="{x:Static lang:Strings.ImportFrom}" />
-			<svg:Svg Width="16" Height="16" Path="avares://FSpot.Avalonia/Icons/camera-photo.svg" />
 		</StackPanel>
 
-		<Grid ColumnDefinitions="220,4,*">
-			<ListBox ItemsSource="{Binding Photos}" SelectedItem="{Binding SelectedPhoto}"
+		<Grid ColumnDefinitions="220,8,*">
+			<ListBox Grid.Column="0" ItemsSource="{Binding Photos}" SelectedItem="{Binding SelectedPhoto}"
 			         AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportPhotoList}"
 			         AutomationProperties.Name="{x:Static lang:Strings.PhotosToImport}">
 				<ListBox.ItemTemplate>
@@ -109,7 +108,8 @@
 					</DataTemplate>
 				</ListBox.ItemTemplate>
 			</ListBox>
-			<GridSplitter Grid.Column="1" ResizeDirection="Columns" />
+			<GridSplitter Grid.Column="1" Width="8" ResizeDirection="Columns"
+			              Background="{DynamicResource SystemControlForegroundBaseMediumLowBrush}" />
 			<Image Grid.Column="2"
 			       Margin="8"
 			       Stretch="Uniform"

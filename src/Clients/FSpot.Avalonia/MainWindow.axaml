@@ -273,10 +273,14 @@
 			           AutomationProperties.Name="{x:Static lang:Strings.NoMatchingPhotosFound}" />
 		</Grid>
 
-		<Grid DockPanel.Dock="Bottom" Margin="8,4" ColumnDefinitions="Auto,*,Auto"
+		<Grid DockPanel.Dock="Bottom" Margin="8,4" ColumnDefinitions="*,Auto"
 		      AutomationProperties.AutomationId="{x:Static auto:AutomationIds.StatusBar}"
 		      AutomationProperties.Name="{x:Static lang:Strings.StatusBarLabel}">
-			<StackPanel Orientation="Horizontal" Spacing="6" VerticalAlignment="Center">
+			<TextBlock Margin="0,0,12,0" VerticalAlignment="Center" Text="{Binding StatusText}"
+			           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.StatusText}"
+			           AutomationProperties.Name="{Binding StatusText}"
+			           AutomationProperties.LiveSetting="Polite" />
+			<StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="6" VerticalAlignment="Center">
 				<svg:Svg Width="16" Height="16" Path="avares://FSpot.Avalonia/Icons/view-far-22.svg" />
 				<Slider Width="140"
 				        Minimum="64"
@@ -286,22 +290,21 @@
 				        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ZoomSlider}"
 				        AutomationProperties.Name="{x:Static lang:Strings.ThumbnailSize}" />
 				<svg:Svg Width="16" Height="16" Path="avares://FSpot.Avalonia/Icons/view-near-22.svg" />
+				<TextBlock VerticalAlignment="Center" Text="{Binding ZoomLabel}"
+				           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ZoomLabel}"
+				           AutomationProperties.Name="{Binding ZoomLabel}" />
 			</StackPanel>
-			<TextBlock Grid.Column="1" Margin="12,0" VerticalAlignment="Center" Text="{Binding StatusText}"
-			           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.StatusText}"
-			           AutomationProperties.Name="{Binding StatusText}"
-			           AutomationProperties.LiveSetting="Polite" />
-			<TextBlock Grid.Column="2" VerticalAlignment="Center" Text="{Binding ZoomLabel}"
-			           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ZoomLabel}"
-			           AutomationProperties.Name="{Binding ZoomLabel}" />
 		</Grid>
 
 		<Grid ColumnDefinitions="Auto,Auto,*">
-			<DockPanel Width="200" MinWidth="200" IsVisible="{Binding DisplaySidebar}"
-			           KeyboardNavigation.TabIndex="1"
-			           FlowDirection="{Binding $parent[Window].FlowDirection}"
-			           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.Sidebar}"
-			           AutomationProperties.Name="{x:Static lang:Strings.Sidebar}">
+			<Border Width="200" MinWidth="200" IsVisible="{Binding DisplaySidebar}"
+			        BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}"
+			        BorderThickness="0,0,1,0"
+			        KeyboardNavigation.TabIndex="1"
+			        FlowDirection="{Binding $parent[Window].FlowDirection}"
+			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.Sidebar}"
+			        AutomationProperties.Name="{x:Static lang:Strings.Sidebar}">
+			<DockPanel>
 				<Grid DockPanel.Dock="Top" ColumnDefinitions="*,Auto" Margin="2,2,2,0">
 					<Button Classes="sidebar-chooser"
 					        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SidebarChooser}"
@@ -636,8 +639,10 @@
 				</Panel>
 				</ScrollViewer>
 			</DockPanel>
+			</Border>
 
-			<GridSplitter Grid.Column="1" Width="4" ResizeDirection="Columns"
+			<GridSplitter Grid.Column="1" Width="6" ResizeDirection="Columns"
+			              Background="{DynamicResource SystemControlForegroundBaseMediumLowBrush}"
 			              IsVisible="{Binding DisplaySidebar}"
 			              AutomationProperties.Name="{x:Static lang:Strings.ResizeSidebar}" />
 

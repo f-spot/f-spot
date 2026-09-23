@@ -1,7 +1,6 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:FSpot.Avalonia.ViewModels"
-        xmlns:svg="using:Avalonia.Svg.Skia"
         xmlns:auto="using:FSpot.Avalonia"
         xmlns:lang="using:FSpot.Resources.Lang"
         x:Class="FSpot.Avalonia.AboutWindow"
@@ -14,9 +13,10 @@
         AutomationProperties.AutomationId="{x:Static auto:AutomationIds.AboutWindow}"
         AutomationProperties.Name="{x:Static lang:Strings.AboutFSpot}">
 	<StackPanel Margin="24" Spacing="8">
-		<svg:Svg Width="64" Height="64" Path="{x:Static auto:ChromeIcons.AppLogo}" HorizontalAlignment="Left"
-		         AutomationProperties.AutomationId="{x:Static auto:AutomationIds.AboutLogo}"
-		         AutomationProperties.Name="{x:Static lang:Strings.FSpot}" />
+		<Image Width="64" Height="64" HorizontalAlignment="Left"
+		       Source="avares://FSpot.Avalonia/Icons/f-spot-256.png"
+		       AutomationProperties.AutomationId="{x:Static auto:AutomationIds.AboutLogo}"
+		       AutomationProperties.Name="{x:Static lang:Strings.FSpot}" />
 		<TextBlock FontSize="22" FontWeight="SemiBold" Text="{x:Static lang:Strings.FSpot}" />
 		<TextBlock Text="{Binding Version}"
 		           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.AboutVersion}" />

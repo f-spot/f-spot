@@ -15,6 +15,13 @@
 		<Style Selector="Button /template/ ContentPresenter, CheckBox /template/ ContentPresenter, Label /template/ ContentPresenter">
 			<Setter Property="RecognizesAccessKey" Value="True" />
 		</Style>
+		<Style Selector="Button.dialog /template/ AccessText">
+			<Setter Property="HorizontalAlignment" Value="Center" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+		</Style>
+		<Style Selector="GridSplitter">
+			<Setter Property="Background" Value="{DynamicResource SystemControlForegroundBaseMediumLowBrush}" />
+		</Style>
 		<Style Selector="Button.tool, ToggleButton.tool, RadioButton.tool">
 			<Setter Property="Padding" Value="8,4" />
 		</Style>

@@ -14,11 +14,14 @@
 	<DockPanel Margin="24,20,24,16">
 		<StackPanel Name="Buttons" DockPanel.Dock="Bottom" Orientation="Horizontal"
 		            HorizontalAlignment="Right" Spacing="8" Margin="0,20,0,0">
-			<Button Name="CancelButton" MinWidth="88" Padding="16,6"
+			<Button Name="CancelButton" Classes="dialog" MinWidth="88" Padding="16,6"
+			        HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
 			        Content="{x:Static lang:Strings.Cancel}" IsCancel="True"
 			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.DialogCancel}"
 			        AutomationProperties.Name="{x:Static lang:Strings.Cancel}" />
-			<Button Name="OkButton" MinWidth="88" Padding="16,6" Classes="accent" IsDefault="True"
+			<Button Name="OkButton" Classes="dialog accent" MinWidth="88" Padding="16,6"
+			        HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+			        IsDefault="True"
 			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.DialogOk}" />
 		</StackPanel>
 		<Grid ColumnDefinitions="Auto,*">
