@@ -2,20 +2,11 @@
 
 No website currently. PLEASE DO NOT VISIT THE OLD WEBSITE
 
-# WARNING
-
-The code base is in heavy flux right now. It might be completely broken right now.
-
-Known issues:
-
-* Doesn't start
-* AdjustTimeDialog is completely broken due to removing Gnome.DateTime
-
 # Build status
 
 [![CI](https://github.com/decriptor/FSpot.Avalonia/actions/workflows/ci.yml/badge.svg)](https://github.com/decriptor/FSpot.Avalonia/actions/workflows/ci.yml)
 
-GitHub Actions (`CI`) runs restore/build/test on Ubuntu, macOS, and Windows for `main` and `modernize`.
+GitHub Actions (`CI`) restores and builds `F-Spot.slnx` on Ubuntu, macOS, and Windows for pushes and pull requests to `main` and `modernize`. The test job runs `FSpot.Tests`, `FSpot.Gtk.Tests` (skipping tests that need Gdk or GTK), `FSpot.Avalonia.Tests`, and `RasterizeIcons.Tests`.
 
 # Requirements
 
@@ -36,7 +27,7 @@ gtk-sharp 2.12 is vendored under `lib/gtk-sharp-2.12/` for compile. NuGet packag
 	dotnet build F-Spot.slnx
 	dotnet test F-Spot.Tests.slnf --filter "TestCategory!=RequiresGdk&TestCategory!=RequiresGtk"
 
-GTK and Avalonia builds rasterize `icons/src/*.svg` into `icons/*.png` when a PNG is missing or the SVG is newer (`Icons.targets`). Commit the generated PNGs; they are not rewritten on an up-to-date tree. PNG-only artwork (no SVG) is left alone. Force a refresh with:
+Committed `icons/*.png` are not regenerated during `dotnet build`. After you change an SVG under `icons/src/`, refresh the PNGs and commit them:
 
 	dotnet run --project tools/RasterizeIcons -- icons
 
@@ -49,6 +40,14 @@ parked; only `help/C` is installed. A Gtk build stages icons under
 
 # Launch
 
-From the build tree: `bin/f-spot --debug` (Linux; next to `f-spot.exe`).
+Avalonia client (modern .NET, including macOS):
+
+	dotnet run --project src/Clients/FSpot.Avalonia
+
+The built binary is `artifacts/fspot-avalonia/FSpot.Avalonia`.
+
+Crash reports go to Sentry unless you turn them off in Preferences. `FSPOT_SENTRY=0` (or `false`, `off`, or `no`) forces them off. The same setting is stored for the GTK client. Events are scrubbed of home-directory paths and tag names before they are sent. The About window states this.
+
+GTK 2 client (Linux, Mono): `bin/f-spot --debug`, next to `f-spot.exe`. Print opens the page-setup window and prints. Send Mail prepares the selected photos and opens the mail client. Set as Background changes the desktop wallpaper on macOS, GNOME, and Windows.
 
 ![Alt](https://repobeats.axiom.co/api/embed/fade091fb5fad392ab9b7997918d611c788fabee.svg "Repobeats analytics image")

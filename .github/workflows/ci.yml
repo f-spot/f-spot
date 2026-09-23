@@ -19,11 +19,11 @@ env:
   DOTNET_CLI_TELEMETRY_OPTOUT: true
 
 jobs:
-  # F-Spot.Tests.slnf: FSpot and Gtk unit tests only.
+  # F-Spot.Tests.slnf: Core, GTK (no Gdk), Avalonia, and icon rasterizer tests.
   test:
     name: Test (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 15
+    timeout-minutes: 25
     strategy:
       fail-fast: false
       matrix:
@@ -74,6 +74,20 @@ jobs:
           dotnet test tests/FSpot.Gtk.Tests/FSpot.Gtk.Tests.csproj
           --configuration Release --no-restore
           --filter "TestCategory!=RequiresGdk&TestCategory!=RequiresGtk"
+          --logger trx --results-directory TestResults
+
+      - name: Test FSpot.Avalonia
+        if: ${{ !cancelled() }}
+        run: >
+          dotnet test tests/FSpot.Avalonia.Tests/FSpot.Avalonia.Tests.csproj
+          --configuration Release --no-restore
+          --logger trx --results-directory TestResults
+
+      - name: Test RasterizeIcons
+        if: ${{ !cancelled() }}
+        run: >
+          dotnet test tests/RasterizeIcons.Tests/RasterizeIcons.Tests.csproj
+          --configuration Release --no-restore
           --logger trx --results-directory TestResults
 
       - name: Upload test results
