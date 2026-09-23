@@ -13,7 +13,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
 
 using FSpot.Cms;
 using FSpot.Gui;
@@ -23,18 +22,6 @@ namespace FSpot
 {
 	public static class ColorManagement
 	{
-		static readonly string[] linuxProfileDirectories = { "/usr/share/color/icc", Path.Combine (FSpotConfiguration.HomeDirectory, ".color/icc"), "/usr/local/share/color/icc" };
-		// Every ICC profile shipped with macOS lives in the first of these; it was not
-		// searched at all. "/User/x/..." was a placeholder rather than a path, and the
-		// two remaining entries only resolved because APFS is case-insensitive by
-		// default -- the directories are ColorSync and Application Support.
-		static readonly string[] macProfileDirectories = {
-			"/System/Library/ColorSync/Profiles",
-			"/Library/ColorSync/Profiles",
-			Path.Combine (FSpotConfiguration.HomeDirectory, "Library/ColorSync/Profiles"),
-			"/Library/Application Support/Adobe/Color/Profiles"
-		};
-
 		static ProfileCatalog catalog;
 		public static IReadOnlyDictionary<string, Profile> Profiles {
 			get {
@@ -68,16 +55,6 @@ namespace FSpot
 			}
 		}
 
-		static string[] ColorSearchPath ()
-		{
-			if (Utils.Platform.IsLinux)
-				return linuxProfileDirectories;
-			else if (Utils.Platform.IsMac)
-				return macProfileDirectories;
-			else
-				return Array.Empty<string> ();
-		}
-
 		static void BuildProfiles ()
 		{
 			// Published only once complete: a failure part-way through used to leave a
@@ -85,12 +62,7 @@ namespace FSpot
 			// Missing liblcms2 (Windows, or x86_64 Mono with an arm64 Homebrew dylib)
 			// becomes an empty catalogue rather than escaping into a GTK draw handler.
 			catalog = ProfileCatalog.Build (built => {
-				built.Add (Profile.CreateStandardRgb ());
-				built.Add (Profile.CreateAlternateRgb ());
-
-				foreach (var path in ColorSearchPath ())
-					built.AddFrom (path);
-
+				built.AddInstalled ();
 				if (XProfile != null)
 					built.AddShared ("_x_profile_", XProfile);
 			});

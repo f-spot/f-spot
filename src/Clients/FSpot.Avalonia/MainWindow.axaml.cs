@@ -352,8 +352,12 @@ public partial class MainWindow : Window, IAvaloniaShell
 
 	void OnPhotoPointerEntered (object? sender, PointerEventArgs e)
 	{
-		if (DataContext is MainWindowViewModel viewModel && sender is Control { DataContext: PhotoItemViewModel item })
-			viewModel.ShowHover (item);
+		if (DataContext is not MainWindowViewModel viewModel || sender is not Control { DataContext: PhotoItemViewModel item })
+			return;
+		// Anchor beside the cell. A popup under the pointer makes the cell see
+		// PointerExited, which closes it and opens it again.
+		HoverPopup.PlacementTarget = (Control)sender;
+		viewModel.ShowHover (item);
 	}
 
 	void OnPhotoPointerExited (object? sender, PointerEventArgs e)

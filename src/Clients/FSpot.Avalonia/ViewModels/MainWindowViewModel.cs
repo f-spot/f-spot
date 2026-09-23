@@ -608,10 +608,8 @@ public partial class MainWindowViewModel : ObservableObject
 	void ReplaceThumbnail (PhotoItemViewModel item, Bitmap? bitmap)
 	{
 		var previous = item.Thumbnail;
-		if (previous is not null && ReferenceEquals (HoverThumbnail, previous) && !ReferenceEquals (previous, bitmap)) {
-			HoverThumbnail = null;
-			ShowHoverPreview = false;
-		}
+		if (previous is not null && ReferenceEquals (HoverThumbnail, previous) && !ReferenceEquals (previous, bitmap))
+			HoverThumbnail = bitmap;
 
 		item.Thumbnail = bitmap;
 		ReleasedBitmap.DisposePrevious (previous, bitmap);

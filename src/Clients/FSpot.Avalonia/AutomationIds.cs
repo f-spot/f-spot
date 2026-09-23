@@ -150,6 +150,11 @@ public static class AutomationIds
 	public const string PreferencesCopyFiles = "Preferences.CopyFiles";
 	public const string PreferencesStoragePath = "Preferences.StoragePath";
 	public const string PreferencesInterpolation = "Preferences.Interpolation";
+	public const string PreferencesEmbedMetadata = "Preferences.EmbedMetadata";
+	public const string PreferencesSeparateMetadata = "Preferences.SeparateMetadata";
+	public const string PreferencesSidecar = "Preferences.Sidecar";
+	public const string PreferencesDisplayProfile = "Preferences.DisplayProfile";
+	public const string PreferencesPrintProfile = "Preferences.PrintProfile";
 	public const string ExtensionsWindow = "Extensions.Window";
 	public const string ExtensionsList = "Extensions.List";
 	public const string InfoShowDate = "Main.Sidebar.Info.ShowDate";

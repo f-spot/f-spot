@@ -6,6 +6,9 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.InteropServices;
+
+using FSpot.Settings;
 
 using Hyena;
 
@@ -83,6 +86,36 @@ namespace FSpot.Cms
 		// cannot read is skipped rather than abandoning the walk: the search paths
 		// include user-writable trees, and the catalogue is published only once the walk
 		// completes, so an escape here would repeat on every later lookup.
+		public static IReadOnlyList<string> InstalledDirectories ()
+		{
+			if (RuntimeInformation.IsOSPlatform (OSPlatform.Linux)) {
+				return new[] {
+					"/usr/share/color/icc",
+					Path.Combine (FSpotConfiguration.HomeDirectory, ".color/icc"),
+					"/usr/local/share/color/icc"
+				};
+			}
+
+			if (RuntimeInformation.IsOSPlatform (OSPlatform.OSX)) {
+				return new[] {
+					"/System/Library/ColorSync/Profiles",
+					"/Library/ColorSync/Profiles",
+					Path.Combine (FSpotConfiguration.HomeDirectory, "Library/ColorSync/Profiles"),
+					"/Library/Application Support/Adobe/Color/Profiles"
+				};
+			}
+
+			return Array.Empty<string> ();
+		}
+
+		public void AddInstalled ()
+		{
+			Add (Profile.CreateStandardRgb ());
+			Add (Profile.CreateAlternateRgb ());
+			foreach (string path in InstalledDirectories ())
+				AddFrom (path);
+		}
+
 		public void AddFrom (string directory)
 		{
 			if (directory == null)

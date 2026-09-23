@@ -40,5 +40,25 @@ namespace FSpot
 			get => Preferences.Get<string> (Preferences.ColorScheme);
 			set => Preferences.Set (Preferences.ColorScheme, value);
 		}
+
+		public static bool MetadataEmbedInImage {
+			get => Preferences.Get<bool> (Preferences.MetadataEmbedInImage);
+			set => Preferences.Set (Preferences.MetadataEmbedInImage, value);
+		}
+
+		public static bool MetadataAlwaysUseSidecar {
+			get => Preferences.Get<bool> (Preferences.MetadataAlwaysUseSidecar);
+			set => Preferences.Set (Preferences.MetadataAlwaysUseSidecar, value);
+		}
+
+		public static string DisplayProfile {
+			get => Preferences.Get<string> (Preferences.ColorManagementDisplayProfile);
+			set => Preferences.Set (Preferences.ColorManagementDisplayProfile, value);
+		}
+
+		public static string PrintProfile {
+			get => Preferences.Get<string> (Preferences.ColorManagementDisplayOutputProfile);
+			set => Preferences.Set (Preferences.ColorManagementDisplayOutputProfile, value);
+		}
 	}
 }

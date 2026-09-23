@@ -221,6 +221,29 @@ public sealed class MainWindowViewModelTests
 	}
 
 	[TestMethod]
+	[DoNotParallelize]
+	public async Task ReplacingTheHoveredThumbnail_KeepsThePreviewOpen ()
+	{
+		AvaloniaApp.Ensure ();
+		var thumbs = new BitmapThumbnails ();
+		var viewModel = new MainWindowViewModel (null, new RecordingShell (), thumbs) {
+			Zoom = 100,
+			UiScale = 1
+		};
+		viewModel.SeedCatalog (new StubPhoto ("/a.jpg"));
+		await viewModel.RealizeThumbnailAsync (new object (), viewModel.Photos[0]);
+		viewModel.ShowHover (viewModel.Photos[0]);
+		Assert.IsTrue (viewModel.ShowHoverPreview);
+
+		viewModel.Zoom = 160;
+		await viewModel.ReloadThumbnailsAsync ();
+
+		Assert.IsTrue (viewModel.ShowHoverPreview);
+		Assert.IsNotNull (viewModel.HoverThumbnail);
+		Assert.AreSame (viewModel.Photos[0].Thumbnail, viewModel.HoverThumbnail);
+	}
+
+	[TestMethod]
 	public async Task OpeningALargeCatalog_DoesNotDecodeEveryPhoto ()
 	{
 		var thumbs = new CountingThumbnails ();

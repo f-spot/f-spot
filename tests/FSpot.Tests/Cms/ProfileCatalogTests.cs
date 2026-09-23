@@ -5,6 +5,8 @@
 
 using System;
 using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices;
 
 using FSpot.Tests;
 
@@ -27,6 +29,18 @@ namespace FSpot.Cms.Tests
 		public void RemoveTemporaryDirectories ()
 		{
 			temporaryDirectories.DeleteAll ();
+		}
+
+		[TestMethod]
+		public void InstalledDirectories_FollowThePlatformColorPaths ()
+		{
+			string[] paths = ProfileCatalog.InstalledDirectories ().ToArray ();
+			if (RuntimeInformation.IsOSPlatform (OSPlatform.OSX))
+				Assert.Contains ("/System/Library/ColorSync/Profiles", paths);
+			else if (RuntimeInformation.IsOSPlatform (OSPlatform.Linux))
+				Assert.Contains ("/usr/share/color/icc", paths);
+			else
+				Assert.IsEmpty (paths);
 		}
 
 		[TestMethod]

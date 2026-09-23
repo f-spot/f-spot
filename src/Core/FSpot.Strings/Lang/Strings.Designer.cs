@@ -4882,5 +4882,53 @@ namespace FSpot.Resources.Lang {
                 return ResourceManager.GetString("RollIdPrompt", resourceCulture);
             }
         }
+
+        public static string ColorProfileForDisplay {
+            get {
+                return ResourceManager.GetString("ColorProfileForDisplay", resourceCulture);
+            }
+        }
+
+        public static string ColorProfileForPrinting {
+            get {
+                return ResourceManager.GetString("ColorProfileForPrinting", resourceCulture);
+            }
+        }
+
+        public static string InsideTheImageFilesWhenPossibleSmallMakesThemAccessibleToOtherImageEditingProgramsSmall {
+            get {
+                return ResourceManager.GetString("InsideTheImageFilesWhenPossibleSmallMakesThemAccessibleToOtherImageEditingProgramsSmall", resourceCulture);
+            }
+        }
+
+        public static string NeverModifyImageFilesSmallWriteXMPFilesNextToTheImagesInsteadSmall {
+            get {
+                return ResourceManager.GetString("NeverModifyImageFilesSmallWriteXMPFilesNextToTheImagesInsteadSmall", resourceCulture);
+            }
+        }
+
+        public static string SeparatelyFromTheImageFiles {
+            get {
+                return ResourceManager.GetString("SeparatelyFromTheImageFiles", resourceCulture);
+            }
+        }
+
+        public static string StoreTagsAndDescriptionsForPhotos {
+            get {
+                return ResourceManager.GetString("StoreTagsAndDescriptionsForPhotos", resourceCulture);
+            }
+        }
+
+        public static string WhenImportingPhotosCopyThemTo {
+            get {
+                return ResourceManager.GetString("WhenImportingPhotosCopyThemTo", resourceCulture);
+            }
+        }
+
+        public static string SelectAFolder {
+            get {
+                return ResourceManager.GetString("SelectAFolder", resourceCulture);
+            }
+        }
     }
 }

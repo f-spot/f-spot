@@ -929,9 +929,11 @@
 				</Panel>
 			</DockPanel>
 		</Grid>
-		<Popup IsOpen="{Binding ShowHoverPreview}" Placement="Pointer" IsLightDismissEnabled="False">
+		<Popup x:Name="HoverPopup" IsOpen="{Binding ShowHoverPreview}" Placement="Right" HorizontalOffset="8"
+		       IsHitTestVisible="False" IsLightDismissEnabled="False">
 			<Border Padding="6" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
-			        BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" BorderThickness="1">
+			        BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" BorderThickness="1"
+			        IsHitTestVisible="False">
 				<StackPanel Spacing="4">
 					<Image Width="240" Height="180" Stretch="Uniform" Source="{Binding HoverThumbnail}" />
 					<TextBlock Text="{Binding HoverCaption}" HorizontalAlignment="Center" />
