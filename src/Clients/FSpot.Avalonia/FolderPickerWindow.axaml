@@ -1,0 +1,28 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:auto="using:FSpot.Avalonia"
+        xmlns:lang="using:FSpot.Resources.Lang"
+        x:Class="FSpot.Avalonia.FolderPickerWindow"
+        Width="520"
+        SizeToContent="Height"
+        CanResize="False"
+        WindowStartupLocation="CenterOwner"
+        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.FolderPicker}">
+	<DockPanel Margin="16" >
+		<StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8" Margin="0,16,0,0">
+			<Button MinWidth="88" Content="{x:Static lang:Strings.Cancel}" IsCancel="True" Click="OnCancel"
+			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.DialogCancel}"
+			        AutomationProperties.Name="{x:Static lang:Strings.Cancel}" />
+			<Button MinWidth="88" Content="{x:Static lang:Strings.Ok}" IsDefault="True" Click="OnOk"
+			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.DialogOk}"
+			        AutomationProperties.Name="{x:Static lang:Strings.Ok}" />
+		</StackPanel>
+		<Grid ColumnDefinitions="*,Auto" >
+			<TextBox Name="PathBox"
+			         AutomationProperties.AutomationId="{x:Static auto:AutomationIds.FolderPickerPath}" />
+			<Button Grid.Column="1" Margin="8,0,0,0" Content="{x:Static lang:Strings.Browse}" Click="OnBrowse"
+			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.FolderPickerBrowse}"
+			        AutomationProperties.Name="{x:Static lang:Strings.Browse}" />
+		</Grid>
+	</DockPanel>
+</Window>

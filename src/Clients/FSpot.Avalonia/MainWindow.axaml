@@ -9,6 +9,7 @@
         xmlns:auto="using:FSpot.Avalonia"
         xmlns:lang="using:FSpot.Resources.Lang"
         xmlns:av="using:Avalonia.Controls"
+        xmlns:primitives="using:Avalonia.Controls.Primitives"
         x:Class="FSpot.Avalonia.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="{x:Static auto:ChromeIcons.WindowIcon}"
@@ -166,7 +167,10 @@
 	</NativeMenu.Menu>
 
 	<DockPanel>
-		<NativeMenuBar DockPanel.Dock="Top"
+		<Menu x:Name="InWindowMenu" DockPanel.Dock="Top" IsVisible="False"
+		      AutomationProperties.AutomationId="{x:Static auto:AutomationIds.MainMenu}"
+		      AutomationProperties.Name="{x:Static lang:Strings.MainMenu}" />
+		<NativeMenuBar x:Name="NativeMenuBar" DockPanel.Dock="Top"
 		               AutomationProperties.Name="{x:Static lang:Strings.MainMenu}" />
 
 		<Border DockPanel.Dock="Top"
@@ -176,12 +180,12 @@
 		        BorderThickness="0,0,0,1">
 			<Grid ColumnDefinitions="Auto,*,Auto">
 				<StackPanel Orientation="Horizontal" Spacing="4">
-					<Button Classes="tool" ToolTip.Tip="{x:Static lang:Strings.ImportNewPhotos}" Command="{Binding ImportCommand}"
+					<Button x:Name="ToolbarImportButton" Classes="tool" ToolTip.Tip="{x:Static lang:Strings.ImportNewPhotos}" Command="{Binding ImportCommand}"
 					        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ToolbarImport}"
 					        AutomationProperties.Name="{x:Static lang:Strings.Import}">
 						<StackPanel Orientation="Horizontal" Spacing="6">
 							<svg:Svg Width="22" Height="22" Path="avares://FSpot.Avalonia/Icons/camera-photo.svg" />
-							<TextBlock Text="{x:Static lang:Strings.Import}" VerticalAlignment="Center" />
+							<primitives:AccessText Text="{x:Static lang:Strings.Import2}" VerticalAlignment="Center" />
 						</StackPanel>
 					</Button>
 					<Rectangle Width="1" Margin="4,2" Fill="{DynamicResource SystemControlForegroundBaseLowBrush}" />
@@ -772,7 +776,10 @@
 					            AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PhotoGridEmpty}"
 					            AutomationProperties.Name="{x:Static lang:Strings.ImportNewPhotos}">
 						<TextBlock Text="{x:Static lang:Strings.ImportNewPhotos}" FontSize="16" HorizontalAlignment="Center" />
-						<Button Content="{x:Static lang:Strings.Import}" Command="{Binding ImportCommand}" HorizontalAlignment="Center" />
+						<Button x:Name="EmptyImportButton" Command="{Binding ImportCommand}" HorizontalAlignment="Center"
+						        AutomationProperties.Name="{x:Static lang:Strings.Import}">
+							<primitives:AccessText Text="{x:Static lang:Strings.Import2}" />
+						</Button>
 					</StackPanel>
 					<StackPanel IsVisible="{Binding ShowNoMatches}"
 					            HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="12"

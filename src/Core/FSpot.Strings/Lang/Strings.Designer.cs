@@ -270,6 +270,12 @@ namespace FSpot.Resources.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Browse your photo library.
         /// </summary>
+        public static string Browse {
+            get {
+                return ResourceManager.GetString("Browse", resourceCulture);
+            }
+        }
+
         public static string BrowseYourPhotoLibrary {
             get {
                 return ResourceManager.GetString("BrowseYourPhotoLibrary", resourceCulture);

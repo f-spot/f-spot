@@ -12,6 +12,9 @@
 	</NativeMenu.Menu>
 	<Application.Styles>
 		<FluentTheme />
+		<Style Selector="Button /template/ ContentPresenter, CheckBox /template/ ContentPresenter, Label /template/ ContentPresenter">
+			<Setter Property="RecognizesAccessKey" Value="True" />
+		</Style>
 		<Style Selector="Button.tool, ToggleButton.tool, RadioButton.tool">
 			<Setter Property="Padding" Value="8,4" />
 		</Style>

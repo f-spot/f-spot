@@ -4,6 +4,7 @@
         xmlns:svg="using:Avalonia.Svg.Skia"
         xmlns:auto="using:FSpot.Avalonia"
         xmlns:lang="using:FSpot.Resources.Lang"
+        xmlns:primitives="using:Avalonia.Controls.Primitives"
         x:Class="FSpot.Avalonia.ImportWindow"
         x:DataType="vm:ImportViewModel"
         Title="{x:Static lang:Strings.Import}"
@@ -23,11 +24,12 @@
 			        Command="{Binding CancelCommand}"
 			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportCancel}"
 			        AutomationProperties.Name="{x:Static lang:Strings.Cancel}" />
-			<Button Grid.Column="2"
-			        Content="{x:Static lang:Strings.Import}"
+			<Button x:Name="ImportButton" Grid.Column="2"
 			        Command="{Binding ImportCommand}"
 			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportConfirm}"
-			        AutomationProperties.Name="{x:Static lang:Strings.Import}" />
+			        AutomationProperties.Name="{x:Static lang:Strings.Import}">
+				<primitives:AccessText Text="{x:Static lang:Strings.Import2}" />
+			</Button>
 		</Grid>
 
 		<StackPanel DockPanel.Dock="Bottom" Spacing="8" Margin="0,12,0,0">
@@ -83,8 +85,10 @@
 		           AutomationProperties.Name="{Binding StatusText}" />
 
 		<StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="8" Margin="0,0,0,8">
-			<TextBlock Text="{x:Static lang:Strings.ImportFrom2}" VerticalAlignment="Center" />
-			<Button Content="{Binding SourceLabel}" Command="{Binding ChooseFolderCommand}"
+			<Label Target="{Binding #ImportSourceButton}" VerticalAlignment="Center">
+				<primitives:AccessText Text="{x:Static lang:Strings.ImportFrom2}" />
+			</Label>
+			<Button x:Name="ImportSourceButton" Content="{Binding SourceLabel}" Command="{Binding ChooseFolderCommand}"
 			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportSource}"
 			        AutomationProperties.Name="{x:Static lang:Strings.ImportFrom}" />
 			<svg:Svg Width="16" Height="16" Path="avares://FSpot.Avalonia/Icons/camera-photo.svg" />

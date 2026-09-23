@@ -33,7 +33,12 @@ public partial class MainWindow : Window, IAvaloniaShell
 				PreviewInterpolation.Apply (PreviewImage, viewModel.ViewerInterpolation);
 		};
 		PreviewInterpolation.Apply (PreviewImage, viewModel.ViewerInterpolation);
-		Opened += (_, _) => ApplyUiScale ();
+		Opened += (_, _) => {
+			ApplyUiScale ();
+			EnsureMenuInAutomationTree ();
+			GtkMnemonic.ApplyHotKey (ToolbarImportButton, FSpot.Resources.Lang.Strings.Import2);
+			GtkMnemonic.ApplyHotKey (EmptyImportButton, FSpot.Resources.Lang.Strings.Import2);
+		};
 		ScalingChanged += (_, _) => ApplyUiScale ();
 		viewModel.LoadCatalog ();
 	}
@@ -184,13 +189,25 @@ public partial class MainWindow : Window, IAvaloniaShell
 	public Task<bool> ConfirmAsync (string title, string message, string okCaption)
 		=> MessageDialog.ConfirmAsync (this, title, message, okCaption);
 
-	public async Task<string?> PickFolderAsync (string title)
+	public Task<string?> PickFolderAsync (string title)
+		=> new FolderPickerWindow (title, BrowseFolderAsync).ShowDialog<string?> (this);
+
+	async Task<string?> BrowseFolderAsync (string title)
 	{
 		var folders = await StorageProvider.OpenFolderPickerAsync (new FolderPickerOpenOptions {
 			Title = title,
 			AllowMultiple = false
 		});
 		return folders.Count == 0 ? null : folders[0].Path.LocalPath;
+	}
+
+	void EnsureMenuInAutomationTree ()
+	{
+		NativeMenuMirror.Fill (InWindowMenu, NativeMenu.GetMenu (this));
+		if (InWindowMenu.Items.Count == 0)
+			return;
+		InWindowMenu.IsVisible = true;
+		NativeMenuBar.IsVisible = false;
 	}
 
 	void OnPhotoDoubleTapped (object? sender, TappedEventArgs e)

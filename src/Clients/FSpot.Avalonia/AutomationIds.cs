@@ -152,4 +152,8 @@ public static class AutomationIds
 	public const string InfoShowDate = "Main.Sidebar.Info.ShowDate";
 	public const string InfoStars = "Main.Sidebar.Info.Stars";
 	public const string FolderShare = "Main.Sidebar.Folders.Share";
+	public const string MainMenu = "Main.Menu";
+	public const string FolderPicker = "Dialog.FolderPicker";
+	public const string FolderPickerPath = "Dialog.FolderPicker.Path";
+	public const string FolderPickerBrowse = "Dialog.FolderPicker.Browse";
 }

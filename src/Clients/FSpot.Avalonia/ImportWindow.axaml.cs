@@ -15,6 +15,7 @@ public partial class ImportWindow : Window
 	{
 		DataContext = viewModel;
 		InitializeComponent ();
+		GtkMnemonic.ApplyHotKey (ImportButton, FSpot.Resources.Lang.Strings.Import2);
 		Opened += (_, _) => ApplyUiScale ();
 		ScalingChanged += (_, _) => ApplyUiScale ();
 	}

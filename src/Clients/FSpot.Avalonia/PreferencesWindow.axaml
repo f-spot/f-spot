@@ -17,7 +17,7 @@
 		          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PreferencesTimeline}" />
 		<CheckBox Name="ShowFilmstrip" Content="{x:Static lang:Strings.Filmstrip}"
 		          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PreferencesFilmstrip}" />
-		<CheckBox Name="ImportCopyFiles" Content="{x:Static lang:Strings.CopyFilesToThePhotosFolder}"
+		<CheckBox Name="ImportCopyFiles" Content="{x:Static lang:Strings.CopyFilesToThePhotosFolder2}"
 		          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PreferencesCopyFiles}" />
 		<CheckBox Name="ViewerInterpolation" Content="{x:Static lang:Strings.InterpolateImageOnZoom}"
 		          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PreferencesInterpolation}" />
