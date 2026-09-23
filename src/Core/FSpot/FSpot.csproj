@@ -9,7 +9,12 @@
 
   <!-- Directory.Build.props dumps every project into $(RepoRoot)bin with no TFM
        segment. A net10.0 FSpot.dll must not overwrite the net472 copy f-spot.exe
-       loads from there. -->
+       loads from there. The two TFMs also cannot share obj/$(Configuration): the
+       net10.0 reference assembly is written to obj/$(Configuration)/ref and the
+       net472 build then deletes it, so a clean Release build cannot find FSpot.dll. -->
+  <PropertyGroup Condition="'$(TargetFramework)' != ''">
+    <IntermediateOutputPath>$(MSBuildThisFileDirectory)obj\$(Configuration)\$(TargetFramework)\</IntermediateOutputPath>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)' != '' AND '$(TargetFramework)' != '$(FSpotTargetFramework)'">
     <OutputPath>$(RepoRoot)artifacts/fspot/$(TargetFramework)/</OutputPath>
   </PropertyGroup>
