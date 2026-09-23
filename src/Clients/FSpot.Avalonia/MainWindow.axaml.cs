@@ -68,6 +68,12 @@ public partial class MainWindow : Window, IAvaloniaShell
 	protected override void OnKeyDown (KeyEventArgs e)
 	{
 		var focused = TopLevel.GetTopLevel (this)?.FocusManager?.GetFocusedElement () ?? e.Source;
+		if (Input.RatingKey.From (e.Key, e.KeyModifiers, focused) is uint rating
+				&& DataContext is MainWindowViewModel rated) {
+			rated.RateFocused (rating);
+			e.Handled = true;
+			return;
+		}
 		if (Input.ShortcutGuards.IsUnadornedLoupeKey (e.Key, e.KeyModifiers)) {
 			if (Input.ShortcutGuards.AllowsUnadornedKey (focused)
 					&& DataContext is MainWindowViewModel viewModel) {
@@ -172,13 +178,18 @@ public partial class MainWindow : Window, IAvaloniaShell
 	public Task ShowWarningAsync (string title, string message)
 		=> MessageDialog.ShowAsync (this, title, message, MessageDialogKind.Warning);
 
-	public async Task<bool> ShowImportAsync ()
+	public Task<bool> ShowImportAsync ()
+		=> ShowImportAsync (Array.Empty<string> ());
+
+	public async Task<bool> ShowImportAsync (IReadOnlyList<string> paths)
 	{
 		if (App.Database is null)
 			return false;
 
 		ImportWindow? window = null;
 		var viewModel = new ImportViewModel (App.Database, this, new AvaloniaThumbnailLoader (), result => window?.Close (result));
+		if (paths.Count > 0)
+			viewModel.SeedDropped (paths);
 		window = new ImportWindow (viewModel);
 		return await window.ShowDialog<bool> (this);
 	}
@@ -266,14 +277,46 @@ public partial class MainWindow : Window, IAvaloniaShell
 	}
 
 	void OnPhotoDragOver (object? sender, DragEventArgs e)
-		=> e.DragEffects = e.DataTransfer.Contains (DragFormats.TagId) ? DragDropEffects.Copy : DragDropEffects.None;
+		=> e.DragEffects = AcceptsLibraryDrop (e.DataTransfer) ? DragDropEffects.Copy : DragDropEffects.None;
 
 	void OnPhotoDrop (object? sender, DragEventArgs e)
+		=> DropOnLibrary (e);
+
+	void OnLibraryDragOver (object? sender, DragEventArgs e)
+		=> e.DragEffects = e.DataTransfer.Contains (DataFormat.File) ? DragDropEffects.Copy : DragDropEffects.None;
+
+	void OnLibraryDrop (object? sender, DragEventArgs e)
+		=> DropOnLibrary (e);
+
+	static bool AcceptsLibraryDrop (IDataTransfer transfer)
+		=> transfer.Contains (DataFormat.File) || transfer.Contains (DragFormats.TagId);
+
+	void DropOnLibrary (DragEventArgs e)
 	{
 		if (DataContext is not MainWindowViewModel viewModel)
 			return;
+		var paths = DroppedPaths (e.DataTransfer);
+		if (paths.Count > 0) {
+			_ = viewModel.ImportDroppedAsync (paths);
+			return;
+		}
 		var target = (e.Source as Control)?.DataContext as PhotoItemViewModel;
 		viewModel.AttachDroppedTag (TryGetString (e.DataTransfer, DragFormats.TagId), target);
+	}
+
+	static List<string> DroppedPaths (IDataTransfer transfer)
+	{
+		var paths = new List<string> ();
+		if (!transfer.Contains (DataFormat.File))
+			return paths;
+		foreach (var item in transfer.GetItems (DataFormat.File)) {
+			if (item.TryGetValue (DataFormat.File) is not IStorageItem storage)
+				continue;
+			string? path = storage.TryGetLocalPath ();
+			if (!string.IsNullOrWhiteSpace (path))
+				paths.Add (path);
+		}
+		return paths;
 	}
 
 	void OnTagTreeDragOver (object? sender, DragEventArgs e)

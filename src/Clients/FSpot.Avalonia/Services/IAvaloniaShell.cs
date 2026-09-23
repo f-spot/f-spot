@@ -15,6 +15,7 @@ public interface IAvaloniaShell
 	Task ShowAboutAsync ();
 	Task ShowWarningAsync (string title, string message);
 	Task<bool> ShowImportAsync ();
+	Task<bool> ShowImportAsync (IReadOnlyList<string> paths);
 	Task<string?> PickFolderAsync (string title);
 	Task<string?> PromptAsync (string title, string prompt, string defaultValue);
 	Task<bool> ConfirmAsync (string title, string message, string okCaption);

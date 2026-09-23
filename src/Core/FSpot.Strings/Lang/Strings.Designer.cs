@@ -270,6 +270,12 @@ namespace FSpot.Resources.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Browse your photo library.
         /// </summary>
+        public static string UnsupportedFileFormat {
+            get {
+                return ResourceManager.GetString("UnsupportedFileFormat", resourceCulture);
+            }
+        }
+
         public static string Browse {
             get {
                 return ResourceManager.GetString("Browse", resourceCulture);

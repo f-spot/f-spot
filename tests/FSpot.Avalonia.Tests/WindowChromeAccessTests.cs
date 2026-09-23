@@ -6,6 +6,8 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.VisualTree;
 
+using FSpot.Avalonia.Input;
+
 using FSpot.Resources.Lang;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -69,6 +71,13 @@ public sealed class WindowChromeAccessTests
 			foreach (var grandchild in Nested (child))
 				yield return grandchild;
 		}
+	}
+
+	[TestMethod]
+	public void RatingKey_DoesNotRateWhileATextBoxIsFocused ()
+	{
+		AvaloniaApp.Ensure ();
+		Assert.IsNull (RatingKey.From (Key.D2, KeyModifiers.None, new TextBox ()));
 	}
 
 	[TestMethod]

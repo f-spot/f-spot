@@ -3,8 +3,12 @@
 using System.IO;
 
 using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
+
+using FSpot.Avalonia.Input;
 
 using FSpot;
 using FSpot.Avalonia.Models;
@@ -861,6 +865,58 @@ public sealed class MainWindowViewModelTests
 	}
 
 	[TestMethod]
+	public void RateFocused_SetsAndClearsTheFocusedPhoto ()
+	{
+		var viewModel = NewViewModel ();
+		var photo = CatalogPhoto ();
+		var item = new PhotoItemViewModel (photo);
+		viewModel.Photos.Add (item);
+		viewModel.SelectedPhoto = item;
+
+		viewModel.RateFocused (4);
+		Assert.AreEqual (4u, photo.Rating);
+		Assert.AreEqual (4u, viewModel.Info.RatingValue);
+
+		viewModel.RateFocused (0);
+		Assert.AreEqual (0u, photo.Rating);
+		Assert.AreEqual (0u, viewModel.Info.RatingValue);
+	}
+
+	[TestMethod]
+	public void RatingKey_ReadsDigitsAndSkipsATextBox ()
+	{
+		Assert.AreEqual (0u, RatingKey.From (Key.D0, KeyModifiers.None, null));
+		Assert.AreEqual (5u, RatingKey.From (Key.NumPad5, KeyModifiers.None, null));
+		Assert.IsNull (RatingKey.From (Key.D3, KeyModifiers.Control, null));
+		Assert.IsNull (RatingKey.From (Key.A, KeyModifiers.None, null));
+	}
+
+	[TestMethod]
+	public async Task ImportDropped_ReportsRejectedFilesAndImportsTheRest ()
+	{
+		string root = Path.Combine (Path.GetTempPath (), "fspot-drop-" + Path.GetRandomFileName ());
+		Directory.CreateDirectory (root);
+		string jpeg = Path.Combine (root, "photo.jpg");
+		string notes = Path.Combine (root, "notes.txt");
+		File.WriteAllText (jpeg, "jpg");
+		File.WriteAllText (notes, "text");
+		var shell = new RecordingShell ();
+		var viewModel = new MainWindowViewModel (null, shell, new NullThumbnails ());
+		try {
+			await viewModel.ImportDroppedAsync (new[] { jpeg, notes, root }, path => path.EndsWith (".jpg"));
+
+			Assert.IsNotNull (shell.WarningMessage);
+			Assert.Contains ("notes.txt", shell.WarningMessage);
+			Assert.IsNotNull (shell.ImportedPaths);
+			Assert.Contains (Path.GetFullPath (jpeg), shell.ImportedPaths);
+			Assert.Contains (Path.GetFullPath (root), shell.ImportedPaths);
+			Assert.DoesNotContain (Path.GetFullPath (notes), shell.ImportedPaths);
+		} finally {
+			Directory.Delete (root, true);
+		}
+	}
+
+	[TestMethod]
 	public void SetStarCommand_WritesTheRatingThroughRatingChosen ()
 	{
 		uint? chosen = null;
@@ -1034,6 +1090,7 @@ public sealed class MainWindowViewModelTests
 		public Task ShowAboutAsync () => Task.CompletedTask;
 		public virtual Task ShowWarningAsync (string title, string message) => Task.CompletedTask;
 		public Task<bool> ShowImportAsync () => Task.FromResult (false);
+		public virtual Task<bool> ShowImportAsync (IReadOnlyList<string> paths) => Task.FromResult (false);
 		public virtual Task<string?> PickFolderAsync (string title) => Task.FromResult<string?> (null);
 		public virtual Task<string?> PromptAsync (string title, string prompt, string defaultValue) => Task.FromResult<string?> (null);
 		public virtual Task<bool> ConfirmAsync (string title, string message, string okCaption) => Task.FromResult (false);
@@ -1072,6 +1129,13 @@ public sealed class MainWindowViewModelTests
 		public bool ConfirmResult { get; set; }
 		public bool ConfirmCalled { get; private set; }
 		public double? Hours { get; set; }
+		public IReadOnlyList<string>? ImportedPaths { get; private set; }
+
+		public override Task<bool> ShowImportAsync (IReadOnlyList<string> paths)
+		{
+			ImportedPaths = paths;
+			return Task.FromResult (false);
+		}
 
 		public override Task<string?> PromptAsync (string title, string prompt, string defaultValue)
 			=> Task.FromResult (PromptResult);

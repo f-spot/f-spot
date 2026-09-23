@@ -37,6 +37,7 @@ public partial class ImportViewModel : ObservableObject
 	readonly PhotoList importList = new PhotoList ();
 	CancellationTokenSource? scan;
 	CancellationTokenSource? import;
+	IReadOnlyList<string>? droppedPaths;
 
 	[ObservableProperty]
 	string sourceLabel = Strings.ChooseFolder;
@@ -143,6 +144,16 @@ public partial class ImportViewModel : ObservableObject
 			_ = LoadPreviewAsync (value);
 	}
 
+	public void SeedDropped (IReadOnlyList<string> paths)
+	{
+		droppedPaths = paths;
+		SourcePath = paths.Count == 1 ? paths[0] : null;
+		SourceLabel = paths.Count == 1
+			? Path.GetFileName (paths[0].TrimEnd (Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar))
+			: string.Format (Strings.XPhotos, paths.Count);
+		_ = ScanAsync ();
+	}
+
 	[RelayCommand]
 	async Task ChooseFolderAsync ()
 	{
@@ -205,7 +216,7 @@ public partial class ImportViewModel : ObservableObject
 
 	async Task ScanAsync ()
 	{
-		if (SourcePath is null)
+		if (SourcePath is null && droppedPaths is not { Count: > 0 })
 			return;
 
 		if (scan is not null)
@@ -219,7 +230,9 @@ public partial class ImportViewModel : ObservableObject
 		Progress = 0;
 		ImportCommand.NotifyCanExecuteChanged ();
 
-		var source = new FileImportSource (new SafeUri (SourcePath), factory, fileSystem);
+		IImportSource source = droppedPaths is { Count: > 0 }
+			? new MultiFileImportSource (droppedPaths.Select (path => new SafeUri (path)), factory, fileSystem)
+			: new FileImportSource (new SafeUri (SourcePath!), factory, fileSystem);
 		try {
 			await Task.Run (async () => {
 				foreach (var info in source.ScanPhotos (Preferences)) {

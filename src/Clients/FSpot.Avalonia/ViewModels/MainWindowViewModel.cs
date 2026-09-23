@@ -20,6 +20,7 @@ using FSpot.Core;
 using FSpot.Database;
 using FSpot.Editors;
 using FSpot.Imaging;
+using FSpot.Import;
 using FSpot.Query;
 using FSpot.Resources.Lang;
 using FSpot.Slideshow;
@@ -1056,6 +1057,36 @@ public partial class MainWindowViewModel : ObservableObject
 			LoadCatalog ();
 	}
 
+	public async Task ImportDroppedAsync (IReadOnlyList<string> paths, Func<string, bool>? canLoad = null)
+	{
+		var plan = FileDropImport.Classify (paths, canLoad ?? CanLoadDroppedFile);
+		string? report = FileDropImport.Report (plan.Rejected);
+		if (report is not null)
+			await shell.ShowWarningAsync (Strings.UnsupportedFileFormat, report);
+		if (plan.Accepted.Count == 0)
+			return;
+		if (await shell.ShowImportAsync (plan.Accepted))
+			LoadCatalog ();
+	}
+
+	public void RateFocused (uint rating)
+	{
+		if (SelectedPhoto is null)
+			return;
+		Info.RatingValue = rating;
+	}
+
+	static bool CanLoadDroppedFile (string path)
+	{
+		try {
+			var factory = TinyIoCContainer.Current.Resolve<IImageFileFactory> ();
+			return factory.HasLoader (new SafeUri (path));
+		} catch (Exception ex) {
+			Logger.Log.Debug (ex, "Cannot classify dropped file {Path}", path);
+			return false;
+		}
+	}
+
 	[RelayCommand]
 	Task AboutAsync ()
 		=> shell.ShowAboutAsync ();
@@ -1864,11 +1895,11 @@ public partial class MainWindowViewModel : ObservableObject
 
 	void ApplyRating (uint rating)
 	{
-		if (database is null || SelectedPhoto?.Photo is not Photo photo)
+		if (SelectedPhoto?.Photo is not Photo photo)
 			return;
 
-		photo.Rating = rating;
-		database.Photos.Commit (photo);
+		photo.Rating = rating > 5 ? 5 : rating;
+		database?.Photos.Commit (photo);
 		SelectedPhoto.RefreshCaptions ();
 	}
 }

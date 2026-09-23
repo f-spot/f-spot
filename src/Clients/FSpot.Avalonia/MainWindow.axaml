@@ -770,7 +770,9 @@
 						</ListBox.ItemTemplate>
 					</ListBox>
 				</Border>
-				<Panel>
+				<Panel DragDrop.AllowDrop="True"
+				       DragDrop.DragOver="OnLibraryDragOver"
+				       DragDrop.Drop="OnLibraryDrop">
 					<StackPanel IsVisible="{Binding ShowEmptyLibrary}"
 					            HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="12"
 					            AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PhotoGridEmpty}"
