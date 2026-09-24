@@ -221,6 +221,21 @@ public sealed class MainWindowViewModelTests
 	}
 
 	[TestMethod]
+	public async Task HoverPreview_StaysClosedWhenThePreferenceIsOff ()
+	{
+		bool previous = LibraryPreferences.ShowHoverPreview;
+		try {
+			LibraryPreferences.ShowHoverPreview = false;
+			var viewModel = new MainWindowViewModel (null, new RecordingShell (), new CountingThumbnails ());
+			viewModel.SeedCatalog (new StubPhoto ("/a.jpg"));
+			await viewModel.ShowHoverAsync (viewModel.Photos[0], 1920, 1080);
+			Assert.IsFalse (viewModel.ShowHoverPreview);
+		} finally {
+			LibraryPreferences.ShowHoverPreview = previous;
+		}
+	}
+
+	[TestMethod]
 	[DoNotParallelize]
 	public async Task ReplacingTheHoveredThumbnail_KeepsThePreviewOpen ()
 	{
@@ -232,15 +247,18 @@ public sealed class MainWindowViewModelTests
 		};
 		viewModel.SeedCatalog (new StubPhoto ("/a.jpg"));
 		await viewModel.RealizeThumbnailAsync (new object (), viewModel.Photos[0]);
-		viewModel.ShowHover (viewModel.Photos[0]);
+		await viewModel.ShowHoverAsync (viewModel.Photos[0], 1920, 1080);
 		Assert.IsTrue (viewModel.ShowHoverPreview);
+		Assert.AreEqual (HoverPreview.Edge (1920, 1080), viewModel.HoverEdge);
+		Assert.AreNotSame (viewModel.Photos[0].Thumbnail, viewModel.HoverThumbnail);
+		var preview = viewModel.HoverThumbnail;
 
 		viewModel.Zoom = 160;
 		await viewModel.ReloadThumbnailsAsync ();
 
 		Assert.IsTrue (viewModel.ShowHoverPreview);
-		Assert.IsNotNull (viewModel.HoverThumbnail);
-		Assert.AreSame (viewModel.Photos[0].Thumbnail, viewModel.HoverThumbnail);
+		Assert.AreSame (preview, viewModel.HoverThumbnail);
+		Assert.Contains (viewModel.Photos[0].Photo.Name, viewModel.HoverDetail);
 	}
 
 	[TestMethod]

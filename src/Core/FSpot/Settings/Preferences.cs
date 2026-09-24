@@ -53,6 +53,7 @@ namespace FSpot.Settings
 			{ ColorScheme, "System" },
 			{ ShowTimeline, true },
 			{ ShowFilmstrip, true },
+			{ ShowHoverPreview, true },
 			{ ShowTags, true },
 			{ ExpandedTags, Array.Empty<int> () },
 			{ ShowDates, true },

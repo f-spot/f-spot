@@ -73,9 +73,19 @@
 			<Setter Property="BorderBrush" Value="{DynamicResource SystemAccentColor}" />
 			<Setter Property="BorderThickness" Value="2" />
 		</Style>
-		<Style Selector="Button.timeline-month:focus">
+		<Style Selector=".timeline-month:focus Border">
 			<Setter Property="BorderBrush" Value="{DynamicResource SystemAccentColor}" />
-			<Setter Property="BorderThickness" Value="2" />
+			<Setter Property="BorderThickness" Value="1" />
+		</Style>
+		<Style Selector="Button.timeline-scroll">
+			<Setter Property="Background" Value="Transparent" />
+			<Setter Property="BorderThickness" Value="0" />
+			<Setter Property="Padding" Value="0" />
+			<Setter Property="FontSize" Value="11" />
+			<Setter Property="HorizontalAlignment" Value="Stretch" />
+			<Setter Property="VerticalAlignment" Value="Stretch" />
+			<Setter Property="HorizontalContentAlignment" Value="Center" />
+			<Setter Property="VerticalContentAlignment" Value="Center" />
 		</Style>
 		<Style Selector="TreeView.sidebar">
 			<Setter Property="Background" Value="Transparent" />

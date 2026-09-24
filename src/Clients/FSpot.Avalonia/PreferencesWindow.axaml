@@ -10,7 +10,7 @@
         CanResize="False"
         AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PreferencesWindow}"
         AutomationProperties.Name="{x:Static lang:Strings.Preferences}">
-	<Grid Margin="20" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="220,*">
+	<Grid Margin="20" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="220,*">
 		<TextBlock Text="{x:Static lang:Strings.WhenImportingPhotosCopyThemTo}" VerticalAlignment="Center"
 		           TextWrapping="Wrap" TextAlignment="Right" Margin="0,0,12,12" />
 		<Grid Grid.Column="1" ColumnDefinitions="*,Auto" Margin="0,0,0,12">
@@ -55,11 +55,16 @@
 		          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PreferencesColorScheme}"
 		          AutomationProperties.Name="{x:Static lang:Strings.FSpotAppearance}" />
 
-		<CheckBox Name="ViewerInterpolation" x:FieldModifier="internal" Grid.Row="5" Grid.Column="1"
+		<CheckBox Name="ShowHoverPreview" x:FieldModifier="internal" Grid.Row="5" Grid.Column="1"
+		          Content="{x:Static lang:Strings.ShowALargerPreviewWhenThePointerIsOverAPhoto}"
+		          Margin="0,0,0,12"
+		          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PreferencesHoverPreview}" />
+
+		<CheckBox Name="ViewerInterpolation" x:FieldModifier="internal" Grid.Row="6" Grid.Column="1"
 		          Content="{x:Static lang:Strings.InterpolateImageOnZoom}" Margin="0,0,0,12"
 		          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PreferencesInterpolation}" />
 
-		<Button Grid.Row="6" Grid.Column="1" HorizontalAlignment="Right" MinWidth="88" Classes="dialog"
+		<Button Grid.Row="7" Grid.Column="1" HorizontalAlignment="Right" MinWidth="88" Classes="dialog"
 		        Content="{x:Static lang:Strings.Close}" Click="OnClose" />
 	</Grid>
 </Window>

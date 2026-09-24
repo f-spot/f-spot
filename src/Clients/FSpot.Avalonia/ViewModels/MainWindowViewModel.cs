@@ -188,6 +188,7 @@ public partial class MainWindowViewModel : ObservableObject
 		DisplaySidebar = LibraryPreferences.ShowSidebar;
 		DisplayTimeline = LibraryPreferences.ShowTimeline;
 		DisplayFilmstrip = LibraryPreferences.ShowFilmstrip;
+		ShowHoverPreviewEnabled = LibraryPreferences.ShowHoverPreview;
 		ViewerInterpolation = LibraryPreferences.ViewerInterpolation;
 		FilmstripOnSide = Preferences.Get<int> (Preferences.FilmstripOrientation) == 1;
 		Tag.TagIconSize = (IconSize)Preferences.Get<int> (Preferences.TagIconSize);
@@ -271,7 +272,6 @@ public partial class MainWindowViewModel : ObservableObject
 		2 => Strings.Edit,
 		_ => Strings.Tags
 	};
-	public string ZoomLabel => $"{(int)Zoom} px";
 	public double TileSize => Zoom;
 	public double GridCellWidth => TileSize + 8;
 	public double GridCellHeight => TileSize + 96;
@@ -294,13 +294,21 @@ public partial class MainWindowViewModel : ObservableObject
 	bool isFullScreen;
 
 	[ObservableProperty]
+	bool showHoverPreviewEnabled;
+
+	[ObservableProperty]
 	bool showHoverPreview;
 
 	[ObservableProperty]
 	Bitmap? hoverThumbnail;
 
 	[ObservableProperty]
-	string hoverCaption = string.Empty;
+	string hoverDetail = string.Empty;
+
+	[ObservableProperty]
+	int hoverEdge = 480;
+
+	int hoverGeneration;
 	public PrintPageSetup PageSetup { get; private set; } = PrintPageSetup.Letter;
 	public string CountText =>
 		SelectedPhoto is null
@@ -553,8 +561,7 @@ public partial class MainWindowViewModel : ObservableObject
 		var extras = shownThumbnails.Held.OfType<PhotoItemViewModel> ().ToArray ();
 		shownThumbnails.Clear ();
 		thumbnailGeneration.Clear ();
-		HoverThumbnail = null;
-		ShowHoverPreview = false;
+		ClearHover ();
 		foreach (var item in catalogPhotos)
 			ReplaceThumbnail (item, null);
 		foreach (var item in extras)
@@ -608,9 +615,6 @@ public partial class MainWindowViewModel : ObservableObject
 	void ReplaceThumbnail (PhotoItemViewModel item, Bitmap? bitmap)
 	{
 		var previous = item.Thumbnail;
-		if (previous is not null && ReferenceEquals (HoverThumbnail, previous) && !ReferenceEquals (previous, bitmap))
-			HoverThumbnail = bitmap;
-
 		item.Thumbnail = bitmap;
 		ReleasedBitmap.DisposePrevious (previous, bitmap);
 	}
@@ -914,7 +918,6 @@ public partial class MainWindowViewModel : ObservableObject
 
 	partial void OnZoomChanged (double value)
 	{
-		OnPropertyChanged (nameof (ZoomLabel));
 		OnPropertyChanged (nameof (TileSize));
 		OnPropertyChanged (nameof (GridCellWidth));
 		OnPropertyChanged (nameof (GridCellHeight));
@@ -1107,17 +1110,52 @@ public partial class MainWindowViewModel : ObservableObject
 		IsTagTypingOpen = false;
 	}
 
-	public void ShowHover (PhotoItemViewModel item)
+	public Task ShowHoverAsync (PhotoItemViewModel item, int screenWidth, int screenHeight)
 	{
-		if (IsEditing || item.Thumbnail is null)
-			return;
-		HoverThumbnail = item.Thumbnail;
-		HoverCaption = item.Caption;
-		ShowHoverPreview = true;
+		if (!ShowHoverPreviewEnabled || IsEditing)
+			return Task.CompletedTask;
+		int generation = ++hoverGeneration;
+		int edge = screenWidth > 0 && screenHeight > 0 ? HoverPreview.Edge (screenWidth, screenHeight) : 480;
+		return LoadHoverAsync (item, edge, generation);
+	}
+
+	async Task LoadHoverAsync (PhotoItemViewModel item, int edge, int generation)
+	{
+		Bitmap? bitmap = null;
+		try {
+			bitmap = await thumbnails.LoadAsync (item.Path, edge, CancellationToken.None);
+			if (generation != hoverGeneration || !ShowHoverPreviewEnabled || IsEditing) {
+				bitmap?.Dispose ();
+				return;
+			}
+
+			HoverEdge = edge;
+			HoverDetail = HoverPreview.Caption (item.Photo.Description, item.Photo.Time, item.Photo.Name);
+			SetHoverBitmap (bitmap);
+			ShowHoverPreview = true;
+		} catch (Exception ex) {
+			bitmap?.Dispose ();
+			Logger.Log.Debug (ex, "Failed to load the hover preview for {Path}", item.Path);
+		}
 	}
 
 	public void HideHover ()
-		=> ShowHoverPreview = false;
+		=> ClearHover ();
+
+	void ClearHover ()
+	{
+		hoverGeneration++;
+		ShowHoverPreview = false;
+		HoverDetail = string.Empty;
+		SetHoverBitmap (null);
+	}
+
+	void SetHoverBitmap (Bitmap? next)
+	{
+		var previous = HoverThumbnail;
+		HoverThumbnail = next;
+		ReleasedBitmap.DisposePrevious (previous, next);
+	}
 
 	[RelayCommand]
 	void ShowFind ()
@@ -1996,6 +2034,9 @@ public partial class MainWindowViewModel : ObservableObject
 		DisplayTimeline = LibraryPreferences.ShowTimeline;
 		DisplayFilmstrip = LibraryPreferences.ShowFilmstrip;
 		ViewerInterpolation = LibraryPreferences.ViewerInterpolation;
+		ShowHoverPreviewEnabled = LibraryPreferences.ShowHoverPreview;
+		if (!ShowHoverPreviewEnabled)
+			ClearHover ();
 		AppearanceTheme.Apply (global::Avalonia.Application.Current);
 	}
 

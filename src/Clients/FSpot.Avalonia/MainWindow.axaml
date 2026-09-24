@@ -10,6 +10,7 @@
         xmlns:lang="using:FSpot.Resources.Lang"
         xmlns:av="using:Avalonia.Controls"
         xmlns:primitives="using:Avalonia.Controls.Primitives"
+        xmlns:input="using:FSpot.Avalonia.Input"
         x:Class="FSpot.Avalonia.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="{x:Static auto:ChromeIcons.WindowIcon}"
@@ -286,9 +287,6 @@
 				        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ZoomSlider}"
 				        AutomationProperties.Name="{x:Static lang:Strings.ThumbnailSize}" />
 				<svg:Svg Width="14" Height="14" Path="avares://FSpot.Avalonia/Icons/view-near-22.svg" />
-				<TextBlock VerticalAlignment="Center" FontSize="12" Text="{Binding ZoomLabel}"
-				           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ZoomLabel}"
-				           AutomationProperties.Name="{Binding ZoomLabel}" />
 			</StackPanel>
 		</Grid>
 		</Border>
@@ -305,23 +303,19 @@
 			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.Sidebar}"
 			        AutomationProperties.Name="{x:Static lang:Strings.Sidebar}">
 			<DockPanel>
-				<Grid DockPanel.Dock="Top" ColumnDefinitions="*,*,*,Auto" Margin="2,2,2,0">
-					<Button Classes="tool" Command="{Binding ShowTagsPageCommand}"
-					        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SidebarChooserTags}"
-					        AutomationProperties.Name="{x:Static lang:Strings.Tags}">
-						<TextBlock Text="{x:Static lang:Strings.Tags}" FontSize="12" />
-					</Button>
-					<Button Grid.Column="1" Classes="tool" Command="{Binding ShowFoldersPageCommand}"
-					        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SidebarChooserFolders}"
-					        AutomationProperties.Name="{x:Static lang:Strings.Folders}">
-						<TextBlock Text="{x:Static lang:Strings.Folders}" FontSize="12" />
-					</Button>
-					<Button Grid.Column="2" Classes="tool" Command="{Binding ShowEditPageCommand}"
-					        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SidebarChooserEdit}"
-					        AutomationProperties.Name="{x:Static lang:Strings.Edit}">
-						<TextBlock Text="{x:Static lang:Strings.Edit}" FontSize="12" />
-					</Button>
-					<Button Grid.Column="3" Classes="sidebar-close" ToolTip.Tip="{x:Static lang:Strings.HideSidebar}" Command="{Binding HideSidebarCommand}" Content="×"
+				<Grid DockPanel.Dock="Top" ColumnDefinitions="*,Auto" Margin="2,2,2,0">
+					<ComboBox SelectedIndex="{Binding SidebarTab, Mode=TwoWay}"
+					          HorizontalAlignment="Stretch"
+					          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SidebarChooser}"
+					          AutomationProperties.Name="{x:Static lang:Strings.Sidebar}">
+						<ComboBoxItem Content="{x:Static lang:Strings.Tags}"
+						              AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SidebarChooserTags}" />
+						<ComboBoxItem Content="{x:Static lang:Strings.Folders}"
+						              AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SidebarChooserFolders}" />
+						<ComboBoxItem Content="{x:Static lang:Strings.Edit}"
+						              AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SidebarChooserEdit}" />
+					</ComboBox>
+					<Button Grid.Column="1" Classes="sidebar-close" ToolTip.Tip="{x:Static lang:Strings.HideSidebar}" Command="{Binding HideSidebarCommand}" Content="×"
 					        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SidebarClose}"
 					        AutomationProperties.Name="{x:Static lang:Strings.HideSidebar}" />
 				</Grid>
@@ -412,21 +406,19 @@
 				          IsVisible="{Binding IsTagsPage}"
 				          ItemsSource="{Binding Tags}"
 				          SelectedItem="{Binding SelectedTag, Mode=OneWay}"
-				          PointerPressed="OnTagsTreePointerPressed"
+				          input:TreeBackground.Clears="Tag"
 				          DragDrop.AllowDrop="True"
-				          DragDrop.DragOver="OnTagTreeDragOver"
-				          DragDrop.Drop="OnTagTreeDrop"
+				          input:CatalogDrop.Kind="TagTree"
 				          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SidebarTagsTree}"
 				          AutomationProperties.Name="{x:Static lang:Strings.Tags}">
 					<TreeView.ItemTemplate>
 						<TreeDataTemplate DataType="models:TagNode" ItemsSource="{Binding Children}">
 							<StackPanel Orientation="Horizontal" Spacing="6"
 							            Background="Transparent"
-							            Tapped="OnTagNodeTapped"
-							            DoubleTapped="OnTagNodeDoubleTapped"
-							            PointerPressed="OnTagPointerPressed"
-							            PointerMoved="OnPendingDragMoved"
-							            PointerReleased="OnPendingDragReleased"
+							            input:ItemCommands.Tap="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).SelectTagCommand}"
+							            input:ItemCommands.DoubleTap="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).ActivateTagCommand}"
+							            input:PointerDrag.IsSource="True"
+							            input:PointerDrag.RightPressCommand="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).SelectTagCommand}"
 							            AutomationProperties.AutomationId="{Binding AutomationId}"
 							            AutomationProperties.Name="{Binding Name}">
 								<StackPanel.ContextMenu>
@@ -447,8 +439,7 @@
 								           IsVisible="{Binding !IsRenaming}" />
 								<TextBox Text="{Binding Name}" Width="120"
 								         IsVisible="{Binding IsRenaming}"
-								         LostFocus="OnTagRenameLostFocus"
-								         KeyDown="OnTagRenameKeyDown" />
+								         input:TagRenameInput.Enable="True" />
 							</StackPanel>
 						</TreeDataTemplate>
 					</TreeView.ItemTemplate>
@@ -458,18 +449,17 @@
 				          IsVisible="{Binding IsFoldersPage}"
 				          ItemsSource="{Binding Folders}"
 				          SelectedItem="{Binding SelectedFolder, Mode=OneWay}"
-				          PointerPressed="OnFoldersTreePointerPressed"
+				          input:TreeBackground.Clears="Folder"
 				          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SidebarFoldersTree}"
 				          AutomationProperties.Name="{x:Static lang:Strings.Folders}">
 					<TreeView.ItemTemplate>
 						<TreeDataTemplate DataType="models:FolderNode" ItemsSource="{Binding Children}">
 							<Grid ColumnDefinitions="Auto,*,Auto"
 							      Background="Transparent"
-							      Tapped="OnFolderNodeTapped"
-							      DoubleTapped="OnFolderNodeDoubleTapped"
-							      PointerPressed="OnFolderPointerPressed"
-							      PointerMoved="OnPendingDragMoved"
-							      PointerReleased="OnPendingDragReleased"
+							      input:ItemCommands.Tap="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).SelectFolderCommand}"
+							      input:ItemCommands.DoubleTap="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).ActivateFolderCommand}"
+							      input:PointerDrag.IsSource="True"
+							      input:PointerDrag.PressCommand="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).ActivateFolderCommand}"
 							      AutomationProperties.AutomationId="{Binding AutomationId}"
 							      AutomationProperties.Name="{Binding Name}">
 								<Grid.ContextMenu>
@@ -613,7 +603,8 @@
 			<DockPanel Grid.Column="2">
 				<Grid DockPanel.Dock="Bottom" IsVisible="{Binding IsTagTypingOpen}" Margin="8,4" ColumnDefinitions="Auto,*,Auto">
 					<TextBlock Text="{x:Static lang:Strings.TagsColon}" VerticalAlignment="Center" Margin="0,0,8,0" />
-					<TextBox x:Name="TagTypingBox" Grid.Column="1" Text="{Binding TagTypingText}" KeyDown="OnTagTypingKeyDown"
+					<TextBox x:Name="TagTypingBox" Grid.Column="1" Text="{Binding TagTypingText}"
+					         input:EnterCommand.Command="{Binding ApplyTypedTagsCommand}"
 					         AutomationProperties.Name="{x:Static lang:Strings.Tags}" />
 					<Button Grid.Column="2" Content="×" Margin="8,0,0,0" Command="{Binding HideTagTypingCommand}"
 					        AutomationProperties.Name="{x:Static lang:Strings.Close}" />
@@ -628,8 +619,7 @@
 				                        AutomationProperties.Name="{x:Static lang:Strings.Timeline}" />
 				<Grid DockPanel.Dock="Top" IsVisible="{Binding IsFindBarVisible}" Margin="8,2,8,4" ColumnDefinitions="Auto,*,Auto"
 				      DragDrop.AllowDrop="True"
-				      DragDrop.DragOver="OnFindBarDragOver"
-				      DragDrop.Drop="OnFindBarDrop"
+				      input:CatalogDrop.Kind="FindBar"
 				      AutomationProperties.AutomationId="{x:Static auto:AutomationIds.FindBar}"
 				      AutomationProperties.Name="{x:Static lang:Strings.Find}">
 					<Label Content="{x:Static lang:Strings.FindColon}" Target="{Binding #FindBox}" VerticalAlignment="Center" Margin="0,0,8,0" />
@@ -737,13 +727,8 @@
 					<ListBox ItemsSource="{Binding Photos}"
 					         SelectedItem="{Binding SelectedPhoto}"
 					         KeyboardNavigation.TabIndex="3"
-					         PointerPressed="OnFilmstripPointerPressed"
-					         PointerReleased="OnFilmstripPointerReleased"
-					         KeyDown="OnFilmstripKeyDown"
-					         KeyUp="OnFilmstripKeyUp"
-					         SelectionChanged="OnFilmstripSelectionChanged"
-					         ContainerPrepared="OnThumbnailContainerPrepared"
-					         ContainerClearing="OnThumbnailContainerClearing"
+					         input:FilmstripPick.Enable="True"
+					         input:ThumbnailItems.Enable="True"
 					         AutomationProperties.Name="{x:Static lang:Strings.Filmstrip}">
 						<ListBox.ItemsPanel>
 							<ItemsPanelTemplate>
@@ -796,8 +781,7 @@
 					</Grid>
 				</Border>
 				<Panel DragDrop.AllowDrop="True"
-				       DragDrop.DragOver="OnLibraryDragOver"
-				       DragDrop.Drop="OnLibraryDrop">
+				       input:CatalogDrop.Kind="Library">
 					<StackPanel IsVisible="{Binding ShowEmptyLibrary}"
 					            HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="12"
 					            AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PhotoGridEmpty}"
@@ -823,11 +807,8 @@
 					         Background="Transparent"
 					         BorderThickness="0"
 					         DragDrop.AllowDrop="True"
-					         DragDrop.DragOver="OnPhotoDragOver"
-					         DragDrop.Drop="OnPhotoDrop"
-					         DoubleTapped="OnPhotoDoubleTapped"
-					         ContainerPrepared="OnThumbnailContainerPrepared"
-					         ContainerClearing="OnThumbnailContainerClearing"
+					         input:CatalogDrop.Kind="PhotoGrid"
+					         input:ThumbnailItems.Enable="True"
 					         AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PhotoGrid}"
 					         AutomationProperties.Name="{x:Static lang:Strings.Photos}">
 						<ListBox.ItemsPanel>
@@ -849,11 +830,9 @@
 								<Border Width="{Binding $parent[ListBox].((vm:MainWindowViewModel)DataContext).TileSize}"
 								        Margin="4" Padding="4" CornerRadius="2"
 								        Classes.selected="{Binding Selected}"
-								        PointerPressed="OnPhotoPointerPressed"
-								        PointerMoved="OnPendingDragMoved"
-								        PointerReleased="OnPendingDragReleased"
-								        PointerEntered="OnPhotoPointerEntered"
-								        PointerExited="OnPhotoPointerExited"
+								        input:PointerDrag.IsSource="True"
+								        input:CellHover.Enable="True"
+								        input:ItemCommands.DoubleTap="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).OpenPhotoCommand}"
 								        AutomationProperties.AutomationId="{Binding AutomationId}"
 								        AutomationProperties.Name="{Binding Caption}">
 									<Border.ContextMenu>
@@ -891,10 +870,7 @@
 						<Image Name="PreviewImage" Source="{Binding Preview}"
 						       Stretch="Uniform"
 						       Margin="8"
-						       PointerMoved="OnPreviewPointerMoved"
-						       PointerPressed="OnPreviewPointerPressed"
-						       PointerReleased="OnPreviewPointerReleased"
-						       PointerWheelChanged="OnPreviewPointerWheelChanged"
+						       input:PreviewPointer.Enable="True"
 						       RenderTransformOrigin="0.5,0.5"
 						       AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PhotoPreview}"
 						       AutomationProperties.Name="{x:Static lang:Strings.Preview}">
@@ -931,12 +907,14 @@
 		</Grid>
 		<Popup x:Name="HoverPopup" IsOpen="{Binding ShowHoverPreview}" Placement="Right" HorizontalOffset="8"
 		       IsHitTestVisible="False" IsLightDismissEnabled="False">
-			<Border Padding="6" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+			<Border Padding="8" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
 			        BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" BorderThickness="1"
-			        IsHitTestVisible="False">
-				<StackPanel Spacing="4">
-					<Image Width="240" Height="180" Stretch="Uniform" Source="{Binding HoverThumbnail}" />
-					<TextBlock Text="{Binding HoverCaption}" HorizontalAlignment="Center" />
+			        IsHitTestVisible="False" CornerRadius="6">
+				<StackPanel Spacing="6">
+					<Image MaxWidth="{Binding HoverEdge}" MaxHeight="{Binding HoverEdge}" Stretch="Uniform"
+					       Source="{Binding HoverThumbnail}" />
+					<TextBlock Text="{Binding HoverDetail}" TextWrapping="Wrap" FontSize="12"
+					           MaxWidth="{Binding HoverEdge}" />
 				</StackPanel>
 			</Border>
 		</Popup>

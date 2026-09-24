@@ -1,79 +1,36 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:vm="using:FSpot.Avalonia.ViewModels"
-             xmlns:utils="using:FSpot.Utils"
+             xmlns:controls="using:FSpot.Avalonia.Controls"
              xmlns:lang="using:FSpot.Resources.Lang"
              x:Class="FSpot.Avalonia.Controls.TimelineStrip"
-             x:Name="Root">
+             x:Name="Root"
+             Classes="timeline-month"
+             Focusable="True"
+             Height="48">
 	<Border Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}"
 	        BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}"
 	        BorderThickness="0,0,0,1"
 	        AutomationProperties.Name="{x:Static lang:Strings.Timeline}">
-		<ScrollViewer HorizontalScrollBarVisibility="Auto"
-		              VerticalScrollBarVisibility="Disabled">
-			<ItemsControl ItemsSource="{Binding #Root.Items}">
-				<ItemsControl.ItemsPanel>
-					<ItemsPanelTemplate>
-						<StackPanel Orientation="Horizontal" Spacing="0" Margin="4,2" />
-					</ItemsPanelTemplate>
-				</ItemsControl.ItemsPanel>
-				<ItemsControl.ItemTemplate>
-					<DataTemplate DataType="vm:TimelineBucket">
-						<Button Classes="timeline-month"
-						        MinWidth="{x:Static utils:TimelineChrome.MinHitPx}"
-						        Width="{x:Static utils:TimelineChrome.MinHitPx}"
-						        Padding="0,2"
-						        Background="Transparent"
-						        BorderThickness="0"
-						        IsEnabled="{Binding HasPhotos}"
-						        Classes.selected="{Binding Selected}"
-						        Classes.inrange="{Binding InRange}"
-						        ToolTip.Tip="{Binding ToolTip}"
-						        Command="{Binding #Root.SelectCommand}"
-						        CommandParameter="{Binding}"
-						        AutomationProperties.AutomationId="{Binding AutomationId}"
-						        AutomationProperties.Name="{Binding ToolTip}">
-							<Button.Styles>
-								<Style Selector="Button.timeline-month:disabled">
-									<Setter Property="Opacity" Value="{x:Static utils:TimelineChrome.DisabledOpacity}" />
-								</Style>
-							</Button.Styles>
-							<StackPanel MinWidth="{x:Static utils:TimelineChrome.MinHitPx}"
-							            Width="{x:Static utils:TimelineChrome.MinHitPx}">
-								<TextBlock Text="{Binding YearLabel}"
-								           FontSize="9"
-								           Opacity="0.7"
-								           HorizontalAlignment="Center"
-								           Height="14" />
-								<Panel Height="22">
-									<Border HorizontalAlignment="Stretch"
-									        Margin="1,0"
-									        Height="{Binding BarHeight}"
-									        VerticalAlignment="Bottom"
-									        CornerRadius="1"
-									        Background="{DynamicResource SystemControlForegroundBaseMediumLowBrush}"
-									        Classes.filled="{Binding HasPhotos}"
-									        Classes.selected="{Binding Selected}"
-									        Classes.inrange="{Binding InRange}">
-										<Border.Styles>
-											<Style Selector="Border.filled">
-												<Setter Property="Background" Value="{DynamicResource SystemAccentColorLight2}" />
-											</Style>
-											<Style Selector="Border.selected">
-												<Setter Property="Background" Value="{DynamicResource SystemAccentColor}" />
-											</Style>
-										</Border.Styles>
-									</Border>
-								</Panel>
-								<TextBlock Text="{Binding MonthLabel}"
-								           FontSize="9"
-								           HorizontalAlignment="Center"
-								           Margin="0,2,0,0" />
-							</StackPanel>
-						</Button>
-					</DataTemplate>
-				</ItemsControl.ItemTemplate>
-			</ItemsControl>
-		</ScrollViewer>
+		<!-- Arrow columns and the handle row match TimelineLayout.ArrowWidth and HandleHeight. -->
+		<Grid ColumnDefinitions="16,*,16" RowDefinitions="*,14">
+			<RepeatButton x:Name="ScrollLeft" Classes="timeline-scroll" Content="◀"
+			              VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+			              Delay="160" Interval="40" Click="OnScrollLeft"
+			              AutomationProperties.Name="{x:Static lang:Strings.Previous}"
+			              ToolTip.Tip="{x:Static lang:Strings.Previous}" />
+			<ScrollViewer x:Name="Scroller" Grid.Column="1" Grid.RowSpan="2"
+			              HorizontalScrollBarVisibility="Hidden"
+			              VerticalScrollBarVisibility="Disabled">
+				<controls:TimelineScale x:Name="Scale" VerticalAlignment="Stretch"
+				                        Items="{Binding #Root.Items}"
+				                        SelectCommand="{Binding #Root.SelectCommand}"
+				                        RangeCommand="{Binding #Root.RangeCommand}" />
+			</ScrollViewer>
+			<RepeatButton x:Name="ScrollRight" Grid.Column="2" Classes="timeline-scroll" Content="▶"
+			              VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+			              Delay="160" Interval="40" Click="OnScrollRight"
+			              AutomationProperties.Name="{x:Static lang:Strings.Next}"
+			              ToolTip.Tip="{x:Static lang:Strings.Next}" />
+		</Grid>
 	</Border>
 </UserControl>

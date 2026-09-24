@@ -21,6 +21,11 @@ namespace FSpot
 			set => Preferences.Set (Preferences.ShowFilmstrip, value);
 		}
 
+		public static bool ShowHoverPreview {
+			get => Preferences.Get<bool> (Preferences.ShowHoverPreview);
+			set => Preferences.Set (Preferences.ShowHoverPreview, value);
+		}
+
 		public static bool ImportCopyFiles {
 			get => Preferences.Get<bool> (Preferences.ImportCopyFiles);
 			set => Preferences.Set (Preferences.ImportCopyFiles, value);

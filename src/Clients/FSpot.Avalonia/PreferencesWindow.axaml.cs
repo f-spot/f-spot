@@ -31,6 +31,7 @@ public partial class PreferencesWindow : Window
 			_ => 0
 		};
 		ViewerInterpolation.IsChecked = LibraryPreferences.ViewerInterpolation;
+		ShowHoverPreview.IsChecked = LibraryPreferences.ShowHoverPreview;
 		EmbedMetadata.IsCheckedChanged += (_, _) => SyncSidecar ();
 		SyncSidecar ();
 	}
@@ -107,6 +108,7 @@ public partial class PreferencesWindow : Window
 			_ => AppearanceTheme.System
 		};
 		LibraryPreferences.ViewerInterpolation = ViewerInterpolation.IsChecked == true;
+		LibraryPreferences.ShowHoverPreview = ShowHoverPreview.IsChecked == true;
 		AppearanceTheme.Apply (global::Avalonia.Application.Current);
 	}
 

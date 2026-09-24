@@ -23,7 +23,7 @@ public partial class TimelineBucket : ObservableObject
 	public required DateTime End { get; init; }
 	public required int Count { get; init; }
 	public required double RelativeHeight { get; init; }
-	public double BarHeight => Count == 0 ? 0 : Math.Max (3, RelativeHeight * 20);
+	public double BarHeight => Count == 0 ? 0 : Math.Max (3, RelativeHeight * 34);
 	public bool HasPhotos => Count > 0;
 	public string ToolTip => QueryChipFormat.TimelineMonth (Start, Count);
 	public string AutomationId => $"timeline.{Start:yyyy-MM}";

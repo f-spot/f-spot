@@ -20,32 +20,19 @@ namespace FSpot.Avalonia.Tests;
 [DoNotParallelize]
 public sealed class TimelineStripTests
 {
+	readonly List<Window> windows = [];
+
 	[TestMethod]
 	public void ShiftDrag_FromFirstMonthToThird_ExecutesInclusiveRange ()
 	{
 		AvaloniaApp.Ensure ();
 		var buckets = Months (4);
 		(int Min, int Max)? range = null;
-		var strip = new TimelineStrip {
-			Width = 200,
-			Height = 90,
-			Items = buckets,
-			RangeCommand = new RecordingRangeCommand (value => range = value)
-		};
-		var window = new Window {
-			Width = 240,
-			Height = 120,
-			Content = strip
-		};
-		window.Show ();
-		strip.UpdateLayout ();
+		var (strip, window) = Shown (buckets, 200, range: value => range = value);
 
-		var months = MonthButtons (strip);
-		Assert.IsGreaterThanOrEqualTo (3, months.Count);
-		Point start = months[0].TranslatePoint (new Point (11, 20), window)
-			?? throw new InvalidOperationException ("first month has no window point");
-		Point end = months[2].TranslatePoint (new Point (11, 20), window)
-			?? throw new InvalidOperationException ("third month has no window point");
+		Assert.IsGreaterThan (0, strip.ColumnWidth);
+		Point start = At (strip, window, 0);
+		Point end = At (strip, window, 2);
 
 		window.MouseDown (start, MouseButton.Left, RawInputModifiers.Shift);
 		window.MouseMove (end, RawInputModifiers.Shift);
@@ -55,62 +42,158 @@ public sealed class TimelineStripTests
 	}
 
 	[TestMethod]
-	public void MonthButtons_AreAtLeastTheMinimumHitTarget ()
+	public void Months_StretchAndStayAddressable ()
 	{
 		AvaloniaApp.Ensure ();
-		var strip = ShownStrip (Months (3));
-		var months = MonthButtons (strip);
-		Assert.IsGreaterThanOrEqualTo (1, months.Count);
-		foreach (var month in months) {
-			Assert.IsGreaterThanOrEqualTo (TimelineChrome.MinHitPx, month.MinWidth);
-			Assert.IsGreaterThanOrEqualTo (TimelineChrome.MinHitPx, month.Bounds.Width);
-			Assert.IsGreaterThanOrEqualTo (TimelineChrome.MinHitPx, month.Bounds.Height);
-		}
+		var (strip, _) = Shown (Months (3), 240);
+
+		Assert.IsGreaterThan (TimelineChrome.MinHitPx, strip.ColumnWidth);
+		Assert.AreEqual (0, strip.IndexAt (OnStrip (strip, 4)));
+		Assert.AreEqual (1, strip.IndexAt (OnStrip (strip, strip.ColumnWidth + 4)));
+		Assert.IsFalse (Arrow (strip, "◀").IsEnabled);
+		Assert.IsFalse (Arrow (strip, "▶").IsEnabled);
 	}
 
 	[TestMethod]
-	public void DisabledMonth_KeepsReadableOpacity ()
+	public void CrowdedMonths_ScrollByAStepAndKeepTheMinimumColumn ()
 	{
 		AvaloniaApp.Ensure ();
-		var empty = new TimelineBucket {
-			MonthLabel = "Jan",
-			Start = new DateTime (2026, 1, 1),
-			End = new DateTime (2026, 2, 1),
-			Count = 0,
-			RelativeHeight = 0
-		};
-		var strip = ShownStrip ([empty]);
-		var month = MonthButtons (strip).Single ();
-		Assert.IsFalse (month.IsEnabled);
-		Assert.IsGreaterThanOrEqualTo (TimelineChrome.DisabledOpacity, month.Opacity);
+		var (strip, window) = Shown (Months (20), 240);
+		var scroller = strip.GetVisualDescendants ().OfType<ScrollViewer> ().Single ();
+
+		Assert.AreEqual (TimelineChrome.MinHitPx, strip.ColumnWidth);
+		Assert.IsFalse (Arrow (strip, "◀").IsEnabled);
+		Assert.IsTrue (Arrow (strip, "▶").IsEnabled);
+
+		Click (window, Arrow (strip, "▶"));
+
+		Assert.IsGreaterThan (0, scroller.Offset.X);
+		Assert.IsLessThan (40, scroller.Offset.X);
+		Assert.IsTrue (Arrow (strip, "◀").IsEnabled);
 	}
 
-	static TimelineStrip ShownStrip (IReadOnlyList<TimelineBucket> buckets)
+	[TestMethod]
+	public void EmptyMonth_KeepsAColumnAndSnapsToTheNearestPhotos ()
+	{
+		AvaloniaApp.Ensure ();
+		var filled = Month (1, 2);
+		var empty = Month (2, 0);
+		var later = Month (4, 3);
+		var buckets = new List<TimelineBucket> { filled, empty, Month (3, 0), later };
+		var selected = new RecordingSelect (buckets);
+		var (strip, window) = Shown (buckets, 240, select: selected);
+
+		Assert.AreEqual (0, strip.IndexAt (OnStrip (strip, 4)));
+
+		Click (window, At (strip, window, 1));
+
+		Assert.AreEqual (1, selected.Calls);
+		Assert.AreSame (filled, selected.Last);
+	}
+
+	[TestMethod]
+	public void Click_SelectsTheMonthOnce ()
+	{
+		AvaloniaApp.Ensure ();
+		var buckets = Months (4);
+		var selected = new RecordingSelect (buckets);
+		var (strip, window) = Shown (buckets, 240, select: selected);
+
+		Click (window, At (strip, window, 1));
+
+		Assert.AreEqual (1, selected.Calls);
+		Assert.AreSame (buckets[1], selected.Last);
+	}
+
+	[TestMethod]
+	public void DraggingTheGlass_MovesOnceToTheMonthUnderThePointer ()
+	{
+		AvaloniaApp.Ensure ();
+		var buckets = Months (4);
+		buckets[0].Selected = true;
+		var selected = new RecordingSelect (buckets);
+		var (strip, window) = Shown (buckets, 240, select: selected);
+
+		window.MouseDown (At (strip, window, 0), MouseButton.Left);
+		window.MouseMove (At (strip, window, 2));
+		window.MouseMove (At (strip, window, 2, 4));
+		window.MouseUp (At (strip, window, 2, 4), MouseButton.Left);
+
+		Assert.AreEqual (1, selected.Calls);
+		Assert.AreSame (buckets[2], selected.Last);
+	}
+
+	[TestMethod]
+	public void DraggingInsideTheSelectedMonth_DoesNotClearIt ()
+	{
+		AvaloniaApp.Ensure ();
+		var buckets = Months (3);
+		buckets[0].Selected = true;
+		var selected = new RecordingSelect (buckets);
+		var (strip, window) = Shown (buckets, 240, select: selected);
+
+		Point start = At (strip, window, 0);
+		window.MouseDown (start, MouseButton.Left);
+		window.MouseMove (At (strip, window, 0, 8));
+		window.MouseUp (At (strip, window, 0, 8), MouseButton.Left);
+
+		Assert.AreEqual (0, selected.Calls);
+	}
+
+	[TestMethod]
+	public void RightArrowKey_MovesToTheNextMonthAndScrollsItIntoView ()
+	{
+		AvaloniaApp.Ensure ();
+		var buckets = Months (20);
+		buckets[0].Selected = true;
+		var selected = new RecordingSelect (buckets);
+		var (strip, window) = Shown (buckets, 240, select: selected);
+		var scroller = strip.GetVisualDescendants ().OfType<ScrollViewer> ().Single ();
+		int steps = (int)Math.Floor (scroller.Viewport.Width / strip.ColumnWidth) + 1;
+		strip.Focus ();
+
+		for (int i = 0; i < steps; i++)
+			window.KeyPress (Key.Right, RawInputModifiers.None, default, null);
+
+		Assert.AreSame (buckets[steps], selected.Last);
+		Assert.IsGreaterThan (0, scroller.Offset.X);
+	}
+
+	(TimelineStrip Strip, Window Window) Shown (
+		IReadOnlyList<TimelineBucket> buckets,
+		double width,
+		Action<(int Min, int Max)>? range = null,
+		RecordingSelect? select = null)
 	{
 		var strip = new TimelineStrip {
-			Width = 240,
+			Width = width,
 			Height = 90,
-			Items = buckets
+			Items = buckets,
+			RangeCommand = range is null ? null : new RecordingRangeCommand (range),
+			SelectCommand = select
 		};
 		var window = new Window {
-			Width = 280,
+			Width = width + 40,
 			Height = 120,
 			Content = strip
 		};
+		windows.Add (window);
 		window.Show ();
 		strip.UpdateLayout ();
-		return strip;
+		return (strip, window);
 	}
 
 	static List<TimelineBucket> Months (int count)
 	{
 		var months = new List<TimelineBucket> ();
+		var start = new DateTime (2024, 1, 1);
 		for (int i = 0; i < count; i++) {
-			var start = new DateTime (2026, i + 1, 1);
+			var month = start.AddMonths (i);
 			months.Add (new TimelineBucket {
-				MonthLabel = start.ToString ("MMM"),
-				Start = start,
-				End = start.AddMonths (1),
+				MonthLabel = month.ToString ("MMM"),
+				YearLabel = month.Month == 1 ? month.Year.ToString () : null,
+				Start = month,
+				End = month.AddMonths (1),
 				Count = 1,
 				RelativeHeight = 1
 			});
@@ -118,10 +201,49 @@ public sealed class TimelineStripTests
 		return months;
 	}
 
-	static List<Button> MonthButtons (TimelineStrip strip)
-		=> strip.GetVisualDescendants ().OfType<Button> ()
-			.Where (button => button.Classes.Contains ("timeline-month"))
-			.ToList ();
+	static TimelineBucket Month (int month, int count)
+	{
+		var start = new DateTime (2026, month, 1);
+		return new TimelineBucket {
+			MonthLabel = start.ToString ("MMM"),
+			YearLabel = month == 1 ? "2026" : null,
+			Start = start,
+			End = start.AddMonths (1),
+			Count = count,
+			RelativeHeight = count == 0 ? 0 : 1
+		};
+	}
+
+	static Point OnStrip (TimelineStrip strip, double scaleX)
+	{
+		var scale = strip.GetVisualDescendants ().OfType<TimelineScale> ().Single ();
+		return scale.TranslatePoint (new Point (scaleX, 8), strip)
+			?? throw new InvalidOperationException ("timeline has no strip point");
+	}
+
+	static Point At (TimelineStrip strip, Window window, int index, double dx = 0)
+	{
+		var scale = strip.GetVisualDescendants ().OfType<TimelineScale> ().Single ();
+		double x = strip.ColumnWidth * index + strip.ColumnWidth / 2 + dx;
+		return scale.TranslatePoint (new Point (x, 20), window)
+			?? throw new InvalidOperationException ("timeline has no window point");
+	}
+
+	static Button Arrow (TimelineStrip strip, string content)
+		=> strip.GetVisualDescendants ().OfType<Button> ().Single (button => Equals (button.Content, content));
+
+	static void Click (Window window, Button button)
+	{
+		Point point = button.TranslatePoint (new Point (button.Bounds.Width / 2, button.Bounds.Height / 2), window)
+			?? throw new InvalidOperationException ("button has no window point");
+		Click (window, point);
+	}
+
+	static void Click (Window window, Point point)
+	{
+		window.MouseDown (point, MouseButton.Left);
+		window.MouseUp (point, MouseButton.Left);
+	}
 
 	sealed class RecordingRangeCommand : ICommand
 	{
@@ -134,6 +256,29 @@ public sealed class TimelineStripTests
 
 		public void Execute (object? parameter)
 			=> record (((int Min, int Max))parameter!);
+
+		public event EventHandler? CanExecuteChanged { add { } remove { } }
+	}
+
+	sealed class RecordingSelect : ICommand
+	{
+		readonly IReadOnlyList<TimelineBucket> buckets;
+
+		public RecordingSelect (IReadOnlyList<TimelineBucket> buckets)
+			=> this.buckets = buckets;
+
+		public int Calls { get; private set; }
+		public TimelineBucket? Last { get; private set; }
+
+		public bool CanExecute (object? parameter) => true;
+
+		public void Execute (object? parameter)
+		{
+			Calls++;
+			Last = (TimelineBucket)parameter!;
+			foreach (var bucket in buckets)
+				bucket.Selected = ReferenceEquals (bucket, Last);
+		}
 
 		public event EventHandler? CanExecuteChanged { add { } remove { } }
 	}

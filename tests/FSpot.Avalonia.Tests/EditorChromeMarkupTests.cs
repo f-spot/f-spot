@@ -128,8 +128,7 @@ public sealed class EditorChromeMarkupTests
 	public void FindBar_DeclaresDragOverForFolderDrops ()
 	{
 		string markup = MainWindow ().ToString ();
-		Assert.Contains ("OnFindBarDragOver", markup);
-		Assert.Contains ("OnFindBarDrop", markup);
+		Assert.Contains ("CatalogDrop.Kind=\"FindBar\"", markup);
 	}
 
 	[TestMethod]

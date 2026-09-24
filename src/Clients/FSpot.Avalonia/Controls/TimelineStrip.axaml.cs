@@ -3,7 +3,8 @@ using System.Windows.Input;
 
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.VisualTree;
+using Avalonia.Input;
+using Avalonia.Interactivity;
 
 namespace FSpot.Avalonia.Controls;
 
@@ -18,16 +19,10 @@ public partial class TimelineStrip : UserControl
 	public static readonly StyledProperty<ICommand?> RangeCommandProperty =
 		AvaloniaProperty.Register<TimelineStrip, ICommand?> (nameof (RangeCommand));
 
-	int? rangeStartIndex;
-	bool ranging;
-
 	public TimelineStrip ()
 	{
 		InitializeComponent ();
-		AddHandler (global::Avalonia.Input.InputElement.PointerPressedEvent, OnRangePressed, global::Avalonia.Interactivity.RoutingStrategies.Tunnel);
-		AddHandler (global::Avalonia.Input.InputElement.PointerReleasedEvent, OnRangeReleased,
-			global::Avalonia.Interactivity.RoutingStrategies.Tunnel | global::Avalonia.Interactivity.RoutingStrategies.Bubble,
-			handledEventsToo: true);
+		Scroller.PropertyChanged += OnScrollerPropertyChanged;
 	}
 
 	public IEnumerable? Items {
@@ -45,47 +40,62 @@ public partial class TimelineStrip : UserControl
 		set => SetValue (RangeCommandProperty, value);
 	}
 
-	void OnRangePressed (object? sender, global::Avalonia.Input.PointerPressedEventArgs e)
+	public double ColumnWidth => Scale.ColumnWidth;
+
+	public int IndexAt (Point position)
 	{
-		if (!e.KeyModifiers.HasFlag (global::Avalonia.Input.KeyModifiers.Shift))
-			return;
-		if (IndexAt (e.GetPosition (this)) is not int index)
-			return;
-		ranging = true;
-		rangeStartIndex = index;
-		e.Pointer.Capture (this);
-		e.Handled = true;
+		var origin = Scale.TranslatePoint (default, this);
+		var local = origin is Point point ? position - point : position;
+		return Scale.IndexAt (local);
 	}
 
-	void OnRangeReleased (object? sender, global::Avalonia.Input.PointerReleasedEventArgs e)
+	protected override Size ArrangeOverride (Size finalSize)
 	{
-		if (!ranging)
-			return;
-		ranging = false;
-		e.Pointer.Capture (null);
-		e.Handled = true;
-		if (rangeStartIndex is int start && IndexAt (e.GetPosition (this)) is int end)
-			RangeCommand?.Execute ((start, end));
-		rangeStartIndex = null;
+		var size = base.ArrangeOverride (finalSize);
+		UpdateArrows ();
+		return size;
 	}
 
-	internal int? IndexAt (Point position)
+	protected override void OnKeyDown (KeyEventArgs e)
 	{
-		if (Items is null)
-			return null;
-		var buckets = Items.Cast<object> ().ToList ();
-		foreach (var descendant in this.GetVisualDescendants ().OfType<Control> ()) {
-			if (descendant.DataContext is null)
-				continue;
-			int index = buckets.IndexOf (descendant.DataContext);
-			if (index < 0)
-				continue;
-			var origin = descendant.TranslatePoint (default, this);
-			if (origin is null)
-				continue;
-			if (new Rect (origin.Value, descendant.Bounds.Size).Contains (position))
-				return index;
-		}
-		return null;
+		base.OnKeyDown (e);
+		int direction = e.Key switch {
+			Key.Left => -1,
+			Key.Right => 1,
+			_ => 0
+		};
+		if (direction != 0 && Scale.Step (direction))
+			e.Handled = true;
+	}
+
+	void OnScrollLeft (object? sender, RoutedEventArgs e)
+		=> ScrollBy (-1);
+
+	void OnScrollRight (object? sender, RoutedEventArgs e)
+		=> ScrollBy (1);
+
+	void ScrollBy (int direction)
+	{
+		double step = Scale.ColumnWidth >= 1 ? Scale.ColumnWidth : TimelineLayout.ArrowWidth;
+		double max = Math.Max (0, Scroller.Extent.Width - Scroller.Viewport.Width);
+		double next = Math.Clamp (Scroller.Offset.X + step * direction, 0, max);
+		if (Math.Abs (next - Scroller.Offset.X) < 0.5)
+			return;
+		Scroller.Offset = new global::Avalonia.Vector (next, 0);
+	}
+
+	void OnScrollerPropertyChanged (object? sender, AvaloniaPropertyChangedEventArgs change)
+	{
+		if (change.Property == ScrollViewer.OffsetProperty
+			|| change.Property == ScrollViewer.ExtentProperty
+			|| change.Property == ScrollViewer.ViewportProperty)
+			UpdateArrows ();
+	}
+
+	void UpdateArrows ()
+	{
+		double max = Math.Max (0, Scroller.Extent.Width - Scroller.Viewport.Width);
+		ScrollLeft.IsEnabled = Scroller.Offset.X > 0.5;
+		ScrollRight.IsEnabled = Scroller.Offset.X < max - 1;
 	}
 }

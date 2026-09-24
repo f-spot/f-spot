@@ -4930,5 +4930,11 @@ namespace FSpot.Resources.Lang {
                 return ResourceManager.GetString("SelectAFolder", resourceCulture);
             }
         }
+
+        public static string ShowALargerPreviewWhenThePointerIsOverAPhoto {
+            get {
+                return ResourceManager.GetString("ShowALargerPreviewWhenThePointerIsOverAPhoto", resourceCulture);
+            }
+        }
     }
 }

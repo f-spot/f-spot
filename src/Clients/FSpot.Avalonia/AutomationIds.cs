@@ -150,6 +150,7 @@ public static class AutomationIds
 	public const string PreferencesCopyFiles = "Preferences.CopyFiles";
 	public const string PreferencesStoragePath = "Preferences.StoragePath";
 	public const string PreferencesInterpolation = "Preferences.Interpolation";
+	public const string PreferencesHoverPreview = "Preferences.HoverPreview";
 	public const string PreferencesEmbedMetadata = "Preferences.EmbedMetadata";
 	public const string PreferencesSeparateMetadata = "Preferences.SeparateMetadata";
 	public const string PreferencesSidecar = "Preferences.Sidecar";
