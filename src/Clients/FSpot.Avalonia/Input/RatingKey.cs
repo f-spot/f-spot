@@ -7,9 +7,14 @@ namespace FSpot.Avalonia.Input;
 
 public static class RatingKey
 {
+	// GTK requires Alt+0-5 for the global accelerator (see
+	// HandleCommonPhotoCommands); the Avalonia port additionally accepts the
+	// plain digit for convenience, matching the existing behavior here.
 	public static uint? From (Key key, KeyModifiers modifiers, object? focused)
 	{
-		if (modifiers != KeyModifiers.None || !ShortcutGuards.AllowsUnadornedKey (focused))
+		if (modifiers != KeyModifiers.None && modifiers != KeyModifiers.Alt)
+			return null;
+		if (!ShortcutGuards.AllowsUnadornedKey (focused))
 			return null;
 		return key switch {
 			Key.D0 or Key.NumPad0 => 0,

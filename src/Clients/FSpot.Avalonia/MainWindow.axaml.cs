@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Input;
 using Avalonia.Platform.Storage;
 using Avalonia.Threading;
@@ -27,6 +28,11 @@ public partial class MainWindow : Window, IAvaloniaShell
 		var viewModel = new MainWindowViewModel (database, this, new AvaloniaThumbnailLoader ());
 		DataContext = viewModel;
 		InitializeComponent ();
+		MainWindowStateStore.Restore (this);
+		Closing += (_, _) => {
+			MainWindowStateStore.Save (this);
+			viewModel.SaveWindowState ();
+		};
 		var sidebarColumn = BodyGrid.ColumnDefinitions[0];
 		sidebarColumn.Width = viewModel.SidebarLength;
 		sidebarColumn.PropertyChanged += (_, e) => {
@@ -45,6 +51,7 @@ public partial class MainWindow : Window, IAvaloniaShell
 		Opened += (_, _) => {
 			ApplyUiScale ();
 			EnsureMenuInAutomationTree ();
+			NativeMenuMirror.ApplyAsKeyBindings (this, NativeMenu.GetMenu (this));
 			GtkMnemonic.ApplyHotKey (ToolbarImportButton, FSpot.Resources.Lang.Strings.Import2);
 			GtkMnemonic.ApplyHotKey (EmptyImportButton, FSpot.Resources.Lang.Strings.Import2);
 		};
@@ -83,6 +90,25 @@ public partial class MainWindow : Window, IAvaloniaShell
 			}
 			return;
 		}
+		if (Input.PlainKeyCommand.From (e.Key, e.KeyModifiers, focused) is { } plainKey
+				&& DataContext is MainWindowViewModel commands) {
+			switch (plainKey) {
+			case Input.PlainKeyCommandKind.RotateLeft:
+				commands.RotateLeftCommand.Execute (null);
+				break;
+			case Input.PlainKeyCommandKind.RotateRight:
+				commands.RotateRightCommand.Execute (null);
+				break;
+			case Input.PlainKeyCommandKind.Sharpen:
+				commands.SharpenCommand.Execute (null);
+				break;
+			case Input.PlainKeyCommandKind.ShowFind:
+				commands.ShowFindCommand.Execute (null);
+				break;
+			}
+			e.Handled = true;
+			return;
+		}
 		base.OnKeyDown (e);
 	}
 
@@ -98,6 +124,16 @@ public partial class MainWindow : Window, IAvaloniaShell
 			return;
 		var data = new DataTransfer ();
 		data.Add (DataTransferItem.Create (DataFormat.Text, string.Join (Environment.NewLine, paths)));
+		foreach (string path in paths) {
+			IStorageFile? file = null;
+			try {
+				file = await StorageProvider.TryGetFileFromPathAsync (new Uri (path));
+			} catch (Exception ex) {
+				Logger.Log.Debug (ex, "Failed to resolve {Path} for the clipboard", path);
+			}
+			if (file is not null)
+				data.Add (DataTransferItem.Create (DataFormat.File, file));
+		}
 		await Clipboard.SetDataAsync (data);
 	}
 
@@ -123,6 +159,14 @@ public partial class MainWindow : Window, IAvaloniaShell
 			return;
 		var window = new SlideshowWindow (paths, startIndex);
 		window.Show (this);
+	}
+
+	public void Quit ()
+	{
+		if (global::Avalonia.Application.Current?.ApplicationLifetime is IControlledApplicationLifetime lifetime)
+			lifetime.Shutdown ();
+		else
+			Close ();
 	}
 
 	public void ToggleFullscreen ()

@@ -55,6 +55,7 @@ namespace FSpot.Settings
 		public const string ShowTimeline = UIKey + "ShowTimeline";
 		public const string ShowFilmstrip = UIKey + "ShowFilmstrip";
 		public const string ShowHoverPreview = UIKey + "ShowHoverPreview";
+		public const string SendCrashReports = UIKey + "SendCrashReports";
 		public const string FilmstripOrientation = UIKey + "FilmstripOrientation";
 		public const string ShowTags = UIKey + "ShowTags";
 		public const string ShowDates = UIKey + "ShowDates";
@@ -68,6 +69,7 @@ namespace FSpot.Settings
 
 		public const string SidebarPosition = UIKey + "SidebarSize";
 		public const string Zoom = UIKey + "Zoom";
+		public const string SidebarPageLibrary = UIKey + "SidebarPageLibrary";
 
 		public const string ExportEmailSize = ExportKey + "Email/Size";
 		public const string ExportEmailRotate = ExportKey + "Email/AutoRotate";

@@ -192,14 +192,43 @@ public partial class MainWindowViewModel : ObservableObject
 		DisplaySidebar = LibraryPreferences.ShowSidebar;
 		DisplayTimeline = LibraryPreferences.ShowTimeline;
 		DisplayFilmstrip = LibraryPreferences.ShowFilmstrip;
+		DisplayToolbar = LibraryPreferences.ShowToolbar;
+		DisplayDates = LibraryPreferences.ShowDates;
+		DisplayTags = LibraryPreferences.ShowTags;
+		DisplayRatings = LibraryPreferences.ShowRatings;
+		ReverseOrder = LibraryPreferences.GroupAdaptorOrderAsc;
 		ShowHoverPreviewEnabled = LibraryPreferences.ShowHoverPreview;
 		ViewerInterpolation = LibraryPreferences.ViewerInterpolation;
 		IsMailEnabled = LibraryPreferences.MailToEnabled;
 		FilmstripOnSide = Preferences.Get<int> (Preferences.FilmstripOrientation) == 1;
 		Tag.TagIconSize = (IconSize)Preferences.Get<int> (Preferences.TagIconSize);
+		double storedZoom = LibraryPreferences.Zoom;
+		if (storedZoom >= 64 && storedZoom <= 256)
+			Zoom = storedZoom;
+		sidebarPixels = Math.Clamp (LibraryPreferences.SidebarPosition, 120, 600);
+		SidebarTab = Math.Clamp (LibraryPreferences.SidebarPageLibrary, 0, 1);
 		Info.VersionChosen += ApplyVersion;
 		Info.RatingChosen += ApplyRating;
 		Info.DescriptionChosen += ApplyDescription;
+	}
+
+	// Mirrors GTK's MainWindow.Close(), which snapshots the same toggles,
+	// zoom, sidebar width/page, and sort order into Preferences before the
+	// window goes away. Window position/size/maximized are saved separately,
+	// by MainWindowStateStore, since the ViewModel doesn't own the Window.
+	public void SaveWindowState ()
+	{
+		LibraryPreferences.ShowSidebar = DisplaySidebar;
+		LibraryPreferences.ShowTimeline = DisplayTimeline;
+		LibraryPreferences.ShowFilmstrip = DisplayFilmstrip;
+		LibraryPreferences.ShowToolbar = DisplayToolbar;
+		LibraryPreferences.ShowTags = DisplayTags;
+		LibraryPreferences.ShowDates = DisplayDates;
+		LibraryPreferences.ShowRatings = DisplayRatings;
+		LibraryPreferences.GroupAdaptorOrderAsc = ReverseOrder;
+		LibraryPreferences.Zoom = Zoom;
+		LibraryPreferences.SidebarPosition = (int)sidebarPixels;
+		LibraryPreferences.SidebarPageLibrary = browseSidebarTab;
 	}
 
 	double sidebarPixels = 220;
@@ -1186,8 +1215,12 @@ public partial class MainWindowViewModel : ObservableObject
 		=> shell.ToggleFullscreen ();
 
 	[RelayCommand]
-	void Quit ()
+	void CloseWindow ()
 		=> shell.Close ();
+
+	[RelayCommand]
+	void Quit ()
+		=> shell.Quit ();
 
 	[RelayCommand]
 	Task NotYetAsync ()

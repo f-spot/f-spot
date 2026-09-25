@@ -1,7 +1,10 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using System.Windows.Input;
+
 using Avalonia.Controls;
 using Avalonia.Data;
+using Avalonia.Input;
 
 namespace FSpot.Avalonia;
 
@@ -13,6 +16,45 @@ public static class NativeMenuMirror
 			return;
 		foreach (var item in Items (source))
 			menu.Items.Add (item);
+	}
+
+	// The native macOS menu bar turns a NativeMenuItem's Gesture into a real,
+	// OS-level key equivalent on its own. Nothing does that off macOS (and
+	// for the in-window automation mirror above), so every gesture is copied
+	// onto the window's own KeyBindings too, making every menu accelerator
+	// work as a genuine shortcut everywhere. Existing declarative
+	// Window.KeyBindings entries win over an auto-derived one for the same
+	// gesture.
+	public static void ApplyAsKeyBindings (Window window, NativeMenu? source)
+	{
+		if (source is null)
+			return;
+		var existing = new HashSet<KeyGesture> ();
+		foreach (var binding in window.KeyBindings)
+			if (binding.Gesture is { } gesture)
+				existing.Add (gesture);
+		foreach (var (gesture, command, parameter) in Gestures (source)) {
+			if (command is null || !existing.Add (gesture))
+				continue;
+			window.KeyBindings.Add (new KeyBinding {
+				Gesture = gesture,
+				Command = command,
+				CommandParameter = parameter!,
+			});
+		}
+	}
+
+	static IEnumerable<(KeyGesture Gesture, ICommand? Command, object? Parameter)> Gestures (NativeMenu menu)
+	{
+		foreach (object entry in menu.Items) {
+			if (entry is not NativeMenuItem item)
+				continue;
+			if (item.Gesture is { } gesture)
+				yield return (gesture, item.Command, item.CommandParameter);
+			if (item.Menu is { } children)
+				foreach (var nested in Gestures (children))
+					yield return nested;
+		}
 	}
 
 	static IEnumerable<Control> Items (NativeMenu source)

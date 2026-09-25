@@ -1120,6 +1120,92 @@ public sealed class MainWindowViewModelTests
 	}
 
 	[TestMethod]
+	public void RatingKey_AlsoAcceptsAltPlusDigitLikeGtk ()
+	{
+		AvaloniaApp.Ensure ();
+		Assert.AreEqual (0u, RatingKey.From (Key.D0, KeyModifiers.Alt, null));
+		Assert.AreEqual (5u, RatingKey.From (Key.NumPad5, KeyModifiers.Alt, null));
+		Assert.IsNull (RatingKey.From (Key.D3, KeyModifiers.Alt, new TextBox ()));
+		Assert.IsNull (RatingKey.From (Key.D3, KeyModifiers.Control | KeyModifiers.Alt, null));
+	}
+
+	[TestMethod]
+	public void CloseWindowCommand_ClosesWithoutQuittingTheApp ()
+	{
+		var shell = new RecordingShell ();
+		var viewModel = new MainWindowViewModel (null, shell, new NullThumbnails ());
+
+		viewModel.CloseWindowCommand.Execute (null);
+
+		Assert.IsTrue (shell.ClosedCalled);
+		Assert.IsFalse (shell.QuitCalled);
+	}
+
+	[TestMethod]
+	public void QuitCommand_QuitsRatherThanOnlyClosing ()
+	{
+		var shell = new RecordingShell ();
+		var viewModel = new MainWindowViewModel (null, shell, new NullThumbnails ());
+
+		viewModel.QuitCommand.Execute (null);
+
+		Assert.IsTrue (shell.QuitCalled);
+		Assert.IsFalse (shell.ClosedCalled);
+	}
+
+	[TestMethod]
+	public void SaveWindowState_RoundTripsTogglesZoomSidebarWidthAndPage ()
+	{
+		int originalSidebarPage = LibraryPreferences.SidebarPageLibrary;
+		try {
+			var viewModel = new MainWindowViewModel (null, new RecordingShell (), new NullThumbnails ());
+			viewModel.DisplayToolbar = false;
+			viewModel.DisplayDates = false;
+			viewModel.DisplayTags = false;
+			viewModel.DisplayRatings = false;
+			viewModel.ReverseOrder = true;
+			viewModel.Zoom = 200;
+			viewModel.SidebarLength = new GridLength (300);
+			viewModel.SidebarTab = 1;
+
+			viewModel.SaveWindowState ();
+
+			Assert.IsFalse (LibraryPreferences.ShowToolbar);
+			Assert.IsFalse (LibraryPreferences.ShowDates);
+			Assert.IsFalse (LibraryPreferences.ShowTags);
+			Assert.IsFalse (LibraryPreferences.ShowRatings);
+			Assert.IsTrue (LibraryPreferences.GroupAdaptorOrderAsc);
+			Assert.AreEqual (200.0, LibraryPreferences.Zoom);
+			Assert.AreEqual (300, LibraryPreferences.SidebarPosition);
+			Assert.AreEqual (1, LibraryPreferences.SidebarPageLibrary);
+
+			// A newly constructed ViewModel (e.g. after relaunching the app)
+			// picks all of this back up.
+			var restored = new MainWindowViewModel (null, new RecordingShell (), new NullThumbnails ());
+			Assert.IsFalse (restored.DisplayToolbar);
+			Assert.IsFalse (restored.DisplayDates);
+			Assert.IsFalse (restored.DisplayTags);
+			Assert.IsFalse (restored.DisplayRatings);
+			Assert.IsTrue (restored.ReverseOrder);
+			Assert.AreEqual (200.0, restored.Zoom);
+			Assert.AreEqual (300.0, restored.SidebarLength.Value);
+			Assert.AreEqual (1, restored.SidebarTab);
+		} finally {
+			// Sibling tests construct a fresh ViewModel and expect the
+			// documented defaults, so put every toggle this test flipped
+			// back the way it found them.
+			LibraryPreferences.ShowToolbar = true;
+			LibraryPreferences.ShowDates = true;
+			LibraryPreferences.ShowTags = true;
+			LibraryPreferences.ShowRatings = true;
+			LibraryPreferences.GroupAdaptorOrderAsc = false;
+			LibraryPreferences.Zoom = 0.0;
+			LibraryPreferences.SidebarPosition = 130;
+			LibraryPreferences.SidebarPageLibrary = originalSidebarPage;
+		}
+	}
+
+	[TestMethod]
 	public async Task ImportDropped_ReportsRejectedFilesAndImportsTheRest ()
 	{
 		string root = Path.Combine (Path.GetTempPath (), "fspot-drop-" + Path.GetRandomFileName ());
@@ -1329,7 +1415,8 @@ public sealed class MainWindowViewModelTests
 
 	internal class NullShell : IAvaloniaShell
 	{
-		public void Close () { }
+		public virtual void Close () { }
+		public virtual void Quit () => Close ();
 		public void ToggleFullscreen () { }
 		public void FocusFind () { }
 		public Task ShowAboutAsync () => Task.CompletedTask;
@@ -1378,6 +1465,11 @@ public sealed class MainWindowViewModelTests
 		public double? Hours { get; set; }
 		public TimeAdjustChoice? AdjustTimeResult { get; set; }
 		public IReadOnlyList<string>? ImportedPaths { get; private set; }
+		public bool ClosedCalled { get; private set; }
+		public bool QuitCalled { get; private set; }
+
+		public override void Close () => ClosedCalled = true;
+		public override void Quit () => QuitCalled = true;
 
 		public override Task<bool> ShowImportAsync (IReadOnlyList<string> paths)
 		{

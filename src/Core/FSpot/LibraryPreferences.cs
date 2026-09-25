@@ -21,6 +21,71 @@ namespace FSpot
 			set => Preferences.Set (Preferences.ShowFilmstrip, value);
 		}
 
+		public static bool ShowToolbar {
+			get => Preferences.Get<bool> (Preferences.ShowToolbar);
+			set => Preferences.Set (Preferences.ShowToolbar, value);
+		}
+
+		public static bool ShowTags {
+			get => Preferences.Get<bool> (Preferences.ShowTags);
+			set => Preferences.Set (Preferences.ShowTags, value);
+		}
+
+		public static bool ShowDates {
+			get => Preferences.Get<bool> (Preferences.ShowDates);
+			set => Preferences.Set (Preferences.ShowDates, value);
+		}
+
+		public static bool ShowRatings {
+			get => Preferences.Get<bool> (Preferences.ShowRatings);
+			set => Preferences.Set (Preferences.ShowRatings, value);
+		}
+
+		public static bool GroupAdaptorOrderAsc {
+			get => Preferences.Get<bool> (Preferences.GroupAdaptorOrderAsc);
+			set => Preferences.Set (Preferences.GroupAdaptorOrderAsc, value);
+		}
+
+		public static double Zoom {
+			get => Preferences.Get<double> (Preferences.Zoom);
+			set => Preferences.Set (Preferences.Zoom, value);
+		}
+
+		public static int SidebarPosition {
+			get => Preferences.Get<int> (Preferences.SidebarPosition);
+			set => Preferences.Set (Preferences.SidebarPosition, value);
+		}
+
+		public static int SidebarPageLibrary {
+			get => Preferences.Get<int> (Preferences.SidebarPageLibrary);
+			set => Preferences.Set (Preferences.SidebarPageLibrary, value);
+		}
+
+		public static int MainWindowX {
+			get => Preferences.Get<int> (Preferences.MainWindowX);
+			set => Preferences.Set (Preferences.MainWindowX, value);
+		}
+
+		public static int MainWindowY {
+			get => Preferences.Get<int> (Preferences.MainWindowY);
+			set => Preferences.Set (Preferences.MainWindowY, value);
+		}
+
+		public static int MainWindowWidth {
+			get => Preferences.Get<int> (Preferences.MainWindowWidth);
+			set => Preferences.Set (Preferences.MainWindowWidth, value);
+		}
+
+		public static int MainWindowHeight {
+			get => Preferences.Get<int> (Preferences.MainWindowHeight);
+			set => Preferences.Set (Preferences.MainWindowHeight, value);
+		}
+
+		public static bool MainWindowMaximized {
+			get => Preferences.Get<bool> (Preferences.MainWindowMaximized);
+			set => Preferences.Set (Preferences.MainWindowMaximized, value);
+		}
+
 		public static bool ShowHoverPreview {
 			get => Preferences.Get<bool> (Preferences.ShowHoverPreview);
 			set => Preferences.Set (Preferences.ShowHoverPreview, value);
@@ -81,6 +146,12 @@ namespace FSpot
 		public static bool MailToEnabled {
 			get => Preferences.Get<bool> (Preferences.MailToEnabled);
 			set => Preferences.Set (Preferences.MailToEnabled, value);
+		}
+
+		// On while crash reporting is in active development. FSPOT_SENTRY=0 forces it off.
+		public static bool SendCrashReports {
+			get => Preferences.Get<bool> (Preferences.SendCrashReports);
+			set => Preferences.Set (Preferences.SendCrashReports, value);
 		}
 	}
 }

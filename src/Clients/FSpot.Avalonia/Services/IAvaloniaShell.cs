@@ -14,7 +14,12 @@ namespace FSpot.Avalonia.Services;
 
 public interface IAvaloniaShell
 {
+	// Closes just this window. Bound to Ctrl+W / Photo > Close.
 	void Close ();
+	// Quits the whole application. Bound to Ctrl+Q / Photo > Quit. Distinct
+	// from Close() so a future multi-window shell (e.g. the standalone
+	// viewer) can close one window without ending the app.
+	void Quit () => Close ();
 	void ToggleFullscreen ();
 	void FocusFind ();
 	Task ShowAboutAsync ();
