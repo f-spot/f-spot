@@ -53,10 +53,57 @@ public sealed class PointerDragTests
 		Assert.AreEqual (DragDropEffects.None, CatalogDrop.Effects (CatalogDropKind.FindBar, tag));
 	}
 
+	[TestMethod]
+	public void Effects_AcceptPhotosOnTheGridButNeverImportTheirFiles ()
+	{
+		AvaloniaApp.Ensure ();
+		using var photos = new DataTransfer ();
+		photos.Add (DataTransferItem.Create (DragFormats.Photos, "1"));
+
+		Assert.AreEqual (DragDropEffects.Copy, CatalogDrop.Effects (CatalogDropKind.PhotoGrid, photos));
+		Assert.AreEqual (DragDropEffects.None, CatalogDrop.Effects (CatalogDropKind.Library, photos));
+		Assert.AreEqual (DragDropEffects.None, CatalogDrop.Effects (CatalogDropKind.PhotoView, photos));
+		Assert.IsFalse (CatalogDrop.IsExternalFileDrop (photos));
+	}
+
+	[TestMethod]
+	public void Effects_AcceptOnlyTagsOnThePhotoView ()
+	{
+		AvaloniaApp.Ensure ();
+		using var tag = new DataTransfer ();
+		tag.Add (DataTransferItem.Create (DragFormats.TagId, "3"));
+		using var folder = new DataTransfer ();
+		folder.Add (DataTransferItem.Create (DragFormats.FolderUri, "file:///x"));
+
+		Assert.AreEqual (DragDropEffects.Copy, CatalogDrop.Effects (CatalogDropKind.PhotoView, tag));
+		Assert.AreEqual (DragDropEffects.None, CatalogDrop.Effects (CatalogDropKind.PhotoView, folder));
+	}
+
+	[TestMethod]
+	public void Transfer_CarriesThePayloadAndNoFilesWhenNoneResolve ()
+	{
+		AvaloniaApp.Ensure ();
+		using var data = PointerDrag.Transfer (new PointerDrag.Payload (DragFormats.Photos, "1"), []);
+
+		Assert.AreEqual ("1", CatalogDrop.Read (data, DragFormats.Photos));
+		Assert.IsFalse (((IDataTransfer)data).Contains (DataFormat.File));
+	}
+
+	[TestMethod]
+	public void ReparentQuestion_NamesTheMergedPhotoAndTheNewParent ()
+	{
+		var single = ViewModels.MainWindowViewModel.ReparentQuestion (new Stub ("parent.jpg"), [new Stub ("child.jpg")]);
+		var many = ViewModels.MainWindowViewModel.ReparentQuestion (new Stub ("parent.jpg"), [new Stub ("a.jpg"), new Stub ("b.jpg")]);
+
+		Assert.AreEqual ("Really reparent \"child.jpg\" as version of \"parent.jpg\"?", single);
+		Assert.AreEqual ("Really reparent 2 photos as versions of \"parent.jpg\"?", many);
+	}
+
 	sealed class Stub : IPhoto
 	{
-		public Stub ()
+		public Stub (string name = "a.jpg")
 		{
+			Name = name;
 			DefaultVersion = new Version ();
 			Versions = new[] { DefaultVersion };
 		}
@@ -64,7 +111,7 @@ public sealed class PointerDragTests
 		public DateTime Time { get; } = DateTime.UnixEpoch;
 		public Tag[] Tags { get; } = [];
 		public string Description => string.Empty;
-		public string Name => "a.jpg";
+		public string Name { get; }
 		public uint Rating => 0;
 		public IPhotoVersion DefaultVersion { get; }
 		public IEnumerable<IPhotoVersion> Versions { get; }

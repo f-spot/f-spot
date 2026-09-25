@@ -354,10 +354,9 @@ namespace FSpot
 				name = filename.Substring (parent_filename.Length).Replace ("(", "").Replace (")", "").Replace ("_", " ").Trim ();
 
 			if (string.IsNullOrEmpty (name)) {
-				string rep = name = Strings.Reparented;
-				for (int num = 1; VersionNameExists (name); num++) {
-					name = $"rep +  ({num})";
-				}
+				name = Strings.Reparented;
+				for (int num = 1; VersionNameExists (name); num++)
+					name = $"{Strings.Reparented} ({num})";
 			}
 
 			highest_version_id++;

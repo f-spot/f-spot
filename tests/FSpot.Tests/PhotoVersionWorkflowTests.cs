@@ -96,6 +96,43 @@ namespace FSpot.Tests
 		}
 
 		[TestMethod]
+		public void Reparent_MovesVersionsRatingDescriptionAndTagsOntoTheParent ()
+		{
+			var parent = CatalogPhoto ();
+			var child = CatalogPhoto ();
+			child.Rating = 4;
+			child.Description = "Beach";
+			var tag = new Tag (null, 9, "Trip");
+			child.AddTag (tag);
+			var removed = new List<Photo> ();
+
+			PhotoVersionWorkflow.Reparent (parent, new[] { child }, commits.Add, removed.AddRange);
+
+			Assert.HasCount (2, parent.Versions);
+			Assert.AreEqual (4u, parent.Rating);
+			Assert.AreEqual ("Beach", parent.Description);
+			Assert.Contains (tag, parent.Tags);
+			Assert.HasCount (1, removed);
+			Assert.AreSame (child, removed[0]);
+			Assert.IsTrue (File.Exists (path));
+		}
+
+		[TestMethod]
+		public void Reparent_NamesRepeatedVersionsUniquely ()
+		{
+			var parent = CatalogPhoto ();
+			var first = CatalogPhoto ();
+			var second = CatalogPhoto ();
+
+			PhotoVersionWorkflow.Reparent (parent, new[] { first, second }, commits.Add, _ => { });
+
+			var names = parent.Versions.Select (v => v.Name).ToList ();
+			Assert.HasCount (3, names);
+			Assert.HasCount (3, names.Distinct ());
+			Assert.DoesNotContain (n => n.StartsWith ("rep", StringComparison.Ordinal), names);
+		}
+
+		[TestMethod]
 		public void ShiftTime_OffsetsThePhotoAndCommits ()
 		{
 			var photo = CatalogPhoto ();

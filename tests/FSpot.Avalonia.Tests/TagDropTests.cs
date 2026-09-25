@@ -71,22 +71,106 @@ public sealed class TagDropTests
 		Assert.IsTrue (catalog.ViewModel.Photos.All (photo => !catalog.HasStoredTag (photo)));
 	}
 
+	[TestMethod]
+	public void AttachDroppedTagToSelection_TagsOnlyTheSelectedPhotos ()
+	{
+		using var catalog = Catalog.Open ();
+		var a = catalog.ViewModel.Photos.Single (photo => photo.Caption == "a.jpg");
+		var b = catalog.ViewModel.Photos.Single (photo => photo.Caption == "b.jpg");
+		a.Selected = true;
+
+		catalog.ViewModel.AttachDroppedTagToSelection (catalog.Tag.Id.ToString ());
+
+		Assert.IsTrue (catalog.HasStoredTag (a));
+		Assert.IsFalse (catalog.HasStoredTag (b));
+	}
+
+	[TestMethod]
+	public void AttachDroppedTagToSelection_RejectsAnUnknownTag ()
+	{
+		using var catalog = Catalog.Open ();
+		catalog.ViewModel.Photos[0].Selected = true;
+
+		catalog.ViewModel.AttachDroppedTagToSelection ("999999");
+
+		Assert.IsFalse (catalog.HasStoredTag (catalog.ViewModel.Photos[0]));
+	}
+
+	[TestMethod]
+	public async Task MergeDroppedPhotos_Confirmed_MakesTheSelectionVersionsOfTheTarget ()
+	{
+		using var catalog = Catalog.Open (confirm: true);
+		var a = catalog.ViewModel.Photos.Single (photo => photo.Caption == "a.jpg");
+		var b = catalog.ViewModel.Photos.Single (photo => photo.Caption == "b.jpg");
+		a.Selected = true;
+
+		await catalog.ViewModel.MergeDroppedPhotosAsync (b);
+
+		Assert.AreEqual (1, catalog.Confirmations);
+		Assert.HasCount (1, catalog.ViewModel.Photos);
+		uint parentId = ((Photo)b.Photo).Id;
+		var parent = catalog.Database.Photos.Get (parentId);
+		Assert.HasCount (2, parent.Versions);
+		Assert.IsTrue (File.Exists (Path.Combine (catalog.Root, "a.jpg")));
+	}
+
+	[TestMethod]
+	public async Task MergeDroppedPhotos_Declined_LeavesTheCatalogAlone ()
+	{
+		using var catalog = Catalog.Open ();
+		catalog.ViewModel.Photos.Single (photo => photo.Caption == "a.jpg").Selected = true;
+
+		await catalog.ViewModel.MergeDroppedPhotosAsync (catalog.ViewModel.Photos.Single (photo => photo.Caption == "b.jpg"));
+
+		Assert.AreEqual (1, catalog.Confirmations);
+		Assert.HasCount (2, catalog.ViewModel.Photos);
+	}
+
+	[TestMethod]
+	public async Task MergeDroppedPhotos_OntoASelectedPhoto_DoesNotAsk ()
+	{
+		using var catalog = Catalog.Open (confirm: true);
+		foreach (var photo in catalog.ViewModel.Photos)
+			photo.Selected = true;
+
+		await catalog.ViewModel.MergeDroppedPhotosAsync (catalog.ViewModel.Photos[0]);
+
+		Assert.AreEqual (0, catalog.Confirmations);
+		Assert.HasCount (2, catalog.ViewModel.Photos);
+	}
+
+	[TestMethod]
+	public void DragOutPaths_ListsTheSelectedPhotoFiles ()
+	{
+		using var catalog = Catalog.Open ();
+		catalog.ViewModel.Photos.Single (photo => photo.Caption == "b.jpg").Selected = true;
+
+		var paths = catalog.ViewModel.DragOutPaths ();
+
+		Assert.HasCount (1, paths);
+		Assert.AreEqual ("b.jpg", Path.GetFileName (paths[0]));
+	}
+
 	sealed class Catalog : IDisposable
 	{
 		public Db Database { get; }
 		public MainWindowViewModel ViewModel { get; }
 		public Tag Tag { get; }
+		public string Root => root;
+		public int Confirmations => shell.Confirmations;
 		readonly string root;
+		readonly Shell shell;
 
-		Catalog (string root, Db database, MainWindowViewModel viewModel, Tag tag)
+		Catalog (string root, Db database, MainWindowViewModel viewModel, Tag tag, Shell shell)
 		{
 			this.root = root;
+			this.shell = shell;
 			Database = database;
 			ViewModel = viewModel;
 			Tag = tag;
 		}
 
-		public static Catalog Open ()
+		public static Catalog Open (bool confirm = false)
 		{
 			string root = Path.Combine (Path.GetTempPath (), "fspot-tagdrop-" + Guid.NewGuid ().ToString ("N"));
 			Directory.CreateDirectory (root);
@@ -101,9 +185,10 @@ public sealed class TagDropTests
 			database.Photos.CreateFrom (new FilePhoto (new SafeUri (Path.Combine (root, "a.jpg"))), true, roll);
 			database.Photos.CreateFrom (new FilePhoto (new SafeUri (Path.Combine (root, "b.jpg"))), true, roll);
 
-			var viewModel = new MainWindowViewModel (database, new Shell (), new NullThumbs ());
+			var shell = new Shell (confirm);
+			var viewModel = new MainWindowViewModel (database, shell, new NullThumbs ());
 			viewModel.LoadCatalog ();
-			return new Catalog (root, database, viewModel, tag);
+			return new Catalog (root, database, viewModel, tag, shell);
 		}
 
 		public bool HasStoredTag (PhotoItemViewModel photo)
@@ -121,8 +206,10 @@ public sealed class TagDropTests
 		}
 	}
 
-	sealed class Shell : IAvaloniaShell
+	sealed class Shell (bool confirm) : IAvaloniaShell
 	{
+		public int Confirmations { get; private set; }
+
 		public void Close () { }
 		public void ToggleFullscreen () { }
 		public void FocusFind () { }
@@ -132,7 +219,11 @@ public sealed class TagDropTests
 		public Task<bool> ShowImportAsync (IReadOnlyList<string> paths) => Task.FromResult (false);
 		public Task<string?> PickFolderAsync (string title) => Task.FromResult<string?> (null);
 		public Task<string?> PromptAsync (string title, string prompt, string defaultValue) => Task.FromResult<string?> (null);
-		public Task<bool> ConfirmAsync (string title, string message, string okCaption) => Task.FromResult (false);
+		public Task<bool> ConfirmAsync (string title, string message, string okCaption)
+		{
+			Confirmations++;
+			return Task.FromResult (confirm);
+		}
 		public Task<(uint Min, uint Max)?> PromptRatingRangeAsync () => Task.FromResult<(uint, uint)?> (null);
 		public Task<(DateTime Start, DateTime End)?> PromptDateRangeAsync () => Task.FromResult<(DateTime, DateTime)?> (null);
 		public Task<uint?> PickImportRollAsync (IReadOnlyList<(uint Id, string Label)> rolls) => Task.FromResult<uint?> (null);

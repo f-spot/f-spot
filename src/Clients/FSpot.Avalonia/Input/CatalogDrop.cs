@@ -20,7 +20,8 @@ public enum CatalogDropKind
 	Library,
 	PhotoGrid,
 	TagTree,
-	FindBar
+	FindBar,
+	PhotoView
 }
 
 public static class CatalogDrop
@@ -39,17 +40,25 @@ public static class CatalogDrop
 
 	public static DragDropEffects Effects (CatalogDropKind kind, IDataTransfer transfer)
 		=> kind switch {
-			CatalogDropKind.Library => transfer.Contains (DataFormat.File) ? DragDropEffects.Copy : DragDropEffects.None,
+			CatalogDropKind.Library => IsExternalFileDrop (transfer) ? DragDropEffects.Copy : DragDropEffects.None,
 			CatalogDropKind.PhotoGrid => AcceptsPhotoGrid (transfer) ? DragDropEffects.Copy : DragDropEffects.None,
 			CatalogDropKind.TagTree => transfer.Contains (DragFormats.Photos) || transfer.Contains (DragFormats.TagId)
 				? DragDropEffects.Copy
 				: DragDropEffects.None,
 			CatalogDropKind.FindBar => transfer.Contains (DragFormats.FolderUri) ? DragDropEffects.Copy : DragDropEffects.None,
+			CatalogDropKind.PhotoView => transfer.Contains (DragFormats.TagId) ? DragDropEffects.Copy : DragDropEffects.None,
 			_ => DragDropEffects.None
 		};
 
 	public static bool AcceptsPhotoGrid (IDataTransfer transfer)
-		=> transfer.Contains (DataFormat.File) || transfer.Contains (DragFormats.TagId);
+		=> transfer.Contains (DataFormat.File) || transfer.Contains (DragFormats.TagId) || transfer.Contains (DragFormats.Photos);
+
+	/// <summary>
+	/// Photos dragged out of our own grid also carry their files; like GTK, a drop that started
+	/// inside F-Spot never imports.
+	/// </summary>
+	public static bool IsExternalFileDrop (IDataTransfer transfer)
+		=> transfer.Contains (DataFormat.File) && !transfer.Contains (DragFormats.Photos);
 
 	static void OnKindChanged (Control control, AvaloniaPropertyChangedEventArgs _)
 	{
@@ -65,7 +74,7 @@ public static class CatalogDrop
 		if (sender is not Control control || GetKind (control) is not CatalogDropKind kind)
 			return;
 		e.DragEffects = Effects (kind, e.DataTransfer);
-		if (kind == CatalogDropKind.PhotoGrid)
+		if (kind is CatalogDropKind.PhotoGrid or CatalogDropKind.PhotoView)
 			e.Handled = true;
 	}
 
@@ -80,7 +89,14 @@ public static class CatalogDrop
 			ApplyLibrary (viewModel, e, null);
 			break;
 		case CatalogDropKind.PhotoGrid:
-			ApplyLibrary (viewModel, e, PhotoUnderPointer (e, control));
+			if (e.DataTransfer.Contains (DragFormats.Photos))
+				_ = viewModel.MergeDroppedPhotosAsync (PhotoUnderPointer (e, control));
+			else
+				ApplyLibrary (viewModel, e, PhotoUnderPointer (e, control));
+			e.Handled = true;
+			break;
+		case CatalogDropKind.PhotoView:
+			viewModel.AttachDroppedTagToSelection (Read (e.DataTransfer, DragFormats.TagId));
 			e.Handled = true;
 			break;
 		case CatalogDropKind.TagTree:
@@ -94,6 +110,8 @@ public static class CatalogDrop
 
 	static void ApplyLibrary (MainWindowViewModel viewModel, DragEventArgs e, PhotoItemViewModel? target)
 	{
+		if (e.DataTransfer.Contains (DragFormats.Photos))
+			return;
 		var paths = DroppedPaths (e.DataTransfer);
 		if (paths.Count > 0) {
 			_ = viewModel.ImportDroppedAsync (paths);

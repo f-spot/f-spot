@@ -45,5 +45,43 @@ namespace FSpot
 			commit?.Invoke (new[] { created, photo });
 			return created;
 		}
+
+		/// <summary>
+		/// Folds every photo in <paramref name="photos"/> into <paramref name="newParent"/> as versions,
+		/// the way the GTK client merges a photo dropped onto another one: the parent keeps the highest
+		/// rating, its own description (or the first non-empty one), and the union of the tags. The
+		/// merged photos lose their catalog entries but keep their files on disk.
+		/// </summary>
+		public static void Reparent (Photo newParent, IReadOnlyList<Photo> photos, Action<Photo> commit, Action<Photo[]> remove)
+		{
+			if (newParent == null)
+				throw new ArgumentNullException (nameof (newParent));
+			if (photos == null)
+				throw new ArgumentNullException (nameof (photos));
+
+			uint highestRating = newParent.Rating;
+			string description = newParent.Description;
+			foreach (var photo in photos) {
+				if (photo == null || ReferenceEquals (photo, newParent))
+					continue;
+				highestRating = Math.Max (photo.Rating, highestRating);
+				if (string.IsNullOrEmpty (description))
+					description = photo.Description;
+				newParent.AddTag (photo.Tags);
+
+				foreach (uint versionId in photo.VersionIds) {
+					newParent.DefaultVersionId = newParent.CreateReparentedVersion (photo.GetVersion (versionId) as PhotoVersion);
+					commit?.Invoke (newParent);
+				}
+				var versionIds = photo.VersionIds;
+				Array.Reverse (versionIds);
+				foreach (uint versionId in versionIds)
+					photo.DeleteVersion (versionId, true, true);
+				remove?.Invoke (new[] { photo });
+			}
+			newParent.Rating = highestRating;
+			newParent.Description = description;
+			commit?.Invoke (newParent);
+		}
 	}
 }

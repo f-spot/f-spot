@@ -9,9 +9,11 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.Platform.Storage;
 
 using FSpot.Avalonia.Models;
 using FSpot.Avalonia.ViewModels;
+using FSpot.Utils;
 
 namespace FSpot.Avalonia.Input;
 
@@ -96,9 +98,47 @@ public static class PointerDrag
 		e.Pointer.Capture (null);
 		if (For (control.DataContext) is not Payload payload)
 			return;
+		_ = StartDragAsync (control, arm.Press, payload);
+	}
+
+	static async Task StartDragAsync (Control control, PointerPressedEventArgs press, Payload payload)
+	{
+		IReadOnlyList<IStorageItem> files = payload.Format == DragFormats.Photos
+			? await SelectedPhotoFilesAsync (control)
+			: Array.Empty<IStorageItem> ();
+		await DragDrop.DoDragDropAsync (press, Transfer (payload, files), DragDropEffects.Copy);
+	}
+
+	/// <summary>
+	/// The drag data: the in-app payload, plus one file item per photo so other applications
+	/// receive the photos as files (GTK offers the selection as a uri list).
+	/// </summary>
+	public static DataTransfer Transfer (Payload payload, IEnumerable<IStorageItem> files)
+	{
 		var data = new DataTransfer ();
 		data.Add (DataTransferItem.Create (payload.Format, payload.Value));
-		_ = DragDrop.DoDragDropAsync (arm.Press, data, DragDropEffects.Copy);
+		foreach (var file in files)
+			data.Add (DataTransferItem.CreateFile (file));
+		return data;
+	}
+
+	static async Task<IReadOnlyList<IStorageItem>> SelectedPhotoFilesAsync (Control control)
+	{
+		var storage = TopLevel.GetTopLevel (control)?.StorageProvider;
+		if (storage is null || WindowCommand.Model (control) is not MainWindowViewModel viewModel)
+			return Array.Empty<IStorageItem> ();
+		var files = new List<IStorageItem> ();
+		foreach (string path in viewModel.DragOutPaths ()) {
+			if (!File.Exists (path))
+				continue;
+			try {
+				if (await storage.TryGetFileFromPathAsync (path) is IStorageFile file)
+					files.Add (file);
+			} catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or ArgumentException) {
+				Logger.Log.Debug (ex, "Drag out skipped {Path}", path);
+			}
+		}
+		return files;
 	}
 
 	static void OnReleased (object? sender, PointerReleasedEventArgs e)

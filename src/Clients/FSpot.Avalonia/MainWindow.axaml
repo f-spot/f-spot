@@ -866,7 +866,10 @@
 							</DataTemplate>
 						</ListBox.ItemTemplate>
 					</ListBox>
-					<Panel IsVisible="{Binding IsEditing}">
+					<Panel IsVisible="{Binding IsEditing}"
+					       Background="Transparent"
+					       DragDrop.AllowDrop="True"
+					       input:CatalogDrop.Kind="PhotoView">
 						<Image Name="PreviewImage" Source="{Binding Preview}"
 						       Stretch="Uniform"
 						       Margin="8"
