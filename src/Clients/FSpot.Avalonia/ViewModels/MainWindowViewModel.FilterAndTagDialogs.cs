@@ -19,11 +19,6 @@ namespace FSpot.Avalonia.ViewModels;
 public partial class MainWindowViewModel
 {
 	/// <summary>
-	/// Every tag highlighted in the sidebar tree, which may be more than <see cref="SelectedTag"/>.
-	/// </summary>
-	public ObservableCollection<TagNode> HighlightedTags { get; } = [];
-
-	/// <summary>
 	/// Set while a modified click (or a right-click on a highlighted tag) extends the tree
 	/// selection, so tapping a tag does not collapse the highlight to that one tag.
 	/// </summary>
@@ -31,14 +26,6 @@ public partial class MainWindowViewModel
 
 	bool KeepsTagHighlight (TagNode? node)
 		=> node is not null && ExtendingTagSelection;
-
-	public void SetHighlightedTags (IEnumerable<TagNode> nodes)
-	{
-		HighlightedTags.Clear ();
-		foreach (var node in nodes.Distinct ())
-			HighlightedTags.Add (node);
-		MergeTagsCommand.NotifyCanExecuteChanged ();
-	}
 
 	void NotifyFilterDialogCommands ()
 	{

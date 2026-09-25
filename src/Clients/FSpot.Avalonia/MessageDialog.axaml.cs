@@ -23,6 +23,14 @@ public partial class MessageDialog : Window
 	public static Task ShowAsync (Window owner, string heading, string body, MessageDialogKind kind = MessageDialogKind.Warning)
 		=> ShowCoreAsync (owner, heading, body, Strings.Ok, showCancel: false, kind, input: null);
 
+	public static void ShowWithoutOwner (string heading, string body, MessageDialogKind kind = MessageDialogKind.Error)
+	{
+		var dialog = new MessageDialog ();
+		dialog.Apply (heading, body, Strings.Ok, showCancel: false, kind, input: null);
+		dialog.OkButton.Click += (_, _) => dialog.Close ();
+		dialog.Show ();
+	}
+
 	public static async Task<bool> ConfirmAsync (Window owner, string heading, string body, string okCaption, MessageDialogKind kind = MessageDialogKind.Warning)
 	{
 		string? result = await ShowCoreAsync (owner, heading, body, okCaption, showCancel: true, kind, input: null);

@@ -10,9 +10,11 @@ using Avalonia.Media.Imaging;
 using Avalonia.Platform.Storage;
 using Avalonia.Threading;
 
+using FSpot;
 using FSpot.Avalonia.Imaging;
 using FSpot.Avalonia.Services;
 using FSpot.Avalonia.ViewModels;
+using FSpot.Resources.Lang;
 
 namespace FSpot.Avalonia;
 
@@ -40,6 +42,7 @@ public partial class ViewerWindow : Window, IViewerShell
 		viewModel = new ViewerViewModel (this, canLoad);
 		DataContext = viewModel;
 		InitializeComponent ();
+		PlatformGestures.Apply (this);
 
 		var (width, height) = ViewerSettings.Size;
 		if (width > 0 && height > 0) {
@@ -157,9 +160,9 @@ public partial class ViewerWindow : Window, IViewerShell
 	double FitZoom ()
 	{
 		if (photo is null)
-			return ViewerZoom.FallbackMin;
+			return ViewModels.ViewerZoom.FallbackMin;
 		var viewport = ImageScroller.Bounds.Size;
-		return ViewerZoom.MinFor (photo.Size.Width, photo.Size.Height, viewport.Width, viewport.Height);
+		return ViewModels.ViewerZoom.MinFor (photo.Size.Width, photo.Size.Height, viewport.Width, viewport.Height);
 	}
 
 	void UpdateFit ()
@@ -335,9 +338,13 @@ public partial class ViewerWindow : Window, IViewerShell
 	public Task ShowWarningAsync (string title, string message)
 		=> MessageDialog.ShowAsync (this, title, message, MessageDialogKind.Warning);
 
-	public Task SetDesktopBackgroundAsync (string path)
+	public async Task SetDesktopBackgroundAsync (string path)
 	{
-		DesktopBackground.Set (path);
-		return Task.CompletedTask;
+		try {
+			await Task.Run (() => DesktopBackground.Set (path));
+		} catch (Exception ex) {
+			Logger.Log.Error (ex, "Set as background failed");
+			await ShowWarningAsync (Strings.SetAsBackground, ex.Message);
+		}
 	}
 }

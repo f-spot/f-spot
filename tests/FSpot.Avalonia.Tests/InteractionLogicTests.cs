@@ -192,7 +192,7 @@ public sealed class ViewerKeyMapTests
 }
 
 [TestClass]
-public sealed class ViewerZoomTests
+public sealed class PhotoViewZoomTests
 {
 	[TestMethod]
 	public void ForScale_ShowsOneOriginalPixelPerDevicePixel ()

@@ -310,7 +310,7 @@ public partial class MainWindowViewModel
 	}
 
 	[RelayCommand]
-	void RemoveQueryLiteral (QueryLiteralChip? chip)
+	void RemoveTermChip (QueryLiteralChip? chip)
 	{
 		if (chip is null)
 			return;
@@ -359,53 +359,8 @@ public partial class MainWindowViewModel
 		OnTermQueryChanged ();
 	}
 
-	bool CanMergeTags ()
-		=> CanMergeHighlightedTags;
-
-	[RelayCommand (CanExecute = nameof (CanMergeTags))]
-	async Task MergeTagsAsync ()
-	{
-		var tags = HighlightedTags.Select (node => node.Tag).ToList ();
-		if (database is null || !TagMerge.CanMerge (tags))
-			return;
-		if (!await shell.ConfirmAsync (TagMerge.ConfirmHeading (tags.Count), TagMerge.ConfirmBody, Strings.MergeTagsMnemonic))
-			return;
-
-		var plan = TagMerge.Plan (tags);
-		try {
-			var photos = database.Photos.Query (new OrOperator (plan.Merged.Select (tag => (LogicalTerm)new TagTerm (tag)).ToArray ()));
-			var retagged = plan.Retag (photos);
-			if (retagged.Count > 0)
-				database.Photos.Commit (retagged.ToArray ());
-			database.Photos.Remove (plan.Merged.ToList ());
-		} catch (InvalidTagOperationException ex) {
-			await shell.ShowWarningAsync (TagDelete.BlockedHeading, TagDelete.BlockedMessage (ex.Tag ?? plan.Survivor));
-			return;
-		}
-
-		var gone = plan.Merged.Select (tag => tag.Id).ToHashSet ();
-		foreach (var tag in plan.Merged)
-			TermQuery.RemoveTag (tag);
-		foreach (var node in FindTags.Where (node => gone.Contains (node.Tag.Id)).ToList ())
-			FindTags.Remove (node);
-		highlightedTags.Clear ();
-		if (ActiveTagFilter is not null && gone.Contains (ActiveTagFilter.Tag.Id))
-			ActiveTagFilter = null;
-		if (SelectedTag is not null && gone.Contains (SelectedTag.Tag.Id))
-			SelectedTag = null;
-		ReloadTags ();
-		OnTermQueryChanged ();
-		ReloadPhotos ();
-
-		// GTK opens the tag editor on the survivor so it can be renamed.
-		if (FindTagNode (Tags, plan.Survivor) is { } survivor) {
-			SelectedTag = survivor;
-			await EditTagAsync (survivor);
-		}
-	}
-
 	[RelayCommand]
-	void ClearDateRange ()
+	void ClearTimelineRange ()
 	{
 		timelineRangeStart = null;
 		timelineRangeEnd = null;

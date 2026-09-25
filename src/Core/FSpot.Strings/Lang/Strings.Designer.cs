@@ -5227,5 +5227,17 @@ namespace FSpot.Resources.Lang {
                 return ResourceManager.GetString("StockGoDown", resourceCulture);
             }
         }
+
+        public static string CopyPhoto {
+            get {
+                return ResourceManager.GetString("CopyPhoto", resourceCulture);
+            }
+        }
+
+        public static string OpenWith {
+            get {
+                return ResourceManager.GetString("OpenWith", resourceCulture);
+            }
+        }
     }
 }

@@ -9,6 +9,7 @@ using FSpot;
 using FSpot.Avalonia.Imaging;
 using FSpot.Database;
 using FSpot.Imaging;
+using FSpot.Resources.Lang;
 using FSpot.Settings;
 
 using Hyena;
@@ -89,7 +90,9 @@ public partial class App : Application
 	{
 		try {
 			string backupPath = database.Repair ();
-			RepairDbNoticeWindow.ShowBlocking (loadError, backupPath);
+			MessageDialog.ShowWithoutOwner (
+				Strings.ErrorLoadingDatabase,
+				string.Format (Strings.FSpotEncounteredAnErrorWhileLoadingPhotoDatabaseMovedToX, backupPath));
 		} catch (Exception repairError) {
 			Logger.Log.Error (repairError, "Failed to repair the F-Spot catalog");
 		}

@@ -54,7 +54,7 @@ public partial class MainWindowViewModel
 	bool loupePlaced;
 	int previewPopupGeneration;
 
-	public bool IsPreviewZoomed => !ViewerZoom.IsFit (PreviewZoom);
+	public bool IsPreviewZoomed => !Imaging.ViewerZoom.IsFit (PreviewZoom);
 
 	public PhotoItemViewModel? PreviewPopupItem { get; private set; }
 
@@ -165,39 +165,39 @@ public partial class MainWindowViewModel
 			PreviewPanY = 0;
 			break;
 		case ViewerAction.ZoomActual:
-			ZoomPreviewTo (ViewerZoom.ForScale (1, viewWidth, viewHeight, PreviewPixelWidth, PreviewPixelHeight, Info.PixelWidth, UiScale),
+			ZoomPreviewTo (Imaging.ViewerZoom.ForScale (1, viewWidth, viewHeight, PreviewPixelWidth, PreviewPixelHeight, Info.PixelWidth, UiScale),
 				viewWidth, viewHeight, anchorX, anchorY);
 			break;
 		case ViewerAction.ZoomDouble:
-			ZoomPreviewTo (ViewerZoom.ForScale (2, viewWidth, viewHeight, PreviewPixelWidth, PreviewPixelHeight, Info.PixelWidth, UiScale),
+			ZoomPreviewTo (Imaging.ViewerZoom.ForScale (2, viewWidth, viewHeight, PreviewPixelWidth, PreviewPixelHeight, Info.PixelWidth, UiScale),
 				viewWidth, viewHeight, anchorX, anchorY);
 			break;
 		case ViewerAction.ZoomIn:
-			ZoomPreviewTo (ViewerZoom.Clamp (PreviewZoom * ViewerZoom.Step), viewWidth, viewHeight, viewWidth / 2, viewHeight / 2);
+			ZoomPreviewTo (Imaging.ViewerZoom.Clamp (PreviewZoom * Imaging.ViewerZoom.Step), viewWidth, viewHeight, viewWidth / 2, viewHeight / 2);
 			break;
 		case ViewerAction.ZoomOut:
-			ZoomPreviewTo (ViewerZoom.Clamp (PreviewZoom / ViewerZoom.Step), viewWidth, viewHeight, viewWidth / 2, viewHeight / 2);
+			ZoomPreviewTo (Imaging.ViewerZoom.Clamp (PreviewZoom / Imaging.ViewerZoom.Step), viewWidth, viewHeight, viewWidth / 2, viewHeight / 2);
 			break;
 		case ViewerAction.PanUp:
-			PanPreviewBy (0, ViewerZoom.PanStep);
+			PanPreviewBy (0, Imaging.ViewerZoom.PanStep);
 			break;
 		case ViewerAction.PanDown:
-			PanPreviewBy (0, -ViewerZoom.PanStep);
+			PanPreviewBy (0, -Imaging.ViewerZoom.PanStep);
 			break;
 		case ViewerAction.PanLeft:
-			PanPreviewBy (ViewerZoom.PanStep, 0);
+			PanPreviewBy (Imaging.ViewerZoom.PanStep, 0);
 			break;
 		case ViewerAction.PanRight:
-			PanPreviewBy (-ViewerZoom.PanStep, 0);
+			PanPreviewBy (-Imaging.ViewerZoom.PanStep, 0);
 			break;
 		}
 	}
 
 	void ZoomPreviewTo (double zoom, double viewWidth, double viewHeight, double anchorX, double anchorY)
 	{
-		var pan = ViewerZoom.AnchorPan (PreviewZoom, zoom, PreviewPanX, PreviewPanY, anchorX, anchorY, viewWidth, viewHeight);
+		var pan = Imaging.ViewerZoom.AnchorPan (PreviewZoom, zoom, PreviewPanX, PreviewPanY, anchorX, anchorY, viewWidth, viewHeight);
 		PreviewZoom = zoom;
-		if (ViewerZoom.IsFit (zoom)) {
+		if (Imaging.ViewerZoom.IsFit (zoom)) {
 			PreviewPanX = 0;
 			PreviewPanY = 0;
 		} else {
@@ -318,7 +318,7 @@ public partial class MainWindowViewModel
 	/// </summary>
 	bool WarnIfTagNameTaken (Tag tag, string newName)
 	{
-		bool taken = TagNames.IsTakenByAnother (tag.Name, newName,
+		bool taken = Models.TagNames.IsTakenByAnother (tag.Name, newName,
 			name => database?.Tags.GetTagByName (name) is not null
 				|| (database is null && FlattenTags (Tags).Any (node => string.Equals (node.Tag.Name, name, StringComparison.OrdinalIgnoreCase))));
 		if (taken)
