@@ -40,8 +40,13 @@ public partial class App : Application
 		InitializeCore ();
 
 		if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop) {
-			desktop.ShutdownMode = ShutdownMode.OnMainWindowClose;
-			desktop.MainWindow = new MainWindow (Database);
+			if (ViewerLaunch.Paths (desktop.Args) is { } viewPaths) {
+				desktop.ShutdownMode = ShutdownMode.OnLastWindowClose;
+				desktop.MainWindow = new ViewerWindow (viewPaths);
+			} else {
+				desktop.ShutdownMode = ShutdownMode.OnMainWindowClose;
+				desktop.MainWindow = new MainWindow (Database);
+			}
 			desktop.Exit += (_, _) => Database?.Dispose ();
 		}
 

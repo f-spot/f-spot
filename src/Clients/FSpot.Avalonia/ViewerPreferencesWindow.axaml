@@ -1,0 +1,49 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:auto="using:FSpot.Avalonia"
+        xmlns:lang="using:FSpot.Resources.Lang"
+        x:Class="FSpot.Avalonia.ViewerPreferencesWindow"
+        Title="{x:Static lang:Strings.Preferences}"
+        Width="440"
+        SizeToContent="Height"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False"
+        AutomationProperties.AutomationId="{x:Static auto:ViewerAutomationIds.PreferencesWindow}"
+        AutomationProperties.Name="{x:Static lang:Strings.Preferences}">
+	<Window.Styles>
+		<StyleInclude Source="avares://Avalonia.Controls.ColorPicker/Themes/Fluent/Fluent.xaml" />
+	</Window.Styles>
+	<StackPanel Margin="12" Spacing="6">
+		<TextBlock Name="InterpolationHeading" x:FieldModifier="internal" FontWeight="Bold" />
+		<StackPanel Margin="12,0,0,12" Spacing="4">
+			<CheckBox Name="Interpolation" x:FieldModifier="internal"
+			          Content="{x:Static lang:Strings.InterpolateImageOnZoom}"
+			          AutomationProperties.AutomationId="{x:Static auto:ViewerAutomationIds.PreferencesInterpolation}" />
+			<TextBlock Name="InterpolationDetail" x:FieldModifier="internal" FontSize="11" FontStyle="Italic" TextWrapping="Wrap" />
+		</StackPanel>
+
+		<TextBlock Name="TransparencyHeading" x:FieldModifier="internal" FontWeight="Bold" />
+		<StackPanel Margin="12,0,0,12" Spacing="4">
+			<RadioButton Name="AsBackground" x:FieldModifier="internal" GroupName="transparency"
+			             Content="{x:Static auto:ViewerStrings.AsBackground}"
+			             AutomationProperties.AutomationId="{x:Static auto:ViewerAutomationIds.PreferencesAsBackground}" />
+			<RadioButton Name="AsCheckPattern" x:FieldModifier="internal" GroupName="transparency"
+			             Content="{x:Static auto:ViewerStrings.AsCheckPattern}"
+			             AutomationProperties.AutomationId="{x:Static auto:ViewerAutomationIds.PreferencesAsCheckPattern}" />
+			<StackPanel Orientation="Horizontal" Spacing="6">
+				<RadioButton Name="AsCustomColor" x:FieldModifier="internal" GroupName="transparency"
+				             Content="{x:Static auto:ViewerStrings.AsCustomColor}" VerticalAlignment="Center"
+				             AutomationProperties.AutomationId="{x:Static auto:ViewerAutomationIds.PreferencesAsCustomColor}" />
+				<ColorPicker Name="CustomColor" x:FieldModifier="internal" IsAlphaEnabled="False" IsAlphaVisible="False"
+				             VerticalAlignment="Center"
+				             AutomationProperties.AutomationId="{x:Static auto:ViewerAutomationIds.PreferencesColor}"
+				             AutomationProperties.Name="{x:Static auto:ViewerStrings.AsCustomColor2}" />
+			</StackPanel>
+			<TextBlock Name="TransparencyDetail" x:FieldModifier="internal" FontSize="11" FontStyle="Italic" TextWrapping="Wrap" />
+		</StackPanel>
+
+		<Button HorizontalAlignment="Right" MinWidth="88" Classes="dialog"
+		        Content="{x:Static lang:Strings.Close}" Click="OnClose"
+		        AutomationProperties.AutomationId="{x:Static auto:ViewerAutomationIds.PreferencesClose}" />
+	</StackPanel>
+</Window>

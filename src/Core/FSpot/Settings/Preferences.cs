@@ -59,6 +59,7 @@ namespace FSpot.Settings
 			{ ShowDates, true },
 			{ ShowRatings, true },
 			{ ViewerShawFilenames, true },
+			{ ViewerShowToolbar, true },
 			{ TagIconSize, (int)IconSize.Medium },
 			{ TagIconAutomatic, true },
 			{ SidebarPosition, 130 },

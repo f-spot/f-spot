@@ -10,7 +10,7 @@
     <AssemblyName>FSpot.Avalonia</AssemblyName>
     <ApplicationTitle>F-Spot</ApplicationTitle>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
-    <RasterizeIcons>true</RasterizeIcons>
+    <RasterizeIcons>false</RasterizeIcons>
     <OutputPath>$(RepoRoot)artifacts/fspot-avalonia/</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
@@ -27,6 +27,7 @@
     <PackageReference Include="Avalonia" />
     <PackageReference Include="Avalonia.Desktop" />
     <PackageReference Include="Avalonia.Themes.Fluent" />
+    <PackageReference Include="Avalonia.Controls.ColorPicker" />
     <PackageReference Include="Avalonia.Fonts.Inter" />
     <PackageReference Include="Sentry.Serilog" />
     <PackageReference Include="CommunityToolkit.Mvvm" />

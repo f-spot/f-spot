@@ -1,0 +1,190 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:FSpot.Avalonia.ViewModels"
+        xmlns:svg="using:Avalonia.Svg.Skia"
+        xmlns:auto="using:FSpot.Avalonia"
+        xmlns:lang="using:FSpot.Resources.Lang"
+        x:Class="FSpot.Avalonia.ViewerWindow"
+        x:DataType="vm:ViewerViewModel"
+        Icon="{x:Static auto:ChromeIcons.WindowIcon}"
+        Title="{x:Static auto:ViewerStrings.FSpotView}"
+        Width="640"
+        Height="480"
+        DragDrop.AllowDrop="True"
+        AutomationProperties.AutomationId="{x:Static auto:ViewerAutomationIds.Window}"
+        AutomationProperties.Name="{x:Static auto:ViewerStrings.FSpotView}">
+	<Window.KeyBindings>
+		<KeyBinding Gesture="Ctrl+N" Command="{Binding NewWindowCommand}" />
+		<KeyBinding Gesture="Ctrl+O" Command="{Binding OpenCommand}" />
+		<KeyBinding Gesture="Ctrl+Shift+O" Command="{Binding OpenFolderCommand}" />
+		<KeyBinding Gesture="Ctrl+W" Command="{Binding CloseWindowCommand}" />
+		<KeyBinding Gesture="OemOpenBrackets" Command="{Binding RotateLeftCommand}" />
+		<KeyBinding Gesture="OemCloseBrackets" Command="{Binding RotateRightCommand}" />
+		<KeyBinding Gesture="F5" Command="{Binding SlideshowCommand}" />
+		<KeyBinding Gesture="F11" Command="{Binding FullscreenCommand}" />
+		<KeyBinding Gesture="Ctrl+Shift+T" Command="{Binding ToggleToolbarCommand}" />
+		<KeyBinding Gesture="F9" Command="{Binding ToggleSidebarCommand}" />
+		<KeyBinding Gesture="Ctrl+OemPlus" Command="{Binding ZoomInCommand}" />
+		<KeyBinding Gesture="Ctrl+Add" Command="{Binding ZoomInCommand}" />
+		<KeyBinding Gesture="Ctrl+OemMinus" Command="{Binding ZoomOutCommand}" />
+		<KeyBinding Gesture="Ctrl+Subtract" Command="{Binding ZoomOutCommand}" />
+	</Window.KeyBindings>
+	<DockPanel>
+		<Menu DockPanel.Dock="Top" IsVisible="{Binding !IsFullScreen}"
+		      AutomationProperties.AutomationId="{x:Static auto:ViewerAutomationIds.Menu}"
+		      AutomationProperties.Name="{x:Static lang:Strings.MainMenu}">
+			<MenuItem Header="{x:Static lang:Strings.Photo3}">
+				<MenuItem Header="{x:Static auto:ViewerStrings.NewWindow}" InputGesture="Ctrl+N" Command="{Binding NewWindowCommand}" />
+				<MenuItem Header="{x:Static lang:Strings.Open}" InputGesture="Ctrl+O" Command="{Binding OpenCommand}" />
+				<MenuItem Header="{x:Static auto:ViewerStrings.OpenFolder}" InputGesture="Ctrl+Shift+O" Command="{Binding OpenFolderCommand}" />
+				<Separator />
+				<MenuItem Header="{x:Static auto:ViewerStrings.Export2}">
+					<MenuItem Header="{x:Static lang:Strings.ExportToFolder}" Command="{Binding ExportCommand}" />
+				</MenuItem>
+				<Separator />
+				<MenuItem Header="{x:Static lang:Strings.Close}" InputGesture="Ctrl+W" Command="{Binding CloseWindowCommand}" />
+			</MenuItem>
+			<MenuItem Header="{x:Static lang:Strings.Edit2}">
+				<MenuItem Header="{x:Static lang:Strings.RotateLeftMnemonic}" InputGesture="OemOpenBrackets" Command="{Binding RotateLeftCommand}" />
+				<MenuItem Header="{x:Static lang:Strings.RotateRightMnemonic}" InputGesture="OemCloseBrackets" Command="{Binding RotateRightCommand}" />
+				<Separator />
+				<MenuItem Header="{x:Static auto:ViewerStrings.SetAsBackground2}" Command="{Binding SetAsBackgroundCommand}" />
+				<Separator />
+				<MenuItem Header="{x:Static lang:Strings.Preferences}" Command="{Binding PreferencesCommand}" />
+			</MenuItem>
+			<MenuItem Header="{x:Static lang:Strings.View2}">
+				<MenuItem Header="{x:Static lang:Strings.Slideshow2}" InputGesture="F5" Command="{Binding SlideshowCommand}" />
+				<MenuItem Header="{x:Static lang:Strings.Fullscreen2}" InputGesture="F11" Command="{Binding FullscreenCommand}" />
+				<Separator />
+				<MenuItem Header="{x:Static lang:Strings.Toolbar2}" InputGesture="Ctrl+Shift+T" ToggleType="CheckBox"
+				          IsChecked="{Binding ShowToolbar, Mode=OneWay}" Command="{Binding ToggleToolbarCommand}" />
+				<MenuItem Header="{x:Static auto:ViewerStrings.SidePane}" InputGesture="F9" ToggleType="CheckBox"
+				          IsChecked="{Binding ShowSidebar, Mode=OneWay}" Command="{Binding ToggleSidebarCommand}" />
+				<MenuItem Header="{x:Static auto:ViewerStrings.DisplayFileNames}" ToggleType="CheckBox"
+				          IsChecked="{Binding DisplayFileNames, Mode=OneWay}" Command="{Binding ToggleFileNamesCommand}" />
+				<Separator />
+				<MenuItem Header="{x:Static lang:Strings.ZoomIn}" InputGesture="Ctrl+OemPlus" Command="{Binding ZoomInCommand}" />
+				<MenuItem Header="{x:Static lang:Strings.ZoomOut}" InputGesture="Ctrl+OemMinus" Command="{Binding ZoomOutCommand}" />
+			</MenuItem>
+			<MenuItem Header="{x:Static lang:Strings.Help}">
+				<MenuItem Header="{x:Static lang:Strings.AboutFSpot}" Command="{Binding AboutCommand}" />
+			</MenuItem>
+		</Menu>
+
+		<StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="2" Margin="4,2"
+		            IsVisible="{Binding ToolbarVisible}"
+		            AutomationProperties.AutomationId="{x:Static auto:ViewerAutomationIds.Toolbar}"
+		            AutomationProperties.Name="{x:Static auto:ViewerStrings.Toolbar3}">
+			<Button Classes="tool" ToolTip.Tip="{x:Static lang:Strings.RotatePhotoLeft}" Command="{Binding RotateLeftCommand}"
+			        AutomationProperties.AutomationId="{x:Static auto:ViewerAutomationIds.ToolbarRotateLeft}"
+			        AutomationProperties.Name="{x:Static lang:Strings.RotateLeft}">
+				<StackPanel Spacing="2">
+					<svg:Svg Width="22" Height="22" Path="avares://FSpot.Avalonia/Icons/object-rotate-left.svg" />
+					<TextBlock Text="{x:Static lang:Strings.RotateLeft}" FontSize="11" HorizontalAlignment="Center" />
+				</StackPanel>
+			</Button>
+			<Button Classes="tool" ToolTip.Tip="{x:Static lang:Strings.RotatePhotoRight}" Command="{Binding RotateRightCommand}"
+			        AutomationProperties.AutomationId="{x:Static auto:ViewerAutomationIds.ToolbarRotateRight}"
+			        AutomationProperties.Name="{x:Static lang:Strings.RotateRight}">
+				<StackPanel Spacing="2">
+					<svg:Svg Width="22" Height="22" Path="avares://FSpot.Avalonia/Icons/object-rotate-right.svg" />
+					<TextBlock Text="{x:Static lang:Strings.RotateRight}" FontSize="11" HorizontalAlignment="Center" />
+				</StackPanel>
+			</Button>
+			<Rectangle Width="1" Margin="4,2" Fill="{DynamicResource SystemControlForegroundBaseLowBrush}" />
+			<Button Classes="tool" ToolTip.Tip="{x:Static lang:Strings.ViewPhotosFullscreen}" Command="{Binding FullscreenCommand}"
+			        AutomationProperties.AutomationId="{x:Static auto:ViewerAutomationIds.ToolbarFullscreen}"
+			        AutomationProperties.Name="{x:Static lang:Strings.Fullscreen}">
+				<StackPanel Spacing="2">
+					<svg:Svg Width="22" Height="22" Path="avares://FSpot.Avalonia/Icons/view-fullscreen.svg" />
+					<TextBlock Text="{x:Static lang:Strings.Fullscreen}" FontSize="11" HorizontalAlignment="Center" />
+				</StackPanel>
+			</Button>
+			<Button Classes="tool" ToolTip.Tip="{x:Static lang:Strings.ViewPhotosInASlideshow}" Command="{Binding SlideshowCommand}"
+			        AutomationProperties.AutomationId="{x:Static auto:ViewerAutomationIds.ToolbarSlideshow}"
+			        AutomationProperties.Name="{x:Static lang:Strings.Slideshow}">
+				<StackPanel Spacing="2">
+					<svg:Svg Width="22" Height="22" Path="avares://FSpot.Avalonia/Icons/film-roll-22.svg" />
+					<TextBlock Text="{x:Static lang:Strings.Slideshow}" FontSize="11" HorizontalAlignment="Center" />
+				</StackPanel>
+			</Button>
+		</StackPanel>
+
+		<Grid DockPanel.Dock="Bottom" ColumnDefinitions="*,Auto,*" Margin="6,2" IsVisible="{Binding !IsFullScreen}">
+			<TextBlock Grid.Column="1" Text="{Binding StatusText}" VerticalAlignment="Center"
+			           AutomationProperties.AutomationId="{x:Static auto:ViewerAutomationIds.StatusText}"
+			           AutomationProperties.Name="{Binding StatusText}" />
+			<StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="4" Margin="6,0">
+				<Button Classes="tool" Padding="2" ToolTip.Tip="{x:Static auto:ViewerStrings.ZoomOut2}" Command="{Binding ZoomOutCommand}"
+				        AutomationProperties.AutomationId="{x:Static auto:ViewerAutomationIds.ZoomOut}"
+				        AutomationProperties.Name="{x:Static auto:ViewerStrings.ZoomOut2}">
+					<svg:Svg Width="14" Height="14" Path="avares://FSpot.Avalonia/Icons/view-far-22.svg" />
+				</Button>
+				<Slider Width="100" Minimum="0" Maximum="1" SmallChange="0.01" LargeChange="0.1"
+				        Value="{Binding NormalizedZoom}" VerticalAlignment="Center"
+				        AutomationProperties.AutomationId="{x:Static auto:ViewerAutomationIds.ZoomSlider}"
+				        AutomationProperties.Name="{x:Static lang:Strings.Zoom}" />
+				<Button Classes="tool" Padding="2" ToolTip.Tip="{x:Static auto:ViewerStrings.ZoomIn2}" Command="{Binding ZoomInCommand}"
+				        AutomationProperties.AutomationId="{x:Static auto:ViewerAutomationIds.ZoomIn}"
+				        AutomationProperties.Name="{x:Static auto:ViewerStrings.ZoomIn2}">
+					<svg:Svg Width="14" Height="14" Path="avares://FSpot.Avalonia/Icons/view-near-22.svg" />
+				</Button>
+			</StackPanel>
+		</Grid>
+
+		<Grid x:Name="BodyGrid" ColumnDefinitions="189,Auto,*">
+			<DockPanel x:Name="SidebarPanel" IsVisible="{Binding SidebarVisible}"
+			           AutomationProperties.AutomationId="{x:Static auto:ViewerAutomationIds.Sidebar}"
+			           AutomationProperties.Name="{x:Static auto:ViewerStrings.SidePane}">
+				<Grid DockPanel.Dock="Top" ColumnDefinitions="*,Auto" Margin="4,2">
+					<TextBlock Text="{x:Static lang:Strings.Folder}" VerticalAlignment="Center" FontWeight="SemiBold" />
+					<Button Grid.Column="1" Classes="tool" Padding="4,0" Content="×" Command="{Binding HideSidebarCommand}"
+					        AutomationProperties.AutomationId="{x:Static auto:ViewerAutomationIds.SidebarClose}"
+					        AutomationProperties.Name="{x:Static lang:Strings.Close}" />
+				</Grid>
+				<ListBox x:Name="FolderTray" ItemsSource="{Binding Items}" SelectedIndex="{Binding SelectedIndex}"
+				         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+				         AutomationProperties.AutomationId="{x:Static auto:ViewerAutomationIds.FolderTray}"
+				         AutomationProperties.Name="{x:Static lang:Strings.Folder}">
+					<ListBox.ItemsPanel>
+						<ItemsPanelTemplate>
+							<WrapPanel Orientation="Horizontal" />
+						</ItemsPanelTemplate>
+					</ListBox.ItemsPanel>
+					<ListBox.ItemTemplate>
+						<DataTemplate x:DataType="vm:ViewerItemViewModel">
+							<StackPanel Width="72" Spacing="2" AutomationProperties.Name="{Binding FileName}">
+								<Border Width="64" Height="64" HorizontalAlignment="Center">
+									<Image Source="{Binding Thumbnail}" Stretch="Uniform" />
+								</Border>
+								<TextBlock Text="{Binding FileName}" FontSize="10" TextTrimming="CharacterEllipsis"
+								           HorizontalAlignment="Center"
+								           IsVisible="{Binding $parent[Window].((vm:ViewerViewModel)DataContext).DisplayFileNames}" />
+							</StackPanel>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+			</DockPanel>
+			<GridSplitter Grid.Column="1" Width="4" ResizeDirection="Columns" IsVisible="{Binding SidebarVisible}" />
+			<Border Grid.Column="2" x:Name="ImageBackground">
+				<Border.ContextMenu>
+					<ContextMenu>
+						<MenuItem Header="{x:Static lang:Strings.RotateLeftMnemonic}" Command="{Binding RotateLeftCommand}" />
+						<MenuItem Header="{x:Static lang:Strings.RotateRightMnemonic}" Command="{Binding RotateRightCommand}" />
+						<Separator />
+						<MenuItem Header="{x:Static lang:Strings.SetAsBackground}" Command="{Binding SetAsBackgroundCommand}" />
+					</ContextMenu>
+				</Border.ContextMenu>
+				<ScrollViewer x:Name="ImageScroller" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+				              AutomationProperties.AutomationId="{x:Static auto:ViewerAutomationIds.ImageScroller}"
+				              AutomationProperties.Name="{x:Static auto:ViewerStrings.PhotoViewer}">
+					<Border x:Name="ImageFrame" HorizontalAlignment="Center" VerticalAlignment="Center">
+						<Image x:Name="PhotoImage" Stretch="Fill"
+						       AutomationProperties.AutomationId="{x:Static auto:ViewerAutomationIds.Image}"
+						       AutomationProperties.Name="{x:Static lang:Strings.Photo}" />
+					</Border>
+				</ScrollViewer>
+			</Border>
+		</Grid>
+	</DockPanel>
+</Window>
