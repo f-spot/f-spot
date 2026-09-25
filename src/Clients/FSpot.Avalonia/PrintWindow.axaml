@@ -1,0 +1,125 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:lang="using:FSpot.Resources.Lang"
+        xmlns:auto="using:FSpot.Avalonia"
+        x:Class="FSpot.Avalonia.PrintWindow"
+        Title="{x:Static lang:Strings.Print2}"
+        Width="720"
+        SizeToContent="Height"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False"
+        AutomationProperties.AutomationId="{x:Static auto:PrintAutomationIds.PrintWindow}"
+        AutomationProperties.Name="{x:Static lang:Strings.Print2}">
+	<Window.Styles>
+		<Style Selector="TextBlock.frame">
+			<Setter Property="FontWeight" Value="SemiBold" />
+			<Setter Property="Margin" Value="0,0,0,4" />
+		</Style>
+		<Style Selector="StackPanel.frame">
+			<Setter Property="Margin" Value="12,0,0,0" />
+			<Setter Property="Spacing" Value="4" />
+		</Style>
+	</Window.Styles>
+	<DockPanel Margin="16">
+		<Grid DockPanel.Dock="Bottom" ColumnDefinitions="Auto,*,Auto" Margin="0,12,0,0">
+			<Button Name="SavePdf" Classes="dialog" MinWidth="88" Click="OnSavePdf"
+			        AutomationProperties.AutomationId="{x:Static auto:PrintAutomationIds.PrintSavePdf}" />
+			<StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="8">
+				<Button Classes="dialog" MinWidth="88" Content="{x:Static lang:Strings.Cancel}" IsCancel="True" Click="OnCancel"
+				        AutomationProperties.AutomationId="{x:Static auto:PrintAutomationIds.PrintCancel}" />
+				<Button Name="PrintButton" Classes="dialog accent" MinWidth="88" Content="{x:Static lang:Strings.Print2}" IsDefault="True" Click="OnPrint"
+				        AutomationProperties.AutomationId="{x:Static auto:PrintAutomationIds.PrintOk}" />
+			</StackPanel>
+		</Grid>
+		<TabControl>
+			<TabItem Header="{x:Static lang:Strings.Print2}">
+				<Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto" ColumnSpacing="12" RowSpacing="10" Margin="0,12,0,0">
+					<TextBlock Text="{x:Static lang:Strings.PrintPrinter}" VerticalAlignment="Center" />
+					<ComboBox Name="Printer" x:FieldModifier="internal" Grid.Column="1" HorizontalAlignment="Stretch"
+					          AutomationProperties.AutomationId="{x:Static auto:PrintAutomationIds.PrintPrinter}"
+					          AutomationProperties.Name="{x:Static lang:Strings.PrintPrinter}" />
+					<TextBlock Name="CopiesLabel" Grid.Row="1" VerticalAlignment="Center" />
+					<NumericUpDown Name="Copies" x:FieldModifier="internal" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left"
+					               Minimum="1" Maximum="999" Value="1" Increment="1" FormatString="0" Width="140"
+					               AutomationProperties.AutomationId="{x:Static auto:PrintAutomationIds.PrintCopies}" />
+				</Grid>
+			</TabItem>
+			<TabItem Header="{x:Static lang:Strings.ImageSettings}">
+				<Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto,Auto" ColumnSpacing="16" RowSpacing="12" Margin="0,12,0,0">
+					<Border Grid.ColumnSpan="2" HorizontalAlignment="Center" Width="360" Height="254" Background="#808080">
+						<Image Name="Preview" x:FieldModifier="internal" Stretch="Uniform"
+						       AutomationProperties.AutomationId="{x:Static auto:PrintAutomationIds.PrintPreview}" />
+					</Border>
+
+					<StackPanel Grid.Row="1">
+						<TextBlock Classes="frame" Text="{x:Static lang:Strings.PhotosPerPage}" />
+						<Grid Classes="frame" ColumnDefinitions="Auto,Auto" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnSpacing="16" Margin="12,0,0,0"
+						      AutomationProperties.AutomationId="{x:Static auto:PrintAutomationIds.PrintPhotosPerPage}">
+							<RadioButton Name="Ppp1" x:FieldModifier="internal" GroupName="ppp" IsChecked="True" IsCheckedChanged="OnChanged" />
+							<RadioButton Name="Ppp2" x:FieldModifier="internal" Grid.Row="1" GroupName="ppp" IsCheckedChanged="OnChanged" />
+							<RadioButton Name="Ppp4" x:FieldModifier="internal" Grid.Row="2" GroupName="ppp" IsCheckedChanged="OnChanged" />
+							<RadioButton Name="Ppp9" x:FieldModifier="internal" Grid.Row="3" GroupName="ppp" IsCheckedChanged="OnChanged" />
+							<RadioButton Name="Ppp20" x:FieldModifier="internal" Grid.Row="4" GroupName="ppp" IsCheckedChanged="OnChanged" />
+							<RadioButton Name="Ppp30" x:FieldModifier="internal" Grid.Row="5" GroupName="ppp" IsCheckedChanged="OnChanged" />
+							<CheckBox Name="Repeat" x:FieldModifier="internal" Grid.Row="1" Grid.Column="1" Content="{x:Static lang:Strings.Repeat}" IsCheckedChanged="OnChanged"
+							          AutomationProperties.AutomationId="{x:Static auto:PrintAutomationIds.PrintRepeat}" />
+							<CheckBox Name="CropMarks" x:FieldModifier="internal" Grid.Row="2" Grid.Column="1" Content="{x:Static lang:Strings.PrintCutMarks}" IsCheckedChanged="OnChanged"
+							          AutomationProperties.AutomationId="{x:Static auto:PrintAutomationIds.PrintCropMarks}" />
+						</Grid>
+					</StackPanel>
+
+					<StackPanel Grid.Row="1" Grid.Column="1">
+						<TextBlock Classes="frame" Text="{x:Static lang:Strings.PhotosLayout}" />
+						<StackPanel Classes="frame">
+							<CheckBox Name="FullPage" x:FieldModifier="internal" Content="{x:Static lang:Strings.FullPageNomargin}" IsCheckedChanged="OnChanged"
+							          AutomationProperties.AutomationId="{x:Static auto:PrintAutomationIds.PrintFullPage}" />
+							<StackPanel Orientation="Horizontal" Spacing="12">
+								<RadioButton Name="Zoom" x:FieldModifier="internal" GroupName="fit" Content="{x:Static lang:Strings.Zoom}" IsChecked="True" IsCheckedChanged="OnChanged"
+								             AutomationProperties.AutomationId="{x:Static auto:PrintAutomationIds.PrintZoom}" />
+								<RadioButton Name="Fill" x:FieldModifier="internal" GroupName="fit" Content="{x:Static lang:Strings.Fill}" IsCheckedChanged="OnChanged"
+								             AutomationProperties.AutomationId="{x:Static auto:PrintAutomationIds.PrintFill}" />
+								<RadioButton Name="Scaled" x:FieldModifier="internal" GroupName="fit" Content="{x:Static lang:Strings.Scaled}" IsCheckedChanged="OnChanged"
+								             AutomationProperties.AutomationId="{x:Static auto:PrintAutomationIds.PrintScaled}" />
+							</StackPanel>
+							<CheckBox Name="WhiteBorders" x:FieldModifier="internal" Content="{x:Static lang:Strings.WhiteBorders}" IsCheckedChanged="OnChanged"
+							          AutomationProperties.AutomationId="{x:Static auto:PrintAutomationIds.PrintWhiteBorders}" />
+						</StackPanel>
+					</StackPanel>
+
+					<StackPanel Grid.Row="2" Grid.RowSpan="2">
+						<TextBlock Classes="frame" Text="{x:Static lang:Strings.PhotosInfos}" />
+						<StackPanel Classes="frame">
+							<CheckBox Name="PrintFileName" x:FieldModifier="internal" Content="{x:Static lang:Strings.PrintFileName}" IsCheckedChanged="OnChanged"
+							          AutomationProperties.AutomationId="{x:Static auto:PrintAutomationIds.PrintFileName}" />
+							<CheckBox Name="PrintDate" x:FieldModifier="internal" Content="{x:Static lang:Strings.PrintPhotoDate}" IsCheckedChanged="OnChanged"
+							          AutomationProperties.AutomationId="{x:Static auto:PrintAutomationIds.PrintDate}" />
+							<CheckBox Name="PrintTime" x:FieldModifier="internal" Content="{x:Static lang:Strings.PrintPhotoTime}" IsCheckedChanged="OnChanged"
+							          AutomationProperties.AutomationId="{x:Static auto:PrintAutomationIds.PrintTime}" />
+							<CheckBox Name="PrintTags" x:FieldModifier="internal" Content="{x:Static lang:Strings.PrintPhotoTags}" IsCheckedChanged="OnChanged"
+							          AutomationProperties.AutomationId="{x:Static auto:PrintAutomationIds.PrintTags}" />
+							<CheckBox Name="PrintComment" x:FieldModifier="internal" Content="{x:Static lang:Strings.PrintPhotoComment}" IsCheckedChanged="OnChanged"
+							          AutomationProperties.AutomationId="{x:Static auto:PrintAutomationIds.PrintComment}" />
+						</StackPanel>
+					</StackPanel>
+
+					<StackPanel Grid.Row="2" Grid.Column="1">
+						<TextBlock Classes="frame" Text="{x:Static lang:Strings.CustomText}" />
+						<TextBox Name="CustomText" x:FieldModifier="internal" Margin="12,0,0,0" TextChanged="OnTextChanged"
+						         AutomationProperties.AutomationId="{x:Static auto:PrintAutomationIds.PrintCustomText}"
+						         AutomationProperties.Name="{x:Static lang:Strings.CustomText}" />
+					</StackPanel>
+
+					<StackPanel Grid.Row="3" Grid.Column="1">
+						<TextBlock Classes="frame" Text="{x:Static lang:Strings.PageSetup}" />
+						<StackPanel Classes="frame">
+							<TextBlock Name="PaperCaption" x:FieldModifier="internal"
+							           AutomationProperties.AutomationId="{x:Static auto:PrintAutomationIds.PrintPaperCaption}" />
+							<Button Content="{x:Static lang:Strings.SetPageSizeAndOrientation}" Click="OnPageSetup"
+							        AutomationProperties.AutomationId="{x:Static auto:PrintAutomationIds.PrintPageSetup}" />
+						</StackPanel>
+					</StackPanel>
+				</Grid>
+			</TabItem>
+		</TabControl>
+	</DockPanel>
+</Window>

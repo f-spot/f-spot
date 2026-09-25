@@ -1608,12 +1608,13 @@ public partial class MainWindowViewModel : ObservableObject
 	[RelayCommand]
 	async Task PrintAsync ()
 	{
-		var paths = PhotoFileActions.SelectedPaths (MutationItems ().Select (item => item.Photo));
-		if (paths.Count == 0) {
+		var photos = MutationItems ().Select (item => item.Photo).ToList ();
+		if (PhotoFileActions.SelectedPaths (photos).Count == 0) {
 			await shell.ShowWarningAsync (Strings.Print, Strings.NoSelectionAvailable);
 			return;
 		}
-		await shell.PrintPhotosAsync (paths, PageSetup);
+		if (await shell.PrintPhotoItemsAsync (photos, PageSetup) is PrintPageSetup setup)
+			PageSetup = setup;
 	}
 
 	[RelayCommand]

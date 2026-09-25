@@ -1,0 +1,19 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:auto="using:FSpot.Avalonia"
+        x:Class="FSpot.Avalonia.ProgressWindow"
+        Width="420"
+        SizeToContent="Height"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False"
+        AutomationProperties.AutomationId="{x:Static auto:PrintAutomationIds.ProgressWindow}">
+	<StackPanel Margin="16" Spacing="10">
+		<TextBlock Name="Message" x:FieldModifier="internal" TextWrapping="Wrap"
+		           AutomationProperties.AutomationId="{x:Static auto:PrintAutomationIds.ProgressMessage}" />
+		<ProgressBar Name="Bar" x:FieldModifier="internal" Minimum="0" Height="8"
+		             AutomationProperties.AutomationId="{x:Static auto:PrintAutomationIds.ProgressBar}" />
+		<Button Name="StopButton" x:FieldModifier="internal" Classes="dialog" MinWidth="88" HorizontalAlignment="Right"
+		        IsCancel="True" Click="OnStop"
+		        AutomationProperties.AutomationId="{x:Static auto:PrintAutomationIds.ProgressStop}" />
+	</StackPanel>
+</Window>

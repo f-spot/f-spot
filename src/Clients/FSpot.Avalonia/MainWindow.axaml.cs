@@ -4,8 +4,11 @@ using Avalonia.Platform.Storage;
 using Avalonia.Threading;
 
 using FSpot;
+using FSpot.Avalonia.Mail;
+using FSpot.Avalonia.Printing;
 using FSpot.Avalonia.Services;
 using FSpot.Avalonia.ViewModels;
+using FSpot.Core;
 using FSpot.Database;
 using FSpot.Resources.Lang;
 
@@ -116,13 +119,10 @@ public partial class MainWindow : Window, IAvaloniaShell
 	}
 
 	public Task PrintPhotosAsync (IReadOnlyList<string> paths, PrintPageSetup? setup = null)
-	{
-		string paper = setup?.Caption ?? string.Empty;
-		string body = string.IsNullOrEmpty (paper)
-			? string.Join (Environment.NewLine, paths)
-			: paper + Environment.NewLine + string.Join (Environment.NewLine, paths);
-		return ShowWarningAsync (Strings.Print, body);
-	}
+		=> PrintWindowHost.ShowAsync (this, paths.Select (path => new PrintPhoto (path, Path.GetFileName (path), string.Empty, string.Empty, string.Empty, string.Empty)).ToList (), setup ?? PrintPageSetup.Letter);
+
+	public Task<PrintPageSetup?> PrintPhotoItemsAsync (IReadOnlyList<IPhoto> photos, PrintPageSetup setup)
+		=> PrintWindowHost.ShowAsync (this, PrintWindowHost.Collect (photos), setup);
 
 	public async Task CopyPhotosAsync (IReadOnlyList<string> paths)
 	{
@@ -141,17 +141,13 @@ public partial class MainWindow : Window, IAvaloniaShell
 
 	public async Task<PrintPageSetup?> PromptPageSetupAsync (PrintPageSetup current)
 	{
-		string? paper = await PromptAsync (Strings.PageSetup2, Strings.PageSetupPaperPrompt,
-			current.PaperWidthMm >= 210 && current.PaperWidthMm <= 211 ? "A4" : "Letter");
-		if (string.IsNullOrWhiteSpace (paper))
-			return null;
-		string? orientation = await PromptAsync (Strings.PageSetup2, Strings.PageSetupOrientationPrompt,
-			current.Landscape ? "Landscape" : "Portrait");
-		return PrintPageSetup.FromPrompt (paper, orientation);
+		var dialog = new PageSetupWindow (current);
+		await dialog.ShowDialog (this);
+		return dialog.Result;
 	}
 
 	public Task MailPhotosAsync (IReadOnlyList<string> paths)
-		=> ShowWarningAsync (Strings.SendMail, string.Join (Environment.NewLine, paths));
+		=> MailSender.SendAsync (this, paths);
 
 	public void ShowSlideshow (IReadOnlyList<string> paths, int startIndex)
 	{

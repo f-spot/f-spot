@@ -11,10 +11,15 @@ static class InstalledProfileNames
 {
 	static ProfileCatalog? catalog;
 
+	static ProfileCatalog Catalog => catalog ??= ProfileCatalog.Build (built => built.AddInstalled ());
+
+	// The profile the preferences stored under name, owned by the shared catalog.
+	public static Profile? Find (string? name)
+		=> !string.IsNullOrEmpty (name) && Catalog.Profiles.TryGetValue (name, out var profile) ? profile : null;
+
 	public static IReadOnlyList<string> For (IccProfileClass deviceClass)
 	{
-		catalog ??= ProfileCatalog.Build (built => built.AddInstalled ());
-		return catalog.Profiles
+		return Catalog.Profiles
 			.Where (pair => pair.Value.DeviceClass == deviceClass)
 			.Select (pair => pair.Key)
 			.OrderBy (name => name, StringComparer.OrdinalIgnoreCase)

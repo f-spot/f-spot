@@ -1,0 +1,37 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:lang="using:FSpot.Resources.Lang"
+        xmlns:auto="using:FSpot.Avalonia"
+        x:Class="FSpot.Avalonia.PageSetupWindow"
+        Title="{x:Static lang:Strings.PageSetup}"
+        Width="420"
+        SizeToContent="Height"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False"
+        AutomationProperties.AutomationId="{x:Static auto:PrintAutomationIds.PageSetupWindow}"
+        AutomationProperties.Name="{x:Static lang:Strings.PageSetup}">
+	<StackPanel Margin="16" Spacing="12">
+		<Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="12" RowSpacing="10">
+			<TextBlock Text="{x:Static lang:Strings.PrintPaperSize}" VerticalAlignment="Center" />
+			<ComboBox Name="Paper" x:FieldModifier="internal" Grid.Column="1" HorizontalAlignment="Stretch"
+			          SelectionChanged="OnChanged"
+			          AutomationProperties.AutomationId="{x:Static auto:PrintAutomationIds.PageSetupPaper}"
+			          AutomationProperties.Name="{x:Static lang:Strings.PrintPaperSize}" />
+			<TextBlock Grid.Row="1" Text="{x:Static lang:Strings.Orientation}" VerticalAlignment="Center" />
+			<StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Spacing="12">
+				<RadioButton Name="Portrait" x:FieldModifier="internal" GroupName="orientation"
+				             Content="{x:Static lang:Strings.PrintPortrait}" IsCheckedChanged="OnChanged"
+				             AutomationProperties.AutomationId="{x:Static auto:PrintAutomationIds.PageSetupPortrait}" />
+				<RadioButton Name="Landscape" x:FieldModifier="internal" GroupName="orientation"
+				             Content="{x:Static lang:Strings.PrintLandscape}" IsCheckedChanged="OnChanged"
+				             AutomationProperties.AutomationId="{x:Static auto:PrintAutomationIds.PageSetupLandscape}" />
+			</StackPanel>
+			<TextBlock Name="SizeCaption" x:FieldModifier="internal" Grid.Row="2" Grid.Column="1" Opacity="0.7"
+			           AutomationProperties.AutomationId="{x:Static auto:PrintAutomationIds.PageSetupSize}" />
+		</Grid>
+		<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
+			<Button Classes="dialog" MinWidth="88" Content="{x:Static lang:Strings.Cancel}" IsCancel="True" Click="OnCancel" />
+			<Button Classes="dialog accent" MinWidth="88" Content="{x:Static lang:Strings.Ok}" IsDefault="True" Click="OnOk" />
+		</StackPanel>
+	</StackPanel>
+</Window>

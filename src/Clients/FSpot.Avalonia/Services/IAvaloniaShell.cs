@@ -4,6 +4,7 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using FSpot;
+using FSpot.Core;
 
 namespace FSpot.Avalonia.Services;
 
@@ -24,6 +25,12 @@ public interface IAvaloniaShell
 	Task<uint?> PickImportRollAsync (IReadOnlyList<(uint Id, string Label)> rolls);
 	Task PrintPhotosAsync (IReadOnlyList<string> paths, PrintPageSetup? setup = null);
 	Task MailPhotosAsync (IReadOnlyList<string> paths);
+	// The print dialog; returns the page setup it ended with, or null when unchanged.
+	async Task<PrintPageSetup?> PrintPhotoItemsAsync (IReadOnlyList<IPhoto> photos, PrintPageSetup setup)
+	{
+		await PrintPhotosAsync (PhotoFileActions.SelectedPaths (photos), setup);
+		return null;
+	}
 	Task CopyPhotosAsync (IReadOnlyList<string> paths) => Task.CompletedTask;
 	Task SetDesktopBackgroundAsync (string path) => Task.CompletedTask;
 	Task<PrintPageSetup?> PromptPageSetupAsync (PrintPageSetup current) => Task.FromResult<PrintPageSetup?> (null);

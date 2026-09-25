@@ -4996,5 +4996,155 @@ namespace FSpot.Resources.Lang {
                 return ResourceManager.GetString("YouCanChooseHowToDisplayTransparentPartsInImagesThisOptionHasNoEffectOnPhotosButSettingThisValueToCHECKPATTERNOrCUSTOMCOLORCouldBeUsefulWhenViewingIconsOrOtherArtworkWithTransparentParts", resourceCulture);
             }
         }
+        public static string PrintPrinter {
+            get {
+                return ResourceManager.GetString("PrintPrinter", resourceCulture);
+            }
+        }
+        public static string PrintPaperSize {
+            get {
+                return ResourceManager.GetString("PrintPaperSize", resourceCulture);
+            }
+        }
+        public static string PrintPortrait {
+            get {
+                return ResourceManager.GetString("PrintPortrait", resourceCulture);
+            }
+        }
+        public static string PrintLandscape {
+            get {
+                return ResourceManager.GetString("PrintLandscape", resourceCulture);
+            }
+        }
+        public static string PrintSaveAsPdf {
+            get {
+                return ResourceManager.GetString("PrintSaveAsPdf", resourceCulture);
+            }
+        }
+        public static string PrintDefaultPrinter {
+            get {
+                return ResourceManager.GetString("PrintDefaultPrinter", resourceCulture);
+            }
+        }
+        public static string PrintFailedXMessage {
+            get {
+                return ResourceManager.GetString("PrintFailedXMessage", resourceCulture);
+            }
+        }
+        public static string ProgressStop {
+            get {
+                return ResourceManager.GetString("ProgressStop", resourceCulture);
+            }
+        }
+        public static string MailClientFailedXMessage {
+            get {
+                return ResourceManager.GetString("MailClientFailedXMessage", resourceCulture);
+            }
+        }
+        public static string BSummaryB {
+            get {
+                return ResourceManager.GetString("BSummaryB", resourceCulture);
+            }
+        }
+        public static string CreateMail2 {
+            get {
+                return ResourceManager.GetString("CreateMail2", resourceCulture);
+            }
+        }
+        public static string NumberOfCopies {
+            get {
+                return ResourceManager.GetString("NumberOfCopies", resourceCulture);
+            }
+        }
+        public static string CreateAMailWithTheSelectedPhotosPossiblyResizedAttached {
+            get {
+                return ResourceManager.GetString("CreateAMailWithTheSelectedPhotosPossiblyResizedAttached", resourceCulture);
+            }
+        }
+        public static string CreateMail {
+            get {
+                return ResourceManager.GetString("CreateMail", resourceCulture);
+            }
+        }
+        public static string DoNotSendAMail {
+            get {
+                return ResourceManager.GetString("DoNotSendAMail", resourceCulture);
+            }
+        }
+        public static string EstimatedNewSize {
+            get {
+                return ResourceManager.GetString("EstimatedNewSize", resourceCulture);
+            }
+        }
+        public static string ExtraLarge {
+            get {
+                return ResourceManager.GetString("ExtraLarge", resourceCulture);
+            }
+        }
+        public static string Large {
+            get {
+                return ResourceManager.GetString("Large", resourceCulture);
+            }
+        }
+        public static string Medium {
+            get {
+                return ResourceManager.GetString("Medium", resourceCulture);
+            }
+        }
+        public static string NumberOfPictures {
+            get {
+                return ResourceManager.GetString("NumberOfPictures", resourceCulture);
+            }
+        }
+        public static string Orientation {
+            get {
+                return ResourceManager.GetString("Orientation", resourceCulture);
+            }
+        }
+        public static string OriginalSizePossibleVeryLargeFileSize {
+            get {
+                return ResourceManager.GetString("OriginalSizePossibleVeryLargeFileSize", resourceCulture);
+            }
+        }
+        public static string S1024Px {
+            get {
+                return ResourceManager.GetString("S1024Px", resourceCulture);
+            }
+        }
+        public static string S320Px {
+            get {
+                return ResourceManager.GetString("S320Px", resourceCulture);
+            }
+        }
+        public static string S480Px {
+            get {
+                return ResourceManager.GetString("S480Px", resourceCulture);
+            }
+        }
+        public static string S640Px {
+            get {
+                return ResourceManager.GetString("S640Px", resourceCulture);
+            }
+        }
+        public static string S800Px {
+            get {
+                return ResourceManager.GetString("S800Px", resourceCulture);
+            }
+        }
+        public static string Small {
+            get {
+                return ResourceManager.GetString("Small", resourceCulture);
+            }
+        }
+        public static string Tiny {
+            get {
+                return ResourceManager.GetString("Tiny", resourceCulture);
+            }
+        }
+        public static string TotalOriginalSize {
+            get {
+                return ResourceManager.GetString("TotalOriginalSize", resourceCulture);
+            }
+        }
     }
 }
