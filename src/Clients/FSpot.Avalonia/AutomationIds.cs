@@ -126,6 +126,7 @@ public static class AutomationIds
 	public const string PhotoRating = "Main.PhotoRating";
 
 	public const string ImportSource = "Import.Source";
+	public const string ImportSourceStatus = "Import.SourceStatus";
 	public const string ImportPhotoList = "Import.PhotoList";
 	public const string ImportPreview = "Import.Preview";
 	public const string ImportAttachTags = "Import.AttachTags";
@@ -185,4 +186,24 @@ public static class AutomationIds
 	public const string AdjustTimeSpace = "AdjustTime.Space";
 	public const string AdjustTimeSpacing = "AdjustTime.Spacing";
 	public const string AdjustTimeTray = "AdjustTime.Tray";
+
+	public const string ImportFailureWindow = "ImportFailure.Window";
+	public const string ImportFailureHeader = "ImportFailure.Header";
+	public const string ImportFailureMessage = "ImportFailure.Message";
+	public const string ImportFailureDetails = "ImportFailure.Details";
+	public const string ImportFailureList = "ImportFailure.List";
+	public const string ImportFailureClose = "ImportFailure.Close";
+
+	public const string ProgressWindow = "Progress.Window";
+	public const string ProgressMessage = "Progress.Message";
+	public const string ProgressCount = "Progress.Count";
+	public const string ProgressBarControl = "Progress.Bar";
+	public const string ProgressCancel = "Progress.Cancel";
+	public const string ProgressRetry = "Progress.Retry";
+	public const string ProgressSkip = "Progress.Skip";
+
+	public const string RepairDbWindow = "RepairDb.Window";
+	public const string RepairDbHeading = "RepairDb.Heading";
+	public const string RepairDbMessage = "RepairDb.Message";
+	public const string RepairDbClose = "RepairDb.Close";
 }

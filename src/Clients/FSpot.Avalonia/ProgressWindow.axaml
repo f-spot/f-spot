@@ -4,16 +4,24 @@
         x:Class="FSpot.Avalonia.ProgressWindow"
         Width="420"
         SizeToContent="Height"
-        WindowStartupLocation="CenterOwner"
         CanResize="False"
-        AutomationProperties.AutomationId="{x:Static auto:PrintAutomationIds.ProgressWindow}">
-	<StackPanel Margin="16" Spacing="10">
-		<TextBlock Name="Message" x:FieldModifier="internal" TextWrapping="Wrap"
-		           AutomationProperties.AutomationId="{x:Static auto:PrintAutomationIds.ProgressMessage}" />
-		<ProgressBar Name="Bar" x:FieldModifier="internal" Minimum="0" Height="8"
-		             AutomationProperties.AutomationId="{x:Static auto:PrintAutomationIds.ProgressBar}" />
-		<Button Name="StopButton" x:FieldModifier="internal" Classes="dialog" MinWidth="88" HorizontalAlignment="Right"
-		        IsCancel="True" Click="OnStop"
-		        AutomationProperties.AutomationId="{x:Static auto:PrintAutomationIds.ProgressStop}" />
+        ShowInTaskbar="False"
+        WindowStartupLocation="CenterOwner"
+        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ProgressWindow}">
+	<StackPanel Margin="20" Spacing="10">
+		<TextBlock Name="MessageBlock" TextWrapping="Wrap"
+		           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ProgressMessage}" />
+		<ProgressBar Name="Bar" Minimum="0" Maximum="1" Height="8"
+		             AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ProgressBarControl}" />
+		<TextBlock Name="CountBlock" HorizontalAlignment="Right" Opacity="0.7" IsVisible="False"
+		           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ProgressCount}" />
+		<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8" Margin="0,6,0,0">
+			<Button Name="RetryButton" IsVisible="False" Click="OnRetry"
+			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ProgressRetry}" />
+			<Button Name="SkipButton" IsVisible="False" Click="OnSkip"
+			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ProgressSkip}" />
+			<Button Name="CancelButton" IsVisible="False" Click="OnCancel"
+			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ProgressCancel}" />
+		</StackPanel>
 	</StackPanel>
 </Window>

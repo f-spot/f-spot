@@ -72,12 +72,26 @@ public partial class App : Application
 		Database = new Db (
 			container.Resolve<IImageFileFactory> (),
 			container.Resolve<FSpot.Thumbnail.IThumbnailService> (),
-			new SilentUpdaterUI ());
+			new AvaloniaUpdaterUI ());
 		string path = Path.Combine (FSpotConfiguration.BaseDirectory, FSpotConfiguration.DatabaseName);
 		try {
 			Database.Init (path, true);
 		} catch (Exception ex) {
 			Logger.Log.Error (ex, "Failed to open the F-Spot catalog at {Path}", path);
+			RepairDatabase (Database, ex);
+		}
+	}
+
+	// Matches FSpot.Gtk's App.Database: when the catalog fails to load,
+	// move the broken file aside and start over with a fresh one, telling
+	// the person where their old database went (RepairDbDialog).
+	static void RepairDatabase (Db database, Exception loadError)
+	{
+		try {
+			string backupPath = database.Repair ();
+			RepairDbNoticeWindow.ShowBlocking (loadError, backupPath);
+		} catch (Exception repairError) {
+			Logger.Log.Error (repairError, "Failed to repair the F-Spot catalog");
 		}
 	}
 }

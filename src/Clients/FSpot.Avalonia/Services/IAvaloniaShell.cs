@@ -8,6 +8,8 @@ using FSpot.Avalonia.Dialogs;
 using FSpot.Core;
 using FSpot.Resources.Lang;
 
+using Hyena;
+
 namespace FSpot.Avalonia.Services;
 
 public interface IAvaloniaShell
@@ -17,6 +19,10 @@ public interface IAvaloniaShell
 	void FocusFind ();
 	Task ShowAboutAsync ();
 	Task ShowWarningAsync (string title, string message);
+	// Falls back to a plain warning (still listing every failed file) for a
+	// shell that doesn't override it, e.g. the NullShell test double.
+	Task ShowImportFailuresAsync (IReadOnlyList<SafeUri> failed)
+		=> failed.Count == 0 ? Task.CompletedTask : ShowWarningAsync (Strings.ImportFailures, ImportCompletion.FormatFailures (failed));
 	Task<bool> ShowImportAsync ();
 	Task<bool> ShowImportAsync (IReadOnlyList<string> paths);
 	Task<string?> PickFolderAsync (string title);
@@ -71,4 +77,9 @@ public interface IAvaloniaShell
 	Task<double?> PromptHoursOffsetAsync () => Task.FromResult<double?> (null);
 	Task<TimeAdjustChoice?> PromptAdjustTimeAsync (IReadOnlyList<(string Name, DateTime Time, string Path)> photos)
 		=> Task.FromResult<TimeAdjustChoice?> (null);
+	// A modeless progress window for a long batch operation, matching
+	// FSpot.Gtk's ProgressDialog/ThreadProgressDialog: falls back to a no-op
+	// handle for a shell that doesn't show real UI.
+	IProgressHandle ShowProgress (string title, int total, ProgressCancelKind cancelKind = ProgressCancelKind.None)
+		=> NullProgressHandle.Instance;
 }

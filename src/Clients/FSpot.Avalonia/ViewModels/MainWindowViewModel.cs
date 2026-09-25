@@ -2059,10 +2059,22 @@ public partial class MainWindowViewModel : ObservableObject
 	[RelayCommand]
 	async Task ImportFromCameraAsync ()
 	{
-		if (DeviceImport.Cameras ().Count == 0) {
+		var fileSystem = TinyIoCContainer.Current.Resolve<FSpot.FileSystem.IFileSystem> ();
+		var sources = DeviceImport.Sources (fileSystem);
+		if (sources.Count == 0) {
 			await shell.ShowWarningAsync (Strings.ImportFromCamera, DeviceImport.EmptyMessage);
 			return;
 		}
+
+		// A single detected camera/card goes straight to it, matching the GTK
+		// combo pre-selecting the only mounted source; several sources fall
+		// back to the Import window's own source picker.
+		if (sources.Count == 1) {
+			if (await shell.ShowImportAsync (new[] { sources[0].Root.LocalPath }))
+				LoadCatalog ();
+			return;
+		}
+
 		await ImportAsync ();
 	}
 

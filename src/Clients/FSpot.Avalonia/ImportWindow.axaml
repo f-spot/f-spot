@@ -37,6 +37,7 @@
 				<Label Content="{x:Static lang:Strings.AttachTags}" Target="{Binding #AttachTagsBox}" VerticalAlignment="Center" Margin="0,0,8,0" />
 				<TextBox x:Name="AttachTagsBox"
 				         Grid.Column="1"
+				         IsEnabled="{Binding !IsBusy}"
 				         Text="{Binding AttachTagsText}"
 				         PlaceholderText="{x:Static lang:Strings.AttachTagsPlaceholder}"
 				         AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportAttachTags}"
@@ -44,22 +45,25 @@
 			</Grid>
 			<Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto">
 				<CheckBox Content="{x:Static lang:Strings.DetectDuplicates2}" IsChecked="{Binding DuplicateDetect}"
+				          IsEnabled="{Binding !IsBusy}"
 				          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportDetectDuplicates}" />
 				<CheckBox Grid.Column="1"
 				          Content="{x:Static lang:Strings.CopyFilesToThePhotosFolder2}"
 				          IsChecked="{Binding CopyFiles}"
+				          IsEnabled="{Binding !IsBusy}"
 				          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportCopyFiles}" />
 				<CheckBox Grid.Row="1"
 				          Content="{x:Static lang:Strings.IncludeSubfolders2}"
 				          IsChecked="{Binding RecurseSubdirectories}"
+				          IsEnabled="{Binding !IsBusy}"
 				          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportIncludeSubfolders}" />
 				<StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Spacing="4">
 					<CheckBox Content="{x:Static lang:Strings.RemoveOriginalFilesAfterImport}"
 					          IsChecked="{Binding RemoveOriginals}"
-					          IsEnabled="{Binding RemoveOriginalsEnabled}"
+					          IsEnabled="{Binding CanEditRemoveOriginals}"
 					          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportRemoveOriginals}" />
 					<Button Content="!"
-					        IsEnabled="{Binding RemoveOriginalsEnabled}"
+					        IsEnabled="{Binding CanEditRemoveOriginals}"
 					        Command="{Binding WarnRemoveOriginalsCommand}"
 					        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportRemoveOriginalsWarning}"
 					        AutomationProperties.Name="{x:Static lang:Strings.WarningAboutRemovingOriginals}" />
@@ -67,6 +71,7 @@
 				<CheckBox Grid.Row="2"
 				          Content="{x:Static lang:Strings.MergeRawAndJpegOnImport}"
 				          IsChecked="{Binding MergeRawAndJpeg}"
+				          IsEnabled="{Binding !IsBusy}"
 				          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportMergeRawJpeg}" />
 			</Grid>
 		</StackPanel>
@@ -85,12 +90,24 @@
 		           AutomationProperties.Name="{Binding StatusText}" />
 
 		<StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="8" Margin="0,0,0,8">
-			<Label Target="{Binding #ImportSourceButton}" VerticalAlignment="Center">
+			<Label Target="{Binding #ImportSourceCombo}" VerticalAlignment="Center">
 				<primitives:AccessText Text="{x:Static lang:Strings.ImportFrom2}" />
 			</Label>
-			<Button x:Name="ImportSourceButton" Content="{Binding SourceLabel}" Command="{Binding ChooseFolderCommand}"
-			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportSource}"
-			        AutomationProperties.Name="{x:Static lang:Strings.ImportFrom}" />
+			<ComboBox x:Name="ImportSourceCombo" MinWidth="220"
+			          IsEnabled="{Binding !IsBusy}"
+			          ItemsSource="{Binding SourceOptions}"
+			          SelectedItem="{Binding SelectedSourceOption}"
+			          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportSource}"
+			          AutomationProperties.Name="{x:Static lang:Strings.ImportFrom}">
+				<ComboBox.ItemTemplate>
+					<DataTemplate DataType="vm:ImportSourceOption">
+						<TextBlock Text="{Binding Label}" />
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
+			<TextBlock Text="{x:Static lang:Strings.NoCamerasDetected}" VerticalAlignment="Center" Opacity="0.7"
+			           IsVisible="{Binding !HasDetectedSources}"
+			           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportSourceStatus}" />
 		</StackPanel>
 
 		<Grid ColumnDefinitions="220,Auto,*">

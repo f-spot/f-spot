@@ -12,6 +12,8 @@ using FSpot.Core;
 using FSpot.Database;
 using FSpot.Resources.Lang;
 
+using Hyena;
+
 namespace FSpot.Avalonia;
 
 public partial class MainWindow : Window, IAvaloniaShell
@@ -138,6 +140,17 @@ public partial class MainWindow : Window, IAvaloniaShell
 
 	public Task ShowWarningAsync (string title, string message)
 		=> MessageDialog.ShowAsync (this, title, message, MessageDialogKind.Warning);
+
+	public Task ShowImportFailuresAsync (IReadOnlyList<SafeUri> failed)
+		=> failed.Count == 0 ? Task.CompletedTask : ImportFailureWindow.Create (failed).ShowDialog (this);
+
+	public IProgressHandle ShowProgress (string title, int total, ProgressCancelKind cancelKind = ProgressCancelKind.None)
+	{
+		string? cancelCaption = cancelKind == ProgressCancelKind.Cancelable ? Strings.Cancel : null;
+		var window = ProgressWindow.Create (title, total, cancelCaption);
+		window.Show (this);
+		return new WindowProgressHandle (window);
+	}
 
 	public Task<bool> ShowImportAsync ()
 		=> ShowImportAsync (Array.Empty<string> ());

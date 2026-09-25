@@ -25,12 +25,9 @@ public static class ImportCompletion
 		return Strings.ImportFailures + Environment.NewLine + string.Join (Environment.NewLine, names);
 	}
 
-	public static async Task ReportFailuresAsync (IAvaloniaShell shell, IEnumerable<SafeUri> failed)
+	public static Task ReportFailuresAsync (IAvaloniaShell shell, IEnumerable<SafeUri> failed)
 	{
-		string message = FormatFailures (failed);
-		if (message.Length == 0)
-			return;
-
-		await shell.ShowWarningAsync (Strings.ImportFailures, message);
+		var list = failed as IReadOnlyList<SafeUri> ?? failed.ToList ();
+		return shell.ShowImportFailuresAsync (list);
 	}
 }

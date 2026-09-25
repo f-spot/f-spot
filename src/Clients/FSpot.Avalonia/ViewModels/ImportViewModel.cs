@@ -48,6 +48,11 @@ public partial class ImportViewModel : ObservableObject
 	string? sourcePath;
 
 	[ObservableProperty]
+	ImportSourceOption? selectedSourceOption;
+
+	bool suppressSourceSelection;
+
+	[ObservableProperty]
 	PhotoItemViewModel? selectedPhoto;
 
 	[ObservableProperty]
@@ -98,13 +103,16 @@ public partial class ImportViewModel : ObservableObject
 		DuplicateDetect = Preferences.DuplicateDetect;
 		MergeRawAndJpeg = Preferences.MergeRawAndJpeg;
 		RemoveOriginals = Preferences.RemoveOriginals;
+		RefreshSourceOptions ();
 	}
 
 	public ImportPreferences Preferences { get; }
 	public ObservableCollection<PhotoItemViewModel> Photos { get; } = [];
+	public ObservableCollection<ImportSourceOption> SourceOptions { get; } = [];
 	public bool CanImport => Photos.Count > 0 && !IsBusy;
 	public bool RemoveOriginalsEnabled => CopyFiles;
 	public bool IsProgressVisible => IsBusy || IsScanning;
+	public bool HasDetectedSources { get; private set; }
 
 	partial void OnIsBusyChanged (bool value)
 		=> OnPropertyChanged (nameof (IsProgressVisible));
@@ -155,6 +163,59 @@ public partial class ImportViewModel : ObservableObject
 		SourceLabel = paths.Count == 1
 			? Path.GetFileName (paths[0].TrimEnd (Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar))
 			: string.Format (Strings.XPhotos, paths.Count);
+
+		// The dropped files/folders aren't one of the picker's regular
+		// sources; show them as a one-off entry so the combo still reflects
+		// what's about to be scanned.
+		suppressSourceSelection = true;
+		var dropped = ImportSourceOption.ForSource (SourceLabel, SourcePath ?? string.Empty);
+		SourceOptions.Insert (0, dropped);
+		SelectedSourceOption = dropped;
+		suppressSourceSelection = false;
+
+		_ = ScanAsync ();
+	}
+
+	// Rebuilds the "Import from:" picker: "Choose Folder...", then any
+	// detected camera/card/disk, then folders picked earlier this session.
+	// Matches ImportDialog.PopulateSourceCombo in FSpot.Gtk.
+	void RefreshSourceOptions (ImportSourceOption? toSelect = null)
+	{
+		suppressSourceSelection = true;
+		try {
+			SourceOptions.Clear ();
+			var chooseFolder = ImportSourceOption.ChooseFolder (Strings.ChooseFolder);
+			SourceOptions.Add (chooseFolder);
+
+			var fileSystem = TinyIoCContainer.Current.Resolve<IFileSystem> ();
+			var detected = DeviceImport.Sources (fileSystem);
+			HasDetectedSources = detected.Count > 0;
+			foreach (var source in detected)
+				SourceOptions.Add (ImportSourceOption.ForSource (source.Name, source.Root.LocalPath));
+
+			foreach (var history in ImportSourceHistory.All)
+				SourceOptions.Add (history);
+
+			OnPropertyChanged (nameof (HasDetectedSources));
+			SelectedSourceOption = toSelect ?? chooseFolder;
+		} finally {
+			suppressSourceSelection = false;
+		}
+	}
+
+	partial void OnSelectedSourceOptionChanged (ImportSourceOption? value)
+	{
+		if (suppressSourceSelection || value is null)
+			return;
+
+		if (value.Kind == ImportSourceKind.ChooseFolder) {
+			_ = ChooseFolderAsync ();
+			return;
+		}
+
+		droppedPaths = null;
+		SourcePath = value.Path;
+		SourceLabel = value.Label;
 		_ = ScanAsync ();
 	}
 
@@ -162,11 +223,18 @@ public partial class ImportViewModel : ObservableObject
 	async Task ChooseFolderAsync ()
 	{
 		string? path = await shell.PickFolderAsync (Strings.ChooseFolder);
-		if (path is null)
+		if (path is null) {
+			// Nothing was picked; fall back to whatever source was active
+			// rather than leaving "Choose Folder..." selected with no source.
+			RefreshSourceOptions (SourceOptions.FirstOrDefault (option => option.Path == SourcePath));
 			return;
+		}
 
+		string label = Path.GetFileName (path.TrimEnd (Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar));
+		var option = ImportSourceHistory.Remember (label, path);
+		RefreshSourceOptions (option);
 		SourcePath = path;
-		SourceLabel = Path.GetFileName (path.TrimEnd (Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar));
+		SourceLabel = label;
 		await ScanAsync ();
 	}
 

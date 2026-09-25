@@ -1,0 +1,53 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:auto="using:FSpot.Avalonia"
+        xmlns:lang="using:FSpot.Resources.Lang"
+        xmlns:local="using:FSpot.Avalonia"
+        x:Class="FSpot.Avalonia.ImportFailureWindow"
+        Title="{x:Static lang:Strings.ImportFailures}"
+        Width="480"
+        SizeToContent="Height"
+        MinHeight="200"
+        MaxHeight="480"
+        CanResize="False"
+        ShowInTaskbar="False"
+        WindowStartupLocation="CenterOwner"
+        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportFailureWindow}">
+	<DockPanel Margin="20">
+		<StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,16,0,0">
+			<Button Name="CloseButton" Classes="dialog accent" MinWidth="88" Padding="16,6"
+			        HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+			        Content="{x:Static lang:Strings.Close}" IsDefault="True" IsCancel="True" Click="OnClose"
+			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportFailureClose}"
+			        AutomationProperties.Name="{x:Static lang:Strings.Close}" />
+		</StackPanel>
+		<Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto">
+			<Border Width="40" Height="40" CornerRadius="20" Margin="0,0,16,0" VerticalAlignment="Top"
+			        Background="#C42B1C">
+				<TextBlock Text="!" FontSize="20" FontWeight="SemiBold" Foreground="White"
+				           HorizontalAlignment="Center" VerticalAlignment="Center" />
+			</Border>
+			<TextBlock Name="HeaderBlock" Grid.Row="0" Grid.Column="1" FontSize="16" FontWeight="SemiBold" TextWrapping="Wrap"
+			           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportFailureHeader}" />
+			<TextBlock Name="MessageBlock" Grid.Row="1" Grid.Column="1" Margin="0,8,0,0" Opacity="0.85" TextWrapping="Wrap"
+			           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportFailureMessage}" />
+			<Expander Name="DetailsExpander" Grid.Row="2" Grid.Column="1" Margin="0,12,0,0"
+			          Header="{x:Static lang:Strings.Details}"
+			          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportFailureDetails}">
+				<ScrollViewer MaxHeight="160">
+					<ItemsControl Name="FileList"
+					              AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportFailureList}">
+						<ItemsControl.ItemTemplate>
+							<DataTemplate DataType="local:ImportFailureItem">
+								<StackPanel Orientation="Horizontal" Spacing="8" Margin="0,2">
+									<TextBlock Text="{Binding FileName}" FontWeight="Medium" />
+									<TextBlock Text="{Binding Path}" Opacity="0.6" TextTrimming="CharacterEllipsis" />
+								</StackPanel>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
+				</ScrollViewer>
+			</Expander>
+		</Grid>
+	</DockPanel>
+</Window>
