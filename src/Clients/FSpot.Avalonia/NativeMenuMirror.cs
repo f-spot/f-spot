@@ -57,9 +57,12 @@ public static class NativeMenuMirror
 		}
 	}
 
-	static IEnumerable<Control> Items (NativeMenu source)
+	// Rows a dynamic menu generated are rebuilt by the mirrored item itself, so only markup rows are copied.
+	static IEnumerable<Control> Items (NativeMenu source, NativeMenuItem? dynamicOwner = null)
 	{
 		foreach (object entry in source.Items) {
+			if (dynamicOwner is not null && Input.DynamicMenu.IsGenerated (dynamicOwner, entry))
+				continue;
 			if (entry is NativeMenuItemSeparator) {
 				yield return new Separator ();
 				continue;
@@ -74,6 +77,7 @@ public static class NativeMenuMirror
 		var item = new MenuItem ();
 		item.Bind (MenuItem.HeaderProperty, BindTo (native, nameof (NativeMenuItem.Header)));
 		item.Bind (MenuItem.CommandProperty, BindTo (native, nameof (NativeMenuItem.Command)));
+		item.Bind (MenuItem.CommandParameterProperty, BindTo (native, nameof (NativeMenuItem.CommandParameter)));
 		item.Bind (MenuItem.IsEnabledProperty, BindTo (native, nameof (NativeMenuItem.IsEnabled)));
 		if (native.Gesture is { } gesture)
 			item.InputGesture = gesture;
@@ -81,10 +85,13 @@ public static class NativeMenuMirror
 			item.ToggleType = native.ToggleType;
 			item.Bind (MenuItem.IsCheckedProperty, BindTo (native, nameof (NativeMenuItem.IsChecked), BindingMode.TwoWay));
 		}
+		var source = Input.DynamicMenu.GetSource (native);
 		if (native.Menu is { } children) {
-			foreach (var child in Items (children))
+			foreach (var child in Items (children, source is not null ? native : null))
 				item.Items.Add (child);
 		}
+		if (source is not null)
+			Input.DynamicMenu.SetSource (item, source);
 		return item;
 	}
 

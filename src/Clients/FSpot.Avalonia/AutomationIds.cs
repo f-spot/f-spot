@@ -186,6 +186,16 @@ public static class AutomationIds
 	public const string ExtensionsWindow = "Extensions.Window";
 	public const string ExtensionsList = "Extensions.List";
 	public const string InfoShowDate = "Main.Sidebar.Info.ShowDate";
+	public const string InfoPopup = "Main.Sidebar.Info.Popup";
+	public const string PhotoPopup = "Main.PhotoPopup";
+	public const string PhotoPopupOpenWith = "Main.PhotoPopup.OpenWith";
+	public const string PhotoPopupRemoveTag = "Main.PhotoPopup.RemoveTag";
+	public const string PhotoPopupRating = "Main.PhotoPopup.Rating";
+	public const string TagPopup = "Main.Sidebar.Tags.Popup";
+	public const string TimelinePopup = "Main.Timeline.Popup";
+	public const string FilmstripPopup = "Main.Filmstrip.Popup";
+	public const string QueryTerms = "Main.Query.Terms";
+	public const string QueryTagChipPopup = "Main.Query.TagChip.Popup";
 	public const string InfoStars = "Main.Sidebar.Info.Stars";
 	public const string FolderShare = "Main.Sidebar.Folders.Share";
 	public const string MainMenu = "Main.Menu";

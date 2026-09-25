@@ -174,7 +174,8 @@ public partial class MainWindowViewModel : ObservableObject
 	partial void OnViewerInterpolationChanged (bool value)
 		=> OnPropertyChanged (nameof (PreviewInterpolation));
 
-	public InfoFieldVisibility InfoVisibility { get; } = InfoFieldVisibility.Load ();
+	// GTK keeps the info box fields per view context (library and photo view).
+	public InfoFieldVisibility InfoVisibility => IsEditing ? editInfoVisibility : libraryInfoVisibility;
 	public ObservableCollection<AddinStatus> Extensions { get; } = [];
 
 	DateTime? timelineRangeStart;
@@ -273,7 +274,7 @@ public partial class MainWindowViewModel : ObservableObject
 	public bool ShowTagBar => IsEditing;
 	public bool ShowInfoBox => SelectedPhoto is not null;
 	public bool HasLibraryFilter => ActiveTagFilter is not null || ActiveFolderFilter is not null || FindUntagged
-		|| FindTags.Count > 0 || HasFindRating || HasFindDate || HasFindRoll || HasTagQuery;
+		|| FindTags.Count > 0 || HasFindRating || HasFindDate || HasFindRoll || HasTagQuery || HasTermQuery;
 	public bool HasFindRating => FindMinRating is not null || FindMaxRating is not null;
 	public bool HasFindDate => FindStart is not null || FindEnd is not null;
 	public bool HasFindRoll => findRollIds.Count > 0;
@@ -502,7 +503,8 @@ public partial class MainWindowViewModel : ObservableObject
 			MaxRating = FindMaxRating,
 			Start = start,
 			End = end,
-			RollIds = findRollIds
+			RollIds = findRollIds,
+			TagQuery = TermQuery
 		};
 		var visible = catalogPhotos
 			.Where (item => PhotoLibraryFilter.Matches (item.Photo, find, RollIdOf (item.Photo)))
@@ -1097,6 +1099,8 @@ public partial class MainWindowViewModel : ObservableObject
 		OnPropertyChanged (nameof (FilmstripBreadth));
 		OnPropertyChanged (nameof (FilmstripSpan));
 		OnPropertyChanged (nameof (FilmstripFlow));
+		OnPropertyChanged (nameof (FilmstripOnSide));
+		OnPropertyChanged (nameof (FilmstripHorizontal));
 	}
 
 	[RelayCommand]
@@ -1459,6 +1463,7 @@ public partial class MainWindowViewModel : ObservableObject
 		FindUntagged = false;
 		FindTags.Clear ();
 		TagQuery.Clear ();
+		ClearTermQuery ();
 		ClearFindTerms ();
 	}
 
@@ -1478,6 +1483,7 @@ public partial class MainWindowViewModel : ObservableObject
 		FindUntagged = false;
 		FindTags.Clear ();
 		TagQuery.Clear ();
+		ClearTermQuery ();
 		ClearFindTerms ();
 	}
 

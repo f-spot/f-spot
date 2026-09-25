@@ -1,0 +1,48 @@
+<ContextMenu xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:FSpot.Avalonia.ViewModels"
+             xmlns:auto="using:FSpot.Avalonia"
+             xmlns:lang="using:FSpot.Resources.Lang"
+             xmlns:input="using:FSpot.Avalonia.Input"
+             x:Class="FSpot.Avalonia.Controls.PhotoPopup"
+             x:DataType="vm:MainWindowViewModel"
+             AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PhotoPopup}"
+             AutomationProperties.Name="{x:Static lang:Strings.Photos}">
+	<MenuItem Header="{x:Static lang:Strings.CopyPhoto}" Command="{Binding CopyCommand}" />
+	<Separator />
+	<MenuItem Header="{x:Static lang:Strings.RotateLeftMnemonic}" Command="{Binding RotateLeftCommand}" />
+	<MenuItem Header="{x:Static lang:Strings.RotateRightMnemonic}" Command="{Binding RotateRightCommand}" />
+	<Separator />
+	<MenuItem Header="{x:Static lang:Strings.OpenWith}" input:DynamicMenu.Source="{Binding OpenWithMenu}"
+	          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PhotoPopupOpenWith}" />
+	<MenuItem Header="{x:Static lang:Strings.RemoveFromCatalog}" Command="{Binding RemoveFromCatalogCommand}" />
+	<MenuItem Header="{x:Static lang:Strings.DeleteFromDrive}" Command="{Binding DeleteFromDriveCommand}" />
+	<Separator />
+	<MenuItem Header="{x:Static lang:Strings.RemoveTag}" input:DynamicMenu.Source="{Binding RemoveTagMenu}"
+	          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PhotoPopupRemoveTag}" />
+	<MenuItem x:Name="RatingRow" StaysOpenOnClick="True"
+	          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PhotoPopupRating}"
+	          AutomationProperties.Name="{x:Static lang:Strings.Rating}">
+		<MenuItem.Header>
+			<StackPanel Orientation="Horizontal" Spacing="5">
+				<TextBlock Text="{x:Static lang:Strings.RatingColon}" FontStyle="Italic" VerticalAlignment="Center" />
+				<ItemsControl ItemsSource="{Binding PopupStars}">
+					<ItemsControl.ItemsPanel>
+						<ItemsPanelTemplate>
+							<StackPanel Orientation="Horizontal" Spacing="0" />
+						</ItemsPanelTemplate>
+					</ItemsControl.ItemsPanel>
+					<ItemsControl.ItemTemplate>
+						<DataTemplate x:DataType="vm:InfoStar">
+							<Button Classes="star" Padding="0" FontSize="16" Content="{Binding Glyph}"
+							        Background="Transparent" BorderThickness="0"
+							        Command="{Binding $parent[ContextMenu].((vm:MainWindowViewModel)DataContext).RateSelectionCommand}"
+							        CommandParameter="{Binding Value}"
+							        Click="OnStarClick" />
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
+			</StackPanel>
+		</MenuItem.Header>
+	</MenuItem>
+</ContextMenu>

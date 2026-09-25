@@ -22,6 +22,8 @@ namespace FSpot.Query
 				return false;
 			if (!MatchesTags (photo, find.Tags, find.RequireAllTags))
 				return false;
+			if (find.TagQuery != null && !find.TagQuery.Matches (photo))
+				return false;
 			if (!MatchesRating (photo, find.MinRating, find.MaxRating))
 				return false;
 			if (!MatchesRoll (rollId ?? RollId (photo), find.RollIds))

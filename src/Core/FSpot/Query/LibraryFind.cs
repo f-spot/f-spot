@@ -19,5 +19,6 @@ namespace FSpot.Query
 		public DateTime? End { get; set; }
 		public IReadOnlyList<uint> RollIds { get; set; } = Array.Empty<uint> ();
 		public IReadOnlyList<IPhotoMatcher> Matchers { get; set; } = Array.Empty<IPhotoMatcher> ();
+		public TagTermQuery TagQuery { get; set; }
 	}
 }
