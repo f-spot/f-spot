@@ -20,6 +20,22 @@ namespace FSpot
 			return UniformImageLayout.MapPoint (viewWidth, viewHeight, imageWidth, imageHeight, x, y);
 		}
 
+		// Inverse of MapPoint (without its clamp): where an image pixel is drawn.
+		public static (double X, double Y) ImageToView (
+			int viewWidth, int viewHeight, int imageWidth, int imageHeight,
+			double zoom, double panX, double panY, double imageX, double imageY)
+		{
+			if (viewWidth <= 0 || viewHeight <= 0 || imageWidth <= 0 || imageHeight <= 0)
+				return (0, 0);
+			double fit = Math.Min ((double)viewWidth / imageWidth, (double)viewHeight / imageHeight);
+			double originX = viewWidth / 2.0;
+			double originY = viewHeight / 2.0;
+			double x = (viewWidth - imageWidth * fit) / 2.0 + imageX * fit;
+			double y = (viewHeight - imageHeight * fit) / 2.0 + imageY * fit;
+			double scale = zoom <= 0 ? 1 : zoom;
+			return (originX + (x - originX) * scale + panX, originY + (y - originY) * scale + panY);
+		}
+
 		public static Imaging.PixelRect MapRect (
 			int viewWidth, int viewHeight, int imageWidth, int imageHeight,
 			double zoom, double panX, double panY,

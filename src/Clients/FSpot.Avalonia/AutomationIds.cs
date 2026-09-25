@@ -121,6 +121,14 @@ public static class AutomationIds
 	public const string EditorSharpenAmount = "Main.Editor.Sharpen.Amount";
 	public const string EditorSharpenRadius = "Main.Editor.Sharpen.Radius";
 	public const string EditorSharpenThreshold = "Main.Editor.Sharpen.Threshold";
+	public const string EditorCropConstraint = "Main.Editor.Crop.Constraint";
+	public const string SelectionRatioWindow = "SelectionRatio.Window";
+	public const string SelectionRatioList = "SelectionRatio.List";
+	public const string SelectionRatioAdd = "SelectionRatio.Add";
+	public const string SelectionRatioDelete = "SelectionRatio.Delete";
+	public const string SelectionRatioUp = "SelectionRatio.Up";
+	public const string SelectionRatioDown = "SelectionRatio.Down";
+	public const string SelectionRatioClose = "SelectionRatio.Close";
 	public const string TagBar = "Main.TagBar";
 	public const string PhotoDescription = "Main.PhotoDescription";
 	public const string PhotoRating = "Main.PhotoRating";

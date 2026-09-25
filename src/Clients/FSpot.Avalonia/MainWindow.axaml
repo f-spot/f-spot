@@ -567,13 +567,29 @@
 						        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.EditorColorTint}"
 						        AutomationProperties.Name="{x:Static lang:Strings.Tint}" />
 					</StackPanel>
+					<ComboBox IsVisible="{Binding ShowCropSettings}"
+					          HorizontalAlignment="Stretch"
+					          ItemsSource="{Binding CropConstraintOptions}"
+					          SelectedItem="{Binding SelectedCropConstraint}"
+					          ToolTip.Tip="{x:Static lang:Strings.ConstrainTheAspectRatioOfTheSelection}"
+					          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.EditorCropConstraint}"
+					          AutomationProperties.Name="{x:Static lang:Strings.ConstrainTheAspectRatioOfTheSelection}">
+						<ComboBox.ItemTemplate>
+							<DataTemplate x:DataType="editors:CropConstraint">
+								<TextBlock Text="{Binding Label}" />
+							</DataTemplate>
+						</ComboBox.ItemTemplate>
+					</ComboBox>
 					<StackPanel Spacing="6" IsVisible="{Binding ShowBwSettings}">
+						<TextBlock Text="{x:Static lang:Strings.Red}" FontSize="11" />
 						<Slider Minimum="0" Maximum="100" Value="{Binding EditorSession.Context.BwRed}"
 						        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.EditorBwRed}"
 						        AutomationProperties.Name="{x:Static lang:Strings.Red}" />
+						<TextBlock Text="{x:Static lang:Strings.Green}" FontSize="11" />
 						<Slider Minimum="0" Maximum="100" Value="{Binding EditorSession.Context.BwGreen}"
 						        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.EditorBwGreen}"
 						        AutomationProperties.Name="{x:Static lang:Strings.Green}" />
+						<TextBlock Text="{x:Static lang:Strings.Blue}" FontSize="11" />
 						<Slider Minimum="0" Maximum="100" Value="{Binding EditorSession.Context.BwBlue}"
 						        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.EditorBwBlue}"
 						        AutomationProperties.Name="{x:Static lang:Strings.Blue}" />
@@ -584,16 +600,22 @@
 					               Value="{Binding EditorSession.Context.ResizeMaxEdge}"
 					               AutomationProperties.AutomationId="{x:Static auto:AutomationIds.EditorResizeMaxEdge}"
 					               AutomationProperties.Name="{x:Static lang:Strings.Resize}" />
-					<Slider IsVisible="{Binding ShowTiltSettings}"
-					        Minimum="-45" Maximum="45"
-					        Value="{Binding EditorSession.Context.TiltDegrees}"
-					        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.EditorTiltAngle}"
-					        AutomationProperties.Name="{x:Static lang:Strings.Straighten}" />
-					<Slider IsVisible="{Binding ShowSoftFocusSettings}"
-					        Minimum="0" Maximum="1"
-					        Value="{Binding EditorSession.Context.SoftFocusRadius}"
-					        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.EditorSoftFocusRadius}"
-					        AutomationProperties.Name="{x:Static lang:Strings.SoftFocus}" />
+					<StackPanel Spacing="6" IsVisible="{Binding ShowTiltSettings}">
+						<TextBlock Text="{x:Static lang:Strings.AdjustTheAngleOfTheImageToStraightenTheHorizon}" FontSize="11" TextWrapping="Wrap" />
+						<Slider Minimum="-45" Maximum="45"
+						        SmallChange="1" TickFrequency="1" IsSnapToTickEnabled="True"
+						        Value="{Binding EditorSession.Context.TiltDegrees}"
+						        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.EditorTiltAngle}"
+						        AutomationProperties.Name="{x:Static lang:Strings.Straighten}" />
+					</StackPanel>
+					<StackPanel Spacing="6" IsVisible="{Binding ShowSoftFocusSettings}">
+						<TextBlock Text="{x:Static lang:Strings.RadiusColon}" FontSize="11" />
+						<Slider Minimum="0" Maximum="1"
+						        SmallChange="0.01" TickFrequency="0.01" IsSnapToTickEnabled="True"
+						        Value="{Binding EditorSession.Context.SoftFocusRadius}"
+						        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.EditorSoftFocusRadius}"
+						        AutomationProperties.Name="{x:Static lang:Strings.SoftFocus}" />
+					</StackPanel>
 					<StackPanel Spacing="6" IsVisible="{Binding ShowSharpenSettings}">
 						<TextBlock Text="{x:Static lang:Strings.AmountColon}" FontSize="11" />
 						<Slider Minimum="0" Maximum="100" Value="{Binding EditorSession.Context.SharpenAmount}"
@@ -947,7 +969,7 @@
 					       Background="Transparent"
 					       DragDrop.AllowDrop="True"
 					       input:CatalogDrop.Kind="PhotoView">
-						<Image Name="PreviewImage" Source="{Binding Preview}"
+						<Image Name="PreviewImage" Source="{Binding DisplayedPreview}"
 						       Stretch="Uniform"
 						       Margin="8"
 						       input:PreviewPointer.Enable="True"
@@ -971,6 +993,7 @@
 						                                PanY="{Binding PreviewPanY}"
 						                                ImageWidth="{Binding PreviewPixelWidth}"
 						                                ImageHeight="{Binding PreviewPixelHeight}"
+						                                SelectionXyRatio="{Binding CropSelectionRatio}"
 						                                SelectionCommand="{Binding SelectEditorRegionCommand}"
 						                                AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PhotoPreviewOverlay}"
 						                                AutomationProperties.Name="{Binding EditorSession.Hint}" />

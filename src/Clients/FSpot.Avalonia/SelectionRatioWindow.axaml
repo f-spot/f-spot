@@ -1,0 +1,55 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:auto="using:FSpot.Avalonia"
+        xmlns:lang="using:FSpot.Resources.Lang"
+        xmlns:vm="using:FSpot.Avalonia.ViewModels"
+        x:Class="FSpot.Avalonia.SelectionRatioWindow"
+        x:DataType="vm:SelectionRatioEditor"
+        Title="{x:Static lang:Strings.SelectionConstraints}"
+        Width="460"
+        Height="340"
+        WindowStartupLocation="CenterOwner"
+        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SelectionRatioWindow}"
+        AutomationProperties.Name="{x:Static lang:Strings.SelectionConstraints}">
+	<DockPanel Margin="16">
+		<TextBlock DockPanel.Dock="Top" Margin="0,0,0,8"
+		           Text="{x:Static lang:Strings.ManageYourCustomSelectionRatios}" />
+		<Button DockPanel.Dock="Bottom" HorizontalAlignment="Right" Margin="0,12,0,0" MinWidth="88"
+		        Classes="dialog"
+		        Content="{x:Static lang:Strings.Close}"
+		        Click="OnClose"
+		        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SelectionRatioClose}" />
+		<StackPanel DockPanel.Dock="Right" Margin="12,0,0,0" Spacing="6">
+			<Button HorizontalAlignment="Stretch" Content="{x:Static lang:Strings.StockAdd}" Command="{Binding AddCommand}"
+			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SelectionRatioAdd}" />
+			<Button HorizontalAlignment="Stretch" Content="{x:Static lang:Strings.Delete}" Command="{Binding DeleteCommand}"
+			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SelectionRatioDelete}"
+			        AutomationProperties.Name="{x:Static lang:Strings.Delete}" />
+			<Button HorizontalAlignment="Stretch" Content="{x:Static lang:Strings.StockGoUp}" Command="{Binding MoveUpCommand}"
+			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SelectionRatioUp}" />
+			<Button HorizontalAlignment="Stretch" Content="{x:Static lang:Strings.StockGoDown}" Command="{Binding MoveDownCommand}"
+			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SelectionRatioDown}" />
+		</StackPanel>
+		<DockPanel>
+			<Grid DockPanel.Dock="Top" ColumnDefinitions="*,120" Margin="4,0,4,4">
+				<TextBlock Text="{x:Static lang:Strings.Label}" FontWeight="SemiBold" />
+				<TextBlock Grid.Column="1" Text="{x:Static lang:Strings.Ratio}" FontWeight="SemiBold" Margin="8,0,0,0" />
+			</Grid>
+			<ListBox ItemsSource="{Binding Rows}" SelectedItem="{Binding Selected}"
+			         AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SelectionRatioList}"
+			         AutomationProperties.Name="{x:Static lang:Strings.SelectionConstraints}">
+				<ListBox.ItemTemplate>
+					<DataTemplate x:DataType="vm:SelectionRatioRow">
+						<Grid ColumnDefinitions="*,120">
+							<TextBox Text="{Binding Label}"
+							         AutomationProperties.Name="{x:Static lang:Strings.Label}" />
+							<TextBox Grid.Column="1" Margin="8,0,0,0" Text="{Binding RatioText}"
+							         LostFocus="OnRatioLostFocus"
+							         AutomationProperties.Name="{x:Static lang:Strings.Ratio}" />
+						</Grid>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+		</DockPanel>
+	</DockPanel>
+</Window>

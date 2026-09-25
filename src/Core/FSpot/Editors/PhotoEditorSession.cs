@@ -63,6 +63,15 @@ namespace FSpot.Editors
 				&& !editor.NeedsSelection
 				&& !editor.HasSettings;
 
+		// GTK's Tilt, SoftFocus, Color and BW editors call UpdatePreview on
+		// every slider change; the rest only render on Apply.
+		public static bool HasLivePreview (PhotoEditorDescriptor editor)
+			=> editor != null
+				&& (editor.Id == PhotoEditorCatalog.Tilt.Id
+					|| editor.Id == PhotoEditorCatalog.SoftFocus.Id
+					|| editor.Id == PhotoEditorCatalog.Color.Id
+					|| editor.Id == PhotoEditorCatalog.BW.Id);
+
 		public static bool NeedsSession (PhotoEditorDescriptor editor)
 			=> PhotoEditorOperations.CanProcess (editor)
 				&& (editor.NeedsSelection || editor.HasSettings);

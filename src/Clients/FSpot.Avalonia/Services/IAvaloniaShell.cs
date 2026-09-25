@@ -80,6 +80,8 @@ public interface IAvaloniaShell
 	Task ShowPreferencesAsync () => Task.CompletedTask;
 	Task ShowExtensionsAsync (IList<AddinStatus> addins) => Task.CompletedTask;
 	Task<double?> PromptHoursOffsetAsync () => Task.FromResult<double?> (null);
+	Task<IReadOnlyList<FSpot.Editors.CropConstraint>?> EditCustomCropRatiosAsync (IReadOnlyList<FSpot.Editors.CropConstraint> custom)
+		=> Task.FromResult<IReadOnlyList<FSpot.Editors.CropConstraint>?> (null);
 	Task<TimeAdjustChoice?> PromptAdjustTimeAsync (IReadOnlyList<(string Name, DateTime Time, string Path)> photos)
 		=> Task.FromResult<TimeAdjustChoice?> (null);
 	// A modeless progress window for a long batch operation, matching

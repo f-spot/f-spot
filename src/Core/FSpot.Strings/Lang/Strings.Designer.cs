@@ -5191,5 +5191,35 @@ namespace FSpot.Resources.Lang {
                 return ResourceManager.GetString("MinStartingAtX", resourceCulture);
             }
         }
+        public static string SelectionConstraints {
+            get {
+                return ResourceManager.GetString("SelectionConstraints", resourceCulture);
+            }
+        }
+        public static string ManageYourCustomSelectionRatios {
+            get {
+                return ResourceManager.GetString("ManageYourCustomSelectionRatios", resourceCulture);
+            }
+        }
+        public static string AdjustTheAngleOfTheImageToStraightenTheHorizon {
+            get {
+                return ResourceManager.GetString("AdjustTheAngleOfTheImageToStraightenTheHorizon", resourceCulture);
+            }
+        }
+        public static string StockAdd {
+            get {
+                return ResourceManager.GetString("StockAdd", resourceCulture);
+            }
+        }
+        public static string StockGoUp {
+            get {
+                return ResourceManager.GetString("StockGoUp", resourceCulture);
+            }
+        }
+        public static string StockGoDown {
+            get {
+                return ResourceManager.GetString("StockGoDown", resourceCulture);
+            }
+        }
     }
 }

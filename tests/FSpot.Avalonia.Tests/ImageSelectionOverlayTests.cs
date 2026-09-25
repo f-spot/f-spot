@@ -103,6 +103,48 @@ public sealed class ImageSelectionOverlayTests
 		Assert.IsNull (command.Last);
 	}
 
+	[TestMethod]
+	public void CompleteSelection_ClampsToTheSelectionRatio ()
+	{
+		AvaloniaApp.Ensure ();
+		var command = new RecordingCommand ();
+		var overlay = ShowOverlay (new ImageSelectionOverlay {
+			Width = 200,
+			Height = 100,
+			ImageWidth = 200,
+			ImageHeight = 100,
+			SelectionXyRatio = 1.0,
+			SelectionCommand = command
+		});
+
+		overlay.CompleteSelection (new Point (10, 10), new Point (50, 30));
+
+		Assert.IsNotNull (command.Last);
+		Assert.AreEqual (command.Last.Value.Width, command.Last.Value.Height);
+		Assert.AreEqual (40, command.Last.Value.Width);
+	}
+
+	[TestMethod]
+	public void ChangingTheRatio_ReconstrainsTheCurrentSelection ()
+	{
+		AvaloniaApp.Ensure ();
+		var command = new RecordingCommand ();
+		var overlay = ShowOverlay (new ImageSelectionOverlay {
+			Width = 200,
+			Height = 100,
+			ImageWidth = 200,
+			ImageHeight = 100,
+			SelectionCommand = command
+		});
+		overlay.CompleteSelection (new Point (10, 10), new Point (70, 40));
+
+		overlay.SelectionXyRatio = 1.0;
+
+		Assert.IsNotNull (command.Last);
+		Assert.AreEqual (60, command.Last.Value.Width);
+		Assert.AreEqual (60, command.Last.Value.Height);
+	}
+
 	static ImageSelectionOverlay ShowOverlay (ImageSelectionOverlay overlay)
 	{
 		var window = new Window {

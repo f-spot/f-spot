@@ -30,7 +30,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace FSpot.Avalonia.Tests;
 
 [TestClass]
-public sealed class MainWindowViewModelTests
+public sealed partial class MainWindowViewModelTests
 {
 	public TestContext TestContext { get; set; } = null!;
 
