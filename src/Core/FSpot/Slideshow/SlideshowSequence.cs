@@ -7,7 +7,7 @@ namespace FSpot.Slideshow
 {
 	public sealed class SlideshowSequence
 	{
-		readonly IReadOnlyList<string> paths;
+		readonly List<string> paths;
 		int index;
 		bool running = true;
 
@@ -15,11 +15,11 @@ namespace FSpot.Slideshow
 		{
 			if (paths == null || paths.Count == 0)
 				throw new ArgumentException ("Slideshow needs at least one photo", nameof (paths));
-			this.paths = paths;
+			this.paths = new List<string> (paths);
 			index = Math.Min (Math.Max (0, startIndex), paths.Count - 1);
 		}
 
-		public string Current => paths[index];
+		public string Current => paths.Count == 0 ? string.Empty : paths[index];
 		public int Index => index;
 		public int Count => paths.Count;
 		public bool IsRunning => running;
@@ -39,6 +39,49 @@ namespace FSpot.Slideshow
 			index = (index - 1 + paths.Count) % paths.Count;
 			return true;
 		}
+
+		/// <summary>Jumps to <paramref name="target"/>, clamped to the sequence.</summary>
+		public bool MoveTo (int target)
+		{
+			if (!running || paths.Count == 0)
+				return false;
+			int clamped = Math.Min (Math.Max (0, target), paths.Count - 1);
+			if (clamped == index)
+				return false;
+			index = clamped;
+			return true;
+		}
+
+		/// <summary>
+		/// Drops <paramref name="path"/> even when the show has moved on. Returns false when the path is
+		/// absent or nothing is left to show. Removing the current photo leaves the one that followed it.
+		/// </summary>
+		public bool Remove (string path)
+		{
+			if (paths.Count == 0 || path is null)
+				return false;
+			int at = paths.FindIndex (item => string.Equals (item, path, StringComparison.Ordinal));
+			if (at < 0)
+				return false;
+			paths.RemoveAt (at);
+			if (paths.Count == 0) {
+				index = 0;
+				running = false;
+				return false;
+			}
+			if (at < index)
+				index--;
+			if (index >= paths.Count)
+				index = paths.Count - 1;
+			return true;
+		}
+
+		/// <summary>
+		/// Drops the current photo (removed from the catalog while shown). Returns false when nothing is
+		/// left to show; otherwise the photo that followed it becomes current.
+		/// </summary>
+		public bool RemoveCurrent ()
+			=> paths.Count == 0 ? false : Remove (Current);
 
 		public void Stop ()
 			=> running = false;

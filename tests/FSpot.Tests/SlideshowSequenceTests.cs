@@ -43,5 +43,68 @@ namespace FSpot.Tests
 			Assert.IsTrue (sequence.Retreat ());
 			Assert.AreEqual ("/a.jpg", sequence.Current);
 		}
+
+		[TestMethod]
+		public void MoveTo_ClampsAndReportsChange ()
+		{
+			var sequence = new SlideshowSequence (new[] { "/a.jpg", "/b.jpg", "/c.jpg" });
+
+			Assert.IsTrue (sequence.MoveTo (9));
+			Assert.AreEqual ("/c.jpg", sequence.Current);
+			Assert.IsFalse (sequence.MoveTo (2));
+		}
+
+		[TestMethod]
+		public void Remove_DropsTheNamedPhotoAfterTheShowHasMovedOn ()
+		{
+			var sequence = new SlideshowSequence (new[] { "/a.jpg", "/b.jpg", "/c.jpg" }, startIndex: 0);
+			Assert.IsTrue (sequence.Advance ());
+
+			Assert.IsTrue (sequence.Remove ("/a.jpg"));
+			Assert.AreEqual ("/b.jpg", sequence.Current);
+			Assert.AreEqual (2, sequence.Count);
+			Assert.IsFalse (sequence.Remove ("/missing.jpg"));
+		}
+
+		[TestMethod]
+		public void RemoveCurrent_ShowsTheFollowingPhoto ()
+		{
+			var sequence = new SlideshowSequence (new[] { "/a.jpg", "/b.jpg", "/c.jpg" }, startIndex: 1);
+
+			Assert.IsTrue (sequence.RemoveCurrent ());
+			Assert.AreEqual ("/c.jpg", sequence.Current);
+			Assert.AreEqual (2, sequence.Count);
+		}
+
+		[TestMethod]
+		public void RemoveCurrent_AtTheEnd_StepsBack ()
+		{
+			var sequence = new SlideshowSequence (new[] { "/a.jpg", "/b.jpg" }, startIndex: 1);
+
+			Assert.IsTrue (sequence.RemoveCurrent ());
+			Assert.AreEqual ("/a.jpg", sequence.Current);
+		}
+
+		[TestMethod]
+		public void RemoveCurrent_LastPhoto_StopsTheSequence ()
+		{
+			var sequence = new SlideshowSequence (new[] { "/a.jpg" });
+
+			Assert.IsFalse (sequence.RemoveCurrent ());
+			Assert.AreEqual (0, sequence.Count);
+			Assert.IsFalse (sequence.IsRunning);
+			Assert.AreEqual (string.Empty, sequence.Current);
+		}
+
+		[TestMethod]
+		public void Constructor_CopiesThePaths ()
+		{
+			var paths = new System.Collections.Generic.List<string> { "/a.jpg", "/b.jpg" };
+			var sequence = new SlideshowSequence (paths);
+
+			sequence.RemoveCurrent ();
+
+			Assert.HasCount (2, paths);
+		}
 	}
 }

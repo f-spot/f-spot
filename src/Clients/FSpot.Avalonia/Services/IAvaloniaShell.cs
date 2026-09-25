@@ -76,6 +76,7 @@ public interface IAvaloniaShell
 	Task SetDesktopBackgroundAsync (string path) => Task.CompletedTask;
 	Task<PrintPageSetup?> PromptPageSetupAsync (PrintPageSetup current) => Task.FromResult<PrintPageSetup?> (null);
 	void ShowSlideshow (IReadOnlyList<string> paths, int startIndex);
+	void ShowFullScreen (IReadOnlyList<string> paths, int startIndex) { }
 	void OpenUri (string uri) { }
 	Task ShowPreferencesAsync () => Task.CompletedTask;
 	Task ShowExtensionsAsync (IList<AddinStatus> addins) => Task.CompletedTask;

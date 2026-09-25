@@ -1,87 +1,391 @@
+using System.Diagnostics;
+
 using Avalonia.Controls;
 using Avalonia.Input;
+using Avalonia.Interactivity;
+using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Threading;
 
+using FSpot.Avalonia.Controls;
 using FSpot.Avalonia.Imaging;
+using FSpot.Avalonia.Input;
+using FSpot.Avalonia.Services;
+using FSpot.Avalonia.ViewModels;
+using FSpot.Resources.Lang;
 using FSpot.Slideshow;
 
 namespace FSpot.Avalonia;
 
+/// <summary>
+/// The GTK FullScreenView: a still view of the collection that can play a slideshow with transitions,
+/// under a fading control overlay.
+/// </summary>
 public partial class SlideshowWindow : Window
 {
+	static readonly Cursor HiddenCursor = new (StandardCursorType.None);
+
 	readonly SlideshowSequence sequence;
-	readonly DispatcherTimer timer;
+	readonly IFullScreenHost? host;
+	readonly PhotoInfoViewModel info = new ();
+	readonly DispatcherTimer flipTimer;
+	readonly DispatcherTimer animationTimer;
+	readonly DispatcherTimer cursorTimer;
+	readonly DispatcherTimer hideControlsTimer;
+	readonly DispatcherTimer fadeTimer;
+	readonly Stopwatch animationClock = new ();
 	Bitmap? slide;
+	Bitmap? previousSlide;
+	bool playing;
+	bool busy;
+	SlideshowTransitionKind transition = SlideshowTransition.All[0];
+	ControlOverlayVisibility controlsVisibility;
+	double controlsTarget;
+	DateTime dismissedUntil;
 
 	public SlideshowWindow () : this (new[] { "about:blank" }, 0)
 	{
 	}
 
-	public SlideshowWindow (IReadOnlyList<string> paths, int startIndex)
+	public SlideshowWindow (IReadOnlyList<string> paths, int startIndex, IFullScreenHost? host = null, bool play = true)
 	{
 		sequence = new SlideshowSequence (paths, startIndex);
+		this.host = host;
 		InitializeComponent ();
-		timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds (3) };
-		timer.Tick += (_, _) => {
-			if (!sequence.Advance ())
-				return;
-			ShowCurrent ();
-		};
+
+		InfoOverlay.DataContext = info;
+		TransitionCombo.ItemsSource = SlideshowTransition.All.Select (TransitionName).ToList ();
+		TransitionCombo.SelectedIndex = 0;
+
+		flipTimer = new DispatcherTimer { Interval = SlideshowTransition.Interval };
+		flipTimer.Tick += (_, _) => Go (1);
+		animationTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds (16) };
+		animationTimer.Tick += (_, _) => StepAnimation ();
+		cursorTimer = new DispatcherTimer { Interval = ControlOverlayPolicy.CursorHide };
+		cursorTimer.Tick += (_, _) => HideCursor ();
+		hideControlsTimer = new DispatcherTimer { Interval = ControlOverlayPolicy.AutoHide };
+		hideControlsTimer.Tick += (_, _) => AutoHideControls ();
+		fadeTimer = new DispatcherTimer { Interval = ControlOverlayPolicy.FadeTick };
+		fadeTimer.Tick += (_, _) => StepFade ();
+
+		AddHandler (KeyDownEvent, OnPreviewKeyDown, RoutingStrategies.Tunnel);
+		AddHandler (PointerMovedEvent, OnAnyPointerMoved, RoutingStrategies.Tunnel);
+
 		Opened += (_, _) => {
-			ShowCurrent ();
-			timer.Start ();
+			ShowCurrent (animate: false);
+			DismissControls ();
+			cursorTimer.Start ();
+			if (play)
+				PlayPause ();
+			Focus ();
 		};
 		Closed += (_, _) => {
+			flipTimer.Stop ();
+			animationTimer.Stop ();
+			cursorTimer.Stop ();
+			hideControlsTimer.Stop ();
+			fadeTimer.Stop ();
+			if (sequence.Count > 0)
+				host?.FocusPhoto (sequence.Current);
 			sequence.Stop ();
-			timer.Stop ();
-			ShowFrame (null);
+			Slide.Source = null;
+			PreviousSlide.Source = null;
+			ReleasedBitmap.DisposePrevious (previousSlide, null);
+			ReleasedBitmap.DisposePrevious (slide, null);
+			previousSlide = slide = null;
 		};
 	}
 
-	void ShowCurrent ()
+	public bool IsPlaying => playing;
+
+	public string CurrentPath => sequence.Current;
+
+	static string TransitionName (SlideshowTransitionKind kind)
+		=> kind switch {
+			SlideshowTransitionKind.Cover => Strings.Cover,
+			SlideshowTransitionKind.Dissolve => Strings.Dissolve,
+			SlideshowTransitionKind.Push => Strings.Push,
+			_ => kind.ToString (),
+		};
+
+	public void PlayPause ()
 	{
-		Bitmap? next = null;
+		playing = !playing;
+		PlayPauseGlyph.Text = playing ? "❚❚" : "▶";
+		if (playing)
+			flipTimer.Start ();
+		else {
+			flipTimer.Stop ();
+			FinishAnimation ();
+		}
+	}
+
+	void Go (int delta)
+	{
+		bool moved = delta > 0 ? sequence.Advance () : sequence.Retreat ();
+		if (!moved)
+			return;
+		if (playing) {
+			// GTK SlideShow.HandleItemChanged restarts the flip timer whenever the photo changes.
+			flipTimer.Stop ();
+			flipTimer.Start ();
+		}
+		ShowCurrent (animate: playing);
+	}
+
+	void ShowCurrent (bool animate)
+	{
+		Bitmap? next;
 		try {
 			next = AvaloniaPhotoDecoder.DecodeFile (sequence.Current, EditorPreview.MaxPixels);
 		} catch {
 			next = null;
 		}
 
-		ShowFrame (next);
+		if (animate) {
+			var discarded = previousSlide;
+			previousSlide = slide;
+			PreviousSlide.Source = previousSlide;
+			ReleasedBitmap.DisposePrevious (discarded, previousSlide);
+			slide = next;
+			Slide.Source = next;
+			animationClock.Restart ();
+			ApplyFrame (SlideshowTransition.Frame (transition, 0));
+			animationTimer.Start ();
+		} else {
+			var old = slide;
+			slide = next;
+			Slide.Source = next;
+			ReleasedBitmap.DisposePrevious (old, next);
+			FinishAnimation ();
+		}
+
+		UpdateInfo ();
 	}
 
-	void ShowFrame (Bitmap? next)
+	void StepAnimation ()
 	{
-		Slide.Source = next;
-		var previous = slide;
-		slide = next;
-		ReleasedBitmap.DisposePrevious (previous, next);
+		double progress = SlideshowTransition.Progress (animationClock.Elapsed);
+		ApplyFrame (SlideshowTransition.Frame (transition, progress));
+		if (progress >= 1)
+			FinishAnimation ();
 	}
 
-	void OnCloseClick (object? sender, global::Avalonia.Interactivity.RoutedEventArgs e)
+	void FinishAnimation ()
+	{
+		animationTimer.Stop ();
+		animationClock.Reset ();
+		ApplyFrame (SlideshowTransition.Frame (transition, 1));
+		PreviousLayer.IsVisible = false;
+		PreviousSlide.Source = null;
+		ReleasedBitmap.DisposePrevious (previousSlide, slide);
+		previousSlide = null;
+	}
+
+	void ApplyFrame (SlideshowFrame frame)
+	{
+		double width = Stage.Bounds.Width;
+		PreviousLayer.IsVisible = previousSlide is not null;
+		PreviousLayer.Opacity = frame.PreviousOpacity;
+		NextLayer.Opacity = frame.NextOpacity;
+		if (PreviousLayer.RenderTransform is TranslateTransform previous)
+			previous.X = frame.PreviousOffset * width;
+		if (NextLayer.RenderTransform is TranslateTransform next)
+			next.X = frame.NextOffset * width;
+	}
+
+	void UpdateInfo ()
+	{
+		if (!InfoOverlay.IsVisible || sequence.Count == 0)
+			return;
+		if (host?.PhotoAt (sequence.Current) is { } photo) {
+			info.Update (photo);
+			return;
+		}
+		info.Clear ();
+		info.Name = Path.GetFileName (sequence.Current);
+	}
+
+	void ToggleInfo ()
+	{
+		bool show = !InfoOverlay.IsVisible;
+		InfoOverlay.IsVisible = show;
+		InfoButton.IsChecked = show;
+		UpdateInfo ();
+	}
+
+	void Rotate (bool clockwise)
+	{
+		if (host is null || sequence.Count == 0)
+			return;
+		host.RotatePhoto (sequence.Current, clockwise);
+		ShowCurrent (animate: false);
+	}
+
+	void Rate (uint rating)
+	{
+		if (host is null || sequence.Count == 0)
+			return;
+		host.RatePhoto (sequence.Current, rating);
+		UpdateInfo ();
+	}
+
+	async Task RemoveAsync (bool deleteFromDrive)
+	{
+		if (host is null || busy || sequence.Count == 0)
+			return;
+		busy = true;
+		try {
+			bool removed = await host.RemovePhotoAsync (sequence.Current, deleteFromDrive);
+			if (!removed)
+				return;
+			if (!sequence.RemoveCurrent ()) {
+				Close ();
+				return;
+			}
+			ShowCurrent (animate: false);
+		} finally {
+			busy = false;
+			// GTK presents the fullscreen view again so the confirmation dialog does not leave it buried.
+			if (IsVisible)
+				Activate ();
+		}
+	}
+
+	void Execute (FullScreenKeyAction action)
+	{
+		switch (action.Command) {
+		case FullScreenCommand.Exit:
+			Close ();
+			break;
+		case FullScreenCommand.ToggleInfo:
+			ToggleInfo ();
+			break;
+		case FullScreenCommand.RotateLeft:
+			Rotate (clockwise: false);
+			break;
+		case FullScreenCommand.RotateRight:
+			Rotate (clockwise: true);
+			break;
+		case FullScreenCommand.Rate:
+			Rate (action.Rating);
+			break;
+		case FullScreenCommand.RemoveFromCatalog:
+			_ = RemoveAsync (deleteFromDrive: false);
+			break;
+		case FullScreenCommand.DeleteFromDrive:
+			_ = RemoveAsync (deleteFromDrive: true);
+			break;
+		case FullScreenCommand.Next:
+			Go (1);
+			break;
+		case FullScreenCommand.Previous:
+			Go (-1);
+			break;
+		}
+	}
+
+	void OnPreviewKeyDown (object? sender, KeyEventArgs e)
+	{
+		if (TransitionCombo.IsDropDownOpen)
+			return;
+		var action = FullScreenKeys.Map (e.Key, e.KeyModifiers);
+		if (action.Command == FullScreenCommand.None)
+			return;
+		e.Handled = true;
+		Execute (action);
+	}
+
+	void OnAnyPointerMoved (object? sender, PointerEventArgs e)
+	{
+		Cursor = Cursor.Default;
+		cursorTimer.Stop ();
+		cursorTimer.Start ();
+
+		if (ControlBar.IsVisible && ControlBar.IsPointerOver) {
+			SetControlsVisibility (ControlOverlayVisibility.Full);
+			return;
+		}
+		if (ControlOverlayPolicy.RevealsControls (e.GetPosition (this).Y, Bounds.Height))
+			SetControlsVisibility (ControlOverlayVisibility.Partial);
+	}
+
+	void HideCursor ()
+	{
+		cursorTimer.Stop ();
+		Cursor = HiddenCursor;
+	}
+
+	void SetControlsVisibility (ControlOverlayVisibility visibility)
+	{
+		if (visibility != ControlOverlayVisibility.None && DateTime.UtcNow < dismissedUntil)
+			return;
+		controlsVisibility = visibility;
+		controlsTarget = ControlOverlayPolicy.TargetOpacity (visibility);
+		fadeTimer.Start ();
+		if (controlsTarget > 0) {
+			hideControlsTimer.Stop ();
+			hideControlsTimer.Start ();
+		}
+	}
+
+	void DismissControls ()
+	{
+		SetControlsVisibility (ControlOverlayVisibility.None);
+		dismissedUntil = DateTime.UtcNow + ControlOverlayPolicy.DismissGrace;
+	}
+
+	void AutoHideControls ()
+	{
+		if (ControlBar.IsPointerOver)
+			return;
+		hideControlsTimer.Stop ();
+		SetControlsVisibility (ControlOverlayVisibility.None);
+	}
+
+	void StepFade ()
+	{
+		double opacity = ControlOverlayPolicy.StepToward (ControlBar.Opacity, controlsTarget);
+		ControlBar.Opacity = opacity;
+		ControlBar.IsVisible = opacity > 0.05 || controlsVisibility != ControlOverlayVisibility.None;
+		if (opacity == controlsTarget) {
+			fadeTimer.Stop ();
+			ControlBar.IsVisible = opacity > 0.05;
+		}
+	}
+
+	void OnExitClick (object? sender, RoutedEventArgs e)
 		=> Close ();
 
-	protected override void OnKeyDown (KeyEventArgs e)
+	void OnPreviousClick (object? sender, RoutedEventArgs e)
+		=> Go (-1);
+
+	void OnNextClick (object? sender, RoutedEventArgs e)
+		=> Go (1);
+
+	void OnPlayPauseClick (object? sender, RoutedEventArgs e)
+		=> PlayPause ();
+
+	void OnRotateLeftClick (object? sender, RoutedEventArgs e)
+		=> Rotate (clockwise: false);
+
+	void OnRotateRightClick (object? sender, RoutedEventArgs e)
+		=> Rotate (clockwise: true);
+
+	void OnInfoClick (object? sender, RoutedEventArgs e)
 	{
-		if (e.Key == Key.Escape || e.Key == Key.Q) {
-			sequence.Stop ();
-			Close ();
-			e.Handled = true;
-			return;
-		}
-		if (e.Key == Key.Right || e.Key == Key.Space) {
-			sequence.Advance ();
-			ShowCurrent ();
-			e.Handled = true;
-			return;
-		}
-		if (e.Key == Key.Left) {
-			sequence.Retreat ();
-			ShowCurrent ();
-			e.Handled = true;
-			return;
-		}
-		base.OnKeyDown (e);
+		// The ToggleButton already flipped itself; keep the overlay in step with it.
+		InfoOverlay.IsVisible = InfoButton.IsChecked == true;
+		UpdateInfo ();
+	}
+
+	void OnHideClick (object? sender, RoutedEventArgs e)
+		=> DismissControls ();
+
+	void OnTransitionChanged (object? sender, SelectionChangedEventArgs e)
+	{
+		int index = TransitionCombo.SelectedIndex;
+		if (index >= 0 && index < SlideshowTransition.All.Count)
+			transition = SlideshowTransition.All[index];
 	}
 }

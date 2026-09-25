@@ -154,10 +154,21 @@ public partial class MainWindow : Window, IAvaloniaShell
 		=> MailSender.SendAsync (this, paths);
 
 	public void ShowSlideshow (IReadOnlyList<string> paths, int startIndex)
+		=> OpenFullScreenView (paths, startIndex, play: true);
+
+	public void ShowFullScreen (IReadOnlyList<string> paths, int startIndex)
+		=> OpenFullScreenView (paths, startIndex, play: false);
+
+	void OpenFullScreenView (IReadOnlyList<string> paths, int startIndex, bool play)
 	{
 		if (paths.Count == 0)
 			return;
-		var window = new SlideshowWindow (paths, startIndex);
+		var window = new SlideshowWindow (paths, startIndex, DataContext as IFullScreenHost, play);
+		// GTK FullScreenView goes fullscreen on the monitor that holds the main window.
+		if (Screens.ScreenFromWindow (this) is { } screen) {
+			window.WindowStartupLocation = WindowStartupLocation.Manual;
+			window.Position = screen.Bounds.Position;
+		}
 		window.Show (this);
 	}
 

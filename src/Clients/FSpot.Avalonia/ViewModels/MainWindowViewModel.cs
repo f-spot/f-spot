@@ -1212,7 +1212,7 @@ public partial class MainWindowViewModel : ObservableObject
 
 	[RelayCommand]
 	void ToggleFullscreen ()
-		=> shell.ToggleFullscreen ();
+		=> ShowFullScreen (playSlideshow: false);
 
 	[RelayCommand]
 	void CloseWindow ()
@@ -1587,15 +1587,7 @@ public partial class MainWindowViewModel : ObservableObject
 
 	[RelayCommand]
 	void Slideshow ()
-	{
-		var paths = PhotoFileActions.SelectedPaths (Photos.Select (item => item.Photo));
-		if (paths.Count == 0) {
-			_ = shell.ShowWarningAsync (Strings.Slideshow, Strings.NoSelectionAvailable);
-			return;
-		}
-		int start = SelectedPhoto is null ? 0 : Math.Max (0, Photos.ToList ().IndexOf (SelectedPhoto));
-		shell.ShowSlideshow (paths, start);
-	}
+		=> ShowFullScreen (playSlideshow: true);
 
 	[RelayCommand]
 	async Task ExportAsync ()

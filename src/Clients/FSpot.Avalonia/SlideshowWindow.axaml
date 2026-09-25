@@ -2,19 +2,150 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:auto="using:FSpot.Avalonia"
         xmlns:lang="using:FSpot.Resources.Lang"
+        xmlns:svg="using:Avalonia.Svg.Skia"
+        xmlns:vm="using:FSpot.Avalonia.ViewModels"
         x:Class="FSpot.Avalonia.SlideshowWindow"
         Title="{x:Static lang:Strings.Slideshow}"
         WindowState="FullScreen"
+        WindowDecorations="None"
         Background="Black"
         AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SlideshowWindow}"
         AutomationProperties.Name="{x:Static lang:Strings.Slideshow}">
-	<Panel>
-		<Image Name="Slide" Stretch="Uniform"
-		       AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SlideshowImage}"
-		       AutomationProperties.Name="{x:Static lang:Strings.Slideshow}" />
-		<Button HorizontalAlignment="Right" VerticalAlignment="Top" Margin="16"
-		        Content="×" Click="OnCloseClick"
-		        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SlideshowClose}"
-		        AutomationProperties.Name="{x:Static lang:Strings.Close}" />
+	<Window.Styles>
+		<Style Selector="Border#ControlBar Button, Border#ControlBar ToggleButton">
+			<Setter Property="Background" Value="Transparent" />
+			<Setter Property="Foreground" Value="White" />
+			<Setter Property="Padding" Value="6" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+		</Style>
+		<Style Selector="Border#ControlBar TextBlock">
+			<Setter Property="Foreground" Value="White" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+		</Style>
+		<Style Selector="Border#ControlBar TextBlock.glyph">
+			<Setter Property="FontSize" Value="18" />
+			<Setter Property="MinWidth" Value="22" />
+			<Setter Property="TextAlignment" Value="Center" />
+		</Style>
+		<Style Selector="Border#InfoOverlay TextBlock">
+			<Setter Property="Foreground" Value="White" />
+			<Setter Property="FontSize" Value="12" />
+			<Setter Property="Margin" Value="0,1" />
+		</Style>
+		<Style Selector="Border#InfoOverlay TextBlock.label">
+			<Setter Property="FontWeight" Value="Bold" />
+			<Setter Property="Margin" Value="0,1,8,1" />
+		</Style>
+	</Window.Styles>
+	<Panel Name="Stage" ClipToBounds="True" Background="Black">
+		<Panel Name="PreviousLayer" Background="Black">
+			<Panel.RenderTransform>
+				<TranslateTransform />
+			</Panel.RenderTransform>
+			<Image Name="PreviousSlide" Stretch="Uniform" />
+		</Panel>
+		<Panel Name="NextLayer" Background="Black">
+			<Panel.RenderTransform>
+				<TranslateTransform />
+			</Panel.RenderTransform>
+			<Image Name="Slide" Stretch="Uniform"
+			       AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SlideshowImage}"
+			       AutomationProperties.Name="{x:Static lang:Strings.Slideshow}" />
+		</Panel>
+
+		<Border Name="InfoOverlay" IsVisible="False" x:DataType="vm:PhotoInfoViewModel"
+		        HorizontalAlignment="Left" VerticalAlignment="Top" Margin="24"
+		        Padding="12,8" CornerRadius="12" Background="#99000000" Opacity="0.8"
+		        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SlideshowInfoOverlay}"
+		        AutomationProperties.Name="{x:Static lang:Strings.ImageInformation}">
+			<Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+				<TextBlock Grid.Row="0" Classes="label" Text="{x:Static lang:Strings.Name}" />
+				<TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Name}" />
+				<TextBlock Grid.Row="1" Classes="label" Text="{x:Static lang:Strings.Date}" />
+				<TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Date}" />
+				<TextBlock Grid.Row="2" Classes="label" Text="{x:Static lang:Strings.Size}" />
+				<TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Size}" />
+				<TextBlock Grid.Row="3" Classes="label" Text="{x:Static lang:Strings.Exposure}" />
+				<TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Exposure}" />
+				<TextBlock Grid.Row="4" Classes="label" Text="{x:Static lang:Strings.FocalLength}" />
+				<TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding FocalLength}" />
+				<TextBlock Grid.Row="5" Classes="label" Text="{x:Static lang:Strings.Camera}" />
+				<TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding Camera}" />
+				<TextBlock Grid.Row="6" Classes="label" Text="{x:Static lang:Strings.Rating}" />
+				<TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding StarCaption}" />
+				<TextBlock Grid.Row="7" Classes="label" Text="{x:Static lang:Strings.Tags}" />
+				<TextBlock Grid.Row="7" Grid.Column="1" Text="{Binding Tags}" TextWrapping="Wrap" MaxWidth="360" />
+			</Grid>
+		</Border>
+
+		<Border Name="ControlBar" IsVisible="False" Opacity="0"
+		        HorizontalAlignment="Center" VerticalAlignment="Bottom"
+		        Padding="15" CornerRadius="12,12,0,0" Background="#E0303030"
+		        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SlideshowControls}">
+			<StackPanel Orientation="Horizontal" Spacing="4">
+				<Button Name="ExitButton" Click="OnExitClick"
+				        ToolTip.Tip="{x:Static lang:Strings.ExitFullscreen}"
+				        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SlideshowClose}"
+				        AutomationProperties.Name="{x:Static lang:Strings.ExitFullscreen}">
+					<StackPanel Orientation="Horizontal" Spacing="6">
+						<svg:Svg Width="22" Height="22" Path="avares://FSpot.Avalonia/Icons/view-restore.svg" />
+						<TextBlock Text="{x:Static lang:Strings.ExitFullscreen}" />
+					</StackPanel>
+				</Button>
+				<Button Click="OnPreviousClick"
+				        ToolTip.Tip="{x:Static lang:Strings.PreviousPhoto}"
+				        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SlideshowPrevious}"
+				        AutomationProperties.Name="{x:Static lang:Strings.Previous}">
+					<TextBlock Classes="glyph" Text="◀" />
+				</Button>
+				<Button Name="PlayPauseButton" Click="OnPlayPauseClick"
+				        ToolTip.Tip="{x:Static lang:Strings.StartSlideshow}"
+				        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SlideshowPlayPause}"
+				        AutomationProperties.Name="{x:Static lang:Strings.Slideshow}">
+					<TextBlock Name="PlayPauseGlyph" Classes="glyph" Text="▶" />
+				</Button>
+				<Button Click="OnNextClick"
+				        ToolTip.Tip="{x:Static lang:Strings.NextPhoto}"
+				        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SlideshowNext}"
+				        AutomationProperties.Name="{x:Static lang:Strings.Next}">
+					<TextBlock Classes="glyph" Text="▶▶" />
+				</Button>
+				<TextBlock Text="{x:Static lang:Strings.SlideTransition}" Margin="8,0,4,0" />
+				<ComboBox Name="TransitionCombo" MinWidth="110" VerticalAlignment="Center"
+				          SelectionChanged="OnTransitionChanged"
+				          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SlideshowTransition}"
+				          AutomationProperties.Name="{x:Static lang:Strings.SlideTransition}" />
+				<Button Click="OnRotateLeftClick"
+				        ToolTip.Tip="{x:Static lang:Strings.RotatePhotoLeft}"
+				        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SlideshowRotateLeft}"
+				        AutomationProperties.Name="{x:Static lang:Strings.RotateLeft}">
+					<svg:Svg Width="22" Height="22" Path="avares://FSpot.Avalonia/Icons/object-rotate-left.svg" />
+				</Button>
+				<Button Click="OnRotateRightClick"
+				        ToolTip.Tip="{x:Static lang:Strings.RotatePhotoRight}"
+				        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SlideshowRotateRight}"
+				        AutomationProperties.Name="{x:Static lang:Strings.RotateRight}">
+					<svg:Svg Width="22" Height="22" Path="avares://FSpot.Avalonia/Icons/object-rotate-right.svg" />
+				</Button>
+				<ToggleButton Name="InfoButton" Click="OnInfoClick"
+				              ToolTip.Tip="{x:Static lang:Strings.ImageInformation}"
+				              AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SlideshowInfo}"
+				              AutomationProperties.Name="{x:Static lang:Strings.Info}">
+					<StackPanel Orientation="Horizontal" Spacing="6">
+						<TextBlock Classes="glyph" Text="ⓘ" />
+						<TextBlock Text="{x:Static lang:Strings.Info}" />
+					</StackPanel>
+				</ToggleButton>
+				<Button Click="OnHideClick"
+				        ToolTip.Tip="{x:Static lang:Strings.HideToolbar}"
+				        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SlideshowHide}"
+				        AutomationProperties.Name="{x:Static lang:Strings.Hide}">
+					<StackPanel Orientation="Horizontal" Spacing="6">
+						<TextBlock Classes="glyph" Text="✕" />
+						<TextBlock Text="{x:Static lang:Strings.Hide}" />
+					</StackPanel>
+				</Button>
+			</StackPanel>
+		</Border>
 	</Panel>
 </Window>

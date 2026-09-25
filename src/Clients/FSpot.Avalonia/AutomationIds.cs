@@ -93,6 +93,16 @@ public static class AutomationIds
 	public const string SlideshowWindow = "Slideshow.Window";
 	public const string SlideshowImage = "Slideshow.Image";
 	public const string SlideshowClose = "Slideshow.Close";
+	public const string SlideshowControls = "Slideshow.Controls";
+	public const string SlideshowPrevious = "Slideshow.Previous";
+	public const string SlideshowPlayPause = "Slideshow.PlayPause";
+	public const string SlideshowNext = "Slideshow.Next";
+	public const string SlideshowTransition = "Slideshow.Transition";
+	public const string SlideshowRotateLeft = "Slideshow.RotateLeft";
+	public const string SlideshowRotateRight = "Slideshow.RotateRight";
+	public const string SlideshowInfo = "Slideshow.Info";
+	public const string SlideshowHide = "Slideshow.Hide";
+	public const string SlideshowInfoOverlay = "Slideshow.InfoOverlay";
 
 	public const string Timeline = "Main.Timeline";
 	public const string Filmstrip = "Main.Filmstrip";
