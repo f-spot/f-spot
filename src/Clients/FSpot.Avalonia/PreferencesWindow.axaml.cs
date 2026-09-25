@@ -1,5 +1,6 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Avalonia.Media;
 using Avalonia.Platform.Storage;
 
 using FSpot;
@@ -18,8 +19,8 @@ public partial class PreferencesWindow : Window
 		Closing += (_, _) => Save ();
 		StoragePath.Text = LibraryPreferences.StoragePath;
 		FillMetadata ();
-		FillProfiles (DisplayProfile, IccProfileClass.Display, LibraryPreferences.DisplayProfile);
-		FillProfiles (PrintProfile, IccProfileClass.Output, LibraryPreferences.PrintProfile);
+		FillProfiles (DisplayProfile, IccProfileClass.Display, LibraryPreferences.DisplayProfile, SystemColorProfile.IsAvailable);
+		FillProfiles (PrintProfile, IccProfileClass.Output, LibraryPreferences.PrintProfile, offerSystemProfile: false);
 		ColorScheme.ItemsSource = new[] {
 			Strings.UseSystemTheme,
 			Strings.Light,
@@ -34,6 +35,9 @@ public partial class PreferencesWindow : Window
 		ShowHoverPreview.IsChecked = LibraryPreferences.ShowHoverPreview;
 		EmbedMetadata.IsCheckedChanged += (_, _) => SyncSidecar ();
 		SyncSidecar ();
+		FillTransparency ();
+		MailEnabled.IsChecked = LibraryPreferences.MailToEnabled;
+		SendCrashReports.IsChecked = LibraryPreferences.SendCrashReports;
 	}
 
 	void FillMetadata ()
@@ -67,13 +71,71 @@ public partial class PreferencesWindow : Window
 	void SyncSidecar ()
 		=> AlwaysSidecar.IsEnabled = EmbedMetadata.IsChecked == true;
 
-	static void FillProfiles (ComboBox box, IccProfileClass deviceClass, string selected)
+	static void FillProfiles (ComboBox box, IccProfileClass deviceClass, string selected, bool offerSystemProfile)
 	{
 		var items = new List<string> { Strings.None };
+		if (offerSystemProfile)
+			items.Add (Strings.SystemProfile);
 		items.AddRange (InstalledProfileNames.For (deviceClass));
 		box.ItemsSource = items;
-		box.SelectedItem = items.Contains (selected) ? selected : Strings.None;
+		string resolved = offerSystemProfile && selected == SystemColorProfile.Sentinel
+			? Strings.SystemProfile
+			: selected;
+		box.SelectedItem = items.Contains (resolved) ? resolved : Strings.None;
 	}
+
+	void FillTransparency ()
+	{
+		TransparencyBackground.Content = GtkMnemonic.Display (Strings.AsBackground);
+		TransparencyCheckPattern.Content = GtkMnemonic.Display (Strings.AsCheckPattern);
+		TransparencyCustomColor.Content = GtkMnemonic.Display (Strings.AsCustomColor);
+
+		switch (LibraryPreferences.ViewerTransparency) {
+		case "CHECK_PATTERN":
+			TransparencyCheckPattern.IsChecked = true;
+			break;
+		case "COLOR":
+			TransparencyCustomColor.IsChecked = true;
+			break;
+		default: // NONE
+			TransparencyBackground.IsChecked = true;
+			break;
+		}
+
+		TransparencyColorHex.Text = LibraryPreferences.ViewerTransColor;
+		UpdateColorSwatch ();
+		SyncTransparencyColorEnabled ();
+
+		TransparencyColorHex.TextChanged += (_, _) => UpdateColorSwatch ();
+		TransparencyBackground.IsCheckedChanged += (_, _) => SyncTransparencyColorEnabled ();
+		TransparencyCheckPattern.IsCheckedChanged += (_, _) => SyncTransparencyColorEnabled ();
+		TransparencyCustomColor.IsCheckedChanged += (_, _) => SyncTransparencyColorEnabled ();
+	}
+
+	void SyncTransparencyColorEnabled ()
+		=> TransparencyColorHex.IsEnabled = TransparencyCustomColor.IsChecked == true;
+
+	void UpdateColorSwatch ()
+	{
+		if (TryParseHexColor (TransparencyColorHex.Text, out var color))
+			TransparencyColorSwatch.Background = new SolidColorBrush (color);
+	}
+
+	static bool TryParseHexColor (string? text, out Color color)
+	{
+		color = default;
+		if (string.IsNullOrWhiteSpace (text))
+			return false;
+		try {
+			color = Color.Parse (text.Trim ());
+			return true;
+		} catch (FormatException) {
+			return false;
+		}
+	}
+
+	static string FormatHexColor (Color color)
+		=> $"#{color.R:x2}{color.G:x2}{color.B:x2}";
 
 	void OnBrowse (object? sender, RoutedEventArgs e)
 		=> _ = BrowseAsync ();
@@ -109,9 +171,21 @@ public partial class PreferencesWindow : Window
 		};
 		LibraryPreferences.ViewerInterpolation = ViewerInterpolation.IsChecked == true;
 		LibraryPreferences.ShowHoverPreview = ShowHoverPreview.IsChecked == true;
+		LibraryPreferences.ViewerTransparency = TransparencyCheckPattern.IsChecked == true ? "CHECK_PATTERN"
+			: TransparencyCustomColor.IsChecked == true ? "COLOR"
+			: "NONE";
+		if (TryParseHexColor (TransparencyColorHex.Text, out var transColor))
+			LibraryPreferences.ViewerTransColor = FormatHexColor (transColor);
+		LibraryPreferences.MailToEnabled = MailEnabled.IsChecked == true;
+		LibraryPreferences.SendCrashReports = SendCrashReports.IsChecked == true;
+		FSpotSentry.Apply (FSpotSentry.AvaloniaClient);
 		AppearanceTheme.Apply (global::Avalonia.Application.Current);
 	}
 
 	static string ChosenProfile (ComboBox box)
-		=> box.SelectedItem is string name && name != Strings.None ? name : string.Empty;
+	{
+		if (box.SelectedItem is not string name || name == Strings.None)
+			return string.Empty;
+		return name == Strings.SystemProfile ? SystemColorProfile.Sentinel : name;
+	}
 }

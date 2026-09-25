@@ -896,6 +896,40 @@ public sealed class MainWindowViewModelTests
 	}
 
 	[TestMethod]
+	[DoNotParallelize]
+	public void IsMailEnabled_FollowsMailToEnabledPreferenceAtConstruction ()
+	{
+		bool original = LibraryPreferences.MailToEnabled;
+		try {
+			LibraryPreferences.MailToEnabled = false;
+			Assert.IsFalse (new MainWindowViewModel (null, new RecordingShell (), new NullThumbnails ()).IsMailEnabled);
+
+			LibraryPreferences.MailToEnabled = true;
+			Assert.IsTrue (new MainWindowViewModel (null, new RecordingShell (), new NullThumbnails ()).IsMailEnabled);
+		} finally {
+			LibraryPreferences.MailToEnabled = original;
+		}
+	}
+
+	[TestMethod]
+	[DoNotParallelize]
+	public async Task ShowPreferencesCommand_RefreshesIsMailEnabledFromPreferences ()
+	{
+		bool original = LibraryPreferences.MailToEnabled;
+		try {
+			LibraryPreferences.MailToEnabled = false;
+			var viewModel = new MainWindowViewModel (null, new RecordingShell (), new NullThumbnails ());
+			Assert.IsFalse (viewModel.IsMailEnabled);
+
+			LibraryPreferences.MailToEnabled = true;
+			await viewModel.ShowPreferencesCommand.ExecuteAsync (null);
+			Assert.IsTrue (viewModel.IsMailEnabled);
+		} finally {
+			LibraryPreferences.MailToEnabled = original;
+		}
+	}
+
+	[TestMethod]
 	public void PrintAndMail_UseTheSelectedPhotos ()
 	{
 		var shell = new RecordingShell ();

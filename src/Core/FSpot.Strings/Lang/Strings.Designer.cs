@@ -178,6 +178,33 @@ namespace FSpot.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to As _background.
+        /// </summary>
+        public static string AsBackground {
+            get {
+                return ResourceManager.GetString("AsBackground", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to As check _pattern.
+        /// </summary>
+        public static string AsCheckPattern {
+            get {
+                return ResourceManager.GetString("AsCheckPattern", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to As _custom color: .
+        /// </summary>
+        public static string AsCustomColor {
+            get {
+                return ResourceManager.GetString("AsCustomColor", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Assembly Name.
         /// </summary>
         public static string AssemblyName {
@@ -782,7 +809,16 @@ namespace FSpot.Resources.Lang {
                 return ResourceManager.GetString("DirectoryNotFound", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Display of transparent parts..
+        /// </summary>
+        public static string DisplayOfTransparentParts {
+            get {
+                return ResourceManager.GetString("DisplayOfTransparentParts", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Dissolve.
         /// </summary>
@@ -918,6 +954,15 @@ namespace FSpot.Resources.Lang {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Enable sending photos by mail.
+        /// </summary>
+        public static string EnableSendingPhotosByMail {
+            get {
+                return ResourceManager.GetString("EnableSendingPhotosByMail", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to ends with.
         /// </summary>
@@ -3545,6 +3590,15 @@ namespace FSpot.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The color to use for transparent parts..
+        /// </summary>
+        public static string TheColorToUseForTransparentParts {
+            get {
+                return ResourceManager.GetString("TheColorToUseForTransparentParts", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to The file you selected is not a valid or supported database.\n\nReceived exception &quot;{0}&quot;..
         /// </summary>
         public static string TheFileSelectedNotValidOrSupportedDataaseReceivedExceptionX {
@@ -4934,6 +4988,12 @@ namespace FSpot.Resources.Lang {
         public static string ShowALargerPreviewWhenThePointerIsOverAPhoto {
             get {
                 return ResourceManager.GetString("ShowALargerPreviewWhenThePointerIsOverAPhoto", resourceCulture);
+            }
+        }
+
+        public static string YouCanChooseHowToDisplayTransparentPartsInImagesThisOptionHasNoEffectOnPhotosButSettingThisValueToCHECKPATTERNOrCUSTOMCOLORCouldBeUsefulWhenViewingIconsOrOtherArtworkWithTransparentParts {
+            get {
+                return ResourceManager.GetString("YouCanChooseHowToDisplayTransparentPartsInImagesThisOptionHasNoEffectOnPhotosButSettingThisValueToCHECKPATTERNOrCUSTOMCOLORCouldBeUsefulWhenViewingIconsOrOtherArtworkWithTransparentParts", resourceCulture);
             }
         }
     }

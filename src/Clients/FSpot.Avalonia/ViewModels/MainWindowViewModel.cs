@@ -162,6 +162,9 @@ public partial class MainWindowViewModel : ObservableObject
 	bool viewerInterpolation = true;
 
 	[ObservableProperty]
+	bool isMailEnabled;
+
+	[ObservableProperty]
 	double uiScale = 1;
 
 	public BitmapInterpolationMode PreviewInterpolation
@@ -190,6 +193,7 @@ public partial class MainWindowViewModel : ObservableObject
 		DisplayFilmstrip = LibraryPreferences.ShowFilmstrip;
 		ShowHoverPreviewEnabled = LibraryPreferences.ShowHoverPreview;
 		ViewerInterpolation = LibraryPreferences.ViewerInterpolation;
+		IsMailEnabled = LibraryPreferences.MailToEnabled;
 		FilmstripOnSide = Preferences.Get<int> (Preferences.FilmstripOrientation) == 1;
 		Tag.TagIconSize = (IconSize)Preferences.Get<int> (Preferences.TagIconSize);
 		Info.VersionChosen += ApplyVersion;
@@ -2037,6 +2041,7 @@ public partial class MainWindowViewModel : ObservableObject
 		ShowHoverPreviewEnabled = LibraryPreferences.ShowHoverPreview;
 		if (!ShowHoverPreviewEnabled)
 			ClearHover ();
+		IsMailEnabled = LibraryPreferences.MailToEnabled;
 		AppearanceTheme.Apply (global::Avalonia.Application.Current);
 	}
 

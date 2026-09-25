@@ -65,5 +65,22 @@ namespace FSpot
 			get => Preferences.Get<string> (Preferences.ColorManagementDisplayOutputProfile);
 			set => Preferences.Set (Preferences.ColorManagementDisplayOutputProfile, value);
 		}
+
+		// "NONE" (as background), "CHECK_PATTERN" or "COLOR".
+		public static string ViewerTransparency {
+			get => Preferences.Get<string> (Preferences.ViewerTransparency);
+			set => Preferences.Set (Preferences.ViewerTransparency, value);
+		}
+
+		// "#rrggbb", used only when ViewerTransparency is "COLOR".
+		public static string ViewerTransColor {
+			get => Preferences.Get<string> (Preferences.ViewerTransColor);
+			set => Preferences.Set (Preferences.ViewerTransColor, value);
+		}
+
+		public static bool MailToEnabled {
+			get => Preferences.Get<bool> (Preferences.MailToEnabled);
+			set => Preferences.Set (Preferences.MailToEnabled, value);
+		}
 	}
 }

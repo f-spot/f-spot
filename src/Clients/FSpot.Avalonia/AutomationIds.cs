@@ -156,6 +156,11 @@ public static class AutomationIds
 	public const string PreferencesSidecar = "Preferences.Sidecar";
 	public const string PreferencesDisplayProfile = "Preferences.DisplayProfile";
 	public const string PreferencesPrintProfile = "Preferences.PrintProfile";
+	public const string PreferencesTransparencyBackground = "Preferences.Transparency.Background";
+	public const string PreferencesTransparencyCheckPattern = "Preferences.Transparency.CheckPattern";
+	public const string PreferencesTransparencyCustomColor = "Preferences.Transparency.CustomColor";
+	public const string PreferencesTransparencyColorHex = "Preferences.Transparency.ColorHex";
+	public const string PreferencesMailEnabled = "Preferences.MailEnabled";
 	public const string ExtensionsWindow = "Extensions.Window";
 	public const string ExtensionsList = "Extensions.List";
 	public const string InfoShowDate = "Main.Sidebar.Info.ShowDate";

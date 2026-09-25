@@ -10,7 +10,7 @@
         CanResize="False"
         AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PreferencesWindow}"
         AutomationProperties.Name="{x:Static lang:Strings.Preferences}">
-	<Grid Margin="20" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="220,*">
+	<Grid Margin="20" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="220,*">
 		<TextBlock Text="{x:Static lang:Strings.WhenImportingPhotosCopyThemTo}" VerticalAlignment="Center"
 		           TextWrapping="Wrap" TextAlignment="Right" Margin="0,0,12,12" />
 		<Grid Grid.Column="1" ColumnDefinitions="*,Auto" Margin="0,0,0,12">
@@ -64,7 +64,35 @@
 		          Content="{x:Static lang:Strings.InterpolateImageOnZoom}" Margin="0,0,0,12"
 		          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PreferencesInterpolation}" />
 
-		<Button Grid.Row="7" Grid.Column="1" HorizontalAlignment="Right" MinWidth="88" Classes="dialog"
+		<TextBlock Grid.Row="7" Text="{x:Static lang:Strings.DisplayOfTransparentParts}" VerticalAlignment="Top"
+		           TextWrapping="Wrap" TextAlignment="Right" Margin="0,4,12,12" />
+		<StackPanel Grid.Row="7" Grid.Column="1" Spacing="6" Margin="0,0,0,12">
+			<RadioButton Name="TransparencyBackground" x:FieldModifier="internal" GroupName="transparency"
+			             AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PreferencesTransparencyBackground}" />
+			<RadioButton Name="TransparencyCheckPattern" x:FieldModifier="internal" GroupName="transparency"
+			             AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PreferencesTransparencyCheckPattern}" />
+			<StackPanel Orientation="Horizontal" Spacing="8">
+				<RadioButton Name="TransparencyCustomColor" x:FieldModifier="internal" GroupName="transparency"
+				             AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PreferencesTransparencyCustomColor}" />
+				<Border Name="TransparencyColorSwatch" x:FieldModifier="internal" Width="20" Height="20"
+				        BorderBrush="Gray" BorderThickness="1" VerticalAlignment="Center" />
+				<TextBox Name="TransparencyColorHex" x:FieldModifier="internal" Width="90"
+				         AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PreferencesTransparencyColorHex}"
+				         AutomationProperties.Name="{x:Static lang:Strings.TheColorToUseForTransparentParts}" />
+			</StackPanel>
+			<TextBlock Text="{x:Static lang:Strings.YouCanChooseHowToDisplayTransparentPartsInImagesThisOptionHasNoEffectOnPhotosButSettingThisValueToCHECKPATTERNOrCUSTOMCOLORCouldBeUsefulWhenViewingIconsOrOtherArtworkWithTransparentParts}"
+			           FontSize="12" Opacity="0.7" TextWrapping="Wrap" />
+		</StackPanel>
+
+		<CheckBox Name="MailEnabled" x:FieldModifier="internal" Grid.Row="8" Grid.Column="1"
+		          Content="{x:Static lang:Strings.EnableSendingPhotosByMail}" Margin="0,0,0,12"
+		          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PreferencesMailEnabled}" />
+
+		<CheckBox Name="SendCrashReports" x:FieldModifier="internal" Grid.Row="9" Grid.Column="1"
+		          Content="{x:Static lang:Strings.SendCrashReportsToSentry}" Margin="0,0,0,12"
+		          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PreferencesSendCrashReports}" />
+
+		<Button Grid.Row="10" Grid.Column="1" HorizontalAlignment="Right" MinWidth="88" Classes="dialog"
 		        Content="{x:Static lang:Strings.Close}" Click="OnClose" />
 	</Grid>
 </Window>

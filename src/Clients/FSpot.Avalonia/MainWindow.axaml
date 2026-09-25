@@ -46,7 +46,7 @@
 						<NativeMenuItem Header="{x:Static lang:Strings.ExportToFolder}" Command="{Binding ExportCommand}" />
 						<NativeMenuItem Header="{x:Static lang:Strings.Print2}" Gesture="Ctrl+P" Command="{Binding PrintCommand}" />
 						<NativeMenuItem Header="{x:Static lang:Strings.PageSetup2}" Command="{Binding PageSetupCommand}" />
-						<NativeMenuItem Header="{x:Static lang:Strings.SendByMail}" Command="{Binding MailCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.SendByMail}" Command="{Binding MailCommand}" IsVisible="{Binding IsMailEnabled}" />
 						<NativeMenuItemSeparator />
 						<NativeMenuItem Header="{x:Static lang:Strings.Close}" Gesture="Ctrl+W" Command="{Binding QuitCommand}" />
 						<NativeMenuItem Header="{x:Static lang:Strings.Quit}" Gesture="Ctrl+Q" Command="{Binding QuitCommand}" />
