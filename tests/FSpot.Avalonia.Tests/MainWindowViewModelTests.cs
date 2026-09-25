@@ -1029,6 +1029,32 @@ public sealed class MainWindowViewModelTests
 	}
 
 	[TestMethod]
+	public void AdjustTimeCommand_WhenSpacing_AnchorsOnTheChosenTimeNotTheOriginalOne ()
+	{
+		var first = CatalogPhoto ();
+		var second = CatalogPhoto ();
+		var anchorTime = new DateTime (2030, 1, 1, 9, 0, 0);
+		var shell = new RecordingShell {
+			AdjustTimeResult = new TimeAdjustChoice {
+				ShiftByOffset = false,
+				SpacingMinutes = 15,
+				AnchorIndex = 0,
+				AnchorTime = anchorTime
+			}
+		};
+		var viewModel = new MainWindowViewModel (null, shell, new NullThumbnails ());
+		viewModel.SeedCatalog (first, second);
+		viewModel.Photos[0].Selected = true;
+		viewModel.Photos[1].Selected = true;
+
+		viewModel.AdjustTimeCommand.Execute (null);
+
+		// Row 0 is the anchor: it takes the dialog's chosen time exactly, not its own old time.
+		Assert.AreEqual (anchorTime, first.Time);
+		Assert.AreEqual (anchorTime + TimeSpan.FromMinutes (15), second.Time);
+	}
+
+	[TestMethod]
 	public void RefreshThumbnailCommand_ClearsThePreviewCache ()
 	{
 		var viewModel = ViewModelWithFocusedPhoto ();
@@ -1326,7 +1352,7 @@ public sealed class MainWindowViewModelTests
 		public virtual void ShowSlideshow (IReadOnlyList<string> paths, int startIndex) { }
 		public virtual void OpenUri (string uri) { }
 		public virtual Task<double?> PromptHoursOffsetAsync () => Task.FromResult<double?> (null);
-		public virtual Task<TimeAdjustChoice?> PromptAdjustTimeAsync (IReadOnlyList<(string Name, DateTime Time)> photos)
+		public virtual Task<TimeAdjustChoice?> PromptAdjustTimeAsync (IReadOnlyList<(string Name, DateTime Time, string Path)> photos)
 			=> Task.FromResult<TimeAdjustChoice?> (null);
 	}
 
@@ -1349,6 +1375,7 @@ public sealed class MainWindowViewModelTests
 		public bool ConfirmResult { get; set; }
 		public bool ConfirmCalled { get; private set; }
 		public double? Hours { get; set; }
+		public TimeAdjustChoice? AdjustTimeResult { get; set; }
 		public IReadOnlyList<string>? ImportedPaths { get; private set; }
 
 		public override Task<bool> ShowImportAsync (IReadOnlyList<string> paths)
@@ -1369,10 +1396,10 @@ public sealed class MainWindowViewModelTests
 		public override Task<double?> PromptHoursOffsetAsync ()
 			=> Task.FromResult (Hours);
 
-		public override Task<TimeAdjustChoice?> PromptAdjustTimeAsync (IReadOnlyList<(string Name, DateTime Time)> photos)
-			=> Task.FromResult<TimeAdjustChoice?> (Hours is double hours
+		public override Task<TimeAdjustChoice?> PromptAdjustTimeAsync (IReadOnlyList<(string Name, DateTime Time, string Path)> photos)
+			=> Task.FromResult (AdjustTimeResult ?? (Hours is double hours
 				? new TimeAdjustChoice { ShiftByOffset = true, Hours = hours }
-				: null);
+				: null));
 
 		public override Task ShowWarningAsync (string title, string message)
 		{

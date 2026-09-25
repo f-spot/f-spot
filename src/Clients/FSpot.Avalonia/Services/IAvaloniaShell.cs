@@ -39,6 +39,6 @@ public interface IAvaloniaShell
 	Task ShowPreferencesAsync () => Task.CompletedTask;
 	Task ShowExtensionsAsync (IList<AddinStatus> addins) => Task.CompletedTask;
 	Task<double?> PromptHoursOffsetAsync () => Task.FromResult<double?> (null);
-	Task<TimeAdjustChoice?> PromptAdjustTimeAsync (IReadOnlyList<(string Name, DateTime Time)> photos)
+	Task<TimeAdjustChoice?> PromptAdjustTimeAsync (IReadOnlyList<(string Name, DateTime Time, string Path)> photos)
 		=> Task.FromResult<TimeAdjustChoice?> (null);
 }

@@ -23,4 +23,17 @@ static class GtkMarkupText
 			: markup[(start + open.Length)..end].Trim ();
 		return (title, detail);
 	}
+
+	// Several Strings entries carry a literal "<b>...</b>" Pango wrapper (frame captions such
+	// as "Reference Photo"); Avalonia's TextBlock does not render that markup, so strip it and
+	// apply boldness with FontWeight instead.
+	public static string StripBold (string? markup)
+	{
+		if (string.IsNullOrEmpty (markup))
+			return markup ?? string.Empty;
+		return markup
+			.Replace ("<b>", string.Empty, StringComparison.Ordinal)
+			.Replace ("</b>", string.Empty, StringComparison.Ordinal)
+			.Trim ();
+	}
 }

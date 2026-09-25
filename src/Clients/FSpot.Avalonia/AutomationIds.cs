@@ -170,4 +170,16 @@ public static class AutomationIds
 	public const string FolderPicker = "Dialog.FolderPicker";
 	public const string FolderPickerPath = "Dialog.FolderPicker.Path";
 	public const string FolderPickerBrowse = "Dialog.FolderPicker.Browse";
+
+	public const string AdjustTimeWindow = "AdjustTime.Window";
+	public const string AdjustTimeName = "AdjustTime.Name";
+	public const string AdjustTimePreview = "AdjustTime.Preview";
+	public const string AdjustTimeSpin = "AdjustTime.Spin";
+	public const string AdjustTimeAdjustedDate = "AdjustTime.AdjustedDate";
+	public const string AdjustTimeAdjustedTime = "AdjustTime.AdjustedTime";
+	public const string AdjustTimeDifference = "AdjustTime.Difference";
+	public const string AdjustTimeShift = "AdjustTime.Shift";
+	public const string AdjustTimeSpace = "AdjustTime.Space";
+	public const string AdjustTimeSpacing = "AdjustTime.Spacing";
+	public const string AdjustTimeTray = "AdjustTime.Tray";
 }

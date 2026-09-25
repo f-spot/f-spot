@@ -39,6 +39,27 @@ namespace FSpot
 				photos[i].Time = anchorTime + TimeSpan.FromTicks (step.Ticks * (i - anchorIndex));
 			commit?.Invoke (photos.ToArray ());
 		}
+
+		// Shared by the Adjust Time dialog's preview and by the two commit paths above, so a
+		// photo's previewed new time can never drift from what OK actually assigns to it.
+		public static DateTime PreviewTime (IReadOnlyList<DateTime> originalTimes, int index, int anchorIndex, DateTime anchorNewTime, bool shiftAll, TimeSpan spacingStep)
+		{
+			if (originalTimes == null)
+				throw new ArgumentNullException (nameof (originalTimes));
+			if (originalTimes.Count == 0)
+				return anchorNewTime;
+			if (anchorIndex < 0 || anchorIndex >= originalTimes.Count)
+				anchorIndex = 0;
+			if (index < 0 || index >= originalTimes.Count)
+				index = 0;
+
+			if (shiftAll) {
+				TimeSpan offset = anchorNewTime - originalTimes[anchorIndex];
+				return originalTimes[index] + offset;
+			}
+
+			return anchorNewTime + TimeSpan.FromTicks (spacingStep.Ticks * (index - anchorIndex));
+		}
 	}
 
 	public sealed class TimeAdjustChoice
@@ -47,5 +68,9 @@ namespace FSpot
 		public double Hours { get; set; }
 		public double SpacingMinutes { get; set; }
 		public int AnchorIndex { get; set; }
+
+		// The reference photo's user-chosen new time, when spacing. Null keeps the older
+		// behavior of anchoring on that photo's own unedited time.
+		public DateTime? AnchorTime { get; set; }
 	}
 }

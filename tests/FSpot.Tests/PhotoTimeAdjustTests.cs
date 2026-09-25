@@ -40,6 +40,48 @@ namespace FSpot.Tests
 			Assert.AreEqual (anchor + TimeSpan.FromMinutes (10), photos[2].Time);
 		}
 
+		[TestMethod]
+		public void PreviewTime_WhenSpacing_MatchesWhatSpaceWouldAssign ()
+		{
+			var originals = new[] {
+				new DateTime (2020, 1, 1),
+				new DateTime (2020, 2, 1),
+				new DateTime (2020, 3, 1)
+			};
+			var anchorNewTime = new DateTime (2020, 5, 1, 8, 0, 0);
+			var step = TimeSpan.FromMinutes (10);
+			const int anchorIndex = 1;
+
+			var photos = new[] { PhotoAt (originals[0]), PhotoAt (originals[1]), PhotoAt (originals[2]) };
+			PhotoTimeAdjust.Space (photos, anchorIndex, anchorNewTime, step, null);
+
+			for (int i = 0; i < originals.Length; i++)
+				Assert.AreEqual (photos[i].Time, PhotoTimeAdjust.PreviewTime (originals, i, anchorIndex, anchorNewTime, shiftAll: false, step));
+		}
+
+		[TestMethod]
+		public void PreviewTime_WhenSpacing_AnchorsOnTheSelectedRowNotIndexZero ()
+		{
+			var originals = new[] { new DateTime (2020, 1, 1), new DateTime (2020, 1, 2), new DateTime (2020, 1, 3) };
+			var anchorNewTime = new DateTime (2020, 6, 1, 12, 0, 0);
+			var step = TimeSpan.FromMinutes (5);
+
+			// Anchored on row 2 (not row 0): row 2 keeps the adjusted time exactly.
+			Assert.AreEqual (anchorNewTime, PhotoTimeAdjust.PreviewTime (originals, 2, 2, anchorNewTime, shiftAll: false, step));
+			// Row 0, two steps before the anchor, lands ten minutes earlier.
+			Assert.AreEqual (anchorNewTime - TimeSpan.FromMinutes (10), PhotoTimeAdjust.PreviewTime (originals, 0, 2, anchorNewTime, shiftAll: false, step));
+		}
+
+		[TestMethod]
+		public void PreviewTime_WhenShifting_MovesEveryPhotoByTheAnchorsOffset ()
+		{
+			var originals = new[] { new DateTime (2020, 1, 1, 9, 0, 0), new DateTime (2020, 1, 2, 9, 0, 0) };
+			var anchorNewTime = originals[0] + TimeSpan.FromHours (2);
+
+			Assert.AreEqual (originals[0] + TimeSpan.FromHours (2), PhotoTimeAdjust.PreviewTime (originals, 0, 0, anchorNewTime, shiftAll: true, TimeSpan.Zero));
+			Assert.AreEqual (originals[1] + TimeSpan.FromHours (2), PhotoTimeAdjust.PreviewTime (originals, 1, 0, anchorNewTime, shiftAll: true, TimeSpan.Zero));
+		}
+
 		static Photo PhotoAt (DateTime time)
 			=> new Photo (null, null, 1, Hyena.DateTimeUtil.FromDateTime (time));
 	}

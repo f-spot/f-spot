@@ -239,7 +239,7 @@ public partial class MainWindow : Window, IAvaloniaShell
 		return window.ShowDialog (this);
 	}
 
-	public async Task<TimeAdjustChoice?> PromptAdjustTimeAsync (IReadOnlyList<(string Name, DateTime Time)> photos)
+	public async Task<TimeAdjustChoice?> PromptAdjustTimeAsync (IReadOnlyList<(string Name, DateTime Time, string Path)> photos)
 	{
 		var dialog = new AdjustTimeWindow (photos);
 		await dialog.ShowDialog (this);

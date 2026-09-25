@@ -5146,5 +5146,50 @@ namespace FSpot.Resources.Lang {
                 return ResourceManager.GetString("TotalOriginalSize", resourceCulture);
             }
         }
+        public static string BReferencePhotoB {
+            get {
+                return ResourceManager.GetString("BReferencePhotoB", resourceCulture);
+            }
+        }
+        public static string BActionB {
+            get {
+                return ResourceManager.GetString("BActionB", resourceCulture);
+            }
+        }
+        public static string BPhotosB {
+            get {
+                return ResourceManager.GetString("BPhotosB", resourceCulture);
+            }
+        }
+        public static string AdjustedDate {
+            get {
+                return ResourceManager.GetString("AdjustedDate", resourceCulture);
+            }
+        }
+        public static string CurrentDate {
+            get {
+                return ResourceManager.GetString("CurrentDate", resourceCulture);
+            }
+        }
+        public static string Difference {
+            get {
+                return ResourceManager.GetString("Difference", resourceCulture);
+            }
+        }
+        public static string ShiftAllPhotosByX {
+            get {
+                return ResourceManager.GetString("ShiftAllPhotosByX", resourceCulture);
+            }
+        }
+        public static string SpaceAllPhotosBy {
+            get {
+                return ResourceManager.GetString("SpaceAllPhotosBy", resourceCulture);
+            }
+        }
+        public static string MinStartingAtX {
+            get {
+                return ResourceManager.GetString("MinStartingAtX", resourceCulture);
+            }
+        }
     }
 }

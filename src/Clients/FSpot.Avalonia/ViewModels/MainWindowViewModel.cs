@@ -2004,13 +2004,14 @@ public partial class MainWindowViewModel : ObservableObject
 		var photos = SelectedCatalogPhotos ().ToList ();
 		if (photos.Count == 0)
 			return;
-		var choice = await shell.PromptAdjustTimeAsync (photos.Select (photo => (photo.Name, photo.Time)).ToList ());
+		var choice = await shell.PromptAdjustTimeAsync (photos.Select (photo => (photo.Name, photo.Time, photo.DefaultVersion.Uri.AbsolutePath)).ToList ());
 		if (choice is null)
 			return;
 		if (choice.ShiftByOffset)
 			PhotoTimeAdjust.ShiftEach (photos, TimeSpan.FromHours (choice.Hours), batch => database?.Photos.Commit (batch));
 		else
-			PhotoTimeAdjust.Space (photos, choice.AnchorIndex, photos[Math.Clamp (choice.AnchorIndex, 0, photos.Count - 1)].Time,
+			PhotoTimeAdjust.Space (photos, choice.AnchorIndex,
+				choice.AnchorTime ?? photos[Math.Clamp (choice.AnchorIndex, 0, photos.Count - 1)].Time,
 				TimeSpan.FromMinutes (choice.SpacingMinutes), batch => database?.Photos.Commit (batch));
 		RefreshEditedSelection ();
 	}

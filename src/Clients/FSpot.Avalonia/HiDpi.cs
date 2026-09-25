@@ -6,6 +6,8 @@ public static class HiDpi
 {
 	public const double ImportListDip = 128;
 	public const double ImportPreviewDip = 512;
+	public const double AdjustTimeTrayDip = 48;
+	public const double AdjustTimePreviewDip = 320;
 
 	public static int PixelSize (double dip, double scale)
 	{
