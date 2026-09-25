@@ -27,49 +27,63 @@ namespace FSpot.Platform
 		static readonly object sync_handler = new object ();
 
 		static JObject client;
+		static string loadedFrom;
 
 		internal static void Unload ()
 		{
-			lock (sync_handler)
+			lock (sync_handler) {
 				client = null;
+				loadedFrom = null;
+			}
 		}
 
-		internal string SettingsFile { get; }
+		internal string SettingsFile =>
+			string.IsNullOrWhiteSpace (PreferenceLocationOverride)
+				? Path.Combine (FSpotConfiguration.BaseDirectory, FSpotConfiguration.SettingsName)
+				: PreferenceLocationOverride;
 
 		public PreferenceJsonBackend ()
 		{
-			if (string.IsNullOrWhiteSpace (PreferenceLocationOverride))
-				SettingsFile = Path.Combine (FSpotConfiguration.BaseDirectory, FSpotConfiguration.SettingsName);
-			else
-				SettingsFile = PreferenceLocationOverride;
 		}
 
 		JObject Client {
 			get {
 				lock (sync_handler) {
+					DropIfThePathChanged ();
 					return client ?? LoadSettings ();
 				}
 			}
 		}
 
-		void EnsureSettingsDirectory ()
+		// The cache belongs to the path it was read from. A later override or
+		// --basedir must not flush those keys into the new file.
+		void DropIfThePathChanged ()
 		{
-			string directory = Path.GetDirectoryName (SettingsFile);
+			if (client != null && loadedFrom != SettingsFile) {
+				client = null;
+				loadedFrom = null;
+			}
+		}
+
+		void EnsureSettingsDirectory (string path)
+		{
+			string directory = Path.GetDirectoryName (path);
 			if (!string.IsNullOrEmpty (directory))
 				Directory.CreateDirectory (directory);
 		}
 
 		JObject LoadSettings ()
 		{
-			if (!File.Exists (SettingsFile) || new FileInfo (SettingsFile).Length == 0) {
+			loadedFrom = SettingsFile;
+			if (!File.Exists (loadedFrom) || new FileInfo (loadedFrom).Length == 0) {
 				var empty = new JObject {
 					[SettingsRoot] = new JObject ()
 				};
-				EnsureSettingsDirectory ();
-				File.WriteAllText (SettingsFile, empty.ToString ());
+				EnsureSettingsDirectory (loadedFrom);
+				File.WriteAllText (loadedFrom, empty.ToString ());
 			}
 
-			var settingsFile = File.ReadAllText (SettingsFile);
+			var settingsFile = File.ReadAllText (loadedFrom);
 			var o = JObject.Parse (settingsFile);
 			client = (JObject)o[SettingsRoot];
 			return client;
@@ -77,15 +91,23 @@ namespace FSpot.Platform
 
 		internal void SaveSettings ()
 		{
-			var settings = Client.Root.ToString ();
-			EnsureSettingsDirectory ();
-			File.WriteAllText (SettingsFile, settings);
+			lock (sync_handler) {
+				DropIfThePathChanged ();
+				if (client == null)
+					LoadSettings ();
+
+				var settings = client.Root.ToString ();
+				EnsureSettingsDirectory (loadedFrom);
+				File.WriteAllText (loadedFrom, settings);
+			}
 		}
 
 		internal T Get<T> (string key)
 		{
-			if (Client.ContainsKey (key))
-				return Client[key].ToObject<T> ();
+			lock (sync_handler) {
+				if (Client.ContainsKey (key))
+					return Client[key].ToObject<T> ();
+			}
 
 			throw new NoSuchKeyException (nameof (key));
 		}
@@ -95,10 +117,11 @@ namespace FSpot.Platform
 			// JValue cannot wrap collections.
 			var token = value == null ? JValue.CreateNull () : JToken.FromObject (value);
 
-			Client[key] = token;
-
-			// This isn't ideal, but guarantees settings will be saved for now
-			SaveSettings ();
+			lock (sync_handler) {
+				Client[key] = token;
+				// This isn't ideal, but guarantees settings will be saved for now
+				SaveSettings ();
+			}
 		}
 	}
 }

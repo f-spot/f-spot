@@ -8,10 +8,12 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 
 using FSpot.Platform;
+using FSpot.Settings;
 using FSpot.Tests;
 
 using Newtonsoft.Json.Linq;
@@ -25,6 +27,7 @@ namespace FSpot.Preferences.Tests
 	public class PreferencesTests
 	{
 		string TestSettingsFile;
+		string previousOverride;
 		PreferenceJsonBackend jsonBackend;
 
 		JObject LoadSettings (string location)
@@ -37,10 +40,12 @@ namespace FSpot.Preferences.Tests
 		[TestInitialize]
 		public void Setup ()
 		{
+			previousOverride = PreferenceJsonBackend.PreferenceLocationOverride;
 			var tmpFile = Path.GetTempFileName ();
 			var jsonfile = Path.ChangeExtension (tmpFile, "json");
 			File.Move (tmpFile, jsonfile);
 			PreferenceJsonBackend.PreferenceLocationOverride = TestSettingsFile = jsonfile;
+			PreferenceJsonBackend.Unload ();
 			jsonBackend = new PreferenceJsonBackend ();
 		}
 
@@ -49,6 +54,8 @@ namespace FSpot.Preferences.Tests
 		{
 			if (File.Exists (TestSettingsFile))
 				File.Delete (TestSettingsFile);
+			PreferenceJsonBackend.PreferenceLocationOverride = previousOverride;
+			PreferenceJsonBackend.Unload ();
 		}
 
 		void AssertSettingsFileWritten ()
@@ -161,6 +168,37 @@ namespace FSpot.Preferences.Tests
 		{
 			var result = Settings.Preferences.Get<bool> (Settings.Preferences.TagIconAutomatic);
 			Assert.IsTrue (result);
+		}
+
+		[TestMethod]
+		public void ChangingTheSettingsPath_DoesNotFlushTheOldCache ()
+		{
+			string root = Path.Combine (Path.GetTempPath (), "fspot-prefs-" + Guid.NewGuid ().ToString ("n"));
+			string fileA = Path.Combine (root, "a.json");
+			string unoverridden = Path.Combine (root, FSpotConfiguration.SettingsName);
+			string previousOverride = PreferenceJsonBackend.PreferenceLocationOverride;
+			string previousBase = FSpotConfiguration.BaseDirectory;
+			string key = "Extension/FSpot.Test.NeverSaved." + Guid.NewGuid ().ToString ("n");
+			try {
+				Directory.CreateDirectory (root);
+				PreferenceJsonBackend.PreferenceLocationOverride = fileA;
+				PreferenceJsonBackend.Unload ();
+				jsonBackend.Set (key, true);
+
+				FSpotConfiguration.BaseDirectory = root;
+				PreferenceJsonBackend.PreferenceLocationOverride = null;
+				jsonBackend.Set (Settings.Preferences.ShowSidebar, false);
+
+				string flushed = File.ReadAllText (unoverridden);
+				Assert.DoesNotContain (key, flushed);
+				Assert.Contains (key, File.ReadAllText (fileA));
+			} finally {
+				PreferenceJsonBackend.PreferenceLocationOverride = previousOverride;
+				FSpotConfiguration.BaseDirectory = previousBase;
+				PreferenceJsonBackend.Unload ();
+				if (Directory.Exists (root))
+					Directory.Delete (root, true);
+			}
 		}
 
 		[TestMethod]

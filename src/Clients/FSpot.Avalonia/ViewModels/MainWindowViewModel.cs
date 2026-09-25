@@ -2093,7 +2093,13 @@ public partial class MainWindowViewModel : ObservableObject
 	[RelayCommand]
 	async Task ImportFromCameraAsync ()
 	{
-		var fileSystem = TinyIoCContainer.Current.Resolve<FSpot.FileSystem.IFileSystem> ();
+		FSpot.FileSystem.IFileSystem fileSystem;
+		try {
+			fileSystem = TinyIoCContainer.Current.Resolve<FSpot.FileSystem.IFileSystem> ();
+		} catch (TinyIoC.TinyIoCResolutionException) {
+			await shell.ShowWarningAsync (Strings.ImportFromCamera, DeviceImport.EmptyMessage);
+			return;
+		}
 		var sources = DeviceImport.Sources (fileSystem);
 		if (sources.Count == 0) {
 			await shell.ShowWarningAsync (Strings.ImportFromCamera, DeviceImport.EmptyMessage);
