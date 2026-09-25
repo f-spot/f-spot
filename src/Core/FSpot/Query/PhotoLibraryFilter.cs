@@ -28,6 +28,12 @@ namespace FSpot.Query
 				return false;
 			if (find.Untagged && photo.Tags != null && photo.Tags.Length > 0)
 				return false;
+			if (find.Matchers != null) {
+				foreach (var matcher in find.Matchers) {
+					if (matcher != null && !matcher.Matches (photo))
+						return false;
+				}
+			}
 			return true;
 		}
 

@@ -29,6 +29,7 @@ public static class AutomationIds
 	public const string FindBar = "Main.FindBar";
 	public const string FindBox = "Main.FindBox";
 	public const string FindClose = "Main.FindClose";
+	public const string FindCompletions = "Main.FindBox.Completions";
 
 	public const string StatusBar = "Main.StatusBar";
 	public const string ZoomSlider = "Main.ZoomSlider";
@@ -87,6 +88,8 @@ public static class AutomationIds
 	public const string QueryClearRoll = "Main.QueryBar.ClearRoll";
 	public const string QueryNoMatches = "Main.QueryBar.NoMatches";
 	public const string FindBarNoMatches = "Main.FindBar.NoMatches";
+	public const string QueryRefresh = "Main.QueryBar.Refresh";
+	public const string QueryLogic = "Main.QueryBar.Logic";
 	public const string SlideshowWindow = "Slideshow.Window";
 	public const string SlideshowImage = "Slideshow.Image";
 	public const string SlideshowClose = "Slideshow.Close";

@@ -1327,7 +1327,7 @@ public sealed class MainWindowViewModelTests
 		return viewModel;
 	}
 
-	class NullShell : IAvaloniaShell
+	internal class NullShell : IAvaloniaShell
 	{
 		public void Close () { }
 		public void ToggleFullscreen () { }
@@ -1454,7 +1454,7 @@ public sealed class MainWindowViewModelTests
 			=> Task.FromResult (ExportFolder);
 	}
 
-	sealed class NullThumbnails : IPhotoThumbnailLoader
+	internal sealed class NullThumbnails : IPhotoThumbnailLoader
 	{
 		public Task<Bitmap?> LoadAsync (string path, int size, CancellationToken cancellationToken)
 			=> Task.FromResult<Bitmap?> (null);
@@ -1511,7 +1511,7 @@ public sealed class MainWindowViewModelTests
 
 
 
-	sealed class StubVersion : IPhotoVersion
+	internal sealed class StubVersion : IPhotoVersion
 	{
 		public StubVersion (string path)
 		{

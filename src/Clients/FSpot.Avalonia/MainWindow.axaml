@@ -648,12 +648,11 @@
 				      AutomationProperties.AutomationId="{x:Static auto:AutomationIds.FindBar}"
 				      AutomationProperties.Name="{x:Static lang:Strings.Find}">
 					<Label Content="{x:Static lang:Strings.FindColon}" Target="{Binding #FindBox}" VerticalAlignment="Center" Margin="0,0,8,0" />
-					<TextBox x:Name="FindBox"
-					         Grid.Column="1"
-					         Text="{Binding FindText}"
-					         PlaceholderText="{x:Static lang:Strings.Find}"
-					         AutomationProperties.AutomationId="{x:Static auto:AutomationIds.FindBox}"
-					         AutomationProperties.Name="{x:Static lang:Strings.Find}" />
+					<controls:FindEntry x:Name="FindBox"
+					                    Grid.Column="1"
+					                    Text="{Binding FindText}"
+					                    TagNames="{Binding TagNames}"
+					                    EscapeCommand="{Binding HideFindCommand}" />
 					<Button Grid.Column="2" Content="×" Command="{Binding HideFindCommand}" Margin="8,0,0,0"
 					        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.FindClose}"
 					        AutomationProperties.Name="{x:Static lang:Strings.CloseFind}" />
@@ -664,6 +663,8 @@
 					           AutomationProperties.Name="{x:Static lang:Strings.NoMatchingPhotosFound}" />
 				</Grid>
 				<Border DockPanel.Dock="Top" Classes="query-bar" IsVisible="{Binding HasLibraryFilter}"
+				        DragDrop.AllowDrop="True"
+				        input:QueryDrop.Target="Bar"
 				        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.QueryBar}"
 				        AutomationProperties.Name="{x:Static lang:Strings.Find}">
 					<Grid ColumnDefinitions="Auto,*,Auto">
@@ -735,10 +736,60 @@
 									        AutomationProperties.Name="{x:Static lang:Strings.RemoveFilter}" />
 								</StackPanel>
 							</Border>
+							<TextBlock IsVisible="{Binding !HasTagQuery}"
+							           Text="{x:Static lang:Strings.DragTagsHereToSearchForThem}"
+							           FontStyle="Italic" VerticalAlignment="Center" FontSize="12" />
+							<ItemsControl ItemsSource="{Binding QueryGroups}"
+							              IsVisible="{Binding HasTagQuery}"
+							              AutomationProperties.AutomationId="{x:Static auto:AutomationIds.QueryLogic}"
+							              AutomationProperties.Name="{x:Static lang:Strings.Tags}">
+								<ItemsControl.ItemsPanel>
+									<ItemsPanelTemplate>
+										<StackPanel Orientation="Horizontal" />
+									</ItemsPanelTemplate>
+								</ItemsControl.ItemsPanel>
+								<ItemsControl.ItemTemplate>
+									<DataTemplate DataType="vm:QueryGroupViewModel">
+										<StackPanel Orientation="Horizontal">
+											<TextBlock IsVisible="{Binding ShowOr}" Text="{Binding Source={x:Static lang:Strings.Or}, StringFormat=' {0} '}"
+											           VerticalAlignment="Center" FontSize="12" />
+											<ItemsControl ItemsSource="{Binding Literals}">
+												<ItemsControl.ItemsPanel>
+													<ItemsPanelTemplate>
+														<StackPanel Orientation="Horizontal" Spacing="3" />
+													</ItemsPanelTemplate>
+												</ItemsControl.ItemsPanel>
+												<ItemsControl.ItemTemplate>
+													<DataTemplate DataType="vm:QueryLiteralViewModel">
+														<Border Classes="query-chip" Padding="6,2"
+														        Focusable="True"
+														        DragDrop.AllowDrop="True"
+														        input:QueryDrop.Target="Literal"
+														        ToolTip.Tip="{Binding ToolTip}"
+														        AutomationProperties.AutomationId="{Binding AutomationId}"
+														        AutomationProperties.Name="{Binding ToolTip}">
+															<StackPanel Orientation="Horizontal" Spacing="4">
+																<svg:Svg Width="14" Height="14" Path="{Binding IconPath}" Opacity="{Binding IsNegated, Converter={x:Static input:QueryDrop.NegatedOpacity}}" />
+																<TextBlock Text="{Binding Name}" VerticalAlignment="Center" FontSize="12"
+																           TextDecorations="{Binding IsNegated, Converter={x:Static input:QueryDrop.NegatedDecorations}}" />
+															</StackPanel>
+														</Border>
+													</DataTemplate>
+												</ItemsControl.ItemTemplate>
+											</ItemsControl>
+										</StackPanel>
+									</DataTemplate>
+								</ItemsControl.ItemTemplate>
+							</ItemsControl>
 						</StackPanel>
-						<Button Grid.Column="2" Classes="chip-close" Content="×" ToolTip.Tip="{x:Static lang:Strings.ClearSearch}" Command="{Binding ClearLibraryFiltersCommand}"
-						        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.QueryClearAll}"
-						        AutomationProperties.Name="{x:Static lang:Strings.ClearSearch}" />
+						<StackPanel Grid.Column="2" Orientation="Horizontal">
+							<Button Classes="chip-close" Content="⟳" ToolTip.Tip="{x:Static lang:Strings.RefreshSearch}" Command="{Binding RefreshSearchCommand}"
+							        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.QueryRefresh}"
+							        AutomationProperties.Name="{x:Static lang:Strings.RefreshSearch}" />
+							<Button Classes="chip-close" Content="×" ToolTip.Tip="{x:Static lang:Strings.ClearSearch}" Command="{Binding ClearLibraryFiltersCommand}"
+							        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.QueryClearAll}"
+							        AutomationProperties.Name="{x:Static lang:Strings.ClearSearch}" />
+						</StackPanel>
 					</Grid>
 				</Border>
 				<Border DockPanel.Dock="{Binding FilmstripEdge}"

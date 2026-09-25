@@ -131,7 +131,7 @@ public partial class MainWindow : Window, IAvaloniaShell
 	}
 
 	public void FocusFind ()
-		=> Dispatcher.UIThread.Post (() => FindBox.Focus ());
+		=> Dispatcher.UIThread.Post (() => FindBox.FocusEntry ());
 
 	public async Task ShowAboutAsync ()
 		=> await new AboutWindow ().ShowDialog (this);

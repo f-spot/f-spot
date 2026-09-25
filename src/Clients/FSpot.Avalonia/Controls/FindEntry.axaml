@@ -1,0 +1,27 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:auto="using:FSpot.Avalonia"
+             xmlns:lang="using:FSpot.Resources.Lang"
+             x:Class="FSpot.Avalonia.Controls.FindEntry"
+             Focusable="True">
+	<Panel>
+		<TextBox x:Name="Box"
+		         PlaceholderText="{x:Static lang:Strings.Find}"
+		         AutomationProperties.AutomationId="{x:Static auto:AutomationIds.FindBox}"
+		         AutomationProperties.Name="{x:Static lang:Strings.Find}" />
+		<Popup x:Name="CompletionPopup"
+		       PlacementTarget="{Binding #Box}"
+		       Placement="BottomEdgeAlignedLeft"
+		       IsLightDismissEnabled="True">
+			<Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}"
+			        BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}"
+			        BorderThickness="1">
+				<ListBox x:Name="Completions"
+				         MaxHeight="240"
+				         MinWidth="160"
+				         AutomationProperties.AutomationId="{x:Static auto:AutomationIds.FindCompletions}"
+				         AutomationProperties.Name="{x:Static lang:Strings.Tags}" />
+			</Border>
+		</Popup>
+	</Panel>
+</UserControl>

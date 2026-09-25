@@ -244,7 +244,7 @@ public partial class MainWindowViewModel : ObservableObject
 	public bool ShowTagBar => IsEditing;
 	public bool ShowInfoBox => SelectedPhoto is not null;
 	public bool HasLibraryFilter => ActiveTagFilter is not null || ActiveFolderFilter is not null || FindUntagged
-		|| FindTags.Count > 0 || HasFindRating || HasFindDate || HasFindRoll;
+		|| FindTags.Count > 0 || HasFindRating || HasFindDate || HasFindRoll || HasTagQuery;
 	public bool HasFindRating => FindMinRating is not null || FindMaxRating is not null;
 	public bool HasFindDate => FindStart is not null || FindEnd is not null;
 	public bool HasFindRoll => findRollIds.Count > 0;
@@ -342,6 +342,7 @@ public partial class MainWindowViewModel : ObservableObject
 
 		if (selected is not null)
 			SelectedTag = FindTagNode (Tags, selected);
+		SyncTagQueryWithTags ();
 	}
 
 	static TagNode? FindTagNode (IEnumerable<TagNode> nodes, Tag tag)
@@ -464,7 +465,7 @@ public partial class MainWindowViewModel : ObservableObject
 		}
 
 		var find = new LibraryFind {
-			Text = FindText,
+			Matchers = FindMatchers (),
 			Tags = tags,
 			RequireAllTags = FindMatchAllTags,
 			Untagged = FindUntagged,
@@ -905,7 +906,10 @@ public partial class MainWindowViewModel : ObservableObject
 	}
 
 	partial void OnFindTextChanged (string value)
-		=> ApplyLocalFilters ();
+	{
+		ParseFindText ();
+		ApplyLocalFilters ();
+	}
 
 	partial void OnIsFindBarVisibleChanged (bool value)
 		=> OnPropertyChanged (nameof (ShowFindBarNoMatches));
@@ -1421,6 +1425,7 @@ public partial class MainWindowViewModel : ObservableObject
 		ActiveFolderFilter = null;
 		FindUntagged = false;
 		FindTags.Clear ();
+		TagQuery.Clear ();
 		ClearFindTerms ();
 	}
 
@@ -1439,6 +1444,7 @@ public partial class MainWindowViewModel : ObservableObject
 		ActiveFolderFilter = null;
 		FindUntagged = false;
 		FindTags.Clear ();
+		TagQuery.Clear ();
 		ClearFindTerms ();
 	}
 
